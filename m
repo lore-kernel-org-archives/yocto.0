@@ -1,481 +1,375 @@
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
- by mx.groups.io with SMTP id smtpd.web09.400.1620163060163898577
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web10.440.1620166435491811802
  for <yocto@lists.yoctoproject.org>;
- Tue, 04 May 2021 14:17:40 -0700
+ Tue, 04 May 2021 15:13:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=dE5XM8Fz;
- spf=pass (domain: gmail.com, ip: 209.85.219.174, mailfrom: raj.khem@gmail.com)
-Received: by mail-yb1-f174.google.com with SMTP id b131so14095948ybg.5
-        for <yocto@lists.yoctoproject.org>; Tue, 04 May 2021 14:17:40 -0700 (PDT)
+ dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=QkhZA4Bq;
+ spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com [209.85.217.44])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 86A0038C0554
+	for <yocto@yoctoproject.org>; Tue,  4 May 2021 22:13:54 +0000 (UTC)
+Received: by mail-vs1-f44.google.com with SMTP id 66so102412vsk.9
+        for <yocto@yoctoproject.org>; Tue, 04 May 2021 15:13:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=blade-group.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6axVgVkmg0X6pv+ygD9CTRX9k0QZFJZaIt8QsAKkZkc=;
-        b=dE5XM8FzSF9Qq6f/g2lU5Cwj8nfQatk1/T/BO+W50SSzBOC6xSU5mnjqmTy0u9n/fV
-         AXZToKq4JRILNd8qlSFyj2QAnCYyN1hwJ2zT8AJJXa7h2RYtbUp+SsbpCP8j/c60wytU
-         wXtCtpzPEQJFg/9Hx8UinEwjK7YWfn5aj7Agbuz9flnTuvqBT9dDHgmcH1KV7KtCCAgm
-         XJOpa5H+2cAXG3fYUtsSKJMeswgEnFzca1ilxFb2XZsj5MRtvSNIWDth8aD+RTh/dbHs
-         4MijHPAR1uMg+fb+osCtM47beWU7KC7EDpEuqSA+rozC2xKoQzgrskzdWa/djOoPrTIM
-         pbvA==
+         :cc:content-transfer-encoding;
+        bh=AiBmZgZgvEYfExAL9j/oPh2gsZcLXABTHNHb9N8khW4=;
+        b=QkhZA4BqDNsIBSA2DFuETAipqGCEm+VzrqielLpZYIaFBbuZ6RU1QZBw/YZaHe4u2A
+         G1SlJAVX9id4jZsoNDyqR+jZyw3NL5rMo2pjPm5hOgkA/7x4LI5ccsAgXHzgnsVrVeCP
+         lGuRbC24T1HcBwhZH7qjZnIeovCaj45B1BLfCf/vTVflDIOM3q3+Hs92mJAiUVQLaQzR
+         d0g8yKryU5XWaBVTTj6VHr0QKF3XvuQ8+vl3skVDNJV5/MRhl7g9TGGk85b2MCzXkyKh
+         N2Gn8YB0tv31VLwax4l9EyiqBkclQalEdKWbJXdN5rwWiQx887XuwMZyTVF92yERM3k2
+         Cx+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6axVgVkmg0X6pv+ygD9CTRX9k0QZFJZaIt8QsAKkZkc=;
-        b=VOsRh4xfesmbL69i8XZFTQTwrDlj9/qfYLR9Pcn7E0m4CQMDiatDQQ8OvGME3/Hl9B
-         vRXSWgC80dKC3NJkrDhAPliwCCGMv63HEx7y7ntJYUSQHtHRWdDZ12MxHErjzYfFnYFZ
-         VZ0O/cxZBs1PqFYJhlKt7NMU1az2zEUtaTXpZI16GhAXxTbIaZBnEuZcmiK1dvW9ZaFP
-         sVly/FxSdMrhm2vooltqKyQCIeLTstkO1uAoziGle9dki6uQIclvwtQBBWhHKmeeYYbj
-         y00qpC4EdIJpD++Co19P483l3lIyaBCCUz0p7LBdGAYnYkRvthzjFRNmsBYuz4NfrsT0
-         DsdA==
-X-Gm-Message-State: AOAM532LmeGryLM9E6qHoFqEBcI7HyaE7EO5zisKROJH6w/B5lquCm1B
-	vHDtmgt5xUhAd0CGI+1HfV99ebXKnj5DMdtuew8=
-X-Google-Smtp-Source: ABdhPJyDtpNsoVyZ/1OrO7l4wcG9QBtRdLE5U4HznoX5YW6OEu2lohMEMlN+vpZNuIeXaymj4DoVcrcn9mMExbVbo/o=
-X-Received: by 2002:a25:2986:: with SMTP id p128mr28019205ybp.197.1620163059168;
- Tue, 04 May 2021 14:17:39 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=AiBmZgZgvEYfExAL9j/oPh2gsZcLXABTHNHb9N8khW4=;
+        b=JVh7v92WCDow1SSLTuqiqE+fdpd14QL5teGftVy1qRIP8AK/emOLDM4C1Y5hq5ik19
+         nZojzRB5JWFVaP0pi+4a8s5BRzyddIJF3bxT7gajTRtwfO2xMRfFpAjx/77PJ+f79Tpv
+         Ef9GBsDVJR9TZbWqe9XahmO45AZp22mQDz15SC5Homu6yBIDdsHJ0lJl1g4SBr8aTwBm
+         qEn7YdgFWKSm3nqfO6ccDNNZC3bZizhMQUg2gmdRdwK2UryyV4OKkP4bFgvlY7AFl2xM
+         xfx4WjBsaKApNiA7WsRJDAABYwyyD4zszLX7td0QvGdVBYQajwt3VNZBy8cYNX5EtoIK
+         IMIw==
+X-Gm-Message-State: AOAM533R8mEMEc87Mc/WSozEhq1KuTEuIWLWpH1MF+9eNe7J9mcqJNYK
+	RIpo63h+24b7jQr8SaNHPkOSF/aV/21ufTa4ObgUXA==
+X-Google-Smtp-Source: ABdhPJxS1ZQsPisWkRmbQ3aEDjZ+pH/J+Q4asmDYocqh4da4eegFnG0I7w6kgoFNREsFub3eCg+Sxf4lulPSqjSCc/Y=
+X-Received: by 2002:a67:ecce:: with SMTP id i14mr24864150vsp.22.1620166433516;
+ Tue, 04 May 2021 15:13:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAMKF1so2jpYNBenCT60FBFV4ofy=oJotbkDuC8Ocnt6kCG6x+A@mail.gmail.com>
- <MADEUP.167BF553E042ED1A.3648@lists.yoctoproject.org>
-In-Reply-To: <MADEUP.167BF553E042ED1A.3648@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Tue, 4 May 2021 14:17:12 -0700
-Message-ID: <CAMKF1sq9PXQs1UVGawYYyFVM4u0yWWENhMZ8mO5AWbv43TYouw@mail.gmail.com>
-Subject: Re: [yocto] #yocto cmake configurations
-To: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000009eb95b05c1879b54"
-
---0000000000009eb95b05c1879b54
+References: <20210426145810.718821-1-yann@blade-group.com> <20210426145810.718821-4-yann@blade-group.com>
+ <20210504210349.GC1096@localhost>
+In-Reply-To: <20210504210349.GC1096@localhost>
+From: "Yann Dirson" <yann.dirson@blade-group.com>
+Date: Wed, 5 May 2021 00:13:42 +0200
+Message-ID: <CA+4=ima+e+vMB2+1f4tUaSmWLe9XM5TbVDJXkyju1AXv0g8veg@mail.gmail.com>
+Subject: Re: [meta-rockchip][PATCH v4 3/3] linux-yocto: add an initial NanoPi-M4 BSP
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>, Yann Dirson <yann@blade-group.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-I see its using -rdynamic -static
-so next question is that do you have .a files in your sdk ?
-
-On Tue, May 4, 2021 at 12:57 PM Monsees, Steven C (US) via
-lists.yoctoproject.org <steven.monsees=3Dbaesystems.com@lists.yoctoproject=
-.org>
-wrote:
-
->
->
-> Attached=E2=80=A6
->
->
->
-> *From:* Khem Raj <raj.khem@gmail.com>
-> *Sent:* Tuesday, May 4, 2021 2:36 PM
-> *To:* Monsees, Steven C (US) <steven.monsees@baesystems.com>
-> *Cc:* yocto@lists.yoctoproject.org
-> *Subject:* Re: [yocto] #yocto cmake configurations
->
->
->
-> *External Email Alert*
->
-> *This email has been sent from an account outside of the BAE Systems
-> network.*
->
-> Please treat the email with caution, especially if you are requested to
-> click on a link, decrypt/open an attachment, or enable macros.  For furt=
-her
-> information on how to spot phishing, access =E2=80=9CCybersecurity OneSp=
-ace Page=E2=80=9D
-> and report phishing by clicking the button =E2=80=9CReport Phishing=E2=
-=80=9D on the Outlook
-> toolbar.
->
->
->
-> can you post full linker cmd which is failing ?
->
->
->
-> On Tue, May 4, 2021 at 11:24 AM Monsees, Steven C (US) via
-> lists.yoctoproject.org <steven.monsees=3D
-> baesystems.com@lists.yoctoproject.org> wrote:
->
->
->
-> My standard zeus SDK appears to have an issue linking in my applications
-> dynamic libs=E2=80=A6
->
->
->
-> /disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/x86_64-pokysdk-=
-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/9.2.0/real-ld:
-> cannot find -ldrm_intel
->
-> /disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/x86_64-pokysdk-=
-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/9.2.0/real-ld:
-> cannot find -ldrm
->
-> /disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/x86_64-pokysdk-=
-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/9.2.0/real-ld:
-> cannot find -lclang
->
-> collect2: error: ld returned 1 exit status
->
-> The libraries are under:
-> /disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/corei7-64-poky-=
-linux/usr/lib/
->
->
->
-> My CMake build app does not appear to have an issue finding the files:
->
->
->
->
-> DRM_INTEL_LIBRARIES:STRING=3D/disk0/scratch/smonsees/sbcbSTD_SDK/limws/3=
-.0.4/sysroots/corei7-64-poky-linux/usr/lib/libdrm_intel.so
->
->
-> DRM_LIBRARIES:STRING=3D/disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/s=
-ysroots/corei7-64-poky-linux/usr/lib/libdrm.so
->
->
->
-> It appears to be an issue specifically with the ld=E2=80=A6
->
->
->
-> LDFLAGS=3D " --sysroot=3D$ENV{OECORE_TARGET_SYSROOT}
-> -L$ENV{OECORE_TARGET_SYSROOT}/usr/lib
-> -L$ENV{OECORE_TARGET_SYSROOT}/usr/lib/x86_64-poky-linux/9.2.0 -lpthread
-> -pthread -O2 -pipe -Wl,-O1 -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-neede=
-d"
->
->
->
-> It does not appear to be making use of =E2=80=93L=E2=80=99s=E2=80=A6
->
->
->
-> Is there something I might look at/configure (i.e. add paths to search
-> paths) ?
->
-> Is there a simple test to validate tool ?
->
->
->
-> Thanks,
->
-> Steve
->
->
->
-> *From:* yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> *On
-> Behalf Of *Monsees, Steven C (US) via lists.yoctoproject.org
-> *Sent:* Sunday, May 2, 2021 1:28 PM
-> *To:* yocto@lists.yoctoproject.org
-> *Subject:* [yocto] #yocto cmake configurations
->
->
->
-> *External Email Alert*
->
-> *This email has been sent from an account outside of the BAE Systems
-> network.*
->
-> Please treat the email with caution, especially if you are requested to
-> click on a link, decrypt/open an attachment, or enable macros.  For furt=
-her
-> information on how to spot phishing, access =E2=80=9CCybersecurity OneSp=
-ace Page=E2=80=9D
-> and report phishing by clicking the button =E2=80=9CReport Phishing=E2=
-=80=9D on the Outlook
-> toolbar.
->
->
->
->
->
-> I am using zeus, standard SDK, cmake=E2=80=A6
->
->
->
-> Can I pre-configure the SDK to setup cmake package search paths ?, say f=
-or
-> find_package, etc. (i.e. detecting external libraries/programs)=E2=80=A6
->
->
->
-> The majority of my env is configuring properly, but I am finding cmake i=
-s
-> setup for a standard linux env with regards to these types of searches, =
+Le mar. 4 mai 2021 =C3=A0 23:03, Trevor Woerner <twoerner@gmail.com> a =C3=
+=A9crit :
+>
+> On Mon 2021-04-26 @ 04:58:10 PM, yann.dirson@blade-group.com wrote:
+> > From: Yann Dirson <yann@blade-group.com>
+> >
+> > This patch provides "standard" and "tiny" BSP.
+> >
+> > There is still much work to be done in dispatching feature to individua=
+l
+> > scc files - the more boards we can support the better it will get.
+> > Not all SoC/board features are covered yet either (esp. Wifi/Bluetooth =
 and
+> > audio jack), and properly-woking HDMI still needs patches.
+> >
+> > Tiny is not fully testable by itself, it can be minimally booted with
+> > serial console (though still missing CONFIG_MULTIUSER for serial getty,
+> > and CONFIG_INOTIFY_USER for proper udev operation) using:
+> >
+> >  PREFERRED_PROVIDER_virtual/kernel =3D "linux-yocto-tiny"
+> >  KERNEL_FEATURES_append =3D "\
+> >   ktypes/base/base.scc \
+> >   features/debug/printk.scc \
+> >   cfg/fs/ext4.scc \
+> >   cfg/8250.scc \
+> >  "
+> >
+> > Such a tiny build is still using mainline defconfig with lots of hardwa=
+re
+> > features, and the kernel can be slimmed down even more by using:
+> >
+> >  KBUILD_DEFCONFIG =3D ""
+> >
+> > Kernel weight using default configurations:
+> > - standard                11MB
+> > - tiny                     5MB
+> > - tiny with no defconfig   2.5MB
+> >
+> > Signed-off-by: Yann Dirson <yann@blade-group.com>
+> > ---
+> >  .../files/bsp/rockchip/nanopi-m4-standard.scc |  7 ++
+> >  .../files/bsp/rockchip/nanopi-m4-tiny.scc     |  7 ++
+> >  .../linux/files/bsp/rockchip/nanopi-m4.cfg    | 15 ++++
+> >  .../linux/files/bsp/rockchip/nanopi-m4.scc    |  5 ++
+> >  .../linux/files/bsp/rockchip/rk3399.cfg       | 71 +++++++++++++++++++
+> >  .../linux/files/bsp/rockchip/rk3399.scc       |  5 ++
+> >  .../linux/files/bsp/rockchip/rockchip.cfg     | 50 +++++++++++++
+> >  .../linux/files/bsp/rockchip/rockchip.scc     |  6 ++
+> >  recipes-kernel/linux/linux-yocto%.bbappend    |  6 ++
+> >  9 files changed, 172 insertions(+)
+> >  create mode 100644 recipes-kernel/linux/files/bsp/rockchip/nanopi-m4-s=
+tandard.scc
+> >  create mode 100644 recipes-kernel/linux/files/bsp/rockchip/nanopi-m4-t=
+iny.scc
+> >  create mode 100644 recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.c=
+fg
+> >  create mode 100644 recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.s=
+cc
+> >  create mode 100644 recipes-kernel/linux/files/bsp/rockchip/rk3399.cfg
+> >  create mode 100644 recipes-kernel/linux/files/bsp/rockchip/rk3399.scc
+> >  create mode 100644 recipes-kernel/linux/files/bsp/rockchip/rockchip.cf=
+g
+> >  create mode 100644 recipes-kernel/linux/files/bsp/rockchip/rockchip.sc=
+c
+> >
+> > diff --git a/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4-standard=
+.scc b/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4-standard.scc
+> > new file mode 100644
+> > index 0000000..5c74d6b
+> > --- /dev/null
+> > +++ b/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4-standard.scc
+> > @@ -0,0 +1,7 @@
+> > +# SPDX-License-Identifier: MIT
+> > +define KMACHINE nanopi-m4
+> > +define KTYPE standard
+> > +define KARCH arm
+> > +
+> > +include ktypes/standard/standard.scc
+> > +include nanopi-m4.scc
+> > diff --git a/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4-tiny.scc=
+ b/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4-tiny.scc
+> > new file mode 100644
+> > index 0000000..6e94d6a
+> > --- /dev/null
+> > +++ b/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4-tiny.scc
+> > @@ -0,0 +1,7 @@
+> > +# SPDX-License-Identifier: MIT
+> > +define KMACHINE nanopi-m4
+> > +define KTYPE tiny
+> > +define KARCH arm
+> > +
+> > +include ktypes/tiny/tiny.scc
+> > +include nanopi-m4.scc
+> > diff --git a/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg b/re=
+cipes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg
+> > new file mode 100644
+> > index 0000000..7802ab3
+> > --- /dev/null
+> > +++ b/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg
+> > @@ -0,0 +1,15 @@
+> > +CONFIG_MFD_RK808=3Dy
+> > +CONFIG_COMMON_CLK_RK808=3Dy
+> > +
+> > +CONFIG_REGULATOR_RK808=3Dy
+> > +CONFIG_REGULATOR_FAN53555=3Dy
+> > +
+> > +CONFIG_MMC_BLOCK=3Dy
+> > +CONFIG_PWRSEQ_SIMPLE=3Dy
+> > +
+> > +# RTL8211E
+> > +CONFIG_REALTEK_PHY=3Dm
+> > +
+> > +# AP6356S
+> > +CONFIG_BT_BCM=3Dm
+> > +CONFIG_BT_HCIUART_BCM=3Dy
 >
-> I wanted the cmake built in to look at my SDK paths (first by default)
-> when doing such things as detecting python interpreter, libraries, etc.
+> It looks to me as though the BRCMFMAC kernel config option needs to be en=
+abled
+> to support the AP6256S? I don't see that being enabled, does it end up be=
+ing
+> pulled in by default or as a result of the above two settings?
 >
+> > diff --git a/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.scc b/re=
+cipes-kernel/linux/files/bsp/rockchip/nanopi-m4.scc
+> > new file mode 100644
+> > index 0000000..f4267aa
+> > --- /dev/null
+> > +++ b/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.scc
+> > @@ -0,0 +1,5 @@
+> > +# SPDX-License-Identifier: MIT
+> > +
+> > +kconf hardware nanopi-m4.cfg
+> > +
+> > +include rk3399.scc
+> > diff --git a/recipes-kernel/linux/files/bsp/rockchip/rk3399.cfg b/recip=
+es-kernel/linux/files/bsp/rockchip/rk3399.cfg
+> > new file mode 100644
+> > index 0000000..f5f2909
+> > --- /dev/null
+> > +++ b/recipes-kernel/linux/files/bsp/rockchip/rk3399.cfg
+> > @@ -0,0 +1,71 @@
+> > +# A72 errata, all past revisions
+> > +CONFIG_ARM64_ERRATUM_1319367=3Dy
+> > +# A53 errata, all patched on boot when needed
+> > +CONFIG_ARM64_ERRATUM_826319=3Dy
+> > +CONFIG_ARM64_ERRATUM_827319=3Dy
+> > +CONFIG_ARM64_ERRATUM_824069=3Dy
+> > +CONFIG_ARM64_ERRATUM_819472=3Dy
+> > +
+> > +# cru
+> > +CONFIG_CLK_RK3399=3Dy
+> > +
+> > +CONFIG_PL330_DMA=3Dy
+> > +CONFIG_I2C_RK3X=3Dy
+> > +CONFIG_SERIAL_8250_DW=3Dy
+> > +
+> > +# usb
+> > +CONFIG_PHY_ROCKCHIP_INNO_USB2=3Dy
+> > +CONFIG_PHY_ROCKCHIP_TYPEC=3Dy
+> > +
+> > +# ethernet
+> > +CONFIG_NET_VENDOR_STMICRO=3Dy
+> > +CONFIG_STMMAC_ETH=3Dm
+> > +CONFIG_STMMAC_PLATFORM=3Dm
+> > +CONFIG_DWMAC_ROCKCHIP=3Dm
+> > +CONFIG_PHYLIB=3Dm
+> > +
+> > +# display
+> > +CONFIG_ROCKCHIP_DW_HDMI=3Dy
+> > +CONFIG_ROCKCHIP_DW_MIPI_DSI=3Dy
+> > +CONFIG_ROCKCHIP_ANALOGIX_DP=3Dy
+> > +CONFIG_ROCKCHIP_CDN_DP=3Dy
+> > +CONFIG_PHY_ROCKCHIP_DP=3Dy
+> > +CONFIG_DRM_DW_HDMI=3Dm
+> > +CONFIG_DRM_DW_HDMI_I2S_AUDIO=3Dm
+> > +CONFIG_DRM_DW_HDMI_CEC=3Dm
+> > +CONFIG_DRM_DW_MIPI_DSI=3Dm
+> > +CONFIG_DRM_PANFROST=3Dm
+> > +
+> > +# HDMI audio
+> > +CONFIG_DRM_DW_HDMI_AHB_AUDIO=3Dm
+> > +CONFIG_SND_SOC_RK3288_HDMI_ANALOG=3Dm
 >
+> Oops, is enabling this RK3288 setting an oversight? Or is it needed for H=
+DMI
+> on the RK3399?
 >
-> I am working on third party package unaware of my SDK setup.
->
->
->
-> Thanks,
->
-> Steve
->
->
->
->=20
->
->
+> > +
+> > +CONFIG_VIDEO_DEV=3Dm
+> > +CONFIG_V4L_MEM2MEM_DRIVERS=3Dy
+> > +CONFIG_VIDEO_ROCKCHIP_RGA=3Dm
+> > +
+> > +CONFIG_V4L2_H264=3Dm
+> > +CONFIG_MEDIA_CONTROLLER_REQUEST_API=3Dy
+> > +CONFIG_VIDEO_HANTRO=3Dm
+> > +CONFIG_VIDEO_HANTRO_ROCKCHIP=3Dy
+> > +CONFIG_VIDEO_ROCKCHIP_VDEC=3Dm
+> > +
+> > +# usb
+> > +CONFIG_USB_DWC2=3Dy
+> > +CONFIG_USB_DWC3=3Dy
+> > +CONFIG_USB_DWC3_DUAL_ROLE=3Dy
+> > +
+> > +# sd/mmc
+> > +CONFIG_MMC=3Dy
+> > +CONFIG_MMC_SDHCI=3Dy
+> > +CONFIG_MMC_SDHCI_PLTFM=3Dy
+> > +CONFIG_MMC_DW=3Dy
+> > +CONFIG_MMC_DW_ROCKCHIP=3Dy
+> > +CONFIG_MMC_SDHCI_OF_ARASAN=3Dy
+> > +
+> > +# temperature sensors
+> > +CONFIG_THERMAL=3Dy
+> > +CONFIG_THERMAL_OF=3Dy
+> > +CONFIG_ROCKCHIP_THERMAL=3Dm
+> > +CONFIG_IIO=3Dy
+> > +CONFIG_ROCKCHIP_SARADC=3Dm
+> > diff --git a/recipes-kernel/linux/files/bsp/rockchip/rk3399.scc b/recip=
+es-kernel/linux/files/bsp/rockchip/rk3399.scc
+> > new file mode 100644
+> > index 0000000..9b1a88e
+> > --- /dev/null
+> > +++ b/recipes-kernel/linux/files/bsp/rockchip/rk3399.scc
+> > @@ -0,0 +1,5 @@
+> > +# SPDX-License-Identifier: MIT
+> > +
+> > +kconf hardware rk3399.cfg
+> > +
+> > +include rockchip.scc
+> > diff --git a/recipes-kernel/linux/files/bsp/rockchip/rockchip.cfg b/rec=
+ipes-kernel/linux/files/bsp/rockchip/rockchip.cfg
+> > new file mode 100644
+> > index 0000000..05a397d
+> > --- /dev/null
+> > +++ b/recipes-kernel/linux/files/bsp/rockchip/rockchip.cfg
+> > @@ -0,0 +1,50 @@
+> > +CONFIG_CPU_ISOLATION=3Dy
+> > +CONFIG_NUMA_BALANCING_DEFAULT_ENABLED=3Dy
+> > +CONFIG_HZ_250=3Dy
+> > +CONFIG_CPU_IDLE=3Dy
+> > +CONFIG_ARM_CPUIDLE=3Dy
+> > +
+> > +CONFIG_ARCH_ROCKCHIP=3Dy
+> > +CONFIG_COMMON_CLK_ROCKCHIP=3Dy
+> > +CONFIG_REGULATOR=3Dy
+> > +CONFIG_REGULATOR_FIXED_VOLTAGE=3Dy
+> > +CONFIG_REGULATOR_PWM=3Dy
+> > +CONFIG_I2C=3Dy
+> > +CONFIG_FW_LOADER=3Dy
+> > +CONFIG_PHY_ROCKCHIP_EMMC=3Dy
+> > +CONFIG_PINCTRL=3Dy
+> > +CONFIG_PINCTRL_ROCKCHIP=3Dy
+> > +CONFIG_ROCKCHIP_IODOMAIN=3Dy
+> > +CONFIG_ROCKCHIP_PM_DOMAINS=3Dy
+> > +
+> > +CONFIG_SPI=3Dy
+> > +CONFIG_SPI_ROCKCHIP=3Dm
+> > +
+> > +CONFIG_PWM=3Dy
+> > +CONFIG_PWM_ROCKCHIP=3Dy
+> > +
+> > +CONFIG_DRM_KMS_HELPER=3Dm
+> > +CONFIG_DRM_FBDEV_EMULATION=3Dy
+> > +CONFIG_ROCKCHIP_IOMMU=3Dy
+> > +CONFIG_DRM_ROCKCHIP=3Dm
+> > +CONFIG_DRM_BRIDGE=3Dy
+> > +
+> > +CONFIG_SND=3Dy
+> > +CONFIG_SND_SOC=3Dy
+> > +CONFIG_SND_HDA_CODEC_HDMI=3Dm
+> > +CONFIG_SND_SOC_ROCKCHIP=3Dm
+> > +CONFIG_SND_SOC_ROCKCHIP_I2S=3Dm
+> > +CONFIG_SND_SOC_ROCKCHIP_SPDIF=3Dm
+> > +
+> > +CONFIG_NVMEM=3Dy
+> > +CONFIG_ROCKCHIP_EFUSE=3Dm
+> > +
+> > +CONFIG_CPU_FREQ=3Dy
+> > +CONFIG_CPU_FREQ_THERMAL=3Dy
+> > +CONFIG_HWMON=3Dy
+> > +CONFIG_THERMAL_HWMON=3Dy
+> > +
+> > +CONFIG_CRYPTO_HW=3Dy
+> > +CONFIG_CRYPTO_DEV_ROCKCHIP=3Dm
+> > +
+> > +CONFIG_MMC_BLOCK_MINORS=3D32
+> > diff --git a/recipes-kernel/linux/files/bsp/rockchip/rockchip.scc b/rec=
+ipes-kernel/linux/files/bsp/rockchip/rockchip.scc
+> > new file mode 100644
+> > index 0000000..800f105
+> > --- /dev/null
+> > +++ b/recipes-kernel/linux/files/bsp/rockchip/rockchip.scc
+> > @@ -0,0 +1,6 @@
+> > +# SPDX-License-Identifier: MIT
+> > +
+> > +kconf hardware rockchip.cfg
+> > +
+> > +include cfg/dmaengine.scc
+> > +include features/mmc/mmc-block.cfg
+> > diff --git a/recipes-kernel/linux/linux-yocto%.bbappend b/recipes-kerne=
+l/linux/linux-yocto%.bbappend
+> > index 7702e3f..9658681 100644
+> > --- a/recipes-kernel/linux/linux-yocto%.bbappend
+> > +++ b/recipes-kernel/linux/linux-yocto%.bbappend
+> > @@ -1,3 +1,9 @@
+> > +FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
+> > +
+> > +SRC_URI_append =3D "\
+> > + file://bsp;type=3Dkmeta;subdir=3Dkernel-meta \
+> > +"
+> > +
+> >  COMPATIBLE_MACHINE_marsboard-rk3066 =3D "marsboard-rk3066"
+> >  COMPATIBLE_MACHINE_rock2-square =3D "rock2-square"
+> >  COMPATIBLE_MACHINE_radxarock =3D "radxarock"
+> > --
+> > 2.30.2
+> >
 
---0000000000009eb95b05c1879b54
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:monospac=
-e,monospace">I see its using=C2=A0<span style=3D"color:rgb(0,0,0);font-fami=
-ly:&quot;Courier New&quot;,Courier,monospace,arial,sans-serif;font-size:14p=
-x;white-space:pre-wrap">-rdynamic -static</span></div><div class=3D"gmail_d=
-efault" style=3D"font-family:monospace,monospace"><span style=3D"color:rgb(=
-0,0,0);font-family:&quot;Courier New&quot;,Courier,monospace,arial,sans-ser=
-if;font-size:14px;white-space:pre-wrap">so next question is that do you hav=
-e .a files in your sdk ?</span></div></div><br><div class=3D"gmail_quote"><=
-div dir=3D"ltr" class=3D"gmail_attr">On Tue, May 4, 2021 at 12:57 PM Monsee=
-s, Steven C (US) via <a href=3D"http://lists.yoctoproject.org">lists.yoctop=
-roject.org</a> &lt;steven.monsees=3D<a href=3D"mailto:baesystems.com@lists.=
-yoctoproject.org">baesystems.com@lists.yoctoproject.org</a>&gt; wrote:<br><=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
-rder-left:1px solid rgb(204,204,204);padding-left:1ex">
 
 
-
-
-
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_-1721670124516797794WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,s=
-ans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,s=
-ans-serif;color:rgb(31,73,125)">Attached=E2=80=A6<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,s=
-ans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11pt;font-family:Calibr=
-i,sans-serif">From:</span></b><span style=3D"font-size:11pt;font-family:Cal=
-ibri,sans-serif"> Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" target=
-=
-=3D"_blank">raj.khem@gmail.com</a>&gt;
-<br>
-<b>Sent:</b> Tuesday, May 4, 2021 2:36 PM<br>
-<b>To:</b> Monsees, Steven C (US) &lt;<a href=3D"mailto:steven.monsees@bae=
-systems.com" target=3D"_blank">steven.monsees@baesystems.com</a>&gt;<br>
-<b>Cc:</b> <a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blan=
-k">yocto@lists.yoctoproject.org</a><br>
-<b>Subject:</b> Re: [yocto] #yocto cmake configurations<u></u><u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<table border=3D"1" cellspacing=3D"0" cellpadding=3D"0" width=3D"97%" styl=
-e=3D"width:97%;margin-left:5.4pt;border-collapse:collapse;border:none">
-<tbody>
-<tr style=3D"height:21.2pt">
-<td width=3D"97%" valign=3D"top" style=3D"width:97%;border:1pt solid red;p=
-adding:0in 5.4pt;height:21.2pt">
-<p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom:4pt;text-al=
-ign:center;background:white">
-<strong><u><span style=3D"font-size:13.5pt;color:red">External Email Alert=
-</span></u></strong><u></u><u></u></p>
-</td>
-</tr>
-<tr style=3D"height:21.2pt">
-<td width=3D"686" valign=3D"top" style=3D"width:15in;border-right:1pt soli=
-d red;border-bottom:1pt solid red;border-left:1pt solid red;border-top:none=
-;padding:0in 5.4pt;height:21.2pt">
-<p class=3D"MsoNormal" align=3D"center" style=3D"margin-right:0in;margin-b=
-ottom:4pt;margin-left:0in;text-align:center;background:white">
-<strong><span style=3D"font-size:10pt;color:black">This email has been sen=
-t from an account outside of the BAE Systems network.</span></strong><u></u=
-><u></u></p>
-<p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom:4pt;text-al=
-ign:center">
-<span style=3D"font-size:7.5pt">Please treat the email with caution, espec=
-ially if you are requested to click on a link, decrypt/open an attachment, =
-or enable macros.=C2=A0 For further information on how to spot phishing, ac=
-cess =E2=80=9CCybersecurity OneSpace Page=E2=80=9D and report
- phishing by clicking the button =E2=80=9CReport Phishing=E2=80=9D on the =
-Outlook toolbar.</span><u></u><u></u></p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;"=
->can you post full linker cmd which is failing ?<u></u><u></u></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<div>
-<p class=3D"MsoNormal">On Tue, May 4, 2021 at 11:24 AM Monsees, Steven C (=
-US) via <a href=3D"http://lists.yoctoproject.org" target=3D"_blank">
-lists.yoctoproject.org</a> &lt;steven.monsees=3D<a href=3D"mailto:baesyste=
-ms.com@lists.yoctoproject.org" target=3D"_blank">baesystems.com@lists.yocto=
-project.org</a>&gt; wrote:<u></u><u></u></p>
-</div>
-<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;=
-border-left:1pt solid rgb(204,204,204);padding:0in 0in 0in 6pt;margin-left:=
-4.8pt;margin-right:0in">
-<div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">=C2=A0</span><=
-u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">My standard ze=
-us SDK appears to have an issue linking in my applications dynamic libs=E2=
-=80=A6</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">=C2=A0</span><=
-u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">/disk0/scratch=
-/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/x86_64-pokysdk-linux/usr/libexec=
-/x86_64-poky-linux/gcc/x86_64-poky-linux/9.2.0/real-ld: cannot
- find -ldrm_intel</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">/disk0/scratch=
-/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/x86_64-pokysdk-linux/usr/libexec=
-/x86_64-poky-linux/gcc/x86_64-poky-linux/9.2.0/real-ld: cannot
- find -ldrm</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">/disk0/scratch=
-/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/x86_64-pokysdk-linux/usr/libexec=
-/x86_64-poky-linux/gcc/x86_64-poky-linux/9.2.0/real-ld: cannot
- find -lclang</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">collect2: erro=
-r: ld returned 1 exit status</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">The libraries =
-are under: /disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/corei7-=
-64-poky-linux/usr/lib/</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">=C2=A0</span><=
-u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">My CMake build=
- app does not appear to have an issue finding the files:</span><u></u><u></=
-u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">=C2=A0</span><=
-u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">DRM_INTEL_LIBR=
-ARIES:STRING=3D/disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/cor=
-ei7-64-poky-linux/usr/lib/libdrm_intel.so</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">DRM_LIBRARIES:=
-STRING=3D/disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/corei7-64=
--poky-linux/usr/lib/libdrm.so</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">=C2=A0</span><=
-u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">It appears to =
-be an issue specifically with the ld=E2=80=A6</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">=C2=A0</span><=
-u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">LDFLAGS=3D</sp=
-an>
-<span style=3D"color:rgb(31,73,125)">&quot; --sysroot=3D$ENV{OECORE_TARGET=
-_SYSROOT} -L$ENV{OECORE_TARGET_SYSROOT}/usr/lib -L$ENV{OECORE_TARGET_SYSROO=
-T}/usr/lib/x86_64-poky-linux/9.2.0 -lpthread -pthread -O2 -pipe -Wl,-O1 -Wl=
-,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed&quot;</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">=C2=A0</span><=
-u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">It does not ap=
-pear to be making use of =E2=80=93L=E2=80=99s=E2=80=A6</span><u></u><u></u>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">=C2=A0</span><=
-u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">Is there somet=
-hing I might look at/configure (i.e. add paths to search paths) ?</span><u>=
-</u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">Is there a sim=
-ple test to validate tool ?</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">=C2=A0</span><=
-u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">Thanks,</span>=
-<u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">Steve</span><u=
-></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">=C2=A0</span><=
-u></u><u></u></p>
-<p class=3D"MsoNormal"><b>From:</b>
-<a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blank">yocto@li=
-sts.yoctoproject.org</a> &lt;<a href=3D"mailto:yocto@lists.yoctoproject.org=
-" target=3D"_blank">yocto@lists.yoctoproject.org</a>&gt;
-<b>On Behalf Of </b>Monsees, Steven C (US) via <a href=3D"http://lists.yoc=
-toproject.org" target=3D"_blank">
-lists.yoctoproject.org</a><br>
-<b>Sent:</b> Sunday, May 2, 2021 1:28 PM<br>
-<b>To:</b> <a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blan=
-k">yocto@lists.yoctoproject.org</a><br>
-<b>Subject:</b> [yocto] #yocto cmake configurations<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<div>
-<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"97%" styl=
-e=3D"width:97%;margin-left:5.4pt;border-collapse:collapse">
-<tbody>
-<tr style=3D"height:21.2pt">
-<td width=3D"97%" valign=3D"top" style=3D"width:97%;border:1pt solid red;p=
-adding:0in 5.4pt;height:21.2pt">
-<p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom:4pt;text-al=
-ign:center;background:white">
-<strong><u><span style=3D"font-size:13.5pt;font-family:Calibri,sans-serif;=
-color:red">External Email Alert</span></u></strong><u></u><u></u></p>
-</td>
-</tr>
-<tr style=3D"height:21.2pt">
-<td width=3D"677" valign=3D"top" style=3D"width:15in;border-right:1pt soli=
-d red;border-bottom:1pt solid red;border-left:1pt solid red;border-top:none=
-;padding:0in 5.4pt;height:21.2pt">
-<p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom:4pt;text-al=
-ign:center;background:white">
-<strong><span style=3D"font-size:10pt;font-family:Calibri,sans-serif;color=
-:black">This email has been sent from an account outside of the BAE Systems=
- network.</span></strong><u></u><u></u></p>
-<p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom:4pt;text-al=
-ign:center">
-<span style=3D"font-size:7.5pt">Please treat the email with caution, espec=
-ially if you are requested to click on a link, decrypt/open an attachment, =
-or enable macros.=C2=A0 For further information on how to spot phishing, ac=
-cess =E2=80=9CCybersecurity OneSpace Page=E2=80=9D and report
- phishing by clicking the button =E2=80=9CReport Phishing=E2=80=9D on the =
-Outlook toolbar.</span><u></u><u></u></p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">I am using zeus, standard SDK, cmake=E2=80=A6<u></u=
-><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">Can I pre-configure the SDK to setup cmake package =
-search paths ?, say for find_package, etc. (i.e. detecting external librari=
-es/programs)=E2=80=A6<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">The majority of my env is configuring properly, but=
- I am finding cmake is setup for a standard linux env with regards to these=
- types of searches, and<u></u><u></u></p>
-<p class=3D"MsoNormal">I wanted the cmake built in to look at my SDK paths=
- (first by default) when doing such things as detecting python interpreter,=
- libraries, etc.<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">I am working on third party package unaware of my S=
-DK setup.<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">Thanks,<u></u><u></u></p>
-<p class=3D"MsoNormal">Steve<u></u><u></u></p>
-</div>
-</div>
-</div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12pt"><br>
-<u></u><u></u></p>
-</blockquote>
-</div>
-</div>
-</div>
-</div>
-
-<br>
-<br>
-<br>
-</blockquote></div>
-
---0000000000009eb95b05c1879b54--
+--=20
+Yann Dirson <yann@blade-group.com>
+Blade / Shadow -- http://shadow.tech
