@@ -1,279 +1,310 @@
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
- by mx.groups.io with SMTP id smtpd.web10.9993.1620152090816449242
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
+ by mx.groups.io with SMTP id smtpd.web09.10196.1620152643688205241
  for <yocto@lists.yoctoproject.org>;
- Tue, 04 May 2021 11:14:51 -0700
+ Tue, 04 May 2021 11:24:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=sPbHFPwB;
- spf=pass (domain: gmail.com, ip: 209.85.222.181, mailfrom: raj.khem@gmail.com)
-Received: by mail-qk1-f181.google.com with SMTP id i67so6392226qkc.4
-        for <yocto@lists.yoctoproject.org>; Tue, 04 May 2021 11:14:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FphcMzQ0jbWl3vuQ0IAnsdeCztfogSczrq/83tZhf70=;
-        b=sPbHFPwBfRvSbFuZJCQbWWqmqxgExIQb0OX+mR4uYJP9rbXkht7RbsPWJW3HrLbUf4
-         OHfjC5YIp8P4JR/acvNEF8dFAbKc0LfGLsmB6iiEk2S7hHhBBt56VIzcgrqHyq4BcDW0
-         OGSGVyCllPbHkoDc+gz0krZvbPMA6hmEEBh5UXXYbv7fnnlA7z3Pq4jhg8I87NcCNi1z
-         ZmyvtmFs9j4tzuwL5iVcZepmH11LfsphVq5pK6iXNiDIooziKVzT20UsK1JNdhalUklh
-         jmfkxKCUzUF0XGqZ5t5amRXU7TdMV6uanYJx1LCsQc2cf94qxrW0Y+bWhbxyGyxIoccV
-         y1FA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FphcMzQ0jbWl3vuQ0IAnsdeCztfogSczrq/83tZhf70=;
-        b=THHbMjznWkLWb1Os+O+w5eEd5sKUrKlnA0k4wKmL27wTE0/vh+TYAg+cQaTcTa8H0b
-         pEW4LWxYXtquVO2C5+8a6LzX+CS7FlgoZgetnEwKEhDhzD2A5Jp/vnZbN9CUkkCb/A38
-         bhjBl131FDltwVNqAEoUvo7j9P27wr7ERdzSSV4FlEBqK5/1NORjKHWCvnj+6yqyt+Ov
-         67SoifQRDZW9q1FUZxsvW32YosgID/BKceo+dyZBQoxDryG+WgO1o+rM6Yk5b8DZDTKB
-         X7EnJgDll+Q6FeJnlErlnEZjtgs600jhkjUEIUsXFpnPrtBJu/RO6P3Z9eRI6m5znuu9
-         uyyA==
-X-Gm-Message-State: AOAM531Yxb/PdQ0Li0LGrcchw8fFGK1K7iZWUR/Up56rEW6zcvp9QXUA
-	gm9TdjbLVqqQiLOIr8B77rYThPPSCj572tuPXxY=
-X-Google-Smtp-Source: ABdhPJys0U0DriB6ePQnEP3XeoJhSRs8S0BU2ERX+2bDf7ZxLPmFa9Z5E+dkA07zlI++5B84VkEPMkAlGStlq2zR8FI=
-X-Received: by 2002:a37:8ec4:: with SMTP id q187mr26211990qkd.381.1620152089825;
- Tue, 04 May 2021 11:14:49 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@baesystems.com header.s=trusted01 header.b=hTyEPjfQ;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.65, mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1620152643; x=1777832643;
+  h=from:to:subject:date:in-reply-to:mime-version;
+  bh=iV80j0rqJezM03+BZP4QzPdu7/s67V/FIqb0tzjdJuI=;
+  b=hTyEPjfQgar1K2MD3gQ9yqmiiNkfkAh1D1wrtkSegblmYyx5xNFEtNps
+   8Zo9GiSdEGxd88sjeIgM3hqwjnEOkUvWDlCov/vxRocN3SSwJff+66jaE
+   M0jo2sFH1wjwXVwPr1A8HMjHgoQ0eacRTzGomOw2bQsCPBfXyvOu+/RF0
+   M=;
+IronPort-SDR: fVO7HyQoMTDyPpkl1GNzYaXxHnEuEY0IpSZ4atx8Zo1Xs0QbW1E2uJI5+eJwVWvX50D6gxJvAW
+ j+8uYUZrhEhg==
+IronPort-PHdr: =?us-ascii?q?A9a23=3A5rCflBC2mwjlUlXdt5YUUyQUbEQY04WcBSYlr?=
+ =?us-ascii?q?6E/grcLSJyIuqrYVGTh7PlgxGXEQZ/co6odzbaP4ua6AjJLuM/a+Fk5M7V0H?=
+ =?us-ascii?q?ycfjssXmwFySOWkMmbcaMDQUiohAc5ZX0Vk9XzoeWJcGcL5ekGA6ibqtW1aF?=
+ =?us-ascii?q?RrwLxd6KfroEYDOkcu3y/qy+5rOaAlUmTaxe7x/IAiyoAnLqMUbj4pvJqksx?=
+ =?us-ascii?q?hfUrHZDZvhby35vKV+PhRj3+92+/IRk8yReuvIh89BPXKDndKkmTrJWESorP?=
+ =?us-ascii?q?Xkt6MLkqRfMQw2P5mABUmoNiRpHHxLF7BDhUZjvtCbxq/dw1zObPc3ySrA0R?=
+ =?us-ascii?q?Cii4qJ2QxLmlCsLKzg0+3zRh8dtjqxUvQihqgR/zYDKfY+VKPRwcKDTfdwYR?=
+ =?us-ascii?q?GpOQsleWjdbDY+gbYsCFfYNMfpaooT7ulAArQG+BQ6pBO73xDNGgXj23ash0?=
+ =?us-ascii?q?+s/Dw7GxxQsFM8TvnTIstr1KrkdUeaox6TW0D7Pa/1Z1yr45ITGbxsspuqMX?=
+ =?us-ascii?q?a5ufsrP10YvERnJjlCXqYzjJDOayPoCs3OA4uV7T+2glXUnqgFqojiz2Mgsj?=
+ =?us-ascii?q?5LJipgJxVDD8CV02YA4LsC3R0Bne9CrCodQtz2EOItsRMMvW29mtSInxrMIp?=
+ =?us-ascii?q?ZK1cycHxIknyRPBdfGKcIuF7xPhWeueIzp2inxodayhixus/0atzu/xWtW73?=
+ =?us-ascii?q?ltKsidLncTAu3IL2hfO5MaHTf598V2g2TaJzw3S6uZELlwolarcM54h2Lkwl?=
+ =?us-ascii?q?pgNvkvfAi/6gkL2jLWZdkgi5+Om6Pznb637qpOALYN5hAPzPr4zlsG7D+k0K?=
+ =?us-ascii?q?AkDUmmD9eihyLHv50L0TbpQgvA5iKXVrZDXKMIGraCjGQBVyJws6xOnAjej1?=
+ =?us-ascii?q?9QXgGcIIUpeeBKCk4jpI1bOIO3kDfung1SjjjNrx/feM73nApXNKGLMkLL6f?=
+ =?us-ascii?q?bt+60NQ1BY/wc1F65JSEL4NOun8VVXvu9zDDh45KBC0zPjiCNVmzI8RRWWPA?=
+ =?us-ascii?q?qqBPKPTt1+H+P4vLvGRaIMJojrwJfoo6+TzgXI9l1IRZ6ik0JoPZHC9BPtmI?=
+ =?us-ascii?q?kGZYXT2gtcGFGcHphE+TPD0h12cTzFTYWy+X6c75jE9E4KpE5nMRpu2jbOax?=
+ =?us-ascii?q?ii0AIZWZ2BdClCQD3jocp6EV+0QZyKVJ89tiiYEWqS5S489yRGusxf3yrpgL?=
+ =?us-ascii?q?uXI5i0Ysonu1Nx05+3IiREy7iZ4DsSa026RU2F0mXsIRyUx3KB9v0Ny1kuD3?=
+ =?us-ascii?q?bJ/g/xCGtwAr89OB00fMpjHwuFhT5jJRg/fc9HBYx7mf+7nS3llVc483dIIJ?=
+ =?us-ascii?q?UN6Hc6vgwvr1SOnGK4Oi7GOH9o/9aeKmzC7NsF213Hu0Kg6k0JgU8xEKWq+n?=
+ =?us-ascii?q?Kl9+gPPQYnTnA/Rw7etfrgb9CrM73uYi3uJt11fSBR3U6jOQTYYfESA/vrj4?=
+ =?us-ascii?q?UaXBZqpD68qPxAFgfWeJ7VHbJXCxRV7f7apcIDFf2+vlmH2ABGO3b6Bd6Lgc?=
+ =?us-ascii?q?mgGzT7BBU0f1QsU+CDVZkAFGi69rjeGX3RVHlX1bha0mdQ=3D?=
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3APZV5QKmJKJbkBhza9nlzFWZj/BnpDfKX3D?=
+ =?us-ascii?q?Abvn1ZSRFFG/GwvcaogfgdyFvImC8cMUtQ4OyoFYuhZTfn9ZBz6ZQMJrvKZm?=
+ =?us-ascii?q?LbkUahMY0K1/qE/xTOACv7n9Qtt5tIVqhlFZnNCkJnhtzx+wmyH78boOWv1I?=
+ =?us-ascii?q?CNqaPgw2x2TQdsApsQjDtRLgqACEV5SE1nKPMCeaa03cZMqzq+dXl/VK3SbE?=
+ =?us-ascii?q?UtZOTbos2OqZSOW29jOzcc9AKMgTm0gYSKdSSw4xF2aUIr/Z4StUPElAH44a?=
+ =?us-ascii?q?vLiZ2G4y6Z3W/fhq42pPLRjtdHHPWLh6EuRAnEu0KlYZxaW6CPnB1dmo6S1G?=
+ =?us-ascii?q?o=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2BUBADfkJFg/0LBJQpaHgEBCxIMSYF?=
+ =?us-ascii?q?DC4EjgX8OgRoZC4N7PpF2A4VplRcUgWgLAQEBAQEBAQEBCAEdAQYQBAEBhFA?=
+ =?us-ascii?q?CF4FlJjYHDgIEAQEMAQEGAQEBAQEGBAGBA4VQDYI4IoNqAQEBBAELFwpcAgE?=
+ =?us-ascii?q?GAg0EBAEBFhUCAgImCh0IAQEEARIIgmUFgX6OUZpZNXqBMhoCZYldgTqBZYU?=
+ =?us-ascii?q?gAQGCYYN4gg1BhDc+gmAFgRYICgESAWCCWIJhBIFvFIE/FEswQQoEknGDCId?=
+ =?us-ascii?q?6nnUHA4MQiXmMDIcfIRCDVIFBiUyGBAOLIoUZlTCeSgwGN4ROAgQCBAUCFoF?=
+ =?us-ascii?q?bBzlccHCDOQlHFwKOOBeIYoFdg2xzOAIGAQkBAQMJikstgQeBEAEB?=
+X-IPAS-Result: =?us-ascii?q?A2BUBADfkJFg/0LBJQpaHgEBCxIMSYFDC4EjgX8OgRoZC?=
+ =?us-ascii?q?4N7PpF2A4VplRcUgWgLAQEBAQEBAQEBCAEdAQYQBAEBhFACF4FlJjYHDgIEA?=
+ =?us-ascii?q?QEMAQEGAQEBAQEGBAGBA4VQDYI4IoNqAQEBBAELFwpcAgEGAg0EBAEBFhUCA?=
+ =?us-ascii?q?gImCh0IAQEEARIIgmUFgX6OUZpZNXqBMhoCZYldgTqBZYUgAQGCYYN4gg1Bh?=
+ =?us-ascii?q?Dc+gmAFgRYICgESAWCCWIJhBIFvFIE/FEswQQoEknGDCId6nnUHA4MQiXmMD?=
+ =?us-ascii?q?IcfIRCDVIFBiUyGBAOLIoUZlTCeSgwGN4ROAgQCBAUCFoFbBzlccHCDOQlHF?=
+ =?us-ascii?q?wKOOBeIYoFdg2xzOAIGAQkBAQMJikstgQeBEAEB?=
+X-IronPort-AV: E=Sophos;i="5.82,272,1613433600"; 
+   d="scan'208,217";a="372039784"
+IronPort-SDR: vCpdVZqbckbxeyl/LBErIgPiRptcBfOiW4HoPlAIonAREvmy0NMSyQtT7IRW3sJnaqkb1pZ/zy
+ xDSxk9i5Mbp28OH99wnyNNJ7fF9HmYEMkilrKbp8vqN5/x+MuYPPNGaUFfzu59qvoaxWkFQsBs
+ AynDXgSbT/DYpBvEUV4Jn+7+G+23OhTYoPoDqkdO/vsj9JbQZU64w9q9944Y5+YikHKkg+j5cw
+ KYAt669bQlgdasIHG8OIvgDAC3Vm85JucIW8zYYUt11E3FeeaOOKl1YauU/tOaQ0mZOgP9/HBU
+ Hpw=
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+To: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: #yocto cmake configurations
+Thread-Topic: #yocto cmake configurations
+Thread-Index: Adc/dlwXQGBOIa4IReWXXH+skeusfgBmHxLA
+Date: Tue, 4 May 2021 18:23:00 +0000
+In-Reply-To: <MADEUP.167B501B73BC3BE0.4851@lists.yoctoproject.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.6.100.33
+dlp-reaction: no-action
+x-originating-ip: [10.44.4.15]
 MIME-Version: 1.0
-References: <20210504175946.2741568-1-raj.khem@gmail.com> <3a67e08e-59e1-db4d-b57b-5ebdfa814676@gmail.com>
-In-Reply-To: <3a67e08e-59e1-db4d-b57b-5ebdfa814676@gmail.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Tue, 4 May 2021 11:14:23 -0700
-Message-ID: <CAMKF1sqSgex_HbZVzdmFPxvoawGRHQzTJvunqLOzA9qnxhZ_dg@mail.gmail.com>
-Subject: Re: [meta-mingw] [PATCH] mingw-libgnurx: Add recipe
-To: Joshua Watt <jpewhacker@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Message-ID: <MADEUP.167BF03F6EB90907.3648@lists.yoctoproject.org>
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_2c459a5de11b462580d332ab79adb670baesystemscom_"
 
-On Tue, May 4, 2021 at 11:06 AM Joshua Watt <jpewhacker@gmail.com> wrote:
->
->
-> On 5/4/21 12:59 PM, Khem Raj wrote:
-> > This implements glibc regex and will be used by many
-> > packages e.g. flex, therefore add recipe
-> >
-> > Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> > ---
-> >   ...onor-DESTDIR-variable-during-install.patch |  39 ++++++
-> >   .../0002-Add-autotool-files.patch             | 125 ++++++++++++++++++
-> >   .../mingw-libgnurx/mingw-libgnurx_2.5.1.bb    |  20 +++
-> >   3 files changed, 184 insertions(+)
-> >   create mode 100644 recipes-support/mingw-libgnurx/mingw-libgnurx/0001-Honor-DESTDIR-variable-during-install.patch
-> >   create mode 100644 recipes-support/mingw-libgnurx/mingw-libgnurx/0002-Add-autotool-files.patch
-> >   create mode 100644 recipes-support/mingw-libgnurx/mingw-libgnurx_2.5.1.bb
-> >
-> > diff --git a/recipes-support/mingw-libgnurx/mingw-libgnurx/0001-Honor-DESTDIR-variable-during-install.patch b/recipes-support/mingw-libgnurx/mingw-libgnurx/0001-Honor-DESTDIR-variable-during-install.patch
-> > new file mode 100644
-> > index 0000000..ea8d9ed
-> > --- /dev/null
-> > +++ b/recipes-support/mingw-libgnurx/mingw-libgnurx/0001-Honor-DESTDIR-variable-during-install.patch
-> > @@ -0,0 +1,39 @@
-> > +From a9b7e07a8ba9c390d9774daae769748a09d409ce Mon Sep 17 00:00:00 2001
-> > +From: Khem Raj <raj.khem@gmail.com>
-> > +Date: Sat, 1 May 2021 14:41:21 -0700
-> > +Subject: [PATCH] Honor DESTDIR variable during install
-> > +
-> > +Upstream-Status: Pending
-> > +Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> > +---
-> > + Makefile.in | 14 +++++++-------
-> > + 1 file changed, 7 insertions(+), 7 deletions(-)
-> > +
-> > +diff --git a/Makefile.in b/Makefile.in
-> > +index 6397bf1..8395d2f 100644
-> > +--- a/Makefile.in
-> > ++++ b/Makefile.in
-> > +@@ -78,16 +78,16 @@ gnurx.lib: libgnurx-$(DLLVERSION).dll
-> > + install: install-dll @install_dev@
-> > +
-> > + install-dll:
-> > +-    mkdir -p ${bindir}
-> > +-    cp -p $(BINDIST_FILES) ${bindir}
-> > ++    mkdir -p $(DESTDIR)${bindir}
-> > ++    cp -p $(BINDIST_FILES) $(DESTDIR)${bindir}
-> > +
-> > + install-dev:
-> > +-    mkdir -p ${includedir} ${libdir}
-> > +-    cp -p ${srcdir}/regex.h ${includedir}
-> > +-    cp -p $(DEVDIST_FILES) ${libdir}
-> > ++    mkdir -p ${includedir} $(DESTDIR)${libdir}
-> > ++    cp -p ${srcdir}/regex.h $(DESTDIR)${includedir}
-> > ++    cp -p $(DEVDIST_FILES) $(DESTDIR)${libdir}
-> > +     for s in 3 7; do \
-> > +-      mkdir -p ${mandir}/man$$s; \
-> > +-      gzip -c ${srcdir}/regex.$$s > ${mandir}/man$$s/regex.$$s.gz; \
-> > ++      mkdir -p $(DESTDIR)${mandir}/man$$s; \
-> > ++      gzip -c ${srcdir}/regex.$$s > $(DESTDIR)${mandir}/man$$s/regex.$$s.gz; \
-> > +     done
-> > +
-> > + dist:        bindist devdist srcdist
-> > diff --git a/recipes-support/mingw-libgnurx/mingw-libgnurx/0002-Add-autotool-files.patch b/recipes-support/mingw-libgnurx/mingw-libgnurx/0002-Add-autotool-files.patch
-> > new file mode 100644
-> > index 0000000..1365f24
-> > --- /dev/null
-> > +++ b/recipes-support/mingw-libgnurx/mingw-libgnurx/0002-Add-autotool-files.patch
-> > @@ -0,0 +1,125 @@
-> > +From 0b74bbc32c4acf5b67d7568a5d1e776fe6578202 Mon Sep 17 00:00:00 2001
-> > +From: Khem Raj <raj.khem@gmail.com>
-> > +Date: Sat, 1 May 2021 14:53:09 -0700
-> > +Subject: [PATCH] Add autotool files
-> > +
-> > +This helps in reconfiguring the component with autotools on Linux
-> > +
-> > +Upstream-Status: Pending
-> > +Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> > +---
-> > + Makefile.am  |  7 ++++
-> > + configure.ac | 90 ++++++----------------------------------------------
-> > + 2 files changed, 16 insertions(+), 81 deletions(-)
-> > + create mode 100644 Makefile.am
-> > +
-> > +diff --git a/Makefile.am b/Makefile.am
-> > +new file mode 100644
-> > +index 0000000..be0a797
-> > +--- /dev/null
-> > ++++ b/Makefile.am
-> > +@@ -0,0 +1,7 @@
-> > ++lib_LTLIBRARIES = libgnurx.la
-> > ++
-> > ++libgnurx_la_SOURCES = regex.c
-> > ++libgnurx_la_includedir = $(includedir)
-> > ++libgnurx_la_include_HEADERS = regex.h
-> > ++libgnurx_la_CFLAGS = -I$(top_srcdir)
-> > ++libgnurx_la_LDFLAGS = -no-undefined -version-info 0:0:0 -export-dynamic
-> > +diff --git a/configure.ac b/configure.ac
-> > +index c97738d..de64f75 100644
-> > +--- a/configure.ac
-> > ++++ b/configure.ac
-> > +@@ -1,83 +1,11 @@
-> > + # configure.ac  -*- Autoconf -*-
-> > + # Process this file with autoconf, to generate a configure script.
-> > +-#
-> > +-# $Id: configure.ac,v 1.2 2007/05/03 22:46:09 keithmarshall Exp $
-> > +-#
-> > +-# Copyright (C) 2007, MinGW Project
-> > +-# Written by Keith Marshall <keithmarshall@users.sourceforge.net>
-> > +-#
-> > +-# Package identification.
-> > +-#
-> > +-# This is configure.ac for the MinGW `libgnurx' package.
-> > +-# BASENAME, VERSION_MAJOR and VERSION_MINOR are required tags;
-> > +-# complete `Value' fields as appropriate.
-> > +-#
-> > +-#                            Tag              Value
-> > +-#                            ---------------  ----------
-> > +-  MINGW_AC_DEFINE_PACKAGE_ID([BASENAME],      [libgnurx])
-> > +-  MINGW_AC_DEFINE_PACKAGE_ID([VERSION_MAJOR], [2])
-> > +-  MINGW_AC_DEFINE_PACKAGE_ID([VERSION_MINOR], [5])
-> > +-#
-> > +-# PATCHLEVEL is optional; comment/uncomment and adjust as required.
-> > +-#
-> > +-  MINGW_AC_DEFINE_PACKAGE_ID([PATCHLEVEL],    [1])
-> > +-#
-> > +-# DLL_VERSION is required; installed DLLs will be versioned, by
-> > +-# appending a hyphen, the specified tag value, and then the `.dll'
-> > +-# file name extension, to the base name of each generated DLL.
-> > +-#
-> > +-  MINGW_AC_DEFINE_PACKAGE_ID([DLL_VERSION],   [0])
-> > +-#
-> > +-#
-> > +-# libgnurx is an adaptation of Tor Lillqvist's original port of the
-> > +-# regex functions from GNU libc, for use on native Woe32 platforms.
-> > +-#
-> > +-# The original sources, on which this port is based, remain copyright
-> > +-# of their respective authors, or of the Free Software Foundation Inc.,
-> > +-# as indicated in individual file headers; all are redistributed with
-> > +-# permission, as granted by the GNU Lesser General Public License.
-> > +-#
-> > +-# This is free software.  It is provided AS IS, in the hope that it may
-> > +-# be useful, but WITHOUT WARRANTY OF ANY KIND, not even an IMPLIED WARRANTY
-> > +-# of MERCHANTABILITY, nor of FITNESS FOR ANY PARTICULAR PURPOSE.
-> > +-#
-> > +-# Permission is granted to redistribute this software, either "as is" or
-> > +-# in modified form, under the terms of the GNU Lesser General Public License,
-> > +-# as published by the Free Software Foundation; either version 2.1, or (at
-> > +-# your option) any later version.
-> > +-#
-> > +-# You should have received a copy of the GNU Lesser General Public License
-> > +-# along with this software; see the file COPYING.LIB.  If not, write to the
-> > +-# Free Software Foundation, 51 Franklin St - Fifth Floor, Boston,
-> > +-# MA 02110-1301, USA.
-> > +-
-> > +-# Autoconf initialisation.
-> > +-#
-> > +-  AC_PREREQ([2.59])
-> > +-  AC_INIT(__MINGW_AC_PACKAGE_IDENTIFICATION__)
-> > +-
-> > +-# Compiler and build tool checks.
-> > +-#
-> > +-  AC_PROG_CC
-> > +-  MINGW_AC_PROG_CC_OPTIONS([CC_QUALIFIED], [-m], [threads tune=pentium3])
-> > +-
-> > +-# Set the release version for the resultant DLL.
-> > +-#
-> > +-  AC_SUBST([DLLVERSION], [__MINGW_AC_PACKAGE_DLL_VERSION__])
-> > +-
-> > +-# User configuration options.
-> > +-#
-> > +-  MINGW_AC_DISTRIBUTION_TYPE([tar])
-> > +-  MINGW_AC_MSVC_IMPORT_LIBS([GNURX_LIB], [gnurx.lib])
-> > +-  MINGW_AC_DEV_INSTALL_OPTION
-> > +-
-> > +-# Configuration output.
-> > +-#
-> > +-  AC_SUBST([GNURX_LIB])
-> > +-  AC_SUBST([CC_QUALIFIED], ["$CC $CC_QUALIFIED"])
-> > +-  LDFLAGS="$LDFLAGS -Wl,--enable-auto-image-base -Wl,--out-implib,libgnurx.dll.a"
-> > +-  test -n "${GNURX_LIB}" && LDFLAGS="$LDFLAGS -Wl,--output-def,libgnurx.def"
-> > +-  AC_CONFIG_FILES([Makefile])
-> > +-  AC_OUTPUT
-> > +-#
-> > +-# $RCSfile: configure.ac,v $Revision: 1.2 $: end of file
-> > ++
-> > ++AC_INIT(libgnurx, 2.5.1)
-> > ++AM_INIT_AUTOMAKE(foreign)
-> > ++AC_PROG_INSTALL
-> > ++AC_LIBTOOL_DLOPEN
-> > ++AC_LIBTOOL_WIN32_DLL
-> > ++AC_PROG_LIBTOOL
-> > ++
-> > ++AC_OUTPUT([Makefile])
-> > diff --git a/recipes-support/mingw-libgnurx/mingw-libgnurx_2.5.1.bb b/recipes-support/mingw-libgnurx/mingw-libgnurx_2.5.1.bb
-> > new file mode 100644
-> > index 0000000..cb5cd7f
-> > --- /dev/null
-> > +++ b/recipes-support/mingw-libgnurx/mingw-libgnurx_2.5.1.bb
-> > @@ -0,0 +1,20 @@
-> > +# Copyright (C) 2021 Khem Raj <raj.khem@gmail.com>
-> > +# Released under the MIT license (see COPYING.MIT for the terms)
-> > +LICENSE = "LGPLv2.1"
-> > +LIC_FILES_CHKSUM = "file://COPYING.LIB;md5=bbb461211a33b134d42ed5ee802b37ff"
-> > +
-> Is there some PROVIDES that this should have? How will recipes pull it
-> in as a dependency?
+--_000_2c459a5de11b462580d332ab79adb670baesystemscom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-maybe nativesdk-mingw-w64-runtime package can use this as a
-dependency, I did not specifically use it as I was trying to build
-flex where it was needed
+DQpNeSBzdGFuZGFyZCB6ZXVzIFNESyBhcHBlYXJzIHRvIGhhdmUgYW4gaXNzdWUgbGlua2luZyBp
+biBteSBhcHBsaWNhdGlvbnMgZHluYW1pYyBsaWJz4oCmDQoNCi9kaXNrMC9zY3JhdGNoL3Ntb25z
+ZWVzL3NiY2JTVERfU0RLL2xpbXdzLzMuMC40L3N5c3Jvb3RzL3g4Nl82NC1wb2t5c2RrLWxpbnV4
+L3Vzci9saWJleGVjL3g4Nl82NC1wb2t5LWxpbnV4L2djYy94ODZfNjQtcG9reS1saW51eC85LjIu
+MC9yZWFsLWxkOiBjYW5ub3QgZmluZCAtbGRybV9pbnRlbA0KL2Rpc2swL3NjcmF0Y2gvc21vbnNl
+ZXMvc2JjYlNURF9TREsvbGltd3MvMy4wLjQvc3lzcm9vdHMveDg2XzY0LXBva3lzZGstbGludXgv
+dXNyL2xpYmV4ZWMveDg2XzY0LXBva3ktbGludXgvZ2NjL3g4Nl82NC1wb2t5LWxpbnV4LzkuMi4w
+L3JlYWwtbGQ6IGNhbm5vdCBmaW5kIC1sZHJtDQovZGlzazAvc2NyYXRjaC9zbW9uc2Vlcy9zYmNi
+U1REX1NESy9saW13cy8zLjAuNC9zeXNyb290cy94ODZfNjQtcG9reXNkay1saW51eC91c3IvbGli
+ZXhlYy94ODZfNjQtcG9reS1saW51eC9nY2MveDg2XzY0LXBva3ktbGludXgvOS4yLjAvcmVhbC1s
+ZDogY2Fubm90IGZpbmQgLWxjbGFuZw0KY29sbGVjdDI6IGVycm9yOiBsZCByZXR1cm5lZCAxIGV4
+aXQgc3RhdHVzDQpUaGUgbGlicmFyaWVzIGFyZSB1bmRlcjogL2Rpc2swL3NjcmF0Y2gvc21vbnNl
+ZXMvc2JjYlNURF9TREsvbGltd3MvMy4wLjQvc3lzcm9vdHMvY29yZWk3LTY0LXBva3ktbGludXgv
+dXNyL2xpYi8NCg0KTXkgQ01ha2UgYnVpbGQgYXBwIGRvZXMgbm90IGFwcGVhciB0byBoYXZlIGFu
+IGlzc3VlIGZpbmRpbmcgdGhlIGZpbGVzOg0KDQpEUk1fSU5URUxfTElCUkFSSUVTOlNUUklORz0v
+ZGlzazAvc2NyYXRjaC9zbW9uc2Vlcy9zYmNiU1REX1NESy9saW13cy8zLjAuNC9zeXNyb290cy9j
+b3JlaTctNjQtcG9reS1saW51eC91c3IvbGliL2xpYmRybV9pbnRlbC5zbw0KRFJNX0xJQlJBUklF
+UzpTVFJJTkc9L2Rpc2swL3NjcmF0Y2gvc21vbnNlZXMvc2JjYlNURF9TREsvbGltd3MvMy4wLjQv
+c3lzcm9vdHMvY29yZWk3LTY0LXBva3ktbGludXgvdXNyL2xpYi9saWJkcm0uc28NCg0KSXQgYXBw
+ZWFycyB0byBiZSBhbiBpc3N1ZSBzcGVjaWZpY2FsbHkgd2l0aCB0aGUgbGTigKYNCg0KTERGTEFH
+Uz0gIiAtLXN5c3Jvb3Q9JEVOVntPRUNPUkVfVEFSR0VUX1NZU1JPT1R9IC1MJEVOVntPRUNPUkVf
+VEFSR0VUX1NZU1JPT1R9L3Vzci9saWIgLUwkRU5We09FQ09SRV9UQVJHRVRfU1lTUk9PVH0vdXNy
+L2xpYi94ODZfNjQtcG9reS1saW51eC85LjIuMCAtbHB0aHJlYWQgLXB0aHJlYWQgLU8yIC1waXBl
+IC1XbCwtTzEgLVdsLC1PMSAtV2wsLS1oYXNoLXN0eWxlPWdudSAtV2wsLS1hcy1uZWVkZWQiDQoN
+Ckl0IGRvZXMgbm90IGFwcGVhciB0byBiZSBtYWtpbmcgdXNlIG9mIOKAk0zigJlz4oCmDQoNCklz
+IHRoZXJlIHNvbWV0aGluZyBJIG1pZ2h0IGxvb2sgYXQvY29uZmlndXJlIChpLmUuIGFkZCBwYXRo
+cyB0byBzZWFyY2ggcGF0aHMpID8NCklzIHRoZXJlIGEgc2ltcGxlIHRlc3QgdG8gdmFsaWRhdGUg
+dG9vbCA/DQoNClRoYW5rcywNClN0ZXZlDQoNCkZyb206IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVj
+dC5vcmcgPHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+IE9uIEJlaGFsZiBPZiBNb25zZWVz
+LCBTdGV2ZW4gQyAoVVMpIHZpYSBsaXN0cy55b2N0b3Byb2plY3Qub3JnDQpTZW50OiBTdW5kYXks
+IE1heSAyLCAyMDIxIDE6MjggUE0NClRvOiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnDQpT
+dWJqZWN0OiBbeW9jdG9dICN5b2N0byBjbWFrZSBjb25maWd1cmF0aW9ucw0KDQpFeHRlcm5hbCBF
+bWFpbCBBbGVydA0KDQpUaGlzIGVtYWlsIGhhcyBiZWVuIHNlbnQgZnJvbSBhbiBhY2NvdW50IG91
+dHNpZGUgb2YgdGhlIEJBRSBTeXN0ZW1zIG5ldHdvcmsuDQpQbGVhc2UgdHJlYXQgdGhlIGVtYWls
+IHdpdGggY2F1dGlvbiwgZXNwZWNpYWxseSBpZiB5b3UgYXJlIHJlcXVlc3RlZCB0byBjbGljayBv
+biBhIGxpbmssIGRlY3J5cHQvb3BlbiBhbiBhdHRhY2htZW50LCBvciBlbmFibGUgbWFjcm9zLiAg
+Rm9yIGZ1cnRoZXIgaW5mb3JtYXRpb24gb24gaG93IHRvIHNwb3QgcGhpc2hpbmcsIGFjY2VzcyDi
+gJxDeWJlcnNlY3VyaXR5IE9uZVNwYWNlIFBhZ2XigJ0gYW5kIHJlcG9ydCBwaGlzaGluZyBieSBj
+bGlja2luZyB0aGUgYnV0dG9uIOKAnFJlcG9ydCBQaGlzaGluZ+KAnSBvbiB0aGUgT3V0bG9vayB0
+b29sYmFyLg0KDQoNCg0KSSBhbSB1c2luZyB6ZXVzLCBzdGFuZGFyZCBTREssIGNtYWtl4oCmDQoN
+CkNhbiBJIHByZS1jb25maWd1cmUgdGhlIFNESyB0byBzZXR1cCBjbWFrZSBwYWNrYWdlIHNlYXJj
+aCBwYXRocyA/LCBzYXkgZm9yIGZpbmRfcGFja2FnZSwgZXRjLiAoaS5lLiBkZXRlY3RpbmcgZXh0
+ZXJuYWwgbGlicmFyaWVzL3Byb2dyYW1zKeKApg0KDQpUaGUgbWFqb3JpdHkgb2YgbXkgZW52IGlz
+IGNvbmZpZ3VyaW5nIHByb3Blcmx5LCBidXQgSSBhbSBmaW5kaW5nIGNtYWtlIGlzIHNldHVwIGZv
+ciBhIHN0YW5kYXJkIGxpbnV4IGVudiB3aXRoIHJlZ2FyZHMgdG8gdGhlc2UgdHlwZXMgb2Ygc2Vh
+cmNoZXMsIGFuZA0KSSB3YW50ZWQgdGhlIGNtYWtlIGJ1aWx0IGluIHRvIGxvb2sgYXQgbXkgU0RL
+IHBhdGhzIChmaXJzdCBieSBkZWZhdWx0KSB3aGVuIGRvaW5nIHN1Y2ggdGhpbmdzIGFzIGRldGVj
+dGluZyBweXRob24gaW50ZXJwcmV0ZXIsIGxpYnJhcmllcywgZXRjLg0KDQpJIGFtIHdvcmtpbmcg
+b24gdGhpcmQgcGFydHkgcGFja2FnZSB1bmF3YXJlIG9mIG15IFNESyBzZXR1cC4NCg0KVGhhbmtz
+LA0KU3RldmUNCg==
 
-> > +SRC_URI = "http://download.sourceforge.net/mingw/Other/UserContributed/regex/mingw-regex-${PV}/mingw-libgnurx-${PV}-src.tar.gz \
-> > +           file://0001-Honor-DESTDIR-variable-during-install.patch \
-> > +           file://0002-Add-autotool-files.patch \
-> > +           "
-> > +SRC_URI[sha256sum] = "7147b7f806ec3d007843b38e19f42a5b7c65894a57ffc297a76b0dcd5f675d76"
-> > +
-> > +# NOTE: if this software is not capable of being built in a separate build directory
-> > +# from the source, you should replace autotools with autotools-brokensep in the
-> > +# inherit line
->
-> Probably don't need this comment?
+--_000_2c459a5de11b462580d332ab79adb670baesystemscom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-right sent a v2
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiTHVjaWRhIFNhbnMgVW5pY29kZSI7DQoJ
+cGFub3NlLTE6MiAxMSA2IDIgMyA1IDQgMiAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8N
+CnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsN
+CgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWls
+eToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21z
+by1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1
+bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1z
+dHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRl
+cmxpbmU7fQ0KcC5tc29ub3JtYWwwLCBsaS5tc29ub3JtYWwwLCBkaXYubXNvbm9ybWFsMA0KCXtt
+c28tc3R5bGUtbmFtZTptc29ub3JtYWw7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFy
+Z2luLXJpZ2h0OjBpbjsNCgltc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVm
+dDowaW47DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFu
+IixzZXJpZjt9DQpzcGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbDsN
+Cglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30N
+CnNwYW4uRW1haWxTdHlsZTIwDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZv
+bnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0No
+cERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBw
+dDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEu
+MGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2Vj
+dGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVm
+YXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48
+IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxv
+OmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwh
+W2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9IiMwNTYzQzEiIHZs
+aW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iY29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0Qi
+Pk15IHN0YW5kYXJkIHpldXMgU0RLIGFwcGVhcnMgdG8gaGF2ZSBhbiBpc3N1ZSBsaW5raW5nIGlu
+IG15IGFwcGxpY2F0aW9ucyBkeW5hbWljIGxpYnPigKY8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iY29sb3I6IzFGNDk3RCI+PG86cD4mbmJz
+cDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNv
+bG9yOiMxRjQ5N0QiPi9kaXNrMC9zY3JhdGNoL3Ntb25zZWVzL3NiY2JTVERfU0RLL2xpbXdzLzMu
+MC40L3N5c3Jvb3RzL3g4Nl82NC1wb2t5c2RrLWxpbnV4L3Vzci9saWJleGVjL3g4Nl82NC1wb2t5
+LWxpbnV4L2djYy94ODZfNjQtcG9reS1saW51eC85LjIuMC9yZWFsLWxkOiBjYW5ub3QgZmluZCAt
+bGRybV9pbnRlbDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIHN0eWxlPSJjb2xvcjojMUY0OTdEIj4vZGlzazAvc2NyYXRjaC9zbW9uc2Vlcy9zYmNiU1RE
+X1NESy9saW13cy8zLjAuNC9zeXNyb290cy94ODZfNjQtcG9reXNkay1saW51eC91c3IvbGliZXhl
+Yy94ODZfNjQtcG9reS1saW51eC9nY2MveDg2XzY0LXBva3ktbGludXgvOS4yLjAvcmVhbC1sZDog
+Y2Fubm90IGZpbmQgLWxkcm08bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iY29sb3I6IzFGNDk3RCI+L2Rpc2swL3NjcmF0Y2gvc21vbnNlZXMv
+c2JjYlNURF9TREsvbGltd3MvMy4wLjQvc3lzcm9vdHMveDg2XzY0LXBva3lzZGstbGludXgvdXNy
+L2xpYmV4ZWMveDg2XzY0LXBva3ktbGludXgvZ2NjL3g4Nl82NC1wb2t5LWxpbnV4LzkuMi4wL3Jl
+YWwtbGQ6IGNhbm5vdCBmaW5kIC1sY2xhbmc8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iY29sb3I6IzFGNDk3RCI+Y29sbGVjdDI6IGVycm9y
+OiBsZCByZXR1cm5lZCAxIGV4aXQgc3RhdHVzPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0QiPjxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJjb2xvcjojMUY0OTdE
+Ij5UaGUgbGlicmFyaWVzIGFyZSB1bmRlcjogL2Rpc2swL3NjcmF0Y2gvc21vbnNlZXMvc2JjYlNU
+RF9TREsvbGltd3MvMy4wLjQvc3lzcm9vdHMvY29yZWk3LTY0LXBva3ktbGludXgvdXNyL2xpYi88
+bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
+Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0QiPk15IENNYWtlIGJ1aWxkIGFwcCBk
+b2VzIG5vdCBhcHBlYXIgdG8gaGF2ZSBhbiBpc3N1ZSBmaW5kaW5nIHRoZSBmaWxlczo8bzpwPjwv
+bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iY29sb3I6
+IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0QiPkRSTV9JTlRFTF9MSUJSQVJJRVM6U1RSSU5H
+PS9kaXNrMC9zY3JhdGNoL3Ntb25zZWVzL3NiY2JTVERfU0RLL2xpbXdzLzMuMC40L3N5c3Jvb3Rz
+L2NvcmVpNy02NC1wb2t5LWxpbnV4L3Vzci9saWIvbGliZHJtX2ludGVsLnNvPG86cD48L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5
+N0QiPkRSTV9MSUJSQVJJRVM6U1RSSU5HPS9kaXNrMC9zY3JhdGNoL3Ntb25zZWVzL3NiY2JTVERf
+U0RLL2xpbXdzLzMuMC40L3N5c3Jvb3RzL2NvcmVpNy02NC1wb2t5LWxpbnV4L3Vzci9saWIvbGli
+ZHJtLnNvPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+c3R5bGU9ImNvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJjb2xvcjojMUY0OTdEIj5JdCBhcHBlYXJzIHRv
+IGJlIGFuIGlzc3VlIHNwZWNpZmljYWxseSB3aXRoIHRoZSBsZOKApjxvOnA+PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJjb2xvcjojMUY0OTdEIj48
+bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iY29sb3I6IzFGNDk3RCI+TERGTEFHUz08L3NwYW4+IDxzcGFuIHN0eWxlPSJjb2xvcjoj
+MUY0OTdEIj4NCiZxdW90OyAtLXN5c3Jvb3Q9JEVOVntPRUNPUkVfVEFSR0VUX1NZU1JPT1R9IC1M
+JEVOVntPRUNPUkVfVEFSR0VUX1NZU1JPT1R9L3Vzci9saWIgLUwkRU5We09FQ09SRV9UQVJHRVRf
+U1lTUk9PVH0vdXNyL2xpYi94ODZfNjQtcG9reS1saW51eC85LjIuMCAtbHB0aHJlYWQgLXB0aHJl
+YWQgLU8yIC1waXBlIC1XbCwtTzEgLVdsLC1PMSAtV2wsLS1oYXNoLXN0eWxlPWdudSAtV2wsLS1h
+cy1uZWVkZWQmcXVvdDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iY29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0QiPkl0IGRv
+ZXMgbm90IGFwcGVhciB0byBiZSBtYWtpbmcgdXNlIG9mIOKAk0zigJlz4oCmPG86cD48L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5
+N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIHN0eWxlPSJjb2xvcjojMUY0OTdEIj5JcyB0aGVyZSBzb21ldGhpbmcgSSBtaWdodCBsb29r
+IGF0L2NvbmZpZ3VyZSAoaS5lLiBhZGQgcGF0aHMgdG8gc2VhcmNoIHBhdGhzKSA/PG86cD48L286
+cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMx
+RjQ5N0QiPklzIHRoZXJlIGEgc2ltcGxlIHRlc3QgdG8gdmFsaWRhdGUgdG9vbCA/PG86cD48L286
+cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMx
+RjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJjb2xvcjojMUY0OTdEIj5UaGFua3MsPG86cD48L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0QiPlN0ZXZl
+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
+ImNvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxiPkZyb206PC9iPiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnICZsdDt5
+b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnJmd0Ow0KPGI+T24gQmVoYWxmIE9mIDwvYj5Nb25z
+ZWVzLCBTdGV2ZW4gQyAoVVMpIHZpYSBsaXN0cy55b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U2Vu
+dDo8L2I+IFN1bmRheSwgTWF5IDIsIDIwMjEgMToyOCBQTTxicj4NCjxiPlRvOjwvYj4geW9jdG9A
+bGlzdHMueW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBbeW9jdG9dICN5b2N0
+byBjbWFrZSBjb25maWd1cmF0aW9uczxzcGFuIHN0eWxlPSJjb2xvcjojMUY0OTdEIj48bzpwPjwv
+bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
+cD4NCjxkaXY+DQo8dGFibGUgY2xhc3M9Ik1zb05vcm1hbFRhYmxlIiBib3JkZXI9IjEiIGNlbGxz
+cGFjaW5nPSIwIiBjZWxscGFkZGluZz0iMCIgd2lkdGg9Ijk3JSIgc3R5bGU9IndpZHRoOjk3LjAl
+O21hcmdpbi1sZWZ0OjUuNHB0O2JvcmRlci1jb2xsYXBzZTpjb2xsYXBzZTtib3JkZXI6bm9uZSI+
+DQo8dGJvZHk+DQo8dHIgc3R5bGU9ImhlaWdodDoyMS4ycHQiPg0KPHRkIHdpZHRoPSI5NyUiIHZh
+bGlnbj0idG9wIiBzdHlsZT0id2lkdGg6OTcuMCU7Ym9yZGVyOnNvbGlkIHJlZCAxLjBwdDtwYWRk
+aW5nOjBpbiA1LjRwdCAwaW4gNS40cHQ7aGVpZ2h0OjIxLjJwdCI+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIiBhbGlnbj0iY2VudGVyIiBzdHlsZT0ibWFyZ2luLWJvdHRvbTo0LjBwdDt0ZXh0LWFsaWdu
+OmNlbnRlcjtiYWNrZ3JvdW5kOndoaXRlIj4NCjxzdHJvbmc+PHU+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMy41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2Nv
+bG9yOnJlZCI+RXh0ZXJuYWwgRW1haWwgQWxlcnQ8L3NwYW4+PC91Pjwvc3Ryb25nPjxvOnA+PC9v
+OnA+PC9wPg0KPC90ZD4NCjwvdHI+DQo8dHIgc3R5bGU9ImhlaWdodDoyMS4ycHQiPg0KPHRkIHdp
+ZHRoPSI2ODYiIHZhbGlnbj0idG9wIiBzdHlsZT0id2lkdGg6MTE1MC40cHQ7Ym9yZGVyOnNvbGlk
+IHJlZCAxLjBwdDtib3JkZXItdG9wOm5vbmU7cGFkZGluZzowaW4gNS40cHQgMGluIDUuNHB0O2hl
+aWdodDoyMS4ycHQiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249ImNlbnRlciIgc3R5bGU9
+Im1zby1tYXJnaW4tdG9wLWFsdDozLjBwdDttYXJnaW4tcmlnaHQ6MGluO21hcmdpbi1ib3R0b206
+NC4wcHQ7bWFyZ2luLWxlZnQ6MGluO3RleHQtYWxpZ246Y2VudGVyO2JhY2tncm91bmQ6d2hpdGUi
+Pg0KPHN0cm9uZz48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVv
+dDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2siPlRoaXMgZW1haWwgaGFzIGJl
+ZW4gc2VudCBmcm9tIGFuIGFjY291bnQgb3V0c2lkZSBvZiB0aGUgQkFFIFN5c3RlbXMgbmV0d29y
+ay48bzpwPjwvbzpwPjwvc3Bhbj48L3N0cm9uZz48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBh
+bGlnbj0iY2VudGVyIiBzdHlsZT0ibWFyZ2luLWJvdHRvbTo0LjBwdDt0ZXh0LWFsaWduOmNlbnRl
+ciI+DQo8c3BhbiBzdHlsZT0iZm9udC1zaXplOjcuNXB0Ij5QbGVhc2UgdHJlYXQgdGhlIGVtYWls
+IHdpdGggY2F1dGlvbiwgZXNwZWNpYWxseSBpZiB5b3UgYXJlIHJlcXVlc3RlZCB0byBjbGljayBv
+biBhIGxpbmssIGRlY3J5cHQvb3BlbiBhbiBhdHRhY2htZW50LCBvciBlbmFibGUgbWFjcm9zLiZu
+YnNwOyBGb3IgZnVydGhlciBpbmZvcm1hdGlvbiBvbiBob3cgdG8gc3BvdCBwaGlzaGluZywgYWNj
+ZXNzIOKAnEN5YmVyc2VjdXJpdHkgT25lU3BhY2UgUGFnZeKAnSBhbmQgcmVwb3J0DQogcGhpc2hp
+bmcgYnkgY2xpY2tpbmcgdGhlIGJ1dHRvbiDigJxSZXBvcnQgUGhpc2hpbmfigJ0gb24gdGhlIE91
+dGxvb2sgdG9vbGJhci48L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjBwdCI+PG86cD48
+L286cD48L3NwYW4+PC9wPg0KPC90ZD4NCjwvdHI+DQo8L3Rib2R5Pg0KPC90YWJsZT4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2ZvbnQtZmFtaWx5
+OiZxdW90O1RpbWVzIE5ldyBSb21hbiZxdW90OyxzZXJpZiI+PG86cD4mbmJzcDs8L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj5JIGFtIHVzaW5nIHpldXMsIHN0YW5kYXJkIFNESywgY21ha2XigKY8
+bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Q2FuIEkgcHJlLWNvbmZpZ3VyZSB0aGUgU0RLIHRvIHNl
+dHVwIGNtYWtlIHBhY2thZ2Ugc2VhcmNoIHBhdGhzID8sIHNheSBmb3IgZmluZF9wYWNrYWdlLCBl
+dGMuIChpLmUuIGRldGVjdGluZyBleHRlcm5hbCBsaWJyYXJpZXMvcHJvZ3JhbXMp4oCmPG86cD48
+L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPlRoZSBtYWpvcml0eSBvZiBteSBlbnYgaXMgY29uZmlndXJpbmcg
+cHJvcGVybHksIGJ1dCBJIGFtIGZpbmRpbmcgY21ha2UgaXMgc2V0dXAgZm9yIGEgc3RhbmRhcmQg
+bGludXggZW52IHdpdGggcmVnYXJkcyB0byB0aGVzZSB0eXBlcyBvZiBzZWFyY2hlcywgYW5kPG86
+cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIHdhbnRlZCB0aGUgY21ha2UgYnVp
+bHQgaW4gdG8gbG9vayBhdCBteSBTREsgcGF0aHMgKGZpcnN0IGJ5IGRlZmF1bHQpIHdoZW4gZG9p
+bmcgc3VjaCB0aGluZ3MgYXMgZGV0ZWN0aW5nIHB5dGhvbiBpbnRlcnByZXRlciwgbGlicmFyaWVz
+LCBldGMuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
+bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgYW0gd29ya2luZyBvbiB0aGlyZCBwYXJ0
+eSBwYWNrYWdlIHVuYXdhcmUgb2YgbXkgU0RLIHNldHVwLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij5UaGFua3MsPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5TdGV2ZTxvOnA+
+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
->
-> > +inherit autotools
-> > +
-> > +# Specify any options you want to pass to the configure script using EXTRA_OECONF:
-> > +EXTRA_OECONF = ""
-> > +
-> > +BBCLASSEXTEND = "nativesdk"
+--_000_2c459a5de11b462580d332ab79adb670baesystemscom_--
