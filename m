@@ -1,54 +1,56 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.440.1620166435491811802
+ by mx.groups.io with SMTP id smtpd.web10.504.1620166706915063063
  for <yocto@lists.yoctoproject.org>;
- Tue, 04 May 2021 15:13:55 -0700
+ Tue, 04 May 2021 15:18:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=QkhZA4Bq;
+ dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=stsDMFbJ;
  spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
-Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com [209.85.217.44])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 86A0038C0554
-	for <yocto@yoctoproject.org>; Tue,  4 May 2021 22:13:54 +0000 (UTC)
-Received: by mail-vs1-f44.google.com with SMTP id 66so102412vsk.9
-        for <yocto@yoctoproject.org>; Tue, 04 May 2021 15:13:54 -0700 (PDT)
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 44F6F38C0554
+	for <yocto@yoctoproject.org>; Tue,  4 May 2021 22:18:26 +0000 (UTC)
+Received: by mail-vs1-f54.google.com with SMTP id k124so124375vsk.3
+        for <yocto@yoctoproject.org>; Tue, 04 May 2021 15:18:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=blade-group.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=AiBmZgZgvEYfExAL9j/oPh2gsZcLXABTHNHb9N8khW4=;
-        b=QkhZA4BqDNsIBSA2DFuETAipqGCEm+VzrqielLpZYIaFBbuZ6RU1QZBw/YZaHe4u2A
-         G1SlJAVX9id4jZsoNDyqR+jZyw3NL5rMo2pjPm5hOgkA/7x4LI5ccsAgXHzgnsVrVeCP
-         lGuRbC24T1HcBwhZH7qjZnIeovCaj45B1BLfCf/vTVflDIOM3q3+Hs92mJAiUVQLaQzR
-         d0g8yKryU5XWaBVTTj6VHr0QKF3XvuQ8+vl3skVDNJV5/MRhl7g9TGGk85b2MCzXkyKh
-         N2Gn8YB0tv31VLwax4l9EyiqBkclQalEdKWbJXdN5rwWiQx887XuwMZyTVF92yERM3k2
-         Cx+w==
+        bh=acDdWkVMge65amIaBV+7x27OMDIKOgthUhIUjSvTf5A=;
+        b=stsDMFbJd3/BKXXUQ+hQ/3UqB9XZgSwXXcgaZFJumsXsGFR27ZRy469ZktuNnKORPT
+         w0mQ0T4HRIABfZUc2xAHw83CtYveMOvWlDBe5RNJ6FNNpHdwLS9Cd6ad2zXR9BxqOGre
+         M2V/RMKJ3LiRieA6SA8bd2YAXZC4g6CQRXb3rrbtGNGSir3UlDaztLRbCwRDC/fGk1HQ
+         p7Ex+l06Izsyt43BjDaGaYCdLVPVG8GOLeC4WsnfFUWgVpCk1npiJuGazMwuDDCRoyxE
+         +jYL33zJlQyEEL+xmdU5jWp1BZU9WCGo+Pzgx/bhk0qxeVs0h5Lx1akaVAP8J6fggmAn
+         wdIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=AiBmZgZgvEYfExAL9j/oPh2gsZcLXABTHNHb9N8khW4=;
-        b=JVh7v92WCDow1SSLTuqiqE+fdpd14QL5teGftVy1qRIP8AK/emOLDM4C1Y5hq5ik19
-         nZojzRB5JWFVaP0pi+4a8s5BRzyddIJF3bxT7gajTRtwfO2xMRfFpAjx/77PJ+f79Tpv
-         Ef9GBsDVJR9TZbWqe9XahmO45AZp22mQDz15SC5Homu6yBIDdsHJ0lJl1g4SBr8aTwBm
-         qEn7YdgFWKSm3nqfO6ccDNNZC3bZizhMQUg2gmdRdwK2UryyV4OKkP4bFgvlY7AFl2xM
-         xfx4WjBsaKApNiA7WsRJDAABYwyyD4zszLX7td0QvGdVBYQajwt3VNZBy8cYNX5EtoIK
-         IMIw==
-X-Gm-Message-State: AOAM533R8mEMEc87Mc/WSozEhq1KuTEuIWLWpH1MF+9eNe7J9mcqJNYK
-	RIpo63h+24b7jQr8SaNHPkOSF/aV/21ufTa4ObgUXA==
-X-Google-Smtp-Source: ABdhPJxS1ZQsPisWkRmbQ3aEDjZ+pH/J+Q4asmDYocqh4da4eegFnG0I7w6kgoFNREsFub3eCg+Sxf4lulPSqjSCc/Y=
-X-Received: by 2002:a67:ecce:: with SMTP id i14mr24864150vsp.22.1620166433516;
- Tue, 04 May 2021 15:13:53 -0700 (PDT)
+        bh=acDdWkVMge65amIaBV+7x27OMDIKOgthUhIUjSvTf5A=;
+        b=JiO2vyBBTiFEBYodiIhB2WjKrwz1gt+ypmejo+BrO8+NNSx09kqaD9VWbphBIK/RKB
+         uw+g6OVCTZ0B75th7NlXLYWuEtbglQWPCQUtoHbDmYM7hCBNYooaBED39itMymo9wCGL
+         bWuNO6BZiCfRCi9UYc8VW+ZBLa6WLd5P+Gz8WnFI5fqAf6mlcFmUmN3v2EMD54TzswXm
+         PwSfF+7mJCRZY+GbeoIvbI8jzpxPg0Wrt/a5brwCZUSHlwq/upKpjmjamCS3LmBwko8W
+         uwRNsdu39ZxazszvViTU2+rjoJV7RvNrwP69DImkGf635jD2K4xzu+APpnp0Z8bcnvas
+         Ea4w==
+X-Gm-Message-State: AOAM533l9nET8SxehHpw4GptRHnvU6Jo1ymG1DsnjDIy/HVPgRxbJQFK
+	Pg6c3k/ZWObeI+zeaZKea/akBZwvsZIatghobjUrHA==
+X-Google-Smtp-Source: ABdhPJz3YiKqf0NNMlgelFYRIWq6fvxAE83IQ3sdXtqTd7d+Nze9m3C5Cy59zFnrbMiFPMMWwobHFosK89chKN4xiHY=
+X-Received: by 2002:a67:ecce:: with SMTP id i14mr24882004vsp.22.1620166705426;
+ Tue, 04 May 2021 15:18:25 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210426145810.718821-1-yann@blade-group.com> <20210426145810.718821-4-yann@blade-group.com>
  <20210504210349.GC1096@localhost>
 In-Reply-To: <20210504210349.GC1096@localhost>
 From: "Yann Dirson" <yann.dirson@blade-group.com>
-Date: Wed, 5 May 2021 00:13:42 +0200
-Message-ID: <CA+4=ima+e+vMB2+1f4tUaSmWLe9XM5TbVDJXkyju1AXv0g8veg@mail.gmail.com>
+Date: Wed, 5 May 2021 00:18:14 +0200
+Message-ID: <CA+4=imagJSo6P5r5TDdsumykuMfWnTByzEakRZ1QKOK9xi2a7w@mail.gmail.com>
 Subject: Re: [meta-rockchip][PATCH v4 3/3] linux-yocto: add an initial NanoPi-M4 BSP
 To: Trevor Woerner <twoerner@gmail.com>
 Cc: Yocto discussion list <yocto@yoctoproject.org>, Yann Dirson <yann@blade-group.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+
+(sorry, previous answer _is_ empty, wrong button)
 
 Le mar. 4 mai 2021 =C3=A0 23:03, Trevor Woerner <twoerner@gmail.com> a =C3=
 =A9crit :
@@ -171,6 +173,13 @@ abled
 > to support the AP6256S? I don't see that being enabled, does it end up be=
 ing
 > pulled in by default or as a result of the above two settings?
+
+Hm, good catch, I ended up not activating the AP6356S in this first
+patch, since it would be non-functional
+without the proper firmware, and that one needs separate work.  It
+makes sense not to include those options
+at all here.
+
 >
 > > diff --git a/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.scc b/re=
 cipes-kernel/linux/files/bsp/rockchip/nanopi-m4.scc
@@ -236,6 +245,11 @@ es-kernel/linux/files/bsp/rockchip/rk3399.cfg
 > Oops, is enabling this RK3288 setting an oversight? Or is it needed for H=
 DMI
 > on the RK3399?
+
+I will double-check before rerolling, IIRC it is a common block used
+by the 3399,
+whose legacy naming is just confusing.
+
 >
 > > +
 > > +CONFIG_VIDEO_DEV=3Dm
