@@ -1,356 +1,182 @@
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
- by mx.groups.io with SMTP id smtpd.web10.10285.1620153382271460931
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+ by mx.groups.io with SMTP id smtpd.web12.11459.1620158175185545989
  for <yocto@lists.yoctoproject.org>;
- Tue, 04 May 2021 11:36:22 -0700
+ Tue, 04 May 2021 12:56:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=oMaIa8j+;
- spf=pass (domain: gmail.com, ip: 209.85.160.179, mailfrom: raj.khem@gmail.com)
-Received: by mail-qt1-f179.google.com with SMTP id t7so2150287qtn.3
-        for <yocto@lists.yoctoproject.org>; Tue, 04 May 2021 11:36:22 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=lTHso3DS;
+ spf=pass (domain: gmail.com, ip: 209.85.219.44, mailfrom: twoerner@gmail.com)
+Received: by mail-qv1-f44.google.com with SMTP id dl3so86606qvb.3
+        for <yocto@lists.yoctoproject.org>; Tue, 04 May 2021 12:56:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0gPoaxPrKvcz7KgQojWygSxozQK92E/7kRxWgV+vXvw=;
-        b=oMaIa8j+wSMgUJOwyG/olBjv8qa8Qrzr0kiU0noxl3uzSSgHhc7yMFrP/H/JfF86RW
-         Kgkt8Um8WlH6AGY/s3sREVANSJG/+TrYoPXk43NGcif7CAldDO9gTkrL4SSH/Vy5Y6lH
-         eTuODM6mjn0TIqoIUsqunPULdYoIx8Y8dcdMZcMT3ojkqKYGWlpixtkGP+OC2oL6fcd0
-         pGd17c1VmTkNlq8PfUPXdKeKpiCDnONDZKQT/CK8gvQzearCXgWZuiXSEqqAYPNmTvIM
-         jpurZhdyXVmIb8vaXVOAZkPdJZVS0VOgTnGr1gN0RpXdm90V1Ka4XKFSxeU0BTFrlJi9
-         GPhA==
+        h=date:from:to:subject:message-id:mime-version:content-disposition
+         :content-transfer-encoding:user-agent;
+        bh=ND0NSd9KcuciGBeqTAIlWrM1oB1BIGvaUChGv3vEnbw=;
+        b=lTHso3DSJ+vmGwC1mWrSNLbiCWFqVgWiz8zJLrs3lhKoNOYjVBYSXVjctmmKhP9+AU
+         d/qVsSVsIBITA4SCw4yqsJZNgvizCPyA+cxNtgWbjsuNom577Nc70Q9VELI2KTUUsk5n
+         xwK00sSCfWxFzxN2WOpnaG6puMsGMnOaNBo4N4XHvBTsCjZguIglRiSmqKLuN7XY8JSG
+         UonWcOor/aw+bEjUUVDsbMlEIyTi1rOysC2WnhFwLbUFVlFdO+ZS1ce+TtvsPxukTnqk
+         KIp6QFHJ2wGTs0iegazJWdmYbTcXouUo3i8NixhYdqiRxJcqnGNYWQDSrTs2RQIaiN7q
+         YmmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0gPoaxPrKvcz7KgQojWygSxozQK92E/7kRxWgV+vXvw=;
-        b=XqNciK0/o++ZCSE1ko+fNUJjcqepWLLmncBLor7HOQnlDrWCFfYmIwlMA8zitOPsZu
-         k2tNtocRohSOS1paPMcWCv2bvQM1vqdbT9TcXXX7GWIUsHntRDghF4Hbxi2Cxm5a0CtF
-         lRN9AhmVNfK2mr0LCpP14elDCxyHk9B15LCqT6LlBAr66Fzr9momrFnPBY7imkVrErqy
-         FZXS5STwvoYKcfAQfpfEqdDslpvoYN1nz3HAo+CBVQT/qT59+d+1VtIdpgzIY3SP+ojU
-         Vp3ZJBACYBTp0C+ce930TY5eaqltP+EVJhf74+zZaD/lmsVojUKaS0uM/0y8sonRrdUM
-         QuwQ==
-X-Gm-Message-State: AOAM531tbXD6o91S0vQ/eoZfmwpcifmd13EPjPqBy9nij0FjCCglFuNu
-	W5+lLrxpeJKBI57RJ6zRjlGwdz4cknI4Fci2QEo=
-X-Google-Smtp-Source: ABdhPJyZxyhaE8C5KAYF996aMFQZrihgbMr/fqSMaMCm/dWwoyFnMyttPTGUOrl6c0t2cMr0FJWJY/DMVo5wLY0de9w=
-X-Received: by 2002:ac8:5ccb:: with SMTP id s11mr22925934qta.299.1620153381319;
- Tue, 04 May 2021 11:36:21 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+         :content-disposition:content-transfer-encoding:user-agent;
+        bh=ND0NSd9KcuciGBeqTAIlWrM1oB1BIGvaUChGv3vEnbw=;
+        b=QJsrhP8lKhAzGvEYKxEyJEVxpEis5wYCpmPOmUlBYLhRdg9paJdnanZIj8DynehQPm
+         YKLN0bcoUEGYZo92DBgL4mz0MRiE/xa2z2h/QWQXoOu8YZePsq90pxdPNGLZVwfrezZy
+         MZB5c0feUjwFFlECd/qMS4fTYR+VBF5wdaDhnAmRXhPU1YqP6ps4cM+0S3x37QvX+iHk
+         ToM9YvAKKdz8cgIgMiGyT4+8+gnxFnS3uDj4Iequi1Mdsb/iRAPtsLHUOwGWpf4X/W4V
+         NoxUGs8XyKkzcLvuCcVCksQ0gT+HNDINfoZtixYETcaWcsiP8ugA8Vwo2GNzE3ZtTsgc
+         ItYw==
+X-Gm-Message-State: AOAM532pHiV+b4k0vuqouYiUrsHMbGdFxIjWn9dpdjpCeJ+1ZAlJrxYm
+	vVdZdju/lO4jLwigAlX3qyssNzevIiA=
+X-Google-Smtp-Source: ABdhPJwOwGvsMYXpe4DkJW1D/GN74QHdLOFnUm5VNm821Z4FFjANSM0PdSW4UM2YRFyhPO1Nb2N+Yg==
+X-Received: by 2002:a0c:e486:: with SMTP id n6mr25073135qvl.21.1620158173754;
+        Tue, 04 May 2021 12:56:13 -0700 (PDT)
+Return-Path: <twoerner@gmail.com>
+Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id m4sm3529479qtg.21.2021.05.04.12.56.12
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 May 2021 12:56:13 -0700 (PDT)
+Date: Tue, 4 May 2021 15:56:11 -0400
+From: "Trevor Woerner" <twoerner@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: Yocto Technical Team Minutes, Engineering Sync, for May 4, 2021
+Message-ID: <20210504195611.GA27693@localhost>
 MIME-Version: 1.0
-References: <MADEUP.167B501B73BC3BE0.4851@lists.yoctoproject.org> <MADEUP.167BF03F6EB90907.3648@lists.yoctoproject.org>
-In-Reply-To: <MADEUP.167BF03F6EB90907.3648@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Tue, 4 May 2021 11:35:55 -0700
-Message-ID: <CAMKF1so2jpYNBenCT60FBFV4ofy=oJotbkDuC8Ocnt6kCG6x+A@mail.gmail.com>
-Subject: Re: [yocto] #yocto cmake configurations
-To: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000c6788705c1855a8d"
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
---000000000000c6788705c1855a8d
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Yocto Technical Team Minutes, Engineering Sync, for May 4, 2021
+archive: https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7QwKC5wWVDg9dDH4/edit
 
-can you post full linker cmd which is failing ?
+== announcements ==
+The upcoming Yocto Project Summit is taking place May 25-26 2021
+details: https://www.yoctoproject.org/yocto-project-virtual-summit-2021/
+registration: https://www.cvent.com/d/yjq4dr/4W?ct=868bfddd-ca91-46bb-aaa5-62d2b61b2501
 
-On Tue, May 4, 2021 at 11:24 AM Monsees, Steven C (US) via
-lists.yoctoproject.org <steven.monsees=3Dbaesystems.com@lists.yoctoproject=
-.org>
-wrote:
+== disclaimer ==
+Best efforts are made to ensure the below is accurate and valid. However,
+errors sometimes happen. If any errors or omissions are found, please feel
+free to reply to this email with any corrections.
 
->
->
-> My standard zeus SDK appears to have an issue linking in my applications
-> dynamic libs=E2=80=A6
->
->
->
-> /disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/x86_64-pokysdk-=
-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/9.2.0/real-ld:
-> cannot find -ldrm_intel
->
-> /disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/x86_64-pokysdk-=
-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/9.2.0/real-ld:
-> cannot find -ldrm
->
-> /disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/x86_64-pokysdk-=
-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/9.2.0/real-ld:
-> cannot find -lclang
->
-> collect2: error: ld returned 1 exit status
->
-> The libraries are under:
-> /disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/corei7-64-poky-=
-linux/usr/lib/
->
->
->
-> My CMake build app does not appear to have an issue finding the files:
->
->
->
->
-> DRM_INTEL_LIBRARIES:STRING=3D/disk0/scratch/smonsees/sbcbSTD_SDK/limws/3=
-.0.4/sysroots/corei7-64-poky-linux/usr/lib/libdrm_intel.so
->
->
-> DRM_LIBRARIES:STRING=3D/disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/s=
-ysroots/corei7-64-poky-linux/usr/lib/libdrm.so
->
->
->
-> It appears to be an issue specifically with the ld=E2=80=A6
->
->
->
-> LDFLAGS=3D " --sysroot=3D$ENV{OECORE_TARGET_SYSROOT}
-> -L$ENV{OECORE_TARGET_SYSROOT}/usr/lib
-> -L$ENV{OECORE_TARGET_SYSROOT}/usr/lib/x86_64-poky-linux/9.2.0 -lpthread
-> -pthread -O2 -pipe -Wl,-O1 -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-neede=
-d"
->
->
->
-> It does not appear to be making use of =E2=80=93L=E2=80=99s=E2=80=A6
->
->
->
-> Is there something I might look at/configure (i.e. add paths to search
-> paths) ?
->
-> Is there a simple test to validate tool ?
->
->
->
-> Thanks,
->
-> Steve
->
->
->
-> *From:* yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> *On
-> Behalf Of *Monsees, Steven C (US) via lists.yoctoproject.org
-> *Sent:* Sunday, May 2, 2021 1:28 PM
-> *To:* yocto@lists.yoctoproject.org
-> *Subject:* [yocto] #yocto cmake configurations
->
->
->
-> *External Email Alert*
->
-> *This email has been sent from an account outside of the BAE Systems
-> network.*
->
-> Please treat the email with caution, especially if you are requested to
-> click on a link, decrypt/open an attachment, or enable macros.  For furt=
-her
-> information on how to spot phishing, access =E2=80=9CCybersecurity OneSp=
-ace Page=E2=80=9D
-> and report phishing by clicking the button =E2=80=9CReport Phishing=E2=
-=80=9D on the Outlook
-> toolbar.
->
->
->
->
->
-> I am using zeus, standard SDK, cmake=E2=80=A6
->
->
->
-> Can I pre-configure the SDK to setup cmake package search paths ?, say f=
-or
-> find_package, etc. (i.e. detecting external libraries/programs)=E2=80=A6
->
->
->
-> The majority of my env is configuring properly, but I am finding cmake i=
-s
-> setup for a standard linux env with regards to these types of searches, =
-and
->
-> I wanted the cmake built in to look at my SDK paths (first by default)
-> when doing such things as detecting python interpreter, libraries, etc.
->
->
->
-> I am working on third party package unaware of my SDK setup.
->
->
->
-> Thanks,
->
-> Steve
->
->=20
->
->
+== attendees ==
+Trevor Woerner, Stephen Jolley, Armin Kuster, Alexandre Belloni, Joshua
+Watt, Michael Opdenacker, Joel Winarske, Randy MacLeod, Jere Viikari,
+Scott Murray, Trevor Gamblin, Steve Sakoman, angolini, Rob Woolley,
+Richard Purdie, Tim Orling, Bruce Ashfield, Jon Mason, Ross Burton,
+Peter Kjellerstedt, Martin Jansa, Michael Halstead, Alejandro H, Denys
+Dmytriyenko
 
---000000000000c6788705c1855a8d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+== notes ==
+- 3.2.4 to be build this week, final release for 3.2 (gatesgarth)
+- Apr 2022 (3.5) will be the next LTS (kirkstone)
+- 3.4.1 patches going in (honister)
+- gcc-11, thanks to Khem
+- multiconfig fixes for bitbake
+- new uninative version for (patchelf, and gold linker issues)
+- ~62 AB INT issues
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:monospac=
-e,monospace">can you post full linker cmd which is failing ?</div></div><br=
-><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, M=
-ay 4, 2021 at 11:24 AM Monsees, Steven C (US) via <a href=3D"http://lists.y=
-octoproject.org">lists.yoctoproject.org</a> &lt;steven.monsees=3D<a href=3D=
-"mailto:baesystems.com@lists.yoctoproject.org">baesystems.com@lists.yoctopr=
-oject.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex">
+== general ==
+RP: relatively quiet week
+RP: AB failures are a nightmare, the uninative update was meant to fix an
+    issue, was difficult to get in, but didn’t address the problem
+RP: upstream is not accepting the patchelf fix until we provide a test case
 
 
+RP: the qmp patch seems to cause some of the AB issues, maybe was also
+    reported by Armin
+Ross: Khem was waiting to start a build due to a related issue
+RP: a path length issue with sockets
+JPEW: there is a work-around
 
 
+ScottM: what does this mean for dunfell support? is dunfell support to end at
+    that time (Apr 2022)?
+RP: remains to be seen. we’re starting the new LTS Apr 2022, but no firm
+    decision on what is to happen to dunfell in Apr 2022 yet
+JPEW: dunfell was really good for BSPs
+ScottM: yes, lots of good dunfell BSPs for AGL. although most are now wanting
+    to update to a 5.10 kernel. many AGL members are using dunfell but simply
+    updating the kernel (some are due to LXC)
+SS: feedback i got is that 2 years is not nearly long enough. it takes at
+    least 2 years to develop the product, not to mention post-release support.
+    “LTS” might mean 5+ years for many
+ScottM: true, 7-10 years even
+Randy: is there support for this
+ScottM: possibly
+RP: a longer LTS puts strain on community maintainers, there are larger
+    ecosystem effects. we need to get that message out to the people
+    benefiting from the LTS
+ScottM: backporting CVEs get difficult as the LTS gets further and further
+    back
+RP: sure, oe-core might be supported, but what does that mean for meta-oe?
+Bruce: and there are other non-oecore and non-metaoe “important” layers
+TimO: users need to decide: long-term or latest
+Armin: they can’t get both
+TimO: i wonder what SS’s feedback is
+SS: it’s what i expected. there’s a lot more silence than expected,
+    surprised there aren’t more patches coming in, would like to see more
+    community involvement. the month that i provided prizes for CVE hunting
+    actually brought in fewer CVE fixes
+RP: i’m seeing that with core as well, there seems to be less involvement
+    and engagement than one would expect
+SS: there are some things that need other layers/scenarios but it’s not
+    comprehensive
+TimO: and testing is even worse
+RP: i’m curious to know which other layers/tests SS is using
+SS: i like to add QT, and do builds for specific boards, runtime test some of
+    them to make sure everything is still working on real hardware
+Armin: more layers are adding tests (ptests) 
+RP: can’t keep up with ptest failures in core as it is today
 
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_8097237155896784554WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)"><u></u>=C2=A0<=
-u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">My standard ze=
-us SDK appears to have an issue linking in my applications dynamic libs=E2=
-=80=A6<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)"><u></u>=C2=A0<=
-u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">/disk0/scratch=
-/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/x86_64-pokysdk-linux/usr/libexec=
-/x86_64-poky-linux/gcc/x86_64-poky-linux/9.2.0/real-ld: cannot find -ldrm_i=
-ntel<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">/disk0/scratch=
-/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/x86_64-pokysdk-linux/usr/libexec=
-/x86_64-poky-linux/gcc/x86_64-poky-linux/9.2.0/real-ld: cannot find -ldrm<u=
-></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">/disk0/scratch=
-/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/x86_64-pokysdk-linux/usr/libexec=
-/x86_64-poky-linux/gcc/x86_64-poky-linux/9.2.0/real-ld: cannot find -lclang=
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">collect2: erro=
-r: ld returned 1 exit status<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)"><u></u><u></u>=
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">The libraries =
-are under: /disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/corei7-=
-64-poky-linux/usr/lib/<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)"><u></u>=C2=A0<=
-u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">My CMake build=
- app does not appear to have an issue finding the files:<u></u><u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)"><u></u>=C2=A0<=
-u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">DRM_INTEL_LIBR=
-ARIES:STRING=3D/disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/cor=
-ei7-64-poky-linux/usr/lib/libdrm_intel.so<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">DRM_LIBRARIES:=
-STRING=3D/disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/corei7-64=
--poky-linux/usr/lib/libdrm.so<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)"><u></u>=C2=A0<=
-u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">It appears to =
-be an issue specifically with the ld=E2=80=A6<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)"><u></u>=C2=A0<=
-u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">LDFLAGS=3D</sp=
-an> <span style=3D"color:rgb(31,73,125)">
-&quot; --sysroot=3D$ENV{OECORE_TARGET_SYSROOT} -L$ENV{OECORE_TARGET_SYSROO=
-T}/usr/lib -L$ENV{OECORE_TARGET_SYSROOT}/usr/lib/x86_64-poky-linux/9.2.0 -l=
-pthread -pthread -O2 -pipe -Wl,-O1 -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-=
-needed&quot;<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)"><u></u>=C2=A0<=
-u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">It does not ap=
-pear to be making use of =E2=80=93L=E2=80=99s=E2=80=A6<u></u><u></u></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)"><u></u>=C2=A0<=
-u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">Is there somet=
-hing I might look at/configure (i.e. add paths to search paths) ?<u></u><u>=
-</u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">Is there a sim=
-ple test to validate tool ?<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)"><u></u>=C2=A0<=
-u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">Thanks,<u></u>=
-<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">Steve<u></u><u=
-></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)"><u></u>=C2=A0<=
-u></u></span></p>
-<p class=3D"MsoNormal"><b>From:</b> <a href=3D"mailto:yocto@lists.yoctopro=
-ject.org" target=3D"_blank">yocto@lists.yoctoproject.org</a> &lt;<a href=3D=
-"mailto:yocto@lists.yoctoproject.org" target=3D"_blank">yocto@lists.yoctopr=
-oject.org</a>&gt;
-<b>On Behalf Of </b>Monsees, Steven C (US) via <a href=3D"http://lists.yoc=
-toproject.org" target=3D"_blank">lists.yoctoproject.org</a><br>
-<b>Sent:</b> Sunday, May 2, 2021 1:28 PM<br>
-<b>To:</b> <a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blan=
-k">yocto@lists.yoctoproject.org</a><br>
-<b>Subject:</b> [yocto] #yocto cmake configurations<span style=3D"color:rg=
-b(31,73,125)"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<table border=3D"1" cellspacing=3D"0" cellpadding=3D"0" width=3D"97%" styl=
-e=3D"width:97%;margin-left:5.4pt;border-collapse:collapse;border:none">
-<tbody>
-<tr style=3D"height:21.2pt">
-<td width=3D"97%" valign=3D"top" style=3D"width:97%;border:1pt solid red;p=
-adding:0in 5.4pt;height:21.2pt">
-<p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom:4pt;text-al=
-ign:center;background:white">
-<strong><u><span style=3D"font-size:13.5pt;font-family:Calibri,sans-serif;=
-color:red">External Email Alert</span></u></strong><u></u><u></u></p>
-</td>
-</tr>
-<tr style=3D"height:21.2pt">
-<td width=3D"686" valign=3D"top" style=3D"width:1150.4pt;border-right:1pt =
-solid red;border-bottom:1pt solid red;border-left:1pt solid red;border-top:=
-none;padding:0in 5.4pt;height:21.2pt">
-<p class=3D"MsoNormal" align=3D"center" style=3D"margin-right:0in;margin-b=
-ottom:4pt;margin-left:0in;text-align:center;background:white">
-<strong><span style=3D"font-size:10pt;font-family:Calibri,sans-serif;color=
-:black">This email has been sent from an account outside of the BAE Systems=
- network.<u></u><u></u></span></strong></p>
-<p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom:4pt;text-al=
-ign:center">
-<span style=3D"font-size:7.5pt">Please treat the email with caution, espec=
-ially if you are requested to click on a link, decrypt/open an attachment, =
-or enable macros.=C2=A0 For further information on how to spot phishing, ac=
-cess =E2=80=9CCybersecurity OneSpace Page=E2=80=9D and report
- phishing by clicking the button =E2=80=9CReport Phishing=E2=80=9D on the =
-Outlook toolbar.</span><span style=3D"font-size:9pt"><u></u><u></u></span><=
-/p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:&quot;Tim=
-es New Roman&quot;,serif"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I am using zeus, standard SDK, cmake=E2=80=A6<u></u=
-><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Can I pre-configure the SDK to setup cmake package =
-search paths ?, say for find_package, etc. (i.e. detecting external librari=
-es/programs)=E2=80=A6<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">The majority of my env is configuring properly, but=
- I am finding cmake is setup for a standard linux env with regards to these=
- types of searches, and<u></u><u></u></p>
-<p class=3D"MsoNormal">I wanted the cmake built in to look at my SDK paths=
- (first by default) when doing such things as detecting python interpreter,=
- libraries, etc.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I am working on third party package unaware of my S=
-DK setup.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Thanks,<u></u><u></u></p>
-<p class=3D"MsoNormal">Steve<u></u><u></u></p>
-</div>
-</div>
-</div>
 
-<br>
-<br>
-<br>
-</blockquote></div>
+Randy: we’re gathering more logs wrt high latency on AB. haven’t had time
+    to analyze yet. between rust and AB latency issues, is there a preference
+RP: they’re both important for different reasons
 
---000000000000c6788705c1855a8d--
+
+Armin: is there a reason we went with no-password scheme for test-image?
+RP: you’re assuming there was a design and design decisions made; there
+    wasn’t. it evolved out of debug-tweaks, organically, with what we had
+TimO: unfortunate assumptions, it works for the specific things being tested
+    so changes have been made
+Armin: 2 places where a user:pass can be set: class or systemd. which is
+    preferred?
+RP: (from memory) configs get set in base-passwd and injected at rootfs time
+PeterK: user add-extra class?
+Armin: then i need to inherit that class
+RP: root entry in passwd file, done in base-passwd. then it doesn’t matter
+    whether it’s via class or systemd. i would start there
+
+
+Randy: tagging releases (see last week’s discussion), in meta-oe the branch
+    was created a bit early, and then things got pushed a bit later. should we
+    create a process for this?
+Armin: the ones that want to align with poky do, others don’t. some layers
+    only released a release branch recently
+Randy: in some ways later is better than too early
+TimO: some layers have their own branching scheme whereby a branch supports a
+    number of releases
+JPEW: i would be hesitant to add a tag until i’ve tested against the
+    upstream (same) tag, which could be a large burden for maintainers to test
+    against specific tags
+Armin: for me i’m further downstream. i have to wait for poky to branch,
+    then i have to wait for meta-oe to branch, then i can branch
+Bruce: what’s the issue?
+Randy: meta-oe branched too early but it wasn’t actually ready for that
+    branch until weeks later
+TimO: i wait for my CI to blow up, then i know to do the compatibility
+
+
+RP: new people on the call. any questions? any topics?
+JoelW: hello, happy to listen in
+
+
+RP: if i sent an email to various lists (oe-architecture) would that help drum
+    up more support for maintainers? i’ve drafted something, but not sure if
+    sending it out would help
