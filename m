@@ -1,592 +1,481 @@
-Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
- by mx.groups.io with SMTP id smtpd.web09.324.1620162734140545126
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+ by mx.groups.io with SMTP id smtpd.web09.400.1620163060163898577
  for <yocto@lists.yoctoproject.org>;
- Tue, 04 May 2021 14:12:14 -0700
+ Tue, 04 May 2021 14:17:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kudzu-us.20150623.gappssmtp.com header.s=20150623 header.b=kN9/bj7q;
- spf=none, err=permanent DNS error (domain: kudzu.us, ip: 209.85.219.52, mailfrom: jdmason@kudzu.us)
-Received: by mail-qv1-f52.google.com with SMTP id g17so187596qvl.9
-        for <yocto@lists.yoctoproject.org>; Tue, 04 May 2021 14:12:14 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=dE5XM8Fz;
+ spf=pass (domain: gmail.com, ip: 209.85.219.174, mailfrom: raj.khem@gmail.com)
+Received: by mail-yb1-f174.google.com with SMTP id b131so14095948ybg.5
+        for <yocto@lists.yoctoproject.org>; Tue, 04 May 2021 14:17:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kudzu-us.20150623.gappssmtp.com; s=20150623;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=9hfPCH/sFhhP5aLcEZfVRrjDQZ/Dxwyx+V3Kg+FjGZg=;
-        b=kN9/bj7qSoxOW/HL9fQ4zxrMIdyWuNh3Ufi4cXWoPJmhQI93hLuPa9Vn4g2HhT0KWk
-         JKfDvfR/j+r4rjoDgVx3POWxIWe0ZJouSTHKUmXR3/6LcdGjJKIQB8Z2sxfLbE48bfM4
-         EOfaNFUQ0VX/la7DBhkQQtn2GIBWraFvXVujcMUEvpBtBoxB50jJIbJ6NlGVdbelCngf
-         Cg1bj88L8p8MpJMP34cinkajKyzAeuAs0jy6VGvvgq2jEFOTkvE9Ti/vTswSF4GGfDzv
-         ko16avI21chjYgI7VSrN/eoLH5aLFEfbThaDXeV5cMeLTrPrrRqGavRuJvoFuC9g2fgk
-         K/0A==
+        bh=6axVgVkmg0X6pv+ygD9CTRX9k0QZFJZaIt8QsAKkZkc=;
+        b=dE5XM8FzSF9Qq6f/g2lU5Cwj8nfQatk1/T/BO+W50SSzBOC6xSU5mnjqmTy0u9n/fV
+         AXZToKq4JRILNd8qlSFyj2QAnCYyN1hwJ2zT8AJJXa7h2RYtbUp+SsbpCP8j/c60wytU
+         wXtCtpzPEQJFg/9Hx8UinEwjK7YWfn5aj7Agbuz9flnTuvqBT9dDHgmcH1KV7KtCCAgm
+         XJOpa5H+2cAXG3fYUtsSKJMeswgEnFzca1ilxFb2XZsj5MRtvSNIWDth8aD+RTh/dbHs
+         4MijHPAR1uMg+fb+osCtM47beWU7KC7EDpEuqSA+rozC2xKoQzgrskzdWa/djOoPrTIM
+         pbvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=9hfPCH/sFhhP5aLcEZfVRrjDQZ/Dxwyx+V3Kg+FjGZg=;
-        b=IFL0D56AGXmavHj36FLEqWRII2Xc085mrykx/+Hj3FE/jSEiNllOw97Yn3u9FVGpOI
-         D8Ow3FFD0R9D8Ilq0NKBkLKwg/CpHj4G0CbbQ/UG8OEWgIbaoS+HKNb+rvVRaDv5N6c2
-         PnClH8dRDrZY3GZdqPJsuN2C5abHjEyvjlBbOrBYWCGRscUOXlZAjwSo6wOWSzxLEelZ
-         9L036nZh3pjjsk+rZlAHuvm6qT53lFdy3/+rPoZ69+Ya+bqwuFcFWCHxQmT0+6HXBOJx
-         Q5ySaPt/sdhyD9KZSucX4Xyr2k3tHhOaH5u96xXvzsAvzgSgpecTV7G3SU3VoGoO/9QE
-         wVnQ==
-X-Gm-Message-State: AOAM533Ld00Rr17E6G7f7CNKj4q/yRGFoQwqAdkjTPYFvsqPw9p9lf+f
-	DNtb+mBUtVZOLR5vOHTWkhFyr0Q4R57mR5YUVB+LTg==
-X-Google-Smtp-Source: ABdhPJwJClyKi+rR9ErMbDF3DLQD+mL1poQ+XuJoXtIP6o+7/oxmzIu8niIK+4VoaTI+ImceAoy7f7hvh1DW67c7wdw=
-X-Received: by 2002:a05:6214:20c4:: with SMTP id 4mr23750624qve.38.1620162733254;
- Tue, 04 May 2021 14:12:13 -0700 (PDT)
+        bh=6axVgVkmg0X6pv+ygD9CTRX9k0QZFJZaIt8QsAKkZkc=;
+        b=VOsRh4xfesmbL69i8XZFTQTwrDlj9/qfYLR9Pcn7E0m4CQMDiatDQQ8OvGME3/Hl9B
+         vRXSWgC80dKC3NJkrDhAPliwCCGMv63HEx7y7ntJYUSQHtHRWdDZ12MxHErjzYfFnYFZ
+         VZ0O/cxZBs1PqFYJhlKt7NMU1az2zEUtaTXpZI16GhAXxTbIaZBnEuZcmiK1dvW9ZaFP
+         sVly/FxSdMrhm2vooltqKyQCIeLTstkO1uAoziGle9dki6uQIclvwtQBBWhHKmeeYYbj
+         y00qpC4EdIJpD++Co19P483l3lIyaBCCUz0p7LBdGAYnYkRvthzjFRNmsBYuz4NfrsT0
+         DsdA==
+X-Gm-Message-State: AOAM532LmeGryLM9E6qHoFqEBcI7HyaE7EO5zisKROJH6w/B5lquCm1B
+	vHDtmgt5xUhAd0CGI+1HfV99ebXKnj5DMdtuew8=
+X-Google-Smtp-Source: ABdhPJyDtpNsoVyZ/1OrO7l4wcG9QBtRdLE5U4HznoX5YW6OEu2lohMEMlN+vpZNuIeXaymj4DoVcrcn9mMExbVbo/o=
+X-Received: by 2002:a25:2986:: with SMTP id p128mr28019205ybp.197.1620163059168;
+ Tue, 04 May 2021 14:17:39 -0700 (PDT)
 MIME-Version: 1.0
-References: <167BF8687DD5E98E.7786@lists.yoctoproject.org>
-In-Reply-To: <167BF8687DD5E98E.7786@lists.yoctoproject.org>
-From: "Jon Mason" <jdmason@kudzu.us>
-Date: Tue, 4 May 2021 17:12:02 -0400
-Message-ID: <CAPoiz9zeFJBoswZeVF78xh-47ykhk5Sc799yUGffGa3iLBEW9g@mail.gmail.com>
-Subject: Re: [yocto] [meta-zephyr][PATCH] CI: add Gitlab CI support
-To: Jon Mason <jdmason@kudzu.us>
-Cc: yocto@lists.yoctoproject.org
+References: <CAMKF1so2jpYNBenCT60FBFV4ofy=oJotbkDuC8Ocnt6kCG6x+A@mail.gmail.com>
+ <MADEUP.167BF553E042ED1A.3648@lists.yoctoproject.org>
+In-Reply-To: <MADEUP.167BF553E042ED1A.3648@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Tue, 4 May 2021 14:17:12 -0700
+Message-ID: <CAMKF1sq9PXQs1UVGawYYyFVM4u0yWWENhMZ8mO5AWbv43TYouw@mail.gmail.com>
+Subject: Re: [yocto] #yocto cmake configurations
+To: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000009eb95b05c1879b54"
+
+--0000000000009eb95b05c1879b54
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Please disregard, sloppy scripting bit me
+I see its using -rdynamic -static
+so next question is that do you have .a files in your sdk ?
 
-On Tue, May 4, 2021 at 4:53 PM Jon Mason via lists.yoctoproject.org
-<jdmason=kudzu.us@lists.yoctoproject.org> wrote:
->
-> Signed-off-by: Jon Mason <jon.mason@arm.com>
-> ---
->  .gitlab-ci.yml                                | 174 ++++++++++++++++++
->  ci/96b-avenger96.yml                          |   9 +
->  ci/96b-nitrogen.yml                           |   6 +
->  ci/acrn.yml                                   |   6 +
->  ci/base.yml                                   |  35 ++++
->  ci/check-machine-coverage                     |  26 +++
->  ci/check-warnings                             |  18 ++
->  ci/jobs-to-kas                                |  19 ++
->  ci/logging.yml                                |  13 ++
->  ci/meta-oe.yml                                |   8 +
->  ci/meta-python.yml                            |  10 +
->  ci/qemu-cortex-m3.yml                         |   6 +
->  ci/qemu-nios2.yml                             |   6 +
->  ci/qemu-x86.yml                               |   6 +
->  ci/testimage.yml                              |   5 +
->  ci/update-repos                               |  40 ++++
->  .../zephyr-kernel/zephyr-kernel-test.inc      |   3 +
->  17 files changed, 390 insertions(+)
->  create mode 100644 .gitlab-ci.yml
->  create mode 100644 ci/96b-avenger96.yml
->  create mode 100644 ci/96b-nitrogen.yml
->  create mode 100644 ci/acrn.yml
->  create mode 100644 ci/base.yml
->  create mode 100755 ci/check-machine-coverage
->  create mode 100755 ci/check-warnings
->  create mode 100755 ci/jobs-to-kas
->  create mode 100644 ci/logging.yml
->  create mode 100644 ci/meta-oe.yml
->  create mode 100644 ci/meta-python.yml
->  create mode 100644 ci/qemu-cortex-m3.yml
->  create mode 100644 ci/qemu-nios2.yml
->  create mode 100644 ci/qemu-x86.yml
->  create mode 100644 ci/testimage.yml
->  create mode 100755 ci/update-repos
->
-> diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
-> new file mode 100644
-> index 000000000000..26bd1b7a5c62
-> --- /dev/null
-> +++ b/.gitlab-ci.yml
-> @@ -0,0 +1,174 @@
-> +image: ghcr.io/siemens/kas/kas-isar
-> +
-> +  # First do a common bootstrap, and then build all the targets
-> +stages:
-> +  - prep
-> +  - bootstrap
-> +  - build
-> +  - test
-> +
-> +# Common job fragment to get a worker ready
-> +.setup:
-> +  stage: build
-> +  variables:
-> +    KAS_WORK_DIR: $CI_PROJECT_DIR/work
-> +    KAS_REPO_REF_DIR: $CI_BUILDS_DIR/persist/repos
-> +    SSTATE_DIR: $CI_BUILDS_DIR/persist/sstate
-> +    DL_DIR: $CI_BUILDS_DIR/persist/downloads
-> +    BB_LOGCONFIG: $CI_PROJECT_DIR/ci/logging.yml
-> +  before_script:
-> +    - echo KAS_WORK_DIR = $KAS_WORK_DIR
-> +    - echo SSTATE_DIR = $SSTATE_DIR
-> +    - echo DL_DIR = $DL_DIR
-> +    - mkdir --verbose --parents $KAS_WORK_DIR $KAS_REPO_REF_DIR $SSTATE_DIR $DL_DIR
-> +
-> +# Generalised fragment to do a Kas build
-> +.build:
-> +  extends: .setup
-> +  script:
-> +  - KASFILES=$(./ci/jobs-to-kas $CI_JOB_NAME)
-> +  - kas shell --update --force-checkout $KASFILES -c 'cat conf/*.conf'
-> +  - kas build $KASFILES
-> +  - ./ci/check-warnings $KAS_WORK_DIR/build/warnings.log
-> +
-> +# KAS testing
-> +.test:
-> +  extends: .setup
-> +  stage: test
-> +  script:
-> +    - sudo chown -R builder $KAS_WORK_DIR
-> +    - sudo chgrp -R builder $KAS_WORK_DIR
-> +    - KASFILES=$(./ci/jobs-to-kas $CI_JOB_NAME)
-> +    - kas build $KASFILES -c testimage
-> +
-> +
-> +#
-> +# Prep stage, update repositories once
-> +#
-> +update-repos:
-> +  extends: .setup
-> +  stage: prep
-> +  script:
-> +  - flock --verbose --timeout 60 $KAS_REPO_REF_DIR ./ci/update-repos
-> +
-> +
-> +#
-> +# Bootstrap stage, machine coverage
-> +#
-> +
-> +# What percentage of machines in the layer do we build
-> +machine-coverage:
-> +  stage: bootstrap
-> +  script:
-> +  - ./ci/check-machine-coverage
-> +  coverage: '/Coverage: \d+/'
-> +
-> +
-> +#
-> +# Build stage, the actual build jobs
-> +#
-> +
-> +96b-avenger96:
-> +  extends: .build
-> +
-> +96b-nitrogen:
-> +  extends: .build
-> +
-> +acrn:
-> +  extends: .build
-> +
-> +qemu-cortex-m3:
-> +  extends: .build
-> +  artifacts:
-> +    paths:
-> +      - work/build/tmp-newlib/deploy/images/qemu-cortex-m3/*
-> +    expire_in: 1 day
-> +
-> +qemu-nios2:
-> +  extends: .build
-> +  artifacts:
-> +    paths:
-> +      - work/build/tmp-newlib/deploy/images/qemu-nios2/*
-> +    expire_in: 1 day
-> +  allow_failure: true
-> +
-> +qemu-x86:
-> +  extends: .build
-> +  artifacts:
-> +    paths:
-> +      - work/build/tmp-newlib/deploy/images/qemu-x86/*
-> +    expire_in: 1 day
-> +
-> +
-> +#
-> +# Third phase, the test jobs
-> +#
-> +
-> +# QEMU based machines can use testimage, others will need something else (i.e., LAVA)
-> +
-> +qemu-cortex-m3/testimage:
-> +  extends: .test
-> +  needs:
-> +    - job: qemu-cortex-m3
-> +
-> +qemu-nios2/testimage:
-> +  extends: .test
-> +  needs:
-> +    - job: qemu-nios2
-> +  allow_failure: true
-> +
-> +qemu-x86/testimage:
-> +  extends: .test
-> +  needs:
-> +    - job: qemu-x86
-> +
-> +
-> +#
-> +# Utility tasks, not executed automatically
-> +#
-> +
-> +# Make the persistant files modifiable by all runners
-> +chmod-presistent:
-> +  extends: .setup
-> +  stage: prep
-> +  when: manual
-> +  script:
-> +  - chmod -R 755 $CI_BUILDS_DIR/persist/*
-> +
-> +delete-dl-dir:
-> +  extends: .setup
-> +  stage: prep
-> +  when: manual
-> +  script:
-> +  - rm -rf $DL_DIR/*
-> +
-> +delete-repo-dir:
-> +  extends: .setup
-> +  stage: prep
-> +  when: manual
-> +  script:
-> +  - rm -rf $KAS_REPO_REF_DIR/*
-> +
-> +# Delete all sstate
-> +delete-sstate:
-> +  extends: .setup
-> +  stage: prep
-> +  when: manual
-> +  script:
-> +  - rm -rf $SSTATE_DIR/*
-> +
-> +# Wipe out old sstate
-> +prune-sstate:
-> +  extends: .setup
-> +  stage: prep
-> +  when: manual
-> +  script:
-> +  - find $SSTATE_DIR -type f -atime +30 -delete
-> +
-> +# Report on disk usage
-> +usage:
-> +  extends: .setup
-> +  stage: prep
-> +  when: manual
-> +  script:
-> +  - du -h -s $DL_DIR $SSTATE_DIR $KAS_REPO_REF_DIR
-> diff --git a/ci/96b-avenger96.yml b/ci/96b-avenger96.yml
-> new file mode 100644
-> index 000000000000..9ab58aa83ffa
-> --- /dev/null
-> +++ b/ci/96b-avenger96.yml
-> @@ -0,0 +1,9 @@
-> +header:
-> +  version: 9
-> +  includes:
-> +    - base.yml
-> +
-> +machine: 96b-avenger96
-> +
-> +target:
-> +  - zephyr-philosophers
-> diff --git a/ci/96b-nitrogen.yml b/ci/96b-nitrogen.yml
-> new file mode 100644
-> index 000000000000..ecd96fb67136
-> --- /dev/null
-> +++ b/ci/96b-nitrogen.yml
-> @@ -0,0 +1,6 @@
-> +header:
-> +  version: 9
-> +  includes:
-> +    - base.yml
-> +
-> +machine: 96b-nitrogen
-> diff --git a/ci/acrn.yml b/ci/acrn.yml
-> new file mode 100644
-> index 000000000000..53748defebec
-> --- /dev/null
-> +++ b/ci/acrn.yml
-> @@ -0,0 +1,6 @@
-> +header:
-> +  version: 9
-> +  includes:
-> +    - base.yml
-> +
-> +machine: acrn
-> diff --git a/ci/base.yml b/ci/base.yml
-> new file mode 100644
-> index 000000000000..1e25e6655165
-> --- /dev/null
-> +++ b/ci/base.yml
-> @@ -0,0 +1,35 @@
-> +header:
-> +  version: 9
-> +  includes:
-> +    - meta-python.yml
-> +
-> +distro: zephyr
-> +
-> +defaults:
-> +  repos:
-> +    refspec: hardknott
-> +
-> +repos:
-> +  meta-zephyr:
-> +
-> +  poky:
-> +    url: https://git.yoctoproject.org/git/poky
-> +    layers:
-> +      meta:
-> +      meta-poky:
-> +
-> +env:
-> +  BB_LOGCONFIG: ""
-> +
-> +local_conf_header:
-> +  base: |
-> +    CONF_VERSION = "1"
-> +    INHERIT += "rm_work"
-> +    ERROR_QA = "${WARN_QA}"
-> +  testimage: |
-> +    IMAGE_CLASSES += "testimage"
-> +
-> +machine: unset
-> +
-> +target:
-> +  - zephyr-kernel-test-all
-> diff --git a/ci/check-machine-coverage b/ci/check-machine-coverage
-> new file mode 100755
-> index 000000000000..726714d8b0fe
-> --- /dev/null
-> +++ b/ci/check-machine-coverage
-> @@ -0,0 +1,26 @@
-> +#! /usr/bin/env python3
-> +
-> +from pathlib import Path
-> +import sys
-> +
-> +metazephyr = Path.cwd()
-> +
-> +if metazephyr.name != "meta-zephyr":
-> +    print("Not running inside meta-zephyr")
-> +    sys.exit(1)
-> +
-> +# All machine configurations
-> +machines = metazephyr.glob("conf/machine/*.conf")
-> +machines = set(p.stem for p in machines)
-> +
-> +# All kas files
-> +kas = metazephyr.glob("ci/*.yml")
-> +kas = set(p.stem for p in kas)
-> +
-> +missing = machines - kas
-> +print(f"The following machines are missing: {', '.join(sorted(missing))}.")
-> +
-> +covered = len(machines) - len(missing)
-> +total = len(machines)
-> +percent = int(covered / total * 100)
-> +print(f"Coverage: {percent}%")
-> diff --git a/ci/check-warnings b/ci/check-warnings
-> new file mode 100755
-> index 000000000000..cc396423d8bf
-> --- /dev/null
-> +++ b/ci/check-warnings
-> @@ -0,0 +1,18 @@
-> +#! /bin/bash
-> +
-> +# Expects the path to a log file as $1, and if this file has any content
-> +# then display the contents and exit with an error code.
-> +
-> +set -e -u
-> +
-> +LOGFILE=$1
-> +
-> +if test -s $LOGFILE; then
-> +    echo ==============================
-> +    echo The build had warnings/errors:
-> +    echo ==============================
-> +    cat $LOGFILE
-> +    exit 1
-> +fi
-> +
-> +exit 0
-> diff --git a/ci/jobs-to-kas b/ci/jobs-to-kas
-> new file mode 100755
-> index 000000000000..70579703bc07
-> --- /dev/null
-> +++ b/ci/jobs-to-kas
-> @@ -0,0 +1,19 @@
-> +#! /bin/bash
-> +
-> +# Read a GitLab CI job name on $1 and transform it to a
-> +# list of Kas yaml files
-> +
-> +set -e -u
-> +
-> +# Read Job namne from $1 and split on /
-> +IFS=/ read -r -a PARTS<<<$1
-> +
-> +# Prefix each part with ci/
-> +PARTS=("${PARTS[@]/#/ci/}")
-> +
-> +# Suffix each part with .yml
-> +PARTS=("${PARTS[@]/%/.yml}")
-> +
-> +# Print colon-separated
-> +IFS=":"
-> +echo "${PARTS[*]}"
-> diff --git a/ci/logging.yml b/ci/logging.yml
-> new file mode 100644
-> index 000000000000..3af10295f8f3
-> --- /dev/null
-> +++ b/ci/logging.yml
-> @@ -0,0 +1,13 @@
-> +# Python logging configuration to write all warnings to a separate file
-> +version: 1
-> +
-> +handlers:
-> +  warnings:
-> +    class: logging.FileHandler
-> +    level: WARNING
-> +    filename: warnings.log
-> +    formatter: BitBake.logfileFormatter
-> +
-> +loggers:
-> +  BitBake:
-> +    handlers: [warnings]
-> diff --git a/ci/meta-oe.yml b/ci/meta-oe.yml
-> new file mode 100644
-> index 000000000000..ccd34f3a3ffa
-> --- /dev/null
-> +++ b/ci/meta-oe.yml
-> @@ -0,0 +1,8 @@
-> +header:
-> +  version: 9
-> +
-> +repos:
-> +  meta-openembedded:
-> +    url: https://git.openembedded.org/meta-openembedded
-> +    layers:
-> +      meta-oe:
-> diff --git a/ci/meta-python.yml b/ci/meta-python.yml
-> new file mode 100644
-> index 000000000000..3f76118ccd09
-> --- /dev/null
-> +++ b/ci/meta-python.yml
-> @@ -0,0 +1,10 @@
-> +header:
-> +  version: 9
-> +  includes:
-> +    - meta-oe.yml
-> +
-> +repos:
-> +  meta-openembedded:
-> +    url: https://git.openembedded.org/meta-openembedded
-> +    layers:
-> +      meta-python:
-> diff --git a/ci/qemu-cortex-m3.yml b/ci/qemu-cortex-m3.yml
-> new file mode 100644
-> index 000000000000..73b46039abed
-> --- /dev/null
-> +++ b/ci/qemu-cortex-m3.yml
-> @@ -0,0 +1,6 @@
-> +header:
-> +  version: 9
-> +  includes:
-> +    - base.yml
-> +
-> +machine: qemu-cortex-m3
-> diff --git a/ci/qemu-nios2.yml b/ci/qemu-nios2.yml
-> new file mode 100644
-> index 000000000000..75166054c265
-> --- /dev/null
-> +++ b/ci/qemu-nios2.yml
-> @@ -0,0 +1,6 @@
-> +header:
-> +  version: 9
-> +  includes:
-> +    - base.yml
-> +
-> +machine: qemu-nios2
-> diff --git a/ci/qemu-x86.yml b/ci/qemu-x86.yml
-> new file mode 100644
-> index 000000000000..c5d23f471bf8
-> --- /dev/null
-> +++ b/ci/qemu-x86.yml
-> @@ -0,0 +1,6 @@
-> +header:
-> +  version: 9
-> +  includes:
-> +    - base.yml
-> +
-> +machine: qemu-x86
-> diff --git a/ci/testimage.yml b/ci/testimage.yml
-> new file mode 100644
-> index 000000000000..e97e8970ec5e
-> --- /dev/null
-> +++ b/ci/testimage.yml
-> @@ -0,0 +1,5 @@
-> +header:
-> +  version: 9
-> +
-> +target:
-> +  - zephyr-kernel-test-all
-> diff --git a/ci/update-repos b/ci/update-repos
-> new file mode 100755
-> index 000000000000..fa638aad2efb
-> --- /dev/null
-> +++ b/ci/update-repos
-> @@ -0,0 +1,40 @@
-> +#! /usr/bin/env python3
-> +
-> +# Update clones of the repositories we need in KAS_REPO_REF_DIR to speed up fetches
-> +
-> +import sys
-> +import os
-> +import subprocess
-> +import pathlib
-> +
-> +def repo_shortname(url):
-> +    # Taken from Kas (Repo.__getattr__) to ensure the logic is right
-> +    from urllib.parse import urlparse
-> +    url = urlparse(url)
-> +    return ('{url.netloc}{url.path}'
-> +            .format(url=url)
-> +            .replace('@', '.')
-> +            .replace(':', '.')
-> +            .replace('/', '.')
-> +            .replace('*', '.'))
-> +
-> +repositories = (
-> +    "https://git.yoctoproject.org/git/poky",
-> +    "https://git.openembedded.org/meta-openembedded",
-> +)
-> +
-> +if __name__ == "__main__":
-> +    if "KAS_REPO_REF_DIR" not in os.environ:
-> +        print("KAS_REPO_REF_DIR needs to be set")
-> +        sys.exit(1)
-> +
-> +    base_repodir = pathlib.Path(os.environ["KAS_REPO_REF_DIR"])
-> +
-> +    for repo in repositories:
-> +        repodir = base_repodir / repo_shortname(repo)
-> +        if repodir.exists():
-> +            print("Updating %s..." % repo)
-> +            subprocess.run(["git", "-C", repodir, "fetch"], check=True)
-> +        else:
-> +            print("Cloning %s..." % repo)
-> +            subprocess.run(["git", "clone", "--bare", repo, repodir], check=True)
-> diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc
-> index b6b4766692a7..f5b1f0f035a8 100644
-> --- a/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc
-> +++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc
-> @@ -5,6 +5,9 @@ ZEPHYRTESTS_remove = "fifo fpu_sharing lifo mbox mem_heap mem_pool \
->  # Exclude tests which does not build for various reasons
->  ZEPHYRTESTS_remove = "gen_isr_table spinlock smp mp"
->
-> +# Exclude tests that are no longer passing
-> +ZEPHYRTESTS_remove += "common pending sleep context"
-> +
->  # test_context will fail because QEMU for ARM does not emulate CortexM3 BASEPRI register
->  #ZEPHYRTESTS_remove_arm += ""
->
-> --
-> 2.20.1
+On Tue, May 4, 2021 at 12:57 PM Monsees, Steven C (US) via
+lists.yoctoproject.org <steven.monsees=3Dbaesystems.com@lists.yoctoproject=
+.org>
+wrote:
+
 >
 >
-> 
+> Attached=E2=80=A6
 >
+>
+>
+> *From:* Khem Raj <raj.khem@gmail.com>
+> *Sent:* Tuesday, May 4, 2021 2:36 PM
+> *To:* Monsees, Steven C (US) <steven.monsees@baesystems.com>
+> *Cc:* yocto@lists.yoctoproject.org
+> *Subject:* Re: [yocto] #yocto cmake configurations
+>
+>
+>
+> *External Email Alert*
+>
+> *This email has been sent from an account outside of the BAE Systems
+> network.*
+>
+> Please treat the email with caution, especially if you are requested to
+> click on a link, decrypt/open an attachment, or enable macros.  For furt=
+her
+> information on how to spot phishing, access =E2=80=9CCybersecurity OneSp=
+ace Page=E2=80=9D
+> and report phishing by clicking the button =E2=80=9CReport Phishing=E2=
+=80=9D on the Outlook
+> toolbar.
+>
+>
+>
+> can you post full linker cmd which is failing ?
+>
+>
+>
+> On Tue, May 4, 2021 at 11:24 AM Monsees, Steven C (US) via
+> lists.yoctoproject.org <steven.monsees=3D
+> baesystems.com@lists.yoctoproject.org> wrote:
+>
+>
+>
+> My standard zeus SDK appears to have an issue linking in my applications
+> dynamic libs=E2=80=A6
+>
+>
+>
+> /disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/x86_64-pokysdk-=
+linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/9.2.0/real-ld:
+> cannot find -ldrm_intel
+>
+> /disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/x86_64-pokysdk-=
+linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/9.2.0/real-ld:
+> cannot find -ldrm
+>
+> /disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/x86_64-pokysdk-=
+linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/9.2.0/real-ld:
+> cannot find -lclang
+>
+> collect2: error: ld returned 1 exit status
+>
+> The libraries are under:
+> /disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/corei7-64-poky-=
+linux/usr/lib/
+>
+>
+>
+> My CMake build app does not appear to have an issue finding the files:
+>
+>
+>
+>
+> DRM_INTEL_LIBRARIES:STRING=3D/disk0/scratch/smonsees/sbcbSTD_SDK/limws/3=
+.0.4/sysroots/corei7-64-poky-linux/usr/lib/libdrm_intel.so
+>
+>
+> DRM_LIBRARIES:STRING=3D/disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/s=
+ysroots/corei7-64-poky-linux/usr/lib/libdrm.so
+>
+>
+>
+> It appears to be an issue specifically with the ld=E2=80=A6
+>
+>
+>
+> LDFLAGS=3D " --sysroot=3D$ENV{OECORE_TARGET_SYSROOT}
+> -L$ENV{OECORE_TARGET_SYSROOT}/usr/lib
+> -L$ENV{OECORE_TARGET_SYSROOT}/usr/lib/x86_64-poky-linux/9.2.0 -lpthread
+> -pthread -O2 -pipe -Wl,-O1 -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-neede=
+d"
+>
+>
+>
+> It does not appear to be making use of =E2=80=93L=E2=80=99s=E2=80=A6
+>
+>
+>
+> Is there something I might look at/configure (i.e. add paths to search
+> paths) ?
+>
+> Is there a simple test to validate tool ?
+>
+>
+>
+> Thanks,
+>
+> Steve
+>
+>
+>
+> *From:* yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> *On
+> Behalf Of *Monsees, Steven C (US) via lists.yoctoproject.org
+> *Sent:* Sunday, May 2, 2021 1:28 PM
+> *To:* yocto@lists.yoctoproject.org
+> *Subject:* [yocto] #yocto cmake configurations
+>
+>
+>
+> *External Email Alert*
+>
+> *This email has been sent from an account outside of the BAE Systems
+> network.*
+>
+> Please treat the email with caution, especially if you are requested to
+> click on a link, decrypt/open an attachment, or enable macros.  For furt=
+her
+> information on how to spot phishing, access =E2=80=9CCybersecurity OneSp=
+ace Page=E2=80=9D
+> and report phishing by clicking the button =E2=80=9CReport Phishing=E2=
+=80=9D on the Outlook
+> toolbar.
+>
+>
+>
+>
+>
+> I am using zeus, standard SDK, cmake=E2=80=A6
+>
+>
+>
+> Can I pre-configure the SDK to setup cmake package search paths ?, say f=
+or
+> find_package, etc. (i.e. detecting external libraries/programs)=E2=80=A6
+>
+>
+>
+> The majority of my env is configuring properly, but I am finding cmake i=
+s
+> setup for a standard linux env with regards to these types of searches, =
+and
+>
+> I wanted the cmake built in to look at my SDK paths (first by default)
+> when doing such things as detecting python interpreter, libraries, etc.
+>
+>
+>
+> I am working on third party package unaware of my SDK setup.
+>
+>
+>
+> Thanks,
+>
+> Steve
+>
+>
+>
+>=20
+>
+>
+
+--0000000000009eb95b05c1879b54
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:monospac=
+e,monospace">I see its using=C2=A0<span style=3D"color:rgb(0,0,0);font-fami=
+ly:&quot;Courier New&quot;,Courier,monospace,arial,sans-serif;font-size:14p=
+x;white-space:pre-wrap">-rdynamic -static</span></div><div class=3D"gmail_d=
+efault" style=3D"font-family:monospace,monospace"><span style=3D"color:rgb(=
+0,0,0);font-family:&quot;Courier New&quot;,Courier,monospace,arial,sans-ser=
+if;font-size:14px;white-space:pre-wrap">so next question is that do you hav=
+e .a files in your sdk ?</span></div></div><br><div class=3D"gmail_quote"><=
+div dir=3D"ltr" class=3D"gmail_attr">On Tue, May 4, 2021 at 12:57 PM Monsee=
+s, Steven C (US) via <a href=3D"http://lists.yoctoproject.org">lists.yoctop=
+roject.org</a> &lt;steven.monsees=3D<a href=3D"mailto:baesystems.com@lists.=
+yoctoproject.org">baesystems.com@lists.yoctoproject.org</a>&gt; wrote:<br><=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
+rder-left:1px solid rgb(204,204,204);padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US">
+<div class=3D"gmail-m_-1721670124516797794WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,s=
+ans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,s=
+ans-serif;color:rgb(31,73,125)">Attached=E2=80=A6<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,s=
+ans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11pt;font-family:Calibr=
+i,sans-serif">From:</span></b><span style=3D"font-size:11pt;font-family:Cal=
+ibri,sans-serif"> Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" target=
+=
+=3D"_blank">raj.khem@gmail.com</a>&gt;
+<br>
+<b>Sent:</b> Tuesday, May 4, 2021 2:36 PM<br>
+<b>To:</b> Monsees, Steven C (US) &lt;<a href=3D"mailto:steven.monsees@bae=
+systems.com" target=3D"_blank">steven.monsees@baesystems.com</a>&gt;<br>
+<b>Cc:</b> <a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blan=
+k">yocto@lists.yoctoproject.org</a><br>
+<b>Subject:</b> Re: [yocto] #yocto cmake configurations<u></u><u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<table border=3D"1" cellspacing=3D"0" cellpadding=3D"0" width=3D"97%" styl=
+e=3D"width:97%;margin-left:5.4pt;border-collapse:collapse;border:none">
+<tbody>
+<tr style=3D"height:21.2pt">
+<td width=3D"97%" valign=3D"top" style=3D"width:97%;border:1pt solid red;p=
+adding:0in 5.4pt;height:21.2pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom:4pt;text-al=
+ign:center;background:white">
+<strong><u><span style=3D"font-size:13.5pt;color:red">External Email Alert=
+</span></u></strong><u></u><u></u></p>
+</td>
+</tr>
+<tr style=3D"height:21.2pt">
+<td width=3D"686" valign=3D"top" style=3D"width:15in;border-right:1pt soli=
+d red;border-bottom:1pt solid red;border-left:1pt solid red;border-top:none=
+;padding:0in 5.4pt;height:21.2pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"margin-right:0in;margin-b=
+ottom:4pt;margin-left:0in;text-align:center;background:white">
+<strong><span style=3D"font-size:10pt;color:black">This email has been sen=
+t from an account outside of the BAE Systems network.</span></strong><u></u=
+><u></u></p>
+<p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom:4pt;text-al=
+ign:center">
+<span style=3D"font-size:7.5pt">Please treat the email with caution, espec=
+ially if you are requested to click on a link, decrypt/open an attachment, =
+or enable macros.=C2=A0 For further information on how to spot phishing, ac=
+cess =E2=80=9CCybersecurity OneSpace Page=E2=80=9D and report
+ phishing by clicking the button =E2=80=9CReport Phishing=E2=80=9D on the =
+Outlook toolbar.</span><u></u><u></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;"=
+>can you post full linker cmd which is failing ?<u></u><u></u></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Tue, May 4, 2021 at 11:24 AM Monsees, Steven C (=
+US) via <a href=3D"http://lists.yoctoproject.org" target=3D"_blank">
+lists.yoctoproject.org</a> &lt;steven.monsees=3D<a href=3D"mailto:baesyste=
+ms.com@lists.yoctoproject.org" target=3D"_blank">baesystems.com@lists.yocto=
+project.org</a>&gt; wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;=
+border-left:1pt solid rgb(204,204,204);padding:0in 0in 0in 6pt;margin-left:=
+4.8pt;margin-right:0in">
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">=C2=A0</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">My standard ze=
+us SDK appears to have an issue linking in my applications dynamic libs=E2=
+=80=A6</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">=C2=A0</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">/disk0/scratch=
+/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/x86_64-pokysdk-linux/usr/libexec=
+/x86_64-poky-linux/gcc/x86_64-poky-linux/9.2.0/real-ld: cannot
+ find -ldrm_intel</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">/disk0/scratch=
+/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/x86_64-pokysdk-linux/usr/libexec=
+/x86_64-poky-linux/gcc/x86_64-poky-linux/9.2.0/real-ld: cannot
+ find -ldrm</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">/disk0/scratch=
+/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/x86_64-pokysdk-linux/usr/libexec=
+/x86_64-poky-linux/gcc/x86_64-poky-linux/9.2.0/real-ld: cannot
+ find -lclang</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">collect2: erro=
+r: ld returned 1 exit status</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">The libraries =
+are under: /disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/corei7-=
+64-poky-linux/usr/lib/</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">=C2=A0</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">My CMake build=
+ app does not appear to have an issue finding the files:</span><u></u><u></=
+u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">=C2=A0</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">DRM_INTEL_LIBR=
+ARIES:STRING=3D/disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/cor=
+ei7-64-poky-linux/usr/lib/libdrm_intel.so</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">DRM_LIBRARIES:=
+STRING=3D/disk0/scratch/smonsees/sbcbSTD_SDK/limws/3.0.4/sysroots/corei7-64=
+-poky-linux/usr/lib/libdrm.so</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">=C2=A0</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">It appears to =
+be an issue specifically with the ld=E2=80=A6</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">=C2=A0</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">LDFLAGS=3D</sp=
+an>
+<span style=3D"color:rgb(31,73,125)">&quot; --sysroot=3D$ENV{OECORE_TARGET=
+_SYSROOT} -L$ENV{OECORE_TARGET_SYSROOT}/usr/lib -L$ENV{OECORE_TARGET_SYSROO=
+T}/usr/lib/x86_64-poky-linux/9.2.0 -lpthread -pthread -O2 -pipe -Wl,-O1 -Wl=
+,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed&quot;</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">=C2=A0</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">It does not ap=
+pear to be making use of =E2=80=93L=E2=80=99s=E2=80=A6</span><u></u><u></u>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">=C2=A0</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">Is there somet=
+hing I might look at/configure (i.e. add paths to search paths) ?</span><u>=
+</u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">Is there a sim=
+ple test to validate tool ?</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">=C2=A0</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">Thanks,</span>=
+<u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">Steve</span><u=
+></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">=C2=A0</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><b>From:</b>
+<a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blank">yocto@li=
+sts.yoctoproject.org</a> &lt;<a href=3D"mailto:yocto@lists.yoctoproject.org=
+" target=3D"_blank">yocto@lists.yoctoproject.org</a>&gt;
+<b>On Behalf Of </b>Monsees, Steven C (US) via <a href=3D"http://lists.yoc=
+toproject.org" target=3D"_blank">
+lists.yoctoproject.org</a><br>
+<b>Sent:</b> Sunday, May 2, 2021 1:28 PM<br>
+<b>To:</b> <a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blan=
+k">yocto@lists.yoctoproject.org</a><br>
+<b>Subject:</b> [yocto] #yocto cmake configurations<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<div>
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"97%" styl=
+e=3D"width:97%;margin-left:5.4pt;border-collapse:collapse">
+<tbody>
+<tr style=3D"height:21.2pt">
+<td width=3D"97%" valign=3D"top" style=3D"width:97%;border:1pt solid red;p=
+adding:0in 5.4pt;height:21.2pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom:4pt;text-al=
+ign:center;background:white">
+<strong><u><span style=3D"font-size:13.5pt;font-family:Calibri,sans-serif;=
+color:red">External Email Alert</span></u></strong><u></u><u></u></p>
+</td>
+</tr>
+<tr style=3D"height:21.2pt">
+<td width=3D"677" valign=3D"top" style=3D"width:15in;border-right:1pt soli=
+d red;border-bottom:1pt solid red;border-left:1pt solid red;border-top:none=
+;padding:0in 5.4pt;height:21.2pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom:4pt;text-al=
+ign:center;background:white">
+<strong><span style=3D"font-size:10pt;font-family:Calibri,sans-serif;color=
+:black">This email has been sent from an account outside of the BAE Systems=
+ network.</span></strong><u></u><u></u></p>
+<p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom:4pt;text-al=
+ign:center">
+<span style=3D"font-size:7.5pt">Please treat the email with caution, espec=
+ially if you are requested to click on a link, decrypt/open an attachment, =
+or enable macros.=C2=A0 For further information on how to spot phishing, ac=
+cess =E2=80=9CCybersecurity OneSpace Page=E2=80=9D and report
+ phishing by clicking the button =E2=80=9CReport Phishing=E2=80=9D on the =
+Outlook toolbar.</span><u></u><u></u></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">I am using zeus, standard SDK, cmake=E2=80=A6<u></u=
+><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Can I pre-configure the SDK to setup cmake package =
+search paths ?, say for find_package, etc. (i.e. detecting external librari=
+es/programs)=E2=80=A6<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">The majority of my env is configuring properly, but=
+ I am finding cmake is setup for a standard linux env with regards to these=
+ types of searches, and<u></u><u></u></p>
+<p class=3D"MsoNormal">I wanted the cmake built in to look at my SDK paths=
+ (first by default) when doing such things as detecting python interpreter,=
+ libraries, etc.<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">I am working on third party package unaware of my S=
+DK setup.<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Thanks,<u></u><u></u></p>
+<p class=3D"MsoNormal">Steve<u></u><u></u></p>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12pt"><br>
+<u></u><u></u></p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+
+<br>
+<br>
+<br>
+</blockquote></div>
+
+--0000000000009eb95b05c1879b54--
