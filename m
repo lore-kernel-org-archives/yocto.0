@@ -1,104 +1,113 @@
-Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
- by mx.groups.io with SMTP id smtpd.web10.7039.1620216139223877539
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web12.7748.1620220042092751520
  for <yocto@lists.yoctoproject.org>;
- Wed, 05 May 2021 05:02:19 -0700
+ Wed, 05 May 2021 06:07:22 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@fastmail.fm header.s=fm3 header.b=TJT5HD7Y;
- spf=pass (domain: fastmail.fm, ip: 64.147.123.25, mailfrom: manwag@fastmail.fm)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-	by mailout.west.internal (Postfix) with ESMTP id 42AC9D5A
-	for <yocto@lists.yoctoproject.org>; Wed,  5 May 2021 08:02:18 -0400 (EDT)
-Received: from imap9 ([10.202.2.59])
-  by compute3.internal (MEProxy); Wed, 05 May 2021 08:02:18 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fastmail.fm; h=
-	mime-version:message-id:in-reply-to:references:date:from:to
-	:subject:content-type; s=fm3; bh=19Sg5Npi0RX4zke5p9w3fhd2Ev8vCcf
-	bdirG7D5FiKo=; b=TJT5HD7YSd3V6Jou9jIwY7DcLVIGhaXl8LFnc9nU7xFoPWf
-	6prswSESmFH3JToWjPwCrbsjATafGhRBFtkSW2gmBgUyIiKpY7aNn1wfuRlDmNNG
-	Va6ubh8aqbh/eN+kCEqAcJONwrJ6LuDm3mHlGWsbYXTd2r4NQt+kwUWZ3+rVzJmb
-	AulQq27GoyzhtZekcGqPYcw5C4siuA0chGlSQFDzIIdGz/xE51WvVQyYmfOOHt+x
-	4XV0VAObJjF21BjsOb75yZKdAuYlnmWB67yw8w9ROJHSJwGtEu0CMU2xuEDDnxK4
-	uAQbp5H+W2/wzFv3FTH44kuycWHOjmM8gYNsvfA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to:x-me-proxy
-	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=19Sg5N
-	pi0RX4zke5p9w3fhd2Ev8vCcfbdirG7D5FiKo=; b=moC72N1gzLUx//U1Tm3gv9
-	GkSYOByflFOwzJHKJRIQnG/eHXVoC/5LHcman+6VaVtboLkrmY2g9JE/O6shCAby
-	j/Xc9kr5ziJJdtXbeOMHDeoEnAUK6bYzw9TtR8okbpqtbN7L5rcjhw1516uuLYWV
-	0RZRI/S4PZxdH+xuSzJ6CIGG/WWAxz0ySFT01o5t8g6QgogrtARRhlcTDz/sRIzi
-	9mSgG72UfOHQD9wKnrDzJT7/3JUxruRPsmqJmYI6x/ZHLOfY4RQeblJ0LqJ9dDof
-	mmcYcOr76t8z5UCTOj6yK7zd2vIn6RUKejjoScbnvC055DC4UJD4ydSOCEBp4/CA
-	==
-X-ME-Sender: <xms:SYmSYMcrGxUL9ElTWD4NUjmYj0Cp5OC3r34YKH7qJ6Zu5gzejw5ZuA>
-    <xme:SYmSYOOJUJvlKMFoEpnz_YzBDOmyu9DgLKa8Lk1gDJ1d2zv8XjhdbkcxKEMUmodD9
-    5-ru283QYf6VUeC>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdefkedggeefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefofgggkfgjfhffhffvufgtsehttd
-    ertderredtnecuhfhrohhmpedfofgrnhhuvghlucghrghgvghsrhgvihhthhgvrhdfuceo
-    ofgrnhghrghgsefhrghsthforghilhdrhffoqeenucggtffrrghtthgvrhhnpeffkeekff
-    dtudevudfhueehuefhtddvieeujeevieetleellefhteehhedtleduffenucffohhmrghi
-    nhephihotghtohhprhhojhgvtghtrdhorhhgnecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepofgrnhghrghgsefhrghsthforghilhdrhffo
-X-ME-Proxy: <xmx:SYmSYNj_0GuE4rQYKN73T6exxFS00idW4PvT98GXYEAhFEATA-dngQ>
-    <xmx:SYmSYB9r3B3BoP8os7Dufzsl_N10L0qczkbbI1hC0yUnzwVjtY3h4w>
-    <xmx:SYmSYIs6750Oh9pQIiI29q5gFBvr93YgdhPs1jDHMp4iEibcmMQf0A>
-    <xmx:SYmSYG6oxBFyt9Fuo5TDuul1d18fPc_8iAKMMoKg8z0xcKmf2yScgA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 89AEA2E0062; Wed,  5 May 2021 08:02:17 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-442-g5daca166b9-fm-20210428.001-g5daca166
-Mime-Version: 1.0
-Message-Id: <c72280d9-2a35-4774-aa2e-25f48141479f@www.fastmail.com>
-In-Reply-To: <167B3E1B63645EE6.24705@lists.yoctoproject.org>
-References: <167B3E1B63645EE6.24705@lists.yoctoproject.org>
-Date: Wed, 05 May 2021 14:01:54 +0200
-From: "Manuel Wagesreither" <ManWag@FastMail.FM>
-To: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] [meta-raspberrypi] Booting a Raspberry Pi 4 using PXE
-Content-Type: text/plain
+ dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=qGy6Hgxi;
+ spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 9389838C04C2
+	for <yocto@yoctoproject.org>; Wed,  5 May 2021 13:07:21 +0000 (UTC)
+Received: by mail-wm1-f51.google.com with SMTP id 82-20020a1c01550000b0290142562ff7c9so1086713wmb.3
+        for <yocto@yoctoproject.org>; Wed, 05 May 2021 06:07:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=blade-group.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6d9/Bg+ztM8LhDffkhy2GBq+k/riPh0YP17Wce69hkE=;
+        b=qGy6HgxiUStHywC4lOAI8taarEjT80+91uqPDa1vqC/BxQnjZ7C0kQsPotWQT8oDoI
+         qsXQJ40719P0WWopVoZzqkowC+pCVqYPq47ycr96Cz9iLeqsATr83LYaTMyNsP3Dbzqr
+         AyVRgwmLdFvbsTNBR2NXvfVfbhU9JAMtGnKcRV0utL/oZOpcoRTWOFC0saxsX6IJrEeg
+         b9aAPIl2IcjtjmhD0+FfNaJqXhN+hAO+LIwSmNzOiBGYvGQCH5XW0klkUN4+1RYYQUdU
+         MqqYP3t70Rg5sf7KNcvAWiuNyDKb1WoxmkgYEytk5BPzKvZjCnzIjnY6b9GOEiUtxKQ7
+         /f5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6d9/Bg+ztM8LhDffkhy2GBq+k/riPh0YP17Wce69hkE=;
+        b=KtnhCWfy+w8OvL7oOKbiPmAMYDFXtWFVS46WqEkqlZ629a7yy/H5f57C0Zlizzx9dx
+         kZ/ChEHEWaDQiaSYgTO5KnpzKWAASli3liSYnv1IYRbPX6ldbI5IcyY+nmvpOO2knEmq
+         i31T3nx4qEhUKiOU4KCaZ4jGI+a2UFQ0ihVbkE5QWtQuvI1B1bGT3HYDKp9oFN+FVx1B
+         8DlvmOxvAGKRxXC1jdhuAybvHiOsSToZgl6tLfYUL8C9hytt/V42nQ/ac9fZCfUeNUc5
+         DwfpFknOtJg3J30LdN0ho3QOOHgcDQiOttRmn3WeDrRt8sewjgFxCJCWjSCRQ6IKPlmL
+         aprw==
+X-Gm-Message-State: AOAM530/7CcfqJIpi6IQuY2RtWYeXPh+7UphITcrAf4n45C0Oz9AQNCt
+	iluEcGGdGGkwAjAENHrZ6d1Q/snrI1pXSQ==
+X-Google-Smtp-Source: ABdhPJzsux1+4iz2ERA0Re4lNNUIGyhhsWbtS7AmWEtF5DtzAI9NiuAeBTspfDfo0AXHDVktpTJcAw==
+X-Received: by 2002:a1c:1d41:: with SMTP id d62mr9751931wmd.76.1620220040140;
+        Wed, 05 May 2021 06:07:20 -0700 (PDT)
+Received: from blanquette.lan ([88.120.44.86])
+        by smtp.gmail.com with ESMTPSA id y14sm2847014wrr.82.2021.05.05.06.07.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 May 2021 06:07:17 -0700 (PDT)
+From: "Yann Dirson" <yann.dirson@blade-group.com>
+X-Google-Original-From: yann@blade-group.com
+To: yocto@yoctoproject.org
+Cc: twoerner@gmail.com,
+	Yann Dirson <yann@blade-group.com>
+Subject: [meta-rockchip][PATCH v5 0/2] kmeta BSP for nanopi-m4
+Date: Wed,  5 May 2021 15:06:37 +0200
+Message-Id: <20210505130639.2652269-1-yann@blade-group.com>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 
-Hello all,
+From: Yann Dirson <yann@blade-group.com>
 
-to be able to diagnose my problem, I worked on enabling uart console access to my Raspberry Pi 4B.
+The Wifi/BT support requires firmware, to be properly packaged; BT
+support itself is still buggy in mainline; audio jack requires a
+couple of patches.
 
-It seems the Raspberry Pi puts `8250.nr_uarts=0` in the linux kernel cmdline whenever the Raspi is booting over the network. This is preventing me from getting console access. When I provide the exact same set of files on a USB drive, 8250.nr_uarts is `1`.
+Changes in v5:
+- removed AP6356S-related config options, will come later with proper
+  wifi/bt support
+- removed CONFIG_SND_SOC_RK3288_HDMI_ANALOG which turns out not to be
+  needed for HDMI audio
+- new patch to get HDMI to work
 
-Here's my `cmdline.txt`:
-`dwc_otg.lpm_enable=0 console=tty1 console=serial0,115200 root=/dev/sda2 rootfstype=ext4 rootwait 8250.nr_uarts=1`
+Changes in v4:
+- install our bsp files in bsp/rockchip/ rather than directly in bsp/
+- also add "serial" to MACHINE_FEATURES
 
-When I boot over network, `/proc/cmdline` is:
-```
-coherent_pool=1M 8250.nr_uarts=0 snd_bcm2835.enable_compat_alsa=0 snd_bcm2835.enable_hdmi=1 snd_bcm2835.enable_headphones=1  smsc95xx.macaddr=DC:A6:32:B8:04:5C vc_mem.mem_base=0x3eb00000 vc_mem.mem_size=0x3ff00000  dwc_otg.lpm_enable=0 console=tty1 console=ttyS0,115200 root=/dev/sda2 rootfstype=ext4 rootwait 8250.nr_uarts=0
-```
-Note that both occurences of 8250.nr_uarts got set to 0. Even the one which I deliberatedly set to 1.
+Changes in v3:
+- relocate the bsp files into files/ so we don't have to add linux-yocto/
+  to FILESEXTRAPATHS for all other kernels
+- removed the "don't force KCONFIG_MODE to alldefconfig" (not needed fina=
+lly,
+  and causing interferences in default setup)
+- add "usbhost" to MACHINE_FEATURES to enable lsusb and friends
+- better hardware coverage (though still no wifi/bt/audio, and buggy hdmi=
+)
 
-When I boot using usb disk:
-```
-coherent_pool=1M 8250.nr_uarts=1 snd_bcm2835.enable_compat_alsa=0 snd_bcm2835.enable_hdmi=1 snd_bcm2835.enable_headphones=1  smsc95xx.macaddr=DC:A6:32:B8:04:5C vc_mem.mem_base=0x3eb00000 vc_mem.mem_size=0x3ff00000  dwc_otg.lpm_enable=0 console=tty1 console=ttyS0,115200 root=/dev/sda2 rootfstype=ext4 rootwait 8250.nr_uarts=1
-```
+Yann Dirson (2):
+  linux-yocto: add an initial NanoPi-M4 BSP
+  WIP linux-yocto: add workaround to disable VOPL usage on HDMI
 
-Has anyone any background info on that? I provide the exact same set of device tree overlays in both cases.
+ .../files/bsp/rockchip/hdmi-no-vopl.patch     | 65 +++++++++++++++++
+ .../files/bsp/rockchip/nanopi-m4-standard.scc |  7 ++
+ .../files/bsp/rockchip/nanopi-m4-tiny.scc     |  7 ++
+ .../linux/files/bsp/rockchip/nanopi-m4.cfg    | 11 +++
+ .../linux/files/bsp/rockchip/nanopi-m4.scc    |  5 ++
+ .../linux/files/bsp/rockchip/rk3399.cfg       | 70 +++++++++++++++++++
+ .../linux/files/bsp/rockchip/rk3399.scc       |  5 ++
+ .../linux/files/bsp/rockchip/rockchip.cfg     | 50 +++++++++++++
+ .../linux/files/bsp/rockchip/rockchip.scc     |  8 +++
+ recipes-kernel/linux/linux-yocto%.bbappend    |  6 ++
+ 10 files changed, 234 insertions(+)
+ create mode 100644 recipes-kernel/linux/files/bsp/rockchip/hdmi-no-vopl.=
+patch
+ create mode 100644 recipes-kernel/linux/files/bsp/rockchip/nanopi-m4-sta=
+ndard.scc
+ create mode 100644 recipes-kernel/linux/files/bsp/rockchip/nanopi-m4-tin=
+y.scc
+ create mode 100644 recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg
+ create mode 100644 recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.scc
+ create mode 100644 recipes-kernel/linux/files/bsp/rockchip/rk3399.cfg
+ create mode 100644 recipes-kernel/linux/files/bsp/rockchip/rk3399.scc
+ create mode 100644 recipes-kernel/linux/files/bsp/rockchip/rockchip.cfg
+ create mode 100644 recipes-kernel/linux/files/bsp/rockchip/rockchip.scc
 
-Thank you,
-Regards,
-Manuel
+--=20
+2.30.2
 
-
-Am So, 2. Mai 2021, um 13:59, schrieb Manuel Wagesreither:
-> Hello all!
-> 
-> Since a certain eeprom version, the Raspberry Pi 4 can directly boot from network. Has anyone experience on this?
-> 
-> I already managed to to have the Raspi to load the kernel and all the device tree stuff over network. I then exported `build/tmp/work/raspberrypi4_64-poky-linux/bora-image/1.0-r0/rootfs/` as via nfs and changed the linux kernel commandline so it would use this share as nfsroot. At boot many failing services get reported and and the boot progress stops somewhere along the way. It tells me the system is in emergency mode and asks me for the root password for maintenance. I have an empty root password. When I press Control-D to continue, the same prompt reappears. Same when I simply press enter.
-> 
-> Has onyone any input for me? I guess I'll need to monitor what gets written to the serial port.
-> 
-> Regards,
-> Manuel
-> 
-> 
-> 
-> 
-> 
