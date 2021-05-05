@@ -1,36 +1,23 @@
-Subject: Re: [meta-raspberrypi] Booting a Raspberry Pi 4 using PXE
+Subject: Re: SSH_AUTH_SOCK unavailable when pulling modules #golang
 To: yocto@lists.yoctoproject.org
-From: "Anton Antonov" <anton.antonov@arm.com>
-X-Originating-Location: GB (217.140.106.13)
-X-Originating-Platform: Mac Firefox 88
+From: "Sven" <sven@svenschwermer.de>
+X-Originating-Location: Trondheim, Trøndelag, NO (84.215.47.26)
+X-Originating-Platform: Mac Chrome 90
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Wed, 05 May 2021 06:34:09 -0700
-References: <c72280d9-2a35-4774-aa2e-25f48141479f@www.fastmail.com>
-In-Reply-To: <c72280d9-2a35-4774-aa2e-25f48141479f@www.fastmail.com>
-Message-ID: <28966.1620221649842149776@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="rroPcsP0hesRzzHUa6DQ"
-
---rroPcsP0hesRzzHUa6DQ
+Date: Wed, 05 May 2021 06:37:41 -0700
+References: <20210504082556.6xxsgfnzjcsqcsmy@qschulz>
+In-Reply-To: <20210504082556.6xxsgfnzjcsqcsmy@qschulz>
+Message-ID: <20493.1620221861288135805@lists.yoctoproject.org>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-I don't know what exactly you mean by "whenever the Raspi is booting over t=
-he network".
-When a machine boots from network (i,e. using DHCP/BOOTP) then usually DHC=
-P server points to, for example, a TFTP server where the kernel and initram=
-fs should be obtained from and kernel parameters. So, you need to check you=
-r DHCP/TFTP/etc servers configuration for kernel parameters.
+Hi Quentin,
 
---rroPcsP0hesRzzHUa6DQ
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Thanks for your reply. Did you have success with this technique when compi=
+ling a go-mod recipe where some of the go dependencies sit in private repos=
+? The standard git fetcher works for me with private repos, that is not the=
+ problem.
 
-I don't know what exactly you mean by "whenever the Raspi is booting over t=
-he network". <br />When a machine boots from network (i,e. using DHCP/BOOTP=
-) then usually DHCP server points to, for example, a TFTP server where the =
-kernel and initramfs should be obtained from and kernel parameters. So, you=
- need to check your DHCP/TFTP/etc servers configuration for kernel paramete=
-rs.
-
---rroPcsP0hesRzzHUa6DQ--
+Best regards,
+Sven
