@@ -1,54 +1,54 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.7875.1620220043210158930
+ by mx.groups.io with SMTP id smtpd.web09.7648.1620220048982822098
  for <yocto@lists.yoctoproject.org>;
- Wed, 05 May 2021 06:07:23 -0700
+ Wed, 05 May 2021 06:07:29 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=TBRG1Mnn;
+ dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=XzYZPXzw;
  spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 0E6BC38C04C2
-	for <yocto@yoctoproject.org>; Wed,  5 May 2021 13:07:23 +0000 (UTC)
-Received: by mail-wr1-f52.google.com with SMTP id v12so1759783wrq.6
-        for <yocto@yoctoproject.org>; Wed, 05 May 2021 06:07:22 -0700 (PDT)
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 8DD5838C04C2
+	for <yocto@yoctoproject.org>; Wed,  5 May 2021 13:07:28 +0000 (UTC)
+Received: by mail-wm1-f45.google.com with SMTP id l18-20020a1ced120000b029014c1adff1edso3378651wmh.4
+        for <yocto@yoctoproject.org>; Wed, 05 May 2021 06:07:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=blade-group.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=M15fTkvb5S3svGOs8sHoOgFh9eAaFapwu93WsLiWi0U=;
-        b=TBRG1Mnn2EWqvmO4QarR+IGliYJn43nE7BJx77eFFlVHyu2HMWHrLpjRckg+ICJQ62
-         54fyAG2hgVj6eyABlPtpei28xPNhIXqQk8TKIbPoZNkbdTWHh0GgegX9gF1K799hzxb8
-         1gBG1LGbVgRlvz7nFL13Y9cm1UeD0KSXGclvOhz9513MzX0mQvnmPMiNtOdJVdsFK2kL
-         Cgc+moGg7GUvI5cnH7KrKJNPaWXEh6bRTCekayWz43/ZsDuDpwMxAnlfRJIFGbCiNm1q
-         HUTejrBERHd9ZDqEv0lg4+SdOLeUDpKSwQFf5gAdUHbLQ0htXnlC8MsFXJilthFgaztD
-         sAfQ==
+        bh=d7c5N/Uf+jAqFJAHZpaJnzP+jgTUGsQwjT8wuEr2ejg=;
+        b=XzYZPXzwkbzwt3FS2JgfwlxqwBgnm0Y4gZCfJcb/siBoNKqhJGtOCVeNMnYTgRy+oE
+         V6o/D5+8lTiQcrENBi4jRqvLFKNm8iGIuewa62rsHAqnjerkVQWejd2kFj06BKHBMetI
+         Fsa3r7MLfdvz7doRL3MIXkCGaTpXctEQQcTE/4FEFNWzy4FMmHC/e6As1+xAVii9aTgo
+         gw1dhklymU2RNwDkDlfYKSV81py06KfR8GNgUEaMWjyd/XFnxolA9UqrR518X4h+JU5w
+         I9OupKevC09v3r01XjpMotdp3dse2BvswzqSG6QAErxYiiks+C/ps2gHVrno0I3cD5B4
+         1cFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=M15fTkvb5S3svGOs8sHoOgFh9eAaFapwu93WsLiWi0U=;
-        b=L/3mJwFp88Xzd8epOrMXGTZTEGDPd/AJ/kbEANFlP9w5VivbXdRjyvAgT8myBhvjro
-         eVc8gVUQPhahEUaBmOB2zLO/BnQOmmfRrIQv8nRUWCxatq8SLFEKB8tDc7vw+0E3/ki/
-         qC674Uvutrn8JTchT8GH2BQcR8IvgWIJFnVKg8ruVI5TtXPDY04zrrqaRjX4daPP0ABa
-         MobwA9ejQ95AAdshD05CCydIaZ3zuzKxD5J7BItowG3e4gVab4AgzamkudjdxxiGWmjA
-         IkqwB7jbGFMr+1LiAx38URDLVkfiHouKJ/05sLrYlwiKvmkM0icOlY0wssQGc+97WaTA
-         tr7w==
-X-Gm-Message-State: AOAM532b4rOXrgh3LTyyyEGnu2MCqaIDpW8yCUowzQf0D+l4ewAhbSPg
-	dxwwIkekQVP8jOYdiFZp5fegUvm9UfZgLA==
-X-Google-Smtp-Source: ABdhPJweaTmWsE6hpRQu8pq02GxEweuoBlVyt9h4OieWWXAx3CdznIha3z7OX2ayitkE8BmVWiz8Bw==
-X-Received: by 2002:a5d:608a:: with SMTP id w10mr34732599wrt.342.1620220041672;
-        Wed, 05 May 2021 06:07:21 -0700 (PDT)
+        bh=d7c5N/Uf+jAqFJAHZpaJnzP+jgTUGsQwjT8wuEr2ejg=;
+        b=XP+QdFhtu8MrRrJruA8Foi9ce3jdsSMOhzwa6TEzzVda61ZKgPQwSlu+Ds9Oh69YzJ
+         n9q3vxslppcUqb6pLBpuaK+TiFuna+Cp9CQisMtUKJR4EPE4ZQYRBqthEmWquClJTWOo
+         cN9600xGPVUoNvAQI7/VAXDvctiAnnysx6jH90oWibTJv1r4mKpCAfTLgoWWKZaL2YCB
+         MiOFQ1wKiMgPcIUx7/8gkpCXZIY/OhOE5ucv8f3m9/ra6Y5LzBHiJ+08pAuDEzy9UxNK
+         dLT5DKbcMS7Yf1N/fzZQxkIorFpw6Knpox1VAcJxKQetRhX0NbpZ+/gSq7ziNdRWKo25
+         pvCg==
+X-Gm-Message-State: AOAM5306btVVWp54e4ivBmEK7Qq0aIGSLdoYzi2TBbWxtzQ/wLjapedQ
+	6Rr/+8m4nXG/V4YBhWInkgsvpuAFzxLgeQ==
+X-Google-Smtp-Source: ABdhPJz1oh9h+MlzCeaJg+m2tlzAHx1lMhnhwS8DFoL6VNuQ/XjNYSGw7BhgK7W+C6/A/F5rwM3rqA==
+X-Received: by 2002:a05:600c:3213:: with SMTP id r19mr3971990wmp.133.1620220043515;
+        Wed, 05 May 2021 06:07:23 -0700 (PDT)
 Received: from blanquette.lan ([88.120.44.86])
-        by smtp.gmail.com with ESMTPSA id y14sm2847014wrr.82.2021.05.05.06.07.20
+        by smtp.gmail.com with ESMTPSA id y14sm2847014wrr.82.2021.05.05.06.07.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 May 2021 06:07:20 -0700 (PDT)
+        Wed, 05 May 2021 06:07:22 -0700 (PDT)
 From: "Yann Dirson" <yann.dirson@blade-group.com>
 X-Google-Original-From: yann@blade-group.com
 To: yocto@yoctoproject.org
 Cc: twoerner@gmail.com,
 	Yann Dirson <yann@blade-group.com>
-Subject: [meta-rockchip][PATCH v5 1/2] linux-yocto: add an initial NanoPi-M4 BSP
-Date: Wed,  5 May 2021 15:06:38 +0200
-Message-Id: <20210505130639.2652269-2-yann@blade-group.com>
+Subject: [meta-rockchip][PATCH v5 2/2] WIP linux-yocto: add workaround to disable VOPL usage on HDMI
+Date: Wed,  5 May 2021 15:06:39 +0200
+Message-Id: <20210505130639.2652269-3-yann@blade-group.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210505130639.2652269-1-yann@blade-group.com>
 References: <20210505130639.2652269-1-yann@blade-group.com>
@@ -57,291 +57,106 @@ Content-Transfer-Encoding: quoted-printable
 
 From: Yann Dirson <yann@blade-group.com>
 
-This patch provides "standard" and "tiny" BSP.
+There is a known issue in mainline kernel making the machine unusable
+once a HDMI screen is plugged.  This patch lets VOPB be alone to use
+the HDMI port and avoids the issue while providing wupport for the larges=
+t
+set of video modes, at the expense of double-screen support.
 
-There is still much work to be done in dispatching feature to individual
-scc files - the more boards we can support the better it will get.
-Not all SoC/board features are covered yet either (esp. Wifi/Bluetooth an=
-d
-audio jack), and properly-woking HDMI still needs patches.
-
-Tiny is not fully testable by itself, it can be minimally booted with
-serial console (though still missing CONFIG_MULTIUSER for serial getty,
-and CONFIG_INOTIFY_USER for proper udev operation) using:
-
- PREFERRED_PROVIDER_virtual/kernel =3D "linux-yocto-tiny"
- KERNEL_FEATURES_append =3D "\
-  ktypes/base/base.scc \
-  features/debug/printk.scc \
-  cfg/fs/ext4.scc \
-  cfg/8250.scc \
- "
-
-Such a tiny build is still using mainline defconfig with lots of hardware
-features, and the kernel can be slimmed down even more by using:
-
- KBUILD_DEFCONFIG =3D ""
-
-Kernel weight using default configurations:
-- standard                11MB
-- tiny                     5MB
-- tiny with no defconfig   2.5MB
-
-Signed-off-by: Yann Dirson <yann@blade-group.com>
+FIXME: patch does not get applied, unless the scc is also added to
+KERNEL_FEATURES ?
 ---
- .../files/bsp/rockchip/nanopi-m4-standard.scc |  7 ++
- .../files/bsp/rockchip/nanopi-m4-tiny.scc     |  7 ++
- .../linux/files/bsp/rockchip/nanopi-m4.cfg    | 11 +++
- .../linux/files/bsp/rockchip/nanopi-m4.scc    |  5 ++
- .../linux/files/bsp/rockchip/rk3399.cfg       | 70 +++++++++++++++++++
- .../linux/files/bsp/rockchip/rk3399.scc       |  5 ++
- .../linux/files/bsp/rockchip/rockchip.cfg     | 50 +++++++++++++
- .../linux/files/bsp/rockchip/rockchip.scc     |  6 ++
- recipes-kernel/linux/linux-yocto%.bbappend    |  6 ++
- 9 files changed, 167 insertions(+)
- create mode 100644 recipes-kernel/linux/files/bsp/rockchip/nanopi-m4-sta=
-ndard.scc
- create mode 100644 recipes-kernel/linux/files/bsp/rockchip/nanopi-m4-tin=
-y.scc
- create mode 100644 recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg
- create mode 100644 recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.scc
- create mode 100644 recipes-kernel/linux/files/bsp/rockchip/rk3399.cfg
- create mode 100644 recipes-kernel/linux/files/bsp/rockchip/rk3399.scc
- create mode 100644 recipes-kernel/linux/files/bsp/rockchip/rockchip.cfg
- create mode 100644 recipes-kernel/linux/files/bsp/rockchip/rockchip.scc
+ .../files/bsp/rockchip/hdmi-no-vopl.patch     | 65 +++++++++++++++++++
+ .../linux/files/bsp/rockchip/rockchip.scc     |  2 +
+ 2 files changed, 67 insertions(+)
+ create mode 100644 recipes-kernel/linux/files/bsp/rockchip/hdmi-no-vopl.=
+patch
 
-diff --git a/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4-standard.s=
-cc b/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4-standard.scc
+diff --git a/recipes-kernel/linux/files/bsp/rockchip/hdmi-no-vopl.patch b=
+/recipes-kernel/linux/files/bsp/rockchip/hdmi-no-vopl.patch
 new file mode 100644
-index 0000000..5c74d6b
+index 0000000..72ed753
 --- /dev/null
-+++ b/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4-standard.scc
-@@ -0,0 +1,7 @@
-+# SPDX-License-Identifier: MIT
-+define KMACHINE nanopi-m4
-+define KTYPE standard
-+define KARCH arm
++++ b/recipes-kernel/linux/files/bsp/rockchip/hdmi-no-vopl.patch
+@@ -0,0 +1,65 @@
++From 92d9cf4e6c2767c8c5aa8d97e684f2f77d950e7d Mon Sep 17 00:00:00 2001
++From: Jonas Karlman <jonas@kwiboo.se>
++Date: Sun, 19 Jul 2020 16:35:11 +0000
++Subject: [PATCH] HACK: dts: rockchip: do not use vopl for hdmi
++Upstream-Status: Inappropriate [other]
 +
-+include ktypes/standard/standard.scc
-+include nanopi-m4.scc
-diff --git a/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4-tiny.scc b=
-/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4-tiny.scc
-new file mode 100644
-index 0000000..6e94d6a
---- /dev/null
-+++ b/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4-tiny.scc
-@@ -0,0 +1,7 @@
-+# SPDX-License-Identifier: MIT
-+define KMACHINE nanopi-m4
-+define KTYPE tiny
-+define KARCH arm
++---
++ arch/arm/boot/dts/rk3288.dtsi            | 9 ---------
++ arch/arm64/boot/dts/rockchip/rk3399.dtsi | 9 ---------
++ 2 files changed, 18 deletions(-)
 +
-+include ktypes/tiny/tiny.scc
-+include nanopi-m4.scc
-diff --git a/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg b/reci=
-pes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg
-new file mode 100644
-index 0000000..f3a2abf
---- /dev/null
-+++ b/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg
-@@ -0,0 +1,11 @@
-+CONFIG_MFD_RK808=3Dy
-+CONFIG_COMMON_CLK_RK808=3Dy
-+
-+CONFIG_REGULATOR_RK808=3Dy
-+CONFIG_REGULATOR_FAN53555=3Dy
-+
-+CONFIG_MMC_BLOCK=3Dy
-+CONFIG_PWRSEQ_SIMPLE=3Dy
-+
-+# RTL8211E
-+CONFIG_REALTEK_PHY=3Dm
-diff --git a/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.scc b/reci=
-pes-kernel/linux/files/bsp/rockchip/nanopi-m4.scc
-new file mode 100644
-index 0000000..f4267aa
---- /dev/null
-+++ b/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.scc
-@@ -0,0 +1,5 @@
-+# SPDX-License-Identifier: MIT
-+
-+kconf hardware nanopi-m4.cfg
-+
-+include rk3399.scc
-diff --git a/recipes-kernel/linux/files/bsp/rockchip/rk3399.cfg b/recipes=
--kernel/linux/files/bsp/rockchip/rk3399.cfg
-new file mode 100644
-index 0000000..42adfd1
---- /dev/null
-+++ b/recipes-kernel/linux/files/bsp/rockchip/rk3399.cfg
-@@ -0,0 +1,70 @@
-+# A72 errata, all past revisions
-+CONFIG_ARM64_ERRATUM_1319367=3Dy
-+# A53 errata, all patched on boot when needed
-+CONFIG_ARM64_ERRATUM_826319=3Dy
-+CONFIG_ARM64_ERRATUM_827319=3Dy
-+CONFIG_ARM64_ERRATUM_824069=3Dy
-+CONFIG_ARM64_ERRATUM_819472=3Dy
-+
-+# cru
-+CONFIG_CLK_RK3399=3Dy
-+
-+CONFIG_PL330_DMA=3Dy
-+CONFIG_I2C_RK3X=3Dy
-+CONFIG_SERIAL_8250_DW=3Dy
-+
-+# usb
-+CONFIG_PHY_ROCKCHIP_INNO_USB2=3Dy
-+CONFIG_PHY_ROCKCHIP_TYPEC=3Dy
-+
-+# ethernet
-+CONFIG_NET_VENDOR_STMICRO=3Dy
-+CONFIG_STMMAC_ETH=3Dm
-+CONFIG_STMMAC_PLATFORM=3Dm
-+CONFIG_DWMAC_ROCKCHIP=3Dm
-+CONFIG_PHYLIB=3Dm
-+
-+# display
-+CONFIG_ROCKCHIP_DW_HDMI=3Dy
-+CONFIG_ROCKCHIP_DW_MIPI_DSI=3Dy
-+CONFIG_ROCKCHIP_ANALOGIX_DP=3Dy
-+CONFIG_ROCKCHIP_CDN_DP=3Dy
-+CONFIG_PHY_ROCKCHIP_DP=3Dy
-+CONFIG_DRM_DW_HDMI=3Dm
-+CONFIG_DRM_DW_HDMI_I2S_AUDIO=3Dm
-+CONFIG_DRM_DW_HDMI_CEC=3Dm
-+CONFIG_DRM_DW_MIPI_DSI=3Dm
-+CONFIG_DRM_PANFROST=3Dm
-+
-+# HDMI audio
-+CONFIG_DRM_DW_HDMI_AHB_AUDIO=3Dm
-+
-+CONFIG_VIDEO_DEV=3Dm
-+CONFIG_V4L_MEM2MEM_DRIVERS=3Dy
-+CONFIG_VIDEO_ROCKCHIP_RGA=3Dm
-+
-+CONFIG_V4L2_H264=3Dm
-+CONFIG_MEDIA_CONTROLLER_REQUEST_API=3Dy
-+CONFIG_VIDEO_HANTRO=3Dm
-+CONFIG_VIDEO_HANTRO_ROCKCHIP=3Dy
-+CONFIG_VIDEO_ROCKCHIP_VDEC=3Dm
-+
-+# usb
-+CONFIG_USB_DWC2=3Dy
-+CONFIG_USB_DWC3=3Dy
-+CONFIG_USB_DWC3_DUAL_ROLE=3Dy
-+
-+# sd/mmc
-+CONFIG_MMC=3Dy
-+CONFIG_MMC_SDHCI=3Dy
-+CONFIG_MMC_SDHCI_PLTFM=3Dy
-+CONFIG_MMC_DW=3Dy
-+CONFIG_MMC_DW_ROCKCHIP=3Dy
-+CONFIG_MMC_SDHCI_OF_ARASAN=3Dy
-+
-+# temperature sensors
-+CONFIG_THERMAL=3Dy
-+CONFIG_THERMAL_OF=3Dy
-+CONFIG_ROCKCHIP_THERMAL=3Dm
-+CONFIG_IIO=3Dy
-+CONFIG_ROCKCHIP_SARADC=3Dm
-diff --git a/recipes-kernel/linux/files/bsp/rockchip/rk3399.scc b/recipes=
--kernel/linux/files/bsp/rockchip/rk3399.scc
-new file mode 100644
-index 0000000..9b1a88e
---- /dev/null
-+++ b/recipes-kernel/linux/files/bsp/rockchip/rk3399.scc
-@@ -0,0 +1,5 @@
-+# SPDX-License-Identifier: MIT
-+
-+kconf hardware rk3399.cfg
-+
-+include rockchip.scc
-diff --git a/recipes-kernel/linux/files/bsp/rockchip/rockchip.cfg b/recip=
-es-kernel/linux/files/bsp/rockchip/rockchip.cfg
-new file mode 100644
-index 0000000..05a397d
---- /dev/null
-+++ b/recipes-kernel/linux/files/bsp/rockchip/rockchip.cfg
-@@ -0,0 +1,50 @@
-+CONFIG_CPU_ISOLATION=3Dy
-+CONFIG_NUMA_BALANCING_DEFAULT_ENABLED=3Dy
-+CONFIG_HZ_250=3Dy
-+CONFIG_CPU_IDLE=3Dy
-+CONFIG_ARM_CPUIDLE=3Dy
-+
-+CONFIG_ARCH_ROCKCHIP=3Dy
-+CONFIG_COMMON_CLK_ROCKCHIP=3Dy
-+CONFIG_REGULATOR=3Dy
-+CONFIG_REGULATOR_FIXED_VOLTAGE=3Dy
-+CONFIG_REGULATOR_PWM=3Dy
-+CONFIG_I2C=3Dy
-+CONFIG_FW_LOADER=3Dy
-+CONFIG_PHY_ROCKCHIP_EMMC=3Dy
-+CONFIG_PINCTRL=3Dy
-+CONFIG_PINCTRL_ROCKCHIP=3Dy
-+CONFIG_ROCKCHIP_IODOMAIN=3Dy
-+CONFIG_ROCKCHIP_PM_DOMAINS=3Dy
-+
-+CONFIG_SPI=3Dy
-+CONFIG_SPI_ROCKCHIP=3Dm
-+
-+CONFIG_PWM=3Dy
-+CONFIG_PWM_ROCKCHIP=3Dy
-+
-+CONFIG_DRM_KMS_HELPER=3Dm
-+CONFIG_DRM_FBDEV_EMULATION=3Dy
-+CONFIG_ROCKCHIP_IOMMU=3Dy
-+CONFIG_DRM_ROCKCHIP=3Dm
-+CONFIG_DRM_BRIDGE=3Dy
-+
-+CONFIG_SND=3Dy
-+CONFIG_SND_SOC=3Dy
-+CONFIG_SND_HDA_CODEC_HDMI=3Dm
-+CONFIG_SND_SOC_ROCKCHIP=3Dm
-+CONFIG_SND_SOC_ROCKCHIP_I2S=3Dm
-+CONFIG_SND_SOC_ROCKCHIP_SPDIF=3Dm
-+
-+CONFIG_NVMEM=3Dy
-+CONFIG_ROCKCHIP_EFUSE=3Dm
-+
-+CONFIG_CPU_FREQ=3Dy
-+CONFIG_CPU_FREQ_THERMAL=3Dy
-+CONFIG_HWMON=3Dy
-+CONFIG_THERMAL_HWMON=3Dy
-+
-+CONFIG_CRYPTO_HW=3Dy
-+CONFIG_CRYPTO_DEV_ROCKCHIP=3Dm
-+
-+CONFIG_MMC_BLOCK_MINORS=3D32
++diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dt=
+si
++index 03e86d012edd..746acfac1e92 100644
++--- a/arch/arm/boot/dts/rk3288.dtsi
+++++ b/arch/arm/boot/dts/rk3288.dtsi
++@@ -1104,11 +1104,6 @@ vopl_out: port {
++ 			#address-cells =3D <1>;
++ 			#size-cells =3D <0>;
++=20
++-			vopl_out_hdmi: endpoint@0 {
++-				reg =3D <0>;
++-				remote-endpoint =3D <&hdmi_in_vopl>;
++-			};
++-
++ 			vopl_out_edp: endpoint@1 {
++ 				reg =3D <1>;
++ 				remote-endpoint =3D <&edp_in_vopl>;
++@@ -1249,10 +1244,6 @@ hdmi_in_vopb: endpoint@0 {
++ 					reg =3D <0>;
++ 					remote-endpoint =3D <&vopb_out_hdmi>;
++ 				};
++-				hdmi_in_vopl: endpoint@1 {
++-					reg =3D <1>;
++-					remote-endpoint =3D <&vopl_out_hdmi>;
++-				};
++ 			};
++ 		};
++ 	};
++diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/=
+dts/rockchip/rk3399.dtsi
++index a855805649ef..418d16b0b648 100644
++--- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+++++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
++@@ -1640,11 +1640,6 @@ vopl_out_edp: endpoint@1 {
++ 				remote-endpoint =3D <&edp_in_vopl>;
++ 			};
++=20
++-			vopl_out_hdmi: endpoint@2 {
++-				reg =3D <2>;
++-				remote-endpoint =3D <&hdmi_in_vopl>;
++-			};
++-
++ 			vopl_out_mipi1: endpoint@3 {
++ 				reg =3D <3>;
++ 				remote-endpoint =3D <&mipi1_in_vopl>;
++@@ -1816,10 +1811,6 @@ hdmi_in_vopb: endpoint@0 {
++ 					reg =3D <0>;
++ 					remote-endpoint =3D <&vopb_out_hdmi>;
++ 				};
++-				hdmi_in_vopl: endpoint@1 {
++-					reg =3D <1>;
++-					remote-endpoint =3D <&vopl_out_hdmi>;
++-				};
++ 			};
++ 		};
++ 	};
 diff --git a/recipes-kernel/linux/files/bsp/rockchip/rockchip.scc b/recip=
 es-kernel/linux/files/bsp/rockchip/rockchip.scc
-new file mode 100644
-index 0000000..800f105
---- /dev/null
+index 800f105..4d61509 100644
+--- a/recipes-kernel/linux/files/bsp/rockchip/rockchip.scc
 +++ b/recipes-kernel/linux/files/bsp/rockchip/rockchip.scc
-@@ -0,0 +1,6 @@
-+# SPDX-License-Identifier: MIT
+@@ -4,3 +4,5 @@ kconf hardware rockchip.cfg
+=20
+ include cfg/dmaengine.scc
+ include features/mmc/mmc-block.cfg
 +
-+kconf hardware rockchip.cfg
-+
-+include cfg/dmaengine.scc
-+include features/mmc/mmc-block.cfg
-diff --git a/recipes-kernel/linux/linux-yocto%.bbappend b/recipes-kernel/=
-linux/linux-yocto%.bbappend
-index 7702e3f..9658681 100644
---- a/recipes-kernel/linux/linux-yocto%.bbappend
-+++ b/recipes-kernel/linux/linux-yocto%.bbappend
-@@ -1,3 +1,9 @@
-+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
-+
-+SRC_URI_append =3D "\
-+ file://bsp;type=3Dkmeta;subdir=3Dkernel-meta \
-+"
-+
- COMPATIBLE_MACHINE_marsboard-rk3066 =3D "marsboard-rk3066"
- COMPATIBLE_MACHINE_rock2-square =3D "rock2-square"
- COMPATIBLE_MACHINE_radxarock =3D "radxarock"
++patch hdmi-no-vopl.patch
 --=20
 2.30.2
 
