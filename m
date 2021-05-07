@@ -1,128 +1,100 @@
-Received: from shark1.inbox.lv (shark1.inbox.lv [194.152.32.81])
- by mx.groups.io with SMTP id smtpd.web10.7541.1620376494453480971
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
+ by mx.groups.io with SMTP id smtpd.web09.8225.1620382174331960205
  for <yocto@lists.yoctoproject.org>;
- Fri, 07 May 2021 01:34:55 -0700
+ Fri, 07 May 2021 03:09:34 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@inbox.lv header.s=30062014 header.b=bj1Xae4P;
- spf=pass (domain: inbox.lv, ip: 194.152.32.81, mailfrom: tom.hill@inbox.lv)
-Received: by shark1.inbox.lv (Postfix, from userid 2004)
-	id 27026111813A; Fri,  7 May 2021 11:34:51 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=inbox.lv; s=30062014;
-	t=1620376491; bh=SS6KGyVZdlZVWvE1+cicI3ZaMLpakaCyKbRv2WBhCOQ=;
-	h=Date:From:Subject:To;
-	b=bj1Xae4P6XScm+g+c5obcfmOe/8+Qc69otupxPD5pIrp/EZspc2DLO/9xFfSCf3qK
-	 PVzz4ITOex7neC8VqVqRcx7xoijion5voZJMcoM+6o/jHkleMcPU8VDhSMZC0ZfOYN
-	 abEwUY7QsoYVfsD0Ql5aMAEsfnDweASfLMDN37Rc=
-Received: from localhost (localhost [127.0.0.1])
-	by shark1-in.inbox.lv (Postfix) with ESMTP id EDC5111180E4
-	for <yocto@lists.yoctoproject.org>; Fri,  7 May 2021 11:34:50 +0300 (EEST)
-Received: from shark1.inbox.lv ([127.0.0.1])
-	by localhost (shark1.inbox.lv [127.0.0.1]) (spamfilter, port 35)
-	with ESMTP id tLbVz2i7TLN2 for <yocto@lists.yoctoproject.org>;
-	Fri,  7 May 2021 11:34:50 +0300 (EEST)
-Received: from w9.inbox.lv (w9 [127.0.0.1])
-	by shark1-in.inbox.lv (Postfix) with ESMTP id B1A3A11180C6
-	for <yocto@lists.yoctoproject.org>; Fri,  7 May 2021 11:34:50 +0300 (EEST)
+ dkim=pass header.i=@gherzan.com header.s=fm1 header.b=Y8az9mTx;
+ spf=pass (domain: gherzan.com, ip: 64.147.123.25, mailfrom: andrei@gherzan.com)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+	by mailout.west.internal (Postfix) with ESMTP id 304E91289;
+	Fri,  7 May 2021 06:09:32 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Fri, 07 May 2021 06:09:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gherzan.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding; s=fm1; bh=XzwiM/16SVQVZnEkn3PZhUpxwg
+	+S3IgDY6LfkCOITM8=; b=Y8az9mTxl+r5PmJnbvKVV/0lIFB9Fcg/GMdu549tnv
+	gr0RpXXWuCwakFBrlvM8MIC48TZMsCGkbadvpdggKp7bpr7WNk1C+Sk21q0bwAPY
+	RZVQrxDiDRC8z0uBbwOGswJ3CMue2zQiF09B+xfdPcD7foG2wsWbIYA5in0IsqAM
+	EqAH0m9lMv2V1a9MImLoD93r6GcOcoiRjYTWzOlCQ9418WQuytGSpgJf2nfvqx8w
+	Oi0cgJNNrrTie7fyabSBJgNi0b23AZgU1huW2UkoKlhv4WUTGfBO3RRzS4wMHhdZ
+	QQbxmYlxj4RAntuJAMaSxm3eJkQ2I9HDs391W2Gj5b6g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-transfer-encoding:date:from
+	:message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=XzwiM/16SVQVZnEkn
+	3PZhUpxwg+S3IgDY6LfkCOITM8=; b=dMLxvYT82S/bPJr2oD9DbOxt0zZ0IqgNX
+	R7P9gLlKn3lkifeJ/Jg9Fe5plDmJAkTmwZ31fgAuT+OWuJm1ziHRDHmZBx/PY7Ex
+	Lge1qFv1d31INTfv7UPcD20JWpMap1JjBdBht0qu3QAzKh7H+Rv2dFrtI2eckxtZ
+	pKWCaobZfUX0Zi1LMKskys3wZDLdN7mnCyneE1ssbIpCEiK5r0JDN2Ty1ZzXhNYt
+	1wxYegrjKIiLVhmse6CqQnBlnmN0/po2dbA5qfXqG5me6X7Diz1oaz7fQXdD+tx4
+	0KdnQxWADWPgDnRV/FnaNZJgG0L9cbhrQLM8aV1AQbjsKnxpPfvpQ==
+X-ME-Sender: <xms:2xGVYNzvRvwlmLlDxkYr9MJUzbuWwZ5CiD1jSwLTFdgEtfyrxbnkeQ>
+    <xme:2xGVYNTkeVT-i-SJ7tpIFi8U-R-J_ebqFAeW07x4PHbmWGwnRntsZNhVYiYxvml0B
+    MZ5HP-E4GJTmCHXw5g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdegvddgvdegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgggfestdekredtre
+    dttdenucfhrhhomheptehnughrvghiucfihhgvrhiirghnuceorghnughrvghisehghhgv
+    rhiirghnrdgtohhmqeenucggtffrrghtthgvrhhnpedvteeutdeutdfhvefggfeifeehve
+    ethfeuffekgeeiiefgkefhheehjeeijeejudenucfkphepvddrvdehrdekhedrvdefvden
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrnhgurh
+    gvihesghhhvghriigrnhdrtghomh
+X-ME-Proxy: <xmx:2xGVYHU-TT50mkAKh2IXwHbzXTQ-TexA_HQGE0Sb9uumZp-TU_FEWg>
+    <xmx:2xGVYPghwDuDmiRlfI9YjJwzf0bLdBU9_YQ0a5YTqmxTOr8clAYkHg>
+    <xmx:2xGVYPAKN6xwI-3dx521uoThoPbs_VilCjoZRw64kAJY2Ygio9QjMA>
+    <xmx:2xGVYCrV9dvzJ2u4z5h9x-XjnPdPQI4ip3HJltNk3CJH_1tukZBxqw>
+Received: from qwirkle.internal (unknown [2.25.85.232])
+	by mail.messagingengine.com (Postfix) with ESMTPA;
+	Fri,  7 May 2021 06:09:30 -0400 (EDT)
+From: "Andrei Gherzan" <andrei@gherzan.com>
+To: yocto@lists.yoctoproject.org
+Cc: andrei@gherzan.com,
+	Andrei Gherzan <andrei.gherzan@huawei.com>
+Subject: [meta-zephyr][PATCH 1/1] zephyr-qemuboot.bbclass: Fix runqemu dependency on qemu native sysroot
+Date: Fri,  7 May 2021 11:08:18 +0100
+Message-Id: <20210507100818.2819019-1-andrei@gherzan.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-X-HTTP-USER-AGENT: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:78.0)
- Gecko/20100101 Firefox/78.0
-Message-ID: <1620376490.6094fbaaa220c@mail.inbox.lv>
-Date: Fri, 07 May 2021 11:34:50 +0300
-From: "Thomas Hill" <tom.hill@inbox.lv>
-Subject: Path ./package/usr/lib/libcryptopp.so.8 is owned by uid 1111, gid 1111, which doesn't match any user/group on target. This may be due to host contamination.
-To: "Yocto-mailing-list" <yocto@lists.yoctoproject.org>
-User-Agent: Inbox.lv Webmail
-X-ESPOL: EZqEIQwB6gdL38mgUvoemIv6urCvJT4u3TuDrrAy6HBHvrbfu91rcWqSB+acFAOlDh2o9bSjcmU+68rof0IueCHShmSC
-X-Groupsio-MsgNum: 53416
-Content-Type: multipart/mixed;
- boundary="=_9b160483a9eea8147845e7cb2b75f7c7"
+Content-Transfer-Encoding: 8bit
 
---=_9b160483a9eea8147845e7cb2b75f7c7
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+From: Andrei Gherzan <andrei.gherzan@huawei.com>
 
-Hi!
+The runqemu script depends on having the native sysroot populated for
+the qemu recipes. Add the required dependency to the mix.
 
-I try to create a libcryptopp package for my yocto build with the appended =
-bb-recipe.
-That worked without problems on my old build server with Yocto 3.0.
+Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
+---
+ classes/zephyr-qemuboot.bbclass | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-Now I have moved to a new build server and upgrade to Yocto 3.3. Now I have=
- the problem that the do_package function failed.
+diff --git a/classes/zephyr-qemuboot.bbclass b/classes/zephyr-qemuboot.bbclass
+index 5ac1c86..f508b45 100644
+--- a/classes/zephyr-qemuboot.bbclass
++++ b/classes/zephyr-qemuboot.bbclass
+@@ -35,3 +35,22 @@ python do_bootconf_write() {
+ }
+ 
+ addtask do_bootconf_write before do_build after do_deploy
++
++# The runqemu script requires the native sysroot populated for the qemu
++# recipes. Usually, this is pulled in by a do_image dependency (see
++# baremetal-helloworld_git, for example), but in this case, there is no such
++# task, so we hook in the dependency to do_bootconf_write. This also ensures
++# that builds from sstate will also have this requirement satisfied.
++python () {
++    # do_addto_recipe_sysroot doesnt exist for all recipes, but we need it to have
++    # /usr/bin on recipe-sysroot (qemu) populated
++    def extraimage_getdepends(task):
++        deps = ""
++        for dep in (d.getVar('EXTRA_IMAGEDEPENDS') or "").split():
++        # Make sure we only add it for qemu
++            if 'qemu' in dep:
++                deps += " %s:%s" % (dep, task)
++        return deps
++    d.appendVarFlag('do_bootconf_write', 'depends', extraimage_getdepends('do_addto_recipe_sysroot'))
++    d.appendVarFlag('do_bootconf_write', 'depends', extraimage_getdepends('do_populate_sysroot'))
++}
+-- 
+2.31.1
 
-,---[ bitbake core-image-minimal ]---
-| WARNING: libcryptopp-8.2.0+gitAUTOINC+9dcc26c582-r8 do_package: KeyError =
-in ./package/usr/lib/libcryptopp.so.8
-| ERROR: libcryptopp-8.2.0+gitAUTOINC+9dcc26c582-r8 do_package: Error execu=
-ting a python function in exec_python_func() autogenerated:
-| [...]
-| Exception: Exception: KeyError: 'getpwuid(): uid not found: 1001'
-| Path ./package/usr/lib/libcryptopp.so.8 is owned by uid 1001, gid 1001, w=
-hich doesn't match any user/group on target. This may be due to host contam=
-ination.
-| [...]
-| ERROR: Task (/home/thomas/yocto/meta-X2/recipes-X2/libcryptopp/libcryptop=
-p_8.2.0.bb:do_package) failed with exit code '1'
-`------------------
-
-I checked the list and found similar problems but not a real solution for m=
-e.
-
-libcryptopp's Makefile uses "cp" for installation. I understand this is bad=
- so I patched the Makefile to use "install" instead. That is the recommende=
-d usage I could read in the yocto manual. But this does not help either.
-
-As I understand will the do_install and oe_runmake using the bitbake user's=
- UID for installation in a temp dir. Afterwards the do_package uses fakeroo=
-t to create the package with root:root file ownership in the package. Right=
-?
-In this case I don't understand where the problem is.
-
-I do not run bitbake as root - why should I? So I don't see a possibility t=
-o change the files in the temp dir with "chmod" or "install -o 0".
-
-My current bitbake user has UID 1001. On the old server I think it was 1000=
-=2E Can this be a problem? I tried a new user with UID 1111 but got the sam=
-e error. Unfortunatelly I can't test with user 1000. It is occupied.
-
-I am out of ideas. Can someone please poke me in the right direction?
-
-Thanks a lot!
-Tom
-
-
---=_9b160483a9eea8147845e7cb2b75f7c7
-Content-Transfer-Encoding: base64
-Content-Type: application/octet-stream;
- name=libcryptopp_8.2.0.bb
-Content-Disposition: attachment;
- filename=libcryptopp_8.2.0.bb
-
-U1VNTUFSWSA9ICJBIGZyZWUgQysrIGNsYXNzIGxpYnJhcnkgb2YgY3J5cHRvZ3JhcGhpYyBzY2hl
-bWVzIgoKREVTQ1JJUFRJT04gPSAiRnJlZSBDKysgbGlicmFyeSBmb3IgY3J5cHRvZ3JhcGhpYyBz
-Y2hlbWVzIHdyaXR0ZW4gYnkgXApXZWkgRGFpIGFuZCBpbmNsdWRlcyBjaXBoZXJzLCBtZXNzYWdl
-IGF1dGhlbnRpY2F0aW9uIGNvZGVzLCBvbmUtd2F5IFwKaGFzaCBmdW5jdGlvbnMsIHB1YmxpYy1r
-ZXkgY3J5cHRvc3lzdGVtcywga2V5IGFncmVlbWVudCBzY2hlbWVzLCBhbmQgXApkZWZsYXRlIGNv
-bXByZXNzaW9uLiIKCkhPTUVQQUdFID0gImh0dHBzOi8vd3d3LmNyeXB0b3BwLmNvbS8iCkJVR1RS
-QUNLRVIgPSAiaHR0cHM6Ly9naXRodWIuY29tL3dlaWRhaTExL2NyeXB0b3BwL2lzc3VlcyIKU0VD
-VElPTiA9ICJsaWJzIgoKTElDRU5TRSA9ICJQRCIKTElDX0ZJTEVTX0NIS1NVTSA9ICJmaWxlOi8v
-TGljZW5zZS50eHQ7bWQ1PWVjNmZiYjQzZjEzNDQzMzY3NzJhOTI1MTcxZDlmMzU4IgoKQkJDTEFT
-U0VYVEVORCA9ICJuYXRpdmUgbmF0aXZlc2RrIgoKU1JDUkVWID0gIjlkY2MyNmM1ODIxM2FiYjgz
-NTFmYmIxYjJhN2ExZDJjNjY3MzY2ZTQiCgojIFBSIC0gVGhlIHJldmlzaW9uIG9mIHRoaXMgcmVj
-aXBlLgpQUiA9ICJyOCIKClBWID0gIjguMi4wK2dpdCR7U1JDUFZ9IgoKUyA9ICIke1dPUktESVJ9
-L2dpdCIKClNSQ19VUkkgPSAiZ2l0Oi8vZ2l0aHViLmNvbS93ZWlkYWkxMS9jcnlwdG9wcC5naXQg
-XAogICAgZmlsZTovLzAwMDFfbGliY3J5cHRvcHBfOC4yLjBfZG8tbm90LW92ZXJ3cml0ZS1DQy5w
-YXRjaCBcCiAgICBmaWxlOi8vMDAwMl9saWJjcnlwdG9wcF84LjIuMF91c2UtaW5zdGFsbC1pbnN0
-ZWFkLW9mLWNwLnBhdGNoIgoKRVhUUkFfT0VDT05GID0gIi0tbGliZGlyPSR7YmFzZV9saWJkaXJ9
-IgoKUEFDS0FHRVMgPSAiJHtQTn0tZGJnICR7UE59LWRldiAke1BOfSIKRklMRVNfJHtQTn0tZGV2
-ID0gIiR7aW5jbHVkZWRpcn0vY3J5cHRvcHAvIgpGSUxFU18ke1BOfSA9ICIke2xpYmRpcn0vIgpG
-SUxFU18ke1BOfS1kYmcgPSAiJHtsaWJkaXJ9Ly5kZWJ1Zy8gJHtwcmVmaXh9L3NyYy9kZWJ1Zy8i
-CgpJTlNBTkVfU0tJUF8ke1BOfSArPSAiZGV2LXNvIHN0YXRpY2RldiIKSU5TQU5FX1NLSVBfJHtQ
-Tn0tZGV2ICs9ICJkZXYtc28gc3RhdGljZGV2IgpJTlNBTkVfU0tJUF8ke1BOfS1kYmcgKz0gImRl
-di1zbyBzdGF0aWNkZXYiCgpkb19jb21waWxlKCkgewogICAgb2VfcnVubWFrZSBzdGF0aWMKICAg
-IG9lX3J1bm1ha2UgZHluYW1pYwogICAgb2VfcnVubWFrZSBsaWJjcnlwdG9wcC5wYyAnUFJFRklY
-PSR7cHJlZml4fScKfQoKZG9faW5zdGFsbF9wcmVwZW5kKCkgewogICAgZXhwb3J0IFBSRUZJWD0k
-e0R9LyR7cHJlZml4fQp9Cgpkb19pbnN0YWxsKCkgewogICAgb2VfcnVubWFrZSBpbnN0YWxsLWxp
-Ygp9Cg==
-
---=_9b160483a9eea8147845e7cb2b75f7c7--
