@@ -1,82 +1,84 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.13764.1620523523515089471
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+ by mx.groups.io with SMTP id smtpd.web11.20259.1620575262594430104
  for <yocto@lists.yoctoproject.org>;
- Sat, 08 May 2021 18:25:24 -0700
+ Sun, 09 May 2021 08:47:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: redrectangle.org, ip: 198.145.29.25, mailfrom: robert.joslyn@redrectangle.org)
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 33BE638C0559
-	for <yocto@yoctoproject.org>; Sun,  9 May 2021 01:25:22 +0000 (UTC)
-X-Originating-IP: 134.49.229.69
-Received: from [192.168.0.127] (unknown [134.49.229.69])
-	(Authenticated sender: robert.joslyn@redrectangle.org)
-	by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 1B43820006;
-	Sun,  9 May 2021 01:25:16 +0000 (UTC)
-Message-ID: <e49949bfa2083a76e9c0c977e0b64828362e8446.camel@redrectangle.org>
-Subject: Re: [yocto] Recipe Grep'ing
-From: "Robert Joslyn" <robert.joslyn@redrectangle.org>
-To: Khem Raj <raj.khem@gmail.com>, Chuck Wolber <chuckwolber@gmail.com>, 
-	Yocto-mailing-list <yocto@yoctoproject.org>
-Date: Sat, 08 May 2021 18:25:09 -0700
-In-Reply-To: <55052749-a440-214d-84b7-4b3e5923ee72@gmail.com>
-References: 
-	<CAB=6tBTGiMBH+g-uy3sr1jKA-j1EkSDt0B+8DLb4_iMSaMax6Q@mail.gmail.com>
-	 <55052749-a440-214d-84b7-4b3e5923ee72@gmail.com>
-User-Agent: Evolution 3.38.4 
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=b/jOVaRV;
+ spf=pass (domain: gmail.com, ip: 209.85.214.182, mailfrom: akuster808@gmail.com)
+Received: by mail-pl1-f182.google.com with SMTP id t21so7945267plo.2
+        for <yocto@lists.yoctoproject.org>; Sun, 09 May 2021 08:47:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ayWTXIbH2KeOGbwVKOi8t4k7JKrpUcwV+xI+qp6rKrg=;
+        b=b/jOVaRVWi5IodunhWVgURczdU1iKD8blLUGuCDTJXLdQDuA4gdAtthO82hkT3PWwQ
+         dztI10vd5sX//GTV/jir9iaOrt2PWgaO593YztvfqnhwMj6dBNeP9XAlChrmsxo6h2yd
+         YIY0y+GnoJpzKw/m3EH7FaPSKhwjwhxQES4Ayzd94LOTtYehXCRE7eMTPqtIqT6uJo+G
+         JduFa5H18jQZoEX3GyWLlIuA7Rl6LQqUhFBEXEujYTzNnkxH8GdDGTqXnZuJZI7eY55T
+         VhFhhyZsCVQ3aDXYYVW4olEZtygG41MdtEEnoZNpXGBf5o2caaaH32CDzmbbRTiCiUH5
+         7DAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ayWTXIbH2KeOGbwVKOi8t4k7JKrpUcwV+xI+qp6rKrg=;
+        b=VkaC5qRlnL8ysnwuyRKD83i+/p9rONUWyB8/zrGfVH5IVsY9zgENs2kRp2h/ZLfWxI
+         xjOPDh+zJWDiJvjMvjQFNDXDV5EpnQ1FTE98liRFKFDCHfl0d5Ix7nSg+C23R6EccY3+
+         ruKMCmyd4vxptpxM9fIRlasH37UZbvBU5gOlCRmqyUntTTkgPjhYlv61jD2NqQ5hwrXx
+         CUszp+nqxMDsomeW/q6OABzYPc9LkjIpznJCE48Vsm7aHHFIn2tUsWSY+bBhceBKyJbV
+         IH5sF7+HXK+w0EQyd8nBJp7RWUmD6xgXOu5LPXahmW9VTVfWE6PlkSxeyPGF1jV+AktO
+         BqXg==
+X-Gm-Message-State: AOAM531+myMkJMQMiK0xhajnecPNqjk5XonSn/mE44G8R3pHZhuCKxc4
+	PVkwXpH/R/UecRCLGdWXrWZ44swifFVL4g==
+X-Google-Smtp-Source: ABdhPJxXnAnVBdEzcQRLIaPgKJ8KNek+yziBm81Nwb3dc49cjvQ8QHm33tWbkV8HK4XhkEG4HjHBdg==
+X-Received: by 2002:a17:902:d104:b029:ee:ac12:4b31 with SMTP id w4-20020a170902d104b02900eeac124b31mr20479256plw.56.1620575261867;
+        Sun, 09 May 2021 08:47:41 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from hilo.hsdl.ca.comcast.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
+        by smtp.gmail.com with ESMTPSA id in16sm9428165pjb.14.2021.05.09.08.47.41
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 May 2021 08:47:41 -0700 (PDT)
+From: "Armin Kuster" <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH 1/6] clamav: update to tip.
+Date: Sun,  9 May 2021 15:47:35 +0000
+Message-Id: <20210509154740.1628375-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, 2021-05-05 at 17:50 -0700, Khem Raj wrote:
->=20
->=20
-> On 5/5/21 5:41 PM, Chuck Wolber wrote:
-> > I was pondering putting some work in to a fairly large patch set
-> > aimed=20
-> > at making recipes easier to grep through, and wanted to get some=20
-> > feedback before I put time and effort into it.
-> >=20
-> > "what" and the "why" when grep'ing through recipes to search for
-> > things:
-> >=20
-> > FOO +=3D "item1"
-> > FOO +=3D "item2"
-> >=20
-> > Whereas this pattern gives us the "what", but not the "why":
-> >=20
-> > FOO =3D "item1 \
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 item2 \
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 "
-> >=20
-> > After discussing this with Richard Purdie on IRC, I also understand
-> > that=20
-> > the latter pattern benefits some forms of build output. In addition,
-> > for=20
-> > SRC_URI, the "why" is normally fairly obvious from context clues.
-> >=20
-> > So, is there any interest in accepting a patch set of that nature for
-> > Yocto and OE repositories? If so, what variables and situations
-> > should=20
-> > be considered "off limits" to a change like that?
->=20
-> nice to have a linter, which can do such checks and perhaps we can=20
-> enable this in autobuilders so we can keep such cleansups maintained
+Add UPSTEAM_CHECK
 
-There is the oe-stylize.py script that attempts to format recipes
-according to the style guide:
-https://git.openembedded.org/meta-openembedded/tree/contrib/oe-stylize.py
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-scanners/clamav/clamav_0.104.0.bb | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-Last time I played with it, I was a bit disappointed with some of the
-changes it makes, some of which are different than what devtool does.
-When I need to introduce new developers to bitbake, I'd love to be able
-to hand them oe-stylize or something similar and just tell them to run
-it before committing to make sure everything is formatted consistently.
-
-I've had updating oe-stylize.py on my TODO list for a while, but more
-important things always come up.
-
-Robert=20
->=20
+diff --git a/recipes-scanners/clamav/clamav_0.104.0.bb b/recipes-scanners/clamav/clamav_0.104.0.bb
+index 36e498d..6892bb0 100644
+--- a/recipes-scanners/clamav/clamav_0.104.0.bb
++++ b/recipes-scanners/clamav/clamav_0.104.0.bb
+@@ -8,7 +8,8 @@ DEPENDS = "glibc llvm libtool db openssl zlib curl libxml2 bison pcre2 json-c li
+  
+ LIC_FILES_CHKSUM = "file://COPYING.txt;beginline=2;endline=3;md5=f7029fbbc5898b273d5902896f7bbe17"
+ 
+-SRCREV = "5553a5e206ceae5d920368baee7d403f823bcb6f"
++# May 2nd
++SRCREV = "de0086aa918b79cd22570d0c05977a288b197e23"
+ 
+ SRC_URI = "git://github.com/vrtadmin/clamav-devel;branch=dev/0.104 \
+     file://clamd.conf \
+@@ -28,6 +29,8 @@ BINCONFIG = "${bindir}/clamav-config"
+ 
+ inherit cmake chrpath pkgconfig useradd systemd multilib_header multilib_script
+ 
++UPSTREAM_CHECK_COMMITS = "1"
++
+ CLAMAV_UID ?= "clamav"
+ CLAMAV_GID ?= "clamav"
+ 
+-- 
+2.25.1
 
