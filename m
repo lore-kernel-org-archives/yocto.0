@@ -1,41 +1,46 @@
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
- by mx.groups.io with SMTP id smtpd.web11.8924.1620713351525409153
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+ by mx.groups.io with SMTP id smtpd.web12.9377.1620716801658688343
  for <yocto@lists.yoctoproject.org>;
- Mon, 10 May 2021 23:09:12 -0700
+ Tue, 11 May 2021 00:06:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: redrectangle.org, ip: 217.70.183.196, mailfrom: robert.joslyn@redrectangle.org)
-X-Originating-IP: 173.197.191.182
-Received: from localhost.localdomain (rrcs-173-197-191-182.west.biz.rr.com [173.197.191.182])
-	(Authenticated sender: robert.joslyn@redrectangle.org)
-	by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id E323DE0013;
-	Tue, 11 May 2021 06:09:08 +0000 (UTC)
-From: "Robert Joslyn" <robert.joslyn@redrectangle.org>
-To: yocto@lists.yoctoproject.org
-Cc: Robert Joslyn <robert.joslyn@redrectangle.org>
-Subject: [meta-gplv2][PATCH] conf/distro: Restore btrfs-tools since it was relicensed
-Date: Mon, 10 May 2021 23:08:39 -0700
-Message-Id: <20210511060839.299840-1-robert.joslyn@redrectangle.org>
-X-Mailer: git-send-email 2.26.3
+ dkim=pass header.i=@amarulasolutions.com header.s=google header.b=CMT+S1W6;
+ spf=pass (domain: amarulasolutions.com, ip: 209.85.216.45, mailfrom: michael@amarulasolutions.com)
+Received: by mail-pj1-f45.google.com with SMTP id p17so11182278pjz.3
+        for <yocto@lists.yoctoproject.org>; Tue, 11 May 2021 00:06:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=TiFY/vS8AkPkzfEbM33vwvJvVX0WDVrmyTsgqdfgPfk=;
+        b=CMT+S1W6Ivd09p1yK4ufrySesdCPM5qJNg/mSB+Fx+sfSaxyRhLLm88Whf2SVKYSVJ
+         0y1fpzDEQdJpDOPITRnk4AlbX7b0hPHK0zZr/kKrrr/67PZDKwOIYIszVGEQeaMR+pKt
+         okhMNaKAH5UMCLo2UHszd7ZdLwZ1FBKHZ4p9k=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=TiFY/vS8AkPkzfEbM33vwvJvVX0WDVrmyTsgqdfgPfk=;
+        b=oNc+kY9t+k9mz5MxqRRcrAcAdrnbRGGqH9QUMji3bNndDVRwd0+PIcchSwzwEH0lpM
+         9jFyFFlucBH6QiAZ3buu7c9FlCTRAEDj9c8HKz6CQCdKTUt+7PDcQSz+uCOOiHxvYZJe
+         hNb92CHKwVUezfpN3A+t0KRmOhB3bPPL6MVJ/bU19DpvSJz2tKcwYh6suhRhp2R/5vRh
+         +wcWj4prBahKtEvHYLUWnIlqqhdcEOnr4NmroHBHtljx3D+W2LDyIo8fQOifMt1XQ9od
+         ul9SwhqvA6ZyOS/KTSWy4O9t2a+8+8Y6fWUZWMaObpTaPNDfLeWevO9pTmrgKvObzAiG
+         D+Lw==
+X-Gm-Message-State: AOAM530oF5zvQRSXsSNt1N+66ftWpJX9Kocg6U4UYTprPUdz98POHm7K
+	qpygjUGqatSHvR9hCcgTFBG7c2yu2AqtTXbb7V/M+Lb6M0ez8A==
+X-Google-Smtp-Source: ABdhPJz/Y4Rtxk7tNm5Nll/AZD3zGIFC4sbxxS2tEpk0VihZCOiEHC1zZkLGcaTGXbZX7St5LULzTNJQ4U9zxkELUJg=
+X-Received: by 2002:a17:90a:8a0f:: with SMTP id w15mr31401210pjn.5.1620716800541;
+ Tue, 11 May 2021 00:06:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: "Michael Nazzareno Trimarchi" <michael@amarulasolutions.com>
+Date: Tue, 11 May 2021 09:06:29 +0200
+Message-ID: <CAOf5uwkCTPVa=mey4YF0ZuzpL2KNJ2AtWYR+7i6wpqqh6NkkwQ@mail.gmail.com>
+Subject: Split deploy result in multiple partitions
+To: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
-libbtrfsutil was relicensed from LGPL-3.0+ to LGPL-2.1+, so it is no
-longer necessary to remove btrfs-tools.
+Hi all
 
-Signed-off-by: Robert Joslyn <robert.joslyn@redrectangle.org>
----
- conf/distro/include/disable-gplv3.inc | 1 -
- 1 file changed, 1 deletion(-)
+I have a simple question. Is possible to generate as artifacts the
+single partition results as IMG type for each partition and a total
+result as wic image?
 
-diff --git a/conf/distro/include/disable-gplv3.inc b/conf/distro/include/disable-gplv3.inc
-index 3285543..bded378 100644
---- a/conf/distro/include/disable-gplv3.inc
-+++ b/conf/distro/include/disable-gplv3.inc
-@@ -1,4 +1,3 @@
- INCOMPATIBLE_LICENSE = '*GPLv3*'
- WARN_QA_remove = 'incompatible-license'
- RDEPENDS_${PN}-ptest_remove_pn-glib-2.0 = "python3-dbusmock"
--RDEPENDS_${PN}-ptest_remove_pn-util-linux = "btrfs-tools"
--- 
-2.26.3
-
+Michael
