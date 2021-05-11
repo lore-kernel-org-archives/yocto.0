@@ -1,76 +1,60 @@
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
- by mx.groups.io with SMTP id smtpd.web08.11135.1620730780795170206
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+ by mx.groups.io with SMTP id smtpd.web09.11509.1620732366271952707
  for <yocto@lists.yoctoproject.org>;
- Tue, 11 May 2021 03:59:41 -0700
+ Tue, 11 May 2021 04:26:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Leee4b1L;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.46, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f46.google.com with SMTP id n2so19739767wrm.0
-        for <yocto@lists.yoctoproject.org>; Tue, 11 May 2021 03:59:40 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=tGulbXrc;
+ spf=pass (domain: gmail.com, ip: 209.85.208.173, mailfrom: mohammed.billoo@gmail.com)
+Received: by mail-lj1-f173.google.com with SMTP id w4so24649247ljw.9
+        for <yocto@lists.yoctoproject.org>; Tue, 11 May 2021 04:26:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=0ZHF/sziPYXnKprrxDXabZriSLlplOt/EGDZSwEtghU=;
-        b=Leee4b1LWCcADXqV6U+B7+BIZYGaac+la4p4ZXqo/XID6tLqD21t3hHfwPq7IT/B4c
-         szK3Qzwo8X4WnyVyRydRV+HOjN3rP6JZREBr60+DJORrT7n1nqlYelDQ/3uukeL/FZXy
-         W0Dysd47kN2ZIDSCKQTaR8xV9Jimr4FU+eBEI=
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=pn2QhZ9SctcDeqPW1s+5VUgCvTZvKg0+ljWjPxmgTJ4=;
+        b=tGulbXrcFoaR0IZT2OwYVoHu0772lRPRXYCBKIPCKHNzkjphls4+PWr/sQsezUWgea
+         K1oe7vGOzPDG45ypTeOqtJoCAnBRtNaOz4htCK+7TsEB5ijzT167G+cNOsv4JEoqFoEk
+         Ic7mHGCzJswsWXM7trqtDdalLkK6K+J8bbSZ2YGzJZSbausHOoFXk4iYJoSEnSPsRQOg
+         HBUHvUfiSPwnkdpUJyFwlmScxm1Md6b/du2Fv59jfRIQ3rG9jkKekNSn8Sbhqo0v9Uww
+         AS2FfejOGb4p8ZZN9JMr1feOLPiY72I+F8tvdflAZ2vgCAABkD6RhSmYNJlMTw1kcbCJ
+         yD8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=0ZHF/sziPYXnKprrxDXabZriSLlplOt/EGDZSwEtghU=;
-        b=DzZe1Oq6MVfE73UO5P26LNzrsRNkmmj6EWWT6Knb8rjjoH5gmHS4HDZFMnsPiHnsrz
-         6rBTUWQDZtss5+NO+5FaXcUxtAukMPa4HNR8yglmTwmBiyUktbbMrtVf8Z7h/caSvEHk
-         cdg6HIAqP7jhtan13oOSPHpstGCkBOdTDmM2mrYxbuMQGh5vi1oDVfYEoiGx0ulitkBd
-         r4DO9g9wGPiZmLkdenVQBiTXKtzy5PMQwkJ+CvoMLAnAQq4Tsmf5lllr/Ut4pv3OOHsD
-         IPzkrw8+iVdVjG/MgASO9alFs74KHR6680knGIoY3Zb4RLK5vsJammJ6dBbnesztK9zE
-         fQxw==
-X-Gm-Message-State: AOAM530c0FyPHKC/LWb/1bRQRw4ZHGy7kSUkVgHxYRQ6AcaBDGXt+51s
-	6EARH9ZxffoybZoWbsp4Zg+PlQ==
-X-Google-Smtp-Source: ABdhPJyaLgoxTyUqOh8jFwDjMIVid3DEW+126E6zHNxjcrVRlFSzKB7NDTAisyGcaMQx7yTvPs11Vw==
-X-Received: by 2002:adf:f74a:: with SMTP id z10mr37465931wrp.406.1620730779239;
-        Tue, 11 May 2021 03:59:39 -0700 (PDT)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from ?IPv6:2001:8b0:aba:5f3c:29c0:3873:464b:b647? ([2001:8b0:aba:5f3c:29c0:3873:464b:b647])
-        by smtp.gmail.com with ESMTPSA id d127sm3135575wmd.14.2021.05.11.03.59.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 May 2021 03:59:39 -0700 (PDT)
-Message-ID: <b12583800f682b8366d99141cde31a5cd2bee080.camel@linuxfoundation.org>
-Subject: Re: [yocto] esdk issue using hardknott sources #yocto
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: sateesh m <sateesh0457@gmail.com>, yocto@lists.yoctoproject.org
-Date: Tue, 11 May 2021 11:59:38 +0100
-In-Reply-To: <72FP.1620706426196092690.ep9K@lists.yoctoproject.org>
-References: <72FP.1620706426196092690.ep9K@lists.yoctoproject.org>
-User-Agent: Evolution 3.40.0-1 
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=pn2QhZ9SctcDeqPW1s+5VUgCvTZvKg0+ljWjPxmgTJ4=;
+        b=eBUGLSHvMxP+V8v+/bOMU3O8aAKl5nEI6Yx2+sjl0b0h9H429XlBht+fSZBxdGIhih
+         TN6vOieHaZZVC3JRVIhr6wa2cWxYvJSdNW67lDdvOf9JBqFJhG3EVinNXJ82WJlXHqwI
+         dN6bTrzttLzmp7NwRqdGv/G/8z4bstHOZe+azDGv+ud45zTZj5sjVb+n3LOlgPupIXrU
+         P92t+KGUZ69jWqrACIsOtphIE7dyNMV9+EqHC+kFRbW8BrRU4J/av2k2IA9jF2tYQGD/
+         +BenneOUWQAKGnNW3+7g6TuQFqKOcRx9aPg0sr/1gnFYsgIicVlBETqg4F+aKqZ0sh9w
+         nGYA==
+X-Gm-Message-State: AOAM530/wlIdH9h7rfjDq91Ul4neavyvfXRaJhWAd84PNZ0rNKosSzPk
+	pgDyPUQnUBfUmYjJaDLN1jSH9h4s0B23fY9KZa5tqgRu5Z4yzg==
+X-Google-Smtp-Source: ABdhPJz0ZzTP2oXw1Fmp6ZGEeXQWDPAVWCif5UN4nWjWk/UutVJ2i2bOMXskkqGZh3dxX608I4LAf9MGuVxp4AP8WzQ=
+X-Received: by 2002:a2e:9e88:: with SMTP id f8mr23869388ljk.88.1620732364352;
+ Tue, 11 May 2021 04:26:04 -0700 (PDT)
 MIME-Version: 1.0
+From: "Mohammed Billoo" <mohammed.billoo@gmail.com>
+Date: Tue, 11 May 2021 07:25:53 -0400
+Message-ID: <CAPUUs4FUgSMRPQEctWypjq2H3pPKUXv=zxafpjTq+Tkt-pe50Q@mail.gmail.com>
+Subject: Kernel/application signing and verification
+To: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
 
-On Mon, 2021-05-10 at 21:13 -0700, sateesh m wrote:
-> Hi Guys,
-> 
->              I have successfully built core-image-base image using hardknott sources.  I am trying to build 
-> sdk & populate_sdk_ext. I have built successfully.but when I running ./oecore-x86_64-riscv64-toolchain-ext-
-> nodistro.0.sh 
-> 
-> I am facing issue xorgproto write config failed. 
-> 
-> Can anybody known this issue please help me to solve.
+Hi,
 
-It looks like you're using OE-Core and nodistro and we generally test
-the eSDK with poky. It also looks like you're using rm_work and we do
-not test that with eSDK on the autobuilder.
+I'm not sure if this is the appropriate mailing list to ask this
+question. I am working on customizing a BSP for an Nvidia Jetson Nano
+based board (using the meta-tegra layer as the basis for most of the
+development).  One of the requirements for the project is to get
+secure-boot working, which Nvidia supports only up to u-boot (i.e. the
+custom Nvidia bootloader ensures that u-boot is signed using the
+public portion of the key that is burned onto the fuses).
 
-For some reason the generated task hashes in the eSDK are not matching
-the hashes generated by the previous build. I mention the above as those
-are two differences I can see between what you're doing and what we test.
-I don't know what is causing those differences though. We are aware this
-part of the build is rather hard to debug unfortunately. We've not managed
-to find a way to make this easier as yet.
+Yet, we need to go a bit further and use u-boot to confirm that the
+kernel is also signed with the same key. Likewise with all executables
+on the rootfs. Does yocto provide functionality akin to this that I
+can leverage?
 
-Cheers,
-
-Richard
-
+Thanks
+-- 
+Mohammed Billoo
