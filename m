@@ -1,204 +1,241 @@
-Received: from EUR06-VI1-obe.outbound.protection.outlook.com (EUR06-VI1-obe.outbound.protection.outlook.com [40.92.17.106])
- by mx.groups.io with SMTP id smtpd.web09.583.1620755673524209924
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+ by mx.groups.io with SMTP id smtpd.web10.1640.1620760469430644375
  for <yocto@lists.yoctoproject.org>;
- Tue, 11 May 2021 10:54:34 -0700
+ Tue, 11 May 2021 12:14:29 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@outlook.com header.s=selector1 header.b=SPPkY+A8;
- spf=pass (domain: outlook.com, ip: 40.92.17.106, mailfrom: kweihmann@outlook.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jzrg9N1hZI9E5aGkbKk+nldET1YxHzfK/fFwGOSarmANun5sslG2a2fCM1EEkGXZjTd2wwq/YynDngZ8gbSK5URwW3BtKg2Ej0Ge638AfznQyh2OwITyyf6pimlLDAnKRgSCR7CH2ZUG/R6k4PzPWlyCdUjM9xw7gSK6dOAa/joDPhoW2W53yBnW2vMiC/6D7oEiSE9juudu4/ICxShXRyCbRPz0+fBBFaG/iK4ddystXXocvyTMyUQ8hgLM7Uj3ppHjwHi4TfMVW7SXhh/IqRXP7X3U0wOrVNN+jkEeMXA/g5hz2uPWZq3TNqC65zLlz97d+PRm8z0qMxjNFwEoDg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3B0PibGchW9SEM65LOEG3XoAL3HYBJZNEy7cMtuIQG4=;
- b=NZCa4P8MCuax6VAJdI8JJe6SQZggWKSNlHP2t/yzKo3RCAMS8mgcx7/DbCon1kEVxfsx0lldjSjWkHKlrSuidB9orLgLem/2ugfi9kWpAaEnWYAz7VOA0O4Ee2PXtNSt4tOeE5eMZZrkYjZ/BT/i0rrdc4fbKmO13rF+Ij1wApmLeuSnul2yrDPWJLpkNCKW3FL1vOZKU/IvGpHqXiNVxgLGCakY1K9DjuAKlT33fhXp7OjxTHsB6YSg20p/n67cEmjvcjoTzLlT1UXgcYWlZn/VN5YrEilTfQoyfQSa7WqdjJULp8t9/wiKA7ndVqP7FRsqKsGl8D+PZFv+WlvS1w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3B0PibGchW9SEM65LOEG3XoAL3HYBJZNEy7cMtuIQG4=;
- b=SPPkY+A8kK8YkUpdq0Lfym+4R9oeBlJB5lgeQMEUI/aoZE7sInm44okki+BzQHyfBgQ8NiJO6YVjF1FsROVqWDQA9czkBXLjlfXgs4suDBWq6/e9SCP+DVA0SuHX6GaygcrfKpx07mq1/GNPIXW++e/JYI1rnoA7vJhliC64cQTiT/LoF3qPYVDDGUj6AFcIJJVnrO7ZUIM3ec/Td232JaI9V9zE/0+vgc9n0pNWertzbDAOP/nc/e78gXDpKth/o9viTuD6Pl+IRJOD8POzVRedDZ3YnWhQxfoADQa/ygps/uhUx9oIZsWZrBgDtXoQHN6j5gWIVMtq+5DG+YUwXg==
-Received: from VI1EUR06FT042.eop-eur06.prod.protection.outlook.com
- (2a01:111:e400:fc37::45) by
- VI1EUR06HT236.eop-eur06.prod.protection.outlook.com (2a01:111:e400:fc37::450)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25; Tue, 11 May
- 2021 17:54:30 +0000
-Received: from AM9PR09MB4642.eurprd09.prod.outlook.com
- (2a01:111:e400:fc37::49) by VI1EUR06FT042.mail.protection.outlook.com
- (2a01:111:e400:fc37::221) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25 via Frontend
- Transport; Tue, 11 May 2021 17:54:30 +0000
-X-IncomingTopHeaderMarker: OriginalChecksum:1667BB2A6BCEEE3DE3F0DCC71BDC5AE92407CF5356CDBD8CEF36D7B7A39E56BC;UpperCasedChecksum:F2A8DE63E4C02C2F0602E6C16E0CB8AF8E3E634A1FF0C51F78D291C3DCDAF307;SizeAsReceived:8693;Count:47
-Received: from AM9PR09MB4642.eurprd09.prod.outlook.com
- ([fe80::9c9b:9858:17df:de84]) by AM9PR09MB4642.eurprd09.prod.outlook.com
- ([fe80::9c9b:9858:17df:de84%6]) with mapi id 15.20.4108.032; Tue, 11 May 2021
- 17:54:30 +0000
-Subject: Re: [yocto] [zeus] python3-numpy: No module named 'numpy.core._multiarray_umath' #yocto #zeus #python
-To: yocto@lists.yoctoproject.org, bhstalel@gmail.com
-References: <W4Wv.1620749689544013808.s8FD@lists.yoctoproject.org>
-From: "Konrad Weihmann" <kweihmann@outlook.com>
-Message-ID: <AM9PR09MB4642E07CC4C2181267BE05F1A8539@AM9PR09MB4642.eurprd09.prod.outlook.com>
-Date: Tue, 11 May 2021 19:54:29 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
-In-Reply-To: <W4Wv.1620749689544013808.s8FD@lists.yoctoproject.org>
-X-TMN: [yq1foGILkkZVY8P8unAsoucS/UvDHf5C]
-X-ClientProxiedBy: AM6PR04CA0040.eurprd04.prod.outlook.com
- (2603:10a6:20b:f0::17) To AM9PR09MB4642.eurprd09.prod.outlook.com
- (2603:10a6:20b:284::24)
-Return-Path: kweihmann@outlook.com
-X-Microsoft-Original-Message-ID: <3673c2c4-f159-c6c6-162f-35c042a7b13d@outlook.com>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=qb7QH/gz;
+ spf=pass (domain: gmail.com, ip: 209.85.210.169, mailfrom: raj.khem@gmail.com)
+Received: by mail-pf1-f169.google.com with SMTP id q2so16731939pfh.13
+        for <yocto@lists.yoctoproject.org>; Tue, 11 May 2021 12:14:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4aP/ApWlaZEKfwpGZCUWf3XP7nxCkn6XzW7iDqExXqI=;
+        b=qb7QH/gz7IO12fNOHBP1tGSqmJo+ngmPnWOxYhkAAY4RXh1O7m0KKnf7JcbVP8ejmR
+         H0Hfepz8zccuvZWG6rLBDvL8+/Yfn4f5FoVJ5Jo9IdUpJ4xsg8qGpXWZNABm4pbm9rMk
+         j9aJD+RnUpBwdhkMZV6Wb0klNXECnKSqANhcBv24fcRaYa+5ZoBiqKJf1ezLEhJLpaJ5
+         uH4dAHLsJkSvMiPzUmzt5OTNC66IcrybjrlBMOZ10bNPeiaDIzIK3LEq6mGGsPy3ZyL1
+         tZzyiQjRXzqa8mp4DW8nWBwn03o18VipdUr73Lt+QSdyZiarWiefpgYo97g85Do5pP5V
+         USKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4aP/ApWlaZEKfwpGZCUWf3XP7nxCkn6XzW7iDqExXqI=;
+        b=qOCIFT1z1bjxYKWIqeRNlT0+U9IN13LPdpxHqBhgkoiwjEChyoFfxGimY/HxNj4hLo
+         7rt4n9vvtsaI7sfPSb17AhDOASCuJfk8EVaGDHcCHulXPS6cELWp3KNPpf38N757RiP8
+         MXREJnyM5ZUdLs3KHin+g6z3GijyUwMuipqPhWa1tXLI7Mt7cCqcOLXStnCW+aFfPMtO
+         ZSF0tubdkqXSkVLYpCVVrfdoUFdfEg/VqzhBkRBauukkH0O2KvcjC0Zz6H8Osvgm+3Vp
+         ZpLVyDLnzyhsJz2hNVFs4PTpBULyHzwdOXKdoRTyBMHAHRIk4/eFDiY0deGorgNvuDoc
+         5Ajg==
+X-Gm-Message-State: AOAM531Wy8xXoC7Rrv4aZQCW6hOhpZsfs+etUSEnjsMayX4xQiJtgn6C
+	VwTEnGYoJQj9oO7XBNzHU5I+iAWV1uswMw==
+X-Google-Smtp-Source: ABdhPJzwh4sBWkAOfcLia9vMqR+Cny9Fm89szz6pv5sVF/5DVrVaz8+HEZWvVQCPioXOS9pOGGfttA==
+X-Received: by 2002:a62:5ec7:0:b029:227:3253:3f62 with SMTP id s190-20020a625ec70000b029022732533f62mr31718395pfb.54.1620760468577;
+        Tue, 11 May 2021 12:14:28 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from apollo.hsd1.ca.comcast.net ([2601:646:9200:a0f0::a7ac])
+        by smtp.gmail.com with ESMTPSA id b16sm7453440pju.35.2021.05.11.12.14.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 May 2021 12:14:28 -0700 (PDT)
+From: "Khem Raj" <raj.khem@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: twoerner@gmail.com,
+	Khem Raj <raj.khem@gmail.com>,
+	Ross Burton <ross.burton@arm.com>
+Subject: [meta-rockchip][PATCH] trusted-firmware-a: Fix rk3399 build with gcc11
+Date: Tue, 11 May 2021 12:14:24 -0700
+Message-Id: <20210511191424.4182630-1-raj.khem@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.188.23] (87.141.81.56) by AM6PR04CA0040.eurprd04.prod.outlook.com (2603:10a6:20b:f0::17) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25 via Frontend Transport; Tue, 11 May 2021 17:54:30 +0000
-X-MS-PublicTrafficType: Email
-X-IncomingHeaderCount: 47
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-Correlation-Id: 6ed61dc5-f513-4146-3aa9-08d914a5d394
-X-MS-TrafficTypeDiagnostic: VI1EUR06HT236:
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	HkZi9EcOaboeDnixWKnMwe9cczBH4/d84QsdqqIWzMPmL4jZobCnxU9a1MqfM40Gx4YZYp9FYE3tcrm7eS48pa2CLO1J5n9sJiNwxCohvk5k7tAFlFyMJ47gU60ioNpY0gjEoRiXjZ8mWaHqWa9297UqscrsIOh7/rvAqQ2RCnblWXcIFnZmnUMuPmRoy02HKPmCcnUGzHPf8WBH/eROhEUoW65bohHPJi2A3qjnvUrutdkvuEa8/lplbTQNTmcY62XE+CsxQgugZcs5i2FkLYrtAHWp3Z7ROJspmsSzSC59tQNcEBnyt7h9LcISjxoGAu/4A/bkayX9tKWGO86xBl/X7blU1elSezZpaxrHWy+soThTTDYJgWkzHQqn1WIOVi861BW5TXihLGaNwHOm6belrUuCzVozEQ/ShX9AJsFY+8jx6WExjuhybBKRpLUjJTMc+5SQ+M9UjwqSvPvTmKjNt/aZNmKkA58xnfNojHU=
-X-MS-Exchange-AntiSpam-MessageData: 
-	AF6SvGXclsk5wyyC9DtxN+subVqKtLOagERRBT4mA3hmHnXAZqIns+QRBAo+Pc2Np41I+3E5mWFYW+dAle0L9rDYPnRBRvQXSXT5BUrd/CczcDZ+RxHi+gCCsTxYsxgI/XWX9+oOeTh0NwNdPiUrdg==
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6ed61dc5-f513-4146-3aa9-08d914a5d394
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2021 17:54:30.4190
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-AuthSource: 
-	VI1EUR06FT042.eop-eur06.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1EUR06HT236
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On 11.05.21 18:14, Bel Hadj Salem Talel wrote:
-> Hi All,
-> I integrated python3-numpy in my image and when trying to import it I=20
-> get this error: (python3 version: 3.7.7)
->=20
-> ------
->  >>> import cv2
-> OpenCV bindings requires "numpy" package.
-> Install it via command:
->  =C2=A0 =C2=A0 pip install numpy
-> Traceback (most recent call last):
->  =C2=A0 File "/usr/lib/python3.7/site-packages/numpy/core/__init__.py", =
-line=20
-> 17, in <module>
->  =C2=A0 =C2=A0 from . import multiarray
->  =C2=A0 File "/usr/lib/python3.7/site-packages/numpy/core/multiarray.py"=
-,=20
-> line 14, in <module>
->  =C2=A0 =C2=A0 from . import overrides
->  =C2=A0 File "/usr/lib/python3.7/site-packages/numpy/core/overrides.py",=
- line=20
-> 7, in <module>
->  =C2=A0 =C2=A0 from numpy.core._multiarray_umath import (
-> ModuleNotFoundError: No module named 'numpy.core._multiarray_umath'
-> During handling of the above exception, another exception occurred:
-> Traceback (most recent call last):
->  =C2=A0 File "<stdin>", line 1, in <module>
->  =C2=A0 File "/usr/lib/python3.7/site-packages/cv2/__init__.py", line 8,=
- in=20
-> <module>
->  =C2=A0 =C2=A0 import numpy
->  =C2=A0 File "/usr/lib/python3.7/site-packages/numpy/__init__.py", line =
-142,=20
-> in <module>
-> root@menzu-media:~# python3
-> Python 3.7.7 (default, Apr 22 2021, 09:42:29)
-> [GCC 9.2.0] on linux
-> Type "help", "copyright", "credits" or "license" for more information.
->  >>> import cv2
-> OpenCV bindings requires "numpy" package.
-> Install it via command:
->  =C2=A0 =C2=A0 pip install numpy
-> Traceback (most recent call last):
->  =C2=A0 File "/usr/lib/python3.7/site-packages/numpy/core/__init__.py", =
-line=20
-> 17, in <module>
->  =C2=A0 =C2=A0 from . import multiarray
->  =C2=A0 File "/usr/lib/python3.7/site-packages/numpy/core/multiarray.py"=
-,=20
-> line 14, in <module>
->  =C2=A0 =C2=A0 from . import overrides
->  =C2=A0 File "/usr/lib/python3.7/site-packages/numpy/core/overrides.py",=
- line=20
-> 7, in <module>
->  =C2=A0 =C2=A0 from numpy.core._multiarray_umath import (
-> ModuleNotFoundError: No module named 'numpy.core._multiarray_umath'
-> During handling of the above exception, another exception occurred:
-> Traceback (most recent call last):
->  =C2=A0 File "<stdin>", line 1, in <module>
->  =C2=A0 File "/usr/lib/python3.7/site-packages/cv2/__init__.py", line 8,=
- in=20
-> <module>
->  =C2=A0 =C2=A0 import numpy
->  =C2=A0 File "/usr/lib/python3.7/site-packages/numpy/__init__.py", line =
-142,=20
-> in <module>
->  =C2=A0 =C2=A0 from . import core
->  =C2=A0 File "/usr/lib/python3.7/site-packages/numpy/core/__init__.py", =
-line=20
-> 47, in <module>
->  =C2=A0 =C2=A0 raise ImportError(msg)
-> ImportError:
-> IMPORTANT: PLEASE READ THIS FOR ADVICE ON HOW TO SOLVE THIS ISSUE!
-> Importing the numpy c-extensions failed.
-> - Try uninstalling and reinstalling numpy.
-> - If you have already done that, then:
->  =C2=A0 1. Check that you expected to use Python3.7 from "/usr/bin/pytho=
-n3",
->  =C2=A0 =C2=A0 =C2=A0and that you have no directories in your PATH or PY=
-THONPATH that can
->  =C2=A0 =C2=A0 =C2=A0interfere with the Python and numpy version "1.17.0=
-" you're trying=20
-> to use.
->  =C2=A0 2. If (1) looks fine, you can open a new issue at
->  =C2=A0 =C2=A0 =C2=A0https://github.com/numpy/numpy/issues.=C2=A0 Please=
- include details on:
->  =C2=A0 =C2=A0 =C2=A0- how you installed Python
->  =C2=A0 =C2=A0 =C2=A0- how you installed numpy
->  =C2=A0 =C2=A0 =C2=A0- your operating system
->  =C2=A0 =C2=A0 =C2=A0- whether or not you have multiple versions of Pyth=
-on installed
->  =C2=A0 =C2=A0 =C2=A0- if you built from source, your compiler versions =
-and ideally a=20
-> build log
-> - If you're working with a numpy git repository, try `git clean -xdf`
->  =C2=A0 (removes all files not under version control) and rebuild numpy.
-> Note: this error has many possible causes, so please don't comment on
-> an existing issue about this - open a new one instead.
-> Original error was: No module named 'numpy.core._multiarray_umath'
-> ----------
->=20
-> Did any one encounter this issue?
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+Cc: Ross Burton <ross.burton@arm.com>
+---
+ .../files/0001-Fix-build-with-gcc-11.patch    | 34 ++++++++++++++++++
+ .../0001-dram-Fix-build-with-gcc-11.patch     | 34 ++++++++++++++++++
+ ...-Use-compatible-.asciz-asm-directive.patch | 31 ++++++++++++++++
+ ...rk-already-defined-functions-as-weak.patch | 35 +++++++++++++++++++
+ .../trusted-firmware-a_%.bbappend             |  4 +++
+ 5 files changed, 138 insertions(+)
+ create mode 100644 recipes-bsp/trusted-firmware-a/files/0001-Fix-build-with-gcc-11.patch
+ create mode 100644 recipes-bsp/trusted-firmware-a/files/0001-dram-Fix-build-with-gcc-11.patch
+ create mode 100644 recipes-bsp/trusted-firmware-a/files/0001-plat_macros.S-Use-compatible-.asciz-asm-directive.patch
+ create mode 100644 recipes-bsp/trusted-firmware-a/files/0001-pmu-Do-not-mark-already-defined-functions-as-weak.patch
 
-According to [1] yes - you might want to consider back porting one of=20
-the more recent versions of numpy from [2], as you are using a pretty=20
-outdated one
+diff --git a/recipes-bsp/trusted-firmware-a/files/0001-Fix-build-with-gcc-11.patch b/recipes-bsp/trusted-firmware-a/files/0001-Fix-build-with-gcc-11.patch
+new file mode 100644
+index 0000000..7956717
+--- /dev/null
++++ b/recipes-bsp/trusted-firmware-a/files/0001-Fix-build-with-gcc-11.patch
+@@ -0,0 +1,34 @@
++From d4c60a312271e000e8339f0b47a302c325313758 Mon Sep 17 00:00:00 2001
++From: Khem Raj <raj.khem@gmail.com>
++Date: Tue, 11 May 2021 11:46:30 -0700
++Subject: [PATCH] Fix build with gcc 11
++
++Fixes
++plat/rockchip/rk3399/drivers/dram/dram.c:13:22: error: ignoring attribute 'section (".pmusram.data")' because it conflicts with previous 'section (".sram.data")' [-Werror=attributes]
++
++See [1]
++
++[1] https://developer.trustedfirmware.org/T925
++
++Upstream-Status: Pending
++Signed-off-by: Khem Raj <raj.khem@gmail.com>
++---
++ plat/rockchip/rk3399/drivers/dram/dram.h | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/plat/rockchip/rk3399/drivers/dram/dram.h b/plat/rockchip/rk3399/drivers/dram/dram.h
++index 0eb12cf29..5572b1612 100644
++--- a/plat/rockchip/rk3399/drivers/dram/dram.h
+++++ b/plat/rockchip/rk3399/drivers/dram/dram.h
++@@ -149,7 +149,7 @@ struct rk3399_sdram_params {
++ 	uint32_t rx_cal_dqs[2][4];
++ };
++ 
++-extern __sramdata struct rk3399_sdram_params sdram_config;
+++extern struct rk3399_sdram_params sdram_config;
++ 
++ void dram_init(void);
++ 
++-- 
++2.31.1
++
+diff --git a/recipes-bsp/trusted-firmware-a/files/0001-dram-Fix-build-with-gcc-11.patch b/recipes-bsp/trusted-firmware-a/files/0001-dram-Fix-build-with-gcc-11.patch
+new file mode 100644
+index 0000000..14defed
+--- /dev/null
++++ b/recipes-bsp/trusted-firmware-a/files/0001-dram-Fix-build-with-gcc-11.patch
+@@ -0,0 +1,34 @@
++From a09a1de53aba422249a8376b0d95024200021317 Mon Sep 17 00:00:00 2001
++From: Khem Raj <raj.khem@gmail.com>
++Date: Tue, 11 May 2021 11:55:31 -0700
++Subject: [PATCH] dram: Fix build with gcc 11
++
++This is a redundant assignment which GCC warns about.
++
++Fixes
++
++plat/rockchip/rk3399/drivers/dram/dram_spec_timing.c:781:11: error: explicitly assigning value of variable of type 'uint32_t' (aka 'unsigned int') to itself [-Werror,-Wself-assign]
++                twr_tmp = twr_tmp;
++                ~~~~~~~ ^ ~~~~~~~
++
++Signed-off-by: Khem Raj <raj.khem@gmail.com>
++---
++ plat/rockchip/rk3399/drivers/dram/dram_spec_timing.c | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/plat/rockchip/rk3399/drivers/dram/dram_spec_timing.c b/plat/rockchip/rk3399/drivers/dram/dram_spec_timing.c
++index 3cdb7a296..76bc5ee96 100644
++--- a/plat/rockchip/rk3399/drivers/dram/dram_spec_timing.c
+++++ b/plat/rockchip/rk3399/drivers/dram/dram_spec_timing.c
++@@ -778,7 +778,7 @@ static void lpddr3_get_parameter(struct timing_related_config *timing_config,
++ 	else if (twr_tmp <= 8)
++ 		twr_tmp = 8;
++ 	else if (twr_tmp <= 12)
++-		twr_tmp = twr_tmp;
+++		; /* do nothing */
++ 	else if (twr_tmp <= 14)
++ 		twr_tmp = 14;
++ 	else
++-- 
++2.31.1
++
+diff --git a/recipes-bsp/trusted-firmware-a/files/0001-plat_macros.S-Use-compatible-.asciz-asm-directive.patch b/recipes-bsp/trusted-firmware-a/files/0001-plat_macros.S-Use-compatible-.asciz-asm-directive.patch
+new file mode 100644
+index 0000000..8807fca
+--- /dev/null
++++ b/recipes-bsp/trusted-firmware-a/files/0001-plat_macros.S-Use-compatible-.asciz-asm-directive.patch
+@@ -0,0 +1,31 @@
++From 5f78ce7eb9ab6bf5af682a715a9264d2a5ee7666 Mon Sep 17 00:00:00 2001
++From: Khem Raj <raj.khem@gmail.com>
++Date: Tue, 11 May 2021 12:06:34 -0700
++Subject: [PATCH] plat_macros.S: Use compatible .asciz asm directive
++
++clang asm does not like two strings to .asciz therefore make it single
++string which works on clang too.
++
++Upstream-Status: Pending
++Signed-off-by: Khem Raj <raj.khem@gmail.com>
++---
++ plat/rockchip/common/include/plat_macros.S | 3 +--
++ 1 file changed, 1 insertion(+), 2 deletions(-)
++
++diff --git a/plat/rockchip/common/include/plat_macros.S b/plat/rockchip/common/include/plat_macros.S
++index 691beeb44..c07be9ca9 100644
++--- a/plat/rockchip/common/include/plat_macros.S
+++++ b/plat/rockchip/common/include/plat_macros.S
++@@ -23,8 +23,7 @@ icc_regs:
++ 
++ /* Registers common to both GICv2 and GICv3 */
++ gicd_pend_reg:
++-	.asciz "gicd_ispendr regs (Offsets 0x200 - 0x278)\n"	\
++-		" Offset:\t\t\tvalue\n"
+++	.asciz "gicd_ispendr regs (Offsets 0x200 - 0x278)\n Offset:\t\t\tvalue\n"
++ newline:
++ 	.asciz "\n"
++ spacer:
++-- 
++2.31.1
++
+diff --git a/recipes-bsp/trusted-firmware-a/files/0001-pmu-Do-not-mark-already-defined-functions-as-weak.patch b/recipes-bsp/trusted-firmware-a/files/0001-pmu-Do-not-mark-already-defined-functions-as-weak.patch
+new file mode 100644
+index 0000000..bd4d2b5
+--- /dev/null
++++ b/recipes-bsp/trusted-firmware-a/files/0001-pmu-Do-not-mark-already-defined-functions-as-weak.patch
+@@ -0,0 +1,35 @@
++From 9d963cd69faf94bdcb80624132fd10392f57875b Mon Sep 17 00:00:00 2001
++From: Khem Raj <raj.khem@gmail.com>
++Date: Tue, 11 May 2021 12:11:51 -0700
++Subject: [PATCH] pmu: Do not mark already defined functions as weak
++
++These functions are already defined as static functions in same header
++Fixes
++
++| plat/rockchip/common/drivers/pmu/pmu_com.h:35:14: error: weak identifier 'pmu_power_domain_ctr' never declared [-Werror]                                                                                      | #pragma weak pmu_power_domain_ctr                                                                                                                                                                             |              ^
++| plat/rockchip/common/drivers/pmu/pmu_com.h:36:14: error: weak identifier 'check_cpu_wfie' never declared [-Werror]
++| #pragma weak check_cpu_wfie
++|              ^
++
++Upstream-Status: Pending
++Signed-off-by: Khem Raj <raj.khem@gmail.com>
++---
++ plat/rockchip/common/drivers/pmu/pmu_com.h | 2 --
++ 1 file changed, 2 deletions(-)
++
++diff --git a/plat/rockchip/common/drivers/pmu/pmu_com.h b/plat/rockchip/common/drivers/pmu/pmu_com.h
++index 5359f73b4..3f9ce7df9 100644
++--- a/plat/rockchip/common/drivers/pmu/pmu_com.h
+++++ b/plat/rockchip/common/drivers/pmu/pmu_com.h
++@@ -32,8 +32,6 @@ enum pmu_pd_state {
++ };
++ 
++ #pragma weak plat_ic_get_pending_interrupt_id
++-#pragma weak pmu_power_domain_ctr
++-#pragma weak check_cpu_wfie
++ 
++ static inline uint32_t pmu_power_domain_st(uint32_t pd)
++ {
++-- 
++2.31.1
++
+diff --git a/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend b/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
+index 1942c17..c90673e 100644
+--- a/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
++++ b/recipes-bsp/trusted-firmware-a/trusted-firmware-a_%.bbappend
+@@ -8,4 +8,8 @@ COMPATIBLE_MACHINE_append_rk3328 = "|rk3328"
+ FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+ SRC_URI += "\
+     file://serial-console-baudrate.patch \
++    file://0001-Fix-build-with-gcc-11.patch \
++    file://0001-dram-Fix-build-with-gcc-11.patch \
++    file://0001-plat_macros.S-Use-compatible-.asciz-asm-directive.patch \
++    file://0001-pmu-Do-not-mark-already-defined-functions-as-weak.patch \
+ "
+-- 
+2.31.1
 
-[1]=20
-https://stackoverflow.com/questions/54665842/when-importing-tensorflow-i-g=
-et-the-following-error-no-module-named-numpy-cor
-[2] http://layers.openembedded.org/layerindex/recipe/51338/
-
-Also the github issue tracker of numpy contains at least one issue of=20
-the same sort
-
->=20
-> Thanks,
-> Talel
->=20
->=20
->=20
->=20
