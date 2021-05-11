@@ -1,110 +1,219 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.1148.1620749450780518106
- for <yocto@lists.yoctoproject.org>;
- Tue, 11 May 2021 09:10:50 -0700
-Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=IFT4UYbU;
- spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 9564138C066A
-	for <yocto@yoctoproject.org>; Tue, 11 May 2021 16:10:50 +0000 (UTC)
-Received: by mail-wr1-f47.google.com with SMTP id h4so20689285wrt.12
-        for <yocto@yoctoproject.org>; Tue, 11 May 2021 09:10:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=blade-group.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+NFyuJYgi+yFAv9p+Yri1SfBOErIb3nx3a/HU7w1Csk=;
-        b=IFT4UYbUYXvWvbP2CUTDG+MDVbPRYla9ePJ8XrK94queFDkgAPNKI1iMVMdmsnr+YV
-         sLEAQ57+5jw8pA6Zon1RdyLdKTvStC68Lg10A7XAOQ5I6iskDULk4X8t82qH4Mo2pTUW
-         tiPizknaHK18x9BSf0wyfFScQRvaPFBY7lJYcRVBTxywd0wOzqOk+aeF50sOpQz/bniX
-         QqlP5+LZ+Lr+LT2jcy/uczDyDyjmbhWwQPzUDEChcblmcGxleX5zAjUJOExEL2bqJb5p
-         fyYDV2dbSG6XP+aiusCTBMrjrmJeJsSUyXhUgGpObj6UXKBLHqc42cN5K8Laqi4F4Ib1
-         KLeg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+NFyuJYgi+yFAv9p+Yri1SfBOErIb3nx3a/HU7w1Csk=;
-        b=IQ9p2gVvYIJrbLEh/L8bT3TO34Gb4l5bDKrx0ZSNxiy95bhOBMZZp2Q7fRC0Dmmwtw
-         tk27iwPtM6i5YlMlMHiPKCTyD4JoTPdm+OBUCd6olS4i3at3XgvIYzDkdetyTl4VjK+R
-         GBYeSL6zxpuVxl6Ga/izoETKcncdJHtsF8Amd6yxs0qfFWihLlC05VZh6LLQRC3J2ZHx
-         AN8Dm1d3TEZLXhSI6RIVllDfPQAw7YfrnyAC7/xGGxe9+0Dyewz764mwUpO2IxKW/hK0
-         j7VG5eaXiE5YqfCMQwQnisnhr+MPAbjM1m9O0tgd19r+xlD9B4Z6ABJcV5AF0Y22DWW9
-         DpLQ==
-X-Gm-Message-State: AOAM531FVkqVK7hh86L9wEBTwo7uWpQctJ/oI+4PAOZf8pn7mxHiyb8Q
-	2iZ8UFIlQXPAKKhBwnsLxZGh1TH2xvc5Zg==
-X-Google-Smtp-Source: ABdhPJz+sWe66gjV4uusKxjOBR7IbDr5x1fWQnZg45UcmoQyjAHoZuPBg1ThnC/yl4o+ok0kN6HA/w==
-X-Received: by 2002:a5d:6990:: with SMTP id g16mr3554541wru.64.1620749449300;
-        Tue, 11 May 2021 09:10:49 -0700 (PDT)
-Received: from blanquette.lan ([88.120.44.86])
-        by smtp.gmail.com with ESMTPSA id n123sm3929243wme.24.2021.05.11.09.10.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 May 2021 09:10:48 -0700 (PDT)
-From: "Yann Dirson" <yann.dirson@blade-group.com>
-X-Google-Original-From: yann@blade-group.com
-To: yocto@yoctoproject.org
-Cc: twoerner@gmail.com,
-	Yann Dirson <yann@blade-group.com>
-Subject: [meta-rockchip][PATCH v6 6/6] WIP NanoPi-M4: activate BT support
-Date: Tue, 11 May 2021 18:10:18 +0200
-Message-Id: <20210511161018.168172-7-yann@blade-group.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210511161018.168172-1-yann@blade-group.com>
-References: <20210511161018.168172-1-yann@blade-group.com>
+Subject: [zeus] python3-numpy: No module named 'numpy.core._multiarray_umath' #yocto #zeus #python
+To: yocto@lists.yoctoproject.org
+From: "Bel Hadj Salem Talel" <bhstalel@gmail.com>
+X-Originating-Location: Hammam Sousse, Gouvernorat de Sousse, TN (197.240.104.182)
+X-Originating-Platform: Linux Chrome 90
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
+Date: Tue, 11 May 2021 09:14:49 -0700
+Message-ID: <W4Wv.1620749689544013808.s8FD@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="PGRI3vz8PD1tixJht6Kt"
+
+--PGRI3vz8PD1tixJht6Kt
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-From: Yann Dirson <yann@blade-group.com>
+Hi All,
+I integrated python3-numpy in my image and when trying to import it I get =
+this error: (python3 version: 3.7.7)
 
-Take the firmware from rbwifibt, as a compatible one does not seem to
-be available in broadcom-bt-firmware.
+------
+>>> import cv2
+OpenCV bindings requires "numpy" package.
+Install it via command:
+pip install numpy
+Traceback (most recent call last):
+File "/usr/lib/python3.7/site-packages/numpy/core/__init__.py", line 17, i=
+n <module>
+from . import multiarray
+File "/usr/lib/python3.7/site-packages/numpy/core/multiarray.py", line 14,=
+ in <module>
+from . import overrides
+File "/usr/lib/python3.7/site-packages/numpy/core/overrides.py", line 7, i=
+n <module>
+from numpy.core._multiarray_umath import (
+ModuleNotFoundError: No module named 'numpy.core._multiarray_umath'
 
-Disclaimer: I have only been able to scan/pair with devices, I could
-not establish a connection.  However, with the same board I've had the
-same results with the board vendor's own FriendlyCore image.
----
- conf/machine/include/nanopi-m4.inc                    | 6 +++++-
- recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg | 6 ++++++
- 2 files changed, 11 insertions(+), 1 deletion(-)
+During handling of the above exception, another exception occurred:
 
-diff --git a/conf/machine/include/nanopi-m4.inc b/conf/machine/include/na=
-nopi-m4.inc
-index cb27928..3bd5c97 100644
---- a/conf/machine/include/nanopi-m4.inc
-+++ b/conf/machine/include/nanopi-m4.inc
-@@ -3,7 +3,7 @@
-=20
- require rk3399.inc
-=20
--MACHINE_FEATURES +=3D "usbhost serial wifi"
-+MACHINE_FEATURES +=3D "usbhost serial wifi bluetooth"
-=20
- KMACHINE =3D "nanopi-m4"
- KERNEL_DEVICETREE =3D "rockchip/rk3399-nanopi-m4.dtb"
-@@ -26,3 +26,7 @@ SERIAL_CONSOLES =3D "1500000;ttyS2"
-=20
- # wifi firmware
- MACHINE_EXTRA_RRECOMMENDS +=3D "linux-firmware-bcm4356"
-+
-+# bluetooth firmware
-+#MACHINE_EXTRA_RRECOMMENDS +=3D "broadcom-bt-firmware-bcm4356a2"
-+MACHINE_EXTRA_RRECOMMENDS +=3D "rkwifibt-firmware-ap6356-bt"
-diff --git a/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg b/reci=
-pes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg
-index d42b744..d45e879 100644
---- a/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg
-+++ b/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg
-@@ -14,3 +14,9 @@ CONFIG_REALTEK_PHY=3Dm
- CONFIG_WLAN_VENDOR_BROADCOM=3Dy
- CONFIG_BRCMFMAC=3Dm
- CONFIG_BRCMFMAC_SDIO=3Dy
-+
-+# AP6356S BT
-+CONFIG_BT_HCIUART=3Dm
-+CONFIG_SERIAL_DEV_BUS=3Dy
-+CONFIG_SERIAL_DEV_CTRL_TTYPORT=3Dy
-+CONFIG_BT_HCIUART_BCM=3Dy
---=20
-2.30.2
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+File "/usr/lib/python3.7/site-packages/cv2/__init__.py", line 8, in <modul=
+e>
+import numpy
+File "/usr/lib/python3.7/site-packages/numpy/__init__.py", line 142, in <m=
+odule>
+root@menzu-media:~# python3
+Python 3.7.7 (default, Apr 22 2021, 09:42:29)
+[GCC 9.2.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import cv2
+OpenCV bindings requires "numpy" package.
+Install it via command:
+pip install numpy
+Traceback (most recent call last):
+File "/usr/lib/python3.7/site-packages/numpy/core/__init__.py", line 17, i=
+n <module>
+from . import multiarray
+File "/usr/lib/python3.7/site-packages/numpy/core/multiarray.py", line 14,=
+ in <module>
+from . import overrides
+File "/usr/lib/python3.7/site-packages/numpy/core/overrides.py", line 7, i=
+n <module>
+from numpy.core._multiarray_umath import (
+ModuleNotFoundError: No module named 'numpy.core._multiarray_umath'
 
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+File "/usr/lib/python3.7/site-packages/cv2/__init__.py", line 8, in <modul=
+e>
+import numpy
+File "/usr/lib/python3.7/site-packages/numpy/__init__.py", line 142, in <m=
+odule>
+from . import core
+File "/usr/lib/python3.7/site-packages/numpy/core/__init__.py", line 47, i=
+n <module>
+raise ImportError(msg)
+ImportError:
+
+IMPORTANT: PLEASE READ THIS FOR ADVICE ON HOW TO SOLVE THIS ISSUE!
+
+Importing the numpy c-extensions failed.
+- Try uninstalling and reinstalling numpy.
+- If you have already done that, then:
+1. Check that you expected to use Python3.7 from "/usr/bin/python3",
+and that you have no directories in your PATH or PYTHONPATH that can
+interfere with the Python and numpy version "1.17.0" you're trying to use.
+2. If (1) looks fine, you can open a new issue at
+https://github.com/numpy/numpy/issues.=C2=A0 Please include details on:
+- how you installed Python
+- how you installed numpy
+- your operating system
+- whether or not you have multiple versions of Python installed
+- if you built from source, your compiler versions and ideally a build log
+
+- If you're working with a numpy git repository, try `git clean -xdf`
+(removes all files not under version control) and rebuild numpy.
+
+Note: this error has many possible causes, so please don't comment on
+an existing issue about this - open a new one instead.
+
+Original error was: No module named 'numpy.core._multiarray_umath'
+----------
+
+Did any one encounter this issue?
+
+Thanks,
+Talel
+
+--PGRI3vz8PD1tixJht6Kt
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi All,<br />I integrated python3-numpy in my image and when trying to impo=
+rt it I get this error: (python3 version: 3.7.7)<br /><br />------<br />
+<div>&gt;&gt;&gt; import cv2&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;</div>
+<div>OpenCV bindings requires "numpy" package.</div>
+<div>Install it via command:</div>
+<div>&nbsp; &nbsp; pip install numpy</div>
+<div>Traceback (most recent call last):</div>
+<div>&nbsp; File "/usr/lib/python3.7/site-packages/numpy/core/__init__.py"=
+, line 17, in &lt;module&gt;</div>
+<div>&nbsp; &nbsp; from . import multiarray</div>
+<div>&nbsp; File "/usr/lib/python3.7/site-packages/numpy/core/multiarray.p=
+y", line 14, in &lt;module&gt;</div>
+<div>&nbsp; &nbsp; from . import overrides</div>
+<div>&nbsp; File "/usr/lib/python3.7/site-packages/numpy/core/overrides.py=
+", line 7, in &lt;module&gt;</div>
+<div>&nbsp; &nbsp; from numpy.core._multiarray_umath import (</div>
+<div>ModuleNotFoundError: No module named 'numpy.core._multiarray_umath'</=
+div>
+<div>&nbsp;</div>
+<div>During handling of the above exception, another exception occurred:</=
+div>
+<div>&nbsp;</div>
+<div>Traceback (most recent call last):</div>
+<div>&nbsp; File "&lt;stdin&gt;", line 1, in &lt;module&gt;</div>
+<div>&nbsp; File "/usr/lib/python3.7/site-packages/cv2/__init__.py", line =
+8, in &lt;module&gt;</div>
+<div>&nbsp; &nbsp; import numpy</div>
+<div>&nbsp; File "/usr/lib/python3.7/site-packages/numpy/__init__.py", lin=
+e 142, in &lt;module&gt;</div>
+<div>root@menzu-media:~# python3</div>
+<div>Python 3.7.7 (default, Apr 22 2021, 09:42:29)&nbsp;</div>
+<div>[GCC 9.2.0] on linux</div>
+<div>Type "help", "copyright", "credits" or "license" for more information=
+.</div>
+<div>&gt;&gt;&gt; import cv2</div>
+<div>OpenCV bindings requires "numpy" package.</div>
+<div>Install it via command:</div>
+<div>&nbsp; &nbsp; pip install numpy</div>
+<div>Traceback (most recent call last):</div>
+<div>&nbsp; File "/usr/lib/python3.7/site-packages/numpy/core/__init__.py"=
+, line 17, in &lt;module&gt;</div>
+<div>&nbsp; &nbsp; from . import multiarray</div>
+<div>&nbsp; File "/usr/lib/python3.7/site-packages/numpy/core/multiarray.p=
+y", line 14, in &lt;module&gt;</div>
+<div>&nbsp; &nbsp; from . import overrides</div>
+<div>&nbsp; File "/usr/lib/python3.7/site-packages/numpy/core/overrides.py=
+", line 7, in &lt;module&gt;</div>
+<div>&nbsp; &nbsp; from numpy.core._multiarray_umath import (</div>
+<div>ModuleNotFoundError: No module named 'numpy.core._multiarray_umath'</=
+div>
+<div>&nbsp;</div>
+<div>During handling of the above exception, another exception occurred:</=
+div>
+<div>&nbsp;</div>
+<div>Traceback (most recent call last):</div>
+<div>&nbsp; File "&lt;stdin&gt;", line 1, in &lt;module&gt;</div>
+<div>&nbsp; File "/usr/lib/python3.7/site-packages/cv2/__init__.py", line =
+8, in &lt;module&gt;</div>
+<div>&nbsp; &nbsp; import numpy</div>
+<div>&nbsp; File "/usr/lib/python3.7/site-packages/numpy/__init__.py", lin=
+e 142, in &lt;module&gt;</div>
+<div>&nbsp; &nbsp; from . import core</div>
+<div>&nbsp; File "/usr/lib/python3.7/site-packages/numpy/core/__init__.py"=
+, line 47, in &lt;module&gt;</div>
+<div>&nbsp; &nbsp; raise ImportError(msg)</div>
+<div>ImportError:&nbsp;</div>
+<div>&nbsp;</div>
+<div>IMPORTANT: PLEASE READ THIS FOR ADVICE ON HOW TO SOLVE THIS ISSUE!</d=
+iv>
+<div>&nbsp;</div>
+<div>Importing the numpy c-extensions failed.</div>
+<div>- Try uninstalling and reinstalling numpy.</div>
+<div>- If you have already done that, then:</div>
+<div>&nbsp; 1. Check that you expected to use Python3.7 from "/usr/bin/pyt=
+hon3",</div>
+<div>&nbsp; &nbsp; &nbsp;and that you have no directories in your PATH or =
+PYTHONPATH that can</div>
+<div>&nbsp; &nbsp; &nbsp;interfere with the Python and numpy version "1.17=
+.0" you're trying to use.</div>
+<div>&nbsp; 2. If (1) looks fine, you can open a new issue at</div>
+<div>&nbsp; &nbsp; &nbsp;https://github.com/numpy/numpy/issues.&nbsp; Plea=
+se include details on:</div>
+<div>&nbsp; &nbsp; &nbsp;- how you installed Python</div>
+<div>&nbsp; &nbsp; &nbsp;- how you installed numpy</div>
+<div>&nbsp; &nbsp; &nbsp;- your operating system</div>
+<div>&nbsp; &nbsp; &nbsp;- whether or not you have multiple versions of Py=
+thon installed</div>
+<div>&nbsp; &nbsp; &nbsp;- if you built from source, your compiler version=
+s and ideally a build log</div>
+<div>&nbsp;</div>
+<div>- If you're working with a numpy git repository, try `git clean -xdf`=
+</div>
+<div>&nbsp; (removes all files not under version control) and rebuild nump=
+y.</div>
+<div>&nbsp;</div>
+<div>Note: this error has many possible causes, so please don't comment on=
+</div>
+<div>an existing issue about this - open a new one instead.</div>
+<div>&nbsp;</div>
+<div>Original error was: No module named 'numpy.core._multiarray_umath'<br=
+ />----------<br /><br />Did any one encounter this issue?<br /><br />Thank=
+s,<br />Talel</div>
+
+--PGRI3vz8PD1tixJht6Kt--
