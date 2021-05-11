@@ -1,54 +1,54 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.1253.1620749450131518683
+ by mx.groups.io with SMTP id smtpd.web09.1148.1620749450780518106
  for <yocto@lists.yoctoproject.org>;
  Tue, 11 May 2021 09:10:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=fITSdI3n;
+ dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=IFT4UYbU;
  spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 092D738C066A
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 9564138C066A
 	for <yocto@yoctoproject.org>; Tue, 11 May 2021 16:10:50 +0000 (UTC)
-Received: by mail-wm1-f44.google.com with SMTP id y124-20020a1c32820000b029010c93864955so640071wmy.5
-        for <yocto@yoctoproject.org>; Tue, 11 May 2021 09:10:49 -0700 (PDT)
+Received: by mail-wr1-f47.google.com with SMTP id h4so20689285wrt.12
+        for <yocto@yoctoproject.org>; Tue, 11 May 2021 09:10:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=blade-group.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=G+CXYI911w0lyCgjqw9GHCWGM+XvG26CU/wJdwD2Asc=;
-        b=fITSdI3n1o1saqa+kpFQmEbJufiwEMgLkiuWeq08VCZEwM1bYK7n/yOt53WrIIjzyV
-         Nh9jfN4+VIRsiyye5OLny0ohQXP9Q5hSxjZUb0zJuCLe73K8eQvl5ifpW2z1L9eW7MyY
-         z+bLGH4x/R0DRYt2iVOwBesPLeWtNzYt6VN6GusXggIxJDrmfdRYawh9NT4UWGZEjnm2
-         iFHqcU+3GjJJsQTqfH3KlkZfZAe3F7d85cXtau4tf2bp3n/M4mt46BuU/Q1m06s+NGNP
-         C3JGlZlKo7VoBfOFJGGFPEns7rnmY4o3guZaadXfskIKrS4tdSFW1LMk4cxffCkCpGJ9
-         dm5Q==
+        bh=+NFyuJYgi+yFAv9p+Yri1SfBOErIb3nx3a/HU7w1Csk=;
+        b=IFT4UYbUYXvWvbP2CUTDG+MDVbPRYla9ePJ8XrK94queFDkgAPNKI1iMVMdmsnr+YV
+         sLEAQ57+5jw8pA6Zon1RdyLdKTvStC68Lg10A7XAOQ5I6iskDULk4X8t82qH4Mo2pTUW
+         tiPizknaHK18x9BSf0wyfFScQRvaPFBY7lJYcRVBTxywd0wOzqOk+aeF50sOpQz/bniX
+         QqlP5+LZ+Lr+LT2jcy/uczDyDyjmbhWwQPzUDEChcblmcGxleX5zAjUJOExEL2bqJb5p
+         fyYDV2dbSG6XP+aiusCTBMrjrmJeJsSUyXhUgGpObj6UXKBLHqc42cN5K8Laqi4F4Ib1
+         KLeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=G+CXYI911w0lyCgjqw9GHCWGM+XvG26CU/wJdwD2Asc=;
-        b=IRAdBV9yrOtMldCCmAVE1PjSoTIW6QyR+AXbJLw9D883Qt9Prga58uAEgubWsJCPEz
-         gZ7b8Cjst0mt/bt06ViCeyUGu2Aau0NZT1zyrlynywLgJwnv7+iLNe+FIsoso+96OjEL
-         SPzanX9yQ//oU4KykxfP2mFFtOPNP+nYQByx8h32Fg94Ix7iXO7NBHTtM2dwQesw5Epe
-         kn8fbJ2W5GjJzcgdWrpRY980ROAZOVM4RG5kUjz2oXz6LGGWwXl3sGb1DdEgPQPnr9kw
-         eyg5kIv+DrIQOV9pGnWTog8dnzZYGFcH3ZeEB3j3Rp3HuU70IxRa2HtL8VTvozLb0mY0
-         nxMg==
-X-Gm-Message-State: AOAM530R25GvrzG3NTcXyTo5AaKpiFibPUQbe5hp8zUb8j09FJRCfqtV
-	+/NNcTeiuXq2iBXyNYB2LD1yp84eGn3VlQ==
-X-Google-Smtp-Source: ABdhPJwXAcTSFW8iHZfSgD0QAgJv+WgGGypqftR+wDgyuz/0vLX6VN0FFBw3JLeM6/PD2a3oohpa/Q==
-X-Received: by 2002:a1c:5f0a:: with SMTP id t10mr6491951wmb.30.1620749448608;
-        Tue, 11 May 2021 09:10:48 -0700 (PDT)
+        bh=+NFyuJYgi+yFAv9p+Yri1SfBOErIb3nx3a/HU7w1Csk=;
+        b=IQ9p2gVvYIJrbLEh/L8bT3TO34Gb4l5bDKrx0ZSNxiy95bhOBMZZp2Q7fRC0Dmmwtw
+         tk27iwPtM6i5YlMlMHiPKCTyD4JoTPdm+OBUCd6olS4i3at3XgvIYzDkdetyTl4VjK+R
+         GBYeSL6zxpuVxl6Ga/izoETKcncdJHtsF8Amd6yxs0qfFWihLlC05VZh6LLQRC3J2ZHx
+         AN8Dm1d3TEZLXhSI6RIVllDfPQAw7YfrnyAC7/xGGxe9+0Dyewz764mwUpO2IxKW/hK0
+         j7VG5eaXiE5YqfCMQwQnisnhr+MPAbjM1m9O0tgd19r+xlD9B4Z6ABJcV5AF0Y22DWW9
+         DpLQ==
+X-Gm-Message-State: AOAM531FVkqVK7hh86L9wEBTwo7uWpQctJ/oI+4PAOZf8pn7mxHiyb8Q
+	2iZ8UFIlQXPAKKhBwnsLxZGh1TH2xvc5Zg==
+X-Google-Smtp-Source: ABdhPJz+sWe66gjV4uusKxjOBR7IbDr5x1fWQnZg45UcmoQyjAHoZuPBg1ThnC/yl4o+ok0kN6HA/w==
+X-Received: by 2002:a5d:6990:: with SMTP id g16mr3554541wru.64.1620749449300;
+        Tue, 11 May 2021 09:10:49 -0700 (PDT)
 Received: from blanquette.lan ([88.120.44.86])
-        by smtp.gmail.com with ESMTPSA id n123sm3929243wme.24.2021.05.11.09.10.47
+        by smtp.gmail.com with ESMTPSA id n123sm3929243wme.24.2021.05.11.09.10.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 May 2021 09:10:47 -0700 (PDT)
+        Tue, 11 May 2021 09:10:48 -0700 (PDT)
 From: "Yann Dirson" <yann.dirson@blade-group.com>
 X-Google-Original-From: yann@blade-group.com
 To: yocto@yoctoproject.org
 Cc: twoerner@gmail.com,
 	Yann Dirson <yann@blade-group.com>
-Subject: [meta-rockchip][PATCH v6 5/6] WIP Import rkwifibt-firmware from vendor's meta-rockchip
-Date: Tue, 11 May 2021 18:10:17 +0200
-Message-Id: <20210511161018.168172-6-yann@blade-group.com>
+Subject: [meta-rockchip][PATCH v6 6/6] WIP NanoPi-M4: activate BT support
+Date: Tue, 11 May 2021 18:10:18 +0200
+Message-Id: <20210511161018.168172-7-yann@blade-group.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210511161018.168172-1-yann@blade-group.com>
 References: <20210511161018.168172-1-yann@blade-group.com>
@@ -57,202 +57,54 @@ Content-Transfer-Encoding: quoted-printable
 
 From: Yann Dirson <yann@blade-group.com>
 
-As far as the AP6356S in NanoPi-m4 is concerned, the included wifi firmwa=
-re
-is for Rockchip's kernel tree, but for Bluetooth firmware this seems to b=
-e
-the proper "upstream" package.
+Take the firmware from rbwifibt, as a compatible one does not seem to
+be available in broadcom-bt-firmware.
 
-Changes from Rockchip's version:
-- use /lib/firmware/brcm/, not /system/etc/firmware/
-- include LICENSE.rockchip in package tree
-
-The chip powers on:
-
- [    4.695193] Bluetooth: hci0: BCM: chip id 101
- [    4.696142] Bluetooth: hci0: BCM: features 0x2f
- [    4.697882] Bluetooth: hci0: BCM4354A2
- [    4.698345] Bluetooth: hci0: BCM4356A2 (001.003.015) build 0000
- [    4.701994] Bluetooth: hci0: BCM4356A2 'brcm/BCM4356A2.hcd' Patch
- [    5.464146] Bluetooth: hci0: BCM4356 37.4MHz AMPAK AP6356-0055
- [    5.464813] Bluetooth: hci0: BCM4356A2 (001.003.015) build 0266
-
-It is able to pair with devices, but connect fails.
+Disclaimer: I have only been able to scan/pair with devices, I could
+not establish a connection.  However, with the same board I've had the
+same results with the board vendor's own FriendlyCore image.
 ---
- .../rkwifibt-firmware/files/LICENSE.rockchip  |  41 +++++++
- .../rkwifibt-firmware/rkwifibt-firmware.bb    | 110 ++++++++++++++++++
- 2 files changed, 151 insertions(+)
- create mode 100644 recipes-kernel/rkwifibt-firmware/files/LICENSE.rockch=
-ip
- create mode 100644 recipes-kernel/rkwifibt-firmware/rkwifibt-firmware.bb
+ conf/machine/include/nanopi-m4.inc                    | 6 +++++-
+ recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg | 6 ++++++
+ 2 files changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/recipes-kernel/rkwifibt-firmware/files/LICENSE.rockchip b/re=
-cipes-kernel/rkwifibt-firmware/files/LICENSE.rockchip
-new file mode 100644
-index 0000000..69b445b
---- /dev/null
-+++ b/recipes-kernel/rkwifibt-firmware/files/LICENSE.rockchip
-@@ -0,0 +1,41 @@
-+Copyright (c) 2020, Rockchip Electronics Co.Ltd
-+All rights reserved.
+diff --git a/conf/machine/include/nanopi-m4.inc b/conf/machine/include/na=
+nopi-m4.inc
+index cb27928..3bd5c97 100644
+--- a/conf/machine/include/nanopi-m4.inc
++++ b/conf/machine/include/nanopi-m4.inc
+@@ -3,7 +3,7 @@
+=20
+ require rk3399.inc
+=20
+-MACHINE_FEATURES +=3D "usbhost serial wifi"
++MACHINE_FEATURES +=3D "usbhost serial wifi bluetooth"
+=20
+ KMACHINE =3D "nanopi-m4"
+ KERNEL_DEVICETREE =3D "rockchip/rk3399-nanopi-m4.dtb"
+@@ -26,3 +26,7 @@ SERIAL_CONSOLES =3D "1500000;ttyS2"
+=20
+ # wifi firmware
+ MACHINE_EXTRA_RRECOMMENDS +=3D "linux-firmware-bcm4356"
 +
-+Redistribution.  Redistribution and use in binary form, without
-+modification, are permitted provided that the following conditions are
-+met:
++# bluetooth firmware
++#MACHINE_EXTRA_RRECOMMENDS +=3D "broadcom-bt-firmware-bcm4356a2"
++MACHINE_EXTRA_RRECOMMENDS +=3D "rkwifibt-firmware-ap6356-bt"
+diff --git a/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg b/reci=
+pes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg
+index d42b744..d45e879 100644
+--- a/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg
++++ b/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg
+@@ -14,3 +14,9 @@ CONFIG_REALTEK_PHY=3Dm
+ CONFIG_WLAN_VENDOR_BROADCOM=3Dy
+ CONFIG_BRCMFMAC=3Dm
+ CONFIG_BRCMFMAC_SDIO=3Dy
 +
-+* Redistributions must reproduce the above copyright notice and the
-+  following disclaimer in the documentation and/or other materials
-+  provided with the distribution.
-+
-+* Neither the name of Rockchip Electronics Co.Ltd, its products
-+  nor the names of its suppliers may be used to endorse or promote produ=
-cts
-+  derived from this Software without specific prior written permission.
-+
-+* No reverse engineering, decompilation, or disassembly of this software
-+  is permitted.
-+
-+Limited patent license. Rockchip Electronics Co.Ltd grants a world-wide,
-+royalty-free, non-exclusive license under patents it now or hereafter
-+owns or controls to make, have made, use, import, offer to sell and
-+sell ("Utilize") this software, but solely to the extent that any
-+such patent is necessary to Utilize the software alone, or in
-+combination with an operating system licensed under an approved Open
-+Source license as listed by the Open Source Initiative at
-+http://opensource.org/licenses.  The patent license shall not apply to
-+any other combinations which include this software.  No hardware per
-+se is licensed hereunder.
-+
-+DISCLAIMER.  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
-+CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
-+BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-+FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
-+COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
-+OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
-+TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
-+USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
-+DAMAGE.
-diff --git a/recipes-kernel/rkwifibt-firmware/rkwifibt-firmware.bb b/reci=
-pes-kernel/rkwifibt-firmware/rkwifibt-firmware.bb
-new file mode 100644
-index 0000000..870177b
---- /dev/null
-+++ b/recipes-kernel/rkwifibt-firmware/rkwifibt-firmware.bb
-@@ -0,0 +1,110 @@
-+# Copyright (C) 2019, Fuzhou Rockchip Electronics Co., Ltd
-+# Released under the MIT license (see COPYING.MIT for the terms)
-+
-+SUMMARY =3D "Rockchip WIFI/BT firmware files"
-+SECTION =3D "kernel"
-+
-+LICENSE =3D "LICENSE.rockchip"
-+LIC_FILES_CHKSUM =3D "file://LICENSE.rockchip;md5=3Dd63890e209bf038f44e7=
-08bbb13e4ed9"
-+
-+PV_append =3D "+git${SRCPV}"
-+
-+SRCREV =3D "af2cf8772078b0246ac805e7ed78a62cf8f21993"
-+SRC_URI =3D " \
-+  git://github.com/rockchip-linux/rkwifibt.git \
-+  file://LICENSE.rockchip;subdir=3Dgit \
-+"
-+#SRC_URI =3D "git://github.com/JeffyCN/mirrors.git;branch=3Drkwifibt;"
-+
-+S =3D "${WORKDIR}/git"
-+
-+inherit allarch deploy
-+
-+do_install() {
-+	install -d ${D}/lib/firmware/brcm/
-+	install -m 0644 ${S}/firmware/broadcom/all/*/* \
-+		-t ${D}/lib/firmware/brcm/
-+	install -d ${D}/lib/firmware/rtlbt/
-+	install -m 0644 ${S}/realtek/RTL*/* -t ${D}/lib/firmware/rtlbt/
-+}
-+
-+PACKAGES =3D+ " \
-+	${PN}-ap6181-wifi \
-+	${PN}-ap6212a1-wifi \
-+	${PN}-ap6212a1-bt \
-+	${PN}-ap6236-wifi \
-+	${PN}-ap6236-bt \
-+	${PN}-ap6255-wifi \
-+	${PN}-ap6255-bt \
-+	${PN}-ap6354-wifi \
-+	${PN}-ap6354-bt \
-+	${PN}-ap6356-wifi \
-+	${PN}-ap6356-bt \
-+	${PN}-rtl8723ds-bt \
-+"
-+
-+FILES_${PN}-ap6181-wifi =3D " \
-+	lib/firmware/brcm/fw_bcm40181a2_apsta.bin \
-+	lib/firmware/brcm/fw_bcm40181a2.bin \
-+	lib/firmware/brcm/nvram_ap6181.txt \
-+"
-+
-+FILES_${PN}-ap6212a1-wifi =3D " \
-+	lib/firmware/brcm/fw_bcm43438a1_apsta.bin \
-+	lib/firmware/brcm/fw_bcm43438a1.bin \
-+	lib/firmware/brcm/nvram_ap6212a.txt \
-+"
-+FILES_${PN}-ap6212a1-bt =3D " \
-+	lib/firmware/brcm/bcm43438a1.hcd \
-+"
-+
-+FILES_${PN}-ap6236-wifi =3D " \
-+	lib/firmware/brcm/fw_bcm43436b0_apsta.bin \
-+	lib/firmware/brcm/fw_bcm43436b0.bin \
-+	lib/firmware/brcm/nvram_ap6236.txt \
-+"
-+FILES_${PN}-ap6236-bt =3D " \
-+	lib/firmware/brcm/BCM4343B0.hcd \
-+"
-+
-+FILES_${PN}-ap6255-wifi =3D " \
-+	lib/firmware/brcm/fw_bcm43455c0_ag.bin \
-+	lib/firmware/brcm/nvram_ap6255.txt \
-+"
-+FILES_${PN}-ap6255-bt =3D " \
-+	lib/firmware/brcm/BCM4345C0_ap.hcd \
-+	lib/firmware/brcm/BCM4345C0.hcd \
-+"
-+
-+FILES_${PN}-ap6354-wifi =3D " \
-+	lib/firmware/brcm/fw_bcm4354a1_ag.bin \
-+	lib/firmware/brcm/nvram_ap6354.txt \
-+"
-+FILES_${PN}-ap6354-bt =3D " \
-+	lib/firmware/brcm/bcm4354a1.hcd \
-+"
-+
-+FILES_${PN}-ap6356-wifi =3D " \
-+	lib/firmware/brcm/fw_bcm4356a2_ag.bin \
-+	lib/firmware/brcm/nvram_ap6356.txt \
-+	lib/firmware/brcm/nvram_ap6356s.txt \
-+"
-+FILES_${PN}-ap6356-bt =3D " \
-+	lib/firmware/brcm/BCM4356A2.hcd \
-+"
-+
-+FILES_${PN}-rtl8723ds-bt =3D " \
-+	lib/firmware/rtlbt/rtl8723d_config \
-+	lib/firmware/rtlbt/rtl8723d_fw \
-+"
-+
-+FILES_${PN} =3D "*"
-+
-+# Make it depend on all of the split-out packages.
-+python () {
-+    pn =3D d.getVar('PN')
-+    firmware_pkgs =3D oe.utils.packages_filter_out_system(d)
-+    d.appendVar('RDEPENDS_' + pn, ' ' + ' '.join(firmware_pkgs))
-+}
-+
-+INSANE_SKIP_${PN} +=3D "arch"
++# AP6356S BT
++CONFIG_BT_HCIUART=3Dm
++CONFIG_SERIAL_DEV_BUS=3Dy
++CONFIG_SERIAL_DEV_CTRL_TTYPORT=3Dy
++CONFIG_BT_HCIUART_BCM=3Dy
 --=20
 2.30.2
 
