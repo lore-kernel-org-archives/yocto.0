@@ -1,42 +1,42 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.1210.1620749448141762985
+ by mx.groups.io with SMTP id smtpd.web12.1211.1620749448829584594
  for <yocto@lists.yoctoproject.org>;
  Tue, 11 May 2021 09:10:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=L76qQXaX;
+ dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=L0bivPjk;
  spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 0971738C083A
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id B9A1838C066A
 	for <yocto@yoctoproject.org>; Tue, 11 May 2021 16:10:48 +0000 (UTC)
-Received: by mail-wm1-f42.google.com with SMTP id s5-20020a7bc0c50000b0290147d0c21c51so1546355wmh.4
-        for <yocto@yoctoproject.org>; Tue, 11 May 2021 09:10:47 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id n17-20020a7bc5d10000b0290169edfadac9so1010974wmk.1
+        for <yocto@yoctoproject.org>; Tue, 11 May 2021 09:10:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=blade-group.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=hYhtN1Ry5a9b8zusDlOdcOAnGl9u5DdgpaYeKy0hdTM=;
-        b=L76qQXaXtrshz+WVuXjJaKzMkCWSNyu0yAwMGPCBw3HO1T5S68XVSmWBOTOGfLq8Y3
-         +5UR+v24geRUQP6p+xOykbf4uUErBrSXEPl9vQ9tpb/fzPvNH7Q9DPO75H/f670v51uT
-         OnPwrFBMXKyRwzLg8W4QLwa0dfJKQQd9RNBkv+vyAcXRD1t+cURESj4dI7dad9OrKt07
-         KL5U5L8fQoFVkZNqr9kxuUpu2Wq2HwdvDL+ue44QHH5QmbD3erTUxZbb+a2aROE6GoFo
-         oocqPJk1YPCpXAqDQZvEPAGnhYRGciJh5o53IH1FdLSygZ7AcKHvsNncrdg32LDufsFF
-         BWJg==
+        bh=CsRkqVPPGqy9pbpUYQUvS4h9wMfYq1tAQj75G/2Ss0A=;
+        b=L0bivPjkhaeAEgaLSwPetKdfkMExjlxV7fGbfrXZTxROqdgBnaPIz1RL1gPUcb0s06
+         rPurouQtcAZw5/lu3QElzDo9u8U7w3Fj/nD35EVrHskhFlTTiW1xxK69apxacF7EmI6F
+         ejtrLeos1DYNJRn17gswazd8Jp1wXNnrndWLhNSyK/mNXPJj8iFH3Awox6U7O6so7Nsg
+         uKBR9Wu51cQpHv+FA7pf9BYTa5y2OngUqO2/ff4iT4JWmhdcysV0QuNcVhrglNtK4PCK
+         gS6tKSiXU4/qtOFI69wXReC5naxC6SojkAxywoI+iUjA6wU0eeNOPtgRNxMTzhBXhdlT
+         Htog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=hYhtN1Ry5a9b8zusDlOdcOAnGl9u5DdgpaYeKy0hdTM=;
-        b=MEW30Nd9hWXewyYv8mCFAgGRFCP6u6OAbvn6aXJubI4f3CiwzwQlRgc1aveXmjYb1C
-         OLp0byQSZlvbPY/HADDqz3vu4ehLMTjGF2xKpcn//SRhfwTF/CwYfZ5vysOGzLzVF10N
-         9KNwPNLmhqk6nMoaVG7apW4yi6vBw1gawlgG1oPsEgofdl4D5Z0rvBThaerDZ2pue6VU
-         O+jsnK1dGY9yvyPw8zqpQTT/pOhsT21PHvt1SrqIHhXvWOU+BMAhqog5334XO/AGwDe7
-         fNuEi9s1YyWuZwMvE9l/g+lHkT4ENxVLPadMaRR2uIBkhlia8GgU+mA0fPgTHEP6if/9
-         HYUw==
-X-Gm-Message-State: AOAM530rdU2gkugw3ezpCJ1Nwjn1Vv0AwljGoLxKlJFizG0KU9/gkKqA
-	Hl5CfR8qlqaun8e/24n0cVn+RVrWLaDwBA==
-X-Google-Smtp-Source: ABdhPJxMY89nmdn7U39yT0ZUYmXrIgEt0nX6snnhonRBNVu1JDRj0/f30/kfJrECNEyDk26EZ1VR+w==
-X-Received: by 2002:a05:600c:4fd6:: with SMTP id o22mr11622764wmq.83.1620749446778;
-        Tue, 11 May 2021 09:10:46 -0700 (PDT)
+        bh=CsRkqVPPGqy9pbpUYQUvS4h9wMfYq1tAQj75G/2Ss0A=;
+        b=o832NIvJxh2H/w098yQTPHY5u6ZK191KGu9eZtr98vAeHqlZY0XYRWATVI6sy+c5Vy
+         vPPTmIMGNpFs+9rNOYfojK78QkCbm1OXZFhj8x6xO/pZ8cxe85xuRprZFe5nBWq3hGlw
+         8oMXXmj3JzR6p7jOdnAxEaVhy1MAXEl6y5rjnQcHB3mBL4fAKsRqPnNILyThkq4KfJLJ
+         RN9ceHQbXwS561URtM2sdW11NIS68QRBXMM1SW6aa/8ORIaJsrNPxzy1V1APBKA7KqLI
+         nYYtYOHiUWtIWWFOJTHn0BOMxgyrbJwTATyycRuMXjGWbyFlgOWAS9WfRXijbg+cxTNG
+         0rJg==
+X-Gm-Message-State: AOAM5332yAoVqw+QLMMVEGCAuN9t0s2geRA55ideTk5oYApoM2N3R92T
+	rrWHMdiM/AM/AOCos7NcHFeWNnce/QUoVw==
+X-Google-Smtp-Source: ABdhPJwL9Ln3n58Goay3eqGoYmo3PdTyDw6LV7MBtQ1027BQ2qM4pmJZaQm7FzyvKyfmLLvEdwb0ZA==
+X-Received: by 2002:a1c:228a:: with SMTP id i132mr33584222wmi.10.1620749447484;
+        Tue, 11 May 2021 09:10:47 -0700 (PDT)
 Received: from blanquette.lan ([88.120.44.86])
         by smtp.gmail.com with ESMTPSA id n123sm3929243wme.24.2021.05.11.09.10.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
@@ -46,9 +46,9 @@ X-Google-Original-From: yann@blade-group.com
 To: yocto@yoctoproject.org
 Cc: twoerner@gmail.com,
 	Yann Dirson <yann@blade-group.com>
-Subject: [meta-rockchip][PATCH v6 3/6] linux-firmware: import variables file for ap4356s firmware from armbian
-Date: Tue, 11 May 2021 18:10:15 +0200
-Message-Id: <20210511161018.168172-4-yann@blade-group.com>
+Subject: [meta-rockchip][PATCH v6 4/6] NanoPi-M4: activate Wifi support
+Date: Tue, 11 May 2021 18:10:16 +0200
+Message-Id: <20210511161018.168172-5-yann@blade-group.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210511161018.168172-1-yann@blade-group.com>
 References: <20210511161018.168172-1-yann@blade-group.com>
@@ -57,180 +57,46 @@ Content-Transfer-Encoding: quoted-printable
 
 From: Yann Dirson <yann@blade-group.com>
 
-This is required for wifi support on nanopi-m4 with kernel 5.10.
-
-This is dependant on poky commit commit 698fd81c551b52ff7f4a26e42d9acf9ad=
-4ce5639,
-"linux-firmware: include all relevant files in -bcm4356".
-
-This file was fetched from
-https://github.com/armbian/firmware/commit/9c800d7e16616dd30cfd854f26e563=
-fb675e3f8a
-
-Signed-off-by: Yann Dirson <yann@blade-group.com>
 ---
- .../files/brcmfmac4356-sdio.txt               | 126 ++++++++++++++++++
- .../linux-firmware/linux-firmware_%.bbappend  |  13 ++
- 2 files changed, 139 insertions(+)
- create mode 100644 recipes-kernel/linux-firmware/files/brcmfmac4356-sdio=
-.txt
- create mode 100644 recipes-kernel/linux-firmware/linux-firmware_%.bbappe=
-nd
+ conf/machine/include/nanopi-m4.inc                    | 5 ++++-
+ recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg | 5 +++++
+ 2 files changed, 9 insertions(+), 1 deletion(-)
 
-diff --git a/recipes-kernel/linux-firmware/files/brcmfmac4356-sdio.txt b/=
-recipes-kernel/linux-firmware/files/brcmfmac4356-sdio.txt
-new file mode 100644
-index 0000000..a8c1ff8
---- /dev/null
-+++ b/recipes-kernel/linux-firmware/files/brcmfmac4356-sdio.txt
-@@ -0,0 +1,126 @@
-+# Sample variables file for BCM94356Z NGFF 22x30mm iPA, iLNA board with =
-PCIe for production package
-+NVRAMRev=3D$Rev: 492104 $
-+#4356 chip =3D 4354 A2 chip
-+sromrev=3D11
-+boardrev=3D0x1102
-+boardtype=3D0x073e
-+boardflags=3D0x02400201
-+#0x2000 enable 2G spur WAR
-+boardflags2=3D0x00802000
-+boardflags3=3D0x0000000a
-+#boardflags3 0x00000100 /* to read swctrlmap from nvram*/
-+#define BFL3_5G_SPUR_WAR   0x00080000   /* enable spur WAR in 5G band */
-+#define BFL3_AvVim   0x40000000   /* load AvVim from nvram */
-+macaddr=3D00:90:4c:1a:10:01
-+ccode=3DX2
-+regrev=3D205
-+antswitch=3D0
-+pdgain5g=3D4
-+pdgain2g=3D4
-+tworangetssi2g=3D0
-+tworangetssi5g=3D0
-+paprdis=3D0
-+femctrl=3D10
-+vendid=3D0x14e4
-+devid=3D0x43ec
-+manfid=3D0x2d0
-+#prodid=3D0x052e
-+nocrc=3D1
-+otpimagesize=3D502
-+xtalfreq=3D37400
-+rxgains2gelnagaina0=3D0
-+rxgains2gtrisoa0=3D7
-+rxgains2gtrelnabypa0=3D0
-+rxgains5gelnagaina0=3D0
-+rxgains5gtrisoa0=3D11
-+rxgains5gtrelnabypa0=3D0
-+rxgains5gmelnagaina0=3D0
-+rxgains5gmtrisoa0=3D13
-+rxgains5gmtrelnabypa0=3D0
-+rxgains5ghelnagaina0=3D0
-+rxgains5ghtrisoa0=3D12
-+rxgains5ghtrelnabypa0=3D0
-+rxgains2gelnagaina1=3D0
-+rxgains2gtrisoa1=3D7
-+rxgains2gtrelnabypa1=3D0
-+rxgains5gelnagaina1=3D0
-+rxgains5gtrisoa1=3D10
-+rxgains5gtrelnabypa1=3D0
-+rxgains5gmelnagaina1=3D0
-+rxgains5gmtrisoa1=3D11
-+rxgains5gmtrelnabypa1=3D0
-+rxgains5ghelnagaina1=3D0
-+rxgains5ghtrisoa1=3D11
-+rxgains5ghtrelnabypa1=3D0
-+rxchain=3D3
-+txchain=3D3
-+aa2g=3D3
-+aa5g=3D3
-+agbg0=3D2
-+agbg1=3D2
-+aga0=3D2
-+aga1=3D2
-+tssipos2g=3D1
-+extpagain2g=3D2
-+tssipos5g=3D1
-+extpagain5g=3D2
-+tempthresh=3D255
-+tempoffset=3D255
-+rawtempsense=3D0x1ff
-+pa2ga0=3D-147,6192,-705
-+pa2ga1=3D-161,6041,-701
-+pa5ga0=3D-194,6069,-739,-188,6137,-743,-185,5931,-725,-171,5898,-715
-+pa5ga1=3D-190,6248,-757,-190,6275,-759,-190,6225,-757,-184,6131,-746
-+subband5gver=3D0x4
-+pdoffsetcckma0=3D0x4
-+pdoffsetcckma1=3D0x4
-+pdoffset40ma0=3D0x0000
-+pdoffset80ma0=3D0x0000
-+pdoffset40ma1=3D0x0000
-+pdoffset80ma1=3D0x0000
-+maxp2ga0=3D76
-+maxp5ga0=3D74,74,74,74
-+maxp2ga1=3D76
-+maxp5ga1=3D74,74,74,74
-+cckbw202gpo=3D0x0000
-+cckbw20ul2gpo=3D0x0000
-+mcsbw202gpo=3D0x99644422
-+mcsbw402gpo=3D0x99644422
-+dot11agofdmhrbw202gpo=3D0x6666
-+ofdmlrbw202gpo=3D0x0022
-+mcsbw205glpo=3D0x88766663
-+mcsbw405glpo=3D0x88666663
-+mcsbw805glpo=3D0xbb666665
-+mcsbw205gmpo=3D0xd8666663
-+mcsbw405gmpo=3D0x88666663
-+mcsbw805gmpo=3D0xcc666665
-+mcsbw205ghpo=3D0xdc666663
-+mcsbw405ghpo=3D0xaa666663
-+mcsbw805ghpo=3D0xdd666665
-+mcslr5glpo=3D0x0000
-+mcslr5gmpo=3D0x0000
-+mcslr5ghpo=3D0x0000
-+sb20in40hrpo=3D0x0
-+sb20in80and160hr5glpo=3D0x0
-+sb40and80hr5glpo=3D0x0
-+sb20in80and160hr5gmpo=3D0x0
-+sb40and80hr5gmpo=3D0x0
-+sb20in80and160hr5ghpo=3D0x0
-+sb40and80hr5ghpo=3D0x0
-+sb20in40lrpo=3D0x0
-+sb20in80and160lr5glpo=3D0x0
-+sb40and80lr5glpo=3D0x0
-+sb20in80and160lr5gmpo=3D0x0
-+sb40and80lr5gmpo=3D0x0
-+sb20in80and160lr5ghpo=3D0x0
-+sb40and80lr5ghpo=3D0x0
-+dot11agduphrpo=3D0x0
-+dot11agduplrpo=3D0x0
-+phycal_tempdelta=3D255
-+temps_period=3D15
-+temps_hysteresis=3D15
-+rssicorrnorm_c0=3D4,4
-+rssicorrnorm_c1=3D4,4
-+rssicorrnorm5g_c0=3D1,2,3,1,2,3,6,6,8,6,6,8
-+rssicorrnorm5g_c1=3D1,2,3,2,2,2,7,7,8,7,7,8
+diff --git a/conf/machine/include/nanopi-m4.inc b/conf/machine/include/na=
+nopi-m4.inc
+index a14b705..cb27928 100644
+--- a/conf/machine/include/nanopi-m4.inc
++++ b/conf/machine/include/nanopi-m4.inc
+@@ -3,7 +3,7 @@
+=20
+ require rk3399.inc
+=20
+-MACHINE_FEATURES +=3D "usbhost serial"
++MACHINE_FEATURES +=3D "usbhost serial wifi"
+=20
+ KMACHINE =3D "nanopi-m4"
+ KERNEL_DEVICETREE =3D "rockchip/rk3399-nanopi-m4.dtb"
+@@ -23,3 +23,6 @@ IMAGE_BOOT_FILES ?=3D "\
+     "
+=20
+ SERIAL_CONSOLES =3D "1500000;ttyS2"
 +
-diff --git a/recipes-kernel/linux-firmware/linux-firmware_%.bbappend b/re=
-cipes-kernel/linux-firmware/linux-firmware_%.bbappend
-new file mode 100644
-index 0000000..45ab311
---- /dev/null
-+++ b/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
-@@ -0,0 +1,13 @@
-+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
++# wifi firmware
++MACHINE_EXTRA_RRECOMMENDS +=3D "linux-firmware-bcm4356"
+diff --git a/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg b/reci=
+pes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg
+index f3a2abf..d42b744 100644
+--- a/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg
++++ b/recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg
+@@ -9,3 +9,8 @@ CONFIG_PWRSEQ_SIMPLE=3Dy
+=20
+ # RTL8211E
+ CONFIG_REALTEK_PHY=3Dm
 +
-+SRC_URI +=3D "\
-+ file://brcmfmac4356-sdio.txt \
-+"
-+
-+BRCMDIR =3D "${nonarch_base_libdir}/firmware/brcm"
-+
-+do_install_append() {
-+ install -m644 ${WORKDIR}/brcmfmac4356-sdio.txt ${D}${BRCMDIR}/
-+}
-+
-+FILES_${PN}-bcm4356 +=3D "${BRCMDIR}/brcmfmac4356-sdio.*"
++# AP6356S Wifi
++CONFIG_WLAN_VENDOR_BROADCOM=3Dy
++CONFIG_BRCMFMAC=3Dm
++CONFIG_BRCMFMAC_SDIO=3Dy
 --=20
 2.30.2
 
