@@ -1,350 +1,287 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.1999.1620844386165795982
+Received: from mx0a-00154904.pphosted.com (mx0a-00154904.pphosted.com [148.163.133.20])
+ by mx.groups.io with SMTP id smtpd.web10.2181.1620845325010501113
  for <yocto@lists.yoctoproject.org>;
- Wed, 12 May 2021 11:33:07 -0700
+ Wed, 12 May 2021 11:48:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@spinetix.com header.s=selector2 header.b=kO3GUt5V;
- spf=temperror, err=parse error for token &{10 18 spf.infomaniak.ch}: parse error for token &{10 18 relay.mail.infomaniak.ch}: temporary DNS error (domain: spinetix.com, ip: 198.145.29.25, mailfrom: diego.santacruz@spinetix.com)
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2043.outbound.protection.outlook.com [40.107.21.43])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 09D6138C086E
-	for <yocto@yoctoproject.org>; Wed, 12 May 2021 18:33:05 +0000 (UTC)
+ dkim=pass header.i=@dell.com header.s=smtpout1 header.b=ao1yaiCo;
+ spf=pass (domain: dell.com, ip: 148.163.133.20, mailfrom: george.kraft@dell.com)
+Received: from pps.filterd (m0170390.ppops.net [127.0.0.1])
+	by mx0a-00154904.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 14CIkwaA014446
+	for <yocto@lists.yoctoproject.org>; Wed, 12 May 2021 14:48:44 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dell.com; h=from : to : subject :
+ date : message-id : references : in-reply-to : content-type :
+ mime-version; s=smtpout1; bh=Qbb6uvIU0/Bt93s93gc4KiVloSaQHdNb+NuV9/MtT58=;
+ b=ao1yaiCo+OexBqz5O6p3kRVH4hfGrPWaX5M09qHcVd8Ix0orCi7kGj51CRSc5H2Rpcco
+ hGSIivoYweNBfao4NKgqkTjPFHMy9YHXbUuH0+sq9JcfNQ1BBmAB4e8hwErk2bxe3VWf
+ Fe1hzH6IR94XaSM856Dis99OG+olCyhCVoewpxkcLo1dawGK1zRAixphoBqSxTT+YJw9
+ J7CaQ0RfPGGmE4WEtyFahEDlZKr9+UzW7CDLShalXVlAp6+J94rrFcBTppDFbjRSqIb3
+ F3vP3QDz01fhpYQaQL976dWs9zMrIm0YgZMWvQjj6FVarKCeZawD7bnDg0zmWHU5iCjV UA== 
+Received: from mx0a-00154901.pphosted.com (mx0b-00154901.pphosted.com [67.231.157.37])
+	by mx0a-00154904.pphosted.com with ESMTP id 38gat7tb9p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+	for <yocto@lists.yoctoproject.org>; Wed, 12 May 2021 14:48:44 -0400
+Received: from pps.filterd (m0089484.ppops.net [127.0.0.1])
+	by mx0b-00154901.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 14CIjqgj122033
+	for <yocto@lists.yoctoproject.org>; Wed, 12 May 2021 14:48:43 -0400
+Received: from nam11-bn8-obe.outbound.protection.outlook.com (mail-bn8nam11lp2170.outbound.protection.outlook.com [104.47.58.170])
+	by mx0b-00154901.pphosted.com with ESMTP id 38ga00a1yf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
+	for <yocto@lists.yoctoproject.org>; Wed, 12 May 2021 14:48:43 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fU4kaaF7Ik7ugymkhg2cQyolsvNT72HIVlWLyrpQTBcL7obNacQ3Dix+dQkhrfg7W7mkDm5ba1/C/3dBGnaYGxCkSJmIOVeVnm8Cc9EPJMiFlz7f2U56EPZORifS/+NAn3eeaMPnnjtDjrzcey96eQZ1Xx100q4r7uKF7RhpLTcWjTKc36iSvYNbqj9zrj7Hn8ldh6NHECILAu/Dt51fmGrsXeXhXswBsWe0hq4bdj9evPtMQvBsPDRw+uLP2jzlMPwgnZsooVLtiZyhhCKMc8IcU9R1i567FYyx5h82yCdiPqFyP+jJ+zAd/qJTjD79Din2bNJVHreQ4QxWiJuUOA==
+ b=IlK8o7jTHMb14PdPQStTTJQtR7PicJzJyKKiNn+rzQuwvUwqoB2NPtYYo0+Y5Ci9GT+4jWHu5pC47T1Co92VPbj8x2jptqo6DYO0i+nysUcuLY3qMgbzkeBytYATBUjqvYhob5tdp2bPuFV5gBLPNRnGXfPLLjmDtGMwMrWCTn/gsWEu3bxYzmrdSabryuRvyc7Rl7BPhtV0tE8kQdYRaQn6o6KtrLLW3qD7EONyZ2P7jsHEs0PE9IESd7TwuOLIES5X6z++5A2ITREfB0f/evioNeKTj+xyvT4NJ62D0CAem0PvXh53C3HUHWhT4REJknVbRoYv53fPRDGeXA/ZaQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yitXNhNdizTJOhk9KT8mNX9qdlX8e+E86CPUvZvbDgc=;
- b=FgaWPOU4u7cFsgI6hH3r/gjpp91UPR0fTjuR62QwTN2scOTGAKpPaPqFG1wKPLt0dAq/21MJpq7mPhAb7FIDxBTE7VY6GKyJyCL/V61groo2Sz34caoxP6HGC/fHJeGdIx6v1KWWUt9RR8gjve0tvlCgITpu039Smgfzsd6zAv5GX4xj6690Qax60wzG51mxStt+2n7LfAvUOxVoN8To8vEj4/FfzdyzGyADu2FTmEgcml34F5fmItfW2fuPZBiPrCEtRPyvR+BUttSfRt/VJ0QW2s8m6aPobGW3sIVxci225wAf8juyrtkC5jV5W/F/cvbwEu8cSmSpR3O2ByLMyA==
+ bh=Qbb6uvIU0/Bt93s93gc4KiVloSaQHdNb+NuV9/MtT58=;
+ b=cix5xDi6aovT6OdFQms0mndAMVJlR3deSTsgcy5m/G99nl0O8gXM3Ofb3It0MFY6icZfK4NncnauwSn9d1JdWpun5A4cnMbenghljUeFUe45h9/6PqqAg6BNIRGD7OhMC5K/HIgMTaTUu3IIRi26i4l1Hf1SXrGKr2vCXlJtRBknV94OzVwyWolLzxIiBFcTAY6GHzCVPjfJr9wXcVLyrS3D6bwCdFSWxRVIQiQyp1J7KkYsyflv1UyaRRUgB1o99qmIK5TWo5HXZEo0P8pMh2jroNDD3FD/Ca7PnU6iQL/Wx6s+LYZG+AH1tQEUbGLoYETOmFaKyoe2E0+iYGNp4g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=spinetix.com; dmarc=pass action=none header.from=spinetix.com;
- dkim=pass header.d=spinetix.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=spinetix.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yitXNhNdizTJOhk9KT8mNX9qdlX8e+E86CPUvZvbDgc=;
- b=kO3GUt5VNoaLgabQfD9nMv1URCkEpQ2Dl/vRrGNS+FcvGvY62xszFxnX/3ou/3on7zcCOWBiq6Pvwq0UoMtOQLWpxD2srK/Xx00JZpxN7pdCUD6bqqqyusjkWf2v6DL41LW8LfltDQaL//c9xk8zeVXJSo6gYXjXFRO1n5fMKpU=
-Received: from DB6PR0102MB2630.eurprd01.prod.exchangelabs.com
- (2603:10a6:6:e::19) by DB7PR01MB5195.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:88::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.25; Wed, 12 May
- 2021 18:33:00 +0000
-Received: from DB6PR0102MB2630.eurprd01.prod.exchangelabs.com
- ([fe80::d4be:af2c:d43:bcc9]) by
- DB6PR0102MB2630.eurprd01.prod.exchangelabs.com ([fe80::d4be:af2c:d43:bcc9%7])
- with mapi id 15.20.4129.026; Wed, 12 May 2021 18:33:00 +0000
-From: "Diego Santa Cruz" <diego.santacruz@spinetix.com>
-To: "bruce.ashfield@gmail.com" <bruce.ashfield@gmail.com>, Yann Dirson
-	<yann.dirson@blade-group.com>
-CC: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [yocto] Understanding kernel patching in linux-yocto
-Thread-Topic: [yocto] Understanding kernel patching in linux-yocto
-Thread-Index: AQHXRx/6aWXKaeS9MkenZW9ZMoFHSqrf1J2AgAANaACAAAUIAIAAQmew
-Date: Wed, 12 May 2021 18:33:00 +0000
+ smtp.mailfrom=dell.com; dmarc=pass action=none header.from=dell.com;
+ dkim=pass header.d=dell.com; arc=none
+Received: from DM5PR19MB0971.namprd19.prod.outlook.com (2603:10b6:3:28::8) by
+ DS7PR19MB4423.namprd19.prod.outlook.com (2603:10b6:5:2c3::20) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4108.25; Wed, 12 May 2021 18:48:41 +0000
+Received: from DM5PR19MB0971.namprd19.prod.outlook.com
+ ([fe80::9478:418c:ef4:202f]) by DM5PR19MB0971.namprd19.prod.outlook.com
+ ([fe80::9478:418c:ef4:202f%7]) with mapi id 15.20.4129.025; Wed, 12 May 2021
+ 18:48:41 +0000
+From: "Kraft, George" <George.Kraft@Dell.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: FW: Yocto Distro Testing Plan
+Thread-Topic: Yocto Distro Testing Plan
+Thread-Index: AddHMvc6doGqUF1YQeqqZLnu9jcAawAK/Oyw
+Date: Wed, 12 May 2021 18:48:41 +0000
 Message-ID: 
- <DB6PR0102MB26307B2F14821701E2C5160988529@DB6PR0102MB2630.eurprd01.prod.exchangelabs.com>
+ <DM5PR19MB097158BF13A3CC6221C6F0C59C529@DM5PR19MB0971.namprd19.prod.outlook.com>
 References: 
- <CA+4=imafR6ncjuC9UOgR3PBPS7MR7H5fo42vn0M9tk7=GSFUoA@mail.gmail.com>
- <CADkTA4Ob2nEOxf12YDzkoxZkKQjuKDnOC=OVimpsZY3HWOCLyQ@mail.gmail.com>
- <CA+4=imZ61MKKSnGS6skanZCdDLHM6fD7FJdCxbKq9ghhb5tS1w@mail.gmail.com>
- <CADkTA4OHsJgTr+-0FNWr3OvAFpHZL=NWDZie5yjAm7rt0seTDQ@mail.gmail.com>
+ <DM5PR19MB09712B955360C0F22468EE999C529@DM5PR19MB0971.namprd19.prod.outlook.com>
 In-Reply-To: 
- <CADkTA4OHsJgTr+-0FNWr3OvAFpHZL=NWDZie5yjAm7rt0seTDQ@mail.gmail.com>
-Accept-Language: en-GB, fr-CH, fr-FR, en-US
+ <DM5PR19MB09712B955360C0F22468EE999C529@DM5PR19MB0971.namprd19.prod.outlook.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=spinetix.com;
-x-originating-ip: [178.198.240.12]
+msip_labels: MSIP_Label_17cb76b2-10b8-4fe1-93d4-2202842406cd_Enabled=True;
+ MSIP_Label_17cb76b2-10b8-4fe1-93d4-2202842406cd_SiteId=945c199a-83a2-4e80-9f8c-5a91be5752dd;
+ MSIP_Label_17cb76b2-10b8-4fe1-93d4-2202842406cd_Owner=George_Kraft@Dell.com;
+ MSIP_Label_17cb76b2-10b8-4fe1-93d4-2202842406cd_SetDate=2021-05-12T13:33:14.1277245Z;
+ MSIP_Label_17cb76b2-10b8-4fe1-93d4-2202842406cd_Name=External Public;
+ MSIP_Label_17cb76b2-10b8-4fe1-93d4-2202842406cd_Application=Microsoft Azure
+ Information Protection;
+ MSIP_Label_17cb76b2-10b8-4fe1-93d4-2202842406cd_ActionId=b8dfbdb3-f4c0-4b8f-bdb4-b4a447c3558e;
+ MSIP_Label_17cb76b2-10b8-4fe1-93d4-2202842406cd_Extended_MSFT_Method=Manual
+authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=Dell.com;
+x-originating-ip: [172.108.175.201]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7c59148b-ca98-4322-165f-08d915745f14
-x-ms-traffictypediagnostic: DB7PR01MB5195:
+x-ms-office365-filtering-correlation-id: 76c745f0-eb6f-4ec0-cf5a-08d915769032
+x-ms-traffictypediagnostic: DS7PR19MB4423:
 x-microsoft-antispam-prvs: 
- <DB7PR01MB51957295952D10A404C97D6788529@DB7PR01MB5195.eurprd01.prod.exchangelabs.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
+ <DS7PR19MB4423C5CF9EDD98A0DFF13A989C529@DS7PR19MB4423.namprd19.prod.outlook.com>
+x-exotenant: 2khUwGVqB6N9v58KS13ncyUmMJd8q4
+x-ms-oob-tlc-oobclassifiers: OLM:5236;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info: 
- ckmyn0fXVF8uGY6+mY3YKzgmybAUVSkl+siCbM464/g6BcEgOo2cZ0vlP8IlV4V8NexRMfxInoaP5eNwB4spUbgfM/dXOShbIblvsmBjJHpuFQikBShGmiPoJZYDIUf6/wn2IaWEHGp9HTGjcMbX4V1mFxJfbdkY3AYhyIO2MuuBxG9Lnq1gMBPiK6Xn26E88Eu8zcwNO7uKSQ/BcGCtYnfJxDP8+UshKAXz0v4XhhMppXiU/mXP4fJEQH1WvWvmrgADQU4V8998uTKlHl8wLl2/H8kMs7Z7PossBFsZdTgyDWILd0ePc7zcfYM7acv8CP4fue+3/J+ltYWH5wAxFms6BB++iotJvcWxhV5YRQLk1K/KLaRcMY3fIkcrJqob0LaUpDEMFcM6bS/zztxfJfoSmABiBOWgJHz8otUWNInpd9RzarhLWBg+DhSNISginPVGTpL/bUiXOJuynRxmPkvpSZrrOsE29bisW691sdHLsGww/lj/48i1EoS21fODXoSx7KxD2A8P2xIvQiKVMNiwfaOfcwQquiDtMTEoNra3NERE8iw9GJeW4CjXDvuFL/yIJjm8gVa5Ha3sNBWHnOoBaifBXmzEwNw4difu+hE=
+ 3bKGKx3tQ4eZP2r9Ns1vEGHmrvVtFZOfmSw4qqRcOV9D6p3ZDGLu2u/DicXXQYG2l46z+FoLvZnx4eCEKDd/1nd3EPs7RfPPIV0Cx0JV6Leu2dg1OiXixAlISQlDlxaJa0NYJE0jADBDGvtWnsSmO1cc9eKm7TQaDRzSXQ+M0hQ7Soe4YsGhH27eJf8uJ3w4SZG8PIMqmQS5Vbh66yRc7lVLigIhwPOFexUAMoySIffVcPkUmroQlC9RBsEb9TCs06EMvVmoZRit+McVCDAKUdeGgXM4qKFH1OE88ubsICFAhB8mr5t5Jg7mBLQv8ICaTbTAo0nQpJi9JV8tgogC5Iif00sR2yxpFU4e6P/Ew2UjND06h+GQnv5tRftjHkEpiZqh8Y4hZRwO+Mb0rQbgjw+cHP9i1ukD8hNQd08vqQU61VLGcqlpQI7694BqL5h4nUWTqUc5kAVwhHqSAekgf26sqKG0EZC5Qux+fTg0C+tWzxEf69q3lz4V5HcCs/zih942IQRFsdSSFW2H/THnmHWZxgntJRdAUoF0ur2aiA5KvmPEO1xYievS1p0RIng4BPAhIpdwTJlfbBMUPYpeBVjLn58QyR8XnHVCfVy0I9buMaY7YA2DtoPXTtJpN6zWWXz6rHcvWxfX/5qqMtopLmM40RcM694maTSl/EATPF6kqEj9ChP+HgbIB9lmneoD
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0102MB2630.eurprd01.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(136003)(396003)(376002)(366004)(39830400003)(76116006)(478600001)(26005)(6506007)(66556008)(83380400001)(64756008)(33656002)(66446008)(7696005)(66476007)(53546011)(66946007)(71200400001)(8936002)(30864003)(52536014)(110136005)(5660300002)(122000001)(2906002)(9686003)(186003)(86362001)(4326008)(316002)(38100700002)(8676002)(55016002);DIR:OUT;SFP:1101;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR19MB0971.namprd19.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(39860400002)(396003)(376002)(136003)(366004)(316002)(786003)(9686003)(8676002)(5660300002)(186003)(2940100002)(66946007)(53546011)(7696005)(33656002)(71200400001)(38100700002)(26005)(122000001)(4744005)(76116006)(6506007)(478600001)(21615005)(6916009)(86362001)(2906002)(166002)(66446008)(66476007)(52536014)(8936002)(66556008)(64756008)(55016002);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata: 
- =?iso-8859-1?Q?zfnT3fbvyCCm7FE67LUL/zddsrPQ1tOcS7Ay+J5vOVjmA4It8whtwmnFU1?=
- =?iso-8859-1?Q?A3ZNDkK9ziCoB0A0DdawOr5+lydSXTn7IbVjsJnoFqvjmhly77fQS8MzFp?=
- =?iso-8859-1?Q?R1tUj3AheikZk1fOykpUIzCJh+o6PmYdo2EXBfZE1hNkWexcw8mVErpkLe?=
- =?iso-8859-1?Q?kGtTa11WBdzZlXg43iygSwtB5bssvzJmw2ugDjMGrGwC3sCuciy9QMEMvv?=
- =?iso-8859-1?Q?/AdeQ1h5uV/uAPLsE3FTzJqFvW4DEZ87KU4GQdRh6rt20Pu58HWEacw21h?=
- =?iso-8859-1?Q?PzL7txcY7JjPBJ3Diw4A60yBZsZy2WBBxdAHbNlJrDrq36ucyYH3wBAjja?=
- =?iso-8859-1?Q?AhzgDOsOaZGvB6YWvWUJJTfzc8WIDu3Tn2rP4wHnwfotN6bLHS8Y1kN0I6?=
- =?iso-8859-1?Q?IBMRl3PeXveaFfLsXIkEkkujKa/jyFZTlv0KHZ87XDJ+8INZad3zSDasQR?=
- =?iso-8859-1?Q?FRQ4Fxpc/8m6J+D0Dc1hKxc/giZkiTWIKAA0WUQfTzaoAuB8wEseZaW8I5?=
- =?iso-8859-1?Q?iK2r3yrMVE/Zoo+7DJ5pMHpP22A1TMW3AjoFuZsA8RGgNU4FNcYTUicOR7?=
- =?iso-8859-1?Q?NwzQk8NWhmi5nb1nkUM0svPtO2iHmEsv8uEiLfR6yuzltcHu9BgEasDnT2?=
- =?iso-8859-1?Q?r/6DIq5GtZd4Bfoy2+vZXyQ89wfFxAKDmoQAGK9IML/eRlJou6wp7xw77w?=
- =?iso-8859-1?Q?Zv8XgNrufxbN0gBqCngnshGle9Q0N3SFY6oylbBmBpqx5fADtVraAWAaim?=
- =?iso-8859-1?Q?Wd0GeQyaF3KIuYK7RJ4o1HMkvq1+Mq6TU+iJuh8uDJCJnazS7ip+gLBF9/?=
- =?iso-8859-1?Q?k/8aUpa1eKaTAOWIN++mOHv3Q+6sKY5me1ZtQPzJe1Yl2Bv0Zy/iysf/2E?=
- =?iso-8859-1?Q?gNMcv5s8RFlfwVJuP/o4iv2d7BJ9K85xrEp4bGeSxxIm7fPp8dwCekVdfm?=
- =?iso-8859-1?Q?8qAklPh68YX52FjzOK9M0i2QVnLB8qMclJXulYzD/tZRY8o8f1dRFWtwut?=
- =?iso-8859-1?Q?Vn/vZG1GmDbmCTbVtQ10yfRV+KT0dZ2CiA0qalW6uQZHEteXbZTontJbV1?=
- =?iso-8859-1?Q?5C9qsqxZ25r3ExYBf0tMsEZcZrdmKFc67NvsRcVmjRX5PAhDdPX0jixTpd?=
- =?iso-8859-1?Q?uq5T920EWZdnGxaeG9P1t9IbkCYniswQ/KP33Resw71+mIALfadojttIeT?=
- =?iso-8859-1?Q?Y059qgz7YAKGyHkZ0O0Fu2e3aUi5Pb+fBQ3+5TXWLlJQ81z62mF93gsbMN?=
- =?iso-8859-1?Q?sVti7y6zUAwcIf+vWZEuqMsm9cnePG6RG1XItvpkoMo2+03r8gVWSArxWt?=
- =?iso-8859-1?Q?sD+EnDzjMrbe+qxCv518uwYTYl6DDKYefRTc/zuJkFg9VPel0PsBlxNLN8?=
- =?iso-8859-1?Q?gSeJblEnmX?=
+ =?us-ascii?Q?E/JHXZC1MIBTlefL4ZbRsm0s4JSNr8YXdCp+KA3HoCZywZBQt3KPAOg2Ozty?=
+ =?us-ascii?Q?W96ItFCWyRNW9BoUIr2CWFn2SPgDVPBvjnosFsOu9ry0vF9kSZkkyEpk2FNC?=
+ =?us-ascii?Q?XFpe/mU1e4YyFx8hOhhoOZHz9zbHpifeRzbLYTyKUzw/imEuoo8skMhGtCL4?=
+ =?us-ascii?Q?g4PVNjPymsLmjDLYq/DWzGEmdEEMTVmDFCdSemB17RFZnoF59y/5W9VSLEBj?=
+ =?us-ascii?Q?igLWsy2sb6hUSGH47cA/Jg4TayOQc3fFdQw7JC5UScZXDyaxsuTZ/thjr/MT?=
+ =?us-ascii?Q?DdXG/YHVa9SVHlFh0329WsnvuSda8Vsn5ihM7YRLki/3v6ZfvdxRDykggoK6?=
+ =?us-ascii?Q?Oevbwv77ouMRAe4Ow8FxSQihNWk5P/uo6YiPGq25V3oHkYWvOAKktm/L3oQM?=
+ =?us-ascii?Q?A2KwhR/68XYCCe1LZW/wAPb8+alQNt7F/PpiDetouc+nImnFiQwZSs3/AlwZ?=
+ =?us-ascii?Q?jp47V1s7OCfz/hHe3CDHEdfVR6eu9FjmPzeAy3fI+O+dVKfq2I+yzQ1+oFpV?=
+ =?us-ascii?Q?11BW2vw97zkG9Fras+oEvjaZGS4cn4fKtM+ZiYUmUEu4zyJOKsl3Lvj3B0TX?=
+ =?us-ascii?Q?KCMez2h0vbbanPV7fUMbg81aDVdLahZ3o6T6qVt2PlaFo9CaR01u0qqPJxFR?=
+ =?us-ascii?Q?w/U7rLv6ilJltNVXFR8CIZOXXfgGq3dAPB4ExExD6IuuAIlXJg92KQ70ZeLR?=
+ =?us-ascii?Q?j7M/iOSsDFJZgB0nVZIjAREQRKSx5T2g1hxgAISHkdSDyGjBPvuD8eZbvpBL?=
+ =?us-ascii?Q?RiPKhB2YA6erK20xGECgjHf7a9NexzEkSkaYFA2Hm6UQAfV2IUHjN6N7jeNl?=
+ =?us-ascii?Q?Q50ZbOnsJ6YuozJc4uxVBvv38FuQpnw1QRKjkgtK1SRRpCilUdHmCym0weVm?=
+ =?us-ascii?Q?uy/h/06xFqoJ49fA4nKQwoKZScKkwgRmGYJgxmJp34Ty1Nek0sCygJQEHWka?=
+ =?us-ascii?Q?+6jH5Te+qrrctH6o4kxlLbEOUSMB1YtuVUarZ5wQ2RwWJPadXc+uMx/1M32m?=
+ =?us-ascii?Q?n4GzRHmcncd6p82xpk14mprC8taRaMaFvqIRAlfcMpYtEQ8+VTXHsukS/Phu?=
+ =?us-ascii?Q?quPk5YzVikNODTtBaVNb6+MVjbWuo2qLVuXvii1w8JHMtwLnfEzEaAiBdbqC?=
+ =?us-ascii?Q?KNBin9U9MtdglS6q56kEECNXobkQLzKQqiQiOjtwbk1PVnww6UtA6n5ahVrO?=
+ =?us-ascii?Q?bIKL/o3uWHoqV2lIWEw/ZxBJuNzP0L8SOMDOYt7jWLmK2Civ1eeXgrrpEpVG?=
+ =?us-ascii?Q?YQ31V7TO3TcxvvufIshtsDqoXTH5vIc1mo0HWFTofKF4edWXPp3cBMbjDm7u?=
+ =?us-ascii?Q?ODPJ6zYH4joDLeTYJVbcn8C1?=
 x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-X-OriginatorOrg: spinetix.com
+X-OriginatorOrg: Dell.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR0102MB2630.eurprd01.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7c59148b-ca98-4322-165f-08d915745f14
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 May 2021 18:33:00.3708
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR19MB0971.namprd19.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 76c745f0-eb6f-4ec0-cf5a-08d915769032
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 May 2021 18:48:41.8349
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 5f4034fa-ed2d-4840-a93f-acb1e9633b93
+X-MS-Exchange-CrossTenant-id: 945c199a-83a2-4e80-9f8c-5a91be5752dd
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jB8bnc2YontSjM6nY6WqIKf74SjiZB2lCRSTRgBSX0kf+7YSwNrec9oqcm2zEC4omunQzqkfWRaZ7Yrh+QmKt5nxsv7Q3nuKdHbsPVrgVE4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR01MB5195
+X-MS-Exchange-CrossTenant-userprincipalname: 190pJcoet9JP9EE+WyYO8a9fCqlryw4eujn55AbtT7gkJNeATSO3tlTXELBT4TUtcz+JdfarhAdgqVhgK0iMOQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR19MB4423
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-05-12_09:2021-05-12,2021-05-12 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ clxscore=1011 malwarescore=0 mlxscore=0 adultscore=0 mlxlogscore=999
+ suspectscore=0 impostorscore=0 spamscore=0 phishscore=0 bulkscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2104190000 definitions=main-2105120121
+X-Proofpoint-ORIG-GUID: ubDRMlP6QIBhEW9I7yZZnJElemFWULtU
+X-Proofpoint-GUID: ubDRMlP6QIBhEW9I7yZZnJElemFWULtU
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999 spamscore=0
+ malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 adultscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2104190000 definitions=main-2105120121
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: multipart/alternative;
+	boundary="_000_DM5PR19MB097158BF13A3CC6221C6F0C59C529DM5PR19MB0971namp_"
+
+--_000_DM5PR19MB097158BF13A3CC6221C6F0C59C529DM5PR19MB0971namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-> -----Original Message-----
-> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On
-> Behalf Of Bruce Ashfield via lists.yoctoproject.org
-> Sent: 12 May 2021 16:25
-> To: Yann Dirson <yann.dirson@blade-group.com>
-> Cc: Yocto discussion list <yocto@yoctoproject.org>
-> Subject: Re: [yocto] Understanding kernel patching in linux-yocto
->=20
-> On Wed, May 12, 2021 at 10:07 AM Yann Dirson
-> <yann.dirson@blade-group.com> wrote:
-> >
-> > Thanks for those clarifications!
-> >
-> > Some additional questions below
-> >
-> > Le mer. 12 mai 2021 =E0 15:19, Bruce Ashfield <bruce.ashfield@gmail.com=
-> a
-> =E9crit :
-> > >
-> > > On Wed, May 12, 2021 at 7:14 AM Yann Dirson <yann.dirson@blade-
-> group.com> wrote:
-> > > >
-> > > > I am currently working on a kmeta BSP for the rockchip-based NanoPI
-> M4
-> > > > [1], and I'm wondering how I should be providing kernel patches, as
-> > > > just add ing "patch" directives in the .scc does not get them appli=
-ed
-> > > > unless the particular .scc gets included in KERNEL_FEATURES (see [2=
-]).
-> > > >
-> > > > From an old thread [3] I understand that the patches from the stand=
-ard
-> > > > kmeta snippets are already applied to the tree, and that to get the
-> > > > patches from my BSP I'd need to reference it explicitly in SRC_URI
-> > > > (along with using "nopatch" in the right places to avoid the
-> > > > already-applied patches to get applied twice).
-> > > >
-> > > > I have the feeling that I'm lacking the rationale behind this, and
-> > > > would need to understand this better to make things right in this B=
-SP.
-> > > > Especially:
-> > > > - at first sight, having the patches both applied to linux-yocto an=
-d
-> > > > referenced in yocto-kernel-cache just to be skipped on parsing look=
-s
-> > > > like both information duplication and parsing of unused lines
-> > >
-> > > At least some of this is mentioned in the advanced section of the
-> > > kernel-dev manual, but I can summarize/reword things here, and
-> > > I'm also doing a presentation related to this in the Yocto summit at
-> > > the end of this month.
-> > >
-> > > The big thing to remember, is that the configuration and changes
-> > > you see in that repository, are not only for yocto purposes. The
-> > > concepts and structure pre-date when they were first brought in
-> > > to generate reference kernels over 10 years ago (the implementation
-> > > has changed, but the concepts are still the same). To this day,
-> > > there still are cases that they are used with just a kernel tree and
-> > > cross toolchain.
-> > >
-> > > With that in mind, the meta-data is used for many different things
-> > >
-> > >  - It organizes patches / features and their configuration into
-> > >    reusable blocks. At the same time documenting the changes
-> > >    that we have applied to a tree
-> > >  - It makes those patches and configuration blocks available to
-> > >    other kernel trees (for whatever reason).
-> > >  - It configures the tree during the build process, reusing both
-> > >    configuration only and patch + configuration blocks
-> >
-> > >  - It is used to generate a history clean tree from scratch for
-> > >    each new supported kernel. Which is what I do when creating
-> > >    new linux-yocto-dev references, and the new <version>/standard/*
-> > >    branches in linux-yocto.
-> >
-> > I'd think (and I take your further remarks about workflow as confirming
-> > this), that when upgrading the kernel the best tool would be git-rebase=
-.
-> > Then, regenerating the linux-yocto branches would only be a akin to a
-> > check that the metadata is in sync with the new tree you rebased ?
->=20
-> The best of anything is a matter of opinion. I heavily use git-rebase and
-> sure, you could use it to do something similar here. But the result is
-> the same. There's still heavy use of quilt in kernel circles. Workflows
-> don't change easily, and as long as they work for the maintainer, they
-> tend to stay put. Asking someone to change their workflow, rarely goes
-> over well.
->=20
-> >
-> > If that conclusion is correct, wouldn't it be possible to avoid using t=
-he
-> > linux-yocto branches directly, and let all the patches be applied at
-> > do_patch time ?  That would be much more similar to the standard
-> > package workflow (and thus lower the barrier for approaching the
-> > kernel packages).
->=20
-> That's something we did in the past, and sure, you can do anything.
-> But patching hundreds of changes at build time means constant
-> failures .. again, I've been there and done that. We use similar patches
-> in many different contexts and optional stackings. You simply cannot
-> maintain them and stay sane by whacking patches onto the SRC_URI.
-> The last impression you want when someone builds your kernel is that
-> they can't even get past the patch phase.  So that's a hard no, to how
-> the reference kernels are maintained (and that hard no has been around
-> for 11 years now).
->=20
-> Also, we maintain contributed reference BSPs in that same tree, that
-> are yanking in SDKs from vendors, etc, they are in the thousands of
-> patches. So you need the tree and the BSP branches to support that.
->=20
-> >
-> >
-> > > So why not just drop all the patches in the SRC_URI ? Been there,
-> > > done that. It fails spectacularly when you are managing queues of
-> > > hundreds of potentially conflicting patches (rt, yaffs, aufs, ... etc=
-, etc)
-> > > and then attempting to constantly merge -stable and other kernel
-> > > trees into the repository. git is the tool for managing that, not sta=
-cks
-> > > of patches. You spend your entire life fixing patch errors and refres=
-hing
-> > > fuzz (again, been there, done that).
-> > >
-> > > So why not just keep a history and constantly merge new versions
-> > > into it ? Been there, done that. You end up with an absolute garbage
-> > > history of octopus merges and changes that are completely hidden,
-> > > non-obvious and useless for collaborating with other kernel projects.
-> > > Try merging a new kernel version into those same big features, it's
-> > > nearly impossible and you have a franken-kernel that you end up tryin=
-g
-> > > to support and fix yourself. All the bugs are yours and yours alone.
-> > >
-> > > So that's why there's a repository that tracks the patches and the
-> > > configuration and is used for multiple purposes. Keeping the patches
-> > > and config blocks separate would just lead to even more errors as
-> > > I update one and forget the other, etc, etc. There have been various
-> > > incarnations of the tools that also did different things with the pat=
-ches,
-> > > and they weren't skipped, but detected as applied or not on-the-fly,
-> > > so there are other historical reasons for the structure as well.
-> > >
-> > > > - kernel-yocto.bbclass does its own generic job of locating a prope=
-r
-> > > > BSP using the KMACHINE/KTYPE/KARCH tags in BSP, it looks like
-> > > > specifying a specific BSP file would just defeat of this: how shoul=
-d I
-> > > > deal with this case where I'm providing both "standard" and "tiny"
-> > > > KTYPE's ?
-> > >
-> > > I'm not quite following the question here, so I can try to answer bad=
-ly
-> > > and you can clarify based on my terrible answer.
-> >
-> > The answer is indeed quite useful for a question that may not be that c=
-lear
-> :)
-> >
-> > > The tools can locate your "bsp entry point" / "bsp definition" in
-> > > your layer. Either provided by something on the SRC_URI or something
-> > > in a kmeta repository (also specified on the SRC_URI).  Since
-> > > both of those are added to the search paths they check. Those
-> > > are just .scc files with a specified KMACHINE/KTYPE that match, and
-> > > as you could guess from my first term I used, they are the entry
-> > > point into building the configuration queue.
-> > >
-> > > That's where you start inheriting the base configuration(s) and inclu=
-ding
-> > > feature blocks, etc. Those definitions are exactly the same as the
-> > > internal ones in the kernel-cache repository. By default, that locate=
-d
-> > > BSP definition is excluded from inheriting patches .. because as you
-> > > noted, it would start trying to re-apply changes to the tree. It is t=
-here
-> > > to get the configuration blocks, patches come in via other feature
-> > > blocks or directly on the SRC_URI.
-> > >
-> > > So in your case, just provide the two .scc file with the proper
-> > > defines so they can be located, and you'll get the proper branch
-> > > located in the tree, and the base configurations picked up for those
-> > > kernel types.  You'd supply your BSP specific config by making
-> > > a common file and including it in both definitions, and patches by
-> > > a KERNEL_FEATURE variable or by specifying them directly on
-> > > the SRC_URI (via .patch or via a different .scc file).
-> >
-> > That's what I was experimenting with at the same time, and something li=
-ke
-> > this does indeed produce the expected output:
-> >
-> > KERNEL_FEATURES_append =3D " bsp/rockchip/nanopi-m4-
-> ${LINUX_KERNEL_TYPE}.scc"
-> >
-> > However, it seems confusing, as that .scc is precisely the one that's
-> > already selected
-> > and used for the .cfg: it really looks like we're overriding the
-> > default "bsp entry point"
-> > with a value that's already the default, but with a different result.
->=20
-> Yes, that's one way that we've structured things as the tools evolved
-> to balance external BSP definitions being able to pull in the base
-> configuration but not patches. There are two runs of the tools, one looks
-> for patches (and excludes that bsp entry point) and one that builds the
-> config.queue (and uses the entry point). That's the balance of the multi
-> use nature of the configuration blocks. I could bury something deeper
-> in the tools to hide a bit of that, but it will break uses cases and time
-> has shown that it is brittle.
->=20
-> >
-> > So my gut feeling ATM is that everything should be much more clear if
-> > specifying the default entry point would have the same effect as leavin=
-g
-> > the default be used, ie. having patches be applied in both cases.
-> >
->=20
-> The variable KMETA_EXTERNAL_BSPS was created as a knob to
-> allow an external definition to both be used for patches AND configuratio=
-n.
-> But that is for fully exernal BSPs that do not include the base kernel
-> meta-data, since once you turn that on, you are getting all the patches
-> and all the configuration .. and will have the patches applied twice.
->=20
+Could someone point me to a wiki on how yocto testing/QA/conformance is don=
+e?   The Distro Testing Plan<https://wiki.yoctoproject.org/wiki/Distro_Test=
+ing_Plan#QA_Responsible> wiki seems outdated, and my inquiry to Jose bounce=
+d.
 
-For what its worth I am using KMETA_EXTERNAL_BSPS in a BSP definition file =
-in an in-recipe kernel metadata tree (but I guess it could be off recipe to=
-o), and that metadata tree includes scc files from yocto-kernel-cache, the =
-trick is to add the nopatch tag when including scc files from yocto-kernel-=
-cache for which do not want or need the patches.
+Thanks,
 
-With KMETA_EXTERNAL_BSPS was added I switched to that and removed the equiv=
-alent of your
-KERNEL_FEATURES_append =3D " bsp/rockchip/nanopi-m4-${LINUX_KERNEL_TYPE}.sc=
-c"
-that is kind of confusing and includes things twice.
+George (gk4)
 
---=20
-Diego Santa Cruz, PhD
-Technology Architect
-spinetix.com
+From: Kraft, George
+Sent: Wednesday, May 12, 2021 8:34 AM
+To: jose.XXXX
+Subject: Yocto Distro Testing Plan
+
+Jose,
+
+I've been reading the Distro Testing Plan<https://wiki.yoctoproject.org/wik=
+i/Distro_Testing_Plan#QA_Responsible>, and I tried following the instructio=
+ns to git clone git.yoctoproject.org/git/yocto-autobuilder, but that repo i=
+s empty with just a README.   Per the README, when I tried to git clone yoc=
+to-autobuilder2 or yocto-autobuilder-helper then the connections timed out =
+for each.
+
+Can you tell me what the state of testing is for Yocto?
+
+Thanks,
+
+George Kraft<mailto:George_Kraft@dell.com>, P.E.<https://pels.texas.gov/sof=
+tware.html>
+Distinguished Member Technical Staff<https://inside.dell.com/videos/41413>
+Dell EMC, ISG Embedded Systems Engineering
 
 
+--_000_DM5PR19MB097158BF13A3CC6221C6F0C59C529DM5PR19MB0971namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Could someone point me to a wiki on how yocto testin=
+g/QA/conformance is done?&nbsp;&nbsp; The
+<a href=3D"https://wiki.yoctoproject.org/wiki/Distro_Testing_Plan#QA_Respon=
+sible">Distro Testing Plan</a> wiki seems outdated, and my inquiry to Jose =
+bounced.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">George (gk4)<o:p></o:p></p>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b>From:</b> Kraft, George <br>
+<b>Sent:</b> Wednesday, May 12, 2021 8:34 AM<br>
+<b>To:</b> jose.XXXX<br>
+<b>Subject:</b> Yocto Distro Testing Plan<o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Jose,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;ve been reading the <a href=3D"https://wiki.=
+yoctoproject.org/wiki/Distro_Testing_Plan#QA_Responsible">
+Distro Testing Plan</a>, and I tried following the instructions to git clon=
+e git.yoctoproject.org/git/yocto-autobuilder, but that repo is empty with j=
+ust a README.&nbsp;&nbsp; Per the README, when I tried to git clone yocto-a=
+utobuilder2 or yocto-autobuilder-helper then
+ the connections timed out for each.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Can you tell me what the state of testing is for Yoc=
+to?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><b><a href=3D"mailto:George_Kraft@dell.com"><span st=
+yle=3D"text-decoration:none">George Kraft</span></a>,
+<a href=3D"https://pels.texas.gov/software.html"><span style=3D"text-decora=
+tion:none">P.E.</span></a><o:p></o:p></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Arial&quot;,sans-serif;color:#538135"><a href=3D"https://inside.dell.com/vi=
+deos/41413"><span style=3D"color:#538135;text-decoration:none">Distinguishe=
+d Member Technical Staff</span></a></span><span style=3D"color:#538135"><o:=
+p></o:p></span></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Arial&quot;,sans-serif;color:#007CB9">Dell
+</span></b><b><span style=3D"font-size:8.0pt;font-family:&quot;Arial&quot;,=
+sans-serif;color:gray">EMC</span></b><span style=3D"font-size:8.0pt;font-fa=
+mily:&quot;Arial&quot;,sans-serif;color:black">,</span><span style=3D"font-=
+size:8.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#1F497D">
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Arial&quot;,sans=
+-serif">ISG Embedded Systems Engineering</span></b><span style=3D"font-size=
+:8.0pt;font-family:&quot;Arial&quot;,sans-serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_DM5PR19MB097158BF13A3CC6221C6F0C59C529DM5PR19MB0971namp_--
