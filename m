@@ -1,74 +1,72 @@
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
- by mx.groups.io with SMTP id smtpd.web09.3663.1620851535343886790
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web11.5703.1620860838365180714
  for <yocto@lists.yoctoproject.org>;
- Wed, 12 May 2021 13:32:15 -0700
+ Wed, 12 May 2021 16:07:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=L1Bc7aWN;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.53, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f53.google.com with SMTP id p14-20020a05600c358eb029015c01f207d7so3652680wmq.5
-        for <yocto@lists.yoctoproject.org>; Wed, 12 May 2021 13:32:15 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=XDr4hnC6;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: raj.khem@gmail.com)
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 9E62A38C0652
+	for <yocto@yoctoproject.org>; Wed, 12 May 2021 23:07:17 +0000 (UTC)
+Received: by mail-qk1-f170.google.com with SMTP id l129so23955087qke.8
+        for <yocto@yoctoproject.org>; Wed, 12 May 2021 16:07:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=+VMrVzlLCpqefNwjrf+VtoDfKs58EoaWsRXwl4CIhxA=;
-        b=L1Bc7aWNFIMrON7E8TnlcCKPMqpnZ6PlT5mZFad7gOwzTmKb7L3xcqTxxryNSK7cK8
-         ksmubLPLIN3IfFuQs/LT/bn2wTm2cwbrcbuPicsBN+dqmwm9yZpJp77Qbs/XAMDFqQz5
-         bX6P2hLV5wbr4IRW1kxW7K/oJaTwkcVyhSoB0=
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=3onnCYDYC49w8Ska8bwsWHK018qpf2tjIz3th8UYKvY=;
+        b=XDr4hnC6SFTw6MOlA21dJKUGHxVJ+Xa/xfN5gcb7wH/op3BqunLX0VEsExUs4GAvAN
+         a7f40e1zBJeYh9qDZ8z2uFoBn0c1nB6KV45Q+J6hdY3lferFxRdM/PcSrAClOAazDjdQ
+         CIipWA/5eLGNbAHK/bFS0bxyqwsIPK9io4yKeg0ZOVmcHONzIOnPS2ITz3n5H5byNFS7
+         d/LBZwwAx7IUJtYeaQKpXzmbdibz4+1z3J3gDIe4tvwZFrDIKsg3Fz4PzKNaZgvGuxTT
+         uU+AvHggb3zyHYkekcLga9FDG5ZcKe4mGulRNw/IZBxaIBQUq2erztBBzsZjLfxyh0tS
+         8kjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=+VMrVzlLCpqefNwjrf+VtoDfKs58EoaWsRXwl4CIhxA=;
-        b=s7+8tpsthcCVZw0HopNdTNdb2J9OOS/6CLBFQ7nu+UxasUhXajYYYRNPo9DrM5/uom
-         9C67hqm8wUtstJF4S/GwSEyudLHo5a+iyB7fhifnnAwJZFF72zcu3vFNTq6Z0Sf5DPzv
-         18L+jOV5ZeshaXjP9PoCuS3h8gNQVx0F4odDDRLDKcX6wBPD+PvtoOzt0pjHhldnazn5
-         9bVMIlcQMCpMTzM8vB4lJSeqpT9+5AjlecJ3+Uj6yjAfU1PFmAw3JTVSDw3Cv7OuyCYh
-         AvJtAabYe+NGpymUo6HFjFCjx60Z2celaM4Cmn8FrP+Mhg5OWcMhc5OxuPUccCiNBoFs
-         pxiQ==
-X-Gm-Message-State: AOAM532ALxPiA3ixLtlV2gHVioGl6Dl37y4FjI0U6a2zdNCwNzx9eedQ
-	E+2KjCRYR7/2ZBFFhX7IEZAynQ==
-X-Google-Smtp-Source: ABdhPJxNdiTKCayO05LaAK94r+x2m1ZgklZLdnXHBpZxn9tVTxbp3sWJWg9ZxhaNbCW11WgGYyd9Hw==
-X-Received: by 2002:a1c:dd46:: with SMTP id u67mr40935176wmg.73.1620851533900;
-        Wed, 12 May 2021 13:32:13 -0700 (PDT)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from ?IPv6:2001:8b0:aba:5f3c:5feb:6ce7:ad36:99e2? ([2001:8b0:aba:5f3c:5feb:6ce7:ad36:99e2])
-        by smtp.gmail.com with ESMTPSA id e10sm801772wrw.20.2021.05.12.13.32.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 May 2021 13:32:13 -0700 (PDT)
-Message-ID: <f8c2fa9ccecfa4852f26311dceb8b24163986428.camel@linuxfoundation.org>
-Subject: Re: [yocto] FW: Yocto Distro Testing Plan
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: "Kraft, George" <George.Kraft@Dell.com>, "yocto@lists.yoctoproject.org"
-	 <yocto@lists.yoctoproject.org>
-Date: Wed, 12 May 2021 21:32:10 +0100
-In-Reply-To: <DM5PR19MB097158BF13A3CC6221C6F0C59C529@DM5PR19MB0971.namprd19.prod.outlook.com>
-References: 
-	<DM5PR19MB09712B955360C0F22468EE999C529@DM5PR19MB0971.namprd19.prod.outlook.com>
-	 <DM5PR19MB097158BF13A3CC6221C6F0C59C529@DM5PR19MB0971.namprd19.prod.outlook.com>
-User-Agent: Evolution 3.40.0-1 
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3onnCYDYC49w8Ska8bwsWHK018qpf2tjIz3th8UYKvY=;
+        b=JVYOpx05lP0oNhXUQA0I2ln6fRjpRpJZdkGo/ZPYTU1cxDihf10nth4+w5LVCtsY54
+         2i+y7aU8AmJHPBDtG0kNMUdJQfM6kaCV+Jlqk+P0RjnAr+z6tiUvLZDMPQUxViVLYQ7r
+         dfAhjP8RjyFg8IidmDm8tfwy+n383W8jiy13N92uOueGgrasf4AhjMsxQE7AeEUtuAYg
+         f1v15jYRsaV5OM7RJvRb/Wu6A8QhQ8P/FBldhQQTyuHaS/cc4LiqtFt+xQGEMhdEOrXu
+         oE1Rr/qxhv4VHoYflq9oDvSKOdGrmv1DPJWKEGKzCEyygB9jkc3I2zJwjsHb0x3G6ju6
+         aVLg==
+X-Gm-Message-State: AOAM530Z4yy5UIvA86uJPmt5GPTv9OhtM154OS5baxWtU44T0HQs8Gia
+	x6NowjoTfXCXPGPP5kn5yMNKol2gaaxVcLY78lI=
+X-Google-Smtp-Source: ABdhPJx7733YPbVsu8GBZ1bnBSh5Bn0E0r2ssL1uj0rTFgnkPAznp9jPDN2zz6+aQM+mOBB19yqqD5o+kl0mVENZMmA=
+X-Received: by 2002:a37:994:: with SMTP id 142mr35431391qkj.119.1620860836482;
+ Wed, 12 May 2021 16:07:16 -0700 (PDT)
 MIME-Version: 1.0
+References: <CAF2aNtzrjYOUYdevN83fJ-Dn6Jjp1SsNh1Q5zO0MXFEjW4xcUg@mail.gmail.com>
+In-Reply-To: <CAF2aNtzrjYOUYdevN83fJ-Dn6Jjp1SsNh1Q5zO0MXFEjW4xcUg@mail.gmail.com>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Wed, 12 May 2021 16:06:50 -0700
+Message-ID: <CAMKF1sqxa+F4POAOb78tZd2ArPPk9ZTjfRMWSWEXyDyXxug9Pw@mail.gmail.com>
+Subject: Re: [yocto] Yocto with xtensa
+To: Jack Daniels <onyx22574@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
 
-On Wed, 2021-05-12 at 18:48 +0000, Kraft, George wrote:
-> Could someone point me to a wiki on how yocto testing/QA/conformance is done?
-> The Distro Testing Plan wiki seems outdated, and my inquiry to Jose bounced.
+Hello Jack,
 
-The wiki is a bit out of date, sorry. We have been working on 
-documenting our testing in a manual:
+I think we do not have support for Xtensa architecture working out of
+box upstream. Although it should be possible to add it with little
+effort, but no one has spun patches to do so
+thus far.
 
-http://docs.yoctoproject.org/test-manual/index.html
+Thanks
+-Khem
 
-Short summary is you can see builds here:
-
-https://autobuilder.yoctoproject.org/typhoon/#/
-
-and an example release test report:
-
-http://downloads.yoctoproject.org/releases/yocto/yocto-3.3/testreport.txt
-
-Cheers,
-
-Richard
-
+On Wed, May 12, 2021 at 1:29 PM Jack Daniels <onyx22574@gmail.com> wrote:
+>
+> Dears,
+>
+> I am looking for a way to include sample code for DSP (xtensa) with Yocto/Linux. what would be the procedure to include such a code and eventually interprocessor communication between xtensa core and CPU under Yocto/Linux?
+>
+> Thank you.
+> BR/J
+>
+>
+> 
+>
