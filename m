@@ -1,172 +1,127 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.6775.1620825581397576347
+ by mx.groups.io with SMTP id smtpd.web10.7053.1620826733900930697
  for <yocto@lists.yoctoproject.org>;
- Wed, 12 May 2021 06:19:41 -0700
+ Wed, 12 May 2021 06:38:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=nCwaiYAx;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: bruce.ashfield@gmail.com)
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 9D51438C0579
-	for <yocto@yoctoproject.org>; Wed, 12 May 2021 13:19:40 +0000 (UTC)
-Received: by mail-ej1-f50.google.com with SMTP id n2so34939190ejy.7
-        for <yocto@yoctoproject.org>; Wed, 12 May 2021 06:19:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HI5hzbw3VwQnqEXTo/qt5sdlH+/33zeJLGwpzsQng18=;
-        b=nCwaiYAxa8FwcDnHoWVCyGISjiB+bG3Awfvm8JVY1/Rr27ZgPsA+7ciH7zVaduvROX
-         47Y3xZdNhZI+537vCZ4PP8qBZ+hXux3VfeToehV3iihhgc2aR5msjivln8xiA7oRI1Ja
-         wkCQDk3sEjnlz9xnsgWfLb1D6i42h+XDkCdEuIOWzYp0ac5wy5Va2Y4wJFLn1rhy5lX+
-         55b5vWEI+HGxT+dn8gYcWWgDrOlWXUBSCeyc91NwevR7ef+Ci49dYPvgP4nsIuHdAH75
-         AZ/N+BkazcpoPaUEAkASsujULtXLVoU3v0mz97hInSs1hAwaTYOSZGcTlYn30YtGtDbi
-         Ed+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HI5hzbw3VwQnqEXTo/qt5sdlH+/33zeJLGwpzsQng18=;
-        b=jnHzEi+sWG3W9r+ABSKFKk0v9sxuqQd794OvCvKZ/Y3dbd9SyEB1SG4oDUowTZGEtB
-         MKbhyZ8HBH9nc3jO6mxRRzr6XAKtcLgaVGOit/lElMQSVl4YtJSyxtb6Dw4zMabmhI9+
-         9tVd9fGpU8s2RG4yfh064neq9DHQiq4GKWRHHyMXnjaeOQVvy0SA7NJcfK8tLt9cnKsX
-         WzWc8tFMRxOMq+l7GAwn1TbOIWF1vjF63XugGDIh4O0xO5PvuklAbYHzrw75VWY0Dahq
-         h2TUOJOP2/RwinlIkPIuWIlnrZKEk01mBw63TeWY1tuh58yNQnFIILJ0pQUdIXdvZvjo
-         lajA==
-X-Gm-Message-State: AOAM532xI7IttIk97e728NOHWHTEI7AnP+M2B/nnABTK/Dtw6w22Csg8
-	02we2IkeT70hBVZXY9ZzavipBQGRL78g2+PFbFF/tLPpt3Q=
-X-Google-Smtp-Source: ABdhPJwPzaiqgf0zpVe5TZ0E1KiAcXmG/Fzl1t0e21P9SiNrFFTh+yW3rWee6SuQrZIQONwY/ZDMpWBoQ+tmaom2xTg=
-X-Received: by 2002:a17:906:c211:: with SMTP id d17mr2506383ejz.247.1620825578841;
- Wed, 12 May 2021 06:19:38 -0700 (PDT)
+ dkim=pass header.i=@outlook.com header.s=selector1 header.b=RyZZxpl3;
+ spf=softfail (domain: outlook.com, ip: 198.145.29.25, mailfrom: kweihmann@outlook.com)
+Received: from EUR06-VI1-obe.outbound.protection.outlook.com (mail-vi1eur06olkn2011.outbound.protection.outlook.com [40.92.17.11])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 6C58F38C0652
+	for <yocto@yoctoproject.org>; Wed, 12 May 2021 13:38:52 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eiaO/N2KK8G9migzdT4Ksmp96LMDTAcE3F8Jm3Q45Sf/Yq8LfqaU+pjtK92WLXoF+Ql+HjqKQU/9EvfsnD+BtcnjD0fvQQEFZg6go03emm292oDkfS56fx0FnJF739rpddBgc0dglOrklweBF61NtoHWcJ8axgryDyEZf0uU9MQ5VirbddQoWGcUhv++F0xZaG18bjif+zfFIEr0H8hqs6DFnhE0DlJtF2naCoG8V/UbwoPjKqnWM5hnw+iBVN3OAywC2/5IIgtS8K6Ja0zw1xCh2wDwUWbKmcGwK3HTVUHzIQo4yFTpLl8EpUFooJArZlqcKYVDgZHKMHfhZr/TIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=E11o0vLUysRJ/d37t+CClc1xLXFz8LDCfbdefLJy3Ic=;
+ b=PfF+IEcAToO7iNulVc/c1jfE7fDGF7bHLuosbU7wpltA15lw9ZFiUAzwtFlptQRVQ79tmAGteYkt24DAoPqvuO/FRG494r9wuphUtTNRMnc+poVoeiy5QAD92HSgRPrcxfJ9q4susxKnIRD/WCdQkYsS3J5fj4OIqqC6v5UUEMqG2EdLPx+Y1AumM6hazjQXSnG1Uvp7vZkNgZfaDeeD9fZw7/4cld2TL1WVe+xMy1apfrc++O1BJW/N3Gwx0AWU2Mxfith/6l188xPl4rAmq28Wlz1ln5WwigMr56tCbWZ3/DDNAViulWSzRlt4FvNJNJtq3odDlR2b0YeZ1JsQeQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=E11o0vLUysRJ/d37t+CClc1xLXFz8LDCfbdefLJy3Ic=;
+ b=RyZZxpl3BEJ582dKxmPG2cmCl05kz0TSGks2PjfcLXszm3aA3muUYNOg0MslxYzZ5Kh8ybo3VAl2FfSrPvBWsnPCtal3XNWP3nyNsycrQjDdyMdrEme6F2MatuusX2f30mxkxlfhiSXofLGR5k4cl6MEp8xMfJfMZGSmhOfFly+kfm9zDjQD0tDxxe2I540WzLdeRxEDotIipeqeamwB25rpvltb0+pX74SmVt2/h4RAK8/lc086KL0bkYFlu21m8xrjfNR5LOVk2KzUS1yOSoBls98bC+ggXtCVuk8Kb42nsRd+zeNWHF+k2pExKa0P/4wglm2iahS9bJ9njfFaxQ==
+Received: from VI1EUR06FT031.eop-eur06.prod.protection.outlook.com
+ (2a01:111:e400:fc37::49) by
+ VI1EUR06HT098.eop-eur06.prod.protection.outlook.com (2a01:111:e400:fc37::286)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25; Wed, 12 May
+ 2021 13:38:46 +0000
+Received: from AM9PR09MB4642.eurprd09.prod.outlook.com
+ (2a01:111:e400:fc37::42) by VI1EUR06FT031.mail.protection.outlook.com
+ (2a01:111:e400:fc37::198) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.25 via Frontend
+ Transport; Wed, 12 May 2021 13:38:46 +0000
+X-IncomingTopHeaderMarker: 
+ OriginalChecksum:4FCFB3F248569DC803ACC0E353C3832DAA9C550ECADF9FD8603B5305F06F9919;UpperCasedChecksum:5968BD6ECDAB61BAD7ADB6BAB57FBE31FB6504BFF2BC0FAB32FCCC9FFC7AB3E9;SizeAsReceived:8619;Count:46
+Received: from AM9PR09MB4642.eurprd09.prod.outlook.com
+ ([fe80::9c9b:9858:17df:de84]) by AM9PR09MB4642.eurprd09.prod.outlook.com
+ ([fe80::9c9b:9858:17df:de84%6]) with mapi id 15.20.4129.026; Wed, 12 May 2021
+ 13:38:46 +0000
+Date: Wed, 12 May 2021 15:38:37 +0200
+Subject: Re: [bitbake-devel] Git Fetcher Branch Default
+Message-ID: 
+ <AM9PR09MB46424BF3FA7F32E36D5E3C91A8529@AM9PR09MB4642.eurprd09.prod.outlook.com>
+X-Android-Message-ID: <ffdb3f13-13a1-4eb7-935e-260dd3e4646e@email.android.com>
+In-Reply-To: <CAB=6tBSrVooUvS4G_NDPUHrHTLjxoHqJ269AVHA2K+4guYzerw@mail.gmail.com>
+From: "Konrad Weihmann" <kweihmann@outlook.com>
+To: Chuck Wolber <chuckwolber@gmail.com>
+Cc: bitbake-devel@lists.openembedded.org, Yocto-mailing-list
+ <yocto@yoctoproject.org>
+X-TMN: [dONENyr/P8hQN/dg+ZghR9qdGr8vs2hY]
+X-ClientProxiedBy: AM0PR10CA0092.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:15::45) To AM9PR09MB4642.eurprd09.prod.outlook.com
+ (2603:10a6:20b:284::24)
+X-Microsoft-Original-Message-ID: 
+ <ffdb3f13-13a1-4eb7-935e-260dd3e4646e@email.android.com>
 MIME-Version: 1.0
-References: <CA+4=imafR6ncjuC9UOgR3PBPS7MR7H5fo42vn0M9tk7=GSFUoA@mail.gmail.com>
-In-Reply-To: <CA+4=imafR6ncjuC9UOgR3PBPS7MR7H5fo42vn0M9tk7=GSFUoA@mail.gmail.com>
-From: "Bruce Ashfield" <bruce.ashfield@gmail.com>
-Date: Wed, 12 May 2021 09:19:27 -0400
-Message-ID: <CADkTA4Ob2nEOxf12YDzkoxZkKQjuKDnOC=OVimpsZY3HWOCLyQ@mail.gmail.com>
-Subject: Re: Understanding kernel patching in linux-yocto
-To: Yann Dirson <yann.dirson@blade-group.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [10.162.148.82] (46.114.36.82) by AM0PR10CA0092.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:15::45) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25 via Frontend Transport; Wed, 12 May 2021 13:38:45 +0000
+X-MS-PublicTrafficType: Email
+X-IncomingHeaderCount: 46
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-Correlation-Id: 776eae02-305e-4212-dd16-08d9154b4442
+X-MS-TrafficTypeDiagnostic: VI1EUR06HT098:
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	O0Br1W40XQB5Al2GrS7DV4X0GdSVTzSPb2swapxSfIyGJixphX/pXOkaUF3K6PMngs9lGjK/lnQbXVtuBtL7kunLlYDwXRBc1ILrcgdwCzigZtp3g+yFywjof8jZ1QaSYNdmx/zOvdvJoX5vt/e0y03ZEKkJfORp6tEl5nYBPJAq0UAnnApohvhzLI6NlfrRbnnEI8bTIccOxGf6CJNmHc1GaD5VJI5vxQlc2Ukp4hrJ5BeHbCHZyu49ELTraFYKvFTCU9vHigI9fle9rfTTLL3IreBXyLTSGcaXVTRA7pkhWrSr286lEkvaPv+ozEwTx/ER4RtkbNZbHXu7Kv+lKK08b/dDfHjKlkmvqRRRnWQKJNEG/W0PJos31CJNiMydh83HZCEH1rTKqprj/ZhZBmzppI1u9kLGsZYLVpVuv0/Z8j2R7hByr6ryvKWemFGKisIo08Uc3UTD7sKH5E0qFA==
+X-MS-Exchange-AntiSpam-MessageData: 
+	GGMgo65bcjC+XrvQb89mYgJg0yywDLoOrbUeWs5btXbLyc8eo9AWRfMBBTDBQfjAlFTCTilFK5JFkTm07hI7+wiJ2YtnTXbgqFU8ZsXJb9/9YE/sjJcpkR3dAL3r03Vfefcg6VKOBdJctKq6XbgR0Q==
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 776eae02-305e-4212-dd16-08d9154b4442
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2021 13:38:46.4914
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-AuthSource: 
+	VI1EUR06FT031.eop-eur06.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1EUR06HT098
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
 
-On Wed, May 12, 2021 at 7:14 AM Yann Dirson <yann.dirson@blade-group.com> wrote:
->
-> I am currently working on a kmeta BSP for the rockchip-based NanoPI M4
-> [1], and I'm wondering how I should be providing kernel patches, as
-> just add ing "patch" directives in the .scc does not get them applied
-> unless the particular .scc gets included in KERNEL_FEATURES (see [2]).
->
-> From an old thread [3] I understand that the patches from the standard
-> kmeta snippets are already applied to the tree, and that to get the
-> patches from my BSP I'd need to reference it explicitly in SRC_URI
-> (along with using "nopatch" in the right places to avoid the
-> already-applied patches to get applied twice).
->
-> I have the feeling that I'm lacking the rationale behind this, and
-> would need to understand this better to make things right in this BSP.
-> Especially:
-> - at first sight, having the patches both applied to linux-yocto and
-> referenced in yocto-kernel-cache just to be skipped on parsing looks
-> like both information duplication and parsing of unused lines
-
-At least some of this is mentioned in the advanced section of the
-kernel-dev manual, but I can summarize/reword things here, and
-I'm also doing a presentation related to this in the Yocto summit at
-the end of this month.
-
-The big thing to remember, is that the configuration and changes
-you see in that repository, are not only for yocto purposes. The
-concepts and structure pre-date when they were first brought in
-to generate reference kernels over 10 years ago (the implementation
-has changed, but the concepts are still the same). To this day,
-there still are cases that they are used with just a kernel tree and
-cross toolchain.
-
-With that in mind, the meta-data is used for many different things
-
- - It organizes patches / features and their configuration into
-   reusable blocks. At the same time documenting the changes
-   that we have applied to a tree
- - It makes those patches and configuration blocks available to
-   other kernel trees (for whatever reason).
- - It configures the tree during the build process, reusing both
-   configuration only and patch + configuration blocks
- - It is used to generate a history clean tree from scratch for
-   each new supported kernel. Which is what I do when creating
-   new linux-yocto-dev references, and the new <version>/standard/*
-   branches in linux-yocto.
-
-So why not just drop all the patches in the SRC_URI ? Been there,
-done that. It fails spectacularly when you are managing queues of
-hundreds of potentially conflicting patches (rt, yaffs, aufs, ... etc, etc)
-and then attempting to constantly merge -stable and other kernel
-trees into the repository. git is the tool for managing that, not stacks
-of patches. You spend your entire life fixing patch errors and refreshing
-fuzz (again, been there, done that).
-
-So why not just keep a history and constantly merge new versions
-into it ? Been there, done that. You end up with an absolute garbage
-history of octopus merges and changes that are completely hidden,
-non-obvious and useless for collaborating with other kernel projects.
-Try merging a new kernel version into those same big features, it's
-nearly impossible and you have a franken-kernel that you end up trying
-to support and fix yourself. All the bugs are yours and yours alone.
-
-So that's why there's a repository that tracks the patches and the
-configuration and is used for multiple purposes. Keeping the patches
-and config blocks separate would just lead to even more errors as
-I update one and forget the other, etc, etc. There have been various
-incarnations of the tools that also did different things with the patches,
-and they weren't skipped, but detected as applied or not on-the-fly,
-so there are other historical reasons for the structure as well.
-
-> - kernel-yocto.bbclass does its own generic job of locating a proper
-> BSP using the KMACHINE/KTYPE/KARCH tags in BSP, it looks like
-> specifying a specific BSP file would just defeat of this: how should I
-> deal with this case where I'm providing both "standard" and "tiny"
-> KTYPE's ?
-
-I'm not quite following the question here, so I can try to answer badly
-and you can clarify based on my terrible answer.
-
-The tools can locate your "bsp entry point" / "bsp definition" in
-your layer. Either provided by something on the SRC_URI or something
-in a kmeta repository (also specified on the SRC_URI).  Since
-both of those are added to the search paths they check. Those
-are just .scc files with a specified KMACHINE/KTYPE that match, and
-as you could guess from my first term I used, they are the entry
-point into building the configuration queue.
-
-That's where you start inheriting the base configuration(s) and including
-feature blocks, etc. Those definitions are exactly the same as the
-internal ones in the kernel-cache repository. By default, that located
-BSP definition is excluded from inheriting patches .. because as you
-noted, it would start trying to re-apply changes to the tree. It is there
-to get the configuration blocks, patches come in via other feature
-blocks or directly on the SRC_URI.
-
-So in your case, just provide the two .scc file with the proper
-defines so they can be located, and you'll get the proper branch
-located in the tree, and the base configurations picked up for those
-kernel types.  You'd supply your BSP specific config by making
-a common file and including it in both definitions, and patches by
-a KERNEL_FEATURE variable or by specifying them directly on
-the SRC_URI (via .patch or via a different .scc file).
-
-Bruce
-
->
-> [1] https://lists.yoctoproject.org/g/yocto/message/53454
-> [2] https://lists.yoctoproject.org/g/yocto/message/53452
-> [3] https://lists.yoctoproject.org/g/yocto/topic/61340326
->
-> Best regards,
-> --
-> Yann Dirson <yann@blade-group.com>
-> Blade / Shadow -- http://shadow.tech
-
-
-
--- 
-- Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end
-- "Use the force Harry" - Gandalf, Star Trek II
+PG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJz
+ZXQ9dXRmLTgiPjxkaXYgZGlyPSJhdXRvIj48ZGl2Pjxicj48ZGl2IGNsYXNzPSJnbWFpbF9leHRy
+YSI+PGJyPjxkaXYgY2xhc3M9ImdtYWlsX3F1b3RlIj5PbiAxMiBNYXkgMjAyMSAxNDo1MSwgQ2h1
+Y2sgV29sYmVyICZsdDtjaHVja3dvbGJlckBnbWFpbC5jb20mZ3Q7IHdyb3RlOjxiciB0eXBlPSJh
+dHRyaWJ1dGlvbiI+PGJsb2NrcXVvdGUgY2xhc3M9InF1b3RlIiBzdHlsZT0ibWFyZ2luOjAgMCAw
+IC44ZXg7Ym9yZGVyLWxlZnQ6MXB4ICNjY2Mgc29saWQ7cGFkZGluZy1sZWZ0OjFleCI+PHAgZGly
+PSJsdHIiPkkgZ290IGEgZmV0Y2hlciBmYWlsdXJlIG9uIGdvLXN5c3RlbWQgdG9kYXksIHdoaWNo
+IHB1enpsZWQgbWUuIFRoYXQKPGJyPgpyZWNpcGUgaGFzIG5vdCBjaGFuZ2VkIGluIGFnZXMsIGFu
+ZCB0aGUgU1JDUFYgaGFzaCBpcyBjbGVhcmx5IHZpc2libGUKPGJyPgppbiB0aGUgcmVwb3NpdG9y
+eS4KPGJyPgoKPGJyPgpBZnRlciBsb29raW5nIGF0IGl0IGNsb3NlciwgaXQgc2VlbXMgdGhhdCBn
+aXRodWIuY29tL2NvcmVvcy9nby1zeXN0ZW1kCjxicj4KaGFzIGNoYW5nZWQgaXRzIGRlZmF1bHQg
+YnJhbmNoIGZyb20gbWFzdGVyIHRvIG1haW4gYWJvdXQgc2l4IGRheXMgYWdvLgo8YnI+ClRoaXMg
+YXBwZWFycyB0byBicmVhayBhIGZ1bmRhbWVudGFsIGFzc3VtcHRpb24gb24gdGhlIHBhcnQgb2Yg
+dGhlCjxicj4KZmV0Y2hlciB3aGVuIGxvb2tpbmcgZm9yIFNSQ1JFViBhbmQgU1JDUFYgaGFzaGVz
+Lgo8YnI+Cgo8YnI+Ckxvb2tpbmcgYXQgbGliL2JiL2ZldGNoMi9naXQucHkgbWFrZXMgaXQgZXZp
+ZGVudCB0aGF0IHRoaXMgaXMgdGhlCjxicj4KY2FzZS4gSSBjYW4gdHJpdmlhbGx5IGZpeCB0aGlz
+IHdpdGggYSAuYmJhcHBlbmQsIGJ1dCBpdCBzZWVtcyB0byBtZQo8YnI+CnRoYXQgdGhlIGZ1bmRh
+bWVudGFsIGRlZmF1bHQgYnJhbmNoIGFzc3VtcHRpb24gbmVlZHMgdG8gYmUgdXBkYXRlZC48L3A+
+PC9ibG9ja3F1b3RlPjwvZGl2PjwvZGl2PjwvZGl2PjxkaXYgZGlyPSJhdXRvIj5JaXJjIHRoZXJl
+IGhhcyBiZWVuIHRoZSBzYW1lIGRpc2N1c3Npb24gYWxyZWFkeSBsYXN0IHllYXIgb3IgdGhlIHll
+YXIgYmVmb3JlLi4uIGFuZCB0aGUgYWdyZWVtZW50IHdhcyB0byBsZWF2ZSBpdCBhcyBpdCBpcy4g
+SU1ITyBtb3N0IG9mIHRoZSB1c2VkIHByb2plY3RzIHN0aWxsIGdvIHdpdGggbWFzdGVyIGluc3Rl
+YWQgb2YgbWFpbiwgc28gYSBwYXRjaCBvZiB5b3VycyB3b3VsZCBjcmVhdGUgYSBsb3Qgb2Ygd29y
+ayBmb3IgdGhlIG1ham9yaXR5IG9mIHRoZSByZWNpcGVzLjwvZGl2PjxkaXYgZGlyPSJhdXRvIj5B
+bmQgYXMgdGhlcmUgaXMgdGhlIGJyYW5jaCBhdHRyaWJ1dGUgZm9yIHRoZSBnaXQgZmV0Y2hlciBh
+bHJlYWR5IGF2YWlsYWJsZSAoYW5kIHdpZGVseSB1c2VkIGZvciBlc3BlY2lhbGx5IHRoZXNlIGNh
+c2VzKSBJIHBlcnNvbmFsbHkgZG9uJ3Qgc2VlIHRoZSBuZWVkIGZvciBzdWNoIGEgcGF0Y2gsIHVu
+bGVzcyBpdCBwcm92aWRlcyBmdWxsIGJhY2t3YXJkIGNvbXBhdGliaWxpdHk8L2Rpdj48ZGl2IGRp
+cj0iYXV0byI+PGRpdiBjbGFzcz0iZ21haWxfZXh0cmEiPjxkaXYgY2xhc3M9ImdtYWlsX3F1b3Rl
+Ij48YmxvY2txdW90ZSBjbGFzcz0icXVvdGUiIHN0eWxlPSJtYXJnaW46MCAwIDAgLjhleDtib3Jk
+ZXItbGVmdDoxcHggI2NjYyBzb2xpZDtwYWRkaW5nLWxlZnQ6MWV4Ij48cCBkaXI9Imx0ciI+Cjxi
+cj4KCjxicj4KSGFzIGFueW9uZSBkaXNjdXNzZWQgYWRkaW5nIG1haW4gdG8gdGhlIGxpc3Qgb2Yg
+ZGVmYXVsdCBicmFuY2hlcyB0bwo8YnI+CnRyeT8gSWYgbm90LCBJIG1heSBiZSBhYmxlIHRvIGNv
+bWUgdXAgd2l0aCBhIHBhdGNoLCBidXQgdGhlIGNvZGUgZG9lcwo8YnI+CnByb2Nlc3MgZGVmYXVs
+dCBicmFuY2hlcyBhcyBhIGxpc3QsIHNvIEkgd2lsbCBuZWVkIHRvIHRoaW5rIGEgYml0IG9uCjxi
+cj4KdGhlIGJlc3Qgd2F5IHRvIGFwcHJvYWNoIHRoaXMuIEFueSBndWlkYW5jZSB3b3VsZCBiZSBh
+cHByZWNpYXRlZC4KPGJyPgoKPGJyPgouLkNoOlcuLgo8YnI+Cgo8YnI+Cgo8YnI+Ci0tIAo8YnI+
+CiZxdW90O1BlcmZlY3Rpb24gbXVzdCBiZSByZWFjaGVkIGJ5IGRlZ3JlZXM7IHNoZSByZXF1aXJl
+cyB0aGUgc2xvdyBoYW5kIG9mCjxicj4KdGltZS4mcXVvdDsgLSBWb2x0YWlyZQo8L3A+CjxwIGRp
+cj0ibHRyIj4KPGJyPgoKPGJyPgoKPGJyPgo8L3A+CjwvYmxvY2txdW90ZT48L2Rpdj48YnI+PC9k
+aXY+PC9kaXY+PC9kaXY+
