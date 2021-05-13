@@ -1,235 +1,140 @@
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
- by mx.groups.io with SMTP id smtpd.web11.9597.1620887115077995761
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+ by mx.groups.io with SMTP id smtpd.web12.9891.1620890317152236210
  for <yocto@lists.yoctoproject.org>;
- Wed, 12 May 2021 23:25:15 -0700
+ Thu, 13 May 2021 00:18:37 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=K6ei7OQR;
- spf=pass (domain: gmail.com, ip: 209.85.222.50, mailfrom: rohitbjadhav1@gmail.com)
-Received: by mail-ua1-f50.google.com with SMTP id h4so6816063uap.1
-        for <yocto@lists.yoctoproject.org>; Wed, 12 May 2021 23:25:14 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=VvSjQxRp;
+ spf=pass (domain: gmail.com, ip: 209.85.210.179, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-pf1-f179.google.com with SMTP id q2so20840693pfh.13
+        for <yocto@lists.yoctoproject.org>; Thu, 13 May 2021 00:18:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=k01VfKd9VDxdHqQTYRvZUbqZO8QzbOf4El4YEx46AWI=;
-        b=K6ei7OQREXVAjIO8O+UF7ZZYPZn3h5u2lBZU735v6MTPitYfzDcMww+zhlbksYRXpA
-         RVt4Z+ywcd6NSFEASENOspT2aH01qVoLVxCXjnvghOV+QuVwUE2l3A9m2GjzlgcW4+s4
-         BiTQy08A6hehpjEiO/u7bKn/ZxUPJU5Dijz01wTb0AEXN+OxpEk2Sjss8bWM7zibs/9s
-         7DRyNzGQdLcec6Lsb/ptYG/EKewWurmpk84dY8FVzZ1RxtaEfyU9t0yqM82Ul/LzdtKM
-         Rq4joGs3jja3zFfR1tjTXqXqUs93frotr/pDzyZQaQHFVEOGCkCr1ADlNqT4M5v7CtE/
-         wHaw==
+        bh=/FoMZK4UbzwKJiFfn/SxXBLNSKacx1N1cEd2hksg+NI=;
+        b=VvSjQxRpiwi6n+J37fKaN70IV4zTzOEUH0L3bpmWkN3cofdp0z35skTxwSbOBbZoa9
+         dSEgQon3DeSupGdGFo9dVeQcLAIsZpILtsrfLQuiRwSHCYEHPFUbjw6hjX07zAdRECFH
+         cOXPcOSNZFWhVzLo1VViKcVknpy94LlWXjJP2t/d3DY/AfPzqAVIZZSq6WYO3tva8xW5
+         i2DnO12ENoiJJK95GOou+ywl99fYUVjBDASiFW4dH73gPvJKccMdNRRDZBPd0yooRSoI
+         uA2gb7PefhAXNNo7nps/TzlbENyhipT0NlzlyY5CmnHcEPAVCama8IAPOfWKInkBue0r
+         oKlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=k01VfKd9VDxdHqQTYRvZUbqZO8QzbOf4El4YEx46AWI=;
-        b=pZoPjkSVYmJvoDvJ7TgmtbHEAmFFCDd+ulp2RHcb/H7YTy4LwdFKEH7+KjkoLg0bHd
-         Oe++c1mAqRNBNFjxkyQtiVeGnQoIaXYxsYB2d9kch5KhV1/g4276hg2pPRFvx3IJ36SP
-         N+WhSsfbuC6swsjaQ3xrJXH78f0xdINAWEs51EK42zhDb7rMsh33s7c6MTrn1vV38vjv
-         rQf81cfVAC1ryPQFTcO8Tzje+r++xWt03IesARY13VCBwF6f1JzT4/R0JuS3YTQfIhgX
-         AU00FUeU0b8EKVTmujP1yKsmHzE4+58sqsIEBfJ4KVS68kcKzPj4HQ7rxzj4dCf6Cjk9
-         Ojjw==
-X-Gm-Message-State: AOAM532AU8t77Gon7iIMQIKen92bMLrzYZRewZ9nDs+YaIbd9kGYpf/m
-	9b7GFfRaiE1trD/+ApaCJp0SPBeo25eCwKxCS80=
-X-Google-Smtp-Source: ABdhPJweE4/ZT931K8F8zMYEdtXBozoNwTQ0U4CSJwi5ZTV1sJclCQKP5QgBfgGz5msX/LeuYWg9g1KSxuvV7U4cF/0=
-X-Received: by 2002:ab0:2b01:: with SMTP id e1mr36417324uar.85.1620887114069;
- Wed, 12 May 2021 23:25:14 -0700 (PDT)
+        bh=/FoMZK4UbzwKJiFfn/SxXBLNSKacx1N1cEd2hksg+NI=;
+        b=UKI5mijBRSeqqhSDK77RHk5DdCIaz9ijAc+T8xot1ZBDnBcNR952ON54G2MjGe9YEb
+         gIQYxJC+ro8yH0vAFHIoDS/5XEmZF1ek9zmQGccF4FrqrDEYMeaSPYOIW8hYDAR2gbnq
+         gJPrT9NXNxxYDPOkfDa+LypTYp8s5THerlcc3oR7gLKERSfv+qMOqdS2/2CDzZkhyC14
+         KEng5o9UCrLEuqzkMFCjCO5MTgOueaW402lIrbmdLYxDlnD1s2leDwzLRccJdpp7Q8JK
+         TIXQp9nTsRbzIIo6nD8NyUipziK2iHMFYTMma0x1NIYVVyfj80L60gHJDLjacoKk7yqX
+         c3NA==
+X-Gm-Message-State: AOAM531sjdvHItCVq0wFt1n0ZGqUbRkDouJtyDSVw9Uf0M61mLrUW+pQ
+	F4pvfEY42E3NAJhGMXWeuZ8Lva2QoBgKh4ECWKc=
+X-Google-Smtp-Source: ABdhPJzrqnY7vIe4BCLKs0ZxLK2/a+1tcO2ypE85noT0rB1Xq78/DPe8D4RrH8+9HA21hE8f60dqjPpD1muQeoZM1dE=
+X-Received: by 2002:a05:6a00:1630:b029:2c0:a1eb:d77 with SMTP id
+ e16-20020a056a001630b02902c0a1eb0d77mr19019192pfc.81.1620890316585; Thu, 13
+ May 2021 00:18:36 -0700 (PDT)
 MIME-Version: 1.0
 References: <v3iM.1620820893433035646.BQdl@lists.yoctoproject.org>
  <CAGAf8Ly_r-CoF9c+7OuSuZUb9wsFxsDdb28mEVmdw1jk9YMXtw@mail.gmail.com>
- <CAGqYRWHupwJo4-TPC13yAr=cmu7A97ki8b6YcmnyV8Wu00qs2g@mail.gmail.com> <CAGAf8LxqL40KhhdmEtaN39xsK+je_SiNhsKHuCz-3NxoeQ+Jjw@mail.gmail.com>
-In-Reply-To: <CAGAf8LxqL40KhhdmEtaN39xsK+je_SiNhsKHuCz-3NxoeQ+Jjw@mail.gmail.com>
-From: "rohit jadhav" <rohitbjadhav1@gmail.com>
-Date: Thu, 13 May 2021 11:55:02 +0530
-Message-ID: <CAGqYRWEeRNYYxyRDsPTk6nd3R=kXT_euzcU6bf0zznf0pZJpqQ@mail.gmail.com>
+ <CAGqYRWHupwJo4-TPC13yAr=cmu7A97ki8b6YcmnyV8Wu00qs2g@mail.gmail.com>
+ <CAGAf8LxqL40KhhdmEtaN39xsK+je_SiNhsKHuCz-3NxoeQ+Jjw@mail.gmail.com> <CAGqYRWEeRNYYxyRDsPTk6nd3R=kXT_euzcU6bf0zznf0pZJpqQ@mail.gmail.com>
+In-Reply-To: <CAGqYRWEeRNYYxyRDsPTk6nd3R=kXT_euzcU6bf0zznf0pZJpqQ@mail.gmail.com>
+From: "Zoran" <zoran.stojsavljevic@gmail.com>
+Date: Thu, 13 May 2021 09:18:25 +0200
+Message-ID: <CAGAf8Lwy+zeMhzAJuvRfspCArbdM_aajj=0U_ujx0SQQ3s3WVw@mail.gmail.com>
 Subject: Re: [yocto] Yocto Zeus : facing error regarding hostapd #zeus
-To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+To: rohit jadhav <rohitbjadhav1@gmail.com>, Alexander Kanavin <alex.kanavin@gmail.com>
 Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000a7b95a05c23030ae"
-
---000000000000a7b95a05c23030ae
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Zoran,
-   log.do_rootfs.31340is linked to log.do_rootfs I have checked with ls
-command, So both files are identical.
+Hello Rohit,
 
-While surfing I found similar thread but its for different package  its as
-follows :
-https://github.com/Xilinx/meta-virtualization/issues/4
+It is a good find. I also googled for the error, and found this as an
+explanation:
+https://www.yoctoproject.org/pipermail/yocto/2019-February/044153.html
 
-Can you please help out with this for our Package Hostapd ?
+I included Alex (Kanavin), who created the above mail.
 
-Thanks and Regards
-Rohit
+Maybe Alex can give more light on the problem?
 
-On Thu, May 13, 2021 at 10:18 AM Zoran Stojsavljevic <
-zoran.stojsavljevic@gmail.com> wrote:
+In the meantime, you should explore (by similarities) this pointer in
+very details:
+https://github.com/Xilinx/meta-virtualization/issues/4#issuecomment-590532621
 
-> From the log log.do_rootfs.31340 file, there are the following:
->
-> [1] ERROR: Postinstall scriptlets of ['hostapd'] have failed.
->
-> HOSTAP stands for: HOST Access Point Daemon. I could not conclude too much
-> from:
-> https://en.wikipedia.org/wiki/Hostapd
->
-> It is kind of a hot spot, as my best understanding is.
->
-> [2] Details of the failure are in
->
-> /home/tel/imx_yocto_bsp_Zeus/Yocto_setup/build_imx6ull/tmp/work/imx6ull14x14evk-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.
->
-> So, my best guess, looking into log.do_rootfs will tell us much more.
->
-> Please, attach this one for our review as well.
->
-> Thank you,
-> Zoran
-> _______
->
-> On Wed, May 12, 2021 at 5:29 PM rohit jadhav <rohitbjadhav1@gmail.com>
-> wrote:
-> >
-> > Hi Zoran ,
-> > I have attached the log file for your reference.
-> > Thank You
-> > Regards
-> > Rohit
-> >
-> > On Wed, May 12, 2021 at 7:50 PM Zoran Stojsavljevic <
-> zoran.stojsavljevic@gmail.com> wrote:
-> >>
-> >> > Log file in:
-> >> > /home/tel/imx_yocto_bsp_Zeus/Yocto_setup/build_imx6ull/tmp/work/
-> >> > imx6ull14x14evk-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/
-> >> log.do_rootfs.31340
-> >>
-> >> Could you, please, attach a log file?
-> >>
-> >> Thank you,
-> >> Zoran
-> >> _______
-> >>
-> >>
-> >> On Wed, May 12, 2021 at 2:01 PM rohit jadhav <rohitbjadhav1@gmail.com>
-> wrote:
-> >>>
-> >>> Facing following issue :
-> >>> ERROR: core-image-minimal-1.0-r0 do_rootfs: Postinstall scriptlets of
-> ['hostapd'] have failed. If the intention is to defer them to first boot,
-> >>> then please place them into pkg_postinst_ontarget_${PN} ().
-> >>> Deferring to first boot via 'exit 1' is no longer supported.
-> >>> Details of the failure are in
-> /home/tel/imx_yocto_bsp_Zeus/Yocto_setup/build_imx6ull/tmp/work/imx6ull14x14evk-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.
-> >>> ERROR: Logfile of failure stored in:
-> /home/tel/imx_yocto_bsp_Zeus/Yocto_setup/build_imx6ull/tmp/work/imx6ull14x14evk-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.31340
-> >>> ERROR: Task
-> (/home/tel/imx_yocto_bsp_Zeus/Yocto_setup/sources/poky/meta/recipes-core/images/core-image-minimal.bb:do_rootfs)
-> failed with exit code '1'
-> >>>
-> >>> Please guide me if anyone have any idea to resolve.
-> >>>
-> >>> Thanks in advance.
-> >>> 
-> >>>
->
+Zoran
+_______
 
---000000000000a7b95a05c23030ae
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi Zoran, <br></div><div>=C2=A0=C2=A0 log.do_rootfs.3=
-1340is linked to log.do_rootfs I have checked with ls command, So both file=
-s are identical.</div><div><br></div><div>While surfing I found similar thr=
-ead but its for different package=C2=A0 its as follows :</div><div><a href=
-=3D"https://github.com/Xilinx/meta-virtualization/issues/4">https://github=
-.com/Xilinx/meta-virtualization/issues/4</a></div><div><br></div><div>Can y=
-ou please help out with this for our Package Hostapd ?</div><div><br></div>=
-<div>Thanks and Regards</div><div>Rohit<br></div></div><br><div class=3D"gm=
-ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 13, 2021 at 10=
-:18 AM Zoran Stojsavljevic &lt;<a href=3D"mailto:zoran.stojsavljevic@gmail.=
-com">zoran.stojsavljevic@gmail.com</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex">From the log log.do_rootfs.31340 file, th=
-ere are the following:<br>
-<br>
-[1] ERROR: Postinstall scriptlets of [&#39;hostapd&#39;] have failed.<br>
-<br>
-HOSTAP stands for: HOST Access Point Daemon. I could not conclude too much=
- from:<br>
-<a href=3D"https://en.wikipedia.org/wiki/Hostapd" rel=3D"noreferrer" targe=
-t=3D"_blank">https://en.wikipedia.org/wiki/Hostapd</a><br>
-<br>
-It is kind of a hot spot, as my best understanding is.<br>
-<br>
-[2] Details of the failure are in<br>
-/home/tel/imx_yocto_bsp_Zeus/Yocto_setup/build_imx6ull/tmp/work/imx6ull14x=
-14evk-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.<br>
-<br>
-So, my best guess, looking into log.do_rootfs will tell us much more.<br>
-<br>
-Please, attach this one for our review as well.<br>
-<br>
-Thank you,<br>
-Zoran<br>
-_______<br>
-<br>
-On Wed, May 12, 2021 at 5:29 PM rohit jadhav &lt;<a href=3D"mailto:rohitbj=
-adhav1@gmail.com" target=3D"_blank">rohitbjadhav1@gmail.com</a>&gt; wrote:<=
-br>
-&gt;<br>
-&gt; Hi Zoran ,<br>
-&gt; I have attached the log file for your reference.<br>
-&gt; Thank You<br>
-&gt; Regards<br>
-&gt; Rohit<br>
-&gt;<br>
-&gt; On Wed, May 12, 2021 at 7:50 PM Zoran Stojsavljevic &lt;<a href=3D"ma=
-ilto:zoran.stojsavljevic@gmail.com" target=3D"_blank">zoran.stojsavljevic@g=
-mail.com</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; &gt; Log file in:<br>
-&gt;&gt; &gt; /home/tel/imx_yocto_bsp_Zeus/Yocto_setup/build_imx6ull/tmp/w=
-ork/<br>
-&gt;&gt; &gt; imx6ull14x14evk-poky-linux-gnueabi/core-image-minimal/1.0-r0=
-/temp/<br>
-&gt;&gt; log.do_rootfs.31340<br>
-&gt;&gt;<br>
-&gt;&gt; Could you, please, attach a log file?<br>
-&gt;&gt;<br>
-&gt;&gt; Thank you,<br>
-&gt;&gt; Zoran<br>
-&gt;&gt; _______<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; On Wed, May 12, 2021 at 2:01 PM rohit jadhav &lt;<a href=3D"mailt=
-o:rohitbjadhav1@gmail.com" target=3D"_blank">rohitbjadhav1@gmail.com</a>&gt=
-; wrote:<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Facing following issue :<br>
-&gt;&gt;&gt; ERROR: core-image-minimal-1.0-r0 do_rootfs: Postinstall scrip=
-tlets of [&#39;hostapd&#39;] have failed. If the intention is to defer them=
- to first boot,<br>
-&gt;&gt;&gt; then please place them into pkg_postinst_ontarget_${PN} ().<b=
-r>
-&gt;&gt;&gt; Deferring to first boot via &#39;exit 1&#39; is no longer sup=
-ported.<br>
-&gt;&gt;&gt; Details of the failure are in /home/tel/imx_yocto_bsp_Zeus/Yo=
-cto_setup/build_imx6ull/tmp/work/imx6ull14x14evk-poky-linux-gnueabi/core-im=
-age-minimal/1.0-r0/temp/log.do_rootfs.<br>
-&gt;&gt;&gt; ERROR: Logfile of failure stored in: /home/tel/imx_yocto_bsp_=
-Zeus/Yocto_setup/build_imx6ull/tmp/work/imx6ull14x14evk-poky-linux-gnueabi/=
-core-image-minimal/1.0-r0/temp/log.do_rootfs.31340<br>
-&gt;&gt;&gt; ERROR: Task (/home/tel/imx_yocto_bsp_Zeus/Yocto_setup/sources=
-/poky/meta/recipes-core/images/core-image-minimal.bb:do_rootfs) failed with=
- exit code &#39;1&#39;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Please guide me if anyone have any idea to resolve.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Thanks in advance.<br>
-&gt;&gt;&gt; <br>
-&gt;&gt;&gt;<br>
-</blockquote></div>
-
---000000000000a7b95a05c23030ae--
+On Thu, May 13, 2021 at 8:25 AM rohit jadhav <rohitbjadhav1@gmail.com> wrote:
+>
+> Hi Zoran,
+>    log.do_rootfs.31340is linked to log.do_rootfs I have checked with ls command, So both files are identical.
+>
+> While surfing I found similar thread but its for different package  its as follows :
+> https://github.com/Xilinx/meta-virtualization/issues/4
+>
+> Can you please help out with this for our Package Hostapd ?
+>
+> Thanks and Regards
+> Rohit
+>
+> On Thu, May 13, 2021 at 10:18 AM Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com> wrote:
+>>
+>> From the log log.do_rootfs.31340 file, there are the following:
+>>
+>> [1] ERROR: Postinstall scriptlets of ['hostapd'] have failed.
+>>
+>> HOSTAP stands for: HOST Access Point Daemon. I could not conclude too much from:
+>> https://en.wikipedia.org/wiki/Hostapd
+>>
+>> It is kind of a hot spot, as my best understanding is.
+>>
+>> [2] Details of the failure are in
+>> /home/tel/imx_yocto_bsp_Zeus/Yocto_setup/build_imx6ull/tmp/work/imx6ull14x14evk-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.
+>>
+>> So, my best guess, looking into log.do_rootfs will tell us much more.
+>>
+>> Please, attach this one for our review as well.
+>>
+>> Thank you,
+>> Zoran
+>> _______
+>>
+>> On Wed, May 12, 2021 at 5:29 PM rohit jadhav <rohitbjadhav1@gmail.com> wrote:
+>> >
+>> > Hi Zoran ,
+>> > I have attached the log file for your reference.
+>> > Thank You
+>> > Regards
+>> > Rohit
+>> >
+>> > On Wed, May 12, 2021 at 7:50 PM Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com> wrote:
+>> >>
+>> >> > Log file in:
+>> >> > /home/tel/imx_yocto_bsp_Zeus/Yocto_setup/build_imx6ull/tmp/work/
+>> >> > imx6ull14x14evk-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/
+>> >> log.do_rootfs.31340
+>> >>
+>> >> Could you, please, attach a log file?
+>> >>
+>> >> Thank you,
+>> >> Zoran
+>> >> _______
+>> >>
+>> >>
+>> >> On Wed, May 12, 2021 at 2:01 PM rohit jadhav <rohitbjadhav1@gmail.com> wrote:
+>> >>>
+>> >>> Facing following issue :
+>> >>> ERROR: core-image-minimal-1.0-r0 do_rootfs: Postinstall scriptlets of ['hostapd'] have failed. If the intention is to defer them to first boot,
+>> >>> then please place them into pkg_postinst_ontarget_${PN} ().
+>> >>> Deferring to first boot via 'exit 1' is no longer supported.
+>> >>> Details of the failure are in /home/tel/imx_yocto_bsp_Zeus/Yocto_setup/build_imx6ull/tmp/work/imx6ull14x14evk-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.
+>> >>> ERROR: Logfile of failure stored in: /home/tel/imx_yocto_bsp_Zeus/Yocto_setup/build_imx6ull/tmp/work/imx6ull14x14evk-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.31340
+>> >>> ERROR: Task (/home/tel/imx_yocto_bsp_Zeus/Yocto_setup/sources/poky/meta/recipes-core/images/core-image-minimal.bb:do_rootfs) failed with exit code '1'
+>> >>>
+>> >>> Please guide me if anyone have any idea to resolve.
+>> >>>
+>> >>> Thanks in advance.
+>> >>> 
+>> >>>
