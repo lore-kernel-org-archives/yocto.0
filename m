@@ -1,140 +1,133 @@
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
- by mx.groups.io with SMTP id smtpd.web12.9891.1620890317152236210
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web12.9665.1620888340018156492
  for <yocto@lists.yoctoproject.org>;
- Thu, 13 May 2021 00:18:37 -0700
+ Wed, 12 May 2021 23:45:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=VvSjQxRp;
- spf=pass (domain: gmail.com, ip: 209.85.210.179, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-pf1-f179.google.com with SMTP id q2so20840693pfh.13
-        for <yocto@lists.yoctoproject.org>; Thu, 13 May 2021 00:18:37 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ln3rMnug;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: onyx22574@gmail.com)
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id D37CF38C05B5
+	for <yocto@yoctoproject.org>; Thu, 13 May 2021 06:45:38 +0000 (UTC)
+Received: by mail-lj1-f182.google.com with SMTP id 131so7186806ljj.3
+        for <yocto@yoctoproject.org>; Wed, 12 May 2021 23:45:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=/FoMZK4UbzwKJiFfn/SxXBLNSKacx1N1cEd2hksg+NI=;
-        b=VvSjQxRpiwi6n+J37fKaN70IV4zTzOEUH0L3bpmWkN3cofdp0z35skTxwSbOBbZoa9
-         dSEgQon3DeSupGdGFo9dVeQcLAIsZpILtsrfLQuiRwSHCYEHPFUbjw6hjX07zAdRECFH
-         cOXPcOSNZFWhVzLo1VViKcVknpy94LlWXjJP2t/d3DY/AfPzqAVIZZSq6WYO3tva8xW5
-         i2DnO12ENoiJJK95GOou+ywl99fYUVjBDASiFW4dH73gPvJKccMdNRRDZBPd0yooRSoI
-         uA2gb7PefhAXNNo7nps/TzlbENyhipT0NlzlyY5CmnHcEPAVCama8IAPOfWKInkBue0r
-         oKlQ==
+        bh=XLkXogBUZhdeToKrgK9Y9grznf3nlDe55TLFw64nYMs=;
+        b=ln3rMnugSgvwtWZTSICheYGHwVQiVLPx9ThbFl62lGrgIPS1+rc73PH88bXbzJFIaq
+         UA08x0wOS61UUjcOgmG1t8edEt2tW10rlp98XkET3M4+iG4x/l0lpziDt/Erwx5gcUb+
+         4FiBHxS5hPVp1ac0vnBm4DOCWDpegp7P5ovVjfPw1rmU+dBDTtwcQjQSXmgG+sJq15Ml
+         4iuPOEOX/lN9lq1VpxYhVMXAOrhj37Sd8JyL6d2iWT1efP46JDuSnHDXKa2vBZbGWKBT
+         7DPNU4zayVxLN3rRbKilM+nWHBeFCm87A1Bfz97fNPBDLM3k9V6+Ah/7cWJRktxygc1m
+         6ybw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=/FoMZK4UbzwKJiFfn/SxXBLNSKacx1N1cEd2hksg+NI=;
-        b=UKI5mijBRSeqqhSDK77RHk5DdCIaz9ijAc+T8xot1ZBDnBcNR952ON54G2MjGe9YEb
-         gIQYxJC+ro8yH0vAFHIoDS/5XEmZF1ek9zmQGccF4FrqrDEYMeaSPYOIW8hYDAR2gbnq
-         gJPrT9NXNxxYDPOkfDa+LypTYp8s5THerlcc3oR7gLKERSfv+qMOqdS2/2CDzZkhyC14
-         KEng5o9UCrLEuqzkMFCjCO5MTgOueaW402lIrbmdLYxDlnD1s2leDwzLRccJdpp7Q8JK
-         TIXQp9nTsRbzIIo6nD8NyUipziK2iHMFYTMma0x1NIYVVyfj80L60gHJDLjacoKk7yqX
-         c3NA==
-X-Gm-Message-State: AOAM531sjdvHItCVq0wFt1n0ZGqUbRkDouJtyDSVw9Uf0M61mLrUW+pQ
-	F4pvfEY42E3NAJhGMXWeuZ8Lva2QoBgKh4ECWKc=
-X-Google-Smtp-Source: ABdhPJzrqnY7vIe4BCLKs0ZxLK2/a+1tcO2ypE85noT0rB1Xq78/DPe8D4RrH8+9HA21hE8f60dqjPpD1muQeoZM1dE=
-X-Received: by 2002:a05:6a00:1630:b029:2c0:a1eb:d77 with SMTP id
- e16-20020a056a001630b02902c0a1eb0d77mr19019192pfc.81.1620890316585; Thu, 13
- May 2021 00:18:36 -0700 (PDT)
+        bh=XLkXogBUZhdeToKrgK9Y9grznf3nlDe55TLFw64nYMs=;
+        b=P+uL0mUlI6mrrumhj0w4BCA+EJgejHZCAixPD9Hv3zUjOesarrJkwb7zQhqnz5vqp5
+         Wi3e/19rbe+Bi2+3L6TNvOQ+9JS/QTlNhjCw33jERmSCCfpjswJZ2c0hvkKZX5VzIfJQ
+         GmTBmwkj2Bwz/mrG/LzMN6zkR2oRv9yQ1fyxjFRDqp/tiaGb3JBlPMvdorHk2mVVeK+D
+         Cs+e6/cdDKqwAfFUPkx6rlirZsDBWx3Y2jNKZICm+HoB08lFBqOufZX3MUK4ccFOtjb/
+         5hKkPhlta64rYJxsTawZV0l6wcRGSr9k2FUG7Nauw6FXOp21iT9t8qlDvQPt+bUq6+KH
+         XEuw==
+X-Gm-Message-State: AOAM533whjEEUhXAsjwtfIgZwkvfV8tfSo05JYVa6weBtpcB+ziQjYfs
+	HwSmk1TZoV3an061yg3kj5Xb2k2URc7/8zp4UxQ=
+X-Google-Smtp-Source: ABdhPJwp2Bzs33Yh7oVZwfrNhBQpPD0DSlHFX8t3yTjEX07rEunKgA2zKqpuBBwhunXsK2LM2t1Pl+hUhfmyfDGuDOo=
+X-Received: by 2002:a2e:9d8e:: with SMTP id c14mr32217568ljj.350.1620888337203;
+ Wed, 12 May 2021 23:45:37 -0700 (PDT)
 MIME-Version: 1.0
-References: <v3iM.1620820893433035646.BQdl@lists.yoctoproject.org>
- <CAGAf8Ly_r-CoF9c+7OuSuZUb9wsFxsDdb28mEVmdw1jk9YMXtw@mail.gmail.com>
- <CAGqYRWHupwJo4-TPC13yAr=cmu7A97ki8b6YcmnyV8Wu00qs2g@mail.gmail.com>
- <CAGAf8LxqL40KhhdmEtaN39xsK+je_SiNhsKHuCz-3NxoeQ+Jjw@mail.gmail.com> <CAGqYRWEeRNYYxyRDsPTk6nd3R=kXT_euzcU6bf0zznf0pZJpqQ@mail.gmail.com>
-In-Reply-To: <CAGqYRWEeRNYYxyRDsPTk6nd3R=kXT_euzcU6bf0zznf0pZJpqQ@mail.gmail.com>
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Thu, 13 May 2021 09:18:25 +0200
-Message-ID: <CAGAf8Lwy+zeMhzAJuvRfspCArbdM_aajj=0U_ujx0SQQ3s3WVw@mail.gmail.com>
-Subject: Re: [yocto] Yocto Zeus : facing error regarding hostapd #zeus
-To: rohit jadhav <rohitbjadhav1@gmail.com>, Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+References: <CAF2aNtzrjYOUYdevN83fJ-Dn6Jjp1SsNh1Q5zO0MXFEjW4xcUg@mail.gmail.com>
+ <CAMKF1sqxa+F4POAOb78tZd2ArPPk9ZTjfRMWSWEXyDyXxug9Pw@mail.gmail.com>
+In-Reply-To: <CAMKF1sqxa+F4POAOb78tZd2ArPPk9ZTjfRMWSWEXyDyXxug9Pw@mail.gmail.com>
+From: "Jack Daniels" <onyx22574@gmail.com>
+Date: Thu, 13 May 2021 08:45:26 +0200
+Message-ID: <CAF2aNtyY+xM2Oj4w8Mf+hZmr47wTpb+ibYDQK=fFinj4Cue=jQ@mail.gmail.com>
+Subject: Re: [yocto] Yocto with xtensa
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000008f45cb05c23079ae"
+
+--0000000000008f45cb05c23079ae
 Content-Type: text/plain; charset="UTF-8"
 
-Hello Rohit,
+Hello Khem,
 
-It is a good find. I also googled for the error, and found this as an
-explanation:
-https://www.yoctoproject.org/pipermail/yocto/2019-February/044153.html
+Thank you for the information.
+Is it about adding support for the xtensa build system (toolchain)? Is it
+work for heterogeneous SoC (CPU/ARM + DSP/xtensa) as well?
 
-I included Alex (Kanavin), who created the above mail.
+Thank you.
+BR/J
 
-Maybe Alex can give more light on the problem?
+On Thu, May 13, 2021 at 1:07 AM Khem Raj <raj.khem@gmail.com> wrote:
 
-In the meantime, you should explore (by similarities) this pointer in
-very details:
-https://github.com/Xilinx/meta-virtualization/issues/4#issuecomment-590532621
-
-Zoran
-_______
-
-On Thu, May 13, 2021 at 8:25 AM rohit jadhav <rohitbjadhav1@gmail.com> wrote:
+> Hello Jack,
 >
-> Hi Zoran,
->    log.do_rootfs.31340is linked to log.do_rootfs I have checked with ls command, So both files are identical.
+> I think we do not have support for Xtensa architecture working out of
+> box upstream. Although it should be possible to add it with little
+> effort, but no one has spun patches to do so
+> thus far.
 >
-> While surfing I found similar thread but its for different package  its as follows :
-> https://github.com/Xilinx/meta-virtualization/issues/4
+> Thanks
+> -Khem
 >
-> Can you please help out with this for our Package Hostapd ?
+> On Wed, May 12, 2021 at 1:29 PM Jack Daniels <onyx22574@gmail.com> wrote:
+> >
+> > Dears,
+> >
+> > I am looking for a way to include sample code for DSP (xtensa) with
+> Yocto/Linux. what would be the procedure to include such a code and
+> eventually interprocessor communication between xtensa core and CPU under
+> Yocto/Linux?
+> >
+> > Thank you.
+> > BR/J
+> >
+> >
+> > 
+> >
 >
-> Thanks and Regards
-> Rohit
->
-> On Thu, May 13, 2021 at 10:18 AM Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com> wrote:
->>
->> From the log log.do_rootfs.31340 file, there are the following:
->>
->> [1] ERROR: Postinstall scriptlets of ['hostapd'] have failed.
->>
->> HOSTAP stands for: HOST Access Point Daemon. I could not conclude too much from:
->> https://en.wikipedia.org/wiki/Hostapd
->>
->> It is kind of a hot spot, as my best understanding is.
->>
->> [2] Details of the failure are in
->> /home/tel/imx_yocto_bsp_Zeus/Yocto_setup/build_imx6ull/tmp/work/imx6ull14x14evk-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.
->>
->> So, my best guess, looking into log.do_rootfs will tell us much more.
->>
->> Please, attach this one for our review as well.
->>
->> Thank you,
->> Zoran
->> _______
->>
->> On Wed, May 12, 2021 at 5:29 PM rohit jadhav <rohitbjadhav1@gmail.com> wrote:
->> >
->> > Hi Zoran ,
->> > I have attached the log file for your reference.
->> > Thank You
->> > Regards
->> > Rohit
->> >
->> > On Wed, May 12, 2021 at 7:50 PM Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com> wrote:
->> >>
->> >> > Log file in:
->> >> > /home/tel/imx_yocto_bsp_Zeus/Yocto_setup/build_imx6ull/tmp/work/
->> >> > imx6ull14x14evk-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/
->> >> log.do_rootfs.31340
->> >>
->> >> Could you, please, attach a log file?
->> >>
->> >> Thank you,
->> >> Zoran
->> >> _______
->> >>
->> >>
->> >> On Wed, May 12, 2021 at 2:01 PM rohit jadhav <rohitbjadhav1@gmail.com> wrote:
->> >>>
->> >>> Facing following issue :
->> >>> ERROR: core-image-minimal-1.0-r0 do_rootfs: Postinstall scriptlets of ['hostapd'] have failed. If the intention is to defer them to first boot,
->> >>> then please place them into pkg_postinst_ontarget_${PN} ().
->> >>> Deferring to first boot via 'exit 1' is no longer supported.
->> >>> Details of the failure are in /home/tel/imx_yocto_bsp_Zeus/Yocto_setup/build_imx6ull/tmp/work/imx6ull14x14evk-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.
->> >>> ERROR: Logfile of failure stored in: /home/tel/imx_yocto_bsp_Zeus/Yocto_setup/build_imx6ull/tmp/work/imx6ull14x14evk-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.31340
->> >>> ERROR: Task (/home/tel/imx_yocto_bsp_Zeus/Yocto_setup/sources/poky/meta/recipes-core/images/core-image-minimal.bb:do_rootfs) failed with exit code '1'
->> >>>
->> >>> Please guide me if anyone have any idea to resolve.
->> >>>
->> >>> Thanks in advance.
->> >>> 
->> >>>
+
+--0000000000008f45cb05c23079ae
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello Khem,<div><br></div><div>Thank you for the informati=
+on.=C2=A0</div><div>Is it about adding support for the xtensa build system =
+(toolchain)? Is it work for=C2=A0heterogeneous=C2=A0SoC (CPU/ARM=C2=A0+=C2=
+=A0DSP/xtensa) as well?</div><div><br></div><div>Thank you.</div><div>BR/J=
+</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
+attr">On Thu, May 13, 2021 at 1:07 AM Khem Raj &lt;<a href=3D"mailto:raj.kh=
+em@gmail.com">raj.khem@gmail.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex">Hello Jack,<br>
+<br>
+I think we do not have support for Xtensa architecture working out of<br>
+box upstream. Although it should be possible to add it with little<br>
+effort, but no one has spun patches to do so<br>
+thus far.<br>
+<br>
+Thanks<br>
+-Khem<br>
+<br>
+On Wed, May 12, 2021 at 1:29 PM Jack Daniels &lt;<a href=3D"mailto:onyx225=
+74@gmail.com" target=3D"_blank">onyx22574@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Dears,<br>
+&gt;<br>
+&gt; I am looking for a way to include sample code for DSP (xtensa) with Y=
+octo/Linux. what would be the procedure to include such a code and eventual=
+ly interprocessor communication between xtensa core and CPU under Yocto/Lin=
+ux?<br>
+&gt;<br>
+&gt; Thank you.<br>
+&gt; BR/J<br>
+&gt;<br>
+&gt;<br>
+&gt; <br>
+&gt;<br>
+</blockquote></div>
+
+--0000000000008f45cb05c23079ae--
