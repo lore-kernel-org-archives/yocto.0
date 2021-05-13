@@ -1,74 +1,73 @@
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
- by mx.groups.io with SMTP id smtpd.web11.7905.1620872716402549381
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web12.8426.1620877429686144225
  for <yocto@lists.yoctoproject.org>;
- Wed, 12 May 2021 19:25:16 -0700
+ Wed, 12 May 2021 20:43:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=N/uWk5fM;
- spf=pass (domain: gmail.com, ip: 209.85.215.171, mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f171.google.com with SMTP id m124so19866230pgm.13
-        for <yocto@lists.yoctoproject.org>; Wed, 12 May 2021 19:25:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=jUQMBvm6zAXNRkp0LJX4t/ZwqHQH+i+Fel0CVpfkE7s=;
-        b=N/uWk5fM3Um+PqPkc9IX3PT95hIAdzhl9/QEk4crBSVhe/Niik8GVq9Ta7uTQfjhMX
-         Fw4rXvRDiY//WAfWOnsaDx4VTvxFchfsF9sIsIVVRP/db7XXde4bjwpFLscOfn7Dbqd/
-         EEp9+Mbd/ICfIjB/YYkyPvXKAfKu1Iy/lkh7icpPqEtuViVAz6ERe35Q0ip8hdItB3vp
-         xIOKg43O8D0nyqvxjzFu5mo8Cb2m9hcZdx+wLCiiIcOeapYjVuI+XbvhCt328RzXucGH
-         l80oJ4I5DyWIhCVOI+qK+QQ79Zhwhc2SiimzGMsnaM4jPnYQBNjzs4iLZ+NJAHcVWpWL
-         NaKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jUQMBvm6zAXNRkp0LJX4t/ZwqHQH+i+Fel0CVpfkE7s=;
-        b=AOEazcla90/cv/s8xNncyB6BeaFo6OBG4rPJoa0ZEFPKn8f7BSY7y9I+TbqUy7p1XN
-         Nm/m4i1G2xGZ+aKybSk4xu3KGhH2lVYmNwh4Yy93rkLpS/gU+9lsxZdcI/7M9Jn1l0+k
-         Qq9rvc4dzIan4ZQ+xeH7JpS3UfeNHSGF6+0D0q1gpeNMe8WVcL3cv95txZUnyfq0h+9Y
-         vYiopFAgcNHgoufeUmxdW/VKvjgY6O8BkKP76JLi7BSyrK3/4xmsKdhXRptMFyZFz1nR
-         g9mHuuF4HPHZezcW7zdrftarXFYvyXfRn+6rZS7XcYyM1QCW8rFDvJrdKoP5GY5jMOyx
-         QLgg==
-X-Gm-Message-State: AOAM531RbVzVnFfB+c6WkKuMPxhdmMzSko2ZFz75m3l/qV769CO5E6Ef
-	ibvfwYmmQh/NXyAadZOfSEjPofMCm8w=
-X-Google-Smtp-Source: ABdhPJyTzjX3EGBW84ySSu5ahp5IbtaVhG3mGCiQl7i71Wh+I+HQanp6KDwlg9Z1sc6NR+tvB9mbGw==
-X-Received: by 2002:a63:4b21:: with SMTP id y33mr39701602pga.287.1620872715775;
-        Wed, 12 May 2021 19:25:15 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
-Received: from hilo.hsdl.ca.comcast.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
-        by smtp.gmail.com with ESMTPSA id v12sm870777pgi.44.2021.05.12.19.25.15
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 May 2021 19:25:15 -0700 (PDT)
-From: "Armin Kuster" <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 6/6] packagegroup-core-security: add aide and ossec
-Date: Thu, 13 May 2021 02:25:10 +0000
-Message-Id: <20210513022510.3370797-6-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210513022510.3370797-1-akuster808@gmail.com>
-References: <20210513022510.3370797-1-akuster808@gmail.com>
+ dkim=missing; spf=softfail (domain: windriver.com, ip: 198.145.29.25, mailfrom: changqing.li@windriver.com)
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id C425C38C0579
+	for <yocto@yoctoproject.org>; Thu, 13 May 2021 03:43:48 +0000 (UTC)
+Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.corp.ad.wrs.com [147.11.82.252])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 14D3hko9024460
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 12 May 2021 20:43:46 -0700
+Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Wed, 12 May 2021 20:43:45 -0700
+Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
+ 15.1.2242.4 via Frontend Transport; Wed, 12 May 2021 20:43:44 -0700
+From: "Changqing Li" <changqing.li@windriver.com>
+To: <yocto@yoctoproject.org>
+Subject: [meta-raspberrypi][PATCH] 99-com.rules: fix error invalid substitution type
+Date: Thu, 13 May 2021 11:42:51 +0800
+Message-ID: <20210513034251.9623-1-changqing.li@windriver.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+From: Changqing Li <changqing.li@windriver.com>
+
+fix below error:
+/etc/udev/rules.d/99-com.rules:10 Invalid value "/bin/sh -c
+'ALIASES=/proc/device-tree/aliases; if cmp -s $ALIASES/uart0
+$ALIASES/serial0; then echo 0;elif cmp -s $ALIASES/uart0
+$ALIASES/serial1; then echo 1; else exit 1; fi'" for PROGRAM (char 58:
+invalid substitution type)
+
+Signed-off-by: Changqing Li <changqing.li@windriver.com>
 ---
- recipes-core/packagegroup/packagegroup-core-security.bb | 2 ++
- 1 file changed, 2 insertions(+)
+ recipes-core/udev/udev-rules-rpi/99-com.rules | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/recipes-core/packagegroup/packagegroup-core-security.bb b/recipes-core/packagegroup/packagegroup-core-security.bb
-index 54b8297..0bddf64 100644
---- a/recipes-core/packagegroup/packagegroup-core-security.bb
-+++ b/recipes-core/packagegroup/packagegroup-core-security.bb
-@@ -70,6 +70,8 @@ SUMMARY_packagegroup-security-ids = "Security Intrusion Detection systems"
- RDEPENDS_packagegroup-security-ids = " \
-     samhain-standalone \
-     ${@bb.utils.contains_any("TUNE_FEATURES", "ppc7400 riscv32 riscv64", "", " suricata",d)} \
-+    ossec-hids \
-+    aide \
-     "
+diff --git a/recipes-core/udev/udev-rules-rpi/99-com.rules b/recipes-core/udev/udev-rules-rpi/99-com.rules
+index 6bf019b..ddd1e17 100644
+--- a/recipes-core/udev/udev-rules-rpi/99-com.rules
++++ b/recipes-core/udev/udev-rules-rpi/99-com.rules
+@@ -1,8 +1,8 @@
+ KERNEL=="ttyAMA[01]", PROGRAM="/bin/sh -c '\
+ 	ALIASES=/proc/device-tree/aliases; \
+-	if cmp -s $ALIASES/uart0 $ALIASES/serial0; then \
++	if cmp -s $$ALIASES/uart0 $$ALIASES/serial0; then \
+ 		echo 0;\
+-	elif cmp -s $ALIASES/uart0 $ALIASES/serial1; then \
++	elif cmp -s $$ALIASES/uart0 $$ALIASES/serial1; then \
+ 		echo 1; \
+ 	else \
+ 		exit 1; \
+@@ -11,9 +11,9 @@ KERNEL=="ttyAMA[01]", PROGRAM="/bin/sh -c '\
  
- SUMMARY_packagegroup-security-mac = "Security Mandatory Access Control systems"
+ KERNEL=="ttyS0", PROGRAM="/bin/sh -c '\
+ 	ALIASES=/proc/device-tree/aliases; \
+-	if cmp -s $ALIASES/uart1 $ALIASES/serial0; then \
++	if cmp -s $$ALIASES/uart1 $$ALIASES/serial0; then \
+ 		echo 0; \
+-	elif cmp -s $ALIASES/uart1 $ALIASES/serial1; then \
++	elif cmp -s $$ALIASES/uart1 $$ALIASES/serial1; then \
+ 		echo 1; \
+ 	else \
+ 		exit 1; \
 -- 
-2.25.1
+2.17.1
 
