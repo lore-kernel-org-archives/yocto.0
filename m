@@ -1,110 +1,134 @@
 Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
- by mx.groups.io with SMTP id smtpd.web09.13768.1620914543381537390
+ by mx.groups.io with SMTP id smtpd.web08.13862.1620914670566516385
  for <yocto@lists.yoctoproject.org>;
- Thu, 13 May 2021 07:02:23 -0700
+ Thu, 13 May 2021 07:04:30 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gherzan.com header.s=fm1 header.b=EJLku2ct;
+ dkim=pass header.i=@gherzan.com header.s=fm1 header.b=dmbFXoM+;
  spf=pass (domain: gherzan.com, ip: 66.111.4.26, mailfrom: andrei@gherzan.com)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-	by mailout.nyi.internal (Postfix) with ESMTP id B0AFA5C0134;
-	Thu, 13 May 2021 10:02:22 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Thu, 13 May 2021 10:02:22 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.nyi.internal (Postfix) with ESMTP id DAE275C00E4;
+	Thu, 13 May 2021 10:04:29 -0400 (EDT)
+Received: from imap4 ([10.202.2.54])
+  by compute3.internal (MEProxy); Thu, 13 May 2021 10:04:29 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gherzan.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding; s=fm1; bh=r2v1uRY8KhQaf
-	gPyZej80uvt9+hVKq98wlwaZbLmqQQ=; b=EJLku2ct7CzhxqdApk7W1+bm33bdC
-	B/R+iIUVIELQnstHifcvfRY41Ty8bg6fHjpfpgMm5GInbG5EzmJ+kQi4C7h0Oqw9
-	Mcr+81Tleqe066lAxi22owOXRWvVPmSuapViEfYVlubTW/zJyoX21MYFKl4bbYo3
-	d74ryPV1NeI42pC72WnOPkIcL8S+Ht5VOB29XFN54xepRNoywvAHxGy9B/3KM67/
-	mtIiHJfCRRLMHHc7hdSMOI2I9l8AUK+hX2IfnVKv0/zQDiS1c0QxodzM4K1puAD9
-	UE3FwJm3PzHEsfFhxz75ZDvc6uoAZuo6Yy9ogWxrHl5ioNhjiqp/Z9NkQ==
+	mime-version:message-id:in-reply-to:references:date:from:to
+	:subject:content-type; s=fm1; bh=hqwyveRs1RqdvMrCTfZ9/fLOLOvvMSt
+	uu3OeG4YUUoY=; b=dmbFXoM+ZqNgOLoXrQHcKuUD1ySj/TRdZehJLBU5yuTF7MX
+	pLxDGP48XTzKNX4BORGPJz53r4V9cPxDqqRJKtXcR7SmH/oGn7fzL9YcFtUCBYrR
+	0OAs4PY97gMEoJfaCaK2JxYuPeX0kuJquUEkgvnB6STZN3iJgYVE80/H29UTvWl+
+	I3PMOPc93sxmm0rRKzvabswn+At+cgmOIoT5hq8gtRq76DuauCV6ul3nd+yRV7qC
+	wh/J9QUaXkAmbDXmmoisSLZs88h216+NAkqjf3gR0cKNAe8cMWzKONtunpMb6wET
+	4eg81l2Nw/nWgmVTdNFqYsrMCVFLGlUa7ikNoCQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:content-transfer-encoding:date:from
-	:in-reply-to:message-id:mime-version:references:subject:to
-	:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm2; bh=r2v1uRY8KhQafgPyZej80uvt9+hVKq98wlwaZbLmqQQ=; b=he5tf6+T
-	YNhgvM4UrdfzY7LBPqvt9A9VUdI8fEBHslqSSDzlTGTxERWk0tphzUKjgvjdTWKZ
-	U+itqFvp3sIskgR5MPl4ZzTxSpucbpNJFhVF4BC+MiAA9SsKO33NFJ7yF16zTB5y
-	+2xft4X7iH9zXZfWyn6H9HmBGZd4sloVtOumNdsrKxn+9kAKLV+OBndAeg+Jtzcj
-	4HrL4vLiOpztmuNcaoH3q+hjPOio1SC2sjpzpmZIFV8bvYZdn6keYSbAGYQLGJkk
-	x5ARAI5UEvCOCT8AayHmen4bLnFDxGhyqE49LwewsNzAhneToWXoQeBbchxa+Fel
-	uh1F2zacNSz51g==
-X-ME-Sender: <xms:bjGdYGZ-AvdmYthCjZGFAH1uslf4FJgDul1-tX4Deu4Hzh5wEqmWjw>
-    <xme:bjGdYJaRnaulHD9HnxnyarYX5QYF3OrxhGZbDjFazS6NI-9sezwfxPCqpXpTla0f5
-    X6gSqWbpMvDhyylTPg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdehgedgjedvucetufdoteggodetrfdotf
+	messagingengine.com; h=content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=hqwyve
+	Rs1RqdvMrCTfZ9/fLOLOvvMStuu3OeG4YUUoY=; b=ddeBXOp3UfDEekwJdPi2eF
+	uC5kIxjDsL0w8yx4jzXfYyUNidMyXN8i8MY1H0QLrYmTvpjnqMD6mHSItKMknLs0
+	omJXkjUXzW52/kOjwxQj29e8XPn4lMxrpUYWeYC6fPsSpEQH4GyD5iujuOM1DmEP
+	Et024XCTBt0KvVKFA/83ZEbUBjzluiwulMmIryUkxDiB/AVKD1mp57T9/Q9+HTJj
+	Hz87lc1ZvmehfWC3qiK2npcCCJfFO+liwxf9Yq6KnfhBhdpMC30XBZAvBo9C5t0L
+	UzEOHjhsIGRKAkofe/sBNJoQZeSKmej8igCwbfwAvDIx6/8F2tBgwo+95DpJqBPw
+	==
+X-ME-Sender: <xms:7TGdYFqRcNiIuIMQ9VBUHuxV96nFHLhVkFQm7khkhwVIodunlYQZ6g>
+    <xme:7TGdYHrbcp35E-Jz0h-zv0OQmY2rMAQrVj-xmRyocVSK_sRl-I0Xu_JS2guAildrO
+    Lb5uyZ1kP8AmUyfzVM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdehgedgjeefucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgjfhgggfestdekre
-    dtredttdenucfhrhhomheptehnughrvghiucfihhgvrhiirghnuceorghnughrvghisehg
-    hhgvrhiirghnrdgtohhmqeenucggtffrrghtthgvrhhnpeettddvffefkeetveekteeive
-    eggeevieeiudejfeeitedvkeelvdekheejlefffeenucfkphepvddrvdeirdduheeirddu
-    jeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hnughrvghisehghhgvrhiirghnrdgtohhm
-X-ME-Proxy: <xmx:bjGdYA8ZjORBDJr3FkjZK2BaF7IqmWz65Zhcf5S-PoYRnLWsWU1UcQ>
-    <xmx:bjGdYIqR4Y7CzxszQscZBSlIrSsyooCnJl7Jpd3RY8jv7pKm9TUiXA>
-    <xmx:bjGdYBq4SJI-jokTrrjNwWc6YEyqMYTQMhS0r6OvCteITvxCNC57Cw>
-    <xmx:bjGdYASpF5JLwsuK4NNnBXRHHm23qSh_UvIVeXaETvZkp8u7ewXhAg>
-Received: from qwirkle.internal (unknown [2.26.156.173])
-	by mail.messagingengine.com (Postfix) with ESMTPA;
-	Thu, 13 May 2021 10:02:21 -0400 (EDT)
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefofgggkfgjfhffhffvufgtsegrtd
+    erreerreejnecuhfhrohhmpedftehnughrvghiucfihhgvrhiirghnfdcuoegrnhgurhgv
+    ihesghhhvghriigrnhdrtghomheqnecuggftrfgrthhtvghrnheptedvtdfgkeffueeife
+    ekhfevveevhfehheejkeeuueejudefheffveehkeevgfelnecuffhomhgrihhnpeihohgt
+    thhophhrohhjvggtthdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmh
+    epmhgrihhlfhhrohhmpegrnhgurhgvihesghhhvghriigrnhdrtghomh
+X-ME-Proxy: <xmx:7TGdYCNn71LskKK42bAMQ1Vq1-8ifrsGMd0Ze9GT94edf8gUDOMjKw>
+    <xmx:7TGdYA7IvxlILICLVrGp-m1_vMG23-KMQylNlQXSro93c75vFAs80w>
+    <xmx:7TGdYE6GkBGB_4HY2dvO99-JvhsPAy91LwgIO2hPn401C2nz3Paonw>
+    <xmx:7TGdYJVDhZDOIG7P9qvdH4QLdqQ0k0yUl07ujDG0ApRyWMylIdtkxQ>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 4F62C160065; Thu, 13 May 2021 10:04:29 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-448-gae190416c7-fm-20210505.004-gae190416
+Mime-Version: 1.0
+Message-Id: <9134f81c-a2cb-44af-bb9a-048fe07d56bf@www.fastmail.com>
+In-Reply-To: <167EA09AF0B5B758.23267@lists.yoctoproject.org>
+References: <20210507100818.2819019-1-andrei@gherzan.com>
+ <CAAnfSTuOwq=3edHv-7zNKeO9oCjf2VCKM3uiyAtB6KrVpnHpqQ@mail.gmail.com>
+ <CAAnfSTsKteY1F4MUOuiY05_MUDhfq9=8E6Do960Je5zbEJgQeg@mail.gmail.com>
+ <167EA09AF0B5B758.23267@lists.yoctoproject.org>
+Date: Thu, 13 May 2021 15:04:04 +0100
 From: "Andrei Gherzan" <andrei@gherzan.com>
-To: yocto@lists.yoctoproject.org
-Cc: ross@burtonini.com,
-	Andrei Gherzan <andrei.gherzan@huawei.com>
-Subject: [meta-zephyr][PATCH 2/2] zephyr-qemuboot.bbclass: Remove dependency on qemu-system-native
-Date: Thu, 13 May 2021 15:02:08 +0100
-Message-Id: <20210513140208.708092-2-andrei@gherzan.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210513140208.708092-1-andrei@gherzan.com>
-References: <20210513140208.708092-1-andrei@gherzan.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+To: yocto@lists.yoctoproject.org, ross@burtonini.com
+Subject: Re: [yocto] [meta-zephyr][PATCH 1/1] zephyr-qemuboot.bbclass: Fix runqemu dependency on qemu native sysroot
+Content-Type: multipart/alternative;
+ boundary=a4764dca297f457287652a1e87805fec
 
-From: Andrei Gherzan <andrei.gherzan@huawei.com>
+--a4764dca297f457287652a1e87805fec
+Content-Type: text/plain
 
-runqemu only really needs the sysroot for qemu-helper-native. Pulling
-other qemu dependency would get into a racing issue with rm_work. That
-can also be fixed by tweaking the do_addto_recipe_sysroot order in
-oe-core for qemu-system-native but that is just not needed for this
-specific dependency requirement.
+Hi Ross,
 
-Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
----
- classes/zephyr-qemuboot.bbclass | 15 +++++++--------
- 1 file changed, 7 insertions(+), 8 deletions(-)
+On Thu, 13 May 2021, at 13:37, Andrei Gherzan wrote:
+> Hi,
+> 
+> On Thu, 13 May 2021, at 13:14, Ross Burton wrote:
+> > Debugged, the patch is broken.
+> > 
+> > Using a little tool I have:
+> > 
+> > Task qemu-system-native-5.2.0-r0:do_addto_recipe_sysroot failed
+> > Active tasks are:
+> >  virglrenderer-native-0.9.1-r0:do_rm_work
+> >  binutils-cross-arm-2.36.1-r0:do_patch
+> >  qemu-system-native-5.2.0-r0:do_addto_recipe_sysroot
+> >  qemu-system-native-5.2.0-r0:do_rm_work
+> >  libepoxy-native-1.5.5-r0:do_rm_work
+> >  gcc-source-11.1.0-11.1.0-r0:do_unpack
+> > 
+> > Note how qemu is simultaneously adding itself to the sysroot, whilst
+> > rm_work is running and deleting the sysroot.
+> > 
+> > This patch isn't compatible with rm_work and should be reverted.
+> > 
+> 
+> I'll look into it.
 
-diff --git a/classes/zephyr-qemuboot.bbclass b/classes/zephyr-qemuboot.bbclass
-index f508b45..c268e9e 100644
---- a/classes/zephyr-qemuboot.bbclass
-+++ b/classes/zephyr-qemuboot.bbclass
-@@ -36,19 +36,18 @@ python do_bootconf_write() {
- 
- addtask do_bootconf_write before do_build after do_deploy
- 
--# The runqemu script requires the native sysroot populated for the qemu
--# recipes. Usually, this is pulled in by a do_image dependency (see
--# baremetal-helloworld_git, for example), but in this case, there is no such
--# task, so we hook in the dependency to do_bootconf_write. This also ensures
--# that builds from sstate will also have this requirement satisfied.
-+# The runqemu script requires the native sysroot populated for the
-+# qemu-helper-native recipes. Usually, this is pulled in by a do_image
-+# dependency (see baremetal-helloworld_git, for example), but in this case,
-+# there is no such task, so we hook in the dependency to do_bootconf_write.
-+# This also ensures that builds from sstate will also have this requirement
-+# satisfied.
- python () {
--    # do_addto_recipe_sysroot doesnt exist for all recipes, but we need it to have
--    # /usr/bin on recipe-sysroot (qemu) populated
-     def extraimage_getdepends(task):
-         deps = ""
-         for dep in (d.getVar('EXTRA_IMAGEDEPENDS') or "").split():
-         # Make sure we only add it for qemu
--            if 'qemu' in dep:
-+            if 'qemu-helper-native' in dep:
-                 deps += " %s:%s" % (dep, task)
-         return deps
-     d.appendVarFlag('do_bootconf_write', 'depends', extraimage_getdepends('do_addto_recipe_sysroot'))
+
+https://lists.yoctoproject.org/g/yocto/message/53508 should fix it.
+
 -- 
-2.31.1
+Andrei Gherzan 
+gpg: rsa4096/D4D94F67AD0E9640
 
+--a4764dca297f457287652a1e87805fec
+Content-Type: text/html
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html><html><head><title></title><style type=3D"text/css">p.Mso=
+Normal,p.MsoNoSpacing{margin:0}</style></head><body><div>Hi Ross,<br></d=
+iv><div><br></div><div>On Thu, 13 May 2021, at 13:37, Andrei Gherzan wro=
+te:<br></div><blockquote type=3D"cite" id=3D"qt" style=3D""><div>Hi,<br>=
+</div><div><br></div><div>On Thu, 13 May 2021, at 13:14, Ross Burton wro=
+te:<br></div><div>&gt; Debugged, the patch is broken.<br></div><div>&gt;=
+&nbsp;<br></div><div>&gt; Using a little tool I have:<br></div><div>&gt;=
+&nbsp;<br></div><div>&gt; Task qemu-system-native-5.2.0-r0:do_addto_reci=
+pe_sysroot failed<br></div><div>&gt; Active tasks are:<br></div><div>&gt=
+;&nbsp; virglrenderer-native-0.9.1-r0:do_rm_work<br></div><div>&gt;&nbsp=
+; binutils-cross-arm-2.36.1-r0:do_patch<br></div><div>&gt;&nbsp; qemu-sy=
+stem-native-5.2.0-r0:do_addto_recipe_sysroot<br></div><div>&gt;&nbsp; qe=
+mu-system-native-5.2.0-r0:do_rm_work<br></div><div>&gt;&nbsp; libepoxy-n=
+ative-1.5.5-r0:do_rm_work<br></div><div>&gt;&nbsp; gcc-source-11.1.0-11.=
+1.0-r0:do_unpack<br></div><div>&gt;&nbsp;<br></div><div>&gt; Note how qe=
+mu is simultaneously adding itself to the sysroot, whilst<br></div><div>=
+&gt; rm_work is running and deleting the sysroot.<br></div><div>&gt;&nbs=
+p;<br></div><div>&gt; This patch isn't compatible with rm_work and shoul=
+d be reverted.<br></div><div>&gt;&nbsp;<br></div><div><br></div><div>I'l=
+l look into it.<br></div></blockquote><div><br></div><div><br></div><div=
+><a href=3D"https://lists.yoctoproject.org/g/yocto/message/53508">https:=
+//lists.yoctoproject.org/g/yocto/message/53508</a> should fix it.<br></d=
+iv><div><br></div><div><div id=3D"sig112942400"><div class=3D"signature"=
+>--&nbsp;<br></div><div class=3D"signature">Andrei Gherzan&nbsp;<br></di=
+v><div class=3D"signature">gpg: rsa4096/D4D94F67AD0E9640<br></div></div>=
+</div><div><br></div></body></html>
+
+--a4764dca297f457287652a1e87805fec--
