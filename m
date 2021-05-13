@@ -1,111 +1,105 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web08.8519.1620877736267227343
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+ by mx.groups.io with SMTP id smtpd.web12.8877.1620881330404958833
  for <yocto@lists.yoctoproject.org>;
- Wed, 12 May 2021 20:48:56 -0700
+ Wed, 12 May 2021 21:48:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=NiP7GAyJ;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: raj.khem@gmail.com)
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 51DFA38C0579
-	for <yocto@yoctoproject.org>; Thu, 13 May 2021 03:48:55 +0000 (UTC)
-Received: by mail-pl1-f179.google.com with SMTP id b15so7497223plh.10
-        for <yocto@yoctoproject.org>; Wed, 12 May 2021 20:48:55 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=URjnzotH;
+ spf=pass (domain: gmail.com, ip: 209.85.210.177, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-pf1-f177.google.com with SMTP id e19so2348914pfv.3
+        for <yocto@lists.yoctoproject.org>; Wed, 12 May 2021 21:48:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:references:from:organization:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=eTwUuosG2+civyMbVw/YorRcUtkS/weUVmKkj3PI+ts=;
-        b=NiP7GAyJuOqGb8IkD76Z1SEr3eRrlZxf3nyPkHHbQ/QTnB6qpaIb8IL+y+o0ooRiR2
-         yO0apY0BbR+AUspK6/lzuWfj2uaOo6+/xcE7feEAqPZ/KXEtPYU4+QY8yEVo1yKQQ/jQ
-         SkPpIb+QjUq+HD0J4J4sgOoAF3tdinVFL5uE6DtHCxrayIEMD6IZFSrE9pGS4JmF0VPu
-         4t4QaxB1yjBv4m78HJBqZfPmZA1tNHQFGWuD14Wl9/fAmK3+jBtZ3tUbun8O2u2+7tT2
-         RoRykQ8a0ASvO5YC5tTepvkCX3WbXxTi5jigdboh9+Sl7LiGYfrKHdobDjMtqPV8ea+7
-         bU3w==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vJxKCx+hrw44ZZPHNduuhnz8zq3w6w4wFHMeMN/PKnk=;
+        b=URjnzotHIJLge2QyPe9tFbmaYAXHGvZ9KOh2pmc2rymSs5EujjUl7HBTJP9+SfkWEW
+         hqRYqHr2JDFndctXzFtd4KvIzzEdvAJbgwwlwnbpy40GkiV+Nk2TyhfS/SYE9GLRl0QD
+         DNb+F9rD9AqkSxDu1uik1fDLzJrZdvXeP/aVl1e2RSTN1JDZH/3WvFIoZhcAYs2s5P7R
+         Fs3MYuRckbbJd9dNviBMkQ/8t2qCZJWMU34CKhEFMplpGk9EPh4q3mWvYVo5wGVT9HI5
+         HBXNtoyk3YmBFKAxm8C9thmjKoPTIaMKnD0+U0acByjOJnKeyqtK8btV8Uj7NLnpIlWE
+         1SJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=eTwUuosG2+civyMbVw/YorRcUtkS/weUVmKkj3PI+ts=;
-        b=oLuT0HszfragICOQWONvag/sZ72GPTmXltmW2n3BmXBM/mzynkC+p6XQTzt044Xkl9
-         oqi3lW2SbET0fKv5Bg0yZOrx3jKS5RNVQ47sMwUJ9RPvyMNAAxOntoEgYKsMCctkA2VB
-         V+rbLFaG935TFFhGHrAnexaL4FlcA3YpoB0yJjxjCyCt0AMeTVihCem7SpShBE6Z0fQb
-         cCSp4WXawmJ/bBeQET6b7cWdrgXno6Zsgb4FYeRX6+PhFjOkU0QZBGk7NSirrGnSEHCz
-         PKeBA1PPSvfTy0s9EaPlX+N9M7gXiYWlesT5lIIF6TlMxTNjQdwLqi2R8d5AAXqX5Fj3
-         zvBw==
-X-Gm-Message-State: AOAM530/X3ndZYqbW1sX5Re7+SiX76ZnUMYs4w9+a62Sk5hOCxoJ//1i
-	COKVjW191l6ODps9yNNS0QVgvyJf9GdWaw==
-X-Google-Smtp-Source: ABdhPJzL7FKfZSM10FsBn9UqNJArFaG6Y+aBPb1hAeAU6eHYhSOKNAmkTTgmdOHL6nVH0Sy7VyCOmw==
-X-Received: by 2002:a17:902:b609:b029:ec:e80d:7ebd with SMTP id b9-20020a170902b609b02900ece80d7ebdmr38557518pls.75.1620877734300;
-        Wed, 12 May 2021 20:48:54 -0700 (PDT)
-Received: from ?IPv6:2601:646:9200:a0f0::c947? ([2601:646:9200:a0f0::c947])
-        by smtp.gmail.com with ESMTPSA id g18sm953500pfb.178.2021.05.12.20.48.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 May 2021 20:48:53 -0700 (PDT)
-Subject: Re: [yocto] [meta-raspberrypi][PATCH] 99-com.rules: fix error invalid substitution type
-To: Changqing Li <changqing.li@windriver.com>, yocto@yoctoproject.org
-References: <20210513034251.9623-1-changqing.li@windriver.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-Message-ID: <5161b49d-1893-8174-f179-99f952d23e95@gmail.com>
-Date: Wed, 12 May 2021 20:48:52 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vJxKCx+hrw44ZZPHNduuhnz8zq3w6w4wFHMeMN/PKnk=;
+        b=VLbZI9uSFBnPALlszlanAn32C/ioe22OMicLPY1ZZvwK8fdCAAb0k8J+wNUFrWRqyJ
+         bz9RZ+3WepFvqtyK9zpQbN/CyoWwi4sKsyoqalB/6e/aQEe1UR84m/kznhUKBcYJc3FF
+         v8ZQSKB3x+VjqP92QQyciRp5C+HhUJ8J5wIGmvTGPRaDlSeentEhALv3WZWzOvmLT2Lb
+         LgF93VFRYpNzBDcooU9CDORAk9MiGPlyrToqBRv2MWkIQu4hki+H30m7Z682EXaslLyV
+         Mtp0c/veGOXxkf1ZbBE6MSDRRhTkDSlI3VkKYpU4bauyvetbBgMNCg29qsHYelKU5VZd
+         jw/g==
+X-Gm-Message-State: AOAM530lEbZBA5EK/fctOdOTRJnyKrkKft2lbAaVPnXEbEHF2UkkQDNy
+	21q/8qwZxUvurOjGgXfX7ShBCGEG33IHrFRSaRE=
+X-Google-Smtp-Source: ABdhPJy3vXpBIn6cVl7lv8DdVfqvvqLABlgcqJalhJ9JQrTdVeZp8mjUF5mIyC/umZXQwohjCkjznXXhWvUO7llhevI=
+X-Received: by 2002:a17:90a:a613:: with SMTP id c19mr2517061pjq.117.1620881329768;
+ Wed, 12 May 2021 21:48:49 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210513034251.9623-1-changqing.li@windriver.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <v3iM.1620820893433035646.BQdl@lists.yoctoproject.org>
+ <CAGAf8Ly_r-CoF9c+7OuSuZUb9wsFxsDdb28mEVmdw1jk9YMXtw@mail.gmail.com> <CAGqYRWHupwJo4-TPC13yAr=cmu7A97ki8b6YcmnyV8Wu00qs2g@mail.gmail.com>
+In-Reply-To: <CAGqYRWHupwJo4-TPC13yAr=cmu7A97ki8b6YcmnyV8Wu00qs2g@mail.gmail.com>
+From: "Zoran" <zoran.stojsavljevic@gmail.com>
+Date: Thu, 13 May 2021 06:48:38 +0200
+Message-ID: <CAGAf8LxqL40KhhdmEtaN39xsK+je_SiNhsKHuCz-3NxoeQ+Jjw@mail.gmail.com>
+Subject: Re: [yocto] Yocto Zeus : facing error regarding hostapd #zeus
+To: rohit jadhav <rohitbjadhav1@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
+From the log log.do_rootfs.31340 file, there are the following:
 
+[1] ERROR: Postinstall scriptlets of ['hostapd'] have failed.
 
-On 5/12/21 8:42 PM, Changqing Li wrote:
-> From: Changqing Li <changqing.li@windriver.com>
-> 
-> fix below error:
-> /etc/udev/rules.d/99-com.rules:10 Invalid value "/bin/sh -c
-> 'ALIASES=/proc/device-tree/aliases; if cmp -s $ALIASES/uart0
-> $ALIASES/serial0; then echo 0;elif cmp -s $ALIASES/uart0
-> $ALIASES/serial1; then echo 1; else exit 1; fi'" for PROGRAM (char 58:
-> invalid substitution type)
-> 
+HOSTAP stands for: HOST Access Point Daemon. I could not conclude too much from:
+https://en.wikipedia.org/wiki/Hostapd
 
-Can you create a pull request on github for this please.
+It is kind of a hot spot, as my best understanding is.
 
-> Signed-off-by: Changqing Li <changqing.li@windriver.com>
-> ---
->   recipes-core/udev/udev-rules-rpi/99-com.rules | 8 ++++----
->   1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/recipes-core/udev/udev-rules-rpi/99-com.rules b/recipes-core/udev/udev-rules-rpi/99-com.rules
-> index 6bf019b..ddd1e17 100644
-> --- a/recipes-core/udev/udev-rules-rpi/99-com.rules
-> +++ b/recipes-core/udev/udev-rules-rpi/99-com.rules
-> @@ -1,8 +1,8 @@
->   KERNEL=="ttyAMA[01]", PROGRAM="/bin/sh -c '\
->   	ALIASES=/proc/device-tree/aliases; \
-> -	if cmp -s $ALIASES/uart0 $ALIASES/serial0; then \
-> +	if cmp -s $$ALIASES/uart0 $$ALIASES/serial0; then \
->   		echo 0;\
-> -	elif cmp -s $ALIASES/uart0 $ALIASES/serial1; then \
-> +	elif cmp -s $$ALIASES/uart0 $$ALIASES/serial1; then \
->   		echo 1; \
->   	else \
->   		exit 1; \
-> @@ -11,9 +11,9 @@ KERNEL=="ttyAMA[01]", PROGRAM="/bin/sh -c '\
->   
->   KERNEL=="ttyS0", PROGRAM="/bin/sh -c '\
->   	ALIASES=/proc/device-tree/aliases; \
-> -	if cmp -s $ALIASES/uart1 $ALIASES/serial0; then \
-> +	if cmp -s $$ALIASES/uart1 $$ALIASES/serial0; then \
->   		echo 0; \
-> -	elif cmp -s $ALIASES/uart1 $ALIASES/serial1; then \
-> +	elif cmp -s $$ALIASES/uart1 $$ALIASES/serial1; then \
->   		echo 1; \
->   	else \
->   		exit 1; \
-> 
-> 
-> 
-> 
-> 
+[2] Details of the failure are in
+/home/tel/imx_yocto_bsp_Zeus/Yocto_setup/build_imx6ull/tmp/work/imx6ull14x14evk-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.
+
+So, my best guess, looking into log.do_rootfs will tell us much more.
+
+Please, attach this one for our review as well.
+
+Thank you,
+Zoran
+_______
+
+On Wed, May 12, 2021 at 5:29 PM rohit jadhav <rohitbjadhav1@gmail.com> wrote:
+>
+> Hi Zoran ,
+> I have attached the log file for your reference.
+> Thank You
+> Regards
+> Rohit
+>
+> On Wed, May 12, 2021 at 7:50 PM Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com> wrote:
+>>
+>> > Log file in:
+>> > /home/tel/imx_yocto_bsp_Zeus/Yocto_setup/build_imx6ull/tmp/work/
+>> > imx6ull14x14evk-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/
+>> log.do_rootfs.31340
+>>
+>> Could you, please, attach a log file?
+>>
+>> Thank you,
+>> Zoran
+>> _______
+>>
+>>
+>> On Wed, May 12, 2021 at 2:01 PM rohit jadhav <rohitbjadhav1@gmail.com> wrote:
+>>>
+>>> Facing following issue :
+>>> ERROR: core-image-minimal-1.0-r0 do_rootfs: Postinstall scriptlets of ['hostapd'] have failed. If the intention is to defer them to first boot,
+>>> then please place them into pkg_postinst_ontarget_${PN} ().
+>>> Deferring to first boot via 'exit 1' is no longer supported.
+>>> Details of the failure are in /home/tel/imx_yocto_bsp_Zeus/Yocto_setup/build_imx6ull/tmp/work/imx6ull14x14evk-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.
+>>> ERROR: Logfile of failure stored in: /home/tel/imx_yocto_bsp_Zeus/Yocto_setup/build_imx6ull/tmp/work/imx6ull14x14evk-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.31340
+>>> ERROR: Task (/home/tel/imx_yocto_bsp_Zeus/Yocto_setup/sources/poky/meta/recipes-core/images/core-image-minimal.bb:do_rootfs) failed with exit code '1'
+>>>
+>>> Please guide me if anyone have any idea to resolve.
+>>>
+>>> Thanks in advance.
+>>> 
+>>>
