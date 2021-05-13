@@ -1,72 +1,72 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.5703.1620860838365180714
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+ by mx.groups.io with SMTP id smtpd.web10.7922.1620872663918408444
  for <yocto@lists.yoctoproject.org>;
- Wed, 12 May 2021 16:07:18 -0700
+ Wed, 12 May 2021 19:24:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=XDr4hnC6;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: raj.khem@gmail.com)
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 9E62A38C0652
-	for <yocto@yoctoproject.org>; Wed, 12 May 2021 23:07:17 +0000 (UTC)
-Received: by mail-qk1-f170.google.com with SMTP id l129so23955087qke.8
-        for <yocto@yoctoproject.org>; Wed, 12 May 2021 16:07:17 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=oHBetOqs;
+ spf=pass (domain: gmail.com, ip: 209.85.215.175, mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f175.google.com with SMTP id t193so7355660pgb.4
+        for <yocto@lists.yoctoproject.org>; Wed, 12 May 2021 19:24:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3onnCYDYC49w8Ska8bwsWHK018qpf2tjIz3th8UYKvY=;
-        b=XDr4hnC6SFTw6MOlA21dJKUGHxVJ+Xa/xfN5gcb7wH/op3BqunLX0VEsExUs4GAvAN
-         a7f40e1zBJeYh9qDZ8z2uFoBn0c1nB6KV45Q+J6hdY3lferFxRdM/PcSrAClOAazDjdQ
-         CIipWA/5eLGNbAHK/bFS0bxyqwsIPK9io4yKeg0ZOVmcHONzIOnPS2ITz3n5H5byNFS7
-         d/LBZwwAx7IUJtYeaQKpXzmbdibz4+1z3J3gDIe4tvwZFrDIKsg3Fz4PzKNaZgvGuxTT
-         uU+AvHggb3zyHYkekcLga9FDG5ZcKe4mGulRNw/IZBxaIBQUq2erztBBzsZjLfxyh0tS
-         8kjw==
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KMEH2njjcO4JV3sM80IbZSKZ/X2Wh4tQJ4Zd8/XLhOc=;
+        b=oHBetOqsCGWLu/3nXmr+IpJMrhhl1u317T0gX0vOJ1IsHYGlxYjNr3IcsDXtUtYBJQ
+         BTg110PUSddS+Xy/+x7nk3KDj6hlETo4A41B1TaFzAvIMVxZ4evT3826FtU/LAiJL/dg
+         zQZy5zn7MuYmBYFny+7GljQOaggE0G2pd5IaCDCXQUxB/vL9Z7gYJvPk0YUZ0JHITMbI
+         jd/VAgxd5ksXw5WN0oRR+ozevGobtkcTP5yIj7cEhz6WGJJyA0W6uAjJQlryNibG+mUi
+         dFcotnBREboM7PoOkCH3SMSlEaMvspHIRvqDrVd41WhEOqLy0CGV89NVaUhn9dr7wgia
+         7dcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3onnCYDYC49w8Ska8bwsWHK018qpf2tjIz3th8UYKvY=;
-        b=JVYOpx05lP0oNhXUQA0I2ln6fRjpRpJZdkGo/ZPYTU1cxDihf10nth4+w5LVCtsY54
-         2i+y7aU8AmJHPBDtG0kNMUdJQfM6kaCV+Jlqk+P0RjnAr+z6tiUvLZDMPQUxViVLYQ7r
-         dfAhjP8RjyFg8IidmDm8tfwy+n383W8jiy13N92uOueGgrasf4AhjMsxQE7AeEUtuAYg
-         f1v15jYRsaV5OM7RJvRb/Wu6A8QhQ8P/FBldhQQTyuHaS/cc4LiqtFt+xQGEMhdEOrXu
-         oE1Rr/qxhv4VHoYflq9oDvSKOdGrmv1DPJWKEGKzCEyygB9jkc3I2zJwjsHb0x3G6ju6
-         aVLg==
-X-Gm-Message-State: AOAM530Z4yy5UIvA86uJPmt5GPTv9OhtM154OS5baxWtU44T0HQs8Gia
-	x6NowjoTfXCXPGPP5kn5yMNKol2gaaxVcLY78lI=
-X-Google-Smtp-Source: ABdhPJx7733YPbVsu8GBZ1bnBSh5Bn0E0r2ssL1uj0rTFgnkPAznp9jPDN2zz6+aQM+mOBB19yqqD5o+kl0mVENZMmA=
-X-Received: by 2002:a37:994:: with SMTP id 142mr35431391qkj.119.1620860836482;
- Wed, 12 May 2021 16:07:16 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KMEH2njjcO4JV3sM80IbZSKZ/X2Wh4tQJ4Zd8/XLhOc=;
+        b=Jdma5W9IpjKxWXDL1ecfjTlEjWBg4BhAoEGhSi9xdV5E0YasJQU9JVVSvwBpLoBP87
+         G21qPxN3Ba/DBbUhbUk5dSrTOymwuI1Ot3qp0MqUFffJd+suFBaGEtC1KXnkFGgRsROH
+         S04Sta4WaCe/0mHUXEmvcrXFmvwqAMiBKNfPHhADKaf4UKZoNk7URVW9rGOwYEjcogiG
+         rLRz1IO2HEgeT3Tv4WUgZBHZOuL0w14J+4zfTKIYVSEYw7/gayLPhE3HHUhH5bLdHYaq
+         YaF47tq2GoPr/wQstYCfrUKzgpZc/etQXUdWLDfPR6bHs0NkRgJDfdcS/8nq4CK9Vjuc
+         BlMg==
+X-Gm-Message-State: AOAM531UeE9RhNCnE8500mzGy+Eq482Ygc6lAkhKyED8zlroBoBE3Ly4
+	vSntWHk02Ipdc+MGCIJWPNJ6GTi6fgY=
+X-Google-Smtp-Source: ABdhPJyiMDgdH3jTR+uuRqxPEtWB41A2vUf5qv0fs2+iQ7jYbeQXZzYiDg6mZ5tNMsXZyLdsbBnfpw==
+X-Received: by 2002:aa7:81d8:0:b029:28e:6e31:7c9a with SMTP id c24-20020aa781d80000b029028e6e317c9amr38425235pfn.56.1620872662972;
+        Wed, 12 May 2021 19:24:22 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from hilo.hsdl.ca.comcast.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
+        by smtp.gmail.com with ESMTPSA id l35sm891626pgm.10.2021.05.12.19.24.22
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 May 2021 19:24:22 -0700 (PDT)
+From: "Armin Kuster" <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][v2][PATCH] suricata: 4.1.x add UPSTREAM_CHECK_URI
+Date: Thu, 13 May 2021 02:24:21 +0000
+Message-Id: <20210513022421.3370731-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <CAF2aNtzrjYOUYdevN83fJ-Dn6Jjp1SsNh1Q5zO0MXFEjW4xcUg@mail.gmail.com>
-In-Reply-To: <CAF2aNtzrjYOUYdevN83fJ-Dn6Jjp1SsNh1Q5zO0MXFEjW4xcUg@mail.gmail.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Wed, 12 May 2021 16:06:50 -0700
-Message-ID: <CAMKF1sqxa+F4POAOb78tZd2ArPPk9ZTjfRMWSWEXyDyXxug9Pw@mail.gmail.com>
-Subject: Re: [yocto] Yocto with xtensa
-To: Jack Daniels <onyx22574@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hello Jack,
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-ids/suricata/suricata_4.1.10.bb | 2 ++
+ 1 file changed, 2 insertions(+)
 
-I think we do not have support for Xtensa architecture working out of
-box upstream. Although it should be possible to add it with little
-effort, but no one has spun patches to do so
-thus far.
+diff --git a/recipes-ids/suricata/suricata_4.1.10.bb b/recipes-ids/suricata/suricata_4.1.10.bb
+index 3f7beaa..bf08843 100644
+--- a/recipes-ids/suricata/suricata_4.1.10.bb
++++ b/recipes-ids/suricata/suricata_4.1.10.bb
+@@ -12,6 +12,8 @@ SRC_URI += " \
+     file://run-ptest \
+     "
+ 
++UPSTREAM_CHECK_URI = "www.openinfosecfoundation.org/download"
++
+ inherit autotools-brokensep pkgconfig python3-dir systemd ptest
+ 
+ CFLAGS += "-D_DEFAULT_SOURCE -fcommon"
+-- 
+2.25.1
 
-Thanks
--Khem
-
-On Wed, May 12, 2021 at 1:29 PM Jack Daniels <onyx22574@gmail.com> wrote:
->
-> Dears,
->
-> I am looking for a way to include sample code for DSP (xtensa) with Yocto/Linux. what would be the procedure to include such a code and eventually interprocessor communication between xtensa core and CPU under Yocto/Linux?
->
-> Thank you.
-> BR/J
->
->
-> 
->
