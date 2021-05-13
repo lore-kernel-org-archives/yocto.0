@@ -1,133 +1,131 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.9665.1620888340018156492
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+ by mx.groups.io with SMTP id smtpd.web10.12320.1620907613834932796
  for <yocto@lists.yoctoproject.org>;
- Wed, 12 May 2021 23:45:40 -0700
+ Thu, 13 May 2021 05:06:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ln3rMnug;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: onyx22574@gmail.com)
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id D37CF38C05B5
-	for <yocto@yoctoproject.org>; Thu, 13 May 2021 06:45:38 +0000 (UTC)
-Received: by mail-lj1-f182.google.com with SMTP id 131so7186806ljj.3
-        for <yocto@yoctoproject.org>; Wed, 12 May 2021 23:45:38 -0700 (PDT)
+ dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=nPSNBqYF;
+ spf=pass (domain: burtonini.com, ip: 209.85.128.42, mailfrom: ross@burtonini.com)
+Received: by mail-wm1-f42.google.com with SMTP id o6-20020a05600c4fc6b029015ec06d5269so4555105wmq.0
+        for <yocto@lists.yoctoproject.org>; Thu, 13 May 2021 05:06:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=XLkXogBUZhdeToKrgK9Y9grznf3nlDe55TLFw64nYMs=;
-        b=ln3rMnugSgvwtWZTSICheYGHwVQiVLPx9ThbFl62lGrgIPS1+rc73PH88bXbzJFIaq
-         UA08x0wOS61UUjcOgmG1t8edEt2tW10rlp98XkET3M4+iG4x/l0lpziDt/Erwx5gcUb+
-         4FiBHxS5hPVp1ac0vnBm4DOCWDpegp7P5ovVjfPw1rmU+dBDTtwcQjQSXmgG+sJq15Ml
-         4iuPOEOX/lN9lq1VpxYhVMXAOrhj37Sd8JyL6d2iWT1efP46JDuSnHDXKa2vBZbGWKBT
-         7DPNU4zayVxLN3rRbKilM+nWHBeFCm87A1Bfz97fNPBDLM3k9V6+Ah/7cWJRktxygc1m
-         6ybw==
+        bh=GASXE59HA1mNomNbCTOIYwfk7G9wjLraz0KbJMb856w=;
+        b=nPSNBqYFcfl8bZEpnSwLQTN2s5yIzqgnRF1agD6VUPWUeaN1BgG9q5KVSHLuP99nO0
+         dnrH/DdiSmsX5wWAsSNT7kEdtSviVTcS54YbYmGxOgmvcC7W+ORP9qDg8P3GKx8GFzrN
+         Y+/ejKcFta9WmbcPYd99IkaopJYBO7XL47IeXCteVTHGeu1/88LHbkfql0NPF2fihav0
+         FNTqinentdF97vuvMtMEeKte2R/84MhksfiutLdCcGPG9IzxlPHq7LbeEFr5h+QhovHr
+         nYRZeRwVg+HnR3gUpr9/IyTs6l53vqsYN9xXMNAR8bS6tZarCtomOcMNTfhreN+m9iSO
+         P+AQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=XLkXogBUZhdeToKrgK9Y9grznf3nlDe55TLFw64nYMs=;
-        b=P+uL0mUlI6mrrumhj0w4BCA+EJgejHZCAixPD9Hv3zUjOesarrJkwb7zQhqnz5vqp5
-         Wi3e/19rbe+Bi2+3L6TNvOQ+9JS/QTlNhjCw33jERmSCCfpjswJZ2c0hvkKZX5VzIfJQ
-         GmTBmwkj2Bwz/mrG/LzMN6zkR2oRv9yQ1fyxjFRDqp/tiaGb3JBlPMvdorHk2mVVeK+D
-         Cs+e6/cdDKqwAfFUPkx6rlirZsDBWx3Y2jNKZICm+HoB08lFBqOufZX3MUK4ccFOtjb/
-         5hKkPhlta64rYJxsTawZV0l6wcRGSr9k2FUG7Nauw6FXOp21iT9t8qlDvQPt+bUq6+KH
-         XEuw==
-X-Gm-Message-State: AOAM533whjEEUhXAsjwtfIgZwkvfV8tfSo05JYVa6weBtpcB+ziQjYfs
-	HwSmk1TZoV3an061yg3kj5Xb2k2URc7/8zp4UxQ=
-X-Google-Smtp-Source: ABdhPJwp2Bzs33Yh7oVZwfrNhBQpPD0DSlHFX8t3yTjEX07rEunKgA2zKqpuBBwhunXsK2LM2t1Pl+hUhfmyfDGuDOo=
-X-Received: by 2002:a2e:9d8e:: with SMTP id c14mr32217568ljj.350.1620888337203;
- Wed, 12 May 2021 23:45:37 -0700 (PDT)
+        bh=GASXE59HA1mNomNbCTOIYwfk7G9wjLraz0KbJMb856w=;
+        b=l/T0Gn+R3jdo836U/FXdbGiJ+EhSJPkVN37fsjbqneISAM7rQIdG81h+o4n8rHHPio
+         71Rd5HUTrj4ELkKKpGKyDcollVbewnMjQ/BLJzP7UNYOiObbhQcQOgzL/DBZEfurNvZ/
+         1meH869GwJmyToB8vjCvDo9gAFrv9hxH+PHL8wdOk0pYV6SXGWlZzTP+u2R8zmLcFdJP
+         5AHgrxvfTZeSoFZgOLbWClP30pw19Dr7pHVWrnVT8g2WaMzaRGzJptJJOkJ5ezQdyabG
+         7oCVD+QdJALPH8iAjP+eYFfCc62ZtG/lpT3QzdEr8DE6D8P0Yv/lP+XfG4B/ZU4Dyw+G
+         f6+Q==
+X-Gm-Message-State: AOAM530GcAv6piX0GD9IpPwufeiQYR0ctQwV1VgEbNHbP7j+YSkh0caL
+	Vya2r9gcXbEAsJc4tazATPzl9z9H45POmZWPB7+y4w==
+X-Google-Smtp-Source: ABdhPJwjDsfiTjqA8Kh+7lWlaDzLFwlK6fC0xzPkebBSAmVdQAPuGMhjy2sfKArROtxI6Tnz1IKrY6pRYVkiEIibeho=
+X-Received: by 2002:a05:600c:4fd0:: with SMTP id o16mr3471945wmq.137.1620907612172;
+ Thu, 13 May 2021 05:06:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAF2aNtzrjYOUYdevN83fJ-Dn6Jjp1SsNh1Q5zO0MXFEjW4xcUg@mail.gmail.com>
- <CAMKF1sqxa+F4POAOb78tZd2ArPPk9ZTjfRMWSWEXyDyXxug9Pw@mail.gmail.com>
-In-Reply-To: <CAMKF1sqxa+F4POAOb78tZd2ArPPk9ZTjfRMWSWEXyDyXxug9Pw@mail.gmail.com>
-From: "Jack Daniels" <onyx22574@gmail.com>
-Date: Thu, 13 May 2021 08:45:26 +0200
-Message-ID: <CAF2aNtyY+xM2Oj4w8Mf+hZmr47wTpb+ibYDQK=fFinj4Cue=jQ@mail.gmail.com>
-Subject: Re: [yocto] Yocto with xtensa
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000008f45cb05c23079ae"
-
---0000000000008f45cb05c23079ae
+References: <20210507100818.2819019-1-andrei@gherzan.com>
+In-Reply-To: <20210507100818.2819019-1-andrei@gherzan.com>
+From: "Ross Burton" <ross@burtonini.com>
+Date: Thu, 13 May 2021 13:06:41 +0100
+Message-ID: <CAAnfSTuOwq=3edHv-7zNKeO9oCjf2VCKM3uiyAtB6KrVpnHpqQ@mail.gmail.com>
+Subject: Re: [yocto] [meta-zephyr][PATCH 1/1] zephyr-qemuboot.bbclass: Fix runqemu dependency on qemu native sysroot
+To: Andrei Gherzan <andrei@gherzan.com>
+Cc: Yocto <yocto@lists.yoctoproject.org>, 
+	Andrei Gherzan <andrei.gherzan@huawei.com>
 Content-Type: text/plain; charset="UTF-8"
 
-Hello Khem,
+This is breaking our CI:
 
-Thank you for the information.
-Is it about adding support for the xtensa build system (toolchain)? Is it
-work for heterogeneous SoC (CPU/ARM + DSP/xtensa) as well?
+ERROR: qemu-system-native-5.2.0-r0 do_addto_recipe_sysroot: Error
+executing a python function in exec_python_func() autogenerated:
+The stack trace of python calls that resulted in this exception/failure was:
+File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+     0001:
+ *** 0002:extend_recipe_sysroot(d)
+     0003:
+File: '/builds/yocto-poc/meta-arm/work/poky/meta/classes/staging.bbclass',
+lineno: 502, function: extend_recipe_sysroot
+     0498:                continue
+     0499:
+     0500:        msg_adding.append(c)
+     0501:
+ *** 0502:        os.symlink(c + "." + taskhash, depdir + "/" + c)
+     0503:
+     0504:        manifest, d2 = oe.sstatesig.find_sstate_manifest(c,
+setscenedeps[dep][2], "populate_sysroot", d, multilibs)
+     0505:        if d2 is not d:
+     0506:            # If we don't do this, the recipe sysroot will
+be placed in the wrong WORKDIR for multilibs
+Exception: FileNotFoundError: [Errno 2] No such file or directory:
+'zlib-native.0f0b3e4d16f9ad46dd8609d8c899a834104f5b572a4a5438ccccd1db88d67e97'
+-> '/builds/yocto-poc/meta-arm/work/build/tmp/work/aarch64-linux/qemu-system-native/5.2.0-r0/recipe-sysroot-native/installeddeps/zlib-native'
+ERROR: Logfile of failure stored in:
+/builds/yocto-poc/meta-arm/work/build/tmp/work/aarch64-linux/qemu-system-native/5.2.0-r0/temp/log.do_addto_recipe_sysroot.7593
+ERROR: Task (/builds/yocto-poc/meta-arm/work/poky/meta/recipes-devtools/qemu/qemu-system-native_5.2.0.bb:do_addto_recipe_sysroot)
+failed with exit code '1'
+ERROR: qemu-system-native-5.2.0-r0 do_rm_work: Execution of
+'/builds/yocto-poc/meta-arm/work/build/tmp/work/aarch64-linux/qemu-system-native/5.2.0-r0/temp/run.do_rm_work.7583'
+failed with exit code 1:
+rm: cannot remove 'recipe-sysroot-native': Directory not empty
 
-Thank you.
-BR/J
+Can this be reverted whilst this is debugged?
 
-On Thu, May 13, 2021 at 1:07 AM Khem Raj <raj.khem@gmail.com> wrote:
+Ross
 
-> Hello Jack,
+On Fri, 7 May 2021 at 11:09, Andrei Gherzan <andrei@gherzan.com> wrote:
 >
-> I think we do not have support for Xtensa architecture working out of
-> box upstream. Although it should be possible to add it with little
-> effort, but no one has spun patches to do so
-> thus far.
+> From: Andrei Gherzan <andrei.gherzan@huawei.com>
 >
-> Thanks
-> -Khem
+> The runqemu script depends on having the native sysroot populated for
+> the qemu recipes. Add the required dependency to the mix.
 >
-> On Wed, May 12, 2021 at 1:29 PM Jack Daniels <onyx22574@gmail.com> wrote:
-> >
-> > Dears,
-> >
-> > I am looking for a way to include sample code for DSP (xtensa) with
-> Yocto/Linux. what would be the procedure to include such a code and
-> eventually interprocessor communication between xtensa core and CPU under
-> Yocto/Linux?
-> >
-> > Thank you.
-> > BR/J
-> >
-> >
-> > 
-> >
+> Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
+> ---
+>  classes/zephyr-qemuboot.bbclass | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
 >
-
---0000000000008f45cb05c23079ae
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello Khem,<div><br></div><div>Thank you for the informati=
-on.=C2=A0</div><div>Is it about adding support for the xtensa build system =
-(toolchain)? Is it work for=C2=A0heterogeneous=C2=A0SoC (CPU/ARM=C2=A0+=C2=
-=A0DSP/xtensa) as well?</div><div><br></div><div>Thank you.</div><div>BR/J=
-</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
-attr">On Thu, May 13, 2021 at 1:07 AM Khem Raj &lt;<a href=3D"mailto:raj.kh=
-em@gmail.com">raj.khem@gmail.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex">Hello Jack,<br>
-<br>
-I think we do not have support for Xtensa architecture working out of<br>
-box upstream. Although it should be possible to add it with little<br>
-effort, but no one has spun patches to do so<br>
-thus far.<br>
-<br>
-Thanks<br>
--Khem<br>
-<br>
-On Wed, May 12, 2021 at 1:29 PM Jack Daniels &lt;<a href=3D"mailto:onyx225=
-74@gmail.com" target=3D"_blank">onyx22574@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Dears,<br>
-&gt;<br>
-&gt; I am looking for a way to include sample code for DSP (xtensa) with Y=
-octo/Linux. what would be the procedure to include such a code and eventual=
-ly interprocessor communication between xtensa core and CPU under Yocto/Lin=
-ux?<br>
-&gt;<br>
-&gt; Thank you.<br>
-&gt; BR/J<br>
-&gt;<br>
-&gt;<br>
-&gt; <br>
-&gt;<br>
-</blockquote></div>
-
---0000000000008f45cb05c23079ae--
+> diff --git a/classes/zephyr-qemuboot.bbclass b/classes/zephyr-qemuboot.bbclass
+> index 5ac1c86..f508b45 100644
+> --- a/classes/zephyr-qemuboot.bbclass
+> +++ b/classes/zephyr-qemuboot.bbclass
+> @@ -35,3 +35,22 @@ python do_bootconf_write() {
+>  }
+>
+>  addtask do_bootconf_write before do_build after do_deploy
+> +
+> +# The runqemu script requires the native sysroot populated for the qemu
+> +# recipes. Usually, this is pulled in by a do_image dependency (see
+> +# baremetal-helloworld_git, for example), but in this case, there is no such
+> +# task, so we hook in the dependency to do_bootconf_write. This also ensures
+> +# that builds from sstate will also have this requirement satisfied.
+> +python () {
+> +    # do_addto_recipe_sysroot doesnt exist for all recipes, but we need it to have
+> +    # /usr/bin on recipe-sysroot (qemu) populated
+> +    def extraimage_getdepends(task):
+> +        deps = ""
+> +        for dep in (d.getVar('EXTRA_IMAGEDEPENDS') or "").split():
+> +        # Make sure we only add it for qemu
+> +            if 'qemu' in dep:
+> +                deps += " %s:%s" % (dep, task)
+> +        return deps
+> +    d.appendVarFlag('do_bootconf_write', 'depends', extraimage_getdepends('do_addto_recipe_sysroot'))
+> +    d.appendVarFlag('do_bootconf_write', 'depends', extraimage_getdepends('do_populate_sysroot'))
+> +}
+> --
+> 2.31.1
+>
+>
+> 
+>
