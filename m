@@ -1,119 +1,186 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web08.13948.1620915075727448488
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+ by mx.groups.io with SMTP id smtpd.web11.727.1620923379204182382
  for <yocto@lists.yoctoproject.org>;
- Thu, 13 May 2021 07:11:15 -0700
+ Thu, 13 May 2021 09:29:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=nqKOT0lG;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: raj.khem@gmail.com)
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id CF5D438C03D5
-	for <yocto@yoctoproject.org>; Thu, 13 May 2021 14:11:14 +0000 (UTC)
-Received: by mail-pl1-f173.google.com with SMTP id h20so14452471plr.4
-        for <yocto@yoctoproject.org>; Thu, 13 May 2021 07:11:14 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=jSRYiGjO;
+ spf=pass (domain: gmail.com, ip: 209.85.160.182, mailfrom: twoerner@gmail.com)
+Received: by mail-qt1-f182.google.com with SMTP id t20so15874807qtx.8
+        for <yocto@lists.yoctoproject.org>; Thu, 13 May 2021 09:29:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=7vJ6SuaLpZCXJ+Vlj9b0JFjPjJnNk4kOKRM5zi9NGBs=;
-        b=nqKOT0lGYHAvNpYyFtQ9vwWZga+nQDdY0u6uXW3fJypny/U8l7xITNoNtEsWYIEIzM
-         btsSbDbDsh9lIgJfYHg6J9jqY+KSF1Nid7kcYfsguOvWRn8Yts7mYpgrk6Fvrc7L6uPv
-         kCPNtosC9lQbu1H9WeDUEkAgVKo+JA3CjgrZrR5Z63hi4lSigjB/+IkQGuG+NeJySrnE
-         TZz+vEV18YKvlPeJj8M14PaUdQM9oPMRarCS8n//yZpG0ELNlzPgY5Po7WlzjEqxN+oy
-         VoRUETlLe7BQcjVshmz+d1Ps4vkc2ISuZIKihavVj+rkRujb2kxGM6Fz9XfjcKBaChyU
-         8EDw==
+        h=date:from:to:subject:message-id:mime-version:content-disposition
+         :content-transfer-encoding:user-agent;
+        bh=C8GYT/TSlyPiPuo24HBY4hpmaZQjAtQo2gjJs31aHkc=;
+        b=jSRYiGjOV2vfNqAOZ/XqIGciLvlXtzRO61r9gSVfgRLQ90vy7YntTDqzpOsClT5B82
+         vLPJaio5wjD/nBDwJ5TwrIvzf6aRLPVNxbv6hTBcvfQ1DjhkNpufHsGaFeKl6eeK8kfo
+         IYwVkzltxov7ujmT2Vkgw+S/jdXWlYNr8QM7adRbbg5zC3XoqpLeqXG3xmZkXZpaChgk
+         8wAeRol74lAvZE37NK0WN07ScuFz2HOXAQeov4z6XG23tyqsoHGU/+iF5SfzyyHxIfff
+         UaTxWXrR9xyBbJQhRBt4V5U2EU8Lx5iwGmTdHGysBhWw16NCWnkqm3gagAvKHOfUzvbe
+         qk2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=7vJ6SuaLpZCXJ+Vlj9b0JFjPjJnNk4kOKRM5zi9NGBs=;
-        b=kCE6vN4qrRu9PB37kcZwfDrQ9I3+JwuLwZrOOB6A17aD1LfNREK+ZekYgExpQpyDg4
-         ljN/x2cQYEJguqN4br9wc3Ta3sS0rAXOCrK870s6dHggaM/FjKoXuYHI+7sDmzqWwMJh
-         9YJ5UXbFGDlHundeiTBIWNDAuKyfNq9lH30Ve6hkrMPOWotwLyPrlVJTgYQo/lqBcitb
-         zh0H5uGiynQkmb+K6Kw38R/jzpruXujgBnwq5LgPuBnbBCvQjvuVdexQ7vjzALizBk1H
-         101H7/8jSjXi31aVf9yfWOGlN6GVoaPqwoEzPI/OLgENQ+QQ5IFjY9X4lUncZN4NA5EK
-         0ggQ==
-X-Gm-Message-State: AOAM532SsIGbniTCuLuzJSQn2a1I4856v0kZpKsVnCWpZ4tv59YYxOyz
-	HKLqqbYURpidbJ2FZa5k8Pcy4fLRDMeP9g==
-X-Google-Smtp-Source: ABdhPJxBLw16Ctcg/DpYutIroTWc6k1pAl7SeWzMsnNfnh2eV4PX7lYkaKzm8RL4bx3vQgmFO23K8Q==
-X-Received: by 2002:a17:902:e302:b029:ee:9596:8e7a with SMTP id q2-20020a170902e302b02900ee95968e7amr40143405plc.37.1620915073985;
-        Thu, 13 May 2021 07:11:13 -0700 (PDT)
-Received: from ?IPv6:2601:646:9200:a0f0::c947? ([2601:646:9200:a0f0::c947])
-        by smtp.gmail.com with ESMTPSA id h1sm2311771pfh.72.2021.05.13.07.11.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 May 2021 07:11:13 -0700 (PDT)
-Subject: Re: [yocto] Yocto with xtensa
-To: Jack Daniels <onyx22574@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-References: <CAF2aNtzrjYOUYdevN83fJ-Dn6Jjp1SsNh1Q5zO0MXFEjW4xcUg@mail.gmail.com>
- <CAMKF1sqxa+F4POAOb78tZd2ArPPk9ZTjfRMWSWEXyDyXxug9Pw@mail.gmail.com>
- <CAF2aNtyY+xM2Oj4w8Mf+hZmr47wTpb+ibYDQK=fFinj4Cue=jQ@mail.gmail.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-Message-ID: <8f8587c8-1f11-e1f7-8f43-d4e8fb6bf9b0@gmail.com>
-Date: Thu, 13 May 2021 07:11:12 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+         :content-disposition:content-transfer-encoding:user-agent;
+        bh=C8GYT/TSlyPiPuo24HBY4hpmaZQjAtQo2gjJs31aHkc=;
+        b=YJEffL4ZgPxsguwFYOhtiRCdeWZ2LR/S2TQUFxuPg1snA2SaQ0Trl1haGYRiWcAC1X
+         /QNA7uC0n6Zwj4czEOUFunnIjNYMYSISY3MJ9AabrxeV/Qo/Jxo8zoCkT/60fV6HNdgI
+         85CY33wCk2S6BTgNqw/vjYsSrC3dO3SsyhprcBFSIASz49OE0Fc77Qtwdd6oMTNBao/J
+         sOVDkFI18qUlcwK7d1BikcIOfrWChS8QRNhz/Rl6YI/isILvIeZjs+wx4fW/K1S4X5PN
+         ocb8+kzxQ84G9sotHUglM2xmt0dZqEdG95386z3Ndzj8dgdMzY2ObgfbK6h+rNisAyvv
+         PRzQ==
+X-Gm-Message-State: AOAM533ZkhAAU6z3sz4JrTOWhHFbg3/e2iUg7YQ2nCE5FwEwilPRiyNo
+	cJx3OOs/6QBBDE9QJ05ZW0CeHwzGRKU=
+X-Google-Smtp-Source: ABdhPJx6dbuAZJFmzw2q79b7kQbpa8SbPj98dDGcfCULbQgoEWzcPbUzKIBtlliu4IPZZ5WW15Fp0g==
+X-Received: by 2002:ac8:57c5:: with SMTP id w5mr32808328qta.166.1620923377773;
+        Thu, 13 May 2021 09:29:37 -0700 (PDT)
+Return-Path: <twoerner@gmail.com>
+Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id r5sm2632154qtp.75.2021.05.13.09.29.37
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 May 2021 09:29:37 -0700 (PDT)
+Date: Thu, 13 May 2021 12:29:35 -0400
+From: "Trevor Woerner" <twoerner@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: Yocto Technical Team Minutes, Engineering Sync, for May 11, 2021
+Message-ID: <20210513162935.GA22951@localhost>
 MIME-Version: 1.0
-In-Reply-To: <CAF2aNtyY+xM2Oj4w8Mf+hZmr47wTpb+ibYDQK=fFinj4Cue=jQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+
+Yocto Technical Team Minutes, Engineering Sync, for May 11, 2021
+archive: https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7QwKC5wWVDg9dDH4/edit
+
+== announcements ==
+The upcoming Yocto Project Summit is taking place May 25-26 2021
+details: https://www.yoctoproject.org/yocto-project-virtual-summit-2021/
+registration: https://www.cvent.com/d/yjq4dr/4W?ct=868bfddd-ca91-46bb-aaa5-62d2b61b2501
+
+== disclaimer ==
+Best efforts are made to ensure the below is accurate and valid. However,
+errors sometimes happen. If any errors or omissions are found, please feel
+free to reply to this email with any corrections.
+
+== attendees ==
+Trevor Woerner, Stephen Jolley, Armin Kuster, Scott Murray, Joshua Watt,
+Randy MacLeod, Bruce Ashfield, Tony Tascioglu (WR intern), Trevor Gamblin,
+Steve Sakoman, Alexander Belloni, Michael Halstead, Paul Barker, Ross
+Burton, Tim Orling, Saul Wold, Jere Viikari, Alejandro H
+
+== notes ==
+- 3.2.4 in QA, out in a couple days (this will be the final 3.2 release,
+  aka gatesgarth)
+- significant patches going into master, lots of version updates (thanks
+  AlexK)
+- multiconfig changes in bitbake cause challenges
+- some CVEs showed up that could use help
+- smp for various qemu machines added/enabled
+- should we consider a different default qemu emulation (for arm?)
+- serial IRQ handling issues with qemu-ppc
+- gnome switched from gtk to ??
+
+== general ==
+AlexB: I’ve been looking into some of the intermittent AB issues, i believe
+    a couple of them can be closed now. there appear to be a lot of duplicates
+    (same issue, different manifestations)
+Randy: good to hear, how many issues?
+AlexB: we can look at them in the bug triage meeting. i’m guessing it’s
+    getting better. there are very few that happen regularly, and many others
+    happen only once. maybe 4 or 5 race conditions that are infrequent. the
+    improtant ones are qemu not working properly and the io load issue(s).
+    i’d like to get some graphs to visualize. there are issues related to
+    running out of memory, so maybe the solution is to not run so many things
+    at once
+Randy: we used to use top to analyse what’s going on, but it’s tedious.
+    instead we can look at the tail of the cooker log that gives more
+    information, but is missing the total view of what’s going on at a given
+    time slice. we need a list of bitbake tasks and where to find their cooker
+    logs. once we have that the next step is to figure out who is doing all
+    the I/O. we’ve been looking at a tool called iotop, but i don’t think
+    that’s what we want.
+RP: iotop is probably what we want, but requires root priv
 
 
+RP: x86 cpu machine arguments in qemu
+RP: i think all these RCU stalls we’re seeing is due to the cpu emulation
+    we’re using (which is very old) when we enabled SMP it caused everything
+    to fall over the edge and fail everywhere. maybe the qemu process is
+    locked up, rather than the system being overloaded
+Randy: interesting theory
+RP: i have a patch in master-next to upgrade to ivy-bridge qemu emulation. i
+    guess we’ll see what happens
+AlexB: i don’t think it’ll solve all issues. we’ve seen RCU stalls on
+    other qemu machines, not just x86 (mips, arm64, arm)
+RP: i thought it was just x86
+AlexB: i have the list, i can confirm that we’ve seen rcu stalls on qemuarm
+    at least
+RP: maybe there’s a pattern where the logs stop, then we get the rcu stall
+    kicking in. it could be we have 2 issues which are interfering with each
+    other. i’m not ready to give up on the theory yet
+AlexB: it’s probably still useful to do regardless
+RP: yes, i think we need to do it anyway. it won’t solve the ptest failures
+    on qemuarm, for example, but might help with others
+Ross: the qemu person i talked with said that on a heavily loaded
+    system you'd expect some level of rcu stalls
+RP: but should rcu stalls take out qemu?
+Bruce: it should recover
+AlexB: i’m not sure that’s a kernel thing that would kill it
+JPEW: is it possible that because there’s too many rcu stalls that we end up
+    running out of memory
+Bruce: we could turn rcu off and see if it recovers
+RP: we should check if it recovers, or if it’s hanging. there might be 2
+    patterns here. this morning there was a lockup but there was no stack
+    trace
+JPEW: is there a way to force the kernel to process all rcu’s?
+??: i think that’s what it’s doing
+AlexB: it’s the rcu stall detection. the cpu has been stalled for too long.
+    it’s not an issue with rcu itself, it’s just that rcu is what’s
+    noticed that the cpu has stopped responding
+Randy: so ideally it would be nice to detect this ourselves and shed load
+    before the stalls happen
+JPEW: tweak stall detection time?
+??: takes about 80 seconds
+AlexB: 20 seconds i think
+JPEW: 21 seconds, according to docs. looks like it can be set on kernel
+    cmdline
+Randy: heavily loaded system for cpu and io, tweaking the params isn’t going
+    to fix the issue
+RP: it might help guide the debugging, might get more info turning on smp
 
-On 5/12/21 11:45 PM, Jack Daniels wrote:
-> Hello Khem,
->=20
-> Thank you for the information.
-> Is it about adding support for the xtensa build system (toolchain)? Is=
-=20
-> it work for=C2=A0heterogeneous=C2=A0SoC (CPU/ARM=C2=A0+=C2=A0DSP/xtensa)=
- as well?
->=20
 
-I can think of few ways
+Randy: been talking with TrevorG about job server. might get started next week
 
-build your Xtensa firmware outside yocto and let yocto package it via=20
-recipes for prebuilts and build ARM system with yocto should work well
 
-second option is to integrate Xtensa support into OE and then use=20
-multiconfig feature to build firmware for heterogenous systems.
-this will be preferred and forward looking for future but it will be
-more work
+Randy: Saul are you getting back to qemu machine protocol
+Saul: looking at it
+Randy: how do you test it
+Saul: don’t have a strong hold on it yet
+RP: there is a hanging qemu on the AB, and it should have had the qmp patches
+    applied. so in theory there’s one there that we might be able to
+    interrogate
+Saul: could you point me at it again?
+RP: qemu-x86-64 on the AB, it should still be running
 
-> Thank you.
-> BR/J
->=20
-> On Thu, May 13, 2021 at 1:07 AM Khem Raj <raj.khem@gmail.com=20
-> <mailto:raj.khem@gmail.com>> wrote:
->=20
->     Hello Jack,
->=20
->     I think we do not have support for Xtensa architecture working out o=
-f
->     box upstream. Although it should be possible to add it with little
->     effort, but no one has spun patches to do so
->     thus far.
->=20
->     Thanks
->     -Khem
->=20
->     On Wed, May 12, 2021 at 1:29 PM Jack Daniels <onyx22574@gmail.com
->     <mailto:onyx22574@gmail.com>> wrote:
->      >
->      > Dears,
->      >
->      > I am looking for a way to include sample code for DSP (xtensa)
->     with Yocto/Linux. what would be the procedure to include such a code
->     and eventually interprocessor communication between xtensa core and
->     CPU under Yocto/Linux?
->      >
->      > Thank you.
->      > BR/J
->      >
->      >
->      >=20
->      >
->=20
+
+TW: topic ideas for OEDVM
+PaulB: is there a way to just join the developer’s meeting without attending
+    the whole conference?
+
+
+Armin: lgtm.com bitbake/yp is listed there. i sent in some patches to improve
+    the metrics
+Armin: see https://lgtm.com/projects/g/openembedded/bitbake?mode=list
+Armin: 31 errors, 80 warnings, 234 recommendations (currently)
+ScottM: maybe we could do a checkpatch type thing for python linting
+Armin: there is an integration with github, but requires corporate github
+AlexB: should we open newcomer bugs?
+Armin: we could, it tells you exactly where the problem is and what to do
+ScottM: we don’t have tests, so fixes could end up breaking more things
+AlexB: maybe we need test cases for bitbake/toaster/etc
+
+
+Randy: our build quality is amazing! currently 0.2% build failures (mostly
+    running out of memory)
