@@ -1,93 +1,109 @@
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
- by mx.groups.io with SMTP id smtpd.web10.12663.1620909502540078324
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
+ by mx.groups.io with SMTP id smtpd.web08.13820.1620914539524279651
  for <yocto@lists.yoctoproject.org>;
- Thu, 13 May 2021 05:38:22 -0700
+ Thu, 13 May 2021 07:02:19 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gherzan.com header.s=fm1 header.b=ZHTZLVWk;
- spf=pass (domain: gherzan.com, ip: 66.111.4.28, mailfrom: andrei@gherzan.com)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-	by mailout.nyi.internal (Postfix) with ESMTP id D8F555C0135;
-	Thu, 13 May 2021 08:38:21 -0400 (EDT)
-Received: from imap4 ([10.202.2.54])
-  by compute3.internal (MEProxy); Thu, 13 May 2021 08:38:21 -0400
+ dkim=pass header.i=@gherzan.com header.s=fm1 header.b=BAhwLjUR;
+ spf=pass (domain: gherzan.com, ip: 66.111.4.26, mailfrom: andrei@gherzan.com)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+	by mailout.nyi.internal (Postfix) with ESMTP id D37DC5C0070;
+	Thu, 13 May 2021 10:02:18 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Thu, 13 May 2021 10:02:18 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gherzan.com; h=
-	mime-version:message-id:in-reply-to:references:date:from:to:cc
-	:subject:content-type; s=fm1; bh=6Jq2FFKnoFHa9SrQQlDRUepfNJA81+c
-	DenJAyox0eVI=; b=ZHTZLVWkdS9H85MRffRq2mAp8g5nNI7Hu7GlDCOYdYDsq3/
-	EaBxUfoZbvOfVp02iOgUq3m6oBLeGV02UrAeckYbtPUz4Q2hAc3OpZ2RUnFo55sF
-	thqygvQ17XmXR3mZPjMhgyhvJMzHuUJA5Zs/lSQb/Qse/SK3jggHLAn583yvGUK1
-	MTWMTPM6t/rm3cjrxjKGS6/a7QeADkWAV2DbyaQ/c3jKDUPyv9A+ZmLB1XE0PYiC
-	TObSfzN53QqR4Bab4EkyEdbEiRkootAtbV+QyoU3eaKgR75wrqlPNkUF8al48eBY
-	zIvZVrqZ7HVqbmiO/IL4Ni6lWbM+0mewX9xORGQ==
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding; s=fm1; bh=ij0kSJB85HDwOe5v8O76v4G6p4
+	5o5gbdtOZwPirCbu8=; b=BAhwLjURL8eWBbxOm2zYs/2QoNudvctEYnULuwd3ns
+	3hty7oKjlrkKKjEVFEh/HdGsV7wdFmsaVAxlwSj0bOPx+55sk2pVkDnGELZEQ6HN
+	lB6udeXrveHD/UWcLWbaoNUHuRbulR0Smg32vc8MuEoglb5rzpQQ1BM6kkMh2Gml
+	ZPBImCzXkrGrTb86WPHYuNQLvtcctOpnVIae8RFUijuPgCyjXBIUGKrBd+zoaxYo
+	JRn8wJ90keqOGLl5605Q+OjqOU7ye+v/Z62V2k+7w2T4DUORR0G4vASIEI21DKvm
+	nCXXxBLE9uEZhSMUNw4hCcsDaG5nx9VMvsZWzHF+0F9A==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to:x-me-proxy
-	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=6Jq2FF
-	KnoFHa9SrQQlDRUepfNJA81+cDenJAyox0eVI=; b=N0wzRWinpMTlJJE4+2DGpo
-	QBkUvlg/IJp9RT/Z+f6oxL9Fm1TMQIlPeadb0Lr/OjWJwlUNnoBJ4XiKPx+frHuV
-	N3LdtUIojoguFawB6nk27gUDQ2v9rLZ5qHmpmCJaM+xjGKd7Mm1KWMdB8jEw3UQD
-	JiwdHdCAgro5T9YO39rYITgDOaZM+7xt63SUPxHcKfnyCqo6LFVa1o00zRjRnRl9
-	0FnO/Ktp0Hs+l9HK+lrUoqTxcwho4AXTt2hJVYBlBeT4VvNw8JsmerXVtDEIGnQh
-	SjcXPccwkNCrpHixLU1uPW1QRD29/nJcOEwjfDC3A7bEZLCCwPN6I869hL7lX03w
-	==
-X-ME-Sender: <xms:vR2dYHiQ686O_mq25An-qmy8LZgVm2ZBKngvS1nVBGhYtWudik958Q>
-    <xme:vR2dYEBvrkSYraXl5XGGgbi5om0G_60eXMTJYqqRPnPsnNhSWvoY86oC7xS55Hgh_
-    tjv_ssnEw1HDIFJEn0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdehgedgheehucetufdoteggodetrfdotf
+	messagingengine.com; h=cc:content-transfer-encoding:date:from
+	:message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=ij0kSJB85HDwOe5v8
+	O76v4G6p45o5gbdtOZwPirCbu8=; b=g2IWNLNU/ldU9NpDn3UnZJiFY4+lra4e/
+	shK6Po2ZCkp+nZvPqOCLri0HtFR/+G9t8JuEjeqQM/NOHjobIojjByRFcbQrRKMH
+	d34BgNAiRlmuTM6CDMIjGcrhU4Xyf7DwlqQoVGQ6DBR5CXLeuhLDG5IP5lj82975
+	Jvd5yFltKF8IM9SUss0xzzP3Z9WMo1pa2ZyMrnY0JSDpcCwAQ/YVrHlaKv/+nb1Y
+	SdyXLj/ntZwHdwGG/IS3Uj8ZYb1lxTjcrorT4P8t364jaYXgY9M7ZN5ppQM+DPWH
+	2mh8BRkYFDljsSX576djaPRUmlzYYBeInTc6uRYMjYvfriPKx51XQ==
+X-ME-Sender: <xms:aTGdYGVEURIzcJl3o57BwhVczMrk-lMJ2-CSRMHUkYmogUrJZRVz_w>
+    <xme:aTGdYCn5HruTe_8jXcPXrX7X1ROTbya4pIWWWVcU4mANK2zzEpCd1h_z1NZIk4m3r
+    SZYeZmzcSRjTm_ZAu0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdehgedgjedvucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
-    rhgvihcuifhhvghriigrnhdfuceorghnughrvghisehghhgvrhiirghnrdgtohhmqeenuc
-    ggtffrrghtthgvrhhnpeelgfffvddtjeeivdehleefleejfffgleeffeeguefhvdevkeef
-    ueeuleefveeutdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpegrnhgurhgvihesghhhvghriigrnhdrtghomh
-X-ME-Proxy: <xmx:vR2dYHE2mfyCH6MScaJpdwue8UZWs9bXFE80atm5CvRqgmW72pxrRQ>
-    <xmx:vR2dYEQgNadLVnVWDsDp37KCDmu-MUbwoPChsAYFI5n02NzvPxiOfA>
-    <xmx:vR2dYEyZj9_LztM0NKxcHQNNJaDlf9eVNDQrTCJ4nkUXrPMGA_eYow>
-    <xmx:vR2dYKZQMu5rN4h3G4u0-SqFXf_rsr-l3ZuLV2z0P2o-l9pcOHiE-Q>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 67B3B160065; Thu, 13 May 2021 08:38:21 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-448-gae190416c7-fm-20210505.004-gae190416
-Mime-Version: 1.0
-Message-Id: <d50862c6-56df-4580-ae25-8d710b72553c@www.fastmail.com>
-In-Reply-To: 
- <CAAnfSTsKteY1F4MUOuiY05_MUDhfq9=8E6Do960Je5zbEJgQeg@mail.gmail.com>
-References: <20210507100818.2819019-1-andrei@gherzan.com>
- <CAAnfSTuOwq=3edHv-7zNKeO9oCjf2VCKM3uiyAtB6KrVpnHpqQ@mail.gmail.com>
- <CAAnfSTsKteY1F4MUOuiY05_MUDhfq9=8E6Do960Je5zbEJgQeg@mail.gmail.com>
-Date: Thu, 13 May 2021 13:37:56 +0100
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgggfestdekredtre
+    dttdenucfhrhhomheptehnughrvghiucfihhgvrhiirghnuceorghnughrvghisehghhgv
+    rhiirghnrdgtohhmqeenucggtffrrghtthgvrhhnpedvteeutdeutdfhvefggfeifeehve
+    ethfeuffekgeeiiefgkefhheehjeeijeejudenucfkphepvddrvdeirdduheeirddujeef
+    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghnug
+    hrvghisehghhgvrhiirghnrdgtohhm
+X-ME-Proxy: <xmx:aTGdYKZEN7cxabkv9TGih_lxRTN1d_sSvSpDI1ymgtoT8TEem5vOjw>
+    <xmx:aTGdYNXKICyOPrE9rSS7iax1WIYn6XsYb0JRIVRFEKWuKGxWdvAhxg>
+    <xmx:aTGdYAl_0S7MV20Pr3bbhm_17w0Ga1w13SXXZIU7vZxjokoA13kQtA>
+    <xmx:ajGdYHsQDiAxEpVWMB-o6mziUU1oJ8TKAJUvnB46rYlRP2OnbecdHg>
+Received: from qwirkle.internal (unknown [2.26.156.173])
+	by mail.messagingengine.com (Postfix) with ESMTPA;
+	Thu, 13 May 2021 10:02:16 -0400 (EDT)
 From: "Andrei Gherzan" <andrei@gherzan.com>
-To: "Ross Burton" <ross@burtonini.com>
-Cc: Yocto <yocto@lists.yoctoproject.org>,
- "Andrei Gherzan" <andrei.gherzan@huawei.com>
-Subject: Re: [yocto] [meta-zephyr][PATCH 1/1] zephyr-qemuboot.bbclass: Fix runqemu dependency on qemu native sysroot
-Content-Type: text/plain
+To: yocto@lists.yoctoproject.org
+Cc: ross@burtonini.com,
+	Andrei Gherzan <andrei.gherzan@huawei.com>
+Subject: [meta-zephyr][PATCH 1/2] zephyr-qemuboot.bbclass: Don't overwrite the entire elf dictionary key
+Date: Thu, 13 May 2021 15:02:07 +0100
+Message-Id: <20210513140208.708092-1-andrei@gherzan.com>
+X-Mailer: git-send-email 2.31.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Hi,
+From: Andrei Gherzan <andrei.gherzan@huawei.com>
 
-On Thu, 13 May 2021, at 13:14, Ross Burton wrote:
-> Debugged, the patch is broken.
-> 
-> Using a little tool I have:
-> 
-> Task qemu-system-native-5.2.0-r0:do_addto_recipe_sysroot failed
-> Active tasks are:
->  virglrenderer-native-0.9.1-r0:do_rm_work
->  binutils-cross-arm-2.36.1-r0:do_patch
->  qemu-system-native-5.2.0-r0:do_addto_recipe_sysroot
->  qemu-system-native-5.2.0-r0:do_rm_work
->  libepoxy-native-1.5.5-r0:do_rm_work
->  gcc-source-11.1.0-11.1.0-r0:do_unpack
-> 
-> Note how qemu is simultaneously adding itself to the sysroot, whilst
-> rm_work is running and deleting the sysroot.
-> 
-> This patch isn't compatible with rm_work and should be reverted.
-> 
+The nios2_machdata_setfunc was overwriting the elf key in matchdata for
+arc done in arc_machdata_setfunc which in turn was overwriting the one
+from oe-core. This is making qemu-x86 builds (as an example)
+unbuildable:
 
-I'll look into it.
+Exception: KeyError: 'i586'
 
+This patch makes sure that the changes complement the machdata
+dictionary as opposed to overwriting the entire "elf" key.
+
+Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
+---
+ classes/siteinfo-zephyr.bbclass | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/classes/siteinfo-zephyr.bbclass b/classes/siteinfo-zephyr.bbclass
+index d84fd3a..b84a9b2 100644
+--- a/classes/siteinfo-zephyr.bbclass
++++ b/classes/siteinfo-zephyr.bbclass
+@@ -1,4 +1,3 @@
+-
+ def arc_siteinfo_setfunc(archinfo, osinfo, targetinfo, d):
+     archinfo['arc'] = "endian-little bit-32 "
+     osinfo['linux'] = "common-linux common-glibc"
+@@ -8,7 +7,7 @@ def arc_siteinfo_setfunc(archinfo, osinfo, targetinfo, d):
+ SITEINFO_EXTRA_DATAFUNCS += "arc_siteinfo_setfunc"
+ 
+ def arc_machdata_setfunc(machdata, d):
+-    machdata["elf"] = { "arc" : (195, 0, 0, True, 32), }
++    machdata["elf"]["arc"] = (195, 0, 0, True, 32)
+     return machdata
+ 
+ PACKAGEQA_EXTRA_MACHDEFFUNCS += "arc_machdata_setfunc"
+@@ -22,7 +21,7 @@ def iamcu_siteinfo_setfunc(archinfo, osinfo, targetinfo, d):
+ SITEINFO_EXTRA_DATAFUNCS += "iamcu_siteinfo_setfunc"
+ 
+ def nios2_machdata_setfunc(machdata, d):
+-    machdata["elf"] = {"nios2":  (113, 0, 0, True, 32), }
++    machdata["elf"]["nios2"] = (113, 0, 0, True, 32)
+     return machdata
+ 
+-PACKAGEQA_EXTRA_MACHDEFFUNCS += "nios2_machdata_setfunc"
+\ No newline at end of file
++PACKAGEQA_EXTRA_MACHDEFFUNCS += "nios2_machdata_setfunc"
 -- 
-Andrei Gherzan 
-gpg: rsa4096/D4D94F67AD0E9640
+2.31.1
+
