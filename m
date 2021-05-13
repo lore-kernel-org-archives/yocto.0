@@ -1,153 +1,93 @@
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
- by mx.groups.io with SMTP id smtpd.web09.12301.1620908084142749631
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
+ by mx.groups.io with SMTP id smtpd.web10.12663.1620909502540078324
  for <yocto@lists.yoctoproject.org>;
- Thu, 13 May 2021 05:14:44 -0700
+ Thu, 13 May 2021 05:38:22 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=GiUCr8TQ;
- spf=pass (domain: burtonini.com, ip: 209.85.128.51, mailfrom: ross@burtonini.com)
-Received: by mail-wm1-f51.google.com with SMTP id l18-20020a1ced120000b029014c1adff1edso1251191wmh.4
-        for <yocto@lists.yoctoproject.org>; Thu, 13 May 2021 05:14:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=aZAP0qRLYvLb/iFbe1oUkhih3MvwadS0JsBNnV1MZiA=;
-        b=GiUCr8TQlabYsCvyOfKWrmqetksK3kM6I6Yfy5RDJHZj9GSCfuhkqh4nvYgVXZSl6D
-         c8SMPF8oL1MqG9j8WYTM6M2Z6RSPXD0FpdXFvzbS2v30hjIyYOuXmFAHD0OwLzrqnyID
-         LWmbpZNDhiG2TBzWYWrtLtAAtb4Ysy/5neay8uBWE8wchhi8bfsC1XeYxAXVeG+9C+ZQ
-         cWhTwqkdnCFPTFH22RUgeFoHnqN8R6ui/VN2eQBXLfHrsYH5AHcTqpWauqSnB/zIPYYb
-         FZZiPnpDRocBAZ6BApwLtQxExFd+LVwUGJ357QneemkeWmXmXKws3mWDOzuM3OSunNEy
-         fUpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=aZAP0qRLYvLb/iFbe1oUkhih3MvwadS0JsBNnV1MZiA=;
-        b=RNwvVBr9anfCfLfFUiuZBLKUOffsBjEgqaeKDeeRnshD19VH7eUGqEXYrmE1VIl4sc
-         H77drahfA0jKJZSulhlxJYi8jtoWvPXXsSkYDaw3y6v9Aet0N+/CQPIEdFIZpsq7yI1N
-         oe10J0+m0Y/xSwBLAQLxt2QR/W+VXuHnEVA0PxKMRfAJVSgf93KQOuL19Fa5xkkFq2LB
-         /nKBJKFk1tVLiZohCIUJ9zw93pnydAWSlbELzhbDVd7dIplKn8BsdXnJGkfBZ5jw4NLJ
-         ZIzq4sBABPtgRP3x4Dgw9cw85G6HUAh8KEyunR4fPNZxgxIXHPcWPO1cqoGqrWphWvDP
-         of7w==
-X-Gm-Message-State: AOAM5336fChyJJWKWWpnXwgLlWm8NJIbrvrxOLdhKBKo57lMCOmROsfV
-	e9Y74q4LSBxb6wxeNprtgOl2+c3HpR1vGy4bFgHILQ==
-X-Google-Smtp-Source: ABdhPJzSHvVsxV0ya3gzfMLyRrqhTRF1jv4k3L3OifBLO9Spv/2gcprsWxbyY6y+HEqw5MwYSjZBGqz82ZVD5jEu6JQ=
-X-Received: by 2002:a1c:a507:: with SMTP id o7mr3582730wme.130.1620908082513;
- Thu, 13 May 2021 05:14:42 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210507100818.2819019-1-andrei@gherzan.com> <CAAnfSTuOwq=3edHv-7zNKeO9oCjf2VCKM3uiyAtB6KrVpnHpqQ@mail.gmail.com>
-In-Reply-To: <CAAnfSTuOwq=3edHv-7zNKeO9oCjf2VCKM3uiyAtB6KrVpnHpqQ@mail.gmail.com>
-From: "Ross Burton" <ross@burtonini.com>
-Date: Thu, 13 May 2021 13:14:31 +0100
-Message-ID: <CAAnfSTsKteY1F4MUOuiY05_MUDhfq9=8E6Do960Je5zbEJgQeg@mail.gmail.com>
+ dkim=pass header.i=@gherzan.com header.s=fm1 header.b=ZHTZLVWk;
+ spf=pass (domain: gherzan.com, ip: 66.111.4.28, mailfrom: andrei@gherzan.com)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.nyi.internal (Postfix) with ESMTP id D8F555C0135;
+	Thu, 13 May 2021 08:38:21 -0400 (EDT)
+Received: from imap4 ([10.202.2.54])
+  by compute3.internal (MEProxy); Thu, 13 May 2021 08:38:21 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gherzan.com; h=
+	mime-version:message-id:in-reply-to:references:date:from:to:cc
+	:subject:content-type; s=fm1; bh=6Jq2FFKnoFHa9SrQQlDRUepfNJA81+c
+	DenJAyox0eVI=; b=ZHTZLVWkdS9H85MRffRq2mAp8g5nNI7Hu7GlDCOYdYDsq3/
+	EaBxUfoZbvOfVp02iOgUq3m6oBLeGV02UrAeckYbtPUz4Q2hAc3OpZ2RUnFo55sF
+	thqygvQ17XmXR3mZPjMhgyhvJMzHuUJA5Zs/lSQb/Qse/SK3jggHLAn583yvGUK1
+	MTWMTPM6t/rm3cjrxjKGS6/a7QeADkWAV2DbyaQ/c3jKDUPyv9A+ZmLB1XE0PYiC
+	TObSfzN53QqR4Bab4EkyEdbEiRkootAtbV+QyoU3eaKgR75wrqlPNkUF8al48eBY
+	zIvZVrqZ7HVqbmiO/IL4Ni6lWbM+0mewX9xORGQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=6Jq2FF
+	KnoFHa9SrQQlDRUepfNJA81+cDenJAyox0eVI=; b=N0wzRWinpMTlJJE4+2DGpo
+	QBkUvlg/IJp9RT/Z+f6oxL9Fm1TMQIlPeadb0Lr/OjWJwlUNnoBJ4XiKPx+frHuV
+	N3LdtUIojoguFawB6nk27gUDQ2v9rLZ5qHmpmCJaM+xjGKd7Mm1KWMdB8jEw3UQD
+	JiwdHdCAgro5T9YO39rYITgDOaZM+7xt63SUPxHcKfnyCqo6LFVa1o00zRjRnRl9
+	0FnO/Ktp0Hs+l9HK+lrUoqTxcwho4AXTt2hJVYBlBeT4VvNw8JsmerXVtDEIGnQh
+	SjcXPccwkNCrpHixLU1uPW1QRD29/nJcOEwjfDC3A7bEZLCCwPN6I869hL7lX03w
+	==
+X-ME-Sender: <xms:vR2dYHiQ686O_mq25An-qmy8LZgVm2ZBKngvS1nVBGhYtWudik958Q>
+    <xme:vR2dYEBvrkSYraXl5XGGgbi5om0G_60eXMTJYqqRPnPsnNhSWvoY86oC7xS55Hgh_
+    tjv_ssnEw1HDIFJEn0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdehgedgheehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
+    rhgvihcuifhhvghriigrnhdfuceorghnughrvghisehghhgvrhiirghnrdgtohhmqeenuc
+    ggtffrrghtthgvrhhnpeelgfffvddtjeeivdehleefleejfffgleeffeeguefhvdevkeef
+    ueeuleefveeutdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
+    hrohhmpegrnhgurhgvihesghhhvghriigrnhdrtghomh
+X-ME-Proxy: <xmx:vR2dYHE2mfyCH6MScaJpdwue8UZWs9bXFE80atm5CvRqgmW72pxrRQ>
+    <xmx:vR2dYEQgNadLVnVWDsDp37KCDmu-MUbwoPChsAYFI5n02NzvPxiOfA>
+    <xmx:vR2dYEyZj9_LztM0NKxcHQNNJaDlf9eVNDQrTCJ4nkUXrPMGA_eYow>
+    <xmx:vR2dYKZQMu5rN4h3G4u0-SqFXf_rsr-l3ZuLV2z0P2o-l9pcOHiE-Q>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 67B3B160065; Thu, 13 May 2021 08:38:21 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-448-gae190416c7-fm-20210505.004-gae190416
+Mime-Version: 1.0
+Message-Id: <d50862c6-56df-4580-ae25-8d710b72553c@www.fastmail.com>
+In-Reply-To: 
+ <CAAnfSTsKteY1F4MUOuiY05_MUDhfq9=8E6Do960Je5zbEJgQeg@mail.gmail.com>
+References: <20210507100818.2819019-1-andrei@gherzan.com>
+ <CAAnfSTuOwq=3edHv-7zNKeO9oCjf2VCKM3uiyAtB6KrVpnHpqQ@mail.gmail.com>
+ <CAAnfSTsKteY1F4MUOuiY05_MUDhfq9=8E6Do960Je5zbEJgQeg@mail.gmail.com>
+Date: Thu, 13 May 2021 13:37:56 +0100
+From: "Andrei Gherzan" <andrei@gherzan.com>
+To: "Ross Burton" <ross@burtonini.com>
+Cc: Yocto <yocto@lists.yoctoproject.org>,
+ "Andrei Gherzan" <andrei.gherzan@huawei.com>
 Subject: Re: [yocto] [meta-zephyr][PATCH 1/1] zephyr-qemuboot.bbclass: Fix runqemu dependency on qemu native sysroot
-To: Andrei Gherzan <andrei@gherzan.com>
-Cc: Yocto <yocto@lists.yoctoproject.org>, 
-	Andrei Gherzan <andrei.gherzan@huawei.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 
-Debugged, the patch is broken.
+Hi,
 
-Using a little tool I have:
+On Thu, 13 May 2021, at 13:14, Ross Burton wrote:
+> Debugged, the patch is broken.
+> 
+> Using a little tool I have:
+> 
+> Task qemu-system-native-5.2.0-r0:do_addto_recipe_sysroot failed
+> Active tasks are:
+>  virglrenderer-native-0.9.1-r0:do_rm_work
+>  binutils-cross-arm-2.36.1-r0:do_patch
+>  qemu-system-native-5.2.0-r0:do_addto_recipe_sysroot
+>  qemu-system-native-5.2.0-r0:do_rm_work
+>  libepoxy-native-1.5.5-r0:do_rm_work
+>  gcc-source-11.1.0-11.1.0-r0:do_unpack
+> 
+> Note how qemu is simultaneously adding itself to the sysroot, whilst
+> rm_work is running and deleting the sysroot.
+> 
+> This patch isn't compatible with rm_work and should be reverted.
+> 
 
-Task qemu-system-native-5.2.0-r0:do_addto_recipe_sysroot failed
-Active tasks are:
- virglrenderer-native-0.9.1-r0:do_rm_work
- binutils-cross-arm-2.36.1-r0:do_patch
- qemu-system-native-5.2.0-r0:do_addto_recipe_sysroot
- qemu-system-native-5.2.0-r0:do_rm_work
- libepoxy-native-1.5.5-r0:do_rm_work
- gcc-source-11.1.0-11.1.0-r0:do_unpack
+I'll look into it.
 
-Note how qemu is simultaneously adding itself to the sysroot, whilst
-rm_work is running and deleting the sysroot.
-
-This patch isn't compatible with rm_work and should be reverted.
-
-Ross
-
-On Thu, 13 May 2021 at 13:06, Ross Burton <ross@burtonini.com> wrote:
->
-> This is breaking our CI:
->
-> ERROR: qemu-system-native-5.2.0-r0 do_addto_recipe_sysroot: Error
-> executing a python function in exec_python_func() autogenerated:
-> The stack trace of python calls that resulted in this exception/failure was:
-> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
->      0001:
->  *** 0002:extend_recipe_sysroot(d)
->      0003:
-> File: '/builds/yocto-poc/meta-arm/work/poky/meta/classes/staging.bbclass',
-> lineno: 502, function: extend_recipe_sysroot
->      0498:                continue
->      0499:
->      0500:        msg_adding.append(c)
->      0501:
->  *** 0502:        os.symlink(c + "." + taskhash, depdir + "/" + c)
->      0503:
->      0504:        manifest, d2 = oe.sstatesig.find_sstate_manifest(c,
-> setscenedeps[dep][2], "populate_sysroot", d, multilibs)
->      0505:        if d2 is not d:
->      0506:            # If we don't do this, the recipe sysroot will
-> be placed in the wrong WORKDIR for multilibs
-> Exception: FileNotFoundError: [Errno 2] No such file or directory:
-> 'zlib-native.0f0b3e4d16f9ad46dd8609d8c899a834104f5b572a4a5438ccccd1db88d67e97'
-> -> '/builds/yocto-poc/meta-arm/work/build/tmp/work/aarch64-linux/qemu-system-native/5.2.0-r0/recipe-sysroot-native/installeddeps/zlib-native'
-> ERROR: Logfile of failure stored in:
-> /builds/yocto-poc/meta-arm/work/build/tmp/work/aarch64-linux/qemu-system-native/5.2.0-r0/temp/log.do_addto_recipe_sysroot.7593
-> ERROR: Task (/builds/yocto-poc/meta-arm/work/poky/meta/recipes-devtools/qemu/qemu-system-native_5.2.0.bb:do_addto_recipe_sysroot)
-> failed with exit code '1'
-> ERROR: qemu-system-native-5.2.0-r0 do_rm_work: Execution of
-> '/builds/yocto-poc/meta-arm/work/build/tmp/work/aarch64-linux/qemu-system-native/5.2.0-r0/temp/run.do_rm_work.7583'
-> failed with exit code 1:
-> rm: cannot remove 'recipe-sysroot-native': Directory not empty
->
-> Can this be reverted whilst this is debugged?
->
-> Ross
->
-> On Fri, 7 May 2021 at 11:09, Andrei Gherzan <andrei@gherzan.com> wrote:
-> >
-> > From: Andrei Gherzan <andrei.gherzan@huawei.com>
-> >
-> > The runqemu script depends on having the native sysroot populated for
-> > the qemu recipes. Add the required dependency to the mix.
-> >
-> > Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
-> > ---
-> >  classes/zephyr-qemuboot.bbclass | 19 +++++++++++++++++++
-> >  1 file changed, 19 insertions(+)
-> >
-> > diff --git a/classes/zephyr-qemuboot.bbclass b/classes/zephyr-qemuboot.bbclass
-> > index 5ac1c86..f508b45 100644
-> > --- a/classes/zephyr-qemuboot.bbclass
-> > +++ b/classes/zephyr-qemuboot.bbclass
-> > @@ -35,3 +35,22 @@ python do_bootconf_write() {
-> >  }
-> >
-> >  addtask do_bootconf_write before do_build after do_deploy
-> > +
-> > +# The runqemu script requires the native sysroot populated for the qemu
-> > +# recipes. Usually, this is pulled in by a do_image dependency (see
-> > +# baremetal-helloworld_git, for example), but in this case, there is no such
-> > +# task, so we hook in the dependency to do_bootconf_write. This also ensures
-> > +# that builds from sstate will also have this requirement satisfied.
-> > +python () {
-> > +    # do_addto_recipe_sysroot doesnt exist for all recipes, but we need it to have
-> > +    # /usr/bin on recipe-sysroot (qemu) populated
-> > +    def extraimage_getdepends(task):
-> > +        deps = ""
-> > +        for dep in (d.getVar('EXTRA_IMAGEDEPENDS') or "").split():
-> > +        # Make sure we only add it for qemu
-> > +            if 'qemu' in dep:
-> > +                deps += " %s:%s" % (dep, task)
-> > +        return deps
-> > +    d.appendVarFlag('do_bootconf_write', 'depends', extraimage_getdepends('do_addto_recipe_sysroot'))
-> > +    d.appendVarFlag('do_bootconf_write', 'depends', extraimage_getdepends('do_populate_sysroot'))
-> > +}
-> > --
-> > 2.31.1
-> >
-> >
-> > 
-> >
+-- 
+Andrei Gherzan 
+gpg: rsa4096/D4D94F67AD0E9640
