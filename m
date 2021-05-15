@@ -1,115 +1,204 @@
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
- by mx.groups.io with SMTP id smtpd.web11.10172.1621005386028675545
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+ by mx.groups.io with SMTP id smtpd.web12.7104.1621092252357505875
  for <yocto@lists.yoctoproject.org>;
- Fri, 14 May 2021 08:16:26 -0700
+ Sat, 15 May 2021 08:24:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=kBYYL0C6;
- spf=pass (domain: gmail.com, ip: 209.85.208.47, mailfrom: martin.jansa@gmail.com)
-Received: by mail-ed1-f47.google.com with SMTP id a25so10967305edr.12
-        for <yocto@lists.yoctoproject.org>; Fri, 14 May 2021 08:16:25 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=rE+2AmH6;
+ spf=pass (domain: gmail.com, ip: 209.85.215.173, mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f173.google.com with SMTP id t30so1432997pgl.8
+        for <yocto@lists.yoctoproject.org>; Sat, 15 May 2021 08:24:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:date:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=qPZV4PrRBFZTOdD572zR3alaQ+d8Fjt8fTTL7LFzgVw=;
-        b=kBYYL0C6DZkL9RaNwSz/DFawenMDfmQw9twTiUb2QjE/wmNRPdtUSh252MqNRA7kUK
-         R3+O353Lgs4l9jmDdzlnJxMNGARpuF3c6IgPPQRAMLEFDTOrRa7K5b1YTcKEhG9LYQHz
-         WdjG+ATP9NmBI+F/MGj/9gNQtT1KXVVvlsuh6xvvPSCdHqLSmZmAxajIZ+0MQ316ALo/
-         Du7jZlkwc729fVptNvWtk1jSObl7Z6ExFkjdD5sUWBWyVJLbGjDhAAvEHYpATLWI/c+p
-         w76IHNAPBVMy+eqg2mB6paaTz6yUtYGjGqMKp4UaDGckLQfVuwOrmw42X7wQ0KrdjObL
-         thcw==
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=91gIok96rRjmqUBk1zjiZYKiZa46EpaQiANPFEPbiIg=;
+        b=rE+2AmH6czpTIWZICCoULNCXxDEU8c18G4QIzkCQBN/xnluRgyEpwBfuX+PAPHAOn9
+         YvbxEzIvLmjz35s61Fx21LSXiiVsDFfn7G2tCwIeBMsIoIoKAPXJi2BVogV6DlInzXmW
+         aOkuYunnJXbdF+k3o8d7U6DGXE9wHfIAt0aq7tCkWF6fdhsyx+yjLjh3b8DsG11PIBsp
+         ZmXxpsYhqzXX23MUf+kJZmmIktQxGhJTPKEuHQZg9fdl30gIPBLaa6XoOjAbySUlY/oM
+         QPYSCeTMRJqK1ed8sWG5YRXvhp64b36Ng67oKSzuuRNunTAJjXeX2Z3x3/izuddri/li
+         GE6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:date:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=qPZV4PrRBFZTOdD572zR3alaQ+d8Fjt8fTTL7LFzgVw=;
-        b=HkEnBvo3jMt8nKQp+JvgPu88IHd3YLAJoX41BHSfyYoGQ6B9l9Zx9i8E2qtd3qVs8d
-         hCz7g/un3WuUXL450+CtAeQpvJoGCOHukfEiIHuRQqoD/v+SdUSbaEUfhtitV9nbhDpJ
-         uSF4M5FMlqfaWQtCTywh7bMuhOqG1aM2ju3fTKJVnhhQdERTv1R2v948kV15E2kRHFDE
-         IVJht8vFdSfesMnpBHkgzrWZw+FnJfSa8RmaySCi+ITRKjUVms2ATmLUfmn4JYN4UGIM
-         8qLbANdb1WeT2EbcVSsTbDjsvXfY9PwLoYgV9xhDLfBj96HRbEjOBSy+WGRuj1I1Wrol
-         vYFg==
-X-Gm-Message-State: AOAM5326f0Qj9H+8JMIQknuuOrDhnNmpVqnKYeHh62nOKZm/pNNGDAEm
-	XwGUcSZYStuzLMcHglLfjrk=
-X-Google-Smtp-Source: ABdhPJwDH9BW3fFJMgyppGzS4VYehrjPKVzuzK3LoLyKBlbVTZa/l3wlENfIO+KjUM6hXJvqYCeGgg==
-X-Received: by 2002:a05:6402:46:: with SMTP id f6mr57032686edu.252.1621005384531;
-        Fri, 14 May 2021 08:16:24 -0700 (PDT)
-Return-Path: <martin.jansa@gmail.com>
-Received: from localhost (ip-109-238-218-228.aim-net.cz. [109.238.218.228])
-        by smtp.gmail.com with ESMTPSA id r15sm4488274edp.62.2021.05.14.08.16.22
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=91gIok96rRjmqUBk1zjiZYKiZa46EpaQiANPFEPbiIg=;
+        b=CezYloaSrw3rKSC7i7zsUX9KRwCSwftgexevEw4n+liHMwc1jx0RU+ivg2JnOuCzQh
+         E6T3vGsH/IT4i3Ec5fiRinhl+ab2h66P9IvYAnFqcri9go+pK+Wq6eOHLPoUM9H0GoSi
+         8Zg6plvPJe2ShVTMEOWLib1gW8vSO1p0FkhTjyB8RHZOu+Mlt0j7A4iYVuDoCX6mBE1l
+         z8MfunNImTwhlxGsbBXjk9wWIEfec+AMUE8q0rctaLEt44BGJXOXQWcKqXs/ErL7aZdT
+         xqltgnT13pgsjiM0sh8bUrUFx6TLKH78uecmb5Jk8/wJtcKnnQmy6c+fW2R29Oqfk6XN
+         L0aw==
+X-Gm-Message-State: AOAM532OuFbO6C7fa2Y/7OdWg2cRSKTWmCsQyvJDc3vltytRGQz9Q8hS
+	NHBSZ/CeyyjJ+l7F7hFd+kH2k6bxPms=
+X-Google-Smtp-Source: ABdhPJzNUPOlvStqOJvcKAvuJf3idZ1YDFvGqCV5ViNKYpGHioORQifwFgBacfXU4PEfKoYQKh/WuA==
+X-Received: by 2002:a05:6a00:6:b029:2d1:fc78:e253 with SMTP id h6-20020a056a000006b02902d1fc78e253mr13068902pfk.48.1621092251165;
+        Sat, 15 May 2021 08:24:11 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from hilo.hsdl.ca.comcast.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
+        by smtp.gmail.com with ESMTPSA id 128sm6263793pfy.194.2021.05.15.08.24.09
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 May 2021 08:16:22 -0700 (PDT)
-From: "Martin Jansa" <Martin.Jansa@gmail.com>
-X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
-Date: Fri, 14 May 2021 17:16:22 +0200
-To: Oliver Westermann <oliver.westermann@cognex.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Automate updating of SRCREV
-Message-ID: <20210514151622.yximv4mecd5psur4@jama>
-References: <SU47.1621004282459757257.Ycpa@lists.yoctoproject.org>
+        Sat, 15 May 2021 08:24:10 -0700 (PDT)
+From: "Armin Kuster" <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH 1/2] clamav: fix systemd startup
+Date: Sat, 15 May 2021 15:24:07 +0000
+Message-Id: <20210515152408.3610990-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <SU47.1621004282459757257.Ycpa@lists.yoctoproject.org>
-X-Groupsio-MsgNum: 53519
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="gahyez5yx2vxeiag"
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
---gahyez5yx2vxeiag
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+cleanup recipe
 
-On Fri, May 14, 2021 at 07:58:02AM -0700, Oliver Westermann wrote:
-> Hey,
->=20
-> maybe somebody already has something for this before I reinvent the wheel=
- ;-) We've several internal tools that mostly have their own CI and are ref=
-erenced in our yocto layers to be picked up by the nightly build. Usually w=
-e manually update the SRCREV and add a `git log --oneline --no-decorate <ol=
-d_rev>...<new_rev>` into the update commit. That way you can easily scroll =
-over your eg kernel repo to figure out which commit went in when. But by no=
-w we have more and more internal tools, all require regular updates so we w=
-ould like to add a little CI task to update our SRCREVs.
->=20
-> Is there an easy way to tell bitbake / devtool to change a variable like =
-SRCREV? I played around with various combinations of devtool modify,=A0upda=
-te-recipe and edit-recipe, but I could not get it to work as I expect.
->=20
-> My current goal for my script would be to use a flow roughly following th=
-is:
->=20
-> * Get the repo URL & branch from=A0SRC_URI (eg by a bitbake -e <recipe> a=
-nd some grep magic)
-> * Do a shallow clone in a temp dir
-> * Get new HEAD commit for branch, compare with current
-> * create git log for commit message
-> * update REV in recipe
-> * commit
->=20
-> Looking forward to suggestions, Olli
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-scanners/clamav/clamav_0.104.0.bb     | 44 ++++++++++---------
+ .../clamav/files/fix_systemd_socket.patch     | 25 +++++++++++
+ 2 files changed, 48 insertions(+), 21 deletions(-)
+ create mode 100644 recipes-scanners/clamav/files/fix_systemd_socket.patch
 
-If you really want to update SRCREVs often for CI jobs, then I would
-setup separate job with some .inc file which sets SRCREVs of all the
-components you want to test to AUTOREV and let it run as often you can
-afford (even triggered from every push if your builds are quick or you
-have many builders available).
+diff --git a/recipes-scanners/clamav/clamav_0.104.0.bb b/recipes-scanners/clamav/clamav_0.104.0.bb
+index 6892bb0..ce5b0ea 100644
+--- a/recipes-scanners/clamav/clamav_0.104.0.bb
++++ b/recipes-scanners/clamav/clamav_0.104.0.bb
+@@ -16,9 +16,9 @@ SRC_URI = "git://github.com/vrtadmin/clamav-devel;branch=dev/0.104 \
+     file://freshclam.conf \
+     file://volatiles.03_clamav \
+     file://tmpfiles.clamav \
+-    file://${BPN}.service \
+     file://headers_fixup.patch \
+     file://oe_cmake_fixup.patch \
++    file://fix_systemd_socket.patch \
+ "
+ S = "${WORKDIR}/git"
+ 
+@@ -70,31 +70,29 @@ do_install_append () {
+     rm ${D}/${libdir}/libmspack.so
+ 
+     if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)};then
+-        install -D -m 0644 ${WORKDIR}/clamav.service ${D}${systemd_unitdir}/system/clamav.service
+         install -d ${D}${sysconfdir}/tmpfiles.d
+         install -m 0644 ${WORKDIR}/tmpfiles.clamav ${D}${sysconfdir}/tmpfiles.d/clamav.conf
+     fi
+     oe_multilib_header clamav-types.h
+ }
+ 
+-pkg_postinst_ontarget_${PN} () {
+-    if command -v systemd-tmpfiles >/dev/null; then
+-        systemd-tmpfiles --create ${sysconfdir}/tmpfiles.d/clamav.conf
+-    elif [ -e ${sysconfdir}/init.d/populate-volatile.sh ]; then
+-        ${sysconfdir}/init.d/populate-volatile.sh update
++pkg_postinst_${PN} () {
++    if [ -z "$D" ]; then
++        if command -v systemd-tmpfiles >/dev/null; then
++            systemd-tmpfiles --create ${sysconfdir}/tmpfiles.d/clamav.conf
++        elif [ -e ${sysconfdir}/init.d/populate-volatile.sh ]; then
++            ${sysconfdir}/init.d/populate-volatile.sh update
++        fi
++        chown -R ${CLAMAV_UID}:${CLAMAV_GID} ${localstatedir}/lib/clamav
+     fi
+-    mkdir -p ${localstatedir}/lib/clamav
+-    chown -R ${CLAMAV_UID}:${CLAMAV_GID} ${localstatedir}/lib/clamav
+ }
+ 
+-
+-PACKAGES = "${PN} ${PN}-dev ${PN}-dbg ${PN}-daemon ${PN}-doc \
+-            ${PN}-clamdscan ${PN}-freshclam ${PN}-libclamav ${PN}-staticdev"
++PACKAGES += "${PN}-daemon ${PN}-clamdscan ${PN}-freshclam ${PN}-libclamav"
+ 
+ FILES_${PN} = "${bindir}/clambc ${bindir}/clamscan ${bindir}/clamsubmit ${sbindir}/clamonacc \
+                 ${bindir}/*sigtool ${mandir}/man1/clambc* ${mandir}/man1/clamscan* \
+                 ${mandir}/man1/sigtool* ${mandir}/man1/clambsubmit*  \
+-                ${docdir}/clamav/* ${libdir}/libmspack* "
++                ${docdir}/clamav/*"
+ 
+ FILES_${PN}-clamdscan = " ${bindir}/clamdscan \
+                         ${docdir}/clamdscan/* \
+@@ -106,11 +104,11 @@ FILES_${PN}-daemon = "${bindir}/clamconf ${bindir}/clamdtop ${sbindir}/clamd \
+                         ${mandir}/man5/clamd*  ${mandir}/man8/clamd* \
+                         ${sysconfdir}/clamd.conf* \
+                         /usr/etc/clamd.conf* \
+-                        ${systemd_unitdir}/system/clamav-daemon/* \
++                        ${systemd_system_unitdir}/clamav-daemon/* \
+                         ${docdir}/clamav-daemon/*  ${sysconfdir}/clamav-daemon \
+                         ${sysconfdir}/logcheck/ignore.d.server/clamav-daemon \
+-                        ${systemd_unitdir}/system/clamav-daemon.service \
+-                        ${systemd_unitdir}/system/clamav-clamonacc.service \
++                        ${systemd_system_unitdir}/clamav-daemon.service \
++                        ${systemd_system_unitdir}/clamav-clamonacc.service \
+                         "
+ 
+ FILES_${PN}-freshclam = "${bindir}/freshclam \
+@@ -121,7 +119,7 @@ FILES_${PN}-freshclam = "${bindir}/freshclam \
+                         ${localstatedir}/lib/clamav \
+                         ${docdir}/${PN}-freshclam ${mandir}/man1/freshclam.* \
+                         ${mandir}/man5/freshclam.conf.* \
+-                        ${systemd_unitdir}/system/clamav-freshclam.service"
++                        ${systemd_system_unitdir}/clamav-freshclam.service"
+ 
+ FILES_${PN}-dev = " ${bindir}/clamav-config ${libdir}/*.la \
+                     ${libdir}/pkgconfig/*.pc \
+@@ -131,7 +129,8 @@ FILES_${PN}-dev = " ${bindir}/clamav-config ${libdir}/*.la \
+ FILES_${PN}-staticdev = "${libdir}/*.a"
+ 
+ FILES_${PN}-libclamav = "${libdir}/libclamav.so* ${libdir}/libclammspack.so* \
+-                         ${libdir}/libfreshclam.so* ${docdir}/libclamav/* "
++                         ${libdir}/libfreshclam.so* ${docdir}/libclamav/* \
++                         ${libdir}/libmspack* "
+ 
+ FILES_${PN}-doc = "${mandir}/man/* \
+                    ${datadir}/man/* \
+@@ -140,12 +139,15 @@ FILES_${PN}-doc = "${mandir}/man/* \
+ USERADD_PACKAGES = "${PN}"
+ GROUPADD_PARAM_${PN} = "--system ${CLAMAV_UID}"
+ USERADD_PARAM_${PN} = "--system -g ${CLAMAV_GID} --home-dir  \
+-    ${localstatedir}/spool/${BPN} \
+-    --no-create-home  --shell /bin/false ${BPN}"
++    ${localstatedir}/lib/${BPN} \
++    --no-create-home  --shell /sbin/nologin ${BPN}"
+ 
+ RPROVIDES_${PN} += "${PN}-systemd"
+ RREPLACES_${PN} += "${PN}-systemd"
+ RCONFLICTS_${PN} += "${PN}-systemd"
+-SYSTEMD_SERVICE_${PN} = "${BPN}.service"
++SYSTEMD_PACKAGES  = "${PN}-daemon ${PN}-freshclam"
++SYSTEMD_SERVICE_${PN}-daemon = "clamav-daemon.service"
++SYSTEMD_SERVICE_${PN}-freshclam = "clamav-freshclam.service"
+ 
+ RDEPENDS_${PN} = "openssl ncurses-libncurses libxml2 libbz2 ncurses-libtinfo curl libpcre2 clamav-freshclam clamav-libclamav"
++RDEPENDS_${PN}-daemon = "clamav"
+diff --git a/recipes-scanners/clamav/files/fix_systemd_socket.patch b/recipes-scanners/clamav/files/fix_systemd_socket.patch
+new file mode 100644
+index 0000000..3e9abe2
+--- /dev/null
++++ b/recipes-scanners/clamav/files/fix_systemd_socket.patch
+@@ -0,0 +1,25 @@
++clamd not installing clamav-daemon.socket
++
++Fixes:
++__main__.SystemdUnitNotFoundError: (PosixPath('../security-build-image/1.0-r0/rootfs'), 'clamav-daemon.socket')
++%post(clamav-daemon-0.104.0-r0.core2_64): waitpid(3587571) rc 3587571 status 100
++warning: %post(clamav-daemon-0.104.0-r0.core2_64) scriptlet failed, exit status 1
++
++Upstream-Status: Pending
++Signed-off-by: Armin Kuster <akuster808@gmail.com>
++
++Index: git/clamd/CMakeLists.txt
++===================================================================
++--- git.orig/clamd/CMakeLists.txt
+++++ git/clamd/CMakeLists.txt
++@@ -54,4 +54,10 @@ if(SYSTEMD_FOUND)
++     install(
++         FILES ${CMAKE_CURRENT_BINARY_DIR}/clamav-daemon.service
++         DESTINATION ${SYSTEMD_UNIT_DIR})
+++    configure_file(
+++        ${CMAKE_CURRENT_SOURCE_DIR}/clamav-daemon.socket.in
+++        ${CMAKE_CURRENT_BINARY_DIR}/clamav-daemon.socket @ONLY)
+++    install(
+++        FILES ${CMAKE_CURRENT_BINARY_DIR}/clamav-daemon.socket
+++        DESTINATION ${SYSTEMD_UNIT_DIR})
++ endif()
+-- 
+2.25.1
 
-Then whenever you want to "release" you can either dump the last built
-revisions from this AUTOREV-build (either directly from
-cache/bb_persist_data.sqlite3 or from e.g. buildhistory and dump them in
-some release-1.2.3.inc included by your DISTRO (or update SRCREVs in the
-individual recipes).
-
-Regards,
-
---gahyez5yx2vxeiag
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRU+ejDffEzV2Je2oc3VSO3ZXaAHAUCYJ6URAAKCRA3VSO3ZXaA
-HH2SAJ0SzzrRgl62/+NhrlC8PlNyz9gRMwCfWsfeAP1yq5+gsIxGzqO1/d05Vmc=
-=XYHj
------END PGP SIGNATURE-----
-
---gahyez5yx2vxeiag--
