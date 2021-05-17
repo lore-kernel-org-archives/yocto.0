@@ -1,125 +1,82 @@
-Subject: python3-dlib linking issue #yocto #zeus #python
-To: yocto@lists.yoctoproject.org
-From: "Bel Hadj Salem Talel" <bhstalel@gmail.com>
-X-Originating-Location: TN (197.27.97.125)
-X-Originating-Platform: Linux Chrome 90
-User-Agent: GROUPS.IO Web Poster
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+ by mx.groups.io with SMTP id smtpd.web11.552.1621291366103513521
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 17 May 2021 15:42:46 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=lLlh++Ia;
+ spf=pass (domain: gmail.com, ip: 209.85.214.177, mailfrom: raj.khem@gmail.com)
+Received: by mail-pl1-f177.google.com with SMTP id t4so3984741plc.6
+        for <yocto@lists.yoctoproject.org>; Mon, 17 May 2021 15:42:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:organization:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=i7rUBUw7ccXbZ2RACsWj6NmTKwgq9WyMlfHPEj7u6ME=;
+        b=lLlh++IaJDB5h7QO7ZnHnpXiRSsT8M3gV5vjs6FYu1XE3Ow/xjMCoX4ny34Tzd1VHD
+         LwshHjdyzwq0jZIDcJXwKCCBF5RgamGa/hw7HfGVRxknsVpgmLwZeosKjm6tg6Me8ZAq
+         ugCck49nQ3jZpCGJVVdZffi9W8twaXHhjXIvQKtpy8KDATbx8FL2GQj8PwU52Dkn0hrf
+         8+GJF7wXh/NbJvqiYjzU3Zc9yQ/NmFnFMwsmp25f+NEiN29nqXB7Kh2kAyiXi+ROUOmN
+         VKJr1Qunz4zf+DSCwu2aFwAkUPziq3EzCOrSsVFqToW+2Dj2wZ66+FGv47407kJbTio+
+         XgUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=i7rUBUw7ccXbZ2RACsWj6NmTKwgq9WyMlfHPEj7u6ME=;
+        b=sKk43rkoCGzQjvzSY19K1txWUuKSMUV5mgbUZlhMqeLP/Jg0+1qAe8wJY6yRQBaxCN
+         Bo/oosAPhL00EFd8wlVm76qwUbaVAwqoRqPO/qNxWSyd7K/F4ouCKtkAkr7kzFwKOtPi
+         dQY+1cNDxuNY9rfnjnDsc/y8ItPaTYXIztV8Rq8PsftpJRRcmj7B+ww1ioOAuSgME2yh
+         bmGEYe4siYZDL8YUk5n2CVncxiyCd/DmFjLFPB4FhuiuS3gKfed9MQHHnZIxIztq8+Vb
+         Ij/J0Qb4AgymbEGgCM6Zswb2fTEX+nRx4NexPZt+sPrYuBEvtw2HfpCyCXB+H4UYRLxT
+         btog==
+X-Gm-Message-State: AOAM532Esmb73SUuVI7AVxs3xWzbbsgzog7BXvQScgVuXhKqVTA4i0+U
+	nNoagGPp6OkN+ixQOl1EQ5epluwKBk0aFw==
+X-Google-Smtp-Source: ABdhPJxy/eJ4MlU9fEzr6Vp/0jqp9AAHiA6xqXFqWKurcX64YF7mWAQfWTudmN9sE3iU2IhzSeCnOw==
+X-Received: by 2002:a17:90a:4588:: with SMTP id v8mr1462732pjg.195.1621291365401;
+        Mon, 17 May 2021 15:42:45 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPv6:2601:646:9200:a0f0:c4b7:9807:d29b:dff? ([2601:646:9200:a0f0:c4b7:9807:d29b:dff])
+        by smtp.gmail.com with ESMTPSA id a16sm10763576pfa.95.2021.05.17.15.42.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 May 2021 15:42:45 -0700 (PDT)
+Subject: Re: [yocto] Make busybox's syslog.cfg depend on VIRTUAL-RUNTIME_base-utils-syslog #dunfell
+To: Volker Vogelhuber <v.vogelhuber@digitalendoscopy.de>,
+ yocto@lists.yoctoproject.org
+References: <SFLU.1621246434709424827.U4y8@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Message-ID: <33fb3e3b-c33d-83c3-ff56-d891ebb58379@gmail.com>
+Date: Mon, 17 May 2021 15:42:43 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
+ Gecko/20100101 Thunderbird/78.10.1
 MIME-Version: 1.0
-Date: Mon, 17 May 2021 13:11:53 -0700
-Message-ID: <MNtp.1621282313749398858.eK5V@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="ZBfwXOOT3EQpBiUaWXGA"
+In-Reply-To: <SFLU.1621246434709424827.U4y8@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 
---ZBfwXOOT3EQpBiUaWXGA
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi All,
-I'm trying to bitbake a recipe for python3-dlib (the python API).
-Here is the recipe:
 
-SUMMARY =3D "A toolkit for making real world machine learning and data ana=
-lysis applications"
-HOMEPAGE =3D "https://github.com/davisking/dlib"
-LICENSE =3D "Boost-Software"
-LIC_FILES_CHKSUM =3D "file://dlib/LICENSE.txt;md5=3D2c7a3fa82e66676005cd4e=
-e2608fd7d2 \
-file://dlib/external/pybind11/LICENSE;md5=3Dbeb87117af69fd10fbf9fb14c22a2e=
-62 \
-file://dlib/external/libpng/LICENSE;md5=3D243135ddedf702158f9170807cbcfb66=
- \
-file://docs/docs/license.xml;md5=3D2e6ff4080dcb217d4d300b90e9aabb5b \
-file://examples/LICENSE_FOR_EXAMPLE_PROGRAMS.txt;md5=3D57eee82829ed297e23d=
-84de5f905afee \
-file://examples/video_frames/license.txt;md5=3D127ee508b60a6be9dea8af3b441=
-993dc \
-file://python_examples/LICENSE_FOR_EXAMPLE_PROGRAMS.txt;md5=3D064f53ab40ea=
-2b6a4bba1324149e4fde"
+On 5/17/21 3:13 AM, Volker Vogelhuber wrote:
+> I'm working with Yocto Dunfell. I just wanted to remove syslog
+> from the busybox package by setting VIRTUAL-RUNTIME_base-utils-syslog
+> to an empty string. But it seems like the syslog.cfg is added to the 
+> SRC_URI
+> independent of the VIRTUAL-RUNTIME_base-utils-syslog which in turn will
+> enable syslogd again. Wouldn't it be better to include syslog.cfg in
+> SRC_URI only if VIRTUAL-RUNTIME_base-utils-syslog is set to busybox-syslog?
+> 
+> So something like
+> 
+> ${@["", 
+> "file://syslog.cfg"][(d.getVar('VIRTUAL-RUNTIME_base-utils-syslog') == 
+> 'busybox-syslog')]}
 
-SRC_URI =3D "git://github.com/davisking/dlib.git;protocol=3Dhttps"
-PV =3D "1.0+git${SRCPV}"
-SRCREV =3D "3b794540baeabbcd033b544230401967106d5483"
-S =3D "${WORKDIR}/git"
-inherit setuptools3
-DEPENDS +=3D "python3 cmake-native"
-FILES_${PN}-dev +=3D "${libdir}/cmake/dlib"
-EXTRA_OECMAKE +=3D "-DDLIB_NO_GUI_SUPPORT=3DON -DBUILD_SHARED_LIBS=3DON -D=
-DLIB_USE_CUDA=3DOFF"
-------
+yes. Please send this change as a proper patch for inclusion to 
+openembedded-core mailing list.
 
-When I try to bitbake it, I get a linking issue with ld telling me that li=
-bnsl.so in wrong format:
-
-[100%] Linking CXX shared module /media/talel/data/menzu-zeus/ttdemo/tmp/w=
-ork/aarch64-poky-linux/python3-dlib/1.0+gitAUTOINC+3b794540ba-r0/git/build/=
-lib.linux-x86_64-3.7/dlib.cpython-37m-aarch64-linux-gnu.so
-| /media/talel/data/menzu-zeus/ttdemo/tmp/work/aarch64-poky-linux/python3-=
-dlib/1.0+gitAUTOINC+3b794540ba-r0/recipe-sysroot-native/usr/bin/aarch64-pok=
-y-linux/../../libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/9.2.0/ld: /=
-media/talel/data/menzu-zeus/ttdemo/tmp/work/aarch64-poky-linux/python3-dlib=
-/1.0+gitAUTOINC+3b794540ba-r0/recipe-sysroot-native/usr/lib/libnsl.so: erro=
-r adding symbols: file in wrong format
-| collect2: error: ld returned 1 exit status
-
-Did anyone make it work? Or does anyone know how to solve the problem?
-
-Thanks,
-Talel
-
---ZBfwXOOT3EQpBiUaWXGA
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi All,<br />I'm trying to bitbake a recipe for python3-dlib (the python AP=
-I).<br />Here is the recipe:<br /><br />
-<div>SUMMARY =3D "A toolkit for making real world machine learning and dat=
-a analysis applications"</div>
-<div>HOMEPAGE =3D "https://github.com/davisking/dlib"</div>
-<div>LICENSE =3D "Boost-Software"</div>
-<div>LIC_FILES_CHKSUM =3D "file://dlib/LICENSE.txt;md5=3D2c7a3fa82e6667600=
-5cd4ee2608fd7d2 \</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- file://dlib/external/pybind11/LICENSE;md5=3Dbeb87117af69fd10fbf9fb14c22a2e=
-62 \</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- file://dlib/external/libpng/LICENSE;md5=3D243135ddedf702158f9170807cbcfb66=
- \</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- file://docs/docs/license.xml;md5=3D2e6ff4080dcb217d4d300b90e9aabb5b \</div=
->
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- file://examples/LICENSE_FOR_EXAMPLE_PROGRAMS.txt;md5=3D57eee82829ed297e23d=
-84de5f905afee \</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- file://examples/video_frames/license.txt;md5=3D127ee508b60a6be9dea8af3b441=
-993dc \</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- file://python_examples/LICENSE_FOR_EXAMPLE_PROGRAMS.txt;md5=3D064f53ab40ea=
-2b6a4bba1324149e4fde"</div>
-<div>&nbsp;</div>
-<div>SRC_URI =3D "git://github.com/davisking/dlib.git;protocol=3Dhttps"</d=
-iv>
-<div>PV =3D "1.0+git${SRCPV}"</div>
-<div>SRCREV =3D "3b794540baeabbcd033b544230401967106d5483"</div>
-<div>S =3D "${WORKDIR}/git"</div>
-<div>inherit setuptools3</div>
-<div>DEPENDS +=3D "python3 cmake-native"</div>
-<div>FILES_${PN}-dev +=3D "${libdir}/cmake/dlib"</div>
-<div>EXTRA_OECMAKE +=3D "-DDLIB_NO_GUI_SUPPORT=3DON -DBUILD_SHARED_LIBS=3D=
-ON -DDLIB_USE_CUDA=3DOFF"<br />------<br /><br />When I try to bitbake it, =
-I get a linking issue with ld telling me that libnsl.so in wrong format:<br=
- /><br />
-<div>[100%] Linking CXX shared module /media/talel/data/menzu-zeus/ttdemo/=
-tmp/work/aarch64-poky-linux/python3-dlib/1.0+gitAUTOINC+3b794540ba-r0/git/b=
-uild/lib.linux-x86_64-3.7/dlib.cpython-37m-aarch64-linux-gnu.so</div>
-<div>| /media/talel/data/menzu-zeus/ttdemo/tmp/work/aarch64-poky-linux/pyt=
-hon3-dlib/1.0+gitAUTOINC+3b794540ba-r0/recipe-sysroot-native/usr/bin/aarch6=
-4-poky-linux/../../libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/9.2.0/=
-ld: /media/talel/data/menzu-zeus/ttdemo/tmp/work/aarch64-poky-linux/python3=
--dlib/1.0+gitAUTOINC+3b794540ba-r0/recipe-sysroot-native/usr/lib/libnsl.so:=
- error adding symbols: file in wrong format</div>
-<div>| collect2: error: ld returned 1 exit status<br /><br />Did anyone ma=
-ke it work? Or does anyone know how to solve the problem?<br /><br />Thanks=
-,<br />Talel</div>
-</div>
-
---ZBfwXOOT3EQpBiUaWXGA--
+> 
+> 
+> 
+> 
