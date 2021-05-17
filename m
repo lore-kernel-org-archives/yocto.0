@@ -1,63 +1,51 @@
-Subject: BitBake recipe cache - tasks remain available after removing inheritance #yocto #bitbake
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by mx.groups.io with SMTP id smtpd.web10.15617.1621236663048679217
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 17 May 2021 00:31:03 -0700
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=pass (domain: intel.com, ip: 134.134.136.20, mailfrom: naveen.kumar.saini@intel.com)
+IronPort-SDR: QMq/mrlTCP/lJwlWLzFzr7Z2Kwc8sQ2+wai0qb4Fz9Oo3oU75JyxqIGzWygqTSdwrfspk2RiyU
+ hlLkGrXCG1EQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9986"; a="187528441"
+X-IronPort-AV: E=Sophos;i="5.82,306,1613462400"; 
+   d="scan'208";a="187528441"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 May 2021 00:31:02 -0700
+IronPort-SDR: 0SMsqSySuPcKuAOHePaHm0C294sbKYYfzQuBrOZNu2hCFR9ERaJ4xCWl1nOVrwZxNv+N/tk8Va
+ 4sk4Qw+SkJ3A==
+X-IronPort-AV: E=Sophos;i="5.82,306,1613462400"; 
+   d="scan'208";a="438782303"
+Received: from saininav-desk1.png.intel.com ([172.30.199.23])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 May 2021 00:31:01 -0700
+From: "Naveen Saini" <naveen.kumar.saini@intel.com>
 To: yocto@lists.yoctoproject.org
-From: jindrichsindelar@eaton.com
-X-Originating-Location: DE (165.225.26.121)
-X-Originating-Platform: Windows Chrome 90
-User-Agent: GROUPS.IO Web Poster
-MIME-Version: 1.0
-Date: Mon, 17 May 2021 00:15:28 -0700
-Message-ID: <rlqO.1621235728904953986.2AAJ@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="xCii4aLZOCChSB9WiZ56"
+Subject: [meta-zephyr][PATCH] zephyr-kernel-src: switch from master branch to main
+Date: Mon, 17 May 2021 15:43:30 +0800
+Message-Id: <20210517074330.32229-1-naveen.kumar.saini@intel.com>
+X-Mailer: git-send-email 2.17.1
 
---xCii4aLZOCChSB9WiZ56
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+* branch was renamed in upstream repo
 
-Hello all,
+It fixes do_fetch failure
 
-I'm starting with the Yocto project (Zeus) and I made some experiments wit=
-h the kernel recipe. For one of my assignments, I needed a do_kernel_config=
-me task, but it wasn't provided by our kernel recipe (i.e. not listed in th=
-e available tasks). I searched the available layers and found that this tas=
-k is defined in poky/meta/classes/kernel-yocto.bbclass. Out of fun, I tried=
- to inherit from that class in our kernel recipe and after parsing the reci=
-pe again, the do_kernel_configme task was available.
+Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
+---
+ recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Later I decided to revert all my changes and removed the inheritance of ke=
-rnel-yocto.bbclass. What surprises me is that the do_kernel_configme task r=
-emains available in the kernel recipe and I can still successfully run that=
- task. I also tried to remove the content of build/tmp/cache, which, if I u=
-nderstand correctly, is the cache for parsing recipes. After running BitBak=
-e again, I could see the recipe was parsed from scratch. But even after tha=
-t, the do_kernel_configme task still remains available for the kernel recip=
-e.
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+index 8d5f176..dfc2250 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+@@ -13,7 +13,7 @@ inherit cmake
+ FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+ 
+ SRC_URI = "\
+-    git://github.com/zephyrproject-rtos/zephyr.git;protocol=https;branch=master;name=default \
++    git://github.com/zephyrproject-rtos/zephyr.git;protocol=https;branch=main;name=default \
+     git://github.com/zephyrproject-rtos/cmsis.git;protocol=https;destsuffix=git/modules/cmsis;name=cmsis \
+     git://github.com/zephyrproject-rtos/hal_nordic.git;protocol=https;destsuffix=git/modules/hal/nordic;name=nordic \
+     git://github.com/zephyrproject-rtos/hal_stm32.git;protocol=https;destsuffix=git/modules/hal/stm32;name=stm32 \
+-- 
+2.17.1
 
-Could anyone explain this behavior? What am I missing here?
-Thank you in advance
-
---xCii4aLZOCChSB9WiZ56
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello all,<br /><br />
-<div>I'm starting with the Yocto project (Zeus) and I made some experiment=
-s with the kernel recipe. For one of my assignments, I needed a do_kernel_c=
-onfigme task, but it wasn't provided by our kernel recipe (i.e. not listed =
-in the available tasks). I searched the available layers and found that thi=
-s task is defined in poky/meta/classes/kernel-yocto.bbclass. Out of fun, I =
-tried to inherit from that class in our kernel recipe and after parsing the=
- recipe again, the do_kernel_configme task was available.</div>
-<div>&nbsp;</div>
-<div>Later I decided to revert all my changes and removed the inheritance =
-of kernel-yocto.bbclass. What surprises me is that the do_kernel_configme t=
-ask remains available in the kernel recipe and I can still successfully run=
- that task. I also tried to remove the content of build/tmp/cache, which, i=
-f I understand correctly, is the cache for parsing recipes. After running B=
-itBake again, I could see the recipe was parsed from scratch. But even afte=
-r that, the do_kernel_configme task still remains available for the kernel =
-recipe.</div>
-<div>&nbsp;</div>
-<div>Could anyone explain this behavior? What am I missing here?<br />Than=
-k you in advance</div>
-
---xCii4aLZOCChSB9WiZ56--
