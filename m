@@ -1,139 +1,152 @@
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
- by mx.groups.io with SMTP id smtpd.web12.17618.1621250759084037894
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web09.18098.1621253999969195774
  for <yocto@lists.yoctoproject.org>;
- Mon, 17 May 2021 04:25:59 -0700
+ Mon, 17 May 2021 05:20:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@apide.com header.s=google header.b=aJLxX/4/;
- spf=pass (domain: apide.com, ip: 209.85.222.171, mailfrom: morten.bruun@apide.com)
-Received: by mail-qk1-f171.google.com with SMTP id x8so5321810qkl.2
-        for <yocto@lists.yoctoproject.org>; Mon, 17 May 2021 04:25:58 -0700 (PDT)
+ dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=OoXBzwD1;
+ spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 2636738C0579
+	for <yocto@yoctoproject.org>; Mon, 17 May 2021 12:19:59 +0000 (UTC)
+Received: by mail-wm1-f47.google.com with SMTP id 62so2432922wmb.3
+        for <yocto@yoctoproject.org>; Mon, 17 May 2021 05:19:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=apide.com; s=google;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=MRx9nq36Szgf8HdgCqZ6SFvuxdlq/1ZTeTDu3JBqJdU=;
-        b=aJLxX/4/kWTMNCIDZn4PgJn8e69LSLmhcKWMedxp6OIxaB6aoCq+CszWikRcmuGPuU
-         IkP3z1sMat2whRnHbofN4Mslc4tIRQCpvm0ikDYjjkVQkTWaLkVYAhQ73JYlufptOCu3
-         uUieTI2itwf3owBy4WiaN1J9MN+CMvBSy/TD4=
+        d=blade-group.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=IsPD5Q4wfCqMdBkufq2j+YvAjcZsuTibJ4eJDtIC7OU=;
+        b=OoXBzwD1ma6EG7Yf/5DbyRr8LgbPTuEOB9HArVUKiXHN6yu1Hs/o6EuCoYeoCiyfQB
+         1CjnPlA8Ol/41a105Dzhe0xGADToQkEfRscXPaw5VBoIpMjizcDYH0uJ3/unj0KX72P2
+         nCqeqrBq8tFw0SObYuU3RFlbwUhaznS7MX8RuwkN8KemuRj5+oZAEjqdZu6jIuarAvDH
+         buibO0NALwOpkM69BQR8CYzuqcx3hqaiWK9R1osoAjEZ8hLW8Kye8+DwxktBjPgiS83O
+         qQMaI5sBo/mPIByJkWXn9yuCWZI81vsSGIRDxV+1hV+nLYZazWKq3nZu774loEMPaqgB
+         YEig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=MRx9nq36Szgf8HdgCqZ6SFvuxdlq/1ZTeTDu3JBqJdU=;
-        b=FSRvYE5aO3OM2lj7bxoXkKgVQxeeY9PEvbByzCYYCI2vbgWGFuNxYuRSmnNVyDVQUs
-         eto3rFzFtjJ0ZpMYidtsYcDMkDyh+iT5Y/4rKWnG1YE/y38waT1FqS4QRTfsN5T7z8DK
-         TjCQgO19N/oLNAxYidR+3d1kP2xafxKfRABfSQx/dsvNL3tS9/3KdEoPgzNqikVwe2/7
-         penEk45D1ZEQl8X5O56qAlFGbnd+gO0hko+i9p+5cPzMCnSZDxtw0RIxVWi6Nl4V4bt3
-         D4iiEdwOz9okSBA6peTnXl/9zkFFQ7sgWMuB7PfQ8Veq1icePJKQV8rFlKJqpvykQ7u1
-         8cLg==
-X-Gm-Message-State: AOAM530nh/oLJzHXvjx/wd6J0SW/4NnFSfSN4dys8s3N7nj/qcQDa1T6
-	vzXZ8QUP4r/gWR7gP1W5SfzQMhYaSX2+Ie/QC6nYZ0KAGvulUN89Y+Y=
-X-Google-Smtp-Source: ABdhPJwKJYW/zaEsluQY296eHrXhDiNd47eUGW0IB9Kya70qqFezdNSkW3OOgazYUfwO/xboJA/NAK5nLNrSkR3/V/g=
-X-Received: by 2002:a37:6688:: with SMTP id a130mr56617545qkc.168.1621250757972;
- Mon, 17 May 2021 04:25:57 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=IsPD5Q4wfCqMdBkufq2j+YvAjcZsuTibJ4eJDtIC7OU=;
+        b=aRJsp8khxWbRws5nypQ72urZ5ojtT2k2DQay5I+bfjmA/e8iFgnYrZpwKW6KM0gN45
+         O/geqzLBp2VSx3e8lZtu9Hg9rK8fNv2x0U1LgEIJnE1D6ZG1IUTw7S57tCqh66lH/vUN
+         3mkDXZIaLYrKthgk1zHLLe2vmGoXvAtXpvn9gFhIIh+I28UkVOnIP/InEgwsyWJ0tGaC
+         QUVirVxwDMFSD9cDY09V0wuOGCIFGJrylWXdEPxa1qr3LQFDd0fLfmyOftD5hiHfTq7i
+         RVDjmfteyqfxrv7m/KfyH6bn3E/eAZEz/2MQdJp5iIeV/MGCssvW0A1lUehhnmYm//nR
+         DyhA==
+X-Gm-Message-State: AOAM532ogycYCYa/NCxgw47MX2+hRpTAV6hZNJ+7DGRHiTQ3KWr1S6qC
+	bWhvFUvOzxLlkLCgzkaXGyvYQ8cvwazBcA==
+X-Google-Smtp-Source: ABdhPJxlUsjaWAOxfUAa5aZZJNUKbK8w+1Ytz4ZEJOcLMZTPSk5KjksYO2KZ42FubPfJV4t5ZoWLwg==
+X-Received: by 2002:a05:600c:414b:: with SMTP id h11mr14169670wmm.139.1621253997549;
+        Mon, 17 May 2021 05:19:57 -0700 (PDT)
+Received: from blanquette.saintdenis.blade-group.net ([185.123.26.202])
+        by smtp.gmail.com with ESMTPSA id y2sm23702270wmq.45.2021.05.17.05.19.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 May 2021 05:19:57 -0700 (PDT)
+From: "Yann Dirson" <yann.dirson@blade-group.com>
+X-Google-Original-From: yann@blade-group.com
+To: yocto@yoctoproject.org
+Cc: twoerner@gmail.com,
+	Yann Dirson <yann@blade-group.com>
+Subject: [meta-rockchip][PATCH v7 0/6] kmeta BSP for nanopi-m4
+Date: Mon, 17 May 2021 14:19:32 +0200
+Message-Id: <20210517121938.207004-1-yann@blade-group.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-From: "Morten Bruun" <morten.bruun@apide.com>
-Date: Mon, 17 May 2021 13:25:47 +0200
-Message-ID: <CAMrUZLiHJw4sUDQBdHycq9hFSV+qLucX_=tHOVQZC0VQsRuNAg@mail.gmail.com>
-Subject: Opencv build generates Pseudo Abort
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000085686505c284db39"
-
---00000000000085686505c284db39
-Content-Type: text/plain; charset="UTF-8"
-
-Hi,
-
-When building on the new hardknott branch I often get the error below, so
-far the solution is to delete the tmp directory. Any suggestions?
-
-debug_logfile: fd 2
-pid 6668 [parent 6667], doing new pid setup and server start
-Setup complete, sending SIGUSR1 to pid 6667.
-creat for '
-<path>/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/opencv/4.5.2-r0/package/usr/lib/stMOsGHa'
-replaces existing 11214613 ['
-<path>/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/opencv/4.5.2-r0/package/usr/lib/libopencv_xfeatures2d.so.4.5.2'].
-creat for '
-<path>/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/opencv/4.5.2-r0/package/usr/lib/stUxt79H'
-replaces existing 11214665 ['
-<path>/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/opencv/4.5.2-r0/package/usr/lib/libopencv_sfm.so.4.5.2'].
-creat for '
-<path>/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/opencv/4.5.2-r0/package/usr/lib/staYWmKL'
-replaces existing 11214480 ['
-<path>/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/opencv/4.5.2-r0/package/usr/lib/libopencv_imgproc.so.4.5.2'].
-db cleanup for server shutdown, 00:12:21.579
-memory-to-file backup complete, 00:12:21.579.
-db cleanup finished, 00:12:21.579
-debug_logfile: fd 2
-pid 4234 [parent 4192], doing new pid setup and server start
-Setup complete, sending SIGUSR1 to pid 4192.
-db cleanup for server shutdown, 00:19:10.704
-memory-to-file backup complete, 00:19:10.705.
-db cleanup finished, 00:19:10.705
-debug_logfile: fd 2
-pid 17609 [parent 17585], doing new pid setup and server start
-Setup complete, sending SIGUSR1 to pid 17585.
-path mismatch [3 links]: ino 12076677 db
-'
-<path>/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/opencv/4.5.2-r0/package/usr/src/debug/opencv/4.5.2-r0/contrib/modules/intensity_transform/include/opencv2/intensity_transform.hpp'
-req
-'<path>/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/opencv/4.5.2-r0/contrib/modules/intensity_transform/include/opencv2/intensity_transform.hpp'.
-db cleanup for server shutdown, 10:55:44.549
-memory-to-file backup complete, 10:55:44.549.
-db cleanup finished, 10:55:44.549
-
-/Morten
-
---00000000000085686505c284db39
-Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
-lvetica,sans-serif">Hi,</div><div class=3D"gmail_default" style=3D"font-fam=
-ily:arial,helvetica,sans-serif"><br></div><div class=3D"gmail_default" styl=
-e=3D"font-family:arial,helvetica,sans-serif">When building on the new hardk=
-nott branch I often get the error below, so far the solution is to delete t=
-he tmp directory. Any suggestions?</div><div class=3D"gmail_default" style=
-=3D"font-family:arial,helvetica,sans-serif"><br></div><div class=3D"gmail_d=
-efault" style=3D"font-family:arial,helvetica,sans-serif">debug_logfile: fd =
-2<br>pid 6668 [parent 6667], doing new pid setup and server start<br>Setup =
-complete, sending SIGUSR1 to pid 6667.<br>creat for &#39;
+From: Yann Dirson <yann@blade-group.com>
 
-&lt;path&gt;/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/opencv/4.5=
-.2-r0/package/usr/lib/stMOsGHa&#39; replaces existing 11214613 [&#39;
+With this version the most board features work (Wifi requires recent
+poky master for a linux-firmware fix), except for the audio jack and
+possibly Bluetooth support (the WIP patches are mostly here for
+discussion).
 
-&lt;path&gt;/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/opencv/4.5=
-.2-r0/package/usr/lib/libopencv_xfeatures2d.so.4.5.2&#39;].<br>creat for &#=
-39;
+I'm not especially happy with the BT support:
+- it uses the rkwifibt repo because I don't have any other BT firmware
+  for this chip
+- I was not able to get it to work on the board I have (even with vendor
+  image with legacy kernel), so I may have a problem with this particular
+  piece of hardware.  At least it can do discover and pairing, maybe wide=
+r
+  testing will be useful.
 
-&lt;path&gt;/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/opencv/4.5=
-.2-r0/package/usr/lib/stUxt79H&#39; replaces existing 11214665 [&#39;
 
-&lt;path&gt;/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/opencv/4.5=
-.2-r0/package/usr/lib/libopencv_sfm.so.4.5.2&#39;].<br>creat for &#39;
+Changes in v7:
+- use "KMETA_EXTERNAL_BSP" and "nopatch" in the BSP definition to get the
+  patches properly applied, as discussed in
+  https://lists.yoctoproject.org/g/yocto/topic/82769152
+- remove WIP tag from "add workaround to disable VOPL usage on HDMI" than=
+ks
+  to this
 
-&lt;path&gt;/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/opencv/4.5=
-.2-r0/package/usr/lib/staYWmKL&#39; replaces existing 11214480 [&#39;
+Changes in v6:
+- support for Wifi and BT
 
-&lt;path&gt;/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/opencv/4.5=
-.2-r0/package/usr/lib/libopencv_imgproc.so.4.5.2&#39;].<br>db cleanup for s=
-erver shutdown, 00:12:21.579<br>memory-to-file backup complete, 00:12:21.57=
-9.<br>db cleanup finished, 00:12:21.579<br>debug_logfile: fd 2<br>pid 4234 =
-[parent 4192], doing new pid setup and server start<br>Setup complete, send=
-ing SIGUSR1 to pid 4192.<br>db cleanup for server shutdown, 00:19:10.704<br=
->memory-to-file backup complete, 00:19:10.705.<br>db cleanup finished, 00:1=
-9:10.705<br>debug_logfile: fd 2<br>pid 17609 [parent 17585], doing new pid =
-setup and server start<br>Setup complete, sending SIGUSR1 to pid 17585.<br>=
-path mismatch [3 links]: ino 12076677 db<br>&#39;
+Changes in v5:
+- removed AP6356S-related config options, will come later with proper
+  wifi/bt support
+- removed CONFIG_SND_SOC_RK3288_HDMI_ANALOG which turns out not to be
+  needed for HDMI audio
+- new patch to get HDMI to work
 
-&lt;path&gt;/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/opencv/4.5=
-.2-r0/package/usr/src/debug/opencv/4.5.2-r0/contrib/modules/intensity_trans=
-form/include/opencv2/intensity_transform.hpp&#39; req<br>&#39;&lt;path&gt;/=
-tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/opencv/4.5.2-r0/contrib=
-/modules/intensity_transform/include/opencv2/intensity_transform.hpp&#39;.<=
-br>db cleanup for server shutdown, 10:55:44.549<br>memory-to-file backup co=
-mplete, 10:55:44.549.<br>db cleanup finished, 10:55:44.549<br></div><div cl=
-ass=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif"><br>=
-</div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,san=
-s-serif">/Morten</div></div>
+Changes in v4:
+- install our bsp files in bsp/rockchip/ rather than directly in bsp/
+- also add "serial" to MACHINE_FEATURES
 
---00000000000085686505c284db39--
+Changes in v3:
+- relocate the bsp files into files/ so we don't have to add linux-yocto/
+  to FILESEXTRAPATHS for all other kernels
+- removed the "don't force KCONFIG_MODE to alldefconfig" (not needed fina=
+lly,
+  and causing interferences in default setup)
+- add "usbhost" to MACHINE_FEATURES to enable lsusb and friends
+- better hardware coverage (though still no wifi/bt/audio, and buggy hdmi=
+)
+
+Yann Dirson (6):
+  linux-yocto: add an initial NanoPi-M4 BSP
+  linux-yocto: add workaround to disable VOPL usage on HDMI
+  linux-firmware: import variables file for ap4356s firmware from
+    armbian
+  NanoPi-M4: activate Wifi support
+  WIP Import rkwifibt-firmware from vendor's meta-rockchip
+  WIP NanoPi-M4: activate BT support
+
+ conf/machine/include/nanopi-m4.inc            |   9 +-
+ .../files/brcmfmac4356-sdio.txt               | 126 ++++++++++++++++++
+ .../linux-firmware/linux-firmware_%.bbappend  |  13 ++
+ .../files/bsp/rockchip/hdmi-no-vopl.patch     |  65 +++++++++
+ .../files/bsp/rockchip/nanopi-m4-standard.scc |   8 ++
+ .../files/bsp/rockchip/nanopi-m4-tiny.scc     |   8 ++
+ .../linux/files/bsp/rockchip/nanopi-m4.cfg    |  22 +++
+ .../linux/files/bsp/rockchip/nanopi-m4.scc    |   5 +
+ .../linux/files/bsp/rockchip/rk3399.cfg       |  70 ++++++++++
+ .../linux/files/bsp/rockchip/rk3399.scc       |   5 +
+ .../linux/files/bsp/rockchip/rockchip.cfg     |  50 +++++++
+ .../linux/files/bsp/rockchip/rockchip.scc     |   8 ++
+ recipes-kernel/linux/linux-yocto%.bbappend    |   6 +
+ .../rkwifibt-firmware/files/LICENSE.rockchip  |  41 ++++++
+ .../rkwifibt-firmware/rkwifibt-firmware.bb    | 110 +++++++++++++++
+ 15 files changed, 545 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-kernel/linux-firmware/files/brcmfmac4356-sdio=
+.txt
+ create mode 100644 recipes-kernel/linux-firmware/linux-firmware_%.bbappe=
+nd
+ create mode 100644 recipes-kernel/linux/files/bsp/rockchip/hdmi-no-vopl.=
+patch
+ create mode 100644 recipes-kernel/linux/files/bsp/rockchip/nanopi-m4-sta=
+ndard.scc
+ create mode 100644 recipes-kernel/linux/files/bsp/rockchip/nanopi-m4-tin=
+y.scc
+ create mode 100644 recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.cfg
+ create mode 100644 recipes-kernel/linux/files/bsp/rockchip/nanopi-m4.scc
+ create mode 100644 recipes-kernel/linux/files/bsp/rockchip/rk3399.cfg
+ create mode 100644 recipes-kernel/linux/files/bsp/rockchip/rk3399.scc
+ create mode 100644 recipes-kernel/linux/files/bsp/rockchip/rockchip.cfg
+ create mode 100644 recipes-kernel/linux/files/bsp/rockchip/rockchip.scc
+ create mode 100644 recipes-kernel/rkwifibt-firmware/files/LICENSE.rockch=
+ip
+ create mode 100644 recipes-kernel/rkwifibt-firmware/rkwifibt-firmware.bb
+
+--=20
+2.30.2
+
