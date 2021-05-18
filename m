@@ -1,76 +1,84 @@
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
- by mx.groups.io with SMTP id smtpd.web11.7807.1621340996386541784
+Received: from posti.hhpartners.fi (posti.hhpartners.fi [85.194.237.131])
+ by mx.groups.io with SMTP id smtpd.web09.7706.1621341098401916457
  for <yocto@lists.yoctoproject.org>;
- Tue, 18 May 2021 05:29:56 -0700
+ Tue, 18 May 2021 05:31:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Bou3eDFI;
- spf=pass (domain: gmail.com, ip: 209.85.167.49, mailfrom: zmuda.w@gmail.com)
-Received: by mail-lf1-f49.google.com with SMTP id i22so13775497lfl.10
-        for <yocto@lists.yoctoproject.org>; Tue, 18 May 2021 05:29:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=C/BWcNDa89a5VKa4G8Ilo7Uq26KmJgB+o9YRSJVj+PU=;
-        b=Bou3eDFIUGDQUuEKwHCxosjautJYVqhtuJ3zZBO7lpaS9Xy08/TBwRKw/daVlOmRVD
-         Ej38KlKmEcj1jDNm7XmFX7r6y+V3c/xah1ccdvzcFfGtAeBbyappAX3VyiHPDpRmKuZo
-         E5ZzigSZvOM6hDl1U3KBgqX1vm6/3r+yYRE+7kQYqPlAbXE7ja3SIhZPwLQUr/UdTB3N
-         UNlBsrmsAsIXktCCYG3axvyZ+CUuAgmVVvrBCxNUSexMUVvmSH2s/aLrc/jqw8r5lHvB
-         YSvpUuflwz1bQCYvCNaH++9ELm8k1/a2+NFKPJQnLTJmpetsJssmsw9FfkMo1REM8l1n
-         Tf3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=C/BWcNDa89a5VKa4G8Ilo7Uq26KmJgB+o9YRSJVj+PU=;
-        b=CvkdENVx/rCmJtq+IjmtLbd1e2y6GGkvYhMVssAa4lQ6ycjPt8jEMqGB7gPJMn4XoN
-         rurjiHwdM9fh410ig5KDcz9i9akVYnFmJsQqMarwZwxFApbd4pNSm5jrRJ3/huZS6HcC
-         EJPGqUyVWFD/49nhmETRiGnO479ZKmBmeF1XlfNg4D6oPt6PIbwlFaVnbtVi42xi+jbt
-         AQCBZCLdUjxo6NTUQMiRTdwoGbA8+K5FeIXFbzfm3uIkeKWqBp6NBU/ddHYbJtMfmDyB
-         0v6F2nMiim3wbNPR0VK37jrqkMSufR0bTA+HAM4RZGQAvTjq9q46tHQ7n7arghF8u+Ci
-         Hufg==
-X-Gm-Message-State: AOAM531bynjmx9G6ZhLfb0DgjXTwUR/LTkk1/OqwqrHR0EAHHZIOjIfV
-	0SzMkX5Jl7hm9MgG0Gkg+iZMfPEhn5NMAQ==
-X-Google-Smtp-Source: ABdhPJyx2W3s93x7siRp+6UH9kQVbP8Q2JZXlKgk6lUBjSDEY25jC5aANnIae10VoppnG0wNRTF6ZA==
-X-Received: by 2002:a19:818e:: with SMTP id c136mr4180665lfd.440.1621340994485;
-        Tue, 18 May 2021 05:29:54 -0700 (PDT)
-Return-Path: <zmuda.w@gmail.com>
-Received: from p1.lab ([2a02:a319:8239:4400:4a1:dc07:cf12:9f1f])
-        by smtp.gmail.com with ESMTPSA id h13sm3203964lji.102.2021.05.18.05.29.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 May 2021 05:29:54 -0700 (PDT)
-From: "Wojciech Zmuda" <zmuda.w@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: Zbigniew Bodek <zbigniew.bodek@huawei.com>
-Subject: [meta-zephyr][PATCH 2/2] zephyr-kernel-src.inc: set default preferred version to 2.6.0-rc1
-Date: Tue, 18 May 2021 14:29:27 +0200
-Message-Id: <20210518122927.2554655-3-zmuda.w@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210518122927.2554655-1-zmuda.w@gmail.com>
-References: <20210518122927.2554655-1-zmuda.w@gmail.com>
+ dkim=missing; spf=pass (domain: hhpartners.fi, ip: 85.194.237.131, mailfrom: mikko.murto@hhpartners.fi)
+Received: from MAIL.hhpartners.local (172.25.43.54) by MAIL.hhpartners.local
+ (172.25.43.54) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Tue, 18 May
+ 2021 15:31:13 +0300
+Received: from MAIL.hhpartners.local ([fe80::fdc9:661:735b:235f]) by
+ MAIL.hhpartners.local ([fe80::fdc9:661:735b:235f%4]) with mapi id
+ 15.01.2176.014; Tue, 18 May 2021 15:31:12 +0300
+From: "Mikko Murto" <mikko.murto@hhpartners.fi>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: VS: VS: [yocto] Make do_image_complete wait for an earlier task
+Thread-Topic: VS: [yocto] Make do_image_complete wait for an earlier task
+Thread-Index: AddLrPttjmjp2ufPRwmA9MTCu36eVf//2bqA///L29CAAFvKAP//mxjQ
+Date: Tue, 18 May 2021 12:31:12 +0000
+Message-ID: <726fb1dfc7d143e9a4bf0679b2bec213@hhpartners.fi>
+References: <a28139be6f11445c9f4af80d748457c5@hhpartners.fi>
+	 <824c8a0e7910ec93cc1cd61acca4c8cf803ebda3.camel@linuxfoundation.org>
+	 <9e36070b41c94e8d92eb6fe0c0185528@hhpartners.fi>
+ <2feeb0521dfbfb0097602c4cbe0e32b1eefcbbcb.camel@linuxfoundation.org>
+In-Reply-To: <2feeb0521dfbfb0097602c4cbe0e32b1eefcbbcb.camel@linuxfoundation.org>
+Accept-Language: fi-FI, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.113.2]
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Language: fi-FI
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-From: Zbigniew Bodek <zbigniew.bodek@huawei.com>
-
-Signed-off-by: Zbigniew Bodek <zbigniew.bodek@huawei.com>
----
- recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
-index 5ee40d4..9fc08ba 100644
---- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
-+++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
-@@ -2,7 +2,7 @@ LICENSE = "Apache-2.0"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=fa818a259cbed7ce8bc2a22d35a464fc"
- 
- # Default to a stable version
--PREFERRED_VERSION_zephyr-kernel ??= "2.5.0"
-+PREFERRED_VERSION_zephyr-kernel ??= "2.6.0-rc1"
- include zephyr-kernel-src-${PREFERRED_VERSION_zephyr-kernel}.inc
- 
- inherit cmake
--- 
-2.25.1
-
+DQoNCj4gLS0tLS1BbGt1cGVyw6RpbmVuIHZpZXN0aS0tLS0tDQo+IEzDpGhldHTDpGrDpDogUmlj
+aGFyZCBQdXJkaWUgPHJpY2hhcmQucHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmc+DQo+IEzDpGhl
+dGV0dHk6IHRpaXN0YWkgMTguIHRvdWtva3V1dGEgMjAyMSAxMi4xOQ0KPiBUaGVyZSBpcyBubyBk
+aXJlY3QgZGVwZW5kZW5jeSBmcm9tIGRvX2ltYWdlX2NvbXBsZXRlIG9uIHRoZSBkb19jcmVhdGVf
+c3BkeA0KPiB0YXNrcy4NCj4gDQo+IFlvdSBjYW4gYWRkOg0KPiANCj4gZG9fcm9vdGZzW3JlY3Jk
+ZXB0YXNrXSArPSAiZG9fY3JlYXRlX3NwZHgiDQo+IA0KPiBidXQgdGhpcyB3aWxsIGhhdmUgdGhl
+IHNpZGUgZWZmZWN0IHRoYXQgdGhlIGJ1aWxkIHdpbGwgbmV2ZXIgdXNlIHNzdGF0ZSBhbmQgYWx3
+YXlzDQo+IHJlYnVpbGQgc2luY2UgdGhhdCB0YXNrIGlzbid0IGFuIHNzdGF0ZSB0YXNrLg0KDQpU
+aGFua3MsIEknbGwgZ2l2ZSB0aGF0IGEgZ28hDQoNCj4gSSBkaWQgaGF2ZSBhIHF1aWNrIGxvb2sg
+YW5kIHlvdSdyZSBnb2luZyBmdXJ0aGVyIHRoYW4gSSdkIGJlZW4gdGhpbmtpbmcgb2YsIGF0IGxl
+YXN0DQo+IGluaXRpYWxseS4NCj4gDQo+IFdoYXQgSSdtIHRoaW5raW5nIG9mIGluIGNvcmUgWVAg
+aW5pdGlhbGx5IGlzIHRvIGhhdmUgZG9fcGFja2FnZWRhdGEgZ2VuZXJhdGUNCj4gU1BEWCBkYXRh
+IGZvciB0aGUgb3V0cHV0IHBhY2thZ2VkIGZpbGVzIGluIGRvX3BhY2thZ2UvZG9fcGFja2FnZWRh
+dGEuIEkNCj4gbm90aWNlZCB5b3UgZ28gZnVydGhlciBhbmQgcHJvY2VzcyBhbGwgdGhlIGlucHV0
+IHNvdXJjZXMgYW5kIEknbSBub3Qgc3VyZSB3ZSdyZQ0KPiByZWFkeSB0byBkbyB0aGF0IHlldC4N
+Cj4gDQo+IERvaW5nIGl0IGF0IGRvX3BhY2thZ2UvZG9fcGFja2FnZWRhdGEgdGltZSB3b3VsZCBz
+dGlsbCBhY2Nlc3MgYW55IG9mIHRoZQ0KPiBzb3VyY2VzIGluY2x1ZGVkIGZyb20gYSBkZWJ1ZyBw
+ZXJzcGVjdGl2ZSwgaGVuY2UgaXQgc2hvdWxkIGNvcnJlY3RseSBmaW5kIHRoZQ0KPiBzaGlwcGVk
+IG1hbmlmZXN0L2xpY2Vuc2UgaW5mbyB3aXRob3V0IHRoZSBjb21wbGV4aXR5IG9mIGhhdmluZyB0
+byBzY2FuIGFsbCB0aGUNCj4gc291cmNlcw0KPiANCj4gRm9yIHlvdXIgbGV2ZWwgb2Ygc291cmNl
+IHNjYW5uaW5nLCBJJ2QgbG9vayBhdCB0aGUgZXhpc3RpbmcgZG9fcG9wdWxhdGVfbGljIHRhc2sN
+Cj4gd2hpY2ggaXMgc3N0YXRlIGFuZCBnZW5lcmF0ZXMgbGljZW5zZSBpbmZvLiBJIHRoaW5rIEkn
+ZCBiZSBpbiBmYXZvdXIgb2YgdG90YWxseQ0KPiByZXBsYWNpbmcgdGhhdCB3aXRoIHNvbWV0aGlu
+ZyBnZW5lcmF0aW5nIHNwZHggb3V0cHV0Li4uDQoNCkknbGwgZ2l2ZSBkb19wb3B1bGF0ZV9saWMg
+dGFzayBhIGxvb2suDQoNCj4gSSdtIGFjdHVhbGx5IGhvcGluZyB3ZSBjb3VsZCBzaW1wbHkgd2hh
+dCB3ZSdyZSBkb2luZyB0b2RheSBob3dldmVyIHRoZSBtb3JlIEkNCj4gbG9vayBhdCBhbGwgdGhl
+IGluZm9ybWF0aW9uIHlvdSBjYW4gcHV0IGludG8gU1BEWCwgdGhlIG1vcmUgSSB3b3JyeSB0aGF0
+IHdoaWxzdA0KPiB3ZSBjYW4gZ2VuZXJhdGUgdG9ucyBvZiBkYXRhIGFuZCBodWdlIFNQRFggZmls
+ZXMsIEknbSBub3Qgc3VyZSB0aGV5J3JlIGFjdHVhbGx5DQo+IHVzZWZ1bCB0byBhbnlvbmUgdG8g
+YWN0dWFsbHkgdXNlIDovLg0KDQpXZSdyZSB3b3JraW5nIG9uIHRoaXMgYXMgYSBwYXJ0IG9mIGEg
+d29ya2Zsb3cgdGhhdCB1dGlsaXplcyB0aGUgU1BEWCBmaWxlcy4gT3VyIHRvb2wgdXBsb2FkcyB0
+aGUgc291cmNlIGNvZGUgYXJjaGl2ZWQgYnkgdGhlIGxheWVyIHRvIGEgRm9zc29sb2d5IGluc3Rh
+bmNlLCBhZnRlciB3aGljaCBpdCBxdWVyaWVzIEZvc3NvbG9neSdzIEFQSSBmb3IgdGhlIGZpbGUg
+bGV2ZWwgbGljZW5zZSBhbmQgY29weXJpZ2h0IGRhdGEuIFdlIHRoZW4gdXRpbGl6ZSBPU1MgUmV2
+aWV3IFRvb2xraXQgYnkgY29udmVydGluZyB0aGUgU1BEWCBmaWxlIHRvIE9SVCdzIGRhdGEgZm9y
+bWF0IGFuZCB1c2UgT1JUJ3MgRXZhbHVhdG9yIGFuZCBSZXBvcnRlciB0byBldmFsdWF0ZSBsaWNl
+bnNlIGNvbXBsaWFuY2UgYW5kIGNyZWF0ZSBub3RpY2UgZmlsZXMgYW5kIG90aGVyIHJlcG9ydHMu
+DQoNClRoaXMgaXMgZG9uZSB0byBldmFsdWF0ZSB0aGUgaW1hZ2Ugbm90IGJhc2VkIG9uIHRoZSBk
+ZWNsYXJlZCBsaWNlbnNlcyBvZiBwYWNrYWdlcywgd2hpY2ggbWF5IG9taXQgc29tZSBsaWNlbnNl
+cyBvZiBpbmRpdmlkdWFsIGZpbGVzLCBidXQgdGhvc2UgaW5kaXZpZHVhbCBmaWxlcy4gDQoNCj4g
+Rm9yIHRoZSBTQk9NIGluZm9ybWF0aW9uLCB3ZSBkbyBuZWVkIHRvIHNvbWVob3cgbWFrZSBzb21l
+dGhpbmcgYXMgdXNlZnVsDQo+IGFzIG91ciBub3JtYWwgbWFuaWZlc3QgdG8gcGVvcGxlIGZvciB0
+aGlzIHRvIGJlIHVzZWZ1bCBhbmQgYWRvcHRlZCwgYXQgbGVhc3QgZnJvbQ0KPiBteSBwZXJzcGVj
+dGl2ZS4NCg0KVGhlIGh1Z2UgU1BEWCBmaWxlcyBjcmVhdGVkIG1pZ2h0IGluZGVlZCBub3QgYmUg
+c3VwZXIgdXNlZnVsIGZvciBhbGwgdXNlIGNhc2VzLiBMb25nIHRlcm0sIHNvbWUga2luZCBvZiBj
+b25maWd1cmFiaWxpdHkgcmVnYXJkaW5nIGUuZy4gdGhlIGxldmVsIG9mIGdyYW51bGFyaXR5IChw
+YWNrYWdlcyB2cy4gZmlsZXMpIGNvdWxkIGVuYWJsZSB0aGUgbGF5ZXIgdG8gYmUgdXNlZCBmb3Ig
+bW9yZSB1c2UgY2FzZXMgdGhhbiB0aGUgb25lIHdlJ3JlIGN1cnJlbnRseSB3b3JraW5nIG9uLg0K
+DQpNaWtrbw0K
