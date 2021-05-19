@@ -1,241 +1,293 @@
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
- by mx.groups.io with SMTP id smtpd.web11.9720.1621421573187302397
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
+ by mx.groups.io with SMTP id smtpd.web09.10886.1621428790443125947
  for <yocto@lists.yoctoproject.org>;
- Wed, 19 May 2021 03:52:53 -0700
+ Wed, 19 May 2021 05:53:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=ePOeDiNl;
- spf=pass (domain: baesystems.com, ip: 149.32.232.65, mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1621421573; x=1779101573;
-  h=from:to:subject:date:mime-version;
-  bh=YYcGvhTUtwjKZBshmm5EHMBH3SpQjAWXHQ9CCHlo3s8=;
-  b=ePOeDiNlLjhc0IROoZDGJZfgy2o3pGKjXCyj2pojgyUvObuTG7y0fIZ3
-   brQImE1tlYkjKKlnHX00zYFcKp/AitHA5agF9S1gVDR2hS+6GJ6tUceIN
-   VwwWsl5SrFNngJmyLkXhfFnlW4ZPdZ5GjFFv/OPSIyCCcZyZmn2aLQ++a
-   8=;
-IronPort-SDR: uJYJG7dzaOILvpGRw6X9xD2/+pk7XTCcgYtkGzYh2FRnSKRBeKmCvpq7kj/06ooP6dZcsWAhTs
- cOwsFFzAmelQ==
-IronPort-PHdr: =?us-ascii?q?A9a23=3Ac93aixVyRXdn1MsCN77bo5ry8iDV8Kx+VTF92?=
- =?us-ascii?q?vMcY1JmTK2v8tzYMVDF4r011RmVBNSdsawUwLSJ+4nbGkU4qa6bt34DdJEeH?=
- =?us-ascii?q?zQksu4x2zIaPcieFEfgJ+TrZSFpVO5LVVti4m3peRMNQJW2aFLduGC94iAPE?=
- =?us-ascii?q?RvjKwV1Ov71GonPhMiryuy+4ZLebxhMiTanf79/LRa7oQrQu8QUnIBvNrs/x?=
- =?us-ascii?q?hzVr3VSZu9Y33loJVWdnxb94se/4ptu+DlOtvwi6sBNT7z0c7w3QrJEAjsmN?=
- =?us-ascii?q?Xs15NDwuhnYUQSP/HocXX4InRdOHgPI8Qv1Xpb1siv9q+p9xCyXNtD4QLwoR?=
- =?us-ascii?q?Tiv6bpgRRn1gykFKjE56nnahMxugqxGvBKvqR9xw4/Ib46aL/dxZL/RfdEAS?=
- =?us-ascii?q?GZdQspdSSpMCZ68YYsVCOoBOP5Vo4f6qVsJqxu+HhejC/30yjNQm3T4wLE63?=
- =?us-ascii?q?Po/EQ7Y2gwrAswDu2nQoNr7KakeVO65x7TPwDXYc/NZxyn955bOchw7pPGMW?=
- =?us-ascii?q?rRwcdHPxkYxDAPIlU6fppb7MDOO1uUNqHSb4PRlVeK0kWIotwZxoj22y8oql?=
- =?us-ascii?q?4LGiZ4bxEre+iVl3IY6O8e4SEhjbNCqHpZdqyCXOol3T888Xm1lpiU3x70Ct?=
- =?us-ascii?q?JO0cyUG1Zopyh7QZfCad4WF4BLuWemQLDtlmn9ofLGyihWv/ES9xePxUNS/3?=
- =?us-ascii?q?lVSriddj9XAqmoB2hLR58SdVPdx4Ees1SyO2g3S8u1IPFw4mbDUJpMu2LI9m?=
- =?us-ascii?q?YAfvVnDEyLwhU74lrWZdl8+9eit8+nnZ7LmqYKCOIJskQH+N7gumtS4AeQlL?=
- =?us-ascii?q?ggCR2ib9vq41L3k5UD2XK9FjuYqnancq5DXIcAWq62lDwNLyIoj7QywAy293?=
- =?us-ascii?q?9sCg3YHN1JEeAmbj4f3PlHOO+r0Auu4g1SpiDtrxvbGMaP9ApjVM3TPjK3tc?=
- =?us-ascii?q?Lh/5kJG1gY/09BS64hVB7wAOP7zX1X+tN3cDh83KQy0xOPnBc1m1oMCR22PH?=
- =?us-ascii?q?LGWMKXIvV+N4eIvJfKMa5ELtzbmMPUq/OThgmEimV4dZqmpwYUYaHWjHvh8P?=
- =?us-ascii?q?0qZZn/sjs8bEWgWpgo+UPDqiFqaXD9TYHa9Q7485jYgBYKiDIfDXZytgKeb0?=
- =?us-ascii?q?Ca7GZ1ZenxGCleUEXfycIWEWekDZz6OIsN7lTwET7ehGMcd0kTkpQjx171PK?=
- =?us-ascii?q?uvP5jZepJXoyN9t/erRmBousztuAI7Vh3CKRH1ztmcJXCMtmrF4qlB60k2E0?=
- =?us-ascii?q?6Vzn7pfD9MFtN1TVQJvf7vbyfd3Bsu2Ejndc8mETh6NCpWbOnB7BoYq39IQb?=
- =?us-ascii?q?kA7HtKklR3OxAKgCrIOhqeXCZkvtKnb2i6idI5G13/a2fx53BEdScxVODj+7?=
- =?us-ascii?q?pM=3D?=
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AMt3cvK3XNCOOFEou1UdVyQqjBHkkLtp133?=
- =?us-ascii?q?Aq2lEZdPUMSL3gqyncpoVi6faUskdsZJhOo6HmBEDtexPhHJNOirX5Xo3SIz?=
- =?us-ascii?q?UO2lHYSr2KhLGKq1OAJ8SUzJ8+6U4USdkbNDSGNykesS+V2njaL/8QhPWX+q?=
- =?us-ascii?q?GhgunTi0xgSAl7ApsL0+5+MGmm+wZNNXJ77NICZeChDt8tnVedkYN9VKiG71?=
- =?us-ascii?q?c+LpX+m+E=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2BeBwCc7KRg/0LhJQpagQkJgVCBIYF?=
- =?us-ascii?q?/gUyzTwsBAQEBAQEBAQEIAUEEAQGGRiY5BQ0CBAEBARIBAQYBAQEBAQYEAYE?=
- =?us-ascii?q?DhVEMgjgihB5eARVrJgEEG4JqgX6pOYE0GgJlhGSFBIE6gWWFIoJkhgVDjzI?=
- =?us-ascii?q?Eoy+fCQcDgxadQSIRlHsDkEQtlQqkCwIEAgQFAhaBbIF7cIM6TxcCnHqBKwI?=
- =?us-ascii?q?GCgEBAwmICYERAQE?=
-X-IPAS-Result: =?us-ascii?q?A2BeBwCc7KRg/0LhJQpagQkJgVCBIYF/gUyzTwsBAQEBA?=
- =?us-ascii?q?QEBAQEIAUEEAQGGRiY5BQ0CBAEBARIBAQYBAQEBAQYEAYEDhVEMgjgihB5eA?=
- =?us-ascii?q?RVrJgEEG4JqgX6pOYE0GgJlhGSFBIE6gWWFIoJkhgVDjzIEoy+fCQcDgxadQ?=
- =?us-ascii?q?SIRlHsDkEQtlQqkCwIEAgQFAhaBbIF7cIM6TxcCnHqBKwIGCgEBAwmICYERA?=
- =?us-ascii?q?QE?=
-X-IronPort-AV: E=Sophos;i="5.82,312,1613433600"; 
-   d="scan'208,217";a="377089770"
-IronPort-SDR: wtrvMoqblyUeSzb7Zb1Ay98k4QH1u8Gn+MS3HnNLv0USrSRBopeEzyIrFI7iGf3NolL0NVL93H
- 3N+1hWeQOBKA==
-X-IronPort-AV: E=Sophos;i="5.82,312,1613433600"; 
-   d="scan'208,217";a="3818187"
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: PREEMPT_RT patches
-Thread-Topic: PREEMPT_RT patches
-Thread-Index: AddMnJHYgl8EFrEERx+eca1w7teAtQ==
-Date: Wed, 19 May 2021 10:51:50 +0000
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.4.15]
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=B8XDG/Ym;
+ spf=pass (domain: gmail.com, ip: 209.85.166.169, mailfrom: zmuda.w@gmail.com)
+Received: by mail-il1-f169.google.com with SMTP id l15so6958171iln.8
+        for <yocto@lists.yoctoproject.org>; Wed, 19 May 2021 05:53:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=3+RzmaO8/Hpx+sIsBfnqOWrT3brZiC/wTgImDSId5v4=;
+        b=B8XDG/YmbN5MH71Tra5WPeC2+a4J0CqSvine4Hi+3rBHSAi7vbwUkqfMRnGBwzPJej
+         fsn2fR7lue9/kbbyi14KR5UVi4f8iWIfgsrTxQpqb5DbjsC5sieydqXs3zQkc9ayrw+0
+         cHKS/In1bNVs429dSi7WGJJvATvsXe4dU06FVoX2qFFfvakwVHvgfTY1oHxo0YXvudoq
+         y3G4dOtr1wlrObHFlA6OsTSS5spk++afJ4hOcaMbClFuzaPtxa0XZDJtlrdeHpzPam/x
+         MTLTzf4AdODS4WbkA6/m463moTEtXe9xS0KVLCvx3bzh0l5Kznviqg9FgpXldoFbw6i6
+         erIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3+RzmaO8/Hpx+sIsBfnqOWrT3brZiC/wTgImDSId5v4=;
+        b=DxoSC3xZtcj8K8MNbPfsaiWjSOanZDJ4Bs0pKhn08ztl1CNhaQx9hcHSkCiXdxnXpD
+         MEOvPv8MF+jLRG0TJY1WAjuy2M8za5nST8hD8P7XmBL+fJImx48vaXkPhLvX3RWBUCvT
+         KJdc11qYqmm+Q14e/SmVtN7D9XiKeTfKLpf75d0WxKIFIklSdO9PQ+P1K7KDIJOpYIXf
+         j1qaJ0XYP1cM2x8IaFvyL82zgTUVECdnSSRzCkMs/sSTkQYcGfG6VhOGKwpXHspTn8LJ
+         BQsBlvpTmxpVHMAq1sZEJgJ/ZDJapDxO4rla6NYD015IHh9QxmWNtXJOZS9Uu7Cf69Vh
+         kJeA==
+X-Gm-Message-State: AOAM530TeuD+cwspN7O+ItjNllmJFUm3i0jTJ2N2SDgiz4WGFZ0P4GZL
+	OslLK065a3oCeOHi6NED+1YKCl7a5x6vGvGZEQc=
+X-Google-Smtp-Source: ABdhPJxOdV4UbiCF2Ogi120nXEF0fI77WGyo2EBeCOempf1jynHkKZR8mgxqvt2pZSmEwvHm3/D6m+Jv4DmO7+AMyOU=
+X-Received: by 2002:a05:6e02:8f2:: with SMTP id n18mr9748814ilt.299.1621428789841;
+ Wed, 19 May 2021 05:53:09 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID: <MADEUP.16807254A326FFBC.18081@lists.yoctoproject.org>
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_38fd7bf45ab5469e90ae3bdecf3978b0baesystemscom_"
+References: <20210518122927.2554655-1-zmuda.w@gmail.com> <20210518122927.2554655-3-zmuda.w@gmail.com>
+ <CAPoiz9wP6+k5BOiuqhZ5UjKC+ZAFuqgFj7beGzPXRvLch=oW_A@mail.gmail.com>
+ <916c2b8e69224dba9179edff271c659d@huawei.com> <CAPoiz9w0hm_L_KZH+eM4bnPDdJzkt+ETwuteCPyfW4PAmoChsg@mail.gmail.com>
+ <cb054588e7434b3bb6f04077a4313ea3@intel.com>
+In-Reply-To: <cb054588e7434b3bb6f04077a4313ea3@intel.com>
+From: "Wojciech Zmuda" <zmuda.w@gmail.com>
+Date: Wed, 19 May 2021 14:52:58 +0200
+Message-ID: <CAL0FYXZVpjjOHCLhF485SPdswDQ+uySyO3PQBu43dhmDOxnv+w@mail.gmail.com>
+Subject: Re: [yocto] [meta-zephyr][PATCH 2/2] zephyr-kernel-src.inc: set default preferred version to 2.6.0-rc1
+To: "Saini, Naveen Kumar" <naveen.kumar.saini@intel.com>
+Cc: Jon Mason <jdmason@kudzu.us>, Zbigniew Bodek <zbigniew.bodek@huawei.com>, 
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000000c136105c2ae4f04"
 
---_000_38fd7bf45ab5469e90ae3bdecf3978b0baesystemscom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--0000000000000c136105c2ae4f04
+Content-Type: text/plain; charset="UTF-8"
 
+Hello everybody, thanks for your comments.
 
-Recently I heard somewhere that newer versions of the Linux Kernel will inc=
-lude the PREEMPT_RT patches, and configuration settings would be used to se=
-t how the Linux would operate in a specific system.
+Let's abandon this patch then. Judging by meta-zephyr commit history we
+guessed that bumping up the rev to -rc is compliant with your policy. In
+that case we, as meta-zephyr users, will just wait for the upstream to
+reach stable 2.6.0.
 
-Does Yocto support "PREEMPT_RT", and what versions of Yocto have this optio=
-n ?
+Regards,
+Wojciech
 
-Is there documentation on this feature/option ?
+On Wed, 19 May 2021 at 08:08, Saini, Naveen Kumar <
+naveen.kumar.saini@intel.com> wrote:
 
-Thanks,
-Steve
-
-
---_000_38fd7bf45ab5469e90ae3bdecf3978b0baesystemscom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:492765464;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1806437474 67698705 67698713 67698715 67698703 67698=
-713 67698715 67698703 67698713 67698715;}
-@list l0:level1
-	{mso-level-text:"%1\)";
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Recently I heard somew=
-here that newer versions of the Linux Kernel will include the PREEMPT_RT pa=
-tches, and configuration settings would be used to set how the Linux would =
-operate in a specific system.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Does Yocto support &#8=
-220;PREEMPT_RT&#8221;, and what versions of Yocto have this option ?<o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Is there documentation=
- on this feature/option ?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Thanks,<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Steve<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+>
+> > -----Original Message-----
+> > From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On
+> > Behalf Of Jon Mason
+> > Sent: Wednesday, May 19, 2021 12:00 AM
+> > To: Zbigniew Bodek <zbigniew.bodek@huawei.com>
+> > Cc: Wojciech Zmuda <zmuda.w@gmail.com>; yocto@lists.yoctoproject.org
+> > Subject: Re: [yocto] [meta-zephyr][PATCH 2/2] zephyr-kernel-src.inc: set
+> > default preferred version to 2.6.0-rc1
+> >
+> > On Tue, May 18, 2021 at 11:24 AM Zbigniew Bodek
+> > <zbigniew.bodek@huawei.com> wrote:
+> > >
+> > > Hello Jon,
+> > >
+> > > Thanks for your comment. I will try to answer.
+> > > This change is to include following bug fix:
+> > > https://github.com/zephyrproject-rtos/zephyr/pull/33251
+> > > I can also see we've had multiple RC versions in the past but in
+> principle, I'm
+> > not against your suggestion to have master-next, etc. So where should we
+> go
+> > from here?
+> >
+> > My recommendation would be to pull that patch out and apply it directly
+> on
+> > top of v2.5.0 (assuming that is feasible).  Maybe even asking the
+> upstream
+> > zephyr project to port this to v2.5.0 and make it
+> > v2.5.1 would be the optimal solution.
+>
+> [Naveen]  We can wait for stable release. If it is urgent, we can carry
+> patches for bug fixes,  in case upstream does not give dot release !
+>
+> > As far as a master-next branch, that would be up to Naveen.
+> >
+> > >
+> > > Kind regards
+> > > Zbigniew
+> > >
+> > > -----Original Message-----
+> > > From: Jon Mason [mailto:jdmason@kudzu.us]
+> > > Sent: 18 May, 2021 17:17
+> > > To: Wojciech Zmuda <zmuda.w@gmail.com>
+> > > Cc: yocto@lists.yoctoproject.org; Zbigniew Bodek
+> > > <zbigniew.bodek@huawei.com>
+> > > Subject: Re: [yocto] [meta-zephyr][PATCH 2/2] zephyr-kernel-src.inc:
+> > > set default preferred version to 2.6.0-rc1
+> > >
+> > > On Tue, May 18, 2021 at 8:30 AM Wojciech Zmuda <zmuda.w@gmail.com>
+> > wrote:
+> > > >
+> > > > From: Zbigniew Bodek <zbigniew.bodek@huawei.com>
+> > > >
+> > > > Signed-off-by: Zbigniew Bodek <zbigniew.bodek@huawei.com>
+> > >
+> > > Do we really want to have Zephyr on a release candidate?  IMHO, we
+> > should never be doing this, as we should want the kernel in meta-zephyr
+> to
+> > be as stable as possible.  If this is really desired, perhaps a
+> master-next
+> > branch for things like this.
+> > >
+> > > Thanks,
+> > > Jon
+> > >
+> > > > ---
+> > > >  recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc | 2 +-
+> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > >
+> > > > diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+> > > > b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+> > > > index 5ee40d4..9fc08ba 100644
+> > > > --- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+> > > > +++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+> > > > @@ -2,7 +2,7 @@ LICENSE = "Apache-2.0"
+> > > >  LIC_FILES_CHKSUM =
+> > "file://LICENSE;md5=fa818a259cbed7ce8bc2a22d35a464fc"
+> > > >
+> > > >  # Default to a stable version
+> > > > -PREFERRED_VERSION_zephyr-kernel ??= "2.5.0"
+> > > > +PREFERRED_VERSION_zephyr-kernel ??= "2.6.0-rc1"
+> > > >  include zephyr-kernel-src-${PREFERRED_VERSION_zephyr-kernel}.inc
+> > > >
+> > > >  inherit cmake
+> > > > --
+> > > > 2.25.1
+> > > >
+> > > >
+> > > >
+> > > >
+>
 
---_000_38fd7bf45ab5469e90ae3bdecf3978b0baesystemscom_--
+--0000000000000c136105c2ae4f04
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hello everybody, thanks for your comments.</div><div>=
+<br></div><div>Let&#39;s abandon this patch then. Judging by meta-zephyr co=
+mmit history we guessed that bumping up the rev to -rc is compliant with yo=
+ur policy. In that case we, as meta-zephyr users, will just wait for the up=
+stream to reach stable 2.6.0.</div><div><br></div><div>Regards,</div><div>W=
+ojciech<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" clas=
+s=3D"gmail_attr">On Wed, 19 May 2021 at 08:08, Saini, Naveen Kumar &lt;<a h=
+ref=3D"mailto:naveen.kumar.saini@intel.com">naveen.kumar.saini@intel.com</a=
+>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
+ 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><br=
+>
+<br>
+&gt; -----Original Message-----<br>
+&gt; From: <a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blank=
+">yocto@lists.yoctoproject.org</a> &lt;<a href=3D"mailto:yocto@lists.yoctop=
+roject.org" target=3D"_blank">yocto@lists.yoctoproject.org</a>&gt; On<br>
+&gt; Behalf Of Jon Mason<br>
+&gt; Sent: Wednesday, May 19, 2021 12:00 AM<br>
+&gt; To: Zbigniew Bodek &lt;<a href=3D"mailto:zbigniew.bodek@huawei.com" ta=
+rget=3D"_blank">zbigniew.bodek@huawei.com</a>&gt;<br>
+&gt; Cc: Wojciech Zmuda &lt;<a href=3D"mailto:zmuda.w@gmail.com" target=3D"=
+_blank">zmuda.w@gmail.com</a>&gt;; <a href=3D"mailto:yocto@lists.yoctoproje=
+ct.org" target=3D"_blank">yocto@lists.yoctoproject.org</a><br>
+&gt; Subject: Re: [yocto] [meta-zephyr][PATCH 2/2] zephyr-kernel-src.inc: s=
+et<br>
+&gt; default preferred version to 2.6.0-rc1<br>
+&gt; <br>
+&gt; On Tue, May 18, 2021 at 11:24 AM Zbigniew Bodek<br>
+&gt; &lt;<a href=3D"mailto:zbigniew.bodek@huawei.com" target=3D"_blank">zbi=
+gniew.bodek@huawei.com</a>&gt; wrote:<br>
+&gt; &gt;<br>
+&gt; &gt; Hello Jon,<br>
+&gt; &gt;<br>
+&gt; &gt; Thanks for your comment. I will try to answer.<br>
+&gt; &gt; This change is to include following bug fix:<br>
+&gt; &gt; <a href=3D"https://github.com/zephyrproject-rtos/zephyr/pull/3325=
+1" rel=3D"noreferrer" target=3D"_blank">https://github.com/zephyrproject-rt=
+os/zephyr/pull/33251</a><br>
+&gt; &gt; I can also see we&#39;ve had multiple RC versions in the past but=
+ in principle, I&#39;m<br>
+&gt; not against your suggestion to have master-next, etc. So where should =
+we go<br>
+&gt; from here?<br>
+&gt; <br>
+&gt; My recommendation would be to pull that patch out and apply it directl=
+y on<br>
+&gt; top of v2.5.0 (assuming that is feasible).=C2=A0 Maybe even asking the=
+ upstream<br>
+&gt; zephyr project to port this to v2.5.0 and make it<br>
+&gt; v2.5.1 would be the optimal solution.<br>
+<br>
+[Naveen]=C2=A0 We can wait for stable release. If it is urgent, we can carr=
+y patches for bug fixes,=C2=A0 in case upstream does not give dot release !=
+<br>
+<br>
+&gt; As far as a master-next branch, that would be up to Naveen.<br>
+&gt; <br>
+&gt; &gt;<br>
+&gt; &gt; Kind regards<br>
+&gt; &gt; Zbigniew<br>
+&gt; &gt;<br>
+&gt; &gt; -----Original Message-----<br>
+&gt; &gt; From: Jon Mason [mailto:<a href=3D"mailto:jdmason@kudzu.us" targe=
+t=3D"_blank">jdmason@kudzu.us</a>]<br>
+&gt; &gt; Sent: 18 May, 2021 17:17<br>
+&gt; &gt; To: Wojciech Zmuda &lt;<a href=3D"mailto:zmuda.w@gmail.com" targe=
+t=3D"_blank">zmuda.w@gmail.com</a>&gt;<br>
+&gt; &gt; Cc: <a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_bl=
+ank">yocto@lists.yoctoproject.org</a>; Zbigniew Bodek<br>
+&gt; &gt; &lt;<a href=3D"mailto:zbigniew.bodek@huawei.com" target=3D"_blank=
+">zbigniew.bodek@huawei.com</a>&gt;<br>
+&gt; &gt; Subject: Re: [yocto] [meta-zephyr][PATCH 2/2] zephyr-kernel-src.i=
+nc:<br>
+&gt; &gt; set default preferred version to 2.6.0-rc1<br>
+&gt; &gt;<br>
+&gt; &gt; On Tue, May 18, 2021 at 8:30 AM Wojciech Zmuda &lt;<a href=3D"mai=
+lto:zmuda.w@gmail.com" target=3D"_blank">zmuda.w@gmail.com</a>&gt;<br>
+&gt; wrote:<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; From: Zbigniew Bodek &lt;<a href=3D"mailto:zbigniew.bodek@hu=
+awei.com" target=3D"_blank">zbigniew.bodek@huawei.com</a>&gt;<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; Signed-off-by: Zbigniew Bodek &lt;<a href=3D"mailto:zbigniew=
+.bodek@huawei.com" target=3D"_blank">zbigniew.bodek@huawei.com</a>&gt;<br>
+&gt; &gt;<br>
+&gt; &gt; Do we really want to have Zephyr on a release candidate?=C2=A0 IM=
+HO, we<br>
+&gt; should never be doing this, as we should want the kernel in meta-zephy=
+r to<br>
+&gt; be as stable as possible.=C2=A0 If this is really desired, perhaps a m=
+aster-next<br>
+&gt; branch for things like this.<br>
+&gt; &gt;<br>
+&gt; &gt; Thanks,<br>
+&gt; &gt; Jon<br>
+&gt; &gt;<br>
+&gt; &gt; &gt; ---<br>
+&gt; &gt; &gt;=C2=A0 recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc | 2=
+ +-<br>
+&gt; &gt; &gt;=C2=A0 1 file changed, 1 insertion(+), 1 deletion(-)<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.=
+inc<br>
+&gt; &gt; &gt; b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc<br>
+&gt; &gt; &gt; index 5ee40d4..9fc08ba 100644<br>
+&gt; &gt; &gt; --- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc<br>
+&gt; &gt; &gt; +++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc<br>
+&gt; &gt; &gt; @@ -2,7 +2,7 @@ LICENSE =3D &quot;Apache-2.0&quot;<br>
+&gt; &gt; &gt;=C2=A0 LIC_FILES_CHKSUM =3D<br>
+&gt; &quot;file://LICENSE;md5=3Dfa818a259cbed7ce8bc2a22d35a464fc&quot;<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt;=C2=A0 # Default to a stable version<br>
+&gt; &gt; &gt; -PREFERRED_VERSION_zephyr-kernel ??=3D &quot;2.5.0&quot;<br>
+&gt; &gt; &gt; +PREFERRED_VERSION_zephyr-kernel ??=3D &quot;2.6.0-rc1&quot;=
+<br>
+&gt; &gt; &gt;=C2=A0 include zephyr-kernel-src-${PREFERRED_VERSION_zephyr-k=
+ernel}.inc<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt;=C2=A0 inherit cmake<br>
+&gt; &gt; &gt; --<br>
+&gt; &gt; &gt; 2.25.1<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt;<br>
+</blockquote></div>
+
+--0000000000000c136105c2ae4f04--
