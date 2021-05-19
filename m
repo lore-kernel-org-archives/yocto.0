@@ -1,110 +1,241 @@
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by mx.groups.io with SMTP id smtpd.web10.7690.1621404495583186801
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
+ by mx.groups.io with SMTP id smtpd.web11.9720.1621421573187302397
  for <yocto@lists.yoctoproject.org>;
- Tue, 18 May 2021 23:08:16 -0700
+ Wed, 19 May 2021 03:52:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: intel.com, ip: 192.55.52.120, mailfrom: naveen.kumar.saini@intel.com)
-IronPort-SDR: G+8dnkZhYRFMfbo4rTDjwrYWkYiMkzrMIVORL0UUE+gFAcpzCLzhYsla6utk9eQGLSEMMlILl0
- cgHTvqjJl3GQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9988"; a="198947636"
-X-IronPort-AV: E=Sophos;i="5.82,312,1613462400"; 
-   d="scan'208";a="198947636"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 May 2021 23:08:13 -0700
-IronPort-SDR: uAULbzuZfhgB8HV29qe/UiwVzB69jG/Cq5EpApGJ4GX4QfKUp46OtiTZAI1gA4j33TmHHJRTsU
- c1IAnZJ5r8CQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,312,1613462400"; 
-   d="scan'208";a="411589936"
-Received: from kmsmsx602.gar.corp.intel.com ([172.21.219.142])
-  by orsmga002.jf.intel.com with ESMTP; 18 May 2021 23:08:11 -0700
-Received: from kmsmsx603.gar.corp.intel.com (172.21.219.143) by
- kmsmsx602.gar.corp.intel.com (172.21.219.142) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Wed, 19 May 2021 14:08:10 +0800
-Received: from kmsmsx603.gar.corp.intel.com ([172.21.219.143]) by
- kmsmsx603.gar.corp.intel.com ([172.21.219.143]) with mapi id 15.01.2242.008;
- Wed, 19 May 2021 14:08:10 +0800
-From: "Naveen Saini" <naveen.kumar.saini@intel.com>
-To: Jon Mason <jdmason@kudzu.us>, Zbigniew Bodek <zbigniew.bodek@huawei.com>
-CC: Wojciech Zmuda <zmuda.w@gmail.com>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] [meta-zephyr][PATCH 2/2] zephyr-kernel-src.inc: set default preferred version to 2.6.0-rc1
-Thread-Topic: [yocto] [meta-zephyr][PATCH 2/2] zephyr-kernel-src.inc: set
- default preferred version to 2.6.0-rc1
-Thread-Index: AQHXS+GG3FN+pLtvWEyOGtJ6/3TkW6ro08kAgACSYPOAAOtHMA==
-Date: Wed, 19 May 2021 06:08:10 +0000
-Message-ID: <cb054588e7434b3bb6f04077a4313ea3@intel.com>
-References: <20210518122927.2554655-1-zmuda.w@gmail.com>
- <20210518122927.2554655-3-zmuda.w@gmail.com>
- <CAPoiz9wP6+k5BOiuqhZ5UjKC+ZAFuqgFj7beGzPXRvLch=oW_A@mail.gmail.com>
- <916c2b8e69224dba9179edff271c659d@huawei.com>
- <CAPoiz9w0hm_L_KZH+eM4bnPDdJzkt+ETwuteCPyfW4PAmoChsg@mail.gmail.com>
-In-Reply-To: <CAPoiz9w0hm_L_KZH+eM4bnPDdJzkt+ETwuteCPyfW4PAmoChsg@mail.gmail.com>
+ dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=ePOeDiNl;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.65, mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1621421573; x=1779101573;
+  h=from:to:subject:date:mime-version;
+  bh=YYcGvhTUtwjKZBshmm5EHMBH3SpQjAWXHQ9CCHlo3s8=;
+  b=ePOeDiNlLjhc0IROoZDGJZfgy2o3pGKjXCyj2pojgyUvObuTG7y0fIZ3
+   brQImE1tlYkjKKlnHX00zYFcKp/AitHA5agF9S1gVDR2hS+6GJ6tUceIN
+   VwwWsl5SrFNngJmyLkXhfFnlW4ZPdZ5GjFFv/OPSIyCCcZyZmn2aLQ++a
+   8=;
+IronPort-SDR: uJYJG7dzaOILvpGRw6X9xD2/+pk7XTCcgYtkGzYh2FRnSKRBeKmCvpq7kj/06ooP6dZcsWAhTs
+ cOwsFFzAmelQ==
+IronPort-PHdr: =?us-ascii?q?A9a23=3Ac93aixVyRXdn1MsCN77bo5ry8iDV8Kx+VTF92?=
+ =?us-ascii?q?vMcY1JmTK2v8tzYMVDF4r011RmVBNSdsawUwLSJ+4nbGkU4qa6bt34DdJEeH?=
+ =?us-ascii?q?zQksu4x2zIaPcieFEfgJ+TrZSFpVO5LVVti4m3peRMNQJW2aFLduGC94iAPE?=
+ =?us-ascii?q?RvjKwV1Ov71GonPhMiryuy+4ZLebxhMiTanf79/LRa7oQrQu8QUnIBvNrs/x?=
+ =?us-ascii?q?hzVr3VSZu9Y33loJVWdnxb94se/4ptu+DlOtvwi6sBNT7z0c7w3QrJEAjsmN?=
+ =?us-ascii?q?Xs15NDwuhnYUQSP/HocXX4InRdOHgPI8Qv1Xpb1siv9q+p9xCyXNtD4QLwoR?=
+ =?us-ascii?q?Tiv6bpgRRn1gykFKjE56nnahMxugqxGvBKvqR9xw4/Ib46aL/dxZL/RfdEAS?=
+ =?us-ascii?q?GZdQspdSSpMCZ68YYsVCOoBOP5Vo4f6qVsJqxu+HhejC/30yjNQm3T4wLE63?=
+ =?us-ascii?q?Po/EQ7Y2gwrAswDu2nQoNr7KakeVO65x7TPwDXYc/NZxyn955bOchw7pPGMW?=
+ =?us-ascii?q?rRwcdHPxkYxDAPIlU6fppb7MDOO1uUNqHSb4PRlVeK0kWIotwZxoj22y8oql?=
+ =?us-ascii?q?4LGiZ4bxEre+iVl3IY6O8e4SEhjbNCqHpZdqyCXOol3T888Xm1lpiU3x70Ct?=
+ =?us-ascii?q?JO0cyUG1Zopyh7QZfCad4WF4BLuWemQLDtlmn9ofLGyihWv/ES9xePxUNS/3?=
+ =?us-ascii?q?lVSriddj9XAqmoB2hLR58SdVPdx4Ees1SyO2g3S8u1IPFw4mbDUJpMu2LI9m?=
+ =?us-ascii?q?YAfvVnDEyLwhU74lrWZdl8+9eit8+nnZ7LmqYKCOIJskQH+N7gumtS4AeQlL?=
+ =?us-ascii?q?ggCR2ib9vq41L3k5UD2XK9FjuYqnancq5DXIcAWq62lDwNLyIoj7QywAy293?=
+ =?us-ascii?q?9sCg3YHN1JEeAmbj4f3PlHOO+r0Auu4g1SpiDtrxvbGMaP9ApjVM3TPjK3tc?=
+ =?us-ascii?q?Lh/5kJG1gY/09BS64hVB7wAOP7zX1X+tN3cDh83KQy0xOPnBc1m1oMCR22PH?=
+ =?us-ascii?q?LGWMKXIvV+N4eIvJfKMa5ELtzbmMPUq/OThgmEimV4dZqmpwYUYaHWjHvh8P?=
+ =?us-ascii?q?0qZZn/sjs8bEWgWpgo+UPDqiFqaXD9TYHa9Q7485jYgBYKiDIfDXZytgKeb0?=
+ =?us-ascii?q?Ca7GZ1ZenxGCleUEXfycIWEWekDZz6OIsN7lTwET7ehGMcd0kTkpQjx171PK?=
+ =?us-ascii?q?uvP5jZepJXoyN9t/erRmBousztuAI7Vh3CKRH1ztmcJXCMtmrF4qlB60k2E0?=
+ =?us-ascii?q?6Vzn7pfD9MFtN1TVQJvf7vbyfd3Bsu2Ejndc8mETh6NCpWbOnB7BoYq39IQb?=
+ =?us-ascii?q?kA7HtKklR3OxAKgCrIOhqeXCZkvtKnb2i6idI5G13/a2fx53BEdScxVODj+7?=
+ =?us-ascii?q?pM=3D?=
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AMt3cvK3XNCOOFEou1UdVyQqjBHkkLtp133?=
+ =?us-ascii?q?Aq2lEZdPUMSL3gqyncpoVi6faUskdsZJhOo6HmBEDtexPhHJNOirX5Xo3SIz?=
+ =?us-ascii?q?UO2lHYSr2KhLGKq1OAJ8SUzJ8+6U4USdkbNDSGNykesS+V2njaL/8QhPWX+q?=
+ =?us-ascii?q?GhgunTi0xgSAl7ApsL0+5+MGmm+wZNNXJ77NICZeChDt8tnVedkYN9VKiG71?=
+ =?us-ascii?q?c+LpX+m+E=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2BeBwCc7KRg/0LhJQpagQkJgVCBIYF?=
+ =?us-ascii?q?/gUyzTwsBAQEBAQEBAQEIAUEEAQGGRiY5BQ0CBAEBARIBAQYBAQEBAQYEAYE?=
+ =?us-ascii?q?DhVEMgjgihB5eARVrJgEEG4JqgX6pOYE0GgJlhGSFBIE6gWWFIoJkhgVDjzI?=
+ =?us-ascii?q?Eoy+fCQcDgxadQSIRlHsDkEQtlQqkCwIEAgQFAhaBbIF7cIM6TxcCnHqBKwI?=
+ =?us-ascii?q?GCgEBAwmICYERAQE?=
+X-IPAS-Result: =?us-ascii?q?A2BeBwCc7KRg/0LhJQpagQkJgVCBIYF/gUyzTwsBAQEBA?=
+ =?us-ascii?q?QEBAQEIAUEEAQGGRiY5BQ0CBAEBARIBAQYBAQEBAQYEAYEDhVEMgjgihB5eA?=
+ =?us-ascii?q?RVrJgEEG4JqgX6pOYE0GgJlhGSFBIE6gWWFIoJkhgVDjzIEoy+fCQcDgxadQ?=
+ =?us-ascii?q?SIRlHsDkEQtlQqkCwIEAgQFAhaBbIF7cIM6TxcCnHqBKwIGCgEBAwmICYERA?=
+ =?us-ascii?q?QE?=
+X-IronPort-AV: E=Sophos;i="5.82,312,1613433600"; 
+   d="scan'208,217";a="377089770"
+IronPort-SDR: wtrvMoqblyUeSzb7Zb1Ay98k4QH1u8Gn+MS3HnNLv0USrSRBopeEzyIrFI7iGf3NolL0NVL93H
+ 3N+1hWeQOBKA==
+X-IronPort-AV: E=Sophos;i="5.82,312,1613433600"; 
+   d="scan'208,217";a="3818187"
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: PREEMPT_RT patches
+Thread-Topic: PREEMPT_RT patches
+Thread-Index: AddMnJHYgl8EFrEERx+eca1w7teAtQ==
+Date: Wed, 19 May 2021 10:51:50 +0000
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-product: dlpe-windows
-dlp-version: 11.5.1.3
-x-originating-ip: [10.108.32.68]
+x-originating-ip: [10.44.4.15]
 MIME-Version: 1.0
+Message-ID: <MADEUP.16807254A326FFBC.18081@lists.yoctoproject.org>
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/alternative;
+	boundary="_000_38fd7bf45ab5469e90ae3bdecf3978b0baesystemscom_"
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogeW9jdG9AbGlzdHMueW9j
-dG9wcm9qZWN0Lm9yZyA8eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gT24NCj4gQmVoYWxm
-IE9mIEpvbiBNYXNvbg0KPiBTZW50OiBXZWRuZXNkYXksIE1heSAxOSwgMjAyMSAxMjowMCBBTQ0K
-PiBUbzogWmJpZ25pZXcgQm9kZWsgPHpiaWduaWV3LmJvZGVrQGh1YXdlaS5jb20+DQo+IENjOiBX
-b2pjaWVjaCBabXVkYSA8em11ZGEud0BnbWFpbC5jb20+OyB5b2N0b0BsaXN0cy55b2N0b3Byb2pl
-Y3Qub3JnDQo+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIFttZXRhLXplcGh5cl1bUEFUQ0ggMi8yXSB6
-ZXBoeXIta2VybmVsLXNyYy5pbmM6IHNldA0KPiBkZWZhdWx0IHByZWZlcnJlZCB2ZXJzaW9uIHRv
-IDIuNi4wLXJjMQ0KPiANCj4gT24gVHVlLCBNYXkgMTgsIDIwMjEgYXQgMTE6MjQgQU0gWmJpZ25p
-ZXcgQm9kZWsNCj4gPHpiaWduaWV3LmJvZGVrQGh1YXdlaS5jb20+IHdyb3RlOg0KPiA+DQo+ID4g
-SGVsbG8gSm9uLA0KPiA+DQo+ID4gVGhhbmtzIGZvciB5b3VyIGNvbW1lbnQuIEkgd2lsbCB0cnkg
-dG8gYW5zd2VyLg0KPiA+IFRoaXMgY2hhbmdlIGlzIHRvIGluY2x1ZGUgZm9sbG93aW5nIGJ1ZyBm
-aXg6DQo+ID4gaHR0cHM6Ly9naXRodWIuY29tL3plcGh5cnByb2plY3QtcnRvcy96ZXBoeXIvcHVs
-bC8zMzI1MQ0KPiA+IEkgY2FuIGFsc28gc2VlIHdlJ3ZlIGhhZCBtdWx0aXBsZSBSQyB2ZXJzaW9u
-cyBpbiB0aGUgcGFzdCBidXQgaW4gcHJpbmNpcGxlLCBJJ20NCj4gbm90IGFnYWluc3QgeW91ciBz
-dWdnZXN0aW9uIHRvIGhhdmUgbWFzdGVyLW5leHQsIGV0Yy4gU28gd2hlcmUgc2hvdWxkIHdlIGdv
-DQo+IGZyb20gaGVyZT8NCj4gDQo+IE15IHJlY29tbWVuZGF0aW9uIHdvdWxkIGJlIHRvIHB1bGwg
-dGhhdCBwYXRjaCBvdXQgYW5kIGFwcGx5IGl0IGRpcmVjdGx5IG9uDQo+IHRvcCBvZiB2Mi41LjAg
-KGFzc3VtaW5nIHRoYXQgaXMgZmVhc2libGUpLiAgTWF5YmUgZXZlbiBhc2tpbmcgdGhlIHVwc3Ry
-ZWFtDQo+IHplcGh5ciBwcm9qZWN0IHRvIHBvcnQgdGhpcyB0byB2Mi41LjAgYW5kIG1ha2UgaXQN
-Cj4gdjIuNS4xIHdvdWxkIGJlIHRoZSBvcHRpbWFsIHNvbHV0aW9uLg0KDQpbTmF2ZWVuXSAgV2Ug
-Y2FuIHdhaXQgZm9yIHN0YWJsZSByZWxlYXNlLiBJZiBpdCBpcyB1cmdlbnQsIHdlIGNhbiBjYXJy
-eSBwYXRjaGVzIGZvciBidWcgZml4ZXMsICBpbiBjYXNlIHVwc3RyZWFtIGRvZXMgbm90IGdpdmUg
-ZG90IHJlbGVhc2UgIQ0KDQo+IEFzIGZhciBhcyBhIG1hc3Rlci1uZXh0IGJyYW5jaCwgdGhhdCB3
-b3VsZCBiZSB1cCB0byBOYXZlZW4uDQo+IA0KPiA+DQo+ID4gS2luZCByZWdhcmRzDQo+ID4gWmJp
-Z25pZXcNCj4gPg0KPiA+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+ID4gRnJvbTogSm9u
-IE1hc29uIFttYWlsdG86amRtYXNvbkBrdWR6dS51c10NCj4gPiBTZW50OiAxOCBNYXksIDIwMjEg
-MTc6MTcNCj4gPiBUbzogV29qY2llY2ggWm11ZGEgPHptdWRhLndAZ21haWwuY29tPg0KPiA+IENj
-OiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnOyBaYmlnbmlldyBCb2Rlaw0KPiA+IDx6Ymln
-bmlldy5ib2Rla0BodWF3ZWkuY29tPg0KPiA+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIFttZXRhLXpl
-cGh5cl1bUEFUQ0ggMi8yXSB6ZXBoeXIta2VybmVsLXNyYy5pbmM6DQo+ID4gc2V0IGRlZmF1bHQg
-cHJlZmVycmVkIHZlcnNpb24gdG8gMi42LjAtcmMxDQo+ID4NCj4gPiBPbiBUdWUsIE1heSAxOCwg
-MjAyMSBhdCA4OjMwIEFNIFdvamNpZWNoIFptdWRhIDx6bXVkYS53QGdtYWlsLmNvbT4NCj4gd3Jv
-dGU6DQo+ID4gPg0KPiA+ID4gRnJvbTogWmJpZ25pZXcgQm9kZWsgPHpiaWduaWV3LmJvZGVrQGh1
-YXdlaS5jb20+DQo+ID4gPg0KPiA+ID4gU2lnbmVkLW9mZi1ieTogWmJpZ25pZXcgQm9kZWsgPHpi
-aWduaWV3LmJvZGVrQGh1YXdlaS5jb20+DQo+ID4NCj4gPiBEbyB3ZSByZWFsbHkgd2FudCB0byBo
-YXZlIFplcGh5ciBvbiBhIHJlbGVhc2UgY2FuZGlkYXRlPyAgSU1ITywgd2UNCj4gc2hvdWxkIG5l
-dmVyIGJlIGRvaW5nIHRoaXMsIGFzIHdlIHNob3VsZCB3YW50IHRoZSBrZXJuZWwgaW4gbWV0YS16
-ZXBoeXIgdG8NCj4gYmUgYXMgc3RhYmxlIGFzIHBvc3NpYmxlLiAgSWYgdGhpcyBpcyByZWFsbHkg
-ZGVzaXJlZCwgcGVyaGFwcyBhIG1hc3Rlci1uZXh0DQo+IGJyYW5jaCBmb3IgdGhpbmdzIGxpa2Ug
-dGhpcy4NCj4gPg0KPiA+IFRoYW5rcywNCj4gPiBKb24NCj4gPg0KPiA+ID4gLS0tDQo+ID4gPiAg
-cmVjaXBlcy1rZXJuZWwvemVwaHlyLWtlcm5lbC96ZXBoeXIta2VybmVsLXNyYy5pbmMgfCAyICst
-DQo+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pDQo+
-ID4gPg0KPiA+ID4gZGlmZiAtLWdpdCBhL3JlY2lwZXMta2VybmVsL3plcGh5ci1rZXJuZWwvemVw
-aHlyLWtlcm5lbC1zcmMuaW5jDQo+ID4gPiBiL3JlY2lwZXMta2VybmVsL3plcGh5ci1rZXJuZWwv
-emVwaHlyLWtlcm5lbC1zcmMuaW5jDQo+ID4gPiBpbmRleCA1ZWU0MGQ0Li45ZmMwOGJhIDEwMDY0
-NA0KPiA+ID4gLS0tIGEvcmVjaXBlcy1rZXJuZWwvemVwaHlyLWtlcm5lbC96ZXBoeXIta2VybmVs
-LXNyYy5pbmMNCj4gPiA+ICsrKyBiL3JlY2lwZXMta2VybmVsL3plcGh5ci1rZXJuZWwvemVwaHly
-LWtlcm5lbC1zcmMuaW5jDQo+ID4gPiBAQCAtMiw3ICsyLDcgQEAgTElDRU5TRSA9ICJBcGFjaGUt
-Mi4wIg0KPiA+ID4gIExJQ19GSUxFU19DSEtTVU0gPQ0KPiAiZmlsZTovL0xJQ0VOU0U7bWQ1PWZh
-ODE4YTI1OWNiZWQ3Y2U4YmMyYTIyZDM1YTQ2NGZjIg0KPiA+ID4NCj4gPiA+ICAjIERlZmF1bHQg
-dG8gYSBzdGFibGUgdmVyc2lvbg0KPiA+ID4gLVBSRUZFUlJFRF9WRVJTSU9OX3plcGh5ci1rZXJu
-ZWwgPz89ICIyLjUuMCINCj4gPiA+ICtQUkVGRVJSRURfVkVSU0lPTl96ZXBoeXIta2VybmVsID8/
-PSAiMi42LjAtcmMxIg0KPiA+ID4gIGluY2x1ZGUgemVwaHlyLWtlcm5lbC1zcmMtJHtQUkVGRVJS
-RURfVkVSU0lPTl96ZXBoeXIta2VybmVsfS5pbmMNCj4gPiA+DQo+ID4gPiAgaW5oZXJpdCBjbWFr
-ZQ0KPiA+ID4gLS0NCj4gPiA+IDIuMjUuMQ0KPiA+ID4NCj4gPiA+DQo+ID4gPg0KPiA+ID4NCg==
+--_000_38fd7bf45ab5469e90ae3bdecf3978b0baesystemscom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+
+Recently I heard somewhere that newer versions of the Linux Kernel will inc=
+lude the PREEMPT_RT patches, and configuration settings would be used to se=
+t how the Linux would operate in a specific system.
+
+Does Yocto support "PREEMPT_RT", and what versions of Yocto have this optio=
+n ?
+
+Is there documentation on this feature/option ?
+
+Thanks,
+Steve
+
+
+--_000_38fd7bf45ab5469e90ae3bdecf3978b0baesystemscom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:492765464;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1806437474 67698705 67698713 67698715 67698703 67698=
+713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-text:"%1\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Recently I heard somew=
+here that newer versions of the Linux Kernel will include the PREEMPT_RT pa=
+tches, and configuration settings would be used to set how the Linux would =
+operate in a specific system.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Does Yocto support &#8=
+220;PREEMPT_RT&#8221;, and what versions of Yocto have this option ?<o:p></=
+o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Is there documentation=
+ on this feature/option ?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Thanks,<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Steve<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_38fd7bf45ab5469e90ae3bdecf3978b0baesystemscom_--
