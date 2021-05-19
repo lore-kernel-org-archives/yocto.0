@@ -1,96 +1,74 @@
-Received: from mail-40138.protonmail.ch (mail-40138.protonmail.ch [185.70.40.138])
- by mx.groups.io with SMTP id smtpd.web11.11316.1621430709160706023
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+ by mx.groups.io with SMTP id smtpd.web11.12474.1621435347376380467
  for <yocto@lists.yoctoproject.org>;
- Wed, 19 May 2021 06:25:09 -0700
+ Wed, 19 May 2021 07:42:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@protonmail.com header.s=protonmail header.b=JzeBvjV9;
- spf=pass (domain: protonmail.com, ip: 185.70.40.138, mailfrom: codusnocturnus@protonmail.com)
-Date: Wed, 19 May 2021 13:24:57 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail; t=1621430706;
-	bh=3stHQhq8YtQjEJRCj3Mz1bDZMBOALBnkBxNacpWs5eM=;
-	h=Date:To:From:Reply-To:Subject:In-Reply-To:References:From;
-	b=JzeBvjV9iRkkYHKgSq2Yawe1kYHYIraV8HpkgNyb5g9mRA5VAJadtSKycZOFvwiiy
-	 sT5jFVtDNH7dMFYvNRK1JS9EBGE8bheDW7f0st8IKHhIbbDVPrcYaxAC35foBTLDCh
-	 9LldHnKBrVmrO6xyJz5j9jO2T4L11qT8F7xoBj/c=
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-From: "codusnocturnus" <codusnocturnus@protonmail.com>
-Reply-To: codusnocturnus <codusnocturnus@protonmail.com>
-Subject: Re: [yocto] PREEMPT_RT patches
-Message-ID: <cjz_s_z1XxnVDVlnZJGu1NqGxMOTwA03eWqHSrnUB-VGdomIsmI-pr3LNhV2e6fhqeIeix_Yx5OAva7oAz9mDYVuOHo_IbqexHRCAV1NSD8=@protonmail.com>
-In-Reply-To: <MADEUP.16807254A326FFBC.18081@lists.yoctoproject.org>
-References: <MADEUP.16807254A326FFBC.18081@lists.yoctoproject.org>
+ dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=D5+zAjC+;
+ spf=softfail (domain: sakoman.com, ip: 209.85.215.176, mailfrom: steve@sakoman.com)
+Received: by mail-pg1-f176.google.com with SMTP id y32so9591622pga.11
+        for <yocto@lists.yoctoproject.org>; Wed, 19 May 2021 07:42:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sakoman-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+         :content-transfer-encoding;
+        bh=f2frMM2RGKuQPVBJCchiy5af/sH+XTAddgNvM+zkCNE=;
+        b=D5+zAjC+EXAiMuBNYOw5TSqWHiZuVlZMm6D3IknZ8c7giQUubHKKIQ4Zf0FJE/4A7w
+         bsqkJT8+by222/6bXsDQpYtgIPq5gw1/z6kTzNUjk/yhIcx3OkCIb235Y2dFJAG+CsTY
+         yeXq4zwqqKq48rrF9D5a7mkckzjuPIILVSbtMQXc6g7vjECSVbJpGJa6ft/lAgoBHUCC
+         h9KMARm6kpGAkdtqF5fcECK5raiDK1gY30WugGitnHYCopZ+ADitImMRK9ZXWmzUy72+
+         28rcD3GLr6KPok/qseUaoUFY5nX/gW0kpYk7l30I5KM5gSxZNr9hXxeoZYT460V3ZVuS
+         aJcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=f2frMM2RGKuQPVBJCchiy5af/sH+XTAddgNvM+zkCNE=;
+        b=lZreUPDabMMHLdP9EqGNKHdPbn+pJdNTG3kbXNVOyzkY7eLeIfcahmqbvBoogdOn2/
+         DSbqtFHxmz09Ne6R9B+bsjO2G5LsoWI7X0zwREn8WpKpkwXObLpAFXOGuW1qfDYVWT14
+         ydjnvQZdNgk84FstLGRFDe7+naPuwHARUqnDJP+swrcbTcjZ8SDYX4WtjQH3Ahzp6pkf
+         sx7nLeCAobITzzIGs4RYg7E7byFx2TgwPrxg1RrFPhfn7w/LMkf+mkK4v9HSnNa+vJ1c
+         J6i8uSYatKl/ZG9QqmfcXKVannbrvoYFeB+ttR5RQF/i9QwRKdIM8PKqeEA+/ZEXAG1b
+         rvVQ==
+X-Gm-Message-State: AOAM531kk3CalEJpjhUXg1sTleQf4V0LXdi3maRjIanDjtFg3TWAnc8B
+	p/tSGD28bQ1sy5eInLpcB8qSsVjqG+DZ8Ba4kog=
+X-Google-Smtp-Source: ABdhPJy+TRSoE96OZgArrkIms+TfVdpCrBJFTtfvth2YbLnlGtaPlsQZwM1xnJLEEQmJHwd1uQDA6w==
+X-Received: by 2002:a62:ee09:0:b029:211:1113:2e7c with SMTP id e9-20020a62ee090000b029021111132e7cmr11213576pfi.49.1621435346079;
+        Wed, 19 May 2021 07:42:26 -0700 (PDT)
+Return-Path: <steve@sakoman.com>
+Received: from localhost.localdomain (rrcs-66-91-142-162.west.biz.rr.com. [66.91.142.162])
+        by smtp.gmail.com with ESMTPSA id 84sm15121154pgh.87.2021.05.19.07.42.24
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 May 2021 07:42:25 -0700 (PDT)
+From: "Steve Sakoman" <steve@sakoman.com>
+To: yocto@lists.yoctoproject.org
+Subject: [yocto-autobuilder2][dunfell] config.py: enable fedora33 workers for dunfell
+Date: Wed, 19 May 2021 04:42:05 -1000
+Message-Id: <a1a0e6ab2a4c2ffba8777ebbd99bd6e35062eb04.1621435241.git.steve@sakoman.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <cover.1621435241.git.steve@sakoman.com>
+References: <cover.1621435241.git.steve@sakoman.com>
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,HTML_MESSAGE
-	shortcircuit=no autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-	mailout.protonmail.ch
-Content-Type: multipart/alternative;
- boundary="b1_Q1uzfSONuiHcSjLlBtn867Bfdf9KQ9pgcgiZsCbB4"
+Content-Transfer-Encoding: 8bit
 
---b1_Q1uzfSONuiHcSjLlBtn867Bfdf9KQ9pgcgiZsCbB4
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+Signed-off-by: Steve Sakoman <steve@sakoman.com>
+---
+ config.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-WW9jdG8gaGFzIHN1cHBvcnRlZCBhIFBSRUVNUFRfUlQga2VybmVsIGFzIGxvbmcgYXMgSSBjYW4g
-cmVtZW1iZXIuCgpUaGVyZSBhcmUgcmVjaXBlcyBmb3IgbGludXgteW9jdG8tcnQgZm9yIHRoZSBr
-ZXJuZWwgaXRzZWxmLCBhbmQgYSBjb3JlLWltYWdlLXJ0IGltYWdlIHJlY2lwZSByaWdodCBpbiBw
-b2t5LgoKSXQncyBhbHNvIHByZXR0eSBzdHJhaWdodGZvcndhcmQgdG8gdXNlIGEgZGlmZmVyZW50
-IGtlcm5lbCByZWNpcGUsIHN1Y2ggYXMgb25lIGZyb20gYSB2ZW5kb3IsIGFuZCBhcHBseSB0aGUg
-UFJFRU1QVF9SVCBwYXRjaGVzIGluIGEgLmJiYXBwZW5kLCBwcm92aWRlZCB0aGUgcmVjaXBlIHZl
-cnNpb24gbGluZXMgdXAgd2l0aCB0aGUgcGF0Y2hlcy4KClRoYW5rcywKClNlbnQgd2l0aCBbUHJv
-dG9uTWFpbF0oaHR0cHM6Ly9wcm90b25tYWlsLmNvbSkgU2VjdXJlIEVtYWlsLgoK4oCQ4oCQ4oCQ
-4oCQ4oCQ4oCQ4oCQIE9yaWdpbmFsIE1lc3NhZ2Ug4oCQ4oCQ4oCQ4oCQ4oCQ4oCQ4oCQCk9uIFdl
-ZG5lc2RheSwgTWF5IDE5LCAyMDIxIDM6NTEgQU0sIE1vbnNlZXMsIFN0ZXZlbiBDIChVUykgdmlh
-IGxpc3RzLnlvY3RvcHJvamVjdC5vcmcgPHN0ZXZlbi5tb25zZWVzPWJhZXN5c3RlbXMuY29tQGxp
-c3RzLnlvY3RvcHJvamVjdC5vcmc+IHdyb3RlOgoKPiBSZWNlbnRseSBJIGhlYXJkIHNvbWV3aGVy
-ZSB0aGF0IG5ld2VyIHZlcnNpb25zIG9mIHRoZSBMaW51eCBLZXJuZWwgd2lsbCBpbmNsdWRlIHRo
-ZSBQUkVFTVBUX1JUIHBhdGNoZXMsIGFuZCBjb25maWd1cmF0aW9uIHNldHRpbmdzIHdvdWxkIGJl
-IHVzZWQgdG8gc2V0IGhvdyB0aGUgTGludXggd291bGQgb3BlcmF0ZSBpbiBhIHNwZWNpZmljIHN5
-c3RlbS4KPgo+IERvZXMgWW9jdG8gc3VwcG9ydCDigJxQUkVFTVBUX1JU4oCdLCBhbmQgd2hhdCB2
-ZXJzaW9ucyBvZiBZb2N0byBoYXZlIHRoaXMgb3B0aW9uID8KPgo+IElzIHRoZXJlIGRvY3VtZW50
-YXRpb24gb24gdGhpcyBmZWF0dXJlL29wdGlvbiA/Cj4KPiBUaGFua3MsCj4KPiBTdGV2ZQ==
+diff --git a/config.py b/config.py
+index 520de47..2565bd7 100644
+--- a/config.py
++++ b/config.py
+@@ -150,7 +150,7 @@ all_workers = workers + workers_bringup + workers_buildperf + workers_arm
+ workers_prev_releases = {
+     "hardknott" : ("centos7", "centos8", "debian8", "debian9", "debian10", "fedora31", "fedora32", "fedora33", "opensuse152", "ubuntu1604", "ubuntu1804", "ubuntu2004", "perf-"),
+     "gatesgarth" : ("centos7", "centos8", "debian8", "debian9", "debian10", "fedora30", "fedora31", "fedora32", "opensuse150", "opensuse151", "opensuse152", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "perf-"),
+-    "dunfell" : ("centos7", "centos8", "debian8", "debian9", "debian10", "fedora29", "fedora30", "fedora31", "fedora32", "opensuse150", "opensuse151", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "perf-"),
++    "dunfell" : ("centos7", "centos8", "debian8", "debian9", "debian10", "fedora29", "fedora30", "fedora31", "fedora32", "fedora33", "opensuse150", "opensuse151", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "perf-"),
+     "zeus" : ("centos7", "debian8", "debian9", "debian10", "fedora28", "fedora29", "fedora30", "opensuse150", "opensuse151", "ubuntu1604", "ubuntu1804", "ubuntu1904", "perf-"),
+     "warrior" : ("centos7", "debian8", "debian9", "debian10", "fedora28", "fedora29", "fedora30", "opensuse150", "opensuse151", "ubuntu1604", "ubuntu1804", "ubuntu1904", "perf-"),
+     "thud" : ("centos7", "debian8", "debian9", "debian10", "fedora28", "fedora29", "fedora30", "opensuse150", "opensuse151", "ubuntu1604", "ubuntu1804", "ubuntu1904", "perf-"),
+-- 
+2.25.1
 
---b1_Q1uzfSONuiHcSjLlBtn867Bfdf9KQ9pgcgiZsCbB4
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
-
-PGRpdj5Zb2N0byBoYXMgc3VwcG9ydGVkIGEgUFJFRU1QVF9SVCBrZXJuZWwgYXMgbG9uZyBhcyBJ
-IGNhbiByZW1lbWJlci48YnI+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5UaGVyZSBhcmUgcmVj
-aXBlcyBmb3IgbGludXgteW9jdG8tcnQgZm9yIHRoZSBrZXJuZWwgaXRzZWxmLCBhbmQgYSBjb3Jl
-LWltYWdlLXJ0IGltYWdlIHJlY2lwZSByaWdodCBpbiBwb2t5Ljxicj48L2Rpdj48ZGl2Pjxicj48
-L2Rpdj48ZGl2Pkl0J3MgYWxzbyBwcmV0dHkgc3RyYWlnaHRmb3J3YXJkIHRvIHVzZSBhIGRpZmZl
-cmVudCBrZXJuZWwgcmVjaXBlLCBzdWNoIGFzIG9uZSBmcm9tIGEgdmVuZG9yLCBhbmQgYXBwbHkg
-dGhlIFBSRUVNUFRfUlQgcGF0Y2hlcyBpbiBhIC5iYmFwcGVuZCwgcHJvdmlkZWQgdGhlIHJlY2lw
-ZSB2ZXJzaW9uIGxpbmVzIHVwIHdpdGggdGhlIHBhdGNoZXMuPGJyPjwvZGl2PjxkaXY+PGJyPjwv
-ZGl2PjxkaXY+VGhhbmtzLDwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXYgY2xhc3M9InByb3Rvbm1h
-aWxfc2lnbmF0dXJlX2Jsb2NrIj48ZGl2IGNsYXNzPSJwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9j
-ay11c2VyIHByb3Rvbm1haWxfc2lnbmF0dXJlX2Jsb2NrLWVtcHR5Ij48YnI+PC9kaXY+PGRpdiBj
-bGFzcz0icHJvdG9ubWFpbF9zaWduYXR1cmVfYmxvY2stcHJvdG9uIj5TZW50IHdpdGggPGEgaHJl
-Zj0iaHR0cHM6Ly9wcm90b25tYWlsLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPlByb3Rvbk1haWw8L2E+
-IFNlY3VyZSBFbWFpbC48YnI+PC9kaXY+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj7igJDigJDi
-gJDigJDigJDigJDigJAgT3JpZ2luYWwgTWVzc2FnZSDigJDigJDigJDigJDigJDigJDigJA8YnI+
-PC9kaXY+PGRpdj4gT24gV2VkbmVzZGF5LCBNYXkgMTksIDIwMjEgMzo1MSBBTSwgTW9uc2Vlcywg
-U3RldmVuIEMgKFVTKSB2aWEgbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyAmbHQ7c3RldmVuLm1vbnNl
-ZXM9YmFlc3lzdGVtcy5jb21AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyZndDsgd3JvdGU6PGJyPjwv
-ZGl2PjxkaXY+IDxicj48L2Rpdj48YmxvY2txdW90ZSBjbGFzcz0icHJvdG9ubWFpbF9xdW90ZSIg
-dHlwZT0iY2l0ZSI+PGRpdj48cD4mbmJzcDs8YnI+PC9wPjxwPjxzcGFuIHN0eWxlPSJjb2xvcjpy
-Z2IoMzEsIDczLCAxMjUpIj5SZWNlbnRseSBJIGhlYXJkIHNvbWV3aGVyZSB0aGF0IG5ld2VyIHZl
-cnNpb25zIG9mIHRoZSBMaW51eCBLZXJuZWwgd2lsbCBpbmNsdWRlIHRoZSBQUkVFTVBUX1JUIHBh
-dGNoZXMsIGFuZCBjb25maWd1cmF0aW9uIHNldHRpbmdzIHdvdWxkIGJlIHVzZWQgdG8gc2V0IGhv
-dyB0aGUgTGludXggd291bGQgb3BlcmF0ZSBpbiBhIHNwZWNpZmljIHN5c3RlbS48L3NwYW4+PGJy
-PjwvcD48cD48c3BhbiBzdHlsZT0iY29sb3I6cmdiKDMxLCA3MywgMTI1KSI+Jm5ic3A7PC9zcGFu
-Pjxicj48L3A+PHA+PHNwYW4gc3R5bGU9ImNvbG9yOnJnYigzMSwgNzMsIDEyNSkiPkRvZXMgWW9j
-dG8gc3VwcG9ydCDigJxQUkVFTVBUX1JU4oCdLCBhbmQgd2hhdCB2ZXJzaW9ucyBvZiBZb2N0byBo
-YXZlIHRoaXMgb3B0aW9uID88L3NwYW4+PGJyPjwvcD48cD48c3BhbiBzdHlsZT0iY29sb3I6cmdi
-KDMxLCA3MywgMTI1KSI+Jm5ic3A7PC9zcGFuPjxicj48L3A+PHA+PHNwYW4gc3R5bGU9ImNvbG9y
-OnJnYigzMSwgNzMsIDEyNSkiPklzIHRoZXJlIGRvY3VtZW50YXRpb24gb24gdGhpcyBmZWF0dXJl
-L29wdGlvbiA/PC9zcGFuPjxicj48L3A+PHA+PHNwYW4gc3R5bGU9ImNvbG9yOnJnYigzMSwgNzMs
-IDEyNSkiPiZuYnNwOzwvc3Bhbj48YnI+PC9wPjxwPjxzcGFuIHN0eWxlPSJjb2xvcjpyZ2IoMzEs
-IDczLCAxMjUpIj5UaGFua3MsPC9zcGFuPjxicj48L3A+PHA+PHNwYW4gc3R5bGU9ImNvbG9yOnJn
-YigzMSwgNzMsIDEyNSkiPlN0ZXZlPC9zcGFuPjxicj48L3A+PHA+Jm5ic3A7PGJyPjwvcD48L2Rp
-dj48L2Jsb2NrcXVvdGU+PGRpdj48YnI+PC9kaXY+
-
-
---b1_Q1uzfSONuiHcSjLlBtn867Bfdf9KQ9pgcgiZsCbB4--
