@@ -1,162 +1,96 @@
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
- by mx.groups.io with SMTP id smtpd.web09.11319.1621430489713934916
+Received: from mail-40138.protonmail.ch (mail-40138.protonmail.ch [185.70.40.138])
+ by mx.groups.io with SMTP id smtpd.web11.11316.1621430709160706023
  for <yocto@lists.yoctoproject.org>;
- Wed, 19 May 2021 06:21:30 -0700
+ Wed, 19 May 2021 06:25:09 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sidebranch-com.20150623.gappssmtp.com header.s=20150623 header.b=HArF3Zr6;
- spf=softfail (domain: sidebranch.com, ip: 209.85.222.170, mailfrom: leon@sidebranch.com)
-Received: by mail-qk1-f170.google.com with SMTP id o27so12611550qkj.9
-        for <yocto@lists.yoctoproject.org>; Wed, 19 May 2021 06:21:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sidebranch-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tm7CzEOiTjUPYSaXdIeXABzuxgR293rKQWd3Ildu69M=;
-        b=HArF3Zr62Eb4EnqVuXovcF6f7ufGR+xywPCvzlqdxg1WrKmSb+S1kDFhGYv2A/gjTJ
-         mN28YHPWz1bf7o58Lqc84oz1uy2ZGKq/MvdKf/4bEo4kLwLvGdWtQxswXB12sLrBepor
-         PohU5iq8OFjUbd/jYK35vFbIZt18yWaSRKODp6b7eORaMLM5j/fplIrzXCzf1N+CZsOJ
-         cdPjkIMiigtHzLswDyRfg8p/zMScvCvGklIzEy7qytLUHdeBKGgNg2cSf6zCvuA8pMF5
-         PgkKHTIDixqNeEgl1mIhiaGEixHJiuGMqdFpO8AzkS867bzzPvoAsL94xbe3nOGU7NW/
-         QDcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tm7CzEOiTjUPYSaXdIeXABzuxgR293rKQWd3Ildu69M=;
-        b=eF6VYtzqDf+qGrNA0SPm2rsa1jbDXy5E3ZwA3MihGUJf7Z/jfFcYrSZC3qslJoBdwx
-         yiGDcSL3LlnwcvXAB9HmR16cfQcepZxj3r0FRL9+4rfv1RsH8Yq8vLdg+utlpDerHYQU
-         mH/5E4ETa9iHwKEA6O8oFxlJJ0xZjnq26yd0Js4gXSpVQeZs4SKOfAUTHO5via2p1RxC
-         R2diwo++EY0/U4uZTpeBJDScA4osDkjO003l0XohfI5aPXmEVxGc55Wuh3izBqLDx6PC
-         kMXdnHONbh8v8/s0hUqcQqi3MTHmsC+pSh/HgO340QcZh2I5/nG+v5HA8haBjLi/0Kft
-         ofHg==
-X-Gm-Message-State: AOAM5312Tv+Kl2/44oWDkVXyTGvDdlfsSoCRVbx2lQewtclQ2YTU8TrR
-	subxzvOqGM1aSx3D2/rb/Z9CrLS8RG3ExHm707nfoQ==
-X-Google-Smtp-Source: ABdhPJz5Hq/RULuuGYxG2jf0gcYhfN2US5dT5wqfeNbYN+C+QY97JAw4abAHczJXiwhPgL2wOvbLGBkMT87TlvUjC6c=
-X-Received: by 2002:a37:a604:: with SMTP id p4mr11703762qke.215.1621430488672;
- Wed, 19 May 2021 06:21:28 -0700 (PDT)
-MIME-Version: 1.0
-References: <MADEUP.16807254A326FFBC.18081@lists.yoctoproject.org>
-In-Reply-To: <MADEUP.16807254A326FFBC.18081@lists.yoctoproject.org>
-From: "Leon Woestenberg" <leon@sidebranch.com>
-Date: Wed, 19 May 2021 15:21:17 +0200
-Message-ID: <CAMjhiJhayd7AH_nKof+wY9YMGwzMSRvD+PshAcgOOw83YNxVMA@mail.gmail.com>
+ dkim=pass header.i=@protonmail.com header.s=protonmail header.b=JzeBvjV9;
+ spf=pass (domain: protonmail.com, ip: 185.70.40.138, mailfrom: codusnocturnus@protonmail.com)
+Date: Wed, 19 May 2021 13:24:57 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail; t=1621430706;
+	bh=3stHQhq8YtQjEJRCj3Mz1bDZMBOALBnkBxNacpWs5eM=;
+	h=Date:To:From:Reply-To:Subject:In-Reply-To:References:From;
+	b=JzeBvjV9iRkkYHKgSq2Yawe1kYHYIraV8HpkgNyb5g9mRA5VAJadtSKycZOFvwiiy
+	 sT5jFVtDNH7dMFYvNRK1JS9EBGE8bheDW7f0st8IKHhIbbDVPrcYaxAC35foBTLDCh
+	 9LldHnKBrVmrO6xyJz5j9jO2T4L11qT8F7xoBj/c=
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+From: "codusnocturnus" <codusnocturnus@protonmail.com>
+Reply-To: codusnocturnus <codusnocturnus@protonmail.com>
 Subject: Re: [yocto] PREEMPT_RT patches
-To: steven.monsees@baesystems.com
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000004e422605c2aeb40f"
+Message-ID: <cjz_s_z1XxnVDVlnZJGu1NqGxMOTwA03eWqHSrnUB-VGdomIsmI-pr3LNhV2e6fhqeIeix_Yx5OAva7oAz9mDYVuOHo_IbqexHRCAV1NSD8=@protonmail.com>
+In-Reply-To: <MADEUP.16807254A326FFBC.18081@lists.yoctoproject.org>
+References: <MADEUP.16807254A326FFBC.18081@lists.yoctoproject.org>
+MIME-Version: 1.0
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,HTML_MESSAGE
+	shortcircuit=no autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+	mailout.protonmail.ch
+Content-Type: multipart/alternative;
+ boundary="b1_Q1uzfSONuiHcSjLlBtn867Bfdf9KQ9pgcgiZsCbB4"
 
---0000000000004e422605c2aeb40f
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--b1_Q1uzfSONuiHcSjLlBtn867Bfdf9KQ9pgcgiZsCbB4
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-Hello Steven,
+WW9jdG8gaGFzIHN1cHBvcnRlZCBhIFBSRUVNUFRfUlQga2VybmVsIGFzIGxvbmcgYXMgSSBjYW4g
+cmVtZW1iZXIuCgpUaGVyZSBhcmUgcmVjaXBlcyBmb3IgbGludXgteW9jdG8tcnQgZm9yIHRoZSBr
+ZXJuZWwgaXRzZWxmLCBhbmQgYSBjb3JlLWltYWdlLXJ0IGltYWdlIHJlY2lwZSByaWdodCBpbiBw
+b2t5LgoKSXQncyBhbHNvIHByZXR0eSBzdHJhaWdodGZvcndhcmQgdG8gdXNlIGEgZGlmZmVyZW50
+IGtlcm5lbCByZWNpcGUsIHN1Y2ggYXMgb25lIGZyb20gYSB2ZW5kb3IsIGFuZCBhcHBseSB0aGUg
+UFJFRU1QVF9SVCBwYXRjaGVzIGluIGEgLmJiYXBwZW5kLCBwcm92aWRlZCB0aGUgcmVjaXBlIHZl
+cnNpb24gbGluZXMgdXAgd2l0aCB0aGUgcGF0Y2hlcy4KClRoYW5rcywKClNlbnQgd2l0aCBbUHJv
+dG9uTWFpbF0oaHR0cHM6Ly9wcm90b25tYWlsLmNvbSkgU2VjdXJlIEVtYWlsLgoK4oCQ4oCQ4oCQ
+4oCQ4oCQ4oCQ4oCQIE9yaWdpbmFsIE1lc3NhZ2Ug4oCQ4oCQ4oCQ4oCQ4oCQ4oCQ4oCQCk9uIFdl
+ZG5lc2RheSwgTWF5IDE5LCAyMDIxIDM6NTEgQU0sIE1vbnNlZXMsIFN0ZXZlbiBDIChVUykgdmlh
+IGxpc3RzLnlvY3RvcHJvamVjdC5vcmcgPHN0ZXZlbi5tb25zZWVzPWJhZXN5c3RlbXMuY29tQGxp
+c3RzLnlvY3RvcHJvamVjdC5vcmc+IHdyb3RlOgoKPiBSZWNlbnRseSBJIGhlYXJkIHNvbWV3aGVy
+ZSB0aGF0IG5ld2VyIHZlcnNpb25zIG9mIHRoZSBMaW51eCBLZXJuZWwgd2lsbCBpbmNsdWRlIHRo
+ZSBQUkVFTVBUX1JUIHBhdGNoZXMsIGFuZCBjb25maWd1cmF0aW9uIHNldHRpbmdzIHdvdWxkIGJl
+IHVzZWQgdG8gc2V0IGhvdyB0aGUgTGludXggd291bGQgb3BlcmF0ZSBpbiBhIHNwZWNpZmljIHN5
+c3RlbS4KPgo+IERvZXMgWW9jdG8gc3VwcG9ydCDigJxQUkVFTVBUX1JU4oCdLCBhbmQgd2hhdCB2
+ZXJzaW9ucyBvZiBZb2N0byBoYXZlIHRoaXMgb3B0aW9uID8KPgo+IElzIHRoZXJlIGRvY3VtZW50
+YXRpb24gb24gdGhpcyBmZWF0dXJlL29wdGlvbiA/Cj4KPiBUaGFua3MsCj4KPiBTdGV2ZQ==
 
-Yocto does support switching kernels and configurations, so yes Yocto does
-"support" it.
+--b1_Q1uzfSONuiHcSjLlBtn867Bfdf9KQ9pgcgiZsCbB4
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
 
-However, providing a well-tested PREEMPT_RT kernel might be more an
-architectural meta layer topic.
-
-We have been using the Intel provided PREEMPT_RT kernel for x86 with good
-success in a system with hard real-time requirements.
-In the end we chose full task isolation approach, where one task runs in
-user-space task isolation, reducing latencies even further than what
-PREEMPT_RT can provide, as we did not need kernel services in our main
-processing loop (after setup).
-
-Regards,
-
-Leon.
-
-On Wed, May 19, 2021 at 12:53 PM Monsees, Steven C (US) via
-lists.yoctoproject.org <steven.monsees=3Dbaesystems.com@lists.yoctoproject=
-.org>
-wrote:
-
->
->
-> Recently I heard somewhere that newer versions of the Linux Kernel will
-> include the PREEMPT_RT patches, and configuration settings would be used=
- to
-> set how the Linux would operate in a specific system.
->
->
->
-> Does Yocto support =E2=80=9CPREEMPT_RT=E2=80=9D, and what versions of Yo=
-cto have this
-> option ?
->
->
->
-> Is there documentation on this feature/option ?
->
->
->
-> Thanks,
->
-> Steve
->
->
->
->=20
->
->
-
---0000000000004e422605c2aeb40f
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello Steven,</div><div><br></div><div>Yocto does sup=
-port switching kernels and configurations, so yes Yocto does &quot;support&=
-quot; it.</div><div><br></div><div>However, providing a well-tested PREEMPT=
-_RT kernel might be more an architectural meta layer topic.</div><div><br><=
-/div><div>We have been using the Intel provided PREEMPT_RT kernel for x86 w=
-ith good success in a system with hard real-time requirements.</div><div>In=
- the end we chose full task isolation approach, where one task runs in user=
--space task isolation, reducing latencies even further than what PREEMPT_RT=
- can provide, as we did not need kernel services in our main processing loo=
-p (after setup).<br></div><div><br></div><div>Regards,</div><div><br></div>=
-<div>Leon.<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
-lass=3D"gmail_attr">On Wed, May 19, 2021 at 12:53 PM Monsees, Steven C (US)=
- via <a href=3D"http://lists.yoctoproject.org">lists.yoctoproject.org</a> &=
-lt;steven.monsees=3D<a href=3D"mailto:baesystems.com@lists.yoctoproject.org=
-">baesystems.com@lists.yoctoproject.org</a>&gt; wrote:<br></div><blockquote=
- class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
-lid rgb(204,204,204);padding-left:1ex">
+PGRpdj5Zb2N0byBoYXMgc3VwcG9ydGVkIGEgUFJFRU1QVF9SVCBrZXJuZWwgYXMgbG9uZyBhcyBJ
+IGNhbiByZW1lbWJlci48YnI+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5UaGVyZSBhcmUgcmVj
+aXBlcyBmb3IgbGludXgteW9jdG8tcnQgZm9yIHRoZSBrZXJuZWwgaXRzZWxmLCBhbmQgYSBjb3Jl
+LWltYWdlLXJ0IGltYWdlIHJlY2lwZSByaWdodCBpbiBwb2t5Ljxicj48L2Rpdj48ZGl2Pjxicj48
+L2Rpdj48ZGl2Pkl0J3MgYWxzbyBwcmV0dHkgc3RyYWlnaHRmb3J3YXJkIHRvIHVzZSBhIGRpZmZl
+cmVudCBrZXJuZWwgcmVjaXBlLCBzdWNoIGFzIG9uZSBmcm9tIGEgdmVuZG9yLCBhbmQgYXBwbHkg
+dGhlIFBSRUVNUFRfUlQgcGF0Y2hlcyBpbiBhIC5iYmFwcGVuZCwgcHJvdmlkZWQgdGhlIHJlY2lw
+ZSB2ZXJzaW9uIGxpbmVzIHVwIHdpdGggdGhlIHBhdGNoZXMuPGJyPjwvZGl2PjxkaXY+PGJyPjwv
+ZGl2PjxkaXY+VGhhbmtzLDwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXYgY2xhc3M9InByb3Rvbm1h
+aWxfc2lnbmF0dXJlX2Jsb2NrIj48ZGl2IGNsYXNzPSJwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9j
+ay11c2VyIHByb3Rvbm1haWxfc2lnbmF0dXJlX2Jsb2NrLWVtcHR5Ij48YnI+PC9kaXY+PGRpdiBj
+bGFzcz0icHJvdG9ubWFpbF9zaWduYXR1cmVfYmxvY2stcHJvdG9uIj5TZW50IHdpdGggPGEgaHJl
+Zj0iaHR0cHM6Ly9wcm90b25tYWlsLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPlByb3Rvbk1haWw8L2E+
+IFNlY3VyZSBFbWFpbC48YnI+PC9kaXY+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj7igJDigJDi
+gJDigJDigJDigJDigJAgT3JpZ2luYWwgTWVzc2FnZSDigJDigJDigJDigJDigJDigJDigJA8YnI+
+PC9kaXY+PGRpdj4gT24gV2VkbmVzZGF5LCBNYXkgMTksIDIwMjEgMzo1MSBBTSwgTW9uc2Vlcywg
+U3RldmVuIEMgKFVTKSB2aWEgbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyAmbHQ7c3RldmVuLm1vbnNl
+ZXM9YmFlc3lzdGVtcy5jb21AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyZndDsgd3JvdGU6PGJyPjwv
+ZGl2PjxkaXY+IDxicj48L2Rpdj48YmxvY2txdW90ZSBjbGFzcz0icHJvdG9ubWFpbF9xdW90ZSIg
+dHlwZT0iY2l0ZSI+PGRpdj48cD4mbmJzcDs8YnI+PC9wPjxwPjxzcGFuIHN0eWxlPSJjb2xvcjpy
+Z2IoMzEsIDczLCAxMjUpIj5SZWNlbnRseSBJIGhlYXJkIHNvbWV3aGVyZSB0aGF0IG5ld2VyIHZl
+cnNpb25zIG9mIHRoZSBMaW51eCBLZXJuZWwgd2lsbCBpbmNsdWRlIHRoZSBQUkVFTVBUX1JUIHBh
+dGNoZXMsIGFuZCBjb25maWd1cmF0aW9uIHNldHRpbmdzIHdvdWxkIGJlIHVzZWQgdG8gc2V0IGhv
+dyB0aGUgTGludXggd291bGQgb3BlcmF0ZSBpbiBhIHNwZWNpZmljIHN5c3RlbS48L3NwYW4+PGJy
+PjwvcD48cD48c3BhbiBzdHlsZT0iY29sb3I6cmdiKDMxLCA3MywgMTI1KSI+Jm5ic3A7PC9zcGFu
+Pjxicj48L3A+PHA+PHNwYW4gc3R5bGU9ImNvbG9yOnJnYigzMSwgNzMsIDEyNSkiPkRvZXMgWW9j
+dG8gc3VwcG9ydCDigJxQUkVFTVBUX1JU4oCdLCBhbmQgd2hhdCB2ZXJzaW9ucyBvZiBZb2N0byBo
+YXZlIHRoaXMgb3B0aW9uID88L3NwYW4+PGJyPjwvcD48cD48c3BhbiBzdHlsZT0iY29sb3I6cmdi
+KDMxLCA3MywgMTI1KSI+Jm5ic3A7PC9zcGFuPjxicj48L3A+PHA+PHNwYW4gc3R5bGU9ImNvbG9y
+OnJnYigzMSwgNzMsIDEyNSkiPklzIHRoZXJlIGRvY3VtZW50YXRpb24gb24gdGhpcyBmZWF0dXJl
+L29wdGlvbiA/PC9zcGFuPjxicj48L3A+PHA+PHNwYW4gc3R5bGU9ImNvbG9yOnJnYigzMSwgNzMs
+IDEyNSkiPiZuYnNwOzwvc3Bhbj48YnI+PC9wPjxwPjxzcGFuIHN0eWxlPSJjb2xvcjpyZ2IoMzEs
+IDczLCAxMjUpIj5UaGFua3MsPC9zcGFuPjxicj48L3A+PHA+PHNwYW4gc3R5bGU9ImNvbG9yOnJn
+YigzMSwgNzMsIDEyNSkiPlN0ZXZlPC9zcGFuPjxicj48L3A+PHA+Jm5ic3A7PGJyPjwvcD48L2Rp
+dj48L2Jsb2NrcXVvdGU+PGRpdj48YnI+PC9kaXY+
 
 
-
-
-
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_1605684533239389746WordSection1">
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">Recently I hea=
-rd somewhere that newer versions of the Linux Kernel will include the PREEM=
-PT_RT patches, and configuration settings would be used to set how the Linu=
-x would operate in a specific system.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)"><u></u>=C2=A0<=
-u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">Does Yocto sup=
-port =E2=80=9CPREEMPT_RT=E2=80=9D, and what versions of Yocto have this opt=
-ion ?<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)"><u></u>=C2=A0<=
-u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">Is there docum=
-entation on this feature/option ?<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)"><u></u>=C2=A0<=
-u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">Thanks,<u></u>=
-<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">Steve<u></u><u=
-></u></span></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-</div>
-
-<br>
-<br>
-<br>
-</blockquote></div>
-
---0000000000004e422605c2aeb40f--
+--b1_Q1uzfSONuiHcSjLlBtn867Bfdf9KQ9pgcgiZsCbB4--
