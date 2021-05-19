@@ -1,83 +1,98 @@
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
- by mx.groups.io with SMTP id smtpd.web11.10923.1621429280045849195
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+ by mx.groups.io with SMTP id smtpd.web11.10925.1621429285943928940
  for <yocto@lists.yoctoproject.org>;
- Wed, 19 May 2021 06:01:20 -0700
+ Wed, 19 May 2021 06:01:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=hEy9MEOi;
- spf=pass (domain: gmail.com, ip: 209.85.167.42, mailfrom: zmuda.w@gmail.com)
-Received: by mail-lf1-f42.google.com with SMTP id j10so18906049lfb.12
-        for <yocto@lists.yoctoproject.org>; Wed, 19 May 2021 06:01:19 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=JfJQ1jTO;
+ spf=pass (domain: gmail.com, ip: 209.85.208.175, mailfrom: zmuda.w@gmail.com)
+Received: by mail-lj1-f175.google.com with SMTP id s25so15505123ljo.11
+        for <yocto@lists.yoctoproject.org>; Wed, 19 May 2021 06:01:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=5aYZqw/kkPIBacxtM+rI+QrOpiBkuo973niI6/MFsHM=;
-        b=hEy9MEOihfINH0MjSzwK87Wnigf6lcPMzBfOprQDraml/ELQMPMdsyoa68rSLPs1j9
-         zGKdLCD0r+LqJ2I75czuVpqERZMx8Pd3FRT1uHhdqtn+1W79CILv0ny3pLzOAgx/55F7
-         i+/6VOijgu3RpuQskYqe2cSS5/xc/hDEtAGK8TL1lox5/Kbpy9OWQa69hHn6LaYbLskF
-         exEChUImU61gsr1rKc/O0Unuq6T4mwLqOkQdeQvbxgIZK/3N+WXuSTIfwlFvVEjNYMDe
-         Qgz1nnuIfBNqGURqtHMBYzuWA/Sp1afmfc+bv2XZPafCFmRq0MmIj4idF+UdgHMBsT++
-         wxWg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=T6VYdLEHYd2cz3wgtgUMhQL+yKctjk7CzyuL45MEHEg=;
+        b=JfJQ1jTOu9WIODY1nD9RA3cAR/Vm6Zte3YJIN5/iUE3KdLj4QBG76XLiUYkTI7iKB1
+         MvcYLkYXycx1qNhknpdTAetFebuEumrudjJUp6byAF18T7FhwIc0IU1KUk5Him8sy2R8
+         JN3WKNxDLCHnqotJESD260VA6aX+Fc0sfwvPOazxAEm6um1bV8gHKYkIwTCSOzyCfFyO
+         uetSKvdOcvK009wBbQzJjzg59cXvzkWESqnwwRVD1sAk9a84oHfaJTsFS3qgEfpNBYEA
+         /FEXgw/IUnfo6PTH/KE5pcKggGcLhaOb/BBquEpRBlGLA8/oDLkAJS+gPonoHaTqh7yV
+         T0cQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=5aYZqw/kkPIBacxtM+rI+QrOpiBkuo973niI6/MFsHM=;
-        b=B8N5umyyacxt7wovW/cdfII8hL9mHqlYDTbsurnXHlW2IWMLYN2BlzqJFgYOE4bNB2
-         0Lm9PJTr8rmcbw2GSvbcuI2SpJbWyaHlIF4fVxRGsa8i6lEg9Cu8r4zlbLM8jyn8MP+6
-         oFaao5lj67wTkEDTfBbAvwrvpJ0ADpxUi/DDa/iJDBXSU+NxCpBQzhzNGKinUrFHbuBI
-         OMKKfmIuDj3gPgkMXJA6Xs6GEkhaQmfQvOpUWlE1rzblr0XmBjUGj+gmJnCYtjVrESW6
-         OUnPobHR6xIxHP+8aVEqFmDh8uuJTul+UgPmuLqgNh2Jjr7AeFBgoxisxamsClV/zHJ5
-         OZBQ==
-X-Gm-Message-State: AOAM533CeLedLl7sc9A/rf8BHWay5GvKZq3kv5y5ExY55ZF24NUVrxX4
-	174Fs+6YwiAPYFKzG7nssTITZN54wRpfeAN0
-X-Google-Smtp-Source: ABdhPJx5y2mQkUNwdswzz0dr5IanpfrFREVMMxciX0WBHCtaNVYX8U4uypScEMuAyUWEf1Tbo4ZCFA==
-X-Received: by 2002:a05:6512:3684:: with SMTP id d4mr8388195lfs.90.1621429277900;
-        Wed, 19 May 2021 06:01:17 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=T6VYdLEHYd2cz3wgtgUMhQL+yKctjk7CzyuL45MEHEg=;
+        b=WlIwbUZFmI38/Gv7UlJCz7leODcdbvhNwifHRdkWAtIUk7FaFWRGbV9rdxcrxJOp7B
+         9DEHWWFmOuFtps8qReDYqr8u6jd740fkEkdixb9+8YP1eL46KhnKvK/DpieQkw2kzTh0
+         M+gepW8DxUhqd0FfdkBRwXhxxVJSOc6ULSSSVjafclbsElSHXFjGQNhz8d0PVqh5SwOD
+         3jdWRoHym4cTdh1KjTZdVzkEa2lbml2/PK30Do4KLZIjDEIPFvNee6umHITMGMvQIvqU
+         tt6IwA/nQ8Uv5WwuDZ6EyinD+VmLBrqvw7hN3JbZm6asTz9T/02tYCWHkJ2lmxIl/nZZ
+         OGWg==
+X-Gm-Message-State: AOAM532Un5+s3tU1eUearkgYZSFcPeuENo1BfSlrJVxZmi+MiQR1W/Fu
+	uTtZQ6DJ4SqpXYsdQpB+vtuDWTyRhDJhvmw6
+X-Google-Smtp-Source: ABdhPJwsn7xtBAxEXhbYWtuNmLKXGKeozAWBkArD1arHmXdUgVd4IxDhjQot9B8dszzSybID+e/NYQ==
+X-Received: by 2002:a2e:a365:: with SMTP id i5mr8855423ljn.344.1621429283945;
+        Wed, 19 May 2021 06:01:23 -0700 (PDT)
 Return-Path: <zmuda.w@gmail.com>
 Received: from p1.lab ([2a02:a319:8239:4400:ef2f:5b80:79d4:29e9])
-        by smtp.gmail.com with ESMTPSA id k21sm2536015lfu.98.2021.05.19.06.01.16
+        by smtp.gmail.com with ESMTPSA id k21sm2536015lfu.98.2021.05.19.06.01.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 May 2021 06:01:17 -0700 (PDT)
+        Wed, 19 May 2021 06:01:22 -0700 (PDT)
 From: "Wojciech Zmuda" <zmuda.w@gmail.com>
 To: yocto@lists.yoctoproject.org
 Cc: naveen.kumar.saini@intel.com,
 	Wojciech Zmuda <wojciech.zmuda@huawei.com>
-Subject: [meta-zephyr][PATCH v2 0/2] Add nRF52840 DK support
-Date: Wed, 19 May 2021 15:01:09 +0200
-Message-Id: <20210519130111.2585823-1-zmuda.w@gmail.com>
+Subject: [meta-zephyr][PATCH v2 1/2] nrf52832.inc: Rename to nrf52.inc
+Date: Wed, 19 May 2021 15:01:10 +0200
+Message-Id: <20210519130111.2585823-2-zmuda.w@gmail.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210519130111.2585823-1-zmuda.w@gmail.com>
+References: <20210519130111.2585823-1-zmuda.w@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
 From: Wojciech Zmuda <wojciech.zmuda@huawei.com>
 
-v1 -> v2:
-- MACHINE configurations are named using '-' instead of '_'.
-  Reame the new configuration accordingly.
+The file is so generic anyway it can be targeted for
+the nRF52 family without any harm.
 
-This patch set adds support for Nordic Semiconductor nRF5284
-Development Kit board. Since there already is nRF52xx family
-chip support added (specifically nRF52832 used in 96Boards
-Nitrogen), make this support a bit more generic to cover
-the whole family, then add a platform-specific configs
-for both nRF-based boards on top of it.
-
-The change has been tested with the actual nRF52840 DK
-board by building and flashing with `-c flash_usb`
-some sample applications.
-
-Wojciech Zmuda (2):
-  nrf52832.inc: Rename to nrf52.inc
-  nrf52840dk-nrf52840.conf: Add nRF52840 DK support
-
+Signed-off-by: Wojciech Zmuda <wojciech.zmuda@huawei.com>
+---
  conf/machine/96b-nitrogen.conf                   | 2 +-
  conf/machine/include/{nrf52832.inc => nrf52.inc} | 4 ++--
- conf/machine/nrf52840dk-nrf52840.conf            | 8 ++++++++
- 3 files changed, 11 insertions(+), 3 deletions(-)
+ 2 files changed, 3 insertions(+), 3 deletions(-)
  rename conf/machine/include/{nrf52832.inc => nrf52.inc} (86%)
- create mode 100644 conf/machine/nrf52840dk-nrf52840.conf
 
+diff --git a/conf/machine/96b-nitrogen.conf b/conf/machine/96b-nitrogen.conf
+index 998db4c..48f2041 100644
+--- a/conf/machine/96b-nitrogen.conf
++++ b/conf/machine/96b-nitrogen.conf
+@@ -3,6 +3,6 @@
+ 
+ #@DESCRIPTION: Machine configuration for 96Boards Nitrogen Board.
+ 
+-require conf/machine/include/nrf52832.inc
++require conf/machine/include/nrf52.inc
+ ZEPHYR_INHERIT_CLASSES += "zephyr-flash-pyocd"
+ ARCH_96b-nitrogen = "arm"
+diff --git a/conf/machine/include/nrf52832.inc b/conf/machine/include/nrf52.inc
+similarity index 86%
+rename from conf/machine/include/nrf52832.inc
+rename to conf/machine/include/nrf52.inc
+index e938aa6..d22f8bc 100644
+--- a/conf/machine/include/nrf52832.inc
++++ b/conf/machine/include/nrf52.inc
+@@ -1,7 +1,7 @@
+ #@TYPE: Machine
+-#@NAME: nrf52832
++#@NAME: nrf52xxx
+ 
+-#@DESCRIPTION: Machine configuration for Nordic Semiconductor nRF52832 (Cortex-M4) SoC.
++#@DESCRIPTION: Machine configuration for Nordic Semiconductor nRF52xxx (Cortex-M4) SoC.
+ 
+ require conf/machine/include/tune-cortexm4.inc
+ 
 -- 
 2.25.1
 
