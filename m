@@ -1,146 +1,131 @@
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
- by mx.groups.io with SMTP id smtpd.web12.10571.1621526709848017761
+Received: from mail.irisgmbh.de (mail.irisgmbh.de [81.169.172.79])
+ by mx.groups.io with SMTP id smtpd.web11.10803.1621527482650949656
  for <yocto@lists.yoctoproject.org>;
- Thu, 20 May 2021 09:05:10 -0700
+ Thu, 20 May 2021 09:18:03 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=tzXrfKMe;
- spf=pass (domain: gmail.com, ip: 209.85.222.172, mailfrom: raj.khem@gmail.com)
-Received: by mail-qk1-f172.google.com with SMTP id k4so5584724qkd.0
-        for <yocto@lists.yoctoproject.org>; Thu, 20 May 2021 09:05:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=i/4kXuQpHbAKGMHCeDr7Swjq7aebD7wod0tERyIHQik=;
-        b=tzXrfKMe+juqI6E3kXgDMJisgUqgtPey3LxOrYv88H4hS5R133Hh34dp5QRuqoWv/D
-         jDA0j+2wXsCsiJpscbrW+NTtBj70RUZ6UMVECR2QquII8gNa64z453/DotqwsTkNlVQn
-         YqN0F1MFs7QMMR4uGHySurfTUPulTEEKSTA5bB4pQmaQiiNtzbs6LrU+dYg45j37bKa8
-         Re5iRDQ5DTMYVaHE+X7VTm4GrU6ZE/UuOUQkKf3Ed16A+spnVurAAaDctJzVSIGGGbdI
-         f2srpY6+N0emGy3p2Ooy4iU964exdPcgYcj70gCz/ClWJkPlSYceoCsKqWY7BALvn7QY
-         1C9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=i/4kXuQpHbAKGMHCeDr7Swjq7aebD7wod0tERyIHQik=;
-        b=eDu/4nG07vaKMQKXaihezZCSbs3FO7QenP9ChFSbLI8rnqKTLnELGeJIDb01zj1gDv
-         imRTXKRPUd38Z7bs1AB3w6dJv2cjxak54MtNsDv3P1rkVw6hJJnCW3e0TH20TnOiP1Zu
-         1KxkQ3o4q0TZSbluTltDbcdeooHXaIfqbwd7U28n9zz4qf86EeSz6XalbewvkHSoCBiz
-         1gFMv02FKosSqKU54bcK6/lBxPCjpxBCyPvI8V7vvjwvuV7yEnkzFudivhq6aOs8D/AL
-         uBD43nKwlzcqQXsKrBKo33B8YdDlgCNBV8mNH0r2qcdPE3IIuDS9Z7x4KaTqgOYtXsAG
-         /rRQ==
-X-Gm-Message-State: AOAM5302GjhclUFzXGUS6sN0WlSkijgKXE2iPeyGG6pViTHjPSdCHfrd
-	TzMBr+/8cxdJSICjJKHw+qdkCQeXrBNFwDqppOI=
-X-Google-Smtp-Source: ABdhPJzFjexpguR4Ro/v/cZSeqJZwSKQvT+nto9rTnEB70K7umumugo9fk6dopz10Uartlbq02a75xhRcKiYf2qgAk4=
-X-Received: by 2002:a37:444a:: with SMTP id r71mr5705695qka.381.1621526708832;
- Thu, 20 May 2021 09:05:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <74a762cf340855aaa9fae5ed7686d123db22923e.camel@iris-sensing.com>
- <7c7aa6ca-05b9-452b-6542-4d5da2248e7e@gmail.com> <c81df5276566472b0e5ab25413b24d1931d19005.camel@iris-sensing.com>
-In-Reply-To: <c81df5276566472b0e5ab25413b24d1931d19005.camel@iris-sensing.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Thu, 20 May 2021 09:04:42 -0700
-Message-ID: <CAMKF1soHDq9PwXipQ8mxYKCAu1eG41iG8cx8w2_Ft7H9NjcaEA@mail.gmail.com>
+ dkim=missing; spf=none, err=SPF record not found (domain: iris-sensing.com, ip: 81.169.172.79, mailfrom: jasper.orschulko@iris-sensing.com)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.irisgmbh.de (Postfix) with ESMTP id B894231E032F;
+	Thu, 20 May 2021 18:18:00 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at irisgmbh.de
+Received: from mail.irisgmbh.de ([127.0.0.1])
+	by localhost (s15324379.rootmaster.info [127.0.0.1]) (amavisd-new, port 10027)
+	with ESMTP; Thu, 20 May 2021 18:18:00 +0200 (CEST)
+Received: from ERDE.irisgmbh.local (unknown [213.61.209.158])
+	by mail.irisgmbh.de (Postfix) with ESMTPS id A31EC31E02E8;
+	Thu, 20 May 2021 18:18:00 +0200 (CEST)
+Received: from ERDE.irisgmbh.local ([172.30.10.11]) by ERDE.irisgmbh.local
+ ([172.30.10.11]) with mapi id 14.03.0513.000; Thu, 20 May 2021 18:18:00 +0200
+From: "Jasper Orschulko" <Jasper.Orschulko@iris-sensing.com>
+To: "raj.khem@gmail.com" <raj.khem@gmail.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
 Subject: Re: [yocto] Statically linked libraries and license manifest
-To: Jasper Orschulko <Jasper.Orschulko@iris-sensing.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Thread-Topic: [yocto] Statically linked libraries and license manifest
+Thread-Index: AQHXS0RSwUHp2yw+D0uvnZHRcYmJc6roJ5uAgARCo4CAAAFiAIAAA5EA
+Date: Thu, 20 May 2021 16:17:58 +0000
+Message-ID: <f761e9acc1efa573ed5f1509979df99e17581bed.camel@iris-sensing.com>
+References: <74a762cf340855aaa9fae5ed7686d123db22923e.camel@iris-sensing.com>
+	 <7c7aa6ca-05b9-452b-6542-4d5da2248e7e@gmail.com>
+	 <c81df5276566472b0e5ab25413b24d1931d19005.camel@iris-sensing.com>
+	 <CAMKF1soHDq9PwXipQ8mxYKCAu1eG41iG8cx8w2_Ft7H9NjcaEA@mail.gmail.com>
+In-Reply-To: <CAMKF1soHDq9PwXipQ8mxYKCAu1eG41iG8cx8w2_Ft7H9NjcaEA@mail.gmail.com>
+Accept-Language: en-US, de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.30.10.1]
+MIME-Version: 1.0
+Content-Language: de-DE
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <998132F29C446242A5CDF64F5136FDC6@irisgmbh.local>
+Content-Transfer-Encoding: base64
 
-On Thu, May 20, 2021 at 9:00 AM Jasper Orschulko
-<Jasper.Orschulko@iris-sensing.com> wrote:
->
-> -----BEGIN PGP SIGNED MESSAGE-----
-> Hash: SHA256
->
-> Hi Khem,
->
-> thanks for your reply. As far as I understand, the "proper" way is to
-> use dynamic linked libraries whenever possible? I have done some more
-> thinking on the matter, and at least in our case the packages in
-> question are empty (the base package that is, everything else is in
-> ${PN}-src ${PN}-devstatic etc), so I believe the easiest way to include
-> these into the license manifest is to also add them to RDEPENDS and set
-> ALLOW_EMPTY_${PN} =3D "1". This should not change the output image, but
-> include the packages in the build, thus adding them to the license
-> manifest. What do you think?
->
-
-I am not sure why you will include empty packages in your manifest
-
-> - --
-> With best regards
->
-> Jasper Orschulko
-> DevOps Engineer
->
-> Tel. +49 30 58 58 14 265
-> Fax +49 30 58 58 14 999
-> Jasper.Orschulko@iris-sensing.com
->
-> =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =
-=E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=
-=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=
-=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2
->
-> iris-GmbH
-> infrared & intelligent sensors
-> Ostendstra=C3=9Fe 1-14 | 12459 Berlin
->
-> https://iris-sensing.com/
->
->
->
->
-> On Mon, 2021-05-17 at 15:56 -0700, Khem Raj wrote:
-> >
-> >
-> > On 5/17/21 10:44 AM, Jasper Orschulko wrote:
-> > > Hi,
-> > >
-> > > my question more or less reiterates the following:
-> > > https://www.yoctoproject.org/pipermail/yocto/2018-July/041854.html
-> > >
-> > > I am trying to find a way to list statically linked libraries in
-> > > the
-> > > license manifest, but so far I am at a loss. To my understanding
-> > > Yocto
-> > > does not understand packages included using DEPENDS and not
-> > > RDEPENDS as
-> > > part of the resulting image, however technically source code from
-> > > the
-> > > dependee can (and will) end up on the image as part of the
-> > > dependent
-> > > package. This is a serious issue from a legal point of view, as the
-> > > developer ultimately might end up with an incomplete list of
-> > > licenses,
-> > > when relying on the Yocto license manifest.
-> > >
-> > > Please, do correct me if I'm wrong :)
-> >
-> > partly yes. there is a provision to disable static linking using
-> > DISABLE_STATIC, so atleast some of packages can be cleared of.
-> > depends
-> > are effective during build time and its the linking which decides on
-> > that but you can perhaps easily write a probe and extract this
-> > information from linker cmdline perhaps by dumping linker map and
-> > post
-> > processing it.
-> >
-> > >
-> >  >
-> >  >
-> >  >
-> >  >=20
-> >  >
-> -----BEGIN PGP SIGNATURE-----
->
-> iQEzBAEBCAAdFiEE4WyPMIC5Ap4+Ooo1Ygqew07VMNUFAmCmh3EACgkQYgqew07V
-> MNWiXAf9GPbvZjlzAW+ref/+RKP/9GbtSBpajVUkn+x4DYdO0DmSq6JwOGeLblW8
-> qu2wjw9cLwgDAL4YRLESrgA3XAbflFgf0IZBuEMbT6WONW7fgHeQ7+jPrEQ7dkgx
-> POrePcququDSDi2idjjrdTuqHxLl0Il09g8vJz9oktZhIKwCesqWQE8VjSLcjBaj
-> u+7nHLY77fV/a1o/Ka7PkH2AjbWsmn/iHC1hLN91yNVG6EyzAneHQYKDo7Y5kRVn
-> YWNSgmmab7uiigrN2KqFOblazkBaA5/rIKD1PpeOjqOTtF7+UfWkL5DZZArdh/KG
-> +E3VauRz6agqxbb0VUWZZjE6if07Qg=3D=3D
-> =3DUCmd
-> -----END PGP SIGNATURE-----
+LS0tLS1CRUdJTiBQR1AgU0lHTkVEIE1FU1NBR0UtLS0tLQ0KSGFzaDogU0hBMjU2DQoNCk9LLCBt
+YXliZSBJIGRpZCBub3QgbWFrZSB0aGUgaXNzdWUgY2xlYXIgZW5vdWdoOg0KDQpJIGhhdmUgYSBw
+YWNrYWdlIEEgd2hpY2ggc3RhdGljYWxseSBsaW5rcyBwYWNrYWdlIEIgYXQgY29tcGlsZSB0aW1l
+DQoodXNpbmcgREVQRU5EUykuDQpBcyBhIHJlc3VsdCB0aGUgcGFja2FnZSBBIGlzICJ0YWludGVk
+IiB3aXRoIHNvdXJjZSBjb2RlIGZyb20gcGFja2FnZSBCLg0KSG93ZXZlciwgYXMgcGFja2FnZSBC
+IGlzIG9ubHkgaW4gdGhlIERFUEVORFMsIG5vdCBpbiB0aGUgUkRFUEVORFMsIGl0DQppcyBub3Qg
+aW5jbHVkZWQgaW4gdGhlIGxpY2Vuc2UubWFuaWZlc3QuIEFzIGEgcmVzdWx0LCB0aGUgb3V0cHV0
+IGltYWdlDQp2aW9sYXRlcyB0aGUgbGljZW5zZSB0ZXJtcyBvZiBwYWNrYWdlIEIuDQoNCk5vdyBt
+eSBpZGVhIGNvbWVzIGludG8gcGxheToNCkFkZCBwYWNrYWdlIEIgdG8gdGhlIFJERVBFTkRTIChl
+dmVuIHRob3VnaCB0aGUgJHtQTn0gcGFja2FnZSBpcyBlbXB0eQ0KYWZ0ZXIgdGhlIHBhY2thZ2Vz
+LXNwbGl0KSwgd2hpY2ggc2hvdWxkIHJlc3VsdCBpbiBwYWNrYWdlIEIncyBpbmNsdXNpb24NCmlu
+IHRoZSBsaWNlbnNlLm1hbmlmZXN0LiBPciBhbSBJIGFwcHJvYWNoaW5nIHRoaXMgY29tcGxldGVs
+eSB3cm9uZz8NCg0KLSAtLSANCldpdGggYmVzdCByZWdhcmRzDQoNCkphc3BlciBPcnNjaHVsa28N
+CkRldk9wcyBFbmdpbmVlcg0KDQpUZWwuICs0OSAzMCA1OCA1OCAxNCAyNjUNCkZheCArNDkgMzAg
+NTggNTggMTQgOTk5DQpKYXNwZXIuT3JzY2h1bGtvQGlyaXMtc2Vuc2luZy5jb20NCg0K4oCiIOKA
+oiDigKIg4oCiIOKAoiDigKIg4oCiIOKAoiDigKIg4oCiIOKAoiDigKIg4oCiIOKAoiDigKIg4oCi
+IOKAoiDigKIg4oCiIOKAoiDigKIg4oCiIOKAoiDigKIg4oCiIOKAog0KDQppcmlzLUdtYkgNCmlu
+ZnJhcmVkICYgaW50ZWxsaWdlbnQgc2Vuc29ycw0KT3N0ZW5kc3RyYcOfZSAxLTE0IHwgMTI0NTkg
+QmVybGluDQoNCmh0dHBzOi8vaXJpcy1zZW5zaW5nLmNvbS8NCg0KDQoNCg0KT24gVGh1LCAyMDIx
+LTA1LTIwIGF0IDA5OjA0IC0wNzAwLCBLaGVtIFJhaiB3cm90ZToNCj4gT24gVGh1LCBNYXkgMjAs
+IDIwMjEgYXQgOTowMCBBTSBKYXNwZXIgT3JzY2h1bGtvDQo+IDxKYXNwZXIuT3JzY2h1bGtvQGly
+aXMtc2Vuc2luZy5jb20+IHdyb3RlOg0KPiA+IA0KPiA+IC0tLS0tQkVHSU4gUEdQIFNJR05FRCBN
+RVNTQUdFLS0tLS0NCj4gPiBIYXNoOiBTSEEyNTYNCj4gPiANCj4gPiBIaSBLaGVtLA0KPiA+IA0K
+PiA+IHRoYW5rcyBmb3IgeW91ciByZXBseS4gQXMgZmFyIGFzIEkgdW5kZXJzdGFuZCwgdGhlICJw
+cm9wZXIiIHdheSBpcw0KPiA+IHRvDQo+ID4gdXNlIGR5bmFtaWMgbGlua2VkIGxpYnJhcmllcyB3
+aGVuZXZlciBwb3NzaWJsZT8gSSBoYXZlIGRvbmUgc29tZQ0KPiA+IG1vcmUNCj4gPiB0aGlua2lu
+ZyBvbiB0aGUgbWF0dGVyLCBhbmQgYXQgbGVhc3QgaW4gb3VyIGNhc2UgdGhlIHBhY2thZ2VzIGlu
+DQo+ID4gcXVlc3Rpb24gYXJlIGVtcHR5ICh0aGUgYmFzZSBwYWNrYWdlIHRoYXQgaXMsIGV2ZXJ5
+dGhpbmcgZWxzZSBpcyBpbg0KPiA+ICR7UE59LXNyYyAke1BOfS1kZXZzdGF0aWMgZXRjKSwgc28g
+SSBiZWxpZXZlIHRoZSBlYXNpZXN0IHdheSB0bw0KPiA+IGluY2x1ZGUNCj4gPiB0aGVzZSBpbnRv
+IHRoZSBsaWNlbnNlIG1hbmlmZXN0IGlzIHRvIGFsc28gYWRkIHRoZW0gdG8gUkRFUEVORFMgYW5k
+DQo+ID4gc2V0DQo+ID4gQUxMT1dfRU1QVFlfJHtQTn0gPSAiMSIuIFRoaXMgc2hvdWxkIG5vdCBj
+aGFuZ2UgdGhlIG91dHB1dCBpbWFnZSwNCj4gPiBidXQNCj4gPiBpbmNsdWRlIHRoZSBwYWNrYWdl
+cyBpbiB0aGUgYnVpbGQsIHRodXMgYWRkaW5nIHRoZW0gdG8gdGhlIGxpY2Vuc2UNCj4gPiBtYW5p
+ZmVzdC4gV2hhdCBkbyB5b3UgdGhpbms/DQo+ID4gDQo+IA0KPiBJIGFtIG5vdCBzdXJlIHdoeSB5
+b3Ugd2lsbCBpbmNsdWRlIGVtcHR5IHBhY2thZ2VzIGluIHlvdXIgbWFuaWZlc3QNCj4gDQo+ID4g
+LSAtLQ0KPiA+IFdpdGggYmVzdCByZWdhcmRzDQo+ID4gDQo+ID4gSmFzcGVyIE9yc2NodWxrbw0K
+PiA+IERldk9wcyBFbmdpbmVlcg0KPiA+IA0KPiA+IFRlbC4gKzQ5IDMwIDU4IDU4IDE0IDI2NQ0K
+PiA+IEZheCArNDkgMzAgNTggNTggMTQgOTk5DQo+ID4gSmFzcGVyLk9yc2NodWxrb0BpcmlzLXNl
+bnNpbmcuY29tDQo+ID4gDQo+ID4g4oCiIOKAoiDigKIg4oCiIOKAoiDigKIg4oCiIOKAoiDigKIg
+4oCiIOKAoiDigKIg4oCiIOKAoiDigKIg4oCiIOKAoiDigKIg4oCiIOKAoiDigKIg4oCiIOKAoiDi
+gKIg4oCiIOKAog0KPiA+IA0KPiA+IGlyaXMtR21iSA0KPiA+IGluZnJhcmVkICYgaW50ZWxsaWdl
+bnQgc2Vuc29ycw0KPiA+IE9zdGVuZHN0cmHDn2UgMS0xNCB8IDEyNDU5IEJlcmxpbg0KPiA+IA0K
+PiA+IGh0dHBzOi8vaXJpcy1zZW5zaW5nLmNvbS8NCj4gPiANCj4gPiANCj4gPiANCj4gPiANCj4g
+PiBPbiBNb24sIDIwMjEtMDUtMTcgYXQgMTU6NTYgLTA3MDAsIEtoZW0gUmFqIHdyb3RlOg0KPiA+
+ID4gDQo+ID4gPiANCj4gPiA+IE9uIDUvMTcvMjEgMTA6NDQgQU0sIEphc3BlciBPcnNjaHVsa28g
+d3JvdGU6DQo+ID4gPiA+IEhpLA0KPiA+ID4gPiANCj4gPiA+ID4gbXkgcXVlc3Rpb24gbW9yZSBv
+ciBsZXNzIHJlaXRlcmF0ZXMgdGhlIGZvbGxvd2luZzoNCj4gPiA+ID4gaHR0cHM6Ly93d3cueW9j
+dG9wcm9qZWN0Lm9yZy9waXBlcm1haWwveW9jdG8vMjAxOC1KdWx5LzA0MTg1NC5odG1sDQo+ID4g
+PiA+IA0KPiA+ID4gPiBJIGFtIHRyeWluZyB0byBmaW5kIGEgd2F5IHRvIGxpc3Qgc3RhdGljYWxs
+eSBsaW5rZWQgbGlicmFyaWVzDQo+ID4gPiA+IGluDQo+ID4gPiA+IHRoZQ0KPiA+ID4gPiBsaWNl
+bnNlIG1hbmlmZXN0LCBidXQgc28gZmFyIEkgYW0gYXQgYSBsb3NzLiBUbyBteQ0KPiA+ID4gPiB1
+bmRlcnN0YW5kaW5nDQo+ID4gPiA+IFlvY3RvDQo+ID4gPiA+IGRvZXMgbm90IHVuZGVyc3RhbmQg
+cGFja2FnZXMgaW5jbHVkZWQgdXNpbmcgREVQRU5EUyBhbmQgbm90DQo+ID4gPiA+IFJERVBFTkRT
+IGFzDQo+ID4gPiA+IHBhcnQgb2YgdGhlIHJlc3VsdGluZyBpbWFnZSwgaG93ZXZlciB0ZWNobmlj
+YWxseSBzb3VyY2UgY29kZQ0KPiA+ID4gPiBmcm9tDQo+ID4gPiA+IHRoZQ0KPiA+ID4gPiBkZXBl
+bmRlZSBjYW4gKGFuZCB3aWxsKSBlbmQgdXAgb24gdGhlIGltYWdlIGFzIHBhcnQgb2YgdGhlDQo+
+ID4gPiA+IGRlcGVuZGVudA0KPiA+ID4gPiBwYWNrYWdlLiBUaGlzIGlzIGEgc2VyaW91cyBpc3N1
+ZSBmcm9tIGEgbGVnYWwgcG9pbnQgb2YgdmlldywgYXMNCj4gPiA+ID4gdGhlDQo+ID4gPiA+IGRl
+dmVsb3BlciB1bHRpbWF0ZWx5IG1pZ2h0IGVuZCB1cCB3aXRoIGFuIGluY29tcGxldGUgbGlzdCBv
+Zg0KPiA+ID4gPiBsaWNlbnNlcywNCj4gPiA+ID4gd2hlbiByZWx5aW5nIG9uIHRoZSBZb2N0byBs
+aWNlbnNlIG1hbmlmZXN0Lg0KPiA+ID4gPiANCj4gPiA+ID4gUGxlYXNlLCBkbyBjb3JyZWN0IG1l
+IGlmIEknbSB3cm9uZyA6KQ0KPiA+ID4gDQo+ID4gPiBwYXJ0bHkgeWVzLiB0aGVyZSBpcyBhIHBy
+b3Zpc2lvbiB0byBkaXNhYmxlIHN0YXRpYyBsaW5raW5nIHVzaW5nDQo+ID4gPiBESVNBQkxFX1NU
+QVRJQywgc28gYXRsZWFzdCBzb21lIG9mIHBhY2thZ2VzIGNhbiBiZSBjbGVhcmVkIG9mLg0KPiA+
+ID4gZGVwZW5kcw0KPiA+ID4gYXJlIGVmZmVjdGl2ZSBkdXJpbmcgYnVpbGQgdGltZSBhbmQgaXRz
+IHRoZSBsaW5raW5nIHdoaWNoIGRlY2lkZXMNCj4gPiA+IG9uDQo+ID4gPiB0aGF0IGJ1dCB5b3Ug
+Y2FuIHBlcmhhcHMgZWFzaWx5IHdyaXRlIGEgcHJvYmUgYW5kIGV4dHJhY3QgdGhpcw0KPiA+ID4g
+aW5mb3JtYXRpb24gZnJvbSBsaW5rZXIgY21kbGluZSBwZXJoYXBzIGJ5IGR1bXBpbmcgbGlua2Vy
+IG1hcCBhbmQNCj4gPiA+IHBvc3QNCj4gPiA+IHByb2Nlc3NpbmcgaXQuDQo+ID4gPiANCj4gPiA+
+ID4gDQo+ID4gPiDCoD4NCj4gPiA+IMKgPg0KPiA+ID4gwqA+DQo+ID4gPiDCoD4gDQo+ID4gPiDC
+oD4NCj4gPiAtLS0tLUJFR0lOIFBHUCBTSUdOQVRVUkUtLS0tLQ0KPiA+IA0KPiA+IGlRRXpCQUVC
+Q0FBZEZpRUU0V3lQTUlDNUFwNCtPb28xWWdxZXcwN1ZNTlVGQW1DbWgzRUFDZ2tRWWdxZXcwN1YN
+Cj4gPiBNTldpWEFmOUdQYnZaamx6QVcrcmVmLytSS1AvOUdidFNCcGFqVlVrbit4NERZZE8wRG1T
+cTZKd09HZUxibFc4DQo+ID4gcXUyd2p3OWNMd2dEQUw0WVJMRVNyZ0EzWEFiZmxGZ2YwSVpCdUVN
+YlQ2V09OVzdmZ0hlUTcralByRVE3ZGtneA0KPiA+IFBPcmVQY3F1cXVEU0RpMmlkampyZFR1cUh4
+TGwwSWwwOWc4dkp6OW9rdFpoSUt3Q2VzcVdRRThWalNMY2pCYWoNCj4gPiB1KzduSExZNzdmVi9h
+MW8vS2E3UGtIMkFqYldzbW4vaUhDMWhMTjkxeU5WRzZFeXpBbmVIUVlLRG83WTVrUlZuDQo+ID4g
+WVdOU2dtbWFiN3VpaWdyTjJLcUZPYmxhemtCYUE1L3JJS0QxUHBlT2pxT1R0RjcrVWZXa0w1RFpa
+QXJkaC9LRw0KPiA+ICtFM1ZhdVJ6NmFncXhiYjBWVVdaWmpFNmlmMDdRZz09DQo+ID4gPVVDbWQN
+Cj4gPiAtLS0tLUVORCBQR1AgU0lHTkFUVVJFLS0tLS0NCi0tLS0tQkVHSU4gUEdQIFNJR05BVFVS
+RS0tLS0tDQoNCmlRRXpCQUVCQ0FBZEZpRUU0V3lQTUlDNUFwNCtPb28xWWdxZXcwN1ZNTlVGQW1D
+bWk1Z0FDZ2tRWWdxZXcwN1YNCk1OVVJVUWYrSjdYVndWV3ZZOGZGaU9xWHlpVUZRWHplS3BydTN2
+OVFOeDZSUmZYU3hVWHZzMXRhS1BIRWRLT0cNCnZoQnZuRUlhZ0M2SHpnMCtRUkJhbWs4YzdLZGdR
+WGxTN0ZHTnpNQWJ5YkUwSXMvb2NZMWRwaVFBQlNLVFA4WmENCjQvRUZOQlo2NGZ6UE1mRnEzZ1gz
+bXprbzR2ZjdVYjZSM2htWGtaVFpuSlZVVFU5Zk1DTm54dDk0bVhEdndTQjQNCmJLNTRUUnMyWnBn
+OXM3N1h4TC9ueHZhRXBrZFlDMkdCTXhJZ2phaFZMVmhieGdtbjAzU296dDJ6YXdiYXdHUksNCk5w
+dmFnUDA2KzZvMGdTZ3dLQkozYlUySDNpOW5RR0xPRVRUR3ZNam5zYnFPQU51c05aNlFSMldUdEpy
+RmlyWk4NCmoxMHZqQnQ3YiswL0dPcVUwT05HblZEUVlTeDc0QT09DQo9Zm9HaA0KLS0tLS1FTkQg
+UEdQIFNJR05BVFVSRS0tLS0tDQo=
