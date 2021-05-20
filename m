@@ -1,149 +1,83 @@
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
- by mx.groups.io with SMTP id smtpd.web08.9344.1621522137359362622
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+ by mx.groups.io with SMTP id smtpd.web10.9848.1621523424797759981
  for <yocto@lists.yoctoproject.org>;
- Thu, 20 May 2021 07:48:57 -0700
+ Thu, 20 May 2021 08:10:25 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=nsyolAs2;
- spf=pass (domain: gmail.com, ip: 209.85.167.41, mailfrom: joel.winarske@gmail.com)
-Received: by mail-lf1-f41.google.com with SMTP id j6so22263605lfr.11
-        for <yocto@lists.yoctoproject.org>; Thu, 20 May 2021 07:48:57 -0700 (PDT)
+ dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=FHOSCqG7;
+ spf=softfail (domain: sakoman.com, ip: 209.85.216.49, mailfrom: steve@sakoman.com)
+Received: by mail-pj1-f49.google.com with SMTP id ot16so7353600pjb.3
+        for <yocto@lists.yoctoproject.org>; Thu, 20 May 2021 08:10:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Rs9ZEUnT4aGLfmisSNBwo75MPPUJQ8+/Ixa/UMHix4s=;
-        b=nsyolAs205j/BUaRYo/0ToPSt/BqUJjE9CPkJExGNLRZEppxh/KqGAuQ1Ij1RFo/ml
-         1mLSbUU0MJYZ8iVGHO22rrB3FKIJighDkbQ8ScdeEI3YB0EraMcYgaLqmCk6TM243mug
-         p6Ieq4VqXAsCXep1EgHHbNEHftDqZyyT22UEtzXS7b4Q1oUY6rQtKNgGyaNZCXM1E9D2
-         H4FNdrps1MZAlZOlXLMmJAvjW39oGnC3jHng7z08iNNmh2B0WKNJh5G4LR9OcXjxftov
-         80TmMUvOBVA5mLDdSJgV7GCxQ4zOE56Z34T7QWs3A8M6UjP7yw1NgcBG1UW0CXAApfok
-         vnZg==
+        d=sakoman-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+         :content-transfer-encoding;
+        bh=foz1ip0fOaq76LybLwaChD8A8zzIV4bZDLEAy50r2Ig=;
+        b=FHOSCqG7RilcuemocpDNCy9teQKxSB/MP+UygolUjs/uXJWzMjF/eguTojlfjBRXs5
+         gXRX+Wfs6btTkdbtt34fEpEBFhxgdfmxPAGJMVoGeZCgIT7vee/E5F2tdr86eO8W5Aw6
+         T1JKRTM7PUTUxyHfTPZPYkVUxiiDauvggLxh0c7G+e4hUia9eySQGQ9nIs+8VNjchQ5X
+         elkusTls0KUXb8zBU8Lanfo0HB2B5L3Pw6QZfhU+WISpl3tRFve59IXSidHoWw9s2LXS
+         EBj8Op5ytGKXZks2JGQPWQF+0s+dzmU/0HvX50rPtyevNTd2adOmN9l/AHCFC2uaHBAh
+         AURQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Rs9ZEUnT4aGLfmisSNBwo75MPPUJQ8+/Ixa/UMHix4s=;
-        b=ED6t8hTfOuGRUxylaDT+ks6oRPa728Z0A6IypCvMQW6xODi8f4J+hdgPFXEIFV8CBG
-         ErGEMhloG/1pJdCvAjIiFVwDKMIMjI8S8kNwsLbBgrBg8Ppbka5wyVQ/qjXTR45kEaSE
-         64KKQ6J9FGEmXddJeh0bKFpArBKAjdsEnS7DhCksOuVFdVtiizJG5ypqNGe7F8CBmE9l
-         JJnbzbiXUHo6IVvJiiYXgcBGQ4TZcQIo4q1+fWwZ+9e1REQvtMCU7rclEH5hYgO8lqHE
-         EilhFoSTsFVm8J/9LWjMrPZFPL+yORUk6Ey0FG6U4dB3UZ7Qy9WCGM3abol0w6tgiGbN
-         4FMw==
-X-Gm-Message-State: AOAM533ABiSlAVlMALgXmPnWDl1zrAtsCqMox6KEHBG/2t9B09RTqKkJ
-	qlrMghLX4XkKNsRGv6elm48ydeY6Y8SESWlOTFE=
-X-Google-Smtp-Source: ABdhPJxtUBWGBWMdjJXe3kEsHapt0fLKbzgrdiNFDXYEllI9Pkh8I1fK6frGWg6m7t+QSXKVzeQEmSdrdK6XL+ZJDRw=
-X-Received: by 2002:ac2:4e51:: with SMTP id f17mr3602616lfr.251.1621522135493;
- Thu, 20 May 2021 07:48:55 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=foz1ip0fOaq76LybLwaChD8A8zzIV4bZDLEAy50r2Ig=;
+        b=P1wZkyQfa9JafRNZOqpBDfPXFi8QIugxzpZh7/T9/B/jR7Rha16yT6L8/dLwNx2sC/
+         3g/skkvOE6Mk3c8UQQaaf5QB0ovOCoEJgliBiiS4Igix2sF9jrHpbJXvAdCaUVIhhLSs
+         c7H8S4ZPySqMIXT1MP6CQ+s2JGkQFfrpqrWQKqi5tOa64TwuCL5WHz+acvUBQe6i/2us
+         X+7iWnQwlkXMY6h4yj1egJeQGgGbxKVXCg309rcIPPPBrdp8wMqwbIJIhBEre/9kI/RG
+         8P62k7u5gVizZ4Z3fq3weWupJF7r9z3nDlbbUqWTWt1/lIqzKWFnVFDP1SWafWZx6aei
+         x0vQ==
+X-Gm-Message-State: AOAM532HKjwpZ24Xd+OCjLupxNJeQDUjcD0iIH+jn9lfRrwTP7GyBPnu
+	oJ0LkQTP862XsVAmIYJddP8JEAl7j+9c6QkxQyw=
+X-Google-Smtp-Source: ABdhPJzo0hSJ8RUeljwrHv6F47LS37STvGBpLAI4yhkETOX6rrnpr1KtnamNbzq/wPvrMqUDP2Qwrg==
+X-Received: by 2002:a17:90a:cc4:: with SMTP id 4mr5235866pjt.17.1621523423785;
+        Thu, 20 May 2021 08:10:23 -0700 (PDT)
+Return-Path: <steve@sakoman.com>
+Received: from localhost.localdomain (rrcs-66-91-142-162.west.biz.rr.com. [66.91.142.162])
+        by smtp.gmail.com with ESMTPSA id s8sm2233835pfe.112.2021.05.20.08.10.22
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 May 2021 08:10:23 -0700 (PDT)
+From: "Steve Sakoman" <steve@sakoman.com>
+To: yocto@lists.yoctoproject.org
+Subject: [yocto-autobuilder-helper][dunfell] config.json: Set XZ limits to more reasonable values on autobuilder
+Date: Thu, 20 May 2021 05:10:10 -1000
+Message-Id: <191756a8baa00544456dad699852f0c408ff5cdd.1621523339.git.steve@sakoman.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <cover.1621523339.git.steve@sakoman.com>
+References: <cover.1621523339.git.steve@sakoman.com>
 MIME-Version: 1.0
-References: <CAGAf8Lzvm0rpRMmP47DqucrJh2f+BZgNQeobZG5-dkCjfxitaw@mail.gmail.com>
-In-Reply-To: <CAGAf8Lzvm0rpRMmP47DqucrJh2f+BZgNQeobZG5-dkCjfxitaw@mail.gmail.com>
-From: "Joel Winarske" <joel.winarske@gmail.com>
-Date: Thu, 20 May 2021 07:48:42 -0700
-Message-ID: <CABKMkPKFKdXHt7AjyNcBOc0gBYK6D4i9WufGt8Co=OTvDdZQyA@mail.gmail.com>
-Subject: Re: [yocto] Problem with YOCTO Dunfell and host Fedora 33
-To: Zoran <zoran.stojsavljevic@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000e1af7705c2c40a32"
+Content-Transfer-Encoding: 8bit
 
---000000000000e1af7705c2c40a32
-Content-Type: text/plain; charset="UTF-8"
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
 
-Hi Zoran,
+The autobuilders have 128GB memory, we don't want them using 50% which is
+the default, 5% should be enough. Also limit the number of threads down
+from 48 to something reasonable. This may be partly causing some of our
+performance issues?
 
-Your cannelloni recipe is set to autorev, meaning it's not locked to a
-commit.  So when something changes upstream you have to manage it.
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+(cherry picked from commit 19b4e74b3960174238acc79fd112f55706bc7385)
+Signed-off-by: Steve Sakoman <steve@sakoman.com>
+---
+ config.json | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Chances are Canelloni introduced a CMake change which is overwriting
-(opposed to appending) one or more variables required for cross compiling.
-Perhaps try to cross compile (not a host build) Canelloni by itself without
-Yocto involved.  Once that's sorted, then reintroduce yocto.
+diff --git a/config.json b/config.json
+index e77a8fe..b62035b 100644
+--- a/config.json
++++ b/config.json
+@@ -44,6 +44,8 @@
+             "BB_GENERATE_MIRROR_TARBALLS = '1'",
+             "BB_NUMBER_THREADS = '16'",
+             "PARALLEL_MAKE = '-j 16'",
++            "XZ_MEMLIMIT = '5%'",
++            "XZ_THREADS = '8'",
+             "BB_TASK_NICE_LEVEL = '5'",
+             "BB_TASK_NICE_LEVEL_task-testimage = '0'",
+             "BB_TASK_IONICE_LEVEL = '2.7'",
+-- 
+2.25.1
 
-
-Joel
-
-
-On Thu, May 20, 2021, 6:58 AM Zoran <zoran.stojsavljevic@gmail.com> wrote:
-
-> Hello Yocto developers,
->
-> I have few problems running the following self proprietary script from
-> one of my public git repos:
-> https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/yocto-setup.sh
->
-> I recall that last time I used the script (I used then Fedora 31), the
-> ./yocto setup dunfell worked seamlessly, did setup the environment,
-> and upon bitbake -k core-image-minimal completed the tasks without any
-> problem.
->
-> Now, I am using Fedora 33 (in the meantime I did two Fedora version
-> upgrades).
->
-> The problem is that while compiling the cannelloni package, the
-> following errors were issued (please, look into the attached file
-> cmake_problem.txt).
->
-> This cmake problem was introduced after switching from Fedora 31 to Fedora
-> 33 ?!
->
-> Any clue/idea why this is happening??? What is the cause of the problem?
->
-> Thank you,
-> Zoran
-> _______
->
-> 
->
->
-
---000000000000e1af7705c2c40a32
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto"><div>Hi Zoran,<div dir=3D"auto"><br></div><div dir=3D"aut=
-o">Your cannelloni recipe is set to autorev, meaning it&#39;s not locked to=
- a commit.=C2=A0 So when something changes upstream you have to manage it.<=
-/div><div dir=3D"auto"><br></div><div dir=3D"auto">Chances are Canelloni in=
-troduced a CMake change which is overwriting (opposed to appending) one or =
-more variables required for cross compiling.=C2=A0 Perhaps try to cross com=
-pile (not a host build) Canelloni by itself without Yocto involved.=C2=A0 O=
-nce that&#39;s sorted, then reintroduce yocto.</div><div dir=3D"auto"><br><=
-/div><div dir=3D"auto"><br></div>Joel</div><div dir=3D"auto"><br><br><div c=
-lass=3D"gmail_quote" dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_attr">On =
-Thu, May 20, 2021, 6:58 AM Zoran &lt;<a href=3D"mailto:zoran.stojsavljevic@=
-gmail.com">zoran.stojsavljevic@gmail.com</a>&gt; wrote:<br></div><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc sol=
-id;padding-left:1ex">Hello Yocto developers,<br>
-<br>
-I have few problems running the following self proprietary script from<br>
-one of my public git repos:<br>
-<a href=3D"https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/yoc=
-to-setup.sh" rel=3D"noreferrer noreferrer" target=3D"_blank">https://github=
-.com/ZoranStojsavljevic/bbb-yocto/blob/master/yocto-setup.sh</a><br>
-<br>
-I recall that last time I used the script (I used then Fedora 31), the<br>
-./yocto setup dunfell worked seamlessly, did setup the environment,<br>
-and upon bitbake -k core-image-minimal completed the tasks without any<br>
-problem.<br>
-<br>
-Now, I am using Fedora 33 (in the meantime I did two Fedora version upgrad=
-es).<br>
-<br>
-The problem is that while compiling the cannelloni package, the<br>
-following errors were issued (please, look into the attached file<br>
-cmake_problem.txt).<br>
-<br>
-This cmake problem was introduced after switching from Fedora 31 to Fedora=
- 33 ?!<br>
-<br>
-Any clue/idea why this is happening??? What is the cause of the problem?<b=
-r>
-<br>
-Thank you,<br>
-Zoran<br>
-_______<br>
-<br>
-<br>
-<br>
-</blockquote></div></div></div>
-
---000000000000e1af7705c2c40a32--
