@@ -1,90 +1,146 @@
-Received: from mail.irisgmbh.de (mail.irisgmbh.de [81.169.172.79])
- by mx.groups.io with SMTP id smtpd.web12.10496.1621526422366187117
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+ by mx.groups.io with SMTP id smtpd.web12.10571.1621526709848017761
  for <yocto@lists.yoctoproject.org>;
- Thu, 20 May 2021 09:00:23 -0700
+ Thu, 20 May 2021 09:05:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=SPF record not found (domain: iris-sensing.com, ip: 81.169.172.79, mailfrom: jasper.orschulko@iris-sensing.com)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.irisgmbh.de (Postfix) with ESMTP id 5333331E032F;
-	Thu, 20 May 2021 18:00:19 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at irisgmbh.de
-Received: from mail.irisgmbh.de ([127.0.0.1])
-	by localhost (s15324379.rootmaster.info [127.0.0.1]) (amavisd-new, port 10027)
-	with ESMTP; Thu, 20 May 2021 18:00:19 +0200 (CEST)
-Received: from ERDE.irisgmbh.local (unknown [213.61.209.158])
-	by mail.irisgmbh.de (Postfix) with ESMTPS id 3B7CD31E02E8;
-	Thu, 20 May 2021 18:00:19 +0200 (CEST)
-Received: from ERDE.irisgmbh.local ([172.30.10.11]) by ERDE.irisgmbh.local
- ([172.30.10.11]) with mapi id 14.03.0513.000; Thu, 20 May 2021 18:00:18 +0200
-From: "Jasper Orschulko" <Jasper.Orschulko@iris-sensing.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"raj.khem@gmail.com" <raj.khem@gmail.com>
-Subject: Re: [yocto] Statically linked libraries and license manifest
-Thread-Topic: [yocto] Statically linked libraries and license manifest
-Thread-Index: AQHXS0RSwUHp2yw+D0uvnZHRcYmJc6roJ5uAgARCo4A=
-Date: Thu, 20 May 2021 16:00:17 +0000
-Message-ID: <c81df5276566472b0e5ab25413b24d1931d19005.camel@iris-sensing.com>
-References: <74a762cf340855aaa9fae5ed7686d123db22923e.camel@iris-sensing.com>
-	 <7c7aa6ca-05b9-452b-6542-4d5da2248e7e@gmail.com>
-In-Reply-To: <7c7aa6ca-05b9-452b-6542-4d5da2248e7e@gmail.com>
-Accept-Language: en-US, de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.30.10.1]
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=tzXrfKMe;
+ spf=pass (domain: gmail.com, ip: 209.85.222.172, mailfrom: raj.khem@gmail.com)
+Received: by mail-qk1-f172.google.com with SMTP id k4so5584724qkd.0
+        for <yocto@lists.yoctoproject.org>; Thu, 20 May 2021 09:05:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=i/4kXuQpHbAKGMHCeDr7Swjq7aebD7wod0tERyIHQik=;
+        b=tzXrfKMe+juqI6E3kXgDMJisgUqgtPey3LxOrYv88H4hS5R133Hh34dp5QRuqoWv/D
+         jDA0j+2wXsCsiJpscbrW+NTtBj70RUZ6UMVECR2QquII8gNa64z453/DotqwsTkNlVQn
+         YqN0F1MFs7QMMR4uGHySurfTUPulTEEKSTA5bB4pQmaQiiNtzbs6LrU+dYg45j37bKa8
+         Re5iRDQ5DTMYVaHE+X7VTm4GrU6ZE/UuOUQkKf3Ed16A+spnVurAAaDctJzVSIGGGbdI
+         f2srpY6+N0emGy3p2Ooy4iU964exdPcgYcj70gCz/ClWJkPlSYceoCsKqWY7BALvn7QY
+         1C9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=i/4kXuQpHbAKGMHCeDr7Swjq7aebD7wod0tERyIHQik=;
+        b=eDu/4nG07vaKMQKXaihezZCSbs3FO7QenP9ChFSbLI8rnqKTLnELGeJIDb01zj1gDv
+         imRTXKRPUd38Z7bs1AB3w6dJv2cjxak54MtNsDv3P1rkVw6hJJnCW3e0TH20TnOiP1Zu
+         1KxkQ3o4q0TZSbluTltDbcdeooHXaIfqbwd7U28n9zz4qf86EeSz6XalbewvkHSoCBiz
+         1gFMv02FKosSqKU54bcK6/lBxPCjpxBCyPvI8V7vvjwvuV7yEnkzFudivhq6aOs8D/AL
+         uBD43nKwlzcqQXsKrBKo33B8YdDlgCNBV8mNH0r2qcdPE3IIuDS9Z7x4KaTqgOYtXsAG
+         /rRQ==
+X-Gm-Message-State: AOAM5302GjhclUFzXGUS6sN0WlSkijgKXE2iPeyGG6pViTHjPSdCHfrd
+	TzMBr+/8cxdJSICjJKHw+qdkCQeXrBNFwDqppOI=
+X-Google-Smtp-Source: ABdhPJzFjexpguR4Ro/v/cZSeqJZwSKQvT+nto9rTnEB70K7umumugo9fk6dopz10Uartlbq02a75xhRcKiYf2qgAk4=
+X-Received: by 2002:a37:444a:: with SMTP id r71mr5705695qka.381.1621526708832;
+ Thu, 20 May 2021 09:05:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Language: de-DE
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <4C9A84FDD16EA74C9AD3FDDB2DA77A9B@irisgmbh.local>
-Content-Transfer-Encoding: base64
+References: <74a762cf340855aaa9fae5ed7686d123db22923e.camel@iris-sensing.com>
+ <7c7aa6ca-05b9-452b-6542-4d5da2248e7e@gmail.com> <c81df5276566472b0e5ab25413b24d1931d19005.camel@iris-sensing.com>
+In-Reply-To: <c81df5276566472b0e5ab25413b24d1931d19005.camel@iris-sensing.com>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Thu, 20 May 2021 09:04:42 -0700
+Message-ID: <CAMKF1soHDq9PwXipQ8mxYKCAu1eG41iG8cx8w2_Ft7H9NjcaEA@mail.gmail.com>
+Subject: Re: [yocto] Statically linked libraries and license manifest
+To: Jasper Orschulko <Jasper.Orschulko@iris-sensing.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-LS0tLS1CRUdJTiBQR1AgU0lHTkVEIE1FU1NBR0UtLS0tLQ0KSGFzaDogU0hBMjU2DQoNCkhpIEto
-ZW0sDQoNCnRoYW5rcyBmb3IgeW91ciByZXBseS4gQXMgZmFyIGFzIEkgdW5kZXJzdGFuZCwgdGhl
-ICJwcm9wZXIiIHdheSBpcyB0bw0KdXNlIGR5bmFtaWMgbGlua2VkIGxpYnJhcmllcyB3aGVuZXZl
-ciBwb3NzaWJsZT8gSSBoYXZlIGRvbmUgc29tZSBtb3JlDQp0aGlua2luZyBvbiB0aGUgbWF0dGVy
-LCBhbmQgYXQgbGVhc3QgaW4gb3VyIGNhc2UgdGhlIHBhY2thZ2VzIGluDQpxdWVzdGlvbiBhcmUg
-ZW1wdHkgKHRoZSBiYXNlIHBhY2thZ2UgdGhhdCBpcywgZXZlcnl0aGluZyBlbHNlIGlzIGluDQok
-e1BOfS1zcmMgJHtQTn0tZGV2c3RhdGljIGV0YyksIHNvIEkgYmVsaWV2ZSB0aGUgZWFzaWVzdCB3
-YXkgdG8gaW5jbHVkZQ0KdGhlc2UgaW50byB0aGUgbGljZW5zZSBtYW5pZmVzdCBpcyB0byBhbHNv
-IGFkZCB0aGVtIHRvIFJERVBFTkRTIGFuZCBzZXQNCkFMTE9XX0VNUFRZXyR7UE59ID0gIjEiLiBU
-aGlzIHNob3VsZCBub3QgY2hhbmdlIHRoZSBvdXRwdXQgaW1hZ2UsIGJ1dA0KaW5jbHVkZSB0aGUg
-cGFja2FnZXMgaW4gdGhlIGJ1aWxkLCB0aHVzIGFkZGluZyB0aGVtIHRvIHRoZSBsaWNlbnNlDQpt
-YW5pZmVzdC4gV2hhdCBkbyB5b3UgdGhpbms/DQoNCi0gLS0gDQpXaXRoIGJlc3QgcmVnYXJkcw0K
-DQpKYXNwZXIgT3JzY2h1bGtvDQpEZXZPcHMgRW5naW5lZXINCg0KVGVsLiArNDkgMzAgNTggNTgg
-MTQgMjY1DQpGYXggKzQ5IDMwIDU4IDU4IDE0IDk5OQ0KSmFzcGVyLk9yc2NodWxrb0BpcmlzLXNl
-bnNpbmcuY29tDQoNCuKAoiDigKIg4oCiIOKAoiDigKIg4oCiIOKAoiDigKIg4oCiIOKAoiDigKIg
-4oCiIOKAoiDigKIg4oCiIOKAoiDigKIg4oCiIOKAoiDigKIg4oCiIOKAoiDigKIg4oCiIOKAoiDi
-gKINCg0KaXJpcy1HbWJIDQppbmZyYXJlZCAmIGludGVsbGlnZW50IHNlbnNvcnMNCk9zdGVuZHN0
-cmHDn2UgMS0xNCB8IDEyNDU5IEJlcmxpbg0KDQpodHRwczovL2lyaXMtc2Vuc2luZy5jb20vDQoN
-Cg0KDQoNCk9uIE1vbiwgMjAyMS0wNS0xNyBhdCAxNTo1NiAtMDcwMCwgS2hlbSBSYWogd3JvdGU6
-DQo+IA0KPiANCj4gT24gNS8xNy8yMSAxMDo0NCBBTSwgSmFzcGVyIE9yc2NodWxrbyB3cm90ZToN
-Cj4gPiBIaSwNCj4gPiANCj4gPiBteSBxdWVzdGlvbiBtb3JlIG9yIGxlc3MgcmVpdGVyYXRlcyB0
-aGUgZm9sbG93aW5nOg0KPiA+IGh0dHBzOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvcGlwZXJtYWls
-L3lvY3RvLzIwMTgtSnVseS8wNDE4NTQuaHRtbA0KPiA+IA0KPiA+IEkgYW0gdHJ5aW5nIHRvIGZp
-bmQgYSB3YXkgdG8gbGlzdCBzdGF0aWNhbGx5IGxpbmtlZCBsaWJyYXJpZXMgaW4NCj4gPiB0aGUN
-Cj4gPiBsaWNlbnNlIG1hbmlmZXN0LCBidXQgc28gZmFyIEkgYW0gYXQgYSBsb3NzLiBUbyBteSB1
-bmRlcnN0YW5kaW5nDQo+ID4gWW9jdG8NCj4gPiBkb2VzIG5vdCB1bmRlcnN0YW5kIHBhY2thZ2Vz
-IGluY2x1ZGVkIHVzaW5nIERFUEVORFMgYW5kIG5vdA0KPiA+IFJERVBFTkRTIGFzDQo+ID4gcGFy
-dCBvZiB0aGUgcmVzdWx0aW5nIGltYWdlLCBob3dldmVyIHRlY2huaWNhbGx5IHNvdXJjZSBjb2Rl
-IGZyb20NCj4gPiB0aGUNCj4gPiBkZXBlbmRlZSBjYW4gKGFuZCB3aWxsKSBlbmQgdXAgb24gdGhl
-IGltYWdlIGFzIHBhcnQgb2YgdGhlDQo+ID4gZGVwZW5kZW50DQo+ID4gcGFja2FnZS4gVGhpcyBp
-cyBhIHNlcmlvdXMgaXNzdWUgZnJvbSBhIGxlZ2FsIHBvaW50IG9mIHZpZXcsIGFzIHRoZQ0KPiA+
-IGRldmVsb3BlciB1bHRpbWF0ZWx5IG1pZ2h0IGVuZCB1cCB3aXRoIGFuIGluY29tcGxldGUgbGlz
-dCBvZg0KPiA+IGxpY2Vuc2VzLA0KPiA+IHdoZW4gcmVseWluZyBvbiB0aGUgWW9jdG8gbGljZW5z
-ZSBtYW5pZmVzdC4NCj4gPiANCj4gPiBQbGVhc2UsIGRvIGNvcnJlY3QgbWUgaWYgSSdtIHdyb25n
-IDopDQo+IA0KPiBwYXJ0bHkgeWVzLiB0aGVyZSBpcyBhIHByb3Zpc2lvbiB0byBkaXNhYmxlIHN0
-YXRpYyBsaW5raW5nIHVzaW5nIA0KPiBESVNBQkxFX1NUQVRJQywgc28gYXRsZWFzdCBzb21lIG9m
-IHBhY2thZ2VzIGNhbiBiZSBjbGVhcmVkIG9mLg0KPiBkZXBlbmRzIA0KPiBhcmUgZWZmZWN0aXZl
-IGR1cmluZyBidWlsZCB0aW1lIGFuZCBpdHMgdGhlIGxpbmtpbmcgd2hpY2ggZGVjaWRlcyBvbiAN
-Cj4gdGhhdCBidXQgeW91IGNhbiBwZXJoYXBzIGVhc2lseSB3cml0ZSBhIHByb2JlIGFuZCBleHRy
-YWN0IHRoaXMgDQo+IGluZm9ybWF0aW9uIGZyb20gbGlua2VyIGNtZGxpbmUgcGVyaGFwcyBieSBk
-dW1waW5nIGxpbmtlciBtYXAgYW5kDQo+IHBvc3QgDQo+IHByb2Nlc3NpbmcgaXQuDQo+IA0KPiA+
-IA0KPiDCoD4NCj4gwqA+DQo+IMKgPg0KPiDCoD4gDQo+IMKgPg0KLS0tLS1CRUdJTiBQR1AgU0lH
-TkFUVVJFLS0tLS0NCg0KaVFFekJBRUJDQUFkRmlFRTRXeVBNSUM1QXA0K09vbzFZZ3FldzA3Vk1O
-VUZBbUNtaDNFQUNna1FZZ3FldzA3Vg0KTU5XaVhBZjlHUGJ2WmpsekFXK3JlZi8rUktQLzlHYnRT
-QnBhalZVa24reDREWWRPMERtU3E2SndPR2VMYmxXOA0KcXUyd2p3OWNMd2dEQUw0WVJMRVNyZ0Ez
-WEFiZmxGZ2YwSVpCdUVNYlQ2V09OVzdmZ0hlUTcralByRVE3ZGtneA0KUE9yZVBjcXVxdURTRGky
-aWRqanJkVHVxSHhMbDBJbDA5Zzh2Sno5b2t0WmhJS3dDZXNxV1FFOFZqU0xjakJhag0KdSs3bkhM
-WTc3ZlYvYTFvL0thN1BrSDJBamJXc21uL2lIQzFoTE45MXlOVkc2RXl6QW5lSFFZS0RvN1k1a1JW
-bg0KWVdOU2dtbWFiN3VpaWdyTjJLcUZPYmxhemtCYUE1L3JJS0QxUHBlT2pxT1R0RjcrVWZXa0w1
-RFpaQXJkaC9LRw0KK0UzVmF1Uno2YWdxeGJiMFZVV1paakU2aWYwN1FnPT0NCj1VQ21kDQotLS0t
-LUVORCBQR1AgU0lHTkFUVVJFLS0tLS0NCg==
+On Thu, May 20, 2021 at 9:00 AM Jasper Orschulko
+<Jasper.Orschulko@iris-sensing.com> wrote:
+>
+> -----BEGIN PGP SIGNED MESSAGE-----
+> Hash: SHA256
+>
+> Hi Khem,
+>
+> thanks for your reply. As far as I understand, the "proper" way is to
+> use dynamic linked libraries whenever possible? I have done some more
+> thinking on the matter, and at least in our case the packages in
+> question are empty (the base package that is, everything else is in
+> ${PN}-src ${PN}-devstatic etc), so I believe the easiest way to include
+> these into the license manifest is to also add them to RDEPENDS and set
+> ALLOW_EMPTY_${PN} =3D "1". This should not change the output image, but
+> include the packages in the build, thus adding them to the license
+> manifest. What do you think?
+>
+
+I am not sure why you will include empty packages in your manifest
+
+> - --
+> With best regards
+>
+> Jasper Orschulko
+> DevOps Engineer
+>
+> Tel. +49 30 58 58 14 265
+> Fax +49 30 58 58 14 999
+> Jasper.Orschulko@iris-sensing.com
+>
+> =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =
+=E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=
+=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=
+=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2 =E2=80=A2
+>
+> iris-GmbH
+> infrared & intelligent sensors
+> Ostendstra=C3=9Fe 1-14 | 12459 Berlin
+>
+> https://iris-sensing.com/
+>
+>
+>
+>
+> On Mon, 2021-05-17 at 15:56 -0700, Khem Raj wrote:
+> >
+> >
+> > On 5/17/21 10:44 AM, Jasper Orschulko wrote:
+> > > Hi,
+> > >
+> > > my question more or less reiterates the following:
+> > > https://www.yoctoproject.org/pipermail/yocto/2018-July/041854.html
+> > >
+> > > I am trying to find a way to list statically linked libraries in
+> > > the
+> > > license manifest, but so far I am at a loss. To my understanding
+> > > Yocto
+> > > does not understand packages included using DEPENDS and not
+> > > RDEPENDS as
+> > > part of the resulting image, however technically source code from
+> > > the
+> > > dependee can (and will) end up on the image as part of the
+> > > dependent
+> > > package. This is a serious issue from a legal point of view, as the
+> > > developer ultimately might end up with an incomplete list of
+> > > licenses,
+> > > when relying on the Yocto license manifest.
+> > >
+> > > Please, do correct me if I'm wrong :)
+> >
+> > partly yes. there is a provision to disable static linking using
+> > DISABLE_STATIC, so atleast some of packages can be cleared of.
+> > depends
+> > are effective during build time and its the linking which decides on
+> > that but you can perhaps easily write a probe and extract this
+> > information from linker cmdline perhaps by dumping linker map and
+> > post
+> > processing it.
+> >
+> > >
+> >  >
+> >  >
+> >  >
+> >  >=20
+> >  >
+> -----BEGIN PGP SIGNATURE-----
+>
+> iQEzBAEBCAAdFiEE4WyPMIC5Ap4+Ooo1Ygqew07VMNUFAmCmh3EACgkQYgqew07V
+> MNWiXAf9GPbvZjlzAW+ref/+RKP/9GbtSBpajVUkn+x4DYdO0DmSq6JwOGeLblW8
+> qu2wjw9cLwgDAL4YRLESrgA3XAbflFgf0IZBuEMbT6WONW7fgHeQ7+jPrEQ7dkgx
+> POrePcququDSDi2idjjrdTuqHxLl0Il09g8vJz9oktZhIKwCesqWQE8VjSLcjBaj
+> u+7nHLY77fV/a1o/Ka7PkH2AjbWsmn/iHC1hLN91yNVG6EyzAneHQYKDo7Y5kRVn
+> YWNSgmmab7uiigrN2KqFOblazkBaA5/rIKD1PpeOjqOTtF7+UfWkL5DZZArdh/KG
+> +E3VauRz6agqxbb0VUWZZjE6if07Qg=3D=3D
+> =3DUCmd
+> -----END PGP SIGNATURE-----
