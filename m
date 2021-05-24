@@ -1,143 +1,179 @@
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
- by mx.groups.io with SMTP id smtpd.web10.22563.1621859991853569770
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+ by mx.groups.io with SMTP id smtpd.web08.23584.1621865408180774555
  for <yocto@lists.yoctoproject.org>;
- Mon, 24 May 2021 05:39:52 -0700
+ Mon, 24 May 2021 07:10:08 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=pH+F5beb;
- spf=pass (domain: gmail.com, ip: 209.85.208.48, mailfrom: fntoth@gmail.com)
-Received: by mail-ed1-f48.google.com with SMTP id b17so31801846ede.0
-        for <yocto@lists.yoctoproject.org>; Mon, 24 May 2021 05:39:51 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=GqzFISo8;
+ spf=pass (domain: gmail.com, ip: 209.85.215.172, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-pg1-f172.google.com with SMTP id l70so20196350pga.1
+        for <yocto@lists.yoctoproject.org>; Mon, 24 May 2021 07:10:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:from:to:references:message-id:date:user-agent:mime-version
-         :in-reply-to:content-transfer-encoding:content-language;
-        bh=BqEGFTM96Ab2O2Em0SlJC0PqA4PQ4d0SJSj9pztxSJE=;
-        b=pH+F5beb6BctTtwuaRUy/8cEr+GUrQiB+NfXibDix1C5Z8iI7JkA/P5O1Fix+HvNwE
-         +zIKcfe+PdfXzW5xBdtMXBVVjc8VsZ/x3LH9n0RnDu2Uycfl8TaD7L/g9eeygJHZkY4M
-         a/ebKcmn5NPG2+xUiKe3n/ARimsoOZs/VbyvTwEx2mzI7iCS8esuIEkiYGCFIgkXE6/2
-         b4qYBjSElXwl886jBSv/db3o1gt0Kk8m7chz3s2Gw9I452SN5JTkhnpGw/cSQLvNMOWT
-         h30MiHB2WxziQYwmku5nMY1Xgg8R/TDsIn9LuexW4XYZxIT8kSD1PWZyvMg5EKh5JkId
-         CNLg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=iOlDcqwPSVcHTsNxxvopxk8yvo9WQnkoye5D0xjJ6jI=;
+        b=GqzFISo8GWJ7PMZZ6VwIeEfH1zs2QeqLA8vYNObucWDen9wMkomh49l281q2HfU9Hg
+         9gsgrpnuKW7WFoARepk7wIqT5UFvnv664bxsz8g96Ju2QwPXRm2CfIj/rCB+iZCs+ZRZ
+         FI53w4+RDeZRyVfdf0RhHM9Tj6iEs+rVTMUGh5KxxcKsAm2AXRBcsfNJQypTLb/QzUQq
+         xL4S46xtvm+Pn5xdE1VSmmpPlAe+9fxH9TLnHWLZnckBw+r4ZAsyEkr54YRdAn9968/W
+         RF9qeF9dG6D465ojJzzt1M1+CXAgQHN6oxMe67GYdPLBOcmSavrSMk/zfQmjFYNilMAE
+         rG/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=BqEGFTM96Ab2O2Em0SlJC0PqA4PQ4d0SJSj9pztxSJE=;
-        b=XxS2SsvtL7H3YxBCR5YgRCy9tMOArv0CMrXY0nwD2nkCPuzkD9BPp0prKrf2qnSei+
-         uCKr7inhavdvNO8fv+gIEsR5OQH1cuI2EdchWi22NFXH5QQQx9ef6j9Ko2b6j84mYnWi
-         GRikNjOCdrtOyiv96zjojNABcfv+FpFsmxFjvEnRiVXf+1mLmZz9rAC/Ro1DknfpL/55
-         xT5UguIT7VRn4r+FgmGEp194IIJPfZj5V+xFLi0P3n19RJydSG3kK1lm2C6jHJE9X79e
-         fH7KRqludH9baVbkU+niJGoJSaSK1CMVo7sHnOvq0orww2KKe5somUoOs5Fr5bQ1Ks+a
-         cCKA==
-X-Gm-Message-State: AOAM531+iNpaNM2sFhdM5w40eLbBJRA3tuRCH+EWbgsB2tYw5qNXT0SD
-	9TQXf3B4LDwLWMxHIzNrqDIkWmlFdi0=
-X-Google-Smtp-Source: ABdhPJyaYPlLYEjc97XCY1aFsP8TDUfiKY2Npwt4cFHGpfQwSGiIYahnM2pEIr1tLwQEM9KUWUXNCQ==
-X-Received: by 2002:a50:eb08:: with SMTP id y8mr25627276edp.89.1621859990239;
-        Mon, 24 May 2021 05:39:50 -0700 (PDT)
-Return-Path: <fntoth@gmail.com>
-Received: from ?IPv6:2001:981:6fec:1:10c3:2774:2816:c1fd? ([2001:981:6fec:1:10c3:2774:2816:c1fd])
-        by smtp.gmail.com with ESMTPSA id by20sm7701806ejc.74.2021.05.24.05.39.49
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 May 2021 05:39:49 -0700 (PDT)
-Subject: Re: Gatesgarth-24.0.4 image-live fails
-From: "Ferry Toth" <fntoth@gmail.com>
-To: yocto@lists.yoctoproject.org
-References: <2b1a204e-3c12-a955-6850-f5c2710ce529@gmail.com>
-Message-ID: <56b76313-e6b2-591f-5b1f-020acd40afa5@gmail.com>
-Date: Mon, 24 May 2021 14:39:48 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=iOlDcqwPSVcHTsNxxvopxk8yvo9WQnkoye5D0xjJ6jI=;
+        b=ttnDNr3jfctZCHm1qq5J4g8fY3s9CaQjdHYXjKrA4k8U1tpQALIu0wKt7fjR8FyN1p
+         I3EQuJwOTdek1n4/6NDA3NpK5QfV7c3256IhDCDdTl+xrDvco2N4n2i0RgjLYiaKK/7G
+         qOGP76NiwpqdLrebOVFjQKH0cn1Bgp9uT0iLrFJegkHq88/73usEDSN9J/Dvz+4YVLtE
+         qohwErWNMWswtDXbcOWxzxt9dlc8YzNs9f3OtYj53MjxNINzjNO+9CzmPEJWJdZjl3kW
+         xzLTOm7PGdhOi4A3ZlY4vFTP+rRACqDYIMtfGNH/2PTecP7uuuvL2CHcbFmMXivN0RSL
+         Bt9g==
+X-Gm-Message-State: AOAM533vx1yhoQ06Ctvvg7KxdWBhbWo8fiivXUk1UaEnipuljC3Ler2n
+	n5uWbO9rJC/C1y23kfkdZ5WpXAKy+KFvrUZoxyM=
+X-Google-Smtp-Source: ABdhPJzLjp/MU69YGC32vfb+n9R1QIJ9Xd0YP9kW0mdtItN+4C/hFDxcnEmW8IBDSSPf/F41jZ518WFeledQg1/+7Mk=
+X-Received: by 2002:a05:6a00:1630:b029:2c0:a1eb:d77 with SMTP id
+ e16-20020a056a001630b02902c0a1eb0d77mr24799071pfc.81.1621865407228; Mon, 24
+ May 2021 07:10:07 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <2b1a204e-3c12-a955-6850-f5c2710ce529@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+References: <CAGAf8LzBFh2PrDYN1wyZGZ9==uAEk+BfNxUOaRGFBJsy6TniUw@mail.gmail.com>
+ <B870330F-3B69-4C5C-B077-ECCBA0460E13@0leil.net>
+In-Reply-To: <B870330F-3B69-4C5C-B077-ECCBA0460E13@0leil.net>
+From: "Zoran" <zoran.stojsavljevic@gmail.com>
+Date: Mon, 24 May 2021 16:09:55 +0200
+Message-ID: <CAGAf8Lx_1NHRNrgF5ou49HSyLokJR85rRYpNdgv-hepqQzEehw@mail.gmail.com>
+Subject: Re: [yocto] ERROR: ParseError at .../bbb-yocto-gatesgarth/meta-bbb/images/console-image.bb:4: Could not include required file images/basic-dev-image.bb
+To: Quentin Schulz <foss@0leil.net>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>, Scott Ellis <scott@jumpnowtek.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Wow, that got messed up, let me retry.
+Hello Quentin,
 
-Op 24-05-2021 om 14:19 schreef Ferry Toth:
-> Accidentally I refreshed poky and rebuilt. The image-live (do_bootimg) 
-> fails when building hddimg with the following:
->
-ERROR: edison-image-1.0-r0 do_bootimg: Error executing a python function 
-in exec_python_func() autogenerated:
+Thank you for finding the bug. It was in front of my eyes (I print all
+the layers at the end of setup, but I missed to compare bb-layers from
+dunfell with bb-layers from gatesgarth).
 
-The stack trace of python calls that resulted in this exception/failure was:
-File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
-      0001:
-  *** 0002:do_bootimg(d)
-      0003:
-File: 
-'/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/poky/meta/classes/image-live.bbclass', 
-lineno: 258, function: do_bootimg
-      0254:    if d.getVar("PCBIOS") == "1":
-      0255:        bb.build.exec_func('build_syslinux_cfg', d)
-      0256:    if d.getVar("EFI") == "1":
-      0257:        bb.build.exec_func('build_efi_cfg', d)
-  *** 0258:    bb.build.exec_func('build_hddimg', d)
-      0259:    bb.build.exec_func('build_iso', d)
-      0260:    bb.build.exec_func('create_symlinks', d)
-      0261:}
-      0262:do_bootimg[subimages] = "hddimg iso"
-File: 
-'/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/poky/bitbake/lib/bb/build.py', 
-lineno: 256, function: exec_func
-      0252:    with bb.utils.fileslocked(lockfiles):
-      0253:        if ispython:
-      0254:            exec_func_python(func, d, runfile, cwd=adir)
-      0255:        else:
-  *** 0256:            exec_func_shell(func, d, runfile, cwd=adir)
-      0257:
-      0258:    try:
-      0259:        curcwd = os.getcwd()
-      0260:    except:
-File: 
-'/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/poky/bitbake/lib/bb/build.py', 
-lineno: 503, function: exec_func_shell
-      0499:    with open(fifopath, 'r+b', buffering=0) as fifo:
-      0500:        try:
-      0501:            bb.debug(2, "Executing shell function %s" % func)
-      0502:            with open(os.devnull, 'r+') as stdin, logfile:
-  *** 0503:                bb.process.run(cmd, shell=False, stdin=stdin, 
-log=logfile, extrafiles=[(fifo,readfifo)])
-      0504:        except bb.process.ExecutionError as exe:
-      0505:            # Find the backtrace that the shell trap generated
-      0506:            backtrace_marker_regex = re.compile(r"WARNING: 
-Backtrace \(BB generated script\)")
-      0507:            stdout_lines = (exe.stdout or "").split("\n")
-File: 
-'/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/poky/bitbake/lib/bb/process.py', 
-lineno: 184, function: run
-      0180:        if not stderr is None:
-      0181:            stderr = stderr.decode("utf-8")
-      0182:
-      0183:    if pipe.returncode != 0:
-  *** 0184:        raise ExecutionError(cmd, pipe.returncode, stdout, 
-stderr)
-      0185:    return stdout, stderr
-Exception: bb.process.ExecutionError: Execution of 
-'/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/build/tmp/work/edison-poky-linux/edison-image/1.0-r0/temp/run.build_hddimg.256530' 
-failed with exit code 1:
-mkdosfs: unable to create 
-/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/build/tmp/work/edison-poky-linux/edison-image/1.0-r0/deploy-edison-image-image-complete/edison-image-edison-20210524113748.hddimg
-mkfs.fat 4.1 (2017-01-24)
-WARNING: exit code 1 from a shell command.
+I should do better. With regards to testing thinking. ;-)
+_______
 
-> The reason is that the directory deploy-edison-image-image-complete 
-> doesn't exist at the time mkdosfs want to write. However after 
-> completing the remainder of image live the directory does exists. 
-> Consequently, running bitbake a second time image-live succeeds.
+Now, there are other bugs (I should say, new features introduced).
+
+Loading cache: 100%
+|################################################################################################|
+Time: 0:00:00
+Loaded 3533 entries from dependency cache.
+Parsing recipes: 100%
+|##############################################################################################|
+Time: 0:00:00
+Parsing of 2311 .bb files complete (2309 cached, 2 parsed). 3535
+targets, 121 skipped, 1 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+ERROR: Nothing RPROVIDES 'dhcp-libs' (but
+/home/vuser/projects_yocto/bbb-yocto-gatesgarth/poky/meta/recipes-core/images/core-image-minimal.bb
+RDEPENDS on or otherwise requires it)
+NOTE: Runtime target 'dhcp-libs' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['dhcp-libs']
+ERROR: Nothing RPROVIDES 'dhcp-server' (but
+/home/vuser/projects_yocto/bbb-yocto-gatesgarth/poky/meta/recipes-core/images/core-image-minimal.bb
+RDEPENDS on or otherwise requires it)
+NOTE: Runtime target 'dhcp-server' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['dhcp-server']
+ERROR: Nothing RPROVIDES 'dhcp-server-config' (but
+/home/vuser/projects_yocto/bbb-yocto-gatesgarth/poky/meta/recipes-core/images/core-image-minimal.bb
+RDEPENDS on or otherwise requires it)
+NOTE: Runtime target 'dhcp-server-config' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['dhcp-server-config']
+ERROR: Nothing RPROVIDES 'dhcp-client' (but
+/home/vuser/projects_yocto/bbb-yocto-gatesgarth/poky/meta/recipes-core/images/core-image-minimal.bb
+RDEPENDS on or otherwise requires it)
+NOTE: Runtime target 'dhcp-client' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['dhcp-client']
+ERROR: Nothing RPROVIDES 'dhcp-relay' (but
+/home/vuser/projects_yocto/bbb-yocto-gatesgarth/poky/meta/recipes-core/images/core-image-minimal.bb
+RDEPENDS on or otherwise requires it)
+NOTE: Runtime target 'dhcp-relay' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['dhcp-relay']
+ERROR: Nothing RPROVIDES 'dhcp-omshell' (but
+/home/vuser/projects_yocto/bbb-yocto-gatesgarth/poky/meta/recipes-core/images/core-image-minimal.bb
+RDEPENDS on or otherwise requires it)
+NOTE: Runtime target 'dhcp-omshell' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['dhcp-omshell']
+
+Seems that this line in local.conf got severely changed, or most
+likely the DHCP package version/handling got changed:
+
+CORE_IMAGE_EXTRA_INSTALL_append = "openssh dhcp-libs dhcp-server
+dhcp-server-config dhcp-client dhcp-relay dhcp-omshell cmake
+libsocketcan nfs-utils rt-tests strace procps
+packagegroup-core-buildessential "
+
+The question is: what should I include in the
+CORE_IMAGE_EXTRA_INSTALL_append for the DHCP package for gatesgarth
+and later releases???
+
+Thank you,
+Zoran
+_______
+
+On Mon, May 24, 2021 at 2:24 PM Quentin Schulz <foss@0leil.net> wrote:
 >
-> I've tried various thing including expressly creating the directory 
-> before mkdosfs, but nothing worked. It seems I don't understand how it 
-> is supposed to work in the first place.
+> Hi Zoran,
 >
-> However, I managed to trace back the issue to this commit 91e4a1c1 
-> "image-live.bbclass: optional depends when ROOTFS empty".
+> On May 24, 2021 8:27:58 AM UTC, Zoran <zoran.stojsavljevic@gmail.com> wrote:
+> >Hello again to YOCTO Folks,
+> >
+> >Here is another blunder I ran into while fixing a yocto-setup.sh script:
+> >https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/yocto-setup.sh
+> >
+> >While executing $  . ./yocto-setup.sh dunfell, everything ran smoothly.
+> >
+> >I did the same routine with the $  . ./yocto-setup.sh gatesgarth, and
+> >approximately after:
+> >Parsing recipes: 9% |##########
+> >
+> >The following message pops up!
+> >Loading cache: 100% |
+> >                                                | ETA:  --:--:--
+> >Loaded 0 entries from dependency cache.
+> >ERROR: ParseError at
+> >/home/vuser/projects_yocto/bbb-yocto-gatesgarth/meta-bbb/images/console-image.bb:4:
+> >Could not include required file images/basic-dev-image.bb
+> >
+> >Summary: There was 1 WARNING message shown.
+> >Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+> >
 >
-> Reverting this resolves the issue.
+> The layer is not included. Check in your bblayers.conf. see https://github.com/ZoranStojsavljevic/bbb-yocto/blob/a6e8e8ce491705816d02df58fa0ef9378b18ef83/yocto-setup.sh#L114 where you are missing the gatesgarth check.
 >
-> Any idea what could be wrong?
+> Cheers,
+> Quentin
 >
+>
+> >If you peek into the following github repos:
+> >https://github.com/jumpnow/meta-bbb
+> >https://github.com/jumpnow/meta-jumpnow
+> >
+> >You'll see that in later  images/basic-dev-image.bb does exist, as
+> >well as in the dunfell branch:
+> >https://github.com/jumpnow/meta-jumpnow/blob/zeus/images/basic-dev-image.bb
+> >
+> >As well as in gatesgarth branch:
+> >https://github.com/jumpnow/meta-jumpnow/blob/gatesgarth/images/basic-dev-image.bb
+> >
+> >What I see upon the logic, something changes in poky/ setup, while
+> >transitioning from dunfell to gatesgarth.
+> >
+> >I also have created an issue in bbb-yocto repo:
+> >https://github.com/ZoranStojsavljevic/bbb-yocto/issues/3
+> >
+> >I would appreciate any ideas or hints...  Maybe some changes required
+> >in local.conf ?
+> >
+> >You can all try it yourselves, and see the same!
+> >
+> >Thank you,
+> >Zoran
+> >_______
+>
+> --
+> Sent from my Android device with K-9 Mail. Please excuse my brevity.
