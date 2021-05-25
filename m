@@ -1,68 +1,167 @@
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
- by mx.groups.io with SMTP id smtpd.web12.9019.1621946654445777951
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
+ by mx.groups.io with SMTP id smtpd.web10.9471.1621948163991036898
  for <yocto@lists.yoctoproject.org>;
- Tue, 25 May 2021 05:44:14 -0700
+ Tue, 25 May 2021 06:09:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=aOK/2rUA;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.42, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f42.google.com with SMTP id z85-20020a1c7e580000b029017a76f3afbaso10209643wmc.2
-        for <yocto@lists.yoctoproject.org>; Tue, 25 May 2021 05:44:14 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=gHhjHYfC;
+ spf=pass (domain: gmail.com, ip: 209.85.219.50, mailfrom: champagne.guillaume.c@gmail.com)
+Received: by mail-qv1-f50.google.com with SMTP id c13so14755869qvx.5
+        for <yocto@lists.yoctoproject.org>; Tue, 25 May 2021 06:09:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=O4sP4eUIi2jPDHUvS4ispaPut405hUNXiSJczKlLlTQ=;
-        b=aOK/2rUAFeixjOuMwC+YW99b422hZa0ppjs0sxfkc3Y6/0V1lvkyiGxZZtiNW3P5cG
-         wWQBqFnX71ZHD3XZG7ud2YPHF7tWTWZ8xZUFtkCh74i/NoCVf6l8estI0I/GRPMMrShw
-         g4tquZ2ZDYQ32s/wFzBNXSarQZPSmSb0MtUtY=
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=55SQWqX3LGDF5xvNoh1qck7LXGCOiKR0xhS2uTmlk/U=;
+        b=gHhjHYfCzhrxzmlZ67rlMLlk+Z4BsVxw34hGB7mQNjes8oPi391kDqnJpd3G01hJX3
+         QTvOC7uolfjHJBJDmrikiaWKzO+mrdbZvaR6V2ingLxnYvq7IHK2f3IQ7+kiYPnYqMN3
+         yxfv6UFBTxwVlWE+i+kM/xTkSoIv66tvPYdNvg42/hK+nAxFvRjLtXBSTNtu7XiXX8qc
+         s5PkyiCHqLNl3xiVNASYZvQ4VcDz/PtILrmmBkLmjbkFxjBZOfN1Yshac+QRvffh8DK/
+         fQhqTfS2TbGVWpVcvG5gjwAqRLLEk9E5KbU0EQIkvRlGwbT0pptydmUHwx4BLV7L+caq
+         7pSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=O4sP4eUIi2jPDHUvS4ispaPut405hUNXiSJczKlLlTQ=;
-        b=J1cH2n+caN4ESBut/MlAfRjV93hh7QLjVgqr/kqgDTSKwj6uPxw/bn7TrTF7sOilDr
-         HVkb+XR0IfQXzKJfx/PuLFB+XJgqRscDMoQWdaYGucjIKfQV7/l/DBz4AMJsYczP3MAs
-         7e0DXaC6m9b4jslkB/OJalxFAueevikQHGfWo2Ikd0hwbPz6ZaXxrV9qPhnahhQarvDm
-         C9PZ+XBKNmqpAGqd72HZBdyjma4T6kJHxaTpz4vLnxqZlxAYlT/pQsFvG2pTr2Fa7qyD
-         fwMDvPGPRe5STGzPmCUEapvKNgPQVlKEaKslrb8BA6Jkjv/9gkCH4MnlvAuw2zgIusve
-         mOXA==
-X-Gm-Message-State: AOAM533uZstEGWq89NClDqsFnmXYRCHaQ12ru2iLQlLMaa4edg/9A2lb
-	VPTcNWUv44WvVZ0/o9MBb1YMaA==
-X-Google-Smtp-Source: ABdhPJwpMvtNrAdzcc/dze53+1oG4aewHGWt/t/u4I4U0mTurQvAb1VjoYDiPsqpb+cctX7LPtwL+Q==
-X-Received: by 2002:a05:600c:35cc:: with SMTP id r12mr23397629wmq.157.1621946652961;
-        Tue, 25 May 2021 05:44:12 -0700 (PDT)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from ?IPv6:2001:8b0:aba:5f3c:9654:ad4a:4a61:2e32? ([2001:8b0:aba:5f3c:9654:ad4a:4a61:2e32])
-        by smtp.gmail.com with ESMTPSA id y2sm15991478wrl.92.2021.05.25.05.44.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 May 2021 05:44:12 -0700 (PDT)
-Message-ID: <f75c8b912e10f2383159c9edac3de2a8f84cee70.camel@linuxfoundation.org>
-Subject: Re: [yocto] [ANNOUNCEMENT] Yocto Project 3.3.1 (hardknott-25.0.1) is Released
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>, Vineela
-	 <vineela.tummalapalli@intel.com>
-Cc: "'yocto@lists.yoctoproject.org'" <yocto@lists.yoctoproject.org>, 
-	Michael Halstead <mhalstead@linuxfoundation.org>
-Date: Tue, 25 May 2021 13:44:11 +0100
-In-Reply-To: <8e289c9f6578427d85c56618de3a130d@XBOX03.axis.com>
-References: 
-	<BYAPR11MB33017216B14BA159AF5601E588269@BYAPR11MB3301.namprd11.prod.outlook.com>
-	 <8e289c9f6578427d85c56618de3a130d@XBOX03.axis.com>
-User-Agent: Evolution 3.40.0-1 
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=55SQWqX3LGDF5xvNoh1qck7LXGCOiKR0xhS2uTmlk/U=;
+        b=aB762xmgLxq8FizWnQbGQd+3xNLuUjtVQIAkVtFWV4RukiZSfYHpiJXFdJtvhOsxRt
+         Ieufo2nkDWk+0nEe9mUkffC6adn/aYm97VaoL0UlUPd049kRLu4+bfKqwHvVN5ZJy5e9
+         KwJhiiwW2P2mvhE9g7k5EmsRV0Djr8Yw8y0IvShzmpotZ1Zvq1Yw05Ve58XEoAI0qGH7
+         QaGSR2tZMixjTWTwj85HYE0sGW401LksL0mpxBkKzGK7nTeJgr4zg2thcysoWUYNaMY7
+         G9uJc/6LcYKOQArkfjuaG9JlyR8smc+6xA3Q3CGPK2wbF1LoTubl++2qm4r33BYTiX+b
+         qszg==
+X-Gm-Message-State: AOAM530PM4OLZCHgrJKt9ejFJp3enAaE27Lwr5MQhSU8eWG+UImzXC1p
+	k/hQ2z94tzICKFudzv2K+utH53PIwJZ3HJ0ezv4=
+X-Google-Smtp-Source: ABdhPJzwZ/ad1Tyw+WmE+QzQkP4/FjqoS9cqIjvB1aOJmbGIVQC7mgJ4d/OnbtiU+YNHYXgXxw4ppHLaGdpYNlmuwCA=
+X-Received: by 2002:a0c:f294:: with SMTP id k20mr36676004qvl.45.1621948163214;
+ Tue, 25 May 2021 06:09:23 -0700 (PDT)
 MIME-Version: 1.0
+References: <2b1a204e-3c12-a955-6850-f5c2710ce529@gmail.com>
+ <56b76313-e6b2-591f-5b1f-020acd40afa5@gmail.com> <6c648923-6b6c-af2c-8cb5-f40ebd9cd0db@gmail.com>
+In-Reply-To: <6c648923-6b6c-af2c-8cb5-f40ebd9cd0db@gmail.com>
+From: "Guillaume Champagne" <champagne.guillaume.c@gmail.com>
+Date: Tue, 25 May 2021 09:09:12 -0400
+Message-ID: <CAHSN6OfgL-aBYM-oB=WEJkohsV0xehaH+YJzv=mjv8PTw99Lkg@mail.gmail.com>
+Subject: Re: Gatesgarth-24.0.4 image-live fails
+To: Ferry Toth <fntoth@gmail.com>
+Cc: yocto@lists.yoctoproject.org, 
+	Richard Purdie <richard.purdie@linuxfoundation.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 2021-05-25 at 12:13 +0000, Peter Kjellerstedt wrote:
-> It seems the ”hardknott-25.0.1” tag is missing for meta-gplv2. 
-> The “yoccto-3.3.1” tag is present.
+Le mar. 25 mai 2021 =C3=A0 08:19, Ferry Toth <fntoth@gmail.com> a =C3=A9cri=
+t :
+>
+> Adding Richard and Guillaume.
 
-This was deliberate since we've been trying to step away from the 
-"poky" version numbers, I'm not sure they add much to anything.
+Hi,
 
-Is there a particular reason you were looking for those?
+it seems seems edison-image.bb sets ROOTFS as empty:
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel-edison/tree/meta-intel=
+-edison-distro/recipes-core/images/edison-image.bb#n17
 
-Cheers,
+so do_bootimg won't depend on ${PN}:do_image:${LIVE_ROOTFS_TYPE}. That
+dependency would, I think, create the folder you mentioned.
 
-Richard
+Maybe the patch wrongly assumes that if ROOTFS is empty, we shouldn't
+add a dependency on "do_image.${LIVE_ROOTFS_TYPE}" at all since It
+looks like edison-image.bb still depends on
+${PN}:do_image.${LIVE_ROOTFS_TYPE} even though ROOTFS is empty. I
+haven't looked too much into why edison-image works this way.
 
+>
+> Op 24-05-2021 om 14:39 schreef Ferry Toth:
+> > Wow, that got messed up, let me retry.
+> >
+> > Op 24-05-2021 om 14:19 schreef Ferry Toth:
+> >> Accidentally I refreshed poky and rebuilt. The image-live
+> >> (do_bootimg) fails when building hddimg with the following:
+> >>
+> > ERROR: edison-image-1.0-r0 do_bootimg: Error executing a python
+> > function in exec_python_func() autogenerated:
+> >
+> > The stack trace of python calls that resulted in this
+> > exception/failure was:
+> > File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+> >      0001:
+> >  *** 0002:do_bootimg(d)
+> >      0003:
+> > File:
+> > '/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/poky/meta/cla=
+sses/image-live.bbclass',
+> > lineno: 258, function: do_bootimg
+> >      0254:    if d.getVar("PCBIOS") =3D=3D "1":
+> >      0255:        bb.build.exec_func('build_syslinux_cfg', d)
+> >      0256:    if d.getVar("EFI") =3D=3D "1":
+> >      0257:        bb.build.exec_func('build_efi_cfg', d)
+> >  *** 0258:    bb.build.exec_func('build_hddimg', d)
+> >      0259:    bb.build.exec_func('build_iso', d)
+> >      0260:    bb.build.exec_func('create_symlinks', d)
+> >      0261:}
+> >      0262:do_bootimg[subimages] =3D "hddimg iso"
+> > File:
+> > '/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/poky/bitbake/=
+lib/bb/build.py',
+> > lineno: 256, function: exec_func
+> >      0252:    with bb.utils.fileslocked(lockfiles):
+> >      0253:        if ispython:
+> >      0254:            exec_func_python(func, d, runfile, cwd=3Dadir)
+> >      0255:        else:
+> >  *** 0256:            exec_func_shell(func, d, runfile, cwd=3Dadir)
+> >      0257:
+> >      0258:    try:
+> >      0259:        curcwd =3D os.getcwd()
+> >      0260:    except:
+> > File:
+> > '/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/poky/bitbake/=
+lib/bb/build.py',
+> > lineno: 503, function: exec_func_shell
+> >      0499:    with open(fifopath, 'r+b', buffering=3D0) as fifo:
+> >      0500:        try:
+> >      0501:            bb.debug(2, "Executing shell function %s" % func)
+> >      0502:            with open(os.devnull, 'r+') as stdin, logfile:
+> >  *** 0503:                bb.process.run(cmd, shell=3DFalse,
+> > stdin=3Dstdin, log=3Dlogfile, extrafiles=3D[(fifo,readfifo)])
+> >      0504:        except bb.process.ExecutionError as exe:
+> >      0505:            # Find the backtrace that the shell trap generate=
+d
+> >      0506:            backtrace_marker_regex =3D re.compile(r"WARNING:
+> > Backtrace \(BB generated script\)")
+> >      0507:            stdout_lines =3D (exe.stdout or "").split("\n")
+> > File:
+> > '/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/poky/bitbake/=
+lib/bb/process.py',
+> > lineno: 184, function: run
+> >      0180:        if not stderr is None:
+> >      0181:            stderr =3D stderr.decode("utf-8")
+> >      0182:
+> >      0183:    if pipe.returncode !=3D 0:
+> >  *** 0184:        raise ExecutionError(cmd, pipe.returncode, stdout,
+> > stderr)
+> >      0185:    return stdout, stderr
+> > Exception: bb.process.ExecutionError: Execution of
+> > '/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/build/tmp/wor=
+k/edison-poky-linux/edison-image/1.0-r0/temp/run.build_hddimg.256530'
+> > failed with exit code 1:
+> > mkdosfs: unable to create
+> > /home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/build/tmp/work=
+/edison-poky-linux/edison-image/1.0-r0/deploy-edison-image-image-complete/e=
+dison-image-edison-20210524113748.hddimg
+> > mkfs.fat 4.1 (2017-01-24)
+> > WARNING: exit code 1 from a shell command.
+> >
+> >> The reason is that the directory deploy-edison-image-image-complete
+> >> doesn't exist at the time mkdosfs want to write. However after
+> >> completing the remainder of image live the directory does exists.
+> >> Consequently, running bitbake a second time image-live succeeds.
+> >>
+> >> I've tried various thing including expressly creating the directory
+> >> before mkdosfs, but nothing worked. It seems I don't understand how
+> >> it is supposed to work in the first place.
+> >>
+> >> However, I managed to trace back the issue to this commit 91e4a1c1
+> >> "image-live.bbclass: optional depends when ROOTFS empty".
+> >>
+> >> Reverting this resolves the issue.
+> >>
+> >> Any idea what could be wrong?
+> >>
