@@ -1,167 +1,74 @@
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
- by mx.groups.io with SMTP id smtpd.web10.9471.1621948163991036898
+Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
+ by mx.groups.io with SMTP id smtpd.web10.9520.1621948372557623741
  for <yocto@lists.yoctoproject.org>;
- Tue, 25 May 2021 06:09:24 -0700
+ Tue, 25 May 2021 06:12:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=gHhjHYfC;
- spf=pass (domain: gmail.com, ip: 209.85.219.50, mailfrom: champagne.guillaume.c@gmail.com)
-Received: by mail-qv1-f50.google.com with SMTP id c13so14755869qvx.5
-        for <yocto@lists.yoctoproject.org>; Tue, 25 May 2021 06:09:23 -0700 (PDT)
+ dkim=pass header.i=@axis.com header.s=axis-central1 header.b=fNly1EId;
+ spf=pass (domain: axis.com, ip: 195.60.68.18, mailfrom: peter.kjellerstedt@axis.com)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=55SQWqX3LGDF5xvNoh1qck7LXGCOiKR0xhS2uTmlk/U=;
-        b=gHhjHYfCzhrxzmlZ67rlMLlk+Z4BsVxw34hGB7mQNjes8oPi391kDqnJpd3G01hJX3
-         QTvOC7uolfjHJBJDmrikiaWKzO+mrdbZvaR6V2ingLxnYvq7IHK2f3IQ7+kiYPnYqMN3
-         yxfv6UFBTxwVlWE+i+kM/xTkSoIv66tvPYdNvg42/hK+nAxFvRjLtXBSTNtu7XiXX8qc
-         s5PkyiCHqLNl3xiVNASYZvQ4VcDz/PtILrmmBkLmjbkFxjBZOfN1Yshac+QRvffh8DK/
-         fQhqTfS2TbGVWpVcvG5gjwAqRLLEk9E5KbU0EQIkvRlGwbT0pptydmUHwx4BLV7L+caq
-         7pSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=55SQWqX3LGDF5xvNoh1qck7LXGCOiKR0xhS2uTmlk/U=;
-        b=aB762xmgLxq8FizWnQbGQd+3xNLuUjtVQIAkVtFWV4RukiZSfYHpiJXFdJtvhOsxRt
-         Ieufo2nkDWk+0nEe9mUkffC6adn/aYm97VaoL0UlUPd049kRLu4+bfKqwHvVN5ZJy5e9
-         KwJhiiwW2P2mvhE9g7k5EmsRV0Djr8Yw8y0IvShzmpotZ1Zvq1Yw05Ve58XEoAI0qGH7
-         QaGSR2tZMixjTWTwj85HYE0sGW401LksL0mpxBkKzGK7nTeJgr4zg2thcysoWUYNaMY7
-         G9uJc/6LcYKOQArkfjuaG9JlyR8smc+6xA3Q3CGPK2wbF1LoTubl++2qm4r33BYTiX+b
-         qszg==
-X-Gm-Message-State: AOAM530PM4OLZCHgrJKt9ejFJp3enAaE27Lwr5MQhSU8eWG+UImzXC1p
-	k/hQ2z94tzICKFudzv2K+utH53PIwJZ3HJ0ezv4=
-X-Google-Smtp-Source: ABdhPJzwZ/ad1Tyw+WmE+QzQkP4/FjqoS9cqIjvB1aOJmbGIVQC7mgJ4d/OnbtiU+YNHYXgXxw4ppHLaGdpYNlmuwCA=
-X-Received: by 2002:a0c:f294:: with SMTP id k20mr36676004qvl.45.1621948163214;
- Tue, 25 May 2021 06:09:23 -0700 (PDT)
+  d=axis.com; q=dns/txt; s=axis-central1; t=1621948373;
+  x=1653484373;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=UAIckY9I1478XuNIkB01k1nnYRxqg+WlUbHd1KQ3e5c=;
+  b=fNly1EIdmLa+DR5Kn7fDxqVOE3GGHKW8ygG9BOarhC2uZDGtUIwwTjT8
+   s0aoAGeTuH+VSZyuBhxJ1JfOq0u80RRjMr+4XLiDAd/A8AciktDCN3uDT
+   kZwfEOpBKq5pCzhwq9IC9YKkgx03JxgFaVUrFT0kbextpFC/deuVznaxB
+   7NwJW0+LSMbRtMRy0OArHP7Bh8TpRYzakFKz0PooDhhkeIBsKD1OdIH2R
+   fFLRiVsL7hBQmwLS26HFcRmG6DzueETszGLFfiTE0f1zAP6yyYG/FAtgi
+   opXQP0xH5xRIdcXDVd6Yr5QeT1o35oem9zseV/DcX0VxJyrN0aysPhxZo
+   g==;
+From: "Peter Kjellerstedt" <peter.kjellerstedt@axis.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>, Vineela
+	<vineela.tummalapalli@intel.com>
+CC: "'yocto@lists.yoctoproject.org'" <yocto@lists.yoctoproject.org>, "Michael
+ Halstead" <mhalstead@linuxfoundation.org>
+Subject: Re: [yocto] [ANNOUNCEMENT] Yocto Project 3.3.1 (hardknott-25.0.1) is Released
+Thread-Topic: [yocto] [ANNOUNCEMENT] Yocto Project 3.3.1 (hardknott-25.0.1) is
+ Released
+Thread-Index: AddQyvpO+hVYaKnlSTmgnO7UocMWmQAk/pQA///n4YD//92NQA==
+Date: Tue, 25 May 2021 13:12:50 +0000
+Message-ID: <11f3b266de0a4120a96f32977064a7c1@XBOX03.axis.com>
+References: <BYAPR11MB33017216B14BA159AF5601E588269@BYAPR11MB3301.namprd11.prod.outlook.com>
+	 <8e289c9f6578427d85c56618de3a130d@XBOX03.axis.com>
+ <f75c8b912e10f2383159c9edac3de2a8f84cee70.camel@linuxfoundation.org>
+In-Reply-To: <f75c8b912e10f2383159c9edac3de2a8f84cee70.camel@linuxfoundation.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.0.5.60]
 MIME-Version: 1.0
-References: <2b1a204e-3c12-a955-6850-f5c2710ce529@gmail.com>
- <56b76313-e6b2-591f-5b1f-020acd40afa5@gmail.com> <6c648923-6b6c-af2c-8cb5-f40ebd9cd0db@gmail.com>
-In-Reply-To: <6c648923-6b6c-af2c-8cb5-f40ebd9cd0db@gmail.com>
-From: "Guillaume Champagne" <champagne.guillaume.c@gmail.com>
-Date: Tue, 25 May 2021 09:09:12 -0400
-Message-ID: <CAHSN6OfgL-aBYM-oB=WEJkohsV0xehaH+YJzv=mjv8PTw99Lkg@mail.gmail.com>
-Subject: Re: Gatesgarth-24.0.4 image-live fails
-To: Ferry Toth <fntoth@gmail.com>
-Cc: yocto@lists.yoctoproject.org, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Return-Path: peter.kjellerstedt@axis.com
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Le mar. 25 mai 2021 =C3=A0 08:19, Ferry Toth <fntoth@gmail.com> a =C3=A9cri=
-t :
->
-> Adding Richard and Guillaume.
-
-Hi,
-
-it seems seems edison-image.bb sets ROOTFS as empty:
-http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel-edison/tree/meta-intel=
--edison-distro/recipes-core/images/edison-image.bb#n17
-
-so do_bootimg won't depend on ${PN}:do_image:${LIVE_ROOTFS_TYPE}. That
-dependency would, I think, create the folder you mentioned.
-
-Maybe the patch wrongly assumes that if ROOTFS is empty, we shouldn't
-add a dependency on "do_image.${LIVE_ROOTFS_TYPE}" at all since It
-looks like edison-image.bb still depends on
-${PN}:do_image.${LIVE_ROOTFS_TYPE} even though ROOTFS is empty. I
-haven't looked too much into why edison-image works this way.
-
->
-> Op 24-05-2021 om 14:39 schreef Ferry Toth:
-> > Wow, that got messed up, let me retry.
-> >
-> > Op 24-05-2021 om 14:19 schreef Ferry Toth:
-> >> Accidentally I refreshed poky and rebuilt. The image-live
-> >> (do_bootimg) fails when building hddimg with the following:
-> >>
-> > ERROR: edison-image-1.0-r0 do_bootimg: Error executing a python
-> > function in exec_python_func() autogenerated:
-> >
-> > The stack trace of python calls that resulted in this
-> > exception/failure was:
-> > File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
-> >      0001:
-> >  *** 0002:do_bootimg(d)
-> >      0003:
-> > File:
-> > '/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/poky/meta/cla=
-sses/image-live.bbclass',
-> > lineno: 258, function: do_bootimg
-> >      0254:    if d.getVar("PCBIOS") =3D=3D "1":
-> >      0255:        bb.build.exec_func('build_syslinux_cfg', d)
-> >      0256:    if d.getVar("EFI") =3D=3D "1":
-> >      0257:        bb.build.exec_func('build_efi_cfg', d)
-> >  *** 0258:    bb.build.exec_func('build_hddimg', d)
-> >      0259:    bb.build.exec_func('build_iso', d)
-> >      0260:    bb.build.exec_func('create_symlinks', d)
-> >      0261:}
-> >      0262:do_bootimg[subimages] =3D "hddimg iso"
-> > File:
-> > '/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/poky/bitbake/=
-lib/bb/build.py',
-> > lineno: 256, function: exec_func
-> >      0252:    with bb.utils.fileslocked(lockfiles):
-> >      0253:        if ispython:
-> >      0254:            exec_func_python(func, d, runfile, cwd=3Dadir)
-> >      0255:        else:
-> >  *** 0256:            exec_func_shell(func, d, runfile, cwd=3Dadir)
-> >      0257:
-> >      0258:    try:
-> >      0259:        curcwd =3D os.getcwd()
-> >      0260:    except:
-> > File:
-> > '/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/poky/bitbake/=
-lib/bb/build.py',
-> > lineno: 503, function: exec_func_shell
-> >      0499:    with open(fifopath, 'r+b', buffering=3D0) as fifo:
-> >      0500:        try:
-> >      0501:            bb.debug(2, "Executing shell function %s" % func)
-> >      0502:            with open(os.devnull, 'r+') as stdin, logfile:
-> >  *** 0503:                bb.process.run(cmd, shell=3DFalse,
-> > stdin=3Dstdin, log=3Dlogfile, extrafiles=3D[(fifo,readfifo)])
-> >      0504:        except bb.process.ExecutionError as exe:
-> >      0505:            # Find the backtrace that the shell trap generate=
-d
-> >      0506:            backtrace_marker_regex =3D re.compile(r"WARNING:
-> > Backtrace \(BB generated script\)")
-> >      0507:            stdout_lines =3D (exe.stdout or "").split("\n")
-> > File:
-> > '/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/poky/bitbake/=
-lib/bb/process.py',
-> > lineno: 184, function: run
-> >      0180:        if not stderr is None:
-> >      0181:            stderr =3D stderr.decode("utf-8")
-> >      0182:
-> >      0183:    if pipe.returncode !=3D 0:
-> >  *** 0184:        raise ExecutionError(cmd, pipe.returncode, stdout,
-> > stderr)
-> >      0185:    return stdout, stderr
-> > Exception: bb.process.ExecutionError: Execution of
-> > '/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/build/tmp/wor=
-k/edison-poky-linux/edison-image/1.0-r0/temp/run.build_hddimg.256530'
-> > failed with exit code 1:
-> > mkdosfs: unable to create
-> > /home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/build/tmp/work=
-/edison-poky-linux/edison-image/1.0-r0/deploy-edison-image-image-complete/e=
-dison-image-edison-20210524113748.hddimg
-> > mkfs.fat 4.1 (2017-01-24)
-> > WARNING: exit code 1 from a shell command.
-> >
-> >> The reason is that the directory deploy-edison-image-image-complete
-> >> doesn't exist at the time mkdosfs want to write. However after
-> >> completing the remainder of image live the directory does exists.
-> >> Consequently, running bitbake a second time image-live succeeds.
-> >>
-> >> I've tried various thing including expressly creating the directory
-> >> before mkdosfs, but nothing worked. It seems I don't understand how
-> >> it is supposed to work in the first place.
-> >>
-> >> However, I managed to trace back the issue to this commit 91e4a1c1
-> >> "image-live.bbclass: optional depends when ROOTFS empty".
-> >>
-> >> Reverting this resolves the issue.
-> >>
-> >> Any idea what could be wrong?
-> >>
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBSaWNoYXJkIFB1cmRpZSA8cmlj
+aGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZz4NCj4gU2VudDogZGVuIDI1IG1haiAyMDIx
+IDE0OjQ0DQo+IFRvOiBQZXRlciBLamVsbGVyc3RlZHQgPHBldGVyLmtqZWxsZXJzdGVkdEBheGlz
+LmNvbT47IFZpbmVlbGENCj4gPHZpbmVlbGEudHVtbWFsYXBhbGxpQGludGVsLmNvbT4NCj4gQ2M6
+ICd5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnJyA8eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0
+Lm9yZz47IE1pY2hhZWwNCj4gSGFsc3RlYWQgPG1oYWxzdGVhZEBsaW51eGZvdW5kYXRpb24ub3Jn
+Pg0KPiBTdWJqZWN0OiBSZTogW3lvY3RvXSBbQU5OT1VOQ0VNRU5UXSBZb2N0byBQcm9qZWN0IDMu
+My4xIChoYXJka25vdHQtMjUuMC4xKQ0KPiBpcyBSZWxlYXNlZA0KPiANCj4gT24gVHVlLCAyMDIx
+LTA1LTI1IGF0IDEyOjEzICswMDAwLCBQZXRlciBLamVsbGVyc3RlZHQgd3JvdGU6DQo+ID4gSXQg
+c2VlbXMgdGhlIOKAnWhhcmRrbm90dC0yNS4wLjHigJ0gdGFnIGlzIG1pc3NpbmcgZm9yIG1ldGEt
+Z3BsdjIuDQo+ID4gVGhlIOKAnHlvY2N0by0zLjMuMeKAnSB0YWcgaXMgcHJlc2VudC4NCj4gDQo+
+IFRoaXMgd2FzIGRlbGliZXJhdGUgc2luY2Ugd2UndmUgYmVlbiB0cnlpbmcgdG8gc3RlcCBhd2F5
+IGZyb20gdGhlDQo+ICJwb2t5IiB2ZXJzaW9uIG51bWJlcnMsIEknbSBub3Qgc3VyZSB0aGV5IGFk
+ZCBtdWNoIHRvIGFueXRoaW5nLg0KPiANCj4gSXMgdGhlcmUgYSBwYXJ0aWN1bGFyIHJlYXNvbiB5
+b3Ugd2VyZSBsb29raW5nIGZvciB0aG9zZT8NCg0KV2VsbCwgdGhvc2UgYXJlIHRoZSBvbmVzIHdl
+IGhhdmUgdHJhZGl0aW9uYWxseSBiZWVuIHVzaW5nLiBUaGUgYmVuZWZpdCBJIHNlZSANCndpdGgg
+dGhlbSBhcmUgdGhhdCB0aGV5IGNvbnRhaW4gdGhlIHJlbGVhc2UgbmFtZS4gRm9yIG1lIGFzIGEg
+dXNlciwgaXQgaXMgbXVjaCANCmVhc2llciB0byBzZWUgYW5kIHJlZmVyIHRvICJoYXJka25vdHQt
+c29tZXRoaW5nLjEiIHRoYW4gInlvY3RvLTMuMy4xIi4gSS5lLiwgDQpJIGRvbid0IGhhdmUgYSBy
+ZWxhdGlvbiB0byB0aGUgIjI1LjAiIG9yICIzLjMiIHBhcnQsIGJ1dCB0byB0aGUgcmVsZWFzZSBu
+YW1lLiANCldlIHR5cGljYWxseSBvbmx5IHRhbGsgYWJvdXQgImhhcmRrbm90dCIgb3IgInRoZSBz
+ZWNvbmQgaGFyZGtub3R0IHJlbGVhc2UiLiANCg0KVGhhdCBzYWlkLCBhIHRhZyBzdWNoIGFzICJ5
+b2N0by1oYXJka25vdHQtMy4zLjEiIG9yICJoYXJka25vdHQtMy4zLjEiIHdvdWxkIA0KZnVsZmls
+bCB0aGUgc2FtZSBwcm9wZXJ0aWVzIGFzICJoYXJka25vdHQtMjUuMC4xIiwgdGhvdWdoIHRoZSBv
+bmUgd2l0aG91dCANCnRoZSAieW9jdG8tIiBwcmVmaXggaXMgbW9yZSBzdWl0YWJsZSB3aGVuIHRh
+YiBjb21wbGV0aW5nLCBlLmcuLCANCmBnaXQgbG9nIGhhcmRrbm90dC0zLjMuLmhhcmRrbm90dC0z
+LjMuMWAsIHNvIHRoYXQgaXMgdGhlIG9uZSBJIHdvdWxkIHVzZSBpZiANCml0IHdhcyB1cCB0byBt
+ZS4gOykNCg0KPiBDaGVlcnMsDQo+IA0KPiBSaWNoYXJkDQoNCi8vUGV0ZXINCg0K
