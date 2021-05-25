@@ -1,34 +1,35 @@
 Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
- by mx.groups.io with SMTP id smtpd.web09.8825.1621944794927045068
+ by mx.groups.io with SMTP id smtpd.web12.8735.1621945068998464248
  for <yocto@lists.yoctoproject.org>;
- Tue, 25 May 2021 05:13:16 -0700
+ Tue, 25 May 2021 05:17:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@axis.com header.s=axis-central1 header.b=L9b/9Nc2;
+ dkim=fail reason="signature has expired" header.i=@axis.com header.s=axis-central1 header.b=hGyOdzGL;
  spf=pass (domain: axis.com, ip: 195.60.68.18, mailfrom: peter.kjellerstedt@axis.com)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1621944795;
-  x=1653480795;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1621945069;
+  x=1653481069;
   h=from:to:cc:subject:date:message-id:references:
    in-reply-to:mime-version;
-  bh=L975fqRMUUrUym7x0cdJXOk5iXwXlyabxCIHGwy4HQE=;
-  b=L9b/9Nc2i5vDhiNKNlSgZDvFGnWtAGcyKOhb82v61rseu2+EnhQVhu4h
-   8MAOzPFOxOq2wY4MDk2NrnEGq4MolAbi9RT2EiK4q7SQt5CgHXLGhzqwN
-   MZ8FBzaWdHgOWA/ss26xVG8bvBagEmv39dwaE6GWCDzL6DOuf4zJjg5pO
-   IgW5ilFYhnekxobY0LWpGMFJA4vCMsrSecZCchfP2WrA2Z/5ETskXQ95s
-   WlosFnIvp1DZCU6Cd+W+XDXLEqTSLSojM9IETpJeX9jO6c/Asqm9mDXRz
-   zk4OySXGELZ4hUEsxJOp6fXJmc+8Jm0sokKEFShEtCf+J1D/501osFzLF
-   A==;
+  bh=T7s6f/zo7xWwmzNqaYqjDyGrFSIG0Yo2U8lUKj24WjU=;
+  b=hGyOdzGLIs0rNfo1pK/guEoz1exLP/sv3I2IGwYShnkcrn39tFzjyaii
+   sq6567uNQeGyT4Rgq0NaoF7IGrQ0z9WV7iMHNJYxLlytSPaIuIaVwXgN+
+   h3vzOoEuGm8+Bh4z6tAjRqTeXkYXrNtFIf83nwLkiega50a1NFHr0L3zs
+   zK1vzpFK41b7jhHxIFwJDxbvcMCjmxkZucAVufBs3ljP3DeNNWt/+zaXV
+   OQjhAIE1C3jDmLVKm32025n3Ggv85dkl02gL17avOTxWXe82Wp23/aiIb
+   hOtdkHOzLWnkXPqw3HoqhGiVlq01R9sY1fvU46HU3fSM/h9BWyXSjHKxv
+   Q==;
 From: "Peter Kjellerstedt" <peter.kjellerstedt@axis.com>
 To: Vineela <vineela.tummalapalli@intel.com>
 CC: "'yocto@lists.yoctoproject.org'" <yocto@lists.yoctoproject.org>
-Subject: Re: [ANNOUNCEMENT] Yocto Project 3.3.1 (hardknott-25.0.1) is Released
-Thread-Topic: [ANNOUNCEMENT] Yocto Project 3.3.1 (hardknott-25.0.1) is
+Subject: Re: [yocto] [ANNOUNCEMENT] Yocto Project 3.3.1 (hardknott-25.0.1) is Released
+Thread-Topic: [yocto] [ANNOUNCEMENT] Yocto Project 3.3.1 (hardknott-25.0.1) is
  Released
-Thread-Index: AddQyvpO+hVYaKnlSTmgnO7UocMWmQAk/pQA
-Date: Tue, 25 May 2021 12:13:11 +0000
-Message-ID: <8e289c9f6578427d85c56618de3a130d@XBOX03.axis.com>
+Thread-Index: AddQyvpO+hVYaKnlSTmgnO7UocMWmQAk/pQAAAA8ULA=
+Date: Tue, 25 May 2021 12:17:47 +0000
+Message-ID: <6634473a772c49d5a98d068d06340fab@XBOX03.axis.com>
 References: <BYAPR11MB33017216B14BA159AF5601E588269@BYAPR11MB3301.namprd11.prod.outlook.com>
-In-Reply-To: <BYAPR11MB33017216B14BA159AF5601E588269@BYAPR11MB3301.namprd11.prod.outlook.com>
+ <16824E32EA2689C9.16023@lists.yoctoproject.org>
+In-Reply-To: <16824E32EA2689C9.16023@lists.yoctoproject.org>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -37,23 +38,39 @@ x-originating-ip: [10.0.5.60]
 MIME-Version: 1.0
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_8e289c9f6578427d85c56618de3a130dXBOX03axiscom_"
+	boundary="_000_6634473a772c49d5a98d068d06340fabXBOX03axiscom_"
 
---_000_8e289c9f6578427d85c56618de3a130dXBOX03axiscom_
+--_000_6634473a772c49d5a98d068d06340fabXBOX03axiscom_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+
+And I just noticed that the "hardknott-25.0.1" tag is missing for poky as w=
+ell.
+
+//Peter
+
+From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Behalf=
+ Of Peter Kjellerstedt
+Sent: den 25 maj 2021 14:13
+To: Vineela <vineela.tummalapalli@intel.com>
+Cc: 'yocto@lists.yoctoproject.org' <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] [ANNOUNCEMENT] Yocto Project 3.3.1 (hardknott-25.0.1) =
+is Released
 
 It seems the "hardknott-25.0.1" tag is missing for meta-gplv2. The "yoccto-=
 3.3.1" tag is present.
 
 //Peter
 
-From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Behalf=
- Of Vineela
+From: yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org> <yo=
+cto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org>> On Behalf =
+Of Vineela
 Sent: den 25 maj 2021 00:57
 To: 'yocto-announce@lists.yoctoproject.org' <yocto-announce@lists.yoctoproj=
-ect.org>; 'yocto@lists.yoctoproject.org' <yocto@lists.yoctoproject.org>; 'y=
-octo-request@eclists.intel.com' <yocto-request@eclists.intel.com>
+ect.org<mailto:yocto-announce@lists.yoctoproject.org>>; 'yocto@lists.yoctop=
+roject.org' <yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.o=
+rg>>; 'yocto-request@eclists.intel.com' <yocto-request@eclists.intel.com<ma=
+ilto:yocto-request@eclists.intel.com>>
 Subject: [yocto] [ANNOUNCEMENT] Yocto Project 3.3.1 (hardknott-25.0.1) is R=
 eleased
 
@@ -396,7 +413,7 @@ docs: replace anchor links
 sdk-manual: fix typo
 bitbake: bitbake: Update version to 1.50.0 stable release series
 
---_000_8e289c9f6578427d85c56618de3a130dXBOX03axiscom_
+--_000_6634473a772c49d5a98d068d06340fabXBOX03axiscom_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -461,6 +478,36 @@ div.WordSection1
 ak-word">
 <div class=3D"WordSection1">
 <p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#943634;mso-fare=
+ast-language:EN-US">And I just noticed that
+</span><span lang=3D"EN-US" style=3D"color:#943634;mso-fareast-language:EN-=
+US">the &#8221;hardknott-25.0.1&#8221; tag
+</span><span lang=3D"EN-US" style=3D"color:#943634;mso-fareast-language:EN-=
+US">is missing for poky as well.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#943634;mso-fare=
+ast-language:EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#943634;mso-fare=
+ast-language:EN-US">//Peter<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#943634;mso-fare=
+ast-language:EN-US"><o:p>&nbsp;</o:p></span></p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0cm 0cm 0cm =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=
+=3D"EN-US"> yocto@lists.yoctoproject.org &lt;yocto@lists.yoctoproject.org&g=
+t;
+<b>On Behalf Of </b>Peter Kjellerstedt<br>
+<b>Sent:</b> den 25 maj 2021 14:13<br>
+<b>To:</b> Vineela &lt;vineela.tummalapalli@intel.com&gt;<br>
+<b>Cc:</b> 'yocto@lists.yoctoproject.org' &lt;yocto@lists.yoctoproject.org&=
+gt;<br>
+<b>Subject:</b> Re: [yocto] [ANNOUNCEMENT] Yocto Project 3.3.1 (hardknott-2=
+5.0.1) is Released<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#943634;mso-fare=
 ast-language:EN-US">It seems the &#8221;hardknott-25.0.1&#8221; tag is miss=
 ing for meta-gplv2. The &#8220;yoccto-3.3.1&#8221; tag is present.<o:p></o:=
 p></span></p>
@@ -476,14 +523,17 @@ ast-language:EN-US"><o:p>&nbsp;</o:p></span></p>
 <div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
 0cm 0cm">
 <p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=
-=3D"EN-US"> yocto@lists.yoctoproject.org &lt;yocto@lists.yoctoproject.org&g=
-t;
+=3D"EN-US"> <a href=3D"mailto:yocto@lists.yoctoproject.org">
+yocto@lists.yoctoproject.org</a> &lt;<a href=3D"mailto:yocto@lists.yoctopro=
+ject.org">yocto@lists.yoctoproject.org</a>&gt;
 <b>On Behalf Of </b>Vineela<br>
 <b>Sent:</b> den 25 maj 2021 00:57<br>
-<b>To:</b> 'yocto-announce@lists.yoctoproject.org' &lt;yocto-announce@lists=
-.yoctoproject.org&gt;; 'yocto@lists.yoctoproject.org' &lt;yocto@lists.yocto=
-project.org&gt;; 'yocto-request@eclists.intel.com' &lt;yocto-request@eclist=
-s.intel.com&gt;<br>
+<b>To:</b> 'yocto-announce@lists.yoctoproject.org' &lt;<a href=3D"mailto:yo=
+cto-announce@lists.yoctoproject.org">yocto-announce@lists.yoctoproject.org<=
+/a>&gt;; 'yocto@lists.yoctoproject.org' &lt;<a href=3D"mailto:yocto@lists.y=
+octoproject.org">yocto@lists.yoctoproject.org</a>&gt;;
+ 'yocto-request@eclists.intel.com' &lt;<a href=3D"mailto:yocto-request@ecli=
+sts.intel.com">yocto-request@eclists.intel.com</a>&gt;<br>
 <b>Subject:</b> [yocto] [ANNOUNCEMENT] Yocto Project 3.3.1 (hardknott-25.0.=
 1) is Released<o:p></o:p></span></p>
 </div>
@@ -1118,7 +1168,8 @@ bitbake documentation<o:p></o:p></span></p>
 n to 1.50.0 stable release series<o:p></o:p></span></p>
 </div>
 </div>
+</div>
 </body>
 </html>
 
---_000_8e289c9f6578427d85c56618de3a130dXBOX03axiscom_--
+--_000_6634473a772c49d5a98d068d06340fabXBOX03axiscom_--
