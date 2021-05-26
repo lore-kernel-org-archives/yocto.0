@@ -1,116 +1,52 @@
-Subject: Re: using grpc fails with linker error: file in wrong format
-To: yocto@lists.yoctoproject.org
-From: "Juergen Landwehr" <juergen.landwehr@gmx.de>
-X-Originating-Location: Stuttgart, Baden-Württemberg, DE (141.113.11.34)
-X-Originating-Platform: Mac Firefox 88
-User-Agent: GROUPS.IO Web Poster
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web09.7372.1622035146879159487
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 26 May 2021 06:19:07 -0700
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=fail (domain: windriver.com, ip: 198.145.29.25, mailfrom: randy.macleod@windriver.com)
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id B6C7F38C06EA
+	for <yocto@yoctoproject.org>; Wed, 26 May 2021 13:19:05 +0000 (UTC)
+Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.corp.ad.wrs.com [147.11.82.252])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 14QDJ4t9026698
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 26 May 2021 06:19:04 -0700
+Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Wed, 26 May 2021 06:19:03 -0700
+Received: from vme.wrs.com (172.25.44.2) by ala-exchng01.corp.ad.wrs.com
+ (147.11.82.252) with Microsoft SMTP Server id 15.1.2242.10 via Frontend
+ Transport; Wed, 26 May 2021 06:19:03 -0700
+From: "Randy MacLeod" <randy.macleod@windriver.com>
+To: <yocto@yoctoproject.org>
+Subject: [meta-parsec][PATCH] Correct typo: crago-bitbake
+Date: Wed, 26 May 2021 09:19:02 -0400
+Message-ID: <20210526131903.158963-1-Randy.MacLeod@windriver.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Date: Wed, 26 May 2021 06:02:59 -0700
-References: <d11af7fd-15d1-f0a6-e5c1-9545704f7f6c@gmail.com>
-In-Reply-To: <d11af7fd-15d1-f0a6-e5c1-9545704f7f6c@gmail.com>
-Message-ID: <2028.1622034179428409155@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="TrMQRJ8NrGgBUlGLlU5V"
-
---TrMQRJ8NrGgBUlGLlU5V
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain
 Content-Transfer-Encoding: quoted-printable
 
-Hello Khem,
+Signed-off-by: Randy MacLeod <Randy.MacLeod@windriver.com>
+---
+ meta-parsec/README.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-we use CMake as build system.
+diff --git a/meta-parsec/README.md b/meta-parsec/README.md
+index a2736b6..6d938a6 100644
+--- a/meta-parsec/README.md
++++ b/meta-parsec/README.md
+@@ -75,7 +75,7 @@ to ensure maximum reproducibility.
+ versions of parsec recipes.
+ https://github.com/meta-rust/cargo-bitbake
+=20
+-  When you have crago-bitbake built:
++  When you have cargo-bitbake built:
+ 1. Checkout the required version of parsec repository.
+ 2. Run cargo-bitbake inside the repository. It will produce a BB file.
+ 3. Create a new include file with SRC_URI and LIC_FILES_CHKSUM from the =
+BB file.
+--=20
+2.27.0
 
-I checked the "sysdig" recipe and they defined both the "grpc" and "grpc-n=
-ative" (same with protbuf) in the DEPENDS variable like so:
-
-DEPENDS +=3D "... grpc grpc-native protobuf protobuf-native ..."
-If I do this in my recipe I get the following error:
-*18:55:09*  -- Found Protobuf: /data/jenkins/workspace/e0_mbient_yocto_mbi=
-ent_manifests_master_downstream/build/tmp/work/corei7-64-mbient-linux/token=
-master-client/git-r0/recipe-sysroot/usr/lib/libprotobuf.so;-lpthread (found=
- version "3.12.3")=20
-*18:55:09*  CMake Error at /data/jenkins/workspace/e0_mbient_yocto_mbient_=
-manifests_master_downstream/build/tmp/work/corei7-64-mbient-linux/tokenmast=
-er-client/git-r0/recipe-sysroot/usr/lib/cmake/grpc/gRPCTargets.cmake:197 (m=
-essage):
-*18:55:09*    The imported target "gRPC::grpc_cpp_plugin" references the f=
-ile
-*18:55:09*  
-*18:55:09*       "/data/jenkins/workspace/e0_mbient_yocto_mbient_manifests=
-_master_downstream/build/tmp/work/corei7-64-mbient-linux/tokenmaster-client=
-/git-r0/recipe-sysroot/usr/bin/grpc_cpp_plugin"
-*18:55:09*  
-*18:55:09*    but this file does not exist.  Possible reasons include:
-which is correct as the directory ".../ *recipe-sysroot* /usr/bin" does no=
-t contain any grpc plugins. However the directory ".../ *recipe-sysroot-nat=
-ive* /usr/bin" does (due to the dependency to grpc-native).
-
-It seems to work for sysdig, as they do not use "find_package(Protobuf)" o=
-r "find_package("gRPC") to detect gRPC related libraries/programs but use s=
-ome custom code.
-
-So it looks like:
-
-1) If I use "DEPENDS +=3D "... grpc-native protobuf-native ..." I am able =
-to generate grpc stubs and I am also able to successfully build my componen=
-t, but only, if the build-host and target-host are compatible =3D> NO CROSS=
- COMPING
-2) If I use "DEPENDS +=3D "... grpc grpc-native protobuf protobuf-native .=
-.." CMake immediately complains, that some the grpc plugins are missing
-3) Using RDEPENDS seems to have no effect
-
-So it seems the only way to make this work is to use "DEPENDS +=3D grpc gr=
-pc-native ...." and write some custom CMake code to detect grpc related lib=
-raries (e.g. libgrpc++.so) and programs (e.g. protoc, grpc_cpp_plugin).
-
-But again, I am new to Yocto and still hope, that there is an easier way?
-
---TrMQRJ8NrGgBUlGLlU5V
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello Khem, <br /><br />we use CMake as build system. <br /><br />I checked=
- the "sysdig" recipe and they defined both the "grpc" and "grpc-native" (sa=
-me with protbuf) in the DEPENDS variable like so: <br /><br />
-<pre style=3D"background-color: #ffffff; color: #080808; font-family: 'Jet=
-Brains Mono',monospace; font-size: 12,0pt;">DEPENDS +=3D "... grpc grpc-nat=
-ive protobuf protobuf-native ..."</pre>
-<br />If I do this in my recipe I get the following error: <br />
-<pre class=3D"console-output"><span class=3D"timestamp"><strong>18:55:09</=
-strong> </span> -- Found Protobuf: /data/jenkins/workspace/e0_mbient_yocto_=
-mbient_manifests_master_downstream/build/tmp/work/corei7-64-mbient-linux/to=
-kenmaster-client/git-r0/recipe-sysroot/usr/lib/libprotobuf.so;-lpthread (fo=
-und version "3.12.3")=20
-<span class=3D"timestamp"><strong>18:55:09</strong> </span> CMake Error at=
- /data/jenkins/workspace/e0_mbient_yocto_mbient_manifests_master_downstream=
-/build/tmp/work/corei7-64-mbient-linux/tokenmaster-client/git-r0/recipe-sys=
-root/usr/lib/cmake/grpc/gRPCTargets.cmake:197 (message):
-<span class=3D"timestamp"><strong>18:55:09</strong> </span>   The imported=
- target "gRPC::grpc_cpp_plugin" references the file
-<span class=3D"timestamp"><strong>18:55:09</strong> </span>=20
-<span class=3D"timestamp"><strong>18:55:09</strong> </span>      "/data/je=
-nkins/workspace/e0_mbient_yocto_mbient_manifests_master_downstream/build/tm=
-p/work/corei7-64-mbient-linux/tokenmaster-client/git-r0/recipe-sysroot/usr/=
-bin/grpc_cpp_plugin"
-<span class=3D"timestamp"><strong>18:55:09</strong> </span>=20
-<span class=3D"timestamp"><strong>18:55:09</strong> </span>   but this fil=
-e does not exist.  Possible reasons include:
-<span class=3D"timestamp"></span></pre>
-which is correct as the directory ".../<strong>recipe-sysroot</strong>/usr=
-/bin" does not contain any grpc plugins. However the directory ".../<strong=
->recipe-sysroot-native</strong>/usr/bin" does (due to the dependency to grp=
-c-native).<br /><br />It seems to work for sysdig, as they do not use "find=
-_package(Protobuf)" or "find_package("gRPC") to detect gRPC related librari=
-es/programs but use some custom code. <br /><br />So it looks like: <br /><=
-br />1) If I use "DEPENDS +=3D "... grpc-native protobuf-native ..." I am a=
-ble to generate grpc stubs and I am also able to successfully build my comp=
-onent, but only, if the build-host and target-host are compatible =3D&gt; N=
-O CROSS COMPING<br />2) If I use "DEPENDS +=3D "... grpc grpc-native protob=
-uf protobuf-native ..." CMake immediately complains, that some the grpc plu=
-gins are missing <br />3) Using RDEPENDS seems to have no effect <br /><br =
-/>So it seems the only way to make this work is to use "DEPENDS +=3D grpc g=
-rpc-native ...." and write some custom CMake code to detect grpc related li=
-braries (e.g. libgrpc++.so) and programs (e.g. protoc, grpc_cpp_plugin).<br=
- /><br />But again, I am new to Yocto and still hope, that there is an easi=
-er way?
-
---TrMQRJ8NrGgBUlGLlU5V--
