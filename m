@@ -1,44 +1,44 @@
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
- by mx.groups.io with SMTP id smtpd.web09.9278.1622043409590686296
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+ by mx.groups.io with SMTP id smtpd.web11.9331.1622043414841320313
  for <yocto@lists.yoctoproject.org>;
- Wed, 26 May 2021 08:36:49 -0700
+ Wed, 26 May 2021 08:36:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@verdurent-com.20150623.gappssmtp.com header.s=20150623 header.b=CaVvR8oF;
- spf=none, err=SPF record not found (domain: verdurent.com, ip: 209.85.216.51, mailfrom: amit.kucheria@verdurent.com)
-Received: by mail-pj1-f51.google.com with SMTP id o17-20020a17090a9f91b029015cef5b3c50so535743pjp.4
-        for <yocto@lists.yoctoproject.org>; Wed, 26 May 2021 08:36:49 -0700 (PDT)
+ dkim=pass header.i=@verdurent-com.20150623.gappssmtp.com header.s=20150623 header.b=NENSU57u;
+ spf=none, err=SPF record not found (domain: verdurent.com, ip: 209.85.214.170, mailfrom: amit.kucheria@verdurent.com)
+Received: by mail-pl1-f170.google.com with SMTP id h12so795341plf.11
+        for <yocto@lists.yoctoproject.org>; Wed, 26 May 2021 08:36:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=verdurent-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=9nbdHyOLNFwuTj/87Ju2CAb6bmKskfJN1LcFu2PdAUY=;
-        b=CaVvR8oFONTNAbj7YC9VmHBq2YKieJww9ludIOZlldfuJ2REU07faVmGT18GZRIWM1
-         AFojZlzAJ/PmpEtAeL+TqHjd4h6KQPR2NBwWZHzGbMQhejre2zomhdJLEz9cQqM/XRqX
-         epv+mmTVevTPuFPBjSuuk69Ju53UvIiqgzxUjpHVy6oQltCp2z038CwhhJmprZrPmnGB
-         ZBravgqzFf76Yz/s+oSVeHpuuCH/y+4AoqQhRAHrUu/JvLzlLXFzjjwSa5+M5KpCR6bN
-         hLZdNVFkahcrOSiBLXcdQUItbuwLoCwa1SAM6o3Z/mVuHHuiwbXQQuIGVzR5bOkwk+vQ
-         TLWQ==
+        bh=vpTQufneovlSeo/vHqL/sQRHBsmX4Wp20P68K5NbexE=;
+        b=NENSU57uI5OaKeR/eA+gj1N1ImAOfvnK6/mI/OWZaRTvjNuLKMI8UiwjT0ltpYWXYs
+         HWjSCLbWfDDZOAcwVJuc/e1qc7ebHlnOpLh0Hd4uq6APoyP/Pn3pEW0QN+tgScaD+BhF
+         KxuBZHOjGypw3AowD3JhCKD+tlt+LdUywaql9RoczEwCCGXtnn8ToOhiO3egfaRnWqQI
+         +YjZbSsYCFHWJsMpSzATlmmH6Kom2cNlGDZ6wdFT+X6FNgtxvuMcljckBPcsXrNSKdrB
+         tAPTvj77HF2fMouo6YCcSNA2TAZbrTS5uUbWWsCzG76gmePUjiFE7vcuDp8G8y9qmZ6u
+         FBjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=9nbdHyOLNFwuTj/87Ju2CAb6bmKskfJN1LcFu2PdAUY=;
-        b=PnDLOoN4QE5DGvFjOja+xO9bn0HtzKd+7JyO4Du2EH4F5c68EW86ITYQJyQbPllyqV
-         ZgoNtXjtH9CuCDrsUgaEidYcSqmezzQ4SljV78IVivE33MLLBwLV2P0gqaupN3swFPKo
-         s0X4ZR13gdtg3n/YrlmeeMK/GZqjw+hjtbN4UJie64KUlsN1yQ8nbnEjs1l4p5GXcgo1
-         kXbYP/2UuRvw6fHpMec0kdilcYAYTqdo7h4mBJPfliRRGl23Ol46PYuSKJUqSk5TtxFN
-         X0Iz3okOzmrMi5jvu7rLqg74sw30gt1mC0TqKo0rlgZZBfRPJHKAC3QH0uR4h7ox+x5W
-         RQhA==
-X-Gm-Message-State: AOAM5318Gqb1QSZeq8SjXvtAUlDG9ppxWJAbUd7bC8epcFNGcCFi6Cs/
-	J7yr17xIiWqA0mZ10gcSiI2pR0UQI4Y6IA==
-X-Google-Smtp-Source: ABdhPJwaNcmSV08UA9wvZz1nAIrODdw45ee0/IKsFXv4T/cLHfqnabGBDxL0OnQJqogbPrtGfPPtQA==
-X-Received: by 2002:a17:90a:3fca:: with SMTP id u10mr4579606pjm.76.1622043408870;
-        Wed, 26 May 2021 08:36:48 -0700 (PDT)
+        bh=vpTQufneovlSeo/vHqL/sQRHBsmX4Wp20P68K5NbexE=;
+        b=hQFqz6pX3Ui/poILB9Daogf+ySj81+uzU71rl0VlZ4hNerACTXsh0ErFKb5jWvPM9y
+         ORIpQTDtz2rvpKlafVRg5qJfkWMgcQNZd8+dWiUM7DVxjJFlzg1U2KkyfsLwDEVKg5Xn
+         ThnlOg81aZoUKms75EJLn8F7iWVcQ4pLwcZU5aYU7NZA/WGRdmW2S2wzr6ULgTyWcWTe
+         GePe3yqGLDCJ1h5gezNqM0HIbXIl1TAq4t02AP3GvZHtMKkOa/+hT7rtZK6tJPKNkBTs
+         /GVnRE44wJd6TkYNSS//Bs7qidh9wDDnCvtLwSW4nVilbKmDkvQbjSrZ8TtyE4JpGOzX
+         BHyg==
+X-Gm-Message-State: AOAM533CnkzOmVK2igl+3Y+gs0ZEEe3gAAZ1ypu9TvUZBgk77qZe3cwJ
+	D4NaT0mvIbp79NxlwOKyiBgsVZHvt0wGJg==
+X-Google-Smtp-Source: ABdhPJxqwTd4azYaa6yMIbbDt1AG0H3ddTq0VZtww4NT5kW+67OetXYPw/1eJE/uqWY/hmxCRK+rsQ==
+X-Received: by 2002:a17:902:7596:b029:f3:d01e:d316 with SMTP id j22-20020a1709027596b02900f3d01ed316mr36664522pll.14.1622043414077;
+        Wed, 26 May 2021 08:36:54 -0700 (PDT)
 Return-Path: <amit.kucheria@verdurent.com>
 Received: from localhost ([103.208.71.66])
-        by smtp.gmail.com with ESMTPSA id gd2sm1719226pjb.16.2021.05.26.08.36.47
+        by smtp.gmail.com with ESMTPSA id u5sm2740121pfi.179.2021.05.26.08.36.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 May 2021 08:36:48 -0700 (PDT)
+        Wed, 26 May 2021 08:36:53 -0700 (PDT)
 From: amit.kucheria@verdurent.com
 To: yocto@lists.yoctoproject.org,
 	wojciech.zmuda@huawei.com,
@@ -46,9 +46,9 @@ To: yocto@lists.yoctoproject.org,
 	naveen.kumar.saini@intel.com,
 	zbigniew.bodek@huawei.com
 Cc: Amit Kucheria <amit.kucheria.ext@huawei.com>
-Subject: [meta-zephyr][PATCH 4/5] zephyr-websocket-client: Add recipe for websocket client
-Date: Wed, 26 May 2021 21:06:22 +0530
-Message-Id: <fc8857e23119f2c47ca0f3e3badfa3dcc7fbf320.1621953714.git.amit.kucheria.ext@huawei.com>
+Subject: [meta-zephyr][PATCH 5/5] zephyr-mqtt-publisher: Add recipe for mqtt publisher
+Date: Wed, 26 May 2021 21:06:23 +0530
+Message-Id: <890cf78e498f6993530f813c3ffd185e61711748.1621953714.git.amit.kucheria.ext@huawei.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <cover.1621953714.git.amit.kucheria.ext@huawei.com>
 References: <cover.1621953714.git.amit.kucheria.ext@huawei.com>
@@ -61,19 +61,19 @@ This sample application provides an example of using the the MBEDTLS library.
 
 Signed-off-by: Amit Kucheria <amit.kucheria.ext@huawei.com>
 ---
- recipes-kernel/zephyr-kernel/zephyr-websocket-client.bb | 5 +++++
+ recipes-kernel/zephyr-kernel/zephyr-mqtt-publisher.bb | 5 +++++
  1 file changed, 5 insertions(+)
- create mode 100644 recipes-kernel/zephyr-kernel/zephyr-websocket-client.bb
+ create mode 100644 recipes-kernel/zephyr-kernel/zephyr-mqtt-publisher.bb
 
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-websocket-client.bb b/recipes-kernel/zephyr-kernel/zephyr-websocket-client.bb
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-mqtt-publisher.bb b/recipes-kernel/zephyr-kernel/zephyr-mqtt-publisher.bb
 new file mode 100644
-index 000000000000..428f75e18adb
+index 000000000000..b4e306742e44
 --- /dev/null
-+++ b/recipes-kernel/zephyr-kernel/zephyr-websocket-client.bb
++++ b/recipes-kernel/zephyr-kernel/zephyr-mqtt-publisher.bb
 @@ -0,0 +1,5 @@
 +include zephyr-sample.inc
 +
-+ZEPHYR_SRC_DIR = "${S}/samples/net/sockets/websocket_client"
++ZEPHYR_SRC_DIR = "${S}/samples/net/mqtt_publisher"
 +
 +ZEPHYR_MODULES_append = "\;${S}/modules/lib/mbedtls"
 -- 
