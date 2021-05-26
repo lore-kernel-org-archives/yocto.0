@@ -1,81 +1,91 @@
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
- by mx.groups.io with SMTP id smtpd.web11.9331.1622043414841320313
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+ by mx.groups.io with SMTP id smtpd.web10.509.1622050407394305989
  for <yocto@lists.yoctoproject.org>;
- Wed, 26 May 2021 08:36:54 -0700
+ Wed, 26 May 2021 10:33:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@verdurent-com.20150623.gappssmtp.com header.s=20150623 header.b=NENSU57u;
- spf=none, err=SPF record not found (domain: verdurent.com, ip: 209.85.214.170, mailfrom: amit.kucheria@verdurent.com)
-Received: by mail-pl1-f170.google.com with SMTP id h12so795341plf.11
-        for <yocto@lists.yoctoproject.org>; Wed, 26 May 2021 08:36:54 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=JecRLU1X;
+ spf=pass (domain: gmail.com, ip: 209.85.214.174, mailfrom: raj.khem@gmail.com)
+Received: by mail-pl1-f174.google.com with SMTP id n8so974578plf.7
+        for <yocto@lists.yoctoproject.org>; Wed, 26 May 2021 10:33:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=verdurent-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=vpTQufneovlSeo/vHqL/sQRHBsmX4Wp20P68K5NbexE=;
-        b=NENSU57uI5OaKeR/eA+gj1N1ImAOfvnK6/mI/OWZaRTvjNuLKMI8UiwjT0ltpYWXYs
-         HWjSCLbWfDDZOAcwVJuc/e1qc7ebHlnOpLh0Hd4uq6APoyP/Pn3pEW0QN+tgScaD+BhF
-         KxuBZHOjGypw3AowD3JhCKD+tlt+LdUywaql9RoczEwCCGXtnn8ToOhiO3egfaRnWqQI
-         +YjZbSsYCFHWJsMpSzATlmmH6Kom2cNlGDZ6wdFT+X6FNgtxvuMcljckBPcsXrNSKdrB
-         tAPTvj77HF2fMouo6YCcSNA2TAZbrTS5uUbWWsCzG76gmePUjiFE7vcuDp8G8y9qmZ6u
-         FBjQ==
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:organization:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Yk8fcKUdCFUby0lwapx1YT1PfoxqEdPk60gtF68v2JE=;
+        b=JecRLU1XXBjPClwo5UByA8SE3JVDEvuAst3bPUfpGHLTGeHsVgNp4iQQZ/+mAUm4Uv
+         f13CbgoQFPVuLGnEuY8AFzqtE9QfrMFR+M7Zo4tjhuKIJQxU4kSlM3FsNdXl9ve2ZGcJ
+         h3DkjXe0XpdciKoNxzuvJloZ6iGvYMD6Xamfx235VUr0pyEzLGNky2dEiC8IHwoc1RIx
+         ZFVpIUkSRdEfOO1aYaNVrzouWPi646XsrMoz8NwY6L31iRY0NuWPTn8c9g/ETz/YkOSN
+         9KDdAyYmtGoGYgzIckXQymexO2YTNjBPdloQm0GWHP0uQNjmFIhDe6X762gJqJXkd0Bc
+         R7Rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=vpTQufneovlSeo/vHqL/sQRHBsmX4Wp20P68K5NbexE=;
-        b=hQFqz6pX3Ui/poILB9Daogf+ySj81+uzU71rl0VlZ4hNerACTXsh0ErFKb5jWvPM9y
-         ORIpQTDtz2rvpKlafVRg5qJfkWMgcQNZd8+dWiUM7DVxjJFlzg1U2KkyfsLwDEVKg5Xn
-         ThnlOg81aZoUKms75EJLn8F7iWVcQ4pLwcZU5aYU7NZA/WGRdmW2S2wzr6ULgTyWcWTe
-         GePe3yqGLDCJ1h5gezNqM0HIbXIl1TAq4t02AP3GvZHtMKkOa/+hT7rtZK6tJPKNkBTs
-         /GVnRE44wJd6TkYNSS//Bs7qidh9wDDnCvtLwSW4nVilbKmDkvQbjSrZ8TtyE4JpGOzX
-         BHyg==
-X-Gm-Message-State: AOAM533CnkzOmVK2igl+3Y+gs0ZEEe3gAAZ1ypu9TvUZBgk77qZe3cwJ
-	D4NaT0mvIbp79NxlwOKyiBgsVZHvt0wGJg==
-X-Google-Smtp-Source: ABdhPJxqwTd4azYaa6yMIbbDt1AG0H3ddTq0VZtww4NT5kW+67OetXYPw/1eJE/uqWY/hmxCRK+rsQ==
-X-Received: by 2002:a17:902:7596:b029:f3:d01e:d316 with SMTP id j22-20020a1709027596b02900f3d01ed316mr36664522pll.14.1622043414077;
-        Wed, 26 May 2021 08:36:54 -0700 (PDT)
-Return-Path: <amit.kucheria@verdurent.com>
-Received: from localhost ([103.208.71.66])
-        by smtp.gmail.com with ESMTPSA id u5sm2740121pfi.179.2021.05.26.08.36.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 May 2021 08:36:53 -0700 (PDT)
-From: amit.kucheria@verdurent.com
-To: yocto@lists.yoctoproject.org,
-	wojciech.zmuda@huawei.com,
-	andrei.gherzan@huawei.com,
-	naveen.kumar.saini@intel.com,
-	zbigniew.bodek@huawei.com
-Cc: Amit Kucheria <amit.kucheria.ext@huawei.com>
-Subject: [meta-zephyr][PATCH 5/5] zephyr-mqtt-publisher: Add recipe for mqtt publisher
-Date: Wed, 26 May 2021 21:06:23 +0530
-Message-Id: <890cf78e498f6993530f813c3ffd185e61711748.1621953714.git.amit.kucheria.ext@huawei.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1621953714.git.amit.kucheria.ext@huawei.com>
-References: <cover.1621953714.git.amit.kucheria.ext@huawei.com>
+        h=x-gm-message-state:subject:to:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=Yk8fcKUdCFUby0lwapx1YT1PfoxqEdPk60gtF68v2JE=;
+        b=BuWDMV1RAWMNeC+uM37NiJbe9Sxp5Y6SXtw9j0qUQgbek8Gn+vAN3aWmkn+/hKBfLl
+         sIb10hTYrH40ok2a5kUnXfBdkmXkFCh5yIB0NPLmTiNKCul49zYQKm6r6kalMfj7IqP4
+         4xxnSZ3eKy3kU4JaVZB3HA4+eRKQmJG6Yq17EWPKzIBG0jKu8uToMEzCI1P6gnGe6JIM
+         CV0FcG/En8UArT5OG8RxLJYj/gQ4Udlbh757Gde1CDuDzA9jV+5ZnOgb6tKz3N/ymJDv
+         aWgeWm8TUetlT3xebymWIMqRIoZyQZlZDFai9YySoCWMAZgM0rbzCTAK0PTlteqEr7ZT
+         3QjQ==
+X-Gm-Message-State: AOAM533C1HqFEj5We6knZtSwpvGSXkzu/RI7AnqaJ2Fo+wSWJB/RKXM0
+	EUZBGFKEVo3Zx7zfyqarma7MhQoLK9bJxQ==
+X-Google-Smtp-Source: ABdhPJyMwcqB+iRiE4mye4hWtVeEns3oE2/T4jQ/ISTwgFkrBZkfts7qhisaChz55SNfk6Tcj2qFQg==
+X-Received: by 2002:a17:90a:990c:: with SMTP id b12mr5296875pjp.20.1622050406315;
+        Wed, 26 May 2021 10:33:26 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPv6:2601:646:9200:a0f0:1d7:355f:d5bb:1bea? ([2601:646:9200:a0f0:1d7:355f:d5bb:1bea])
+        by smtp.gmail.com with ESMTPSA id v18sm17042096pff.90.2021.05.26.10.33.25
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 May 2021 10:33:25 -0700 (PDT)
+Subject: Re: [yocto] gstreamer-emements support fdkaacenc/fdkaacdec #yocto
+To: yocto@lists.yoctoproject.org
+References: <QKut.1622030511578871503.ojdZ@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Message-ID: <e9699625-d4cb-039e-a3ae-9edbd7a023ab@gmail.com>
+Date: Wed, 26 May 2021 10:33:24 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
+ Gecko/20100101 Thunderbird/78.10.2
 MIME-Version: 1.0
+In-Reply-To: <QKut.1622030511578871503.ojdZ@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
 Content-Transfer-Encoding: 8bit
 
-From: Amit Kucheria <amit.kucheria.ext@huawei.com>
 
-This sample application provides an example of using the the MBEDTLS library.
 
-Signed-off-by: Amit Kucheria <amit.kucheria.ext@huawei.com>
----
- recipes-kernel/zephyr-kernel/zephyr-mqtt-publisher.bb | 5 +++++
- 1 file changed, 5 insertions(+)
- create mode 100644 recipes-kernel/zephyr-kernel/zephyr-mqtt-publisher.bb
+On 5/26/21 5:01 AM, sateesh m wrote:
+> Hi Guys,
+> 
+>                  I need some support for gstreamer elements support 
+> fdkaacenc/fdkaacdec . Currently I am using gstreamer 16.0.1 version OE 
+> sources. I have added gstreamer bad,good,base,libav plugins Added in my 
+> image.gstreamer-plugins-bad its not providing fdkaac support I tried to 
+> enable but its not compiling my sources.
+> I am using risc-v target machine . I am looking for  where I can get 
+> sources can anybody knows please give suggestions  build procedure steps 
+> . is i need to add any package related configuration in my local.conf 
+> please suggest me.
+> 
+> Thanking you in advance.
 
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-mqtt-publisher.bb b/recipes-kernel/zephyr-kernel/zephyr-mqtt-publisher.bb
-new file mode 100644
-index 000000000000..b4e306742e44
---- /dev/null
-+++ b/recipes-kernel/zephyr-kernel/zephyr-mqtt-publisher.bb
-@@ -0,0 +1,5 @@
-+include zephyr-sample.inc
-+
-+ZEPHYR_SRC_DIR = "${S}/samples/net/mqtt_publisher"
-+
-+ZEPHYR_MODULES_append = "\;${S}/modules/lib/mbedtls"
--- 
-2.25.1
 
+see 
+http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.16.3.bb?h=dunfell#n114
+
+change that to -Dfdkaac=enabled
+
+if it works, then perhaps turn that into packageconfig and send a patch 
+as well if you can
+
+> -- 
+> Regards,
+> Sateesh
+> 
+> 
+> 
+> 
