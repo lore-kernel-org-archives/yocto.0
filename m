@@ -1,52 +1,71 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.7372.1622035146879159487
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+ by mx.groups.io with SMTP id smtpd.web08.8414.1622039932479801066
  for <yocto@lists.yoctoproject.org>;
- Wed, 26 May 2021 06:19:07 -0700
+ Wed, 26 May 2021 07:38:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=fail (domain: windriver.com, ip: 198.145.29.25, mailfrom: randy.macleod@windriver.com)
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id B6C7F38C06EA
-	for <yocto@yoctoproject.org>; Wed, 26 May 2021 13:19:05 +0000 (UTC)
-Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.corp.ad.wrs.com [147.11.82.252])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 14QDJ4t9026698
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 26 May 2021 06:19:04 -0700
-Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Wed, 26 May 2021 06:19:03 -0700
-Received: from vme.wrs.com (172.25.44.2) by ala-exchng01.corp.ad.wrs.com
- (147.11.82.252) with Microsoft SMTP Server id 15.1.2242.10 via Frontend
- Transport; Wed, 26 May 2021 06:19:03 -0700
-From: "Randy MacLeod" <randy.macleod@windriver.com>
-To: <yocto@yoctoproject.org>
-Subject: [meta-parsec][PATCH] Correct typo: crago-bitbake
-Date: Wed, 26 May 2021 09:19:02 -0400
-Message-ID: <20210526131903.158963-1-Randy.MacLeod@windriver.com>
-X-Mailer: git-send-email 2.27.0
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=f2GLM1OD;
+ spf=pass (domain: gmail.com, ip: 209.85.210.43, mailfrom: jpewhacker@gmail.com)
+Received: by mail-ot1-f43.google.com with SMTP id n3-20020a9d74030000b029035e65d0a0b8so1188799otk.9
+        for <yocto@lists.yoctoproject.org>; Wed, 26 May 2021 07:38:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9YhOXYIjx8ngFE/xUExaJKQ/MffddmU6M8Dw1pIgLYQ=;
+        b=f2GLM1ODBYYaNsSMOdnu92ADFBLX8DQtoYjui9MqpfFusL13GxjU24akfF/I2PUDzT
+         6bXj9KM/QlNNK6fSpqP9z+yTcSFGJofR+xYkxL/Kh4ZLN2/3RTq7xtzzoLj4mM4MuOxE
+         VZLinWpAYLNkoT49z7RuVjCt854wXlMeRQJPPmt70cUl8evGqQIQmGzUJ3zvUdg+v+FZ
+         qnBxCBw5qbAeOYsup+BS/5BL1kblpFEmeteenHKFAeGgXVM4rfhrClR1iVlYuqcvlIt/
+         KD+s78nAx0+mjf7r+LbfFOHnv9t3wuoqIZ+gEIxdM1f6MEzb6J8UiJMxEd6F7Dedit2P
+         yrlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9YhOXYIjx8ngFE/xUExaJKQ/MffddmU6M8Dw1pIgLYQ=;
+        b=aEWFmoH1J0KpPIPl73y3s0VdBSvqJ4ovOcw2uSeOHwsv1ssZh1AulsFe4LXG0ljgoC
+         +nCiHWQ333TSmMyjCaptoZoyKgxtZ6F8EqYdBp015Yk4CCZUpX2FrZHg95xKkghVW8+i
+         D9cnI5qXH+lioRTN3arrw7YHN9QYKKuezZO9u/Rixj7cn1WsKdqc28pu95/eWZMFs6zn
+         cCfyO2ZdihGPHHT5L55rML78IfERY6oL6gGxVtAJiVBeCDtvSvHNLZL27ar1DviDYVgo
+         2sEDNjYuRjLmlNkFRLKyVnuSfA8pNnb3saFbBTKFH8Yp/aKw4EBXEJ5xqPZ4B2ZbHs4B
+         FO+Q==
+X-Gm-Message-State: AOAM530IFtzlqE0eBUG3UIoaV5OwNX8ssBQCOFkOrPELRpfmvUc1cSS+
+	S0QsUqQ+8D4JxTMKzhos53HNRuA9ZR0=
+X-Google-Smtp-Source: ABdhPJy9cHj/CO56+uF1YoMFu//NvRblx+6y+yn7l2Vhd9xnt3YC3wBCYgxlMoOyBZJdk0RZLwxT/Q==
+X-Received: by 2002:a9d:131:: with SMTP id 46mr2684005otu.241.1622039931467;
+        Wed, 26 May 2021 07:38:51 -0700 (PDT)
+Return-Path: <jpewhacker@gmail.com>
+Received: from localhost.localdomain ([2605:a601:ac3d:c100:e3e8:d9:3a56:e27d])
+        by smtp.gmail.com with ESMTPSA id o13sm4434375ote.32.2021.05.26.07.38.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 May 2021 07:38:51 -0700 (PDT)
+From: "Joshua Watt" <JPEWhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: Joshua Watt <JPEWhacker@gmail.com>
+Subject: [yocto][meta-mingw][PATCH] zstd: Fix MinGW builds
+Date: Wed, 26 May 2021 09:38:39 -0500
+Message-Id: <20210526143839.9740-1-JPEWhacker@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Randy MacLeod <Randy.MacLeod@windriver.com>
+Fixes the MinGW builds for zstd
+
+Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
 ---
- meta-parsec/README.md | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ recipes-extended/zstd/zstd_%.bbappend | 2 ++
+ 1 file changed, 2 insertions(+)
+ create mode 100644 recipes-extended/zstd/zstd_%.bbappend
 
-diff --git a/meta-parsec/README.md b/meta-parsec/README.md
-index a2736b6..6d938a6 100644
---- a/meta-parsec/README.md
-+++ b/meta-parsec/README.md
-@@ -75,7 +75,7 @@ to ensure maximum reproducibility.
- versions of parsec recipes.
- https://github.com/meta-rust/cargo-bitbake
-=20
--  When you have crago-bitbake built:
-+  When you have cargo-bitbake built:
- 1. Checkout the required version of parsec repository.
- 2. Run cargo-bitbake inside the repository. It will produce a BB file.
- 3. Create a new include file with SRC_URI and LIC_FILES_CHKSUM from the =
-BB file.
---=20
-2.27.0
+diff --git a/recipes-extended/zstd/zstd_%.bbappend b/recipes-extended/zstd/zstd_%.bbappend
+new file mode 100644
+index 0000000..3b2b991
+--- /dev/null
++++ b/recipes-extended/zstd/zstd_%.bbappend
+@@ -0,0 +1,2 @@
++EXTRA_OEMAKE_append_mingw32 = " OS=Windows"
++FILES_${PN}_append_mingw32 = " ${libdir}/*.dll"
+-- 
+2.31.1
 
