@@ -1,229 +1,109 @@
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
- by mx.groups.io with SMTP id smtpd.web10.5584.1622024742674015132
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web11.6077.1622028764673310214
  for <yocto@lists.yoctoproject.org>;
- Wed, 26 May 2021 03:25:43 -0700
+ Wed, 26 May 2021 04:32:44 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=A69Uo805;
- spf=pass (domain: gmail.com, ip: 209.85.218.47, mailfrom: fntoth@gmail.com)
-Received: by mail-ej1-f47.google.com with SMTP id jt22so1577626ejb.7
-        for <yocto@lists.yoctoproject.org>; Wed, 26 May 2021 03:25:42 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=NwbMYkCw;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 7089938C06EA
+	for <yocto@yoctoproject.org>; Wed, 26 May 2021 11:32:43 +0000 (UTC)
+Received: by mail-pg1-f182.google.com with SMTP id m190so709988pga.2
+        for <yocto@yoctoproject.org>; Wed, 26 May 2021 04:32:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=0BKTnzthJfCUoW2liWHRCxRDTVsI1WcIv+ew58BPNrw=;
-        b=A69Uo805q/6YqBjmxIP5tXowcMQuW5NL1Df6e86a1ildKcy5uNWhn9aM7mDtSQj+Yr
-         9XZzgSBCtfTho0n/oHwl1KsxLqlCXH2IbosiPQ7bVbLGPziGr9dJVG1o0/upbd4Mekg4
-         bjq9Cx3rSnEBynHKiwE8vS6Wi1B/26oDyJttLWcuOJ6/Uk989AfsxDT6YQPEc8sqdRAe
-         EUPDAkNF7t/v4KzuWMigmdz0SBknXTkRVjFmbGVMDbiJiK7MQjKjONyhbtmNV4Qh98ol
-         euJHGgO7IWWuZ8+0LyItI+TBiM/kBXWWa15ngqsrHG/BtQk/bmHJAZtnqbgm0jwM4WbJ
-         G4mw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=br2r/xYKHwYrvhbrIcYAN67D9DBix6fEM7gGUI+nlA8=;
+        b=NwbMYkCw8q0dayhWlIvwA+ktaqBqH1sYGiHSLLMzqzhr1RlYxNGuUX6eIUfOc4525n
+         rYux6sjQWBGwPWK0mjdeDmzPWwbEdLX22Iib4AzDYNf5QdQphPzFU4OvxILWEqPklMHA
+         BpAH4o9CSstrCgc5qMVo9GB5Hf91cNmYV/SPMre30WKRRVEjTzIuN1BiBb6t7MuLI6d4
+         tmY8OaxGdZAYUcpt36TuG6g2Xy/4vkSumXfeUAykW/QUcJ3d0938vmtWzTQl4Ij9D6FJ
+         +0U22GSbXolMzPauijYJ/WRi40BGGUqWtXgDJi4fK9p6axvcgTqZemeVMXzxfCDXMUDW
+         9/Yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=0BKTnzthJfCUoW2liWHRCxRDTVsI1WcIv+ew58BPNrw=;
-        b=BeEPQmiuJXzGDF4XAaUEBilhptriuyfj300VHFno8NtOKAEZA2biPpbYnWF4wBRVnh
-         1HPsllBc99yYEjD0DxoQb8NDTPxTwjQOXiIZ3FJ/s6PAInTBE7nyVkYDPlEkIgOp6O2R
-         yxznvcQ4G118y7xjKiuHb8W2F6KojCre7zZ/IzqHj6ATqkQ5A9YQc1bfWD1tMG+2F02e
-         QWUhqAFtjaiWY50+7l126ZmLtPC058ms+dODmOyRIRCYQr2CIcQ6CXVwfnIW4zm9J6rR
-         ByQyQmLvwzufgaoW2Dtku3fmpvkdbDxPpcefBctGjhE43vqQ3NTc2UVSyFiS4qvnAkW3
-         /oew==
-X-Gm-Message-State: AOAM530D7kDmVwph4ZeCzx95jTX4dS1O8148+4RcyEr1V1ZwI5uOfOQj
-	xGcpIQjiYWGltl7llVRB3W8=
-X-Google-Smtp-Source: ABdhPJxsbXHQ7zaK0AJ1lvuXcyVI8vdPY5lxzGG1fO5ySxqOpigZhE/04xevEloQq6cork2fsHOP9Q==
-X-Received: by 2002:a17:907:1c20:: with SMTP id nc32mr32902774ejc.105.1622024741109;
-        Wed, 26 May 2021 03:25:41 -0700 (PDT)
-Return-Path: <fntoth@gmail.com>
-Received: from ?IPv6:2001:981:6fec:1:acf5:2d0d:ebdf:dc02? ([2001:981:6fec:1:acf5:2d0d:ebdf:dc02])
-        by smtp.gmail.com with ESMTPSA id s2sm12476595edu.89.2021.05.26.03.25.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 May 2021 03:25:40 -0700 (PDT)
-Subject: Re: Gatesgarth-24.0.4 image-live fails
-To: Guillaume Champagne <champagne.guillaume.c@gmail.com>
-Cc: yocto@lists.yoctoproject.org,
- Richard Purdie <richard.purdie@linuxfoundation.org>
-References: <2b1a204e-3c12-a955-6850-f5c2710ce529@gmail.com>
- <56b76313-e6b2-591f-5b1f-020acd40afa5@gmail.com>
- <6c648923-6b6c-af2c-8cb5-f40ebd9cd0db@gmail.com>
- <CAHSN6OfgL-aBYM-oB=WEJkohsV0xehaH+YJzv=mjv8PTw99Lkg@mail.gmail.com>
- <53a089e6-8c8e-4794-ca19-9d5103bb101a@gmail.com>
- <CAHSN6OeuxLdXds5w07sBG9-DKL+KxWOjrCpXGeztyvuK2qVDdQ@mail.gmail.com>
-From: "Ferry Toth" <fntoth@gmail.com>
-Message-ID: <73df6208-d784-8a8a-5246-8e3da969f3dc@gmail.com>
-Date: Wed, 26 May 2021 12:25:39 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=br2r/xYKHwYrvhbrIcYAN67D9DBix6fEM7gGUI+nlA8=;
+        b=MfsMjH6qDm/tBj9npAOk+QirXEt2r58jqpNuI1XQYD7gG+NlDgol1NIPiHEflz3Pt8
+         VAP3pSFfl5kP5n9sAjv2L1fSJgmr3dEz56hz0iBph4jEmo7QqE3No9H012F489swItAg
+         hfmug7ywQuwKiotlUER+ln0aTx18SXvM0cebTphRDkbR2tWeMOF4nyPMuJd7D3oWHECe
+         FPIvrcrF4eQqoCV8Bbn46iPjWfigtj2/cfmhOqqfLMaah1DnEiiFzjIXGcCuv6Sts6Fa
+         s3a03y9CWwcd+1+v+62FdSGJLUXMqpJPkfINaeKL89GDfI5uQ1ikHeP2otCY5FLmGixq
+         QTIQ==
+X-Gm-Message-State: AOAM531EhsKvwfYEDE7IDBPOMlinIxMpMTthom794hFCT6c5GTkeANcs
+	BU6BlKlc3CEwO6yEW10MSIT9dQRzOLD5556qLGg=
+X-Google-Smtp-Source: ABdhPJzj5nwZQuREOSHUDbOr7ftmZOvg7INGWkcttf3iGScBiYAVGrEtJriIHpOwhoo1gzmIhaQ4qpUEr1wwS4Abx1U=
+X-Received: by 2002:a63:fd44:: with SMTP id m4mr25000153pgj.396.1622028762595;
+ Wed, 26 May 2021 04:32:42 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAHSN6OeuxLdXds5w07sBG9-DKL+KxWOjrCpXGeztyvuK2qVDdQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+References: <CAAfyv36GkdygU1ikgzgKeW93+Lwf92m3t=YEv0Vr_EbBG9S2Cg@mail.gmail.com>
+In-Reply-To: <CAAfyv36GkdygU1ikgzgKeW93+Lwf92m3t=YEv0Vr_EbBG9S2Cg@mail.gmail.com>
+From: "Zoran" <zoran.stojsavljevic@gmail.com>
+Date: Wed, 26 May 2021 13:32:30 +0200
+Message-ID: <CAGAf8Lw+rn=-WBS9R-n+MQ13mo3HtKZm_n+jHC=HRLptn2tr=Q@mail.gmail.com>
+Subject: Re: [yocto] hardknott core-image-weston weston is crashing
+To: Marek Belisko <marek.belisko@gmail.com>
+Cc: yocto <yocto@yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
+Seems like this bug has nothing to do with YOCTO, rather with Wayland setup....
 
-Op 25-05-2021 om 22:13 schreef Guillaume Champagne:
-> Le mar. 25 mai 2021 à 12:25, Ferry Toth <fntoth@gmail.com> a écrit :
->> Hi
->>
->> Op 25-05-2021 om 15:09 schreef Guillaume Champagne:
->>> Le mar. 25 mai 2021 à 08:19, Ferry Toth <fntoth@gmail.com> a écrit :
->>>> Adding Richard and Guillaume.
->>> Hi,
->>>
->>> it seems seems edison-image.bb sets ROOTFS as empty:
->>> http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel-edison/tree/meta-intel-edison-distro/recipes-core/images/edison-image.bb#n17
->>>
->>> so do_bootimg won't depend on ${PN}:do_image:${LIVE_ROOTFS_TYPE}. That
->>> dependency would, I think, create the folder you mentioned.
->>>
->>> Maybe the patch wrongly assumes that if ROOTFS is empty, we shouldn't
->>> add a dependency on "do_image.${LIVE_ROOTFS_TYPE}" at all since It
->>> looks like edison-image.bb still depends on
->>> ${PN}:do_image.${LIVE_ROOTFS_TYPE} even though ROOTFS is empty. I
->>> haven't looked too much into why edison-image works this way.
->> It may well be a bug in meta-intel-edison. Although you are looking at
->> the very, very old code.
->>
->> So what we have now is:
->> https://github.com/edison-fw/meta-intel-edison/blob/master/meta-intel-edison-distro/recipes-core/images/edison-image-minimal.bb
->>
->> this generates a dir edison-image-1.0/hddimg/ containing: bzImage
->> initrd  ldlinux.sys  libcom32.c32  libutil.c32  syslinux.cfg  vesamenu.c32
->>
->> and this should generate in dir deploy-edison-image-image-complete/ a
->> file called edison-image-edison.hddimg
->>
->> which it does without the patch. So would would I set rootfs to to make
->> it work?
-> That's my bad. The initial patch is not right. I could reproduce your
-> issue on my side. I think ROOTFS should be able to remain empty if
-> your image does all its work in its initd/initramfs.
+https://wayland-devel.freedesktop.narkive.com/6yavoPFZ/i-ve-got-a-question-to-ask-you
+
+My two cent worth attempt,
+Zoran
+_______
+
+On Wed, May 26, 2021 at 11:40 AM Marek Belisko <marek.belisko@gmail.com> wrote:
 >
-> I think IMGDEPLOYDIR isn't created in time because the patch removes
-> the "depends" on "do_image -> do_rootfs" , which would create
-> IMGDEPLOYDIR via do_rootfs[cleandirs] before do_bootimg runs:
-> https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/image.bbclass?h=gatesgarth#n252
+> Hi,
 >
-> One way I could think of to fix:
+> I'm using hardknott poky release and build core-image-weston. When
+> started on display I didn't see wayland screen + terminal just
+> console. Same setup works fine on dunfell release.
 >
-> diff --git a/meta/classes/image-live.bbclass b/meta/classes/image-live.bbclass
-> index e9eba1fc4b..eb92573488 100644
-> --- a/meta/classes/image-live.bbclass
-> +++ b/meta/classes/image-live.bbclass
-> @@ -260,5 +260,6 @@ python do_bootimg() {
->   }
->   do_bootimg[subimages] = "hddimg iso"
->   do_bootimg[imgsuffix] = "."
-> +do_bootimg[dirs] = "${IMGDEPLOYDIR} ${TOPDIR}"
+> Output from weston service:
 >
+>                GL_EXT_map_buffer_range GL_KHR_debug
+>                GL_KHR_texture_compression_astc_ldr GL_NV_pixel_buffer_object
+>                GL_OES_required_internalformat GL_OES_surfaceless_context
+>                GL_EXT_separate_shader_objects
+>                GL_EXT_compressed_ETC1_RGB8_sub_texture
+>                GL_EXT_draw_elements_base_vertex GL_EXT_texture_border_clamp
+>                GL_KHR_context_flush_control GL_OES_draw_elements_base_vertex
+>                GL_OES_texture_border_clamp GL_KHR_no_error
+>                GL_KHR_texture_compression_astc_sliced_3d
+>                GL_KHR_parallel_shader_compile GL_MESA_tile_raster_order
+> [09:38:18.885] GL ES 2 renderer features:
+>                read-back format: BGRA
+>                wl_shm sub-image to texture: yes
+>                EGL Wayland extension: yes
+> [09:38:18.899] warning: no input devices on entering Weston. Possible causes:
+>         - no permissions to read /dev/input/event*
+>         - seats misconfigured (Weston backend option 'seat', udev
+> device property ID_SEAT)
+> [09:38:18.899] failed to create input devices
+> Segmentation fault
 >
-> _AND_ to add to my image recipe:
-> BUILD_REPRODUCIBLE_BINARIES = "0" # otherwise image.bbclass looks for
-> a the image's rootfs
-> deltask rootfs
+> Machine is RPI3. Any ideas?
 >
-> I am not sure this is the right solution. There might be a way to
-> avoid adding a "deltask" in my recipe. And image.bbclass could
-> probably avoid its BUILD_REPRODUCIBLE_BINARIES check on the rootfs if
-> ROOTFS is empty.
-> Maybe someone else has a better solution?
-Thanks. For some reason I don't see your message appearing on ML.
->> BTW It also generates a directory iso and associated iso image. Never
->> understood why, we also set NOISO = "1"
-> NOISO is valid in Yocto releases before 2.6 (thud):
-> https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#migration-2.6-miscellaneous-changes
-> Setting IMAGE_FSTYPES = "hddimg" should be the new equivalent of what
-> edison-image-minimal.bb does with NOISO="1" and NOHDD="0"
+> Thanks and BR,
 >
-> I think setting INITRD_IMAGE_LIVE to core-image-minimal-initramfs
-> could also replace the custom post process command "install_initrd".
-I'll look into that.
->>>> Op 24-05-2021 om 14:39 schreef Ferry Toth:
->>>>> Wow, that got messed up, let me retry.
->>>>>
->>>>> Op 24-05-2021 om 14:19 schreef Ferry Toth:
->>>>>> Accidentally I refreshed poky and rebuilt. The image-live
->>>>>> (do_bootimg) fails when building hddimg with the following:
->>>>>>
->>>>> ERROR: edison-image-1.0-r0 do_bootimg: Error executing a python
->>>>> function in exec_python_func() autogenerated:
->>>>>
->>>>> The stack trace of python calls that resulted in this
->>>>> exception/failure was:
->>>>> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
->>>>>        0001:
->>>>>    *** 0002:do_bootimg(d)
->>>>>        0003:
->>>>> File:
->>>>> '/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/poky/meta/classes/image-live.bbclass',
->>>>> lineno: 258, function: do_bootimg
->>>>>        0254:    if d.getVar("PCBIOS") == "1":
->>>>>        0255:        bb.build.exec_func('build_syslinux_cfg', d)
->>>>>        0256:    if d.getVar("EFI") == "1":
->>>>>        0257:        bb.build.exec_func('build_efi_cfg', d)
->>>>>    *** 0258:    bb.build.exec_func('build_hddimg', d)
->>>>>        0259:    bb.build.exec_func('build_iso', d)
->>>>>        0260:    bb.build.exec_func('create_symlinks', d)
->>>>>        0261:}
->>>>>        0262:do_bootimg[subimages] = "hddimg iso"
->>>>> File:
->>>>> '/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/poky/bitbake/lib/bb/build.py',
->>>>> lineno: 256, function: exec_func
->>>>>        0252:    with bb.utils.fileslocked(lockfiles):
->>>>>        0253:        if ispython:
->>>>>        0254:            exec_func_python(func, d, runfile, cwd=adir)
->>>>>        0255:        else:
->>>>>    *** 0256:            exec_func_shell(func, d, runfile, cwd=adir)
->>>>>        0257:
->>>>>        0258:    try:
->>>>>        0259:        curcwd = os.getcwd()
->>>>>        0260:    except:
->>>>> File:
->>>>> '/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/poky/bitbake/lib/bb/build.py',
->>>>> lineno: 503, function: exec_func_shell
->>>>>        0499:    with open(fifopath, 'r+b', buffering=0) as fifo:
->>>>>        0500:        try:
->>>>>        0501:            bb.debug(2, "Executing shell function %s" % func)
->>>>>        0502:            with open(os.devnull, 'r+') as stdin, logfile:
->>>>>    *** 0503:                bb.process.run(cmd, shell=False,
->>>>> stdin=stdin, log=logfile, extrafiles=[(fifo,readfifo)])
->>>>>        0504:        except bb.process.ExecutionError as exe:
->>>>>        0505:            # Find the backtrace that the shell trap generated
->>>>>        0506:            backtrace_marker_regex = re.compile(r"WARNING:
->>>>> Backtrace \(BB generated script\)")
->>>>>        0507:            stdout_lines = (exe.stdout or "").split("\n")
->>>>> File:
->>>>> '/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/poky/bitbake/lib/bb/process.py',
->>>>> lineno: 184, function: run
->>>>>        0180:        if not stderr is None:
->>>>>        0181:            stderr = stderr.decode("utf-8")
->>>>>        0182:
->>>>>        0183:    if pipe.returncode != 0:
->>>>>    *** 0184:        raise ExecutionError(cmd, pipe.returncode, stdout,
->>>>> stderr)
->>>>>        0185:    return stdout, stderr
->>>>> Exception: bb.process.ExecutionError: Execution of
->>>>> '/home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/build/tmp/work/edison-poky-linux/edison-image/1.0-r0/temp/run.build_hddimg.256530'
->>>>> failed with exit code 1:
->>>>> mkdosfs: unable to create
->>>>> /home/ferry/tmp/edison-intel/my/edison-morty/out/linux64/build/tmp/work/edison-poky-linux/edison-image/1.0-r0/deploy-edison-image-image-complete/edison-image-edison-20210524113748.hddimg
->>>>> mkfs.fat 4.1 (2017-01-24)
->>>>> WARNING: exit code 1 from a shell command.
->>>>>
->>>>>> The reason is that the directory deploy-edison-image-image-complete
->>>>>> doesn't exist at the time mkdosfs want to write. However after
->>>>>> completing the remainder of image live the directory does exists.
->>>>>> Consequently, running bitbake a second time image-live succeeds.
->>>>>>
->>>>>> I've tried various thing including expressly creating the directory
->>>>>> before mkdosfs, but nothing worked. It seems I don't understand how
->>>>>> it is supposed to work in the first place.
->>>>>>
->>>>>> However, I managed to trace back the issue to this commit 91e4a1c1
->>>>>> "image-live.bbclass: optional depends when ROOTFS empty".
->>>>>>
->>>>>> Reverting this resolves the issue.
->>>>>>
->>>>>> Any idea what could be wrong?
->>>>>>
+> marek
+>
+> --
+> as simple and primitive as possible
+> -------------------------------------------------
+> Marek Belisko - OPEN-NANDRA
+> Freelance Developer
+>
+> Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+> Tel: +421 915 052 184
+> skype: marekwhite
+> twitter: #opennandra
+> web: http://open-nandra.com
+>
+> 
+>
