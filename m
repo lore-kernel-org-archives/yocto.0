@@ -1,91 +1,52 @@
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
- by mx.groups.io with SMTP id smtpd.web10.509.1622050407394305989
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web08.631.1622050869788781852
  for <yocto@lists.yoctoproject.org>;
- Wed, 26 May 2021 10:33:27 -0700
+ Wed, 26 May 2021 10:41:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=JecRLU1X;
- spf=pass (domain: gmail.com, ip: 209.85.214.174, mailfrom: raj.khem@gmail.com)
-Received: by mail-pl1-f174.google.com with SMTP id n8so974578plf.7
-        for <yocto@lists.yoctoproject.org>; Wed, 26 May 2021 10:33:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:organization:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Yk8fcKUdCFUby0lwapx1YT1PfoxqEdPk60gtF68v2JE=;
-        b=JecRLU1XXBjPClwo5UByA8SE3JVDEvuAst3bPUfpGHLTGeHsVgNp4iQQZ/+mAUm4Uv
-         f13CbgoQFPVuLGnEuY8AFzqtE9QfrMFR+M7Zo4tjhuKIJQxU4kSlM3FsNdXl9ve2ZGcJ
-         h3DkjXe0XpdciKoNxzuvJloZ6iGvYMD6Xamfx235VUr0pyEzLGNky2dEiC8IHwoc1RIx
-         ZFVpIUkSRdEfOO1aYaNVrzouWPi646XsrMoz8NwY6L31iRY0NuWPTn8c9g/ETz/YkOSN
-         9KDdAyYmtGoGYgzIckXQymexO2YTNjBPdloQm0GWHP0uQNjmFIhDe6X762gJqJXkd0Bc
-         R7Rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=Yk8fcKUdCFUby0lwapx1YT1PfoxqEdPk60gtF68v2JE=;
-        b=BuWDMV1RAWMNeC+uM37NiJbe9Sxp5Y6SXtw9j0qUQgbek8Gn+vAN3aWmkn+/hKBfLl
-         sIb10hTYrH40ok2a5kUnXfBdkmXkFCh5yIB0NPLmTiNKCul49zYQKm6r6kalMfj7IqP4
-         4xxnSZ3eKy3kU4JaVZB3HA4+eRKQmJG6Yq17EWPKzIBG0jKu8uToMEzCI1P6gnGe6JIM
-         CV0FcG/En8UArT5OG8RxLJYj/gQ4Udlbh757Gde1CDuDzA9jV+5ZnOgb6tKz3N/ymJDv
-         aWgeWm8TUetlT3xebymWIMqRIoZyQZlZDFai9YySoCWMAZgM0rbzCTAK0PTlteqEr7ZT
-         3QjQ==
-X-Gm-Message-State: AOAM533C1HqFEj5We6knZtSwpvGSXkzu/RI7AnqaJ2Fo+wSWJB/RKXM0
-	EUZBGFKEVo3Zx7zfyqarma7MhQoLK9bJxQ==
-X-Google-Smtp-Source: ABdhPJyMwcqB+iRiE4mye4hWtVeEns3oE2/T4jQ/ISTwgFkrBZkfts7qhisaChz55SNfk6Tcj2qFQg==
-X-Received: by 2002:a17:90a:990c:: with SMTP id b12mr5296875pjp.20.1622050406315;
-        Wed, 26 May 2021 10:33:26 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:a0f0:1d7:355f:d5bb:1bea? ([2601:646:9200:a0f0:1d7:355f:d5bb:1bea])
-        by smtp.gmail.com with ESMTPSA id v18sm17042096pff.90.2021.05.26.10.33.25
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 May 2021 10:33:25 -0700 (PDT)
-Subject: Re: [yocto] gstreamer-emements support fdkaacenc/fdkaacdec #yocto
-To: yocto@lists.yoctoproject.org
-References: <QKut.1622030511578871503.ojdZ@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-Message-ID: <e9699625-d4cb-039e-a3ae-9edbd7a023ab@gmail.com>
-Date: Wed, 26 May 2021 10:33:24 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.10.2
+ dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 198.145.29.25, mailfrom: denis@denix.org)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 84C0738C06EA
+	for <yocto@yoctoproject.org>; Wed, 26 May 2021 17:41:07 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 33F5C40C3A;
+	Wed, 26 May 2021 17:41:05 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id mgd1BAz14Ou1; Wed, 26 May 2021 17:41:05 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id EDF3640951;
+	Wed, 26 May 2021 17:41:00 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 550CD1745F1; Wed, 26 May 2021 13:41:00 -0400 (EDT)
+Date: Wed, 26 May 2021 13:41:00 -0400
+From: "Denys Dmytriyenko" <denis@denix.org>
+To: "openembedded-devel@lists.openembedded.org" <openembedded-devel@lists.openembedded.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>,
+	openembedded-architecture <openembedded-architecture@lists.openembedded.org>,
+	Yocto Project <yocto@yoctoproject.org>,
+	openembedded-members@lists.openembedded.org
+Subject: OpenEmbedded Happy Hour May 26 8pm/2000 UTC
+Message-ID: <20210526174100.GJ1528@denix.org>
 MIME-Version: 1.0
-In-Reply-To: <QKut.1622030511578871503.ojdZ@lists.yoctoproject.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+Hi,
 
+Due to the Yocto Project Summit running during our regular OpenEmbedded Happy 
+Hour today, we decided to move it down by 3 hours and have Happy Hour at the 
+end of the Summit, May 26 @ 2000/8pm UTC (4pm ET / 1pm PT).
 
-On 5/26/21 5:01 AM, sateesh m wrote:
-> Hi Guys,
-> 
->                  I need some support for gstreamer elements support 
-> fdkaacenc/fdkaacdec . Currently I am using gstreamer 16.0.1 version OE 
-> sources. I have added gstreamer bad,good,base,libav plugins Added in my 
-> image.gstreamer-plugins-bad its not providing fdkaac support I tried to 
-> enable but its not compiling my sources.
-> I am using risc-v target machine . I am looking for  where I can get 
-> sources can anybody knows please give suggestions  build procedure steps 
-> . is i need to add any package related configuration in my local.conf 
-> please suggest me.
-> 
-> Thanking you in advance.
+Please join us and socialize with fellow developers and have some good time.
 
+https://www.openembedded.org/wiki/Calendar
+https://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenEmbedded+Happy+Hour+May+26&iso=20210526T20
 
-see 
-http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.16.3.bb?h=dunfell#n114
-
-change that to -Dfdkaac=enabled
-
-if it works, then perhaps turn that into packageconfig and send a patch 
-as well if you can
-
-> -- 
-> Regards,
-> Sateesh
-> 
-> 
-> 
-> 
+-- 
+Regards,
+Denys Dmytriyenko <denis@denix.org>
+PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
+Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
