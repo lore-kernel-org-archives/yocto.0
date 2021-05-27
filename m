@@ -1,92 +1,97 @@
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
- by mx.groups.io with SMTP id smtpd.web10.1423.1622157898228038957
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+ by mx.groups.io with SMTP id smtpd.web09.1512.1622158093860127034
  for <yocto@lists.yoctoproject.org>;
- Thu, 27 May 2021 16:24:58 -0700
+ Thu, 27 May 2021 16:28:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=N3gxe0FH;
- spf=pass (domain: gmail.com, ip: 209.85.215.173, mailfrom: raj.khem@gmail.com)
-Received: by mail-pg1-f173.google.com with SMTP id f22so1134323pgb.9
-        for <yocto@lists.yoctoproject.org>; Thu, 27 May 2021 16:24:58 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=NXAU+pUl;
+ spf=pass (domain: gmail.com, ip: 209.85.215.172, mailfrom: raj.khem@gmail.com)
+Received: by mail-pg1-f172.google.com with SMTP id m124so1123796pgm.13
+        for <yocto@lists.yoctoproject.org>; Thu, 27 May 2021 16:28:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=myX74TxPdEy2B4JnA30Q5eVgXPjNMMlmO+NbeeRYXcg=;
-        b=N3gxe0FHdY+E3jHF7WqJZ+7pfPdpKtMwxtCW+heSrCl3TUTHXqaD885x5tBchwfWHJ
-         nasVpmuaB9LOufKEyp0YS5VkvTvyjBgrjboyM8PPN+3Jgc0Lwyq6FOppDDSwvL+0ZZU7
-         ornyaxm7rU6dWNjlSlzt2smEEEPXGgG9Q5JPycQICAcNxSBdrSKlSSLh7o/zukqqBtyh
-         1xf/Xibw3fhDslmJHm4Y1OD+O/eyc/qfMcWDFRBNCHGrg2Rf/WkOrbGxC+i1xHlIIZrx
-         pjMvD9gtJFBLPho6VtrSRb72EKp1XcgbHt6s82TZRVrY+uMSiGvtSd06eoouCRkUcBb3
-         qZ9g==
+        h=subject:to:references:from:organization:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=2ZMBDYjcgyL+cmG8qn3QbxmOX4vxH9Ku+4DaxDrkOWQ=;
+        b=NXAU+pUl3cdIepgBCzptv0kzHmxpaxHcp8ZtJGHrnXoN0fZl49wza9Pgpr1QXyyn/W
+         oRxLCSyUq45i2cACy84h1fbaFQCFOmuqkDkfcFEvaLZg5bdMrzpUJOqzAzwtQH7Vy/gV
+         fXMNaMMYtz+63DaOR6k1U3kvkhjFwaBAKh60jlRYgw5iFNz+UkvK6a0hhhhxQdci7mid
+         HvHTiI83vhEWKqcDfaeKC6vTR0k0dVzR9as2KN4kJYD8j+HA6SKzhYyccBOdhacHwYS9
+         xtad7+PsEXUnS4b2u86yeIr4ipJah1Uq89bH7MUIjrgPuJqAPPDL1iYLqRJpbsG8SvDR
+         r65g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
+        h=x-gm-message-state:subject:to:references:from:organization
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=myX74TxPdEy2B4JnA30Q5eVgXPjNMMlmO+NbeeRYXcg=;
-        b=djjl3eeAyM4boj5hi3viuLWjKDQalHObI/S4muSija8Y4Xaadv5u6FVxai76ntqV69
-         KS7Abhnh45CT3BK0hrolhpVFlYptqPK7fnGEkmPJi1y+uiCBffjZ7YzLz+qd9fKD5JMQ
-         ElyXfYGsguk6aINSxVrOz3eHQRiCK7sbh8NsVcp9/hq6dV1bh1+s72F2yspKstXFbSuH
-         Ww0MzNo46yVn/5OjuGjN97uWZY5sq62Y+WKTjPbHJBebn3fZe/JpvgKcKgBxRQbZKleZ
-         vwJaW6H0fZGsnL2fon/MQ0TpTrf7mcNFMioLwviXkMETGFHyPeJiBSYRIHlzQLaJ4PZt
-         BSfw==
-X-Gm-Message-State: AOAM53034GdcLXbcAOMtmu6ek0uewZdwFXUPiUdioDNoLklzaiC10TQt
-	F6JFTqzedru3kZD4uOZ2Upo4Uq9Ke1DhTQ==
-X-Google-Smtp-Source: ABdhPJymQ35C3NRT/paAjAkxqXxcae3by/zyZEmm3bJSsgbyQMgn5xAPLjG1Nw3fTypFESJrCitLlA==
-X-Received: by 2002:aa7:9606:0:b029:2e3:7728:f284 with SMTP id q6-20020aa796060000b02902e37728f284mr838421pfg.24.1622157897364;
-        Thu, 27 May 2021 16:24:57 -0700 (PDT)
+        bh=2ZMBDYjcgyL+cmG8qn3QbxmOX4vxH9Ku+4DaxDrkOWQ=;
+        b=kVe/o6rm65+J7kgf73lI8JOIwXxNxQY5i2/DtJM6yx8PfrYXWrkGA0AhzfU44uG6ag
+         h7r7kSETVXOugNOwU1KOsbGNjgj6oAGQDN/5U9vYc6ngdo0in1GEVc5+oNj9z+OMwJHR
+         /1cKiR/zCYrh5DtMA989RCziIG+UBCrofrwamDisNWQ1B7aTeFkCG2hRjdkIw76yniwj
+         mGbdN6uhvQ84UkwdQR//02vek0kjpUaEccDuWzrylvQve0DkEZ6zBxlxlTzQlA1FN0cv
+         6NReNSigeY3kvSmmQ9N8J7Fcrqm4jWT5vYAocms9+R1MM/B0LAQ8UtHfVYihu+dfHfcm
+         xuBg==
+X-Gm-Message-State: AOAM532vGBI7SKKz75mvKyFS6R2bi7iuESyyeq4jVILrqQORiKn/vNqC
+	UV8enGFzTNyaUiilwEIgT3zoWwdm1Y3WCw==
+X-Google-Smtp-Source: ABdhPJytW1ffRaUz9scKThY0Z8lhAeIRzmNCYnZDZ/6P9dUKT3LqTeLrPuMm3K1q2+5f2KID2n3S7Q==
+X-Received: by 2002:a63:b30a:: with SMTP id i10mr6012362pgf.306.1622158093151;
+        Thu, 27 May 2021 16:28:13 -0700 (PDT)
 Return-Path: <raj.khem@gmail.com>
 Received: from ?IPv6:2601:646:9200:a0f0:1d7:355f:d5bb:1bea? ([2601:646:9200:a0f0:1d7:355f:d5bb:1bea])
-        by smtp.gmail.com with ESMTPSA id m3sm3025713pfh.174.2021.05.27.16.24.56
+        by smtp.gmail.com with ESMTPSA id h22sm2686348pfn.55.2021.05.27.16.28.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 May 2021 16:24:57 -0700 (PDT)
+        Thu, 27 May 2021 16:28:12 -0700 (PDT)
 Subject: Re: [yocto] How to switch yocto INIT_MANAGER from systemd to sysvinit #dunfell
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, sayinswapna@gmail.com
-Cc: yocto@lists.yoctoproject.org
+To: sayinswapna@gmail.com, yocto@lists.yoctoproject.org
 References: <dWBn.1622153050533898469.7UFj@lists.yoctoproject.org>
- <1e7a7a18-f281-b72b-36cf-9e1014ab10ef@crashcourse.ca>
 From: "Khem Raj" <raj.khem@gmail.com>
 Organization: HIMVIS LLC
-Message-ID: <096dc831-7181-9e2a-d3db-bf0feeb9f412@gmail.com>
-Date: Thu, 27 May 2021 16:24:55 -0700
+Message-ID: <7642946a-9a4b-2799-9db2-1187822ffbcf@gmail.com>
+Date: Thu, 27 May 2021 16:28:11 -0700
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
  Gecko/20100101 Thunderbird/78.10.2
 MIME-Version: 1.0
-In-Reply-To: <1e7a7a18-f281-b72b-36cf-9e1014ab10ef@crashcourse.ca>
-Content-Type: text/plain; charset=windows-1252; format=flowed
+In-Reply-To: <dWBn.1622153050533898469.7UFj@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
 
 
 
-On 5/27/21 3:12 PM, Robert P. J. Day wrote:
-> On Thu, 27 May 2021, sayinswapna@gmail.com wrote:
+On 5/27/21 3:04 PM, sayinswapna@gmail.com wrote:
+> Hello Yocto team:
 > 
->> Hello Yocto team:
->>
->> I just started with yocto and would like to know the process for switching the init
->> manager from systemd to sysvinit.
->>
->> I tried this options in config file
->> VIRTUAL-RUNTIME_init_manager = "busybox"
->> PREFERRED_PROVIDER_udev = "sysvinit"
->> PREFERRED_PROVIDER_udev-utils = "sysvinit"
->> DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
->> DEFAULT_DISTRO_FEATURES += " sysvinit"
+> I just started with yocto and would like to know the process for 
+> switching the init manager from systemd to sysvinit.
 > 
->    as i recall, all of the above can be replaced by a single assignment
-> to the INIT_MANAGER variable.
+> I tried this options in config file
+> VIRTUAL-RUNTIME_init_manager = "busybox"
+> PREFERRED_PROVIDER_udev = "sysvinit"
+> PREFERRED_PROVIDER_udev-utils = "sysvinit"
+> DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
+> DEFAULT_DISTRO_FEATURES += " sysvinit"
+> 
+> I see a warning when building my machine:
+> 
+> No recipe for target:
+> /recipes-core/sysvinit/sysvinit_2.88dsf.bbappend
 
-it will depend on release, if you are on 3.0+ then yes single setting 
-will work, older releases would mean above is needed. see
+Please find out which layer is adding this bbappend you could use
 
-https://docs.yoctoproject.org/ref-manual/migration-3.0.html?highlight=init_manager#init-system-selection
+bitbake-layers show-appends sysvinit
 
-
+It seems recipe version is newer perhaps and the bbappend is still made 
+for older recipe, these things happen when you mix release branches for 
+different layers.
 
 > 
-> rday
+> When I run this build on my target it still shows me systemd init manager...
+> 
+> Not sure if I am missing any options.
+> Could you please let me know if there are any pointers I can refer to?
+> 
+> Thanks,
+> Priya
+> 
 > 
 > 
 > 
