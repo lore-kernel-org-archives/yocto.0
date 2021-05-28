@@ -1,175 +1,119 @@
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
- by mx.groups.io with SMTP id smtpd.web08.7157.1622202451622652939
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
+ by mx.groups.io with SMTP id smtpd.web11.7639.1622204943403108311
  for <yocto@lists.yoctoproject.org>;
- Fri, 28 May 2021 04:47:32 -0700
+ Fri, 28 May 2021 05:29:03 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ahsIbeev;
- spf=pass (domain: gmail.com, ip: 209.85.208.179, mailfrom: sayinswapna@gmail.com)
-Received: by mail-lj1-f179.google.com with SMTP id w7so4866252lji.6
-        for <yocto@lists.yoctoproject.org>; Fri, 28 May 2021 04:47:31 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=VqnSQ65Y;
+ spf=pass (domain: gmail.com, ip: 209.85.215.182, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-pg1-f182.google.com with SMTP id 6so2426779pgk.5
+        for <yocto@lists.yoctoproject.org>; Fri, 28 May 2021 05:29:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=nAQChp62y0+KWQ3JvGGwBcLJjwGmUlOE6smrAy1DO+8=;
-        b=ahsIbeevxqwMOPZtSnWDe4MJlhXSAeRTAr60BR4ggsXjK/awbv5uj+Do7xs01rOw3e
-         HeqbgsoESLa4p7E7e7z9XQZCZK0NAzE2y2Zb/yxr4asnU25GAJ9yBHGAkkbmWquGsuKm
-         QRLgI7Gijfr5fyyBrXFCdK7D4TN2cIDMeKN4NJuDicj8crWf+zfKF2FoFe8qPIeiRzKJ
-         OPglBRWKjeNe3WwoNoITFouvapX+/RMlzQ6XA5kHUV7DQMLWzt7jZQ3lRvr1kGDh85KI
-         WZdbFiADdUaEG2q4MmeyzaxNCh4w1E13satXia/DhC7S5gY5VzOvUWhZZREgBzBFpswb
-         SIXg==
+        bh=4eq6zHC39+G9F9nhVXNH11ZTJTP02vLT/82GXQdc8Mw=;
+        b=VqnSQ65YBknU6NoE346ZBS/JCHRUd/Q8ijfgEUNnPSbaBBVj/yfjhatQMwsIJj26GB
+         fW2afY3RqIC5DQYF5YZj6kk6R9ldvk4pXUV0E8f3lisjT37brY7IrAvpTVcO3cqZWlPu
+         zEN5zLHYZfUCN4B5Mfu2afGEr3Dq314QLCaM5Fo5FUNkd4zMhEMmfc+aoe/3sl+qbvns
+         9I2tr2BPp7Kj/+Izn/vgUbmSdkwBIAosWxXfYQEYjC183ZFhPKpNntL01gJuZ2HTZHv3
+         /J155omXJKGVLNXnSxG8IfogW7xkeTxGIwrk2cqa8vG0RVqtUoiln0GmhrOzjLAtAgo1
+         SOPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=nAQChp62y0+KWQ3JvGGwBcLJjwGmUlOE6smrAy1DO+8=;
-        b=mbHuF4Qe98vF1iXhRUbfGnWdvPHISTEHjke5b17mrEzHdfnaRmhc7doDwu1W20e0Qu
-         YhHQ+fKGmAhptBv9qh0bUm+441buGlb1dlXykf8OfmDewYTRXBHm94xy1YusnZphX33O
-         BnKcVYIPGqcHig6OYmSoQsoT9vX/JNAjWLDhAGCAb4d2Jn37bNb8I1cG/kC8L30KVjPq
-         7io8QR9XiR5psdjsYB04Tu8M8w5oUMLjqBcrOektbR2eqblfEWwjV1fTtFsk5p2AMcMd
-         yV2J1ia1SWD6izGCwEs3ht8AcKbz6AGSpvIPL38qAlVOUSPT1IB5iEdlMbY+xSIHU+Dm
-         eWfQ==
-X-Gm-Message-State: AOAM532nxPi2kWUynfoZ8Va8699+7pSjsuvRRV6953w5bGH6n5htYpN9
-	yGsmCoFJ7tVpdoG0NvcljU6DpIdqdO9P2OYpK+o=
-X-Google-Smtp-Source: ABdhPJwlrePk7rKZa4bvIOoc3WkhoYozuc5TqlomA5RImR3pXIDIMXso45g/WxS6kvZhr8MUj/9FwzTZMPvRWGNr6G8=
-X-Received: by 2002:a2e:b052:: with SMTP id d18mr6133173ljl.192.1622202449433;
- Fri, 28 May 2021 04:47:29 -0700 (PDT)
+        bh=4eq6zHC39+G9F9nhVXNH11ZTJTP02vLT/82GXQdc8Mw=;
+        b=sdguxs0vFSl9327mT+tnxIUjIV44xO/DOkhpUGid8vj9UxTh+mMQYhbfs9jLfLerSj
+         9dUKOH7aWAuGt0eGnFJXTZ5HJps2OUls9JmzU2jQ/G8DimLlk09xVuyC8zjT2mPVWXPk
+         DLWqjxkl/7+V0yypvLhiXNROm6kLILd0MT9uAP3y5IRVXqxr0hlaZ91+XU8aEyKWYZp8
+         sW+wRnE3GdQ6/C6UXKShZNCG+PJAXF+WXhAb0M1MY5iN+HoX2AlAgyzIO4ptJcO5+ON/
+         3JxvqFWtPBC1u17mqXmaaCzgPqKOYm6CJtRzs30Ia1EAbJIqKfL7fqDST3fw8XXAxmC1
+         gw5w==
+X-Gm-Message-State: AOAM530wrRKfZXsSRsbbV4rx277xO6c/zc073UIkFN6d4kDcd2qiS6Ph
+	i4dtiNnbn5Ep6HAkz7t5TDSOSLrwyOyFr86gyxI=
+X-Google-Smtp-Source: ABdhPJyb/boc6Od5lGhdytOH/0He6ojrXh1r0n3JYvsa9VBkCKCjQ0nss6e4jhRVRIIz9ciWkvqDBhQFi/AaZorbgdk=
+X-Received: by 2002:a05:6a00:23c6:b029:28f:d463:17ba with SMTP id
+ g6-20020a056a0023c6b029028fd46317bamr3728895pfc.65.1622204942693; Fri, 28 May
+ 2021 05:29:02 -0700 (PDT)
 MIME-Version: 1.0
-References: <dWBn.1622153050533898469.7UFj@lists.yoctoproject.org> <7642946a-9a4b-2799-9db2-1187822ffbcf@gmail.com>
-In-Reply-To: <7642946a-9a4b-2799-9db2-1187822ffbcf@gmail.com>
-From: sayinswapna@gmail.com
-Date: Fri, 28 May 2021 07:47:18 -0400
-Message-ID: <CAHUEwNZPjwy93VOvRLK5DA=pQRyFSK5TA32h_uZgzwdKyQFagQ@mail.gmail.com>
+References: <dWBn.1622153050533898469.7UFj@lists.yoctoproject.org>
+ <7642946a-9a4b-2799-9db2-1187822ffbcf@gmail.com> <CAHUEwNZPjwy93VOvRLK5DA=pQRyFSK5TA32h_uZgzwdKyQFagQ@mail.gmail.com>
+In-Reply-To: <CAHUEwNZPjwy93VOvRLK5DA=pQRyFSK5TA32h_uZgzwdKyQFagQ@mail.gmail.com>
+From: "Zoran" <zoran.stojsavljevic@gmail.com>
+Date: Fri, 28 May 2021 14:28:51 +0200
+Message-ID: <CAGAf8Lx_MxnDMVWspVDShzq8uLCtxcSAGqZZoT0Vdsh8YT8cRw@mail.gmail.com>
 Subject: Re: [yocto] How to switch yocto INIT_MANAGER from systemd to sysvinit #dunfell
-To: Khem Raj <raj.khem@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000c099c205c362707e"
-
---000000000000c099c205c362707e
+To: Swapna Nannapaneni <sayinswapna@gmail.com>
+Cc: Khem Raj <raj.khem@gmail.com>, Yocto-mailing-list <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 
-Thanks Robert and Raj!!
+> Tried setting  INIT_MANAGER  = " sysvinit" in build/conf/local.conf
 
-I am using Yocto 3.1 Dunfell release.
+Is it INIT_MANAGER  = " sysvinit" , or INIT_MANAGER  = "sysvinit" (no
+blank at the beginning)?
 
-You are right about the .bbappend file. Changed the name in the overlay to
-new-ver.bbappend  and no longer see the warning.
+Thank you,
+Zee
+_______
 
-Tried setting  INIT_MANAGER  = " sysvinit" in build/conf/local.conf but
-looks like generated rootfs has init file pointing to init ->
-../lib/systemd/systemd
-
-Priya.
-
-On Thu, May 27, 2021 at 7:28 PM Khem Raj <raj.khem@gmail.com> wrote:
-
+On Fri, May 28, 2021 at 1:47 PM Swapna Nannapaneni
+<sayinswapna@gmail.com> wrote:
+>
+> Thanks Robert and Raj!!
+>
+> I am using Yocto 3.1 Dunfell release.
+>
+> You are right about the .bbappend file. Changed the name in the overlay to new-ver.bbappend  and no longer see the warning.
+>
+> Tried setting  INIT_MANAGER  = " sysvinit" in build/conf/local.conf but looks like generated rootfs has init file pointing to init -> ../lib/systemd/systemd
+>
+> Priya.
+>
+> On Thu, May 27, 2021 at 7:28 PM Khem Raj <raj.khem@gmail.com> wrote:
+>>
+>>
+>>
+>> On 5/27/21 3:04 PM, sayinswapna@gmail.com wrote:
+>> > Hello Yocto team:
+>> >
+>> > I just started with yocto and would like to know the process for
+>> > switching the init manager from systemd to sysvinit.
+>> >
+>> > I tried this options in config file
+>> > VIRTUAL-RUNTIME_init_manager = "busybox"
+>> > PREFERRED_PROVIDER_udev = "sysvinit"
+>> > PREFERRED_PROVIDER_udev-utils = "sysvinit"
+>> > DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
+>> > DEFAULT_DISTRO_FEATURES += " sysvinit"
+>> >
+>> > I see a warning when building my machine:
+>> >
+>> > No recipe for target:
+>> > /recipes-core/sysvinit/sysvinit_2.88dsf.bbappend
+>>
+>> Please find out which layer is adding this bbappend you could use
+>>
+>> bitbake-layers show-appends sysvinit
+>>
+>> It seems recipe version is newer perhaps and the bbappend is still made
+>> for older recipe, these things happen when you mix release branches for
+>> different layers.
+>>
+>> >
+>> > When I run this build on my target it still shows me systemd init manager...
+>> >
+>> > Not sure if I am missing any options.
+>> > Could you please let me know if there are any pointers I can refer to?
+>> >
+>> > Thanks,
+>> > Priya
+>> >
+>> >
+>> >
+>> >
+>> >
+>> >
 >
 >
-> On 5/27/21 3:04 PM, sayinswapna@gmail.com wrote:
-> > Hello Yocto team:
-> >
-> > I just started with yocto and would like to know the process for
-> > switching the init manager from systemd to sysvinit.
-> >
-> > I tried this options in config file
-> > VIRTUAL-RUNTIME_init_manager = "busybox"
-> > PREFERRED_PROVIDER_udev = "sysvinit"
-> > PREFERRED_PROVIDER_udev-utils = "sysvinit"
-> > DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
-> > DEFAULT_DISTRO_FEATURES += " sysvinit"
-> >
-> > I see a warning when building my machine:
-> >
-> > No recipe for target:
-> > /recipes-core/sysvinit/sysvinit_2.88dsf.bbappend
+> 
 >
-> Please find out which layer is adding this bbappend you could use
->
-> bitbake-layers show-appends sysvinit
->
-> It seems recipe version is newer perhaps and the bbappend is still made
-> for older recipe, these things happen when you mix release branches for
-> different layers.
->
-> >
-> > When I run this build on my target it still shows me systemd init
-> manager...
-> >
-> > Not sure if I am missing any options.
-> > Could you please let me know if there are any pointers I can refer to?
-> >
-> > Thanks,
-> > Priya
-> >
-> >
-> >
-> >
-> > 
-> >
->
-
---000000000000c099c205c362707e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Thanks Robert and Raj!!<div><br></div><div>I am using Yoct=
-o 3.1 Dunfell release.</div><div><br></div><div>You are right about the .bb=
-append file. Changed the name in the overlay to new-ver.bbappend=C2=A0 and =
-no longer see the warning.=C2=A0</div><div><br></div><div>Tried setting=C2=
-=A0 INIT_MANAGER=C2=A0 =3D &quot; sysvinit&quot; in build/conf/local.conf =
-but looks like generated rootfs has init file pointing to init -&gt; ../lib=
-/systemd/systemd</div><br><div>Priya.</div></div><br><div class=3D"gmail_qu=
-ote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 27, 2021 at 7:28 PM =
-Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.kh=
-em@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex"><br>
-<br>
-On 5/27/21 3:04 PM, <a href=3D"mailto:sayinswapna@gmail.com" target=3D"_bl=
-ank">sayinswapna@gmail.com</a> wrote:<br>
-&gt; Hello Yocto team:<br>
-&gt; <br>
-&gt; I just started with yocto and would like to know the process for <br>
-&gt; switching the init manager from systemd to sysvinit.<br>
-&gt; <br>
-&gt; I tried this options in config file<br>
-&gt; VIRTUAL-RUNTIME_init_manager =3D &quot;busybox&quot;<br>
-&gt; PREFERRED_PROVIDER_udev =3D &quot;sysvinit&quot;<br>
-&gt; PREFERRED_PROVIDER_udev-utils =3D &quot;sysvinit&quot;<br>
-&gt; DISTRO_FEATURES_BACKFILL_CONSIDERED =3D &quot;sysvinit&quot;<br>
-&gt; DEFAULT_DISTRO_FEATURES +=3D &quot; sysvinit&quot;<br>
-&gt; <br>
-&gt; I see a warning when building my machine:<br>
-&gt; <br>
-&gt; No recipe for target:<br>
-&gt; /recipes-core/sysvinit/sysvinit_2.88dsf.bbappend<br>
-<br>
-Please find out which layer is adding this bbappend you could use<br>
-<br>
-bitbake-layers show-appends sysvinit<br>
-<br>
-It seems recipe version is newer perhaps and the bbappend is still made <b=
-r>
-for older recipe, these things happen when you mix release branches for <b=
-r>
-different layers.<br>
-<br>
-&gt; <br>
-&gt; When I run this build on my target it still shows me systemd init man=
-ager...<br>
-&gt; <br>
-&gt; Not sure if I am missing any options.<br>
-&gt; Could you please let me know if there are any pointers I can refer to=
-?<br>
-&gt; <br>
-&gt; Thanks,<br>
-&gt; Priya<br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-</blockquote></div>
-
---000000000000c099c205c362707e--
