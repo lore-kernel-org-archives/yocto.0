@@ -1,139 +1,129 @@
-Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
- by mx.groups.io with SMTP id smtpd.web10.6117.1622195482682014649
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+ by mx.groups.io with SMTP id smtpd.web12.6465.1622198358431969791
  for <yocto@lists.yoctoproject.org>;
- Fri, 28 May 2021 02:51:22 -0700
+ Fri, 28 May 2021 03:39:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@fastmail.fm header.s=fm3 header.b=Gz/bQ1tb;
- spf=pass (domain: fastmail.fm, ip: 64.147.123.24, mailfrom: manwag@fastmail.fm)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-	by mailout.west.internal (Postfix) with ESMTP id B07DE1A01;
-	Fri, 28 May 2021 05:51:21 -0400 (EDT)
-Received: from imap9 ([10.202.2.59])
-  by compute2.internal (MEProxy); Fri, 28 May 2021 05:51:21 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fastmail.fm; h=
-	mime-version:message-id:in-reply-to:references:date:from:to:cc
-	:subject:content-type; s=fm3; bh=UxZK/F32zMQcUW3/WCuRGUvH8GcQsbV
-	yyDV3njZIjCs=; b=Gz/bQ1tbFIpdWdRDcqhl8V18Xjun0IHM5dH/VPY8ZpYKN8m
-	1VT+czZjKmfCNj4qxSUSrZU1wOkpTvMgLJIBWttQqiQonDTO1lLIWuum9qwvqpgs
-	4KTQh1C1FkY4JPdFRYvbf2cIJ/4ZuTH8Dhymy4hR8gpjkrSnl9/4+6u8LIcLPV8m
-	v3SUvzVaQXTyWNQdK5gZbIaPLB7j/2qXY08EHumO6GtQc9lbIv4+0dW7OJuGkBS2
-	L/f6ce8Oy1xOeDkB942c7kMyQNtFh6Nri0Cf9HIo6I4TlSj/kQ6xe3vU8Egm7gpp
-	noc4SlJ2bdx6J0BXBZYNkd7aAs0BPwUkG1hNmeg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to:x-me-proxy
-	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=UxZK/F
-	32zMQcUW3/WCuRGUvH8GcQsbVyyDV3njZIjCs=; b=cIY0bRFu3S2VT/BIKDR9P6
-	5adG0AZVXrmi0QypofpKteG7sKnGm4tBfQxi0OQiWU7xTNwQAV02DJufVua5EZmG
-	XlUE0p2iykOfSZ4ugrhDjH8fKhXT9Py34mEj2Uy9x+xxNM2QG/OE3mwH8PHpOK3F
-	ZzXcuaS0fY4xpENL7oO/5GcMytACta5DvP6J0iGRA0UP9JDr8B2UGDOVvnY0ZFTS
-	B7eZUEOMMzNcPJV4bXJCZgxXQ7sPfxK/od/6Rqq/hzQB15gIXnP/JCqWIMCc7gko
-	5kDkEBAI/pY653tV374av+XkJizRf9pgXu7AvtxJi5VFxpzigIkaLsOg228NC5hQ
-	==
-X-ME-Sender: <xms:GL2wYFNuJzpF1-zsnbg22i8LsIMZW2TfpzhZGWO3zg2LzeAEQiilTQ>
-    <xme:GL2wYH-nYiZgd6URM8p0AWgRut6R-ZNrgkq8AaCfGmOqpkeIdmzfMYZyeXhSh_KF8
-    ZjTLIqaY0fKfcFb>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdekjedgvdduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesrgdtreerreerjeenucfhrhhomhepfdforghn
-    uhgvlhcuhggrghgvshhrvghithhhvghrfdcuoeforghnhggrgheshfgrshhtofgrihhlrd
-    fhofeqnecuggftrfgrthhtvghrnhepudekfefgudehgfffieelleefteefjeduhfejueej
-    ieevfeevueeivdefieduhfevnecuffhomhgrihhnpehsohhmvghsvghrvhgvrhdrthhlug
-    dphihotghtohhprhhojhgvtghtrdhorhhgpdhhthhtphifihhthhgsrghsihgtrghuthhh
-    vghnthhitggrthhiohhnvddrhhhofienucevlhhushhtvghrufhiiigvpedtnecurfgrrh
-    grmhepmhgrihhlfhhrohhmpeforghnhggrgheshfgrshhtofgrihhlrdfhof
-X-ME-Proxy: <xmx:GL2wYETD8Xyrv6XjdwLFV_IzfiXwzVSk9u-yfry2bm105d8IlBgh0w>
-    <xmx:GL2wYBuo8qdIL4MVefU1sXkVAqreeefjTzDxWSK2ponbBcQ5FhENWw>
-    <xmx:GL2wYNeZgSSpG97C-0pS8_XEZX0xw-ai-D_cjujYukrH9MFUNNXuLg>
-    <xmx:Gb2wYDqr3r5emWrMHZeqfrTXG3cRUL8uvS9mhWjY_jWqdyN5oPRiyQ>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 9B3D22E003D; Fri, 28 May 2021 05:51:20 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-468-gdb53729b73-fm-20210517.001-gdb53729b
-Mime-Version: 1.0
-Message-Id: <1159eaa0-608a-4b05-ab67-6c06b4408120@www.fastmail.com>
-In-Reply-To: <20210528093505.s2rh2uuejkmwhyzu@qschulz>
-References: <5246693f-118f-4c05-93f9-f49cbb3ed5b4@www.fastmail.com>
- <20210528093505.s2rh2uuejkmwhyzu@qschulz>
-Date: Fri, 28 May 2021 11:50:59 +0200
-From: "Manuel Wagesreither" <ManWag@FastMail.FM>
-To: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Where to define username/password when fetching sstate via http with basic authentication?
-Content-Type: multipart/alternative;
- boundary=09dd9a5ca6ac4f8abb4940c6a65d852e
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ExCKkIaI;
+ spf=pass (domain: gmail.com, ip: 209.85.214.178, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-pl1-f178.google.com with SMTP id 69so1438208plc.5
+        for <yocto@lists.yoctoproject.org>; Fri, 28 May 2021 03:39:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=J1S/akaXx/teaUzeigvQ8Nzd4XLOwksBrPUucc8DoA0=;
+        b=ExCKkIaIOc9LhFlbNvcTi6OsXoIi2SEskGwXKwrk/e9jfLAn8ioVdK7JwQYABH90a2
+         NvKxRNrQr2zy8NgMIvACDBjFle/TUHDhUe1BL0MQft//gjHylx7C8PeQgpWAKk/C0Un9
+         BlRNWQ/kAWZIuN7jwhN5bJY6qH2htYFWb7Ub8jesKxla/NZjFPGGL59CdMOZb2cR47py
+         jfLGl7mccAwI2i6vs5KCuycUht+/kLpaq9yP/awX+j6fwLjyjIhrlbQDvr8FJLeAnz2M
+         AXRD7BQ5mqOcVxa4GSWZVjCNujkrro78gi1iXkiyBh9c4cXS3ErWxr3hSwqtLGRo9KTW
+         Ur6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=J1S/akaXx/teaUzeigvQ8Nzd4XLOwksBrPUucc8DoA0=;
+        b=lXjFyaoRGYoE2gOujQSyWDUrT4qWRYJlfo1CuS7V8LeMD1+TcopskKadMoB7aL/SsD
+         LuFqfzBTrmz096Oroq/biYbwShBOFC9Sl4Ygq7pRY13TBjzNTAqF0VC45Cchd/nxit5w
+         25nVzSn3b1JMT8ivzdfm93axA6u3r88X249jkx85T/69lOtevTavL2J2p3Vf9Mb0LZZ3
+         A3GCL7cehsNhgRzoFoCRrlvPmLhVGs/LlbVStIXdn7Rqh427yil2xNZb2Kqo1xhUYu4N
+         jSm5hSpaq8Yse023/QhlTd0n8X/AaxX3kyjmW1bIzpxRBs0R5uhOWCn/2FSqvOAhTczw
+         GEIw==
+X-Gm-Message-State: AOAM531/kQgkwfGv8mKD76sGIPlwZfw5qcfNeL9PueijKDyyiPGDTCGR
+	uw6UiAhBsoY1HLzUSgnNbz/iVangV3iRzYcGjn0=
+X-Google-Smtp-Source: ABdhPJxKoADJqR+gBbpWFwyjlB3e0upLH7dVZ5XCofTwBpOkOHk36rn6YR3/KEaX7+CNtVtLlkoXyo17jw2uROMAO3U=
+X-Received: by 2002:a17:90a:e391:: with SMTP id b17mr3643384pjz.75.1622198357762;
+ Fri, 28 May 2021 03:39:17 -0700 (PDT)
+MIME-Version: 1.0
+References: <dWBn.1622153050533898469.7UFj@lists.yoctoproject.org> <7642946a-9a4b-2799-9db2-1187822ffbcf@gmail.com>
+In-Reply-To: <7642946a-9a4b-2799-9db2-1187822ffbcf@gmail.com>
+From: "Zoran" <zoran.stojsavljevic@gmail.com>
+Date: Fri, 28 May 2021 12:39:06 +0200
+Message-ID: <CAGAf8LwVjEGU122cthPZeAv7LAfdXpvD1tJXWMBVr+oSSvb59Q@mail.gmail.com>
+Subject: Re: [yocto] How to switch yocto INIT_MANAGER from systemd to sysvinit #dunfell
+To: Khem Raj <raj.khem@gmail.com>, rpjday@crashcourse.ca
+Cc: sayinswapna@gmail.com, Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
---09dd9a5ca6ac4f8abb4940c6a65d852e
-Content-Type: text/plain
+Why do I (always) point out the obvious?
 
-Hi Quentin,
+And I do need... Geniuses are not meant to fix The World to understand them!?
 
-obviously I didn't read that page carefully enough. Sorry for the noise and thanks for the hint.
+Geniuses should understand The World (and act properly)!
 
-Cheers, Manuel
+Extras to geniality, do you, YOCTO primes, think?
+_______
 
+Robert... If I am correct, i'm I?
 
-Am Fr, 28. Mai 2021, um 11:35, schrieb Quentin Schulz:
-> Hi Manuel,
+Should you include in docs some examples??? Yes, U should!
+As for an example fix:
+poky/meta/conf/distro/include/init-manager-*.con, NOT
+conf/distro/include/init-manager-*.conf
+
+(full path is more explicit, isn't it?)
+
+And some local.conf examples/snippets (since all descriptions are here
+and there very dry):
+
+## Add systemd service
+INIT_MANAGER = "systemd"
+## DISTRO_FEATURES_append = " systemd"
+## DISTRO_FEATURES_BACKFILL_CONSIDERED += "sysvinit"
+## VIRTUAL-RUNTIME_init_manager = "systemd"
+## VIRTUAL-RUNTIME_dev_manager = "systemd"
+## VIRTUAL-RUNTIME_initscripts = ""
+
+Where INIT_MANAGER = "systemd" replaces all commented commands below....
+
+My two cent advice,
+Zee
+_______
+
+On Fri, May 28, 2021 at 1:28 AM Khem Raj <raj.khem@gmail.com> wrote:
+>
+>
+>
+> On 5/27/21 3:04 PM, sayinswapna@gmail.com wrote:
+> > Hello Yocto team:
+> >
+> > I just started with yocto and would like to know the process for
+> > switching the init manager from systemd to sysvinit.
+> >
+> > I tried this options in config file
+> > VIRTUAL-RUNTIME_init_manager = "busybox"
+> > PREFERRED_PROVIDER_udev = "sysvinit"
+> > PREFERRED_PROVIDER_udev-utils = "sysvinit"
+> > DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
+> > DEFAULT_DISTRO_FEATURES += " sysvinit"
+> >
+> > I see a warning when building my machine:
+> >
+> > No recipe for target:
+> > /recipes-core/sysvinit/sysvinit_2.88dsf.bbappend
+>
+> Please find out which layer is adding this bbappend you could use
+>
+> bitbake-layers show-appends sysvinit
+>
+> It seems recipe version is newer perhaps and the bbappend is still made
+> for older recipe, these things happen when you mix release branches for
+> different layers.
+>
+> >
+> > When I run this build on my target it still shows me systemd init manager...
+> >
+> > Not sure if I am missing any options.
+> > Could you please let me know if there are any pointers I can refer to?
+> >
+> > Thanks,
+> > Priya
+> >
+> >
+> >
+> >
+> >
+> >
+>
 > 
-> On Fri, May 28, 2021 at 11:26:26AM +0200, Manuel Wagesreither wrote:
-> > Hello all,
-> > 
-> > to speed up builds, we would like to make the CI generated sstate-cache available via internet. Due to IP concerns, we don't want to make it publically available but for authenticated hosts only.
-> > 
-> > [1] indicates it is possible to serve the sstate-cache over http with basic authentication [2].
-> > 
-> > How does one set the username & password? By putting it into the URL like in the following example, or are other ways available?
-> > ```
-> > SSTATE_MIRRORS ?= "\
-> > file://.* http://username:password@someserver.tld/share/sstate/PATH"
-> > ```
-> > 
-> 
-> There is an example in the commit you sent, so I would say:
-> SSTATE_MIRRORS ?= " \
-> file://.* http://someserver.tld/share/sstate/PATH;user=username:password;downloadfilename=PATH \n"
-> ?
-> 
-> Cheers,
-> Quentin
-> 
-> 
-> 
-> 
-> 
-
---09dd9a5ca6ac4f8abb4940c6a65d852e
-Content-Type: text/html
-Content-Transfer-Encoding: quoted-printable
-
-<!DOCTYPE html><html><head><title></title><style type=3D"text/css">p.MsoNor=
-mal,p.MsoNoSpacing{margin:0}</style></head><body><div>Hi Quentin,<br></div>=
-<div><br></div><div>obviously I didn't read that page carefully enough. Sor=
-ry for the noise and thanks for the hint.<br></div><div><br></div><div>Chee=
-rs, Manuel<br></div><div><br></div><div><br></div><div>Am Fr, 28. Mai 2021,=
- um 11:35, schrieb Quentin Schulz:<br></div><blockquote type=3D"cite" id=3D=
-"qt" style=3D""><div>Hi Manuel,<br></div><div><br></div><div>On Fri, May 28=
-, 2021 at 11:26:26AM +0200, Manuel Wagesreither wrote:<br></div><div>&gt; H=
-ello all,<br></div><div>&gt;&nbsp;<br></div><div>&gt; to speed up builds, w=
-e would like to make the CI generated sstate-cache available via internet. =
-Due to IP concerns, we don't want to make it publically available but for a=
-uthenticated hosts only.<br></div><div>&gt;&nbsp;<br></div><div>&gt; [1] in=
-dicates it is possible to serve the sstate-cache over http with basic authe=
-ntication [2].<br></div><div>&gt;&nbsp;<br></div><div>&gt; How does one set=
- the username &amp; password? By putting it into the URL like in the follow=
-ing example, or are other ways available?<br></div><div>&gt; ```<br></div><=
-div>&gt; SSTATE_MIRRORS ?=3D "\<br></div><div>&gt; file://.*&nbsp;<a href=
-=3D"http://username:password@someserver.tld/share/sstate/PATH">http://user=
-name:password@someserver.tld/share/sstate/PATH</a>"<br></div><div>&gt; ```<=
-br></div><div>&gt;&nbsp;<br></div><div><br></div><div>There is an example i=
-n the commit you sent, so I would say:<br></div><div>SSTATE_MIRRORS ?=3D " =
-\<br></div><div>file://.*&nbsp;<a href=3D"http://someserver.tld/share/sstat=
-e/PATH;user=3Dusername:password;downloadfilename=3DPATH">http://someserver.=
-tld/share/sstate/PATH;user=3Dusername:password;downloadfilename=3DPATH</a> =
-\n"<br></div><div>?<br></div><div><br></div><div>Cheers,<br></div><div>Quen=
-tin<br></div><div><br></div><div><br></div><div><br></div><div><br></div><d=
-iv><br></div></blockquote><div><br></div></body></html>
-
---09dd9a5ca6ac4f8abb4940c6a65d852e--
+>
