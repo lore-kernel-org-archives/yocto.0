@@ -1,50 +1,50 @@
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
- by mx.groups.io with SMTP id smtpd.web11.34162.1622395109141093807
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+ by mx.groups.io with SMTP id smtpd.web08.34031.1622395109715695316
  for <yocto@lists.yoctoproject.org>;
  Sun, 30 May 2021 10:18:29 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=U+gqaU4x;
- spf=pass (domain: gmail.com, ip: 209.85.214.178, mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f178.google.com with SMTP id h12so4021414plf.11
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=qIpKAEKg;
+ spf=pass (domain: gmail.com, ip: 209.85.214.176, mailfrom: akuster808@gmail.com)
+Received: by mail-pl1-f176.google.com with SMTP id 11so536868plk.12
         for <yocto@lists.yoctoproject.org>; Sun, 30 May 2021 10:18:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=WNqFITFLI60eF1lSrMfz8T2xNPrw/Q6lWlAPQt+hmIU=;
-        b=U+gqaU4xW8b/vHB0c3t8GvlNQ/Lf8t6tXeLOOZ6Fxtgsntp9dCIpZqAVVOCOxCVDkD
-         3qcaobdmoT4l3DVL220C7qhjNmXuPSzmOAYzLeUWgsqOuEXPGoIEdOPpJoRS1KlDBPEw
-         tABD0J0gPsacZ/IopbFs2ugPHSrplua2Sap1NCLF538upf6swVmKwpp/IkSNAxOEG3Kf
-         D/AVZ1AoS4L+C4f33hAmBvsEyIB42Qo2l+tFUDYpprGkRe4xo4aZRy0IpGyPenUYH7EJ
-         YlRbsfebPpD4CDFWLVnhkiNsTmUiz+IV0/uLbv2cE9cwH15l0xCJhxgOhEMbdCATgq7h
-         XE5g==
+        bh=5ZbXQ7x4wETCu+l2vSHCUakrr52wds/ImNs59pBD4TY=;
+        b=qIpKAEKg4HLw7QSoy2qYTPxavKudFfey/0bJG2/wLJYYy/St9jTzPx1nLUX225nfGN
+         H0qShhCc/LNbKj7CaIyrBMnd4SfHYCH2QcV2krJnKccjXCwXwqt1yw+Qhw7iG3oWKblx
+         cy9EMClf+Kw6alXI7G5kFFDfz8m4l6svCeNqIsm2yMtL4ZWA3n+MOrftfpSnC2YTeq0n
+         Xg9ISa7t/U9i7CTb0ah8VUIGggOxWTZMjrjTnSXqzmgpGFXSMdYNsS/MEpRwsVxr+t1z
+         WX8+FJhGFToh//nU0AnNGtRRiPQ3c/GhPvaxFySHCRolicVtp2VznpPRRIMUaAx/yJ2/
+         1UKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=WNqFITFLI60eF1lSrMfz8T2xNPrw/Q6lWlAPQt+hmIU=;
-        b=Iq+yI2MG9xqaWr/QewGncfyLJizJu3ZeY6fP5gdNib9BtCZfMFHCIftVOgWQVl1y3h
-         qxu+bdEiGJCPBoRB/tMOZVw5N0qNFzy1ehxTww1wWphOJOya8gnbmi8Mvn6JNKsecUyg
-         AIfRbRLycW+8gh7vyCCWr1WgdtIV9/44UVhkO8T2HxrL/QkD9G0JeWldKMLPfPvbeupu
-         kSwwwXC9Sd/RxHiPci32lLgcBIDPPlYuMFVX1c+XUYyTyJozT76BEc2r2Y7bCLCl5XIQ
-         1osXEC/jNzKrn45hHOpT3f+t2PCqUJXPdXpfzKwVrlgYgQXe04nK3pTtnTgM1RM54lG5
-         Wskg==
-X-Gm-Message-State: AOAM532+WJHy64vtXpmpSkgZ6CMOKAUN1Iv++tnjNASB2dHRPgg6OHh3
-	eo1x81yCQE93Eskiw8ZWwGbc2bO9QPdlkA==
-X-Google-Smtp-Source: ABdhPJyGymeh1XPFbJpjmWp/ldyzO0WsKa18IgleyXbBAt00TWW1IHd9WPqY/3ovWM8a7+k9HFL0pQ==
-X-Received: by 2002:a17:902:aa95:b029:fd:8e4a:f341 with SMTP id d21-20020a170902aa95b02900fd8e4af341mr16764934plr.78.1622395108531;
-        Sun, 30 May 2021 10:18:28 -0700 (PDT)
+        bh=5ZbXQ7x4wETCu+l2vSHCUakrr52wds/ImNs59pBD4TY=;
+        b=aebaPi7AKFfgYA2gbJC1DzHqxcXzW96bGGmGK3VZvJkxRFt1jNfJ1UTLM3sFP3GFyw
+         ID3VeqCguXXtlPx1HL/D3Vv9F8hnSvo+iAyHjePsabx5aaqRI/pagMERJ9Wban8u1Mzo
+         7X8bFy0E+IW+8Oc2pY93IElI30D43lnEATWqyC+K2xztUfmgl1INGrR9qm7KuAEYU095
+         xB2/bnd043GfipueQW+z9KoUegOeVymZMk2vTN45QEj4lHQoxOH9jzV2HJYOuOvI029a
+         DumfYQyDF1uTbrST5qQDOR7ej5BVdTlO08/VU+5d0rjYlL3EvHx6j9Ju+ZdycxC/wyTz
+         SMPg==
+X-Gm-Message-State: AOAM530e7vUOkFh0rhpeqjqL73QYKWx4tkbW7CPd4/Lr2GMu01Th6K6m
+	YsEyTsXvq+nBcitfoqg8amAPH6ZYwXzwOQ==
+X-Google-Smtp-Source: ABdhPJxxBEpZD/HXPRjhiztdYUgpu9phpSNJmmMdL5KatA/kIyoYHvxpqOmzc8wWO5+t8Ayao945UA==
+X-Received: by 2002:a17:902:bd90:b029:f2:c88c:5b2c with SMTP id q16-20020a170902bd90b02900f2c88c5b2cmr16911266pls.8.1622395109193;
+        Sun, 30 May 2021 10:18:29 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from hilo.hsdl.ca.comcast.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
-        by smtp.gmail.com with ESMTPSA id x1sm8572548pjk.37.2021.05.30.10.18.27
+        by smtp.gmail.com with ESMTPSA id x1sm8572548pjk.37.2021.05.30.10.18.28
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Sun, 30 May 2021 10:18:28 -0700 (PDT)
 From: "Armin Kuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 4/5] python3-scapy: drop , now in meta-python
-Date: Sun, 30 May 2021 17:18:23 +0000
-Message-Id: <20210530171824.571143-4-akuster808@gmail.com>
+Subject: [meta-security][PATCH 5/5] packagegroup-core-security: drop python3-scapy
+Date: Sun, 30 May 2021 17:18:24 +0000
+Message-Id: <20210530171824.571143-5-akuster808@gmail.com>
 X-Mailer: git-send-email 2.24.3
 In-Reply-To: <20210530171824.571143-1-akuster808@gmail.com>
 References: <20210530171824.571143-1-akuster808@gmail.com>
@@ -53,58 +53,29 @@ Content-Transfer-Encoding: 8bit
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-security/scapy/files/run-ptest        |  4 ---
- recipes-security/scapy/python3-scapy_2.4.5.bb | 30 -------------------
- 2 files changed, 34 deletions(-)
- delete mode 100644 recipes-security/scapy/files/run-ptest
- delete mode 100644 recipes-security/scapy/python3-scapy_2.4.5.bb
+ recipes-core/packagegroup/packagegroup-core-security.bb | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/recipes-security/scapy/files/run-ptest b/recipes-security/scapy/files/run-ptest
-deleted file mode 100644
-index 797d8ec..0000000
---- a/recipes-security/scapy/files/run-ptest
-+++ /dev/null
-@@ -1,4 +0,0 @@
--#!/bin/sh
--UTscapy3 -t regression.uts -f text -l -C \
--    -o @PTEST_PATH@/scapy_ptest_$(date +%Y%m%d-%H%M%S).log \
--    2>&1 | sed -e 's/^passed None/PASS:/' -e 's/^failed None/FAIL:/'
-diff --git a/recipes-security/scapy/python3-scapy_2.4.5.bb b/recipes-security/scapy/python3-scapy_2.4.5.bb
-deleted file mode 100644
-index 8f36520..0000000
---- a/recipes-security/scapy/python3-scapy_2.4.5.bb
-+++ /dev/null
-@@ -1,30 +0,0 @@
--SUMMARY = "Network scanning and manipulation tool"
--DESCRIPTION = "Scapy is a powerful interactive packet manipulation program. It is able to forge or decode packets of a wide number of protocols, send them on the wire, capture them, match requests and replies, and much more. It can easily handle most classical tasks like scanning, tracerouting, probing, unit tests, attacks or network discovery (it can replace hping, 85% of nmap, arpspoof, arp-sk, arping, tcpdump, tethereal, p0f, etc.). It also performs very well at a lot of other specific tasks that most other tools can't handle, like sending invalid frames, injecting your own 802.11 frames, combining technics (VLAN hopping+ARP cache poisoning, VOIP decoding on WEP encrypted channel, ...), etc."
--SECTION = "security"
--LICENSE = "GPLv2"
--
--LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
--
--SRCREV = "32cd7eb0f620d9adf171c48d55514e8326a538d7"
--SRC_URI = "git://github.com/secdev/scapy.git \
--           file://run-ptest"
--
--S = "${WORKDIR}/git"
--
--UPSTREAM_CHECK_COMMITS = "1"
--
--inherit setuptools3 ptest
--
--do_install_append() {
--        mv ${D}${bindir}/scapy ${D}${bindir}/scapy3
--        mv ${D}${bindir}/UTscapy ${D}${bindir}/UTscapy3
--}
--
--do_install_ptest() {
--    install -m 0644 ${S}/test/regression.uts ${D}${PTEST_PATH}
--    sed -i 's,@PTEST_PATH@,${PTEST_PATH},' ${D}${PTEST_PATH}/run-ptest
--}
--
--RDEPENDS_${PN} = "tcpdump ${PYTHON_PN}-compression ${PYTHON_PN}-cryptography ${PYTHON_PN}-netclient  \
--                  ${PYTHON_PN}-netserver ${PYTHON_PN}-pydoc ${PYTHON_PN}-pkgutil ${PYTHON_PN}-shell \
--                  ${PYTHON_PN}-threading ${PYTHON_PN}-numbers ${PYTHON_PN}-pycrypto"
+diff --git a/recipes-core/packagegroup/packagegroup-core-security.bb b/recipes-core/packagegroup/packagegroup-core-security.bb
+index cf9620f..e7b6d9b 100644
+--- a/recipes-core/packagegroup/packagegroup-core-security.bb
++++ b/recipes-core/packagegroup/packagegroup-core-security.bb
+@@ -37,7 +37,6 @@ RDEPENDS_packagegroup-security-utils = "\
+     pinentry \
+     python3-privacyidea \
+     python3-fail2ban \
+-    python3-scapy \
+     softhsm \
+     libest \
+     opendnssec \
+@@ -89,7 +88,6 @@ RDEPENDS_packagegroup-meta-security-ptest-packages = "\
+     ptest-runner \
+     samhain-standalone-ptest \
+     libseccomp-ptest \
+-    python3-scapy-ptest \
+     suricata-ptest \
+     python3-fail2ban-ptest \
+     ${@bb.utils.contains("DISTRO_FEATURES", "smack", "smack-ptest", "",d)} \
 -- 
 2.24.3
 
