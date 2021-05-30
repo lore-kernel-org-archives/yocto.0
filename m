@@ -1,97 +1,87 @@
-Received: from mx02.optimcloud.com (mx02.optimcloud.com [46.23.90.20])
- by mx.groups.io with SMTP id smtpd.web09.32336.1622384787687192945
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+ by mx.groups.io with SMTP id smtpd.web11.34161.1622395107094987788
  for <yocto@lists.yoctoproject.org>;
- Sun, 30 May 2021 07:26:28 -0700
+ Sun, 30 May 2021 10:18:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="no key for verify" header.i=@optimcloud.com header.s=obsd header.b=hXkVpRgd;
- spf=none, err=permanent DNS error (domain: optimcloud.com, ip: 46.23.90.20, mailfrom: yocto@optimcloud.com)
-Received: from mx02.optimcloud.com (localhost [127.0.0.1])
-	by mx02.optimcloud.com (OpenSMTPD) with ESMTP id c292a857
-	for <yocto@lists.yoctoproject.org>;
-	Sun, 30 May 2021 16:26:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=optimcloud.com; h=
-	subject:to:references:from:message-id:date:mime-version
-	:in-reply-to:content-type; s=obsd; bh=Pf+ZirJlkCOS1KnBs3akQEnpKr
-	GJbDlBZ1GFLjd76TE=; b=hXkVpRgdsI9Bazu0wXi8iDdkqd4vlEvGyyYidFrRMX
-	U2f42kC80HbyIko+SxxF65f+SymfCqzvtDKTcO5ZOKCblWNL9J/BTTOkJ/OeRxt8
-	YzYUcCc7VTDZ3ALE7scZsEnOWnoEz7kXcRFwXn46O72Apsf5zPdwIROZRBfGU6dh
-	GMUh4MrABzXSvDhVKJKAbSGS/EWG+AIjfwpPxhGi7k2WOWHR/j9qeN6gC27PqPCY
-	7iJeWb87ZPF0ghNvdABD181rlA5lY298dmnfQsufHkUqUJzifMXwrNjggDeHz1l+
-	xGoTjIoUMpVl1azSY7mGGFFqg2ePsFR0ycjykGRqQKSw==
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=optimcloud.com; h=subject:to
-	:references:from:message-id:date:mime-version:in-reply-to
-	:content-type; q=dns; s=obsd; b=p7Slf0zkC4sPPbEPsGHv+PrJDPWgaweA
-	lzjjlWNF4Z7IMEUCi5exeBrtISTgTEEr3Z/EtqnqCcCqr3J/WAww+FsIaZsiMlY2
-	0RW/sLFmjOaK3xZN/vThV6cVuhHs1bwKJLALopo5JsEu6K3ISa0A3BqsdegkFkVb
-	+get4ZC1e53XtC6lNuSvWgwkJVlPg3BLPTndwjd3pil4YDEeteGwaj2xtyk5e5j7
-	CcjsgFYteQybdnWOO1J1F0h7Y94060XgyZRWpwjM9sLMNl+uXgNF6dP7Boss3htv
-	zkIUWn4pAXqWPMV6EKQ/ItSWXFAofpNGaZ6bYSjQsBameyZZ4KoSAg==
-Received: 
-	by mx02.optimcloud.com (OpenSMTPD) with ESMTPSA id e9a557b8 (TLSv1.3:AEAD-AES256-GCM-SHA384:256:NO) auth=yes user=yocto@optimcloud.com
-	for <yocto@lists.yoctoproject.org>;
-	Sun, 30 May 2021 16:26:24 +0200 (CEST)
-Subject: Re: [yocto] #yocto ASUS ROG STRIX Z390-I
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Ik5iZECq;
+ spf=pass (domain: gmail.com, ip: 209.85.216.47, mailfrom: akuster808@gmail.com)
+Received: by mail-pj1-f47.google.com with SMTP id l10-20020a17090a150ab0290162974722f2so1815386pja.2
+        for <yocto@lists.yoctoproject.org>; Sun, 30 May 2021 10:18:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CS7mt9l2WMkng9sNN4+CXaVVTHRLCleYoCUTBdxuC4k=;
+        b=Ik5iZECqn+1lFQrSVZ4px2ja5lgnypmxxshgAeY3h+mn3gHw6cRcm9pnzBRyNeXMw8
+         IfgQCqZXQ5RVA9OkEZGo7RLWlYznp6LQeZ362rtBcGLh0YDiLfWvBmnCD9RA248dA7bB
+         SPvMUxB0rUPoAtCTYk7dnt9smBHT/hRB6HhsIGCbGDCaXlBhsTSWDNHjkAdbKJe1WFMx
+         PhnMvGs+PNbgC2pluavqMLlmrq0ko8FL3sFRfn+8IZ29aEvrHBoUkCYSgFZH7/4hVf2g
+         Yp7Dk2pm7Q0xAEgfMF9fShuG3HkSJlQdJy2KqwKSNlWvWSQggxPlkGRWKdn99/uaf+r1
+         nxbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CS7mt9l2WMkng9sNN4+CXaVVTHRLCleYoCUTBdxuC4k=;
+        b=ObMNv9aYj5aLELjk1ySo7X5dk3jJ8aO0l2FKi1YbV0LvIt7hNSqshsiqpbAxo+BFZc
+         X/TgD1NAplHFWzqUyeUM/Zyd2KwVSMWjfPtp//aOboWcQh8q+bE4sPSJvL9y1M82RGvN
+         VJgYsIAafrHxSKqyCpn7wcbrxY6QjzXP/+ASRbXEIy/5x1BYckuvg/4Tv21VGz2P7w//
+         GVvc8WGAnKryTZ56RpR4Fwdfyu4x0VNa1kTD4dsG1L2Tg2TeBFj23XdYfmGS6pS/jMy0
+         rztIinoQC6wEt+l2XuqtBvInMiU6HnWnjO1Nlb0T7h4nHb7btimzGhHL/YmIWLAmFHbD
+         GtnQ==
+X-Gm-Message-State: AOAM532HobPgKrynfSbX5jzcR3N7y3bqL7IrXhm5WwIKZtSYQjVJ7hzr
+	OZ6R5TOR752mTrAIy34nLWFCJEG669Eerw==
+X-Google-Smtp-Source: ABdhPJxPuw1miFdN/gnyOAvXL5ARccZmZBDSGetm3WtEAA/R6L0hpFxA7RUd7su+0TQiNkJX89XSPw==
+X-Received: by 2002:a17:902:7401:b029:102:34f7:48f5 with SMTP id g1-20020a1709027401b029010234f748f5mr7136749pll.47.1622395106102;
+        Sun, 30 May 2021 10:18:26 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from hilo.hsdl.ca.comcast.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
+        by smtp.gmail.com with ESMTPSA id x1sm8572548pjk.37.2021.05.30.10.18.25
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 30 May 2021 10:18:25 -0700 (PDT)
+From: "Armin Kuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-References: <nEJx.1622373321581335056.ofA1@lists.yoctoproject.org>
-From: "Yocto" <yocto@optimcloud.com>
-Message-ID: <0b3bac03-b985-ce28-1b6d-c55c168a308f@optimcloud.com>
-Date: Sun, 30 May 2021 21:26:15 +0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+Subject: [meta-security][PATCH 1/5] busybox: drop as libsecomp is in core
+Date: Sun, 30 May 2021 17:18:20 +0000
+Message-Id: <20210530171824.571143-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.24.3
 MIME-Version: 1.0
-In-Reply-To: <nEJx.1622373321581335056.ofA1@lists.yoctoproject.org>
-Content-Type: multipart/alternative;
- boundary="------------37F1A6D4B3D790298DBD549D"
-Content-Language: en-US
-
---------------37F1A6D4B3D790298DBD549D
-Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-use meta-intel build for a core-i7 I also have an ASUS ROG board running 
-yocto.
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-core/busybox/busybox/head.cfg      | 1 -
+ recipes-core/busybox/busybox_%.bbappend    | 1 -
+ recipes-core/busybox/busybox_libsecomp.inc | 3 ---
+ 3 files changed, 5 deletions(-)
+ delete mode 100644 recipes-core/busybox/busybox/head.cfg
+ delete mode 100644 recipes-core/busybox/busybox_%.bbappend
+ delete mode 100644 recipes-core/busybox/busybox_libsecomp.inc
 
-On 5/30/21 6:15 PM, a.elgammal2019@gmail.com wrote:
-> Hello,
->
-> I have a ROG STRIX Z390-I motherboard with an Intel® Z390 chipset. And 
-> I want to create a custom BSP Layer for it. Where should I start? I 
-> did not find any yocto community for ASUS. So, Any guides would be 
-> helpful. Thank you
->
-> 
->
+diff --git a/recipes-core/busybox/busybox/head.cfg b/recipes-core/busybox/busybox/head.cfg
+deleted file mode 100644
+index 16017ea..0000000
+--- a/recipes-core/busybox/busybox/head.cfg
++++ /dev/null
+@@ -1 +0,0 @@
+-CONFIG_FEATURE_FANCY_HEAD=y
+diff --git a/recipes-core/busybox/busybox_%.bbappend b/recipes-core/busybox/busybox_%.bbappend
+deleted file mode 100644
+index 27a2482..0000000
+--- a/recipes-core/busybox/busybox_%.bbappend
++++ /dev/null
+@@ -1 +0,0 @@
+-require ${@bb.utils.contains('DISTRO_FEATURES', 'ptest', 'busybox_libsecomp.inc', '', d)}
+diff --git a/recipes-core/busybox/busybox_libsecomp.inc b/recipes-core/busybox/busybox_libsecomp.inc
+deleted file mode 100644
+index 4af22ce..0000000
+--- a/recipes-core/busybox/busybox_libsecomp.inc
++++ /dev/null
+@@ -1,3 +0,0 @@
+-FILESEXTRAPATHS_prepend := "${THISDIR}/busybox:"
+-
+-SRC_URI_append  = " file://head.cfg"
+-- 
+2.24.3
 
---------------37F1A6D4B3D790298DBD549D
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>use meta-intel build for a core-i7 I also have an ASUS ROG board
-      running yocto.<br>
-    </p>
-    <div class="moz-cite-prefix">On 5/30/21 6:15 PM,
-      <a class="moz-txt-link-abbreviated" href="mailto:a.elgammal2019@gmail.com">a.elgammal2019@gmail.com</a> wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:nEJx.1622373321581335056.ofA1@lists.yoctoproject.org">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      Hello,<br>
-      <br>
-      I have a ROG STRIX Z390-I motherboard with an <span style="color: #202020; font-family: segoeui, 'Microsoft JhengHei', sans-serif; font-size: 16px; white-space: pre-wrap;">Intel® Z390 chipset. And I want to create a custom BSP Layer for it. Where should I start? I did not find any yocto community for ASUS. So, Any guides would be helpful.
-Thank you</span>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">
-
-
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------37F1A6D4B3D790298DBD549D--
