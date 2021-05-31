@@ -1,157 +1,57 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web08.41651.1622449214877965090
+Received: from bsmtp.bon.at (bsmtp.bon.at [213.33.87.14])
+ by mx.groups.io with SMTP id smtpd.web11.41847.1622452174641918388
  for <yocto@lists.yoctoproject.org>;
- Mon, 31 May 2021 01:20:15 -0700
+ Mon, 31 May 2021 02:09:35 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=bpkaqBR9;
- spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 0961338C08A6
-	for <yocto@yoctoproject.org>; Mon, 31 May 2021 08:20:14 +0000 (UTC)
-Received: by mail-wr1-f48.google.com with SMTP id z8so4875254wrp.12
-        for <yocto@yoctoproject.org>; Mon, 31 May 2021 01:20:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=blade-group.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=iQDkm5Wu5LLVJkVvHCp1L7OutdzUnjjjPibimmEOyU8=;
-        b=bpkaqBR9UgTsqKiTHmj47z3G6qj7rQrjvpZC6/HSuctZbb4PBWBUYcb+vClakbN5Jn
-         hlMk1ofRKrAvrELtDMjlx4freFOgK1xuORzgg/I+HPgb/6bQupeMl7fcvV0RMcXBsHz3
-         Z2xvC6ENPmLfJKxixXVTxDChQli/Vh8wRnc8V/tq3VXR1n5tZ2wRrHBATsM3Cr1G9Q3B
-         +udhnlRRJW7pIC4RGDSpbbPC6NVtYTHJJdYaPg1BoCGAzCvE0BzQcuC2Go5VUMNWf4JV
-         QbIh692kvt2NSRABmtrVFbo/NGqFLo3lcyZvm2DyYUbbK3bFp8e4lxo3h0MO/a/ArLjt
-         EgKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=iQDkm5Wu5LLVJkVvHCp1L7OutdzUnjjjPibimmEOyU8=;
-        b=Ikq5FjTyU1me4wVr6+Au/UACix4Mhb/ZfbH7AMRYAlXTk/idOtiquUXJKebs3O7xhL
-         +OuE5i41iWAJ/qmSt8dIPLqHiil25YMdrrrPvno200lrV8iXkwFFZ4QTmom5Bu91WwyM
-         qCdFCEIphoLTTVD1tzXY7nckCWaDB/cFPBKkTemgnnMlB/SzcV0hoOsE0fA0pUrMghRh
-         oBLcwW+mA/VV5GsqeZAXtsKjwDxUJw3iBA1mZL9U1nAr8P/YHA6JauqWKcTuobxpI52v
-         PvHtZTz882/L9b5o/i/lnRQbwpMZfyjI2Di0s1THwAhAhB1OfY7rrJa1QwzM9LkNjldt
-         +Z8g==
-X-Gm-Message-State: AOAM532RVFidRaMGgQaODLAnPpDki87icCqQ7pJS9BHWw1W5WeQzwX/h
-	cmzlCq8YRRhiJXBvO8RZLIig/nXaZWp0IQ==
-X-Google-Smtp-Source: ABdhPJzXHQ+PorSUTH0sEYhE3+xNFIpTLWhptKQaql7/WoQpwKtihO+ijKNII9W3Ij77V8xnrBb0qg==
-X-Received: by 2002:a5d:61d0:: with SMTP id q16mr1446887wrv.175.1622449212536;
-        Mon, 31 May 2021 01:20:12 -0700 (PDT)
-Received: from blanquette.lan ([88.120.44.86])
-        by smtp.gmail.com with ESMTPSA id g23sm4771220wmk.3.2021.05.31.01.20.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 May 2021 01:20:11 -0700 (PDT)
-From: "Yann Dirson" <yann.dirson@blade-group.com>
-X-Google-Original-From: yann@blade-group.com
-To: yocto@yoctoproject.org
-Cc: twoerner@gmail.com,
-	Yann Dirson <yann@blade-group.com>
-Subject: [meta-rockchip][PATCH] Rock64: add machine
-Date: Mon, 31 May 2021 10:19:46 +0200
-Message-Id: <20210531081946.1134840-1-yann@blade-group.com>
-X-Mailer: git-send-email 2.30.2
+ dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.14, mailfrom: quentin.schulz@streamunlimited.com)
+Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
+	by bsmtp.bon.at (Postfix) with ESMTPSA id 4FtqHG6jBFz5tlG;
+	Mon, 31 May 2021 11:09:30 +0200 (CEST)
+Date: Mon, 31 May 2021 11:09:29 +0200
+From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
+To: Stefan Seefeld <stefan@seefeld.name>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] precedence problem with custom xserver-xf86-config_0.1.bbappend recipe
+Message-ID: <20210531090929.il2xtwgahhtdczlt@qschulz>
+References: <50c175fb-325e-e7e7-af17-f55bb4d18662@seefeld.name>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <50c175fb-325e-e7e7-af17-f55bb4d18662@seefeld.name>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-From: Yann Dirson <yann@blade-group.com>
+Hi Stefan,
 
-This is a RK3328 board from Pine64.
-Board details at https://wiki.pine64.org/wiki/ROCK64.
+On Sun, May 30, 2021 at 06:10:48PM -0400, Stefan Seefeld wrote:
+> Hello,
+> 
+> I'm trying to add a custom `xorg.conf` file to my yocto build, by defining a
+> `recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend` recipe to
+> my layer.
+> 
+> However, it seems like I always end up getting the (empty) `xorg.conf` file
+> from `meta-yocto-bsp/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend`,
+> even though poky's `meta-yocto-bsp` layer has lower priority (5) than my own
+> (6).
+> I do get my own `xorg.conf` file if I remove (or rename) the meta-yocto-bsp
+> recipe, so this really looks like a precedence problem.
+> 
+> Any idea what I may be missing ?
+> 
 
-Signed-off-by: Yann Dirson <yann@blade-group.com>
----
+A common mistake would be the forgotten semi-colon and/or _prepend:
+FILESEXTRAPATHS_prepend := "${THISDIR}/files"
 
-This is just basic initial support without a kernel BSP.  As is the
-board boots with a serial console.
+Another common mistake is to not respect the tree layout of the original
+path relative to the original recipe (or for that matter, the one you
+want to override coming from the bbappend) for xorg.conf.
+In that case, you can see that in meta-yocto-bsp, there's a parent
+directory of xorg.conf that is not the one listed in
+FILESEXTRAPATHS_prepend. You should add this directory in the path of
+your bbappend.
 
-Note I had to create the SoC definition for rk3328, and rather than
-setting serial at 115200 there just to have the board definition
-override it with rockchip-standard 1500000 I've set the latter right
-in rk3328.inc.
+https://pretalx.com/media/yocto-project-summit-2021/submissions/WTT3UV/resources/Demystifying_the_OVERRIDES_mechan_no6J6fb.pdf
+slides 70 to 80 might help you. The recording should be available in a
+few days/weeks.
 
- conf/machine/include/rk3328.inc            | 25 +++++++++++++++++++
- conf/machine/rock64.conf                   | 28 ++++++++++++++++++++++
- recipes-kernel/linux/linux-yocto%.bbappend |  1 +
- 3 files changed, 54 insertions(+)
- create mode 100644 conf/machine/include/rk3328.inc
- create mode 100644 conf/machine/rock64.conf
-
-diff --git a/conf/machine/include/rk3328.inc b/conf/machine/include/rk332=
-8.inc
-new file mode 100644
-index 0000000..7d67627
---- /dev/null
-+++ b/conf/machine/include/rk3328.inc
-@@ -0,0 +1,25 @@
-+# Copyright (C) 2020 Garmin Ltd. or its subsidaries
-+# Released under the MIT license (see COPYING.MIT for the terms)
-+
-+SOC_FAMILY =3D "rk3328"
-+
-+DEFAULTTUNE ?=3D "cortexa53-crypto"
-+
-+require conf/machine/include/soc-family.inc
-+require conf/machine/include/tune-cortexa53.inc
-+require conf/machine/include/rockchip-defaults.inc
-+
-+KBUILD_DEFCONFIG ?=3D "defconfig"
-+KERNEL_CLASSES =3D "kernel-fitimage"
-+KERNEL_IMAGETYPE =3D "fitImage"
-+
-+TFA_PLATFORM =3D "rk3328"
-+TFA_BUILD_TARGET =3D "bl31"
-+
-+UBOOT_SUFFIX ?=3D "itb"
-+UBOOT_ENTRYPOINT ?=3D "0x06000000"
-+
-+SERIAL_CONSOLES =3D "1500000;ttyS2"
-+
-+PREFERRED_PROVIDER_virtual/bootloader ?=3D "u-boot"
-+SPL_BINARY ?=3D "idbloader.img"
-diff --git a/conf/machine/rock64.conf b/conf/machine/rock64.conf
-new file mode 100644
-index 0000000..88a8434
---- /dev/null
-+++ b/conf/machine/rock64.conf
-@@ -0,0 +1,28 @@
-+# Copyright (C) 2021 Blade SAS
-+
-+#@TYPE: Machine
-+#@NAME: Rock64
-+#@DESCRIPTION: Rock64 RK3328 board from Pine64
-+
-+require include/rk3328.inc
-+
-+MACHINE_FEATURES +=3D "usbhost serial"
-+
-+UBOOT_MACHINE =3D "rock64-rk3328_defconfig"
-+KERNEL_DEVICETREE =3D "rockchip/rk3328-rock64.dtb"
-+
-+RK_BOOT_DEVICE =3D "mmcblk0"
-+WKS_FILE ?=3D "rock-pi-4.wks"
-+IMAGE_FSTYPES +=3D "wic wic.bmap"
-+
-+WKS_FILE_DEPENDS ?=3D " \
-+    mtools-native \
-+    dosfstools-native \
-+    virtual/bootloader \
-+    virtual/kernel \
-+    "
-+IMAGE_BOOT_FILES ?=3D "\
-+    ${KERNEL_IMAGETYPE} \
-+    "
-+
-+KBUILD_DEFCONFIG =3D "defconfig"
-diff --git a/recipes-kernel/linux/linux-yocto%.bbappend b/recipes-kernel/=
-linux/linux-yocto%.bbappend
-index 7702e3f..f453281 100644
---- a/recipes-kernel/linux/linux-yocto%.bbappend
-+++ b/recipes-kernel/linux/linux-yocto%.bbappend
-@@ -8,3 +8,4 @@ COMPATIBLE_MACHINE_tinker-board-s =3D "tinker-board-s"
- COMPATIBLE_MACHINE_rock-pi-4 =3D "rock-pi-4"
- COMPATIBLE_MACHINE_nanopi-m4 =3D "nanopi-m4"
- COMPATIBLE_MACHINE_nanopi-m4-2gb =3D "nanopi-m4-2gb"
-+COMPATIBLE_MACHINE_rock64 =3D "rock64"
---=20
-2.30.2
-
+Cheers,
+Quentin
