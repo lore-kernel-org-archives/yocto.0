@@ -1,213 +1,213 @@
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
- by mx.groups.io with SMTP id smtpd.web10.44026.1622467121356104732
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web09.44651.1622469684784840258
  for <yocto@lists.yoctoproject.org>;
- Mon, 31 May 2021 06:18:41 -0700
+ Mon, 31 May 2021 07:01:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=WlQnbfcx;
- spf=pass (domain: gmail.com, ip: 209.85.160.173, mailfrom: stefan.seefeld@gmail.com)
-Received: by mail-qt1-f173.google.com with SMTP id h24so7851466qtm.12
-        for <yocto@lists.yoctoproject.org>; Mon, 31 May 2021 06:18:41 -0700 (PDT)
+ dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=NK7dyFgn;
+ spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id AB38338C0661
+	for <yocto@yoctoproject.org>; Mon, 31 May 2021 14:01:23 +0000 (UTC)
+Received: by mail-wr1-f43.google.com with SMTP id m18so11050358wrv.2
+        for <yocto@yoctoproject.org>; Mon, 31 May 2021 07:01:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language;
-        bh=Aijimqd3pflcj64ycCxt7WG/1lQhcyEsuvaq/l7YtMI=;
-        b=WlQnbfcxuJagMRPriyJ4PdMabq6vm+weaIH1an28Bixj26698RglNpbY3lwlJ9L/Tj
-         1MVoeskr2m+Kt26FhO+E62oWXqCqfuLPcQo/p4SradfJ8cdUrazppkEegfil6zOLosVs
-         uufanBDfFL2FvPwm/44g/s3b9Jj9qqnjjkQ3nijsM+0f687lVpTyNmbQM5/HdyYYAQFZ
-         Z9qehxPzSkiccXTVXIROVpiqM9UoL6yXQUUMVCw8YWoYWb2xF/edLrg1GA6RNZO77wgF
-         sbLI37nXDIx71hR3cr2ZiR0LM1N8D650I8SwK4Tgy51SV4jpsoR9zyp8aEv0NOazXtlP
-         3K2g==
+        d=blade-group.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=W2mG3En/oEQPpcH2L3Xx1ixQhC8MEhrInt2JNJ2otvo=;
+        b=NK7dyFgnNyQZFu/VhCn/abclUzMgpHC+LDl5qraeLjk+/+cnOHtLy05LK6j08NJPvQ
+         QNqqK+hfei467dNad38uAPYmkqEf9zgZjzjw7WJNig7vRIRUlida6pwodeiFoxftlsKP
+         NTiagOwAJTgl1qOfbr7ipRT+94+1HU9cWWTVtUJ+KMwhrImFThTwdaS9y4Ykj6J1Rsym
+         xYWi2KhyLhqXP404didy9bg75w+RJFdHJQw4N9Mwi/cKchaF8g/GQC1fGxk/ZcwDQ8fH
+         SBu0Zoj8Dbwo0SxAQRGJaa4GZNAFd8Un7bMY/txRFb961CexZfrUXI3qVRPoiSF4FMiC
+         plTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language;
-        bh=Aijimqd3pflcj64ycCxt7WG/1lQhcyEsuvaq/l7YtMI=;
-        b=ZzQrXvqLScaFt72OZYoJwn+Ob/TDguNkp4EeoJ1cyoslXvocY3Vxwy/+1xc720ra4l
-         6GslMXdBDuxcJPdCfW+qvE9k780yA8C2x6nGCHlM7P40eXRg/p5FpebClCprDy8g0Own
-         l7L/rtlMoHnkKjYi+QCMGanSF4K9RBoJTypuK2q5yCkHtXTwr3GIL/UQs4AGrck+Z1D8
-         8lzuBaeewunt837BG9gahLBHTGhMYQRO4S/HD/Rywg6nIbf2BInGty/Zez9HLZH0IxBR
-         iD2zRj37tlF2Jv+K/fsmvsZqyxhyL4R+wRbjaH8Y/dcgwIRpg7McjMib7CZ4SUxEH2af
-         jyCg==
-X-Gm-Message-State: AOAM533BLzRf+JRz9vwEH++m40EIln955o46RdD8Zsg/cmoXYNuL39um
-	lg3XykuLPqS0aUm0R+SsnFAR3RplylaDQA==
-X-Google-Smtp-Source: ABdhPJyzih608Wmt0UIUAOv9xiV6jX8BBt+K9F3xjb8qjiYML/cVBckyKboIECPSX/7vXL95cD1uKA==
-X-Received: by 2002:ac8:6907:: with SMTP id e7mr5718028qtr.259.1622467120012;
-        Mon, 31 May 2021 06:18:40 -0700 (PDT)
-Return-Path: <stefan.seefeld@gmail.com>
-Received: from [10.20.0.100] ([64.124.79.173])
-        by smtp.gmail.com with ESMTPSA id g133sm964571qke.22.2021.05.31.06.18.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 May 2021 06:18:39 -0700 (PDT)
-Sender: Stefan Seefeld <stefan.seefeld@gmail.com>
-Subject: Re: [yocto] precedence problem with custom xserver-xf86-config_0.1.bbappend recipe
-To: Quentin Schulz <quentin.schulz@streamunlimited.com>
-Cc: yocto@lists.yoctoproject.org
-References: <50c175fb-325e-e7e7-af17-f55bb4d18662@seefeld.name>
- <20210531090929.il2xtwgahhtdczlt@qschulz>
-From: "Stefan Seefeld" <stefan@seefeld.name>
-Message-ID: <67e1550a-5999-ae91-c578-2b70671a1b4b@seefeld.name>
-Date: Mon, 31 May 2021 09:18:38 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=W2mG3En/oEQPpcH2L3Xx1ixQhC8MEhrInt2JNJ2otvo=;
+        b=gdzun+syBMPYh+jYXo9jr2sqpG5HN7sptUXCqvcLwEmbk5KROU2xIWNOpsWYlMpeN+
+         LneMUqNRK8vldP1osTon19WJcR7fJvcGNanfMdk2goahxbcxSYYFIv1CmG7viNIYrT/u
+         qrUQwVt0RbdbcoIg17ry8NfGuN5DQwRC/ZW4MvCBi0VN9AreGoD3qgKDk5dXS85mQlkN
+         wPa23SJUbNin1LoJclqPyYkrqYT6B8o9Uffu417/xWBDcqNCAF6VX0ajdtDUU5HdtF2k
+         bItzSwAwTG6EUvEP/IWT1e7SvIMC9k0LpLRL3zgG3pVzZXIpQaxmXppY/uKvh7B9VSu0
+         OSDA==
+X-Gm-Message-State: AOAM531eAYz/4PQ0gyF7GKEhSFfuRtTnkaYnRfmv3vu2jn6ktx2nD3+z
+	3uq463iQvpEAUqJMBo7Cqx8qUeGc3wMS2w==
+X-Google-Smtp-Source: ABdhPJzq1pSuIhjh6SLL7uIpcrFIJx/JGtAkQvGg+k40DmNGkyz4JnGiIo7t4DZXM36FU4MDgNdBYg==
+X-Received: by 2002:a5d:684d:: with SMTP id o13mr3842324wrw.174.1622469682296;
+        Mon, 31 May 2021 07:01:22 -0700 (PDT)
+Received: from blanquette.lan ([88.120.44.86])
+        by smtp.gmail.com with ESMTPSA id l3sm15517062wmh.2.2021.05.31.07.01.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 May 2021 07:01:21 -0700 (PDT)
+From: "Yann Dirson" <yann.dirson@blade-group.com>
+X-Google-Original-From: yann@blade-group.com
+To: yocto@yoctoproject.org
+Cc: twoerner@gmail.com,
+	Yann Dirson <yann@blade-group.com>
+Subject: [meta-rockchip][PATCH v2] Rock64: add machine
+Date: Mon, 31 May 2021 16:00:58 +0200
+Message-Id: <20210531140058.2193825-1-yann@blade-group.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-In-Reply-To: <20210531090929.il2xtwgahhtdczlt@qschulz>
-X-Groupsio-MsgNum: 53712
-Content-Type: multipart/alternative;
- boundary="------------7EED2A96FDC358C61E3A7192"
-Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
---------------7EED2A96FDC358C61E3A7192
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Yann Dirson <yann@blade-group.com>
 
+This is a RK3328 board from Pine64.
+Board details at https://wiki.pine64.org/wiki/ROCK64.
 
-On 2021-05-31 5:09 a.m., Quentin Schulz wrote:
-> A common mistake would be the forgotten semi-colon and/or _prepend:
-> FILESEXTRAPATHS_prepend := "${THISDIR}/files"
->
-> Another common mistake is to not respect the tree layout of the original
-> path relative to the original recipe (or for that matter, the one you
-> want to override coming from the bbappend) for xorg.conf.
-> In that case, you can see that in meta-yocto-bsp, there's a parent
-> directory of xorg.conf that is not the one listed in
-> FILESEXTRAPATHS_prepend. You should add this directory in the path of
-> your bbappend.
+Default image is built to boot from SD-card.  Building an image for
+eMMC requires to set RK_BOOT_DEVICE=3D"mmcblk0".
 
-Indeed, I was basing my layout on the original recipe, not on the poky 
-override (which adds the $MACHINE as a subdirectory).
+Signed-off-by: Yann Dirson <yann@blade-group.com>
+---
 
-With that adjustment everything appears to be working fine.
+This is just basic initial support without a kernel BSP.  As is the
+board boots with a serial console.
 
-> https://pretalx.com/media/yocto-project-summit-2021/submissions/WTT3UV/resources/Demystifying_the_OVERRIDES_mechan_no6J6fb.pdf
-> slides 70 to 80 might help you. The recording should be available in a
-> few days/weeks.
+Note I had to create the SoC definition for rk3328, and rather than
+setting serial at 115200 there just to have the board definition
+override it with rockchip-standard 1500000 I've set the latter right
+in rk3328.inc.
 
-Thanks a lot, this looks really useful !
+Changes in v2:
+- include Ayufan's patch for mmc aliases so presence of eMMC won't
+prevent booting from SD
 
-Stefan
--- 
+ conf/machine/include/rk3328.inc               | 25 ++++++++++++++++
+ conf/machine/rock64.conf                      | 30 +++++++++++++++++++
+ ...an-dtsi-rk3328-add-mmc0-mmc1-aliases.patch | 27 +++++++++++++++++
+ recipes-kernel/linux/linux-yocto%.bbappend    |  6 ++++
+ 4 files changed, 88 insertions(+)
+ create mode 100644 conf/machine/include/rk3328.inc
+ create mode 100644 conf/machine/rock64.conf
+ create mode 100644 recipes-kernel/linux/files/0001-ayufan-dtsi-rk3328-ad=
+d-mmc0-mmc1-aliases.patch
 
-       ...ich hab' noch einen Koffer in Berlin...
+diff --git a/conf/machine/include/rk3328.inc b/conf/machine/include/rk332=
+8.inc
+new file mode 100644
+index 0000000..7d67627
+--- /dev/null
++++ b/conf/machine/include/rk3328.inc
+@@ -0,0 +1,25 @@
++# Copyright (C) 2020 Garmin Ltd. or its subsidaries
++# Released under the MIT license (see COPYING.MIT for the terms)
++
++SOC_FAMILY =3D "rk3328"
++
++DEFAULTTUNE ?=3D "cortexa53-crypto"
++
++require conf/machine/include/soc-family.inc
++require conf/machine/include/tune-cortexa53.inc
++require conf/machine/include/rockchip-defaults.inc
++
++KBUILD_DEFCONFIG ?=3D "defconfig"
++KERNEL_CLASSES =3D "kernel-fitimage"
++KERNEL_IMAGETYPE =3D "fitImage"
++
++TFA_PLATFORM =3D "rk3328"
++TFA_BUILD_TARGET =3D "bl31"
++
++UBOOT_SUFFIX ?=3D "itb"
++UBOOT_ENTRYPOINT ?=3D "0x06000000"
++
++SERIAL_CONSOLES =3D "1500000;ttyS2"
++
++PREFERRED_PROVIDER_virtual/bootloader ?=3D "u-boot"
++SPL_BINARY ?=3D "idbloader.img"
+diff --git a/conf/machine/rock64.conf b/conf/machine/rock64.conf
+new file mode 100644
+index 0000000..38bc9fa
+--- /dev/null
++++ b/conf/machine/rock64.conf
+@@ -0,0 +1,30 @@
++# Copyright (C) 2021 Blade SAS
++
++#@TYPE: Machine
++#@NAME: Rock64
++#@DESCRIPTION: Rock64 RK3328 board from Pine64
++
++require include/rk3328.inc
++
++MACHINE_FEATURES +=3D "usbhost serial"
++
++UBOOT_MACHINE =3D "rock64-rk3328_defconfig"
++KERNEL_DEVICETREE =3D "rockchip/rk3328-rock64.dtb"
++
++# set to mmcblk0 for booting from optional eMMC
++RK_BOOT_DEVICE ?=3D "mmcblk1"
++
++WKS_FILE ?=3D "rock-pi-4.wks"
++IMAGE_FSTYPES +=3D "wic wic.bmap"
++
++WKS_FILE_DEPENDS ?=3D " \
++    mtools-native \
++    dosfstools-native \
++    virtual/bootloader \
++    virtual/kernel \
++    "
++IMAGE_BOOT_FILES ?=3D "\
++    ${KERNEL_IMAGETYPE} \
++    "
++
++KBUILD_DEFCONFIG =3D "defconfig"
+diff --git a/recipes-kernel/linux/files/0001-ayufan-dtsi-rk3328-add-mmc0-=
+mmc1-aliases.patch b/recipes-kernel/linux/files/0001-ayufan-dtsi-rk3328-a=
+dd-mmc0-mmc1-aliases.patch
+new file mode 100644
+index 0000000..1ad3b9e
+--- /dev/null
++++ b/recipes-kernel/linux/files/0001-ayufan-dtsi-rk3328-add-mmc0-mmc1-al=
+iases.patch
+@@ -0,0 +1,27 @@
++From f10cfe01f753348d346374008b8e8f5f26ed94ab Mon Sep 17 00:00:00 2001
++From: Kamil Trzcinski <ayufan@ayufan.eu>
++Date: Mon, 28 Aug 2017 11:24:37 +0200
++Subject: [PATCH] ayufan: dtsi: rk3328: add mmc0/mmc1 aliases
++Upstream-Status: Pending [https://github.com/ayufan-rock64/linux-mainlin=
+e-kernel/commit/f10cfe01f753348d346374008b8e8f5f26ed94ab]
++
++Change-Id: I82a5394df8a505f7d1496393621c1198895c88b0
++---
++ arch/arm64/boot/dts/rockchip/rk3328.dtsi | 2 ++
++ 1 file changed, 2 insertions(+)
++
++diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/=
+dts/rockchip/rk3328.dtsi
++index 0afed15bc7ff..800f1c796882 100644
++--- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+++++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
++@@ -27,6 +27,8 @@
++ 		i2c1 =3D &i2c1;
++ 		i2c2 =3D &i2c2;
++ 		i2c3 =3D &i2c3;
+++		mmc0 =3D &emmc;
+++		mmc1 =3D &sdmmc;
++ 		ethernet0 =3D &gmac2io;
++ 		ethernet1 =3D &gmac2phy;
++ 	};
++--=20
++2.30.2
++
+diff --git a/recipes-kernel/linux/linux-yocto%.bbappend b/recipes-kernel/=
+linux/linux-yocto%.bbappend
+index 7702e3f..3789c72 100644
+--- a/recipes-kernel/linux/linux-yocto%.bbappend
++++ b/recipes-kernel/linux/linux-yocto%.bbappend
+@@ -8,3 +8,9 @@ COMPATIBLE_MACHINE_tinker-board-s =3D "tinker-board-s"
+ COMPATIBLE_MACHINE_rock-pi-4 =3D "rock-pi-4"
+ COMPATIBLE_MACHINE_nanopi-m4 =3D "nanopi-m4"
+ COMPATIBLE_MACHINE_nanopi-m4-2gb =3D "nanopi-m4-2gb"
++COMPATIBLE_MACHINE_rock64 =3D "rock64"
++
++FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
++
++# indeed applicable to all rk3328 boards
++SRC_URI_append_rock64 =3D " file://0001-ayufan-dtsi-rk3328-add-mmc0-mmc1=
+-aliases.patch"
+--=20
+2.30.2
 
-
---------------7EED2A96FDC358C61E3A7192
-Content-Type: multipart/related;
- boundary="------------FC4AD03F7CED3F0DC8F977AE"
-
---------------FC4AD03F7CED3F0DC8F977AE
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 2021-05-31 5:09 a.m., Quentin Schulz
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:20210531090929.il2xtwgahhtdczlt@qschulz">A common
-      mistake would be the forgotten semi-colon and/or _prepend:
-      <pre class="moz-quote-pre" wrap="">FILESEXTRAPATHS_prepend := "${THISDIR}/files"
-
-Another common mistake is to not respect the tree layout of the original
-path relative to the original recipe (or for that matter, the one you
-want to override coming from the bbappend) for xorg.conf.
-In that case, you can see that in meta-yocto-bsp, there's a parent
-directory of xorg.conf that is not the one listed in
-FILESEXTRAPATHS_prepend. You should add this directory in the path of
-your bbappend.</pre>
-    </blockquote>
-    <p>Indeed, I was basing my layout on the original recipe, not on the
-      poky override (which adds the $MACHINE as a subdirectory).</p>
-    <p>With that adjustment everything appears to be working fine.<br>
-    </p>
-    <p>
-    </p>
-    <blockquote type="cite"
-      cite="mid:20210531090929.il2xtwgahhtdczlt@qschulz">
-      <pre class="moz-quote-pre" wrap=""><a class="moz-txt-link-freetext" href="https://pretalx.com/media/yocto-project-summit-2021/submissions/WTT3UV/resources/Demystifying_the_OVERRIDES_mechan_no6J6fb.pdf">https://pretalx.com/media/yocto-project-summit-2021/submissions/WTT3UV/resources/Demystifying_the_OVERRIDES_mechan_no6J6fb.pdf</a>
-slides 70 to 80 might help you. The recording should be available in a
-few days/weeks.</pre>
-    </blockquote>
-    <p>Thanks a lot, this looks really useful ! <br>
-    </p>
-    <div class="moz-signature">
-      <div class="moz-signature">
-        <div class="moz-signature">
-          <pre><img moz-do-not-send="false" src="cid:part1.0729B3AB.F2B3D4C4@seefeld.name" alt="Stefan" width="123" height="77">
--- 
-
-      ...ich hab' noch einen Koffer in Berlin...
-</pre>
-        </div>
-      </div>
-    </div>
-  </body>
-</html>
-
---------------FC4AD03F7CED3F0DC8F977AE
-Content-Type: image/png;
- name=".signature.png"
-Content-Transfer-Encoding: base64
-Content-ID: <part1.0729B3AB.F2B3D4C4@seefeld.name>
-Content-Disposition: inline;
- filename=".signature.png"
-
-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
-Miz8AALwAAAAAElFTkSuQmCC
-
---------------FC4AD03F7CED3F0DC8F977AE--
-
---------------7EED2A96FDC358C61E3A7192--
