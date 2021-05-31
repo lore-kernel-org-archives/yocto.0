@@ -1,107 +1,134 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.49668.1622496770440179359
+Received: from dispatch1-us1.ppe-hosted.com (dispatch1-us1.ppe-hosted.com [67.231.154.184])
+ by mx.groups.io with SMTP id smtpd.web08.50233.1622499182919818389
  for <yocto@lists.yoctoproject.org>;
- Mon, 31 May 2021 14:32:52 -0700
+ Mon, 31 May 2021 15:13:03 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@baesystems.com header.s=trusted01 header.b=lIl6r9AH;
- spf=permerror, err=parse error for token &{10 18 %{d}.54.spf-protect.dmp.cisco.com}: invalid domain name (domain: baesystems.com, ip: 198.145.29.25, mailfrom: steven.monsees@baesystems.com)
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 4E09338C0661
-	for <yocto@yoctoproject.org>; Mon, 31 May 2021 21:32:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1622496769; x=1780176769;
-  h=from:to:subject:date:mime-version;
-  bh=gco7PJkqRKMpD2TQ4wYbs9SAR/KmxNMpUZBhinnKY3Y=;
-  b=lIl6r9AHGwMXm27Al0d6rXoMeKc1pO2U2qu0R90fcoEjzbpidXhxzup7
-   KT7Fah4FNSkZ+dlFZTHgnaErac/AnsZIiZkeAkNTdBpdsVp26QO5H//ht
-   nbnCZoZ/SSS3PyW12qw8lY0qCo/i3UnQVakahNrVlMIGuAlg9wZYODUsr
-   U=;
-IronPort-SDR: eTWrTImWle9TXsERTz4mD4+r5HnSfwnBeXPMUmWyQ+rnlJgyXR5IuTpZxGHQYW1cPwzJpf7tcS
- gKc3dPu9lArA==
-IronPort-PHdr: =?us-ascii?q?A9a23=3A/YdEGBUVXK6P8IgtSTY7cnqyuMbV8KxNVTF92?=
- =?us-ascii?q?vMcY1JmTK2v8tzYMVDF4r011RmVBNSdsaMfwLON4+jJYi8p2d65qncMcZhBB?=
- =?us-ascii?q?VcuqP49uEgeOvODElDxN/XwbiY3T4xoXV5h+GynYwAOQJ6tL1LdrWev4jEMB?=
- =?us-ascii?q?x7xKRR6JvjvGo7Vks+7y/2+94fcbglVgDexe61+IRG4oAneq8Ubj4hvIbstx?=
- =?us-ascii?q?xXUpXdFZ/5Yzn5yK1KJmBb86Maw/Jp9/ClVpvks6c1OX7jkcqohVbBXAygoP?=
- =?us-ascii?q?G4z5M3wqBnMVhCP6WcGUmUXiRVHHQ7I5wznU5jrsyv6su192DSGPcDzULs5V?=
- =?us-ascii?q?yiu47ttRRT1jioMKjw3/3zNisFojKxVvg+vpwBxzYDXYYGaKPVxc7jHct8GR?=
- =?us-ascii?q?2pMRNpdWzBfDo66coABD/ABPeFdr4TlqVcAqhy+BQ+3BOzx1DBInWf61rAn3?=
- =?us-ascii?q?eQ9Dw7GwhIvH9QTu3nKsd75MKkdX/2wwKXG0D7OaOhW2Svj54jWbB8hp+uAX?=
- =?us-ascii?q?bd3ccrX0kkgCR3Kjk6LpIP+JTyayP8NsmiA7+p8S+2vjnUnpxttrTiow8chk?=
- =?us-ascii?q?4/EjZ8axV7Y7yt22po1JcGmR05hZ96pCJVeui+GOoZ3QM4vQn9ktDskx7AFu?=
- =?us-ascii?q?ZO2eCcHxZs6yxDRa/GJfJWE7xbhWeuRLjp1hW9pday7ihux8kWt1/DwWMay3?=
- =?us-ascii?q?V1XrSRFisHBum0R2xDJ5MWKSOFx8lql1DuBzQze6+BJLVgpmabHMZIswr49m?=
- =?us-ascii?q?oAOvUnBECL6gkT7ga+Qe0454Oan8f7nba/jppKEMo90jRzxPbo2l8ykBOQ4L?=
- =?us-ascii?q?hAOX2+G+eSgzLHj/VP2QLFNjvAulKnZsJbaKt4epq6iAAJY0pov5wqiAzu81?=
- =?us-ascii?q?tQXh2MLI0lfdx2ZlIjoO0rOIOzmAve6mFSgiitkx/fDPrH5A5XNKGbMkKv5c?=
- =?us-ascii?q?Lpg90JQ0gQ+wNJF655JDrwMLuj/V07wudDACx82KQ20w+LpCNVn0YMeXHqCA?=
- =?us-ascii?q?rSFMKzMr1+H+OQvL/OJZI8Svjb9MOYq6OD1jXIiglASZ7em3YAXaXCjAvRpP?=
- =?us-ascii?q?UCZYWH2jtgdFmcKuxIyTPb2h12aTT5Te3GyUro85zE8FI2mEYDDS5utgbyGw?=
- =?us-ascii?q?Ci7AppWZnhcClCLE3fnaZmLW+sWZCKVOM9hnW9Mab/0AZ4m3g2pnB79wKZgN?=
- =?us-ascii?q?vDT+CATqdTkztc/r7nCkhou8hRlCM+B1HmXSGN5lX9OQCU5ivNRu0t4nx2m1?=
- =?us-ascii?q?q5jjvFDUZRo+/5XXwFyHtac8tc7QZimQR7MYNqPDlOhRM6rDCoZRNs82M4Vf?=
- =?us-ascii?q?0t4AJOpiRWVjHniOKMci7HeXM98yanbxXWkf65A?=
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AQ3EPKKl59abQD+2nnGlfGv7v3rXpDfLw3D?=
- =?us-ascii?q?Abv31ZSRFFG/Fw9vre58jzsCWetN9/Yh8dcLy7VZVoAkmskaKdmLNxAV76Zm?=
- =?us-ascii?q?nbUQiTXeNfBOnZskXd8kTFn4Y26U4HSdkaNDSaNzdHZKjBjDVQXOxQp+VvXZ?=
- =?us-ascii?q?rY49v23jNGdykvQadl9gJ4AgGQHglNQhVcD5ZRLuv+2iMCnUvYRUgq?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2ADBQD0VLVg/0LBJQpagQkJgnGBf4F?=
- =?us-ascii?q?Ns2QLAQEBAQEBAQEBCAFBBAEBhlEmOBMCBAEBARIBAQYBAQEBAQYEAYEDhWk?=
- =?us-ascii?q?MgjgihB5eARVrHwcBBBuCaoF+qiyBNBoCZYRkhSQJAYEwgWWFIoJohghDjzQ?=
- =?us-ascii?q?EozyfFAcDgxmdWigRlQgDkE2VR6QiAgQCBAUCFoFrgX1wgzpPFwKce4ErAgY?=
- =?us-ascii?q?KAQEDCYpJgREBAQ?=
-X-IPAS-Result: =?us-ascii?q?A2ADBQD0VLVg/0LBJQpagQkJgnGBf4FNs2QLAQEBAQEBA?=
- =?us-ascii?q?QEBCAFBBAEBhlEmOBMCBAEBARIBAQYBAQEBAQYEAYEDhWkMgjgihB5eARVrH?=
- =?us-ascii?q?wcBBBuCaoF+qiyBNBoCZYRkhSQJAYEwgWWFIoJohghDjzQEozyfFAcDgxmdW?=
- =?us-ascii?q?igRlQgDkE2VR6QiAgQCBAUCFoFrgX1wgzpPFwKce4ErAgYKAQEDCYpJgREBA?=
- =?us-ascii?q?Q?=
-X-IronPort-AV: E=Sophos;i="5.83,238,1616457600"; 
-   d="scan'208,217";a="381200263"
-IronPort-SDR: D6xTzl7Ck0ZIJ01fYMoJR0E19aq8Px4WlfzRe4AiGUdnW7Rt5hXPo1jKahEGYDj+rzz5gMpU0U
- Ez3fGo1iyYrBNLXRoWUkknvyNONj4vRIzFD68AirvhgvQuK+IViWFIf0ZL5cTqU3/c27eYPY42
- LeaaPYraG36vInbgSSv8u/t39YgufIkUSyMNro8we/GR79doNMsBSFLWIdFU7I7vzZDF1h+K+E
- UFfkJrahJDTYMY6QZXVVbcsWRF284IXx7mkmXfmAgVMe2C2OFD3EhRxWHx8a/u0gEY0TtDVAYm
- VYg=
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: kernel init debug features
-Thread-Topic: kernel init debug features
-Thread-Index: AddWYznV0bAjIC+FQHq08LZLmoDiRA==
-Date: Mon, 31 May 2021 21:31:47 +0000
+ dkim=pass header.i=@bird-technologies.com header.s=selector2 header.b=FwR/8cN1;
+ spf=pass (domain: bird-technologies.com, ip: 67.231.154.184, mailfrom: cscott@bird-technologies.com)
+X-Virus-Scanned: Proofpoint Essentials engine
+Received: from mx1-us1.ppe-hosted.com (unknown [10.110.51.167])
+	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 7CC87200068
+	for <yocto@lists.yoctoproject.org>; Mon, 31 May 2021 22:13:01 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10lp2102.outbound.protection.outlook.com [104.47.58.102])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 4D13724006E
+	for <yocto@lists.yoctoproject.org>; Mon, 31 May 2021 22:13:01 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bDeqhrfxXiufg9QH0W/0r3jvlBWBKijDTKhypGuULDnd59NgDMPntA4vjTGBR0IlW5iNYBU9SuyrkBDXCbKBczIFgIUDx7YlOYV21OIlsx58VGeLjnEPJZ3j/crWy0HCJc97CASqzjJfAFKZDIz21T02yq4DKeXgf9eje5OyQWN9I3PmeTx1icRdD201QM1gAKGMR8BHu4+gzBNB2bllaFx3btj3cBBF8tbEmfW5oxB4M/ZzxeEe0701f+xsKi0RItUhHexuX06bje9xqlB8fr6CYighBxKWxXAVazaWYNPNrrs8EuxywKx03iQUNAdlyUhJJgElCspFY38y67saZQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=w6nFTLFW2T9R3RIvkMG43kwdYePhWDh7IdFnsETB7hI=;
+ b=TikY2b9OhiLSGXjvoD84XvM/vnzuErJYodYDthTjntqvQCARpijbNMJ1+YUD/D/SyJbCbFRmpkMlsLtlQ7qZ6U0pIuDlgiuvpN3KLGef0AB6CUX55s6G7zfRouFerto+L6KbQ+QLOSwHXjlK3K9eM/8zRO7m3gytOFjmJTQZdqYkORY7OhPbYCoIkOqcl+XjmeFfCsiV/PS7Le3AX+/j2RXpi05NrMs4BiXpCTJ/g1o43bzVBptzxAA0hbmKTNt+dnrjQR7kjfA4woUS0CD1aBRf5Or8OppltCPWbWE20Y1Mar1Y8dQD2lUM0fvgCbzAEfHfvACnET2GF+/vJmTzKw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bird-technologies.com; dmarc=pass action=none
+ header.from=bird-technologies.com; dkim=pass header.d=bird-technologies.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bird-technologies.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=w6nFTLFW2T9R3RIvkMG43kwdYePhWDh7IdFnsETB7hI=;
+ b=FwR/8cN1d+4NRu2TTXLgl4d5F59Mrexvqk4Tm2tAA/eDL6phqQbzvO0FKAbuhbjYakQEtCyQZ5SJR1VVIMeoGxi0SeT61qwf9DocdPzSwNnP2XeCXQKBGiembdn5Vll+O89Wk7DF+kfWlr6BQeVKyJMYX+WYlhTXF8xfbRBn5yc=
+Received: from CY4PR22MB0006.namprd22.prod.outlook.com (2603:10b6:903:b::11)
+ by CY4PR2201MB1511.namprd22.prod.outlook.com (2603:10b6:910:42::37) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.21; Mon, 31 May
+ 2021 22:12:59 +0000
+Received: from CY4PR22MB0006.namprd22.prod.outlook.com
+ ([fe80::895a:aa89:16a2:87f7]) by CY4PR22MB0006.namprd22.prod.outlook.com
+ ([fe80::895a:aa89:16a2:87f7%5]) with mapi id 15.20.4173.030; Mon, 31 May 2021
+ 22:12:59 +0000
+From: "Cris Scott" <cscott@bird-technologies.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Bitbake failure
+Thread-Topic: Bitbake failure
+Thread-Index: AddWahOYaGwWfaRORlyo22+4188YMA==
+Date: Mon, 31 May 2021 22:12:58 +0000
+Message-ID: 
+ <CY4PR22MB0006916E6957F29F955A1DD5993F9@CY4PR22MB0006.namprd22.prod.outlook.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.55.173.65]
+authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=bird-technologies.com;
+x-originating-ip: [68.57.229.140]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f1cd6c51-2d90-4cb2-e158-08d924813fe4
+x-ms-traffictypediagnostic: CY4PR2201MB1511:
+x-microsoft-antispam-prvs: 
+ <CY4PR2201MB151140DBF4AB28942FD7EEC4993F9@CY4PR2201MB1511.namprd22.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ eXEOBiKI8Up4VV74KP8M8Kd881pMfSVv+JVG2d4Nmi1KJ3SvjRKIz6ORJ33z0cLUEfprtvWIoaHKPbLGsM+JsQBA8q481vh0Us7RxzKVQWzRSp6t5X1PNrcNg6Cna0wDmN34ZOOdS/X+WbjQ2eYoig8eAIvaQXa9tRZjug+Hfo571j/DRi7EG4t1XSszTzZzq4Nond4T6O/eNHoCnkzFxkB4OiC60D8c6PqlDs81bVynjV1lqwkMrlRzvKNPHHOY2vAUg/6MBD38Qks2yLYAHljvs2i+7mEt/UpWKcBWI7oK3mzWUNJBZ8ffLStQRHhwAE/3up9W2fLiDqyyy/wCxrf4K2RX+DvkrejpRqEaDfgKYY6l0Sl6wkcz//lLByEsK83UAuK56aaKKZjJN83p2P05l/0FJ5WEHrDkCHitobxK1knEGFkc/mNTDIARTb/vK6YY4lnMJrqrWtvarhz8W/KAiPbKOLMtZDhvsoH6OcYFM9FLEt9/BlLbI3wUdCwEg0iJb71gxmPOnu34Py8RJIMuECh/MRJS42aka4oi6LFrz+5OmSSn3vQ3teaOlc0xranA8tEmOq3f24A4flANkIbgEOFpdvvajdq3bPqc04kKLaqJtzIkvSM5vZ9tvFQkRDo+87D3B+FQEpkkN0tMG2ODOOZH6U4PRlv4R0DiL8jjLM2BzGvWmt3TXPn5VBNbkXiSCe34JyQrOZdMy2VtA9ISWAgW0SCdpN/or+ZKmDc=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY4PR22MB0006.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(396003)(39830400003)(346002)(136003)(376002)(122000001)(38100700002)(66446008)(7116003)(64756008)(66556008)(33656002)(478600001)(6916009)(5660300002)(6506007)(9686003)(966005)(26005)(8936002)(76116006)(52536014)(186003)(66946007)(83380400001)(316002)(55016002)(166002)(2906002)(4744005)(86362001)(66476007)(8676002)(3480700007)(7696005)(71200400001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: 
+ =?us-ascii?Q?AtlLCXaPpLtECokagGlDM+ZMDuS2Md8p/sVd0qsMFKLKx3EsssIc3cRXgW4u?=
+ =?us-ascii?Q?lFlLxW5S/pxwfRmIOfDF3fMAFr5EdVOPvOteh+FAv4jYOYZYvLGh0zjJpmF4?=
+ =?us-ascii?Q?DKW+fR4fA6A8K3ezYyAMzwpihv3c/T6If3Jx5KYohgLSx4t4IOULOLBQ5a2y?=
+ =?us-ascii?Q?qF7YMzD0zsaX3JGLMTjp3arH8w2DF8Nyd5pcOuqQ+dVrqXDK6oeUCsOU5nY8?=
+ =?us-ascii?Q?L9/U1poRb2hKdXLHz7XHuDl6bK1Zx0eeF2/thv0cD5rAPfAPDWe4RGoi9t4e?=
+ =?us-ascii?Q?yRLwzSejGBxy7GJaAWPLFk/d7zKMr5lZ6ZD7E0x34Us/2v5G6wUTFR+wJHY0?=
+ =?us-ascii?Q?jE4hppMsNJ3BqS3UKT9YeUKiyEgipzOOlkZ4xR5zVG/tmiWRw7O72ETSLzvq?=
+ =?us-ascii?Q?XjBiIk5Lo9rgL85N/rCmQF9z74Tk3FwQuu7psukSDfdkV7Rat3wfzAcNGHgR?=
+ =?us-ascii?Q?r8OK5vak3DCJKgHqUk9BANyM1hkh32bbjbxQ1Kl5nxcQs8aJSpvsQ6tbTGyl?=
+ =?us-ascii?Q?62VYS7K2YmcaBGvg6WJjZe+FX7dRzKAmSJczOORgCs40W2gY/NyTthPCG41s?=
+ =?us-ascii?Q?S+RWBXGObiy1oicQkdRebjwkTlQl1/E7j3wRnYRv3ZLrkaxe4g+MXUmL0V+j?=
+ =?us-ascii?Q?rY2uTZFy8GQMnVAGz37HZ7QxTO25ifrSa8IHKkUuYcuk73b/P8tH7RltbT5j?=
+ =?us-ascii?Q?44o/B7Q20y+JQ7XZCUmHFIRRhkrDZYu6S9YhuHJp0lgdMLHYGYcewXOXKSFc?=
+ =?us-ascii?Q?wOVF99Ly8gD408XMhxbqbpOVe10rSND9Y2YkUDyCTa4oApYtM7JQA5ZLxBOZ?=
+ =?us-ascii?Q?uoTIYkuP3csdG+vL+cMQFcrhNXdjFvCCERqff583kV/RtlxvQp2JnZCynayn?=
+ =?us-ascii?Q?rSx+dkAgp9uPl65f3Af/dzSA48a9ulGUpKm76UAIYoBUHQu6rE5t8PNygCv0?=
+ =?us-ascii?Q?O1Vy0nQaaSzIVEC4VpyjW5Uw39X/JA6mvhjDnx05l7pvzaGxL9BaOdOJj52p?=
+ =?us-ascii?Q?KLNONdUYXIX1VTL2rGtQNZPNsC9rDGpIP3x40hhQK7NsrGWRfC562O4VAnUz?=
+ =?us-ascii?Q?+dI18QHK+/n06B46HHPxcw8Ggn+1wESqd13KgQjYk8S38MyWXS1mGkeA4JUa?=
+ =?us-ascii?Q?ZjK9L7flgP/TDr5HkkUJXIWvehx2qsDuaLjVUw+kcHG+4/0DHztyHjJ4jP+o?=
+ =?us-ascii?Q?zm0Mkbqpw0j3LUlyGOC9tViezImOiauUax+HnFIwNjLxF1N19rrXqHUmE2b7?=
+ =?us-ascii?Q?RGAVpEfw18H1pthgfU0XmEl0yZr2M66W+ceatB0RVeSWmPZzlGobR42V+qFz?=
+ =?us-ascii?Q?vHqOkyHcgt0R0I0pepIOao4h?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-Message-ID: <MADEUP.16844437E10EB3B5.665@lists.yoctoproject.org>
+X-OriginatorOrg: bird-technologies.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY4PR22MB0006.namprd22.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f1cd6c51-2d90-4cb2-e158-08d924813fe4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 May 2021 22:12:58.9282
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d98f3dff-397f-4545-896b-2aaed4317bf5
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: tLCLv+I/ReQEK2PX5ImF7s5Z28sjVg5tWeZeIpmD3Pp7rL3jyyuanbR/otWYOA0ShD0RJVCSKRsaOMqDj3oPGTOKCVkukBLQ9wUQCBUMPgo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR2201MB1511
+X-MDID: 1622499182-QYoswwe_SM-1
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_552f1382c66c4fd0b700ca2e45cba796baesystemscom_"
+	boundary="_000_CY4PR22MB0006916E6957F29F955A1DD5993F9CY4PR22MB0006namp_"
 
---_000_552f1382c66c4fd0b700ca2e45cba796baesystemscom_
+--_000_CY4PR22MB0006916E6957F29F955A1DD5993F9CY4PR22MB0006namp_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
+Not sure who to ask about this.
+Using https://push.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-ex=
+tended/lighttpd/lighttpd_1.4.59.bb to build lighttpd, bitbake fails, and I =
+receive tons of messages that look like:
 
-I have kernels based off "rocko" and "zeus" for both Arm and Intel... all u=
-sing sysvinit (not systemd).
+ERROR: lighttpd-1.4.59-r0 do_package_qa: QA Issue: /usr/lib/mod_staticfile.=
+so contained in package lighttpd-module-staticfile requires libc.so.6(GLIBC=
+_2.4), but no providers found in RDEPENDS_lighttpd-module-staticfile? [file=
+-rdeps]
 
-Under the Yocto build system, how can I easily set the following kernel con=
-figuration variables based on the build for testing/debug ?
+
+Can someone point me in the right direction to resolve this?
+
+-Bill
 
 
-*        sched_rt_period_us
-
-*        sched_rt_runtime_us
-
-*        overcommit_memory
-
-thanks,
-Steve
-
---_000_552f1382c66c4fd0b700ca2e45cba796baesystemscom_
+--_000_CY4PR22MB0006916E6957F29F955A1DD5993F9CY4PR22MB0006namp_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -116,9 +143,6 @@ xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 <style><!--
 /* Font Definitions */
 @font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;}
 @font-face
@@ -127,26 +151,12 @@ xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
-	margin-bottom:.0001pt;
 	font-size:11.0pt;
 	font-family:"Calibri",sans-serif;}
 a:link, span.MsoHyperlink
 	{mso-style-priority:99;
 	color:#0563C1;
 	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
 span.EmailStyle17
 	{mso-style-type:personal-compose;
 	font-family:"Calibri",sans-serif;
@@ -159,91 +169,6 @@ span.EmailStyle17
 	margin:1.0in 1.0in 1.0in 1.0in;}
 div.WordSection1
 	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:640232136;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1230428702 367809532 67698691 67698693 67698689 6769=
-8691 67698693 67698689 67698691 67698693;}
-@list l0:level1
-	{mso-level-start-at:0;
-	mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:.75in;
-	text-indent:-.25in;
-	font-family:Symbol;
-	mso-fareast-font-family:Calibri;
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:1.25in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:1.75in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.25in;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.75in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:3.25in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:3.75in;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:4.25in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:4.75in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
 --></style><!--[if gte mso 9]><xml>
 <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
@@ -251,40 +176,29 @@ ul
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
 </head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
 <div class=3D"WordSection1">
+<p class=3D"MsoNormal">Not sure who to ask about this.<o:p></o:p></p>
+<p class=3D"MsoNormal">Using <a href=3D"https://push.yoctoproject.org/cgit/=
+cgit.cgi/poky/tree/meta/recipes-extended/lighttpd/lighttpd_1.4.59.bb">
+https://push.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-extended=
+/lighttpd/lighttpd_1.4.59.bb</a> to build lighttpd, bitbake fails, and I re=
+ceive tons of messages that look like:<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I have kernels based off &#8220;rocko&#8221; and &#8=
-220;zeus&#8221; for both Arm and Intel&#8230; all using sysvinit (not syste=
-md).<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: lighttpd-1.4.59-r0 do_package_qa: QA Issue: /=
+usr/lib/mod_staticfile.so contained in package lighttpd-module-staticfile r=
+equires libc.so.6(GLIBC_2.4), but no providers found in RDEPENDS_lighttpd-m=
+odule-staticfile? [file-rdeps]<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Under the Yocto build system, how can I easily set t=
-he following kernel configuration variables based on the build for testing/=
-debug ?<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roman&quot;"=
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>sched_rt_period_us<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roman&quot;"=
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>sched_rt_runtime_us<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roman&quot;"=
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>overcommit_memory<o:p></o:p></p>
+<p class=3D"MsoNormal">Can someone point me in the right direction to resol=
+ve this?<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Steve<o:p></o:p></p>
+<p class=3D"MsoNormal">-Bill<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
 </body>
 </html>
 
---_000_552f1382c66c4fd0b700ca2e45cba796baesystemscom_--
+--_000_CY4PR22MB0006916E6957F29F955A1DD5993F9CY4PR22MB0006namp_--
