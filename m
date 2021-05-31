@@ -1,192 +1,213 @@
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by mx.groups.io with SMTP id smtpd.web09.42651.1622457014112083267
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+ by mx.groups.io with SMTP id smtpd.web10.44026.1622467121356104732
  for <yocto@lists.yoctoproject.org>;
- Mon, 31 May 2021 03:30:15 -0700
+ Mon, 31 May 2021 06:18:41 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=fFlNocTs;
- spf=pass (domain: intel.com, ip: 134.134.136.20, mailfrom: sangeeta.jain@intel.com)
-IronPort-SDR: GdL2KJTxdNy8JDRzo2mvWSC0wlk3fEErIc8tDOXDm1q9bFlOKvWnneOjd8SuIFTu7/mf2o7Jzo
- ZABTBJj324VQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,10000"; a="190450989"
-X-IronPort-AV: E=Sophos;i="5.83,236,1616482800"; 
-   d="scan'208";a="190450989"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 May 2021 03:30:13 -0700
-IronPort-SDR: rhyBqs9bkTtwFPKABX2/cheIxfPvSGMq+BCd8n5ekHZtE6Jy+HDPnxJFtcUIC3gL0d0ipkTfZG
- bRjYZ2vdqXwg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,236,1616482800"; 
-   d="scan'208";a="398930204"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
-  by orsmga003.jf.intel.com with ESMTP; 31 May 2021 03:30:12 -0700
-Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Mon, 31 May 2021 03:30:12 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4
- via Frontend Transport; Mon, 31 May 2021 03:30:12 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.107)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.4; Mon, 31 May 2021 03:29:12 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=D3AM37E2jGzbmmVcnysdp4dR7w99wnYVBCFG7L5/MHYCN+rkYW2LHbu69qICtrpRehSk+3pnij38kyM0u0IfE+KvewxPPhUb82tzaPgR8tJvupQow+sWZcSiqTziqLxgDnuNpW/P45TypaAQpAbsK20F+IwmpfALc08WcvIsAFlOkC2aHapG7q1rZkV0fJYXHcBM0OzMkXVXcDQItAE/kdU+CKk++DHcF4a8dbg5v66B/AIJHynQngu/TyfrmG599U39vJYDS2KwlF4aYTnyT0v85hOYc4ruxcKeTIVQ0xwqpgA+qF3T3V/Ei4vBtCDct3t2UmNYFsuWnrwy+MlJsA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=12YxbAj2Jk+IYBOdhpIeDZ4Bdb6RMWBU1ganIikgkiU=;
- b=B0Woqv2pQsGn0FP3Gv0lSXVZ54REBYVA1IQP/2bXMdNBbHeAldtE9oQKaH+Jlcl/54PsOc8G8ztokbz+q6szCluF4fNyKnLq705LLfCWzXmZKa8RH+oZwgs+trE0kKrgZUUj+jMI5xUjbjDHRSavbfccOUEZUaKHJtsz1nKNbuwNBSGqNsvlYJ7JQdju90yuiCZkPx/nUOjeIn9HpATGduHu1hgpKRXoISsxzku0t5r56nlwuHpyfXE+qSM7eBVfV71xRysZhFtKmkGApAfbeP3fXEvHbvBfXzGX3p2K12+ENuMLfhm3G41/meELTZ6TNB+gATPX+/57AabB4nBa5Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=12YxbAj2Jk+IYBOdhpIeDZ4Bdb6RMWBU1ganIikgkiU=;
- b=fFlNocTspuOjXCBb1ImX799GJTc8mzMrXs/j+PCx1nFd2v7GlVXzlVM+tLvXyz+oa5IbXQifVgwvoH1SZjHHicOS3Jgb+Uo8FlF9aQ/VNAJWBziF9XP6dxzzNnNBVbZiNyX5ws8aPnS2FOzRQX47y4h2TQAT50MSAuwVl/2uCxs=
-Received: from DM8PR11MB5608.namprd11.prod.outlook.com (2603:10b6:8:35::5) by
- DM8PR11MB5576.namprd11.prod.outlook.com (2603:10b6:8:37::13) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4173.21; Mon, 31 May 2021 10:29:04 +0000
-Received: from DM8PR11MB5608.namprd11.prod.outlook.com
- ([fe80::dd61:6eea:2371:8d42]) by DM8PR11MB5608.namprd11.prod.outlook.com
- ([fe80::dd61:6eea:2371:8d42%8]) with mapi id 15.20.4173.030; Mon, 31 May 2021
- 10:29:04 +0000
-From: "Sangeeta Jain" <sangeeta.jain@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: [qa-build-notification] QA notification for completed autobuilder build (yocto-3.1.8.rc1)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-3.1.8.rc1)
-Thread-Index: AQHXUZ3LAPyCB0l5EEimwwCEsbcR66r9a13w
-Date: Mon, 31 May 2021 10:29:03 +0000
-Message-ID: <DM8PR11MB560880597DDF3F82AB631158E33F9@DM8PR11MB5608.namprd11.prod.outlook.com>
-References: <20210525193955.E45B54B5A3@centos8-ty-2.yocto.io>
-In-Reply-To: <20210525193955.E45B54B5A3@centos8-ty-2.yocto.io>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.6.0.76
-dlp-product: dlpe-windows
-authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=intel.com;
-x-originating-ip: [60.53.116.239]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 05fae0a7-2429-40df-10a6-08d9241ee9d1
-x-ms-traffictypediagnostic: DM8PR11MB5576:
-x-microsoft-antispam-prvs: <DM8PR11MB5576C4ACB9B3C4587582CACBE33F9@DM8PR11MB5576.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5797;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: QmXLcEboADsLMYJmR07M5oKVNe42ytBxXA5DjVlfX82RdVef52ekAGx2kwtcV30oTJlmZfZVXyaYdXIbFFc2jKX9f9tCEf5DCoYbrH2y0WGHbZ9KqdxCenl4zR5eMo0edStk/Q6jqq5MB9H3kvEZ5FKnyKH1TatR31w2Rr2lEJXUEvteDzWvzRqZ5gaOpUQxNZ8Ui06Y4MVB/YCJxfwuv+uZ/wKzoSWBafOJMdg5vYJjPgWWCEbma0TuJ0RzfkFMmek6oqjBl97kGpdBZJt4eHuAaHbPMvMhp65SHKh3CbgOjiNgDl0QNBoXnoPXqBMMX3B+I7b0b4RRmRSsLuYGzn1MhVqWCFTqCtfU/7gnBgJVJrYByCLpzE81TegTwvTMBTzhHNJddjS0JyAhtPxlsoaP6qVk8DWHRJvurrUzQ6Vur22qDJI/RbsV6wQAOc9RVeF1CJJX670f/xm6dcYAJIgmI/L5iZtaPzD9FQmF0cVlMd+0Vzw7+0RRmJxScX8hQ6RK8NzG8jHlMofZt1+0z8u6aVjdifKNDGtkVh5I9JcpLG3xI+7IFmqPIHsUD59wgH6C4wosXD14BMUMigtu58HvlbC46oO9rNCOcVx6tZD2mdk1AfrU2AwQXJ16Wv+42Jeqn2EdR/Oun9sEvCVx52vNH3dlGEb7JzBdwk0VCz5gQXEFx2Xj9TDehJYzCPuTk023MHfl17q1Hlv0Drk8n9FLf4f20hdIyr1EgBqjjpJpLb7PceuRVNKb5aZj0ZwwqGEThJQ8v0Cib1noIQ0qHg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM8PR11MB5608.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(39860400002)(346002)(396003)(136003)(376002)(966005)(53546011)(76116006)(66476007)(8936002)(64756008)(66446008)(478600001)(66556008)(2906002)(86362001)(5660300002)(71200400001)(110136005)(122000001)(15650500001)(8676002)(6506007)(66946007)(316002)(7696005)(55016002)(26005)(9686003)(83380400001)(52536014)(186003)(33656002)(38100700002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?k5i9QdxVvFHokWFAJ65YSHncfTpptXQ+UbPjJvw5b8w2CiKZN1vLhRZnfp0M?=
- =?us-ascii?Q?j1hTowpxoPUYsN5sHpFjRD6ORwFaL/OuYb9cjYzgdQCC4fs9Gh5DDnvRkL+M?=
- =?us-ascii?Q?WqsyAPVx0hXXdTBi3cvWqf++ME1ZkqkC7CT6rsSHE0krFzgHuFvbqQ6LFF/u?=
- =?us-ascii?Q?J5gf18WrebKcUJ7FiuOiXamU0yjyvPcfcxpfj/tzVfM/x++iqT/oRU2Ap/Yg?=
- =?us-ascii?Q?EkWpt33KiWPKeowZDeL2ipGLzOQDLLYg7uNkb7/4GBrGnwwDWUb019Bk+I0A?=
- =?us-ascii?Q?VROtttdeL+2eUb64zkno037oQRy3hvab4jgKN685zFYb4NjufC3VZ8kCHq3M?=
- =?us-ascii?Q?HEXl0/4GmXyG4YSaaKIutCecL/hiCQyp3ImdivYtzpCCoCpj/JKsVXWEkSrL?=
- =?us-ascii?Q?o9xqr6/vTOD5a7Gx7k3rIE8LMc1IDJjnfjgKXM+m90wiM9kqMD6s6nPJM0ZS?=
- =?us-ascii?Q?vdlHp7gqbRRnIaUaYi1oRehQ3nRYkswdphxHP9ErHGQJ6kCtoihRjX6vxUdp?=
- =?us-ascii?Q?ytiiHzTKAHyTL1OErJicdXZS1f/lQ6yS2CLRbeTKGenGAlrf8MtkczpncpCw?=
- =?us-ascii?Q?9K2BYQsgKUcqkuRvxX4oRgAFYZYYnNA2pNrh72B6xwuvJUw0TbppzlMCu3Ce?=
- =?us-ascii?Q?cD/97cIPvNDD6FRWyryJRl6DhVNsPE2bkBqMPCVABguQRp1cMlxXC01L9/i8?=
- =?us-ascii?Q?NxdyqkkzOhYMOwyHb3sGSN49n51lglPkSmfRGH/c2Dnp4fDJnzTNyiofrZlp?=
- =?us-ascii?Q?b/jnnUWt/dzeLOpPbXHKCxbAVhs5SM6wkznLmGkoCx0HIOMZX9U3nwxeSPVq?=
- =?us-ascii?Q?XMtSNP7da7VeYvGWvuL2PpnNf7mKKcsa4I0wzxXvXTSDOlC8sMgwMy7r5Cj/?=
- =?us-ascii?Q?D+g2Uid7IIdhCahoqMSBX1vO1wPa2tjgnOu3xsdccMDwk3WeUuxQPYTgxKOC?=
- =?us-ascii?Q?3toMPbfkf5sv2X7QNOomURAhFZpPfhuA5j4yUnpoguwUinycCFJK9Bblsihx?=
- =?us-ascii?Q?oUOvWbCyvMN+Wa18X1kEy9PLNRkyd86h5xlFtzALJ129quDr9/rJFfHxJqik?=
- =?us-ascii?Q?D5RBFBnP3x4K5gCTGuPmDAdSa8uQayoYv4yhjERp2cjTMGNpKKpr/T8+3tVB?=
- =?us-ascii?Q?ciWTxh312r4sTxqYk3r3QEEw9+jQTHT0RTtf3Tw34RGSxFrpMEJJuqNfprTP?=
- =?us-ascii?Q?d57DxM6nj9Cjutvod635uwQJBDCz4nVtPYSxNeGnbE/lq6tS9Wp4pQXc/SWI?=
- =?us-ascii?Q?BYUWHr2oNmafe+mQn6/YrmwfCIg2nZMjwAxfCC613Qfnu3hE1Z70a+0VP2o6?=
- =?us-ascii?Q?HrzMkDSbfHgcls7SIflNwNtY?=
-x-ms-exchange-transport-forked: True
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=WlQnbfcx;
+ spf=pass (domain: gmail.com, ip: 209.85.160.173, mailfrom: stefan.seefeld@gmail.com)
+Received: by mail-qt1-f173.google.com with SMTP id h24so7851466qtm.12
+        for <yocto@lists.yoctoproject.org>; Mon, 31 May 2021 06:18:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language;
+        bh=Aijimqd3pflcj64ycCxt7WG/1lQhcyEsuvaq/l7YtMI=;
+        b=WlQnbfcxuJagMRPriyJ4PdMabq6vm+weaIH1an28Bixj26698RglNpbY3lwlJ9L/Tj
+         1MVoeskr2m+Kt26FhO+E62oWXqCqfuLPcQo/p4SradfJ8cdUrazppkEegfil6zOLosVs
+         uufanBDfFL2FvPwm/44g/s3b9Jj9qqnjjkQ3nijsM+0f687lVpTyNmbQM5/HdyYYAQFZ
+         Z9qehxPzSkiccXTVXIROVpiqM9UoL6yXQUUMVCw8YWoYWb2xF/edLrg1GA6RNZO77wgF
+         sbLI37nXDIx71hR3cr2ZiR0LM1N8D650I8SwK4Tgy51SV4jpsoR9zyp8aEv0NOazXtlP
+         3K2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language;
+        bh=Aijimqd3pflcj64ycCxt7WG/1lQhcyEsuvaq/l7YtMI=;
+        b=ZzQrXvqLScaFt72OZYoJwn+Ob/TDguNkp4EeoJ1cyoslXvocY3Vxwy/+1xc720ra4l
+         6GslMXdBDuxcJPdCfW+qvE9k780yA8C2x6nGCHlM7P40eXRg/p5FpebClCprDy8g0Own
+         l7L/rtlMoHnkKjYi+QCMGanSF4K9RBoJTypuK2q5yCkHtXTwr3GIL/UQs4AGrck+Z1D8
+         8lzuBaeewunt837BG9gahLBHTGhMYQRO4S/HD/Rywg6nIbf2BInGty/Zez9HLZH0IxBR
+         iD2zRj37tlF2Jv+K/fsmvsZqyxhyL4R+wRbjaH8Y/dcgwIRpg7McjMib7CZ4SUxEH2af
+         jyCg==
+X-Gm-Message-State: AOAM533BLzRf+JRz9vwEH++m40EIln955o46RdD8Zsg/cmoXYNuL39um
+	lg3XykuLPqS0aUm0R+SsnFAR3RplylaDQA==
+X-Google-Smtp-Source: ABdhPJyzih608Wmt0UIUAOv9xiV6jX8BBt+K9F3xjb8qjiYML/cVBckyKboIECPSX/7vXL95cD1uKA==
+X-Received: by 2002:ac8:6907:: with SMTP id e7mr5718028qtr.259.1622467120012;
+        Mon, 31 May 2021 06:18:40 -0700 (PDT)
+Return-Path: <stefan.seefeld@gmail.com>
+Received: from [10.20.0.100] ([64.124.79.173])
+        by smtp.gmail.com with ESMTPSA id g133sm964571qke.22.2021.05.31.06.18.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 May 2021 06:18:39 -0700 (PDT)
+Sender: Stefan Seefeld <stefan.seefeld@gmail.com>
+Subject: Re: [yocto] precedence problem with custom xserver-xf86-config_0.1.bbappend recipe
+To: Quentin Schulz <quentin.schulz@streamunlimited.com>
+Cc: yocto@lists.yoctoproject.org
+References: <50c175fb-325e-e7e7-af17-f55bb4d18662@seefeld.name>
+ <20210531090929.il2xtwgahhtdczlt@qschulz>
+From: "Stefan Seefeld" <stefan@seefeld.name>
+Message-ID: <67e1550a-5999-ae91-c578-2b70671a1b4b@seefeld.name>
+Date: Mon, 31 May 2021 09:18:38 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5608.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 05fae0a7-2429-40df-10a6-08d9241ee9d1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 May 2021 10:29:03.8693
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: NTjE9S29oVaEVUE4NhqaIrk0bjInC0N+LK3Sk4FPO/jDRKsGoFqV1KRdsXb9GaqdzN14LNIzHUDyIUl2UhAagw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR11MB5576
-Return-Path: sangeeta.jain@intel.com
-X-OriginatorOrg: intel.com
+In-Reply-To: <20210531090929.il2xtwgahhtdczlt@qschulz>
+X-Groupsio-MsgNum: 53712
+Content-Type: multipart/alternative;
+ boundary="------------7EED2A96FDC358C61E3A7192"
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+--------------7EED2A96FDC358C61E3A7192
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-This is the full report for yocto-3.1.8.rc1:  
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/=
-?h=3Dintel-yocto-testresults
 
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects.
+On 2021-05-31 5:09 a.m., Quentin Schulz wrote:
+> A common mistake would be the forgotten semi-colon and/or _prepend:
+> FILESEXTRAPATHS_prepend := "${THISDIR}/files"
+>
+> Another common mistake is to not respect the tree layout of the original
+> path relative to the original recipe (or for that matter, the one you
+> want to override coming from the bbappend) for xorg.conf.
+> In that case, you can see that in meta-yocto-bsp, there's a parent
+> directory of xorg.conf that is not the one listed in
+> FILESEXTRAPATHS_prepend. You should add this directory in the path of
+> your bbappend.
 
-1 new issue found:
+Indeed, I was basing my layout on the original recipe, not on the poky 
+override (which adds the $MACHINE as a subdirectory).
 
-BUG id:14414 - [QA 3.1.8 RC1] failure in ptest : strace.printstrn-umoven.g=
-en.test=20
-    =20
-    
-=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14414
+With that adjustment everything appears to be working fine.
 
-Thanks,
-Sangeeta
+> https://pretalx.com/media/yocto-project-summit-2021/submissions/WTT3UV/resources/Demystifying_the_OVERRIDES_mechan_no6J6fb.pdf
+> slides 70 to 80 might help you. The recording should be available in a
+> few days/weeks.
 
-> -----Original Message-----
-> From: qa-build-notification@lists.yoctoproject.org <qa-build-
-> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
-> Sent: Wednesday, 26 May, 2021 3:40 AM
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [qa-build-notification] QA notification for completed autobuild=
-er
-> build (yocto-3.1.8.rc1)
->=20
->=20
-> A build flagged for QA (yocto-3.1.8.rc1) was completed on the autobuilde=
-r
-> and is available at:
->=20
->=20
->     https://autobuilder.yocto.io/pub/releases/yocto-3.1.8.rc1
->=20
->=20
-> Build hash information:
->=20
-> bitbake: 078f3164dcb1de7a141bec3a8fd52631d0362631
-> meta-arm: 9dadb61b36fdd09a39d8cb755fa29d03928a1116
-> meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
-> meta-intel: 2fb89eb85dea00de9446c1cf44ba6a5586f42c84
-> meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
-> oecore: ecd636154e7cfc1349a7cfd8026a85eafa219535
-> poky: 6ebb33bdaccaeadff0c85aab27acf35723df00d8
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
->=20
->=20
->=20
->=20
+Thanks a lot, this looks really useful !
 
+Stefan
+-- 
+
+       ...ich hab' noch einen Koffer in Berlin...
+
+
+--------------7EED2A96FDC358C61E3A7192
+Content-Type: multipart/related;
+ boundary="------------FC4AD03F7CED3F0DC8F977AE"
+
+--------------FC4AD03F7CED3F0DC8F977AE
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 2021-05-31 5:09 a.m., Quentin Schulz
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:20210531090929.il2xtwgahhtdczlt@qschulz">A common
+      mistake would be the forgotten semi-colon and/or _prepend:
+      <pre class="moz-quote-pre" wrap="">FILESEXTRAPATHS_prepend := "${THISDIR}/files"
+
+Another common mistake is to not respect the tree layout of the original
+path relative to the original recipe (or for that matter, the one you
+want to override coming from the bbappend) for xorg.conf.
+In that case, you can see that in meta-yocto-bsp, there's a parent
+directory of xorg.conf that is not the one listed in
+FILESEXTRAPATHS_prepend. You should add this directory in the path of
+your bbappend.</pre>
+    </blockquote>
+    <p>Indeed, I was basing my layout on the original recipe, not on the
+      poky override (which adds the $MACHINE as a subdirectory).</p>
+    <p>With that adjustment everything appears to be working fine.<br>
+    </p>
+    <p>
+    </p>
+    <blockquote type="cite"
+      cite="mid:20210531090929.il2xtwgahhtdczlt@qschulz">
+      <pre class="moz-quote-pre" wrap=""><a class="moz-txt-link-freetext" href="https://pretalx.com/media/yocto-project-summit-2021/submissions/WTT3UV/resources/Demystifying_the_OVERRIDES_mechan_no6J6fb.pdf">https://pretalx.com/media/yocto-project-summit-2021/submissions/WTT3UV/resources/Demystifying_the_OVERRIDES_mechan_no6J6fb.pdf</a>
+slides 70 to 80 might help you. The recording should be available in a
+few days/weeks.</pre>
+    </blockquote>
+    <p>Thanks a lot, this looks really useful ! <br>
+    </p>
+    <div class="moz-signature">
+      <div class="moz-signature">
+        <div class="moz-signature">
+          <pre><img moz-do-not-send="false" src="cid:part1.0729B3AB.F2B3D4C4@seefeld.name" alt="Stefan" width="123" height="77">
+-- 
+
+      ...ich hab' noch einen Koffer in Berlin...
+</pre>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+--------------FC4AD03F7CED3F0DC8F977AE
+Content-Type: image/png;
+ name=".signature.png"
+Content-Transfer-Encoding: base64
+Content-ID: <part1.0729B3AB.F2B3D4C4@seefeld.name>
+Content-Disposition: inline;
+ filename=".signature.png"
+
+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
+Miz8AALwAAAAAElFTkSuQmCC
+
+--------------FC4AD03F7CED3F0DC8F977AE--
+
+--------------7EED2A96FDC358C61E3A7192--
