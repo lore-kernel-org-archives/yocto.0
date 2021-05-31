@@ -1,213 +1,88 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.44651.1622469684784840258
+Received: from proxima.lasnet.de (proxima.lasnet.de [78.47.171.185])
+ by mx.groups.io with SMTP id smtpd.web09.45881.1622475776657205036
  for <yocto@lists.yoctoproject.org>;
- Mon, 31 May 2021 07:01:24 -0700
+ Mon, 31 May 2021 08:42:57 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=NK7dyFgn;
- spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id AB38338C0661
-	for <yocto@yoctoproject.org>; Mon, 31 May 2021 14:01:23 +0000 (UTC)
-Received: by mail-wr1-f43.google.com with SMTP id m18so11050358wrv.2
-        for <yocto@yoctoproject.org>; Mon, 31 May 2021 07:01:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=blade-group.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=W2mG3En/oEQPpcH2L3Xx1ixQhC8MEhrInt2JNJ2otvo=;
-        b=NK7dyFgnNyQZFu/VhCn/abclUzMgpHC+LDl5qraeLjk+/+cnOHtLy05LK6j08NJPvQ
-         QNqqK+hfei467dNad38uAPYmkqEf9zgZjzjw7WJNig7vRIRUlida6pwodeiFoxftlsKP
-         NTiagOwAJTgl1qOfbr7ipRT+94+1HU9cWWTVtUJ+KMwhrImFThTwdaS9y4Ykj6J1Rsym
-         xYWi2KhyLhqXP404didy9bg75w+RJFdHJQw4N9Mwi/cKchaF8g/GQC1fGxk/ZcwDQ8fH
-         SBu0Zoj8Dbwo0SxAQRGJaa4GZNAFd8Un7bMY/txRFb961CexZfrUXI3qVRPoiSF4FMiC
-         plTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=W2mG3En/oEQPpcH2L3Xx1ixQhC8MEhrInt2JNJ2otvo=;
-        b=gdzun+syBMPYh+jYXo9jr2sqpG5HN7sptUXCqvcLwEmbk5KROU2xIWNOpsWYlMpeN+
-         LneMUqNRK8vldP1osTon19WJcR7fJvcGNanfMdk2goahxbcxSYYFIv1CmG7viNIYrT/u
-         qrUQwVt0RbdbcoIg17ry8NfGuN5DQwRC/ZW4MvCBi0VN9AreGoD3qgKDk5dXS85mQlkN
-         wPa23SJUbNin1LoJclqPyYkrqYT6B8o9Uffu417/xWBDcqNCAF6VX0ajdtDUU5HdtF2k
-         bItzSwAwTG6EUvEP/IWT1e7SvIMC9k0LpLRL3zgG3pVzZXIpQaxmXppY/uKvh7B9VSu0
-         OSDA==
-X-Gm-Message-State: AOAM531eAYz/4PQ0gyF7GKEhSFfuRtTnkaYnRfmv3vu2jn6ktx2nD3+z
-	3uq463iQvpEAUqJMBo7Cqx8qUeGc3wMS2w==
-X-Google-Smtp-Source: ABdhPJzq1pSuIhjh6SLL7uIpcrFIJx/JGtAkQvGg+k40DmNGkyz4JnGiIo7t4DZXM36FU4MDgNdBYg==
-X-Received: by 2002:a5d:684d:: with SMTP id o13mr3842324wrw.174.1622469682296;
-        Mon, 31 May 2021 07:01:22 -0700 (PDT)
-Received: from blanquette.lan ([88.120.44.86])
-        by smtp.gmail.com with ESMTPSA id l3sm15517062wmh.2.2021.05.31.07.01.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 May 2021 07:01:21 -0700 (PDT)
-From: "Yann Dirson" <yann.dirson@blade-group.com>
-X-Google-Original-From: yann@blade-group.com
-To: yocto@yoctoproject.org
-Cc: twoerner@gmail.com,
-	Yann Dirson <yann@blade-group.com>
-Subject: [meta-rockchip][PATCH v2] Rock64: add machine
-Date: Mon, 31 May 2021 16:00:58 +0200
-Message-Id: <20210531140058.2193825-1-yann@blade-group.com>
-X-Mailer: git-send-email 2.30.2
+ dkim=missing; spf=pass (domain: datenfreihafen.org, ip: 78.47.171.185, mailfrom: stefan@datenfreihafen.org)
+Received: from PC192.168.2.53 (p200300e9d7263cb7b1d6f93550f09055.dip0.t-ipconnect.de [IPv6:2003:e9:d726:3cb7:b1d6:f935:50f0:9055])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: stefan@sostec.de)
+	by proxima.lasnet.de (Postfix) with ESMTPSA id 65EDDC04C1;
+	Mon, 31 May 2021 17:42:53 +0200 (CEST)
+From: "Stefan Schmidt" <stefan@datenfreihafen.org>
+To: yocto@lists.yoctoproject.org
+Cc: Stefan Schmidt <stefan@datenfreihafen.org>,
+	Stefan Schmidt <stefan.schmidt@huawei.com>
+Subject: [PATCH 1/2] zephyr-kernel: Add OpenThread module to build
+Date: Mon, 31 May 2021 17:42:32 +0200
+Message-Id: <20210531154232.256624-1-stefan@datenfreihafen.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 
-From: Yann Dirson <yann@blade-group.com>
+From: Stefan Schmidt <stefan.schmidt@huawei.com>
 
-This is a RK3328 board from Pine64.
-Board details at https://wiki.pine64.org/wiki/ROCK64.
+OpenThread support in Zephyr is realised as an external module. Make
+sure we pull it in and have it available for applications to use it.
 
-Default image is built to boot from SD-card.  Building an image for
-eMMC requires to set RK_BOOT_DEVICE=3D"mmcblk0".
-
-Signed-off-by: Yann Dirson <yann@blade-group.com>
+Signed-off-by: Stefan Schmidt <stefan.schmidt@huawei.com>
 ---
+ recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc        | 1 +
+ recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0-rc1.inc | 1 +
+ recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc           | 1 +
+ 3 files changed, 3 insertions(+)
 
-This is just basic initial support without a kernel BSP.  As is the
-board boots with a serial console.
-
-Note I had to create the SoC definition for rk3328, and rather than
-setting serial at 115200 there just to have the board definition
-override it with rockchip-standard 1500000 I've set the latter right
-in rk3328.inc.
-
-Changes in v2:
-- include Ayufan's patch for mmc aliases so presence of eMMC won't
-prevent booting from SD
-
- conf/machine/include/rk3328.inc               | 25 ++++++++++++++++
- conf/machine/rock64.conf                      | 30 +++++++++++++++++++
- ...an-dtsi-rk3328-add-mmc0-mmc1-aliases.patch | 27 +++++++++++++++++
- recipes-kernel/linux/linux-yocto%.bbappend    |  6 ++++
- 4 files changed, 88 insertions(+)
- create mode 100644 conf/machine/include/rk3328.inc
- create mode 100644 conf/machine/rock64.conf
- create mode 100644 recipes-kernel/linux/files/0001-ayufan-dtsi-rk3328-ad=
-d-mmc0-mmc1-aliases.patch
-
-diff --git a/conf/machine/include/rk3328.inc b/conf/machine/include/rk332=
-8.inc
-new file mode 100644
-index 0000000..7d67627
---- /dev/null
-+++ b/conf/machine/include/rk3328.inc
-@@ -0,0 +1,25 @@
-+# Copyright (C) 2020 Garmin Ltd. or its subsidaries
-+# Released under the MIT license (see COPYING.MIT for the terms)
-+
-+SOC_FAMILY =3D "rk3328"
-+
-+DEFAULTTUNE ?=3D "cortexa53-crypto"
-+
-+require conf/machine/include/soc-family.inc
-+require conf/machine/include/tune-cortexa53.inc
-+require conf/machine/include/rockchip-defaults.inc
-+
-+KBUILD_DEFCONFIG ?=3D "defconfig"
-+KERNEL_CLASSES =3D "kernel-fitimage"
-+KERNEL_IMAGETYPE =3D "fitImage"
-+
-+TFA_PLATFORM =3D "rk3328"
-+TFA_BUILD_TARGET =3D "bl31"
-+
-+UBOOT_SUFFIX ?=3D "itb"
-+UBOOT_ENTRYPOINT ?=3D "0x06000000"
-+
-+SERIAL_CONSOLES =3D "1500000;ttyS2"
-+
-+PREFERRED_PROVIDER_virtual/bootloader ?=3D "u-boot"
-+SPL_BINARY ?=3D "idbloader.img"
-diff --git a/conf/machine/rock64.conf b/conf/machine/rock64.conf
-new file mode 100644
-index 0000000..38bc9fa
---- /dev/null
-+++ b/conf/machine/rock64.conf
-@@ -0,0 +1,30 @@
-+# Copyright (C) 2021 Blade SAS
-+
-+#@TYPE: Machine
-+#@NAME: Rock64
-+#@DESCRIPTION: Rock64 RK3328 board from Pine64
-+
-+require include/rk3328.inc
-+
-+MACHINE_FEATURES +=3D "usbhost serial"
-+
-+UBOOT_MACHINE =3D "rock64-rk3328_defconfig"
-+KERNEL_DEVICETREE =3D "rockchip/rk3328-rock64.dtb"
-+
-+# set to mmcblk0 for booting from optional eMMC
-+RK_BOOT_DEVICE ?=3D "mmcblk1"
-+
-+WKS_FILE ?=3D "rock-pi-4.wks"
-+IMAGE_FSTYPES +=3D "wic wic.bmap"
-+
-+WKS_FILE_DEPENDS ?=3D " \
-+    mtools-native \
-+    dosfstools-native \
-+    virtual/bootloader \
-+    virtual/kernel \
-+    "
-+IMAGE_BOOT_FILES ?=3D "\
-+    ${KERNEL_IMAGETYPE} \
-+    "
-+
-+KBUILD_DEFCONFIG =3D "defconfig"
-diff --git a/recipes-kernel/linux/files/0001-ayufan-dtsi-rk3328-add-mmc0-=
-mmc1-aliases.patch b/recipes-kernel/linux/files/0001-ayufan-dtsi-rk3328-a=
-dd-mmc0-mmc1-aliases.patch
-new file mode 100644
-index 0000000..1ad3b9e
---- /dev/null
-+++ b/recipes-kernel/linux/files/0001-ayufan-dtsi-rk3328-add-mmc0-mmc1-al=
-iases.patch
-@@ -0,0 +1,27 @@
-+From f10cfe01f753348d346374008b8e8f5f26ed94ab Mon Sep 17 00:00:00 2001
-+From: Kamil Trzcinski <ayufan@ayufan.eu>
-+Date: Mon, 28 Aug 2017 11:24:37 +0200
-+Subject: [PATCH] ayufan: dtsi: rk3328: add mmc0/mmc1 aliases
-+Upstream-Status: Pending [https://github.com/ayufan-rock64/linux-mainlin=
-e-kernel/commit/f10cfe01f753348d346374008b8e8f5f26ed94ab]
-+
-+Change-Id: I82a5394df8a505f7d1496393621c1198895c88b0
-+---
-+ arch/arm64/boot/dts/rockchip/rk3328.dtsi | 2 ++
-+ 1 file changed, 2 insertions(+)
-+
-+diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/=
-dts/rockchip/rk3328.dtsi
-+index 0afed15bc7ff..800f1c796882 100644
-+--- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-++++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-+@@ -27,6 +27,8 @@
-+ 		i2c1 =3D &i2c1;
-+ 		i2c2 =3D &i2c2;
-+ 		i2c3 =3D &i2c3;
-++		mmc0 =3D &emmc;
-++		mmc1 =3D &sdmmc;
-+ 		ethernet0 =3D &gmac2io;
-+ 		ethernet1 =3D &gmac2phy;
-+ 	};
-+--=20
-+2.30.2
-+
-diff --git a/recipes-kernel/linux/linux-yocto%.bbappend b/recipes-kernel/=
-linux/linux-yocto%.bbappend
-index 7702e3f..3789c72 100644
---- a/recipes-kernel/linux/linux-yocto%.bbappend
-+++ b/recipes-kernel/linux/linux-yocto%.bbappend
-@@ -8,3 +8,9 @@ COMPATIBLE_MACHINE_tinker-board-s =3D "tinker-board-s"
- COMPATIBLE_MACHINE_rock-pi-4 =3D "rock-pi-4"
- COMPATIBLE_MACHINE_nanopi-m4 =3D "nanopi-m4"
- COMPATIBLE_MACHINE_nanopi-m4-2gb =3D "nanopi-m4-2gb"
-+COMPATIBLE_MACHINE_rock64 =3D "rock64"
-+
-+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
-+
-+# indeed applicable to all rk3328 boards
-+SRC_URI_append_rock64 =3D " file://0001-ayufan-dtsi-rk3328-add-mmc0-mmc1=
--aliases.patch"
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc b/reci=
+pes-kernel/zephyr-kernel/zephyr-kernel-common.inc
+index c9acbbb..eb5e75a 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
+@@ -30,6 +30,7 @@ ZEPHYR_MODULES_append_nordic =3D "\;${S}/modules/hal/no=
+rdic"
+ ZEPHYR_MODULES_append_stm32 =3D "\;${S}/modules/hal/stm32"
+ ZEPHYR_MODULES_append_mbedtls =3D "\;${S}/modules/lib/mbedtls"
+ ZEPHYR_MODULES_append_openamp =3D "\;${S}/modules/lib/open-amp\;${S}/mod=
+ules/hal/libmetal"
++ZEPHYR_MODULES_append_openthread =3D "\;${S}/modules/lib/openthread"
+=20
+ EXTRA_OECMAKE_append =3D " -DZEPHYR_MODULES=3D${ZEPHYR_MODULES}"
+=20
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0-rc1.inc=
+ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0-rc1.inc
+index a0e358e..546eb35 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0-rc1.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0-rc1.inc
+@@ -4,6 +4,7 @@ SRCREV_cmsis =3D "c3bd2094f92d574377f7af2aec147ae181aa5f8=
+e"
+ SRCREV_nordic =3D "574493fe29c79140df4827ab5d4a23df79d03681"
+ SRCREV_stm32 =3D "f8ff8d25aa0a9e65948040c7b47ec67f3fa300df"
+ SRCREV_open-amp =3D "6010f0523cbc75f551d9256cf782f173177acdef"
++SRCREV_openthread =3D "385e19da1ae15f27872c2543b97276a42f102ead"
+ SRCREV_libmetal =3D "39d049d4ae68e6f6d595fce7de1dcfc1024fb4eb"
+ SRCREV_tinycrypt =3D "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
+ SRCREV_mbedtls =3D "5765cb7f75a9973ae9232d438e361a9d7bbc49e7"
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc b/recipes=
+-kernel/zephyr-kernel/zephyr-kernel-src.inc
+index 069fa56..4df5e7e 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+@@ -15,6 +15,7 @@ SRC_URI =3D "\
+     git://github.com/zephyrproject-rtos/hal_stm32.git;protocol=3Dhttps;d=
+estsuffix=3Dgit/modules/hal/stm32;name=3Dstm32 \
+     git://github.com/zephyrproject-rtos/mbedtls.git;protocol=3Dhttps;des=
+tsuffix=3Dgit/modules/lib/mbedtls;name=3Dmbedtls \
+     git://github.com/zephyrproject-rtos/open-amp.git;protocol=3Dhttps;de=
+stsuffix=3Dgit/modules/lib/open-amp;name=3Dopen-amp \
++    git://github.com/zephyrproject-rtos/openthread.git;protocol=3Dhttps;=
+branch=3Dzephyr;destsuffix=3Dgit/modules/lib/openthread;name=3Dopenthread=
+ \
+     git://github.com/zephyrproject-rtos/libmetal.git;protocol=3Dhttps;de=
+stsuffix=3Dgit/modules/hal/libmetal;name=3Dlibmetal \
+     git://github.com/zephyrproject-rtos/tinycrypt.git;protocol=3Dhttps;d=
+estsuffix=3Dgit/modules/crypto/tinycrypt;name=3Dtinycrypt \
+     file://0001-cmake-add-yocto-toolchain.patch \
 --=20
-2.30.2
+2.31.1
 
