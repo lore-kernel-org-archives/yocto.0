@@ -1,97 +1,157 @@
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
- by mx.groups.io with SMTP id smtpd.web08.40826.1622441088202836521
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web08.41651.1622449214877965090
  for <yocto@lists.yoctoproject.org>;
- Sun, 30 May 2021 23:04:48 -0700
+ Mon, 31 May 2021 01:20:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=WnTNJ5OG;
- spf=pass (domain: gmail.com, ip: 209.85.216.43, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-pj1-f43.google.com with SMTP id pi6-20020a17090b1e46b029015cec51d7cdso6061602pjb.5
-        for <yocto@lists.yoctoproject.org>; Sun, 30 May 2021 23:04:48 -0700 (PDT)
+ dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=bpkaqBR9;
+ spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 0961338C08A6
+	for <yocto@yoctoproject.org>; Mon, 31 May 2021 08:20:14 +0000 (UTC)
+Received: by mail-wr1-f48.google.com with SMTP id z8so4875254wrp.12
+        for <yocto@yoctoproject.org>; Mon, 31 May 2021 01:20:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6sgSEki8aNNV09Y8nIOt87U6B7XHMl19GfN3wd/Igzo=;
-        b=WnTNJ5OGWcWz8D9WwAzeq0nZsAKd4s4Aq4pJFpYkUrC2jdZz++W53rITlp2UoUykDG
-         bUXAF2gH3XBCx/pPczI1ug7FlvQ7cluUxuELw51U+hTMdIauK00eW6Ipzn3aBcswqm93
-         FO3Ts9I8llLPfGKSIaD9zcm3EYouIfz8arp7iJMyThLcO5c7RYKRRDeB2jG8WZQMa8lW
-         exqKYNv9GM0+yVmGG4LEOhILva+kJV9f9ZwdJiaCfmhmnOWpktUCLKD4ZaWPVOXsHRp7
-         UXr0ZLdeZkm1g+veEsJKUSWZ6bd64kMMV4M669+M8CxTz9tAc7+S7VZg0vcUxR+zeCnH
-         DYrw==
+        d=blade-group.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iQDkm5Wu5LLVJkVvHCp1L7OutdzUnjjjPibimmEOyU8=;
+        b=bpkaqBR9UgTsqKiTHmj47z3G6qj7rQrjvpZC6/HSuctZbb4PBWBUYcb+vClakbN5Jn
+         hlMk1ofRKrAvrELtDMjlx4freFOgK1xuORzgg/I+HPgb/6bQupeMl7fcvV0RMcXBsHz3
+         Z2xvC6ENPmLfJKxixXVTxDChQli/Vh8wRnc8V/tq3VXR1n5tZ2wRrHBATsM3Cr1G9Q3B
+         +udhnlRRJW7pIC4RGDSpbbPC6NVtYTHJJdYaPg1BoCGAzCvE0BzQcuC2Go5VUMNWf4JV
+         QbIh692kvt2NSRABmtrVFbo/NGqFLo3lcyZvm2DyYUbbK3bFp8e4lxo3h0MO/a/ArLjt
+         EgKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6sgSEki8aNNV09Y8nIOt87U6B7XHMl19GfN3wd/Igzo=;
-        b=YXtNUwDs8/9WJnxpqLgLbOhv3Y4bBzZK6mGkRdhnauP8YpXa3fbeLL/JNO/orMJJoh
-         k0zhCWBadPpYndws/aw2y85C3LZ31h8E7gOhGdQw1V7WX2NkGMTcYK/Yj4o/m3+s5DkH
-         pgfWYlm6rQTIgyRmCgYWVwkkmInOMTywfNSL4t/3pMAiWSZQeHEpcDYpbFtw0Lvyu8N4
-         FN8mV8JWdadsIAlUAcOu7l07/yPHRDFiMeFpEetGIOqj/eLUoTZCbkcxN+QkCE1P5Qla
-         wLnUOf03FRwzKYCmah/caIts8Xyl+UFYwwjjaBhpCGrfdJBEE3sUcxdLkcJ871wFxyL0
-         +qmg==
-X-Gm-Message-State: AOAM530zWQskj1EvxHSGRU1RRlW4qk6kfosGaoojSO8DApZ4wQeyqsSS
-	bKyMWUe9WcsKwF8RRlc40oGvmEvpa0yDkUwzd9wvagfTEhexpQ==
-X-Google-Smtp-Source: ABdhPJzEuWHXyEd7zUQ/Rubqxcqer2f1LBdkMiBh3Yay+OAohRpMUaUPhqaTjPpb7mv2aJuM7ZWVfuulUK9ATG8vJhw=
-X-Received: by 2002:a17:902:8695:b029:fd:6105:c936 with SMTP id
- g21-20020a1709028695b02900fd6105c936mr19188609plo.25.1622441087551; Sun, 30
- May 2021 23:04:47 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iQDkm5Wu5LLVJkVvHCp1L7OutdzUnjjjPibimmEOyU8=;
+        b=Ikq5FjTyU1me4wVr6+Au/UACix4Mhb/ZfbH7AMRYAlXTk/idOtiquUXJKebs3O7xhL
+         +OuE5i41iWAJ/qmSt8dIPLqHiil25YMdrrrPvno200lrV8iXkwFFZ4QTmom5Bu91WwyM
+         qCdFCEIphoLTTVD1tzXY7nckCWaDB/cFPBKkTemgnnMlB/SzcV0hoOsE0fA0pUrMghRh
+         oBLcwW+mA/VV5GsqeZAXtsKjwDxUJw3iBA1mZL9U1nAr8P/YHA6JauqWKcTuobxpI52v
+         PvHtZTz882/L9b5o/i/lnRQbwpMZfyjI2Di0s1THwAhAhB1OfY7rrJa1QwzM9LkNjldt
+         +Z8g==
+X-Gm-Message-State: AOAM532RVFidRaMGgQaODLAnPpDki87icCqQ7pJS9BHWw1W5WeQzwX/h
+	cmzlCq8YRRhiJXBvO8RZLIig/nXaZWp0IQ==
+X-Google-Smtp-Source: ABdhPJzXHQ+PorSUTH0sEYhE3+xNFIpTLWhptKQaql7/WoQpwKtihO+ijKNII9W3Ij77V8xnrBb0qg==
+X-Received: by 2002:a5d:61d0:: with SMTP id q16mr1446887wrv.175.1622449212536;
+        Mon, 31 May 2021 01:20:12 -0700 (PDT)
+Received: from blanquette.lan ([88.120.44.86])
+        by smtp.gmail.com with ESMTPSA id g23sm4771220wmk.3.2021.05.31.01.20.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 May 2021 01:20:11 -0700 (PDT)
+From: "Yann Dirson" <yann.dirson@blade-group.com>
+X-Google-Original-From: yann@blade-group.com
+To: yocto@yoctoproject.org
+Cc: twoerner@gmail.com,
+	Yann Dirson <yann@blade-group.com>
+Subject: [meta-rockchip][PATCH] Rock64: add machine
+Date: Mon, 31 May 2021 10:19:46 +0200
+Message-Id: <20210531081946.1134840-1-yann@blade-group.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <dWBn.1622153050533898469.7UFj@lists.yoctoproject.org>
- <7642946a-9a4b-2799-9db2-1187822ffbcf@gmail.com> <CAHUEwNZPjwy93VOvRLK5DA=pQRyFSK5TA32h_uZgzwdKyQFagQ@mail.gmail.com>
- <CAGAf8Lx_MxnDMVWspVDShzq8uLCtxcSAGqZZoT0Vdsh8YT8cRw@mail.gmail.com>
- <bb2c2342-d737-84dd-6f43-c4c515fedf23@crashcourse.ca> <CAGAf8Lwsnn36EbURP_UKi=x6z1N-by+FBvTjOzr1SL3D5eq1kw@mail.gmail.com>
- <CAHUEwNYCxdMWHzyec6TWOGcLWMA=Fyv1g6QErbxcxRj=UHkSmA@mail.gmail.com>
-In-Reply-To: <CAHUEwNYCxdMWHzyec6TWOGcLWMA=Fyv1g6QErbxcxRj=UHkSmA@mail.gmail.com>
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Mon, 31 May 2021 08:04:36 +0200
-Message-ID: <CAGAf8LwoY0hj5PdaVGayG8JjzRzsp1oQUXdW2RXrV8b7=LpQGg@mail.gmail.com>
-Subject: Re: [yocto] How to switch yocto INIT_MANAGER from systemd to sysvinit #dunfell
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-What about the following:
-https://docs.yoctoproject.org/ref-manual/migration-3.0.html?highlight=init_manager#init-system-selection
+From: Yann Dirson <yann@blade-group.com>
 
-To be enhanced/added with the following:
-https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-releases/bbb-hardknott/README.md
+This is a RK3328 board from Pine64.
+Board details at https://wiki.pine64.org/wiki/ROCK64.
 
-Best Regards,
-Zee
-_______
+Signed-off-by: Yann Dirson <yann@blade-group.com>
+---
 
-On Fri, May 28, 2021 at 3:02 PM Swapna Nannapaneni
-<sayinswapna@gmail.com> wrote:
->
-> Typo. No leading space  INIT_MANAGER = "sysvinit".
->
-> Thanks,
-> Priya.
->
-> On Fri, May 28, 2021 at 8:55 AM Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com> wrote:
->>
->> > you don't want the leading space.
->>
->> I got the idea from reading
->> https://docs.yoctoproject.org/ref-manual/migration-3.0.html?highlight=init_manager#init-system-selection
->>
->> But this is exactly why we need some explicit examples. :-)
->>
->> Zee
->> _______
->>
->> On Fri, May 28, 2021 at 2:45 PM Robert P. J. Day <rpjday@crashcourse.ca> wrote:
->> >
->> > On Fri, 28 May 2021, Zoran wrote:
->> >
->> > > > Tried setting  INIT_MANAGER  = " sysvinit" in build/conf/local.conf
->> > >
->> > > Is it INIT_MANAGER  = " sysvinit" , or INIT_MANAGER  = "sysvinit" (no
->> > > blank at the beginning)?
->> > >
->> > > Thank you,
->> > > Zee
->> >
->> >   you don't want the leading space.
->> >
->> > rday
+This is just basic initial support without a kernel BSP.  As is the
+board boots with a serial console.
+
+Note I had to create the SoC definition for rk3328, and rather than
+setting serial at 115200 there just to have the board definition
+override it with rockchip-standard 1500000 I've set the latter right
+in rk3328.inc.
+
+ conf/machine/include/rk3328.inc            | 25 +++++++++++++++++++
+ conf/machine/rock64.conf                   | 28 ++++++++++++++++++++++
+ recipes-kernel/linux/linux-yocto%.bbappend |  1 +
+ 3 files changed, 54 insertions(+)
+ create mode 100644 conf/machine/include/rk3328.inc
+ create mode 100644 conf/machine/rock64.conf
+
+diff --git a/conf/machine/include/rk3328.inc b/conf/machine/include/rk332=
+8.inc
+new file mode 100644
+index 0000000..7d67627
+--- /dev/null
++++ b/conf/machine/include/rk3328.inc
+@@ -0,0 +1,25 @@
++# Copyright (C) 2020 Garmin Ltd. or its subsidaries
++# Released under the MIT license (see COPYING.MIT for the terms)
++
++SOC_FAMILY =3D "rk3328"
++
++DEFAULTTUNE ?=3D "cortexa53-crypto"
++
++require conf/machine/include/soc-family.inc
++require conf/machine/include/tune-cortexa53.inc
++require conf/machine/include/rockchip-defaults.inc
++
++KBUILD_DEFCONFIG ?=3D "defconfig"
++KERNEL_CLASSES =3D "kernel-fitimage"
++KERNEL_IMAGETYPE =3D "fitImage"
++
++TFA_PLATFORM =3D "rk3328"
++TFA_BUILD_TARGET =3D "bl31"
++
++UBOOT_SUFFIX ?=3D "itb"
++UBOOT_ENTRYPOINT ?=3D "0x06000000"
++
++SERIAL_CONSOLES =3D "1500000;ttyS2"
++
++PREFERRED_PROVIDER_virtual/bootloader ?=3D "u-boot"
++SPL_BINARY ?=3D "idbloader.img"
+diff --git a/conf/machine/rock64.conf b/conf/machine/rock64.conf
+new file mode 100644
+index 0000000..88a8434
+--- /dev/null
++++ b/conf/machine/rock64.conf
+@@ -0,0 +1,28 @@
++# Copyright (C) 2021 Blade SAS
++
++#@TYPE: Machine
++#@NAME: Rock64
++#@DESCRIPTION: Rock64 RK3328 board from Pine64
++
++require include/rk3328.inc
++
++MACHINE_FEATURES +=3D "usbhost serial"
++
++UBOOT_MACHINE =3D "rock64-rk3328_defconfig"
++KERNEL_DEVICETREE =3D "rockchip/rk3328-rock64.dtb"
++
++RK_BOOT_DEVICE =3D "mmcblk0"
++WKS_FILE ?=3D "rock-pi-4.wks"
++IMAGE_FSTYPES +=3D "wic wic.bmap"
++
++WKS_FILE_DEPENDS ?=3D " \
++    mtools-native \
++    dosfstools-native \
++    virtual/bootloader \
++    virtual/kernel \
++    "
++IMAGE_BOOT_FILES ?=3D "\
++    ${KERNEL_IMAGETYPE} \
++    "
++
++KBUILD_DEFCONFIG =3D "defconfig"
+diff --git a/recipes-kernel/linux/linux-yocto%.bbappend b/recipes-kernel/=
+linux/linux-yocto%.bbappend
+index 7702e3f..f453281 100644
+--- a/recipes-kernel/linux/linux-yocto%.bbappend
++++ b/recipes-kernel/linux/linux-yocto%.bbappend
+@@ -8,3 +8,4 @@ COMPATIBLE_MACHINE_tinker-board-s =3D "tinker-board-s"
+ COMPATIBLE_MACHINE_rock-pi-4 =3D "rock-pi-4"
+ COMPATIBLE_MACHINE_nanopi-m4 =3D "nanopi-m4"
+ COMPATIBLE_MACHINE_nanopi-m4-2gb =3D "nanopi-m4-2gb"
++COMPATIBLE_MACHINE_rock64 =3D "rock64"
+--=20
+2.30.2
+
