@@ -1,150 +1,127 @@
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
- by mx.groups.io with SMTP id smtpd.web08.59960.1622562334802366071
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+ by mx.groups.io with SMTP id smtpd.web09.60316.1622564043637780642
  for <yocto@lists.yoctoproject.org>;
- Tue, 01 Jun 2021 08:45:35 -0700
+ Tue, 01 Jun 2021 09:14:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=A+c3mo5A;
- spf=pass (domain: gmail.com, ip: 209.85.219.50, mailfrom: twoerner@gmail.com)
-Received: by mail-qv1-f50.google.com with SMTP id k2so7419188qvc.5
-        for <yocto@lists.yoctoproject.org>; Tue, 01 Jun 2021 08:45:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:subject:message-id:mime-version:content-disposition
-         :content-transfer-encoding:user-agent;
-        bh=uiGkH3vlGnRi1hfiMYQQpOupPvSlCjXVWlzKnCQu6do=;
-        b=A+c3mo5AcyVHpltcfpkH45A582f7mOU7PTqfueV5XFvukgSg0NLSEMJS4YrQYGB5vP
-         pqaiBs5G/aDdUiSiQBI6SRXCuKUH1uMN3cY6J8OpS5fPFRmrqwDxZvMUTsQpQcsRKO+L
-         hrQHx7QF8b2ibMqglNqYYYqmLNZ+qhiuI26paONP5DYAub7ZdthSPaRi+hxnvHGb+Idx
-         UsGiQ/aI6n7Bfj9zGA4zVNBon7Ku0H/jBYQU0isY1mVZ3hTCIc5woR89CwEQTunqxefR
-         ZZewha9yUZj4yKrozal/zuLO5P4E4VCwCI+NYh7X6ywz2PL+csVFCF+ewW4eLeqF1WHt
-         6+Xw==
+ dkim=missing; spf=pass (domain: gmail.com, ip: 209.85.128.45, mailfrom: luca.boccassi@gmail.com)
+Received: by mail-wm1-f45.google.com with SMTP id o2-20020a05600c4fc2b029019a0a8f959dso2266639wmq.1
+        for <yocto@lists.yoctoproject.org>; Tue, 01 Jun 2021 09:14:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
-         :content-disposition:content-transfer-encoding:user-agent;
-        bh=uiGkH3vlGnRi1hfiMYQQpOupPvSlCjXVWlzKnCQu6do=;
-        b=tf27MMrYF+TWyrBp4Y0t0Oj/b9+fhB8A63tAI0YT67L5T98FfeVN3AOH9B7sW3x6I4
-         3yvC5Vel9qVrJ16Kr4h2mctCuOwrSX8AL9NYm9zdYYJQi7pSnbxJsNX+WSQVlnPghLf6
-         cCudq1FEL0k9rHTbnqLknmVSRNZzjX9ouGENqPzTT5nbJf46rJebCv37cntjDLQCW/oE
-         hEekJhX1B9r8SvFyyymOhad5KaLdN25lLqailQ8c5FCOeD8k0mkjiO1x/2mP8z3umtbr
-         LPLrlHAzIHW+a3Ea/G1d3BNXuCeE2wUUukkTztpqd95KzRy86p5RKPsGjNzZMslhHb2T
-         zopQ==
-X-Gm-Message-State: AOAM5311fb5fWLXQSK5HOAx6B5yot4p4Ko/9LeFhkJWyLO0Wzi9pu5bT
-	YPOd5ZQ26ieQN7seLwbIXgRqrEBA8GT9Jg==
-X-Google-Smtp-Source: ABdhPJzAmkh4EOG9vtY5jfgUieuwqzZ65IQwRkvpFR4PZ1K+t+THFLFKupZnwIDzPJPAoR9Dg9ZhTw==
-X-Received: by 2002:a0c:d409:: with SMTP id t9mr23281601qvh.18.1622562333174;
-        Tue, 01 Jun 2021 08:45:33 -0700 (PDT)
-Return-Path: <twoerner@gmail.com>
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id p21sm4843343qkk.42.2021.06.01.08.45.32
-        for <yocto@lists.yoctoproject.org>
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version;
+        bh=QvQwtDqtRly77IKU4gWpru77t614ZQMKjhvLe66DxsY=;
+        b=NKylN5+uY/AjmYy86kvuos9cYHQAvp/TQQqNFbepGeOwWPIa8W3BPgWRr5HTCUC9kK
+         HVIiDM275ijIxH8D1OdcmrP1svUpd2/21LKjt2k803G0TK+e0Hp0QC7Hsk8CxhW5a98z
+         9qQbI7ZPWZM3ZkGOloQVX1Va5HJ0SvrQu9Zeqv/yw4sVB1xJXClMSmkdxiT9543Vq9BH
+         gFTXXt69jG9ryebu7TudyWFcQo9v2kjpXOL9ybnHtJoXtdBqZnECgv/MMdX4zp5chjPt
+         XRB5TityGgqaUzO7WgOqtROG89+z+3nYyC7pKISy/9ZeM+LG2GE1+N3EyJa/05kVA1VY
+         Xr3w==
+X-Gm-Message-State: AOAM532x6YqWPDp967s9E4fx5G92LHa4nYsEndXIuUYD3Ilvj/OiuMVT
+	z17qyUKHhVvHHM19W+zIWiU=
+X-Google-Smtp-Source: ABdhPJwuG6zhViNLA/zGLMyTXjBV/RD3z+N+2QUlu2MaRfkrZF2pohO2AFNc1I5CkWhBjlx6Pm/KHA==
+X-Received: by 2002:a1c:2985:: with SMTP id p127mr27800428wmp.165.1622564042081;
+        Tue, 01 Jun 2021 09:14:02 -0700 (PDT)
+Return-Path: <luca.boccassi@gmail.com>
+Received: from localhost ([2a01:4b00:f41a:3600:360b:9754:2e3a:c344])
+        by smtp.gmail.com with ESMTPSA id u18sm18401668wmj.15.2021.06.01.09.14.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jun 2021 08:45:32 -0700 (PDT)
-Date: Tue, 1 Jun 2021 11:45:30 -0400
-From: "Trevor Woerner" <twoerner@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: Yocto Technical Team Minutes, Engineering Sync, for June 1 2021
-Message-ID: <20210601154530.GA6198@localhost>
+        Tue, 01 Jun 2021 09:14:00 -0700 (PDT)
+Message-ID: <07ed91b66206ee237ce2831e2ac3792decbb3cd1.camel@debian.org>
+Subject: Re: [yocto] systemd, ELF binaries and runtime dependency tracking
+From: "Luca Bocassi" <luca.boccassi@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>, Paul Eggleton
+	 <paul.eggleton@linux.microsoft.com>, yocto@lists.yoctoproject.org
+Date: Tue, 01 Jun 2021 17:13:59 +0100
+In-Reply-To: <71099fe9-7acd-186a-e204-18347a83359b@gmail.com>
+References: 
+	<20210531224016.GA24592@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+	 <71099fe9-7acd-186a-e204-18347a83359b@gmail.com>
+User-Agent: Evolution 3.30.5-1.2 
 MIME-Version: 1.0
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-Groupsio-MsgNum: 53732
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-4hQeNHiqS9tbElS5KzX2"
 
-Yocto Technical Team Minutes, Engineering Sync, for June 1 2021
-archive: https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7QwKC5wWVDg9dDH4/edit
+--=-4hQeNHiqS9tbElS5KzX2
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-== disclaimer ==
-Best efforts are made to ensure the below is accurate and valid. However,
-errors sometimes happen. If any errors or omissions are found, please feel
-free to reply to this email with any corrections.
+On Tue, 2021-06-01 at 07:58 -0700, Khem Raj wrote:
+>=20
+> On 5/31/21 3:40 PM, Paul Eggleton wrote:
+> > Hi folks
+> >=20
+> > Upstream in the systemd project, a proposal has been made to add a spec=
+ial
+> > section to output ELF binaries to record soft runtime dependencies, so =
+that
+> > they could be read and utilised by distribution build systems such as o=
+urs
+> > (they would be translated into RRECOMMENDS in our case). At the moment =
+that
+> > doesn't seem to have generated a huge amount of interest in the traditi=
+onal
+> > distro space, but would it be interesting for us?
+> >=20
+> >    https://github.com/systemd/systemd/pull/17416
+> >=20
+> > For clarity, we (Microsoft) will volunteer to do the integration assumi=
+ng the
+> > above pull request gets reopened and merged, which is more likely if we
+> > express our interest.
+>=20
+> Finding dlopen dependencies is a neat idea, but it has to be accepted=20
+> cross distro, and also applications have to manually declare it in code=
+=20
+> if I understand systemd's patch correctly.  This will be hard to=20
+> accomplish as you can see changes are spread across apps from distro=20
+> point of view. Perhaps there is a smarter way of detecting adding them=
+=20
+> in ELF spec itself and then have tools like linker help implement this
+> and also possibly collect the information or guide the users to achieve=
+=20
+> this would be helpful.
 
-== attendees ==
-Trevor Woerner, Stephen Jolley, Colin McAllister, Armin Kuster, Joshua Watt,
-Steve Sakoman, Saul Wold, Richard Purdie, Philip Ballister, Bruce Ashfield,
-Randy MacLeod, Michael Ambrus, Michael Halstead, Daiane Angolini, Peter
-Kjellerstedt, Trevor Gamblin, Ross Burton, Tim Orling, Alexandre Belloni,
-Jan-Simon Möller, Scott Murray, Tony Tascioglu
+Yes ideally ELF shared objects/the linker/the loader would support weak
+symbols (like dylib on OSX). Unfortunately they do not, and it seems
+there's no interest to add it becasue there's no concrete use case that
+shows it's useful. But that cannot happen until there's some support
+for it. Chicken and egg...
 
-== notes ==
-- 3.4 M1 (honister) to be built next week
-- 3.1.8 (dunfell) passed QA, waiting final approval for release
-- CVE issue count: master=6, hardknott=14
-- AUH to run more regularly
-- multiconfig issues still not ironed out
-- ptest based on core-image-minimal instead of core-image-sato
-- record high levels of AB intermittent issues
+There have been lots of theoretical discussions about pros and cons,
+and my hope was that if at least one distro could find it useful, and
+could show that it is in practice useful and the theoretical issues are
+not that problematic and could be solved, others would follow suit.
 
-== general ==
-RP: AB int issues seemed to be helped by limited the number of threads used
-    for compression
+So leaving aside other distros, is this something that would concretely
+benefit the Yocto project for handling the systemd recipe? There are
+currently 12 dlopen()-based optional dependencies in systemd, and the
+number grows with each release.
 
+--=20
+Kind regards,
+Luca Boccassi
 
-RP: two cases of trying to talk to upstream but found problems with our
-    logging, upstream says “go away and fix your logging” before we can
-    continue discussions
+--=-4hQeNHiqS9tbElS5KzX2
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
 
+-----BEGIN PGP SIGNATURE-----
 
-PeterK: question about yocto-poky tags
-RP: we stopped adding “hardknott-pokyversion” (e.g. “hardknott-25.0”)
-    tags and this broke PeterK’s workflow. i would prefer to move away from
-    these tags and use yocto tags instead
-PeterK: i’m okay moving to something new. “hardknott-3.3.1” would be
-    better than “hardknott-25.0”. also, could we wait and not change this
-    in the middle of a release series? (i.e. wait for the first release of
-    honister).
-RP: i need to talk to MichaelH and Vineela and figure something out
-RP: this is part of a larger task to rationalize the release process a bit
-    better (e.g. also need to tie in the documentation releases too with Nico)
-RP: this tells us that people are using some of these things that we didn’t
-    think were being used
-MichaelH: Vineela and I have a couple other release things we need to go
-    over, i’ll make a meeting. we could add tags going backwards so we
-    can transition now. this would give us some correlation to the tags in
-    openembedded etc
+iQIzBAABCgAdFiEErCSqx93EIPGOymuRKGv37813JB4FAmC2XMcACgkQKGv37813
+JB7yBBAAqkkN6CPajmrsfRUMWT/PzoX0H06epdVhEB5gWGVJSeJ4Bugs2sPwoOEn
+EWb7bWUY/aGQ5Z+qoyaUbPVgH4EB+zfR4CIRbdtLxWUC/KVhpyrBHM2/jqFI/jAM
+tZHAFY71Nf9chhMQPpcCbYM4qFU4VaYe8Zr3BSn9LfaAu/i3d6B3haO2bFfvgqlR
+XGmqHlln4U0L91SqzVj7HQtoanjgbMW7voldvan4HhJJMxa0mKsraWYLb9y1xxJV
+HxXFvYpvv2YqZn3g5PJ2Awvonbk4qc+XTIzQtMtZaAYIO4LTPfz+5+wqoaD2DbIP
+N1zsa1JhMb2b9NzLoYmCPc5hT1JZ/Ng446daQYaaSWFjx/f8U8J5OpealyT6WCMh
+kh6lgxgAPO5ITSiN5kbYbzZthfs2BialJfe0eiHkm0uc0ADlQyxQLMetgaYHyHiu
+P/WQdD3k2vueZtzjW2jnM0yafbEatWUMqdaOCAjHdzl8/lReC3CBox4t+uGfN0fH
+Hv5D51NTteH/Zv2ITi6JfNqb5le61GBLtoBuy6M0928JfAhncSVp6N1T6Vs8RgBp
+yUn/0XrNK1jPYEIO8O8yedby1bvuWx+xZhgzMgzv6PwGF61bxo5CJTx+XsxyiLli
+leb4SO0WU6erMoviw9pjmdlti13TIbdK76zun8c2Ob3y9QrhgUQ=
+=z0Tk
+-----END PGP SIGNATURE-----
 
-
-TimO: freenode?
-RP: we didn’t do anything last week (due to Summit). i think Nico needs to
-    coordinate with MichaelH. i believe we are moving over to libera.chat
-Scott: fd.o seems to have moved to OFTC
-TrevorW: do we have ops in #yocto and #oe?
-RP: yes
-TimO + PhilipB: we’ve got slack too
-JPEW: matrix integration too?
-TimO: yes Jan-Simon
-
-
-JPEW: SBOM
-RP: please discuss on licensing email list
-RP: i think there’s a plugfest going on and i don’t think anyone from YP
-    has signed up
-Randy: Mark from WR is attending
-RP: i’d like to fly the YP flag there
-JPEW: details?
-RP: https://docs.google.com/forms/d/e/1FAIpQLSdVOewc3uCZh39inX4X7QsA_jaQMqyrEiLFrWEZEpWxRCi3eQ/viewform
-Philip: who’s interested in showing up at the plugfest?
-JPEW: i would, but 22nd doesn’t work for me
-Philip: i could go
-??: what’s the layer?
-Saul: meta-doubleopen
-Ross: 22 doesn’t work for me either, but i could help put stuff together
-    beforehand
-
-
-TrevorW: videos for YPS are up
-https://www.youtube.com/playlist?list=PLD4M5FoHz-TwWYbaJwduH8ZYNYvva76QQ
-https://elinux.org/YPS_May2021_Presentations
-
-
-Jan-Simon: what’s the procedure for updating layerindex?
-RP: PaulE is an admin
-Ross: I was added recently
-RP: MichaelH who are the admins?
-MichaelH: myself, PaulE, Ross, JaMa, Nico, Randy
-TimO: PaulE recently added me too
-J-S: there are a lot of issues with the layerindex (e.g. emails bouncing)
-
-
-Randy: should we move the next monthly meeting to avoid the 4th of July?
-RP: sounds good, we’ll move it to July 13th
+--=-4hQeNHiqS9tbElS5KzX2--
