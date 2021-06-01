@@ -1,127 +1,119 @@
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
- by mx.groups.io with SMTP id smtpd.web09.60316.1622564043637780642
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+ by mx.groups.io with SMTP id smtpd.web11.95.1622564612038651876
  for <yocto@lists.yoctoproject.org>;
- Tue, 01 Jun 2021 09:14:04 -0700
+ Tue, 01 Jun 2021 09:23:32 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: gmail.com, ip: 209.85.128.45, mailfrom: luca.boccassi@gmail.com)
-Received: by mail-wm1-f45.google.com with SMTP id o2-20020a05600c4fc2b029019a0a8f959dso2266639wmq.1
-        for <yocto@lists.yoctoproject.org>; Tue, 01 Jun 2021 09:14:03 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=nevJ/vXA;
+ spf=pass (domain: gmail.com, ip: 209.85.216.47, mailfrom: raj.khem@gmail.com)
+Received: by mail-pj1-f47.google.com with SMTP id lx17-20020a17090b4b11b029015f3b32b8dbso1759867pjb.0
+        for <yocto@lists.yoctoproject.org>; Tue, 01 Jun 2021 09:23:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=to:references:from:organization:subject:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=R7XGEYAueWh3/MQlb/Uzo0jXaAE/0GHzUSCY/lz9dlY=;
+        b=nevJ/vXAsrz1u8lEh/2ha5yMKJQTNOVBCEUr1WpHfCKcPz2c7icNk3+0A+vwjVQFQr
+         3UE7wXcd56yTKKKfEFyjAwm26FP/JgLexdpC2Jq5TIK1j35Yy3zaByFCd3t+n3yIKuN3
+         Y+O2WHfbGxjRAS99wKku3hsK13yvYggqQxv8oi1OAKo4cy2rIN4WV6gbHmkid3EK+l+/
+         hwB05dQ38GOJdlZKfRoObXqyJhSoS+Hp1ia78J1rjThuCQh+evIIWdrPPJp6LPHRW/+A
+         19AZqWZEemlAq7dV7Rrzyr4kLvJmbhey4J42Fkc5c92CKkDhPP9zll+iBA3k5UpmSbv4
+         ocqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version;
-        bh=QvQwtDqtRly77IKU4gWpru77t614ZQMKjhvLe66DxsY=;
-        b=NKylN5+uY/AjmYy86kvuos9cYHQAvp/TQQqNFbepGeOwWPIa8W3BPgWRr5HTCUC9kK
-         HVIiDM275ijIxH8D1OdcmrP1svUpd2/21LKjt2k803G0TK+e0Hp0QC7Hsk8CxhW5a98z
-         9qQbI7ZPWZM3ZkGOloQVX1Va5HJ0SvrQu9Zeqv/yw4sVB1xJXClMSmkdxiT9543Vq9BH
-         gFTXXt69jG9ryebu7TudyWFcQo9v2kjpXOL9ybnHtJoXtdBqZnECgv/MMdX4zp5chjPt
-         XRB5TityGgqaUzO7WgOqtROG89+z+3nYyC7pKISy/9ZeM+LG2GE1+N3EyJa/05kVA1VY
-         Xr3w==
-X-Gm-Message-State: AOAM532x6YqWPDp967s9E4fx5G92LHa4nYsEndXIuUYD3Ilvj/OiuMVT
-	z17qyUKHhVvHHM19W+zIWiU=
-X-Google-Smtp-Source: ABdhPJwuG6zhViNLA/zGLMyTXjBV/RD3z+N+2QUlu2MaRfkrZF2pohO2AFNc1I5CkWhBjlx6Pm/KHA==
-X-Received: by 2002:a1c:2985:: with SMTP id p127mr27800428wmp.165.1622564042081;
-        Tue, 01 Jun 2021 09:14:02 -0700 (PDT)
-Return-Path: <luca.boccassi@gmail.com>
-Received: from localhost ([2a01:4b00:f41a:3600:360b:9754:2e3a:c344])
-        by smtp.gmail.com with ESMTPSA id u18sm18401668wmj.15.2021.06.01.09.14.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Jun 2021 09:14:00 -0700 (PDT)
-Message-ID: <07ed91b66206ee237ce2831e2ac3792decbb3cd1.camel@debian.org>
+        h=x-gm-message-state:to:references:from:organization:subject
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=R7XGEYAueWh3/MQlb/Uzo0jXaAE/0GHzUSCY/lz9dlY=;
+        b=o7hLwVRy5IVrsXkuaJUrGFph9Xq9avUuiW3XSR1fmPnvhtbfPC71zZbBzszZSZmSoD
+         hz8ykiYzLtiJQmR8Pdv3upCAAifV7sQyBHjQIa4HtNKuLgQLLQFmBa5oTL8hSBSnbrc1
+         2qpS7nH4oGSi2fgtVqfLw/GhPYHMj5HsQTh9inz0C2xW53gT0R+rZYxurtprCzMC4he9
+         HHGUJ/sZdyrK2NVE9ORg67VV9g0oVHvKu3RhAD9gWfx6tCJ8fcbd1QFFB+O9/adquH98
+         qAeipLnfBIuXVmYmbwQFIwW/XJsx606DlkCkTYkOarCrHv+M5sp+9b7oPy+ks/h1b3Yb
+         aw0w==
+X-Gm-Message-State: AOAM532lliQ0yWmmiAzz1SDr4gXUIFP7I+gzqqaiHr4uwW7p49NtGe4U
+	XGO3UfFWSyWyITXheRkaFMIyREn5H0VVHA==
+X-Google-Smtp-Source: ABdhPJwl3L1xRsUgdWBC0mWLP76YP7nwDZQDsOJ8BOj27wzuumJA1t3Z11tYA79w6w0o4mBUyBIpoQ==
+X-Received: by 2002:a17:90a:1588:: with SMTP id m8mr663627pja.31.1622564611131;
+        Tue, 01 Jun 2021 09:23:31 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPv6:2601:646:9200:a0f0:2cb5:4fd9:8b7d:2e3a? ([2601:646:9200:a0f0:2cb5:4fd9:8b7d:2e3a])
+        by smtp.gmail.com with ESMTPSA id f6sm2418035pfb.28.2021.06.01.09.23.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Jun 2021 09:23:30 -0700 (PDT)
+To: Luca Boccassi <bluca@debian.org>,
+ Paul Eggleton <paul.eggleton@linux.microsoft.com>,
+ yocto@lists.yoctoproject.org
+References: <20210531224016.GA24592@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+ <71099fe9-7acd-186a-e204-18347a83359b@gmail.com>
+ <07ed91b66206ee237ce2831e2ac3792decbb3cd1.camel@debian.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Organization: HIMVIS LLC
 Subject: Re: [yocto] systemd, ELF binaries and runtime dependency tracking
-From: "Luca Bocassi" <luca.boccassi@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>, Paul Eggleton
-	 <paul.eggleton@linux.microsoft.com>, yocto@lists.yoctoproject.org
-Date: Tue, 01 Jun 2021 17:13:59 +0100
-In-Reply-To: <71099fe9-7acd-186a-e204-18347a83359b@gmail.com>
-References: 
-	<20210531224016.GA24592@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-	 <71099fe9-7acd-186a-e204-18347a83359b@gmail.com>
-User-Agent: Evolution 3.30.5-1.2 
+Message-ID: <d54534bb-cc7e-498d-20a6-00c46a1662f0@gmail.com>
+Date: Tue, 1 Jun 2021 09:23:28 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
+ Gecko/20100101 Thunderbird/78.10.2
 MIME-Version: 1.0
-X-Groupsio-MsgNum: 53732
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-4hQeNHiqS9tbElS5KzX2"
+In-Reply-To: <07ed91b66206ee237ce2831e2ac3792decbb3cd1.camel@debian.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 
---=-4hQeNHiqS9tbElS5KzX2
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, 2021-06-01 at 07:58 -0700, Khem Raj wrote:
->=20
-> On 5/31/21 3:40 PM, Paul Eggleton wrote:
-> > Hi folks
-> >=20
-> > Upstream in the systemd project, a proposal has been made to add a spec=
-ial
-> > section to output ELF binaries to record soft runtime dependencies, so =
-that
-> > they could be read and utilised by distribution build systems such as o=
-urs
-> > (they would be translated into RRECOMMENDS in our case). At the moment =
-that
-> > doesn't seem to have generated a huge amount of interest in the traditi=
-onal
-> > distro space, but would it be interesting for us?
-> >=20
-> >    https://github.com/systemd/systemd/pull/17416
-> >=20
-> > For clarity, we (Microsoft) will volunteer to do the integration assumi=
-ng the
-> > above pull request gets reopened and merged, which is more likely if we
-> > express our interest.
->=20
-> Finding dlopen dependencies is a neat idea, but it has to be accepted=20
-> cross distro, and also applications have to manually declare it in code=
-=20
-> if I understand systemd's patch correctly.  This will be hard to=20
-> accomplish as you can see changes are spread across apps from distro=20
-> point of view. Perhaps there is a smarter way of detecting adding them=
-=20
-> in ELF spec itself and then have tools like linker help implement this
-> and also possibly collect the information or guide the users to achieve=
-=20
-> this would be helpful.
 
-Yes ideally ELF shared objects/the linker/the loader would support weak
-symbols (like dylib on OSX). Unfortunately they do not, and it seems
-there's no interest to add it becasue there's no concrete use case that
-shows it's useful. But that cannot happen until there's some support
-for it. Chicken and egg...
+On 6/1/21 9:13 AM, Luca Boccassi wrote:
+> On Tue, 2021-06-01 at 07:58 -0700, Khem Raj wrote:
+>>
+>> On 5/31/21 3:40 PM, Paul Eggleton wrote:
+>>> Hi folks
+>>>
+>>> Upstream in the systemd project, a proposal has been made to add a special
+>>> section to output ELF binaries to record soft runtime dependencies, so that
+>>> they could be read and utilised by distribution build systems such as ours
+>>> (they would be translated into RRECOMMENDS in our case). At the moment that
+>>> doesn't seem to have generated a huge amount of interest in the traditional
+>>> distro space, but would it be interesting for us?
+>>>
+>>>     https://github.com/systemd/systemd/pull/17416
+>>>
+>>> For clarity, we (Microsoft) will volunteer to do the integration assuming the
+>>> above pull request gets reopened and merged, which is more likely if we
+>>> express our interest.
+>>
+>> Finding dlopen dependencies is a neat idea, but it has to be accepted
+>> cross distro, and also applications have to manually declare it in code
+>> if I understand systemd's patch correctly.  This will be hard to
+>> accomplish as you can see changes are spread across apps from distro
+>> point of view. Perhaps there is a smarter way of detecting adding them
+>> in ELF spec itself and then have tools like linker help implement this
+>> and also possibly collect the information or guide the users to achieve
+>> this would be helpful.
+> 
+> Yes ideally ELF shared objects/the linker/the loader would support weak
+> symbols (like dylib on OSX). Unfortunately they do not, and it seems
+> there's no interest to add it becasue there's no concrete use case that
+> shows it's useful. But that cannot happen until there's some support
+> for it. Chicken and egg...
 
-There have been lots of theoretical discussions about pros and cons,
-and my hope was that if at least one distro could find it useful, and
-could show that it is in practice useful and the theoretical issues are
-not that problematic and could be solved, others would follow suit.
+right and thats why I will be reluctant to go too far at distro level 
+unless there is general interest in wider communities as it can make us 
+an island.
 
-So leaving aside other distros, is this something that would concretely
-benefit the Yocto project for handling the systemd recipe? There are
-currently 12 dlopen()-based optional dependencies in systemd, and the
-number grows with each release.
+> 
+> There have been lots of theoretical discussions about pros and cons,
+> and my hope was that if at least one distro could find it useful, and
+> could show that it is in practice useful and the theoretical issues are
+> not that problematic and could be solved, others would follow suit.
 
---=20
-Kind regards,
-Luca Boccassi
+you could tool it as a packageconfig for systemd alone and run with it 
+and see how it pans out.
 
---=-4hQeNHiqS9tbElS5KzX2
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+> 
+> So leaving aside other distros, is this something that would concretely
+> benefit the Yocto project for handling the systemd recipe? There are
+> currently 12 dlopen()-based optional dependencies in systemd, and the
+> number grows with each release.
 
------BEGIN PGP SIGNATURE-----
+we could certainly try that, provided systemd upstream is supportive of it.
 
-iQIzBAABCgAdFiEErCSqx93EIPGOymuRKGv37813JB4FAmC2XMcACgkQKGv37813
-JB7yBBAAqkkN6CPajmrsfRUMWT/PzoX0H06epdVhEB5gWGVJSeJ4Bugs2sPwoOEn
-EWb7bWUY/aGQ5Z+qoyaUbPVgH4EB+zfR4CIRbdtLxWUC/KVhpyrBHM2/jqFI/jAM
-tZHAFY71Nf9chhMQPpcCbYM4qFU4VaYe8Zr3BSn9LfaAu/i3d6B3haO2bFfvgqlR
-XGmqHlln4U0L91SqzVj7HQtoanjgbMW7voldvan4HhJJMxa0mKsraWYLb9y1xxJV
-HxXFvYpvv2YqZn3g5PJ2Awvonbk4qc+XTIzQtMtZaAYIO4LTPfz+5+wqoaD2DbIP
-N1zsa1JhMb2b9NzLoYmCPc5hT1JZ/Ng446daQYaaSWFjx/f8U8J5OpealyT6WCMh
-kh6lgxgAPO5ITSiN5kbYbzZthfs2BialJfe0eiHkm0uc0ADlQyxQLMetgaYHyHiu
-P/WQdD3k2vueZtzjW2jnM0yafbEatWUMqdaOCAjHdzl8/lReC3CBox4t+uGfN0fH
-Hv5D51NTteH/Zv2ITi6JfNqb5le61GBLtoBuy6M0928JfAhncSVp6N1T6Vs8RgBp
-yUn/0XrNK1jPYEIO8O8yedby1bvuWx+xZhgzMgzv6PwGF61bxo5CJTx+XsxyiLli
-leb4SO0WU6erMoviw9pjmdlti13TIbdK76zun8c2Ob3y9QrhgUQ=
-=z0Tk
------END PGP SIGNATURE-----
-
---=-4hQeNHiqS9tbElS5KzX2--
+> 
