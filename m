@@ -1,119 +1,195 @@
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
- by mx.groups.io with SMTP id smtpd.web11.95.1622564612038651876
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+ by mx.groups.io with SMTP id smtpd.web10.6871.1622596596421761948
  for <yocto@lists.yoctoproject.org>;
- Tue, 01 Jun 2021 09:23:32 -0700
+ Tue, 01 Jun 2021 18:16:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=nevJ/vXA;
- spf=pass (domain: gmail.com, ip: 209.85.216.47, mailfrom: raj.khem@gmail.com)
-Received: by mail-pj1-f47.google.com with SMTP id lx17-20020a17090b4b11b029015f3b32b8dbso1759867pjb.0
-        for <yocto@lists.yoctoproject.org>; Tue, 01 Jun 2021 09:23:32 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=RCkf8pmZ;
+ spf=pass (domain: gmail.com, ip: 209.85.167.41, mailfrom: sayinswapna@gmail.com)
+Received: by mail-lf1-f41.google.com with SMTP id b18so651153lfv.11
+        for <yocto@lists.yoctoproject.org>; Tue, 01 Jun 2021 18:16:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=to:references:from:organization:subject:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=R7XGEYAueWh3/MQlb/Uzo0jXaAE/0GHzUSCY/lz9dlY=;
-        b=nevJ/vXAsrz1u8lEh/2ha5yMKJQTNOVBCEUr1WpHfCKcPz2c7icNk3+0A+vwjVQFQr
-         3UE7wXcd56yTKKKfEFyjAwm26FP/JgLexdpC2Jq5TIK1j35Yy3zaByFCd3t+n3yIKuN3
-         Y+O2WHfbGxjRAS99wKku3hsK13yvYggqQxv8oi1OAKo4cy2rIN4WV6gbHmkid3EK+l+/
-         hwB05dQ38GOJdlZKfRoObXqyJhSoS+Hp1ia78J1rjThuCQh+evIIWdrPPJp6LPHRW/+A
-         19AZqWZEemlAq7dV7Rrzyr4kLvJmbhey4J42Fkc5c92CKkDhPP9zll+iBA3k5UpmSbv4
-         ocqA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+3JXSCvwIVsvYwbpQGV/l6K5aavbn2W21VhMeJ6R7f4=;
+        b=RCkf8pmZhv9YPtj0v63SHg6h2I3LOJh8XqHCrzmWEHs3uhQquBvOlbCBXM1p6hTHEo
+         COrgnqwrmHJ1GZaWjGzluBqHvtNvdss7tlTgytHxGleztasPo+q78t2akrckoaLqLwpL
+         yX8E2wGSzeCppdFsYRGrQuPohUnIgBrh6cJDiW1bDii12GCnmriGQa5FkZdKd865OBr+
+         XHWRYmmMANiNWOctSerrAfY35W9QwRzmnRrCnS44KFBm8HvOUOhD54Ma9PZ1hh6ytNdU
+         88EvRiP7pNmZmRc2bHbqKl4MACEN2XECUNqFdaX3+jrx3bt1dJ8vf2IEDouU1nxMmceH
+         bL3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:references:from:organization:subject
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=R7XGEYAueWh3/MQlb/Uzo0jXaAE/0GHzUSCY/lz9dlY=;
-        b=o7hLwVRy5IVrsXkuaJUrGFph9Xq9avUuiW3XSR1fmPnvhtbfPC71zZbBzszZSZmSoD
-         hz8ykiYzLtiJQmR8Pdv3upCAAifV7sQyBHjQIa4HtNKuLgQLLQFmBa5oTL8hSBSnbrc1
-         2qpS7nH4oGSi2fgtVqfLw/GhPYHMj5HsQTh9inz0C2xW53gT0R+rZYxurtprCzMC4he9
-         HHGUJ/sZdyrK2NVE9ORg67VV9g0oVHvKu3RhAD9gWfx6tCJ8fcbd1QFFB+O9/adquH98
-         qAeipLnfBIuXVmYmbwQFIwW/XJsx606DlkCkTYkOarCrHv+M5sp+9b7oPy+ks/h1b3Yb
-         aw0w==
-X-Gm-Message-State: AOAM532lliQ0yWmmiAzz1SDr4gXUIFP7I+gzqqaiHr4uwW7p49NtGe4U
-	XGO3UfFWSyWyITXheRkaFMIyREn5H0VVHA==
-X-Google-Smtp-Source: ABdhPJwl3L1xRsUgdWBC0mWLP76YP7nwDZQDsOJ8BOj27wzuumJA1t3Z11tYA79w6w0o4mBUyBIpoQ==
-X-Received: by 2002:a17:90a:1588:: with SMTP id m8mr663627pja.31.1622564611131;
-        Tue, 01 Jun 2021 09:23:31 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:a0f0:2cb5:4fd9:8b7d:2e3a? ([2601:646:9200:a0f0:2cb5:4fd9:8b7d:2e3a])
-        by smtp.gmail.com with ESMTPSA id f6sm2418035pfb.28.2021.06.01.09.23.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Jun 2021 09:23:30 -0700 (PDT)
-To: Luca Boccassi <bluca@debian.org>,
- Paul Eggleton <paul.eggleton@linux.microsoft.com>,
- yocto@lists.yoctoproject.org
-References: <20210531224016.GA24592@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
- <71099fe9-7acd-186a-e204-18347a83359b@gmail.com>
- <07ed91b66206ee237ce2831e2ac3792decbb3cd1.camel@debian.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-Subject: Re: [yocto] systemd, ELF binaries and runtime dependency tracking
-Message-ID: <d54534bb-cc7e-498d-20a6-00c46a1662f0@gmail.com>
-Date: Tue, 1 Jun 2021 09:23:28 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.10.2
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+3JXSCvwIVsvYwbpQGV/l6K5aavbn2W21VhMeJ6R7f4=;
+        b=SSBufn4j2mrX42SyGpcQHp90cOp/IljoCEOdebrEX8T202/tiGV2yBSf1E3ZGc6185
+         xRsXWnYCMpZMPKkfeFg/JtbXPVKbnUnZnt+aDcP79u3aXpTD+orY86jZeL8F9stJehs8
+         VsRl/l+tIWkQF8pskuFyGZn7CfsBKrjtgb6WZEW3VTck+CpX3KKMUIYo9Rj5D3kPL7lD
+         o9DhcY2yeVMpcAQh+AuWSEQ7J7bTZ3+uPm0cxXd8s/AnL4A3LqMCANwYZvlSLIbLFQRp
+         aonp3gX/nbVIqfMgoEVCGn4SkCgz63TdXSiu37j4dXFSVNGwE2Gw2gwrEVPxErtYFpFW
+         OlnA==
+X-Gm-Message-State: AOAM533miST37yptQFpCsc20wxrd6PXAPLr+f/QLgZXRegCzLB3p45Df
+	y+aGl5Y1k2OyoIHd6pvYXvZuD5hRmR8UOCf7Srk=
+X-Google-Smtp-Source: ABdhPJyv65DtkvHDebj/1KbFkQXmcv8stbSnpez99Nv6JDinmeX/A2rfs5/LKABQUr0qChCrgFobSR9X4ISyOdI9LEk=
+X-Received: by 2002:a05:6512:2305:: with SMTP id o5mr20345447lfu.490.1622596594370;
+ Tue, 01 Jun 2021 18:16:34 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <07ed91b66206ee237ce2831e2ac3792decbb3cd1.camel@debian.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+References: <dWBn.1622153050533898469.7UFj@lists.yoctoproject.org>
+ <7642946a-9a4b-2799-9db2-1187822ffbcf@gmail.com> <CAHUEwNZPjwy93VOvRLK5DA=pQRyFSK5TA32h_uZgzwdKyQFagQ@mail.gmail.com>
+ <CAGAf8Lx_MxnDMVWspVDShzq8uLCtxcSAGqZZoT0Vdsh8YT8cRw@mail.gmail.com>
+ <bb2c2342-d737-84dd-6f43-c4c515fedf23@crashcourse.ca> <CAGAf8Lwsnn36EbURP_UKi=x6z1N-by+FBvTjOzr1SL3D5eq1kw@mail.gmail.com>
+ <CAHUEwNYCxdMWHzyec6TWOGcLWMA=Fyv1g6QErbxcxRj=UHkSmA@mail.gmail.com> <CAGAf8LwoY0hj5PdaVGayG8JjzRzsp1oQUXdW2RXrV8b7=LpQGg@mail.gmail.com>
+In-Reply-To: <CAGAf8LwoY0hj5PdaVGayG8JjzRzsp1oQUXdW2RXrV8b7=LpQGg@mail.gmail.com>
+From: "Swapna Nannapaneni" <sayinswapna@gmail.com>
+Date: Tue, 1 Jun 2021 21:16:22 -0400
+Message-ID: <CAHUEwNb7kQ6Eotdej280X0MZXL-bD9+YequuNK2JkTr6F9Mvfg@mail.gmail.com>
+Subject: Re: [yocto] How to switch yocto INIT_MANAGER from systemd to sysvinit #dunfell
+To: Zoran <zoran.stojsavljevic@gmail.com>
+Cc: "Robert P. J. Day" <rpjday@crashcourse.ca>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000009f0a8d05c3be3524"
+
+--0000000000009f0a8d05c3be3524
+Content-Type: text/plain; charset="UTF-8"
+
+Example helps. Thanks!!
 
 
+On Mon, May 31, 2021 at 2:05 AM Zoran <zoran.stojsavljevic@gmail.com> wrote:
 
-On 6/1/21 9:13 AM, Luca Boccassi wrote:
-> On Tue, 2021-06-01 at 07:58 -0700, Khem Raj wrote:
->>
->> On 5/31/21 3:40 PM, Paul Eggleton wrote:
->>> Hi folks
->>>
->>> Upstream in the systemd project, a proposal has been made to add a special
->>> section to output ELF binaries to record soft runtime dependencies, so that
->>> they could be read and utilised by distribution build systems such as ours
->>> (they would be translated into RRECOMMENDS in our case). At the moment that
->>> doesn't seem to have generated a huge amount of interest in the traditional
->>> distro space, but would it be interesting for us?
->>>
->>>     https://github.com/systemd/systemd/pull/17416
->>>
->>> For clarity, we (Microsoft) will volunteer to do the integration assuming the
->>> above pull request gets reopened and merged, which is more likely if we
->>> express our interest.
->>
->> Finding dlopen dependencies is a neat idea, but it has to be accepted
->> cross distro, and also applications have to manually declare it in code
->> if I understand systemd's patch correctly.  This will be hard to
->> accomplish as you can see changes are spread across apps from distro
->> point of view. Perhaps there is a smarter way of detecting adding them
->> in ELF spec itself and then have tools like linker help implement this
->> and also possibly collect the information or guide the users to achieve
->> this would be helpful.
+> What about the following:
+>
+> https://docs.yoctoproject.org/ref-manual/migration-3.0.html?highlight=init_manager#init-system-selection
+>
+> To be enhanced/added with the following:
+>
+> https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-releases/bbb-hardknott/README.md
+>
+> Best Regards,
+> Zee
+> _______
+>
+> On Fri, May 28, 2021 at 3:02 PM Swapna Nannapaneni
+> <sayinswapna@gmail.com> wrote:
+> >
+> > Typo. No leading space  INIT_MANAGER = "sysvinit".
+> >
+> > Thanks,
+> > Priya.
+> >
+> > On Fri, May 28, 2021 at 8:55 AM Zoran Stojsavljevic <
+> zoran.stojsavljevic@gmail.com> wrote:
+> >>
+> >> > you don't want the leading space.
+> >>
+> >> I got the idea from reading
+> >>
+> https://docs.yoctoproject.org/ref-manual/migration-3.0.html?highlight=init_manager#init-system-selection
+> >>
+> >> But this is exactly why we need some explicit examples. :-)
+> >>
+> >> Zee
+> >> _______
+> >>
+> >> On Fri, May 28, 2021 at 2:45 PM Robert P. J. Day <rpjday@crashcourse.ca>
+> wrote:
+> >> >
+> >> > On Fri, 28 May 2021, Zoran wrote:
+> >> >
+> >> > > > Tried setting  INIT_MANAGER  = " sysvinit" in
+> build/conf/local.conf
+> >> > >
+> >> > > Is it INIT_MANAGER  = " sysvinit" , or INIT_MANAGER  = "sysvinit"
+> (no
+> >> > > blank at the beginning)?
+> >> > >
+> >> > > Thank you,
+> >> > > Zee
+> >> >
+> >> >   you don't want the leading space.
+> >> >
+> >> > rday
+>
 > 
-> Yes ideally ELF shared objects/the linker/the loader would support weak
-> symbols (like dylib on OSX). Unfortunately they do not, and it seems
-> there's no interest to add it becasue there's no concrete use case that
-> shows it's useful. But that cannot happen until there's some support
-> for it. Chicken and egg...
+>
+>
 
-right and thats why I will be reluctant to go too far at distro level 
-unless there is general interest in wider communities as it can make us 
-an island.
+--0000000000009f0a8d05c3be3524
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> There have been lots of theoretical discussions about pros and cons,
-> and my hope was that if at least one distro could find it useful, and
-> could show that it is in practice useful and the theoretical issues are
-> not that problematic and could be solved, others would follow suit.
+<div dir=3D"ltr">Example=C2=A0helps. Thanks!!</div><div dir=3D"ltr"><br></d=
+iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
+Mon, May 31, 2021 at 2:05 AM Zoran &lt;<a href=3D"mailto:zoran.stojsavljevi=
+c@gmail.com" target=3D"_blank">zoran.stojsavljevic@gmail.com</a>&gt; wrote:=
+<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">What about the =
+following:<br>
+<a href=3D"https://docs.yoctoproject.org/ref-manual/migration-3.0.html?hig=
+hlight=3Dinit_manager#init-system-selection" rel=3D"noreferrer" target=3D"_=
+blank">https://docs.yoctoproject.org/ref-manual/migration-3.0.html?highligh=
+t=3Dinit_manager#init-system-selection</a><br>
+<br>
+To be enhanced/added with the following:<br>
+<a href=3D"https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb=
+-releases/bbb-hardknott/README.md" rel=3D"noreferrer" target=3D"_blank">htt=
+ps://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-releases/bbb-h=
+ardknott/README.md</a><br>
+<br>
+Best Regards,<br>
+Zee<br>
+_______<br>
+<br>
+On Fri, May 28, 2021 at 3:02 PM Swapna Nannapaneni<br>
+&lt;<a href=3D"mailto:sayinswapna@gmail.com" target=3D"_blank">sayinswapna=
+@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Typo. No leading space=C2=A0 INIT_MANAGER =3D &quot;sysvinit&quot;.<b=
+r>
+&gt;<br>
+&gt; Thanks,<br>
+&gt; Priya.<br>
+&gt;<br>
+&gt; On Fri, May 28, 2021 at 8:55 AM Zoran Stojsavljevic &lt;<a href=3D"ma=
+ilto:zoran.stojsavljevic@gmail.com" target=3D"_blank">zoran.stojsavljevic@g=
+mail.com</a>&gt; wrote:<br>
+&gt;&gt;<br>
+&gt;&gt; &gt; you don&#39;t want the leading space.<br>
+&gt;&gt;<br>
+&gt;&gt; I got the idea from reading<br>
+&gt;&gt; <a href=3D"https://docs.yoctoproject.org/ref-manual/migration-3.0=
+.html?highlight=3Dinit_manager#init-system-selection" rel=3D"noreferrer" ta=
+rget=3D"_blank">https://docs.yoctoproject.org/ref-manual/migration-3.0.html=
+?highlight=3Dinit_manager#init-system-selection</a><br>
+&gt;&gt;<br>
+&gt;&gt; But this is exactly why we need some explicit examples. :-)<br>
+&gt;&gt;<br>
+&gt;&gt; Zee<br>
+&gt;&gt; _______<br>
+&gt;&gt;<br>
+&gt;&gt; On Fri, May 28, 2021 at 2:45 PM Robert P. J. Day &lt;<a href=3D"m=
+ailto:rpjday@crashcourse.ca" target=3D"_blank">rpjday@crashcourse.ca</a>&gt=
+; wrote:<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; On Fri, 28 May 2021, Zoran wrote:<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; &gt; &gt; Tried setting=C2=A0 INIT_MANAGER=C2=A0 =3D &quot; =
+sysvinit&quot; in build/conf/local.conf<br>
+&gt;&gt; &gt; &gt;<br>
+&gt;&gt; &gt; &gt; Is it INIT_MANAGER=C2=A0 =3D &quot; sysvinit&quot; , or=
+ INIT_MANAGER=C2=A0 =3D &quot;sysvinit&quot; (no<br>
+&gt;&gt; &gt; &gt; blank at the beginning)?<br>
+&gt;&gt; &gt; &gt;<br>
+&gt;&gt; &gt; &gt; Thank you,<br>
+&gt;&gt; &gt; &gt; Zee<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt;=C2=A0 =C2=A0you don&#39;t want the leading space.<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; rday<br>
+<br>
+<br>
+<br>
+</blockquote></div>
 
-you could tool it as a packageconfig for systemd alone and run with it 
-and see how it pans out.
-
-> 
-> So leaving aside other distros, is this something that would concretely
-> benefit the Yocto project for handling the systemd recipe? There are
-> currently 12 dlopen()-based optional dependencies in systemd, and the
-> number grows with each release.
-
-we could certainly try that, provided systemd upstream is supportive of it.
-
-> 
+--0000000000009f0a8d05c3be3524--
