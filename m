@@ -1,27 +1,27 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.3866.1622777727688025489
+ by mx.groups.io with SMTP id smtpd.web09.4652.1622785304398935410
  for <yocto@lists.yoctoproject.org>;
- Thu, 03 Jun 2021 20:35:28 -0700
+ Thu, 03 Jun 2021 22:41:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=ngdyASCO;
- spf=fail (domain: windriver.com, ip: 198.145.29.25, mailfrom: prvs=17897079a3=kai.kang@windriver.com)
+ dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=Jj9fqbJK;
+ spf=fail (domain: windriver.com, ip: 198.145.29.25, mailfrom: prvs=1789c2f2c2=zhantao.tang@windriver.com)
 Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 5A74838C0872
-	for <yocto@yoctoproject.org>; Fri,  4 Jun 2021 03:35:26 +0000 (UTC)
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 934C938C0879
+	for <yocto@yoctoproject.org>; Fri,  4 Jun 2021 05:41:43 +0000 (UTC)
 Received: from pps.filterd (m0250810.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 1543YInd019726;
-	Thu, 3 Jun 2021 20:35:24 -0700
-Received: from nam10-dm6-obe.outbound.protection.outlook.com (mail-dm6nam10lp2100.outbound.protection.outlook.com [104.47.58.100])
-	by mx0a-0064b401.pphosted.com with ESMTP id 38ya82g2fs-1
+	by mx0a-0064b401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 1545fg04027156;
+	Thu, 3 Jun 2021 22:41:42 -0700
+Received: from nam11-dm6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2174.outbound.protection.outlook.com [104.47.57.174])
+	by mx0a-0064b401.pphosted.com with ESMTP id 38ya82g4gt-2
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 03 Jun 2021 20:35:24 -0700
+	Thu, 03 Jun 2021 22:41:42 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BsIvVN8sZYwnz0VAi827Vmcay9eTnFznWJ6Kx5cIREm/DKk32HEWF9YIJd7pYOmguNKVIt86NwWn7MxF61a9VbFUxp4WE2UZlfWbbrU/Za/DSXb9ZJ1tvL3RbtnU6ZEv+CTzzUYK5YrEXW2aKH15z6d9K+o7fqh1/SOCew1NHkfGVGSemQ6u8Yq1Wlp18X1ed0+xID/0O+woqCrc4T67qV4RXsVwweEKsIzFicil3+c2UXeaAp3EFH63qf8gsTQYS1VUz09pu6d+hRj9fy5FCpf6+fADHGIdVio+bZKYZ++eQgFx5e+PIXvqqaila52VZg4U90/BjuxfF9Qquv9m3w==
+ b=giSh3XcF0Fqfio5xohZ5iWvo19Y9flT8jS2HIlAzYiBNVgWaXlyYSkAs/rKTTQnGXKd9wqGM/jFECDDFEfw5cGG6jq009OA9xQM/3xE9grdtyIwXMaIfknRtihJ7sXAOylRCPalCOZUNEXkP/llhSAHex8N2EY5aBTQFLO9ld6K3AQq+fU0MKWpORGNKn5tg/gK1Up21RXm0MpxjJ4YYWSDVN86EM94rzM7pCLIJyja1u9WWpX4q0jU3iRGkOdcAyu+S462lABiFDyJKYzuGKjQeOYZ1gjHRlXrhPwjl0kauYGllbemOAxm9ONSOFvWu4tLCHwOeT7flGHGk9Pcbww==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hUabMexbXERRrgqQj2T891ee5vgvddlCu+cfORQASWo=;
- b=dVX3J/83gMIDkR+6DVT9MQFdHpDBOVn8pvLTEUQ9tcQt+RVon1He9MNQzTzMxGkvPXDZo4csnjAr+dEcCSpONpZlxZytqzRsI76KE7iAFh1ug1VkuuZCxV11whcQDlW7rqQqnL7HEqxNMnsLgb+FcXfgzhhS5onMGRJuxMgKakaT8EImHtOQgEzygJhX5UpOGlyhe1xxDZ6dHpvEOIR2ba9D3Wz9LOf+EWMVs8PB+DAWZk6Srg9mEWHE1EK2M1t2oTDlTNVb2tnEak+zX2RvcPUD+4mGB9Eto9Su7F8sA28uf0BME4WFSoKQQMO/Nm2jB41vo63k53QlaHcm/0DVng==
+ bh=FrxEbVxYKCPyFSZCkV8TmY4taUc+216CDoK0iF1/zZM=;
+ b=co5pnLWIv0qYvoUnwDVVAQcZgTO+GanPDUht8ymHYobtyE+vRv8wrrGZAdgUMj3RbXjAdyDt32lxdl967aQY6SqyWH6b6CS31zWuoEQbllsf/cPa0/KeSfVRXv5A7q+GPob3OJwD63Xci/DSHfd9s+g6T9ArhS5TaYiwbq2GpqbtYannVd6d9EAbEPrnLGwahfGuYkoKdlyscve27ioQ0L32pTx4CHFplHWcZJNGL5tmOEDHaqfORJ+Ecg9i0/9zsCESsm4NwV6PdkhCwapAK4jD0Z4zq8e/fnGSczUccGHpRqnbTtfYOzv8tS93/LNzOHJ2MJ0TFMi03gwUnRiQ9w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=windriver.com; dmarc=pass action=none
  header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
@@ -29,168 +29,143 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=windriversystems.onmicrosoft.com;
  s=selector2-windriversystems-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hUabMexbXERRrgqQj2T891ee5vgvddlCu+cfORQASWo=;
- b=ngdyASCO5Q5GhbeaFttNf3yDesF8Lart4CMqz+lp2pJyCVKMStAsfYPoKjeGtsfAHzBX8iqNJmtHUrLKDFxHMHK6CDCMjXdZ+ttcxXZmquUzcf6a5vaRshoWiqnv2/CSHtSCpdGvBGzw/dR7aLWs1rkLNn1YeccpD5PpiWQ1yqI=
-Authentication-Results: windriver.com; dkim=none (message not signed)
- header.d=none;windriver.com; dmarc=none action=none
- header.from=windriver.com;
-Received: from CY4PR11MB1432.namprd11.prod.outlook.com (2603:10b6:910:5::22)
- by CY4PR11MB1432.namprd11.prod.outlook.com (2603:10b6:910:5::22) with
+ bh=FrxEbVxYKCPyFSZCkV8TmY4taUc+216CDoK0iF1/zZM=;
+ b=Jj9fqbJK4GJ8qwICnrhRx5QBpTBElrka1AMMhSdAxDZpVuchKe6NVCAyC538EThJhMZd04G1KJvnou9t5UpyOrI40+cmn5nC2n5Ktnq7ROEXgXoJhMt0fbrmrkrVC83yXS2BhLiy2aHoLGJxsrnhMFi6O1iLfbDeQ9JqcTJ61ME=
+Authentication-Results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=windriver.com;
+Received: from PH0PR11MB5077.namprd11.prod.outlook.com (2603:10b6:510:3b::17)
+ by PH0PR11MB5160.namprd11.prod.outlook.com (2603:10b6:510:3e::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.27; Fri, 4 Jun
- 2021 03:35:21 +0000
-Received: from CY4PR11MB1432.namprd11.prod.outlook.com
- ([fe80::7943:e41c:5fd7:a130]) by CY4PR11MB1432.namprd11.prod.outlook.com
- ([fe80::7943:e41c:5fd7:a130%11]) with mapi id 15.20.4173.030; Fri, 4 Jun 2021
- 03:35:21 +0000
-Subject: Re: [meta-realtime][PATCH] layer.conf: set LAYERSERIES_COMPAT with honister
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-References: <20210604030619.35679-1-kai.kang@windriver.com>
- <CADkTA4MrxoynTeBfnXsyH+YSX+c2MDo9PtdcgYDJqDS1cQ2u=g@mail.gmail.com>
-From: "kai" <kai.kang@windriver.com>
-Message-ID: <8a264bd7-49f4-1672-55b6-e97be9556ccd@windriver.com>
-Date: Fri, 4 Jun 2021 11:35:13 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
-In-Reply-To: <CADkTA4MrxoynTeBfnXsyH+YSX+c2MDo9PtdcgYDJqDS1cQ2u=g@mail.gmail.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.20; Fri, 4 Jun
+ 2021 05:41:40 +0000
+Received: from PH0PR11MB5077.namprd11.prod.outlook.com
+ ([fe80::dcbd:3d93:856a:bf2d]) by PH0PR11MB5077.namprd11.prod.outlook.com
+ ([fe80::dcbd:3d93:856a:bf2d%5]) with mapi id 15.20.4195.023; Fri, 4 Jun 2021
+ 05:41:40 +0000
+From: "Zhantao Tang" <zhantao.tang@windriver.com>
+To: bruce.ashfield@gmail.com
+Cc: yocto@yoctoproject.org
+Subject: [PATCH] drivers: dspi: fsl: fix dspi transfer hang issue
+Date: Fri,  4 Jun 2021 13:41:22 +0800
+Message-Id: <20210604054122.2732003-2-zhantao.tang@windriver.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210604054122.2732003-1-zhantao.tang@windriver.com>
+References: <20210604054122.2732003-1-zhantao.tang@windriver.com>
 X-Originating-IP: [60.247.85.82]
-X-ClientProxiedBy: HK2PR02CA0133.apcprd02.prod.outlook.com
- (2603:1096:202:16::17) To CY4PR11MB1432.namprd11.prod.outlook.com
- (2603:10b6:910:5::22)
+X-ClientProxiedBy: HK0PR01CA0059.apcprd01.prod.exchangelabs.com
+ (2603:1096:203:a6::23) To PH0PR11MB5077.namprd11.prod.outlook.com
+ (2603:10b6:510:3b::17)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [128.224.162.151] (60.247.85.82) by HK2PR02CA0133.apcprd02.prod.outlook.com (2603:1096:202:16::17) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.22 via Frontend Transport; Fri, 4 Jun 2021 03:35:20 +0000
+Received: from pek-lpggp7.wrs.com (60.247.85.82) by HK0PR01CA0059.apcprd01.prod.exchangelabs.com (2603:1096:203:a6::23) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.15 via Frontend Transport; Fri, 4 Jun 2021 05:41:39 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8179011f-9c1e-4949-aac2-08d92709c7f2
-X-MS-TrafficTypeDiagnostic: CY4PR11MB1432:
-X-MS-Exchange-Transport-Forked: True
+X-MS-Office365-Filtering-Correlation-Id: 031523fc-0569-4b16-58f3-08d9271b6d50
+X-MS-TrafficTypeDiagnostic: PH0PR11MB5160:
 X-Microsoft-Antispam-PRVS: 
-	<CY4PR11MB1432F0B491F9FAD82962F771953B9@CY4PR11MB1432.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+	<PH0PR11MB5160ED7E6768BA236CFC8B4E8E3B9@PH0PR11MB5160.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	0BWKDAfJZjalybDXEzlQFIjHLzow8crU8aU7KOCM8honLb/MhNLSuxhdOQCV1Iq06u4PzskYB9/YMIuT3JoV/+iJH4KVli++cZoCT/Rfx/rCtRJ+2GdMehxiBCCcPVK4pob6sJbPs87tfR5HmuSa+Vwft3GkK3RB3AMQG4vT/00H+amuBSM7SN7aTua/0iQalsOTghGg3lT1+Qoi9uwicS6psKzVypN9Ktmlq0S4IYsaLS3K/JWm6pQfQiFdA6KrxTUQfWrVHHblGniV5TfjyMKNV8hEHjUkEF/htmg/bqaj4cJ7MhhPlwPrvTGj4FrtQeT7NhiCDgTk6OLTbVRFIujt3Jg73Je6wQccp6JQ9Mof8D3wdeL/C0oy4cYOkyMeYYnJhFjX+fD1HUnMIZy8bxLS/nZTQAIs5FeXpQxQ4FecH8hPG8hmIqHrvuk6KoHsZ09PVuhSasOs/XneE04HwtW1niz/NO6FgGgrNWaggH0ljhA4cCW/c1QvlyTsET7T0neu6d6ywl1GP0f/p6YzSSi8JtkUIgRNp63wHKeNjYMmfZpIzgARlBA33ndhyGDVPmKQah6yfkSHtl4g357d0m++l9iipzdahcA2bjyurx+LZfMG90bXUFxwBLKECygCQEhFbLDaKXHaIPg5CRxrMGUVQXCmNnocGnd1CVXOgYTECe4c90FGEZik8LMbXYgkhwDQKVQaDFWWALFnljzVKD0mKGZo5elG5G9fHwlZhso=
+	ihUEVKmfXzeO/nq24rqYVeHS7AA7Fz5niAvc4aM3kW2fHE7z3wHsKZTp2NpSAWXsa2HxkMhjmPFwybEsjGFiH407zLJUWzcuP1PQw+TH8Cy74nE/aDhtEBpGuozV4DLqJ/w11pTwgFP7raBwwJimoPsqi2lobH4GOv1b8591qUXW9WRS88AO4fqkv7zOK+WHnWOVyiMcQn4/ouDFH8fXA3/I4PihUk4FQVDBe2twVibHRRN0fklHwxjWeAicX8Ga+lwkKpJifXRPuZ3nND3nAalA3ysf94yhlWtu5t193Dr3mxjta16G5gc78xowxCmww8cojxZL9IZdzsLJVMXj6A/6nj+mK20v4rw7Tcr+HPQErem7gYWbolHikJNZxm2ktseqeZWd+61rFMXMgncUobmINnN1U5OV2cJh+xoxgzJVu0KNuCg5MkXu4DteteaYTdQfcNoB89PtBhjgHc8zO9V9kLVUSq2o8WHBUfqJtwvYTt+8Lb/O75EQQnnx+H/qSmngjXmHA64NJXNTfCLQTFPvKNQ+vQqBGIyVw0lO91kvpxIFvaLfTZ0J5PIIn82tqPHSzqr8n2khIRRnyb4IpWn/UqwlunI4w1RcA7ybfpnFJQnSuew8r40GyAinTXr+9a+iOAyQv8TwU0ZSZlDsyZKaA2L5Hwk3pV2nQ+aZkz8=
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY4PR11MB1432.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(39850400004)(366004)(396003)(346002)(376002)(53546011)(66556008)(5660300002)(66946007)(2906002)(6486002)(36756003)(2616005)(956004)(4326008)(478600001)(86362001)(52116002)(6706004)(8936002)(16576012)(316002)(8676002)(6916009)(31686004)(6666004)(66476007)(31696002)(26005)(16526019)(186003)(38100700002)(38350700002)(83380400001)(78286007)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR11MB5077.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(136003)(346002)(366004)(376002)(39850400004)(38350700002)(6512007)(1076003)(478600001)(38100700002)(5660300002)(36756003)(52116002)(6666004)(2906002)(8936002)(6486002)(6916009)(8676002)(26005)(956004)(4326008)(2616005)(86362001)(316002)(44832011)(66476007)(66556008)(16526019)(186003)(6506007)(66946007)(83380400001);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData: 
-	=?utf-8?B?QWRrc0l0ek54QUp4aG5vK0RhS0p0S1lOa2xtOWlENk1Cb0VzOHRjRURMQmYx?=
- =?utf-8?B?c3YyK2hCYkJpd2svWDVDaGRwdnQzNGpFVUR5Sktyckh4dVh4TjJsbFcyOVlK?=
- =?utf-8?B?N3RmWVVsYmdFTVlNRHlpeXBnUk5PNGZBemFYZ0h2eEQvRDFkM0x0SEgrS3Bi?=
- =?utf-8?B?Z1lNd0tOQmVidWk0V1FxWjRDRGh2YzJQekhUVnZmTE5jWTBjNDBqa1cvRXZp?=
- =?utf-8?B?d1RSZDQ4QTlaajQ2bmlROENRaXBjbjFlak40bGxoMmRUaFNFRmxBZ3lnaVdB?=
- =?utf-8?B?UGIrQWJQeVBoSVhjNUIvZWNUd1lUMk95K3c5SUZZcHRVRTJCb1BTQnNUNkRF?=
- =?utf-8?B?S0MvMG5wZUFuQ2dzZUN4aVlPTDVwZEEyVGxXOFc2MnNLV2tQc3NSalNPQXJF?=
- =?utf-8?B?ajZHVmJ0YlA0aDh0YW1SbERJWTJkcVRTeXFVZnV2K05mQ3FpL05HK2RmWnUz?=
- =?utf-8?B?TFJyam9xZHVlY3dVZEFqQjRKaHBYVDM0eWREajZBQ21xREpiTHBmRHM5ZW9O?=
- =?utf-8?B?Wm1rVkNBSlFJY1phWkdQZERmSGpnUjVxOThLYzAzUSsralMvNWdQTC9LbGVj?=
- =?utf-8?B?d0dBZVVyYXJ3OW81OGhiam53bUVWRXc5dEVrVUZhaWpKQlhTYk4xMklLQTlh?=
- =?utf-8?B?eVFuR0taK1dVaDdWL3RhQUJaalNCUUVXblJ3dkJCQkVyT20yMmV4ZmltMXho?=
- =?utf-8?B?R1l1T29WNDNSTVBXQWxZMTdlSCt2SEVIOFY3QmlMU2QzTDNPQWhVakI0M2pU?=
- =?utf-8?B?M1RLa3d4T2FpYzBwQnJXZkVKZy9QbER5dkFZZmU3U3FwWHRqcTdyWllFUzdK?=
- =?utf-8?B?NXdvWExaY1M2Q0pCZWl1Zi9nSnlxTmNLZ1BobDVaMjhqbUpkSEkzaHV2YnNO?=
- =?utf-8?B?aXlEWWF4dll6cDc3bmczQmRoZnYyL2ZpekhZbmk2MGwrUlY5cGhjK3hEWGhZ?=
- =?utf-8?B?ajJHV3pmci9raGlhRmc5RXpSRnd1QlEzOFowNWNGbEo5LzBMTk1zWmV3UDFn?=
- =?utf-8?B?TytXdkU5alFGNHE1VVFCekFhWlkyK29hVVpxdDJweFhMZFVPMWFRdVl5a2pa?=
- =?utf-8?B?elNsRTl4MU81b0Q4Z0lwRVdab05qTTB2bFN0ZzJzcVZIWHgzNjkwQUdyeW5V?=
- =?utf-8?B?V21OM09XN2dzNDRUUDRZR1JxL2J1R0FUS2dab056WHl5Z2R5UTJWZVJkTk1L?=
- =?utf-8?B?MTMwQkxIOXJlTW9DZE9GQjY0dlBxb0MrcGQxL2VGVzlGRTA4dmkzSk9MTGVV?=
- =?utf-8?B?VVYwTW0yZHRJMkVuNWErOVVUYjI2aFkrQ0FPbjkxdTFsMzNxS1k5SGI4MzNB?=
- =?utf-8?B?citQYlFTQVVJY3BDYWdKbkgwdm5oN1RGMnBHVzFZOTN1bngvVFM3dUMzSzZ2?=
- =?utf-8?B?ekttWGUyNXQzU3VXRUhKMmNlNE90TWZOVnRkdkxQZVJiczJUWHU0Q3dnaytt?=
- =?utf-8?B?V1c1TXpESU91bDBWWmdQMVJvUzlYV09ldzRPNzQ4VWYxODhtdlg2RTQxUzlp?=
- =?utf-8?B?Zi92MW1WNUpQa2hTOGFyRTNaZ2k5dXp0bkVpVndGM1BKNncwNDBOS0h2elh3?=
- =?utf-8?B?K3dTZjF3MEg2NFNsM0ZKNHExTi9Wb0xFd0pvdjhHbGd5RnFrNTRzVVgrTFBM?=
- =?utf-8?B?SU8xZXhvVGhzZVF3SGFmR3pjcTEwK2ZJVDRyTDRGTVJlT2I2aktMVkhSaGpJ?=
- =?utf-8?B?U3JLZXRXazJveE0xQ3JuaGtWMnEzSkNFcUVUY1hKdTM2RTV5aWk4ejN5ajFx?=
- =?utf-8?Q?VHo8tbtCOeH3STKgIkk5LtLerfpIUmim738XAID?=
+	=?us-ascii?Q?Cep3EBKx+N+aqky6jqDjhbrCVwLfcQ7Im9FLWYBdNpL3dluuq/vNO3gJ+c1W?=
+ =?us-ascii?Q?x9DcoL2QOs13/SrSP3DutyrpAdjJLV3p/7dZi+hnDFeBndbhi/9y0i0F7XnZ?=
+ =?us-ascii?Q?+HmGFj8Z8mIXwPDdDUsF9Y95fxGelse9O1v8augzYRwPdfFCG21NRW+9iT8J?=
+ =?us-ascii?Q?QTJqgzVWkaEhCA+IvmAXiWqxDV/aUtaQtbNtuz9iu/xCWmJaw8Xdi9CWGGh6?=
+ =?us-ascii?Q?54qiEfa15a5s1j2jdLq1EXGJU39LTKAcjdSljJobTUjxaDzTtrpSHlWwz9JY?=
+ =?us-ascii?Q?w0NfUtZKaasNjJ4zVt386zC0JbIgfEL3eO4l73gbCzftSx7+CCj5NegdC5Xk?=
+ =?us-ascii?Q?T/D8VOyNP4THw7gVAMgVuRsJyKWsNo6mM7LK5baRtmIh+quKREfwaeVoTPpn?=
+ =?us-ascii?Q?dPSzabBc6RUegOKUcfD4g4Eq9hspWCGtY/PX+nrV0jbmMy99vCA2ULcNovBK?=
+ =?us-ascii?Q?Fo3Uqa9p8tnsyXYAaE6Km1jA9PLvAEj5CNGV7EzIiBv/tOq/PyKexyQsO/D0?=
+ =?us-ascii?Q?p+KMluXQsN7RPNnsNCNaY6glcOs6S0PVpUAFbhDIHySmH/TrDxo4o2IwyK4V?=
+ =?us-ascii?Q?hOZSV2vobCLpL2YXFs7pNhm+D893Ec+VJJn2PdbY0MOapqTD8ZWws9JeqzVC?=
+ =?us-ascii?Q?T5oSIP+XxTSboZtelUrEUjn90CAGrpgjp7nyJw5tb3WJTLStOUyWWlf32P5j?=
+ =?us-ascii?Q?AJqA/GJPBDEE4sG4gW0QQld60ZZ+gOjwGa6qlIkQacCdT7DkR8mvdebvd5v0?=
+ =?us-ascii?Q?6P5WNO+gLIS/pruPGNiKTncrt8JVgZjBGSrLMQ6MaWr1NiS96niOLs1BBrdy?=
+ =?us-ascii?Q?slDN37qmgnZm0OyM1rR1TW2lsQ2G++5MB1BvGxFzzByN6UOFzhrKXUm3aDfB?=
+ =?us-ascii?Q?GvgzhgJDmEq8VsiAdB0RmAEXdlJ01o0COl3BxU8EstYAcroXorOjxM4YsAwq?=
+ =?us-ascii?Q?JDEaWMrFGHFmlp2n6BZc5t5qP99xqkAWaAjhiXLqzUaayv5Hfno7spVTc/TO?=
+ =?us-ascii?Q?7v7oAH3rP2m171A5BKfO1oTl0npj0nd8bHctU4dr/R7uuXMvpOG6As4x4kaN?=
+ =?us-ascii?Q?SzzwYYkT8sZWPGi/n60dmSTu2YEV3D8Qteq6x/SI7m0lcKeLjVlPgQLvpHl/?=
+ =?us-ascii?Q?NmdXp7vm/Wr8JKnA4djoCXLT8V+7/Os+Abp0/mBZ/W3uynzN+PpTFb0c8G3M?=
+ =?us-ascii?Q?7NgCOaoLRpCaSQITq5wVcb3bEWWRvDMoxXde4I12k3580jCZZEcag/60C+9e?=
+ =?us-ascii?Q?elO90duvrq/5iTDu+zpi0yUdkQECwagSuAgPPESaoR9EcZtnF6UvyVIIypXN?=
+ =?us-ascii?Q?Ic6aaUtBIEmivGO9zLP6F/2I?=
 X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8179011f-9c1e-4949-aac2-08d92709c7f2
-X-MS-Exchange-CrossTenant-AuthSource: CY4PR11MB1432.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 031523fc-0569-4b16-58f3-08d9271b6d50
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5077.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2021 03:35:21.3613
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2021 05:41:40.2671
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rhDXOrM1XyrrT41amvy8vylaLNM6MXh1j3xkk7RbVyeeKQyflBcJEJ/+yonhWMuxpRFty4LDR9QqLm4HqlIuEg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB1432
-X-Proofpoint-ORIG-GUID: wSdb0OS6AcV4poSvSJfF4vG-XAL1TyMu
-X-Proofpoint-GUID: wSdb0OS6AcV4poSvSJfF4vG-XAL1TyMu
+X-MS-Exchange-CrossTenant-UserPrincipalName: GD7ce9UCJ4tls5gbHd3cM4Jza5Rf6RAKmLRb9maG/qtB41T1LiwoUPfywzy/RY8VRsHwWOYk+m4h0xCcHeu07DlpMUjkd134EEdoN4PGJWI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5160
+X-Proofpoint-ORIG-GUID: NEwDXzKfqWM_AP5_MTdL_-XSf-Nz9GbQ
+X-Proofpoint-GUID: NEwDXzKfqWM_AP5_MTdL_-XSf-Nz9GbQ
 X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
  definitions=2021-06-04_01:2021-06-04,2021-06-04 signatures=0
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- priorityscore=1501 clxscore=1011 impostorscore=0 mlxlogscore=999
+ priorityscore=1501 clxscore=1015 impostorscore=0 mlxlogscore=999
  phishscore=0 malwarescore=0 lowpriorityscore=0 bulkscore=0 spamscore=0
  suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2104190000 definitions=main-2106040026
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+ engine=8.12.0-2104190000 definitions=main-2106040043
+Content-Type: text/plain
 Content-Transfer-Encoding: quoted-printable
 
-On 6/4/21 11:22 AM, Bruce Ashfield wrote:
-> On Thu, Jun 3, 2021 at 11:06 PM <kai.kang@windriver.com> wrote:
->> From: Kai Kang <kai.kang@windriver.com>
->>
->> Replace hardknott with honister in layer.conf which aligns with
->> oe-core.
->>
-> I had added this back in April, but apparently didn't push the change.
->
-> I also noticed that I've been updating the wrong branch with compatibil=
-ity.
->
-> That should all be fixed now.
+On NXP S32G RDB2, there is an sja1110 switch, which can be accessed
+using dspi interface, but if users use the following commands to test
+the switch, the board will hang there.
 
-Hi Bruce,
+	$ echo 30 > /sys/class/gpio/export
+	$ echo out > /sys/class/gpio/gpio30/direction
+	$ echo 0 > /sys/class/gpio/gpio30/value
+	$ echo -n -e '\x02\x00\x00\x00\x00\x00\x00\x00' | spi-pipe -d /dev/spide=
+v5.1 -b 4 | hexdump -C
 
-Thanks. I have seen your commits.
+The reason is that, the dspi driver wrongly sets the HALT flag in
+the register, and the while loop will run forever, so the board hang
+there. This patch is to fix this issue.
 
-But 3 items in LAYERSERIES_COMPAT_realtime will cause layer index show=20
-warning:
+Signed-off-by: Zhantao Tang <zhantao.tang@windriver.com>
+---
+ drivers/spi/spi-fsl-dspi.c | 10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
 
- =C2=A0 WARNING: YPCompatibleVersion.name: dunfell gatesgarth hardknott:=20
-length 28 exceeds maximum (25), truncating
-
-Could we only keep the latest LAYERSERIES_CORENAMES (honister) in branch=20
-master, please?
-
-Or it set in oe-core's layer.conf:
-
-LAYERSERIES_CORENAMES =3D "hardknott honister"
-
-we just align with it to keep the latest 2, please?
-
-Regards,
-Kai
-
->
-> Bruce
->
->> Signed-off-by: Kai Kang <kai.kang@windriver.com>
->> ---
->>   conf/layer.conf | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/conf/layer.conf b/conf/layer.conf
->> index 007f578..8ae67ba 100644
->> --- a/conf/layer.conf
->> +++ b/conf/layer.conf
->> @@ -15,6 +15,6 @@ BBFILE_PRIORITY_realtime =3D "5"
->>   # This should only be incremented on significant changes that will
->>   # cause compatibility issues with other layers
->>   LAYERVERSION_realtime =3D "1"
->> -LAYERSERIES_COMPAT_realtime =3D "hardknott"
->> +LAYERSERIES_COMPAT_realtime =3D "honister"
->>   LAYERDEPENDS_realtime =3D "core openembedded-layer"
->>   LAYERRECOMMENDS_realtime =3D "meta-realtime-dl (=3D 3.2)"
->> --
->> 2.17.1
->>
->
-
+diff --git a/drivers/spi/spi-fsl-dspi.c b/drivers/spi/spi-fsl-dspi.c
+index 063cf4a60ed3..c20cce466bf7 100644
+--- a/drivers/spi/spi-fsl-dspi.c
++++ b/drivers/spi/spi-fsl-dspi.c
+@@ -965,10 +965,8 @@ static int dspi_transfer_one_message(struct spi_cont=
+roller *ctlr,
+ 		dspi->progress =3D 0;
+=20
+ 		regmap_update_bits(dspi->regmap, SPI_MCR,
+-				SPI_MCR_HALT, SPI_MCR_HALT);
+-		while (regmap_read(dspi->regmap, SPI_SR, &val) >=3D 0 &&
+-				val & SPI_SR_TXRXS)
+-			;
++				   SPI_MCR_CLR_TXF | SPI_MCR_CLR_RXF,
++				   SPI_MCR_CLR_TXF | SPI_MCR_CLR_RXF);
+=20
+ 		spi_take_timestamp_pre(dspi->ctlr, dspi->cur_transfer,
+ 				       dspi->progress, !dspi->irq);
+@@ -987,10 +985,6 @@ static int dspi_transfer_one_message(struct spi_cont=
+roller *ctlr,
+ 				} while (status =3D=3D -EINPROGRESS);
+ 			}
+ 		}
+-		regmap_update_bits(dspi->regmap, SPI_MCR,
+-				SPI_MCR_CLR_TXF | SPI_MCR_CLR_RXF |
+-				SPI_MCR_HALT,
+-				SPI_MCR_CLR_TXF | SPI_MCR_CLR_RXF);
+ 		if (status)
+ 			break;
+=20
 --=20
-Kai Kang
-Wind River Linux
+2.25.1
 
