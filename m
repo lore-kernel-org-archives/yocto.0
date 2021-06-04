@@ -1,182 +1,90 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web11.7842.1622810455513343380
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+ by mx.groups.io with SMTP id smtpd.web12.8008.1622811843867723568
  for <yocto@lists.yoctoproject.org>;
- Fri, 04 Jun 2021 05:40:55 -0700
+ Fri, 04 Jun 2021 06:04:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=q1HnIEMg;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: bruce.ashfield@gmail.com)
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 663B938C066A
-	for <yocto@yoctoproject.org>; Fri,  4 Jun 2021 12:40:54 +0000 (UTC)
-Received: by mail-ed1-f52.google.com with SMTP id cb9so11004121edb.1
-        for <yocto@yoctoproject.org>; Fri, 04 Jun 2021 05:40:54 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=CRqmCxvE;
+ spf=pass (domain: gmail.com, ip: 209.85.208.44, mailfrom: bruce.ashfield@gmail.com)
+Received: by mail-ed1-f44.google.com with SMTP id w21so10958490edv.3
+        for <yocto@lists.yoctoproject.org>; Fri, 04 Jun 2021 06:04:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UYGf7uh1bY4q1eMl4GY2ql8Irnmsr0nUT6hZ2oK/ryQ=;
-        b=q1HnIEMgH8KmK7JIjDjxlmdJt4MpinFtRFZKijV1NFarU1WWgKubwhVC8Doz36cZn2
-         zobxEwFcCTX2gRCCG9ZZjLcjNklJ8R1En1w80kxMsBiCLe7PHPRkyzFSdmbUoVhbqXya
-         BxM9akwDTgXU6O1FjnfQGtVUFNcNog/Q7ZguMaA5Ax/FIwezqTUg3jfJZLIld46/LeFl
-         q18DmU6Xr41IhcszUnjgAndTCnjBBhvmtHLQIBfOS/qH8eUYFwDo3da4lJ+YMUA3cCKR
-         CYCTpEQ26XHPRyacNTz61XlkyHSKcru3JloC+EjtqLfgktHAkbB1ZG2HN84Wz1vM2VFS
-         wHJw==
+         :cc:content-transfer-encoding;
+        bh=BuXJdliogHWisNhwiqS83japuYLTH+ou+2wDLzwa3Dg=;
+        b=CRqmCxvEohxPnYrAeZq0bIprcqOGGdZcdJdjgN9iSNzJS6PQig8NLc4zF/BB3ArBGd
+         bSQivmSTqI6Q9JEipKR5tX2U8iuaU0Obd0FUthScvvgxnnbfqC2pCIiDen+Wd/x1DVuc
+         +dzV5gDy9FHzBFv6KvbQ5t3wtgb6IV8feIZSX1DfNsd+A1j2fMNefeOhlYXS8ZKvn91n
+         oc3MfBREl42Vc27tAekPfhoyXr6UQkYcKprPr1FbXbxMJAioSVH0CTW8zuV8Z9dqugUa
+         542CJ6YWZc3B/Ye1A3BZYW+LbcP0riIZ6Hbx8/XHuGfMIeHuBIlM0LFqTD/ZpE9Q7WCv
+         Ncyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UYGf7uh1bY4q1eMl4GY2ql8Irnmsr0nUT6hZ2oK/ryQ=;
-        b=tCGAIp7R0A+lR1Yv0XfQj+EuDG7yhfpfc435UdS/vLTdmShWA2swnLTyvp+YQ/HQjf
-         gF/Frxsoh/ZjIGGWTLdJJJAFqoJslsl4OWk8ASQYBVvJRNW7Ohq/vV3V1dke72fhRM61
-         SQ9K0bepIdSMTnIPFuAuq0syLzdZu2gjrve4PLG4ESgplq6nhNOPS8/ShkCVIKTvPEDd
-         ZvNBzR3b68Z/8BRgw1oeZprN61HqDLUhiVaI3gZCs/WTj+gavTcveoOvI0LCYBODmRCk
-         rSyoVze0qrdjueGBH2TKQo+wk++oGnrCLkd8YQGlbw3genLSJI9ZfY0VpMVbxcDgLIgn
-         Kb1g==
-X-Gm-Message-State: AOAM532jeLX+ILtUGC0E7iMQtl1slUvIW2kEJr1Gh6YDQq1kyRqDf7mY
-	dC0rQJ2QaFWhy9B+ZEW91qlUEhnVxhdu2giwIBY=
-X-Google-Smtp-Source: ABdhPJz3PDx1Kg2buozcVKAjvMp4vF/1Fh6i5SOer7zeEtnu7dVedyOWAt2BN9IwEv2sD/vsoKmgenu8UoIKh2M13Mk=
-X-Received: by 2002:a05:6402:1763:: with SMTP id da3mr4616675edb.352.1622810453051;
- Fri, 04 Jun 2021 05:40:53 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=BuXJdliogHWisNhwiqS83japuYLTH+ou+2wDLzwa3Dg=;
+        b=lxM6pqCpfWYJm2bGK4NDOCJhxiljculHIT6L7zLaUE8oelhE/Md2jmVyqwHvdLTi5r
+         YlfmJtxbXoYQLg7oWFfsDxMix/QhZtA6cDr8b3U8W/1Sy69iqQfivzpO5VCeUUl6++ZO
+         3wUqTrifYCRRiD188EiWiwPJeyqvMyyqWOHJ0E4jqdlkIH87n0hKVSOOOtRlMIw+V5XA
+         bn9FpUyvLVVZNLfltYyY7icA3Q7YMX7z9QunQw4mz2kGXSrF/XIokP7gnnb6PzGyNFih
+         bpm2dI6gvZdTfAhKMDOC4EExISmFVKcYlKfuLzMHqTOzjVe9qeksDI3Tp+2Y1KmkTnuL
+         d+7A==
+X-Gm-Message-State: AOAM531bqG5OW8XZBVxFRvG47E2DARwDsZF7ViZ6fir7pKrNBNv7krZm
+	Kx+D/fUCiBX2fRKh0J2Op0u4fpPs0+cGoKY/Anc=
+X-Google-Smtp-Source: ABdhPJw4m6sekh2QoJ6kOrGzm/x5lqyRh73x/rTZno+o0Ea3D0c/xSWCfsNMe8GJzudxbRXc8l3ZA7aWHZ0tzBykAD8=
+X-Received: by 2002:a05:6402:35d4:: with SMTP id z20mr4528089edc.164.1622811842151;
+ Fri, 04 Jun 2021 06:04:02 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210604030619.35679-1-kai.kang@windriver.com>
- <CADkTA4MrxoynTeBfnXsyH+YSX+c2MDo9PtdcgYDJqDS1cQ2u=g@mail.gmail.com>
- <8a264bd7-49f4-1672-55b6-e97be9556ccd@windriver.com> <CADkTA4NLc6OHOjPrhvEyCp=s15JHZK4yRkU1EoRD=W-Pg3ApbA@mail.gmail.com>
- <1685614D8890E95D.26755@lists.yoctoproject.org>
-In-Reply-To: <1685614D8890E95D.26755@lists.yoctoproject.org>
+References: <td3c.1622797217734922140.8fqZ@lists.yoctoproject.org>
+In-Reply-To: <td3c.1622797217734922140.8fqZ@lists.yoctoproject.org>
 From: "Bruce Ashfield" <bruce.ashfield@gmail.com>
-Date: Fri, 4 Jun 2021 08:40:41 -0400
-Message-ID: <CADkTA4OWoe1MgFXZopS9kpFSJjT05Yc45xg91vSzQOGAJ-5vhg@mail.gmail.com>
-Subject: Re: [yocto] [meta-realtime][PATCH] layer.conf: set LAYERSERIES_COMPAT with honister
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-Cc: Kai <kai.kang@windriver.com>, 
-	Yocto Project Discussion <yocto@yoctoproject.org>
+Date: Fri, 4 Jun 2021 09:03:51 -0400
+Message-ID: <CADkTA4NEZ0h7rEiSw4Q0CwLbReoSNkZAuyS=NO0LN-GPf1dKGA@mail.gmail.com>
+Subject: Re: [yocto] Can the Linux kernel reuse the barebox device tree? #kernel
+To: florian.kauer@koalo.de
+Cc: yocto <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 4, 2021 at 8:37 AM Bruce Ashfield via
-lists.yoctoproject.org
-<bruce.ashfield=gmail.com@lists.yoctoproject.org> wrote:
+On Fri, Jun 4, 2021 at 5:00 AM <florian.kauer@koalo.de> wrote:
 >
-> On Fri, Jun 4, 2021 at 8:27 AM Bruce Ashfield <bruce.ashfield@gmail.com> wrote:
-> >
-> > On Thu, Jun 3, 2021 at 11:35 PM Kai <kai.kang@windriver.com> wrote:
-> > >
-> > > On 6/4/21 11:22 AM, Bruce Ashfield wrote:
-> > > > On Thu, Jun 3, 2021 at 11:06 PM <kai.kang@windriver.com> wrote:
-> > > >> From: Kai Kang <kai.kang@windriver.com>
-> > > >>
-> > > >> Replace hardknott with honister in layer.conf which aligns with
-> > > >> oe-core.
-> > > >>
-> > > > I had added this back in April, but apparently didn't push the change.
-> > > >
-> > > > I also noticed that I've been updating the wrong branch with compatibility.
-> > > >
-> > > > That should all be fixed now.
-> > >
-> > > Hi Bruce,
-> > >
-> > > Thanks. I have seen your commits.
-> > >
-> > > But 3 items in LAYERSERIES_COMPAT_realtime will cause layer index show
-> > > warning:
-> > >
-> > >    WARNING: YPCompatibleVersion.name: dunfell gatesgarth hardknott:
-> > > length 28 exceeds maximum (25), truncating
-> > >
-> > > Could we only keep the latest LAYERSERIES_CORENAMES (honister) in branch
-> > > master, please?
-> >
-> > Nope. It is compatible with those releases, so they need to stay. I
-> > see no valid reason to be limited to a certain number of characters.
-> >
-> > >
-> > > Or it set in oe-core's layer.conf:
-> > >
-> > > LAYERSERIES_CORENAMES = "hardknott honister"
-> > >
-> > > we just align with it to keep the latest 2, please?
-> >
-> > That is just as arbitrary, I'll keep it as-is.
+> Hi,
+> I made the following observation in my custom Yocto system:
+> The device tree loaded by the Linux kernel is one that is only available=
+ in the barebox directory, but not available in the kernel sources. In fact=
+, it is quite similar, but I made some changes to it in the device tree pro=
+vided to the kernel. Especially the machine model that is shown during kern=
+el boot is a string that can only be found in the compiled barebox image, b=
+ut not in the dtb files (where I can find the correct machine model string)=
+ or anywhere else in the compilation results. But also other messages indic=
+ate that the wrong device tree is loaded.
 >
-> I took a quick look, is this warning coming from the layer index ?
-> That would be important information to convey when sending changes
-> like this.
+> It was correct before, and I am not really sure what triggered that (jus=
+t upgraded from zeus, but it might or might not be triggered by that) and I=
+ wouldn't expect that anyone could guess what I have done wrong without deb=
+ugging my setup in depth. But, my general question is: Is there any mechani=
+sm that could explain such a behavior? Any configuration that means "extrac=
+t the device tree from the bootloader" or something similar?
+>
 
-Apologies on this, I see in the follow up email you did mention the
-layerindex .. I read completely over that, and had to search up the
-warning myself. (my fault, not yours).
+In your upgrade, did the bootloader/initramfs/kernel version change ?
+The passing of the device tree to the kernel is (commonly) part of the
+bootflow, so changes to any of the components in that flow could cause
+the different device tree usage you are seeing.
 
->
-> That being said, it is a longer fix to get that warning changed, and
-> I'd rather not break the index, so I dropped to only the last two
-> releases.
->
-> But I do recommend that the layer index be changed (if that is the
-> cause of the warning), since we shouldn't be adapting to the index ..
-> it should be adapting to layers.
-
-This point still stands though :D
+The bbclass and recipes involved wouldn't have been packaging up the
+barebox tree and pulling it into the kernel in zeus, so while it isn't
+impossible, it isn't likely to be in the build or packaging changes.
 
 Bruce
 
->
-> Bruce
->
-> >
-> > Bruce
-> >
-> > >
-> > > Regards,
-> > > Kai
-> > >
-> > > >
-> > > > Bruce
-> > > >
-> > > >> Signed-off-by: Kai Kang <kai.kang@windriver.com>
-> > > >> ---
-> > > >>   conf/layer.conf | 2 +-
-> > > >>   1 file changed, 1 insertion(+), 1 deletion(-)
-> > > >>
-> > > >> diff --git a/conf/layer.conf b/conf/layer.conf
-> > > >> index 007f578..8ae67ba 100644
-> > > >> --- a/conf/layer.conf
-> > > >> +++ b/conf/layer.conf
-> > > >> @@ -15,6 +15,6 @@ BBFILE_PRIORITY_realtime = "5"
-> > > >>   # This should only be incremented on significant changes that will
-> > > >>   # cause compatibility issues with other layers
-> > > >>   LAYERVERSION_realtime = "1"
-> > > >> -LAYERSERIES_COMPAT_realtime = "hardknott"
-> > > >> +LAYERSERIES_COMPAT_realtime = "honister"
-> > > >>   LAYERDEPENDS_realtime = "core openembedded-layer"
-> > > >>   LAYERRECOMMENDS_realtime = "meta-realtime-dl (= 3.2)"
-> > > >> --
-> > > >> 2.17.1
-> > > >>
-> > > >
-> > >
-> > > --
-> > > Kai Kang
-> > > Wind River Linux
-> > >
-> >
-> >
-> > --
-> > - Thou shalt not follow the NULL pointer, for chaos and madness await
-> > thee at its end
-> > - "Use the force Harry" - Gandalf, Star Trek II
->
->
->
-> --
-> - Thou shalt not follow the NULL pointer, for chaos and madness await
-> thee at its end
-> - "Use the force Harry" - Gandalf, Star Trek II
->
-> 
+> Greetings,
+> Florian
+>=20
 >
 
 
--- 
+--=20
 - Thou shalt not follow the NULL pointer, for chaos and madness await
 thee at its end
 - "Use the force Harry" - Gandalf, Star Trek II
