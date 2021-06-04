@@ -1,80 +1,55 @@
-Subject: #bitbake bitbake fails when build for sqlcipher on AM335x
-To: yocto@lists.yoctoproject.org
-From: shrinivasnh@gmail.com
-X-Originating-Location: Bucharest, Bucuresti, RO (193.176.84.143)
-X-Originating-Platform: Windows Chrome 90
-User-Agent: GROUPS.IO Web Poster
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web12.3640.1622776014940631160
+ for <yocto@lists.yoctoproject.org>;
+ Thu, 03 Jun 2021 20:06:55 -0700
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=fail (domain: windriver.com, ip: 198.145.29.25, mailfrom: kai.kang@windriver.com)
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id C76F638C0872
+	for <yocto@yoctoproject.org>; Fri,  4 Jun 2021 03:06:53 +0000 (UTC)
+Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.corp.ad.wrs.com [147.11.82.252])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 15436oVM008581
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 3 Jun 2021 20:06:51 -0700
+Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Thu, 3 Jun 2021 20:06:50 -0700
+Received: from pek-lpg-core3.wrs.com (128.224.153.232) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
+ 15.1.2242.10 via Frontend Transport; Thu, 3 Jun 2021 20:06:49 -0700
+From: "kai" <kai.kang@windriver.com>
+To: <bruce.ashfield@gmail.com>
+CC: <yocto@yoctoproject.org>
+Subject: [meta-realtime][PATCH] layer.conf: set LAYERSERIES_COMPAT with honister
+Date: Fri, 4 Jun 2021 11:06:19 +0800
+Message-ID: <20210604030619.35679-1-kai.kang@windriver.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Date: Thu, 03 Jun 2021 08:39:26 -0700
-Message-ID: <WRbX.1622734766743781940.0Lg1@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="xfVm41ARkzv2Xo9Trw5N"
+Content-Type: text/plain
 
---xfVm41ARkzv2Xo9Trw5N
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+From: Kai Kang <kai.kang@windriver.com>
 
-I am following steps mentioned below link to create Kernel and u-boot for A=
-M335x starter kit
+Replace hardknott with honister in layer.conf which aligns with
+oe-core.
 
-http://software-dl.ti.com/processor-sdk-linux/esd/docs/latest/linux/Overvi=
-ew_Building_the_SDK.html
-Its building correctly.
+Signed-off-by: Kai Kang <kai.kang@windriver.com>
+---
+ conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Now I am using the=C2=A0meta-webos-master layer which has sqlcipher to be =
-addedto the Linux kernel, I am getting errrors durig the build itself
-The error is as below
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-/AM335x/prj/tisdk/build$ MACHINE=3Dam335x-evm bitbake arago-base-tisdk-ima=
-ge
-ERROR: Unable to start bitbake server (None)
-ERROR: Server log for this session (/home/appdev-426043/AM335x/prj/tisdk/b=
-uild/bitbake-cookerdaemon.log):
---- Starting bitbake server pid 19434 at 2021-06-03 19:52:05.846548 ---
-WARNING: Layer meta-processor-sdk should set LAYERSERIES_COMPAT_meta-proce=
-ssor-sdk in its conf/layer.conf file to list the core layer names it is com=
-patible with.
-WARNING: Layer meta-webos should set LAYERSERIES_COMPAT_meta-webos in its =
-conf/layer.conf file to list the core layer names it is compatible with.
-ERROR: ParseError at /home/appdev-426043/AM335x/prj/tisdk/sources/meta-ara=
-go/meta-webos-master/classes/package.bbclass:52: Could not inherit file cla=
-sses/prserv.bbclass
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 007f578..8ae67ba 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -15,6 +15,6 @@ BBFILE_PRIORITY_realtime = "5"
+ # This should only be incremented on significant changes that will
+ # cause compatibility issues with other layers
+ LAYERVERSION_realtime = "1"
+-LAYERSERIES_COMPAT_realtime = "hardknott"
++LAYERSERIES_COMPAT_realtime = "honister"
+ LAYERDEPENDS_realtime = "core openembedded-layer"
+ LAYERRECOMMENDS_realtime = "meta-realtime-dl (= 3.2)"
+-- 
+2.17.1
 
-Request help or pointers to resolve=C2=A0 the issue
-
---xfVm41ARkzv2Xo9Trw5N
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>I am following steps mentioned below link to create Kernel and u-boot =
-for AM335x starter kit</div>
-<div>&nbsp;</div>
-<div>http://software-dl.ti.com/processor-sdk-linux/esd/docs/latest/linux/O=
-verview_Building_the_SDK.html</div>
-<div>Its building correctly.<br /><br />Now I am using the&nbsp;meta-webos=
--master layer which has sqlcipher to be addedto the Linux kernel, I am gett=
-ing errrors durig the build itself</div>
-<div>The error is as below<br />=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div>
-<div>
-<div>/AM335x/prj/tisdk/build$ MACHINE=3Dam335x-evm bitbake arago-base-tisd=
-k-image</div>
-<div>ERROR: Unable to start bitbake server (None)</div>
-<div>ERROR: Server log for this session (/home/appdev-426043/AM335x/prj/ti=
-sdk/build/bitbake-cookerdaemon.log):</div>
-<div>--- Starting bitbake server pid 19434 at 2021-06-03 19:52:05.846548 -=
---</div>
-<div>WARNING: Layer meta-processor-sdk should set LAYERSERIES_COMPAT_meta-=
-processor-sdk in its conf/layer.conf file to list the core layer names it i=
-s compatible with.</div>
-<div>WARNING: Layer meta-webos should set LAYERSERIES_COMPAT_meta-webos in=
- its conf/layer.conf file to list the core layer names it is compatible wit=
-h.</div>
-<div>ERROR: ParseError at /home/appdev-426043/AM335x/prj/tisdk/sources/met=
-a-arago/meta-webos-master/classes/package.bbclass:52: Could not inherit fil=
-e classes/prserv.bbclass</div>
-</div>
-<div>&nbsp;</div>
-<div>Request help or pointers to resolve&nbsp; the issue</div>
-
---xfVm41ARkzv2Xo9Trw5N--
