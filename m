@@ -1,58 +1,57 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.5273.1622791032030901925
- for <yocto@lists.yoctoproject.org>;
- Fri, 04 Jun 2021 00:17:12 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=fail (domain: windriver.com, ip: 198.145.29.25, mailfrom: kai.kang@windriver.com)
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 3480438C0879
-	for <yocto@yoctoproject.org>; Fri,  4 Jun 2021 07:17:09 +0000 (UTC)
-Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.corp.ad.wrs.com [147.11.82.252])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 1547H6Cg021187
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 4 Jun 2021 00:17:06 -0700
-Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Fri, 4 Jun 2021 00:17:06 -0700
-Received: from pek-lpg-core3.wrs.com (128.224.153.232) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
- 15.1.2242.10 via Frontend Transport; Fri, 4 Jun 2021 00:17:05 -0700
-From: "kai" <kai.kang@windriver.com>
-To: <mark.hatle@kernel.crashing.org>
-CC: <yocto@yoctoproject.org>
-Subject: [meta-openssl102-fips][PATCH] layer.conf: set honister in LAYERSERIES_COMPAT
-Date: Fri, 4 Jun 2021 15:17:01 +0800
-Message-ID: <20210604071701.13129-1-kai.kang@windriver.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <16854D9C5413480C.23333@lists.yoctoproject.org>
-References: <16854D9C5413480C.23333@lists.yoctoproject.org>
+Subject: Can the Linux kernel reuse the barebox device tree? #kernel
+To: yocto@lists.yoctoproject.org
+From: florian.kauer@koalo.de
+X-Originating-Location: Hamburg, Free and Hanseatic City of Hamburg, DE (87.123.201.192)
+X-Originating-Platform: Linux Firefox 89
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Type: text/plain
+Date: Fri, 04 Jun 2021 02:00:17 -0700
+Message-ID: <td3c.1622797217734922140.8fqZ@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="k95yZTzqP9a0SX9uGfsS"
 
-From: Kai Kang <kai.kang@windriver.com>
+--k95yZTzqP9a0SX9uGfsS
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-There is no hardknott branch yet, so keep 'hardknott' rather than
-replace it.
+Hi,
+I made the following observation in my custom Yocto system:
+The device tree loaded by the Linux kernel is one that is only available i=
+n the barebox directory, but not available in the kernel sources. In fact, =
+it is quite similar, but I made some changes to it in the device tree provi=
+ded to the kernel. Especially the machine model that is shown during kernel=
+ boot is a string that can only be found in the compiled barebox image, but=
+ not in the dtb files (where I can find the correct machine model string) o=
+r anywhere else in the compilation results. But also other messages indicat=
+e that the wrong device tree is loaded.
 
-Signed-off-by: Kai Kang <kai.kang@windriver.com>
----
- conf/layer.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+It was correct before, and I am not really sure what triggered that (just =
+upgraded from zeus, but it might or might not be triggered by that) and I w=
+ouldn't expect that anyone could guess what I have done wrong without debug=
+ging my setup in depth. But, my general question is: Is there any mechanism=
+ that could explain such a behavior? Any configuration that means "extract =
+the device tree from the bootloader" or something similar?
 
-diff --git a/conf/layer.conf b/conf/layer.conf
-index 01026f0..27ddad6 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -10,7 +10,7 @@ BBFILE_PRIORITY_meta-openssl-one-zero-two-fips = "5"
- 
- LAYERVERSION_meta-openssl-one-zero-two-fips = "1"
- 
--LAYERSERIES_COMPAT_meta-openssl-one-zero-two-fips = "hardknott"
-+LAYERSERIES_COMPAT_meta-openssl-one-zero-two-fips = "hardknott honister"
- 
- LAYERPATH_meta-openssl-one-zero-two-fips = "${LAYERDIR}"
- 
--- 
-2.17.1
+Greetings,
+Florian
 
+--k95yZTzqP9a0SX9uGfsS
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,<br />I made the following observation in my custom Yocto system:<br />T=
+he device tree loaded by the Linux kernel is one that is only available in =
+the barebox directory, but not available in the kernel sources. In fact, it=
+ is quite similar, but I made some changes to it in the device tree provide=
+d to the kernel. Especially the machine model that is shown during kernel b=
+oot is a string that can only be found in the compiled barebox image, but n=
+ot in the dtb files (where I can find the correct machine model string) or =
+anywhere else in the compilation results. But also other messages indicate =
+that the wrong device tree is loaded.<br /><br />It was correct before, and=
+ I am not really sure what triggered that (just upgraded from zeus, but it =
+might or might not be triggered by that) and I wouldn't expect that anyone =
+could guess what I have done wrong without debugging my setup in depth. But=
+, my general question is: Is there any mechanism that could explain such a =
+behavior? Any configuration that means "extract the device tree from the bo=
+otloader" or something similar?<br /><br />Greetings,<br />Florian
+
+--k95yZTzqP9a0SX9uGfsS--
