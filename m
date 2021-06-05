@@ -1,50 +1,50 @@
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
- by mx.groups.io with SMTP id smtpd.web12.17263.1622930586010922353
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+ by mx.groups.io with SMTP id smtpd.web12.17264.1622930586750187883
  for <yocto@lists.yoctoproject.org>;
  Sat, 05 Jun 2021 15:03:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=vT2lvL6H;
- spf=pass (domain: gmail.com, ip: 209.85.215.173, mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f173.google.com with SMTP id q15so10765759pgg.12
-        for <yocto@lists.yoctoproject.org>; Sat, 05 Jun 2021 15:03:05 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=cPSZJcUA;
+ spf=pass (domain: gmail.com, ip: 209.85.210.182, mailfrom: akuster808@gmail.com)
+Received: by mail-pf1-f182.google.com with SMTP id q25so10162335pfh.7
+        for <yocto@lists.yoctoproject.org>; Sat, 05 Jun 2021 15:03:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=wUgh5nO20RjsPw+N2frH4JgWF8oHIjlp/g8YVJw6anw=;
-        b=vT2lvL6HbcHTbGajopsgpG5vTZmcU28j4lIPaQ7BDTV/rU4Fa5T4ovCZzJk8yk5vU2
-         JyJwZLEAJttAk56zx1i4kO5ZlZ7HpZVJGQNHLTQoGAKJVRXHvWMIOJuPuRSgAQzGJ4ap
-         aLHWO6fn3y4V8Evzss/kJIB+A2PDvWCmIQHZAlXtchQSx22Z+PU7hBl0yNB0HdJMJCjY
-         /0WXP3SKsXqhd/maixzmh5HDzE0FnzGUTGsK4XRj3+xCsDMzm6mBdo4sQHK1TBrU5DJJ
-         E/9HEFHgzMTvR2+PvDHHdwCNLuCqoc0L/FQdO/AOIc3se4++D0ANbjYG5PgnlmD4KgD8
-         /fwA==
+        bh=xIzowVzCIPvv2ykf5bTHnJu2Fz3ZaTWQUfkB5a+N9q0=;
+        b=cPSZJcUApkTjMoRweBU9c4AQhiKTNAHWx5E0ikMiJVev3NM/9KRHPCQvIqHE6NZpPm
+         SNA5CXTNZLmdT2UH5BMSx+Zh9is75k1WzBiKrxxHfYWUYLlKKnkkNbbBXnBrqjYWbBxO
+         0NcBMP08Wo3R8dcGW0J5iRTndaVZvgPQGVERfScN5clGNaQxaJnyJO9Ma4q3OE2FthG9
+         MMxyRFCNrXAm9sxRupMwaZUZUI9kbekAeF5bGK7cjGAM08pYvpWQK0lEKO020/2ITbjQ
+         o33OLg09Q0Zgmf7jbmIJOJ6di+PloB9fu9BeeQ7kixHtHmMIh6qQ2FV44jfABkcB98Af
+         uwXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=wUgh5nO20RjsPw+N2frH4JgWF8oHIjlp/g8YVJw6anw=;
-        b=oTKcV+u/Bqv+c2AYEJzBgfhm1Ws/f7ap3vsJLu+UNjQ/TLRxQyCX271mY1OHcJ4b+G
-         MgPe9FhQ94hDZlm1mfjL/OZXAi/Q9PU7EqpcwiKlH9r6SDFeWxmsGy+49qi/PjHaKNd6
-         IO9d3azKF6Qcl/Sc/InTUv0pdzeVgsU8kFmhtDdzae5OamEazXqZ6UgFwPsu75lWo3uB
-         g/CDcRdKW8l1w2CZq9k84qqMDcfJVoG/Vv/ynglB7I+t8oOjpciMft6H+yZD2xasYjDv
-         Q+bIa8QnH5ElDQrFuiGNvOQ4P43JIbJRhYw15kyJNARAtqgwyHwgOgKEYEcvRdXzD2Kw
-         hJuQ==
-X-Gm-Message-State: AOAM533GSmxaenSdtZqSlY5/1AXo+3OAREIkcZAGPp5kqKL/ukRugAeI
-	nlFrV9DSQLXlsPjRaSA+K3BNlVkbHoE2rA==
-X-Google-Smtp-Source: ABdhPJykpYv2efxXVSsL/vAGx+txqgN97iSJfRRGjGV7FD7++9VhUEQJ3I/q/uWrQXEPSjU3knxN1g==
-X-Received: by 2002:a63:2ac4:: with SMTP id q187mr9374640pgq.370.1622930585390;
-        Sat, 05 Jun 2021 15:03:05 -0700 (PDT)
+        bh=xIzowVzCIPvv2ykf5bTHnJu2Fz3ZaTWQUfkB5a+N9q0=;
+        b=RljxP5yoZ8rCdP+yUGla3wK71X7ueEuTBtbB2wwDv6y1Zcg+P2wVmVqssG9egb2goy
+         XMxlFMrL08DdyvmFV80QcRUtAN07Y5zueu6tB4KrDEchW9ekLFVTKtqaGiQIOVgHxRqN
+         EuhmPus+VsWmZspmfSnTcCVAVi9JRNQ5RSgtLwV8adjQtx/r7CCjTGoBwTPAsDCCDL7u
+         +gY4D8SU5uiAnxZLXbl1h4/Vx2cdKzPnhSvoQx+OdJ6VD0dVI2h7V7kE248dlkmMrwvi
+         Jc7FSwFQ+IMnJeUS+5OKiO1cEJFy2XSGI/SVL6k6GwMjo1h4VgR4PmDCjLwl8TAsU7TI
+         5r6g==
+X-Gm-Message-State: AOAM532BF9TEBXWRWQFjCrCt3JpCFcpda6FWe1ABeSo+B7WsfME0H7wb
+	QnJsar7IKGztNk7oftp2bx2muY2DVvXRqg==
+X-Google-Smtp-Source: ABdhPJw23F+KCyPew47G4J56R9tQ4yLGv7VjCgsiDBVrxQwOZk/ye+HLWH9W0V/003g7LeQJFMggjA==
+X-Received: by 2002:a65:6103:: with SMTP id z3mr11327601pgu.61.1622930586184;
+        Sat, 05 Jun 2021 15:03:06 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from kona.dnls.ca.comcast.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
-        by smtp.gmail.com with ESMTPSA id t23sm5264678pgj.9.2021.06.05.15.03.04
+        by smtp.gmail.com with ESMTPSA id t23sm5264678pgj.9.2021.06.05.15.03.05
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Sat, 05 Jun 2021 15:03:05 -0700 (PDT)
 From: "Armin Kuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 6/7] meta-integrity: add sanity check
-Date: Sat,  5 Jun 2021 22:02:57 +0000
-Message-Id: <20210605220258.414233-7-akuster808@gmail.com>
+Subject: [meta-security][PATCH 7/7] meta-integrity/recipe-kernel: use sanity check
+Date: Sat,  5 Jun 2021 22:02:58 +0000
+Message-Id: <20210605220258.414233-8-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210605220258.414233-1-akuster808@gmail.com>
 References: <20210605220258.414233-1-akuster808@gmail.com>
@@ -53,73 +53,33 @@ Content-Transfer-Encoding: 8bit
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- meta-integrity/README.md                       | 18 +++++++++++++++++-
- .../classes/sanity-meta-integrity.bbclass      | 10 ++++++++++
- meta-integrity/conf/layer.conf                 |  4 ++++
- 3 files changed, 31 insertions(+), 1 deletion(-)
- create mode 100644 meta-integrity/classes/sanity-meta-integrity.bbclass
+ meta-integrity/recipes-kernel/linux/linux-%.bbappend | 6 +-----
+ meta-integrity/recipes-kernel/linux/linux_ima.inc    | 5 +++++
+ 2 files changed, 6 insertions(+), 5 deletions(-)
+ create mode 100644 meta-integrity/recipes-kernel/linux/linux_ima.inc
 
-diff --git a/meta-integrity/README.md b/meta-integrity/README.md
-index 5048fba..8254b0d 100644
---- a/meta-integrity/README.md
-+++ b/meta-integrity/README.md
-@@ -1,8 +1,24 @@
- This README file contains information on the contents of the
- integrity layer.
- 
--Please see the corresponding sections below for details.
- 
-+The bbappend files for some recipes (e.g. linux-yocto) in this layer need
-+to have 'integrity' in DISTRO_FEATURES to have effect.
-+To enable them, add in configuration file the following line.
-+
-+  DISTRO_FEATURES_append = " integrity"
-+
-+If meta-integrity is included, but integrity is not enabled as a
-+distro feature a warning is printed at parse time:
-+
-+    You have included the meta-integritry layer, but
-+    'integrity' has not been enabled in your DISTRO_FEATURES. Some bbappend files
-+    and preferred version setting may not take effect.
-+
-+If you know what you are doing, this warning can be disabled by setting the following
-+variable in your configuration:
-+
-+  SKIP_META_INTEGRITY_SANITY_CHECK = 1
- 
- Dependencies
- ============
-diff --git a/meta-integrity/classes/sanity-meta-integrity.bbclass b/meta-integrity/classes/sanity-meta-integrity.bbclass
+diff --git a/meta-integrity/recipes-kernel/linux/linux-%.bbappend b/meta-integrity/recipes-kernel/linux/linux-%.bbappend
+index f9a48cd..be60bfe 100644
+--- a/meta-integrity/recipes-kernel/linux/linux-%.bbappend
++++ b/meta-integrity/recipes-kernel/linux/linux-%.bbappend
+@@ -1,5 +1 @@
+-KERNEL_FEATURES_append = " ${@bb.utils.contains("DISTRO_FEATURES", "ima", " features/ima/ima.scc", "" ,d)}"
+-
+-KERNEL_FEATURES_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'modsign', ' features/ima/modsign.scc', '', d)}"
+-
+-inherit ${@bb.utils.contains('DISTRO_FEATURES', 'modsign', 'kernel-modsign', '', d)}
++require ${@bb.utils.contains_any('DISTRO_FEATURES', 'integrity ', 'linux_ima.inc', '', d)}
+diff --git a/meta-integrity/recipes-kernel/linux/linux_ima.inc b/meta-integrity/recipes-kernel/linux/linux_ima.inc
 new file mode 100644
-index 0000000..6ba7e3f
+index 0000000..f9a48cd
 --- /dev/null
-+++ b/meta-integrity/classes/sanity-meta-integrity.bbclass
-@@ -0,0 +1,10 @@
-+addhandler integrity_bbappend_distrocheck
-+integrity_bbappend_distrocheck[eventmask] = "bb.event.SanityCheck"
-+python integrity_bbappend_distrocheck() {
-+    skip_check = e.data.getVar('SKIP_META_INTEGRITY_SANITY_CHECK') == "1"
-+    if 'integrity' not in e.data.getVar('DISTRO_FEATURES').split() and not skip_check:
-+        bb.warn("You have included the meta-integrity layer, but \
-+'integrity' has not been enabled in your DISTRO_FEATURES. Some bbappend files \
-+and preferred version setting may not take effect. See the meta-integrity README \
-+for details on enabling integrity support.")
-+}
-diff --git a/meta-integrity/conf/layer.conf b/meta-integrity/conf/layer.conf
-index ba028da..37776f8 100644
---- a/meta-integrity/conf/layer.conf
-+++ b/meta-integrity/conf/layer.conf
-@@ -26,6 +26,10 @@ LAYERDEPENDS_integrity = "core openembedded-layer"
- 
- BBLAYERS_LAYERINDEX_NAME_integrity = "meta-integrity"
- 
-+# Sanity check for meta-integrity layer.
-+# Setting SKIP_META_INTEGRITY_SANITY_CHECK to "1" would skip the bbappend files check.
-+INHERIT += "sanity-meta-integrity"
++++ b/meta-integrity/recipes-kernel/linux/linux_ima.inc
+@@ -0,0 +1,5 @@
++KERNEL_FEATURES_append = " ${@bb.utils.contains("DISTRO_FEATURES", "ima", " features/ima/ima.scc", "" ,d)}"
 +
- BBFILES_DYNAMIC += " \
- networking-layer:${LAYERDIR}/dynamic-layers/meta-networking/recipes-*/*/*.bbappend \
- "
++KERNEL_FEATURES_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'modsign', ' features/ima/modsign.scc', '', d)}"
++
++inherit ${@bb.utils.contains('DISTRO_FEATURES', 'modsign', 'kernel-modsign', '', d)}
 -- 
 2.25.1
 
