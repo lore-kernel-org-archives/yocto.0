@@ -1,72 +1,89 @@
-Received: from ciao.gmane.io (ciao.gmane.io [116.202.254.214])
- by mx.groups.io with SMTP id smtpd.web09.12202.1622900118675693183
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+ by mx.groups.io with SMTP id smtpd.web10.17457.1622930581149902619
  for <yocto@lists.yoctoproject.org>;
- Sat, 05 Jun 2021 06:35:19 -0700
+ Sat, 05 Jun 2021 15:03:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: m.gmane-mx.org, ip: 116.202.254.214, mailfrom: gley-yocto@m.gmane-mx.org)
-Received: from list by ciao.gmane.io with local (Exim 4.92)
-	(envelope-from <gley-yocto@m.gmane-mx.org>)
-	id 1lpWSJ-0003Rt-Vq
-	for yocto@lists.yoctoproject.org; Sat, 05 Jun 2021 15:35:15 +0200
-X-Injected-Via-Gmane: http://gmane.org/
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=BSAqXQb9;
+ spf=pass (domain: gmail.com, ip: 209.85.216.47, mailfrom: akuster808@gmail.com)
+Received: by mail-pj1-f47.google.com with SMTP id l10-20020a17090a150ab0290162974722f2so8015569pja.2
+        for <yocto@lists.yoctoproject.org>; Sat, 05 Jun 2021 15:03:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LL+2S57yw1Zestd6kGOuv07vkGG9kept+H5md265MoE=;
+        b=BSAqXQb9a4IsDhlSnSMmPIta8THemk7hjnzf5off+hoJ63smsACnpFegJon2h3ZOWX
+         KsV0OTrgJqVto6Fq61weSdGieHgETgyTPuMffi85Z7P7ApnRrzwtkUDcjHV3jGaPvS4B
+         eha5Wx4DAdG7fQdmmJDvJoX+RSIzBGhQwMoDtifZeSbaquszqbDgSG0eCRUmhVb/4p63
+         jP6dbn1fSEmrd3wU59WDKhdQBV4bqcMSsY9zJh+p3Koc7PrC6S9A929YWIVEQsabHe6H
+         zemCS0bog0tWt6TwKYUH5Z8X2PU7LvIzokdBd3F8BC5VdmBpUxc2SXexO3P2yrVfV9ct
+         OlCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LL+2S57yw1Zestd6kGOuv07vkGG9kept+H5md265MoE=;
+        b=Euseq79+ybpgNmDjxf3NiR23vJwWn/l3ImvqV+qxdyTjPHzzOshipWi3jUWDCODC7H
+         J4AvgJkcMEnGjeYuvOCzU4Vb7WQplg1P9LTm8eijPFT+aQaQeggRJcpFQqcVHLJ2wwUM
+         Nvg2wW8YwECcYDLZ9sqQen9h/BNCanY2VCHMELFn9UV8/3wHI7WfsLfAx9owpdK+vdjp
+         WOUp604OVUUxV8O/XVSlyV0KKAEmjkVFDearxx3cfVbAd+N1AOTlvmlThlIzMIZQuVHt
+         Ah9HJL8dm0hcHJMLlXax4Pfbr3QNatmnB0+dDKhREqh65eGEzEoyUz9y8xAUc1+yoX+9
+         EdVQ==
+X-Gm-Message-State: AOAM531hKRV6CVH4EYFd/udYLd5j+uiRCTBBPFj5t6M80Dx2ngRMsKXL
+	hNBLtifjtn94Jh/94aUDjgkXC3ACDCLW9w==
+X-Google-Smtp-Source: ABdhPJyoqRRLG3DCHbwqXY97IOKOG3J5QTBWdUVJSxNxaX7Rm/7ah/rSAZ7c53FVX0fT1tHI5r/Diw==
+X-Received: by 2002:a17:90b:8c4:: with SMTP id ds4mr12268126pjb.65.1622930580307;
+        Sat, 05 Jun 2021 15:03:00 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from kona.dnls.ca.comcast.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
+        by smtp.gmail.com with ESMTPSA id t23sm5264678pgj.9.2021.06.05.15.02.59
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 05 Jun 2021 15:02:59 -0700 (PDT)
+From: "Armin Kuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-From: "Gmane Admin" <gley-yocto@m.gmane-mx.org>
-Subject: Re: bitbake controlling memory use
-Date: Sat, 5 Jun 2021 15:35:08 +0200
-Message-ID: <5d293285-7ee4-8ebe-8d63-78415b4de403@gmail.com>
-References: <s4v495$bak$1@ciao.gmane.io>
- <CANNYZj_CsY0YL_bjtgf6O3A16FXe38-hLke4wEQR6mMz58SMVg@mail.gmail.com>
- <d8ab0231-717d-69e4-e6f9-739b9a08bd29@gmail.com>
- <CANNYZj_K-zpP-iTQMh5YA58dhBV88wLP-PouXS5KrHjybfsy-g@mail.gmail.com>
- <14207c27-7f5e-9a13-d8e8-28dbb0e7ea7b@gmail.com>
- <CANNYZj8MtLM5KdUqMsqhiVMHTnmj4VMoSf3XnCLvSns8grpmmA@mail.gmail.com>
- <0c8c0d85-c3e0-41d5-1a0b-2d121302439a@windriver.com>
- <2f23e846365f9736f925351e8d553c54a9d2782c.camel@linuxfoundation.org>
-Mime-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
-Cc: yocto-gJxINTE1zeQw8ufyyF7U+SST3g8Odh+X@public.gmane.org
-In-Reply-To: <2f23e846365f9736f925351e8d553c54a9d2782c.camel@linuxfoundation.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+Subject: [meta-security][PATCH 0/7] YCL cleanups
+Date: Sat,  5 Jun 2021 22:02:51 +0000
+Message-Id: <20210605220258.414233-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
 
-Op 14-04-2021 om 06:59 schreef Richard Purdie:
-> On Tue, 2021-04-13 at 21:14 -0400, Randy MacLeod wrote:
->> On 2021-04-11 12:19 p.m., Alexander Kanavin wrote:
->>> make already has -l option for limiting new instances if load average is
->>> too high, so it's only natural to add a RAM limiter too.
->>>
->>>     -l [N], --load-average[=N], --max-load[=N]
->>>                                 Don't start multiple jobs unless load is
->>> below N.
->>>
->>> In any case, patches welcome :)
->>
->> During today's Yocto technical call (1),
->> we talked about approaches to limiting the system load and avoiding
->> swap and/or OOM events. Here's what (little!) i recall from the
->> discussion, 9 busy hours later.
->>
->> In the short run, instead of independently maintaining changes to
->> configurations to limit parallelism or xz memory usage, etc, we
->> could develop an optional common include file where such limits
->> are shared across the community.
->>
->> In the longer run, changes to how bitbake schedules work may be needed.
->>
->> Richard says that there was a make/build server idea and maybe even a
->> patch from a while ago. It may be in one of his poky-contrib branches.
->> I took a few minutes to look but nothing popped up. A set of keywords to
->> search for might help me find it.
-> 
-> http://git.yoctoproject.org/cgit.cgi/poky-contrib/commit/?h=rpurdie/wipqueue4&id=d66a327fb6189db5de8bc489859235dcba306237
-> 
-> Cheers,
-> 
-> Richard
-> 
-> 
-I like the idea. Unfortunately the patch doesn't apply to Gatesgarth, so 
-I couldn't test it. Any chance you would be doing a refresh?
+This series superceeds the privious set to help
+pass the check-layer scrip.
+
+Armin Kuster (7):
+  meta-security: add sanity check
+  meta-security/recipe-kernel: use sanity check
+  linux-yocto-dev: drop bbappend
+  meta-tpm: add layer sanity check
+  meta-tpm/linux-yocto: use sanity support
+  meta-integrity: add sanity check
+  meta-integrity/recipe-kernel: use sanity check
+
+ README                                        | 18 ++++++++++++++++++
+ classes/sanity-meta-security.bbclass          | 10 ++++++++++
+ conf/layer.conf                               |  4 ++++
+ meta-integrity/README.md                      | 18 +++++++++++++++++-
+ .../classes/sanity-meta-integrity.bbclass     | 10 ++++++++++
+ meta-integrity/conf/layer.conf                |  4 ++++
+ .../recipes-kernel/linux/linux-%.bbappend     |  6 +-----
+ .../recipes-kernel/linux/linux_ima.inc        |  5 +++++
+ meta-tpm/README                               | 19 +++++++++++++++++++
+ meta-tpm/classes/sanity-meta-tpm.bbclass      | 10 ++++++++++
+ meta-tpm/conf/layer.conf                      |  4 ++++
+ .../linux/linux-yocto_5.%.bbappend            | 18 +-----------------
+ .../recipes-kernel/linux/linux-yocto_tpm.inc  | 17 +++++++++++++++++
+ recipes-kernel/linux/linux-yocto_5.%.bbappend |  4 +---
+ ...-dev.bbappend => linux-yocto_security.inc} |  0
+ 15 files changed, 121 insertions(+), 26 deletions(-)
+ create mode 100644 classes/sanity-meta-security.bbclass
+ create mode 100644 meta-integrity/classes/sanity-meta-integrity.bbclass
+ create mode 100644 meta-integrity/recipes-kernel/linux/linux_ima.inc
+ create mode 100644 meta-tpm/classes/sanity-meta-tpm.bbclass
+ create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto_tpm.inc
+ rename recipes-kernel/linux/{linux-yocto-dev.bbappend => linux-yocto_security.inc} (100%)
+
+-- 
+2.25.1
 
