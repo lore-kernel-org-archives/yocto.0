@@ -1,90 +1,67 @@
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
- by mx.groups.io with SMTP id smtpd.web12.8008.1622811843867723568
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+ by mx.groups.io with SMTP id smtpd.web12.7050.1622853836661392599
  for <yocto@lists.yoctoproject.org>;
- Fri, 04 Jun 2021 06:04:04 -0700
+ Fri, 04 Jun 2021 17:43:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=CRqmCxvE;
- spf=pass (domain: gmail.com, ip: 209.85.208.44, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-ed1-f44.google.com with SMTP id w21so10958490edv.3
-        for <yocto@lists.yoctoproject.org>; Fri, 04 Jun 2021 06:04:03 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=eHjKpvx+;
+ spf=pass (domain: gmail.com, ip: 209.85.219.173, mailfrom: jupiter.hce@gmail.com)
+Received: by mail-yb1-f173.google.com with SMTP id b13so16110792ybk.4
+        for <yocto@lists.yoctoproject.org>; Fri, 04 Jun 2021 17:43:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=BuXJdliogHWisNhwiqS83japuYLTH+ou+2wDLzwa3Dg=;
-        b=CRqmCxvEohxPnYrAeZq0bIprcqOGGdZcdJdjgN9iSNzJS6PQig8NLc4zF/BB3ArBGd
-         bSQivmSTqI6Q9JEipKR5tX2U8iuaU0Obd0FUthScvvgxnnbfqC2pCIiDen+Wd/x1DVuc
-         +dzV5gDy9FHzBFv6KvbQ5t3wtgb6IV8feIZSX1DfNsd+A1j2fMNefeOhlYXS8ZKvn91n
-         oc3MfBREl42Vc27tAekPfhoyXr6UQkYcKprPr1FbXbxMJAioSVH0CTW8zuV8Z9dqugUa
-         542CJ6YWZc3B/Ye1A3BZYW+LbcP0riIZ6Hbx8/XHuGfMIeHuBIlM0LFqTD/ZpE9Q7WCv
-         Ncyw==
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=SVUu8jHTIIfSCe0pCDgfnYT9GlPtSjiQyh1GWlIvcCs=;
+        b=eHjKpvx+bPff/4lDbcPkqD50w3/qa5GSJHJiSXM9gTGpqTG6knYBzdnlTKG6PcVU5o
+         b23/bp2HZ5nhG4avxV/Bx3b2c9n81NFXyzKmEBWvt/HZpeZCnNrWYwCZl+qodgCIwZpc
+         6gi5/zmucPnc+UtZOhAxmABCDJ6mEI7K3WpbGCQOcfajXbQvzuzcyjMZ9OILKDUq2NWg
+         5Y7dgwdD4j3G2++Xr0k/RVComGV+fDG9eoEVSHtI5b+7xPS4fpbfs1v9DmWBf8iqz+5A
+         PZa63k8UsmMbG++esFS27hArNoDxtbI6n4yNuEuBLmS7rtU6vy0POYnWTYNzoS8weXmD
+         ziTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=BuXJdliogHWisNhwiqS83japuYLTH+ou+2wDLzwa3Dg=;
-        b=lxM6pqCpfWYJm2bGK4NDOCJhxiljculHIT6L7zLaUE8oelhE/Md2jmVyqwHvdLTi5r
-         YlfmJtxbXoYQLg7oWFfsDxMix/QhZtA6cDr8b3U8W/1Sy69iqQfivzpO5VCeUUl6++ZO
-         3wUqTrifYCRRiD188EiWiwPJeyqvMyyqWOHJ0E4jqdlkIH87n0hKVSOOOtRlMIw+V5XA
-         bn9FpUyvLVVZNLfltYyY7icA3Q7YMX7z9QunQw4mz2kGXSrF/XIokP7gnnb6PzGyNFih
-         bpm2dI6gvZdTfAhKMDOC4EExISmFVKcYlKfuLzMHqTOzjVe9qeksDI3Tp+2Y1KmkTnuL
-         d+7A==
-X-Gm-Message-State: AOAM531bqG5OW8XZBVxFRvG47E2DARwDsZF7ViZ6fir7pKrNBNv7krZm
-	Kx+D/fUCiBX2fRKh0J2Op0u4fpPs0+cGoKY/Anc=
-X-Google-Smtp-Source: ABdhPJw4m6sekh2QoJ6kOrGzm/x5lqyRh73x/rTZno+o0Ea3D0c/xSWCfsNMe8GJzudxbRXc8l3ZA7aWHZ0tzBykAD8=
-X-Received: by 2002:a05:6402:35d4:: with SMTP id z20mr4528089edc.164.1622811842151;
- Fri, 04 Jun 2021 06:04:02 -0700 (PDT)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=SVUu8jHTIIfSCe0pCDgfnYT9GlPtSjiQyh1GWlIvcCs=;
+        b=dPuRxZkrN8usLhgaFwX/1pjNWbzeIYPIzJUkDZNQwV4/8029EZ63BrsrgXJXdGKKF2
+         GcOfVLYrN2gXqgr+FnhLDB6HKTllw336KmN0gOpE1dzZUbsj2RqJM/jGPXVy9Z4GYDYc
+         XPkA4L1734/lAVgIuZJAD8AinqRUIygmLRYtPII+nNNh+QNO1KdabmO0ZJQaProbPgft
+         cVqKz/I7SYgLEr89MdJ55WouAApqQXkcCz0p/yQcLnk+DRmiQlLNRUvgcbI+tyHopENq
+         IePPCHANthaPERaRnVmgR5Bna2IPBTzI6bDbEiwCqI/tZNEUipiqXoN1GEj3WfPDfaaU
+         Tx6w==
+X-Gm-Message-State: AOAM530O2Ji9Ty8vlyU3J0/eM0LaZaDxkjWohveEsx8Qj/MfO/rWomZ+
+	PDqp2ay4otFged4PkZbq+o5B9bfQ0y92M2PEetRK1cXK9RPTaQ==
+X-Google-Smtp-Source: ABdhPJxyr9l//G7C04iXvMsMaQC5QLQ7g2MFtCZhhHPmekvPjLCzhGkJzh895w/wqvq5Zbbz1pY1Im6Owz6FaBfAbRY=
+X-Received: by 2002:a25:8191:: with SMTP id p17mr8730282ybk.405.1622853835691;
+ Fri, 04 Jun 2021 17:43:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <td3c.1622797217734922140.8fqZ@lists.yoctoproject.org>
-In-Reply-To: <td3c.1622797217734922140.8fqZ@lists.yoctoproject.org>
-From: "Bruce Ashfield" <bruce.ashfield@gmail.com>
-Date: Fri, 4 Jun 2021 09:03:51 -0400
-Message-ID: <CADkTA4NEZ0h7rEiSw4Q0CwLbReoSNkZAuyS=NO0LN-GPf1dKGA@mail.gmail.com>
-Subject: Re: [yocto] Can the Linux kernel reuse the barebox device tree? #kernel
-To: florian.kauer@koalo.de
-Cc: yocto <yocto@lists.yoctoproject.org>
+From: "JH" <jupiter.hce@gmail.com>
+Date: Sat, 5 Jun 2021 10:43:19 +1000
+Message-ID: <CAA=hcWQ7vordSRwq-O2+8b5FV79EKHZM6s-dq49EWt6Ra5Owdg@mail.gmail.com>
+Subject: Is it a bug or it does not support device tree /delete-node/?
+To: yocto <yocto@lists.yoctoproject.org>
+Cc: openembedded-devel <openembedded-devel@lists.openembedded.org>, 
+	Patches and discussions about the oe-core layer <openembedded-core@lists.openembedded.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 4, 2021 at 5:00 AM <florian.kauer@koalo.de> wrote:
->
-> Hi,
-> I made the following observation in my custom Yocto system:
-> The device tree loaded by the Linux kernel is one that is only available=
- in the barebox directory, but not available in the kernel sources. In fact=
-, it is quite similar, but I made some changes to it in the device tree pro=
-vided to the kernel. Especially the machine model that is shown during kern=
-el boot is a string that can only be found in the compiled barebox image, b=
-ut not in the dtb files (where I can find the correct machine model string)=
- or anywhere else in the compilation results. But also other messages indic=
-ate that the wrong device tree is loaded.
->
-> It was correct before, and I am not really sure what triggered that (jus=
-t upgraded from zeus, but it might or might not be triggered by that) and I=
- wouldn't expect that anyone could guess what I have done wrong without deb=
-ugging my setup in depth. But, my general question is: Is there any mechani=
-sm that could explain such a behavior? Any configuration that means "extrac=
-t the device tree from the bootloader" or something similar?
->
+Hi,
 
-In your upgrade, did the bootloader/initramfs/kernel version change ?
-The passing of the device tree to the kernel is (commonly) part of the
-bootflow, so changes to any of the components in that flow could cause
-the different device tree usage you are seeing.
+I am building following imx6ulz-kobs.dts file to a dtb in zeus:
 
-The bbclass and recipes involved wouldn't have been packaging up the
-barebox tree and pulling it into the kernel in zeus, so while it isn't
-impossible, it isn't likely to be in the build or packaging changes.
+$ cat imx6ulz-kobs.dts
 
-Bruce
+#include "imx6ulz.dts"
 
-> Greetings,
-> Florian
->=20
->
+/{
+  model = "customized imx6ull";
+  compatible = "fsl,imx6ull";
+};
 
+&gpmi {
+    /delete-node/ fsl,use-minimum-ecc;
+};
 
---=20
-- Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end
-- "Use the force Harry" - Gandalf, Star Trek II
+The building process was fine, but that fsl,use-minimum-ecc in dtb was
+not deleted, is it a bug or it does not support  /delete-node/?
+
+Thank you.
+
+- jupiter
