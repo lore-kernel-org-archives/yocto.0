@@ -1,85 +1,91 @@
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
- by mx.groups.io with SMTP id smtpd.web12.17264.1622930586750187883
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
+ by mx.groups.io with SMTP id smtpd.web08.19374.1622947348455469697
  for <yocto@lists.yoctoproject.org>;
- Sat, 05 Jun 2021 15:03:06 -0700
+ Sat, 05 Jun 2021 19:42:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=cPSZJcUA;
- spf=pass (domain: gmail.com, ip: 209.85.210.182, mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f182.google.com with SMTP id q25so10162335pfh.7
-        for <yocto@lists.yoctoproject.org>; Sat, 05 Jun 2021 15:03:06 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Ok91CjqO;
+ spf=pass (domain: gmail.com, ip: 209.85.219.182, mailfrom: jupiter.hce@gmail.com)
+Received: by mail-yb1-f182.google.com with SMTP id g142so309436ybf.9
+        for <yocto@lists.yoctoproject.org>; Sat, 05 Jun 2021 19:42:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=xIzowVzCIPvv2ykf5bTHnJu2Fz3ZaTWQUfkB5a+N9q0=;
-        b=cPSZJcUApkTjMoRweBU9c4AQhiKTNAHWx5E0ikMiJVev3NM/9KRHPCQvIqHE6NZpPm
-         SNA5CXTNZLmdT2UH5BMSx+Zh9is75k1WzBiKrxxHfYWUYLlKKnkkNbbBXnBrqjYWbBxO
-         0NcBMP08Wo3R8dcGW0J5iRTndaVZvgPQGVERfScN5clGNaQxaJnyJO9Ma4q3OE2FthG9
-         MMxyRFCNrXAm9sxRupMwaZUZUI9kbekAeF5bGK7cjGAM08pYvpWQK0lEKO020/2ITbjQ
-         o33OLg09Q0Zgmf7jbmIJOJ6di+PloB9fu9BeeQ7kixHtHmMIh6qQ2FV44jfABkcB98Af
-         uwXQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=gGvJXY/5S5lD3qhoQR1VpChZke3NCBHRCrwfn+WuCJM=;
+        b=Ok91CjqOsK4QP9gwPvDvpNUk4T2H4ZBlWwpHxZIZCjrYQiOca6Un50ihyQnrdHOn5m
+         ZCWOwodD9ou/7FEPtDNor4/9y1XaV+Rq5A9s+9hLC1H3oZCmHzPPsZBNZJkNvw/e9p6z
+         6wL7vaMo15rYo2a/yQrjwJiz81asTv+qCB2yvGerwNcRANTYP6vP4q19R5ryIKDJAFrl
+         VFxpRpUrHjY8r67o78VU2PoR2PdL1i5F7woDsOs868d6Dzkaz9WZAVhYoX/2uMLXaZDW
+         Fn7l9h5Kf1l0WOLXSTvOqsFAejuFhFagRz8y5G4vqV50my1RQDzlaxgEx8a3fuyBrprr
+         Qxwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=xIzowVzCIPvv2ykf5bTHnJu2Fz3ZaTWQUfkB5a+N9q0=;
-        b=RljxP5yoZ8rCdP+yUGla3wK71X7ueEuTBtbB2wwDv6y1Zcg+P2wVmVqssG9egb2goy
-         XMxlFMrL08DdyvmFV80QcRUtAN07Y5zueu6tB4KrDEchW9ekLFVTKtqaGiQIOVgHxRqN
-         EuhmPus+VsWmZspmfSnTcCVAVi9JRNQ5RSgtLwV8adjQtx/r7CCjTGoBwTPAsDCCDL7u
-         +gY4D8SU5uiAnxZLXbl1h4/Vx2cdKzPnhSvoQx+OdJ6VD0dVI2h7V7kE248dlkmMrwvi
-         Jc7FSwFQ+IMnJeUS+5OKiO1cEJFy2XSGI/SVL6k6GwMjo1h4VgR4PmDCjLwl8TAsU7TI
-         5r6g==
-X-Gm-Message-State: AOAM532BF9TEBXWRWQFjCrCt3JpCFcpda6FWe1ABeSo+B7WsfME0H7wb
-	QnJsar7IKGztNk7oftp2bx2muY2DVvXRqg==
-X-Google-Smtp-Source: ABdhPJw23F+KCyPew47G4J56R9tQ4yLGv7VjCgsiDBVrxQwOZk/ye+HLWH9W0V/003g7LeQJFMggjA==
-X-Received: by 2002:a65:6103:: with SMTP id z3mr11327601pgu.61.1622930586184;
-        Sat, 05 Jun 2021 15:03:06 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
-Received: from kona.dnls.ca.comcast.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
-        by smtp.gmail.com with ESMTPSA id t23sm5264678pgj.9.2021.06.05.15.03.05
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Jun 2021 15:03:05 -0700 (PDT)
-From: "Armin Kuster" <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 7/7] meta-integrity/recipe-kernel: use sanity check
-Date: Sat,  5 Jun 2021 22:02:58 +0000
-Message-Id: <20210605220258.414233-8-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210605220258.414233-1-akuster808@gmail.com>
-References: <20210605220258.414233-1-akuster808@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gGvJXY/5S5lD3qhoQR1VpChZke3NCBHRCrwfn+WuCJM=;
+        b=MrXPVnxnYvMlJEl24nkYG3D/BNJnN/TNsRtC2a3CJoSLz7FMBeYibMrAxvkPuO/BuD
+         PQPo0bMb8JyfuHt09CB742mPHgROZuf5Yp4cziZOfShCuxtTgL983ActtmYk6sR+Q3vO
+         L/MrgMvsppUdSBut6Efk+QD3t+mq2wwHlWYauySUgqGm9/les6yrpu6EdYIG/vUo0/8G
+         f6+/oBvmh03Kc3z5LxnxVT8pcKV+TnG8R1xDDtyYL6CU77Z9OrCHkELZ8IscUHsDU0RS
+         ua508xzJIsPPXj8FhVOHH8TLqITBNe+hL6X8x06Wzr5sX3z7hAEZM2u6QDYrAQwOrLVn
+         Tt7w==
+X-Gm-Message-State: AOAM5325to/8gGII4U9MevqIOc0QtizvZq886fbqmlw7CYUfT70eDhqw
+	vtHfbnZV2uDTtkZ5WUtBF6OEB84shAd9jx61qtQ=
+X-Google-Smtp-Source: ABdhPJxEWI3sSMO5bSzfaZF3dbNR5hsA+aImVco/BbzjaL4CRE9fTNSCbLb/g6ulr8c0MqqbmPow1irmfTPPZIToQq4=
+X-Received: by 2002:a25:f208:: with SMTP id i8mr14630719ybe.340.1622947347590;
+ Sat, 05 Jun 2021 19:42:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <CAA=hcWQ7vordSRwq-O2+8b5FV79EKHZM6s-dq49EWt6Ra5Owdg@mail.gmail.com>
+ <06B2DF82-ACFE-4503-8174-39163A7DF959@0leil.net>
+In-Reply-To: <06B2DF82-ACFE-4503-8174-39163A7DF959@0leil.net>
+From: "JH" <jupiter.hce@gmail.com>
+Date: Sun, 6 Jun 2021 12:41:51 +1000
+Message-ID: <CAA=hcWQT-G5+92u8=4=u_aBLmREMUkNLm+y0hNvCOkvAu4_g6Q@mail.gmail.com>
+Subject: Re: [yocto] Is it a bug or it does not support device tree /delete-node/?
+To: Quentin Schulz <foss@0leil.net>
+Cc: yocto <yocto@lists.yoctoproject.org>, 
+	openembedded-devel <openembedded-devel@lists.openembedded.org>, 
+	Patches and discussions about the oe-core layer <openembedded-core@lists.openembedded.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- meta-integrity/recipes-kernel/linux/linux-%.bbappend | 6 +-----
- meta-integrity/recipes-kernel/linux/linux_ima.inc    | 5 +++++
- 2 files changed, 6 insertions(+), 5 deletions(-)
- create mode 100644 meta-integrity/recipes-kernel/linux/linux_ima.inc
+Thanks Quentin, that did the trick.
 
-diff --git a/meta-integrity/recipes-kernel/linux/linux-%.bbappend b/meta-integrity/recipes-kernel/linux/linux-%.bbappend
-index f9a48cd..be60bfe 100644
---- a/meta-integrity/recipes-kernel/linux/linux-%.bbappend
-+++ b/meta-integrity/recipes-kernel/linux/linux-%.bbappend
-@@ -1,5 +1 @@
--KERNEL_FEATURES_append = " ${@bb.utils.contains("DISTRO_FEATURES", "ima", " features/ima/ima.scc", "" ,d)}"
--
--KERNEL_FEATURES_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'modsign', ' features/ima/modsign.scc', '', d)}"
--
--inherit ${@bb.utils.contains('DISTRO_FEATURES', 'modsign', 'kernel-modsign', '', d)}
-+require ${@bb.utils.contains_any('DISTRO_FEATURES', 'integrity ', 'linux_ima.inc', '', d)}
-diff --git a/meta-integrity/recipes-kernel/linux/linux_ima.inc b/meta-integrity/recipes-kernel/linux/linux_ima.inc
-new file mode 100644
-index 0000000..f9a48cd
---- /dev/null
-+++ b/meta-integrity/recipes-kernel/linux/linux_ima.inc
-@@ -0,0 +1,5 @@
-+KERNEL_FEATURES_append = " ${@bb.utils.contains("DISTRO_FEATURES", "ima", " features/ima/ima.scc", "" ,d)}"
-+
-+KERNEL_FEATURES_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'modsign', ' features/ima/modsign.scc', '', d)}"
-+
-+inherit ${@bb.utils.contains('DISTRO_FEATURES', 'modsign', 'kernel-modsign', '', d)}
--- 
-2.25.1
 
+On 6/5/21, Quentin Schulz <foss@0leil.net> wrote:
+> Hi,
+>
+> On June 5, 2021 12:43:19 AM UTC, JH <jupiter.hce@gmail.com> wrote:
+>>Hi,
+>>
+>>I am building following imx6ulz-kobs.dts file to a dtb in zeus:
+>>
+>>$ cat imx6ulz-kobs.dts
+>>
+>>#include "imx6ulz.dts"
+>>
+>>/{
+>>  model = "customized imx6ull";
+>>  compatible = "fsl,imx6ull";
+>>};
+>>
+>>&gpmi {
+>>    /delete-node/ fsl,use-minimum-ecc;
+>>};
+>>
+>>The building process was fine, but that fsl,use-minimum-ecc in dtb was
+>>not deleted, is it a bug or it does not support  /delete-node/?
+>>
+>
+> fsl,use-minimum-ecc is a property not a node, you need to use
+> /delete-property/ instead, c.f.
+> https://devicetree-specification.readthedocs.io/en/latest/chapter6-source-language.html?highlight=delete-property#node-and-property-definitions.
+>
+> Cheers,
+> Quentin
+>
+
+
+--
+"A man can fail many times, but he isn't a failure until he begins to
+blame somebody else."
+-- John Burroughs
