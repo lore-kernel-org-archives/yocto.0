@@ -1,67 +1,122 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.295.1623081669506117055
+Received: from ciao.gmane.io (ciao.gmane.io [116.202.254.214])
+ by mx.groups.io with SMTP id smtpd.web08.2403.1623094031565560628
  for <yocto@lists.yoctoproject.org>;
- Mon, 07 Jun 2021 09:01:10 -0700
+ Mon, 07 Jun 2021 12:27:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@aruba.it header.s=a1 header.b=g3BMd3ZV;
- spf=none, err=permanent DNS error (domain: faresoftware.it, ip: 198.145.29.25, mailfrom: mauro@faresoftware.it)
-Received: from smtpcmd0642.aruba.it (smtpcmd0642.aruba.it [62.149.156.42])
-	by mail.yoctoproject.org (Postfix) with ESMTP id A68AB38C060F
-	for <yocto@yoctoproject.org>; Mon,  7 Jun 2021 16:01:08 +0000 (UTC)
-Received: from z600 ([93.38.119.136])
-	by Aruba Outgoing Smtp  with ESMTPSA
-	id qHgYlqzG0jj2KqHgYlfQII; Mon, 07 Jun 2021 18:01:06 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
-	t=1623081666; bh=MotpLRcBUqn0/k79J2K12srWQUMDxUOyQ1sQW/oScdA=;
-	h=Date:From:To:Subject:MIME-Version:Content-Type;
-	b=g3BMd3ZVuBhlthLTZQ4sTdG2N5Ph6oYmvc8Jm5mHk4lrXNavDqUa+h/+ZEUql1sgQ
-	 N4HSb0baPjfr6BlQJBiFtyqC7681fWE8fhDhpv1ls3YZ4jbYCiQYGEM2E6ilDZBr0A
-	 CmF31wNHmufHYQlI2htLN1s8lVhH1/aw9HVOZ7eGnzcpHvdcnc9T237eGbxh12e4NX
-	 J+0weKJtdNcVeRmWhCJnIEMwl7ni5oourTPyyIuLpKvRXssAwxWLoHK9rbmRJjDm1A
-	 pTJ/Ct7FvI9ABHFU+8F4eRHzvXQpEgakIiye1a/Iuu+/XRMJsUf+kJO+y+aOTeQnxV
-	 5bXG1Ait6HvJw==
-Date: Mon, 7 Jun 2021 18:01:05 +0200
-From: "Mauro Ziliani" <mauro@faresoftware.it>
-To: "=?utf-8?Q?yocto=40yoctoproject.org?=" <yocto@yoctoproject.org>
-Message-ID: <B2B34E45-5936-4670-A189-8E686F499F87@getmailspring.com>
-Subject: How to use debug symbols from recipe-dbg package?
-X-Mailer: Mailspring
-MIME-Version: 1.0
-X-CMAE-Envelope: MS4wfOFBrTH5c3N8oYaR/XkKsCh6Kkp9y1Ky9PDdyNny2jOxtew7bGhgvtYYu2jca3StF2aXGKds4PAaCUIV6cCIsy73CwD8j/0qRY3zbl4moTu7DuuDBf8x
- KNX5FFamGuZNzuPJ4VrF2QEowzv2FEP2h7Oejyw4OwRM6czKT4SHqX6r
-Content-Type: multipart/alternative; boundary="60be42c1_66fb54cc_13cf"
+ dkim=missing; spf=pass (domain: m.gmane-mx.org, ip: 116.202.254.214, mailfrom: gley-yocto@m.gmane-mx.org)
+Received: from list by ciao.gmane.io with local (Exim 4.92)
+	(envelope-from <gley-yocto@m.gmane-mx.org>)
+	id 1lqKtw-0009r4-Aj
+	for yocto@lists.yoctoproject.org; Mon, 07 Jun 2021 21:27:08 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@lists.yoctoproject.org
+From: "Gmane Admin" <gley-yocto@m.gmane-mx.org>
+Subject: Re: bitbake controlling memory use
+Date: Mon, 7 Jun 2021 21:27:00 +0200
+Message-ID: <5a37c855-943a-7ae2-b481-e030ebb69de8@gmail.com>
+References: <s4v495$bak$1@ciao.gmane.io>
+ <CANNYZj_CsY0YL_bjtgf6O3A16FXe38-hLke4wEQR6mMz58SMVg@mail.gmail.com>
+ <d8ab0231-717d-69e4-e6f9-739b9a08bd29@gmail.com>
+ <CANNYZj_K-zpP-iTQMh5YA58dhBV88wLP-PouXS5KrHjybfsy-g@mail.gmail.com>
+ <14207c27-7f5e-9a13-d8e8-28dbb0e7ea7b@gmail.com>
+ <CANNYZj8MtLM5KdUqMsqhiVMHTnmj4VMoSf3XnCLvSns8grpmmA@mail.gmail.com>
+ <0c8c0d85-c3e0-41d5-1a0b-2d121302439a@windriver.com>
+ <2f23e846365f9736f925351e8d553c54a9d2782c.camel@linuxfoundation.org>
+ <1685B30F5819A655.13459@lists.yoctoproject.org>
+Mime-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
+Cc: yocto-gJxINTE1zeQw8ufyyF7U+SST3g8Odh+X-XMD5yJDbdMReXY1tMh2IBg@public.gmane.org
+In-Reply-To: <1685B30F5819A655.13459@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
---60be42c1_66fb54cc_13cf
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Op 05-06-2021 om 15:35 schreef Gmane Admin:
+> Op 14-04-2021 om 06:59 schreef Richard Purdie:
+>> On Tue, 2021-04-13 at 21:14 -0400, Randy MacLeod wrote:
+>>> On 2021-04-11 12:19 p.m., Alexander Kanavin wrote:
+>>>> make already has -l option for limiting new instances if load 
+>>>> average is
+>>>> too high, so it's only natural to add a RAM limiter too.
+>>>>
+>>>>     -l [N], --load-average[=N], --max-load[=N]
+>>>>                                 Don't start multiple jobs unless 
+>>>> load is
+>>>> below N.
+>>>>
+>>>> In any case, patches welcome :)
+>>>
+>>> During today's Yocto technical call (1),
+>>> we talked about approaches to limiting the system load and avoiding
+>>> swap and/or OOM events. Here's what (little!) i recall from the
+>>> discussion, 9 busy hours later.
+>>>
+>>> In the short run, instead of independently maintaining changes to
+>>> configurations to limit parallelism or xz memory usage, etc, we
+>>> could develop an optional common include file where such limits
+>>> are shared across the community.
+>>>
+>>> In the longer run, changes to how bitbake schedules work may be needed.
+>>>
+>>> Richard says that there was a make/build server idea and maybe even a
+>>> patch from a while ago. It may be in one of his poky-contrib branches.
+>>> I took a few minutes to look but nothing popped up. A set of keywords to
+>>> search for might help me find it.
+>>
+>> http://git.yoctoproject.org/cgit.cgi/poky-contrib/commit/?h=rpurdie/wipqueue4&id=d66a327fb6189db5de8bc489859235dcba306237 
 
-Hi all.
-I have the recipe myapp.bb, and I get from it the debian packages myapp_1.0-r0_armhf.deb and myapp-dbg_1.0-r0_armhf.deb
+This patch resolves a starvation of a particular resource (execution 
+cores), which is good.
+However, the problem I am facing is starvation of another resource (memory).
 
-How can I use the debug symbols in myapp-dbg_1.0-r0_armhf.deb with gdb and the application in myapp_1.0-r0_armhf.deb package?
+>> Cheers,
+>>
+>> Richard
+>>
+>>
+> I like the idea. Unfortunately the patch doesn't apply to Gatesgarth, so 
+> I couldn't test it. Any chance you would be doing a refresh?
 
-Best regards,
-MZ
+Ok so I refreshed this patch my self and it seems to be working nicely 
+(3000 out of 4000 tasks complete), except for one thing: do_configure 
+for cmake-native fails and I don't see why. From the log:
 
-Sent from Mailspring (https://getmailspring.com/), the best free email app for work
+loading initial cache file 
+xxxxxx/out/linux64/build/tmp/work/x86_64-linux/cmake-native/3.18.2-r0/build/Bootstrap.cmk/InitialCacheFlags.cmake
+-- The C compiler identification is GNU 10.3.0
+-- The CXX compiler identification is GNU 10.3.0
+-- Detecting C compiler ABI info
+CMake Error: Generator: execution of make failed. Make command was: 
+xxxxxx/out/linux64/poky/scripts/make-intercept/make cmTC_68352/fast &&
+-- Detecting C compiler ABI info - failed
+-- Check for working C compiler: xxxxxx/out/linux64/build/tmp/hosttools/gcc
+CMake Error: Generator: execution of make failed. Make command was: 
+xxxxxx/out/linux64/poky/scripts/make-intercept/make cmTC_f23a0/fast &&
+-- Check for working C compiler: 
+xxxxxx/out/linux64/build/tmp/hosttools/gcc - broken
+CMake Error at Modules/CMakeTestCCompiler.cmake:66 (message):
+   The C compiler
 
---60be42c1_66fb54cc_13cf
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
+     "xxxxxx/out/linux64/build/tmp/hosttools/gcc"
 
-<div>Hi all.</div><div>I have the recipe myapp.bb, and I get from it the =
-debian packages <a href=3D=22myapp=5F1.0-r0=5Farmhf.deb=22 title=3D=22mya=
-pp=5F1.0-r0=5Farmhf.deb=22>myapp=5F1.0-r0=5Farmhf.deb</a>&nbsp;and myapp-=
-dbg=5F1.0-r0=5Farmhf.deb</div><br><div>How can I use the debug symbols in=
- <a href=3D=22myapp-dbg=5F1.0-r0=5Farmhf.deb=22 title=3D=22myapp-dbg=5F1.=
-0-r0=5Farmhf.deb=22>myapp-dbg=5F1.0-r0=5Farmhf.deb</a>&nbsp;with gdb and =
-the application in <a href=3D=22myapp=5F1.0-r0=5Farmhf.deb=22 title=3D=22=
-myapp=5F1.0-r0=5Farmhf.deb=22>myapp=5F1.0-r0=5Farmhf.deb</a>&nbsp;package=
-=3F</div><br><br><div>Best regards,</div><div>&nbsp; MZ</div><br><div><si=
-gnature id=3D=22initial=22><div><div>Sent from <a href=3D=22https://getma=
-ilspring.com/=22>Mailspring</a>, the best free email app for work</div></=
-div></signature></div>
+   is not able to compile a simple test program.
 
---60be42c1_66fb54cc_13cf--
+   It fails with the following output:
+
+     Change Dir: 
+xxxxxx/tmp/work/x86_64-linux/cmake-native/3.18.2-r0/build/CMakeFiles/CMakeTmp
+
+     Run Build 
+Command(s):xxxxxx/out/linux64/poky/scripts/make-intercept/make 
+cmTC_f23a0/fast && Permission denied
+     Generator: execution of make failed. Make command was: 
+xxxxxx/out/linux64/poky/scripts/make-intercept/make cmTC_f23a0/fast &&
+
+   CMake will not be able to correctly generate this project.
+Call Stack (most recent call first):
+   CMakeLists.txt:7 (project)
+
+Crazy. I don't see why making a complete recipe works fine, while making 
+a test program during configure fails. Ideas?
+
