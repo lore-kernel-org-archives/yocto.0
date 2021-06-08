@@ -1,30 +1,30 @@
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by mx.groups.io with SMTP id smtpd.web09.10562.1623148593441768141
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by mx.groups.io with SMTP id smtpd.web12.10524.1623148800257677218
  for <yocto@lists.yoctoproject.org>;
- Tue, 08 Jun 2021 03:36:33 -0700
+ Tue, 08 Jun 2021 03:40:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: intel.com, ip: 192.55.52.43, mailfrom: naveen.kumar.saini@intel.com)
-IronPort-SDR: MHK/1HDyWsDqr48SDgGDi0CNjfu5o+YCu7ZduCu+Ea38K3fUufwTyFxTw3sJP9Gt5+r/M93B7S
- Ig3noOMqybOA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="290446800"
+ dkim=missing; spf=pass (domain: intel.com, ip: 134.134.136.24, mailfrom: naveen.kumar.saini@intel.com)
+IronPort-SDR: +OSSZFNsFcG8X5J7f5TilvUfLZRR3jawzXc7KxPMq9226bYiQ2FYsyzGIXNSJNcuG6K5Js3S04
+ xcCtCtku9VCw==
+X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="204784475"
 X-IronPort-AV: E=Sophos;i="5.83,257,1616482800"; 
-   d="scan'208";a="290446800"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jun 2021 03:36:32 -0700
-IronPort-SDR: 61lbg0Hp9zP1IBjlSwQbmnz5OgSoy4Jn3LjeIPuaS8fGLbqTIjD880Ssa+g4/q9SPETsAK1VHh
- 5QDoWIskmRPg==
+   d="scan'208";a="204784475"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jun 2021 03:39:59 -0700
+IronPort-SDR: nRfmV1/li8VtA9rGAmllYzkRRPVgqjcW/MJm/QMCUH2/q5WRamj2R0rOA1i9YEGobmlg/7PV1l
+ VExw+wN7xlNA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.83,257,1616482800"; 
-   d="scan'208";a="635023328"
-Received: from pgsmsx602.gar.corp.intel.com ([10.108.199.137])
-  by fmsmga006.fm.intel.com with ESMTP; 08 Jun 2021 03:36:30 -0700
+   d="scan'208";a="481899310"
+Received: from kmsmsx601.gar.corp.intel.com ([172.21.219.141])
+  by orsmga001.jf.intel.com with ESMTP; 08 Jun 2021 03:39:57 -0700
 Received: from kmsmsx603.gar.corp.intel.com (172.21.219.143) by
- pgsmsx602.gar.corp.intel.com (10.108.199.137) with Microsoft SMTP Server
+ kmsmsx601.gar.corp.intel.com (172.21.219.141) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Tue, 8 Jun 2021 18:36:29 +0800
+ 15.1.2242.4; Tue, 8 Jun 2021 18:39:56 +0800
 Received: from kmsmsx603.gar.corp.intel.com ([172.21.219.143]) by
  kmsmsx603.gar.corp.intel.com ([172.21.219.143]) with mapi id 15.01.2242.008;
- Tue, 8 Jun 2021 18:36:29 +0800
+ Tue, 8 Jun 2021 18:39:56 +0800
 From: "Naveen Saini" <naveen.kumar.saini@intel.com>
 To: "amit.kucheria@verdurent.com" <amit.kucheria@verdurent.com>,
 	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
@@ -33,9 +33,9 @@ To: "amit.kucheria@verdurent.com" <amit.kucheria@verdurent.com>,
 CC: Amit Kucheria <amit.kucheria.ext@huawei.com>
 Subject: Re: [meta-zephyr][PATCHv2 1/5] zephyr-kernel: Clone mbedtls
 Thread-Topic: [meta-zephyr][PATCHv2 1/5] zephyr-kernel: Clone mbedtls
-Thread-Index: AQHXW2KGKGqIzQ/ED0WY2PpJ1Gb8Z6sJ7NKg
-Date: Tue, 8 Jun 2021 10:36:29 +0000
-Message-ID: <8ecf10e32bcb4c889d373b1ecc8c1462@intel.com>
+Thread-Index: AQHXW2KGKGqIzQ/ED0WY2PpJ1Gb8Z6sJ7YrA
+Date: Tue, 8 Jun 2021 10:39:56 +0000
+Message-ID: <804db4de35bb4fe2bdfc7c4a9371c744@intel.com>
 References: <cover.1622535742.git.amit.kucheria.ext@huawei.com>
  <c6e00de83150cd7d99d172404ef8464526592529.1622535742.git.amit.kucheria.ext@huawei.com>
 In-Reply-To: <c6e00de83150cd7d99d172404ef8464526592529.1622535742.git.amit.kucheria.ext@huawei.com>
@@ -50,6 +50,23 @@ MIME-Version: 1.0
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Build failing:
+
+Could not open 'poky/build-zephyr/tmp-newlib/work/armv7m-yocto-eabi/zephyr-=
+mqtt-publisher/2.5.0+gitAUTOINC+fe7c2efca8_c3bd2094f9-r0/git/' (in 'osource=
+ "$(ZEPHYR_MBEDTLS_KCONFIG)"') (EISDIR: Is a directory)
+
+
+
+To fix, can you try following revision for mbedtls.
+    - name: mbedtls
+      revision: 24d84ecff195fb15c889d9046e44e4804d626c67
+https://github.com/zephyrproject-rtos/zephyr/blob/zephyr-v2.5.0/west.yml#L9=
+4
+
+Regards,
+Naveen
 
 
 
@@ -89,10 +106,6 @@ S
 >  ZEPHYR_MODULES_append_nordic =3D "\;${S}/modules/hal/nordic"
 >  ZEPHYR_MODULES_append_stm32 =3D "\;${S}/modules/hal/stm32"
 > +ZEPHYR_MODULES_append_mbedtls =3D "\;${S}/modules/lib/mbedtls"
-
-Why override used here? I can see all new samples already adding mbedtls to=
- ZEPHYR_MODULES
-
 >  ZEPHYR_MODULES_append_openamp =3D "\;${S}/modules/lib/open-
 > amp\;${S}/modules/hal/libmetal"
 >=20
