@@ -1,122 +1,276 @@
-Received: from ciao.gmane.io (ciao.gmane.io [116.202.254.214])
- by mx.groups.io with SMTP id smtpd.web08.2403.1623094031565560628
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web12.6056.1623111777143032126
  for <yocto@lists.yoctoproject.org>;
- Mon, 07 Jun 2021 12:27:12 -0700
+ Mon, 07 Jun 2021 17:22:57 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: m.gmane-mx.org, ip: 116.202.254.214, mailfrom: gley-yocto@m.gmane-mx.org)
-Received: from list by ciao.gmane.io with local (Exim 4.92)
-	(envelope-from <gley-yocto@m.gmane-mx.org>)
-	id 1lqKtw-0009r4-Aj
-	for yocto@lists.yoctoproject.org; Mon, 07 Jun 2021 21:27:08 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@lists.yoctoproject.org
-From: "Gmane Admin" <gley-yocto@m.gmane-mx.org>
-Subject: Re: bitbake controlling memory use
-Date: Mon, 7 Jun 2021 21:27:00 +0200
-Message-ID: <5a37c855-943a-7ae2-b481-e030ebb69de8@gmail.com>
-References: <s4v495$bak$1@ciao.gmane.io>
- <CANNYZj_CsY0YL_bjtgf6O3A16FXe38-hLke4wEQR6mMz58SMVg@mail.gmail.com>
- <d8ab0231-717d-69e4-e6f9-739b9a08bd29@gmail.com>
- <CANNYZj_K-zpP-iTQMh5YA58dhBV88wLP-PouXS5KrHjybfsy-g@mail.gmail.com>
- <14207c27-7f5e-9a13-d8e8-28dbb0e7ea7b@gmail.com>
- <CANNYZj8MtLM5KdUqMsqhiVMHTnmj4VMoSf3XnCLvSns8grpmmA@mail.gmail.com>
- <0c8c0d85-c3e0-41d5-1a0b-2d121302439a@windriver.com>
- <2f23e846365f9736f925351e8d553c54a9d2782c.camel@linuxfoundation.org>
- <1685B30F5819A655.13459@lists.yoctoproject.org>
-Mime-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
-Cc: yocto-gJxINTE1zeQw8ufyyF7U+SST3g8Odh+X-XMD5yJDbdMReXY1tMh2IBg@public.gmane.org
-In-Reply-To: <1685B30F5819A655.13459@lists.yoctoproject.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=P7Xy3gRs;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: sjolley.yp.pm@gmail.com)
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 72E4838C04B3
+	for <yocto@yoctoproject.org>; Tue,  8 Jun 2021 00:22:56 +0000 (UTC)
+Received: by mail-pl1-f179.google.com with SMTP id h1so2007526plt.1
+        for <yocto@yoctoproject.org>; Mon, 07 Jun 2021 17:22:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version:thread-index
+         :content-language;
+        bh=n9TiI/CQqKfDCm4IQwxwu6vL3jThitE079NKaJGMw+8=;
+        b=P7Xy3gRstECZQkoQZT+yRX42C5BcDMQ5eCtwr8QljxE2YAoSidUtYG06oln9++jr+A
+         f96M+lkXoxdCM4VRs3nwMgFlSu1v7e2yu+AEqchlp+rrKbhejP11Z10OiuBwzBo8pQEW
+         nRlNjrURE7rqOPTNhWwmv9RTh05cMmK/+HfKMzbwM0kqcNsPxLg4lrZLqDdUMKWjHroa
+         blBrQDvSRdjCnyPrn8O6Onkr4N6I8xJ36LliFTuZtiHqfg2B82FmFqx7LeevS41iUk0h
+         EEuKoBxsfWG/Takf/r/LMihWAjShYQrobNgrkpnGT/PnnfhWyC0QpaACpJVycWouPd+B
+         Yw3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :thread-index:content-language;
+        bh=n9TiI/CQqKfDCm4IQwxwu6vL3jThitE079NKaJGMw+8=;
+        b=gNw/igJw1maagQaiVzZZH19iORQrHJD1bndXydqpnRqAB1ri8Um+NiUtypdR5yZ7xV
+         GYlUCa7Me2PW3rfrVOCxXCNfHoNLrQkHWofIILw6xPozZ+KXdehuumalAdCN8ts1pt0D
+         uqnjAFQ9MDthQo1uMy6HD+XiQEYicwIH5IyWwuMaO4eUDHttQ40lUG5UOwuraDNNVPC5
+         r3s7N/Byi99wiWnU+2/Rpxhhwgdatiil8i+cN8cI+rclW04/7GmwPIXzKai3LXyAnhY8
+         C0ssj79Pg8fVWaJfMmTTVaff+6C3zt05c4uBP8oRM3A5FYxmg1Y2523vOgvC2phgbuyg
+         Qozg==
+X-Gm-Message-State: AOAM530pL0bec/iGPhqq31OzSGHasBrPXUpr6ixuNqt+bicj7uAgTHcb
+	JQ4q/MGhm2ikueP9el3jZnU=
+X-Google-Smtp-Source: ABdhPJxl2nMZjMy2+i6Fa7rfedE3fF37jx/iZDuBFC0Z9n02OKsmyr48htXt0ezqgsoXK9Su4VtjlA==
+X-Received: by 2002:a17:902:7587:b029:109:69bd:3eae with SMTP id j7-20020a1709027587b029010969bd3eaemr20544729pll.40.1623111775876;
+        Mon, 07 Jun 2021 17:22:55 -0700 (PDT)
+Received: from skjolley (wsip-72-194-163-85.ph.ph.cox.net. [72.194.163.85])
+        by smtp.gmail.com with ESMTPSA id n69sm9113136pfd.132.2021.06.07.17.22.54
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 07 Jun 2021 17:22:55 -0700 (PDT)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 7 Jun 2021 17:22:54 -0700
+Message-ID: <004901d75bfc$6db391d0$491ab570$@gmail.com>
+MIME-Version: 1.0
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGtJH6HYTYcJ4mv2IOuaeRjA2+GDw==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_004A_01D75BC1.C15703C0"
+Content-Language: en-us
 
-Op 05-06-2021 om 15:35 schreef Gmane Admin:
-> Op 14-04-2021 om 06:59 schreef Richard Purdie:
->> On Tue, 2021-04-13 at 21:14 -0400, Randy MacLeod wrote:
->>> On 2021-04-11 12:19 p.m., Alexander Kanavin wrote:
->>>> make already has -l option for limiting new instances if load 
->>>> average is
->>>> too high, so it's only natural to add a RAM limiter too.
->>>>
->>>>     -l [N], --load-average[=N], --max-load[=N]
->>>>                                 Don't start multiple jobs unless 
->>>> load is
->>>> below N.
->>>>
->>>> In any case, patches welcome :)
->>>
->>> During today's Yocto technical call (1),
->>> we talked about approaches to limiting the system load and avoiding
->>> swap and/or OOM events. Here's what (little!) i recall from the
->>> discussion, 9 busy hours later.
->>>
->>> In the short run, instead of independently maintaining changes to
->>> configurations to limit parallelism or xz memory usage, etc, we
->>> could develop an optional common include file where such limits
->>> are shared across the community.
->>>
->>> In the longer run, changes to how bitbake schedules work may be needed.
->>>
->>> Richard says that there was a make/build server idea and maybe even a
->>> patch from a while ago. It may be in one of his poky-contrib branches.
->>> I took a few minutes to look but nothing popped up. A set of keywords to
->>> search for might help me find it.
->>
->> http://git.yoctoproject.org/cgit.cgi/poky-contrib/commit/?h=rpurdie/wipqueue4&id=d66a327fb6189db5de8bc489859235dcba306237 
+------=_NextPart_000_004A_01D75BC1.C15703C0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-This patch resolves a starvation of a particular resource (execution 
-cores), which is good.
-However, the problem I am facing is starvation of another resource (memory).
+All,
 
->> Cheers,
->>
->> Richard
->>
->>
-> I like the idea. Unfortunately the patch doesn't apply to Gatesgarth, so 
-> I couldn't test it. Any chance you would be doing a refresh?
+ 
 
-Ok so I refreshed this patch my self and it seems to be working nicely 
-(3000 out of 4000 tasks complete), except for one thing: do_configure 
-for cmake-native fails and I don't see why. From the log:
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
 
-loading initial cache file 
-xxxxxx/out/linux64/build/tmp/work/x86_64-linux/cmake-native/3.18.2-r0/build/Bootstrap.cmk/InitialCacheFlags.cmake
--- The C compiler identification is GNU 10.3.0
--- The CXX compiler identification is GNU 10.3.0
--- Detecting C compiler ABI info
-CMake Error: Generator: execution of make failed. Make command was: 
-xxxxxx/out/linux64/poky/scripts/make-intercept/make cmTC_68352/fast &&
--- Detecting C compiler ABI info - failed
--- Check for working C compiler: xxxxxx/out/linux64/build/tmp/hosttools/gcc
-CMake Error: Generator: execution of make failed. Make command was: 
-xxxxxx/out/linux64/poky/scripts/make-intercept/make cmTC_f23a0/fast &&
--- Check for working C compiler: 
-xxxxxx/out/linux64/build/tmp/hosttools/gcc - broken
-CMake Error at Modules/CMakeTestCCompiler.cmake:66 (message):
-   The C compiler
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+<https://bugzilla.yoctoproject.org/createaccount.cgi>
+https://bugzilla.yoctoproject.org/createaccount.cgi
 
-     "xxxxxx/out/linux64/build/tmp/hosttools/gcc"
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
 
-   is not able to compile a simple test program.
+ 
 
-   It fails with the following output:
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 348
+unassigned or newcomer bugs.
 
-     Change Dir: 
-xxxxxx/tmp/work/x86_64-linux/cmake-native/3.18.2-r0/build/CMakeFiles/CMakeTmp
+ 
 
-     Run Build 
-Command(s):xxxxxx/out/linux64/poky/scripts/make-intercept/make 
-cmTC_f23a0/fast && Permission denied
-     Generator: execution of make failed. Make command was: 
-xxxxxx/out/linux64/poky/scripts/make-intercept/make cmTC_f23a0/fast &&
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.2", "3.3, "3.99" and "Future", the more pressing/urgent issues
+being in "3.2" and then "3.3".
 
-   CMake will not be able to correctly generate this project.
-Call Stack (most recent call first):
-   CMakeLists.txt:7 (project)
+ 
 
-Crazy. I don't see why making a complete recipe works fine, while making 
-a test program during configure fails. Ideas?
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
 
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_004A_01D75BC1.C15703C0
+Content-Type: text/html;
+	boundary="----=_NextPart_000_1675_01D7563C.2AB65D60";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The triage team is starting to try and =
+collect up and classify bugs which a newcomer to the project would be =
+able to work on in a way which means people can find them. They're being =
+listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a> and how to create a bugzilla account at: <a =
+href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
+style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
+/span></a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 348 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.2&#8221;, &#8220;3.3, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.2&quot; and then &#8220;3.3&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+
+------=_NextPart_000_004A_01D75BC1.C15703C0--
