@@ -1,47 +1,67 @@
-Subject: gstreamerfdkaacenc/gstreamerfdkaacdec plugin support #gstreamer
+Subject: [meta-java] icedtea7 fetching error
 To: yocto@lists.yoctoproject.org
-From: "sateesh m" <sateesh0457@gmail.com>
-X-Originating-Location: Hyderabad, Telangana, IN (157.48.181.70)
-X-Originating-Platform: Linux Chrome 89
+From: George.Mocanu@rinftech.com
+X-Originating-Location: Nucet, Dambovita, RO (85.186.184.32)
+X-Originating-Platform: Windows Firefox 88
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Mon, 07 Jun 2021 22:48:10 -0700
-Message-ID: <sD1z.1623131290636720975.1rBC@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="7UWBIReiw5DZHwwbQueW"
+Date: Mon, 07 Jun 2021 23:09:54 -0700
+Message-ID: <98hT.1623132594082542882.bzIp@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="YA0U8l3MIy6ujOJ37fea"
 
---7UWBIReiw5DZHwwbQueW
+--YA0U8l3MIy6ujOJ37fea
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Guys,
+Hello,
 
-I=C2=A0 wan to build=C2=A0 gstreamerfdkaccenc/gstreamerfdkdec plugin suppo=
-rt,gstreamer version 16.0.1=C2=A0 version. can anybody know proper sources =
-link and build procedure . help me to get this feature.
+I am trying to build something that relies on meta-java, but it fails on d=
+o_fetch for the icedtea7 recipe:
 
-Thanks & Regards,
-Sateesh
+--2021-06-07 17:24:33--  http://icedtea.classpath.org/hg/release/icedtea7-=
+forest-2.1/archive/f89009ada191.tar.bz2
+Resolving icedtea.classpath.org (icedtea.classpath.org)... 172.104.137.120
+Connecting to icedtea.classpath.org (icedtea.classpath.org)|172.104.137.12=
+0|:80... connected.
+HTTP request sent, awaiting response... 404 Not Found
+2021-06-07 16:21:05 ERROR 404: Not Found.
 
---
-Regards,
-Sateesh
+ERROR: icedtea7-native-2.1.3-r1.0 do_fetch: Fetcher failure for URL: ' htt=
+p://icedtea.classpath.org/hg/release/icedtea7-forest-2.1/archive/f89009ada1=
+91.tar.bz2;name=3Dopenjdk;unpack=3Dfalse;downloadfilename=3Dopenjdk-f89009a=
+da191.tar.bz2 '. Unable to fetch URL from any source.
 
---7UWBIReiw5DZHwwbQueW
+Following this link, seems like the webserver is down. Do you know any mir=
+ror that I can use in the meantime?
+
+Thanks,
+George
+
+--YA0U8l3MIy6ujOJ37fea
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Guys,<br /><br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I&nbsp=
-; wan to build&nbsp; gstreamerfdkaccenc/gstreamerfdkdec plugin support,gstr=
-eamer version 16.0.1&nbsp; version. can anybody know proper sources link an=
-d build procedure . help me to get this feature.<br /><br /><br />Thanks &a=
-mp; Regards,<br />Sateesh<br /><br /><br />
-<h2 class=3D"title qa-title" dir=3D"auto" style=3D"margin: 0px 0px 16px; f=
-ont-weight: 600; line-height: 1.2; font-size: 2em; color: #2e2e2e; padding:=
- 0px; border-bottom: 0px; overflow-wrap: break-word; min-width: 0px; width:=
- 920px; text-align: initial; font-family: -apple-system, BlinkMacSystemFont=
-, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell, 'Helvetica Neue', san=
-s-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Co=
-lor Emoji';">&nbsp;</h2>
--- <br />Regards,<br />Sateesh
+<p>Hello,</p>
+<p><br />I am trying to build something that relies on meta-java, but it f=
+ails on do_fetch for the icedtea7 recipe:</p>
+<pre class=3D"console-output"><span class=3D"pipeline-node-71">--2021-06-0=
+7 17:24:33--  <a href=3D"http://icedtea.classpath.org/hg/release/icedtea7-f=
+orest-2.1/archive/f89009ada191.tar.bz2">http://icedtea.classpath.org/hg/rel=
+ease/icedtea7-forest-2.1/archive/f89009ada191.tar.bz2</a>
+Resolving icedtea.classpath.org (icedtea.classpath.org)... 172.104.137.120=
+<br />Connecting to icedtea.classpath.org (icedtea.classpath.org)|172.104.1=
+37.120|:80... connected.<br />HTTP request sent, awaiting response... 404 N=
+ot Found<br />2021-06-07 16:21:05 ERROR 404: Not Found.
 
---7UWBIReiw5DZHwwbQueW--
+ERROR: icedtea7-native-2.1.3-r1.0 do_fetch: Fetcher failure for URL: '<a h=
+ref=3D"http://icedtea.classpath.org/hg/release/icedtea7-forest-2.1/archive/=
+f89009ada191.tar.bz2;name=3Dopenjdk;unpack=3Dfalse;downloadfilename=3Dopenj=
+dk-f89009ada191.tar.bz2">http://icedtea.classpath.org/hg/release/icedtea7-f=
+orest-2.1/archive/f89009ada191.tar.bz2;name=3Dopenjdk;unpack=3Dfalse;downlo=
+adfilename=3Dopenjdk-f89009ada191.tar.bz2</a>'. Unable to fetch URL from an=
+y source.</span></pre>
+<p><br />Following this link, seems like the webserver is down. Do you kno=
+w any mirror that I can use in the meantime?<br /><br />Thanks,<br />George=
+</p>
+
+--YA0U8l3MIy6ujOJ37fea--
