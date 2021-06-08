@@ -1,24 +1,27 @@
-Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
- by mx.groups.io with SMTP id smtpd.web10.1243.1623179535632305113
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web08.1531.1623180605542659575
  for <yocto@lists.yoctoproject.org>;
- Tue, 08 Jun 2021 12:12:15 -0700
+ Tue, 08 Jun 2021 12:30:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=i43tQo7Y;
- spf=pass (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=179304e382=trevor.gamblin@windriver.com)
-Received: from pps.filterd (m0250812.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 158J9ANe032436;
-	Tue, 8 Jun 2021 19:12:15 GMT
-Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2045.outbound.protection.outlook.com [104.47.66.45])
-	by mx0a-0064b401.pphosted.com with ESMTP id 3929drga18-1
+ dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=Ep/rNANq;
+ spf=fail (domain: windriver.com, ip: 198.145.29.25, mailfrom: prvs=17932f0905=randy.macleod@windriver.com)
+Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id B0C4838C1115
+	for <yocto@yoctoproject.org>; Tue,  8 Jun 2021 19:30:04 +0000 (UTC)
+Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 158JU3Ha024617;
+	Tue, 8 Jun 2021 19:30:03 GMT
+Received: from nam10-bn7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2102.outbound.protection.outlook.com [104.47.70.102])
+	by mx0a-0064b401.pphosted.com with ESMTP id 3927fn0dh7-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 08 Jun 2021 19:12:14 +0000
+	Tue, 08 Jun 2021 19:30:03 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lrIV40j2OqALe6+G18iqAyaG0RqdUhV8ITtyNXp/Rj0yNUqIjKhxRDR+hKO121s4vONIplRZkdzCphcubqxb9q3Rl97E+zY9IYQ3mdXlxCAvhHI312/jOeLbRJeoSGAPczi69flJm9qyFscFHVDHEbctiFzDbmg+Z4uoe0Jf5AVekf2RHJbHTe3VH8940p8RhC64OcOn0+kA6LZce9IOoNMU4D3wpZMwKNWBUOs3hZciV5TUYUkFFFt787Amt8KsEMkSw6NHttePu9Bj+Bc+NNEjbZB4GtnOSnSUfYrwz7K115/8DwpFdZQrI6NLtzSayNR04Hmr5LE9iOU2wp9CeA==
+ b=kfv01usFjtXnbV/mrZLd41Bml5oVmbEj1Cr1iQPx1hwKDMlMESiPLTlA3shnsxO8c8ZARIcVzgbu/JtDeblv2qpnSB8YkHrRjnz7LS/zbXVGHgG0KZKNjZUAoKjymTxjEfXyBur36NDdF3SEgfzqucevhmfYQyfJLRW28PNMb7YcF75oUKPT9w0H/5V1rUMoLqOFM1T1gwc1U0AlBVUikTt7mNdk32hhUW2UhDf/8055If3grqxg0K0+ytEVIhJkgfomN760mY0eAyQMRRYU8GEoEfJo4SNukKIlYQHrur9dr2HgyyIdj38+YHCfnoIqX/vi0qqp1IqT6WzSkyMi5Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tRliaTbea2kArUdLlSr/+ULP46o3VJetjot5xFw+1a0=;
- b=BDcrgOYROsq3cGbTYqnExcZZITrV7GJbwneTK2t32YfriL4kineDo+axhCqu+ogH3sg1XF/4Dv+wW+lg4joFJxYqSZ7rLMrB/nSxxi/25wVKhIXYjHKw+6mh0rCra2nY9dsb7FGMZcCv6jeX0aG9p6qzIK7zH12UQZTeAtvA8BQS7j8PUOcB3zZkvhMk5g7xRX01fyYW5zGC3iP/4vSIox/p48lZCfMLbRwYqPpGIE125Rd6QGxKnTc2+VLntFZ1Su1JS9RJcqNc3aNgN9rZVSm0i1W6usKAb18gS7tyrMvsjGSQa8kNcCZ2fKkE6RmhPn7bya2Ax1iBAloKpZeIVA==
+ bh=CcT5c4YT/+D1CZO2h05GwOV7ELrQUL5EJODRgrJt+sA=;
+ b=odQV4ijb1iq90j2VdHwQR7x6SMHuL1WbJsAv0rrUCcHMD0k5AkJjQpAacXn33ToONkiPTa6VF3Tip3wUIA/sxojwqOKVeGdoVasvkBuOOzi2pTN8VUBRpGCsMq7AtVRq06tWzX2xNR3dTU2wFR+aNcWQSZn4fz0m37Apdps1ItqTI4AM8z+lJneMxsnDwbCYg0MsAYuA3F/FkQOkjjajmH6smUzdKnHn0hrpcd25cLYRt+OqhcxVrBN6+nz3zXVAq4bIQMq7KUN+xAH2P2us3NvK+LdkMmj3LW4hQsJjlt0+R6ZrrKDWzJypWwQUgNjYUS7Xav5P8VHVI9qLEdugqw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=windriver.com; dmarc=pass action=none
  header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
@@ -26,468 +29,254 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=windriversystems.onmicrosoft.com;
  s=selector2-windriversystems-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tRliaTbea2kArUdLlSr/+ULP46o3VJetjot5xFw+1a0=;
- b=i43tQo7YETb/1PYcOih7kY+w0pRP+uD4VmT0S0ari1j1oiu4OdQsuV0SC6RXsJAjGrAeJVBTuIoBPo6mQELMsMPrBzpzXqomwaFWyeg8kR0EOvCF18+lE35rJMa00HhPPGSpXbJtfm7lFlzbX4sPDG97amO75zjyWOhH4NYmIpY=
-Authentication-Results: public.gmane.org; dkim=none (message not signed)
- header.d=none;public.gmane.org; dmarc=none action=none
+ bh=CcT5c4YT/+D1CZO2h05GwOV7ELrQUL5EJODRgrJt+sA=;
+ b=Ep/rNANq3r6Ql9WuxrD7/bawWn6IvBzG4kgLsGeRAY3MdGlHCbjqaCZyTTGtM/0mYLaWu5ieL/Z6xery/mdOxp8MScfPUR/S56EegfYg4gW7fobKSAJUKImoINf6bGSzpKBpfhSqdQ++I/ayPQNm9f/6oK8LF03rx/s8rESpcaE=
+Authentication-Results: yoctoproject.org; dkim=none (message not signed)
+ header.d=none;yoctoproject.org; dmarc=none action=none
  header.from=windriver.com;
-Received: from BY5PR11MB3909.namprd11.prod.outlook.com (2603:10b6:a03:191::13)
- by SJ0PR11MB4864.namprd11.prod.outlook.com (2603:10b6:a03:2d4::21) with
+Received: from DM6PR11MB3994.namprd11.prod.outlook.com (2603:10b6:5:193::19)
+ by DM6PR11MB3706.namprd11.prod.outlook.com (2603:10b6:5:13e::28) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.23; Tue, 8 Jun
- 2021 19:12:11 +0000
-Received: from BY5PR11MB3909.namprd11.prod.outlook.com
- ([fe80::b5ac:be57:85a9:f240]) by BY5PR11MB3909.namprd11.prod.outlook.com
- ([fe80::b5ac:be57:85a9:f240%3]) with mapi id 15.20.4195.030; Tue, 8 Jun 2021
- 19:12:11 +0000
-Subject: Re: [yocto] bitbake controlling memory use
-To: Gmane Admin <gley-yocto@m.gmane-mx.org>, yocto@lists.yoctoproject.org
-Cc: yocto-gJxINTE1zeQw8ufyyF7U+SST3g8Odh+X-XMD5yJDbdMReXY1tMh2IBg@public.gmane.org
-References: <s4v495$bak$1@ciao.gmane.io>
- <CANNYZj_CsY0YL_bjtgf6O3A16FXe38-hLke4wEQR6mMz58SMVg@mail.gmail.com>
- <d8ab0231-717d-69e4-e6f9-739b9a08bd29@gmail.com>
- <CANNYZj_K-zpP-iTQMh5YA58dhBV88wLP-PouXS5KrHjybfsy-g@mail.gmail.com>
- <14207c27-7f5e-9a13-d8e8-28dbb0e7ea7b@gmail.com>
- <CANNYZj8MtLM5KdUqMsqhiVMHTnmj4VMoSf3XnCLvSns8grpmmA@mail.gmail.com>
- <0c8c0d85-c3e0-41d5-1a0b-2d121302439a@windriver.com>
- <2f23e846365f9736f925351e8d553c54a9d2782c.camel@linuxfoundation.org>
- <1685B30F5819A655.13459@lists.yoctoproject.org>
- <5a37c855-943a-7ae2-b481-e030ebb69de8@gmail.com>
-From: "Trevor Gamblin" <trevor.gamblin@windriver.com>
-Message-ID: <7f1e482e-41e5-fa99-d554-b311f5265823@windriver.com>
-Date: Tue, 8 Jun 2021 15:12:09 -0400
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.24; Tue, 8 Jun
+ 2021 19:30:00 +0000
+Received: from DM6PR11MB3994.namprd11.prod.outlook.com
+ ([fe80::8d3b:70ab:5fc7:9eb5]) by DM6PR11MB3994.namprd11.prod.outlook.com
+ ([fe80::8d3b:70ab:5fc7:9eb5%7]) with mapi id 15.20.4195.030; Tue, 8 Jun 2021
+ 19:30:00 +0000
+Subject: Re: [yocto] [meta-realtime][PATCH] layer.conf: set LAYERSERIES_COMPAT with honister
+To: Bruce Ashfield <bruce.ashfield@gmail.com>
+Cc: Kai <kai.kang@windriver.com>,
+        Yocto Project Discussion <yocto@yoctoproject.org>
+References: <20210604030619.35679-1-kai.kang@windriver.com>
+ <CADkTA4MrxoynTeBfnXsyH+YSX+c2MDo9PtdcgYDJqDS1cQ2u=g@mail.gmail.com>
+ <8a264bd7-49f4-1672-55b6-e97be9556ccd@windriver.com>
+ <CADkTA4NLc6OHOjPrhvEyCp=s15JHZK4yRkU1EoRD=W-Pg3ApbA@mail.gmail.com>
+ <1685614D8890E95D.26755@lists.yoctoproject.org>
+ <CADkTA4OWoe1MgFXZopS9kpFSJjT05Yc45xg91vSzQOGAJ-5vhg@mail.gmail.com>
+From: "Randy MacLeod" <randy.macleod@windriver.com>
+Message-ID: <075d467f-6c57-f933-0170-d4833a3ab761@windriver.com>
+Date: Tue, 8 Jun 2021 15:29:56 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
-In-Reply-To: <5a37c855-943a-7ae2-b481-e030ebb69de8@gmail.com>
-X-Originating-IP: [2607:fea8:c29d:d7c0::6e79]
-X-ClientProxiedBy: MN2PR20CA0017.namprd20.prod.outlook.com
- (2603:10b6:208:e8::30) To BY5PR11MB3909.namprd11.prod.outlook.com
- (2603:10b6:a03:191::13)
+ Thunderbird/78.8.1
+In-Reply-To: <CADkTA4OWoe1MgFXZopS9kpFSJjT05Yc45xg91vSzQOGAJ-5vhg@mail.gmail.com>
+X-Originating-IP: [198.48.226.187]
+X-ClientProxiedBy: BYAPR07CA0101.namprd07.prod.outlook.com
+ (2603:10b6:a03:12b::42) To DM6PR11MB3994.namprd11.prod.outlook.com
+ (2603:10b6:5:193::19)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2607:fea8:c29d:d7c0::6e79] (2607:fea8:c29d:d7c0::6e79) by MN2PR20CA0017.namprd20.prod.outlook.com (2603:10b6:208:e8::30) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.21 via Frontend Transport; Tue, 8 Jun 2021 19:12:11 +0000
+Received: from [172.25.44.2] (198.48.226.187) by BYAPR07CA0101.namprd07.prod.outlook.com (2603:10b6:a03:12b::42) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.22 via Frontend Transport; Tue, 8 Jun 2021 19:29:59 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 55b254a3-51d3-4927-b991-08d92ab1518a
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4864:
+X-MS-Office365-Filtering-Correlation-Id: 432869e5-8e61-431a-c2aa-08d92ab3ce75
+X-MS-TrafficTypeDiagnostic: DM6PR11MB3706:
+X-MS-Exchange-Transport-Forked: True
 X-Microsoft-Antispam-PRVS: 
-	<SJ0PR11MB4864C5EF711EA495AB81F3039F379@SJ0PR11MB4864.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+	<DM6PR11MB37064DF3E7077B89618CE09FF8379@DM6PR11MB3706.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:489;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	V5SXXvbrZj9QLrpyY2FL1DmhxKZfgObLLJTVDIcwiZfELxb1/GaVk27GMGcWbPmxhL8g1+u27FKKsv3YAKfVhQN7RYBtFVJuNCmW7SMiQhZwPVAoySL7pV5bchYioXHh5jyvYfFoUmGhM6C7w6MZtpJro9Bhrd5H2FgzyqizZsDyryEaZsSOmZCs2d9TBDkPnQE5OJBJQJeiZNtCzBBAOtP1ezHILa6O2dg8LATyrRj7Xu8esdJ638bWQ6DjulRNaIk7aA3Va2cMwXpWVQZ+kdf2La9VG26mPkvwpZ1qPJKkDxJoDhWYhJxK7uHzl8PImWJxeTfWR+tRp4IQvwIGg84vXKi2RLFkNCT+BdWKFnHFQ31HttRBNNq6Z6i3hnZMe4QpXzsd7Krb7APwUlGmqBkbFIpFE8aNx+prSXCwDHvtBCNlOiWVNGmcUErZXwzG1N665pSA7umgpfUOjwCj+XFw/6fv2ZQCMtrTorX0256ZUWi1GGqalapPYq8esYvuoSxtpKb1HywT1xmjyhiOQlTMc37EOnGPz58HQwbP5/rgMoqI9Rr4Cm/BfFGvkou4mwBbcW6p0fsYanAnAOzr/Zn6AC1Oxz9FDryuEG9bzhl/IaY/B+dfRc+AuBPxTCRO2U3uNWBFCe8tS8E/2FzO83rARP6lH9S6MyDf8Rf7sjboVWpVHaKiphJtGU+dPE1SpYVkON+jqyvL1PSMszEizk/U5jUhLJv5Ziylo5oVg656qJRhH+5yPl1g3KCREaW9EKgu/RjlobHtlD0eLmvaEtsox7sg34ej44TooRSL2e8rNlNIZ3+60t7B/xfANxy2CTd2YShsHRIL8ET7+JAmIA==
+	SXEcp5wThg00Fei9VdCdTc6zc/2bQWfCpf9Jc0syl6sMVpTo9RIJ+nWO5cQr7EleI8ZL/pFqB1hnX8FYnqfuxYG9/2X3eeSFHwyS/8GzCgFZPj35vIGeQlvA2EYbcFdDEb+vi05lPLZX/hjssnjcI4ApCNjxpop9bM1C44llCemUofIsE2DMN5yjeOd6AGcqwOjxEhvSDlwhjOhpTfceUCpM2yDIg/7Ta+J2r98IjdaRMcwMe3S6Twj34lBrQGW+rzcugi7mYaeIWwL0YJfH+G9G8bNyYLjaBVRgQsa5oWcf1E4hzBPj/cNFVCqxA+4Tm66I39/FykMZnOZauFzoVtv494Iet+Kff9ygCOcaDBF3JC1WxvMawHvwZx1ee2DdudKOBUqe83EwzJzt3z+ozMEBhLdZOClITQpyy+HCJOEpAkq+byx+XyRgMv4GN6yK0HiGoMh9UpEjcTPZFjAtsvyfty1YFLnqCleLwGkESfNBkIyp/INc1htSvV4ixn8UDxjN/5jAxvg0zV1+myXZFBakJVHpDIYA9yLjeZjlml1eIXYx27uzA9vAx9tUaClKY4IvzaIa7nf/ir0b8A8kKltW9N8oOxjFSr4CA+MkZACp3MnMEYN+FEoO26MzHmif9GRLs8ReGv3EgMa+sMyW0BTRGyRoAbytsjBoOLGf6kI0yQcGmW+vkl2PCmz0m/+0+65uW0+DPbYNdM7PJwruYo6rH0M+56Q9yNi5Wyvovt4UtGmbTW1skP5ZG6iKKYz2uCWctjCNXKJw5M4a7FS/CEfceMw/HmT5KWTst2Lhrunpe+Z1EtqmtPvtP3Ta+GLw5Oo2TIjswaFYqHTi01+tpItfb9kyfbt5llta9OJkyPMoGZ9cIPhWYWIu2g+/6d1j
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR11MB3909.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(376002)(136003)(346002)(39850400004)(396003)(8936002)(478600001)(966005)(8676002)(83380400001)(33964004)(86362001)(2616005)(316002)(31696002)(53546011)(44832011)(66556008)(186003)(2906002)(16526019)(31686004)(36756003)(4326008)(6486002)(66476007)(66946007)(5660300002)(38100700002)(166002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3994.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39840400004)(366004)(136003)(346002)(396003)(376002)(38100700002)(52116002)(53546011)(38350700002)(31686004)(16526019)(83380400001)(316002)(478600001)(186003)(86362001)(31696002)(966005)(6916009)(16576012)(36756003)(2616005)(26005)(956004)(2906002)(66476007)(66556008)(66946007)(5660300002)(6486002)(54906003)(8936002)(6666004)(8676002)(4326008)(45980500001)(43740500002);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?R1lVbWF4QWp1ZGg4dGJFanV6b3BOT09yZGxNVDVOQWdXd0VqL0drVlNCUlNw?=
- =?utf-8?B?V0taS3pTM2wxb2tZQTVrekhYbkl5OWJES3Q2Y290NTNqc0NRcXNpVzVXTFFh?=
- =?utf-8?B?dmhmMmUxc3NGeGJ3c2laYmliMUVzWnd4SVQrRVRSTFczcUNSKzVhWnNDVmp2?=
- =?utf-8?B?UXl5SW0xa0FBT1pzOXd2TWxBcFJNc1oraENyR2tKanNDeHhHcC9QNm9IZ0l3?=
- =?utf-8?B?KzJzSkpJeU5xcm5qQVM3WmJRZWROYjlyQXR0WlRuRVFZdGlaRnNtMkxSL0Fu?=
- =?utf-8?B?c2ptaUxHWE1hV3JjTWsvL0Q2R3orRy9ZZTJJYVZlTGN2eURDMXJoWWlNTzZE?=
- =?utf-8?B?bkE5Wkp6cDlvMG4vNHc3YjZ0Vmp6UDgvV014cWJkbmFITFlZa2wvMUtTaE5F?=
- =?utf-8?B?YjQwM3pmSXRjOFF5cjh5SUdDVzh2TEVEZTNhdlNWckJOa0lRRVlvd3ppUHlh?=
- =?utf-8?B?dXdReTM3YkpPWlBQdC9nY24vVklLS0NJQUJDOCt2aElGZk80T2owTjhPWXU0?=
- =?utf-8?B?cXlsSHFpWTlOQjdYSkNQeWNiQWlKSEpOMVhPSXFRSlB0eXUvdmg3T0xwU3pV?=
- =?utf-8?B?V29UdW1MMjlNOHpmQ3dEK2ZMM3crb2ZBc2g1Q2tzRGtESk5WaWFtQUJydmhT?=
- =?utf-8?B?RnpsWGRKNCs5Z0xiOTU3WFZwTmlVT0hXbXBVSFArOXp6K2xCSG9hSVIyK3Ni?=
- =?utf-8?B?b0RzeVVBNTdHM2IzYzkyNjhiaG1MRkJqZ1QyQ3N0TEJDTkU2VWx3NWQ0ZEFh?=
- =?utf-8?B?d1R3bnlkaFFmbThOSWJPQUJKeFROOEpSRE92RHY0S3lmZk1MK24zVGpBVWlr?=
- =?utf-8?B?VStibUxLUVNkRjd6MDRLUm0wc0R5eE54YWF1YzhpaWFjbjhYUGN0emlpZy84?=
- =?utf-8?B?SUNxV2RydExOM3RFNng4OXNFenRYKzhETXIrRFp2bHN0d0g4ZzdkUjdSRmQ1?=
- =?utf-8?B?VEY5WHZiQm1QZTJkVG1IVld4dEtGOTZhazRLc2RrNS9CWjJBcWZHNm5yZHlC?=
- =?utf-8?B?WWVvRWZ1SHpEMTgvTktFS0k5MnlobXRNN0FuU2tGNmtwcWlGVFA5bjFBYUh2?=
- =?utf-8?B?Mno4U0tYRXdzY3VnWXFLaGJqdC9pWXkyTm1pRWFDZEpVSTVjS2FZdFVzV1pH?=
- =?utf-8?B?TDMyTjBkUEpYbUs2ckpQRUZMNFZCY0tET3owdGdvSWtYb0htdFNybHlUTjdI?=
- =?utf-8?B?TkNJOEsxV0d0MkdpV2c2UGhEU2V3OExIdytvRG5PR2tWVWtVZ0tuTm9zVFZO?=
- =?utf-8?B?RHRFZnNuUkprWjNpUmpBbUZhUWdJOUVweEcrNkRmSk95a1hOT3BVZmRWc3Ay?=
- =?utf-8?B?K3pmWFRFVkE5cFAzMWU1WnNRaTdZNHl2TjU4QlF1eFBHOFZxNmVhSlY1SSsz?=
- =?utf-8?B?N1BOOE9FdlZWMWhHVzNpejd3WWdkc0NnMjUvNHpBYUE1UGJIYjFqT1VWOEJn?=
- =?utf-8?B?cU0vVE5OVm9BZk02OEtyekJzNGlPMjFOSGE3TXpzSTVLb3ZQaVh4YWRmd0ZX?=
- =?utf-8?B?b0ZpTzdYdWc4WWlhZkNJTnpkYmJFcWpwYTU0K1FZaVNzRUlQSk5rK1ZUV3Bz?=
- =?utf-8?B?dytnbkpGdW1zajIzQ29vdjFOV0Y3emx6UGpjUksvNGxEZlVRSFZWT0dMSXQr?=
- =?utf-8?B?NG5UWFhjYk1RZWgydCttajdTamdPWFZCRkk1Z1A0eEZBajhjdHVYQm5VdE01?=
- =?utf-8?B?aXNuRGJXclVHcS8zMlg1UktqbGJWQTQ3d202elpxMGdBU3dTQm9zOE1qN0tV?=
- =?utf-8?B?WUsvZzVKbXN5WU1WcHJ2T3ZNRnBPaGRTRkNNM0x0WFNnV2ZNMUVnOFBGUGtR?=
- =?utf-8?Q?/GeCQQh0qVcmGXe1D9VG1kALoAtj2nDWV2oDI=3D?=
+	=?utf-8?B?d0pTaGJqZkRoWmtzalNPaDZMajZqYWI4ZFphekpWNVN6S080blk0d3NYcVhk?=
+ =?utf-8?B?a0FuYlNTQ0ZqZUh0NTlFRXhuNFJyNVdjOFhjZUxNdG9VMU5IK3g1czNzeTJB?=
+ =?utf-8?B?VUhXY2FqYmZORituRHlZSkl2R2MwdGQ4dWdaMGIxcGlhVXBLL3hSbkFxczJL?=
+ =?utf-8?B?eG41YzdKR05vVUIwTnRDZzBQNklkWWx5VDR4QWdldzVRZTJnOEJrR3ZpbzZh?=
+ =?utf-8?B?V1VlUW0wV1J2eGdiVWg5dlhVMUVmdVpvS0NrdFkyOUJ2SEY5R1FHU081R25H?=
+ =?utf-8?B?R1R2ejFXZXc1Mi96bTdpaXhWZlRFL1VKbUh4bThTVFJaaUxhYUpSNEtUNFlj?=
+ =?utf-8?B?RGlMK3hpUTZ5cEZFZnJGbXIyb0Q5RjdRTUNpOU5DRWhaWWlxejY1TUtQNjNE?=
+ =?utf-8?B?RDlnakJ3S295V1lvK3FEZ0s1c0JqdjIwdnFyVnRvdnNHS2tZdUFiNEIyNHlw?=
+ =?utf-8?B?ZEoxV0UrVFhTaDRsTGtLSG5BOEVvanlGVi91a25LVmVQSWdIOGg5eExSc01M?=
+ =?utf-8?B?UmNCL0lFVFIyUTg3UXRUcDAva2lZd0J6RDR0eFpDNHN3Y0NKQUpFb0pqNDRr?=
+ =?utf-8?B?TXdWT1RkbFJBckZhdTZTTjUvSEtTL2tITTVucWszenZMeUVoZzlGNkhxQUs2?=
+ =?utf-8?B?NG9EZEVtVmpHc3FmdDZVaUNQek1YRC9LTW1OQ3ZLcDN1UklFMWlkSXRmLzN6?=
+ =?utf-8?B?NmJmSnJBRENaaTN5MlBhVDBwWXY4YjEzN0k5K1VydkQ3eWRrbXFGL1Y1MEVk?=
+ =?utf-8?B?RytEdzg2VEp6U25xTUFIcU5RalV6bjdZU3JpaVRGUzlHZnBxVmk4U1d5LzlB?=
+ =?utf-8?B?NDBKTEVtV0IzODRndEdJOXBqdzVyQ0xUWkJEMkhRZkI0L0F1MDdhYTlKYUlU?=
+ =?utf-8?B?UTlVRzFQSXhUdXh4cFNuNnJPaTd2K01mYTljWm1CbWxqeTNWSTAzbS9jalox?=
+ =?utf-8?B?aDFSbnRJOU5kTENpUGQ0dWxnK29Sd2VBVGNVOE1yY29tSTg1LytneG40RytT?=
+ =?utf-8?B?LzhUc0hickVkQk5kRGFNTURYRjRqY1lVSEQ4UTZGSHZSdnl2cnlDdDlEdlBh?=
+ =?utf-8?B?MmNOdU1XeG9CbVoxb2x0eVlWRzgwdGhlRTdkMVptZmdFbkFoRU9iZnpDYk5W?=
+ =?utf-8?B?RktETjcrVjV6RE9XTnpLNXNpSncwNTdrS3BNaVI3ZmNXOU40ZjM3RTlqMFpH?=
+ =?utf-8?B?ZHIzQ2wwRGIxeHhOOVh5T1IzQ2lOeGMranJZMXhPMFNTaTd6dDhLS2NvS2Vv?=
+ =?utf-8?B?a1haaTQzYjFJQm5UcFFQdlJNZUJaWVc3YjViVzcxRUVidnpxUExpc2hrVEV0?=
+ =?utf-8?B?Q3lGVFhMNGZhUENhOUhLck83dmlJWE5mdEpreTNpQ016OXg3aE1hMGxreDRB?=
+ =?utf-8?B?MDhhZ1JWRElLeUhCYmFLS1U0OEpQRnF4STY1ZUhuSlFlc3hNVEVZV3N5UTNF?=
+ =?utf-8?B?cG5KWjNuOGZ0cFZCY2NpVnAySUNJR2FpRzV1RVg1MUl1WkJ3STM5U3JuSVpT?=
+ =?utf-8?B?bVE5WUNDKzFsQVZicVpBREpSNVg2RytoOWFXUFlVTnlQd09VQVB1VTNucHVL?=
+ =?utf-8?B?RHRMeDdXUnpVYTc0WmVEL1BwVWg0cnUxaFVPN2ljUFVza3o4L3JmbkJxeng4?=
+ =?utf-8?B?c2ZUUHdOY096dTZrOFoyWTVYOGFXblhBNU9kWjFvZFQ2V3ZWZXlRSXpVVjhZ?=
+ =?utf-8?B?dTU3V0hpbXlnRXc4cmkrT3lPUFMzNldiTUlMNnRZUG1yeUgwdEErUHlicUM0?=
+ =?utf-8?Q?5E9ACn0UabZhoEfYQyjRh0EoKlTHikOZlgghSE4?=
 X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 55b254a3-51d3-4927-b991-08d92ab1518a
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3909.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 432869e5-8e61-431a-c2aa-08d92ab3ce75
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3994.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2021 19:12:11.6789
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2021 19:30:00.2781
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +FCnLl9Eektkh4NfTa1zUxevfclgfRTP4kW3jlM/jkyimv96UQwdPGGP8oFjoloX2cHAr1Q9xhqDPEjhj7mAhMoOpvWiVT3A7SxJxjzdYWY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4864
-X-Proofpoint-ORIG-GUID: -Ba4R2F-yqoxL0RN0Octyun7dbMpRck7
-X-Proofpoint-GUID: -Ba4R2F-yqoxL0RN0Octyun7dbMpRck7
+X-MS-Exchange-CrossTenant-UserPrincipalName: SB1+LAi63B1/9hQP2efpobm+B1HlhnolMjSnx59Ju71LNbc7FUQkt5TN+YAGtZvv3+5dRrwGc9n7p5EBVgZrVM0M6/JIK1wRmIY7D6SJ950=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB3706
+X-Proofpoint-GUID: ghuAzhxYiSRaSLncYTAgXmMfJvpEtbW-
+X-Proofpoint-ORIG-GUID: ghuAzhxYiSRaSLncYTAgXmMfJvpEtbW-
 X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
  definitions=2021-06-08_14:2021-06-04,2021-06-08 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- suspectscore=0 bulkscore=0 adultscore=0 spamscore=0 clxscore=1011
- phishscore=0 mlxscore=0 mlxlogscore=999 malwarescore=0 lowpriorityscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2104190000 definitions=main-2106080124
-Content-Type: multipart/alternative;
- boundary="------------BA65667686CEC327AEAD18FE"
-Content-Language: en-US
-
---------------BA65667686CEC327AEAD18FE
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 mlxlogscore=999 lowpriorityscore=0 mlxscore=0 clxscore=1015
+ adultscore=0 suspectscore=0 spamscore=0 bulkscore=0 priorityscore=1501
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2104190000 definitions=main-2106080125
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-MIME-Autoconverted: from 8bit to quoted-printable by mx0a-0064b401.pphosted.com id 158J9ANe032436
+Content-Language: en-CA
+Content-Transfer-Encoding: 7bit
 
-
-On 2021-06-07 3:27 p.m., Gmane Admin wrote:
-> [Please note: This e-mail is from an EXTERNAL e-mail address]
->
-> Op 05-06-2021 om 15:35 schreef Gmane Admin:
->> Op 14-04-2021 om 06:59 schreef Richard Purdie:
->>> On Tue, 2021-04-13 at 21:14 -0400, Randy MacLeod wrote:
->>>> On 2021-04-11 12:19 p.m., Alexander Kanavin wrote:
->>>>> make already has -l option for limiting new instances if load
->>>>> average is
->>>>> too high, so it's only natural to add a RAM limiter too.
+On 2021-06-04 8:40 a.m., Bruce Ashfield wrote:
+> On Fri, Jun 4, 2021 at 8:37 AM Bruce Ashfield via
+> lists.yoctoproject.org
+> <bruce.ashfield=gmail.com@lists.yoctoproject.org> wrote:
+>>
+>> On Fri, Jun 4, 2021 at 8:27 AM Bruce Ashfield <bruce.ashfield@gmail.com> wrote:
+>>>
+>>> On Thu, Jun 3, 2021 at 11:35 PM Kai <kai.kang@windriver.com> wrote:
+>>>>
+>>>> On 6/4/21 11:22 AM, Bruce Ashfield wrote:
+>>>>> On Thu, Jun 3, 2021 at 11:06 PM <kai.kang@windriver.com> wrote:
+>>>>>> From: Kai Kang <kai.kang@windriver.com>
+>>>>>>
+>>>>>> Replace hardknott with honister in layer.conf which aligns with
+>>>>>> oe-core.
+>>>>>>
+>>>>> I had added this back in April, but apparently didn't push the change.
 >>>>>
->>>>> =C2=A0=C2=A0=C2=A0 -l [N], --load-average[=3DN], --max-load[=3DN]
->>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Don't start multiple jobs=
- unless
->>>>> load is
->>>>> below N.
+>>>>> I also noticed that I've been updating the wrong branch with compatibility.
 >>>>>
->>>>> In any case, patches welcome :)
+>>>>> That should all be fixed now.
 >>>>
->>>> During today's Yocto technical call (1),
->>>> we talked about approaches to limiting the system load and avoiding
->>>> swap and/or OOM events. Here's what (little!) i recall from the
->>>> discussion, 9 busy hours later.
+>>>> Hi Bruce,
 >>>>
->>>> In the short run, instead of independently maintaining changes to
->>>> configurations to limit parallelism or xz memory usage, etc, we
->>>> could develop an optional common include file where such limits
->>>> are shared across the community.
+>>>> Thanks. I have seen your commits.
 >>>>
->>>> In the longer run, changes to how bitbake schedules work may be=20
->>>> needed.
+>>>> But 3 items in LAYERSERIES_COMPAT_realtime will cause layer index show
+>>>> warning:
 >>>>
->>>> Richard says that there was a make/build server idea and maybe even a
->>>> patch from a while ago. It may be in one of his poky-contrib branches=
-.
->>>> I took a few minutes to look but nothing popped up. A set of=20
->>>> keywords to
->>>> search for might help me find it.
+>>>>     WARNING: YPCompatibleVersion.name: dunfell gatesgarth hardknott:
+>>>> length 28 exceeds maximum (25), truncating
+>>>>
+>>>> Could we only keep the latest LAYERSERIES_CORENAMES (honister) in branch
+>>>> master, please?
 >>>
->>> http://git.yoctoproject.org/cgit.cgi/poky-contrib/commit/?h=3Drpurdie/=
-wipqueue4&id=3Dd66a327fb6189db5de8bc489859235dcba306237=20
+>>> Nope. It is compatible with those releases, so they need to stay. I
+>>> see no valid reason to be limited to a certain number of characters.
 >>>
->
-> This patch resolves a starvation of a particular resource (execution
-> cores), which is good.
-> However, the problem I am facing is starvation of another resource=20
-> (memory).
->
->>> Cheers,
+>>>>
+>>>> Or it set in oe-core's layer.conf:
+>>>>
+>>>> LAYERSERIES_CORENAMES = "hardknott honister"
+>>>>
+>>>> we just align with it to keep the latest 2, please?
 >>>
->>> Richard
+>>> That is just as arbitrary, I'll keep it as-is.
+>>
+>> I took a quick look, is this warning coming from the layer index ?
+>> That would be important information to convey when sending changes
+>> like this.
+> 
+> Apologies on this, I see in the follow up email you did mention the
+> layerindex .. I read completely over that, and had to search up the
+> warning myself. (my fault, not yours).
+> 
+>>
+>> That being said, it is a longer fix to get that warning changed, and
+>> I'd rather not break the index, so I dropped to only the last two
+>> releases.
+>>
+>> But I do recommend that the layer index be changed (if that is the
+>> cause of the warning), since we shouldn't be adapting to the index ..
+>> it should be adapting to layers.
+> 
+> This point still stands though :D
+
+Created:
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=14426
+
+Layerindex should allow longer compatible version names
+
+
+../Randy
+
+
+> 
+> Bruce
+> 
+>>
+>> Bruce
+>>
+>>>
+>>> Bruce
+>>>
+>>>>
+>>>> Regards,
+>>>> Kai
+>>>>
+>>>>>
+>>>>> Bruce
+>>>>>
+>>>>>> Signed-off-by: Kai Kang <kai.kang@windriver.com>
+>>>>>> ---
+>>>>>>    conf/layer.conf | 2 +-
+>>>>>>    1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>>>
+>>>>>> diff --git a/conf/layer.conf b/conf/layer.conf
+>>>>>> index 007f578..8ae67ba 100644
+>>>>>> --- a/conf/layer.conf
+>>>>>> +++ b/conf/layer.conf
+>>>>>> @@ -15,6 +15,6 @@ BBFILE_PRIORITY_realtime = "5"
+>>>>>>    # This should only be incremented on significant changes that will
+>>>>>>    # cause compatibility issues with other layers
+>>>>>>    LAYERVERSION_realtime = "1"
+>>>>>> -LAYERSERIES_COMPAT_realtime = "hardknott"
+>>>>>> +LAYERSERIES_COMPAT_realtime = "honister"
+>>>>>>    LAYERDEPENDS_realtime = "core openembedded-layer"
+>>>>>>    LAYERRECOMMENDS_realtime = "meta-realtime-dl (= 3.2)"
+>>>>>> --
+>>>>>> 2.17.1
+>>>>>>
+>>>>>
+>>>>
+>>>> --
+>>>> Kai Kang
+>>>> Wind River Linux
+>>>>
 >>>
 >>>
->> I like the idea. Unfortunately the patch doesn't apply to Gatesgarth, s=
-o
->> I couldn't test it. Any chance you would be doing a refresh?
->
-> Ok so I refreshed this patch my self and it seems to be working nicely
-> (3000 out of 4000 tasks complete), except for one thing: do_configure
-> for cmake-native fails and I don't see why. From the log:
->
-> loading initial cache file
-> xxxxxx/out/linux64/build/tmp/work/x86_64-linux/cmake-native/3.18.2-r0/bu=
-ild/Bootstrap.cmk/InitialCacheFlags.cmake=20
->
-> -- The C compiler identification is GNU 10.3.0
-> -- The CXX compiler identification is GNU 10.3.0
-> -- Detecting C compiler ABI info
-> CMake Error: Generator: execution of make failed. Make command was:
-> xxxxxx/out/linux64/poky/scripts/make-intercept/make cmTC_68352/fast &&
-> -- Detecting C compiler ABI info - failed
-> -- Check for working C compiler:=20
-> xxxxxx/out/linux64/build/tmp/hosttools/gcc
-> CMake Error: Generator: execution of make failed. Make command was:
-> xxxxxx/out/linux64/poky/scripts/make-intercept/make cmTC_f23a0/fast &&
-> -- Check for working C compiler:
-> xxxxxx/out/linux64/build/tmp/hosttools/gcc - broken
-> CMake Error at Modules/CMakeTestCCompiler.cmake:66 (message):
-> =C2=A0 The C compiler
->
-> =C2=A0=C2=A0=C2=A0 "xxxxxx/out/linux64/build/tmp/hosttools/gcc"
->
-> =C2=A0 is not able to compile a simple test program.
->
-> =C2=A0 It fails with the following output:
->
-> =C2=A0=C2=A0=C2=A0 Change Dir:
-> xxxxxx/tmp/work/x86_64-linux/cmake-native/3.18.2-r0/build/CMakeFiles/CMa=
-keTmp=20
->
->
-> =C2=A0=C2=A0=C2=A0 Run Build
-> Command(s):xxxxxx/out/linux64/poky/scripts/make-intercept/make
-> cmTC_f23a0/fast && Permission denied
-> =C2=A0=C2=A0=C2=A0 Generator: execution of make failed. Make command was=
-:
-> xxxxxx/out/linux64/poky/scripts/make-intercept/make cmTC_f23a0/fast &&
->
-> =C2=A0 CMake will not be able to correctly generate this project.
-> Call Stack (most recent call first):
-> =C2=A0 CMakeLists.txt:7 (project)
->
-> Crazy. I don't see why making a complete recipe works fine, while making
-> a test program during configure fails. Ideas?
-
-When I encountered this failure with the patch, it was because the=20
-scripts/make-intercept/make script was not marked as executable.=20
-However, there was another failure even after that was changed, claiming=
-=20
-that an appropriate Makefile parser was not found on the system, which=20
-(strangely) seems to be fixed by correcting the script's hashbang to use=
-=20
-python3 instead of python. Please see my other response in this thread=20
-for further action.
-
-- Trevor
-
->
->
->=20
->
-
---------------BA65667686CEC327AEAD18FE
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 2021-06-07 3:27 p.m., Gmane Admin
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:5a37c855-943a-7ae2-b481-e030ebb69de8@gmail.com">[Please
-      note: This e-mail is from an EXTERNAL e-mail address]
-      <br>
-      <br>
-      Op 05-06-2021 om 15:35 schreef Gmane Admin:
-      <br>
-      <blockquote type="cite">Op 14-04-2021 om 06:59 schreef Richard
-        Purdie:
-        <br>
-        <blockquote type="cite">On Tue, 2021-04-13 at 21:14 -0400, Randy
-          MacLeod wrote:
-          <br>
-          <blockquote type="cite">On 2021-04-11 12:19 p.m., Alexander
-            Kanavin wrote:
-            <br>
-            <blockquote type="cite">make already has -l option for
-              limiting new instances if load
-              <br>
-              average is
-              <br>
-              too high, so it's only natural to add a RAM limiter too.
-              <br>
-              <br>
-              &nbsp;&nbsp;&nbsp; -l [N], --load-average[=N], --max-load[=N]
-              <br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Don't start multiple jobs
-              unless
-              <br>
-              load is
-              <br>
-              below N.
-              <br>
-              <br>
-              In any case, patches welcome :)
-              <br>
-            </blockquote>
-            <br>
-            During today's Yocto technical call (1),
-            <br>
-            we talked about approaches to limiting the system load and
-            avoiding
-            <br>
-            swap and/or OOM events. Here's what (little!) i recall from
-            the
-            <br>
-            discussion, 9 busy hours later.
-            <br>
-            <br>
-            In the short run, instead of independently maintaining
-            changes to
-            <br>
-            configurations to limit parallelism or xz memory usage, etc,
-            we
-            <br>
-            could develop an optional common include file where such
-            limits
-            <br>
-            are shared across the community.
-            <br>
-            <br>
-            In the longer run, changes to how bitbake schedules work may
-            be needed.
-            <br>
-            <br>
-            Richard says that there was a make/build server idea and
-            maybe even a
-            <br>
-            patch from a while ago. It may be in one of his poky-contrib
-            branches.
-            <br>
-            I took a few minutes to look but nothing popped up. A set of
-            keywords to
-            <br>
-            search for might help me find it.
-            <br>
-          </blockquote>
-          <br>
-<a class="moz-txt-link-freetext" href="http://git.yoctoproject.org/cgit.cgi/poky-contrib/commit/?h=rpurdie/wipqueue4&amp;id=d66a327fb6189db5de8bc489859235dcba306237">http://git.yoctoproject.org/cgit.cgi/poky-contrib/commit/?h=rpurdie/wipqueue4&amp;id=d66a327fb6189db5de8bc489859235dcba306237</a>
-          <br>
-        </blockquote>
-      </blockquote>
-      <br>
-      This patch resolves a starvation of a particular resource
-      (execution
-      <br>
-      cores), which is good.
-      <br>
-      However, the problem I am facing is starvation of another resource
-      (memory).
-      <br>
-      <br>
-      <blockquote type="cite">
-        <blockquote type="cite">Cheers,
-          <br>
-          <br>
-          Richard
-          <br>
-          <br>
-          <br>
-        </blockquote>
-        I like the idea. Unfortunately the patch doesn't apply to
-        Gatesgarth, so
-        <br>
-        I couldn't test it. Any chance you would be doing a refresh?
-        <br>
-      </blockquote>
-      <br>
-      Ok so I refreshed this patch my self and it seems to be working
-      nicely
-      <br>
-      (3000 out of 4000 tasks complete), except for one thing:
-      do_configure
-      <br>
-      for cmake-native fails and I don't see why. From the log:
-      <br>
-      <br>
-      loading initial cache file
-      <br>
-xxxxxx/out/linux64/build/tmp/work/x86_64-linux/cmake-native/3.18.2-r0/build/Bootstrap.cmk/InitialCacheFlags.cmake
-      <br>
-      -- The C compiler identification is GNU 10.3.0
-      <br>
-      -- The CXX compiler identification is GNU 10.3.0
-      <br>
-      -- Detecting C compiler ABI info
-      <br>
-      CMake Error: Generator: execution of make failed. Make command
-      was:
-      <br>
-      xxxxxx/out/linux64/poky/scripts/make-intercept/make
-      cmTC_68352/fast &amp;&amp;
-      <br>
-      -- Detecting C compiler ABI info - failed
-      <br>
-      -- Check for working C compiler:
-      xxxxxx/out/linux64/build/tmp/hosttools/gcc
-      <br>
-      CMake Error: Generator: execution of make failed. Make command
-      was:
-      <br>
-      xxxxxx/out/linux64/poky/scripts/make-intercept/make
-      cmTC_f23a0/fast &amp;&amp;
-      <br>
-      -- Check for working C compiler:
-      <br>
-      xxxxxx/out/linux64/build/tmp/hosttools/gcc - broken
-      <br>
-      CMake Error at Modules/CMakeTestCCompiler.cmake:66 (message):
-      <br>
-      &nbsp; The C compiler
-      <br>
-      <br>
-      &nbsp;&nbsp;&nbsp; &quot;xxxxxx/out/linux64/build/tmp/hosttools/gcc&quot;
-      <br>
-      <br>
-      &nbsp; is not able to compile a simple test program.
-      <br>
-      <br>
-      &nbsp; It fails with the following output:
-      <br>
-      <br>
-      &nbsp;&nbsp;&nbsp; Change Dir:
-      <br>
-xxxxxx/tmp/work/x86_64-linux/cmake-native/3.18.2-r0/build/CMakeFiles/CMakeTmp
-      <br>
-      <br>
-      &nbsp;&nbsp;&nbsp; Run Build
-      <br>
-      Command(s):xxxxxx/out/linux64/poky/scripts/make-intercept/make
-      <br>
-      cmTC_f23a0/fast &amp;&amp; Permission denied
-      <br>
-      &nbsp;&nbsp;&nbsp; Generator: execution of make failed. Make command was:
-      <br>
-      xxxxxx/out/linux64/poky/scripts/make-intercept/make
-      cmTC_f23a0/fast &amp;&amp;
-      <br>
-      <br>
-      &nbsp; CMake will not be able to correctly generate this project.
-      <br>
-      Call Stack (most recent call first):
-      <br>
-      &nbsp; CMakeLists.txt:7 (project)
-      <br>
-      <br>
-      Crazy. I don't see why making a complete recipe works fine, while
-      making
-      <br>
-      a test program during configure fails. Ideas?
-      <br>
-    </blockquote>
-    <p>When I encountered this failure with the patch, it was because
-      the scripts/make-intercept/make script was not marked as
-      executable. However, there was another failure even after that was
-      changed, claiming that an appropriate Makefile parser was not
-      found on the system, which (strangely) seems to be fixed by
-      correcting the script's hashbang to use python3 instead of python.
-      Please see my other response in this thread for further action.</p>
-    <p>- Trevor<br>
-    </p>
-    <blockquote type="cite" cite="mid:5a37c855-943a-7ae2-b481-e030ebb69de8@gmail.com">
-      <br>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">
+>>> --
+>>> - Thou shalt not follow the NULL pointer, for chaos and madness await
+>>> thee at its end
+>>> - "Use the force Harry" - Gandalf, Star Trek II
+>>
+>>
+>>
+>> --
+>> - Thou shalt not follow the NULL pointer, for chaos and madness await
+>> thee at its end
+>> - "Use the force Harry" - Gandalf, Star Trek II
+>>
+>>
+>>
+> 
+> 
+> 
+> 
+> 
+> 
 
 
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------BA65667686CEC327AEAD18FE--
+-- 
+# Randy MacLeod
+# Wind River Linux
