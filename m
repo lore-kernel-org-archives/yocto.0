@@ -1,191 +1,177 @@
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
- by mx.groups.io with SMTP id smtpd.web12.809.1623167539672743501
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web08.1133.1623178827271521443
  for <yocto@lists.yoctoproject.org>;
- Tue, 08 Jun 2021 08:52:20 -0700
+ Tue, 08 Jun 2021 12:00:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=ei7QuH/j;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.208.170, mailfrom: mhalstead@linuxfoundation.org)
-Received: by mail-lj1-f170.google.com with SMTP id r16so8470912ljk.9
-        for <yocto@lists.yoctoproject.org>; Tue, 08 Jun 2021 08:52:19 -0700 (PDT)
+ dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=OQuN26CY;
+ spf=fail (domain: windriver.com, ip: 198.145.29.25, mailfrom: prvs=17932f0905=randy.macleod@windriver.com)
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id E05C838C1115
+	for <yocto@yoctoproject.org>; Tue,  8 Jun 2021 19:00:25 +0000 (UTC)
+Received: from pps.filterd (m0250810.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 158IreEw020810;
+	Tue, 8 Jun 2021 12:00:20 -0700
+Received: from nam11-bn8-obe.outbound.protection.outlook.com (mail-bn8nam11lp2169.outbound.protection.outlook.com [104.47.58.169])
+	by mx0a-0064b401.pphosted.com with ESMTP id 392c19049m-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 08 Jun 2021 12:00:20 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SXcDhFoRtBia4rOY7tSBPtmnq2/Tn2b5zkqY9KmWHhpds6FzVtA7eMVhbZMw1HnklOtCk9hWFijdamwjCWQSJUi8/jV+gjue2dqgZ419WL8NhvTfqLYGN4LPDuLrUL0my9RqDe3AnP/x1TPcBNrMmFta1dm2VwvMtr+DoKBFOgqsqN3fpn6SRIYgvs+ve5tc54eBph300yRBKdBTYjseTZq59UH4wqQSxX7jRiY4/RfThyNfBv1QLtrrQ3xBhVqsCQB5UZ7TlJOOpEL6NJbdkKtQZMG+V1JZrKyWdGf5N1JdqCrapnf8tzw4OtluEJZC5IbrIyeTlkRyU3eXFTmu0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9hpLcUQnsz/ePbOrJNE73GIwlg9O6dPaVEXS7KA4TzQ=;
+ b=gAZvIbd0ZmD+RAnw6XGWzMOtKGZDnCf+2vE2acFl5QfihT23HrOuqfF3XTUADVBHMR0BEdjQQkNUngyKbLZFXIELO46zp24zjJZPmNC5HD+LvGznOrdATZhtgFDg7vu/13TGZ2OIU4TtR+b62Q5Eu5n8IYnvaaXCr50w/oiJLbHvfsZsn8QHjSxYoUV4UNyfpp3gUlTcK6J+coV2n82Zhc3YbfZYwXpq2atnA3KhK47KfPuWIn9a0LFatjl20DLE9yGtWe3c5Ba1LR6vYySWFaYhGn8SeZUl6HNta36AHq3EFw65NS17Gx0Mg2DOHZGIvcn6+4/qn6xPYa7SFtb9fQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=raSmrKB9rd+IGKVJqj+lX9FJkJud/PzrFqnRpQZHZjQ=;
-        b=ei7QuH/jML/C4u8m7VZlYBL8h3j8q7Hc2lf1mHdFU47AYdfYjkMd+W/lAuCftUKjX1
-         sjqxiki5dAdgGF6nOPdwD4eWRvPu/MDmaeAvho6His4cEnL9S+20AiTKlRAhPSYYBduO
-         FKTU08hu7cgdeAmCqfux+vf8o5x++oSCSoclA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=raSmrKB9rd+IGKVJqj+lX9FJkJud/PzrFqnRpQZHZjQ=;
-        b=Tz4FlGOj/gzkdCA4U8Am4rhL8Z1lTgvJCb50Oq6gP/DKvcgENx8K1qfhXQwHZt+Xgt
-         uF7G8YFsrfKnYRqlhkcgZ1WxD3LeiSESGILZ7QBr3i6nsti9vbnOcBWr0s+4dajHGPej
-         JydRvm89uM1vr0i1h0DNQpLQjjWaSDDAWOam4sF9FBZv5NABmOR0ZiTc8j1nwuNbIM1/
-         ZDJOQ8JYzbk4u9dECWwjNV+F0D/gsdTSXBVof1Urh9rNXAe3MlHCrmdBimm94BtYKQqj
-         PMa6cG5m7kua5NKuOMqilynD0W55cDV2ZQzVWLstzJdwIti9onaw2F4tm7Dc9dqTBDVS
-         gjMQ==
-X-Gm-Message-State: AOAM5332P3zcnlzFONlw53x82j3TfDsCI5L36cahm55bwBerlhdhCnlN
-	7EkvYj0hg4hsCVekuzBEV4lyLIvfp2O0REvzHygMKA==
-X-Google-Smtp-Source: ABdhPJzy+cmlKESh7lQYPDDPIFlWd4TwAvRH56XVvS4OEE5ZCiROSgSmEUmgV01c/fiF8sw7CzXDqG6tV/MzH5rEZ6U=
-X-Received: by 2002:a2e:bf21:: with SMTP id c33mr19100867ljr.28.1623167537526;
- Tue, 08 Jun 2021 08:52:17 -0700 (PDT)
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9hpLcUQnsz/ePbOrJNE73GIwlg9O6dPaVEXS7KA4TzQ=;
+ b=OQuN26CYuE3OE1EblPO0YlXC++J35Kg2NXzM0cPzKhk91pnFVW7hrNMfwsE7naYt/GejOcPupL/3lQVLzWzo9G0XMk5b/xu5TKFTNnMZQlXLwEPWBirrqLSU5szxqALA0nN3Y8itkFetsX4c8gJdcv/Nz1EGHNdEjBAdmTzA2fI=
+Authentication-Results: yoctoproject.org; dkim=none (message not signed)
+ header.d=none;yoctoproject.org; dmarc=none action=none
+ header.from=windriver.com;
+Received: from DM6PR11MB3994.namprd11.prod.outlook.com (2603:10b6:5:193::19)
+ by DM6PR11MB2603.namprd11.prod.outlook.com (2603:10b6:5:c6::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.21; Tue, 8 Jun
+ 2021 19:00:18 +0000
+Received: from DM6PR11MB3994.namprd11.prod.outlook.com
+ ([fe80::8d3b:70ab:5fc7:9eb5]) by DM6PR11MB3994.namprd11.prod.outlook.com
+ ([fe80::8d3b:70ab:5fc7:9eb5%7]) with mapi id 15.20.4195.030; Tue, 8 Jun 2021
+ 19:00:17 +0000
+Subject: Re: [yocto] Managing chinese text input
+To: Mauro Ziliani <mauro@faresoftware.it>,
+        "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <B5712FE8-0796-4209-924F-1EC873F82B9C@getmailspring.com>
+From: "Randy MacLeod" <randy.macleod@windriver.com>
+Message-ID: <ab9f8167-dcec-2a85-2809-f63f48d90027@windriver.com>
+Date: Tue, 8 Jun 2021 15:00:14 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
+In-Reply-To: <B5712FE8-0796-4209-924F-1EC873F82B9C@getmailspring.com>
+X-Originating-IP: [198.48.226.187]
+X-ClientProxiedBy: BYAPR07CA0021.namprd07.prod.outlook.com
+ (2603:10b6:a02:bc::34) To DM6PR11MB3994.namprd11.prod.outlook.com
+ (2603:10b6:5:193::19)
 MIME-Version: 1.0
-References: <BYAPR11MB33017216B14BA159AF5601E588269@BYAPR11MB3301.namprd11.prod.outlook.com>
- <8e289c9f6578427d85c56618de3a130d@XBOX03.axis.com> <f75c8b912e10f2383159c9edac3de2a8f84cee70.camel@linuxfoundation.org>
- <11f3b266de0a4120a96f32977064a7c1@XBOX03.axis.com>
-In-Reply-To: <11f3b266de0a4120a96f32977064a7c1@XBOX03.axis.com>
-From: "Michael Halstead" <mhalstead@linuxfoundation.org>
-Date: Tue, 8 Jun 2021 08:52:06 -0700
-Message-ID: <CADfgfobLQv+3JGb1NOmvN3kgF7+Y6EwHoAhSOcqMipkBsyVhug@mail.gmail.com>
-Subject: Re: [yocto] [ANNOUNCEMENT] Yocto Project 3.3.1 (hardknott-25.0.1) is Released
-To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, 
-	Vineela <vineela.tummalapalli@intel.com>, 
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000007c51d005c443248a"
-
---0000000000007c51d005c443248a
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [172.25.44.2] (198.48.226.187) by BYAPR07CA0021.namprd07.prod.outlook.com (2603:10b6:a02:bc::34) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.24 via Frontend Transport; Tue, 8 Jun 2021 19:00:16 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d6eaae82-c639-4b17-3ee9-08d92aafa7e6
+X-MS-TrafficTypeDiagnostic: DM6PR11MB2603:
+X-Microsoft-Antispam-PRVS: 
+	<DM6PR11MB260397F0233FE598515689EDF8379@DM6PR11MB2603.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	jFm9/KZiHW09k9o/agJWgVggaEUQhAPVv0ggIhtJNaUqVlem31BnERyz/Zc2/PWjHY6frX4jIkXO6l26ENkzOuu5sjr8wxq7OQGFCUWa79zmo7kaQVhlT4fhLY5wLjLvGgmwHmY3i13JDmM973UDD1/5wDs2Htg6OMPCqjMwN1mgotHUu9x5a9Xm9kr1xWYHfJGJ46/9YAVxQ+eaO9JI/F4Tlw77vZPfZZloK+ON6VxNFl3JS0LY8WtvyWJ8HPCKw2NoLI8dsw1L4v00fJMh0YD2pinvLPzASE97HgHvWGq3YZiz7elfAQlTQLzvIPBTd1s9FzaWY5E/h9UZ4HzGtby20tFpCuMwUN3XG2HJ2SsHN5/iHfglwMjs4/jNJ7pnkZCuKfOYD3sAeP1cqGzqkxS3XI8NnxGB5KzK26JiPnOiYWEf2LB4XCDVNxzUa+ikCmQGNBL2cMe5L3ufWV2H6Mmnky5fBuhCPblHpg6aF6wNCTRHXrnp/LwJVuSRhT1Pmy0oxmbHlIYmmmCOKbMPn7bCtonBWb3/u6QD+1Yi2+p/Hoxcz5gK9DhgFuJ2cufV3NVWL1qjZvf8l1J9XQfH0kRkjheh9SFdUmzXMkIejLRvldVRedIYGlvO6TRlYClapkkE7MYex1aK4bw5DC+pz7KSJM2PAJ1sQUuPKgwcEOvMsVLmAMMGUttz+urEwD//n8kRwulUz7e+E6uWsyxqKwVCKuHibUOkQJoehIcE5N0f/lC07KIYIsrnax5k5nH66qSOg4Rxq6/nIx8LHIyNrPmJ20d/9rSnQEz5wxjyaJA/wW8cV4GcImiTqRNeANqtORQCcrQw4k7SFANPDVLbmY45FV0tYePXYdKoFrru7GRRbUbwfEzUbMVOTvYDusJk
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3994.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(39840400004)(396003)(366004)(136003)(376002)(5660300002)(66946007)(31696002)(966005)(66476007)(6486002)(26005)(66556008)(2906002)(83380400001)(53546011)(8936002)(8676002)(52116002)(110136005)(16576012)(2616005)(478600001)(186003)(38100700002)(38350700002)(36756003)(31686004)(16526019)(956004)(86362001)(316002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?TGFjVDRIMHQxM29LNHhwT0dSdTd0THV3N29XUEZodjUwTzIvWkJRMzBtOG4z?=
+ =?utf-8?B?UTN2RnFoWFBCV1RSdStXVGxKbllScHVTcy8rZThMVi9rWnJtUG8yb0l0cnJ2?=
+ =?utf-8?B?VDBZb1ZOR3hDeHNXa3NOS1pRZTJJUHhSNno3RmdxeVA4b0NyWjJuK01XRnZC?=
+ =?utf-8?B?K1I0Yk9MUDAzUVdReUlKeWpSWCtsMUM4a05iMGlIVkhWTFNJSkNvU3ZheitP?=
+ =?utf-8?B?RnY5Q25JT1RtanU4bEpUMC9zbWttQzhUNExPUUhXKy8wNVV1MXhpNjJ3TFhn?=
+ =?utf-8?B?WDVTeGpsNVZ2SWdYa2FtTVN4ZmFPSzBvTWh3cGo2MldnUncvRzNnUlFOZlIy?=
+ =?utf-8?B?UDFxTzY4SUdveDh5U2hsTmlTZlVYTW9ndGM4YmVCQVNHLzN0YTJqOG8zekJa?=
+ =?utf-8?B?RWRwTmRqenB6S0o1amg2YlhFVnRmMVpyRFlKWUp3TXZQTVdTNUFuZUYwV0JG?=
+ =?utf-8?B?QUh3T25vL1ZpdTVya2hXTWl2bXRHakVEWHBqcGtrcUd2cTNZcTQ3b1ZOWmNK?=
+ =?utf-8?B?WndpZXVzWXVZOGhqaGhaaStwN054a25sME9wYk4vZ2RMUlNWcDZIWUtXL0VS?=
+ =?utf-8?B?dTE4Q3FNalJWc21DUDhoTStyTkhJUnZkVnlQSExKejVrdW9pYVlPL3hOUXpJ?=
+ =?utf-8?B?TmR6WXBuSDc1MUZmb3oySXdFTDZNaFc4QjhoSDR2VTJyb1hJeTBlRmMyQUkz?=
+ =?utf-8?B?ZzZUN1JCWENkNWFTSFNOMFdxWDBFdGU0M1hhcURwdS8xSnowNGFkelp6MW5l?=
+ =?utf-8?B?VXg3a2JJSGNLQi9EMDFvdTlYTHJ4OUFWeERPcnJKbEFjN1hTY2ZLQWk3VTJV?=
+ =?utf-8?B?SGprMlBGaFVycDJ0Z210cVRuUytubEV2YjJHenAxK290dWd6aHduNUNqeVdq?=
+ =?utf-8?B?QkpnZ0Uyb0FQNCtlcDgxYzBVQnh1ZE9YWEpoTXBYdFBvd2RQLzM3WVFad2JC?=
+ =?utf-8?B?RFpiUDgzcTBtWFJPWmI3eXROcE5sZkhHNnFvb3RheitXek9TVmd0cXlGOVp3?=
+ =?utf-8?B?ZjVUMGhpdTRIdGFjNEJ6TExoK1JEZWR6dklTd0RvQlE5WWpMdlJXcGUwNVR0?=
+ =?utf-8?B?bDZ1VGdFdzBKNzk0QmJqcXFnVDN5dHhxY1hKRjB2VkxaMFEvaDVMa3ZJR3RB?=
+ =?utf-8?B?ei9udzdjdlVRMmI2WmtmVUpIOWJ0UFB2VG5KSURmbllrd0l5TjQvVk1TZEl4?=
+ =?utf-8?B?Mk00T1lXczZTY0liU0VncTZ1M1RsUjN3RnF1ZnRDeC8vL1NFbFI1aFFxaXJr?=
+ =?utf-8?B?ckJxdllLc1hlWHNLL1E0RExLRVJpSWJqVGxuUFFCS0o1N05PVEtGZi9nYncy?=
+ =?utf-8?B?UGkwRlAwYnd4WmxYSC9jdDJRZUdnSzNETzFQcUNOYmpIbEtEUEdJT0RtZFBL?=
+ =?utf-8?B?Y0d4S2txSWlDdFMyUDhjUzVjbGYxRVpPVklReldZV2thRFp1bVd6b0U3OVg0?=
+ =?utf-8?B?KzdhMko1enpzdEh0Wk15V3UrdWpXcm1VbUpwVmNTU0JuVkFLc0g4RzhpN1Ba?=
+ =?utf-8?B?WEpXRktVbTZvNE8wQnp5NkpFSUk5SXdrSkpJZXRkTnRBMWxVUFUrWUlKLzlG?=
+ =?utf-8?B?Mk9EMU9GTzBIdU1YTGEwQkJBU2RwNmxaM0g2S1E1ZGxlTVNpTE55UEtscmVL?=
+ =?utf-8?B?em5wVkk1VzRoZmJ6bWRGWmF4Q3o0RHc4R3pBYVBYQUxhdnExRUNnbm0xdzND?=
+ =?utf-8?B?cGF0dGVsNUpPSURXVXN3LzltZTRHOWJuVmtmYmFoL1hNTVRmcEo3TlUxb1E1?=
+ =?utf-8?Q?slb++vMHkOaIe6mag7Zo992pULOoOPRZVXTUvzG?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d6eaae82-c639-4b17-3ee9-08d92aafa7e6
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3994.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2021 19:00:17.7012
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PKkDGgVBu83l1nWHE+Gzp9dSXuz+/2zPfXYLyHHqWyW+tHqOLmR50x1JtTM50QS6e0yFMnpPiO/fg4zteUrtJCN0J/AnrkL0bCASC2hmeuw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2603
+X-Proofpoint-GUID: ZUxnBFx3SwnReEKYXfy1daspdBpIJ1Aw
+X-Proofpoint-ORIG-GUID: ZUxnBFx3SwnReEKYXfy1daspdBpIJ1Aw
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-06-08_14:2021-06-04,2021-06-08 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ priorityscore=1501 phishscore=0 malwarescore=0 mlxlogscore=999
+ suspectscore=0 adultscore=0 impostorscore=0 spamscore=0 clxscore=1011
+ mlxscore=0 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2104190000 definitions=main-2106080122
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-CA
 Content-Transfer-Encoding: quoted-printable
 
-After discussing it we've gone ahead and deleted the hardknott-25.0.0 tag
-then added hardknott-3.3, and hardknott-3.3.1 tags.
+On 2021-06-08 9:17 a.m., Mauro Ziliani wrote:
+> Hi all.
+> I'm coding my own keyboard for a touch screen device based on Qt/Qml 5.6=
+.
+> I'd like to implement a chinese input method.
+> The keyboard is embedded in the software and it is activated only inside=
+=
+=20
+> the software.
+>=20
+> The system is based on an old mix of Jethro/Krogoth
+>=20
+> I know there ibus framework for this, but it is not included in yocto bs=
+p.
+>=20
+> Any idea about?
 
-From now on any release before 3.3 will have the poky version number tags
-and from the 3.3 release forward we will use branchname-yocto-version tags.
+Hi Mauro,
 
-On Tue, May 25, 2021 at 6:12 AM Peter Kjellerstedt <
-peter.kjellerstedt@axis.com> wrote:
+You might have to add the meta-gnome layer or copy the recipe into your
+own layer:
 
-> > -----Original Message-----
-> > From: Richard Purdie <richard.purdie@linuxfoundation.org>
-> > Sent: den 25 maj 2021 14:44
-> > To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>; Vineela
-> > <vineela.tummalapalli@intel.com>
-> > Cc: 'yocto@lists.yoctoproject.org' <yocto@lists.yoctoproject.org>;
-> Michael
-> > Halstead <mhalstead@linuxfoundation.org>
-> > Subject: Re: [yocto] [ANNOUNCEMENT] Yocto Project 3.3.1
-> (hardknott-25.0.1)
-> > is Released
-> >
-> > On Tue, 2021-05-25 at 12:13 +0000, Peter Kjellerstedt wrote:
-> > > It seems the =E2=80=9Dhardknott-25.0.1=E2=80=9D tag is missing for me=
-ta-gplv2.
-> > > The =E2=80=9Cyoccto-3.3.1=E2=80=9D tag is present.
-> >
-> > This was deliberate since we've been trying to step away from the
-> > "poky" version numbers, I'm not sure they add much to anything.
-> >
-> > Is there a particular reason you were looking for those?
->
-> Well, those are the ones we have traditionally been using. The benefit I
-> see
-> with them are that they contain the release name. For me as a user, it is
-> much
-> easier to see and refer to "hardknott-something.1" than "yocto-3.3.1".
-> I.e.,
-> I don't have a relation to the "25.0" or "3.3" part, but to the release
-> name.
-> We typically only talk about "hardknott" or "the second hardknott
-> release".
->
-> That said, a tag such as "yocto-hardknott-3.3.1" or "hardknott-3.3.1"
-> would
-> fulfill the same properties as "hardknott-25.0.1", though the one without
-> the "yocto-" prefix is more suitable when tab completing, e.g.,
-> `git log hardknott-3.3..hardknott-3.3.1`, so that is the one I would use
-> if
-> it was up to me. ;)
->
-> > Cheers,
-> >
-> > Richard
->
-> //Peter
->
->
+https://layers.openembedded.org/layerindex/recipe/112490/
+
+Let us know how that works for you.
+
+../Randy
+
+>=20
+> Best regards,
+>  =C2=A0=C2=A0 MZ
+>=20
+> Sent from Mailspring=20
+> <https://urldefense.com/v3/__https://getmailspring.com/__;!!AjveYdw8EvQ!=
+KQT0NMi6tN3MScjQud46rQHVAeiUdZigxi-wsMs_UQvSO4ze-cH1wNBbJdQv1KsQkriUPw$>,=
+=20
+> the best free email app for work
+> Sent from Mailspring
+>=20
+>=20
+>=20
+>=20
+
 
 --=20
-Michael Halstead
-Linux Foundation / Yocto Project
-Systems Operations Engineer
-
---0000000000007c51d005c443248a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">After discussing it we&#39;ve gone ahead and deleted the h=
-ardknott-25.0.0 tag then added=C2=A0hardknott-3.3, and=C2=A0hardknott-3.3.1=
- tags.=C2=A0<div><br></div><div>From now on any release before 3.3 will hav=
-e the poky version number tags and from the 3.3 release forward we will use=
- branchname-yocto-version=C2=A0tags.</div></div><br><div class=3D"gmail_quo=
-te"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, May 25, 2021 at 6:12 AM P=
-eter Kjellerstedt &lt;<a href=3D"mailto:peter.kjellerstedt@axis.com">peter.=
-kjellerstedt@axis.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
-4);padding-left:1ex">&gt; -----Original Message-----<br>
-&gt; From: Richard Purdie &lt;<a href=3D"mailto:richard.purdie@linuxfoundat=
-ion.org" target=3D"_blank">richard.purdie@linuxfoundation.org</a>&gt;<br>
-&gt; Sent: den 25 maj 2021 14:44<br>
-&gt; To: Peter Kjellerstedt &lt;<a href=3D"mailto:peter.kjellerstedt@axis.c=
-om" target=3D"_blank">peter.kjellerstedt@axis.com</a>&gt;; Vineela<br>
-&gt; &lt;<a href=3D"mailto:vineela.tummalapalli@intel.com" target=3D"_blank=
-">vineela.tummalapalli@intel.com</a>&gt;<br>
-&gt; Cc: &#39;<a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_bl=
-ank">yocto@lists.yoctoproject.org</a>&#39; &lt;<a href=3D"mailto:yocto@list=
-s.yoctoproject.org" target=3D"_blank">yocto@lists.yoctoproject.org</a>&gt;;=
- Michael<br>
-&gt; Halstead &lt;<a href=3D"mailto:mhalstead@linuxfoundation.org" target=
-=3D"_blank">mhalstead@linuxfoundation.org</a>&gt;<br>
-&gt; Subject: Re: [yocto] [ANNOUNCEMENT] Yocto Project 3.3.1 (hardknott-25.=
-0.1)<br>
-&gt; is Released<br>
-&gt; <br>
-&gt; On Tue, 2021-05-25 at 12:13 +0000, Peter Kjellerstedt wrote:<br>
-&gt; &gt; It seems the =E2=80=9Dhardknott-25.0.1=E2=80=9D tag is missing fo=
-r meta-gplv2.<br>
-&gt; &gt; The =E2=80=9Cyoccto-3.3.1=E2=80=9D tag is present.<br>
-&gt; <br>
-&gt; This was deliberate since we&#39;ve been trying to step away from the<=
-br>
-&gt; &quot;poky&quot; version numbers, I&#39;m not sure they add much to an=
-ything.<br>
-&gt; <br>
-&gt; Is there a particular reason you were looking for those?<br>
-<br>
-Well, those are the ones we have traditionally been using. The benefit I se=
-e <br>
-with them are that they contain the release name. For me as a user, it is m=
-uch <br>
-easier to see and refer to &quot;hardknott-something.1&quot; than &quot;yoc=
-to-3.3.1&quot;. I.e., <br>
-I don&#39;t have a relation to the &quot;25.0&quot; or &quot;3.3&quot; part=
-, but to the release name. <br>
-We typically only talk about &quot;hardknott&quot; or &quot;the second hard=
-knott release&quot;. <br>
-<br>
-That said, a tag such as &quot;yocto-hardknott-3.3.1&quot; or &quot;hardkno=
-tt-3.3.1&quot; would <br>
-fulfill the same properties as &quot;hardknott-25.0.1&quot;, though the one=
- without <br>
-the &quot;yocto-&quot; prefix is more suitable when tab completing, e.g., <=
-br>
-`git log hardknott-3.3..hardknott-3.3.1`, so that is the one I would use if=
- <br>
-it was up to me. ;)<br>
-<br>
-&gt; Cheers,<br>
-&gt; <br>
-&gt; Richard<br>
-<br>
-//Peter<br>
-<br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr">Michael Halstead<div>Linux Foun=
-dation / Yocto Project</div><div>Systems Operations Engineer</div></div></d=
-iv>
-
---0000000000007c51d005c443248a--
+# Randy MacLeod
+# Wind River Linux
