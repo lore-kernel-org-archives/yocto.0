@@ -1,163 +1,71 @@
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by mx.groups.io with SMTP id smtpd.web12.10524.1623148800257677218
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+ by mx.groups.io with SMTP id smtpd.web09.11201.1623153059161146046
  for <yocto@lists.yoctoproject.org>;
- Tue, 08 Jun 2021 03:40:00 -0700
+ Tue, 08 Jun 2021 04:50:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: intel.com, ip: 134.134.136.24, mailfrom: naveen.kumar.saini@intel.com)
-IronPort-SDR: +OSSZFNsFcG8X5J7f5TilvUfLZRR3jawzXc7KxPMq9226bYiQ2FYsyzGIXNSJNcuG6K5Js3S04
- xcCtCtku9VCw==
-X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="204784475"
-X-IronPort-AV: E=Sophos;i="5.83,257,1616482800"; 
-   d="scan'208";a="204784475"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jun 2021 03:39:59 -0700
-IronPort-SDR: nRfmV1/li8VtA9rGAmllYzkRRPVgqjcW/MJm/QMCUH2/q5WRamj2R0rOA1i9YEGobmlg/7PV1l
- VExw+wN7xlNA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,257,1616482800"; 
-   d="scan'208";a="481899310"
-Received: from kmsmsx601.gar.corp.intel.com ([172.21.219.141])
-  by orsmga001.jf.intel.com with ESMTP; 08 Jun 2021 03:39:57 -0700
-Received: from kmsmsx603.gar.corp.intel.com (172.21.219.143) by
- kmsmsx601.gar.corp.intel.com (172.21.219.141) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Tue, 8 Jun 2021 18:39:56 +0800
-Received: from kmsmsx603.gar.corp.intel.com ([172.21.219.143]) by
- kmsmsx603.gar.corp.intel.com ([172.21.219.143]) with mapi id 15.01.2242.008;
- Tue, 8 Jun 2021 18:39:56 +0800
-From: "Naveen Saini" <naveen.kumar.saini@intel.com>
-To: "amit.kucheria@verdurent.com" <amit.kucheria@verdurent.com>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"wojciech.zmuda@huawei.com" <wojciech.zmuda@huawei.com>,
-	"andrei.gherzan@huawei.com" <andrei.gherzan@huawei.com>
-CC: Amit Kucheria <amit.kucheria.ext@huawei.com>
-Subject: Re: [meta-zephyr][PATCHv2 1/5] zephyr-kernel: Clone mbedtls
-Thread-Topic: [meta-zephyr][PATCHv2 1/5] zephyr-kernel: Clone mbedtls
-Thread-Index: AQHXW2KGKGqIzQ/ED0WY2PpJ1Gb8Z6sJ7YrA
-Date: Tue, 8 Jun 2021 10:39:56 +0000
-Message-ID: <804db4de35bb4fe2bdfc7c4a9371c744@intel.com>
-References: <cover.1622535742.git.amit.kucheria.ext@huawei.com>
- <c6e00de83150cd7d99d172404ef8464526592529.1622535742.git.amit.kucheria.ext@huawei.com>
-In-Reply-To: <c6e00de83150cd7d99d172404ef8464526592529.1622535742.git.amit.kucheria.ext@huawei.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-product: dlpe-windows
-dlp-version: 11.5.1.3
-x-originating-ip: [10.108.32.68]
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=djbnHgoR;
+ spf=pass (domain: gmail.com, ip: 209.85.208.172, mailfrom: zmuda.w@gmail.com)
+Received: by mail-lj1-f172.google.com with SMTP id d2so22438006ljj.11
+        for <yocto@lists.yoctoproject.org>; Tue, 08 Jun 2021 04:50:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EHOMYrwVPAhMtPKxc04MhBg5tg3bjposSSFifa22Z90=;
+        b=djbnHgoRYpLq9/cpgn+FSOvqtnIhsZ9hIQB4GE0cYZzRxJTQBJZnQGB4VT5eBKhAon
+         CLZUw1sQmcrEyhbrOti4HdMsy+CooqzQ0Dvsmb9jjXdWmY2jea0hGRjuOga4KBnSm1jK
+         0fl5XKg4N68rAVChgsM0suo1S745BklDc1Tc98tbrnVQPNbVVC4IiWcJRE1xKomCR2M+
+         MP2B4yHwtBjYEscQpk6JwMJb8pZ6dbikdrO5N7JcTCQtx1kPT6azQTSSifpOXC9MN3Mz
+         GMiU+fkTvD4eAOYbVPZM1nMLpgW5uQdp5mv12uJNsTeMdHkkL2PZPCbL8Wu6wiYB0GuB
+         Rd8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EHOMYrwVPAhMtPKxc04MhBg5tg3bjposSSFifa22Z90=;
+        b=hd1kAnETnxrymJIgXfL/hL1yfcrywnm21A9uFdhQIkECL0OI2/jKDWQ6qpXywUSLRh
+         X+fOYv7VP5/3usXUmGHrC1+4nVfnooSKWizAaOX0brl0BgKpuOxa9EmRWsRpjx15pnTv
+         UjZX86YzYmRdUNBD7BO/PerC8fxGSQxFsFJj4z8Dgun2X44M9JbYS7qumVgWrynDKB1C
+         59ABmCk3jfSPzEZT68khI8CUPBQh+1H0D6FVeV1PDnjdgXK0w7MFcH7xcH8cwFo9ngJp
+         v0sK8kboLXR1YjAYx9a4qri1SMRzcFiSKA7HkYzB0LH3sZoFFdqX5OLqg1bLr4YiY5hl
+         kTng==
+X-Gm-Message-State: AOAM533s8eidt+1l22GQhCGVkLKdmODH4yjchATVAefyePthwm2G5s5/
+	vVBMUgmT0w1ndCkVrKEr0mTNBxMSsV7vuw==
+X-Google-Smtp-Source: ABdhPJz6nNdAeqWCPSXpZzfoGtKO9jAfEzmMIqghnZBByMe+wiHjFfDckomuBQDGI1I92fPFPuvKqw==
+X-Received: by 2002:a2e:9a0d:: with SMTP id o13mr1114594lji.440.1623153056809;
+        Tue, 08 Jun 2021 04:50:56 -0700 (PDT)
+Return-Path: <zmuda.w@gmail.com>
+Received: from localhost.localdomain ([2a02:a319:8239:4400:41ca:d8d:7bc0:8ed2])
+        by smtp.gmail.com with ESMTPSA id n17sm1605830lfh.220.2021.06.08.04.50.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Jun 2021 04:50:56 -0700 (PDT)
+From: "Wojciech Zmuda" <zmuda.w@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: naveen.kumar.saini@intel.com,
+	Wojciech Zmuda <wojciech.zmuda@huawei.com>
+Subject: [meta-zephyr][PATCH 0/2] Bump Zephyr kernel to 2.6.0
+Date: Tue,  8 Jun 2021 13:50:46 +0200
+Message-Id: <20210608115048.17205-1-zmuda.w@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Build failing:
+From: Wojciech Zmuda <wojciech.zmuda@huawei.com>
 
-Could not open 'poky/build-zephyr/tmp-newlib/work/armv7m-yocto-eabi/zephyr-=
-mqtt-publisher/2.5.0+gitAUTOINC+fe7c2efca8_c3bd2094f9-r0/git/' (in 'osource=
- "$(ZEPHYR_MBEDTLS_KCONFIG)"') (EISDIR: Is a directory)
+This patch set bumps Zephyr to 2.6.0, as stable revision has been
+released a few days ago. It also updates revisions of submodules.
 
+Tested with zephyr-philosophers on nRF 52840 DK.
 
+Wojciech Zmuda (2):
+  zephyr-kernel-src: add 2.6.0 release
+  zephyr-kernel-src set default preferred version to 2.6.0
 
-To fix, can you try following revision for mbedtls.
-    - name: mbedtls
-      revision: 24d84ecff195fb15c889d9046e44e4804d626c67
-https://github.com/zephyrproject-rtos/zephyr/blob/zephyr-v2.5.0/west.yml#L9=
-4
+ .../zephyr-kernel/zephyr-kernel-src-2.6.0.inc       | 13 +++++++++++++
+ recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc  |  2 +-
+ 2 files changed, 14 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc
 
-Regards,
-Naveen
-
-
-
-> -----Original Message-----
-> From: amit.kucheria@verdurent.com <amit.kucheria@verdurent.com>
-> Sent: Monday, June 7, 2021 2:01 PM
-> To: yocto@lists.yoctoproject.org; wojciech.zmuda@huawei.com;
-> andrei.gherzan@huawei.com; Saini, Naveen Kumar
-> <naveen.kumar.saini@intel.com>
-> Cc: Amit Kucheria <amit.kucheria.ext@huawei.com>
-> Subject: [meta-zephyr][PATCHv2 1/5] zephyr-kernel: Clone mbedtls
->=20
-> From: Amit Kucheria <amit.kucheria.ext@huawei.com>
->=20
-> MBed TLS is a library that implements cryptographic primitives and SSL/TL=
-S
-> and DTLS protocols that are needed in secure network communications.
->=20
-> Add it to the kernel include files to build and link against applications=
- that
-> need mbedtls.
->=20
-> Signed-off-by: Amit Kucheria <amit.kucheria.ext@huawei.com>
-> ---
->  recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc    | 1 +
->  recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0.inc | 1 +
->  recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc       | 1 +
->  3 files changed, 3 insertions(+)
->=20
-> diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
-> b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
-> index 330fe59aebe5..c9acbbbc3645 100644
-> --- a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
-> +++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
-> @@ -28,6 +28,7 @@ ZEPHYR_MODULES =3D ""
->  ZEPHYR_MODULES_append_arm =3D "\;${S}/modules/cmsis"
->  ZEPHYR_MODULES_append_nordic =3D "\;${S}/modules/hal/nordic"
->  ZEPHYR_MODULES_append_stm32 =3D "\;${S}/modules/hal/stm32"
-> +ZEPHYR_MODULES_append_mbedtls =3D "\;${S}/modules/lib/mbedtls"
->  ZEPHYR_MODULES_append_openamp =3D "\;${S}/modules/lib/open-
-> amp\;${S}/modules/hal/libmetal"
->=20
->  EXTRA_OECMAKE_append =3D " -DZEPHYR_MODULES=3D${ZEPHYR_MODULES}"
-> diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0.inc
-> b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0.inc
-> index 5d66f0f3cb5b..3aeb3bf6fc3f 100644
-> --- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0.inc
-> +++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0.inc
-> @@ -6,6 +6,7 @@ SRCREV_stm32 =3D
-> "cc8731dba4fd9c57d7fe8ea6149828b89c2bd635"
->  SRCREV_open-amp =3D "de1b85a13032a2de1d8b6695ae5f800b613e739d"
->  SRCREV_libmetal =3D "9d4ee2c3cfd5f49861939447990f3b7d7bf9bf94"
->  SRCREV_tinycrypt =3D "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
-> +SRCREV_mbedtls =3D "5765cb7f75a9973ae9232d438e361a9d7bbc49e7"
->=20
->  PV =3D "2.5.0+git${SRCPV}"
->=20
-> diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc b/recipes=
--
-> kernel/zephyr-kernel/zephyr-kernel-src.inc
-> index 1d06d916a1e0..069fa561667c 100644
-> --- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
-> +++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
-> @@ -13,6 +13,7 @@ SRC_URI =3D "\
->      git://github.com/zephyrproject-
-> rtos/cmsis.git;protocol=3Dhttps;destsuffix=3Dgit/modules/cmsis;name=3Dcms=
-is \
->      git://github.com/zephyrproject-
-> rtos/hal_nordic.git;protocol=3Dhttps;destsuffix=3Dgit/modules/hal/nordic;=
-name=3D
-> nordic \
->      git://github.com/zephyrproject-
-> rtos/hal_stm32.git;protocol=3Dhttps;destsuffix=3Dgit/modules/hal/stm32;na=
-me=3D
-> stm32 \
-> +
-> + git://github.com/zephyrproject-rtos/mbedtls.git;protocol=3Dhttps;destsu=
-f
-> + fix=3Dgit/modules/lib/mbedtls;name=3Dmbedtls \
->      git://github.com/zephyrproject-rtos/open-
-> amp.git;protocol=3Dhttps;destsuffix=3Dgit/modules/lib/open-amp;name=3Dope=
-n-
-> amp \
->      git://github.com/zephyrproject-
-> rtos/libmetal.git;protocol=3Dhttps;destsuffix=3Dgit/modules/hal/libmetal;=
-name=3Dl
-> ibmetal \
->      git://github.com/zephyrproject-
-> rtos/tinycrypt.git;protocol=3Dhttps;destsuffix=3Dgit/modules/crypto/tinyc=
-rypt;na
-> me=3Dtinycrypt \
-> --
-> 2.25.1
+-- 
+2.25.1
 
