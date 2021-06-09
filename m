@@ -1,27 +1,24 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web08.1531.1623180605542659575
- for <yocto@lists.yoctoproject.org>;
- Tue, 08 Jun 2021 12:30:06 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=Ep/rNANq;
- spf=fail (domain: windriver.com, ip: 198.145.29.25, mailfrom: prvs=17932f0905=randy.macleod@windriver.com)
 Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id B0C4838C1115
-	for <yocto@yoctoproject.org>; Tue,  8 Jun 2021 19:30:04 +0000 (UTC)
+ by mx.groups.io with SMTP id smtpd.web10.1467.1623198456044759497
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 08 Jun 2021 17:27:36 -0700
+Authentication-Results: mx.groups.io;
+ dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=lvlkoMS0;
+ spf=pass (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=17945c44ea=randy.macleod@windriver.com)
 Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 158JU3Ha024617;
-	Tue, 8 Jun 2021 19:30:03 GMT
-Received: from nam10-bn7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2102.outbound.protection.outlook.com [104.47.70.102])
-	by mx0a-0064b401.pphosted.com with ESMTP id 3927fn0dh7-1
+	by mx0a-0064b401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 1590LAM4012645;
+	Wed, 9 Jun 2021 00:27:29 GMT
+Received: from nam10-mw2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2107.outbound.protection.outlook.com [104.47.55.107])
+	by mx0a-0064b401.pphosted.com with ESMTP id 3927fn0k8x-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 08 Jun 2021 19:30:03 +0000
+	Wed, 09 Jun 2021 00:27:29 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kfv01usFjtXnbV/mrZLd41Bml5oVmbEj1Cr1iQPx1hwKDMlMESiPLTlA3shnsxO8c8ZARIcVzgbu/JtDeblv2qpnSB8YkHrRjnz7LS/zbXVGHgG0KZKNjZUAoKjymTxjEfXyBur36NDdF3SEgfzqucevhmfYQyfJLRW28PNMb7YcF75oUKPT9w0H/5V1rUMoLqOFM1T1gwc1U0AlBVUikTt7mNdk32hhUW2UhDf/8055If3grqxg0K0+ytEVIhJkgfomN760mY0eAyQMRRYU8GEoEfJo4SNukKIlYQHrur9dr2HgyyIdj38+YHCfnoIqX/vi0qqp1IqT6WzSkyMi5Q==
+ b=Q73piQ0Izjm77pbaLx6DYWz8kjWe80eeQht0G66HGaw+qIhiu8YPhvpOu50YWFkqTmF32Jt5eEwDu90nIqnu4xrZzNpjB9QTmdm1fyDbWZqdi9WGTcVrSfIE3DbkhQsG88PjCQK+xiaf0wiQev6d9/E1YO0PcoHTThAVg6IkXLLYX9WUhHjHJbQzfB3HJFCOq4aPk7/misfQWP70MrOc83LJreO3kV+fArmEc50YV7DVeCyGUak5Zr2ev65JCbs36BUkLr61AEAvV1lpiHOjtTWpILsPLRo3nlDtLP1nlDPCutlqSzuRfbTZGEh/XK2JL0uujBS0WQrFDG/vFvqg+A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CcT5c4YT/+D1CZO2h05GwOV7ELrQUL5EJODRgrJt+sA=;
- b=odQV4ijb1iq90j2VdHwQR7x6SMHuL1WbJsAv0rrUCcHMD0k5AkJjQpAacXn33ToONkiPTa6VF3Tip3wUIA/sxojwqOKVeGdoVasvkBuOOzi2pTN8VUBRpGCsMq7AtVRq06tWzX2xNR3dTU2wFR+aNcWQSZn4fz0m37Apdps1ItqTI4AM8z+lJneMxsnDwbCYg0MsAYuA3F/FkQOkjjajmH6smUzdKnHn0hrpcd25cLYRt+OqhcxVrBN6+nz3zXVAq4bIQMq7KUN+xAH2P2us3NvK+LdkMmj3LW4hQsJjlt0+R6ZrrKDWzJypWwQUgNjYUS7Xav5P8VHVI9qLEdugqw==
+ bh=T2eBahyrezNrDSX+vv8acPI3huyQqjPI8r0uV/DzH/8=;
+ b=Cowj6U5y5gDEk69DhHWruo2HCbMbtQL7/eEgEWgn2wHWoNnpixPTK9KRwljhvkGUkLRhtGS/SDxZpNQ8ctJJQyqdj1/e9W+3wHK7xAHMIRpIsSWlJo1fFGIsPoN/Op19+LZ7ARDRdsXmAM5sExhakmseEcWLU9Ps+3VCJAl6InwMLKZC8R5LOF9iWZ/CQed+q8swDPy5uV5WNAg/cAUmWsDDb/8s44w9E1wIGWSPMICMxpdexJp01MiwXyum49qPRb87nzxKwW7GMiGOl6h/FJ+B8sl5xDVyouhMvNTx6U0eAfCjSvfM2WUBsXl8FR4ajkFcYrBF+w2KtnXQH2Mw4Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=windriver.com; dmarc=pass action=none
  header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
@@ -29,254 +26,315 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=windriversystems.onmicrosoft.com;
  s=selector2-windriversystems-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CcT5c4YT/+D1CZO2h05GwOV7ELrQUL5EJODRgrJt+sA=;
- b=Ep/rNANq3r6Ql9WuxrD7/bawWn6IvBzG4kgLsGeRAY3MdGlHCbjqaCZyTTGtM/0mYLaWu5ieL/Z6xery/mdOxp8MScfPUR/S56EegfYg4gW7fobKSAJUKImoINf6bGSzpKBpfhSqdQ++I/ayPQNm9f/6oK8LF03rx/s8rESpcaE=
-Authentication-Results: yoctoproject.org; dkim=none (message not signed)
- header.d=none;yoctoproject.org; dmarc=none action=none
+ bh=T2eBahyrezNrDSX+vv8acPI3huyQqjPI8r0uV/DzH/8=;
+ b=lvlkoMS0ISp311NCfjDaJfwL1iE7A2es9B8knDYB4XwjvNfEIdnTfr69PUkQMwsAGOcdDrrVWsFlAQjYZD2iVYd8TtSovaC7ZDaW3F9nvmXFXq/+3siB7vig40LXQU9yLMqSAtKQrwZjCHVMfqili9CGLBtITMNPxvA+jm3ptuM=
+Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
  header.from=windriver.com;
 Received: from DM6PR11MB3994.namprd11.prod.outlook.com (2603:10b6:5:193::19)
- by DM6PR11MB3706.namprd11.prod.outlook.com (2603:10b6:5:13e::28) with
+ by DM6PR11MB2602.namprd11.prod.outlook.com (2603:10b6:5:c0::22) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.24; Tue, 8 Jun
- 2021 19:30:00 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.20; Wed, 9 Jun
+ 2021 00:27:27 +0000
 Received: from DM6PR11MB3994.namprd11.prod.outlook.com
  ([fe80::8d3b:70ab:5fc7:9eb5]) by DM6PR11MB3994.namprd11.prod.outlook.com
- ([fe80::8d3b:70ab:5fc7:9eb5%7]) with mapi id 15.20.4195.030; Tue, 8 Jun 2021
- 19:30:00 +0000
-Subject: Re: [yocto] [meta-realtime][PATCH] layer.conf: set LAYERSERIES_COMPAT with honister
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-Cc: Kai <kai.kang@windriver.com>,
-        Yocto Project Discussion <yocto@yoctoproject.org>
-References: <20210604030619.35679-1-kai.kang@windriver.com>
- <CADkTA4MrxoynTeBfnXsyH+YSX+c2MDo9PtdcgYDJqDS1cQ2u=g@mail.gmail.com>
- <8a264bd7-49f4-1672-55b6-e97be9556ccd@windriver.com>
- <CADkTA4NLc6OHOjPrhvEyCp=s15JHZK4yRkU1EoRD=W-Pg3ApbA@mail.gmail.com>
- <1685614D8890E95D.26755@lists.yoctoproject.org>
- <CADkTA4OWoe1MgFXZopS9kpFSJjT05Yc45xg91vSzQOGAJ-5vhg@mail.gmail.com>
+ ([fe80::8d3b:70ab:5fc7:9eb5%7]) with mapi id 15.20.4195.030; Wed, 9 Jun 2021
+ 00:27:27 +0000
+Subject: Re: [yocto] Bitbake failure
+To: Cris Scott <cscott@bird-technologies.com>,
+        "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <CY4PR22MB0006916E6957F29F955A1DD5993F9@CY4PR22MB0006.namprd22.prod.outlook.com>
 From: "Randy MacLeod" <randy.macleod@windriver.com>
-Message-ID: <075d467f-6c57-f933-0170-d4833a3ab761@windriver.com>
-Date: Tue, 8 Jun 2021 15:29:56 -0400
+Message-ID: <4eafebbc-80cb-2d09-b603-f0235d55b215@windriver.com>
+Date: Tue, 8 Jun 2021 20:27:22 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.1
-In-Reply-To: <CADkTA4OWoe1MgFXZopS9kpFSJjT05Yc45xg91vSzQOGAJ-5vhg@mail.gmail.com>
+In-Reply-To: <CY4PR22MB0006916E6957F29F955A1DD5993F9@CY4PR22MB0006.namprd22.prod.outlook.com>
 X-Originating-IP: [198.48.226.187]
-X-ClientProxiedBy: BYAPR07CA0101.namprd07.prod.outlook.com
- (2603:10b6:a03:12b::42) To DM6PR11MB3994.namprd11.prod.outlook.com
+X-ClientProxiedBy: BY3PR04CA0019.namprd04.prod.outlook.com
+ (2603:10b6:a03:217::24) To DM6PR11MB3994.namprd11.prod.outlook.com
  (2603:10b6:5:193::19)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [172.25.44.2] (198.48.226.187) by BYAPR07CA0101.namprd07.prod.outlook.com (2603:10b6:a03:12b::42) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.22 via Frontend Transport; Tue, 8 Jun 2021 19:29:59 +0000
+Received: from [172.25.44.2] (198.48.226.187) by BY3PR04CA0019.namprd04.prod.outlook.com (2603:10b6:a03:217::24) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.20 via Frontend Transport; Wed, 9 Jun 2021 00:27:26 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 432869e5-8e61-431a-c2aa-08d92ab3ce75
-X-MS-TrafficTypeDiagnostic: DM6PR11MB3706:
-X-MS-Exchange-Transport-Forked: True
+X-MS-Office365-Filtering-Correlation-Id: 2c73303d-ac13-4085-b3fd-08d92add5c00
+X-MS-TrafficTypeDiagnostic: DM6PR11MB2602:
 X-Microsoft-Antispam-PRVS: 
-	<DM6PR11MB37064DF3E7077B89618CE09FF8379@DM6PR11MB3706.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:489;
+	<DM6PR11MB2602C12E95714E367663B1B1F8369@DM6PR11MB2602.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	SXEcp5wThg00Fei9VdCdTc6zc/2bQWfCpf9Jc0syl6sMVpTo9RIJ+nWO5cQr7EleI8ZL/pFqB1hnX8FYnqfuxYG9/2X3eeSFHwyS/8GzCgFZPj35vIGeQlvA2EYbcFdDEb+vi05lPLZX/hjssnjcI4ApCNjxpop9bM1C44llCemUofIsE2DMN5yjeOd6AGcqwOjxEhvSDlwhjOhpTfceUCpM2yDIg/7Ta+J2r98IjdaRMcwMe3S6Twj34lBrQGW+rzcugi7mYaeIWwL0YJfH+G9G8bNyYLjaBVRgQsa5oWcf1E4hzBPj/cNFVCqxA+4Tm66I39/FykMZnOZauFzoVtv494Iet+Kff9ygCOcaDBF3JC1WxvMawHvwZx1ee2DdudKOBUqe83EwzJzt3z+ozMEBhLdZOClITQpyy+HCJOEpAkq+byx+XyRgMv4GN6yK0HiGoMh9UpEjcTPZFjAtsvyfty1YFLnqCleLwGkESfNBkIyp/INc1htSvV4ixn8UDxjN/5jAxvg0zV1+myXZFBakJVHpDIYA9yLjeZjlml1eIXYx27uzA9vAx9tUaClKY4IvzaIa7nf/ir0b8A8kKltW9N8oOxjFSr4CA+MkZACp3MnMEYN+FEoO26MzHmif9GRLs8ReGv3EgMa+sMyW0BTRGyRoAbytsjBoOLGf6kI0yQcGmW+vkl2PCmz0m/+0+65uW0+DPbYNdM7PJwruYo6rH0M+56Q9yNi5Wyvovt4UtGmbTW1skP5ZG6iKKYz2uCWctjCNXKJw5M4a7FS/CEfceMw/HmT5KWTst2Lhrunpe+Z1EtqmtPvtP3Ta+GLw5Oo2TIjswaFYqHTi01+tpItfb9kyfbt5llta9OJkyPMoGZ9cIPhWYWIu2g+/6d1j
+	Fi3t5zylqpzPAYD0agEMs2AFtiLW7gml1OVCbR+Kr61AFmdlBgbgThQvrVF7jpGV2Cx5ZevgMdrGw87ICScLeicghvQpXP5B/x3gpRVnYCF+LpEzXWUuGlzqFpvPBeePIbGtqS2Na5ZDaHWd8THO/RYtaKFf5LYvyGho354G5qexs8aykmASqHMDqOkYJsvhRv8oQKkYFlBd3ppmq42+6P5DMj3JF7Cu8/xI9bEDytuJAC2rLKnqHs5WqqPBRdx8fd0Riu99pORh4ClswfVJiuyntofebXqC4HCxaHuQA8O65l0hyT2yVUCTeOgE0YFklF+fpnkH68xeCCk/sWYOF+PXTLVgTKP7wIFcg/VqtFXBobdY+u2kQTJqh14QxWnx/y2S/glQbsUsWGQSJuECWBfNAQi0Rh9r21dDYrz096uvKKd6+bEhN/CK9/JYS2kuwyLpxEjdgInT3a36cNLuiJgowm/EjJCIfwIlwbO7tLs2SI1kOFW6Oa6Hs1GiSOMRSzfPwh5L66cF07pLDsJv3+Ev1sDJSqRHwSRG5sGbFWAax4QP7UckdL4DAE2Lq5cWo3zy9tR9oMAepKpcPjpJY8W9BterTRlr/pTYcIAc0g9QI7wYIMYCmRIZddUru9vkOs1k2vHN8E2s7u3TOySqRBp2fYPp3sQ2rEP028HdZQYVU8PSdzmgwILAfLb/oiXcwmflFfNT9Cu3OYm9evRrxq4WY7OJ85KX55S4U6IKyweylEHiEwSSLywSxoL+/UxLTv5YwUpAVZ2GcZxJxMg78f5t88vwUf+l4XCLzeprJgpaVzjS6FgCsPUxsY0y2+S+c7puawsQiSuxWdOZRnPtD5JHNjtFEk0rYtFxlbs5VqllOpLv5Zq/2FXCQZ3IIgWd
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3994.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39840400004)(366004)(136003)(346002)(396003)(376002)(38100700002)(52116002)(53546011)(38350700002)(31686004)(16526019)(83380400001)(316002)(478600001)(186003)(86362001)(31696002)(966005)(6916009)(16576012)(36756003)(2616005)(26005)(956004)(2906002)(66476007)(66556008)(66946007)(5660300002)(6486002)(54906003)(8936002)(6666004)(8676002)(4326008)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3994.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(396003)(39850400004)(376002)(136003)(366004)(86362001)(36756003)(31696002)(8676002)(31686004)(8936002)(6666004)(5660300002)(53546011)(2616005)(956004)(478600001)(26005)(966005)(2906002)(52116002)(316002)(110136005)(16576012)(166002)(6486002)(66556008)(66476007)(16526019)(66946007)(186003)(83380400001)(38350700002)(38100700002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?d0pTaGJqZkRoWmtzalNPaDZMajZqYWI4ZFphekpWNVN6S080blk0d3NYcVhk?=
- =?utf-8?B?a0FuYlNTQ0ZqZUh0NTlFRXhuNFJyNVdjOFhjZUxNdG9VMU5IK3g1czNzeTJB?=
- =?utf-8?B?VUhXY2FqYmZORituRHlZSkl2R2MwdGQ4dWdaMGIxcGlhVXBLL3hSbkFxczJL?=
- =?utf-8?B?eG41YzdKR05vVUIwTnRDZzBQNklkWWx5VDR4QWdldzVRZTJnOEJrR3ZpbzZh?=
- =?utf-8?B?V1VlUW0wV1J2eGdiVWg5dlhVMUVmdVpvS0NrdFkyOUJ2SEY5R1FHU081R25H?=
- =?utf-8?B?R1R2ejFXZXc1Mi96bTdpaXhWZlRFL1VKbUh4bThTVFJaaUxhYUpSNEtUNFlj?=
- =?utf-8?B?RGlMK3hpUTZ5cEZFZnJGbXIyb0Q5RjdRTUNpOU5DRWhaWWlxejY1TUtQNjNE?=
- =?utf-8?B?RDlnakJ3S295V1lvK3FEZ0s1c0JqdjIwdnFyVnRvdnNHS2tZdUFiNEIyNHlw?=
- =?utf-8?B?ZEoxV0UrVFhTaDRsTGtLSG5BOEVvanlGVi91a25LVmVQSWdIOGg5eExSc01M?=
- =?utf-8?B?UmNCL0lFVFIyUTg3UXRUcDAva2lZd0J6RDR0eFpDNHN3Y0NKQUpFb0pqNDRr?=
- =?utf-8?B?TXdWT1RkbFJBckZhdTZTTjUvSEtTL2tITTVucWszenZMeUVoZzlGNkhxQUs2?=
- =?utf-8?B?NG9EZEVtVmpHc3FmdDZVaUNQek1YRC9LTW1OQ3ZLcDN1UklFMWlkSXRmLzN6?=
- =?utf-8?B?NmJmSnJBRENaaTN5MlBhVDBwWXY4YjEzN0k5K1VydkQ3eWRrbXFGL1Y1MEVk?=
- =?utf-8?B?RytEdzg2VEp6U25xTUFIcU5RalV6bjdZU3JpaVRGUzlHZnBxVmk4U1d5LzlB?=
- =?utf-8?B?NDBKTEVtV0IzODRndEdJOXBqdzVyQ0xUWkJEMkhRZkI0L0F1MDdhYTlKYUlU?=
- =?utf-8?B?UTlVRzFQSXhUdXh4cFNuNnJPaTd2K01mYTljWm1CbWxqeTNWSTAzbS9jalox?=
- =?utf-8?B?aDFSbnRJOU5kTENpUGQ0dWxnK29Sd2VBVGNVOE1yY29tSTg1LytneG40RytT?=
- =?utf-8?B?LzhUc0hickVkQk5kRGFNTURYRjRqY1lVSEQ4UTZGSHZSdnl2cnlDdDlEdlBh?=
- =?utf-8?B?MmNOdU1XeG9CbVoxb2x0eVlWRzgwdGhlRTdkMVptZmdFbkFoRU9iZnpDYk5W?=
- =?utf-8?B?RktETjcrVjV6RE9XTnpLNXNpSncwNTdrS3BNaVI3ZmNXOU40ZjM3RTlqMFpH?=
- =?utf-8?B?ZHIzQ2wwRGIxeHhOOVh5T1IzQ2lOeGMranJZMXhPMFNTaTd6dDhLS2NvS2Vv?=
- =?utf-8?B?a1haaTQzYjFJQm5UcFFQdlJNZUJaWVc3YjViVzcxRUVidnpxUExpc2hrVEV0?=
- =?utf-8?B?Q3lGVFhMNGZhUENhOUhLck83dmlJWE5mdEpreTNpQ016OXg3aE1hMGxreDRB?=
- =?utf-8?B?MDhhZ1JWRElLeUhCYmFLS1U0OEpQRnF4STY1ZUhuSlFlc3hNVEVZV3N5UTNF?=
- =?utf-8?B?cG5KWjNuOGZ0cFZCY2NpVnAySUNJR2FpRzV1RVg1MUl1WkJ3STM5U3JuSVpT?=
- =?utf-8?B?bVE5WUNDKzFsQVZicVpBREpSNVg2RytoOWFXUFlVTnlQd09VQVB1VTNucHVL?=
- =?utf-8?B?RHRMeDdXUnpVYTc0WmVEL1BwVWg0cnUxaFVPN2ljUFVza3o4L3JmbkJxeng4?=
- =?utf-8?B?c2ZUUHdOY096dTZrOFoyWTVYOGFXblhBNU9kWjFvZFQ2V3ZWZXlRSXpVVjhZ?=
- =?utf-8?B?dTU3V0hpbXlnRXc4cmkrT3lPUFMzNldiTUlMNnRZUG1yeUgwdEErUHlicUM0?=
- =?utf-8?Q?5E9ACn0UabZhoEfYQyjRh0EoKlTHikOZlgghSE4?=
+	=?Windows-1252?Q?d1xaFVLWPgPlfRhemZWt3C4I7SoN+yXKAR8P4SVR4C8moH9VuYmZKL6V?=
+ =?Windows-1252?Q?CeIc0su1BaKTmYPplztzF6TzSM4DvRO26FlzEiurH4O9cvQuk/YZG8nf?=
+ =?Windows-1252?Q?qvmaqJXssZ+jpvVPabelDysFrUS+t+WJ4kSy2zXjHE3Z02bGT/yl+G3L?=
+ =?Windows-1252?Q?cVlrhWUJrKivgkNodONOEbs6EfMs8G80sC7zUUnweqaXSxDPON3k2G6l?=
+ =?Windows-1252?Q?DoBH4gNnJsQZbCn5kbkAUlXiQtWOA2kKA4pchDSby2cBbSx0puIqIf+C?=
+ =?Windows-1252?Q?3JuDnHpeYlztYhJ7lUC7cfuyYIT+5mcPyN2QWsqncF2rNv1CiaQfMrxo?=
+ =?Windows-1252?Q?3SuuBYwqVqWU2R+MsilUMfK4bzmJ6lsDuwr3N1CDzWIjGVzUhl5i6msM?=
+ =?Windows-1252?Q?v/pgsV3pk6QgC95Pt9vGZx3Pc51kU/u7r1TOLdkgi1/T8itjMvahXLQy?=
+ =?Windows-1252?Q?k+24H8zr/1eiHvTEitDw6FOMdLEu2EiZH2EANIRYagB5stXwE4AHcLD2?=
+ =?Windows-1252?Q?FAYA2NIrmGeVaIFo6wz2gmQCN9jbbHkA6pY4EGJRNchtNLmr2eDph59A?=
+ =?Windows-1252?Q?H2D2mIa6xBrbV2395g1I6hoObmRdcrXVf3OWFaAer7wYOWS2pjWdJXHd?=
+ =?Windows-1252?Q?2peii7xcZdZ3F3XELTIj8c5V75SVBW+RBoawp1uLN4fGTCvGg54urvkn?=
+ =?Windows-1252?Q?NR0X3XawHCLyddABcF/vl66rqDof7LISFJMLsERpXYvqkmdsjzXKcUk3?=
+ =?Windows-1252?Q?GznuZ3BTxzBaazx4Vx5M+6HosloY3ZiXZgxG0i8zN196kT/1mNU+PNIH?=
+ =?Windows-1252?Q?lBWPs8LJAvsJbXomcxjjgGSi6Q/sZUBEbsn94TFCzwUUeOJIU5WUQhpj?=
+ =?Windows-1252?Q?fBIsNHXMLwk41gZoo6ik5Csq3y11q3vsl63GISUnbmGwYnHthY/BF7t5?=
+ =?Windows-1252?Q?NNU5PVvZYNoWhr+Bbe/YfV96XJvZdxarZcC/3xvo4XD0w9SxVUESVfe4?=
+ =?Windows-1252?Q?/Ym4hgx7luILURjpvmQKbbndfpv7prN27+xQNscor3xy14ba9qfNPKXA?=
+ =?Windows-1252?Q?1yq6vy3KF0ROYhxHnF/SJ7r7/80DF4DsRoCySPiz7W+YIArba/7U2rSb?=
+ =?Windows-1252?Q?WMx/co2nTrkDJJqlUFKw1fILvEtIC/UbL5ws9+8P/IpErb3HwV9Lb0GE?=
+ =?Windows-1252?Q?w5eOxaXp3v0noND05EZA0mDIGnk4mpp0bfsG6XmFrSix87ZXT8N/iTL5?=
+ =?Windows-1252?Q?xBw5IhW+e9cOCZgGoPo2MLLnP3qh2SbD8wPkcmYib+i9kONuUl3iwRnR?=
+ =?Windows-1252?Q?2ad1+mS1qx56GsY98capeZcmdqMUwpWg6ehym8u1zjePLMVjPAL/yLza?=
+ =?Windows-1252?Q?67waVd74jPf5d2hAfHLwQc4ZECbTCGc6uwfvgnXnexJuBOWsG+/rSVmy?=
 X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 432869e5-8e61-431a-c2aa-08d92ab3ce75
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2c73303d-ac13-4085-b3fd-08d92add5c00
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3994.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2021 19:30:00.2781
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2021 00:27:27.1053
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SB1+LAi63B1/9hQP2efpobm+B1HlhnolMjSnx59Ju71LNbc7FUQkt5TN+YAGtZvv3+5dRrwGc9n7p5EBVgZrVM0M6/JIK1wRmIY7D6SJ950=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB3706
-X-Proofpoint-GUID: ghuAzhxYiSRaSLncYTAgXmMfJvpEtbW-
-X-Proofpoint-ORIG-GUID: ghuAzhxYiSRaSLncYTAgXmMfJvpEtbW-
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3KjtEqO/7g/mGCPBp5ZHjnzDgV87YRRdruE8QBbK4hhsubCM5IWsBDOKsJMsaWI13bSKOdYZLT9xs7pocMm3dQA9RHgeatVBra9hs9+Sspk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2602
+X-Proofpoint-GUID: yOf7wHMluOpiFcJMLPfN6MsviMXIi-wy
+X-Proofpoint-ORIG-GUID: yOf7wHMluOpiFcJMLPfN6MsviMXIi-wy
 X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
- definitions=2021-06-08_14:2021-06-04,2021-06-08 signatures=0
+ definitions=2021-06-08_17:2021-06-04,2021-06-08 signatures=0
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- malwarescore=0 mlxlogscore=999 lowpriorityscore=0 mlxscore=0 clxscore=1015
+ malwarescore=0 mlxlogscore=999 lowpriorityscore=0 mlxscore=0 clxscore=1011
  adultscore=0 suspectscore=0 spamscore=0 bulkscore=0 priorityscore=1501
  phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2104190000 definitions=main-2106080125
-Content-Type: text/plain; charset=utf-8; format=flowed
+ engine=8.12.0-2104190000 definitions=main-2106090000
+Content-Type: multipart/alternative;
+ boundary="------------D38159C95B2ED80DC4550E00"
 Content-Language: en-CA
-Content-Transfer-Encoding: 7bit
 
-On 2021-06-04 8:40 a.m., Bruce Ashfield wrote:
-> On Fri, Jun 4, 2021 at 8:37 AM Bruce Ashfield via
-> lists.yoctoproject.org
-> <bruce.ashfield=gmail.com@lists.yoctoproject.org> wrote:
->>
->> On Fri, Jun 4, 2021 at 8:27 AM Bruce Ashfield <bruce.ashfield@gmail.com> wrote:
->>>
->>> On Thu, Jun 3, 2021 at 11:35 PM Kai <kai.kang@windriver.com> wrote:
->>>>
->>>> On 6/4/21 11:22 AM, Bruce Ashfield wrote:
->>>>> On Thu, Jun 3, 2021 at 11:06 PM <kai.kang@windriver.com> wrote:
->>>>>> From: Kai Kang <kai.kang@windriver.com>
->>>>>>
->>>>>> Replace hardknott with honister in layer.conf which aligns with
->>>>>> oe-core.
->>>>>>
->>>>> I had added this back in April, but apparently didn't push the change.
->>>>>
->>>>> I also noticed that I've been updating the wrong branch with compatibility.
->>>>>
->>>>> That should all be fixed now.
->>>>
->>>> Hi Bruce,
->>>>
->>>> Thanks. I have seen your commits.
->>>>
->>>> But 3 items in LAYERSERIES_COMPAT_realtime will cause layer index show
->>>> warning:
->>>>
->>>>     WARNING: YPCompatibleVersion.name: dunfell gatesgarth hardknott:
->>>> length 28 exceeds maximum (25), truncating
->>>>
->>>> Could we only keep the latest LAYERSERIES_CORENAMES (honister) in branch
->>>> master, please?
->>>
->>> Nope. It is compatible with those releases, so they need to stay. I
->>> see no valid reason to be limited to a certain number of characters.
->>>
->>>>
->>>> Or it set in oe-core's layer.conf:
->>>>
->>>> LAYERSERIES_CORENAMES = "hardknott honister"
->>>>
->>>> we just align with it to keep the latest 2, please?
->>>
->>> That is just as arbitrary, I'll keep it as-is.
->>
->> I took a quick look, is this warning coming from the layer index ?
->> That would be important information to convey when sending changes
->> like this.
-> 
-> Apologies on this, I see in the follow up email you did mention the
-> layerindex .. I read completely over that, and had to search up the
-> warning myself. (my fault, not yours).
-> 
->>
->> That being said, it is a longer fix to get that warning changed, and
->> I'd rather not break the index, so I dropped to only the last two
->> releases.
->>
->> But I do recommend that the layer index be changed (if that is the
->> cause of the warning), since we shouldn't be adapting to the index ..
->> it should be adapting to layers.
-> 
-> This point still stands though :D
+--------------D38159C95B2ED80DC4550E00
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by mx0a-0064b401.pphosted.com id 1590LAM4012645
 
-Created:
+On 2021-05-31 6:12 p.m., Cris Scott wrote:
+>
+> Not sure who to ask about this.
+>
+> Using=20
+> https://push.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-exten=
+ded/lighttpd/lighttpd_1.4.59.bb=20
+> <https://urldefense.com/v3/__https://push.yoctoproject.org/cgit/cgit.cgi=
+/poky/tree/meta/recipes-extended/lighttpd/lighttpd_1.4.59.bb__;!!AjveYdw8Ev=
+Q!IjX1DyHZJ7dwUtyALOFQVZn8VgQNRX29XBKx6NBRpbApF9vx-j_t8eKwsxzFofu_-99g-Q$>=
+=20
+> to build lighttpd, bitbake fails, and I receive tons of messages that=20
+> look like:
+>
+> ERROR: lighttpd-1.4.59-r0 do_package_qa: QA Issue:=20
+> /usr/lib/mod_staticfile.so=20
+> <https://urldefense.com/v3/__http://mod_staticfile.so__;!!AjveYdw8EvQ!Ij=
+X1DyHZJ7dwUtyALOFQVZn8VgQNRX29XBKx6NBRpbApF9vx-j_t8eKwsxzFofsRbsK8iQ$>=20
+> contained in package lighttpd-module-staticfile requires=20
+> libc.so.6(GLIBC_2.4), but no providers found in=20
+> RDEPENDS_lighttpd-module-staticfile? [file-rdeps]
+>
+> Can someone point me in the right direction to resolve this?
+>
+Hi Cris,
 
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=14426
+It's been a while is this still a problem for you?
+If not, how did you fix it?
 
-Layerindex should allow longer compatible version names
 
+Can you reproduce the error with poky? git://git.yoctoproject.org/poky
+
+What release/commit are you using?
+
+Does it happen when you just run: bitbake lighttpd ?
+
+Does it happen if you mv your sstate-cache (tmp*) directories aside
+and do a rebuild?
+
+What's in your local.conf?
+
+For completeness, what is your build host distro (I doubt it matters here.=
+).
+
+
+I built poky from:
+7f3c996d30 (HEAD -> master, origin/master, origin/HEAD) lttng-tools:=20
+upgrade 2.12.3 -> 2.12.4
+
+on an Ubu-18.04.3 builder, and both:
+$ bitbake lighttpd and
+$ bitbake core-image-minimal
+
+worked fine with:
+
+grep -v "^$" conf/local.conf=A0 | grep -v "^#"
+MACHINE ??=3D "qemux86-64"
+DISTRO ?=3D "poky"
+PACKAGE_CLASSES ?=3D "package_rpm"
+EXTRA_IMAGE_FEATURES ?=3D "debug-tweaks"
+USER_CLASSES ?=3D "buildstats image-prelink"
+PATCHRESOLVE =3D "noop"
+BB_DISKMON_DIRS ??=3D "\
+ =A0=A0=A0 STOPTASKS,${TMPDIR},1G,100K \
+ =A0=A0=A0 STOPTASKS,${DL_DIR},1G,100K \
+ =A0=A0=A0 STOPTASKS,${SSTATE_DIR},1G,100K \
+ =A0=A0=A0 STOPTASKS,/tmp,100M,100K \
+ =A0=A0=A0 ABORT,${TMPDIR},100M,1K \
+ =A0=A0=A0 ABORT,${DL_DIR},100M,1K \
+ =A0=A0=A0 ABORT,${SSTATE_DIR},100M,1K \
+ =A0=A0=A0 ABORT,/tmp,10M,1K"
+PACKAGECONFIG_append_pn-qemu-system-native =3D " sdl"
+CONF_VERSION =3D "1"
+IMAGE_INSTALL_append =3D "lighttpd"
 
 ../Randy
 
+> -Bill
+>
+>
+>=20
+>
 
-> 
-> Bruce
-> 
->>
->> Bruce
->>
->>>
->>> Bruce
->>>
->>>>
->>>> Regards,
->>>> Kai
->>>>
->>>>>
->>>>> Bruce
->>>>>
->>>>>> Signed-off-by: Kai Kang <kai.kang@windriver.com>
->>>>>> ---
->>>>>>    conf/layer.conf | 2 +-
->>>>>>    1 file changed, 1 insertion(+), 1 deletion(-)
->>>>>>
->>>>>> diff --git a/conf/layer.conf b/conf/layer.conf
->>>>>> index 007f578..8ae67ba 100644
->>>>>> --- a/conf/layer.conf
->>>>>> +++ b/conf/layer.conf
->>>>>> @@ -15,6 +15,6 @@ BBFILE_PRIORITY_realtime = "5"
->>>>>>    # This should only be incremented on significant changes that will
->>>>>>    # cause compatibility issues with other layers
->>>>>>    LAYERVERSION_realtime = "1"
->>>>>> -LAYERSERIES_COMPAT_realtime = "hardknott"
->>>>>> +LAYERSERIES_COMPAT_realtime = "honister"
->>>>>>    LAYERDEPENDS_realtime = "core openembedded-layer"
->>>>>>    LAYERRECOMMENDS_realtime = "meta-realtime-dl (= 3.2)"
->>>>>> --
->>>>>> 2.17.1
->>>>>>
->>>>>
->>>>
->>>> --
->>>> Kai Kang
->>>> Wind River Linux
->>>>
->>>
->>>
->>> --
->>> - Thou shalt not follow the NULL pointer, for chaos and madness await
->>> thee at its end
->>> - "Use the force Harry" - Gandalf, Star Trek II
->>
->>
->>
->> --
->> - Thou shalt not follow the NULL pointer, for chaos and madness await
->> thee at its end
->> - "Use the force Harry" - Gandalf, Star Trek II
->>
->>
->>
-> 
-> 
-> 
-> 
-> 
-> 
-
-
--- 
+--=20
 # Randy MacLeod
 # Wind River Linux
+
+
+--------------D38159C95B2ED80DC4550E00
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+  </head>
+  <body>
+    <div class="moz-cite-prefix">On 2021-05-31 6:12 p.m., Cris Scott
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:CY4PR22MB0006916E6957F29F955A1DD5993F9@CY4PR22MB0006.namprd22.prod.outlook.com">
+      
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style>@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}div.WordSection1
+	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal">Not sure who to ask about this.<o:p></o:p></p>
+        <p class="MsoNormal">Using <a href="https://urldefense.com/v3/__https://push.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-extended/lighttpd/lighttpd_1.4.59.bb__;!!AjveYdw8EvQ!IjX1DyHZJ7dwUtyALOFQVZn8VgQNRX29XBKx6NBRpbApF9vx-j_t8eKwsxzFofu_-99g-Q$" moz-do-not-send="true">
+https://push.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-extended/lighttpd/lighttpd_1.4.59.bb</a>
+          to build lighttpd, bitbake fails, and I receive tons of
+          messages that look like:<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+        <p class="MsoNormal">ERROR: lighttpd-1.4.59-r0 do_package_qa: QA
+          Issue: /usr/lib/<a href="https://urldefense.com/v3/__http://mod_staticfile.so__;!!AjveYdw8EvQ!IjX1DyHZJ7dwUtyALOFQVZn8VgQNRX29XBKx6NBRpbApF9vx-j_t8eKwsxzFofsRbsK8iQ$" moz-do-not-send="true">mod_staticfile.so</a> contained in
+          package lighttpd-module-staticfile requires
+          libc.so.6(GLIBC_2.4), but no providers found in
+          RDEPENDS_lighttpd-module-staticfile? [file-rdeps]<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+        <p class="MsoNormal">Can someone point me in the right direction
+          to resolve this?</p>
+      </div>
+    </blockquote>
+    <p>Hi Cris,</p>
+    <p>It's been a while is this still a problem for you?<br>
+      If not, how did you fix it?<br>
+    </p>
+    <p><br>
+    </p>
+    <p>Can you reproduce the error with poky?
+      git://git.yoctoproject.org/poky</p>
+    <p>What release/commit are you using?</p>
+    <p>Does it happen when you just run: bitbake lighttpd ?</p>
+    <p>Does it happen if you mv your sstate-cache (tmp*) directories
+      aside<br>
+      and do a rebuild?<br>
+    </p>
+    <p>What's in your local.conf?</p>
+    <p>For completeness, what is your build host distro (I doubt it
+      matters here.).</p>
+    <p><br>
+    </p>
+    <p>I built poky from:<br>
+      7f3c996d30 (HEAD -&gt; master, origin/master, origin/HEAD)
+      lttng-tools: upgrade 2.12.3 -&gt; 2.12.4</p>
+    <p>on an Ubu-18.04.3 builder, and both:<br>
+      $ bitbake lighttpd and<br>
+      $ bitbake core-image-minimal</p>
+    <p>worked fine with:</p>
+    <p>grep -v &quot;^$&quot; conf/local.conf&nbsp; | grep -v &quot;^#&quot;<br>
+      MACHINE ??= &quot;qemux86-64&quot;<br>
+      DISTRO ?= &quot;poky&quot;<br>
+      PACKAGE_CLASSES ?= &quot;package_rpm&quot;<br>
+      EXTRA_IMAGE_FEATURES ?= &quot;debug-tweaks&quot;<br>
+      USER_CLASSES ?= &quot;buildstats image-prelink&quot;<br>
+      PATCHRESOLVE = &quot;noop&quot;<br>
+      BB_DISKMON_DIRS ??= &quot;\<br>
+      &nbsp;&nbsp;&nbsp; STOPTASKS,${TMPDIR},1G,100K \<br>
+      &nbsp;&nbsp;&nbsp; STOPTASKS,${DL_DIR},1G,100K \<br>
+      &nbsp;&nbsp;&nbsp; STOPTASKS,${SSTATE_DIR},1G,100K \<br>
+      &nbsp;&nbsp;&nbsp; STOPTASKS,/tmp,100M,100K \<br>
+      &nbsp;&nbsp;&nbsp; ABORT,${TMPDIR},100M,1K \<br>
+      &nbsp;&nbsp;&nbsp; ABORT,${DL_DIR},100M,1K \<br>
+      &nbsp;&nbsp;&nbsp; ABORT,${SSTATE_DIR},100M,1K \<br>
+      &nbsp;&nbsp;&nbsp; ABORT,/tmp,10M,1K&quot;<br>
+      PACKAGECONFIG_append_pn-qemu-system-native = &quot; sdl&quot;<br>
+      CONF_VERSION = &quot;1&quot;<br>
+      IMAGE_INSTALL_append = &quot;lighttpd&quot;<br>
+    </p>
+    <p>../Randy<br>
+    </p>
+    <blockquote type="cite" cite="mid:CY4PR22MB0006916E6957F29F955A1DD5993F9@CY4PR22MB0006.namprd22.prod.outlook.com">
+      <div class="WordSection1">
+        <p class="MsoNormal"><o:p></o:p></p>
+        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+        <p class="MsoNormal">-Bill<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+
+
+</pre>
+    </blockquote>
+    <p><br>
+    </p>
+    <pre class="moz-signature" cols="72">-- 
+# Randy MacLeod
+# Wind River Linux</pre>
+  </body>
+</html>
+
+--------------D38159C95B2ED80DC4550E00--
