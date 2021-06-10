@@ -1,7 +1,7 @@
 Received: from proxima.lasnet.de (proxima.lasnet.de [78.47.171.185])
- by mx.groups.io with SMTP id smtpd.web11.7150.1623313717685182413
+ by mx.groups.io with SMTP id smtpd.web12.7230.1623313723289183753
  for <yocto@lists.yoctoproject.org>;
- Thu, 10 Jun 2021 01:28:38 -0700
+ Thu, 10 Jun 2021 01:28:43 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=pass (domain: datenfreihafen.org, ip: 78.47.171.185, mailfrom: stefan@datenfreihafen.org)
 Received: from PC192.168.2.53 (p200300e9d7221c172b977c2ba50c5db1.dip0.t-ipconnect.de [IPv6:2003:e9:d722:1c17:2b97:7c2b:a50c:5db1])
@@ -9,79 +9,49 @@ Received: from PC192.168.2.53 (p200300e9d7221c172b977c2ba50c5db1.dip0.t-ipconnec
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: stefan@sostec.de)
-	by proxima.lasnet.de (Postfix) with ESMTPSA id 76416C034E;
-	Thu, 10 Jun 2021 10:28:34 +0200 (CEST)
+	by proxima.lasnet.de (Postfix) with ESMTPSA id 8382FC0574;
+	Thu, 10 Jun 2021 10:28:41 +0200 (CEST)
 From: "Stefan Schmidt" <stefan@datenfreihafen.org>
 To: yocto@lists.yoctoproject.org
 Cc: Stefan Schmidt <stefan@datenfreihafen.org>,
 	Stefan Schmidt <stefan.schmidt@huawei.com>
-Subject: [meta-zephyr][PATCH v2 1/2] zephyr-kernel: Add OpenThread add module to build
-Date: Thu, 10 Jun 2021 10:27:30 +0200
-Message-Id: <20210610082731.3820-1-stefan@datenfreihafen.org>
+Subject: [meta-zephyr][PATCH v2 2/2] zephyr-openthread-echo-client: Add new echo-client variant for OpenThread
+Date: Thu, 10 Jun 2021 10:27:31 +0200
+Message-Id: <20210610082731.3820-2-stefan@datenfreihafen.org>
 X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210610082731.3820-1-stefan@datenfreihafen.org>
+References: <20210610082731.3820-1-stefan@datenfreihafen.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 
 From: Stefan Schmidt <stefan.schmidt@huawei.com>
 
-OpenThread support in Zephyr is realised as an external module. Make
-sure we pull it in and have it available for applications to use it.
+Similar to the normal echo-client example it demonstrates socket usage,
+but in this variant we enable the OpenThread config overlay and add the
+needed module to the build.
 
 Signed-off-by: Stefan Schmidt <stefan.schmidt@huawei.com>
 ---
- recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc    | 1 +
- recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc | 1 +
- recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc       | 1 +
- 3 files changed, 3 insertions(+)
+ .../zephyr-kernel/zephyr-openthread-echo-client.bb        | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+ create mode 100644 recipes-kernel/zephyr-kernel/zephyr-openthread-echo-c=
+lient.bb
 
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc b/reci=
-pes-kernel/zephyr-kernel/zephyr-kernel-common.inc
-index 330fe59..35c4106 100644
---- a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
-+++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
-@@ -29,6 +29,7 @@ ZEPHYR_MODULES_append_arm =3D "\;${S}/modules/cmsis"
- ZEPHYR_MODULES_append_nordic =3D "\;${S}/modules/hal/nordic"
- ZEPHYR_MODULES_append_stm32 =3D "\;${S}/modules/hal/stm32"
- ZEPHYR_MODULES_append_openamp =3D "\;${S}/modules/lib/open-amp\;${S}/mod=
-ules/hal/libmetal"
-+ZEPHYR_MODULES_append_openthread =3D "\;${S}/modules/lib/openthread"
-=20
- EXTRA_OECMAKE_append =3D " -DZEPHYR_MODULES=3D${ZEPHYR_MODULES}"
-=20
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc b/r=
-ecipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc
-index 8475b5b..4910db2 100644
---- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc
-+++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc
-@@ -4,6 +4,7 @@ SRCREV_cmsis =3D "c3bd2094f92d574377f7af2aec147ae181aa5f8=
-e"
- SRCREV_nordic =3D "574493fe29c79140df4827ab5d4a23df79d03681"
- SRCREV_stm32 =3D "f8ff8d25aa0a9e65948040c7b47ec67f3fa300df"
- SRCREV_open-amp =3D "6010f0523cbc75f551d9256cf782f173177acdef"
-+SRCREV_openthread =3D "385e19da1ae15f27872c2543b97276a42f102ead"
- SRCREV_libmetal =3D "39d049d4ae68e6f6d595fce7de1dcfc1024fb4eb"
- SRCREV_tinycrypt =3D "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
- SRCREV_mbedtls =3D "5765cb7f75a9973ae9232d438e361a9d7bbc49e7"
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc b/recipes=
--kernel/zephyr-kernel/zephyr-kernel-src.inc
-index 5e43583..4937a77 100644
---- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
-+++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
-@@ -15,6 +15,7 @@ SRC_URI =3D "\
-     git://github.com/zephyrproject-rtos/hal_stm32.git;protocol=3Dhttps;d=
-estsuffix=3Dgit/modules/hal/stm32;name=3Dstm32 \
-     git://github.com/zephyrproject-rtos/mbedtls.git;protocol=3Dhttps;des=
-tsuffix=3Dgit/modules/lib/mbedtls;name=3Dmbedtls \
-     git://github.com/zephyrproject-rtos/open-amp.git;protocol=3Dhttps;de=
-stsuffix=3Dgit/modules/lib/open-amp;name=3Dopen-amp \
-+    git://github.com/zephyrproject-rtos/openthread.git;protocol=3Dhttps;=
-branch=3Dzephyr;destsuffix=3Dgit/modules/lib/openthread;name=3Dopenthread=
- \
-     git://github.com/zephyrproject-rtos/libmetal.git;protocol=3Dhttps;de=
-stsuffix=3Dgit/modules/hal/libmetal;name=3Dlibmetal \
-     git://github.com/zephyrproject-rtos/tinycrypt.git;protocol=3Dhttps;d=
-estsuffix=3Dgit/modules/crypto/tinycrypt;name=3Dtinycrypt \
-     file://0001-cmake-add-yocto-toolchain.patch \
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-openthread-echo-client.b=
+b b/recipes-kernel/zephyr-kernel/zephyr-openthread-echo-client.bb
+new file mode 100644
+index 0000000..c985df2
+--- /dev/null
++++ b/recipes-kernel/zephyr-kernel/zephyr-openthread-echo-client.bb
+@@ -0,0 +1,8 @@
++include zephyr-sample.inc
++
++ZEPHYR_SRC_DIR =3D "${S}/samples/net/sockets/echo_client"
++
++ZEPHYR_MODULES_append =3D "\;${S}/modules/lib/mbedtls"
++ZEPHYR_MODULES_append =3D "\;${S}/modules/lib/openthread"
++
++EXTRA_OECMAKE +=3D "-DOVERLAY_CONFIG=3Doverlay-ot.conf"
 --=20
 2.31.1
 
