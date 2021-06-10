@@ -1,134 +1,134 @@
-Received: from proxima.lasnet.de (proxima.lasnet.de [78.47.171.185])
- by mx.groups.io with SMTP id smtpd.web11.7167.1623313851236742311
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
+ by mx.groups.io with SMTP id smtpd.web09.7445.1623315478238700387
  for <yocto@lists.yoctoproject.org>;
- Thu, 10 Jun 2021 01:30:52 -0700
+ Thu, 10 Jun 2021 01:57:58 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@datenfreihafen.org header.s=2021 header.b=wKuODk5g;
- spf=pass (domain: datenfreihafen.org, ip: 78.47.171.185, mailfrom: stefan@datenfreihafen.org)
-Received: from [IPv6:2003:e9:d722:1c17:562f:1f54:5720:8a95] (p200300e9d7221c17562f1f5457208a95.dip0.t-ipconnect.de [IPv6:2003:e9:d722:1c17:562f:1f54:5720:8a95])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: stefan@datenfreihafen.org)
-	by proxima.lasnet.de (Postfix) with ESMTPSA id 795EBC0293
-	for <yocto@lists.yoctoproject.org>; Thu, 10 Jun 2021 10:30:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=datenfreihafen.org;
-	s=2021; t=1623313849;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HwyfAr+tSkbbP8Yc1ohW15msGe9aP0dFbnpTcnOZfK8=;
-	b=wKuODk5gv3W1T6T4WwmnmttyyfrN8JlYM38npTWpQVP0Zt4OKbC7NLkvBXoMWIBWCt8mzy
-	OEMs3vveNqPu8Q8p29DzkKNlMAzrwaasPF5EGb8QcBLQvPeE+mhTOxqRdthiAgeduvYJTc
-	WZvZQbCLRZN1n4BHrNOQSOls9X4Kas3ri8RUerKmgTzDh4wS+uWGDN1F+SWOsNGR6yyvsQ
-	C8do3P5pC3OZ3ZiZZeXDMxS5TJN+nshsTawcYbGQlmxcIWCoOlXlsYAZ4BU3jaZ1kROK77
-	M0UyM93l2R2UwwliYQyOpFFXVfe1u3YiWenIIcwJNi0gSgr1A2pKWT7N2polsg==
-Subject: Re: [yocto] [PATCH 1/2] zephyr-kernel: Add OpenThread module to build
-To: yocto@lists.yoctoproject.org
-References: <1684311F98CA2297.21857@lists.yoctoproject.org>
- <16868AED9FCC2F35.10003@lists.yoctoproject.org>
-From: "Stefan Schmidt" <stefan@datenfreihafen.org>
-Message-ID: <7c122c9e-b3f5-f1ff-1061-96d91e33cd0b@datenfreihafen.org>
-Date: Thu, 10 Jun 2021 10:30:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=BCXhY3bz;
+ spf=pass (domain: gmail.com, ip: 209.85.221.174, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-vk1-f174.google.com with SMTP id j19so1600689vkj.0
+        for <yocto@lists.yoctoproject.org>; Thu, 10 Jun 2021 01:57:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vwZhJ2zB8livAyE8da91SHO0UBB5mQ7XcByR02KEdVk=;
+        b=BCXhY3bzW+3dHNteu6cUSgBWM2anLYVAVRvf3ytVfvLxOZf0o07ii5RaYSqEKa5tCh
+         66L1mwPa5+y7jJVoSs0PD0Sz07YBgDT2JRzOGgy67fUKAi1WTXt2P5y3Gj2epDJvrUep
+         xgi+O0PctBqI2gHb/L1/owau7AfYHiaEwRTGNXkEopQo9/SWkWMmV7IhKo3/2ZsjBsT8
+         MOqVXFWbmEs3f/jtQMK5+HxJpLx+DF7IqAtBKf5H+I3gb1lZVsJhbhdNFhSdGWJ9jtnk
+         9P7psysbGri8NBd8m6JTVIJE12QvGR/LbvnTKMFTg5J8CeezqXnjpExabSnLe2HpVqAi
+         JIpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vwZhJ2zB8livAyE8da91SHO0UBB5mQ7XcByR02KEdVk=;
+        b=VU6ombLQVVJTIWGllE3Qz1xgBxEW15oaULXKtMDkp3rkdbnu08w6SXp77+BgA22K9h
+         ZPf3pBNeGo0dt3nbeFjHNxkOMTlx9Mw/WFGUogDQZ3GcaHmgov8DhL1L+3BPbQuXFO4W
+         wey/JHVhoaGgrzB7dNlnRHwD2m5X7hxaDPOQNCa434sHh7fyOlykzMfdt9MriCoLMpdB
+         ZjgdW7UdeqGDpYXbe2TX8waq+FSMvDzqmrhtATjtn9hQy3ELeuDoF2cdWrOykhWHR7Sp
+         6NpuXQ9sT+18e8iJk5OTjnsF+GqkxsRlKIOL2kNCRp1bvDw1o9DLb6C+bKvVkMeFFoob
+         LFEg==
+X-Gm-Message-State: AOAM530+/cVJYM/qX2HxExduHnC1Hx7JtlLB0m6d6drWcMXG3vYlf0dn
+	0sBln9kcjwnxwGh6wJ+x8eMcJ1rh++FfvRAeNVQ=
+X-Google-Smtp-Source: ABdhPJzCHR9OnKxIjHQKzSry8dZDcTJp04tzRQLQMEARKGX/6JjcrqV0cCwpeF4q69lN3FDscQbEhuGzGJCfuBIvVdA=
+X-Received: by 2002:ac5:cbc5:: with SMTP id h5mr3473582vkn.7.1623315477376;
+ Thu, 10 Jun 2021 01:57:57 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <16868AED9FCC2F35.10003@lists.yoctoproject.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+References: <98hT.1623132594082542882.bzIp@lists.yoctoproject.org>
+In-Reply-To: <98hT.1623132594082542882.bzIp@lists.yoctoproject.org>
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+Date: Thu, 10 Jun 2021 10:57:46 +0200
+Message-ID: <CANNYZj9r_eZ8ZHEo801viRNuBekefmvKuqtLfKsKTQncw+uw-w@mail.gmail.com>
+Subject: Re: [yocto] [meta-java] icedtea7 fetching error
+To: George.Mocanu@rinftech.com
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	Richard Leitner <richard.leitner@skidata.com>
+Content-Type: multipart/alternative; boundary="0000000000006332df05c4659694"
+
+--0000000000006332df05c4659694
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello.
+I have the tarball. I think we should toss it somewhere safe and update the
+recipe, as it is unlikely the old mercurial repo is coming back.
 
-On 08.06.21 09:31, Stefan Schmidt wrote:
-> Hello.
+Suggestions?
+
+Alex
+
+On Tue, 8 Jun 2021 at 08:10, <George.Mocanu@rinftech.com> wrote:
+
+> Hello,
+>
+>
+> I am trying to build something that relies on meta-java, but it fails on
+> do_fetch for the icedtea7 recipe:
+>
+> --2021-06-07 17:24:33--  http://icedtea.classpath.org/hg/release/icedtea=
+7-forest-2.1/archive/f89009ada191.tar.bz2
+> Resolving icedtea.classpath.org (icedtea.classpath.org)... 172.104.137.1=
+20
+> Connecting to icedtea.classpath.org (icedtea.classpath.org)|172.104.137.=
+120|:80... connected.
+> HTTP request sent, awaiting response... 404 Not Found
+> 2021-06-07 16:21:05 ERROR 404: Not Found.
+>
+> ERROR: icedtea7-native-2.1.3-r1.0 do_fetch: Fetcher failure for URL: 'ht=
+tp://icedtea.classpath.org/hg/release/icedtea7-forest-2.1/archive/f89009ada=
+191.tar.bz2;name=3Dopenjdk;unpack=3Dfalse;downloadfilename=3Dopenjdk-f89009=
+ada191.tar.bz2'. Unable to fetch URL from any source.
+>
+>
+> Following this link, seems like the webserver is down. Do you know any
+> mirror that I can use in the meantime?
+>
+> Thanks,
+> George
+>
 >=20
-> On 31.05.21 17:42, Stefan Schmidt wrote:
->> From: Stefan Schmidt <stefan.schmidt@huawei.com>
->>
->> OpenThread support in Zephyr is realised as an external module. Make
->> sure we pull it in and have it available for applications to use it.
->>
->> Signed-off-by: Stefan Schmidt <stefan.schmidt@huawei.com>
->> ---
->> =C2=A0 recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 1 +
->> =C2=A0 recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0-rc1.inc | =
-1 +
->> =C2=A0 recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 1 +
->> =C2=A0 3 files changed, 3 insertions(+)
->>
->> diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc=20
->> b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
->> index c9acbbb..eb5e75a 100644
->> --- a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
->> +++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
->> @@ -30,6 +30,7 @@ ZEPHYR_MODULES_append_nordic =3D=20
->> "\;${S}/modules/hal/nordic"
->> =C2=A0 ZEPHYR_MODULES_append_stm32 =3D "\;${S}/modules/hal/stm32"
->> =C2=A0 ZEPHYR_MODULES_append_mbedtls =3D "\;${S}/modules/lib/mbedtls"
->> =C2=A0 ZEPHYR_MODULES_append_openamp =3D=20
->> "\;${S}/modules/lib/open-amp\;${S}/modules/hal/libmetal"
->> +ZEPHYR_MODULES_append_openthread =3D "\;${S}/modules/lib/openthread"
->> =C2=A0 EXTRA_OECMAKE_append =3D " -DZEPHYR_MODULES=3D${ZEPHYR_MODULES}=
-"
->> diff --git=20
->> a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0-rc1.inc=20
->> b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0-rc1.inc
->> index a0e358e..546eb35 100644
->> --- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0-rc1.inc
->> +++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0-rc1.inc
->> @@ -4,6 +4,7 @@ SRCREV_cmsis =3D "c3bd2094f92d574377f7af2aec147ae181aa=
-5f8e"
->> =C2=A0 SRCREV_nordic =3D "574493fe29c79140df4827ab5d4a23df79d03681"
->> =C2=A0 SRCREV_stm32 =3D "f8ff8d25aa0a9e65948040c7b47ec67f3fa300df"
->> =C2=A0 SRCREV_open-amp =3D "6010f0523cbc75f551d9256cf782f173177acdef"
->> +SRCREV_openthread =3D "385e19da1ae15f27872c2543b97276a42f102ead"
->> =C2=A0 SRCREV_libmetal =3D "39d049d4ae68e6f6d595fce7de1dcfc1024fb4eb"
->> =C2=A0 SRCREV_tinycrypt =3D "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
->> =C2=A0 SRCREV_mbedtls =3D "5765cb7f75a9973ae9232d438e361a9d7bbc49e7"
->> diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc=20
->> b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
->> index 069fa56..4df5e7e 100644
->> --- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
->> +++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
->> @@ -15,6 +15,7 @@ SRC_URI =3D "\
->>      =20
->> git://github.com/zephyrproject-rtos/hal_stm32.git;protocol=3Dhttps;des=
-tsuffix=3Dgit/modules/hal/stm32;name=3Dstm32=20
->> \
->>      =20
->> git://github.com/zephyrproject-rtos/mbedtls.git;protocol=3Dhttps;dests=
-uffix=3Dgit/modules/lib/mbedtls;name=3Dmbedtls=20
->> \
->>      =20
->> git://github.com/zephyrproject-rtos/open-amp.git;protocol=3Dhttps;dest=
-suffix=3Dgit/modules/lib/open-amp;name=3Dopen-amp=20
->> \
->> +   =20
->> git://github.com/zephyrproject-rtos/openthread.git;protocol=3Dhttps;br=
-anch=3Dzephyr;destsuffix=3Dgit/modules/lib/openthread;name=3Dopenthread=20
->> \
->>      =20
->> git://github.com/zephyrproject-rtos/libmetal.git;protocol=3Dhttps;dest=
-suffix=3Dgit/modules/hal/libmetal;name=3Dlibmetal=20
->> \
->>      =20
->> git://github.com/zephyrproject-rtos/tinycrypt.git;protocol=3Dhttps;des=
-tsuffix=3Dgit/modules/crypto/tinycrypt;name=3Dtinycrypt=20
->> \
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 file://0001-cmake-add-yocto-toolchain.p=
-atch \
->>
->=20
->=20
-> Friendly reminder on these two. :-)
+>
+>
 
-Rebased on the 2.6 changes now and send a v2 (also with the right=20
-meta-zephyr prefix this time).
+--0000000000006332df05c4659694
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-regards
-Stefan Schmidt
+<div dir=3D"ltr"><div>I have the tarball. I think we should toss it somewhe=
+re safe and update the recipe, as it is unlikely the old mercurial repo is =
+coming back.</div><div><br></div><div>Suggestions?</div><div><br></div><div=
+>Alex<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Tue, 8 Jun 2021 at 08:10, &lt;<a href=3D"mailto:George.=
+Mocanu@rinftech.com">George.Mocanu@rinftech.com</a>&gt; wrote:<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t:1px solid rgb(204,204,204);padding-left:1ex"><p>Hello,</p>
+<p><br>I am trying to build something that relies on meta-java, but it fai=
+ls on do_fetch for the icedtea7 recipe:</p>
+<pre><span>--2021-06-07 17:24:33--  <a href=3D"http://icedtea.classpath.or=
+g/hg/release/icedtea7-forest-2.1/archive/f89009ada191.tar.bz2" target=3D"_b=
+lank">http://icedtea.classpath.org/hg/release/icedtea7-forest-2.1/archive/f=
+89009ada191.tar.bz2</a>
+Resolving <a href=3D"http://icedtea.classpath.org" target=3D"_blank">icedt=
+ea.classpath.org</a> (<a href=3D"http://icedtea.classpath.org" target=3D"_b=
+lank">icedtea.classpath.org</a>)... 172.104.137.120<br>Connecting to <a hre=
+f=3D"http://icedtea.classpath.org" target=3D"_blank">icedtea.classpath.org<=
+/a> (<a href=3D"http://icedtea.classpath.org" target=3D"_blank">icedtea.cla=
+sspath.org</a>)|172.104.137.120|:80... connected.<br>HTTP request sent, awa=
+iting response... 404 Not Found<br>2021-06-07 16:21:05 ERROR 404: Not Found=
+.
 
+ERROR: icedtea7-native-2.1.3-r1.0 do_fetch: Fetcher failure for URL: &#39;=
+<a href=3D"http://icedtea.classpath.org/hg/release/icedtea7-forest-2.1/arch=
+ive/f89009ada191.tar.bz2;name=3Dopenjdk;unpack=3Dfalse;downloadfilename=3Do=
+penjdk-f89009ada191.tar.bz2" target=3D"_blank">http://icedtea.classpath.org=
+/hg/release/icedtea7-forest-2.1/archive/f89009ada191.tar.bz2;name=3Dopenjdk=
+;unpack=3Dfalse;downloadfilename=3Dopenjdk-f89009ada191.tar.bz2</a>&#39;. U=
+nable to fetch URL from any source.</span></pre>
+<p><br>Following this link, seems like the webserver is down. Do you know =
+any mirror that I can use in the meantime?<br><br>Thanks,<br>George</p>
+<br>
+<br>
+<br>
+</blockquote></div>
+
+--0000000000006332df05c4659694--
