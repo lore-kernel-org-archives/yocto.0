@@ -1,73 +1,50 @@
-Subject: Exporting custom kernel header file to SDK #sdk #kernel
+Subject: Re: Building a different GCC version in SDK vs GCC used to build the rootfs/image
 To: yocto@lists.yoctoproject.org
-From: "Lukasz Domowy" <lukasz.odw39@gmail.com>
-X-Originating-Location: GB (62.209.55.132)
-X-Originating-Platform: Windows Chrome 90
+From: greghwang@gmail.com
+X-Originating-Location: Billerica, Massachusetts, US (192.58.132.250)
+X-Originating-Platform: Linux Chrome 90
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Thu, 10 Jun 2021 09:21:16 -0700
-Message-ID: <e7NE.1623342076809324827.1h6U@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="FIpx7UMGxw5Y4MINpHw8"
+Date: Thu, 10 Jun 2021 10:57:43 -0700
+References: <8500de35-ca62-b86b-bff8-b95fe9595ab2@gmail.com>
+In-Reply-To: <8500de35-ca62-b86b-bff8-b95fe9595ab2@gmail.com>
+Message-ID: <14774.1623347863654474513@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="m6vefddmL1BuX0Rl5m4l"
 
---FIpx7UMGxw5Y4MINpHw8
+--m6vefddmL1BuX0Rl5m4l
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+>=20
+> I think this will be hard to support unless your applications are self
+> contained and will bring its own runtime as well in that case you can
+> build a SDK from newer releases which matches compiler you need and let
+> them use it, if you want to mix and match then it will require a bit of
+> extra work e.g. check if runtime from newer compiler will still work wit=
+h
+> older libs/binaries or find a way to package two versions seprately and
+> ensure that existing packages on image can keep using older libs
 
-I wrote a kernel driver which exposes some header to userspace application=
-. Application engineers use generated SDK, so I'd like to export that heade=
-r file as part of SDK.
-I added my header to <kernel>/include/uapi/linux/ and thought it would be =
-enouogh - as during SDK generation it would be copied to SDK.
+So our application might be able to be self contained and bring in all of =
+it's own libs and runtime that it needs.=C2=A0 If that case I wouldn't have=
+ to supply the sysroot that comes as part of the SDK; I'd just provide the =
+compiled toolchain/compiler with the updated gcc 8.2, right?
 
-I use Yocto 3.2.2 and custom recipe for kernel 5.10.
-
-I generated SDK and installed it, but to my surprise:
-- my header is missing at <SDK install path>/sysroots/cortexa9hf-neon-poky=
--linux-gnueabi/usr/include/linux/
-- <SDK install path>/sysroots/cortexa9hf-neon-poky-linux-gnueabi/usr/inclu=
-de/linux/version.h contains:
-#define LINUX_VERSION_CODE 329728
-which means kernel version 5.8 (why not 5.10?)
-
-It looks like SDK takes default Yocto gatesgarth kernel version (5.8) to S=
-DK, not my kernel version.=C2=A0PREFERRED_PROVIDER_virtual/kernel is proper=
-ly set and right kernel version is built (at tmp/deploy/images)
-What am I doing wrong?
-
-I would appreciate any hints. Thank you in advance.
-
-Best regards,
-Lukasz
-
---FIpx7UMGxw5Y4MINpHw8
+--m6vefddmL1BuX0Rl5m4l
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>Hello,</div>
-<div>&nbsp;</div>
-<div>I wrote a kernel driver which exposes some header to userspace applic=
-ation. Application engineers use generated SDK, so I'd like to export that =
-header file as part of SDK.</div>
-<div>I added my header to &lt;kernel&gt;/include/uapi/linux/ and thought i=
-t would be enouogh - as during SDK generation it would be copied to SDK.&nb=
-sp;</div>
-<div>&nbsp;</div>
-<div>I use Yocto 3.2.2 and custom recipe for kernel 5.10.</div>
-<div>&nbsp;</div>
-<div>I generated SDK and installed it, but to my surprise:</div>
-<div>- my header is missing at &lt;SDK install path&gt;/sysroots/cortexa9h=
-f-neon-poky-linux-gnueabi/usr/include/linux/</div>
-<div>- &lt;SDK install path&gt;/sysroots/cortexa9hf-neon-poky-linux-gnueab=
-i/usr/include/linux/version.h contains:</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; #define LINUX_VERSION_CODE 329728</div>
-<div>which means kernel version 5.8 (why not 5.10?)</div>
-<div><br />It looks like SDK takes default Yocto gatesgarth kernel version=
- (5.8) to SDK, not my kernel version.&nbsp;PREFERRED_PROVIDER_virtual/kerne=
-l is properly set and right kernel version is built (at tmp/deploy/images)<=
-/div>
-<div>What am I doing wrong?<br /><br />I would appreciate any hints. Thank=
- you in advance.<br /><br />Best regards,<br />Lukasz</div>
+<blockquote><span style=3D"white-space: pre-wrap;">I think this will be har=
+d to support unless your applications are self contained and will bring its=
+ own runtime as well in that case you can build a SDK from newer releases w=
+hich matches compiler you need and let them use it, if you want to mix and =
+match then it will require a bit of extra work e.g. check if runtime from n=
+ewer compiler will still work with older libs/binaries or find a way to pac=
+kage two versions seprately and ensure that existing packages on image can =
+keep using older libs</span></blockquote>
+So our application might be able to be self contained and bring in all of =
+it's own libs and runtime that it needs.&nbsp; If that case I wouldn't have=
+ to supply the sysroot that comes as part of the SDK; I'd just provide the =
+compiled toolchain/compiler with the updated gcc 8.2, right?
 
---FIpx7UMGxw5Y4MINpHw8--
+--m6vefddmL1BuX0Rl5m4l--
