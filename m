@@ -1,95 +1,111 @@
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41])
- by mx.groups.io with SMTP id smtpd.web11.101.1623430221080485755
+Received: from mail.h3ndrk.de (mail.h3ndrk.de [188.68.41.99])
+ by mx.groups.io with SMTP id smtpd.web11.2912.1623443409721396559
  for <yocto@lists.yoctoproject.org>;
- Fri, 11 Jun 2021 09:50:21 -0700
+ Fri, 11 Jun 2021 13:30:11 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=KMbOSAus;
- spf=pass (domain: gmail.com, ip: 209.85.217.41, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vs1-f41.google.com with SMTP id 68so4117191vsu.6
-        for <yocto@lists.yoctoproject.org>; Fri, 11 Jun 2021 09:50:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XYCmeNhb9qso7YhB2ABkuH1wWEMvL08Oa4Q0Sb26beU=;
-        b=KMbOSAusNIfbWjn9LYQE+IbHqS2K3u0rsG2z3wPMKz8HTjMkuhM0aywO0iDD/5laOb
-         UMOMgQ3QpHADNkVgVNSSoiAzo0P9jXX/vgE/sOJt9YLe1HRZ/fmBOncIatQbAOYD028F
-         LLzD+8TPKKhVzBadZjBTKy3B+ShTqyDOyrxyP1qhTjDs6KYEdF56k4yFKYvdK9fSd8iQ
-         HZy3xsxuO2sQ3fr/JMy4Gsuvk+x3ZBxyIN5hK6d2kg8fsV6VkVbEmexJOx9waGUAxpSP
-         rRiqMcO2u5tNzLBXuKeVUYQm9b7/i3no4hXOjHEAUSc+etCRcER7uPkViL8lzGzx/fMj
-         Qt2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XYCmeNhb9qso7YhB2ABkuH1wWEMvL08Oa4Q0Sb26beU=;
-        b=tCQwnTkZkLpVXdpBI3l7W6/wRe8r+ZDdFL4nZyG6JGTxiJp/3coN0NA0konKCoRC7P
-         s3V9Hfnpd5uAYolw0Gjc/i+UEAKEGt6LHuSx1wTqCjzb8KVnEq/U6CVRfAZZ1q1O2tGi
-         mcN7Gdj24BqGSvy6ocdO+7qKJ9/WDzyRmPucLtUDNkonosbLjcgGftYE8MQkGUXuojY9
-         A0L2+XMNkj0Q4XNsx0SLz9pV6MECSp9iXwF/sxxObKaAzNnMBUZ/586ibqA3+OuS9rt0
-         Q8Niw35pk80UyLkJ+Mw17pXLrWggZ5enw0NT8fi9odUyjKjADy6l970pob532pM8pToS
-         XcgA==
-X-Gm-Message-State: AOAM53113lXucssDTzyRX49DyG6dyhFOlQ6kefD8DufQv6eS+6/l0N/W
-	B7HFUHpkpFhw8eL2DW1qmW1cv7pi4UDNXiy+2/w=
-X-Google-Smtp-Source: ABdhPJw62xkzpoK988sJJhlWfZzwv/7QpLfclWUuZfrQLolLnR/0nvN0/0iw35yqPDmc2Uy2qStO3WxZ9sxUu8OWIdE=
-X-Received: by 2002:a05:6102:23dc:: with SMTP id x28mr11269578vsr.31.1623430220230;
- Fri, 11 Jun 2021 09:50:20 -0700 (PDT)
+ dkim=missing; spf=pass (domain: h3ndrk.de, ip: 188.68.41.99, mailfrom: yocto@h3ndrk.de)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AFE48A0E9D
+	for <yocto@lists.yoctoproject.org>; Fri, 11 Jun 2021 22:30:05 +0200 (CEST)
+Subject: Re: [yocto] Extensible SDK of core-image-minimal fails to install
+To: yocto@lists.yoctoproject.org
+References: <1686F53371AAAEA1.32444@lists.yoctoproject.org>
+From: "Hendrik" <yocto@h3ndrk.de>
+Message-ID: <7d3b564b-d17d-f926-0037-e19ed3e73321@h3ndrk.de>
+Date: Fri, 11 Jun 2021 22:30:03 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <CANNYZj9r_eZ8ZHEo801viRNuBekefmvKuqtLfKsKTQncw+uw-w@mail.gmail.com>
- <9176.1623407260794777165@lists.yoctoproject.org>
-In-Reply-To: <9176.1623407260794777165@lists.yoctoproject.org>
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Fri, 11 Jun 2021 18:50:09 +0200
-Message-ID: <CANNYZj8S7mtgudxKEirgTxkSFP-hRgatRhYPmu+1beQY=2ksrw@mail.gmail.com>
-Subject: Re: [yocto] [meta-java] icedtea7 fetching error
-To: stefano.fiore84@gmail.com
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000098351805c4804d37"
-
---00000000000098351805c4804d37
-Content-Type: text/plain; charset="UTF-8"
-
-I have reconfigured our build system to use an internal server via bbappend:
-
-ICEDTEA_HG_URL = "https://internal.artifact.server/icedtea/"
-
-placed all the tarballs there according to expected locations, and it works
-just fine.
-
-Alex
-
-On Fri, 11 Jun 2021 at 12:44, <stefano.fiore84@gmail.com> wrote:
-
-> I have also the tarball but the build will fail later in the configure
-> phase stating:
-> icedtea7 "Invalid OpenJDK source zip specified".
->
-> Is there something more I can try ?
->
-> 
->
->
-
---00000000000098351805c4804d37
-Content-Type: text/html; charset="UTF-8"
+In-Reply-To: <1686F53371AAAEA1.32444@lists.yoctoproject.org>
+X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US-large
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>I have reconfigured our build system to use an intern=
-al server via bbappend:</div><div><br></div><div>ICEDTEA_HG_URL =3D &quot;<=
-a href=3D"https://internal.artifact.server/icedtea/">https://internal.artif=
-act.server/icedtea/</a>&quot;</div><div><br></div><div>placed all the tarba=
-lls there according to expected locations, and it works just fine.</div><di=
-v><br></div><div>Alex<br></div></div><br><div class=3D"gmail_quote"><div di=
-r=3D"ltr" class=3D"gmail_attr">On Fri, 11 Jun 2021 at 12:44, &lt;<a href=3D=
-"mailto:stefano.fiore84@gmail.com">stefano.fiore84@gmail.com</a>&gt; wrote:=
-<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><p>I have also =
-the tarball but the build will fail later in the configure phase stating:<b=
-r>icedtea7 &quot;Invalid OpenJDK source zip specified&quot;.</p>
-<p>Is there something more I can try ?</p>
-<br>
-<br>
-<br>
-</blockquote></div>
+I was able to reproduce the error even with plain poky (without kas):
 
---00000000000098351805c4804d37--
+```bash
+git clone -b dunfell https://git.yoctoproject.org/git/poky
+cd poky
+source oe-init-build-env
+bitbake -c populate_sdk_ext core-image-minimal
+```
+
+After successful build, copy the `build/tmp/deploy/sdk/poky....sh` to
+another machine (with different OS) and run it there.
+
+I tried several different installation machines and they fail
+consistently to install the extensible SDK if they run a different OS
+than the build machine (e.g. Debian 10 vs. Ubuntu 18.04 vs. 20.04). See
+the exakt error and complete log output in my previous message.
+
+What is happening here? Did I use the extensible SDK wrongly? Is it
+expected to be incompatible?
+
+Thanks in advance!
+
+Hendrik
+
+On 09.06.21 17:58, Hendrik wrote:
+> Hello World,
+>
+> I'm trying to install an extensible SDK of `core-image-minimal` on a
+> system different from the build system (build system is Debian 10,
+> install system is e.g. Ubuntu 20.04). When doing this, the following
+> error occurs:
+>
+> ```
+> ERROR: Task
+> (virtual:native:/home/test/poky_sdk/layers/poky/meta/recipes-devtools
+> /pseudo/pseudo_git.bb:do_fetch) failed with exit code 'setscene whiteli=
+st'
+> ```
+>
+> The full log file `preparing_build_system.log` is available at:
+> https://pastebin.com/m9KmshY0
+>
+> It seems `recipes-devtools/pseudo/pseudo_git.bb` does depend on the
+> build environment and therefore yields different hashes which results i=
+n
+> broken sstate-cache. Does someone know what exactly went wrong and how
+> to fix it?
+>
+> Steps to reproduce:
+>
+> Use the following `kas-project.yml`:
+>
+> ```yml
+> header:
+> =C2=A0 version: 10
+> machine: qemux86-64
+> distro: poky
+> local_conf_header:
+> =C2=A0 standard: |
+> =C2=A0=C2=A0=C2=A0 CONF_VERSION =3D "1"
+> =C2=A0=C2=A0=C2=A0 PACKAGE_CLASSES =3D "package_rpm"
+> repos:
+> =C2=A0 poky:
+> =C2=A0=C2=A0=C2=A0 url: "https://git.yoctoproject.org/git/poky"
+> =C2=A0=C2=A0=C2=A0 refspec: dunfell
+> =C2=A0=C2=A0=C2=A0 layers:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 meta:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 meta-poky:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 meta-yocto-bsp:
+> ```
+>
+> Then, run a kas container (https://github.com/siemens/kas, e.g. use
+> `kas-container` script): `./kas-container shell kas-project.yml` This
+> will start a Debian 10 container with kas installed.
+>
+> Build the extensible SDK with `bitbake -c populate_sdk_ext
+> core-image-minimal`.
+>
+> After finishing, install the extensible SDK on a different machine (for
+> testing purposes e.g. in a Docker container for example `ubuntu:20.04`)=
+.
+> It will result in the error mentioned above.
+>
+> How do I fix that?
+>
+> Thanks in advance!
+>
+> Hendrik
