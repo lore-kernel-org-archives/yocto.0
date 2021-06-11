@@ -1,75 +1,84 @@
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
- by mx.groups.io with SMTP id smtpd.web09.5724.1623400225537984758
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+ by mx.groups.io with SMTP id smtpd.web09.5819.1623401084224474402
  for <yocto@lists.yoctoproject.org>;
- Fri, 11 Jun 2021 01:30:25 -0700
+ Fri, 11 Jun 2021 01:44:44 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=l7elka6r;
- spf=pass (domain: gmail.com, ip: 209.85.167.43, mailfrom: zmuda.w@gmail.com)
-Received: by mail-lf1-f43.google.com with SMTP id j2so7383479lfg.9
-        for <yocto@lists.yoctoproject.org>; Fri, 11 Jun 2021 01:30:25 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=B5QKFhRp;
+ spf=pass (domain: gmail.com, ip: 209.85.167.47, mailfrom: zmuda.w@gmail.com)
+Received: by mail-lf1-f47.google.com with SMTP id j2so7436706lfg.9
+        for <yocto@lists.yoctoproject.org>; Fri, 11 Jun 2021 01:44:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=qyurJry2at0kw4rkXPXQZGMQkIG0560Gue+UIBqjkY4=;
-        b=l7elka6rsCKbgmsmsfD8JfUlknARngy1/NoL2V8OcK+KZAWz1F8F0nX7k20VnZqaED
-         P2Ye4S1R1Vqz3S+gDSYCq1vEYbM2tsqmYZB7cMmvjkMXos/6S4x9ac3PVGkldeBH7U2P
-         Dn7HUz44MoEsoeya0s4TN1QRet4fkh9NHzjGV15tXAjhgm/wt8rMRXI73RPRbsONEkDF
-         RDZdB30zLWgHZaMfeovr3B0h1WkUcLNgRZl34QupmdwLEk6XqZ1BvTPjgdo0OPhLZ6Ko
-         BOv4UgOdJwVUFuwIizmjLW0Iu1pvx8POaoZJ5u3nsp235wUVJS1TrG+cmEpFyzvyMHrm
-         8JsQ==
+        bh=ACyIWySftQCyYdf0tCaciH1+NjukG9sKf5+rPAYD2NQ=;
+        b=B5QKFhRp/RFQC+xWEFLYS/zFOS8vgkre3iPCl3CzxoddAtrl6WKmRXRbsT4vm//DVn
+         1awcvOJ+HOVN4POJTrTUCqCNPcAjwNYvL8VItIu9HflpzxKWt1EL1MLWi6Hu8NhxQqoR
+         n6ZYUfS8q/3ntgOJJIK7+51VCrSwVpb6gUNn3AIiREqR0Z34Cl258ihrMrOblNvDt6z2
+         aD49IT3bEX/9RiFhxTxu1ziBBZZdTNPTJQ4cM3GehW7BA5DPwbylzMZcXs7rstPaLZLG
+         LlqIV6aJSVVyE1HOZUrqY7ND5l7zmnMVm4Go4Ccq3CZ1/LORZw8AOTo7Vm2XlrnlaNl1
+         Me3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=qyurJry2at0kw4rkXPXQZGMQkIG0560Gue+UIBqjkY4=;
-        b=fbhMeaN7uUdnDizB6Xi7VOWG0i2dAd01uICXmxBtdbKj/VBawYG6EFqXItOb2NVee5
-         wboIWawEHfNjbIlffP41ivP90kT5Dh73XwIE1D8jvB+khU4V2aYHXlyqEHl7dxg6bXUv
-         g/cGB5JTdqWXencJicV8YECIyTM1wUjtcrKPvd7EpZnHfOWt01HxwGEM4vzkl+rgWsvj
-         E93D5xx2BIOIuHMXwOdWRGMJ8YnPUepfa+Mpa68KmfzaB55FwMb2NoWS9MsGVpKr+CaO
-         EaC/MAW1vVI77aGGdqDr7mltXWHF3rYxCzYY+iMMUJUo8fp8SxMprKFrnhxSk9Lb4+Xh
-         /VsA==
-X-Gm-Message-State: AOAM530xoW29uloQDbksQBSPQqe6kJB7Qdvfl+oY2ciVoD6v/bBHhoEm
-	I+h+R5eoKam2h46xnszkkLfWj3PtIeugjA==
-X-Google-Smtp-Source: ABdhPJyTFdXjBCxUGC+Rwm1+taND/5LUWASBr+h5S4eUrWM0VHfHX05bqkgPxh//m3y5GWbjzqDdvw==
-X-Received: by 2002:a05:6512:3baa:: with SMTP id g42mr2001394lfv.195.1623400223185;
-        Fri, 11 Jun 2021 01:30:23 -0700 (PDT)
+        bh=ACyIWySftQCyYdf0tCaciH1+NjukG9sKf5+rPAYD2NQ=;
+        b=RNe/QIjgawJbsNI5CglR4EKwX+cDlZHO37X+AOHHJwcI3gw22SA4SPS2+LxxBI3bcO
+         dCXRoDZNRsOyrXBbPd1SxrMYdu4lB51fZUZCRI5l2c04F+jWp47Qa056Qk9Vk1utUZCt
+         xY/mM9pMsxS2onV5qzvEuA3soUhyDtyZdW2Ve7b9upAZOP77ANqZe0EbnLigZfrZxTEz
+         s+LdFPje+DdBcCQ64vnN7CHKTBd1vPxdSVQZTxFb3eBSW/T4uuD4OFyEewS3NsaAGbLi
+         LBODOOKmzfoc4oRi09WyB/UJ8rHFuuIleBXhFX9P86kPMLy0i+KRhg7I0DSX/gqG5SMT
+         yxhQ==
+X-Gm-Message-State: AOAM532iLv6vlXX+0mjlBXZ0jazeiQmCw/lo+BqPZrN+urdPpqBFByOr
+	CuNdSSfZxddpPiaiCHZUH1CYW3NYssuwWg==
+X-Google-Smtp-Source: ABdhPJxshCbDQgbOg1OnFUQlcNZou0Ef7vcG+egbUM1p05X1b9EHKj1m6YATCHNAFRbxawta3ZSp2Q==
+X-Received: by 2002:a19:740b:: with SMTP id v11mr2029211lfe.18.1623401081715;
+        Fri, 11 Jun 2021 01:44:41 -0700 (PDT)
 Return-Path: <zmuda.w@gmail.com>
 Received: from localhost.localdomain ([2a02:a319:8239:4400:b71d:7ae0:b524:c53d])
-        by smtp.gmail.com with ESMTPSA id h11sm528513lfc.247.2021.06.11.01.30.21
+        by smtp.gmail.com with ESMTPSA id i36sm531010lfv.51.2021.06.11.01.44.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Jun 2021 01:30:22 -0700 (PDT)
+        Fri, 11 Jun 2021 01:44:41 -0700 (PDT)
 From: "Wojciech Zmuda" <zmuda.w@gmail.com>
 To: yocto@lists.yoctoproject.org
-Cc: Davide Ricci <davide.ricci@huawei.com>
-Subject: [meta-zephyr][PATCH] zephyr-blinky: add sample app recipe
-Date: Fri, 11 Jun 2021 10:30:17 +0200
-Message-Id: <20210611083017.1870066-1-zmuda.w@gmail.com>
+Cc: Wojciech Zmuda <wojciech.zmuda@huawei.com>
+Subject: [meta-zephyr][PATCH 0/1] Partially fix tests failure with 2.6.0 kernel
+Date: Fri, 11 Jun 2021 10:44:30 +0200
+Message-Id: <20210611084431.1870665-1-zmuda.w@gmail.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Davide Ricci <davide.ricci@huawei.com>
+From: Wojciech Zmuda <wojciech.zmuda@huawei.com>
 
-Blinky is the most referenced sample in Zephyr's documentation and
-recall Arduino's first sketch example. This .bb file allows to build
-such example.
+Transition to Zephyr 2.6.0 broke meta-zephyr test suite. This patch fixes
+QEMU Cortex-M3 test suite (MACHINE=qemu-cortex-m3 bitbake zephyr-kernel-test-all -c testimage).
 
-Signed-off-by: Davide Ricci <davide.ricci@huawei.com>
----
- recipes-kernel/zephyr-kernel/zephyr-blinky.bb | 3 +++
- 1 file changed, 3 insertions(+)
- create mode 100644 recipes-kernel/zephyr-kernel/zephyr-blinky.bb
+The reason of failure is that the `obj_tracing` test suite has been removed from
+Zephyr sources, but it still is referenced in zephyr-kernel-test.inc.
 
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-blinky.bb b/recipes-kernel/zephyr-kernel/zephyr-blinky.bb
-new file mode 100644
-index 0000000..bd5ce4f
---- /dev/null
-+++ b/recipes-kernel/zephyr-kernel/zephyr-blinky.bb
-@@ -0,0 +1,3 @@
-+include zephyr-sample.inc
-+
-+ZEPHYR_SRC_DIR = "${S}/samples/basic/blinky"
+Unfortunately, there are other problems in this area not solved in this path. We'd
+like to take the opportunity to report it anyway. The QEMU x86 test suite build
+fails because of unimplemented instructions:
+
+  | /build/work/i586-yocto-elf/interrupt/2.6.0+gitAUTOINC+79a6c07536_c3bd2094f9-r0/git/tests/kernel/interrupt/src/direct_isr.c: In function 'direct_isr1':
+  | /build/work/i586-yocto-elf/interrupt/2.6.0+gitAUTOINC+79a6c07536_c3bd2094f9-r0/git/tests/kernel/interrupt/src/direct_isr.c:47:1: sorry, unimplemented: 80387 instructions aren't allowed in an interrupt service routine
+  |    47 | ISR_DIRECT_DECLARE(direct_isr1)
+  |       | ^~~~~~~~~~~~~~~~~~
+  | /build/work/i586-yocto-elf/interrupt/2.6.0+gitAUTOINC+79a6c07536_c3bd2094f9-r0/git/tests/kernel/interrupt/src/direct_isr.c: In function 'direct_isr2':
+  | /build/work/i586-yocto-elf/interrupt/2.6.0+gitAUTOINC+79a6c07536_c3bd2094f9-r0/git/tests/kernel/interrupt/src/direct_isr.c:54:1: sorry, unimplemented: 80387 instructions aren't allowed in an interrupt service routine
+  |    54 | ISR_DIRECT_DECLARE(direct_isr2)
+  |       | ^~~~~~~~~~~~~~~~~~
+
+The problem above does not occur in case of Cortex-M3 QEMU tests - `interrupt` builds and passes
+just fine. We have not investigated this one further.
+
+Nagesh shamnur (1):
+  zephyr-kernel-test: fix Cortex-M tests failure with 2.6.0 kernel
+
+ recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc | 1 -
+ 1 file changed, 1 deletion(-)
+
 -- 
 2.25.1
 
