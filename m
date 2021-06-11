@@ -1,84 +1,80 @@
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
- by mx.groups.io with SMTP id smtpd.web09.5819.1623401084224474402
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+ by mx.groups.io with SMTP id smtpd.web12.5628.1623401085925788797
  for <yocto@lists.yoctoproject.org>;
- Fri, 11 Jun 2021 01:44:44 -0700
+ Fri, 11 Jun 2021 01:44:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=B5QKFhRp;
- spf=pass (domain: gmail.com, ip: 209.85.167.47, mailfrom: zmuda.w@gmail.com)
-Received: by mail-lf1-f47.google.com with SMTP id j2so7436706lfg.9
-        for <yocto@lists.yoctoproject.org>; Fri, 11 Jun 2021 01:44:43 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=l4T0F7SV;
+ spf=pass (domain: gmail.com, ip: 209.85.167.54, mailfrom: zmuda.w@gmail.com)
+Received: by mail-lf1-f54.google.com with SMTP id m21so7410981lfg.13
+        for <yocto@lists.yoctoproject.org>; Fri, 11 Jun 2021 01:44:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ACyIWySftQCyYdf0tCaciH1+NjukG9sKf5+rPAYD2NQ=;
-        b=B5QKFhRp/RFQC+xWEFLYS/zFOS8vgkre3iPCl3CzxoddAtrl6WKmRXRbsT4vm//DVn
-         1awcvOJ+HOVN4POJTrTUCqCNPcAjwNYvL8VItIu9HflpzxKWt1EL1MLWi6Hu8NhxQqoR
-         n6ZYUfS8q/3ntgOJJIK7+51VCrSwVpb6gUNn3AIiREqR0Z34Cl258ihrMrOblNvDt6z2
-         aD49IT3bEX/9RiFhxTxu1ziBBZZdTNPTJQ4cM3GehW7BA5DPwbylzMZcXs7rstPaLZLG
-         LlqIV6aJSVVyE1HOZUrqY7ND5l7zmnMVm4Go4Ccq3CZ1/LORZw8AOTo7Vm2XlrnlaNl1
-         Me3A==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=CCBqOmcs3YKdGlzSk5P0+dBXEqz5zN9WHyCNO9Yrqk8=;
+        b=l4T0F7SVKOr5xtFO+Nea+GIRiE02Oh0VEc3lDXYlhrOrpb6szl4V3UZ+w/X4SbRVs4
+         w9GlRM+isuxhRAfrfetN9+f9TuJHx9l0q12pev3a/UmJQeR9vgCQlx5Sd8UPzlfnaL/+
+         TZtXUaV903HTGoRGz5TxxbAWfYDoU/bbUXNC+JVQqydj4oLj/Ils6bvSsCjlK0SKSfOw
+         DJBfZZqizUpggLihgdk7EFoUMtG84LX8e4x5DMOqTv9FRkY39aSYvujrLCRm85cgdSwb
+         OTsxt48Jd9aIgiqRCNAQUdGRUCmQMzsUG3BLQT8Cz11txZ/v1t6JaFUkMC1xLrS12WB+
+         j0pA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ACyIWySftQCyYdf0tCaciH1+NjukG9sKf5+rPAYD2NQ=;
-        b=RNe/QIjgawJbsNI5CglR4EKwX+cDlZHO37X+AOHHJwcI3gw22SA4SPS2+LxxBI3bcO
-         dCXRoDZNRsOyrXBbPd1SxrMYdu4lB51fZUZCRI5l2c04F+jWp47Qa056Qk9Vk1utUZCt
-         xY/mM9pMsxS2onV5qzvEuA3soUhyDtyZdW2Ve7b9upAZOP77ANqZe0EbnLigZfrZxTEz
-         s+LdFPje+DdBcCQ64vnN7CHKTBd1vPxdSVQZTxFb3eBSW/T4uuD4OFyEewS3NsaAGbLi
-         LBODOOKmzfoc4oRi09WyB/UJ8rHFuuIleBXhFX9P86kPMLy0i+KRhg7I0DSX/gqG5SMT
-         yxhQ==
-X-Gm-Message-State: AOAM532iLv6vlXX+0mjlBXZ0jazeiQmCw/lo+BqPZrN+urdPpqBFByOr
-	CuNdSSfZxddpPiaiCHZUH1CYW3NYssuwWg==
-X-Google-Smtp-Source: ABdhPJxshCbDQgbOg1OnFUQlcNZou0Ef7vcG+egbUM1p05X1b9EHKj1m6YATCHNAFRbxawta3ZSp2Q==
-X-Received: by 2002:a19:740b:: with SMTP id v11mr2029211lfe.18.1623401081715;
-        Fri, 11 Jun 2021 01:44:41 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=CCBqOmcs3YKdGlzSk5P0+dBXEqz5zN9WHyCNO9Yrqk8=;
+        b=Ec9lG95KieV+S1CRWFdblhzo2Q9mQzxrTAL66NyZ06nIJz5eE416dwvl6u2mEodFT1
+         F8I1iH/NPSLM3h2PFec2v0FZAbsW+ONfFwp0Znj/4FegKeC/lgFKEfnCtsjCDLjEInHr
+         eBwFQfGhBZCa2RO/xuvQ3Wr47fVuAYsyYJX51O2uGbuVdSTyrBwDp0Vc3HnuggRo4m1y
+         k3CpoGETqBqRalr92NL+KIRw5jFmSI0CJI3t/VnD1v/G7ZM7zQqlDjpwdAqEvGNasowH
+         Rbz/uGFkyiUPHv0hToiGdHnzfGeKptaqkc7mFDO6KTsIdlxzFls+Swfkm0heaHGvHoy7
+         r5kQ==
+X-Gm-Message-State: AOAM531NVS2KYITiMW+E2MNNrpiOBkeQNgSgJINubA8vXJy97Iip2lj3
+	nfh45b+/3ze4C+l3T6jFOAY1s3Ao/UOcCyEQ
+X-Google-Smtp-Source: ABdhPJxItc3a6dD1MvY4El6o4Z36v3JbsRTP4tfk9DWsxkynXWc51X13qEFnmlG90XdNqpyZkEP19g==
+X-Received: by 2002:a19:c756:: with SMTP id x83mr2049275lff.394.1623401083915;
+        Fri, 11 Jun 2021 01:44:43 -0700 (PDT)
 Return-Path: <zmuda.w@gmail.com>
 Received: from localhost.localdomain ([2a02:a319:8239:4400:b71d:7ae0:b524:c53d])
-        by smtp.gmail.com with ESMTPSA id i36sm531010lfv.51.2021.06.11.01.44.40
+        by smtp.gmail.com with ESMTPSA id i36sm531010lfv.51.2021.06.11.01.44.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Jun 2021 01:44:41 -0700 (PDT)
+        Fri, 11 Jun 2021 01:44:43 -0700 (PDT)
 From: "Wojciech Zmuda" <zmuda.w@gmail.com>
 To: yocto@lists.yoctoproject.org
-Cc: Wojciech Zmuda <wojciech.zmuda@huawei.com>
-Subject: [meta-zephyr][PATCH 0/1] Partially fix tests failure with 2.6.0 kernel
-Date: Fri, 11 Jun 2021 10:44:30 +0200
-Message-Id: <20210611084431.1870665-1-zmuda.w@gmail.com>
+Cc: Nagesh shamnur <nagesh.shamnur@huawei.com>,
+	Wojciech Zmuda <wojciech.zmuda@huawei.com>
+Subject: [meta-zephyr][PATCH 1/1] zephyr-kernel-test: fix Cortex-M tests failure with 2.6.0 kernel
+Date: Fri, 11 Jun 2021 10:44:31 +0200
+Message-Id: <20210611084431.1870665-2-zmuda.w@gmail.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210611084431.1870665-1-zmuda.w@gmail.com>
+References: <20210611084431.1870665-1-zmuda.w@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Wojciech Zmuda <wojciech.zmuda@huawei.com>
+From: Nagesh shamnur <nagesh.shamnur@huawei.com>
 
-Transition to Zephyr 2.6.0 broke meta-zephyr test suite. This patch fixes
-QEMU Cortex-M3 test suite (MACHINE=qemu-cortex-m3 bitbake zephyr-kernel-test-all -c testimage).
+Edit the test recipe removing obj_tracing tests that have
+been removed from Zephyr 2.6.0 release.
 
-The reason of failure is that the `obj_tracing` test suite has been removed from
-Zephyr sources, but it still is referenced in zephyr-kernel-test.inc.
-
-Unfortunately, there are other problems in this area not solved in this path. We'd
-like to take the opportunity to report it anyway. The QEMU x86 test suite build
-fails because of unimplemented instructions:
-
-  | /build/work/i586-yocto-elf/interrupt/2.6.0+gitAUTOINC+79a6c07536_c3bd2094f9-r0/git/tests/kernel/interrupt/src/direct_isr.c: In function 'direct_isr1':
-  | /build/work/i586-yocto-elf/interrupt/2.6.0+gitAUTOINC+79a6c07536_c3bd2094f9-r0/git/tests/kernel/interrupt/src/direct_isr.c:47:1: sorry, unimplemented: 80387 instructions aren't allowed in an interrupt service routine
-  |    47 | ISR_DIRECT_DECLARE(direct_isr1)
-  |       | ^~~~~~~~~~~~~~~~~~
-  | /build/work/i586-yocto-elf/interrupt/2.6.0+gitAUTOINC+79a6c07536_c3bd2094f9-r0/git/tests/kernel/interrupt/src/direct_isr.c: In function 'direct_isr2':
-  | /build/work/i586-yocto-elf/interrupt/2.6.0+gitAUTOINC+79a6c07536_c3bd2094f9-r0/git/tests/kernel/interrupt/src/direct_isr.c:54:1: sorry, unimplemented: 80387 instructions aren't allowed in an interrupt service routine
-  |    54 | ISR_DIRECT_DECLARE(direct_isr2)
-  |       | ^~~~~~~~~~~~~~~~~~
-
-The problem above does not occur in case of Cortex-M3 QEMU tests - `interrupt` builds and passes
-just fine. We have not investigated this one further.
-
-Nagesh shamnur (1):
-  zephyr-kernel-test: fix Cortex-M tests failure with 2.6.0 kernel
-
+Signed-off-by: Nagesh Shamnur <nagesh.shamnur@huawei.com>
+Signed-off-by: Wojciech Zmuda <wojciech.zmuda@huawei.com>
+---
  recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc | 1 -
  1 file changed, 1 deletion(-)
 
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc
+index b6b4766..78747f9 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc
+@@ -36,7 +36,6 @@ ZEPHYRTESTS = " \
+     mp \
+     msgq \
+     mutex \
+-    obj_tracing \
+     pending \
+     pipe \
+     poll \
 -- 
 2.25.1
 
