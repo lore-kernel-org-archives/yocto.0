@@ -1,51 +1,50 @@
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
- by mx.groups.io with SMTP id smtpd.web08.6007.1623401538253339866
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+ by mx.groups.io with SMTP id smtpd.web08.6008.1623401539618129327
  for <yocto@lists.yoctoproject.org>;
- Fri, 11 Jun 2021 01:52:18 -0700
+ Fri, 11 Jun 2021 01:52:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=h57w7nWq;
- spf=pass (domain: gmail.com, ip: 209.85.167.53, mailfrom: zmuda.w@gmail.com)
-Received: by mail-lf1-f53.google.com with SMTP id p17so7476277lfc.6
-        for <yocto@lists.yoctoproject.org>; Fri, 11 Jun 2021 01:52:17 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Rm64L6WG;
+ spf=pass (domain: gmail.com, ip: 209.85.167.48, mailfrom: zmuda.w@gmail.com)
+Received: by mail-lf1-f48.google.com with SMTP id r198so7449442lff.11
+        for <yocto@lists.yoctoproject.org>; Fri, 11 Jun 2021 01:52:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=97WNGcMLxULcaGM4uQLdzdqv+FIGCDRenYvNpYmXDIA=;
-        b=h57w7nWqObb5ou95xwE3UeYGvOdlBNc03GVRa81W14606tJ/vbwRzbl3e2niKEjItn
-         SqU3YZk7pM65KAYRE3HfR8AVBhGr0HHP0DptRs5f5YAtEKHO0uxeDFB9i1x6oi1HY1Jj
-         vQjLrvDjbcT8A2XFG4o87zrOmKFdonLKGKQymj0tK6O/3gSW8wLc11vQfzYkGiRaBI0K
-         hJUhoKE5yCzPfVhVQZDyDz0v4BLg7VxgehDnLZM4UiT1iIUuLm3V7OKZbsWC5oD034KG
-         3A7+RNRMgHICUVCveo+gZsOMikxQkexnyDQ4uzG24NqONt/qmRBoNFcfO4SPiHuvJb5J
-         1jvw==
+        bh=Tc7TrwADHaJn7uNO/k34LricKqat6YYw3hUEX5+Cx4o=;
+        b=Rm64L6WGwEVImE68VtG65REr1n7Pe5oNhPG1YuYBbR6OSndLJhxUPz8Ms+3DCDmXm0
+         i+6qbttOevKXNdxbFsdd/Hfa0xbXJhKIjMbOTHID2vwvFGBNtnaCBX08pxwAS24ohanK
+         Agz0s1/wu9TLuFgU96tHh2RyelwLu0Oczqs867rJ88Sgrf0A04II8EYMf5xgXvIAEZzG
+         pk9Ho+lr+9FW8siqlHET8+xB92YXa4UkwVKi6OJRJqdAxpLrXElbQy1QEGiVblH3K5jv
+         NCYukyQ56o8/SJv7+i767ZAXfZ+ohPmX1LBcbcPkHLwrlXcVM1coI/+xSis4zG0Wlfmc
+         8h3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=97WNGcMLxULcaGM4uQLdzdqv+FIGCDRenYvNpYmXDIA=;
-        b=qjawUFH5PdoLDkkH5AZPktO/CfBTzJ8q5RyCRsxvdxc9ipCBcQ6x7fKXdooxW2EdT0
-         T0xkK58k3PbIJknvVCpzFACrKtM+Qwq9oOeGNYUYw4YqpobQwFdIrf0AtV89VD6RfyN4
-         lqtDkQ14vHGF3Pl4lIP6FKxtUphirs5tCMCQVduK9Jr5UKDUgAeMwjAWONfgr+vaD7Xa
-         rQO2BZhUwPImf+mJlYp8OvqJ9IWnAzA7Qw/SDZz1Y9y/vL0Bbc/CY0I7s4H3QuC9hQMM
-         6gZnsW6uSajZAXUjg99sSkiAwIbrTRkrgb/KWn83anZ65uDqczHQJohOrMvJwa8C/NcJ
-         15ww==
-X-Gm-Message-State: AOAM531i/DsAtKe4V+GV41g9Te5S5FYiZ3YTlZj6/3gIR6CJ6fhRuH4H
-	ENGFJ+NAejOzaBB8ehqivA5LbeRUFmi6Lfml
-X-Google-Smtp-Source: ABdhPJxKHWjgvCXKgGWDSlfvDAxp7EWmyX1iMuvFB9VmoX0+FlXRpvYWajQXje0BJ6sZccJ2Lp3QVQ==
-X-Received: by 2002:a05:6512:3b3:: with SMTP id v19mr1991730lfp.516.1623401535935;
-        Fri, 11 Jun 2021 01:52:15 -0700 (PDT)
+        bh=Tc7TrwADHaJn7uNO/k34LricKqat6YYw3hUEX5+Cx4o=;
+        b=dkAj/KMC2b9CTO9sJxoRcAOKST0sJFbQjed9HkFTzlQw3PXiojB8s+UDhD39HcbL6e
+         gMFbEYfafZu29FQUnL9DeoD/J2zapHYqRFKmHPugSL4GASM6G+RUOrdLddihzDPfOMr+
+         v9OuFeT5ozIZw0Fg5Toao+0QQ5agI4DgYWbRG7+TMgtp7quYv48NbC852TPb/Si892eJ
+         1ikFTPOjwqCDqAEYt/CAcS8xw+VMa+F0VhWCnowuuP60RS33IBD39JGw03cq+gNuYUn1
+         AdpQchJplrC4m5pLHJhKU0t/q5IY0DB90QgMESgwEN7KJiOME2t6/i8W11iv86tkgNPt
+         6KOw==
+X-Gm-Message-State: AOAM532Qsy6iwCiVSw4NZkOO0WfR2sTQ6IbtRDoLx+GQBtXISF4iwPb/
+	acxNCKM7YoILXDY09aYzsGvjyVUrWkeACVd9
+X-Google-Smtp-Source: ABdhPJwJQqxGgga/GseGBFM3ZqqDnGRRqEQt5NoTvkks+wHWrbk4af9Cn25Ie9wEt8pbH9ZZFHcoNw==
+X-Received: by 2002:a05:6512:3457:: with SMTP id j23mr1970324lfr.146.1623401537515;
+        Fri, 11 Jun 2021 01:52:17 -0700 (PDT)
 Return-Path: <zmuda.w@gmail.com>
 Received: from localhost.localdomain ([2a02:a319:8239:4400:b71d:7ae0:b524:c53d])
-        by smtp.gmail.com with ESMTPSA id e29sm528825lfb.258.2021.06.11.01.52.15
+        by smtp.gmail.com with ESMTPSA id e29sm528825lfb.258.2021.06.11.01.52.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Jun 2021 01:52:15 -0700 (PDT)
+        Fri, 11 Jun 2021 01:52:17 -0700 (PDT)
 From: "Wojciech Zmuda" <zmuda.w@gmail.com>
 To: yocto@lists.yoctoproject.org
-Cc: Nagesh Shamnur <nagesh.shamnur@huawei.com>,
-	Stefan Schmidt <stefan.schmidt@huawei.com>
-Subject: [meta-zephyr][PATCH 1/3] zephyr-kernel: install .bin image if available
-Date: Fri, 11 Jun 2021 10:52:03 +0200
-Message-Id: <20210611085205.1870988-2-zmuda.w@gmail.com>
+Cc: Nagesh Shamnur <nagesh.shamnur@huawei.com>
+Subject: [meta-zephyr][PATCH 2/3] arduino-nano-33-ble.conf: Add Arduino Nano 33 BLE and BLE Sense support
+Date: Fri, 11 Jun 2021 10:52:04 +0200
+Message-Id: <20210611085205.1870988-3-zmuda.w@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210611085205.1870988-1-zmuda.w@gmail.com>
 References: <20210611085205.1870988-1-zmuda.w@gmail.com>
@@ -54,43 +53,26 @@ Content-Transfer-Encoding: 8bit
 
 From: Nagesh Shamnur <nagesh.shamnur@huawei.com>
 
-Some boards (e.g. Arduino Nano 33 BLE) require image in bin format
-for flashing with `-c flash_usb`. Provide that image along with ELF
-image on do_deploy step.
-
 Signed-off-by: Nagesh Shamnur <nagesh.shamnur@huawei.com>
-Signed-off-by: Stefan Schmidt <stefan.schmidt@huawei.com>
 ---
- recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc | 1 +
- recipes-kernel/zephyr-kernel/zephyr-sample.inc        | 4 ++++
- 2 files changed, 5 insertions(+)
+ conf/machine/arduino-nano-33-ble.conf | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+ create mode 100644 conf/machine/arduino-nano-33-ble.conf
 
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
-index 330fe59..46f19e2 100644
---- a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
-+++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
-@@ -12,6 +12,7 @@ ZEPHYR_GCC_VARIANT="yocto"
- ZEPHYR_SYSROOT="${STAGING_DIR_TARGET}"
- 
- ZEPHYR_MAKE_OUTPUT = "zephyr.elf"
-+ZEPHYR_MAKE_BIN_OUTPUT = "zephyr.bin"
- 
- EXTRA_OECMAKE = "\
-     -DZEPHYR_BASE=${S} \
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-sample.inc b/recipes-kernel/zephyr-kernel/zephyr-sample.inc
-index f7621d1..7b49611 100644
---- a/recipes-kernel/zephyr-kernel/zephyr-sample.inc
-+++ b/recipes-kernel/zephyr-kernel/zephyr-sample.inc
-@@ -9,5 +9,9 @@ do_install[noexec] = "1"
- 
- do_deploy () {
-     install -D ${B}/zephyr/${ZEPHYR_MAKE_OUTPUT} ${DEPLOYDIR}/${PN}.elf
-+    if [ -f ${B}/zephyr/${ZEPHYR_MAKE_BIN_OUTPUT} ]
-+    then
-+      install -D ${B}/zephyr/${ZEPHYR_MAKE_BIN_OUTPUT} ${DEPLOYDIR}/${PN}.bin
-+    fi
- }
- addtask deploy after do_compile
+diff --git a/conf/machine/arduino-nano-33-ble.conf b/conf/machine/arduino-nano-33-ble.conf
+new file mode 100644
+index 0000000..e45cfc2
+--- /dev/null
++++ b/conf/machine/arduino-nano-33-ble.conf
+@@ -0,0 +1,8 @@
++#@TYPE: Machine
++#@NAME: arduino-nano-33-ble
++
++#@DESCRIPTION: Machine configuration for Arudino nano 33 ble and Arduino nano 33 ble sense
++
++require conf/machine/include/nrf52.inc
++ARCH_arduino-nano-33-ble = "arm"
++
 -- 
 2.25.1
 
