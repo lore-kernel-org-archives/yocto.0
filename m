@@ -1,111 +1,82 @@
-Received: from mail.h3ndrk.de (mail.h3ndrk.de [188.68.41.99])
- by mx.groups.io with SMTP id smtpd.web11.2912.1623443409721396559
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+ by mx.groups.io with SMTP id smtpd.web10.3532.1623484061045014404
  for <yocto@lists.yoctoproject.org>;
- Fri, 11 Jun 2021 13:30:11 -0700
+ Sat, 12 Jun 2021 00:47:41 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: h3ndrk.de, ip: 188.68.41.99, mailfrom: yocto@h3ndrk.de)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AFE48A0E9D
-	for <yocto@lists.yoctoproject.org>; Fri, 11 Jun 2021 22:30:05 +0200 (CEST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=F/IDDMh1;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.51, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f51.google.com with SMTP id b145-20020a1c80970000b029019c8c824054so9878550wmd.5
+        for <yocto@lists.yoctoproject.org>; Sat, 12 Jun 2021 00:47:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=CxRvX0Yn/MYzEgzyIwsj2fljazmePKcIn3A+srnm5ZY=;
+        b=F/IDDMh1wH1qf+Db8Hm0Qx7Zq4wqkhFylZ9vXQFJ6XoIER8vno2PXZXRlQ+sC4kkuT
+         C2vhPKNz2LeF/YaAm+zRGKvAx5n8VCb6VXeqt1Ri/bMnnOUkAjy4xd7qyTEQJNN+5aNK
+         4FU4WpmZZnpmZKh5/u/FEr+U4PUoJMeSBVPK4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=CxRvX0Yn/MYzEgzyIwsj2fljazmePKcIn3A+srnm5ZY=;
+        b=tmwGv4oJi+DPs7gy2DRIqECXDzPofQv5aI3Kh64efoN1FRux5tsypPxqFhiKiFKaU9
+         E2qm8u46tFZs3WBm7EGNs+77LeZM8x6pf8E15QK+ndTfmTw8DtAJz/Wkv9CmDv50MSgd
+         ichBmEksQl62plikZTw8yFBl2NPety0smo7Ra6zWZRvJG+dgYKArnNcZEhJ7lfWtz0EZ
+         +Wy4QxJeYIRL9qoOzk7diCw2pqyZUDbwPSQXN0mWKPTtHNHfWXKqlSO0Esl1piT0FD2r
+         xKV5ZxKCqhPfZ/PCOt0F3liivc4eRPDfd3z0OuVs50BfinA40tOjpfG2wD+2ITh/0MHf
+         vb2Q==
+X-Gm-Message-State: AOAM531qijlAS+WIPfZAJMl3KmP5+byqfbhwXYOklxX5tM2n7hzQJIOo
+	3I5UdydQa5YkOiGXRwGVDxz9jg==
+X-Google-Smtp-Source: ABdhPJzD28BXFLLyWr7erF91jkfJaHXAxPuj3Recp3FNTwxQ13tMGp3UwpqbA/s0pZ8OPQyrwMsEPQ==
+X-Received: by 2002:a05:600c:c9:: with SMTP id u9mr7183188wmm.156.1623484059333;
+        Sat, 12 Jun 2021 00:47:39 -0700 (PDT)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from ?IPv6:2001:8b0:aba:5f3c:75:ed13:b33:1d5a? ([2001:8b0:aba:5f3c:75:ed13:b33:1d5a])
+        by smtp.gmail.com with ESMTPSA id z5sm10010766wrv.67.2021.06.12.00.47.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 12 Jun 2021 00:47:39 -0700 (PDT)
+Message-ID: <14938a84618aa48d76d6a8c15ca5930fc72d957a.camel@linuxfoundation.org>
 Subject: Re: [yocto] Extensible SDK of core-image-minimal fails to install
-To: yocto@lists.yoctoproject.org
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Hendrik <yocto@h3ndrk.de>, yocto@lists.yoctoproject.org
+Date: Sat, 12 Jun 2021 08:47:35 +0100
+In-Reply-To: <7d3b564b-d17d-f926-0037-e19ed3e73321@h3ndrk.de>
 References: <1686F53371AAAEA1.32444@lists.yoctoproject.org>
-From: "Hendrik" <yocto@h3ndrk.de>
-Message-ID: <7d3b564b-d17d-f926-0037-e19ed3e73321@h3ndrk.de>
-Date: Fri, 11 Jun 2021 22:30:03 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+	 <7d3b564b-d17d-f926-0037-e19ed3e73321@h3ndrk.de>
+User-Agent: Evolution 3.40.0-1 
 MIME-Version: 1.0
-In-Reply-To: <1686F53371AAAEA1.32444@lists.yoctoproject.org>
-X-Last-TLS-Session-Version: TLSv1.3
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US-large
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-I was able to reproduce the error even with plain poky (without kas):
-
-```bash
-git clone -b dunfell https://git.yoctoproject.org/git/poky
-cd poky
-source oe-init-build-env
-bitbake -c populate_sdk_ext core-image-minimal
-```
-
-After successful build, copy the `build/tmp/deploy/sdk/poky....sh` to
-another machine (with different OS) and run it there.
-
-I tried several different installation machines and they fail
-consistently to install the extensible SDK if they run a different OS
-than the build machine (e.g. Debian 10 vs. Ubuntu 18.04 vs. 20.04). See
-the exakt error and complete log output in my previous message.
-
-What is happening here? Did I use the extensible SDK wrongly? Is it
-expected to be incompatible?
-
-Thanks in advance!
-
-Hendrik
-
-On 09.06.21 17:58, Hendrik wrote:
-> Hello World,
->
-> I'm trying to install an extensible SDK of `core-image-minimal` on a
-> system different from the build system (build system is Debian 10,
-> install system is e.g. Ubuntu 20.04). When doing this, the following
-> error occurs:
->
+On Fri, 2021-06-11 at 22:30 +0200, Hendrik wrote:
+> I was able to reproduce the error even with plain poky (without kas):
+> 
+> ```bash
+> git clone -b dunfell https://git.yoctoproject.org/git/poky
+> cd poky
+> source oe-init-build-env
+> bitbake -c populate_sdk_ext core-image-minimal
 > ```
-> ERROR: Task
-> (virtual:native:/home/test/poky_sdk/layers/poky/meta/recipes-devtools
-> /pseudo/pseudo_git.bb:do_fetch) failed with exit code 'setscene whiteli=
-st'
-> ```
->
-> The full log file `preparing_build_system.log` is available at:
-> https://pastebin.com/m9KmshY0
->
-> It seems `recipes-devtools/pseudo/pseudo_git.bb` does depend on the
-> build environment and therefore yields different hashes which results i=
-n
-> broken sstate-cache. Does someone know what exactly went wrong and how
-> to fix it?
->
-> Steps to reproduce:
->
-> Use the following `kas-project.yml`:
->
-> ```yml
-> header:
-> =C2=A0 version: 10
-> machine: qemux86-64
-> distro: poky
-> local_conf_header:
-> =C2=A0 standard: |
-> =C2=A0=C2=A0=C2=A0 CONF_VERSION =3D "1"
-> =C2=A0=C2=A0=C2=A0 PACKAGE_CLASSES =3D "package_rpm"
-> repos:
-> =C2=A0 poky:
-> =C2=A0=C2=A0=C2=A0 url: "https://git.yoctoproject.org/git/poky"
-> =C2=A0=C2=A0=C2=A0 refspec: dunfell
-> =C2=A0=C2=A0=C2=A0 layers:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 meta:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 meta-poky:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 meta-yocto-bsp:
-> ```
->
-> Then, run a kas container (https://github.com/siemens/kas, e.g. use
-> `kas-container` script): `./kas-container shell kas-project.yml` This
-> will start a Debian 10 container with kas installed.
->
-> Build the extensible SDK with `bitbake -c populate_sdk_ext
-> core-image-minimal`.
->
-> After finishing, install the extensible SDK on a different machine (for
-> testing purposes e.g. in a Docker container for example `ubuntu:20.04`)=
-.
-> It will result in the error mentioned above.
->
-> How do I fix that?
->
-> Thanks in advance!
->
-> Hendrik
+> 
+> After successful build, copy the `build/tmp/deploy/sdk/poky....sh` to
+> another machine (with different OS) and run it there.
+> 
+> I tried several different installation machines and they fail
+> consistently to install the extensible SDK if they run a different OS
+> than the build machine (e.g. Debian 10 vs. Ubuntu 18.04 vs. 20.04). See
+> the exakt error and complete log output in my previous message.
+> 
+> What is happening here? Did I use the extensible SDK wrongly? Is it
+> expected to be incompatible?
+
+I think it may be this bug:
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=14428
+
+We don't have a fix as yet, it looks difficult to solve :(
+
+Cheers,
+
+Richard
+
