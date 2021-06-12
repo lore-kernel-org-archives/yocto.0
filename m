@@ -1,82 +1,83 @@
 Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
- by mx.groups.io with SMTP id smtpd.web10.3532.1623484061045014404
+ by mx.groups.io with SMTP id smtpd.web12.3879.1623487646285155629
  for <yocto@lists.yoctoproject.org>;
- Sat, 12 Jun 2021 00:47:41 -0700
+ Sat, 12 Jun 2021 01:47:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=F/IDDMh1;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.51, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f51.google.com with SMTP id b145-20020a1c80970000b029019c8c824054so9878550wmd.5
-        for <yocto@lists.yoctoproject.org>; Sat, 12 Jun 2021 00:47:40 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=EOhbd3QS;
+ spf=pass (domain: gmail.com, ip: 209.85.128.51, mailfrom: robert.berger.yocto.user@gmail.com)
+Received: by mail-wm1-f51.google.com with SMTP id l9so9290474wms.1
+        for <yocto@lists.yoctoproject.org>; Sat, 12 Jun 2021 01:47:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=CxRvX0Yn/MYzEgzyIwsj2fljazmePKcIn3A+srnm5ZY=;
-        b=F/IDDMh1wH1qf+Db8Hm0Qx7Zq4wqkhFylZ9vXQFJ6XoIER8vno2PXZXRlQ+sC4kkuT
-         C2vhPKNz2LeF/YaAm+zRGKvAx5n8VCb6VXeqt1Ri/bMnnOUkAjy4xd7qyTEQJNN+5aNK
-         4FU4WpmZZnpmZKh5/u/FEr+U4PUoJMeSBVPK4=
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=Gq4gUm3qcb6QhnnN+u99pijzCprIXei/uLzy4tjq1wA=;
+        b=EOhbd3QSMXE3kZp6Rj/Bu3nTR9xvwe4hXfEQrolS9hxbopGKFy4xYJtDMnYGH/Dktc
+         tCi1NsIp14BCzXpsmsIMLYmkR9KYAU+X3UQvZhYwuksUIQReV44Lw9h+9HINeNddDPh/
+         V7tXRX95Q9WGTpsjP77R8x9vxEwm9NQqW3pxIxlk0SqDUG69wwGE4XFqoU3n4pEN6t7k
+         ucQRDYSixjc8FsHLwp7gfVxUeUCKtBHpsgGNKzxwaMF+FjsqjdfCEbZ1+jEL4RJmArZN
+         eBPBsiraSas2z5scYRv/1DDksGcj23UEF0LpC71S1hNfGwtOREmwKRAeTM7xvnvE4j6W
+         cxeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=CxRvX0Yn/MYzEgzyIwsj2fljazmePKcIn3A+srnm5ZY=;
-        b=tmwGv4oJi+DPs7gy2DRIqECXDzPofQv5aI3Kh64efoN1FRux5tsypPxqFhiKiFKaU9
-         E2qm8u46tFZs3WBm7EGNs+77LeZM8x6pf8E15QK+ndTfmTw8DtAJz/Wkv9CmDv50MSgd
-         ichBmEksQl62plikZTw8yFBl2NPety0smo7Ra6zWZRvJG+dgYKArnNcZEhJ7lfWtz0EZ
-         +Wy4QxJeYIRL9qoOzk7diCw2pqyZUDbwPSQXN0mWKPTtHNHfWXKqlSO0Esl1piT0FD2r
-         xKV5ZxKCqhPfZ/PCOt0F3liivc4eRPDfd3z0OuVs50BfinA40tOjpfG2wD+2ITh/0MHf
-         vb2Q==
-X-Gm-Message-State: AOAM531qijlAS+WIPfZAJMl3KmP5+byqfbhwXYOklxX5tM2n7hzQJIOo
-	3I5UdydQa5YkOiGXRwGVDxz9jg==
-X-Google-Smtp-Source: ABdhPJzD28BXFLLyWr7erF91jkfJaHXAxPuj3Recp3FNTwxQ13tMGp3UwpqbA/s0pZ8OPQyrwMsEPQ==
-X-Received: by 2002:a05:600c:c9:: with SMTP id u9mr7183188wmm.156.1623484059333;
-        Sat, 12 Jun 2021 00:47:39 -0700 (PDT)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from ?IPv6:2001:8b0:aba:5f3c:75:ed13:b33:1d5a? ([2001:8b0:aba:5f3c:75:ed13:b33:1d5a])
-        by smtp.gmail.com with ESMTPSA id z5sm10010766wrv.67.2021.06.12.00.47.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 12 Jun 2021 00:47:39 -0700 (PDT)
-Message-ID: <14938a84618aa48d76d6a8c15ca5930fc72d957a.camel@linuxfoundation.org>
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Gq4gUm3qcb6QhnnN+u99pijzCprIXei/uLzy4tjq1wA=;
+        b=HDCR4OP3RskNJhvWJsAL2f6VBpHQ/AMYyvP0LMTjCD8FzW5l3ZoLcLujVe4SVpPDqV
+         9+rqCNIz7uQMfagRG/Ahrw2o0n3QaaN8AwDQl6rm1gbmoH0fSuCFWOBPFJMXbS3UxPNg
+         CvE3pgpHFVM0zVJBraGvex94AwEfrUBm1xujAGj5qhrHWQgV3+N8tUQqxai3JzPJD8mE
+         PiJomLuB9D3LmIfeueFkdCZAUstRkSz7RdbhHsI0pZHVPdoLdf0FJAdG4diUgVBDb7n9
+         OKJNKhNFPcbr9KJqX511dVIsVzVxUGmbxRaER5nZYQeDMvCANYXB6p04m9NE8Hx/fVfu
+         nkEQ==
+X-Gm-Message-State: AOAM530HjArdCzDfh0J/EbRHaCyLPHIIQPZ3PAevHYee6tiSFbkocn0Y
+	d2v0RzsawElHv9Aha9iy7hkyG+lVqyM=
+X-Google-Smtp-Source: ABdhPJwTbqNlKkBuIIyQMKhjuXNpPacZiy2UQ+levXM2qc+lwZUZySsM/SFoljaBdQvIKAnJLRgwag==
+X-Received: by 2002:a05:600c:1553:: with SMTP id f19mr7452870wmg.158.1623487644586;
+        Sat, 12 Jun 2021 01:47:24 -0700 (PDT)
+Return-Path: <robert.berger.yocto.user@gmail.com>
+Received: from [192.168.42.52] (ppp-2-84-14-202.home.otenet.gr. [2.84.14.202])
+        by smtp.gmail.com with ESMTPSA id v16sm10217012wrr.6.2021.06.12.01.47.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 12 Jun 2021 01:47:24 -0700 (PDT)
 Subject: Re: [yocto] Extensible SDK of core-image-minimal fails to install
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: Hendrik <yocto@h3ndrk.de>, yocto@lists.yoctoproject.org
-Date: Sat, 12 Jun 2021 08:47:35 +0100
-In-Reply-To: <7d3b564b-d17d-f926-0037-e19ed3e73321@h3ndrk.de>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>,
+ Hendrik <yocto@h3ndrk.de>, yocto@lists.yoctoproject.org
 References: <1686F53371AAAEA1.32444@lists.yoctoproject.org>
-	 <7d3b564b-d17d-f926-0037-e19ed3e73321@h3ndrk.de>
-User-Agent: Evolution 3.40.0-1 
+ <7d3b564b-d17d-f926-0037-e19ed3e73321@h3ndrk.de>
+ <14938a84618aa48d76d6a8c15ca5930fc72d957a.camel@linuxfoundation.org>
+From: "Robert Berger" <robert.berger.yocto.user@gmail.com>
+Message-ID: <daed1c45-fbc1-4240-48e9-406e61e6825d@gmail.com>
+Date: Sat, 12 Jun 2021 11:47:21 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <14938a84618aa48d76d6a8c15ca5930fc72d957a.camel@linuxfoundation.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 
-On Fri, 2021-06-11 at 22:30 +0200, Hendrik wrote:
-> I was able to reproduce the error even with plain poky (without kas):
+Hi,
+
+On 12/06/2021 10:47, Richard Purdie wrote:
 > 
-> ```bash
-> git clone -b dunfell https://git.yoctoproject.org/git/poky
-> cd poky
-> source oe-init-build-env
-> bitbake -c populate_sdk_ext core-image-minimal
-> ```
+> I think it may be this bug:
 > 
-> After successful build, copy the `build/tmp/deploy/sdk/poky....sh` to
-> another machine (with different OS) and run it there.
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=14428
 > 
-> I tried several different installation machines and they fail
-> consistently to install the extensible SDK if they run a different OS
-> than the build machine (e.g. Debian 10 vs. Ubuntu 18.04 vs. 20.04). See
-> the exakt error and complete log output in my previous message.
+> We don't have a fix as yet, it looks difficult to solve :(
 > 
-> What is happening here? Did I use the extensible SDK wrongly? Is it
-> expected to be incompatible?
+> Cheers,
+> 
+> Richard
 
-I think it may be this bug:
+Not a fix, but a workaround, if you are willing to use containers is to 
+create a build container and a similar sdk container.
 
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=14428
+I added more information to the bug above.
 
-We don't have a fix as yet, it looks difficult to solve :(
+Regards,
 
-Cheers,
+Robert
 
-Richard
 
