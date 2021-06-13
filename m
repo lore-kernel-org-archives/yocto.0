@@ -1,181 +1,228 @@
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
- by mx.groups.io with SMTP id smtpd.web12.16076.1623581938354593512
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web10.21377.1623615315716097591
  for <yocto@lists.yoctoproject.org>;
- Sun, 13 Jun 2021 03:58:58 -0700
+ Sun, 13 Jun 2021 13:15:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Sr8223AR;
- spf=pass (domain: gmail.com, ip: 209.85.208.49, mailfrom: fntoth@gmail.com)
-Received: by mail-ed1-f49.google.com with SMTP id d13so29117058edt.5
-        for <yocto@lists.yoctoproject.org>; Sun, 13 Jun 2021 03:58:58 -0700 (PDT)
+ dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=J1z2ibls;
+ spf=fail (domain: windriver.com, ip: 198.145.29.25, mailfrom: prvs=1798f2ae94=randy.macleod@windriver.com)
+Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id C37B438C04D7
+	for <yocto@yoctoproject.org>; Sun, 13 Jun 2021 20:15:14 +0000 (UTC)
+Received: from pps.filterd (m0250812.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 15DKEkKw031242;
+	Sun, 13 Jun 2021 20:15:10 GMT
+Received: from nam04-bn8-obe.outbound.protection.outlook.com (mail-bn8nam08lp2043.outbound.protection.outlook.com [104.47.74.43])
+	by mx0a-0064b401.pphosted.com with ESMTP id 395bg3r9gu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 13 Jun 2021 20:15:09 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hL6NP5AkETygBpELuUqjR7LgekhlvjnJC4Ks+ShkfcSr7w+ViffUeLFFbdUiMgWts1kY0psW4+Y5vJS97OJZUWIC2etY8k7uB3iBcNNP30IRy+nqhGveSkt8xo3ZgtefRPESYoDM1hVB7QXNlbJNZLdUMnPsq3oTATFYaRBSWQI8LMjXEq9V4rFFYGxSFD2zct8WT3qG5C9+u5d8K7v6lv0k5MCj6NatvEJnyGmI2+DU44PX9EKZQo2G8Yq+kmk6pgVvdpJcC9+KN7W6THqHnGjwH1ftZf7mXN2VIQ/s14DAdiQAgKrJY2lq9hfJ4NqrkWvIO1DBbIIrOKhdG04dqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uF1/dCyMWCKfYPEdvDbwNJOS4rL8Xb81VeP7DKvPT/4=;
+ b=HREprhYDyjd25l6FJYKXg5maQkIMphH/FwM8O5Zru6WdD3Mcc/FDsfQgj7LzIaSmXVISX4+UtmgYEIM8p+VD9lCxOJYinV7Kgss/K+pDCmUcdQiaqEc77Uspwtgoefy3p3r3n+nox34hXQPGUlxiXalmAg/EOm0TOlY9B29iZdnHfh3BGKicRvgZ2Vh44d5WUw8o7P6y/XhUNVbyJ2jqPBnw6NmzLaivYVN0atOGUOfmy8sx9sZiLdE2dl1KlhKpYLpXUclZu04D6tj5XN3A6/RfJDc15HobLLBpMRotJcgIj7X0dUYaoI38wcPQ6qrTEOUolv1N+wbQESnsKz5eYw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-transfer-encoding:content-language;
-        bh=lSAWKziNphc6ohUP2iXsVM7ri+D56q6PXs/jr/l7yFM=;
-        b=Sr8223AROW0mDzJDNAA5b2FC2F4DUJPcQCgUNFZBgihjgJhqnRNcDUU4vZIEGSbSxP
-         yjrtXp8xIEII5bzvG4y2BzsSKKqPCMHGiz8xhX4PWYNvufSfZLqHv86T/DWmTPdLT6Zz
-         MAyqjPb0mXgeIaxTJ1R6e0r32se+vJBJpvZLzpiqkmkygR2DA3Wh68V6ucetytgTpwTT
-         D2gIGXpVQGAEpUCpxDAF8HLYmzycSUaXLzOeaJptiKhNXf4wPd+N8IySRY36sVIV9O2Y
-         XvrA1y92uly/hAJwkYosFKHB63Q1wVz7cJ+0H+rKBBC2CmK2BokkWRO2EWRWIWD/EGn5
-         BvLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=lSAWKziNphc6ohUP2iXsVM7ri+D56q6PXs/jr/l7yFM=;
-        b=nASBff6cujetJ8+B605iMfc0w/+9xWjXO6AeW/UX7ReDj6gWvO/BPdSX/O00DkcyFQ
-         86R0uZgs/b1u91nWWgc9mx/lYcgZq0uKBFIu4hHSNto55KWZNl0Yb1wjDL5O7xvnVtQ3
-         nWI+gyaSYKZI40zYdn2XeT/jpTTT7vHbPv2nfzDEeNEMsfLc0nJ5gOFg7CbIiAkda1CI
-         ddRz2MsIbk8S9qVZqDuovjmouH+wLxbumPgLM6INSUrbusaMDqJTs7drwoWrvJtECchX
-         tjyF93O5Fz4efFs0djujugtaaKDu0Aarzrxh4UJ2VoL9hAMZHp5/k8qmcC6pu/q0GM1L
-         zZ3w==
-X-Gm-Message-State: AOAM532Iwf65qjCuhNZUV4sb17FHtQy1ntdGMIAyHSMKtwlXhX44sMlH
-	4HingNHMUo/eT0mCOj+meXDndM5isBOb4w==
-X-Google-Smtp-Source: ABdhPJzQJgKSpGvPA5RtleeM1Urf3TQ+DMPTClUBxPAy6KEVe9nTVgA86CzeE/QmUStdE8fcxB7ORA==
-X-Received: by 2002:a05:6402:1609:: with SMTP id f9mr12075772edv.76.1623581936525;
-        Sun, 13 Jun 2021 03:58:56 -0700 (PDT)
-Return-Path: <fntoth@gmail.com>
-Received: from ?IPv6:2001:981:6fec:1:9d7b:6180:2355:b95c? ([2001:981:6fec:1:9d7b:6180:2355:b95c])
-        by smtp.gmail.com with ESMTPSA id n26sm4533646ejc.27.2021.06.13.03.58.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 13 Jun 2021 03:58:56 -0700 (PDT)
-Subject: Re: [yocto] bitbake controlling memory use
-To: Randy MacLeod <randy.macleod@windriver.com>,
- Trevor Gamblin <trevor.gamblin@windriver.com>, yocto@lists.yoctoproject.org
-References: <5a37c855-943a-7ae2-b481-e030ebb69de8@gmail.com>
- <10280.1623316977582274550@lists.yoctoproject.org>
- <829bf26e-b882-d479-aa0c-f22998071fa7@windriver.com>
- <a760fbd1-f76c-598f-a802-f4e6207f9720@gmail.com>
- <43af6b3b-a2c5-b937-93a4-fec8ab2e1fcd@gmail.com>
- <26729316-8d42-3ec9-d6b5-f77002a85c74@windriver.com>
-From: "Ferry Toth" <fntoth@gmail.com>
-Message-ID: <5305619b-ee36-2a6c-e9c6-8bd6f03101d2@gmail.com>
-Date: Sun, 13 Jun 2021 12:58:55 +0200
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uF1/dCyMWCKfYPEdvDbwNJOS4rL8Xb81VeP7DKvPT/4=;
+ b=J1z2iblsgB5RdxxGTjEomsqpjm7PyK8fYqTXi7fAKFjuPIAjTmRkOhMj6cCQZWxIYf9ZQ/H2RNyxkgeM1L7GmCAbcbDmV+j8S/Q8Wb7nrj03uAJNQYg5HpjXge13GRQ5E4PF6hpXaaWdtvVe7rw9kwz6K7PquTyl4xE/SkJst/0=
+Authentication-Results: windriver.com; dkim=none (message not signed)
+ header.d=none;windriver.com; dmarc=none action=none
+ header.from=windriver.com;
+Received: from DM6PR11MB3994.namprd11.prod.outlook.com (2603:10b6:5:193::19)
+ by DM5PR1101MB2186.namprd11.prod.outlook.com (2603:10b6:4:52::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.22; Sun, 13 Jun
+ 2021 20:15:08 +0000
+Received: from DM6PR11MB3994.namprd11.prod.outlook.com
+ ([fe80::c413:9f51:c32e:a579]) by DM6PR11MB3994.namprd11.prod.outlook.com
+ ([fe80::c413:9f51:c32e:a579%6]) with mapi id 15.20.4219.025; Sun, 13 Jun 2021
+ 20:15:08 +0000
+From: "Randy MacLeod" <randy.macleod@windriver.com>
+Subject: Yocto Autobuilder: Latency Monitor and AB-INT - Meeting notes: June 10, 2021
+To: Sakib Sajal <sakib.sajal@windriver.com>, alexandre.belloni@bootlin.com,
+        richard.purdie@linuxfoundation.org,
+        "Wold, Saul" <saul.wold@windriver.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>,
+        "Tascioglu, Tony" <Tony.Tascioglu@windriver.com>,
+        Trevor Gamblin <trevor.gamblin@windriver.com>
+Message-ID: <ccd33f0c-ebd4-8a4d-d966-a3bc53cd00e8@windriver.com>
+Date: Sun, 13 Jun 2021 16:15:04 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.1
+X-Originating-IP: [198.48.226.187]
+X-ClientProxiedBy: BYAPR11CA0064.namprd11.prod.outlook.com
+ (2603:10b6:a03:80::41) To DM6PR11MB3994.namprd11.prod.outlook.com
+ (2603:10b6:5:193::19)
 MIME-Version: 1.0
-In-Reply-To: <26729316-8d42-3ec9-d6b5-f77002a85c74@windriver.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [172.25.44.2] (198.48.226.187) by BYAPR11CA0064.namprd11.prod.outlook.com (2603:10b6:a03:80::41) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.21 via Frontend Transport; Sun, 13 Jun 2021 20:15:06 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 78490e42-0326-4f0e-1cf5-08d92ea7f09a
+X-MS-TrafficTypeDiagnostic: DM5PR1101MB2186:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: 
+	<DM5PR1101MB2186E552A52D04036C7CC8E0F8329@DM5PR1101MB2186.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	7Hq3cZhNp5DOAbRAXJ0tBc/IUlJnO8MzxO7yQywNyY7mWca0YErv76sdD0oOT2C6B6/OpSOhCRExmky5L44sOex77HbgnSGXkhHXQHKEEokRqWuKnzD6mEYyRZQDPPvlXrg6EnF4duxJoN8yuwePdPI981X/Bo91zOBf+eQWpoUoAGQEjpGqJ744tCbVHhK+HpRVThbMxB7qeGKS+ozb4Gjuk9d8Q/ugww0YJi6uj+XKFnU2FaKd0Dr5WkOMOX+vba0Fx/PTdUaI1JiIOq8zSUJqLhNzLwF3STT3sGMlHjmGQziDeimzy4o8yedeoQa0XeR3jHjrk7QWL3cgzQRffp8gd+tV6xNRPsOdFVXrwcABEn5yvkv0HjtkXzuFRrSiAXQlZ+tn+oRggXcgUvPfiiMXnBrGg0pwKdIFNwuJwpL6zz9WxtxI2j8x5sG/QRmLRbW6eYicTAzS9hWnURFe4iPj3tp9tf8VHbd6nKaGed7dDx+zzF2cBwyc/98+6LctUdl0lQ65x0YTUvuFo8SJsB/7fF1wzI+mgLDKpeDq9x0UpbKjUAyqnFyZUU/bSMh2AcI/iUUdZ9nJtQjkOKaiquGx8FErUhR6A+a4K/lX+Hv1doArvLpL/PkwhT9QYVRfNOhtkU1KG/m2kGZJ0ba8wMGAQxs0MME0kSGFxk+AKiuXAXi7R1bqVJHWVkEmlfKmfa9ryA2wBMRGfa5OLZqBHJs2yJ2cTAraZzxooMkX5TDELMo4Ihc2cpBH8PSeMFUX+8j23R00nt0mzMZ75aOTm/vYeQc7wpjCJykDhQhzdAHst6H90XaWi6TnB0qEyOORnyKfNcwYPllMOxArKLZDbjE+xhQweBs2YBA0s5al0G7YBM+vw5pOiY468vSXK6af
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3994.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(366004)(39830400003)(396003)(376002)(346002)(83380400001)(6636002)(8936002)(956004)(316002)(16576012)(2906002)(2616005)(107886003)(54906003)(8676002)(110136005)(5660300002)(6486002)(26005)(31696002)(66556008)(66476007)(966005)(478600001)(16526019)(186003)(36756003)(86362001)(31686004)(66946007)(4326008)(52116002)(38350700002)(38100700002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?aVRtQjNxTitKV3lkaFpJSlJuUThvQlRxUWVLNkR4Y1poK29Tb0Q5L0lreEFL?=
+ =?utf-8?B?NUh1OEVra0JDcTRZMVk1SWs1MnJETXJyNUtiYkIxM2xPS2FVelhGeEg5Rm5K?=
+ =?utf-8?B?YU1PaTMyVkpncFlyUmNMbnpvQWMycHNPYUxVMy94WmxhT0pIZ2N4SHgvdGNL?=
+ =?utf-8?B?M1dRbFBKSnJxTzVjWkQvUFlIa1YwNWh1Wk9lY0NqQ2JubHd5WnJSZzcxZ1Fo?=
+ =?utf-8?B?b2lxRFQ2N1JGK2JscDRMbWRLd2g4a0J2aFJkSDFKMmJrcjV3U1VhRU5ERWNV?=
+ =?utf-8?B?ckNxZGhFSDR1WERlUU1nR1hPcWRNc3hyWXB5eThlVU5BYmdyaHJFaFppa3NX?=
+ =?utf-8?B?bzZtKzgwM2RDUms3UGE3TlU0TFMyOE1JQlV4WDFRWGt6L1JFOUlQNEJjUnRh?=
+ =?utf-8?B?enM1QVNQeTJBK09raUVBOG1zRnIzRFExY2xmQUdtK3RoWFJpUzROTVYyeEtG?=
+ =?utf-8?B?UDRYNDFUSHgxRUFIbis2YWJKeWczTUhoODNFcUNpbExqOUdLY1VNVTc3U2Nq?=
+ =?utf-8?B?aUtUUTZ5VGZXNzJMYVgxVjhhdWU4OHhZVHF0dnIwMW5SU1Zmd3Rwd2NoR2Y0?=
+ =?utf-8?B?YzZMSEQxNUgxQVhnZndqdGY5eTBNK2ltZUZzN3dzVEpTd3JUUHNHcnJvb1Fj?=
+ =?utf-8?B?R3BuT0lrTE1wR05xaW0yMEM3eXk2NllVL0dKYVJ1Ym5oTm5seGtQNVdzT2ZI?=
+ =?utf-8?B?eVpNK2hreUlOWVRtVVdCZGJtVVFwU0hkYjNIcnhOL2labkR1NHk4V1g4bHJu?=
+ =?utf-8?B?RURMa3VFM3ZYZEJhQWxpL3c2Sno4dEFyYVpZRTVQcDZlUm15d2ZaSWRQcWkr?=
+ =?utf-8?B?MHp6MkxNZGV5Z2xBU3FVeGRlQ2IrTHk2T2NJQnFtanNFMzJmNVNpWXJrRUJu?=
+ =?utf-8?B?THk4SDhzdlNFMlgzT0lCbDU0K3pzRlJqaVNEOVlRUE8wcFhuSkhzcThxOS95?=
+ =?utf-8?B?RkcyYXVibXlaQ3FYYnhvazlzdmptMEE5VlBtZkFJQk40d05pS1ZRYTE5b3Vs?=
+ =?utf-8?B?RHN6MEJmK0Q5QlYwUFNMZ29zNWJzRFVpc0x2dWVCRnRud2R0ck00MlVUZTI0?=
+ =?utf-8?B?VjY3Zy9hb1pvYytsSXZ0T2hXRlYxNkZodldvTngya0FybVVzYjQ4bGcycDNk?=
+ =?utf-8?B?aWZ6QlM0dXNFeXp2cmF5M214d09KV3lYU2Zsc0czdXBsVHBGU2dLMnZQdDJt?=
+ =?utf-8?B?NTgwOWt4KzI2cTdwZ3dPSmdJVldNdlYwYWppdzdJczVhZFZETGF5NUNldHFw?=
+ =?utf-8?B?RkRyV0V1d2RmTSt5V2pwL21Bb0g3TFVTUFJGY3ZvOG1PUjhsaGp3MnFoU1Ey?=
+ =?utf-8?B?b0pQNlQ0aTBGSWM3cElXS0xVTlRZc2phTXJVVFFSNjY0c2gzSDBXVG5QR2NC?=
+ =?utf-8?B?N0VaZit1d1BnVVl5UjNqQkFkdFN1TDJSWTY0VWtJa2k0bU9lRVgyQ3lEcVlk?=
+ =?utf-8?B?UUR2MG1yN2tXV09NRkxtTnlWYzhFNVlPd3Btb1A3TlI4NXVRSUJ0bWsrZVNr?=
+ =?utf-8?B?OVNYa2pHMStwMWljTXk2SUdvcDVnV3AxV1QvWmU5Y0tnSHpQOTJGYWxBSytM?=
+ =?utf-8?B?aEpmcnR3VFoxaDdJbnVWS0g0ZHRqVU1UaUM0TnE0d3Q2SHlRbEs0T20zcXVY?=
+ =?utf-8?B?N0FJNytBUldhUUl6akNPRzRuQzFrNnNJWFkrY2RhWGgvNndCaUZ0YjFudjRF?=
+ =?utf-8?B?SXdCc0VUeUFOQzR3ckk1a1NxOVA4ZmxHdndwOUQxZnhIU3AwNlRFbHVqMGov?=
+ =?utf-8?Q?63W7IYOkIDyXK+Okgen+IrKh1CVHiw40sJ6NX3y?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 78490e42-0326-4f0e-1cf5-08d92ea7f09a
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3994.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jun 2021 20:15:08.1493
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yjcPmoKjPim+OgkH+ipKjY9lPDqo40uxTfJ54EOaguuoIUt4o9CNFRqngJVzyoTW6vwCoJ3ESBvurc0DYLDFpDHe/KRmJP6mZgEDZgwXex4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1101MB2186
+X-Proofpoint-ORIG-GUID: TEUPH8cyfV8D7thxGC1NSTqdlbx_20CV
+X-Proofpoint-GUID: TEUPH8cyfV8D7thxGC1NSTqdlbx_20CV
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-06-13_10:2021-06-11,2021-06-13 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ suspectscore=0 adultscore=0 priorityscore=1501 mlxscore=0 malwarescore=0
+ bulkscore=0 mlxlogscore=999 spamscore=0 phishscore=0 clxscore=1031
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2104190000 definitions=main-2106130144
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Language: en-CA
+Content-Transfer-Encoding: 7bit
 
-Hi
+(Buried on my desktop, better late than never)
 
-Op 13-06-2021 om 02:38 schreef Randy MacLeod:
-> On 2021-06-12 12:31 p.m., Ferry Toth wrote:
->> Hi
->>
->> Op 10-06-2021 om 22:35 schreef Ferry Toth:
->>> Hi,
->>>
->>> Op 10-06-2021 om 21:06 schreef Trevor Gamblin:
->>>>
->>>>
->>>> On 2021-06-10 5:22 a.m., Ferry Toth wrote:
->>>>>
->>>>> **[Please note: This e-mail is from an EXTERNAL e-mail address]
->>>>>
->>>>> Hi Trevor,
->>>>>
->>>>> Gmane is really messing things up here, sorry about that. I need 
->>>>> to create a new thread I'm afraid.
->>>>>
->>>>> I'd like to your reworked patch.
->>>>>
->>>>> But note, I reworked it too (but maybe wrongly). I builds like 90% 
->>>>> of my image, but fails building cmake-native. Or more accurately 
->>>>> it fails do_configure while trying to build a small test program.
->>>>
->>>> Hi,
->>>>
->>>> I've pushed the patch onto my fork of the poky repo at 
->>>> https://github.com/threexc/poky
->>>>
->>>> Let me know how your testing turns out - I am still running tests 
->>>> as well, but it would be good to know how others' attempts turn 
->>>> out, and more changes could still end up being necessary.
->>>>
->>> Your patch didn't apply clean on Gatesgarth, but fix seemd trivial. 
->>> With this it builds cmake-native fine, thanks!
->>>
->>> You can find it here: 
->>> https://github.com/htot/meta-intel-edison/commit/8abce2f6f752407c7b2831dabf37cc358ce55bc7 
->>>
->>>
->>> I will check if any other build errors occurs, and if not will try 
->>> to time image build with and without the patch to compare 
->>> performance and see if it worth the effort.
->>
->> It works fine. To measure time I first built 
->> https://github.com/htot/meta-intel-edison (gatesgarth), so everything 
->> needed is downloaded and cached. Then prior to each run I `rm -rf 
->> out` and `rm -rf bbcache/sstate-cache/*` to force everything to 
->> rebuild. And then `time bitbake -k edison-image`
->>
->> With patch:
->> real    218m12,686s
->> user    0m24,058s
->> sys     0m4,379s
->>
->> Without:
->> real    219m36,944s
->> user    0m24,770s
->> sys     0m4,266s
->>
->> Strange, I expected more.
->
-> Hi Ferry,
->
-> Thanks for the update.
->
-> Trevor and I saw similar (lack of ) results.
->
-> Trevor even trying getting kea, which uses 'make' to be done the
-> 'configure' stage, for two builds in differect dirs. Then to run the two
->    'bitbake -c compile kea'
-> with and with out the patch with the expectation that with the
-> job server patch and the right number of jobs, the two builds would
-> take longer. I don't know the exact timing but there was no
-> noticeable difference.
->
-> We did strace things to confirm that the make wrapper was being called
-> and the actual make was being called by the wrapper. I suspect that
-I watched running processes from KDE ksysguard and I believe the number 
-of compilers was actually restricted with the patch. On the other hand 
-the server I tried was running munin which logs #processes over time and 
-there I didn't see a difference. Confused..
-> the next thing we try will be to patch 'make' to log when the jobserver
-> kicks in or to play with some make jobserver demo such as:
->    https://github.com/olsner/jobclient
-> to get some experience with how things are supposed to work and
-> to be able to strace a successful use of the job server feature.
->
-I'm available for testing.
-> A little RTFM / UTSL may also be required.
->
-> ../Randy
->
->
->>
->> This is on 4 core/8ht i7-3770 CPU @ 3.40GHz with 16Gb RAM and nodejs 
->> restricted to -j 2 (so that alone takes ~ 60min to build).
-I do like the jobserver idea a lot. Especially if it would take memory 
-restrictions into account as well. The problem with building nodejs (and 
-probably rust as well), there is lots to compile so you really want -j 
-16. But then during linking ld uses 4GB per instance, and there are 5 
-started. So on my machine I wouldn't want to start more then 3.
->>
->>>> - Trevor
->>>>
->>>>>
->>>>> Ferry
->>>>>
->>>>>
->>>>>
->>
->>
->> 
->>
->
->
+
+Attendees:  Alex, Richard, Saul, Randy, Tony, Trevor
+
+
+1.
+valgrind:
+  - taskset work-around really helps.
+  - working on stack_changes bug for qemuarm43
+     - reproduced on master, hardknott but not gatesgarth
+     - Let's drop it for now to reduce the AB noise.
+
+
+2.
+task summary script:
+  - procpath compared to top -bn1
+    - about the same number of syscalls (strace)
+    - about 5x more cpu and 2x more ram.
+  - could be a problem in that we'd need to boostrap since
+    procpath-native would need to be built at the beginning of each
+    bitbake run or be added to buildtools or hacked into y-ab-helper.
+  - it might be simpler to screen-scrape top output...
+
+
+3.
+make: job server
+  - working and able to build images now.
+  - testing to confirm that it actually limits the load
+  - we'll submit for master-next once that's confirmed.
+
+
+4.
+There's a problem in qemu/kernel corruption apparently from
+an ltp test. Richard has done lots of work to go back to the
+near pristine 5.10 kernel and the problem still happens so
+that seems to eliminate the possibility that it's a linux-yocto
+specific issue.
+
+Richard has a patch in here:
+http://git.yoctoproject.org/cgit.cgi/poky-contrib/commit/?h=rpurdie/t222&id=d7d65aae104caa03afc28837b0abe0b486d5a8b8 
+
+
+and to reproduce the problem you should be able to just run:
+
+IMAGE_INSTALL_append = ' ltp'
+TEST_SUITES = 'ping ssh ltp' then bitbake core-image-sato; bitbake 
+core-image-sato -c testimage
+( qemux86-64, with kvm)
+
+
+then look for BUG: in log in core-image-sato WORKDIR/testimage/qemu*
+  i.e.: tmp/work/qemux86_64-poky-linux/core-image-sato/1.0-r0/testimage/
+
+
+Reproducible about 70% of the time.
+RP: revert qemu-6.0 to 5.x: The problem persists.
+     using ubu-20.04
+
+
+
+5.
+Remaining more frequent issues:
+
+valgrind:
+   https://autobuilder.yoctoproject.org/typhoon/#/builders/81/builds/2168
+
+
+6.
+There are 3 patches in master-next that we need to decide on:
+  - library preload: read qemu libs into memory.
+    - helpful but maybe treat as a bandaid until we are able to
+      reduce the IO and cpu spikes.
+
+  - qemu-runner? timeout increase 120 -> 240
+  - ptest timeouts 300 -> 450?
+
+
+7.
+  The additional (top and qemu log) output when qemu hangs is merged.
+  Thanks Sakib.
+
+8.
+   Plans for the week:
+
+   Richard: build M1, debug ltp issue.
+   Alex: full day on ltp tomorrow?
+   Sakib: task summary
+   Trevor: make job server
+   Tony: more valgrind bugs/work-arounds.
+   Saul: have QMP deal with sigusr1 to close the QMP socket
+   Randy: test ltp failure
+
+
+
