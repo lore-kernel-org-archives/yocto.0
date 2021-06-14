@@ -1,138 +1,87 @@
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
- by mx.groups.io with SMTP id smtpd.web08.26956.1623657894903249418
+Received: from proxima.lasnet.de (proxima.lasnet.de [78.47.171.185])
+ by mx.groups.io with SMTP id smtpd.web12.27547.1623661395484479474
  for <yocto@lists.yoctoproject.org>;
- Mon, 14 Jun 2021 01:04:55 -0700
+ Mon, 14 Jun 2021 02:03:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=EvbhHbn/;
- spf=pass (domain: gmail.com, ip: 209.85.222.172, mailfrom: thisisaash9698@gmail.com)
-Received: by mail-qk1-f172.google.com with SMTP id q16so11555684qkm.9
-        for <yocto@lists.yoctoproject.org>; Mon, 14 Jun 2021 01:04:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=xsu4FUiP5XhEAAxn/HC15meGSAyseewhv9ZQiAHPCos=;
-        b=EvbhHbn/XWDNC3ij3HDHoXM3yXNhEVn9BIVH8DpzzPMW/xYzhaVLXPKkgfd1oDr1A/
-         aglMDCJn2cM3o53yOloJJwkO+hYGNu1pRt/joNrQrenLDuShKWmwfFSyytgUmqFNpgNG
-         1hNlhwrUrwbPZE/Ft5OQ58xk+ANd/krqw6IT/h/YRT9MdiWYnI2/AaNX0IGzz12H4lkd
-         AW8P46ygsOIQMn+ilmzMXKCw0YhsGD2cAFP3eB8rPMpZIYQgVajxvZZmHz6MNYhJDovu
-         bSQbzK03bIoqdS/ogIMonUV+M6S73Rha3mIbJuR9mSuyj1ECMO0RzhALV0yq+wUl4UzU
-         N+Gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xsu4FUiP5XhEAAxn/HC15meGSAyseewhv9ZQiAHPCos=;
-        b=lL+H7RUluxmP+tbwTMoZadIlR96RMI078y4UTWZWRckPXWQYXfsTDHqsnLGveSAF0P
-         Y7CEE5OaqFOYhPk7sckoozGrHL6qjBpgACkDzAhhOjYcTTAuYigfs3KcvHq7I7xJ3iu8
-         XTwy4qNv2nEm51lA9qmRCB8yNCoTbQ4WVnmFO7gN9l1GZWwIyg1g2sAtOaGCjHR/A2nk
-         tnfsSoUVDSkUAG1m/HKH5jCDG6yScnGMNbKh+4tgKTxpzqhtDEf3q+utzQZw2nVc0+9J
-         eg8brBP5NKrRT4cRU9y3cFp9EIA9OqNcUpkBX0dBFPsUIXjBdecXEIndTdCXEDv70+P+
-         TzwA==
-X-Gm-Message-State: AOAM530OZJ1JfTau+qeqLVapDoLYw5BQRbOYz81uZzlrAwIoitjRqqfZ
-	jifon+biUvdq8GxiAC5gd/aZ/YRsrTkqf0q/Kfg=
-X-Google-Smtp-Source: ABdhPJy2QsMklRcwtwuhsE5BtdwpFs6HqyxUa53WQHDtZIZ5zImXzf3ebSNOm8FNa4mNcQVlZ++QCURnzMTeVwbL8S0=
-X-Received: by 2002:ae9:ed10:: with SMTP id c16mr14738694qkg.110.1623657893985;
- Mon, 14 Jun 2021 01:04:53 -0700 (PDT)
+ dkim=missing; spf=pass (domain: datenfreihafen.org, ip: 78.47.171.185, mailfrom: stefan@datenfreihafen.org)
+Received: from localhost.localdomain.datenfreihafen.local (p200300e9d70946c57bba78a19a8ab81c.dip0.t-ipconnect.de [IPv6:2003:e9:d709:46c5:7bba:78a1:9a8a:b81c])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: stefan@sostec.de)
+	by proxima.lasnet.de (Postfix) with ESMTPSA id 2E09FC049C;
+	Mon, 14 Jun 2021 11:03:12 +0200 (CEST)
+From: "Stefan Schmidt" <stefan@datenfreihafen.org>
+To: yocto@lists.yoctoproject.org
+Cc: Stefan Schmidt <stefan@datenfreihafen.org>,
+	Stefan Schmidt <stefan.schmidt@huawei.com>
+Subject: [meta-zephyr][PATCH v3 1/2] zephyr-kernel: Add OpenThread add module to build
+Date: Mon, 14 Jun 2021 11:02:58 +0200
+Message-Id: <20210614090259.3316-1-stefan@datenfreihafen.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <CANVQz1Z2LtWAbFAyeXEk=JQUN1D8TFvGzWXfCNeYnHgS1qdFGg@mail.gmail.com>
- <CAAnfSTsEsgc7cAdikFhiZFZDfCX6HZ0mfq49yrrTcgYBS2sC2A@mail.gmail.com>
-In-Reply-To: <CAAnfSTsEsgc7cAdikFhiZFZDfCX6HZ0mfq49yrrTcgYBS2sC2A@mail.gmail.com>
-From: "Aashik Aswin" <thisisaash9698@gmail.com>
-Date: Mon, 14 Jun 2021 13:34:43 +0530
-Message-ID: <CANVQz1brFG-t4k3HZvWU_d6qp6DM_h3R_23hkME-Fx7i5GWTAQ@mail.gmail.com>
-Subject: Re: [yocto] QEMU Size Increase from Yocto Thud to Zeus
-To: Ross Burton <ross@burtonini.com>
-Cc: Yocto <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000001ff2205c4b55004"
-
---00000000000001ff2205c4b55004
-Content-Type: text/plain; charset="UTF-8"
-
-Thanks for the clarification, yes I am installing QEMU in my image. Is
-there some way that we can disable the additional architectures and
-streamline the size ?
-
-Thanks
-
-On Fri, Jun 11, 2021 at 8:48 PM Ross Burton <ross@burtonini.com> wrote:
-
-> Are you installing qemu into your image though?
->
-> Qemu did get larger as it is built with more architectures enabled,
-> but unless you're installing it in your image it won't make a
-> difference.
->
-> Ross
->
-> On Fri, 11 Jun 2021 at 11:40, Aashik Aswin <thisisaash9698@gmail.com>
-> wrote:
-> >
-> > Hi Experts,
-> >
-> > I am upgrading my Linux from Yocto Thud to Zeus (5.4 Kernel) . After
-> building I could see a significant increase in the size of the image.
-> > On checking with buildhistory enabled, I could see that qemu has nearly
-> doubled in size.
-> >
-> > Thud (4.19) - 223084  KiB     qemu
-> > Zeus (5.4) - 474757  KiB     qemu
-> >
-> > Is this size increase expected or are there some additional configs that
-> might have been added as a part of the upgrade ?
-> >
-> > Appreciate your help.
-> >
-> > TIA,
-> > Aashik
-> >
-> > 
-> >
->
-
---00000000000001ff2205c4b55004
-Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thanks for the clarification, yes I am installing QEMU in =
-my image. Is there some way that we can disable the additional architecture=
-s and streamline the size ?<div><br></div><div>Thanks</div></div><br><div c=
-lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jun 11, =
-2021 at 8:48 PM Ross Burton &lt;<a href=3D"mailto:ross@burtonini.com">ross@=
-burtonini.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
-ng-left:1ex">Are you installing qemu into your image though?<br>
-<br>
-Qemu did get larger as it is built with more architectures enabled,<br>
-but unless you&#39;re installing it in your image it won&#39;t make a<br>
-difference.<br>
-<br>
-Ross<br>
-<br>
-On Fri, 11 Jun 2021 at 11:40, Aashik Aswin &lt;<a href=3D"mailto:thisisaas=
-h9698@gmail.com" target=3D"_blank">thisisaash9698@gmail.com</a>&gt; wrote:<=
-br>
-&gt;<br>
-&gt; Hi Experts,<br>
-&gt;<br>
-&gt; I am upgrading my Linux from Yocto Thud to Zeus (5.4 Kernel) . After =
-building I could see a significant increase in the size of the image.<br>
-&gt; On checking with buildhistory enabled, I could see that qemu has near=
-ly doubled in size.<br>
-&gt;<br>
-&gt; Thud (4.19) - 223084=C2=A0 KiB=C2=A0 =C2=A0 =C2=A0qemu<br>
-&gt; Zeus (5.4) - 474757=C2=A0 KiB=C2=A0 =C2=A0 =C2=A0qemu<br>
-&gt;<br>
-&gt; Is this size increase expected or are there some additional configs t=
-hat might have been added as a part of the upgrade ?<br>
-&gt;<br>
-&gt; Appreciate your help.<br>
-&gt;<br>
-&gt; TIA,<br>
-&gt; Aashik<br>
-&gt;<br>
-&gt; <br>
-&gt;<br>
-</blockquote></div>
+From: Stefan Schmidt <stefan.schmidt@huawei.com>
 
---00000000000001ff2205c4b55004--
+OpenThread support in Zephyr is realised as an external module. Make
+sure we pull it in and have it available for applications to use it.
+
+Signed-off-by: Stefan Schmidt <stefan.schmidt@huawei.com>
+---
+ recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0.inc | 1 +
+ recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc | 1 +
+ recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc       | 1 +
+ 3 files changed, 3 insertions(+)
+
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0.inc b/r=
+ecipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0.inc
+index 545197f..9cdc721 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0.inc
+@@ -4,6 +4,7 @@ SRCREV_cmsis =3D "c3bd2094f92d574377f7af2aec147ae181aa5f8=
+e"
+ SRCREV_nordic =3D "f3434da6446380fcdd426dbe2866af21d0d549b6"
+ SRCREV_stm32 =3D "cc8731dba4fd9c57d7fe8ea6149828b89c2bd635"
+ SRCREV_open-amp =3D "de1b85a13032a2de1d8b6695ae5f800b613e739d"
++SRCREV_openthread =3D "385e19da1ae15f27872c2543b97276a42f102ead"
+ SRCREV_libmetal =3D "9d4ee2c3cfd5f49861939447990f3b7d7bf9bf94"
+ SRCREV_tinycrypt =3D "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
+ SRCREV_mbedtls =3D "24d84ecff195fb15c889d9046e44e4804d626c67"
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc b/r=
+ecipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc
+index 8475b5b..4910db2 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc
+@@ -4,6 +4,7 @@ SRCREV_cmsis =3D "c3bd2094f92d574377f7af2aec147ae181aa5f8=
+e"
+ SRCREV_nordic =3D "574493fe29c79140df4827ab5d4a23df79d03681"
+ SRCREV_stm32 =3D "f8ff8d25aa0a9e65948040c7b47ec67f3fa300df"
+ SRCREV_open-amp =3D "6010f0523cbc75f551d9256cf782f173177acdef"
++SRCREV_openthread =3D "385e19da1ae15f27872c2543b97276a42f102ead"
+ SRCREV_libmetal =3D "39d049d4ae68e6f6d595fce7de1dcfc1024fb4eb"
+ SRCREV_tinycrypt =3D "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
+ SRCREV_mbedtls =3D "5765cb7f75a9973ae9232d438e361a9d7bbc49e7"
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc b/recipes=
+-kernel/zephyr-kernel/zephyr-kernel-src.inc
+index d65cc06..fb62cae 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+@@ -15,6 +15,7 @@ SRC_URI =3D "\
+     git://github.com/zephyrproject-rtos/hal_stm32.git;protocol=3Dhttps;d=
+estsuffix=3Dgit/modules/hal/stm32;name=3Dstm32 \
+     git://github.com/zephyrproject-rtos/mbedtls.git;protocol=3Dhttps;des=
+tsuffix=3Dgit/modules/lib/mbedtls;name=3Dmbedtls \
+     git://github.com/zephyrproject-rtos/open-amp.git;protocol=3Dhttps;de=
+stsuffix=3Dgit/modules/lib/open-amp;name=3Dopen-amp \
++    git://github.com/zephyrproject-rtos/openthread.git;protocol=3Dhttps;=
+branch=3Dzephyr;destsuffix=3Dgit/modules/lib/openthread;name=3Dopenthread=
+ \
+     git://github.com/zephyrproject-rtos/libmetal.git;protocol=3Dhttps;de=
+stsuffix=3Dgit/modules/hal/libmetal;name=3Dlibmetal \
+     git://github.com/zephyrproject-rtos/tinycrypt.git;protocol=3Dhttps;d=
+estsuffix=3Dgit/modules/crypto/tinycrypt;name=3Dtinycrypt \
+     file://0001-cmake-add-yocto-toolchain.patch \
+--=20
+2.31.1
+
