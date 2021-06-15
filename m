@@ -1,125 +1,282 @@
-Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
- by mx.groups.io with SMTP id smtpd.web09.5861.1623740019239580752
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web08.6336.1623744227679833539
  for <yocto@lists.yoctoproject.org>;
- Mon, 14 Jun 2021 23:53:39 -0700
+ Tue, 15 Jun 2021 01:03:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=TlSfPA9a;
- spf=pass (domain: gmail.com, ip: 209.85.221.179, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vk1-f179.google.com with SMTP id 184so4724671vkz.13
-        for <yocto@lists.yoctoproject.org>; Mon, 14 Jun 2021 23:53:39 -0700 (PDT)
+ dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=QsiIYmWv;
+ spf=softfail (domain: blade-group.com, ip: 198.145.29.25, mailfrom: yann.dirson@blade-group.com)
+Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id BC2B238C0848
+	for <yocto@yoctoproject.org>; Tue, 15 Jun 2021 08:03:46 +0000 (UTC)
+Received: by mail-vk1-f175.google.com with SMTP id k71so4755579vka.11
+        for <yocto@yoctoproject.org>; Tue, 15 Jun 2021 01:03:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=blade-group.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=npDCZZyO0yBu+KiZJQxzGOIzop2b88wa0FiFoYoh7pE=;
-        b=TlSfPA9aNTs5MEChYI7R7CfD5iKG6uF2Z7r6BoC/dX3nWWVQ2+Nr2vCuOO0GzXnSLs
-         3Ytprir9adP8PHhp9/y/MT8XZw5MHglrJ23fp1XjTX4HP3nrExLTeLqF7rbS25pamU4k
-         2bS81e2vTBkBsWDmwKA5urJosT0+Q7SpcyDKQh12UgVNF5tyszBGw8eLzsq6ZhERA6jB
-         mQrIa7RHzWMC2p/6vNZtEZMNgmQ2ZYILt3gg43/NHgTxfhofLoGg+KrSNfpqKqHX1UAb
-         Jd8YvWyJ6YWxBvz1YHtnkdtq4qBvmxETdvnqqMeQsKhkEDNVxEZHl3aNbHbqY+hS+hzK
-         MNKA==
+         :cc:content-transfer-encoding;
+        bh=Ux892EkEN02o00jCJETLjCvAnT35/W5Qx7BE1Hg8vv0=;
+        b=QsiIYmWv1vp+zmN2F3F+zc4wlfLpOWBCVJQQqqnsxa8JgEslpWlDqYWudaPWkH9A7l
+         uURC+89r1jrlAmMaZ83AEedkbkRA8ak3x94yAt/hzVMsBhOE3YDGs5ZnS53VUsGQTAmg
+         kHH3sF7o0OHkTmCCR2FpTsaB0tub66QaISD1M3M4PKYCLLgYlMTVRaIjMfYMBiOiD6em
+         F1R9vFbloeciIbegWEqW/KRW+YnaLDpZNHsspQjBqWk9Q7wrhHlgNPkPNoPvNJehW5N2
+         FsfSw0zHjjdRpzqfQYOdQbYeeYRWJw408MVWQxq0ULoQNPJ86NxavQqdaX3ZmIKjHwnp
+         ht6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=npDCZZyO0yBu+KiZJQxzGOIzop2b88wa0FiFoYoh7pE=;
-        b=fQmbFPc60gjxZj8vvI6mVwckrj8/3AkmXFaUEZk0eUn7QfUa7qsx3VZIaz66wpWKlH
-         TuUx/EKCI8EP5mIYJulgPmh0Vlk1MlMzaqLr2M7S/7c+a87SlwxSe9y2wKVwMYYNliVH
-         9TyQHHuCjav42BIMPEZDMIf4UXVesUMGcqNdl8/XDojArPePkgPXwsoZ9D+6Be33VTJm
-         nln56UcygMYD26teMibnVlc9mebvNWQ174foDbmL+/6Hh3W4IAYnCbvO02PH9YZdyMkn
-         OoiEZ6pHp1SyUuwyH5Qa6lSONAeWSH9xnGstySH9+clL7xVj1gb9Qhe8jZ4EH0+6w3ok
-         LBoA==
-X-Gm-Message-State: AOAM531iNIrVo92crWUdYM6kuSm62Szvai3j39jM6CLgzPQ2BXrGmcWc
-	R6EizAHgbjVk1QRvExUyHMxkCz96LjkBPR9fH5k=
-X-Google-Smtp-Source: ABdhPJzg7K8B+MWQ9re6oG0Y2EKd6T+A8ND6lLA8NbFLE8P4uaZ1aqzBO0RVfefvt5oKJH6yJSxbmEXmnHTAexAg7RQ=
-X-Received: by 2002:ac5:cbc5:: with SMTP id h5mr2649948vkn.7.1623740018278;
- Mon, 14 Jun 2021 23:53:38 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Ux892EkEN02o00jCJETLjCvAnT35/W5Qx7BE1Hg8vv0=;
+        b=OMuFstwTrnGCw7zuWknNsh9a7kjtHxCgeTG2XFVkYzKdmnSDil3R6sWLY8s8r99gSk
+         e3Na47clHy5PAgKuWlmPui8vXUtbQ/Fy0bVmurDtoxwsp1XgIoBN6/Y38AfnyRw/KuV8
+         AT0+nYaFWUzn0CXZdctOaqDCKk7EmCBsCHfgbHcc46+q9ikB/8RDAZLVeJyHu7XjwdjK
+         AyXJJqdEQfeyk2Y5SWM9XoOyfhaAqEmTebyuhDhQ/sC2T7G4zJqcMi9y9GaYqBDUUrYk
+         HfEMvLW4st/0GhRrGu0E+ax/QaDDNgZMNYCEAckYAbZ+qPhr5gthzoMYTebNjmJPFvsB
+         un+A==
+X-Gm-Message-State: AOAM532ulZEhvwY15PLcvZBbanLz5DqXTYBFZxGBJrHTTW/8SNPlTnno
+	DBvbPTtv1ULiesYRnJzV7B0EevdB4jG4XgJv+Zad1A==
+X-Google-Smtp-Source: ABdhPJx0Swt8xv0rDi6AhOp06VXjabtQ56MsFURzuKXHC1zJkI8uESDvw81lDr/xFfjoPdYYtlsfNV0xSZ+3PxQ51zg=
+X-Received: by 2002:ac5:cb6a:: with SMTP id l10mr3120063vkn.14.1623744223944;
+ Tue, 15 Jun 2021 01:03:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <98hT.1623132594082542882.bzIp@lists.yoctoproject.org>
- <CANNYZj9r_eZ8ZHEo801viRNuBekefmvKuqtLfKsKTQncw+uw-w@mail.gmail.com>
- <YMe6JtmeJc1NiRYZ@brokenbit> <ec0d85da208aa26517a50ea998b855a5aa0d1455.camel@linuxfoundation.org>
- <YMfKw9F6qY7daERE@brokenbit>
-In-Reply-To: <YMfKw9F6qY7daERE@brokenbit>
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Tue, 15 Jun 2021 08:53:26 +0200
-Message-ID: <CANNYZj8DDhPseB_Vzr4oboJgQn6VY5LbRym6-Tp7=peHfKTJvw@mail.gmail.com>
-Subject: Re: [yocto] [meta-java] icedtea7 fetching error
-To: Richard Leitner - SKIDATA <Richard.Leitner@skidata.com>
-Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, 
-	"George.Mocanu@rinftech.com" <George.Mocanu@rinftech.com>, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	"openembedded-devel@lists.openembedded.org" <openembedded-devel@lists.openembedded.org>
-Content-Type: multipart/alternative; boundary="000000000000ff44d005c4c86e26"
-
---000000000000ff44d005c4c86e26
+References: <20210531140058.2193825-1-yann@blade-group.com> <20210614161938.GA8746@localhost>
+In-Reply-To: <20210614161938.GA8746@localhost>
+From: "Yann Dirson" <yann.dirson@blade-group.com>
+Date: Tue, 15 Jun 2021 10:03:31 +0200
+Message-ID: <CA+4=imZGGE4=ii4Lwuc=TWjbo9QSvX1Cq2h2kmpCim0SsL7N-Q@mail.gmail.com>
+Subject: Re: [meta-rockchip][PATCH v2] Rock64: add machine
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>, Yann Dirson <yann@blade-group.com>
 Content-Type: text/plain; charset="UTF-8"
-
-On Mon, 14 Jun 2021 at 23:31, Richard Leitner - SKIDATA <
-Richard.Leitner@skidata.com> wrote:
-
-> Thank you very much Richard!
-> The openjdk8 tarballs are now hosted at
-> https://downloads.yoctoproject.org/mirror/sources/
-> with their local download names.
->
-> Unfortunately I currently don't have the time and resources to provide a
-> patch for fixing the URLs and adding the mirror.
-> So help is greatly appreciated!
->
-
-Unfortunately I think you mirrored the wrong tarballs. The problematic ones
-are specifically the six tarballs coming from
-http://icedtea.classpath.org/hg/
-and I am not seeing them mirrored. See the original error at the start of
-this thread:
-
---2021-06-07 17:24:33--
-http://icedtea.classpath.org/hg/release/icedtea7-forest-2.1/archive/f89009ada191.tar.bz2
-Resolving icedtea.classpath.org (icedtea.classpath.org)... 172.104.137.120
-Connecting to icedtea.classpath.org
-(icedtea.classpath.org)|172.104.137.120|:80... connected.
-HTTP request sent, awaiting response... 404 Not Found
-2021-06-07 16:21:05 ERROR 404: Not Found.
-
-
-Alex
-
---000000000000ff44d005c4c86e26
-Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Mon, 14 Jun 2021 at 23:31, Richard Leitner - SKIDATA &lt;<a href=
-=3D"mailto:Richard.Leitner@skidata.com">Richard.Leitner@skidata.com</a>&gt;=
- wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Thank yo=
-u very much Richard!<br>
-The openjdk8 tarballs are now hosted at <a href=3D"https://downloads.yoctop=
-roject.org/mirror/sources/" rel=3D"noreferrer" target=3D"_blank">https://do=
-wnloads.yoctoproject.org/mirror/sources/</a><br>
-with their local download names.<br>
-<br>
-Unfortunately I currently don&#39;t have the time and resources to provide =
-a<br>
-patch for fixing the URLs and adding the mirror.<br>
-So help is greatly appreciated!<br>
-</blockquote><div><br></div><div>Unfortunately I think you mirrored the wro=
-ng tarballs. The problematic ones are specifically the six tarballs coming =
-from <a href=3D"http://icedtea.classpath.org/hg/">http://icedtea.classpath.=
-org/hg/</a></div><div>and I am not seeing them mirrored. See the original e=
-rror at the start of this thread:</div><div><br></div><div><pre><span>--202=
-1-06-07 17:24:33--  <a href=3D"http://icedtea.classpath.org/hg/release/iced=
-tea7-forest-2.1/archive/f89009ada191.tar.bz2" target=3D"_blank">http://iced=
-tea.classpath.org/hg/release/icedtea7-forest-2.1/archive/f89009ada191.tar.b=
-z2</a>
-Resolving <a href=3D"http://icedtea.classpath.org" target=3D"_blank">icedte=
-a.classpath.org</a> (<a href=3D"http://icedtea.classpath.org" target=3D"_bl=
-ank">icedtea.classpath.org</a>)... 172.104.137.120<br>Connecting to <a href=
-=3D"http://icedtea.classpath.org" target=3D"_blank">icedtea.classpath.org</=
-a> (<a href=3D"http://icedtea.classpath.org" target=3D"_blank">icedtea.clas=
-spath.org</a>)|172.104.137.120|:80... connected.<br>HTTP request sent, awai=
-ting response... 404 Not Found<br>2021-06-07 16:21:05 ERROR 404: Not Found.=
-</span></pre></div><div><br></div><div>Alex<br></div><div><br></div><div><b=
-r></div></div></div>
+Le lun. 14 juin 2021 =C3=A0 18:19, Trevor Woerner <twoerner@gmail.com> a =
+=C3=A9crit :
+>
+> Hi Yann,
+>
+> Thanks for the contribution!
+>
+> On Mon 2021-05-31 @ 04:00:58 PM, yann.dirson@blade-group.com wrote:
+> > From: Yann Dirson <yann@blade-group.com>
+> >
+> > This is a RK3328 board from Pine64.
+> > Board details at https://wiki.pine64.org/wiki/ROCK64.
+> >
+> > Default image is built to boot from SD-card.  Building an image for
+> > eMMC requires to set RK_BOOT_DEVICE=3D"mmcblk0".
+> >
+> > Signed-off-by: Yann Dirson <yann@blade-group.com>
+> > ---
+> >
+> > This is just basic initial support without a kernel BSP.  As is the
+> > board boots with a serial console.
+> >
+> > Note I had to create the SoC definition for rk3328, and rather than
+> > setting serial at 115200 there just to have the board definition
+> > override it with rockchip-standard 1500000 I've set the latter right
+> > in rk3328.inc.
+>
+> Sounds good. I prefer the rockchip default of 1,500,000 anyway.
+>
+> >
+> > Changes in v2:
+> > - include Ayufan's patch for mmc aliases so presence of eMMC won't
+> > prevent booting from SD
+> >
+> >  conf/machine/include/rk3328.inc               | 25 ++++++++++++++++
+> >  conf/machine/rock64.conf                      | 30 +++++++++++++++++++
+> >  ...an-dtsi-rk3328-add-mmc0-mmc1-aliases.patch | 27 +++++++++++++++++
+> >  recipes-kernel/linux/linux-yocto%.bbappend    |  6 ++++
+> >  4 files changed, 88 insertions(+)
+> >  create mode 100644 conf/machine/include/rk3328.inc
+> >  create mode 100644 conf/machine/rock64.conf
+> >  create mode 100644 recipes-kernel/linux/files/0001-ayufan-dtsi-rk3328-=
+add-mmc0-mmc1-aliases.patch
+> >
+> > diff --git a/conf/machine/include/rk3328.inc b/conf/machine/include/rk3=
+328.inc
+> > new file mode 100644
+> > index 0000000..7d67627
+> > --- /dev/null
+> > +++ b/conf/machine/include/rk3328.inc
+> > @@ -0,0 +1,25 @@
+> > +# Copyright (C) 2020 Garmin Ltd. or its subsidaries
+>
+> Odd that you'd be assigning the copyright to Garmin ;-)
 
---000000000000ff44d005c4c86e26--
+Oh, right, copypaste rules around here, so Garmin does have a role but
+something may be missing :)
+
+>
+> > +# Released under the MIT license (see COPYING.MIT for the terms)
+> > +
+> > +SOC_FAMILY =3D "rk3328"
+> > +
+> > +DEFAULTTUNE ?=3D "cortexa53-crypto"
+> > +
+> > +require conf/machine/include/soc-family.inc
+> > +require conf/machine/include/tune-cortexa53.inc
+> > +require conf/machine/include/rockchip-defaults.inc
+> > +
+> > +KBUILD_DEFCONFIG ?=3D "defconfig"
+> > +KERNEL_CLASSES =3D "kernel-fitimage"
+> > +KERNEL_IMAGETYPE =3D "fitImage"
+> > +
+> > +TFA_PLATFORM =3D "rk3328"
+> > +TFA_BUILD_TARGET =3D "bl31"
+> > +
+> > +UBOOT_SUFFIX ?=3D "itb"
+> > +UBOOT_ENTRYPOINT ?=3D "0x06000000"
+> > +
+> > +SERIAL_CONSOLES =3D "1500000;ttyS2"
+> > +
+> > +PREFERRED_PROVIDER_virtual/bootloader ?=3D "u-boot"
+> > +SPL_BINARY ?=3D "idbloader.img"
+> > diff --git a/conf/machine/rock64.conf b/conf/machine/rock64.conf
+> > new file mode 100644
+> > index 0000000..38bc9fa
+> > --- /dev/null
+> > +++ b/conf/machine/rock64.conf
+> > @@ -0,0 +1,30 @@
+> > +# Copyright (C) 2021 Blade SAS
+>
+> Can you also specify an OSS-friendly licence too?
+>
+> > +
+> > +#@TYPE: Machine
+> > +#@NAME: Rock64
+> > +#@DESCRIPTION: Rock64 RK3328 board from Pine64
+> > +
+> > +require include/rk3328.inc
+> > +
+> > +MACHINE_FEATURES +=3D "usbhost serial"
+> > +
+> > +UBOOT_MACHINE =3D "rock64-rk3328_defconfig"
+> > +KERNEL_DEVICETREE =3D "rockchip/rk3328-rock64.dtb"
+> > +
+> > +# set to mmcblk0 for booting from optional eMMC
+> > +RK_BOOT_DEVICE ?=3D "mmcblk1"
+> > +
+> > +WKS_FILE ?=3D "rock-pi-4.wks"
+>
+> Personally I'd prefer to see a rock64 wic file which includes an rk3328
+> default, even if it is a copy of the rock-pi-4 layout.
+
+Right that was something I wondered how to deal with and forgot (and note t=
+hat
+for the nanopi-m4 I used the same file).
+
+My reading of [1] is that all rockchip APs are using the same
+partition table.  I see
+that the existing {rk3288,rk3399}-boot.wks only differ in the choice
+of u-boot image,
+and I'm wondering if using the SoC to distinguish between them is the
+right choice,
+as eg. upstream RK is not using the .itb format, and I suspect we
+could use it as well
+for rk3288 (I'm sure I have one in a drawer and could check that some day).=
+  Now
+maybe the sate of things is different for 32bit SoCs, and I thought it
+could make sense to
+distinguish rockchip-32bit-boot.wks and rockchip-64bit-boot.wks, or maybe e=
+ven
+name them using the format, as something like rockchip-legacy-boot.wks
+(well there
+is probably a more descriptive name for that format) and rockchip-itb-boot.=
+wks ?
+
+Similarly, the .wks for 3288-based boards and for 3399-based ones only
+differ by the
+console baudrate, and the 3288-based .wks are all identical except for
+some whitespace.
+And in fact, it is not unthinkable for a given project to use
+something else than a
+single-partition layout, so those files are indeed closer to a
+"default wks".  Maybe we
+could use more generic filenames there too (until we implement a way to avo=
+id
+hardcoding the baudrate here)
+
+[1] http://opensource.rock-chips.com/wiki_Boot_option
+
+> > +IMAGE_FSTYPES +=3D "wic wic.bmap"
+> > +
+> > +WKS_FILE_DEPENDS ?=3D " \
+> > +    mtools-native \
+> > +    dosfstools-native \
+> > +    virtual/bootloader \
+> > +    virtual/kernel \
+> > +    "
+> > +IMAGE_BOOT_FILES ?=3D "\
+> > +    ${KERNEL_IMAGETYPE} \
+> > +    "
+> > +
+> > +KBUILD_DEFCONFIG =3D "defconfig"
+> > diff --git a/recipes-kernel/linux/files/0001-ayufan-dtsi-rk3328-add-mmc=
+0-mmc1-aliases.patch b/recipes-kernel/linux/files/0001-ayufan-dtsi-rk3328-a=
+dd-mmc0-mmc1-aliases.patch
+> > new file mode 100644
+> > index 0000000..1ad3b9e
+> > --- /dev/null
+> > +++ b/recipes-kernel/linux/files/0001-ayufan-dtsi-rk3328-add-mmc0-mmc1-=
+aliases.patch
+> > @@ -0,0 +1,27 @@
+> > +From f10cfe01f753348d346374008b8e8f5f26ed94ab Mon Sep 17 00:00:00 2001
+> > +From: Kamil Trzcinski <ayufan@ayufan.eu>
+> > +Date: Mon, 28 Aug 2017 11:24:37 +0200
+> > +Subject: [PATCH] ayufan: dtsi: rk3328: add mmc0/mmc1 aliases
+> > +Upstream-Status: Pending [https://github.com/ayufan-rock64/linux-mainl=
+ine-kernel/commit/f10cfe01f753348d346374008b8e8f5f26ed94ab]
+> > +
+> > +Change-Id: I82a5394df8a505f7d1496393621c1198895c88b0
+> > +---
+> > + arch/arm64/boot/dts/rockchip/rk3328.dtsi | 2 ++
+> > + 1 file changed, 2 insertions(+)
+> > +
+> > +diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boo=
+t/dts/rockchip/rk3328.dtsi
+> > +index 0afed15bc7ff..800f1c796882 100644
+> > +--- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+> > ++++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+> > +@@ -27,6 +27,8 @@
+> > +             i2c1 =3D &i2c1;
+> > +             i2c2 =3D &i2c2;
+> > +             i2c3 =3D &i2c3;
+> > ++            mmc0 =3D &emmc;
+> > ++            mmc1 =3D &sdmmc;
+> > +             ethernet0 =3D &gmac2io;
+> > +             ethernet1 =3D &gmac2phy;
+> > +     };
+> > +--
+> > +2.30.2
+> > +
+> > diff --git a/recipes-kernel/linux/linux-yocto%.bbappend b/recipes-kerne=
+l/linux/linux-yocto%.bbappend
+> > index 7702e3f..3789c72 100644
+> > --- a/recipes-kernel/linux/linux-yocto%.bbappend
+> > +++ b/recipes-kernel/linux/linux-yocto%.bbappend
+> > @@ -8,3 +8,9 @@ COMPATIBLE_MACHINE_tinker-board-s =3D "tinker-board-s"
+> >  COMPATIBLE_MACHINE_rock-pi-4 =3D "rock-pi-4"
+> >  COMPATIBLE_MACHINE_nanopi-m4 =3D "nanopi-m4"
+> >  COMPATIBLE_MACHINE_nanopi-m4-2gb =3D "nanopi-m4-2gb"
+> > +COMPATIBLE_MACHINE_rock64 =3D "rock64"
+> > +
+> > +FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
+> > +
+> > +# indeed applicable to all rk3328 boards
+>
+> I have a roc-rk3328-cc ("renegade") board I should investigate adding. Th=
+en I
+> can see if this applies there as well.
+>
+> > +SRC_URI_append_rock64 =3D " file://0001-ayufan-dtsi-rk3328-add-mmc0-mm=
+c1-aliases.patch"
+> > --
+> > 2.30.2
+> >
+
+
+
+--=20
+Yann Dirson <yann@blade-group.com>
+Blade / Shadow -- http://shadow.tech
