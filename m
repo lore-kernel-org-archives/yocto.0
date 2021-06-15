@@ -1,93 +1,125 @@
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
- by mx.groups.io with SMTP id smtpd.web11.3859.1623721878696821396
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
+ by mx.groups.io with SMTP id smtpd.web09.5861.1623740019239580752
  for <yocto@lists.yoctoproject.org>;
- Mon, 14 Jun 2021 18:51:18 -0700
+ Mon, 14 Jun 2021 23:53:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=EFr8QwO+;
- spf=pass (domain: gmail.com, ip: 209.85.214.172, mailfrom: raj.khem@gmail.com)
-Received: by mail-pl1-f172.google.com with SMTP id v12so7601979plo.10
-        for <yocto@lists.yoctoproject.org>; Mon, 14 Jun 2021 18:51:18 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=TlSfPA9a;
+ spf=pass (domain: gmail.com, ip: 209.85.221.179, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-vk1-f179.google.com with SMTP id 184so4724671vkz.13
+        for <yocto@lists.yoctoproject.org>; Mon, 14 Jun 2021 23:53:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=sybxgPKSgv+trcISpdM78riUO/Wr2w1MdFBrAzfcqGU=;
-        b=EFr8QwO+HuNM/C/ISxqp6nfDMoOBvqe0qcpdtAzhqqhU/Z/zxMWGna5aay8sZe6FuG
-         xoSQ66BzeTClqaPO0ZZuaGe+8Rm76M2d70nc/quKYik+FA5BUtRAyqN18XKQY213QgLW
-         m6nn4+/2XF94rqSl8D51E8RTTtiDwURwToq/2rdXCCN7zUMQXUmp16LiDWQttpjxfL9O
-         5vHJE3ZOIk3UyRnLkT31syhHIS1R96+cfveaieiRV3YE5wHXJ3s5Ft+wuqwrgeBQ7ZT8
-         Br4GE+/SCAxIu3llQKPdZcizucSzbseeH09QyALDbK6iyn9HylLv88W5Bc3sTeEy6DDD
-         uHdg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=npDCZZyO0yBu+KiZJQxzGOIzop2b88wa0FiFoYoh7pE=;
+        b=TlSfPA9aNTs5MEChYI7R7CfD5iKG6uF2Z7r6BoC/dX3nWWVQ2+Nr2vCuOO0GzXnSLs
+         3Ytprir9adP8PHhp9/y/MT8XZw5MHglrJ23fp1XjTX4HP3nrExLTeLqF7rbS25pamU4k
+         2bS81e2vTBkBsWDmwKA5urJosT0+Q7SpcyDKQh12UgVNF5tyszBGw8eLzsq6ZhERA6jB
+         mQrIa7RHzWMC2p/6vNZtEZMNgmQ2ZYILt3gg43/NHgTxfhofLoGg+KrSNfpqKqHX1UAb
+         Jd8YvWyJ6YWxBvz1YHtnkdtq4qBvmxETdvnqqMeQsKhkEDNVxEZHl3aNbHbqY+hS+hzK
+         MNKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=sybxgPKSgv+trcISpdM78riUO/Wr2w1MdFBrAzfcqGU=;
-        b=X8VeDcrZVnEA7gqtv/V0/vnYZRTMHdwAwd06jAK6Me162akYGiqy+VayLm3m650EdY
-         NNfMHTfNlqAortiQpXOjkiS6QO65XKMH4gXjq5+E2jrtdPHalVE/udAB+jjaisXGnysI
-         ALNta2LsC5t/t+zPeu02v+epQ/lGJIzuKJO9Ow9zSSpGXP7jQ9JL8RX4o1SxAQUdQfm4
-         QNk9rZWzP16muvCbsD6TppCETIZmOUtWxyn04rvolSme+5yWmRKHLIx8JD3L7GpfXy7e
-         2QmTEh7XZrN2Tp2R4eJBq5v4ge2b/pvNxL6u06EjWQhluB8hO6h2zt9Nt9K/cu0+i7ly
-         Yz8Q==
-X-Gm-Message-State: AOAM531lkFuqojjBn2egUbhqHuhB1P517xQkPuhiT4HU70/rK+g3BphN
-	Y3wo8W4Xu52/GRYrW3Sbj1h8z08ihey8cA==
-X-Google-Smtp-Source: ABdhPJzuSIw8CIb1HiL6vLQ8VaSKt0zZoqu4pOfpttE7yYCimdssnVUevr2hIiQItpEvawx+EYp8oA==
-X-Received: by 2002:a17:902:a70c:b029:118:7b47:e5bf with SMTP id w12-20020a170902a70cb02901187b47e5bfmr1447547plq.9.1623721877782;
-        Mon, 14 Jun 2021 18:51:17 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from apollo.hsd1.ca.comcast.net ([2601:646:9200:a0f0::a054])
-        by smtp.gmail.com with ESMTPSA id b80sm10337588pfb.151.2021.06.14.18.51.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Jun 2021 18:51:17 -0700 (PDT)
-From: "Khem Raj" <raj.khem@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: twoerner@gmail.com,
-	Khem Raj <raj.khem@gmail.com>
-Subject: [meta-rockchip][PATCH] qtbase: Add needed bbappend for rk3399 SOCs
-Date: Mon, 14 Jun 2021 18:51:14 -0700
-Message-Id: <20210615015114.4002699-1-raj.khem@gmail.com>
-X-Mailer: git-send-email 2.32.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=npDCZZyO0yBu+KiZJQxzGOIzop2b88wa0FiFoYoh7pE=;
+        b=fQmbFPc60gjxZj8vvI6mVwckrj8/3AkmXFaUEZk0eUn7QfUa7qsx3VZIaz66wpWKlH
+         TuUx/EKCI8EP5mIYJulgPmh0Vlk1MlMzaqLr2M7S/7c+a87SlwxSe9y2wKVwMYYNliVH
+         9TyQHHuCjav42BIMPEZDMIf4UXVesUMGcqNdl8/XDojArPePkgPXwsoZ9D+6Be33VTJm
+         nln56UcygMYD26teMibnVlc9mebvNWQ174foDbmL+/6Hh3W4IAYnCbvO02PH9YZdyMkn
+         OoiEZ6pHp1SyUuwyH5Qa6lSONAeWSH9xnGstySH9+clL7xVj1gb9Qhe8jZ4EH0+6w3ok
+         LBoA==
+X-Gm-Message-State: AOAM531iNIrVo92crWUdYM6kuSm62Szvai3j39jM6CLgzPQ2BXrGmcWc
+	R6EizAHgbjVk1QRvExUyHMxkCz96LjkBPR9fH5k=
+X-Google-Smtp-Source: ABdhPJzg7K8B+MWQ9re6oG0Y2EKd6T+A8ND6lLA8NbFLE8P4uaZ1aqzBO0RVfefvt5oKJH6yJSxbmEXmnHTAexAg7RQ=
+X-Received: by 2002:ac5:cbc5:: with SMTP id h5mr2649948vkn.7.1623740018278;
+ Mon, 14 Jun 2021 23:53:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <98hT.1623132594082542882.bzIp@lists.yoctoproject.org>
+ <CANNYZj9r_eZ8ZHEo801viRNuBekefmvKuqtLfKsKTQncw+uw-w@mail.gmail.com>
+ <YMe6JtmeJc1NiRYZ@brokenbit> <ec0d85da208aa26517a50ea998b855a5aa0d1455.camel@linuxfoundation.org>
+ <YMfKw9F6qY7daERE@brokenbit>
+In-Reply-To: <YMfKw9F6qY7daERE@brokenbit>
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+Date: Tue, 15 Jun 2021 08:53:26 +0200
+Message-ID: <CANNYZj8DDhPseB_Vzr4oboJgQn6VY5LbRym6-Tp7=peHfKTJvw@mail.gmail.com>
+Subject: Re: [yocto] [meta-java] icedtea7 fetching error
+To: Richard Leitner - SKIDATA <Richard.Leitner@skidata.com>
+Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, 
+	"George.Mocanu@rinftech.com" <George.Mocanu@rinftech.com>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	"openembedded-devel@lists.openembedded.org" <openembedded-devel@lists.openembedded.org>
+Content-Type: multipart/alternative; boundary="000000000000ff44d005c4c86e26"
 
-This ensures that DISTRO_FEATURES can translates correctly
-for qtbate packageconfigs and we can get right platforms enabled
+--000000000000ff44d005c4c86e26
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
----
- conf/layer.conf                                          | 5 +++++
- .../qt5-layer/recipes-qt/qt5/qtbase_%.bbappend           | 9 +++++++++
- 2 files changed, 14 insertions(+)
- create mode 100644 dynamic-layers/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
+On Mon, 14 Jun 2021 at 23:31, Richard Leitner - SKIDATA <
+Richard.Leitner@skidata.com> wrote:
 
-diff --git a/conf/layer.conf b/conf/layer.conf
-index b263b6f..f97fb69 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -16,3 +16,8 @@ BBFILE_PRIORITY_rockchip = "1"
- LAYERVERSION_rockchip = "1"
- LAYERSERIES_COMPAT_rockchip = "hardknott"
- LAYERDEPENDS_rockchip = "core meta-arm"
-+
-+BBFILES_DYNAMIC += " \
-+    qt5-layer:${LAYERDIR}/dynamic-layers/qt5-layer/*/*/*.bb \
-+    qt5-layer:${LAYERDIR}/dynamic-layers/qt5-layer/*/*/*.bbappend \
-+"
-diff --git a/dynamic-layers/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend b/dynamic-layers/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
-new file mode 100644
-index 0000000..a977229
---- /dev/null
-+++ b/dynamic-layers/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
-@@ -0,0 +1,9 @@
-+PACKAGECONFIG_GL_rk3399 = "${@bb.utils.contains('DISTRO_FEATURES', 'x11 opengl', 'gl', \
-+                              bb.utils.contains('DISTRO_FEATURES', 'opengl', 'eglfs gles2', \
-+                                                '', d), d)}"
-+PACKAGECONFIG_GL_append_rk3399 = " kms gbm"
-+
-+PACKAGECONFIG_FONTS_rk3399 = "fontconfig"
-+
-+PACKAGECONFIG_append_rk3399 = " libinput examples tslib xkbcommon"
-+PACKAGECONFIG_remove_rk3399 = "tests"
--- 
-2.32.0
+> Thank you very much Richard!
+> The openjdk8 tarballs are now hosted at
+> https://downloads.yoctoproject.org/mirror/sources/
+> with their local download names.
+>
+> Unfortunately I currently don't have the time and resources to provide a
+> patch for fixing the URLs and adding the mirror.
+> So help is greatly appreciated!
+>
 
+Unfortunately I think you mirrored the wrong tarballs. The problematic ones
+are specifically the six tarballs coming from
+http://icedtea.classpath.org/hg/
+and I am not seeing them mirrored. See the original error at the start of
+this thread:
+
+--2021-06-07 17:24:33--
+http://icedtea.classpath.org/hg/release/icedtea7-forest-2.1/archive/f89009ada191.tar.bz2
+Resolving icedtea.classpath.org (icedtea.classpath.org)... 172.104.137.120
+Connecting to icedtea.classpath.org
+(icedtea.classpath.org)|172.104.137.120|:80... connected.
+HTTP request sent, awaiting response... 404 Not Found
+2021-06-07 16:21:05 ERROR 404: Not Found.
+
+
+Alex
+
+--000000000000ff44d005c4c86e26
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Mon, 14 Jun 2021 at 23:31, Richard Leitner - SKIDATA &lt;<a href=
+=3D"mailto:Richard.Leitner@skidata.com">Richard.Leitner@skidata.com</a>&gt;=
+ wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Thank yo=
+u very much Richard!<br>
+The openjdk8 tarballs are now hosted at <a href=3D"https://downloads.yoctop=
+roject.org/mirror/sources/" rel=3D"noreferrer" target=3D"_blank">https://do=
+wnloads.yoctoproject.org/mirror/sources/</a><br>
+with their local download names.<br>
+<br>
+Unfortunately I currently don&#39;t have the time and resources to provide =
+a<br>
+patch for fixing the URLs and adding the mirror.<br>
+So help is greatly appreciated!<br>
+</blockquote><div><br></div><div>Unfortunately I think you mirrored the wro=
+ng tarballs. The problematic ones are specifically the six tarballs coming =
+from <a href=3D"http://icedtea.classpath.org/hg/">http://icedtea.classpath.=
+org/hg/</a></div><div>and I am not seeing them mirrored. See the original e=
+rror at the start of this thread:</div><div><br></div><div><pre><span>--202=
+1-06-07 17:24:33--  <a href=3D"http://icedtea.classpath.org/hg/release/iced=
+tea7-forest-2.1/archive/f89009ada191.tar.bz2" target=3D"_blank">http://iced=
+tea.classpath.org/hg/release/icedtea7-forest-2.1/archive/f89009ada191.tar.b=
+z2</a>
+Resolving <a href=3D"http://icedtea.classpath.org" target=3D"_blank">icedte=
+a.classpath.org</a> (<a href=3D"http://icedtea.classpath.org" target=3D"_bl=
+ank">icedtea.classpath.org</a>)... 172.104.137.120<br>Connecting to <a href=
+=3D"http://icedtea.classpath.org" target=3D"_blank">icedtea.classpath.org</=
+a> (<a href=3D"http://icedtea.classpath.org" target=3D"_blank">icedtea.clas=
+spath.org</a>)|172.104.137.120|:80... connected.<br>HTTP request sent, awai=
+ting response... 404 Not Found<br>2021-06-07 16:21:05 ERROR 404: Not Found.=
+</span></pre></div><div><br></div><div>Alex<br></div><div><br></div><div><b=
+r></div></div></div>
+
+--000000000000ff44d005c4c86e26--
