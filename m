@@ -1,120 +1,94 @@
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
- by mx.groups.io with SMTP id smtpd.web09.395.1623864291580652026
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+ by mx.groups.io with SMTP id smtpd.web09.107.1623864844474182152
  for <yocto@lists.yoctoproject.org>;
- Wed, 16 Jun 2021 10:24:51 -0700
+ Wed, 16 Jun 2021 10:34:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=bFlbjfmb;
- spf=pass (domain: gmail.com, ip: 209.85.217.50, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vs1-f50.google.com with SMTP id f21so1460883vsl.4
-        for <yocto@lists.yoctoproject.org>; Wed, 16 Jun 2021 10:24:51 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Op2hJ6fY;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.52, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f52.google.com with SMTP id c18-20020a05600c0ad2b02901cee262e45fso2138739wmr.4
+        for <yocto@lists.yoctoproject.org>; Wed, 16 Jun 2021 10:34:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cp82IhIMeCe/wepUfgLbQALKI1HOrjZRtpvc5Slgky0=;
-        b=bFlbjfmb9TS5Bh7wzVOKN7F5DJLPCFLFogJGZxaKtdKd1Ziya2kyTJPTbyubX38VBs
-         fw0+uqzF00f5x17/bekXGu0eJ03gaPZp/V6bBetukc9b0wHzYqPPXUYIxSnw1swo32+Z
-         A0GxhfWn64wuwZl6D5CHBSFYb0JfSEufZZnKWpK4nkl1/1CDdN8/cZM+b7bnlG2De1RN
-         DpbBI/KPRDqTg68OpuHHzTzVojJRtbICXQCaVymAII4BQkIyGXEEdVjb2Xh8Cg75xIfJ
-         G8k/TyIEVs4J2fimnK8cjGS5J+iMuFGf+paUD1F02mnUett/Mh3i6NwkipYAqYUv0lUq
-         7tsA==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=SVGElVchV5/rI9aq1Eksq7VPado1nfp9ZWm2d+YA3VY=;
+        b=Op2hJ6fYfAQFq0dvFxzS1O6T7kvpNJ0h/BjI9A8SMNFqP864dQ2XyC+ZzdqFUD/bxg
+         FNPE3PNVBa8bGdSqpUsnNKQlCrAs5bvLmcVEzqhHMQcDGH85oHVboG9WLDA2U/71tPJa
+         kbINxBYVRKFRNOqDFtl7GFS1rxKqH4ihc1Axc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cp82IhIMeCe/wepUfgLbQALKI1HOrjZRtpvc5Slgky0=;
-        b=icgkMbNF5ldLDlEbH4jMOrIE81/Vcb0xgUeK6fKxWtGp8bCDgA9v/bgwtzF+VGofDR
-         LXMf9e7bgFQKAGsPk4CjA4Q3sktNcM51eiKVMHLuirk9FiRfKAD5Z0YacChV9EgZR1EO
-         J1i1VanmJI9WVC2jC4OxlOa2SVICRgaTtIGe3aZrJvVt66t2rKh4YmRcG7GUvNQhyQzF
-         ZgD6wVJsevksqgj78xNt3AGqj4HO8dsUmhixmBdaJgBAjvJAx8P4lsRBdx4QLRcXePFA
-         NHbMP6+cEcF8yxnAyKfKJ4kg/QvJU/26/pl7WKBWNcriXX4vZuGhV4ZSEIp0VCjStaVe
-         Ij2w==
-X-Gm-Message-State: AOAM5314qAdBAiEaNt1VLS1LPdhnKpoJsw/u0Ngq0YXpyAmZ/VNFQWSL
-	RQWN8DanBRa3w2OxZotxYNAYgDn7l7qA5zZWkrg=
-X-Google-Smtp-Source: ABdhPJy59LIE6BseI9QN5j5RFTHwhZYGu+9WjIqeYZhacdkr2dayRbC4MMrTpGlAntEnojNPQEL7KXIHqe3wc8zTrFU=
-X-Received: by 2002:a67:1005:: with SMTP id 5mr130164vsq.51.1623864290720;
- Wed, 16 Jun 2021 10:24:50 -0700 (PDT)
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=SVGElVchV5/rI9aq1Eksq7VPado1nfp9ZWm2d+YA3VY=;
+        b=Tz7ffOd+dwUnMks+au7g2Awgy4/ihoZ+ytg+VZmKOyx3t8BB3WCDmwCkBZgqPJrN8u
+         TmUto/6ZzSKi4q1Ar9oYCIVkpydZ7del9oBJZ8Slq6T6cL3yp2AP4aV3A28ynha141F0
+         qoqBDaXXYinwrvBl1ECoxkQPBw+HDqRy0Uj3gxllR6FKf68mt6p2wzQvFopyr/AH6mNs
+         2rbeesnDjRvOrmZq5hh7KQpWf3hCNN0pxybsVSz+cq+wsay8R6iyZAy3s1ug807UWGhQ
+         E0TCkZ7j9nfyL8FMHlXFldJC3bDfJ2MqeZUoduZ3udw7JaYPhKEjuDy+WQqfywxkIxgc
+         OUTw==
+X-Gm-Message-State: AOAM531/yAWartnsPtU4RfGkJMlChbbS3PDj32HSBcWkJWh7XmYEb+n1
+	QxVhM0EWXSuJ2RmEE7jDAgl06A==
+X-Google-Smtp-Source: ABdhPJw6yG6jg+xo4TFPLWs9381+aVNtcVvj4UIgotFEdMizsOaL6L6ieNS6xwE4b7aZ93Y+d19anw==
+X-Received: by 2002:a1c:1dd3:: with SMTP id d202mr184653wmd.78.1623864842761;
+        Wed, 16 Jun 2021 10:34:02 -0700 (PDT)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from ?IPv6:2001:8b0:aba:5f3c:31b6:9a4e:bc39:a574? ([2001:8b0:aba:5f3c:31b6:9a4e:bc39:a574])
+        by smtp.gmail.com with ESMTPSA id e17sm3084229wre.79.2021.06.16.10.34.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Jun 2021 10:34:02 -0700 (PDT)
+Message-ID: <6a3aa522ba366052f6170e20f615d9a3d25265f6.camel@linuxfoundation.org>
+Subject: Re: [yocto] [PATCH yocto-autobuilder-helper] summarize_top_output.py: add script, use it and publish summary
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: sakib.sajal@windriver.com, yocto@lists.yoctoproject.org
+Date: Wed, 16 Jun 2021 18:33:58 +0100
+In-Reply-To: <20210616084334.35144-1-sakib.sajal@windriver.com>
+References: <20210616084334.35144-1-sakib.sajal@windriver.com>
+User-Agent: Evolution 3.40.0-1 
 MIME-Version: 1.0
-References: <16874B1938B81CC8.31512@lists.yoctoproject.org> <0088e07248160343a9b7a01dd29d278d@rogue-research.com>
-In-Reply-To: <0088e07248160343a9b7a01dd29d278d@rogue-research.com>
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Wed, 16 Jun 2021 19:24:39 +0200
-Message-ID: <CANNYZj-GGpd2Kk0XkoGOJP22RMVkhT=H84XC1QnVrPsjDHVixA@mail.gmail.com>
-Subject: Re: [yocto] [meta-intel]: support for NUC11
-To: simon <simon@rogue-research.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000036406a05c4e55e20"
-
---00000000000036406a05c4e55e20
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Wed, 16 Jun 2021 at 16:58, simon <simon@rogue-research.com> wrote:
+On Wed, 2021-06-16 at 04:43 -0400, sakib.sajal@windriver.com wrote:
+> summarize_top_output.py is used to summarize the top
+> output that is captured during autobuilder intermittent
+> failures.
+> 
+> Use the script to summarize the host top output and
+> publish the summary that is created instead of
+> the raw logfile.
+> 
+> 
+> 
+[...]
+>  if jcfg:
+> diff --git a/scripts/summarize_top_output.py b/scripts/summarize_top_output.py
+> new file mode 100755
+> index 0000000..0606a34
+> --- /dev/null
+> +++ b/scripts/summarize_top_output.py
+> @@ -0,0 +1,132 @@
+> +#!/usr/bin/env python3
+> +
+> +import os, sys, glob
+> +
+> +# constants
+> +top_header = 7
+> +top_summary = 5
+> +max_cols = 11
+> +
+> +# string substitution to make things easier to read
+> +subs = {
+> +    "/home/pokybuild/yocto-worker/" : "~/",
+> +    "/build/build/tmp/work/core2-32-poky-linux/" : "/.../POKY_32/.../",
+> +    "/build/build/tmp/work/core2-64-poky-linux/" : "/.../POKY_64/.../",
+> +    "/recipe-sysroot-native/usr/bin/x86_64-poky-linux/../../libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/" : "/...GCC.../"
+> +}
 
-> - There's a warning about not finding the IRIS driver:
-> MESA_LOADER: failed to open iris: /usr/lib/dri/iris_dri.so: cannot open
-> shared object file: No such file or directory
-> failed to load driver: iris
->
-> But from what I was able to understand, I was expecting it would be
-> available with mesa 21.0.3 since I've seen some commit about fixing
-> issue with it in the change logs.
->
-> I've tried to force the driver to both i965 and i915 but I either got a
-> warning that this GEN cannot use it or still got the same fps.
-> Am I right to assume that it goes to a default driver that uses the CPU
-> instead of the GPU?
+One quick question - the above assumes an x86 target machine using those two tunes. 
+Should that be wildcarded?
+
+Cheers,
+
+Richard
 
 
-Hello Simon,
-
-I honestly don't know how Intel folks have overlooked this, but mesa in
-yocto not only does not enable iris, the mesa recipe does not even have an
-option to enable it.
-
-However, it should be pretty easy to add. Please take a look at
-poky/meta/recipes-graphics/mesa/mesa.inc, specificially any lines that
-mention GALLIUMDRIVERS and matching PACKAGECONFIG,
-and you should be able to add iris there, and rebuild your image. Then you
-can submit your first patch to yocto via oe-core mailing list ;)
-
-Alex
-
---00000000000036406a05c4e55e20
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Wed, 16 Jun 2021 at 16:58, simon &lt;<a href=3D"mailto:simon@rogu=
-e-research.com">simon@rogue-research.com</a>&gt; wrote:<br></div><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex">
-- There&#39;s a warning about not finding the IRIS driver:<br>
-MESA_LOADER: failed to open iris: /usr/lib/dri/iris_dri.so: cannot open <br=
->
-shared object file: No such file or directory<br>
-failed to load driver: iris<br>
-<br>
-But from what I was able to understand, I was expecting it would be <br>
-available with mesa 21.0.3 since I&#39;ve seen some commit about fixing <br=
->
-issue with it in the change logs.<br>
-<br>
-I&#39;ve tried to force the driver to both i965 and i915 but I either got a=
- <br>
-warning that this GEN cannot use it or still got the same fps.<br>
-Am I right to assume that it goes to a default driver that uses the CPU <br=
->
-instead of the GPU?</blockquote></div><br><div class=3D"gmail_quote">Hello =
-Simon,</div><div class=3D"gmail_quote"><br></div><div class=3D"gmail_quote"=
->I honestly don&#39;t know how Intel folks have overlooked this, but mesa i=
-n yocto not only does not enable iris, the mesa recipe does not even have a=
-n option to enable it.</div><div class=3D"gmail_quote"><br></div><div class=
-=3D"gmail_quote">However, it should be pretty easy to add. Please take a lo=
-ok at poky/meta/recipes-graphics/mesa/mesa.inc, specificially any lines tha=
-t mention GALLIUMDRIVERS and matching PACKAGECONFIG,</div><div class=3D"gma=
-il_quote">and you should be able to add iris there, and rebuild your image.=
- Then you can submit your first patch to yocto via oe-core mailing list ;)<=
-/div><div class=3D"gmail_quote"><br></div><div class=3D"gmail_quote">Alex<b=
-r></div></div>
-
---00000000000036406a05c4e55e20--
