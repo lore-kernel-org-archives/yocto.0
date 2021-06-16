@@ -1,223 +1,89 @@
-Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
- by mx.groups.io with SMTP id smtpd.web08.4814.1623833023787314447
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+ by mx.groups.io with SMTP id smtpd.web11.4933.1623834671092406866
  for <yocto@lists.yoctoproject.org>;
- Wed, 16 Jun 2021 01:43:45 -0700
+ Wed, 16 Jun 2021 02:11:11 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: sakib.sajal@windriver.com)
-Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.corp.ad.wrs.com [147.11.82.252])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 15G8hbO5032332
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <yocto@lists.yoctoproject.org>; Wed, 16 Jun 2021 01:43:38 -0700
-Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Wed, 16 Jun 2021 01:43:37 -0700
-Received: from localhost.localdomain (128.224.73.109) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
- 15.1.2242.10 via Frontend Transport; Wed, 16 Jun 2021 01:43:37 -0700
-From: sakib.sajal@windriver.com
-To: <yocto@lists.yoctoproject.org>
-Subject: [PATCH yocto-autobuilder-helper] summarize_top_output.py: add script, use it and publish summary
-Date: Wed, 16 Jun 2021 04:43:34 -0400
-Message-ID: <20210616084334.35144-1-sakib.sajal@windriver.com>
-X-Mailer: git-send-email 2.25.1
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=eLmpFUqh;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.53, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f53.google.com with SMTP id 3-20020a05600c0243b029019f2f9b2b8aso1276558wmj.2
+        for <yocto@lists.yoctoproject.org>; Wed, 16 Jun 2021 02:11:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=xTUr6UCW8VtRFlokOZE8/JKENY/6PfohZH18B0f2zGA=;
+        b=eLmpFUqhbUDnOp9cGUutBXnfKLmsYItCrNukgQtV66k4YNRuctI2VXMl+zV9+Ld/3y
+         Nlp/Wsst5+SY2JKH+jeEnlLrBplso4qCKB0Y7VL5AorUs2cWSKres+bkOReyCcaGBKvl
+         umvIP0F8l+64Ks8PAikml0J4dZVMNYspqhg5U=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=xTUr6UCW8VtRFlokOZE8/JKENY/6PfohZH18B0f2zGA=;
+        b=YwQpyif8i+MMiuNTJEUB8sHY968XIBqeYZ/4QzO8ORpBm0Px7kqLSByzHcTE7xXgTQ
+         6PVvipu5Kl4CFVCfiamf0we5U4BeiJPpsvlpeJsOa6W31DK2uTYQnYPpw9gUuCCHSM3E
+         XsrErDpKs5Rwc+7+MkMyivRdBKVqdXi7Qa9i9Jv/M2QVTa4yrwLy5q71Y6bUPqnH0jzw
+         B6hLAxJykOOvQGYH197+6r2fn+mDitNzVUcth19Iw7lw81AP6UsExkoySKtipQZit7Js
+         y2+LwNYwdQQViwbfHmbFHCsEt79GirxM2u2zPMuU+B8Rqj1XuhitqrPKe7B47Mq10xjz
+         mRbg==
+X-Gm-Message-State: AOAM532NdIW+JmFUDk68K3e107wBgtieKAKMEmCiF2/PQI4w/osQ2B4r
+	FTN59bFuvEAD46G+o9eRa8ge6w==
+X-Google-Smtp-Source: ABdhPJwYl2xC5yNvpzW6oXfnvyC91ZbhmU/2kd2Mkp4dsanHCh+o+p1FZAYnomAMR1VCLjN3RrmH1Q==
+X-Received: by 2002:a05:600c:47c4:: with SMTP id l4mr9948027wmo.145.1623834669352;
+        Wed, 16 Jun 2021 02:11:09 -0700 (PDT)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from ?IPv6:2001:8b0:aba:5f3c:1d6e:bde3:735d:6a7d? ([2001:8b0:aba:5f3c:1d6e:bde3:735d:6a7d])
+        by smtp.gmail.com with ESMTPSA id z19sm4359476wmf.31.2021.06.16.02.11.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Jun 2021 02:11:08 -0700 (PDT)
+Message-ID: <0451f536368310860d9acb12e5a8424881b545e8.camel@linuxfoundation.org>
+Subject: Re: [poky] [PATCH] local.conf.sample: disable prelink
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Alexander Kanavin <alex.kanavin@gmail.com>, Mark Hatle
+	 <mark.hatle@kernel.crashing.org>
+Cc: poky@lists.yoctoproject.org, Yocto-mailing-list
+	 <yocto@lists.yoctoproject.org>
+Date: Wed, 16 Jun 2021 10:11:06 +0100
+In-Reply-To: <CANNYZj8S7V5owiS0p3B1fD7n_JpF-OPLApO=e9d+SiPuyFWHZw@mail.gmail.com>
+References: <20210615081225.1734033-1-alex.kanavin@gmail.com>
+	 <5ed9e1d2676d4d31289ebaf2ec3b492c1daa88a7.camel@linuxfoundation.org>
+	 <CANNYZj84MXS57sG5CWLmS-Y_0-w8h1_9NLmtjFEo4pJ5snXvcA@mail.gmail.com>
+	 <CANNYZj8S7V5owiS0p3B1fD7n_JpF-OPLApO=e9d+SiPuyFWHZw@mail.gmail.com>
+User-Agent: Evolution 3.40.0-1 
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 
-summarize_top_output.py is used to summarize the top
-output that is captured during autobuilder intermittent
-failures.
+On Tue, 2021-06-15 at 17:21 +0200, Alexander Kanavin wrote:
+> So the memory usage is actually *better* without prelink. And any timing 
+> benefits are lost in statistical noise, in these tests at least. 
 
-Use the script to summarize the host top output and
-publish the summary that is created instead of
-the raw logfile.
+The numbers certainly don't look convincing, thanks for running the tests.
 
-Signed-off-by: Sakib Sajal <sakib.sajal@windriver.com>
----
- scripts/collect-results              |   2 +-
- scripts/generate-testresult-index.py |   2 +-
- scripts/run-config                   |   1 +
- scripts/summarize_top_output.py      | 132 +++++++++++++++++++++++++++
- 4 files changed, 135 insertions(+), 2 deletions(-)
- create mode 100755 scripts/summarize_top_output.py
+> So I do not think it is wrong to question the usefulness of this feature. 
+> I'd like to hear Mark's take on this, as prelink-cross is primarily his 
+> work, he's put a lot of effort into it, and I would want to know where 
+> the benefits are. Note that Red Hat abandoned prelink in 2013, and 
+> prelink-cross likewise hasn't seen any commits for two years.
 
-diff --git a/scripts/collect-results b/scripts/collect-results
-index 7474e36..7178380 100755
---- a/scripts/collect-results
-+++ b/scripts/collect-results
-@@ -19,7 +19,7 @@ if [ -e $WORKDIR/buildhistory ]; then
- fi
- 
- HSFILE=$WORKDIR/tmp/buildstats/*/host_stats
--d=`date +%Y-%m-%d--%H-%M`
-+d="intermittent_failure_host_data"
- 
- mkdir -p $DEST/$target/$d
- 
-diff --git a/scripts/generate-testresult-index.py b/scripts/generate-testresult-index.py
-index 7fdc17c..d85d606 100755
---- a/scripts/generate-testresult-index.py
-+++ b/scripts/generate-testresult-index.py
-@@ -154,7 +154,7 @@ for build in sorted(os.listdir(path), key=keygen, reverse=True):
-     hd = []
-     counter = 0
-     # do we really need the loop?
--    for p in glob.glob(buildpath + "/*/*/host_stats*top.txt"):
-+    for p in glob.glob(buildpath + "/*/*/host_stats*top_summary.txt"):
-         n_split = p.split(build)
-         res = reldir[0:-1] + n_split[1]
-         hd.append((res, str(counter)))
-diff --git a/scripts/run-config b/scripts/run-config
-index 8ed88cf..82de91f 100755
---- a/scripts/run-config
-+++ b/scripts/run-config
-@@ -327,6 +327,7 @@ elif args.phase == "finish" and args.stepname == "collect-results":
-     if args.results_dir:
-         hp.printheader("Running results collection")
-         runcmd([scriptsdir + "/collect-results", args.builddir, args.results_dir, args.target])
-+        runcmd([scriptsdir + "/summarize_top_output.py", args.results_dir, args.target])
-     sys.exit(0)
- 
- if jcfg:
-diff --git a/scripts/summarize_top_output.py b/scripts/summarize_top_output.py
-new file mode 100755
-index 0000000..0606a34
---- /dev/null
-+++ b/scripts/summarize_top_output.py
-@@ -0,0 +1,132 @@
-+#!/usr/bin/env python3
-+
-+import os, sys, glob
-+
-+# constants
-+top_header = 7
-+top_summary = 5
-+max_cols = 11
-+
-+# string substitution to make things easier to read
-+subs = {
-+    "/home/pokybuild/yocto-worker/" : "~/",
-+    "/build/build/tmp/work/core2-32-poky-linux/" : "/.../POKY_32/.../",
-+    "/build/build/tmp/work/core2-64-poky-linux/" : "/.../POKY_64/.../",
-+    "/recipe-sysroot-native/usr/bin/x86_64-poky-linux/../../libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/" : "/...GCC.../"
-+}
-+
-+def usage():
-+    print("Usage: " + sys.argv[0] + " <dest> <target>")
-+
-+def list_top_outputs(logfile):
-+    # top delimiter
-+    top_start = "start: top output"
-+    top_end = "end: top output"
-+
-+    # list of top outputs
-+    top_outputs = []
-+
-+    # flag
-+    collect = False
-+    with open(logfile) as log:
-+        top_output = []
-+        for line in log:
-+            lstrip = line.strip()
-+            if collect:
-+                if lstrip.startswith(top_end):
-+                    collect = False
-+                    top_outputs.append(top_output)
-+                    top_output = []
-+                else:
-+                    top_output.append(lstrip)
-+            if lstrip.startswith(top_start):
-+                collect = True
-+                    
-+    return top_outputs
-+
-+def summarize_top(top_outs):
-+    summaries = []
-+    kernel_summaries = []
-+    short_summaries = []
-+    for top_out in top_outs:
-+        summary = {}
-+        kernel_summary = {}
-+        short_summary = top_out[:top_summary]
-+        for line in top_out[top_header:]:
-+            cmd = line.split(maxsplit=max_cols)[-1]
-+            # kernel processes
-+            if cmd[0] == "[" and cmd[-1] == "]":
-+                kproc = cmd[1:-1].split("/")[0]
-+                if kproc not in kernel_summary:
-+                    kernel_summary[kproc] = 1
-+                else:
-+                    kernel_summary[kproc] += 1
-+                continue
-+            cmd_split = cmd.split()
-+            prog = cmd_split[0]
-+            if prog not in summary:
-+                summary[prog] = 1
-+            else:
-+                summary[prog] += 1
-+        summary = dict(sorted(summary.items(), key=lambda item: item[1], reverse=True))
-+        kernel_summary = dict(sorted(kernel_summary.items(), key=lambda item: item[1], reverse=True))
-+        
-+        summaries.append(summary)
-+        kernel_summaries.append(kernel_summary)
-+        short_summaries.append(short_summary)
-+
-+    return (short_summaries, summaries, kernel_summaries)
-+    
-+def summarize_path(path):
-+    p = path
-+    for k, v in subs.items():
-+        p = p.replace(k, v)
-+    return p
-+
-+def write_summary(short_summary, summary, kernel_summary, logfile):
-+    dirname = os.path.dirname(logfile)
-+    fname = os.path.basename(logfile)
-+    report_name = fname.split(".")[0] + "_summary.txt"
-+    outfile = os.path.join(dirname, report_name)
-+    out = "NOTE: program names have been shortened for better readability.\nSubstitutions are as follows:\n"
-+    for k, v in subs.items():
-+        out += (v + " = " + k + "\n")
-+    out += "\n"
-+
-+    out += "top was invoked " + str(len(short_summary)) + " times.\n\n"
-+
-+    for i in range(len(short_summary)):
-+        for l in short_summary[i]:
-+            out += (l + "\n")
-+
-+        out += ("\nSummary: " + "\n")
-+        for k, v in summary[i].items():
-+            if v > 1:
-+                r = summarize_path(k)
-+                out += (str(v) + "  " + r + "\n")
-+        
-+        out += ("\nKernel Summary: " + "\n")
-+        for k, v in kernel_summary[i].items():
-+            if v > 1:
-+                r = summarize_path(k)
-+                out += (str(v) + "  " + r + "\n")
-+        out += ("\n")
-+
-+    with open(outfile, "w") as of:
-+        of.write(out)
-+
-+def main():
-+    if len(sys.argv) != 3:
-+        usage()
-+        sys.exit()
-+        
-+    dest = sys.argv[1]
-+    target = sys.argv[2]
-+    host_data_dir = "intermittent_failure_host_data"
-+    directory = os.path.join(dest, target, host_data_dir)
-+    for f in glob.glob(directory + "/*_top.txt"):
-+        outputs = list_top_outputs(f)
-+        short_summary, summary, kernel_summary = summarize_top(outputs)
-+        write_summary(short_summary, summary, kernel_summary, f)        
-+
-+main()
--- 
-2.25.1
+Mark and I did briefly talk yesterday and whilst Mark can/will speak
+up, the summary was "drop it".
+
+What makes me sad is that this is an embedded focused feature which 
+the project should be caring about, i.e. memory footprint and speed.
+I don't know why the numbers don't show it, Mark and I have theories
+but it would take work to explore them and neither of us have that time,
+nor are we experts on prelink able to maintain it with the time we have
+available.
+
+In my view the project should be caring about things like this, instead 
+it looks more like a race to look like 'any other desktop distro' and 
+drop anything which looks different.
+
+I've tried to say no. Nobody else would appear to care, I'm hearing 
+silence. I can't fight this.
+
+Cheers,
+
+Richard
 
