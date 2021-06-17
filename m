@@ -1,53 +1,62 @@
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
- by mx.groups.io with SMTP id smtpd.web11.8433.1624458842447270508
+Received: from cloud1.hoststud.com (cloud1.hoststud.com [159.69.73.38])
+ by mx.groups.io with SMTP id smtpd.web11.664.1623940974462788214
  for <yocto@lists.yoctoproject.org>;
- Wed, 23 Jun 2021 07:34:02 -0700
+ Thu, 17 Jun 2021 07:42:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: bootlin.com, ip: 217.70.183.196, mailfrom: thomas.perrot@bootlin.com)
-Received: (Authenticated sender: thomas.perrot@bootlin.com)
-	by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 592AFE0003;
-	Wed, 23 Jun 2021 14:33:59 +0000 (UTC)
-From: "Thomas Perrot" <thomas.perrot@bootlin.com>
-To: yocto@lists.yoctoproject.org
-Cc: richard.purdie@linuxfoundation.org,
-	Thomas Perrot <thomas.perrot@bootlin.com>
-Subject: [poky][PATCH] models: Add a new error type for check-layer
-Date: Wed, 23 Jun 2021 16:33:50 +0200
-Message-Id: <20210623143350.3278069-1-thomas.perrot@bootlin.com>
-X-Mailer: git-send-email 2.31.1
+ dkim=missing; spf=none, err=permanent DNS error (domain: phytecembedded.in, ip: 159.69.73.38, mailfrom: poornesh.g@phytecembedded.in)
+Received: from [::1] (port=45540 helo=cloud1.hoststud.com)
+	by cloud1.hoststud.com with esmtpa (Exim 4.94.2)
+	(envelope-from <poornesh.g@phytecembedded.in>)
+	id 1lttEK-009UV7-DG
+	for yocto@lists.yoctoproject.org; Thu, 17 Jun 2021 20:12:51 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Date: Thu, 17 Jun 2021 20:12:51 +0530
+From: "Poornesh" <poornesh.g@phytecembedded.in>
+To: yocto@lists.yoctoproject.org
+Subject: Re: Integration of mpg321 in yocto zeus
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <cd4f8664325c13d083ae540e75bd23e5@phytecembedded.in>
+X-Sender: poornesh.g@phytecembedded.in
+Organization: Phytec Embedded India
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cloud1.hoststud.com
+X-AntiAbuse: Original Domain - lists.yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - phytecembedded.in
+X-Get-Message-Sender-Via: cloud1.hoststud.com: authenticated_id: poornesh.g@phytecembedded.in
+X-Authenticated-Sender: cloud1.hoststud.com: poornesh.g@phytecembedded.in
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Content-Type: multipart/alternative;
+ boundary="=_9e9f0229cd3bb389409cf2efd90e8df9"
 
-Defines a new ErrorType and ERROR_TYPE_CHOICES, in order to support this kind of
-errors.
+--=_9e9f0229cd3bb389409cf2efd90e8df9
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 
-[YOCTO #14208]
+Greetings !
 
-Signed-off-by: Thomas Perrot <thomas.perrot@bootlin.com>
----
- Post/models.py | 2 ++
- 1 file changed, 2 insertions(+)
+If anyone achieved integrating the "mpg321" in yocto , requesting you to 
+kindly share some inputs and procedure that need to be followed.
 
-diff --git a/Post/models.py b/Post/models.py
-index 3fa66f2198a4..b7a913c82359 100644
---- a/Post/models.py
-+++ b/Post/models.py
-@@ -15,6 +15,7 @@ import Levenshtein
- 
- class ErrorType(object):
-     RECIPE = 'recipe'
-+    CHECK_LAYER = 'check-layer'
-     CORE = 'core'
-     BITBAKE_SELFTEST = 'bitbake-selftest'
-     OE_SELFTEST = 'oe-selftest'
-@@ -26,6 +27,7 @@ class InvalidErrorType(Exception):
- class Build(models.Model):
-     ERROR_TYPE_CHOICES = (
-             (ErrorType.RECIPE, 'Recipe'),
-+            (ErrorType.CHECK_LAYER, 'check-layer'),
-             (ErrorType.CORE, 'Core'),
-             (ErrorType.BITBAKE_SELFTEST, 'Bitbake selftest'),
-             (ErrorType.OE_SELFTEST, 'OE selftest'),
 -- 
-2.31.1
+Thanks in advance
 
+--=_9e9f0229cd3bb389409cf2efd90e8df9
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
+=3DUTF-8" /></head><body style=3D'font-size: 10pt; font-family: Verdana,Gen=
+eva,sans-serif'>
+<p>Greetings !</p>
+<p>If anyone achieved integrating the "mpg321" in yocto , requesting you to=
+ kindly share some inputs and procedure that need to be followed.</p>
+<div id=3D"signature">-- <br />
+<p>Thanks in advance</p>
+</div>
+</body></html>
+
+--=_9e9f0229cd3bb389409cf2efd90e8df9--
