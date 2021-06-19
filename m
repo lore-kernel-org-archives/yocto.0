@@ -1,105 +1,66 @@
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
- by mx.groups.io with SMTP id smtpd.web11.11380.1624038676622330467
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+ by mx.groups.io with SMTP id smtpd.web12.17940.1624077660857524393
  for <yocto@lists.yoctoproject.org>;
- Fri, 18 Jun 2021 10:51:16 -0700
+ Fri, 18 Jun 2021 21:41:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=gWoC1x8D;
- spf=pass (domain: gmail.com, ip: 209.85.219.50, mailfrom: twoerner@gmail.com)
-Received: by mail-qv1-f50.google.com with SMTP id im10so3989410qvb.3
-        for <yocto@lists.yoctoproject.org>; Fri, 18 Jun 2021 10:51:16 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=rNqNvG3B;
+ spf=pass (domain: gmail.com, ip: 209.85.208.175, mailfrom: mikeframpo@gmail.com)
+Received: by mail-lj1-f175.google.com with SMTP id 131so16850294ljj.3
+        for <yocto@lists.yoctoproject.org>; Fri, 18 Jun 2021 21:41:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=nkU5Ac1kz+AWgsRjxRN3fINKao+ikUC+1d/bvpJBoFI=;
-        b=gWoC1x8D2h6JsXoNVRmv4poMX1h+EGREGZZV8IcZGE+59nMvJFX0W7W4uPyO4FzXwH
-         Jpo1do072fezSYwHzj7AF6cFoTspCJjCRrbCG6z0TeQ/DPGIf2Zm7Vh8YtH6dPpixgtC
-         KzVLOD/8nHWUusaBhrnOMPu4UbGe1KOhppiNDXw1FS7v5HS5Kj5Vi2EDkZmo6IQei2CA
-         mBJIK9Y/4i8Dt7re6TVZ1birKsyZjvF9Q/OyeFiDJ7tKLgP8o0kSKGFiirckxObAotqI
-         l6AHzkbjQCPjtDcV1BlZvhvLmH0Mk4UH1BqHGGhzy52xkHJ0QUs6l640rpisujy/8KMk
-         XYNw==
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=qC7iCboHlJYr9aDmdnAOhbsc6A3SoBtuA5G0za98j6k=;
+        b=rNqNvG3BtS//ACFtVEMPUK7h4kUG9LCMHqU0Z5I0xNLeshVfFCzJkwVh/4tsDXzN0C
+         v8AUVOrXO+uyOOyKee/THUxIyf7dnZun4NgAkukApcATe0IddaRLYH9YannJ8TRrseic
+         XPyaNZYnVGOqks6EMwLW/Un2xUY0toidXlCOk7y4qfYYx6/dYZu3YJtgviZqR6dO2yYT
+         NlqFJXEinV8XUiuwr6/mxCBvXnmKJ7VVZyRLlxb5+QnoQtIhuX+C0YRRMeTOGb/pbQ18
+         Skcm8+/fhFyTY++L0L6AN1jzLQkeznkfqSnaWtVfw84je3KMggiwj3wMlS5z4ELmTe8Z
+         CT+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=nkU5Ac1kz+AWgsRjxRN3fINKao+ikUC+1d/bvpJBoFI=;
-        b=YCxjjH9h+xXZYAORrOIf7qaa4PULytkL/X4Hli/6s/DWfFdVYFZlOFjkn9pzsgBh35
-         YK02aLpNmVFXfK9bCOs9s3ShcdMX5SMALGUQiHgUYygiSY2ilq+/sxe7rBSa9ai2XytF
-         9lzF6AEY7zLj4h5h0B3HTXx8/eYaY++Z+rCc31MT7eCZ43C312jgowtAvp4MWVA6dSWr
-         qacEldmo3F+HspRBjQHSyjl9m/S4Ub2DXLU97+OVpvXXOqTbqG6lMs4o1jWq0rxk+Xwm
-         sr6Qem4xCMtS8mpLFWtPFtWVutGuUJ784DzbxRKK1i1mvAMWTs1FBzN9SCwn+8m8mOxQ
-         qGpw==
-X-Gm-Message-State: AOAM53161TjF0qyZuXk3ICsnuyDgWL4lx33tQwfwx0IZmJhgVoz/h6c4
-	+ViIyxkYCebDudG9Kk6HJqxoxqU4PuBSPA==
-X-Google-Smtp-Source: ABdhPJx/6JBFuvYid4N/8zyp1PpHTxdPfjr/M6ZVWO6i3yvoAJypCAApKG1nYasCMWWwADX3L1AN+w==
-X-Received: by 2002:a05:6214:1185:: with SMTP id t5mr6838522qvv.7.1624038675474;
-        Fri, 18 Jun 2021 10:51:15 -0700 (PDT)
-Return-Path: <twoerner@gmail.com>
-Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id 206sm4813423qke.67.2021.06.18.10.51.14
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Jun 2021 10:51:15 -0700 (PDT)
-From: "Trevor Woerner" <twoerner@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [PATCH][meta-rockchip] rock-pi-e: use common rk3328.inc
-Date: Fri, 18 Jun 2021 13:51:09 -0400
-Message-Id: <20210618175109.8587-1-twoerner@gmail.com>
-X-Mailer: git-send-email 2.30.0.rc0
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=qC7iCboHlJYr9aDmdnAOhbsc6A3SoBtuA5G0za98j6k=;
+        b=BLQRIiZG8fiM90JifQ9tup0pDPwn8d5v6LZl7ATeYrYY58Fqkb8g7W2hbP0DrV4jQt
+         KEC+a/05bbBHCoFmCv/6+llu9d26Vg+8YFscdEDvmGeuianVsP/yK6GPD22Dg8OT3unM
+         qTXo4aFsZZZ9TR3cZDO9OrcRpx1IOsXSH6n9BR+wCvq30F779qYzSqobmp1gYSEmdZj6
+         CM5LQrw71e24oxJxP5lhLJC0M7WwYHch8ibL6eni4DcaiiwYOC0mn9pCCvDpAMJ8SHh2
+         TyPvXoUY5V+RIhV/3lB8mUE+wVengm3CzW15JyvTvGhUE7LLqxJhCC7TOCS6fXEqgef9
+         jGdQ==
+X-Gm-Message-State: AOAM531cX0j1heCjdD5/T+Q9l/TcIKAjKt9vW8MCQi3cl+Mgj/kuvipY
+	4Qk6piRzCiwMkRJgKEwen48LScOBcEJ/9jMqMQ+RaDlxvZw=
+X-Google-Smtp-Source: ABdhPJyrKafpjkUmAO5/vRhP3IJCb6Esbbfb65a6Qter53ECjq2PDkv6n8h1KZcH1FIV1B3ecF37jXrTpvA6R4nXspY=
+X-Received: by 2002:a2e:9b0e:: with SMTP id u14mr12371142lji.123.1624077658757;
+ Fri, 18 Jun 2021 21:40:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: "Mike Frampton" <mikeframpo@gmail.com>
+Date: Sat, 19 Jun 2021 16:40:48 +1200
+Message-ID: <CABqcFR=X0WQfkqvBz7+XLg2B=EQoUSTR7QERwJ+q1s7ny0uE1g@mail.gmail.com>
+Subject: Appending an existing machine .conf file
+To: yocto@lists.yoctoproject.org
+Cc: ayoub.zaki@embexus.com
+Content-Type: text/plain; charset="UTF-8"
 
-Now that there is a second rk3328-based MACHINE (rock64) switch rock-pi-e to
-use the common rk3328 include.
+Greetings Yocto,
 
-Signed-off-by: Trevor Woerner <twoerner@gmail.com>
----
- conf/machine/rock-pi-e.conf | 21 +++------------------
- 1 file changed, 3 insertions(+), 18 deletions(-)
+I'm interested in assigning custom config settings for machine type qemuarm.
 
-diff --git a/conf/machine/rock-pi-e.conf b/conf/machine/rock-pi-e.conf
-index 035a950..38362a0 100644
---- a/conf/machine/rock-pi-e.conf
-+++ b/conf/machine/rock-pi-e.conf
-@@ -3,29 +3,16 @@
- #@DESCRIPTION: ROCK Pi E is a Rockchip RK3328-based SBC by Radxa. E is for Ethernets.
- #https://wiki.radxa.com/RockpiE
- 
--MACHINEOVERRIDES =. "rock-pi-e:"
--SOC_FAMILY = "rk3328"
--DEFAULTTUNE = "cortexa53-crypto"
-+require conf/machine/include/rk3328.inc
- 
--require conf/machine/include/soc-family.inc
--require conf/machine/include/tune-cortexa53.inc
--require conf/machine/include/rockchip-defaults.inc
-+MACHINEOVERRIDES =. "rock-pi-e:"
- 
- PREFERRED_PROVIDER_virtual/kernel = "linux-stable-bleeding"
- KERNEL_DEVICETREE = "rockchip/rk3328-rock-pi-e.dtb"
--KBUILD_DEFCONFIG = "defconfig"
--KERNEL_CLASSES = "kernel-fitimage"
--KERNEL_IMAGETYPE = "fitImage"
- MACHINE_EXTRA_RRECOMMENDS += "kernel-modules"
- 
--TFA_PLATFORM = "rk3328"
--TFA_BUILD_TARGET = "bl31"
--
--UBOOT_MACHINE = "rock-pi-e-rk3328_defconfig"
--UBOOT_SUFFIX = "itb"
--UBOOT_ENTRYPOINT = "0x06000000"
- PREFERRED_PROVIDER_virtual/bootloader = "u-boot"
--SPL_BINARY = "idbloader.img"
-+UBOOT_MACHINE = "rock-pi-e-rk3328_defconfig"
- 
- WKS_FILE = "rock-pi-e.wks"
- IMAGE_FSTYPES += "wic.xz wic.bmap"
-@@ -38,5 +25,3 @@ WKS_FILE_DEPENDS = " \
- IMAGE_BOOT_FILES ?= " \
-     ${KERNEL_IMAGETYPE} \
-     "
--
--SERIAL_CONSOLES = "1500000;ttyS2"
--- 
-2.30.0.rc0
+I tried a method suggested in this thread
+https://lists.yoctoproject.org/g/yocto/message/38359 by Ayoub Zaki, he
+suggested defining the following in local.conf
 
+> include conf/machine/${MACHINE}-extra.conf
+
+However, this doesn't work for me because quemuarm.conf in poky/meta
+**assigns** its variables, e.g.,
+
+> QB_OPT_APPEND = "-device VGA,edid=on"
+> QB_OPT_APPEND += "-device qemu-xhci -device usb-tablet -device usb-kbd"
+
+So that if I define a value for this, it will be overwritten.
+
+Is there another method for achieving this? If not I could submit a
+patch to change poky's definitions to "??" assignments.
+
+Cheers,
+--Mike
