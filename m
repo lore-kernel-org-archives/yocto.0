@@ -1,65 +1,42 @@
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
- by mx.groups.io with SMTP id smtpd.web12.18514.1624083967074982594
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web11.31827.1624182944610112378
  for <yocto@lists.yoctoproject.org>;
- Fri, 18 Jun 2021 23:26:07 -0700
+ Sun, 20 Jun 2021 02:55:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=HkorO5Lc;
- spf=pass (domain: gmail.com, ip: 209.85.208.180, mailfrom: mikeframpo@gmail.com)
-Received: by mail-lj1-f180.google.com with SMTP id k8so16943016lja.4
-        for <yocto@lists.yoctoproject.org>; Fri, 18 Jun 2021 23:26:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=k7Mhp5juX+EOWElIgumtEDD9ouYRFHlRRuMSEIkohHk=;
-        b=HkorO5Lc6QGfjcc/NxxwxUwwDDf2+fdkaJ0Pblyk2O/GVUKcRARJ43OI2vtnzYbVvt
-         WrRpuG3Wpr90QChsAdQwlyIMQk2q5e+TXtfJS/9epoO9C295ZfZ1ytkYcY6NpzANGlvJ
-         09MKnY4T1aGEjzVyP7LJCozYV+cIWDtspYkOedqsu8FqvTukUfL3c7NWarg5S1h2ktLB
-         W/cDhU4rn5837vcZC7gBWrH8gwsNwJg3xHvgwf+e2OoYv9T3KPLMj/hx6iRYNoxK6/xV
-         RLjlLijHwiYh6iirAzUl3WI4Ac4EwYUpMojbboTURDkcznlqZcQSFty/vGsG+wB1iy2B
-         /bWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=k7Mhp5juX+EOWElIgumtEDD9ouYRFHlRRuMSEIkohHk=;
-        b=BpI7OBtiYGAQ51Oux1Pvqb7YqsxDcTFWGRjDZDV44hbtsIfDlkvNB8eC8pycevWb/N
-         53AB40xfqhos/7aUalDDdX46QtFGqwpNfdtNOgVmHlNxtEhMyn+N7zzU9M2RbgndtduZ
-         D1nkkb73+0bDl7qzd2iAs1nBVbS+Sx28Zf3Qy5Z7oEqnVMdph0CB7/y3oKhhPt6sGVKU
-         Yhi8M8wCaiGWCVwAJW7Rmbrkecb0imL5aRRPTpVw/5fyo/NjVLwcDIrSnDwCifBtRE6O
-         0bxtvLbvlbL/9NnxvPomkYvuR2qaydXyweHareOHeg+b+G/WMjU8YXF9Pryqr7dg/T+o
-         ED1Q==
-X-Gm-Message-State: AOAM530GZTl8O1BRS1a/hgMbE8XYXQHjqxjJV5KjRUv7g5RQpWUjl/xv
-	kip+f3jNDAGlXdMYTqINQQ8qWxKokgfgopwta58=
-X-Google-Smtp-Source: ABdhPJz7+LAuAbwFX0MAGMobK+/oU/95RprUL3ZkJJnd307v9OoSCjupwXmsDSuWEeCYb4BkP7+IpOpbdlCnYyRO69E=
-X-Received: by 2002:a2e:9b0e:: with SMTP id u14mr12651792lji.123.1624083965214;
- Fri, 18 Jun 2021 23:26:05 -0700 (PDT)
+ dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 198.145.29.25, mailfrom: rpjday@crashcourse.ca)
+Received: from cpanel8.indieserve.net (cpanel8.indieserve.net [199.212.143.3])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 460D538C082B
+	for <yocto@yoctoproject.org>; Sun, 20 Jun 2021 09:55:43 +0000 (UTC)
+Received: from cpeac202e043973-cmac202e043970.sdns.net.rogers.com ([174.114.107.13]:49360 helo=fedora)
+	by cpanel8.indieserve.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <rpjday@crashcourse.ca>)
+	id 1luuB3-003APe-3R
+	for yocto@yoctoproject.org; Sun, 20 Jun 2021 05:55:41 -0400
+Date: Sun, 20 Jun 2021 05:55:39 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: the downside of parallelism
+Message-ID: <c9624492-1658-9e87-f680-32b891e69a7f@crashcourse.ca>
 MIME-Version: 1.0
-References: <CABqcFR=X0WQfkqvBz7+XLg2B=EQoUSTR7QERwJ+q1s7ny0uE1g@mail.gmail.com>
- <CA+cAkerJhOmwE49NyLkXYm3g3AG-aMQCy=WvcpCVCEQUP_bqwQ@mail.gmail.com>
-In-Reply-To: <CA+cAkerJhOmwE49NyLkXYm3g3AG-aMQCy=WvcpCVCEQUP_bqwQ@mail.gmail.com>
-From: "Mike Frampton" <mikeframpo@gmail.com>
-Date: Sat, 19 Jun 2021 18:25:54 +1200
-Message-ID: <CABqcFR=ibLhRVfjsJJ1m6Q=v2D3s1ZYM6+=p6MzKpCeQXkuvYg@mail.gmail.com>
-Subject: Re: [yocto] Appending an existing machine .conf file
-To: =?UTF-8?B?RnLDqWTDqXJpYyBNYXJ0aW5zb25z?= <frederic.martinsons@gmail.com>
-Cc: yocto@lists.yoctoproject.org, ayoub.zaki@embexus.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel8.indieserve.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Get-Message-Sender-Via: cpanel8.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: cpanel8.indieserve.net: rpjday@crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Content-Type: text/plain; charset=US-ASCII
 
-Hi Fr=C3=A9d=C3=A9ric,
 
-Thanks for your suggestion,
+  refactoring existing (legacy) code base into more bite-sized
+bitbake recipes to speed up build by taking advantage of 6-core
+(12-thread) dell laptop ... end result is that i get so much
+parallelism that laptop shuts down from overheating.
 
->  you can customize QB_OPT_APPEND by removing options you don't want, e.g.
->
-> QB_OPT_APPEND_remove =3D "-device usb-tablet"
->
-> and add your own after.
+  le *sigh* ...
 
-I suppose this would be a bit less maintainable, as it's effectively
-duplicating the entry in the base config... but I think it will work
-for me for now. Thank you.
-
-Regards,
---Mike
+rday
