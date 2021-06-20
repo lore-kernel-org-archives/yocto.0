@@ -1,87 +1,98 @@
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
- by mx.groups.io with SMTP id smtpd.web09.39340.1624229485856225914
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web12.39521.1624229506562823024
  for <yocto@lists.yoctoproject.org>;
- Sun, 20 Jun 2021 15:51:25 -0700
+ Sun, 20 Jun 2021 15:51:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=r2u2vKOj;
- spf=pass (domain: gmail.com, ip: 209.85.210.182, mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f182.google.com with SMTP id t32so856124pfg.2
-        for <yocto@lists.yoctoproject.org>; Sun, 20 Jun 2021 15:51:25 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Xk/rWveL;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: akuster808@gmail.com)
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 7AA1138C08BF
+	for <yocto@yoctoproject.org>; Sun, 20 Jun 2021 22:51:45 +0000 (UTC)
+Received: by mail-pj1-f46.google.com with SMTP id bb10-20020a17090b008ab029016eef083425so11045071pjb.5
+        for <yocto@yoctoproject.org>; Sun, 20 Jun 2021 15:51:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-transfer-encoding:content-language;
-        bh=JN4l/VO+5MViJfCvUrRJcN5EKBNhB3wmbqOgkVsYwz0=;
-        b=r2u2vKOjPugCug2QxzdQQzIqn+IyaNegyyT3uL7m3KgOnM3M/A4QFhYbOBZ3O8bpCJ
-         RjvonjXUd7qNBgG/yPTSnKPkaSdHBSfNY5XJUZl0B/ittHAkBgNwJsIYQ5H2YM7fUBbm
-         QTcCJd7ZFcp0CJ/+RYI/MexPS0H5IU9G8drFH+gEJV02aMOjmXatwvSXzg52BBECC7x+
-         2NX8T10ezxxo/Yrq7C1AITO6JHMdv4TQsZap9gMNN7ZXQBiRhfqh0RzBIDvKKVM7ngFL
-         O2PgVs6fIxNfLE9woHL1+VlUGkYia0/QKvDIwLJfwAtn/MPG30/OCZ5nQcLoJxrT2+Gx
-         4xLA==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=x319r7QyKIcYmAzHaUCf/hJBOix56ppxlynh2kqU91w=;
+        b=Xk/rWveLAbV/sjCcUHQb7Jk1UD/ERy7CHNFN8oeffJ1gfidHcAeGFVN0l+Dmyco9Nx
+         zwW8ltCLBcfIS5EGj6tSIYacY8kThTFJpG/cRK0M04WDn9sZlVteoS2HrM2JKQKE4CJv
+         A4gsmo/rOISJZof0k+PextZ/Nntx2XBwtoDsvXPQ8D0K58nkz/0xwnmDAeRr7jeSeLZm
+         3kRHa9Zb5r0a8CjidmC4lnh1LodaIdtxPVn/ZAdsO5adxONEWfssW1eSKvn85NZoTBCO
+         RTfN/tdjTW5dIDhteEL/IxWzyvr9BJRNFFiQNkqgWoPqDuhYDaisp6lgMfk3Om/9Yn4U
+         5XhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-transfer-encoding
          :content-language;
-        bh=JN4l/VO+5MViJfCvUrRJcN5EKBNhB3wmbqOgkVsYwz0=;
-        b=dQuqipuMxBZX1VGxMBbnmHBu/YGccEm2olaey+YndqB4ycQSKnisIC4GzUxdaZaTOE
-         McITXnNXKSwFUewwtKLNpZsab948u96M3wOr/QuVKftuNs5hCKmS7CJDUg81zvpxb6Hb
-         doK60FWjlMQpQqcuJ0w0HM/AnKW9dZleZ/RYOyFnUCoCKouKMN2xKxixSkKNX3C2QvXj
-         zFPlyhK29xdBKCwM6FqXOPzMh6OnJ4UuG54m9lLl7VZKQznaIo2F3JeB0YRQxX5qHc38
-         eAjGxVxq5Xzm1JjuXKsrpMqZ0fy5+SKi3YS3yH277Bis6i6vHSS6aCRk+58U5IEzKhVh
-         UVpw==
-X-Gm-Message-State: AOAM530gOyXrKw/SgFn1VZAxKnERGB1LIito1bE8pMnZ6w4cHmcv5NWV
-	P3X233hoffyrn2czpNNB7qLG8Wa5S8fi+w==
-X-Google-Smtp-Source: ABdhPJwVENgu3HqtskXg64sl7bdc18L1/AoiHDPogKN7whBgQwoyJUNJ+QQdg2ZiA59xN8ieafeggw==
-X-Received: by 2002:a05:6a00:cd0:b029:2fe:9dc6:b476 with SMTP id b16-20020a056a000cd0b02902fe9dc6b476mr16484632pfv.34.1624229484947;
-        Sun, 20 Jun 2021 15:51:24 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
+        bh=x319r7QyKIcYmAzHaUCf/hJBOix56ppxlynh2kqU91w=;
+        b=gUZx5Mvc7YG+eDyF5whIL00l2KzbXxsB0aZemA0QTW4ctj2Mr3biyo1LVIyxuYEwd8
+         3NQFMyUeXTTiqYgdUkESuT394K3vcEHbWnfAHYaahx5+EsZlFwdLvA0Qf502TjhTz/XA
+         oNdi4rLlEloxuFoQQhLls00pO1mSJYr1I1X2qim0fPc5auiNj3z2zZ4LfMrKzENnK98J
+         P51MOLaEL9G1+IWIrSQBWx25JNM2jofE0eGF5kTf2fHn1bRRRoFJJGPt2u145byrqpQP
+         ontDg8a43f1reqQ/6m/bqU6b10ns+CrrbsBzM8BRwoNT5Nbz+Zo5vulFsUF6TsmTCKce
+         K8sA==
+X-Gm-Message-State: AOAM533Po9wxld7Ho+CfcAoO3rmP+3Fvg5hjyiC9fCscWLRVq2TXGlkc
+	q1ym+Gz6zaaULtgJiacwYAWpyLCnW66HVA==
+X-Google-Smtp-Source: ABdhPJzeCGgP9h5NrLI95xQheesKSQ5MLX26Yean90rzinqEHfyyIJ7fxpwAR2+y9LYooUyQrrM5UA==
+X-Received: by 2002:a17:90a:8403:: with SMTP id j3mr22963252pjn.212.1624229504841;
+        Sun, 20 Jun 2021 15:51:44 -0700 (PDT)
 Received: from ?IPv6:2601:202:4180:a5c0:c7:6c10:59:efee? ([2601:202:4180:a5c0:c7:6c10:59:efee])
-        by smtp.gmail.com with ESMTPSA id o16sm13288328pfk.129.2021.06.20.15.51.23
-        for <yocto@lists.yoctoproject.org>
+        by smtp.gmail.com with ESMTPSA id g8sm14328706pja.14.2021.06.20.15.51.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 20 Jun 2021 15:51:24 -0700 (PDT)
-Subject: Re: [yocto] [PATCH] smack: add 3 cves to allowlist
-To: yocto@lists.yoctoproject.org
-References: <20210618121650.4798-1-sekine.shigeki@fujitsu.com>
+        Sun, 20 Jun 2021 15:51:44 -0700 (PDT)
+Subject: Re: [meta-security][PATCH] sssd: set pid path with /run
+To: kai.kang@windriver.com
+Cc: yocto@yoctoproject.org
+References: <20210615085030.11155-1-kai.kang@windriver.com>
 From: "Armin Kuster" <akuster808@gmail.com>
-Message-ID: <29479dd2-e4df-31db-7312-197f0abc8437@gmail.com>
-Date: Sun, 20 Jun 2021 15:51:23 -0700
+Message-ID: <ea00070f-97ea-c789-73e4-634f58c11c24@gmail.com>
+Date: Sun, 20 Jun 2021 15:51:43 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <20210618121650.4798-1-sekine.shigeki@fujitsu.com>
+In-Reply-To: <20210615085030.11155-1-kai.kang@windriver.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
-merged.
+series merged.
 
-On 6/18/21 5:16 AM, Sekine Shigeki wrote:
-> CVE-2014-0363, CVE-2014-0364, CVE-2016-10027 are not for smack of smack-team(https://github.com/smack-team/smack) but other project.
+thanks
+
+On 6/15/21 1:50 AM, kai.kang@windriver.com wrote:
+> From: Kai Kang <kai.kang@windriver.com>
 >
-> Signed-off-by: Sekine Shigeki <sekine.shigeki@fujitsu.com>
+> /var/run is deprecated and set pid path with /run to store pid files for
+> the SSSD.
+>
+> Signed-off-by: Kai Kang <kai.kang@windriver.com>
 > ---
->  recipes-mac/smack/smack_1.3.1.bb | 5 +++++
->  1 file changed, 5 insertions(+)
+>  recipes-security/sssd/sssd_2.5.0.bb | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 >
-> diff --git a/recipes-mac/smack/smack_1.3.1.bb b/recipes-mac/smack/smack_1.3.1.bb
-> index b1ea4e9..6ae715e 100644
-> --- a/recipes-mac/smack/smack_1.3.1.bb
-> +++ b/recipes-mac/smack/smack_1.3.1.bb
-> @@ -13,6 +13,11 @@ SRC_URI = " \
+> diff --git a/recipes-security/sssd/sssd_2.5.0.bb b/recipes-security/sssd/sssd_2.5.0.bb
+> index 4c92519..c699527 100644
+> --- a/recipes-security/sssd/sssd_2.5.0.bb
+> +++ b/recipes-security/sssd/sssd_2.5.0.bb
+> @@ -63,6 +63,7 @@ EXTRA_OECONF += " \
+>      --without-python2-bindings \
+>      --without-secrets \
+>      --with-xml-catalog-path=${STAGING_ETCDIR_NATIVE}/xml/catalog \
+> +    --with-pid-path=/run \
+>  "
 >  
->  PV = "1.3.1"
+>  do_configure_prepend() {
+> @@ -88,8 +89,8 @@ do_install () {
+>          echo "d /var/log/sssd 0750 - - - -" > ${D}${sysconfdir}/tmpfiles.d/sss.conf
+>      fi
 >  
-> +# CVE-2014-0363, CVE-2014-0364, CVE-2016-10027 is valnerble for other product.
-> +CVE_CHECK_WHITELIST += "CVE-2014-0363"
-> +CVE_CHECK_WHITELIST += "CVE-2014-0364"
-> +CVE_CHECK_WHITELIST += "CVE-2016-10027"
-> +
->  inherit autotools update-rc.d pkgconfig ptest
->  inherit ${@bb.utils.contains('VIRTUAL-RUNTIME_init_manager','systemd','systemd','', d)}
->  inherit features_check
->
-> 
->
+> -    # Remove /var/run as it is created on startup
+> -    rm -rf ${D}${localstatedir}/run
+> +    # Remove /run as it is created on startup
+> +    rm -rf ${D}/run
+>  
+>      rm -f ${D}${systemd_system_unitdir}/sssd-secrets.*
+>  }
 
