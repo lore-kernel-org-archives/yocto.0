@@ -1,50 +1,48 @@
-Subject: TLV320AIC3104: tlv320aic3104 #kernel #yocto
-To: yocto@lists.yoctoproject.org
-From: "Amrun Nisha.R" <amrunnishar@gmail.com>
-X-Originating-Location: Bengaluru, Karnataka, IN (103.232.224.203)
-X-Originating-Platform: Windows Chrome 91
-User-Agent: GROUPS.IO Web Poster
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+ by mx.groups.io with SMTP id smtpd.web10.44295.1624264719191006639
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 21 Jun 2021 01:38:39 -0700
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=pass (domain: bootlin.com, ip: 217.70.183.194, mailfrom: alexandre.belloni@bootlin.com)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+	by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 0FAFA40006;
+	Mon, 21 Jun 2021 08:38:36 +0000 (UTC)
+Date: Mon, 21 Jun 2021 10:38:36 +0200
+From: "Alexandre Belloni" <alexandre.belloni@bootlin.com>
+To: "Amrun Nisha.R" <amrunnishar@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] TLV320AIC3104: tlv320aic3104 #kernel #yocto
+Message-ID: <YNBQDAcU8zwFbqsO@piout.net>
+References: <UZMQ.1624251708012368436.fPfH@lists.yoctoproject.org>
 MIME-Version: 1.0
-Date: Sun, 20 Jun 2021 22:01:48 -0700
-Message-ID: <UZMQ.1624251708012368436.fPfH@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="MNhYgVUTv2goDLIo3FpV"
+In-Reply-To: <UZMQ.1624251708012368436.fPfH@lists.yoctoproject.org>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
---MNhYgVUTv2goDLIo3FpV
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Hello,
 
-Hi,
+On 20/06/2021 22:01:48-0700, Amrun Nisha.R wrote:
+> Hi,
+> 
+> I am using tlv320aic3104 in one of my project, The hardware is wired
+> in such a way that the I2C lines from tlv320aic3104 is connected to a
+> separate microprocessor which performs the init.
+> 
+> The SAI lines of tlv320aic3104 are connected to IMX8M SAI lines, I am
+> running linux in IMX8M. ALSA says no sound cards found.
+> 
+> I would like to know whether this kind of setup where the i2c is used
+> by a separate processor and using the SAI lines in  a different device
+> that runs linux will work. Kindly advice
 
-I am using=C2=A0tlv320aic3104=C2=A0in one of my project, The hardware is w=
-ired in such a way that the I2C lines from=C2=A0tlv320aic3104 is connected =
-to a separate microprocessor which performs the init.
+To support that, you will have to write your own card driver or at least
+write a device tree sound node with a dummy codec as Linux will not be
+configuring it.
 
-The SAI lines of tlv320aic3104 are connected to IMX8M SAI lines, I am runn=
-ing linux in IMX8M. ALSA says no sound cards found.
+See https://bootlin.com/pub/conferences/2020/lee/belloni-alsa-asoc/belloni-alsa-asoc.pdf
 
-I would like to know whether this kind of setup where the i2c is used by a=
- separate processor and using the SAI lines in=C2=A0 a different device tha=
-t runs linux will work. Kindly advice
-
---MNhYgVUTv2goDLIo3FpV
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<p style=3D"margin-top: 1.5em; margin-bottom: 1.5em; line-height: 1.25em; t=
-ext-rendering: optimizelegibility; font-family: custom;">Hi,</p>
-<p style=3D"margin-top: 1.5em; margin-bottom: 1.5em; line-height: 1.25em; =
-text-rendering: optimizelegibility; font-family: custom;">I am using&nbsp;t=
-lv320aic3104&nbsp;in one of my project, The hardware is wired in such a way=
- that the I2C lines from&nbsp;tlv320aic3104 is connected to a separate micr=
-oprocessor which performs the init.</p>
-<p style=3D"margin-top: 1.5em; margin-bottom: 1.5em; line-height: 1.25em; =
-text-rendering: optimizelegibility; font-family: custom;">The SAI lines of =
-tlv320aic3104 are connected to IMX8M SAI lines, I am running linux in IMX8M=
-. ALSA says no sound cards found.</p>
-<p style=3D"margin-top: 1.5em; margin-bottom: 1.5em; line-height: 1.25em; =
-text-rendering: optimizelegibility; font-family: custom;">I would like to k=
-now whether this kind of setup where the i2c is used by a separate processo=
-r and using the SAI lines in&nbsp; a different device that runs linux will =
-work. Kindly advice</p>
-
---MNhYgVUTv2goDLIo3FpV--
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
