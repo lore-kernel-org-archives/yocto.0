@@ -1,112 +1,70 @@
-Subject: Re: Empty source package when using devtool
-To: yocto@lists.yoctoproject.org
-From: "Frederic Martinsons" <frederic.martinsons@gmail.com>
-X-Originating-Location: Paris, Île-de-France, FR (217.114.204.178)
-X-Originating-Platform: Linux Chrome 89
-User-Agent: GROUPS.IO Web Poster
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web08.6761.1624354875344301633
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 22 Jun 2021 02:41:15 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@aruba.it header.s=a1 header.b=OCarpHad;
+ spf=none, err=permanent DNS error (domain: faresoftware.it, ip: 198.145.29.25, mailfrom: mauro@faresoftware.it)
+Received: from smtpcmd03117.aruba.it (smtpcmd03117.aruba.it [62.149.158.117])
+	by mail.yoctoproject.org (Postfix) with ESMTP id 1907138C062C
+	for <yocto@yoctoproject.org>; Tue, 22 Jun 2021 09:41:13 +0000 (UTC)
+Received: from z600 ([93.38.119.136])
+	by Aruba Outgoing Smtp  with ESMTPSA
+	id vcu8l87O9SODOvcu8lQ393; Tue, 22 Jun 2021 11:41:12 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+	t=1624354872; bh=Pak1SW7N83LcOTokQGcdgtq3+2NUEwhNFpHLeO57on8=;
+	h=Date:From:To:Subject:MIME-Version:Content-Type;
+	b=OCarpHadHoaRKKi+58ewIxtdtQY9iZITeNu9mJ9XE1QIr+Om3WAtxR6FOdJI0+lPr
+	 UMexlkbTtw1Udyzrpr0ca16FqKoElE+L07AzZg/qvego+nqw/LG1pT3AfrKh2HhED4
+	 DNz4mMJocyG++S2ZHuQOysO+WUfnOLpBDAEo1BVFNRmoHjb8cckVjZcFtqeMqjRu/t
+	 pp52cxkYoYi86DXJ2X53+wKQKAcPmpgfWDiNAyHdlln6XD/4W0cYfb1KaxR0tO9f8L
+	 DBOs9JkIeW7J5sOXO3jWa1l7A9qwVqEU+fg5YbaNNTcqjXywlbc6OqUPAxsgPyoedG
+	 wKFfL4DPjoWfg==
+Date: Tue, 22 Jun 2021 11:41:11 +0200
+From: "Mauro Ziliani" <mauro@faresoftware.it>
+To: "=?utf-8?Q?yocto=40yoctoproject.org?=" <yocto@yoctoproject.org>
+Message-ID: <9F10B0D4-D2B0-4407-809F-C6F21D4F258A@getmailspring.com>
+Subject: Update APTCONF_TARGET manually
+X-Mailer: Mailspring
 MIME-Version: 1.0
-Date: Tue, 22 Jun 2021 01:52:28 -0700
-References: <379.1623994900446573953@lists.yoctoproject.org>
-In-Reply-To: <379.1623994900446573953@lists.yoctoproject.org>
-Message-ID: <24077.1624351948476562957@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="ItbyxePLmAd1j1pcsxx7"
+X-CMAE-Envelope: MS4wfO977fKqukvbJWKgwWaH7rvD48tXgyqW12bBimCXOexdKpBD8w4WLT8hvK5x5vCuEwAYjr+avU+4ypHZZLoBYHbb78Q7hxUWu+EVEwrii2DCYp5tAjOi
+ bCSc7C0PXG4pu1xttln7n7S4yuWbFOeLSQZzVDP6vJmkazTontqk0Sd8
+Content-Type: multipart/alternative; boundary="60d1b037_7eee69cf_496d"
 
---ItbyxePLmAd1j1pcsxx7
+--60d1b037_7eee69cf_496d
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-Hello, I dug further into yocto classes and I think I found what is going o=
-n.
+Hi all
+I move all TMPDIR in another folder
+The EXTRA_DISTRO_FETAURES += "package_managent"
+PACKAGE_CLASS := " package_deb "
 
-All seems to come from the fact that gcc debug-prefix-map and macro-prefix=
--map options are statically defined in bitbake.conf to
+When I build the image the package_manager try to find the debs in the older folder.
+I see that this problem is in apt/apt.conf of image working dir.
+How can I change manually the value of APTCONF_TARGET?
+Where the APTCONF_TARGET value is stored?
+Best regards,
+MZ
 
->=20
-> DEBUG_PREFIX_MAP ?=3D
-> "-fmacro-prefix-map=3D${WORKDIR}=3D/usr/src/debug/${PN}/${EXTENDPE}${PV}=
--${PR}
-> \
-> -fdebug-prefix-map=3D${WORKDIR}=3D/usr/src/debug/${PN}/${EXTENDPE}${PV}-=
-${PR}
-> \
-> -fdebug-prefix-map=3D${STAGING_DIR_HOST}=3D \
-> -fdebug-prefix-map=3D${STAGING_DIR_NATIVE}=3D \
-> "
->=20
->=20
->=20
+Sent from Mailspring (https://getmailspring.com/), the best free email app for work
 
-I'll took an example to try to be clearer. Let's say that I devtool modify=
- the glib-2.0 package. Without any configuration, sources will be extracted=
- in ${BDIR}/workspace/sources/glib-2.0.
-Build directory is set by=C2=A0externalsrc.bbclass to ${BDIR}/tmp/work/${a=
-rch}-${distro}/glib-2.0/${PN}/${EXTENDPE}${PV}-${PR}/${BPN}/${BPN}-${PV} (t=
-he real path doesn't matter, what is matter is that B is not under devtool =
-spaces).
-
-This lead to have pretty long relative path in gcc compilation line (sothe=
-ming like=C2=A0 -c ../../../../../../../../worspace/sources/glib-2.0/glib/g=
-main.c for example). Hence the debug-prefix-map could not be appplied.
-After the compilation stage, package.bbclass (via=C2=A0splitdebuginfo), th=
-ere is an extraction of sources path via dwarf format parsing. We ended up =
-parsing something like
-
-- /workspace/sources/glib-2.0/glib/gmain.c
-
-instead of
-
-- /usr/src/debug/glib-2.0/1_2.58.3-r0.2/glib-2.58.3/glib/gmain.c
-
-I patch externalsrc.bbclass to dynamically caculate correct debug-prefix-m=
-ap and prepend to DEBUG_PREFIX_MAP variable, I also patch the package.bbcla=
-ss to add a condition when EXTERNALSRC is defined to change the way the sou=
-rces are found and copied to packages-split/${pkg}-src.
-
-I would greatly appreciate if there is a yocto guru around there to tell m=
-e what he thinks about all of this (bug or wrong configuration ?) and if my=
- assumptions are correct (I assume this was a compiling/packaging problem i=
-nstead of a pure devtool one)
-
---ItbyxePLmAd1j1pcsxx7
+--60d1b037_7eee69cf_496d
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-Hello, I dug further into yocto classes and I think I found what is going o=
-n.&nbsp;<br /><br />All seems to come from the fact that gcc debug-prefix-m=
-ap and macro-prefix-map options are statically defined in bitbake.conf to<b=
-r /><br />
-<blockquote>
-<div>DEBUG_PREFIX_MAP ?=3D "-fmacro-prefix-map=3D${WORKDIR}=3D/usr/src/deb=
-ug/${PN}/${EXTENDPE}${PV}-${PR} \</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp;-fdebug-prefix-map=3D${WORKDIR}=3D/usr/src/debug/${PN}/${EXTENDPE}${=
-PV}-${PR} \</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp;-fdebug-prefix-map=3D${STAGING_DIR_HOST}=3D \</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp;-fdebug-prefix-map=3D${STAGING_DIR_NATIVE}=3D \<br />"<br /><br /></=
-div>
-</blockquote>
-<div>I'll took an example to try to be clearer. Let's say that I devtool m=
-odify the glib-2.0 package. Without any configuration, sources will be extr=
-acted in ${BDIR}/workspace/sources/glib-2.0.<br />Build directory is set by=
-&nbsp;externalsrc.bbclass to ${BDIR}/tmp/work/${arch}-${distro}/glib-2.0/${=
-PN}/${EXTENDPE}${PV}-${PR}/${BPN}/${BPN}-${PV} (the real path doesn't matte=
-r, what is matter is that B is not under devtool spaces).<br /><br />This l=
-ead to have pretty long relative path in gcc compilation line (sotheming li=
-ke&nbsp; -c ../../../../../../../../worspace/sources/glib-2.0/glib/gmain.c =
-for example). Hence the debug-prefix-map could not be appplied.<br />After =
-the compilation stage, package.bbclass (via&nbsp;splitdebuginfo), there is =
-an extraction of sources path via dwarf format parsing. We ended up parsing=
- something like<br /><br />- /workspace/sources/glib-2.0/glib/gmain.c<br />=
-<br />instead of<br /><br />- /usr/src/debug/glib-2.0/1_2.58.3-r0.2/glib-2.=
-58.3/glib/gmain.c<br /><br />I patch externalsrc.bbclass to dynamically cac=
-ulate correct debug-prefix-map and prepend to DEBUG_PREFIX_MAP variable, I =
-also patch the package.bbclass to add a condition when EXTERNALSRC is defin=
-ed to change the way the sources are found and copied to packages-split/${p=
-kg}-src.<br /><br />I would greatly appreciate if there is a yocto guru aro=
-und there to tell me what he thinks about all of this (bug or wrong configu=
-ration ?) and if my assumptions are correct (I assume this was a compiling/=
-packaging problem instead of a pure devtool one)&nbsp;</div>
+<div>Hi all</div><div>I move all TMPDIR in another folder</div><div>The E=
+XTRA=5FDISTRO=5F=46ETAURES +=3D =22package=5Fmanagent=22</div><div>PACKAG=
+E=5FCLASS :<span data-emoji-typing=3D=22true=22>=3D</span>&nbsp;=22 packa=
+ge=5Fdeb =22</div><br><div>When I build the image the package=5Fmanager t=
+ry to find the debs in the older folder.</div><br><div>I see that this pr=
+oblem is in apt/apt.conf of image working dir.</div><br><div>How can I ch=
+ange manually the value of APTCON=46=5FTARGET=3F</div><br><div>Where the =
+APTCON=46=5FTARGET value is stored=3F</div><br><div>Best regards, </div><=
+div>&nbsp; MZ</div><br><div><signature id=3D=22initial=22><div><div>Sent =
+from <a href=3D=22https://getmailspring.com/=22>Mailspring</a>, the best =
+free email app for work</div></div></signature></div>
 
---ItbyxePLmAd1j1pcsxx7--
+--60d1b037_7eee69cf_496d--
