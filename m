@@ -1,187 +1,132 @@
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
- by mx.groups.io with SMTP id smtpd.web09.9452.1624461910621465313
+Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
+ by mx.groups.io with SMTP id smtpd.web08.9208.1624461911621414980
  for <yocto@lists.yoctoproject.org>;
- Wed, 23 Jun 2021 08:25:10 -0700
+ Wed, 23 Jun 2021 08:25:11 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=chJ+zKHR;
- spf=pass (domain: gmail.com, ip: 209.85.222.171, mailfrom: twoerner@gmail.com)
-Received: by mail-qk1-f171.google.com with SMTP id x1so2213844qkp.7
-        for <yocto@lists.yoctoproject.org>; Wed, 23 Jun 2021 08:25:10 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=FCfgTGQ0;
+ spf=pass (domain: gmail.com, ip: 209.85.219.48, mailfrom: twoerner@gmail.com)
+Received: by mail-qv1-f48.google.com with SMTP id y4so1597254qvs.10
+        for <yocto@lists.yoctoproject.org>; Wed, 23 Jun 2021 08:25:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:mime-version
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=OrD8Io2omOSOLgnlBZb1bYqZA7KzxoFK4IxWp6go37o=;
-        b=chJ+zKHRI33irsqamVgDjqfxL6eneybXv+n1cIEHD8nGT8UtIeq70ePuX6RrT7r0/l
-         S7C9nAppK9+7Knb17JK2JXvQsqUlkc8tbxczJTGPrr4mgZpkt+GmnflPx6DRArVooeaL
-         P5811Aw2mMJNZ2Do6BEHbxSMsrYf4rDxYVexpccbaD/J+Z07OKylzSDEs732V2kC7mZP
-         rig1JLycvI1/1pEfNaM2gmY2E69vQEtlJTFYDTN3XuM7X3Sj7mAWVp5F8m18M2plxx4r
-         JkSzPbiNTKBlH171lNW3n14Y1NMaxsbtzT9IQK08qlBnrhjDbIsR9/GTyeaRaXQasOO7
-         00zQ==
+        bh=JfkEMM4WchfxKQt78fCvFwdyLjvR4eV1gmUrPguE9fo=;
+        b=FCfgTGQ0c3OzOBgfklcgh3/Gdxmz3KAkezt4UHjPjorUx/UGMNghy/0rZlLB7bu7pc
+         vBLI4FlGhOuWxUuFobHcebPDrhg936LXgMBZjne22gWeSLkTdyN4kQk2SWZHdwoLJkMC
+         XuQTuwh1zkernPI3HRATff3GS0F18GiML9uZhbSJ2xmsX3pEFTyyJ5Ojau1jbvxEGgYm
+         Q1rLK7Be2tODCnsA+pcLme/i3fixLRixPIy1r+G0beav2u+NR5LASPd08ihbwDbk6F1d
+         Dwp5xMR5F8OtZz+H3uqTXZ67K/L3xuj/uQBUcTerTKBz/kmqJ4AannpBDAFEH/go6wEw
+         dEMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=OrD8Io2omOSOLgnlBZb1bYqZA7KzxoFK4IxWp6go37o=;
-        b=V9Rjy5FA1DsNhD1D/DU05ZUVcndaxIDKYWleOcL+NQgaNGFaiuwjLJni+jdMnUKrD1
-         FxZev1WSVBoY2sDpXthnm7rEbbfoBhk/OO+sXRceyXW0dmnNGsdo0CJFeq7lleEPG45Z
-         r3GxHCWRgPrYy+uRYjf6gBMuWoIBLA3rojqWJoLEN+cesByPDsKEqHbEA9NAfSvjEtZ1
-         k5XmqLjFSGsmlCs9QNdGBICZdOwPCMsHso+8AP3k78+mrH/7p66a2sNXo1fnDX2k/tuP
-         B5+8BeB1DH+8MrxVSEjL0PCSqXnr+M2wASTQiOwxYglrHE2SPRgVPERCn7z8NEahU2yx
-         +xhA==
-X-Gm-Message-State: AOAM532bvErE6a7Nat9RTzBCfm5tfrB5x9a3GEpDaJ8NLG5rCt9VtUM+
-	yFzRhrU1ANxzLQ1JUn2+V8jXbX3ngN/Bbg==
-X-Google-Smtp-Source: ABdhPJzGVjZ8uwbtANXwO9LmJ6FfhTcvNCqYbzBR55trU1Qn3ZeR8NgSOGcg+dkwpz8Y7XH7TZUgZQ==
-X-Received: by 2002:a37:9c84:: with SMTP id f126mr558211qke.329.1624461909354;
-        Wed, 23 Jun 2021 08:25:09 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=JfkEMM4WchfxKQt78fCvFwdyLjvR4eV1gmUrPguE9fo=;
+        b=SvKPMLoyVhu85CDpT8PuNMNoZ67rDsdfIqDKDsbwZCMnHjJ6DYXMAR4qKh7MIAv6Aw
+         oHKQtRrIqO0PruFKD7SCzKupXwjsAk8NWAEN0kVskBUDAzUHSzun9WSKdlXmEKvrmEVJ
+         zO9q3qUY8y7u19sIitk9SFmpvo48yWiRHk5uShEzafARxjmL5A5/tYmUqHcSWiwHLJcl
+         5vmGeSN61Ifb+m3MoFjxt18gA1LQquDCZREzUYOKZmuGezTvldONJXvfzihHCRyU+xoe
+         oZtmGRkZuASOWdqQZHI8BJ6otT/P9UerNLfttwVcDjccrMx7DfjVFs9P0aqqO1DdbPSY
+         oSmQ==
+X-Gm-Message-State: AOAM531fdLcf5gM6p92YCxX58+v3qR9s4Qvf9nf3HDD2noU8BMINt5bH
+	vn8e1cYGv37UtkxmVhpBkW3/knHPNytPag==
+X-Google-Smtp-Source: ABdhPJzFpcy1Ol6ahyUWYq/vB1I1jgDA1I3l6bxFY3Qvqthc/0VVOMnc+SZqZDN5zaSTWD0gUHPdgQ==
+X-Received: by 2002:ad4:4b22:: with SMTP id s2mr485974qvw.22.1624461910470;
+        Wed, 23 Jun 2021 08:25:10 -0700 (PDT)
 Return-Path: <twoerner@gmail.com>
 Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id w185sm116800qkd.30.2021.06.23.08.25.08
+        by smtp.gmail.com with ESMTPSA id w185sm116800qkd.30.2021.06.23.08.25.09
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Jun 2021 08:25:08 -0700 (PDT)
+        Wed, 23 Jun 2021 08:25:09 -0700 (PDT)
 From: "Trevor Woerner" <twoerner@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-rockchip][PATCH 1/4] centralize console settings
-Date: Wed, 23 Jun 2021 11:24:54 -0400
-Message-Id: <20210623152457.35324-1-twoerner@gmail.com>
+Subject: [meta-rockchip][PATCH 2/4] wic console device and baud
+Date: Wed, 23 Jun 2021 11:24:55 -0400
+Message-Id: <20210623152457.35324-2-twoerner@gmail.com>
 X-Mailer: git-send-email 2.30.0.rc0
+In-Reply-To: <20210623152457.35324-1-twoerner@gmail.com>
+References: <20210623152457.35324-1-twoerner@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The console settings (baud and device) are scrambled and spread throughout the
-MACHINE configurations. Consolidate them and set defaults which are then
-overridden only as required.
+Take the console device and baud settings from the MACHINE configurations and
+reuse them in the wic files. This reduces duplication and eliminates a
+potential source of mistakes.
 
 Signed-off-by: Trevor Woerner <twoerner@gmail.com>
 ---
- conf/machine/include/nanopi-m4.inc         | 2 --
- conf/machine/include/rk3066.inc            | 1 +
- conf/machine/include/rk3188.inc            | 3 +++
- conf/machine/include/rk3288.inc            | 2 +-
- conf/machine/include/rk3328.inc            | 2 --
- conf/machine/include/rk3399.inc            | 2 --
- conf/machine/include/rock-pi-4.inc         | 2 --
- conf/machine/include/rockchip-defaults.inc | 3 +++
- conf/machine/marsboard-rk3066.conf         | 1 -
- conf/machine/radxarock.conf                | 1 -
- 10 files changed, 8 insertions(+), 11 deletions(-)
+ conf/machine/include/rockchip-defaults.inc | 2 +-
+ wic/firefly-rk3288.wks                     | 2 +-
+ wic/rock-pi-4.wks                          | 2 +-
+ wic/rock-pi-e.wks                          | 2 +-
+ wic/tinker-board.wks                       | 2 +-
+ wic/vyasa-rk3288.wks                       | 2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/conf/machine/include/nanopi-m4.inc b/conf/machine/include/nanopi-m4.inc
-index a14b705..8a7c1d9 100644
---- a/conf/machine/include/nanopi-m4.inc
-+++ b/conf/machine/include/nanopi-m4.inc
-@@ -21,5 +21,3 @@ WKS_FILE_DEPENDS ?= " \
- IMAGE_BOOT_FILES ?= "\
-     ${KERNEL_IMAGETYPE} \
-     "
--
--SERIAL_CONSOLES = "1500000;ttyS2"
-diff --git a/conf/machine/include/rk3066.inc b/conf/machine/include/rk3066.inc
-index dffbee0..76744ee 100644
---- a/conf/machine/include/rk3066.inc
-+++ b/conf/machine/include/rk3066.inc
-@@ -7,5 +7,6 @@ require conf/machine/include/tune-cortexa9.inc
- require conf/machine/include/soc-family.inc
- require conf/machine/include/rockchip-defaults.inc
- 
-+RK_CONSOLE_BAUD = "115200"
- KBUILD_DEFCONFIG = "multi_v7_defconfig"
- KERNEL_IMAGETYPE = "zImage"
-diff --git a/conf/machine/include/rk3188.inc b/conf/machine/include/rk3188.inc
-index 59e65d1..e21bbf7 100644
---- a/conf/machine/include/rk3188.inc
-+++ b/conf/machine/include/rk3188.inc
-@@ -9,3 +9,6 @@ require conf/machine/include/rockchip-defaults.inc
- 
- KBUILD_DEFCONFIG = "multi_v7_defconfig"
- KERNEL_IMAGETYPE = "zImage"
-+
-+RK_CONSOLE_BAUD = "115200"
-+RK_CONSOLE_DEVICE = "ttyFIQ0"
-diff --git a/conf/machine/include/rk3288.inc b/conf/machine/include/rk3288.inc
-index 480e250..2715e73 100644
---- a/conf/machine/include/rk3288.inc
-+++ b/conf/machine/include/rk3288.inc
-@@ -10,7 +10,7 @@ require conf/machine/include/rockchip-defaults.inc
- KBUILD_DEFCONFIG ?= "multi_v7_defconfig"
- KERNEL_IMAGETYPE = "zImage"
- 
--SERIAL_CONSOLES = "115200;ttyS2"
-+RK_CONSOLE_BAUD = "115200"
- 
- PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot"
- SPL_BINARY ?= "idbloader.img"
-diff --git a/conf/machine/include/rk3328.inc b/conf/machine/include/rk3328.inc
-index a4bbc5d..5b11868 100644
---- a/conf/machine/include/rk3328.inc
-+++ b/conf/machine/include/rk3328.inc
-@@ -19,7 +19,5 @@ TFA_BUILD_TARGET = "bl31"
- UBOOT_SUFFIX ?= "itb"
- UBOOT_ENTRYPOINT ?= "0x06000000"
- 
--SERIAL_CONSOLES = "1500000;ttyS2"
--
- PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot"
- SPL_BINARY ?= "idbloader.img"
-diff --git a/conf/machine/include/rk3399.inc b/conf/machine/include/rk3399.inc
-index f6b7826..9f9f474 100644
---- a/conf/machine/include/rk3399.inc
-+++ b/conf/machine/include/rk3399.inc
-@@ -19,8 +19,6 @@ TFA_BUILD_TARGET = "bl31"
- UBOOT_SUFFIX ?= "itb"
- UBOOT_ENTRYPOINT ?= "0x06000000"
- 
--SERIAL_CONSOLES = "115200;ttyS2"
--
- PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot"
- SPL_BINARY ?= "idbloader.img"
- 
-diff --git a/conf/machine/include/rock-pi-4.inc b/conf/machine/include/rock-pi-4.inc
-index 9c21084..a3e60c7 100644
---- a/conf/machine/include/rock-pi-4.inc
-+++ b/conf/machine/include/rock-pi-4.inc
-@@ -17,6 +17,4 @@ IMAGE_BOOT_FILES ?= "\
-     ${KERNEL_IMAGETYPE} \
-     "
- 
--SERIAL_CONSOLES = "1500000;ttyS2"
--
- MACHINE_EXTRA_RRECOMMENDS += "kernel-modules"
 diff --git a/conf/machine/include/rockchip-defaults.inc b/conf/machine/include/rockchip-defaults.inc
-index a4e2a2c..fe4052e 100644
+index fe4052e..3e7a2f2 100644
 --- a/conf/machine/include/rockchip-defaults.inc
 +++ b/conf/machine/include/rockchip-defaults.inc
-@@ -21,6 +21,9 @@ XSERVER = " \
- 	"
- 
- # misc
-+RK_CONSOLE_DEVICE ?= "ttyS2"
-+RK_CONSOLE_BAUD ?= "1500000"
-+SERIAL_CONSOLES = "${RK_CONSOLE_BAUD};${RK_CONSOLE_DEVICE}"
- IMAGE_FSTYPES += "ext4"
+@@ -28,5 +28,5 @@ IMAGE_FSTYPES += "ext4"
  
  # boot device (sd-card/emmc)
-diff --git a/conf/machine/marsboard-rk3066.conf b/conf/machine/marsboard-rk3066.conf
-index 09414bc..52fd256 100644
---- a/conf/machine/marsboard-rk3066.conf
-+++ b/conf/machine/marsboard-rk3066.conf
-@@ -8,5 +8,4 @@
+ RK_BOOT_DEVICE ??= "mmcblk0"
+-WICVARS_append = " RK_BOOT_DEVICE"
++WICVARS_append = " RK_BOOT_DEVICE RK_CONSOLE_BAUD RK_CONSOLE_DEVICE"
  
- require conf/machine/include/rk3066.inc
+diff --git a/wic/firefly-rk3288.wks b/wic/firefly-rk3288.wks
+index da0067f..7b14d1f 100644
+--- a/wic/firefly-rk3288.wks
++++ b/wic/firefly-rk3288.wks
+@@ -4,4 +4,4 @@
+ include rk3288-boot.wks
+ part / --ondisk ${RK_BOOT_DEVICE} --source rootfs --fstype=ext4 --label root
  
--SERIAL_CONSOLES = "115200;ttyS2"
- KERNEL_DEVICETREE = "rk3066a-marsboard.dtb"
-diff --git a/conf/machine/radxarock.conf b/conf/machine/radxarock.conf
-index 2036f6a..42d8848 100644
---- a/conf/machine/radxarock.conf
-+++ b/conf/machine/radxarock.conf
-@@ -9,5 +9,4 @@
+-bootloader --ptable gpt --append="console=tty1 console=ttyS2,115200n8 rw root=/dev/${RK_BOOT_DEVICE}p7 rootfstype=ext4 init=/sbin/init"
++bootloader --ptable gpt --append="console=tty1 console=${RK_CONSOLE_DEVICE},${RK_CONSOLE_BAUD}n8 rw root=/dev/${RK_BOOT_DEVICE}p7 rootfstype=ext4 init=/sbin/init"
+diff --git a/wic/rock-pi-4.wks b/wic/rock-pi-4.wks
+index c6174a9..5c02e9f 100644
+--- a/wic/rock-pi-4.wks
++++ b/wic/rock-pi-4.wks
+@@ -4,4 +4,4 @@
+ include rk3399-boot.wks
+ part / --ondisk ${RK_BOOT_DEVICE} --source rootfs --fstype=ext4 --label root
  
- require conf/machine/include/rk3188.inc
+-bootloader --ptable gpt --append="console=tty1 console=ttyS2,1500000n8 rw root=/dev/${RK_BOOT_DEVICE}p7 rootfstype=ext4 init=/sbin/init"
++bootloader --ptable gpt --append="console=tty1 console=${RK_CONSOLE_DEVICE},${RK_CONSOLE_BAUD}n8 rw root=/dev/${RK_BOOT_DEVICE}p7 rootfstype=ext4 init=/sbin/init"
+diff --git a/wic/rock-pi-e.wks b/wic/rock-pi-e.wks
+index 97f84d1..9c10d90 100644
+--- a/wic/rock-pi-e.wks
++++ b/wic/rock-pi-e.wks
+@@ -1,4 +1,4 @@
+ include rk3328-boot.wks
+ part / --ondisk ${RK_BOOT_DEVICE} --source rootfs --fstype=ext4 --label root
  
--SERIAL_CONSOLES = "115200;ttyFIQ0"
- KERNEL_DEVICETREE = "rk3188-radxarock.dtb"
+-bootloader --ptable gpt --append="console=tty1 console=ttyS2,1500000n8 rw root=/dev/${RK_BOOT_DEVICE}p7 rootfstype=ext4 init=/sbin/init"
++bootloader --ptable gpt --append="console=tty1 console=${RK_CONSOLE_DEVICE},${RK_CONSOLE_BAUD}n8 rw root=/dev/${RK_BOOT_DEVICE}p7 rootfstype=ext4 init=/sbin/init"
+diff --git a/wic/tinker-board.wks b/wic/tinker-board.wks
+index 5a63ce0..00ae820 100644
+--- a/wic/tinker-board.wks
++++ b/wic/tinker-board.wks
+@@ -5,4 +5,4 @@ include rk3288-boot.wks
+ 
+ part / --ondisk ${RK_BOOT_DEVICE} --source rootfs --fstype=ext4 --label root
+ 
+-bootloader --ptable gpt --append="console=tty1 console=ttyS2,115200n8 rw root=/dev/${RK_BOOT_DEVICE}p7 rootfstype=ext4 init=/sbin/init"
++bootloader --ptable gpt --append="console=tty1 console=${RK_CONSOLE_DEVICE},${RK_CONSOLE_BAUD}n8 rw root=/dev/${RK_BOOT_DEVICE}p7 rootfstype=ext4 init=/sbin/init"
+diff --git a/wic/vyasa-rk3288.wks b/wic/vyasa-rk3288.wks
+index 5db65df..5346fbd 100644
+--- a/wic/vyasa-rk3288.wks
++++ b/wic/vyasa-rk3288.wks
+@@ -4,5 +4,5 @@
+ include rk3288-boot.wks
+ part / --ondisk ${RK_BOOT_DEVICE} --source rootfs --fstype=ext4 --label root
+ 
+-bootloader --ptable gpt --append="console=tty1 console=ttyS2,115200n8 rw root=/dev/${RK_BOOT_DEVICE}p7 rootfstype=ext4 init=/sbin/init"
++bootloader --ptable gpt --append="console=tty1 console=${RK_CONSOLE_DEVICE},${RK_CONSOLE_BAUD}n8 rw root=/dev/${RK_BOOT_DEVICE}p7 rootfstype=ext4 init=/sbin/init"
+ 
 -- 
 2.30.0.rc0
 
