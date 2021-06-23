@@ -1,74 +1,92 @@
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
- by mx.groups.io with SMTP id smtpd.web10.922.1624473680173596125
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+ by mx.groups.io with SMTP id smtpd.web09.1074.1624474302801194268
  for <yocto@lists.yoctoproject.org>;
- Wed, 23 Jun 2021 11:41:20 -0700
+ Wed, 23 Jun 2021 11:51:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=yhLv6Re3;
- spf=softfail (domain: sakoman.com, ip: 209.85.210.44, mailfrom: steve@sakoman.com)
-Received: by mail-ot1-f44.google.com with SMTP id 6-20020a9d07860000b02903e83bf8f8fcso2901659oto.12
-        for <yocto@lists.yoctoproject.org>; Wed, 23 Jun 2021 11:41:20 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=tdyWIWl/;
+ spf=pass (domain: gmail.com, ip: 209.85.222.180, mailfrom: twoerner@gmail.com)
+Received: by mail-qk1-f180.google.com with SMTP id f70so7734547qke.13
+        for <yocto@lists.yoctoproject.org>; Wed, 23 Jun 2021 11:51:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=k372guEiBoqK6eLZ+c6RrYZY63AGgbdQMftdkp2/Ya0=;
-        b=yhLv6Re3cnmz1qiYXh5FN1cK6UzOPx4YnDl01OCspSblcs/xavGvpnc2pKe25XZcEa
-         +iDx6Bio85qRmtGA3GfovflwD7SDTkWgtdbchaZirbwz6EMp9P9DNr5ofUpFak0qxPyY
-         jfFp4Dy+EvBEv4vfi9t9eS1D6Ia6k9I75i+SYzGQEJWbTUcbE6i4+RwXrwnz3QAh3DJ5
-         AJFRS7tAZcZZvTX8ZzVHWfRguNvgX4xnxVCEa8awELtrfE3nzlgfIV9RakogK8sIO2NX
-         iusmWjI/8ozDiPkI5apQ9KNeUfEMm0deEHGq9YmU3S+7j/pORr4DcrGfVCMe3KQ+RZUg
-         6hzQ==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=LWT5/ZOH5OmRlZZPJ2z+F1VF5nWa/57cBexoxlK1t4k=;
+        b=tdyWIWl/Iqumohb43IW/QAJ+Ed/1B1ktY36nv8cZ4270F41Xlxh6xidnRdUn+f+Ggn
+         jqwTX45oiS1AE0RXgwPR0BtgxbjP/dtT6AS9dHA+f/3Se3HfWdWmaEZSTqBE6bPcWfie
+         bukxa0fnM9hNGO5/MHIu2xxBveAkdXvuBZSM5LpBWgnZwmLa7hVMark18929rk8H9XwM
+         YmEScGwwv72+iD+dOmXGXDeIwPl9TBgMgHm2LOHg9cOXT4dD2YOwCrBDX7a+SbppVTzb
+         VzA5UK21a3RF9gwwFORErDU8oOA8Opss86Rqy38etRvR+PwwT7HGUvtuxeJg0ojt6iZ9
+         /x+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=k372guEiBoqK6eLZ+c6RrYZY63AGgbdQMftdkp2/Ya0=;
-        b=gmx7qotJUMza01PMwmZFO+Z09cVn8Jgk+k0R5anUTfoVLGrEQFxVi1fwYlEbHKd/Es
-         6+GednWwpbUN6qVtYU5kPI9wZk0os63pNeYPHfDJB9uWpEUj3WO7ckGLPl93eEjreg8s
-         zVJZ6X2PrTcE1g/THIGhzKcKatVlBUuUcmtRIjgGM91jpMtbFLPGbiNlpHZ0AztFwtEg
-         pexbTsn9PN+MDq9opBjh28cgpetFiEIw/wb0tM9/EynQy8694EDz6MJcBSd4NB1LeAc6
-         bBvjW0f9lZRHR8Har1gh5FOq7EVPZq7h3GJrNix5+djASwjg6UQ80pYx4qre+bQA9ktp
-         cl0w==
-X-Gm-Message-State: AOAM531fLo7WDqn+gb6IW8bS95OGHRAp66nKx4KBQ8b+yNk/vaoT1APx
-	xhKSzSnQOBFGGfIoJcv1p6bsYSnHuyGgUlupZR0=
-X-Google-Smtp-Source: ABdhPJxVhVrWV6WcQPJ34DUDr06NC8DkrUTvTGseefHkZH8YyrKfUdZE0W5BHj7WHjn3U8tV9xtBeA==
-X-Received: by 2002:a9d:624a:: with SMTP id i10mr1227081otk.9.1624473678788;
-        Wed, 23 Jun 2021 11:41:18 -0700 (PDT)
-Return-Path: <steve@sakoman.com>
-Received: from hexa.router0800d9.com ([172.243.4.16])
-        by smtp.gmail.com with ESMTPSA id 33sm144670otr.78.2021.06.23.11.41.15
-        for <yocto@lists.yoctoproject.org>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=LWT5/ZOH5OmRlZZPJ2z+F1VF5nWa/57cBexoxlK1t4k=;
+        b=ugPuyBL49udaVhCr1zLSXZgUcw8xAFoWPbdXDWd0oGP7VlGz7xpzXh2dgjfrtluvYq
+         htWy1LYqTfKbqir+jxYjj/SvFvRm/ADHl+FoaiZtijBFk0qvrI8KKHPdtFU7czi4zmg3
+         umsqpZfQpbVgAotMlzuVRJSjQAs0D3SHDFp+v4ZQbOcUYXawQumNcaYTRhyBRvYjJCOt
+         ZYOKuxWqjhB9ftv3GRT54/9E8N4carKk/f0e0kjjTspv5Q69cK76AmAAOlAj0WO8n/oa
+         3IpEW81sLCUuGiP8dQCYd+dOtSkSUz4KJgoSJKXfWxTn/oMzKyEf4iEWdKCCnmUoMRW5
+         RZAQ==
+X-Gm-Message-State: AOAM5334AXxm/qsCy1eRMbnWYZkbAM804tRvHsEhRN3RqlxSMxJKh3MK
+	tEy4zH3RDwKTONsNW1+TzWg=
+X-Google-Smtp-Source: ABdhPJxNS0Swot9iU657hub/l2oIB4z7u9uxPZ4RDhHNDZpZwRyWQEAJi6/XeV9n7IYr5BcrpwkR4g==
+X-Received: by 2002:a37:2e86:: with SMTP id u128mr1567969qkh.26.1624474301902;
+        Wed, 23 Jun 2021 11:51:41 -0700 (PDT)
+Return-Path: <twoerner@gmail.com>
+Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id x7sm506754qke.62.2021.06.23.11.51.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Jun 2021 11:41:18 -0700 (PDT)
-From: "Steve Sakoman" <steve@sakoman.com>
-To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder2][dunfell] config.py: enable opensuse152 workers for dunfell
-Date: Wed, 23 Jun 2021 08:40:29 -1000
-Message-Id: <14647f78d8b6fbc58be115fedc6f3372385eda51.1624472199.git.steve@sakoman.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1624472199.git.steve@sakoman.com>
-References: <cover.1624472199.git.steve@sakoman.com>
+        Wed, 23 Jun 2021 11:51:41 -0700 (PDT)
+Date: Wed, 23 Jun 2021 14:51:39 -0400
+From: "Trevor Woerner" <twoerner@gmail.com>
+To: ydirson@free.fr
+Cc: Khem Raj <raj.khem@gmail.com>,
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] [meta-rockchip][PATCH 1/4] centralize console settings
+Message-ID: <20210623185139.GA13329@localhost>
+References: <CAMKF1spxfj_RD3p_1yfjLSqTLYYaWrJ0PY1jZfbeMmigpWQ-RQ@mail.gmail.com>
+ <111537338.865092101.1624471807760.JavaMail.root@zimbra39-e7>
 MIME-Version: 1.0
+In-Reply-To: <111537338.865092101.1624471807760.JavaMail.root@zimbra39-e7>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Steve Sakoman <steve@sakoman.com>
----
- config.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Wed 2021-06-23 @ 08:10:07 PM, ydirson@free.fr wrote:
+> > De: "Khem Raj" <raj.khem@gmail.com>
+> > À: "Trevor Woerner" <twoerner@gmail.com>
+> > Cc: "Yocto-mailing-list" <yocto@lists.yoctoproject.org>
+> > Envoyé: Mercredi 23 Juin 2021 11:32:57
+> > Objet: Re: [yocto] [meta-rockchip][PATCH 1/4] centralize console settings
 
-diff --git a/config.py b/config.py
-index 2565bd7..03ccfba 100644
---- a/config.py
-+++ b/config.py
-@@ -150,7 +150,7 @@ all_workers = workers + workers_bringup + workers_buildperf + workers_arm
- workers_prev_releases = {
-     "hardknott" : ("centos7", "centos8", "debian8", "debian9", "debian10", "fedora31", "fedora32", "fedora33", "opensuse152", "ubuntu1604", "ubuntu1804", "ubuntu2004", "perf-"),
-     "gatesgarth" : ("centos7", "centos8", "debian8", "debian9", "debian10", "fedora30", "fedora31", "fedora32", "opensuse150", "opensuse151", "opensuse152", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "perf-"),
--    "dunfell" : ("centos7", "centos8", "debian8", "debian9", "debian10", "fedora29", "fedora30", "fedora31", "fedora32", "fedora33", "opensuse150", "opensuse151", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "perf-"),
-+    "dunfell" : ("centos7", "centos8", "debian8", "debian9", "debian10", "fedora29", "fedora30", "fedora31", "fedora32", "fedora33", "opensuse150", "opensuse151", "opensuse152", "ubuntu1604", "ubuntu1804", "ubuntu1904", "ubuntu2004", "perf-"),
-     "zeus" : ("centos7", "debian8", "debian9", "debian10", "fedora28", "fedora29", "fedora30", "opensuse150", "opensuse151", "ubuntu1604", "ubuntu1804", "ubuntu1904", "perf-"),
-     "warrior" : ("centos7", "debian8", "debian9", "debian10", "fedora28", "fedora29", "fedora30", "opensuse150", "opensuse151", "ubuntu1604", "ubuntu1804", "ubuntu1904", "perf-"),
-     "thud" : ("centos7", "debian8", "debian9", "debian10", "fedora28", "fedora29", "fedora30", "opensuse150", "opensuse151", "ubuntu1604", "ubuntu1804", "ubuntu1904", "perf-"),
--- 
-2.25.1
+> > > +RK_CONSOLE_BAUD = "115200"
+> > > +RK_CONSOLE_DEVICE = "ttyFIQ0"
+> > 
+> > while I appreciate this change, it does have an effect of removing
+> > the
+> > users away from
+> > BSP variables that core metadata layers have, e.g. SERIAL_CONSOLES is
+> > a well defined
+> > and documented variable and if we synthesize it then its hidden which
+> > is fine if we document
+> > the new variables equally well although that means every BSP will
+> > invent these kind of
+> > variables so if a person was doing RPI and comes to work on rockchip
+> > boards he has more
+> > learnings to do.
 
+Good point, thanks for mentioning it.
+
+> What about making this change at the poky level, then ?
+
+I suspect it would break things in all sorts of unimaginable ways ;-)
+
+For example, SERIAL_CONSOLES (note: plural) can contain more than one
+baud+device pair so if we try to break out the baud and device then we'd need
+an array (?) so we could break out multiple baud and device pairs (?), and
+then that would get messy...  ugh!
