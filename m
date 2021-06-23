@@ -1,197 +1,478 @@
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by mx.groups.io with SMTP id smtpd.web10.2841.1624420118895782030
+Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
+ by mx.groups.io with SMTP id smtpd.web08.5117.1624439721972095437
  for <yocto@lists.yoctoproject.org>;
- Tue, 22 Jun 2021 20:48:40 -0700
+ Wed, 23 Jun 2021 02:15:22 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=MrBxZm5R;
- spf=pass (domain: intel.com, ip: 192.55.52.120, mailfrom: sangeeta.jain@intel.com)
-IronPort-SDR: bdaebIei+z2ocjFaGmv2BK4uEs992dSC3xma2HbN/ubB0TIuoJ4PnjliFxPYD4++fJnY068wGa
- nrceQP2m8DkA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10023"; a="205359759"
-X-IronPort-AV: E=Sophos;i="5.83,293,1616482800"; 
-   d="scan'208";a="205359759"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jun 2021 20:48:37 -0700
-IronPort-SDR: jBVL4PgCjNC+oEgtpmGCsCBAkQEC2UdaRMiDEF1zrJaAGC0BfwaJbNWbL75TrK8Gyxhnh75qkx
- 23Pb+fKnlBZA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,293,1616482800"; 
-   d="scan'208";a="556831684"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
-  by fmsmga001.fm.intel.com with ESMTP; 22 Jun 2021 20:48:37 -0700
-Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Tue, 22 Jun 2021 20:48:36 -0700
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Tue, 22 Jun 2021 20:48:36 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4
- via Frontend Transport; Tue, 22 Jun 2021 20:48:36 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.107)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.4; Tue, 22 Jun 2021 20:48:35 -0700
+ dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=n/NmFbBL;
+ spf=pass (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=18086a9b12=yi.zhao@windriver.com)
+Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 15N9ERYv023442
+	for <yocto@lists.yoctoproject.org>; Wed, 23 Jun 2021 09:15:20 GMT
+Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2043.outbound.protection.outlook.com [104.47.66.43])
+	by mx0a-0064b401.pphosted.com with ESMTP id 39bdsc8v6k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+	for <yocto@lists.yoctoproject.org>; Wed, 23 Jun 2021 09:15:20 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OCu3TxWtc4XtuNMkq1hrXkZxJS22d21a+NMrfsXH8rEkT39AUUYawFK8qkbVTz0BAPR4/WIGIxJPgQHrua8e6tvSpJFUV6NviFw+q3u8vGBGyplp4DNLB76lCoapGWDFiW2YytcHi5lBEJMhDER+U45BBGNYvn3HOgak697OFwLqTHY73TWl4EjqJypnrZycztSc7pS525EvmL6l0nlhv/MLdaaxwFsemCtlGWzCxrSNtI5r42H2QkW2tSegxiir6HDfMYgfNlEI72EY4UszzzDzbkKIj5DPcUN0pYGcu13G6Qt5EJFunBTcyB1hRwgLLaGsq6IeMHFUXOglxofaGA==
+ b=nKhlfXIFgH/4CqKYnK8qQ8Xk6zHcENZoMwYzrFoJXSjnMRjU2JVz90urEgSWYCX0Rug9TuhH+XSK2TML+vF6TSBQNcHXyfDURVoeXIuAVSokOV+uCdDuHiVJwVMjraTyUqCTnNVEk1WP26MlRKjVOiTOE1L1+roJdYYlpSeqTfY37yB7rYeN2kWIq2o+znVAYQpLNAJGrTj0ncUpqrA47SFb9JSbOgdJ9Cse7Y/6qp2QFxdujdtRbFBzIQjB3irOJED4r14SFf36GC8WIzl2j1H9CGItL8MtLr9aUV6+PKh1/n9INeuUzbq8NjjoOXPrOPltTzyxkY7IXAwWH+PqdQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pGFuY+plTQX5cXDjtPc/56GyVaHjTyHJaR9c4oFL6go=;
- b=ZrVelXjd8N1ownQdAeSypzhW4kbK2ZWIeAAFlO4/no0xIdGivP97NLWobPf2QYjyQQ6nhEaYNGgl12Vgwr7HZO74q2wpnQOmTPLop1FUijFt+2axcLFPcCM3J9QVTe8KpSgMdCzqPd7AVgKYu256CWJCRXDMfM735z+YXBuM2S0/Vw7s798CkDGYUDLKYkPtP2d3hU1dgQqmhTBHYB80B3TzPidJfDSCviD4r+y5FJYB8TkHo0N9NjB1N5nSiSzCd6qKe+5N7dm1V3j3hVU9wZcSUQp85O7REA3faEfCmSY5IYZIgppFw/kqI0WNEhnoFC9x93w7b+hXbcD9zUMECg==
+ bh=AwLGDFZu5+wbyRmrTyXd7ZB7JVemBCpPL6EH3fLTGn8=;
+ b=HL2CZb0SyFDB45Uxa06PbMsw8b2YwQga7sSd8BCFGuhkJ/FNaadK7EhdW+jupjDQlBysf6ndkT1HrKf07q2hm8OUxyd+RUcfdLR0mPjFr5Wovl9ACP0zz0bgax2515fpSjfP9fbsZB+p44fh96XtSIcgDIX03kCEtBmw8dbn6H9HsJHKWGhHuO/GNpohmvzB3eLeBsOG2+nKXpnpUkpwGnfSs2Sx9KwBtfFGKy8eKLNPSV/1x9y5sHxWiZlf6Ve6I52dDp3VZg1+2Fr9V4hdmP1N3/OBHTBvg1F/xQON3A/TucnS+fXiVvKxoI4ovrj2QBXjjG/8fy8BLktIA9Y+nw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pGFuY+plTQX5cXDjtPc/56GyVaHjTyHJaR9c4oFL6go=;
- b=MrBxZm5R52VpiF+5mWCcb4Sb+G2kzHHg8bWkv4q2dbgPjtTFksp13lD2QKKIBfpl7dZ87gXHrSmZyELsCMazokOJhfV2l/mWApvbvNwaH186ZBO1eY1Y3YynLv9xy7VIw5OGgiH5AwaGpFBnzX+3UKktZIl/cxHe1Aszn5GfKK0=
-Received: from DM8PR11MB5608.namprd11.prod.outlook.com (2603:10b6:8:35::5) by
- DM8PR11MB5592.namprd11.prod.outlook.com (2603:10b6:8:35::6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4264.18; Wed, 23 Jun 2021 03:48:35 +0000
-Received: from DM8PR11MB5608.namprd11.prod.outlook.com
- ([fe80::e55d:6603:6fa4:457]) by DM8PR11MB5608.namprd11.prod.outlook.com
- ([fe80::e55d:6603:6fa4:457%3]) with mapi id 15.20.4264.018; Wed, 23 Jun 2021
- 03:48:35 +0000
-From: "Sangeeta Jain" <sangeeta.jain@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [qa-build-notification] QA notification for completed autobuilder build (yocto-3.1.9.rc1)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-3.1.9.rc1)
-Thread-Index: AQHXZ4RA5DxeeVP4g0m7ZwPPsemZbKsg9enA
-Date: Wed, 23 Jun 2021 03:48:35 +0000
-Message-ID: <DM8PR11MB56083CBE3C78CC60009007A0E3089@DM8PR11MB5608.namprd11.prod.outlook.com>
-References: <20210622163241.330782A0FA2@centos8-ty-1.yocto.io>
-In-Reply-To: <20210622163241.330782A0FA2@centos8-ty-1.yocto.io>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.6.0.76
-dlp-product: dlpe-windows
-authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
+ bh=AwLGDFZu5+wbyRmrTyXd7ZB7JVemBCpPL6EH3fLTGn8=;
+ b=n/NmFbBL5a/ioiX1782gP/dFKH0n8Uw0BsOvzker7tUG8iQf67QCeekEZqh50Ljo1l45TPVROskMIMKjALdBeXnpL4nqbzWHj9G5+Q1BWA6UIxb+SHryzZA5JkYw2ZZpGg7k3qOOwWKZ+06Q36d9LWtM0hB84YWUkctEhK0KS1M=
+Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
  header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=intel.com;
-x-originating-ip: [219.95.114.171]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e0f8baaf-29ab-4659-631a-08d935f9c700
-x-ms-traffictypediagnostic: DM8PR11MB5592:
-x-microsoft-antispam-prvs: <DM8PR11MB5592EFA1EB8DC12642DF7874E3089@DM8PR11MB5592.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: lXT9sR8jxn9crxvYCs/MRWnNYW/vcdcC5bsLAJWO74ND56GQx6LD7ekdmXx7tkeDFlsVQrRVS70evogHUQlL9hSe/ZCHcMzBIkayYVdwGBbjvtsAwH0RHBaxauaHbKxzwkEz4Ynw4THRDmtPIetGMvsQGLyCru2w9Q8fd1uet0EUbhNQWrUPctYpqho0rySAItOkJrgZ8xGcPAZC32jX1jtD8h5aeNKVY8pXOAzekPDWFDJF1TrPAYCJVSW9Fcpr43mXyEovSQDoQat09NWza3LViqBLq0nmdSukeKUcoY+qyISjI7XbJUhCaDCNIZn7rpPVPgkxP0K4ZOQUwtmVUrLe6M01xFFKAKPsNgIxVz4AaGDQOqn9M9IJfpMElS4O7nrp0jvuPkjj/LKizghlxlICU+L2DSq8SgsMQR/Caq9L5dukt9iFdvnRcLQE2ZtQqi7n3SnLVlqTZcW93fnssA/TMOpNnnTQG4X9xmFzVvyxwkr3dI1prHdFlkylTpFSVnPIljQmoDCxGuaXf2EQ+snRVqcZ659vNCENRns35qy3FFnjLCcaCv9PsYQ7tb0hZcuIJWJY4T4olDf5J4a3bqHhFfDxmA2W1Mj+JeCGSSBZpOaNgIOlP5FCbH17FTXgHuSCVGnZ/gzpwEIeg/dPbURX+DXRM8bqWx9Dcf9ei7Q019bJZrBAazQ+8xQOmqOSN77vnGNOd0ZTXT5WiCbqF1L9Q0IjPdKi9uXq3ymiZerXep0QckXHILihINzFBKcE
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM8PR11MB5608.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(39860400002)(346002)(396003)(136003)(376002)(66446008)(52536014)(110136005)(8936002)(66476007)(7696005)(86362001)(66946007)(76116006)(66556008)(64756008)(71200400001)(2906002)(316002)(450100002)(5660300002)(478600001)(966005)(55016002)(53546011)(9686003)(186003)(6506007)(8676002)(26005)(83380400001)(33656002)(38100700002)(15650500001)(122000001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?CTmvKk1KxhUHL1JHLMCH6p3tl7F409kwsZhYDwgmxpS3d1mv+mR62+HwRlsB?=
- =?us-ascii?Q?wP+tFI1ZIXrdPGXMZQRMyd5O6VwswBnqkPg9T5ABqyEavRqmW/Hr8RHdi3mN?=
- =?us-ascii?Q?3JELNTZRANvTNUw/hR1fu2GuUl+xE/MzP7UB4s3UFqQ5OAgv5QEEU/KO0eKT?=
- =?us-ascii?Q?DGU2ht8BBlJ1JVe5crw3nMUzYiE+6uT4+l6UKxJCWW2faurj1hFSAE8Ivgia?=
- =?us-ascii?Q?kmmBV2ExqRhAusGj2JswtuO5P7hKyPJ8qcJBf+8rJemqlCL/HKLIqQyOxXTt?=
- =?us-ascii?Q?p04mSLB8D9YSzUniYUINbVbGNq9Qfm1BiBvQ9QIFsoIoP/AFiBBN7EWRQnRc?=
- =?us-ascii?Q?RT/dJwnRurVPf/e3mUEtX+wTgBY36BSmvagKs1/51mp5eBGTq1WD4B++7zoU?=
- =?us-ascii?Q?Q/ppo7AOxiUtRVV1unvVd8DkSdPt2+aXH33PwAX1AcaB/ZKAxxjC8T0DXApd?=
- =?us-ascii?Q?MHq5x6q31CJOq1QEhbSwirStIFPpl01dk3iGwwz2a3woZyt7x6sb9xtK6Ba5?=
- =?us-ascii?Q?LKSS9yIBBFc1FBNv6WcIjXBv/JAc1rVRh/e5OiYNihtrXvqTUvsvRzjqw7hd?=
- =?us-ascii?Q?vpDS6lov4cqFLitl/FxSrxOoyjuTIymxEi1U9NPFkxTIStqMuHOwqscPi4GG?=
- =?us-ascii?Q?wkiiX5A1s61aa32uRjnLcMQCUoDGJmVaSrzG6anoNu9eLamWe0XuR9P2baeT?=
- =?us-ascii?Q?JCCvTEgWCwTahAG4T9J4AFrlQ5TyHuy9Ay1b2oFHXyZLnxqoRiYinTjrmQft?=
- =?us-ascii?Q?fvo9i9QqAtiA1jXOv3T5AFAMui6LzfovHGaiJ0elMfVcGqCvCdBavrk4HMDI?=
- =?us-ascii?Q?F6rukdWzoWTscdG5o0i/AIjLIM87o/7bUfqAgqTM34OBBnH4I9fF48N63+ZR?=
- =?us-ascii?Q?dh1Yy+Dtl/LmQPIhzL/VKCTlWcXnuy77Fqu6MStAT5yIFZ5hGrqiMeH5zyRT?=
- =?us-ascii?Q?advWtoHwo14EN+XDue67zp1f0WFXHxNO+DMZ9THUuWp4x/OQxXfu34hrRan6?=
- =?us-ascii?Q?AO1fHgIkEbaoEzy6yS9TyF6nvNPosQ+eDqRWAbv16obWMhQP3XusfabDGcoH?=
- =?us-ascii?Q?/ogJoCM4uS1ciphXXEBruyP0/EZ2Xr2pyzZzGvr+l7V5s8ilVx4gI1tH1rgc?=
- =?us-ascii?Q?ivq4C5q3aJFm8sLyMQUfNeVIvXtO/LEQ5sGsh3k7hvqX7d4x6wMgtG1A6RlC?=
- =?us-ascii?Q?KACY1xlvE6TRbwSH8nI6pfwLGSjts33Bdwo5B0hQCb02g3XMYxGtgCgKNUBZ?=
- =?us-ascii?Q?gD+KKM/Kf+mAs3oYfpOPHI5zz5kMKJl52vIv/bipi1VeeLgUVbK33g2pc213?=
- =?us-ascii?Q?8FPEPaXHfm3M1AM3aV2ynAXh?=
-x-ms-exchange-transport-forked: True
+ header.from=windriver.com;
+Received: from CO1PR11MB4867.namprd11.prod.outlook.com (2603:10b6:303:9a::13)
+ by MW3PR11MB4556.namprd11.prod.outlook.com (2603:10b6:303:5b::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.22; Wed, 23 Jun
+ 2021 09:15:17 +0000
+Received: from CO1PR11MB4867.namprd11.prod.outlook.com
+ ([fe80::91f4:8d17:8e0d:a122]) by CO1PR11MB4867.namprd11.prod.outlook.com
+ ([fe80::91f4:8d17:8e0d:a122%8]) with mapi id 15.20.4264.019; Wed, 23 Jun 2021
+ 09:15:17 +0000
+From: "Yi Zhao" <yi.zhao@windriver.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH 1/2] apparmor: upgrade 3.0 -> 3.0.1
+Date: Wed, 23 Jun 2021 17:15:03 +0800
+Message-Id: <20210623091504.1283317-1-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.25.1
+X-Originating-IP: [60.247.85.82]
+X-ClientProxiedBy: HK0PR03CA0102.apcprd03.prod.outlook.com
+ (2603:1096:203:b0::18) To CO1PR11MB4867.namprd11.prod.outlook.com
+ (2603:10b6:303:9a::13)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from pek-yzhao1-d1.wrs.com (60.247.85.82) by HK0PR03CA0102.apcprd03.prod.outlook.com (2603:1096:203:b0::18) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.18 via Frontend Transport; Wed, 23 Jun 2021 09:15:16 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 85808f7e-974f-4ceb-65a7-08d936276a71
+X-MS-TrafficTypeDiagnostic: MW3PR11MB4556:
+X-Microsoft-Antispam-PRVS: 
+	<MW3PR11MB45563BB4526D2BEC80DB270BF9089@MW3PR11MB4556.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2331;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	oR/7XeNt6HL3WMUS4M/gc8O+xwYgB0vmyWUj3xGLn56yir5yOj98r8WId5f2/JarUjMoY9HvO52tmbvMtesSHlef2KaBU59gr4RqC0Sd1T1c/lpbeKR7Py7njxedwrC2h/PI20tUGktZFsmT0G0vnuyfKBc+dlgK3RmgaAbhCU/5+gdTok1SnBdXOGVMmm9xeGh7HYvZWwk52v2zFoOQztoguu+6jY6ss4bp/yFpIBIbJTIlWpCDohgtUvSXuKTgDErQsqIdbsa/kUA+kewfdVjb9aYx46oJkME7WMaXbfix9iSLijCxL7JAN99AoAgi4VtvlqNGZtxYyiOxAHFT+N2NASD8dZ+L+zsjnk+yGzut7Ab5aEI3o2OfKt2/gtIpZSIvYo8yO1x1qU00Fv3YEb243D/CS9o+EVdkBUMueU3iy5ZuORl1j15SakWZiVHUCn+ojbfrqk5JRjl9xFgkJPvwxVbwyyJ96m/tk8NcUJGzpmVba0eWVtM/fO3PvGyG7aJYGZrif244PL4jSTjDaVJIJWZcLAiF3lsiZrzK8Q4lzwWjfHen4yv7E13OWDmrl9v8ppC3jpCMYwFv87inZnMstOMEcjywni1WSqnbcsrX3tyO+4lUhyg78g4+EVyrFp5WUXQBnTVbfR6h/7W/Z+7CkmYucA0yF6owXHSOCDk=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4867.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39840400004)(376002)(396003)(366004)(346002)(136003)(66946007)(19627235002)(52116002)(30864003)(2616005)(66556008)(44832011)(6916009)(5660300002)(956004)(66476007)(86362001)(1076003)(478600001)(36756003)(6666004)(6512007)(83380400001)(8676002)(316002)(26005)(2906002)(38350700002)(6506007)(15650500001)(8936002)(38100700002)(16526019)(186003)(6486002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?us-ascii?Q?y7/lBLoCreIXVLsJvh+Pi03vNBolxdXlFPQUuJ91gJTbF8NI8iNOoCmWXyt2?=
+ =?us-ascii?Q?sVW/M7En3fwgQOnrmvD4iyI3W1V7AGIpRn5ubVn7hd5I/QmIs4nnodkljp7q?=
+ =?us-ascii?Q?8vIubJ3f1M3zDDFhT1vdYv26chXMkxX1ghXiF5lh6K3LNx6PYjgCegSEfiI5?=
+ =?us-ascii?Q?4qMpYXDIHIZ9FgB/bA6ok/TEc/5d1x1iGdLYWnwPcr0UwveTyqg/8dDkQ75t?=
+ =?us-ascii?Q?FcCLr5iebQQuGBVxbdcSY5ETMfk3XGAbasksuoFBa0uPfsdNeGNE4tNkJ/5o?=
+ =?us-ascii?Q?v0pVU3KFVOMe6Q8fEwMZ9NdJWchJBkCdzSJ9JLhp+i0nDNMEZiOBcX7r4bF0?=
+ =?us-ascii?Q?6RbsmheNbTqIc3U22CEpQvhruaNkSSFHU8BKIoUy31RAKMlosBNLmV99QiRG?=
+ =?us-ascii?Q?LV3g1XoF26nQKboUIC/UdIQUoy4eWOfJPamzeJzyJeF3qmax7oz6MSlabCKT?=
+ =?us-ascii?Q?5uyU6tfPvWg5sbhvDpyAqnK/egegOQ+6rZTZk2LvzH8Y62qm0pw05w2r1vRE?=
+ =?us-ascii?Q?qEjWGt2x+xr6Q9MYPWrIexq83BBUr6Z4EXqMwjHvtxYWnX2ZCk2XtSu1Ldbc?=
+ =?us-ascii?Q?Din5NBMKtvk3Gkuk4HjTZhnpGbKixgEilvlbqnRQLVFKG9OJTobQ0YdLR9Xn?=
+ =?us-ascii?Q?Vwg+74cAebc/U0YsAw4n86bYTlz02VX6pgR0x/is+65v2B8EPqCp5PK+pLeu?=
+ =?us-ascii?Q?coLddwDgfra6TgVsKVBiWjsN9UFkINpRbdvYwtsbE1U92o5/RTXwfLK/5NW1?=
+ =?us-ascii?Q?CiU6ySpinADcmBJgjoM8A8qb0H7owfpmes2MBM66HieWAyJ1SWNi9Jb2uaTq?=
+ =?us-ascii?Q?uJzfNRQ1X+/OPmlOZFOKf+qz8LznZbbfgCTJ2HYGCUhvBmFoio3moc9R8lrF?=
+ =?us-ascii?Q?N9P1keHmiynLNw8/6yfLlkUmUJROWW7/BVoY7EXUghz85YpSrexwaJbrjuEI?=
+ =?us-ascii?Q?P3RwnzH+k9z7oZPgQFXBz4jV/qfFO2cszHrhJVbbt0tKvwmAeq4kpTd2+q5d?=
+ =?us-ascii?Q?DValREL1qsbNTXi99xNAgiM7syQkepz7Qirdyja9y2vPD2A+9wNaD1URTZgk?=
+ =?us-ascii?Q?4kIb9AiLh6YjZc/mNAgI7sg8HN5AzxQt+343bHtmaE1oJ4xuqFdbtQJhP9PG?=
+ =?us-ascii?Q?zMLwx2yh69q5xcOhZXr/bUxN7qOZXVoq3+RkfOndjckQrpBAkFN5niZAf/nB?=
+ =?us-ascii?Q?nElyqlftX/k0TDIuoe73N6IVpVX9NvhKmc4uo1nItW+7xXLEiyjppUeGWvZQ?=
+ =?us-ascii?Q?zL7SgyBPINaeHRt72A+85kLtIXbgc2SjpOwHQekChEtbrPHcwPJnf8QulV3f?=
+ =?us-ascii?Q?tQcbEUGsxpSJGPKujkam2H/g?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85808f7e-974f-4ceb-65a7-08d936276a71
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4867.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5608.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e0f8baaf-29ab-4659-631a-08d935f9c700
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jun 2021 03:48:35.0938
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2021 09:15:16.9436
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 20maZ7lWScLiqRKQm94kARnVpjDQtL6TtfG3i3tUJC/XBtlP0KTx4/a6eRtHWxaFgcnPky/Hwl39cXKkaWfpDA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR11MB5592
-Return-Path: sangeeta.jain@intel.com
-X-OriginatorOrg: intel.com
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: V1bFDaPNbj5GKPGJH286fS8HkIamFGRMu03ND7mUvUC1e5vLExIgA2Tsm2O+NFISB75EMVNBPNPUglFL7Ibm7g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4556
+X-Proofpoint-ORIG-GUID: qYKHwTuDRuXYU8oH7OoWIapLL6hejAL7
+X-Proofpoint-GUID: qYKHwTuDRuXYU8oH7OoWIapLL6hejAL7
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
+ definitions=2021-06-23_03:2021-06-22,2021-06-23 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 mlxscore=0
+ lowpriorityscore=0 malwarescore=0 spamscore=0 impostorscore=0 phishscore=0
+ clxscore=1011 priorityscore=1501 suspectscore=0 adultscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2104190000
+ definitions=main-2106230055
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Hi all,
+Drop backport patches:
+  0001-apparmor-fix-manpage-order.patch
+  0001-libapparmor-add-missing-include-for-socklen_t.patch
+  0002-libapparmor-add-aa_features_new_from_file-to-public-.patch
+  0003-libapparmor-add-_aa_asprintf-to-private-symbols.patch
+  0001-aa_status-Fix-build-issue-with-musl.patch
+  0001-parser-Makefile-dont-force-host-cpp-to-detect-reallo.patch
 
-Intel and WR YP QA is planning for QA execution for YP build yocto-3.1.9.r=
-c1 We are planning to execute following tests for this cycle:
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+---
+ .../{apparmor_3.0.bb => apparmor_3.0.1.bb}    |  8 +---
+ ...Update-make-check-to-select-tools-ba.patch |  2 +-
+ ...-aa_status-Fix-build-issue-with-musl.patch | 31 -------------
+ .../0001-apparmor-fix-manpage-order.patch     | 43 -------------------
+ ...or-add-missing-include-for-socklen_t.patch | 36 ----------------
+ ...dont-force-host-cpp-to-detect-reallo.patch | 37 ----------------
+ ...aa_features_new_from_file-to-public-.patch | 37 ----------------
+ ...-add-_aa_asprintf-to-private-symbols.patch | 34 ---------------
+ recipes-mac/AppArmor/files/disable_pdf.patch  | 33 --------------
+ 9 files changed, 2 insertions(+), 259 deletions(-)
+ rename recipes-mac/AppArmor/{apparmor_3.0.bb => apparmor_3.0.1.bb} (92%)
+ delete mode 100644 recipes-mac/AppArmor/files/0001-aa_status-Fix-build-issue-with-musl.patch
+ delete mode 100644 recipes-mac/AppArmor/files/0001-apparmor-fix-manpage-order.patch
+ delete mode 100644 recipes-mac/AppArmor/files/0001-libapparmor-add-missing-include-for-socklen_t.patch
+ delete mode 100644 recipes-mac/AppArmor/files/0001-parser-Makefile-dont-force-host-cpp-to-detect-reallo.patch
+ delete mode 100644 recipes-mac/AppArmor/files/0002-libapparmor-add-aa_features_new_from_file-to-public-.patch
+ delete mode 100644 recipes-mac/AppArmor/files/0003-libapparmor-add-_aa_asprintf-to-private-symbols.patch
+ delete mode 100644 recipes-mac/AppArmor/files/disable_pdf.patch
 
-OEQA-manual tests for following module:
-1. OE-Core
-2. BSP-hw
-
-Runtime auto test for following platforms:
-1. MinnowTurbot 32-bit
-2. Coffee Lake
-3. NUC 7
-4. NUC 6
-5. Edgerouter
-6. Beaglebone
-
-ETA for completion is next Monday, June 28.
-
-Thanks,
-Sangeeta
-
-> -----Original Message-----
-> From: qa-build-notification@lists.yoctoproject.org <qa-build-
-> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
-> Sent: Wednesday, 23 June, 2021 12:33 AM
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [qa-build-notification] QA notification for completed autobuild=
-er build
-> (yocto-3.1.9.rc1)
->=20
->=20
-> A build flagged for QA (yocto-3.1.9.rc1) was completed on the autobuilde=
-r and is
-> available at:
->=20
->=20
->     https://autobuilder.yocto.io/pub/releases/yocto-3.1.9.rc1
->=20
->=20
-> Build hash information:
->=20
-> bitbake: 0e0af15b84e07e6763300dcd092b980086b9b9c4
-> meta-arm: 59974ccd5f1368b2a1c621ba3efd6d2c44c126dd
-> meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
-> meta-intel: d8bf86ae6288ae520b8ddd7209a0b448b9693f48
-> meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
-> oecore: ac8181d9b9ad8360f7dba03aba8b00f008c6ebb4
-> poky: 43060f59ba60a0257864f1f7b25b51fac3f2d2cf
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
->=20
->=20
->=20
->=20
+diff --git a/recipes-mac/AppArmor/apparmor_3.0.bb b/recipes-mac/AppArmor/apparmor_3.0.1.bb
+similarity index 92%
+rename from recipes-mac/AppArmor/apparmor_3.0.bb
+rename to recipes-mac/AppArmor/apparmor_3.0.1.bb
+index d9c3e4d..6377683 100644
+--- a/recipes-mac/AppArmor/apparmor_3.0.bb
++++ b/recipes-mac/AppArmor/apparmor_3.0.1.bb
+@@ -23,16 +23,10 @@ SRC_URI = " \
+     file://apparmor.service \
+     file://0001-Makefile.am-suppress-perllocal.pod.patch \
+     file://run-ptest \
+-    file://0001-apparmor-fix-manpage-order.patch \
+     file://0001-Revert-profiles-Update-make-check-to-select-tools-ba.patch \
+-    file://0001-libapparmor-add-missing-include-for-socklen_t.patch \
+-    file://0002-libapparmor-add-aa_features_new_from_file-to-public-.patch \
+-    file://0003-libapparmor-add-_aa_asprintf-to-private-symbols.patch \
+-    file://0001-aa_status-Fix-build-issue-with-musl.patch \
+-    file://0001-parser-Makefile-dont-force-host-cpp-to-detect-reallo.patch \
+     "
+ 
+-SRCREV = "5d51483bfecf556183558644dc8958135397a7e2"
++SRCREV = "b0f08aa9d678197b8e3477c2fbff790f50a1de5e"
+ S = "${WORKDIR}/git"
+ 
+ PARALLEL_MAKE = ""
+diff --git a/recipes-mac/AppArmor/files/0001-Revert-profiles-Update-make-check-to-select-tools-ba.patch b/recipes-mac/AppArmor/files/0001-Revert-profiles-Update-make-check-to-select-tools-ba.patch
+index 791437d..e7abd60 100644
+--- a/recipes-mac/AppArmor/files/0001-Revert-profiles-Update-make-check-to-select-tools-ba.patch
++++ b/recipes-mac/AppArmor/files/0001-Revert-profiles-Update-make-check-to-select-tools-ba.patch
+@@ -6,7 +6,7 @@ Subject: [PATCH] Revert "profiles: Update 'make check' to select tools based
+ 
+ This reverts commit 6016f931ebf7b61e1358f19453ef262d9d184a4e.
+ 
+-Upstream-Statue: OE specific
++Upstream-Status: Inappropriate [OE specific]
+ These changes cause during packaging with perms changing.
+ 
+ Signed-off-by: Armin Kuster <akuster808@gmail.com>
+diff --git a/recipes-mac/AppArmor/files/0001-aa_status-Fix-build-issue-with-musl.patch b/recipes-mac/AppArmor/files/0001-aa_status-Fix-build-issue-with-musl.patch
+deleted file mode 100644
+index 239562a..0000000
+--- a/recipes-mac/AppArmor/files/0001-aa_status-Fix-build-issue-with-musl.patch
++++ /dev/null
+@@ -1,31 +0,0 @@
+-From 2bf15cc68f31c9f41962bb60a669ab2b453a039b Mon Sep 17 00:00:00 2001
+-From: Armin Kuster <akuster808@gmail.com>
+-Date: Wed, 7 Oct 2020 08:27:11 -0700
+-Subject: [PATCH] aa_status: Fix build issue with musl
+-
+-add limits.h
+-
+-aa_status.c:269:22: error: 'PATH_MAX' undeclared (first use in this function); did you mean 'AF_MAX'?
+-|   269 |    real_exe = calloc(PATH_MAX + 1, sizeof(char));
+-
+-Upstream-Status: Pending
+-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+----
+- binutils/aa_status.c | 1 +
+- 1 file changed, 1 insertion(+)
+-
+-diff --git a/binutils/aa_status.c b/binutils/aa_status.c
+-index 78b03409..41f1954e 100644
+---- a/binutils/aa_status.c
+-+++ b/binutils/aa_status.c
+-@@ -10,6 +10,7 @@
+- #include <stdio.h>
+- #include <stdlib.h>
+- #include <string.h>
+-+#include <limits.h>
+- #include <sys/types.h>
+- #include <sys/stat.h>
+- #include <sys/wait.h>
+--- 
+-2.17.1
+-
+diff --git a/recipes-mac/AppArmor/files/0001-apparmor-fix-manpage-order.patch b/recipes-mac/AppArmor/files/0001-apparmor-fix-manpage-order.patch
+deleted file mode 100644
+index 9f3dce4..0000000
+--- a/recipes-mac/AppArmor/files/0001-apparmor-fix-manpage-order.patch
++++ /dev/null
+@@ -1,43 +0,0 @@
+-From c9baef0c70122e1be33b627874772e6e9a5d7744 Mon Sep 17 00:00:00 2001
+-From: Armin Kuster <akuster808@gmail.com>
+-Date: Fri, 2 Oct 2020 19:43:44 -0700
+-Subject: [PATCH] apparmor: fix manpage order
+-
+-It trys to create a symlink before the man pages are installed.
+-
+- ln -sf aa-status.8 /(path}/apparmor/3.0-r0/image/usr/share/man/man8/apparmor_status.8
+- | ln: failed to create symbolic link '{path}/apparmor/3.0-r0/image/usr/share/man/man8/apparmor_status.8': No such file or directory
+-
+-Upstream-Status: Pending
+-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+-
+-...
+-
+-install -d /{path}/apparmor/3.0-r0/image/usr/share/man/man8 ; install -m 644 aa-status.8 /{path}/apparmor/3.0-r0/image/usr/share/man/man8;
+-
+-Signed-off-by: Armin Kuster <akuster@mvista.com>
+----
+- binutils/Makefile | 2 +-
+- 1 file changed, 1 insertion(+), 1 deletion(-)
+-
+-diff --git a/binutils/Makefile b/binutils/Makefile
+-index 99e54875..3f1d0011 100644
+---- a/binutils/Makefile
+-+++ b/binutils/Makefile
+-@@ -156,12 +156,12 @@ install-arch: arch
+- 	install -m 755 -d ${SBINDIR}
+- 	ln -sf aa-status ${SBINDIR}/apparmor_status
+- 	install -m 755 ${SBINTOOLS} ${SBINDIR}
+--	ln -sf aa-status.8 ${DESTDIR}/${MANDIR}/man8/apparmor_status.8
+- 
+- .PHONY: install-indep
+- install-indep: indep
+- 	$(MAKE) -C po install NAME=${NAME} DESTDIR=${DESTDIR}
+- 	$(MAKE) install_manpages DESTDIR=${DESTDIR}
+-+	ln -sf aa-status.8 ${DESTDIR}/${MANDIR}/man8/apparmor_status.8
+- 
+- ifndef VERBOSE
+- .SILENT: clean
+--- 
+-2.17.1
+-
+diff --git a/recipes-mac/AppArmor/files/0001-libapparmor-add-missing-include-for-socklen_t.patch b/recipes-mac/AppArmor/files/0001-libapparmor-add-missing-include-for-socklen_t.patch
+deleted file mode 100644
+index 2a56d8b..0000000
+--- a/recipes-mac/AppArmor/files/0001-libapparmor-add-missing-include-for-socklen_t.patch
++++ /dev/null
+@@ -1,36 +0,0 @@
+-From 47263a3a74d7973e7a54b17db6aa903701468ffd Mon Sep 17 00:00:00 2001
+-From: Patrick Steinhardt <ps@pks.im>
+-Date: Sat, 3 Oct 2020 20:37:55 +0200
+-Subject: [PATCH] libapparmor: add missing include for `socklen_t`
+-
+-While `include/sys/apparmor.h` makes use of `socklen_t`, it doesn't
+-include the `<sys/socket.h>` header to make its declaration available.
+-While this works on systems using glibc via transitive includes, it
+-breaks compilation on musl libc.
+-
+-Fix the issue by including the header.
+-
+-Signed-off-by: Patrick Steinhardt <ps@pks.im>
+-
+-Upstream-Status: Backport
+-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+-
+----
+- libraries/libapparmor/include/sys/apparmor.h | 1 +
+- 1 file changed, 1 insertion(+)
+-
+-diff --git a/libraries/libapparmor/include/sys/apparmor.h b/libraries/libapparmor/include/sys/apparmor.h
+-index 32892d06..d70eff94 100644
+---- a/libraries/libapparmor/include/sys/apparmor.h
+-+++ b/libraries/libapparmor/include/sys/apparmor.h
+-@@ -21,6 +21,7 @@
+- #include <stdbool.h>
+- #include <stdint.h>
+- #include <unistd.h>
+-+#include <sys/socket.h>
+- #include <sys/types.h>
+- 
+- #ifdef __cplusplus
+--- 
+-2.17.1
+-
+diff --git a/recipes-mac/AppArmor/files/0001-parser-Makefile-dont-force-host-cpp-to-detect-reallo.patch b/recipes-mac/AppArmor/files/0001-parser-Makefile-dont-force-host-cpp-to-detect-reallo.patch
+deleted file mode 100644
+index 9f7ad3c..0000000
+--- a/recipes-mac/AppArmor/files/0001-parser-Makefile-dont-force-host-cpp-to-detect-reallo.patch
++++ /dev/null
+@@ -1,37 +0,0 @@
+-From 965bb9c3e464f756b258a7c259a92bce3cde74e7 Mon Sep 17 00:00:00 2001
+-From: Armin Kuster <akuster@mvista.com>
+-Date: Wed, 7 Oct 2020 20:50:38 -0700
+-Subject: [PATCH] parser/Makefile: dont force host cpp to detect reallocarray
+-
+-In cross build environments, using the hosts cpp gives incorrect
+-detection of reallocarray. Change cpp to a variable.
+-
+-fixes:
+-parser_misc.c: In function 'int capable_add_cap(const char*, int, unsigned int, capability_flags)':
+-| parser_misc.c:297:37: error: 'reallocarray' was not declared in this scope
+-|   297 |   tmp = (struct capability_table *) reallocarray(cap_table, sizeof(struct capability_table), cap_table_size+1);
+-
+-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+-
+-Upstream-Status: Pending
+-
+----
+- parser/Makefile | 2 +-
+- 1 file changed, 1 insertion(+), 1 deletion(-)
+-
+-diff --git a/parser/Makefile b/parser/Makefile
+-index acef3d77..8250ac45 100644
+---- a/parser/Makefile
+-+++ b/parser/Makefile
+-@@ -54,7 +54,7 @@ endif
+- CPPFLAGS += -D_GNU_SOURCE
+- 
+- STDLIB_INCLUDE:="\#include <stdlib.h>"
+--HAVE_REALLOCARRAY:=$(shell echo $(STDLIB_INCLUDE) | cpp ${CPPFLAGS} | grep -q reallocarray && echo true)
+-+HAVE_REALLOCARRAY:=$(shell echo $(STDLIB_INCLUDE) | ${CPP} ${CPPFLAGS} | grep -q reallocarray && echo true)
+- 
+- WARNINGS = -Wall
+- CXX_WARNINGS = ${WARNINGS} ${EXTRA_WARNINGS}
+--- 
+-2.17.1
+-
+diff --git a/recipes-mac/AppArmor/files/0002-libapparmor-add-aa_features_new_from_file-to-public-.patch b/recipes-mac/AppArmor/files/0002-libapparmor-add-aa_features_new_from_file-to-public-.patch
+deleted file mode 100644
+index 333f40f..0000000
+--- a/recipes-mac/AppArmor/files/0002-libapparmor-add-aa_features_new_from_file-to-public-.patch
++++ /dev/null
+@@ -1,37 +0,0 @@
+-From c9255a03436e6a91bd4e410601da8d43a341ffc2 Mon Sep 17 00:00:00 2001
+-From: Patrick Steinhardt <ps@pks.im>
+-Date: Sat, 3 Oct 2020 20:58:45 +0200
+-Subject: [PATCH] libapparmor: add `aa_features_new_from_file` to public
+- symbols
+-
+-With AppArmor release 3.0, a new function `aa_features_new_from_file`
+-was added, but not added to the list of public symbols. As a result,
+-it's not possible to make use of this function when linking against
+-libapparmor.so.
+-
+-Fix the issue by adding it to the symbol map.
+-
+-Signed-off-by: Patrick Steinhardt <ps@pks.im>
+-
+-Upstream-Status: Backport
+-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+-
+----
+- libraries/libapparmor/src/libapparmor.map | 1 +
+- 1 file changed, 1 insertion(+)
+-
+-diff --git a/libraries/libapparmor/src/libapparmor.map b/libraries/libapparmor/src/libapparmor.map
+-index bbff51f5..1579509a 100644
+---- a/libraries/libapparmor/src/libapparmor.map
+-+++ b/libraries/libapparmor/src/libapparmor.map
+-@@ -117,6 +117,7 @@ APPARMOR_2.13.1 {
+- 
+- APPARMOR_3.0 {
+-   global:
+-+	aa_features_new_from_file;
+- 	aa_features_write_to_fd;
+- 	aa_features_value;
+-   local:
+--- 
+-2.17.1
+-
+diff --git a/recipes-mac/AppArmor/files/0003-libapparmor-add-_aa_asprintf-to-private-symbols.patch b/recipes-mac/AppArmor/files/0003-libapparmor-add-_aa_asprintf-to-private-symbols.patch
+deleted file mode 100644
+index 543c7a1..0000000
+--- a/recipes-mac/AppArmor/files/0003-libapparmor-add-_aa_asprintf-to-private-symbols.patch
++++ /dev/null
+@@ -1,34 +0,0 @@
+-From 9a8fee6bf1c79c261374d928b838b5eb9244ee9b Mon Sep 17 00:00:00 2001
+-From: Patrick Steinhardt <ps@pks.im>
+-Date: Sat, 3 Oct 2020 21:04:57 +0200
+-Subject: [PATCH] libapparmor: add _aa_asprintf to private symbols
+-
+-While `_aa_asprintf` is supposed to be of private visibility, it's used
+-by apparmor_parser and thus required to be visible when linking. This
+-commit thus adds it to the list of private symbols to make it available
+-for linking in apparmor_parser.
+-
+-Signed-off-by: Patrick Steinhardt <ps@pks.im>
+-
+-Upstream-Status: Backport
+-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+-
+----
+- libraries/libapparmor/src/libapparmor.map | 1 +
+- 1 file changed, 1 insertion(+)
+-
+-diff --git a/libraries/libapparmor/src/libapparmor.map b/libraries/libapparmor/src/libapparmor.map
+-index 1579509a..41e541ac 100644
+---- a/libraries/libapparmor/src/libapparmor.map
+-+++ b/libraries/libapparmor/src/libapparmor.map
+-@@ -127,6 +127,7 @@ APPARMOR_3.0 {
+- PRIVATE {
+- 	global:
+- 		_aa_is_blacklisted;
+-+		_aa_asprintf;
+- 		_aa_autofree;
+- 		_aa_autoclose;
+- 		_aa_autofclose;
+--- 
+-2.17.1
+-
+diff --git a/recipes-mac/AppArmor/files/disable_pdf.patch b/recipes-mac/AppArmor/files/disable_pdf.patch
+deleted file mode 100644
+index c6b4bdd..0000000
+--- a/recipes-mac/AppArmor/files/disable_pdf.patch
++++ /dev/null
+@@ -1,33 +0,0 @@
+-Index: apparmor-2.10.95/parser/Makefile
+-===================================================================
+---- apparmor-2.10.95.orig/parser/Makefile
+-+++ apparmor-2.10.95/parser/Makefile
+-@@ -139,17 +139,6 @@ export Q VERBOSE BUILD_OUTPUT
+- po/${NAME}.pot: ${SRCS} ${HDRS}
+- 	$(MAKE) -C po ${NAME}.pot NAME=${NAME} SOURCES="${SRCS} ${HDRS}"
+- 
+--techdoc.pdf: techdoc.tex
+--	timestamp=$(shell date --utc "+%Y%m%d%H%M%S%z" -r $< );\
+--	while pdflatex "\def\fixedpdfdate{$$timestamp}\input $<" ${BUILD_OUTPUT} || exit 1 ; \
+--		grep -q "Label(s) may have changed" techdoc.log; \
+--	do :; done
+--
+--techdoc/index.html: techdoc.pdf
+--	latex2html -show_section_numbers -split 0 -noinfo -nonavigation -noaddress techdoc.tex ${BUILD_OUTPUT}
+--
+--techdoc.txt: techdoc/index.html
+--	w3m -dump $< > $@
+- 
+- # targets arranged this way so that people who don't want full docs can
+- # pick specific targets they want.
+-@@ -159,9 +148,7 @@ manpages:	$(MANPAGES)
+- 
+- htmlmanpages:	$(HTMLMANPAGES)
+- 
+--pdf:	techdoc.pdf
+--
+--docs:	manpages htmlmanpages pdf
+-+docs:	manpages htmlmanpages 
+- 
+- indep: docs
+- 	$(Q)$(MAKE) -C po all
+-- 
+2.25.1
 
