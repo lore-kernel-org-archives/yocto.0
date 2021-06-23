@@ -1,244 +1,197 @@
-Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
- by mx.groups.io with SMTP id smtpd.web10.2083.1624414949611104221
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by mx.groups.io with SMTP id smtpd.web10.2841.1624420118895782030
  for <yocto@lists.yoctoproject.org>;
- Tue, 22 Jun 2021 19:22:29 -0700
+ Tue, 22 Jun 2021 20:48:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=AMxl7tIv;
- spf=pass (domain: gmail.com, ip: 209.85.219.46, mailfrom: twoerner@gmail.com)
-Received: by mail-qv1-f46.google.com with SMTP id f5so652321qvu.8
-        for <yocto@lists.yoctoproject.org>; Tue, 22 Jun 2021 19:22:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:subject:message-id:mime-version:content-disposition
-         :content-transfer-encoding:user-agent;
-        bh=2C36OWO/vUN5tCwWygHwAHpi2Kh/WbOaMSmHayuKDDc=;
-        b=AMxl7tIvf9sP6b/vSn8hgyBz0BvE1aUNbcVx+FqdamtTb5foTIQXBPSIJEmry4pq9y
-         xwcGaa1yHZ68ii4iMVYtgYEB8YAZCpJdV2aCYFLSMwbA6QNh7YtSBxdj3G6dOlpQs7L3
-         lUzvTS+TGYDmhDgkp/SWbVL20ToNyEaIn1rpTMR7MhJUapG8T5h/whM+OOP4109XnEWu
-         LQSfP5enXpkpRFSe4xQ+WDKyqe5SIXXIbASPhreybL7UINrKwcVwceXf2irowSKnxS0y
-         ncwYvn9e7H/ZPSyR8PcNcHAVhQGp2lMd4EmDJw/Mzq1J8HMpT4ektJE/R7Z/u07OOzQp
-         VMiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
-         :content-disposition:content-transfer-encoding:user-agent;
-        bh=2C36OWO/vUN5tCwWygHwAHpi2Kh/WbOaMSmHayuKDDc=;
-        b=IWINTRgzPFO0vKdzhTdmfFJkL9CvfLqjV6QRN/+3osc5JGg+d8C+07IKkRIOGQ4yuz
-         hS3EDmPd9XE4T78AOIExHi5xtQGJ/ggwYKFoPJlUkdgxACv+QAaIK1GPtiRyDN9NEChK
-         p8ySSZa3qwr41DfkwXa2IqG98/SLbEfV/MpRFoPqsBqJiBtpssXiHuDPsfdZF7JtmdVU
-         w9mQiQhdA8ZZW0d4owyFqQxFufYel5UJ/fd6jnWT9P6NkFRrTkIkThABIWyo+IcVFeMj
-         31W/+xJ1n2BuCcN6So0wuLGpxHs1whnzjaHXzOTHdw7LH/ILJnTnJj5EIEEfbqr8Zz3q
-         1s4g==
-X-Gm-Message-State: AOAM530JjoXpTA7NDvcDVPHQLqHsxKQGFKHtF5qNUqJ06J0MEbQwmnYA
-	Wiyl5F2rPJx5IL1VQdB7hOFQA1GPFJrwXA==
-X-Google-Smtp-Source: ABdhPJxmh+wpeA36HLslsdFKEYMzTpJciWy5kDdzwSpk1m2n7bY0PxgUp8fCyjHDLGqMaE2evZBpHw==
-X-Received: by 2002:a05:6214:caa:: with SMTP id s10mr2181216qvs.0.1624414948171;
-        Tue, 22 Jun 2021 19:22:28 -0700 (PDT)
-Return-Path: <twoerner@gmail.com>
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id x7sm14680568qke.62.2021.06.22.19.22.27
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Jun 2021 19:22:27 -0700 (PDT)
-Date: Tue, 22 Jun 2021 22:22:25 -0400
-From: "Trevor Woerner" <twoerner@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: Yocto Technical Team Minutes, Engineering Sync, for June 22, 2021
-Message-ID: <20210623022225.GA21921@localhost>
+ dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=MrBxZm5R;
+ spf=pass (domain: intel.com, ip: 192.55.52.120, mailfrom: sangeeta.jain@intel.com)
+IronPort-SDR: bdaebIei+z2ocjFaGmv2BK4uEs992dSC3xma2HbN/ubB0TIuoJ4PnjliFxPYD4++fJnY068wGa
+ nrceQP2m8DkA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10023"; a="205359759"
+X-IronPort-AV: E=Sophos;i="5.83,293,1616482800"; 
+   d="scan'208";a="205359759"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jun 2021 20:48:37 -0700
+IronPort-SDR: jBVL4PgCjNC+oEgtpmGCsCBAkQEC2UdaRMiDEF1zrJaAGC0BfwaJbNWbL75TrK8Gyxhnh75qkx
+ 23Pb+fKnlBZA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,293,1616482800"; 
+   d="scan'208";a="556831684"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+  by fmsmga001.fm.intel.com with ESMTP; 22 Jun 2021 20:48:37 -0700
+Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Tue, 22 Jun 2021 20:48:36 -0700
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Tue, 22 Jun 2021 20:48:36 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4
+ via Frontend Transport; Tue, 22 Jun 2021 20:48:36 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.107)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2242.4; Tue, 22 Jun 2021 20:48:35 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OCu3TxWtc4XtuNMkq1hrXkZxJS22d21a+NMrfsXH8rEkT39AUUYawFK8qkbVTz0BAPR4/WIGIxJPgQHrua8e6tvSpJFUV6NviFw+q3u8vGBGyplp4DNLB76lCoapGWDFiW2YytcHi5lBEJMhDER+U45BBGNYvn3HOgak697OFwLqTHY73TWl4EjqJypnrZycztSc7pS525EvmL6l0nlhv/MLdaaxwFsemCtlGWzCxrSNtI5r42H2QkW2tSegxiir6HDfMYgfNlEI72EY4UszzzDzbkKIj5DPcUN0pYGcu13G6Qt5EJFunBTcyB1hRwgLLaGsq6IeMHFUXOglxofaGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pGFuY+plTQX5cXDjtPc/56GyVaHjTyHJaR9c4oFL6go=;
+ b=ZrVelXjd8N1ownQdAeSypzhW4kbK2ZWIeAAFlO4/no0xIdGivP97NLWobPf2QYjyQQ6nhEaYNGgl12Vgwr7HZO74q2wpnQOmTPLop1FUijFt+2axcLFPcCM3J9QVTe8KpSgMdCzqPd7AVgKYu256CWJCRXDMfM735z+YXBuM2S0/Vw7s798CkDGYUDLKYkPtP2d3hU1dgQqmhTBHYB80B3TzPidJfDSCviD4r+y5FJYB8TkHo0N9NjB1N5nSiSzCd6qKe+5N7dm1V3j3hVU9wZcSUQp85O7REA3faEfCmSY5IYZIgppFw/kqI0WNEhnoFC9x93w7b+hXbcD9zUMECg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pGFuY+plTQX5cXDjtPc/56GyVaHjTyHJaR9c4oFL6go=;
+ b=MrBxZm5R52VpiF+5mWCcb4Sb+G2kzHHg8bWkv4q2dbgPjtTFksp13lD2QKKIBfpl7dZ87gXHrSmZyELsCMazokOJhfV2l/mWApvbvNwaH186ZBO1eY1Y3YynLv9xy7VIw5OGgiH5AwaGpFBnzX+3UKktZIl/cxHe1Aszn5GfKK0=
+Received: from DM8PR11MB5608.namprd11.prod.outlook.com (2603:10b6:8:35::5) by
+ DM8PR11MB5592.namprd11.prod.outlook.com (2603:10b6:8:35::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4264.18; Wed, 23 Jun 2021 03:48:35 +0000
+Received: from DM8PR11MB5608.namprd11.prod.outlook.com
+ ([fe80::e55d:6603:6fa4:457]) by DM8PR11MB5608.namprd11.prod.outlook.com
+ ([fe80::e55d:6603:6fa4:457%3]) with mapi id 15.20.4264.018; Wed, 23 Jun 2021
+ 03:48:35 +0000
+From: "Sangeeta Jain" <sangeeta.jain@intel.com>
+To: "qa-build-notification@lists.yoctoproject.org"
+	<qa-build-notification@lists.yoctoproject.org>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [qa-build-notification] QA notification for completed autobuilder build (yocto-3.1.9.rc1)
+Thread-Topic: [qa-build-notification] QA notification for completed
+ autobuilder build (yocto-3.1.9.rc1)
+Thread-Index: AQHXZ4RA5DxeeVP4g0m7ZwPPsemZbKsg9enA
+Date: Wed, 23 Jun 2021 03:48:35 +0000
+Message-ID: <DM8PR11MB56083CBE3C78CC60009007A0E3089@DM8PR11MB5608.namprd11.prod.outlook.com>
+References: <20210622163241.330782A0FA2@centos8-ty-1.yocto.io>
+In-Reply-To: <20210622163241.330782A0FA2@centos8-ty-1.yocto.io>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-reaction: no-action
+dlp-version: 11.6.0.76
+dlp-product: dlpe-windows
+authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=intel.com;
+x-originating-ip: [219.95.114.171]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e0f8baaf-29ab-4659-631a-08d935f9c700
+x-ms-traffictypediagnostic: DM8PR11MB5592:
+x-microsoft-antispam-prvs: <DM8PR11MB5592EFA1EB8DC12642DF7874E3089@DM8PR11MB5592.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: lXT9sR8jxn9crxvYCs/MRWnNYW/vcdcC5bsLAJWO74ND56GQx6LD7ekdmXx7tkeDFlsVQrRVS70evogHUQlL9hSe/ZCHcMzBIkayYVdwGBbjvtsAwH0RHBaxauaHbKxzwkEz4Ynw4THRDmtPIetGMvsQGLyCru2w9Q8fd1uet0EUbhNQWrUPctYpqho0rySAItOkJrgZ8xGcPAZC32jX1jtD8h5aeNKVY8pXOAzekPDWFDJF1TrPAYCJVSW9Fcpr43mXyEovSQDoQat09NWza3LViqBLq0nmdSukeKUcoY+qyISjI7XbJUhCaDCNIZn7rpPVPgkxP0K4ZOQUwtmVUrLe6M01xFFKAKPsNgIxVz4AaGDQOqn9M9IJfpMElS4O7nrp0jvuPkjj/LKizghlxlICU+L2DSq8SgsMQR/Caq9L5dukt9iFdvnRcLQE2ZtQqi7n3SnLVlqTZcW93fnssA/TMOpNnnTQG4X9xmFzVvyxwkr3dI1prHdFlkylTpFSVnPIljQmoDCxGuaXf2EQ+snRVqcZ659vNCENRns35qy3FFnjLCcaCv9PsYQ7tb0hZcuIJWJY4T4olDf5J4a3bqHhFfDxmA2W1Mj+JeCGSSBZpOaNgIOlP5FCbH17FTXgHuSCVGnZ/gzpwEIeg/dPbURX+DXRM8bqWx9Dcf9ei7Q019bJZrBAazQ+8xQOmqOSN77vnGNOd0ZTXT5WiCbqF1L9Q0IjPdKi9uXq3ymiZerXep0QckXHILihINzFBKcE
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM8PR11MB5608.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(39860400002)(346002)(396003)(136003)(376002)(66446008)(52536014)(110136005)(8936002)(66476007)(7696005)(86362001)(66946007)(76116006)(66556008)(64756008)(71200400001)(2906002)(316002)(450100002)(5660300002)(478600001)(966005)(55016002)(53546011)(9686003)(186003)(6506007)(8676002)(26005)(83380400001)(33656002)(38100700002)(15650500001)(122000001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?CTmvKk1KxhUHL1JHLMCH6p3tl7F409kwsZhYDwgmxpS3d1mv+mR62+HwRlsB?=
+ =?us-ascii?Q?wP+tFI1ZIXrdPGXMZQRMyd5O6VwswBnqkPg9T5ABqyEavRqmW/Hr8RHdi3mN?=
+ =?us-ascii?Q?3JELNTZRANvTNUw/hR1fu2GuUl+xE/MzP7UB4s3UFqQ5OAgv5QEEU/KO0eKT?=
+ =?us-ascii?Q?DGU2ht8BBlJ1JVe5crw3nMUzYiE+6uT4+l6UKxJCWW2faurj1hFSAE8Ivgia?=
+ =?us-ascii?Q?kmmBV2ExqRhAusGj2JswtuO5P7hKyPJ8qcJBf+8rJemqlCL/HKLIqQyOxXTt?=
+ =?us-ascii?Q?p04mSLB8D9YSzUniYUINbVbGNq9Qfm1BiBvQ9QIFsoIoP/AFiBBN7EWRQnRc?=
+ =?us-ascii?Q?RT/dJwnRurVPf/e3mUEtX+wTgBY36BSmvagKs1/51mp5eBGTq1WD4B++7zoU?=
+ =?us-ascii?Q?Q/ppo7AOxiUtRVV1unvVd8DkSdPt2+aXH33PwAX1AcaB/ZKAxxjC8T0DXApd?=
+ =?us-ascii?Q?MHq5x6q31CJOq1QEhbSwirStIFPpl01dk3iGwwz2a3woZyt7x6sb9xtK6Ba5?=
+ =?us-ascii?Q?LKSS9yIBBFc1FBNv6WcIjXBv/JAc1rVRh/e5OiYNihtrXvqTUvsvRzjqw7hd?=
+ =?us-ascii?Q?vpDS6lov4cqFLitl/FxSrxOoyjuTIymxEi1U9NPFkxTIStqMuHOwqscPi4GG?=
+ =?us-ascii?Q?wkiiX5A1s61aa32uRjnLcMQCUoDGJmVaSrzG6anoNu9eLamWe0XuR9P2baeT?=
+ =?us-ascii?Q?JCCvTEgWCwTahAG4T9J4AFrlQ5TyHuy9Ay1b2oFHXyZLnxqoRiYinTjrmQft?=
+ =?us-ascii?Q?fvo9i9QqAtiA1jXOv3T5AFAMui6LzfovHGaiJ0elMfVcGqCvCdBavrk4HMDI?=
+ =?us-ascii?Q?F6rukdWzoWTscdG5o0i/AIjLIM87o/7bUfqAgqTM34OBBnH4I9fF48N63+ZR?=
+ =?us-ascii?Q?dh1Yy+Dtl/LmQPIhzL/VKCTlWcXnuy77Fqu6MStAT5yIFZ5hGrqiMeH5zyRT?=
+ =?us-ascii?Q?advWtoHwo14EN+XDue67zp1f0WFXHxNO+DMZ9THUuWp4x/OQxXfu34hrRan6?=
+ =?us-ascii?Q?AO1fHgIkEbaoEzy6yS9TyF6nvNPosQ+eDqRWAbv16obWMhQP3XusfabDGcoH?=
+ =?us-ascii?Q?/ogJoCM4uS1ciphXXEBruyP0/EZ2Xr2pyzZzGvr+l7V5s8ilVx4gI1tH1rgc?=
+ =?us-ascii?Q?ivq4C5q3aJFm8sLyMQUfNeVIvXtO/LEQ5sGsh3k7hvqX7d4x6wMgtG1A6RlC?=
+ =?us-ascii?Q?KACY1xlvE6TRbwSH8nI6pfwLGSjts33Bdwo5B0hQCb02g3XMYxGtgCgKNUBZ?=
+ =?us-ascii?Q?gD+KKM/Kf+mAs3oYfpOPHI5zz5kMKJl52vIv/bipi1VeeLgUVbK33g2pc213?=
+ =?us-ascii?Q?8FPEPaXHfm3M1AM3aV2ynAXh?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5608.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e0f8baaf-29ab-4659-631a-08d935f9c700
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jun 2021 03:48:35.0938
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 20maZ7lWScLiqRKQm94kARnVpjDQtL6TtfG3i3tUJC/XBtlP0KTx4/a6eRtHWxaFgcnPky/Hwl39cXKkaWfpDA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR11MB5592
+Return-Path: sangeeta.jain@intel.com
+X-OriginatorOrg: intel.com
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Yocto Technical Team Minutes, Engineering Sync, for June 22, 2021
-archive: https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7QwKC5wWVDg9dDH4/edit
+Hi all,
 
-== disclaimer ==
-Best efforts are made to ensure the below is accurate and valid. However,
-errors sometimes happen. If any errors or omissions are found, please feel
-free to reply to this email with any corrections.
+Intel and WR YP QA is planning for QA execution for YP build yocto-3.1.9.r=
+c1 We are planning to execute following tests for this cycle:
 
-== attendees ==
-Trevor Woerner, Stephen Jolley, Michael Halstead, Paul Barker, Richard
-Purdie, Scott Murray, Steve Sakoman, Tony Tascioglu, Trevor Gamblin,
-Alejandro Hernandez, Alexandre Belloni, Jan-Simon Möller, Randy MacLeod
+OEQA-manual tests for following module:
+1. OE-Core
+2. BSP-hw
 
-== notes ==
-- 3.4 m1 (honister) through QA, couple issue found, in review by TSC to decide
-    on release
-- 3.1.9 (dunfell) currently being build then sent to QA
-- thanks to PaulG for tracking down null pointer in cgroups mount code (and
-    others) that have led to solving some AB hangs
-- the rcu dump AB vm hangs are still occurring
-- 2 new manual sections: reproducible builds, and YP compatible
-- multiconfig changes continue to cause issues
-- still lots of AB-INT issues, we’re working on trying to define the load
-    pattern that causes these issues
+Runtime auto test for following platforms:
+1. MinnowTurbot 32-bit
+2. Coffee Lake
+3. NUC 7
+4. NUC 6
+5. Edgerouter
+6. Beaglebone
 
-== general ==
-RP: special thanks to Paul Gortmaker for finding the null pointer issue to fix
-    the LTP builds
+ETA for completion is next Monday, June 28.
 
+Thanks,
+Sangeeta
 
-PaulB: still working on the pr-server changes. my changes work on my setup but
-    don’t seem to do well on the AB. if i enable parallelism in my builds
-    then the oom-killer gets busy. it’s annoying that the output from a test
-    is buffered until the test is finished, so if a test hangs then i can’t
-    find out which one is hanging. it looks like we’ll have to dig into
-    async-io or python parallelism to see if there’s something wrong there
-    or at least figure out how to get more output before a test finishes
-RP: did you look at the trace output i found
-PaulB: yes, but not exactly sure what i’m looking at
-RP: if bitbake server starts one of the servers, then it’s responsible for
-    taking it out when it shuts down. so they run individually, but there is
-    some sharing. that traceback suggests to me that it’s trying to shut down
-    the pr server at shutdown time but not succeeding. sometimes the sqlite
-    database takes time to sync to disk for example (especially when there
-    is high io) but bitbake ends up blocked. it looks like some contention
-    between the parse threads and the locks. when doing python parallel there
-    are 2 systems and we have to make sure to not mix the two.
-PaulB: in one case it looks like one of the comm sockets is already closed,
-    but the server is waiting for it to close again, but i would think we’d
-    get the same traceback every time
-RP: maybe it’s stuck somewhere where it shouldn’t be, which makes it skip
-    some error/exit handling. or maybe add more debug code
-PaulB: yes, i think adding timeouts to every wait/callback to see which ones
-    are timing out
-RP: can python give you a dump of what’s in every waitstate?
-PaulB: not sure, i’ll have to look at what python provides. bitbake isn’t
-    what’s telling prserv to exit on the cluster, but it is on my builds
-RP: that seems unlikely
-PaulB: i can’t generate the same conditions locally as what we’re seeing
-    on the AB. because of thread contention there seems to be, perhaps, a
-    resource exhaustion that i can’t reproduce
-RP: put a “sleep 5” in the shutdown path in the prserv. it would cause
-    hashserve to exist longer than bitbake
-PaulB: or backout the use of multiprocessing, keep the new json rpc system.
-    but do a more traditional fork() to start the process up
-RP: i suspect we did the fork() for a reason
-PaulB: multiprocessing didn’t exist back then
-RP: it did, but it was broken. i sent a cooker daemon log which should show
-    what was running at the time. so we should be able to reverse engineer
-    what was going on at that time. i’m getting good at reading those, so i
-    can probably read them and tell you what tests were running at the time
-PaulB: if we could just run that one test
-RP: i would run just the prserv selftest and put that sleep in there. i’m
-    convinced it’s one of them
-PaulB: i’m afraid i’m going to have to hand this off to someone else.
-    i’ll give one more push but then i’m out of ideas
-RP: okay. it’d be good to get that in because i’m looking forward to it
+> -----Original Message-----
+> From: qa-build-notification@lists.yoctoproject.org <qa-build-
+> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
+> Sent: Wednesday, 23 June, 2021 12:33 AM
+> To: yocto@lists.yoctoproject.org
+> Cc: qa-build-notification@lists.yoctoproject.org
+> Subject: [qa-build-notification] QA notification for completed autobuild=
+er build
+> (yocto-3.1.9.rc1)
+>=20
+>=20
+> A build flagged for QA (yocto-3.1.9.rc1) was completed on the autobuilde=
+r and is
+> available at:
+>=20
+>=20
+>     https://autobuilder.yocto.io/pub/releases/yocto-3.1.9.rc1
+>=20
+>=20
+> Build hash information:
+>=20
+> bitbake: 0e0af15b84e07e6763300dcd092b980086b9b9c4
+> meta-arm: 59974ccd5f1368b2a1c621ba3efd6d2c44c126dd
+> meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
+> meta-intel: d8bf86ae6288ae520b8ddd7209a0b448b9693f48
+> meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
+> oecore: ac8181d9b9ad8360f7dba03aba8b00f008c6ebb4
+> poky: 43060f59ba60a0257864f1f7b25b51fac3f2d2cf
+>=20
+>=20
+>=20
+> This is an automated message from the Yocto Project Autobuilder
+> Git: git://git.yoctoproject.org/yocto-autobuilder2
+> Email: richard.purdie@linuxfoundation.org
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
 
-
-TrevorW: move to SPDX license identifiers
-RP: we have
-TrevorW: classes and ptests yes, but not recipes and other places of oecore
-RP: any place where we’re writing python we have. it’s a nice cleanup
-    thing, we’ve been embracing it. we’ve made some of the changes.
-    we’ve done it with code. the problem with recipes is that if we put that
-    at the top of the license it’ll get confused with the LICENCE field. so
-    we’re not quite sure what to do in that case
-PaulB: i've been using a linting tool that checks for these identifiers.
-    again, the problem of what license to put on the recipe and for patches
-    etc (https://reuse.software/spec)
-RP: licenses in patches in something to think about and would make upstreaming
-    easier. we’ve done the low hanging fruit but need more thought for other
-    cases. there’s also a standard form for copyright headers too
-PaulB: yes, there’s been an update to the copyright format as well
-RP: YP now has attained silver status for core infrastructure in LF. to get to
-    gold we need copyright on all files and many of our recipes don’t
-ScottM: if there’s a statement at the top or the repo doesn’t that help
-RP: i don’t think it accounts for that. and then we have to decide if these
-    are oe contributors or yocto contributors. so i left it at that. if anyone
-    wants to move this forward i’m definitely interested. there are some
-    questions we need to answer. our code is good at having copyright, but the
-    problem is with recipes
-RP: there are a couple things we need to get gold status: 2-factor auth for
-    git pushes, some https issues (best practices changed), and licensing
-
-
-TrevorG: working on the job server. create a dir in tmp to create the fifo,
-    but not seeing any difference in performance. i’m not sure kea is the
-    right way to go
-RP: it was deleting the fifo
-TrevorG: yes, at the end of the day it’s using the one that’s tied to the
-    user process
-RP: that’s the correct way to do it. if it already exists then it should
-    get an EXISTS error and just go ahead and user it. as long as it’s not
-    deleting it
-TrevorG: i’ve probably left something out, so i’ll look through it and see
-RP: it was a POC i had written, but i can't remember how much testing it got.
-    these rcu issues seem to be related to a peak-load issue, so it’d be
-    nice to dig in and get to the core of the issue
-TrevorG: tl;dr: no definitive results yet
-Randy: make has the ability to look at the system load and use that to decide
-    whether or not to add more load, is there a reason we’re not considering
-    that
-RP: good question. we’ve talked about it before, but i can't remember why we
-    decided not to go that route
-
-
-RP: any updates on the rcu things AlexB? we had another one over the weekend
-AlexB: right now i don’t have anything to say because i believe this
-    is something that is stuck in userspace. so i’m debugging, but
-    unfortunately the kernel we’re using doesn’t have debugging enabled,
-    so i want to build another kernel with debugging enabled so we can test
-    with debugging enabled. maybe we can carry a patch for the qemu kernels
-    on the AB which will enable more debugging. we’re also missing a few
-    important symbols that will help us see more. so i don't think these core
-    dump are important as-is.
-RP: which debug symbols are you missing? our dumps have a lot of things
-    enabled
-AlexB: debuginfo. there’s the risk that a new kernel will change behaviour
-    but we should try
-RP: because we’re so reproducible, we should be able to debug easier. would
-    a complete kernel build help
-AlexB: config?
-RP: x86-64 musl. we should change the qmp code to run the commands that we
-    found
-AlexB: yes. i’m carrying the 2nd qmp socket patch (instead of going through
-    the close)
-RP: it’d be nice to always have this
-AlexB: how do we detect the hang
-RP: there are timeouts, so if we hit the timeouts then we assume there’s a
-    hang
-AlexB: we do that before killing…
-RP: yes. if you have notes about how to set this up with gdb i’d like to try
-    replicating it
-AlexB: okay. i was hoping this was a problem in the kernel and that the answer
-    would be right there. we’ve also seen the load of qemu going to 300 to
-    400 then 300 then 400.
-RP: it’s like something is waiting for something else to happen
-AlexB: you straced it
-RP: yes, while pinging it. and we could see the straces going into the ping
-AlexB: yes, which means the kernel is still alive, but the rcu is saying that
-    the kernel is not alive, so something is confused. something seems to be
-    waiting for something to happen that might never happen
-Randy: so no progress on the rcu stalls?
-RP: yes. we’ve made progress at poking qemu, and we have this core dump, but
-    no insight into what is causing it
-Randy: has anyone tried to reproduce it? i’ve got a busy system and i’ve
-    run stress-ng
-RP: i haven’t tried that.
-Randy: where does it happen
-RP: ubuntu 18.04
-AlexB: but maybe that’s because that’s what most of our AB is running?
-RP: that’s the info we have. if we can reproduce it then that would be
-    wonderful since that would make it easier to debug. making qmp better is
-    worth it in any case.
-
-
-Randy: what about the kernel change PaulG made. i’d like to hammer on it
-RP: i’ve done some hammering and haven’t seen any issues yet
-Randy: i’ll do some hammering tonight so we can add some stats
-RP: we’ve see one arm AB issue reading a message in /proc, but we’ve only
-    seen it once
-Randy: we don’t have any arm builders. what are you using?
-RP: ampere (something) and a huawei (something). not sure what the trigger is;
-    no idea how to reproduce. it’s a hanging read(), but you can still ssh
-    into the system. we may end up disabling the test
-
-
-PaulB: back to copyright headers. i’ve pasted the output of a run i’ve
-    just done looking for licenses. there’s probably some low-hanging fruit
-    there and some false positives.
