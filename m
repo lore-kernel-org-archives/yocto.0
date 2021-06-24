@@ -1,153 +1,57 @@
-Subject: devtool deploy-target with strip option: failed to preserve ownership #devtool #dunfell
-To: yocto@lists.yoctoproject.org
-From: florian.amstutz@scs.ch
-X-Originating-Location: Zurich, CH (178.197.232.116)
-X-Originating-Platform: Windows Chrome 91
-User-Agent: GROUPS.IO Web Poster
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web10.6382.1624535420242542141
+ for <yocto@lists.yoctoproject.org>;
+ Thu, 24 Jun 2021 04:50:20 -0700
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 198.145.29.25, mailfrom: rpjday@crashcourse.ca)
+Received: from cpanel8.indieserve.net (cpanel8.indieserve.net [199.212.143.3])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 8398B38C058A
+	for <yocto@yoctoproject.org>; Thu, 24 Jun 2021 11:50:19 +0000 (UTC)
+Received: from cpeac202e043973-cmac202e043970.sdns.net.rogers.com ([174.114.107.13]:55974 helo=fedora)
+	by cpanel8.indieserve.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <rpjday@crashcourse.ca>)
+	id 1lwNsC-0075f9-BB
+	for yocto@yoctoproject.org; Thu, 24 Jun 2021 07:50:18 -0400
+Date: Thu, 24 Jun 2021 07:50:15 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: what's the state of things with pushing the bounds on ASSUME_PROVIDED?
+Message-ID: <f5e52a14-95f1-5965-a71e-cd2a38fbd7ab@crashcourse.ca>
 MIME-Version: 1.0
-Date: Thu, 24 Jun 2021 03:11:13 -0700
-Message-ID: <zJVX.1624529473224576314.Ee3t@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="PHdFwwze7e11FXWqjXjK"
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel8.indieserve.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Get-Message-Sender-Via: cpanel8.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: cpanel8.indieserve.net: rpjday@crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Content-Type: text/plain; charset=US-ASCII
 
---PHdFwwze7e11FXWqjXjK
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+  i asked about this once upon a time, so i thought i'd follow up ...
+given the fairly stable state of recent linux distros, is there any
+standard for taking advantage of what *should* be robust native tools
+rather than building them? (i'm ignoring taking advantage of sstate
+and building SDKs and other clever speedups for now.)
 
-when I use "devtool deploy-target" with the --strip option in the eSDK, th=
-e ownership cannot be preserved during copying the files from "image" to "d=
-eploy-target-stripped":
+  from scratch, i did a wind river (LINCD) build of
+wrlinux-image-small (and i assume it would be much the same under
+current oe-core), and i notice that numerous native tools were
+compiled, including such standards as cmake, curl, elfutils ... the
+list goes on and on.
 
-devtool deploy-target --strip --no-host-check --no-preserve less root@192.=
-168.7.2
-cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortexa9t2h=
-f-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr/bin/less':=
- Operation not permitted
-cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortexa9t2h=
-f-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr/bin/lesske=
-y': Operation not permitted
-cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortexa9t2h=
-f-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr/bin/lessec=
-ho': Operation not permitted
-cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortexa9t2h=
-f-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr/bin': Oper=
-ation not permitted
-cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortexa9t2h=
-f-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr/share/man/=
-man1/less.1': Operation not permitted
-cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortexa9t2h=
-f-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr/share/man/=
-man1/lesskey.1': Operation not permitted
-cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortexa9t2h=
-f-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr/share/man/=
-man1/lessecho.1': Operation not permitted
-cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortexa9t2h=
-f-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr/share/man/=
-man1': Operation not permitted
-cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortexa9t2h=
-f-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr/share/man'=
-: Operation not permitted
-cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortexa9t2h=
-f-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr/share': Op=
-eration not permitted
-cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortexa9t2h=
-f-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr': Operatio=
-n not permitted
-cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortexa9t2h=
-f-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped': Operation no=
-t permitted
-INFO: Successfully deployed /home/yocto/sdk/tmp/work/cortexa9t2hf-neon-pok=
-y-linux-gnueabi/less/551-r0/deploy-target-stripped
+  so other than the tools that are *required* to be installed, if i
+mention that i am currently running ubuntu 20.04, is there any
+indication as to which tools i'm relatively safe to take advantage
+using ASSUME_PROVIDED and HOSTTOOLS? i realize that the versions built
+will probably differ from the host versions, but it seems that if
+there is an incompatibility, that would be fairly obvious in short
+order.
 
-On the target, the deployed files have then the ownership of the eSDK user=
-:
+  thoughts?
 
-root@qemu:~# ls -lah /usr/bin/less
--rwx------=C2=A0 =C2=A0 1 1002=C2=A0 =C2=A0 =C2=A01003=C2=A0 =C2=A0 =C2=A0=
- 116.7K Jun 24 08:53 /usr/bin/less
-
-"devtool deploy-target" without the --strip option works as expected. The =
-files are owned by root.
-
-The eSDK has been built and installed on the same machine (tested on Ubunt=
-u 16.04, 18.04 and 20.04).
-Used Yocto release: 3.1.8
-
-Thanks in advance for any help!
-
-Best regards,
-Florian
-
---PHdFwwze7e11FXWqjXjK
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>Hi all,</div>
-<div>&nbsp;</div>
-<div>when I use "devtool deploy-target" with the --strip option in the eSD=
-K, the ownership cannot be preserved during copying the files from "image" =
-to "deploy-target-stripped":</div>
-<div>&nbsp;</div>
-<div>devtool deploy-target --strip --no-host-check --no-preserve less root=
-@192.168.7.2</div>
-<div>cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortex=
-a9t2hf-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr/bin/l=
-ess': Operation not permitted</div>
-<div>cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortex=
-a9t2hf-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr/bin/l=
-esskey': Operation not permitted</div>
-<div>cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortex=
-a9t2hf-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr/bin/l=
-essecho': Operation not permitted</div>
-<div>cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortex=
-a9t2hf-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr/bin':=
- Operation not permitted</div>
-<div>cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortex=
-a9t2hf-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr/share=
-/man/man1/less.1': Operation not permitted</div>
-<div>cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortex=
-a9t2hf-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr/share=
-/man/man1/lesskey.1': Operation not permitted</div>
-<div>cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortex=
-a9t2hf-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr/share=
-/man/man1/lessecho.1': Operation not permitted</div>
-<div>cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortex=
-a9t2hf-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr/share=
-/man/man1': Operation not permitted</div>
-<div>cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortex=
-a9t2hf-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr/share=
-/man': Operation not permitted</div>
-<div>cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortex=
-a9t2hf-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr/share=
-': Operation not permitted</div>
-<div>cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortex=
-a9t2hf-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped/usr': Ope=
-ration not permitted</div>
-<div>cp: failed to preserve ownership for '/home/yocto/sdk/tmp/work/cortex=
-a9t2hf-neon-poky-linux-gnueabi/less/551-r0/deploy-target-stripped': Operati=
-on not permitted</div>
-<div>INFO: Successfully deployed /home/yocto/sdk/tmp/work/cortexa9t2hf-neo=
-n-poky-linux-gnueabi/less/551-r0/deploy-target-stripped</div>
-<div>&nbsp;</div>
-<div>On the target, the deployed files have then the ownership of the eSDK=
- user:</div>
-<div>&nbsp;</div>
-<div>root@qemu:~# ls -lah /usr/bin/less</div>
-<div>-rwx------&nbsp; &nbsp; 1 1002&nbsp; &nbsp; &nbsp;1003&nbsp; &nbsp; &=
-nbsp; 116.7K Jun 24 08:53 /usr/bin/less</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>"devtool deploy-target" without the --strip option works as expected.=
- The files are owned by root.</div>
-<div>&nbsp;</div>
-<div>The eSDK has been built and installed on the same machine (tested on =
-Ubuntu 16.04, 18.04 and 20.04).</div>
-<div>Used Yocto release: 3.1.8</div>
-<div>&nbsp;</div>
-<div>Thanks in advance for any help!</div>
-<div>&nbsp;</div>
-<div>Best regards,</div>
-<div>Florian</div>
-
---PHdFwwze7e11FXWqjXjK--
+rday
