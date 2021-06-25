@@ -1,117 +1,101 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.6326.1624621387689249137
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+ by mx.groups.io with SMTP id smtpd.web09.6319.1624621703755683756
  for <yocto@lists.yoctoproject.org>;
- Fri, 25 Jun 2021 04:43:07 -0700
+ Fri, 25 Jun 2021 04:48:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@linuxfoundation.org header.s=google header.b=Q8Imrott;
- spf=softfail (domain: linuxfoundation.org, ip: 198.145.29.25, mailfrom: richard.purdie@linuxfoundation.org)
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 29E4E38C052B
-	for <yocto@yoctoproject.org>; Fri, 25 Jun 2021 11:43:07 +0000 (UTC)
-Received: by mail-wr1-f41.google.com with SMTP id h11so10236843wrx.5
-        for <yocto@yoctoproject.org>; Fri, 25 Jun 2021 04:43:07 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=TQRkkMl4;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.42, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f42.google.com with SMTP id b3so10261817wrm.6
+        for <yocto@lists.yoctoproject.org>; Fri, 25 Jun 2021 04:48:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linuxfoundation.org; s=google;
         h=message-id:subject:from:to:date:in-reply-to:references:user-agent
          :mime-version:content-transfer-encoding;
-        bh=ORxV+HAzR/vEAGnZgfTeTpfdbH/2crRBSQ16LP9clak=;
-        b=Q8Imrottdl4+bM8b9aGnNfsqFEJNxqnA2MdYUqHc2lR7Rs6SFBUba6R+q3+m7mU4Ns
-         fSW26hxX2w9X8CV3zULnZHR87I6mOPFOT7j9hiRfHPkk2oQi7A01uViTE8crX+hxzK3X
-         ycXbU8s06y+m2hfgDrwubfrQfIzSbPUq1cZmo=
+        bh=0vUFjbOv57aFfsLY1PblItwBSeCZ00+V2NoIWc3cJDU=;
+        b=TQRkkMl45qK+gMq9LEDp0Kbhcd8Xxz070fCRVleVi3DOjzz09L98glw/Rr0fyWkYEn
+         gYZbQCx/sPVY6snj4KEtyJvJv13uE0pB7uqCDBA1Ov3IX4iCR2e83Nyr31xWhUpwuZzW
+         AX7rKFEFJLwSjtGbUmjMn8BCjc+yzWT9GkL3U=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
          :references:user-agent:mime-version:content-transfer-encoding;
-        bh=ORxV+HAzR/vEAGnZgfTeTpfdbH/2crRBSQ16LP9clak=;
-        b=H+RY5aBD8Sedk5uQGya6eLDvkjGvPM+uaT2UOY4CAoExdC2Hnu1RXPawncUmovUr9e
-         Pl6kkSIcGWl+JGXLbyBgHfK969koTv3qc67H8rBH+K/ec5nCEnfqxm9QJCYY72wbVQ4Y
-         k/V7yh5hSXt98H54fzySUUaPb8vf8/dNFxxpiAPUs6nivV1tpYp8GXfvDUz24AAtUCVE
-         DCRWrTyUeU4VKDZbm84zawgWXYXUr8wKWCwvx1lwRZb6qFx2ePvvOVd4Xv646zXOgxlc
-         393HuYvIBTZG2Tr9apxW6a8MxCEE9gkysGzfUMfQWE9KXeHKog+pUuowXbETrXNWZpdf
-         lEsA==
-X-Gm-Message-State: AOAM533uk5/6UsTpOOOhvbghX2cgmmxQDvst3fwKXJcNljg2QmhGNRY7
-	mESeZ1mQcVC7r+n21B8pynVdZEB6KUi9wQ==
-X-Google-Smtp-Source: ABdhPJymWP2E4FVgyv1GWUoQdsh2jd4W5ekPMJSJTkzWk4k2ThNb/YzhWSrXfBIeR5tmQe1Cq79D8w==
-X-Received: by 2002:a5d:4d01:: with SMTP id z1mr8251027wrt.288.1624621385760;
-        Fri, 25 Jun 2021 04:43:05 -0700 (PDT)
+        bh=0vUFjbOv57aFfsLY1PblItwBSeCZ00+V2NoIWc3cJDU=;
+        b=fXNm7IhS7rz5jYW9CAHY5bR9Gbyj5AdZoolqFxbbyFeUOlGkJioWow/IpJLZYWtqBh
+         PVJU68nZ1J4C87ymJkQpUD0IWMNzinfzKHtQTodzdFNU8mF9M5F0LLHjRWZZSWts+cqP
+         VDx04rODcs4kJGHJtLUzUasnxcxv3K5PvCUZU2m+Ve4v3Y5xbwbyKNpHtXXQDstx4/GC
+         AnqewW/r2p9A1gAsRQbVYz8rzLWmZ1DtkyfSvnpO39W1aGwGV2TrEV+IKV4L96W/Nvor
+         TPkcU864mq/RzytkGJBSgNjMYSCMDeWDA6YyGhkV4mNVarmjb9P5cIR3ahPUY/fZX5sq
+         lnNg==
+X-Gm-Message-State: AOAM532pHkKGbjFtTwfpa9u/vpjEbKT/Ul31tHU5XRJwWYaibQhziStk
+	eYsqn/LsKHf7dHWehfMVgjTAwg==
+X-Google-Smtp-Source: ABdhPJwIIiwuE09tkQk5h3HjpS9/v4GF+hc1M5Hr6iGhWu4qPnWlUrIYuN1lgHqSFLL87XeyTPwR/A==
+X-Received: by 2002:adf:ee4e:: with SMTP id w14mr10687176wro.108.1624621702122;
+        Fri, 25 Jun 2021 04:48:22 -0700 (PDT)
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: from ?IPv6:2001:8b0:aba:5f3c:628a:47d1:4c03:7e6d? ([2001:8b0:aba:5f3c:628a:47d1:4c03:7e6d])
-        by smtp.gmail.com with ESMTPSA id p8sm11627142wmi.46.2021.06.25.04.43.05
+        by smtp.gmail.com with ESMTPSA id g17sm860301wrw.31.2021.06.25.04.48.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Jun 2021 04:43:05 -0700 (PDT)
-Message-ID: <b83aaff909c4b8db568efebc24364778abf5b0f4.camel@linuxfoundation.org>
-Subject: Re: [yocto] what's the state of things with pushing the bounds on ASSUME_PROVIDED?
+        Fri, 25 Jun 2021 04:48:21 -0700 (PDT)
+Message-ID: <be7aa6a88919a2d2e4a2ce65ef614d45cbdd3449.camel@linuxfoundation.org>
+Subject: Re: [yocto] The do_populate_sdk is finishing OK even when there are errors present in the build
 From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	 <yocto@yoctoproject.org>
-Date: Fri, 25 Jun 2021 12:43:04 +0100
-In-Reply-To: <f5e52a14-95f1-5965-a71e-cd2a38fbd7ab@crashcourse.ca>
-References: <f5e52a14-95f1-5965-a71e-cd2a38fbd7ab@crashcourse.ca>
+To: Fabio Berton <fbberton@gmail.com>, yocto@lists.yoctoproject.org
+Date: Fri, 25 Jun 2021 12:48:21 +0100
+In-Reply-To: <CAEaGWUKmET2Le-hsEe-o+n1OU8uT+Vqd5TbmKVS8ZwKPQOok0w@mail.gmail.com>
+References: 
+	<CAEaGWUKmET2Le-hsEe-o+n1OU8uT+Vqd5TbmKVS8ZwKPQOok0w@mail.gmail.com>
 User-Agent: Evolution 3.40.0-1 
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Thu, 2021-06-24 at 07:50 -0400, Robert P. J. Day wrote:
-> =C2=A0=C2=A0i asked about this once upon a time, so i thought i'd follo=
-w up ...
-> given the fairly stable state of recent linux distros, is there any
-> standard for taking advantage of what *should* be robust native tools
-> rather than building them? (i'm ignoring taking advantage of sstate
-> and building SDKs and other clever speedups for now.)
->=20
-> =C2=A0=C2=A0from scratch, i did a wind river (LINCD) build of
-> wrlinux-image-small (and i assume it would be much the same under
-> current oe-core), and i notice that numerous native tools were
-> compiled, including such standards as cmake, curl, elfutils ... the
-> list goes on and on.
->=20
-> =C2=A0=C2=A0so other than the tools that are *required* to be installed=
-, if i
-> mention that i am currently running ubuntu 20.04, is there any
-> indication as to which tools i'm relatively safe to take advantage
-> using ASSUME_PROVIDED and HOSTTOOLS? i realize that the versions built
-> will probably differ from the host versions, but it seems that if
-> there is an incompatibility, that would be fairly obvious in short
-> order.
->=20
-> =C2=A0=C2=A0thoughts?
+On Thu, 2021-06-24 at 17:40 -0300, Fabio Berton wrote:
+> Hi all!
+> 
+> I'm running some test with do_populate_sdk task and I'm seeing this 
+> on the log:
+> 
+> check_data_file_clashes: Package kmsxx-dbg wants to install file /home/builder/build/tmp/work/foo-poky-
+> linux/core-image-minimal/1.0-r0/sdk/image/opt/bar/sysroots/aarch64-poky-linux/usr/bin/.debug/kmstest
+> But that file is already provided by package  * libdrm-dbg
+> 
+> I also see this kind of message with other packages.
+> 
+> Looking in the source code I found that the install_complementary 
+> function runs this [1] with attempt_only=True, and if attempt_only is 
+> true log above it's just a warning, as shown here [2].
+> 
+> This [3] comment says that "will only attempt to install these packages, 
+> if they don't exist then no error will occur."
+> 
+> My question is how can I force an error and not just a warning when 
+> running do_populate_sdk? 
+> 
+> I understand that I can change [1] to run:
+> 
+>   self.install(install_pkgs)
+> 
+> so, it'll use set attempt_only to False, that is the default, but I 
+> think this will break some use cases. 
+> 
+> What is the correct behaviour here, see the warning messages and fix 
+> the packages to avoid "file is already provided by package" messages, 
+> every time I create a SDK or change in some way to see an error message
+>  and stop SDK generation?
+> 
+> What is the correct behavior here, inspect the warning messages, and
+> fix the packages to avoid "file is already provided by package" messages,
+> every time I create an SDK or change it in some way to see an error 
+> message and stop the SDK generation?
 
-Quite often things aren't as simple as they first seem:
+It would probably be worth an experiment to see if we really do need the
+attempt_only option set there any more. I'd hope it isn't needed now...
 
-Elfutils has=C2=A0a history of interesting changes between versions so ha=
-ving=C2=A0
-our builds use a consistent version is good.
-
-Some recipes build libs as well as binaries, e.g. the compression tools.
-Its relatively easy to check a binary is present, it is harder to check
-the right -devel headers are present. That is a solvable problem but agai=
-n,=C2=A0
-version consistency is good. If you require a HOSTTOOLS bin but our own
-lib, you can get version mismatches.
-
-We do patch some utilities for 'reasons' and having those patches missing
-can be a pain and cause weird errors.
-
-Reproducibility is also a concern, particularly if different versions of=C2=
-=A0
-tools like flex/bison generated different code.
-
-I also wonder who is going to support testing all these different options
-and handle the resulting build failures and bugs being raised?
-
-This list isn't definitive.
-
-
-In summary, I see a lot of problems for what amounts to not much speed
-gain. Particularly when we have a mechanism like sstate available
-which allows binary reuse.
+It is probably worth testing a patch on the autobuilder, assuming your
+local tests with that pass. We'd need to check the different package
+backends are ok with that.
 
 Cheers,
 
 Richard
-
-
-
-
-
 
