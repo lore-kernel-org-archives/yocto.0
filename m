@@ -1,82 +1,125 @@
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
- by mx.groups.io with SMTP id smtpd.web08.9907.1624637803176097030
+Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
+ by mx.groups.io with SMTP id smtpd.web12.118.1624747576268767418
  for <yocto@lists.yoctoproject.org>;
- Fri, 25 Jun 2021 09:16:43 -0700
+ Sat, 26 Jun 2021 15:46:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Qd9JIBWm;
- spf=pass (domain: gmail.com, ip: 209.85.215.169, mailfrom: raj.khem@gmail.com)
-Received: by mail-pg1-f169.google.com with SMTP id d12so7966324pgd.9
-        for <yocto@lists.yoctoproject.org>; Fri, 25 Jun 2021 09:16:43 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=B7prG81F;
+ spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: chuckwolber@gmail.com)
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id AF04F38C0654
+	for <yocto@yoctoproject.org>; Sat, 26 Jun 2021 22:46:14 +0000 (UTC)
+Received: by mail-pj1-f49.google.com with SMTP id g24so7568982pji.4
+        for <yocto@yoctoproject.org>; Sat, 26 Jun 2021 15:46:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:references:from:organization:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=y3j3uIY3l4dSEwLUNc28SuzQonMCIP3QJTMsl53MLLw=;
-        b=Qd9JIBWmUFrc77VB3oX3lDzM8Jvs3aNKq+I0FTFQ5KKI5LgEau9h09XoXdmFEZUH99
-         BA55XG4N9BpCCj9Pe6Y51kfOC09zkmcmPz0Rffmvl6zRC0f4RJ6W3fNs8NzXvR/oW0eg
-         It4KQIgy3ltcLWa/KpQfyB7ThRpcFC4B8PtV7gxaqcGh8JDB+lRpHV+YQ7Ibe+DT7gVI
-         s3neXA30YvodIf6jEKjF27fqxuAUYAUSrNcHJX3dTZ02xV3102S2jhxnTw0Hq5v6jzq0
-         LuDCNa+dm5zmv6A/8o3H8dXt9N0vn5Dm4pK873U25EieAsEA+tf9tU0a6kVaIWZhxzBd
-         UM7A==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=BLEwrA2Z2hnqlQKeM+j4xhTVvOd36TztAa/WlAOIsNs=;
+        b=B7prG81F7cElCQSY5UWSTZIOdWq/8mVb4XvIVOMaFeOrsErYcVmz+1wwZp8EhgmJlY
+         t6I/lADl1uMD0IdfHqtbyC4+kuvyHSGb2eMZScvNv2pRnCvorxgWcxTJ0mqjJ2ww/EtU
+         3+cS6NgNJU02+xmwO7KoMmfnLfE+nvYpwW0yxm0pxn9WUiVg2yUGngoV4cdQsK6N+khF
+         qAeWmxHjni/5U2CR9mIt3PLEw7W1vKcbXtkeY/rV4avr3wXIEPL/Sxoyx4CrSYNG/k1V
+         xKPhnz02rLnjGPYPaCffgHZHn2r2xYVR1EXZpOB1owSRQ0avL19bjZpjfWvUljmGPHcF
+         Ukgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=y3j3uIY3l4dSEwLUNc28SuzQonMCIP3QJTMsl53MLLw=;
-        b=Je5yRgqBzuyxJ1K5QuggaD2Ys9EKhvDVfBhHLPGwUOmakTQWrs+TcnZg+9eSDG4uak
-         6C1tiJXqJFAZnOIcD7jqSJjKrdEMvUyprK/obR89/kkgnLAI4G07zZkMYAHir8mxNMsn
-         yYsReaopC6GPSZhcdTCL5JjRWVykrUlN30UJ7mpkDecfGgKyqwwCrkdjFMWF/PfYKgSF
-         fzQKQoF4vSb/mHC6QDskXrGGL6o8xi+IElwKB4P4QV54AsoqricJnXnt+Q6pW2tnjxAo
-         c+/RO2c9prt5Sw3AWpmF9Sskl62k/mzHyZzP0VDjVLcAuWmh9YY+6Z31/Jp8ctbVY6fa
-         UaTA==
-X-Gm-Message-State: AOAM530mlPMCt+x7AS+kIpK1M2Zsm5aa0ZBrfEuooD7zfH5QugsrFJp1
-	oRXNesOBnN5zCPx9JBOBm5V1TpJQHwcGPA==
-X-Google-Smtp-Source: ABdhPJzfEHLdkRAi5gyjn9qmU6YR3DzUOmD5wePQjZJsv+fGgIzbMZpbehRa57YBEaJdAie58lUMDQ==
-X-Received: by 2002:a62:7a49:0:b029:302:c04b:36d1 with SMTP id v70-20020a627a490000b0290302c04b36d1mr11294749pfc.27.1624637802364;
-        Fri, 25 Jun 2021 09:16:42 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:a0f0:9c2:2fa:950b:5920? ([2601:646:9200:a0f0:9c2:2fa:950b:5920])
-        by smtp.gmail.com with ESMTPSA id a9sm6148657pfo.69.2021.06.25.09.16.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Jun 2021 09:16:41 -0700 (PDT)
-Subject: Re: [yocto] Recipe for include-what-you-use and rpath problem #sdk
-To: Francesco Cusolito <mous16@gmail.com>, yocto@lists.yoctoproject.org
-References: <83Fh.1622711773141741245.p9im@lists.yoctoproject.org>
- <20394.1624629623473093776@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-Message-ID: <671afd28-0407-36ff-488f-171e91c0b67b@gmail.com>
-Date: Fri, 25 Jun 2021 09:16:40 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.11.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BLEwrA2Z2hnqlQKeM+j4xhTVvOd36TztAa/WlAOIsNs=;
+        b=XsEFH8VQG1w06JAFjiUV6xWTjwlMCq+bCBvVGyL4FE6c9Xzh1M+4A44LRnegjR4Z65
+         G7iPSnmc2BrlBhapxiNyfGEPnSJx1ily8CS97JiC7TDUVuBVAd7xNavW70IwRHsJIL1o
+         PtG5t32HyAmQtousv1i7+FkpyXMkSi2d8cHLfUZgTo0Dc0Ec3y3HZkf7Fh3S0rqQn0Z5
+         lBg3K3NuvdgLvRMIEsJ8FW6rsvs2FX0xzh3/848RgAPGqnN4/FvPMWvz/5/KEq0PD77w
+         LHxKVXeCsXFKYKgVRQwRTHk2w7H20NduFzjnJ8ePFHwSwNYtdH2ZrzALJtDZP61gjl2M
+         Gb+Q==
+X-Gm-Message-State: AOAM533p6z0sQT8pjXiYRlbTYw8lQGiP7PSmqS7NihxLucNb6SryjENP
+	mpaacQCuLmDozvSPe0v/+BenCHmkVOqvYRJY+34=
+X-Google-Smtp-Source: ABdhPJw0eA0v/Q9BoJveThU0vsTRI9JXSvgyYEp0EUhCaPtYovv3YDIUYF1a5hR6gvF1nCV15GosJtjGPGEgkIi8V7M=
+X-Received: by 2002:a17:902:ecca:b029:128:a0a8:40e0 with SMTP id
+ a10-20020a170902eccab0290128a0a840e0mr8406367plh.2.1624747573941; Sat, 26 Jun
+ 2021 15:46:13 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20394.1624629623473093776@lists.yoctoproject.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <f5e52a14-95f1-5965-a71e-cd2a38fbd7ab@crashcourse.ca> <b83aaff909c4b8db568efebc24364778abf5b0f4.camel@linuxfoundation.org>
+In-Reply-To: <b83aaff909c4b8db568efebc24364778abf5b0f4.camel@linuxfoundation.org>
+From: "Chuck Wolber" <chuckwolber@gmail.com>
+Date: Sat, 26 Jun 2021 15:46:02 -0700
+Message-ID: <CAB=6tBSdwLGt7nfVJB+7o3i9rffJ3kP8Ux_tnEmy3eCNa2ywWQ@mail.gmail.com>
+Subject: Re: [yocto] what's the state of things with pushing the bounds on ASSUME_PROVIDED?
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list <yocto@yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000fe9a9f05c5b30504"
 
+--000000000000fe9a9f05c5b30504
+Content-Type: text/plain; charset="UTF-8"
 
+On Fri, Jun 25, 2021 at 4:43 AM Richard Purdie <
+richard.purdie@linuxfoundation.org> wrote:
 
-On 6/25/21 7:00 AM, Francesco Cusolito wrote:
-> I was able to make it work correctly enabling |CMAKE_SKIP_RPATH|.
-> Here the working full recipe:
+>
+> In summary, I see a lot of problems for what amounts to not much speed
+> gain. Particularly when we have a mechanism like sstate available
+> which allows binary reuse.
+>
 
-this is fine, if you are interested submit it as a patch to include in 
-metadata in meta-python
+Very strong agreement here. My 2c is that Yocto/OE should be going in that
+direction even
+further. One of the significant benefits of the OE build method is
+eliminating, to the greatest
+extent possible, the (usually) undetectable influence of variations in the
+host platforms.
 
-> 
-> |LICENSE = "NCSA" LIC_FILES_CHKSUM = 
-> "file://LICENSE.TXT;md5=59d01ad98720f3c50d6a8a0ef3108c88 \ 
-> file://iwyu-check-license-header.py;md5=cdc4ab52c0b26e216cbf434649d30403" SRC_URI 
-> = 
-> "git://github.com/include-what-you-use/include-what-you-use.git;protocol=https;branch=clang_10" 
-> PV = "0.14+git${SRCPV}" SRCREV = "0.14" S = "${WORKDIR}/git" DEPENDS = 
-> "clang" inherit cmake python3native EXTRA_OECMAKE_append_class-nativesdk 
-> = " \ -DCMAKE_SKIP_RPATH:BOOL=ON \ " BBCLASSEXTEND_append = " \ 
-> nativesdk \ " |
-> 
-> 
-> 
-> 
-> 
+Any given distro is probably stable enough, but that does not guarantee a
+consistent result if
+we attempted to build the same image on all available stable distros. We
+might get lucky and
+actually achieve that, but I would not bet my life on it, particularly if
+we started using even more
+native tooling.
+
+"Stability is a local construct, not a global one."
+
+For our own project, we have taken this as far as practical. We eliminated
+the third party
+distro host platform (Ubuntu) about five years ago and built our host
+platform from Yocto/OE
+sources. Each new version of our host platform is built from the previous
+one.
+
+..Ch:W..
+
+-- 
+*"Perfection must be reached by degrees; she requires the slow hand of
+time." - Voltaire*
+
+--000000000000fe9a9f05c5b30504
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">On Fri, Jun 25, 2021 at 4:43 AM Richard P=
+urdie &lt;<a href=3D"mailto:richard.purdie@linuxfoundation.org">richard.pur=
+die@linuxfoundation.org</a>&gt; wrote:<br></div><div class=3D"gmail_quote">=
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex"><br>
+In summary, I see a lot of problems for what amounts to not much speed<br>
+gain. Particularly when we have a mechanism like sstate available<br>
+which allows binary reuse.<br></blockquote></div><div><br></div><div>Very s=
+trong agreement here. My 2c is that Yocto/OE should be going in that direct=
+ion even</div><div>further. One of the significant benefits of the OE build=
+ method is eliminating, to the greatest</div><div>extent possible, the (usu=
+ally) undetectable influence of variations in the host platforms.</div><div=
+><br></div><div>Any given distro is probably stable enough, but that does n=
+ot guarantee a consistent result if</div><div>we attempted to build the sam=
+e image on all available stable distros. We might get lucky and</div><div>a=
+ctually achieve that, but I would not bet my life on it, particularly if we=
+ started using even more</div><div>native tooling.</div><div><br></div><div=
+>&quot;Stability is a local construct, not a global one.&quot;</div><div><b=
+r></div><div>For our own project, we have taken this as far as practical. W=
+e eliminated the third party</div><div>distro host platform (Ubuntu) about =
+five years ago and built our host platform from Yocto/OE</div><div>sources.=
+ Each new version of our host platform is built from the previous one.<br><=
+/div><div><br></div><div>..Ch:W..</div><div><br></div>-- <br><div dir=3D"lt=
+r" class=3D"gmail_signature"><div dir=3D"ltr"><div><b><span style=3D"font-f=
+amily:monospace">&quot;Perfection must be reached by degrees; she requires =
+the slow hand of time.&quot; - Voltaire</span></b></div></div></div></div>
+
+--000000000000fe9a9f05c5b30504--
