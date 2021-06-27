@@ -1,125 +1,87 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.118.1624747576268767418
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+ by mx.groups.io with SMTP id smtpd.web09.1572.1624819562061054233
  for <yocto@lists.yoctoproject.org>;
- Sat, 26 Jun 2021 15:46:16 -0700
+ Sun, 27 Jun 2021 11:46:02 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=B7prG81F;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: chuckwolber@gmail.com)
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id AF04F38C0654
-	for <yocto@yoctoproject.org>; Sat, 26 Jun 2021 22:46:14 +0000 (UTC)
-Received: by mail-pj1-f49.google.com with SMTP id g24so7568982pji.4
-        for <yocto@yoctoproject.org>; Sat, 26 Jun 2021 15:46:14 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=sN1B78UT;
+ spf=pass (domain: gmail.com, ip: 209.85.160.177, mailfrom: twoerner@gmail.com)
+Received: by mail-qt1-f177.google.com with SMTP id g12so11876889qtb.2
+        for <yocto@lists.yoctoproject.org>; Sun, 27 Jun 2021 11:46:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=BLEwrA2Z2hnqlQKeM+j4xhTVvOd36TztAa/WlAOIsNs=;
-        b=B7prG81F7cElCQSY5UWSTZIOdWq/8mVb4XvIVOMaFeOrsErYcVmz+1wwZp8EhgmJlY
-         t6I/lADl1uMD0IdfHqtbyC4+kuvyHSGb2eMZScvNv2pRnCvorxgWcxTJ0mqjJ2ww/EtU
-         3+cS6NgNJU02+xmwO7KoMmfnLfE+nvYpwW0yxm0pxn9WUiVg2yUGngoV4cdQsK6N+khF
-         qAeWmxHjni/5U2CR9mIt3PLEw7W1vKcbXtkeY/rV4avr3wXIEPL/Sxoyx4CrSYNG/k1V
-         xKPhnz02rLnjGPYPaCffgHZHn2r2xYVR1EXZpOB1owSRQ0avL19bjZpjfWvUljmGPHcF
-         Ukgg==
+        h=date:from:to:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=PGNEPbFhwA6UOzKahIK8Msf5m6usUw0Pv3cywovhpD4=;
+        b=sN1B78UT7n6HUY/JmhaVGXLP/Qkgrmmee2+HrmpT7+hQ38wCKfRSKU+I0xHzfDaMS/
+         vwsnIGGmtafsmDWWvjvzyV7iIsjc+GLiZRMZsUdcIzetK2AAhUMhYJPl4BnlNu2sBcdv
+         j0oi/tGV8rlTktMlu+XjqkcWKgDNHuXniblFi5gjQx8wYbcOZK87dA6z1Q2pybqPWlmL
+         VqrYzy+ndOIVKtfDI6E7Iq/feIQCacmYC6+9VLkanJgrKZnJCjp5qFSgDojagE0oDf5e
+         3rykmnGmvLByj8DWe3f4qIfM/hrIlQhrQXz0buFDt0yCsh/plofHThjgMA0z+2BuRiOA
+         s52A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=BLEwrA2Z2hnqlQKeM+j4xhTVvOd36TztAa/WlAOIsNs=;
-        b=XsEFH8VQG1w06JAFjiUV6xWTjwlMCq+bCBvVGyL4FE6c9Xzh1M+4A44LRnegjR4Z65
-         G7iPSnmc2BrlBhapxiNyfGEPnSJx1ily8CS97JiC7TDUVuBVAd7xNavW70IwRHsJIL1o
-         PtG5t32HyAmQtousv1i7+FkpyXMkSi2d8cHLfUZgTo0Dc0Ec3y3HZkf7Fh3S0rqQn0Z5
-         lBg3K3NuvdgLvRMIEsJ8FW6rsvs2FX0xzh3/848RgAPGqnN4/FvPMWvz/5/KEq0PD77w
-         LHxKVXeCsXFKYKgVRQwRTHk2w7H20NduFzjnJ8ePFHwSwNYtdH2ZrzALJtDZP61gjl2M
-         Gb+Q==
-X-Gm-Message-State: AOAM533p6z0sQT8pjXiYRlbTYw8lQGiP7PSmqS7NihxLucNb6SryjENP
-	mpaacQCuLmDozvSPe0v/+BenCHmkVOqvYRJY+34=
-X-Google-Smtp-Source: ABdhPJw0eA0v/Q9BoJveThU0vsTRI9JXSvgyYEp0EUhCaPtYovv3YDIUYF1a5hR6gvF1nCV15GosJtjGPGEgkIi8V7M=
-X-Received: by 2002:a17:902:ecca:b029:128:a0a8:40e0 with SMTP id
- a10-20020a170902eccab0290128a0a840e0mr8406367plh.2.1624747573941; Sat, 26 Jun
- 2021 15:46:13 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=PGNEPbFhwA6UOzKahIK8Msf5m6usUw0Pv3cywovhpD4=;
+        b=J2fOuSGEgFTropaVxkReHZ+ExpRuGT8LwDkx3YLgRe7B/HhO6qhRB+ySF9R0GyYuBt
+         pcdF13GrVcCsr54z0/DrfQcmrqNIfFvkZak1YFpzk4I+ztBarBd5+uo028TcrZBEiZ2S
+         YRVXZBQZ/5KJ2lO6FD8NqVjfwHoGjYctXl5Yc/M5BUF/eQJv1tiepHOj8zoh1kyZQOzj
+         nvHRoB25DmfIexN0a9pzGsOindauex7aqubsVqrLFWMU0CpIHahk24jRjCLtY6NA+pZX
+         fZE190YCJ4d7xuuvJ5L4aoPkQVVq3xvXVbcslzsnJyV15X/h4SiYOOLzzI8sBmb7EUgW
+         H/hQ==
+X-Gm-Message-State: AOAM5328h/6zGmlnPTR9KN8uRFPL5xMrAVfePmKiad+7IS9dHvZ8IApz
+	kADfRANgRc8O/r/9zoNNS9XOPSSZdqEUGQ==
+X-Google-Smtp-Source: ABdhPJzxj6M0apjM1PAlbWAj6d110FupaMT4xuwJSKSYAqrPp6RpEeg/MOdfcfVRwzaiNw0ZYOmlYw==
+X-Received: by 2002:ac8:4e89:: with SMTP id 9mr18518682qtp.356.1624819560823;
+        Sun, 27 Jun 2021 11:46:00 -0700 (PDT)
+Return-Path: <twoerner@gmail.com>
+Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id h11sm4372782qkn.71.2021.06.27.11.45.59
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Jun 2021 11:46:00 -0700 (PDT)
+Date: Sun, 27 Jun 2021 14:45:58 -0400
+From: "Trevor Woerner" <twoerner@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: Re: [meta-rockchip][PATCH v2] console cleanup
+Message-ID: <20210627184558.GA29335@localhost>
+References: <20210624123959.10105-1-twoerner@gmail.com>
 MIME-Version: 1.0
-References: <f5e52a14-95f1-5965-a71e-cd2a38fbd7ab@crashcourse.ca> <b83aaff909c4b8db568efebc24364778abf5b0f4.camel@linuxfoundation.org>
-In-Reply-To: <b83aaff909c4b8db568efebc24364778abf5b0f4.camel@linuxfoundation.org>
-From: "Chuck Wolber" <chuckwolber@gmail.com>
-Date: Sat, 26 Jun 2021 15:46:02 -0700
-Message-ID: <CAB=6tBSdwLGt7nfVJB+7o3i9rffJ3kP8Ux_tnEmy3eCNa2ywWQ@mail.gmail.com>
-Subject: Re: [yocto] what's the state of things with pushing the bounds on ASSUME_PROVIDED?
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list <yocto@yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000fe9a9f05c5b30504"
+In-Reply-To: <20210624123959.10105-1-twoerner@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
---000000000000fe9a9f05c5b30504
-Content-Type: text/plain; charset="UTF-8"
+On Thu 2021-06-24 @ 08:39:59 AM, Trevor Woerner wrote:
+> Consolidate all the various console definitions to the common
+> conf/machine/include/rockchip-defaults.inc file and create
+> RK_CONSOLE_BAUD and RK_CONSOLE_DEVICE variables that can be
+> reused in the wks files.
+> 
+> The following variables were checked before and after this patch
+> to make sure they are sensible:
+> - SERIAL_CONSOLES
+> - RK_CONSOLE_DEVICE
+> - RK_CONSOLE_BAUD
+> 
+> A boot test was performed on the following boards to make sure
+> they all continue to boot to a cmdline:
+> - tinker-board
+> - rock-pi-e
+> - nanopi-m4-2gb
+> - rock64
+> - rock-pi-4b
+> 
+> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> ---
+> Changes from v1:
+> - In v1 I defined RK_CONSOLE_BAUD and RK_CONSOLE_DEVICE for each MACHINE
+>   and then redefined SERIAL_CONSOLES to be the concatenation of these two
+>   variables. Khem pointed out this is a bad approach because I'm redefining
+>   an oe-core-defined variable that all BSPs expect.
+> - In v2 I set/consolidate SERIAL_CONSOLES for each MACHINE and then generate
+>   RK_CONSOLE_BAUD and RK_CONSOLE_DEVICE based on the first-defined
+>   <baud>;<device> pair found in SERIAL_CONSOLES; these generated variables are
+>   then used in the wks files.
 
-On Fri, Jun 25, 2021 at 4:43 AM Richard Purdie <
-richard.purdie@linuxfoundation.org> wrote:
-
->
-> In summary, I see a lot of problems for what amounts to not much speed
-> gain. Particularly when we have a mechanism like sstate available
-> which allows binary reuse.
->
-
-Very strong agreement here. My 2c is that Yocto/OE should be going in that
-direction even
-further. One of the significant benefits of the OE build method is
-eliminating, to the greatest
-extent possible, the (usually) undetectable influence of variations in the
-host platforms.
-
-Any given distro is probably stable enough, but that does not guarantee a
-consistent result if
-we attempted to build the same image on all available stable distros. We
-might get lucky and
-actually achieve that, but I would not bet my life on it, particularly if
-we started using even more
-native tooling.
-
-"Stability is a local construct, not a global one."
-
-For our own project, we have taken this as far as practical. We eliminated
-the third party
-distro host platform (Ubuntu) about five years ago and built our host
-platform from Yocto/OE
-sources. Each new version of our host platform is built from the previous
-one.
-
-..Ch:W..
-
--- 
-*"Perfection must be reached by degrees; she requires the slow hand of
-time." - Voltaire*
-
---000000000000fe9a9f05c5b30504
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">On Fri, Jun 25, 2021 at 4:43 AM Richard P=
-urdie &lt;<a href=3D"mailto:richard.purdie@linuxfoundation.org">richard.pur=
-die@linuxfoundation.org</a>&gt; wrote:<br></div><div class=3D"gmail_quote">=
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left:1px solid rgb(204,204,204);padding-left:1ex"><br>
-In summary, I see a lot of problems for what amounts to not much speed<br>
-gain. Particularly when we have a mechanism like sstate available<br>
-which allows binary reuse.<br></blockquote></div><div><br></div><div>Very s=
-trong agreement here. My 2c is that Yocto/OE should be going in that direct=
-ion even</div><div>further. One of the significant benefits of the OE build=
- method is eliminating, to the greatest</div><div>extent possible, the (usu=
-ally) undetectable influence of variations in the host platforms.</div><div=
-><br></div><div>Any given distro is probably stable enough, but that does n=
-ot guarantee a consistent result if</div><div>we attempted to build the sam=
-e image on all available stable distros. We might get lucky and</div><div>a=
-ctually achieve that, but I would not bet my life on it, particularly if we=
- started using even more</div><div>native tooling.</div><div><br></div><div=
->&quot;Stability is a local construct, not a global one.&quot;</div><div><b=
-r></div><div>For our own project, we have taken this as far as practical. W=
-e eliminated the third party</div><div>distro host platform (Ubuntu) about =
-five years ago and built our host platform from Yocto/OE</div><div>sources.=
- Each new version of our host platform is built from the previous one.<br><=
-/div><div><br></div><div>..Ch:W..</div><div><br></div>-- <br><div dir=3D"lt=
-r" class=3D"gmail_signature"><div dir=3D"ltr"><div><b><span style=3D"font-f=
-amily:monospace">&quot;Perfection must be reached by degrees; she requires =
-the slow hand of time.&quot; - Voltaire</span></b></div></div></div></div>
-
---000000000000fe9a9f05c5b30504--
+Applied to meta-rockchip master.
