@@ -1,87 +1,62 @@
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
- by mx.groups.io with SMTP id smtpd.web09.1572.1624819562061054233
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
+ by mx.groups.io with SMTP id smtpd.web10.2168.1624822484949784955
  for <yocto@lists.yoctoproject.org>;
- Sun, 27 Jun 2021 11:46:02 -0700
+ Sun, 27 Jun 2021 12:34:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=sN1B78UT;
- spf=pass (domain: gmail.com, ip: 209.85.160.177, mailfrom: twoerner@gmail.com)
-Received: by mail-qt1-f177.google.com with SMTP id g12so11876889qtb.2
-        for <yocto@lists.yoctoproject.org>; Sun, 27 Jun 2021 11:46:01 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=pvdc79j+;
+ spf=pass (domain: gmail.com, ip: 209.85.215.179, mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f179.google.com with SMTP id u14so6945584pga.11
+        for <yocto@lists.yoctoproject.org>; Sun, 27 Jun 2021 12:34:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=PGNEPbFhwA6UOzKahIK8Msf5m6usUw0Pv3cywovhpD4=;
-        b=sN1B78UT7n6HUY/JmhaVGXLP/Qkgrmmee2+HrmpT7+hQ38wCKfRSKU+I0xHzfDaMS/
-         vwsnIGGmtafsmDWWvjvzyV7iIsjc+GLiZRMZsUdcIzetK2AAhUMhYJPl4BnlNu2sBcdv
-         j0oi/tGV8rlTktMlu+XjqkcWKgDNHuXniblFi5gjQx8wYbcOZK87dA6z1Q2pybqPWlmL
-         VqrYzy+ndOIVKtfDI6E7Iq/feIQCacmYC6+9VLkanJgrKZnJCjp5qFSgDojagE0oDf5e
-         3rykmnGmvLByj8DWe3f4qIfM/hrIlQhrQXz0buFDt0yCsh/plofHThjgMA0z+2BuRiOA
-         s52A==
+        h=from:to:subject:date:message-id;
+        bh=vyF+Y1TAaeHkJxQRvytH74pL3jrc9rTOVqtLok5/Vv0=;
+        b=pvdc79j+On5j9H06X7ApoxmktlL4aFD2GaFCMUqv8MmciROdGFwnusAlGmSbuT/BQU
+         0D/SrJot0B6zDgAEqKieaSEUZAKrmLI5JLPVwp+8NV51KhDkxGexztBubg/SE0zaTz8U
+         U1jiJLS+Kc9uPhotAkKFsXeECZgi/LSx8ANsQ1njJ/7KMWBgQi3nH06Dj6gNwdq110nI
+         YW89L2FnYvMq8JtuoWOzsoV432As0ibB7znXO2ZK9205Ek42lUaODwY7WNyCjRk3I9wm
+         PhD07ACuUwTNkSesI0BBuSTXbnalRtT7BaKmrhKFmhlD9BduZISJlgax3lG2A92m4Zu7
+         /TMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=PGNEPbFhwA6UOzKahIK8Msf5m6usUw0Pv3cywovhpD4=;
-        b=J2fOuSGEgFTropaVxkReHZ+ExpRuGT8LwDkx3YLgRe7B/HhO6qhRB+ySF9R0GyYuBt
-         pcdF13GrVcCsr54z0/DrfQcmrqNIfFvkZak1YFpzk4I+ztBarBd5+uo028TcrZBEiZ2S
-         YRVXZBQZ/5KJ2lO6FD8NqVjfwHoGjYctXl5Yc/M5BUF/eQJv1tiepHOj8zoh1kyZQOzj
-         nvHRoB25DmfIexN0a9pzGsOindauex7aqubsVqrLFWMU0CpIHahk24jRjCLtY6NA+pZX
-         fZE190YCJ4d7xuuvJ5L4aoPkQVVq3xvXVbcslzsnJyV15X/h4SiYOOLzzI8sBmb7EUgW
-         H/hQ==
-X-Gm-Message-State: AOAM5328h/6zGmlnPTR9KN8uRFPL5xMrAVfePmKiad+7IS9dHvZ8IApz
-	kADfRANgRc8O/r/9zoNNS9XOPSSZdqEUGQ==
-X-Google-Smtp-Source: ABdhPJzxj6M0apjM1PAlbWAj6d110FupaMT4xuwJSKSYAqrPp6RpEeg/MOdfcfVRwzaiNw0ZYOmlYw==
-X-Received: by 2002:ac8:4e89:: with SMTP id 9mr18518682qtp.356.1624819560823;
-        Sun, 27 Jun 2021 11:46:00 -0700 (PDT)
-Return-Path: <twoerner@gmail.com>
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id h11sm4372782qkn.71.2021.06.27.11.45.59
+        h=x-gm-message-state:from:to:subject:date:message-id;
+        bh=vyF+Y1TAaeHkJxQRvytH74pL3jrc9rTOVqtLok5/Vv0=;
+        b=lXh0vZwx7EAAwYHYvBB2w4LWctvQ33q/ekeuXtKSFIGSQm0jDaaabxVhWHo6P8XNb+
+         xfAS9qIDe8qtTflVSPX9j9EjBdSkHcKoY14hDq/Qu3BhYUyiipUKNvl0jwIF51Tbuaar
+         xRRo4jC/NjewSEs+IdSWRdcWcF+HJzIEqp6ejDygRArjyDjPGMbDdhsTdAerHajYvRLW
+         Ka9j7cAA3BcqpeY92e1rCP+HxJsW7kvioc0WicpdN+vEJW6dXk13LmKCVP0FVARNLMNE
+         V07/cCaTm6fFavXfiU1TH+e+wz52E3BthJi+d9DSUugaW18atZsBcO+r3lC/COqEwL1l
+         OGGA==
+X-Gm-Message-State: AOAM533snVWHrx8Ko5+0RdUnVWJVlmjZia8YOOKjeMz/aaQ+uW6MvTNo
+	ESXbQ0t0lkmkG1arQ2v0/rLxPpHMFvwtAw==
+X-Google-Smtp-Source: ABdhPJy8jtMH+vqM+KjSKYpc4i3nm+ZlfHclekFqlMVhgcZdCIxwEwKO9ukSocBbqEMGctGr5XVqzQ==
+X-Received: by 2002:a63:4002:: with SMTP id n2mr19704694pga.124.1624822484253;
+        Sun, 27 Jun 2021 12:34:44 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from akuster-ThinkPad-T460s.hsd1.ca.comcast.net ([2601:202:4180:a5c0:90a0:cfd2:ffe1:efef])
+        by smtp.gmail.com with ESMTPSA id e1sm345670pgr.37.2021.06.27.12.34.43
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Jun 2021 11:46:00 -0700 (PDT)
-Date: Sun, 27 Jun 2021 14:45:58 -0400
-From: "Trevor Woerner" <twoerner@gmail.com>
+        Sun, 27 Jun 2021 12:34:43 -0700 (PDT)
+From: "Armin Kuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: Re: [meta-rockchip][PATCH v2] console cleanup
-Message-ID: <20210627184558.GA29335@localhost>
-References: <20210624123959.10105-1-twoerner@gmail.com>
-MIME-Version: 1.0
-In-Reply-To: <20210624123959.10105-1-twoerner@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Subject: [meta-security][PATCH 1/4] initramfs-framework: fix typo in conditional
+Date: Sun, 27 Jun 2021 12:34:39 -0700
+Message-Id: <20210627193442.18651-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
 
-On Thu 2021-06-24 @ 08:39:59 AM, Trevor Woerner wrote:
-> Consolidate all the various console definitions to the common
-> conf/machine/include/rockchip-defaults.inc file and create
-> RK_CONSOLE_BAUD and RK_CONSOLE_DEVICE variables that can be
-> reused in the wks files.
-> 
-> The following variables were checked before and after this patch
-> to make sure they are sensible:
-> - SERIAL_CONSOLES
-> - RK_CONSOLE_DEVICE
-> - RK_CONSOLE_BAUD
-> 
-> A boot test was performed on the following boards to make sure
-> they all continue to boot to a cmdline:
-> - tinker-board
-> - rock-pi-e
-> - nanopi-m4-2gb
-> - rock64
-> - rock-pi-4b
-> 
-> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
-> ---
-> Changes from v1:
-> - In v1 I defined RK_CONSOLE_BAUD and RK_CONSOLE_DEVICE for each MACHINE
->   and then redefined SERIAL_CONSOLES to be the concatenation of these two
->   variables. Khem pointed out this is a bad approach because I'm redefining
->   an oe-core-defined variable that all BSPs expect.
-> - In v2 I set/consolidate SERIAL_CONSOLES for each MACHINE and then generate
->   RK_CONSOLE_BAUD and RK_CONSOLE_DEVICE based on the first-defined
->   <baud>;<device> pair found in SERIAL_CONSOLES; these generated variables are
->   then used in the wks files.
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-core/initrdscripts/initramfs-framework_1.0.bbappend | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Applied to meta-rockchip master.
+diff --git a/recipes-core/initrdscripts/initramfs-framework_1.0.bbappend b/recipes-core/initrdscripts/initramfs-framework_1.0.bbappend
+index dc74e01..f5d476e 100644
+--- a/recipes-core/initrdscripts/initramfs-framework_1.0.bbappend
++++ b/recipes-core/initrdscripts/initramfs-framework_1.0.bbappend
+@@ -1 +1 @@
+-require ${@bb.utils.contains('IMAGE_CLASSES', 'dm-verity', 'initramfs-framework.inc', '', d)}
++require ${@bb.utils.contains('IMAGE_CLASSES', 'dm-verity-img', 'initramfs-framework.inc', '', d)}
+-- 
+2.17.1
+
