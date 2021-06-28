@@ -1,74 +1,73 @@
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
- by mx.groups.io with SMTP id smtpd.web08.12660.1624893346504541145
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+ by mx.groups.io with SMTP id smtpd.web09.12503.1624893347491808798
  for <yocto@lists.yoctoproject.org>;
- Mon, 28 Jun 2021 08:15:46 -0700
+ Mon, 28 Jun 2021 08:15:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=WtHhfU8b;
- spf=pass (domain: gmail.com, ip: 209.85.160.174, mailfrom: twoerner@gmail.com)
-Received: by mail-qt1-f174.google.com with SMTP id r7so13759694qta.12
-        for <yocto@lists.yoctoproject.org>; Mon, 28 Jun 2021 08:15:46 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Ylym9TRT;
+ spf=pass (domain: gmail.com, ip: 209.85.222.176, mailfrom: twoerner@gmail.com)
+Received: by mail-qk1-f176.google.com with SMTP id g4so27846476qkl.1
+        for <yocto@lists.yoctoproject.org>; Mon, 28 Jun 2021 08:15:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:mime-version
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=QXgEwN4G4IY35nXeRI71hPq4cF/EnBhtMUgrqLAQo14=;
-        b=WtHhfU8bfDa4o0YDr6t/Y2S7fZZWUmZiu08ObW/z9qtJrcIBL5OK1sTbQMqZWdQXrK
-         VXOxiE+/D2bmqK6fgp0b8IBl41VOyadQyVrU/xYwX+TGkfhaTbA7HKWZVnJK5QF2KrDT
-         h0LMuKb1ZxcDj2CEAaLSlUCoLq6Z1z6k6E2ZVnYLY/3OBhZV5hoG0pytWIU7EKSBblTG
-         7SUYz9iN4qkl/QvpMtZ7ZkoFV67Izz5RlOt4A7ZB1pIZVTUC5wa+a29LtbtWsmP9zpAK
-         Khr9n2v8w2jUbhWceLkxNcDZlav6Ogp+vDWw97ryrHz9OVkjQy7MVUc5oVzHCeEfibKc
-         ByXw==
+        bh=AGrXAyCUy+Zwa7gEVssPuhMPiRqsBW8VkG0Ozl2n9rY=;
+        b=Ylym9TRTYSIRkYAnA0zSQCY5vHgffubWGp4WOXFkYO5pcS7sXczhxn+X14tZFYJtmF
+         9k2iCqIj1TTI6+iTRWZ5E0O3HvS57ajmcQZus1Y/sSmMoWbCUXxppgz4Y41TLTFFi9Kh
+         1JyiTzxoR6UZX/4J10d36l+N7tp2RKF7rAAP33yOJTeniYDxe//ZXygWN+nucxTKucM5
+         IzfAfmtc1u7J3zMi5s6KpDKlf8t4cTUA/5xzrSWk0lCr5AaXxpes1DwX0/LaAVdGI4DI
+         STaoFswgghwBTXqGTLGUOJyECB3a69PDwo33crhaJnXQReaKd/d7uOkoy0sfwVbgbhQ+
+         7nnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=QXgEwN4G4IY35nXeRI71hPq4cF/EnBhtMUgrqLAQo14=;
-        b=qU2mhefA92C3zX/zS92iCPNXmxn/I4sCMjF0KzikRjEdtxWzPzWNOvbueqrAdyxF4J
-         jXsMR6holPWmFQSrzYLGxKs4qcgIY5+ZVrML9yOowYLjZDS7p+/0krz9ptd+1qpM0vzd
-         Jn77zjEVRBKN8s2hpMOLYYas1tMHbtshgoKSyjV4YgXqm+lRyIxNxHZxHZnzry8S2gcP
-         4rmEjG6htFw9LPVsx6SQfCH5n6qRB7MJn9PEBNfyTbUFteyYtUYqD38V6i1XWYVFw6wG
-         7zlxwVUqwMPd5FAoXI/zjrmETExG04Q4K5UYM4q0Or40yV2niD3HJC+RPx++WvoPWSad
-         vjVQ==
-X-Gm-Message-State: AOAM5328WSsKRWnQSgylRepJTIqB1cUhyh+7bV0pisqToFMb5WsD1Vq9
-	x2b6M/GeCgJ3TJqn9kmPzx+5K0jRoCx98Q==
-X-Google-Smtp-Source: ABdhPJzr2sT0kc1mBvUuNTaNFoX7DsIdM5aLtwJtwKVy/An6v+vyz8Rrp35/Hvje45EIHYpntF/n5g==
-X-Received: by 2002:ac8:6d14:: with SMTP id o20mr8061433qtt.79.1624893345298;
-        Mon, 28 Jun 2021 08:15:45 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=AGrXAyCUy+Zwa7gEVssPuhMPiRqsBW8VkG0Ozl2n9rY=;
+        b=EnoCgzWSA626q0frnzEckW/K1M8Vmxz5V1skLL0Wo0iOX56tCQEAZBhRvbKfKRGxZC
+         S/r/6TgwmychayGjNBtEvpbR12k6BT1HvxNDCry1Xxlq6km6fIHGouCcwRDFXo59Bep7
+         4/newIUWSvMk+OQ8ZdG5kkgpN1Krol18vEAdcXOztdeRMml88ldfgRi+I6wvn8Uzbquj
+         jQn/2xPvjvf20JAq2210T08KL6EDonTy9rp7u82SMhSdPlZXNMwchGnZbR6aD+zK1wEc
+         j1U6D7GlgLT0PfXxA8dqPRxRM4yVm+NLABkFHSsITs/PLr9UwaLcRV+DTo8FauXTEzMO
+         ASjw==
+X-Gm-Message-State: AOAM530Fi+B00/D8Us43DZlwkS12hVh0L5tFKrWvVkmxG/8iN8k+JaVQ
+	iQOO1Vw0KvCIQvJNbdiMyaCr6Mwz/eQRIg==
+X-Google-Smtp-Source: ABdhPJwodwFsvbx0o853IJL7Syzt7M0r8jh9pohes9tR6g889/Dkv7z59GEO4/XcedHcpFDbrxgEOw==
+X-Received: by 2002:a37:8581:: with SMTP id h123mr25733558qkd.316.1624893346245;
+        Mon, 28 Jun 2021 08:15:46 -0700 (PDT)
 Return-Path: <twoerner@gmail.com>
 Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id b13sm4107252qtk.30.2021.06.28.08.15.44
+        by smtp.gmail.com with ESMTPSA id b13sm4107252qtk.30.2021.06.28.08.15.45
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Jun 2021 08:15:44 -0700 (PDT)
+        Mon, 28 Jun 2021 08:15:45 -0700 (PDT)
 From: "Trevor Woerner" <twoerner@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-rockchip][PATCH 1/3] conf/machine/include/nanopi-m4.inc: add full include path
-Date: Mon, 28 Jun 2021 11:15:39 -0400
-Message-Id: <20210628151541.26092-1-twoerner@gmail.com>
+Subject: [meta-rockchip][PATCH 2/3] IMAGE_FSTYPES: remove ext4
+Date: Mon, 28 Jun 2021 11:15:40 -0400
+Message-Id: <20210628151541.26092-2-twoerner@gmail.com>
 X-Mailer: git-send-email 2.30.0.rc0
+In-Reply-To: <20210628151541.26092-1-twoerner@gmail.com>
+References: <20210628151541.26092-1-twoerner@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Specify the full include path to the rk3399.inc file.
+The ext4 IMAGE_FSTYPES does not need to be mentioned explicitly. It will be
+automatically generated in cases where it is needed.
 
 Signed-off-by: Trevor Woerner <twoerner@gmail.com>
 ---
- conf/machine/include/nanopi-m4.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ conf/machine/include/rockchip-defaults.inc | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/conf/machine/include/nanopi-m4.inc b/conf/machine/include/nanopi-m4.inc
-index 7ca91db..b5251a1 100644
---- a/conf/machine/include/nanopi-m4.inc
-+++ b/conf/machine/include/nanopi-m4.inc
-@@ -1,7 +1,7 @@
- # Copyright (C) 2021 Blade SAS
- # Common definitions for all NanoPi M4 RK3399 board variants
+diff --git a/conf/machine/include/rockchip-defaults.inc b/conf/machine/include/rockchip-defaults.inc
+index b41c523..0666119 100644
+--- a/conf/machine/include/rockchip-defaults.inc
++++ b/conf/machine/include/rockchip-defaults.inc
+@@ -22,4 +22,3 @@ XSERVER = " \
  
--require rk3399.inc
-+require conf/machine/include/rk3399.inc
- 
- MACHINE_FEATURES += "usbhost serial"
- 
+ # misc
+ SERIAL_CONSOLES ?= "1500000;ttyS2"
+-IMAGE_FSTYPES += "ext4"
 -- 
 2.30.0.rc0
 
