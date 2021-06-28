@@ -1,86 +1,74 @@
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
- by mx.groups.io with SMTP id smtpd.web08.12600.1624893134355296321
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+ by mx.groups.io with SMTP id smtpd.web08.12660.1624893346504541145
  for <yocto@lists.yoctoproject.org>;
- Mon, 28 Jun 2021 08:12:14 -0700
+ Mon, 28 Jun 2021 08:15:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=WsYtacEq;
- spf=pass (domain: gmail.com, ip: 209.85.222.178, mailfrom: twoerner@gmail.com)
-Received: by mail-qk1-f178.google.com with SMTP id f6so3368277qka.0
-        for <yocto@lists.yoctoproject.org>; Mon, 28 Jun 2021 08:12:14 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=WtHhfU8b;
+ spf=pass (domain: gmail.com, ip: 209.85.160.174, mailfrom: twoerner@gmail.com)
+Received: by mail-qt1-f174.google.com with SMTP id r7so13759694qta.12
+        for <yocto@lists.yoctoproject.org>; Mon, 28 Jun 2021 08:15:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=ERh+IXUW8aaIctO5f8hVcZfTBgJubF3wbzYikCx0ZFo=;
-        b=WsYtacEqV+hzNGp6R8qZ/UPwIPMqtHDvbJM2sV5GIakI7g0rKWw9sWzrhnYIvrJ1SI
-         JiAu6e/md67ROs+vnPyGSxt/T/c5zXGnBkz0DyZ81QXEfPXDACVybxdow0NncgQArkMr
-         yTKA1da6mf0u5OOlfcr3YXdTMOv5twfF1rH8jx9AFxsPKXWg8O2t0UkX7/5XvWa2KZpr
-         c0yxMp7BPCJcWWkJyP53EwE4X8wX/It0vDdCcef9VUQWsOnccacGN/NIUrHye6V1wHTm
-         3OJjIBkTalebF+pO1LV5d190zsiQ1TctvCOvLbyVMb0m1R6Zz895ukNEneb2+mzrSJNj
-         JWDg==
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QXgEwN4G4IY35nXeRI71hPq4cF/EnBhtMUgrqLAQo14=;
+        b=WtHhfU8bfDa4o0YDr6t/Y2S7fZZWUmZiu08ObW/z9qtJrcIBL5OK1sTbQMqZWdQXrK
+         VXOxiE+/D2bmqK6fgp0b8IBl41VOyadQyVrU/xYwX+TGkfhaTbA7HKWZVnJK5QF2KrDT
+         h0LMuKb1ZxcDj2CEAaLSlUCoLq6Z1z6k6E2ZVnYLY/3OBhZV5hoG0pytWIU7EKSBblTG
+         7SUYz9iN4qkl/QvpMtZ7ZkoFV67Izz5RlOt4A7ZB1pIZVTUC5wa+a29LtbtWsmP9zpAK
+         Khr9n2v8w2jUbhWceLkxNcDZlav6Ogp+vDWw97ryrHz9OVkjQy7MVUc5oVzHCeEfibKc
+         ByXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ERh+IXUW8aaIctO5f8hVcZfTBgJubF3wbzYikCx0ZFo=;
-        b=Lgt2GXk4Fum6aKRx9KXKSB8AB17IXX64poQjieWQLkYTQZtiXOoRqWZ/bh8TmaWV6z
-         /wkF3y3HGv16piDpAgIvFg87aJdxqbbTRcxXEsstDBxBqmiDkWJxVmfUFcy3LkjHEjaR
-         0pmXmsuKJ/ELlJ3sumMltD338TiTYK6ZQP1wfK6VzClqwViLXKJC4hjmx5LaSRTHnbMD
-         RAp8tK9wrffd5j7Z299S2fy5B3yMV7M/8XfA0PRWgGqNQivtNMbTIdiBYXpqzHJ0LsCD
-         8f8mP9zs+X640th6LdHCUIziwI8DcS0NkJRhfnJMKQZqw0HtXcui7x3yQMcq8buvuYdq
-         iTRw==
-X-Gm-Message-State: AOAM532Vhp7koJkrdwEXWR7moMmkcBws9utTslyGBDItwr0C3exjhCap
-	L7ocWT/gdsJi4fZD8LBXmr/ZU3agXdggig==
-X-Google-Smtp-Source: ABdhPJwqpQey4aulNbwJIX0g/yKLnSwylobR/YSk9C7ZRsWhSvOOOka+QGCfHz20CpFZCuo75vPWjw==
-X-Received: by 2002:a05:620a:4493:: with SMTP id x19mr1094635qkp.246.1624893133266;
-        Mon, 28 Jun 2021 08:12:13 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QXgEwN4G4IY35nXeRI71hPq4cF/EnBhtMUgrqLAQo14=;
+        b=qU2mhefA92C3zX/zS92iCPNXmxn/I4sCMjF0KzikRjEdtxWzPzWNOvbueqrAdyxF4J
+         jXsMR6holPWmFQSrzYLGxKs4qcgIY5+ZVrML9yOowYLjZDS7p+/0krz9ptd+1qpM0vzd
+         Jn77zjEVRBKN8s2hpMOLYYas1tMHbtshgoKSyjV4YgXqm+lRyIxNxHZxHZnzry8S2gcP
+         4rmEjG6htFw9LPVsx6SQfCH5n6qRB7MJn9PEBNfyTbUFteyYtUYqD38V6i1XWYVFw6wG
+         7zlxwVUqwMPd5FAoXI/zjrmETExG04Q4K5UYM4q0Or40yV2niD3HJC+RPx++WvoPWSad
+         vjVQ==
+X-Gm-Message-State: AOAM5328WSsKRWnQSgylRepJTIqB1cUhyh+7bV0pisqToFMb5WsD1Vq9
+	x2b6M/GeCgJ3TJqn9kmPzx+5K0jRoCx98Q==
+X-Google-Smtp-Source: ABdhPJzr2sT0kc1mBvUuNTaNFoX7DsIdM5aLtwJtwKVy/An6v+vyz8Rrp35/Hvje45EIHYpntF/n5g==
+X-Received: by 2002:ac8:6d14:: with SMTP id o20mr8061433qtt.79.1624893345298;
+        Mon, 28 Jun 2021 08:15:45 -0700 (PDT)
 Return-Path: <twoerner@gmail.com>
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id d14sm7067347qkg.123.2021.06.28.08.12.12
+Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id b13sm4107252qtk.30.2021.06.28.08.15.44
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Jun 2021 08:12:12 -0700 (PDT)
-Date: Mon, 28 Jun 2021 11:12:10 -0400
+        Mon, 28 Jun 2021 08:15:44 -0700 (PDT)
 From: "Trevor Woerner" <twoerner@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] [meta-rockchip][PATCH] conf/machine/include/rockchip-wic.inc: create
-Message-ID: <20210628151210.GA24721@localhost>
-References: <168BD7BC68811D33.3492@lists.yoctoproject.org>
+Subject: [meta-rockchip][PATCH 1/3] conf/machine/include/nanopi-m4.inc: add full include path
+Date: Mon, 28 Jun 2021 11:15:39 -0400
+Message-Id: <20210628151541.26092-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.30.0.rc0
 MIME-Version: 1.0
-In-Reply-To: <168BD7BC68811D33.3492@lists.yoctoproject.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-On Fri 2021-06-25 @ 09:54:46 AM, Trevor Woerner via lists.yoctoproject.org wrote:
-> Create a conf/machine/include/rockchip-wic.inc file to contain all the common
-> wic/wks things for easy inclusion by any MACHINEs that use wic for their image
-> creation.
-> 
-> NOTE: the wic image type of rock-pi-e changed from "wic.xz" to "wic" which
->       matches all the other meta-rockchip MACHINEs that use wic
-> 
-> The following variables were checked before and after to make sure they remain
-> correct/sensible:
-> - IMAGE_FSTYPES
-> - WKS_FILE_DEPENDS
-> - IMAGE_BOOT_FILES
-> - RK_CONSOLE_BAUD
-> - RK_CONSOLE_DEVICE
-> - RK_BOOT_DEVICE
-> - SERIAL_CONSOLES
-> - WICVARS
-> 
-> Build-tested for all currently-defined MACHINEs.
-> 
-> Boot-tested on the following boards to make sure they continue to boot to a
-> console correctly (core-image-base):
-> - tinker-board
-> - rock64
-> - rock-pi-4b
-> - rock-pi-e
-> - nanopi-m4-2gb
-> 
-> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+Specify the full include path to the rk3399.inc file.
 
-Applied to meta-rockchip master.
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+ conf/machine/include/nanopi-m4.inc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/conf/machine/include/nanopi-m4.inc b/conf/machine/include/nanopi-m4.inc
+index 7ca91db..b5251a1 100644
+--- a/conf/machine/include/nanopi-m4.inc
++++ b/conf/machine/include/nanopi-m4.inc
+@@ -1,7 +1,7 @@
+ # Copyright (C) 2021 Blade SAS
+ # Common definitions for all NanoPi M4 RK3399 board variants
+ 
+-require rk3399.inc
++require conf/machine/include/rk3399.inc
+ 
+ MACHINE_FEATURES += "usbhost serial"
+ 
+-- 
+2.30.0.rc0
+
