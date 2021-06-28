@@ -1,50 +1,49 @@
 Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.10997.1624885942960448255
+ by mx.groups.io with SMTP id smtpd.web10.12672.1624893062838968745
  for <yocto@lists.yoctoproject.org>;
- Mon, 28 Jun 2021 06:12:23 -0700
+ Mon, 28 Jun 2021 08:11:02 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=tVvrypje;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=PYSS6JTC;
  spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id CD15638C056B
-	for <yocto@yoctoproject.org>; Mon, 28 Jun 2021 13:12:22 +0000 (UTC)
-Received: by mail-pf1-f174.google.com with SMTP id x16so14016440pfa.13
-        for <yocto@yoctoproject.org>; Mon, 28 Jun 2021 06:12:22 -0700 (PDT)
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	by mail.yoctoproject.org (Postfix) with ESMTPS id 3334038C06F9
+	for <yocto@yoctoproject.org>; Mon, 28 Jun 2021 15:11:02 +0000 (UTC)
+Received: by mail-pl1-f181.google.com with SMTP id d1so8464858plg.6
+        for <yocto@yoctoproject.org>; Mon, 28 Jun 2021 08:11:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=8a5XrJ9zuBtx6aPA0s71E60u5eJOZ22Q9wjrIfVrYMw=;
-        b=tVvrypjemZ3Z+zgUM1Wi4+roipflef701toIcQBG+GE7bF4eV1q7EplelzHMFrY19Y
-         qxhXbsk8gaBDVoBBrnDcrJDF5VX/VDKCLdlF791B6MdR+ULEa3UVIlY7WREvKs5/VlBx
-         FBZiQVFnmmCKptTINo+GhNKT2MLlafuye6y9zofULZTmGWbGZakiwWPQY5DNas7aJxeY
-         dcQ7UfK4A3VUTNn9kLV9/yx2l+ZDtZqOotzGgUOc476J267tm9cblBJ+NS3i43TzXrj+
-         Ho80yvq9e4bqxhMBbEczmnabn/9MBlUEOpPVdmslOPJeLrtLMITf1k02J0E0MxRYqTWU
-         zfdw==
+        bh=Mhq1iCfokaIPo+dYpj6QHHkFIg9kT8Vx/tvzbNSlE1k=;
+        b=PYSS6JTCww9jAzBupmuI+ImGUtxkMtiiS6LmjGHra+AsPMzgbWtIe9qEKHLb0klzfd
+         Fbuv7Joe3D03fzNU8jo53sg1bJsNdAw1Uq87EhFE2GnRaPpzWvwR3t9G/vDE4aYwEVFc
+         HQy74zI1bRMQSPp12VBCw+wGfqueHbXZ7S3vHSQ75EGfoXHCNScPi7855ZsVYcpTtZDQ
+         y0APVapic16ocQOTixEqjWrpHXVRA2nFUmWZ0gD6B1VD+adQAXD9W1qSp2wqiXdMDodp
+         RH4sB/v17FCF68Do9GTkBsKC+OG9LJtFFhydz7rtQiH954UyT2Wt7cfiMlD4TJ+Nn/hs
+         pDKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=8a5XrJ9zuBtx6aPA0s71E60u5eJOZ22Q9wjrIfVrYMw=;
-        b=MwlvX7FXmJaUXuSwJWAlYec1RWYXJR/BPQusINxDjPKTVTZxV0npPG5NsXIVDIOXx+
-         rvZSKI+MEEh1yhU3aKLaP2UWWzqqc48ZIzXlVXHLdne/P692dfLPzwg1fg7YRfYlq8sl
-         +fKrT0UR/oQVGjiGisY4Qb2CuCdN9Siv4PAoYZcllpDFmNu7tcaSfs9x0NTkXF4C8uoN
-         tBDiMK8L654AzdZ4ppwUenrPgnq0Nd5RISmNUyJ9eZt0cmJAmKBr4ydY5sB+DGH8UKJU
-         ecQ/ocHH3FWEAoNYXLQN2z/KnKPboe7teW6LcqLU/lMmFY+WU29qjdoMPANpX1mBhWvh
-         pTnA==
-X-Gm-Message-State: AOAM530QlFab6qJKS/ebo08irdz0lVeeaC8LMRGI9dwhfK6ghtS9coS9
-	CXvzLu6aHbXVreNBMbh499z+oz42yG9mc6OaxjU=
-X-Google-Smtp-Source: ABdhPJwE8FqlFtNBI+JvP2ambTeMKOplkf+COo7yOj/Jo906DKkYZ1LvgK3A3uXksmWpSpKYSL4b9RkEoPo/NDloKcg=
-X-Received: by 2002:aa7:93bb:0:b029:307:31a3:ad3d with SMTP id
- x27-20020aa793bb0000b029030731a3ad3dmr24814468pff.65.1624885942117; Mon, 28
- Jun 2021 06:12:22 -0700 (PDT)
+        bh=Mhq1iCfokaIPo+dYpj6QHHkFIg9kT8Vx/tvzbNSlE1k=;
+        b=IAdry6X84ZzeMDUYQnpDONKC94680Q/DXISg33xoZj3nSqfc+g0CU3xYuHxwZJ3HNe
+         f+d0qn1fa5lorye+47PG9Qg5WfqYgm4KxJ3RWN0xU8L2WyvrJiBlfVG9d6f3h5lmxqoO
+         2GNwCN6ewXCDoJAPXz+JT3jA1MOXLITeBiFi7KSZdZV4CMvlL1QpEfrk57RWod5p2xs1
+         A6gmp1EbAJ4ayC6erelKhK9rg0gFlOpTCR+SI+TUVULqBjHCWae0I0JMRdtsR4QViKDx
+         UUuGh9ff2BShjnMJNzxxOYZ5MMwr8otUlDxZtqxlI77W4bxKpaDA7afgtF3V5/jaBSj/
+         CZwg==
+X-Gm-Message-State: AOAM531PYyLN1GqVFG1JRrZzRI8j1/9fVgiDN4eolGBQQaRFAdZTREMv
+	v74KhXzZrNASBSfUqMuJMS90CzXbE9KleIqmK4E=
+X-Google-Smtp-Source: ABdhPJz4WgiAspOo2MviM42ModNwkleexCMfqwg+K27eB4uGIoMjAh1awXyIMOGMgPffCiAX/6kWUUkMYNqtIVqgq6U=
+X-Received: by 2002:a17:90a:e50f:: with SMTP id t15mr28548671pjy.75.1624893061301;
+ Mon, 28 Jun 2021 08:11:01 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAB=6tBQR1S=2niGMojS_55-JebtQX4LybA2aEh_6YNtXf_3yNA@mail.gmail.com>
  <c48956c8a5358d081fb9e8b9b04cf27848bde756.camel@linuxfoundation.org>
 In-Reply-To: <c48956c8a5358d081fb9e8b9b04cf27848bde756.camel@linuxfoundation.org>
 From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Mon, 28 Jun 2021 15:12:10 +0200
-Message-ID: <CAGAf8Ly+9mbmFJ9NNDuMqDi6eN05p-cR7FES-CwaVa93csCqOg@mail.gmail.com>
+Date: Mon, 28 Jun 2021 17:10:50 +0200
+Message-ID: <CAGAf8Lx-X=SYHdnuB2i40GPbQqxut-4AurMk618ajrDqE5+PMA@mail.gmail.com>
 Subject: Re: [yocto] [OE-core] Hardknott (GCC10) Compiler Issues
 To: Richard Purdie <richard.purdie@linuxfoundation.org>
 Cc: Chuck Wolber <chuckwolber@gmail.com>, 
@@ -52,18 +51,20 @@ Cc: Chuck Wolber <chuckwolber@gmail.com>,
 	Yocto-mailing-list <yocto@yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 
-At least seems that GCC 10.2 is not the cause of the problem for my
-cannelloni recipe issue:
+> The target system should be independent of buildtools version and the target
+> system should also be binary reproducible so if that were changing through
+> changing buildtools tarball, that would be worrying in itself.
 
-https://github.com/mguentner/cannelloni/issues/35
+Even better, the rootfs built by YOCTO could be used, but anyone can
+build U-Boot and kernel outside of the YOCTO, using their own cross
+compilers (I use Fedora 33 ARM cross compilers, since my Linux host is
+Fedora 33).
 
-The same error repeats itself with GCC 11.2 (in hardknott).
+Then to install all the different components on the SDcard for the
+target system.
 
-The issue is most probably optimizing GCC switches and Include paths
-in further cannelloni commits (after release 1.0.0, which compiles
-with both 10.2 and 11.1 fine).
+And see if the issue repeats itself...
 
-Best Regards,
 Zee
 _______
 
