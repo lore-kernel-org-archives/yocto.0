@@ -1,117 +1,86 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web10.12672.1624893062838968745
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+ by mx.groups.io with SMTP id smtpd.web08.12600.1624893134355296321
  for <yocto@lists.yoctoproject.org>;
- Mon, 28 Jun 2021 08:11:02 -0700
+ Mon, 28 Jun 2021 08:12:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=PYSS6JTC;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id 3334038C06F9
-	for <yocto@yoctoproject.org>; Mon, 28 Jun 2021 15:11:02 +0000 (UTC)
-Received: by mail-pl1-f181.google.com with SMTP id d1so8464858plg.6
-        for <yocto@yoctoproject.org>; Mon, 28 Jun 2021 08:11:02 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=WsYtacEq;
+ spf=pass (domain: gmail.com, ip: 209.85.222.178, mailfrom: twoerner@gmail.com)
+Received: by mail-qk1-f178.google.com with SMTP id f6so3368277qka.0
+        for <yocto@lists.yoctoproject.org>; Mon, 28 Jun 2021 08:12:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Mhq1iCfokaIPo+dYpj6QHHkFIg9kT8Vx/tvzbNSlE1k=;
-        b=PYSS6JTCww9jAzBupmuI+ImGUtxkMtiiS6LmjGHra+AsPMzgbWtIe9qEKHLb0klzfd
-         Fbuv7Joe3D03fzNU8jo53sg1bJsNdAw1Uq87EhFE2GnRaPpzWvwR3t9G/vDE4aYwEVFc
-         HQy74zI1bRMQSPp12VBCw+wGfqueHbXZ7S3vHSQ75EGfoXHCNScPi7855ZsVYcpTtZDQ
-         y0APVapic16ocQOTixEqjWrpHXVRA2nFUmWZ0gD6B1VD+adQAXD9W1qSp2wqiXdMDodp
-         RH4sB/v17FCF68Do9GTkBsKC+OG9LJtFFhydz7rtQiH954UyT2Wt7cfiMlD4TJ+Nn/hs
-         pDKA==
+        h=date:from:to:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=ERh+IXUW8aaIctO5f8hVcZfTBgJubF3wbzYikCx0ZFo=;
+        b=WsYtacEqV+hzNGp6R8qZ/UPwIPMqtHDvbJM2sV5GIakI7g0rKWw9sWzrhnYIvrJ1SI
+         JiAu6e/md67ROs+vnPyGSxt/T/c5zXGnBkz0DyZ81QXEfPXDACVybxdow0NncgQArkMr
+         yTKA1da6mf0u5OOlfcr3YXdTMOv5twfF1rH8jx9AFxsPKXWg8O2t0UkX7/5XvWa2KZpr
+         c0yxMp7BPCJcWWkJyP53EwE4X8wX/It0vDdCcef9VUQWsOnccacGN/NIUrHye6V1wHTm
+         3OJjIBkTalebF+pO1LV5d190zsiQ1TctvCOvLbyVMb0m1R6Zz895ukNEneb2+mzrSJNj
+         JWDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Mhq1iCfokaIPo+dYpj6QHHkFIg9kT8Vx/tvzbNSlE1k=;
-        b=IAdry6X84ZzeMDUYQnpDONKC94680Q/DXISg33xoZj3nSqfc+g0CU3xYuHxwZJ3HNe
-         f+d0qn1fa5lorye+47PG9Qg5WfqYgm4KxJ3RWN0xU8L2WyvrJiBlfVG9d6f3h5lmxqoO
-         2GNwCN6ewXCDoJAPXz+JT3jA1MOXLITeBiFi7KSZdZV4CMvlL1QpEfrk57RWod5p2xs1
-         A6gmp1EbAJ4ayC6erelKhK9rg0gFlOpTCR+SI+TUVULqBjHCWae0I0JMRdtsR4QViKDx
-         UUuGh9ff2BShjnMJNzxxOYZ5MMwr8otUlDxZtqxlI77W4bxKpaDA7afgtF3V5/jaBSj/
-         CZwg==
-X-Gm-Message-State: AOAM531PYyLN1GqVFG1JRrZzRI8j1/9fVgiDN4eolGBQQaRFAdZTREMv
-	v74KhXzZrNASBSfUqMuJMS90CzXbE9KleIqmK4E=
-X-Google-Smtp-Source: ABdhPJz4WgiAspOo2MviM42ModNwkleexCMfqwg+K27eB4uGIoMjAh1awXyIMOGMgPffCiAX/6kWUUkMYNqtIVqgq6U=
-X-Received: by 2002:a17:90a:e50f:: with SMTP id t15mr28548671pjy.75.1624893061301;
- Mon, 28 Jun 2021 08:11:01 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=ERh+IXUW8aaIctO5f8hVcZfTBgJubF3wbzYikCx0ZFo=;
+        b=Lgt2GXk4Fum6aKRx9KXKSB8AB17IXX64poQjieWQLkYTQZtiXOoRqWZ/bh8TmaWV6z
+         /wkF3y3HGv16piDpAgIvFg87aJdxqbbTRcxXEsstDBxBqmiDkWJxVmfUFcy3LkjHEjaR
+         0pmXmsuKJ/ELlJ3sumMltD338TiTYK6ZQP1wfK6VzClqwViLXKJC4hjmx5LaSRTHnbMD
+         RAp8tK9wrffd5j7Z299S2fy5B3yMV7M/8XfA0PRWgGqNQivtNMbTIdiBYXpqzHJ0LsCD
+         8f8mP9zs+X640th6LdHCUIziwI8DcS0NkJRhfnJMKQZqw0HtXcui7x3yQMcq8buvuYdq
+         iTRw==
+X-Gm-Message-State: AOAM532Vhp7koJkrdwEXWR7moMmkcBws9utTslyGBDItwr0C3exjhCap
+	L7ocWT/gdsJi4fZD8LBXmr/ZU3agXdggig==
+X-Google-Smtp-Source: ABdhPJwqpQey4aulNbwJIX0g/yKLnSwylobR/YSk9C7ZRsWhSvOOOka+QGCfHz20CpFZCuo75vPWjw==
+X-Received: by 2002:a05:620a:4493:: with SMTP id x19mr1094635qkp.246.1624893133266;
+        Mon, 28 Jun 2021 08:12:13 -0700 (PDT)
+Return-Path: <twoerner@gmail.com>
+Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id d14sm7067347qkg.123.2021.06.28.08.12.12
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Jun 2021 08:12:12 -0700 (PDT)
+Date: Mon, 28 Jun 2021 11:12:10 -0400
+From: "Trevor Woerner" <twoerner@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] [meta-rockchip][PATCH] conf/machine/include/rockchip-wic.inc: create
+Message-ID: <20210628151210.GA24721@localhost>
+References: <168BD7BC68811D33.3492@lists.yoctoproject.org>
 MIME-Version: 1.0
-References: <CAB=6tBQR1S=2niGMojS_55-JebtQX4LybA2aEh_6YNtXf_3yNA@mail.gmail.com>
- <c48956c8a5358d081fb9e8b9b04cf27848bde756.camel@linuxfoundation.org>
-In-Reply-To: <c48956c8a5358d081fb9e8b9b04cf27848bde756.camel@linuxfoundation.org>
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Mon, 28 Jun 2021 17:10:50 +0200
-Message-ID: <CAGAf8Lx-X=SYHdnuB2i40GPbQqxut-4AurMk618ajrDqE5+PMA@mail.gmail.com>
-Subject: Re: [yocto] [OE-core] Hardknott (GCC10) Compiler Issues
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: Chuck Wolber <chuckwolber@gmail.com>, 
-	openembedded-core <openembedded-core@lists.openembedded.org>, 
-	Yocto-mailing-list <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <168BD7BC68811D33.3492@lists.yoctoproject.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-> The target system should be independent of buildtools version and the target
-> system should also be binary reproducible so if that were changing through
-> changing buildtools tarball, that would be worrying in itself.
-
-Even better, the rootfs built by YOCTO could be used, but anyone can
-build U-Boot and kernel outside of the YOCTO, using their own cross
-compilers (I use Fedora 33 ARM cross compilers, since my Linux host is
-Fedora 33).
-
-Then to install all the different components on the SDcard for the
-target system.
-
-And see if the issue repeats itself...
-
-Zee
-_______
-
-On Mon, Jun 28, 2021 at 2:49 PM Richard Purdie
-<richard.purdie@linuxfoundation.org> wrote:
->
-> On Thu, 2021-06-24 at 21:48 -0700, Chuck Wolber wrote:
-> > All,
-> >
-> > Please accept my apologies in advance for the detailed submission. I think
-> > it is warranted in this case.
-> >
-> > There is something... "odd" about the GCC 10 compiler that is delivered with
-> > Hardknott. I am still chasing it down, so I am not yet ready to declare a
-> > root cause or submit a bug, but I am posting what I have now in case anyone
-> > has some insights to offer.
->
-> The issue you describe does sound strange. I was a little unclear about exactly
-> which combinations were passing/failing. Are you saying that some versions of
-> buildtools let the system work but some do not? We now have gcc 11 in master
-> so it would be interesting to know how things worked there and if any
-> regression was fixed.
->
-> I have also heard reports of issues with bison segfaulting from other sources
-> but I don't have anything I can point to specifically about it.
->
-> The target system should be independent of buildtools version and the target
-> system should also be binary reproducible so if that were changing through
-> changing buildtools tarball, that would be worrying in itself.
->
-> > P.P.S. For the sake of completeness, I had to add the following files to the buildtools-extended
-> > sysroot to fully complete the build of our images:
-> >
-> > /usr/include/magic.h -> util-linux "more" command requires this.
-> > /usr/include/zstd.h -> I do not recall which recipe required this.
-> > /usr/bin/free -> The OpenJDK 8 build scripts need this.
-> > /usr/include/sys/* -> openjdk-8-native
-> > /lib/libcap.so.2 -> The binutils "dir" command quietly breaks the build without this. I am not a fan of the
-> >                             lack of error checking in the binutils build...
-> > /usr/include/sensors/error.h and sensors.h -> mesa-native
-> > /usr/include/zstd_errors.h -> qemu-system-native
->
-> It is great to have this list, outside the non-jdk issues are probably issues we
-> should look at fixing in OE-Core. Do you mean binutils above for the dir command?
->
-> Cheers,
->
->
+On Fri 2021-06-25 @ 09:54:46 AM, Trevor Woerner via lists.yoctoproject.org wrote:
+> Create a conf/machine/include/rockchip-wic.inc file to contain all the common
+> wic/wks things for easy inclusion by any MACHINEs that use wic for their image
+> creation.
 > 
->
+> NOTE: the wic image type of rock-pi-e changed from "wic.xz" to "wic" which
+>       matches all the other meta-rockchip MACHINEs that use wic
+> 
+> The following variables were checked before and after to make sure they remain
+> correct/sensible:
+> - IMAGE_FSTYPES
+> - WKS_FILE_DEPENDS
+> - IMAGE_BOOT_FILES
+> - RK_CONSOLE_BAUD
+> - RK_CONSOLE_DEVICE
+> - RK_BOOT_DEVICE
+> - SERIAL_CONSOLES
+> - WICVARS
+> 
+> Build-tested for all currently-defined MACHINEs.
+> 
+> Boot-tested on the following boards to make sure they continue to boot to a
+> console correctly (core-image-base):
+> - tinker-board
+> - rock64
+> - rock-pi-4b
+> - rock-pi-e
+> - nanopi-m4-2gb
+> 
+> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+
+Applied to meta-rockchip master.
