@@ -1,52 +1,52 @@
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
- by mx.groups.io with SMTP id smtpd.web11.6916.1624967097358265278
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+ by mx.groups.io with SMTP id smtpd.web08.6854.1624967548446608171
  for <yocto@lists.yoctoproject.org>;
- Tue, 29 Jun 2021 04:44:57 -0700
+ Tue, 29 Jun 2021 04:52:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=m03MkLPG;
- spf=pass (domain: gmail.com, ip: 209.85.167.48, mailfrom: erik.boto@gmail.com)
-Received: by mail-lf1-f48.google.com with SMTP id a15so31084793lfr.6
-        for <yocto@lists.yoctoproject.org>; Tue, 29 Jun 2021 04:44:57 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=bRRAXPSN;
+ spf=pass (domain: gmail.com, ip: 209.85.208.52, mailfrom: bruce.ashfield@gmail.com)
+Received: by mail-ed1-f52.google.com with SMTP id t3so9363292edt.12
+        for <yocto@lists.yoctoproject.org>; Tue, 29 Jun 2021 04:52:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=BO7VVwHwI8g09mHYkL8n8Ia6jyVtOwtR+IQMCxGWN7w=;
-        b=m03MkLPGT6rwDWkx1FTbcR4rn+9Z+s+U2ipGdbtt0jQAt16a0lClxIlv41IIDaNFAg
-         HnuvTDJgR7sVNS4xECIGHCVdCtvAwzoufFmM+agS0WovYjdZFZMBrAL7bmUlcJDqPtc8
-         Aki3TBsuII+q/ttU/ABeEMBy5OFgu/wZFUjkN7aFFTnUItBd58wpB2eFYI8i8fgOZG+m
-         e4+dRLz6cJ5DapYr14lVj9vj+ijqa+1wFdXtB6XXKemzuvzZLKaGZFcoufCxx25PCsRy
-         REC3uYZcHES6hEIAqDZT5JWT9SvcUXlucoopLJIx3FZ45vCCRnBge9PB5JxLqNGQsFYe
-         6iCA==
+        bh=Uz3BDL0F9U3M0rAoTekSqVW4B6Ir/08VX1PC61RvuVY=;
+        b=bRRAXPSNwMHyGHVOYWjPTze3EqrTR/KveFb9VJiZ3gdiECEkyqMqGswxvohut95li2
+         lGDeikN3SJn6YGGI4DyIi5YKlQIOCXl/lDgA4yoNfUl0eYnGGPVYf7O3WJ8jiZm2wRZD
+         gwgdtswgvtpgQz3HSUhq0/AH0QX7JOwa6rQ87aj31gePharOGoLdPf/Eyd+yIEYmSOJz
+         TNFA+PrfUBqKetbiY8FHenh2WCpp255vsARvzBaqCJkN93joKFpOGXl7mU6VaHUdbCe+
+         5ZhBZ2Q78yHa1ihAfJXKeEh2lLIdirwFzJTmdXsldw+vO+vEGKDgzKYedC1o6bGqW+I8
+         K+XA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=BO7VVwHwI8g09mHYkL8n8Ia6jyVtOwtR+IQMCxGWN7w=;
-        b=sa/3joYdbFsRjjMhICTCQNh4h9j9bdpcbD0kzDLy+oVQlW93TT7bpRLE5u5f9FGWPV
-         nesXGuBIgb3P8RFfvaOWa390/c1rSPmtDFyfxNDFiLSXYTfgPbjjaZ64FMuthUdeLhwK
-         kU4bkzqnY3RPDNZ8Y6kj2BppawrbEK2XOMQeV1IOIPJCUflUAjVadCGVOeL3jpsagY76
-         WlR8BVxUE6A1FVhCsOKcRaXQzkqcInD0HTIREw09rw3VFfns1/EJRiiesZfn5WtQunGd
-         iY3Eg6teE4E01RWMoAov4N+evmM4pRtSd3qcnuG7Cuvtwdg51XpzGi5mnkWMgv9BZOVA
-         2OAA==
-X-Gm-Message-State: AOAM531wq64Rx4A0CMN2xB55tzes//xsW0QkVcVoFFb1G5RLj438JHNV
-	s56hCdzG3QU0XOZ5ddlJRuDe9uQUJujahw8+Xjw=
-X-Google-Smtp-Source: ABdhPJy2wuO9mOWdxqq1T0h7ZbHyIfWzYZiQKWg2cUypvDDRdz95ZgzyzKHnGVx3GrRc9F49XZcXjvR1zuzhbvL4ntQ=
-X-Received: by 2002:a05:6512:22c5:: with SMTP id g5mr22899278lfu.476.1624967095172;
- Tue, 29 Jun 2021 04:44:55 -0700 (PDT)
+        bh=Uz3BDL0F9U3M0rAoTekSqVW4B6Ir/08VX1PC61RvuVY=;
+        b=Poa5RZnIIGz7I4FYGT+JEbCVLkn7l6pZy5S82vITzyNhkJeAWMile1jxTpucA8cjkp
+         u9sPwXCF6K4r4/3xjw44UrdHREff4Mi2vcPbNIHzCH8vQ7ZZlKtMEDf7ATtflX4DkrYd
+         2tKKhIKt/xLqpWKAv0+BF0Z/h0/i9WXM1ZxHbPHfTTD9UPSCqXxDAJZ+WCol+zDmwgRa
+         w5mNnqQM2Tu8Ofdsan2iHr1lV5jDZ062mDcDDvRSc0IGxg02IIDM3nW+EP/+h9ON9N2z
+         JnpJnwWP+lRXlSE62rCIIONoG9hw61oH3mY67lJKKWKLCK5OmWvlkYlcDifiSVIbagYl
+         fi7Q==
+X-Gm-Message-State: AOAM531Z0Ii4X6cGtQTmojFxH1vf+g9Ez1cSWMfKrETEM5W6BouyZqK/
+	j/D4qC1HG2RsJfCzmIL3SAMe7Y4Cb5V43SpCASU=
+X-Google-Smtp-Source: ABdhPJwT52gGmdUnevo7PY3Jn1GBUAECTem1RDmxru9peHmXTWu3bQloYn0UMMhMRr74XSlAzfC8/otu5lyo3Xu5PC0=
+X-Received: by 2002:aa7:c4c5:: with SMTP id p5mr40763171edr.352.1624967546748;
+ Tue, 29 Jun 2021 04:52:26 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAEyb4nEiwzVnrqHGob-ioo0iwT+NNA_uCXFMejoYfAdnnQpH5A@mail.gmail.com>
  <68074a59-650c-c02a-b05b-855b43171c50@theyoctojester.info>
 In-Reply-To: <68074a59-650c-c02a-b05b-855b43171c50@theyoctojester.info>
-From: "Erik Boto" <erik.boto@gmail.com>
-Date: Tue, 29 Jun 2021 13:44:44 +0200
-Message-ID: <CALNvYWMShkznDFnjT1m4s0vfX-VTWjzzW_5Sm+iQOEJA+c7ZdA@mail.gmail.com>
+From: "Bruce Ashfield" <bruce.ashfield@gmail.com>
+Date: Tue, 29 Jun 2021 07:52:15 -0400
+Message-ID: <CADkTA4OOQsav7WJCQ5Nt6mWJzK_Ouf6yJazWe1JaS8i8wQ0S8g@mail.gmail.com>
 Subject: Re: [yocto] Would COMPATIBLE_IMAGE make sense?
 To: Josef Holzmayr <jester@theyoctojester.info>
-Cc: yocto@lists.yoctoproject.org
+Cc: yocto <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Jun 29, 2021 at 8:41 AM Josef Holzmayr
+On Tue, Jun 29, 2021 at 2:41 AM Josef Holzmayr
 <jester@theyoctojester.info> wrote:
 >
 > Howdy!
@@ -96,20 +96,13 @@ On Tue, Jun 29, 2021 at 8:41 AM Josef Holzmayr
 > derivatives, so its all there already. It just cannot be triggered from
 > the image, because, well.. see first pragraph of the answer.
 
-I agree with everything Josef said, but just wanted to add that if
-it's just different
-configurations needed for different images it might be easier to just
-put the configs
-into separate packages and install the right package in the respective image.
+I was also going to suggest distros.
 
-So configuration for first-project-image goes into <somepackage>-foo, and the
-config for second-project-image goes into <somepackage>-bar. Then the image
-would add the correct configuration package.
+And also, if the concern really is about builds reusing downloads,
+etc, then by all means configure those different distro builds to
+share download and sstate directories.
 
-This only works for the simple cases, and if you really need to change the way
-a package is built the DISTRO way is better.
-
-Erik
+Bruce
 
 >
 > Greetz
@@ -126,3 +119,9 @@ Erik
 >
 > 
 >
+
+
+-- 
+- Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end
+- "Use the force Harry" - Gandalf, Star Trek II
