@@ -1,160 +1,128 @@
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
- by mx.groups.io with SMTP id smtpd.web09.6030.1624960532303982393
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+ by mx.groups.io with SMTP id smtpd.web11.6916.1624967097358265278
  for <yocto@lists.yoctoproject.org>;
- Tue, 29 Jun 2021 02:55:33 -0700
+ Tue, 29 Jun 2021 04:44:57 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sidebranch-com.20150623.gappssmtp.com header.s=20150623 header.b=R6dfgBiu;
- spf=softfail (domain: sidebranch.com, ip: 209.85.222.180, mailfrom: leon@sidebranch.com)
-Received: by mail-qk1-f180.google.com with SMTP id y29so28895368qky.12
-        for <yocto@lists.yoctoproject.org>; Tue, 29 Jun 2021 02:55:32 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=m03MkLPG;
+ spf=pass (domain: gmail.com, ip: 209.85.167.48, mailfrom: erik.boto@gmail.com)
+Received: by mail-lf1-f48.google.com with SMTP id a15so31084793lfr.6
+        for <yocto@lists.yoctoproject.org>; Tue, 29 Jun 2021 04:44:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sidebranch-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:cc;
-        bh=afEDTbSabX7RFoEDq89ohfJEg4xtOjJEplme3zzYQzI=;
-        b=R6dfgBiucgce+GALOIaLXTwStHsNZZphF+zI3aWta3CmatM+8XSOACcejhv0iFX5LF
-         XK5/9PsxEX28Kix2rW+WrfWFu/Ka73UpHR3gSkIl5P3CfbgN4Nfo7db9S3Mk4B9b9oS7
-         TAYb60tortUek67DqUw6mCBxc0HdTip7IiHPquakwdugCiW9f4nieCIC/1P8RKS88l/U
-         mxhlohLSqGI7uS3G9MvevIZf+V0ZoLmoEx2rsvhJ8cEmPwGy+wMvA8f3PqS+Db/8vdmN
-         895GuCWkiuf0vyM30C/Eix3NgJ7DMxHAcTb8E3xdtPqy1FQm3pbHkEG2Iksl+80eqkjk
-         KiZw==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=BO7VVwHwI8g09mHYkL8n8Ia6jyVtOwtR+IQMCxGWN7w=;
+        b=m03MkLPGT6rwDWkx1FTbcR4rn+9Z+s+U2ipGdbtt0jQAt16a0lClxIlv41IIDaNFAg
+         HnuvTDJgR7sVNS4xECIGHCVdCtvAwzoufFmM+agS0WovYjdZFZMBrAL7bmUlcJDqPtc8
+         Aki3TBsuII+q/ttU/ABeEMBy5OFgu/wZFUjkN7aFFTnUItBd58wpB2eFYI8i8fgOZG+m
+         e4+dRLz6cJ5DapYr14lVj9vj+ijqa+1wFdXtB6XXKemzuvzZLKaGZFcoufCxx25PCsRy
+         REC3uYZcHES6hEIAqDZT5JWT9SvcUXlucoopLJIx3FZ45vCCRnBge9PB5JxLqNGQsFYe
+         6iCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:cc;
-        bh=afEDTbSabX7RFoEDq89ohfJEg4xtOjJEplme3zzYQzI=;
-        b=ZTDMzjHwAm9zQ5SkQkOLJ5OKljL5BkOliBE1rgFByCKHuCgQECwBymWW/0dCjKkhV8
-         nThlzt5NBGasyfRBvW3RZlRZahcATyLgtH47atHE+LvyXuE1VI/mnh91bhtGvAU140tC
-         qHY0fQpP/yVSVu/Nmml4nEz1dbmsRbYPBS0U+/W+PEaYI8yfLbluphGPBaN52NSiBVLj
-         A2PjJRuPSm7uT7vSYheiHfc9D0X/2G4KZyq4qVCuYzHQG0vwLE/6hPmdnNLqbQ0IVH7Q
-         ILM0yYeLEDJYoESDsw7ui6Z58HTfx14q9WrV5p4FqWRrm35VZw6E7zZhGsJ2CxzixLPq
-         uW+g==
-X-Gm-Message-State: AOAM531fyj6ZxJZiTphn3izUvfsIe9LZWPcn3yPIojhauXuGyvEU+WIF
-	NR7AxdDjKnaixLxPeYuAy6d6Kmlr+W3+LpvulN8Dzi9rwjEas1M6
-X-Google-Smtp-Source: ABdhPJwNOfbONLCqZUTii+1W4W3U5wYUTYu8Jl6rMNk6fNIFu9VSAlo3hk43O3jdKHlZNkULgNIQpQAI2Ky2uqj7VOw=
-X-Received: by 2002:a37:9085:: with SMTP id s127mr1891443qkd.215.1624960531139;
- Tue, 29 Jun 2021 02:55:31 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=BO7VVwHwI8g09mHYkL8n8Ia6jyVtOwtR+IQMCxGWN7w=;
+        b=sa/3joYdbFsRjjMhICTCQNh4h9j9bdpcbD0kzDLy+oVQlW93TT7bpRLE5u5f9FGWPV
+         nesXGuBIgb3P8RFfvaOWa390/c1rSPmtDFyfxNDFiLSXYTfgPbjjaZ64FMuthUdeLhwK
+         kU4bkzqnY3RPDNZ8Y6kj2BppawrbEK2XOMQeV1IOIPJCUflUAjVadCGVOeL3jpsagY76
+         WlR8BVxUE6A1FVhCsOKcRaXQzkqcInD0HTIREw09rw3VFfns1/EJRiiesZfn5WtQunGd
+         iY3Eg6teE4E01RWMoAov4N+evmM4pRtSd3qcnuG7Cuvtwdg51XpzGi5mnkWMgv9BZOVA
+         2OAA==
+X-Gm-Message-State: AOAM531wq64Rx4A0CMN2xB55tzes//xsW0QkVcVoFFb1G5RLj438JHNV
+	s56hCdzG3QU0XOZ5ddlJRuDe9uQUJujahw8+Xjw=
+X-Google-Smtp-Source: ABdhPJy2wuO9mOWdxqq1T0h7ZbHyIfWzYZiQKWg2cUypvDDRdz95ZgzyzKHnGVx3GrRc9F49XZcXjvR1zuzhbvL4ntQ=
+X-Received: by 2002:a05:6512:22c5:: with SMTP id g5mr22899278lfu.476.1624967095172;
+ Tue, 29 Jun 2021 04:44:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <WQyj.1624946555328053729.Urcg@lists.yoctoproject.org>
-In-Reply-To: <WQyj.1624946555328053729.Urcg@lists.yoctoproject.org>
-From: "Leon Woestenberg" <leon@sidebranch.com>
-Date: Tue, 29 Jun 2021 11:55:22 +0200
-Message-ID: <CAMjhiJizpi_y5jRn1+RJCSM+KSJxo4G_GZ1YMndwaaGc=WZ+gg@mail.gmail.com>
-Subject: Re: [yocto] Yocto build isnot Booting up on board zc702 #gatesgarth #linux #yocto
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+References: <CAEyb4nEiwzVnrqHGob-ioo0iwT+NNA_uCXFMejoYfAdnnQpH5A@mail.gmail.com>
+ <68074a59-650c-c02a-b05b-855b43171c50@theyoctojester.info>
+In-Reply-To: <68074a59-650c-c02a-b05b-855b43171c50@theyoctojester.info>
+From: "Erik Boto" <erik.boto@gmail.com>
+Date: Tue, 29 Jun 2021 13:44:44 +0200
+Message-ID: <CALNvYWMShkznDFnjT1m4s0vfX-VTWjzzW_5Sm+iQOEJA+c7ZdA@mail.gmail.com>
+Subject: Re: [yocto] Would COMPATIBLE_IMAGE make sense?
+To: Josef Holzmayr <jester@theyoctojester.info>
+Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 
-Hello,
+On Tue, Jun 29, 2021 at 8:41 AM Josef Holzmayr
+<jester@theyoctojester.info> wrote:
+>
+> Howdy!
+>
+> Am 29.06.2021 um 01:28 schrieb Jonas Vautherin:
+> > I was thinking about my issue described here [1], and discovered the
+> > variables called COMPATIBLE_MACHINE and COMPATIBLE_HOST, which "you can
+> > use to stop recipes from being built for machines (/hosts) with which
+> > the recipes are not compatible". And so I wondered if it would make
+> > sense to add COMPATIBLE_IMAGE, for a similar purpose.
+> >
+> > Let me explain my issue: I define different images in different layers
+> > (say `first-project-image` and `second-project-image`), and in each of
+> > those layers I create `.bbappends` to configure some packages. Typically
+> > `hostapd` is used by both images, but with a different config file.
+> >
+> > The thing is that when I run `bitbake first-project-image`, because
+> > `second-project-image` is part of my bblayers.conf, then the
+> > hostapd_%.bbappend from `second-project-image` is used and may have an
+> > impact on `first-project-image`, which I don't want. I really want this
+> > bbappend to only affect the image `second-project-image`.
+> >
+> > One way I can see to deal with that is to realize that
+> > `first-project-image` and `second-project-image` are two different
+> > projects, and build them from two different BUILDDIRs. The thing I don't
+> > like here is that all the packages are therefore downloaded and built
+> > twice, which seems like a loss of time and space.
+> >
+> > That's where I thought about COMPATIBLE_IMAGE. In the hostapd_%.bbappend
+> > of `first-project-image`, I would set "COMPATIBLE_IMAGE =
+> > 'first-project-image'", and similarly for "COMPATIBLE_IMAGE =
+> > 'second-project-image'". So that I could still share a BUILDDIR between
+> > different projects.
+>
+> Yocto chant #1 applies: "Recipe data is local, configuration data is
+> global." Means: the recipe does not see at all which image it is being
+> built for. So it also can't react to it - you can't check a variable
+> against something you do not even see.
+>
+> > How bad of an idea is that?
+>
+> It just doesn't work. If that counts as "bad" is left for you to decide :)
+>
+> What you actually might use is using different DISTROs for the images,
+> because that actually what they mean to do: you change the ABI/API of
+> the image. And you can also define a base DISTRO and COMPATIBLE_DISTRO
+> derivatives, so its all there already. It just cannot be triggered from
+> the image, because, well.. see first pragraph of the answer.
+
+I agree with everything Josef said, but just wanted to add that if
+it's just different
+configurations needed for different images it might be easier to just
+put the configs
+into separate packages and install the right package in the respective image.
+
+So configuration for first-project-image goes into <somepackage>-foo, and the
+config for second-project-image goes into <somepackage>-bar. Then the image
+would add the correct configuration package.
+
+This only works for the simple cases, and if you really need to change the way
+a package is built the DISTRO way is better.
+
+Erik
 
 >
-> i have tried to build yocto image.  And it compiled successfully without any error but when am trying to BOOT them it didnt prompt any error message
-> what should i do to BOOT my yocto build image on zc702 board
-
-What is your output from the ZC702 (USB) serial console?
-
-
-I had similar issue on ZCU102 and debugged my issue:
-
-"the U-Boot not showing anything I have debugged to be an issue where
-DEVICE_TREE does not propagate from the BitBake recipe into the U-Boot
-build (both for upstream and Xilinx). I have reported this on
-meta-xilinx but will make it a separate bug report."
-
-I can imagine the same problem would occur on ZC702 (single-core Zynq).
-
-I have posted a few messages with meta-xilinx in the subject on how I
-had to bring Yocto to the ZCU102.
-
-Regards,
-
-Leon.
-
-
---
-Leon Woestenberg
-leon@sidebranch.com
-M: +31 6 472 30 372
-
-Sidebranch Embedded Systems
-Eindhoven, The Netherlands
-http://www.sidebranch.com
-
-
-
-On Tue, Jun 29, 2021 at 8:02 AM shoaib akhtar
-<m.shoaibakhtar98@gmail.com> wrote:
+> Greetz
 >
->
->
->
-> i have tried to build yocto image.  And it compiled successfully without any error but when am trying to BOOT them it didnt prompt any error message my BBlayer.conf is shown below
->
-> # POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayers.conf
-> # changes incompatibly
-> POKY_BBLAYERS_CONF_VERSION = "2"
->
-> BBPATH = "${TOPDIR}"
-> BBFILES ?= ""
->
-> BBLAYERS ?= " \
->   /media/vmnrtc/Drive/poky/meta \
->   /media/vmnrtc/Drive/poky/meta-poky \
->   /media/vmnrtc/Drive/poky/meta-yocto-bsp \
->   /media/vmnrtc/Drive/poky/meta-xilinx/meta-xilinx-bsp \
->   /media/vmnrtc/Drive/poky/meta-openembedded/meta-oe \
->   /media/vmnrtc/Drive/poky/meta-openembedded/meta-python \
->   /media/vmnrtc/Drive/poky/meta-xilinx/meta-xilinx-standalone \
->   /media/vmnrtc/Drive/poky/meta-xilinx-tools \
->   /media/vmnrtc/Drive/poky/build/meta-networking \
->   "
->
-> MY files in image directories
->
->
-> boot.bin
-> boot.bin-zc702-zynq7
-> boot.bin-zc702-zynq7-v2020.01-xilinx-v2020.2+gitAUTOINC+bb4660c33a-r0
-> boot.scr
-> core-image-minimal-zc702-zynq7-20210629031233.qemuboot.conf
-> core-image-minimal-zc702-zynq7-20210629031233.rootfs.cpio
-> core-image-minimal-zc702-zynq7-20210629031233.rootfs.cpio.gz.u-boot
-> core-image-minimal-zc702-zynq7-20210629031233.rootfs.manifest
-> core-image-minimal-zc702-zynq7-20210629031233.rootfs.tar.gz
-> core-image-minimal-zc702-zynq7-20210629031233.testdata.json
-> core-image-minimal-zc702-zynq7.cpio
-> core-image-minimal-zc702-zynq7.cpio.gz.u-boot
-> core-image-minimal-zc702-zynq7.manifest
-> core-image-minimal-zc702-zynq7.qemuboot.conf
-> core-image-minimal-zc702-zynq7.tar.gz
-> core-image-minimal-zc702-zynq7.testdata.json
-> modules--5.4+git0+62ea514294-r0-zc702-zynq7-20210622034511.tgz
-> modules-zc702-zynq7.tgz
-> pxeboot
-> pxelinux.cfg
-> u-boot.elf
-> u-boot.img
-> u-boot-xlnx-AUTOINC+bb4660c33a.elf
-> u-boot-xlnx-initial-env
-> u-boot-xlnx-initial-env-zc702-zynq7
-> u-boot-xlnx-initial-env-zc702-zynq7-v2020.01-xilinx-v2020.2+gitAUTOINC+bb4660c33a-r0
-> u-boot-zc702-zynq7.elf
-> u-boot-zc702-zynq7.img
-> u-boot-zc702-zynq7-v2020.01-xilinx-v2020.2+gitAUTOINC+bb4660c33a-r0.img
-> u-boot-zynq-scr--1.0-r0.scr
-> uEnv.txt
-> uImage
-> uImage--5.4+git0+62ea514294-r0-zc702-zynq7-20210622034511.bin
-> uImage-zc702-zynq7.bin
-> zImage
-> zImage--5.4+git0+62ea514294-r0-zc702-zynq7-20210622034511.bin
-> zImage-zc702-zynq7.bin
-> zynq-zc702--5.4+git0+62ea514294-r0-zc702-zynq7-20210622034511.dtb
-> zynq-zc702.dtb
-> zynq-zc702-zc702-zynq7.dtb
->
->
->
-> what should i do to BOOT my yocto build image on zc702 board
->
+> > Thanks in advance,
+> > Jonas
+> >
+> > [1]: https://stackoverflow.com/questions/68167244/image-specific-layers
+> > <https://stackoverflow.com/questions/68167244/image-specific-layers>
+> >
+> >
+> >
+> >
 >
 > 
 >
