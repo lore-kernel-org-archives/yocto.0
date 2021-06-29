@@ -1,146 +1,183 @@
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
- by mx.groups.io with SMTP id smtpd.web10.4256.1624944429080105626
- for <yocto@lists.yoctoproject.org>;
- Mon, 28 Jun 2021 22:27:09 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=TX9AAZuI;
- spf=pass (domain: gmail.com, ip: 209.85.167.170, mailfrom: frederic.martinsons@gmail.com)
-Received: by mail-oi1-f170.google.com with SMTP id o6so10350785oic.9
-        for <yocto@lists.yoctoproject.org>; Mon, 28 Jun 2021 22:27:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=annOJfqrHdvwGSraRlNZmNhlOQGorhB3H9+6Rqjh7DU=;
-        b=TX9AAZuIz8K1fNXenZozXbsSkIIZsNhw0oz2LGMpyoYOLSSt1raVdot5a6Rfl3rTyE
-         jFxODpt0jcAiL0PJZ3D5YjDw5K+D3Z67UmwjIGBe5f0P2bHWP5lcfKKe0SQkSabObuds
-         U3HoqI8xry3B/UCSB51VAyNjQWUXidXuAMIQt7cfjEcewX8F1Qzs9Cqc2u1R8FeJE/t6
-         JahzkSz2ISnvYmgYvohYeeM57vzG5Dr9lLPpkl3vjcDoRtlYqemlJF0QWRYpUmsFztBi
-         uHIj/0oM7xEVCQfHMdmskGPyWMetAB5lZKkJhHncFB6pKpMved0qBkVGHnZQloTU0mjO
-         mqdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=annOJfqrHdvwGSraRlNZmNhlOQGorhB3H9+6Rqjh7DU=;
-        b=ldldtBaE5olHltLs950/5krCyXPWUuK7N2cuYyRjB+G+z0YuxyCaGToylpQuLkK5t5
-         TLK7m4ipk3phCiNoOmXASnEp+mD/I+wEOYfg/8DcNODMEaiV8aarQbrJy5xg8iJlkJfB
-         TQqJMLyChfxvhj5Jy6V3obHLOhwi24Igj8/8OzfpQ6VC8qc6pIp8k6WBZiJiMng5rt+O
-         Dgmj8spiUwniL48J/0+QQaVHycyFZDhhSJVAbINj1zUXAkDD4WzexWYAcZ6La3I3ubZ7
-         A/SX1MO7pD6FEzKE5O9vPkZRkj3ve8FTPup9fl8hB67JfJ9Iw4cVFJV3X/rw/NfOVrJD
-         Fudw==
-X-Gm-Message-State: AOAM530Wi0Df2UQ3NzzUT9+ssFL8GFLtEosfTnAN6EKCvWjeZwQQjtVt
-	5WsIswaJpvDQG6VhVv8rgjtP0RcgHTvcOuh3a4w=
-X-Google-Smtp-Source: ABdhPJyaTOE/QBxYdSwSesHRkfzJ6STWqRPlKGj3aqagxQ+gifHThyp4sObKP/tDwT1K42K0NvuKWr9vIc0nFbZOX34=
-X-Received: by 2002:a05:6808:bc1:: with SMTP id o1mr23852439oik.176.1624944428386;
- Mon, 28 Jun 2021 22:27:08 -0700 (PDT)
+Subject: Yocto build isnot Booting up on board zc702 #gatesgarth #linux #yocto
+To: yocto@lists.yoctoproject.org
+From: "shoaib akhtar" <m.shoaibakhtar98@gmail.com>
+X-Originating-Location: Muzaffarabad, Azad Jammu and Kashmir, PK (59.103.180.55)
+X-Originating-Platform: Linux Firefox 89
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <CAEyb4nEiwzVnrqHGob-ioo0iwT+NNA_uCXFMejoYfAdnnQpH5A@mail.gmail.com>
-In-Reply-To: <CAEyb4nEiwzVnrqHGob-ioo0iwT+NNA_uCXFMejoYfAdnnQpH5A@mail.gmail.com>
-From: "Frederic Martinsons" <frederic.martinsons@gmail.com>
-Date: Tue, 29 Jun 2021 07:26:57 +0200
-Message-ID: <CA+cAkeoqEV_u0SKVX+QYLZdwmXthOg_kJsYRGUOVAXY+e=jZZA@mail.gmail.com>
-Subject: Re: [yocto] Would COMPATIBLE_IMAGE make sense?
-To: Jonas Vautherin <jonas.vautherin@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000006f144205c5e0db6f"
+Date: Mon, 28 Jun 2021 23:02:35 -0700
+Message-ID: <WQyj.1624946555328053729.Urcg@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="3CYYsBN5LGYuM394L4V8"
 
---0000000000006f144205c5e0db6f
-Content-Type: text/plain; charset="UTF-8"
-
-Hello, instead of creating a new variable (don't sure of its possible
-usefulness), you can use BBMASK or review dependencies between your layer
-
-PS: I did a similar answer on your stackoverflow question.
-
-On Tue, 29 Jun 2021 at 01:29, Jonas Vautherin <jonas.vautherin@gmail.com>
-wrote:
-
-> I was thinking about my issue described here [1], and discovered the
-> variables called COMPATIBLE_MACHINE and COMPATIBLE_HOST, which "you can use
-> to stop recipes from being built for machines (/hosts) with which the
-> recipes are not compatible". And so I wondered if it would make sense to
-> add COMPATIBLE_IMAGE, for a similar purpose.
->
-> Let me explain my issue: I define different images in different layers
-> (say `first-project-image` and `second-project-image`), and in each of
-> those layers I create `.bbappends` to configure some packages. Typically
-> `hostapd` is used by both images, but with a different config file.
->
-> The thing is that when I run `bitbake first-project-image`, because
-> `second-project-image` is part of my bblayers.conf, then the
-> hostapd_%.bbappend from `second-project-image` is used and may have an
-> impact on `first-project-image`, which I don't want. I really want this
-> bbappend to only affect the image `second-project-image`.
->
-> One way I can see to deal with that is to realize that
-> `first-project-image` and `second-project-image` are two different
-> projects, and build them from two different BUILDDIRs. The thing I don't
-> like here is that all the packages are therefore downloaded and built
-> twice, which seems like a loss of time and space.
->
-> That's where I thought about COMPATIBLE_IMAGE. In the hostapd_%.bbappend
-> of `first-project-image`, I would set "COMPATIBLE_IMAGE =
-> 'first-project-image'", and similarly for "COMPATIBLE_IMAGE =
-> 'second-project-image'". So that I could still share a BUILDDIR between
-> different projects.
->
-> How bad of an idea is that?
->
-> Thanks in advance,
-> Jonas
->
-> [1]: https://stackoverflow.com/questions/68167244/image-specific-layers
->
-> 
->
->
-
---0000000000006f144205c5e0db6f
-Content-Type: text/html; charset="UTF-8"
+--3CYYsBN5LGYuM394L4V8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello, instead of creating a new variable (don&#39;t sure =
-of its possible usefulness), you can use BBMASK or review dependencies=C2=
-=A0between your layer<div><br></div><div>PS: I did a similar answer on you=
-r=C2=A0stackoverflow=C2=A0question.</div></div><br><div class=3D"gmail_quot=
-e"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, 29 Jun 2021 at 01:29, Jona=
-s Vautherin &lt;<a href=3D"mailto:jonas.vautherin@gmail.com">jonas.vautheri=
-n@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex"><div dir=3D"ltr"><div>I was thinking about my issue described h=
-ere [1], and discovered the variables called COMPATIBLE_MACHINE and COMPATI=
-BLE_HOST, which &quot;you can use to stop recipes from being built
-                    for machines (/hosts) with which the recipes are not c=
-ompatible&quot;. And so I wondered if it would make sense to add COMPATIBLE=
-_IMAGE, for a similar purpose.</div><div><br></div><div>Let me explain my i=
-ssue: I define different images in different layers (say `first-project-ima=
-ge` and `second-project-image`), and in each of those layers I create `.bba=
-ppends` to configure some packages. Typically `hostapd` is used by both ima=
-ges, but with a different config file.</div><div><br></div><div>The thing i=
-s that when I run `bitbake first-project-image`, because `second-project-im=
-age` is part of my bblayers.conf, then the hostapd_%.bbappend from `second-=
-project-image` is used and may have an impact on `first-project-image`, whi=
-ch I don&#39;t want. I really want this bbappend to only affect the image `=
-second-project-image`.<br></div><div><br></div><div>One way I can see to de=
-al with that is to realize that `first-project-image` and `second-project-i=
-mage` are two different projects, and build them from two different BUILDDI=
-Rs. The thing I don&#39;t like here is that all the packages are therefore =
-downloaded and built twice, which seems like a loss of time and space.</div=
-><div><br></div><div>That&#39;s where I thought about COMPATIBLE_IMAGE. In =
-the hostapd_%.bbappend of `first-project-image`, I would set &quot;COMPATIB=
-LE_IMAGE =3D &#39;first-project-image&#39;&quot;, and similarly for &quot;C=
-OMPATIBLE_IMAGE =3D &#39;second-project-image&#39;&quot;. So that I could s=
-till share a BUILDDIR between different projects.</div><div><br></div><div>=
-How bad of an idea is that?</div><div><br></div><div>Thanks in advance,</di=
-v><div>Jonas<br></div><div><br></div><div>[1]: <a href=3D"https://stackover=
-flow.com/questions/68167244/image-specific-layers" target=3D"_blank">https:=
-//stackoverflow.com/questions/68167244/image-specific-layers</a></div></div=
->
-<br>
-<br>
-<br>
-</blockquote></div>
+i have tried to build yocto image.=C2=A0 And it compiled successfully witho=
+ut any error but when am trying to BOOT them it didnt prompt any error mess=
+age my BBlayer.conf is shown below
 
---0000000000006f144205c5e0db6f--
+# POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayers.co=
+nf
+# changes incompatibly
+POKY_BBLAYERS_CONF_VERSION =3D "2"
+
+BBPATH =3D "${TOPDIR}"
+BBFILES ?=3D ""
+
+BBLAYERS ?=3D " \
+/media/vmnrtc/Drive/poky/meta \
+/media/vmnrtc/Drive/poky/meta- poky \
+/media/vmnrtc/Drive/poky/meta- yocto-bsp \
+/media/vmnrtc/Drive/poky/meta- xilinx/meta-xilinx-bsp \
+/media/vmnrtc/Drive/poky/meta- openembedded/meta-oe \
+/media/vmnrtc/Drive/poky/meta- openembedded/meta-python \
+/media/vmnrtc/Drive/poky/meta- xilinx/meta-xilinx-standalone \
+/media/vmnrtc/Drive/poky/meta- xilinx-tools \
+/media/vmnrtc/Drive/poky/ build/meta-networking \
+"
+
+MY files in image directories
+
+boot.bin
+boot.bin-zc702-zynq7
+boot.bin-zc702-zynq7-v2020.01- xilinx-v2020.2+gitAUTOINC+ bb4660c33a-r0
+boot.scr
+core-image-minimal-zc702- zynq7-20210629031233.qemuboot. conf
+core-image-minimal-zc702- zynq7-20210629031233.rootfs. cpio
+core-image-minimal-zc702- zynq7-20210629031233.rootfs. cpio.gz.u-boot
+core-image-minimal-zc702- zynq7-20210629031233.rootfs. manifest
+core-image-minimal-zc702- zynq7-20210629031233.rootfs. tar.gz
+core-image-minimal-zc702- zynq7-20210629031233.testdata. json
+core-image-minimal-zc702- zynq7.cpio
+core-image-minimal-zc702- zynq7.cpio.gz.u-boot
+core-image-minimal-zc702- zynq7.manifest
+core-image-minimal-zc702- zynq7.qemuboot.conf
+core-image-minimal-zc702- zynq7.tar.gz
+core-image-minimal-zc702- zynq7.testdata.json
+modules--5.4+git0+62ea514294- r0-zc702-zynq7-20210622034511. tgz
+modules-zc702-zynq7.tgz
+pxeboot
+pxelinux.cfg
+u-boot.elf
+u-boot.img
+u-boot-xlnx-AUTOINC+ bb4660c33a.elf
+u-boot-xlnx-initial-env
+u-boot-xlnx-initial-env-zc702- zynq7
+u-boot-xlnx-initial-env-zc702- zynq7-v2020.01-xilinx-v2020.2+ gitAUTOINC+b=
+b4660c33a-r0
+u-boot-zc702-zynq7.elf
+u-boot-zc702-zynq7.img
+u-boot-zc702-zynq7-v2020.01- xilinx-v2020.2+gitAUTOINC+ bb4660c33a-r0.img
+u-boot-zynq-scr--1.0-r0.scr
+uEnv.txt
+uImage
+uImage--5.4+git0+62ea514294- r0-zc702-zynq7-20210622034511. bin
+uImage-zc702-zynq7.bin
+zImage
+zImage--5.4+git0+62ea514294- r0-zc702-zynq7-20210622034511. bin
+zImage-zc702-zynq7.bin
+zynq-zc702--5.4+git0+ 62ea514294-r0-zc702-zynq7- 20210622034511.dtb
+zynq-zc702.dtb
+zynq-zc702-zc702-zynq7.dtb
+
+what should i do to BOOT my yocto build image on zc702 board
+
+--3CYYsBN5LGYuM394L4V8
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<table class=3D"cf gJ" cellpadding=3D"0">
+<tbody>
+<div class=3D"aCi"><img id=3D":mj_13-e" class=3D"ajn" style=3D"background-=
+color: #cccccc;" src=3D"https://lh3.googleusercontent.com/a-/AOh14GgVnDJ8st=
+sXSsYliC9MGMxoKTKiokxQCN-mNQgs=3Ds40" name=3D":mj" data-hovercard-id=3D"m.s=
+hoaibakhtar98@gmail.com" data-name=3D"shoaib akhtar" aria-hidden=3D"true" /=
+></div>
+<tr class=3D"acZ">
+<td class=3D"gF gK">&nbsp;</td>
+<td class=3D"gH bAk">&nbsp;</td>
+</tr>
+<tr class=3D"acZ">
+<td class=3D"gH">&nbsp;</td>
+<td class=3D"gH acX bAm" rowspan=3D"2">&nbsp;</td>
+</tr>
+<tr class=3D"acZ xD">
+<td colspan=3D"3">
+<table class=3D"cf adz" cellpadding=3D"0">
+<tbody>
+<tr>
+<td class=3D"ady">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<div id=3D":15r" class=3D"ii gt">
+<div id=3D":16i" class=3D"a3s aiL ">
+<div dir=3D"ltr">
+<div>i have tried to build yocto image.&nbsp; And it compiled successfully=
+ without any error but when am trying to BOOT them it didnt prompt any erro=
+r message my BBlayer.conf is shown below</div>
+<div>&nbsp;</div>
+<div><em># POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bb=
+layers.conf</em><br /><em># changes incompatibly</em><br /><em>POKY_BBLAYER=
+S_CONF_VERSION =3D "2"</em><br /><br /><em>BBPATH =3D "${TOPDIR}"</em><br /=
+><em>BBFILES ?=3D ""</em><br /><br /><em>BBLAYERS ?=3D " \</em><br /><em>&n=
+bsp; /media/vmnrtc/Drive/poky/meta \</em><br /><em>&nbsp; /media/vmnrtc/Dri=
+ve/poky/meta-<wbr />poky \</em><br /><em>&nbsp; /media/vmnrtc/Drive/poky/me=
+ta-<wbr />yocto-bsp \</em><br /><em>&nbsp; /media/vmnrtc/Drive/poky/meta-<w=
+br />xilinx/meta-xilinx-bsp \</em><br /><em>&nbsp; /media/vmnrtc/Drive/poky=
+/meta-<wbr />openembedded/meta-oe \</em><br /><em>&nbsp; /media/vmnrtc/Driv=
+e/poky/meta-<wbr />openembedded/meta-python \</em><br /><em>&nbsp; /media/v=
+mnrtc/Drive/poky/meta-<wbr />xilinx/meta-xilinx-standalone \</em><br /><em>=
+&nbsp; /media/vmnrtc/Drive/poky/meta-<wbr />xilinx-tools \</em><br /><em>&n=
+bsp; /media/vmnrtc/Drive/poky/<wbr />build/meta-networking \</em><br />&nbs=
+p; "<br /><br /></div>
+<div>MY files in image directories</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div><em>boot.bin</em><br /><em>boot.bin-zc702-zynq7</em><br /><em>boot.bi=
+n-zc702-zynq7-v2020.01-<wbr />xilinx-v2020.2+gitAUTOINC+<wbr />bb4660c33a-r=
+0</em><br /><em>boot.scr</em><br /><em>core-image-minimal-zc702-<wbr />zynq=
+7-20210629031233.qemuboot.<wbr />conf</em><br /><em>core-image-minimal-zc70=
+2-<wbr />zynq7-20210629031233.rootfs.<wbr />cpio</em><br /><em>core-image-m=
+inimal-zc702-<wbr />zynq7-20210629031233.rootfs.<wbr />cpio.gz.u-boot</em><=
+br /><em>core-image-minimal-zc702-<wbr />zynq7-20210629031233.rootfs.<wbr /=
+>manifest</em><br /><em>core-image-minimal-zc702-<wbr />zynq7-2021062903123=
+3.rootfs.<wbr />tar.gz</em><br /><em>core-image-minimal-zc702-<wbr />zynq7-=
+20210629031233.testdata.<wbr />json</em><br /><em>core-image-minimal-zc702-=
+<wbr />zynq7.cpio</em><br /><em>core-image-minimal-zc702-<wbr />zynq7.cpio.=
+gz.u-boot</em><br /><em>core-image-minimal-zc702-<wbr />zynq7.manifest</em>=
+<br /><em>core-image-minimal-zc702-<wbr />zynq7.qemuboot.conf</em><br /><em=
+>core-image-minimal-zc702-<wbr />zynq7.tar.gz</em><br /><em>core-image-mini=
+mal-zc702-<wbr />zynq7.testdata.json</em><br /><em>modules--5.4+git0+62ea51=
+4294-<wbr />r0-zc702-zynq7-20210622034511.<wbr />tgz</em><br /><em>modules-=
+zc702-zynq7.tgz</em><br /><em>pxeboot</em><br /><em>pxelinux.cfg</em><br />=
+<em>u-boot.elf</em><br /><em>u-boot.img</em><br /><em>u-boot-xlnx-AUTOINC+<=
+wbr />bb4660c33a.elf</em><br /><em>u-boot-xlnx-initial-env</em><br /><em>u-=
+boot-xlnx-initial-env-zc702-<wbr />zynq7</em><br /><em>u-boot-xlnx-initial-=
+env-zc702-<wbr />zynq7-v2020.01-xilinx-v2020.2+<wbr />gitAUTOINC+bb4660c33a=
+-r0</em><br /><em>u-boot-zc702-zynq7.elf</em><br /><em>u-boot-zc702-zynq7.i=
+mg</em><br /><em>u-boot-zc702-zynq7-v2020.01-<wbr />xilinx-v2020.2+gitAUTOI=
+NC+<wbr />bb4660c33a-r0.img</em><br /><em>u-boot-zynq-scr--1.0-r0.scr</em><=
+br /><em>uEnv.txt</em><br /><em>uImage</em><br /><em>uImage--5.4+git0+62ea5=
+14294-<wbr />r0-zc702-zynq7-20210622034511.<wbr />bin</em><br /><em>uImage-=
+zc702-zynq7.bin</em><br /><em>zImage</em><br /><em>zImage--5.4+git0+62ea514=
+294-<wbr />r0-zc702-zynq7-20210622034511.<wbr />bin</em><br /><em>zImage-zc=
+702-zynq7.bin</em><br /><em>zynq-zc702--5.4+git0+<wbr />62ea514294-r0-zc702=
+-zynq7-<wbr />20210622034511.dtb</em><br /><em>zynq-zc702.dtb</em><br /><em=
+>zynq-zc702-zc702-zynq7.dtb</em></div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>what should i do to BOOT my yocto build image on zc702 board
+<div class=3D"adL">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+</tbody>
+</table>
+
+--3CYYsBN5LGYuM394L4V8--
