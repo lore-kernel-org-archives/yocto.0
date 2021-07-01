@@ -1,75 +1,145 @@
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
- by mx.groups.io with SMTP id smtpd.web11.8204.1625150873052902662
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+ by mx.groups.io with SMTP id smtpd.web09.9232.1625154790257953782
  for <yocto@lists.yoctoproject.org>;
- Thu, 01 Jul 2021 07:47:53 -0700
+ Thu, 01 Jul 2021 08:53:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Ey/LA+YZ;
- spf=pass (domain: gmail.com, ip: 209.85.166.174, mailfrom: tomasz.dziendzielski@gmail.com)
-Received: by mail-il1-f174.google.com with SMTP id f12so297101ils.11
-        for <yocto@lists.yoctoproject.org>; Thu, 01 Jul 2021 07:47:52 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=a9zHKXTU;
+ spf=pass (domain: gmail.com, ip: 209.85.210.47, mailfrom: jpewhacker@gmail.com)
+Received: by mail-ot1-f47.google.com with SMTP id o17-20020a9d76510000b02903eabfc221a9so7047650otl.0
+        for <yocto@lists.yoctoproject.org>; Thu, 01 Jul 2021 08:53:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=Y6o3GtI7xTXlRAs4NPZkntLhn68yvk9bo++wYqXaZ2g=;
-        b=Ey/LA+YZFDhWYVLIx0HumI4z2rDQu+sGYI/GXfeOkNVzFR4kuIVWb8Rxz4HPLaTtaS
-         d9rCNbR/jidWRU29nwD7dekgFpi5uEdlLJ9o4KnjmpinfXP747f+uPxkydCZviXnicYK
-         0XIc24z55WW5qrtgjxU1wERzSr7yLRuMx1N5kr/eDxemDfR7Kdgi2JSBFeqGPpcmQDt8
-         obMa9lwfVor1is9qn7Uss6lBEzAs6KrLTQwXYUEld2Ispefm5tFQUT7ykvZsN+OBsoL2
-         3dvfhLovpMA5eFg/i5EFLuoALlqwzXdbRM/O6eDOKp59ZD4NeuV0JR5/L1a7D3sz+ZnB
-         zLGw==
+        h=from:subject:to:references:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language;
+        bh=Y7zgH2rjv0NDZwe55CSp87F4k81RvS2QALN+64ENV8A=;
+        b=a9zHKXTUbch8N/5m7U464J1w+CrrF2hP5bPCDYiAIRYLWiWcWoz6zaWE0wdJLyj0WM
+         tIv6Dhbo7j5Fzk67c8Ir7m6rlqIPArqELDZq6OhGXOCWwV2L5FPq3YS+CVeKPNXTBoXP
+         1poDqKzdne+QzvBxVWie7tlRzBsQMb/MmMHyalM/zq3SYuKE8y1To0ovP7H6PCGSJvcd
+         3IsuAD6vYQs8fjRDjEfAPsjTk7m3qlHwqUNiSlZv+cRZUVQRUcWKQxhm7OoIbNaIacTU
+         3f9hrBDqyKry+4D0C+FSYEehlZ6jeBUX33/pI7CwxBfo2pVk510ZL0sGpPfDYksypbjJ
+         c7CA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=Y6o3GtI7xTXlRAs4NPZkntLhn68yvk9bo++wYqXaZ2g=;
-        b=F6nJinmg/yp7bBZafOjGOWdLSF+sqdUscDJFHDtJ7X7LqTAmjnEE/T4kEa+elH5FS5
-         REuObybP+EVgUQIWSWHA2R8vlP6KSo5ReLaDswnKsAovmYDsHm16ybaU1LkASxpo/UKH
-         WkpP81G4jXoJoaQsN1k9U5ybCuWvwjP8qythqaQUY6ARPFHetZiYfBGCI7tEyGnpZK07
-         GYm66QrSjk/Cx9OVazT8dR1c6IyOGmG5Pbu3hxY7SkCqu3qNCpb6YyB5cLnOoGF8ve7F
-         BZvn0x4QlEVVoU0VqrzgJrG3yGxdmjMFPh1DjpZNoQehLB1miSp+9KjDL9Mdf9aTh4VU
-         kSyA==
-X-Gm-Message-State: AOAM531CNAoI8HiQEt0n2k0vAhxcfip3LPutHjI67JawoMef/8CgKDkG
-	XqPWUEshwIFnjgHqPIrdAY7Sg5WLZk6QxifsfepHw6gspL8=
-X-Google-Smtp-Source: ABdhPJw0Vn+dBQvksZjoowXxeDKLHQR71JUoQh2rvcXr767VPLQ8YMR4pjPRSsr3M8BE3cJzLsVdJEwMW8SEkKdiO0E=
-X-Received: by 2002:a92:c56c:: with SMTP id b12mr10770181ilj.13.1625150871979;
- Thu, 01 Jul 2021 07:47:51 -0700 (PDT)
+        h=x-gm-message-state:from:subject:to:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language;
+        bh=Y7zgH2rjv0NDZwe55CSp87F4k81RvS2QALN+64ENV8A=;
+        b=uRNb+VEKU/7tEj6r9bqZ030yU6VOyuG9vVM3dRW8es5AgtBE8jOwK/oIGurqj6N1ld
+         xwZaKUXhULBzNEEwnEYbG9u2a6EAnu0FTwiGNkIBUAMXpGTlwJqQoXbjBVfUOaecysHx
+         Sff9pY7+1BOcbRhag+j0xudy/Aj9YPJQPkX9+aq8g95exZpi0MOxLqkDB6gAqdUDKcGU
+         8MTw8nDq1zLNOS8UwJBKKGRfX2VjxCG1nVWDZZ/pThYhrCvtX5KxiywjAf/Tk2PY7r2n
+         kxz7adcmQxDQq3zXJx9b4Oi7XWWFjd16y5waL7F+Y0V1+VqwwU9JYPKQs9U+GWM5NYsI
+         aTYQ==
+X-Gm-Message-State: AOAM53116JirBtlLCSiBXA0uv3gHjCPY3hLSQdA17bWZqPpakuYA6s1z
+	yu8SphAyeqP6A/882GS2C9z2njHU7jM=
+X-Google-Smtp-Source: ABdhPJxJkvykdjF+TWxpkB2fujqtOTXmxGZ6+2s4r46Jbc0ecO97bD/SaSViUQ+MoJ7afjUFr419bw==
+X-Received: by 2002:a9d:6d17:: with SMTP id o23mr555114otp.13.1625154789409;
+        Thu, 01 Jul 2021 08:53:09 -0700 (PDT)
+Return-Path: <jpewhacker@gmail.com>
+Received: from ?IPv6:2605:a601:ac3d:c100:e3e8:d9:3a56:e27d? ([2605:a601:ac3d:c100:e3e8:d9:3a56:e27d])
+        by smtp.gmail.com with ESMTPSA id z19sm24181ooi.32.2021.07.01.08.53.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Jul 2021 08:53:08 -0700 (PDT)
+From: "Joshua Watt" <JPEWhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
+Subject: Re: [yocto] Zuul - Project Gating System with Yocto Project
+To: Tomasz Dziendzielski <tomasz.dziendzielski@gmail.com>,
+ yocto@lists.yoctoproject.org
+References: <CAJkqNs31M4AgbfzBcfVH3ekTEMuRAXE2XC7JdqFhkjuSfxLgsw@mail.gmail.com>
+Message-ID: <b866d702-9ea0-611d-8997-1973634ae98d@gmail.com>
+Date: Thu, 1 Jul 2021 10:53:07 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-From: "Tomasz Dziendzielski" <tomasz.dziendzielski@gmail.com>
-Date: Thu, 1 Jul 2021 16:48:05 +0200
-Message-ID: <CAJkqNs31M4AgbfzBcfVH3ekTEMuRAXE2XC7JdqFhkjuSfxLgsw@mail.gmail.com>
-Subject: Zuul - Project Gating System with Yocto Project
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000006e4bae05c610ec9a"
+In-Reply-To: <CAJkqNs31M4AgbfzBcfVH3ekTEMuRAXE2XC7JdqFhkjuSfxLgsw@mail.gmail.com>
+Content-Type: multipart/alternative;
+ boundary="------------0E33AA267A663E669EB8BBC0"
+Content-Language: en-US
 
---0000000000006e4bae05c610ec9a
-Content-Type: text/plain; charset="UTF-8"
+--------------0E33AA267A663E669EB8BBC0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hello,
-is anyone here using Zuul along with Yocto Project? We are thinking about
-integrating Zuul to our project that already uses Yocto, but we are not too
-familiar with Zuul and we want it to conform to good open source practices,
-without losing any advantages of both projects and we want to avoid
-creating some hacky monster.
-Could you share some suggestions on how it can be combined together and
-what is the best approach/structure to do this? Please also share if you
-have some "what I wish I'd known" about Zuul integration to Yocto. Any
-hints are appreciated.
 
-Best regards,
-Tomasz Dziendzielski
+On 7/1/21 9:48 AM, Tomasz Dziendzielski wrote:
+> Hello,
+> is anyone here using Zuul along with Yocto Project? We are thinking 
+> about integrating Zuul to our project that already uses Yocto, but we 
+> are not too familiar with Zuul and we want it to conform to good open 
+> source practices, without losing any advantages of both projects and 
+> we want to avoid creating some hacky monster.
+> Could you share some suggestions on how it can be combined together 
+> and what is the best approach/structure to do this? Please also share 
+> if you have some "what I wish I'd known" about Zuul integration to 
+> Yocto. Any hints are appreciated.
 
---0000000000006e4bae05c610ec9a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello,</div><div>is anyone here using Zuul along with=
- Yocto Project? We are thinking about integrating Zuul to our project that =
-already uses Yocto, but we are not too familiar with Zuul and we want it to=
-  conform to good open source practices, without losing any advantages of b=
-oth projects and we want to avoid creating some hacky monster.</div><div>Co=
-uld you share some suggestions on how it can be combined together and what =
-is  the best approach/structure to do this? Please also share if you have s=
-ome &quot;what I wish I&#39;d known&quot; about Zuul integration to Yocto. =
-Any hints are appreciated.</div><div><br></div><div>Best regards,</div><div=
->Tomasz Dziendzielski<br></div></div>
+I haven't, but it's on my radar to look at as it seems like it could be 
+pretty useful. If you look into it, please share your findings!
 
---0000000000006e4bae05c610ec9a--
+
+>
+> Best regards,
+> Tomasz Dziendzielski
+>
+> 
+>
+
+--------------0E33AA267A663E669EB8BBC0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 7/1/21 9:48 AM, Tomasz Dziendzielski
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAJkqNs31M4AgbfzBcfVH3ekTEMuRAXE2XC7JdqFhkjuSfxLgsw@mail.gmail.com">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <div dir="ltr">
+        <div>Hello,</div>
+        <div>is anyone here using Zuul along with Yocto Project? We are
+          thinking about integrating Zuul to our project that already
+          uses Yocto, but we are not too familiar with Zuul and we want
+          it to conform to good open source practices, without losing
+          any advantages of both projects and we want to avoid creating
+          some hacky monster.</div>
+        <div>Could you share some suggestions on how it can be combined
+          together and what is the best approach/structure to do this?
+          Please also share if you have some "what I wish I'd known"
+          about Zuul integration to Yocto. Any hints are appreciated.</div>
+      </div>
+    </blockquote>
+    <p><br>
+    </p>
+    <p>I haven't, but it's on my radar to look at as it seems like it
+      could be pretty useful. If you look into it, please share your
+      findings!<br>
+    </p>
+    <p><br>
+    </p>
+    <blockquote type="cite"
+cite="mid:CAJkqNs31M4AgbfzBcfVH3ekTEMuRAXE2XC7JdqFhkjuSfxLgsw@mail.gmail.com">
+      <div dir="ltr">
+        <div><br>
+        </div>
+        <div>Best regards,</div>
+        <div>Tomasz Dziendzielski<br>
+        </div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+
+
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------0E33AA267A663E669EB8BBC0--
