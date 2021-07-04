@@ -1,50 +1,50 @@
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
- by mx.groups.io with SMTP id smtpd.web12.2986.1625431685154158207
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+ by mx.groups.io with SMTP id smtpd.web08.2942.1625431698316399989
  for <yocto@lists.yoctoproject.org>;
- Sun, 04 Jul 2021 13:48:05 -0700
+ Sun, 04 Jul 2021 13:48:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=E82MCW6N;
- spf=pass (domain: gmail.com, ip: 209.85.215.177, mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f177.google.com with SMTP id u14so16267757pga.11
-        for <yocto@lists.yoctoproject.org>; Sun, 04 Jul 2021 13:48:05 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=NwSP6Amk;
+ spf=pass (domain: gmail.com, ip: 209.85.210.169, mailfrom: akuster808@gmail.com)
+Received: by mail-pf1-f169.google.com with SMTP id j199so14434473pfd.7
+        for <yocto@lists.yoctoproject.org>; Sun, 04 Jul 2021 13:48:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
         bh=a5Q35+7BcJPsntT+sKeqamaf7/gPo4q2jOiF5TV6Gbs=;
-        b=E82MCW6N1k1IOouKs+Eu6jU9KRmtL+PvtjNwgtsxK73IYgHjliJCgEDjEia5AKISZo
-         Afz83642b0hgKKuWBOZYqmik5k4PI1GcidvUryxxMDfToDnDwc1QJfUfDjf/mZF+Acjq
-         JQvxUdG5vaV6UzEuH/Tyw5eUusz/wprhgl5SMAwFWh19qKSS5YcYOSzunFoVdpMc7xxW
-         eRieWLAHD/D1YZocnbNyOEmU037b2usGtsFFdPcIqmN3SZk8ZKc5AtLVby0UoXlC39kf
-         xIQOPuIMzm5ybJ1zdhyzRTFPwh2L/n4kNCLOebru4VSh8d/qKd9lTWkBjMO31I+7hUZ6
-         WyUg==
+        b=NwSP6AmkE5t1XzTHTJ+1JE2lujpT30EJtrC8FM7dW68HdM8lHDHhc3k/CHzFNqZ0vm
+         HNPJN9zbPLEjkbmYi88WXpu5ioopaTvsg8uMiVzRUX1Q57SbkVzO3FH9AlTQuv4Nx0bx
+         /zR8vqDbEbdPTNmML81R8jY4D2Bv0q38xGfgNUmhEVdA6JBqX4Ke4HWRhvpSvWQse5FJ
+         //FmlummkbhkR0NOIeUYqE5yhclEzEHceVrjTpPfyVJEgW9zlCMRik0Ug88O6K6ukB5H
+         ALeYeOJWtJiwj0U6TsIgd8MeoZ+SdAgCDozWxkCoRf++pp1JBMQHebwe+iUlMLb6pIZJ
+         h8Vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
         bh=a5Q35+7BcJPsntT+sKeqamaf7/gPo4q2jOiF5TV6Gbs=;
-        b=Au8rKI3GWaqu582iu2OgZRNJ8zBineWR/lJj/S/p3j4e+uJIyuWsXlGd5CCKbsa8Br
-         0hZoNyJk11tUCLrPA6oWC9Jc+exOBvNe9rq3XzI6sfFmwbqoUmhFP5lXR1FcWmz4oyuM
-         j+yYka3jfe3jgWEMiqsk29EmAAZCSj9Xj58FIMgymVwOz5UKgqBJpu4ynVt0UBIJrOH/
-         sLGBq0WyGMfN1i0jpm7zcoqEYgDwKccr6Gi0CfjgY07IgjpWv6ZAvmnFyA4KZKprlMub
-         ktplrzYh58rw/8m0BMlXyMMyHlhgLtViWYTYqJrU0Zd3FT6rauNLOfKGmx5VFCy6oh5i
-         X1hg==
-X-Gm-Message-State: AOAM530qsOF2U0t8OyLpxox1Sw4N0kYUg7vzovAmx3HPAlGLh8B388MC
-	2JiRqt9ebq+fDTl9PsPBYBVCMX5h+hxesA==
-X-Google-Smtp-Source: ABdhPJz9C0T1Luwzxc+DmsSocEe2dVSLJB3Dh766rVmwXCibHM1TyF755nw1LQLKpD5xx88F/Cox+A==
-X-Received: by 2002:aa7:9409:0:b029:303:1db:94d5 with SMTP id x9-20020aa794090000b029030301db94d5mr11570174pfo.72.1625431684357;
-        Sun, 04 Jul 2021 13:48:04 -0700 (PDT)
+        b=qSNXmYMMtu18o9tfw5vZbH+FlsLnUDWjh1iaml6IHrX/ij/zG8mcsuLf1V/HVolaSk
+         PUc9BphxOybtuXZdC6HV1zE73Yx5mAJJokvZcB8j1vMRg6yjgy0xUw1JiYiaPpYI9sJ1
+         rD0hexo1ZMmBSUThBys/7Qj2w0mfrBx83QiipmPJBZr4uEyqjN74YynLyOzQkNncbQFm
+         P+sG/bUQzG6JVhARQc+j0mtqNj3bpi9NaNrSeS5JG7F23GwSUsRlBTC92N6KfGLk1ziA
+         oI8VGo/ZgmKo3MxbGTgC5vZyVTNRO3k9oXk26hEVtnIkrkhwweXuz/3x6PbM2+9eLmoH
+         BT+Q==
+X-Gm-Message-State: AOAM530eGMJG4yyVzZrwmcipc9SVnQbbyFArp2SVdo0zvheiiCZ8z7tm
+	PNRYR07LD1wLLdjX/jQmHuWh2sepyCLl9A==
+X-Google-Smtp-Source: ABdhPJxMMAKoQE0OWK5s21T8E8QY8O0hpT5CTlCSTVhmgiGVT9+8VlAGo6Y/YB4rTDsm5zsL3QS0hw==
+X-Received: by 2002:a63:b25c:: with SMTP id t28mr12025974pgo.251.1625431697813;
+        Sun, 04 Jul 2021 13:48:17 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from akuster-ThinkPad-X13-Gen-1.hsd1.ca.comcast.net ([2601:202:4180:a5c0:5f44:8c5e:6750:1a4a])
-        by smtp.gmail.com with ESMTPSA id t5sm11939953pgb.58.2021.07.04.13.48.03
+        by smtp.gmail.com with ESMTPSA id d1sm8447512pju.16.2021.07.04.13.48.17
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Jul 2021 13:48:03 -0700 (PDT)
+        Sun, 04 Jul 2021 13:48:17 -0700 (PDT)
 From: "Armin Kuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
 Subject: [meta-security][PATCH] sssd: update to 2.5.1
-Date: Sun,  4 Jul 2021 13:48:02 -0700
-Message-Id: <20210704204802.2807983-1-akuster808@gmail.com>
+Date: Sun,  4 Jul 2021 13:48:15 -0700
+Message-Id: <20210704204815.2808051-1-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
