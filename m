@@ -1,122 +1,152 @@
-Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
- by mx.groups.io with SMTP id smtpd.web12.1852.1625425092641901732
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+ by mx.groups.io with SMTP id smtpd.web12.2986.1625431685154158207
  for <yocto@lists.yoctoproject.org>;
- Sun, 04 Jul 2021 11:58:12 -0700
+ Sun, 04 Jul 2021 13:48:05 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=IeilG6+U;
- spf=pass (domain: gmail.com, ip: 209.85.219.52, mailfrom: raj.khem@gmail.com)
-Received: by mail-qv1-f52.google.com with SMTP id f5so7344644qvu.8
-        for <yocto@lists.yoctoproject.org>; Sun, 04 Jul 2021 11:58:12 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=E82MCW6N;
+ spf=pass (domain: gmail.com, ip: 209.85.215.177, mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f177.google.com with SMTP id u14so16267757pga.11
+        for <yocto@lists.yoctoproject.org>; Sun, 04 Jul 2021 13:48:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+        h=from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=GWyVj0dXqTPy+cWzim122I8Db43zgl7/Mz7jvVykGNo=;
-        b=IeilG6+Uiimsb9KSeWxbeS0gxVwCrta6R55ZhC4Y4ltNrHmpoeAE6ub+aj51jbVdy8
-         tilU8T7EYOzgAes/APwYEdIJAUzZp6u+vLOniAFPqmmzjrmnpbV6jBtI+s4u9GhmGmCb
-         aOkM8+obRBMBBE1mT8TCMaBCFczDrt73K+Yu7xJprAeG1HF9h5b+C11EiGM7skrzi9su
-         GhR+1jjJ8RKe4VQRBT3FL7lnDYHHByObgdQnEoOEOM1kMlc6avkV6yt4+j5y7J9iPsdz
-         QludpY0k54wneAeP10gvmpW9ax7x5Z05+bPoGS2eoySSJXfv7E+12GryJ60Yg7l3/ehh
-         B6DA==
+        bh=a5Q35+7BcJPsntT+sKeqamaf7/gPo4q2jOiF5TV6Gbs=;
+        b=E82MCW6N1k1IOouKs+Eu6jU9KRmtL+PvtjNwgtsxK73IYgHjliJCgEDjEia5AKISZo
+         Afz83642b0hgKKuWBOZYqmik5k4PI1GcidvUryxxMDfToDnDwc1QJfUfDjf/mZF+Acjq
+         JQvxUdG5vaV6UzEuH/Tyw5eUusz/wprhgl5SMAwFWh19qKSS5YcYOSzunFoVdpMc7xxW
+         eRieWLAHD/D1YZocnbNyOEmU037b2usGtsFFdPcIqmN3SZk8ZKc5AtLVby0UoXlC39kf
+         xIQOPuIMzm5ybJ1zdhyzRTFPwh2L/n4kNCLOebru4VSh8d/qKd9lTWkBjMO31I+7hUZ6
+         WyUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:content-transfer-encoding;
-        bh=GWyVj0dXqTPy+cWzim122I8Db43zgl7/Mz7jvVykGNo=;
-        b=ZFFby2RRgNIFc6grP2P7LHU9Up+hfNIr3KsLCLhLVW/0fCxfFxK48rCtjaZsEFuqor
-         Vj6Goj0mvcXhz3sDZPjJfcZzIWS2BL0vmD54Il2YVBim0QEdF/hscLFtqo0m4fmW0hVL
-         QzeINNUZHZ5ttGVxmdb26uh1QRBMOvD0HMlzBMmUnl3rh3gMUs/LESYeY+hy00wowEAB
-         VXB8LuYDtEY17vykC+H44M1JpuKybLkHffBMtLRJkINROaZfU6tjJ4CqxdAZoR77gWbq
-         hNDymRHTbs0eMfK0jrJT1+HrMPtuGqIQkOtJJTzl2XYW0qIB6sgY5fvCgh9T6lyO/9oY
-         XlfQ==
-X-Gm-Message-State: AOAM531xY/yHYyPVXYp7i9aaJuzR3SKEj3H+aFysi6DmzXbT7egsjBR2
-	CS8ulb9ub+NQtQgOQ1plAYecpg4RO8ZLc7/+2EyOXaHiG+0=
-X-Google-Smtp-Source: ABdhPJzYVKTFRV6amTaRHmNUy/ULj3AJS7ZytC4T8ukk6iRLdgQ63p/wCbhSRvKi1+e+4X9H8M/Z4FmzJfatvRPmWpA=
-X-Received: by 2002:a0c:ecc8:: with SMTP id o8mr9927545qvq.55.1625425091667;
- Sun, 04 Jul 2021 11:58:11 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=a5Q35+7BcJPsntT+sKeqamaf7/gPo4q2jOiF5TV6Gbs=;
+        b=Au8rKI3GWaqu582iu2OgZRNJ8zBineWR/lJj/S/p3j4e+uJIyuWsXlGd5CCKbsa8Br
+         0hZoNyJk11tUCLrPA6oWC9Jc+exOBvNe9rq3XzI6sfFmwbqoUmhFP5lXR1FcWmz4oyuM
+         j+yYka3jfe3jgWEMiqsk29EmAAZCSj9Xj58FIMgymVwOz5UKgqBJpu4ynVt0UBIJrOH/
+         sLGBq0WyGMfN1i0jpm7zcoqEYgDwKccr6Gi0CfjgY07IgjpWv6ZAvmnFyA4KZKprlMub
+         ktplrzYh58rw/8m0BMlXyMMyHlhgLtViWYTYqJrU0Zd3FT6rauNLOfKGmx5VFCy6oh5i
+         X1hg==
+X-Gm-Message-State: AOAM530qsOF2U0t8OyLpxox1Sw4N0kYUg7vzovAmx3HPAlGLh8B388MC
+	2JiRqt9ebq+fDTl9PsPBYBVCMX5h+hxesA==
+X-Google-Smtp-Source: ABdhPJz9C0T1Luwzxc+DmsSocEe2dVSLJB3Dh766rVmwXCibHM1TyF755nw1LQLKpD5xx88F/Cox+A==
+X-Received: by 2002:aa7:9409:0:b029:303:1db:94d5 with SMTP id x9-20020aa794090000b029030301db94d5mr11570174pfo.72.1625431684357;
+        Sun, 04 Jul 2021 13:48:04 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from akuster-ThinkPad-X13-Gen-1.hsd1.ca.comcast.net ([2601:202:4180:a5c0:5f44:8c5e:6750:1a4a])
+        by smtp.gmail.com with ESMTPSA id t5sm11939953pgb.58.2021.07.04.13.48.03
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 Jul 2021 13:48:03 -0700 (PDT)
+From: "Armin Kuster" <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH] sssd: update to 2.5.1
+Date: Sun,  4 Jul 2021 13:48:02 -0700
+Message-Id: <20210704204802.2807983-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210704185243.404621-1-raj.khem@gmail.com>
-In-Reply-To: <20210704185243.404621-1-raj.khem@gmail.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Sun, 4 Jul 2021 11:57:45 -0700
-Message-ID: <CAMKF1spvz_CFGSkZA+=6b_S_rST-ospBL04XjOUFYeN1ASVJCg@mail.gmail.com>
-Subject: Re: [meta-gplv2] [PATCH v2] coreutils_6.9.bb: Fix build with glibc 2.34
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-ignore this, as I sent a followup which applies on top of master.
+See full change log: https://sssd.io/release-notes/sssd-2.5.1.html
 
-On Sun, Jul 4, 2021 at 11:52 AM Khem Raj <raj.khem@gmail.com> wrote:
->
-> Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> ---
-> v2: Rebase the patch to respect other patches
->
->  ...-includes-for-glibc-2.34-portability.patch | 35 +++++++++++++++++++
->  recipes-core/coreutils/coreutils_6.9.bb       |  1 +
->  2 files changed, 36 insertions(+)
->  create mode 100644 recipes-core/coreutils/coreutils-6.9/0001-sort.c-Reor=
-der-includes-for-glibc-2.34-portability.patch
->
-> diff --git a/recipes-core/coreutils/coreutils-6.9/0001-sort.c-Reorder-inc=
-ludes-for-glibc-2.34-portability.patch b/recipes-core/coreutils/coreutils-6=
-.9/0001-sort.c-Reorder-includes-for-glibc-2.34-portability.patch
-> new file mode 100644
-> index 0000000..f37cb47
-> --- /dev/null
-> +++ b/recipes-core/coreutils/coreutils-6.9/0001-sort.c-Reorder-includes-f=
-or-glibc-2.34-portability.patch
-> @@ -0,0 +1,35 @@
-> +From e241a55767c4eaac7d14c412d880037cb6d2ee33 Mon Sep 17 00:00:00 2001
-> +From: Khem Raj <raj.khem@gmail.com>
-> +Date: Tue, 29 Jun 2021 22:43:16 -0700
-> +Subject: [PATCH] sort.c: Reorder includes for glibc 2.34 portability
-> +
-> +With glibc 2.34 config.h will include stdlib.h and that would disable
-> +sys/wait.h to include needed definitions from bits/waitflags.h since
-> +_STDLIB_H would have been defined already and sys/wait.h would think
-> +these paths are included already, this is fixed with newer gnulib and
-> +configure so this is to get this old version to compile with latest
-> +glibc headers
-> +
-> +Upstream-Status: Inappropriate [OE-Specific]
-> +Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> +---
-> + src/sort.c | 4 ++--
-> + 1 file changed, 2 insertions(+), 2 deletions(-)
-> +
-> +--- a/src/sort.c
-> ++++ b/src/sort.c
-> +@@ -21,12 +21,12 @@
-> +
-> +    =C3=98rn E. Hansen added NLS support in 1997.  */
-> +
-> ++#include <sys/types.h>
-> ++#include <sys/wait.h>
-> + #include <config.h>
-> +
-> + #include <assert.h>
-> + #include <getopt.h>
-> +-#include <sys/types.h>
-> +-#include <sys/wait.h>
-> + #include <signal.h>
-> + #if HAVE_WCHAR_H
-> + # include <wchar.h>
-> diff --git a/recipes-core/coreutils/coreutils_6.9.bb b/recipes-core/coreu=
-tils/coreutils_6.9.bb
-> index 42b4f3c..69e5489 100644
-> --- a/recipes-core/coreutils/coreutils_6.9.bb
-> +++ b/recipes-core/coreutils/coreutils_6.9.bb
-> @@ -27,6 +27,7 @@ SRC_URI =3D "${GNU_MIRROR}/coreutils/${BP}.tar.bz2 \
->             file://no-man.patch \
->             file://build-don-t-need-charset.alias-when-building-for-mus.p=
-atch \
->             file://no-su.patch \
-> +           file://0001-sort.c-Reorder-includes-for-glibc-2.34-portabilit=
-y.patch \
->             "
->
->  SRC_URI[md5sum] =3D "c9607d8495f16e98906e7ed2d9751a06"
-> --
-> 2.32.0
+Including a musl build work around
+
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/sssd/files/musl_fixup.patch  | 53 +++++++++++++++++++
+ .../sssd/{sssd_2.5.0.bb => sssd_2.5.1.bb}     |  6 ++-
+ 2 files changed, 57 insertions(+), 2 deletions(-)
+ create mode 100644 recipes-security/sssd/files/musl_fixup.patch
+ rename recipes-security/sssd/{sssd_2.5.0.bb => sssd_2.5.1.bb} (96%)
+
+diff --git a/recipes-security/sssd/files/musl_fixup.patch b/recipes-security/sssd/files/musl_fixup.patch
+new file mode 100644
+index 0000000..68f267c
+--- /dev/null
++++ b/recipes-security/sssd/files/musl_fixup.patch
+@@ -0,0 +1,53 @@
++fix musl build failures
++
++Missing _PATH_HOSTS and some NETDB defines when musl is enabled.
++
++These are work arounds for now while we figure out where the real fix should reside (musl, gcompact, sssd):
++
++./sssd-2.5.1/src/providers/fail_over.c:1199:19: error: '_PATH_HOSTS' undeclared (first use in this function)
++|  1199 |                   _PATH_HOSTS);
++|       |                   ^~~~~~~~~~~
++
++and 
++
++i./sssd-2.5.1/src/sss_client/nss_ipnetworks.c:415:21: error: 'NETDB_INTERNAL' undeclared (first use in this function)
++|   415 |         *h_errnop = NETDB_INTERNAL;
++
++
++Upstream-Status: Pending
++Signed-off-by: Armin Kuster <akuster808@gmail.com>
++
++Index: sssd-2.5.1/src/providers/fail_over.c
++===================================================================
++--- sssd-2.5.1.orig/src/providers/fail_over.c
+++++ sssd-2.5.1/src/providers/fail_over.c
++@@ -31,6 +31,10 @@
++ #include <talloc.h>
++ #include <netdb.h>
++ 
+++#if !defined(_PATH_HOSTS)
+++#define _PATH_HOSTS     "/etc/hosts"
+++#endif
+++
++ #include "util/dlinklist.h"
++ #include "util/refcount.h"
++ #include "util/util.h"
++Index: sssd-2.5.1/src/sss_client/sss_cli.h
++===================================================================
++--- sssd-2.5.1.orig/src/sss_client/sss_cli.h
+++++ sssd-2.5.1/src/sss_client/sss_cli.h
++@@ -44,6 +44,14 @@ typedef int errno_t;
++ #define EOK 0
++ #endif
++ 
+++#ifndef NETDB_INTERNAL
+++# define NETDB_INTERNAL (-1)
+++#endif
+++
+++#ifndef NETDB_SUCCESS
+++# define NETDB_SUCCESS (0)
+++#endif
+++
++ #define SSS_NSS_PROTOCOL_VERSION 1
++ #define SSS_PAM_PROTOCOL_VERSION 3
++ #define SSS_SUDO_PROTOCOL_VERSION 1
+diff --git a/recipes-security/sssd/sssd_2.5.0.bb b/recipes-security/sssd/sssd_2.5.1.bb
+similarity index 96%
+rename from recipes-security/sssd/sssd_2.5.0.bb
+rename to recipes-security/sssd/sssd_2.5.1.bb
+index 84b7b0e..9205843 100644
+--- a/recipes-security/sssd/sssd_2.5.0.bb
++++ b/recipes-security/sssd/sssd_2.5.1.bb
+@@ -15,15 +15,17 @@ DEPENDS_append_libc-musl = " musl-nscd"
+ DEPENDS += "${@bb.utils.contains('PACKAGECONFIG', 'nss', '', \
+                bb.utils.contains('PACKAGECONFIG', 'crypto', '', 'nss', d), d)}"
+ 
+-SRC_URI = "https://github.com/SSSD/sssd/releases/download/2.5.0/sssd-2.5.0.tar.gz \
++SRC_URI = "https://github.com/SSSD/sssd/releases/download/${PV}/sssd-${PV}.tar.gz \
+            file://sssd.conf \
+            file://volatiles.99_sssd \
+            file://no_gen.patch \
+            file://fix_gid.patch \
+            file://drop_ntpdate_chk.patch \
+            file://fix-ldblibdir.patch \
++           file://musl_fixup.patch \
+            "
+-SRC_URI[sha256sum] = "afa62d7d8d23fca3aba093abe4ec0d14e7d9346c5b28ceb7c2c624bed98caa06"
++
++SRC_URI[sha256sum] = "ce2f5d84a3f1750093318afd27f4fd75b1e3e75f7d80fc42d21a40cc54b58ea4"
+ 
+ inherit autotools pkgconfig gettext python3-dir features_check systemd
+ 
+-- 
+2.25.1
+
