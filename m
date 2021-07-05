@@ -1,69 +1,80 @@
-Received: from mail1.xn--80adja5bqm.su (mail1.xn--80adja5bqm.su [45.62.210.217])
- by mx.groups.io with SMTP id smtpd.web11.14486.1625510272889644681
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
+ by mx.groups.io with SMTP id smtpd.web11.15378.1625514985768215417
  for <yocto@lists.yoctoproject.org>;
- Mon, 05 Jul 2021 11:37:53 -0700
+ Mon, 05 Jul 2021 12:56:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: mail1.xn--80adja5bqm.su, ip: 45.62.210.217, mailfrom: jin@mail1.xn--80adja5bqm.su)
-Received: by mail1.xn--80adja5bqm.su (Postfix, from userid 1000)
-	id EBBE720C54AE; Mon,  5 Jul 2021 20:37:26 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail1.xn--80adja5bqm.su EBBE720C54AE
-Date: Mon, 5 Jul 2021 20:37:26 +0200
-From: "Sergey Bostandzhyan" <jin@mediatomb.cc>
+ dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=Ls7o0lOm;
+ spf=softfail (domain: sakoman.com, ip: 209.85.210.41, mailfrom: steve@sakoman.com)
+Received: by mail-ot1-f41.google.com with SMTP id x22-20020a9d6d960000b0290474a76f8bd4so17743861otp.5
+        for <yocto@lists.yoctoproject.org>; Mon, 05 Jul 2021 12:56:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sakoman-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+         :content-transfer-encoding;
+        bh=qX3gcuumLf9M2I5Q9T8IAVstt5HCWbm5WwSkJ1mvTo4=;
+        b=Ls7o0lOmw+AazjOhiof4QTDjUS5oBmkZvm5AtPxmHDz9iMmYOpkwd+ak7Vk57v7Z+K
+         92ksoYdbgnK/gpwQcTFEuCBjJoSSqWesm8rjhNvld6wpgMvnQNNcWteIfPWIS2fqXZsp
+         PRXT1lYq3Ba3P8dQGUA2psWLoHnLOmd2JNDCZ8ZYwkkQLaOh7Mmw1+bKpqUOKvDuLvV5
+         n9oHCOMlc2xnxzFxDsAn3YHps1zg1S/lRujG6478iiOS1ReLF5ntO66ji4UTmHd/SSvs
+         UAmApLV3CFTLnBphj3gA+OxHyNp/ig0cslPYI4KHUYV/O8S+tFsQUJwb9czFso9wB/fZ
+         +Sdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=qX3gcuumLf9M2I5Q9T8IAVstt5HCWbm5WwSkJ1mvTo4=;
+        b=WfpHzoX59ofZgQjxXNMWG2aJB2oERZR0qY48ZcyV32mBCyjxCxdFcc/rtkIu/tqTKt
+         baVV1ZNr7nH6Vsza3wT9oc9SgQfzuMU2jdL8r5bDuSaQGVksn2TrPby/wOo9AR19ni6g
+         jJbGpAOUrxisTHTdG1TCEXc26mhkou/ShcuHLqGBGkQNr4Gp4ATcTNRcPfOju1vxafzn
+         y0aijE1L3bjL+BX9kRMIGVs0tqB/86L+TbPJWHc86GWvR9U9A/KIqF4ATHFqQknhrhYC
+         fcNYU3+h+pFa+uFPbN0NAbKYL2YL2srJt9Qjp/2ae4VpB8mzTcZvh2TOFKWqr7g4iUeq
+         uSRg==
+X-Gm-Message-State: AOAM532v6kFRwGb+nujlKpCA2l/mqsj3C5ezp2HrxU/b6sbyqfFL6ZSj
+	gKZQ1oNgUHxJcOa7rNdtMkz9HshOyWfVGq/p
+X-Google-Smtp-Source: ABdhPJzpLhXg/e5C6h5mbjlDJQ0Z6UNoc9ZrPsy7gGHVh+RM12ziNySM/V+PWM3Yh5Gv8msLqbYYrA==
+X-Received: by 2002:a9d:826:: with SMTP id 35mr2574647oty.121.1625514984533;
+        Mon, 05 Jul 2021 12:56:24 -0700 (PDT)
+Return-Path: <steve@sakoman.com>
+Received: from hexa.router0800d9.com ([172.243.4.16])
+        by smtp.gmail.com with ESMTPSA id x17sm2884836otp.48.2021.07.05.12.56.20
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Jul 2021 12:56:24 -0700 (PDT)
+From: "Steve Sakoman" <steve@sakoman.com>
 To: yocto@lists.yoctoproject.org
-Subject: How to handle build time dependencies on native python modules?
-Message-Id: <20210705183726.GA21056@xn--80adja5bqm.su>
+Subject: [yocto-autobuilder-helper][dunfell] config.json: Switch to newer buildtools-extended-tarball
+Date: Mon,  5 Jul 2021 09:55:50 -1000
+Message-Id: <03324adbe8736ef7dcdd116c59968c8534dd88c1.1625514857.git.steve@sakoman.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <cover.1625514857.git.steve@sakoman.com>
+References: <cover.1625514857.git.steve@sakoman.com>
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-Hi,
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
 
-I ran into the following situation and I am wondering, what the "correct"
-way of handling such a setup is?
+This adds locale information which should fix reproducibility issues with vim.
 
-We have an application that is embedding Python 3 in order to allow users to
-modify app behavior; so unlike the most common scenario, it's not
-a standalone python module or python bindings to a library, but a linux binary
-that does stuff, but that also allows to execute python scripts from within by 
-linking vs libpython (i.e. python3-embed.pc setup). I am pointing this out 
-specifically, because from what I have seen this is the least used scenario.
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+(cherry picked from commit 345475b99a59ef78a8736e3832c85a07ac7923e2)
+Signed-off-by: Steve Sakoman <steve@sakoman.com>
+---
+ config.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-We depend on cffi to generate Python bindings for the application
-API, so the idea is that configure runs the cffi python script which will
-spit out the sources, which then get compiled together with the application.
-
-The sources generated by cffi are portable, so it would be OK to use the
-native python interpreter to run the cffi build script.
-
-I added python3-native and python3-cffi-native to DEPENDS and I can see that
-the cffi module is present in:
-${WORKDIR}/recipe-sysroot-native/usr/lib/python3.8/site-packages/
-
-
-The issue is, that python3-native does not see the cffi module, because
-PYTHONPATH does not reflect the recipe-sysroot-native directory. So when I
-try to run my cffi build.py script it fails at "import cffi"
-
-I "hacked" a solution by inheriting python3-dir and setting PYTHONPATH
-in do_configure_prepend() and in do_compile_prepend():
-
-export PYTHONPATH="${WORKDIR}/recipe-sysroot-native/${PYTHON_SITEPACKAGES_DIR}"
-
-The above works, but feels like a hack.
-
-I am wondering if there is a way of configuring this properly?
-
-I asked on IRC and Russ Burton suggested to try inheriting python3native, but
-as far as I can see it does not do anything to PYTHONPATH, actually it's
-in turn inheriting python3-dir. Interestingly enough, if I inherit
-python3native, but keep my "export" hack in place - it does not work anymore.
-It does work if I only inherit python3-dir
-
-Did anyone facec a similar problem and do you have any hints?
-
-I'm on Dunfell btw (LTS).
-
-Kind regards,
-Jin
+diff --git a/config.json b/config.json
+index 3cff363..e22124d 100644
+--- a/config.json
++++ b/config.json
+@@ -10,7 +10,7 @@
+ 
+     "BUILDTOOLS_URL_TEMPLOCAL" : "/srv/autobuilder/autobuilder.yoctoproject.org/pub/non-release/20200309-15/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.0+snapshot-20200309.sh",
+     "BUILDTOOLS_URL_TEMPLOCAL2" : "http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-3.1_M3/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.0+snapshot-20200315.sh",
+-    "BUILDTOOLS_URL" : "/srv/autobuilder/autobuilder.yoctoproject.org/pub/non-release/20200923-11/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.1.3.sh;4845f1e119dbd67e214959d5fd4e8fc79772ad38d385fdcc4702d5a6e6ece55c",
++    "BUILDTOOLS_URL" : "/srv/autobuilder/autobuilder.yoctoproject.org/pub/non-release/20210214-8/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.2+snapshot-7d38cc8e749aedb8435ee71847e04b353cca541d.sh",
+ 
+     "REPO_STASH_DIR" : "${BASE_HOMEDIR}/git/mirror",
+     "TRASH_DIR" : "${BASE_HOMEDIR}/git/trash",
+-- 
+2.25.1
 
