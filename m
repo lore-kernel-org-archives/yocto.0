@@ -1,135 +1,239 @@
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
- by mx.groups.io with SMTP id smtpd.web12.17401.1625635430375716950
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by mx.groups.io with SMTP id smtpd.web12.18719.1625648822052673338
  for <yocto@lists.yoctoproject.org>;
- Tue, 06 Jul 2021 22:23:50 -0700
+ Wed, 07 Jul 2021 02:07:02 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=unRZH7HV;
- spf=pass (domain: gmail.com, ip: 209.85.210.180, mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f180.google.com with SMTP id y4so1083998pfi.9
-        for <yocto@lists.yoctoproject.org>; Tue, 06 Jul 2021 22:23:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=QK/+5gE8iVPKHnexN+5n+mu2Wo+rt5+20jr8SoPXuSM=;
-        b=unRZH7HVAz1ASY8ZzB5jVKy8ui4WB+2pja1Kvj8sESNQ2/7RNiSEdOYGeA2iNUS94r
-         WwTX2GMgj1vUDFPpK6g+ZNJmW0l222FkHo/xZ9fr8WosHb0OYI47ONif7JuYG2xvgwTZ
-         4Yc6lItXt/tPIA8KL+wyKHuVnXW6vLizkJDvddjhCm2qHqczWt57txwu80JKuYEngBL4
-         PVa5g5Rym2Kw+Gt8tEfXbRBJmXvKFpWEqAsCDSGFzEDYgsUXY4uYo1OUB6eFSjBM2+3w
-         Ab0Cylc8PmiN1IMRpMjUF+JqVbuuFVFUC2LYKbdMX6oiMQDslswQvWM3xXtY957yFY0t
-         eKsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=QK/+5gE8iVPKHnexN+5n+mu2Wo+rt5+20jr8SoPXuSM=;
-        b=Sg39znEx6y8iqEoPrFqLqfYD1v/9/tfxXYQOfpJjniqRHpQ4YCs4WnmvzEzBD+c/Oz
-         lALR4o1MR6+q8WhFQSzZkZL9fHRezpZhLcIwfNK5KWvswKC7pAuNonVUtUfeItMfcyYN
-         GWvzB4Zlhb3JGNIEV0x9RqQ9LnEbEDbvBEh/7/5BsDg+OIqYgsQf92DeI7UXyE3yLIeY
-         F3kdIcNRw7nsqXDpZVgrkeqhMQdDvKBBajlHFDT+aRaKQ263whnK57hvDmikrp0Gw+l8
-         Tn12AgZHylmDhN9lB1hIGZNpiqZYUQJEYjQ425j+vX+JtU5UgQZ8uqjtdxqb+p5pUrBX
-         gqsw==
-X-Gm-Message-State: AOAM532f1wAmOJ7Uplx+l/+uc2fVbUtotto17PDjltYbxt8u0Ul49Ue3
-	tIYOQzAaAcj9PNNiIabzg/FsX9/SdqpX3A==
-X-Google-Smtp-Source: ABdhPJxSiUFAQq/4t6PkIOZB5ekakTboI2Spzl5Pv9glvb6YO+BUU0kuNAu6EVIEFn+fKX4kvhcQZQ==
-X-Received: by 2002:a63:e043:: with SMTP id n3mr1153728pgj.106.1625635429625;
-        Tue, 06 Jul 2021 22:23:49 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
-Received: from akuster-ThinkPad-X13-Gen-1.hsd1.ca.comcast.net ([2601:202:4180:a5c0:234d:f3c6:164b:2950])
-        by smtp.gmail.com with ESMTPSA id t10sm19041837pgv.52.2021.07.06.22.23.48
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jul 2021 22:23:49 -0700 (PDT)
-From: "Armin Kuster" <akuster808@gmail.com>
+ dkim=missing; spf=pass (domain: intel.com, ip: 192.55.52.93, mailfrom: naveen.kumar.saini@intel.com)
+X-IronPort-AV: E=McAfee;i="6200,9189,10037"; a="206256446"
+X-IronPort-AV: E=Sophos;i="5.83,331,1616482800"; 
+   d="scan'208";a="206256446"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jul 2021 02:06:53 -0700
+X-IronPort-AV: E=Sophos;i="5.83,331,1616482800"; 
+   d="scan'208";a="486741014"
+Received: from saininav-desk1.png.intel.com ([172.30.199.23])
+  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jul 2021 02:06:50 -0700
+From: "Naveen Saini" <naveen.kumar.saini@intel.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] suricata: update to 6.0.3
-Date: Tue,  6 Jul 2021 22:23:47 -0700
-Message-Id: <20210707052347.844215-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: [meta-zephyr][PATCH 1/2] zephyr-kernel/2.6.0: update to include latest commits
+Date: Wed,  7 Jul 2021 17:20:13 +0800
+Message-Id: <20210707092014.12537-1-naveen.kumar.saini@intel.com>
+X-Mailer: git-send-email 2.17.1
 
-add new crates
-minor cleanup
+Switched to v2.6-branch. It included x86 EFI binary fix.
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+It requried rebasing of yocto toolchain patch.
+
+Commits included:
+837ab4a915 ARC: save/restore accumulator registers on all ARCv2 HS CPUs by default
+0943608550 riscv: openisa_rv32m1: Fix booting of rv32m1_vega
+3c56e0df0b cmake: ld: Disable manual linking of libgcc components for host
+b0cb7412b9 cmake: host-gcc: Remove libgcc library path resolution
+80e1b785dc cmake: host-gcc: Detect libgcc for all archs
+e72a327107 cmake: gcc: Remove no_libgcc exclusion for libgcc detection
+1cf1d75d3f Bluetooth: Controller: Fix Data Length Update node Rx reservations
+e43afd10f7 Bluetooth: Controller: Fix free rx buffer MFIFO enqueue
+6d9b318dca Bluetooth: Controller: Minor change to use IS_ENABLED
+d4d362d081 doc: api: fix devicetree modification version
+d0dca15734 arch/x86/zefi: Fix entry-nop hack for EFI entry
+218e438f3e drivers: bluetooth: hci driver for stm32wb includes clock control
+f66d0cea06 Tracing: TraceRecorder CMake update
+d5a1a22b1a python-devicetree: tox: fix mypy
+c77f8fae83 doc/guides/dts: bindings: Fix code snippet for 'signal-gpios'
+3ec1caa504 dts/arm: st: g0: closes parenthesis for soc
+a221f358eb drivers: flash_stm32_v1: fix a potential unaligned access
+f5a6110b4a tests: cpp: libcxx: Test with full and nano variants of newlib
+1d6106fd5e tests: cpp: libcxx: Use full version of newlib for testing
+4b87e90167 cpp: Fix C++ exception handling newlib dependency
+1d4d16b748 linker: cpp: Fix C++ exception handling info section linking
+4a564cdef0 version: add EXTRAVERSION to VERSION file
+
+Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
 ---
- .../{libhtp_0.5.37.bb => libhtp_0.5.38.bb}      |  2 +-
- .../meta-rust/recipes-ids/suricata/suricata.inc |  5 -----
- .../{suricata_6.0.2.bb => suricata_6.0.3.bb}    | 17 +++++++++++++++--
- 3 files changed, 16 insertions(+), 8 deletions(-)
- rename dynamic-layers/meta-rust/recipes-ids/suricata/{libhtp_0.5.37.bb => libhtp_0.5.38.bb} (91%)
- rename dynamic-layers/meta-rust/recipes-ids/suricata/{suricata_6.0.2.bb => suricata_6.0.3.bb} (92%)
+ .../0001-cmake-add-yocto-toolchain.patch      | 24 +++----
+ ...phyr-2.5.0-cmake-add-yocto-toolchain.patch | 63 +++++++++++++++++++
+ .../zephyr-kernel/zephyr-kernel-src-2.5.0.inc |  6 +-
+ .../zephyr-kernel/zephyr-kernel-src-2.6.0.inc |  8 ++-
+ .../zephyr-kernel/zephyr-kernel-src.inc       |  3 +-
+ 5 files changed, 85 insertions(+), 19 deletions(-)
+ create mode 100644 recipes-kernel/zephyr-kernel/files/0001-zephyr-2.5.0-cmake-add-yocto-toolchain.patch
 
-diff --git a/dynamic-layers/meta-rust/recipes-ids/suricata/libhtp_0.5.37.bb b/dynamic-layers/meta-rust/recipes-ids/suricata/libhtp_0.5.38.bb
-similarity index 91%
-rename from dynamic-layers/meta-rust/recipes-ids/suricata/libhtp_0.5.37.bb
-rename to dynamic-layers/meta-rust/recipes-ids/suricata/libhtp_0.5.38.bb
-index 34e72e9..38dece9 100644
---- a/dynamic-layers/meta-rust/recipes-ids/suricata/libhtp_0.5.37.bb
-+++ b/dynamic-layers/meta-rust/recipes-ids/suricata/libhtp_0.5.38.bb
-@@ -5,7 +5,7 @@ require suricata.inc
- LIC_FILES_CHKSUM = "file://LICENSE;beginline=1;endline=2;md5=596ab7963a1a0e5198e5a1c4aa621843"
+diff --git a/recipes-kernel/zephyr-kernel/files/0001-cmake-add-yocto-toolchain.patch b/recipes-kernel/zephyr-kernel/files/0001-cmake-add-yocto-toolchain.patch
+index caab16f..563af7d 100644
+--- a/recipes-kernel/zephyr-kernel/files/0001-cmake-add-yocto-toolchain.patch
++++ b/recipes-kernel/zephyr-kernel/files/0001-cmake-add-yocto-toolchain.patch
+@@ -1,6 +1,6 @@
+-From 511745625637da0effca13c5489a392e15d32271 Mon Sep 17 00:00:00 2001
++From bfab268c870548e3e7a24ea67ebed2a0513b2307 Mon Sep 17 00:00:00 2001
+ From: Naveen Saini <naveen.kumar.saini@intel.com>
+-Date: Tue, 31 Mar 2020 13:22:17 +0800
++Date: Wed, 7 Jul 2021 13:53:05 +0800
+ Subject: [PATCH] cmake: add yocto toolchain
  
- SRC_URI = "git://github.com/OISF/libhtp.git;protocol=https;branch=0.5.x"
--SRCREV = "eaa2db29e65e7f2691c18a9022aeb5fb836ec5f1"
-+SRCREV = "fca44158911a1642880ea5c774151a33ad33d906"
+ Upstream status: inappropriate [OE specific]
+@@ -15,23 +15,23 @@ Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
+  create mode 100644 cmake/toolchain/yocto/target.cmake
  
- DEPENDS = "zlib"
- 
-diff --git a/dynamic-layers/meta-rust/recipes-ids/suricata/suricata.inc b/dynamic-layers/meta-rust/recipes-ids/suricata/suricata.inc
-index 85f419e..7d3509a 100644
---- a/dynamic-layers/meta-rust/recipes-ids/suricata/suricata.inc
-+++ b/dynamic-layers/meta-rust/recipes-ids/suricata/suricata.inc
-@@ -1,8 +1,3 @@
- HOMEPAGE = "http://suricata-ids.org/"
- SECTION = "security Monitor/Admin"
- LICENSE = "GPLv2"
--
--VER = "6.0.2"
--SRC_URI = "http://www.openinfosecfoundation.org/download/suricata-${VER}.tar.gz"
--
--SRC_URI[sha256sum] = "5e4647a07cb31b5d6d0049972a45375c137de908a964a44e2d6d231fa3ad4b52"
-diff --git a/dynamic-layers/meta-rust/recipes-ids/suricata/suricata_6.0.2.bb b/dynamic-layers/meta-rust/recipes-ids/suricata/suricata_6.0.3.bb
-similarity index 92%
-rename from dynamic-layers/meta-rust/recipes-ids/suricata/suricata_6.0.2.bb
-rename to dynamic-layers/meta-rust/recipes-ids/suricata/suricata_6.0.3.bb
-index a4255d2..632f1d8 100644
---- a/dynamic-layers/meta-rust/recipes-ids/suricata/suricata_6.0.2.bb
-+++ b/dynamic-layers/meta-rust/recipes-ids/suricata/suricata_6.0.3.bb
-@@ -2,10 +2,13 @@ SUMMARY = "The Suricata Engine is an Open Source Next Generation Intrusion Detec
- 
- require suricata.inc
- 
--DEPENDS = "lz4 libhtp"
--
- LIC_FILES_CHKSUM = "file://LICENSE;beginline=1;endline=2;md5=c70d8d3310941dcdfcd1e02800a1f548"
- 
-+SRC_URI = "http://www.openinfosecfoundation.org/download/suricata-${PV}.tar.gz"
-+SRC_URI[sha256sum] = "daf134bb2d7c980035e9ae60f7aaf313323a809340009f26e48110ccde81f602"
+ diff --git a/cmake/compiler/gcc/target.cmake b/cmake/compiler/gcc/target.cmake
+-index 401cc28db8..5a026f4559 100644
++index 2b90c5d2ef..b6f28b2f87 100644
+ --- a/cmake/compiler/gcc/target.cmake
+ +++ b/cmake/compiler/gcc/target.cmake
+-@@ -66,13 +66,6 @@ if(NOT no_libgcc)
+-     OUTPUT_STRIP_TRAILING_WHITESPACE
+-     )
++@@ -68,13 +68,6 @@ execute_process(
++   OUTPUT_STRIP_TRAILING_WHITESPACE
++   )
+  
+--  assert_exists(LIBGCC_FILE_NAME)
++-assert_exists(LIBGCC_FILE_NAME)
+ -
+--  get_filename_component(LIBGCC_DIR ${LIBGCC_FILE_NAME} DIRECTORY)
++-get_filename_component(LIBGCC_DIR ${LIBGCC_FILE_NAME} DIRECTORY)
+ -
+--  assert_exists(LIBGCC_DIR)
++-assert_exists(LIBGCC_DIR)
+ -
+--  LIST(APPEND LIB_INCLUDE_DIR "-L\"${LIBGCC_DIR}\"")
+-   LIST(APPEND TOOLCHAIN_LIBS gcc)
+- endif()
++-LIST(APPEND LIB_INCLUDE_DIR "-L\"${LIBGCC_DIR}\"")
++ LIST(APPEND TOOLCHAIN_LIBS gcc)
+  
++ if(SYSROOT_DIR)
+ diff --git a/cmake/toolchain/yocto/generic.cmake b/cmake/toolchain/yocto/generic.cmake
+ new file mode 100644
+ index 0000000000..45e5777e2a
+diff --git a/recipes-kernel/zephyr-kernel/files/0001-zephyr-2.5.0-cmake-add-yocto-toolchain.patch b/recipes-kernel/zephyr-kernel/files/0001-zephyr-2.5.0-cmake-add-yocto-toolchain.patch
+new file mode 100644
+index 0000000..caab16f
+--- /dev/null
++++ b/recipes-kernel/zephyr-kernel/files/0001-zephyr-2.5.0-cmake-add-yocto-toolchain.patch
+@@ -0,0 +1,63 @@
++From 511745625637da0effca13c5489a392e15d32271 Mon Sep 17 00:00:00 2001
++From: Naveen Saini <naveen.kumar.saini@intel.com>
++Date: Tue, 31 Mar 2020 13:22:17 +0800
++Subject: [PATCH] cmake: add yocto toolchain
 +
-+DEPENDS = "lz4 libhtp"
++Upstream status: inappropriate [OE specific]
 +
- SRC_URI += " \
-     file://volatiles.03_suricata \
-     file://tmpfiles.suricata \
-@@ -84,6 +87,16 @@ SRC_URI += " \
-     crate://crates.io/log/0.4.0 \
-     crate://crates.io/rand_hc/0.2.0 \
-     crate://crates.io/wasi/0.9.0+wasi-snapshot-preview1 \
-+    crate://crates.io/sawp/0.5.0 \
-+    crate://crates.io/sawp-modbus/0.5.0 \
-+    crate://crates.io/brotli/3.3.0 \
-+    crate://crates.io/flate2/1.0.20 \
-+    crate://crates.io/alloc-no-stdlib/2.0.1 \
-+    crate://crates.io/alloc-stdlib/0.2.1 \
-+    crate://crates.io/brotli-decompressor/2.3.1 \
-+    crate://crates.io/crc32fast/1.2.1 \
-+    crate://crates.io/miniz_oxide/0.4.4 \
-+    crate://crates.io/adler/1.0.2 \
++Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
++---
++ cmake/compiler/gcc/target.cmake     |  7 -------
++ cmake/toolchain/yocto/generic.cmake | 13 +++++++++++++
++ cmake/toolchain/yocto/target.cmake  |  1 +
++ 3 files changed, 14 insertions(+), 7 deletions(-)
++ create mode 100644 cmake/toolchain/yocto/generic.cmake
++ create mode 100644 cmake/toolchain/yocto/target.cmake
++
++diff --git a/cmake/compiler/gcc/target.cmake b/cmake/compiler/gcc/target.cmake
++index 401cc28db8..5a026f4559 100644
++--- a/cmake/compiler/gcc/target.cmake
+++++ b/cmake/compiler/gcc/target.cmake
++@@ -66,13 +66,6 @@ if(NOT no_libgcc)
++     OUTPUT_STRIP_TRAILING_WHITESPACE
++     )
++ 
++-  assert_exists(LIBGCC_FILE_NAME)
++-
++-  get_filename_component(LIBGCC_DIR ${LIBGCC_FILE_NAME} DIRECTORY)
++-
++-  assert_exists(LIBGCC_DIR)
++-
++-  LIST(APPEND LIB_INCLUDE_DIR "-L\"${LIBGCC_DIR}\"")
++   LIST(APPEND TOOLCHAIN_LIBS gcc)
++ endif()
++ 
++diff --git a/cmake/toolchain/yocto/generic.cmake b/cmake/toolchain/yocto/generic.cmake
++new file mode 100644
++index 0000000000..45e5777e2a
++--- /dev/null
+++++ b/cmake/toolchain/yocto/generic.cmake
++@@ -0,0 +1,13 @@
+++set(COMPILER gcc)
+++set(LINKER ld)
+++set(BINTOOLS gnu)
+++
+++set(ZEPHYR_SYSROOT ${ZEPHYR_SYSROOT})
+++set(SYSROOT_DIR ${ZEPHYR_SYSROOT})
+++set(LIBC_LIBRARY_DIR "\"${SYSROOT_DIR}\"/")
+++set(LIBC_INCLUDE_DIR ${SYSROOT_DIR}/include)
+++LIST(APPEND TOOLCHAIN_LIBS gcc)
+++
+++LIST(APPEND LIB_INCLUDE_DIR "-L\"${STAGING_LIBDIR}\"")
+++
+++set(TOOLCHAIN_LIBS gcc)
++diff --git a/cmake/toolchain/yocto/target.cmake b/cmake/toolchain/yocto/target.cmake
++new file mode 100644
++index 0000000000..9881313609
++--- /dev/null
+++++ b/cmake/toolchain/yocto/target.cmake
++@@ -0,0 +1 @@
+++# SPDX-License-Identifier: Apache-2.0
++-- 
++2.17.1
++
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0.inc
+index 9cdc721..35bafdf 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0.inc
+@@ -9,7 +9,9 @@ SRCREV_libmetal = "9d4ee2c3cfd5f49861939447990f3b7d7bf9bf94"
+ SRCREV_tinycrypt = "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
+ SRCREV_mbedtls = "24d84ecff195fb15c889d9046e44e4804d626c67"
+ 
++ZEPHYR_BRANCH = "main"
+ PV = "2.5.0+git${SRCPV}"
+ 
+-SRC_URI_append = " file://0001-x86-fix-efi-binary-generation-issue-in-cross-compila.patch \
+-            "
++SRC_URI_append = " file://0001-zephyr-2.5.0-cmake-add-yocto-toolchain.patch \
++                    file://0001-x86-fix-efi-binary-generation-issue-in-cross-compila.patch \
++                    "
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc
+index 4910db2..949492f 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc
+@@ -1,5 +1,5 @@
+ SRCREV_FORMAT = "default_cmsis"
+-SRCREV_default = "79a6c07536bc14583198f8e3555df6134d8822cf"
++SRCREV_default = "837ab4a915f7802a6fb02a27e4b024e287ac93c2"
+ SRCREV_cmsis = "c3bd2094f92d574377f7af2aec147ae181aa5f8e"
+ SRCREV_nordic = "574493fe29c79140df4827ab5d4a23df79d03681"
+ SRCREV_stm32 = "f8ff8d25aa0a9e65948040c7b47ec67f3fa300df"
+@@ -9,7 +9,9 @@ SRCREV_libmetal = "39d049d4ae68e6f6d595fce7de1dcfc1024fb4eb"
+ SRCREV_tinycrypt = "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
+ SRCREV_mbedtls = "5765cb7f75a9973ae9232d438e361a9d7bbc49e7"
+ 
++ZEPHYR_BRANCH = "v2.6-branch"
+ PV = "2.6.0+git${SRCPV}"
+ 
+-SRC_URI_append = " file://0001-x86-fix-efi-binary-generation-issue-in-cross-compila.patch \
+-            "
++SRC_URI_append = " file://0001-cmake-add-yocto-toolchain.patch \
++                    file://0001-x86-fix-efi-binary-generation-issue-in-cross-compila.patch \
++                    "
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+index 4937a77..a0004ed 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+@@ -9,7 +9,7 @@ inherit cmake
+ FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+ 
+ SRC_URI = "\
+-    git://github.com/zephyrproject-rtos/zephyr.git;protocol=https;branch=main;name=default \
++    git://github.com/zephyrproject-rtos/zephyr.git;protocol=https;branch=${ZEPHYR_BRANCH};name=default \
+     git://github.com/zephyrproject-rtos/cmsis.git;protocol=https;destsuffix=git/modules/cmsis;name=cmsis \
+     git://github.com/zephyrproject-rtos/hal_nordic.git;protocol=https;destsuffix=git/modules/hal/nordic;name=nordic \
+     git://github.com/zephyrproject-rtos/hal_stm32.git;protocol=https;destsuffix=git/modules/hal/stm32;name=stm32 \
+@@ -18,7 +18,6 @@ SRC_URI = "\
+     git://github.com/zephyrproject-rtos/openthread.git;protocol=https;branch=zephyr;destsuffix=git/modules/lib/openthread;name=openthread \
+     git://github.com/zephyrproject-rtos/libmetal.git;protocol=https;destsuffix=git/modules/hal/libmetal;name=libmetal \
+     git://github.com/zephyrproject-rtos/tinycrypt.git;protocol=https;destsuffix=git/modules/crypto/tinycrypt;name=tinycrypt \
+-    file://0001-cmake-add-yocto-toolchain.patch \
      "
+ S = "${WORKDIR}/git"
  
- # test case support
 -- 
-2.25.1
+2.17.1
 
