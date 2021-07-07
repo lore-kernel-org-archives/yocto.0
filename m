@@ -1,315 +1,135 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web09.9461.1625592187895129130
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+ by mx.groups.io with SMTP id smtpd.web12.17401.1625635430375716950
  for <yocto@lists.yoctoproject.org>;
- Tue, 06 Jul 2021 10:23:08 -0700
+ Tue, 06 Jul 2021 22:23:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=qnzEweO5;
- spf=softfail (domain: gmail.com, ip: 198.145.29.25, mailfrom: jpewhacker@gmail.com)
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id B499A38C063A
-	for <yocto@yoctoproject.org>; Tue,  6 Jul 2021 17:23:06 +0000 (UTC)
-Received: by mail-ot1-f47.google.com with SMTP id 59-20020a9d0ac10000b0290462f0ab0800so22275162otq.11
-        for <yocto@yoctoproject.org>; Tue, 06 Jul 2021 10:23:06 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=unRZH7HV;
+ spf=pass (domain: gmail.com, ip: 209.85.210.180, mailfrom: akuster808@gmail.com)
+Received: by mail-pf1-f180.google.com with SMTP id y4so1083998pfi.9
+        for <yocto@lists.yoctoproject.org>; Tue, 06 Jul 2021 22:23:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:subject:to:references:cc:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language;
-        bh=8JX3NzM8fyg0mmooL5f2eX0aOfkxmNhgrRdMV+s2wfI=;
-        b=qnzEweO5P6yIGziFUDkw9+q8N3l3tMmu+xv2IgMq9tB80qGLujNupkrzfRoAQOU/Ja
-         iLB98hj8xmObwiia0oMSYXl4WizU+LWODRJEA0sxbCMuMycoGS7iiMWEGRRy/GXbT7G0
-         YVRjDBCSvjtg9KJrR6Gp5m+PVrpbAW86cL/osaeFaqx2Newc4VLjKyp6BldPHPgHV8fL
-         jpIXersT3pmLGJnDSK1LyIFupDnEycykomw1pjiNZqt1gpjA18rtUeixK2DAwCnegg8g
-         cW6bfQVQ62SwTsHjv0cIu5weimJp5gd81GRePEO71+wxLu5tV0OjZ9SZBhpnyz3iH8JP
-         4oyg==
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QK/+5gE8iVPKHnexN+5n+mu2Wo+rt5+20jr8SoPXuSM=;
+        b=unRZH7HVAz1ASY8ZzB5jVKy8ui4WB+2pja1Kvj8sESNQ2/7RNiSEdOYGeA2iNUS94r
+         WwTX2GMgj1vUDFPpK6g+ZNJmW0l222FkHo/xZ9fr8WosHb0OYI47ONif7JuYG2xvgwTZ
+         4Yc6lItXt/tPIA8KL+wyKHuVnXW6vLizkJDvddjhCm2qHqczWt57txwu80JKuYEngBL4
+         PVa5g5Rym2Kw+Gt8tEfXbRBJmXvKFpWEqAsCDSGFzEDYgsUXY4uYo1OUB6eFSjBM2+3w
+         Ab0Cylc8PmiN1IMRpMjUF+JqVbuuFVFUC2LYKbdMX6oiMQDslswQvWM3xXtY957yFY0t
+         eKsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:subject:to:references:cc:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language;
-        bh=8JX3NzM8fyg0mmooL5f2eX0aOfkxmNhgrRdMV+s2wfI=;
-        b=JkN4fu1lXlW9IwLavm0zORIO/8niVLkQB9rMjooJk56MP+jIbKgDrum6Kyhfs97ewl
-         wtLxl5o+PxDxEaXD7zItuyhEZNf1ThRcjBr0fcaI9/ha9BxwdH8+KpGcwDOCbS0myHNv
-         JqcLjxIsg4Y0+/uPxLnjVEYvBz8LD06FH+p6Wf9Sutp8SHfQpAa5P7sHZ4u24eV8lneW
-         PYI+QpsmL8I67D0ezYXIuQTOBI+SH4u9GlrpUPNXpVgzuVqGl+3uVMrgu7y1WyvhHEaN
-         pGm4RFKur71o6P6XUXolFfULTi+QJW+tYm6KT5kACjv8XrpJdKLsinqrKUQKimUAZBk9
-         32ig==
-X-Gm-Message-State: AOAM533wW3R+e30r2mVfdcMfwd2dmQZ6sgsSuz25S5DYlrLJtM3o8Kol
-	5mtQk5Y9EkNviE3m14GuSHw=
-X-Google-Smtp-Source: ABdhPJy2JtrvITU05Zr519a9bqGHFGIhuD9JhwUsZCjgHJ+h/WAe6OoujswqL6kqPPuXG0blpt96gw==
-X-Received: by 2002:a9d:600b:: with SMTP id h11mr15742327otj.313.1625592185909;
-        Tue, 06 Jul 2021 10:23:05 -0700 (PDT)
-Received: from ?IPv6:2605:a601:ac3d:c100:e3e8:d9:3a56:e27d? ([2605:a601:ac3d:c100:e3e8:d9:3a56:e27d])
-        by smtp.gmail.com with ESMTPSA id q26sm3419854ota.20.2021.07.06.10.23.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jul 2021 10:23:05 -0700 (PDT)
-From: "Joshua Watt" <JPEWhacker@gmail.com>
-X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
-Subject: Re: [yocto] [meta-mingw][PATCH] openssl: support for building nativesdk of mingw
-To: Changqing Li <changqing.li@windriver.com>, yocto@yoctoproject.org
-References: <20210105033119.425-1-changqing.li@windriver.com>
-Cc: paul.eggleton@microsoft.com, derawa@microsoft.com
-Message-ID: <dea213ad-0c35-53a5-d893-0f3f1bcad182@gmail.com>
-Date: Tue, 6 Jul 2021 12:23:04 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QK/+5gE8iVPKHnexN+5n+mu2Wo+rt5+20jr8SoPXuSM=;
+        b=Sg39znEx6y8iqEoPrFqLqfYD1v/9/tfxXYQOfpJjniqRHpQ4YCs4WnmvzEzBD+c/Oz
+         lALR4o1MR6+q8WhFQSzZkZL9fHRezpZhLcIwfNK5KWvswKC7pAuNonVUtUfeItMfcyYN
+         GWvzB4Zlhb3JGNIEV0x9RqQ9LnEbEDbvBEh/7/5BsDg+OIqYgsQf92DeI7UXyE3yLIeY
+         F3kdIcNRw7nsqXDpZVgrkeqhMQdDvKBBajlHFDT+aRaKQ263whnK57hvDmikrp0Gw+l8
+         Tn12AgZHylmDhN9lB1hIGZNpiqZYUQJEYjQ425j+vX+JtU5UgQZ8uqjtdxqb+p5pUrBX
+         gqsw==
+X-Gm-Message-State: AOAM532f1wAmOJ7Uplx+l/+uc2fVbUtotto17PDjltYbxt8u0Ul49Ue3
+	tIYOQzAaAcj9PNNiIabzg/FsX9/SdqpX3A==
+X-Google-Smtp-Source: ABdhPJxSiUFAQq/4t6PkIOZB5ekakTboI2Spzl5Pv9glvb6YO+BUU0kuNAu6EVIEFn+fKX4kvhcQZQ==
+X-Received: by 2002:a63:e043:: with SMTP id n3mr1153728pgj.106.1625635429625;
+        Tue, 06 Jul 2021 22:23:49 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from akuster-ThinkPad-X13-Gen-1.hsd1.ca.comcast.net ([2601:202:4180:a5c0:234d:f3c6:164b:2950])
+        by smtp.gmail.com with ESMTPSA id t10sm19041837pgv.52.2021.07.06.22.23.48
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Jul 2021 22:23:49 -0700 (PDT)
+From: "Armin Kuster" <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH] suricata: update to 6.0.3
+Date: Tue,  6 Jul 2021 22:23:47 -0700
+Message-Id: <20210707052347.844215-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210105033119.425-1-changqing.li@windriver.com>
-Content-Type: multipart/alternative;
- boundary="------------0AE92A151611782C608F02FC"
-Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
---------------0AE92A151611782C608F02FC
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+add new crates
+minor cleanup
 
-
-On 1/4/21 9:31 PM, Changqing Li wrote:
-> * add support for mingw32
-> * Engines are installed in a slightly different path, which is
->    urgly, patch it to make the path shorter
-> * remove runtime dependency from perl for mingw nativesdk
->
-> since commit 70da1f956bfbb627691c47eba7451182aca758e3 of oe-core
-> 'openssl: Add c_rehash to misc package and add perl runtime dependency'
->
-> package openssl-misc have runtime dependency on perl, and perl then
-> have depenency on another 3 recipes, db/gdbm/libxcrypt. according to
-> http://arsv.github.io/perl-cross/usage.html, perl don't support
-> cross-compile build for mingw32 and another 3 recipes also don't
-> support mingw well. so remove the dependency of perl, don't support
-> c_rehash for mingw.
-
-
-It would appear that some or all of this patch is unnecessary. OE-core 
-166bb89f6d97495b6522786182b4f9623acd7ff4 implements part of this patch, 
-which makes me think it's working there without any changes necessary. 
-It would be worth following up to see if that is the case.
-
-
->
-> Signed-off-by: Changqing Li <changqing.li@windriver.com>
-> ---
->   ...ile.tmpl-don-t-add-prefix-for-libdir.patch | 32 +++++++++++++++++++
->   .../openssl/openssl_%.bbappend                | 31 ++++++++++++++++++
->   2 files changed, 63 insertions(+)
->   create mode 100644 recipes-connectivity/openssl/files/0001-unix-Makefile.tmpl-don-t-add-prefix-for-libdir.patch
->   create mode 100644 recipes-connectivity/openssl/openssl_%.bbappend
->
-> diff --git a/recipes-connectivity/openssl/files/0001-unix-Makefile.tmpl-don-t-add-prefix-for-libdir.patch b/recipes-connectivity/openssl/files/0001-unix-Makefile.tmpl-don-t-add-prefix-for-libdir.patch
-> new file mode 100644
-> index 0000000..028431b
-> --- /dev/null
-> +++ b/recipes-connectivity/openssl/files/0001-unix-Makefile.tmpl-don-t-add-prefix-for-libdir.patch
-> @@ -0,0 +1,32 @@
-> +From 8fe5c9421acfaff35b637e7ad55d1df598bb7081 Mon Sep 17 00:00:00 2001
-> +From: Changqing Li <changqing.li@windriver.com>
-> +Date: Tue, 22 Dec 2020 09:22:10 +0800
-> +Subject: [PATCH] unix-Makefile.tmpl: don't add prefix for libdir
-> +
-> +we had pass libdir to Configure, don't use prefix again to
-> +avoid engineer dir set to:
-> +/opt/poky/3.2+snapshot/sysroots/x86_64-w64-mingw32/usr/opt/poky/3.2+snapshot/sysroots/x86_64-w64-mingw32/usr/lib/engines-1_1
-> +
-> +Upstream-Status: Inappropriate[oe-specific]
-> +
-> +Signed-off-by: Changqing Li <changqing.li@windriver.com>
-> +---
-> + Configurations/unix-Makefile.tmpl | 2 +-
-> + 1 file changed, 1 insertion(+), 1 deletion(-)
-> +
-> +diff --git a/Configurations/unix-Makefile.tmpl b/Configurations/unix-Makefile.tmpl
-> +index bbafb98..eecb63e 100644
-> +--- a/Configurations/unix-Makefile.tmpl
-> ++++ b/Configurations/unix-Makefile.tmpl
-> +@@ -244,7 +244,7 @@ LIBDIR={- our $libdir = $config{libdir} || "lib";
-> +           File::Spec::Win32->file_name_is_absolute($libdir) ? "" : $libdir -}
-> + ENGINESDIR_dev={- use File::Spec::Win32;
-> +                   our $enginesdir =
-> +-                      File::Spec::Win32->catdir($prefix,$libdir,
-> ++                      File::Spec::Win32->catdir($libdir,
-> +                                                 "engines-$sover_dirname");
-> +                   our ($enginesdir_dev, $enginesdir_dir, $enginesdir_file) =
-> +                       File::Spec::Win32->splitpath($enginesdir, 1);
-> +--
-> +2.17.1
-> +
-> diff --git a/recipes-connectivity/openssl/openssl_%.bbappend b/recipes-connectivity/openssl/openssl_%.bbappend
-> new file mode 100644
-> index 0000000..7fd82f1
-> --- /dev/null
-> +++ b/recipes-connectivity/openssl/openssl_%.bbappend
-> @@ -0,0 +1,31 @@
-> +FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-> +
-> +SRC_URI_append_mingw32_class-nativesdk = " \
-> +           file://0001-unix-Makefile.tmpl-don-t-add-prefix-for-libdir.patch \
-> +"
-> +
-> +do_configure_mingw32 () {
-> +	os=${HOST_OS}
-> +	target="$os-${HOST_ARCH}"
-> +	case $target in
-> +        mingw32-x86_64)
-> +                target=mingw64
-> +                ;;
-> +        mingw32-i686)
-> +                target=mingw
-> +                ;;
-> +        esac
-> +
-> +        useprefix=${prefix}
-> +        if [ "x$useprefix" = "x" ]; then
-> +                useprefix=/
-> +        fi
-> +        # WARNING: do not set compiler/linker flags (-I/-D etc.) in EXTRA_OECONF, as they will fully replace the
-> +        # environment variables set by bitbake. Adjust the environment variables instead.
-> +        HASHBANGPERL="/usr/bin/env perl" PERL=perl PERL5LIB="${S}/external/perl/Text-Template-1.46/lib/" \
-> +        perl ${S}/Configure ${EXTRA_OECONF} ${PACKAGECONFIG_CONFARGS} --prefix=$useprefix --openssldir=${libdir}/ssl-1.1 --libdir=${libdir} $target
-> +        perl ${B}/configdata.pm --dump
-> +}
-> +
-> +FILES_${PN}-engines_mingw32_class-nativesdk = "${libdir}/engines-1_1"
-> +RDEPENDS_${PN}-misc_remove_mingw32_class-nativesdk = "perl"
->
-> 
->
-
---------------0AE92A151611782C608F02FC
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 1/4/21 9:31 PM, Changqing Li wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:20210105033119.425-1-changqing.li@windriver.com">
-      <pre class="moz-quote-pre" wrap="">* add support for mingw32
-* Engines are installed in a slightly different path, which is
-  urgly, patch it to make the path shorter
-* remove runtime dependency from perl for mingw nativesdk
-
-since commit 70da1f956bfbb627691c47eba7451182aca758e3 of oe-core
-'openssl: Add c_rehash to misc package and add perl runtime dependency'
-
-package openssl-misc have runtime dependency on perl, and perl then
-have depenency on another 3 recipes, db/gdbm/libxcrypt. according to
-<a class="moz-txt-link-freetext" href="http://arsv.github.io/perl-cross/usage.html">http://arsv.github.io/perl-cross/usage.html</a>, perl don't support
-cross-compile build for mingw32 and another 3 recipes also don't
-support mingw well. so remove the dependency of perl, don't support
-c_rehash for mingw.</pre>
-    </blockquote>
-    <p><br>
-    </p>
-    <p>It would appear that some or all of this patch is unnecessary.
-      OE-core 166bb89f6d97495b6522786182b4f9623acd7ff4 implements part
-      of this patch, which makes me think it's working there without any
-      changes necessary. It would be worth following up to see if that
-      is the case.<br>
-      <br>
-    </p>
-    <p><br>
-    </p>
-    <blockquote type="cite"
-      cite="mid:20210105033119.425-1-changqing.li@windriver.com">
-      <pre class="moz-quote-pre" wrap="">
-
-Signed-off-by: Changqing Li <a class="moz-txt-link-rfc2396E" href="mailto:changqing.li@windriver.com">&lt;changqing.li@windriver.com&gt;</a>
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- ...ile.tmpl-don-t-add-prefix-for-libdir.patch | 32 +++++++++++++++++++
- .../openssl/openssl_%.bbappend                | 31 ++++++++++++++++++
- 2 files changed, 63 insertions(+)
- create mode 100644 recipes-connectivity/openssl/files/0001-unix-Makefile.tmpl-don-t-add-prefix-for-libdir.patch
- create mode 100644 recipes-connectivity/openssl/openssl_%.bbappend
+ .../{libhtp_0.5.37.bb => libhtp_0.5.38.bb}      |  2 +-
+ .../meta-rust/recipes-ids/suricata/suricata.inc |  5 -----
+ .../{suricata_6.0.2.bb => suricata_6.0.3.bb}    | 17 +++++++++++++++--
+ 3 files changed, 16 insertions(+), 8 deletions(-)
+ rename dynamic-layers/meta-rust/recipes-ids/suricata/{libhtp_0.5.37.bb => libhtp_0.5.38.bb} (91%)
+ rename dynamic-layers/meta-rust/recipes-ids/suricata/{suricata_6.0.2.bb => suricata_6.0.3.bb} (92%)
 
-diff --git a/recipes-connectivity/openssl/files/0001-unix-Makefile.tmpl-don-t-add-prefix-for-libdir.patch b/recipes-connectivity/openssl/files/0001-unix-Makefile.tmpl-don-t-add-prefix-for-libdir.patch
-new file mode 100644
-index 0000000..028431b
---- /dev/null
-+++ b/recipes-connectivity/openssl/files/0001-unix-Makefile.tmpl-don-t-add-prefix-for-libdir.patch
-@@ -0,0 +1,32 @@
-+From 8fe5c9421acfaff35b637e7ad55d1df598bb7081 Mon Sep 17 00:00:00 2001
-+From: Changqing Li <a class="moz-txt-link-rfc2396E" href="mailto:changqing.li@windriver.com">&lt;changqing.li@windriver.com&gt;</a>
-+Date: Tue, 22 Dec 2020 09:22:10 +0800
-+Subject: [PATCH] unix-Makefile.tmpl: don't add prefix for libdir
+diff --git a/dynamic-layers/meta-rust/recipes-ids/suricata/libhtp_0.5.37.bb b/dynamic-layers/meta-rust/recipes-ids/suricata/libhtp_0.5.38.bb
+similarity index 91%
+rename from dynamic-layers/meta-rust/recipes-ids/suricata/libhtp_0.5.37.bb
+rename to dynamic-layers/meta-rust/recipes-ids/suricata/libhtp_0.5.38.bb
+index 34e72e9..38dece9 100644
+--- a/dynamic-layers/meta-rust/recipes-ids/suricata/libhtp_0.5.37.bb
++++ b/dynamic-layers/meta-rust/recipes-ids/suricata/libhtp_0.5.38.bb
+@@ -5,7 +5,7 @@ require suricata.inc
+ LIC_FILES_CHKSUM = "file://LICENSE;beginline=1;endline=2;md5=596ab7963a1a0e5198e5a1c4aa621843"
+ 
+ SRC_URI = "git://github.com/OISF/libhtp.git;protocol=https;branch=0.5.x"
+-SRCREV = "eaa2db29e65e7f2691c18a9022aeb5fb836ec5f1"
++SRCREV = "fca44158911a1642880ea5c774151a33ad33d906"
+ 
+ DEPENDS = "zlib"
+ 
+diff --git a/dynamic-layers/meta-rust/recipes-ids/suricata/suricata.inc b/dynamic-layers/meta-rust/recipes-ids/suricata/suricata.inc
+index 85f419e..7d3509a 100644
+--- a/dynamic-layers/meta-rust/recipes-ids/suricata/suricata.inc
++++ b/dynamic-layers/meta-rust/recipes-ids/suricata/suricata.inc
+@@ -1,8 +1,3 @@
+ HOMEPAGE = "http://suricata-ids.org/"
+ SECTION = "security Monitor/Admin"
+ LICENSE = "GPLv2"
+-
+-VER = "6.0.2"
+-SRC_URI = "http://www.openinfosecfoundation.org/download/suricata-${VER}.tar.gz"
+-
+-SRC_URI[sha256sum] = "5e4647a07cb31b5d6d0049972a45375c137de908a964a44e2d6d231fa3ad4b52"
+diff --git a/dynamic-layers/meta-rust/recipes-ids/suricata/suricata_6.0.2.bb b/dynamic-layers/meta-rust/recipes-ids/suricata/suricata_6.0.3.bb
+similarity index 92%
+rename from dynamic-layers/meta-rust/recipes-ids/suricata/suricata_6.0.2.bb
+rename to dynamic-layers/meta-rust/recipes-ids/suricata/suricata_6.0.3.bb
+index a4255d2..632f1d8 100644
+--- a/dynamic-layers/meta-rust/recipes-ids/suricata/suricata_6.0.2.bb
++++ b/dynamic-layers/meta-rust/recipes-ids/suricata/suricata_6.0.3.bb
+@@ -2,10 +2,13 @@ SUMMARY = "The Suricata Engine is an Open Source Next Generation Intrusion Detec
+ 
+ require suricata.inc
+ 
+-DEPENDS = "lz4 libhtp"
+-
+ LIC_FILES_CHKSUM = "file://LICENSE;beginline=1;endline=2;md5=c70d8d3310941dcdfcd1e02800a1f548"
+ 
++SRC_URI = "http://www.openinfosecfoundation.org/download/suricata-${PV}.tar.gz"
++SRC_URI[sha256sum] = "daf134bb2d7c980035e9ae60f7aaf313323a809340009f26e48110ccde81f602"
 +
-+we had pass libdir to Configure, don't use prefix again to
-+avoid engineer dir set to:
-+/opt/poky/3.2+snapshot/sysroots/x86_64-w64-mingw32/usr/opt/poky/3.2+snapshot/sysroots/x86_64-w64-mingw32/usr/lib/engines-1_1
++DEPENDS = "lz4 libhtp"
 +
-+Upstream-Status: Inappropriate[oe-specific]
-+
-+Signed-off-by: Changqing Li <a class="moz-txt-link-rfc2396E" href="mailto:changqing.li@windriver.com">&lt;changqing.li@windriver.com&gt;</a>
-+---
-+ Configurations/unix-Makefile.tmpl | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/Configurations/unix-Makefile.tmpl b/Configurations/unix-Makefile.tmpl
-+index bbafb98..eecb63e 100644
-+--- a/Configurations/unix-Makefile.tmpl
-++++ b/Configurations/unix-Makefile.tmpl
-+@@ -244,7 +244,7 @@ LIBDIR={- our $libdir = $config{libdir} || "lib";
-+           File::Spec::Win32-&gt;file_name_is_absolute($libdir) ? "" : $libdir -}
-+ ENGINESDIR_dev={- use File::Spec::Win32;
-+                   our $enginesdir =
-+-                      File::Spec::Win32-&gt;catdir($prefix,$libdir,
-++                      File::Spec::Win32-&gt;catdir($libdir,
-+                                                 "engines-$sover_dirname");
-+                   our ($enginesdir_dev, $enginesdir_dir, $enginesdir_file) =
-+                       File::Spec::Win32-&gt;splitpath($enginesdir, 1);
-+-- 
-+2.17.1
-+
-diff --git a/recipes-connectivity/openssl/openssl_%.bbappend b/recipes-connectivity/openssl/openssl_%.bbappend
-new file mode 100644
-index 0000000..7fd82f1
---- /dev/null
-+++ b/recipes-connectivity/openssl/openssl_%.bbappend
-@@ -0,0 +1,31 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-+
-+SRC_URI_append_mingw32_class-nativesdk = " \
-+           <a class="moz-txt-link-freetext" href="file://0001-unix-Makefile.tmpl-don-t-add-prefix-for-libdir.patch">file://0001-unix-Makefile.tmpl-don-t-add-prefix-for-libdir.patch</a> \
-+"
-+
-+do_configure_mingw32 () {
-+	os=${HOST_OS}
-+	target="$os-${HOST_ARCH}"
-+	case $target in
-+        mingw32-x86_64)
-+                target=mingw64
-+                ;;
-+        mingw32-i686)
-+                target=mingw
-+                ;;
-+        esac
-+
-+        useprefix=${prefix}
-+        if [ "x$useprefix" = "x" ]; then
-+                useprefix=/
-+        fi
-+        # WARNING: do not set compiler/linker flags (-I/-D etc.) in EXTRA_OECONF, as they will fully replace the
-+        # environment variables set by bitbake. Adjust the environment variables instead.
-+        HASHBANGPERL="/usr/bin/env perl" PERL=perl PERL5LIB="${S}/external/perl/Text-Template-1.46/lib/" \
-+        perl ${S}/Configure ${EXTRA_OECONF} ${PACKAGECONFIG_CONFARGS} --prefix=$useprefix --openssldir=${libdir}/ssl-1.1 --libdir=${libdir} $target
-+        perl ${B}/configdata.pm --dump
-+}
-+
-+FILES_${PN}-engines_mingw32_class-nativesdk = "${libdir}/engines-1_1"
-+RDEPENDS_${PN}-misc_remove_mingw32_class-nativesdk = "perl"
-</pre>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">
+ SRC_URI += " \
+     file://volatiles.03_suricata \
+     file://tmpfiles.suricata \
+@@ -84,6 +87,16 @@ SRC_URI += " \
+     crate://crates.io/log/0.4.0 \
+     crate://crates.io/rand_hc/0.2.0 \
+     crate://crates.io/wasi/0.9.0+wasi-snapshot-preview1 \
++    crate://crates.io/sawp/0.5.0 \
++    crate://crates.io/sawp-modbus/0.5.0 \
++    crate://crates.io/brotli/3.3.0 \
++    crate://crates.io/flate2/1.0.20 \
++    crate://crates.io/alloc-no-stdlib/2.0.1 \
++    crate://crates.io/alloc-stdlib/0.2.1 \
++    crate://crates.io/brotli-decompressor/2.3.1 \
++    crate://crates.io/crc32fast/1.2.1 \
++    crate://crates.io/miniz_oxide/0.4.4 \
++    crate://crates.io/adler/1.0.2 \
+     "
+ 
+ # test case support
+-- 
+2.25.1
 
-
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------0AE92A151611782C608F02FC--
