@@ -1,165 +1,241 @@
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
- by mx.groups.io with SMTP id smtpd.web11.2357.1625778519823536523
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+ by mx.groups.io with SMTP id smtpd.web08.3044.1625781656507366989
  for <yocto@lists.yoctoproject.org>;
- Thu, 08 Jul 2021 14:08:40 -0700
+ Thu, 08 Jul 2021 15:00:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@voting-works.20150623.gappssmtp.com header.s=20150623 header.b=WohjKRly;
- spf=none, err=SPF record not found (domain: voting.works, ip: 209.85.216.45, mailfrom: bernhard@voting.works)
-Received: by mail-pj1-f45.google.com with SMTP id fs7so4522548pjb.2
-        for <yocto@lists.yoctoproject.org>; Thu, 08 Jul 2021 14:08:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=voting-works.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=1YnzyDYUMB/sHG1vxWrI6hTMUyl2PaFRMLMTCdg+RgA=;
-        b=WohjKRlyNJYrHvF3/x9irw3lRCNTnZZyd/G1IWRusF9RYLWPXdOGGIZYAJefRuHxmS
-         pOoyTK2e+cNWrdoxP4eJBKWe/YLPn7FCCtHMvDfPHvJRbhqr/6BF/iP9VjthBC9jv8dy
-         9h6lA4uVx7LvJGEoDSeFtuPwv6h7peKhnshGDNVX2j8FQJ4otxJElTdZs3mOd7WQw0A7
-         o6tKsqaoAcB8jdQOv3nTa5JccusGLxs7X1wL4vuj1QAGcWYojfyst2EJ7zPsyaVpBEQb
-         xGXt8TbcPIZ1aMkfRp2QklRCb+FGp4FPoJJyODcv64ZDClFCjlcPPZjooHnuOSOt+8No
-         sMLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=1YnzyDYUMB/sHG1vxWrI6hTMUyl2PaFRMLMTCdg+RgA=;
-        b=CPr59eyxDtnpHe1R/F7Q0bzjRO2eMYuFWufHktUgPccAv++xjdEq/rieRaVdKxO8o+
-         AkrHTzGGdD0ny/ERbtP4MgZUuxxOCCbI3W2ntCbYd16oiEpLuA4EHs8HI5BKGThrD4oj
-         TCEqtxHCxpMyUVyl8EaxHnsTWFXr9zAEkZaYtVajr1tZVi7KElrzE1XgwFLPOYMMgLJo
-         vGsdcwRW9b0/imBIqqi2gLZ/dmi/naYaqB/OPngf51F1ydOUHrCL7QJGUrvUjPTxtliL
-         Zb3W5oTZ7vCpcvBN7wEI5vamN3qOyAaGDJoq9st8ryjP/ocsFazXvzd9mGJlQEulFH2+
-         e2hA==
-X-Gm-Message-State: AOAM531wWux8fI2BPN3XoAeiCX3uelmB5HJ9WiHv8RXxvgfTY9QjEegC
-	X4OJ5sVvjmNvCAK4uX6Z+aMr6sUYQueDJE/2VPHpzxvwQSJXx9Y+
-X-Google-Smtp-Source: ABdhPJyd1bak1hTWbd7LDhspKFGHz8amrPH0ZlVTWPE1bOtRfVm+Jltz/FPsqmBeK4JJPaUmwLlCuy6IUhPmEpQOhs0=
-X-Received: by 2002:a17:902:9004:b029:f0:b40d:38d with SMTP id
- a4-20020a1709029004b02900f0b40d038dmr27611209plp.85.1625778518873; Thu, 08
- Jul 2021 14:08:38 -0700 (PDT)
+ dkim=pass header.i=@ibm.com header.s=pp1 header.b=m3luuiEm;
+ spf=pass (domain: us.ibm.com, ip: 148.163.156.1, mailfrom: youhour@us.ibm.com)
+Received: from pps.filterd (m0098410.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 168LXelk114487
+	for <yocto@lists.yoctoproject.org>; Thu, 8 Jul 2021 18:00:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=mime-version : subject :
+ to : message-id : from : date : content-type; s=pp1;
+ bh=JbjS1U5jXElmkSD+hIU7vdZCITWJTHFmBFTrTGPc9LE=;
+ b=m3luuiEmxGIZc3oZD/Bm3I14s04WJU+xy6NDkquexd9FS8KOL68RX6iPukxzI1a27x5U
+ botFzoPb1k3yCuE5Q5Q2Zc09YbsX/KDwKQDmSIwf7JPU6PAScFuEoj6Gw8McGU3CemNs
+ tlc9qd4rPwy5XsrCG7IeY6H0GUwCAolmfNoYrhtejF6aQUhQigeZ/8wJgSTYkkbvcYHF
+ RKQbIKceBGrLG4QXmxLAG0GC4zs+NH1dMM57ucknFXiM6/BEpynQO+A3kmWf7seOds6J
+ 02z5qoCQfutv9GtNCTh2zWvJ56H+AyxK40p4K3nSFfLwvHQbMWA+j9Zaqq3XcXzWDcWF iA== 
+Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
+	by mx0a-001b2d01.pphosted.com with ESMTP id 39nhcbhafj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+	for <yocto@lists.yoctoproject.org>; Thu, 08 Jul 2021 18:00:55 -0400
+Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
+	by ppma03dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 168LrNfi015299
+	for <yocto@lists.yoctoproject.org>; Thu, 8 Jul 2021 22:00:55 GMT
+Received: from b03cxnp08028.gho.boulder.ibm.com (b03cxnp08028.gho.boulder.ibm.com [9.17.130.20])
+	by ppma03dal.us.ibm.com with ESMTP id 39jhq1nm8h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+	for <yocto@lists.yoctoproject.org>; Thu, 08 Jul 2021 22:00:55 +0000
+Received: from b03ledav002.gho.boulder.ibm.com (b03ledav002.gho.boulder.ibm.com [9.17.130.233])
+	by b03cxnp08028.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 168M0rcq34210054
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
+	for <yocto@lists.yoctoproject.org>; Thu, 8 Jul 2021 22:00:53 GMT
+Received: from b03ledav002.gho.boulder.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id BF27E136076
+	for <yocto@lists.yoctoproject.org>; Thu,  8 Jul 2021 22:00:53 +0000 (GMT)
+Received: from b03ledav002.gho.boulder.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id A8AF7136060
+	for <yocto@lists.yoctoproject.org>; Thu,  8 Jul 2021 22:00:53 +0000 (GMT)
+Received: from mww0342.dal12m.mail.ibm.com (unknown [9.208.69.19])
+	by b03ledav002.gho.boulder.ibm.com (Postfix) with ESMTPS
+	for <yocto@lists.yoctoproject.org>; Thu,  8 Jul 2021 22:00:53 +0000 (GMT)
 MIME-Version: 1.0
-From: bernhard@voting.works
-Date: Thu, 8 Jul 2021 17:08:28 -0400
-Message-ID: <CANSkjvcK_7kNxNuYuABXoZ3LJZihUNLMv9Vs_umKeKrnAFN97w@mail.gmail.com>
-Subject: Installing a .deb produced by npm during build
+Subject: valgrind failed do_compile during bitbake
 To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000019ec5b05c6a30f82"
+Message-ID: <OFB9643837.3B7703CB-ON0025870C.00772D0E-8625870C.0078ED16@ibm.com>
+From: "Michael" <youhour@us.ibm.com>
+Date: Thu, 8 Jul 2021 17:00:50 -0500
+X-KeepSent: B9643837:3B7703CB-0025870C:00772D0E; name=$KeepSent; type=4
+X-Mailer: IBM Notes Release 9.0.1FP10 SHF252 August 10, 2018
+X-Disclaimed: 29415
+X-MIMETrack: CD-MIME by Router on MWW0342/03/M/IBM at 07/08/2021 22:00:53,CD-MIME complete
+ at 07/08/2021 22:00:53,Itemize by Router on MWW0342/03/M/IBM at 07/08/2021
+ 22:00:53
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: U1RoN50tRoueKuMWRI6dyAw2qOZdYswu
+X-Proofpoint-GUID: U1RoN50tRoueKuMWRI6dyAw2qOZdYswu
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
+ definitions=2021-07-08_12:2021-07-08,2021-07-08 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 phishscore=0 mlxlogscore=937 mlxscore=0 spamscore=0
+ clxscore=1011 impostorscore=0 priorityscore=1501 adultscore=0
+ suspectscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2104190000 definitions=main-2107080110
+Content-type: multipart/alternative; 
+	Boundary="0__=8FBB0D9FDFE4AB9E8f9e8a93df938690918c8FBB0D9FDFE4AB9E"
+Content-Disposition: inline
 
---00000000000019ec5b05c6a30f82
-Content-Type: text/plain; charset="UTF-8"
-
-Hi,
-
-I've been struggling to add a debian package to my build. I'm trying to
-build this app and install it on the target:
-https://github.com/votingworks/kiosk-browser
-
-It's a node app built with yarn, and I've found the instructions in the
-manual to be a bit off the mark for what I'm trying to do. I want to:
-
-   1. Fetch and build the app using its own makefile
-   2. Install the output debian package in the target during buildtime
-
-My recipe is below, but as best I can tell all it does right now is package
-the source directory and put it on the image. DPKG reports that it's
-installed, but I can't seem to run the app. I'm sure I'm confused a bit
-about the build process, and perhaps I'm not invoking a task when I should?
-
-Any pointers would be greatly appreciated.
-
-All the best,
-Matt
-
-P.S. Here's the recipe:
-
-# Recipe created by recipetool
-# This is the basis of a recipe and may need further editing in order
-to be fully functional.
-# (Feel free to remove these comments when editing.)
-
-SUMMARY = "Generic kiosk-mode browser."
-# WARNING ommitted for brevity ...
-
-LICENSE = "Unknown & MIT & ISC"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=e49f4652534af377a713df3d9dec60cb \
-                    ... Licensing stuff that I'm omitting for brevity ...
-
-file://node_modules/xrandr-parse/package.json;md5=671eb8501a73fbcd413813c4832bb560"
-
-SRC_URI = " \
-    git://github.com/votingworks/kiosk-browser.git;protocol=https \
-    npmsw://${THISDIR}/${BPN}/npm-shrinkwrap.json \
-    "
-
-# Modify these as desired
-PV = "1.0.0+git${SRCPV}"
-SRCREV = "c85708f50747c595878d4bc6da6edf72203f87ae"
-
-S = "${WORKDIR}/git"
-
-inherit npm
-
-RDEPENDS_${PN} = "\
-    bash \
-"
-
-DEPENDS = "\
-    libusb \
-    dpkg \
-"
-
-LICENSE_${PN} = "Unknown"
-... Licensing stuff that I'm omitting for brevity ...
-
-EOF
-
---00000000000019ec5b05c6a30f82
-Content-Type: text/html; charset="UTF-8"
+--0__=8FBB0D9FDFE4AB9E8f9e8a93df938690918c8FBB0D9FDFE4AB9E
+Content-type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>I&#39;ve been struggling=
- to add a debian package to my build. I&#39;m trying to build this app and =
-install it on the target: <a href=3D"https://github.com/votingworks/kiosk-b=
-rowser">https://github.com/votingworks/kiosk-browser</a></div><div><br></di=
-v><div>It&#39;s a node app built with yarn, and I&#39;ve found the instruct=
-ions in the manual to be a bit off the mark for what I&#39;m trying to do. =
-I want to:</div><div><ol><li>Fetch and build the app using its own makefile=
-</li><li>Install the output debian package in the target during buildtime<b=
-r></li></ol><div>My recipe is below, but as best I can tell all it does rig=
-ht now is package the source directory and put it on the image. DPKG report=
-s that it&#39;s installed, but I can&#39;t seem to run the app. I&#39;m sur=
-e I&#39;m confused a bit about the build process, and perhaps I&#39;m not i=
-nvoking a task when I should? <br></div><div><br></div><div>Any pointers wo=
-uld be greatly appreciated.</div><div><br></div><div>All the best,</div><di=
-v>Matt</div><div><br></div><div>P.S. Here&#39;s the recipe: <br></div><div>=
-<br></div><div><pre># Recipe created by recipetool
-# This is the basis of a recipe and may need further editing in order to be=
- fully functional.
-# (Feel free to remove these comments when editing.)
 
-SUMMARY =3D &quot;Generic kiosk-mode browser.&quot;
-# WARNING ommitted for brevity ...
+I'm using Yocto "warrior" version.
 
-LICENSE =3D &quot;Unknown &amp; MIT &amp; ISC&quot;
-LIC_FILES_CHKSUM =3D &quot;file://LICENSE;md5=3De49f4652534af377a713df3d9de=
-c60cb \<br>                    ... Licensing stuff that I&#39;m omitting fo=
-r brevity ...
-                    file://node_modules/xrandr-parse/package.json;md5=3D671=
-eb8501a73fbcd413813c4832bb560&quot;
+It is setup for powerpc-nf
+DEFAULTTUNE =3D "powerpc-nf"
+DISTRO =3D "poky"
 
-SRC_URI =3D &quot; \
-    git://<a href=3D"http://github.com/votingworks/kiosk-browser.git;protoc=
-ol=3Dhttps">github.com/votingworks/kiosk-browser.git;protocol=3Dhttps</a> \
-    npmsw://${THISDIR}/${BPN}/npm-shrinkwrap.json \
-    &quot;
+Everything seems to work find until I enable "valgrind".  'bitbake' fails
+to compile valgrind
 
-# Modify these as desired
-PV =3D &quot;1.0.0+git${SRCPV}&quot;
-SRCREV =3D &quot;c85708f50747c595878d4bc6da6edf72203f87ae&quot;
+************************
+:
+| collect2: error: ld returned 1 exit status
+| make[3]: *** [Makefile:1034: memcheck-ppc32-linux] Error 1
+| make[3]: Leaving directory '$
+{WORK=5FDIR}/powerpc-nf-poky-linux/valgrind/3.14.0-r0/build/memcheck'
+| make[2]: *** [Makefile:1345: all-recursive] Error 1
+| make[2]: Leaving directory '$
+{WORK=5FDIR}/powerpc-nf-poky-linux/valgrind/3.14.0-r0/build/memcheck'
+| make[1]: *** [Makefile:834: all-recursive] Error 1
+| make[1]: Leaving directory '$
+{WORK=5FDIR}/work/powerpc-nf-poky-linux/valgrind/3.14.0-r0/build'
+| make: *** [Makefile:703: all] Error 2
+| make: Leaving directory '$
+{WORK=5FDIR}/powerpc-nf-poky-linux/valgrind/3.14.0-r0/build'
+| ERROR: oe=5Frunmake failed
+| WARNING: $
+{WORK=5FDIR}/powerpc-nf-poky-linux/valgrind/3.14.0-r0/temp/run.do=5Fcompile=
+.23806:1
+ exit 1 from 'exit 1'
+| ERROR: Function failed: do=5Fcompile (log file is located at $
+{WORK=5FDIR}/powerpc-nf-poky-linux/valgrind/3.14.0-r0/temp/log.do=5Fcompile=
+.23806)
+ERROR: Task ($
+{REPODIR}fips-build/meta/recipes-devtools/valgrind/valgrind=5F3.14.0.bb:do=
+=5Fcompile)
+ failed with exit code '1'
+NOTE: Tasks Summary: Attempted 4091 tasks of which 4089 didn't need to be
+rerun and 1 failed.
 
-S =3D &quot;${WORKDIR}/git&quot;
+Summary: 1 task failed:
+  $
+{REPO=5FDIR}/fips-build/meta/recipes-devtools/valgrind/valgrind=5F3.14.0.bb=
+:do=5Fcompile
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+*********************************************
 
-inherit npm<br><br>RDEPENDS_${PN} =3D &quot;\<br>    bash \<br>&quot;<br><b=
-r>DEPENDS =3D &quot;\<br>    libusb \<br>    dpkg \<br>&quot;
+Many link failure...
+**********************************
+ undefined reference to `=5F=5Ffloatsidf'
+ undefined reference to `=5F=5Fmuldf3'
+ undefined reference to `=5F=5Fltdf2'
+ undefined reference to `=5F=5Ffixdfsi'
+ undefined reference to `=5F=5Fdivdf3'
+ undefined reference to `=5F=5Ffloatunsidf'
+ undefined reference to `=5F=5Ffloatundidf'
+ undefined reference to `=5F=5Fadddf3'
+ undefined reference to `=5F=5Ffixunsdfdi'
+ undefined reference to `=5F=5Fnedf2'
+ undefined reference to `=5F=5Fgtdf2'
+ undefined reference to `=5F=5Fsubdf3'
+ undefined reference to `=5F=5Feqsf2'
+ undefined reference to `=5F=5Feqdf2'
+ undefined reference to `=5F=5Ffloatunsisf'
+ undefined reference to `=5F=5Fdivsf3'
+***********************
 
-LICENSE_${PN} =3D &quot;Unknown&quot;<br>... Licensing stuff that I&#39;m o=
-mitting for brevity ...<br></pre><pre>EOF
-</pre></div></div></div>
+Seems like many people were running into this issue for many reason.  Saw a
+lot of suggestion in google, but seem like there is no real solution...
+I try to create valgrind=5F%.bbappen with the following contents.  And did
+not help...
+#####################
+#valgrind will not compile even with below changes
+CFLAGS=5Fprepend =3D " -lc -lm "
+CFLAGS=5Fappend =3D " -ffast-math -static-libgcc -lgcc -ffreestanding -lc -=
+lm "
+#BASE=5FWORKDIR=3D"/tmp/youhour/fips-build/m20210707a/fips-ppcnf/build/tmp/=
+work"
+#./powerpc-nf-poky-linux/valgrind/3.14.0-r0/recipe-sysroot/usr/lib/powerpc-=
+poky-linux/8.3.0/libgcc.a
+BUILD=5FLDFLAGS=5Fappend =3D " -L$
+{BASE=5FWORKDIR}/powerpc-nf-poky-linux/valgrind/3.14.0-r0/recipe-sysroot/us=
+r/lib/powerpc-poky-linux/8.3.0
+ "
+#####################
 
---00000000000019ec5b05c6a30f82--
+Any suggestion is appreciated.
+
+--0__=8FBB0D9FDFE4AB9E8f9e8a93df938690918c8FBB0D9FDFE4AB9E
+Content-type: text/html; charset=US-ASCII
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><p><font size=3D"2" face=3D"sans-serif">I'm using Yocto &quot;w=
+arrior&quot; version.</font><br><br><font size=3D"2" face=3D"sans-serif">It=
+ is setup for powerpc-nf</font><br><font size=3D"2" face=3D"sans-serif">DEF=
+AULTTUNE =3D &quot;powerpc-nf&quot;</font><br><font size=3D"2" face=3D"sans=
+-serif">DISTRO =3D &quot;poky&quot;</font><br><br><font size=3D"2" face=3D"=
+sans-serif">Everything seems to work find until I enable &quot;valgrind&quo=
+t;. &nbsp;'bitbake' fails to compile valgrind</font><br><br><font size=3D"2=
+" face=3D"sans-serif">************************</font><br><font size=3D"2" f=
+ace=3D"sans-serif">:</font><br><font size=3D"2" face=3D"sans-serif">| colle=
+ct2: error: ld returned 1 exit status</font><br><font size=3D"2" face=3D"sa=
+ns-serif">| make[3]: *** [Make<a href=3D"file:1034:">file:1034:</a> memchec=
+k-ppc32-linux] Error 1</font><br><font size=3D"2" face=3D"sans-serif">| mak=
+e[3]: Leaving directory '${WORK=5FDIR}/powerpc-nf-poky-linux/valgrind/3.14.=
+0-r0/build/memcheck'</font><br><font size=3D"2" face=3D"sans-serif">| make[=
+2]: *** [Make<a href=3D"file:1345:">file:1345:</a> all-recursive] Error 1</=
+font><br><font size=3D"2" face=3D"sans-serif">| make[2]: Leaving directory =
+'${WORK=5FDIR}/powerpc-nf-poky-linux/valgrind/3.14.0-r0/build/memcheck'</fo=
+nt><br><font size=3D"2" face=3D"sans-serif">| make[1]: *** [Make<a href=3D"=
+file:834:">file:834:</a> all-recursive] Error 1</font><br><font size=3D"2" =
+face=3D"sans-serif">| make[1]: Leaving directory '${WORK=5FDIR}/work/powerp=
+c-nf-poky-linux/valgrind/3.14.0-r0/build'</font><br><font size=3D"2" face=
+=3D"sans-serif">| make: *** [Make<a href=3D"file:703:">file:703:</a> all] E=
+rror 2</font><br><font size=3D"2" face=3D"sans-serif">| make: Leaving direc=
+tory '${WORK=5FDIR}/powerpc-nf-poky-linux/valgrind/3.14.0-r0/build'</font><=
+br><font size=3D"2" face=3D"sans-serif">| ERROR: oe=5Frunmake failed</font>=
+<br><font size=3D"2" face=3D"sans-serif">| WARNING: ${WORK=5FDIR}/powerpc-n=
+f-poky-linux/valgrind/3.14.0-r0/temp/run.do=5Fcompile.23806:1 exit 1 from '=
+exit 1'</font><br><font size=3D"2" face=3D"sans-serif">| ERROR: Function fa=
+iled: do=5Fcompile (log file is located at ${WORK=5FDIR}/powerpc-nf-poky-li=
+nux/valgrind/3.14.0-r0/temp/log.do=5Fcompile.23806)</font><br><font size=3D=
+"2" face=3D"sans-serif">ERROR: Task (${REPODIR}fips-build/meta/recipes-devt=
+ools/valgrind/valgrind=5F3.14.0.bb:do=5Fcompile) failed with exit code '1'<=
+/font><br><font size=3D"2" face=3D"sans-serif">NOTE: Tasks Summary: Attempt=
+ed 4091 tasks of which 4089 didn't need to be rerun and 1 failed.</font><br=
+><br><font size=3D"2" face=3D"sans-serif">Summary: 1 task failed:</font><br=
+><font size=3D"2" face=3D"sans-serif">&nbsp; ${REPO=5FDIR}/fips-build/meta/=
+recipes-devtools/valgrind/valgrind=5F3.14.0.bb:do=5Fcompile</font><br><font=
+ size=3D"2" face=3D"sans-serif">Summary: There were 2 ERROR messages shown,=
+ returning a non-zero exit code.</font><br><font size=3D"2" face=3D"sans-se=
+rif">*********************************************</font><br><br><font size=
+=3D"2" face=3D"sans-serif">Many link failure...</font><br><font size=3D"2" =
+face=3D"sans-serif">**********************************</font><br><font size=
+=3D"1" color=3D"#1D1C1D" face=3D"Consolas">&nbsp;undefined reference to `=
+=5F=5Ffloatsidf'<br> undefined reference to `=5F=5Fmuldf3'<br> undefined re=
+ference to `=5F=5Fltdf2'<br> undefined reference to `=5F=5Ffixdfsi'<br> und=
+efined reference to `=5F=5Fdivdf3'<br> undefined reference to `=5F=5Ffloatu=
+nsidf'<br> undefined reference to `=5F=5Ffloatundidf'<br> undefined referen=
+ce to `=5F=5Fadddf3'<br> undefined reference to `=5F=5Ffixunsdfdi'<br> unde=
+fined reference to `=5F=5Fnedf2'<br> undefined reference to `=5F=5Fgtdf2'<b=
+r> undefined reference to `=5F=5Fsubdf3'<br> undefined reference to `=5F=5F=
+eqsf2'<br> undefined reference to `=5F=5Feqdf2'<br> undefined reference to =
+`=5F=5Ffloatunsisf'<br> undefined reference to `=5F=5Fdivsf3'</font><br><fo=
+nt size=3D"2" face=3D"sans-serif">***********************</font><br><br><fo=
+nt size=3D"2" face=3D"sans-serif">Seems like many people were running into =
+this issue for many reason. &nbsp;Saw a lot of suggestion in google, but se=
+em like there is no real solution...</font><br><font size=3D"2" face=3D"san=
+s-serif">I try to create valgrind=5F%.bbappen with the following contents. =
+&nbsp;And did not help...</font><br><font size=3D"2" face=3D"sans-serif">##=
+###################</font><br><font size=3D"2" face=3D"sans-serif">#valgrin=
+d will not compile even with below changes</font><br><font size=3D"2" face=
+=3D"sans-serif">CFLAGS=5Fprepend =3D &quot; -lc -lm &quot;</font><br><font =
+size=3D"2" face=3D"sans-serif">CFLAGS=5Fappend =3D &quot; -ffast-math -stat=
+ic-libgcc -lgcc -ffreestanding -lc -lm &quot;</font><br><font size=3D"2" fa=
+ce=3D"sans-serif">#BASE=5FWORKDIR=3D&quot;/tmp/youhour/fips-build/m20210707=
+a/fips-ppcnf/build/tmp/work&quot;</font><br><font size=3D"2" face=3D"sans-s=
+erif">#./powerpc-nf-poky-linux/valgrind/3.14.0-r0/recipe-sysroot/usr/lib/po=
+werpc-poky-linux/8.3.0/libgcc.a</font><br><font size=3D"2" face=3D"sans-ser=
+if">BUILD=5FLDFLAGS=5Fappend =3D &quot; -L${BASE=5FWORKDIR}/powerpc-nf-poky=
+-linux/valgrind/3.14.0-r0/recipe-sysroot/usr/lib/powerpc-poky-linux/8.3.0 &=
+quot;</font><br><font size=3D"2" face=3D"sans-serif">#####################<=
+/font><br><br><font size=3D"2" face=3D"sans-serif">Any suggestion is apprec=
+iated.</font><br><BR>
+<BR>
+</body></html>
+
+--0__=8FBB0D9FDFE4AB9E8f9e8a93df938690918c8FBB0D9FDFE4AB9E--
