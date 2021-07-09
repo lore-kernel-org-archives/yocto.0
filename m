@@ -1,146 +1,265 @@
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
- by mx.groups.io with SMTP id smtpd.web08.9498.1625829117501209132
+Received: from cloud1.hoststud.com (cloud1.hoststud.com [159.69.73.38])
+ by mx.groups.io with SMTP id smtpd.web12.11053.1625837905596451101
  for <yocto@lists.yoctoproject.org>;
- Fri, 09 Jul 2021 04:11:57 -0700
+ Fri, 09 Jul 2021 06:38:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@pbarker.dev header.s=fm1 header.b=pIK387dA;
- spf=pass (domain: pbarker.dev, ip: 66.111.4.28, mailfrom: paul@pbarker.dev)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-	by mailout.nyi.internal (Postfix) with ESMTP id BE6B05C00BE
-	for <yocto@lists.yoctoproject.org>; Fri,  9 Jul 2021 07:11:56 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Fri, 09 Jul 2021 07:11:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pbarker.dev; h=
-	date:from:to:subject:message-id:in-reply-to:references
-	:mime-version:content-type; s=fm1; bh=s8dKPe+/tbJaFsJ/nVaZqbrlrl
-	i2KGcvzgpMCeaWWfs=; b=pIK387dAOcQI9IC8swz/+qINrBKPIQzPrSaCJMq5Tg
-	HqTc0Gq6TUkOm8lfhlE4vQlyiWdtwov1i6WyZUbCKa18085RSTvwGWMdzkGbyPAg
-	/12Wwm0VehpfnPtwM+/126RDX4US4H6iXqYmTyinuTz5W9QeLulWOH6WIggtYhpH
-	Js5t79OnXqHwj2d2ShVk73zLCYq/HRiEVOZ3e1ZYnOWSrwuU3SgynVivJGUx5dAS
-	7Qr/KehUzXL2YAskWfWEfZ9rqPbgw1V47N2lzgYHq9QJOQKTMGCEncvJ5V1cPEEL
-	upf32JMGMTo/YPtu4/AUGaExd7qhf+3kq7k8EgSA44oQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to:x-me-proxy
-	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=s8dKPe
-	+/tbJaFsJ/nVaZqbrlrli2KGcvzgpMCeaWWfs=; b=LDQjr3xqrq4lnJKW/8RAhw
-	7nkCe6sFE2jABzJRsLpsYZWQFpEy01MG8wDVigL+UqCkQItUnyNnxsBVHa1FbwPS
-	vX8CtxIEi1N8kXOaUiSs0Ek8IM3bTFzS64AzzR9Mom2DRI1UBoi4mwpIvup647YF
-	+1ojgCeA3y394A1oaPBJuzXo93p/x6Bfe6ouxtdazowEA6BdcPnOhDpWDiH+BLby
-	/2mUxEWb1c1Bp5VkRxJXPU6OJjyufUkpufY1TYJ7Hi6HpbHRSVFwF6KXc+5j3E7+
-	o36jU13NK3V8yGGYMZQ//lHJVCtb2uNQycnHUOmMMMmCOuWrVMOPczckyVtImdbg
-	==
-X-ME-Sender: <xms:_C7oYELVstVcs9zxEUgEEeCwYYKDRjr5u6Xs80M1L6r3pDmnJLJLaw>
-    <xme:_C7oYEI1jMXCwp7Jup6p8F45jhNr27qWej_Q_wjxg7Zi0uxtSVPXkTtx_XfAcmYvG
-    44W9zWgFK26FxNytmA>
-X-ME-Received: <xmr:_C7oYEtRxGDGu7PKDti9fcq1r1UcaSK9Aish5zV4bWgKOmUOQ9GIKoeuVi9WxkjXyidk_sQUU8csN_TaQjhkhHLHfi84dVHLk9r1lq1-r3gj9YCg5SfIM6qGbvA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrtdeigdefhecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecunecujfgurhepfffhvffukfgjfhfogggtsehgtderre
-    ertddvnecuhfhrohhmpefrrghulhcuuegrrhhkvghruceophgruhhlsehpsggrrhhkvghr
-    rdguvghvqeenucggtffrrghtthgvrhhnpeffudelffdutdfhgeeugeeuieehjeeuheelhf
-    ffffdtvdevgeetteelheekhfelheenucffohhmrghinhepghhithhhuhgsrdgtohhmpdhp
-    sggrrhhkvghrrdguvghvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrg
-    hilhhfrhhomhepphgruhhlsehpsggrrhhkvghrrdguvghv
-X-ME-Proxy: <xmx:_C7oYBZrp9QaZ3VPgEhdYbi89gu7yE9UQE46u7T_6jPhfFvujDjT2w>
-    <xmx:_C7oYLYgCv6T9hKiQtDbCMNnbLzm3_YA9p-wyGyyEo-3KyWMW_jfUw>
-    <xmx:_C7oYNANYsBeu4_Q-T2FOdc2gQOveHrD4T6OQeszDTsoAwovwb9obw>
-    <xmx:_C7oYF0OdaydeyaDmn3dnuTLVSyiR4FWN13yNtu7LoRxfO5-azEFfQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA for
- <yocto@lists.yoctoproject.org>; Fri, 9 Jul 2021 07:11:56 -0400 (EDT)
-Date: Fri, 9 Jul 2021 12:11:42 +0100
-From: "Paul Barker" <paul@pbarker.dev>
-To: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] #archiver Archiver not archiving sources from Mirror
-Message-ID: <20210709121142.39922a93.paul@pbarker.dev>
-In-Reply-To: <f524ba87310043cc82c6d7e39f2b9586@claas.com>
-References: <f524ba87310043cc82c6d7e39f2b9586@claas.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-suse-linux-gnu)
+ dkim=missing; spf=none, err=permanent DNS error (domain: phytecembedded.in, ip: 159.69.73.38, mailfrom: poornesh.g@phytecembedded.in)
+Received: from [::1] (port=21950 helo=cloud1.hoststud.com)
+	by cloud1.hoststud.com with esmtpa (Exim 4.94.2)
+	(envelope-from <poornesh.g@phytecembedded.in>)
+	id 1m1qi1-003cNS-Mh
+	for yocto@lists.yoctoproject.org; Fri, 09 Jul 2021 19:08:23 +0530
 MIME-Version: 1.0
-X-Groupsio-MsgNum: 54088
-Content-Type: multipart/signed; boundary="Sig_/.n2ptiO5EmdxqiPo6IVL5WN";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Date: Fri, 09 Jul 2021 19:08:22 +0530
+From: "Poornesh" <poornesh.g@phytecembedded.in>
+To: yocto@lists.yoctoproject.org
+Subject: Re: Integration of Docker in Read-only Rootfile system through Yocto
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <2816e2b23775ceefa595ddba804bf2b8@phytecembedded.in>
+X-Sender: poornesh.g@phytecembedded.in
+Organization: Phytec Embedded India
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cloud1.hoststud.com
+X-AntiAbuse: Original Domain - lists.yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - phytecembedded.in
+X-Get-Message-Sender-Via: cloud1.hoststud.com: authenticated_id: poornesh.g@phytecembedded.in
+X-Authenticated-Sender: cloud1.hoststud.com: poornesh.g@phytecembedded.in
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Groupsio-MsgNum: 54089
+Content-Type: multipart/mixed;
+ boundary="=_8b91439da2b003bd64fc95f577bf25ff"
 
---Sig_/.n2ptiO5EmdxqiPo6IVL5WN
-Content-Type: text/plain; charset=US-ASCII
+--=_8b91439da2b003bd64fc95f577bf25ff
+Content-Type: multipart/alternative;
+ boundary="=_729e73deb7f62453fa2e3116fe25d5fc"
+
+--=_729e73deb7f62453fa2e3116fe25d5fc
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+
+Greetings !
+
+I have added the docker in yocto (zeus) and it is working with the 
+Rootfile system which is having "Read-write" permission. When I trying 
+to run the "Hello-world" image with the Rootfile system having 
+"Read-only" permission through docker  I am facing issue . Please find 
+the attached error logs .
+
+Requesting your suggestions to overcome this issue.
+
+-- 
+Thanks and Regards
+
+Poornesh G
+
+--=_729e73deb7f62453fa2e3116fe25d5fc
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
 
-On Fri, 9 Jul 2021 10:21:56 +0000
-"Seipel, Christoph" <Christoph.Seipel@claas.com> wrote:
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
+=3DUTF-8" /></head><body style=3D'font-size: 10pt; font-family: Verdana,Gen=
+eva,sans-serif'>
+<p>Greetings !</p>
+<p>I have added the docker in yocto (zeus) and it is working with the Rootf=
+ile system which is having "Read-write" permission. When I trying to run th=
+e "Hello-world" image with the Rootfile system having "Read-only" permissio=
+n through docker&nbsp; I am facing issue . Please find the attached error l=
+ogs .</p>
+<p>Requesting your suggestions to overcome this issue.</p>
+<div id=3D"signature">-- <br />
+<p>Thanks and Regards</p>
+<p><strong>Poornesh G<br /></strong></p>
+</div>
+</body></html>
 
-> Hello,
->=20
-> I have a problem with the archiver. I want to use it to export the source=
-s used in our image for license compliance (GPL etc.).
-> We have a BSP supplier that supplies the Yocto system and the sources to =
-build it in a mirror directory.
->=20
-> Now, when I use the archiver (mode: original) the exported sources don't =
-contain the sources from the mirror, but only other files like patches.
->=20
-> To analyse this problem I put some extra logging into the archiver.bbclas=
-s to inspect the variable contents, and it seems the "local" variable where=
- the archiver is looking for the sources to export doesn't fit with the pat=
-h of the actual sources. This leads to the archiver just skipping that URL =
-and proceeding.
->=20
-> For example for the systemd recipe it has the variable URL=3D"git://githu=
-b.com/systemd/systemd.git;protocol=3Dgit" and therefore it decides to look =
-at local=3D"<builddir>/downloads/git2/github.com.systemd.systemd.git"
-> But that file doesn't exist.
-> I inspected the do_fetch and do_unpack logs to find that the fetcher reso=
-lves "git://github.com/systemd/systemd.git;protocol=3Dgit" with returning t=
-he corresponding file from the mirror file:///<mirrorpath>/gitshallow_githu=
-b.com.systemd.systemd.git_46659f7-1_master.tar.gz<file:///%3cmirrorpath%3e/=
-gitshallow_github.com.systemd.systemd.git_46659f7-1_master.tar.gz>
-> The do_unpack task then unpacks tar -xzf <builddir>/downloads/gitshallow_=
-github.com.systemd.systemd.git_46659f7-1_master.tar.gz
-> Which is possible because there is a symlink, I guess that was created by=
- the fetcher
-> <builddir>/downloads/gitshallow_github.com.systemd.systemd.git_46659f7-1_=
-master.tar.gz -> <mirror>/gitshallow_github.com.systemd.systemd.git_46659f7=
--1_master.tar.gz
->=20
-> So the problem seems to be that the archiver expects the sources in downl=
-oads/git2 but the fetcher creates the symlink in downloads and with additio=
-nal pre- and postfiexes on the filename.
->=20
-> Sadly we are still on sumo, but at least for the archiver class there isn=
-'t any relevant change to hardknott. At least a dunfell upgrade is incoming=
- in the next weeks.
+--=_729e73deb7f62453fa2e3116fe25d5fc--
 
-If the archives you've been given have names starting with
-'gitshallow_' then it's likely that the following variables were set in
-local.conf or in a distro conf file to generate them:
+--=_8b91439da2b003bd64fc95f577bf25ff
+Content-Transfer-Encoding: base64
+Content-Type: text/plain;
+ name=docker_random_error.txt
+Content-Disposition: attachment;
+ filename=docker_random_error.txt;
+ size=4028
 
-    BB_GENERATE_MIRROR_TARBALLS =3D "1"
-    BB_GENERATE_SHALLOW_TARBALLS =3D "1"
-    BB_GIT_SHALLOW =3D "1"
-   =20
-Could you make sure those are set in your configuration? If they're not
-then the archiver may not be looking for the file names you have.
+cm9vdEBhcm06L2hvbWUvdWJ1bnR1IyBybSAtcmYgZG9ja2VyLyoKcm9vdEBhcm06L2hvbWUvdWJ1
+bnR1IyBybSAtcmYgbGliLyoKcm9vdEBhcm06L2hvbWUvdWJ1bnR1IyBjZApyb290QGFybTp+IyAK
+cm9vdEBhcm06fiMgCnJvb3RAYXJtOn4jIApyb290QGFybTp+IyAKcm9vdEBhcm06fiMgZG9ja2Vy
+IHJ1biBoZWxsb19kb2NrZXIKVW5hYmxlIHRvIGZpbmQgaW1hZ2UgJ2hlbGxvX2RvY2tlcjpsYXRl
+c3QnIGxvY2FsbHkKXkMKcm9vdEBhcm06fiMgCnJvb3RAYXJtOn4jIApyb290QGFybTp+IyBkb2Nr
+ZXIgaW1hZ2VzClJFUE9TSVRPUlkgICBUQUcgICAgICAgSU1BR0UgSUQgICBDUkVBVEVEICAgU0la
+RQpyb290QGFybTp+IyBjZCAvbW50L2hlbGxvX2RvY2tlci8Kcm9vdEBhcm06L21udC9oZWxsb19k
+b2NrZXIjIGxzCkRvY2tlcmZpbGUgIGRvY2tlcl9zZXJ2aWNlX2Vycm9yLnR4dCAgaGVsbG8Kcm9v
+dEBhcm06L21udC9oZWxsb19kb2NrZXIjIGRvY2tlciBidWlsZCAtLXRhZyBoZWxsb19kb2NrZXIg
+LgpTZW5kaW5nIGJ1aWxkIGNvbnRleHQgdG8gRG9ja2VyIGRhZW1vbiAgMTkuNDZrQgpFcnJvciBy
+ZXNwb25zZSBmcm9tIGRhZW1vbjogc3RhdCAvaG9tZS91YnVudHUvbGliL2RvY2tlci90bXA6IG5v
+IHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkKcm9vdEBhcm06L21udC9oZWxsb19kb2NrZXIjIHN5c3Rl
+bWN0bCBzdG9wIGRvY2tlcgpXYXJuaW5nOiBTdG9wcGluZyBkb2NrZXIuc2VydmljZSwgYnV0IGl0
+IGNhbiBzdGlsbCBiZSBhY3RpdmF0ZWQgYnk6CiAgZG9ja2VyLnNvY2tldApyb290QGFybTovbW50
+L2hlbGxvX2RvY2tlciMgc3lzdGVtY3RsIHN0b3AgY29udGFpbmVyZApyb290QGFybTovbW50L2hl
+bGxvX2RvY2tlciMgc3lzdGVtY3RsIHN0YXJ0IGNvbnRhaW5lcmQKcm9vdEBhcm06L21udC9oZWxs
+b19kb2NrZXIjIHN5c3RlbWN0bCBzdGFydCBkb2NrZXIKcm9vdEBhcm06L21udC9oZWxsb19kb2Nr
+ZXIjIGRvY2tlciBidWlsZCAtLXRhZyBoZWxsb19kb2NrZXIgLgpTZW5kaW5nIGJ1aWxkIGNvbnRl
+eHQgdG8gRG9ja2VyIGRhZW1vbiAgMTkuNDZrQgpTdGVwIDEvMyA6IEZST00gc2NyYXRjaAogLS0t
+PiAKU3RlcCAyLzMgOiBDT1BZIGhlbGxvIC8KIC0tLT4gYTE4MmIxNTQ4OGI3ClN0ZXAgMy8zIDog
+Q01EIFsiL2hlbGxvIl0KIC0tLT4gUnVubmluZyBpbiAyNDU4MmRiODAzNzkKUmVtb3ZpbmcgaW50
+ZXJtZWRpYXRlIGNvbnRhaW5lciAyNDU4MmRiODAzNzkKIC0tLT4gMmQ4NjAyNTA3OWQ2ClN1Y2Nl
+c3NmdWxseSBidWlsdCAyZDg2MDI1MDc5ZDYKU3VjY2Vzc2Z1bGx5IHRhZ2dlZCBoZWxsb19kb2Nr
+ZXI6bGF0ZXN0CnJvb3RAYXJtOi9tbnQvaGVsbG9fZG9ja2VyIyBkb2NrZXIgcnVuIGhlbGxvX2Rv
+Y2tlcgpkb2NrZXI6IEVycm9yIHJlc3BvbnNlIGZyb20gZGFlbW9uOiBPQ0kgcnVudGltZSBjcmVh
+dGUgZmFpbGVkOiAvdmFyL2xpYi9kb2NrZXIvb3ZlcmxheTIvMzhmOTk1NjkxZTg2YzkzN2VmM2Vl
+N2U3OWJjOTYzMTdjMzY3NDhmZGM4MDQzOWNlMTJhZGVjLgpFUlJPWzAwMDBdIGVycm9yIHdhaXRp
+bmcgZm9yIGNvbnRhaW5lcjogY29udGV4dCBjYW5jZWxlZCAKcm9vdEBhcm06L21udC9oZWxsb19k
+b2NrZXIjIGRvY2tlciBydW4gaGVsbG9fZG9ja2VyCmRvY2tlcjogRXJyb3IgcmVzcG9uc2UgZnJv
+bSBkYWVtb246IE9DSSBydW50aW1lIGNyZWF0ZSBmYWlsZWQ6IC92YXIvbGliL2RvY2tlci9vdmVy
+bGF5Mi9jOWNjOTI0NjYyOWUxMmNmZWZjNTBiYzdlNGM5MzVhNmJmOTgwYmIxYjk4Y2M4YjdiNzAw
+NGUuCkVSUk9bMDAwMF0gZXJyb3Igd2FpdGluZyBmb3IgY29udGFpbmVyOiBjb250ZXh0IGNhbmNl
+bGVkIApyb290QGFybTovbW50L2hlbGxvX2RvY2tlciMgZG9ja2VyIHJ1biBoZWxsb19kb2NrZXIK
+ZG9ja2VyOiBFcnJvciByZXNwb25zZSBmcm9tIGRhZW1vbjogT0NJIHJ1bnRpbWUgY3JlYXRlIGZh
+aWxlZDogL3Zhci9saWIvZG9ja2VyL292ZXJsYXkyL2FjZGQ3MjdjMWE2ZTZmNWRkZWYwMjk2ZTk2
+NzRiOWFiZGRlNGM0NTFkMGJjNjMxNWQwYTM0Ni4KRVJST1swMDAwXSBlcnJvciB3YWl0aW5nIGZv
+ciBjb250YWluZXI6IGNvbnRleHQgY2FuY2VsZWQgCnJvb3RAYXJtOi9tbnQvaGVsbG9fZG9ja2Vy
+IyBkb2NrZXIgcnVuIGhlbGxvX2RvY2tlcgpkb2NrZXI6IEVycm9yIHJlc3BvbnNlIGZyb20gZGFl
+bW9uOiBPQ0kgcnVudGltZSBjcmVhdGUgZmFpbGVkOiAvdmFyL2xpYi9kb2NrZXIvb3ZlcmxheTIv
+MzQ4YWQ2ZjkwYTYwMTVkMjIxYWY1ODljMWI1NTE3ZTFkNzgwOWMxM2M2MGI1YTE2NTdhMjBiLgpF
+UlJPWzAwMDBdIGVycm9yIHdhaXRpbmcgZm9yIGNvbnRhaW5lcjogY29udGV4dCBjYW5jZWxlZCAK
+cm9vdEBhcm06L21udC9oZWxsb19kb2NrZXIjIGRvY2tlciBydW4gaGVsbG9fZG9ja2VyCmRvY2tl
+cjogRXJyb3IgcmVzcG9uc2UgZnJvbSBkYWVtb246IE9DSSBydW50aW1lIGNyZWF0ZSBmYWlsZWQ6
+IC92YXIvbGliL2RvY2tlci9vdmVybGF5Mi8zYmRmNzIzYWIwMmMzYzMzOGM5ZTA1OGE4NTczN2Nh
+OWVjZGQ0NDZjZWZlOTNjNzY1MzQzMGQuCkVSUk9bMDAwMF0gZXJyb3Igd2FpdGluZyBmb3IgY29u
+dGFpbmVyOiBjb250ZXh0IGNhbmNlbGVkIApyb290QGFybTovbW50L2hlbGxvX2RvY2tlciMgZG9j
+a2VyIHJ1biBoZWxsb19kb2NrZXIKZG9ja2VyOiBFcnJvciByZXNwb25zZSBmcm9tIGRhZW1vbjog
+T0NJIHJ1bnRpbWUgY3JlYXRlIGZhaWxlZDogL3Zhci9saWIvZG9ja2VyL292ZXJsYXkyL2M4YmFl
+ZTNlNDQ4MjQ2NzFhN2IxZmVmYjlhOGZlM2M3YWRlOTM1MmYxYjYzMTYyZjg1ZjA0Ni4KRVJST1sw
+MDAwXSBlcnJvciB3YWl0aW5nIGZvciBjb250YWluZXI6IGNvbnRleHQgY2FuY2VsZWQgCnJvb3RA
+YXJtOi9tbnQvaGVsbG9fZG9ja2VyIyBzeXN0ZW1jdGwgc3RvcCBjb250YWluZXJkCnJvb3RAYXJt
+Oi9tbnQvaGVsbG9fZG9ja2VyIyBzeXN0ZW1jdGwgc3RvcCBkb2NrZXIKV2FybmluZzogU3RvcHBp
+bmcgZG9ja2VyLnNlcnZpY2UsIGJ1dCBpdCBjYW4gc3RpbGwgYmUgYWN0aXZhdGVkIGJ5OgogIGRv
+Y2tlci5zb2NrZXQKcm9vdEBhcm06L21udC9oZWxsb19kb2NrZXIjIHN5c3RlbWN0bCBzdGFydCBj
+b250YWluZXJkCnJvb3RAYXJtOi9tbnQvaGVsbG9fZG9ja2VyIyBzeXN0ZW1jdGwgc3RhcnQgZG9j
+a2VyCnJvb3RAYXJtOi9tbnQvaGVsbG9fZG9ja2VyIyBkb2NrZXIgcnVuIGhlbGxvX2RvY2tlcgoK
+SGVsbG8gZnJvbSBEb2NrZXIhClRoaXMgbWVzc2FnZSBzaG93cyB0aGF0IHlvdXIgaW5zdGFsbGF0
+aW9uIGFwcGVhcnMgdG8gYmUgd29ya2luZyBjb3JyZWN0bHkuCgpUbyBnZW5lcmF0ZSB0aGlzIG1l
+c3NhZ2UsIERvY2tlciB0b29rIHRoZSBmb2xsb3dpbmcgc3RlcHM6CiAxLiBUaGUgRG9ja2VyIGNs
+aWVudCBjb250YWN0ZWQgdGhlIERvY2tlciBkYWVtb24uCiAyLiBUaGUgRG9ja2VyIGRhZW1vbiBw
+dWxsZWQgdGhlICJoZWxsby13b3JsZCIgaW1hZ2UgZnJvbSB0aGUgRG9ja2VyIEh1Yi4KICAgIChh
+cm02NHY4KQogMy4gVGhlIERvY2tlciBkYWVtb24gY3JlYXRlZCBhIG5ldyBjb250YWluZXIgZnJv
+bSB0aGF0IGltYWdlIHdoaWNoIHJ1bnMgdGhlCiAgICBleGVjdXRhYmxlIHRoYXQgcHJvZHVjZXMg
+dGhlIG91dHB1dCB5b3UgYXJlIGN1cnJlbnRseSByZWFkaW5nLgogNC4gVGhlIERvY2tlciBkYWVt
+b24gc3RyZWFtZWQgdGhhdCBvdXRwdXQgdG8gdGhlIERvY2tlciBjbGllbnQsIHdoaWNoIHNlbnQg
+aXQKICAgIHRvIHlvdXIgdGVybWluYWwuCgpUbyB0cnkgc29tZXRoaW5nIG1vcmUgYW1iaXRpb3Vz
+LCB5b3UgY2FuIHJ1biBhbiBVYnVudHUgY29udGFpbmVyIHdpdGg6CiAkIGRvY2tlciBydW4gLWl0
+IHVidW50dSBiYXNoCgpTaGFyZSBpbWFnZXMsIGF1dG9tYXRlIHdvcmtmbG93cywgYW5kIG1vcmUg
+d2l0aCBhIGZyZWUgRG9ja2VyIElEOgogaHR0cHM6Ly9odWIuZG9ja2VyLmNvbS8KCkZvciBtb3Jl
+IGV4YW1wbGVzIGFuZCBpZGVhcywgdmlzaXQ6CiBodHRwczovL2RvY3MuZG9ja2VyLmNvbS9nZXQt
+c3RhcnRlZC8KCnJvb3RAYXJtOi9tbnQvaGVsbG9fZG9ja2VyIwo=
 
-If things still don't work after that you could try backporting the
-archiver class from hardknott and using the mirror archiver mode. That
-mode is written to pick up the mirror tarballs from the downloads
-directory so it should be able to handle your situation.
+--=_8b91439da2b003bd64fc95f577bf25ff
+Content-Transfer-Encoding: base64
+Content-Type: text/plain;
+ name=docker_after_log_r.txt
+Content-Disposition: attachment;
+ filename=docker_after_log_r.txt;
+ size=5390
 
-Thanks,
+LS0gTG9ncyBiZWdpbiBhdCBXZWQgMjAyMC0wNC0wMSAxNzoyMzo0MyBVVEMsIGVuZCBhdCBXZWQg
+MjAyMC0wNC0wMSAxNzozMDo1MiBVVEMuIC0tCkFwciAwMSAxNzoyNTo0NiBhcm0gc3lzdGVtZFsx
+XTogU3RhcnRpbmcgRG9ja2VyIEFwcGxpY2F0aW9uIENvbnRhaW5lciBFbmdpbmUuLi4KQXByIDAx
+IDE3OjI1OjQ3IGFybSBkb2NrZXJkWzYwMjRdOiB0aW1lPSIyMDIwLTA0LTAxVDE3OjI1OjQ3LjM3
+NTg4NzAwMFoiIGxldmVsPWluZm8gbXNnPSJTdGFydGluZyB1cCIKQXByIDAxIDE3OjI1OjQ3IGFy
+bSBkb2NrZXJkWzYwMjRdOiB0aW1lPSIyMDIwLTA0LTAxVDE3OjI1OjQ3LjM4ODI3MTUwMFoiIGxl
+dmVsPWluZm8gbXNnPSJwYXJzZWQgc2NoZW1lOiBcInVuaXhcIiIgbW9kdWxlPWdycGMKQXByIDAx
+IDE3OjI1OjQ3IGFybSBkb2NrZXJkWzYwMjRdOiB0aW1lPSIyMDIwLTA0LTAxVDE3OjI1OjQ3LjM4
+ODM3MzI1MFoiIGxldmVsPWluZm8gbXNnPSJzY2hlbWUgXCJ1bml4XCIgbm90IHJlZ2lzdGVyZWQs
+IGZhbGxiYWNrIHRvIGRlZmF1bHQgc2NoZW1lIiBtb2R1bGU9Z3JwYwpBcHIgMDEgMTc6MjU6NDcg
+YXJtIGRvY2tlcmRbNjAyNF06IHRpbWU9IjIwMjAtMDQtMDFUMTc6MjU6NDcuMzg4NDQ3MDAwWiIg
+bGV2ZWw9aW5mbyBtc2c9ImNjUmVzb2x2ZXJXcmFwcGVyOiBzZW5kaW5nIHVwZGF0ZSB0byBjYzog
+e1t7dW5peDovLy9ydW4vY29udGFpbmVyZC9jb250YWluZXJkLnNvY2sgIDxuaWw+IDAgPG5pbD59
+XSA8bmlsPiA8bmlsPn0iIG1vZHVsZT1ncnBjCkFwciAwMSAxNzoyNTo0NyBhcm0gZG9ja2VyZFs2
+MDI0XTogdGltZT0iMjAyMC0wNC0wMVQxNzoyNTo0Ny4zODg0OTQ1MDBaIiBsZXZlbD1pbmZvIG1z
+Zz0iQ2xpZW50Q29ubiBzd2l0Y2hpbmcgYmFsYW5jZXIgdG8gXCJwaWNrX2ZpcnN0XCIiIG1vZHVs
+ZT1ncnBjCkFwciAwMSAxNzoyNTo0NyBhcm0gZG9ja2VyZFs2MDI0XTogdGltZT0iMjAyMC0wNC0w
+MVQxNzoyNTo0Ny40MDk0NTE3NTBaIiBsZXZlbD1pbmZvIG1zZz0icGFyc2VkIHNjaGVtZTogXCJ1
+bml4XCIiIG1vZHVsZT1ncnBjCkFwciAwMSAxNzoyNTo0NyBhcm0gZG9ja2VyZFs2MDI0XTogdGlt
+ZT0iMjAyMC0wNC0wMVQxNzoyNTo0Ny40MDk1NjE4NzVaIiBsZXZlbD1pbmZvIG1zZz0ic2NoZW1l
+IFwidW5peFwiIG5vdCByZWdpc3RlcmVkLCBmYWxsYmFjayB0byBkZWZhdWx0IHNjaGVtZSIgbW9k
+dWxlPWdycGMKQXByIDAxIDE3OjI1OjQ3IGFybSBkb2NrZXJkWzYwMjRdOiB0aW1lPSIyMDIwLTA0
+LTAxVDE3OjI1OjQ3LjQwOTc0MDYyNVoiIGxldmVsPWluZm8gbXNnPSJjY1Jlc29sdmVyV3JhcHBl
+cjogc2VuZGluZyB1cGRhdGUgdG8gY2M6IHtbe3VuaXg6Ly8vcnVuL2NvbnRhaW5lcmQvY29udGFp
+bmVyZC5zb2NrICA8bmlsPiAwIDxuaWw+fV0gPG5pbD4gPG5pbD59IiBtb2R1bGU9Z3JwYwpBcHIg
+MDEgMTc6MjU6NDcgYXJtIGRvY2tlcmRbNjAyNF06IHRpbWU9IjIwMjAtMDQtMDFUMTc6MjU6NDcu
+NDA5Nzk4MTI1WiIgbGV2ZWw9aW5mbyBtc2c9IkNsaWVudENvbm4gc3dpdGNoaW5nIGJhbGFuY2Vy
+IHRvIFwicGlja19maXJzdFwiIiBtb2R1bGU9Z3JwYwpBcHIgMDEgMTc6MjU6NDcgYXJtIGRvY2tl
+cmRbNjAyNF06IHRpbWU9IjIwMjAtMDQtMDFUMTc6MjU6NDcuNTk0NDc0NTAwWiIgbGV2ZWw9d2Fy
+bmluZyBtc2c9IllvdXIga2VybmVsIGRvZXMgbm90IHN1cHBvcnQgQ1BVIENGUyBzY2hlZHVsZXIi
+CkFwciAwMSAxNzoyNTo0NyBhcm0gZG9ja2VyZFs2MDI0XTogdGltZT0iMjAyMC0wNC0wMVQxNzoy
+NTo0Ny41OTQ1OTU3NTBaIiBsZXZlbD13YXJuaW5nIG1zZz0iWW91ciBrZXJuZWwgZG9lcyBub3Qg
+c3VwcG9ydCBDUFUgcmVhbHRpbWUgc2NoZWR1bGVyIgpBcHIgMDEgMTc6MjU6NDcgYXJtIGRvY2tl
+cmRbNjAyNF06IHRpbWU9IjIwMjAtMDQtMDFUMTc6MjU6NDcuNTk0NjM1MTI1WiIgbGV2ZWw9d2Fy
+bmluZyBtc2c9IllvdXIga2VybmVsIGRvZXMgbm90IHN1cHBvcnQgY2dyb3VwIGJsa2lvIHdlaWdo
+dCIKQXByIDAxIDE3OjI1OjQ3IGFybSBkb2NrZXJkWzYwMjRdOiB0aW1lPSIyMDIwLTA0LTAxVDE3
+OjI1OjQ3LjU5NDY3Mjg3NVoiIGxldmVsPXdhcm5pbmcgbXNnPSJZb3VyIGtlcm5lbCBkb2VzIG5v
+dCBzdXBwb3J0IGNncm91cCBibGtpbyB3ZWlnaHRfZGV2aWNlIgpBcHIgMDEgMTc6MjU6NDcgYXJt
+IGRvY2tlcmRbNjAyNF06IHRpbWU9IjIwMjAtMDQtMDFUMTc6MjU6NDcuNTk0NzA5MTI1WiIgbGV2
+ZWw9d2FybmluZyBtc2c9IllvdXIga2VybmVsIGRvZXMgbm90IHN1cHBvcnQgY2dyb3VwIGJsa2lv
+IHRocm90dGxlLnJlYWRfYnBzX2RldmljZSIKQXByIDAxIDE3OjI1OjQ3IGFybSBkb2NrZXJkWzYw
+MjRdOiB0aW1lPSIyMDIwLTA0LTAxVDE3OjI1OjQ3LjU5NDc0ODEyNVoiIGxldmVsPXdhcm5pbmcg
+bXNnPSJZb3VyIGtlcm5lbCBkb2VzIG5vdCBzdXBwb3J0IGNncm91cCBibGtpbyB0aHJvdHRsZS53
+cml0ZV9icHNfZGV2aWNlIgpBcHIgMDEgMTc6MjU6NDcgYXJtIGRvY2tlcmRbNjAyNF06IHRpbWU9
+IjIwMjAtMDQtMDFUMTc6MjU6NDcuNTk0Nzg2ODc1WiIgbGV2ZWw9d2FybmluZyBtc2c9IllvdXIg
+a2VybmVsIGRvZXMgbm90IHN1cHBvcnQgY2dyb3VwIGJsa2lvIHRocm90dGxlLnJlYWRfaW9wc19k
+ZXZpY2UiCkFwciAwMSAxNzoyNTo0NyBhcm0gZG9ja2VyZFs2MDI0XTogdGltZT0iMjAyMC0wNC0w
+MVQxNzoyNTo0Ny41OTQ4MjkyNTBaIiBsZXZlbD13YXJuaW5nIG1zZz0iWW91ciBrZXJuZWwgZG9l
+cyBub3Qgc3VwcG9ydCBjZ3JvdXAgYmxraW8gdGhyb3R0bGUud3JpdGVfaW9wc19kZXZpY2UiCkFw
+ciAwMSAxNzoyNTo0NyBhcm0gZG9ja2VyZFs2MDI0XTogdGltZT0iMjAyMC0wNC0wMVQxNzoyNTo0
+Ny41OTYxMzI3NTBaIiBsZXZlbD1pbmZvIG1zZz0iTG9hZGluZyBjb250YWluZXJzOiBzdGFydC4i
+CkFwciAwMSAxNzoyNTo0OCBhcm0gZG9ja2VyZFs2MDI0XTogdGltZT0iMjAyMC0wNC0wMVQxNzoy
+NTo0OC4yMTE1OTY2MjVaIiBsZXZlbD13YXJuaW5nIG1zZz0iQ291bGQgbm90IGxvYWQgbmVjZXNz
+YXJ5IG1vZHVsZXMgZm9yIElQU0VDIHJ1bGVzOiBwcm90b2NvbCBub3Qgc3VwcG9ydGVkIgpBcHIg
+MDEgMTc6MjU6NDggYXJtIGRvY2tlcmRbNjAyNF06IHRpbWU9IjIwMjAtMDQtMDFUMTc6MjU6NDgu
+MjUyOTI5NzUwWiIgbGV2ZWw9aW5mbyBtc2c9IkRlZmF1bHQgYnJpZGdlIChkb2NrZXIwKSBpcyBh
+c3NpZ25lZCB3aXRoIGFuIElQIGFkZHJlc3MgMTcyLjE3LjAuMC8xNi4gRGFlbW9uIG9wdGlvbiAt
+LWJpcCBjYW4gYmUgdXNlZCB0byBzZXQgYSBwcmVmZXJyZWQgSVAgYWRkcmVzcyIKQXByIDAxIDE3
+OjI1OjQ4IGFybSBkb2NrZXJkWzYwMjRdOiB0aW1lPSIyMDIwLTA0LTAxVDE3OjI1OjQ4LjY2MTU2
+ODAwMFoiIGxldmVsPWluZm8gbXNnPSJMb2FkaW5nIGNvbnRhaW5lcnM6IGRvbmUuIgpBcHIgMDEg
+MTc6MjU6NDggYXJtIGRvY2tlcmRbNjAyNF06IHRpbWU9IjIwMjAtMDQtMDFUMTc6MjU6NDguOTYw
+MTQ1Mzc1WiIgbGV2ZWw9aW5mbyBtc2c9IkRvY2tlciBkYWVtb24iIGNvbW1pdD1iMGY1YmMzIGdy
+YXBoZHJpdmVyKHMpPW92ZXJsYXkyIHZlcnNpb249MjAuMTAuNwpBcHIgMDEgMTc6MjU6NDggYXJt
+IGRvY2tlcmRbNjAyNF06IHRpbWU9IjIwMjAtMDQtMDFUMTc6MjU6NDguOTYxMDc4NzUwWiIgbGV2
+ZWw9aW5mbyBtc2c9IkRhZW1vbiBoYXMgY29tcGxldGVkIGluaXRpYWxpemF0aW9uIgpBcHIgMDEg
+MTc6MjU6NDkgYXJtIHN5c3RlbWRbMV06IFN0YXJ0ZWQgRG9ja2VyIEFwcGxpY2F0aW9uIENvbnRh
+aW5lciBFbmdpbmUuCkFwciAwMSAxNzoyNTo0OSBhcm0gZG9ja2VyZFs2MDI0XTogdGltZT0iMjAy
+MC0wNC0wMVQxNzoyNTo0OS4xNDkxMjQ1MDBaIiBsZXZlbD1pbmZvIG1zZz0iQVBJIGxpc3RlbiBv
+biAvcnVuL2RvY2tlci5zb2NrIgpBcHIgMDEgMTc6MzA6MTIgYXJtIGRvY2tlcmRbNjAyNF06IHRp
+bWU9IjIwMjAtMDQtMDFUMTc6MzA6MTIuNDYxOTQxMjUwWiIgbGV2ZWw9aW5mbyBtc2c9IkxheWVy
+IHNoYTI1Njo3MmFlN2ZhNGFjYzNkMGQ4NTI1NWI3YTJjMWI2ZWRiYzgwZjMwYWZlZjA0N2Y0NzVk
+OWNhMGY2YjZlYjlhZGUwIGNsZWFuZWQgdXAiCkFwciAwMSAxNzozMDoyNCBhcm0gZG9ja2VyZFs2
+MDI0XTogdGltZT0iMjAyMC0wNC0wMVQxNzozMDoyNC41NjkxMzgxMjVaIiBsZXZlbD1pbmZvIG1z
+Zz0iTm8gbm9uLWxvY2FsaG9zdCBETlMgbmFtZXNlcnZlcnMgYXJlIGxlZnQgaW4gcmVzb2x2LmNv
+bmYuIFVzaW5nIGRlZmF1bHQgZXh0ZXJuYWwgc2VydmVyczogW25hbWVzZXJ2ZXIgOC44LjguOCBu
+YW1lc2VydmVyIDguOC40LjRdIgpBcHIgMDEgMTc6MzA6MjQgYXJtIGRvY2tlcmRbNjAyNF06IHRp
+bWU9IjIwMjAtMDQtMDFUMTc6MzA6MjQuNTY5MjUyODc1WiIgbGV2ZWw9aW5mbyBtc2c9IklQdjYg
+ZW5hYmxlZDsgQWRkaW5nIGRlZmF1bHQgSVB2NiBleHRlcm5hbCBzZXJ2ZXJzOiBbbmFtZXNlcnZl
+ciAyMDAxOjQ4NjA6NDg2MDo6ODg4OCBuYW1lc2VydmVyIDIwMDE6NDg2MDo0ODYwOjo4ODQ0XSIK
+QXByIDAxIDE3OjMwOjI0IGFybSBkb2NrZXJkWzYwMjRdOiB0aW1lPSIyMDIwLTA0LTAxVDE3OjMw
+OjI0Ljk0MzMwNTM3NVoiIGxldmVsPWVycm9yIG1zZz0ic3RyZWFtIGNvcHkgZXJyb3I6IHJlYWRp
+bmcgZnJvbSBhIGNsb3NlZCBmaWZvIgpBcHIgMDEgMTc6MzA6MjQgYXJtIGRvY2tlcmRbNjAyNF06
+IHRpbWU9IjIwMjAtMDQtMDFUMTc6MzA6MjQuOTQzNDk4MjUwWiIgbGV2ZWw9ZXJyb3IgbXNnPSJz
+dHJlYW0gY29weSBlcnJvcjogcmVhZGluZyBmcm9tIGEgY2xvc2VkIGZpZm8iCkFwciAwMSAxNzoz
+MDoyNSBhcm0gZG9ja2VyZFs2MDI0XTogdGltZT0iMjAyMC0wNC0wMVQxNzozMDoyNS4wODc0OTAw
+MDBaIiBsZXZlbD1lcnJvciBtc2c9IjI2MzgwMTVjZmNmNmY2NWI3MjdmNDk0ZDYxZTBlNzhhMmY1
+NWQ4NWU4YzRlYTgzMTVmOThiZjY2ZDA1NmQyMzggY2xlYW51cDogZmFpbGVkIHRvIGRlbGV0ZSBj
+b250YWluZXIgZnJvbSBjb250YWluZXJkOiBubyBzdWNoIGNvbnRhaW5lciIKQXByIDAxIDE3OjMw
+OjI1IGFybSBkb2NrZXJkWzYwMjRdOiB0aW1lPSIyMDIwLTA0LTAxVDE3OjMwOjI1LjA4NzY2MzM3
+NVoiIGxldmVsPWVycm9yIG1zZz0iSGFuZGxlciBmb3IgUE9TVCAvdjEuNDEvY29udGFpbmVycy8y
+NjM4MDE1Y2ZjZjZmNjViNzI3ZjQ5NGQ2MWUwZTc4YTJmNTVkODVlOGM0ZWE4MzE1Zjk4YmY2NmQw
+NTZkMjM4L3N0YXJ0IHJldHVybmVkIGVycm9yOiBPQ0kgcnVudGltZSBjcmVhdGUgZmFpbGVkOiAv
+dmFyL2xpYi9kb2NrZXIvb3ZlcmxheTIvZjI2MGQ0NWJhNGZiYzczYjFmYjIzYTAxM2IxZTY5ZTc5
+MGQyYTI0MDlhMDllNjg5OTgyYmRjNzEwNTllOGE3OS9tZXJnZWQgaXMgbm90IGFuIGFic29sdXRl
+IHBhdGggb3IgaXMgYSBzeW1saW5rOiB1bmtub3duIgo=
 
---=20
-Paul Barker
-https://pbarker.dev/
-
---Sig_/.n2ptiO5EmdxqiPo6IVL5WN
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYIAB0WIQSzjPXf5Y1BDWhU2iCrY1Tsnbr0bgUCYOgu7gAKCRCrY1Tsnbr0
-bus2AP9nijgh4cTrKQZrNibHO8FDBHkVNZfpO2c1HlcDiQumigEA5RBypF7VOLR1
-v0kp+Iwropx035ePmLQpsfRCzRYAOQc=
-=3lWG
------END PGP SIGNATURE-----
-
---Sig_/.n2ptiO5EmdxqiPo6IVL5WN--
+--=_8b91439da2b003bd64fc95f577bf25ff--
