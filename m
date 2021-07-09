@@ -1,260 +1,262 @@
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
- by mx.groups.io with SMTP id smtpd.web11.8735.1625822610579388003
+Received: from mx-relay100-hz2.antispameurope.com (mx-relay100-hz2.antispameurope.com [94.100.136.201])
+ by mx.groups.io with SMTP id smtpd.web12.9082.1625826124935623248
  for <yocto@lists.yoctoproject.org>;
- Fri, 09 Jul 2021 02:23:31 -0700
+ Fri, 09 Jul 2021 03:22:05 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: ohp.de, ip: 212.227.17.24, mailfrom: holzgreve@ohp.de)
-Received: from [10.0.1.210] ([185.189.140.137]) by mrelayeu.kundenserver.de
- (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1Mzz6m-1lHDz42LZO-00x2Ei for <yocto@lists.yoctoproject.org>; Fri, 09 Jul 2021
- 11:23:28 +0200
-Subject: Re: [yocto] #linux #dunfell How to use eclipse with autotools without yocto plugin
-From: holzgreve@ohp.de
-To: yocto@lists.yoctoproject.org
-References: <P3Us.1625817554577445703.w9fT@lists.yoctoproject.org>
-Message-ID: <4f584645-81bc-9095-0f91-0f0ec60db365@ohp.de>
-Date: Fri, 9 Jul 2021 11:23:27 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ dkim=missing; spf=pass (domain: claas.com, ip: 94.100.136.201, mailfrom: prvs=0817a215c4=christoph.seipel@claas.com)
+Return-Path: <prvs=0817a215c4=christoph.seipel@claas.com>
+Received: from unknown ([91.239.177.110]) by mx-relay100-hz2.antispameurope.com;
+ Fri, 09 Jul 2021 12:22:01 +0200
+Received: from dehwlwmsx01.claas.local (10.1.34.81) by dehwlwmsx05.claas.local
+ (10.1.34.85) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.10; Fri, 9 Jul
+ 2021 12:21:56 +0200
+Received: from dehwlwmsx01.claas.local ([fe80::a864:7e56:833:abf7]) by
+ dehwlwmsx01.claas.local ([fe80::a864:7e56:833:abf7%3]) with mapi id
+ 15.01.2242.010; Fri, 9 Jul 2021 12:21:56 +0200
+From: "Seipel, Christoph" <Christoph.Seipel@claas.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: #archiver Archiver not archiving sources from Mirror
+Thread-Topic: #archiver Archiver not archiving sources from Mirror
+Thread-Index: Add0qGG+tFcCUGtJQxi76d3OxIi/AQ==
+Date: Fri, 9 Jul 2021 10:21:56 +0000
+Message-ID: <f524ba87310043cc82c6d7e39f2b9586@claas.com>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.23.1.127]
 MIME-Version: 1.0
-In-Reply-To: <P3Us.1625817554577445703.w9fT@lists.yoctoproject.org>
-X-Provags-ID: V03:K1:XQGA8sicn0rvWODd6+H7bUfUiXXI9lf7rgXZjXrhm/xLPP1mUTj
- iApfjHARFEhH7P+fIiL+v56Pds+1H18Rwz9Ehnupu7ojXUPoEce1YAKfxyirkGK+S6yN7UQ
- YsiuXrkS1gvuSFWsPuNdn6ugwPg4Qp+bIpqB4xRf3SHuhm138xypHkj6M8dXbcGD3sWkcyq
- 5xB38tC8t0YzYqT8njGzQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:8RUk93h4vkc=:22KTUO0X2xzDsXKzBYDnWu
- Bfm0jBL9SYFx8Xqv7H8WH+UqX005o/gEDuUIaIyXdB74WFI++lc46EkESZF0s6Lr/J4r9DtmT
- vcta248I51hu2vVaM+BMqxnjGe0iyKzOqpw8ksn+P1/GaLHiI5qgTe12tbm/A/G3pqkPExIBo
- W6eZ0xQqQqWuPC0+xWgW0tWvM5R1bqS/+SjYbchQch4LlAQ2m5A6uiaOKt28lghc7eO4pG093
- oxj0pxdQJyeWFJnLjMGEYroSDjn+sBqw0wXm8YkI8y0YUj7LeTiZq/ZqXaQ4sYtVUChUejx/u
- IBm2cUBm3JkxUqyKwpz9UUeFhZ5pEQvfoI7StgQCO4kiZ+s2Db5HricBd4sPhh93PktXseyJc
- xJfsQk8iyQFoD/ArY39yEuPtGKTtvrkpwxTUreT8ij1Fi1Pbn8pqrZO+wThfDb2JqpyFMjbIE
- aulCtlUmtZbTGjLMYGKtmOs01Kc3libU2j0dG7tvzWD2Yowi9I7dry8QhcBbNrBeQqvI9abYw
- g/PvGfpYk3YSoiWM/bT5jugflDUHqQ7NEAvHUFToQibNrWWcnkDiiogP1GkQ7WayoTURRzsaB
- P4bionfLoVC0i4SyCsfgkXHPG0BonIlLY2VllFr6OacmzY+yVV8XIBzMX599VYaYa25mads0m
- aq/5NEUWT0XJ21nUkI28DCHA/G49lU9w64IT/SfpLGYMg8vKxsvCN92EkrUTNzUKgNeZ4JmfT
- IyXDQc51nuhdO+j36LYFsNBAv/kbmLrPgSXhlwhD9CktTZF2y0GFoTqQbsoL0/+RJnUMzhxm5
- EqfQUEhFK+0+C/PPHreV/v4ujPnmJxB82RFzFm5rE/4cP8tnIhqIop+zhP4xtG9/Ykg+VF+
-X-Groupsio-MsgNum: 54086
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256; boundary="------------ms020508080305070904090506"
-
---------------ms020508080305070904090506
+X-cloud-security-sender: christoph.seipel@claas.com
+X-cloud-security-recipient: yocto@lists.yoctoproject.org
+X-cloud-security-crypt: load encryption module
+X-cloud-security-Virusscan: CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay100-hz2.antispameurope.com with 93000160C7FA
+X-cloud-security-connect: unknown[91.239.177.110], TLS=1, IP=91.239.177.110
+X-cloud-security-Digest: c6a7cd206154e17bfeea05b5d005331f
+X-cloud-security: scantime:2.203
+Content-Language: de-DE
 Content-Type: multipart/alternative;
- boundary="------------7519C3017D97CE9DCCEDF620"
-Content-Language: en-US
+	boundary="_000_f524ba87310043cc82c6d7e39f2b9586claascom_"
 
---------------7519C3017D97CE9DCCEDF620
-Content-Type: text/plain; charset=utf-8; format=flowed
+--_000_f524ba87310043cc82c6d7e39f2b9586claascom_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-> Hi,
->
-> we were currently upgrading our yocto system to v3.1. In the older=20
-> yocto system there was the "Yocto Eclipse Plugin" available. I saw in=20
-> the changelog that unfortunately that this plugin is not maintained=20
-> anymore and removed.
->
-> From the past we got whole bunch of autotools based projects. Is it=20
-> somehow posible to use eclipse for development and debugging keeping=20
-> the projects in the autotools world?
->
-> I tried using the eSDK (Following:=20
-> https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#sd=
-k-working-projects=20
-> <https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#s=
-dk-working-projects>)
->
-> Rebuilding the project from eclipse is now possible. It still=20
-> complains that is can run the executable but I can start debugging. I=20
-> tried to setup the debugger configuration like it was set up, when the=
-=20
-> "Yocto Eclipse Plugin" generated it. But when I try to debug the code,=
-=20
-> eclipse opens up the "Debug Perspective", also attaches to the remotly=
-=20
-> running gdbserver, but it never stops on breakpoints that were set in=20
-> the eclipse GUI.
->
-> Is there any chance to use eclipse without the plugin, without=20
-> converting all the packages to CMake or plain makefile projects?
->
-> Any hints or pointings to the right direction is appreciated.
->
->=20
+Hello,
 
-I found the solution: My problem was that the default project=20
-configuration which created by "./configure {CONFIGURE_FLAGS}" doesn't=20
-do a build with debug information.
+I have a problem with the archiver. I want to use it to export the sources =
+used in our image for license compliance (GPL etc.).
+We have a BSP supplier that supplies the Yocto system and the sources to bu=
+ild it in a mirror directory.
 
-So ./configure {CONFIGURE_FLAGS} CXXFLAGS=3D"-g -O0" has to be called=20
-before, and then debug is working.
+Now, when I use the archiver (mode: original) the exported sources don't co=
+ntain the sources from the mirror, but only other files like patches.
+
+To analyse this problem I put some extra logging into the archiver.bbclass =
+to inspect the variable contents, and it seems the "local" variable where t=
+he archiver is looking for the sources to export doesn't fit with the path =
+of the actual sources. This leads to the archiver just skipping that URL an=
+d proceeding.
+
+For example for the systemd recipe it has the variable URL=3D"git://github.=
+com/systemd/systemd.git;protocol=3Dgit" and therefore it decides to look at=
+ local=3D"<builddir>/downloads/git2/github.com.systemd.systemd.git"
+But that file doesn't exist.
+I inspected the do_fetch and do_unpack logs to find that the fetcher resolv=
+es "git://github.com/systemd/systemd.git;protocol=3Dgit" with returning the=
+ corresponding file from the mirror file:///<mirrorpath>/gitshallow_github.=
+com.systemd.systemd.git_46659f7-1_master.tar.gz<file:///%3cmirrorpath%3e/gi=
+tshallow_github.com.systemd.systemd.git_46659f7-1_master.tar.gz>
+The do_unpack task then unpacks tar -xzf <builddir>/downloads/gitshallow_gi=
+thub.com.systemd.systemd.git_46659f7-1_master.tar.gz
+Which is possible because there is a symlink, I guess that was created by t=
+he fetcher
+<builddir>/downloads/gitshallow_github.com.systemd.systemd.git_46659f7-1_ma=
+ster.tar.gz -> <mirror>/gitshallow_github.com.systemd.systemd.git_46659f7-1=
+_master.tar.gz
+
+So the problem seems to be that the archiver expects the sources in downloa=
+ds/git2 but the fetcher creates the symlink in downloads and with additiona=
+l pre- and postfiexes on the filename.
+
+Sadly we are still on sumo, but at least for the archiver class there isn't=
+ any relevant change to hardknott. At least a dunfell upgrade is incoming i=
+n the next weeks.
+
+Best regards,
+
+Christoph
+_____________________________________________________
+Christoph Seipel
+
+CLAAS E-Systems GmbH
+System & Software Displays, Operator Panels & Mobile Apps
+Sommerk=E4mpen 11
+49201 Dissen a.T.W.
+Germany
+
+Phone +49 5421 9311-8762
+Mail christoph.seipel@claas.com
 
 
-Sorry for the stupid question before.
-
-
-Kind regards,
-
-Sebastian
-
-
---------------7519C3017D97CE9DCCEDF620
-Content-Type: text/html; charset=utf-8
+--_000_f524ba87310043cc82c6d7e39f2b9586claascom_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
-8">
-  </head>
-  <body>
-    <blockquote type=3D"cite"
-      cite=3D"mid:P3Us.1625817554577445703.w9fT@lists.yoctoproject.org">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUT=
-F-8">
-      Hi,<br>
-      <br>
-      we were currently upgrading our yocto system to v3.1. In the older
-      yocto system there was the "Yocto Eclipse Plugin" available. I saw
-      in the changelog that unfortunately that this plugin is not
-      maintained anymore and removed.<br>
-      <br>
-      From the past we got whole bunch of autotools based projects. Is
-      it somehow posible to use eclipse for development and debugging
-      keeping the projects in the autotools world?<br>
-      <br>
-      I tried using the eSDK (Following:=C2=A0<a
-href=3D"https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.h=
-tml#sdk-working-projects"
-        target=3D"_blank" rel=3D"noopener" moz-do-not-send=3D"true">https:=
-//www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#sdk-working=
--projects</a>)<br>
-      <br>
-      Rebuilding the project from eclipse is now possible. It still
-      complains that is can run the executable but I can start
-      debugging. I tried to setup the debugger configuration like it was
-      set up, when the "Yocto Eclipse Plugin" generated it. But when I
-      try to debug the code, eclipse opens up the "Debug Perspective",
-      also attaches to the remotly running gdbserver, but it never stops
-      on breakpoints that were set in the eclipse GUI.<br>
-      <br>
-      Is there any chance to use eclipse without the plugin, without
-      converting all the packages to CMake or plain makefile projects?<br>
-      <br>
-      Any hints or pointings to the right direction is appreciated.
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">
-
-</pre>
-    </blockquote>
-    <p>I found the solution: My problem was that the default project
-      configuration which created by "./configure {CONFIGURE_FLAGS}"
-      doesn't do a build with debug information.</p>
-    <p>So ./configure {CONFIGURE_FLAGS} <span id=3D"d067" class=3D"gj id i=
-e
-        fn jl b dn ju jv s jw" data-selectable-paragraph=3D"">CXXFLAGS=3D"=
--g
-        -O0" has to be called before, and then debug is working.<br>
-      </span></p>
-    <p><span id=3D"d067" class=3D"gj id ie fn jl b dn ju jv s jw"
-        data-selectable-paragraph=3D""><br>
-      </span></p>
-    <p><span id=3D"d067" class=3D"gj id ie fn jl b dn ju jv s jw"
-        data-selectable-paragraph=3D"">Sorry for the stupid question
-        before.<br>
-      </span></p>
-    <p><span id=3D"d067" class=3D"gj id ie fn jl b dn ju jv s jw"
-        data-selectable-paragraph=3D""><br>
-      </span></p>
-    <p><span id=3D"d067" class=3D"gj id ie fn jl b dn ju jv s jw"
-        data-selectable-paragraph=3D"">Kind regards,</span></p>
-    <p><span id=3D"d067" class=3D"gj id ie fn jl b dn ju jv s jw"
-        data-selectable-paragraph=3D"">Sebastian<br>
-      </span></p>
-  </body>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.E-MailFormatvorlage17
+	{mso-style-type:personal-compose;
+	font-family:"Arial",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">Hello,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif">I have a problem with the archiver. I =
+want to use it to export the sources used in our image for license complian=
+ce (GPL etc.).<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif">We have a BSP supplier that supplies t=
+he Yocto system and the sources to build it in a mirror directory.<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif">Now, when I use the archiver (mode: or=
+iginal) the exported sources don&#8217;t contain the sources from the mirro=
+r, but only other files like patches.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif">To analyse this problem I put some ext=
+ra logging into the archiver.bbclass to inspect the variable contents, and =
+it seems the &#8220;local&#8221; variable where the archiver
+ is looking for the sources to export doesn&#8217;t fit with the path of th=
+e actual sources. This leads to the archiver just skipping that URL and pro=
+ceeding.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif">For example for the systemd recipe it =
+has the variable URL=3D&#8221;git://github.com/systemd/systemd.git;protocol=
+=3Dgit&#8221; and therefore it decides to look at local=3D&#8221;&lt;buildd=
+ir&gt;/downloads/git2/github.com.systemd.systemd.git&#8221;<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif">But that file doesn&#8217;t exist.<o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif">I inspected the do_fetch and do_unpack=
+ logs to find that the fetcher resolves &#8220;git://github.com/systemd/sys=
+temd.git;protocol=3Dgit&#8221; with returning the corresponding
+ file from the mirror <a href=3D"file:///%3cmirrorpath%3e/gitshallow_github=
+.com.systemd.systemd.git_46659f7-1_master.tar.gz">
+file:///&lt;mirrorpath&gt;/gitshallow_github.com.systemd.systemd.git_46659f=
+7-1_master.tar.gz</a><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif">The do_unpack task then unpacks tar -x=
+zf &lt;builddir&gt;/downloads/gitshallow_github.com.systemd.systemd.git_466=
+59f7-1_master.tar.gz<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif">Which is possible because there is a s=
+ymlink, I guess that was created by the fetcher<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif">&lt;builddir&gt;/downloads/gitshallow_=
+github.com.systemd.systemd.git_46659f7-1_master.tar.gz -&gt; &lt;mirror&gt;=
+/gitshallow_github.com.systemd.systemd.git_46659f7-1_master.tar.gz<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif">So the problem seems to be that the ar=
+chiver expects the sources in downloads/git2 but the fetcher creates the sy=
+mlink in downloads and with additional pre- and
+ postfiexes on the filename.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif">Sadly we are still on sumo, but at lea=
+st for the archiver class there isn&#8217;t any relevant change to hardknot=
+t. At least a dunfell upgrade is incoming in the next
+ weeks.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif">Best regards,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,sans-serif">Christoph<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:8.0pt;font-f=
+amily:&quot;Arial&quot;,sans-serif;mso-fareast-language:DE">_______________=
+______________________________________<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:8.0pt;mso-fa=
+reast-language:DE">Christoph Seipel
+<br>
+&nbsp; <br>
+CLAAS E-Systems GmbH</span><span lang=3D"EN-US" style=3D"font-size:8.0pt;ms=
+o-fareast-language:DE"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:8.0pt;mso-fa=
+reast-language:DE">System &amp; Software Displays, Operator Panels &amp; Mo=
+bile Apps<br>
+Sommerk=E4mpen 11<br>
+49201 Dissen a.T.W. <br>
+Germany <br>
+&nbsp; <br>
+Phone &#43;49 5421 9311-8762<br>
+Mail christoph.seipel@claas.com<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB"><o:p>&nbsp;</o:p></span></p>
+</div>
+</body>
 </html>
 
---------------7519C3017D97CE9DCCEDF620--
-
---------------ms020508080305070904090506
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgEFADCABgkqhkiG9w0BBwEAAKCCDC0w
-ggT0MIID3KADAgECAgMP4PYwDQYJKoZIhvcNAQELBQAwRTELMAkGA1UEBhMCREUxFTATBgNVBAoM
-DEQtVHJ1c3QgR21iSDEfMB0GA1UEAwwWRC1UUlVTVCBSb290IENBIDMgMjAxMzAeFw0xMzA5Mjcw
-NzMwNDBaFw0yODA5MjAwODI1NTFaMFsxCzAJBgNVBAYTAkRFMRUwEwYDVQQKDAxELVRydXN0IEdt
-YkgxNTAzBgNVBAMMLEQtVFJVU1QgQXBwbGljYXRpb24gQ2VydGlmaWNhdGVzIENBIDMtMSAyMDEz
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsL/U1GFo1h3boKtaIzrEMPZHGI4FKLKL
-kjWJZYh1CSa4URX8j52diNu1tmcTpwKOMiv03awa2lEElvrqVEhpMHOxK42q7WG7c4d0lkc7d+cT
-rexeZlGAZ8rIsXcASttIf0106PkzjHclKZrJ6iN11ToWkjpPBsE9THKJ/2awtRHDVQTq5Ode7n1a
-Gay3/nNIeMf1ALe4Q93Xx2glcXU0ZgLPftRQKJF5ql800EgWWPe+tHArNBWzPh+NhoMzKfghnR+k
-PyUiFHd+ZzU+FU1XAvrqw3UAzPhp4vTKVXS+IgqE9bRZW5CzBnXyZPFFtbuA3UJHPwKnS0bHNrw6
-DxIjrwIDAQABo4IB1TCCAdEwHwYDVR0jBBgwFoAUP5DIfccVb/Mkj6nDL0uiDyGyL+cwQgYIKwYB
-BQUHAQEENjA0MDIGCCsGAQUFBzABhiZodHRwOi8vcm9vdC1jYS0zLTIwMTMub2NzcC5kLXRydXN0
-Lm5ldDBmBgNVHSAEXzBdMFsGCysGAQQBpTQCgUgBMEwwSgYIKwYBBQUHAgEWPmh0dHA6Ly93d3cu
-ZC10cnVzdC5uZXQvaW50ZXJuZXQvZmlsZXMvRC1UUlVTVF9Sb290X1BLSV9DUFMucGRmMIG+BgNV
-HR8EgbYwgbMwdKByoHCGbmxkYXA6Ly9kaXJlY3RvcnkuZC10cnVzdC5uZXQvQ049RC1UUlVTVCUy
-MFJvb3QlMjBDQSUyMDMlMjAyMDEzLE89RC1UcnVzdCUyMEdtYkgsQz1ERT9jZXJ0aWZpY2F0ZXJl
-dm9jYXRpb25saXN0MDugOaA3hjVodHRwOi8vY3JsLmQtdHJ1c3QubmV0L2NybC9kLXRydXN0X3Jv
-b3RfY2FfM18yMDEzLmNybDAdBgNVHQ4EFgQUGQOq2SJFxxpiqedcmbCd3u3UuLUwDgYDVR0PAQH/
-BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQAwDQYJKoZIhvcNAQELBQADggEBABCOUPipaQNkTuhl
-pNOQk8lDCndO0Y9nuN8+Y99m/odfdUDN2MmOg0ICPVWNyg9bIHfxytRkNlFzCrc7B9KmzPAAiu7U
-wOXl3dnRrFJpluGcAbnDGRr1Ssgvb2HDmZwlU2K7TpMOt6XayFkiefx5q4WC67BbVcIPD1IZ2te0
-HRdmdh7zhIz2Hw1+bfuzzSNf8/JRYojIyweGq9uDue45yhVDl86O3GJaOphjDVm5c7mTdWg1xbJ2
-44PhmpQH3h1s+kfD76rg4mwAIQa3QkfX2BqMEc9ASiWm1L9iNA0Z4ng9tiuVm4LJKPVA2lZppx7+
-KtmVmv0/lv+8eGKwPvw1HlUwggcxMIIGGaADAgECAhBPyMh5nYrCy2uIfpDzTuWdMA0GCSqGSIb3
-DQEBCwUAMFsxCzAJBgNVBAYTAkRFMRUwEwYDVQQKDAxELVRydXN0IEdtYkgxNTAzBgNVBAMMLEQt
-VFJVU1QgQXBwbGljYXRpb24gQ2VydGlmaWNhdGVzIENBIDMtMSAyMDEzMB4XDTIxMDUxMTA3MzMw
-N1oXDTIzMDUxNTA3MzMwN1owgbIxCzAJBgNVBAYTAkRFMSQwIgYDVQQKExtPSFAgQXV0b21hdGlv
-biBTeXN0ZW1zIEdtYkgxHDAaBgNVBAMTE1NlYmFzdGlhbiBIb2x6Z3JldmUxDzANBgNVBAcTBlJv
-ZGdhdTESMBAGA1UEKhMJU2ViYXN0aWFuMRIwEAYDVQQEEwlIb2x6Z3JldmUxFTATBgNVBAUTDENT
-TTAyNjE4MzMxMjEPMA0GA1UECBMGSGVzc2VuMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC
-AQEA5I/hMM9AxL9ul5PX34JFWhOmZITMmbDSapfDM3GYI0LOsLNLmWxCZ3hIc4Rv/1JfMNNpcEOu
-i3ncGI5CSskWSbZry/kENNs4bykp7MGFyVbIRJxDDfFNRVqWUoNVHY0zeHt43pvngeijrvTvxS8w
-Dm+VWfSdpBO3gK0t3vqpFDgX5PUvowtxal9SyJzCsxt9i1+jsE8D3LCUI6eKRZQ5mQ0jzzYGgDSB
-oyPbn9p+JlX56laWJ6AQIP1WgZgs4+Ac7F8bf8hYCZz39SU9IrT6eFLnu00R6qKOW0wPsL2doU7z
-/eRrgn7Z7IN75E1Z/0Js7BiAO133q2M5XFtQgm3t4QIDAQABo4IDlzCCA5MwHQYDVR0lBBYwFAYI
-KwYBBQUHAwIGCCsGAQUFBwMEMB8GA1UdIwQYMBaAFBkDqtkiRccaYqnnXJmwnd7t1Li1MIIBSQYI
-KwYBBQUHAQEEggE7MIIBNzBIBggrBgEFBQcwAYY8aHR0cDovL2FwcGxpY2F0aW9uLWNlcnRpZmlj
-YXRlcy1jYS0zLTEtMjAxMy5vY3NwLmQtdHJ1c3QubmV0MFsGCCsGAQUFBzAChk9odHRwOi8vd3d3
-LmQtdHJ1c3QubmV0L2NnaS1iaW4vRC1UUlVTVF9BcHBsaWNhdGlvbl9DZXJ0aWZpY2F0ZXNfQ0Ff
-My0xXzIwMTMuY3J0MIGNBggrBgEFBQcwAoaBgGxkYXA6Ly9kaXJlY3RvcnkuZC10cnVzdC5uZXQv
-Q049RC1UUlVTVCUyMEFwcGxpY2F0aW9uJTIwQ2VydGlmaWNhdGVzJTIwQ0ElMjAzLTElMjAyMDEz
-LE89RC1UcnVzdCUyMEdtYkgsQz1ERT9jQUNlcnRpZmljYXRlP2Jhc2U/MG8GA1UdIARoMGYwWgYL
-KwYBBAGlNAKBSAIwSzBJBggrBgEFBQcCARY9aHR0cDovL3d3dy5kLXRydXN0Lm5ldC9pbnRlcm5l
-dC9maWxlcy9ELVRSVVNUX0NTTV9QS0lfQ1BTLnBkZjAIBgYEAI96AQMwggFFBgNVHR8EggE8MIIB
-ODCCATSgggEwoIIBLIaBhmxkYXA6Ly9kaXJlY3RvcnkuZC10cnVzdC5uZXQvQ049RC1UUlVTVCUy
-MEFwcGxpY2F0aW9uJTIwQ2VydGlmaWNhdGVzJTIwQ0ElMjAzLTElMjAyMDEzLE89RC1UcnVzdCUy
-MEdtYkgsQz1ERT9jZXJ0aWZpY2F0ZXJldm9jYXRpb25saXN0hktodHRwOi8vY3JsLmQtdHJ1c3Qu
-bmV0L2NybC9kLXRydXN0X2FwcGxpY2F0aW9uX2NlcnRpZmljYXRlc19jYV8zLTFfMjAxMy5jcmyG
-VGh0dHA6Ly9jZG4uZC10cnVzdC1jbG91ZGNybC5uZXQvY3JsL2QtdHJ1c3RfYXBwbGljYXRpb25f
-Y2VydGlmaWNhdGVzX2NhXzMtMV8yMDEzLmNybDAdBgNVHQ4EFgQUdQabPJQq4JCBCDRUQNALNPCP
-yLYwDgYDVR0PAQH/BAQDAgSwMBsGA1UdEQQUMBKBEGhvbHpncmV2ZUBvaHAuZGUwDQYJKoZIhvcN
-AQELBQADggEBAKd+IGuyxLSOFLgo9/EFnRE7wYtyZL/5IJYqBYVxy/KPJqF1KOCNFuoe6RzegKjc
-qtazztVJkz9ThHsP3IRnR6gjB+QelndGf/2vjWtHkgJxKEIkAUovUn2n3t2DM5fSb/3kWwb/5Erd
-TpUXNsAZKQm9MNqeysVVA/61gpFgiUWPkvmBSlnHEWE5QKjQ8t15ppCalHL6ZrLuJisHQQUS+xnh
-ayNXQbFsfCkas1fwngCsvkfStZgZNxM7mzx4zbQKG9cGKSXz8AItUfeMQu8svkP8rZQhJ1BkPKWR
-6rIEKSWLOslfguIL/iy6sF5m7PFw+VsTOnr9Ut5lR1i29rGpLwQxggN4MIIDdAIBATBvMFsxCzAJ
-BgNVBAYTAkRFMRUwEwYDVQQKDAxELVRydXN0IEdtYkgxNTAzBgNVBAMMLEQtVFJVU1QgQXBwbGlj
-YXRpb24gQ2VydGlmaWNhdGVzIENBIDMtMSAyMDEzAhBPyMh5nYrCy2uIfpDzTuWdMA0GCWCGSAFl
-AwQCAQUAoIIB2jAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMTA3
-MDkwOTIzMjdaMC8GCSqGSIb3DQEJBDEiBCCt6eLkNSn6olgH85EIvPYf9Pk/RENpSJiTgT56d9VQ
-JzBsBgkqhkiG9w0BCQ8xXzBdMAsGCWCGSAFlAwQBKjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcw
-DgYIKoZIhvcNAwICAgCAMA0GCCqGSIb3DQMCAgFAMAcGBSsOAwIHMA0GCCqGSIb3DQMCAgEoMH4G
-CSsGAQQBgjcQBDFxMG8wWzELMAkGA1UEBhMCREUxFTATBgNVBAoMDEQtVHJ1c3QgR21iSDE1MDMG
-A1UEAwwsRC1UUlVTVCBBcHBsaWNhdGlvbiBDZXJ0aWZpY2F0ZXMgQ0EgMy0xIDIwMTMCEE/IyHmd
-isLLa4h+kPNO5Z0wgYAGCyqGSIb3DQEJEAILMXGgbzBbMQswCQYDVQQGEwJERTEVMBMGA1UECgwM
-RC1UcnVzdCBHbWJIMTUwMwYDVQQDDCxELVRSVVNUIEFwcGxpY2F0aW9uIENlcnRpZmljYXRlcyBD
-QSAzLTEgMjAxMwIQT8jIeZ2KwstriH6Q807lnTANBgkqhkiG9w0BAQEFAASCAQDammbizpy7VcVZ
-Mi6Cz83Np+n3I8ml+Qo1X25F3CsrRQjDNr3tb0w+T0ardEnjdLb1zwfP6gTgFcqDKuOGAPZrvqIb
-klG0obTBE1ec7lnpar8Uonx3PG4wLZzTbgK0MPpJZBz8ut0SZkD1O55lRScmCxFCzxz1hpzb51+N
-3a7HbBQJU6hqMo5Fkk39i9TkTPGfCRT6YnCk32PhRUfZhyaPJ6rKbMtQ1Nlcka1k1mrjLmBSowVN
-TZrDA0sMIag6NHJYqkk55+coZ8Xgm1Rbt6jJL3Rzmkf/N4d2eqMrCY66WiPLqruYdkebNYkwJbHW
-/9m0JIRKW4MIcRDUyxfdbcpXAAAAAAAA
-
---------------ms020508080305070904090506--
+--_000_f524ba87310043cc82c6d7e39f2b9586claascom_--
