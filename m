@@ -1,224 +1,260 @@
-Received: from mail.yoctoproject.org (mail.yoctoproject.org [198.145.29.25])
- by mx.groups.io with SMTP id smtpd.web12.8468.1625821008321691633
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
+ by mx.groups.io with SMTP id smtpd.web11.8735.1625822610579388003
  for <yocto@lists.yoctoproject.org>;
- Fri, 09 Jul 2021 01:56:48 -0700
+ Fri, 09 Jul 2021 02:23:31 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista-com.20150623.gappssmtp.com header.s=20150623 header.b=0cvbkWw/;
- spf=permerror, err=parse error for token &{10 18 _spf.google.com}: limit exceeded (domain: mvista.com, ip: 198.145.29.25, mailfrom: mshah@mvista.com)
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	by mail.yoctoproject.org (Postfix) with ESMTPS id E921538C02B9
-	for <yocto@yoctoproject.org>; Fri,  9 Jul 2021 08:56:47 +0000 (UTC)
-Received: by mail-ej1-f42.google.com with SMTP id ga42so14848768ejc.6
-        for <yocto@yoctoproject.org>; Fri, 09 Jul 2021 01:56:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dg356upzO5i8AN8Es+MAY2lbPnVspatH+jX4cn++B5Q=;
-        b=0cvbkWw/RRTcsAXXOWwZ1fvCikRSmUpgRSZY1khmkMD73YymL2ScQV5qUUEfiiF++T
-         ekRmRzNMmfH76K04jqcoHqauaZEHO5khOfxCU6UIDZJt6Qphm88z42WDl8eLzw92E1fK
-         op3WQtuWaDmGwtTRaLglsMcJZzvMSraHRlkpRioxjahfJRRcWF9RNSolwCo8az51HukA
-         206a1JYim5lz3nrUxv7BqkcR96BTReyl+n8nDG7X8KGG2IX8pcJf0c2nPGLW8kSEycuw
-         FK80+4VKt8RBmUAy6apzaaRFWwrEZ/7Dw13NZjvT1gG19kevpgMrDq6zPQ8O5kdYAUCy
-         /H3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dg356upzO5i8AN8Es+MAY2lbPnVspatH+jX4cn++B5Q=;
-        b=h4J1pjgyjM4GqBRpuP82e3l+HjaNNxYrrM2YIu7IgiYVoGpYz9whZfBsQMKnOwTyUn
-         Fobh4pyiIbAG+5tgD0CLTNzfPxbyv2XI1CsVIgvcJ8W3oYeTZOvNBSE6eL0guX50icZ9
-         23NK5soihRBplilWiKyoyXp7beCZzBAnQUmlP2BlTK+w9bHHMOpnb9DafUWTW6S9SOCV
-         2l/uOunu3bACCmTHNU1Xmbz7d5UvPnXYKnoB5WJ9/YrOWQ3uspgoJVKiJ53co+Dnuo5X
-         WlQLXvqb6nMTr9i6Bc/oIVNfZRdd9iLakAwPmVPU0sNdLgEVebZZNpR+7HFg2bjmB3TU
-         r22Q==
-X-Gm-Message-State: AOAM532K6J+MgyjuUdmVOkDH46An6Pz2Aur6hFFZv/RKght2QaMUNfPY
-	Lno0ssEsFaHi+IVMAn9+FbMCQ/oxW3in9MVZAasGBA==
-X-Google-Smtp-Source: ABdhPJwW5ws0VtvOfciHTgfkISTWZr/VQxxjaIjtndCszuv+cYfUsRJlaO/7LEv9fnKkAtxJDV3K7lJ8PDR1dhWnoSI=
-X-Received: by 2002:a17:907:c08:: with SMTP id ga8mr35485144ejc.314.1625821006425;
- Fri, 09 Jul 2021 01:56:46 -0700 (PDT)
+ dkim=missing; spf=none, err=permanent DNS error (domain: ohp.de, ip: 212.227.17.24, mailfrom: holzgreve@ohp.de)
+Received: from [10.0.1.210] ([185.189.140.137]) by mrelayeu.kundenserver.de
+ (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1Mzz6m-1lHDz42LZO-00x2Ei for <yocto@lists.yoctoproject.org>; Fri, 09 Jul 2021
+ 11:23:28 +0200
+Subject: Re: [yocto] #linux #dunfell How to use eclipse with autotools without yocto plugin
+From: holzgreve@ohp.de
+To: yocto@lists.yoctoproject.org
+References: <P3Us.1625817554577445703.w9fT@lists.yoctoproject.org>
+Message-ID: <4f584645-81bc-9095-0f91-0f0ec60db365@ohp.de>
+Date: Fri, 9 Jul 2021 11:23:27 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <1609940317-21943-1-git-send-email-mshah@mvista.com>
- <CA+=qD9M-rk13kgw0fVvn3ChzCVrO6VQk-uxWspE7PKUG_Y99Aw@mail.gmail.com>
- <CA+=qD9O1A-Cp=3z336qpeKgMCvdgbK=NATA8uqLuAPcbF=EPUw@mail.gmail.com>
- <CA+=qD9N2mxJ55Aaz1ahNrrivgam0wBqMx5vk1duqM+Fd_ENZBQ@mail.gmail.com>
- <CA+=qD9O1gf9quyPuQ9JBbR79=hL=aQ0gMCtke92Kp0uHt-w2hg@mail.gmail.com>
- <CA+=qD9NoNqBWv+ATf_tw-cc+Vz0xaDO6biCMFmx_M2Xq0LpA2A@mail.gmail.com>
- <7b5173bb8a6359a3c7597341c60ec2726d8f6108.camel@linuxfoundation.org>
- <166FE1E7B1DE5E9C.21604@lists.yoctoproject.org> <CA+=qD9N42rg5_Vdj6H5SV-YKYV=NPREG-6yA0yGAJHTP47+sZA@mail.gmail.com>
- <31be281c79720bda006e4c6bc5746aabb1a3e2ab.camel@linuxfoundation.org>
- <CA+=qD9Ph2-HR=iKmf6FZFC5+Xks2B7YN1FUq_-CjxcBmSXPh1Q@mail.gmail.com> <2f192033ffa0404be7a26fd6577ddced4d566ee5.camel@linuxfoundation.org>
-In-Reply-To: <2f192033ffa0404be7a26fd6577ddced4d566ee5.camel@linuxfoundation.org>
-From: "Milan Shah" <mshah@mvista.com>
-Date: Fri, 9 Jul 2021 14:26:10 +0530
-Message-ID: <CA+=qD9NQU=MscKujX2e_yqk_eyiE2Yab896hLZrUG304q8m9TA@mail.gmail.com>
-Subject: Re: [yocto] [error-report-web][PATCH] report-error.bbclass: Add layer and bitbake version info to error report
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: yocto@yoctoproject.org, Paul Barker <pbarker@konsulko.com>, 
-	Armin Kuster <akuster@mvista.com>
-Content-Type: multipart/alternative; boundary="0000000000008e854d05c6acf30a"
+In-Reply-To: <P3Us.1625817554577445703.w9fT@lists.yoctoproject.org>
+X-Provags-ID: V03:K1:XQGA8sicn0rvWODd6+H7bUfUiXXI9lf7rgXZjXrhm/xLPP1mUTj
+ iApfjHARFEhH7P+fIiL+v56Pds+1H18Rwz9Ehnupu7ojXUPoEce1YAKfxyirkGK+S6yN7UQ
+ YsiuXrkS1gvuSFWsPuNdn6ugwPg4Qp+bIpqB4xRf3SHuhm138xypHkj6M8dXbcGD3sWkcyq
+ 5xB38tC8t0YzYqT8njGzQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:8RUk93h4vkc=:22KTUO0X2xzDsXKzBYDnWu
+ Bfm0jBL9SYFx8Xqv7H8WH+UqX005o/gEDuUIaIyXdB74WFI++lc46EkESZF0s6Lr/J4r9DtmT
+ vcta248I51hu2vVaM+BMqxnjGe0iyKzOqpw8ksn+P1/GaLHiI5qgTe12tbm/A/G3pqkPExIBo
+ W6eZ0xQqQqWuPC0+xWgW0tWvM5R1bqS/+SjYbchQch4LlAQ2m5A6uiaOKt28lghc7eO4pG093
+ oxj0pxdQJyeWFJnLjMGEYroSDjn+sBqw0wXm8YkI8y0YUj7LeTiZq/ZqXaQ4sYtVUChUejx/u
+ IBm2cUBm3JkxUqyKwpz9UUeFhZ5pEQvfoI7StgQCO4kiZ+s2Db5HricBd4sPhh93PktXseyJc
+ xJfsQk8iyQFoD/ArY39yEuPtGKTtvrkpwxTUreT8ij1Fi1Pbn8pqrZO+wThfDb2JqpyFMjbIE
+ aulCtlUmtZbTGjLMYGKtmOs01Kc3libU2j0dG7tvzWD2Yowi9I7dry8QhcBbNrBeQqvI9abYw
+ g/PvGfpYk3YSoiWM/bT5jugflDUHqQ7NEAvHUFToQibNrWWcnkDiiogP1GkQ7WayoTURRzsaB
+ P4bionfLoVC0i4SyCsfgkXHPG0BonIlLY2VllFr6OacmzY+yVV8XIBzMX599VYaYa25mads0m
+ aq/5NEUWT0XJ21nUkI28DCHA/G49lU9w64IT/SfpLGYMg8vKxsvCN92EkrUTNzUKgNeZ4JmfT
+ IyXDQc51nuhdO+j36LYFsNBAv/kbmLrPgSXhlwhD9CktTZF2y0GFoTqQbsoL0/+RJnUMzhxm5
+ EqfQUEhFK+0+C/PPHreV/v4ujPnmJxB82RFzFm5rE/4cP8tnIhqIop+zhP4xtG9/Ykg+VF+
+X-Groupsio-MsgNum: 54086
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256; boundary="------------ms020508080305070904090506"
 
---0000000000008e854d05c6acf30a
-Content-Type: text/plain; charset="UTF-8"
+--------------ms020508080305070904090506
+Content-Type: multipart/alternative;
+ boundary="------------7519C3017D97CE9DCCEDF620"
+Content-Language: en-US
 
-Thanks, Richard
-
-Closed the Bug as *Resolved Fixed* Status and commit link as a Comment.
-
-Thanks & Regards,
-Milan Shah
-
-<https://www.mvista.com/>
-*Milan Shah* * | Software Engineer*
-*a: * MontaVista Software, LLC | Bangalore, India
-*e:* info@mvista.com | *w:* www.mvista.com/
-*p:* +91-80-4939-5000
-
-
-On Fri, Jul 9, 2021 at 2:23 PM Richard Purdie <
-richard.purdie@linuxfoundation.org> wrote:
-
-> On Fri, 2021-07-09 at 14:07 +0530, Milan Shah wrote:
-> > Well, there was no update on the bug as well as on the patch so I was
-> > not aware of it.
-> >
-> > Thanks, Richard for responding. I'll definitely follow your suggestion
-> > next time.
->
-> We'd normally expect the bug owner to update the status of the bug since it
-> isn't really possible for me or the triage team to track and update them
-> all.
-> We can close this one with a link to the commit:
->
->
-> http://git.yoctoproject.org/cgit.cgi/poky/commit/meta/classes/report-error.bbclass?id=8b299a62c55aa8d1583aff4b8428f16def7231b7
->
-> Happy for you to, or I can...
->
-> Cheers,
->
-> Richard
->
->
->
-
---0000000000008e854d05c6acf30a
-Content-Type: text/html; charset="UTF-8"
+--------------7519C3017D97CE9DCCEDF620
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:tahoma,s=
-ans-serif">Thanks, Richard</div><div class=3D"gmail_default" style=3D"font-=
-family:tahoma,sans-serif"><br></div><div class=3D"gmail_default" style=3D"f=
-ont-family:tahoma,sans-serif">Closed the Bug as <b>Resolved Fixed</b> Statu=
-s and commit link as a Comment.</div><div><div dir=3D"ltr" class=3D"gmail_s=
-ignature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><br></di=
-v><div><span style=3D"font-family:tahoma,sans-serif"><font size=3D"2"><span=
- style=3D"color:rgb(0,0,0)">Thanks &amp; Regards,</span></font></span></div=
-><div><span style=3D"font-family:Arial,sans-serif;font-size:11pt;color:#179=
-3d2"><span style=3D"font-family:tahoma,sans-serif"><font size=3D"2"><span s=
-tyle=3D"color:rgb(0,0,0)">Milan Shah</span></font></span><br></span></div><=
-div><br></div><div>
-<table style=3D"width:525px;font-size:11pt;font-family:Arial,sans-serif" ce=
-llspacing=3D"0" cellpadding=3D"0">
-<tbody>
- <tr>
-  <td style=3D"font-size:10pt;font-family:Arial,sans-serif;border-right:1px=
- solid;border-right-color:#fb6303;width:125px;padding-right:10px;vertical-a=
-lign:top" rowspan=3D"6" width=3D"125" valign=3D"top">
-		<a href=3D"https://www.mvista.com/" target=3D"_blank"><img src=3D"https:/=
-/docs.google.com/uc?export=3Ddownload&amp;id=3D1Qm7yQfvCvd_kh_U4m6GVByOdaJD=
-PquiJ&amp;revid=3D0B4U1D7fiiJwsSjRjMWRWSnByanRKcyszUkE3TzNKcHVZTFlNPQ"></a>
-		  =20
-  </td>
-   =20
- <td style=3D"padding-left:10px">
-  <table cellspacing=3D"0" cellpadding=3D"0">
-  <tbody>
-    <tr>
-      <td style=3D"font-size:10pt;color:#0079ac;font-family:Arial,sans-seri=
-f;width:400px;padding-bottom:5px;padding-left:10px;vertical-align:top" vali=
-gn=3D"top">
-       <b><span style=3D"font-size:11pt;font-family:Arial,sans-serif;color:=
-#fb6303">Milan Shah</span></b>
-       <b style=3D"font-family:Arial,sans-serif;font-size:11pt;color:#00000=
-0"><span> | </span>Software Engineer</b>
-      </td>
-    </tr>=20
-    <tr>
-      <td style=3D"font-size:10pt;color:#444444;font-family:Arial,sans-seri=
-f;padding-bottom:5px;padding-top:5px;padding-left:10px;vertical-align:top;l=
-ine-height:17px" valign=3D"top">
-	 =20
-		<span>
-			<span style=3D"color:#fb6303"><b>a: </b></span>
-		</span>
-		<span>
-			<span style=3D"font-family:Arial,sans-serif;font-size:10pt;color:#000000=
-">MontaVista Software, LLC</span>  =20
-		</span>
-		<span>
-			<span style=3D"font-size:10pt;font-family:Arial,sans-serif;color:#000000=
-"><span> | </span>Bangalore, India</span>
-		=09
-		</span>
-	=09
-		<span><br></span>
-		<span><span style=3D"color:#fb6303"><b>e:</b></span><span style=3D"font-s=
-ize:10pt;font-family:Arial,sans-serif;color:#000000"> <a href=3D"mailto:inf=
-o@mvista.com" target=3D"_blank">info@mvista.com</a></span></span>
-		<span><span> | </span><span style=3D"color:#fb6303"><b>w:</b></span><a hr=
-ef=3D"http://www.mvista.com/" rel=3D"noopener" style=3D"text-decoration:non=
-e" target=3D"_blank"><span style=3D"font-size:10pt;font-family:Arial,sans-s=
-erif;color:#000000"> www.mvista.com/</span></a></span>
-       =20
-		<span><br></span>
-	=09
-        <span><span style=3D"color:#fb6303"><b>p:</b></span><span style=3D"=
-font-size:10pt;font-family:Arial,sans-serif;color:#000000"> +91-80-4939-500=
-0</span></span>
-       =20
-      </td>
-    </tr>
-   =20
-   =20
-  </tbody>
-  </table>
- </td></tr>=20
-</tbody>
-</table>
-</div></div></div></div><br></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Fri, Jul 9, 2021 at 2:23 PM Richard Purdie=
- &lt;<a href=3D"mailto:richard.purdie@linuxfoundation.org">richard.purdie@l=
-inuxfoundation.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex">On Fri, 2021-07-09 at 14:07 +0530, Milan Shah wrote:<br>
-&gt; Well, there was no update on the bug as well as on the patch so I was=
-=C2=A0<br>
-&gt; not aware of it.<br>
-&gt; <br>
-&gt; Thanks, Richard for responding. I&#39;ll definitely follow your sugges=
-tion=C2=A0<br>
-&gt; next time.<br>
-<br>
-We&#39;d normally expect the bug owner to update the status of the bug sinc=
-e it<br>
-isn&#39;t really possible for me or the triage team to track and update the=
-m all.<br>
-We can close this one with a link to the commit:<br>
-<br>
-<a href=3D"http://git.yoctoproject.org/cgit.cgi/poky/commit/meta/classes/re=
-port-error.bbclass?id=3D8b299a62c55aa8d1583aff4b8428f16def7231b7" rel=3D"no=
-referrer" target=3D"_blank">http://git.yoctoproject.org/cgit.cgi/poky/commi=
-t/meta/classes/report-error.bbclass?id=3D8b299a62c55aa8d1583aff4b8428f16def=
-7231b7</a><br>
-<br>
-Happy for you to, or I can...<br>
-<br>
-Cheers,<br>
-<br>
-Richard<br>
-<br>
-<br>
-</blockquote></div>
+> Hi,
+>
+> we were currently upgrading our yocto system to v3.1. In the older=20
+> yocto system there was the "Yocto Eclipse Plugin" available. I saw in=20
+> the changelog that unfortunately that this plugin is not maintained=20
+> anymore and removed.
+>
+> From the past we got whole bunch of autotools based projects. Is it=20
+> somehow posible to use eclipse for development and debugging keeping=20
+> the projects in the autotools world?
+>
+> I tried using the eSDK (Following:=20
+> https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#sd=
+k-working-projects=20
+> <https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#s=
+dk-working-projects>)
+>
+> Rebuilding the project from eclipse is now possible. It still=20
+> complains that is can run the executable but I can start debugging. I=20
+> tried to setup the debugger configuration like it was set up, when the=
+=20
+> "Yocto Eclipse Plugin" generated it. But when I try to debug the code,=
+=20
+> eclipse opens up the "Debug Perspective", also attaches to the remotly=
+=20
+> running gdbserver, but it never stops on breakpoints that were set in=20
+> the eclipse GUI.
+>
+> Is there any chance to use eclipse without the plugin, without=20
+> converting all the packages to CMake or plain makefile projects?
+>
+> Any hints or pointings to the right direction is appreciated.
+>
+>=20
 
---0000000000008e854d05c6acf30a--
+I found the solution: My problem was that the default project=20
+configuration which created by "./configure {CONFIGURE_FLAGS}" doesn't=20
+do a build with debug information.
+
+So ./configure {CONFIGURE_FLAGS} CXXFLAGS=3D"-g -O0" has to be called=20
+before, and then debug is working.
+
+
+Sorry for the stupid question before.
+
+
+Kind regards,
+
+Sebastian
+
+
+--------------7519C3017D97CE9DCCEDF620
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
+8">
+  </head>
+  <body>
+    <blockquote type=3D"cite"
+      cite=3D"mid:P3Us.1625817554577445703.w9fT@lists.yoctoproject.org">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUT=
+F-8">
+      Hi,<br>
+      <br>
+      we were currently upgrading our yocto system to v3.1. In the older
+      yocto system there was the "Yocto Eclipse Plugin" available. I saw
+      in the changelog that unfortunately that this plugin is not
+      maintained anymore and removed.<br>
+      <br>
+      From the past we got whole bunch of autotools based projects. Is
+      it somehow posible to use eclipse for development and debugging
+      keeping the projects in the autotools world?<br>
+      <br>
+      I tried using the eSDK (Following:=C2=A0<a
+href=3D"https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.h=
+tml#sdk-working-projects"
+        target=3D"_blank" rel=3D"noopener" moz-do-not-send=3D"true">https:=
+//www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#sdk-working=
+-projects</a>)<br>
+      <br>
+      Rebuilding the project from eclipse is now possible. It still
+      complains that is can run the executable but I can start
+      debugging. I tried to setup the debugger configuration like it was
+      set up, when the "Yocto Eclipse Plugin" generated it. But when I
+      try to debug the code, eclipse opens up the "Debug Perspective",
+      also attaches to the remotly running gdbserver, but it never stops
+      on breakpoints that were set in the eclipse GUI.<br>
+      <br>
+      Is there any chance to use eclipse without the plugin, without
+      converting all the packages to CMake or plain makefile projects?<br>
+      <br>
+      Any hints or pointings to the right direction is appreciated.
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">
+
+</pre>
+    </blockquote>
+    <p>I found the solution: My problem was that the default project
+      configuration which created by "./configure {CONFIGURE_FLAGS}"
+      doesn't do a build with debug information.</p>
+    <p>So ./configure {CONFIGURE_FLAGS} <span id=3D"d067" class=3D"gj id i=
+e
+        fn jl b dn ju jv s jw" data-selectable-paragraph=3D"">CXXFLAGS=3D"=
+-g
+        -O0" has to be called before, and then debug is working.<br>
+      </span></p>
+    <p><span id=3D"d067" class=3D"gj id ie fn jl b dn ju jv s jw"
+        data-selectable-paragraph=3D""><br>
+      </span></p>
+    <p><span id=3D"d067" class=3D"gj id ie fn jl b dn ju jv s jw"
+        data-selectable-paragraph=3D"">Sorry for the stupid question
+        before.<br>
+      </span></p>
+    <p><span id=3D"d067" class=3D"gj id ie fn jl b dn ju jv s jw"
+        data-selectable-paragraph=3D""><br>
+      </span></p>
+    <p><span id=3D"d067" class=3D"gj id ie fn jl b dn ju jv s jw"
+        data-selectable-paragraph=3D"">Kind regards,</span></p>
+    <p><span id=3D"d067" class=3D"gj id ie fn jl b dn ju jv s jw"
+        data-selectable-paragraph=3D"">Sebastian<br>
+      </span></p>
+  </body>
+</html>
+
+--------------7519C3017D97CE9DCCEDF620--
+
+--------------ms020508080305070904090506
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgEFADCABgkqhkiG9w0BBwEAAKCCDC0w
+ggT0MIID3KADAgECAgMP4PYwDQYJKoZIhvcNAQELBQAwRTELMAkGA1UEBhMCREUxFTATBgNVBAoM
+DEQtVHJ1c3QgR21iSDEfMB0GA1UEAwwWRC1UUlVTVCBSb290IENBIDMgMjAxMzAeFw0xMzA5Mjcw
+NzMwNDBaFw0yODA5MjAwODI1NTFaMFsxCzAJBgNVBAYTAkRFMRUwEwYDVQQKDAxELVRydXN0IEdt
+YkgxNTAzBgNVBAMMLEQtVFJVU1QgQXBwbGljYXRpb24gQ2VydGlmaWNhdGVzIENBIDMtMSAyMDEz
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsL/U1GFo1h3boKtaIzrEMPZHGI4FKLKL
+kjWJZYh1CSa4URX8j52diNu1tmcTpwKOMiv03awa2lEElvrqVEhpMHOxK42q7WG7c4d0lkc7d+cT
+rexeZlGAZ8rIsXcASttIf0106PkzjHclKZrJ6iN11ToWkjpPBsE9THKJ/2awtRHDVQTq5Ode7n1a
+Gay3/nNIeMf1ALe4Q93Xx2glcXU0ZgLPftRQKJF5ql800EgWWPe+tHArNBWzPh+NhoMzKfghnR+k
+PyUiFHd+ZzU+FU1XAvrqw3UAzPhp4vTKVXS+IgqE9bRZW5CzBnXyZPFFtbuA3UJHPwKnS0bHNrw6
+DxIjrwIDAQABo4IB1TCCAdEwHwYDVR0jBBgwFoAUP5DIfccVb/Mkj6nDL0uiDyGyL+cwQgYIKwYB
+BQUHAQEENjA0MDIGCCsGAQUFBzABhiZodHRwOi8vcm9vdC1jYS0zLTIwMTMub2NzcC5kLXRydXN0
+Lm5ldDBmBgNVHSAEXzBdMFsGCysGAQQBpTQCgUgBMEwwSgYIKwYBBQUHAgEWPmh0dHA6Ly93d3cu
+ZC10cnVzdC5uZXQvaW50ZXJuZXQvZmlsZXMvRC1UUlVTVF9Sb290X1BLSV9DUFMucGRmMIG+BgNV
+HR8EgbYwgbMwdKByoHCGbmxkYXA6Ly9kaXJlY3RvcnkuZC10cnVzdC5uZXQvQ049RC1UUlVTVCUy
+MFJvb3QlMjBDQSUyMDMlMjAyMDEzLE89RC1UcnVzdCUyMEdtYkgsQz1ERT9jZXJ0aWZpY2F0ZXJl
+dm9jYXRpb25saXN0MDugOaA3hjVodHRwOi8vY3JsLmQtdHJ1c3QubmV0L2NybC9kLXRydXN0X3Jv
+b3RfY2FfM18yMDEzLmNybDAdBgNVHQ4EFgQUGQOq2SJFxxpiqedcmbCd3u3UuLUwDgYDVR0PAQH/
+BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQAwDQYJKoZIhvcNAQELBQADggEBABCOUPipaQNkTuhl
+pNOQk8lDCndO0Y9nuN8+Y99m/odfdUDN2MmOg0ICPVWNyg9bIHfxytRkNlFzCrc7B9KmzPAAiu7U
+wOXl3dnRrFJpluGcAbnDGRr1Ssgvb2HDmZwlU2K7TpMOt6XayFkiefx5q4WC67BbVcIPD1IZ2te0
+HRdmdh7zhIz2Hw1+bfuzzSNf8/JRYojIyweGq9uDue45yhVDl86O3GJaOphjDVm5c7mTdWg1xbJ2
+44PhmpQH3h1s+kfD76rg4mwAIQa3QkfX2BqMEc9ASiWm1L9iNA0Z4ng9tiuVm4LJKPVA2lZppx7+
+KtmVmv0/lv+8eGKwPvw1HlUwggcxMIIGGaADAgECAhBPyMh5nYrCy2uIfpDzTuWdMA0GCSqGSIb3
+DQEBCwUAMFsxCzAJBgNVBAYTAkRFMRUwEwYDVQQKDAxELVRydXN0IEdtYkgxNTAzBgNVBAMMLEQt
+VFJVU1QgQXBwbGljYXRpb24gQ2VydGlmaWNhdGVzIENBIDMtMSAyMDEzMB4XDTIxMDUxMTA3MzMw
+N1oXDTIzMDUxNTA3MzMwN1owgbIxCzAJBgNVBAYTAkRFMSQwIgYDVQQKExtPSFAgQXV0b21hdGlv
+biBTeXN0ZW1zIEdtYkgxHDAaBgNVBAMTE1NlYmFzdGlhbiBIb2x6Z3JldmUxDzANBgNVBAcTBlJv
+ZGdhdTESMBAGA1UEKhMJU2ViYXN0aWFuMRIwEAYDVQQEEwlIb2x6Z3JldmUxFTATBgNVBAUTDENT
+TTAyNjE4MzMxMjEPMA0GA1UECBMGSGVzc2VuMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC
+AQEA5I/hMM9AxL9ul5PX34JFWhOmZITMmbDSapfDM3GYI0LOsLNLmWxCZ3hIc4Rv/1JfMNNpcEOu
+i3ncGI5CSskWSbZry/kENNs4bykp7MGFyVbIRJxDDfFNRVqWUoNVHY0zeHt43pvngeijrvTvxS8w
+Dm+VWfSdpBO3gK0t3vqpFDgX5PUvowtxal9SyJzCsxt9i1+jsE8D3LCUI6eKRZQ5mQ0jzzYGgDSB
+oyPbn9p+JlX56laWJ6AQIP1WgZgs4+Ac7F8bf8hYCZz39SU9IrT6eFLnu00R6qKOW0wPsL2doU7z
+/eRrgn7Z7IN75E1Z/0Js7BiAO133q2M5XFtQgm3t4QIDAQABo4IDlzCCA5MwHQYDVR0lBBYwFAYI
+KwYBBQUHAwIGCCsGAQUFBwMEMB8GA1UdIwQYMBaAFBkDqtkiRccaYqnnXJmwnd7t1Li1MIIBSQYI
+KwYBBQUHAQEEggE7MIIBNzBIBggrBgEFBQcwAYY8aHR0cDovL2FwcGxpY2F0aW9uLWNlcnRpZmlj
+YXRlcy1jYS0zLTEtMjAxMy5vY3NwLmQtdHJ1c3QubmV0MFsGCCsGAQUFBzAChk9odHRwOi8vd3d3
+LmQtdHJ1c3QubmV0L2NnaS1iaW4vRC1UUlVTVF9BcHBsaWNhdGlvbl9DZXJ0aWZpY2F0ZXNfQ0Ff
+My0xXzIwMTMuY3J0MIGNBggrBgEFBQcwAoaBgGxkYXA6Ly9kaXJlY3RvcnkuZC10cnVzdC5uZXQv
+Q049RC1UUlVTVCUyMEFwcGxpY2F0aW9uJTIwQ2VydGlmaWNhdGVzJTIwQ0ElMjAzLTElMjAyMDEz
+LE89RC1UcnVzdCUyMEdtYkgsQz1ERT9jQUNlcnRpZmljYXRlP2Jhc2U/MG8GA1UdIARoMGYwWgYL
+KwYBBAGlNAKBSAIwSzBJBggrBgEFBQcCARY9aHR0cDovL3d3dy5kLXRydXN0Lm5ldC9pbnRlcm5l
+dC9maWxlcy9ELVRSVVNUX0NTTV9QS0lfQ1BTLnBkZjAIBgYEAI96AQMwggFFBgNVHR8EggE8MIIB
+ODCCATSgggEwoIIBLIaBhmxkYXA6Ly9kaXJlY3RvcnkuZC10cnVzdC5uZXQvQ049RC1UUlVTVCUy
+MEFwcGxpY2F0aW9uJTIwQ2VydGlmaWNhdGVzJTIwQ0ElMjAzLTElMjAyMDEzLE89RC1UcnVzdCUy
+MEdtYkgsQz1ERT9jZXJ0aWZpY2F0ZXJldm9jYXRpb25saXN0hktodHRwOi8vY3JsLmQtdHJ1c3Qu
+bmV0L2NybC9kLXRydXN0X2FwcGxpY2F0aW9uX2NlcnRpZmljYXRlc19jYV8zLTFfMjAxMy5jcmyG
+VGh0dHA6Ly9jZG4uZC10cnVzdC1jbG91ZGNybC5uZXQvY3JsL2QtdHJ1c3RfYXBwbGljYXRpb25f
+Y2VydGlmaWNhdGVzX2NhXzMtMV8yMDEzLmNybDAdBgNVHQ4EFgQUdQabPJQq4JCBCDRUQNALNPCP
+yLYwDgYDVR0PAQH/BAQDAgSwMBsGA1UdEQQUMBKBEGhvbHpncmV2ZUBvaHAuZGUwDQYJKoZIhvcN
+AQELBQADggEBAKd+IGuyxLSOFLgo9/EFnRE7wYtyZL/5IJYqBYVxy/KPJqF1KOCNFuoe6RzegKjc
+qtazztVJkz9ThHsP3IRnR6gjB+QelndGf/2vjWtHkgJxKEIkAUovUn2n3t2DM5fSb/3kWwb/5Erd
+TpUXNsAZKQm9MNqeysVVA/61gpFgiUWPkvmBSlnHEWE5QKjQ8t15ppCalHL6ZrLuJisHQQUS+xnh
+ayNXQbFsfCkas1fwngCsvkfStZgZNxM7mzx4zbQKG9cGKSXz8AItUfeMQu8svkP8rZQhJ1BkPKWR
+6rIEKSWLOslfguIL/iy6sF5m7PFw+VsTOnr9Ut5lR1i29rGpLwQxggN4MIIDdAIBATBvMFsxCzAJ
+BgNVBAYTAkRFMRUwEwYDVQQKDAxELVRydXN0IEdtYkgxNTAzBgNVBAMMLEQtVFJVU1QgQXBwbGlj
+YXRpb24gQ2VydGlmaWNhdGVzIENBIDMtMSAyMDEzAhBPyMh5nYrCy2uIfpDzTuWdMA0GCWCGSAFl
+AwQCAQUAoIIB2jAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMTA3
+MDkwOTIzMjdaMC8GCSqGSIb3DQEJBDEiBCCt6eLkNSn6olgH85EIvPYf9Pk/RENpSJiTgT56d9VQ
+JzBsBgkqhkiG9w0BCQ8xXzBdMAsGCWCGSAFlAwQBKjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcw
+DgYIKoZIhvcNAwICAgCAMA0GCCqGSIb3DQMCAgFAMAcGBSsOAwIHMA0GCCqGSIb3DQMCAgEoMH4G
+CSsGAQQBgjcQBDFxMG8wWzELMAkGA1UEBhMCREUxFTATBgNVBAoMDEQtVHJ1c3QgR21iSDE1MDMG
+A1UEAwwsRC1UUlVTVCBBcHBsaWNhdGlvbiBDZXJ0aWZpY2F0ZXMgQ0EgMy0xIDIwMTMCEE/IyHmd
+isLLa4h+kPNO5Z0wgYAGCyqGSIb3DQEJEAILMXGgbzBbMQswCQYDVQQGEwJERTEVMBMGA1UECgwM
+RC1UcnVzdCBHbWJIMTUwMwYDVQQDDCxELVRSVVNUIEFwcGxpY2F0aW9uIENlcnRpZmljYXRlcyBD
+QSAzLTEgMjAxMwIQT8jIeZ2KwstriH6Q807lnTANBgkqhkiG9w0BAQEFAASCAQDammbizpy7VcVZ
+Mi6Cz83Np+n3I8ml+Qo1X25F3CsrRQjDNr3tb0w+T0ardEnjdLb1zwfP6gTgFcqDKuOGAPZrvqIb
+klG0obTBE1ec7lnpar8Uonx3PG4wLZzTbgK0MPpJZBz8ut0SZkD1O55lRScmCxFCzxz1hpzb51+N
+3a7HbBQJU6hqMo5Fkk39i9TkTPGfCRT6YnCk32PhRUfZhyaPJ6rKbMtQ1Nlcka1k1mrjLmBSowVN
+TZrDA0sMIag6NHJYqkk55+coZ8Xgm1Rbt6jJL3Rzmkf/N4d2eqMrCY66WiPLqruYdkebNYkwJbHW
+/9m0JIRKW4MIcRDUyxfdbcpXAAAAAAAA
+
+--------------ms020508080305070904090506--
