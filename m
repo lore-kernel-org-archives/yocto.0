@@ -1,153 +1,81 @@
-Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
- by mx.groups.io with SMTP id smtpd.web10.9992.1626091892968952532
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+ by mx.groups.io with SMTP id smtpd.web11.10741.1626095342827778032
  for <yocto@lists.yoctoproject.org>;
- Mon, 12 Jul 2021 05:11:33 -0700
+ Mon, 12 Jul 2021 06:09:03 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=LUyTDOmL;
- spf=pass (domain: windriver.com, ip: 205.220.166.238, mailfrom: prvs=2827191552=trevor.gamblin@windriver.com)
-Received: from pps.filterd (m0250810.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 16CCBWxa023970
-	for <yocto@lists.yoctoproject.org>; Mon, 12 Jul 2021 05:11:32 -0700
-Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2044.outbound.protection.outlook.com [104.47.66.44])
-	by mx0a-0064b401.pphosted.com with ESMTP id 39r5tsrgrf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
-	for <yocto@lists.yoctoproject.org>; Mon, 12 Jul 2021 05:11:32 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=U9ZizWk9XnzlwPVUo/tlQM68Zux7qSf2QrfXB8Rq3RO9vxWYxstedJCNHN7uvcFW8KpXxepLzM2E99a6zFRiNH/mFsiO+1tZyyJLBzpg9GaH5Uy/1L1AMJKAQ4TRHMf7luVkY7dmbJdZJlJPH84YB8mAWS2oU5QUwgtGRxKLXbT1INmOYJzsAX7x8Zbeyl9ytmMrM/6U9sovjk+Tw7oN5V9QJpP4m38sEBXt2ZIvzt15nUJWKuFXQqTGr7dpsESyA1frOM9hijFsSNDqqcMZdu0dcyjMu9lc6EMClSI8VOKqiqK57hpXjPtDBcoWCWHiHX8fSq3cVCR5Z2V99yLDag==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=x7N6gdIN6JWZYKdkZUaHa2stkBPLWqIF9hzgE52wmAI=;
- b=E12VyyOj6gWw3KHd3Y+MCj2KCj22Z4JbN+itJRH5SnRbOQ9tO5pyKo3ov3Pw6WB7ZD2S9G4Frjx9lsfs3ZUXMZzH80umIVRgbvrPG7YokHvKFfqmqA8vhs1DM4vpjD99bbqVxnnhtvGVj33i6IUsO1FoLuwedy+WgT/ir5xiKwuMtfuhEJDyjk8AcTjjIAF565b4jc0SBU9n3X5FanCMFTl+fFkMS3N2aPPt8k6XCvkhbWgkzV2tNGhKKHT6TD2tkW+JXxvj7422Wn6lOpVAbmN9tvqHPxZUiepMDC8Fty5caRD6PFu4tBuA+R8qnmsp2ifaMLQOjHmrI7QWdrdKAA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=NTLTfOAP;
+ spf=pass (domain: gmail.com, ip: 209.85.218.52, mailfrom: koansoftware@gmail.com)
+Received: by mail-ej1-f52.google.com with SMTP id gn32so34514390ejc.2
+        for <yocto@lists.yoctoproject.org>; Mon, 12 Jul 2021 06:09:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=windriversystems.onmicrosoft.com;
- s=selector2-windriversystems-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=x7N6gdIN6JWZYKdkZUaHa2stkBPLWqIF9hzgE52wmAI=;
- b=LUyTDOmLQ08DTanklycUoTEN3FBjtT7OZ5lCHtDq8oGzCUMrCxoPh+iuDqazE3hijCIqQheKNqeJzP7AIM22ksDUittBMPyaht7+NwSeUKf8T0lxsAVLN80EtwTTqNqZrtxSKY4ESTF2GW+DRL4fbps2Y1c6rkPUOMydBnPWAZE=
-Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=windriver.com;
-Received: from BY5PR11MB3909.namprd11.prod.outlook.com (2603:10b6:a03:191::13)
- by SJ0PR11MB5088.namprd11.prod.outlook.com (2603:10b6:a03:2df::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.23; Mon, 12 Jul
- 2021 12:11:29 +0000
-Received: from BY5PR11MB3909.namprd11.prod.outlook.com
- ([fe80::8d6:5e1b:3029:341e]) by BY5PR11MB3909.namprd11.prod.outlook.com
- ([fe80::8d6:5e1b:3029:341e%4]) with mapi id 15.20.4308.027; Mon, 12 Jul 2021
- 12:11:29 +0000
-From: "Trevor Gamblin" <trevor.gamblin@windriver.com>
+        d=gmail.com; s=20161025;
+        h=reply-to:to:cc:from:subject:message-id:date:user-agent:mime-version
+         :content-language:content-transfer-encoding;
+        bh=IT2jur9/l536JMoyug9QUJEOJ3HTw0hzENbpqdZ42Q4=;
+        b=NTLTfOAPsxeQTcyzUXqCRP4o5M+u8aUsuujt5gMYJCWvnKPQvNI5j4NrDxi+rjolUS
+         /GvFKU+hPHS7YaTI4FZMLeoJwoXjmOIuW2HWFq1PBVoVzq3bLbbe+YuMvhUXBZWd6VZP
+         QAkn578JwA8RL3w3bKlbfpfA4q4m/ilwz0IAMIbA8C20z1NXG3/Rb6DFUJLxPOy4zp2Y
+         N9TnXkr8Blg4MEnG9T4maDja1swqWgl3pqO/0oahb0/g+lhe8mWhIBCLZ/sZ8I5CZnt8
+         R4RLPuoGvbP/NpE5P9vkXC72SHLsEDHRAuUAEqqizfK7EoFBb4VjVe4rguPE1XWTU5lZ
+         MVjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:reply-to:to:cc:from:subject:message-id:date
+         :user-agent:mime-version:content-language:content-transfer-encoding;
+        bh=IT2jur9/l536JMoyug9QUJEOJ3HTw0hzENbpqdZ42Q4=;
+        b=GJHxnXEKxwY5Igur8rcFk2+141xut6x+m4rmdvk7iRysk3IMT7XzSbA7yZBlgRbFDg
+         KAMLgfiSlWHWTCDF4SS+rXslhB2auikOWVDnmFNUhSB+jRVqCAg83fzv2as89LM5hPYj
+         YMQ08YVfPtb93Qdn51fbiBUYicoJ7wblUjLtKljxK8v8N9nCNmgTluNArl9Y53HPIJxM
+         j0Z0zXye20wfRutjBu19tPzEDmZvtYAFOV5RLi4RwLoaJiYXk1tBzqCrXDn16i47PEpT
+         nZcykPvzti4jHxngOmqEVVlIU0fIFECzx3+XyWoOllljNk6xVQhkaf79F+quCjE2c/PI
+         P1ZQ==
+X-Gm-Message-State: AOAM5325qSoLRePdR1VZou56tsDHfqlacXaTXJmRA5QL6psqTFRS0QRv
+	yehDWB+NCyxcIYok4F+Ry4k=
+X-Google-Smtp-Source: ABdhPJwSnHiSZGxafNnmDoVe8+pWKDRN9YOOcHiSPdof7CnIUYbiPwt6ce1P8utrxmzPfxJk5ThnsA==
+X-Received: by 2002:a17:906:190c:: with SMTP id a12mr27332447eje.37.1626095341206;
+        Mon, 12 Jul 2021 06:09:01 -0700 (PDT)
+Return-Path: <koansoftware@gmail.com>
+Received: from [192.168.0.6] (host-79-3-92-72.business.telecomitalia.it. [79.3.92.72])
+        by smtp.googlemail.com with ESMTPSA id z6sm1514545ejo.77.2021.07.12.06.09.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Jul 2021 06:09:00 -0700 (PDT)
+Reply-To: koansoftware@gmail.com
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper][PATCH] config.json: track system load with PARALLEL_MAKE
-Date: Mon, 12 Jul 2021 08:11:16 -0400
-Message-Id: <20210712121116.218723-1-trevor.gamblin@windriver.com>
-X-Mailer: git-send-email 2.31.1
-X-ClientProxiedBy: BLAPR03CA0066.namprd03.prod.outlook.com
- (2603:10b6:208:329::11) To BY5PR11MB3909.namprd11.prod.outlook.com
- (2603:10b6:a03:191::13)
+Cc: leimaohui@cn.fujitsu.com
+From: "Marco Cavallini" <koansoftware@gmail.com>
+Subject: [meta-spdxscanner] Question about meta-spdxscanner
+Message-ID: <bcef287b-9214-aa03-3274-2a84f6d7ede4@gmail.com>
+Date: Mon, 12 Jul 2021 15:08:59 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from yow-tgamblin-lx3.corp.ad.wrs.com (2607:fea8:c29d:d7c0::f245) by BLAPR03CA0066.namprd03.prod.outlook.com (2603:10b6:208:329::11) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.20 via Frontend Transport; Mon, 12 Jul 2021 12:11:28 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e2d15ecb-6290-42e2-8eec-08d9452e2dfa
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB5088:
-X-Microsoft-Antispam-PRVS: 
-	<SJ0PR11MB508880AE9D00DDCE70CACCBA9F159@SJ0PR11MB5088.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	NpaEgwJutZbuzqOJpkGs72lS9nSdVamFpKkXiMZJJL1IS2MS9sak4l9s9KiivSlvBXIK2cR3tXyT6WEyrcAEclxkC1nkc1UwIK76RG00kzgx/Akb7t1Z26jNdIyZL/yZGuzkyeZ3i2TbVfP0H+Q+4Qa2UY6S1/NNAt5pM6CjwnG5RlTM66df5tvzsGA1o0QuNXDaJhkY9qrdxrxc7NA0OBnhgm/OKxxqKY+0K9H4wrRvb+V0/HHm21YEn4DOPHHOMwHTKyvBwZN/idSVg/OflCV9Ie9ZsW6/uoho+Ip4daS6z1/2zGNBQwx4NSjNzsIKdc9Pr3sH/HeHUQoPSnjBSUL0TFOfbK+jXtNUm63LomtlLzvtsfTXzmgBL0uOt01hRTjtIiG1hasXwknM9w3mKlljpAo4ZUiYpfntsdGqnEdhseTo5wzhhL2IjEOi8/Dub/+gtyyodIRhq++FjVyMKHxOy6ojIHYU/2L1DuFhU96uEm7J7RR/IlyQtlliJQlP9s9gmfnfdf9BwExHaktZari+FS7U4Y/3Pvey9zmsz2gG1bJx8sCUVdacebh0V90DH5GwnDSr4MkeUH48NJWr33j+aLIMdXBSj/EXKSeFB6/3FOcz1nTD9l7PlAQ2fGcNCY2F85Wg8MhWYev8htt5oA==
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR11MB3909.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(39850400004)(136003)(366004)(396003)(346002)(2906002)(6512007)(66946007)(478600001)(6506007)(44832011)(186003)(6916009)(6666004)(86362001)(2616005)(8936002)(66556008)(66476007)(316002)(6486002)(1076003)(52116002)(5660300002)(36756003)(83380400001)(38100700002)(8676002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?OaDxXkz7bSL5cv6rys5OFVqi62UhAmwtoaGi62qperPpSllbVv4S8Fxh55+O?=
- =?us-ascii?Q?5cWM4QlwTVryMaBQ7V+c+VyE00NXfktGaaIYHC3UoQONbYZfg3epIqc+egFu?=
- =?us-ascii?Q?3hUDz4VrkiXsj2GJ50aS/NDJFPT6zCxogqLn5cjxR7UlRHEM1awH42lKWijn?=
- =?us-ascii?Q?UjJLwIkwCNAsBgqakAE0m3/EBfCbRYa0ySGIQxq7JCO9IqNnPtJOqeQCzHxk?=
- =?us-ascii?Q?Yp0+BDIzZ7dl7Q+qHkFcbkM4YlPQXZFbHq6KwbFSXAUzDHFf+H0V9iyA+Upt?=
- =?us-ascii?Q?0OphbUEB2u2tUJb4BIu8JbYaphlHLj+pOY78u2so0+OyWGqAFRO/M/NRwcfV?=
- =?us-ascii?Q?MZMI02K7g6lTOKJucj2LHxnIzR483FBsWvcpzTLIw2IHhdJyEopKwLh1mBcD?=
- =?us-ascii?Q?d/aplEH4CaxnNB3GCGK4SAZaipId0FxkmbV4FBgjqzFmYcvCBofsBPRfrQZa?=
- =?us-ascii?Q?lWsW5FAFPwmhvLLRsmRathe0WUMjs4bJqbyT357nXh3GsQ8aSEyihP0dM9RR?=
- =?us-ascii?Q?ZZMLc7drv1YIl8swLNcyxiDUn/R2Zu4TLXtqf3YB8NBtwugi1Mkqx50boyG6?=
- =?us-ascii?Q?ot3u2pOyDS5lThiBAu4Y7lbWoOS4bhCqCnE+4hwN5a0ImYTiUGRnpTIFaOHY?=
- =?us-ascii?Q?E0fICwi6Rrm0So8teGEc05oH8W6aR15Nw9QXr5ejCsRmexIa41Pb+1lhS6bS?=
- =?us-ascii?Q?AReDHrs++UQOXufqDqEsrShuaG9dd3I+dLWiqWJZ1ugK7yIrIG2t4JOmd0p3?=
- =?us-ascii?Q?UeYGOkgwBoyXTXg7pBmutNW2MgpJynR95cv9wZkV5Je1DFw2Kb0+m2t/d591?=
- =?us-ascii?Q?ZNen4HOsuETz9IzLJWXMYExLpkOvkIuiQweIIuzpVY26qTWQ7YoRi3P98l4E?=
- =?us-ascii?Q?2REqChp+ZjxEZwMqgDITXVj74CXFvIZmB/VfUAoqtWgOSZfik9+GivFcNANg?=
- =?us-ascii?Q?vnJcJvcXlNUsHwzdUscTuXMNAi5xfQAsCtLY/I+lD6Vj4jNtk1SPfHCKM//R?=
- =?us-ascii?Q?ljnCJZK26pe4cI3rBXXc45UWvhBp3RR9ZtTcpkxx7ozWDboGZK4sCC5Y1r85?=
- =?us-ascii?Q?KPgIe4zef4sOt9i9kUlI++OjaFpxpsFmJFy/2KNdZ5iUesVDNOeHbgtBaF5u?=
- =?us-ascii?Q?Fzn2H4TDieL21ATTLOFSqkjtVsSdeOZIVZjZ/Vr8CD1X4AJ/+NXxE5r8oHZW?=
- =?us-ascii?Q?lYLPdFGnyaWC+IcMhtyrRK5fj9swikb9fW6GHdddEx+Y84QrGNglAy1/KFg5?=
- =?us-ascii?Q?pLjxTfFnb2JKUCZaDDSGzHJzaU/kEbjZoMXwgrdxPKGqJ2t0o2fZs2exf+TI?=
- =?us-ascii?Q?jF7mEN/34fQ6i6tjf7f4Swzz9ocdelyDpjvx+jD1T3FlGA=3D=3D?=
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e2d15ecb-6290-42e2-8eec-08d9452e2dfa
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3909.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2021 12:11:29.3302
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: J/A5ItOd0ZBRPIZsCuYp3St0WDPx52+D2jRY62tpiGuE4H+k1/6ifQduhunuhlLgQ8egBpYVvlwQC1gMowGeRm0lajbgVGgtcVFE6dQuN3E=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5088
-X-Proofpoint-ORIG-GUID: M0Wd9uQzBWvNZ4afxXMuD1SNPuBC-zMA
-X-Proofpoint-GUID: M0Wd9uQzBWvNZ4afxXMuD1SNPuBC-zMA
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-07-12_05:2021-07-12,2021-07-12 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- suspectscore=0 phishscore=0 spamscore=0 adultscore=0 clxscore=1031
- bulkscore=0 mlxlogscore=999 lowpriorityscore=0 priorityscore=1501
- mlxscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2104190000 definitions=main-2107120095
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: it-IT
+Content-Transfer-Encoding: 7bit
 
-This adds the "-l" option to PARALLEL_MAKE in config.json with an
-initial testing value of 100 (100% system load). This option is supported
-by both Make and Ninja. However, we also require the "--debug=j" option
-to be passed to Make in order for the latter to report perceived system
-load in the do_compile logs, and since this option is not supported by
-Ninja, also add EXTRA_OEMAKE to the EXTRAVARS so that we can determine if
-the target load percentage needs to be adjusted.
+Hello,
+I see that meta-spdxscanner has been moved to 
+http://git.yoctoproject.org, and doesn't maintained on github 
+anymore.https://github.com/dl9pf/meta-spdxscanner/issues/21
 
-Signed-off-by: Trevor Gamblin <trevor.gamblin@windriver.com>
----
- config.json | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+Therefore the only way to get in contact to developers is writing to this ML
 
-diff --git a/config.json b/config.json
-index f54081b..7fc89ea 100644
---- a/config.json
-+++ b/config.json
-@@ -44,7 +44,7 @@
-             "PREMIRRORS = ''",
-             "BB_GENERATE_MIRROR_TARBALLS = '1'",
-             "BB_NUMBER_THREADS = '16'",
--            "PARALLEL_MAKE = '-j 16'",
-+            "PARALLEL_MAKE = '-j 16 -l 100'",
-             "XZ_MEMLIMIT = '5%'",
-             "XZ_THREADS = '8'",
-             "BB_TASK_NICE_LEVEL = '5'",
-@@ -61,7 +61,8 @@
-             "RUNQEMU_TMPFS_DIR = '/home/pokybuild/tmp'",
-             "BB_HEARTBEAT_EVENT = '60'",
-             "BB_LOG_HOST_STAT_ON_INTERVAL = '1'",
--            "BB_LOG_HOST_STAT_CMDS_INTERVAL = 'oe-time-dd-test.sh 100'"
-+            "BB_LOG_HOST_STAT_CMDS_INTERVAL = 'oe-time-dd-test.sh 100'",
-+            "EXTRA_OEMAKE = ' --debug=j'"
-         ]
-     },
-     "templates" : {
+I am trying to understand how meta-spdxscanner works.
+I'd like to test it without any external service (no Fossology) 
+therefore I am trying the INHERIT += "scancode-tk" approach.
+
+I am testing it with a dunfell version and I noticed a lot of errors so 
+I switched to master and the bitbake build started but again I am facing 
+to a problem
+
+ERROR: bash-completion-2.10-r0 do_get_report: Could not invoke scancode 
+Command
+
+I'd like to have advice from you to understand if is it possible to test 
+it without any external service and discover what kind of artefacts are 
+generated into deploy/spdx.
+
+Thank you
+
 -- 
-2.31.1
-
+Marco
