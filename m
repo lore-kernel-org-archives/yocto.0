@@ -1,80 +1,70 @@
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
- by mx.groups.io with SMTP id smtpd.web09.1566.1626193979465009617
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+ by mx.groups.io with SMTP id smtpd.web10.132.1626205949235196659
  for <yocto@lists.yoctoproject.org>;
- Tue, 13 Jul 2021 09:32:59 -0700
+ Tue, 13 Jul 2021 12:52:29 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=FAobpwmN;
- spf=pass (domain: gmail.com, ip: 209.85.208.53, mailfrom: koansoftware@gmail.com)
-Received: by mail-ed1-f53.google.com with SMTP id dj21so14140866edb.0
-        for <yocto@lists.yoctoproject.org>; Tue, 13 Jul 2021 09:32:59 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ItQc+kFQ;
+ spf=pass (domain: gmail.com, ip: 209.85.222.170, mailfrom: raj.khem@gmail.com)
+Received: by mail-qk1-f170.google.com with SMTP id q190so22911586qkd.2
+        for <yocto@lists.yoctoproject.org>; Tue, 13 Jul 2021 12:52:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=reply-to:subject:to:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=zyAN03V+QiAFVLUSrFNBBbPCxklvywd5DUJIjVvoAvo=;
-        b=FAobpwmNc2ilk5KrE9jB+FX1FYE8ewzNgd3rqHBp7gTKX7qvzVfNWeLFAo99tTSoDn
-         gOZGyTnrnVRNZhFEiUB8RdRuEzmTvzSN9bfHvgvYeQoSx1WF5z3PELHyk8N7Z2abw6Cn
-         iuSY8RNYGoYBYE9sUqPN3Z74ZbtJxln6efwoBcQikzCWfl06m9EXaKfFXS3WAFMYg9xB
-         cjTzUfFsz4HWsTdKjZgpoD0Ox+/3lw56uLi5v0pXtwJen+GwBhF2fo0UqoSA7gOgJUH6
-         U7dy+nS4zS/SJm1IKEl1EyIWgpGt8FSvQ3MyjsTrx32RzVGieSoIJN1jdtE6ld1RzagP
-         7i5w==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=PWu3DbeA5bk0Qg0A57T1k1sbP6XPTBwGv7ltr1WDwuw=;
+        b=ItQc+kFQiXKa+FCerwYxEcbslaU1HGKN0hhLAUsXPdmQLaOWeI8vcWdKhgyqFRzlgr
+         ZPFtDfZOWkNmzi2lTtY374b2QOtIqgZcYiP70bZlfnhMTBo+5sVso97N9v3LX9E0tqrM
+         Vpoxal8XgKb2qoQe6TV5ZhOldMqpN6MVZftJEhNoX780NrLo8164P3F4tcqU7Ui0VDUX
+         4AycIWRzW7/uGZMuR63ieFxSV73qPQyhPZU4f8bCBdZD2YUMVD4MvX5mzA/UNP1NZCto
+         P9vOJAw4J3WawxIc6bRSpi3CNdHD8Xu4oObl3WBOErDczDsTvNLrJ4A02WvizLOhJl5i
+         6K2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:reply-to:subject:to:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=zyAN03V+QiAFVLUSrFNBBbPCxklvywd5DUJIjVvoAvo=;
-        b=Knl9aW9Db1jIjCjJaq1M/VBXfrSsEXLrkgwQ9Sf8cc0IHBwQP4TzrV5EQywKLGM6eD
-         XWr5WaysfthW8lDnEFF9k1lnBKQbJblJYk3nYW234cSimZphZMJ6a4/1NtwSq1PkI+55
-         h+pfnMy8YGQJSviWBErGZ8RtvDrav8FvjiSM4YVThH4RU8eFMImxCnGbCJ4gMqit6sIR
-         oISHcDk8GJKPFEBNdyp6t5HyJVgcH04jvif7GoOfqCfbUbPKADh6JkDObEMgBHOoaTx3
-         5YLWAFnAEPm4g6uzaaNOWlM/Ff/jNLQY/wqEcmnhcEWQkTH84On0Mw3bD6PdGw2lmoNn
-         AI1w==
-X-Gm-Message-State: AOAM530N9NI7r/9BjS34/xbUTEGiV8bkTVWCI9EcOfK0tmdzRrpUj5EN
-	tqo+bLpl8NqMy/ZGDKUqHyI=
-X-Google-Smtp-Source: ABdhPJyQMHHLm0glYogChaz664gsHX6HgUResUXftNAb3lDu0CCRCnSMOSQ7tX+OHai7lcjaboJORQ==
-X-Received: by 2002:a05:6402:2789:: with SMTP id b9mr6782022ede.201.1626193977827;
-        Tue, 13 Jul 2021 09:32:57 -0700 (PDT)
-Return-Path: <koansoftware@gmail.com>
-Received: from [192.168.0.6] (host-79-3-92-72.business.telecomitalia.it. [79.3.92.72])
-        by smtp.googlemail.com with ESMTPSA id b12sm9970242edu.30.2021.07.13.09.32.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jul 2021 09:32:57 -0700 (PDT)
-Reply-To: koansoftware@gmail.com
-Subject: Re: [yocto] [meta-spdxscanner] Question about meta-spdxscanner
-To: "leimaohui@fujitsu.com" <leimaohui@fujitsu.com>,
- "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-References: <bcef287b-9214-aa03-3274-2a84f6d7ede4@gmail.com>
- <OS0PR01MB61787445FE37FB683A45754BA0149@OS0PR01MB6178.jpnprd01.prod.outlook.com>
-From: "Marco Cavallini" <koansoftware@gmail.com>
-Message-ID: <d845896b-3703-0933-0fc8-a867b638abbe@gmail.com>
-Date: Tue, 13 Jul 2021 18:32:55 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PWu3DbeA5bk0Qg0A57T1k1sbP6XPTBwGv7ltr1WDwuw=;
+        b=aB09Yk4TBhdcP764TGS0MiG0XW3WMwWhJEXxDHCGm62YZIo2BOguFdcuQPOpDq/OI+
+         59Cz2HjRlc2mglU5TWNvD/4f2AB7Aw2KpHO2kY/+tOaiH/UvtGXzC7euBWcizAmwZH2G
+         GWMueBIhpn9F2Bwwm8Gw93nRXeMIppV8FiGM9kxhAY1xYzzemCGPutpw+Bj7dNFv3tMw
+         CqIzdpcW9r2fuAg9AvAeD+G5we0TzgVxyrFVYei+7KzMY+Y47VLGoatE2EFU5zE5Kjwx
+         vVsvMy97X3ZY4CeUKvLsJ76R3ybMn1kHOKzNaU9yk4PTI6d+gGrf3AOc+mtILqfZGvYt
+         4r1w==
+X-Gm-Message-State: AOAM531zZw6IqHm79phDUvwGUWcOFeX9NuhvOUUkO7dEebRQmBqL+AG6
+	cActeJOHyvpfyI7lbX94X15C6pe5mHbLQ7sCrxI=
+X-Google-Smtp-Source: ABdhPJz/Fvxj+rUZufkgjUd7R6oyqpmcAxRs2NkhyX/lZdMq2YEvVOXVVM10OpNg/Y0afWxzzOpBQ7Vnhiv+eEu1cSs=
+X-Received: by 2002:a37:58b:: with SMTP id 133mr5959992qkf.125.1626205948337;
+ Tue, 13 Jul 2021 12:52:28 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <OS0PR01MB61787445FE37FB683A45754BA0149@OS0PR01MB6178.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <cd34.1626162159704093084.9UH1@lists.yoctoproject.org>
+In-Reply-To: <cd34.1626162159704093084.9UH1@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Tue, 13 Jul 2021 12:52:02 -0700
+Message-ID: <CAMKF1so2jA1ue9X=8==z=mVBN3e4MB3t6nm24M5cv5a=o5uQqQ@mail.gmail.com>
+Subject: Re: [yocto] Per recipes simple smoke tests
+To: Samuel Dolt <samuel.dolt@foxtron.ch>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On 13/07/21 10:57, leimaohui@fujitsu.com wrote:
-> Hi Marco
+Hi Samuel
+
+Please look at insane.bbclass and perhaps a new check can be added there ?
+
+On Tue, Jul 13, 2021 at 12:42 AM Samuel Dolt <samuel.dolt@foxtron.ch> wrote:
+>
+> Hi everyone,
+>
+> I was asked to add some basic tests to an internal recipe in order to improve our CI system.
+>
+> The purpose would be to produce an error if some check doesn't pass like
+> - a file is not present
+> - the generated file is of size 0
+> - the generated file is bigger than x bytes
+>
+> I'm thinking to add the functionality to a class, in order to be able to use these tests in more than one recipe. Something like that: https://gist.github.com/samdolt/cf1c557f73f4f2098a19ba7ad6bc092f
+>
+> Does something like that already exists? And if not, would it be useful to have this contributed upstream? Maybe as an addition to insane.bbclass?
+>
+> Cheers,
+> Samuel
 > 
-.snip.
-> By the way, why not try fossology? It is really good that you can browse the compliance information on fossology server after you get spdx files by bitbake of YP.
-> 
-> Best regards
-> Lei
-
-
-Hi Lei,
-I tried the latest meta-spdxscanner with a Docker version cof Fossology 
-but the entire process fails with errors on the Yocto bitbake side.
-
-I'd like to have a minimal proof of work of this toolkit.
-Would you mind sharing the version and the configuration you are using 
-successfully (for both meta-spdxscanner and Fossology)?
-
-Thank you
---
-Marco
+>
