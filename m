@@ -1,116 +1,132 @@
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
- by mx.groups.io with SMTP id smtpd.web09.84.1626219141965953036
- for <yocto@lists.yoctoproject.org>;
- Tue, 13 Jul 2021 16:32:22 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Z07bh1sS;
- spf=pass (domain: gmail.com, ip: 209.85.219.45, mailfrom: twoerner@gmail.com)
-Received: by mail-qv1-f45.google.com with SMTP id c5so124942qvu.11
-        for <yocto@lists.yoctoproject.org>; Tue, 13 Jul 2021 16:32:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=nNNTD9CW5t1x/xEGnbMkE0X0NsX8vqn3Fjl/jO/Erh8=;
-        b=Z07bh1sSaZwg22BEMlEMRXSLrS64UKnh9BCbglOdhteQBMGjL/96jUP7LuRnXJIrjD
-         JjfHCweTMWdLpa2OdQd4/HKbL979pnrChpEnpPftUXw+EiDmSX+UVOzjVX06cKFdHk5A
-         Q46sFcy7fpFQKUaXpPDWSHxzCszq/zXozepW8VBDci+vIn5RJwLo5syIVS1y8VyMJWX6
-         rhUKBYBq4hesdpoAbSMjmsHEdQ9nvKaBdko6J69ipbwwsUsmbBo6ysm8q8Tya6EKQ0Rc
-         z99zl4UJraS5AvmCRLeZOp9COEJq67+AQYUpZXU2hJqm9sQ8bvOjGwxGHUEWo1kbESTJ
-         7LQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=nNNTD9CW5t1x/xEGnbMkE0X0NsX8vqn3Fjl/jO/Erh8=;
-        b=LnNyARMOTCMwoO09lCBxvbMTsEn5MCUhOsc01EZRxPjANmUPuTzP7HDzu8u49nk6zR
-         A+oDoUWMpRzRlzPd5WnSx5dbm21uzI7HgpoAlZjLymAtVrrPMqQGQF6Ob0aHdheYQDqo
-         bOGVRE6tLVXnWVtWcrfBmbuxO1rlhjw7/taBZjJQhX+LxK4yZYUAHsgpBr0Nf56UZXgb
-         1pkC7VTF1Ws5jemaW58qx8+oGswXOOtwmIjzdvLbIkr2HZn8Ab07rPyRpIAHJjimBYJQ
-         +Vxf4pLZbGyO0QX3djBS0vk/eK02k5yRi3P3IKQdm8m8lyRbB2RW7gxaWHiXFvAn/2hQ
-         XHdw==
-X-Gm-Message-State: AOAM531A8hCdUV9QNlnrJ1Nklhb38QA+OAh6G4WZjXL+/93AGZk+YVX5
-	n+YLRPoE8DDSqDaQdyEebifeS51Srf5vVQ==
-X-Google-Smtp-Source: ABdhPJwl6DmdlOoyjeedRMMBMqoXUsAg8TZcgAnKegr3KaXX+Rn3XFF7/vJdoAYV8boX9kMM39SF0A==
-X-Received: by 2002:a05:6214:1941:: with SMTP id q1mr7375276qvk.35.1626219140865;
-        Tue, 13 Jul 2021 16:32:20 -0700 (PDT)
-Return-Path: <twoerner@gmail.com>
-Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id x5sm194060qke.92.2021.07.13.16.32.20
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jul 2021 16:32:20 -0700 (PDT)
-From: "Trevor Woerner" <twoerner@gmail.com>
+Subject: Sysvinit recipe with custom package group Build ERROR #dunfell
 To: yocto@lists.yoctoproject.org
-Subject: [meta-rockchip][PATCH] rock-pi-e: update preferred kernel
-Date: Tue, 13 Jul 2021 19:32:04 -0400
-Message-Id: <20210713233204.11476-2-twoerner@gmail.com>
-X-Mailer: git-send-email 2.30.0.rc0
-In-Reply-To: <20210713233204.11476-1-twoerner@gmail.com>
-References: <20210713233204.11476-1-twoerner@gmail.com>
+From: "Abdelrahman El-Gammal" <a.elgammal2019@gmail.com>
+X-Originating-Location: Abu Dhabi, AE (94.56.175.42)
+X-Originating-Platform: Linux Chrome 91
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Date: Tue, 13 Jul 2021 23:45:22 -0700
+Message-ID: <PVZb.1626245122592215796.vxy2@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="jP8uoI7ZgEt20kivsizy"
 
-The latest updates to linux-yocto-dev now include support for the rock-pi-e so
-do away with our custom recipe and use the one from oe-core.
+--jP8uoI7ZgEt20kivsizy
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Trevor Woerner <twoerner@gmail.com>
----
- conf/machine/rock-pi-e.conf                    |  2 +-
- .../linux/linux-stable-bleeding_5.11.bb        | 18 ------------------
- recipes-kernel/linux/linux-yocto%.bbappend     |  1 +
- 3 files changed, 2 insertions(+), 19 deletions(-)
- delete mode 100644 recipes-kernel/linux/linux-stable-bleeding_5.11.bb
+Hello there,
+I am building a sysvinit recipe for a startup app. And add into the image =
+using custom package groups. Both the package group and recipe when built o=
+n their own, the build succeeds. But, when building the image, I got error =
+in do_rootfs task.
+Here is the error msg:
+The following packages have unmet dependencies:
+packagegroup-custom-apps : Depends: demoappstartup but it is not installab=
+le
+E: Unable to correct problems, you have held broken packages. Here is the =
+Sysvinit recipe:
+SUMMARY =3D "startup_script"
+DESCRIPTION =3D "This recipe builds startup applications"
+LICENSE =3D "MIT"
+LIC_FILES_CHKSUM =3D "file://${COMMON_LICENSE_DIR}/MIT;md5=3D0835ade698e0b=
+cf8506ecda2f7b4f302"
 
-diff --git a/conf/machine/rock-pi-e.conf b/conf/machine/rock-pi-e.conf
-index 7afe143..9cd3ed4 100644
---- a/conf/machine/rock-pi-e.conf
-+++ b/conf/machine/rock-pi-e.conf
-@@ -7,7 +7,7 @@ require conf/machine/include/rk3328.inc
- 
- MACHINEOVERRIDES =. "rock-pi-e:"
- 
--PREFERRED_PROVIDER_virtual/kernel = "linux-stable-bleeding"
-+PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-dev"
- KERNEL_DEVICETREE = "rockchip/rk3328-rock-pi-e.dtb"
- MACHINE_EXTRA_RRECOMMENDS += "kernel-modules"
- 
-diff --git a/recipes-kernel/linux/linux-stable-bleeding_5.11.bb b/recipes-kernel/linux/linux-stable-bleeding_5.11.bb
-deleted file mode 100644
-index 508ddae..0000000
---- a/recipes-kernel/linux/linux-stable-bleeding_5.11.bb
-+++ /dev/null
-@@ -1,18 +0,0 @@
--# the rock-pi-e is very new
--# it's exciting that support has already been added upstream
--# but it's so new that even linux-yocto-dev doesn't have it yet
--#
--# in time we should see the need for this recipe going away
--
--inherit kernel
--require recipes-kernel/linux/linux-yocto.inc
--
--LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
--
--SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git"
--SRCREV = "c03c21ba6f4e95e406a1a7b4c34ef334b977c194"
--LINUX_VERSION = "5.11"
--LINUX_VERSION_EXTENSION = ""
--PV = "${LINUX_VERSION}"
--
--COMPATIBLE_MACHINE_rock-pi-e = "rock-pi-e"
-diff --git a/recipes-kernel/linux/linux-yocto%.bbappend b/recipes-kernel/linux/linux-yocto%.bbappend
-index 3789c72..c2fe9ad 100644
---- a/recipes-kernel/linux/linux-yocto%.bbappend
-+++ b/recipes-kernel/linux/linux-yocto%.bbappend
-@@ -9,6 +9,7 @@ COMPATIBLE_MACHINE_rock-pi-4 = "rock-pi-4"
- COMPATIBLE_MACHINE_nanopi-m4 = "nanopi-m4"
- COMPATIBLE_MACHINE_nanopi-m4-2gb = "nanopi-m4-2gb"
- COMPATIBLE_MACHINE_rock64 = "rock64"
-+COMPATIBLE_MACHINE_rock-pi-e = "rock-pi-e"
- 
- FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
- 
--- 
-2.30.0.rc0
+SRC_URI =3D "file://demoapp_startup.sh"
 
+INITSCRIPT_NAME =3D "demoapp_startup.sh"
+INITSCRIPT_PARAMS =3D "start 99 5 2 . stop 20 0 1 6 ."
+
+inherit update-rc.d
+S =3D "${WORKDIR}"
+
+do_install () {
+install -d ${D}${sysconfdir}/init.d/
+install -c -m 755 ${WORKDIR}/${INITSCRIPT_NAME} ${D}${sysconfdir}/init.d/$=
+{INITSCRIPT_NAME}
+}
+Here is the shell script for the app, demoapp_startup.sh:
+#! /bin/sh
+# /etc/init.d/start_sample_app
+#
+
+# Carry out specific functions when asked to by the system
+case "$1" in
+start)
+echo "Starting sampleApp "
+exec /opt/trial1/bin/trial1 -s &
+;;
+stop)
+echo "Stopping sampleApp"
+start-stop-daemon --stop --name trial1 --quiet
+;;
+(*))
+echo "Usage: /etc/init.d/start_sample_app {start|stop}"
+exit 1
+;;
+esac
+exit 0
+
+--jP8uoI7ZgEt20kivsizy
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello there,<br />I am building a sysvinit recipe for a startup app. And ad=
+d into the image using custom package groups. Both the package group and re=
+cipe when built on their own, the build succeeds. But, when building the im=
+age, I got error in do_rootfs task.<br />
+<div>Here is the error msg:<br /><hr />The following packages have unmet d=
+ependencies:</div>
+<div>&nbsp;packagegroup-custom-apps : Depends: demoappstartup but it is no=
+t installable</div>
+<div>E: Unable to correct problems, you have held broken packages.<hr />He=
+re is the Sysvinit recipe:<br />
+<div>SUMMARY =3D "startup_script"</div>
+<div>DESCRIPTION =3D "This recipe builds startup applications"</div>
+<div>LICENSE =3D "MIT"</div>
+<div>LIC_FILES_CHKSUM =3D "file://${COMMON_LICENSE_DIR}/MIT;md5=3D0835ade6=
+98e0bcf8506ecda2f7b4f302"</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>SRC_URI =3D "file://demoapp_startup.sh"</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>INITSCRIPT_NAME =3D "demoapp_startup.sh"</div>
+<div>INITSCRIPT_PARAMS =3D "start 99 5 2 . stop 20 0 1 6 ."</div>
+<div>&nbsp;</div>
+<div>inherit update-rc.d</div>
+<div>S =3D "${WORKDIR}"</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>do_install () {</div>
+<div>&nbsp; &nbsp;install -d ${D}${sysconfdir}/init.d/</div>
+<div>&nbsp; &nbsp;install -c -m 755 ${WORKDIR}/${INITSCRIPT_NAME} ${D}${sy=
+sconfdir}/init.d/${INITSCRIPT_NAME}</div>
+<div>&nbsp; }</div>
+<div><hr />Here is the shell script for the app, demoapp_startup.sh:<br />
+<div>#! /bin/sh</div>
+<div># /etc/init.d/start_sample_app</div>
+<div>#</div>
+<div>&nbsp;</div>
+<div># Carry out specific functions when asked to by the system</div>
+<div>case "$1" in</div>
+<div>start)</div>
+<div>&nbsp; &nbsp;echo "Starting sampleApp "</div>
+<div>&nbsp; &nbsp;exec /opt/trial1/bin/trial1 -s &amp;</div>
+<div>&nbsp; &nbsp; &nbsp; ;;</div>
+<div>stop)</div>
+<div>&nbsp; &nbsp;echo "Stopping sampleApp"</div>
+<div>&nbsp; &nbsp;start-stop-daemon --stop --name trial1 --quiet</div>
+<div>&nbsp; &nbsp;;;</div>
+<div>(*))</div>
+<div>&nbsp; &nbsp;echo "Usage: /etc/init.d/start_sample_app {start|stop}"<=
+/div>
+<div>&nbsp; &nbsp;exit 1</div>
+<div>&nbsp; &nbsp;;;</div>
+<div>esac</div>
+<div>exit 0<br /><hr /></div>
+</div>
+</div>
+
+--jP8uoI7ZgEt20kivsizy--
