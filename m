@@ -1,136 +1,213 @@
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
- by mx.groups.io with SMTP id smtpd.web11.6303.1626442071091122634
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
+ by mx.groups.io with SMTP id smtpd.web08.8423.1626450887978507382
  for <yocto@lists.yoctoproject.org>;
- Fri, 16 Jul 2021 06:27:51 -0700
+ Fri, 16 Jul 2021 08:54:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@holoplot-com.20150623.gappssmtp.com header.s=20150623 header.b=KatowJk6;
- spf=pass (domain: holoplot.com, ip: 209.85.221.45, mailfrom: morgan.hill@holoplot.com)
-Received: by mail-wr1-f45.google.com with SMTP id f17so12117737wrt.6
-        for <yocto@lists.yoctoproject.org>; Fri, 16 Jul 2021 06:27:50 -0700 (PDT)
+ dkim=fail reason="body hash did not verify" header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=MhNODeJq;
+ spf=pass (domain: windriver.com, ip: 205.220.166.238, mailfrom: prvs=2831df9c98=randy.macleod@windriver.com)
+Received: from pps.filterd (m0250809.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 16GFmZ2x032530;
+	Fri, 16 Jul 2021 08:54:46 -0700
+Received: from nam10-dm6-obe.outbound.protection.outlook.com (mail-dm6nam10lp2109.outbound.protection.outlook.com [104.47.58.109])
+	by mx0a-0064b401.pphosted.com with ESMTP id 39tw2grm88-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 16 Jul 2021 08:54:46 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Z50ZuHIR+7XlkSWmqAaYxcDua73+9wLmBxP0tXMUJkmkFv+EVLtV7NRAFhu2f76Q8ktucgLylrINcsDfwrA5KJWPBYwTKHgSfrOdIuxWT5gF1twNj+l1LL0CdAPnFfptKLpFghRW7TtzWl+ZyLil70SRFJ6Qffi1INYktXcE3q39JErzBHyDBWDjaaEaEJJxIzDW1zct728fb6EM29/CVKrHRDtdhIStvXsFV0MHN0rpZWRK0xKcMzfZ5Bnz3KvxzsF6P6TUcuqWAmXWav7zRnnRgAtQlu60yxUELuR/cY2kq7VgAZUYN0znNxK4uawkIpDzHrQRxhdO90k4DZ0y2Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OGEmdinW5TKX8EGW9F0McJuv3/N4oGUROxXzPqxxWpE=;
+ b=a4uYjtS421chHhdc5MY/DS/pWxiWOeyrPllkA6lLlLeDpInvmBpmNcQoQWFPXIW+GW5Kzv7Jx9KHdEen3WQOH4GZX5EYKt8gM5e2dG9/PoNzP4lkFo34EdKgLC5UJn+xrlkvFw68J/ULE/j6Jr4wZvXu4B3JMABBtWfqM0YnkQt7nHIaR6rq7klz/+5g0Prbj6O0tGbYbehJdiLy5CWBY7w3VjAIFK2RopYR10ei6VX0cwphQFCDrCxJ0rMU4sN0J2dXMce7EomLgYY4V2gy7oYx65RBOVA3DdPiPngrh3tsQCDDZTYU9p5b72CT1Vu3kkE4KN7v+ZET1U8Wb4x52g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=holoplot-com.20150623.gappssmtp.com; s=20150623;
-        h=message-id:subject:from:to:date:user-agent:mime-version
-         :content-transfer-encoding;
-        bh=c0rFUBvcY4YvuoT/G7a5mnfZlRaE5FPHaRKV/TFKB7Y=;
-        b=KatowJk6idW3iy82VJWjcZ107YYyQalNA70qwttQyNUssZX1CQw8gxJ2aBX7ZSv6wA
-         X4NMduDsPwArUL7izSSeZtFwhwlsIcxkDdR7RJJKVpOLvrM3ISufp8wESN4jmJgHX/AG
-         bwS2DDLIP1bRLtba7lUVb1IUQBn9Kq5mPWyD0FfeTH96e3ORcoSW7ntk25ZSn5mO2fWl
-         r256D4c1BoC/yPG5M7bVbYLc0cHpBicv4cHA/tuLaw0BBKfqjMPIKhswCNiT3oZtKnVT
-         KpeDKaq+kLgciA/3EXf45ItlLVwKhAzyPyABWvEwI7S7bRokih/2T++aPw9RdqrdhOJg
-         jFgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=c0rFUBvcY4YvuoT/G7a5mnfZlRaE5FPHaRKV/TFKB7Y=;
-        b=NCWxN5wW0Ql27mzjnzHMpxk7l1IHQvDj1zH6rS6tc7MyS2E75fhaK0MqX0bz4apKI0
-         0T+kTe5LaKO0itk1E39HuX52T8vBY95LGJ6fIYimJlkQK0Pjb1yU8HHYSsDVbujZrWlI
-         i1FM2h+8E/c4+RDIbefmNypgUqV/gNwmctV14TdgehYxYX3BqDIbGFsMMgOvDygsvDir
-         /zvmAx9XekPmrt48mSmdWd04whCVJj3UAL6bD45/CMQneSrTbIHVQj50fAi0J0DAnick
-         4LsXrJfhg7U2NoNUTqscVXH/c5cge4KT2I3Elzs4OOSsM4QK14ZFZMOUAo1JpS/+zvAH
-         MbFQ==
-X-Gm-Message-State: AOAM530N6MxbRXObaEOH5l/rghAxBaal8haI0AskH4oir9GILjB+ZChs
-	AVrglPWHGMiQIfaN6zaUEjI68g2g3//LFsdIMVu1KUGkmVCY+mPhL+9eu8Ryifd2AUtQxH02Mwo
-	HLI0uDghyglaxEYoN2WTNkTYTKSps
-X-Google-Smtp-Source: ABdhPJy6PrmyPaLCWRXZwNUU+igrgixIEueteKrFJLtBUAWy8XXRk3CQAqDAe2c7Rp1DX0vNgtuaBw==
-X-Received: by 2002:a5d:59ae:: with SMTP id p14mr7130829wrr.148.1626442069425;
-        Fri, 16 Jul 2021 06:27:49 -0700 (PDT)
-Return-Path: <morgan.hill@holoplot.com>
-Received: from HQ-00111.holoplot.net ([176.126.217.202])
-        by smtp.gmail.com with ESMTPSA id m187sm10213387wmm.16.2021.07.16.06.27.48
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jul 2021 06:27:49 -0700 (PDT)
-Message-ID: <0f67bc35cce2e023af80b03cc41e4d2f7b04f9b9.camel@holoplot.com>
-Subject: Building PostgreSQL extensions
-From: morgan.hill@holoplot.com
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Date: Fri, 16 Jul 2021 15:27:47 +0200
-User-Agent: Evolution 3.40.2 (3.40.2-1.fc34) 
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OGEmdinW5TKX8EGW9F0McJuv3/N4oGUROxXzPqxxWpE=;
+ b=MhNODeJquxop5msWFIiuJZN/1YZSE17dDuoCkh3tn8AiS+a/L2otVATOHsuILsxhjG1/SXzao3H7SH/a78lo5LsbgMUmmtppwjOH/Q43oN8uY+3fe16dK6mToSNVt/cFbsQKTexBZETvLKx9SEHmUAr9ow/dPoTnFFsyfqtUNyI=
+Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=windriver.com;
+Received: from DM6PR11MB3994.namprd11.prod.outlook.com (2603:10b6:5:193::19)
+ by DM6PR11MB4739.namprd11.prod.outlook.com (2603:10b6:5:2a0::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.22; Fri, 16 Jul
+ 2021 15:54:44 +0000
+Received: from DM6PR11MB3994.namprd11.prod.outlook.com
+ ([fe80::c413:9f51:c32e:a579]) by DM6PR11MB3994.namprd11.prod.outlook.com
+ ([fe80::c413:9f51:c32e:a579%6]) with mapi id 15.20.4331.024; Fri, 16 Jul 2021
+ 15:54:44 +0000
+From: "Randy MacLeod" <randy.macleod@windriver.com>
+Subject: Re: [yocto] Trying to get Kivy running on imx8 platform #yocto #linux #imx8
+To: whuang8933@gmail.com, yocto@lists.yoctoproject.org
+References: <h4KM.1626399692778244438.noMQ@lists.yoctoproject.org>
+Message-ID: <566b5370-5850-479a-4916-9c4fcfc8e0c7@windriver.com>
+Date: Fri, 16 Jul 2021 11:54:34 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+In-Reply-To: <h4KM.1626399692778244438.noMQ@lists.yoctoproject.org>
+X-ClientProxiedBy: BYAPR21CA0004.namprd21.prod.outlook.com
+ (2603:10b6:a03:114::14) To DM6PR11MB3994.namprd11.prod.outlook.com
+ (2603:10b6:5:193::19)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [172.25.44.2] (198.48.226.187) by BYAPR21CA0004.namprd21.prod.outlook.com (2603:10b6:a03:114::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.7 via Frontend Transport; Fri, 16 Jul 2021 15:54:43 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: cbc11bc9-576e-43d5-c5d9-08d94872077b
+X-MS-TrafficTypeDiagnostic: DM6PR11MB4739:
+X-Microsoft-Antispam-PRVS: 
+	<DM6PR11MB4739BCB48D9BF9E43D5992E8F8119@DM6PR11MB4739.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	+4p10hdrZ1wPody2le2qNUo98qOxGaQUcKWUZUGPP41UoGIuF+2GgUnBf2nsglwnLdXEhn0kT23AkMv1K/b/EBw2PbnPEqquYlvWCrA6suRazpiwQjX/xr1Kskgwl5B7DaR5Zu5xo0ikS2z/4Ss9+F9zDgXR86J90+5kHEykyzwQ4PdWjycElbQaNlyfkn3d5Be/2ujgtjSYYhLtiZi697XZzzf13i5sauPNjhnn3jDmEKfmWFy1fcOOaVre30V+vVqM2C4XNN0vmqc6EqR2i8xwdUR33rjWtcraOeWbm1kmN3ql04Vi++CpK0TFBGr1+d7hcHysfMy2XYMjDlWUTe4j6Vy4Bkua1kncnwrxlshN3dyLde0vjHlgnAftH75b522ss2yQHUdWmwh425Wp318YjxWLJiodJHLs2IRXat52nkcTZwAY0Vkes/AoS2Bgoz9aZz8DlyUZily/AdZsMtCFCG+F+6gPtuxMhTFWlXvNsTKubyb1cvyGazdu9ylguQXG6euWEx5Pk9/TYpn8InQn8WmLaPa1u1uoLtaDkzzsY3p/RvSQ9BRiHBV/N3+yjoqoxUd/yUNtLxO9flMQEELdGKcP447NomAbAf4XodVsVf36MQesNru3GtvxD1P9r7rpuW0ggyCoWLfBpGqGN7H2GVDMHYQMlNwmcbFrHewXAO2RF72LHwCrETZs4IYEOm0RpWwSLlO4/i4RkrVb73iAetfGx0S85vmiYW8BQg/LMfI5umRnUmEZ6Kr5EnWVgE5E0P56w+X1uv4HF+QyzO74V/Ar4OhF2HYVA3qxgxhrQarYAdFnCSukttek9vOwJNk6DVrnz1mB1eE0hgzEBTTVoUlbDyUbU/TJ8nsOSihEMdTWVAMP/1bIqEbh4Fw28P8ucZksOCTm7z6LkD7XAQ==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3994.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(136003)(346002)(396003)(366004)(39850400004)(53546011)(956004)(26005)(86362001)(5660300002)(478600001)(52116002)(38100700002)(38350700002)(31696002)(186003)(6666004)(83380400001)(966005)(8676002)(66946007)(6486002)(31686004)(316002)(66556008)(8936002)(66476007)(2616005)(16576012)(36756003)(2906002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?K2pEYjdLbFlhT2diTFZoMk9lVlhEKzdSS05IVnhKckV0YnpkczRVZERKWEUr?=
+ =?utf-8?B?R1ZubldhZVMwQzFhb21kTWZBT1BEMlB2UGIrSkEvWjUyQWQzdHpIZkJmYWNW?=
+ =?utf-8?B?aXNDUFR1eVgyYkJwV3dBWE5MU0hEcEl3Vk5FOGlreEtpZ3UrekkwdWNLa0xn?=
+ =?utf-8?B?c20vcXR3UEdLS2cwOEw5a2ZtZEo0Nk5ranB4ZUowWnR2OUdURk5jZEcxK2Nu?=
+ =?utf-8?B?eUsyTjA3Zy82ZXNiU3MwYkY5NXdWTUJxaUlYenlHMjlWcWxJUlJ6dVNTbUFl?=
+ =?utf-8?B?RWlMd2ZLc2ZwSGZ4WTZzWWpQaW4xU2VGOXFHZk5BT2Z3WEcvcVpFVm15UnRY?=
+ =?utf-8?B?MnZQclhXak93UU1mYXF4d3hNcW9JUXQ3UEJVakR6Q2Z6Y3NIMys2UUhoSmg0?=
+ =?utf-8?B?QlpLOXI1U0VlMmRRRC9OM3Q3ZHVEWjVBMFJwYXVUcVB4TTVOQy8zUnFMcCs1?=
+ =?utf-8?B?aXlleWZKbWg1djNlUVZMNGFjT1Y4REIvSVhOWDJOTngwTmV0ajdsSFE0bmdj?=
+ =?utf-8?B?bjBqS2ZlSlhMZmsxdXRTOVVzMmlzR1BuSnRzSU9VNy82bWtJVmlTM0JmN1hl?=
+ =?utf-8?B?enZIUFJNQ2phek83OVdjTittaS9HaEFDRVFJZ2pERjN4UXdnY0E5MS9rdjZK?=
+ =?utf-8?B?a2hoUWliTkJ1NHpuZDRjRGx4QU1UcitFSWtaT1dNSEhLd21pYVVIMGZNSWJn?=
+ =?utf-8?B?anBPa2JFTGNZWHNnS2dLMVZzaVF0N2VScmY3NUFqc2VtQUgzalQ4YWhkUUFR?=
+ =?utf-8?B?c0g3RDJ3MGUyZ2JiR1QvWnY2Y2I4MFNmc201NU40cmNrU0ZDR0kzSlJwTVJj?=
+ =?utf-8?B?dGZHOGZoMmh5bEV2L2NqTG00RjlnZGhKR1lVWHRKeVhaUDd6UlRkb0RXTWVn?=
+ =?utf-8?B?RVhhYjFsS29lUHBqaEUyWEtLdGVRaUFteGIvTzJjQklNNnc4MFJDN21NbHZQ?=
+ =?utf-8?B?MngvNk43WDdyaytSNzlFT2Q4OExZQ1pTVXdseHpqTXpDcWU0bEpkSTMydWQx?=
+ =?utf-8?B?TG5XUFRodmZxUDNNY0U0MjZVazhIUmVYdVFXVXMrWFpBMXRPb2FwZ1VaU1E5?=
+ =?utf-8?B?em51c2pjRGdSZ1dMazM0YzdtZXRzc0M3TEpiZVhUbXZpemZlcDhScmpJc0ll?=
+ =?utf-8?B?SHhVdGhEeTA5N1VSc25qTkdVamJlTjhwTVVIbDlVd01wcDZ6b1pkb2ozTnJs?=
+ =?utf-8?B?Qk1YOUdUY1hrNzlXUWRrUzNua1hOOTFCRmdLaWw3dWp1UDcxblVTNExTaXdL?=
+ =?utf-8?B?U2Zrb2g3ZjB2VXJVd2l5dW94LzBhTTQwYTNaUi95UFZzVktaYS8rNSsrc2o4?=
+ =?utf-8?B?M1BNUmZwR0tSWHdsaTFYek9pUXpsU2tuUUJxeXpvQmdsSDBGcFJmTW4xMkw5?=
+ =?utf-8?B?L3l0YjYyQVZ5N0piNExYajZIZ0N0VUFnWlZEOWRkd3ZySlNJeFlXMG05UXd5?=
+ =?utf-8?B?S2YvMTlRQXBxaEFPYy81YWRuQ2E4aDVXd1hpVHhqVUc5VDltUGJtWDJBVzJO?=
+ =?utf-8?B?dDZWR1ltcHRXaFkycFAwMmVQWFE4ME13b3RlTlJZRElWTUZhbENvNU9Lc2dh?=
+ =?utf-8?B?S1FHVzBtaldFMVJ5Nm1wVEw2NmlBTmtCY09RRlVCaW9DcnRCb2c3cnlueXI4?=
+ =?utf-8?B?MGlKbXB4c1k5VWZWZm84aVUxYnJNY2k4Vk9QTENXWDR4TStDQnQrSWZlOVpw?=
+ =?utf-8?B?b2xKTTdHRVA1N1NBMFJMb2FFMGJ0R3V4WnRjTFdPZ0ZFK1R2V2o5U0RCZEtP?=
+ =?utf-8?Q?f02duw2UMzrImJvmQKO395sJpTmOQ7J9gdCkpO/?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cbc11bc9-576e-43d5-c5d9-08d94872077b
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3994.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2021 15:54:44.0788
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1t6EXO80sfdpS2xFfI4OlHyHoqADI1C5UObIgUsxZwtjLRBC4etwH+zY0ysZeqcSZkEnqCeqVTU8764vKgjlqin1iBE0u8fyfP6MRJFa8zw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4739
+X-Proofpoint-ORIG-GUID: 2wQOU2KyGM5-zwmu_wparfX2kqZ7u1w2
+X-Proofpoint-GUID: 2wQOU2KyGM5-zwmu_wparfX2kqZ7u1w2
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
+ definitions=2021-07-16_06:2021-07-16,2021-07-16 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 adultscore=0 mlxlogscore=999 suspectscore=0 bulkscore=0
+ phishscore=0 spamscore=0 mlxscore=0 malwarescore=0 clxscore=1011
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2104190000 definitions=main-2107160097
+X-MIME-Autoconverted: from 8bit to quoted-printable by mx0a-0064b401.pphosted.com id 16GFmZ2x032530
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-CA
 Content-Transfer-Encoding: quoted-printable
 
-Hi All,
+Hi William,
 
-We are currently trying to create a recipe for TimescaleDB and are
-running into issues with the cmake build system that relies on
-`pg_config` for configuration. We managed to get `pg_config` into the
-recipes build environement by following this thread about building
-PostGIS
-https://stackoverflow.com/questions/51496061/using-files-generated-by-other=
--recipes-in-yocto
-however it doesn't return any useful values.
+On 2021-07-15 9:41 p.m., whuang8933@gmail.com wrote:
+> Hi community!
+> I would like to get Kivy recipe going for this project as I think it=20
 
-We would be very interested to know if anyone has successfully built a
-postgresql extension and could share how you did it or point us to a
-recipe we can take inspiration from.
+For anyone else wondering what kivy is:
+  Kivy - Open source Python library for rapid development of applications
+  that make use of innovative user interfaces, such as multi-touch apps.
+https://kivy.org/#home
 
-In any case we would like to publish this recipe to a public layer once
-we figure it out.
+> would be great to add an extra GUI framework to the project; however,=20
+> I'm running into an issue that I've been stuck on for a couple days now.
+> I initially got it running on a rockchip (but it keeps falling back on=
+=20
+> LLVM pipe for some reason), and would like to do the same on an imx8mp=
+=20
+> platform. Unfortunately, I get a segmentation fault when getting Kivy to=
+=
+=20
+> run on the imx8 and I couldn't find any help with Kivy's support group.=
+=20
+> I was hoping the community can lend me an extra hand/give me an extra=20
+> set of eyes as I'm currently stumped.
+>=20
+> Things I have tried so far:
+> o.=C2=A0 =C2=A0 =C2=A0 played around Kivy's USE_X11 & USE_WAYLAND switch=
+es
+> o.=C2=A0 =C2=A0 =C2=A0 Originally it was using Python 3.8.10. The Kivy I=
+ got going on=20
+> rockchip was on Python 3.8.2, so I downgraded to that version.
+> o.=C2=A0 =C2=A0 =C2=A0 Tried using different weston versions (weston_9.0=
+.0.imx and=20
+> weston_8.0.0.imx)
+> o.=C2=A0 =C2=A0 =C2=A0 The stacktrace mentioned missing pthread_mutex_lo=
+ck file..=20
+> thought it was pthreads related so I added glibc and libgcc to the image=
+=
+=20
+> install
+> o.=C2=A0 =C2=A0 =C2=A0 Some googling showed that others use KIVY_GL_BACK=
+END=3Dgl, but=20
+> this did not work.
+>=20
+> I've attached the recipe I've written up so far and related patch files.=
+=
+=20
+> (Kivy's current setup.py=20
+> <https://urldefense.com/v3/__http://setup.py__;!!AjveYdw8EvQ!Kd4lPl_lXtJ=
+_MWzMo3dmsN8miHiYrX4Fe0ldI5FxXKMlAxs7HnLkx-jBi5uWIlllQsDgZQ$>=20
+> doesn't seem to look for GLESv2 libraries for non-android/ios/rpi=20
+> platforms), a recipe that installs Kivy examples, and attached my=20
+> stacktrace for extra information.
+>=20
+> Any help would be very much appreciated!
 
-Best regards,
+I don't  have time to help but you might get more feedback if you
+post your recipes as an RFC to:
+   openembedded-devel@lists.openembedded.org
+with a meta-python prefix as mentioned in:
+   http://git.openembedded.org/meta-openembedded/tree/meta-python/README
 
-Morgan
+Also kivy was mentioned a few times previously:
+=20
+https://lists.yoctoproject.org/g/yocto/search?p=3Dcreated%2C0%2C%2C1%2C1%2=
+C2699%2C0&q=3Dkivy
+
+Good luck,
+../Randy
+
+> Thanks,
+> William Huang
+>=20
+> PS: It's my first time posting to a mailing list. Is it proper to send=
+=20
+> source code as attachments or just copy and paste into message body?=20
+> Anyways, I've attached the files for now.
+>=20
+>=20
+>=20
+>=20
 
 
 --=20
-=20
-<http://holoplot.com/?utm_source=3Demail&utm_medium=3Dsg&utm_campaign=3DHol=
-oplot_Signature+>
-
-*
-*
-
-* <https://hubs.li/H0MXsmV0>
-*
-
-*
-*
-
-*HOLOPLOT GmbH - Headquarters*
-
-
-
-Ringbahnstr. 12 (10-14) / A2
-
-12099 Berlin, Germany
-
-+49 (0) 30 40745812
-
-
-
-
-*HOLOPLOT GmbH - Manufacturing*
-
-
-Alboinstr. 17-23 / Hall 12
-
-12103=20
-Berlin, Germany
-
-+49 (0) 30 959988740
-
-
-www.holoplot.com=20
-<https://holoplot.com/>
-
-
-
-Follow us on=20
-<https://www.facebook.com/OriginalHOLOPLOT/?utm_source=3Demail&utm_medium=
-=3Dsg&utm_campaign=3DHoloplot_Signature+>=20
-LinkedIn=20
-<https://www.linkedin.com/company/holoplot-gmbh?utm_source=3Demail&utm_medi=
-um=3Dsg&utm_campaign=3DHoloplot_Signature+>.=20
-
-
-
-
-Roman Sick =E2=80=93 CEO | HRB183974B, Register Court Charlottenburg, Germa=
-ny |=20
-EU Tax-Registration No. DE277000701 This e-mail contains confidential=20
-and/or privileged information. If you are not the intended recipient (or=20
-have received this e-mail in error) please notify the sender immediately=20
-and destroy this e-mail. Any unauthorized copying, disclosure or=20
-distribution of the information in this e-mail is strictly forbidden.
+# Randy MacLeod
+# Wind River Linux
