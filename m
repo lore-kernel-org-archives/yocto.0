@@ -1,317 +1,162 @@
-Subject: Trying to get Kivy running on imx8 platform #yocto #linux #imx8
-To: yocto@lists.yoctoproject.org
-From: whuang8933@gmail.com
-X-Originating-Location: Vaughan, Ontario, CA (97.108.30.204)
-X-Originating-Platform: Mac Chrome 91
-User-Agent: GROUPS.IO Web Poster
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by mx.groups.io with SMTP id smtpd.web10.2793.1626415425943961776
+ for <yocto@lists.yoctoproject.org>;
+ Thu, 15 Jul 2021 23:03:46 -0700
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=pass (domain: intel.com, ip: 192.55.52.115, mailfrom: naveen.kumar.saini@intel.com)
+X-IronPort-AV: E=McAfee;i="6200,9189,10046"; a="210491309"
+X-IronPort-AV: E=Sophos;i="5.84,244,1620716400"; 
+   d="scan'208";a="210491309"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2021 23:03:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,244,1620716400"; 
+   d="scan'208";a="413873984"
+Received: from kmsmsx603.gar.corp.intel.com ([172.21.219.143])
+  by orsmga003.jf.intel.com with ESMTP; 15 Jul 2021 23:03:43 -0700
+Received: from kmsmsx603.gar.corp.intel.com (172.21.219.143) by
+ kmsmsx603.gar.corp.intel.com (172.21.219.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Fri, 16 Jul 2021 14:03:42 +0800
+Received: from kmsmsx603.gar.corp.intel.com ([172.21.219.143]) by
+ kmsmsx603.gar.corp.intel.com ([172.21.219.143]) with mapi id 15.01.2242.010;
+ Fri, 16 Jul 2021 14:03:42 +0800
+From: "Naveen Saini" <naveen.kumar.saini@intel.com>
+To: Stefan Schmidt <stefan@datenfreihafen.org>, "yocto@lists.yoctoproject.org"
+	<yocto@lists.yoctoproject.org>
+CC: Stefan Schmidt <stefan.schmidt@huawei.com>
+Subject: Re: [yocto] [meta-zephyr][PATCH v4 1/2] zephyr-kernel-src.inc: Add backport patch for storage partition
+Thread-Topic: [yocto] [meta-zephyr][PATCH v4 1/2] zephyr-kernel-src.inc: Add
+ backport patch for storage partition
+Thread-Index: AQHXeXjCnKupzkr3zEiR9IInM7942KtFHZeA
+Date: Fri, 16 Jul 2021 06:03:42 +0000
+Message-ID: <f82bc28cf170483989f90f2cf02c87de@intel.com>
+References: <20210715125523.491476-1-stefan@datenfreihafen.org>
+In-Reply-To: <20210715125523.491476-1-stefan@datenfreihafen.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-reaction: no-action
+dlp-product: dlpe-windows
+dlp-version: 11.5.1.3
+x-originating-ip: [10.108.32.68]
 MIME-Version: 1.0
-Date: Thu, 15 Jul 2021 18:41:32 -0700
-Message-ID: <h4KM.1626399692778244438.noMQ@lists.yoctoproject.org>
-X-Groupsio-MsgNum: 54132
-Content-Type: multipart/mixed; boundary="74P1JAyHXVbZj48JJNJz"
-
---74P1JAyHXVbZj48JJNJz
-Content-Type: multipart/alternative; boundary="SPt5dJanvuZAgz5LZtyw"
-
---SPt5dJanvuZAgz5LZtyw
-Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi community!
-I would like to get Kivy recipe going for this project as I think it would=
- be great to add an extra GUI framework to the project; however, I'm runnin=
-g into an issue that I've been stuck on for a couple days now.
-I initially got it running on a rockchip (but it keeps falling back on LLV=
-M pipe for some reason), and would like to do the same on an imx8mp platfor=
-m. Unfortunately, I get a segmentation fault when getting Kivy to run on th=
-e imx8 and I couldn't find any help with Kivy's support group. I was hoping=
- the community can lend me an extra hand/give me an extra set of eyes as I'=
-m currently stumped.
+Merged after minor changes.
 
-Things I have tried so far:
-o.=C2=A0 =C2=A0 =C2=A0 played around Kivy's USE_X11 & USE_WAYLAND switches
-o.=C2=A0 =C2=A0 =C2=A0 Originally it was using Python 3.8.10. The Kivy I g=
-ot going on rockchip was on Python 3.8.2, so I downgraded to that version.
-o.=C2=A0 =C2=A0 =C2=A0 Tried using different weston versions (weston_9.0.0=
-.imx and weston_8.0.0.imx)
-o.=C2=A0 =C2=A0 =C2=A0 The stacktrace mentioned missing pthread_mutex_lock=
- file.. thought it was pthreads related so I added glibc and libgcc to the =
-image install
-o.=C2=A0 =C2=A0 =C2=A0 Some googling showed that others use KIVY_GL_BACKEN=
-D=3Dgl, but this did not work.
+> -----Original Message-----
+> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On
+> Behalf Of Stefan Schmidt
+> Sent: Thursday, July 15, 2021 8:55 PM
+> To: yocto@lists.yoctoproject.org
+> Cc: Stefan Schmidt <stefan@datenfreihafen.org>; Stefan Schmidt
+> <stefan.schmidt@huawei.com>
+> Subject: [yocto] [meta-zephyr][PATCH v4 1/2] zephyr-kernel-src.inc: Add
+> backport patch for storage partition
+>=20
+> From: Stefan Schmidt <stefan.schmidt@huawei.com>
+>=20
+> Patch already merged upstream, but after the 2.6 release we are based on.
+> Taking the backport in here until we can figure out if that can go to the
+> Zephyr 2.6 LTS branch.
+>=20
+> The storage partition itself is needed on the Arduino Nano e.g. for
+> OpenThread or applications needed a storage space.
+>=20
+> Signed-off-by: Stefan Schmidt <stefan.schmidt@huawei.com>
+> ---
+> since v3: Added backported patch for flash layout
+>=20
+>  ...rduino-nano-33-ble-storage-partition.patch | 46 +++++++++++++++++++
+>  .../zephyr-kernel/zephyr-kernel-src.inc       |  1 +
+>  2 files changed, 47 insertions(+)
+>  create mode 100644 recipes-kernel/zephyr-kernel/files/arduino-nano-33-
+> ble-storage-partition.patch
+>=20
+> diff --git a/recipes-kernel/zephyr-kernel/files/arduino-nano-33-ble-stora=
+ge-
+> partition.patch b/recipes-kernel/zephyr-kernel/files/arduino-nano-33-ble-
+> storage-partition.patch
+> new file mode 100644
+> index 0000000..fa0f27f
+> --- /dev/null
+> +++ b/recipes-kernel/zephyr-kernel/files/arduino-nano-33-ble-storage-par
+> +++ tition.patch
+> @@ -0,0 +1,46 @@
+> +commit 6c9945aafa00c09149e2052a9c2bccad16dd1d8a
+> +Author: Stefan Schmidt <stefan.schmidt@huawei.com>
+> +Date:   Fri May 7 11:47:44 2021 +0200
+> +
+> +    boards/arduino_nano_33_ble: add storage partition at end of flash
+> +
+> +    Change default partition table to allow for application which need
+> +    storage. One use case is running the OpenThread integration which ha=
+s
+> +    a dependency on this.
+> +
+> +    Signed-off-by: Stefan Schmidt <stefan.schmidt@huawei.com>
+> +
+> +diff --git a/boards/arm/arduino_nano_33_ble/arduino_nano_33_ble.dts
+> +b/boards/arm/arduino_nano_33_ble/arduino_nano_33_ble.dts
+> +index d09b66ec43..d11d800eb5 100644
+> +--- a/boards/arm/arduino_nano_33_ble/arduino_nano_33_ble.dts
+> ++++ b/boards/arm/arduino_nano_33_ble/arduino_nano_33_ble.dts
+> +@@ -44,15 +44,27 @@
+> +
+> + 		boot_partition: partition@0 {
+> + 			label =3D "sam-ba";
+> +-			reg =3D <0x0 0x10000>;
+> ++			reg =3D <0x00000000 0x00010000>;
+> + 			read-only;
+> + 		};
+> +
+> + 		code_partition: partition@10000 {
+> + 			label =3D "code";
+> +-			reg =3D <0x10000 0xf0000>;
+> ++			reg =3D <0x00010000 0x000e8000>;
+> + 			read-only;
+> + 		};
+> ++
+> ++		/*
+> ++		 * The flash starting at 0x000f8000 and ending at
+> ++		 * 0x000fffff is reserved for use by the application.
+> ++		 *
+> ++		 * Storage partition will be used by FCB/LittleFS/NVS
+> ++		 * if enabled.
+> ++		 */
+> ++		storage_partition: partition@f8000 {
+> ++			label =3D "storage";
+> ++			reg =3D <0x000f8000 0x00008000>;
+> ++		};
+> + 	};
+> + };
+> +
+> diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc b/recipes=
+-
+> kernel/zephyr-kernel/zephyr-kernel-src.inc
+> index a0004ed..227c7f4 100644
+> --- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+> +++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+> @@ -18,6 +18,7 @@ SRC_URI =3D "\
+>      git://github.com/zephyrproject-
+> rtos/openthread.git;protocol=3Dhttps;branch=3Dzephyr;destsuffix=3Dgit/mod=
+ules/l
+> ib/openthread;name=3Dopenthread \
+>      git://github.com/zephyrproject-
+> rtos/libmetal.git;protocol=3Dhttps;destsuffix=3Dgit/modules/hal/libmetal;=
+name=3Dl
+> ibmetal \
+>      git://github.com/zephyrproject-
+> rtos/tinycrypt.git;protocol=3Dhttps;destsuffix=3Dgit/modules/crypto/tinyc=
+rypt;na
+> me=3Dtinycrypt \
+> +    file://arduino-nano-33-ble-storage-partition.patch \
+>      "
+>  S =3D "${WORKDIR}/git"
+>=20
+> --
+> 2.31.1
 
-I've attached the recipe I've written up so far and related patch files. (=
-Kivy's current setup.py doesn't seem to look for GLESv2 libraries for non-a=
-ndroid/ios/rpi platforms), a recipe that installs Kivy examples, and attach=
-ed my stacktrace for extra information.
-
-Any help would be very much appreciated!
-Thanks,
-William Huang
-
-PS: It's my first time posting to a mailing list. Is it proper to send sou=
-rce code as attachments or just copy and paste into message body? Anyways, =
-I've attached the files for now.
-
---SPt5dJanvuZAgz5LZtyw
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi community!<br />I would like to get Kivy recipe going for this project a=
-s I think it would be great to add an extra GUI framework to the project; h=
-owever, I'm running into an issue that I've been stuck on for a couple days=
- now.&nbsp;<br />I initially got it running on a rockchip (but it keeps fal=
-ling back on LLVM pipe for some reason), and would like to do the same on a=
-n imx8mp platform. Unfortunately, I get a segmentation fault when getting K=
-ivy to run on the imx8 and I couldn't find any help with Kivy's support gro=
-up. I was hoping the community can lend me an extra hand/give me an extra s=
-et of eyes as I'm currently stumped.<br /><br />Things I have tried so far:=
-<br />o.&nbsp; &nbsp; &nbsp; played around Kivy's USE_X11 &amp; USE_WAYLAND=
- switches<br />o.&nbsp; &nbsp; &nbsp; Originally it was using Python 3.8.10=
-. The Kivy I got going on rockchip was on Python 3.8.2, so I downgraded to =
-that version.<br />o.&nbsp; &nbsp; &nbsp; Tried using different weston vers=
-ions (weston_9.0.0.imx and weston_8.0.0.imx)<br />o.&nbsp; &nbsp; &nbsp; Th=
-e stacktrace mentioned missing pthread_mutex_lock file.. thought it was pth=
-reads related so I added glibc and libgcc to the image install<br />o.&nbsp=
-; &nbsp; &nbsp; Some googling showed that others use KIVY_GL_BACKEND=3Dgl, =
-but this did not work.<br /><br />I've attached the recipe I've written up =
-so far and related patch files. (Kivy's current setup.py doesn't seem to lo=
-ok for GLESv2 libraries for non-android/ios/rpi platforms), a recipe that i=
-nstalls Kivy examples, and attached my stacktrace for extra information.<br=
- /><br />Any help would be very much appreciated!<br />Thanks,<br />William=
- Huang<br /><br />PS: It's my first time posting to a mailing list. Is it p=
-roper to send source code as attachments or just copy and paste into messag=
-e body? Anyways, I've attached the files for now.
-
---SPt5dJanvuZAgz5LZtyw--
-
---74P1JAyHXVbZj48JJNJz
-Content-Type: application/octet-stream; name="python3-kivy_2.0.0.bb"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="python3-kivy_2.0.0.bb"
-
-IyBSZWNpcGVzIHdlcmUgImdsdWVkIiB0b2dldGhlciB1c2luZyBpbmZvcm1hdGlvbiBmcm9tCiMg
-aHR0cHM6Ly93d3cuemlsb2dpYy5jb20vcG9ydGluZy1raXZ5LWEtbXVsdGktdG91Y2gtdWktZnJh
-bWV3b3JrLXRvLWNvbGlicmktdDIwLwojIGh0dHBzOi8vamVyb21lLmZsZXNjaC5pbmZvL2Jsb2cv
-cG9zdC8xMy9LaXZ5LXJlY2lwZS1mb3ItWW9jdG8KIyBodHRwczovL2Rpc2NvcmRhcHAuY29tL2No
-YW5uZWxzLzQyMzI0OTk4MTM0MDc3ODQ5Ni80OTA0OTM4MTQyODEzMzg4OTAvNzcxMDk3MzI3Mzgw
-NDYzNjE2CiMgICBvICAgYSBndXkgbmFtZWQgb2N0YXZpbyBhbmQgaGlzIHRlYW0gd2VyZSBhYmxl
-IHRvIGdldCBLaXZ5IHJ1bm5pbmcgb24gaW14NgojIEFsc28sIHJlbWVtYmVyIHRvIGNvbXBpbGUg
-U0RMMiB3aXRoIGdsZXMyIG9wdGlvbiBlbmFibGVkCgpTVU1NQVJZID0gIlJlY2lwaWUgdG8gZW1i
-ZWRkZWQgdGhlIFB5dGhvbiBQaVAgUGFja2FnZSBLaXZ5IgpIT01FUEFHRSA9ICJodHRwczovL2tp
-dnkub3JnLyIKTElDRU5TRSA9ICJNSVQiCgpMSUNfRklMRVNfQ0hLU1VNID0gImZpbGU6Ly9MSUNF
-TlNFO21kNT1mMGM4NTFkNjA0OTVjN2UyNzIyNWE4MTllMTc5MjA4YSIKCmluaGVyaXQgc2V0dXB0
-b29sczMKClNSQ19VUkkgPSAiXAogICAgZ2l0Oi8vZ2l0aHViLmNvbS9raXZ5L2tpdnkuZ2l0O3By
-b3RvY29sPWdpdDtcCiAgICAiCgojIEtpdnkncyBzZXR1cCBmaWxlcyBvbmx5IGxvb2sgZm9yIEdM
-RVMgbGlicmFyaWVzIGZvciBhbmRyb2lkLCBpT3MsIFJhc3BiZXJyeSBQaSwgYW5kIG1hbGktYmFz
-ZWQgT1MncwojIFdlIG5lZWQgdG8gcGF0Y2ggdGhlIHNldHVwIGZpbGUgdG8gdGVsbCBLaXZ5IHNl
-dHVwIHRoYXQgb3VyIG1hY2hpbmUgaGFzIEdMRVMgbGliYXJpZXMgaW5zdGFsbGVkIGFzIHdlbGwK
-U1JDX1VSSSArPSAiIFwKICAgIGZpbGU6Ly8wMDAxLWFkZC1zdXBwb3J0LWZvci1nbGVzdjIucGF0
-Y2ggXAoiClNSQ1JFViA9ICJkZWRjYjZiY2FiZTNkOGQ2NzU4ZGNlZTYwN2U4YzMzYjE3NGQ3ODJi
-IgoKUyA9ICIke1dPUktESVJ9L2dpdCIKCgojIFRoZXNlIGFyZSBkaWZmZXJlbnQgc3dpdGNoZXMg
-dXNlZCBpbiBLaXZ5J3Mgc2V0dXAgLi4uLgojVVNFX1dBWUxBTkQgPSAiMSIKI2V4cG9ydCBVU0Vf
-V0FZTEFORAoKIyB0aGVvcmV0aWNhbGx5IHdlIGNhbiB1c2UgWDExIHN3aXRjaCB3aXRoIFdheWxh
-bmQgYmVjYXVzZSBvZiB3ZXN0b24veHdheWxhbmQKVVNFX1gxMT0iMSIKZXhwb3J0IFVTRV9YMTEK
-CiMgVXNlIE9wZW5HTCBFUyAyLjAgbGlicmFyeQpLSVZZX0dSQVBISUNTID0gImdsZXMiCmV4cG9y
-dCBLSVZZX0dSQVBISUNTCgpLSVZZX0NST1NTX1NZU1JPT1Q9IiR7V09SS0RJUn0vcmVjaXBlLXN5
-c3Jvb3QiCmV4cG9ydCBLSVZZX0NST1NTX1NZU1JPT1QKCkRFUEVORFMgKz0gIiBcCiAgICBtZXNh
-IFwKICAgIGdzdHJlYW1lcjEuMCBcCiAgICBnc3RyZWFtZXIxLjAtcHl0aG9uIFwKICAgIGxpYnNk
-bDIgXAogICAgbGlic2RsMi10dGYgXAogICAgbGlic2RsMi1pbWFnZSBcCiAgICBsaWJzZGwyLW1p
-eGVyIFwKICAgIHBhbmdvIFwKICAgIHB5dGhvbjMgXAogICAgcHl0aG9uMy1jeXRob24tbmF0aXZl
-IFwKIgoKUkRFUEVORFNfJHtQTn0gPSAiIFwKICAgIG1lc2EgXAogICAgZ3N0cmVhbWVyMS4wIFwK
-ICAgIGdzdHJlYW1lcjEuMC1weXRob24gXAogICAgbGlic2RsMiBcCiAgICBsaWJzZGwyLXR0ZiBc
-CiAgICBsaWJzZGwyLWltYWdlIFwKICAgIGxpYnNkbDItbWl4ZXIgXAogICAgcGFuZ28gXAogICAg
-cHl0aG9uMyBcCiAgICBweXRob24zLWRvY3V0aWxzIFwKICAgIHB5dGhvbjMtZmNudGwgXAogICAg
-cHl0aG9uMy1pbWFnZSBcCiAgICBweXRob24zLXBpbGxvdyBcCiAgICBweXRob24zLXB5Z21lbnRz
-IFwKIgoKIyByZW1vdmUga2l2eS1leGFtcGxlcwpkb19pbnN0YWxsX2FwcGVuZCgpIHsKICAgIHJt
-IC1yZiAke0R9L3Vzci9zaGFyZQp9Cg==
-
---74P1JAyHXVbZj48JJNJz
-Content-Type: application/octet-stream; name="0001-add-support-for-glesv2.patch"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="0001-add-support-for-glesv2.patch"
-
-ZGlmZiAtLWdpdCBhL3NldHVwLnB5IGIvc2V0dXAucHkKaW5kZXggOWE1MDdjNmM0Li4zZjViNzA4
-NjYgMTAwNjQ0Ci0tLSBhL3NldHVwLnB5CisrKyBiL3NldHVwLnB5CkBAIC02ODAsNyArNjgwLDE4
-IEBAIGRlZiBkZXRlcm1pbmVfZ2xfZmxhZ3MoKToKICAgICAgICAgY19vcHRpb25zWyd1c2VfeDEx
-J10gPSBUcnVlCiAgICAgICAgIGNfb3B0aW9uc1sndXNlX2VnbCddID0gVHJ1ZQogICAgIGVsc2U6
-Ci0gICAgICAgIGZsYWdzWydsaWJyYXJpZXMnXSA9IFsnR0wnXQorICAgICAgICBpZiBjcm9zc19z
-eXNyb290OgorICAgICAgICAgICAgZmxhZ3NbJ2luY2x1ZGVfZGlycyddID0gW2Nyb3NzX3N5c3Jv
-b3QgKyAnL3Vzci9pbmNsdWRlJ10KKyAgICAgICAgICAgIGZsYWdzWydsaWJyYXJ5X2RpcnMnXSA9
-IFtjcm9zc19zeXNyb290ICsgJy91c3IvbGliJ10KKworICAgICAgICBpZiBjX29wdGlvbnNbJ3Vz
-ZV9vcGVuZ2xfZXMyJ106CisgICAgICAgICAgICBwcmludCgidXNpbmcgR0xFU3YyIGxpYnJhcmll
-cyIpCisgICAgICAgICAgICBmbGFnc1snbGlicmFyaWVzJ10gPSBbJ0dMRVN2MiddCisgICAgICAg
-IGVsc2U6CisgICAgICAgICAgICBmbGFnc1snbGlicmFyaWVzJ10gPSBbJ0dMJ10KKworCisgICAg
-cHJpbnQoImNyb3NzX3N5c3Jvb3Q6ICIgKyBzdHIoY3Jvc3Nfc3lzcm9vdCkpCiAgICAgcmV0dXJu
-IGZsYWdzLCBiYXNlX2ZsYWdzCiAKIAo=
-
---74P1JAyHXVbZj48JJNJz
-Content-Type: application/octet-stream; name="kivy-examples_2.0.0.bb"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="kivy-examples_2.0.0.bb"
-
-U1VNTUFSWSA9ICJSZWNpcGllIHRvIGVtYmVkZGVkIHRoZSBQeXRob24gUGlQIFBhY2thZ2UgS2l2
-eSIKSE9NRVBBR0UgPSAiaHR0cHM6Ly9raXZ5Lm9yZy8iCkxJQ0VOU0UgPSAiTUlUIgoKTElDX0ZJ
-TEVTX0NIS1NVTSA9ICJmaWxlOi8vTElDRU5TRTttZDU9ZjBjODUxZDYwNDk1YzdlMjcyMjVhODE5
-ZTE3OTIwOGEiCgpTUkNfVVJJID0gIlwKICAgIGdpdDovL2dpdGh1Yi5jb20va2l2eS9raXZ5Lmdp
-dDtwcm90b2NvbD1naXQ7XAogICAgIgpTUkNSRVYgPSAiZGVkY2I2YmNhYmUzZDhkNjc1OGRjZWU2
-MDdlOGMzM2IxNzRkNzgyYiIKClMgPSAiJHtXT1JLRElSfS9naXQiCgoKZG9fY29tcGlsZSgpIHsK
-fQoKZG9fY29uZmlndXJlKCkgewp9Cgpkb19pbnN0YWxsKCkgewogICAgaW5zdGFsbCAtZCAke0R9
-L3Vzci9zaGFyZS9raXZ5LWV4YW1wbGVzCiAgICBjcCAtciAke1N9L2V4YW1wbGVzICR7RH0vdXNy
-L3NoYXJlL2tpdnktZXhhbXBsZXMKfQoKRklMRVNfJHtQTn0gKz0gIiR7U30vZXhhbXBsZXMi
-
---74P1JAyHXVbZj48JJNJz
-Content-Type: application/octet-stream; name="libsdl2__.bbappend"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="libsdl2__.bbappend"
-
-RklMRVNFWFRSQVBBVEhTX3ByZXBlbmQgOj0gIiR7VEhJU0RJUn0vJHtQTn06IgoKIyBDb25maWd1
-cmUgU0RMMiB3aXRoIG9wZW5nbGVzIGxpYnJhcmllcwpQQUNLQUdFQ09ORklHX0dMID0gImdsZXMy
-Igo=
-
---74P1JAyHXVbZj48JJNJz
-Content-Type: application/octet-stream; name="stacktrace"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="stacktrace"
-
-cm9vdEB2ZXJkaW4taW14OG1wOn4jIGdkYiAtLWFyZ3MgcHl0aG9uMyAvdXNyL3NoYXJlL2tpdnkt
-ZXhhbXBsZXMvZXhhbXBsZXMvM0RyZW5kZXJpbmcvbWFpbi5weQpHTlUgZ2RiIChHREIpIDkuMQpD
-b3B5cmlnaHQgKEMpIDIwMjAgRnJlZSBTb2Z0d2FyZSBGb3VuZGF0aW9uLCBJbmMuCkxpY2Vuc2Ug
-R1BMdjMrOiBHTlUgR1BMIHZlcnNpb24gMyBvciBsYXRlciA8aHR0cDovL2dudS5vcmcvbGljZW5z
-ZXMvZ3BsLmh0bWw+ClRoaXMgaXMgZnJlZSBzb2Z0d2FyZTogeW91IGFyZSBmcmVlIHRvIGNoYW5n
-ZSBhbmQgcmVkaXN0cmlidXRlIGl0LgpUaGVyZSBpcyBOTyBXQVJSQU5UWSwgdG8gdGhlIGV4dGVu
-dCBwZXJtaXR0ZWQgYnkgbGF3LgpUeXBlICJzaG93IGNvcHlpbmciIGFuZCAic2hvdyB3YXJyYW50
-eSIgZm9yIGRldGFpbHMuClRoaXMgR0RCIHdhcyBjb25maWd1cmVkIGFzICJhYXJjaDY0LXRkeC1s
-aW51eCIuClR5cGUgInNob3cgY29uZmlndXJhdGlvbiIgZm9yIGNvbmZpZ3VyYXRpb24gZGV0YWls
-cy4KRm9yIGJ1ZyByZXBvcnRpbmcgaW5zdHJ1Y3Rpb25zLCBwbGVhc2Ugc2VlOgo8aHR0cDovL3d3
-dy5nbnUub3JnL3NvZnR3YXJlL2dkYi9idWdzLz4uCkZpbmQgdGhlIEdEQiBtYW51YWwgYW5kIG90
-aGVyIGRvY3VtZW50YXRpb24gcmVzb3VyY2VzIG9ubGluZSBhdDoKICAgIDxodHRwOi8vd3d3Lmdu
-dS5vcmcvc29mdHdhcmUvZ2RiL2RvY3VtZW50YXRpb24vPi4KCkZvciBoZWxwLCB0eXBlICJoZWxw
-Ii4KVHlwZSAiYXByb3BvcyB3b3JkIiB0byBzZWFyY2ggZm9yIGNvbW1hbmRzIHJlbGF0ZWQgdG8g
-IndvcmQiLi4uClJlYWRpbmcgc3ltYm9scyBmcm9tIHB5dGhvbjMuLi4KKE5vIGRlYnVnZ2luZyBz
-eW1ib2xzIGZvdW5kIGluIHB5dGhvbjMpCihnZGIpIHJ1bgpTdGFydGluZyBwcm9ncmFtOiAvdXNy
-L2Jpbi9weXRob24zIC91c3Ivc2hhcmUva2l2eS1leGFtcGxlcy9leGFtcGxlcy8zRHJlbmRlcmlu
-Zy9tYWluLnB5CltUaHJlYWQgZGVidWdnaW5nIHVzaW5nIGxpYnRocmVhZF9kYiBlbmFibGVkXQpV
-c2luZyBob3N0IGxpYnRocmVhZF9kYiBsaWJyYXJ5ICIvbGliL2xpYnRocmVhZF9kYi5zby4xIi4K
-W0lORk8gICBdIFtMb2dnZXIgICAgICBdIFJlY29yZCBsb2cgaW4gL2hvbWUvcm9vdC8ua2l2eS9s
-b2dzL2tpdnlfMjEtMDctMTZfMi50eHQKW0lORk8gICBdIFtLaXZ5ICAgICAgICBdIHYyLjAuMApb
-SU5GTyAgIF0gW0tpdnkgICAgICAgIF0gSW5zdGFsbGVkIGF0ICIvdXNyL2xpYi9weXRob24zLjgv
-c2l0ZS1wYWNrYWdlcy9raXZ5L19faW5pdF9fLnB5IgpbSU5GTyAgIF0gW1B5dGhvbiAgICAgIF0g
-djMuOC4yIChkZWZhdWx0LCBGZWIgMjUgMjAyMCwgMTA6Mzk6MjgpCltHQ0MgOS4zLjBdCltJTkZP
-ICAgXSBbUHl0aG9uICAgICAgXSBJbnRlcnByZXRlciBhdCAiL3Vzci9iaW4vcHl0aG9uMyIKW0Rl
-dGFjaGluZyBhZnRlciBmb3JrIGZyb20gY2hpbGQgcHJvY2VzcyAxMTExXQpbSU5GTyAgIF0gW0Zh
-Y3RvcnkgICAgIF0gMTg2IHN5bWJvbHMgbG9hZGVkCltERUJVRyAgXSBbQ2FjaGUgICAgICAgXSBy
-ZWdpc3RlciA8a3YubGFuZz4gd2l0aCBsaW1pdD1Ob25lLCB0aW1lb3V0PU5vbmUKW0RFQlVHICBd
-IFtDYWNoZSAgICAgICBdIHJlZ2lzdGVyIDxrdi5pbWFnZT4gd2l0aCBsaW1pdD1Ob25lLCB0aW1l
-b3V0PTYwCltERUJVRyAgXSBbQ2FjaGUgICAgICAgXSByZWdpc3RlciA8a3YuYXRsYXM+IHdpdGgg
-bGltaXQ9Tm9uZSwgdGltZW91dD1Ob25lCltJTkZPICAgXSBbSW1hZ2UgICAgICAgXSBQcm92aWRl
-cnM6IGltZ190ZXgsIGltZ19kZHMsIGltZ19zZGwyLCBpbWdfcGlsIChpbWdfZmZweXBsYXllciBp
-Z25vcmVkKQpbREVCVUcgIF0gW0NhY2hlICAgICAgIF0gcmVnaXN0ZXIgPGt2LnRleHR1cmU+IHdp
-dGggbGltaXQ9MTAwMCwgdGltZW91dD02MApbREVCVUcgIF0gW0NhY2hlICAgICAgIF0gcmVnaXN0
-ZXIgPGt2LnNoYWRlcj4gd2l0aCBsaW1pdD0xMDAwLCB0aW1lb3V0PTM2MDAKW0lORk8gICBdIFtX
-aW5kb3cgICAgICBdIFByb3ZpZGVyOiBzZGwyCltOZXcgVGhyZWFkIDB4ZmZmZmU0M2JmMWUwIChM
-V1AgMTEyMSldCltOZXcgVGhyZWFkIDB4ZmZmZmUzYmJlMWUwIChMV1AgMTEyMildCgpUaHJlYWQg
-MSAicHl0aG9uMyIgcmVjZWl2ZWQgc2lnbmFsIFNJR1NFR1YsIFNlZ21lbnRhdGlvbiBmYXVsdC4K
-MHgwMDAwZmZmZmY3YWZjN2ZjIGluIF9fR0lfX19wdGhyZWFkX211dGV4X2xvY2sgKG11dGV4PTB4
-ZjMpIGF0IHB0aHJlYWRfbXV0ZXhfbG9jay5jOjY3CjY3CXB0aHJlYWRfbXV0ZXhfbG9jay5jOiBO
-byBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5LgooZ2RiKSBiYWNrdHJhY2UKIzAgIDB4MDAwMGZmZmZm
-N2FmYzdmYyBpbiBfX0dJX19fcHRocmVhZF9tdXRleF9sb2NrIChtdXRleD0weGYzKSBhdCBwdGhy
-ZWFkX211dGV4X2xvY2suYzo2NwojMSAgMHgwMDAwZmZmZmY0NDEzMjQ4IGluIHdsX3Byb3h5X2Ny
-ZWF0ZV93cmFwcGVyICgpIGZyb20gL3Vzci9saWIvbGlid2F5bGFuZC1jbGllbnQuc28uMAojMiAg
-MHgwMDAwZmZmZmY0NDdhMGUwIGluID8/ICgpIGZyb20gL3Vzci9saWIvbGliRUdMLnNvLjEKIzMg
-IDB4MDAwMGZmZmZmNDQ2YzdhYyBpbiBlZ2xJbml0aWFsaXplICgpIGZyb20gL3Vzci9saWIvbGli
-RUdMLnNvLjEKIzQgIDB4MDAwMGZmZmZmNjQ0MWVhOCBpbiA/PyAoKSBmcm9tIC91c3IvbGliL2xp
-YlNETDItMi4wLnNvLjAKIzUgIDB4MDAwMGZmZmZmNjQ0Yzg2YyBpbiA/PyAoKSBmcm9tIC91c3Iv
-bGliL2xpYlNETDItMi4wLnNvLjAKIzYgIDB4MDAwMGZmZmZmNjQ0ZTg1YyBpbiA/PyAoKSBmcm9t
-IC91c3IvbGliL2xpYlNETDItMi4wLnNvLjAKIzcgIDB4MDAwMGZmZmZmNWNlNTlhYyBpbiA/PyAo
-KSBmcm9tIC91c3IvbGliL3B5dGhvbjMuOC9zaXRlLXBhY2thZ2VzL2tpdnkvY29yZS93aW5kb3cv
-X3dpbmRvd19zZGwyLmNweXRob24tMzgtYWFyY2g2NC1saW51eC1nbnUuc28KIzggIDB4MDAwMGZm
-ZmZmN2QyM2YxYyBpbiA/PyAoKSBmcm9tIC91c3IvbGliL2xpYnB5dGhvbjMuOC5zby4xLjAKIzkg
-IDB4MDAwMGZmZmZmN2NmNWZjOCBpbiA/PyAoKSBmcm9tIC91c3IvbGliL2xpYnB5dGhvbjMuOC5z
-by4xLjAKIzEwIDB4MDAwMGZmZmZmN2NmN2QzNCBpbiBfUHlFdmFsX0V2YWxGcmFtZURlZmF1bHQg
-KCkgZnJvbSAvdXNyL2xpYi9saWJweXRob24zLjguc28uMS4wCiMxMSAweDAwMDBmZmZmZjdkZDA0
-MzQgaW4gX1B5RXZhbF9FdmFsQ29kZVdpdGhOYW1lICgpIGZyb20gL3Vzci9saWIvbGlicHl0aG9u
-My44LnNvLjEuMAojMTIgMHgwMDAwZmZmZmY3ZDE5YTQ4IGluIF9QeUZ1bmN0aW9uX1ZlY3RvcmNh
-bGwgKCkgZnJvbSAvdXNyL2xpYi9saWJweXRob24zLjguc28uMS4wCiMxMyAweDAwMDBmZmZmZjdj
-ZjVmYzggaW4gPz8gKCkgZnJvbSAvdXNyL2xpYi9saWJweXRob24zLjguc28uMS4wCiMxNCAweDAw
-MDBmZmZmZjdjZjdkMzQgaW4gX1B5RXZhbF9FdmFsRnJhbWVEZWZhdWx0ICgpIGZyb20gL3Vzci9s
-aWIvbGlicHl0aG9uMy44LnNvLjEuMAojMTUgMHgwMDAwZmZmZmY3ZGQwNDM0IGluIF9QeUV2YWxf
-RXZhbENvZGVXaXRoTmFtZSAoKSBmcm9tIC91c3IvbGliL2xpYnB5dGhvbjMuOC5zby4xLjAKIzE2
-IDB4MDAwMGZmZmZmN2QxOWE0OCBpbiBfUHlGdW5jdGlvbl9WZWN0b3JjYWxsICgpIGZyb20gL3Vz
-ci9saWIvbGlicHl0aG9uMy44LnNvLjEuMAojMTcgMHgwMDAwZmZmZmY3ZDFkMmVjIGluID8/ICgp
-IGZyb20gL3Vzci9saWIvbGlicHl0aG9uMy44LnNvLjEuMAojMTggMHgwMDAwZmZmZmY3Y2Y1ZmM4
-IGluID8/ICgpIGZyb20gL3Vzci9saWIvbGlicHl0aG9uMy44LnNvLjEuMAojMTkgMHgwMDAwZmZm
-ZmY3Y2ZhY2I4IGluIF9QeUV2YWxfRXZhbEZyYW1lRGVmYXVsdCAoKSBmcm9tIC91c3IvbGliL2xp
-YnB5dGhvbjMuOC5zby4xLjAKIzIwIDB4MDAwMGZmZmZmN2RkMDQzNCBpbiBfUHlFdmFsX0V2YWxD
-b2RlV2l0aE5hbWUgKCkgZnJvbSAvdXNyL2xpYi9saWJweXRob24zLjguc28uMS4wCiMyMSAweDAw
-MDBmZmZmZjdkMTlhNDggaW4gX1B5RnVuY3Rpb25fVmVjdG9yY2FsbCAoKSBmcm9tIC91c3IvbGli
-L2xpYnB5dGhvbjMuOC5zby4xLjAKIzIyIDB4MDAwMGZmZmZmN2QxYjQ4YyBpbiBfUHlPYmplY3Rf
-RmFzdENhbGxEaWN0ICgpIGZyb20gL3Vzci9saWIvbGlicHl0aG9uMy44LnNvLjEuMAojMjMgMHgw
-MDAwZmZmZmY3ZDFiNWY0IGluIF9QeU9iamVjdF9DYWxsX1ByZXBlbmQgKCkgZnJvbSAvdXNyL2xp
-Yi9saWJweXRob24zLjguc28uMS4wCiMyNCAweDAwMDBmZmZmZjdkNmUxNzQgaW4gPz8gKCkgZnJv
-bSAvdXNyL2xpYi9saWJweXRob24zLjguc28uMS4wCiMyNSAweDAwMDBmZmZmZjdkNmE2NGMgaW4g
-Pz8gKCkgZnJvbSAvdXNyL2xpYi9saWJweXRob24zLjguc28uMS4wCiMyNiAweDAwMDBmZmZmZjdk
-MTljYzAgaW4gX1B5T2JqZWN0X01ha2VUcENhbGwgKCkgZnJvbSAvdXNyL2xpYi9saWJweXRob24z
-Ljguc28uMS4wCiMyNyAweDAwMDBmZmZmZjdjZjYwM2MgaW4gPz8gKCkgZnJvbSAvdXNyL2xpYi9s
-aWJweXRob24zLjguc28uMS4wCiMyOCAweDAwMDBmZmZmZjdjZjk2OGMgaW4gX1B5RXZhbF9FdmFs
-RnJhbWVEZWZhdWx0ICgpIGZyb20gL3Vzci9saWIvbGlicHl0aG9uMy44LnNvLjEuMAojMjkgMHgw
-MDAwZmZmZmY3ZGQwNDM0IGluIF9QeUV2YWxfRXZhbENvZGVXaXRoTmFtZSAoKSBmcm9tIC91c3Iv
-bGliL2xpYnB5dGhvbjMuOC5zby4xLjAKIzMwIDB4MDAwMGZmZmZmN2QxOWE0OCBpbiBfUHlGdW5j
-dGlvbl9WZWN0b3JjYWxsICgpIGZyb20gL3Vzci9saWIvbGlicHl0aG9uMy44LnNvLjEuMAojMzEg
-MHgwMDAwZmZmZmY3Y2Y1ZmM4IGluID8/ICgpIGZyb20gL3Vzci9saWIvbGlicHl0aG9uMy44LnNv
-LjEuMAojMzIgMHgwMDAwZmZmZmY3Y2Y5NjhjIGluIF9QeUV2YWxfRXZhbEZyYW1lRGVmYXVsdCAo
-KSBmcm9tIC91c3IvbGliL2xpYnB5dGhvbjMuOC5zby4xLjAKIzMzIDB4MDAwMGZmZmZmN2RkMDQz
-NCBpbiBfUHlFdmFsX0V2YWxDb2RlV2l0aE5hbWUgKCkgZnJvbSAvdXNyL2xpYi9saWJweXRob24z
-Ljguc28uMS4wCiMzNCAweDAwMDBmZmZmZjdkZDA3ODAgaW4gUHlFdmFsX0V2YWxDb2RlRXggKCkg
-ZnJvbSAvdXNyL2xpYi9saWJweXRob24zLjguc28uMS4wCiMzNSAweDAwMDBmZmZmZjdkZDA3YmMg
-aW4gUHlFdmFsX0V2YWxDb2RlICgpIGZyb20gL3Vzci9saWIvbGlicHl0aG9uMy44LnNvLjEuMAoj
-MzYgMHgwMDAwZmZmZmY3ZGNjZTMwIGluID8/ICgpIGZyb20gL3Vzci9saWIvbGlicHl0aG9uMy44
-LnNvLjEuMAojMzcgMHgwMDAwZmZmZmY3ZDUzNjk0IGluID8/ICgpIGZyb20gL3Vzci9saWIvbGli
-cHl0aG9uMy44LnNvLjEuMAojMzggMHgwMDAwZmZmZmY3ZDFiNjgwIGluIFB5VmVjdG9yY2FsbF9D
-YWxsICgpIGZyb20gL3Vzci9saWIvbGlicHl0aG9uMy44LnNvLjEuMAojMzkgMHgwMDAwZmZmZmY3
-Y2ZiNmY0IGluIF9QeUV2YWxfRXZhbEZyYW1lRGVmYXVsdCAoKSBmcm9tIC91c3IvbGliL2xpYnB5
-dGhvbjMuOC5zby4xLjAKIzQwIDB4MDAwMGZmZmZmN2RkMDQzNCBpbiBfUHlFdmFsX0V2YWxDb2Rl
-V2l0aE5hbWUgKCkgZnJvbSAvdXNyL2xpYi9saWJweXRob24zLjguc28uMS4wCiM0MSAweDAwMDBm
-ZmZmZjdkMTlhNDggaW4gX1B5RnVuY3Rpb25fVmVjdG9yY2FsbCAoKSBmcm9tIC91c3IvbGliL2xp
-YnB5dGhvbjMuOC5zby4xLjAKIzQyIDB4MDAwMGZmZmZmN2NmNWZjOCBpbiA/PyAoKSBmcm9tIC91
-c3IvbGliL2xpYnB5dGhvbjMuOC5zby4xLjAKIzQzIDB4MDAwMGZmZmZmN2NmYWNiOCBpbiBfUHlF
-dmFsX0V2YWxGcmFtZURlZmF1bHQgKCkgZnJvbSAvdXNyL2xpYi9saWJweXRob24zLjguc28uMS4w
-CiM0NCAweDAwMDBmZmZmZjdjZjRmNDQgaW4gPz8gKCkgZnJvbSAvdXNyL2xpYi9saWJweXRob24z
-Ljguc28uMS4wCiM0NSAweDAwMDBmZmZmZjdjZjVmYzggaW4gPz8gKCkgZnJvbSAvdXNyL2xpYi9s
-aWJweXRob24zLjguc28uMS4wCiM0NiAweDAwMDBmZmZmZjdjZjdkMzQgaW4gX1B5RXZhbF9FdmFs
-RnJhbWVEZWZhdWx0ICgpIGZyb20gL3Vzci9saWIvbGlicHl0aG9uMy44LnNvLjEuMAojNDcgMHgw
-MDAwZmZmZmY3Y2Y0ZjQ0IGluID8/ICgpIGZyb20gL3Vzci9saWIvbGlicHl0aG9uMy44LnNvLjEu
-MAojNDggMHgwMDAwZmZmZmY3Y2Y1ZmM4IGluID8/ICgpIGZyb20gL3Vzci9saWIvbGlicHl0aG9u
-My44LnNvLjEuMAojNDkgMHgwMDAwZmZmZmY3Y2Y5NjhjIGluIF9QeUV2YWxfRXZhbEZyYW1lRGVm
-YXVsdCAoKSBmcm9tIC91c3IvbGliL2xpYnB5dGhvbjMuOC5zby4xLjAKIzUwIDB4MDAwMGZmZmZm
-N2NmNGY0NCBpbiA/PyAoKSBmcm9tIC91c3IvbGliL2xpYnB5dGhvbjMuOC5zby4xLjAKIzUxIDB4
-MDAwMGZmZmZmN2NmNWZjOCBpbiA/PyAoKSBmcm9tIC91c3IvbGliL2xpYnB5dGhvbjMuOC5zby4x
-LjAKIzUyIDB4MDAwMGZmZmZmN2NmOTY4YyBpbiBfUHlFdmFsX0V2YWxGcmFtZURlZmF1bHQgKCkg
-ZnJvbSAvdXNyL2xpYi9saWJweXRob24zLjguc28uMS4wCiM1MyAweDAwMDBmZmZmZjdjZjRmNDQg
-aW4gPz8gKCkgZnJvbSAvdXNyL2xpYi9saWJweXRob24zLjguc28uMS4wCiM1NCAweDAwMDBmZmZm
-ZjdkMWEwODAgaW4gPz8gKCkgZnJvbSAvdXNyL2xpYi9saWJweXRob24zLjguc28uMS4wCiM1NSAw
-eDAwMDBmZmZmZjdkMWEzNzQgaW4gX1B5T2JqZWN0X0NhbGxNZXRob2RJZE9iakFyZ3MgKCkgZnJv
-bSAvdXNyL2xpYi9saWJweXRob24zLjguc28uMS4wCiM1NiAweDAwMDBmZmZmZjdkZWZhMTggaW4g
-UHlJbXBvcnRfSW1wb3J0TW9kdWxlTGV2ZWxPYmplY3QgKCkgZnJvbSAvdXNyL2xpYi9saWJweXRo
-b24zLjguc28uMS4wCiM1NyAweDAwMDBmZmZmZjdjZmIxMjQgaW4gX1B5RXZhbF9FdmFsRnJhbWVE
-ZWZhdWx0ICgpIGZyb20gL3Vzci9saWIvbGlicHl0aG9uMy44LnNvLjEuMAojNTggMHgwMDAwZmZm
-ZmY3ZGQwNDM0IGluIF9QeUV2YWxfRXZhbENvZGVXaXRoTmFtZSAoKSBmcm9tIC91c3IvbGliL2xp
-YnB5dGhvbjMuOC5zby4xLjAKIzU5IDB4MDAwMGZmZmZmN2RkMDc4MCBpbiBQeUV2YWxfRXZhbENv
-ZGVFeCAoKSBmcm9tIC91c3IvbGliL2xpYnB5dGhvbjMuOC5zby4xLjAKIzYwIDB4MDAwMGZmZmZm
-N2RkMDdiYyBpbiBQeUV2YWxfRXZhbENvZGUgKCkgZnJvbSAvdXNyL2xpYi9saWJweXRob24zLjgu
-c28uMS4wCiM2MSAweDAwMDBmZmZmZjdlMDQ3NTAgaW4gPz8gKCkgZnJvbSAvdXNyL2xpYi9saWJw
-eXRob24zLjguc28uMS4wCiM2MiAweDAwMDBmZmZmZjdlMDQ4MzQgaW4gPz8gKCkgZnJvbSAvdXNy
-L2xpYi9saWJweXRob24zLjguc28uMS4wCiM2MyAweDAwMDBmZmZmZjdlMDcxZDggaW4gUHlSdW5f
-RmlsZUV4RmxhZ3MgKCkgZnJvbSAvdXNyL2xpYi9saWJweXRob24zLjguc28uMS4wCiM2NCAweDAw
-MDBmZmZmZjdlMDczNjQgaW4gUHlSdW5fU2ltcGxlRmlsZUV4RmxhZ3MgKCkgZnJvbSAvdXNyL2xp
-Yi9saWJweXRob24zLjguc28uMS4wCiM2NSAweDAwMDBmZmZmZjdlMjAxMWMgaW4gUHlfUnVuTWFp
-biAoKSBmcm9tIC91c3IvbGliL2xpYnB5dGhvbjMuOC5zby4xLjAKIzY2IDB4MDAwMGZmZmZmN2Uy
-MDVhYyBpbiBQeV9CeXRlc01haW4gKCkgZnJvbSAvdXNyL2xpYi9saWJweXRob24zLjguc28uMS4w
-CiM2NyAweDAwMDBmZmZmZjdiNDUxMTAgaW4gX19saWJjX3N0YXJ0X21haW4gKG1haW49MHhhYWFh
-YWFhYWE4ZTAgPG1haW4+LCBhcmdjPTIsIGFyZ3Y9MHhmZmZmZmZmZmZiOTgsIGluaXQ9PG9wdGlt
-aXplZCBvdXQ+LCBmaW5pPTxvcHRpbWl6ZWQgb3V0PiwgcnRsZF9maW5pPTxvcHRpbWl6ZWQgb3V0
-Piwgc3RhY2tfZW5kPTxvcHRpbWl6ZWQgb3V0PikgYXQgLi4vY3N1L2xpYmMtc3RhcnQuYzozMDgK
-IzY4IDB4MDAwMGFhYWFhYWFhYTkxOCBpbiBfc3RhcnQgKCkKQmFja3RyYWNlIHN0b3BwZWQ6IHBy
-ZXZpb3VzIGZyYW1lIGlkZW50aWNhbCB0byB0aGlzIGZyYW1lIChjb3JydXB0IHN0YWNrPykK
-
---74P1JAyHXVbZj48JJNJz--
