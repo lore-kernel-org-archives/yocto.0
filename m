@@ -1,85 +1,113 @@
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
- by mx.groups.io with SMTP id smtpd.web08.15962.1626621457048217482
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+ by mx.groups.io with SMTP id smtpd.web11.20534.1626649647313243655
  for <yocto@lists.yoctoproject.org>;
- Sun, 18 Jul 2021 08:17:37 -0700
+ Sun, 18 Jul 2021 16:07:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=E7/KnM/2;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.54, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f54.google.com with SMTP id f10-20020a05600c4e8ab029023e8d74d693so3855508wmq.3
-        for <yocto@lists.yoctoproject.org>; Sun, 18 Jul 2021 08:17:36 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=UpiSdriu;
+ spf=pass (domain: gmail.com, ip: 209.85.216.51, mailfrom: ticotimo@gmail.com)
+Received: by mail-pj1-f51.google.com with SMTP id o3-20020a17090a6783b0290173ce472b8aso12966275pjj.2
+        for <yocto@lists.yoctoproject.org>; Sun, 18 Jul 2021 16:07:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=MVf6PjqRjsj/3bT30ctmWbEYy9kx2n4+AU0ORAxejhs=;
-        b=E7/KnM/2Yjr+8/3E1gt5Kdg0V67jE+6FCj6N4YLtrayKaH0hI0fUVUCCCKEdkgsz1R
-         TyjZiZhYp0HSu99PaNkkKRkB3WAQP4F/KZtE3wcwzyaF6fPK/7Doy0lvPL4M37lknKgy
-         Tsxp25H1v1GUs5+Loo0gDBXL10ukadiwIcEWA=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=743mwMP4ZpiPESgRFG20N+X5W1w5eT3tK2xkSEF4els=;
+        b=UpiSdriuJ6jcmrrf1ZAb8ax/H0cDLByIejIC1tA4LJmnsjo2QfgaD0QwJOLbJjMRFj
+         jky2MY1R22NKo5+n547McFtSdLieou9GJcibTeUe462L7s2I7DX5JC5yerTQzKyKqV3T
+         n92hxkZByJZ1nZJoul37bb9csmQZCbbebn2ZOyvTrZ51tuPf/VQ/UE0vxpOUUl8XfETs
+         LbjOyMOu3IBM8WlH+9DlP+wmVZMCgnAYpBiL6cB4geSB4JYF1P8BXT29tNXQiFUIK3j6
+         W+EY+IB/UsPJYaX0OZfTHdWELnE+vrYbSfPdcSerYNMU1zyNeIww3P31ahsU/M95fMNL
+         02fQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=MVf6PjqRjsj/3bT30ctmWbEYy9kx2n4+AU0ORAxejhs=;
-        b=ROfM5efzocLf6CM4t5ojxJH6aDsYvXtjQU+PsS1v28VRg7dyx/6Jazm8eb6aFSoNts
-         UvfKCBgfPAbn8TpUaPMExexaLL6ugKPqru1EqlmE5kAIVGtnDjD9dS7sK2aQoKd/+lQ8
-         JUMW7Bf/m6viChN++h5pq3iuiQN+cNbioyZNIImI0s9OBlLdiXbehLzvjNzCLbPqV6+8
-         s4dzQdjuJ8ajFR1H2RN8pumSoX3dxib23dMiw8RX7uad2NBpahaO8sNIu8wcPufsGB0x
-         Jj9p4h7uTdY13v9uZyST6GozilgwkqItmE/vzCYcLL3qKmJkxoKty78yyQEPqJvj3Zso
-         S2eA==
-X-Gm-Message-State: AOAM531t7XJGoQE2uoAt22ocxTFLWXPcJDLzrVOsspf2IkRBDeFIjMee
-	xIcvWmNNQAyfY9W8LeN2hG/4OA==
-X-Google-Smtp-Source: ABdhPJyQG0z8YVjWgBgc7cE6Mqp5nP72n1h2ZKAC3hgO1YuvaPsXq2kGs+8bWaTRKf8UCdGWg4n+VQ==
-X-Received: by 2002:a7b:c1cd:: with SMTP id a13mr21285249wmj.94.1626621455485;
-        Sun, 18 Jul 2021 08:17:35 -0700 (PDT)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from ?IPv6:2001:8b0:aba:5f3c:5ff5:ebf1:b0ff:a94a? ([2001:8b0:aba:5f3c:5ff5:ebf1:b0ff:a94a])
-        by smtp.gmail.com with ESMTPSA id f2sm16813240wrq.69.2021.07.18.08.17.35
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=743mwMP4ZpiPESgRFG20N+X5W1w5eT3tK2xkSEF4els=;
+        b=BJrY0QsQs/SHObO4pqeBHVgMASbPJtanlgciw/Ejn/GYSz+z3WzH1OGhsakctnZbWh
+         OBdNImCclwwZjeKGq4w2Rf9sUhwz8JQ7uxdx3lir+PzTLERbC5Cf/we4SmOhBwdi6zvl
+         dFIiozmomye0+RYezbNhjnlqm8FFKIik4M7YKPN88v2xeqSYsbwlMNgaTdEcucTw87Hl
+         7unmWgrXRkwv83AUSM8J2F5ZwnxlhSWOEYjOjp0ZUabDDEmdbx+TaCI5xK8zN/WW6CL/
+         7byc9CZmj7KNGk7rU9IcJBOkZgzkF945UwChklsxO8vkhXky8ukMEGqQmFaidaevvWBB
+         awnQ==
+X-Gm-Message-State: AOAM531UxH9+e5wt7Xdgkmd1L5CP8Zoc8QUcroSqpwAxhBfr5q6Dc9Ip
+	Pzkn/nqt4s+e5aYZy3VQ6SacHabk6FQG8Q==
+X-Google-Smtp-Source: ABdhPJwD/XMfzjAvCl5rcu7SaNPl0UuotvvYrLsQ2nba30kC665zSYpVXyj+3VRbfHC/JKNrrK/QcQ==
+X-Received: by 2002:a17:903:31d3:b029:ee:bccd:e686 with SMTP id v19-20020a17090331d3b02900eebccde686mr17269937ple.1.1626649646369;
+        Sun, 18 Jul 2021 16:07:26 -0700 (PDT)
+Return-Path: <ticotimo@gmail.com>
+Received: from sid.hsd1.or.comcast.net ([2601:1c0:6000:1830:7cf5:d4d2:8539:2774])
+        by smtp.gmail.com with ESMTPSA id t2sm17440589pjq.0.2021.07.18.16.07.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Jul 2021 08:17:35 -0700 (PDT)
-Message-ID: <0d6d45ddbf0c5a6e74f0ee3a465f591347fdd40c.camel@linuxfoundation.org>
-Subject: Re: [yocto] Exception: NotADirectoryError building Hardknott
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: Simon Haines <simon.haines@scalardata.com>, yocto@lists.yoctoproject.org
-Date: Sun, 18 Jul 2021 16:17:31 +0100
-In-Reply-To: <CACrbFVdaFGVGaSw0+WHSxb4Z05khof1y67wc_XDOWEzPqXLQNQ@mail.gmail.com>
-References: 
-	<CACrbFVdaFGVGaSw0+WHSxb4Z05khof1y67wc_XDOWEzPqXLQNQ@mail.gmail.com>
-User-Agent: Evolution 3.40.0-1 
+        Sun, 18 Jul 2021 16:07:26 -0700 (PDT)
+From: "Tim Orling" <ticotimo@gmail.com>
+X-Google-Original-From: Tim Orling <timothy.t.orling@intel.com>
+To: yocto@lists.yoctoproject.org
+Cc: mhalstead@linuxfoundation.org,
+	Tim Orling <timothy.t.orling@intel.com>
+Subject: [layerindex-web][PATCH 00/15] Upgrade to Django 3.2.5 LTS and Celery 5
+Date: Sun, 18 Jul 2021 16:07:05 -0700
+Message-Id: <cover.1626647881.git.timothy.t.orling@intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Sun, 2021-07-18 at 14:01 +1000, Simon Haines wrote:
-> I can't seem to find any information about this error, but I keep getting variations of this when building
-> hardknott:
-> 
-> Exception: NotADirectoryError: [Errno 20] Not a directory: '/home/yocto/rpi64/build/tmp/sysroots-
-> components/x86_64/gmp-native/usr/lib/pkgconfig/gmpxx.pc' -> '/home/yocto/rpi64/build/tmp/work/x86_64-
-> linux/libmpc-native/1.2.1-r0/recipe-sysroot-native/usr/lib/pkgconfig/gmpxx.pc'
-> 
-> I'm building in a container, and I've tried building the tip of the hardknott branch, the hardknott-3.3.1
-> tag, and the release tarball (
-> http://downloads.yoctoproject.org/releases/yocto/yocto-3.3/poky-hardknott-25.0.0.tar.bz2). All fail with the
-> NotADirectory exception in different recipes. I've attached logs from building the hardknott-3.3.1 tag and
-> from the release tarball.
-> 
-> The additional layers I'm using are (cloned from the tip of their respective hardknott branches):
-> meta-openembedded
-> meta-raspberrypi
-> meta-security
-> 
-> It must be something with my setup because I've searched everywhere for this issue and I can't find
-> anything. Does this sound familiar to anyone?
+The current code base uses Django 2.2.x which will go out of extended
+support in April 2022, but also holds us back from updating a number of
+dependencies.
 
-How is your container filesystem setup/configured? It looks like the filesystem
-isn't liking the build trying to create hardlinked files. It is odd it would
-get as far as gmp-native before having problems. That file definitely isn't a
-directory too, it is an odd error.
+Update to the current Django 3.2.5 LTS and also the latest Celery 5.1.2.
+Celery 4 has not had any commits since 2020 and is unlikely to be
+getting much more attention from the developers.
 
-I'd suspect it is something like the copy-on-write mode of the filesystem
-having issues.
+While we are at it, upgrade all of our dependencies to the latest
+versions.
 
-Cheers,
+The following changes since commit 2314fb2811bc3753d9dd4459747d8d30369321ad:
 
-Richard
+  Add SPDX license headers to layerindex-web source files (2021-04-21 08:22:51 +1200)
+
+are available in the Git repository at:
+
+  git://github.com/moto-timo/layerindex-web timo/django-3.2.5
+  https://github.com/moto-timo/layerindex-web/tree/timo/django-3.2.5
+
+Tim Orling (15):
+  dockersetup.py: fix EMAIL_USE_SSL/TLS
+  requirements.txt: fix range check
+  Dockerfile: cleanup, install python3-wheel
+  dockersetup.py: letsencrypt 2048 bit rsa
+  layerindex/*: make all shebangs python3
+  requirements.txt: bump to Django 3.0
+  Updates for Django 3.0
+  requirements.txt: bump to Django 3.1
+  docker-compose: bump mariadb to 10.3
+  requirements.txt: update all to latest
+  about.html: update contributors
+  requirements.txt: bump to Django 3.2 LTS
+  settings: set DEFAULT_AUTO_FIELD
+  docker-compose: fix celery
+  README.devel: update versions
+
+ Dockerfile                                    |  4 +-
+ README.devel                                  |  6 +--
+ docker-compose.yml                            |  4 +-
+ docker/settings.py                            |  6 ++-
+ dockersetup.py                                |  6 +--
+ layerindex/bulkchange.py                      |  2 +-
+ .../0045_layerbranch_classicrecipe.py         | 19 ++++++++
+ layerindex/recipedesc.py                      |  2 +-
+ layerindex/tools/import_classic_wiki.py       |  2 +-
+ layerindex/tools/import_wiki_layers.py        |  2 +-
+ layerindex/tools/site_name.py                 |  2 +-
+ layerindex/tools/update_classic_status.py     |  2 +-
+ layerindex/update_layer.py                    |  2 +-
+ requirements.txt                              | 48 +++++++++----------
+ settings.py                                   |  6 ++-
+ templates/base.html                           |  2 +-
+ templates/layerindex/about.html               |  2 +
+ 17 files changed, 72 insertions(+), 45 deletions(-)
+ create mode 100644 layerindex/migrations/0045_layerbranch_classicrecipe.py
+
+-- 
+2.32.0
 
