@@ -1,78 +1,80 @@
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
- by mx.groups.io with SMTP id smtpd.web09.20609.1626649668599169460
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+ by mx.groups.io with SMTP id smtpd.web09.20610.1626649671185207758
  for <yocto@lists.yoctoproject.org>;
- Sun, 18 Jul 2021 16:07:48 -0700
+ Sun, 18 Jul 2021 16:07:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=MLeiqidE;
- spf=pass (domain: gmail.com, ip: 209.85.216.43, mailfrom: ticotimo@gmail.com)
-Received: by mail-pj1-f43.google.com with SMTP id g4-20020a17090ace84b029017554809f35so12862013pju.5
-        for <yocto@lists.yoctoproject.org>; Sun, 18 Jul 2021 16:07:48 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=t3naJ3ey;
+ spf=pass (domain: gmail.com, ip: 209.85.216.47, mailfrom: ticotimo@gmail.com)
+Received: by mail-pj1-f47.google.com with SMTP id o3-20020a17090a6783b0290173ce472b8aso12966902pjj.2
+        for <yocto@lists.yoctoproject.org>; Sun, 18 Jul 2021 16:07:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Nzyhh+hRTq8pO4+hwT9lZeo2F7FUXyHf8wzuvtKoiqk=;
-        b=MLeiqidEwUkm+ygmgiB4pBKP4z5i3iQ52ih4F7mG4YxYJMk5MQSstpRwRnEp+V+F74
-         CpRBXlZpThnYRRKIe8UO6fhKV/QI4xT8//ageMRrO5E7ZeTtbF9NArSkFvYYenc6jM0y
-         tXqqy6A6+7xMKa9agFStyQKAq7efnMl2abX/IHE8M/N3lXPrPj8wsqZuFZd6ZFafb7n2
-         oXzcAaBbFWjenm0X9RojPPOpYfBQ3o5WEydrzG0tQF2Nr2kge0QhExGqqR1H45K4HbKC
-         e+AxscAIGdD4RimmP3yFOg69CmIgUcxo/QyPnSZgNp6wY39FxJUMXUNvTYT/VGV0Dykb
-         ld9Q==
+        bh=ZKUi+GaQk3+EijblHtqpb84DR+oHOrpq0LCe/wogkfs=;
+        b=t3naJ3ey5dEBrzTXG9vDemyjv+4W41t5HXaIbj0LDfx7c+P7T6scdOH7P4MOpAQjE5
+         wJszU9+Ynvfg3YEOzwK5ssFGERZk9rgWMm4nQdbNmhRnXsje/w4z+uLt0aab8BiiiPlZ
+         FpEQoCx8N0tjNrD7kuku3R49T6tDkcPKh+nLMWfJZhvOKhpwNfDGOYqabXzhC6JfoHc3
+         c0prgPD4qYocW4+njh6ERfA2aFBsPR26WKX0IprPUKmMPMnAqRx92ZcOvgBTXNRVOQkd
+         7z4ta9DP7L01FSqFPBfSURYUWPI8zZthr7I24Y0uj5sMCwMm4beakVftNK7M6RFOVUEZ
+         5iFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Nzyhh+hRTq8pO4+hwT9lZeo2F7FUXyHf8wzuvtKoiqk=;
-        b=QRF179MA91PeW5el+aGLbL5VNipNRIxoXdw3FvMwFRn4WsODeQjtII5W4+4LNt0JXj
-         TF934NTbgIocr4otwQ4I9VNeEeLfl05GGopogOzerihYz6cxAQIIujcmmRXkUHKDkCTA
-         BKPDhIw5n5/fNW9vFqQu2KhuhMRl4Q623lv11h+2F5K20+yy0Is5Cgp5vt4RGKPDDdSA
-         gN+w7v0AiNKqAdj4+7aQyjnW0cCalvIHsYmD+CQsePMMQl5DHAG9vl9blgozpywPOZDV
-         hoBT4bPHjiErOZ35EWnLTgSgEEgHa9VHCYCLR2GIcBmk4QrXNdQPi0Yluu5J+Nx6xFFd
-         NqEA==
-X-Gm-Message-State: AOAM530BYFlv6g/iI67cCqQbch90GFAhb3hQ9dbQMuAx2OkGdTxUrPt8
-	RqVRORwnRwiZcoSMHP3FmHse2Bqb8BQElg==
-X-Google-Smtp-Source: ABdhPJyQ/aa1s2QT++PmZX4cgyIw7zvlCnnLjHVMhqEIXEAMkrS62B82gitC4Hhe3tW0nShAYmBZLw==
-X-Received: by 2002:a17:90a:5d06:: with SMTP id s6mr21798848pji.197.1626649667979;
-        Sun, 18 Jul 2021 16:07:47 -0700 (PDT)
+        bh=ZKUi+GaQk3+EijblHtqpb84DR+oHOrpq0LCe/wogkfs=;
+        b=lMPLJG2tPH8L2KLb4mf9mAXTwMEufy2Jqjpq2t7qW8dqs5lxlWmxT78tIFJLIijocf
+         X3NCwLpt3U9k1twX2b4NHviRk4LxQnE8QZYFXnb2q44t5ZcSe+roMpVA001iZ0VXahgE
+         zlf6QGDbyXWzdo72pLcSqhIQZTduoFDUz76amEnSLnYPAK5H/kAnPVR8RO9BJxjzkHvM
+         H0G/emBzLnXcfuJO/syc9X7A7mDYUwu3HDGDeOcfiPf66MlbKprc1HOTJjUUIy1BvvLG
+         qwgTtAdBvmcl9JrneDuScdL5JkspBVEQynAOsva9/NE5Gs9SBlEZqL+QMqHVHJK6cg0k
+         +x6A==
+X-Gm-Message-State: AOAM530HLsktC1eRl6o8LLGmJZ4AMI2LkDOgfhdz4DdwhTbW+tkgqWYD
+	i5IdVrlFjzYnFvwyx0pvl0ZziWCWLsb6Ow==
+X-Google-Smtp-Source: ABdhPJzFbg8m7J3WzQnR6uCOYVMKWSnFYjFfPbt2/O+x97apmr3Kox3MpHNAGO5VXNk3yskk8rJ3yg==
+X-Received: by 2002:a17:90b:1041:: with SMTP id gq1mr26697889pjb.222.1626649670554;
+        Sun, 18 Jul 2021 16:07:50 -0700 (PDT)
 Return-Path: <ticotimo@gmail.com>
 Received: from sid.hsd1.or.comcast.net ([2601:1c0:6000:1830:7cf5:d4d2:8539:2774])
-        by smtp.gmail.com with ESMTPSA id t2sm17440589pjq.0.2021.07.18.16.07.47
+        by smtp.gmail.com with ESMTPSA id t2sm17440589pjq.0.2021.07.18.16.07.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Jul 2021 16:07:47 -0700 (PDT)
+        Sun, 18 Jul 2021 16:07:50 -0700 (PDT)
 From: "Tim Orling" <ticotimo@gmail.com>
 X-Google-Original-From: Tim Orling <timothy.t.orling@intel.com>
 To: yocto@lists.yoctoproject.org
 Cc: mhalstead@linuxfoundation.org,
 	Tim Orling <timothy.t.orling@intel.com>
-Subject: [layerindex-web][PATCH 08/15] requirements.txt: bump to Django 3.1
-Date: Sun, 18 Jul 2021 16:07:13 -0700
-Message-Id: <0ef56b3b68ffa7172af650556f1ae3cda3d9abc1.1626647881.git.timothy.t.orling@intel.com>
+Subject: [layerindex-web][PATCH 09/15] docker-compose: bump mariadb to 10.3
+Date: Sun, 18 Jul 2021 16:07:14 -0700
+Message-Id: <29aa9d6b5e136817bf97b1586f574f78298c5c2b.1626647881.git.timothy.t.orling@intel.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <cover.1626647881.git.timothy.t.orling@intel.com>
 References: <cover.1626647881.git.timothy.t.orling@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Another incremental upgrade towards 3.2 LTS
+10.2 was based on Ubuntu bionic 18.04,
+bumping to 10.3 as it is the first release
+on Ubuntu focal 20.04
 
 Signed-off-by: Tim Orling <timothy.t.orling@intel.com>
 ---
- requirements.txt | 2 +-
+ docker-compose.yml | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/requirements.txt b/requirements.txt
-index 895994b..865960c 100644
---- a/requirements.txt
-+++ b/requirements.txt
-@@ -3,7 +3,7 @@ beautifulsoup4==4.9.3
- billiard==3.6.1.0
- celery==4.3.0
- confusable-homoglyphs==3.2.0
--Django>=3.0,<3.1
-+Django>=3.1,<3.2
- django-appconf==1.0.4
- django-axes==5.13.1
- django-bootstrap-pagination==1.7.1
+diff --git a/docker-compose.yml b/docker-compose.yml
+index 44260b6..3e16e95 100644
+--- a/docker-compose.yml
++++ b/docker-compose.yml
+@@ -1,7 +1,7 @@
+ version: '3'
+ services:
+   layersdb:
+-    image: mariadb:10.2
++    image: mariadb:10.3
+     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --wait_timeout=28800 --max_allowed_packet=128M
+     environment:
+      - "MYSQL_DATABASE=layersdb"
 -- 
 2.32.0
 
