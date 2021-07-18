@@ -1,81 +1,79 @@
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
- by mx.groups.io with SMTP id smtpd.web11.20544.1626649678368659448
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+ by mx.groups.io with SMTP id smtpd.web08.20859.1626649681153484305
  for <yocto@lists.yoctoproject.org>;
- Sun, 18 Jul 2021 16:07:58 -0700
+ Sun, 18 Jul 2021 16:08:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=pCBeeh1k;
- spf=pass (domain: gmail.com, ip: 209.85.215.176, mailfrom: ticotimo@gmail.com)
-Received: by mail-pg1-f176.google.com with SMTP id y17so17124261pgf.12
-        for <yocto@lists.yoctoproject.org>; Sun, 18 Jul 2021 16:07:58 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=TVDSc+/d;
+ spf=pass (domain: gmail.com, ip: 209.85.210.174, mailfrom: ticotimo@gmail.com)
+Received: by mail-pf1-f174.google.com with SMTP id a127so14785066pfa.10
+        for <yocto@lists.yoctoproject.org>; Sun, 18 Jul 2021 16:08:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=zfAr3WBnb3ihkMCqwRMtuyfBIbQaL7wrWQAFMZndyIU=;
-        b=pCBeeh1kdoMWd+fNLQq2eDGUylu07rAatkWdl3oycg+cgT+rxoaMKJaPP4SmNoPNRV
-         Khyv9ZZwkgXzz8kSMaakyW31D2okzIC0Ia5DV7n/yBcKTGah5fxSmCds8viPgUxlBguW
-         /9ajnJg7RwWk9Rg0oWEmCPGQoJBz0i8qrx+Ni2CL8Ae1MZF/F6+w65l6uMDnqe2zbmOv
-         HpEygO0LbWX9Qx9dMsK+mn2QI1Z8pLdcELX+bdXG9HUy5tDxfCbcBhSwlj8RpMKRZnG2
-         h/IKz8Fh+9MM3FJpsCMnJz3zqDgrubyCbco2PjLiI6YsRijeNyxyq5wx8axox3c0VxlB
-         SxFw==
+        bh=T07R2uwWravXj+rRXjfx99KBDHLKAMoe2A/3W6y3Gh4=;
+        b=TVDSc+/dfPQbps6opQ4oQ5zP9kz+6FeF3G1AORmjslYasaYEZ8l33aBNTqkJ6svYIm
+         9a4grgbc09HgeDThPmm4gHb/Y2pYWcVVgT/9Y1XMgzYmY2ytjDxKKK7X8aJQpqoE2rDi
+         xd/tT9TGTJf5A4RjVciB8iwQcpXeJx/jVRulwTKAC5KoMuEmS8Pw7zIrOtE1qVBSwEj1
+         hzwZ3taKg3+DK8+6zpvdzYGVg1q+h/V1wNmcWr/VWCBaEdzi72QxfCSLnLOwukrNos17
+         bKaISv82nfhF4GuQ1w5OsCnyW/YK2SP4aAbiVcqbsnmEZs888jLHVYAUwVjGF/vXpaqN
+         JEvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=zfAr3WBnb3ihkMCqwRMtuyfBIbQaL7wrWQAFMZndyIU=;
-        b=RjPxhEy0Rrz3L3qJL5oSTwc2ePE6GQ0tAXVWTeINJj8W20fuggDE9l5Joq7ATrRKGA
-         WnY02IKI5iZQiEiWy4XPJ2Yh4A2zqnwKpN2f7KI+3RQ+GTqtWeM1Yrt+zlzZiylRZG7F
-         cynIqt5mLjAL2bCYMlbHmW/G0N1mkXVDqeAZvpW5MCOMMqJ4/ierZgZe9F/mhEXjRhfV
-         /hkokNKQ4uHErD7LXkbXRmVPbSGIKy5xtuotU61JhI6bVw/sr8YYpuKl382nfqd1laTo
-         W0Q0Ol+Pfa6W0HQRTA2Dh2L9TXkiMxNRda2hwpazkV/Zc7cY7ygb9TI2aaQRqyUW1huY
-         scmg==
-X-Gm-Message-State: AOAM533mZHwNdbjgW0xQfmzC1UY3DlTrSS92nk3p6d3OwtKVMLSf8Vt4
-	wwwkmTFwFhCDu1j2Ih2ZbfclPfJceI0MfA==
-X-Google-Smtp-Source: ABdhPJz9E5obfIE02fu4LNU8cSQf8tCposenaFf1uVgtouKIjvCQZqFRO5eQZeWgYEAJuF5Or/hDGw==
-X-Received: by 2002:a63:381:: with SMTP id 123mr22551228pgd.395.1626649677830;
-        Sun, 18 Jul 2021 16:07:57 -0700 (PDT)
+        bh=T07R2uwWravXj+rRXjfx99KBDHLKAMoe2A/3W6y3Gh4=;
+        b=J8KxERt8SM9s+YR4U0Eiu5dJJL9CyikwTVG36JZPD8jVo350YgAdMVBAOGI15ZzceW
+         30PHG3ZDbVP6kD46oA1E8OfpiBxnmfvffSA7VI8UXrRmzJno0z/xQjRngwnXC+4ldVlv
+         nJexOKfITQQM4+KbDsGB/cDuUMsm95cOA4QAEjuRwgWFb3q/eGH47ZPIlQqrdRLLDh+6
+         TaDPeJ1kJj23Cy3IcrBUQuRQy94L+v5XDxSyweIV8i2wmyv1tztL/ycUsRQDfEXQFk4t
+         +OsMCWCkWeMawHOUlzec/x/LrMXYtkaacjXUiyouqwkXiAh28x4sykhuWDlGBaNsCHea
+         jFRA==
+X-Gm-Message-State: AOAM531HSxCw4/K3SyceONRBCqwlIKmD2ovO1qAGwgN9PIrJMcZZjgAC
+	TCZe3CQV+1lx/++5QMw+mLs6LBmHp4QeTw==
+X-Google-Smtp-Source: ABdhPJygLbg8mbRfS0JjgU8cuc8DAfWTW01ojkZFmtKJ8cgrZu2aSprVB9IqsLyRKD/Wtc0h7SJF/g==
+X-Received: by 2002:a63:2d82:: with SMTP id t124mr22669830pgt.123.1626649680449;
+        Sun, 18 Jul 2021 16:08:00 -0700 (PDT)
 Return-Path: <ticotimo@gmail.com>
 Received: from sid.hsd1.or.comcast.net ([2601:1c0:6000:1830:7cf5:d4d2:8539:2774])
-        by smtp.gmail.com with ESMTPSA id t2sm17440589pjq.0.2021.07.18.16.07.57
+        by smtp.gmail.com with ESMTPSA id t2sm17440589pjq.0.2021.07.18.16.07.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Jul 2021 16:07:57 -0700 (PDT)
+        Sun, 18 Jul 2021 16:08:00 -0700 (PDT)
 From: "Tim Orling" <ticotimo@gmail.com>
 X-Google-Original-From: Tim Orling <timothy.t.orling@intel.com>
 To: yocto@lists.yoctoproject.org
 Cc: mhalstead@linuxfoundation.org,
 	Tim Orling <timothy.t.orling@intel.com>
-Subject: [layerindex-web][PATCH 11/15] about.html: update contributors
-Date: Sun, 18 Jul 2021 16:07:16 -0700
-Message-Id: <52b5d31caa15c4992a3b7b2a7a8c1a8ce748a4f7.1626647881.git.timothy.t.orling@intel.com>
+Subject: [layerindex-web][PATCH 12/15] requirements.txt: bump to Django 3.2 LTS
+Date: Sun, 18 Jul 2021 16:07:17 -0700
+Message-Id: <0057b27cb521fe3ad091d4d5138c7c7a43a1161a.1626647881.git.timothy.t.orling@intel.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <cover.1626647881.git.timothy.t.orling@intel.com>
 References: <cover.1626647881.git.timothy.t.orling@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-* Add
-  - Amber Elliot
-  - Tim Orling
+Upgrade to the latest Django 3.2.x LTS for
+extended support up until April 2024.
 
 Signed-off-by: Tim Orling <timothy.t.orling@intel.com>
 ---
- templates/layerindex/about.html | 2 ++
- 1 file changed, 2 insertions(+)
+ requirements.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/templates/layerindex/about.html b/templates/layerindex/about.html
-index b6b461a..f79bf22 100644
---- a/templates/layerindex/about.html
-+++ b/templates/layerindex/about.html
-@@ -51,6 +51,8 @@
- <li>Marius Avram</li>
- <li>Saul Wold</li>
- <li>Aníbal Limón</li>
-+<li>Amber Elliot</li>
-+<li>Tim Orling</li>
- </ul>
- 
- <p>The code is Open Source and can be found on <a href="http://git.yoctoproject.org/cgit/cgit.cgi/layerindex-web/">git.yoctoproject.org</a>. Patches welcome!</p>
+diff --git a/requirements.txt b/requirements.txt
+index 7704ac0..41a0b1e 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -3,7 +3,7 @@ beautifulsoup4==4.9.3
+ billiard==3.6.4.0
+ celery==5.1.2
+ confusable-homoglyphs==3.2.0
+-Django>=3.1,<3.2
++Django>=3.2,<3.3
+ django-appconf==1.0.4
+ django-axes==5.20.0
+ django-bootstrap-pagination==1.7.1
 -- 
 2.32.0
 
