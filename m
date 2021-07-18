@@ -1,117 +1,81 @@
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
- by mx.groups.io with SMTP id smtpd.web08.20856.1626649675312214044
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+ by mx.groups.io with SMTP id smtpd.web11.20544.1626649678368659448
  for <yocto@lists.yoctoproject.org>;
- Sun, 18 Jul 2021 16:07:55 -0700
+ Sun, 18 Jul 2021 16:07:58 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=BhXM4a0T;
- spf=pass (domain: gmail.com, ip: 209.85.215.172, mailfrom: ticotimo@gmail.com)
-Received: by mail-pg1-f172.google.com with SMTP id o4so12549037pgs.6
-        for <yocto@lists.yoctoproject.org>; Sun, 18 Jul 2021 16:07:55 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=pCBeeh1k;
+ spf=pass (domain: gmail.com, ip: 209.85.215.176, mailfrom: ticotimo@gmail.com)
+Received: by mail-pg1-f176.google.com with SMTP id y17so17124261pgf.12
+        for <yocto@lists.yoctoproject.org>; Sun, 18 Jul 2021 16:07:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=cqvmU+4Cbg7VpPSBkUz56JoTrXUSl0+YC8pZK4YBj9Y=;
-        b=BhXM4a0TmteCIO4rh+2XzU23f8SVv9gGgd34BnbaSFP9Y7CNsghv0iKcFcB7bgEbsP
-         FMTALfYemFT0JKP7oE4rwSLH+5nuzAX7LESi9Z86EDg/4+zdNvYJt7lq00mSP8dh+nv3
-         gtnGln+P45nkpsvwnpIPddpXfALKsKSmyH0r1KIzz/aMt8AjsJC/83AgMFxZOPTqtFNK
-         976JsSGoei+c2upB9DA0GvrsLnoOdEEJSZ/+US3UvEma+ppspz0kWf3QzofSiOVZXwK1
-         qJ+LkoS5g4zIZD8vCPNwYFk9yRlWN6LH4oaJ2JX4TzfX8xKLmDFcO39oGmC41t/1Y2BH
-         Zi9A==
+        bh=zfAr3WBnb3ihkMCqwRMtuyfBIbQaL7wrWQAFMZndyIU=;
+        b=pCBeeh1kdoMWd+fNLQq2eDGUylu07rAatkWdl3oycg+cgT+rxoaMKJaPP4SmNoPNRV
+         Khyv9ZZwkgXzz8kSMaakyW31D2okzIC0Ia5DV7n/yBcKTGah5fxSmCds8viPgUxlBguW
+         /9ajnJg7RwWk9Rg0oWEmCPGQoJBz0i8qrx+Ni2CL8Ae1MZF/F6+w65l6uMDnqe2zbmOv
+         HpEygO0LbWX9Qx9dMsK+mn2QI1Z8pLdcELX+bdXG9HUy5tDxfCbcBhSwlj8RpMKRZnG2
+         h/IKz8Fh+9MM3FJpsCMnJz3zqDgrubyCbco2PjLiI6YsRijeNyxyq5wx8axox3c0VxlB
+         SxFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=cqvmU+4Cbg7VpPSBkUz56JoTrXUSl0+YC8pZK4YBj9Y=;
-        b=SqcW2OSISTekCEVvumZFpc8CQ7M45CL6ILDZwwCFGtLLHSSKSO2rLDuYS40Qmfgl3e
-         KmDWTqXkwWC12ZYHIh0O+uxGLL6J/q4eqHJfNtg/XREt0nqisleidjYYcrL+fHWs4Y1U
-         tr5dh1rLhafpKEOXyzonZG6FN/eZZewBZaqNB59KSQN04gtrurt14OJeTcjAWsGv8UgA
-         GfPLOjaF5IWcVcEG/EVAp5K8BWjAheuusG5Mkv8t/Soeo/VDrMeGEgIXDpsGjyVtqADg
-         4j2SaRphM42fJ/4KoTpOVj/47EeeTdjog1HmPYcGzPU+Mc0n/iv1hepN05COLjXnD0Xd
-         O0Tg==
-X-Gm-Message-State: AOAM530BTKNcOgNXwExOQA1diBq8pYvme3mfFGq0w0sYLzKWoF3xSuZQ
-	DjlLueCQdZuq5PigtVxJw5IuvLcqZQ1Qfw==
-X-Google-Smtp-Source: ABdhPJzK6pTjfJ3kivlovhu5gG6fQXJKqE5xGVborFYcC/ZF0olHj8IL9oTfd+LBlSZraeftFlr/uw==
-X-Received: by 2002:a63:e603:: with SMTP id g3mr22149796pgh.106.1626649674751;
-        Sun, 18 Jul 2021 16:07:54 -0700 (PDT)
+        bh=zfAr3WBnb3ihkMCqwRMtuyfBIbQaL7wrWQAFMZndyIU=;
+        b=RjPxhEy0Rrz3L3qJL5oSTwc2ePE6GQ0tAXVWTeINJj8W20fuggDE9l5Joq7ATrRKGA
+         WnY02IKI5iZQiEiWy4XPJ2Yh4A2zqnwKpN2f7KI+3RQ+GTqtWeM1Yrt+zlzZiylRZG7F
+         cynIqt5mLjAL2bCYMlbHmW/G0N1mkXVDqeAZvpW5MCOMMqJ4/ierZgZe9F/mhEXjRhfV
+         /hkokNKQ4uHErD7LXkbXRmVPbSGIKy5xtuotU61JhI6bVw/sr8YYpuKl382nfqd1laTo
+         W0Q0Ol+Pfa6W0HQRTA2Dh2L9TXkiMxNRda2hwpazkV/Zc7cY7ygb9TI2aaQRqyUW1huY
+         scmg==
+X-Gm-Message-State: AOAM533mZHwNdbjgW0xQfmzC1UY3DlTrSS92nk3p6d3OwtKVMLSf8Vt4
+	wwwkmTFwFhCDu1j2Ih2ZbfclPfJceI0MfA==
+X-Google-Smtp-Source: ABdhPJz9E5obfIE02fu4LNU8cSQf8tCposenaFf1uVgtouKIjvCQZqFRO5eQZeWgYEAJuF5Or/hDGw==
+X-Received: by 2002:a63:381:: with SMTP id 123mr22551228pgd.395.1626649677830;
+        Sun, 18 Jul 2021 16:07:57 -0700 (PDT)
 Return-Path: <ticotimo@gmail.com>
 Received: from sid.hsd1.or.comcast.net ([2601:1c0:6000:1830:7cf5:d4d2:8539:2774])
-        by smtp.gmail.com with ESMTPSA id t2sm17440589pjq.0.2021.07.18.16.07.54
+        by smtp.gmail.com with ESMTPSA id t2sm17440589pjq.0.2021.07.18.16.07.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Jul 2021 16:07:54 -0700 (PDT)
+        Sun, 18 Jul 2021 16:07:57 -0700 (PDT)
 From: "Tim Orling" <ticotimo@gmail.com>
 X-Google-Original-From: Tim Orling <timothy.t.orling@intel.com>
 To: yocto@lists.yoctoproject.org
 Cc: mhalstead@linuxfoundation.org,
 	Tim Orling <timothy.t.orling@intel.com>
-Subject: [layerindex-web][PATCH 10/15] requirements.txt: update all to latest
-Date: Sun, 18 Jul 2021 16:07:15 -0700
-Message-Id: <f33b96bf64211314e3e5fc0b7e375edecb2eeeb9.1626647881.git.timothy.t.orling@intel.com>
+Subject: [layerindex-web][PATCH 11/15] about.html: update contributors
+Date: Sun, 18 Jul 2021 16:07:16 -0700
+Message-Id: <52b5d31caa15c4992a3b7b2a7a8c1a8ce748a4f7.1626647881.git.timothy.t.orling@intel.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <cover.1626647881.git.timothy.t.orling@intel.com>
 References: <cover.1626647881.git.timothy.t.orling@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Since we are on a "modern" version of Python in
-Debian buster container (3.7) and a modern version
-of Django (3.1.x) we should be able to run with
-the latest of all dependencies.
+* Add
+  - Amber Elliot
+  - Tim Orling
 
 Signed-off-by: Tim Orling <timothy.t.orling@intel.com>
 ---
- requirements.txt | 34 +++++++++++++++++-----------------
- 1 file changed, 17 insertions(+), 17 deletions(-)
+ templates/layerindex/about.html | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/requirements.txt b/requirements.txt
-index 865960c..7704ac0 100644
---- a/requirements.txt
-+++ b/requirements.txt
-@@ -1,27 +1,27 @@
--amqp==2.6.1
-+amqp==5.0.6
- beautifulsoup4==4.9.3
--billiard==3.6.1.0
--celery==4.3.0
-+billiard==3.6.4.0
-+celery==5.1.2
- confusable-homoglyphs==3.2.0
- Django>=3.1,<3.2
- django-appconf==1.0.4
--django-axes==5.13.1
-+django-axes==5.20.0
- django-bootstrap-pagination==1.7.1
--django-cors-headers==3.2.1
-+django-cors-headers==3.7.0
- django-ipware==3.0.2
- django-ranged-response==0.2.0
--django-registration==3.1.2
--django-reversion==3.0.9
-+django-registration==3.2
-+django-reversion==4.0.0
- django-reversion-compare==0.14.0
- django-simple-captcha==0.5.14
- djangorestframework==3.12.4
--gitdb2==2.0.6
--GitPython==2.1.13
--kombu==4.6.3
--mysqlclient==1.4.6
--Pillow==6.2.1
--pytz==2019.3
--six==1.12.0
--smmap2==2.0.5
--soupsieve==1.9.4
--vine==1.3.0
-+gitdb==4.0.7
-+GitPython==3.1.18
-+kombu==5.1.0
-+mysqlclient==2.0.3
-+Pillow==8.3.1
-+pytz==2021.1
-+six==1.16.0
-+smmap==4.0.0
-+soupsieve==2.2.1
-+vine==5.0.0
+diff --git a/templates/layerindex/about.html b/templates/layerindex/about.html
+index b6b461a..f79bf22 100644
+--- a/templates/layerindex/about.html
++++ b/templates/layerindex/about.html
+@@ -51,6 +51,8 @@
+ <li>Marius Avram</li>
+ <li>Saul Wold</li>
+ <li>Aníbal Limón</li>
++<li>Amber Elliot</li>
++<li>Tim Orling</li>
+ </ul>
+ 
+ <p>The code is Open Source and can be found on <a href="http://git.yoctoproject.org/cgit/cgit.cgi/layerindex-web/">git.yoctoproject.org</a>. Patches welcome!</p>
 -- 
 2.32.0
 
