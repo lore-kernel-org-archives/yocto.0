@@ -1,79 +1,101 @@
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
- by mx.groups.io with SMTP id smtpd.web08.20859.1626649681153484305
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
+ by mx.groups.io with SMTP id smtpd.web08.20861.1626649683789500755
  for <yocto@lists.yoctoproject.org>;
- Sun, 18 Jul 2021 16:08:01 -0700
+ Sun, 18 Jul 2021 16:08:03 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=TVDSc+/d;
- spf=pass (domain: gmail.com, ip: 209.85.210.174, mailfrom: ticotimo@gmail.com)
-Received: by mail-pf1-f174.google.com with SMTP id a127so14785066pfa.10
-        for <yocto@lists.yoctoproject.org>; Sun, 18 Jul 2021 16:08:01 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=SRghP7wF;
+ spf=pass (domain: gmail.com, ip: 209.85.215.174, mailfrom: ticotimo@gmail.com)
+Received: by mail-pg1-f174.google.com with SMTP id y17so17124457pgf.12
+        for <yocto@lists.yoctoproject.org>; Sun, 18 Jul 2021 16:08:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=T07R2uwWravXj+rRXjfx99KBDHLKAMoe2A/3W6y3Gh4=;
-        b=TVDSc+/dfPQbps6opQ4oQ5zP9kz+6FeF3G1AORmjslYasaYEZ8l33aBNTqkJ6svYIm
-         9a4grgbc09HgeDThPmm4gHb/Y2pYWcVVgT/9Y1XMgzYmY2ytjDxKKK7X8aJQpqoE2rDi
-         xd/tT9TGTJf5A4RjVciB8iwQcpXeJx/jVRulwTKAC5KoMuEmS8Pw7zIrOtE1qVBSwEj1
-         hzwZ3taKg3+DK8+6zpvdzYGVg1q+h/V1wNmcWr/VWCBaEdzi72QxfCSLnLOwukrNos17
-         bKaISv82nfhF4GuQ1w5OsCnyW/YK2SP4aAbiVcqbsnmEZs888jLHVYAUwVjGF/vXpaqN
-         JEvA==
+        bh=9KnyrkT+sJBOjXfULTEpIIN1QEMgOSoq9Hn0SPOMkY4=;
+        b=SRghP7wFhlCpZ5kmsBamlFXRzzhXHrkBNEnrRmaEeX3AUi81BWdYv4dAMEy1W9ysS9
+         5cgpBE5PQkkvBn8I7y0qBnAB/sok20oSf1Gqne7DcXcrCN8KP+Tl6080tulZeCaXiSEy
+         DRL6qjv2KHo4dKwXi6M3JC+m2Lpwvl14b1lqTVF45rfxbKcJE4ZD78ywc1Ci40hE68Tw
+         xmaotqmry0xmQp/AmOKW/ITnwbgz9S4R1PwrQSjDOGhKW01eX5Rmb4ei/bfrYFoTwW+c
+         ayARVBx9hdSojJEx+qenQrHqqwipg/DVEU345+vMSGEih8D/VTqvv4e4rqRIh6ouikNe
+         1k0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=T07R2uwWravXj+rRXjfx99KBDHLKAMoe2A/3W6y3Gh4=;
-        b=J8KxERt8SM9s+YR4U0Eiu5dJJL9CyikwTVG36JZPD8jVo350YgAdMVBAOGI15ZzceW
-         30PHG3ZDbVP6kD46oA1E8OfpiBxnmfvffSA7VI8UXrRmzJno0z/xQjRngwnXC+4ldVlv
-         nJexOKfITQQM4+KbDsGB/cDuUMsm95cOA4QAEjuRwgWFb3q/eGH47ZPIlQqrdRLLDh+6
-         TaDPeJ1kJj23Cy3IcrBUQuRQy94L+v5XDxSyweIV8i2wmyv1tztL/ycUsRQDfEXQFk4t
-         +OsMCWCkWeMawHOUlzec/x/LrMXYtkaacjXUiyouqwkXiAh28x4sykhuWDlGBaNsCHea
-         jFRA==
-X-Gm-Message-State: AOAM531HSxCw4/K3SyceONRBCqwlIKmD2ovO1qAGwgN9PIrJMcZZjgAC
-	TCZe3CQV+1lx/++5QMw+mLs6LBmHp4QeTw==
-X-Google-Smtp-Source: ABdhPJygLbg8mbRfS0JjgU8cuc8DAfWTW01ojkZFmtKJ8cgrZu2aSprVB9IqsLyRKD/Wtc0h7SJF/g==
-X-Received: by 2002:a63:2d82:: with SMTP id t124mr22669830pgt.123.1626649680449;
-        Sun, 18 Jul 2021 16:08:00 -0700 (PDT)
+        bh=9KnyrkT+sJBOjXfULTEpIIN1QEMgOSoq9Hn0SPOMkY4=;
+        b=ZZ2sd9eteqVD3Pcie6udi6ZoBX3LAN/W5KlUOZUwdfg6dmZwB/iJWSLO6mi3zViiRO
+         4GvZGBr1ktsHCcjfruIjtD08tg+gVPiG78oWRCgscSnNAe/xZNhAGjUcYybFQbMfUaFf
+         73uzPdeeRJzyArPQNQM7np8xvNB/Zkk8kZUYBV0uzcTwekpV9W1tu5W6i5HFzzoRpZMb
+         XxhZnW4/dIaV+Lm8gp0xIFdw6RDDfL2FGdQboEr1IriL/cO35xgvv1iHKHwe2BMzHsI1
+         77RgVtCe8Or3u/otfw3rlu8zVNP/GY4Ytel/0hG7KB8LtI63q/vGfkxV66rFr3kGCTHs
+         PgWw==
+X-Gm-Message-State: AOAM531x28OAICLWzfJvZj9OkAn8DnJ5TqIrbBOccZ7vzefD2LJ1nwtK
+	p6hBrbUQyxXe3zpwbxay7vkOjdkW4NUbcw==
+X-Google-Smtp-Source: ABdhPJyegN3+dZ29I+bn2aKUQGvb/i6fE1k7yXSXDse9VsqCccsVf3+Fs/6NLQ/BY9d31H/UGNOWBQ==
+X-Received: by 2002:a63:f711:: with SMTP id x17mr22322078pgh.226.1626649683182;
+        Sun, 18 Jul 2021 16:08:03 -0700 (PDT)
 Return-Path: <ticotimo@gmail.com>
 Received: from sid.hsd1.or.comcast.net ([2601:1c0:6000:1830:7cf5:d4d2:8539:2774])
-        by smtp.gmail.com with ESMTPSA id t2sm17440589pjq.0.2021.07.18.16.07.59
+        by smtp.gmail.com with ESMTPSA id t2sm17440589pjq.0.2021.07.18.16.08.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Jul 2021 16:08:00 -0700 (PDT)
+        Sun, 18 Jul 2021 16:08:02 -0700 (PDT)
 From: "Tim Orling" <ticotimo@gmail.com>
 X-Google-Original-From: Tim Orling <timothy.t.orling@intel.com>
 To: yocto@lists.yoctoproject.org
 Cc: mhalstead@linuxfoundation.org,
 	Tim Orling <timothy.t.orling@intel.com>
-Subject: [layerindex-web][PATCH 12/15] requirements.txt: bump to Django 3.2 LTS
-Date: Sun, 18 Jul 2021 16:07:17 -0700
-Message-Id: <0057b27cb521fe3ad091d4d5138c7c7a43a1161a.1626647881.git.timothy.t.orling@intel.com>
+Subject: [layerindex-web][PATCH 13/15] settings: set DEFAULT_AUTO_FIELD
+Date: Sun, 18 Jul 2021 16:07:18 -0700
+Message-Id: <6f5d1e7fa47eb6ebf466a9fedc5cdb4d09dbcb0b.1626647881.git.timothy.t.orling@intel.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <cover.1626647881.git.timothy.t.orling@intel.com>
 References: <cover.1626647881.git.timothy.t.orling@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Upgrade to the latest Django 3.2.x LTS for
-extended support up until April 2024.
+New in Django 3.2
+
+To quiet warnings, set DEFAULT_AUTO_FIELD to the
+default value 'django.db.models.AutoField'
+
+NOTE: The default value for newly created Django 3.2
+      projects is django.db.models.BigAutoField, but
+      this causes the need for a migration in 'captcha'.
 
 Signed-off-by: Tim Orling <timothy.t.orling@intel.com>
 ---
- requirements.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ docker/settings.py | 3 +++
+ settings.py        | 3 +++
+ 2 files changed, 6 insertions(+)
 
-diff --git a/requirements.txt b/requirements.txt
-index 7704ac0..41a0b1e 100644
---- a/requirements.txt
-+++ b/requirements.txt
-@@ -3,7 +3,7 @@ beautifulsoup4==4.9.3
- billiard==3.6.4.0
- celery==5.1.2
- confusable-homoglyphs==3.2.0
--Django>=3.1,<3.2
-+Django>=3.2,<3.3
- django-appconf==1.0.4
- django-axes==5.20.0
- django-bootstrap-pagination==1.7.1
+diff --git a/docker/settings.py b/docker/settings.py
+index 894974f..a3f007d 100644
+--- a/docker/settings.py
++++ b/docker/settings.py
+@@ -140,6 +140,9 @@ TEMPLATES = [
+     },
+ ]
+ 
++# New in Django 3.2
++DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
++
+ INSTALLED_APPS = (
+     'django.contrib.auth',
+     'django.contrib.contenttypes',
+diff --git a/settings.py b/settings.py
+index d03d15c..a69eb53 100644
+--- a/settings.py
++++ b/settings.py
+@@ -140,6 +140,9 @@ TEMPLATES = [
+     },
+ ]
+ 
++# New in Django 3.2
++DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
++
+ INSTALLED_APPS = (
+     'django.contrib.auth',
+     'django.contrib.contenttypes',
 -- 
 2.32.0
 
