@@ -1,114 +1,113 @@
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
- by mx.groups.io with SMTP id smtpd.web11.1362.1626728308091857468
+Received: from eastern.birch.relay.mailchannels.net (eastern.birch.relay.mailchannels.net [23.83.209.55])
+ by mx.groups.io with SMTP id smtpd.web12.4732.1626767569808618854
  for <yocto@lists.yoctoproject.org>;
- Mon, 19 Jul 2021 13:58:28 -0700
+ Tue, 20 Jul 2021 00:52:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=b4W+mBOb;
- spf=pass (domain: gmail.com, ip: 209.85.128.45, mailfrom: robert.berger.yocto.user@gmail.com)
-Received: by mail-wm1-f45.google.com with SMTP id f8-20020a1c1f080000b029022d4c6cfc37so252411wmf.5;
-        Mon, 19 Jul 2021 13:58:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=cgxXozlKviTjHVHQHvV+14B4TWG4QNHsdawqzqZ1+Y4=;
-        b=b4W+mBObu+ea7Y5ziy/pBiW/XTbjmLgVCd5L3f4G1HqOhcO8uxgCe2QX0CK1lkOBUe
-         8Hr6LH/c8eYcH2Zz4XZIzy6tEyBaI7A3agJ2Sn8Po9qkEwwdaQGG0B/n21Hn0f8cKIkW
-         qjrDww37OkKwMCJgXF8RRAN6D/zWC7rwaTstIaOLPQH757sSWBDtYU8k71fKyekjE/c+
-         2IOisSD/dpjXWd4Vwy3ab4l39M42ufeiY92s3J2ZtDzUjEy/CyvIO/R78lbAXR+0g+sg
-         uT+Phi9zcte0+RMYZgRHSdvzRciKJWyG3Qku1MCWypSL9qaB4g6LE/cUVV1IYNgwjDPR
-         1ZTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=cgxXozlKviTjHVHQHvV+14B4TWG4QNHsdawqzqZ1+Y4=;
-        b=FAFcQUsEtZtPgMrpo9RCVpzmEKs1QpJmGqjPGwnuD4lXQ7c1L6J4ZOP0mnaJxD6IQo
-         L1MC0/mq9Amrl+7I8LPEbtMoP8XhzpBQuz2ZGWticE82qmLZON0x8U+ErMvW74MHuEU4
-         uIGIU2ZtqUY795sCTVddNEYeI90t2DDmMP3WUKp9XN3nrNYb03rCOU1y8c9+/CVmtIfJ
-         5hRK8ZnXX3Q+9H7mDCR9f7yhmrN1z4ztae1fWAZRTtkmR09IOqtchUptb8NQdo8AdxX5
-         wt/lcH1mq2p37OSratBGwdd4lMrrCGwPYVI3YazqaEqo/A9Y9yECfu9Xp3wlgC5g5Fm1
-         BHww==
-X-Gm-Message-State: AOAM5303RMrhn1bgrCa63Yml834/IwV4JhyoarD6FTkQOkqpQgSgsOk4
-	dI7DcicQNDWKkWyiAlXSX2ayHo2MTEQ=
-X-Google-Smtp-Source: ABdhPJzdB8Ztw38rRp30mfuAjpC7TWlUWx/vUzUifV3P5gQa3UsShVzqnMZTguLYiHMuychkeT++Fw==
-X-Received: by 2002:a1c:628a:: with SMTP id w132mr1488947wmb.90.1626728306284;
-        Mon, 19 Jul 2021 13:58:26 -0700 (PDT)
-Return-Path: <robert.berger.yocto.user@gmail.com>
-Received: from [128.90.148.25] ([128.90.148.25])
-        by smtp.gmail.com with ESMTPSA id o3sm21548661wrm.5.2021.07.19.13.58.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jul 2021 13:58:25 -0700 (PDT)
-Subject: Re: [yocto] [poky] [PATCH] local.conf.sample: disable prelink
-To: Alexander Kanavin <alex.kanavin@gmail.com>,
- Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: Mark Hatle <mark.hatle@kernel.crashing.org>, poky@lists.yoctoproject.org,
- Yocto-mailing-list <yocto@lists.yoctoproject.org>
-References: <20210615081225.1734033-1-alex.kanavin@gmail.com>
- <5ed9e1d2676d4d31289ebaf2ec3b492c1daa88a7.camel@linuxfoundation.org>
- <CANNYZj84MXS57sG5CWLmS-Y_0-w8h1_9NLmtjFEo4pJ5snXvcA@mail.gmail.com>
- <CANNYZj8S7V5owiS0p3B1fD7n_JpF-OPLApO=e9d+SiPuyFWHZw@mail.gmail.com>
- <0451f536368310860d9acb12e5a8424881b545e8.camel@linuxfoundation.org>
- <CANNYZj9Z87Jb7Ea-vtQ1ZEmtQvfFRDtTXAxvStZT3c02RnU01g@mail.gmail.com>
-From: "Robert Berger" <robert.berger.yocto.user@gmail.com>
-Message-ID: <a7e0a44c-084e-5e21-5621-67e32ca36127@gmail.com>
-Date: Mon, 19 Jul 2021 23:58:24 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ dkim=pass header.i=@scalardata.com header.s=scalardata.com header.b=ovLv2039;
+ spf=pass (domain: scalardata.com, ip: 23.83.209.55, mailfrom: simon.haines@scalardata.com)
+X-Sender-Id: dreamhost|x-authsender|simon.haines@scalardata.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id 04E0B922C47
+	for <yocto@lists.yoctoproject.org>; Tue, 20 Jul 2021 07:52:47 +0000 (UTC)
+Received: from pdx1-sub0-mail-a47.g.dreamhost.com (100-98-55-150.trex-nlb.outbound.svc.cluster.local [100.98.55.150])
+	(Authenticated sender: dreamhost)
+	by relay.mailchannels.net (Postfix) with ESMTPA id 815E7922C45
+	for <yocto@lists.yoctoproject.org>; Tue, 20 Jul 2021 07:52:46 +0000 (UTC)
+X-Sender-Id: dreamhost|x-authsender|simon.haines@scalardata.com
+Received: from pdx1-sub0-mail-a47.g.dreamhost.com (pop.dreamhost.com
+ [64.90.62.162])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384)
+	by 100.98.55.150 (trex/6.3.3);
+	Tue, 20 Jul 2021 07:52:46 +0000
+X-MC-Relay: Neutral
+X-MailChannels-SenderId: dreamhost|x-authsender|simon.haines@scalardata.com
+X-MailChannels-Auth-Id: dreamhost
+X-Irritate-Glossy: 1acf4d3e2db07048_1626767566799_4226558543
+X-MC-Loop-Signature: 1626767566799:3531154714
+X-MC-Ingress-Time: 1626767566798
+Received: from pdx1-sub0-mail-a47.g.dreamhost.com (localhost [127.0.0.1])
+	by pdx1-sub0-mail-a47.g.dreamhost.com (Postfix) with ESMTP id 498288BC45
+	for <yocto@lists.yoctoproject.org>; Tue, 20 Jul 2021 00:52:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=scalardata.com; h=
+	mime-version:references:in-reply-to:from:date:message-id:subject
+	:to:cc:content-type; s=scalardata.com; bh=6gzKG8ltN6eLT+DFbJrF77
+	3rh4A=; b=ovLv2039fuYUfT4ZjzfLPh2ij1IskukIltPm+ZCkaQwBmKcvrB20pB
+	FQ9vIqgjnyfK9eK8rxiMNpH4Rq1XDaX/Ea3qwMTAHO5Gayd+4/dAUx+SY27g3baw
+	+sqwAt+CVmWQkTraElDr5mlzxiBbpD/olCzJw4CvWevXQAUjSWUKw=
+Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: simon.haines@scalardata.com)
+	by pdx1-sub0-mail-a47.g.dreamhost.com (Postfix) with ESMTPSA id 32A868BC43
+	for <yocto@lists.yoctoproject.org>; Tue, 20 Jul 2021 00:52:45 -0700 (PDT)
+Received: by mail-il1-f177.google.com with SMTP id z1so18441234ils.0
+        for <yocto@lists.yoctoproject.org>; Tue, 20 Jul 2021 00:52:45 -0700 (PDT)
+X-Gm-Message-State: AOAM530n+nQwlFgGCbajMjN3B+bWtvvz+9WEVmzs8wwmqBc0FAIhoQXY
+	T19lpFWDS/bwPULWX+bqevcvO8uMO9Fve7E+Cg==
+X-Google-Smtp-Source: ABdhPJzur3uy0+Tds7x8bVmBZWH5f9Z4hUxkumoymgd4m5WN+FayuoBc1v5G3eRwdW/ji80XnCSXwTPUNI7ieQqQLeU=
+X-Received: by 2002:a92:c805:: with SMTP id v5mr18392403iln.293.1626767565273;
+ Tue, 20 Jul 2021 00:52:45 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CANNYZj9Z87Jb7Ea-vtQ1ZEmtQvfFRDtTXAxvStZT3c02RnU01g@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <CACrbFVdaFGVGaSw0+WHSxb4Z05khof1y67wc_XDOWEzPqXLQNQ@mail.gmail.com>
+ <0d6d45ddbf0c5a6e74f0ee3a465f591347fdd40c.camel@linuxfoundation.org>
+In-Reply-To: <0d6d45ddbf0c5a6e74f0ee3a465f591347fdd40c.camel@linuxfoundation.org>
+X-DH-BACKEND: pdx1-sub0-mail-a47
+From: "Simon Haines" <simon.haines@scalardata.com>
+Date: Tue, 20 Jul 2021 17:52:33 +1000
+X-Gmail-Original-Message-ID: <CACrbFVc2JvGkkjW+9OuOeDLjMuvDbXCHBhnfecCwZkFnofG03g@mail.gmail.com>
+Message-ID: <CACrbFVc2JvGkkjW+9OuOeDLjMuvDbXCHBhnfecCwZkFnofG03g@mail.gmail.com>
+Subject: Re: [yocto] Exception: NotADirectoryError building Hardknott
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000dc405005c789568f"
 
-Hi Alex, RP, Mark,
+--000000000000dc405005c789568f
+Content-Type: text/plain; charset="UTF-8"
 
-I did some research on the subject in order to try to figure out what is 
-going on.
+On Mon, 19 Jul 2021 at 01:17, Richard Purdie <
+richard.purdie@linuxfoundation.org> wrote:
 
-1) I come to a similar conclusion with what found, but tried to look a 
-bit deeper for the reason.
+> How is your container filesystem setup/configured? It looks like the
+> filesystem
+> isn't liking the build trying to create hardlinked files. It is odd it
+> would
+> get as far as gmp-native before having problems. That file definitely
+> isn't a
+> directory too, it is an odd error.
+>
+>
+Thanks Richard, I suspect you're right. I'm using fuse-overlayfs which I'm
+mounting with the 'noxattrs' option because the host is Fedora and its
+SELinux configuration interferes with yocto in other ways. It looks like
+overlayfs uses xattrs in some cases for hard link resolution. I'll have to
+dig in deeper there, thanks for the pointer.
 
-1.1) The reason that cross-prelink is not prelinking is, that for a 
-quite some time by default everything is built with PIE mode by default 
-and cross-prelink does not seem to be able to work on exe/libs compiled 
-with PIE mode. So seeing the same behavior with and without prelinking 
-is what I would expect as long as everything is compiled with PIE mode.
+Cheers,
+Simon.
 
-A more detailed analysis of my tests can be found on my not yet 
-officially published site:
+--000000000000dc405005c789568f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://rlbl.me/prelink-1
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Mon, 19 Jul 2021 at 01:17, Richard Purdie &lt;<a href=3D"mailto:r=
+ichard.purdie@linuxfoundation.org">richard.purdie@linuxfoundation.org</a>&g=
+t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
+x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">How is=
+ your container filesystem setup/configured? It looks like the filesystem<b=
+r>
+isn&#39;t liking the build trying to create hardlinked files. It is odd it =
+would<br>
+get as far as gmp-native before having problems. That file definitely isn&#=
+39;t a<br>
+directory too, it is an odd error.<br>
+<br></blockquote><div><br></div><div>Thanks Richard, I suspect you&#39;re r=
+ight. I&#39;m using fuse-overlayfs which I&#39;m mounting with the &#39;nox=
+attrs&#39; option because the host is Fedora and its SELinux configuration =
+interferes with yocto in other ways. It looks like overlayfs uses xattrs in=
+ some cases for hard link resolution. I&#39;ll have to dig in deeper there,=
+ thanks for the pointer.</div><div><br></div><div>Cheers,</div><div>Simon.<=
+/div></div><div class=3D"gmail_quote"><br></div><div class=3D"gmail_quote">=
+<br></div></div>
 
-https://rlbl.me/prelink-2
-
-Alex:
-
-Can you please rebuild your test images without PIE mode and re-run the 
-tests?
-
-Then we should have the 4 test cases:
-
-prelinked-with-pie
-no-prelink-with-pie
-prelink-no-pie
-no-prelink-no-pie
-
-I guess then we can discuss what are the next steps.
-
-In my opinion the current default settings, which compile close to 
-everything in PIE mode, but invoke also cross-prelink do not make much 
-sense.
-
-The question is: "Do we want to drop cross-prelink, or do we want to 
-drag it along and come up more fine-grained configuration options?"
-
-We could e.g. exclude certain files from pre-linking.
-
-IMHO cross-prelink still works, but not on exe/libs which were compiled 
-in PIE mode.
-
-Regards,
-
-Robert
+--000000000000dc405005c789568f--
