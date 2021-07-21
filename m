@@ -1,72 +1,60 @@
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
- by mx.groups.io with SMTP id smtpd.web12.1867.1626859295295952191
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+ by mx.groups.io with SMTP id smtpd.web12.2005.1626860809982385495
  for <yocto@lists.yoctoproject.org>;
- Wed, 21 Jul 2021 02:21:35 -0700
+ Wed, 21 Jul 2021 02:46:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=J/zxH9Vt;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.51, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f51.google.com with SMTP id c12so1400841wrt.3
-        for <yocto@lists.yoctoproject.org>; Wed, 21 Jul 2021 02:21:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:cc:date:user-agent:mime-version
-         :content-transfer-encoding;
-        bh=bYEw6Hh7e8vZHmEBMSiddgFlDppwGIfu8cG1oTxY1j0=;
-        b=J/zxH9VtluyF6ZLSWEyLfkbGJ+mkQuBpzo2BsVeZVzOXYP7/OPgAQr5rI2Oc4eUwQQ
-         WwRNNH+UlyvNblu5+PDDYQBpEmW1TTbnFgQPfciq7jQZv7Km8zBPk3gwljIgd0SRIOr1
-         woxPtVaAJ/xvEtd1aMv+HBcrf5Glshf/aW/uM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=bYEw6Hh7e8vZHmEBMSiddgFlDppwGIfu8cG1oTxY1j0=;
-        b=dcjHLQ1t2NZf5BydJWy9uK1MxiE/hivIbdzjBHRLBVjARs/bzo2imVYmVf1ynOZx1E
-         RARrFu4Cj2NlRaZS+6bzUfdl6VyomnLqVxEyMXnOPAGZFSuUZ/o1jKUjnDnJ/N+iNxkn
-         AakrP+bmW58oE257Lz6JvczVs76i9B3RORulQB9JReOwrMwacB6+tEPn3MLrPGo8Vb8I
-         TeY9Plet4HjHMvX9oIM8HeFgM8DasR+BDvyS7htOrexJtrWH4uFJKnI5CmHGXH/aB9IQ
-         aLyhGn8u3HBXeQcHCdPxPPLp9TrJ5/PGM2itm2zBNPW0sB8gRuir7V1IpCNKwrlnZD2O
-         knyQ==
-X-Gm-Message-State: AOAM533BkFGIjWHZqQ4M2+Qdwh8/zHKY3iInj+od1gpFiwG9zgEbWhui
-	EUeRJBPX+JvDQho3CbRUzMTwnV4/VPR3eg==
-X-Google-Smtp-Source: ABdhPJzmThiVnDNMxxqz+MsrN1SvjLoXOb5Z0mUXUghQsiNcOthcIpGlhVVO4/b06wwzwSUWS2qDWg==
-X-Received: by 2002:a5d:59ab:: with SMTP id p11mr23637787wrr.74.1626859293618;
-        Wed, 21 Jul 2021 02:21:33 -0700 (PDT)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from ?IPv6:2001:8b0:aba:5f3c:ca4a:a3b0:9d05:9957? ([2001:8b0:aba:5f3c:ca4a:a3b0:9d05:9957])
-        by smtp.gmail.com with ESMTPSA id s13sm26124307wrm.13.2021.07.21.02.21.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jul 2021 02:21:33 -0700 (PDT)
-Message-ID: <0d1daf3f2a96b7268274674ea37e310b90255312.camel@linuxfoundation.org>
-Subject: QA notification for completed autobuilder build (yocto-3.4_M2.rc1)
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>
-Cc: qa-build-notification <qa-build-notification@lists.yoctoproject.org>
-Date: Wed, 21 Jul 2021 10:21:32 +0100
-User-Agent: Evolution 3.40.0-1 
+ dkim=fail reason="body hash did not verify" header.i=@denx.de header.s=phobos-20191101 header.b=NGSmAYj2;
+ spf=pass (domain: denx.de, ip: 85.214.62.61, mailfrom: lukma@denx.de)
+Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: lukma@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 4903A82956;
+	Wed, 21 Jul 2021 11:46:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1626860808;
+	bh=oZM8nhVW6u3XfX1G0V+Mubvh4a0KX1yZiMv0yfQLWiE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=NGSmAYj2zl6nftihTFEdfGbr7dZKSkgGUK04dhoY6MHpcKO8FDmMhIxglnupkGGZ1
+	 4Cy0rw2DTYUZkxfMPLBVuYw+OragIK+Pwxg8nyphwqEHqp0zLRxIT5Lpm4VSVdSCDM
+	 KHVt2pZ0RZAmEq7DkgZkxBI+FKVxhpiluzMGTn+Qc16sz90LCwn/cmHgLDIhaKBv9v
+	 BPXudKCjYa+D3epKc5wXGerpg3WcLWnf95qeAuoEDyFB4IZo5qxW+XX/L+SIFFyd0h
+	 g1t5ynjc77JSj0P4EyeDOHLrN3J33mMwf9geJyhcNPUehmDtMBgqYg6inTfYNzRPPK
+	 5pxg9Y8yMJHbg==
+From: "?ukasz Majewski" <lukma@denx.de>
+To: yocto@lists.yoctoproject.org
+Cc: Lukasz Majewski <lukma@denx.de>
+Subject: [ptest-runner 0/5] ptest: Various memory fixes and enhancements
+Date: Wed, 21 Jul 2021 11:46:22 +0200
+Message-Id: <20210721094627.29833-1-lukma@denx.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
+X-Virus-Status: Clean
+Content-Transfer-Encoding: quoted-printable
 
-A build flagged for QA (yocto-3.4_M2.rc1) was completed on the autobuilder and is available at:
+This patch series provides some memory management fixes and corrected
+return code handling for ptest-runner2.
 
+Adrian Freihofer (4):
+  git: Extend the gitignore
+  mem: Fix memleak for ptest_opts
+  mem: Simplify memory management
+  mem: Refactor ptest_list cleanup
 
-    https://autobuilder.yocto.io/pub/releases/yocto-3.4_M2.rc1
+Lukasz Majewski (1):
+  main: Do not return number of failed tests when calling ptest-runner
 
+ .gitignore         |  3 +++
+ main.c             | 33 ++++++++++++++++++++++++++++-----
+ ptest_list.c       | 13 ++++---------
+ ptest_list.h       |  8 +-------
+ tests/ptest_list.c | 13 +++++++------
+ tests/utils.c      | 22 +++++++++++-----------
+ utils.c            | 11 ++++-------
+ 7 files changed, 58 insertions(+), 45 deletions(-)
+ create mode 100644 .gitignore
 
-Build hash information: 
-
-bitbake: 13e2855bff6a6ead6dbd33c5be4b988aafcd4afa
-meta-arm: 9efa3b5683a5dd7ebbf63ff31b889ed589ff7a9a
-meta-gplv2: b3fa26bc777ec0136ce189d90123b50f6ee567b9
-meta-intel: 94c097a82cf9167fa567c2af80d5e39a3fbbc11f
-meta-mingw: 8f3b6e3772879dc2caec8fe249ce277fbb1aa55f
-oecore: c4fc226c2e3856b942bb4f57ead21a64c3dc8c0d
-poky: 1ad79313a5c3e6a453fbeb44caac5c5bbad46d3c
-
-
-[RP sending manually as the original failed to get through]
-This is an automated message from the Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder2
-Email: richard.purdie@linuxfoundation.org
-
+--=20
+2.20.1
 
