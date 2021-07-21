@@ -1,79 +1,100 @@
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
- by mx.groups.io with SMTP id smtpd.web09.1851.1626808744062786473
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+ by mx.groups.io with SMTP id smtpd.web08.1475.1626834246378166176
  for <yocto@lists.yoctoproject.org>;
- Tue, 20 Jul 2021 12:19:04 -0700
+ Tue, 20 Jul 2021 19:24:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=U6fBvf7x;
- spf=pass (domain: gmail.com, ip: 209.85.222.178, mailfrom: raj.khem@gmail.com)
-Received: by mail-qk1-f178.google.com with SMTP id m68so21097733qke.7
-        for <yocto@lists.yoctoproject.org>; Tue, 20 Jul 2021 12:19:03 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Cse1avAT;
+ spf=pass (domain: gmail.com, ip: 209.85.222.172, mailfrom: bruce.ashfield@gmail.com)
+Received: by mail-qk1-f172.google.com with SMTP id a80so762688qkg.11
+        for <yocto@lists.yoctoproject.org>; Tue, 20 Jul 2021 19:24:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SlrSzfwvIhjOGcQyBO58Zhv+XCqZIfkuNNqHOuL8pac=;
-        b=U6fBvf7xiKyxGNGDU0A/P/TdDjwLi5r6ldcwEkUilSbPKdN8XCfWML8AgDsAxwfXLl
-         ijsAo7CGgcBG7r87xA0LwSX9g/93iRlgQleVVJIwbV1d3HdNBsR503Z0pO1AFPcoNA+u
-         O6PoN/CBGHZSlMZ7DwQvV9uOpAkjxPPf2GFBX0nFuBPhUP327ayFcZ40/QbKVnoES+l5
-         SpSoCkcgfApYkJhtwsTZmJ+3WrSwqjDf8wv7nEBYjsYq253/3tLoQSxm+P4VGqyzPJJ0
-         OAWyljq45ev/4YlNhc3GPG86FSf12e/GJjMyZivPAF3eDQERwXrfU4VTdcST4V+ZbSQz
-         XaWQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=auM1p4putLtEiy54+XUguVaWpQqxp99jHkJtg9q/8yE=;
+        b=Cse1avATHxXcBgT1lJkhvrbFMxrnt+L+e9Ds23QP2IXUBucdo4pfTidOxo62qHIj8s
+         XHPhMNkY4jKs5Xm0B1EepD2bc/65MSiVcdZqk6vWICaMMSdePB8KoKe6DXYiNI7y6m0o
+         eaOMMThIP+8S08shifl8581WlX5DalBnqqxmsdnZra1RU62fh7YwvrTHKW6/uek3xfyX
+         lMKibAXuuchry/iXBmF+PI+DaAfWgw5Eca0QvdLbdFSq8xGYtzj2IBIrAdneFmt8vp1r
+         TdeYsv/FrKrAE+6IK9gfPkPJC/Y5j3AFOux4hUHKk8LNOIyWOri4HTBjPbCF6dZMTalg
+         A7vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SlrSzfwvIhjOGcQyBO58Zhv+XCqZIfkuNNqHOuL8pac=;
-        b=Mabdw7KHfFQFtOSkbfeY2QKGm0CC3Q/cJyQzEKcslRNIV7XnI9iIavHtqzHahcRZG6
-         WDf5VaNEB3V/dNIocCEfvtQuQzKse1j0cByyAfl/eLS/U6kJOtnvbhnuAJTCrO4PgLb2
-         hTuy1Q3IszQpXyBjSheenx4+bfSJic2k1cAplp4v1PHYwkVkW54W4y6SCti+B9aWobZS
-         Lk07hje6CEf8i7TUzwVwX7l/1mMEjHozaPHVdXak0cYb8ZsMgEiLjZfUgkXKQavenWWi
-         eAL+003HbLVcDFxXvAO3oQgm3IwZl3qKunnr+ENeLHZXB9RaDvf/Jzg3NZ1aCXDgyqOd
-         2fHA==
-X-Gm-Message-State: AOAM530kxxcIFWIOAGBqMznU5JonCK0LWCDHLg2o9e16UgauLSBJnhBc
-	4I22+dTGQTotKRl63YkGgAyBit9y67nRBtfIP5M=
-X-Google-Smtp-Source: ABdhPJyhfscohyOh1SF4U3nYkMclqosMv8vMihGf1f/ebZB+aIMW36kruEByDWcVkruRgDXY9l6lIfIV5w213/POfR8=
-X-Received: by 2002:a37:bb82:: with SMTP id l124mr30448498qkf.119.1626808743120;
- Tue, 20 Jul 2021 12:19:03 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=auM1p4putLtEiy54+XUguVaWpQqxp99jHkJtg9q/8yE=;
+        b=OwiTtaDtF6skJ7yB9G3oC3NeDYc8gz5G/J0zkcvrReINY76DFyhTw7QUDBXbBJ0nSt
+         XlBxJGkXGHdvATco3LJdrWJjYtFqkFA86Qy0wNjQbUOt8Dstj2OMV7WHlT8fleGOs64e
+         BBAx9TthWOh/jiOlx5DPuFRsbTzkjT7IJSvRlsqZrRmgPiACBxJU7eXSJH2S+95vvaUr
+         3Yk6d5JWG5fw9TsakH5Ngh8QRg+ooXPxihi+QBggIaOLmAMmhfUVZg86U1xBrqs5klBg
+         mvBGQg9JSOk9U5s3ZGbMlo9Z7k/b5dARRfoO2loglfUTgUK8O8TnbFl14r1YOHwIEzjm
+         fsgQ==
+X-Gm-Message-State: AOAM530q+MvGmDYL8bF5Pg5JiWhroE20vkUZ1EdZCEQFrnsgD89JWzfC
+	oW3zIO05LJW2whQ6TBnft/k=
+X-Google-Smtp-Source: ABdhPJwa+mU7XRykoX2qmKMXbPWQwrWpSL8fIdU7+osotvQem3apu6uQSPoG/nlAWMDi8UKjm02wLQ==
+X-Received: by 2002:a05:620a:1996:: with SMTP id bm22mr15330296qkb.224.1626834245465;
+        Tue, 20 Jul 2021 19:24:05 -0700 (PDT)
+Return-Path: <bruce.ashfield@gmail.com>
+Received: from gmail.com (cpe04d4c4975b80-cmf4c11490699b.cpe.net.cable.rogers.com. [174.112.63.222])
+        by smtp.gmail.com with ESMTPSA id m80sm7718372qke.98.2021.07.20.19.24.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Jul 2021 19:24:05 -0700 (PDT)
+Date: Tue, 20 Jul 2021 22:24:03 -0400
+From: "Bruce Ashfield" <bruce.ashfield@gmail.com>
+To: "Wang, Xiaolei" <Xiaolei.Wang@windriver.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto-kernel-cache] [yocto-5.10] nxp-imx8: Enable IMX_SCU_SOC config
+Message-ID: <20210721022402.GB42954@gmail.com>
+References: <PH0PR11MB507781EB82B262FC733388F895119@PH0PR11MB5077.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-References: <Iod9.1626794732357180855.60UC@lists.yoctoproject.org>
-In-Reply-To: <Iod9.1626794732357180855.60UC@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Tue, 20 Jul 2021 12:18:37 -0700
-Message-ID: <CAMKF1sqhWDQ8tw5DgaoK6du+6d_2cvxv0O8scwinAYNeWLpchA@mail.gmail.com>
-Subject: Re: [yocto] c++ dmalloc library versions not building for Rocko
-To: steve@echodyne.com
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <PH0PR11MB507781EB82B262FC733388F895119@PH0PR11MB5077.namprd11.prod.outlook.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Tue, Jul 20, 2021 at 8:25 AM forstevers via lists.yoctoproject.org
-<steve=echodyne.com@lists.yoctoproject.org> wrote:
->
-> Trying to produce c++ versions of dmalloc libraries.The dmalloc recipe dmalloc_5.5.2.bb looks to be configured to build the c++ versions with:
->
-> 'EXTRA_OECONF += "--enable-threads --enable-cxx --enable-shlib"'
->
-> But in the log.do_configure I see that the autoconf fails to find a c++ compiler, and I end up with the 'c' versions of the dmalloc library.
->
-> configure: configurations for the dmalloc library
-> configure: build utilities
-> checking for aarch64-xilinx-linux-gcc... aarch64-xilinx-linux-gcc  --sysroot=/extra_disk/home/ECHODYNE.INT/steve/projects/develop/jup-bsp/build/tmp/work/aarch64-xilinx-linux/dmalloc/5.5.2-r0/recipe-sysroot
-> checking whether the C compiler works... yes
-> checking for C compiler default output file name... a.out
-> checking for suffix of executables...
-> checking whether we are cross compiling... yes
-> checking for suffix of object files... o
-> checking whether we are using the GNU C compiler... yes
-> checking whether aarch64-xilinx-linux-gcc  --sysroot=/extra_disk/home/ECHODYNE.INT/steve/projects/develop/jup-bsp/build/tmp/work/aarch64-xilinx-linux/dmalloc/5.5.2-r0/recipe-sysroot accepts -g... yes
-> checking for aarch64-xilinx-linux-gcc  --sysroot=/extra_disk/home/ECHODYNE.INT/steve/projects/develop/jup-bsp/build/tmp/work/aarch64-xilinx-linux/dmalloc/5.5.2-r0/recipe-sysroot option to accept ISO C89... none needed
-> checking whether we are using the GNU C++ compiler... yes
-> checking whether aarch64-xilinx-linux-g++  --sysroot=/extra_disk/home/ECHODYNE.INT/steve/projects/develop/jup-bsp/build/tmp/work/aarch64-xilinx-linux/dmalloc/5.5.2-r0/recipe-sysroot accepts -g... yes
-> configure: WARNING: could not find C++ compiler
->
-> Any suggestions on how to get this recipe to build the requested c++ versions. Is there a dependency I can add in an append file to force it to recognize the compiler?
+In message: RE: [yocto-kernel-cache] [yocto-5.10] nxp-imx8: Enable IMX_SCU_SOC config
+on 16/07/2021 Wang, Xiaolei wrote:
 
-there should be a config.log generated in this component's build
-directory which should have more information on what check failed and
-perhaps some more errors to tell what went wrong.
+> Hi bruce
+> 
+> Can you help me merge this patch to yocto-kernel-cache branch yocto-5.10
+
+The original patch didn't have a branch specified, so it somehow managed to
+miss my filters.
+
+this is now merged
+
+Bruce
 
 > 
->
+> Thanks
+> Xiaolei
+> 
+> -----Original Message-----
+> From: linux-yocto@lists.yoctoproject.org <linux-yocto@lists.yoctoproject.org> On Behalf Of Xiaolei Wang
+> Sent: Friday, July 9, 2021 12:58 PM
+> To: bruce.ashfield@gmail.com
+> Cc: linux-yocto@lists.yoctoproject.org
+> Subject: [linux-yocto] [PATCH] nxp-imx8: Enable IMX_SCU_SOC config
+> 
+> Enable IMX_SCU_SOC config for imx8 get soc_id value and get revision, Because the SW workaround for i.MX8QM TKT340553 is required on the imx8qm board, it is necessary to set TKT340553_SW_WORKAROUND to true in tlbflush.h, otherwise the system will often encounter memory problems and cause hang
+> 
+> Signed-off-by: Xiaolei Wang <xiaolei.wang@windriver.com>
+> ---
+>  bsp/nxp-imx8/nxp-imx8.cfg | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/bsp/nxp-imx8/nxp-imx8.cfg b/bsp/nxp-imx8/nxp-imx8.cfg index d9ea3caf..dbc77b3a 100644
+> --- a/bsp/nxp-imx8/nxp-imx8.cfg
+> +++ b/bsp/nxp-imx8/nxp-imx8.cfg
+> @@ -475,6 +475,7 @@ CONFIG_OF_OVERLAY=y
+>  CONFIG_MAILBOX=y
+>  CONFIG_IMX_MBOX=y
+>  CONFIG_IMX_SCU=y
+> +CONFIG_IMX_SCU_SOC=y
+>  CONFIG_IMX_DSP=y
+>  CONFIG_IMX_SCU_PD=y
+>  CONFIG_IIO=y
+> --
+> 2.25.1
+> 
