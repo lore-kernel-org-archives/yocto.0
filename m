@@ -1,60 +1,57 @@
 Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
- by mx.groups.io with SMTP id smtpd.web12.2005.1626860809982385495
+ by mx.groups.io with SMTP id smtpd.web09.2065.1626860810136318912
  for <yocto@lists.yoctoproject.org>;
  Wed, 21 Jul 2021 02:46:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@denx.de header.s=phobos-20191101 header.b=NGSmAYj2;
+ dkim=fail reason="body hash did not verify" header.i=@denx.de header.s=phobos-20191101 header.b=QfMq0r/F;
  spf=pass (domain: denx.de, ip: 85.214.62.61, mailfrom: lukma@denx.de)
 Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
 	(No client certificate requested)
 	(Authenticated sender: lukma@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 4903A82956;
+	by phobos.denx.de (Postfix) with ESMTPSA id 804B982991;
 	Wed, 21 Jul 2021 11:46:48 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
 	s=phobos-20191101; t=1626860808;
-	bh=oZM8nhVW6u3XfX1G0V+Mubvh4a0KX1yZiMv0yfQLWiE=;
-	h=From:To:Cc:Subject:Date:From;
-	b=NGSmAYj2zl6nftihTFEdfGbr7dZKSkgGUK04dhoY6MHpcKO8FDmMhIxglnupkGGZ1
-	 4Cy0rw2DTYUZkxfMPLBVuYw+OragIK+Pwxg8nyphwqEHqp0zLRxIT5Lpm4VSVdSCDM
-	 KHVt2pZ0RZAmEq7DkgZkxBI+FKVxhpiluzMGTn+Qc16sz90LCwn/cmHgLDIhaKBv9v
-	 BPXudKCjYa+D3epKc5wXGerpg3WcLWnf95qeAuoEDyFB4IZo5qxW+XX/L+SIFFyd0h
-	 g1t5ynjc77JSj0P4EyeDOHLrN3J33mMwf9geJyhcNPUehmDtMBgqYg6inTfYNzRPPK
-	 5pxg9Y8yMJHbg==
+	bh=kQffT2P7RSvFtWfU/assMs6KTiCj/kEv6V7RGtL77Zc=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=QfMq0r/FQ6M3dWbwTi5DKmCKDLuBi8AM+Ca391vYwybFTKLOPjJeSE8UxBRHh1glc
+	 4TbcmjdH3IstYtvEogkshF4I0klz+0kxBVOEeGTjTPm9xtHRZzajqIXs/TeSgAGzra
+	 VChB48CEVvMmQcI6/qaOsn58hff55vnBEJnSCEL9/e8ychs/kqPDHYZ927b1hwBxnM
+	 o3KKpJ9+6v6oLU7i/84wJGg/QLU7p64ZP0+7N+pM1o5D653eB4W0VIXerR1rl6rd9r
+	 tAzs06UqOlL3R6w/D5gxJ0WZusW9FnNLcIRbEQ8yVsBBpVQWEotYr2GSFAmKodv9aR
+	 3vidAfJJ2jNLQ==
 From: "?ukasz Majewski" <lukma@denx.de>
 To: yocto@lists.yoctoproject.org
-Cc: Lukasz Majewski <lukma@denx.de>
-Subject: [ptest-runner 0/5] ptest: Various memory fixes and enhancements
-Date: Wed, 21 Jul 2021 11:46:22 +0200
-Message-Id: <20210721094627.29833-1-lukma@denx.de>
+Cc: Adrian Freihofer <adrian.freihofer@siemens.com>
+Subject: [ptest-runner 1/5] git: Extend the gitignore
+Date: Wed, 21 Jul 2021 11:46:23 +0200
+Message-Id: <20210721094627.29833-2-lukma@denx.de>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210721094627.29833-1-lukma@denx.de>
+References: <20210721094627.29833-1-lukma@denx.de>
 MIME-Version: 1.0
 X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
 X-Virus-Status: Clean
 Content-Transfer-Encoding: quoted-printable
 
-This patch series provides some memory management fixes and corrected
-return code handling for ptest-runner2.
+From: Adrian Freihofer <adrian.freihofer@siemens.com>
 
-Adrian Freihofer (4):
-  git: Extend the gitignore
-  mem: Fix memleak for ptest_opts
-  mem: Simplify memory management
-  mem: Refactor ptest_list cleanup
-
-Lukasz Majewski (1):
-  main: Do not return number of failed tests when calling ptest-runner
-
- .gitignore         |  3 +++
- main.c             | 33 ++++++++++++++++++++++++++++-----
- ptest_list.c       | 13 ++++---------
- ptest_list.h       |  8 +-------
- tests/ptest_list.c | 13 +++++++------
- tests/utils.c      | 22 +++++++++++-----------
- utils.c            | 11 ++++-------
- 7 files changed, 58 insertions(+), 45 deletions(-)
+Signed-off-by: Adrian Freihofer <adrian.freihofer@siemens.com>
+---
+ .gitignore | 3 +++
+ 1 file changed, 3 insertions(+)
  create mode 100644 .gitignore
 
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..ef07e6a
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,3 @@
++*.o
++ptest-runner
++ptest-runner-test
 --=20
 2.20.1
 
