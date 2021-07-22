@@ -1,100 +1,87 @@
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
- by mx.groups.io with SMTP id smtpd.web12.7377.1626959193489900723
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+ by mx.groups.io with SMTP id smtpd.web08.7501.1626959467152157200
  for <yocto@lists.yoctoproject.org>;
- Thu, 22 Jul 2021 06:06:33 -0700
+ Thu, 22 Jul 2021 06:11:07 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=VFdrX1dd;
- spf=pass (domain: gmail.com, ip: 209.85.218.53, mailfrom: koansoftware@gmail.com)
-Received: by mail-ej1-f53.google.com with SMTP id gb6so8295180ejc.5
-        for <yocto@lists.yoctoproject.org>; Thu, 22 Jul 2021 06:06:33 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=O8zPfpgn;
+ spf=pass (domain: gmail.com, ip: 209.85.218.42, mailfrom: koansoftware@gmail.com)
+Received: by mail-ej1-f42.google.com with SMTP id hd33so8286153ejc.9
+        for <yocto@lists.yoctoproject.org>; Thu, 22 Jul 2021 06:11:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id;
-        bh=GjyIrPF9VhLo0hA7XxnJ0twp/ESFOEUFXrrsrw6UTYU=;
-        b=VFdrX1dd9I4dWBoqaYXfg1s1VfAMtQu3fcaCrl6StR8vaXe3c4TKkW3VmcD6K7TcN+
-         HUanL00dWuSsAnbER4qeCIcZOLr+pF6nNjG8pOpVS9FKrm+sacP9bYWEHypxxdcPLP7/
-         k0vMFPRpYPKz1o2aCxD/rJOmXlqsAIjLi4fFNg2V8HqQLQwQjB3qyqHdhAuqNP3FIV/D
-         hCWaMkDyw6w3+bTR1Nz4QifJ5H2Abmn85ZzbDqNLY+tTBzkjxBuTk+Mwq9TvMSpcH5x8
-         fDPF0/GVbXpEg//7yiDwH49kHm5FAd0m8iFr3HxRYVs5lgFxAXjkP0vlHcwBZU14Edge
-         55NQ==
+        bh=Q14mx5seMYSGncJvnrZWiay3fPeMvuPr3pPhfdmieD4=;
+        b=O8zPfpgng1egIlnBBgVDGwOYmPDMh1qEBIF8Yb4rjcaIqAzd/Yvo1xAKTgvtCMvXAD
+         NxZAuZWpMVDb7qfsSxXXakFo/5QBnssHEZZ5Nh4+QBwyk0ka2MpKeXEcOW7uDWkQWONT
+         hG3uCfsJTSC0H4ufK8Ru9HhPE3mNyQlvzuxKCaoOA4Dtgh9kbz7v0oBBhiEYnRXCct+p
+         5orPACM8Z6QI6H0MOAs2UDQ/dRA+XyV+YIiZZk9VFXH6Nd0z2N0KJknN3fr4+zCyrPPL
+         4NONA84ORs3en2v0NXxEDKPOoRSL1T4q8TVl/EDyCAsExNd/fWE7+/b5ClLzPrkKayEA
+         lSsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=GjyIrPF9VhLo0hA7XxnJ0twp/ESFOEUFXrrsrw6UTYU=;
-        b=OZQ7116eL6DnVLVJqDZMgDcTvfijO3o16w8kx1nOSAcPvuop2k2lft57NGfyLkOIXY
-         A4PE0sNFAy+yB25Nt3mFS7Ia9b6CIKndgFztrLc8O0ZSmoExtr5hkIkYbydHlIH3g8bv
-         MAeW3bvfkqPQhciH6zqbiZBsHpECcYT/Px4svYFoel2PojXSvLUByQFeJvesqQyElrir
-         r6v6vyFRGf7ghiU4CM9m5d1MHJL0lg/OhPTLcx7Wok17KyE4DSbAzRYbrsyPnMINkQB1
-         /Jt8lW/tteX3K2rB6TcVPz2M4TxG7JbVAs593epsdQXFGJ37vv2jnoZnmJ8mx021t6rl
-         7ILA==
-X-Gm-Message-State: AOAM5303kLxgQx/InNjBJDaNUSCdIH4D2Cj20uMihqu8B5iF9oA2jVqh
-	4TKqIQ9aZKmethCwE+qHpShNDPqtAMQUfA==
-X-Google-Smtp-Source: ABdhPJztQbYRHF1Ko3f7FiD7XSGhWkUpIhcYEhPoLbJh4v4Y8zVBT2LaDxliylUTZGT/NHkU/2rhlQ==
-X-Received: by 2002:a17:906:4ad9:: with SMTP id u25mr42797981ejt.174.1626959191695;
-        Thu, 22 Jul 2021 06:06:31 -0700 (PDT)
+        bh=Q14mx5seMYSGncJvnrZWiay3fPeMvuPr3pPhfdmieD4=;
+        b=GmaTdn8dZuAsCbfTlYbKbGeDtchVEinGRtm8+8WjcKijlTVzzgmZRInEmP9m3ko/Bl
+         ADKJtS8FqV6T/elljdy+hC3O92sXwjNOspRRfqIIdMKwF8+H2i5Zff4kB0vBDDOEvsFh
+         tu57IKZbPu361SC9leCBbLUz2bI/7QEes38G9l5putplBfaVS3jzx+CpSQ1s3XbLXy/W
+         0fHF52aGGj2z4/CHKZnpj5iiRdVMX6+aYKF8Cg0OV8igpTAQ8y2aJS5BWrTi20jCgsG4
+         veI3CXD04pKfdTPJu60qi6DyLJu15jxBy8+dNrdqRyml+fKCDJpzjCHfK3x39oRv3VWg
+         AfUQ==
+X-Gm-Message-State: AOAM533+/xS98BZPMFIRDaNG5igH37LTo4vnnwq98tdAEKyZJVablfZi
+	ucP+W78Puv9PhqSX5TkHhptjEDcO5BnxwQ==
+X-Google-Smtp-Source: ABdhPJzx7jrqnLVGTOClUb/d5VLyUHZ/2db0zmn07D6Or4xjXvWyX66sRg34TE7Ba3PlluEjJLrk1A==
+X-Received: by 2002:a17:906:990f:: with SMTP id zl15mr43646178ejb.34.1626959465519;
+        Thu, 22 Jul 2021 06:11:05 -0700 (PDT)
 Return-Path: <koansoftware@gmail.com>
 Received: from amonra.localdomain (host-79-3-92-72.business.telecomitalia.it. [79.3.92.72])
-        by smtp.gmail.com with ESMTPSA id o21sm6927771ejc.98.2021.07.22.06.06.30
+        by smtp.gmail.com with ESMTPSA id gn13sm9258216ejc.1.2021.07.22.06.11.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Jul 2021 06:06:31 -0700 (PDT)
+        Thu, 22 Jul 2021 06:11:05 -0700 (PDT)
 From: "Marco Cavallini" <koansoftware@gmail.com>
 To: yocto@lists.yoctoproject.org
 Cc: Marco Cavallini <m.cavallini@koansoftware.com>,
 	Marco Cavallini <koansoftware@gmail.com>
-Subject: [meta-spdxscanner][PATCH] fossology-rest.bbclass: Moved check if spdx already exists out of the task
-Date: Thu, 22 Jul 2021 15:06:23 +0200
-Message-Id: <20210722130623.30388-1-koansoftware@gmail.com>
+Subject: [meta-spdxscanner][PATCH] MAINTAINERS & README.md: Updated the email address where send patches
+Date: Thu, 22 Jul 2021 15:10:57 +0200
+Message-Id: <20210722131057.30663-1-koansoftware@gmail.com>
 X-Mailer: git-send-email 2.17.1
 
 From: Marco Cavallini <m.cavallini@koansoftware.com>
 
- With the previous code was impossible to run the do_get_report
- task  whenever a correspondent .spdx file was already present
- in tmp/deploy/spdx.
- Now the check if spdx already exists is at a higher level
- therefore is possible to run : bitbake -c get_report
+ Was yocto@yoctoproject.org and now is yocto@lists.yoctoproject.org
 
 Signed-off-by: Marco Cavallini <koansoftware@gmail.com>
 ---
- classes/fossology-rest.bbclass | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+ MAINTAINERS | 2 +-
+ README.md   | 4 ++++
+ 2 files changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/classes/fossology-rest.bbclass b/classes/fossology-rest.bbclass
-index 3694440..e55e859 100644
---- a/classes/fossology-rest.bbclass
-+++ b/classes/fossology-rest.bbclass
-@@ -84,6 +84,15 @@ python () {
-         create_manifest(info,sstatefile)
-         return
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 23761bf..ec34c24 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1,7 +1,7 @@
+ This file contains a list of maintainers for the meta-spdxscanner layer.
  
-+    # if spdx already exists
-+    if os.path.exists(info['outfile']):
-+        bb.note(info['pn'] + "spdx file has been exist, do nothing")
-+        return
-+    if os.path.exists( sstatefile ):
-+        bb.note(info['pn'] + "spdx file has been exist, do nothing")
-+        create_manifest(info,sstatefile)
-+        return
+ Please submit any patches against meta-spdxscanner to the Yocto Project 
+-mailing list (yocto@yoctoproject.org) with'[meta-spdxscanner]' in the 
++mailing list (yocto@lists.yoctoproject.org) with'[meta-spdxscanner]' in the 
+ subject.
+ 
+ You may also contact the maintainers directly.
+diff --git a/README.md b/README.md
+index eb0c389..62b59f5 100644
+--- a/README.md
++++ b/README.md
+@@ -69,3 +69,7 @@ Note
+ - scancode-tk has to install on host development under python2. So, please make sure that python2 exists on your build server.
+ - If you want to use scancode.bbclass, There is no need to install anything on your host.
+ 
++---
 +
-     d.appendVarFlag('do_spdx', 'depends', ' %s:do_get_report' % pn)
-     bb.build.addtask('do_get_report', 'do_configure', 'do_patch' , d)
-     bb.build.addtask('do_spdx', 'do_configure', 'do_get_report', d)
-@@ -157,15 +166,6 @@ python do_get_report () {
-     info['outfile'] = os.path.join(manifest_dir, info['pn'] + "-" + info['pv'] + ".spdx" )
-     sstatefile = os.path.join(spdx_outdir, info['pn'] + "-" + info['pv'] + ".spdx" )
-     
--    # if spdx has been exist
--    if os.path.exists(info['outfile']):
--        bb.note(info['pn'] + "spdx file has been exist, do nothing")
--        return
--    if os.path.exists( sstatefile ):
--        bb.note(info['pn'] + "spdx file has been exist, do nothing")
--        create_manifest(info,sstatefile)
--        return
--
-     spdx_get_src(d)
- 
-     bb.note('SPDX: Archiving the patched source...')
++Please submit any patches against meta-spdxscanner to the Yocto Project mailing list (yocto@lists.yoctoproject.org) 
++with'[meta-spdxscanner]' in the subject.
+\ No newline at end of file
 -- 
 2.17.1
 
