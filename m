@@ -1,505 +1,222 @@
-Received: from mx01.optimcloud.com (mx01.optimcloud.com [46.23.89.156])
- by mx.groups.io with SMTP id smtpd.web12.6149.1627034241204370673
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+ by mx.groups.io with SMTP id smtpd.web12.7650.1627044693544484671
  for <yocto@lists.yoctoproject.org>;
- Fri, 23 Jul 2021 02:57:22 -0700
+ Fri, 23 Jul 2021 05:51:34 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="no key for verify" header.i=@optimcloud.com header.s=obsd header.b=f5th0P58;
- spf=none, err=permanent DNS error (domain: optimcloud.com, ip: 46.23.89.156, mailfrom: yocto@optimcloud.com)
-Received: from mx01.optimcloud.com (localhost [127.0.0.1])
-	by mx01.optimcloud.com (OpenSMTPD) with ESMTP id 7c508368;
-	Fri, 23 Jul 2021 11:57:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=optimcloud.com; h=
-	content-type:message-id:from:to:subject:date:in-reply-to
-	:references:mime-version; s=obsd; bh=Xx8AMjmYdhqV1/evPcqdAnINCqG
-	ZVuBl8zl9dbn/0Gk=; b=f5th0P58PPNG3GVHkKoel1hVGq+SWfICyKtPGCeY5MK
-	anBfmrhNzNLyKhFSOxwpmXiIfuZf7t/W7O1E4j4Bi484H96XI+Rf8w85Gk4Ils2U
-	jsnzVfTa8PZqStwjK/Sck4OO8w49aviteDVEDcHwmHtU56oXYO2MSVc83ktOxYrT
-	C5UjfJXpPMBXY+qxkqcmrtgpvul02E3CsRou47Wydakm6Q0grWHafS1IBJTzzBQl
-	btafr8cxLS5eRrcKDw/wSeCEBwT/9SSqpOWXrneAFNUd/JEcXZ7UfVHaf2pA92yd
-	sNU5SgC9WKWzVV1llTihAjqwlay5Gdk/EAz0LZHqUeA==
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=optimcloud.com; h=
-	content-type:message-id:from:to:subject:date:in-reply-to
-	:references:mime-version; q=dns; s=obsd; b=eFdUhKWGT7Z4lJwilcoXo
-	EaEU4bp9scVj8G8qE0JTh9uXTz6w8iiucuWrHKRLgsf1n1mSM5BMDVCzVueCGoBQ
-	3cmdpMKnSUsL4gS3T9gVmi8KhhkoBD8vNQOA21vHbTAQGMDN7ozCBdEZZiD4JEYv
-	fvEueU/i119GWolcEw3sHOdiSegqt0ICTyOU6646EJTsptVFU+F4OxQBIhkic7ed
-	OxrSKqsC3yViIOEn9mBJOyQjZJ7UWADKPDpj7xJAiaAokIDnchx6VVo2NeYTn45Q
-	DaA9WML2tkiP/dcP4ELVnqFW00Jno2/G1xOC124RPoLaDcUin3y4Cf8JExbF2l19
-	A==
-Received: 
-	by mx01.optimcloud.com (OpenSMTPD) with ESMTPSA id 03d4ce97 (TLSv1.3:AEAD-AES256-GCM-SHA384:256:NO) auth=yes user=yocto@optimcloud.com;
-	Fri, 23 Jul 2021 11:57:17 +0200 (CEST)
-Message-Id: <1627034184052.2164886629.3854490787@optimcloud.com>
-From: "Yocto" <yocto@optimcloud.com>
-To: sateesh m <sateesh0457@gmail.com>, yocto@lists.yoctoproject.org
-Subject: Re: [yocto] #yocto
-Date: Fri, 23 Jul 2021 09:57:12 +0000
-In-Reply-To: <r3RP.1627021568007502036.uuv1@lists.yoctoproject.org>
-References: <r3RP.1627021568007502036.uuv1@lists.yoctoproject.org>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=W0pSp+YK;
+ spf=pass (domain: gmail.com, ip: 209.85.128.49, mailfrom: robert.berger.yocto.user@gmail.com)
+Received: by mail-wm1-f49.google.com with SMTP id j6-20020a05600c1906b029023e8d74d693so1547208wmq.3;
+        Fri, 23 Jul 2021 05:51:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=1ovwPjif/qTznnf9YK8BbhrqP+/EAGLwPylNceR6ubQ=;
+        b=W0pSp+YKUNPFBlRzLaHmQIdXF2mpMLJDV1h/F4CO/9CDnEup1OTtU6O33DYDiUfQ4o
+         0MI2LcsocNC9ERmzoWAKzeyl+pNGY66u8Pcj3+4XxWQX8QUDbbjBp41TcXJM15NlXROH
+         Iz3OAFk2vnoZP7X47LShTY1OTOX4cChtXEWwvQrFdEKVnYHqNuGooIo0uSlSmutFZ2wQ
+         HuyL0uafgF0S5S6k0DuYErCRabdTCzEtqQw+vb9IANSJH+VNDGWWbTftgJNovb8X6K+l
+         xeSD5Oi6Rhc/lt+Xwmq4ehkJ+Vk0iSTGYS6ZEoqSHQeMyGz3buvIy+M1lZl5SesxVY8g
+         wf/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=1ovwPjif/qTznnf9YK8BbhrqP+/EAGLwPylNceR6ubQ=;
+        b=bOvAtj+EBp38q7chDviMfnjUc6k1YKoQqimAGO6F8z+vCU740tEFIoSckJ1Qe0aQn1
+         u5c70ApZkeFPW0fQrA9cYrtTCLHAQFAXJ1ja5PVcitWOd00T/13GsNwlwlZ2ing19Wsk
+         9HjwKBkSISz1c09d8RJzBINCPERUdunttiWEGOlUl1EbxoWvqfbdz0teVtZvB9dHPWW5
+         /SOQeh0eYdiushdHnH9gQ2ghECwJe1dCXYaX2DxLf6J6mtiPsQ0mfDvU9jwq1/HrFDqa
+         HQL/uIu7BgEcBXhIT7DCSqmefLB7RNXHHfpIxb8WiXqgTrtHV43/wYeUkXQLrBSH8Qyb
+         ISHQ==
+X-Gm-Message-State: AOAM531SFR+cokUf3a//RGvYw4wmraTtdN/DmwB8zIx56vm4Pd68VAA3
+	UNzGWhHp+R0pDGjfTBa94DY=
+X-Google-Smtp-Source: ABdhPJw2y2T7YAsv6vArbYOdC9ULigQwKciRKosevzzDHBPfjZAf1bEz4lb+cwrmlo7ckDspkNANDQ==
+X-Received: by 2002:a7b:c7cb:: with SMTP id z11mr13992543wmk.102.1627044691936;
+        Fri, 23 Jul 2021 05:51:31 -0700 (PDT)
+Return-Path: <robert.berger.yocto.user@gmail.com>
+Received: from [192.168.42.52] (athedsl-4432950.home.otenet.gr. [79.129.148.38])
+        by smtp.gmail.com with ESMTPSA id l39sm4563915wms.1.2021.07.23.05.51.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Jul 2021 05:51:31 -0700 (PDT)
+Subject: Re: [yocto] [poky] [PATCH] local.conf.sample: disable prelink
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: Richard Purdie <richard.purdie@linuxfoundation.org>,
+ Mark Hatle <mark.hatle@kernel.crashing.org>, poky@lists.yoctoproject.org,
+ Yocto-mailing-list <yocto@lists.yoctoproject.org>,
+ Khem Raj <raj.khem@gmail.com>
+References: <20210615081225.1734033-1-alex.kanavin@gmail.com>
+ <5ed9e1d2676d4d31289ebaf2ec3b492c1daa88a7.camel@linuxfoundation.org>
+ <CANNYZj84MXS57sG5CWLmS-Y_0-w8h1_9NLmtjFEo4pJ5snXvcA@mail.gmail.com>
+ <CANNYZj8S7V5owiS0p3B1fD7n_JpF-OPLApO=e9d+SiPuyFWHZw@mail.gmail.com>
+ <0451f536368310860d9acb12e5a8424881b545e8.camel@linuxfoundation.org>
+ <CANNYZj9Z87Jb7Ea-vtQ1ZEmtQvfFRDtTXAxvStZT3c02RnU01g@mail.gmail.com>
+ <a7e0a44c-084e-5e21-5621-67e32ca36127@gmail.com>
+ <CANNYZj-C_QWe9CB9JsAOctCJbNrAni8WoDVg15t5kzKsYn6QEw@mail.gmail.com>
+From: "Robert Berger" <robert.berger.yocto.user@gmail.com>
+Message-ID: <802f76c0-5c9c-7fed-f6a8-52db36d2ce0e@gmail.com>
+Date: Fri, 23 Jul 2021 15:51:28 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
- boundary="----sinikael-?=_1-16270342325870.6752113794321226"
-
-------sinikael-?=_1-16270342325870.6752113794321226
+In-Reply-To: <CANNYZj-C_QWe9CB9JsAOctCJbNrAni8WoDVg15t5kzKsYn6QEw@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 
-maybe clear your build tmp cache sstate and rebuild
+On 22/07/2021 22:05, Alexander Kanavin wrote:
+> PIE is nowadays more or less the only available option and is expected 
+> for improved security; Yocto does not even test non-PIE builds or 
+> provide an off the shelf way to turn it off.
 
+I am worried about those libraries, which are non-PIE libraries by 
+default. My theory is, that they are non-PIE since prelink is able to 
+operate on them. So prelink can "at least" be used a PIE detector.
 
-On Friday 23 July 2021 13:26:08 PM (+07:00), sateesh m wrote:
+They are:
 
+lib/libdl-2.33.so is prelinked
+lib/ld-2.33.so is prelinked
+lib/libpthread-2.33.so is prelinked
+lib/libc-2.33.so is prelinked
 
-Hi Guys,
+Is there are rational explanation why they are not compiled in PIE mode 
+and/or if they are compiled in PIE mode how cross-prelink can operate on 
+them? If cross-prelink can operate on them why not on the others?
 
+> 
+> I also have to note that prelink does show higher RAM consumption in 
+> your tests as well (MemFree column). On the constrained systems which 
+> would benefit most from improved prelink timings that might be a bigger 
+> loss than not prelinking.
 
-               I am facing below error while compiling consul package. can 
-anybody know this issue please suggest me. 
-ERROR: consul-git-r0 do_compile: Execution of 
-'/home/sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/consul/git-r0/temp/run.do_compile.26832' 
-failed with exit code 2:
-internal/unsafeheader
-unicode/utf16
-container/list
-internal/cpu
-crypto/internal/subtle
-crypto/subtle
-vendor/golang.org/x/crypto/cryptobyte/asn1
-internal/nettrace
-vendor/golang.org/x/crypto/internal/subtle
-internal/race
-unicode/utf8
-runtime/internal/atomic
-sync/atomic
-internal/testlog
-runtime/internal/sys
-runtime/internal/math
-internal/bytealg
-encoding
-unicode
-math/bits
-math
-runtime
-internal/reflectlite
-sync
-errors
-internal/singleflight
-sort
-math/rand
-strconv
-internal/oserror
-io
-vendor/golang.org/x/net/dns/dnsmessage
-container/heap
-crypto/rc4
-reflect
-strings
-bytes
-syscall
-hash
-crypto
-crypto/internal/randutil
-crypto/hmac
-hash/crc32
-vendor/golang.org/x/crypto/hkdf
-bufio
-vendor/golang.org/x/text/transform
-path
-text/tabwriter
-regexp/syntax
-encoding/base32
-html
-hash/crc64
-hash/fnv
-internal/fmtsort
-hash/adler32
-encoding/binary
-regexp
-time
-internal/syscall/unix
-internal/syscall/execenv
-encoding/base64
-crypto/cipher
-crypto/sha512
-crypto/ed25519/internal/edwards25519
-crypto/md5
-crypto/aes
-crypto/des
-context
-crypto/sha1
-internal/poll
-crypto/sha256
-encoding/pem
-vendor/golang.org/x/crypto/chacha20
-vendor/golang.org/x/crypto/poly1305
-vendor/golang.org/x/crypto/chacha20poly1305
-os
-fmt
-path/filepath
-net
-io/ioutil
-encoding/json
-encoding/hex
-vendor/golang.org/x/net/http2/hpack
-mime
-mime/quotedprintable
-vendor/golang.org/x/crypto/curve25519
-os/signal
-log
-compress/flate
-vendor/golang.org/x/text/unicode/norm
-vendor/golang.org/x/text/unicode/bidi
-compress/gzip
-runtime/debug
-net/http/internal
-math/big
-net/textproto
-net/url
-go/token
-compress/lzw
-encoding/gob
-os/exec
-github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket
-vendor/golang.org/x/text/secure/bidirule
-vendor/golang.org/x/net/idna
-github.com/hashicorp/consul/vendor/golang.org/x/sys/unix
-flag
-runtime/trace
-testing
-os/user
-encoding/asn1
-crypto/elliptic
-text/template/parse
-crypto/rand
-vendor/golang.org/x/crypto/cryptobyte
-crypto/ed25519
-crypto/rsa
-crypto/dsa
-crypto/x509/pkix
-mime/multipart
-vendor/golang.org/x/net/http/httpproxy
-vendor/golang.org/x/net/http/httpguts
-internal/lazyregexp
-go/scanner
-crypto/ecdsa
-text/template
-compress/zlib
-crypto/x509
-go/ast
-archive/tar
-github.com/hashicorp/consul/vendor/github.com/boltdb/bolt
-html/template
-github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host
-go/parser
-go/doc
-crypto/tls
-net/mail
-log/syslog
-  
-encoding/xml
-# github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket
-src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/cmsghdr.go:9:10: 
-undefined: cmsghdr
-src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/cmsghdr.go:10:10: 
-undefined: cmsghdr
-src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/cmsghdr.go:11:10: 
-undefined: cmsghdr
-src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/mmsghdr_unix.go:11:17: 
-undefined: mmsghdr
-encoding/csv
-net/http/httptrace
-internal/profile
-runtime/pprof
-net/http
-# github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host
-src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host/host_linux.go:208:22: 
-undefined: sizeOfUtmp
-src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host/host_linux.go:213:14: 
-undefined: sizeOfUtmp
-src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host/host_linux.go:215:9: 
-undefined: utmp
-# github.com/hashicorp/consul/vendor/github.com/boltdb/bolt
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/bolt_unix.go:62:15: 
-undefined: maxMapSize
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/bucket.go:135:15: 
-undefined: brokenUnaligned
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:101:13: 
-undefined: maxMapSize
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:317:12: 
-undefined: maxMapSize
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:335:10: 
-undefined: maxMapSize
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:336:8: 
-undefined: maxMapSize
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:169:19: 
-undefined: maxAllocSize
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:176:14: 
-undefined: maxAllocSize
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:204:17: 
-undefined: maxAllocSize
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:207:7: 
-undefined: maxAllocSize
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:207:7: 
-too many errors
-expvar
-net/http/httptest
-net/rpc
-net/http/httputil
-net/http/cookiejar
-# github.com/hashicorp/consul/vendor/golang.org/x/sys/unix
-src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_linux_gc.go:10:6: 
-missing function body
-src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_linux_gc.go:14:6: 
-missing function body
-src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_gc.go:12:6: 
-missing function body
-src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_gc.go:13:6: 
-missing function body
-src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_gc.go:14:6: 
-missing function body
-src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_gc.go:15:6: 
-missing function body
-net/http/pprof
-WARNING: exit code 2 from a shell command.
-  
-ERROR: Logfile of failure stored in: 
-/home/sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/consul/git-r0/temp/log.do_compile.26832
-  
+I guess we agree that MemFree shows free physical memory (user and 
+kernel space).
 
---
+My experiments show, that non-PIE and no prelink leaves the biggest 
+amount of free physical memory.
+
+They also show that non-PIE and prelink leave the smallest amount of 
+free physical memory ;)
+
+The difference is significant
+prelinked-no-pie/no-prelink-no-pie:		4552 (kB)
+
+If we leave things are they are:
+prelinked-no-pie/prelinked-with-pie:		3972 (kB)
+
+If we disable prelink (as you suggest - and I tend to agree since it 
+does not make sense as it is right now)
+prelinked-no-pie/no-prelink-with-pie:		4120 (kB)
+
+...
+
+but
+
+if you look at the next line MemAvailable kB things looks a bit differently.
+
+My interpretation of MemAvailable is, that it is an estimate of virtual 
+memory available after reclaimable parts of memory (caches, buffer, 
+slab,...) have been reclaimed without getting swap involved.
+
+I see this:
+
+MemAvailable kB
+
+prelinked-with-pie 	939412
+no-prelink-with-pie	939696
+prelinked-no-pie	940344
+no-prelink-no-pie	941216
+
+Which means, that our current default setting is the worst possible 
+solution ;)
+
+no-prelink-no-pie would (theoretically) be the best.
+
+I will try to update my second article and try to explain a bit more my 
+interpretation of the results and maybe also try to see what bootchart 
+says to all this.
+
+Don't get me wrong. I am neither pro nor con prelink. I just would like 
+to understand what it does, if it does something ;)
+
+I spent quite some time on this - also discussing with most of you offline.
+If you ask me, we should use your patch, since people didn't even notice 
+that prelink can not prelink on PIE binaries for a couple of years.
+
+So there does not seem to be much demand for it ;)
+
+We can keep a "placebo" in for the homeopaths who think they use prelink 
+in their images since PIE was enabled ;)
+
+> 
+> But yes, there is a timing benefit visible in the tests: 0.01s vs 0.1s.
+
+Also less CPU usage can be seen. I hope I'll find time to run some test 
+with bootchart. Maybe then we can also see boot time, memory, CPU,...
+
 Regards,
-Sateesh
 
--- 
-Sent with Vivaldi Mail. Download Vivaldi for free at vivaldi.com
+Robert
 
-------sinikael-?=_1-16270342325870.6752113794321226
-Content-Type: text/html; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+> 
+> Alex
+> 
+> On Mon, 19 Jul 2021 at 22:58, Robert Berger@yocto.user 
+> <robert.berger.yocto.user@gmail.com 
+> <mailto:robert.berger.yocto.user@gmail.com>> wrote:
+> 
+>     Hi Alex, RP, Mark,
+> 
+>     I did some research on the subject in order to try to figure out
+>     what is
+>     going on.
+> 
+>     1) I come to a similar conclusion with what found, but tried to look a
+>     bit deeper for the reason.
+> 
+>     1.1) The reason that cross-prelink is not prelinking is, that for a
+>     quite some time by default everything is built with PIE mode by default
+>     and cross-prelink does not seem to be able to work on exe/libs compiled
+>     with PIE mode. So seeing the same behavior with and without prelinking
+>     is what I would expect as long as everything is compiled with PIE mode.
+> 
+>     A more detailed analysis of my tests can be found on my not yet
+>     officially published site:
+> 
+>     https://rlbl.me/prelink-1 <https://rlbl.me/prelink-1>
+> 
+>     https://rlbl.me/prelink-2 <https://rlbl.me/prelink-2>
+> 
+>     Alex:
+> 
+>     Can you please rebuild your test images without PIE mode and re-run the
+>     tests?
+> 
+>     Then we should have the 4 test cases:
+> 
+>     prelinked-with-pie
+>     no-prelink-with-pie
+>     prelink-no-pie
+>     no-prelink-no-pie
+> 
+>     I guess then we can discuss what are the next steps.
+> 
+>     In my opinion the current default settings, which compile close to
+>     everything in PIE mode, but invoke also cross-prelink do not make much
+>     sense.
+> 
+>     The question is: "Do we want to drop cross-prelink, or do we want to
+>     drag it along and come up more fine-grained configuration options?"
+> 
+>     We could e.g. exclude certain files from pre-linking.
+> 
+>     IMHO cross-prelink still works, but not on exe/libs which were compiled
+>     in PIE mode.
+> 
+>     Regards,
+> 
+>     Robert
+> 
 
-<html><head></head><body>maybe clear your build tmp cache sstate and 
-rebuild<div><br><br>On Friday 23 July 2021 13:26:08 PM (+07:00), sateesh m 
-wrote:<br><br><blockquote style="margin: 0 0 0.80ex; border-left: #0000FF 
-2px solid; padding-left: 1ex">Hi Guys,<br>
-<div><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I am facing below 
-error while compiling consul package. can anybody know this issue please 
-suggest me.&nbsp;<br>ERROR: consul-git-r0 do_compile: Execution of 
-'/home/sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/consul/git-r0/temp/run.do_compile.26832' 
-failed with exit code 2:</div>
-<div>internal/unsafeheader</div>
-<div>unicode/utf16</div>
-<div>container/list</div>
-<div>internal/cpu</div>
-<div>crypto/internal/subtle</div>
-<div>crypto/subtle</div>
-<div>vendor/golang.org/x/crypto/cryptobyte/asn1</div>
-<div>internal/nettrace</div>
-<div>vendor/golang.org/x/crypto/internal/subtle</div>
-<div>internal/race</div>
-<div>unicode/utf8</div>
-<div>runtime/internal/atomic</div>
-<div>sync/atomic</div>
-<div>internal/testlog</div>
-<div>runtime/internal/sys</div>
-<div>runtime/internal/math</div>
-<div>internal/bytealg</div>
-<div>encoding</div>
-<div>unicode</div>
-<div>math/bits</div>
-<div>math</div>
-<div>runtime</div>
-<div>internal/reflectlite</div>
-<div>sync</div>
-<div>errors</div>
-<div>internal/singleflight</div>
-<div>sort</div>
-<div>math/rand</div>
-<div>strconv</div>
-<div>internal/oserror</div>
-<div>io</div>
-<div>vendor/golang.org/x/net/dns/dnsmessage</div>
-<div>container/heap</div>
-<div>crypto/rc4</div>
-<div>reflect</div>
-<div>strings</div>
-<div>bytes</div>
-<div>syscall</div>
-<div>hash</div>
-<div>crypto</div>
-<div>crypto/internal/randutil</div>
-<div>crypto/hmac</div>
-<div>hash/crc32</div>
-<div>vendor/golang.org/x/crypto/hkdf</div>
-<div>bufio</div>
-<div>vendor/golang.org/x/text/transform</div>
-<div>path</div>
-<div>text/tabwriter</div>
-<div>regexp/syntax</div>
-<div>encoding/base32</div>
-<div>html</div>
-<div>hash/crc64</div>
-<div>hash/fnv</div>
-<div>internal/fmtsort</div>
-<div>hash/adler32</div>
-<div>encoding/binary</div>
-<div>regexp</div>
-<div>time</div>
-<div>internal/syscall/unix</div>
-<div>internal/syscall/execenv</div>
-<div>encoding/base64</div>
-<div>crypto/cipher</div>
-<div>crypto/sha512</div>
-<div>crypto/ed25519/internal/edwards25519</div>
-<div>crypto/md5</div>
-<div>crypto/aes</div>
-<div>crypto/des</div>
-<div>context</div>
-<div>crypto/sha1</div>
-<div>internal/poll</div>
-<div>crypto/sha256</div>
-<div>encoding/pem</div>
-<div>vendor/golang.org/x/crypto/chacha20</div>
-<div>vendor/golang.org/x/crypto/poly1305</div>
-<div>vendor/golang.org/x/crypto/chacha20poly1305</div>
-<div>os</div>
-<div>fmt</div>
-<div>path/filepath</div>
-<div>net</div>
-<div>io/ioutil</div>
-<div>encoding/json</div>
-<div>encoding/hex</div>
-<div>vendor/golang.org/x/net/http2/hpack</div>
-<div>mime</div>
-<div>mime/quotedprintable</div>
-<div>vendor/golang.org/x/crypto/curve25519</div>
-<div>os/signal</div>
-<div>log</div>
-<div>compress/flate</div>
-<div>vendor/golang.org/x/text/unicode/norm</div>
-<div>vendor/golang.org/x/text/unicode/bidi</div>
-<div>compress/gzip</div>
-<div>runtime/debug</div>
-<div>net/http/internal</div>
-<div>math/big</div>
-<div>net/textproto</div>
-<div>net/url</div>
-<div>go/token</div>
-<div>compress/lzw</div>
-<div>encoding/gob</div>
-<div>os/exec</div>
-<div>github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket</div>
-
-<div>vendor/golang.org/x/text/secure/bidirule</div>
-<div>vendor/golang.org/x/net/idna</div>
-<div>github.com/hashicorp/consul/vendor/golang.org/x/sys/unix</div>
-<div>flag</div>
-<div>runtime/trace</div>
-<div>testing</div>
-<div>os/user</div>
-<div>encoding/asn1</div>
-<div>crypto/elliptic</div>
-<div>text/template/parse</div>
-<div>crypto/rand</div>
-<div>vendor/golang.org/x/crypto/cryptobyte</div>
-<div>crypto/ed25519</div>
-<div>crypto/rsa</div>
-<div>crypto/dsa</div>
-<div>crypto/x509/pkix</div>
-<div>mime/multipart</div>
-<div>vendor/golang.org/x/net/http/httpproxy</div>
-<div>vendor/golang.org/x/net/http/httpguts</div>
-<div>internal/lazyregexp</div>
-<div>go/scanner</div>
-<div>crypto/ecdsa</div>
-<div>text/template</div>
-<div>compress/zlib</div>
-<div>crypto/x509</div>
-<div>go/ast</div>
-<div>archive/tar</div>
-<div>github.com/hashicorp/consul/vendor/github.com/boltdb/bolt</div>
-<div>html/template</div>
-<div>github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host</div>
-
-<div>go/parser</div>
-<div>go/doc</div>
-<div>crypto/tls</div>
-<div>net/mail</div>
-<div>log/syslog</div>
-<div>&nbsp;</div>
-<div>encoding/xml</div>
-<div># 
-github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket</div>
-<div>src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/cmsghdr.go:9:10: 
-undefined: cmsghdr</div>
-<div>src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/cmsghdr.go:10:10: 
-undefined: cmsghdr</div>
-<div>src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/cmsghdr.go:11:10: 
-undefined: cmsghdr</div>
-<div>src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/mmsghdr_unix.go:11:17: 
-undefined: mmsghdr</div>
-<div>encoding/csv</div>
-<div>net/http/httptrace</div>
-<div>internal/profile</div>
-<div>runtime/pprof</div>
-<div>net/http</div>
-<div># 
-github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host/host_linux.go:208:22: 
-undefined: sizeOfUtmp</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host/host_linux.go:213:14: 
-undefined: sizeOfUtmp</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host/host_linux.go:215:9: 
-undefined: utmp</div>
-<div># github.com/hashicorp/consul/vendor/github.com/boltdb/bolt</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/bolt_unix.go:62:15: 
-undefined: maxMapSize</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/bucket.go:135:15: 
-undefined: brokenUnaligned</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:101:13: 
-undefined: maxMapSize</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:317:12: 
-undefined: maxMapSize</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:335:10: 
-undefined: maxMapSize</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:336:8: 
-undefined: maxMapSize</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:169:19: 
-undefined: maxAllocSize</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:176:14: 
-undefined: maxAllocSize</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:204:17: 
-undefined: maxAllocSize</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:207:7: 
-undefined: maxAllocSize</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:207:7: 
-too many errors</div>
-<div>expvar</div>
-<div>net/http/httptest</div>
-<div>net/rpc</div>
-<div>net/http/httputil</div>
-<div>net/http/cookiejar</div>
-<div># github.com/hashicorp/consul/vendor/golang.org/x/sys/unix</div>
-<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_linux_gc.go:10:6: 
-missing function body</div>
-<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_linux_gc.go:14:6: 
-missing function body</div>
-<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_gc.go:12:6: 
-missing function body</div>
-<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_gc.go:13:6: 
-missing function body</div>
-<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_gc.go:14:6: 
-missing function body</div>
-<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_gc.go:15:6: 
-missing function body</div>
-<div>net/http/pprof</div>
-<div>WARNING: exit code 2 from a shell command.</div>
-<div>&nbsp;</div>
-<div>ERROR: Logfile of failure stored in: 
-/home/sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/consul/git-r0/temp/log.do_compile.26832</div>
-
-<div>&nbsp;</div>
--- <br>Regards,<br>Sateesh
-</blockquote><br>--&nbsp;<br>Sent with Vivaldi Mail. Download Vivaldi for 
-free at vivaldi.com</div></body></html>
-
-------sinikael-?=_1-16270342325870.6752113794321226--
