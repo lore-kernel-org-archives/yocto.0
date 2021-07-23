@@ -1,25 +1,63 @@
-Subject: #yocto
-To: yocto@lists.yoctoproject.org
-From: "sateesh m" <sateesh0457@gmail.com>
-X-Originating-Location: Hyderabad, Telangana, IN (157.48.220.146)
-X-Originating-Platform: Linux Chrome 91
-User-Agent: GROUPS.IO Web Poster
+Received: from mx01.optimcloud.com (mx01.optimcloud.com [46.23.89.156])
+ by mx.groups.io with SMTP id smtpd.web12.6149.1627034241204370673
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 23 Jul 2021 02:57:22 -0700
+Authentication-Results: mx.groups.io;
+ dkim=fail reason="no key for verify" header.i=@optimcloud.com header.s=obsd header.b=f5th0P58;
+ spf=none, err=permanent DNS error (domain: optimcloud.com, ip: 46.23.89.156, mailfrom: yocto@optimcloud.com)
+Received: from mx01.optimcloud.com (localhost [127.0.0.1])
+	by mx01.optimcloud.com (OpenSMTPD) with ESMTP id 7c508368;
+	Fri, 23 Jul 2021 11:57:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=optimcloud.com; h=
+	content-type:message-id:from:to:subject:date:in-reply-to
+	:references:mime-version; s=obsd; bh=Xx8AMjmYdhqV1/evPcqdAnINCqG
+	ZVuBl8zl9dbn/0Gk=; b=f5th0P58PPNG3GVHkKoel1hVGq+SWfICyKtPGCeY5MK
+	anBfmrhNzNLyKhFSOxwpmXiIfuZf7t/W7O1E4j4Bi484H96XI+Rf8w85Gk4Ils2U
+	jsnzVfTa8PZqStwjK/Sck4OO8w49aviteDVEDcHwmHtU56oXYO2MSVc83ktOxYrT
+	C5UjfJXpPMBXY+qxkqcmrtgpvul02E3CsRou47Wydakm6Q0grWHafS1IBJTzzBQl
+	btafr8cxLS5eRrcKDw/wSeCEBwT/9SSqpOWXrneAFNUd/JEcXZ7UfVHaf2pA92yd
+	sNU5SgC9WKWzVV1llTihAjqwlay5Gdk/EAz0LZHqUeA==
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=optimcloud.com; h=
+	content-type:message-id:from:to:subject:date:in-reply-to
+	:references:mime-version; q=dns; s=obsd; b=eFdUhKWGT7Z4lJwilcoXo
+	EaEU4bp9scVj8G8qE0JTh9uXTz6w8iiucuWrHKRLgsf1n1mSM5BMDVCzVueCGoBQ
+	3cmdpMKnSUsL4gS3T9gVmi8KhhkoBD8vNQOA21vHbTAQGMDN7ozCBdEZZiD4JEYv
+	fvEueU/i119GWolcEw3sHOdiSegqt0ICTyOU6646EJTsptVFU+F4OxQBIhkic7ed
+	OxrSKqsC3yViIOEn9mBJOyQjZJ7UWADKPDpj7xJAiaAokIDnchx6VVo2NeYTn45Q
+	DaA9WML2tkiP/dcP4ELVnqFW00Jno2/G1xOC124RPoLaDcUin3y4Cf8JExbF2l19
+	A==
+Received: 
+	by mx01.optimcloud.com (OpenSMTPD) with ESMTPSA id 03d4ce97 (TLSv1.3:AEAD-AES256-GCM-SHA384:256:NO) auth=yes user=yocto@optimcloud.com;
+	Fri, 23 Jul 2021 11:57:17 +0200 (CEST)
+Message-Id: <1627034184052.2164886629.3854490787@optimcloud.com>
+From: "Yocto" <yocto@optimcloud.com>
+To: sateesh m <sateesh0457@gmail.com>, yocto@lists.yoctoproject.org
+Subject: Re: [yocto] #yocto
+Date: Fri, 23 Jul 2021 09:57:12 +0000
+In-Reply-To: <r3RP.1627021568007502036.uuv1@lists.yoctoproject.org>
+References: <r3RP.1627021568007502036.uuv1@lists.yoctoproject.org>
 MIME-Version: 1.0
-Date: Thu, 22 Jul 2021 23:26:08 -0700
-Message-ID: <r3RP.1627021568007502036.uuv1@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="wVk1bIpQ7upVQVPjWFl5"
+Content-Type: multipart/alternative;
+ boundary="----sinikael-?=_1-16270342325870.6752113794321226"
 
---wVk1bIpQ7upVQVPjWFl5
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+------sinikael-?=_1-16270342325870.6752113794321226
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+maybe clear your build tmp cache sstate and rebuild
+
+
+On Friday 23 July 2021 13:26:08 PM (+07:00), sateesh m wrote:
+
 
 Hi Guys,
 
-I am facing below error while compiling consul package. can anybody know t=
-his issue please suggest me.
-ERROR: consul-git-r0 do_compile: Execution of '/home/sources/fu540-build/t=
-mp-glibc/work/riscv64-oe-linux/consul/git-r0/temp/run.do_compile.26832' fai=
-led with exit code 2:
+
+               I am facing below error while compiling consul package. can 
+anybody know this issue please suggest me. 
+ERROR: consul-git-r0 do_compile: Execution of 
+'/home/sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/consul/git-r0/temp/run.do_compile.26832' 
+failed with exit code 2:
 internal/unsafeheader
 unicode/utf16
 container/list
@@ -157,90 +195,97 @@ go/doc
 crypto/tls
 net/mail
 log/syslog
-
+  
 encoding/xml
 # github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket
-src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/cm=
-sghdr.go:9:10: undefined: cmsghdr
-src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/cm=
-sghdr.go:10:10: undefined: cmsghdr
-src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/cm=
-sghdr.go:11:10: undefined: cmsghdr
-src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/mm=
-sghdr_unix.go:11:17: undefined: mmsghdr
+src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/cmsghdr.go:9:10: 
+undefined: cmsghdr
+src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/cmsghdr.go:10:10: 
+undefined: cmsghdr
+src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/cmsghdr.go:11:10: 
+undefined: cmsghdr
+src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/mmsghdr_unix.go:11:17: 
+undefined: mmsghdr
 encoding/csv
 net/http/httptrace
 internal/profile
 runtime/pprof
 net/http
 # github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host
-src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host/hos=
-t_linux.go:208:22: undefined: sizeOfUtmp
-src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host/hos=
-t_linux.go:213:14: undefined: sizeOfUtmp
-src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host/hos=
-t_linux.go:215:9: undefined: utmp
+src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host/host_linux.go:208:22: 
+undefined: sizeOfUtmp
+src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host/host_linux.go:213:14: 
+undefined: sizeOfUtmp
+src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host/host_linux.go:215:9: 
+undefined: utmp
 # github.com/hashicorp/consul/vendor/github.com/boltdb/bolt
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/bolt_unix.go=
-:62:15: undefined: maxMapSize
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/bucket.go:13=
-5:15: undefined: brokenUnaligned
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:101:13=
-: undefined: maxMapSize
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:317:12=
-: undefined: maxMapSize
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:335:10=
-: undefined: maxMapSize
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:336:8:=
- undefined: maxMapSize
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:=
-169:19: undefined: maxAllocSize
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:=
-176:14: undefined: maxAllocSize
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:=
-204:17: undefined: maxAllocSize
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:=
-207:7: undefined: maxAllocSize
-src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:=
-207:7: too many errors
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/bolt_unix.go:62:15: 
+undefined: maxMapSize
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/bucket.go:135:15: 
+undefined: brokenUnaligned
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:101:13: 
+undefined: maxMapSize
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:317:12: 
+undefined: maxMapSize
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:335:10: 
+undefined: maxMapSize
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:336:8: 
+undefined: maxMapSize
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:169:19: 
+undefined: maxAllocSize
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:176:14: 
+undefined: maxAllocSize
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:204:17: 
+undefined: maxAllocSize
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:207:7: 
+undefined: maxAllocSize
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:207:7: 
+too many errors
 expvar
 net/http/httptest
 net/rpc
 net/http/httputil
 net/http/cookiejar
 # github.com/hashicorp/consul/vendor/golang.org/x/sys/unix
-src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_linux=
-_gc.go:10:6: missing function body
-src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_linux=
-_gc.go:14:6: missing function body
-src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_=
-gc.go:12:6: missing function body
-src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_=
-gc.go:13:6: missing function body
-src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_=
-gc.go:14:6: missing function body
-src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_=
-gc.go:15:6: missing function body
+src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_linux_gc.go:10:6: 
+missing function body
+src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_linux_gc.go:14:6: 
+missing function body
+src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_gc.go:12:6: 
+missing function body
+src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_gc.go:13:6: 
+missing function body
+src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_gc.go:14:6: 
+missing function body
+src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_gc.go:15:6: 
+missing function body
 net/http/pprof
 WARNING: exit code 2 from a shell command.
-
-ERROR: Logfile of failure stored in: /home/sources/fu540-build/tmp-glibc/w=
-ork/riscv64-oe-linux/consul/git-r0/temp/log.do_compile.26832
+  
+ERROR: Logfile of failure stored in: 
+/home/sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/consul/git-r0/temp/log.do_compile.26832
+  
 
 --
 Regards,
 Sateesh
 
---wVk1bIpQ7upVQVPjWFl5
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+-- 
+Sent with Vivaldi Mail. Download Vivaldi for free at vivaldi.com
 
-Hi Guys,<br />
-<div><br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I am facing be=
-low error while compiling consul package. can anybody know this issue pleas=
-e suggest me.&nbsp;<br />ERROR: consul-git-r0 do_compile: Execution of '/ho=
-me/sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/consul/git-r0/temp/r=
-un.do_compile.26832' failed with exit code 2:</div>
+------sinikael-?=_1-16270342325870.6752113794321226
+Content-Type: text/html; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+<html><head></head><body>maybe clear your build tmp cache sstate and 
+rebuild<div><br><br>On Friday 23 July 2021 13:26:08 PM (+07:00), sateesh m 
+wrote:<br><br><blockquote style="margin: 0 0 0.80ex; border-left: #0000FF 
+2px solid; padding-left: 1ex">Hi Guys,<br>
+<div><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I am facing below 
+error while compiling consul package. can anybody know this issue please 
+suggest me.&nbsp;<br>ERROR: consul-git-r0 do_compile: Execution of 
+'/home/sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/consul/git-r0/temp/run.do_compile.26832' 
+failed with exit code 2:</div>
 <div>internal/unsafeheader</div>
 <div>unicode/utf16</div>
 <div>container/list</div>
@@ -342,8 +387,8 @@ un.do_compile.26832' failed with exit code 2:</div>
 <div>compress/lzw</div>
 <div>encoding/gob</div>
 <div>os/exec</div>
-<div>github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket</=
-div>
+<div>github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket</div>
+
 <div>vendor/golang.org/x/text/secure/bidirule</div>
 <div>vendor/golang.org/x/net/idna</div>
 <div>github.com/hashicorp/consul/vendor/golang.org/x/sys/unix</div>
@@ -373,8 +418,8 @@ div>
 <div>archive/tar</div>
 <div>github.com/hashicorp/consul/vendor/github.com/boltdb/bolt</div>
 <div>html/template</div>
-<div>github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host</d=
-iv>
+<div>github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host</div>
+
 <div>go/parser</div>
 <div>go/doc</div>
 <div>crypto/tls</div>
@@ -382,76 +427,79 @@ iv>
 <div>log/syslog</div>
 <div>&nbsp;</div>
 <div>encoding/xml</div>
-<div># github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket=
-</div>
-<div>src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/sock=
-et/cmsghdr.go:9:10: undefined: cmsghdr</div>
-<div>src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/sock=
-et/cmsghdr.go:10:10: undefined: cmsghdr</div>
-<div>src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/sock=
-et/cmsghdr.go:11:10: undefined: cmsghdr</div>
-<div>src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/sock=
-et/mmsghdr_unix.go:11:17: undefined: mmsghdr</div>
+<div># 
+github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket</div>
+<div>src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/cmsghdr.go:9:10: 
+undefined: cmsghdr</div>
+<div>src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/cmsghdr.go:10:10: 
+undefined: cmsghdr</div>
+<div>src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/cmsghdr.go:11:10: 
+undefined: cmsghdr</div>
+<div>src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/mmsghdr_unix.go:11:17: 
+undefined: mmsghdr</div>
 <div>encoding/csv</div>
 <div>net/http/httptrace</div>
 <div>internal/profile</div>
 <div>runtime/pprof</div>
 <div>net/http</div>
-<div># github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host<=
-/div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/hos=
-t/host_linux.go:208:22: undefined: sizeOfUtmp</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/hos=
-t/host_linux.go:213:14: undefined: sizeOfUtmp</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/hos=
-t/host_linux.go:215:9: undefined: utmp</div>
+<div># 
+github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host/host_linux.go:208:22: 
+undefined: sizeOfUtmp</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host/host_linux.go:213:14: 
+undefined: sizeOfUtmp</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host/host_linux.go:215:9: 
+undefined: utmp</div>
 <div># github.com/hashicorp/consul/vendor/github.com/boltdb/bolt</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/bolt_un=
-ix.go:62:15: undefined: maxMapSize</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/bucket.=
-go:135:15: undefined: brokenUnaligned</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:1=
-01:13: undefined: maxMapSize</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:3=
-17:12: undefined: maxMapSize</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:3=
-35:10: undefined: maxMapSize</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:3=
-36:8: undefined: maxMapSize</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelis=
-t.go:169:19: undefined: maxAllocSize</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelis=
-t.go:176:14: undefined: maxAllocSize</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelis=
-t.go:204:17: undefined: maxAllocSize</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelis=
-t.go:207:7: undefined: maxAllocSize</div>
-<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelis=
-t.go:207:7: too many errors</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/bolt_unix.go:62:15: 
+undefined: maxMapSize</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/bucket.go:135:15: 
+undefined: brokenUnaligned</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:101:13: 
+undefined: maxMapSize</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:317:12: 
+undefined: maxMapSize</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:335:10: 
+undefined: maxMapSize</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:336:8: 
+undefined: maxMapSize</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:169:19: 
+undefined: maxAllocSize</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:176:14: 
+undefined: maxAllocSize</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:204:17: 
+undefined: maxAllocSize</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:207:7: 
+undefined: maxAllocSize</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:207:7: 
+too many errors</div>
 <div>expvar</div>
 <div>net/http/httptest</div>
 <div>net/rpc</div>
 <div>net/http/httputil</div>
 <div>net/http/cookiejar</div>
 <div># github.com/hashicorp/consul/vendor/golang.org/x/sys/unix</div>
-<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_=
-linux_gc.go:10:6: missing function body</div>
-<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_=
-linux_gc.go:14:6: missing function body</div>
-<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_=
-unix_gc.go:12:6: missing function body</div>
-<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_=
-unix_gc.go:13:6: missing function body</div>
-<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_=
-unix_gc.go:14:6: missing function body</div>
-<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_=
-unix_gc.go:15:6: missing function body</div>
+<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_linux_gc.go:10:6: 
+missing function body</div>
+<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_linux_gc.go:14:6: 
+missing function body</div>
+<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_gc.go:12:6: 
+missing function body</div>
+<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_gc.go:13:6: 
+missing function body</div>
+<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_gc.go:14:6: 
+missing function body</div>
+<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_gc.go:15:6: 
+missing function body</div>
 <div>net/http/pprof</div>
 <div>WARNING: exit code 2 from a shell command.</div>
 <div>&nbsp;</div>
-<div>ERROR: Logfile of failure stored in: /home/sources/fu540-build/tmp-gl=
-ibc/work/riscv64-oe-linux/consul/git-r0/temp/log.do_compile.26832</div>
-<div>&nbsp;</div>
--- <br />Regards,<br />Sateesh
+<div>ERROR: Logfile of failure stored in: 
+/home/sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/consul/git-r0/temp/log.do_compile.26832</div>
 
---wVk1bIpQ7upVQVPjWFl5--
+<div>&nbsp;</div>
+-- <br>Regards,<br>Sateesh
+</blockquote><br>--&nbsp;<br>Sent with Vivaldi Mail. Download Vivaldi for 
+free at vivaldi.com</div></body></html>
+
+------sinikael-?=_1-16270342325870.6752113794321226--
