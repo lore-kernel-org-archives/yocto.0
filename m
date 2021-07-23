@@ -1,103 +1,457 @@
-Received: from mx01.optimcloud.com (mx01.optimcloud.com [46.23.89.156])
- by mx.groups.io with SMTP id smtpd.web11.4687.1627019141527599250
- for <yocto@lists.yoctoproject.org>;
- Thu, 22 Jul 2021 22:45:42 -0700
-Authentication-Results: mx.groups.io;
- dkim=fail reason="no key for verify" header.i=@optimcloud.com header.s=obsd header.b=xa2N/BHF;
- spf=none, err=permanent DNS error (domain: optimcloud.com, ip: 46.23.89.156, mailfrom: yocto@optimcloud.com)
-Received: from mx01.optimcloud.com (localhost [127.0.0.1])
-	by mx01.optimcloud.com (OpenSMTPD) with ESMTP id 07469b11;
-	Fri, 23 Jul 2021 07:45:38 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=optimcloud.com; h=
-	content-type:message-id:from:to:subject:date:in-reply-to
-	:references:mime-version; s=obsd; bh=trTQMQJL+vdnp9HZ5a7j9k4oCli
-	NTM+dii0/3f6qkjQ=; b=xa2N/BHFAQH5ABanYHfxenLi9YVpq73MW6gYVeQidds
-	1o1r57m6n2Jl37NUtMQmqEXkH+udnyHKfR8yLEgaZyXw19aDq5mEatGSAGQ14P+d
-	cnmCVRgVytW/0h5rkf9oVE+NUg/lihtC1eXZ82hv2noqo3APtjibfJ2skhE4sQBS
-	7Hd6eRF+e8W3Jw8vefXMbkkz06Er2asiEXFesjcbbPSGuopdTrQvyPTe7UbGGzIP
-	KsopEm3CkwLWxwPHCS2H3v77Bx+l596qXWivPrn0C0VaJg+gNcDuCuFPtNowF0Pa
-	75TJTY9bOFBP7GJLWEdzFEWYM1mTpNltxl293iasdFQ==
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=optimcloud.com; h=
-	content-type:message-id:from:to:subject:date:in-reply-to
-	:references:mime-version; q=dns; s=obsd; b=qmBV+1ezxXT/D2mp7A6w+
-	os/3fP4pTqMYs3RAZSUVQ+qVwXiw6RWKiI9IwWzzs91r7bWN1265Foluu+K1rgH6
-	G0NOAaIiiURFAkFZu05m3jswpyzOSYlcNr3kux+pwAw3KyaLlXsxbJwL6wphQy+c
-	D/++K0A0qqGx6FKUrg1qcRIDCs570UvBJrFopmSCzNKeql2PeCdgGZg20n+gu5BF
-	zxzFzgBYE+LVpxGn8iT6+qdM3IGZGl3oyDD7Jh98x89eFZUscdwcORW8TsKfZfZO
-	LTriwE2814METl8Qhot/eEiUyBKRXwaq1hp480OwdIZ24DXxLCaqFaVJ7PJ55NsD
-	A==
-Received: 
-	by mx01.optimcloud.com (OpenSMTPD) with ESMTPSA id 5bce67a9 (TLSv1.3:AEAD-AES256-GCM-SHA384:256:NO) auth=yes user=yocto@optimcloud.com;
-	Fri, 23 Jul 2021 07:45:37 +0200 (CEST)
-Message-Id: <1627019126293.3177070240.2125681562@optimcloud.com>
-From: "Yocto" <yocto@optimcloud.com>
-To: sateesh m <sateesh0457@gmail.com>, yocto@lists.yoctoproject.org
-Subject: Re: [yocto] consul
-Date: Fri, 23 Jul 2021 05:45:33 +0000
-In-Reply-To: <m8Jb.1627018667447693708.j9Cg@lists.yoctoproject.org>
-References: <m8Jb.1627018667447693708.j9Cg@lists.yoctoproject.org>
+Subject: #yocto
+To: yocto@lists.yoctoproject.org
+From: "sateesh m" <sateesh0457@gmail.com>
+X-Originating-Location: Hyderabad, Telangana, IN (157.48.220.146)
+X-Originating-Platform: Linux Chrome 91
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
- boundary="----sinikael-?=_1-16270191337270.9418234318298713"
+Date: Thu, 22 Jul 2021 23:26:08 -0700
+Message-ID: <r3RP.1627021568007502036.uuv1@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="wVk1bIpQ7upVQVPjWFl5"
 
-------sinikael-?=_1-16270191337270.9418234318298713
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-SRC_URI = "git://${GO_IMPORT}.git;branch=main \
-
-On Friday 23 July 2021 12:37:47 PM (+07:00), sateesh m wrote:
-
+--wVk1bIpQ7upVQVPjWFl5
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
 Hi Guys,
 
-                 I am trying to integrate consul package to my image.facing 
-issue while fetching the sources.
+I am facing below error while compiling consul package. can anybody know t=
+his issue please suggest me.
+ERROR: consul-git-r0 do_compile: Execution of '/home/sources/fu540-build/t=
+mp-glibc/work/riscv64-oe-linux/consul/git-r0/temp/run.do_compile.26832' fai=
+led with exit code 2:
+internal/unsafeheader
+unicode/utf16
+container/list
+internal/cpu
+crypto/internal/subtle
+crypto/subtle
+vendor/golang.org/x/crypto/cryptobyte/asn1
+internal/nettrace
+vendor/golang.org/x/crypto/internal/subtle
+internal/race
+unicode/utf8
+runtime/internal/atomic
+sync/atomic
+internal/testlog
+runtime/internal/sys
+runtime/internal/math
+internal/bytealg
+encoding
+unicode
+math/bits
+math
+runtime
+internal/reflectlite
+sync
+errors
+internal/singleflight
+sort
+math/rand
+strconv
+internal/oserror
+io
+vendor/golang.org/x/net/dns/dnsmessage
+container/heap
+crypto/rc4
+reflect
+strings
+bytes
+syscall
+hash
+crypto
+crypto/internal/randutil
+crypto/hmac
+hash/crc32
+vendor/golang.org/x/crypto/hkdf
+bufio
+vendor/golang.org/x/text/transform
+path
+text/tabwriter
+regexp/syntax
+encoding/base32
+html
+hash/crc64
+hash/fnv
+internal/fmtsort
+hash/adler32
+encoding/binary
+regexp
+time
+internal/syscall/unix
+internal/syscall/execenv
+encoding/base64
+crypto/cipher
+crypto/sha512
+crypto/ed25519/internal/edwards25519
+crypto/md5
+crypto/aes
+crypto/des
+context
+crypto/sha1
+internal/poll
+crypto/sha256
+encoding/pem
+vendor/golang.org/x/crypto/chacha20
+vendor/golang.org/x/crypto/poly1305
+vendor/golang.org/x/crypto/chacha20poly1305
+os
+fmt
+path/filepath
+net
+io/ioutil
+encoding/json
+encoding/hex
+vendor/golang.org/x/net/http2/hpack
+mime
+mime/quotedprintable
+vendor/golang.org/x/crypto/curve25519
+os/signal
+log
+compress/flate
+vendor/golang.org/x/text/unicode/norm
+vendor/golang.org/x/text/unicode/bidi
+compress/gzip
+runtime/debug
+net/http/internal
+math/big
+net/textproto
+net/url
+go/token
+compress/lzw
+encoding/gob
+os/exec
+github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket
+vendor/golang.org/x/text/secure/bidirule
+vendor/golang.org/x/net/idna
+github.com/hashicorp/consul/vendor/golang.org/x/sys/unix
+flag
+runtime/trace
+testing
+os/user
+encoding/asn1
+crypto/elliptic
+text/template/parse
+crypto/rand
+vendor/golang.org/x/crypto/cryptobyte
+crypto/ed25519
+crypto/rsa
+crypto/dsa
+crypto/x509/pkix
+mime/multipart
+vendor/golang.org/x/net/http/httpproxy
+vendor/golang.org/x/net/http/httpguts
+internal/lazyregexp
+go/scanner
+crypto/ecdsa
+text/template
+compress/zlib
+crypto/x509
+go/ast
+archive/tar
+github.com/hashicorp/consul/vendor/github.com/boltdb/bolt
+html/template
+github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host
+go/parser
+go/doc
+crypto/tls
+net/mail
+log/syslog
 
+encoding/xml
+# github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket
+src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/cm=
+sghdr.go:9:10: undefined: cmsghdr
+src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/cm=
+sghdr.go:10:10: undefined: cmsghdr
+src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/cm=
+sghdr.go:11:10: undefined: cmsghdr
+src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket/mm=
+sghdr_unix.go:11:17: undefined: mmsghdr
+encoding/csv
+net/http/httptrace
+internal/profile
+runtime/pprof
+net/http
+# github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host
+src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host/hos=
+t_linux.go:208:22: undefined: sizeOfUtmp
+src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host/hos=
+t_linux.go:213:14: undefined: sizeOfUtmp
+src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host/hos=
+t_linux.go:215:9: undefined: utmp
+# github.com/hashicorp/consul/vendor/github.com/boltdb/bolt
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/bolt_unix.go=
+:62:15: undefined: maxMapSize
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/bucket.go:13=
+5:15: undefined: brokenUnaligned
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:101:13=
+: undefined: maxMapSize
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:317:12=
+: undefined: maxMapSize
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:335:10=
+: undefined: maxMapSize
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:336:8:=
+ undefined: maxMapSize
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:=
+169:19: undefined: maxAllocSize
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:=
+176:14: undefined: maxAllocSize
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:=
+204:17: undefined: maxAllocSize
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:=
+207:7: undefined: maxAllocSize
+src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelist.go:=
+207:7: too many errors
+expvar
+net/http/httptest
+net/rpc
+net/http/httputil
+net/http/cookiejar
+# github.com/hashicorp/consul/vendor/golang.org/x/sys/unix
+src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_linux=
+_gc.go:10:6: missing function body
+src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_linux=
+_gc.go:14:6: missing function body
+src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_=
+gc.go:12:6: missing function body
+src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_=
+gc.go:13:6: missing function body
+src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_=
+gc.go:14:6: missing function body
+src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_unix_=
+gc.go:15:6: missing function body
+net/http/pprof
+WARNING: exit code 2 from a shell command.
 
-WARNING: consul-git-r0 do_fetch: Failed to fetch URL 
-git://github.com/hashicorp/consul.git, attempting MIRRORS if available
-ERROR: consul-git-r0 do_fetch: Fetcher failure: Unable to find revision 
-944cc71026c007e7de9467ec3f38f0ad14464fcc in branch master even from 
-upstream
-ERROR: consul-git-r0 do_fetch: Fetcher failure for URL: 
-'git://github.com/hashicorp/consul.git'. Unable to fetch URL from any 
-source.
+ERROR: Logfile of failure stored in: /home/sources/fu540-build/tmp-glibc/w=
+ork/riscv64-oe-linux/consul/git-r0/temp/log.do_compile.26832
 
-Can anybody know please  tell  which revision ID i need to used to fix this 
-issue. or any patch available suggest me. 
-
-Thanking you in advance. 
 --
 Regards,
 Sateesh
 
--- 
-Sent with Vivaldi Mail. Download Vivaldi for free at vivaldi.com
+--wVk1bIpQ7upVQVPjWFl5
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-------sinikael-?=_1-16270191337270.9418234318298713
-Content-Type: text/html; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Hi Guys,<br />
+<div><br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I am facing be=
+low error while compiling consul package. can anybody know this issue pleas=
+e suggest me.&nbsp;<br />ERROR: consul-git-r0 do_compile: Execution of '/ho=
+me/sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/consul/git-r0/temp/r=
+un.do_compile.26832' failed with exit code 2:</div>
+<div>internal/unsafeheader</div>
+<div>unicode/utf16</div>
+<div>container/list</div>
+<div>internal/cpu</div>
+<div>crypto/internal/subtle</div>
+<div>crypto/subtle</div>
+<div>vendor/golang.org/x/crypto/cryptobyte/asn1</div>
+<div>internal/nettrace</div>
+<div>vendor/golang.org/x/crypto/internal/subtle</div>
+<div>internal/race</div>
+<div>unicode/utf8</div>
+<div>runtime/internal/atomic</div>
+<div>sync/atomic</div>
+<div>internal/testlog</div>
+<div>runtime/internal/sys</div>
+<div>runtime/internal/math</div>
+<div>internal/bytealg</div>
+<div>encoding</div>
+<div>unicode</div>
+<div>math/bits</div>
+<div>math</div>
+<div>runtime</div>
+<div>internal/reflectlite</div>
+<div>sync</div>
+<div>errors</div>
+<div>internal/singleflight</div>
+<div>sort</div>
+<div>math/rand</div>
+<div>strconv</div>
+<div>internal/oserror</div>
+<div>io</div>
+<div>vendor/golang.org/x/net/dns/dnsmessage</div>
+<div>container/heap</div>
+<div>crypto/rc4</div>
+<div>reflect</div>
+<div>strings</div>
+<div>bytes</div>
+<div>syscall</div>
+<div>hash</div>
+<div>crypto</div>
+<div>crypto/internal/randutil</div>
+<div>crypto/hmac</div>
+<div>hash/crc32</div>
+<div>vendor/golang.org/x/crypto/hkdf</div>
+<div>bufio</div>
+<div>vendor/golang.org/x/text/transform</div>
+<div>path</div>
+<div>text/tabwriter</div>
+<div>regexp/syntax</div>
+<div>encoding/base32</div>
+<div>html</div>
+<div>hash/crc64</div>
+<div>hash/fnv</div>
+<div>internal/fmtsort</div>
+<div>hash/adler32</div>
+<div>encoding/binary</div>
+<div>regexp</div>
+<div>time</div>
+<div>internal/syscall/unix</div>
+<div>internal/syscall/execenv</div>
+<div>encoding/base64</div>
+<div>crypto/cipher</div>
+<div>crypto/sha512</div>
+<div>crypto/ed25519/internal/edwards25519</div>
+<div>crypto/md5</div>
+<div>crypto/aes</div>
+<div>crypto/des</div>
+<div>context</div>
+<div>crypto/sha1</div>
+<div>internal/poll</div>
+<div>crypto/sha256</div>
+<div>encoding/pem</div>
+<div>vendor/golang.org/x/crypto/chacha20</div>
+<div>vendor/golang.org/x/crypto/poly1305</div>
+<div>vendor/golang.org/x/crypto/chacha20poly1305</div>
+<div>os</div>
+<div>fmt</div>
+<div>path/filepath</div>
+<div>net</div>
+<div>io/ioutil</div>
+<div>encoding/json</div>
+<div>encoding/hex</div>
+<div>vendor/golang.org/x/net/http2/hpack</div>
+<div>mime</div>
+<div>mime/quotedprintable</div>
+<div>vendor/golang.org/x/crypto/curve25519</div>
+<div>os/signal</div>
+<div>log</div>
+<div>compress/flate</div>
+<div>vendor/golang.org/x/text/unicode/norm</div>
+<div>vendor/golang.org/x/text/unicode/bidi</div>
+<div>compress/gzip</div>
+<div>runtime/debug</div>
+<div>net/http/internal</div>
+<div>math/big</div>
+<div>net/textproto</div>
+<div>net/url</div>
+<div>go/token</div>
+<div>compress/lzw</div>
+<div>encoding/gob</div>
+<div>os/exec</div>
+<div>github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket</=
+div>
+<div>vendor/golang.org/x/text/secure/bidirule</div>
+<div>vendor/golang.org/x/net/idna</div>
+<div>github.com/hashicorp/consul/vendor/golang.org/x/sys/unix</div>
+<div>flag</div>
+<div>runtime/trace</div>
+<div>testing</div>
+<div>os/user</div>
+<div>encoding/asn1</div>
+<div>crypto/elliptic</div>
+<div>text/template/parse</div>
+<div>crypto/rand</div>
+<div>vendor/golang.org/x/crypto/cryptobyte</div>
+<div>crypto/ed25519</div>
+<div>crypto/rsa</div>
+<div>crypto/dsa</div>
+<div>crypto/x509/pkix</div>
+<div>mime/multipart</div>
+<div>vendor/golang.org/x/net/http/httpproxy</div>
+<div>vendor/golang.org/x/net/http/httpguts</div>
+<div>internal/lazyregexp</div>
+<div>go/scanner</div>
+<div>crypto/ecdsa</div>
+<div>text/template</div>
+<div>compress/zlib</div>
+<div>crypto/x509</div>
+<div>go/ast</div>
+<div>archive/tar</div>
+<div>github.com/hashicorp/consul/vendor/github.com/boltdb/bolt</div>
+<div>html/template</div>
+<div>github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host</d=
+iv>
+<div>go/parser</div>
+<div>go/doc</div>
+<div>crypto/tls</div>
+<div>net/mail</div>
+<div>log/syslog</div>
+<div>&nbsp;</div>
+<div>encoding/xml</div>
+<div># github.com/hashicorp/consul/vendor/golang.org/x/net/internal/socket=
+</div>
+<div>src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/sock=
+et/cmsghdr.go:9:10: undefined: cmsghdr</div>
+<div>src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/sock=
+et/cmsghdr.go:10:10: undefined: cmsghdr</div>
+<div>src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/sock=
+et/cmsghdr.go:11:10: undefined: cmsghdr</div>
+<div>src/github.com/hashicorp/consul/vendor/golang.org/x/net/internal/sock=
+et/mmsghdr_unix.go:11:17: undefined: mmsghdr</div>
+<div>encoding/csv</div>
+<div>net/http/httptrace</div>
+<div>internal/profile</div>
+<div>runtime/pprof</div>
+<div>net/http</div>
+<div># github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/host<=
+/div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/hos=
+t/host_linux.go:208:22: undefined: sizeOfUtmp</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/hos=
+t/host_linux.go:213:14: undefined: sizeOfUtmp</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/shirou/gopsutil/hos=
+t/host_linux.go:215:9: undefined: utmp</div>
+<div># github.com/hashicorp/consul/vendor/github.com/boltdb/bolt</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/bolt_un=
+ix.go:62:15: undefined: maxMapSize</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/bucket.=
+go:135:15: undefined: brokenUnaligned</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:1=
+01:13: undefined: maxMapSize</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:3=
+17:12: undefined: maxMapSize</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:3=
+35:10: undefined: maxMapSize</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/db.go:3=
+36:8: undefined: maxMapSize</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelis=
+t.go:169:19: undefined: maxAllocSize</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelis=
+t.go:176:14: undefined: maxAllocSize</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelis=
+t.go:204:17: undefined: maxAllocSize</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelis=
+t.go:207:7: undefined: maxAllocSize</div>
+<div>src/github.com/hashicorp/consul/vendor/github.com/boltdb/bolt/freelis=
+t.go:207:7: too many errors</div>
+<div>expvar</div>
+<div>net/http/httptest</div>
+<div>net/rpc</div>
+<div>net/http/httputil</div>
+<div>net/http/cookiejar</div>
+<div># github.com/hashicorp/consul/vendor/golang.org/x/sys/unix</div>
+<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_=
+linux_gc.go:10:6: missing function body</div>
+<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_=
+linux_gc.go:14:6: missing function body</div>
+<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_=
+unix_gc.go:12:6: missing function body</div>
+<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_=
+unix_gc.go:13:6: missing function body</div>
+<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_=
+unix_gc.go:14:6: missing function body</div>
+<div>src/github.com/hashicorp/consul/vendor/golang.org/x/sys/unix/syscall_=
+unix_gc.go:15:6: missing function body</div>
+<div>net/http/pprof</div>
+<div>WARNING: exit code 2 from a shell command.</div>
+<div>&nbsp;</div>
+<div>ERROR: Logfile of failure stored in: /home/sources/fu540-build/tmp-gl=
+ibc/work/riscv64-oe-linux/consul/git-r0/temp/log.do_compile.26832</div>
+<div>&nbsp;</div>
+-- <br />Regards,<br />Sateesh
 
-<html><head></head><body>SRC_URI = "git://${GO_IMPORT}.git;branch=main 
-\<br><br>On Friday 23 July 2021 12:37:47 PM (+07:00), sateesh m 
-wrote:<br><br><blockquote style="margin: 0 0 0.80ex; border-left: #0000FF 
-2px solid; padding-left: 1ex">Hi Guys,<br><br>&nbsp; &nbsp; &nbsp; &nbsp; 
-&nbsp; &nbsp; &nbsp; &nbsp; I am trying to integrate consul package to my 
-image.facing issue while fetching the sources.<br><br>
-<div>WARNING: consul-git-r0 do_fetch: Failed to fetch URL 
-git://github.com/hashicorp/consul.git, attempting MIRRORS if 
-available</div>
-<div>ERROR: consul-git-r0 do_fetch: Fetcher failure: Unable to find 
-revision 944cc71026c007e7de9467ec3f38f0ad14464fcc in branch master even 
-from upstream</div>
-<div>ERROR: consul-git-r0 do_fetch: Fetcher failure for URL: 
-'git://github.com/hashicorp/consul.git'. Unable to fetch URL from any 
-source.<br><br>Can anybody know please&nbsp; tell&nbsp; which revision ID i 
-need to used to fix this issue. or any patch available suggest 
-me.&nbsp;<br><br>Thanking you in advance.&nbsp;</div>
--- <br>Regards,<br>Sateesh
-</blockquote><br>--&nbsp;<br>Sent with Vivaldi Mail. Download Vivaldi for 
-free at vivaldi.com</body></html>
-
-------sinikael-?=_1-16270191337270.9418234318298713--
+--wVk1bIpQ7upVQVPjWFl5--
