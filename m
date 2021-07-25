@@ -1,222 +1,87 @@
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
- by mx.groups.io with SMTP id smtpd.web12.7650.1627044693544484671
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+ by mx.groups.io with SMTP id smtpd.web08.15832.1627203946608522803
  for <yocto@lists.yoctoproject.org>;
- Fri, 23 Jul 2021 05:51:34 -0700
+ Sun, 25 Jul 2021 02:05:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=W0pSp+YK;
- spf=pass (domain: gmail.com, ip: 209.85.128.49, mailfrom: robert.berger.yocto.user@gmail.com)
-Received: by mail-wm1-f49.google.com with SMTP id j6-20020a05600c1906b029023e8d74d693so1547208wmq.3;
-        Fri, 23 Jul 2021 05:51:33 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=YtwhOr0R;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.42, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f42.google.com with SMTP id j2so7191197wrx.9
+        for <yocto@lists.yoctoproject.org>; Sun, 25 Jul 2021 02:05:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=1ovwPjif/qTznnf9YK8BbhrqP+/EAGLwPylNceR6ubQ=;
-        b=W0pSp+YKUNPFBlRzLaHmQIdXF2mpMLJDV1h/F4CO/9CDnEup1OTtU6O33DYDiUfQ4o
-         0MI2LcsocNC9ERmzoWAKzeyl+pNGY66u8Pcj3+4XxWQX8QUDbbjBp41TcXJM15NlXROH
-         Iz3OAFk2vnoZP7X47LShTY1OTOX4cChtXEWwvQrFdEKVnYHqNuGooIo0uSlSmutFZ2wQ
-         HuyL0uafgF0S5S6k0DuYErCRabdTCzEtqQw+vb9IANSJH+VNDGWWbTftgJNovb8X6K+l
-         xeSD5Oi6Rhc/lt+Xwmq4ehkJ+Vk0iSTGYS6ZEoqSHQeMyGz3buvIy+M1lZl5SesxVY8g
-         wf/Q==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=Y2+w0PFzJItLz3DWRK+YbPEF71PsLlbPj81c7EuVIy0=;
+        b=YtwhOr0RQucwBwwVOX2TTunqBBXD1MKmqEY3KXIprGj0KE5vixyu8DC5b2ul4YaYmu
+         qzxM4IS6AU4eTyNApWA3C96hpItkGI7BarlQfc/Atq2sDVUm849DEi+dqk0iCd6CDM42
+         z4BA2pEubcQLxLxkuLRJsFnZalfNc5VmLEPUY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=1ovwPjif/qTznnf9YK8BbhrqP+/EAGLwPylNceR6ubQ=;
-        b=bOvAtj+EBp38q7chDviMfnjUc6k1YKoQqimAGO6F8z+vCU740tEFIoSckJ1Qe0aQn1
-         u5c70ApZkeFPW0fQrA9cYrtTCLHAQFAXJ1ja5PVcitWOd00T/13GsNwlwlZ2ing19Wsk
-         9HjwKBkSISz1c09d8RJzBINCPERUdunttiWEGOlUl1EbxoWvqfbdz0teVtZvB9dHPWW5
-         /SOQeh0eYdiushdHnH9gQ2ghECwJe1dCXYaX2DxLf6J6mtiPsQ0mfDvU9jwq1/HrFDqa
-         HQL/uIu7BgEcBXhIT7DCSqmefLB7RNXHHfpIxb8WiXqgTrtHV43/wYeUkXQLrBSH8Qyb
-         ISHQ==
-X-Gm-Message-State: AOAM531SFR+cokUf3a//RGvYw4wmraTtdN/DmwB8zIx56vm4Pd68VAA3
-	UNzGWhHp+R0pDGjfTBa94DY=
-X-Google-Smtp-Source: ABdhPJw2y2T7YAsv6vArbYOdC9ULigQwKciRKosevzzDHBPfjZAf1bEz4lb+cwrmlo7ckDspkNANDQ==
-X-Received: by 2002:a7b:c7cb:: with SMTP id z11mr13992543wmk.102.1627044691936;
-        Fri, 23 Jul 2021 05:51:31 -0700 (PDT)
-Return-Path: <robert.berger.yocto.user@gmail.com>
-Received: from [192.168.42.52] (athedsl-4432950.home.otenet.gr. [79.129.148.38])
-        by smtp.gmail.com with ESMTPSA id l39sm4563915wms.1.2021.07.23.05.51.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Jul 2021 05:51:31 -0700 (PDT)
-Subject: Re: [yocto] [poky] [PATCH] local.conf.sample: disable prelink
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: Richard Purdie <richard.purdie@linuxfoundation.org>,
- Mark Hatle <mark.hatle@kernel.crashing.org>, poky@lists.yoctoproject.org,
- Yocto-mailing-list <yocto@lists.yoctoproject.org>,
- Khem Raj <raj.khem@gmail.com>
-References: <20210615081225.1734033-1-alex.kanavin@gmail.com>
- <5ed9e1d2676d4d31289ebaf2ec3b492c1daa88a7.camel@linuxfoundation.org>
- <CANNYZj84MXS57sG5CWLmS-Y_0-w8h1_9NLmtjFEo4pJ5snXvcA@mail.gmail.com>
- <CANNYZj8S7V5owiS0p3B1fD7n_JpF-OPLApO=e9d+SiPuyFWHZw@mail.gmail.com>
- <0451f536368310860d9acb12e5a8424881b545e8.camel@linuxfoundation.org>
- <CANNYZj9Z87Jb7Ea-vtQ1ZEmtQvfFRDtTXAxvStZT3c02RnU01g@mail.gmail.com>
- <a7e0a44c-084e-5e21-5621-67e32ca36127@gmail.com>
- <CANNYZj-C_QWe9CB9JsAOctCJbNrAni8WoDVg15t5kzKsYn6QEw@mail.gmail.com>
-From: "Robert Berger" <robert.berger.yocto.user@gmail.com>
-Message-ID: <802f76c0-5c9c-7fed-f6a8-52db36d2ce0e@gmail.com>
-Date: Fri, 23 Jul 2021 15:51:28 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=Y2+w0PFzJItLz3DWRK+YbPEF71PsLlbPj81c7EuVIy0=;
+        b=sQo5JlSs8g+DtiX60Ib77ful85dZXJorMynC7NvSEl3dhWZf0w9vgjdAi1RuVTNWKb
+         yHNI+/4huxJlrO3BF00jmjNBFTJ2MKW0F7rdkjMGrm8v5Nxa5WGNKKzF2xPUdG0sWQCS
+         zF1VLKVlOT6CvsXh7kT7stx5CbFhr+iTPF+uAI8yzw7FuVWkW6emKVUiU8MWNLxHqCl4
+         TpRHITuiSdiXEcXr9QQqYIUFrkYFpc9SFZBAZH0y2s77gPJyCCDrqRVCd5q6HSxAUNcX
+         b0Ba5m4NBcqZH8zVKtNkdu8DFlXj+UQNs4I7X9aOSpq6BK+1DfSO7KcFmDFb0Nn4JaIl
+         2Z2g==
+X-Gm-Message-State: AOAM53068BoVijZ72vEboVTMXwWYcWDisNnVHJcrLCtXn73zMcDd7d6J
+	ulq0a/0zCRUBgvoxE1RFt3HvrA==
+X-Google-Smtp-Source: ABdhPJzMzG9TFNY0KWvKX9PTacNnVECKSJaTrtgsGLbmgTBs2ToXQqnA6AoUr3S5+x0Jtsf4VfP4QA==
+X-Received: by 2002:a5d:6849:: with SMTP id o9mr14137484wrw.250.1627203945095;
+        Sun, 25 Jul 2021 02:05:45 -0700 (PDT)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from ?IPv6:2001:8b0:aba:5f3c:a8d8:1657:c068:d9be? ([2001:8b0:aba:5f3c:a8d8:1657:c068:d9be])
+        by smtp.gmail.com with ESMTPSA id u2sm10757233wmm.37.2021.07.25.02.05.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 25 Jul 2021 02:05:44 -0700 (PDT)
+Message-ID: <a8924ddf258fc20bd7ffb4677139cae31399c7fd.camel@linuxfoundation.org>
+Subject: Re: [yocto] [PATCH yocto-autobuilder-helper] Enable canary builds for meta-aws[aws-iot-device-sdk-cpp-v2] on x86-64 and arm64.
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: elberger@amazon.com, yocto@lists.yoctoproject.org
+Date: Sun, 25 Jul 2021 10:05:40 +0100
+In-Reply-To: <20210722212908.27018-1-elberger@amazon.com>
+References: <20210722212908.27018-1-elberger@amazon.com>
+User-Agent: Evolution 3.40.0-1 
 MIME-Version: 1.0
-In-Reply-To: <CANNYZj-C_QWe9CB9JsAOctCJbNrAni8WoDVg15t5kzKsYn6QEw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On 22/07/2021 22:05, Alexander Kanavin wrote:
-> PIE is nowadays more or less the only available option and is expected 
-> for improved security; Yocto does not even test non-PIE builds or 
-> provide an off the shelf way to turn it off.
-
-I am worried about those libraries, which are non-PIE libraries by 
-default. My theory is, that they are non-PIE since prelink is able to 
-operate on them. So prelink can "at least" be used a PIE detector.
-
-They are:
-
-lib/libdl-2.33.so is prelinked
-lib/ld-2.33.so is prelinked
-lib/libpthread-2.33.so is prelinked
-lib/libc-2.33.so is prelinked
-
-Is there are rational explanation why they are not compiled in PIE mode 
-and/or if they are compiled in PIE mode how cross-prelink can operate on 
-them? If cross-prelink can operate on them why not on the others?
-
+On Thu, 2021-07-22 at 17:29 -0400, elberger via lists.yoctoproject.org wrote:
+> From: Richard Elberger <elberger@amazon.com>
 > 
-> I also have to note that prelink does show higher RAM consumption in 
-> your tests as well (MemFree column). On the constrained systems which 
-> would benefit most from improved prelink timings that might be a bigger 
-> loss than not prelinking.
-
-I guess we agree that MemFree shows free physical memory (user and 
-kernel space).
-
-My experiments show, that non-PIE and no prelink leaves the biggest 
-amount of free physical memory.
-
-They also show that non-PIE and prelink leave the smallest amount of 
-free physical memory ;)
-
-The difference is significant
-prelinked-no-pie/no-prelink-no-pie:		4552 (kB)
-
-If we leave things are they are:
-prelinked-no-pie/prelinked-with-pie:		3972 (kB)
-
-If we disable prelink (as you suggest - and I tend to agree since it 
-does not make sense as it is right now)
-prelinked-no-pie/no-prelink-with-pie:		4120 (kB)
-
-...
-
-but
-
-if you look at the next line MemAvailable kB things looks a bit differently.
-
-My interpretation of MemAvailable is, that it is an estimate of virtual 
-memory available after reclaimable parts of memory (caches, buffer, 
-slab,...) have been reclaimed without getting swap involved.
-
-I see this:
-
-MemAvailable kB
-
-prelinked-with-pie 	939412
-no-prelink-with-pie	939696
-prelinked-no-pie	940344
-no-prelink-no-pie	941216
-
-Which means, that our current default setting is the worst possible 
-solution ;)
-
-no-prelink-no-pie would (theoretically) be the best.
-
-I will try to update my second article and try to explain a bit more my 
-interpretation of the results and maybe also try to see what bootchart 
-says to all this.
-
-Don't get me wrong. I am neither pro nor con prelink. I just would like 
-to understand what it does, if it does something ;)
-
-I spent quite some time on this - also discussing with most of you offline.
-If you ask me, we should use your patch, since people didn't even notice 
-that prelink can not prelink on PIE binaries for a couple of years.
-
-So there does not seem to be much demand for it ;)
-
-We can keep a "placebo" in for the homeopaths who think they use prelink 
-in their images since PIE was enabled ;)
-
+> This patch provides the buildbot system to make the aws-iot-device-sdk-cpp-v2.
+> - build on poky
+> - meta-openembedded and meta-aws are additional repo dependencies
+> - build for the two dominant architectures: x86-64 and arm64.
 > 
-> But yes, there is a timing benefit visible in the tests: 0.01s vs 0.1s.
+> Signed-off-by: Richard Elberger <elberger@amazon.com>
+> ---
+>  config.json | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
+> diff --git a/config.json b/config.json
+> index 3709b40..f04fac8 100644
+> --- a/config.json
+> +++ b/config.json
+> @@ -350,6 +350,23 @@
+>                  "BBTARGETS": "agl-image-core-autobuilder"
+>              }
+>          },
+> +        "meta-aws" : {
+> +            "NEEDREPOS" : ["poky", "meta-openembedded", "meta-aws"],
+> +            "ADDLAYER" : [
+> +                "${BUILDDIR}/../meta-openembedded/meta-oe",
+> +                "${BUILDDIR}/../meta-openembedded/meta-networking",
+> +                "${BUILDDIR}/../meta-openembedded/meta-python",
+> +                "${BUILDDIR}/../meta-aws"
 
-Also less CPU usage can be seen. I hope I'll find time to run some test 
-with bootchart. Maybe then we can also see boot time, memory, CPU,...
+The ordering isn't correct here since they have to be added in dependency 
+order and for some reason this was different to the patch we discussed 
+previously. I've just gone ahead and fixed it.
 
-Regards,
+Cheers,
 
-Robert
-
-> 
-> Alex
-> 
-> On Mon, 19 Jul 2021 at 22:58, Robert Berger@yocto.user 
-> <robert.berger.yocto.user@gmail.com 
-> <mailto:robert.berger.yocto.user@gmail.com>> wrote:
-> 
->     Hi Alex, RP, Mark,
-> 
->     I did some research on the subject in order to try to figure out
->     what is
->     going on.
-> 
->     1) I come to a similar conclusion with what found, but tried to look a
->     bit deeper for the reason.
-> 
->     1.1) The reason that cross-prelink is not prelinking is, that for a
->     quite some time by default everything is built with PIE mode by default
->     and cross-prelink does not seem to be able to work on exe/libs compiled
->     with PIE mode. So seeing the same behavior with and without prelinking
->     is what I would expect as long as everything is compiled with PIE mode.
-> 
->     A more detailed analysis of my tests can be found on my not yet
->     officially published site:
-> 
->     https://rlbl.me/prelink-1 <https://rlbl.me/prelink-1>
-> 
->     https://rlbl.me/prelink-2 <https://rlbl.me/prelink-2>
-> 
->     Alex:
-> 
->     Can you please rebuild your test images without PIE mode and re-run the
->     tests?
-> 
->     Then we should have the 4 test cases:
-> 
->     prelinked-with-pie
->     no-prelink-with-pie
->     prelink-no-pie
->     no-prelink-no-pie
-> 
->     I guess then we can discuss what are the next steps.
-> 
->     In my opinion the current default settings, which compile close to
->     everything in PIE mode, but invoke also cross-prelink do not make much
->     sense.
-> 
->     The question is: "Do we want to drop cross-prelink, or do we want to
->     drag it along and come up more fine-grained configuration options?"
-> 
->     We could e.g. exclude certain files from pre-linking.
-> 
->     IMHO cross-prelink still works, but not on exe/libs which were compiled
->     in PIE mode.
-> 
->     Regards,
-> 
->     Robert
-> 
+Richard
 
