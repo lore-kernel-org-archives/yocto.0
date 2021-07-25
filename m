@@ -1,87 +1,73 @@
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
- by mx.groups.io with SMTP id smtpd.web08.15832.1627203946608522803
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+ by mx.groups.io with SMTP id smtpd.web12.22378.1627247773822020610
  for <yocto@lists.yoctoproject.org>;
- Sun, 25 Jul 2021 02:05:46 -0700
+ Sun, 25 Jul 2021 14:16:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=YtwhOr0R;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.42, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f42.google.com with SMTP id j2so7191197wrx.9
-        for <yocto@lists.yoctoproject.org>; Sun, 25 Jul 2021 02:05:46 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=lIdgL9FL;
+ spf=pass (domain: gmail.com, ip: 209.85.128.46, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-wm1-f46.google.com with SMTP id l11-20020a7bc34b0000b029021f84fcaf75so6897410wmj.1
+        for <yocto@lists.yoctoproject.org>; Sun, 25 Jul 2021 14:16:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=Y2+w0PFzJItLz3DWRK+YbPEF71PsLlbPj81c7EuVIy0=;
-        b=YtwhOr0RQucwBwwVOX2TTunqBBXD1MKmqEY3KXIprGj0KE5vixyu8DC5b2ul4YaYmu
-         qzxM4IS6AU4eTyNApWA3C96hpItkGI7BarlQfc/Atq2sDVUm849DEi+dqk0iCd6CDM42
-         z4BA2pEubcQLxLxkuLRJsFnZalfNc5VmLEPUY=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=L53DleDJ8ghzOkN7yCLNldzhsBELwN+BbxkcqcXx6gI=;
+        b=lIdgL9FLjN78+FqguvhNV5CkGiZvRwBoe4zHhczU1pwjBEOAKvl5X4SOEJOqa8un/+
+         ipFt31V6yH7KD3994dBHVhtsTlYjvysJlCa+lCbvSPmrgiXTbTpaXQvT5l791bsNJ/En
+         Og2/6iove7a5eSWdK0Q7ZHRCdwx89fGFz3VJGWFqp3ml8hXsIgaJrEbL9IjCzx6/B6qL
+         gBs7qnVN20DhGVW7vQtIAunrFU8Qiys7dd9+jHpgsdGc2mke1OU8zpL1Rp61PFTTU5DG
+         gW1hgs8OENW2sxp5Jv9FV9KO1umFF991ZSkjVtSY+JXRKe9Yb9DxeU6OJuYbALfOe/8t
+         eXyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=Y2+w0PFzJItLz3DWRK+YbPEF71PsLlbPj81c7EuVIy0=;
-        b=sQo5JlSs8g+DtiX60Ib77ful85dZXJorMynC7NvSEl3dhWZf0w9vgjdAi1RuVTNWKb
-         yHNI+/4huxJlrO3BF00jmjNBFTJ2MKW0F7rdkjMGrm8v5Nxa5WGNKKzF2xPUdG0sWQCS
-         zF1VLKVlOT6CvsXh7kT7stx5CbFhr+iTPF+uAI8yzw7FuVWkW6emKVUiU8MWNLxHqCl4
-         TpRHITuiSdiXEcXr9QQqYIUFrkYFpc9SFZBAZH0y2s77gPJyCCDrqRVCd5q6HSxAUNcX
-         b0Ba5m4NBcqZH8zVKtNkdu8DFlXj+UQNs4I7X9aOSpq6BK+1DfSO7KcFmDFb0Nn4JaIl
-         2Z2g==
-X-Gm-Message-State: AOAM53068BoVijZ72vEboVTMXwWYcWDisNnVHJcrLCtXn73zMcDd7d6J
-	ulq0a/0zCRUBgvoxE1RFt3HvrA==
-X-Google-Smtp-Source: ABdhPJzMzG9TFNY0KWvKX9PTacNnVECKSJaTrtgsGLbmgTBs2ToXQqnA6AoUr3S5+x0Jtsf4VfP4QA==
-X-Received: by 2002:a5d:6849:: with SMTP id o9mr14137484wrw.250.1627203945095;
-        Sun, 25 Jul 2021 02:05:45 -0700 (PDT)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from ?IPv6:2001:8b0:aba:5f3c:a8d8:1657:c068:d9be? ([2001:8b0:aba:5f3c:a8d8:1657:c068:d9be])
-        by smtp.gmail.com with ESMTPSA id u2sm10757233wmm.37.2021.07.25.02.05.44
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=L53DleDJ8ghzOkN7yCLNldzhsBELwN+BbxkcqcXx6gI=;
+        b=pfi4uTAlzLrcvJ0+fQJpm+9zAAdE+z0EJMWaYxPj5ZlnN3ZjkYtpZt5Ev6Ni23IMf/
+         hSp/nxNKglC/um3gL5EFgtsckROI3CJVBYOxuPucIGoOUcI0lWpjy93eJrKBbtlT7AEA
+         H8llCMtGWaY+x/e0yMMOlLFCQ1Uk66E7K48rnTmlaJrorjBxXYkBmfkVhNxfIVXUlbuy
+         oUm1h8QAoFjIprezaqaHVn1srXf4yu5+0OVT2wwbewurDqfdT5K0k0Tmto7kPKd07nKR
+         opZPsVB/bDRJk/nMa6SWlLkWNp88Ercik1fOlO6rKbVRuVFGQfrlOMVXfhL1DnI23Wu/
+         xVYw==
+X-Gm-Message-State: AOAM530hqYHpk5FuxYWDaZFAk8Q74NCLspJ47s8C3ZSJ2nhgrsJaerI9
+	jOVe6tmKlkTFg+3dgEXx0o0WHRlueho=
+X-Google-Smtp-Source: ABdhPJwTk+Y+02FEhRlpnfRejiYIbpMoOSu92vG+np5kcF4FlJ8K3Cc3iXFy46xLVD0BnvGKJErJDA==
+X-Received: by 2002:a7b:c24e:: with SMTP id b14mr12430790wmj.74.1627247772322;
+        Sun, 25 Jul 2021 14:16:12 -0700 (PDT)
+Return-Path: <alex.kanavin@gmail.com>
+Received: from localhost.localdomain ([2a02:2454:2a0:cb00:eb83:2e01:3dda:5d46])
+        by smtp.gmail.com with ESMTPSA id j14sm3992965wru.58.2021.07.25.14.16.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Jul 2021 02:05:44 -0700 (PDT)
-Message-ID: <a8924ddf258fc20bd7ffb4677139cae31399c7fd.camel@linuxfoundation.org>
-Subject: Re: [yocto] [PATCH yocto-autobuilder-helper] Enable canary builds for meta-aws[aws-iot-device-sdk-cpp-v2] on x86-64 and arm64.
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: elberger@amazon.com, yocto@lists.yoctoproject.org
-Date: Sun, 25 Jul 2021 10:05:40 +0100
-In-Reply-To: <20210722212908.27018-1-elberger@amazon.com>
-References: <20210722212908.27018-1-elberger@amazon.com>
-User-Agent: Evolution 3.40.0-1 
+        Sun, 25 Jul 2021 14:16:11 -0700 (PDT)
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>
+Subject: [PATCH yocto-autobuilder-helper] auh-config: enable systemd only for glibc
+Date: Sun, 25 Jul 2021 23:16:06 +0200
+Message-Id: <20210725211606.155910-1-alex.kanavin@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
 
-On Thu, 2021-07-22 at 17:29 -0400, elberger via lists.yoctoproject.org wrote:
-> From: Richard Elberger <elberger@amazon.com>
-> 
-> This patch provides the buildbot system to make the aws-iot-device-sdk-cpp-v2.
-> - build on poky
-> - meta-openembedded and meta-aws are additional repo dependencies
-> - build for the two dominant architectures: x86-64 and arm64.
-> 
-> Signed-off-by: Richard Elberger <elberger@amazon.com>
-> ---
->  config.json | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
-> diff --git a/config.json b/config.json
-> index 3709b40..f04fac8 100644
-> --- a/config.json
-> +++ b/config.json
-> @@ -350,6 +350,23 @@
->                  "BBTARGETS": "agl-image-core-autobuilder"
->              }
->          },
-> +        "meta-aws" : {
-> +            "NEEDREPOS" : ["poky", "meta-openembedded", "meta-aws"],
-> +            "ADDLAYER" : [
-> +                "${BUILDDIR}/../meta-openembedded/meta-oe",
-> +                "${BUILDDIR}/../meta-openembedded/meta-networking",
-> +                "${BUILDDIR}/../meta-openembedded/meta-python",
-> +                "${BUILDDIR}/../meta-aws"
+It is not guaranteed to build or work otherwise, and causes
+update failures in unrelated recipes when building for musl for instance.
 
-The ordering isn't correct here since they have to be added in dependency 
-order and for some reason this was different to the patch we discussed 
-previously. I've just gone ahead and fixed it.
+Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+---
+ scripts/auh-config/local.conf.append | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Cheers,
-
-Richard
+diff --git a/scripts/auh-config/local.conf.append b/scripts/auh-config/local.conf.append
+index b18590f..417d228 100644
+--- a/scripts/auh-config/local.conf.append
++++ b/scripts/auh-config/local.conf.append
+@@ -1,4 +1,5 @@
+ 
+ INHERIT += "buildhistory"
+ LICENSE_FLAGS_WHITELIST = "commercial"
+-DISTRO_FEATURES_append = ' systemd pam'
++DISTRO_FEATURES_append_libc-glibc = ' systemd'
++DISTRO_FEATURES_append = ' pam'
+-- 
+2.31.1
 
