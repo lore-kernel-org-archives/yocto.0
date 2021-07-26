@@ -1,70 +1,294 @@
-Subject: [wic/filemap] wic takes the wrong filemap.py file
+Subject: Recipe dependent on Debian package - How should I approach? #debian #yocto
 To: yocto@lists.yoctoproject.org
-From: jonas.hoelscher@sennheiser.com
-X-Originating-Location: Krefeld, North Rhine-Westphalia, DE (91.7.120.237)
+From: "Mitch Gaines" <gainesmitch2@gmail.com>
+X-Originating-Location: Billerica, Massachusetts, US (71.174.61.89)
 X-Originating-Platform: Linux Chrome 92
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Mon, 26 Jul 2021 02:41:43 -0700
-Message-ID: <RSyn.1627292503510696693.u56a@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="WiKySQCdY4XwW938Z75y"
+Date: Mon, 26 Jul 2021 06:25:55 -0700
+Message-ID: <4t2u.1627305955765836583.vxyg@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="BpgeWRlJweXZURoiXr3R"
 
---WiKySQCdY4XwW938Z75y
+--BpgeWRlJweXZURoiXr3R
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi guys,
+I have a project I am attempting to migrate from a Debian platform to Yocto=
+. This specific project has a dependency on libsystemd-dev which is a Debia=
+n package, but it doesn't seem to build when adding a DEPENDS on "systemd" =
+which is available on yocto. What is the best approach for migrating depend=
+encies in this manner? I'm sure I am going to run into other projects to mi=
+grate which require Debian packages that are not directly available on Yoct=
+o. Or am I doing something wrong? See this specific example outlined below:
 
-i am running yocto (with IMX BSP gatesgarth-5.10.9-1.0.0) inside docker an=
-d am getting the below issue which i though to be already fixed by https://=
-patchwork.openembedded.org/patch/174423/.
-File "/home/dev/my-yocto/build/tmp/work/imx8mn_bat_bs4_dev-poky-linux/my-i=
-mage/1.0-r0/recipe-sysroot-native/usr/lib/python3.8/site-packages/bmaptools=
-/Filemap.py", line 238, in _probe_seek_hole ##[error]#15 18105.0 raise Erro=
-rNotSupp("the file-system does not support "SEEK_HOLE" and "SEEK_DATA" but =
-only provides a stub implementation
+Below is a recipe for a Makefile C project that was mostly generated with =
+`recipetool create`. I then added the DEPENDS on "systemd" and removed the =
+unused tasks:
+# Recipe created by recipetool
+# This is the basis of a recipe and may need further editing in order to b=
+e fully functional.
+# (Feel free to remove these comments when editing.)
 
-Obviously the file "Filemap.py" getting used is the one downloaded via the=
- bmap-tools recipe. It does not contain the fix linked above.
-./build/tmp/work/x86_64-linux/bmap-tools-native/3.5+gitAUTOINC+a17f0e3ff8-=
-r0/sysroot-destdir/home/<...>/build/tmp/work/x86_64-linux/bmap-tools-native=
-/3.5+gitAUTOINC+a17f0e3ff8-r0/recipe-sysroot-native/usr/lib/python3.8/site-=
-packages/bmaptools/Filemap.py
-Why does it not take the one from sources/poky/scripts/lib/wic/filemap.py =
-which does have the desired fix ?
+# WARNING: the following LICENSE and LIC_FILES_CHKSUM values are best gues=
+ses - it is
+# your responsibility to verify that the values are complete and correct.
+#
+# The following license files were not able to be identified and are
+# represented as "Unknown" below, you will need to check them yourself:
+#=C2=A0 =C2=A0debian/copyright
+LICENSE =3D "Unknown"
+LIC_FILES_CHKSUM =3D "file://debian/copyright;md5=3Dsome-hash"
 
-Any pointer / hint is appreciated.
+SRC_URI =3D "git://git@my-project.git;protocol=3Dssh"
 
-Thanks and Regards,
-Jonas
+# Modify these as desired
+PV =3D "1.0+git${SRCPV}"
+SRCREV =3D "<...>"
 
---WiKySQCdY4XwW938Z75y
+S =3D "${WORKDIR}/git"
+DEPENDS =3D "systemd"
+
+# NOTE: this is a Makefile-only piece of software, so we cannot generate m=
+uch of the
+# recipe automatically - you will need to examine the Makefile yourself an=
+d ensure
+# that the appropriate arguments are passed in.
+
+do_compile () {
+oe_runmake my-project
+}
+Whenever I bitbake this recipe, I get the following:
+
+NOTE: Executing Tasks ERROR: <recipe-name> do_compile: oe_runmake failed E=
+RROR: <recipe-name> do_compile: Execution of '/home/mitch/bin/yocto/project=
+-name/build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/recipe-name/1.0+gi=
+tAUTOINC+...-r0/temp/run.do_compile.13271' failed with exit code 1: make[1]=
+: Entering directory '/home/mitch/bin/yocto/project-name/build/tmp/work/arm=
+v7vet2hf-neon-poky-linux-gnueabi/recipe-name/1.0+gitAUTOINC+...-r0/git/src/=
+core' CC file-name.c ../file-name.c:6:10: fatal error: systemd/sd-daemon.h:=
+ No such file or directory 6 | #include <systemd/sd-daemon.h> | ^~~~~~~~~~~=
+~~~~~~~~~~ compilation terminated. make[1]: *** [Makefile:93: build/file-na=
+me.o] Error 1 make[1]: Leaving directory '/home/mitch/bin/yocto/project-nam=
+e/build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/recipe-name/1.0+gitAUT=
+OINC+...-r0/git/src/core' make: *** [Makefile:72: some-recipe] Error 2 WARN=
+ING: exit code 1 from a shell command. ERROR: Logfile of failure stored in:=
+ /home/mitch/bin/yocto/project-name/build/tmp/work/armv7vet2hf-neon-poky-li=
+nux-gnueabi/recipe-name/1.0+gitAUTOINC+...-r0/temp/log.do_compile.13271 Log=
+ data follows: | DEBUG: Executing shell function do_compile | NOTE: make -j=
+ 24 my-project | make[1]: Entering directory '/home/mitch/bin/yocto/project=
+-name/build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/recipe-name/1.0+gi=
+tAUTOINC+...-r0/git/src/core' | CC my-file.c | ../my-file.c:6:10: fatal err=
+or: systemd/sd-daemon.h: No such file or directory | 6 | #include <systemd/=
+sd-daemon.h> | | ^~~~~~~~~~~~~~~~~~~~~ | compilation terminated. | make[1]:=
+ *** [Makefile:93: build/my-file.o] Error 1 | make[1]: Leaving directory '/=
+home/mitch/bin/yocto/project-name/build/tmp/work/armv7vet2hf-neon-poky-linu=
+x-gnueabi/recipe-name/1.0+gitAUTOINC+...-r0/git/src/core' | make: *** [Make=
+file:72: my-project] Error 2 | ERROR: oe_runmake failed | WARNING: exit cod=
+e 1 from a shell command. | ERROR: Execution of '/home/mitch/bin/yocto/proj=
+ect-name/build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/recipe-name/1.0=
++gitAUTOINC+...-r0/temp/run.do_compile.13271' failed with exit code 1: | ma=
+ke[1]: Entering directory '/home/mitch/bin/yocto/project-name/build/tmp/wor=
+k/armv7vet2hf-neon-poky-linux-gnueabi/recipe-name/1.0+gitAUTOINC+...-r0/git=
+/src/core' | CC my-file.c | ../my-file.c:6:10: fatal error: systemd/sd-daem=
+on.h: No such file or directory | 6 | #include <systemd/sd-daemon.h>
+
+Am I doing anything overtly wrong here? Would appreciate any assistance yo=
+u can provide.
+
+Thanks!
+
+--BpgeWRlJweXZURoiXr3R
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<p>Hi guys,<br /><br />i am running yocto (with IMX BSP gatesgarth-5.10.9-1=
-.0.0) inside docker and am getting the below issue which i though to be alr=
-eady fixed by&nbsp;<a href=3D"https://patchwork.openembedded.org/patch/1744=
-23/" target=3D"_blank" rel=3D"noopener">https://patchwork.openembedded.org/=
-patch/174423/</a>.<br /><span style=3D"color: #fa3d3d; white-space: pre-wra=
-p;"> File "/home/dev/my-yocto/build/tmp/work/imx8mn_bat_bs4_dev-poky-linux/=
-my-image/1.0-r0/recipe-sysroot-native/usr/lib/python3.8/site-packages/bmapt=
-ools/Filemap.py", line 238, in _probe_seek_hole</span><span style=3D"color:=
- #fa3d3d; white-space: pre-wrap;">##[error]#15 18105.0 raise ErrorNotSupp("=
-the file-system does not support </span><span style=3D"color: #fa3d3d; back=
-ground-color: rgba(var(--palette-neutral-6,239, 239, 239),1); white-space: =
-pre-wrap;">"SEEK_HOLE" and "SEEK_DATA" but only provides a stub implementat=
-ion<br /><br /></span>Obviously the file "Filemap.py" getting used is the o=
-ne downloaded via the bmap-tools recipe. It does not contain the fix linked=
- above.<br /><em>./build/tmp/work/x86_64-linux/bmap-tools-native/3.5+gitAUT=
-OINC+a17f0e3ff8-r0/sysroot-destdir/home/&lt;...&gt;/build/tmp/work/x86_64-l=
-inux/bmap-tools-native/3.5+gitAUTOINC+a17f0e3ff8-r0/recipe-sysroot-native/u=
-sr/lib/python3.8/site-packages/bmaptools/Filemap.py</em><br />Why does it n=
-ot take the one from <span style=3D"font-family: Menlo, Monaco, Consolas, '=
-Courier New', monospace; font-size: 13px;">sources/poky/scripts/lib/wic/fil=
-emap.py&nbsp;</span>&nbsp;which does have the desired fix ?<br /><br />Any =
-pointer / hint is appreciated.<span style=3D"font-family: Menlo, Monaco, Co=
-nsolas, 'Courier New', monospace; font-size: 13px;"><br /></span></p>
-<p>Thanks and Regards,<br />Jonas</p>
+I have a project I am attempting to migrate from a Debian platform to Yocto=
+. This specific project has a dependency on libsystemd-dev which is a Debia=
+n package, but it doesn't seem to build when adding a DEPENDS on "systemd" =
+which is available on yocto. What is the best approach for migrating depend=
+encies in this manner? I'm sure I am going to run into other projects to mi=
+grate which require Debian packages that are not directly available on Yoct=
+o. Or am I doing something wrong? See this specific example outlined below:=
+<br /><br />Below is a recipe for a Makefile C project that was mostly gene=
+rated with `recipetool create`. I then added the DEPENDS on "systemd" and r=
+emoved the unused tasks:<br />
+<div>
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;">&nbsp; &nbsp; # Recipe created by recip=
+etool</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;"># This is the basis of a recipe and may=
+ need further editing in order to be fully functional.</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;"># (Feel free to remove these comments w=
+hen editing.)</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;">&nbsp;</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;"># WARNING: the following LICENSE and LI=
+C_FILES_CHKSUM values are best guesses - it is</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;"># your responsibility to verify that th=
+e values are complete and correct.</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;">#</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;"># The following license files were not =
+able to be identified and are</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;"># represented as "Unknown" below, you w=
+ill need to check them yourself:</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;">#&nbsp; &nbsp;debian/copyright</span></=
+div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;">LICENSE =3D "Unknown"</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;">LIC_FILES_CHKSUM =3D "file://debian/cop=
+yright;md5=3Dsome-hash"</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;">&nbsp;</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;">SRC_URI =3D "git://git@my-project.git;p=
+rotocol=3Dssh"</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;">&nbsp;</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;"># Modify these as desired</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;">PV =3D "1.0+git${SRCPV}"</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;">SRCREV =3D "&lt;...&gt;"</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;">&nbsp;</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;">S =3D "${WORKDIR}/git"</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;">DEPENDS =3D "systemd"</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;">&nbsp;</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;"># NOTE: this is a Makefile-only piece o=
+f software, so we cannot generate much of the</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;"># recipe automatically - you will need =
+to examine the Makefile yourself and ensure</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;"># that the appropriate arguments are pa=
+ssed in.</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;">&nbsp;</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;">&nbsp;</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;">do_compile () {</span></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;">&nbsp; &nbsp; oe_runmake my-project</sp=
+an></div>
+</div>
+<div style=3D"padding-left: 30px;">
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; font-fa=
+mily: courier_newregular, courier;">}</span></div>
+</div>
+<span style=3D"color: #242729; font-family: -apple-system, BlinkMacSystemF=
+ont, 'Segoe UI', 'Liberation Sans', sans-serif; font-size: 15px;">Whenever =
+I bitbake this recipe, I get the following:<br /><br /></span><br class=3D"=
+Apple-interchange-newline" />
+<div style=3D"padding-left: 30px;"><span style=3D"font-size: 13px; white-s=
+pace: pre; font-family: courier_newregular, courier;">NOTE: Executing Tasks=
+ ERROR: &lt;recipe-name&gt; do_compile: oe_runmake failed ERROR: &lt;recipe=
+-name&gt; do_compile: Execution of '/home/mitch/bin/yocto/project-name/buil=
+d/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/recipe-name/1.0+gitAUTOINC+.=
+..-r0/temp/run.do_compile.13271' failed with exit code 1: make[1]: Entering=
+ directory '/home/mitch/bin/yocto/project-name/build/tmp/work/armv7vet2hf-n=
+eon-poky-linux-gnueabi/recipe-name/1.0+gitAUTOINC+...-r0/git/src/core' CC f=
+ile-name.c ../file-name.c:6:10: fatal error: systemd/sd-daemon.h: No such f=
+ile or directory 6 | #include &lt;systemd/sd-daemon.h&gt; | ^~~~~~~~~~~~~~~=
+~~~~~~ compilation terminated. make[1]: *** [Makefile:93: build/file-name.o=
+] Error 1 make[1]: Leaving directory '/home/mitch/bin/yocto/project-name/bu=
+ild/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/recipe-name/1.0+gitAUTOINC=
++...-r0/git/src/core' make: *** [Makefile:72: some-recipe] Error 2 WARNING:=
+ exit code 1 from a shell command. ERROR: Logfile of failure stored in: /ho=
+me/mitch/bin/yocto/project-name/build/tmp/work/armv7vet2hf-neon-poky-linux-=
+gnueabi/recipe-name/1.0+gitAUTOINC+...-r0/temp/log.do_compile.13271 Log dat=
+a follows: | DEBUG: Executing shell function do_compile | NOTE: make -j 24 =
+my-project | make[1]: Entering directory '/home/mitch/bin/yocto/project-nam=
+e/build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/recipe-name/1.0+gitAUT=
+OINC+...-r0/git/src/core' | CC my-file.c | ../my-file.c:6:10: fatal error: =
+systemd/sd-daemon.h: No such file or directory | 6 | #include &lt;systemd/s=
+d-daemon.h&gt; | | ^~~~~~~~~~~~~~~~~~~~~ | compilation terminated. | make[1=
+]: *** [Makefile:93: build/my-file.o] Error 1 | make[1]: Leaving directory =
+'/home/mitch/bin/yocto/project-name/build/tmp/work/armv7vet2hf-neon-poky-li=
+nux-gnueabi/recipe-name/1.0+gitAUTOINC+...-r0/git/src/core' | make: *** [Ma=
+kefile:72: my-project] Error 2 | ERROR: oe_runmake failed | WARNING: exit c=
+ode 1 from a shell command. | ERROR: Execution of '/home/mitch/bin/yocto/pr=
+oject-name/build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/recipe-name/1=
+.0+gitAUTOINC+...-r0/temp/run.do_compile.13271' failed with exit code 1: | =
+make[1]: Entering directory '/home/mitch/bin/yocto/project-name/build/tmp/w=
+ork/armv7vet2hf-neon-poky-linux-gnueabi/recipe-name/1.0+gitAUTOINC+...-r0/g=
+it/src/core' | CC my-file.c | ../my-file.c:6:10: fatal error: systemd/sd-da=
+emon.h: No such file or directory | 6 | #include &lt;systemd/sd-daemon.h&gt=
+;</span></div>
+<span style=3D"color: #242729; font-family: -apple-system, BlinkMacSystemF=
+ont, 'Segoe UI', 'Liberation Sans', sans-serif; font-size: 15px;"><br /><br=
+ /></span><span style=3D"color: #242729; font-family: -apple-system, BlinkM=
+acSystemFont, 'Segoe UI', 'Liberation Sans', sans-serif; font-size: 15px;">=
+Am I doing anything overtly wrong here? Would appreciate any assistance you=
+ can provide.<br /><br />Thanks!</span>
 
---WiKySQCdY4XwW938Z75y--
+--BpgeWRlJweXZURoiXr3R--
