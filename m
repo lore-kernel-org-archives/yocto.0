@@ -1,169 +1,319 @@
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by mx.groups.io with SMTP id smtpd.web10.17574.1627895550909063571
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (EUR05-AM6-obe.outbound.protection.outlook.com [40.107.22.112])
+ by mx.groups.io with SMTP id smtpd.web10.17739.1627896953851790007
  for <yocto@lists.yoctoproject.org>;
- Mon, 02 Aug 2021 02:12:31 -0700
+ Mon, 02 Aug 2021 02:35:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=inzHRVSC;
- spf=pass (domain: intel.com, ip: 192.55.52.151, mailfrom: sangeeta.jain@intel.com)
-X-IronPort-AV: E=McAfee;i="6200,9189,10063"; a="193700852"
-X-IronPort-AV: E=Sophos;i="5.84,288,1620716400"; 
-   d="scan'208";a="193700852"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Aug 2021 02:12:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,288,1620716400"; 
-   d="scan'208";a="583839886"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
-  by fmsmga001.fm.intel.com with ESMTP; 02 Aug 2021 02:12:29 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Mon, 2 Aug 2021 02:12:29 -0700
-Received: from orsmsx606.amr.corp.intel.com (10.22.229.19) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Mon, 2 Aug 2021 02:12:28 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10 via Frontend Transport; Mon, 2 Aug 2021 02:12:28 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.46) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.10; Mon, 2 Aug 2021 02:12:07 -0700
+ dkim=pass header.i=@cwareitservice.onmicrosoft.com header.s=selector2-cwareitservice-onmicrosoft-com header.b=dNkyF9Y/;
+ spf=pass (domain: c-ware.de, ip: 40.107.22.112, mailfrom: christofer.dutz@c-ware.de)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Uv91N4S7Qrm5oRFGMuPvJI6qBvDt1luuoOrQ7OyxgrJtWQlOCJXQzUYuk9yIbTvHw16wANcHGUN+onuNVhXSyEJNEV5gC1JBwkxrtQoZESouAcjxnvVCup9+8IMBghY22aYGLvdzOBzdHkpbb57hFyb6wRknQuU22mv11uOxCiPOczZ812FLWF60CAOoXCmvPtMM1M9w5Vxeih5V6lM/mliVvRH6LZcAeoCX/2cnyVRUs86xtaITopBEqVXhJBNnHv79Pf7er2dWSJqFljE8ipY5RQelTz+NYWoHBV3hheGKsNbTjYePHU+yKTRR2kligeNZC6MEy5QHXMMfEyoWkw==
+ b=gkKiwd7lz5Pl4gnfu+vSDTzaIgmtkjtv0NJAsyvGK8RhRNQoHp18Py3JQgDMqUasVW+Rj0NpL3yKzUFrehCwM+KMy65FM6pbPlIF0iAjECwkgyDQdVmXLKTrzfOX1UH2G7PGq5gyvzh2SOMVS8kRpEWcpumdruDNC6vj2+6kAf03BSFn6zAYPnIUTJwPybWwyGLo8w/wYyprpio8YRn2YEns/QhY/QSbdoCVKGJKX1AjHkgjMxCifLR0bCJdMsLzWqrdiZ0WQ+iTyOYhmUP6M0AtCd3NC20GWB3YSeibz2sJYecphvQtK/K2/1Oyj4jxx8lq+IoT66R2zjhd46lGCA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tQjfxwpsc7uGr2ujv5zHh5TqZkNJePP+uwQanzxbaXE=;
- b=eorCsgJ0tpDugGHm4W2Yq9hXfEQZC8EFVivflpyKDtqXXKGPrl/mPrdiHSdCoqrPD9SjSJadEOe6CPrG21ByGyFoYNCozOIXo68b7AeU5ki89HkiqnaqrqGCEJk8bl23D4tMj98gFwIXUQZpeVFXY3JqeCCbnaqq7/V2t0GAGTQWR3ndN4oDowPWYowqIpwSw6ys7A/xgDehqIumaN2N45JCpUgw5ibFWMCqyRK1d3xe1lSjtGF4+4UUIivTiBfnL56oftqSZLqHg4fG3cb+tTJFaOfTakYK4blqORKs9Ksf6hAJKW/WHgQZV3ulJRuk3WhT0C/wnDTxI7yQfykmXw==
+ bh=Av5bO4UgN9xEMLERvvYa7X3pOCaO/Ad0Zm7OyfFj5yM=;
+ b=WZp8LEvoO/ncMAE34B2woVAcIaj89fLWPYR+7Tkost6dM05bSeG8UpV2eUrGah//E5rCI6bHLhD9KsZ3kHhMTRCweObwPQGJtnnhrfu2nrPs1g+KtIvniKcF/d8UtcVIZuPbweaMKegCpaEqcXZxOy1E0mBKNJqGGT7uEsUqf2BUDhb9PDGj6bGe3jNs78SCUVJdWMQ9Y3EBQRbNgmMHoqIwxyhfCISTjhgtmvbWQTaNAeoSodlXauhoVUhfS4SjMLmvT92gRG2Axot3wuy/vm0KbI2pot1oDEpG/ktEwnSpBRxxO9mj2YdcLt86RrVewTf15IPQ6QV4NjvFLTc4nQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
+ smtp.mailfrom=c-ware.de; dmarc=pass action=none header.from=c-ware.de;
+ dkim=pass header.d=c-ware.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=CWareITService.onmicrosoft.com; s=selector2-CWareITService-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tQjfxwpsc7uGr2ujv5zHh5TqZkNJePP+uwQanzxbaXE=;
- b=inzHRVSCadCQghxCzKmw8Ke8gbZocaP1AmyhUp8QPSk4xV8CGA9Kg+nu01Mf9wP1H7CVLDATPY3n34A5Qme1IHhYNKceBuqx/DwyrAr337kxdGXjUv4xJXnAll46mBVMiUjImogy3jDe7pIYBkJf0Ctw5eP7Z6TptB0Hnak8iDM=
-Received: from DM8PR11MB5608.namprd11.prod.outlook.com (2603:10b6:8:35::5) by
- DM4PR11MB5568.namprd11.prod.outlook.com (2603:10b6:5:39a::18) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4373.18; Mon, 2 Aug 2021 09:12:05 +0000
-Received: from DM8PR11MB5608.namprd11.prod.outlook.com
- ([fe80::419f:4e95:48ef:398d]) by DM8PR11MB5608.namprd11.prod.outlook.com
- ([fe80::419f:4e95:48ef:398d%3]) with mapi id 15.20.4373.026; Mon, 2 Aug 2021
- 09:12:05 +0000
-From: "Sangeeta Jain" <sangeeta.jain@intel.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>,
-	"<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-CC: qa-build-notification <qa-build-notification@lists.yoctoproject.org>
-Subject: Re: [yocto] QA notification for completed autobuilder build (yocto-3.3.2.rc2)
-Thread-Topic: [yocto] QA notification for completed autobuilder build
- (yocto-3.3.2.rc2)
-Thread-Index: AQHXgvamrq5hpa/2gE2mOK9XqE2Cx6tf9qQw
-Date: Mon, 2 Aug 2021 09:12:05 +0000
-Message-ID: <DM8PR11MB5608B209F2534A0B242EE745E3EF9@DM8PR11MB5608.namprd11.prod.outlook.com>
-References: <0c60ce5c7e5456d31dc1d89a94451f9d39aa08be.camel@linuxfoundation.org>
-In-Reply-To: <0c60ce5c7e5456d31dc1d89a94451f9d39aa08be.camel@linuxfoundation.org>
-Accept-Language: en-US
+ bh=Av5bO4UgN9xEMLERvvYa7X3pOCaO/Ad0Zm7OyfFj5yM=;
+ b=dNkyF9Y/+26fHYL8PN6u/s/YOX5aQofujhelo6x43Jcd2zTAdyBpPGd/BCc+att99TpbdlNwsCtAmuWYWw1tVeMQ7W5cQFRZgvY3edKti0B1/uNMsHnaazsfZFsB9eUmqCbJkrxex4HhbtArC3+BOfOrXuh4eTAusM7J+HzGmgQ=
+Received: from AM7PR05MB6807.eurprd05.prod.outlook.com (2603:10a6:20b:137::22)
+ by AM6PR05MB6327.eurprd05.prod.outlook.com (2603:10a6:20b:ba::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.18; Mon, 2 Aug
+ 2021 09:35:51 +0000
+Received: from AM7PR05MB6807.eurprd05.prod.outlook.com
+ ([fe80::d58d:77ba:393a:2289]) by AM7PR05MB6807.eurprd05.prod.outlook.com
+ ([fe80::d58d:77ba:393a:2289%8]) with mapi id 15.20.4373.026; Mon, 2 Aug 2021
+ 09:35:51 +0000
+From: "Christofer Dutz" <christofer.dutz@c-ware.de>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] (Go) Library for configuring Yocto based boxes?
+Thread-Topic: [yocto] (Go) Library for configuring Yocto based boxes?
+Thread-Index: AdeFFoupQ2bOnA6sQuup4q7x7Xd86AAAyqmAABQMS9A=
+Date: Mon, 2 Aug 2021 09:35:51 +0000
+Message-ID: 
+ <AM7PR05MB68071F9410BE1219864FA253A2EF9@AM7PR05MB6807.eurprd05.prod.outlook.com>
+References: 
+ <AM7PR05MB68079F0EE9AA57AAC765E903A2EC9@AM7PR05MB6807.eurprd05.prod.outlook.com>
+ <4d53db74437d5a537fbddfc98193b18b35706acd.camel@delisys.ch>
+In-Reply-To: <4d53db74437d5a537fbddfc98193b18b35706acd.camel@delisys.ch>
+Accept-Language: de-DE, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.6.0.76
-dlp-product: dlpe-windows
-authentication-results: linuxfoundation.org; dkim=none (message not signed)
- header.d=none;linuxfoundation.org; dmarc=none action=none
- header.from=intel.com;
+authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=c-ware.de;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f8aa9ea2-aee2-4f86-ab16-08d95595990f
-x-ms-traffictypediagnostic: DM4PR11MB5568:
-x-microsoft-antispam-prvs: <DM4PR11MB55687ED73054EFEDAE92E912E3EF9@DM4PR11MB5568.namprd11.prod.outlook.com>
+x-ms-office365-filtering-correlation-id: d85a5324-a791-44f0-0f2b-08d95598ead1
+x-ms-traffictypediagnostic: AM6PR05MB6327:
+x-microsoft-antispam-prvs: 
+ <AM6PR05MB632791BB1198126450455CA5A2EF9@AM6PR05MB6327.eurprd05.prod.outlook.com>
 x-ms-oob-tlc-oobclassifiers: OLM:8273;
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: HdDLaVYw4A6bg/1Gk1i+Oct45AFIeBBfyy3XQp7PtSUC1oInhDbgLo+SZh8K3vjZldZ18x0tRB1TuqmV5PBsBiXbJj41kGpk7WrjyAX+BlflZ4FSyk3ohTwca1NiiQGxU+UcaBwftw+EHwdD/ccbnQFr2YF7yuXcIPI4wMVdnhbqk7bqysCcMD9XzB26j/Toh/KFqMTQ0SqGW8sdhfaFYa+1hMkBJ6oQcJlSrUGXrX1N+HkscjFxA+vpDC7Wi1401rUjIPCipPkIxVdk5Fo9bL5Z5r0DyByVVzyaSL0u/pkml3LSKb/ZJ0xOe2p0oAQV5g12HkoAfx7Y13yhMwU3o/vRahO5fl8MLS3ek+EtZXNdzXTGFytUL7NR/QoAQrxRFaCYLHHhrLE5G5nTLHv112gPGfzeYma10PnFS0CWerlTORvsYT1Ii8w2zNw4ZD2QGnXnr7dCFh3YH6cChI8NpYdbHqKdGU9kP6nagvsZZRxO13khun5GTOW4XBWwn7f9NQ2+LmiTs2H+J9+lxlpBFXj82Hkr4U87yoz8BRwayGV6pXNXYtchXAxxkkww7zaIYwqCkWo7iDr8usEcY91UzUjPSQ1tKq6wU4QyjBINe2tE61p5DUDxw9PjrTrSCHR+z0SsG1Ad3bH2Dj2xoRd0OmlU9y3k381kdLWDyTd+Kyw0rDKZeA3NJxSm3vTNE7X83iDJ9C+fmHOPI4FEOyhEIfTsZZtZJfweAMGoRmJsPUHOPG6VoJNzWK8JtxmvkGe2FJvGXYd4MhI2NXphrmm2r370MCnbrXllyepI6LlfXS67Pv4fOzyVRKX4no94XFATMkLiOIhEQO4XxyLoJAJZ73vnaxeHy487bn+yUFLYyYY=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM8PR11MB5608.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(9686003)(110136005)(66946007)(76116006)(2906002)(55016002)(83380400001)(316002)(66446008)(86362001)(52536014)(71200400001)(508600001)(966005)(33656002)(5660300002)(4326008)(64756008)(66476007)(66556008)(8676002)(8936002)(186003)(38070700005)(53546011)(7696005)(122000001)(26005)(6506007)(38100700002)(15650500001)(491001);DIR:OUT;SFP:1102;
+x-microsoft-antispam-message-info: 
+ u/eO3I1578Mu9NIEHoiFHkEh0o1kuHP/MQ7LbBolI21LqrdA7ttWhtZqsC/ZavjhTDZDJoEAylacYpxyBA4593YveFGw96C/Nx3SWetl/gjm0KgpOycldWwbB75mRsn7SFX0TBbSxRB6wRC05TNDwqt+MJxIsTvIvbVZsC6CV2uVU2Z3SwLCpaWZWtxZsnKfBpJxH9asmUMw8NnhI8Lf2kftrfeACvQHVeKNC8F0ajvlcXmYrpNVF+hx0X9VTvQ+oeev79TCqd/15zH03HmDo1YecmgIbqmRFsbxSsKA7xMex7TdRAbKoWJaerLtoVMy6csHsEkB4sl7YXMC2TsXXe4juuSP18C7IfR4qEWxlEA5yr47kWnaz2rj6AtBMCAc2LmTSIrswgNhGc5VK1AYXyTrtnkN4g0qDVsslzPrfrGSQCoQf++zgrTLBLPM2vRsB7QC/4Dx26QixNhx1uguFr/ygBRR1ePQMryUtiSbTiKxKIllqrrGmsgvfTAzV4YhF0QEYwopMIR10WtWVpxJzeu9GxN1w4fszM2MxxdQWFRJ0i8e6BII/i0ecsmjkjOfKwAJhLT5nLoXhpuAdwR82Z0SYlOXbKecjrrEQeBAJKhK+lVpxIzEAbVmMM/YTOLhlJR9Mr41oBBUELCZnW6jH+FQOtTO/LXpv4qrL1SUbR4gpeThE68125juqapIfgQ5mS196miPTo/LWCQexdHqhv+x5nfoz2wEeM4eFc/atEWrHSKwtTXWfgCgdGVRbzHn6/vmKXMqbStC7zqzBeSDVA==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR05MB6807.eurprd05.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(396003)(376002)(346002)(136003)(39830400003)(83380400001)(55016002)(71200400001)(8676002)(6916009)(7696005)(478600001)(44832011)(316002)(966005)(66556008)(64756008)(66476007)(2906002)(6506007)(52536014)(33656002)(38070700005)(9686003)(66446008)(66946007)(186003)(66574015)(8936002)(38100700002)(122000001)(166002)(76116006)(86362001)(5660300002)(19627235002);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bDh3NDh6SzdMT0dCRDNsWDJ3d2tDQlVJSitDa09NTElQNjRMQUMwUlY1S0NV?=
- =?utf-8?B?bTBIWDRXUG9ZalR2RC9FNGtqZGd1YTVReU01bTJ2emRRV2V6MldNZ3JpNmZy?=
- =?utf-8?B?bDlwUzgrb0lhVW9vd2laNks1RnhVWnZRejVxRUZwcGc5ejlrMFNmaFFnYmhU?=
- =?utf-8?B?eG0rSlh4RVdpUzlsZ05xdXB1ZW13NURPVlRaUjhqZCtsSTZDUjhMWW95dFBW?=
- =?utf-8?B?VktOVXJpamVqK0ZkQVkySmRnMFBSVHBkUXBkdkp5cXNqcWg4Y09Uc2srNEFY?=
- =?utf-8?B?SHNlS0M2ZEdIM1dnM1N0NDFHbklkWmVDcVQ1WEtHNG1lRmZZUzBzb0RlVVIy?=
- =?utf-8?B?UjQrSWpLampXd0k3QXZYdmVSczFqNUtyQzJSMjlIS2RCcmZ0WkJJTFlIK3dS?=
- =?utf-8?B?VDNCU251RTFFV3Y5d1RwTXoydmRPVnB3TytHZ3lWTGxxaktwbXBkdnVsM3Zr?=
- =?utf-8?B?OEZLcmkrWnQ2Yk40V2pDc2xuYVNpaUt3UGtYQkRhR2dOaHVnT1doSWwzVDBs?=
- =?utf-8?B?dzQvT1I0aGNWMlBqdy85RURkWmROcWxsdm9NQ01IYVZZeUN1MERQeHF3cU9s?=
- =?utf-8?B?Z1JHMnoxbjc5dmsybUpCTFlPOHp3Zm5WNHN2a0ZJajhoK2RuanVTcVZyMnhr?=
- =?utf-8?B?OTkvZWJaWE55cHgrWWpzUjNxdXB3WUVVZjdXNS9adnRFdno5TlUzUVlVUjhw?=
- =?utf-8?B?YW1OTm5KVTd5TC92bEpTWlBZdEN3WVpzRUthQkNUSklsaVF2Qm1NTGpwMnYx?=
- =?utf-8?B?UzI4WXVnT1drMlpQekFUOEpWZFJVTTY2MDNnQ3V1a3ZTYjUvSmljMDc1MHJS?=
- =?utf-8?B?Yit4WEJnVUViVnJuNEtySTA4KzJ2NHpBWlVKWUJueHN4RkdaU3d5K2xTSm1x?=
- =?utf-8?B?K01IUkx4OU1DWklORjlJV1l4Mm9pUEd4elFyeEM2UUxTZW1FN0Y2ckdqZHVH?=
- =?utf-8?B?U0p2dXQ4MmVZcS91aGo5V2ptd0M5SkpPQnphek5QTW55OHhHdFc2RklyNCtv?=
- =?utf-8?B?MU9abng4SCtSbmQ4RExScjRMdVAxbkc0ZzMweFJSRmQ4TjhPZXc5WENQbjEr?=
- =?utf-8?B?OXl0eHN2cGE1U2lhOS80VzJGZERYLzBOUHVWWGVhclpNbXRPemdXbVorZktr?=
- =?utf-8?B?MGNpVGVhaFcybkUwRytob01jTVNaNThmT1NnVFVOUFVOcjNhQjRTNE5yZStH?=
- =?utf-8?B?Y3YvbzJyUXlQbGVjMFVaRVIrSW81c0RZalpXVGVBVFY3QkR2Y2tUd1pGZ29Y?=
- =?utf-8?B?MUc5YXZQaURkZGV5dStXUUd3MWlYK2VORXJFWnowTWNFd0VzSUdMN0FKQjNV?=
- =?utf-8?B?Y2Y5NVY0a3AreEhwVTJOQXNyVm5RTkFPZmVycHZmczRjY01mTkVNNGY2N1Ny?=
- =?utf-8?B?ZjVaV205YThXcGJHODY5dXlaalREUGZKRUFTelIyUkxqc0R2bmhrZ0ZTajlC?=
- =?utf-8?B?UndTNy8rM3RRY0FOOHFlN01PZDNsa3gvSVV0QkNOQzdBcVFuV0w1K0lkZWt1?=
- =?utf-8?B?MXVCRmlDZ0tJUTRXN3pWdWNBRHZ6dDNEWXduVTc5L210UlhtMUIveHVvcFU3?=
- =?utf-8?B?b1VPdUdoSGdoODJGUjFEeUdKQktrZ1BWQVlhc2JESkFwUHZ4aEpyTDhHS0Jv?=
- =?utf-8?B?V0dvWjI0aGlpNjZ0eHNqemxMSy9xV2dzMzlPRzNPZzRyZ0JzK3Fzd2E2MXEx?=
- =?utf-8?B?ZWpwbjdITldXbHhETkl4UWx4d1FCY08rWFVwM0w5VTY5d211eC81b3E4dXMx?=
- =?utf-8?Q?11OzTntMrnLLO1I5tOk8mccqcWMcEseC7Jzcwz4?=
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?IheixIC+KeH+1D7Ia6ZXj50iixgheAf8VehVGxCNh/wbt9GL+s2+3f17Zc?=
+ =?iso-8859-1?Q?oFHiuAjHQZR4oBllWBBDToA0BbVAE+gqNUKSZ3fewd+kkWWKDDoCdcHOe/?=
+ =?iso-8859-1?Q?Sih4oCKw12VN7yehba05GhgN4ojVQlN0+YSt30YmsTtckVJlkqVvdyzAkI?=
+ =?iso-8859-1?Q?in2wgKvd+bbHzNQUZsAtCgG74WJXAZeckqPCZAE18lhGu0MiIMLl7LC55O?=
+ =?iso-8859-1?Q?GmWLPGNu6goPSlPyyZWJhpVBXHVvm17XGAdki59yxqrsSQ4m77HUZ3Hlzg?=
+ =?iso-8859-1?Q?j1qrjePE9ypsoYAvx6/6k+LYoJmcDCtzKSdPemiAkQJH3mdRVnlhOmAbXD?=
+ =?iso-8859-1?Q?XlNPpwmh70YbO9LzGr7lKAN9nHsiGzVjdHcfXVHAyotngLOY7K+lWwMdTr?=
+ =?iso-8859-1?Q?sEIiBwhiOJzOrFTtz4fNizWTbonC5ZQZ0jRS4tmlXDNX9CNbWRitJZFroo?=
+ =?iso-8859-1?Q?4KnkJkak2omG0/KyvVS/H+JnB863hCK3rC/8XkewcwdtKhZwj6iWBjog/M?=
+ =?iso-8859-1?Q?Q1GR+9WI8Yd8OsKvJV++fjLujokXI36naosLA/MXvnE0as3td85cL5bI79?=
+ =?iso-8859-1?Q?87hFHH+xLDfPXNpgMRa3dZEnDuCQjoTZo0xQy5euz81JmbBSR7oVe/lQ/3?=
+ =?iso-8859-1?Q?p+UKogLoPxW7hLrV84dDkanszRtJY/jDY13ZiVNY7twvqOj0+u3vkuqgZ1?=
+ =?iso-8859-1?Q?JG/rcb4SHZdjNdm/BvzUsnVW7Sc6T91HfFeucE1w8eCyeVRYBFJp3IIYSM?=
+ =?iso-8859-1?Q?C62fNEeBRmTi8PM0BDy5nJ+oEyhM+Rwd4aC58lHSFsNztKoJ3eQJNYLKwI?=
+ =?iso-8859-1?Q?Xl0BNIBOIi2mZ+U5diyH63HeHjfA3ldDDNzcQigmpUDzcfoT3mpTNXCC1d?=
+ =?iso-8859-1?Q?3Zr3sq7X76EPwrH4ro6yUsxyjjuqNW89FHKIeaM4JTtlgN5s1I4/LDl4li?=
+ =?iso-8859-1?Q?hKynLtihhOn7V2rBITaLsMRGye7jpcaZQsVMPw+CNlxjBhCkXhP09ZsDvV?=
+ =?iso-8859-1?Q?LJoEBc2w9Rm5/jOyfNbkO0ZLpA0AyVpx576V3aywDH8Fu1+7rjQ5c8Es+z?=
+ =?iso-8859-1?Q?926KhsWpGlt+Xsk91jrHZYlorUqonIPPh6lynjyzoABd38fUn7H8UIZ6Rw?=
+ =?iso-8859-1?Q?PiHEfZiNFvE4UFSE0cj6TcJG6wnZ7KIit9QslDHI6hYhhzYqLsEmv0kL79?=
+ =?iso-8859-1?Q?2aqr9X8JSZJ7btdLfg9IVwri1utlLFgbM3vpptvfFDgoZZERWNjxggpt1w?=
+ =?iso-8859-1?Q?Reg0gn3NvRdUIpwMe70t2I/WP53OyImzAoafK2PAFu8Q6yIVkc9i3W5DCn?=
+ =?iso-8859-1?Q?TSPerb5t+8C1uDhggFPeTb2QwTBZ8szs+aAUkfkZqA0fReVGU8mV6SrBgM?=
+ =?iso-8859-1?Q?jnsgJFZ2qqm4bVSPGM93Jbv9gMH+sCD/wnMm6cc2CAMVsO8PweJ/8=3D?=
 x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
+X-OriginatorOrg: c-ware.de
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5608.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f8aa9ea2-aee2-4f86-ab16-08d95595990f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Aug 2021 09:12:05.5357
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR05MB6807.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d85a5324-a791-44f0-0f2b-08d95598ead1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Aug 2021 09:35:51.1500
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-id: 9d387546-1437-4b89-846c-691d64a7e74d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: lv8ZIKAom53DU++tDFVzLX2bQu3vUG4ybQUbwDo2HTGKO9boBzPgjYHDQVGT2d+tx9cYiPqTNVTKSGlPvloqcw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5568
-Return-Path: sangeeta.jain@intel.com
-X-OriginatorOrg: intel.com
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-MS-Exchange-CrossTenant-userprincipalname: otN69FIeTP/DI/IJbrid+cY7aHQ7I3LRWJRVDK2YkJBGPw1ud+4WA1kxMqRrkFcrDlSKzEN/GuwwaNJN70cGpfE8mi4Wm5/y3qppV1qqsl0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR05MB6327
+Content-Language: de-DE
+Content-Type: multipart/alternative;
+	boundary="_000_AM7PR05MB68071F9410BE1219864FA253A2EF9AM7PR05MB6807eurp_"
 
-SGVsbG8gYWxsLA0KDQpUaGlzIGlzIHRoZSBmdWxsIHJlcG9ydCBmb3IgeW9jdG8tMy4zLjIucmMy
-OiAgDQpodHRwczovL2dpdC55b2N0b3Byb2plY3Qub3JnL2NnaXQvY2dpdC5jZ2kveW9jdG8tdGVz
-dHJlc3VsdHMtY29udHJpYi90cmVlLz9oPWludGVsLXlvY3RvLXRlc3RyZXN1bHRzDQoNCj09PT09
-PT0gU3VtbWFyeSA9PT09PT09PQ0KTm8gaGlnaCBtaWxlc3RvbmUgZGVmZWN0cy4NCg0KT25lIGV4
-aXN0aW5nIGlzc3VlIG9ic2VydmVkIGluIHRoaXMgcmVsZWFzZToNCg0KQnVnIDE0Mzg4IC0gQUIt
-SU5UIFBURVNUOiB2YWxncmluZCBmYWlsZWQgaGVsZ3JpbmQvdGVzdHMvaGcwNV9yYWNlMg0KICAN
-Cj09PT09PT0gQnVncyA9PT09PT09PQ0KaHR0cHM6Ly9idWd6aWxsYS55b2N0b3Byb2plY3Qub3Jn
-L3Nob3dfYnVnLmNnaT9pZD0xNDM4OA0KDQpUaGFua3MsDQpTYW5nZWV0YQ0KDQo+IC0tLS0tT3Jp
-Z2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcg
-PHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+IE9uIEJlaGFsZg0KPiBPZiBSaWNoYXJkIFB1
-cmRpZQ0KPiBTZW50OiBUdWVzZGF5LCAyNyBKdWx5LCAyMDIxIDEwOjUwIFBNDQo+IFRvOiA8eW9j
-dG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gPHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+
-DQo+IENjOiBxYS1idWlsZC1ub3RpZmljYXRpb24gPHFhLWJ1aWxkLW5vdGlmaWNhdGlvbkBsaXN0
-cy55b2N0b3Byb2plY3Qub3JnPg0KPiBTdWJqZWN0OiBbeW9jdG9dIFFBIG5vdGlmaWNhdGlvbiBm
-b3IgY29tcGxldGVkIGF1dG9idWlsZGVyIGJ1aWxkICh5b2N0by0NCj4gMy4zLjIucmMyKQ0KPiAN
-Cj4gQSBidWlsZCBmbGFnZ2VkIGZvciBRQSAoeW9jdG8tMy4zLjIucmMyKSB3YXMgY29tcGxldGVk
-IG9uIHRoZSBhdXRvYnVpbGRlciBhbmQgaXMNCj4gYXZhaWxhYmxlIGF0Og0KPiANCj4gDQo+ICAg
-ICBodHRwczovL2F1dG9idWlsZGVyLnlvY3RvLmlvL3B1Yi9yZWxlYXNlcy95b2N0by0zLjMuMi5y
-YzINCj4gDQo+IA0KPiBCdWlsZCBoYXNoIGluZm9ybWF0aW9uOg0KPiANCj4gYml0YmFrZTogNzMx
-ZmI1MmViMDMzMzhjMGJkYjJhMjI1NmMyMmM2NGMyMmJjYmFjZQ0KPiBtZXRhLWFnbDogZWUzOTdk
-MDk5YmY1ZGI5MWYxNGYzNTdmODc0YTBmYjA3NDIwOGZiZQ0KPiBtZXRhLWFybTogNGUxNGExYzVl
-ZTg0ODA4Y2NlYjUzNTRjNmMyNmRkOGViZTY2OTZjZQ0KPiBtZXRhLWF3czogZDY2ZGU2ZWQ4MmZl
-NmI4OWUzYjhiMjYyNmY0ZGI2ZjVkN2Q1NzEzZA0KPiBtZXRhLWdwbHYyOiA5ZTExOWYzMzNjYzhm
-NTNiZDNjZjY0MzI2ZjgyNmRiYzZjZTNkYjBmDQo+IG1ldGEtaW50ZWw6IDRjN2VlY2YyNTUwZmNh
-OTEzNmEzMzI0MDBiZTZkYTM1OGQyNjRjYjYNCj4gbWV0YS1taW5ndzogNDIyYjk2Y2IyYjYxMTY0
-NDJiZTFmNDBkZmI1YmQ3NzQ0N2QxMjE5ZQ0KPiBtZXRhLW9wZW5lbWJlZGRlZDogOGZiY2ZiOWYw
-MjNlMGVhYjdmMTIyZWIxOTYwN2ExYzc1N2IwZDI0NQ0KPiBvZWNvcmU6IGU0NThjMTU2MjdlN2Iy
-NzM5MmQxNThjYmI5NDE3ZjY2NDI0YWE3ZDUNCj4gcG9reTogMzFjNjM5ZWI4NjY0MDU5ZWI0ZWQ3
-MTFiZTkxNzNjMjIzYjRjYzk0MA0KPiANCj4gDQo+IA0KPiBUaGlzIGlzIGFuIGF1dG9tYXRlZCBt
-ZXNzYWdlIGZyb20gdGhlIFlvY3RvIFByb2plY3QgQXV0b2J1aWxkZXINCj4gR2l0OiBnaXQ6Ly9n
-aXQueW9jdG9wcm9qZWN0Lm9yZy95b2N0by1hdXRvYnVpbGRlcjINCj4gRW1haWw6IHJpY2hhcmQu
-cHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmcNCj4gDQo+IA0KDQo=
+--_000_AM7PR05MB68071F9410BE1219864FA253A2EF9AM7PR05MB6807eurp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+so I invested quite some time to using the NetworkManager to configure the =
+network settings.
+I'm using a go library: github.com/Wifx/gonetworkmanager for this.
+My network configurations now end up in a directory /etc/NetworkManager/sys=
+tem-connections (I can see files with the name "{connection-id}.nmconnectio=
+n"
+However the changes aren't applied. If I run:
+
+     systemctl restart systemd-networkd
+
+The network settings don't change (Both network devices were set to DHCP). =
+(By the way ... where can I see the default configuration?)
+
+However if I reboot the box, I can see my changes applied ... until I run t=
+he "systemctl restart systemd-networkd" again, because then it switches bac=
+k to the dhcp settings.
+Any tips on how I can apply my changes without rebooting?
+
+Chris
+
+
+-----Urspr=FCngliche Nachricht-----
+Von: Nicolas Jeker <n.jeker@delisys.ch>
+Gesendet: Freitag, 30. Juli 2021 10:06
+An: Christofer Dutz <christofer.dutz@c-ware.de>; yocto@lists.yoctoproject.o=
+rg
+Betreff: Re: [yocto] (Go) Library for configuring Yocto based boxes?
+
+On Fri, 2021-07-30 at 07:43 +0000, Christofer Dutz wrote:
+> Hi all,
+>
+> I'm very new to the Yocto world.
+>
+> We are currently working on migrating away from OpenWRT based edge
+> devices towards ones that we now have Yocto builds for.
+>
+> All seems to be working nicely on the yocto side.
+>
+> Our application uses a baseline configuration in order to connect to
+> our cloud service and there it fetches it's configuration (We've got a
+> cellular fallback if connectivity doesn't work at all).
+>
+> With OpenWRT there was a tool called UCI which even had a Go wrapper
+> which we used to apply the configuration to the box (set IP addresses,
+> connect to WiFi neworks, configure the serial ports etc.)
+>
+> Is there some equivalent in the Yocto world?
+>
+
+The OpenWRT wiki has a section on porting UCI to different linux distributi=
+ons [1], but you can probably skip that completely. Searching for UCI in th=
+e recipe index [2] yields a result from the meta-openwrt [3] layer. I would=
+ start with adding that layer and using the UCI recipe from there.
+
+[1]: https://openwrt.org/docs/techref/uci#usage_outside_of_openwrt
+[2]:
+https://layers.openembedded.org/layerindex/branch/master/recipes/?q=3Duci
+[3]: https://github.com/kraj/meta-openwrt
+
+> I would like to avoid generating the file content in the /etc
+> directory by hand and firing "restart" commands to the corresponding
+> services, if there isn't a better way.
+>
+> Help greatly appreciated :-)
+>
+> Chris
+>
+
+--_000_AM7PR05MB68071F9410BE1219864FA253A2EF9AM7PR05MB6807eurp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+span.E-MailFormatvorlage19
+	{mso-style-type:personal-compose;
+	font-family:"Times New Roman",serif;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"DE" link=3D"blue" vlink=3D"purple" style=3D"word-wrap:break-w=
+ord">
+<div class=3D"WordSection1">
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">Hi all,<br>
+<br>
+so I invested quite some time to using the NetworkManager to configure the =
+network settings.<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">I&#8217;m using a go =
+library: github.com/Wifx/gonetworkmanager for this.<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">My network configurat=
+ions now end up in a directory /etc/NetworkManager/system-connections (I ca=
+n see files with the name &quot;{connection-id}.nmconnection&quot;<br>
+However the changes aren't applied. If I run:<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; systemctl restart systemd-networkd<br>
+<br>
+The network settings don't change (Both network devices were set to DHCP). =
+(By the way &#8230; where can I see the default configuration?)<br>
+<br>
+However if I reboot the box, I can see my changes applied ... until I run t=
+he &quot;systemctl restart systemd-networkd&quot; again, because then it sw=
+itches back to the dhcp settings.<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">Any tips on how I can=
+ apply my changes without rebooting?<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">Chris<br>
+<br>
+<br>
+-----Urspr=FCngliche Nachricht-----<br>
+Von: Nicolas Jeker &lt;n.jeker@delisys.ch&gt; <br>
+Gesendet: Freitag, 30. Juli 2021 10:06<br>
+An: Christofer Dutz &lt;christofer.dutz@c-ware.de&gt;; yocto@lists.yoctopro=
+ject.org<br>
+Betreff: Re: [yocto] (Go) Library for configuring Yocto based boxes?<br>
+<br>
+On Fri, 2021-07-30 at 07:43 +0000, Christofer Dutz wrote:<br>
+&gt; Hi all,<br>
+&gt; &nbsp;<br>
+&gt; I&#8217;m very new to the Yocto world.<br>
+&gt; &nbsp;<br>
+&gt; We are currently working on migrating away from OpenWRT based edge <br=
+>
+&gt; devices towards ones that we now have Yocto builds for.<br>
+&gt; &nbsp;<br>
+&gt; All seems to be working nicely on the yocto side.<br>
+&gt; &nbsp;<br>
+&gt; Our application uses a baseline configuration in order to connect to <=
+br>
+&gt; our cloud service and there it fetches it&#8217;s configuration (We&#8=
+217;ve got a <br>
+&gt; cellular fallback if connectivity doesn&#8217;t work at all).<br>
+&gt; &nbsp;<br>
+&gt; With OpenWRT there was a tool called UCI which even had a Go wrapper <=
+br>
+&gt; which we used to apply the configuration to the box (set IP addresses,=
+ <br>
+&gt; connect to WiFi neworks, configure the serial ports etc.)<br>
+&gt; &nbsp;<br>
+&gt; Is there some equivalent in the Yocto world?<br>
+&gt; &nbsp;<br>
+<br>
+The OpenWRT wiki has a section on porting UCI to different linux distributi=
+ons [1], but you can probably skip that completely. Searching for UCI in th=
+e recipe index [2] yields a result from the meta-openwrt [3] layer. I would=
+ start with adding that layer and
+ using the UCI recipe from there.<br>
+<br>
+[1]: <a href=3D"https://openwrt.org/docs/techref/uci#usage_outside_of_openw=
+rt" target=3D"_BLANK">
+https://openwrt.org/docs/techref/uci#usage_outside_of_openwrt</a><br>
+[2]:<br>
+<a href=3D"https://layers.openembedded.org/layerindex/branch/master/recipes=
+/?q=3Duci" target=3D"_BLANK">https://layers.openembedded.org/layerindex/bra=
+nch/master/recipes/?q=3Duci</a><br>
+[3]: <a href=3D"https://github.com/kraj/meta-openwrt" target=3D"_BLANK">htt=
+ps://github.com/kraj/meta-openwrt</a><br>
+<br>
+&gt; I would like to avoid generating the file content in the /etc <br>
+&gt; directory by hand and firing &#8222;restart&#8220; commands to the cor=
+responding <br>
+&gt; services, if there isn&#8217;t a better way.<br>
+&gt; &nbsp;<br>
+&gt; Help greatly appreciated :-)<br>
+&gt; &nbsp;<br>
+&gt; Chris<br>
+&gt; <o:p></o:p></p>
+</div>
+</div>
+</body>
+</html>
+
+--_000_AM7PR05MB68071F9410BE1219864FA253A2EF9AM7PR05MB6807eurp_--
