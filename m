@@ -1,78 +1,77 @@
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
- by mx.groups.io with SMTP id smtpd.web10.4004.1628020296482863465
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
+ by mx.groups.io with SMTP id smtpd.web12.457.1628024286587332549
  for <yocto@lists.yoctoproject.org>;
- Tue, 03 Aug 2021 12:51:36 -0700
+ Tue, 03 Aug 2021 13:58:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=cHazh7fV;
- spf=pass (domain: gmail.com, ip: 209.85.214.181, mailfrom: raj.khem@gmail.com)
-Received: by mail-pl1-f181.google.com with SMTP id a20so429972plm.0
-        for <yocto@lists.yoctoproject.org>; Tue, 03 Aug 2021 12:51:36 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ZlhzFRhq;
+ spf=pass (domain: gmail.com, ip: 209.85.219.54, mailfrom: raj.khem@gmail.com)
+Received: by mail-qv1-f54.google.com with SMTP id d17so96859qvn.13
+        for <yocto@lists.yoctoproject.org>; Tue, 03 Aug 2021 13:58:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ejUDIN7/YxptHOrEaibGfBN4y2yzmXhTrwu/4GjIzL8=;
-        b=cHazh7fVL8TZ8DECri45HwMiIpz4i/WPPnJcQzUy/lPfZSmI/IKVIn46CfZQzXPwbf
-         MCDr4NnoxBZFFu03td1V9zii+QGVcETXnil560J8TIkk7Wa89qFtECFop+rschtszp/+
-         wkH9llqQRFvRePwOdyIkq7U4vKK9aTsFWoJmpqZc42/knzuu/m2WOmNPHpQuO6zV6KjU
-         UJoYASSuhFPP7CTPCnLf86rqP3Gmy2k7PmLfd0chasa5WESWwcq03BuYQ/sfAUgl27CY
-         Dy+8tdqo02LeGRvD9tNsdERB5pzY4w5lZ+XPvdOzDmcmd92LhiaZ5Ahtom0Ut89e4y6n
-         4RtQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=S2OQ84cx4c7pvSoqBGhktdXFqElHaSF1N5bXjzbp1dk=;
+        b=ZlhzFRhqAXzlzS6F5KaqdZ6kFkjLQkHa04LiTOvFBGFh+fDlrK64gC+xCRN1rw/hon
+         5ATJum29DCDpgX5wk2hdCvWWFFszNGRgJ6hWYXE4cacZHyfA3ANXt2Iw9zIr5TNzsCYq
+         9saCU7Pwhqqie5doSqEE9KuaCHPSpyhKQaIYZ9EHYkIxjaA4BccLD5Yu+J9aP7qeARas
+         lAv6ig8pKe6ImZ0CP7G7/0jTFPRKzzHCeT6q/cAw0SfIbqIdMoI1Hl9YCVM5VE/4xmUM
+         pqK+LWBfWZ+ylDCCnlktfhMs1oXvRBILZO+KWKrG6yzaCoefF20sgT+EzUdg60MbbfA1
+         /11Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ejUDIN7/YxptHOrEaibGfBN4y2yzmXhTrwu/4GjIzL8=;
-        b=fa+qByHwclcMgzl5HE6ukLAz+sxhnOOAOcXnwCon52t3rAOxlYHWprat0zYobX1EBY
-         ATfklf8B0eDt2KrrKvbn1VrmcGGQiO8KxG+Ggo1YFfwnUiLc7uJdG704D+Fk6wpFhDCK
-         ls3izrfGLHEWnSA0Ym6D07YbrUqYincQ9k3ZIf0yXWHfHo/iSIDFmDzjiWJE7wiKfmgI
-         17UkSJoVp1kjWdikk/ug0apjQ4fyFsVh6UiyS2IeMOAmP4x5xMBCsnWvhDwGKyrQC4qP
-         dKTLalkyFjsi1AbAIU5e3571C7/bcNdJJ2MX92Gri/LQtTAwBIM1deIqW76T8DZ5Dp5/
-         cMiw==
-X-Gm-Message-State: AOAM5338Mohliar9js5jubyUmVVXwXwSgQ/Q/srNKaEF6cl2psHg9qVn
-	pZNF4HtMJd9i5E2ZVHc+hA6MmPfKukYoIw==
-X-Google-Smtp-Source: ABdhPJyO11WNqFgPTb1hbZXk0sXNk7xhN/Z0umIJ3rpo8vmjKVIhz/wOX0usyMbHc9wDVQx4PBvQxA==
-X-Received: by 2002:a17:902:8a87:b029:12c:7168:d608 with SMTP id p7-20020a1709028a87b029012c7168d608mr19822791plo.25.1628020295866;
-        Tue, 03 Aug 2021 12:51:35 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from apollo.hsd1.ca.comcast.net ([2601:646:9200:a0f0:db81:2f56:60e4:2c64])
-        by smtp.gmail.com with ESMTPSA id d6sm17808430pgq.88.2021.08.03.12.51.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Aug 2021 12:51:35 -0700 (PDT)
-From: "Khem Raj" <raj.khem@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: twoerner@gmail.com,
-	Khem Raj <raj.khem@gmail.com>
-Subject: [meta-rockchip][PATCH v2 2/2] layer.conf: Drop compatibility with older than hardknott releases
-Date: Tue,  3 Aug 2021 12:51:32 -0700
-Message-Id: <20210803195132.2702516-2-raj.khem@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210803195132.2702516-1-raj.khem@gmail.com>
-References: <20210803195132.2702516-1-raj.khem@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=S2OQ84cx4c7pvSoqBGhktdXFqElHaSF1N5bXjzbp1dk=;
+        b=cQLAnOLUz78+I9WJ9tFqSoL9F8U2+RBc+yeD+YiG9TxVz8S2/GddS58IHzkduRBkKe
+         VApwAKv40Vuwbr3pusRIaEL0csWbnC7Mduu5UsurY61hAGfBoqeCXMKfsEPHdKwKV9u2
+         BF3t62qqlqrwB8hX2IZIFhX9YEbq1iF4KeuT7FYZWOZSr8DItZ7MMON78l3k2XaM6eFE
+         DSL52rJGHN8YEj56QRtF592FHgZ3FWaU5uE3W3WE/t+VUQsCKC5wiH02u6vKfUvWt3Te
+         8L98Z7Bb8Dk9VTtDXwmvg/gqcoJgZ73RjWo9OdJlc3QRTkycxswYtfFHhIDVFznz8hll
+         uSMQ==
+X-Gm-Message-State: AOAM530b1Zhv5mWnmGFahuWDdbTKN2AJVTax1661pnVL0U9MEn7JbAp6
+	xUM5gxafn28FeqOCHw1/4StBfBhi9oFQB4g87ok=
+X-Google-Smtp-Source: ABdhPJyW8r3coHvAS1yJewz9phAiXpqPmA6PQglorWMwsQdcV9Gde2cbewp/b3gVTfUnAROtO+VhzfAEHszUbyrdVSw=
+X-Received: by 2002:a05:6214:1041:: with SMTP id l1mr14893881qvr.55.1628024285515;
+ Tue, 03 Aug 2021 13:58:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210803170230.2647035-1-raj.khem@gmail.com> <20210803194743.GA6386@localhost>
+In-Reply-To: <20210803194743.GA6386@localhost>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Tue, 3 Aug 2021 13:57:39 -0700
+Message-ID: <CAMKF1sqNjsPeqjwF725WFrBA12Za7TPtC-Xx98vECkj=qp57ZA@mail.gmail.com>
+Subject: Re: [meta-rockchip][PATCH 1/2] layer: Convert to new override syntax
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
-New override syntax requires it
+On Tue, Aug 3, 2021 at 12:47 PM Trevor Woerner <twoerner@gmail.com> wrote:
+>
+> On Tue 2021-08-03 @ 10:02:29 AM, Khem Raj wrote:
+> > Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> > ---
+> >  classes/rockchip-gpt-img.bbclass                          | 2 +-
+> >  conf/machine/include/rockchip-wic.inc                     | 2 +-
+> >  dynamic-layers/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend | 6 +++---
+> >  .../trusted-firmware-a/trusted-firmware-a_%.bbappend      | 8 ++++----
+> >  recipes-bsp/u-boot/u-boot%.bbappend                       | 6 +++---
+> >  recipes-graphics/mesa/mesa_%.bbappend                     | 4 ++--
+> >  recipes-kernel/linux/linux-yocto%.bbappend                | 4 ++--
+> >  recipes-kernel/linux/linux-yocto_5.4.bbappend             | 4 ++--
+> >  8 files changed, 18 insertions(+), 18 deletions(-)
+> >
+> > diff --git a/classes/rockchip-gpt-img.bbclass b/classes/rockchip-gpt-img.bbclass
+> > index 3ee46c8..4d22e3a 100644
+> > --- a/classes/rockchip-gpt-img.bbclass
+> > +++ b/classes/rockchip-gpt-img.bbclass
+> > @@ -40,7 +40,7 @@ do_image_rockchip_gpt_img[depends] = "parted-native:do_populate_sysroot \
+>
+> The following two need changes too, don't they?
+>
+> >  PER_CHIP_IMG_GENERATION_COMMAND_rk3288 = "generate_rk3288_loader1_image"
+> >  PER_CHIP_IMG_GENERATION_COMMAND_rock2-square = "generate_rock2_loader1_image"
+>
+> There seem to be a few that were missed. I'm working on a patch as well. I'm
+> just testing the images on some of the targets now.
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
----
-v2: Rebase
-
- conf/layer.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/conf/layer.conf b/conf/layer.conf
-index f97fb69..25b0a99 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -14,7 +14,7 @@ BBFILE_PRIORITY_rockchip = "1"
- # This should only be incremented on significant changes that will
- # cause compatibility issues with other layers
- LAYERVERSION_rockchip = "1"
--LAYERSERIES_COMPAT_rockchip = "hardknott"
-+LAYERSERIES_COMPAT_rockchip = "honister"
- LAYERDEPENDS_rockchip = "core meta-arm"
-
- BBFILES_DYNAMIC += " \
---
-2.32.0
+please use v2
