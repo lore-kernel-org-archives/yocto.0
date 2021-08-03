@@ -1,165 +1,696 @@
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by mx.groups.io with SMTP id smtpd.web08.2400.1627979072603638024
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by mx.groups.io with SMTP id smtpd.web09.2585.1627980846193897504
  for <yocto@lists.yoctoproject.org>;
- Tue, 03 Aug 2021 01:24:33 -0700
+ Tue, 03 Aug 2021 01:54:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=nzOSniL1;
- spf=pass (domain: intel.com, ip: 192.55.52.136, mailfrom: sangeeta.jain@intel.com)
-X-IronPort-AV: E=McAfee;i="6200,9189,10064"; a="193221674"
+ dkim=missing; spf=pass (domain: intel.com, ip: 134.134.136.100, mailfrom: naveen.kumar.saini@intel.com)
+X-IronPort-AV: E=McAfee;i="6200,9189,10064"; a="277395548"
 X-IronPort-AV: E=Sophos;i="5.84,291,1620716400"; 
-   d="scan'208";a="193221674"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Aug 2021 01:24:31 -0700
-X-ExtLoop1: 1
+   d="scan'208";a="277395548"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Aug 2021 01:54:05 -0700
 X-IronPort-AV: E=Sophos;i="5.84,291,1620716400"; 
-   d="scan'208";a="441080349"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
-  by fmsmga007.fm.intel.com with ESMTP; 03 Aug 2021 01:24:30 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Tue, 3 Aug 2021 01:24:29 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10 via Frontend Transport; Tue, 3 Aug 2021 01:24:29 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.10; Tue, 3 Aug 2021 01:24:29 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AQJDsDcRsuTgJcg6qr2K8RWDys8eX+KsVafQ/shoUo8mkDo4GiqUv9ZbC/WXawQcgvovSUM0sUfwEMv8NZTGOwCuu8XgSfLddNxOgyVNV+Sd2pKfeW3ssVQK2tP26YdAPoiAXD2X8QAeopuch/ArjDWSaK4Zq6sV2/Hq2n3MRLyaih2ck/OyAvT8Wx06fQ2/BQzlvoheb5xmYgz+SSpqpx84YcEo/jgxf725Bs1vprrGUPzsuGPxFAwLb1XVHk8RR34Ruhqeue7spU15GoR4v72nFYHJy6VQuTjWBkGfqDmrZM05ojSN+oclaDLdqIXukyAJp2Sq6f1/+Fb8jvK+Vg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UzxCgexrIi+4eXYTvJb7j8CDz6bS0dBM4zqOHIly8qw=;
- b=OzdsramsqPA1VLFaLYvub4cvaJ2P7gcv8NgUcg3wy5Ml/3KnkS/ydIRCtT66IG+DvkIOwgjJXwa1EgqO65aXrIYV6RIg/rseT8S9QRN8kgAyvXr4m6OyfIG3OeJOKeW/5xzJh01iNMxK/OuRIbMxbe46zNw9zyBiIWLiB/ptAr8Iy0KJk81+uXCnb8K5grpRAPX+kv3g3P1GfXmwSM+YQ/BLolQiKWAPrh6nrfrBCYM5sLZ0YioAKn0I1LaN09qQKGDQ4ZU9xLX5WYjPbUJYJUIFinPFzyCzfqFZZRXhY3pmQWsO1rF7dNLLZgRsJtufr3ir4l1yohknmdxOwVPK8g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UzxCgexrIi+4eXYTvJb7j8CDz6bS0dBM4zqOHIly8qw=;
- b=nzOSniL1sD3o2EpB36ygjdpogMnLPpnNoxevFJoIAJKar9HA+jEIiLP/+7+CFSdEodVBuK8GEjf6SnIn+vMPfnIcCoLQkllEFZIFTbDec5waulwM5oQSXsjAHHCncgbfKab57CGNbElvn0GAruDrAn7sU70qhr2G3Czd6vEUG6A=
-Received: from DM8PR11MB5608.namprd11.prod.outlook.com (2603:10b6:8:35::5) by
- DM8PR11MB5606.namprd11.prod.outlook.com (2603:10b6:8:3c::23) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4394.15; Tue, 3 Aug 2021 08:24:26 +0000
-Received: from DM8PR11MB5608.namprd11.prod.outlook.com
- ([fe80::419f:4e95:48ef:398d]) by DM8PR11MB5608.namprd11.prod.outlook.com
- ([fe80::419f:4e95:48ef:398d%3]) with mapi id 15.20.4373.026; Tue, 3 Aug 2021
- 08:24:26 +0000
-From: "Sangeeta Jain" <sangeeta.jain@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>
-Subject: Re: [qa-build-notification] QA notification for completed autobuilder build (yocto-3.1.10.rc1)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-3.1.10.rc1)
-Thread-Index: AQHXgzmHWCYcE4G6Pky7P1UuZVeXIqthez8A
-Date: Tue, 3 Aug 2021 08:24:26 +0000
-Message-ID: <DM8PR11MB5608C31732DA5D96842C3760E3F09@DM8PR11MB5608.namprd11.prod.outlook.com>
-References: <de37e80025dfd59afd14daa355bf6100e70a656d.camel@linuxfoundation.org>
-In-Reply-To: <de37e80025dfd59afd14daa355bf6100e70a656d.camel@linuxfoundation.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.6.0.76
-dlp-product: dlpe-windows
-authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 807b3ae0-6597-42d2-838a-08d956581b63
-x-ms-traffictypediagnostic: DM8PR11MB5606:
-x-microsoft-antispam-prvs: <DM8PR11MB56060BC57DE2E6CC74CD8748E3F09@DM8PR11MB5606.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: h7YHeAgQmwaQahSWdwqnN3CEP+o1CWejysxbxoBekTZU5NILLcEvHk6u3GNY8pZL9kL2i0ZgN4LFKQzKlmW+OU4ZyvEXNdD6ujUqBb8o7tl3m0U5AL47Cc3VWY30CVrCZvXsN0mXNHGMlgITlSUNZ5h7A2xT6lbBSKN3YbHmKN8YkoTTHvqzjhE7nItwzu42cW9AD9CmB1ogUuVNDTC9vYOb43l+crt4b9O4IdpmNw6FSyFfyKoUFx5DQ/XutkVMnEBjWFPVS6H9H35fret6JDXgI2Jtx+pA5ZPidBCdzpRmW+7R+o+fwmv/ciiN6VvMioMJ3Cumgorbw0jLOEYf14IzpBdmlCi1A5X1+10TefCiqmzy0lUPES7yNl0JbJ/mmXsaCdTRrBVcLLlCScwbKYywmysAd7k2ZxXnbQGz+82hg7QU/IRBjK45H1dPLurR78G1DX1A/3cvsuS/CQQWfy0V47mkBZwI49UOO6Se2oqpb6A64e4x/vddQIGrDXdYmVRedykE5O3zbDfYPj5PrmhmD/PhHiuxRnO+P/wv0kO1lKk9YDhy0we6sVGsNVYu0QcSiHmCa8nC1Kdj5t7HDtO978+6C1CYXx1BfPfX9NvbH2ueea/apCC4eyVpXr8xblmJXo8q7tjHZaHua0DsP02U7+7h4dL56GGAM2GYKzIxiyCCkIvF78fXuaUYtcHWgwxrlyd1+EQDvxGd26KIjRSzqaK4EEe2Q1lUO5iVo1VIVjFhQxWN/Om+2bl59bPpgFQ8Iq5FXGGYQDz+1sphFPSwbmmAjjEE8ezCuvxgmi7lC4U9ZY3IdmojvRj/EazQ8J0WBalM8/cqgSL4nTjjTwwVN/+GtWOZfI/EM2MZHsY=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM8PR11MB5608.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(366004)(39860400002)(396003)(136003)(376002)(86362001)(8676002)(71200400001)(450100002)(8936002)(55016002)(478600001)(83380400001)(9686003)(966005)(33656002)(52536014)(110136005)(5660300002)(122000001)(38100700002)(2906002)(316002)(38070700005)(53546011)(26005)(6506007)(186003)(76116006)(15650500001)(66556008)(64756008)(66476007)(66446008)(66946007)(7696005)(491001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?OE1IU01xdXVzaEZpNkVkVlRaWjU5OHp6K1JvUENRL0FqNWlzNmNzSzlycDVV?=
- =?utf-8?B?cTluT2prTUV6ZDlKaXlhYWdnQ2lJUVFONjhQZ3NpWmFCSmM2aEU2eW9ZdWt3?=
- =?utf-8?B?RFJtU1FxOU9Uay8rZHdKa1RBVkZvcFErN0U1V2NsQUp2UDRQSllYdVJqSFRq?=
- =?utf-8?B?Rnd5NjFqTERGcHAxL3JFaUR1ZmJVM1lBaFJqbnlmcTZoTG1mVlVBMDV3NDI4?=
- =?utf-8?B?UzNWcm84bmIyOFZSM2ZGMVYvaFBNYUpIeU00V01NcjRsUEh0cjVqTWNPQlBx?=
- =?utf-8?B?UkRVRlVTRWxIVHI3bEJha0FVcHJMaWN4TkYrZzlQZURFdi9TZFF5YVhlZWxF?=
- =?utf-8?B?NkhOTHU2ek9jV2N2TTFkSmp6OTZwZU80bytpZzM1NVJOWXhzZkF6RzY4VlZ0?=
- =?utf-8?B?RGlrSE44ODFKNCtlcllDMFNBTjQ0R012TWJreG1pL0xrSDhzeXA1K2xEK05S?=
- =?utf-8?B?RS9CbnhzTVRyd3ZOcjk3OGZINS95SXA2ajBWNFhhcDczZnNJS0NBNXRhUWh2?=
- =?utf-8?B?c1ErUTJ2T1EzV1JEOUFqbVFlcFVMSjdQdkhHTVErc203ekZPVktldWlOUVZa?=
- =?utf-8?B?c0RyQ1hSamR5K3FEMzUrc3NXQXBTejJHTkxER2F5dHFHYWhDTnRrYkViamh1?=
- =?utf-8?B?VXY5UlZ6K3NhbnNaUTJWVVJwVzRhNFRreGQwOXBLbzNtSjYwUUtwT0V1VHI1?=
- =?utf-8?B?ajNyVHB0cjZRSTJJZ3lOSEgyNFI1aFJxeG5DOTh6amZGSFR1enBLVDgvWEtD?=
- =?utf-8?B?YzQ0dUltK3d0dU90Q1UreVJpSlhGVDRmak82K1VmeExDNmdsUnN3MjFUZXBh?=
- =?utf-8?B?TWVFeGJ4d1BHV25XcitHaVdjWDczTEdVMzl6aGZuSmhxMEVnbHBLdDBzSWdP?=
- =?utf-8?B?ZktKTHVFT2QwcjQyd2ZDbzZub3gxRlpkTEM2MVdQMDBycEZydVBLek15TStn?=
- =?utf-8?B?ZDV2T1dIeXcwalN2TkRjRmVYVzBwbVVycW5Ed29PMHZySGlQTnp2WmpQc1hi?=
- =?utf-8?B?aWVrbnlRV3VFemlqNEZEcXNnZU1obS93QUFiSGJtWTgxVlJwaDh4cDhoV0tT?=
- =?utf-8?B?U1N0OVR4UDBJMXo5UTBmSERuSkxOY1Z3by96L3lFZkZpVjZBNjJwZk5aTDZP?=
- =?utf-8?B?ZTgrQzRWckQvME9zOGFTbzc2S3FzNWY5MFpNbWJ3SmF4dXcwbUQ4R2ZkUEhX?=
- =?utf-8?B?MW9ma2NVUHRCdGhPMGV1bUgwVXFsODFjaTBFVjlHME1OakUyMkVudEQ1V3E0?=
- =?utf-8?B?UWxTbkZqZmkzd2N6YTRGbkRqc1JzaFBFcU83QzgxZklTQUFDUGdtSzhGeVBn?=
- =?utf-8?B?R3prMzVDYUFrV0Z5dlJJejVFNWFBTTNyS01WMGJkMk1WUks5ZlY1eno4Z2Jm?=
- =?utf-8?B?eHNEZ0xzNm5aZW5TRjFEWW5sQTc5Y0wvdGxsdHVwTlZEZjd2VXpweVduTTl0?=
- =?utf-8?B?YVRXUmpOUFh6bVZyVWFJdmpkd2hkWk1lckJqM1BvTUl0RmxUUUcydHhQQ0kw?=
- =?utf-8?B?bTZ4M0htUEpvdGM2Zks0czBSanZuSG44Y1VUSFFLcXhxUE5NRllPazdmeE93?=
- =?utf-8?B?YUFjSzdIcnRsTTNBY0JGRE9GTm00dG1oblRnWEZERU5BUnVwbU5KbjBDT3Zp?=
- =?utf-8?B?S1pqN3JuQnMxcnFyWW51WTdZdUk2d3NnWmFMcU5RNEdqcWgvdjd1bjdkYmF2?=
- =?utf-8?B?NDQvQzFDWjBaa3RMenViOWphOTVxSHRtWk51cTkxdXREeTFBeEIvY3NhVGV5?=
- =?utf-8?Q?CB5rRqX8WgjYuCR0fNXWGZbZj2mDDEdQBoIRDYr?=
-x-ms-exchange-transport-forked: True
-MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5608.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 807b3ae0-6597-42d2-838a-08d956581b63
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Aug 2021 08:24:26.4680
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: J8jtbVv/jdmhegMfFuZChucFQ+7jCd9vepvhDxgoTih+G3kMxqv9fFC1BGcbnn/QZNZsUdPNxYTvud6C6vz8vg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR11MB5606
-Return-Path: sangeeta.jain@intel.com
-X-OriginatorOrg: intel.com
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+   d="scan'208";a="510952233"
+Received: from saininav-desk1.png.intel.com ([172.30.199.23])
+  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Aug 2021 01:54:03 -0700
+From: "Naveen Saini" <naveen.kumar.saini@intel.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-zephyr][PATCH 1/2] Convert to new override syntax
+Date: Tue,  3 Aug 2021 17:07:58 +0800
+Message-Id: <20210803090759.20953-1-naveen.kumar.saini@intel.com>
+X-Mailer: git-send-email 2.17.1
 
-SGkgYWxsLA0KDQpJbnRlbCBhbmQgV1IgWVAgUUEgaXMgcGxhbm5pbmcgZm9yIFFBIGV4ZWN1dGlv
-biBmb3IgWVAgYnVpbGQgeW9jdG8tMy4xLjEwLnJjMSBXZSBhcmUgcGxhbm5pbmcgdG8gZXhlY3V0
-ZSBmb2xsb3dpbmcgdGVzdHMgZm9yIHRoaXMgY3ljbGU6DQoNCk9FUUEtbWFudWFsIHRlc3RzIGZv
-ciBmb2xsb3dpbmcgbW9kdWxlOg0KMS4gT0UtQ29yZQ0KMi4gQlNQLWh3DQoNClJ1bnRpbWUgYXV0
-byB0ZXN0IGZvciBmb2xsb3dpbmcgcGxhdGZvcm1zOg0KMS4gTWlubm93VHVyYm90IDMyLWJpdA0K
-Mi4gQ29mZmVlIExha2UNCjMuIE5VQyA3DQo0LiBOVUMgNg0KNS4gRWRnZXJvdXRlcg0KNi4gQmVh
-Z2xlYm9uZQ0KDQpFVEEgZm9yIGNvbXBsZXRpb24gaXMgbmV4dCBGcmlkYXksIEF1ZyAwNg0KDQoN
-ClRoYW5rcywNClNhbmdlZXRhDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJv
-bTogcWEtYnVpbGQtbm90aWZpY2F0aW9uQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcgPHFhLWJ1aWxk
-LQ0KPiBub3RpZmljYXRpb25AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gT24gQmVoYWxmIE9mIFJp
-Y2hhcmQgUHVyZGllDQo+IFNlbnQ6IFdlZG5lc2RheSwgMjggSnVseSwgMjAyMSA2OjQ4IEFNDQo+
-IFRvOiA8eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gPHlvY3RvQGxpc3RzLnlvY3RvcHJv
-amVjdC5vcmc+DQo+IENjOiBxYS1idWlsZC1ub3RpZmljYXRpb24gPHFhLWJ1aWxkLW5vdGlmaWNh
-dGlvbkBsaXN0cy55b2N0b3Byb2plY3Qub3JnPg0KPiBTdWJqZWN0OiBbcWEtYnVpbGQtbm90aWZp
-Y2F0aW9uXSBRQSBub3RpZmljYXRpb24gZm9yIGNvbXBsZXRlZCBhdXRvYnVpbGRlciBidWlsZA0K
-PiAoeW9jdG8tMy4xLjEwLnJjMSkNCj4gDQo+IEEgYnVpbGQgZmxhZ2dlZCBmb3IgUUEgKHlvY3Rv
-LTMuMS4xMC5yYzEpIHdhcyBjb21wbGV0ZWQgb24gdGhlIGF1dG9idWlsZGVyIGFuZA0KPiBpcyBh
-dmFpbGFibGUgYXQ6DQo+IA0KPiANCj4gICAgIGh0dHBzOi8vYXV0b2J1aWxkZXIueW9jdG8uaW8v
-cHViL3JlbGVhc2VzL3lvY3RvLTMuMS4xMC5yYzENCj4gDQo+IA0KPiBCdWlsZCBoYXNoIGluZm9y
-bWF0aW9uOg0KPiANCj4gYml0YmFrZTogMGUwYWYxNWI4NGUwN2U2NzYzMzAwZGNkMDkyYjk4MDA4
-NmI5YjljNA0KPiBtZXRhLWFnbDogNjhjMDAyOTYwMmU1MzlkMDA1YzMzYjZjMzZiYWEzMmUzNGJm
-NjdiZg0KPiBtZXRhLWFybTogYjc5YjkxMjJlMGRjNjZjYTAzNTQyZjgyZmY0ZmE4ZWIwNTE3NGY2
-MQ0KPiBtZXRhLWF3czogZDY2ZGU2ZWQ4MmZlNmI4OWUzYjhiMjYyNmY0ZGI2ZjVkN2Q1NzEzZA0K
-PiBtZXRhLWdwbHYyOiA2MGIyNTFjMjViYTg3ZTk0NmEwY2E0Y2RjOGQxN2IxY2IwOTI5MmFjDQo+
-IG1ldGEtaW50ZWw6IGQ4YmY4NmFlNjI4OGFlNTIwYjhkZGQ3MjA5YTBiNDQ4Yjk2OTNmNDgNCj4g
-bWV0YS1taW5ndzogNTI0ZGU2ODYyMDViNWQ2NzM2NjYxZDQ1MzJmNWY5OGZlZTg1ODliNw0KPiBt
-ZXRhLW9wZW5lbWJlZGRlZDogOGZiY2ZiOWYwMjNlMGVhYjdmMTIyZWIxOTYwN2ExYzc1N2IwZDI0
-NQ0KPiBvZWNvcmU6IDlhZTMzOWFjZTkyNzRiZTcxYmZkM2I1ZTVkYTY0ZGNlYWM5ZmE5NjMNCj4g
-cG9reTogMmE4NDhlOTUwNzQzMThmM2EyNDNkZjdiM2Y0MDUxM2ExMzE3M2E4Mg0KPiANCj4gDQo+
-IA0KPiBUaGlzIGlzIGFuIGF1dG9tYXRlZCBtZXNzYWdlIGZyb20gdGhlIFlvY3RvIFByb2plY3Qg
-QXV0b2J1aWxkZXINCj4gR2l0OiBnaXQ6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy95b2N0by1hdXRv
-YnVpbGRlcjINCj4gRW1haWw6IHJpY2hhcmQucHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmcNCj4g
-DQo+IA0KPiANCj4gDQo+IA0KPiANCg0K
+Use the convert-overrides.py to convert to new syntax and fixed
+some additional changes manually.
+
+Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
+---
+ classes/zephyr.bbclass                             |  2 +-
+ conf/machine/96b-avenger96.conf                    |  2 +-
+ conf/machine/96b-nitrogen.conf                     |  2 +-
+ conf/machine/arduino-nano-33-ble.conf              |  2 +-
+ conf/machine/include/tune-arc.inc                  |  2 +-
+ conf/machine/include/tune-cortexm0.inc             |  8 ++++----
+ conf/machine/include/tune-cortexm3.inc             | 10 +++++-----
+ conf/machine/include/tune-cortexm4.inc             | 10 +++++-----
+ conf/machine/include/tune-iamcu.inc                |  4 ++--
+ conf/machine/include/tune-nios2.inc                |  4 ++--
+ conf/machine/intel-x86-64.conf                     |  2 +-
+ conf/machine/nrf52840dk-nrf52840.conf              |  2 +-
+ conf/machine/qemu-cortex-m3.conf                   |  2 +-
+ conf/machine/qemu-nios2.conf                       |  4 ++--
+ conf/machine/qemu-x86.conf                         |  8 ++++----
+ recipes-core/newlib/newlib_%.bbappend              | 10 +++++-----
+ recipes-devtools-arc/binutils/binutils-2.26arc.inc |  4 ++--
+ .../binutils/binutils-cross-canadian_2.26arc.bb    |  2 +-
+ .../binutils/binutils-cross_2.26arc.bb             |  4 ++--
+ recipes-devtools-arc/gcc/gcc-6.x.arc.inc           |  4 ++--
+ .../gcc/gcc-cross-canadian_6.x.arc.bb              |  8 ++++----
+ recipes-devtools-arc/gcc/gcc-cross_6.x.arc .bb     |  8 ++++----
+ recipes-devtools-arc/gcc/libgcc_6.x.arc.bb         |  6 +++---
+ recipes-devtools/gcc/gcc-cross_6.%.bbappend        |  2 +-
+ recipes-devtools/gcc/libgcc_6.%.bbappend           |  4 ++--
+ recipes-devtools/qemu/qemu_%.bbappend              |  6 +++---
+ recipes-kernel/zephyr-kernel/zephyr-coap-client.bb |  2 +-
+ recipes-kernel/zephyr-kernel/zephyr-coap-server.bb |  2 +-
+ recipes-kernel/zephyr-kernel/zephyr-echo-client.bb |  2 +-
+ recipes-kernel/zephyr-kernel/zephyr-http-client.bb |  2 +-
+ .../zephyr-kernel/zephyr-kernel-common.inc         | 14 +++++++-------
+ .../zephyr-kernel/zephyr-kernel-src-2.5.0.inc      |  2 +-
+ .../zephyr-kernel/zephyr-kernel-src-2.6.0.inc      |  2 +-
+ recipes-kernel/zephyr-kernel/zephyr-kernel-src.bb  |  2 +-
+ recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc |  2 +-
+ .../zephyr-kernel/zephyr-kernel-test.inc           | 12 ++++++------
+ .../zephyr-kernel/zephyr-mqtt-publisher.bb         |  2 +-
+ .../zephyr-kernel/zephyr-openthread-echo-client.bb |  4 ++--
+ .../zephyr-kernel/zephyr-peripheral-esp.bb         |  2 +-
+ .../zephyr-kernel/zephyr-peripheral-hr.bb          |  2 +-
+ .../zephyr-kernel/zephyr-websocket-client.bb       |  2 +-
+ 41 files changed, 88 insertions(+), 88 deletions(-)
+
+diff --git a/classes/zephyr.bbclass b/classes/zephyr.bbclass
+index 6fceb04..e1d3185 100644
+--- a/classes/zephyr.bbclass
++++ b/classes/zephyr.bbclass
+@@ -48,7 +48,7 @@ do_menuconfig[nostamp] = "1"
+ do_menuconfig[dirs] = "${B}"
+ addtask menuconfig after do_configure
+ 
+-python do_devshell_prepend () {
++python do_devshell:prepend () {
+     # Most likely we need to manually edit prj.conf...
+     os.chdir(d.getVar('ZEPHYR_SRC_DIR', True))
+ }
+diff --git a/conf/machine/96b-avenger96.conf b/conf/machine/96b-avenger96.conf
+index 7bcfb4a..ae6f972 100644
+--- a/conf/machine/96b-avenger96.conf
++++ b/conf/machine/96b-avenger96.conf
+@@ -5,4 +5,4 @@
+ 
+ require conf/machine/include/stm32mp1-cortex-m4.inc
+ 
+-ARCH_96b-avenger96 = "arm"
++ARCH:96b-avenger96 = "arm"
+diff --git a/conf/machine/96b-nitrogen.conf b/conf/machine/96b-nitrogen.conf
+index 48f2041..affe9eb 100644
+--- a/conf/machine/96b-nitrogen.conf
++++ b/conf/machine/96b-nitrogen.conf
+@@ -5,4 +5,4 @@
+ 
+ require conf/machine/include/nrf52.inc
+ ZEPHYR_INHERIT_CLASSES += "zephyr-flash-pyocd"
+-ARCH_96b-nitrogen = "arm"
++ARCH:96b-nitrogen = "arm"
+diff --git a/conf/machine/arduino-nano-33-ble.conf b/conf/machine/arduino-nano-33-ble.conf
+index 18ba056..ebf4155 100644
+--- a/conf/machine/arduino-nano-33-ble.conf
++++ b/conf/machine/arduino-nano-33-ble.conf
+@@ -5,5 +5,5 @@
+ 
+ require conf/machine/include/nrf52.inc
+ ZEPHYR_INHERIT_CLASSES += "zephyr-flash-bossac"
+-ARCH_arduino-nano-33-ble = "arm"
++ARCH:arduino-nano-33-ble = "arm"
+ 
+diff --git a/conf/machine/include/tune-arc.inc b/conf/machine/include/tune-arc.inc
+index ff841e7..7db88ef 100644
+--- a/conf/machine/include/tune-arc.inc
++++ b/conf/machine/include/tune-arc.inc
+@@ -2,7 +2,7 @@ DEFAULTTUNE ?= "arc"
+ 
+ TUNE_ARCH = "arc"
+ TUNE_PKGARCH = "arc"
+-TUNE_FEATURES_tune-arc = "littleendian"
++TUNE_FEATURES:tune-arc = "littleendian"
+ TUNE_CCARGS = ""
+ 
+ TUNEVALID[littleendian] = "Little endian mode"
+diff --git a/conf/machine/include/tune-cortexm0.inc b/conf/machine/include/tune-cortexm0.inc
+index d4f95e4..5067eb2 100644
+--- a/conf/machine/include/tune-cortexm0.inc
++++ b/conf/machine/include/tune-cortexm0.inc
+@@ -22,10 +22,10 @@ TUNEVALID[armv6m] = "Enable Cortex-M0 specific processor optimizations"
+ TUNE_CCARGS .= "${@bb.utils.contains('TUNE_FEATURES', 'armv6m', ' -march=armv6-m', '', d)}"
+ MACHINEOVERRIDES =. "${@bb.utils.contains('TUNE_FEATURES', 'armv6m', 'armv6m:', '' ,d)}"
+ 
+-ARMPKGARCH_tune-cortexm0 = "cortexm0"
+-TUNE_FEATURES_tune-cortexm0 = "${TUNE_FEATURES_tune-armv6} cortexm0"
++ARMPKGARCH:tune-cortexm0 = "cortexm0"
++TUNE_FEATURES:tune-cortexm0 = "${TUNE_FEATURES:tune-armv6} cortexm0"
+ 
+-PACKAGE_EXTRA_ARCHS_tune-cortexm0 = "${PACKAGE_EXTRA_ARCHS_tune-armv6m} cortexm0-vfp"
++PACKAGE_EXTRA_ARCHS:tune-cortexm0 = "${PACKAGE_EXTRA_ARCHS:tune-armv6m} cortexm0-vfp"
+ 
+-TUNE_FEATURES_tune-cortexm0 = "armv6m vfp cortexm0 thumb no-thumb-interwork soft"
++TUNE_FEATURES:tune-cortexm0 = "armv6m vfp cortexm0 thumb no-thumb-interwork soft"
+ 
+diff --git a/conf/machine/include/tune-cortexm3.inc b/conf/machine/include/tune-cortexm3.inc
+index 3fba827..404e2b7 100644
+--- a/conf/machine/include/tune-cortexm3.inc
++++ b/conf/machine/include/tune-cortexm3.inc
+@@ -10,12 +10,12 @@ TUNEVALID[armv7m] = "Enable Cortex-M3 specific processor optimizations"
+ TUNE_CCARGS .= "${@bb.utils.contains('TUNE_FEATURES', 'armv7m', ' -march=armv7-m', '', d)}"
+ MACHINEOVERRIDES =. "${@bb.utils.contains('TUNE_FEATURES', 'armv7m', 'armv7m:', '' ,d)}"
+ 
+-TUNE_PKGARCH_tune-cortexm3 = "cortexm3"
++TUNE_PKGARCH:tune-cortexm3 = "cortexm3"
+ 
+-ARMPKGARCH_tune-cortexm3 = "armv7m"
+-PACKAGE_EXTRA_ARCHS_tune-cortexm3 ="cortexm3"
++ARMPKGARCH:tune-cortexm3 = "armv7m"
++PACKAGE_EXTRA_ARCHS:tune-cortexm3 ="cortexm3"
+ 
+-TUNE_FEATURES_tune-cortexm3 = "armv7m vfp cortexm3"
+-PACKAGE_EXTRA_ARCHS_tune-cortexm3 = "${PACKAGE_EXTRA_ARCHS_tune-armv7at} armv7m-vfp"
++TUNE_FEATURES:tune-cortexm3 = "armv7m vfp cortexm3"
++PACKAGE_EXTRA_ARCHS:tune-cortexm3 = "${PACKAGE_EXTRA_ARCHS:tune-armv7at} armv7m-vfp"
+ 
+ TUNE_CCARGS_MFLOAT = "soft"
+diff --git a/conf/machine/include/tune-cortexm4.inc b/conf/machine/include/tune-cortexm4.inc
+index a823b6b..b3092d8 100644
+--- a/conf/machine/include/tune-cortexm4.inc
++++ b/conf/machine/include/tune-cortexm4.inc
+@@ -10,10 +10,10 @@ TUNEVALID[armv7m] = "Enable Cortex-M4 specific processor optimizations"
+ TUNE_CCARGS .= "${@bb.utils.contains('TUNE_FEATURES', 'armv7m', ' -march=armv7e-m', '', d)}"
+ MACHINEOVERRIDES =. "${@bb.utils.contains('TUNE_FEATURES', 'armv7m', 'armv7m:', '' ,d)}"
+ 
+-TUNE_PKGARCH_tune-cortexm4 = "cortexm4"
++TUNE_PKGARCH:tune-cortexm4 = "cortexm4"
+ 
+-ARMPKGARCH_tune-cortexm4 = "armv7m"
+-PACKAGE_EXTRA_ARCHS_tune-cortexm4 ="cortexm4"
++ARMPKGARCH:tune-cortexm4 = "armv7m"
++PACKAGE_EXTRA_ARCHS:tune-cortexm4 ="cortexm4"
+ 
+-TUNE_FEATURES_tune-cortexm4 = "armv7m vfp cortexm4"
+-PACKAGE_EXTRA_ARCHS_tune-cortexm4 = "${PACKAGE_EXTRA_ARCHS_tune-armv7at} armv7m-vfp armv7m"
++TUNE_FEATURES:tune-cortexm4 = "armv7m vfp cortexm4"
++PACKAGE_EXTRA_ARCHS:tune-cortexm4 = "${PACKAGE_EXTRA_ARCHS:tune-armv7at} armv7m-vfp armv7m"
+diff --git a/conf/machine/include/tune-iamcu.inc b/conf/machine/include/tune-iamcu.inc
+index 20a93a6..827d39b 100644
+--- a/conf/machine/include/tune-iamcu.inc
++++ b/conf/machine/include/tune-iamcu.inc
+@@ -3,9 +3,9 @@ DEFAULTTUNE ?= "iamcu"
+ TARGET_OS_iamcu = "elfiamcu"
+ TARGET_ARCH = "i586"
+ 
+-TUNE_FEATURES_tune-iamcu = "iamcu"
++TUNE_FEATURES:tune-iamcu = "iamcu"
+ TUNE_CCARGS = "-miamcu -m32"
+ TUNE_ARCH = "i586"
+ TUNEVALID[iamcu] = "Intel MCU"
+ 
+-PACKAGE_EXTRA_ARCHS_tune-iamcu = "iamcu"
++PACKAGE_EXTRA_ARCHS:tune-iamcu = "iamcu"
+diff --git a/conf/machine/include/tune-nios2.inc b/conf/machine/include/tune-nios2.inc
+index e8662eb..391727e 100644
+--- a/conf/machine/include/tune-nios2.inc
++++ b/conf/machine/include/tune-nios2.inc
+@@ -4,9 +4,9 @@ DEFAULTTUNE ?= "nios2"
+ 
+ TUNE_ARCH = "nios2"
+ TUNE_PKGARCH = "nios2"
+-TUNE_FEATURES_tune-nios2 = "nios2"
++TUNE_FEATURES:tune-nios2 = "nios2"
+ TUNE_CCARGS = ""
+ 
+ TUNEVALID[nios2] = "Altera Nios2"
+ 
+-PACKAGE_EXTRA_ARCHS_tune-nios2 = "nios2"
++PACKAGE_EXTRA_ARCHS:tune-nios2 = "nios2"
+diff --git a/conf/machine/intel-x86-64.conf b/conf/machine/intel-x86-64.conf
+index 2935cff..74e8f6e 100644
+--- a/conf/machine/intel-x86-64.conf
++++ b/conf/machine/intel-x86-64.conf
+@@ -4,7 +4,7 @@
+ 
+ require conf/machine/include/tune-corei7-common.inc
+ 
+-ARCH_intel-x86-64 = "x86"
++ARCH:intel-x86-64 = "x86"
+ 
+ # Supported Boards:
+ # ZEPHYR_BOARD ?= "acrn"
+diff --git a/conf/machine/nrf52840dk-nrf52840.conf b/conf/machine/nrf52840dk-nrf52840.conf
+index c5be5db..258aa7a 100644
+--- a/conf/machine/nrf52840dk-nrf52840.conf
++++ b/conf/machine/nrf52840dk-nrf52840.conf
+@@ -5,4 +5,4 @@
+ 
+ require conf/machine/include/nrf52.inc
+ ZEPHYR_INHERIT_CLASSES += "zephyr-flash-pyocd"
+-ARCH_nrf52840dk-nrf52840 = "arm"
++ARCH:nrf52840dk-nrf52840 = "arm"
+diff --git a/conf/machine/qemu-cortex-m3.conf b/conf/machine/qemu-cortex-m3.conf
+index 3a50796..835a775 100644
+--- a/conf/machine/qemu-cortex-m3.conf
++++ b/conf/machine/qemu-cortex-m3.conf
+@@ -14,4 +14,4 @@ QB_OPT_APPEND = "-nographic -vga none"
+ QB_CPU = "-cpu cortex-m3"
+ QB_RNG = ""
+ 
+-ARCH_qemu-cortex-m3 = "arm"
++ARCH:qemu-cortex-m3 = "arm"
+diff --git a/conf/machine/qemu-nios2.conf b/conf/machine/qemu-nios2.conf
+index ab8b366..48ed3e4 100644
+--- a/conf/machine/qemu-nios2.conf
++++ b/conf/machine/qemu-nios2.conf
+@@ -1,6 +1,6 @@
+ #@TYPE: Machine
+ #@NAME: qemu-nios2
+-#@DESCRIPTION: Machine for Zephyr BOARD qemu_nios2
++#@DESCRIPTION: Machine for Zephyr BOARD qemu:nios2
+ 
+ require conf/machine/include/qemu.inc
+ require conf/machine/include/tune-nios2.inc
+@@ -13,4 +13,4 @@ QB_MACHINE = "-machine altera_10m50_zephyr"
+ QB_OPT_APPEND = "-nographic"
+ QB_CPU = "-cpu nios2"
+ 
+-ARCH_qemu-nios2 = "nios2"
++ARCH:qemu-nios2 = "nios2"
+diff --git a/conf/machine/qemu-x86.conf b/conf/machine/qemu-x86.conf
+index 85b3f0d..347d10d 100644
+--- a/conf/machine/qemu-x86.conf
++++ b/conf/machine/qemu-x86.conf
+@@ -1,6 +1,6 @@
+ #@TYPE: Machine
+ #@NAME: qemu-x86
+-#@DESCRIPTION: Machine for Zephyr BOARD qemu_x86
++#@DESCRIPTION: Machine for Zephyr BOARD qemu:x86
+ 
+ require conf/machine/include/qemu.inc
+ require conf/machine/include/tune-i586.inc
+@@ -11,7 +11,7 @@ ZEPHYR_INHERIT_CLASSES += "zephyr-qemuboot"
+ QB_SYSTEM_NAME = "qemu-system-i386"
+ QB_MACHINE = "-machine type=pc-q35-2.10"
+ QB_OPT_APPEND = "-nographic -no-acpi"
+-QB_CPU_x86 = "-cpu qemu32,+nx,+pae"
+-QB_CPU_KVM_x86 = "-cpu kvm32"
++QB_CPU:x86 = "-cpu qemu32,+nx,+pae"
++QB_CPU_KVM:x86 = "-cpu kvm32"
+ 
+-ARCH_qemu-x86 = "x86"
++ARCH:qemu-x86 = "x86"
+diff --git a/recipes-core/newlib/newlib_%.bbappend b/recipes-core/newlib/newlib_%.bbappend
+index 37ff961..dfecb99 100644
+--- a/recipes-core/newlib/newlib_%.bbappend
++++ b/recipes-core/newlib/newlib_%.bbappend
+@@ -3,7 +3,7 @@
+ # ARC specific
+ #
+ ########################################################################
+-LIC_FILES_CHKSUM_arc = "file://COPYING;md5=59530bdf33659b29e73d4adb9f9f6552 \
++LIC_FILES_CHKSUM:arc = "file://COPYING;md5=59530bdf33659b29e73d4adb9f9f6552 \
+                     file://COPYING3.LIB;md5=6a6a8e020838b23406c81b19c1d46df6 \
+                     file://COPYING3;md5=d32239bcb673463ab874e80d47fae504 \
+                     file://COPYING.LIB;md5=9f604d8a4f8e74f4f5140845a21b6674 \
+@@ -12,11 +12,11 @@ LIC_FILES_CHKSUM_arc = "file://COPYING;md5=59530bdf33659b29e73d4adb9f9f6552 \
+                     file://newlib/libc/sys/linux/linuxthreads/LICENSE;md5=73640207fbc79b198c7ffd4ad4d97aa0"
+ 
+ #Tag arc-2016.03
+-SRCREV_arc = "e4da0f88abe8dd2a0b947bcf7cb8b3736ab94f33"
+-SRC_URI_arc = "git://github.com/foss-for-synopsys-dwc-arc-processors/newlib.git;branch=arc-2.3"
+-S_arc  = "${WORKDIR}/git"
++SRCREV:arc = "e4da0f88abe8dd2a0b947bcf7cb8b3736ab94f33"
++SRC_URI:arc = "git://github.com/foss-for-synopsys-dwc-arc-processors/newlib.git;branch=arc-2.3"
++S:arc  = "${WORKDIR}/git"
+ 
+ # ERROR: QA Issue: Architecture did not match (195 to 93)
+-INSANE_SKIP_${PN}_arc += " arch "
++INSANE_SKIP:${PN}:arc += " arch "
+ 
+ 
+diff --git a/recipes-devtools-arc/binutils/binutils-2.26arc.inc b/recipes-devtools-arc/binutils/binutils-2.26arc.inc
+index c0c575b..bfe0960 100644
+--- a/recipes-devtools-arc/binutils/binutils-2.26arc.inc
++++ b/recipes-devtools-arc/binutils/binutils-2.26arc.inc
+@@ -26,12 +26,12 @@ SRC_URI = "\
+ 
+ S  = "${WORKDIR}/git"
+ 
+-do_configure_prepend () {
++do_configure:prepend () {
+         rm -rf ${S}/gdb ${S}/libdecnumber ${S}/readline ${S}/sim
+ }
+ 
+ CONFIG_SHELL = "/bin/bash"
+ 
+-sysroot_stage_all_append() {
++sysroot_stage_all:append() {
+ 	sysroot_stage_dir ${D}${exec_prefix}/extlib ${SYSROOT_DESTDIR}${exec_prefix}/extlib
+ }
+diff --git a/recipes-devtools-arc/binutils/binutils-cross-canadian_2.26arc.bb b/recipes-devtools-arc/binutils/binutils-cross-canadian_2.26arc.bb
+index 24f35fe..88f0ad7 100644
+--- a/recipes-devtools-arc/binutils/binutils-cross-canadian_2.26arc.bb
++++ b/recipes-devtools-arc/binutils/binutils-cross-canadian_2.26arc.bb
+@@ -2,6 +2,6 @@ require recipes-devtools/binutils/binutils.inc
+ require recipes-devtools-arc/binutils/binutils-2.26arc.inc
+ require recipes-devtools/binutils/binutils-cross-canadian.inc
+ 
+-do_install_append () {
++do_install:append () {
+ 	rm -f ${D}/${libdir}/../lib/libiberty*
+ }
+diff --git a/recipes-devtools-arc/binutils/binutils-cross_2.26arc.bb b/recipes-devtools-arc/binutils/binutils-cross_2.26arc.bb
+index ab266dc..3d94fea 100644
+--- a/recipes-devtools-arc/binutils/binutils-cross_2.26arc.bb
++++ b/recipes-devtools-arc/binutils/binutils-cross_2.26arc.bb
+@@ -2,7 +2,7 @@ require recipes-devtools/binutils/binutils.inc
+ require binutils-2.26arc.inc
+ require recipes-devtools/binutils/binutils-cross.inc
+ 
+-SRC_URI_remove = "file://no-tooldirpaths.patch"
+-SRC_URI_remove = "file://0002-binutils-cross-Do-not-generate-linker-script-directo.patch"
++SRC_URI:remove = "file://no-tooldirpaths.patch"
++SRC_URI:remove = "file://0002-binutils-cross-Do-not-generate-linker-script-directo.patch"
+ 
+ #COMPATIBLE_MACHINE = "arc"
+diff --git a/recipes-devtools-arc/gcc/gcc-6.x.arc.inc b/recipes-devtools-arc/gcc/gcc-6.x.arc.inc
+index 6324c50..2dfab4d 100644
+--- a/recipes-devtools-arc/gcc/gcc-6.x.arc.inc
++++ b/recipes-devtools-arc/gcc/gcc-6.x.arc.inc
+@@ -73,9 +73,9 @@ EXTRA_OECONF_INTERMEDIATE = "\
+     --disable-libssp \
+ "
+ 
+-EXTRA_OECONF_append_libc-uclibc = " --disable-decimal-float "
++EXTRA_OECONF:append_libc-uclibc = " --disable-decimal-float "
+ 
+-EXTRA_OECONF_append_arc = ' --with-pkgversion="ARCompact/ARCv2 ISA elf32 toolchain ${SRCREV}"'
++EXTRA_OECONF:append:arc = ' --with-pkgversion="ARCompact/ARCv2 ISA elf32 toolchain ${SRCREV}"'
+ 
+ EXTRA_OECONF_PATHS = "\
+     --with-gxx-include-dir=${STAGING_DIR_TARGET}${target_includedir}/c++/${BINV} \
+diff --git a/recipes-devtools-arc/gcc/gcc-cross-canadian_6.x.arc.bb b/recipes-devtools-arc/gcc/gcc-cross-canadian_6.x.arc.bb
+index 39f837f..bc4a3b3 100644
+--- a/recipes-devtools-arc/gcc/gcc-cross-canadian_6.x.arc.bb
++++ b/recipes-devtools-arc/gcc/gcc-cross-canadian_6.x.arc.bb
+@@ -1,8 +1,8 @@
+ require recipes-devtools-arc/gcc/gcc-${PV}.inc
+ require recipes-devtools/gcc/gcc-cross-canadian.inc
+ 
+-EXTRA_OECONF_append_libc-baremetal = " --without-headers"
+-EXTRA_OECONF_remove_libc-baremetal = "--with-sysroot=/not/exist"
+-EXTRA_OECONF_remove_libc-baremetal = "--with-build-sysroot=${STAGING_DIR_TARGET}"
+-EXTRA_OECONF_append_libc-baremetal = " --enable-plugin "
++EXTRA_OECONF:append:libc-baremetal = " --without-headers"
++EXTRA_OECONF:remove:libc-baremetal = "--with-sysroot=/not/exist"
++EXTRA_OECONF:remove:libc-baremetal = "--with-build-sysroot=${STAGING_DIR_TARGET}"
++EXTRA_OECONF:append:libc-baremetal = " --enable-plugin "
+ 
+diff --git a/recipes-devtools-arc/gcc/gcc-cross_6.x.arc .bb b/recipes-devtools-arc/gcc/gcc-cross_6.x.arc .bb
+index 911a640..6cf71c6 100644
+--- a/recipes-devtools-arc/gcc/gcc-cross_6.x.arc .bb	
++++ b/recipes-devtools-arc/gcc/gcc-cross_6.x.arc .bb	
+@@ -1,10 +1,10 @@
+ require recipes-devtools-arc/gcc/gcc-6.x.arc.inc
+ require recipes-devtools/gcc/gcc-cross.inc
+ 
+-DEPENDS_remove_libc-baremetal := "virtual/${TARGET_PREFIX}libc-for-gcc"
+-EXTRA_OECONF_append_libc-baremetal = " --without-headers"
+-EXTRA_OECONF_remove_libc-baremetal = "--with-sysroot=/not/exist"
+-EXTRA_OECONF_remove_libc-baremetal = "--enable-threads=posix"
++DEPENDS:remove:libc-baremetal := "virtual/${TARGET_PREFIX}libc-for-gcc"
++EXTRA_OECONF:append:libc-baremetal = " --without-headers"
++EXTRA_OECONF:remove:libc-baremetal = "--with-sysroot=/not/exist"
++EXTRA_OECONF:remove:libc-baremetal = "--enable-threads=posix"
+ 
+ #COMPATIBLE_MACHINE = "arc"
+ 
+diff --git a/recipes-devtools-arc/gcc/libgcc_6.x.arc.bb b/recipes-devtools-arc/gcc/libgcc_6.x.arc.bb
+index 4cc4833..2ad8d34 100644
+--- a/recipes-devtools-arc/gcc/libgcc_6.x.arc.bb
++++ b/recipes-devtools-arc/gcc/libgcc_6.x.arc.bb
+@@ -4,11 +4,11 @@ require recipes-devtools/gcc/libgcc.inc
+ INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
+ #COMPATIBLE_MACHINE = "arc"
+ 
+-EXTRA_OECONF_append_arc = " --disable-multilib"
++EXTRA_OECONF:append:arc = " --disable-multilib"
+ #EXTRA_OECONF_append_arc = " --enable-multilib"
+ 
+ # ERROR: QA Issue: Architecture did not match (195 to 93) 
+-INSANE_SKIP_${PN}-dev += "arch"
++INSANE_SKIP:${PN}-dev += "arch"
+ 
+ # ERROR: QA Issue: non -staticdev package contains static .a library
+-INSANE_SKIP_${PN}-dev += "staticdev"
++INSANE_SKIP:${PN}-dev += "staticdev"
+diff --git a/recipes-devtools/gcc/gcc-cross_6.%.bbappend b/recipes-devtools/gcc/gcc-cross_6.%.bbappend
+index 0bf8c24..2b2c713 100644
+--- a/recipes-devtools/gcc/gcc-cross_6.%.bbappend
++++ b/recipes-devtools/gcc/gcc-cross_6.%.bbappend
+@@ -1 +1 @@
+-EXTRA_OECONF_append_armv7m = " --with-arch=armv7-m --with-mode=thumb "
++EXTRA_OECONF:append:armv7m = " --with-arch=armv7-m --with-mode=thumb "
+diff --git a/recipes-devtools/gcc/libgcc_6.%.bbappend b/recipes-devtools/gcc/libgcc_6.%.bbappend
+index 5c3fd1f..80bb46c 100644
+--- a/recipes-devtools/gcc/libgcc_6.%.bbappend
++++ b/recipes-devtools/gcc/libgcc_6.%.bbappend
+@@ -1,3 +1,3 @@
+-EXTRA_OECONF_remove =   "--enable_multilib"
+-EXTRA_OECONF_append =   " --disable-multilib"
++EXTRA_OECONF:remove =   "--enable_multilib"
++EXTRA_OECONF:append =   " --disable-multilib"
+ 
+diff --git a/recipes-devtools/qemu/qemu_%.bbappend b/recipes-devtools/qemu/qemu_%.bbappend
+index 9f5a981..4f8cc05 100644
+--- a/recipes-devtools/qemu/qemu_%.bbappend
++++ b/recipes-devtools/qemu/qemu_%.bbappend
+@@ -1,4 +1,4 @@
+-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
+ 
+ QEMU_TARGETS = ""
+ 
+@@ -6,8 +6,8 @@ QEMU_TARGETS = ""
+ #      file://nios2-add-support.patch \
+ #      "
+ 
+-EXTRA_OECONF_remove = "--target-list"
++EXTRA_OECONF:remove = "--target-list"
+ 
+ #QEMUS_BUILT = "arm-softmmu i386-softmmu nios2-softmmu"
+ QEMUS_BUILT = "arm-softmmu i386-softmmu"
+-EXTRA_OECONF_append = " --target-list="${QEMUS_BUILT}""
++EXTRA_OECONF:append = " --target-list="${QEMUS_BUILT}""
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-coap-client.bb b/recipes-kernel/zephyr-kernel/zephyr-coap-client.bb
+index 4140c0f..1c79dbe 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-coap-client.bb
++++ b/recipes-kernel/zephyr-kernel/zephyr-coap-client.bb
+@@ -2,4 +2,4 @@ include zephyr-sample.inc
+ 
+ ZEPHYR_SRC_DIR = "${S}/samples/net/sockets/coap_client"
+ 
+-ZEPHYR_MODULES_append = "\;${S}/modules/lib/mbedtls"
++ZEPHYR_MODULES:append = "\;${S}/modules/lib/mbedtls"
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-coap-server.bb b/recipes-kernel/zephyr-kernel/zephyr-coap-server.bb
+index f7d75c0..7100f96 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-coap-server.bb
++++ b/recipes-kernel/zephyr-kernel/zephyr-coap-server.bb
+@@ -2,4 +2,4 @@ include zephyr-sample.inc
+ 
+ ZEPHYR_SRC_DIR = "${S}/samples/net/sockets/coap_server"
+ 
+-ZEPHYR_MODULES_append = "\;${S}/modules/lib/mbedtls"
++ZEPHYR_MODULES:append = "\;${S}/modules/lib/mbedtls"
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-echo-client.bb b/recipes-kernel/zephyr-kernel/zephyr-echo-client.bb
+index c17e1e7..e7fcaab 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-echo-client.bb
++++ b/recipes-kernel/zephyr-kernel/zephyr-echo-client.bb
+@@ -2,4 +2,4 @@ include zephyr-sample.inc
+ 
+ ZEPHYR_SRC_DIR = "${S}/samples/net/sockets/echo_client"
+ 
+-ZEPHYR_MODULES_append = "\;${S}/modules/lib/mbedtls"
++ZEPHYR_MODULES:append = "\;${S}/modules/lib/mbedtls"
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-http-client.bb b/recipes-kernel/zephyr-kernel/zephyr-http-client.bb
+index cf3c322..d06ad37 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-http-client.bb
++++ b/recipes-kernel/zephyr-kernel/zephyr-http-client.bb
+@@ -2,4 +2,4 @@ include zephyr-sample.inc
+ 
+ ZEPHYR_SRC_DIR = "${S}/samples/net/sockets/http_client"
+ 
+-ZEPHYR_MODULES_append = "\;${S}/modules/lib/mbedtls"
++ZEPHYR_MODULES:append = "\;${S}/modules/lib/mbedtls"
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
+index 7d44b97..5ae7504 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc
+@@ -27,19 +27,19 @@ EXTRA_OECMAKE = "\
+     "
+ 
+ ZEPHYR_MODULES = ""
+-ZEPHYR_MODULES_append_arm = "\;${S}/modules/cmsis"
+-ZEPHYR_MODULES_append_nordic = "\;${S}/modules/hal/nordic"
+-ZEPHYR_MODULES_append_stm32 = "\;${S}/modules/hal/stm32"
+-ZEPHYR_MODULES_append_openamp = "\;${S}/modules/lib/open-amp\;${S}/modules/hal/libmetal"
++ZEPHYR_MODULES:append:arm = "\;${S}/modules/cmsis"
++ZEPHYR_MODULES:append:nordic = "\;${S}/modules/hal/nordic"
++ZEPHYR_MODULES:append:stm32 = "\;${S}/modules/hal/stm32"
++ZEPHYR_MODULES:append:openamp = "\;${S}/modules/lib/open-amp\;${S}/modules/hal/libmetal"
+ 
+-EXTRA_OECMAKE_append = " -DZEPHYR_MODULES=${ZEPHYR_MODULES}"
++EXTRA_OECMAKE:append = " -DZEPHYR_MODULES=${ZEPHYR_MODULES}"
+ 
+ export ZEPHYR_BASE="${S}"
+ 
+ DEPENDS += "gperf-native python3-pyelftools-native python3-pyyaml-native python3-pykwalify-native"
+ CROSS_COMPILE = "${STAGING_BINDIR_TOOLCHAIN}/${TARGET_PREFIX}"
+ 
+-DEPENDS_append_qemuall = " qemu-native qemu-helper-native"
++DEPENDS:append:qemuall = " qemu-native qemu-helper-native"
+ 
+ # The makefiles are explicit about the flags they want, so don't unset
+ # them so zephyr flags actually get used.
+@@ -61,7 +61,7 @@ OE_TERMINAL_EXPORTS += "ZEPHYR_GCC_VARIANT"
+ 
+ IMAGE_FSTYPES = "elf bin"
+ 
+-do_configure_prepend() {
++do_configure:prepend() {
+     # Zephyr expects CPPFLAGS as cmake argument as and ignores env variables.
+     unset CPPFLAGS
+ }
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0.inc
+index 35bafdf..be75362 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.5.0.inc
+@@ -12,6 +12,6 @@ SRCREV_mbedtls = "24d84ecff195fb15c889d9046e44e4804d626c67"
+ ZEPHYR_BRANCH = "main"
+ PV = "2.5.0+git${SRCPV}"
+ 
+-SRC_URI_append = " file://0001-zephyr-2.5.0-cmake-add-yocto-toolchain.patch \
++SRC_URI:append = " file://0001-zephyr-2.5.0-cmake-add-yocto-toolchain.patch \
+                     file://0001-x86-fix-efi-binary-generation-issue-in-cross-compila.patch \
+                     "
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc
+index 091c057..63665bf 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc
+@@ -12,7 +12,7 @@ SRCREV_mbedtls = "5765cb7f75a9973ae9232d438e361a9d7bbc49e7"
+ ZEPHYR_BRANCH = "v2.6-branch"
+ PV = "2.6.0+git${SRCPV}"
+ 
+-SRC_URI_append = " file://0001-cmake-add-yocto-toolchain.patch \
++SRC_URI:append = " file://0001-cmake-add-yocto-toolchain.patch \
+                     file://0001-x86-fix-efi-binary-generation-issue-in-cross-compila.patch \
+                     file://arduino-nano-33-ble-storage-partition.patch \
+                     "
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.bb b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.bb
+index 210cfa7..92d277d 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.bb
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.bb
+@@ -14,6 +14,6 @@ do_install () {
+ }
+ 
+ PACKAGES = "${PN}"
+-FILES_${PN} = "/usr/src/zephyr"
++FILES:${PN} = "/usr/src/zephyr"
+ 
+ SYSROOT_DIRS += "/usr/src/zephyr"
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+index a0004ed..950966e 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+@@ -6,7 +6,7 @@ inherit cmake
+ # This file might be included from other places (like other layers) and not
+ # having an explicit path to the patches directory, will make bitbake fail to
+ # find the patch(es) in SRC_URI.
+-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
+ 
+ SRC_URI = "\
+     git://github.com/zephyrproject-rtos/zephyr.git;protocol=https;branch=${ZEPHYR_BRANCH};name=default \
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc
+index 78747f9..f970225 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc
+@@ -1,21 +1,21 @@
+-ZEPHYRTESTS_remove = "fifo fpu_sharing lifo mbox mem_heap mem_pool \
++ZEPHYRTESTS:remove = "fifo fpu_sharing lifo mbox mem_heap mem_pool \
+     mem_protect mem_slab msgq mutex pipe profiling sched semaphore \
+     stack threads tickless timer workq"
+ 
+ # Exclude tests which does not build for various reasons
+-ZEPHYRTESTS_remove = "gen_isr_table spinlock smp mp"
++ZEPHYRTESTS:remove = "gen_isr_table spinlock smp mp"
+ 
+ # test_context will fail because QEMU for ARM does not emulate CortexM3 BASEPRI register
+-#ZEPHYRTESTS_remove_arm += ""
++#ZEPHYRTESTS:remove:arm += ""
+ 
+ # test_critical never finishes in an unpatched QEMU either
+-#ZEPHYRTESTS_remove_arm += ""
++#ZEPHYRTESTS:remove:arm += ""
+ 
+ #Remove ARM specific tests
+-#ZEPHYRTESTS_remove_x86 += ""
++#ZEPHYRTESTS:remove:x86 += ""
+ 
+ #Remove tests not intended for Nios2
+-#ZEPHYRTESTS_remove_nios2 += ""
++#ZEPHYRTESTS:remove:nios2 += ""
+ 
+ # List of all available kernel tests
+ ZEPHYRTESTS = " \
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-mqtt-publisher.bb b/recipes-kernel/zephyr-kernel/zephyr-mqtt-publisher.bb
+index b4e3067..02b3c16 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-mqtt-publisher.bb
++++ b/recipes-kernel/zephyr-kernel/zephyr-mqtt-publisher.bb
+@@ -2,4 +2,4 @@ include zephyr-sample.inc
+ 
+ ZEPHYR_SRC_DIR = "${S}/samples/net/mqtt_publisher"
+ 
+-ZEPHYR_MODULES_append = "\;${S}/modules/lib/mbedtls"
++ZEPHYR_MODULES:append = "\;${S}/modules/lib/mbedtls"
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-openthread-echo-client.bb b/recipes-kernel/zephyr-kernel/zephyr-openthread-echo-client.bb
+index 49f5565..88922b8 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-openthread-echo-client.bb
++++ b/recipes-kernel/zephyr-kernel/zephyr-openthread-echo-client.bb
+@@ -2,8 +2,8 @@ include zephyr-sample.inc
+ 
+ ZEPHYR_SRC_DIR = "${S}/samples/net/sockets/echo_client"
+ 
+-ZEPHYR_MODULES_append = "\;${S}/modules/lib/mbedtls"
+-ZEPHYR_MODULES_append = "\;${S}/modules/lib/openthread"
++ZEPHYR_MODULES:append = "\;${S}/modules/lib/mbedtls"
++ZEPHYR_MODULES:append = "\;${S}/modules/lib/openthread"
+ 
+ EXTRA_OECMAKE += "-DOVERLAY_CONFIG=overlay-ot.conf"
+ 
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-peripheral-esp.bb b/recipes-kernel/zephyr-kernel/zephyr-peripheral-esp.bb
+index 8be90d1..045ea36 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-peripheral-esp.bb
++++ b/recipes-kernel/zephyr-kernel/zephyr-peripheral-esp.bb
+@@ -2,4 +2,4 @@ include zephyr-sample.inc
+ 
+ ZEPHYR_SRC_DIR = "${S}/samples/bluetooth/peripheral_esp"
+ 
+-ZEPHYR_MODULES_append = "\;${S}/modules/crypto/tinycrypt"
++ZEPHYR_MODULES:append = "\;${S}/modules/crypto/tinycrypt"
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-peripheral-hr.bb b/recipes-kernel/zephyr-kernel/zephyr-peripheral-hr.bb
+index e6ef7b8..64fd0ec 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-peripheral-hr.bb
++++ b/recipes-kernel/zephyr-kernel/zephyr-peripheral-hr.bb
+@@ -2,4 +2,4 @@ include zephyr-sample.inc
+ 
+ ZEPHYR_SRC_DIR = "${S}/samples/bluetooth/peripheral_hr"
+ 
+-ZEPHYR_MODULES_append = "\;${S}/modules/crypto/tinycrypt"
++ZEPHYR_MODULES:append = "\;${S}/modules/crypto/tinycrypt"
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-websocket-client.bb b/recipes-kernel/zephyr-kernel/zephyr-websocket-client.bb
+index 428f75e..85f2cda 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-websocket-client.bb
++++ b/recipes-kernel/zephyr-kernel/zephyr-websocket-client.bb
+@@ -2,4 +2,4 @@ include zephyr-sample.inc
+ 
+ ZEPHYR_SRC_DIR = "${S}/samples/net/sockets/websocket_client"
+ 
+-ZEPHYR_MODULES_append = "\;${S}/modules/lib/mbedtls"
++ZEPHYR_MODULES:append = "\;${S}/modules/lib/mbedtls"
+-- 
+2.17.1
+
