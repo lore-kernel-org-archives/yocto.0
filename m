@@ -1,123 +1,137 @@
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (EUR05-AM6-obe.outbound.protection.outlook.com [40.107.22.41])
- by mx.groups.io with SMTP id smtpd.web09.6846.1628070717404249617
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+ by mx.groups.io with SMTP id smtpd.web10.7510.1628076031348257555
  for <yocto@lists.yoctoproject.org>;
- Wed, 04 Aug 2021 02:51:58 -0700
+ Wed, 04 Aug 2021 04:20:31 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@optimeasgmbh.onmicrosoft.com header.s=selector2-optimeasgmbh-onmicrosoft-com header.b=TRYXq4ie;
- spf=pass (domain: optimeas.de, ip: 40.107.22.41, mailfrom: matthias.klein@optimeas.de)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WEH0HaAvRxweLfQfbhP6m/kPUZAedus4CmPSP4TARD/7JaxaqHul9+1autxUDuOJuQUUpyIxVPzTECOHAbJB97joRNcr7H34QcgMRP33QYffMrmdWdtp9rzMrgcL088Xj5j17jfcELOXkiYNnH06Z8u43SL0eDh3vTSzCaiyMSMKXWDpQHioy9TnRGTeXKq7CxCxe5EHFB3Nbbuvsqjj2NTR2inMGF0QAED31TyI68OmsLDx9/oCkMd5cP/QXD/4naogSCgTt8B7KNjy70kP9TtyGg5JKLCKsozQ784tjSo0KnrMx7Ammp4S85RpxdKU4XPyKdSQqtn4OcebvMJ+SQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yIqAQxIkFVLUTPyNPjfHtXgn8HWq55fNG6aSJXKo9Ls=;
- b=AYl1LGWHD8EPyXxEYUf1AlpUBRI4lUsTqDA2Hn684TSR5CTuQinDbbjPt8GsESICMyPRAlN5YE9KlmvSKMsCO28nLSboj4/drxxjb9OeU+9qdJwcjiwPCbMgYSQHIu+Lm9PCNFU+G1lg4IoFeMvcuJGs7k6DN0hjCrvcYnPnYzUgoVfdLY3pjdc8EmlBZV7A3yxrD37XcDY3Fyjdwzfbn/gIpHnfHna1kVFNdQ5AksmUiL6Q15oZYjKV8g9inhTM2/q/326c3mTnawIgfrBksSje3sgnAJjWmk4/O2iyBeO7Pi/Qc18wlwAGewC0Jgwj/uHPU9VChBAOg2ewweFtgg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=optimeas.de; dmarc=pass action=none header.from=optimeas.de;
- dkim=pass header.d=optimeas.de; arc=none
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=gHc7ndsK;
+ spf=pass (domain: gmail.com, ip: 209.85.218.46, mailfrom: martin.jansa@gmail.com)
+Received: by mail-ej1-f46.google.com with SMTP id x11so3151110ejj.8
+        for <yocto@lists.yoctoproject.org>; Wed, 04 Aug 2021 04:20:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=optimeasgmbh.onmicrosoft.com; s=selector2-optimeasgmbh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yIqAQxIkFVLUTPyNPjfHtXgn8HWq55fNG6aSJXKo9Ls=;
- b=TRYXq4ie4SLNTXDZqeI9CmU/Gwy9ofXmKsi55/Y13uMkwhOZFH74X4Ed349J48kDgVZqGRP4oTpgAsctfwVHbkSO70s6ir9mOcelIru8AnHxLVworTxRxA9Rd34n7U7JPuuAybpp3dtqc+oGlL+C67KcW4EmesLT+oANzOiws+A=
-Received: from AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:128::16)
- by AM9PR10MB4887.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:41c::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.15; Wed, 4 Aug
- 2021 09:51:55 +0000
-Received: from AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::80ce:cb95:8c68:457f]) by AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::80ce:cb95:8c68:457f%7]) with mapi id 15.20.4394.015; Wed, 4 Aug 2021
- 09:51:55 +0000
-From: "Matthias Klein" <matthias.klein@optimeas.de>
-To: "jupiter.hce@gmail.com" <jupiter.hce@gmail.com>, yocto
-	<yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] RTC issue
-Thread-Topic: [yocto] RTC issue
-Thread-Index: AQHXiQw4RJgRj8fQf0CeQpKCRN2JuKtjGHYA
-Date: Wed, 4 Aug 2021 09:51:54 +0000
-Message-ID: 
- <AM0PR10MB310747ECF1307146791C4D3599F19@AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM>
-References: 
- <CAA=hcWQGUvCofTbwCLA+M2ONFamdZvjWufb7Hy+Zkv5GX0uJfQ@mail.gmail.com>
-In-Reply-To: 
- <CAA=hcWQGUvCofTbwCLA+M2ONFamdZvjWufb7Hy+Zkv5GX0uJfQ@mail.gmail.com>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=optimeas.de;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 5e3294d7-b90f-4760-0c74-08d9572d7e14
-x-ms-traffictypediagnostic: AM9PR10MB4887:
-x-microsoft-antispam-prvs: 
- <AM9PR10MB4887816B6ABA120261A11B2599F19@AM9PR10MB4887.EURPRD10.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- 8fxWlptLUQ9V6R385JQ07cCWtKnX1d2B9xJ5TYbLSQcT4BgOSDOEaSXG7NuoUGZxy6sjtIDDnFDMiq3hFFF97RnGQTnSBHlivFlff+9Sv8SkKSYnm3a75OsIv/OjlS9yJBv0VE3m463wd0lJk0Cc6lv7zjq5FF7poOvOF6p5MimiDP9dIOn3jBcafQFUSwxq0L34FWarKK65/Be0Qecl+g9QMM7CwxWIuAIKMtztC2YitQljjLQIzvrhZbVlqaDNnAkyeC2ZWOnnkP+OiIOp4+Qtof97CGJTN5s7rJb2aiEqqV+neCDByz0WMvSIM3X73FFIEqeLtDWGUEVDiklJzJtFhAABCPRpSSBBDJGcwTYTDwtVc3h/7By6x/HB2IJXXcO+F/sHEpfcdGq9BIyNokHkx0DuBzvUgEQTYPdKEZGfvlKpxli6UrVwsGE544/djWx4z/87nV+DcIVLqRcO1bs5KBr6suW+g4NAztHpugdMvxIsvfAS1NClZIdGvNb68qFryupEOKF34JoJDvqyg1aQTUurJU1PoP7LrJ6acQcPzvKAARq11VIpFSzmJaTyTb720mj2eyuqHGMDz22OWml8hcQF73ZkIEDRoPjneiS6FqOXQhFKLspCQ7nn31sSWQaZ2YBPzC/XJSLNZvSpbfFxkg1GqFckRlmjZrGBHl59apOMY03W83zPfoewaKoFuONEV1F1h8gnUb+GHXo/NYVP3mAvzUPwBW8HMSrEvyZRGgmahSZVNCxVejVJCs8UE4oMDnXLOO/Ij9AB6lONhzs2BzyynV3yxMAmKTyf5/s=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(396003)(136003)(346002)(376002)(39830400003)(366004)(110136005)(9686003)(83380400001)(38070700005)(316002)(2906002)(55016002)(86362001)(76116006)(44832011)(66946007)(8936002)(4744005)(38100700002)(52536014)(71200400001)(6506007)(186003)(8676002)(66446008)(33656002)(66476007)(64756008)(66556008)(5660300002)(478600001)(122000001)(7696005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?a3p5NVNHcFowK3FUUERiWDBoYm15TDNGT0t3ekMwcWl0VWJxaFZBWjlJSUlY?=
- =?utf-8?B?c3RCcnppdi9BRDJnaGJxK01jQVY3RVRlT0U1YXVqRm83T0lZZklKT2g2dm5n?=
- =?utf-8?B?Y3B4cTJITmZRYXN5RFFjc2d0WUY5RHVkN1V5U3BHaUV6aFlWMU5qZ0djOWZL?=
- =?utf-8?B?VDdTdVAzTnk1dElTZkRyQjUvdjVjbjh3ZXlzejZHU295TGRwWmJ1ZllzTGw0?=
- =?utf-8?B?L082UytBSzE2Q0hkNFpjZzkyWlk0MW5IZmlrK0tER2VLdWNDZElHNCt6NldM?=
- =?utf-8?B?SU9Va2F1YzFXK01EdGNRaW9CdHQvTmpaaHJLV09LSEwrZ2JveFlDcE5kcmth?=
- =?utf-8?B?Q1NZa3Jwb2ZQYkdTeVpnaThZTFlWNmlFU05YUGQwbUpnVE54ZG04N0U2TE5G?=
- =?utf-8?B?R0c2VXc1dDBRc2J2RkEwdUFoV1V4ZHNrRTU3WTJUTUlUTlhwUUtHR2dhUEYy?=
- =?utf-8?B?aVpNLzg0NU9IekRkV0EyVEY4MTJCM0N6VmN0dTluWDM1VjJGVWk2cHNEUDNW?=
- =?utf-8?B?RGhZQWp4U2dzMUFyWTdRZjFzVUxRbGlDZkJPZWVjYk1ycEk0ZzNwK2pYOTZl?=
- =?utf-8?B?Ym1JQWZFRU1abzdKS2NiU0wvTGxrQ0oxN0VUSGFRL2pVVU5YZmVzeEZHakxv?=
- =?utf-8?B?L2ZxSjMwRlpPR3E3dHMrT25aM1p2R2RYSSs3UEhZS2pCYkR2Z0NlVlNGamVX?=
- =?utf-8?B?SDk3ZUVMNzRUaGR1V2JpUEwzckpPMEtuN0xSSWxsdXJXYytUUDBlUDdvNW9L?=
- =?utf-8?B?RE1IMjJGb3NrN2IwbHFLWkQzTHJnakg1REdLdmk1QlBVU09IRjJ3UTd2OUtF?=
- =?utf-8?B?a0dZNnVCMjBSOUI4QVZubW1aM3dHMFFxSmI0Mmc0WnBXQlhFZ1cvcTliUnc0?=
- =?utf-8?B?RGNydHVsM2pZR2x4RFRVNlhmT296UHBad1hMM2MxZTZ5TFpES1lESHpKWDRK?=
- =?utf-8?B?WmhjZGZYOEthRUJ2MWwxQllWM1dWVnI5TXpBNmxCRjFhaUN3SGhRdHlDU1J5?=
- =?utf-8?B?dU42VDJab0lkMkRxSWprbWh1K1RHamIwdGt0S3BCeFhlVmp0Z2c3R0hOUWc5?=
- =?utf-8?B?VW5QWTFqc3Jac09hS29Yd1dtRy9mSlZLNU04U0Rxek9TNXlYb3gxd0lhTEJr?=
- =?utf-8?B?c0pIV01kZGthMlBoSHFUQmZyUTdvSjBGemhxTy9NMnExVkRBeFZMN3A5Wk9i?=
- =?utf-8?B?aDhIUUtjVDNBWGl6SnZIa0cwUVpiby94c1phVU8xMXBKQy9QTEVZZEk3YmdP?=
- =?utf-8?B?MU9PckpIUjFIL2V1bDZxTGVDRWM2NG5YbmVOc1Fma0pUQVp5VUJSODZJVjRt?=
- =?utf-8?B?QnBJcWtRQ1gwVzBBRWMyOWIwVWlvVDVmOC9JbFdrSHVJRzhiNDkvZHVqYlI5?=
- =?utf-8?B?Wi9ud3hTbnN0dVM2cHdzdThPZFpKaitNQm0zYU90cnR6ZmVzclNsdGpuQm1U?=
- =?utf-8?B?cmFxM0V5T2xGZHg3L0FvL0JNa3lENDF1Yld6YzVVdGF3M1ZlUFlJZXNpa3JV?=
- =?utf-8?B?d05CVjE0ZUdGNW5xbWhhQzZIQ3RmVWpETDQwTTM5RzQ0Rm1kRTd6RWJqL0ll?=
- =?utf-8?B?VURydGsxMGpwVXN0LzdKMTUxb0FEVEpFUmp2TTJHU3VRVGdGUkRYN3lZRXRZ?=
- =?utf-8?B?akpOZUxVRnZTdUtSb2lNVG1tR3FGVDJwZ0prVUtrK0xJbVdDWWZITENLK2RQ?=
- =?utf-8?B?R3FreHJIa3h6ZS9LVFl1TlhrdjlPTkwxVEQ4L0lOZklhTGlhOEZXTnpxV3dr?=
- =?utf-8?B?Q3VoRWxFdDcwdnFsL2l0aXduMlBtSVI1Vk5lTjZiZjBRUnBsbzh3TllhN2V4?=
- =?utf-8?B?VklTMkN3aWJkQUQ4dW01dmpiZFd1Y2FsYVVqNFl6N21CTk8zTFpuSnlYMTRK?=
- =?utf-8?Q?U1Qec9ktFqxUc?=
-x-ms-exchange-transport-forked: True
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HWWSa2350vxm8b99EWVf462YoWOI1sa+PqPMOuw9avU=;
+        b=gHc7ndsKo1ADyXvYs0t2T2iOSENaRnIocPXP129LCneC2v2EXquS0Dr37CIwgBXkox
+         VRlRJGMbJuxsBkhlOiJ9V0IvsU/XAJPJVNUZ+Rn6PFOVjyuZf91MeAeuQ78t9AF30HRz
+         +UDKPJ4vSHf0yE7/16vPHCQsoo57AwpdlcmPU2Kn4bS2TVMqVqDLfNrvlfJztNmLUfUP
+         o+VMglAUswZDoDW6LXpQKucYp/3mg2gilMCTZ7w0xibbhMYJ+BwExLUV1reVDXcJj4jd
+         H4y8j33Xgvlv04XiVYkTK+yjy1LywhMv3gEv6S/PvT3NWkVIJDdW7aoOchnWA8R5OiBC
+         zE9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HWWSa2350vxm8b99EWVf462YoWOI1sa+PqPMOuw9avU=;
+        b=bCNUp/BXnR8Nb53XvpGZFzC+c50+UWnycC9b3ZGCZQ2jDjDN/FjtEMvl3WDDdGawxW
+         Sk6iF/rMi3t9bW28Wso96GdOnrFLJjZCKYeejiLkAL/hBJw67ivYILuV0iLGiyDsdpcZ
+         vGbw2elYPXidhcGWFDNHu7KQfw5YEKZPEZmklD/+mRLIz7Plr75Ko/TCr5NkHifGioih
+         wUElKKVGZEI5IcBvmA8Z7IVUR9p53f0C4HXigVtXSe6v84LXupsBxq0cNwgigH98y7Ew
+         XkznELPS6iPUQcfZXeJVk0P9cirVkJMvCptTUJGqIQ+XzP2BaPiGT/17bWL6iekZUtf4
+         lwLA==
+X-Gm-Message-State: AOAM533mbCrGI2lc7LqIxcT4uM62fPPUuI6LzilNQJ76EBu7l6/oZBhY
+	rsCXZNJYV9uvgI3a26S+8H7LvnpJSo69uPoE3mk=
+X-Google-Smtp-Source: ABdhPJzMlQAqsdSsDT3GcAz9DwOj1L3zAY95O85K5nmGE2ry6Po3OvaBOfWaMh88HXW/IdoblHLjaYGogYkpWl3qKsE=
+X-Received: by 2002:a17:907:990d:: with SMTP id ka13mr25626732ejc.392.1628076029851;
+ Wed, 04 Aug 2021 04:20:29 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: optimeas.de
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5e3294d7-b90f-4760-0c74-08d9572d7e14
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Aug 2021 09:51:54.8934
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 91b33c5b-e584-4ec0-893c-2a9180ad0602
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 2jXxjV9Q1uorH8R/YUouiF/WfIAT+A5CYbA1wR5wMqA6QZpYjJrhjYe5gwFavsUuW/0jv81bUrD6q3+g0jyaMa3qGhWRAzy8ok1zzWwSwfg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR10MB4887
-Content-Language: de-DE
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+References: <20210802090220.10668-1-liuxiwei@inspur.com>
+In-Reply-To: <20210802090220.10668-1-liuxiwei@inspur.com>
+From: "Martin Jansa" <Martin.Jansa@gmail.com>
+Date: Wed, 4 Aug 2021 13:20:19 +0200
+Message-ID: <CA+chaQcXRTcsY9wz1qgr9PAo=dZzHZQbnqVJFMtNJ+3JK1zwiA@mail.gmail.com>
+Subject: Re: [oe][meta-security][PATCH] meta: Fix typos
+To: George Liu <liuxiwei1013@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	openembedded-devel <openembedded-devel@lists.openembedded.org>, 
+	akuster808 <akuster808@gmail.com>, sergio.prado@toradex.com, 
+	George Liu <liuxiwei@inspur.com>
+Content-Type: multipart/alternative; boundary="0000000000006d3f3b05c8b9fdeb"
 
-SGVsbG8ganVwaXRlciwNCg0KSSBoYXZlIHNlZW4gdGhlIHNhbWUgbWVzc2FnZSBvbiBhbiBpLk1Y
-NlM3IChodHRwczovL3d3dy5rYXJvLWVsZWN0cm9uaWNzLmNvbS9maWxlYWRtaW4vZG93bmxvYWQv
-RGF0YXNoZWV0cy9UWDZTLURhdGFzaGVldC5wZGYpIHdpdGgga2VybmVsIDUuMTAgKGluIGEgZHVu
-ZmVsbCBZb2N0byBhZnRlciBJIHVwZ3JhZGVkIGZyb20ga2VybmVsIDQuMTQpLg0KDQpTaW5jZSB3
-ZSB1c2UgYW4gZXh0ZXJuYWwgUlRDIG9uIHRoZSBJMkMgYnVzLCBJIGRpc2FibGVkIHRoZSBpbnRl
-cm5hbCBSVEMgKCJzbnZzX3J0YyIpIGluIHRoZSBkZXZpY2UgdHJlZSwgYW5kIGRpZCBub3QgYW5h
-bHl6ZSB0aGUgcHJvYmxlbSBmdXJ0aGVyLg0KDQpJIHRoaW5rIGl0IGlzIGEga2VybmVsIHByb2Js
-ZW0sIHNpbmNlIGluIG15IGNhc2UgdGhlIFlvY3RvIHZlcnNpb24gaGFzIG5vdCBjaGFuZ2VkLg0K
-DQpQbGVhc2UgaW5mb3JtIG1lIGlmIHlvdSBmaW5kIG91dCBzb21ldGhpbmcuDQoNCk1hbnkgZ3Jl
-ZXRpbmdzLA0KTWF0dGhpYXMNCg0K
+--0000000000006d3f3b05c8b9fdeb
+Content-Type: text/plain; charset="UTF-8"
+
+Acked-by: Martin Jansa <Martin.Jansa@gmail.com>
+
+On Mon, Aug 2, 2021 at 11:02 AM George Liu <liuxiwei1013@gmail.com> wrote:
+
+> Fix the variable spelling errors
+> s/SKIP_META_SECUIRTY_SANITY_CHECK/SKIP_META_SECURITY_SANITY_CHECK
+>
+> Signed-off-by: George Liu <liuxiwei@inspur.com>
+> ---
+>  classes/sanity-meta-security.bbclass | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/classes/sanity-meta-security.bbclass
+> b/classes/sanity-meta-security.bbclass
+> index b6c6b9c..f9e2698 100644
+> --- a/classes/sanity-meta-security.bbclass
+> +++ b/classes/sanity-meta-security.bbclass
+> @@ -1,7 +1,7 @@
+>  addhandler security_bbappend_distrocheck
+>  security_bbappend_distrocheck[eventmask] = "bb.event.SanityCheck"
+>  python security_bbappend_distrocheck() {
+> -    skip_check = e.data.getVar('SKIP_META_SECUIRTY_SANITY_CHECK') == "1"
+> +    skip_check = e.data.getVar('SKIP_META_SECURITY_SANITY_CHECK') == "1"
+>      if 'security' not in e.data.getVar('DISTRO_FEATURES').split() and not
+> skip_check:
+>          bb.warn("You have included the meta-security layer, but \
+>  'security' has not been enabled in your DISTRO_FEATURES. Some bbappend
+> files \
+> --
+> 2.30.2
+>
+>
+> 
+>
+>
+
+--0000000000006d3f3b05c8b9fdeb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Acked-by:=C2=A0Martin Jansa &lt;<a href=3D"mailto:Martin.J=
+ansa@gmail.com">Martin.Jansa@gmail.com</a>&gt;</div><br><div class=3D"gmail=
+_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Aug 2, 2021 at 11:02 =
+AM George Liu &lt;<a href=3D"mailto:liuxiwei1013@gmail.com">liuxiwei1013@gm=
+ail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex">Fix the variable spelling errors<br>
+s/SKIP_META_SECUIRTY_SANITY_CHECK/SKIP_META_SECURITY_SANITY_CHECK<br>
+<br>
+Signed-off-by: George Liu &lt;<a href=3D"mailto:liuxiwei@inspur.com" targe=
+t=3D"_blank">liuxiwei@inspur.com</a>&gt;<br>
+---<br>
+=C2=A0classes/sanity-meta-security.bbclass | 2 +-<br>
+=C2=A01 file changed, 1 insertion(+), 1 deletion(-)<br>
+<br>
+diff --git a/classes/sanity-meta-security.bbclass b/classes/sanity-meta-se=
+curity.bbclass<br>
+index b6c6b9c..f9e2698 100644<br>
+--- a/classes/sanity-meta-security.bbclass<br>
++++ b/classes/sanity-meta-security.bbclass<br>
+@@ -1,7 +1,7 @@<br>
+=C2=A0addhandler security_bbappend_distrocheck<br>
+=C2=A0security_bbappend_distrocheck[eventmask] =3D &quot;bb.event.SanityCh=
+eck&quot;<br>
+=C2=A0python security_bbappend_distrocheck() {<br>
+-=C2=A0 =C2=A0 skip_check =3D e.data.getVar(&#39;SKIP_META_SECUIRTY_SANITY=
+_CHECK&#39;) =3D=3D &quot;1&quot;<br>
++=C2=A0 =C2=A0 skip_check =3D e.data.getVar(&#39;SKIP_META_SECURITY_SANITY=
+_CHECK&#39;) =3D=3D &quot;1&quot;<br>
+=C2=A0 =C2=A0 =C2=A0if &#39;security&#39; not in e.data.getVar(&#39;DISTRO=
+_FEATURES&#39;).split() and not skip_check:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0bb.warn(&quot;You have included the meta=
+-security layer, but \<br>
+=C2=A0&#39;security&#39; has not been enabled in your DISTRO_FEATURES. Som=
+e bbappend files \<br>
+-- <br>
+2.30.2<br>
+<br>
+<br>
+<br>
+<br>
+</blockquote></div>
+
+--0000000000006d3f3b05c8b9fdeb--
