@@ -1,33 +1,33 @@
 Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
- by mx.groups.io with SMTP id smtpd.web08.5933.1628149186520571244
+ by mx.groups.io with SMTP id smtpd.web10.5905.1628149186855032745
  for <yocto@lists.yoctoproject.org>;
  Thu, 05 Aug 2021 00:39:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=Tbgwxfmp;
+ dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=Zbe5aPSn;
  spf=permerror, err=parse error for token &{10 18 testsso.windriver.com}: permanent DNS error (domain: windriver.com, ip: 205.220.166.238, mailfrom: prvs=38513e44b3=yi.zhao@windriver.com)
 Received: from pps.filterd (m0250809.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 1757ZXKD029366;
+	by mx0a-0064b401.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 1757ZXKE029366;
 	Thu, 5 Aug 2021 00:39:46 -0700
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com; h=from : to :
  subject : date : message-id : in-reply-to : references :
  content-transfer-encoding : content-type : mime-version; s=PPS06212021;
- bh=l1F9EZB7A4aqNouT1cS5NnFUqJatyzBrViaTX/fU8R4=;
- b=Tbgwxfmp+pk0W384y/EhD7pa8OINrcVo+Nx7WYcqm5w+giMbzroGT4/l4twNg7vyf050
- OmmglZDY5jCuUC5kD4BcqsDssxOVNjBVuqxTYvuDihq8XomIHXHJApJgY5BPsgHHAqAX
- 6GpORVBbf5IWsM22YsgZC/Wgl/qqxroZBpJXeveXkxRcSRVSqOOLb0MWBU8WvZI6ktgk
- kvxl1nu/gVdybvr4fRQpOcu3oaBnRakWUQa92GYACu8/9hhqP1RSz8T0jOAlwLiHSDOT
- DPW93r5nxpEOfgt2J6qOj62+WGGNKTPZQzOwsGghSObl9aH2/WAMSZcXAhGAT8UL1TtV Eg== 
+ bh=Cepe99zmLQbppKg/2IrVcQOeO9ZgChixGSBbTjBSkII=;
+ b=Zbe5aPSnouSec8aQUhLKG4xZXzwXavnexYMsyDcsqpNEHsyAVu4pbBSlguJPyazlN1tS
+ 7y6d70NWFouELVZiGFHaRQUErPaeCfxm1FGfsfvhgj9tns5EZyRru8ZpNqqqf8fyURv8
+ Lr2JD56sQZj7ISr8Vq6MQQcawHxUxuFxFzL+dcykzfvLA1XcJl7hZ7UjSkbvmmoq82Me
+ M2UxTUzmZf833t2yH2M7O4XpwyJFCSS1tNQWqAuceenwQ8YkCFx6bY2iIqVo+ixUhPmR
+ e8PAdQIFuDsY9saKhuNX5voDVD+wc84fqPUzPd2NaTe0zwDDvrAbMJ+BidroHJYsYjNH 6g== 
 Received: from nam11-bn8-obe.outbound.protection.outlook.com (mail-bn8nam11lp2170.outbound.protection.outlook.com [104.47.58.170])
-	by mx0a-0064b401.pphosted.com with ESMTP id 3a800vrcwr-1
+	by mx0a-0064b401.pphosted.com with ESMTP id 3a800vrcwr-2
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 05 Aug 2021 00:39:45 -0700
+	Thu, 05 Aug 2021 00:39:46 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FGAI8ysS44pZ38Vk3z00yQIhe5CiNczWjmzoogk9Jkzz5gRp6VYfSOcYHSLfUn6yHiCTdOpfSsfgsW1vuphdq+i/U18OpfqQRVrztZnBpAELSDjz4eDwmRJ3H6ePjsmcZZ7EOCi4Tr0HoVgrDd9Nf5T4/PpXDsCfDzqXFY2WXy5kvrzeSHIt1SlCd+ZGXJJgLx1Nc2SD9XCbgxLyn/91FtiFQg7TTfPKbZYr+qJQgOstzvvUm182c+J8PQbJRCZkl8CzkHm99Tt5XJTEyLTcGwqDmmL6AgKVytCtJUebh4mtqFvi2l1U2+OFPu3m39VlGH0p/mgpU7bSQj6KE6quNw==
+ b=n+uLB2BZ4CjDmsX1Nvdg17gzpY7LOC7TxWWMAQW+vOF2ybENiTP+5mhKJEJBDLNkFFRW4CYyst3lhEnNQlCirHYE4Qo+FPtUuBVdFJCCPnEw0fsxeYV+SHv4vGTMcrJyXU7FZNVc59jF5r2dK5M14eH034TjeqwYuQI1wn1t+NTpGD57xhJ4bMTsG8t4IvwtAELOsglygoOcto+WT5KLpmFMmp/UZRvIPWXrnirDUT1PLzdl4czO49S0RKv6tN2Ra4fzkDQEqi6sWSVJhzNRHmTo0MSJEntPK/7VghmMWi4ziQD/Pobdy6bmKrgUZ6xlvWr6hRZg8YxNPHO0DC26yg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=l1F9EZB7A4aqNouT1cS5NnFUqJatyzBrViaTX/fU8R4=;
- b=V8z3mqBGsWCAAU61fLdiBouypjegHJnxFrUdY39cyk4Lo9Yk3y8BbhAUhMyo3zPdCK8d0c9cHneBcGej8QvnrfS24ClmmppoS3kMjDT/mFRfr4vAriZ8ymBsT9gJcKhJZFqhgy3HRs+7mtaO8zfrkJjzU9h8mAe7GXFViTvSj7eHGuTHkJHpHugyz1LpofFNmETbalYvrDwCbYe8ewH+FgDtpr/LmEYhHdoUdxBySxpzzWg38WsWgXZtZlBq31cSdZ+Wlm/9nYvzS4ZJmRWwOjLSYJ8gCoPwMegwc96Ocim7KncR2mO9nP3pNFvbYAVQhOiA2IHSBdk7GTWhiblLJQ==
+ bh=Cepe99zmLQbppKg/2IrVcQOeO9ZgChixGSBbTjBSkII=;
+ b=ah7PRqyRhDC+wzJZLzLecgE8ufxMDuidQhaITH9qnuXNnIP/ALHqoBVAtAJ0+ZfkvNkPgTe1C+bLIs+MWw7w4jNbpi0tafoFxbgatC4BWHV6kKbFyq2HWWgiBwOgYlU09jG/buOiYpn7ZrIgtGqfdQRIlIiwy52wLDYAJZ5AIdfO6uT4XeeINxyn1qigGTnqDT82vkZeHpY8sVY3E8dlutgec+Pgxkkkbi23bj4pBd6Vg9/DOdFf7cLBRTIgEPIoiPuXU6ueVaTcDn7i0pgGTW871QH3SSPPMKXFYs7zNoboO8B4bx11ChX74/ODxJcabjDO6Ru1kh/NOQCMNFmFRQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=windriver.com; dmarc=pass action=none
  header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
@@ -38,16 +38,16 @@ Received: from CO1PR11MB4867.namprd11.prod.outlook.com (2603:10b6:303:9a::13)
  by MWHPR11MB1264.namprd11.prod.outlook.com (2603:10b6:300:27::13) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.16; Thu, 5 Aug
- 2021 07:39:43 +0000
+ 2021 07:39:44 +0000
 Received: from CO1PR11MB4867.namprd11.prod.outlook.com
  ([fe80::fdca:2b03:6e20:2d99]) by CO1PR11MB4867.namprd11.prod.outlook.com
  ([fe80::fdca:2b03:6e20:2d99%2]) with mapi id 15.20.4394.017; Thu, 5 Aug 2021
- 07:39:43 +0000
+ 07:39:44 +0000
 From: "Yi Zhao" <yi.zhao@windriver.com>
 To: yocto@lists.yoctoproject.org, jpuhlman@mvista.com
-Subject: [meta-cgl][PATCH 2/6] layer.conf: add honister to LAYERSERIES_COMPAT
-Date: Thu,  5 Aug 2021 15:39:26 +0800
-Message-Id: <20210805073930.382397-2-yi.zhao@windriver.com>
+Subject: [meta-cgl][PATCH 3/6] packagegroup-cgl-middleware: replace dhcp-client/dhcp-server with dhcpcd/kea
+Date: Thu,  5 Aug 2021 15:39:27 +0800
+Message-Id: <20210805073930.382397-3-yi.zhao@windriver.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210805073930.382397-1-yi.zhao@windriver.com>
 References: <20210805073930.382397-1-yi.zhao@windriver.com>
@@ -56,88 +56,103 @@ X-ClientProxiedBy: HK2PR06CA0016.apcprd06.prod.outlook.com
  (2603:10b6:303:9a::13)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from pek-yzhao1-d1.wrs.com (60.247.85.82) by HK2PR06CA0016.apcprd06.prod.outlook.com (2603:1096:202:2e::28) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.15 via Frontend Transport; Thu, 5 Aug 2021 07:39:42 +0000
+Received: from pek-yzhao1-d1.wrs.com (60.247.85.82) by HK2PR06CA0016.apcprd06.prod.outlook.com (2603:1096:202:2e::28) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.15 via Frontend Transport; Thu, 5 Aug 2021 07:39:43 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5cc5f707-20d7-4412-6ef6-08d957e4309d
+X-MS-Office365-Filtering-Correlation-Id: e9a4d7c3-9832-42ed-ca6f-08d957e43167
 X-MS-TrafficTypeDiagnostic: MWHPR11MB1264:
 X-Microsoft-Antispam-PRVS: 
-	<MWHPR11MB1264FB506217E7D4A3065C72F9F29@MWHPR11MB1264.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:345;
+	<MWHPR11MB12649620856425AB769FF339F9F29@MWHPR11MB1264.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3276;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	PhaeIdzwaNCXMFhAqVEPvrNtqUX18j+IFOZzzwvKEgnwQ2f2NMPbINuoGZwbKm0ayX1nOxh2rxGFOtkjKY3Pv+Yuaq8Ud+IAqbXJRAusW7CX4C6fAlXjgor4cGMazaiRjbnJjEHiNblZ75upjCaFosLn1KgtC4bLiNRey/AxkEpQyA36rbW/AxWSezs+mkQmja/5QuBbZ40HxcBFdluZckpofeK1ADn6Fp9cu3LtCppjdqgC1N1VtI+ze9WBbUCJ0uF4mmsi2re8eUjMnkGabvUS2iPQw7i7bdcmylZv/W7eOZNn8oA3wF0+iCpdmvMbRVt762TOeVIOiRNYojq9puTtcJuh8rDlGaYSU8ERxVbPtCoDVUnVsDY8XKN1jd+DSI3hoo9++4CtVpKaJhSCrzcMF4zvBLiDRiXGYNhqeXHO9YTklPdkJzkcUCpUE0EpqNQivkKND4dQ3+XimEXB8kQMv4qDQ8GEHQIKClki1LExa/y4Jqd5xnppibSTKYU4vKxameOkm0p8YfV3unrGNZ+8WAKR7WbawNgLMmjattRIEbL98COOPPC5Yu1ZvHF9TB059RwweN87RXu9+x1XYC+d2Q80RAhoYOvEZ7Vyn6SbLHY/euUs8q7KSlt6/ZXpjNVHeAVi/gz+m7ELKls4Uhds1Z9YAJsju9WEpOICN7PR6fpNqthVYRK1S/9txu24VKwH1HGfswuZF/yioGKzMw==
+	M20Qiaar+znOM+7tjs8ZfjbFnSgb3vmPXkpUeXEMRHWZ93Cr0X5SqvmJB3wnRZU7qVMPgOwfpWVEVm/LFc4Ugey5PXLpsOUjZ89AW1irRpNcTlz9/7+RE4hQpfixtht0nCj947YkxM7FKQANT6jSU0m1qBVLIAaLj6ibgp25yAbJKJwpo/3+4dD3/3dHDOZdCjpiRBWQFP93Y2+Lq2ER4woTlMD1ut3GnSnLwU6iHR21ykOSIn6r2KIMnbfndsMHcFnVMUWQ/8Ebjya2PrDaUiOYR0UsHZxOAjYwfRWmStyHr0v9qPF+4U4SgTze8IH6ILfH44n58e2tcm3gsSNZRCSRxmsUKJdiRmlLTNLfPgbswFA5gWJMJ+h9G4ejogINrVr35c1Z+gHj1ClN22BBrjKGOQzALjx+h4hX1pcJ9Vhjf8yBm/C/t4piESZK/SflQHXKryBkdKkESoyZ1KCgWWZ/RxhfRQ2N0h0MVzL5UzkRMN2VroKptrYivxV2UpKEjww0Oe4Cqugig93LUNG/YZAptbdpcQh3/Fi9+0fHlMzy7S/FXDcujwCjr6HU0+weoXyyxpWW2gOxjSlkLQpSYMnEfSFeJ+di/nHALsat4uVqfgtImRvkh4jnyYgOB/+oUj505Dc1iIrPHdQqLW54wArYTExVMyWpasUTVct8vNi/yGdwJPJrXfs1jJ0yoZIzZCgjH8EUQZ5VRHg6akZ5bg==
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4867.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(39850400004)(366004)(396003)(376002)(346002)(8676002)(1076003)(38100700002)(38350700002)(66946007)(44832011)(83380400001)(6486002)(66476007)(5660300002)(478600001)(6512007)(6506007)(316002)(66556008)(26005)(8936002)(36756003)(86362001)(4744005)(2616005)(52116002)(6666004)(186003)(956004)(2906002);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4867.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(39850400004)(366004)(396003)(376002)(346002)(8676002)(1076003)(38100700002)(38350700002)(66946007)(44832011)(83380400001)(6486002)(66476007)(5660300002)(478600001)(6512007)(6506007)(316002)(66556008)(26005)(8936002)(36756003)(86362001)(2616005)(52116002)(6666004)(186003)(956004)(2906002);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?7p/1/RY6TZkahyppFKRq7ir7jm93f3Ep5zJq5eNHLc4yqqiw6zMk//3+6oYW?=
- =?us-ascii?Q?RTxPzj1H3SoqqiVMqLxxwnIdu46weBhdNehPeq1tJg+Y6Oy+cxC1c3Pmjj3h?=
- =?us-ascii?Q?6XZmkMj6ELQ+mn5L7tDf4qdaMBG8v+Jc+huUX5Q9jjUsLHsALOIWt2GxUAmn?=
- =?us-ascii?Q?Pbmt8D/2TLXw16qTd86mY2xB4UDzSas0b5uTC+xYT+LJHzWfiSIrcGLs0Eg4?=
- =?us-ascii?Q?OdGGkNal2F4QiYGMWszBtJ/vU/7V67aIJjYCSdcgWPD/g6pERHICaIY8EWJ4?=
- =?us-ascii?Q?UHKZWchZthYmQ1aXjvPOuBwxyJo2LjgTIhloZ+RM6cht3s2C1NTs8zudkBoN?=
- =?us-ascii?Q?q6/j3zbtiWY/eqyRru0LWaVBoYAjDMWk7iM2CJjbKnTDmTUceGJFNvtBHrC/?=
- =?us-ascii?Q?O+EXfYQKjbR32c68gaKR6L78mURY4ZRf4bKGqOrx48AuEphLnG6TDKp4tYpE?=
- =?us-ascii?Q?/HjvN7OczU4EN66LI0oAgxs6ffgwaEPohOgjiDbHJDeCyL/CF7BrJH43K1dV?=
- =?us-ascii?Q?dF5CY2blhEUmC4TxTnCPoYgalloAIi5wDzFXKj/r8Oz2RkxZvuZwIdQM65vb?=
- =?us-ascii?Q?AnBoGAXUbsHx8ziD2IssGfXusor+eBYWaYPgX1Rdt92M2UoE/q/5dHq+P5tv?=
- =?us-ascii?Q?/NNDuoVXm57m1qPWu8Ci50toLsG7AAOkfJyxXktllyARbRzGTI7hthAqthca?=
- =?us-ascii?Q?3cRkYkOogGOUopUo30mF0sbrakE0UwihFvQRaaobXQdqMI7m8QteVU/DxuhM?=
- =?us-ascii?Q?NqvAsgEjqMdVbAD39MyhdjggvP2fLSJy5CfFMxya1hResukuPKAIb9oLp1Nb?=
- =?us-ascii?Q?P9nrEU5L6+IcX1b8rJr5CYOc38pBmO58tt7gqRwuWGjcnL3A7prcEF4QNRVb?=
- =?us-ascii?Q?mItawUztY5pjqJ9zB5+/WMGkCa2I2tpL9pxDt2Tl4jEOyCsT4LL/tffn6Yz3?=
- =?us-ascii?Q?JEq0m3JJzjWOJoAPKoucTTR6pwaY6bdYLmzsow41ulTzG9D15Us9L/F63Wgz?=
- =?us-ascii?Q?WNs1brTO59S3ViuwX/k3pTWHql4OmqJtDUgDvjO2v9Ey6QL8f8u994PzWmCd?=
- =?us-ascii?Q?sCOxUkqGO6pNOHGhsLciHfI6Dq3ugB4CoIu+4Rg1THMLFKlXcQFQ/AVmwDbC?=
- =?us-ascii?Q?M4tzcL5wvcedCP/AomSuCLCyLerrv2vbzaVFOMkFBzOsnZW0an5CeV5+gXht?=
- =?us-ascii?Q?tbJGaIfC+ApAMPK8XuGWKCojB1PT1DLyygTVfViO9vYmX9bwvn9/Otm9zQpD?=
- =?us-ascii?Q?fzX9TbmhVpWgW8wV4th9lwGh4B0XZK3hJ9fwjFEG3YIPC1s6MyPuVUIiSaLM?=
- =?us-ascii?Q?iYiepiGlobakqIPin12Amao9?=
+	=?us-ascii?Q?ecplZArSoKOFNy2SEcm2H7fhV86VPx25p8HxrreVXZ/66cjaP6Tt8H1svbut?=
+ =?us-ascii?Q?6B/dsGRivKqD72dnDpKJUMT4FLw/uNHez3CqbGdZ8ll65hRKYhNs6cJB+AqZ?=
+ =?us-ascii?Q?usNljzvbDYeEvDy7/QBOccniOeuhCe40OEE45CHNz5sPK+AZzjE8SXpkALLv?=
+ =?us-ascii?Q?+KVXf1MNkkoFQf4oOFsCg6Op7JllrCc2pX7aQWPJNMS8CSjG7MV8KKw+aSq/?=
+ =?us-ascii?Q?maOXN5OJrYQJrxQ2q64NHMJel5XXdWrDqVJf52Mepube0a6kvqJYdFN8Y2vq?=
+ =?us-ascii?Q?UOBaVueurZ9rJoACLhicj17sScQqG2uTHzFY9xLrmsrS91Pn8aCmAPhFeuMM?=
+ =?us-ascii?Q?XdTSTCyPmaazkdGCMLAhFfqbdiAGVJsiijqfa44JlOBBefQ4sljycMHcH+dZ?=
+ =?us-ascii?Q?zkDKdk5HaAP6YUqd4aD7EsffCOK6t33zN1C2iL1u4KpOEDrmmbeNazh0B341?=
+ =?us-ascii?Q?56SQKKgh2+HSWG3dam/CNbXtzkOisbmQf7/aD7QHdJhU/8wmAuEc7hOtjgW0?=
+ =?us-ascii?Q?tT3aF6FbKOmy8iLoFT13MH1xWL1ZJ0xQ7pCAnXGOQQmIorRt6uRNGDFnvkfi?=
+ =?us-ascii?Q?DNt6jsbovF+uk8XzGSS9ccNbEq3TTKcZwNumCHGHse7fy7iDBOIFNKQuhyqs?=
+ =?us-ascii?Q?fTGxETBEphOHHvI74PSGSagAc23ir8uVPDWWUmoNftkDkHOwqZ7R2sDuaaH/?=
+ =?us-ascii?Q?yAnYhPLYrI66F3yKdiJDU7ZkJTr0WoabXOyeH5IfCIOvTn/jgd8sRB/i7UtV?=
+ =?us-ascii?Q?vREiVMefabG/AY4B+bPujiz7RE7+ovpXJaXHBzFaLsoXkTdKj660mGxDpTGy?=
+ =?us-ascii?Q?R3Bsda7fsDsiZtQZc16aWXpjHFQv9Lv+r7f1bHErwBVhJ+GCgyin8NQttgqz?=
+ =?us-ascii?Q?pMb7/1QwYZMnMQXmYvBVU5PQIeVLbq6KoK1zDzutEmSjtEQ3Kf446W35tJ/E?=
+ =?us-ascii?Q?96cjjH681bOyCZ4NNclOOcLV+kd1f52cXfkD4bEl9VldFSqFVBcfezLgDVHx?=
+ =?us-ascii?Q?no+T2u4yHrVN5ibkTzwXl9lTXcLaPDpGxnK59weF02BhH8PXHBF15fIfWy6T?=
+ =?us-ascii?Q?To1dlTadmF9rWfF6nlXh3L84LSo0SWpB+LywnCtYahLyL9ziRBlTh77IsC09?=
+ =?us-ascii?Q?HcRkx3oezLUiOYnc0RZocK2ES67wY9May1O18709diJR3gWgdbH0OI/m6mga?=
+ =?us-ascii?Q?jYcTQQi+Atfwt6B1DVnJgGvI2F9EY0M693bfcL/RFmuJtKNDR6Wlcc86myEK?=
+ =?us-ascii?Q?fpuGyE7GQZQlxSreqTl62WyyADydV0hTDyExn0d2VkHCamV+XoY4xqBzWbYk?=
+ =?us-ascii?Q?3NEeto54jR/0SOnEffu3npvH?=
 X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5cc5f707-20d7-4412-6ef6-08d957e4309d
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9a4d7c3-9832-42ed-ca6f-08d957e43167
 X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4867.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2021 07:39:43.1849
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2021 07:39:44.5250
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5d2H7wQ3SXaHC8InWRW3nAZFI8OgysjnwFCzUSeqwMM8PvztO63FPYDXrg5Ekc4fedSwgD1arRGr283R5+zDHw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: DoudUpQAp8pgnSEgP5DtErv4JapjJcaG4/LfM0mZ6mptusXI8RK/uLsE4Jmgj1exuuk50zpRmZVAuI01xVjLUQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1264
-X-Proofpoint-ORIG-GUID: l_f_1NkaQWJGMApGj5nQYZpQkb8WEt0i
-X-Proofpoint-GUID: l_f_1NkaQWJGMApGj5nQYZpQkb8WEt0i
+X-Proofpoint-ORIG-GUID: HwryCFdik3d_PF4uZw_FfugS7n2MyAan
+X-Proofpoint-GUID: HwryCFdik3d_PF4uZw_FfugS7n2MyAan
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
  definitions=2021-08-05_02,2021-08-04_03,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=990
- spamscore=0 mlxscore=0 clxscore=1011 phishscore=0 lowpriorityscore=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=973
+ spamscore=0 mlxscore=0 clxscore=1015 phishscore=0 lowpriorityscore=0
  adultscore=0 suspectscore=0 priorityscore=1501 malwarescore=0
  impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.12.0-2107140000 definitions=main-2108050044
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-Drop other releases since they are not compatible anymore.
+The dhcp had been removed for oe-core. Replace it with dhcpcd/kea.
 
 Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
 ---
- meta-cgl-common/conf/layer.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../packagegroups/packagegroup-cgl-middleware.bb         | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
 
-diff --git a/meta-cgl-common/conf/layer.conf b/meta-cgl-common/conf/layer.conf
-index 56ddbb9..edc7cfa 100644
---- a/meta-cgl-common/conf/layer.conf
-+++ b/meta-cgl-common/conf/layer.conf
-@@ -11,6 +11,6 @@ BBFILE_PRIORITY_cgl-common = "7"
+diff --git a/meta-cgl-common/recipes-core/packagegroups/packagegroup-cgl-middleware.bb b/meta-cgl-common/recipes-core/packagegroups/packagegroup-cgl-middleware.bb
+index 4c70a84..8a9cfc0 100644
+--- a/meta-cgl-common/recipes-core/packagegroups/packagegroup-cgl-middleware.bb
++++ b/meta-cgl-common/recipes-core/packagegroups/packagegroup-cgl-middleware.bb
+@@ -10,11 +10,8 @@ inherit packagegroup
+ PACKAGES = "packagegroup-cgl-middleware"
  
- LAYERDEPENDS_cgl-common = "core openembedded-layer networking-layer perl-layer filesystems-layer security selinux"
+ DHCP = " \
+-    dhcp-server \
+-    dhcp-server-config \
+-    dhcp-client \
+-    dhcp-relay \
+-    dhcp-omshell \
++    dhcpcd \
++    kea \
+     "
  
--LAYERSERIES_COMPAT_cgl-common = "warrior zeus dunfell gatesgarth hardknott"
-+LAYERSERIES_COMPAT_cgl-common = "honister"
- 
- require conf/distro/include/cgl_common_security_flags.inc
+ MULTIPATH_TOOLS = " \
+@@ -41,7 +38,7 @@ RDEPENDS:packagegroup-cgl-middleware = "\
+     strongswan \
+     vlan \
+     corosync \
+- ${@bb.utils.contains("DISTRO_FEATURES", "systemd", "iscsi-initiator-utils", "",d)} \
++    ${@bb.utils.contains("DISTRO_FEATURES", "systemd", "iscsi-initiator-utils", "", d)} \
+     openipmi \
+     openhpi \
+     pacemaker \
 -- 
 2.25.1
 
