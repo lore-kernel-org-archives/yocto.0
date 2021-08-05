@@ -1,81 +1,122 @@
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
- by mx.groups.io with SMTP id smtpd.web11.3592.1628128905168957071
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+ by mx.groups.io with SMTP id smtpd.web09.5263.1628142921199058272
  for <yocto@lists.yoctoproject.org>;
- Wed, 04 Aug 2021 19:01:45 -0700
+ Wed, 04 Aug 2021 22:55:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=GWy4I+QP;
- spf=pass (domain: gmail.com, ip: 209.85.166.53, mailfrom: twoerner@gmail.com)
-Received: by mail-io1-f53.google.com with SMTP id h1so4786725iol.9
-        for <yocto@lists.yoctoproject.org>; Wed, 04 Aug 2021 19:01:45 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=YHIjOVXA;
+ spf=pass (domain: gmail.com, ip: 209.85.216.41, mailfrom: raj.khem@gmail.com)
+Received: by mail-pj1-f41.google.com with SMTP id a8so6433961pjk.4
+        for <yocto@lists.yoctoproject.org>; Wed, 04 Aug 2021 22:55:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=6WgS4wlnvLFl/UNl8J5yccw7+klSqz1zkpZsAH7YVGM=;
-        b=GWy4I+QPp/7rwCXB4+HC3GGg0FHI2CBjQqU9WGQpcR903EGbP0sgT/+N7u7KYj9l80
-         I8I2YyDD+E60rzqQImUcoV2i0wDYVuFj2IgemFBeWTJK1FHKBo5StHkaCOyfIXyBTHjD
-         MNevKRef1cyDBKjgtx2cOg8tJUKj2hlrGo5PsxkpvYZmqaOoNOWnCptn2A1883KAgpye
-         1p1lEHPiXxdva4wZNy7SP25LZmZCtUzVATWpPxagj3zBIds+l6z0MglQ1dsNPM9vJ/b9
-         /HfwnxbgDXNDbe3Rqx50WExp/N/f7zaMe3f9neRYsLm1RIQ+rJMEQ9XXnvgV1iLiNPnE
-         E5Mw==
+        h=subject:to:references:from:organization:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=q0g4p3je+gcBBiDCU6XhmvJw+TDyW61DdmHbMAIhWxw=;
+        b=YHIjOVXArYnJYPsa4ISz2fkNj2OSBSlAC/pfNw0GB3uHsCpXjkenpgjhCqbjy9Wbzt
+         +kzeIoEBpGc8RwP8mA/Und5VzYbCqBMhM+YBPmtUgYLShL1Teea1W165Yfs0IXBhSDOw
+         nlw/VDqwtTNk2AcgIRzT/7BwJMQQ1nepLnY4hFqs92KsCGHEPh/YKSotD61oIp1LoMVy
+         Mqlw/kbowchXyDFTUPFxCV+mdvoc9we8hUxXHWEyhXg0Vt8GOo+E66VVlwnIH7yDFf0N
+         VzmJJXVV3vbVNDqNFpZ/X4Zz4nDl7d9p7xjAcSrPAN/WyQFvqCYFax1r7gFZMrGNlz+h
+         Pb8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=6WgS4wlnvLFl/UNl8J5yccw7+klSqz1zkpZsAH7YVGM=;
-        b=FSAT/qk3zxiaONUFQ29hWCcJfJ/C4Si4uvIZ19KeWya/xPNIufoKVziQfrGX4HkHfm
-         HkteUWS+lnd/v8hcVSN1diCL6z1bLyBvLVPJ7IynPPcgvXEO74+6EFyF+rWAw944pOAd
-         DATeAVenXsq31/24NBIe9fRJRlnO0965SoQ35fqWqVDgbworypoSEFbSBfOcOKW+pkh6
-         xBNC2sT1GjUEDq7gfHOfJH9b2zWu4SZtGX1qIlR4UyI7djGK/jtxlU0o/DjcsLmfA7Bz
-         mkdhcL4xCm8cBFxe1AeGpv8OywmSPgj4ReCV2IHIRqQVdMGb2R5UFBcs4k9e+6uCtq6i
-         9OGg==
-X-Gm-Message-State: AOAM533llSKwUhTsCGopbhTVFvheTqq4hMrv5aSgjs51ta3z9t5s7g4+
-	nznlU8FbWPFt8893KWBFHvKPEIBxL6WwPuUW8kDVVpyA
-X-Google-Smtp-Source: ABdhPJxsmf+4XBO4EXDO08kpIk8yQSZqFvf539K5UrCXiJqg2fm1w5d6IHlcdR2mhr7bgtKc0dYsKrTdKE0RsyMJj78=
-X-Received: by 2002:a05:6602:2057:: with SMTP id z23mr924813iod.29.1628128904421;
- Wed, 04 Aug 2021 19:01:44 -0700 (PDT)
+        h=x-gm-message-state:subject:to:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=q0g4p3je+gcBBiDCU6XhmvJw+TDyW61DdmHbMAIhWxw=;
+        b=Y8udZ1LenEUBi9Tr4TKcXqc6M6XuY4/HZcCI3bW5gIF6kxeBGugQmn8R12uGBCQpCd
+         HwPRr/3W0BtQm1oEfc4Fol1t82uS3W7WMSQV8XrEM/TFlzgbbxkP+0XaYq6eNDKXz2Hm
+         iW+IHc80Q1STJ/NfCRC5gPh1W9EqdByUrCyFOu33CnnZ0gQx7Erpm5izW7cZ5wq4y82D
+         67whnXSJGWSvhWCu1DgZNaY83UK+G1gQrYwrnSWYPjRFXjm3T9dRo5GFJAGZJxoxBwzF
+         o/nlNzlpirB+xP7O7TKmq5qdvPenQKe9g2auaFUWWJ4XO/MpkwOxGuprJZ26tJfXgVzk
+         U8pw==
+X-Gm-Message-State: AOAM533voCr1hpkreRERihkeuvut6ENG647a4FLQV99bHK/mZxWI2OWu
+	vKjAMe5J8B52rQDUvEdJSiu6mXcotpFJpQ==
+X-Google-Smtp-Source: ABdhPJzx/KEoGlCHFT21aRXkno3x9i+rjbFXpWjm9yugY1+IsGBd7zUbyGThOOdX5Cu68qo65NEOOw==
+X-Received: by 2002:a63:5c04:: with SMTP id q4mr2741909pgb.127.1628142920361;
+        Wed, 04 Aug 2021 22:55:20 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPv6:2601:646:9200:a0f0:7855:55f7:d28b:c03? ([2601:646:9200:a0f0:7855:55f7:d28b:c03])
+        by smtp.gmail.com with ESMTPSA id j3sm5196269pfe.98.2021.08.04.22.55.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Aug 2021 22:55:19 -0700 (PDT)
+Subject: Re: [yocto] Recipe dependent on Debian package - How should I approach? #debian #yocto
+To: Mitch Gaines <gainesmitch2@gmail.com>, yocto@lists.yoctoproject.org
+References: <CADa-vC0G7_-YqCpEm_UQZLDX3Gwz-mffZG9OuZhRz1J_UEQp1w@mail.gmail.com>
+ <24004.1627308437391399679@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Message-ID: <f0a9ff01-dbce-9f0d-deec-5fb0c3cb03eb@gmail.com>
+Date: Wed, 4 Aug 2021 22:55:18 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
+ Gecko/20100101 Thunderbird/78.12.0
 MIME-Version: 1.0
-References: <20210804174953.12346-1-twoerner@gmail.com>
-In-Reply-To: <20210804174953.12346-1-twoerner@gmail.com>
-From: "Trevor Woerner" <twoerner@gmail.com>
-Date: Wed, 4 Aug 2021 22:01:33 -0400
-Message-ID: <CAHUNapSjdqgGJicCG5-HV44BOD66CpkRf7ngUErmJDwYzGWmuQ@mail.gmail.com>
-Subject: Re: [meta-rockchip][PATCH 1/2] layer.conf: update layer compatibility for honister
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000ff244105c8c64ce9"
+In-Reply-To: <24004.1627308437391399679@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 
---000000000000ff244105c8c64ce9
-Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Aug 4, 2021 at 1:50 PM Trevor Woerner <twoerner@gmail.com> wrote:
 
-> Add honister, remove hardknott.
->
-> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
-> Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> ---
->  conf/layer.conf | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
+On 7/26/21 7:07 AM, Mitch Gaines wrote:
+> So, that is something I already have. What I really need are the systemd 
+> header files in order to build my recipe. Looks like the log output 
+> didn't format well. Let me re-post that below with some better 
+> formatting and you'll see what I'm referring to. How can I get those 
+> header files to build with my project? I thought just adding it as a 
+> DEPENDS would do it, but that doesn't seem to be the case.
+> 
+> |NOTE: Executing Tasks ERROR: <recipe-name> do_compile: oe_runmake 
+> failed ERROR: <recipe-name> do_compile: Execution of 
+> '/home/mitch/bin/yocto/project-name/build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/recipe-name/1.0+gitAUTOINC+...-r0/temp/run.do_compile.13271' 
+> failed with exit code 1: make[1]: Entering directory 
+> '/home/mitch/bin/yocto/project-name/build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/recipe-name/1.0+gitAUTOINC+...-r0/git/src/core' 
+> CC file-name.c ../file-name.c:6:10: fatal error: systemd/sd-daemon.h: No 
+> such file or directory 6 | #include <systemd/sd-daemon.h> | 
 
-applied to meta-rockchip, master
+Please post full compiler cmdline, it will show what all include paths 
+are specified.
 
---000000000000ff244105c8c64ce9
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+If systemd is added to DEPENDS and also ensure you are using systemd for 
+init system as well.
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Wed, Aug 4, 2021 at 1:50 PM Trevor Woe=
-rner &lt;<a href=3D"mailto:twoerner@gmail.com">twoerner@gmail.com</a>&gt; w=
-rote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote"=
- style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
-adding-left:1ex">Add honister, remove hardknott.<br>
-<br>
-Signed-off-by: Trevor Woerner &lt;<a href=3D"mailto:twoerner@gmail.com" tar=
-get=3D"_blank">twoerner@gmail.com</a>&gt;<br>
-Signed-off-by: Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D=
-"_blank">raj.khem@gmail.com</a>&gt;<br>
----<br>
-=C2=A0conf/layer.conf | 2 +-<br>
-=C2=A01 file changed, 1 insertion(+), 1 deletion(-)<br></blockquote><div><b=
-r></div><div>applied to meta-rockchip, master=C2=A0</div></div></div>
+Search for sd-daemon.h in
+/home/mitch/bin/yocto/project-name/build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/recipe-name/1.0+gitAUTOINC+...-r0/
 
---000000000000ff244105c8c64ce9--
+I wonder if it got staged into recipe specific sysroot or not.
+
+
+> ^~~~~~~~~~~~~~~~~~~~~ compilation terminated. make[1]: *** [Makefile:93: 
+> build/file-name.o] Error 1 make[1]: Leaving directory 
+> '/home/mitch/bin/yocto/project-name/build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/recipe-name/1.0+gitAUTOINC+...-r0/git/src/core' 
+> make: *** [Makefile:72: some-recipe] Error 2 WARNING: exit code 1 from a 
+> shell command. ERROR: Logfile of failure stored in: 
+> /home/mitch/bin/yocto/project-name/build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/recipe-name/1.0+gitAUTOINC+...-r0/temp/log.do_compile.13271 
+> Log data follows: | DEBUG: Executing shell function do_compile | NOTE: 
+> make -j 24 my-project | make[1]: Entering directory 
+> '/home/mitch/bin/yocto/project-name/build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/recipe-name/1.0+gitAUTOINC+...-r0/git/src/core' 
+> | CC my-file.c | ../my-file.c:6:10: fatal error: systemd/sd-daemon.h: No 
+> such file or directory | 6 | #include <systemd/sd-daemon.h> | | 
+> ^~~~~~~~~~~~~~~~~~~~~ | compilation terminated. | make[1]: *** 
+> [Makefile:93: build/my-file.o] Error 1 | make[1]: Leaving directory 
+> '/home/mitch/bin/yocto/project-name/build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/recipe-name/1.0+gitAUTOINC+...-r0/git/src/core' 
+> | make: *** [Makefile:72: my-project] Error 2 | ERROR: oe_runmake failed 
+> | WARNING: exit code 1 from a shell command. | ERROR: Execution of 
+> '/home/mitch/bin/yocto/project-name/build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/recipe-name/1.0+gitAUTOINC+...-r0/temp/run.do_compile.13271' 
+> failed with exit code 1: | make[1]: Entering directory 
+> '/home/mitch/bin/yocto/project-name/build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/recipe-name/1.0+gitAUTOINC+...-r0/git/src/core' 
+> | CC my-file.c | ../my-file.c:6:10: fatal error: systemd/sd-daemon.h: No 
+> such file or directory | 6 | #include <systemd/sd-daemon.h> | | 
+> ^~~~~~~~~~~~~~~~~~~~~ | compilation terminated. | make[1]: *** 
+> [Makefile:93: build/my-file.o] Error 1 | make[1]: Leaving directory 
+> '/home/mitch/bin/yocto/project-name/build/tmp/work/armv7vet2hf-neon-poky-linux-gnueabi/recipe-name/1.0+gitAUTOINC+...-r0/git/src/core' 
+> | make: *** [Makefile:72: my-recipe] Error 2 | WARNING: exit code 1 from 
+> a shell command. | ERROR: Task 
+> (/home/mitch/bin/yocto/project-name/layers/meta-project/recipes-main/my-recipe/my-recipe_git.bb:do_compile) 
+> failed with exit code '1' NOTE: Tasks Summary: Attempted 2166 tasks of 
+> which 2163 didn't need to be rerun and 1 failed.|
+> 
+> 
+> 
+> 
+> 
