@@ -1,33 +1,33 @@
 Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
- by mx.groups.io with SMTP id smtpd.web12.1820.1628234025014262304
+ by mx.groups.io with SMTP id smtpd.web09.1807.1628234027153861884
  for <yocto@lists.yoctoproject.org>;
- Fri, 06 Aug 2021 00:13:45 -0700
+ Fri, 06 Aug 2021 00:13:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=HpHGhLUI;
+ dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=TwmBLfrq;
  spf=pass (domain: windriver.com, ip: 205.220.166.238, mailfrom: prvs=3852e488c3=yi.zhao@windriver.com)
 Received: from pps.filterd (m0250809.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 1767Di8D018148
-	for <yocto@lists.yoctoproject.org>; Fri, 6 Aug 2021 00:13:44 -0700
+	by mx0a-0064b401.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 1766kce5009481
+	for <yocto@lists.yoctoproject.org>; Fri, 6 Aug 2021 00:13:47 -0700
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com; h=from : to :
  subject : date : message-id : in-reply-to : references :
  content-transfer-encoding : content-type : mime-version; s=PPS06212021;
- bh=kgOBm2IR+CyQWjKKqK4dmhGW9EUo4A3iN7g9HY+8ibE=;
- b=HpHGhLUIMZV8KWShtfSE//eTvxxreD2EkOgy/l4TZfnc4Oz5YPygSTqfA2S4Ca+CLJih
- VCt1BDl7cTerb44oqMeNeUG8Hpi614F3P84D3Z/2Z1JaEGiteyHJo2dyj6sIK9JZaddn
- 58S/pQ5H9sARB/djOjZju6CWNL5h2FFz3NUfUP0IbNjT1Gme8F1CqwQoWI1mVcUZAvyf
- CNByIytlKsvXkSbVCCzONTd5AiGucsoBZkwL19svCwqER9hXEXDzUUOPIkb6smiadh+V
- h1BcoBLaTgxdRPvE4ODpUVPUvgAcWM62YaUmefKBT79mhhicv/otV3Lwxb/whreW1EQj bg== 
-Received: from nam10-dm6-obe.outbound.protection.outlook.com (mail-dm6nam10lp2103.outbound.protection.outlook.com [104.47.58.103])
-	by mx0a-0064b401.pphosted.com with ESMTP id 3a8ke0gfew-2
+ bh=AZhbT5yu+BunDBEiH+sYc7x8AGmOfmK1tqk7XcO3WK4=;
+ b=TwmBLfrqO7p33SPXZ8Ztt6fk+sOHDrYZ/ZYQUylMx1KElIZcBCEVhIaNuQJfm4FH3cQy
+ CNIXDuUnignYPJ+OWjbeN6FagjbYbj/yGt+gK6DjJYBLK1HypYiBjUKqGxBRdJUy9JBC
+ LsVqmR6OXxrajOfAMisAOmPqB/ToVjbBpY+3Ya50jmRNHOlASxY+FOAEuy/V/KqgOubO
+ rfDuSBp1IvKC5Qv+OehoL9adgjxv6u86dazyBMpxlCwk0zNohUMLkVnmbSqpedDn+Ly5
+ BIZVUZClwSAwUe0hlFk4zjKDBJdbcw3NRhPxdACC06l3yJHNQxEfFDmf4cGqlJXXpa0w aw== 
+Received: from nam10-dm6-obe.outbound.protection.outlook.com (mail-dm6nam10lp2108.outbound.protection.outlook.com [104.47.58.108])
+	by mx0a-0064b401.pphosted.com with ESMTP id 3a8ke0gfex-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
-	for <yocto@lists.yoctoproject.org>; Fri, 06 Aug 2021 00:13:44 -0700
+	for <yocto@lists.yoctoproject.org>; Fri, 06 Aug 2021 00:13:46 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=U6SvzQevdGC2Dpt8Gmj5N8s7Npwjvyyn3uejRHE2DtNEHpIGtJZfnuBPTEfk8uYz26FVeNGHN57trsKrMrBeJ0wE9PhqOb/HFGxZG72rSvHN3kFwLHoj36COoyFrL/FD6c0uDoHsYWb4U+tjUEe8iMSmxgS8Q8neECalYDQGvGbFUtLwV7wpKXqnN3ZFMlMTqV7dW4q0hEnUv32HQ7ofhtfRAzYJDvIE3ZNnMEqlLYO32jnvqP+gFSgTqlwCEa7I+VMP6HWWY5fkrTqqVnoIADoQv5FWE21zpbppZiJQ8RGtPuu3jfa13/bXzWJMYpt01CVo9aHuuYKzc0rVWL0joQ==
+ b=KK+BmmiGsRPFDlkbdQbJFl1kQAn6lnNpsWMf31Nu3LHiis096hXrCYzeovtkbjuRU6da1XS/J1sZgAttq6gakNiY31qlyFCrEKD/VsNcL3EdpaqLo33H91zTWpQ902dEies6JdEG7vsXgFfaLrXUrpJBw+3vFEVC6CrkqdF3uvT0Tc/MxLq6mBZoALtJzPWkvcy3dRQtYbYP3/YEYynwesdlfE+7sMoKvhk9KtW4SMyckQizpexiKgiuAUf5DceSqj0c4b10LdDSeLTm2a/cwCQNRyYRiaouIoYXQrbOBfTmJEpd4XpS7T9pdv8GGGUqFBBCUYB8urmBLf7+cttdmw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kgOBm2IR+CyQWjKKqK4dmhGW9EUo4A3iN7g9HY+8ibE=;
- b=ffGNGjAeD2ojhycI9fvfxAOVLQPWJFnWlkabRIPG4DMGcMubxdqRAc9yWSzmHKwUMaX6PHXt4QsXUjp40lTtrI5Xd+VLJtJuq7xuxn4Y/K/7TSAryIZ5sFcsuqmMj/fys2I2PDtctyQ4qJnq+CSaKDQUHd/UzmDp/pU/3RT4+4O7dVnjk4V5RZxiahUsHYfrPNTU/6AAl9T/VGWHUD6xxHcXXhqdfttH0QcOwFiQlueUfC7QFoP/STz2C3aggp3MTP3qfy8fdBIr/O6ZwSR0aC+fRaUEvsXifB80X8WhP+tQ1W9FQI/TM2o/e5hPnOUZAWN5nDyTst9aDDk2+/EfeA==
+ bh=AZhbT5yu+BunDBEiH+sYc7x8AGmOfmK1tqk7XcO3WK4=;
+ b=UvXDR+oB1FytstII0SbkVy8Iapo702f95cDbFiw/YDBF/NLcJ/JZjDmAgzst5c2KYv5lsZMmNH1G6aMrHOrbMAeoAP5pLVhbDCQixT0MjSiykfUA8yLmwH5SMmmMnt8Wj1QqqMqT6lZqyI2eQc6Y2uysg2pfKfvMeoRf7HFgLHopm030kZCsHH9fcCERxXGkUJ538/VJxS4UNig/MK70YTYEWGqpBCFHiDFfysDo6yBmw3f98jINsaNu6e2g0o1YGZNI32pzWrlelKxM0/1g5Tz/8QZmAqF/AFd/7epg915+pi8r6JcZIQjinEA1+ZWUC1FB+XPQhsZ5lsRZZ31nBw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=windriver.com; dmarc=pass action=none
  header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
@@ -38,16 +38,16 @@ Received: from CO1PR11MB4867.namprd11.prod.outlook.com (2603:10b6:303:9a::13)
  by MWHPR11MB1421.namprd11.prod.outlook.com (2603:10b6:300:24::19) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.17; Fri, 6 Aug
- 2021 07:13:43 +0000
+ 2021 07:13:44 +0000
 Received: from CO1PR11MB4867.namprd11.prod.outlook.com
  ([fe80::fdca:2b03:6e20:2d99]) by CO1PR11MB4867.namprd11.prod.outlook.com
  ([fe80::fdca:2b03:6e20:2d99%2]) with mapi id 15.20.4394.019; Fri, 6 Aug 2021
- 07:13:43 +0000
+ 07:13:44 +0000
 From: "Yi Zhao" <yi.zhao@windriver.com>
 To: jason.wessel@windriver.com, yocto@lists.yoctoproject.org
-Subject: [meta-openssl102-fips][PATCH 2/3] openssh: refresh patches for 8.6p1
-Date: Fri,  6 Aug 2021 15:13:28 +0800
-Message-Id: <20210806071329.414087-2-yi.zhao@windriver.com>
+Subject: [meta-openssl102-fips][PATCH 3/3] meta-openssl102-fips: convert to new override syntax
+Date: Fri,  6 Aug 2021 15:13:29 +0800
+Message-Id: <20210806071329.414087-3-yi.zhao@windriver.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210806071329.414087-1-yi.zhao@windriver.com>
 References: <20210806071329.414087-1-yi.zhao@windriver.com>
@@ -56,59 +56,59 @@ X-ClientProxiedBy: HK0PR03CA0109.apcprd03.prod.outlook.com
  (2603:10b6:303:9a::13)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from pek-yzhao1-d1.wrs.com (60.247.85.82) by HK0PR03CA0109.apcprd03.prod.outlook.com (2603:1096:203:b0::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.16 via Frontend Transport; Fri, 6 Aug 2021 07:13:41 +0000
+Received: from pek-yzhao1-d1.wrs.com (60.247.85.82) by HK0PR03CA0109.apcprd03.prod.outlook.com (2603:1096:203:b0::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.16 via Frontend Transport; Fri, 6 Aug 2021 07:13:43 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 48d8b9e1-0aac-4e39-f050-08d958a9b91b
+X-MS-Office365-Filtering-Correlation-Id: 58041d3b-156d-432c-be9e-08d958a9ba11
 X-MS-TrafficTypeDiagnostic: MWHPR11MB1421:
 X-MS-Exchange-Transport-Forked: True
 X-Microsoft-Antispam-PRVS: 
-	<MWHPR11MB1421B9E0A059D49C5C2A3A22F9F39@MWHPR11MB1421.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:153;
+	<MWHPR11MB1421A1D0E39B178AD1148706F9F39@MWHPR11MB1421.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	3gpbP4QiuKftkVIpxBmxo+VAUlBsxW+GF8PxNEMwDkBd0bHyOxNReV6dnpzovu5g+mDijqqA4tpADwlqUN275c32FXofZoIUAE/T6Q9zxJB5uVjf/1SIjArsipV3QJX+f8wBt20VOs/fNb7YP6rmc7wtiHuruiKIvMW3h67CpsII0rxFNOtc6vXin5Htb0Q4GRDNi8CVyAO13WEO78QUAVS5jBsQm+un+TsWE/r9TVt5K+QKpNiOWp8WqRDUlSMQ+W8/kscS7GquR1JERufXW17AlnfAamYE1T8wMDCt1Q1goN0ZOkQsB6TdujTuqH9Mo/fMCacPtJ0UGCjTlcQhHuOBE5qtpe3TPbLDGmIIMRx8V5bHi7caDvrpgweX7wPQXlt6z8FNBz5u7lCLpO0tswR+kVdaVWvoIF2uTaSoP9JUtHRr+F1k6OKWXA5Z7qe7pmm2h0Hv6UZMGWJJZYVc2n84Fw582aHvTtUr0TPhsLAPS3ihr0f2y1Y2ixWVGr6cdLvMgJ+10hbnIR5Lbp/NCUwanXwUN85h1+ajr9Lw7vjzpDkp/wFY48tYGeNGhMEPw2tGxpr9dKT6MAsNs6YTDtmafnmHH/B232EI6AxW2WDrs00PrWFe/8AwTizg7ejMeCw19rDKyy+6PcWe+eIoq2M41Z9M4aMvnmqKlhVQS70XsWH/iJ8WXI6gU28aFQiGSdrxsXS28NGYGDvDlCYncJINZsHdEn0I41X6uHD6fXMM5zks+KH6htxDg73kzy5ShETldurMJISpz7sxAUb26B/Ufyu16C/IN0+/6zGf7IM=
+	KWxY0oOIn4SWEOmPF9TTRQ6A6RAaYVpJJhni/XXK964TIden2HM5og9hFKGxTnMWW++JkasT/WimbVAlF7wVDFV4Dop/YRYw+DgCEYRdMMCmGDEsIbguEb7n3yP/RDr3ctvYtu+jt5MCzt7aMFeAL57gdHgK4USN9qRVeBzCnp4EeN3r2v7cXmIXC8BUcxAs9U22/2jlEIYr82qqW/jcKPL+lBC3F8om8w+CT9s785fdei3xZCFuhaQZHsVJasc93In42wCTwnWl8YC1W+YZ2E22835oG8PpVTI4cTjtJN+UTmz0g9PBXfsP/OO9THozeM3LCsxDrbmejo1DwZRo76TNrOTDaNroQuH0gMUVhD+kBanig9Nnk2Pg1KDxRw9TczrLkXXujDd9t6gP76qqJB8YQPc2o0ewMwu0aePzBdXqEoICCsTgnxA22ZXiI8bacljG7xD9JAhj7PvKUwT0kKFY0dAknzuOchxboC6Zp/ZGIA9Zgzcvqrb6N9lLZT9YuaJVA+Hm05PZGYoCdyVrcEfxtdcwEISXs+TqHlKiHtn69gLqN8WNEd3TMW8gJ8FsQcZgBDyvINOTRS3aWm1D1kz+8Tdd7kvv1xfTla8iEC7pd/txAgSysObgz1XYk8NNY+LDyJLPjoy4TVefk91wsU304c6EftL1AlSJIZb+vF+r9DImwegQ+4a5lvurnhPR3q0IRvk9lMyrZhoxBDuAsw==
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4867.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(366004)(136003)(39850400004)(376002)(346002)(52116002)(956004)(26005)(8676002)(186003)(8936002)(83380400001)(316002)(478600001)(966005)(44832011)(2616005)(6506007)(53546011)(38350700002)(38100700002)(1076003)(36756003)(6512007)(6486002)(30864003)(66556008)(5660300002)(66476007)(66946007)(86362001)(2906002)(6666004);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4867.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(366004)(136003)(39850400004)(376002)(346002)(52116002)(956004)(26005)(8676002)(186003)(8936002)(83380400001)(316002)(478600001)(44832011)(2616005)(6506007)(38350700002)(38100700002)(1076003)(36756003)(6512007)(6486002)(30864003)(66556008)(5660300002)(66476007)(66946007)(86362001)(2906002)(6666004);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?idCgXG6gX3ir1Bs9qxDwyFeeIXOveSRiR9vFwyIO8h6/IgmPfiq/PPbU69YH?=
- =?us-ascii?Q?LC6dbGpy9PyvwP3nw5kOUy38Q6Km53xoLA8JqyZg370kv4psul1AEqpUJYeH?=
- =?us-ascii?Q?RidNFpA51IUwlyXDEgPlw6j6/qQ75RafYLa5agbo07MaXNzAFZCFHfUJl/qt?=
- =?us-ascii?Q?WJiSkaJkfqyX+1liOXP1vycX8u04STMMT9y47RlkUF7m62VI16izg7hMyo/k?=
- =?us-ascii?Q?ZYpKkwTq3RauN72haTff6hnUO/iT9nJHrvmnnxIEbxXD4lpRG2jC3inU7MCX?=
- =?us-ascii?Q?HNziHlnuWW17J7IGrR2jlElV2JyT8Zd/Vukyz7znLdhcTPoAmUovpAz31HVE?=
- =?us-ascii?Q?ElCS3HY7fimhHxq7pfFAIolMKv2BrMUtq65mdqxJZqab5FZRBKrrRNf5NUmU?=
- =?us-ascii?Q?DCCDlOmL7VHiLEKN6OX4nsZKqhiDaKZ3R+2WeuJ8ffa3EcC4WGTJpaWZWoDI?=
- =?us-ascii?Q?KMDIDWsBYmRYuuAxKma94qDnAcEVeYLW1wcSoM7Z2YGIhVX0cZowodWVL9l3?=
- =?us-ascii?Q?IMJ+c2BlBd6PEfUe2Sfv29cbA/e8JjIgDwSDQi1qoFZV6QpJiDIbq+DB4B51?=
- =?us-ascii?Q?kOTattPKJVWHAsNZMB7m6J/JRvQHNnuZn34/gKNJDSCUK2eU8WkMSquyjtoH?=
- =?us-ascii?Q?PHHTJxdXkRWKIJ7cns0bmxNJ15Wnwu3FmNMxJJc4AeV6qgsiQt2j/eaD4TGf?=
- =?us-ascii?Q?GL4rJpehxgWZp4vJS8l8iQO73uoioXrLVdW2JiK2CkmqANYLmmamTWnC0Gbr?=
- =?us-ascii?Q?cC6fzLr2IgyRsd/BN6oyev2o6XopRS7V8eEBEEGpJo0GZoTDg9qRP/H6emBZ?=
- =?us-ascii?Q?qJmjtdbHUVYCUKd1Z/PD5p6udNNJS5ZxPCq0sT/kPiuOo+IaHZEut8/2hgla?=
- =?us-ascii?Q?hFlSpBkx6bBat9EaKtZ308B4oqR6ZS0cF2D52BueVhySaJpXfl8FzZpEiOmC?=
- =?us-ascii?Q?JZJm+KRRBob3kpJwslL1u4RHkRQ+wNOU5cCoUyKHpI8JyaMlwvtCOVwb2Ze2?=
- =?us-ascii?Q?BAY8szN0+4j8ef59Z+dbmxIFnXo28E5ean9bjox+pRdRwvDTWx0fc1gZAc7i?=
- =?us-ascii?Q?tiq7lVTierUnELj/qnLtYBUek91/k/LXIZNEpi11e7zu54YTehvgv+ci8z/Z?=
- =?us-ascii?Q?BTUhOq/++fSWV5u+ZvYAfZ7ynutQGRdijkvHzxmtArpEJZf7F6c2l6boXca+?=
- =?us-ascii?Q?HimldZCvSpXjn1k4KytbjG49FNsVATJZ5zNmPopDWA+bX8+o9p+3zG2iekVi?=
- =?us-ascii?Q?Ba1UlUMe1WTdyGPZhVAxHUZIzda1074dcqPmourMV1dprAVk2POfUAts8yl4?=
- =?us-ascii?Q?JBNrVytIATrVSE/kzb/8LyXT?=
+	=?us-ascii?Q?GjWuYopEiTvORg574qeNhWQmW9mHr49E1b8RCCbgL1/NvqvHhYutv3svZc/X?=
+ =?us-ascii?Q?2R60anUGB9QTG8c1gIYH+tP1Aj4nHJwbJoKWI/IkqLWtSPX8TaheXXpHgbC5?=
+ =?us-ascii?Q?zFaBRd+at43dZr3EvziO3ewIzmDctx7dHt+BFsmXTHl4HHMk8bdLbPzHab1r?=
+ =?us-ascii?Q?CMAWZ1GWx8vJXmKn3IWooGdjp5X5YfwggPPLPCkNehjXlcB7cWHB3xbIT4kJ?=
+ =?us-ascii?Q?NV4Io0bJOOFRFtlJ0C+glUEVCUwB741OdrfMeEFNQVOzcsd+be+XI/zypJ+U?=
+ =?us-ascii?Q?Ym3an0GiYB3eOMXzwbgjIXmvEpm63tt2G6EsJbAcKq0irWtkDnDmIq7XjVaP?=
+ =?us-ascii?Q?kozkIj1cFKVraRZ2TB7GH8f7HJRWs9fkOyxOzBqImAweo5veq79Znb/i/sjo?=
+ =?us-ascii?Q?hbj+i0il2qB2MjGatfaT82XWm3nQigLuKt6G69J7N4luL7JZBfwyXJOp3/y5?=
+ =?us-ascii?Q?uIiXtoNFzI5p+FaDd4v7x/8WlBZyrxR8XFG0/p4zmfbQ6H2Bp5CEKyj5s6/T?=
+ =?us-ascii?Q?rV2g3sYFx/WR1B3zLWxFq/F4Z9UOKLK7MSEh7uritnoiga/OlgWeEuDzqN5y?=
+ =?us-ascii?Q?MgkQB63qB6n95zkWc0a4H+TKX/4ag54+DGMXGzU6eK2hKycHLqnSEb1YZVcZ?=
+ =?us-ascii?Q?2MjJxFyX8oOp06zjVa8Au8pbwTTaygqz1aVOQ1eSY1KzJfqWvf3fbJyZNr6+?=
+ =?us-ascii?Q?lOEDWxoVld+eYH7rh8W30aVIthUhcfzOEoyZZrDV4Uqae7Bsz2j2ZwbSh71K?=
+ =?us-ascii?Q?W3U+Jq7UXRW+DFD9DhH4jqXT8/1zWD8ex407U8fCQ/A12AkiDBPYYFCQLKlg?=
+ =?us-ascii?Q?P8mWeo/+5RvNRzOXn6OWUzK/sIOKHj1gvn6Q9E1FqWaX7r4jZ1sL3EBIIo9x?=
+ =?us-ascii?Q?pHO6XimrmCz+UjQ9D+eH0YRQkfOU4gz2D2GWOl9nzjuALO6HgeTVVUFZ3FkP?=
+ =?us-ascii?Q?47bKDu1SbZOxCH+M6V7L0sFjkuV10Hv0dfbziLqKufkbbWq6FTx41cNy1u1B?=
+ =?us-ascii?Q?zqlrh3nznZXEGmYeusl1myPJQVh3qgomRkjuxqmPN5jiphpQWVs/ioE7RvJI?=
+ =?us-ascii?Q?bf3swvUX/xNpGxzifAn3FAwq06RyPzqObUWbc7e7hbXQ/i8CBk88agHapYEv?=
+ =?us-ascii?Q?z1/S0oV6Nykll5y2wg8j/iVic7IkjE1axeeVX4EBjkaUPcYKnu9CSPK0txg8?=
+ =?us-ascii?Q?XgiFuSlrf9x/pbnEaYI/a5o9ZvEW1vLbOuGdwdPmgI0BhyQeSUNWVqdUWxWt?=
+ =?us-ascii?Q?VEuU9Ws6h0junwAXGy0ngnXnOnD46U8N60HfUuJmLxMJZ0lVUI/ytASKTq8q?=
+ =?us-ascii?Q?R84zYvCz23//JFoxfqbeA9p4?=
 X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 48d8b9e1-0aac-4e39-f050-08d958a9b91b
+X-MS-Exchange-CrossTenant-Network-Message-Id: 58041d3b-156d-432c-be9e-08d958a9ba11
 X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4867.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2021 07:13:43.0627
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2021 07:13:44.6776
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FzTjBKvYC+21mNgn8ctvN4d/v7l/q3BidE7u1SOtS8RSddkd7RGysW0kSkxNCwdUoFWYbVkhexZfY+6+sARATg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: LYwnWNkxbn0LAp7cdur47QYY+oMeo8Y+f2mpV5eGDdpl6r963TO0mPSON/QN+pg7fH+gdKIajAhfUSoxPycN/Q==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1421
-X-Proofpoint-ORIG-GUID: DHD7walC11F24vO6KjehZoJ1NyWRNcuK
-X-Proofpoint-GUID: DHD7walC11F24vO6KjehZoJ1NyWRNcuK
+X-Proofpoint-ORIG-GUID: ik6jazD266hSqCbh82_vM9-6kz9O-v6W
+X-Proofpoint-GUID: ik6jazD266hSqCbh82_vM9-6kz9O-v6W
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
  definitions=2021-08-06_02,2021-08-05_02,2020-04-07_01
@@ -120,349 +120,317 @@ X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorit
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-Refresh patches:
-  0001-openssh-8.6p1-fips.patch
-  0001-conditional-enable-fips-mode.patch
+This is the result of automated script conversion:
+poky/scripts/contrib/convert-overrides.py meta-openssl102-fips
+
+Converting the metadata to use ":" as the override character instead of "_".
 
 Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
 ---
- .../0001-conditional-enable-fips-mode.patch   | 38 +++++++------
- ...ps.patch => 0001-openssh-8.6p1-fips.patch} | 55 ++++++++++---------
- recipes-connectivity/openssh/openssh_fips.inc |  2 +-
- 3 files changed, 50 insertions(+), 45 deletions(-)
- rename recipes-connectivity/openssh/openssh/{0001-openssh-8.4p1-fips.patch => 0001-openssh-8.6p1-fips.patch} (92%)
+ README.build                                     |  8 ++++----
+ README.openssh_cavstest                          |  2 +-
+ classes/fips_kernel.bbclass                      |  4 ++--
+ classes/image-enable-fips.bbclass                |  2 +-
+ conf/layer.conf                                  |  4 ++--
+ .../openssh/openssh_8.%.bbappend                 |  2 +-
+ recipes-connectivity/openssh/openssh_fips.inc    | 16 ++++++++--------
+ .../openssl/openssl-fips-example_2.0.16.bb       |  6 +++---
+ .../openssl/openssl-fips_2.0.16.bb               |  6 +++---
+ .../openssl/openssl_1.0.2%.bbappend              |  2 +-
+ recipes-connectivity/openssl/openssl_fips.inc    |  8 ++++----
+ recipes-support/fipscheck/fipscheck_1.5.0.bb     |  6 +++---
+ recipes-support/rng-tools/rng-tools_6.%.bbappend |  2 +-
+ recipes-support/rng-tools/rng-tools_fips.inc     |  2 +-
+ 14 files changed, 35 insertions(+), 35 deletions(-)
 
-diff --git a/recipes-connectivity/openssh/openssh/0001-conditional-enable-fips-mode.patch b/recipes-connectivity/openssh/openssh/0001-conditional-enable-fips-mode.patch
-index 9fd19c0..9bec7d7 100644
---- a/recipes-connectivity/openssh/openssh/0001-conditional-enable-fips-mode.patch
-+++ b/recipes-connectivity/openssh/openssh/0001-conditional-enable-fips-mode.patch
+diff --git a/README.build b/README.build
+index 36e3875..b675686 100644
+--- a/README.build
++++ b/README.build
+@@ -44,7 +44,7 @@ to image [3]
+ [2] git://git.yoctoproject.org/meta-openssl102
+     Manually set 1.0.2% to openssl preferred version
+     echo "PREFERRED_VERSION_openssl = '1.0.2%'" >> conf/local.conf
+-[3] echo "IMAGE_INSTALL_append = ' packagegroup-core-buildessential'" >> conf/local.conf
++[3] echo "IMAGE_INSTALL:append = ' packagegroup-core-buildessential'" >> conf/local.conf
+ 
+ The easiest way to do this with Wind River Linux is include:
+ 
+@@ -56,7 +56,7 @@ Additionally you will need a way to get the openssl-fips module source to
+ the target for the build.  Adding ssh/scp is recommended, to add these
+ add the following to your local.conf file:
+ 
+-    IMAGE_INSTALL_append = " openssh-ssh openssh-scp"
++    IMAGE_INSTALL:append = " openssh-ssh openssh-scp"
+ 
+ If you are building with configurations that have security software enabled,
+ such as SE Linux, you may be required to boot in a non-enforcing mode to
+@@ -132,7 +132,7 @@ Building Steps (based on section 4 of the UsersGuide-2.0.pdf):
+     prebuilt tar archive.
+ 
+     For Yocto, in your build directory, edit conf/local.conf, add:
+-      IMAGE_INSTALL_append = " openssl-fips-dev"
++      IMAGE_INSTALL:append = " openssl-fips-dev"
+       OPENSSL_FIPS_ENABLED = "1"
+       OPENSSL_FIPS_PREBUILT = "<path>"
+ 
+@@ -230,7 +230,7 @@ program, and embed the fingerprint.
+ 
+ On host:
+ edit local.conf to add openssl-fips-example to image
+-$ echo 'IMAGE_INSTALL_append = " openssl-fips-example"' >> conf/local.conf
++$ echo 'IMAGE_INSTALL:append = " openssl-fips-example"' >> conf/local.conf
+ $ bitbake <image>
+ 
+ On target:
+diff --git a/README.openssh_cavstest b/README.openssh_cavstest
+index 2c31209..975a782 100644
+--- a/README.openssh_cavstest
++++ b/README.openssh_cavstest
+@@ -1,5 +1,5 @@
+ 1. Install openssh-cavs to images
+-$ echo "IMAGE_INSTALL_append = ' openssh-cavs'" >> conf/local.conf
++$ echo "IMAGE_INSTALL:append = ' openssh-cavs'" >> conf/local.conf
+ $ bitbake <image>
+ 
+ 2. Run tests on target
+diff --git a/classes/fips_kernel.bbclass b/classes/fips_kernel.bbclass
+index 064088f..1a2525d 100644
+--- a/classes/fips_kernel.bbclass
++++ b/classes/fips_kernel.bbclass
 @@ -1,4 +1,4 @@
--From 48888de317391522186c6ae24a8d6d7d7add2673 Mon Sep 17 00:00:00 2001
-+From 1696484c2a06e2ec095d748d2155eb8206dd850b Mon Sep 17 00:00:00 2001
- From: Hongxu Jia <hongxu.jia@windriver.com>
- Date: Sat, 21 Dec 2019 13:03:23 +0800
- Subject: [PATCH] conditional enable fips mode
-@@ -14,11 +14,12 @@ The ssh_malloc_init function is removed in openssh 8.1p1, we need to
- insert ssh_enable_fips_mode function to main function for all
- applications.
+-FILESEXTRAPATHS_prepend := "${LAYER_PATH_meta-openssl-one-zero-two-fips}/recipes-kernel/linux/files/:"
+-SRC_URI_append = " \
++FILESEXTRAPATHS:prepend := "${LAYER_PATH_meta-openssl-one-zero-two-fips}/recipes-kernel/linux/files/:"
++SRC_URI:append = " \
+     file://crypto_fips.scc \
+ "
+diff --git a/classes/image-enable-fips.bbclass b/classes/image-enable-fips.bbclass
+index fcb5a40..5792883 100644
+--- a/classes/image-enable-fips.bbclass
++++ b/classes/image-enable-fips.bbclass
+@@ -1,4 +1,4 @@
+-ROOTFS_POSTPROCESS_COMMAND_append = " enable_system_fips;"
++ROOTFS_POSTPROCESS_COMMAND:append = " enable_system_fips;"
  
-+Rebase to 8.6p1
- Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
- ---
-  sftp-server-main.c  |  1 +
-  sftp-server.c       |  1 +
-- sftp.c              |  1 +
-+ sftp.c              |  2 ++
-  ssh-add.c           |  1 +
-  ssh-agent.c         |  1 +
-  ssh-keygen.c        |  1 +
-@@ -29,7 +30,7 @@ Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-  sshd.c              |  1 +
-  xmalloc.c           | 20 ++++++++++++++++++++
-  xmalloc.h           |  1 +
-- 13 files changed, 32 insertions(+)
-+ 13 files changed, 33 insertions(+)
+ enable_system_fips() {
+     install -d ${IMAGE_ROOTFS}${sysconfdir}
+diff --git a/conf/layer.conf b/conf/layer.conf
+index fc1dcbd..e9ac874 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -18,8 +18,8 @@ LAYERDEPENDS_meta-openssl-one-zero-two-fips = " \
+         meta-openssl-one-zero-two \
+ "
  
- diff --git a/sftp-server-main.c b/sftp-server-main.c
- index 06566d3..a10566d 100644
-@@ -44,10 +45,10 @@ index 06566d3..a10566d 100644
-  	sanitise_stdfd();
-  
- diff --git a/sftp-server.c b/sftp-server.c
--index 7300900..42da9d7 100644
-+index 838f048..8a8d87b 100644
- --- a/sftp-server.c
- +++ b/sftp-server.c
--@@ -1616,6 +1616,7 @@ sftp_server_main(int argc, char **argv, struct passwd *user_pw)
-+@@ -1656,6 +1656,7 @@ sftp_server_main(int argc, char **argv, struct passwd *user_pw)
-  	extern char *optarg;
-  	extern char *__progname;
-  
-@@ -56,19 +57,20 @@ index 7300900..42da9d7 100644
-  	log_init(__progname, log_level, log_facility, log_stderr);
-  
- diff --git a/sftp.c b/sftp.c
--index fb3c08d..85b9b67 100644
-+index 3f46c55..e9c8f1d 100644
- --- a/sftp.c
- +++ b/sftp.c
--@@ -2345,6 +2345,7 @@ main(int argc, char **argv)
-- 	size_t num_requests = DEFAULT_NUM_REQUESTS;
-+@@ -2342,6 +2342,8 @@ main(int argc, char **argv)
-+ 	size_t num_requests = 0;
-  	long long limit_kbps = 0;
-  
- +	ssh_enable_fips_mode();
-++
-  	/* Ensure that fds 0, 1 and 2 are open or directed to /dev/null */
-  	sanitise_stdfd();
-  	msetlocale();
- diff --git a/ssh-add.c b/ssh-add.c
--index 7edb9f9..c75f85b 100644
-+index 92192fc..4ed14cd 100644
- --- a/ssh-add.c
- +++ b/ssh-add.c
- @@ -667,6 +667,7 @@ main(int argc, char **argv)
-@@ -80,7 +82,7 @@ index 7edb9f9..c75f85b 100644
-  	sanitise_stdfd();
-  
- diff --git a/ssh-agent.c b/ssh-agent.c
--index 58fe6dd..9018a7c 100644
-+index 48a47d4..8a0d7a2 100644
- --- a/ssh-agent.c
- +++ b/ssh-agent.c
- @@ -1388,6 +1388,7 @@ main(int ac, char **av)
-@@ -92,7 +94,7 @@ index 58fe6dd..9018a7c 100644
-  	sanitise_stdfd();
-  
- diff --git a/ssh-keygen.c b/ssh-keygen.c
--index 6451584..246caa1 100644
-+index fc73943..cdb45a9 100644
- --- a/ssh-keygen.c
- +++ b/ssh-keygen.c
- @@ -3153,6 +3153,7 @@ main(int argc, char **argv)
-@@ -140,7 +142,7 @@ index a9a6fe3..3c76f70 100644
-  	seed_rng();
-  	TAILQ_INIT(&pkcs11_keylist);
- diff --git a/ssh.c b/ssh.c
--index 729d87a..ab78b53 100644
-+index a6e7642..8f91534 100644
- --- a/ssh.c
- +++ b/ssh.c
- @@ -650,6 +650,7 @@ main(int ac, char **av)
-@@ -152,10 +154,10 @@ index 729d87a..ab78b53 100644
-  	sanitise_stdfd();
-  
- diff --git a/sshd.c b/sshd.c
--index fee4703..07faf7b 100644
-+index b2ab001..8112d2c 100644
- --- a/sshd.c
- +++ b/sshd.c
--@@ -1534,6 +1534,7 @@ main(int ac, char **av)
-+@@ -1535,6 +1535,7 @@ main(int ac, char **av)
-  	Authctxt *authctxt;
-  	struct connection_info *connection_info = NULL;
-  
-@@ -199,13 +201,13 @@ index b48d33b..456a063 100644
- +    }
- +}
- diff --git a/xmalloc.h b/xmalloc.h
--index abaf7ad..b3b1c8c 100644
-+index a6b8d23..18fe756 100644
- --- a/xmalloc.h
- +++ b/xmalloc.h
--@@ -26,3 +26,4 @@ int	 xasprintf(char **, const char *, ...)
--                 __attribute__((__nonnull__ (2)));
-+@@ -25,3 +25,4 @@ int	 xasprintf(char **, const char *, ...)
-+     __attribute__((__format__ (printf, 2, 3))) __attribute__((__nonnull__ (2)));
-  int	 xvasprintf(char **, const char *, va_list)
-- 		__attribute__((__nonnull__ (2)));
-+     __attribute__((__nonnull__ (2)));
- +void	ssh_enable_fips_mode(void);
- -- 
- 2.17.1
-diff --git a/recipes-connectivity/openssh/openssh/0001-openssh-8.4p1-fips.patch b/recipes-connectivity/openssh/openssh/0001-openssh-8.6p1-fips.patch
-similarity index 92%
-rename from recipes-connectivity/openssh/openssh/0001-openssh-8.4p1-fips.patch
-rename to recipes-connectivity/openssh/openssh/0001-openssh-8.6p1-fips.patch
-index 10687ff..ff1b5dc 100644
---- a/recipes-connectivity/openssh/openssh/0001-openssh-8.4p1-fips.patch
-+++ b/recipes-connectivity/openssh/openssh/0001-openssh-8.6p1-fips.patch
-@@ -1,7 +1,7 @@
--From 0452f9dc4acf90b8d7ac6ddf6ebbe455d202ce54 Mon Sep 17 00:00:00 2001
-+From 064c5cafa532166058a5cc694c4398ed2aaae8d1 Mon Sep 17 00:00:00 2001
- From: Hongxu Jia <hongxu.jia@windriver.com>
- Date: Sat, 21 Dec 2019 11:45:38 +0800
--Subject: [PATCH] openssh 8.4p1 fips
-+Subject: [PATCH] openssh 8.6p1 fips
+-IMAGE_CLASSES_append = "${@'' if d.getVar('OPENSSL_FIPS_ENABLED', True) != '1' else ' image-enable-fips'}"
++IMAGE_CLASSES:append = "${@'' if d.getVar('OPENSSL_FIPS_ENABLED', True) != '1' else ' image-enable-fips'}"
  
- Port openssh-7.7p1-fips.patch from Fedora
- https://src.fedoraproject.org/rpms/openssh.git
-@@ -19,6 +19,9 @@ Port openssh-7.7p1-fips.patch from Fedora
- https://src.fedoraproject.org/rpms/openssh.git
- (commit: fbd5f1bee2e2cdc7b1b47f4604b8347d8c3ed63f)
+ LAYER_PATH_meta-openssl-one-zero-two-fips = "${LAYERDIR}"
  
-+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-+
-+Rebase to 8.6p1
- Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
- ---
-  Makefile.in              | 14 +++++++-------
-@@ -38,10 +41,10 @@ Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-  14 files changed, 171 insertions(+), 20 deletions(-)
+-KERNEL_CLASSES_append = " ${@bb.utils.contains('OPENSSL_FIPS_ENABLED', '1', ' fips_kernel', '',d)}"
++KERNEL_CLASSES:append = " ${@bb.utils.contains('OPENSSL_FIPS_ENABLED', '1', ' fips_kernel', '',d)}"
+diff --git a/recipes-connectivity/openssh/openssh_8.%.bbappend b/recipes-connectivity/openssh/openssh_8.%.bbappend
+index 07799f6..a2e3aca 100644
+--- a/recipes-connectivity/openssh/openssh_8.%.bbappend
++++ b/recipes-connectivity/openssh/openssh_8.%.bbappend
+@@ -1,4 +1,4 @@
+ FIPSINC = ""
+-FIPSINC_class-target = "${@'' if d.getVar('OPENSSL_FIPS_ENABLED', True) != '1' else 'openssh_fips.inc'}"
++FIPSINC:class-target = "${@'' if d.getVar('OPENSSL_FIPS_ENABLED', True) != '1' else 'openssh_fips.inc'}"
  
- diff --git a/Makefile.in b/Makefile.in
--index e3cd296..bf53fb0 100644
-+index b749206..ee58570 100644
- --- a/Makefile.in
- +++ b/Makefile.in
--@@ -204,25 +204,25 @@ libssh.a: $(LIBSSH_OBJS)
-+@@ -205,25 +205,25 @@ libssh.a: $(LIBSSH_OBJS)
-  	$(RANLIB) $@
-  
-  ssh$(EXEEXT): $(LIBCOMPAT) libssh.a $(SSHOBJS)
-@@ -73,7 +76,7 @@ index e3cd296..bf53fb0 100644
-  
-  ssh-pkcs11-helper$(EXEEXT): $(LIBCOMPAT) libssh.a $(P11HELPER_OBJS)
-  	$(LD) -o $@ $(P11HELPER_OBJS) $(LDFLAGS) -lssh -lopenbsd-compat -lssh -lopenbsd-compat $(LIBS)
--@@ -231,7 +231,7 @@ ssh-sk-helper$(EXEEXT): $(LIBCOMPAT) libssh.a $(SKHELPER_OBJS)
-+@@ -232,7 +232,7 @@ ssh-sk-helper$(EXEEXT): $(LIBCOMPAT) libssh.a $(SKHELPER_OBJS)
-  	$(LD) -o $@ $(SKHELPER_OBJS) $(LDFLAGS) -lssh -lopenbsd-compat -lssh -lopenbsd-compat $(LIBS) $(LIBFIDO2)
-  
-  ssh-keyscan$(EXEEXT): $(LIBCOMPAT) libssh.a $(SSHKEYSCAN_OBJS)
-@@ -97,10 +100,10 @@ index 32771f2..74fac3b 100644
-  	return (&aes_ctr);
-  }
- diff --git a/dh.c b/dh.c
--index b5bb35e..676f893 100644
-+index ce2eb47..c038961 100644
- --- a/dh.c
- +++ b/dh.c
--@@ -152,6 +152,12 @@ choose_dh(int min, int wantbits, int max)
-+@@ -164,6 +164,12 @@ choose_dh(int min, int wantbits, int max)
-  	int best, bestcount, which, linenum;
-  	struct dhgroup dhg;
-  
-@@ -110,10 +113,10 @@ index b5bb35e..676f893 100644
- +		return (dh_new_group_fallback(max));
- +	}
- +
-- 	if ((f = fopen(_PATH_DH_MODULI, "r")) == NULL) {
-+ 	if ((f = fopen(get_moduli_filename(), "r")) == NULL) {
-  		logit("WARNING: could not open %s (%s), using fixed modulus",
-- 		    _PATH_DH_MODULI, strerror(errno));
--@@ -489,4 +495,38 @@ dh_estimate(int bits)
-+ 		    get_moduli_filename(), strerror(errno));
-+@@ -502,4 +508,38 @@ dh_estimate(int bits)
-  	return 8192;
-  }
-  
-@@ -153,7 +156,7 @@ index b5bb35e..676f893 100644
- +
-  #endif /* WITH_OPENSSL */
- diff --git a/dh.h b/dh.h
--index 5d6df62..54c7aa2 100644
-+index c6326a3..e51e292 100644
- --- a/dh.h
- +++ b/dh.h
- @@ -45,6 +45,7 @@ DH	*dh_new_group_fallback(int);
-@@ -163,9 +166,9 @@ index 5d6df62..54c7aa2 100644
- +int	 dh_is_known_group(const DH *);
-  
-  u_int	 dh_estimate(int);
-- 
-+ void	 dh_set_moduli_file(const char *);
- diff --git a/kex.c b/kex.c
--index 30425ab..1250f42 100644
-+index 709a0ec..c4ac65f 100644
- --- a/kex.c
- +++ b/kex.c
- @@ -165,7 +165,10 @@ kex_names_valid(const char *names)
-@@ -257,7 +260,7 @@ index f03b7df..57b8779 100644
-  #define	SSH_ALLOWED_CA_SIGALGS	\
-  	"ssh-ed25519," \
- diff --git a/readconf.c b/readconf.c
--index 724974b..870a654 100644
-+index 0f27652..6311bd1 100644
- --- a/readconf.c
- +++ b/readconf.c
- @@ -2475,11 +2475,16 @@ fill_default_options(Options * options)
-@@ -283,10 +286,10 @@ index 724974b..870a654 100644
-  	do { \
-  		if ((r = kex_assemble_names(&options->what, \
- diff --git a/sandbox-seccomp-filter.c b/sandbox-seccomp-filter.c
--index d8dc712..c6e62e4 100644
-+index 798b24b..bbc2380 100644
- --- a/sandbox-seccomp-filter.c
- +++ b/sandbox-seccomp-filter.c
--@@ -157,6 +157,9 @@ static const struct sock_filter preauth_insns[] = {
-+@@ -160,6 +160,9 @@ static const struct sock_filter preauth_insns[] = {
-  #ifdef __NR_open
-  	SC_DENY(__NR_open, EACCES),
-  #endif
-@@ -297,7 +300,7 @@ index d8dc712..c6e62e4 100644
-  	SC_DENY(__NR_openat, EACCES),
-  #endif
- diff --git a/servconf.c b/servconf.c
--index 9695583..98f6303 100644
-+index 4d1910f..4502fef 100644
- --- a/servconf.c
- +++ b/servconf.c
- @@ -218,11 +218,16 @@ assemble_algorithms(ServerOptions *o)
-@@ -323,7 +326,7 @@ index 9695583..98f6303 100644
-  	do { \
-  		if ((r = kex_assemble_names(&o->what, defaults, all)) != 0) \
- diff --git a/ssh-keygen.c b/ssh-keygen.c
--index cfb5f11..6451584 100644
-+index 027c6db..fc73943 100644
- --- a/ssh-keygen.c
- +++ b/ssh-keygen.c
- @@ -205,6 +205,12 @@ type_bits_valid(int type, const char *name, u_int32_t *bitsp)
-@@ -359,7 +362,7 @@ index cfb5f11..6451584 100644
-  			error("Could not save your private key in %s: %s",
-  			    prv_tmp, strerror(errno));
- diff --git a/ssh.c b/ssh.c
--index 53330da..729d87a 100644
-+index 35b6b51..a6e7642 100644
- --- a/ssh.c
- +++ b/ssh.c
- @@ -77,6 +77,8 @@
-@@ -400,7 +403,7 @@ index 53330da..729d87a 100644
-  	if (options.sk_provider != NULL && *options.sk_provider == '$' &&
-  	    strlen(options.sk_provider) > 1) {
- diff --git a/sshd.c b/sshd.c
--index eff4778..fee4703 100644
-+index 8918eb2..b2ab001 100644
- --- a/sshd.c
- +++ b/sshd.c
- @@ -66,6 +66,7 @@
-@@ -420,7 +423,7 @@ index eff4778..fee4703 100644
-  #include "openbsd-compat/openssl-compat.h"
-  #endif
-  
--@@ -1536,6 +1539,18 @@ main(int ac, char **av)
-+@@ -1537,6 +1540,18 @@ main(int ac, char **av)
-  #endif
-  	__progname = ssh_get_progname(av[0]);
-  
-@@ -439,7 +442,7 @@ index eff4778..fee4703 100644
-  	/* Save argv. Duplicate so setproctitle emulation doesn't clobber it */
-  	saved_argc = ac;
-  	rexec_argc = ac;
--@@ -2017,6 +2032,10 @@ main(int ac, char **av)
-+@@ -2023,6 +2038,10 @@ main(int ac, char **av)
-  	/* Reinitialize the log (because of the fork above). */
-  	log_init(__progname, options.log_level, options.log_facility, log_stderr);
-  
-@@ -447,11 +450,11 @@ index eff4778..fee4703 100644
- +		logit("FIPS mode initialized");
- +	}
- +
-- 	/* Chdir to the root directory so that the current disk can be
-- 	   unmounted if desired. */
-- 	if (chdir("/") == -1)
-+ 	/*
-+ 	 * Chdir to the root directory so that the current disk can be
-+ 	 * unmounted if desired.
- diff --git a/sshkey.c b/sshkey.c
--index b25c59a..8fcfe22 100644
-+index e92709d..5bd4fa9 100644
- --- a/sshkey.c
- +++ b/sshkey.c
- @@ -34,6 +34,7 @@
+ require ${FIPSINC}
 diff --git a/recipes-connectivity/openssh/openssh_fips.inc b/recipes-connectivity/openssh/openssh_fips.inc
-index 194a6f4..efba8db 100644
+index efba8db..b13e06e 100644
 --- a/recipes-connectivity/openssh/openssh_fips.inc
 +++ b/recipes-connectivity/openssh/openssh_fips.inc
-@@ -6,7 +6,7 @@ DEPENDS += " \
- RRECOMMENDS_${PN}-sshd_remove = "rng-tools"
+@@ -1,9 +1,9 @@
+-FILESEXTRAPATHS_prepend := "${THISDIR}/openssh:"
++FILESEXTRAPATHS:prepend := "${THISDIR}/openssh:"
+ DEPENDS += " \
+     openssl-fips \
+     fipscheck \
+ "
+-RRECOMMENDS_${PN}-sshd_remove = "rng-tools"
++RRECOMMENDS:${PN}-sshd:remove = "rng-tools"
  
  SRC_URI += " \
--    file://0001-openssh-8.4p1-fips.patch \
-+    file://0001-openssh-8.6p1-fips.patch \
-     file://0001-conditional-enable-fips-mode.patch \
-     file://openssh-6.6p1-ctr-cavstest.patch \
-     file://openssh-6.7p1-kdf-cavs.patch \
+     file://0001-openssh-8.6p1-fips.patch \
+@@ -14,13 +14,13 @@ SRC_URI += " \
+     file://0001-ssh-cavs-set-kex-sessin_id-via-sshbuf_put.patch \
+ "
+ 
+-do_install_append() {
++do_install:append() {
+     install -d ${D}${libdir}/fipscheck
+ }
+ 
+ inherit qemu
+ 
+-pkg_postinst_append_${PN}-ssh () {
++pkg_postinst:append:${PN}-ssh () {
+     if [ -n "$D" ]; then
+         if ${@bb.utils.contains('MACHINE_FEATURES', 'qemu-usermode', 'true','false', d)}; then
+             ${@qemu_run_binary(d, '$D', '${bindir}/fipshmac')} \
+@@ -33,7 +33,7 @@ pkg_postinst_append_${PN}-ssh () {
+     fi
+ }
+ 
+-pkg_postinst_append_${PN}-sshd () {
++pkg_postinst:append:${PN}-sshd () {
+     if [ -n "$D" ]; then
+         if ${@bb.utils.contains('MACHINE_FEATURES', 'qemu-usermode', 'true','false', d)}; then
+             ${@qemu_run_binary(d, '$D', '${bindir}/fipshmac')} \
+@@ -47,10 +47,10 @@ pkg_postinst_append_${PN}-sshd () {
+ }
+ 
+ PACKAGES =+ "${PN}-cavs"
+-SUMMARY_${PN}-cavs = "CAVS tests for FIPS validation"
+-FILES_${PN}-cavs = " \
++SUMMARY:${PN}-cavs = "CAVS tests for FIPS validation"
++FILES:${PN}-cavs = " \
+     ${libexecdir}/ctr-cavstest \
+     ${libexecdir}/ssh-cavs \
+     ${libexecdir}/ssh-cavs_driver.pl"
+ 
+-FILES_${PN} += "${libdir}/fipscheck"
++FILES:${PN} += "${libdir}/fipscheck"
+diff --git a/recipes-connectivity/openssl/openssl-fips-example_2.0.16.bb b/recipes-connectivity/openssl/openssl-fips-example_2.0.16.bb
+index 1a720cd..c6d069f 100644
+--- a/recipes-connectivity/openssl/openssl-fips-example_2.0.16.bb
++++ b/recipes-connectivity/openssl/openssl-fips-example_2.0.16.bb
+@@ -19,14 +19,14 @@ DEPENDS = " \
+    openssl \
+ "
+ 
+-RDEPENDS_${PN} = " \
++RDEPENDS:${PN} = " \
+    openssl-fips-dev \
+    openssl-dev \
+    openssl-staticdev \
+    packagegroup-core-buildessential \
+ "
+ 
+-FILES_${PN} += "${libdir}/ssl/fips-2.0/test"
++FILES:${PN} += "${libdir}/ssl/fips-2.0/test"
+ 
+ do_configure[noexec] = "1"
+ 
+@@ -47,7 +47,7 @@ do_install() {
+     sed -i "s:@LIBDIR@:${libdir}:g" ${D}/${libdir}/ssl/fips-2.0/test/Makefile
+ }
+ 
+-INSANE_SKIP_${PN} += "dev-deps"
++INSANE_SKIP:${PN} += "dev-deps"
+ 
+ python __anonymous() {
+     if d.getVar("OPENSSL_FIPS_ENABLED", True) != "1":
+diff --git a/recipes-connectivity/openssl/openssl-fips_2.0.16.bb b/recipes-connectivity/openssl/openssl-fips_2.0.16.bb
+index b7cb34b..7a2949a 100644
+--- a/recipes-connectivity/openssl/openssl-fips_2.0.16.bb
++++ b/recipes-connectivity/openssl/openssl-fips_2.0.16.bb
+@@ -11,7 +11,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=f9a8f968107345e0b75aa8c2ecaa7ec8"
+ # Set "OPENSSL_FIPS_PREBUILT" to the location of the prebuilt
+ # openssl-fips-TARGET_ARCH-install.tar.bz2 files.
+ #
+-FILESEXTRAPATHS_prepend := "${OPENSSL_FIPS_PREBUILT}:"
++FILESEXTRAPATHS:prepend := "${OPENSSL_FIPS_PREBUILT}:"
+ 
+ PREBUILT_OPENSSL_FIPS = "openssl-fips-${PV}-${TARGET_ARCH}-install.tar.bz2"
+ 
+@@ -20,8 +20,8 @@ SRC_URI = "file://${PREBUILT_OPENSSL_FIPS} \
+ "
+ S = "${WORKDIR}"
+ 
+-RDEPENDS_${PN}-dev = ""
+-FILES_${PN}-dev += "${bindir}/fipsld ${libdir}/ssl/fips-2.0"
++RDEPENDS:${PN}-dev = ""
++FILES:${PN}-dev += "${bindir}/fipsld ${libdir}/ssl/fips-2.0"
+ 
+ INHIBIT_PACKAGE_DEBUG_SPLIT = '1'
+ INHIBIT_PACKAGE_STRIP = '1'
+diff --git a/recipes-connectivity/openssl/openssl_1.0.2%.bbappend b/recipes-connectivity/openssl/openssl_1.0.2%.bbappend
+index 517f1c2..41a7302 100644
+--- a/recipes-connectivity/openssl/openssl_1.0.2%.bbappend
++++ b/recipes-connectivity/openssl/openssl_1.0.2%.bbappend
+@@ -1,4 +1,4 @@
+ FIPSINC = ""
+-FIPSINC_class-target = "${@'' if d.getVar('OPENSSL_FIPS_ENABLED', True) != '1' else 'openssl_fips.inc'}"
++FIPSINC:class-target = "${@'' if d.getVar('OPENSSL_FIPS_ENABLED', True) != '1' else 'openssl_fips.inc'}"
+ 
+ require ${FIPSINC}
+diff --git a/recipes-connectivity/openssl/openssl_fips.inc b/recipes-connectivity/openssl/openssl_fips.inc
+index 5480096..9ae23cd 100644
+--- a/recipes-connectivity/openssl/openssl_fips.inc
++++ b/recipes-connectivity/openssl/openssl_fips.inc
+@@ -1,11 +1,11 @@
+-PACKAGECONFIG_append = " fips"
++PACKAGECONFIG:append = " fips"
+ 
+ PACKAGECONFIG[fips] = "fips --with-fipsdir=${STAGING_DIR_TARGET}${libdir}/ssl/fips-2.0,,openssl-fips,,"
+ 
+-FILESEXTRAPATHS_prepend := "${THISDIR}/openssl:"
++FILESEXTRAPATHS:prepend := "${THISDIR}/openssl:"
+ 
+ # This adds the necessary symbols if fips is enabled.
+-SRC_URI_append = " file://openssl-fips-version.patch \
++SRC_URI:append = " file://openssl-fips-version.patch \
+                    file://0001-make-fips_premain_dso-support-cross-compiling.patch \
+ "
+ 
+@@ -14,7 +14,7 @@ DEPENDS += "qemu-native"
+ inherit qemu
+ 
+ # We need to run the special fips_premain_dso under QEMU
+-do_compile_prepend() {
++do_compile:prepend() {
+     qemu_binary="${@qemu_wrapper_cmdline(d, '${STAGING_DIR_HOST}', ['${STAGING_LIBDIR}','${STAGING_BASELIBDIR}'])}"
+     cat << EOF > fips_premain_dso
+ #! /bin/sh
+diff --git a/recipes-support/fipscheck/fipscheck_1.5.0.bb b/recipes-support/fipscheck/fipscheck_1.5.0.bb
+index 970640d..df72454 100644
+--- a/recipes-support/fipscheck/fipscheck_1.5.0.bb
++++ b/recipes-support/fipscheck/fipscheck_1.5.0.bb
+@@ -27,13 +27,13 @@ EXTRA_OECONF += " \
+ EXTRA_OEMAKE += " \
+     -I${STAGING_LIBDIR_NATIVE}/ssl/fips-2.0/include \
+ "
+-do_install_append() {
++do_install:append() {
+     install -d ${D}${libdir}/fipscheck
+ }
+ 
+ inherit qemu
+ 
+-pkg_postinst_${PN} () {
++pkg_postinst:${PN} () {
+     if [ -n "$D" ]; then
+         if ${@bb.utils.contains('MACHINE_FEATURES', 'qemu-usermode', 'true','false', d)}; then
+             ${@qemu_run_binary(d, '$D', '${bindir}/fipshmac')} \
+@@ -54,4 +54,4 @@ python __anonymous() {
+         raise bb.parse.SkipPackage("To enable the fipscheck recipe set OPENSSL_FIPS_ENABLED = '1'.")
+ }
+ 
+-FILES_${PN} += "${libdir}/fipscheck"
++FILES:${PN} += "${libdir}/fipscheck"
+diff --git a/recipes-support/rng-tools/rng-tools_6.%.bbappend b/recipes-support/rng-tools/rng-tools_6.%.bbappend
+index c487175..7eeaecb 100644
+--- a/recipes-support/rng-tools/rng-tools_6.%.bbappend
++++ b/recipes-support/rng-tools/rng-tools_6.%.bbappend
+@@ -1,4 +1,4 @@
+ FIPSINC = ""
+-FIPSINC_class-target = "${@'' if d.getVar('OPENSSL_FIPS_ENABLED', True) != '1' else 'rng-tools_fips.inc'}"
++FIPSINC:class-target = "${@'' if d.getVar('OPENSSL_FIPS_ENABLED', True) != '1' else 'rng-tools_fips.inc'}"
+ 
+ require ${FIPSINC}
+diff --git a/recipes-support/rng-tools/rng-tools_fips.inc b/recipes-support/rng-tools/rng-tools_fips.inc
+index d5f6435..e3b89ca 100644
+--- a/recipes-support/rng-tools/rng-tools_fips.inc
++++ b/recipes-support/rng-tools/rng-tools_fips.inc
+@@ -1,2 +1,2 @@
+-FILESEXTRAPATHS_prepend := "${THISDIR}/rng-tools:"
++FILESEXTRAPATHS:prepend := "${THISDIR}/rng-tools:"
+ 
 -- 
 2.25.1
 
