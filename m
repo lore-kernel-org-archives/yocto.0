@@ -1,50 +1,76 @@
-Received: from kernel.crashing.org (kernel.crashing.org [76.164.61.194])
- by mx.groups.io with SMTP id smtpd.web10.5457.1628260417886206384
+Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
+ by mx.groups.io with SMTP id smtpd.web10.7519.1628269008021973905
  for <yocto@lists.yoctoproject.org>;
- Fri, 06 Aug 2021 07:33:38 -0700
+ Fri, 06 Aug 2021 09:56:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=permerror, err=syntax error for token:  (domain: kernel.crashing.org, ip: 76.164.61.194, mailfrom: mark.hatle@kernel.crashing.org)
-Received: from Marks-MacBook-Pro-16.local ([76.164.61.198])
-	(authenticated bits=0)
-	by kernel.crashing.org (8.14.7/8.14.7) with ESMTP id 176EXZ6t019894
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO);
-	Fri, 6 Aug 2021 09:33:36 -0500
-Subject: Re: [meta-openssl102][PATCH 1/2] layer.conf: add honister to LAYERSERIES_COMPAT
-To: Yi Zhao <yi.zhao@windriver.com>, yocto@lists.yoctoproject.org
-References: <20210806070934.413792-1-yi.zhao@windriver.com>
-From: "Mark Hatle" <mark.hatle@kernel.crashing.org>
-Message-ID: <63a6d0d9-84f8-e533-34ca-94e9a27f2939@kernel.crashing.org>
-Date: Fri, 6 Aug 2021 09:33:34 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.12.0
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=T7sk6QXL;
+ spf=pass (domain: gmail.com, ip: 209.85.219.45, mailfrom: twoerner@gmail.com)
+Received: by mail-qv1-f45.google.com with SMTP id js7so5239723qvb.4
+        for <yocto@lists.yoctoproject.org>; Fri, 06 Aug 2021 09:56:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ScSxnsJqAeUWj4g9nsilvzU7rNbjYzmyGMfyqI8lnfk=;
+        b=T7sk6QXLro9UoLN6xj90PZSlUcUgwmVbDajqgPJOWgaGKENzwBTgdWCbT6un8Ik/Pd
+         AcQEgIzLP0pyP2pKYcr+uVEImP0KoPX5DYOQgYmo/qwz4EhHFrVWuSp1ufKg4bjg9TiH
+         P05x45T/upXDMXIZQc5tpIsuWwBKvBBmqjyfr9JCE/HlvS9FbIy4rod6GPcOpD1+8pnm
+         xGR+CyoDPOh5aFahIbJp8/0G6LIAWYHPWWYOvNes+0SydHcbE2fcnFNSeyEVWU0ibOOX
+         sjqmD9DwIPaYntaRBDp1QPR3d3gdO4OE+mvMvayYLUAoYi//u6fToFXOgGecIBr//KOi
+         vyXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ScSxnsJqAeUWj4g9nsilvzU7rNbjYzmyGMfyqI8lnfk=;
+        b=nnJZuBfIS5pSwF6J/1PStFGeOPZF4CiNdvwGHaD/X0At3iAdLzltdjRvP9Hi3aEWww
+         a+xhFmCRXauUl7Pc6Mepg5+PW2ArFnuMjw+2v/B8qtOPeqjQ6Ut2KHsBSpik1oTmui0u
+         QeHxmfTkYKajYdlu1Wdl8xXE1Bp0l/SddzqJ+4gb30WNMrjx4T0LMIJkvVGRuS0Mzv1I
+         bbkLeDCNIOly9y+Y3SfyIQJ7XUYj78WRoLzAu+6R01N49J2eaKTNunZ1EogDYfMrY/zf
+         Df2sLiK9ZNCcWqUDOwFgbRSX5OqHal6ToLbEHQo18WluQJRMac384KmJs66o5f4Abshb
+         tXkg==
+X-Gm-Message-State: AOAM532soqQvi26ucQNwUV0lCM1zQtqxmzhg+2UNm3hxLRweKjAQcriP
+	xWt1FdrZTJXNJijjwdxUMhBozG5Raww=
+X-Google-Smtp-Source: ABdhPJzgxV8oiz/Bw7J5+mFQxy3AXeBc9xSEds9a6uYw2AJsBsS25L+PuVNMkxU6ouCG49yMl9VFJA==
+X-Received: by 2002:a05:6214:301d:: with SMTP id ke29mr916950qvb.30.1628269006902;
+        Fri, 06 Aug 2021 09:56:46 -0700 (PDT)
+Return-Path: <twoerner@gmail.com>
+Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id z6sm1056038qkl.72.2021.08.06.09.56.46
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Aug 2021 09:56:46 -0700 (PDT)
+From: "Trevor Woerner" <twoerner@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-rockchip][PATCH] rockchip-gpt-img: fix for new override syntax
+Date: Fri,  6 Aug 2021 12:56:44 -0400
+Message-Id: <20210806165644.2393-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.30.0.rc0
 MIME-Version: 1.0
-In-Reply-To: <20210806070934.413792-1-yi.zhao@windriver.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-I'll get this staged later today.
+It looks like I missed a case for the new bitbake override syntax. My tests
+weren't done from a fresh build so either a preexisting image was still
+available, or the unfixed syntax caused a race.
 
-Thanks for running the conversion.
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+ classes/rockchip-gpt-img.bbclass | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/classes/rockchip-gpt-img.bbclass b/classes/rockchip-gpt-img.bbclass
+index 434c100..b698db0 100644
+--- a/classes/rockchip-gpt-img.bbclass
++++ b/classes/rockchip-gpt-img.bbclass
+@@ -9,7 +9,7 @@ IMG_ROOTFS_TYPE = "ext4"
+ IMG_ROOTFS = "${IMGDEPLOYDIR}/${IMAGE_LINK_NAME}.${IMG_ROOTFS_TYPE}"
+ 
+ # This image depends on the rootfs image
+-IMAGE_TYPEDEP_rockchip-gpt-img = "${IMG_ROOTFS_TYPE}"
++IMAGE_TYPEDEP:rockchip-gpt-img = "${IMG_ROOTFS_TYPE}"
+ 
+ GPTIMG         = "${IMAGE_NAME}-gpt.img"
+ GPTIMG_SYMLK   = "${IMAGE_BASENAME}-${MACHINE}-gpt.img"
+-- 
+2.30.0.rc0
 
-On 8/6/21 2:09 AM, Yi Zhao wrote:
-> Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-> ---
->  conf/layer.conf | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/conf/layer.conf b/conf/layer.conf
-> index 4ea1009..2997785 100644
-> --- a/conf/layer.conf
-> +++ b/conf/layer.conf
-> @@ -10,7 +10,7 @@ BBFILE_PRIORITY_meta-openssl-one-zero-two = "5"
->  
->  LAYERVERSION_meta-openssl-one-zero-two = "1"
->  
-> -LAYERSERIES_COMPAT_meta-openssl-one-zero-two = "hardknott"
-> +LAYERSERIES_COMPAT_meta-openssl-one-zero-two = "honister"
->  
->  LAYERDEPENDS_meta-openssl-one-zero-two = " \
->          core \
-> 
