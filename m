@@ -1,76 +1,64 @@
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
- by mx.groups.io with SMTP id smtpd.web10.7519.1628269008021973905
+Received: from mail2.multitech.com (mail2.multitech.com [65.126.90.11])
+ by mx.groups.io with SMTP id smtpd.web10.1347.1628295907682856882
  for <yocto@lists.yoctoproject.org>;
- Fri, 06 Aug 2021 09:56:48 -0700
+ Fri, 06 Aug 2021 17:25:07 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=T7sk6QXL;
- spf=pass (domain: gmail.com, ip: 209.85.219.45, mailfrom: twoerner@gmail.com)
-Received: by mail-qv1-f45.google.com with SMTP id js7so5239723qvb.4
-        for <yocto@lists.yoctoproject.org>; Fri, 06 Aug 2021 09:56:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ScSxnsJqAeUWj4g9nsilvzU7rNbjYzmyGMfyqI8lnfk=;
-        b=T7sk6QXLro9UoLN6xj90PZSlUcUgwmVbDajqgPJOWgaGKENzwBTgdWCbT6un8Ik/Pd
-         AcQEgIzLP0pyP2pKYcr+uVEImP0KoPX5DYOQgYmo/qwz4EhHFrVWuSp1ufKg4bjg9TiH
-         P05x45T/upXDMXIZQc5tpIsuWwBKvBBmqjyfr9JCE/HlvS9FbIy4rod6GPcOpD1+8pnm
-         xGR+CyoDPOh5aFahIbJp8/0G6LIAWYHPWWYOvNes+0SydHcbE2fcnFNSeyEVWU0ibOOX
-         sjqmD9DwIPaYntaRBDp1QPR3d3gdO4OE+mvMvayYLUAoYi//u6fToFXOgGecIBr//KOi
-         vyXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ScSxnsJqAeUWj4g9nsilvzU7rNbjYzmyGMfyqI8lnfk=;
-        b=nnJZuBfIS5pSwF6J/1PStFGeOPZF4CiNdvwGHaD/X0At3iAdLzltdjRvP9Hi3aEWww
-         a+xhFmCRXauUl7Pc6Mepg5+PW2ArFnuMjw+2v/B8qtOPeqjQ6Ut2KHsBSpik1oTmui0u
-         QeHxmfTkYKajYdlu1Wdl8xXE1Bp0l/SddzqJ+4gb30WNMrjx4T0LMIJkvVGRuS0Mzv1I
-         bbkLeDCNIOly9y+Y3SfyIQJ7XUYj78WRoLzAu+6R01N49J2eaKTNunZ1EogDYfMrY/zf
-         Df2sLiK9ZNCcWqUDOwFgbRSX5OqHal6ToLbEHQo18WluQJRMac384KmJs66o5f4Abshb
-         tXkg==
-X-Gm-Message-State: AOAM532soqQvi26ucQNwUV0lCM1zQtqxmzhg+2UNm3hxLRweKjAQcriP
-	xWt1FdrZTJXNJijjwdxUMhBozG5Raww=
-X-Google-Smtp-Source: ABdhPJzgxV8oiz/Bw7J5+mFQxy3AXeBc9xSEds9a6uYw2AJsBsS25L+PuVNMkxU6ouCG49yMl9VFJA==
-X-Received: by 2002:a05:6214:301d:: with SMTP id ke29mr916950qvb.30.1628269006902;
-        Fri, 06 Aug 2021 09:56:46 -0700 (PDT)
-Return-Path: <twoerner@gmail.com>
-Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id z6sm1056038qkl.72.2021.08.06.09.56.46
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Aug 2021 09:56:46 -0700 (PDT)
-From: "Trevor Woerner" <twoerner@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-rockchip][PATCH] rockchip-gpt-img: fix for new override syntax
-Date: Fri,  6 Aug 2021 12:56:44 -0400
-Message-Id: <20210806165644.2393-1-twoerner@gmail.com>
-X-Mailer: git-send-email 2.30.0.rc0
+ dkim=missing; spf=pass (domain: multitech.com, ip: 65.126.90.11, mailfrom: prvs=1846896c08=john.klug@multitech.com)
+Received: from mail2.multitech.com (localhost.localdomain [127.0.0.1])
+	by localhost (Email Security Appliance) with SMTP id 33608585C95_10DD2E3B
+	for <yocto@lists.yoctoproject.org>; Sat,  7 Aug 2021 00:25:07 +0000 (GMT)
+Received: from EXCHDBPM2.dc.multitech.prv (unknown [192.168.11.7])
+	(using TLSv1.2 with cipher AES256-GCM-SHA384 (256/256 bits))
+	(Client CN "", Issuer "MultiTech Systems Intermediate CA 01" (verified OK))
+	by mail2.multitech.com (Sophos Email Appliance) with ESMTPS id D63BB584858_10DD2E2F
+	for <yocto@lists.yoctoproject.org>; Sat,  7 Aug 2021 00:25:06 +0000 (GMT)
+Received: from EXCHDBPM1.dc.multitech.prv (192.168.11.6) by
+ EXCHDBPM2.dc.multitech.prv (192.168.11.7) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Fri, 6 Aug 2021 19:25:06 -0500
+Received: from EXCHDBPM1.dc.multitech.prv ([192.168.11.6]) by
+ EXCHDBPM1.dc.multitech.prv ([192.168.11.6]) with mapi id 15.01.2242.012; Fri,
+ 6 Aug 2021 19:25:06 -0500
+From: "John Klug" <john.klug@multitech.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: How does one add do_fetch, do_unpack to an image recipe?
+Thread-Topic: How does one add do_fetch, do_unpack to an image recipe?
+Thread-Index: AQHXiyKqjBpz7Uyd302/imWmmVBJQg==
+Date: Sat, 7 Aug 2021 00:25:06 +0000
+Message-ID: <4b07fb124a79466a9e8ee0d138151931@multitech.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.52.101]
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-SASI-RCODE: 200
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-It looks like I missed a case for the new bitbake override syntax. My tests
-weren't done from a fresh build so either a preexisting image was still
-available, or the unfixed syntax caused a race.
+I am using dunfell.
 
-Signed-off-by: Trevor Woerner <twoerner@gmail.com>
----
- classes/rockchip-gpt-img.bbclass | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+In the documentation I see:
 
-diff --git a/classes/rockchip-gpt-img.bbclass b/classes/rockchip-gpt-img.bbclass
-index 434c100..b698db0 100644
---- a/classes/rockchip-gpt-img.bbclass
-+++ b/classes/rockchip-gpt-img.bbclass
-@@ -9,7 +9,7 @@ IMG_ROOTFS_TYPE = "ext4"
- IMG_ROOTFS = "${IMGDEPLOYDIR}/${IMAGE_LINK_NAME}.${IMG_ROOTFS_TYPE}"
- 
- # This image depends on the rootfs image
--IMAGE_TYPEDEP_rockchip-gpt-img = "${IMG_ROOTFS_TYPE}"
-+IMAGE_TYPEDEP:rockchip-gpt-img = "${IMG_ROOTFS_TYPE}"
- 
- GPTIMG         = "${IMAGE_NAME}-gpt.img"
- GPTIMG_SYMLK   = "${IMAGE_BASENAME}-${MACHINE}-gpt.img"
--- 
-2.30.0.rc0
+https://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-user-=
+manual.html#unsetting-variables
 
+In case some filter removes the yocto URL, I am referring to:
+
+    docs/current/bitbake-user-manual/bitbake-user-manual.html#unsetting-var=
+iables
+
+Which has this example:
+
+    unset do_fetch[noexec]
+
+If I put this in my image recipe, the do_fetch noexec item still exists.
+
+In order to fix this problem I had to patch openembedded-core/meta/classes/=
+image.bbclass, and remove the line setting do_fetch[noexec]=3D"1" and the o=
+nes following.
+
+I need to do a fetch for my IMAGE_POSTPROCESS_COMMAND.
+
+
+Thanks.
