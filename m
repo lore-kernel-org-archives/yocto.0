@@ -1,64 +1,52 @@
-Received: from mail2.multitech.com (mail2.multitech.com [65.126.90.11])
- by mx.groups.io with SMTP id smtpd.web10.1347.1628295907682856882
- for <yocto@lists.yoctoproject.org>;
- Fri, 06 Aug 2021 17:25:07 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: multitech.com, ip: 65.126.90.11, mailfrom: prvs=1846896c08=john.klug@multitech.com)
-Received: from mail2.multitech.com (localhost.localdomain [127.0.0.1])
-	by localhost (Email Security Appliance) with SMTP id 33608585C95_10DD2E3B
-	for <yocto@lists.yoctoproject.org>; Sat,  7 Aug 2021 00:25:07 +0000 (GMT)
-Received: from EXCHDBPM2.dc.multitech.prv (unknown [192.168.11.7])
-	(using TLSv1.2 with cipher AES256-GCM-SHA384 (256/256 bits))
-	(Client CN "", Issuer "MultiTech Systems Intermediate CA 01" (verified OK))
-	by mail2.multitech.com (Sophos Email Appliance) with ESMTPS id D63BB584858_10DD2E2F
-	for <yocto@lists.yoctoproject.org>; Sat,  7 Aug 2021 00:25:06 +0000 (GMT)
-Received: from EXCHDBPM1.dc.multitech.prv (192.168.11.6) by
- EXCHDBPM2.dc.multitech.prv (192.168.11.7) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 6 Aug 2021 19:25:06 -0500
-Received: from EXCHDBPM1.dc.multitech.prv ([192.168.11.6]) by
- EXCHDBPM1.dc.multitech.prv ([192.168.11.6]) with mapi id 15.01.2242.012; Fri,
- 6 Aug 2021 19:25:06 -0500
-From: "John Klug" <john.klug@multitech.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: How does one add do_fetch, do_unpack to an image recipe?
-Thread-Topic: How does one add do_fetch, do_unpack to an image recipe?
-Thread-Index: AQHXiyKqjBpz7Uyd302/imWmmVBJQg==
-Date: Sat, 7 Aug 2021 00:25:06 +0000
-Message-ID: <4b07fb124a79466a9e8ee0d138151931@multitech.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.52.101]
+Subject: linux-hotplug recipe
+To: yocto@lists.yoctoproject.org
+From: chiefsleepyeye@gmail.com
+X-Originating-Location: Sun Prairie, Wisconsin, US (66.188.93.119)
+X-Originating-Platform: Windows Chrome 92
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-SASI-RCODE: 200
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+Date: Sun, 08 Aug 2021 07:11:31 -0700
+Message-ID: <EqA1.1628431891241983229.VQoe@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="a4TfgdyjLVgEvUukTQ38"
+
+--a4TfgdyjLVgEvUukTQ38
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-I am using dunfell.
+I'm new to yocto so forgive me if this has been answered before.=C2=A0 I se=
+arched a number of resources and wasn't able to find an answer.=C2=A0 I've =
+been able to install yocto and make modifications to the bblayers.conf and =
+local.conf files to add recipes and layers that provide recipes for the com=
+ponents I need.=C2=A0 I wanted to add hotplug and=C2=A0 found there is a "m=
+eta package" from yocto called "linux-hotplug".=C2=A0 The problem I'm havin=
+g is finding out which layer provides that recipe.=C2=A0 Can someone point =
+me in the right direction and/or point me at a tool that allows searching t=
+hrough all recipes, configured for use or not, for recipes.=C2=A0 I've used=
+ oe-pkgutils-tool and bitbake-layers but, as far as I can tell they only se=
+arch in layers configured to be used.=C2=A0 I also tried the layer search t=
+ool on the open embedded website but got no hits for the aforementioned rec=
+ipe.=C2=A0 I feel like I'm missing something here but I don't know what.=C2=
+=A0 Any help would be appreciated.=C2=A0 Thanks to all.
 
-In the documentation I see:
+Mike
 
-https://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-user-=
-manual.html#unsetting-variables
+--a4TfgdyjLVgEvUukTQ38
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-In case some filter removes the yocto URL, I am referring to:
+I'm new to yocto so forgive me if this has been answered before.&nbsp; I se=
+arched a number of resources and wasn't able to find an answer.&nbsp; I've =
+been able to install yocto and make modifications to the bblayers.conf and =
+local.conf files to add recipes and layers that provide recipes for the com=
+ponents I need.&nbsp; I wanted to add hotplug and&nbsp; found there is a "m=
+eta package" from yocto called "linux-hotplug".&nbsp; The problem I'm havin=
+g is finding out which layer provides that recipe.&nbsp; Can someone point =
+me in the right direction and/or point me at a tool that allows searching t=
+hrough all recipes, configured for use or not, for recipes.&nbsp; I've used=
+ oe-pkgutils-tool and bitbake-layers but, as far as I can tell they only se=
+arch in layers configured to be used.&nbsp; I also tried the layer search t=
+ool on the open embedded website but got no hits for the aforementioned rec=
+ipe.&nbsp; I feel like I'm missing something here but I don't know what.&nb=
+sp; Any help would be appreciated.&nbsp; Thanks to all.<br /><br />Mike
 
-    docs/current/bitbake-user-manual/bitbake-user-manual.html#unsetting-var=
-iables
-
-Which has this example:
-
-    unset do_fetch[noexec]
-
-If I put this in my image recipe, the do_fetch noexec item still exists.
-
-In order to fix this problem I had to patch openembedded-core/meta/classes/=
-image.bbclass, and remove the line setting do_fetch[noexec]=3D"1" and the o=
-nes following.
-
-I need to do a fetch for my IMAGE_POSTPROCESS_COMMAND.
-
-
-Thanks.
+--a4TfgdyjLVgEvUukTQ38--
