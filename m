@@ -1,56 +1,55 @@
-Subject: Re: Hello world recipe
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+ by mx.groups.io with SMTP id smtpd.web12.27168.1628533129713899600
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 09 Aug 2021 11:18:50 -0700
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=pass (domain: bootlin.com, ip: 217.70.183.199, mailfrom: michael.opdenacker@bootlin.com)
+Received: (Authenticated sender: michael.opdenacker@bootlin.com)
+	by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 0969EFF803
+	for <yocto@lists.yoctoproject.org>; Mon,  9 Aug 2021 18:18:37 +0000 (UTC)
 To: yocto@lists.yoctoproject.org
-From: "Bel Hadj Salem Talel" <bhstalel@gmail.com>
-X-Originating-Location: Rades, Gouvernorat de Ben Arous, TN (102.156.71.250)
-X-Originating-Platform: Linux Firefox 90
-User-Agent: GROUPS.IO Web Poster
+From: "Michael Opdenacker" <michael.opdenacker@bootlin.com>
+Subject: Audio playback issue with ogg123 (vorbis-tools)
+Organization: Bootlin
+Message-ID: <be5c8c49-bdab-2056-58a0-2115000bc724@bootlin.com>
+Date: Mon, 9 Aug 2021 20:18:37 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Date: Mon, 09 Aug 2021 08:34:11 -0700
-References: <T5Wf.1628522644867878284.bLzt@lists.yoctoproject.org>
-In-Reply-To: <T5Wf.1628522644867878284.bLzt@lists.yoctoproject.org>
-Message-ID: <27442.1628523251260693693@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="gt73nnhsn6anYppErrok"
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
---gt73nnhsn6anYppErrok
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Greetings,
 
-It is clear that the build system cannot find anything that is providing 'p=
-ython-hello' recipe.
+I'm trying to play an Ogg/Vorbis sample from an image I generated with
+Poky (master) and meta-oe (master), by adding "ogg123" and "alsa-utils"
+(for testing purposes) to "core-image-minimal".
 
-Which means it parsed all layers in bblayers.conf and it didn't find any py=
-thon-hello_*.bb file (the _* is the version)
+I built the image for qemux86-64 and tested it ran in a chroot on my x86
+build machine. I mounted proc, sysfs and devtmpfs on /proc, /sys/ and
+/dev in the chroot, respectively.
 
-It is mentioned in the tutorial that you provided that the recipe should be=
- in meta-layer/recipes-custom/python-hello
+I could play a WAV file through "aplay" (from alsa-utils) from the
+chroot, but I didn't manage to play an Ogg/Vorbis sample on the audio card:
+# ogg123 /sample.ogg
+=== Could not load default driver and no driver specified in config
+file. Exiting.
 
-So, you need to create that layer, follow:
+However, I could "play" the sample file to a WAV file:
+ogg123 -d wav -f output.wav /sample.ogg
 
-bitbake-layers create-layer meta-custom
-bitbake-layers add-layer meta-custom
+Looking at the code, it seems there's a back-end issue (libao,
+alsa-lib?), so I suspect ogg123 or libao were built with missing
+features. I checked that libao was configured with Alsa support.
 
-Now, in that layer create folders: recipes-custom/python-hello, in that you=
- should have:
+I'll go on investigating, but if you have ideas, I'm interested!
 
-1. another folder: files in that you put python-hello.py
-2. python-hello.bb
+Cheers,
+Michael.
 
-the content of all of that is in the tutorial .
+-- 
+Michael Opdenacker, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
---gt73nnhsn6anYppErrok
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-It is clear that the build system cannot find anything that is providing 'p=
-ython-hello' recipe.<br /><br />Which means it parsed all layers in bblayer=
-s.conf and it didn't find any python-hello_*.bb file (the _* is the version=
-)<br /><br />It is mentioned in the tutorial that you provided that the rec=
-ipe should be in meta-layer/recipes-custom/python-hello<br /><br />So, you =
-need to create that layer, follow:<br /><br />bitbake-layers create-layer m=
-eta-custom<br />bitbake-layers add-layer meta-custom<br /><br />Now, in tha=
-t layer create folders: recipes-custom/python-hello, in that you should hav=
-e:<br /><br />1. another folder: files in that you put python-hello.py<br /=
->2. python-hello.bb<br /><br />the content of all of that is in the tutoria=
-l .
-
---gt73nnhsn6anYppErrok--
