@@ -1,215 +1,168 @@
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
- by mx.groups.io with SMTP id smtpd.web12.670.1628617752511807012
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (NAM10-MW2-obe.outbound.protection.outlook.com [40.107.94.68])
+ by mx.groups.io with SMTP id smtpd.web10.708.1628617874029345874
  for <yocto@lists.yoctoproject.org>;
- Tue, 10 Aug 2021 10:49:15 -0700
+ Tue, 10 Aug 2021 10:51:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=j6yAP0yQ;
- spf=pass (domain: baesystems.com, ip: 149.32.232.65, mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1628617752; x=1786297752;
-  h=from:to:subject:date:mime-version;
-  bh=obV9AmQLQaPm48WPdJs80LV4avZCGN1o4CM+QaZPKo8=;
-  b=j6yAP0yQy3iSyrZMOZCuYRI3Rm/BMm9/n3pKYjxmXi1kU1VRiM/t0Wzt
-   F/gyQqi1NTW1d14r2szAC/Kns+/rUbcdoyjDq69mTtPbjYc0JFlFEdBrO
-   QH2UnfOFCbeXSqVrUw5MKDfmhj1R8QwoTkZaFedxfuCAjEYKmcGb+y3oB
-   s=;
-IronPort-SDR: j8ZOi5dCLVY0pmdb7P5ssFesGisK95Pap2aAlRPFiSV21o8b/30bNJpfLydWpJu4GxMUhUuKyF
- pTqguSBU7sZQ==
-IronPort-PHdr: =?us-ascii?q?A9a23=3Av19/Cx+JB7TLN/9uWZy8ngc9DxPPW53KNwIYo?=
- =?us-ascii?q?qAql6hJOvz6uci4ZAqAtL4x3BfgZsby07p8ke3YsqTtCyQrwK2qlzQ8SqFKT?=
- =?us-ascii?q?AIPks4MngYtU4avAEz/K+P2PWRhRJwRHFBq8GumPkdLBc3we0PdomGo7T4VB?=
- =?us-ascii?q?x7zKRd5Kv76F4LMk8i7zeK/9pncbwhHhze2fK9/IgixoQjNrMcdnJFsKrw2y?=
- =?us-ascii?q?hvHo3tIf/pZyGZ1Ll+NnBjy+9m98od7/ytfp/wu+chAUb7nf6sjVrxXEC4mM?=
- =?us-ascii?q?2Eu68L1sxTIUBaC6WEdUmUSlRpIHhTF4RTnVZr/rif2quxw0zScMMbrT747R?=
- =?us-ascii?q?C6i4r9rRhH2lSkHKzA3/mLWisNsg61WuwiuqwB9w4POfI2ZKORyc6XAdt0aX?=
- =?us-ascii?q?2pBWcNRWjRPDo27aIsPCfEBMvhGoInmv1cFsAawBRWyC+Px1DBIgGL90LMn2?=
- =?us-ascii?q?OglHw7IwQksE9wTu3nTt9X1KLkdUf6rw6nO1znDavRW2THm6IfWbB8huuqBU?=
- =?us-ascii?q?qlqfsXP0kkuFxjFjkmOpozgJDOZzPgCs2+e7+d5U++klmEopR1rrDe12scsl?=
- =?us-ascii?q?pfGhpgTyl3c+yt0zpo4KNy6RUN6f9KoDYVduiKaOoZyTc4vTHxktig6x7MJp?=
- =?us-ascii?q?JK2eCoHxZQoyhPedvCKbYyF7xHgWeuMPDt2i3Roc6+8iRaq6UWs1/HwWtO63?=
- =?us-ascii?q?VtItCZJjMfAu3AX2xHS6sWLUuZx8lu71TuA2A3f8O5JLVopmafbLZMq36Q+m?=
- =?us-ascii?q?YAJsUvZGy/7gED2jKiLeUo64uWo8OHnYqn+pp+bKo90lhnyMqQwlcy7BuQ1K?=
- =?us-ascii?q?hQOXmeB9uS60b3j5kn0TKlWgvEqj6XVqpbaKt4BqqGiGQBazJ0j6hakDze6z?=
- =?us-ascii?q?tsYmGIHIEhZdxKAiojlI1DOIPbmAvejm1mgjStny+rIM7DjGJnBMGbPnbf7c?=
- =?us-ascii?q?bt860NQ0A8zwspe55JQBLEBOvXzWkrpudzDEh82LRK0zPjhCNln04MeXmSPA?=
- =?us-ascii?q?rSHP6zMql+F/fkgLPOSa48OuDf9MOQl6ODrjX8ig1MSYa6p3Z4PZHCiAvtmO?=
- =?us-ascii?q?1mZYWbrgtoZEWYKuRYxTPDtiFCZVT5TZm2yX74n5j0hCIOmCpvMRpyqgLyZx?=
- =?us-ascii?q?ie7GZ9WaX5aBVCQC3vocJ+EW/hfIB6Vd4VwlTcYUpClSpQ9zle/swTmzKJ9K?=
- =?us-ascii?q?ejZ8TFesojsnpAh9urYiRYa8T1vE9/bwmaGU2ZshGQKSjQqmqdlrhou5E2E1?=
- =?us-ascii?q?P0ypvteDtFe/LcBaRs3K5Pah8cyS+3JG0iJKsyVRUirRJOjBjcqQ98q69UHb?=
- =?us-ascii?q?l1sAMmviwuF1C2vVexG34eXDYA5p/qPl0P6INxwni6u6Q=3D=3D?=
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AX+jETKm60tevW5N2vo47bN/7ulPpDfI13D?=
- =?us-ascii?q?Abv31ZSRFFG/Fw8PrPoB17737JYVkqM03I9errBEDiex3hHPxOjbX5VI3KND?=
- =?us-ascii?q?UO01HGEGgN1+bfKkXbak7DytI=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2AHBQAHuxJh/0HhJQpaHgEBCxIMQAm?=
- =?us-ascii?q?Cc4F/gUILtAgLAQEBAQEBAQEBCAFBBAEBhz0mOBMBAgQBAQESAQEGAQEBAQE?=
- =?us-ascii?q?GBAGBI4VpDII1IoQfXgEVIww8JgEEEwiCaoF+gQSpYoEzGgJlgl6CCoUWgTq?=
- =?us-ascii?q?BZYUkgmqGCUOEA4YIhSwEhARdAaBnnkCBFwcDgyieOSsSlW4DkH6WD6UbAgQ?=
- =?us-ascii?q?CBAUCFoF3gX1wgzpPFwKcfHMCNgIGCwEBAwmGV4EQgREBAQ?=
-X-IPAS-Result: =?us-ascii?q?A2AHBQAHuxJh/0HhJQpaHgEBCxIMQAmCc4F/gUILtAgLA?=
- =?us-ascii?q?QEBAQEBAQEBCAFBBAEBhz0mOBMBAgQBAQESAQEGAQEBAQEGBAGBI4VpDII1I?=
- =?us-ascii?q?oQfXgEVIww8JgEEEwiCaoF+gQSpYoEzGgJlgl6CCoUWgTqBZYUkgmqGCUOEA?=
- =?us-ascii?q?4YIhSwEhARdAaBnnkCBFwcDgyieOSsSlW4DkH6WD6UbAgQCBAUCFoF3gX1wg?=
- =?us-ascii?q?zpPFwKcfHMCNgIGCwEBAwmGV4EQgREBAQ?=
-X-IronPort-AV: E=Sophos;i="5.84,310,1620691200"; 
-   d="scan'208,217";a="399608498"
-IronPort-SDR: fDqfLWXl8Mr0EvlofLZmN/CZWs5/iTJMK/cjNSbkAQ0eow0jcTxf9XKjA4oGcHQbt2M6O/MXWy
- B/h/0dTPK65dm4ilwcvq6gaihIhCt2kW82nDJdNxpqAzJIA/HOW/CWbMJGds/jPtlZfUDMoAXe
- zSjPlIwqxNeUaY7MnTsS1gTSMLkKtusj3PYhgHrA3OY4jMwzg0ESu8O9GWiX1XJr3fetPoewhO
- WIqpgJD+xA/yehK+7SKUGSnAv1Fsbynff5ZPP9ee0iYjezh73KguWF1FpdCRtWLbHzDef2KVQC
- 4A0=
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: #yocto debbuging option under zeus
-Thread-Topic: #yocto debbuging option under zeus
-Thread-Index: AdeODj5nDVv836cgSPG5Si1sSJIhxQ==
-Date: Tue, 10 Aug 2021 17:48:08 +0000
-Accept-Language: en-US
+ dkim=pass header.i=@sierrawireless.com header.s=selector1 header.b=aNrOXZCx;
+ spf=pass (domain: sierrawireless.com, ip: 40.107.94.68, mailfrom: dwatkins@sierrawireless.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DiGZKowXFLjXSTNioJRaat6C+gVqN0FtwMT2cXU/P1t74PHDRygx/VPN5Ndyh5xfQHcUP7HNf37t71YohXcSr4wGJuunLx2Uuny4yooxGARKgS99w3lF7p9ZUbKeUnyRPhjnr44Yul5Fef6NxTkzT5hKpLynHHtqC06QI3iqZgrbTeYJJ+nCR3BTifpOLlQ27HlaHfWKMq3HsgsYoNbhtjFDCy/mpPJxPqj+zK5HLL+8v4avHS0HkGUXexlNgmI8M+CFq7MpRJeJrDbfs8QBqvfMP1GnoW7jJc3oLZ3MO9hpwuGrgJ+TxGFFHOQu1GqW8jLkPZv6kpsGhrZFs3BVYg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GX65StuxkcsArKPvZT+0a/XRmFl06adLeUEwMaoWKgw=;
+ b=SZOBTrtuPFFva0hHRgPdL7oYYa/E1FM+B4La9ig6bAzHfEu7TT02H9ZdGhV+rgeReklQeF8wIAcoUkIvHj26Z2956nuX8zpwozuhfNoG6kLxmkx/oIpa4/+IiKMvn5hGYMtheYKJgd7MRYQGPoqUZiMDHP4v5UhaNqQcVQ1jjt8FP5j0ZU9mvadBTdwFCfL5DgPz1aVRcluFX1XCfbEWYlTQHcfvvJjbCe+oo34kXirQCnZKT9JZC66lRXnKXSsC2FE1UfunbTi3Fh9/dr8rtWe8tRT1hdGnYhK30EzjcLdnVG3gDIOyQjFPEmqlJ4GWguIh8VY6ltX7U2UyvrZzGA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=sierrawireless.com; dmarc=pass action=none
+ header.from=sierrawireless.com; dkim=pass header.d=sierrawireless.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sierrawireless.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GX65StuxkcsArKPvZT+0a/XRmFl06adLeUEwMaoWKgw=;
+ b=aNrOXZCxNak8uXsvkH+cDeOD+udo02zWvHrEtH6GlI8i/mQMFMD8ibqH0Fa+Ex0lBqttrdYbqWzmngQmiV/tdsiOmdhfmYHw9RSeTkYwknB419gIl04cFYcgEz6f2HcjX19Ke0q2s+5Zr3qy5kMzE9Z3x5aypdpjjlqYt1NiX6I=
+Received: from MWHPR02MB2429.namprd02.prod.outlook.com (2603:10b6:300:40::7)
+ by MW2PR02MB3738.namprd02.prod.outlook.com (2603:10b6:907:f::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.17; Tue, 10 Aug
+ 2021 17:51:12 +0000
+Received: from MWHPR02MB2429.namprd02.prod.outlook.com
+ ([fe80::e92a:cd1f:3859:62dc]) by MWHPR02MB2429.namprd02.prod.outlook.com
+ ([fe80::e92a:cd1f:3859:62dc%3]) with mapi id 15.20.4394.023; Tue, 10 Aug 2021
+ 17:51:12 +0000
+From: "Darcy Watkins" <dwatkins@sierrawireless.com>
+To: Michael Opdenacker <michael.opdenacker@bootlin.com>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] New Override Syntax
+Thread-Topic: [yocto] New Override Syntax
+Thread-Index: AQHXjgMP0Uyvi3r9pkiDaq5EE8q736ts+yDA//+UHYA=
+Date: Tue, 10 Aug 2021 17:51:11 +0000
+Message-ID: <13A7932E-8B64-45EA-827E-B9EB8C787239@sierrawireless.com>
+References: <E360C062-0BA9-48C7-A776-2ED9259143C8@sierrawireless.com>
+ <1699FF2DD7128D19.12542@lists.yoctoproject.org>
+ <7595a925-97e3-03c2-6e51-48d732031c21@bootlin.com>
+In-Reply-To: <7595a925-97e3-03c2-6e51-48d732031c21@bootlin.com>
+Accept-Language: en-CA, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.4.15]
+user-agent: Microsoft-MacOutlook/16.51.21071101
+authentication-results: bootlin.com; dkim=none (message not signed)
+ header.d=none;bootlin.com; dmarc=none action=none
+ header.from=sierrawireless.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 15ade8d0-30d8-4109-a660-08d95c277119
+x-ms-traffictypediagnostic: MW2PR02MB3738:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: 
+ <MW2PR02MB3738D627D3200201CFDA6EE2B2F79@MW2PR02MB3738.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ m4Rmy3TqDZZIrxW63zv44LoNaZxY0C8CDdRtlPqbDPPM6+PdQwfepfO7/BmE2t9KV71R+3nYL8DpHlEOHg24pfjDLb4YCQ9j1Hm/iMfLaFkv6TPTFwCnoTAXNR85KaLmCpV/Ucx5wvMZ2xdLtPn2PXs3X5HYG8cOxpcg+LBkjeBXJTXIGzpiXcZvV6Wx7FXBdXSPKqzarPAQR2hwqfxBUKasyYkOzK+y7l4K/aRRY9RaF/fanICYBi3LHFogNSySLwpCJwe0wKi+IGl9TJ7TWCQ06kTTDqAW4ny6OQsC5aEyFfT8rhS2GYPNSvCUQ8Mlbw1cM+vYDuVKjsdjJmgmjfW04W+YZEpwNO95yorK8zGB+G37YK6RpEPOAyAEqw+vk2hxjiIhwl16tIIkDpFt0cZtTY8hbbE3UAQc0uwCO4amXSqZSnaEwZbzI0kq1i/G/kecs5q9m/Uq27dCam2XsH81m38rKPFRzG+p60jEFY2cE/D5FTS5suqEo83ztc9gQjSCP6l9V2wUYb8XhjKOWFkdnnOn3BBfcKnJu8RybL4W7vcY0qyETn+8q8GniRNApCN2RPh6LUFcq6v3qvS9FQMrxEmXRh6tVKlX0mVVpICXC7IlEOeGWHxrrcUw3VQ6IrcPsTLRv21rR9u8TYEGt5LRcdYfMoTzBR3D399wF2MngL2RsPa2rT5nPBhthmLP8I4Z2X8SpbId5ruI49LvEb77WuTyBug25twwvLQ6/Tyaywz17VzSv0LqlWlfhmQ6tXUoWW9sKsK38kMA2qQptEwrx7MZjwH8sWKy/AhyOyxZ1PxbsXmMngDj9DMb4Eiz
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR02MB2429.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(346002)(366004)(376002)(39850400004)(136003)(110136005)(15974865002)(53546011)(45080400002)(122000001)(186003)(6486002)(66946007)(2616005)(478600001)(71200400001)(6512007)(76116006)(66556008)(64756008)(38100700002)(38070700005)(966005)(66476007)(5660300002)(66446008)(8936002)(8676002)(33656002)(2906002)(316002)(83380400001)(6506007)(36756003)(86362001)(45980500001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?aUhVUmdZZy8vWXdSbXZrNlI4SWRNTGMrL0h6dGNTY28xcUpuQWp4NEhHVHVS?=
+ =?utf-8?B?clpLaW41UHY2OGlKZ1U5VVJtUXBzQitadk9SRVRoM0NvOHlpRExOUXBHbHJE?=
+ =?utf-8?B?TDdXbFZNczlSM2FkcUM5eUJkSno2TG1zQUJQSklSUitrSGt6dTd6MVlsdjhC?=
+ =?utf-8?B?ZS9zaFBUSEVLY09BZ2dJMzFzK1YyNmkrOXdmTExpM3VZSllhMFBWOUtNWFlH?=
+ =?utf-8?B?cGFGYUhMR0REeVlmbXo1NWZRZ3kyMytBWFk1dHF3RUtRWUoxeHJkVHZPaTV1?=
+ =?utf-8?B?Zm45SE9qRGxvbTFWbkVPbUg5Tjc5S1BGQjJ3VXJ4UEZCTnNOQmd4VExTOGdV?=
+ =?utf-8?B?NU5LejlQSnJmTk9ZRkQ3RHUrRUpzN1B2aXhYRWp2bkc2TGUyTWRROG9sRG9q?=
+ =?utf-8?B?a2lubXlaV0tLbW9YSkZKemdCMDQxc0c0QXkyWDNKZExSSkE5eG9XNEh4SzFt?=
+ =?utf-8?B?dldBUmw3NXRxRVQ1eEFpSFRCQjRMV1RhZUNSdGQ1QmorbERPclBBQkZqajdC?=
+ =?utf-8?B?bDREUkh4eUI2TzdpUm5jS21FdURRQm9hYm9LM1EvVURJNU1GZk5tdmYzSGhW?=
+ =?utf-8?B?TkR2OG5mOTZyd1ludnMvYnQyb2dwenhZQVFUVTZGSEpZaFgvMzNNdjkzTllo?=
+ =?utf-8?B?VU42Mi90S1lhNS9DakovV1VMSE9LNFQwV2VtTitZT1k5Ulc5Nll1MGNNTEY0?=
+ =?utf-8?B?WlpVcGlkamVUNU1NY1FmWXhhMGlwQVhMVFFBdDVOM0hHS1MvU1UvOURXWmtk?=
+ =?utf-8?B?aVdjV3lrbGpWQm9LRW5WQTlaZ040Z3JrNit1REY1N0NZaDdKZTYrOUlkbTJy?=
+ =?utf-8?B?enpDQ252aS9WZncxMWZqQ0JoVUFZZUxFdnUzMTBuZ3BZTkpnbzZTa00vcFlj?=
+ =?utf-8?B?eWdiVnpxM1pBSktxSnZ0dXByS2NVRmk4L2lwSlk3cWpVT1dNQmpIbmZDaFVK?=
+ =?utf-8?B?M2c5TEFza0JTa0ZXVWxDUEFzS3Iycjc1OStlMDNQNi9MMmZHVCtCVlF3NU4r?=
+ =?utf-8?B?T3ppbWNBei8rS1FWTUhyNmIrR1ZmWDRnbGtrNHJCaTBzUmt3R0JlN3loZEN4?=
+ =?utf-8?B?NHVkcmJwOXh3TlVVZFREeWgzM1pYcHZFSGkwZ1BCdzlXb1RvMExuUnVCbUtk?=
+ =?utf-8?B?clVDUXpubTZtcEp4UEVLckFTcjZkMUJab0g5RnViSkg3TmFaMGZtdGl3WFlT?=
+ =?utf-8?B?ZDVUVnRFZVJlMWJOUHI4aFBTSUJqdjJHUFJyd3ZTWktad09XTk1DWEREcnM4?=
+ =?utf-8?B?Y3gxYnJJVUlwcFFYOWZKVDFuVmVNUmh1T2kxeXRUV3BZdnBsaE1UakJXd05J?=
+ =?utf-8?B?eXN1OHRrNW5EK2gwUnVVSVNGdm9oN1dUWUc2UXdJZ1NjYmxXOEVlNXoxL3Uv?=
+ =?utf-8?B?SGdXWit1ei85WmgwYTBxU1hEbnF4YjE5djNhdHErNWx5Qmk1ckRVdkVROG5N?=
+ =?utf-8?B?K3dYL1M5eDVTZE1tWWdPMHBzYTMxQ2MzSUlnalZaMGhSaE41NU41V0FTbnpH?=
+ =?utf-8?B?TE85ZzFtY3RZNFF5L0pFV3NmVDAzK2JXalpPRU8rdG1XdjB0SWllbVlSdklM?=
+ =?utf-8?B?TytFNFc4OUV4T1MxTXhkSUZyY1FiRHB4am9YOWhSUEhMN2tLY2RiT2VKUHVN?=
+ =?utf-8?B?QXdIQnV4TEY2NHdLUCtmN1BISm5QN1p6UjdLQ0E2VjFuM29TR09oaFpUaVRF?=
+ =?utf-8?B?R3VYNmkwbXJ6c1Q5dlRMUmhqWU9zTmFwVi8zWDdlUWJyQkg3VzBDQUpJTFBS?=
+ =?utf-8?B?R0lDRzhTenREVWdjTHdlS2l1YjlRUGtKdDlzNitZaVhGTWkyRmtUTDVMT1Q1?=
+ =?utf-8?B?WWlKUHNDdlhFTTB5aVZLQXl2d1BHYkVxSkRjYVpBd21Qb2ZSUnkwN1l1OUw2?=
+ =?utf-8?Q?KSRhqSj6oNqCk?=
 MIME-Version: 1.0
-Message-ID: <MADEUP.169A03382DEE283B.22382@lists.yoctoproject.org>
+X-OriginatorOrg: sierrawireless.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR02MB2429.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 15ade8d0-30d8-4109-a660-08d95c277119
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Aug 2021 17:51:12.0032
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 08059a4c-2486-43dd-89e3-3a747e0dcbe8
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Lr3htOYZ0qq69ZesxlNU+IzoPifrUUiGP+uFQq+5wcaSDvFQxDAPZ6X9Wfat4wLRv0ze63yofHPYQq8y60qFvcbUn7w+sZMeJWQT5TewldE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR02MB3738
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_fb054baef0b84b7ca650af5c87046761baesystemscom_"
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <300FACD87DB3A44298A455C5E5385DBF@namprd02.prod.outlook.com>
+Content-Transfer-Encoding: base64
 
---_000_fb054baef0b84b7ca650af5c87046761baesystemscom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-
-I ran across the following under the Yocto Project Profiling and Tracing Ma=
-nual, and after checking my ipk data files/layout, I was wondering if someo=
-ne could tell me, if ipk is capable of performing a similar set of operatio=
-ns to install my debug data ?, and if so, what would be the correct command=
- sequence ?
-
-" The debug packages once built can be found in build/tmp/deploy/rpm/* on t=
-he host system. Find the busybox-dbg-...rpm file and copy it to the target.=
- For example:
-
-[trz@empanada core2]$ scp /home/trz/yocto/crownbay-tracing-dbg/build/tmp/de=
-ploy/rpm/core2_32/busybox-dbg-1.20.2r2.core2_32.rpm root@192.168.1.31:
-     root@192.168.1.31's password:
-     busybox-dbg-1.20.2-r2.core2_32.rpm                     100% 1826KB   1=
-.8MB/s   00:01
-
-Now install the debug rpm on the target:
-     root@crownbay:~# rpm -i busybox-dbg-1.20.2-r2.core2_32.rpm
-"
-
-Thanks,
-Steve
-
---_000_fb054baef0b84b7ca650af5c87046761baesystemscom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I ran across the following under the Yocto Project P=
-rofiling and Tracing Manual, and after checking my ipk data files/layout, I=
- was wondering if someone could tell me, if ipk is capable of performing a =
-similar set of operations to install
- my debug data ?, and if so, what would be the correct command sequence ?<o=
-:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:13.5pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif;color:#767171;mso-style-textfill-fill-color:#767171;=
-mso-style-textfill-fill-alpha:100.0%;background:white">&#8220; The debug pa=
-ckages once built can be found in build/tmp/deploy/rpm/*
- on the host system. Find the busybox-dbg-...rpm file and copy it to the ta=
-rget. For example:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
-10.0pt;font-family:&quot;Courier New&quot;;color:#333333">[trz@empanada cor=
-e2]$ scp /home/trz/yocto/crownbay-tracing-dbg/build/tmp/deploy/rpm/core2_32=
-/busybox-dbg-1.20.2r2.core2_32.rpm root@192.168.1.31:<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
-10.0pt;font-family:&quot;Courier New&quot;;color:#333333">&nbsp;&nbsp;&nbsp=
-;&nbsp; root@192.168.1.31's password:<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
-10.0pt;font-family:&quot;Courier New&quot;;color:#333333">&nbsp;&nbsp;&nbsp=
-;&nbsp; busybox-dbg-1.20.2-r2.core2_32.rpm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; 100% 1826KB&nbsp;&nbsp; 1.8MB/s&nbsp;&nbsp; 00:01<o:p></o:p></=
-span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-bottom-alt:auto;line-height:18.0=
-pt;background:white">
-<span style=3D"font-size:13.5pt;font-family:&quot;Verdana&quot;,sans-serif;=
-color:#767171;mso-style-textfill-fill-color:#767171;mso-style-textfill-fill=
--alpha:100.0%">Now install the debug rpm on the target:<o:p></o:p></span></=
-p>
-<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
-10.0pt;font-family:&quot;Courier New&quot;;color:#333333">&nbsp;&nbsp;&nbsp=
-;&nbsp; root@crownbay:~#
-</span><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quo=
-t;;color:red">rpm -i busybox-dbg-1.20.2-r2.core2_32.rpm</span></b><span sty=
-le=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;color:#333333"><=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal">&#8220;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Steve<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_fb054baef0b84b7ca650af5c87046761baesystemscom_--
+SGksDQoNCk15IGFwb2xvZ2llcy4gIEkgZG9uJ3QgdGhpbmsgSSBtYWRlIG15IHF1ZXN0aW9uIGNs
+ZWFyLiAgSSBhbSBhc2tpbmcgYWJvdXQgdGhlIGNvbXBhdGliaWxpdHkgb2Ygb2xkIHN0eWxlIG92
+ZXJyaWRlIHN5bnRheCBtb3ZpbmcgZm9yd2FyZCAoYW5kIG5ldyBzdHlsZSBzeW50YXggaW4gb2xk
+IHZlcnNpb25zKS4NCg0KU28gaWYgSSBjb250aW51ZSB1c2luZyB0aGUgb2xkIHN0eWxlIG92ZXJy
+aWRlIHN5bnRheCAodG8gZW5zdXJlIHN1cmUgY29tcGF0aWJpbGl0eSBmb3IgdXNlIHdpdGggb2xk
+ZXIgWW9jdG8gdmVyc2lvbnMpLCBhdCB3aGF0IGZ1dHVyZSBZb2N0by9PRSByZWxlYXNlIGRvIHlv
+dSBleHBlY3QgdGhhdCBvbGQgc3R5bGUgb3ZlcnJpZGUgc3ludGF4IHdpbGwgYmVjb21lIGVycm9u
+ZW91cyAoYXMgb3Bwb3NlZCB0byBzYXkgdHJpZ2dlcmluZyBkZXByZWNhdGlvbiB3YXJuaW5ncywg
+ZXRjKT8NCg0KSXMgc3VwcG9ydCBmb3IgdGhlIG5ldyBzdHlsZSBvdmVycmlkZSBzeW50YXggcHJl
+c2VudCBpbiBhbnkgZXhpc3RpbmcgWW9jdG8vT3BlbkVtYmVkZGVkIHJlbGVhc2VzIChpbiBvdGhl
+ciB3b3JkcywgaGFzIGl0IGJlZW4gdGhlcmUgZm9yIGEgd2hpbGUsIGJ1dCB3ZSBhcmUganVzdCBu
+b3cgYWN0aXZlbHkgbWlncmF0aW5nIHRvIHVzZSBpdCk/ICBJZiBzbywgaG93IGZhciBiYWNrIGRv
+ZXMgaXQgZ28/DQogDQogDQpSZWdhcmRzLA0KIA0KRGFyY3kNCiANCkRhcmN5IFdhdGtpbnMgOjog
+IFNlbmlvciBTdGFmZiBFbmdpbmVlciwgRmlybXdhcmUNCiANClNJRVJSQSBXSVJFTEVTUw0KRGly
+ZWN0ICArMSA2MDQgMjMzIDc5ODkgICA6OiAgRmF4ICArMSA2MDQgMjMxIDExMDkgIDo6ICBNYWlu
+ICArMSA2MDQgMjMxIDExMDANCjEzODExIFdpcmVsZXNzIFdheSAgOjogUmljaG1vbmQsIEJDIENh
+bmFkYSBWNlYgM0E0DQpbTTRdDQpkd2F0a2luc0BzaWVycmF3aXJlbGVzcy5jb20gOjogd3d3LnNp
+ZXJyYXdpcmVsZXNzLmNvbSA8aHR0cDovL3d3dy5zaWVycmF3aXJlbGVzcy5jb20vPiANCg0K77u/
+T24gMjAyMS0wOC0xMCwgMTA6MTcgQU0sICJNaWNoYWVsIE9wZGVuYWNrZXIiIDxtaWNoYWVsLm9w
+ZGVuYWNrZXJAYm9vdGxpbi5jb20+IHdyb3RlOg0KDQogICAgSGkgYWdhaW4gRGFyY3ksDQoNCiAg
+ICBPbiA4LzEwLzIxIDY6MzUgUE0sIE1pY2hhZWwgT3BkZW5hY2tlciB3cm90ZToNCiAgICA+IFdo
+ZXJlIGNhbiB3ZSBmaW5kIHVudGlsIHdoZW4gdGhlIGN1cnJlbnQgcmVsZWFzZXMgYXJlIGdvaW5n
+IHRvIGJlDQogICAgPiBzdXBwb3J0ZWQ/IFN1Y2ggaW5mb3JtYXRpb24gZG9lc24ndCBhcHBlYXIg
+b24NCiAgICA+IGh0dHBzOi8vY2FuMDEuc2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0bG9vay5jb20v
+P3VybD1odHRwcyUzQSUyRiUyRndpa2kueW9jdG9wcm9qZWN0Lm9yZyUyRndpa2klMkZSZWxlYXNl
+cyZhbXA7ZGF0YT0wNCU3QzAxJTdDZHdhdGtpbnMlNDBzaWVycmF3aXJlbGVzcy5jb20lN0M2NzJi
+MWIwZDc0ODA0MWYxYTVlMTA4ZDk1YzIyYjNkMCU3QzA4MDU5YTRjMjQ4NjQzZGQ4OWUzM2E3NDdl
+MGRjYmU4JTdDMSU3QzAlN0M2Mzc2NDIxMjYzOTgxMDUzNDQlN0NVbmtub3duJTdDVFdGcGJHWnNi
+M2Q4ZXlKV0lqb2lNQzR3TGpBd01EQWlMQ0pRSWpvaVYybHVNeklpTENKQlRpSTZJazFoYVd3aUxD
+SlhWQ0k2TW4wJTNEJTdDMTAwMCZhbXA7c2RhdGE9eXF0SnRvdVpzbDdKQlJ0SWZ2WXJSTm1OQUlh
+NDBkNXZ5azUlMkJabDBzeTdnJTNEJmFtcDtyZXNlcnZlZD0wDQoNCiAgICBJIGhhdmVuJ3QgbWFu
+YWdlZCB0byBnZXQgc3VjaCBpbmZvcm1hdGlvbiB5ZXQsIHNvIEkgb3BlbmVkIGEgYnVnIHRvIG1h
+a2UNCiAgICBzdXJlIEkgZ2V0IGFuIGFuc3dlciBieSBUaHVyc2RheSwgd2hlbiB3ZSBoYXZlIG91
+ciBidWcgdHJpYWdlIG1lZXRpbmcuDQoNCiAgICBIZXJlJ3MgdGhlIGJ1ZzogaHR0cHM6Ly9jYW4w
+MS5zYWZlbGlua3MucHJvdGVjdGlvbi5vdXRsb29rLmNvbS8/dXJsPWh0dHBzJTNBJTJGJTJGYnVn
+emlsbGEueW9jdG9wcm9qZWN0Lm9yZyUyRnNob3dfYnVnLmNnaSUzRmlkJTNEMTQ1MDMmYW1wO2Rh
+dGE9MDQlN0MwMSU3Q2R3YXRraW5zJTQwc2llcnJhd2lyZWxlc3MuY29tJTdDNjcyYjFiMGQ3NDgw
+NDFmMWE1ZTEwOGQ5NWMyMmIzZDAlN0MwODA1OWE0YzI0ODY0M2RkODllMzNhNzQ3ZTBkY2JlOCU3
+QzElN0MwJTdDNjM3NjQyMTI2Mzk4MTA1MzQ0JTdDVW5rbm93biU3Q1RXRnBiR1pzYjNkOGV5SldJ
+am9pTUM0d0xqQXdNREFpTENKUUlqb2lWMmx1TXpJaUxDSkJUaUk2SWsxaGFXd2lMQ0pYVkNJNk1u
+MCUzRCU3QzEwMDAmYW1wO3NkYXRhPWN5SXpuSCUyRiUyQiUyQlB6Y2N4Y3VlNzEwTEJ5WmlKR0k5
+dHg3JTJCNGZpeUxLNkJhOCUzRCZhbXA7cmVzZXJ2ZWQ9MA0KICAgIERvbid0IGhlc2l0YXRlIHRv
+IHN1YnNjcmliZSB0byBpdC4NCg0KICAgIENoZWVycw0KICAgIE1pY2hhZWwuDQoNCiAgICAtLSAN
+CiAgICBNaWNoYWVsIE9wZGVuYWNrZXIsIEJvb3RsaW4NCiAgICBFbWJlZGRlZCBMaW51eCBhbmQg
+S2VybmVsIGVuZ2luZWVyaW5nDQogICAgaHR0cHM6Ly9jYW4wMS5zYWZlbGlua3MucHJvdGVjdGlv
+bi5vdXRsb29rLmNvbS8/dXJsPWh0dHBzJTNBJTJGJTJGYm9vdGxpbi5jb20lMkYmYW1wO2RhdGE9
+MDQlN0MwMSU3Q2R3YXRraW5zJTQwc2llcnJhd2lyZWxlc3MuY29tJTdDNjcyYjFiMGQ3NDgwNDFm
+MWE1ZTEwOGQ5NWMyMmIzZDAlN0MwODA1OWE0YzI0ODY0M2RkODllMzNhNzQ3ZTBkY2JlOCU3QzEl
+N0MwJTdDNjM3NjQyMTI2Mzk4MTA1MzQ0JTdDVW5rbm93biU3Q1RXRnBiR1pzYjNkOGV5SldJam9p
+TUM0d0xqQXdNREFpTENKUUlqb2lWMmx1TXpJaUxDSkJUaUk2SWsxaGFXd2lMQ0pYVkNJNk1uMCUz
+RCU3QzEwMDAmYW1wO3NkYXRhPU4ydVNyeTc4dlNjSTBtb0RXc0R2ekpDVDUzYXZWWHp2SUJvWTlQ
+OVZuN1UlM0QmYW1wO3Jlc2VydmVkPTANCg0KDQo=
