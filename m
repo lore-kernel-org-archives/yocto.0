@@ -1,84 +1,83 @@
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
- by mx.groups.io with SMTP id smtpd.web10.2.1628623877485491895
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+ by mx.groups.io with SMTP id smtpd.web08.349.1628626920563001325
  for <yocto@lists.yoctoproject.org>;
- Tue, 10 Aug 2021 12:31:17 -0700
+ Tue, 10 Aug 2021 13:22:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=n7Dw97Wo;
- spf=pass (domain: gmail.com, ip: 209.85.166.174, mailfrom: twoerner@gmail.com)
-Received: by mail-il1-f174.google.com with SMTP id x7so169646ilh.10
-        for <yocto@lists.yoctoproject.org>; Tue, 10 Aug 2021 12:31:17 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=MXvhgd48;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.48, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f48.google.com with SMTP id k5-20020a05600c1c85b02902e699a4d20cso370811wms.2
+        for <yocto@lists.yoctoproject.org>; Tue, 10 Aug 2021 13:22:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=/n/KubACwz3B/g2Km08im/DMgpMLehzvG4tdGjntiik=;
-        b=n7Dw97WoHqV9IBJzNWDuMlYdRn8BiqWs7OHRtMiyS9UMBiwmfyIbWO/WL5L+sEirAD
-         qZK0SRCJi9sZf0MMNb/wiS273izxRnAT50dJSpMcIAwb63lRgfuIkvULlry2URm0gmHY
-         j5ltxonD/gp2FPFw8gwdX2PYpGkWvlbIkHDl2tFdtzjsXxvN4N/0TUPzldodo1wBNQnK
-         57EG0TgNOmFXDZjRCevOYRqMctGkrzvtuu2zFvLUO3zyOk/Kxjhuj77MYl8iRXFj7/YV
-         RiCQpaETkEyqbel5RBlRKq799xZtULtWsy4SxLHLoUyz7yQuU30x/HQ2J96ukbBYUwBb
-         ArtQ==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=WcJ43pqc8A3mlY8XcsSRDvgydjQRx0AEskR5ftITdcQ=;
+        b=MXvhgd48UqtZMZ5gC+2Fs64eNN6q7J97M78+fnRrzw6ZOcoXus/YKDWTNt8JNzM9CW
+         9lB3mBnRibf9mjXVZNwZmNlx5TCuw+eR/X/i3Kk8e7VjDqe/yYvt6tUcjRa3WZC+M5YQ
+         H2qFpPTN2g0dUIKC0boHMyfmBzlSZshCvPrtI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=/n/KubACwz3B/g2Km08im/DMgpMLehzvG4tdGjntiik=;
-        b=CCOrQdzGkEDsW8Vsxvs4jUPFrV91bWv1ugp1MjvAmN6GUme+q7hX2dG5jNkJHzlpe+
-         w2YQ5aZTUckPvc3jrbeHfQKa1QR4AzXiMMALg2qzfzra7yhtsswSVbsOZPaQDO5z3fVB
-         kcbGED7HJGaF8R3QKIReC5EZV48c9do8OZrgWCVg1q/jhSdhrU5lclmLn24CWkrPu7vs
-         dU27QvQfnmiSuCLHj/2qpbypx/RK00aNkYgE49edPhQzLMqEubYdVqtDHF9Is93gRfqP
-         XGtah1RIl6+ql8gc27Au+AT25UTbV1sGlckaXQve3Zddrrl4x7+RNQqqsj+9UHqTwtmR
-         OTpQ==
-X-Gm-Message-State: AOAM531NLSa3Z+5l/2EHphnUR0DGFmkfjtRDToO217hrhsx9PRLUjl+1
-	Pf83h+Bxh6Z240LLCyq7AE37hdAImE+K4LtGgR8m9Lg2vP8=
-X-Google-Smtp-Source: ABdhPJwHg5Suw46iAfh+APaXNDHeSniwY8GoxIopLg1NjNdw6hmadoW8EovzjkTgrqXFHrvvB0OJ1mDul1Lelm390w0=
-X-Received: by 2002:a92:d7c1:: with SMTP id g1mr109241ilq.24.1628623876644;
- Tue, 10 Aug 2021 12:31:16 -0700 (PDT)
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=WcJ43pqc8A3mlY8XcsSRDvgydjQRx0AEskR5ftITdcQ=;
+        b=FnAZDqwImsY2lkYbWZULthUOkSRr8ASw6wZvsrAGWnzHF6wjyHK2K4EANQ5zzDnV4H
+         dgMY/UQAZbd5uEMj570O9ZP9JkE5E1VS0nK/2QqtKUYRJYB2YFxNU3Ag/4gDjQMTgubC
+         T1vRaofiDUiqfj1wZWT+FD4kU9Rv3i/BPWcxPUCrdKOfED4Asa08anQpBNPdJgZBYAy9
+         0jI6XBda5pm9s4MxczSjMzHCEVESE0qJ1eo9OA56G6MGt6Zm1xqz0yPk/iwzqJ/Vco0O
+         jfZlDqlc/tDsz6AzNmJJIYai/eDPHONs14dVs4/esvmOqiuz5IxnkCzm4aXaXzKUZ13w
+         a5fA==
+X-Gm-Message-State: AOAM531MIn/xIjtUv5V0ecJqj4c6bZ3UpVVriUdEYDAIlM9waZX5LtY0
+	UTsUM55/AughRgKQ98QDvoCGmQ==
+X-Google-Smtp-Source: ABdhPJyGnbBtIG8hqkhPQ+SJOne43xGNd67p+WVA6GqCespaHvkYtVENHGyGhF2+zw7cqu3cwetfLg==
+X-Received: by 2002:a05:600c:1ca7:: with SMTP id k39mr24137805wms.162.1628626918682;
+        Tue, 10 Aug 2021 13:21:58 -0700 (PDT)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from ?IPv6:2001:8b0:aba:5f3c:4282:face:6a07:1a9d? ([2001:8b0:aba:5f3c:4282:face:6a07:1a9d])
+        by smtp.gmail.com with ESMTPSA id v5sm25449941wrd.74.2021.08.10.13.21.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Aug 2021 13:21:58 -0700 (PDT)
+Message-ID: <d23e3d7bee796884ee58c54cea558bc4566de1b6.camel@linuxfoundation.org>
+Subject: Re: [yocto] New Override Syntax
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Darcy Watkins <dwatkins@sierrawireless.com>, Michael Opdenacker
+	 <michael.opdenacker@bootlin.com>, "yocto@lists.yoctoproject.org"
+	 <yocto@lists.yoctoproject.org>
+Date: Tue, 10 Aug 2021 21:21:57 +0100
+In-Reply-To: <13A7932E-8B64-45EA-827E-B9EB8C787239@sierrawireless.com>
+References: <E360C062-0BA9-48C7-A776-2ED9259143C8@sierrawireless.com>
+	 <1699FF2DD7128D19.12542@lists.yoctoproject.org>
+	 <7595a925-97e3-03c2-6e51-48d732031c21@bootlin.com>
+	 <13A7932E-8B64-45EA-827E-B9EB8C787239@sierrawireless.com>
+User-Agent: Evolution 3.40.0-1 
 MIME-Version: 1.0
-References: <20210806165644.2393-1-twoerner@gmail.com>
-In-Reply-To: <20210806165644.2393-1-twoerner@gmail.com>
-From: "Trevor Woerner" <twoerner@gmail.com>
-Date: Tue, 10 Aug 2021 15:31:05 -0400
-Message-ID: <CAHUNapToW-BY+j8REF3JfJ1XxHRz7My2ADLSpg5EFd9nTsCdPQ@mail.gmail.com>
-Subject: Re: [meta-rockchip][PATCH] rockchip-gpt-img: fix for new override syntax
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000a3e59f05c9398bd3"
-
---000000000000a3e59f05c9398bd3
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Fri, Aug 6, 2021 at 12:56 PM Trevor Woerner <twoerner@gmail.com> wrote:
+On Tue, 2021-08-10 at 17:51 +0000, Darcy Watkins wrote:
+> My apologies.  I don't think I made my question clear.  I am asking about the 
+> compatibility of old style override syntax moving forward (and new style syntax
+> in old versions).
+> 
+> So if I continue using the old style override syntax (to ensure sure 
+> compatibility for use with older Yocto versions), at what future Yocto/OE 
+> release do you expect that old style override syntax will become erroneous 
+> (as opposed to say triggering deprecation warnings, etc)?
+> 
+> Is support for the new style override syntax present in any existing 
+> Yocto/OpenEmbedded releases (in other words, has it been there for a while, 
+> but we are just now actively migrating to use it)?  If so, how far back does it go?
 
-> It looks like I missed a case for the new bitbake override syntax. My tests
-> weren't done from a fresh build so either a preexisting image was still
-> available, or the unfixed syntax caused a race.
->
-> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
-> ---
->  classes/rockchip-gpt-img.bbclass | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+The new syntax will work on the dunfell, gatesgarth, hardknott, master and new 
+release branches going forward. That applies now and that support will be in the
+next point releases for dunfell (3.1.11) and hardknott (3.3.3).
+
+The old syntax is no longer supported in master as of now and will not be supported
+in new releases going forward. It continues to work fine in older releases prior
+to the next new release series (honister).
+
+Cheers,
+
+Richard
 
 
-applied to meta-rockchip, master
 
---000000000000a3e59f05c9398bd3
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">On Fri, Aug 6, 2021 at 12:56 PM Trevor Wo=
-erner &lt;<a href=3D"mailto:twoerner@gmail.com">twoerner@gmail.com</a>&gt; =
-wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex">It looks like I missed a case for the new bitbake overrid=
-e syntax. My tests<br>
-weren&#39;t done from a fresh build so either a preexisting image was still=
-<br>
-available, or the unfixed syntax caused a race.<br>
-<br>
-Signed-off-by: Trevor Woerner &lt;<a href=3D"mailto:twoerner@gmail.com" tar=
-get=3D"_blank">twoerner@gmail.com</a>&gt;<br>
----<br>
-=C2=A0classes/rockchip-gpt-img.bbclass | 2 +-<br>
-=C2=A01 file changed, 1 insertion(+), 1 deletion(-)</blockquote><div><br></=
-div><div>applied to meta-rockchip, master=C2=A0</div></div></div>
-
---000000000000a3e59f05c9398bd3--
