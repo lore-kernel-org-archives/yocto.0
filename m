@@ -1,17 +1,17 @@
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (EUR04-VI1-obe.outbound.protection.outlook.com [40.107.8.139])
- by mx.groups.io with SMTP id smtpd.web10.7592.1628689294159989958
+Received: from EUR03-VE1-obe.outbound.protection.outlook.com (EUR03-VE1-obe.outbound.protection.outlook.com [40.107.5.101])
+ by mx.groups.io with SMTP id smtpd.web09.7947.1628690614512566232
  for <yocto@lists.yoctoproject.org>;
- Wed, 11 Aug 2021 06:41:35 -0700
+ Wed, 11 Aug 2021 07:03:35 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@servotronix1008982.onmicrosoft.com header.s=selector2-servotronix1008982-onmicrosoft-com header.b=iavg1NTZ;
- spf=pass (domain: servotronix.com, ip: 40.107.8.139, mailfrom: nir.geller@servotronix.com)
+ dkim=pass header.i=@servotronix1008982.onmicrosoft.com header.s=selector2-servotronix1008982-onmicrosoft-com header.b=qUAxfTMb;
+ spf=pass (domain: servotronix.com, ip: 40.107.5.101, mailfrom: nir.geller@servotronix.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WQxQIbMJgpk5ZTOzOR/AO58Y5l2ZPhGLrXNzHq6Jm+GwfNBqDK1uXwjkjgw28VFWMPbCmeYhgSNV5nbtj6YT7F64wneAzmDaU00PJOt+Nwj8KVbeMhsibFaQiV322UMYs9dQpl3U6zz+GXgiXvT8bfhdk2oUtaSoUCFTtE2lOaBzuauuss5iVh2SIhFzIjNMzJV8uHuSMfqjgC+AqPdRFQTr7ChLNnolX819elb1BgJQdx9FAMRj8EFvmZKNsfdiG9yiyj9VCM54HtezGLHkSE59DXcI4NnIqw2H7urk+9gcH/zleElOtZjz+OqDpzqIosF3m9d61h3bB8PtGg4xSg==
+ b=nB1DvyQxqg2URa14bVX1bwwHZ8BQ9V4dXCn5c1r+Gqdz15tn0nt0gha/zpQMws2U33QGHTzkrNnrfbuRcQHfIf9vDtrK+Kr+mxwJxUlzLQUmYELQMj9Xjee1N7MYB7IA43DIEBwh29glGj69ugNTmb556hZnTQCN33fdFUqgRIdtZmBOzjceDEtSpnZavJ2LmJ1V52uYpBV8Ms4qk8fsEXLrkZ3lhN3ZoRhZ0ED2NE9I7Lres+7UeOCPi+SVcO8Lx/LScMx/x0BDzoqaoUAbjKjA6dWVs6s8C/N4sK0f9YCc7XSovW7+q1RdNxsXkQ84o+hwUJ2IeBGwRK11egstDA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0PtHPnp6lTlAxg/DrTTvhLXkvEq/aDFyGTvw4hv0/9I=;
- b=aCV0zT8I7wTlqkG4jQFubG1xpNVqxrzUtezKJstPslTEGyANy5/AF9KU6n6E8IT23RKj9QNJH2YtdH5knOyE3A7y6ptqLOxJIC4nZbXvi5DGKhNy5h462z8cHvTWxVng0MsnCo+r9GofU6HAEHlFyT139cvgXntMnp7kwK5PPt+aHjCzfAJ+YCwXdu60FMvWpOGNVSOFb6uQjhayAOVt7pHfGRzBPr3YHdeQlrCgs86fQb+xX/RCMaR4p6IyjKrgTzcITP5r543Oqmwp4iS57t/NZ+qrhAcLyrIwxImjzlRr9riyrUx575LCaGClcKelea9vKDcxoqyx4kaeRqlVsg==
+ bh=yUaKS6W+Pf30GCCriiv7Jf9U5QnX5yAVoP+frth1sIo=;
+ b=I3xPl6pwpcnFkscGPuWX05mmGonKgDQcFrtnWMF7qoAoYhJVxL+Vl50zahPOcCj+xl8p3+I2/IZcaVI4sMdA8nyrgAogZi+RZCyKRuBHHrScwAYpXAM3b/BDqgb9yGb0vBJh6GBLWm5Avos/k+viBkL046jUrY9zmWgZcNKfAw8TYvZy8b3IIDozym83UsQOEWSepcMe22m1d49UoRVwMw65KKlBhPFYPQcQhZPVoMOVEBbfelQqSmcE7gaKiF/4Qzmg7t9VVxOSm5EG8OLjtXCmWaZthtHMtFm1DRVCHSF8T90dArOcepeJU2xoniO8/HpIwg7URgDeDcy40q0loA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=servotronix.com; dmarc=pass action=none
  header.from=servotronix.com; dkim=pass header.d=servotronix.com; arc=none
@@ -19,91 +19,106 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=servotronix1008982.onmicrosoft.com;
  s=selector2-servotronix1008982-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0PtHPnp6lTlAxg/DrTTvhLXkvEq/aDFyGTvw4hv0/9I=;
- b=iavg1NTZXuW/NuG+ZMorqr7YMhof1t0XTWD2FFatbtCmVBByX0JVfQhPi+hOyN9PF7qAMArl26ehZKoY+lwiwdU3ntrlrd+kzFarPpMhrA411C9gZ0tiAR9DzYRGmAdS8Vmb8FajLBeDiTT4pdzG+TtgY3LgCivx3u1OGXZ0tH4=
+ bh=yUaKS6W+Pf30GCCriiv7Jf9U5QnX5yAVoP+frth1sIo=;
+ b=qUAxfTMbnS+Qd9j+70vhZbpzVLzRkBBDCYjciNBOCbu+35xy5+SMEfZHddhQ1V5Qf3Z0h+Ifsscn1aL9hVBKtJmmyz6so1rFM0U8Ptw68DOxx/IFO9oKm4ssR/Zz3D+sIS2lL+RM3S/l2k8GWoa3WxfLfciZm4bboJbZCDUbE6Q=
 Received: from VI1PR0702MB3695.eurprd07.prod.outlook.com (2603:10a6:803:7::12)
- by VI1PR0701MB6880.eurprd07.prod.outlook.com (2603:10a6:800:19d::7) with
+ by VI1PR0701MB2445.eurprd07.prod.outlook.com (2603:10a6:800:6d::23) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.6; Wed, 11 Aug
- 2021 13:41:23 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.5; Wed, 11 Aug
+ 2021 14:03:30 +0000
 Received: from VI1PR0702MB3695.eurprd07.prod.outlook.com
  ([fe80::24ea:3eb1:7096:60c7]) by VI1PR0702MB3695.eurprd07.prod.outlook.com
  ([fe80::24ea:3eb1:7096:60c7%5]) with mapi id 15.20.4415.012; Wed, 11 Aug 2021
- 13:41:23 +0000
+ 14:03:30 +0000
 From: "Geller, Nir" <nir.geller@servotronix.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: multilib32: libtool-cross_2.4.6.bb configure failure
-Thread-Topic: multilib32: libtool-cross_2.4.6.bb configure failure
-Thread-Index: AdeOlO8NS8O6ySAgTamPedi1GCaocwAIQWoQ
-Date: Wed, 11 Aug 2021 13:41:22 +0000
+To: "Geller, Nir" <nir.geller@servotronix.com>, "yocto@lists.yoctoproject.org"
+	<yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] multilib32: libtool-cross_2.4.6.bb configure failure
+Thread-Topic: [yocto] multilib32: libtool-cross_2.4.6.bb configure failure
+Thread-Index: AdeOlO8NS8O6ySAgTamPedi1GCaocwAIQWoQAADTuVA=
+Date: Wed, 11 Aug 2021 14:03:29 +0000
 Message-ID: 
- <VI1PR0702MB36954030B45FDB613624BEE690F89@VI1PR0702MB3695.eurprd07.prod.outlook.com>
+ <VI1PR0702MB3695196FC4BB96DFEAD9340C90F89@VI1PR0702MB3695.eurprd07.prod.outlook.com>
 References: <169A373D601F14AC.28384@lists.yoctoproject.org>
-In-Reply-To: <169A373D601F14AC.28384@lists.yoctoproject.org>
+ <169A44490E3AA64A.29477@lists.yoctoproject.org>
+In-Reply-To: <169A44490E3AA64A.29477@lists.yoctoproject.org>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
+authentication-results: servotronix.com; dkim=none (message not signed)
+ header.d=none;servotronix.com; dmarc=none action=none
  header.from=servotronix.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 2bf9f987-984c-40bc-8037-08d95ccdb557
-x-ms-traffictypediagnostic: VI1PR0701MB6880:
+x-ms-office365-filtering-correlation-id: 2522aed7-036e-4cd9-612b-08d95cd0cc50
+x-ms-traffictypediagnostic: VI1PR0701MB2445:
+x-ms-exchange-transport-forked: True
 x-microsoft-antispam-prvs: 
- <VI1PR0701MB68801147C00613D0696D6A0B90F89@VI1PR0701MB6880.eurprd07.prod.outlook.com>
+ <VI1PR0701MB24459B1366FC34B8951BDF2C90F89@VI1PR0701MB2445.eurprd07.prod.outlook.com>
 x-ms-oob-tlc-oobclassifiers: OLM:8882;
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info: 
- XazPKHml85lynQJ30iPXxwXfodYr7g80mkivM/8reNgfrIYkimGf/yVqpfH+oZWlXt3NjRxhnLlLCneb1sZeaeeTS72fHrNARwIq9eyL6nXX9//zIlp5Dwxsu4BzUnwPujUOp4Q1sk9yIxVUCxcKcWX0HAWDqjO7E0zjry+IQTz7YoR4PHNeVN+cC3eacDwTm9GnnTzMuS84B/mCgKw7NsMDWVsxkDv3Gkk1gN4yA1LnebxvwgBu4dXo2pWJatJsPvps6JpG7hxJFlLh5S1m7jC7fXf5FjXnsDvGeT/Nd5n93SBmivEGPt7yPgC+k4JCJLYTm2PMvlSH5gS1qE5rtIHiEGzl0kPwQufQ7e+jDnFO6HJn+w/VgHDYQ4CXDilXDEkFe/0CJqnpEYOG6lidqYcrqLuDDA+/pD3aQLGuSFvYEf/q1XaNM2Pt4vx7WVQ1IZdfGu14nxXa+NcISCE2rF7w1GiPqhpBUrmg5VMUHD2vanowQM7xPRomQ+GuHkSMaRyjM+KBQJuUmR28OTr9pUHU00woTGXjrOY+fyTTCmlY7WE142kRTZAH0sOFP3YTVLiWyuXV78Y8BaTqeKLgbomEEaCsM4xjPP5rMg+miP8OfwyWfj1IU0OojykuEK93AXRmPHhCJA+TcosiMF7pCx/quJ+OwyttaQR1HaLA8/vryHNG10Vt2bysgqR1uYgp4V0ZmJEyCozMXeBMk4+4+1xNSf3HcRdDfw8s0jt7QjiLSzU2lH/UirV7KhXqs53iONLTmCAcn7TaWZBs+xauleOpCOcYSW3C2Izq9/gMBRYE2Je+PSlfeB526+j/vvAE
+ JTpHIjnnFmH5LRaOzZHn1PLoyEmEJkg6fnD930WPVwsD25OniS+P/eZy2LRoXd0oFGb3RS73kH3IDRsOwYiHdFHwZBbb7eJclJLFkrwtx26CvL+SuctcADLHlvAu8bBxM1y6dUDmQS95T87YEDZaAENBAXgrohnwTAwHC5B+SS/SuHWNms4a8YHYY6QRhtm0NqBsRhRPpiHFL0Nxenr7C9oX7bxvuWq9+lhHnnOBY9eh8DGMlwE0GE9sFCrQ59F5gU5goqExmZb7qHLNSaW512twWOzjUsZo/EAOiLU56y2LmuNcnQjfP6wJVPbdrdRhBFXekxWN52fK4oYAD9c9M2wNa/Ruv0qpt1DMFB9Plsu2NWrn50uqqgXH/QfknsVbhX8jxOz09cbBw88RdfE/TSkFu5bf9b4SDQblInlwHyuyIbSUsN/YBKZIjQOeQWsUQB7yHOEIMitMcm3/bE/NYVmsa7Gy2lTvHS71iPz1uqen37j66gfuI6gvw8tWhR5ZHghmFuL6x+w4Ks0vSSRACLSqvqEfJRyyWRuF2MOH+t20a1cKQ53N+bSg9PL5w6mcXdP93rHdFTKojunqI4XSwTE5FNmvImsswuRbFowojfrBuH1r82KfLCoiFxjkrPpg3GYkvYmKdQJEqH+SmyL9TSpVMiLmXYiyKhLN9IRQLqxtxtEa1eCFe2FQhwCv+3bPxBZ2fbx4xNaK5z/tzaS80/iso+wgOksgoAPvOD8gvBJgYEwVsNEaAg4nSD7npZRbU6368sHP4ilctSIfqBPBrk13p6v9eHjk6w2fhIZc5h2zoXyJ+YLffoj5VvX/ltuC
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0702MB3695.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(376002)(396003)(39840400004)(346002)(136003)(366004)(83380400001)(55016002)(66946007)(66476007)(966005)(66556008)(8676002)(86362001)(9686003)(76116006)(64756008)(21615005)(53546011)(8936002)(52536014)(2906002)(7696005)(6506007)(66446008)(38100700002)(186003)(6916009)(5660300002)(316002)(478600001)(33656002)(122000001)(166002)(26005)(38070700005)(71200400001)(2004002);DIR:OUT;SFP:1102;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0702MB3695.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(66476007)(66946007)(122000001)(55016002)(66446008)(64756008)(66556008)(38100700002)(8676002)(33656002)(316002)(8936002)(76116006)(21615005)(5660300002)(71200400001)(38070700005)(2906002)(186003)(6506007)(966005)(53546011)(508600001)(26005)(7696005)(110136005)(9686003)(52536014)(166002)(86362001)(83380400001)(2004002);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?5GK0OzXAmdu77nCqpuyYlyatqfxQZy3VpdMHLwnWHJUmATMdb50ibx71uDHe?=
- =?us-ascii?Q?7mPZxmB3cj0WzWBoPnw+gJIWqAv5CHx16fxbHXwcrke+sZbVGIS7BFlCMH01?=
- =?us-ascii?Q?UGHBBI6jtXwlrEvo0Y4JNqQB8oxzidPwtZnH04IjSqAoEcRv7HSsvsehnX20?=
- =?us-ascii?Q?VpvA8cdMpYCGP+X1jjS3b22q5nkB5DBzwLRB60hXfZ5WMf/ylcMVNcoARGmo?=
- =?us-ascii?Q?SmQ8Okm5YsndPE7o6PN7tqnpIl9XKuJPf6lSMbj2GS0q3Kh+eo0mjuGFENsS?=
- =?us-ascii?Q?/9ekv1pQlhh0zH68ck4QGhfSYyh6cigjXC+lp1G1JjZCNUMYSRTxNoPqRYs1?=
- =?us-ascii?Q?RHDjDlP0da6cmndQcAImy9cvb9DNleaxRIZ+JYMBu54IhLDAHJZVHIzdsTh+?=
- =?us-ascii?Q?JIzqnME/7ajefPUClfMWDpJD2SdqQHpqIyKjRzh/A6QZLI9sGAL1JRfg6oJd?=
- =?us-ascii?Q?ZOIjMSkx1zlEr+ropLWdKApJGwIoNzolbPgYdKShUN8GcSrocUAVoYgnCMDJ?=
- =?us-ascii?Q?yNYKyNwPqKaMCINm4blqouhddGKJAK4Cy+i9Fr2DbSEJ5uKUsmf5WSujm9r4?=
- =?us-ascii?Q?asXoT8KJeR2IsW5BzwXk5S0LWlltBKvEyAOUOX+AY2KdWSZDAaY/IJw7x9pB?=
- =?us-ascii?Q?8d2pUD/kBz990iOL5gqSlSexc23xXKL9iw6AN2VvjDvCHGe4Gmf+LPPPH7zx?=
- =?us-ascii?Q?wdh9aS1AxcsrfwSm4fipvK14N2Tf9UldnlEFLNLZiqdx/f8hLNDnvBTtbtRi?=
- =?us-ascii?Q?TDgGYqv3hUQr0nE49zHHp6eFNEYwRMzEnYCI3eaumDUQmgFYIcotc6nXWU+k?=
- =?us-ascii?Q?ofVDCT4VMWK0weGMJrLQNcfmD9x6msAGHVG6ArEll0bglH8T7lamAWDUgGcV?=
- =?us-ascii?Q?yooAhX/+9yE6rQ+W9V1biKuqKEhI3OhpKmTskYkQ9zmd2eWR4GqfhNumBbc7?=
- =?us-ascii?Q?xTTeCrx36DR95Kk7YJn9XroDjasCI35cmfxX7GSLmDpBB2fY3Pksp0HapO03?=
- =?us-ascii?Q?Zq4lVwKBC/9Gs3r538a1NyBZYSnNcn8BU39/g4Rd3mvJfVtbC+mJKKNMVt3z?=
- =?us-ascii?Q?Hg+jtfn78WWKKg7od9xFG2Jo5DPBUqI0YnhoBeaEPkCzTBlTiAoTqlVI9BPt?=
- =?us-ascii?Q?MIoKyMYtShmEnLvCKBBOJTlJDB293n6VLSb2Ea715bmXIjG+oJyc+Jla3mrc?=
- =?us-ascii?Q?xyt77Xs0y6q3cpP0PheXv/Uk3LeUQWVJyMkg/Oq/EslkAJijTJPNlXfO1bRQ?=
- =?us-ascii?Q?t495KU0RC7Hr+3wCN74OlSB1ldsvr3VAOna7tY4jezoJK6b8X0m0smb+x/xg?=
- =?us-ascii?Q?tvgclxGwzmTPCIldIdpyr4z9?=
-x-ms-exchange-transport-forked: True
+ =?us-ascii?Q?HlnYNwVnZWS9OoH48tRfaohr8880ABwPOQpjgQyRtevrdTHS4QW2mE2zVial?=
+ =?us-ascii?Q?hq0C5ej/QOkpqYCEHanWgomXtIVD/YFkhGQERC15OiJOSJgkFXNJCOno7XnW?=
+ =?us-ascii?Q?mO2EJUXAgoDY5V6185mPOeuLtCV/RqT4RIkpbSPd9DS3qZty2T5YLs06Jc0n?=
+ =?us-ascii?Q?WFvhEvbrqtzzSu5eAuAtRJ0vW/jav4581s55YUskhpNgdQuCLttvDtBTKAGM?=
+ =?us-ascii?Q?LvLJ01FlQoctpnKK+GpvCKM93lizuLVFMQiEQ7rN8h7cHkPqk9IySuUCK5s9?=
+ =?us-ascii?Q?gWOwNBDZ3ravTlRct99IpKgHlJL1nMC2GdAnuEv3tFo3FZBHkt/b1ImlMQyi?=
+ =?us-ascii?Q?W1a3Se/di20a+w0BNThLCrbbVoXrDhJBdZ1t2VcOPvU2R40Q3DZSgE87+IO+?=
+ =?us-ascii?Q?2gXFFg7t38N5UtflBaii5DDPe7X+xtUXzIwJwd2nMs5ttfRCLhTDy4PLFW+l?=
+ =?us-ascii?Q?fxpXINDqsiyjQcAWKghNZOZmynQ4GJpJRo7ThbQSNmzNNWpHszU+ey0DiP0Z?=
+ =?us-ascii?Q?RZsaIf6uYRLDFlkmLzA4SbDU6gyBgxlEhr7Xl7JdRjVas+GS8zZyXslMRObp?=
+ =?us-ascii?Q?fZCbrzoSwbA5y6Rlvo4mpLAvf9sVIFVg5pMqUImdmU4Q1K9xvKsqF91Jb4LI?=
+ =?us-ascii?Q?I+GsCNG0n8fDO8fcbZkc4ooJAsd4uHSpm9tRwkYVNRvBbGAvOiaWPjxRfyyT?=
+ =?us-ascii?Q?c+Irx4Iw6rNOEFRU/LCFsd55KzolK3xq9HXbxZwiNjFKWABJQSlFvXLxmvPO?=
+ =?us-ascii?Q?vz28yMLrZ6ASsIrMcObqyTKWwOlBUQMzkxqBKri5HuVLfXmJafMH9+UnPG8J?=
+ =?us-ascii?Q?ugnN+E9axPIpOfz1bun0H4rQ2DWWmourxXUIinIyC++LHu92j8+UH8ezd6MB?=
+ =?us-ascii?Q?pZorTozi/hvFeCVsl329ogLfrfd81/IqyRXoI9FgTG9K31t6xFVPzTkK10yK?=
+ =?us-ascii?Q?fR1RhzUIXFp5lbkFrS2zVuqR/AzZE/OEHOJljc6+t4k7aj2knxpnH9krlpKx?=
+ =?us-ascii?Q?IbJ5mKaK4gWsM/JCOpRddbXXFt16zfJ7CbE6NWIIKQ2FlsY037W8xpvJgEvy?=
+ =?us-ascii?Q?JFjrzMrEx09tVGZZJucs2hihmVOUBKzAl6OpHQBC4x2Z+wGBG9/nnqunGHQW?=
+ =?us-ascii?Q?l2MbnuwF0JbQH08aqlRBG53IOJCg8COOXwT5aBEL5H9OgvEcn+FN7mNkkv2F?=
+ =?us-ascii?Q?ktKzGtEYnvaV9luHhc6zmwzSqALmATxQ52ds+1/65k8zKNOOwT5haFnNmBNk?=
+ =?us-ascii?Q?//AEQBmyWkwo58XMdHysHg3DF/Plf4oBooFBa5bMVfvQSakEsfyw6++Nflm2?=
+ =?us-ascii?Q?FHJX2hbjvD4ioPDhdYXDnDPt?=
 MIME-Version: 1.0
 X-OriginatorOrg: servotronix.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: VI1PR0702MB3695.eurprd07.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2bf9f987-984c-40bc-8037-08d95ccdb557
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Aug 2021 13:41:22.9148
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2522aed7-036e-4cd9-612b-08d95cd0cc50
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Aug 2021 14:03:30.0018
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 5c4bfc7d-fde6-4201-a2d6-2a396cc790f7
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mOMyFxqdigiyS9TtgGwHCzUnicYyN6f1GiKLZBnC8Y0ERse7cUPVLKJglBTH8Rz2SolWnYz9GTVDccY+Kg1zOO8ywrLlvWdKWFATWzHtXC4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0701MB6880
+X-MS-Exchange-CrossTenant-userprincipalname: xwi4pW4Pv4Z7h6BsJPIrJ+eKA14wMKt1TRUL+Ty1I2zyqBvedHjRej9owfR54kDpohm4RHZasY9BzZ8+9V6amSMcSq3UhNrULLFJyhdpOo8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0701MB2445
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_VI1PR0702MB36954030B45FDB613624BEE690F89VI1PR0702MB3695_"
+	boundary="_000_VI1PR0702MB3695196FC4BB96DFEAD9340C90F89VI1PR0702MB3695_"
 
---_000_VI1PR0702MB36954030B45FDB613624BEE690F89VI1PR0702MB3695_
+--_000_VI1PR0702MB3695196FC4BB96DFEAD9340C90F89VI1PR0702MB3695_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+The variable SYS_HOST is expanded to armmllib32-linux-gnueabi
+Shouldn't it be expanded to arm-none-linux-gnueabihf ?
+
+Thanks,
+
+Nir.
+
+From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Behalf=
+ Of Geller, Nir
+Sent: Wednesday, August 11, 2021 4:41 PM
+To: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] multilib32: libtool-cross_2.4.6.bb configure failure
 
 Investigating run.do_configure suggests that in the configure stage oe_runc=
 onf() is set with what seems to be wrong -host and -target values:
@@ -111,10 +126,11 @@ onf() is set with what seems to be wrong -host and -target values:
 
 How can I influence oe_runconf() generation and set correct values?
 
-From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Behalf=
- Of Geller, Nir
+From: yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org> <yo=
+cto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org>> On Behalf =
+Of Geller, Nir
 Sent: Wednesday, August 11, 2021 12:42 PM
-To: yocto@lists.yoctoproject.org
+To: yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org>
 Subject: [yocto] multilib32: libtool-cross_2.4.6.bb configure failure
 
 Hi There,
@@ -285,7 +301,7 @@ Thanks a lot,
 Nir.
 
 
---_000_VI1PR0702MB36954030B45FDB613624BEE690F89VI1PR0702MB3695_
+--_000_VI1PR0702MB3695196FC4BB96DFEAD9340C90F89VI1PR0702MB3695_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -314,7 +330,7 @@ a:link, span.MsoHyperlink
 	{mso-style-priority:99;
 	color:#0563C1;
 	text-decoration:underline;}
-span.EmailStyle19
+span.EmailStyle20
 	{mso-style-type:personal-reply;
 	font-family:"Calibri",sans-serif;
 	color:windowtext;}
@@ -336,6 +352,28 @@ div.WordSection1
 <body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
 break-word">
 <div class=3D"WordSection1">
+<p class=3D"MsoNormal">The variable SYS_HOST is expanded to armmllib32-linu=
+x-gnueabi<o:p></o:p></p>
+<p class=3D"MsoNormal">Shouldn&#8217;t it be expanded to arm-none-linux-gnu=
+eabihf ?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Nir.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b>From:</b> yocto@lists.yoctoproject.org &lt;yocto@=
+lists.yoctoproject.org&gt;
+<b>On Behalf Of </b>Geller, Nir<br>
+<b>Sent:</b> Wednesday, August 11, 2021 4:41 PM<br>
+<b>To:</b> yocto@lists.yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] multilib32: libtool-cross_2.4.6.bb configure fa=
+ilure<o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Investigating run.do_configure suggests that in the =
 configure stage oe_runconf() is set with what seems to be wrong &#8211;host=
  and &#8211;target values:<o:p></o:p></p>
@@ -348,11 +386,13 @@ correct values?<o:p></o:p></p>
 <div>
 <div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
 0cm 0cm">
-<p class=3D"MsoNormal"><b>From:</b> yocto@lists.yoctoproject.org &lt;yocto@=
-lists.yoctoproject.org&gt;
+<p class=3D"MsoNormal"><b>From:</b> <a href=3D"mailto:yocto@lists.yoctoproj=
+ect.org">yocto@lists.yoctoproject.org</a> &lt;<a href=3D"mailto:yocto@lists=
+.yoctoproject.org">yocto@lists.yoctoproject.org</a>&gt;
 <b>On Behalf Of </b>Geller, Nir<br>
 <b>Sent:</b> Wednesday, August 11, 2021 12:42 PM<br>
-<b>To:</b> yocto@lists.yoctoproject.org<br>
+<b>To:</b> <a href=3D"mailto:yocto@lists.yoctoproject.org">yocto@lists.yoct=
+oproject.org</a><br>
 <b>Subject:</b> [yocto] multilib32: libtool-cross_2.4.6.bb configure failur=
 e<o:p></o:p></p>
 </div>
@@ -600,4 +640,4 @@ y in this case?<o:p></o:p></p>
 </body>
 </html>
 
---_000_VI1PR0702MB36954030B45FDB613624BEE690F89VI1PR0702MB3695_--
+--_000_VI1PR0702MB3695196FC4BB96DFEAD9340C90F89VI1PR0702MB3695_--
