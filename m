@@ -1,43 +1,65 @@
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by mx.groups.io with SMTP id smtpd.web09.3205.1628652767802720754
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+ by mx.groups.io with SMTP id smtpd.web11.4905.1628669888093461585
  for <yocto@lists.yoctoproject.org>;
- Tue, 10 Aug 2021 20:32:48 -0700
+ Wed, 11 Aug 2021 01:18:08 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: intel.com, ip: 192.55.52.93, mailfrom: naveen.kumar.saini@intel.com)
-X-IronPort-AV: E=McAfee;i="6200,9189,10072"; a="211935556"
-X-IronPort-AV: E=Sophos;i="5.84,311,1620716400"; 
-   d="scan'208";a="211935556"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Aug 2021 20:32:46 -0700
-X-IronPort-AV: E=Sophos;i="5.84,311,1620716400"; 
-   d="scan'208";a="484657081"
-Received: from saininav-desk1.png.intel.com ([10.158.87.77])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Aug 2021 20:32:45 -0700
-From: "Naveen Saini" <naveen.kumar.saini@intel.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-zephyr][PATCH 1/2] zephyr-kernel-src: switch to main branch for hal_stm32 module repo
-Date: Wed, 11 Aug 2021 11:46:40 +0800
-Message-Id: <20210811034641.2176-1-naveen.kumar.saini@intel.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=missing; spf=pass (domain: bootlin.com, ip: 217.70.183.199, mailfrom: michael.opdenacker@bootlin.com)
+Received: (Authenticated sender: michael.opdenacker@bootlin.com)
+	by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 290CDFF803;
+	Wed, 11 Aug 2021 08:18:05 +0000 (UTC)
+Subject: Re: [yocto] New Override Syntax
+To: Richard Purdie <richard.purdie@linuxfoundation.org>,
+ Darcy Watkins <dwatkins@sierrawireless.com>,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <E360C062-0BA9-48C7-A776-2ED9259143C8@sierrawireless.com>
+ <1699FF2DD7128D19.12542@lists.yoctoproject.org>
+ <7595a925-97e3-03c2-6e51-48d732031c21@bootlin.com>
+ <13A7932E-8B64-45EA-827E-B9EB8C787239@sierrawireless.com>
+ <d23e3d7bee796884ee58c54cea558bc4566de1b6.camel@linuxfoundation.org>
+From: "Michael Opdenacker" <michael.opdenacker@bootlin.com>
+Organization: Bootlin
+Message-ID: <ccd0e6f2-73bf-fcde-6898-8cb129fce2ca@bootlin.com>
+Date: Wed, 11 Aug 2021 10:18:04 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+MIME-Version: 1.0
+In-Reply-To: <d23e3d7bee796884ee58c54cea558bc4566de1b6.camel@linuxfoundation.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
----
- recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi Richard,
 
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
-index 950966e..abe755d 100644
---- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
-+++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
-@@ -12,7 +12,7 @@ SRC_URI = "\
-     git://github.com/zephyrproject-rtos/zephyr.git;protocol=https;branch=${ZEPHYR_BRANCH};name=default \
-     git://github.com/zephyrproject-rtos/cmsis.git;protocol=https;destsuffix=git/modules/cmsis;name=cmsis \
-     git://github.com/zephyrproject-rtos/hal_nordic.git;protocol=https;destsuffix=git/modules/hal/nordic;name=nordic \
--    git://github.com/zephyrproject-rtos/hal_stm32.git;protocol=https;destsuffix=git/modules/hal/stm32;name=stm32 \
-+    git://github.com/zephyrproject-rtos/hal_stm32.git;branch=main;protocol=https;destsuffix=git/modules/hal/stm32;name=stm32 \
-     git://github.com/zephyrproject-rtos/mbedtls.git;protocol=https;destsuffix=git/modules/lib/mbedtls;name=mbedtls \
-     git://github.com/zephyrproject-rtos/open-amp.git;protocol=https;destsuffix=git/modules/lib/open-amp;name=open-amp \
-     git://github.com/zephyrproject-rtos/openthread.git;protocol=https;branch=zephyr;destsuffix=git/modules/lib/openthread;name=openthread \
+On 8/10/21 10:21 PM, Richard Purdie wrote:
+> On Tue, 2021-08-10 at 17:51 +0000, Darcy Watkins wrote:
+>> My apologies.  I don't think I made my question clear.  I am asking about the 
+>> compatibility of old style override syntax moving forward (and new style syntax
+>> in old versions).
+>>
+>> So if I continue using the old style override syntax (to ensure sure 
+>> compatibility for use with older Yocto versions), at what future Yocto/OE 
+>> release do you expect that old style override syntax will become erroneous 
+>> (as opposed to say triggering deprecation warnings, etc)?
+>>
+>> Is support for the new style override syntax present in any existing 
+>> Yocto/OpenEmbedded releases (in other words, has it been there for a while, 
+>> but we are just now actively migrating to use it)?  If so, how far back does it go?
+> The new syntax will work on the dunfell, gatesgarth, hardknott, master and new 
+> release branches going forward. That applies now and that support will be in the
+> next point releases for dunfell (3.1.11) and hardknott (3.3.3).
+
+
+Thank you for the clarification.
+
+Why do you mention Gatesgarth (3.2) while no update release is in sight?
+According to https://wiki.yoctoproject.org/wiki/Releases, it's already
+end of life.
+
+Cheers,
+Michael.
+
 -- 
-2.17.1
+Michael Opdenacker, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
