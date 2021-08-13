@@ -1,128 +1,203 @@
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41])
- by mx.groups.io with SMTP id smtpd.web09.35422.1628854707158393511
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+ by mx.groups.io with SMTP id smtpd.web10.36823.1628862510027110898
  for <yocto@lists.yoctoproject.org>;
- Fri, 13 Aug 2021 04:38:27 -0700
+ Fri, 13 Aug 2021 06:48:30 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=NYHUcvYX;
- spf=pass (domain: gmail.com, ip: 209.85.217.41, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vs1-f41.google.com with SMTP id d16so4119418vsf.12
-        for <yocto@lists.yoctoproject.org>; Fri, 13 Aug 2021 04:38:27 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=lQJjHbjC;
+ spf=pass (domain: gmail.com, ip: 209.85.210.53, mailfrom: jpewhacker@gmail.com)
+Received: by mail-ot1-f53.google.com with SMTP id a7-20020a9d5c870000b029050333abe08aso12050982oti.13
+        for <yocto@lists.yoctoproject.org>; Fri, 13 Aug 2021 06:48:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8oloI9CaXkOPW87Nj0WbOlBW7qRlRHfXZVxE2D2FX0M=;
-        b=NYHUcvYXYZZbz5kS+y0EZJ8RWbAIXwqw2luXXJ8kzgDf4yidCdEntIYUMLX/NKFCKM
-         8oA0T5vZa0LAqnxBL4c1TukjMFU0YQlwHpYKAAeixs/0Sw67pcEkiIW/1rjij3SujjCx
-         Y+yC0hyhL8NNNN8jXT3CGcM0MLzLD6HefNB/NJuCK6JICodpZQjDb/TLD5lJBEHOq33F
-         mcI3cEsfLwRKlj90i3UFmoVPc4uUsRs78Y2cU5O84Zou5NT/R5VX2ohwEqJEA5LGRrrX
-         OWP9QXGbzUKFXLLs1pJSo+o8p3uMQsgSbOrcyarwiE/NNcXrYg+zt/zAGB4V5yyO1Klv
-         EPLg==
+        h=from:subject:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language;
+        bh=uTQiMg6Xp89rFvOS+sEhG1HNftNXhXik9gzZE4FYBcs=;
+        b=lQJjHbjCtAHMlcVrR/m3hRzHizazJ0CwNalGA+vlaQfRX5yG8hTjGyba6JGCHONEmL
+         Kll94G0QmXXTpqYbhkcgn9i61Tw8/3jBPT4D18xLJhp4+gfPbHI9ZIl0qe3JhTHElOm2
+         RnCMZetSw1E+dAQLVM0hmAT8Xyejju2WppEDcyWfOWsDTeuHgHNRAMMNr8t3AaN/37UX
+         dBdsavx3WMNSh1N2OlrwEkod4TgNeh7cTW2yFFF3Eus880VGRew3RFrvJM3ugzgnAWqd
+         NrAP6/WE0QgyBUELiJO6PEYw/2ArPh+zh6GZr2k0ZdofRehsNbSGHYIz+J73XeUgW44X
+         zOmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8oloI9CaXkOPW87Nj0WbOlBW7qRlRHfXZVxE2D2FX0M=;
-        b=IjxytyJKLb0VzmK/JF92NijpzwzqfhAMGBjr5F67DcUyF9TiGgvpG6BgfJ7bgt62xL
-         vC78tyHCMetIGk/sUREhab4H2r35HGMea3h2Mw9/v/Bn4jNkXbszjoX6Dl2roZR9O1b2
-         mJD3eeMplov10a+Zeb9YQ0+HmYtfXymmSfXYJ4vgM3nOCt5H47V8KJdwdRKEGLPNT6bB
-         Zpiav15n5vqlVeZ0QSREcXhT4zN/jmgv+yJcHUJYSofJdDv0pmbfWeB9Z6DgiInuaqnQ
-         Cf5uy+01YdXb/9BZWuLGSU6yYZzPPLQYsgq8RCMKdgh6IbwV/tRPprJtDQwB8ZiItQnn
-         NXMQ==
-X-Gm-Message-State: AOAM53385ghqterf2G/0YPf34Ru4h41UFGMI/8oqbzkV0KOByvD9SXH/
-	cazxr4ycPIks5RThRluzCDh9vkGv19AmJ/Hr/EI=
-X-Google-Smtp-Source: ABdhPJwq1R29r3om9AR/yY1+8HQk0gBj17lh/l1n67m5gt2+IK164+DpWa92xsCr+INO9Xv3vTGADF4B3fpA1Su/fQ8=
-X-Received: by 2002:a67:e981:: with SMTP id b1mr1011555vso.41.1628854706246;
- Fri, 13 Aug 2021 04:38:26 -0700 (PDT)
+        h=x-gm-message-state:from:subject:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language;
+        bh=uTQiMg6Xp89rFvOS+sEhG1HNftNXhXik9gzZE4FYBcs=;
+        b=GMd19WGjfrINXAy4KVUf0RWg4ZuKqoRny19++XroM4aYkuBlg6spLGXC5c1xea1sSD
+         JIzqNqnMxpIEM8IxnNfX7Nvwgh1po9boddS+klQaj12R3+0C6zzxpwZGSBdkgWrUHuZ3
+         XB0i1j1aQOYAHnmMt9ZNbT54JKCq8GpN5Rgq0clNWsRfF+4blUQLge15QEk06nU8BlFX
+         EjzVfSb/3+4y+Sxq20RHbJH5f7vVe1/LhveupT1f1LJWZMtVt3W2eJegV4an5blHv3Cz
+         UHa3sOeGedS3+iIbnnfapMI9w+KU2eXTxoiyE+PqK97gY6ZaiOPvh1E/YWvdpYPQXWxV
+         Tk4g==
+X-Gm-Message-State: AOAM5319QElWmhC116JeANF5mwCxr67KgLD8jtvWRoa9BP/QFlFDwGO3
+	ZKaWYOiP394aathZmPAvheWGP9sjvLzVJg==
+X-Google-Smtp-Source: ABdhPJxfICA1RQazSBhGOQFJO7xPEGQ727tEVpqPIjqxtZr/hAfBaLPlvkY68+KEhNU3ckpPZrCkgA==
+X-Received: by 2002:a9d:738b:: with SMTP id j11mr2131878otk.297.1628862509124;
+        Fri, 13 Aug 2021 06:48:29 -0700 (PDT)
+Return-Path: <jpewhacker@gmail.com>
+Received: from ?IPv6:2605:a601:ac3d:c100:e3e8:d9:3a56:e27d? ([2605:a601:ac3d:c100:e3e8:d9:3a56:e27d])
+        by smtp.gmail.com with ESMTPSA id bj14sm343233oib.32.2021.08.13.06.48.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Aug 2021 06:48:28 -0700 (PDT)
+From: "Joshua Watt" <JPEWhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
+Subject: Re: [yocto] [meta-mingw] [PATCH] binutils: Package static libdep linker plugins
+To: Samuli Piippo <samuli.piippo@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+References: <16642F2E6B14B52A.594@lists.yoctoproject.org>
+ <CABXoSoX9y-7UrzvHkA65jW-oWM0Hf+g5jYD6bnvBJn46uXqvBQ@mail.gmail.com>
+Message-ID: <2fa024f8-282e-5ff1-2533-7df81c3cd754@gmail.com>
+Date: Fri, 13 Aug 2021 08:48:27 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <nFHq.1628778490742042939.wQz0@lists.yoctoproject.org>
- <6a92b219-c311-7690-e2e8-e02be225e4ec@gmail.com> <CAAJeOA9U0mPaHOpwZSuDwqiHbHXYWf-zuteTZBD46ys-s+Vc3A@mail.gmail.com>
-In-Reply-To: <CAAJeOA9U0mPaHOpwZSuDwqiHbHXYWf-zuteTZBD46ys-s+Vc3A@mail.gmail.com>
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Fri, 13 Aug 2021 13:38:15 +0200
-Message-ID: <CANNYZj8Z2MgyV+2u+Ds=1GNWcR8O8aD_WGnUkhLgXHqS92-CTg@mail.gmail.com>
-Subject: Re: [yocto] Unable to add gdbserver to the Yocto build #yocto
-To: Ashutosh Naik <ashutosh.naik@gmail.com>
-Cc: Khem Raj <raj.khem@gmail.com>, Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000281a4005c96f4aa6"
+In-Reply-To: <CABXoSoX9y-7UrzvHkA65jW-oWM0Hf+g5jYD6bnvBJn46uXqvBQ@mail.gmail.com>
+Content-Type: multipart/alternative;
+ boundary="------------CBCEEEC7D42102A34E2C8902"
+Content-Language: en-US
 
---000000000000281a4005c96f4aa6
-Content-Type: text/plain; charset="UTF-8"
+--------------CBCEEEC7D42102A34E2C8902
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Thud has not been supported for a very long time actually. To really find
-out what is happening, it would help if you make an archive of
-tmp/work/../gdb/ and put it somewhere for inspection.
 
-Alex
+On 8/13/21 2:05 AM, Samuli Piippo wrote:
+> ping.
+>
+> I'm still seeing problem with this on hardknott, at least when 
+> building for qemux86 target:
+> agent:2021/08/13 06:00:50 build.go:391: ERROR: binutils-cross-canadian-i686-2.36.1-r0 do_package_qa: QA Issue: non -staticdev package contains static .a library: binutils-cross-canadian-i686 path '/opt/poky/3.3.2/sysroots/x86_64-w64-mingw32/usr/lib/i686-poky-linux/bfd-plugins/libdep.dll.a'
+> agent:2021/08/13 06:00:50 build.go:391: non -staticdev package contains static .a library: binutils-cross-canadian-i686 path '/opt/poky/3.3.2/sysroots/x86_64-w64-mingw32/usr/lib/i686-poky-linux/bfd-plugins/libdep.dll.a' [staticdev]
+> agent:2021/08/13 06:00:50 build.go:391: ERROR: binutils-cross-canadian-i686-2.36.1-r0 do_package_qa: QA run found fatal errors. Please consider fixing them.
 
-On Fri, 13 Aug 2021 at 13:32, Ashutosh Naik <ashutosh.naik@gmail.com> wrote:
+Hmm, I'm not sure why I missed this. However, why is the MinGW build 
+producing the .a files and not all the builds? It seems like this could 
+go in the oe-core version of the recipe (w/o the override) instead of 
+the bbappend?
 
 >
+> On Tue, 16 Feb 2021 at 11:07, Samuli Piippo via lists.yoctoproject.org 
+> <http://lists.yoctoproject.org> 
+> <samuli.piippo=gmail.com@lists.yoctoproject.org 
+> <mailto:gmail.com@lists.yoctoproject.org>> wrote:
 >
-> On Fri, Aug 13, 2021 at 2:16 AM Khem Raj <raj.khem@gmail.com> wrote:
+>     this is new plugin added in binutils 2.36
 >
->>
->>
->> whats your target architecture ? sometimes gdbserver port may not be
->> available for a given arch.
->>
->>
->> Hi Alexander and KhemRaj,
+>     Signed-off-by: Samuli Piippo <samuli.piippo@qt.io
+>     <mailto:samuli.piippo@qt.io>>
+>     ---
+>      recipes-devtools/binutils/binutils-cross-canadian_2.%.bbappend | 2 ++
+>      1 file changed, 2 insertions(+)
 >
-> I am using the Yocto "thud" version which has long term support.
+>     diff --git
+>     a/recipes-devtools/binutils/binutils-cross-canadian_2.%.bbappend
+>     b/recipes-devtools/binutils/binutils-cross-canadian_2.%.bbappend
+>     index 5845fe0..0d376bb 100644
+>     --- a/recipes-devtools/binutils/binutils-cross-canadian_2.%.bbappend
+>     +++ b/recipes-devtools/binutils/binutils-cross-canadian_2.%.bbappend
+>     @@ -3,3 +3,5 @@ LDFLAGS_append_sdkmingw32 = " -Wl,-static"
 >
-> The architecture used is aarch64-oe-linux
->
-> The gdb directory or executables were not created in
-> tmp/work/.../gdb/deploy-*/ (the gdb WORKDIR), nor in tmp/deploy/...
-> (packages deploy dir), and neither in tmp/work/..../machine-image/
-> (image-specific package repo), although the compilation went through
-> successfully.
->
-> Could it be that the architecture "aarch64-oe-linux" is not supported for
-> gdbserver in Yocto "thud" ?
->
-> Regards
-> Ash
+>      DEPENDS_remove_sdkmingw32 = "nativesdk-gettext"
+>      DEPENDS_remove_sdkmingw32 = "nativesdk-flex"
+>     +
+>     +FILES_${PN}-staticdev_append_sdkmingw32 = "
+>     ${libdir}/bfd-plugins/lib*.a"
+>     -- 
+>     2.17.1
 >
 >
->
-> 
->
+>     
 >
 
---000000000000281a4005c96f4aa6
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--------------CBCEEEC7D42102A34E2C8902
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-<div dir=3D"ltr"><div>Thud has not been supported for a very long time actu=
-ally. To really find out what is happening, it would help if you make an ar=
-chive of tmp/work/../gdb/ and put it somewhere for inspection.</div><div><b=
-r></div><div>Alex<br></div></div><br><div class=3D"gmail_quote"><div dir=3D=
-"ltr" class=3D"gmail_attr">On Fri, 13 Aug 2021 at 13:32, Ashutosh Naik &lt;=
-<a href=3D"mailto:ashutosh.naik@gmail.com">ashutosh.naik@gmail.com</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Fri, Aug 13, 2021 at 2:16 AM Khem Raj &lt;=
-<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
-br><br>
-whats your target architecture ? sometimes gdbserver port may not be <br>
-available for a given arch.<br>
-<br><br></blockquote>Hi Alexander and KhemRaj,<br><br>I am using the Yocto =
-&quot;thud&quot; version which has long term support.<br><br>The architectu=
-re used is aarch64-oe-linux<br><br>The gdb directory or executables were no=
-t created in tmp/work/.../gdb/deploy-*/ (the gdb WORKDIR), nor in tmp/deplo=
-y/... (packages deploy dir), and neither in tmp/work/..../machine-image/ (i=
-mage-specific package repo), although the compilation went through successf=
-ully.<br><br>Could it be that the architecture &quot;aarch64-oe-linux&quot;=
- is not supported for gdbserver in Yocto &quot;thud&quot; ?<br><br>Regards<=
-br>Ash<br><br><div>=C2=A0</div></div></div>
-<br>
-<br>
-<br>
-</blockquote></div>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 8/13/21 2:05 AM, Samuli Piippo
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CABXoSoX9y-7UrzvHkA65jW-oWM0Hf+g5jYD6bnvBJn46uXqvBQ@mail.gmail.com">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <div dir="ltr">
+        <div>ping.</div>
+        <div><br>
+        </div>
+        <div>I'm still seeing problem with this on hardknott, at least
+          when building for qemux86 target:</div>
+        <div>
+          <pre>agent:2021/08/13 06:00:50 build.go:391: ERROR: binutils-cross-canadian-i686-2.36.1-r0 do_package_qa: QA Issue: non -staticdev package contains static .a library: binutils-cross-canadian-i686 path '/opt/poky/3.3.2/sysroots/x86_64-w64-mingw32/usr/lib/i686-poky-linux/bfd-plugins/libdep.dll.a'
+agent:2021/08/13 06:00:50 build.go:391: non -staticdev package contains static .a library: binutils-cross-canadian-i686 path '/opt/poky/3.3.2/sysroots/x86_64-w64-mingw32/usr/lib/i686-poky-linux/bfd-plugins/libdep.dll.a' [staticdev]
+agent:2021/08/13 06:00:50 build.go:391: ERROR: binutils-cross-canadian-i686-2.36.1-r0 do_package_qa: QA run found fatal errors. Please consider fixing them.</pre>
+        </div>
+      </div>
+    </blockquote>
+    <p>Hmm, I'm not sure why I missed this. However, why is the MinGW
+      build producing the .a files and not all the builds? It seems like
+      this could go in the oe-core version of the recipe (w/o the
+      override) instead of the bbappend?<br>
+    </p>
+    <blockquote type="cite"
+cite="mid:CABXoSoX9y-7UrzvHkA65jW-oWM0Hf+g5jYD6bnvBJn46uXqvBQ@mail.gmail.com">
+      <div dir="ltr">
+        <div>
+          <pre>
+</pre>
+        </div>
+      </div>
+      <br>
+      <div class="gmail_quote">
+        <div dir="ltr" class="gmail_attr">On Tue, 16 Feb 2021 at 11:07,
+          Samuli Piippo via <a href="http://lists.yoctoproject.org"
+            moz-do-not-send="true">lists.yoctoproject.org</a>
+          &lt;samuli.piippo=<a
+            href="mailto:gmail.com@lists.yoctoproject.org"
+            moz-do-not-send="true">gmail.com@lists.yoctoproject.org</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class="gmail_quote" style="margin:0px 0px 0px
+          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">this
+          is new plugin added in binutils 2.36<br>
+          <br>
+          Signed-off-by: Samuli Piippo &lt;<a
+            href="mailto:samuli.piippo@qt.io" target="_blank"
+            moz-do-not-send="true">samuli.piippo@qt.io</a>&gt;<br>
+          ---<br>
+ recipes-devtools/binutils/binutils-cross-canadian_2.%.bbappend | 2 ++<br>
+           1 file changed, 2 insertions(+)<br>
+          <br>
+          diff --git
+          a/recipes-devtools/binutils/binutils-cross-canadian_2.%.bbappend
+b/recipes-devtools/binutils/binutils-cross-canadian_2.%.bbappend<br>
+          index 5845fe0..0d376bb 100644<br>
+          ---
+          a/recipes-devtools/binutils/binutils-cross-canadian_2.%.bbappend<br>
+          +++
+          b/recipes-devtools/binutils/binutils-cross-canadian_2.%.bbappend<br>
+          @@ -3,3 +3,5 @@ LDFLAGS_append_sdkmingw32 = " -Wl,-static"<br>
+          <br>
+           DEPENDS_remove_sdkmingw32 = "nativesdk-gettext"<br>
+           DEPENDS_remove_sdkmingw32 = "nativesdk-flex"<br>
+          +<br>
+          +FILES_${PN}-staticdev_append_sdkmingw32 = "
+          ${libdir}/bfd-plugins/lib*.a"<br>
+          -- <br>
+          2.17.1<br>
+          <br>
+          <br>
+          <br>
+          <br>
+        </blockquote>
+      </div>
+    </blockquote>
+  </body>
+</html>
 
---000000000000281a4005c96f4aa6--
+--------------CBCEEEC7D42102A34E2C8902--
