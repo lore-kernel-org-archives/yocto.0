@@ -1,122 +1,93 @@
-Subject: Dependencies between recipes
-To: yocto@lists.yoctoproject.org
-From: daniel_herrmann22@web.de
-X-Originating-Location: Heidelberg, Baden-Württemberg, DE (92.75.204.190)
-X-Originating-Platform: Linux Firefox 90
-User-Agent: GROUPS.IO Web Poster
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+ by mx.groups.io with SMTP id smtpd.web10.31076.1628817367888894670
+ for <yocto@lists.yoctoproject.org>;
+ Thu, 12 Aug 2021 18:16:08 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=COTH98Yt;
+ spf=pass (domain: gmail.com, ip: 209.85.216.43, mailfrom: raj.khem@gmail.com)
+Received: by mail-pj1-f43.google.com with SMTP id bo18so13000054pjb.0
+        for <yocto@lists.yoctoproject.org>; Thu, 12 Aug 2021 18:16:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:organization:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=IqtNX6CDX+4z1ilBiPECgkEIUyX5ZDxx8+yygZKEFcM=;
+        b=COTH98YtZQ/YVT/FHdIP847SoVpg4lJrjYkknrGFypRx83aFw4N/UgA69LImRvwxB9
+         xtYcAeXM0IR3YVcqNn0PBW6NjTQx7oo37ueorT0A//uEaulgUYb6PWEOoIotlb6j+0YR
+         spBgGZfCXQwEw+R0WlV6mK75ZwsRTxdk+X1o4QJrMjNzdUNTkIbbaA0doZLfsDLPXzbF
+         M7dSekDP2IqVKxZvaYK3bcHN/bAjXFQL8EiQ2xl7PM6N067qHcTKxiuUOEGORoy2TqvM
+         0iUnqJ1pUEq2C5SFS5sAYMjHhYFm92OB2lU6GYzbWgxD2TOIPGvA62ew6wNRS6oMTBcp
+         Blmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=IqtNX6CDX+4z1ilBiPECgkEIUyX5ZDxx8+yygZKEFcM=;
+        b=gSsBYs1o2P4SqJnkBVUFdx+NVWxSpvgO/CczmxdbLlRJm+1Z0QR65S4KOtn22VvEoZ
+         5ABnDtRiCDXz01wHfl+8fTl1xbzpgcZzNH1fgAGwy91wQ6QvLtRv1x/tbk6g+0/DFTKc
+         Pb2tdalKFUJML9Fj+4b1h0zQlfZed8temXze1jlH9kjaedFIyqXxW204sfcgyPp6FZD+
+         lNi/wjy9EAbNevYzcVME/6vkjTPhV2bVQVoMcv240NsAa1ReYACceZBOBPHexuqNORqT
+         nC0yfxKvyIK78KFhRC8Xvgc+7ARlLOjPdjPjzdXpMJJ1w/uB5cLvwzqmzi/jJDUzdct9
+         zqGw==
+X-Gm-Message-State: AOAM532gJeWh13jaobiUxXFqUuZVyk1dqKC27ihTtPbq40sZI4y3FVX7
+	z0S1mentrjiuQkOdWlr9bMnYChmIDCuUsQ==
+X-Google-Smtp-Source: ABdhPJzg//7NyHAKwz1AFY1H7lrvGxCjH96QIPUOA500wiVswkSSyawwmtp+RF+hAcVMCseJbaz82Q==
+X-Received: by 2002:a17:90a:7283:: with SMTP id e3mr728184pjg.65.1628817367013;
+        Thu, 12 Aug 2021 18:16:07 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPv6:2601:646:9200:a0f0:c078:a19b:8919:aba? ([2601:646:9200:a0f0:c078:a19b:8919:aba])
+        by smtp.gmail.com with ESMTPSA id t8sm85899pgh.18.2021.08.12.18.16.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Aug 2021 18:16:06 -0700 (PDT)
+Subject: Re: [yocto] Unable to add gdbserver to the Yocto build #yocto
+To: ashutosh.naik@gmail.com, yocto@lists.yoctoproject.org
+References: <nFHq.1628778490742042939.wQz0@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Message-ID: <6a92b219-c311-7690-e2e8-e02be225e4ec@gmail.com>
+Date: Thu, 12 Aug 2021 18:16:05 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
+ Gecko/20100101 Thunderbird/78.13.0
 MIME-Version: 1.0
-Date: Thu, 12 Aug 2021 11:27:50 -0700
-Message-ID: <EUEr.1628792870556940876.S5GO@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="NEsEBWcxgDkD9KYC1sbu"
+In-Reply-To: <nFHq.1628778490742042939.wQz0@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 
---NEsEBWcxgDkD9KYC1sbu
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hello,
 
-I'm stucking a little bit by compiling a cmake application which has depend=
-encies
-on libs from another recipe.
+On 8/12/21 7:28 AM, ashutosh.naik@gmail.com wrote:
+> I added the following to EXTRA_IMAGE_FEATURES inside my local.conf,
+> 
+>     EXTRA_IMAGE_FEATURES = "debug-tweaks tools-debug"
+>     PACKAGECONFIG_remove_pn-gdb = "readline"
+> 
+> I also tried to add the gdbserver package explicitly by adding this to 
+> conf/local.conf:
+> 
+>     IMAGE_INSTALL_append = " gdbserver"
+> 
+> However, the build failed with the following error:
+> 
+>     Collected errors:
+>       * Solver encountered 1 problem(s):
+>       * Problem 1/1:
+>       *   - nothing provides gdbserver needed by
+>     packagegroup-core-tools-debug-1.0-r3.all
+>       *
+>       * Solution 1:
+>       *   - do not ask to install a package providing
+>     packagegroup-core-tools-debug
+> 
+> Would appreciate any help, as I am struggling with this issue for over a day
 
-*1)*
-The recipe which provided my libs is a normal debian package which I instal=
-led in yocto like this:
+whats your target architecture ? sometimes gdbserver port may not be 
+available for a given arch.
 
-SRC_URI =3D "file://${BP}.deb"
-S =3D "${WORKDIR}"
-
-inherit bin_package pkgconfig
-
-do_install() {
-install -d ${D}/opt/package-name/include/
-install -d ${D}/opt/package-name/lib
-install -d ${D}/opt/package-name/lib/cmake
-}
-
-FILES_${PN} =3D "/opt/package-name/lib/folder"
-FILES_${PN} +=3D "/opt/package-name/include/folder"
-
-*2)*
-The libs from 1) I want to use in the cmake-application
-
-*2.1)*
-*CmakeLists.txt is like this:*
-
-cmake_minimum_required(VERSION 2.8)
-project(test)
-set(package_DIR /opt/package-name/lib/cmake)=C2=A0=C2=A0 #path to cmake pac=
-kage -> Config.cmake
-find_package(package)
-add_executable(test main.cpp)
-target_link_libraries(test package::lib)
-
-*-> I dont know how to set the right path to the Config.cmake. At the momen=
-t it points to the host location.*
-*I have tried like this ${STAGING_DIR}/opt/... which should point to the sy=
-sroot, but no success.*
-
-*2.2)*
-*Recipe for the cmake-application in short*
-
-DEPENDS +=3D "package-name"=C2=A0=C2=A0 # package from 1)
-inherit cmake
-SRC_URI=3D"git://....
-SRCREV =3D "...."
-
-S =3D "${WORKDIR}/git"
-
-do_install(){
-install -d ${D}/${bindir}
-install -m0755 test ${D}/${bindir}
-}
-
-FILES_${PN} =3D "/usr/bin/test"
-
-RDEPENDS_${PN} +=3D "package-name"
-
-When I make a sysroot from the hole image with bitbake -c populate_sdk=C2=
-=A0 and I point directly to path where the Config.cmake is stored, everythi=
-ngs works..
-Is there any way to make it work in the yocto build process, without making=
- a explicit sysroot ?
-
-*Thanks*
-
---NEsEBWcxgDkD9KYC1sbu
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello,&nbsp; <br /><br />I'm stucking a little bit by compiling a cmake app=
-lication which has dependencies <br />on libs from another recipe. <br /><b=
-r /><strong>1)</strong><br />The recipe which provided my libs is a normal =
-debian package which I installed in yocto like this:<br /><br />SRC_URI =3D=
- "file://${BP}.deb"<br />S =3D "${WORKDIR}"<br /><br />inherit bin_package =
-pkgconfig <br /><br />do_install() {<br />&nbsp;&nbsp; &nbsp;install -d ${D=
-}/opt/package-name/include/&nbsp; <br />&nbsp;&nbsp; &nbsp;install -d ${D}/=
-opt/package-name/lib<br />&nbsp;&nbsp; &nbsp;install -d ${D}/opt/package-na=
-me/lib/cmake&nbsp;&nbsp;&nbsp; <br />}<br /><br />FILES_${PN} =3D "/opt/pac=
-kage-name/lib/folder"<br />FILES_${PN} +=3D "/opt/package-name/include/fold=
-er"<br /><br /><br /><strong>2)</strong> <br />The libs from 1) I want to u=
-se in the cmake-application<br /><br /><strong>2.1)</strong><br /><strong>C=
-makeLists.txt is like this:</strong><br /><br />cmake_minimum_required(VERS=
-ION 2.8)<br />project(test)<br />set(package_DIR /opt/package-name/lib/cmak=
-e)&nbsp;&nbsp; #path to cmake package -&gt; Config.cmake<br />find_package(=
-package)<br />add_executable(test main.cpp)<br />target_link_libraries(test=
- package::lib)<br /><br /><strong>-&gt; I dont know how to set the right pa=
-th to the Config.cmake. At the moment it points to the host location.</stro=
-ng><br /><strong>I have tried like this ${STAGING_DIR}/opt/... which should=
- point to the sysroot, but no success.</strong> <br /><br /><br /><strong>2=
-.2)</strong><br /><strong>Recipe for the cmake-application in short</strong=
-><br /><br />DEPENDS +=3D "package-name"&nbsp;&nbsp; # package from 1)<br /=
->inherit cmake<br />SRC_URI=3D"git://....<br />SRCREV =3D "...."<br /><br /=
->S =3D "${WORKDIR}/git"<br /><br />do_install(){<br />&nbsp;&nbsp; &nbsp;in=
-stall -d ${D}/${bindir}<br />&nbsp;&nbsp; &nbsp;install -m0755 test ${D}/${=
-bindir}&nbsp;&nbsp;&nbsp; <br />}<br /><br />FILES_${PN} =3D "/usr/bin/test=
-"<br /><br />RDEPENDS_${PN} +=3D "package-name"<br /><br /><br />When I mak=
-e a sysroot from the hole image with bitbake -c populate_sdk&nbsp; and I po=
-int directly to path where the Config.cmake is stored, everythings works.. =
-<br />Is there any way to make it work in the yocto build process, without =
-making a explicit sysroot ?<br /><br /><strong>Thanks</strong> <br /><br />
-
---NEsEBWcxgDkD9KYC1sbu--
+> Thanks
+> Ash
+> 
+> 
+> 
+> 
