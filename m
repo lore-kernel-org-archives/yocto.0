@@ -1,62 +1,80 @@
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
- by mx.groups.io with SMTP id smtpd.web09.42774.1628890283317731572
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+ by mx.groups.io with SMTP id smtpd.web08.43276.1628891992530062650
  for <yocto@lists.yoctoproject.org>;
- Fri, 13 Aug 2021 14:31:23 -0700
+ Fri, 13 Aug 2021 14:59:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@plunkware-com.20150623.gappssmtp.com header.s=20150623 header.b=FnFpsu76;
- spf=pass (domain: plunkware.com, ip: 209.85.214.172, mailfrom: bill@plunkware.com)
-Received: by mail-pl1-f172.google.com with SMTP id k2so13662088plk.13
-        for <yocto@lists.yoctoproject.org>; Fri, 13 Aug 2021 14:31:23 -0700 (PDT)
+ dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=MoWscLLd;
+ spf=softfail (domain: sakoman.com, ip: 209.85.128.47, mailfrom: steve@sakoman.com)
+Received: by mail-wm1-f47.google.com with SMTP id f10so4613931wml.2
+        for <yocto@lists.yoctoproject.org>; Fri, 13 Aug 2021 14:59:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=plunkware-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=E7gHIzy8KyAXKg6o3vHDIkg0iWYRW6UcRQDG6FxW8oE=;
-        b=FnFpsu76VGxQNyJ/2tsixQHC6WCF1KGYJpDBzMcd8+SYwM73ENRlDUch4nL+/g6klx
-         P5uba8bpFM2fntp6dDmeBN+XOyppAZOwRiHba/V83NP37AzAwOEfNUUGS2T8aY/GeYQr
-         Nbk7pmVbVYGJ4ucn8v0wwvia+b0C+cZPEbgSgQc8Z4c9skowGNtXPvifs5yo4ZI8T2ia
-         vvG3DRmEoIHp0tIHLEWin2kQ4+9EeuUd97JBdUebmx7eoDs5z1+IqUhl8ql3yF6kkyUT
-         joweZuh/V6uq38JSbCQwJB5FPcD6Sy0Z7fkGMEO+iKuWa2edM8o2lqTPNk2tCukPKC5x
-         4b/w==
+        d=sakoman-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=kBdAWXktAOpY0iWRGu5p0W+BHbCcBR/R+dB8zIj+9UE=;
+        b=MoWscLLdvlUnZ/BX+EaPlq1I559sDmGDfDzhcuy7IQ9OE1oTn4gGy0XeeG4nwR+rIQ
+         89rkW9WnCgT2YrelthR+hvTACaoxpOrm1HOFt9H6tjvaB0JSHGqUXT2m2pJQJvVlVYKH
+         qZsXxnKWj1EJsuJnLr2TbES9C75ofadTJxk1zRavWElfxuz/6qJmo5I/kTTHThg/mVaX
+         trTcn8aYZGBJ7tCclqs9OpknEkuDgF9/IsTDP3czLTDmKcPNcQYATU1/LpDsazvF56ox
+         LLpVcEhMYeHPEGvMFgbJhUrSV9hY5hgkUcGB6ICSioQUGSYQVzOKVx5jEdKQNiMnWSBU
+         LA0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=E7gHIzy8KyAXKg6o3vHDIkg0iWYRW6UcRQDG6FxW8oE=;
-        b=BiXzQvOhCE+qwjX4ip2HaAnPU2JVd+dFR9eF8hRFdCU9MhpQ0qkcg1oqbB5xQdV4S6
-         OSQyrzfKMaGyUb21QI6YQZAIotwQ9UDyZJIAvWGmZkivA874S7+eRBt4sD5hCuA0wcJn
-         x9FaX303N7iTlRrThf8y/JfTrPeO4LGIsgp0ymE4uz78aAScGhCIMqnw2gKLPcTpXCKV
-         g5efXjdpyyBkzh9QUUBkNQigBqDt2x4CQ1mq/oFCx+3OS8A3PzKFUGrLJjisRc8bJujp
-         +SepcH4hsWyn8kRHC1i1uH1LYAe+3jSoyjFkO8OKozNmnMvaAPy9NjSHrhgyLkhV0xyo
-         XZyA==
-X-Gm-Message-State: AOAM530ZYku3go7kv8UM8UDSyBbO0C71EthWsdu8O8DFueLhK2Zes6oe
-	r53XmoKi2I8sn7uAlJKC0E8Qn1W8JFVbR/jUSOV5xsBZYek/5w==
-X-Google-Smtp-Source: ABdhPJxQmb5OQlQt+vMP8gxR/qsuLuOJkz7u9rljeHr9Izppu06q9TmejOHTEdF1peMyLo+5zbz2I/pB4HZZu2KPvDo=
-X-Received: by 2002:a05:6a00:15cf:b029:3c2:7a3c:1758 with SMTP id
- o15-20020a056a0015cfb02903c27a3c1758mr4323234pfu.41.1628890281885; Fri, 13
- Aug 2021 14:31:21 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=kBdAWXktAOpY0iWRGu5p0W+BHbCcBR/R+dB8zIj+9UE=;
+        b=LoOogtp4BxNfvzonmn1I0AzKq4X56tsaq5QcJjGXoMutPDdkwOr8DuvQT8eugD2xx+
+         VFR3EFzdIIR3L8jTgLUpCgnWhJ9NLzOqIhsYRsZ5DGr284rCelPjVoOpReSqXpfcYEoK
+         O1JqBHUNFNDMrhR81FiseyNZn0QqFORBFsY/Q75V3ORQjmS8dOmjkDXxOzBAGha9YEpj
+         j43zJlmBuorRSVgj8qc/hG2UGvbv4HoXTQou+b7iIVULTw173R/FBvBJqHku6z0k3IIS
+         6RneVw1kKrpuNARFEYYM8+gzDHv09yq3/JBROkTOU+9CvHU7TqUlEV9vXUxm9lRslAMs
+         Byqw==
+X-Gm-Message-State: AOAM530+ZdkPzgVnT2bMsBCAM9V+XzapmgjXb9ruCzZ4djWghrWeBs8y
+	gj3CncB1MPcQW0Q+juNh7dq3eI6g/4zrwVuOqd2dgw==
+X-Google-Smtp-Source: ABdhPJyuTXLjY+/nHYeD3V3dB7zbmjVN6JP/+v9p5yLKZrAdr3J2RFHAeq7e30XHjj5R1/XNsg/FQNGwGrCXRoP/diI=
+X-Received: by 2002:a7b:cc98:: with SMTP id p24mr4630570wma.118.1628891990542;
+ Fri, 13 Aug 2021 14:59:50 -0700 (PDT)
 MIME-Version: 1.0
-From: bill@plunkware.com
-Date: Fri, 13 Aug 2021 15:31:11 -0600
-Message-ID: <CALLsHzjuD4=k2bZsO-MRS5HXqc+=bES9bSXyxj76mZ2VBF7PrQ@mail.gmail.com>
-Subject: best way to get feature of systemd v248 in yocto-hardknott (systemd v247)?
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000a1604105c977927d"
-
---000000000000a1604105c977927d
+References: <d99fc23e-41bc-46ef-a61b-4e6d45fab47d@www.fastmail.com>
+In-Reply-To: <d99fc23e-41bc-46ef-a61b-4e6d45fab47d@www.fastmail.com>
+From: "Steve Sakoman" <steve@sakoman.com>
+Date: Fri, 13 Aug 2021 11:59:39 -1000
+Message-ID: <CAOSpxdZkLtjttE=q_uvq=0Tgm5H4KQNW=dvHE5J1fcH0EWg3AQ@mail.gmail.com>
+Subject: Re: [yocto] Cannot build yocto anymore after updating all layers to current dunfell branch tips
+To: Manuel Wagesreither <ManWag@fastmail.fm>
+Cc: "Yocto (yocto@lists.yoctoproject.org)" <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 
-I'd like to use a systemd DHCP client feature that became available in v248
-in my yocto-hardknott system.  Is there any hope of using the complete
-v249.1 recipe from the oe master branch?
+On Fri, Aug 13, 2021 at 11:29 AM Manuel Wagesreither <ManWag@fastmail.fm> wrote:
+>
+> Hello all,
+>
+> I updated the layers of my project to the current dunfell branch tips. See here: https://gitlab.com/manuel_wagesreither/bora-proj/-/commit/de631634d7556987d2551d0cedca8f67530bc78d
+>
+> Since then, the build is failing with the following message:
+> ```
+> ERROR: ParseError at /home/manuel/bora-proj/meta-openembedded/meta-oe/conf/layer.conf:104: unparsed line: 'DEFAULT_TEST_SUITES:pn-meta-oe-ptest-image = " ${PTESTTESTSUITE}"'
+> ```
+>
+> Indeed this line, and even more the one after look strange.
+> https://github.com/openembedded/meta-openembedded/blob/master/meta-oe/conf/layer.conf#L104
 
-Bill
+Note that you are using the master branch of meta-oe              ^^^^^^^^
 
---000000000000a1604105c977927d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+If you use the dunfell branch you won't have this issue.
 
-<div dir=3D"ltr">I&#39;d like to use a systemd DHCP client feature that bec=
-ame available in v248 in my yocto-hardknott system.=C2=A0 Is there any hope=
- of using the complete v249.1 recipe from the oe master branch?<div><br></d=
-iv><div>Bill</div></div>
+Steve
 
---000000000000a1604105c977927d--
+> ```
+> DEFAULT_TEST_SUITES:pn-meta-oe-ptest-image = " ${PTESTTESTSUITE}"
+>
+> NON_MULTILIB_RECIPES:append = " crash"
+> ```
+>
+> When I replace the : with _, things seem to work. I can't make sense of that. Did the syntax change? If so, why doesn't bitbake understand the new syntax? I thought bitbake is included in one of the layers.
+>
+> Thanks, Regards,
+> Manuel
+>
+> 
+>
