@@ -1,80 +1,80 @@
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
- by mx.groups.io with SMTP id smtpd.web12.39649.1628875353681642597
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
+ by mx.groups.io with SMTP id smtpd.web12.42727.1628890140118811995
  for <yocto@lists.yoctoproject.org>;
- Fri, 13 Aug 2021 10:22:33 -0700
+ Fri, 13 Aug 2021 14:29:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=0GyhbJ5v;
- spf=softfail (domain: sakoman.com, ip: 209.85.216.43, mailfrom: steve@sakoman.com)
-Received: by mail-pj1-f43.google.com with SMTP id nt11so16312072pjb.2
-        for <yocto@lists.yoctoproject.org>; Fri, 13 Aug 2021 10:22:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=BS7QsYI2m6w0nIhXWYDu+IPo0eRnT5GRWtbhUiknPKw=;
-        b=0GyhbJ5vJn/Hpa1/equxiMQ7R0KFoYS3i2Wsr9155u0WkTMBHnGxVOIJMtTOzGJAS/
-         wv45dSCPbqDf4RST9ssKBQ83Y4f4GQcKCFOwZGmqovJ2jKMEVfycSxTNqFFmF8COJSSE
-         Q2EmbJEID11BxH6qt/Q7rvtq0rO1FVya1Nxpyl8VR0lYvUg2yxHsaO+rmPovUtzUksEE
-         xcPoEtRVDD3/GUQPiIlM6/ePCUU5GnvOiSAGFY1bO83VbophiaMni+aW7e3ApH3NyoyC
-         plBbys7Qxwr6QHxXCsBPQaYEgh+P5TxBMHGBsBVhBQiaG9wKmw1V7HOV196dym9gLP2i
-         kRtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=BS7QsYI2m6w0nIhXWYDu+IPo0eRnT5GRWtbhUiknPKw=;
-        b=pGeZ9xH0va6kRpYCEqVbofeIPhqygQsSJ5DSiY2vg+GXpdUduBZ/KrBO2sI1c5Pw6k
-         BWUj7vEterwzOFMXANLfLeBlZE3nHSgFU0zdCiKS3T9nBmY4Us523/jUYYI+gTQZyj0C
-         NJBXRyxw72g5M+9lyZKS00jQ+X/c9mMXbAtWPLjPYfmqy/OZCo22HGyzrc5DPDzsg1vm
-         Tz9pQhN6K0Bsoagca+rWsRWNInGNpKK8EvRbpV05EBSHLyng53vUGsrf9p6NN25lzk2F
-         xC0GHBgvtAUSKRPN8p81R/lrGMCe9vJh8NLa46UDq3MCQt2YrlXTwmlul5iPoMWoZ1sV
-         shuQ==
-X-Gm-Message-State: AOAM532lewpN2HEvjINUBUu8+fPeZ40N7AfriWnaUbZVmbI2Ic0YN20q
-	7+w7UAdTIVbQoYQJpxlxfi/XAxojSxm14u+u
-X-Google-Smtp-Source: ABdhPJwCmMAx0JB+CBnuaLAiGuZq/TBfWc7Lttnf5VeE0/ljzwRP8Hr1WUSsiTokXw1U5GTokUqJ6w==
-X-Received: by 2002:a17:90a:8909:: with SMTP id u9mr3607273pjn.9.1628875352382;
-        Fri, 13 Aug 2021 10:22:32 -0700 (PDT)
-Return-Path: <steve@sakoman.com>
-Received: from localhost.localdomain ([172.243.4.16])
-        by smtp.gmail.com with ESMTPSA id pc6sm2035637pjb.29.2021.08.13.10.22.29
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Aug 2021 10:22:31 -0700 (PDT)
-From: "Steve Sakoman" <steve@sakoman.com>
+ dkim=pass header.i=@fastmail.fm header.s=fm3 header.b=f4sMrdFq;
+ spf=pass (domain: fastmail.fm, ip: 64.147.123.21, mailfrom: manwag@fastmail.fm)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+	by mailout.west.internal (Postfix) with ESMTP id 7975D320092E
+	for <yocto@lists.yoctoproject.org>; Fri, 13 Aug 2021 17:28:59 -0400 (EDT)
+Received: from imap41 ([10.202.2.91])
+  by compute4.internal (MEProxy); Fri, 13 Aug 2021 17:28:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fastmail.fm; h=
+	mime-version:message-id:date:from:to:subject:content-type; s=
+	fm3; bh=X8cYi3nZraVjonlCLwEEm2SJWi6XoguENKeQPzXTwTE=; b=f4sMrdFq
+	vjqPp+Xd0dOquOcNHQEfZuiRIOT+/Y2gNyA0nBfuiO6dfbc4CDvtSexsS7n2EbmQ
+	d/yXhPaXtDKScriOeLpnEn1eUJBnWK2qfR5Vc16wq4+zf36WkkLf69wlW0B0Sf14
+	VJ1hbP/zGEKQAbgMZUIXJpcwHp8Kt2OnXo/x2WXkixXvXdNZUDqUYarRT1MH8PMc
+	+20h5LpnXabEtpxHdydmSvhg+DBfmTdl7CHbNVsJxzwgeHhDrbGqsgkvFPltKCAz
+	7KGiwvXX1YZVdRKwWPn10ubiIEj281iSl1plAeLmTUf9Sxy2kP2GwoDKcZW2SyTw
+	q+nP88/9sM0yCg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=content-type:date:from:message-id
+	:mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
+	:x-me-sender:x-sasl-enc; s=fm3; bh=X8cYi3nZraVjonlCLwEEm2SJWi6Xo
+	guENKeQPzXTwTE=; b=k7Ve2Pnl/0PL4XJM5r1vxZrN/+zi/IaH1V/KgabhpwTtO
+	W9RNq94JktrDe7ebA6rJCiKOgAJBS/4lqSqWilLaLoSE85EDQpmBal2h/KC7KPLw
+	tZDjOjMuxph5XNe3V0KMecivKWaGergWgGr08WrOFocXBLqLFQUOi6afTS8x1XIi
+	zGwyFIMCzMXIoAivuvd35jJZIZFTSPleKiRBEqXvql08yFgdgf/+2zqCWd1/rEdZ
+	WBV0fClZKt+KcjFU/4h5X8F9M0hpQcnqURAkSfpdJ3xHhOtgBCgEUl7bK1EemhUW
+	sniUCdG5Y24it20qVhGkEx/MkW3EuTJP3vVk+wpKg==
+X-ME-Sender: <xms:GuQWYXjOPmCa-0dlzUD_u-WMUdMd_rfksYrawmgi_6-E-5CW9FuRcQ>
+    <xme:GuQWYUDV0xYW0GwXQAXtZpQdDVd_Zuo8nV_aHNPcnw00x3u7j5PILU3t2lzsmTsjh
+    LcVrgegoFMX8Vdr>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrkeehgdduieefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefofgggkfffhffvufgtsehttdertd
+    erreejnecuhfhrohhmpedfofgrnhhuvghlucghrghgvghsrhgvihhthhgvrhdfuceoofgr
+    nhghrghgsefhrghsthforghilhdrhffoqeenucggtffrrghtthgvrhhnpeeigffhhefhie
+    duieefiefhgfejudefveehjeeiiefgfeehgefhtdegieegtefgjeenucffohhmrghinhep
+    ghhithhlrggsrdgtohhmpdhgihhthhhusgdrtghomhenucevlhhushhtvghrufhiiigvpe
+    dtnecurfgrrhgrmhepmhgrihhlfhhrohhmpeforghnhggrgheshfgrshhtofgrihhlrdfh
+    of
+X-ME-Proxy: <xmx:G-QWYXGkKRihX5S4HrQ51gIHuJ7NnV9UiIYIyBQ_mjPryEtFgxq2JQ>
+    <xmx:G-QWYUT2h47eAJw5BkzulXEC_z5dm4ZgZHCbhE2mEi7Yl3iYZX_ZgQ>
+    <xmx:G-QWYUy3GBLAKzquZbanq3GrtE3Qi4Uloy71FPkA0L0x6AEOyzj_7g>
+    <xmx:G-QWYT-Q_VWvqGPS_UEY4iFgLAuwEqS4YKxqn7_GV3X6udbxsx6h6A>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id A06BD3C0642; Fri, 13 Aug 2021 17:28:58 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-1082-gccb13bca62-fm-ubox-20210811.001-gccb13bca
+Mime-Version: 1.0
+Message-Id: <d99fc23e-41bc-46ef-a61b-4e6d45fab47d@www.fastmail.com>
+Date: Fri, 13 Aug 2021 23:28:38 +0200
+From: "Manuel Wagesreither" <ManWag@FastMail.FM>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder2] schedulers.py: add dunfell branchdefaults for meta-aws and meta-openembedded
-Date: Fri, 13 Aug 2021 07:22:11 -1000
-Message-Id: <1aed7040b9c5a07726a51935a2e485c4c337dab3.1628875051.git.steve@sakoman.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1628875051.git.steve@sakoman.com>
-References: <cover.1628875051.git.steve@sakoman.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: Cannot build yocto anymore after updating all layers to current dunfell branch tips
+Content-Type: text/plain
 
-Both repos have been added to check-layer-nightly so we need to make
-sure the dunfell branches of the repos are being used
+Hello all,
 
-Signed-off-by: Steve Sakoman <steve@sakoman.com>
----
- schedulers.py | 2 ++
- 1 file changed, 2 insertions(+)
+I updated the layers of my project to the current dunfell branch tips. See here: https://gitlab.com/manuel_wagesreither/bora-proj/-/commit/de631634d7556987d2551d0cedca8f67530bc78d
 
-diff --git a/schedulers.py b/schedulers.py
-index 8f6f343..a6e9fd6 100644
---- a/schedulers.py
-+++ b/schedulers.py
-@@ -70,9 +70,11 @@ branchdefaults = {
-         'branch_poky': 'dunfell',
-         'branch_bitbake': '1.46',
-         'branch_meta-arm': 'dunfell',
-+        'branch_meta-aws': 'dunfell',
-         'branch_meta-gplv2': 'dunfell',
-         'branch_meta-intel': 'dunfell',
-         'branch_meta-mingw': 'dunfell',
-+        'branch_meta-openembedded': 'dunfell',
-         'branch_oecore': 'dunfell',
-     },
-     'zeus': {
--- 
-2.25.1
+Since then, the build is failing with the following message:
+```
+ERROR: ParseError at /home/manuel/bora-proj/meta-openembedded/meta-oe/conf/layer.conf:104: unparsed line: 'DEFAULT_TEST_SUITES:pn-meta-oe-ptest-image = " ${PTESTTESTSUITE}"'
+```
 
+Indeed this line, and even more the one after look strange.
+https://github.com/openembedded/meta-openembedded/blob/master/meta-oe/conf/layer.conf#L104
+```
+DEFAULT_TEST_SUITES:pn-meta-oe-ptest-image = " ${PTESTTESTSUITE}"
+
+NON_MULTILIB_RECIPES:append = " crash"
+```
+
+When I replace the : with _, things seem to work. I can't make sense of that. Did the syntax change? If so, why doesn't bitbake understand the new syntax? I thought bitbake is included in one of the layers.
+
+Thanks, Regards,
+Manuel
