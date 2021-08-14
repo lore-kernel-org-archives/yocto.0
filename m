@@ -1,80 +1,73 @@
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
- by mx.groups.io with SMTP id smtpd.web08.43276.1628891992530062650
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+ by mx.groups.io with SMTP id smtpd.web09.47634.1628931415425956909
  for <yocto@lists.yoctoproject.org>;
- Fri, 13 Aug 2021 14:59:53 -0700
+ Sat, 14 Aug 2021 01:56:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=MoWscLLd;
- spf=softfail (domain: sakoman.com, ip: 209.85.128.47, mailfrom: steve@sakoman.com)
-Received: by mail-wm1-f47.google.com with SMTP id f10so4613931wml.2
-        for <yocto@lists.yoctoproject.org>; Fri, 13 Aug 2021 14:59:52 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=RmGvKISx;
+ spf=pass (domain: gmail.com, ip: 209.85.221.48, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-wr1-f48.google.com with SMTP id z9so16368690wrh.10
+        for <yocto@lists.yoctoproject.org>; Sat, 14 Aug 2021 01:56:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kBdAWXktAOpY0iWRGu5p0W+BHbCcBR/R+dB8zIj+9UE=;
-        b=MoWscLLdvlUnZ/BX+EaPlq1I559sDmGDfDzhcuy7IQ9OE1oTn4gGy0XeeG4nwR+rIQ
-         89rkW9WnCgT2YrelthR+hvTACaoxpOrm1HOFt9H6tjvaB0JSHGqUXT2m2pJQJvVlVYKH
-         qZsXxnKWj1EJsuJnLr2TbES9C75ofadTJxk1zRavWElfxuz/6qJmo5I/kTTHThg/mVaX
-         trTcn8aYZGBJ7tCclqs9OpknEkuDgF9/IsTDP3czLTDmKcPNcQYATU1/LpDsazvF56ox
-         LLpVcEhMYeHPEGvMFgbJhUrSV9hY5hgkUcGB6ICSioQUGSYQVzOKVx5jEdKQNiMnWSBU
-         LA0Q==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=L53DleDJ8ghzOkN7yCLNldzhsBELwN+BbxkcqcXx6gI=;
+        b=RmGvKISxWUCA3hplEqRWpxvSYcbVH1cJ15DISfyyvurLIZRoAik2v4Jqv0xAjQZlDW
+         GZg47BK48Q1QLlrbYSD750751kA8j7SxLyo4xnSomnyBqnzHdaJ+9prLldOfXr4Oq8aQ
+         hsRX9X5ni5pCw1V8jD+2VgvU6ISHMQIJZ0VN2Fbt3E+f5R5PAPrJmqPiNqMYsVmuBSL0
+         qx9liFIJRS73ztXHYoJo0WpIM6ARawS3u5qVdeCwGLQsswAuP0LcGKSiP49ZNR4iBIfe
+         2lYLX7475EVYc7olq90/gmMM+GrrB3tW+ZnMv6I3EVQGlx6dyqBU4gOMIzr9DdjqDyXw
+         0AYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kBdAWXktAOpY0iWRGu5p0W+BHbCcBR/R+dB8zIj+9UE=;
-        b=LoOogtp4BxNfvzonmn1I0AzKq4X56tsaq5QcJjGXoMutPDdkwOr8DuvQT8eugD2xx+
-         VFR3EFzdIIR3L8jTgLUpCgnWhJ9NLzOqIhsYRsZ5DGr284rCelPjVoOpReSqXpfcYEoK
-         O1JqBHUNFNDMrhR81FiseyNZn0QqFORBFsY/Q75V3ORQjmS8dOmjkDXxOzBAGha9YEpj
-         j43zJlmBuorRSVgj8qc/hG2UGvbv4HoXTQou+b7iIVULTw173R/FBvBJqHku6z0k3IIS
-         6RneVw1kKrpuNARFEYYM8+gzDHv09yq3/JBROkTOU+9CvHU7TqUlEV9vXUxm9lRslAMs
-         Byqw==
-X-Gm-Message-State: AOAM530+ZdkPzgVnT2bMsBCAM9V+XzapmgjXb9ruCzZ4djWghrWeBs8y
-	gj3CncB1MPcQW0Q+juNh7dq3eI6g/4zrwVuOqd2dgw==
-X-Google-Smtp-Source: ABdhPJyuTXLjY+/nHYeD3V3dB7zbmjVN6JP/+v9p5yLKZrAdr3J2RFHAeq7e30XHjj5R1/XNsg/FQNGwGrCXRoP/diI=
-X-Received: by 2002:a7b:cc98:: with SMTP id p24mr4630570wma.118.1628891990542;
- Fri, 13 Aug 2021 14:59:50 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=L53DleDJ8ghzOkN7yCLNldzhsBELwN+BbxkcqcXx6gI=;
+        b=SYniXVHSaD8Nejr7IHI3dmHaATTQUMCuMqUSehXJkEiqzh4lFSYVVbKvL7A6x5SADg
+         gk0eS/UMs5NRMwLjSGT+z/sE+c03ypmYZTObQ5ssydz/BOD176x3TWqqxD6x3bk8Ab6o
+         b+DBO5wqfxLe1kfGyz/NPB+I2eN858tKr+HSfyN6XUlJG5dnp/IWdJ1W3vKsQwK/4HEN
+         FlEdXJw+vTkNuXvppkMOBGLpYCzI2616vSuSLmuaZwxPkktOgZ+fWSHRgzmSfJjVy0xi
+         ixGGukaOG5BGDM5ttWIFNRQJnrI/E1Uf8WyBWhHz6tySMCrUQCNhXpVO5xhkq8iqeq8o
+         jsSw==
+X-Gm-Message-State: AOAM5333wxsvtLqm/CrKPe45KYv80m/R4M2ZR2BzHSvRAvDaU40q9yLL
+	CqSOsE/yOKtUAX3iPVcg1JW48EIoguF12w==
+X-Google-Smtp-Source: ABdhPJzwuz/S0lSxMb22fid0td57p3nlgxVH6rT6SFhvCEVrok/I1ZM1Xn+BR0w4qpICCG1+kvMUAw==
+X-Received: by 2002:adf:fb44:: with SMTP id c4mr7142465wrs.179.1628931413481;
+        Sat, 14 Aug 2021 01:56:53 -0700 (PDT)
+Return-Path: <alex.kanavin@gmail.com>
+Received: from localhost.localdomain ([2a02:2454:2a0:cb00:eb83:2e01:3dda:5d46])
+        by smtp.gmail.com with ESMTPSA id u16sm4191736wmc.41.2021.08.14.01.56.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 14 Aug 2021 01:56:53 -0700 (PDT)
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>
+Subject: [PATCH yocto-autobuilder-helper 1/2] auh-config: enable systemd only for glibc
+Date: Sat, 14 Aug 2021 10:56:43 +0200
+Message-Id: <20210814085644.19989-1-alex.kanavin@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <d99fc23e-41bc-46ef-a61b-4e6d45fab47d@www.fastmail.com>
-In-Reply-To: <d99fc23e-41bc-46ef-a61b-4e6d45fab47d@www.fastmail.com>
-From: "Steve Sakoman" <steve@sakoman.com>
-Date: Fri, 13 Aug 2021 11:59:39 -1000
-Message-ID: <CAOSpxdZkLtjttE=q_uvq=0Tgm5H4KQNW=dvHE5J1fcH0EWg3AQ@mail.gmail.com>
-Subject: Re: [yocto] Cannot build yocto anymore after updating all layers to current dunfell branch tips
-To: Manuel Wagesreither <ManWag@fastmail.fm>
-Cc: "Yocto (yocto@lists.yoctoproject.org)" <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Fri, Aug 13, 2021 at 11:29 AM Manuel Wagesreither <ManWag@fastmail.fm> wrote:
->
-> Hello all,
->
-> I updated the layers of my project to the current dunfell branch tips. See here: https://gitlab.com/manuel_wagesreither/bora-proj/-/commit/de631634d7556987d2551d0cedca8f67530bc78d
->
-> Since then, the build is failing with the following message:
-> ```
-> ERROR: ParseError at /home/manuel/bora-proj/meta-openembedded/meta-oe/conf/layer.conf:104: unparsed line: 'DEFAULT_TEST_SUITES:pn-meta-oe-ptest-image = " ${PTESTTESTSUITE}"'
-> ```
->
-> Indeed this line, and even more the one after look strange.
-> https://github.com/openembedded/meta-openembedded/blob/master/meta-oe/conf/layer.conf#L104
+It is not guaranteed to build or work otherwise, and causes
+update failures in unrelated recipes when building for musl for instance.
 
-Note that you are using the master branch of meta-oe              ^^^^^^^^
+Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+---
+ scripts/auh-config/local.conf.append | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-If you use the dunfell branch you won't have this issue.
+diff --git a/scripts/auh-config/local.conf.append b/scripts/auh-config/local.conf.append
+index b18590f..417d228 100644
+--- a/scripts/auh-config/local.conf.append
++++ b/scripts/auh-config/local.conf.append
+@@ -1,4 +1,5 @@
+ 
+ INHERIT += "buildhistory"
+ LICENSE_FLAGS_WHITELIST = "commercial"
+-DISTRO_FEATURES_append = ' systemd pam'
++DISTRO_FEATURES_append_libc-glibc = ' systemd'
++DISTRO_FEATURES_append = ' pam'
+-- 
+2.31.1
 
-Steve
-
-> ```
-> DEFAULT_TEST_SUITES:pn-meta-oe-ptest-image = " ${PTESTTESTSUITE}"
->
-> NON_MULTILIB_RECIPES:append = " crash"
-> ```
->
-> When I replace the : with _, things seem to work. I can't make sense of that. Did the syntax change? If so, why doesn't bitbake understand the new syntax? I thought bitbake is included in one of the layers.
->
-> Thanks, Regards,
-> Manuel
->
-> 
->
