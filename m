@@ -1,88 +1,89 @@
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
- by mx.groups.io with SMTP id smtpd.web11.11300.1629035785106573400
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+ by mx.groups.io with SMTP id smtpd.web10.12046.1629040577275982581
  for <yocto@lists.yoctoproject.org>;
- Sun, 15 Aug 2021 06:56:25 -0700
+ Sun, 15 Aug 2021 08:16:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=BkH+hLya;
- spf=pass (domain: gmail.com, ip: 209.85.221.171, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vk1-f171.google.com with SMTP id j196so1919639vkj.2
-        for <yocto@lists.yoctoproject.org>; Sun, 15 Aug 2021 06:56:24 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=AE2CvKCi;
+ spf=pass (domain: gmail.com, ip: 209.85.160.171, mailfrom: bruce.ashfield@gmail.com)
+Received: by mail-qt1-f171.google.com with SMTP id e15so12390040qtx.1
+        for <yocto@lists.yoctoproject.org>; Sun, 15 Aug 2021 08:16:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=47dmp5oP6mqCCADMiQwE7JbDWIuFssNQrG0dXbm3XAg=;
-        b=BkH+hLyaCtXagYMokDdwsaM0zzkWYjWD4I2vwihF7QD+/3dX5AHbZ+H8YJkXRFFntU
-         5Cj4ulUKPfRS8vU271QtHG1KXhVMvl7f9YOhtZpF35oXsJMPmP+Mvnz1yEs35X3Mo11x
-         w+sGIJnslzrKqljkRU7Ey4Fs47t2ajLHBXGw8x45PWv4Z2X7CSo4CWQKV2jiQN2W4r7T
-         IY82/4FELSAP4flRr7PtVktMamaDbQBttZ3xCM6hPZ3RhMXTqFZVkmL5kbp2oJr2sZ3s
-         XekUH8kWX8ctvrzrq6dYjziAq1IJys70mBNnFo8ny8EhGnUZeqZ8pK7Dx/2E1d0CcroI
-         8r/w==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yMYCSiUVnBxZC707sbx8IV4k0dn3SicXb8MNQ7KWVQc=;
+        b=AE2CvKCiEi9bzJ631+AjsYANDLoXjH6OAqa5zZW5d+fGbVCTa/DDL+Rxv0TcCfgcYk
+         12o1GEYFW4Bv5VSubsfiBTX+BaAtQT0Q+pK6PtZwzdOI3KLsXJ373uK9yvi+2y6eGJpB
+         yU3yrEPnyMTwFHn9NN3S8hWFubI3CW2pgCtJ1H0YtLUvdEFOo8asVPSBcw6Ju4hYjwX8
+         p1LPZhkpsRmoJRs/TIutyt7ZBHUDvB8g0ryCoOvqBwWdxCffEbgOOIzZPkwdoUS7vsX3
+         kAVKbE4yhF5826vCTBSMJalRXYkm6LhKqDO00lhaUW7BzowHHsBWKxrTw2UpXmL0Ymnc
+         8tGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=47dmp5oP6mqCCADMiQwE7JbDWIuFssNQrG0dXbm3XAg=;
-        b=oLQlTT4iSdIOu4qpvdUQl4y9/jDKtqwPlURVo9vUVbalCbOyLvg3T5+vMIeHkrFdMG
-         Oxu3Lt+2cvdLYvLbmiak2fEZRbPRXByeSvoqrqHj0cOtzoC3bLMoOxKphJ+4pG8Rf3WY
-         RYk7fO/SZrKFXg12QB/nEPKDXQunuaLVPCgxpCtMPGwEFD7Sz6PkVuXV3Ed34QlAChyk
-         xwxo9u+AHAiZKxjolT//KbQC6XtCxVAxmXFKFM+TxcLojFHs5O3yu+U1qBOw4X+sfup3
-         arlfFTc2dtajc2eOjRMqme/VjafJqaLFJm3LNRoARClKHs25Ob8+oDL6cIU37HVsqJkW
-         NaFg==
-X-Gm-Message-State: AOAM533AGXpHdujUwqXAH6ILpO2MJX6bzNCOIFGp2ulB+XQLtOOoRpQn
-	6qQVXo1p8MogaJqWufZ9Eu2C3/Njfxe5LUKcNkc=
-X-Google-Smtp-Source: ABdhPJzKUPjMyctTT9yyayzJK52TUlgCLzYwU6pHAIK2FBZZMcdzbLydFJXgVWDG8LOwjQ7nDe8hDp8pysDP4AkYJ3A=
-X-Received: by 2002:a1f:2c88:: with SMTP id s130mr6906513vks.0.1629035784285;
- Sun, 15 Aug 2021 06:56:24 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yMYCSiUVnBxZC707sbx8IV4k0dn3SicXb8MNQ7KWVQc=;
+        b=TiLuAiIr4pAREoIQhCQ6fRiJg++rur1XRuL30RsjAfAN0hqjiwUl2gC0d+ATmKLz1b
+         4fFup36OzraLiNQiagWrlteEiSOe6y+sk4jfdWsg4AvCxNmvs7WIOR2/sY7ns5PoHiMq
+         7v418/1BR5+CcE8l0g/WoE43rNKfzXzxrNn8R+0Zh4wzFZ0h2rpdacnx2KKUgVotoYFR
+         O1s6jSFwLlpjLYXBRQImjOGGZhlLmOa7iVbnvOsRwsdYgTEZSec5LyPac+rb4HHlJDxs
+         uaeQZ0y/C9VQdOfFinvVz/fVwHI/aDMXH0e9PFke9tbCLI3qgvInFPshtD2IJxd5dPXB
+         mdlg==
+X-Gm-Message-State: AOAM531I97cnlPzHJr+nGS6j0a8amBpDTX6tZgwX6MUmle0ei6+Kklqh
+	uqVt2Iz4+7HBtlfzE0wo+TQ=
+X-Google-Smtp-Source: ABdhPJxKXyLUk4VSPIJE+SmRujh7F5d0v20ToDQu4uXFEy2go+Qrdi9aFkpSeBtiSqqafKfBSqwbSA==
+X-Received: by 2002:a05:622a:198d:: with SMTP id u13mr10527217qtc.8.1629040576376;
+        Sun, 15 Aug 2021 08:16:16 -0700 (PDT)
+Return-Path: <bruce.ashfield@gmail.com>
+Received: from build.lan (cpe04d4c4975b80-cmf4c11490699b.cpe.net.cable.rogers.com. [174.112.63.222])
+        by smtp.gmail.com with ESMTPSA id w1sm3507987qtc.7.2021.08.15.08.16.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 15 Aug 2021 08:16:16 -0700 (PDT)
+From: "Bruce Ashfield" <bruce.ashfield@gmail.com>
+To: richard.purdie@linuxfoundation.org
+Cc: yocto@lists.yoctoproject.org
+Subject: [PATCH 0/4] poky: kernel: change defaults to 5.10/5.13
+Date: Sun, 15 Aug 2021 11:16:10 -0400
+Message-Id: <cover.1629040284.git.bruce.ashfield@gmail.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
-References: <20210814085644.19989-1-alex.kanavin@gmail.com> <68996294-9080-5139-4b1f-a7a5ead2d831@gmail.com>
-In-Reply-To: <68996294-9080-5139-4b1f-a7a5ead2d831@gmail.com>
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Sun, 15 Aug 2021 15:56:13 +0200
-Message-ID: <CANNYZj9UFac76Y0eErc3enMN9yCL1T85pWVB+BrLkzt7Z+k-0g@mail.gmail.com>
-Subject: Re: [yocto] [PATCH yocto-autobuilder-helper 1/2] auh-config: enable systemd only for glibc
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000003fb10d05c999739d"
+Content-Transfer-Encoding: 8bit
 
---0000000000003fb10d05c999739d
-Content-Type: text/plain; charset="UTF-8"
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
 
-On Sun, 15 Aug 2021 at 03:30, Khem Raj <raj.khem@gmail.com> wrote:
+Richard,
 
->
-> Please report the problems to mailing list and we can try to help if
-> they do not work with musl. We do support systemd/musl combination and
-> try to keep it working
-> this will limit testing this combination.
->
+This is a follow on to my oe-core series that drops the 5.4 recipes.
 
-This change is prompted by the recent period where musl patches wouldn't
-even apply to systemd, which broke half of AUH upgrade attempts.
+I haven't had any issues with 5.10/5.13 in my local testing, but I do
+expect we'll find something during integration.
 
-You need to enable systemd/musl on the autobuilder matrix first, if testing
-the feature is a concern.
+Cheers,
 
-Alex
+Bruce
 
---0000000000003fb10d05c999739d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+The following changes since commit ababb195496f1d16d8b082e1bc6d87a177d2b2a6:
 
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Sun, 15 Aug 2021 at 03:30, Khem Raj &lt;<a href=3D"mailto:raj.khe=
-m@gmail.com">raj.khem@gmail.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><br>
-Please report the problems to mailing list and we can try to help if <br>
-they do not work with musl. We do support systemd/musl combination and <br>
-try to keep it working<br>
-this will limit testing this combination.<br></blockquote></div><div class=
-=3D"gmail_quote"><br></div><div class=3D"gmail_quote">This change is prompt=
-ed by the recent period where musl patches wouldn&#39;t even apply to syste=
-md, which broke half of AUH upgrade attempts.</div><div class=3D"gmail_quot=
-e"></div><div class=3D"gmail_quote"><div><br></div><div>You need to enable =
-systemd/musl on the autobuilder matrix first, if testing the feature is a c=
-oncern. </div><div><br></div><div>Alex<br></div></div></div>
+  conf/machine: bump qemu preferred versions to 5.13 (2021-08-15 10:44:27 -0400)
 
---0000000000003fb10d05c999739d--
+are available in the Git repository at:
+
+  git://git.yoctoproject.org/poky-contrib zedd/kernel-yocto
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=zedd/kernel-yocto
+
+Bruce Ashfield (4):
+  poky/poky-tiny: set default kernel to 5.13
+  poky: set default kernel to 5.13
+  yocto-bsp: drop 5.4 bbappend
+  poky-alt: switch default kernel to 5.10
+
+ .../include/poky-distro-alt-test-config.inc   |  2 +-
+ meta-poky/conf/distro/poky-tiny.conf          |  2 +-
+ meta-poky/conf/distro/poky.conf               |  4 ++--
+ .../linux/linux-yocto_5.4.bbappend            | 23 -------------------
+ 4 files changed, 4 insertions(+), 27 deletions(-)
+ delete mode 100644 meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.4.bbappend
+
+-- 
+2.19.1
+
