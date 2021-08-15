@@ -1,88 +1,90 @@
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
- by mx.groups.io with SMTP id smtpd.web11.1121.1628955952675360800
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+ by mx.groups.io with SMTP id smtpd.web08.6761.1628991000527295584
  for <yocto@lists.yoctoproject.org>;
- Sat, 14 Aug 2021 08:45:53 -0700
+ Sat, 14 Aug 2021 18:30:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20150623.gappssmtp.com header.s=20150623 header.b=QEBxIG4f;
- spf=softfail (domain: sakoman.com, ip: 209.85.221.54, mailfrom: steve@sakoman.com)
-Received: by mail-wr1-f54.google.com with SMTP id v4so10290155wro.12
-        for <yocto@lists.yoctoproject.org>; Sat, 14 Aug 2021 08:45:52 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=NjLcZ8Y3;
+ spf=pass (domain: gmail.com, ip: 209.85.216.42, mailfrom: raj.khem@gmail.com)
+Received: by mail-pj1-f42.google.com with SMTP id fa24-20020a17090af0d8b0290178bfa69d97so21817248pjb.0
+        for <yocto@lists.yoctoproject.org>; Sat, 14 Aug 2021 18:30:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=IJ82k4IAI8CVMKNV8jAlkB+xLovE3+JkMJvvX0EwiBg=;
-        b=QEBxIG4fr++WJqTToMAegJKjKTqsFA/eR1cGPYl2grPc2CWJRCYgtyhlwN6EZZDJ30
-         MGtJKqbVdedaimsmTCLeyE7euCBx6TAtX/G7fRheP7z/GJYJE/+v0m+iR+FkreybBkRx
-         7Wgti/+QwIwWHJGKeQtpnlkea3h4SkqY0uWWGACB+tQI4VgPLRRaRUA208V5kbgQd1QH
-         4ez5doVWoY8+wY2/h9MKxbiwlI0dqmaZW3s8gHxinDivNxI3DAWkmWPTU2qtFvWoaeXP
-         unfXAmzNlXkPCqUg/TrYtpnEI8+CPxupRYxp1AUJDgM9/z6EyP2BftZVk5i1uXUyT64i
-         OQmg==
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:organization:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=ScSQi89oUFHTqmw7DSARDfCq6XPeSfNrmjdR5qX3zM4=;
+        b=NjLcZ8Y3lJ7MMULmJIgQ9EVDnZvnalWS2UZDmuO+f2ZDS+IuNKxDAf1kwbjUz2Yd4O
+         E7yvtBtQQ5diEDdKUDUSdcwp0/ykojInLlXvqTYGjYpJ+0XayY5oQE9fkBWb/ho1h9h5
+         D7dIY5ELwNXulVoP/odj523TGEVTfWHacrNNTVzcWzruhiQ/LEGAaXW7cLks3sK5Eics
+         7OrJtv6TbiRyxi4M7H0cHmvsSJePuk/Ga1ojLG0xj9Mkli3iNYM87jIdtW89ZdrOgCmO
+         fNWGXsuFfRHC5IuOXUD3sq7rx6Fd4144zSc5npM1jYFCEdw1zb6AUoYbBxiuLO321uVx
+         u4nQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IJ82k4IAI8CVMKNV8jAlkB+xLovE3+JkMJvvX0EwiBg=;
-        b=QxdOiPrmRa5ZrAfNtuCXcJKzzoY5SK5LMC/Q61p9fne7X+A6+dv8891qACtvMJz4PT
-         FRBOszmU3gq/sRLRwHdqSDh6BvyjReNps5hqRSk+ka6LBJKKMYMNEuteurAESAqcvMlm
-         sZ+uDADO0jr5cXvczUJT4/96DVHwZF7YkEPXvPyMrPfUxGBBU/U7tX/0UGOQsX5f6VEX
-         fgVzZmD9bfGSRz8pEV0dw7Safy/myqig/O7Ljzs0BBXMgDGk0LBOaIFURJLMaireAdpj
-         mUNcfAU30KyBtPpVLsBv6f9XFv4KH0WLfEiXum/h1TOjZ4/utNNGZMEdTEI0G9cwLuZA
-         WaUA==
-X-Gm-Message-State: AOAM530R/kGIPMQU8eViVCobk4SFYW7Vp1IkaKoToR6L6h6jSBbSja+k
-	LN6f7Gn+MtwB4KtUuBIrPWWvzrt5IvH4wtccHyro8g==
-X-Google-Smtp-Source: ABdhPJyvfIC1tpWBYdXLnal3wQeeV8j5i9NuN1LJg+Yv4tyXU0pHqPmXUPOYltywdIl+EONaRnk0kcb+Rc/+ZKWNHoE=
-X-Received: by 2002:adf:cf0e:: with SMTP id o14mr8792173wrj.329.1628955950752;
- Sat, 14 Aug 2021 08:45:50 -0700 (PDT)
+        h=x-gm-message-state:subject:to:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=ScSQi89oUFHTqmw7DSARDfCq6XPeSfNrmjdR5qX3zM4=;
+        b=NtVcy5+jnh/XAc+3AjMOoG6Rof40+PrwigSzfxbPfmeDk4+LJYLPGdgnmRuzjAKHd5
+         +OOr7gDEnpkdasQap3VT9RHOmfrsSOv13m+y7yBCEcJx37vAg6Z+imT5+wYVUVUZCicX
+         gWNnkXZCeDHu0Q56F1kaK1aAO1DX+p/xL/udrEAPs1ic29M3wvqLdkjJ37haF6g1+qtX
+         /wzrf794heULLgnigroaPQ0tzIhYUb6gvbn/o9mqvEeBPX1Cy9j+XBTOdD5mW9VJA4NZ
+         /KaSRZRUKT6tXvfsfVhLQ9ZUD+VT7lbVqYH5b/cUYZFOoNyCbbe9GR+CVYbdW6b6jy0k
+         VCrA==
+X-Gm-Message-State: AOAM533Ebd1OIahkmDEdVa0QPf5GR+aZCaUz1lOyCDonac/f6jmT3WVZ
+	oTBDh/hjCdDbeWu0FOxZxtEMLnbVSgwIpA==
+X-Google-Smtp-Source: ABdhPJyPl9Ap8JbqxmptgY4yDBRs2LgWttPw/jBUnMzF9V/lx2crJDocLpMPx6yDimFRGN4cDSCd2A==
+X-Received: by 2002:a17:90b:4b84:: with SMTP id lr4mr9894565pjb.32.1628990999615;
+        Sat, 14 Aug 2021 18:29:59 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPv6:2601:646:9200:a0f0::f40b? ([2601:646:9200:a0f0::f40b])
+        by smtp.gmail.com with ESMTPSA id q21sm7767993pgk.71.2021.08.14.18.29.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 14 Aug 2021 18:29:59 -0700 (PDT)
+Subject: Re: [yocto] [PATCH yocto-autobuilder-helper 1/2] auh-config: enable systemd only for glibc
+To: Alexander Kanavin <alex.kanavin@gmail.com>, yocto@lists.yoctoproject.org
+References: <20210814085644.19989-1-alex.kanavin@gmail.com>
+From: "Khem Raj" <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Message-ID: <68996294-9080-5139-4b1f-a7a5ead2d831@gmail.com>
+Date: Sat, 14 Aug 2021 18:29:57 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <d99fc23e-41bc-46ef-a61b-4e6d45fab47d@www.fastmail.com>
- <CAOSpxdZkLtjttE=q_uvq=0Tgm5H4KQNW=dvHE5J1fcH0EWg3AQ@mail.gmail.com> <7949dbde-1a12-4ca2-b71b-fd776c69e16a@www.fastmail.com>
-In-Reply-To: <7949dbde-1a12-4ca2-b71b-fd776c69e16a@www.fastmail.com>
-From: "Steve Sakoman" <steve@sakoman.com>
-Date: Sat, 14 Aug 2021 05:45:39 -1000
-Message-ID: <CAOSpxdYBUeZc0pu_L0cEwxFaS6Lb9PRHpmvuHQ_9jmf3s3MNtQ@mail.gmail.com>
-Subject: Re: [yocto] Cannot build yocto anymore after updating all layers to current dunfell branch tips
-To: Manuel Wagesreither <ManWag@fastmail.fm>
-Cc: "Yocto (yocto@lists.yoctoproject.org)" <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210814085644.19989-1-alex.kanavin@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-On Sat, Aug 14, 2021 at 2:29 AM Manuel Wagesreither <ManWag@fastmail.fm> wrote:
->
-> Am Fr, 13. Aug 2021, um 23:59, schrieb Steve Sakoman:
-> > On Fri, Aug 13, 2021 at 11:29 AM Manuel Wagesreither <ManWag@fastmail.fm> wrote:
-> > >
-> > > Hello all,
-> > >
-> > > I updated the layers of my project to the current dunfell branch tips. See here: https://gitlab.com/manuel_wagesreither/bora-proj/-/commit/de631634d7556987d2551d0cedca8f67530bc78d
-> > >
-> > > Since then, the build is failing with the following message:
-> > > ```
-> > > ERROR: ParseError at /home/manuel/bora-proj/meta-openembedded/meta-oe/conf/layer.conf:104: unparsed line: 'DEFAULT_TEST_SUITES:pn-meta-oe-ptest-image = " ${PTESTTESTSUITE}"'
-> > > ```
-> > >
-> > > Indeed this line, and even more the one after look strange.
-> > > https://github.com/openembedded/meta-openembedded/blob/master/meta-oe/conf/layer.conf#L104
-> >
-> > Note that you are using the master branch of meta-oe              ^^^^^^^^
-> >
-> > If you use the dunfell branch you won't have this issue.
-> >
-> > Steve
-> >
-> I feel like an idiot right now. Thank you! With dunfell it builds indeed.
 
-We've all done this sort of thing :-)
 
->
-> Now I have to deal with the following:
-> ```
-> ERROR: Layer multimedia-layer is not compatible with the core layer which only supports these series: dunfell (layer is compatible with honister)
+On 8/14/21 1:56 AM, Alexander Kanavin wrote:
+> It is not guaranteed to build or work otherwise, and causes
+> update failures in unrelated recipes when building for musl for instance.
+> 
+> Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+> ---
+>   scripts/auh-config/local.conf.append | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/scripts/auh-config/local.conf.append b/scripts/auh-config/local.conf.append
+> index b18590f..417d228 100644
+> --- a/scripts/auh-config/local.conf.append
+> +++ b/scripts/auh-config/local.conf.append
+> @@ -1,4 +1,5 @@
+>   
+>   INHERIT += "buildhistory"
+>   LICENSE_FLAGS_WHITELIST = "commercial"
+> -DISTRO_FEATURES_append = ' systemd pam'
+> +DISTRO_FEATURES_append_libc-glibc = ' systemd'
+> +DISTRO_FEATURES_append = ' pam'
+> 
 
-Looks like another case of the layer's master/honister branch instead
-of dunfell.
+Please report the problems to mailing list and we can try to help if 
+they do not work with musl. We do support systemd/musl combination and 
+try to keep it working
+this will limit testing this combination.
 
-Steve
-
-> I guess I'll have to analyze the layers .conf file to see where that comes from.
->
-> Thanks, Manuel
+> 
+> 
+> 
+> 
