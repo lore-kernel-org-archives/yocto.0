@@ -1,72 +1,92 @@
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
- by mx.groups.io with SMTP id smtpd.web08.13690.1629048451308271180
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+ by mx.groups.io with SMTP id smtpd.web10.15596.1629059802465005067
  for <yocto@lists.yoctoproject.org>;
- Sun, 15 Aug 2021 10:27:31 -0700
+ Sun, 15 Aug 2021 13:36:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=KzoAtkjm;
- spf=pass (domain: gmail.com, ip: 209.85.222.180, mailfrom: raj.khem@gmail.com)
-Received: by mail-qk1-f180.google.com with SMTP id f23so16655005qkk.13
-        for <yocto@lists.yoctoproject.org>; Sun, 15 Aug 2021 10:27:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jy/OLKrKpBDkj3zP8akm5+2ueKldmMhPDHdlhxxRkAo=;
-        b=KzoAtkjmIM+c7yPEIc+iv84N224K1btZxXy0EiQFyCAIOaBiyv7uAMgH7Pb4nxra4M
-         P4JzpvV0JiRA84trsFxtNos7Vue/PepZJg4aQ3IA3ssPWapS7CRz9b8vJPRfWjUbjIBU
-         cueXCBjAa7hayT74RQ9CiNqq9YYdCxl1Y0XBVqTsuvMLYd4FNexpAl8qxRlNQYojOcfb
-         aoJf60IGJ49rhBlYdD6DxBDaFpm6idp3bq7wMnORrZbtnjTsgwtNlr+hw17/jsKUZfkX
-         XiUWK4gbg2RkkmihGuFJg0x10/z3ufN9Iw9zAuhiqRGbni6JLcxEiZ6SYo5OuQD+ZvwV
-         gIjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jy/OLKrKpBDkj3zP8akm5+2ueKldmMhPDHdlhxxRkAo=;
-        b=fWcgms9NUqB/C/YgBXsp1VeX//rh7XgPuOKc7nM0ozTWfgm/zBzFFTedqHlCJDmnTG
-         oQugwz1+pd+BaeJta4ermRXL+agRo0IjX625rahi9W7X2THHnx51/agySfET+gEONmzq
-         RN3N6Me2g/3083gEL727NZwgbLV2YGvGXzsPG7wjFWK3EfeflBlxoqQgLTOrSTCAS2Qf
-         U7NmbPHLJ5TNzMfDnxdK9cg0qQ18QdeDn4XFWDun5/yDlvkotHpFWKTccX6Wn385KcYF
-         XoltTQCqCgBSpHFS2vgPO2QKayMvriyOCfp0VfNMfwPWUhLj+IejWZIjiezd1/yPjJRQ
-         VRug==
-X-Gm-Message-State: AOAM530ts6GyRIswk+ZgdYK4i/E7Wv2BkJGxcoeNlvHdej94TbmB6/L/
-	8W4luY9ERgwUEyOQmkPsQzbyx9DlhmPA7MHeElE=
-X-Google-Smtp-Source: ABdhPJyPezZ2CHtQcNAUHZsYafDTrq27UGZ6j9L7AtAeMNeHX+Kc7eDejT/1r3hrYyiTraSU5rsObqgonkRi4UUTqwc=
-X-Received: by 2002:a37:bc8:: with SMTP id 191mr5390800qkl.25.1629048450375;
- Sun, 15 Aug 2021 10:27:30 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210814085644.19989-1-alex.kanavin@gmail.com>
- <68996294-9080-5139-4b1f-a7a5ead2d831@gmail.com> <CANNYZj9UFac76Y0eErc3enMN9yCL1T85pWVB+BrLkzt7Z+k-0g@mail.gmail.com>
-In-Reply-To: <CANNYZj9UFac76Y0eErc3enMN9yCL1T85pWVB+BrLkzt7Z+k-0g@mail.gmail.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Sun, 15 Aug 2021 10:27:04 -0700
-Message-ID: <CAMKF1srvu0Nmf5Q5o02KYi-PrCL9tSO75XVxxA9ozhv5HLhOHA@mail.gmail.com>
-Subject: Re: [yocto] [PATCH yocto-autobuilder-helper 1/2] auh-config: enable systemd only for glibc
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+ dkim=pass header.i=@fastmail.fm header.s=fm3 header.b=T1CQRPJy;
+ spf=pass (domain: fastmail.fm, ip: 66.111.4.27, mailfrom: manwag@fastmail.fm)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+	by mailout.nyi.internal (Postfix) with ESMTP id A0B755C00D5
+	for <yocto@lists.yoctoproject.org>; Sun, 15 Aug 2021 16:36:39 -0400 (EDT)
+Received: from imap41 ([10.202.2.91])
+  by compute4.internal (MEProxy); Sun, 15 Aug 2021 16:36:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fastmail.fm; h=
+	mime-version:message-id:date:from:to:subject:content-type; s=
+	fm3; bh=4TcxIYTjhcHK5guNRWra6qkgILPnqROoszdm2N34zLo=; b=T1CQRPJy
+	ToK1ll+2/rjoEtlPwZxKhCoMkgHNDteJ/kiv3Kecrosgsotn4mlJAq9U+ClNfUET
+	THDMsdRR7Es0XlCJZbW2Icyf6U+7vfN8rMnN+LKJzMD+FEvSd24wQpltRDy70G2Z
+	kw7NyAIm0jdejzlpHfw/3KCxW0/7WIVRHjo5dFHtquR4qh+nn6fhd0rN64Uwrbf/
+	lCirdqfzP1KzesNc/GWLZ53sIyF/UP8fWZ/+VeaOPc533WoIs2PpZkUK0qC6SgER
+	jumLKUmHYrK/Di4UewqfFQ3HU5CVW0qs4uLKbmGD//5UHQ0ZwpOizH4nYkzSXpPE
+	7SdiPEsvgbyKEQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=content-type:date:from:message-id
+	:mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
+	:x-me-sender:x-sasl-enc; s=fm3; bh=4TcxIYTjhcHK5guNRWra6qkgILPnq
+	ROoszdm2N34zLo=; b=B6Z3e1kn+hx0zBJ6JhymuxVudmeutRWVm7RkNv6LeDQXB
+	0Zt7Nu2OA3jzr5YrKmOVNB/Ue3eRy215BNKYC2FDw9jhYrBE3aTwyHQPU57kZPhB
+	utqx77kWMdMC1KbUglBXAE1WyLnzPQtcDBR3X+cQlAX7EYpEPYvnv9M+PDZb+GHi
+	PWUEqfd7wMl2YYR4mack7GBqkKwJ9X9uXQw0J3pWMj/NpN0eGtwaLZtkwPXDDF49
+	VAZYUWhpA+r0dmmloOXC+U0xzhQ3yq/v6tlJzXtKizRxlc7DyHTT3yLTGAB3/ZIn
+	9qCAIl3MpoTkTK3ktexK9UjF5YU+VX1h0ffbVHcrA==
+X-ME-Sender: <xms:13oZYboy4ipHbe5k9pVUzVecDiwpUB3ET4RfRRr7J84IOk03DsTFWw>
+    <xme:13oZYVrRUNOuegR7DbFz4yVLWZV-UzAnpNBgN7BczGn2XBNn0ETTY4AsvJIoxVII7
+    1SmobThjS9Z09Fq>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrkeelgdduhedtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefofgggkfffhffvufgtsehttdertd
+    erreejnecuhfhrohhmpedfofgrnhhuvghlucghrghgvghsrhgvihhthhgvrhdfuceoofgr
+    nhghrghgsefhrghsthforghilhdrhffoqeenucggtffrrghtthgvrhhnpeehjeegjeeutd
+    elkeelheeuvdfgueeuhefhgeeuffdvledvfffgteejjeffieekvdenucffohhmrghinhep
+    uggvthgvtghtvggurdguvghvpdgvlhhinhhugidrohhrghdpghhithhlrggsrdgtohhmpd
+    gsohhrrgdqihhmrghgvgdrsggspdhgihhthhhusgdrtghomhenucevlhhushhtvghrufhi
+    iigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpeforghnhggrgheshfgrshhtofgrih
+    hlrdfhof
+X-ME-Proxy: <xmx:13oZYYNX2JeH8qI9Gw253BqsnDdu5M6y2QEUHokk13y1oIFy6oAjUw>
+    <xmx:13oZYe5gZJFxnWt-3aUKhnUcMD53MgjxmmcvtnY7W6ehJXhwbtmWDw>
+    <xmx:13oZYa7dfhI-JTdlS_qG5vDFqCBp6dIfMa1g20LXkUH5qQ3K2FK1HQ>
+    <xmx:13oZYcF63GuxFXU4syg26ubswgKaD0wJ6JzgQVeaNSzIygMT1gk29A>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 756283C0453; Sun, 15 Aug 2021 16:36:39 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-1082-gccb13bca62-fm-ubox-20210811.001-gccb13bca
+Mime-Version: 1.0
+Message-Id: <4c37145a-98b7-49ad-a007-c152024c37fb@www.fastmail.com>
+Date: Sun, 15 Aug 2021 22:36:14 +0200
+From: "Manuel Wagesreither" <ManWag@FastMail.FM>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-raspberrypi] Would like to run xterm on Raspberry Pi 4 but Xorg fails with "module fbdev not found"
+Content-Type: text/plain
 
-On Sun, Aug 15, 2021 at 6:56 AM Alexander Kanavin
-<alex.kanavin@gmail.com> wrote:
->
-> On Sun, 15 Aug 2021 at 03:30, Khem Raj <raj.khem@gmail.com> wrote:
->>
->>
->> Please report the problems to mailing list and we can try to help if
->> they do not work with musl. We do support systemd/musl combination and
->> try to keep it working
->> this will limit testing this combination.
->
->
-> This change is prompted by the recent period where musl patches wouldn't even apply to systemd, which broke half of AUH upgrade attempts.
->
+Hello all,
 
-Interesting, outside AB we build extended world on musl and it works
-well. systemd porters usually port the patches as needed for musl
+I'm building my project for qemux86-64 and Raspberry Pi 4. Currently, when booted, it displays a textual root shell. I can work with it in both qemu and Raspi and all is good. Now I want to change my image to display a graphical terminal when booted.
 
-> You need to enable systemd/musl on the autobuilder matrix first, if testing the feature is a concern.
+On qemu, this already works. In Raspberry Pi, not yet. It still provides me the textual root shell.
 
-yes, I think thats a fair point, I will bring this up.
+On Raspberry Pi, `/var/log/Xorg.0.log` contains the following:
+```
+[  1049.676] (II) LoadModule: "fbdev"
+[  1049.681] (WW) Warning, couldn't open module fbdev
+[  1049.681] (EE) Failed to load module "fbdev" (module does not exist, 0)
+[  1049.681] (II) modesetting: Driver for Modesetting Kernel Drivers: kms
+[  1049.684] (WW) Falling back to old probe method for modesetting
+[  1049.684] (EE) open /dev/dri/card0: No such file or directory
+[  1049.684] (WW) Falling back to old probe method for modesetting
+[  1049.684] (EE) open /dev/dri/card0: No such file or directory
+[  1049.684] (EE) No devices detected.
+```
 
->
-> Alex
+`/dev/fb0` does exist, so something like a framebuffer does at least seem to exist.
+
+So how can I install the fbdev module on my Raspberry Pi? I looked around a bit and found this: https://elinux.org/RPi_Xorg_rpi_Driver I tried it out and installed the `/usr/lib/xorg/modules/drivers/fbdev_drv.so` file provided in the page, but it's 32bit armhf architecture. My Raspi image is built for aarch64 architecture, so it naturally doesn't run there.
+
+I googled a bit and there seem to be quite a few technologies around to hw-accelerate output rendering. Read about EGL, GLX, OpenGL and DRI. Are some of these options available on RasperryPi or qemux86_64? I runqemu with the kvm option. Booting is fast, but the GUI terminal window doesn't even catch the keypresses in time.
+
+My image is a core-image-minimal with IMAGE_FEATURES x11-base. (https://gitlab.com/manuel_wagesreither/bora-proj/-/blob/master/meta-manwag/recipes-core/images/bora-image.bb)
+
+The distro is a modified Poky with DISTRO_FEATURES x11. (https://gitlab.com/manuel_wagesreither/bora-proj/-/blob/master/meta-manwag/conf/distro/bora-device.conf) To work around https://github.com/agherzan/meta-raspberrypi/issues/228 I made DISTRO_FEATURES_append = " opengl".
+
+Thank you all for your input!
+
+Manuel
