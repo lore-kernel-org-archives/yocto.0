@@ -1,29 +1,29 @@
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by mx.groups.io with SMTP id smtpd.web12.40670.1629213002826653134
+ by mx.groups.io with SMTP id smtpd.web09.40465.1629213003333288621
  for <yocto@lists.yoctoproject.org>;
- Tue, 17 Aug 2021 08:10:02 -0700
+ Tue, 17 Aug 2021 08:10:03 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kernel.org header.s=k20201202 header.b=vJlPR/16;
+ dkim=pass header.i=@kernel.org header.s=k20201202 header.b=Cyr/RuUk;
  spf=pass (domain: kernel.org, ip: 198.145.29.99, mailfrom: okaya@kernel.org)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1240261075;
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 99D0F61053;
 	Tue, 17 Aug 2021 15:10:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1629213002;
-	bh=QjxVZS72rrToGGNREmqGm66wvDKoWyQ1uiL4dXI40CI=;
+	bh=Xv8id98G21PYJm0JXuv1vPrZPoAL7tx51sl39doqUEA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=vJlPR/164gjhR6wMTUGiv/NSRyzehjnxuQvZnCHGvNLVrANKQ3z7RGHAJzoLHW7Jw
-	 HRXzn6vW6Dj0kfNFUjjG+JPeVzdo5+gqHPKokSgV4dENSYqJD8tdkdU7oE9fLracGj
-	 hODdmipO7Yd+oQy1MvuGdiKhT/BsPcPJK7qmmSTAjpOrigOMPX7UALscr93/MuZpV1
-	 SU7XZCookwdwXfIXwa3HjDf5pK9ILgTiYgjCYWJ8KFHzpO0qDQ6WSn+7H++M8w5LdZ
-	 76wNZqbTR2rKde/+Jkml0w0TdLpAqZVnkAxmfskJkjvJHdNkR3sov+CJwhEuloYaNk
-	 9Iv80C7mnVm2w==
+	b=Cyr/RuUkSNfezuE9SDpJfCAzUcVt/c1BYCz0M7oqa4doiPCuz45k0baXdU/NEe7mn
+	 UXlXPcszmcIMkaAlnkzdm+ivzqIXe4tCR4i+IaGfh7+AxE6rfIlgajLS6nLEe/v94u
+	 MNuqVuPI7v2uFS7GcH0vnqYHgc75YZfXtx1avf4xYfq2r8jVuG65QrbDbVKitBeZ/R
+	 /xPg2fRrSXb1BHUL2ruvCNQ8Lz6Laz51blmRrWgNWZQ8v9ZoRK6jg8fv5S3fr60OxF
+	 ruyKhf3pmweePqw9QNV8xwcWPa8bKJTY8CUq03FtOvbq96uyFCn8NxL94zhclOD4QM
+	 WYVHCR2NMeA0Q==
 From: "Sinan Kaya" <okaya@kernel.org>
 To: yocto@lists.yoctoproject.org
 Cc: jpewhacker@gmail.com,
 	Sinan Kaya <okaya@kernel.org>
-Subject: [meta-mingw] [PATCH v3 2/5] protobuf-c: static link when generating sdk
-Date: Tue, 17 Aug 2021 15:09:54 +0000
-Message-Id: <20210817150957.18246-2-okaya@kernel.org>
+Subject: [meta-mingw] [PATCH v3 3/5] grpc: static link tools when generating SDK
+Date: Tue, 17 Aug 2021 15:09:55 +0000
+Message-Id: <20210817150957.18246-3-okaya@kernel.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210817150957.18246-1-okaya@kernel.org>
 References: <20210817150957.18246-1-okaya@kernel.org>
@@ -37,17 +37,18 @@ Switch to static linkage per upstream recommendation.
 
 Signed-off-by: Sinan Kaya <okaya@kernel.org>
 ---
- recipes-devtools/protobuf-c/protobuf-c_%.bbappend | 1 +
- 1 file changed, 1 insertion(+)
- create mode 100644 recipes-devtools/protobuf-c/protobuf-c_%.bbappend
+ recipes-devtools/grpc/grpc_%.bbappend | 2 ++
+ 1 file changed, 2 insertions(+)
+ create mode 100644 recipes-devtools/grpc/grpc_%.bbappend
 
-diff --git a/recipes-devtools/protobuf-c/protobuf-c_%.bbappend b/recipes-devtools/protobuf-c/protobuf-c_%.bbappend
+diff --git a/recipes-devtools/grpc/grpc_%.bbappend b/recipes-devtools/grpc/grpc_%.bbappend
 new file mode 100644
-index 0000000..b53b22d
+index 0000000..4fcd8b9
 --- /dev/null
-+++ b/recipes-devtools/protobuf-c/protobuf-c_%.bbappend
-@@ -0,0 +1 @@
-+EXTRA_OECONF:append:sdkmingw32 = " --disable-shared"
++++ b/recipes-devtools/grpc/grpc_%.bbappend
+@@ -0,0 +1,2 @@
++EXTRA_OECMAKE:remove:sdkmingw32 = "-DBUILD_SHARED_LIBS=ON"
++EXTRA_OECMAKE:append:sdkmingw32 = " -DBUILD_SHARED_LIBS=OFF"
 -- 
 2.17.1
 
