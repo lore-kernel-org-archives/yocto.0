@@ -1,84 +1,54 @@
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
- by mx.groups.io with SMTP id smtpd.web08.41162.1629216064812366597
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by mx.groups.io with SMTP id smtpd.web12.41831.1629217774453103948
  for <yocto@lists.yoctoproject.org>;
- Tue, 17 Aug 2021 09:01:04 -0700
+ Tue, 17 Aug 2021 09:29:34 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=EEwgRh9A;
- spf=pass (domain: gmail.com, ip: 209.85.167.182, mailfrom: jpewhacker@gmail.com)
-Received: by mail-oi1-f182.google.com with SMTP id bf25so23791478oib.10
-        for <yocto@lists.yoctoproject.org>; Tue, 17 Aug 2021 09:01:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:subject:to:references:message-id:date:user-agent:mime-version
-         :in-reply-to:content-transfer-encoding:content-language;
-        bh=IQttiKsGXp5PtQWRLyu8Yqu0EqSyHLnHomi3kWz1K1w=;
-        b=EEwgRh9A2nzKDaBy8yAvjNiARj0es2rDg0XYVCjYM6ErdV33SGQPYQVrKlrakpHFCg
-         Z0UvL3cfbm1rrxVA9WbfJHS/XugLLS+CA8B3MHs2YalolPsG6vC4FOY11pB5ofvaqU3m
-         dTEkKqTmNrr3LtfrLiu1H/toQ6GjvYr+k65aqNDA58x9lY9Rf1ovSRlBHjsKJIfoedj7
-         4LRs5DuAgIyT1iNg4bMUktKDtkmhBu8474g5gzbigWBivI4ceD2yXo9Fxz2KOjJHb6It
-         O3sRp7TZI4KWZujV97P+owQ9JrdJ15nssyixoc/ze0+lstkBXrdvvv/i644pqaJPJziL
-         BUgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:subject:to:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=IQttiKsGXp5PtQWRLyu8Yqu0EqSyHLnHomi3kWz1K1w=;
-        b=rSbaUW9f1pjG2ZENs+YtI8KPsH1/3uqNxIVANH2qy2KHo+YpyJh3dVIrKcmJJORSet
-         De6PpCwXa/BoE+01xbnYlFow2cJ1JHDaEb4GhB/GxEdl3+iZDyH4vE/KQfPc5F2KPP8z
-         4iA39IhVXdtTH0AbAazcjSjhyCiDaKDXjR4uvvKWLkscHE08Vmq9SZuoP4m8d01gb0rt
-         IsxUo1hV9DGBlpWTYKvWaQLe9zLSMNxP01k92YBJoruoAlq5pEAurmGy+kNdDrAAba+6
-         6KHFOUsDVgvAp7hdTlfsKrVoOJYf1vtcgdLckKsLUzHc07ByItO3Dw8yJAYsYuHOLcDq
-         1vFQ==
-X-Gm-Message-State: AOAM53304ZEqo6GeC+kQ4SoUsHIwaZEzkQkUruHbyNG5rzeKzzvzBLLw
-	Vw8YYaQVLDdcnKQ9tV8679t7NO8BPt4Zpw==
-X-Google-Smtp-Source: ABdhPJyjTKUqc4XTSzt7ffu2IO/Q9mfZlSX/1+CuadnFlbQOFWm5bGuP9EHwMNUXE4JfvD6kPkdSEA==
-X-Received: by 2002:a54:4714:: with SMTP id k20mr2957516oik.103.1629216063837;
-        Tue, 17 Aug 2021 09:01:03 -0700 (PDT)
-Return-Path: <jpewhacker@gmail.com>
-Received: from ?IPv6:2605:a601:ac3d:c100:e3e8:d9:3a56:e27d? ([2605:a601:ac3d:c100:e3e8:d9:3a56:e27d])
-        by smtp.gmail.com with ESMTPSA id r25sm554171oic.13.2021.08.17.09.01.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Aug 2021 09:01:03 -0700 (PDT)
-From: "Joshua Watt" <JPEWhacker@gmail.com>
-X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
+ dkim=pass header.i=@kernel.org header.s=k20201202 header.b=frc7dD8s;
+ spf=pass (domain: kernel.org, ip: 198.145.29.99, mailfrom: okaya@kernel.org)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6F60460FDA;
+	Tue, 17 Aug 2021 16:29:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1629217773;
+	bh=91gtPPym0DYFUndC3BmIFExNaGRRu30Q1S4hhoYEEBc=;
+	h=Subject:To:References:From:Date:In-Reply-To:From;
+	b=frc7dD8sKZ8ZAOH21WXSZ3XO8wGdwi/HhEIobL9IVCBLnxCEKmNh+lwKsQuqN15bc
+	 TRJOiv2ci5MTffUzD/rH+hOHWXK0caV//GUhW7R6LN1YHHJ8zWxG71iyrQ9Cqgm1/u
+	 nC5b7GXNgnZfir3u/ip8q/OaxopR/KNSPeBp1nK4oGpy5N5YGvj44wklYqq0ZmgtEE
+	 uA7v6IdAmb3gKPMIO2KObI4cVCSUbIUzzd6CZW9ZxcHH8RWgmTyyHeru2s8NeL6nMG
+	 kfn8fzOWK3oUUqlkTDYntJR/EkSYJch2ylwzEemkr+cJGVCUWPOf3y4WUFkQNaNmbE
+	 WQmPTf3DSG0Jw==
 Subject: Re: [meta-mingw] [PATCH v3 1/5] protobuf: static link tools when generating sdk
-To: Sinan Kaya <okaya@kernel.org>, yocto@lists.yoctoproject.org
+To: Joshua Watt <jpewhacker@gmail.com>, yocto@lists.yoctoproject.org
 References: <20210817150957.18246-1-okaya@kernel.org>
-Message-ID: <7c2cf6b1-cbe1-35f6-2fae-39d5beed930c@gmail.com>
-Date: Tue, 17 Aug 2021 11:01:02 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ <7c2cf6b1-cbe1-35f6-2fae-39d5beed930c@gmail.com>
+From: "Sinan Kaya" <okaya@kernel.org>
+Message-ID: <6e55b59f-c9bb-5357-8b57-f0f1cc1f11fb@kernel.org>
+Date: Tue, 17 Aug 2021 19:29:32 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20210817150957.18246-1-okaya@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <7c2cf6b1-cbe1-35f6-2fae-39d5beed930c@gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-I had to clean these up a little bit and pushed them to master-next. 
-Please verify that they still work for you and if not used them as a 
-starting point and send a V4 patchset.
+On 8/17/2021 7:01 PM, Joshua Watt wrote:
+> I had to clean these up a little bit and pushed them to master-next.
+> Please verify that they still work for you and if not used them as a
+> starting point and send a V4 patchset.
 
-On 8/17/21 10:09 AM, Sinan Kaya wrote:
-> Dynamically linked protoc.exe is failing as follows:
->
-> [libprotobuf ERROR google/protobuf/descriptor_database.cc:641]
-> File already exists in database: google/protobuf/descriptor.proto
-> [libprotobuf FATAL google/protobuf/descriptor.cc:1371] CHECK failed:
-> GeneratedDatabase()->Add(encoded_file_descriptor, size):
->
-> Switch to static linkage per upstream recommendation.
->
-> Signed-off-by: Sinan Kaya <okaya@kernel.org>
-> ---
->   recipes-devtools/protobuf/protobuf_%.bbappend | 1 +
->   1 file changed, 1 insertion(+)
->   create mode 100644 recipes-devtools/protobuf/protobuf_%.bbappend
->
-> diff --git a/recipes-devtools/protobuf/protobuf_%.bbappend b/recipes-devtools/protobuf/protobuf_%.bbappend
-> new file mode 100644
-> index 0000000..b53b22d
-> --- /dev/null
-> +++ b/recipes-devtools/protobuf/protobuf_%.bbappend
-> @@ -0,0 +1 @@
-> +EXTRA_OECONF:append:sdkmingw32 = " --disable-shared"
+Sounds good.
+
+What do you think about this?
+
+My reading of the problem says that the problem only happens on win32
+platforms due to how DLLs initialize the heap.
+
+We have use cases of both dynamic and static linkage for the
+target build that we have not seen any issues with.
+
+I'd like to keep target builds same supporting both static and dynamic
+build but limit the tools to static link by using sdkmingw32 instead of
+mingw32.
+
+Should I send a V4?
