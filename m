@@ -1,66 +1,235 @@
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by mx.groups.io with SMTP id smtpd.web09.40466.1629213004392585837
- for <yocto@lists.yoctoproject.org>;
- Tue, 17 Aug 2021 08:10:04 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kernel.org header.s=k20201202 header.b=t2uIRsQh;
- spf=pass (domain: kernel.org, ip: 198.145.29.99, mailfrom: okaya@kernel.org)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BEC3B6108B;
-	Tue, 17 Aug 2021 15:10:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1629213004;
-	bh=GKwFxfzKbqbxGKAjg09ZX2Dc8TT3m5mE0QhpGtA5sxg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=t2uIRsQhgfQkAQUo7lECsoefKvCjXhc6pQm/meluFvjk3KCG/PFyFpLGCNdy3yrVa
-	 4eccgX8GGhKXLtiLvF/KkgBGQXXUrd+FBnarGCVAocFmOXOcq71T624u0+weBJxoUw
-	 4XyM1/s4HPzvJRT5hRQX/Och3hE1naAXomGtaesMvsE/3SrhDC80MUu/xIXn8LJUaq
-	 dzDiGMsN5CjkOkmtFOxLHGoqSnjeFhZEoPTxhvvT9s7OPJ8tnOvty1PoGrBv2TN8ov
-	 whp+F0dVstDcaH/hTvQkQJOMShJcftmQjkycwqxp9UybGITMLCeK0uC4lVQa3F08Xs
-	 mPz1h76ZgB8Jg==
-From: "Sinan Kaya" <okaya@kernel.org>
+Subject: Getting bitbake error after 54% recipes are baked. #dunfell #yocto
 To: yocto@lists.yoctoproject.org
-Cc: jpewhacker@gmail.com,
-	Sinan Kaya <okaya@kernel.org>
-Subject: [meta-mingw] [PATCH v3 5/5] conf/layer.conf: use BBFILES_DYNAMIC for dynamic layers
-Date: Tue, 17 Aug 2021 15:09:57 +0000
-Message-Id: <20210817150957.18246-5-okaya@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210817150957.18246-1-okaya@kernel.org>
-References: <20210817150957.18246-1-okaya@kernel.org>
+From: vishal.rana118@gmail.com
+X-Originating-Location: Bengaluru, Karnataka, IN (106.51.234.10)
+X-Originating-Platform: Windows Chrome 92
+User-Agent: GROUPS.IO Web Poster
+MIME-Version: 1.0
+Date: Tue, 17 Aug 2021 08:38:11 -0700
+Message-ID: <YBth.1629214691621384185.kqQR@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="n9blXK9m209ik3lOIuOc"
 
-Add a dynamic BBFILES pattern so that patches for openembedded-layer
-are conditionally applied only if meta-oe is present.
+--n9blXK9m209ik3lOIuOc
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Sinan Kaya <okaya@kernel.org>
----
- conf/layer.conf | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+Hi,
 
-diff --git a/conf/layer.conf b/conf/layer.conf
-index 5fefa73..d4823fc 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -3,6 +3,12 @@ BBPATH := "${BBPATH}:${LAYERDIR}"
- 
- # We have a packages directory, add to BBFILES
- BBFILES += "${LAYERDIR}/recipes*/*/*.bb ${LAYERDIR}/recipes*/*/*.bbappend"
-+BBFILES_DYNAMIC += "\
-+openembedded-layer:${LAYERDIR}/dynamic-layers/openembedded-layer/recipes-*/*/*.bb
-+\
-+openembedded-layer:${LAYERDIR}/dynamic-layers/openembedded-layer/recipes-*/*/*.bbappend
-+\
-+ "
- 
- BBFILE_COLLECTIONS += "meta-mingw"
- BBFILE_PATTERN_meta-mingw := "^${LAYERDIR}/"
-@@ -10,4 +16,5 @@ BBFILE_PRIORITY_meta-mingw = "8"
- 
- LAYERDEPENDS_meta-mingw = "core"
- 
--LAYERSERIES_COMPAT_meta-mingw = "honister"
-\ No newline at end of file
-+LAYERSERIES_COMPAT_meta-mingw = "honister"
-+
--- 
-2.17.1
+I am using *ubuntu 16.04* (host) in VirtualBox.
 
+Memory allocated to VM machine is 100+ GB.
+
+Poky *dunfell*.
+
+While trying to build the project fo *r x86_64.*
+
+Steps followed as per yocto quick guide for "dunfell"
+
+////////////////////////////// ////////////////////////////// ////////////
+
+after baking 54% of recipe I am getting error.
+
+////////////////////////////// ////////////////////////////// /////////////=
+///////////
+
+| /home/vrana/Desktop/yocto_ Practice/build/tmp/work/core2- 64-poky-linux/g=
+cc/9.3.0-r0/ recipe-sysroot-native/usr/bin/ x86_64-poky-linux/../../ libexe=
+c/x86_64-poky-linux/gcc/ x86_64-poky-linux/9.3.0/as: out of memory allocati=
+ng 4064 bytes after a total of 452272128 bytes
+
+| Makefile:1117: recipe for target 'insn-emit.o' failed
+
+| make[1]: *** [insn-emit.o] Error 2
+
+| make[1]: *** Waiting for unfinished jobs....
+
+| rm gcc.pod
+
+| make[1]: Leaving directory '/home/vrana/Desktop/yocto_ Practice/build/tmp=
+/work/core2- 64-poky-linux/gcc/9.3.0-r0/ gcc-9.3.0/build.x86_64-poky- linux=
+.x86_64-poky-linux/gcc'
+
+| Makefile:4328: recipe for target 'all-gcc' failed
+
+| make: *** [all-gcc] Error 2
+
+| WARNING: exit code 1 from a shell command.
+
+|
+
+ERROR: Task (/home/vrana/Desktop/yocto_ Practice/source/poky/meta/ recipes-=
+devtools/gcc/gcc_9.3. bb:do_compile) failed with exit code '1'
+
+NOTE: Tasks Summary: Attempted 1832 tasks of which 0 didn't need to be reru=
+n and 1 failed.
+
+Summary: 1 task failed:
+
+/home/vrana/Desktop/yocto_ Practice/source/poky/meta/ recipes-devtools/gcc/=
+gcc_9.3. bb:do_compile
+
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+
+////////////////////////////// //////////////////////////////
+
+looking for guidance.
+
+Regards,
+
+--n9blXK9m209ik3lOIuOc
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p style=3D"font-size: 13px; margin-bottom: 0px; padding: 0px; max-width: 6=
+0rem; color: #1c1d1f; font-family: 'sf pro text', -apple-system, BlinkMacSy=
+stemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-serif, 'apple color em=
+oji', 'segoe ui emoji', 'segoe ui symbol';">Hi,</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">I am using<=
+strong> ubuntu 16.04</strong> (host) in VirtualBox.</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">Memory allo=
+cated to VM machine is 100+ GB.</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">Poky<strong=
+> dunfell</strong>.</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">While tryin=
+g to build the project fo<strong>r x86_64.</strong></p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">Steps follo=
+wed as per yocto quick guide for "dunfell"</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">///////////=
+///////////////////<wbr />//////////////////////////////<wbr />////////////=
+</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">after bakin=
+g 54% of recipe I am getting error.</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">///////////=
+///////////////////<wbr />//////////////////////////////<wbr />////////////=
+////////////</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">| /home/vra=
+na/Desktop/yocto_<wbr />Practice/build/tmp/work/core2-<wbr />64-poky-linux/=
+gcc/9.3.0-r0/<wbr />recipe-sysroot-native/usr/bin/<wbr />x86_64-poky-linux/=
+../../<wbr />libexec/x86_64-poky-linux/gcc/<wbr />x86_64-poky-linux/9.3.0/a=
+s: out of memory allocating 4064 bytes after a total of 452272128 bytes</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">| Makefile:=
+1117: recipe for target 'insn-emit.o' failed</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">| make[1]: =
+*** [insn-emit.o] Error 2</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">| make[1]: =
+*** Waiting for unfinished jobs....</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">| rm gcc.po=
+d</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">| make[1]: =
+Leaving directory '/home/vrana/Desktop/yocto_<wbr />Practice/build/tmp/work=
+/core2-<wbr />64-poky-linux/gcc/9.3.0-r0/<wbr />gcc-9.3.0/build.x86_64-poky=
+-<wbr />linux.x86_64-poky-linux/gcc'</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">| Makefile:=
+4328: recipe for target 'all-gcc' failed</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">| make: ***=
+ [all-gcc] Error 2</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">| WARNING: =
+exit code 1 from a shell command.</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">|</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">ERROR: Task=
+ (/home/vrana/Desktop/yocto_<wbr />Practice/source/poky/meta/<wbr />recipes=
+-devtools/gcc/gcc_9.3.<wbr />bb:do_compile) failed with exit code '1'</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">NOTE: Tasks=
+ Summary: Attempted 1832 tasks of which 0 didn't need to be rerun and 1 fai=
+led.</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">Summary: 1 =
+task failed:</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">&nbsp; /hom=
+e/vrana/Desktop/yocto_<wbr />Practice/source/poky/meta/<wbr />recipes-devto=
+ols/gcc/gcc_9.3.<wbr />bb:do_compile</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">Summary: Th=
+ere were 2 ERROR messages shown, returning a non-zero exit code.&nbsp;</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">&nbsp;</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">///////////=
+///////////////////<wbr />//////////////////////////////</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">looking for=
+ guidance.</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">&nbsp;</p>
+<p style=3D"font-size: 13px; margin-top: 0.8rem; margin-bottom: 0px; paddin=
+g: 0px; max-width: 60rem; color: #1c1d1f; font-family: 'sf pro text', -appl=
+e-system, BlinkMacSystemFont, Roboto, 'segoe ui', Helvetica, Arial, sans-se=
+rif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol';">Regards,</p=
+>
+
+--n9blXK9m209ik3lOIuOc--
