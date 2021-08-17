@@ -1,145 +1,79 @@
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
- by mx.groups.io with SMTP id smtpd.web12.34880.1629171831444461055
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+ by mx.groups.io with SMTP id smtpd.web09.35383.1629177676247262298
  for <yocto@lists.yoctoproject.org>;
- Mon, 16 Aug 2021 20:43:51 -0700
+ Mon, 16 Aug 2021 22:21:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=byvZLYNU;
- spf=pass (domain: gmail.com, ip: 209.85.216.46, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-pj1-f46.google.com with SMTP id n13-20020a17090a4e0d00b0017946980d8dso2636596pjh.5
-        for <yocto@lists.yoctoproject.org>; Mon, 16 Aug 2021 20:43:51 -0700 (PDT)
+ dkim=pass header.i=@google.com header.s=20161025 header.b=gWw3pYJ2;
+ spf=pass (domain: google.com, ip: 209.85.210.42, mailfrom: ztai@google.com)
+Received: by mail-ot1-f42.google.com with SMTP id l36-20020a0568302b24b0290517526ce5e3so16261425otv.11
+        for <yocto@lists.yoctoproject.org>; Mon, 16 Aug 2021 22:21:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=IZzYq5ETnY+ok52XgJL7Tbn0dJQ6QM5PnjmeKkPO5XQ=;
-        b=byvZLYNUHnytr95ne1tPJ25xf/Uje8eyO4CA0MFb6LVUl+Cqb+lib2tEwvNASDE4Hs
-         x1YqKxgrlswdE89l+a+JkqhpFdAoPjtIrlpJj28Rb16BPrt9baaOHgZ1Fio4+xMhMGK0
-         SKG7/BQJnWHh6GKjEHjMvCEiTyesMToGzT0l3IC1xYpWSDAlt8/1EyBqzhQV/dSIAeG3
-         DEwbeRUFGs8JfWN2sOJPoooXXP4Zwho5cSh8Zzn5Hc0gATHBYeHWbt1c53n3ta/JnrKG
-         HFrOtCTVn2uWVtkqLMINNhYmhbLH2K7fmwjvVZJGzr0wbLbFszQlisi/TRsimB6fIlgC
-         FpTA==
+        d=google.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=H6A1U6RxHUV3jpMVM8ELHnHdqZ23l0xJqgii5grKwQE=;
+        b=gWw3pYJ2RgfwJXWQQ+wxYn1fYNzC0xk27ZvWJUzZPMlrQJxZi96OigxyXW9XqKOfCi
+         pc9nLalkRl04iIUK/BPVCG4nQ2gUqZQJxnTPBqxdgFeFjqRKvryHMaE7SDEHfp3lbXpd
+         WDz5hpSsMW52xdX71IlQnSDbYj0bHTiptovrQsfJawOT+nS9PrTgUhNcXfqVD3LJ5N2X
+         k2CpMKlWGE7MCajxRlmdm1CoT3dzICW1AMyXJRfO6Plc1jFxfn1x7xYp+iaFvRA1tUqn
+         AcnWi0SlJsNv0X0wKeeEfxFlvhm+5LnYthqBusOioh19mcLSZNzyl3jdUzVLqmU/QF3p
+         iCgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IZzYq5ETnY+ok52XgJL7Tbn0dJQ6QM5PnjmeKkPO5XQ=;
-        b=kqh+5rFNe8cNZWP17rJZnkPZ8+ECimb1H5HyqjDrUPCEQmKdy8KB/p7VWWia9NO2DF
-         nOEpmzKG49WlYMZTXRxyosJjD+TPw1+SwhKrf8NnGHsbRuaYz0RJ2xOw6pTUnRZNtOcM
-         Dfz7Kiby4/dC0sS7a4Vbljg2O6a3K/XJ6O993NyF9ChxQ7DIIec7+dznXwFT/2zk4UHx
-         CdP5zs8YpVpvD0RuB+9va+zLwBoJaP6TtpvG+xbm0fYWf4ytm+QT+uezYnrT/G71eWOP
-         Ixm80Gv3VzReEcXYryZ4ngXdej0MKCPMFzis3RQudG0hXRDIZ8m1JqKBjYPzfyk9TJJf
-         CFfA==
-X-Gm-Message-State: AOAM530TdYrRjmmdC+xKFvTx5a3wTtxumrWLCq9B+2hy2wbnwVBU5von
-	aFkYn5BCrAmlubnMOPZk5Zq14qTu/6LJWXseZTI=
-X-Google-Smtp-Source: ABdhPJxDXdftlyvgJO41BfNOcmFOxX0k6WNt4DmnTOAYnEYIwuB0me8aluaI5I75T/iZCDCcU0EWB69rkBdw3H8AFOY=
-X-Received: by 2002:a17:90a:bd18:: with SMTP id y24mr1405551pjr.83.1629171830841;
- Mon, 16 Aug 2021 20:43:50 -0700 (PDT)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=H6A1U6RxHUV3jpMVM8ELHnHdqZ23l0xJqgii5grKwQE=;
+        b=FkWGx31dr2uoLiIzabGU+sIN3MsFpN+G5Q2TT2CsKa+bonXUgrFwLVgKuyOb/SDiXK
+         7MibPp5f98ChsowZJoMX2j7ovCmb6EOc6ZP+bYnsH4SKBc/jQDdwOEg7s3eeEzjELubz
+         39bvq4tBeSOYbEiExIiL/oEvNJGh41RWjj0Q5Eo072fanl0fYM/Z4FkA3texurFtOHOh
+         LzA1C0yj017XiYx2byzS1BFCiSeRFrlThD3mTTqdQ5esQHY0/RGhyUBbJ4JyEAhxcS3g
+         auPJv/1QesZuBgbpKhfu44USs8PGF9JYEYEvBfQ/XltM8mf7XLNfZzFIRfAuGexfXzcY
+         Pm8w==
+X-Gm-Message-State: AOAM532JlpVNyD7wWLy0ie4tL3HA2NA3hbuNnmI8z4kziX4FRow7TQFn
+	G6M5otudy7/FrZgxoRwkFQahF0Z4dwYEB6vvtti4dQtaTb8vJA==
+X-Google-Smtp-Source: ABdhPJx7R/R9x/M7ovJ1GMzdqmw3KDDJtSDjkihS/HR/VUy5LYy5cPYU4O/eSF2FvWesVTpdjK2NznmF/dFbj/2DZtQ=
+X-Received: by 2002:a9d:738a:: with SMTP id j10mr1217255otk.115.1629177675015;
+ Mon, 16 Aug 2021 22:21:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAA=hcWTy177KCeQaFdzeXYM=0Sga_PgGHRh=ZuVjxiDLtz-v_Q@mail.gmail.com>
-In-Reply-To: <CAA=hcWTy177KCeQaFdzeXYM=0Sga_PgGHRh=ZuVjxiDLtz-v_Q@mail.gmail.com>
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Tue, 17 Aug 2021 05:43:39 +0200
-Message-ID: <CAGAf8Lz9V4Q7LzW_HCHFOW5iK6G=NQ5kEP_CzFzb_ozaap2uLA@mail.gmail.com>
-Subject: Re: [yocto] Hardknott systemd-journald issue
-To: JH <jupiter.hce@gmail.com>
-Cc: yocto <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000004163eb05c9b92080"
+From: "Zhenfei Tai" <ztai@google.com>
+Date: Mon, 16 Aug 2021 22:21:03 -0700
+Message-ID: <CAMXw96NuEK--uffp9JQhWAA6wU-Pk7DSKNhn6Si=mwhUc=zE_g@mail.gmail.com>
+Subject: Can't parse unset of variables with override
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000098d81705c9ba7cc6"
 
---0000000000004163eb05c9b92080
+--00000000000098d81705c9ba7cc6
 Content-Type: text/plain; charset="UTF-8"
 
-Hello Jupiter,
+Hi,
 
-This might provide you a great help:
-https://askubuntu.com/questions/864722/where-is-journalctl-data-stored
+I'm not sure if this has been brought up already. After the syntax change
+from underscore to colon, I noticed the error when using unset on variables
+with override. Could someone confirm if this is expected?
 
-Namely:
+# in bbappend
+unset SRCREV:xyz
 
+# in build log
+ERROR: ParseError at /../abc%.bbappend:3: unparsed line: 'unset SRCREV:xyz
 
+Thanks,
+Zhenfei
 
-
-
-*Usually the storage directory is /var/log/journal or /run/log/journal, but
-it doesn't have to necessarily exist in your system.If you just want to
-check the amount of space that the journal is currently occupying on your
-disk, simply type:$ journalctl --disk-usage*
-
-You also can combine the df command (look into man df).
-
-Zee
-_______
-
-
-On Tue, Aug 17, 2021 at 4:18 AM JH <jupiter.hce@gmail.com> wrote:
-
-> Hi,
->
-> I've just upgraded from Zeus to Hardknott with the kernel 5.10.59, the
-> /run/log/journal was running out of space and crashed, is it a kernel
-> issue or Hardknott build issue?
->
-> I never seen that issue in Zeus, I thought that systemd-journald
-> should be capable of detecting the space, if it is no log space, stop
-> writing rather crashing the tmpfs
->
-> [13749.397288] systemd-journald[97]: Failed to open runtime journal:
-> No space left on device
-> [13749.439047] systemd-journald[97]: File
-> /run/log/journal/4ba2cd613d004916863e30730800bb69/system.journal
-> corrupted or uncleanly shut down, renaming and replacing.
->
-> Thank you.
->
-> Kind regards,
->
-> - jh
->
-> 
->
->
-
---0000000000004163eb05c9b92080
+--00000000000098d81705c9ba7cc6
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello Jupiter,<br><br>This might provide you a great help:=
-<br><a href=3D"https://askubuntu.com/questions/864722/where-is-journalctl-d=
-ata-stored">https://askubuntu.com/questions/864722/where-is-journalctl-data=
--stored</a><br><br>Namely:<br><br><i><u>Usually the storage directory is /v=
-ar/log/journal or /run/log/journal, but it doesn&#39;t have to necessarily =
-exist in your system.<br><br>If you just want to check the amount of space =
-that the journal is currently occupying on your disk, simply type:<br><br>$=
- journalctl --disk-usage</u></i><br><br>You also can combine the df command=
- (look into man df).<br><br>Zee<br>_______</div><br><br><div class=3D"gmail=
-_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 17, 2021 at 4:18 =
-AM JH &lt;<a href=3D"mailto:jupiter.hce@gmail.com">jupiter.hce@gmail.com</a=
->&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
- 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi,=
-<br>
-<br>
-I&#39;ve just upgraded from Zeus to Hardknott with the kernel 5.10.59, the<=
-br>
-/run/log/journal was running out of space and crashed, is it a kernel<br>
-issue or Hardknott build issue?<br>
-<br>
-I never seen that issue in Zeus, I thought that systemd-journald<br>
-should be capable of detecting the space, if it is no log space, stop<br>
-writing rather crashing the tmpfs<br>
-<br>
-[13749.397288] systemd-journald[97]: Failed to open runtime journal:<br>
-No space left on device<br>
-[13749.439047] systemd-journald[97]: File<br>
-/run/log/journal/4ba2cd613d004916863e30730800bb69/system.journal<br>
-corrupted or uncleanly shut down, renaming and replacing.<br>
-<br>
-Thank you.<br>
-<br>
-Kind regards,<br>
-<br>
-- jh<br>
-<br>
-<br>
-<br>
-</blockquote></div>
+<div dir=3D"ltr">Hi,<div><br></div><div>I&#39;m not sure if this has been b=
+rought up already. After the syntax change from underscore to colon, I noti=
+ced the error when using unset on variables with override. Could someone co=
+nfirm if this is expected?</div><div><pre style=3D"white-space:pre-wrap;fon=
+t-family:WorkAroundWebKitAndMozilla,monospace;line-height:1.5;border-radius=
+:2px;overflow-x:auto;padding:8px 16px;color:rgb(32,33,36);font-size:13px;le=
+tter-spacing:0.185714px"><code style=3D"font-family:WorkAroundWebKitAndMozi=
+lla,monospace;border-radius:2px;padding:0px;line-height:1.5"># in bbappend
+unset SRCREV:xyz
 
---0000000000004163eb05c9b92080--
+# in build log
+ERROR: ParseError at /../abc%.bbappend:3: unparsed line: &#39;unset SRCREV:=
+xyz</code></pre></div><div>Thanks,<br></div><div>Zhenfei</div></div>
+
+--00000000000098d81705c9ba7cc6--
