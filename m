@@ -1,53 +1,64 @@
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by mx.groups.io with SMTP id smtpd.web11.33354.1629164171519558549
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+ by mx.groups.io with SMTP id smtpd.web08.34064.1629166736541178176
  for <yocto@lists.yoctoproject.org>;
- Mon, 16 Aug 2021 18:36:11 -0700
+ Mon, 16 Aug 2021 19:18:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kernel.org header.s=k20201202 header.b=jS3ajjqM;
- spf=pass (domain: kernel.org, ip: 198.145.29.99, mailfrom: okaya@kernel.org)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2E94160E90;
-	Tue, 17 Aug 2021 01:36:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1629164169;
-	bh=tstg6p1olagALlU1teW0YgExF95tNN1bKbChCF5kyo4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=jS3ajjqMg9QTrVF//W8BaMm6G98SFvutjSVMgUwBFBzzTWDYwm+pgn0QHrdrbH/9K
-	 vZQms/KjbBrUR/+PuPJ0sXR8+MKFhwH0U40YS46usGeQ+cCj3GoGq6z59utJbUjwDR
-	 QrlLOyu0nuftA5Wv+FMgpdKbmgHkcvemtg+XfN/ItEZSw1T8KQguTvjd/05KZ7Bx69
-	 87I2g2JDGdzX0+vf+XR0g9lciMdL6X9gum3pxbpkvhMOb0NmYy/5c0/SQPPsygBpB1
-	 8XYKKN1qNNzlls89FEO1wFMP7fT4qtWHWs46Gk+jbNDkYr23gCbAQL+ZDo1xORYTNn
-	 E1skPtoNLFjOA==
-From: "Sinan Kaya" <okaya@kernel.org>
-To: yocto@lists.yoctoproject.org
-Cc: jpewhacker@gmail.com,
-	Sinan Kaya <okaya@kernel.org>
-Subject: [meta-mingw] [PATCH 2/3] protobuf-c: static link when generating sdk
-Date: Tue, 17 Aug 2021 01:36:04 +0000
-Message-Id: <20210817013605.5760-2-okaya@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210817013605.5760-1-okaya@kernel.org>
-References: <20210817013605.5760-1-okaya@kernel.org>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=b2yjeVB+;
+ spf=pass (domain: gmail.com, ip: 209.85.219.179, mailfrom: jupiter.hce@gmail.com)
+Received: by mail-yb1-f179.google.com with SMTP id a126so7700532ybg.6
+        for <yocto@lists.yoctoproject.org>; Mon, 16 Aug 2021 19:18:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=uf+37kGVqfF6muMck8vbj4kg2LvXdWIPv4nQIRR9k5Y=;
+        b=b2yjeVB+laFnpKco8a6nnpRmG7B7aFmXKK7uQsw6l7gN9mGaoPR01X5ragt+3XIib+
+         mrzXj7duqpanI/DAqEJ0tXvJKE0ZrKsKgHTa9ug5vH8YZbAcV8xGzDdxqjx0TfNqmoms
+         xW0dnn8IlA4na+wGErkX3KMzz/9Jw6GYO1UOW0Wpx5FYX7svbBVS1T4GNNxJW5p9rh1e
+         7ETfukg41PnxjQRuILunWnLGBTCAkPa/kKiURv5rYt3wH50oZOU8LJ7IF3IMiOpCpz5D
+         QunuIM8MRAAvufjaP+EKfGiKQ8Xy7kldKcjPabP/7FIJdn6pbjKvxXewIkmn+9iP2FE9
+         Rk1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=uf+37kGVqfF6muMck8vbj4kg2LvXdWIPv4nQIRR9k5Y=;
+        b=RV1aaH1vH/Ti0damWl2nZvMvJuJhtX24q0XmZdCby+pYUaRTKMTzKiKAzyjzwMVlYO
+         AHOwxI6ObHfQv3Y6+mjKwk6UwX41UBUScfPM/bVwQ8Er0zuf/FTBuSjpEqlnRNCUyUvu
+         jNazw3IY50BNCLGSCC4pQ/ofGJl0aEx9RmyCCX3Lm2kZOW9ZgpuryzzQ8z6W1a8MJhWW
+         sxnYH45PLrLgiv/M74gHD59QQJLh06oMC8CjAHniCbbwQl+zmFHOWucniKu1hYdG+q4k
+         kvP1a3FLqobSzCqIWiwIFLUgwpovOtpNC+x6UQC9Hou+VvbtB7hOeN6LTL1Gj5utOTIO
+         Vrmw==
+X-Gm-Message-State: AOAM532X1DPTyTi/ePGSLBHDZAVUjdYRh8Hn/ENNcXJLTBHkNp8T80af
+	yCy3DcYVyXNO3LKa/UZMraDyp7d0748lpIl3msraG/oo4oQ=
+X-Google-Smtp-Source: ABdhPJzzNBlHPTZBVdKMXIwZ0K+rjINsmhmFnJFkWQ4VVYTYv2Iqq5ZhlvAc06Q0x8BiuKrfeLtbHlgX4ERRtuLRyYc=
+X-Received: by 2002:a25:9ac6:: with SMTP id t6mr1499105ybo.190.1629166735525;
+ Mon, 16 Aug 2021 19:18:55 -0700 (PDT)
+MIME-Version: 1.0
+From: "JH" <jupiter.hce@gmail.com>
+Date: Tue, 17 Aug 2021 12:18:19 +1000
+Message-ID: <CAA=hcWTy177KCeQaFdzeXYM=0Sga_PgGHRh=ZuVjxiDLtz-v_Q@mail.gmail.com>
+Subject: Hardknott systemd-journald issue
+To: yocto <yocto@lists.yoctoproject.org>
+Cc: oe-core layer <openembedded-core@lists.openembedded.org>
+Content-Type: text/plain; charset="UTF-8"
 
-[libprotobuf ERROR google/protobuf/descriptor_database.cc:641]
-File already exists in database: google/protobuf/descriptor.proto
-[libprotobuf FATAL google/protobuf/descriptor.cc:1371] CHECK failed:
-GeneratedDatabase()->Add(encoded_file_descriptor, size):
+Hi,
 
-Switch to static linkage per upstream recommendation.
+I've just upgraded from Zeus to Hardknott with the kernel 5.10.59, the
+/run/log/journal was running out of space and crashed, is it a kernel
+issue or Hardknott build issue?
 
-Signed-off-by: Sinan Kaya <okaya@kernel.org>
----
- recipes-devtools/protobuf-c/protobuf-c_%.bbappend | 1 +
- 1 file changed, 1 insertion(+)
- create mode 100644 recipes-devtools/protobuf-c/protobuf-c_%.bbappend
+I never seen that issue in Zeus, I thought that systemd-journald
+should be capable of detecting the space, if it is no log space, stop
+writing rather crashing the tmpfs
 
-diff --git a/recipes-devtools/protobuf-c/protobuf-c_%.bbappend b/recipes-devtools/protobuf-c/protobuf-c_%.bbappend
-new file mode 100644
-index 0000000..7e62ff6
---- /dev/null
-+++ b/recipes-devtools/protobuf-c/protobuf-c_%.bbappend
-@@ -0,0 +1 @@
-+EXTRA_OECONF:append:class-nativesdk = " --disable-shared"
--- 
-2.17.1
+[13749.397288] systemd-journald[97]: Failed to open runtime journal:
+No space left on device
+[13749.439047] systemd-journald[97]: File
+/run/log/journal/4ba2cd613d004916863e30730800bb69/system.journal
+corrupted or uncleanly shut down, renaming and replacing.
 
+Thank you.
+
+Kind regards,
+
+- jh
