@@ -1,73 +1,84 @@
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
- by mx.groups.io with SMTP id smtpd.web08.41026.1629215574382048747
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+ by mx.groups.io with SMTP id smtpd.web08.41162.1629216064812366597
  for <yocto@lists.yoctoproject.org>;
- Tue, 17 Aug 2021 08:52:54 -0700
+ Tue, 17 Aug 2021 09:01:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@fastmail.fm header.s=fm3 header.b=cXA8cvy2;
- spf=pass (domain: fastmail.fm, ip: 66.111.4.25, mailfrom: manwag@fastmail.fm)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-	by mailout.nyi.internal (Postfix) with ESMTP id AEED55C00FE
-	for <yocto@lists.yoctoproject.org>; Tue, 17 Aug 2021 11:52:53 -0400 (EDT)
-Received: from imap41 ([10.202.2.91])
-  by compute4.internal (MEProxy); Tue, 17 Aug 2021 11:52:53 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fastmail.fm; h=
-	mime-version:message-id:date:from:to:subject:content-type; s=
-	fm3; bh=3ANqAVy0LQFy5NUoNRcbxUhpp+SEyCApafgby2oMOM8=; b=cXA8cvy2
-	Ky+ZxX8Pl3asqRw2voJl6/iwlzZP/qK5Q4pNdP4MU3pj9l8MUVWqNcLXxrwmeDZ+
-	U0LyApd+AIm2zDcOBlTL9sOIlEsBjAoGqGIlJAN5EwyB1G/WJD0AcplX6vTsuJqc
-	LDfwEDKhRMWb1vXIi/qsly+S2Jeny0D6sECb+YhvdOPklAqyWh6uZJmVwYW1cZve
-	wYptQDxy9BqeHfAm6eB+E3iqqyyww3wLdQLG5pOnxIIYEzBtdjtjok62YW3Mh3JH
-	awwfHoM6hLNOJISDpdjbL1WrfnDEYZXNnJezVxd1RVFxHjU0FVFazznFoBXEg/Ep
-	N1QlzOmJO7NYfA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=content-type:date:from:message-id
-	:mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm3; bh=3ANqAVy0LQFy5NUoNRcbxUhpp+SEy
-	CApafgby2oMOM8=; b=Ieq/U4xortvZDHAp9hkAT1RGn8WCJMgk5t1eCrj5IhdSm
-	Y+3jT0BXS6HeeA3AAHg81niXF81j2mIvrq2UnL4YvwaMR0Ejgff9PrbJJpikMbZp
-	6UH93O/twp8zUNeLHg23MNH07RAe57uT6neXBqxBXed8JZFad2M1L1BXuJm4Vk+v
-	g4+415OfUWMMQ7WfiCNx2+n0QT/2jvWXDcPvdYZB4soHirYTtb8ed4T0R6EInNpI
-	WtRzXnIXWAvlwincKFVRpLr3mmvCpj3J/nuoGju5XqZsvt0WLSNkHCc2OpBhQxgR
-	nJNyj26uiDXQwb25iliYg1Z2niTpCs80Rb123Usjw==
-X-ME-Sender: <xms:VdsbYSmSOANsFIEZ-fa6DTgYDtMujeYhBBIjHvgqthODMMJEadMEEA>
-    <xme:VdsbYZ0tKcZ8chdsIF3MrHS6sHnqg05K8lz0OorszSZGmk_ree9XJVMGPMSzC2UMB
-    -GCSNt2_JDaLV1j>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrleefgdelgecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecunecujfgurhepofgfggfkfffhvffutgesthdtredtre
-    ertdenucfhrhhomhepfdforghnuhgvlhcuhggrghgvshhrvghithhhvghrfdcuoeforghn
-    hggrgheshfgrshhtofgrihhlrdfhofeqnecuggftrfgrthhtvghrnhepueduffelueeiud
-    fhgfffhffggeehfeeujeelgfehvdffieetgeekgeffteeihfehnecuffhomhgrihhnpeih
-    ohgtthhophhrohhjvggtthdrohhrghdpghhithhhuhgsrdgtohhmnecuvehluhhsthgvrh
-    fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepofgrnhghrghgsefhrghsthfo
-    rghilhdrhffo
-X-ME-Proxy: <xmx:VdsbYQrSn4i0kDeMOZ-W8WCLy_Q4PD7wwgBV_kXZWAhhaxgfxBkdfw>
-    <xmx:VdsbYWnW3FTA8PUFBlDvlyn71VMJlke3cwnEy2MiDobxdCN3x12Uhw>
-    <xmx:VdsbYQ1luX1G0qQPQaesezeecnFf5RSD4OS2jDvscvnTPxK5vL5R4g>
-    <xmx:VdsbYRC5T7CH54P6v1Ej77irX8CgLERzAvsa1TH65WTFsert3x7C4Q>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 725DD3C0453; Tue, 17 Aug 2021 11:52:53 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-1118-g75eff666e5-fm-20210816.002-g75eff666
-Mime-Version: 1.0
-Message-Id: <d8353869-6136-45f7-a2eb-a1397cf05693@www.fastmail.com>
-Date: Tue, 17 Aug 2021 17:52:17 +0200
-From: "Manuel Wagesreither" <ManWag@FastMail.FM>
-To: yocto <yocto@lists.yoctoproject.org>
-Subject: ZFS/ZoL on Yocto
-Content-Type: text/plain
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=EEwgRh9A;
+ spf=pass (domain: gmail.com, ip: 209.85.167.182, mailfrom: jpewhacker@gmail.com)
+Received: by mail-oi1-f182.google.com with SMTP id bf25so23791478oib.10
+        for <yocto@lists.yoctoproject.org>; Tue, 17 Aug 2021 09:01:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:subject:to:references:message-id:date:user-agent:mime-version
+         :in-reply-to:content-transfer-encoding:content-language;
+        bh=IQttiKsGXp5PtQWRLyu8Yqu0EqSyHLnHomi3kWz1K1w=;
+        b=EEwgRh9A2nzKDaBy8yAvjNiARj0es2rDg0XYVCjYM6ErdV33SGQPYQVrKlrakpHFCg
+         Z0UvL3cfbm1rrxVA9WbfJHS/XugLLS+CA8B3MHs2YalolPsG6vC4FOY11pB5ofvaqU3m
+         dTEkKqTmNrr3LtfrLiu1H/toQ6GjvYr+k65aqNDA58x9lY9Rf1ovSRlBHjsKJIfoedj7
+         4LRs5DuAgIyT1iNg4bMUktKDtkmhBu8474g5gzbigWBivI4ceD2yXo9Fxz2KOjJHb6It
+         O3sRp7TZI4KWZujV97P+owQ9JrdJ15nssyixoc/ze0+lstkBXrdvvv/i644pqaJPJziL
+         BUgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:subject:to:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=IQttiKsGXp5PtQWRLyu8Yqu0EqSyHLnHomi3kWz1K1w=;
+        b=rSbaUW9f1pjG2ZENs+YtI8KPsH1/3uqNxIVANH2qy2KHo+YpyJh3dVIrKcmJJORSet
+         De6PpCwXa/BoE+01xbnYlFow2cJ1JHDaEb4GhB/GxEdl3+iZDyH4vE/KQfPc5F2KPP8z
+         4iA39IhVXdtTH0AbAazcjSjhyCiDaKDXjR4uvvKWLkscHE08Vmq9SZuoP4m8d01gb0rt
+         IsxUo1hV9DGBlpWTYKvWaQLe9zLSMNxP01k92YBJoruoAlq5pEAurmGy+kNdDrAAba+6
+         6KHFOUsDVgvAp7hdTlfsKrVoOJYf1vtcgdLckKsLUzHc07ByItO3Dw8yJAYsYuHOLcDq
+         1vFQ==
+X-Gm-Message-State: AOAM53304ZEqo6GeC+kQ4SoUsHIwaZEzkQkUruHbyNG5rzeKzzvzBLLw
+	Vw8YYaQVLDdcnKQ9tV8679t7NO8BPt4Zpw==
+X-Google-Smtp-Source: ABdhPJyjTKUqc4XTSzt7ffu2IO/Q9mfZlSX/1+CuadnFlbQOFWm5bGuP9EHwMNUXE4JfvD6kPkdSEA==
+X-Received: by 2002:a54:4714:: with SMTP id k20mr2957516oik.103.1629216063837;
+        Tue, 17 Aug 2021 09:01:03 -0700 (PDT)
+Return-Path: <jpewhacker@gmail.com>
+Received: from ?IPv6:2605:a601:ac3d:c100:e3e8:d9:3a56:e27d? ([2605:a601:ac3d:c100:e3e8:d9:3a56:e27d])
+        by smtp.gmail.com with ESMTPSA id r25sm554171oic.13.2021.08.17.09.01.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Aug 2021 09:01:03 -0700 (PDT)
+From: "Joshua Watt" <JPEWhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
+Subject: Re: [meta-mingw] [PATCH v3 1/5] protobuf: static link tools when generating sdk
+To: Sinan Kaya <okaya@kernel.org>, yocto@lists.yoctoproject.org
+References: <20210817150957.18246-1-okaya@kernel.org>
+Message-ID: <7c2cf6b1-cbe1-35f6-2fae-39d5beed930c@gmail.com>
+Date: Tue, 17 Aug 2021 11:01:02 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+MIME-Version: 1.0
+In-Reply-To: <20210817150957.18246-1-okaya@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-Hello all,
+I had to clean these up a little bit and pushed them to master-next. 
+Please verify that they still work for you and if not used them as a 
+starting point and send a V4 patchset.
 
-I would like to know if anyone has experiences with equipping Yocto created images with ZFS support.
-
-If I'm not mistaken, the main problems of using ZFS in linux are of legal nature. ZFS can not go into the linux kernel source tree, as it conflicts with the GPL. Hence, the linux version of ZFS called ZoL (ZFS-On-Linux) must be compiled as kernel module and recompiled at every kernel bump. On normal machines, that's a bit cumbersome, but for Yocto this shouldn't be a problem at all.
-
-So, given the large fanbase ZFS has, I'm wondering why there are no recipes around?
-
-I googled a bit, and these are the only meaningful results I found:
-* https://lists.yoctoproject.org/g/yocto/message/29331
-* https://gist.github.com/cveilleux/54961ccc41071e8aee8c19b69fcba78f
-
-Regards,
-Manuel
+On 8/17/21 10:09 AM, Sinan Kaya wrote:
+> Dynamically linked protoc.exe is failing as follows:
+>
+> [libprotobuf ERROR google/protobuf/descriptor_database.cc:641]
+> File already exists in database: google/protobuf/descriptor.proto
+> [libprotobuf FATAL google/protobuf/descriptor.cc:1371] CHECK failed:
+> GeneratedDatabase()->Add(encoded_file_descriptor, size):
+>
+> Switch to static linkage per upstream recommendation.
+>
+> Signed-off-by: Sinan Kaya <okaya@kernel.org>
+> ---
+>   recipes-devtools/protobuf/protobuf_%.bbappend | 1 +
+>   1 file changed, 1 insertion(+)
+>   create mode 100644 recipes-devtools/protobuf/protobuf_%.bbappend
+>
+> diff --git a/recipes-devtools/protobuf/protobuf_%.bbappend b/recipes-devtools/protobuf/protobuf_%.bbappend
+> new file mode 100644
+> index 0000000..b53b22d
+> --- /dev/null
+> +++ b/recipes-devtools/protobuf/protobuf_%.bbappend
+> @@ -0,0 +1 @@
+> +EXTRA_OECONF:append:sdkmingw32 = " --disable-shared"
