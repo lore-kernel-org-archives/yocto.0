@@ -1,94 +1,114 @@
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
- by mx.groups.io with SMTP id smtpd.web10.34613.1629170444494981101
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+ by mx.groups.io with SMTP id smtpd.web09.34589.1629170509692260546
  for <yocto@lists.yoctoproject.org>;
- Mon, 16 Aug 2021 20:20:44 -0700
+ Mon, 16 Aug 2021 20:21:49 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=dPCDJJnH;
- spf=pass (domain: gmail.com, ip: 209.85.216.45, mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-pj1-f45.google.com with SMTP id mq3so213299pjb.5
-        for <yocto@lists.yoctoproject.org>; Mon, 16 Aug 2021 20:20:44 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=CJbOVBMR;
+ spf=pass (domain: gmail.com, ip: 209.85.214.178, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pl1-f178.google.com with SMTP id n12so22491755plf.4
+        for <yocto@lists.yoctoproject.org>; Mon, 16 Aug 2021 20:21:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:mime-version:content-language
          :thread-index;
-        bh=mQCk7AwBga1ALSBKZF4xVzZWe8vRvYxBvMczYtkwXcw=;
-        b=dPCDJJnH4k/0z72iBk9OMIp86eEr1avUfJev4zeC+1d5BnZoUwWKY22vuH9oEqDrdE
-         nFKkq+//OdzCJndZedB3V7XGgOt+sF0IcNSiol9ovcTvRJUxmqzQ6HP6b/VElh9QlGAV
-         GbMVPwTIHwPxbWbrpv8zy01777T4GMIhUUep5GH3zWyikkOnBWkGg70cl5VYGuVluxQu
-         h9LPm+MpAZ3E2RVHnuoXFfGxz/fEqoMqjoKBY2M6r2sS1OWD2LBL0K+Vaf7OnddFRVCd
-         QbMcqty/6Bwx+TlJmxaVF8rTyrPQbHapVA5xFdBis+14LMcUrdpQKOSdl3jNNTmaXAdx
-         f0rQ==
+        bh=UH/KXKD1xxWUj8kAeF6Xu8R4cey7S4G9/wCrWnXyKSo=;
+        b=CJbOVBMRUVRBZyyScC8vUjRtjMIEcrvbqEU2B21EcY599uqYtH+kE64HB6j0RQzyV6
+         7vTP6lMYLho7hvex8+QYkPdrmY0iqoeOBdy6a4YO8YZplFWWLxI31Ddtl4oJA+Y2Eyyu
+         fE86YyTgr8H1E676+eibYwutfAR/FtkYbcZenkVMNxGeB4ZiPx4cnerkPrUScfzpgUU3
+         jntKPqWO/t6qtv7IFEEAeJV2BdvCg/HrxM6bjOAo8KfqTNXOgTrCOvH8ty3Bn82icOU3
+         IrI3v633WI80ECtMHwd7X7EYC5H17lEZqY7VsbBg+2mObxqih38IvJRFMax6fKFGiswf
+         ZvMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :content-language:thread-index;
-        bh=mQCk7AwBga1ALSBKZF4xVzZWe8vRvYxBvMczYtkwXcw=;
-        b=lPeZPzlXB8UlILR2m/NrE7lAF/9K7xWGgno7IBLB6yPhcDZ3DC+o8ljLIl3p97dmXz
-         VtMLdGaIctZD7yrWZ+yxkpxnskLl25Ma4nnoQI7xDjJE7r8OKNM0+igJWEYYiB8GtUeU
-         LAX1dHludAb6L2kZ3nUgtfeMSlcnI5v+ifOREJjQChqDsB1MfnZ86dtGiUu7yp/+NlSw
-         3HYMx/rckK2UWD1xk/xqJBdjyfg1VVuAUFx3UL1RIvTkVCgr9TyacDm8PF90/zMbrTbW
-         icEwTvSpLUnFgYH/Dd2nAwR5WobQoCpbpYSnII8EHJQfZdDTFYFEJ9UhduR92oTSVhd7
-         8XWg==
-X-Gm-Message-State: AOAM533vnQM/8sUgxy8yOv1IOWueuD6UVr9TJZSI++8LHlaf3nJBsd2t
-	Hx0C8Tmg8wYNINTUkI06rks=
-X-Google-Smtp-Source: ABdhPJzK5OXu3XDU8ZolPOSaNTKsXODgeA8XoOjKq6HWwyJMYtnS2JZ1VtiZP3SsyK3PwChSyqsfjw==
-X-Received: by 2002:a17:90a:cf90:: with SMTP id i16mr1316537pju.11.1629170443958;
-        Mon, 16 Aug 2021 20:20:43 -0700 (PDT)
+        bh=UH/KXKD1xxWUj8kAeF6Xu8R4cey7S4G9/wCrWnXyKSo=;
+        b=L7UcVsXIReqVzxnAu6WluX9V4KRJ2oXWCas9rKQVgMS+43NI6SCc8SCex8zBko9LRr
+         yKdLlDn89X3o4jJy0gt4xiMtRBefFBugzC2I1XVTLFzzkzGv0+mnRVIhbLfPicCK5klr
+         ZzZvOHc+0o81W6zRH1dTpdPR46xObLFWWm3sZQSGAnO9K8pOPkI7o34lKtTjnbS0pqGF
+         p34qpkICDnclSal/Jie7iNS4dpYNMElXkVofVStVT2ipzAyZG+MUTd8NrGowLXj7pkOh
+         cmfEvgWFArTD3yQwA0rrnQk/2gnRzuT1R22KUh+EmSLZy5cwZfSXpnlh2FZNcTLslZFa
+         2Sog==
+X-Gm-Message-State: AOAM532QeNZSdQlEvSF7PT7aozZqjGNOS7Tv4lPSWfeVUX/idIvpWLRW
+	5dXN0HVeScPWrSr7Dy8h1t8=
+X-Google-Smtp-Source: ABdhPJxgBszMleyV6CvSQMLN94sAXWRMHlsjtEJi9qJLBS5sfIJtNBOqCh3t0NmMlv3Gar6ucD5VQA==
+X-Received: by 2002:a17:90a:17cc:: with SMTP id q70mr1248900pja.1.1629170509230;
+        Mon, 16 Aug 2021 20:21:49 -0700 (PDT)
 Return-Path: <sjolley.yp.pm@gmail.com>
 Received: from skjolley ([2600:8800:1d98:5b00:5587:1c47:f201:2845])
-        by smtp.gmail.com with ESMTPSA id q1sm573740pfs.143.2021.08.16.20.20.42
+        by smtp.gmail.com with ESMTPSA id j1sm563027pfc.97.2021.08.16.20.21.48
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 16 Aug 2021 20:20:43 -0700 (PDT)
+        Mon, 16 Aug 2021 20:21:48 -0700 (PDT)
 From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
 To: <yocto@lists.yoctoproject.org>
-Subject: Enhancements/Bugs closed WW33!
-Date: Mon, 16 Aug 2021 20:20:43 -0700
-Message-ID: <0fac01d79316$dd524940$97f6dbc0$@gmail.com>
+Subject: M+ & H bugs with Milestone Movements WW33
+Date: Mon, 16 Aug 2021 20:21:48 -0700
+Message-ID: <0fb101d79317$04583720$0d08a560$@gmail.com>
 MIME-Version: 1.0
 X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdeTFtylJL9+byBqTGyLmQP/42wf0g==
+Thread-Index: AdeTFveFjaSs0lpQQk6OEKUSQLXliA==
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0FAD_01D792DC.30F5BB30"
+	boundary="----=_NextPart_000_0FB2_01D792DC.57FE1A10"
 Content-Language: en-us
 
-------=_NextPart_000_0FAD_01D792DC.30F5BB30
+------=_NextPart_000_0FB2_01D792DC.57FE1A10
 Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 All,
 
-The below were the owners of enhancements or bugs closed during the last
-week!
+YP M+ or high bugs which moved to a new milestone in WW33 are listed =
+below:=20
 
 
-Who
+Priority
 
-Count
+Bug ID
 
+Short Description
+
+Changer
+
+Owner
+
+Was
+
+Became
+
+
+Medium+
+
+ <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13975> 13975
+
+cve-checker: save to alternate file format like JSON
 
 randy.macleod@windriver.com
 
-2
+unassigned@yoctoproject.org
+
+3.4 M2
+
+3.4 M3
 
 
-mhalstead@linuxfoundation.org
+=20
 
-2
+ <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14127> 14127
 
+cve-check falsely indicates a vulnerabily to be patched
 
-ross@burtonini.com
+randy.macleod@windriver.com
 
-2
+unassigned@yoctoproject.org
 
+3.4 M2
 
-Grand Total
+3.4 M3
 
-6
+Thanks,=20
 
-Thanks,
-
- 
+=20
 
 Stephen K. Jolley
 
@@ -96,16 +116,16 @@ Yocto Project Program Manager
 
 *    Cell:                (208) 244-4460
 
-* Email:              sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> 
+* Email:              sjolley.yp.pm@gmail.com =
+<mailto:sjolley.yp.pm@gmail.com>=20
 
- 
+=20
 
 
-------=_NextPart_000_0FAD_01D792DC.30F5BB30
+------=_NextPart_000_0FB2_01D792DC.57FE1A10
 Content-Type: text/html;
-	boundary="----=_NextPart_000_0B11_01D78D46.DAEB2670";
-	charset="us-ascii"
+	boundary="----=_NextPart_000_0B16_01D78D46.E5BE9AA0";
+	charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 <html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
@@ -114,9 +134,9 @@ xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
 xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
 xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
 xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 15 (filtered =
+medium)"><style><!--
 /* Font Definitions */
 @font-face
 	{font-family:Wingdings;
@@ -165,67 +185,121 @@ div.WordSection1
 </o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
 link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
 class=3DWordSection1><p class=3DMsoNormal><span =
-style=3D'color:black'>All,<br><br>The below were the owners of =
-enhancements or bugs closed during the last =
-week!<o:p></o:p></span></p><table class=3DMsoNormalTable border=3D0 =
-cellspacing=3D0 cellpadding=3D0 width=3D293 =
-style=3D'width:220.0pt;margin-left:-.15pt;border-collapse:collapse'><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
+style=3D'color:black'>All,<br><br>YP M+ or high bugs which moved to a =
+new milestone in WW33 are listed below: <o:p></o:p></span></p><table =
+class=3DMsoNormalTable border=3D0 cellspacing=3D0 cellpadding=3D0 =
+width=3D1265 =
+style=3D'width:948.75pt;margin-left:-.15pt;border-collapse:collapse'><tr =
+style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
+style=3D'width:54.9pt;border:solid windowtext =
 1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
 class=3DMsoNormal><b><span =
-style=3D'color:black'>Who<o:p></o:p></span></b></p></td><td width=3D43 =
-nowrap valign=3Dbottom style=3D'width:32.0pt;border:solid windowtext =
+style=3D'color:black'>Priority<o:p></o:p></span></b></p></td><td =
+width=3D52 nowrap valign=3Dbottom style=3D'width:38.8pt;border:solid =
+windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
+style=3D'color:black'>Bug ID<o:p></o:p></span></b></p></td><td =
+width=3D544 nowrap valign=3Dbottom style=3D'width:408.0pt;border:solid =
+windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
+style=3D'color:black'>Short =
+Description<o:p></o:p></span></b></p></td><td width=3D236 nowrap =
+valign=3Dbottom style=3D'width:177.0pt;border:solid windowtext =
 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Count<o:p></o:p></span></b></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>mhalstead@linuxfoundation.org<o:p></o:p></span></p>=
-</td><td width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>ross@burtonini.com<o:p></o:p></span></p></td><td =
-width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;background:#DCE6F1;padding:0in 5.4pt 0in =
+style=3D'color:black'>Changer<o:p></o:p></span></b></p></td><td =
+width=3D243 nowrap valign=3Dbottom style=3D'width:182.0pt;border:solid =
+windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
+style=3D'color:black'>Owner<o:p></o:p></span></b></p></td><td width=3D64 =
+nowrap valign=3Dbottom style=3D'width:48.05pt;border:solid windowtext =
+1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Grand Total<o:p></o:p></span></b></p></td><td =
-width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext =
-1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal align=3Dright style=3D'text-align:right'><b><span =
-style=3D'color:black'>6<o:p></o:p></span></b></p></td></tr></table><p =
-class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'color:black'>Was<o:p></o:p></span></b></p></td><td width=3D53 =
+nowrap valign=3Dbottom style=3D'width:40.0pt;border:solid windowtext =
+1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
+5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
+style=3D'color:black'>Became<o:p></o:p></span></b></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
+style=3D'width:54.9pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><b><span =
+style=3D'color:black'>Medium+<o:p></o:p></span></b></p></td><td =
+width=3D52 nowrap valign=3Dbottom =
+style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><b><span style=3D'color:black'><a =
+href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13975" =
+target=3D"_parent"><span =
+style=3D'color:black;text-decoration:none'>13975</span></a><o:p></o:p></s=
+pan></b></p></td><td width=3D544 nowrap valign=3Dbottom =
+style=3D'width:408.0pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
+style=3D'color:black'>cve-checker: save to alternate file format like =
+JSON<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
+style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
+style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
+td><td width=3D243 nowrap valign=3Dbottom =
+style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
+style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
+td><td width=3D64 nowrap valign=3Dbottom =
+style=3D'width:48.05pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
+style=3D'color:black'>3.4 M2<o:p></o:p></span></p></td><td width=3D53 =
+nowrap valign=3Dbottom =
+style=3D'width:40.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
+style=3D'color:black'>3.4 M3<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
+style=3D'width:54.9pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><b><span =
+style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
+width=3D52 nowrap valign=3Dbottom =
+style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><b><span style=3D'color:black'><a =
+href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14127" =
+target=3D"_parent"><span =
+style=3D'color:black;text-decoration:none'>14127</span></a><o:p></o:p></s=
+pan></b></p></td><td width=3D544 nowrap valign=3Dbottom =
+style=3D'width:408.0pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
+style=3D'color:black'>cve-check falsely indicates a vulnerabily to be =
+patched<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
+style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
+style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
+td><td width=3D243 nowrap valign=3Dbottom =
+style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
+style=3D'color:black'>unassigned@yoctoproject.org<o:p></o:p></span></p></=
+td><td width=3D64 nowrap valign=3Dbottom =
+style=3D'width:48.05pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
+style=3D'color:black'>3.4 M2<o:p></o:p></span></p></td><td width=3D53 =
+nowrap valign=3Dbottom =
+style=3D'width:40.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
+style=3D'color:black'>3.4 M3<o:p></o:p></span></p></td></tr></table><p =
+class=3DMsoNormal><span style=3D'color:black'>Thanks,</span><span =
+style=3D'color:white'> <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:white'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><b><i><span =
 style=3D'font-size:16.0pt;font-family:"Times New =
 Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
 style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
@@ -257,4 +331,4 @@ href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
 style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
 an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-------=_NextPart_000_0FAD_01D792DC.30F5BB30--
+------=_NextPart_000_0FB2_01D792DC.57FE1A10--
