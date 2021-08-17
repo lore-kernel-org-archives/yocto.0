@@ -1,49 +1,53 @@
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by mx.groups.io with SMTP id smtpd.web10.40538.1629212883219706415
+ by mx.groups.io with SMTP id smtpd.web10.40566.1629213002545006258
  for <yocto@lists.yoctoproject.org>;
- Tue, 17 Aug 2021 08:08:03 -0700
+ Tue, 17 Aug 2021 08:10:02 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kernel.org header.s=k20201202 header.b=TOZV1hHT;
+ dkim=pass header.i=@kernel.org header.s=k20201202 header.b=OjsDBuxy;
  spf=pass (domain: kernel.org, ip: 198.145.29.99, mailfrom: okaya@kernel.org)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5AA0E60E78;
-	Tue, 17 Aug 2021 15:08:02 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7C18E61073;
+	Tue, 17 Aug 2021 15:10:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1629212882;
-	bh=yniqGuDHE9XZVoamAO75nzj5uBXgZjy5lMdTED23v9k=;
-	h=Subject:To:References:From:Date:In-Reply-To:From;
-	b=TOZV1hHTQ+qzworN8mo3q3TgOBCbomGXOI2w1sxw+0Sdc92XIFch5Gm3ZUBYaEHnP
-	 JWRbtnVKXI33zK5nhV8jXxRo4HK4u3GJ5MF66t8fKA1nnRIckaCFpO6Pdg8QtvIxqu
-	 BCllkTaIcAAOloy8F+Dt4NcycOonEYoiQ7qPXLF2DDgu/XtCd8AgvnU5Ceo3ayocto
-	 JM00y3pFVpYZPUTGSdRwwatJVxIZ69w/Ghpy8fHNyMTOxtqOg0C0zC44FCMy65Y8as
-	 CteOwuJB+QZKWYUqKEpDHyPhpxpdU8OVK88hs+L86KPoqw3HGZEnyYFtAX9D0fW/TD
-	 c3Yh0Bb84QQRA==
-Subject: Re: [meta-mingw] [PATCH v2 1/3] protobuf: static link tools when generating sdk
-To: Joshua Watt <jpewhacker@gmail.com>, yocto@lists.yoctoproject.org
-References: <20210817140742.3110-1-okaya@kernel.org>
- <23ff22c9-a250-fd2c-c199-8392d331596a@gmail.com>
+	s=k20201202; t=1629213001;
+	bh=bUhB5KTNrh2hp6Ve3I+1K7AgpyNHS/Qt20jO1Zd2tNs=;
+	h=From:To:Cc:Subject:Date:From;
+	b=OjsDBuxymLo//LSwwxZQFnaV/0qlXauB7FZlKnJkeMGAuhQnpo6wlbOTdA0OOzbY7
+	 jeCV18u3DOnGdAJ4Q3jxQUMVyDc54bgzb/KCsMcSEeNicDAbzJAzwP4Haq6cd9AtoT
+	 T1+I9IJLxcCOCb79Gr5dzChJZUGPlKfeY9U0OULcsl82rWfmRt+3Okv/WiY/JBV8KJ
+	 ok4bMbfu71u+/DK4XTnQUg/6qKBB5sbXwVMSCuxL81d1nYPqkSd79/7s33unnWwqy5
+	 t4ypKUYEafiJUfeNBMbWJqupOSoaAOJNoTt5Trz+cisquUPc8xAmnAQd5WNkAySA2e
+	 wTv3+SoWmgODA==
 From: "Sinan Kaya" <okaya@kernel.org>
-Message-ID: <f091be8c-b7d6-12c4-d09b-ec74ce0122ec@kernel.org>
-Date: Tue, 17 Aug 2021 18:08:01 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <23ff22c9-a250-fd2c-c199-8392d331596a@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+To: yocto@lists.yoctoproject.org
+Cc: jpewhacker@gmail.com,
+	Sinan Kaya <okaya@kernel.org>
+Subject: [meta-mingw] [PATCH v3 1/5] protobuf: static link tools when generating sdk
+Date: Tue, 17 Aug 2021 15:09:53 +0000
+Message-Id: <20210817150957.18246-1-okaya@kernel.org>
+X-Mailer: git-send-email 2.17.1
 
-On 8/17/2021 5:33 PM, Joshua Watt wrote:
->> +EXTRA_OECONF:append:sdkmingw32 = " --disable-shared"
-> 
-> Apologies, this should use the :mingw32 override, since it's not
-> *specific* to the SDK, but MinGW in general. Anyway, I fixed this up for
-> you since I wasn't clear; this is in master-next and I'll get it tested
-> shortly
+Dynamically linked protoc.exe is failing as follows:
 
-My reading of the problem says that the problem only happens on win32
-platforms due to how DLLs initialize the heap.
+[libprotobuf ERROR google/protobuf/descriptor_database.cc:641]
+File already exists in database: google/protobuf/descriptor.proto
+[libprotobuf FATAL google/protobuf/descriptor.cc:1371] CHECK failed:
+GeneratedDatabase()->Add(encoded_file_descriptor, size):
 
-We have use cases of both dynamic and static linkage for the
-target build that we have not seen any issues with.
+Switch to static linkage per upstream recommendation.
 
-I'd like to keep target builds same.
+Signed-off-by: Sinan Kaya <okaya@kernel.org>
+---
+ recipes-devtools/protobuf/protobuf_%.bbappend | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 recipes-devtools/protobuf/protobuf_%.bbappend
+
+diff --git a/recipes-devtools/protobuf/protobuf_%.bbappend b/recipes-devtools/protobuf/protobuf_%.bbappend
+new file mode 100644
+index 0000000..b53b22d
+--- /dev/null
++++ b/recipes-devtools/protobuf/protobuf_%.bbappend
+@@ -0,0 +1 @@
++EXTRA_OECONF:append:sdkmingw32 = " --disable-shared"
+-- 
+2.17.1
+
