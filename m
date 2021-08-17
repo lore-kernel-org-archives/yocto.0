@@ -1,75 +1,54 @@
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
- by mx.groups.io with SMTP id smtpd.web12.38916.1629205579704128033
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by mx.groups.io with SMTP id smtpd.web12.39769.1629209268210316110
  for <yocto@lists.yoctoproject.org>;
- Tue, 17 Aug 2021 06:06:19 -0700
+ Tue, 17 Aug 2021 07:07:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=GRW8eqLx;
- spf=pass (domain: gmail.com, ip: 209.85.210.46, mailfrom: jpewhacker@gmail.com)
-Received: by mail-ot1-f46.google.com with SMTP id m7-20020a9d4c87000000b0051875f56b95so7800143otf.6
-        for <yocto@lists.yoctoproject.org>; Tue, 17 Aug 2021 06:06:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:subject:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=guGCfZXfMNJmaEtFsrD35kse11JtRX7bfsU7aLlqubE=;
-        b=GRW8eqLx6cmbmQSgclyQrTeH8KWTbtk9M2zWqNDMFktc7G/Er7D6r+zXRnWFBxBlOY
-         dmZnqwjfa/gyPcxaZbDuqEYUiKQywFBmLa62R7vvoK5DgI2BHa3rQ8wx2sW95WyN66bm
-         8IeUQRL0qFmLzhzcNhIgRMfWbVsXJoKW2ebIjMULxHAqeJPK0s8eVJfQi+39oXc77Pi9
-         emI9/E3xcdmKcg9Zf0QlZs9JfB7en4kGxzc2H3geSchfLcajuZTc3kOgHmvwswYkHaqm
-         8F/eibAaYOSS2wQK50n6N/uEzswJWbaxKP16VCAnexQcFM6nCUWLkmyUJu0EIhrjdA/H
-         R0DQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:subject:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=guGCfZXfMNJmaEtFsrD35kse11JtRX7bfsU7aLlqubE=;
-        b=OciY6NytCXW6q12MIKB4oJFGKVKKZk78h8avGWA5qLqiGx2OhOvq8EdCheI5MSQhPD
-         sqdRHsa1xjafGXeDh/+G/FbAd8+zFFNIRhWiCofQFay7TZVH6uZvwhfrMv6eEJEgVZjg
-         4DSLUv0MaYkiWlNtXIgH7mO0IrwEHbsvmLumNffcokkhH4V65U05jxGARBVfdCteGNTT
-         Z52YyRYboGj/wpzfKnjpWKqmcywJrm0FjyBk0RokE76logiCsGPjYoxGoKmO5Zl7+zNW
-         VnxXgS8fRO58iBBMPh+aFR+MFyrtJzZcgWTZ4GxMVzUkdiNuzuTyeXRbzigdtr42laMv
-         hc7A==
-X-Gm-Message-State: AOAM531GVSjrWWJ0SyEJEwMFgWOgYeMMKmhDUIpTmtF1TKns5qEYjyi9
-	czCv5aG7PwbVTAEM9Lu8IVJrelaNLwYdyQ==
-X-Google-Smtp-Source: ABdhPJwLzDMZt2RWKafX25Ig0lLD0y7S+tXHM1EmxMLwlEoyNU++6HMR8Ac7f3EL0N58ENJ8Cz0nsQ==
-X-Received: by 2002:a05:6830:3181:: with SMTP id p1mr2597994ots.210.1629205578373;
-        Tue, 17 Aug 2021 06:06:18 -0700 (PDT)
-Return-Path: <jpewhacker@gmail.com>
-Received: from ?IPv6:2605:a601:ac3d:c100:e3e8:d9:3a56:e27d? ([2605:a601:ac3d:c100:e3e8:d9:3a56:e27d])
-        by smtp.gmail.com with ESMTPSA id h14sm366640otm.5.2021.08.17.06.06.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Aug 2021 06:06:17 -0700 (PDT)
-From: "Joshua Watt" <JPEWhacker@gmail.com>
-X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
-Subject: Re: [yocto] [meta-mingw] [PATCH 1/3] protobuf: static link tools when generating sdk
-To: Sinan Kaya <okaya@kernel.org>, Khem Raj <raj.khem@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-References: <20210817013605.5760-1-okaya@kernel.org>
- <CAMKF1sqpLA2NeM1N-Ro0+aqm_yhvaD7XyxMnN_HZ1NBDm8nLgQ@mail.gmail.com>
- <c0dcf16f-5f21-77cc-b6a9-4f0b542d2630@kernel.org>
-Message-ID: <2ca2458d-4754-8312-8e30-16833a621324@gmail.com>
-Date: Tue, 17 Aug 2021 08:06:16 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <c0dcf16f-5f21-77cc-b6a9-4f0b542d2630@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+ dkim=pass header.i=@kernel.org header.s=k20201202 header.b=Apzdrrc7;
+ spf=pass (domain: kernel.org, ip: 198.145.29.99, mailfrom: okaya@kernel.org)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8736060F14;
+	Tue, 17 Aug 2021 14:07:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1629209267;
+	bh=Xv8id98G21PYJm0JXuv1vPrZPoAL7tx51sl39doqUEA=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=Apzdrrc7rw55L8EYlGjrMIudwrQlMivKFNZ9Z0FuCKqnPiSz8W6NS+c1dUVNtWjV2
+	 EbfntXCZrZnsDEloP/f6VM+WNoZE5MJpExa+KvoeBtWRDIo1AwlJxGlN3FAY+GyAn6
+	 GL0nlaEuN5NmSEeTKeKAQslyqx10/HNY+IDuddWIfdSBoCrq2jU2FQhfTRlafNyX1/
+	 EL611ElcBgMbOF+npcVTwN/DoSC7juD6/u4wqzkjL4J0RJuumiCpTNGMZy1+h6VinE
+	 VjEu1cBM7EA61yC/3bQlpiZsWTVKEj+wX6zat07sxhuakp7rTsV4qeymaMFVzfvs4H
+	 mwyuSkDXHlJ6w==
+From: "Sinan Kaya" <okaya@kernel.org>
+To: yocto@lists.yoctoproject.org
+Cc: jpewhacker@gmail.com,
+	Sinan Kaya <okaya@kernel.org>
+Subject: [meta-mingw] [PATCH v2 3/3] grpc: static link tools when generating SDK
+Date: Tue, 17 Aug 2021 14:07:42 +0000
+Message-Id: <20210817140742.3110-3-okaya@kernel.org>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210817140742.3110-1-okaya@kernel.org>
+References: <20210817140742.3110-1-okaya@kernel.org>
 
+[libprotobuf ERROR google/protobuf/descriptor_database.cc:641]
+File already exists in database: google/protobuf/descriptor.proto
+[libprotobuf FATAL google/protobuf/descriptor.cc:1371] CHECK failed:
+GeneratedDatabase()->Add(encoded_file_descriptor, size):
 
-On 8/17/21 6:03 AM, Sinan Kaya wrote:
-> On 8/17/2021 6:26 AM, Khem Raj wrote:
->>      +EXTRA_OECONF:append:class-nativesdk = " --disable-shared"
->>
->>
->> This is not an inert change can it use some mingw specific override as well
-> Change is targeting meta-mingw repository. I looked at other files
-> in the repo to see what the pattern is.
+Switch to static linkage per upstream recommendation.
 
-All of the bbappends in meta-mingw should be using the :mingw32 override 
-(or sdkmingw32 if it specific to just the SDK). If you found an example 
-in the current code where that is not the case, it needs to be fixed. 
-Either way, you need to use that override in your patches.
+Signed-off-by: Sinan Kaya <okaya@kernel.org>
+---
+ recipes-devtools/grpc/grpc_%.bbappend | 2 ++
+ 1 file changed, 2 insertions(+)
+ create mode 100644 recipes-devtools/grpc/grpc_%.bbappend
+
+diff --git a/recipes-devtools/grpc/grpc_%.bbappend b/recipes-devtools/grpc/grpc_%.bbappend
+new file mode 100644
+index 0000000..4fcd8b9
+--- /dev/null
++++ b/recipes-devtools/grpc/grpc_%.bbappend
+@@ -0,0 +1,2 @@
++EXTRA_OECMAKE:remove:sdkmingw32 = "-DBUILD_SHARED_LIBS=ON"
++EXTRA_OECMAKE:append:sdkmingw32 = " -DBUILD_SHARED_LIBS=OFF"
+-- 
+2.17.1
 
