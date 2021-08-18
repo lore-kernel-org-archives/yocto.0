@@ -1,71 +1,87 @@
-Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
- by mx.groups.io with SMTP id smtpd.web12.62088.1629324394262369019
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
+ by mx.groups.io with SMTP id smtpd.web08.61841.1629325391773514084
  for <yocto@lists.yoctoproject.org>;
- Wed, 18 Aug 2021 15:06:34 -0700
+ Wed, 18 Aug 2021 15:23:11 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@fastmail.fm header.s=fm1 header.b=QR1uwekb;
- spf=pass (domain: fastmail.fm, ip: 64.147.123.20, mailfrom: manwag@fastmail.fm)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-	by mailout.west.internal (Postfix) with ESMTP id BB2A832003F4
-	for <yocto@lists.yoctoproject.org>; Wed, 18 Aug 2021 18:06:33 -0400 (EDT)
-Received: from imap41 ([10.202.2.91])
-  by compute4.internal (MEProxy); Wed, 18 Aug 2021 18:06:33 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fastmail.fm; h=
-	mime-version:message-id:date:from:to:subject:content-type; s=
-	fm1; bh=uSn+znryk625ewgZddwvqAK3S/564w4ILWvH0juaBGs=; b=QR1uwekb
-	retDqLT8sM+aYZ5jGGP3cUoBgEm9PDs9RobGG45GScEfNGOJyIO6raE2ULoMeXrs
-	ffa/XQYXdskB3inLoRZ8E0ljYKXaCv7vUNP6ZfDAzlSUbvBtJ4+Bkrn0akS2OPup
-	UufzWn2o0s407PiIU0mX6cpwjS2hF+xs8EMFDhs9+YABb2qJpy5wRf6DPFRuue+r
-	Wq4TTE3mqwRxIpoEiM1QV0U/9RaFiLQn+n/TPuaRb9knJW1vGL2JZqoVNX+vG/Ym
-	CkaxuXh85gMIZNVUgvon8n+Z8OwphFf/xKrO/kI1N9zf17pyuzZFMCiEkbIOxhfE
-	LfHpZB9igmIrKw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=content-type:date:from:message-id
-	:mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm3; bh=uSn+znryk625ewgZddwvqAK3S/564
-	w4ILWvH0juaBGs=; b=Zn8cfkXC55FTdKQBHJU8R2QiPNLwk24qoJ1rrPaLnZofl
-	usATExNGykZDHcPhVWS6xftYUrL8G+R4MeedCw+gZwBW422W3aPa7ne+WcjqWXdL
-	UDqYkS+7YxhSfUaB5+1k46zffGrOANzwwLQn3Pa1W6Tnl9unrK217wrVjpecNWE/
-	1cbXUdaZEejYDnsaq+eGh67/9Oqr18OHrh5imLGqDP1eKwgpBZGqgNttCBoBpDTe
-	LQUIMX2y0NxHck0ig9RDtuWGnHgRgI95F9ZiyBZvHIKdPpQ0kTIxUso3gfpPUUK1
-	kaNdF6NNnCUqpEYWhBUFAlpQIlLsXVqJScywEKimA==
-X-ME-Sender: <xms:aIQdYf4h3v8w9Vx5VzNPPICw0_2u0sIkGXdT_uTIkgJnRIWUKG_3EQ>
-    <xme:aIQdYU7JPGbhbv6CDJ_WpnppXrFA0VODfQZ2cwZeiTM9YldcGlhMrm_Z-ql3QP-gC
-    2RuqGoNwzIVn8yD>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrleeigddthecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecunecujfgurhepofgfggfkfffhvffutgesthdtredtre
-    ertdenucfhrhhomhepfdforghnuhgvlhcuhggrghgvshhrvghithhhvghrfdcuoeforghn
-    hggrgheshfgrshhtofgrihhlrdfhofeqnecuggftrfgrthhtvghrnhepueegtdeiteduue
-    eludegffeggfetteekueetueekfedugfduueekffegleeivdeinecuvehluhhsthgvrhfu
-    ihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepofgrnhghrghgsefhrghsthforg
-    hilhdrhffo
-X-ME-Proxy: <xmx:aIQdYWciBlQxtz8KhrKki22bq1BIsiC7nOXWFl2d9NjqSLLZAx1jIQ>
-    <xmx:aIQdYQKcXJeM3oSVTf5I95zKS3cFbFkCwg7Bwcw-yPHp4wbNB2CdqQ>
-    <xmx:aIQdYTL9s3Ar0zqsJSXSIh7Ywlm4IoZiMvQyPs9ycQSSzN4nQbxeYw>
-    <xmx:aYQdYYWOxSrwp0gHu0WRvoQn_H1AOD_7xjJWCmCkkKsUN7Xm1zbhKg>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id CF0BF3C0F7B; Wed, 18 Aug 2021 18:06:32 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-1118-g75eff666e5-fm-20210816.002-g75eff666
-Mime-Version: 1.0
-Message-Id: <36684fbc-136b-4802-a1f4-d82af4e6348c@www.fastmail.com>
-Date: Thu, 19 Aug 2021 00:06:12 +0200
-From: "Manuel Wagesreither" <ManWag@FastMail.FM>
-To: yocto@lists.yoctoproject.org
-Subject: Wayland and X11 on Yocto
-Content-Type: text/plain
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=IzeB+amG;
+ spf=pass (domain: gmail.com, ip: 209.85.222.171, mailfrom: raj.khem@gmail.com)
+Received: by mail-qk1-f171.google.com with SMTP id t190so4918689qke.7
+        for <yocto@lists.yoctoproject.org>; Wed, 18 Aug 2021 15:23:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Mncsh2qYsQlLu7ZQUwb9cS+u65C/ZAHnqHAy7EAQymE=;
+        b=IzeB+amGfYrtko79uSH8SKIoCjxyuzFXxYYsM5a1ellABwJqyRnxCzfR1bSlVIEE/O
+         q400XTLuv7aBS1iCXO9Fy6k5oAOzmpTGYCPdFee8YAgikMKLSlW2MGyktcHGgBgTFLty
+         FyeQdX0Px91Bv2QFb44XfM3lQ9RFURasn894MgwZTnjvu/s+a3Bvy0ErVIe0bcJJVFB3
+         rmykIrDteMBDUgLGxoKEV0MudHKoX84EdIgapJqJrbnuiFhg8O9cDvlw7YKZBhtkxQ57
+         pwPbMS3b1tPGyC0dHb+sBRbz+l6wWmp3dyNxU4ysFXGvcP6kGw6qEpej5//87wE6TA45
+         XmiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Mncsh2qYsQlLu7ZQUwb9cS+u65C/ZAHnqHAy7EAQymE=;
+        b=gVtJnbRNc+1Y0bQwqwNBVMprTjXkDf6xWyP6gVe0T6vpynp5vW6MliK4e9TvSAn0cO
+         cgNDQFjEgmcZN5+O4SksLvpo9ssj6XBn1fOh3G6X1QzJqtz4uTcmBFYdvOmnzQv/ry7G
+         W7sniJPfqSOIq083oZADDQwayl798Wm9AASRdMpV7noHpscZXJCnj07RZq5tGEYKOkWw
+         xB00KJoXfnagEqIWonidUsZB5dRqi0EsxKjDqZ4Lf8+YTH62VAKaePXj3LbxQLmTtyTK
+         U2TLr+m1qlv6GzXa0m+TDkx39uDtjBuCGv4HfRJNw5Fzxk1XH4j5hVC3ABYMfaoG709p
+         Uq6w==
+X-Gm-Message-State: AOAM530Rbk0g8npLWqSGlNQUnxV4d6EC7J6kutWoqz+GG1gvqq3eoSeY
+	k1DyfN7xOFhAs87jqSOEg77AYxf5HpJ4uGAHm8o=
+X-Google-Smtp-Source: ABdhPJyt4aUUueFhlAYHrwmOy8305TodcCQxElPCoBUDir2FoBkicKfW5fyKFj6JbBTZvMpuPnNT8SDkL+7os2GMtIs=
+X-Received: by 2002:a37:58b:: with SMTP id 133mr583945qkf.146.1629325390813;
+ Wed, 18 Aug 2021 15:23:10 -0700 (PDT)
+MIME-Version: 1.0
+References: <36684fbc-136b-4802-a1f4-d82af4e6348c@www.fastmail.com>
+In-Reply-To: <36684fbc-136b-4802-a1f4-d82af4e6348c@www.fastmail.com>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Wed, 18 Aug 2021 15:22:44 -0700
+Message-ID: <CAMKF1soX249Typnn9OoJmLbBg1S-8egj5rLvpXqHYv2aiTwWJw@mail.gmail.com>
+Subject: Re: [yocto] Wayland and X11 on Yocto
+To: Manuel Wagesreither <ManWag@fastmail.fm>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Hello all,
+On Wed, Aug 18, 2021 at 3:06 PM Manuel Wagesreither <ManWag@fastmail.fm> wrote:
+>
+> Hello all,
+>
+> I'm building an image to run on various SBCs and would like to equip it with a graphical interface.
+>
+> There are quite a few things very unclear to me. Can someone help me with that?
+>
+> * Why is X11 enabled by setting an IMAGE_FEATURE (namely  x11, x11-base or x11-sato), while Wayland is enabled by IMAGE_INSTALL only (weston-init and weston)?
 
-I'm building an image to run on various SBCs and would like to equip it with a graphical interface.
+x11-* features is primarily to control what kind of x11 packages you
+want to include in image e.g.
+./meta/recipes-sato/packagegroups/packagegroup-core-x11-sato.bb is
+pulled in when x11-sato is added to IMAGE_FEATURES
+we have many X11 based images and sato is one of them so thats why its
+separated out.
 
-There are quite a few things very unclear to me. Can someone help me with that?
+you should really is looking at DISTRO_FEATURES e.g. wayland distro
+feature is needed for core-image-weston to build.
 
-* Why is X11 enabled by setting an IMAGE_FEATURE (namely  x11, x11-base or x11-sato), while Wayland is enabled by IMAGE_INSTALL only (weston-init and weston)? 
-* Theory: Is IMAGE_FEATURE +=x11 manipulating IMAGE_INSTALL under the hood so you don't have to do it manually? And as there is no IMAGE_FEATURE "wayland", you have do it manually. Correct?
-* Why is Wayland different in that it doesn't need an IMAGE_FEATURE to enable it?
-* Why does core-image-weston.bb need to enable IMAGE_FEATURE hwcodec, while core-image-x11.bb does not? (Dunfell branch.)
+> * Theory: Is IMAGE_FEATURE +=x11 manipulating IMAGE_INSTALL under the hood so you don't have to do it manually? And as there is no IMAGE_FEATURE "wayland", you have do it manually. Correct?
+> * Why is Wayland different in that it doesn't need an IMAGE_FEATURE to enable it?
 
-Thank you.
-Regards, Manuel
+there are not many wayland based compositors or images we have in core
+as of now.
+
+> * Why does core-image-weston.bb need to enable IMAGE_FEATURE hwcodec, while core-image-x11.bb does not? (Dunfell branch.)
+
+openGL is needed for wayland/weston to work too but hwcodec feature is
+infact to pull in machine specific drivers MACHINE_HWCODECS into image
+if a given BSP defined it.
+e.g. intel bsps define vaapi codecs and mediasdk for specific machines
+via MACHINE_HWCODECS
+defaults for this image features are empty
+>
+> Thank you.
+> Regards, Manuel
+>
+> 
+>
