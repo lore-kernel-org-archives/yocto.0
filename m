@@ -1,49 +1,91 @@
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
- by mx.groups.io with SMTP id smtpd.web08.45108.1629232622523062841
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+ by mx.groups.io with SMTP id smtpd.web10.49916.1629259401540867788
  for <yocto@lists.yoctoproject.org>;
- Tue, 17 Aug 2021 13:37:03 -0700
+ Tue, 17 Aug 2021 21:03:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: bootlin.com, ip: 217.70.183.200, mailfrom: alexandre.belloni@bootlin.com)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-	by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 19B4F20007;
-	Tue, 17 Aug 2021 20:36:59 +0000 (UTC)
-Date: Tue, 17 Aug 2021 22:36:59 +0200
-From: "Alexandre Belloni" <alexandre.belloni@bootlin.com>
-To: Manuel Wagesreither <ManWag@fastmail.fm>
-Cc: yocto <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] ZFS/ZoL on Yocto
-Message-ID: <YRwd6wQKT89SA+Cj@piout.net>
-References: <d8353869-6136-45f7-a2eb-a1397cf05693@www.fastmail.com>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=RfMQs+CG;
+ spf=pass (domain: gmail.com, ip: 209.85.214.173, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-pl1-f173.google.com with SMTP id f3so1005791plg.3
+        for <yocto@lists.yoctoproject.org>; Tue, 17 Aug 2021 21:03:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Hiyg5OQyZkaAAM3L7wGnSs2AkE8YmdfgJIsJWI7mN6E=;
+        b=RfMQs+CGL72TbeRYeHcFUZUYW2Ykl7/9vDBfG9SjkG8Fd+4y80EDQoLn3wojOCUDQm
+         HC192u8bTP58bj49n3kYf7/uYw4yHFehC9UAFJwQwEJyEsmvNugexjU6dsgG2t7jhcqp
+         zkeY4QPxb4UoG+/ByQQjt1ASa/mhURK0RYYJhKlHxkJscXNywSZZNOxWYLgsfHT5Mjax
+         pN8TbAwqTOrqckg06W8GlgZNmriffhhT1CDMlF10rC3ullrl/Tt+bypBnedI6DOmbIju
+         iuL6vZE55kBqaZfe5QjQ9coCdjD+izf82Um/XMxcd4Av5ks9fH/91cFQWkK1fzEtL6xN
+         R9Eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Hiyg5OQyZkaAAM3L7wGnSs2AkE8YmdfgJIsJWI7mN6E=;
+        b=p5a3BVx+dFG9Qaigm7NGVOD8EqCfQLhjUM+t8MBb+i20+XTyj9gENYLWuodeLrgmWH
+         n6Cjo1IVDHpBpZFzmU3D4LMVbBxb9x6B8Rt5a1rnhk4e8TnHeXB3Vh6fyEltYEML3P4N
+         RKB2RPRyVH4pH3cLHSfuaXwuTIf1nqO8ImkQ8gu5RW93O1pkSNAInRtccJJASOiyNhMi
+         6kift1AxxVgESI57p/6cJPoThTALzZxmnyIJ1CatkIljEPF8BjyfaEe/P/zRYubvvUlq
+         oxugoq6SKJnoAF0J/0U+JbqdvGzj9MljQDiW2kI29NFYoKyXFTIzUHZr59GaUbPtZ+aF
+         xyCQ==
+X-Gm-Message-State: AOAM532sIWPjgiZyznpimHkphGhj5ydToZLblDq+rxbwNDRZTY2zo+ZG
+	H8V1lX3Ux0xRWN96+PSj9YUvf0gkz31ofaNUq7U=
+X-Google-Smtp-Source: ABdhPJxiC+NCtfB/J0sRscgNJi7qxojDZeHfrvVqf3Yg2fX/i0HMreywaIGntSJ6hylE8LEx8hKCgFBbm/vF4VINAnU=
+X-Received: by 2002:a17:90a:bd18:: with SMTP id y24mr7266873pjr.83.1629259400808;
+ Tue, 17 Aug 2021 21:03:20 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <d8353869-6136-45f7-a2eb-a1397cf05693@www.fastmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <195aff34-e88c-f8cb-ee51-5acbb16fa782@gmail.com>
+ <5012.1629221783349156471@lists.yoctoproject.org> <CAMKF1soOuqJqZSxOmnZu-J29+xtusaWiNKeebVK8jHd8gPdAXg@mail.gmail.com>
+In-Reply-To: <CAMKF1soOuqJqZSxOmnZu-J29+xtusaWiNKeebVK8jHd8gPdAXg@mail.gmail.com>
+From: "Zoran" <zoran.stojsavljevic@gmail.com>
+Date: Wed, 18 Aug 2021 06:03:09 +0200
+Message-ID: <CAGAf8LyhWB2hvFgufgNLq077BpHvA-PKLbEdZx4hJxibR6i9gg@mail.gmail.com>
+Subject: Re: [yocto] Getting bitbake error after 54% recipes are baked. #dunfell #yocto
+To: Khem Raj <raj.khem@gmail.com>, "Robert P. J. Day" <rpjday@crashcourse.ca>
+Cc: vishal.rana118@gmail.com, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On 17/08/2021 17:52:17+0200, Manuel Wagesreither wrote:
-> Hello all,
-> 
-> I would like to know if anyone has experiences with equipping Yocto created images with ZFS support.
-> 
-> If I'm not mistaken, the main problems of using ZFS in linux are of legal nature. ZFS can not go into the linux kernel source tree, as it conflicts with the GPL. Hence, the linux version of ZFS called ZoL (ZFS-On-Linux) must be compiled as kernel module and recompiled at every kernel bump. On normal machines, that's a bit cumbersome, but for Yocto this shouldn't be a problem at all.
-> 
-> So, given the large fanbase ZFS has, I'm wondering why there are no recipes around?
-> 
+> keep in mind that based upon how many vcores you allocate to VM will
+> determine memory pressure
+> as well. So if you have 2 cores perhaps 4GB is ok or maybe even 4
+> cores might workout ok but some bigger packages like
+> chromium etc. need minimal 16GB RAM to build.
 
-I'm guessing that ZFS is not really popular on embedded systems ;)
+This should be reflected somewhere in YOCTO documentation. Especially
+for chromium.
 
-> I googled a bit, and these are the only meaningful results I found:
-> * https://lists.yoctoproject.org/g/yocto/message/29331
-> * https://gist.github.com/cveilleux/54961ccc41071e8aee8c19b69fcba78f
-> 
-> Regards,
-> Manuel
+In the section: Host HW Requirements (with some explanation why).
 
-> 
-> 
-> 
+Zee
+_______
 
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+On Tue, Aug 17, 2021 at 10:14 PM Khem Raj <raj.khem@gmail.com> wrote:
+>
+> On Tue, Aug 17, 2021 at 10:36 AM <vishal.rana118@gmail.com> wrote:
+> >
+> > Previously SDRAM was 3 GB allocated.
+> >
+> > After changing SDRAM to 4 GB.
+> > then trying to build/make/bitbake..
+>
+> keep in mind that based upon how many vcores you allocate to VM will
+> determine memory pressure
+> as well. So if you have 2 cores perhaps 4GB is ok or maybe even 4
+> cores might workout ok but some bigger packages like
+> chromium etc. need minimal 16GB RAM to build.
+>
+> >
+> > getting new error i.e.
+> > Unable to connect to bitbake server
+>
+> this seems that it finds bitbake is still running and its trying to
+> reconnect to it. Maybe just reboot the box and try again
+>
+> >
+> >
+>
+> 
+>
