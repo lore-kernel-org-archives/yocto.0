@@ -1,112 +1,107 @@
-Received: from EUR01-HE1-obe.outbound.protection.outlook.com (EUR01-HE1-obe.outbound.protection.outlook.com [40.107.13.54])
- by mx.groups.io with SMTP id smtpd.web11.53990.1629293264607027054
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+ by mx.groups.io with SMTP id smtpd.web11.54108.1629293830905873321
  for <yocto@lists.yoctoproject.org>;
- Wed, 18 Aug 2021 06:27:48 -0700
+ Wed, 18 Aug 2021 06:37:11 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@optimeasgmbh.onmicrosoft.com header.s=selector2-optimeasgmbh-onmicrosoft-com header.b=VxP0UrOw;
- spf=pass (domain: optimeas.de, ip: 40.107.13.54, mailfrom: matthias.klein@optimeas.de)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jQLegMbqJBlrCssaNTj30NDDurZXRpiR2mdDD8LygqqckC/ywQ6juBnxVl3iThcEmL3Cg47bjzpqFG/xHZ44um36jmo6arjC88cpKoUfXOLk6RIUYZyEpS4H7oIXdFVDQ6GX1Apm8sNejYXVveNy3vVZfj4BMEFIKqFK1pVnLlM/XUn4abctNesxQvExUtHZObrGySLpeUOzAGkUoAxem0AX1Xc3jL2ihPilxze/SUdONa1XH+xLt3pQJA+3D2HA71S9tg6+g/it1GluDkfEhYgOO7Iedojeaa/6FeoPCDPeImVpjcU1uNIricHLmDDfxsrBYcv0eVNpJp2hlS6j1g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oyDL5oeXbGATh5WyEAd4ESae2HVmO0zJCBXo27FX3nU=;
- b=ROD+n1pBuo3dHCDJzDy4FLYd+7Z2+HCUH4IW4t86+Fft3LN6lzBPjtoaCITSTI0Xak2Ccni8/b5JflNilQBadeDKZx8t2RtrfFLJJRSm9w9muHE1trgA3sqPiU1iLQEKaL/SDG4koRfRBAzr+VeUCq3woldQe7G6+EveDsn7kicBrH13ejk4Ml7LOwQeIDFsKqBzPEs4X5IqFisbAyiymy8Npr6I+BXeE0WEpDN/by/tRapi9T9v6NOFMy61PddUFJ3D6KJTvDARdL9xdwbbSqH7tHaN46gOEYal81d+kcBS2BCIOFrsvDfynlXq6qyAYPtnDRz9hLsvaFcKUUsM7Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=optimeas.de; dmarc=pass action=none header.from=optimeas.de;
- dkim=pass header.d=optimeas.de; arc=none
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=PHmmr3RW;
+ spf=pass (domain: gmail.com, ip: 209.85.167.54, mailfrom: ivriabtsov@gmail.com)
+Received: by mail-lf1-f54.google.com with SMTP id x27so4718058lfu.5
+        for <yocto@lists.yoctoproject.org>; Wed, 18 Aug 2021 06:37:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=optimeasgmbh.onmicrosoft.com; s=selector2-optimeasgmbh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oyDL5oeXbGATh5WyEAd4ESae2HVmO0zJCBXo27FX3nU=;
- b=VxP0UrOwD/iv2mEojZAMBFOJOcMnIB4TGLZyprtfewQcNr95f6zqSv3hpPT1AZor5TU5JXCwa0DfAPm7fnkW/iPqxn+FMo5yBiCqc+XldIYh1qktiWuqn8JiRebHUWLd1BKCCUZOm73kGN2IDtXhmgJnt6MLqvAGOR873BI0OEQ=
-Received: from AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:128::16)
- by AM4PR1001MB1251.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:200:97::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.16; Wed, 18 Aug
- 2021 13:27:40 +0000
-Received: from AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::80ce:cb95:8c68:457f]) by AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::80ce:cb95:8c68:457f%7]) with mapi id 15.20.4436.019; Wed, 18 Aug 2021
- 13:27:40 +0000
-From: "Matthias Klein" <matthias.klein@optimeas.de>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: hardknott: systemd / agetty: root user environment (sbin not in PATH) when setting password with EXTRA_USERS_PARAMS (solved)
-Thread-Topic: hardknott: systemd / agetty: root user environment (sbin not in
- PATH) when setting password with EXTRA_USERS_PARAMS (solved)
-Thread-Index: AdeUNMxHxfRdOhB8RuGrTMRZkOrKPw==
-Date: Wed, 18 Aug 2021 13:27:39 +0000
-Message-ID: 
- <AM0PR10MB3107AC7D99D095D63C5272E999FF9@AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=optimeas.de;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b13c03dc-d7ea-4329-420b-08d9624bf3b3
-x-ms-traffictypediagnostic: AM4PR1001MB1251:
-x-microsoft-antispam-prvs: 
- <AM4PR1001MB1251E4CA375145180453943A99FF9@AM4PR1001MB1251.EURPRD10.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- jM5QOQ1k1Repm/M0KUuQ/P3JGaTxyaXQB8qSuY9Iv1+ffUdhLNXb0k0X5vN/chCKIciy0Z5p5ENzZ8aZcX6EiyczTKroxC8kCh/IOpkz/bXIZrLX/VWeH5pNInDVmXaPnyR1otqDR2T8xRyt3icRywkCqP0qjwHbj6VDyo0fEcK2oewPxi5DtPHp9KFyTl9OItg8DKF/hiS4j2dsngOGvpa3KaUZDk2d5XJNclJliPI8D//5ZEdvdrAT/F3Wb+rWfqN7jPG4lpJ39yLDNKSSmWxII/FFsjznltbdmQDrx1fQCsJwPiudXyBlvNETazUF3uIg3eGP6JsOhYBfEHKACsm/37skJAy/x/UULSGA+9a6p62sqOOL/+WdCc6d4wBXbqwlj0IVoCqTwe0llG+aancaOksOXFqSbAI2+lA7EMsTghhDSLSAkxQl+D9Lo1R0jzzz+UAlIKmzOH2lZmGZ4Mow/o6sTrgrz4GcLP6wHP9kfibXSn3snfXF7yZBiYHvmf86qKrEmOEyBIZ1Jx4GHqmZ4i799CYe/yZfGUONnzpMOfCwBNUcYu4b2Ny4qBwu8UdlXZDzj6zqZUw9SDd99MQfSm7lrWqJb/ew5p5CuGycVI26Lo+e4w/4yMWc5uwl4qNVJU09a9RSYo75qQtuhaFbps2zRhSHNEl5a6lHr2mZfxBR2JEtpJ5VKJfmqkdYrIBcxVqTSPWeA7HWt45Grw==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(136003)(376002)(39830400003)(366004)(346002)(396003)(478600001)(64756008)(7696005)(66476007)(8676002)(122000001)(33656002)(8936002)(38100700002)(38070700005)(558084003)(44832011)(71200400001)(6506007)(52536014)(76116006)(9686003)(55016002)(6916009)(5660300002)(186003)(66446008)(2906002)(316002)(86362001)(66946007)(66556008)(83380400001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?7sZ2NFflvW2yfZmQ+36Z5B3MhUkYO+FxPIPnNHELhfV4qgtJ3cxDX08FLawh?=
- =?us-ascii?Q?mynPTy5CuLapHxML2A3REsPyG118mBznG2/5EfGYpvqmNrg1tXv+Qt3DdmQY?=
- =?us-ascii?Q?mhBmqZf0TR5cHw+XFbmwrnxTMVa04YOCeigPEC2Nn+qhNDAyJnJqZa0BSykX?=
- =?us-ascii?Q?Il1GnjgU3t7S4V40XuWabP6MAV+EaokGDz42JmCGYQOwoPx01aiI5JY4bRhw?=
- =?us-ascii?Q?VmkTE49Mvhgk4Chlv7fnHsj2SGleoN5JW2fWHDq41BJkqOwKf4Hz4hgbWVBE?=
- =?us-ascii?Q?ps+0Zc+k66r/gW4aBdUCjUOqOvGo4q1oO1/iP5XzdZ+7nu2nJI3nFVUW6h+5?=
- =?us-ascii?Q?VMo4papasCFnfSVY2ZeJMZmpPIQBtz4Z2WhpabkvTToJ/O2rIi0551blhFtd?=
- =?us-ascii?Q?F1NgqtgFzuAb+axIG51rKFRzdC7KkuWbKXYi/yqocp+rd4SoXiogrflGl98h?=
- =?us-ascii?Q?l7zxBmMzE/RJ/d5YfHfJeQGeDaP2gBQQgUdksj05VrILa2LmD4fceJTaB+yR?=
- =?us-ascii?Q?CconRM7HgOEjdxWqTp1fEX9ALTPnxBrp20pmEzmV6Jv+ZghgfW6SeumSO1qX?=
- =?us-ascii?Q?e1vzGaZSv6SSglhQsu6hDecUWuSSeB7PjE+pKhLBKIsP/Qzik1UYKdtLnQ7Q?=
- =?us-ascii?Q?RhZL5JNazAeLVFgk1ZDbmAo/fMFfMosqRgrYzsKNgjtDw2/+dbaCN6Zv14ZZ?=
- =?us-ascii?Q?R7C8RCWjCP1eFF0KaTbmr1SJasbx6LXaY29U1s+Km9dxeZYd6ERcaVoftJVQ?=
- =?us-ascii?Q?9FecH0wgETR+ROIx7MgqCNhXIzcmgcqmePRuFQuFXNzk2jGIO3ugXLosbtVV?=
- =?us-ascii?Q?kU9USvXw1YNeKhOfyXvqNXmX0oI7EZmUwIbjOZD9j8/l2aJRVYzsLiBTSSjV?=
- =?us-ascii?Q?T5M5qGKbAndSjEnog+WAmHIP4dXLummpFLDWa4i0M1t8Z/7+BQVO6G9KNF5p?=
- =?us-ascii?Q?kv/thv1ut+csHto7h+/OmwHrEsP9xcDSF/n3VWzIRiQAbjmlKDAgDadn5IUm?=
- =?us-ascii?Q?jiHDIKHD38k+Z3qx3r58dTDzVaUQZIApnBbsCnKcc0UwA7UR4zlI+nsTg6SC?=
- =?us-ascii?Q?5mUPPtwHNApwmLeag5OJAdZcE9v8XNSVWExvY3EnluYf+phO5TtKGk1NjYG8?=
- =?us-ascii?Q?+O4kGx5WdSMqdXfMmiYD4byXaKLl/yDVZvzo3/arv5d0v2h5CQTN6SIxnG7W?=
- =?us-ascii?Q?CHcgVh3vDZtEJvRpG7cOgtGB3a+IPeEWsVHeG7/g52Xu84wdOxrhYrHo2AcK?=
- =?us-ascii?Q?RXgSo2KNbP7tXPtQ4R1jnz5VE/rPSicNZIUYMgSucR1Xu/5gZQ/RiFCKZFnz?=
- =?us-ascii?Q?fwuHR2ACJ0/ZKkCxSMiinrAIFpegvTQ3PAh7TaZxb7NmUdDoWhrT5E1aHW0e?=
- =?us-ascii?Q?egGluSL4Shu992p5kXefEOhbpApd?=
-x-ms-exchange-transport-forked: True
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=rDJWwPrjFxywe6OAgJtLq0VRlokjBvBwWB1l+wNfxoU=;
+        b=PHmmr3RWliJRK39boASWasgH2mvSz/au5A+agU7EK8PUnbYj8JbJA+rmzE4m+1ybTG
+         PHqgUPDqnOGyFEEbWC7Q+kIlbzi6ED17+x0Ox3Te/qPjSBae+HWpN7cJEcw9itWz+uq4
+         xCZnCmjFJqQXE+e9a3g5Y2QXMG5kN3PZvU2i/akpbSofswbx3/hwXPymADjsea4Lmo9+
+         HK5+Mn4npIgxnOMMXmnhHnfNXZ82BMKbmEAVDAd2kjhauSM4jFFdd9e/osItkzkASgP0
+         may2cmTDgIZR+UfI84qmPQ8RMrJ5fkwdxkyfmco0y8A3bEv180sSgmxCcjMxDiAU4BnT
+         qZJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=rDJWwPrjFxywe6OAgJtLq0VRlokjBvBwWB1l+wNfxoU=;
+        b=SfPDskQMV01IhPf1KkBWcZjEuTcng6eRea8IcFjAwHAF8OESSXeZvrzlBFRIQSjXlP
+         DJMfzKIqIHLGdfc5wTPWf+uo+QxOIt7ngcYjEXk2gge+++dOn9S3MIljMh5VkbeAD3Qe
+         VIlUdsu8AGNfuW/jbxdQEJ9AqqW9GpCYBx91INzYEGdKlqiC5JtDsSancY03Rod+/BiR
+         iBmXZarNLixRyD9ZFMAJwoR5dn/Fc/1NIaCxi3LnGAdbc83SucB54JIGdzTjV/PaJMuX
+         ORw0IWfoyUcgOmzqCV4IWIE2ld8KMGksloQkZ+s9Jdh26XFPrM10HO9ytBN/rOfnZ/e8
+         cMDg==
+X-Gm-Message-State: AOAM532EySnAmTIUfoSVsHE9lOIo96uv7EqE29SU8zkjVTyTYNGvsqjL
+	/nEQL9YzOOBrvACxv/zqCaOVrd405lmmAo1gy0iIbV2ZkNg=
+X-Google-Smtp-Source: ABdhPJxGAXquE5YxgYXEN7QagVBraDbKXN0/u49wmloRtW9XkVysDgmIFb+CA0Wq3STyzFWaXF1z4jm6+qQyz+fQri4=
+X-Received: by 2002:a19:ac4c:: with SMTP id r12mr6209005lfc.217.1629293828850;
+ Wed, 18 Aug 2021 06:37:08 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: optimeas.de
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: b13c03dc-d7ea-4329-420b-08d9624bf3b3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Aug 2021 13:27:39.8707
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 91b33c5b-e584-4ec0-893c-2a9180ad0602
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Dbx9+hZJ4McpXYrFvvyD8xc/IhoJVtpUv3RWiNtP9a2USV6GGZFJLjQbQoG1Kht1mjhhMt1jPXLA+hHXUbOp63pEy05gDbCVX/mxp2QXdGo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM4PR1001MB1251
-Content-Language: de-DE
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+From: "Ivan Riabtsov" <ivriabtsov@gmail.com>
+Date: Wed, 18 Aug 2021 16:36:58 +0300
+Message-ID: <CAKAnv4FZfREBAcFz0ivXm54uHJ_W0VDPqiHk4Udo6AqkXaDJXQ@mail.gmail.com>
+Subject: building additional kenrel module in yocto, ERROR: no makefile found
+To: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hello,
+help please, I meet with a problem with assembling the kernel module,
+created a new layer:
 
-I found it out myself: in the /etc/profile file, the PATH for root is only =
-adjusted if the home directory is /home/root.
-That was the cause.
-It had nothing to do with setting the password ...
+$ ll ~/work/yocto/sources/meta-gobinet
+total 28K
+drwxr-xr-x  5 ivr ivr 4.0K Aug 18 11:27 .
+drwxr-xr-x 12 ivr ivr 4.0K Aug 18 11:26 ..
+drwxr-xr-x  2 ivr ivr 4.0K Aug 18 11:26 conf
+-rw-r--r--  1 ivr ivr 1.1K Aug 18 11:26 COPYING.MIT
+-rw-r--r--  1 ivr ivr  801 Aug 18 11:26 README
+drwxr-xr-x  3 ivr ivr 4.0K Aug 18 11:26 recipes-example
+drwxr-xr-x  3 ivr ivr 4.0K Aug 18 11:28 recipes-gobinet
 
-Best regards,
-Matthias
+and i was create recipe:
 
+$ cat ~/work/yocto/sources/meta-gobinet/recipes-gobinet/gobinet/gobinet_1.bb
+SUMMARY = "gobinet module"
+LICENSE = "CLOSED"
+inherit module
+SRC_URI = "file://gobinet.tar.xz;md5sum=13b5f20214a3925eb4be3b831b62612f"
+#SRC_URI += " file://0001_gobinet_makefile.patch;md5sum=1261df573e1b91177954f6190a12c7b1"
+
+and i put gobinet.tar.xz in:
+
+$ ll ~/work/yocto/sources/meta-gobinet/recipes-gobinet/gobinet/gobinet/
+total 44K
+drwxr-xr-x 2 ivr ivr 4.0K Aug 18 15:28 .
+drwxr-xr-x 3 ivr ivr 4.0K Aug 18 15:31 ..
+-rw-r--r-- 1 ivr ivr  30K Aug 18 15:31 gobinet.tar.xz
+
+content of gobinet.tar.xz is:
+
+tar -xf gobinet.tar.xz
+ivr@home-machine:~/work/yocto/sources/meta-gobinet/recipes-gobinet/gobinet/gobinet
+$ ll gobinet
+total 244K
+drwxr-xr-x 2 ivr ivr 4.0K Aug 17 21:32 .
+drwxr-xr-x 3 ivr ivr 4.0K Aug 18 15:39 ..
+-rw-r--r-- 1 ivr ivr 3.1K Aug 17 21:32 GobiNetworkManager.h
+-rw-r--r-- 1 ivr ivr  36K Aug 17 21:32 GobiUSBNet.c
+-rw-r--r-- 1 ivr ivr  131 Aug 17 21:32 Kconfig
+-rw-r--r-- 1 ivr ivr  324 Aug 17 21:32 kernel-deploy-guide
+-rw-r--r-- 1 ivr ivr  326 Aug 17 21:32 Makefile
+-rwxr-xr-x 1 ivr ivr  127 Aug 17 21:32 Makefile.kernel
+-rw-r--r-- 1 ivr ivr  36K Aug 17 21:32 QMI.c
+-rw-r--r-- 1 ivr ivr  97K Aug 17 21:32 QMIDevice.c
+-rw-r--r-- 1 ivr ivr 9.8K Aug 17 21:32 QMIDevice.h
+-rw-r--r-- 1 ivr ivr 8.7K Aug 17 21:32 QMI.h
+-rw-r--r-- 1 ivr ivr 2.9K Aug 17 21:32 Readme.txt
+-rw-r--r-- 1 ivr ivr  13K Aug 17 21:32 Structs.h
+
+but i have error:
+
+ERROR: gobinet-1-r0 do_compile: oe_runmake failed
+ERROR: gobinet-1-r0 do_compile: Execution of
+'/home/ivr/work/yocto/build/tmp/work/phyboard_segin_imx6ul_6-phytec-linux-gnueabi/gobinet/1-r0/temp/run.do_compile.1734076'
+failed with exit code 1:
+make: *** No targets specified and no makefile found.  Stop.
+WARNING: exit code 1 from a shell command.
+
+ERROR: Logfile of failure stored in:
+/home/ivr/work/yocto/build/tmp/work/phyboard_segin_imx6ul_6-phytec-linux-gnueabi/gobinet/1-r0/temp/log.do_compile.1734076
+
+that there is no Makefile but Makefile is present. tell me what is the
+problem? Please
