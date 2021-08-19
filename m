@@ -1,238 +1,210 @@
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (EUR05-VI1-obe.outbound.protection.outlook.com [40.107.21.92])
- by mx.groups.io with SMTP id smtpd.web09.70342.1629383880271847178
+Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
+ by mx.groups.io with SMTP id smtpd.web10.71541.1629387071244885894
  for <yocto@lists.yoctoproject.org>;
- Thu, 19 Aug 2021 07:38:01 -0700
+ Thu, 19 Aug 2021 08:31:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@cwareitservice.onmicrosoft.com header.s=selector2-cwareitservice-onmicrosoft-com header.b=cPF9hTVj;
- spf=pass (domain: c-ware.de, ip: 40.107.21.92, mailfrom: christofer.dutz@c-ware.de)
+ dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=M4zBh2GR;
+ spf=pass (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=3865379517=trevor.gamblin@windriver.com)
+Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 17JBVn29004014;
+	Thu, 19 Aug 2021 15:31:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com; h=from : subject :
+ to : cc : message-id : date : content-type : mime-version; s=PPS06212021;
+ bh=rTgXKC9S6MSZdyydiiU3OLBp2qapzM+xajEOtjRUuZY=;
+ b=M4zBh2GRotjyt8dd57qE3GTNcKbV7WzAppLPkK/jp2oeRVIpz8ynFbu0J95IGz5bmdUo
+ VPMcJ/+lTWa9gzgysgU3JDcVFLPSYLBTBTdw1ZoZoiK/6/zHDeigfvnddkh+A7p84cdY
+ XkVGQwoQUB+Y0241OahwEoYQkde/ttBmOKh8rS3Ft8e0RI2ADgIS2hHrsgvDFh+KyiLc
+ TkMX0JmLeNn+U2NKZX8GCHdNxurhPt8+7ZHTycv14dM9t00789NFrsx9vloRg/VYyzgS
+ CfgXsLXZW+Dr8FA7jZzwZjCQ/0pXRNfj0TiPxE4sKt74ZwTEDvz/3kDxTuxf+EuA+jBR RQ== 
+Received: from nam10-dm6-obe.outbound.protection.outlook.com (mail-dm6nam10lp2101.outbound.protection.outlook.com [104.47.58.101])
+	by mx0a-0064b401.pphosted.com with ESMTP id 3ahakcrj44-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Aug 2021 15:31:05 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cZBZBovlty61V23u+9jkeRzTD/u72hBurSxf3G4HCjmHY76R5FVpMqgPy1usZQh0h2X1gsWAGcFMgyeGFrs271060fOiv6yyjDBccVkmpN1tfCtOq4EAnebxwaxENiR0JMogrUl5nv7EkMpu38mIhsVit8HJosgri8UbPPMzwumEulJTcfYOoaNnpTUF/a18qS1X4/Qe0hQahQElIh5du8TCSGUBpc5vgq2GRZxHgYXyra9SbYWlXqqCKIMLNq8IL6GSV7/YO79xlPYhyFZWoQ3QRdF5S7amb0/5f1sEr+xcp32LJZggAcEyaaGvYx73ykE4yTlAwPPPriPWUVQ9Pg==
+ b=NFzOZmUg55S2nyXZpa9qCUS5g8LVOYH+n2AsaHPhsVrMl4WRtqNbU4ZtKFN7+By5xDnKRdVrmY5M2yrbvLPgzamMUxNaq4iswCeDzzKE23dHcvqPx+6HGRWWw4ghhVdGz6OwX9iR/f3c1FqBj3DregIFiOCghvCUxDWgs3F6mPQgQ1uE8g3kGqDkHe6gx0blA19Mw1VMZ+cxu2MdrklV/rlQJIcMitNJEv1zk2cqrxWr00+Fu4y8lydLoJC5wh5dn3yAKAilaaEBVHaXxNNG9F7Kw1tZICFMNpUIATkao+tQd39JpI8JxHvKgvVXneFxT8zI1ykJAwXEp0qyalZmIg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tPN5HHKADxsaaT2gAgkh+MI4ZuZKK/74m+Fr9k/pAXg=;
- b=T/TJ0dzdhDjAOWZCoq1mEc0zCrYVA1aYXPqlUbxpU+nK1/6WXXJLsmR60I9G2lvdgbDRpSTdrun0p37EAHKc3dyseafVRrOEavNykbp5Pt62NMzRWIdsKx1jrIYAdptDFBGbeM6Izlrg8QNcPnIkwEWO76vaGGn0rN6iMnZ8AHJzaqtdS4Go696L3OmOrTQcQ+CsG8kCxIx1eH43OG4OpTUu6HYNgyMia3zzH+Cjb2Xto4o1hO745KnudlZhOe2GCdI4H1M011Ez0K517kB245Z6xHv9h0LcoNMrwQUR5iOp/ackF5iYzt165UiDv/BlgTcVUQPWSh85Su1wExpnsA==
+ bh=rTgXKC9S6MSZdyydiiU3OLBp2qapzM+xajEOtjRUuZY=;
+ b=j+epX48+xDh9iHtPifbRf8hWicy2tOcpwxeBhyDmMIqY8FzQ7RHS9EmImG609d9IEkKyTkhWODx5WDU8Tfd6FTagRqZSFIFlbr+KrC3bDdrIAxgkdwUsi9nP15fEt+kZ68fuMvbN+5NJe6NYC3Yuhm7vUZnLy/BHpr+QieHmleV55itBatD4HHCP5F9sef3a6LLgPo23rXwxg2L7mxlO1GLNna0Le9HGC67OD7QMs1ouQUDZ0cUe5mLlCMz7g4NVHUWnjaDrUBM/eoRQVvz33ZQAz8M3ipDs09nUGR865Vcur7VBcKTSVSJ9kuHsPt6hJVMj2FOtjhkEe/eIOZFPVg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=c-ware.de; dmarc=pass action=none header.from=c-ware.de;
- dkim=pass header.d=c-ware.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=CWareITService.onmicrosoft.com; s=selector2-CWareITService-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tPN5HHKADxsaaT2gAgkh+MI4ZuZKK/74m+Fr9k/pAXg=;
- b=cPF9hTVjHGohRuDYrSx6XsQjAeXcJ/Iom+BiGXrf/IQz3bik5LBmoM6j+vwFc5teaEzSm76sfx+U3xI/Gu+dRqiYiVkM6m0RnklDKN89mh81KgoSc3K0cUtrTZt+GkYK++rkyKhkwqjgq5VzHRKjkUb6gLOmBr7d6NjePmLWPfc=
-Received: from AM7PR05MB6807.eurprd05.prod.outlook.com (2603:10a6:20b:137::22)
- by AM5PR0501MB2417.eurprd05.prod.outlook.com (2603:10a6:203:a::15) with
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Authentication-Results: mvista.com; dkim=none (message not signed)
+ header.d=none;mvista.com; dmarc=none action=none header.from=windriver.com;
+Received: from BY5PR11MB3909.namprd11.prod.outlook.com (2603:10b6:a03:191::13)
+ by BYAPR11MB2903.namprd11.prod.outlook.com (2603:10b6:a03:89::31) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19; Thu, 19 Aug
- 2021 14:37:56 +0000
-Received: from AM7PR05MB6807.eurprd05.prod.outlook.com
- ([fe80::d58d:77ba:393a:2289]) by AM7PR05MB6807.eurprd05.prod.outlook.com
- ([fe80::d58d:77ba:393a:2289%9]) with mapi id 15.20.4436.019; Thu, 19 Aug 2021
- 14:37:56 +0000
-From: "Christofer Dutz" <christofer.dutz@c-ware.de>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Problem with building Go recipe for "Delve" project
-Thread-Topic: Problem with building Go recipe for "Delve" project
-Thread-Index: AdeVBxCrCzgEaKHOSPWBUIlsAu1dsA==
-Date: Thu, 19 Aug 2021 14:37:56 +0000
-Message-ID: 
- <AM7PR05MB6807DACA13172F31C02D3F53A2C09@AM7PR05MB6807.eurprd05.prod.outlook.com>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=c-ware.de;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 28719bac-1fa9-4992-e8f7-08d9631eef78
-x-ms-traffictypediagnostic: AM5PR0501MB2417:
-x-microsoft-antispam-prvs: 
- <AM5PR0501MB241731EBF61BA4842207F715A2C09@AM5PR0501MB2417.eurprd05.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:372;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- 9S0VYCaUH10+jJthR+c6ojx2VVgCKonbEXw8ruzkn6aW8mjjZqBvzWe8j9amM5vDphF7kye8+xcQcf2/xWjECipUDJDfjtiZSbfeyB6fpx4B3JBicJjs+5qGDDCrUfxrqbEIMZGY+NL76Vxe+GS2qGWXvSCgvgI/RjGmdio3z1jHB2/ci5+b4jGPGQxnVPuc1WiSB/mRbREi6KuFTW/TC8lnq9stnp36nsl0y2q+RWz+q7tTm9WBru4yQXeHQy7kiu7o9B5ZL7LnJFn1s7MByHCFygevnl6f/bKuqIUROViTSvrZuwctqpfhnkY5idz8vojHpiXshWuHxfyq2XeJW8PNHgq7MgT3gvxBYXAZO5C5K95HQ/FdkEcqbOs69Njdv9OVJ1XkkFB7uAiXx6N61YSfjcxKRM5e2k1U4OGCqJPeE4TnU6BMWLgAa1mnj8v1bvr/SpGeGOz1G2kAyyjN36q/vyMINELPJWL0L/GZj00VKNbMHhoOI+KEZfwXXLwJbeH91iAPvGZtiVyCp/y+NOrUyH78fkxNlT5seZ44GKPCBopon4RDNVRy9j4kKtzv+iAuTkYZoDPQVdNQgcABXBNZWlqMkeEtutUtZ8DWPUgXZ6T9L4NSXXrS43Uy7CVLc34qCYi3+HyhgsN245WQzj6hpRy1lAQsjqtNfIvbLNv0XtXDwLCvNCTjLbT2GtlPELeOwpJdylKpx78oyfKClSYjlJhwzKx1chxCAuBnMlDobzT/hgnzbSGAe2+ZGVeqsiNtpW+MvchZ7fBROnWe9g==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR05MB6807.eurprd05.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(136003)(376002)(366004)(396003)(39830400003)(38070700005)(6916009)(7696005)(186003)(8936002)(83380400001)(71200400001)(5660300002)(33656002)(166002)(6506007)(66946007)(66446008)(478600001)(66476007)(44832011)(55016002)(19627235002)(76116006)(66556008)(64756008)(316002)(966005)(2906002)(86362001)(8676002)(122000001)(38100700002)(52536014)(9686003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?judgkOYy9Ryrs5ojLgc4CGQms69e1BYgEQ2svg/hN9BThfmObD6k0h34uQw6?=
- =?us-ascii?Q?xf47fmc8Ke1EXWsHnRRqajoP4nC8hOPQVJ5Hm87tEN4mwF+b+TnL9imVYQxa?=
- =?us-ascii?Q?Y1yvzP1qRZp6eIaU5EgQi7Np8DKx9xwbhF3oEFIGYilChUmu0qHTdYRrYlCq?=
- =?us-ascii?Q?LdsvHez8pt7YyIBJpZ3km3ETxwIyYmj+PYZCX+sElJs6Kk8+0y96sUgPq7Nu?=
- =?us-ascii?Q?BMEE0igpwMKZaGIvzByNrjj84vffehtnNObgHe92Y4oBFQa2KwqEwlvfRE4m?=
- =?us-ascii?Q?yQq+vc3KpNyQTAcSlGGONHyXV7DsaNGoaxo2qziQXUa0lIlsuMji3K8+5jAw?=
- =?us-ascii?Q?hRXHtslwtY5lnLaaxyDOFrDESAP1AhPoXxlzlCG+sWpEN1Bfog78RV8CifNr?=
- =?us-ascii?Q?7uL/0YcV7o1/+83iVx8tvZEEIFNNUBcvvzukdiRcqOX97G0iukGI6xN1VSM/?=
- =?us-ascii?Q?Q3aJecLcamMdxDXyyPM3q821j54jZDTToGMDyCiWAnMU3PqOCjp8ngvqH70D?=
- =?us-ascii?Q?KxcvaVo2SBRSb6azycJ8/D1hlsAeJ+7q2Ax/h2+mdBCjOY3dfvYFnxAs+BE+?=
- =?us-ascii?Q?7elpdtwYEugn2VtKDgpBT8vYxEgpaBgJA30inH7/WTVAwt1B8FWIC4hMsKqs?=
- =?us-ascii?Q?DQMbHAwv1O/PrIU40btdyTYdiFy3qEq95iX6cFDM0asBpTH7N/s2F8/XP25T?=
- =?us-ascii?Q?glDpjv5cSE2X1t/0gx3j6q0ufSHtlqIX3w6v9/EwfglULj0fC90ZYFNTdNX6?=
- =?us-ascii?Q?O1aOCTE/nFx8UNAFX7rTUE3pZAC7I0Bl+K5wuCWP6v8Oly/SWMs7idxWrF1y?=
- =?us-ascii?Q?HxzkSVv9m4UU2epMwttdE/+nFSJWwXitYwRjnPOZrvMvBn+4t8joek2uFF7o?=
- =?us-ascii?Q?4b0ZnIbbMhUW1xrXyWGxS5dN8dhDHhwpbSEKEHKVq4d5LsnuDIzVl96ThG0M?=
- =?us-ascii?Q?Lqw6V3eLdCxgdjKI1aTGequddcW/p70PanyZzYnFv/CYoii6fCLK/pUNfkTM?=
- =?us-ascii?Q?Rzk48VhFcSk/+mEjVvL8Q5Gzht4CFyzDxiZfraxrFbK12m/GNIF8yMErrveA?=
- =?us-ascii?Q?Jho9xOLJxZIJiOQdBvr2hJybLb4JtoegONPjXm8fAuFj19A/lP0R26Ly7Z11?=
- =?us-ascii?Q?eh9+7lPQcUHrwe+TblnjmYD1Ii4tq2SvO8r0QyfX8ajxJBx/gBfdO8Alvnpt?=
- =?us-ascii?Q?6hHc/PwJX+LDJGQQlhJvr9K6Ub/3/hg0oU9H4xVxap3xynnW5Wh2F79+ivQR?=
- =?us-ascii?Q?uMP2wbzRm0O8ZZpsVkIT8imuHqBDRmD5vQEAai+p6UyyrenuKPIi9Msndb8t?=
- =?us-ascii?Q?+xFw8WRjqS3QxCUJp6b24S4c72dQKyfd0Ew8FYAmmaZkjUvmaQPKprYOYr/y?=
- =?us-ascii?Q?Mijtp14=3D?=
-x-ms-exchange-transport-forked: True
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.15; Thu, 19 Aug
+ 2021 15:31:03 +0000
+Received: from BY5PR11MB3909.namprd11.prod.outlook.com
+ ([fe80::5988:9cf6:c130:3530]) by BY5PR11MB3909.namprd11.prod.outlook.com
+ ([fe80::5988:9cf6:c130:3530%6]) with mapi id 15.20.4436.019; Thu, 19 Aug 2021
+ 15:31:03 +0000
+From: "Trevor Gamblin" <trevor.gamblin@windriver.com>
+Subject: Minutes: Yocto Project Weekly Triage Meeting 8/19/2021
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Cc: Richard Purdie <richard.purdie@linuxfoundation.org>,
+        trevor.gamblin@windriver.com,
+        "MacLeod, Randy"
+ <Randy.MacLeod@windriver.com>, steve@sakoman.com,
+        Tony Tascioglu <tony.tascioglu@windriver.com>,
+        "jpewhacker@gmail.com" <jpewhacker@gmail.com>,
+        "timothy.t.orling@intel.com" <timothy.t.orling@intel.com>,
+        "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>,
+        alexandre.belloni@bootlin.com, Ross Burton <ross@burtonini.com>,
+        "akuster@mvista.com" <akuster@mvista.com>
+Message-ID: <c31e0b73-cecf-62f2-442f-e07832ab5b2f@windriver.com>
+Date: Thu, 19 Aug 2021 11:30:59 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+X-ClientProxiedBy: MN2PR01CA0061.prod.exchangelabs.com (2603:10b6:208:23f::30)
+ To BY5PR11MB3909.namprd11.prod.outlook.com (2603:10b6:a03:191::13)
 MIME-Version: 1.0
-X-OriginatorOrg: c-ware.de
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2607:fea8:c29d:d7c0::f245] (2607:fea8:c29d:d7c0::f245) by MN2PR01CA0061.prod.exchangelabs.com (2603:10b6:208:23f::30) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19 via Frontend Transport; Thu, 19 Aug 2021 15:31:01 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: feb2cc4f-2ed6-4105-4c94-08d963265ad8
+X-MS-TrafficTypeDiagnostic: BYAPR11MB2903:
+X-LD-Processed: 8ddb2873-a1ad-4a18-ae4e-4644631433be,ExtAddr
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: 
+ <BYAPR11MB290333976DF71741842322669FC09@BYAPR11MB2903.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+ 8W4diNMoWanURjfCRV+CoA1XXU6YnX4EoIqmItLjAWr+iTndwoOcH2mEssui95jWk87fLP3ULz1NgZbuoFePeDPxJYFg1BxohDRV2ASJCNrMYkDBdYb01qsKbY8A3TwPpNMl6JOexhFbWLj7G42GsT2jncDKYlgDpWMapg5TWV6LfNvUW5wbbV4wrb2eZqKHrVRF0wiD+GsMqXchoLZ76oTZFqUu/kaHeTutyp2z5vsqtQWjAnTbVNm2lutun6N/WemW53MyHiZtY3LNV627YADU7yl1LkNlUj6THOJiQRxRosF2ysAobnm7Zf0A3FHkYRMqc/I8YMWiDZ+YFcLpNcNumQbdaDLdePd/Hf27wq1b1/YZFD5KXD+bzlfzCGbgXwVH2X7wVunD2D4ScXmMi2eSOhIV2Fqq7V47GfgzbbIYNJmeRaU7BWw0Kr5YM5qKV8VoVieUDGJQh9OlmqpqzG7Nwx8aUKM8TK3GlpDHPks1srsLk6k71mytXLU5yvqouaFU5ahuHd/qMPgdOAiwBG9ktu/GOFa31P12MU2DEFGWCii0+smDM3kIl5p2SxsLgVhCA4ELLL570pX0u6RXN0Wsn2zSoEYJ0JkhLBohu9CHxjo5VfvSCw70UU9idGz3kpPh6RA2Gjieugj54bKFUKa27w5OTwCiJ/aVgINR+v477RWxDJsRQmBC1cZRNgH2vRk7Or0CJIOcvoyYponfTclqjjE5Rl3pVqZeKGyXZVLebVhTZ7vFd7UTkrkAsUMiAFOJcooS0Ml1eL65X/9CkYiDaknzmFB4U7uQm8cu74Twa4Zd7xm47iVXeezwM+3r
+X-Forefront-Antispam-Report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR11MB3909.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(376002)(396003)(39850400004)(136003)(346002)(6486002)(2616005)(36756003)(316002)(66556008)(2906002)(83380400001)(166002)(33964004)(8936002)(478600001)(966005)(86362001)(186003)(4326008)(6916009)(8676002)(31686004)(38100700002)(44832011)(66476007)(54906003)(31696002)(66946007)(5660300002)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+ =?utf-8?B?aG5jNkd4ZFB1a0plVmtrMlNtcHd5S0NVcEJtOFlGQWVKdldEZDVIRUdvMFFD?=
+ =?utf-8?B?T1pMb0w4b2NETFVBbmRLd1pOWFBnOXJFMndnUHpIOUtuRllqTDBiVEphNjQr?=
+ =?utf-8?B?V2F1aXJxSzQrU2xjejlVSmNJd3FtRFZaTnROa3JoTUVkMVBtUnV3Rnl0ZllF?=
+ =?utf-8?B?VlBWQksvOW54a2x2VUZjVWpBeEJST2tBSnJCSDZYUUIrc0pjWG5OdnlTR00v?=
+ =?utf-8?B?Yk54RFdWMEV0YWVpNmE3SVhJcERCWkdDeEo1YjR4Rklkcm4raTI1WWkxbVcv?=
+ =?utf-8?B?MkZSL0tHNjUvam5CQTFEQ3ZqcHdxdVh0enV5cEtSN2M0eWMwNVhzVVRUR2tU?=
+ =?utf-8?B?UFpYY1MzSzZSaXNrV3RiZmRZZkwxZGJwM3U2TWRqc3lxSTBLaTRkRlhkSHIv?=
+ =?utf-8?B?V0U4d29wdEFLN2h2V2dBM0RsSjVRdDFJTjBXMUgxOUpwcWMrd0hwdUo0N0hV?=
+ =?utf-8?B?OU9lUVIrTzVHa0ZSUXNCVUE3Y1dsYmtlTkRVVzlUQXlIZDdINVljMURKWUVB?=
+ =?utf-8?B?dlg3UHo5MjFscEszcTF1d1lldjltQTNyTTJaSjdnSjZmMUdhamZVK1R2bWJF?=
+ =?utf-8?B?bUVXbXdvRkJOOXpNVnQyeTNIYkdPV3hVOTBEMWRGeDQvUFlwLzUydURQeUhY?=
+ =?utf-8?B?VU1nRW9VR2c1d3BSVkZ4b0o5dkZrV1Y0Ukpzd1hSRDZUMmtHKytIdVM1bjVU?=
+ =?utf-8?B?S3lGRThrUVRwbUI4c2F0eXkyTXBWd2lnOFJITkdUTktqRm4yRXp5MTBENnYx?=
+ =?utf-8?B?S0FjR0RIY2h6NWU2YzMrak5MazBRVnd5YXB1czg2YVQ5OG1CRk9oeXg3dGJm?=
+ =?utf-8?B?UlY4VkcxUVVGRm5zWEhTOW83Y2FpOEQyQTU1VVhOa05IT3JxQnVLWkZHZ01K?=
+ =?utf-8?B?VjNaRXpSRkgxTXkvL1orQkZrTDJHYlY5Mkg3c1hmcEVGcFJhU3ZWRmRqQmo4?=
+ =?utf-8?B?RU1ZTDZLNGFGemt6dTdCL3NpMnlDL3Z6dnd4ZUxTdGNydGs4NlA0TTZBTXhU?=
+ =?utf-8?B?R1RYSlZpZWNMYmUrdXRIRWNVcFRaRDV3TmJjcmRBVlAxeHRtRWh0MEFoWVRl?=
+ =?utf-8?B?L1dwWDVHaVhMbVJuZldjSldwdmFtOCtEUjMyM3pLV05LN3F4NUJUcGFkUW5m?=
+ =?utf-8?B?VHM1Rk9GTEh5RHFBbTYySjE0Q1JpeTVTMDJGRGtabWZaK2VhSnRORzdmc1dy?=
+ =?utf-8?B?SXVXN0MwbjNnZ3A4QWh5N3FSTWUrdElkQ0FETzVEaWNnMWtLbVhiREVka1dG?=
+ =?utf-8?B?SmNGQ2VEMGRqVUpDYUthTXJ3Qk5QT3ZZL2FWR2EwL0ZkSnNPUll4NGVsRHE1?=
+ =?utf-8?B?bUtXeUZLWUJrT0pCZGt2RW5SVW1Qc0RCbXgwRTdhMUdBQjdieHR4eWh1L045?=
+ =?utf-8?B?SHMzb1F0dzBISks2b1pSLytiOVUxcHFidlRKUjVjZXU4UnBtbHRlY0pCU0hm?=
+ =?utf-8?B?K0dmeXZzT0lySURKMm4yL0gyT1BpanZabEt2V0ZGam5lWkNVYm1MVjBKZkN5?=
+ =?utf-8?B?RTgrVjBhOVhpV0tXY0RySVJ6emN3am1VdGRBa2t1L0dVZUlrVjNtNXdlbStj?=
+ =?utf-8?B?OXAzQlhFbHc0S3VDRFJNQnJnMUNZUVVPRUw0dzFoRHg5T0QxSW82RVNtcmhl?=
+ =?utf-8?B?NVdIcTQ5akVPdmRFZ1RsQXl0UnljWFhUZTQ3dGp3T21HVkNoSmk1SlI1QXcy?=
+ =?utf-8?B?SDc1ZGpFSXpDMFpFdmdMRVY1aWFqbi9PY3ZXS3dBenZ1YVRBQjJCcG1rT1V5?=
+ =?utf-8?B?OU5aQzlBZEVmMnYvNFhzRFRIcWZleUd3aWYxd0RHRXBiZGFYbFRUSTZTMEQ3?=
+ =?utf-8?B?czVSOTArcXJodzFTdGtHdz09?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: feb2cc4f-2ed6-4105-4c94-08d963265ad8
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3909.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR05MB6807.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 28719bac-1fa9-4992-e8f7-08d9631eef78
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Aug 2021 14:37:56.6188
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Aug 2021 15:31:03.5946
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 9d387546-1437-4b89-846c-691d64a7e74d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 3nEZDhOn2hvmRsTOXIhK1YrAgRHR/0Pxw7mnMazjEpeWKbfL6ZOZQNSI1Sr8k4ZLevggPH1DhOv90yAwm/86MfqVD/I3S00k10RNwcvbkzY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0501MB2417
-Content-Language: de-DE
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NIfYGNXjiTLUvwZXQymZ18/sSIp1mBEH5tbv2yDEZ7JS8ezBMJRdEwL8e4g/Np6NbYVrJ0qm7wUvkbGM0IuW4O5wypXF8NU5h+yO9pebYZg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB2903
+X-Proofpoint-GUID: Y7ExcARVf0HUzm2cRNsZvwKY_byvMuCb
+X-Proofpoint-ORIG-GUID: Y7ExcARVf0HUzm2cRNsZvwKY_byvMuCb
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
+ definitions=2021-08-19_07,2021-08-17_02,2020-04-07_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ priorityscore=1501 mlxscore=0 clxscore=1015 phishscore=0 suspectscore=0
+ adultscore=0 lowpriorityscore=0 spamscore=0 mlxlogscore=999 malwarescore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2107140000 definitions=main-2108190091
 Content-Type: multipart/alternative;
-	boundary="_000_AM7PR05MB6807DACA13172F31C02D3F53A2C09AM7PR05MB6807eurp_"
+ boundary="------------601AB3B1E349BD9EB5954BAF"
+Content-Language: en-US
 
---_000_AM7PR05MB6807DACA13172F31C02D3F53A2C09AM7PR05MB6807eurp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--------------601AB3B1E349BD9EB5954BAF
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi all,
+*Wiki: *https://wiki.yoctoproject.org/wiki/Bug_Triage
 
-after having sorted out all of my programatic-configuration issues I'm curr=
-ently having an issue where I don't quite know what I'm doing wrong.
+*Attendees:* Alex, Armin, Bruce, Diane, Joshua, Randy, Richard, Ross, 
+Saul, Stephen, Steve, Tim, Tony, TrevorG
 
-We use a too called "Delve" to debug applications on yocto remotely. This i=
-s an application built in Go.
-https://github.com/go-delve/delve
+*ARs:*
 
-However as soon as I try to build the layer I built for it, it fails.
+N/A
 
-The reason is that the repo contains one directory that only has test-class=
-es and not a single "build"-class.
+*Notes:*
+*
+*
+- (carried over) Steve encountered build failures such as the one in 
+https://errors.yoctoproject.org/Errors/Details/593109/ when attempting 
+to run dunfell builds with the PARALLEL_MAKE load averaging added. WR is 
+testing/investigating on internal Autobuilder instance - Trevor is still 
+planning on looking into this!
 
-As the Go tooling seems to execute:
+*Medium+ 3.4 Unassigned Enhancements/Bugs: *76 (Last week 80)
 
-go list -f "{{.ImportPath}}" ./...
+*Medium+ 3.99 Unassigned Enhancements/Bugs: *36**(Last week 30)
 
-This also lists up that package and as soon as the yocto go tooling tries t=
-o build it, the build fails with:
+*AB-INT Bugs: *46 (No change)
 
-| go build github.com/go-delve/delve/service/test: no non-test Go files in =
-/home/cdutz/Projects/yocto/dunfell/build/tmp/work/aarch64-fslc-linux/delve/=
-1.7.1-r0/build/src/github.com/go-delve/delve/service/test
+--------------601AB3B1E349BD9EB5954BAF
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-A simple workaround is to simply create an empty go file with only a packag=
-e in that directory, however this sort of feels like a workaround.
-
-Is this possibly a bug in the Yocto Go tooling or am I doing someting stupi=
-d?
-
-Chris
-
-
---_000_AM7PR05MB6807DACA13172F31C02D3F53A2C09AM7PR05MB6807eurp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:bre=
-ak-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">after having sorted out all of my programatic-config=
-uration issues I&#8217;m currently having an issue where I don&#8217;t quit=
-e know what I&#8217;m doing wrong.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">We use a too called &#8222;Delve&#8220; to debug app=
-lications on yocto remotely. This is an application built in Go.<o:p></o:p>=
-</p>
-<p class=3D"MsoNormal"><a href=3D"https://github.com/go-delve/delve">https:=
-//github.com/go-delve/delve</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">However as soon as I try to build the layer I built =
-for it, it fails.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The reason is that the repo contains one directory t=
-hat only has test-classes and not a single &#8222;build&#8220;-class.<o:p><=
-/o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">As the Go tooling seems to execute:<br>
-<br>
-go list -f &quot;{{.ImportPath}}&quot; ./...<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">This also lists up that package and as soon as the y=
-octo go tooling tries to build it, the build fails with:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">| go build github.com/go-delve/delve/service/test: n=
-o non-test Go files in /home/cdutz/Projects/yocto/dunfell/build/tmp/work/aa=
-rch64-fslc-linux/delve/1.7.1-r0/build/src/github.com/go-delve/delve/service=
-/test<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">A simple workaround is to simply create an empty go =
-file with only a package in that directory, however this sort of feels like=
- a workaround.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Is this possibly a bug in the Yocto Go tooling or am=
- I doing someting stupid?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Chris<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <div class="moz-text-html" lang="x-unicode">
+      <p><b>Wiki: </b><a class="moz-txt-link-freetext" href="https://wiki.yoctoproject.org/wiki/Bug_Triage" moz-do-not-send="true">https://wiki.yoctoproject.org/wiki/Bug_Triage</a></p>
+      <p><b>Attendees:</b> Alex, Armin, Bruce, Diane, Joshua, Randy,
+        Richard, Ross, Saul, Stephen, Steve, Tim, Tony, TrevorG<br>
+      </p>
+      <p><b>ARs:</b></p>
+    </div>
+    N/A<br>
+    <div class="moz-text-html" lang="x-unicode"><br>
+    </div>
+    <div class="moz-text-html" lang="x-unicode"><b>Notes:</b></div>
+    <div class="moz-text-html" lang="x-unicode"><b><br>
+      </b></div>
+    <div class="moz-text-html" lang="x-unicode">- (carried over) Steve
+      encountered build failures such as the one in <a class="moz-txt-link-freetext" href="https://errors.yoctoproject.org/Errors/Details/593109/" moz-do-not-send="true">https://errors.yoctoproject.org/Errors/Details/593109/</a>
+      when attempting to run dunfell builds with the PARALLEL_MAKE load
+      averaging added. WR is testing/investigating on internal
+      Autobuilder instance - Trevor is still planning on looking into
+      this!<br>
+    </div>
+    <div class="moz-text-html" lang="x-unicode">
+      <p><b>Medium+ 3.4 Unassigned Enhancements/Bugs: </b>76 (Last week
+        80)<br>
+      </p>
+      <b>Medium+ 3.99 Unassigned Enhancements/Bugs: </b>36<b> </b>(Last
+      week 30) <br>
+    </div>
+    <div class="moz-text-html" lang="x-unicode"><br>
+    </div>
+    <div class="moz-text-html" lang="x-unicode"><b>AB-INT Bugs: </b>46
+      (No change)<br>
+    </div>
+  </body>
 </html>
 
---_000_AM7PR05MB6807DACA13172F31C02D3F53A2C09AM7PR05MB6807eurp_--
+--------------601AB3B1E349BD9EB5954BAF--
