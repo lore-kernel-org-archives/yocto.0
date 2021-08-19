@@ -1,69 +1,71 @@
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
- by mx.groups.io with SMTP id smtpd.web09.70041.1629382571417535248
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
+ by mx.groups.io with SMTP id smtpd.web12.70534.1629382607772598204
  for <yocto@lists.yoctoproject.org>;
- Thu, 19 Aug 2021 07:16:11 -0700
+ Thu, 19 Aug 2021 07:16:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Y6OcITVq;
- spf=pass (domain: gmail.com, ip: 209.85.166.171, mailfrom: twoerner@gmail.com)
-Received: by mail-il1-f171.google.com with SMTP id h18so6117124ilc.5
-        for <yocto@lists.yoctoproject.org>; Thu, 19 Aug 2021 07:16:11 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=FaTogBRw;
+ spf=pass (domain: gmail.com, ip: 209.85.166.44, mailfrom: twoerner@gmail.com)
+Received: by mail-io1-f44.google.com with SMTP id j18so7834346ioj.8
+        for <yocto@lists.yoctoproject.org>; Thu, 19 Aug 2021 07:16:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=tDQ0+E1x5cUipZ65FgfeMXRqMTLGQAuLVldcPhqarpk=;
-        b=Y6OcITVqUnMeBJbENqASrPLGMhH1wG7UpPM+2x2FuHAlcv8QyZNQ+z6YGYBWMT0sxA
-         9WBUdKTbNjQKLzWzGuMDy6bOcMlxZ3KMuu/HZhCKQOdvS89Rupyw08NQHnVjy3Nw189l
-         v8NKwpWoFud1sle4QB0+gOyQJ/GoMVl7kqsAicAjXUdPpK9+oJpLzh3iTYVA8Di62niR
-         EB1wvQ91/0Tk1vAyjd8AftbokfrThEtJkcP8plMDMfhmnmCyp+Fz3hLxVLDpDeliHsmM
-         oscdOOBfVCze5xf0dSSDPRFtwyEF2yNrBkFuZ1BJaZuP1NQCbTdKrWZ3P8nH2kVP4xeH
-         y1+Q==
+        bh=gP1DzJD3YLPg8VwhWgyrs3Q4Hg0Ned7Wy9uzEOpOb4A=;
+        b=FaTogBRwk+HPLA22Fg8pV6DLuW6pPXuPWEvChi3n4x4ZUBGQG+A+Rar/YHHaFkCyOA
+         cg5aovq1QVVCvQbWijNj0nz+DWD6ra0IQcDQARGdKPpDiWuMJk3N5Sn1gBMWZxegu45Y
+         rUAgEjaqcVAhp++5hRREmYHi6wr9RuL5cEb3Z0MMAS0P7nLd1Gc4J1dalq1hh7iqkW3Y
+         Qsf+5w/tcyieygRwAG+PbisB90t0iHehN2ipbj2Jv4Cl0F87eDLwmw/8N+Qq1UXljQ46
+         0RVWVkfpTMrWVbPTcVI7ovL27igbv9+UnekzCqiRCM+QZ0iVy63HzZp4T6RB8rg5Me7j
+         yhWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=tDQ0+E1x5cUipZ65FgfeMXRqMTLGQAuLVldcPhqarpk=;
-        b=o/iiGj2EX+LXYm7ZSKZXQnW/uwXyArzdA1DapIbZg+7jruKCWTSVEhwTVb4ChWQV5I
-         R4JzFy+tHXKeGYjF32Mm7rNFyJEQgXV4SOwdtQWsrVUq3M/mYc/hSCfhJbhu5dfEtbGo
-         f0KHHIaoXxp69hFIFFcKqJYc5DFOnEvq/WB+oUE+FbIPJLB6W8E9JhI1XKqKN5Oxk377
-         3jnPh1TdRKKAnrSSQnCBU8KZQyXc3UarpBmZ+pnikAQk/Nca7PB03iVSUT+1K0h+cFMG
-         blVECICCZt57Ya7l1nAG5607jd41Ch0jD0bX5or5rzxwleAB989WNRvwZ2YRr131p1L2
-         f6wA==
-X-Gm-Message-State: AOAM532QL42XTa0ud7LP1w7GS8Ka3slBa++OPBdy0USlMuchEgvXTKws
-	OCboTGjipxKZ+XAcZ7PjsOGLsxBYoSqjXk7+GyU=
-X-Google-Smtp-Source: ABdhPJzp9xC2PHhfqaqARXo9x/ZIQmpThKpA/sNEYAsqSwhbeaPWYMucXNSBu4t3ztm79rdLXX7WpCF07/7WsJSm5wU=
-X-Received: by 2002:a05:6e02:15c8:: with SMTP id q8mr10106079ilu.285.1629382570801;
- Thu, 19 Aug 2021 07:16:10 -0700 (PDT)
+        bh=gP1DzJD3YLPg8VwhWgyrs3Q4Hg0Ned7Wy9uzEOpOb4A=;
+        b=QnafYrNvHp5vfbHy2G3d3QgNLAOtW4oXHHa8XS6zgOQN+8FtHSucg86fu+WlLVtuKB
+         xb4BYmkgVQPSgdDEvLvJmYaTH7VFbvqyU4YicjFLT/D9rIa8Rx73OG3WKji65RrE08v6
+         dDfqyGTn8aUhbiHgqvRdRbtotX/rPwae4S6xhsQO6HtPay2aJisq9iDEIWHvmsQaHbDK
+         gz4yn7YAzXrxyj7x8AYh/J+vI/1JhSsdFV6zOwlmeWqaJFq0w06KchdYZdvcFpSeey43
+         MXYLxp2qNHdWxswcP39Wvr4BJzWBxEAenOBHMxXXD8UShYri3m+xVd0pirrZ8NgrWVYf
+         90EA==
+X-Gm-Message-State: AOAM533BByybMlFLhTOESkuy84hzVeh8qkCaAvctKw+u9dzso/u33EiG
+	WxCzrXejdGlpcw9t5IM14018hzssAZ8vrAr2q9Y=
+X-Google-Smtp-Source: ABdhPJzrh1jgGO4mXwAxUEKbY2mXaiVhxBzb4qd2sYH9vXZoOQIITZ8NnIntqP4sYeOBdR0/7urOPqNjL8ana72Af2M=
+X-Received: by 2002:a02:8206:: with SMTP id o6mr12929987jag.92.1629382607265;
+ Thu, 19 Aug 2021 07:16:47 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210818181601.3887274-1-raj.khem@gmail.com>
-In-Reply-To: <20210818181601.3887274-1-raj.khem@gmail.com>
+References: <20210818181601.3887274-1-raj.khem@gmail.com> <20210818181601.3887274-2-raj.khem@gmail.com>
+In-Reply-To: <20210818181601.3887274-2-raj.khem@gmail.com>
 From: "Trevor Woerner" <twoerner@gmail.com>
-Date: Thu, 19 Aug 2021 10:15:59 -0400
-Message-ID: <CAHUNapSB+Ws8uC2bXKBrrk66H159fbACjABeLP6+GynEHp7dQw@mail.gmail.com>
-Subject: Re: [meta-rockchip][PATCH 1/2] machines: Adjust for new location of tune files in core
+Date: Thu, 19 Aug 2021 10:16:36 -0400
+Message-ID: <CAHUNapT2TFsk424tEXZowk2KKvi8Yig-=sLHKWZyTzOUpiBtsA@mail.gmail.com>
+Subject: Re: [meta-rockchip][PATCH 2/2] linux-yocto_5.4: Drop bbappend
 To: Khem Raj <raj.khem@gmail.com>
 Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000055fddb05c9ea3109"
+Content-Type: multipart/alternative; boundary="00000000000082635105c9ea33cd"
 
---00000000000055fddb05c9ea3109
+--00000000000082635105c9ea33cd
 Content-Type: text/plain; charset="UTF-8"
 
 On Wed, Aug 18, 2021 at 2:16 PM Khem Raj <raj.khem@gmail.com> wrote:
 
+> 5.4 recipe has been dropped from oe-core
+>
 > Signed-off-by: Khem Raj <raj.khem@gmail.com>
 > ---
->  conf/machine/include/rk3066.inc | 2 +-
->  conf/machine/include/rk3188.inc | 2 +-
->  conf/machine/include/rk3288.inc | 2 +-
->  conf/machine/include/rk3328.inc | 2 +-
->  conf/machine/include/rk3399.inc | 2 +-
->  5 files changed, 5 insertions(+), 5 deletions(-)
+>  ...-Keep-rk3288-tinker-SD-card-IO-power.patch | 31 -------------------
+>  recipes-kernel/linux/linux-yocto_5.4.bbappend |  5 ---
+>  2 files changed, 36 deletions(-)
+>  delete mode 100644
+> recipes-kernel/linux/linux-yocto/0001-ARM-dts-rockchip-Keep-rk3288-tinker-SD-card-IO-power.patch
+>  delete mode 100644 recipes-kernel/linux/linux-yocto_5.4.bbappend
 
 
 added to meta-rockchip master
 thanks!
 
---00000000000055fddb05c9ea3109
+--00000000000082635105c9ea33cd
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -71,16 +73,19 @@ Content-Transfer-Encoding: quoted-printable
 &lt;<a href=3D"mailto:raj.khem@gmail.com">raj.khem@gmail.com</a>&gt; wrote:=
 <br></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" styl=
 e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex">Signed-off-by: Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.co=
-m" target=3D"_blank">raj.khem@gmail.com</a>&gt;<br>
+g-left:1ex">5.4 recipe has been dropped from oe-core<br>
+<br>
+Signed-off-by: Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D=
+"_blank">raj.khem@gmail.com</a>&gt;<br>
 ---<br>
-=C2=A0conf/machine/include/rk3066.inc | 2 +-<br>
-=C2=A0conf/machine/include/rk3188.inc | 2 +-<br>
-=C2=A0conf/machine/include/rk3288.inc | 2 +-<br>
-=C2=A0conf/machine/include/rk3328.inc | 2 +-<br>
-=C2=A0conf/machine/include/rk3399.inc | 2 +-<br>
-=C2=A05 files changed, 5 insertions(+), 5 deletions(-)</blockquote><div><br=
-></div><div>added to meta-rockchip master</div><div>thanks!=C2=A0</div></di=
-v></div>
+=C2=A0...-Keep-rk3288-tinker-SD-card-IO-power.patch | 31 ------------------=
+-<br>
+=C2=A0recipes-kernel/linux/linux-yocto_5.4.bbappend |=C2=A0 5 ---<br>
+=C2=A02 files changed, 36 deletions(-)<br>
+=C2=A0delete mode 100644 recipes-kernel/linux/linux-yocto/0001-ARM-dts-rock=
+chip-Keep-rk3288-tinker-SD-card-IO-power.patch<br>
+=C2=A0delete mode 100644 recipes-kernel/linux/linux-yocto_5.4.bbappend</blo=
+ckquote><div><br></div><div>added to meta-rockchip master</div><div>thanks!=
+=C2=A0</div></div></div>
 
---00000000000055fddb05c9ea3109--
+--00000000000082635105c9ea33cd--
