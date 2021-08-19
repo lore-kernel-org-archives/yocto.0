@@ -1,212 +1,86 @@
-Subject: YOCTO Zeus: Qt remote objects compiler repc missing from sdk toolchain #toolchain #sdk #qtremoteobjects #repc
-To: yocto@lists.yoctoproject.org
-From: anthony.marchand@navocap.com
-X-Originating-Location: Paris, Île-de-France, FR (159.180.227.154)
-X-Originating-Platform: Linux Chrome 89
-User-Agent: GROUPS.IO Web Poster
+Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
+ by mx.groups.io with SMTP id smtpd.web09.70041.1629382571417535248
+ for <yocto@lists.yoctoproject.org>;
+ Thu, 19 Aug 2021 07:16:11 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Y6OcITVq;
+ spf=pass (domain: gmail.com, ip: 209.85.166.171, mailfrom: twoerner@gmail.com)
+Received: by mail-il1-f171.google.com with SMTP id h18so6117124ilc.5
+        for <yocto@lists.yoctoproject.org>; Thu, 19 Aug 2021 07:16:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=tDQ0+E1x5cUipZ65FgfeMXRqMTLGQAuLVldcPhqarpk=;
+        b=Y6OcITVqUnMeBJbENqASrPLGMhH1wG7UpPM+2x2FuHAlcv8QyZNQ+z6YGYBWMT0sxA
+         9WBUdKTbNjQKLzWzGuMDy6bOcMlxZ3KMuu/HZhCKQOdvS89Rupyw08NQHnVjy3Nw189l
+         v8NKwpWoFud1sle4QB0+gOyQJ/GoMVl7kqsAicAjXUdPpK9+oJpLzh3iTYVA8Di62niR
+         EB1wvQ91/0Tk1vAyjd8AftbokfrThEtJkcP8plMDMfhmnmCyp+Fz3hLxVLDpDeliHsmM
+         oscdOOBfVCze5xf0dSSDPRFtwyEF2yNrBkFuZ1BJaZuP1NQCbTdKrWZ3P8nH2kVP4xeH
+         y1+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tDQ0+E1x5cUipZ65FgfeMXRqMTLGQAuLVldcPhqarpk=;
+        b=o/iiGj2EX+LXYm7ZSKZXQnW/uwXyArzdA1DapIbZg+7jruKCWTSVEhwTVb4ChWQV5I
+         R4JzFy+tHXKeGYjF32Mm7rNFyJEQgXV4SOwdtQWsrVUq3M/mYc/hSCfhJbhu5dfEtbGo
+         f0KHHIaoXxp69hFIFFcKqJYc5DFOnEvq/WB+oUE+FbIPJLB6W8E9JhI1XKqKN5Oxk377
+         3jnPh1TdRKKAnrSSQnCBU8KZQyXc3UarpBmZ+pnikAQk/Nca7PB03iVSUT+1K0h+cFMG
+         blVECICCZt57Ya7l1nAG5607jd41Ch0jD0bX5or5rzxwleAB989WNRvwZ2YRr131p1L2
+         f6wA==
+X-Gm-Message-State: AOAM532QL42XTa0ud7LP1w7GS8Ka3slBa++OPBdy0USlMuchEgvXTKws
+	OCboTGjipxKZ+XAcZ7PjsOGLsxBYoSqjXk7+GyU=
+X-Google-Smtp-Source: ABdhPJzp9xC2PHhfqaqARXo9x/ZIQmpThKpA/sNEYAsqSwhbeaPWYMucXNSBu4t3ztm79rdLXX7WpCF07/7WsJSm5wU=
+X-Received: by 2002:a05:6e02:15c8:: with SMTP id q8mr10106079ilu.285.1629382570801;
+ Thu, 19 Aug 2021 07:16:10 -0700 (PDT)
 MIME-Version: 1.0
-Date: Thu, 19 Aug 2021 03:14:19 -0700
-Message-ID: <S19N.1629368059404206235.Rbcb@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="Gyqy02VS0xYT81WzGkm9"
+References: <20210818181601.3887274-1-raj.khem@gmail.com>
+In-Reply-To: <20210818181601.3887274-1-raj.khem@gmail.com>
+From: "Trevor Woerner" <twoerner@gmail.com>
+Date: Thu, 19 Aug 2021 10:15:59 -0400
+Message-ID: <CAHUNapSB+Ws8uC2bXKBrrk66H159fbACjABeLP6+GynEHp7dQw@mail.gmail.com>
+Subject: Re: [meta-rockchip][PATCH 1/2] machines: Adjust for new location of tune files in core
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="00000000000055fddb05c9ea3109"
 
---Gyqy02VS0xYT81WzGkm9
-Content-Type: text/plain; charset="utf-8"
+--00000000000055fddb05c9ea3109
+Content-Type: text/plain; charset="UTF-8"
+
+On Wed, Aug 18, 2021 at 2:16 PM Khem Raj <raj.khem@gmail.com> wrote:
+
+> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> ---
+>  conf/machine/include/rk3066.inc | 2 +-
+>  conf/machine/include/rk3188.inc | 2 +-
+>  conf/machine/include/rk3288.inc | 2 +-
+>  conf/machine/include/rk3328.inc | 2 +-
+>  conf/machine/include/rk3399.inc | 2 +-
+>  5 files changed, 5 insertions(+), 5 deletions(-)
+
+
+added to meta-rockchip master
+thanks!
+
+--00000000000055fddb05c9ea3109
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+<div dir=3D"ltr"><div dir=3D"ltr">On Wed, Aug 18, 2021 at 2:16 PM Khem Raj =
+&lt;<a href=3D"mailto:raj.khem@gmail.com">raj.khem@gmail.com</a>&gt; wrote:=
+<br></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
+g-left:1ex">Signed-off-by: Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.co=
+m" target=3D"_blank">raj.khem@gmail.com</a>&gt;<br>
+---<br>
+=C2=A0conf/machine/include/rk3066.inc | 2 +-<br>
+=C2=A0conf/machine/include/rk3188.inc | 2 +-<br>
+=C2=A0conf/machine/include/rk3288.inc | 2 +-<br>
+=C2=A0conf/machine/include/rk3328.inc | 2 +-<br>
+=C2=A0conf/machine/include/rk3399.inc | 2 +-<br>
+=C2=A05 files changed, 5 insertions(+), 5 deletions(-)</blockquote><div><br=
+></div><div>added to meta-rockchip master</div><div>thanks!=C2=A0</div></di=
+v></div>
 
-I permit myself to contact you because I got a weird issue in my sdk toolch=
-ain.
-
-So, as I need " qtremoteobjects" in my embedded linux image, I add it like =
-this:
-
-----------------------------------------------------
-QT =3D " \
-qtbase \
-qtbase-dev \
-qtbase-plugins \
-qtbase-mkspecs \
-qtbase-tools \
-cinematicexperience \
-qtgraphicaleffects \
-qtquickcontrols \
-qtquickcontrols2 \
-qtquickcontrols-qmlplugins \
-qtsvg \
-qtserialport \
-qtserialbus \
-qtremoteobjects \
-qtremoteobjects-dev \
-qtmultimedia \
-qtwebsockets \
-"
-PACKAGECONFIG_pn-qtvirtualkeyboard =3D "lang-fr_FR"
-PACKAGECONFIG_DEFAULT_pn-qtbase =3D "widgets libs freetype tslib gles2 eglf=
-s"
-
-TOUCHSCREEN =3D " \
-tslib tslib-conf tslib-tests tslib-calibrate \
-"
-
-IMAGE_INSTALL +=3D " \
-bash \
-sudo \
-environment \
-opkg \
-os-release \
-${QT} \
-"
-
-#IMAGE_INSTALL_append_mx6 =3D " ${MX6TOOL}"
-
-IMAGE_FEATURES +=3D " \
-ssh-server-openssh \
-"
-
-export IMAGE_BASENAME =3D "myimage"
-
-----------------------------------------------------
-So it's work fine when I flash it in my card, but after building SDK, "repc=
-" is missing in /sysroots/cortexa9t2hf-neon-poky-linux-gnueabi /usr/bin .=
-=C2=A0 More precisly, it is present, but located in:
-
-/sysroots/cortexa9t2hf-neon-poky-linux-gnueabi/ usr/bin/.debug/repc
-
-And when I compile my app, I got the following error:
-
-Pre build error --> make[2]: /opt/poky/MY_SDK/sysroots/x86_64-pokysdk-linux=
-/usr/bin/repc: Command not found
-
-because "make" seems to try to find repc in "/usr/bin/repc" rather than " /=
- usr/bin/.debug/repc" . But when I link or move repc from " / usr/bin/.debu=
-g/repc" to "/usr/bin/repc", it gives me a "segment fault error" when I try =
-to make my app.
-I saw a similar issue on the web but it does not resolve my problem: https:=
-//e2e.ti.com/support/processors-group/processors/f/processors-forum/902941/=
-processor-sdk-am437x-qt-remote-objects-compiler-repc-missing-from-sdk-toolc=
-hain
-
-Does anyone already encontered this problem with qtremote control? Do you h=
-ave got any idea about what is going wrong?
-
-By advance, thanks for all, best reguards.
-
---Gyqy02VS0xYT81WzGkm9
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello,<br /><br />I permit myself to contact you because I got a weird issu=
-e in my sdk toolchain.<br /><br />So, as I need "<span style=3D"font-family=
-: Verdana, Arial, Helvetica, sans-serif; background-color: #f9f9f9;">qtremo=
-teobjects" in my embedded linux image, I add it like this:<br /><br />-----=
------------------------------------------------<br /></span>
-<div>
-<div style=3D"font-family: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Seg=
-oe UI Emoji', sans-serif;">QT =3D " \<br />qtbase \<br />qtbase-dev \<br />=
-qtbase-plugins \<br />qtbase-mkspecs \<br />qtbase-tools \<br />cinematicex=
-perience \<br />qtgraphicaleffects \<br />qtquickcontrols \<br />qtquickcon=
-trols2 \<br />qtquickcontrols-qmlplugins \<br />qtsvg \<br />qtserialport \=
-<br />qtserialbus \<br />qtremoteobjects \<br />qtremoteobjects-dev \<br />=
-qtmultimedia \<br />qtwebsockets \<br />"</div>
-<div>
-<div style=3D"font-family: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Seg=
-oe UI Emoji', sans-serif;">PACKAGECONFIG_pn-qtvirtualkeyboard =3D "lang-fr_=
-FR"<br />PACKAGECONFIG_DEFAULT_pn-qtbase =3D "widgets libs freetype tslib g=
-les2 eglfs"</div>
-<div>
-<div style=3D"font-family: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Seg=
-oe UI Emoji', sans-serif;">&nbsp;</div>
-<div>
-<div style=3D"font-family: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Seg=
-oe UI Emoji', sans-serif;">TOUCHSCREEN =3D " \<br />tslib tslib-conf tslib-=
-tests tslib-calibrate \<br />"</div>
-<div>
-<div style=3D"font-family: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Seg=
-oe UI Emoji', sans-serif;">&nbsp;</div>
-<div>
-<div style=3D"font-family: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Seg=
-oe UI Emoji', sans-serif;">IMAGE_INSTALL +=3D " \<br />bash \<br />sudo \<b=
-r />environment \<br />opkg \<br />os-release \<br />${QT} \<br />"</div>
-<div>
-<div style=3D"font-family: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Seg=
-oe UI Emoji', sans-serif;">&nbsp;</div>
-<div>
-<div style=3D"font-family: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Seg=
-oe UI Emoji', sans-serif;">#IMAGE_INSTALL_append_mx6 =3D " ${MX6TOOL}"</div=
->
-<div>
-<div style=3D"font-family: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Seg=
-oe UI Emoji', sans-serif;">&nbsp;</div>
-<div>
-<div style=3D"font-family: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Seg=
-oe UI Emoji', sans-serif;">IMAGE_FEATURES +=3D " \<br />ssh-server-openssh =
-\<br />"</div>
-<div>
-<div style=3D"font-family: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Seg=
-oe UI Emoji', sans-serif;">&nbsp;</div>
-<div>
-<div style=3D"font-family: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Seg=
-oe UI Emoji', sans-serif;">export IMAGE_BASENAME =3D "myimage"<br /><br /><=
-span style=3D"font-family: Verdana, Arial, Helvetica, sans-serif; backgroun=
-d-color: #f9f9f9;">----------------------------------------------------<br =
-/></span><span style=3D"font-size: 11pt;">So it's work fine when I flash it=
- in my card, but after building SDK, "repc" is missing in&nbsp;<span style=
-=3D"background-color: #f9f9f9; font-family: Verdana, Arial, Helvetica, sans=
--serif;">/sysroots/cortexa9t2hf-neon-poky-linux-gnueabi</span>/usr/bin .&nb=
-sp; More precisly, it is present, but located in:</span></div>
-<div style=3D"font-family: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Seg=
-oe UI Emoji', sans-serif;"><span style=3D"font-size: 11pt;"><span style=3D"=
-font-family: custom;"><br /></span><span style=3D"background-color: #f9f9f9=
-;"><span style=3D"font-family: Verdana, Arial, Helvetica, sans-serif;">/sys=
-roots/cortexa9t2hf-neon-poky-linux-gnueabi/</span></span><span style=3D"fon=
-t-family: custom;">usr/bin/.debug/repc<br /><br /></span><span style=3D"fon=
-t-family: Verdana, Arial, Helvetica, sans-serif; background-color: #f9f9f9;=
-">And when I compile my app, I got the following error: </span></span></div=
->
-<div style=3D"font-family: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Seg=
-oe UI Emoji', sans-serif;">&nbsp;</div>
-<div style=3D"font-family: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Seg=
-oe UI Emoji', sans-serif;"><span style=3D"font-size: 11pt;">Pre build error=
- --&gt; make[2]: /opt/poky/MY_SDK/sysroots/x86_64-pokysdk-linux/usr/bin/rep=
-c: Command not found</span><br /><br /><span style=3D"font-size: 11pt;">bec=
-ause "make" seems to try to find repc in "/usr/bin/repc" rather than "<span=
- style=3D"background-color: #f9f9f9;"><span style=3D"font-family: Verdana, =
-Arial, Helvetica, sans-serif;">/</span></span><span style=3D"font-family: c=
-ustom;">usr/bin/.debug/repc" . But when I link or move repc from&nbsp;</spa=
-n>"<span style=3D"background-color: #f9f9f9;"><span style=3D"font-family: V=
-erdana, Arial, Helvetica, sans-serif;">/</span></span><span style=3D"font-f=
-amily: custom;">usr/bin/.debug/repc" to&nbsp;</span>&nbsp;"/usr/bin/repc", =
-it gives me a "segment fault error" when I try to make my app.</span></div>
-<div style=3D"font-family: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Seg=
-oe UI Emoji', sans-serif;"><span style=3D"font-size: 11pt;">I saw a similar=
- issue on the web but it does not resolve my problem:&nbsp;<a href=3D"https=
-://e2e.ti.com/support/processors-group/processors/f/processors-forum/902941=
-/processor-sdk-am437x-qt-remote-objects-compiler-repc-missing-from-sdk-tool=
-chain" target=3D"_blank" rel=3D"noopener">https://e2e.ti.com/support/proces=
-sors-group/processors/f/processors-forum/902941/processor-sdk-am437x-qt-rem=
-ote-objects-compiler-repc-missing-from-sdk-toolchain</a><br /><br /></span>=
-</div>
-<div style=3D"font-family: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Seg=
-oe UI Emoji', sans-serif;"><span style=3D"font-size: 11pt;">Does anyone alr=
-eady encontered this problem with qtremote control? Do you have got any ide=
-a about what is going wrong?</span></div>
-<div style=3D"font-family: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Seg=
-oe UI Emoji', sans-serif;">&nbsp;</div>
-<div style=3D"font-family: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Seg=
-oe UI Emoji', sans-serif;"><span style=3D"font-size: 11pt;">By advance, tha=
-nks for all, best reguards.&nbsp;&nbsp;</span></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
---Gyqy02VS0xYT81WzGkm9--
+--00000000000055fddb05c9ea3109--
