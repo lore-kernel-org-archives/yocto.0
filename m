@@ -1,69 +1,51 @@
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
- by mx.groups.io with SMTP id smtpd.web08.72316.1629392448012048308
- for <yocto@lists.yoctoproject.org>;
- Thu, 19 Aug 2021 10:00:48 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=ah1tU0/P;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.43, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f43.google.com with SMTP id z9so10068129wrh.10
-        for <yocto@lists.yoctoproject.org>; Thu, 19 Aug 2021 10:00:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=WXZBljFmhaL6HBvuIuDnbIVCxDuWD+m93Tr+nh8ALmQ=;
-        b=ah1tU0/Poihhvhu1bZqLChJHpH3E2iwdk3TFbySpiJ9AWxfPSyBVlQVMJNoDFTjHwE
-         eojY0dx6rPB/qFFqi82qNT/QiiKRZ+I8Pt65G/v1Hcqew1etsKsz+FrlksqPA+o3rHEF
-         OKncEEIuHhTC0gn1rjfn4dHn3939Yfk2vxio4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=WXZBljFmhaL6HBvuIuDnbIVCxDuWD+m93Tr+nh8ALmQ=;
-        b=q1E8bGujJxKXaWI6y/R7LXqgNwLpVfzgV97QPs90n3mm59j4v4/Ir6/PKuHYdP44Rq
-         nvcgyaVAcFKITT+eqtcgAvcNoDmLiaMFdmkaGuyFOs5QOQix6VrFzIPxWP2bbmcCpTjL
-         V22m+jQxaBvjngHyIn0Zked0uRcNSMITjGNiP+54P7cbXsQ4TmyhHFPhUDLILRJ0UTgC
-         1vLmpRSxikUHd4ORkhVV6ECRGPY4IyqLZk0iLoKxw697PBAQZxo7CzW6yjHNZH+qCBuD
-         kX9U7VmMq/+S1q5i5fYMuOSTE5EyjAoilpnsFHs8csdRhXtAm+ktO0XKW3JVQ9/wblr9
-         HZgA==
-X-Gm-Message-State: AOAM5312xi1Vyt9MHxP/4wFjYdIxuszRsE1OZfm621xcuFt8gemfYIMc
-	+pKSD2wrmtuwHevJtEmuTvNBtyo2bWpy0A==
-X-Google-Smtp-Source: ABdhPJykag8fvNQ6uj2JVawTFPYo1QHjahJJDWptZldDRFHI3KSCX8j8Z54NmCWk/DklQaj6FGtmmQ==
-X-Received: by 2002:a5d:65c2:: with SMTP id e2mr5038394wrw.191.1629392445758;
-        Thu, 19 Aug 2021 10:00:45 -0700 (PDT)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from hex.int.rpsys.net ([2001:8b0:aba:5f3c:893b:b0d7:8112:9a58])
-        by smtp.gmail.com with ESMTPSA id o34sm8342265wms.10.2021.08.19.10.00.45
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Aug 2021 10:00:45 -0700 (PDT)
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+Subject: Install packages to an "image" without its dependencies being pulled in. #yocto
 To: yocto@lists.yoctoproject.org
-Subject: [meta-gplv2] [PATCH 1/2] layer.conf: Set elfutils version correctly
-Date: Thu, 19 Aug 2021 18:00:43 +0100
-Message-Id: <20210819170044.45851-1-richard.purdie@linuxfoundation.org>
-X-Mailer: git-send-email 2.32.0
+From: bibibobibo@gmail.com
+X-Originating-Location: US (205.251.233.178)
+X-Originating-Platform: Mac Chrome 92
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Date: Thu, 19 Aug 2021 20:41:25 -0700
+Message-ID: <PMcN.1629430885111388773.CltD@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="ATlWGxk7pJVeuyCgBJfH"
 
-We need to set PREFERRED_VERSION for elfutils or the wrong one will be used.
+--ATlWGxk7pJVeuyCgBJfH
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
----
- conf/layer.conf | 1 +
- 1 file changed, 1 insertion(+)
+Greetings everyone,
 
-diff --git a/conf/layer.conf b/conf/layer.conf
-index 3abe6b5..b0915d4 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -18,5 +18,6 @@ LAYERSERIES_COMPAT_gplv2 = "honister"
- 
- LICENSE_PATH += "${LAYERDIR}/licenses"
- 
-+PREFERRED_VERSION_elfutils = "${@['', '0.148']['GPLV3' in (d.getVar('INCOMPATIBLE_LICENSE') or '').upper()]}"
- PREFERRED_VERSION_shared-mime-info = "${@['', '1.10']['GPLV3' in (d.getVar('INCOMPATIBLE_LICENSE') or '').upper()]}"
- PREFERRED_VERSION_shared-mime-info-native = "${@['', '1.10']['GPLV3' in (d.getVar('INCOMPATIBLE_LICENSE') or '').upper()]}"
--- 
-2.32.0
+Is there a way to instruct Yocto's image class to install package(s) withou=
+t its dependencies for an image target (i.e ext4)? For instance, we are try=
+ing to build a system where there is a main system partition and another pa=
+rtition that'll host additional lib, etc and during boot up we would overla=
+y them together. Hence, the "other" partition does not really need all the =
+same system libs, etc that already exists on the system partition. This oth=
+er partition is developed by an external partner so we want to have the aut=
+onomy to update separately (i.e not mingled things together with system par=
+tition). I am having trouble finding a way to do this because Yocto seem to=
+ like to install a package long with all its dependencies (i.e glibc, etc).
 
+PS. I apologize if this is not the right place to ask the question.
+
+Thanks,
+Mike
+
+--ATlWGxk7pJVeuyCgBJfH
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Greetings everyone,&nbsp;<br /><br />Is there a way to instruct Yocto's ima=
+ge class to install package(s) without its dependencies for an image target=
+ (i.e ext4)? For instance, we are trying to build a system where there is a=
+ main system partition and another partition that'll host additional lib, e=
+tc and during boot up we would overlay them together. Hence, the "other" pa=
+rtition does not really need all the same system libs, etc that already exi=
+sts on the system partition. This other partition is developed by an extern=
+al partner so we want to have the autonomy to update separately (i.e not mi=
+ngled things together with system partition). I am having trouble finding a=
+ way to do this because Yocto seem to like to install a package long with a=
+ll its dependencies (i.e glibc, etc).<br /><br />PS. I apologize if this is=
+ not the right place to ask the question.<br /><br />Thanks,<br />Mike
+
+--ATlWGxk7pJVeuyCgBJfH--
