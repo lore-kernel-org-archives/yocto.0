@@ -1,102 +1,114 @@
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
- by mx.groups.io with SMTP id smtpd.web12.26552.1629736506091190324
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
+ by mx.groups.io with SMTP id smtpd.web08.29003.1629747340479255745
  for <yocto@lists.yoctoproject.org>;
- Mon, 23 Aug 2021 09:35:06 -0700
+ Mon, 23 Aug 2021 12:35:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Bj8rWru2;
- spf=pass (domain: gmail.com, ip: 209.85.210.52, mailfrom: darthtyranus666666@gmail.com)
-Received: by mail-ot1-f52.google.com with SMTP id m7-20020a9d4c87000000b0051875f56b95so37848742otf.6
-        for <yocto@lists.yoctoproject.org>; Mon, 23 Aug 2021 09:35:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=W9uCBnN1RI6LECXmvW+mxAlefkoucjFOfcLomRKU1/A=;
-        b=Bj8rWru24xXPAPrWou96qQ82EhF7qxdXB20l1b5FUxFQdM1cCWQU9YL1wNHCgAbKj2
-         qr18kyhD6+6Jc5fVrcJ7E8fzR4RAK6x0Scgix/vvs9Zv/k5k0jl5GCao1IeJGEuhjQZ2
-         r3tuyUiKnKA30oYVNGoYSX8XilgzUHiFWPm0qugshnBu66gqwQEOvHdIvFyed0FesBUi
-         kSGnBNNkuUvMhM6bTudBXh+ionxuJq+qEh09kdZLaOJsx3ljzt99Pe6TBglM9U2Lu+43
-         rfdJn3lu2Hu2rCct+Fx8Ugvk5SRyAOnYvYdft/7XW6lsIwsie16oVnVUDAjFr7kjiIoL
-         REqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=W9uCBnN1RI6LECXmvW+mxAlefkoucjFOfcLomRKU1/A=;
-        b=AS7KY3diCByD+inC+poDhUPJbHwWeQtwucZ2Fy0A+/1w7A6Kdhq606erI+rs+QtWAv
-         hNghnlbIVR9DOZsTzH6hU4g6NEKSd9uhsFegFmHjgCK+L8KxCs6QYVNLDPzWHfawjqkC
-         0i8/MkqMZBCE7Y7rBwG10BWdMXE6QdcywwPFfmQlG/kjZwc2UcAP4ZK6IKuysAlxc0wX
-         vFtcnblEjP7q5etIeCd+nHAz7Ze+Svt0pZxaQQi67eD022e0MZPkaksyMIl1P+QH1qdO
-         kvImSzcEhu0nzPFpwHJ00aj0Y6oZqVLplCfsDYu2s5VPr/2/3Hni4G/5HnPHg4qDbbUW
-         25Ww==
-X-Gm-Message-State: AOAM531mnYUGX2+NBgq4sPVhk6oeMCDKz0WAgq4MlADBCbTsczGopqrR
-	CmU2Kp+gPGeLDKCu1kiUgdA3EIB90DXi2BjlRdopymlmIoQ=
-X-Google-Smtp-Source: ABdhPJwm82IL34y7NdMemWzT9GlmMmjB6iKNgVAndtYUcbBiHeHQdxB07/VIgoBKOhDYYMuvSK0QPMK0TfKklgWFx0U=
-X-Received: by 2002:aca:bb09:: with SMTP id l9mr12842602oif.120.1629736505304;
- Mon, 23 Aug 2021 09:35:05 -0700 (PDT)
-MIME-Version: 1.0
-From: "d0ku" <darthtyranus666666@gmail.com>
-Date: Mon, 23 Aug 2021 18:34:54 +0200
-Message-ID: <CAAdfB0JOpUsNrn9ouZw45ApXvhkFaFa4P31fW7WF1aX5RgRybg@mail.gmail.com>
-Subject: Extensible SDK - runtime packages installation
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000079e9ea05ca3c99e8"
+ dkim=pass header.i=@fastmail.fm header.s=fm1 header.b=kvUBENVM;
+ spf=pass (domain: fastmail.fm, ip: 64.147.123.19, mailfrom: manwag@fastmail.fm)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+	by mailout.west.internal (Postfix) with ESMTP id C5346320055E;
+	Mon, 23 Aug 2021 15:35:39 -0400 (EDT)
+Received: from imap41 ([10.202.2.91])
+  by compute4.internal (MEProxy); Mon, 23 Aug 2021 15:35:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fastmail.fm; h=
+	mime-version:message-id:in-reply-to:references:date:from:to:cc
+	:subject:content-type; s=fm1; bh=o7gpLgBKCcHGKIzchLt8hDpc4baNUct
+	IIj521t2o1s4=; b=kvUBENVMGIKPUIClR0UYFScF5vrOAtr/imDbRvWEiaZvzne
+	wZwWCss0FwGg+xiEDAmq4EMMqWyAWMFVPer0Lg0ZDy4YqTTUBnMoK3AKxEjZM0jd
+	L6ts9bXPUVi3lVwFgyEp8bungxUKe+C04JzqPQAk8WbyYaZ3VBuSENPw9pHNR2TB
+	affXk9fcyNJTCcJqDvvK4JBG7/mTq5DfyKncHivApPQLpW4DV5x//ftjGT2PgOpT
+	uHzQjpXQt4aEttyFmi200FBGw8rqY64WPIZPazPxPT23YQfs2mcBpqcFpFqbmJIf
+	yXuoahk4ch+z0HDr9pkTKcDPsvlpzJNxCfvBQMg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=o7gpLg
+	BKCcHGKIzchLt8hDpc4baNUctIIj521t2o1s4=; b=RbObjkn/74YWA7+C0EVIoG
+	OA6zzXZugG5E7l3cz6W1ZN0LDGlouIHbz+C2gMdpfWOFuOaPKAF6s1w4/8VWDgST
+	Dz0xbrufojUS+z5LHV+uF0ZAu91bN9ASkYaCoWxe0J+uVohUzsXgjo9xUPVS9FuH
+	o/4glb3Qdw2ufsH493bRVKSYkDBkdOP5QrJwhN2gqZcmUtSKT4Blj7gLcWgfOB4V
+	Kl5hPD5ikJtgm7U/Lr+SC5KBIEMHcN98WfXPT5pGiayW3Ig079yDNU7pIZaiBS0N
+	fQFZrrNs8A4IsoGD2h1s2AJkjXukyT/Aq3PKtzz5hIQ6Pckm06ypbYwD5rDoBJ7g
+	==
+X-ME-Sender: <xms:i_gjYcZWh4dgynyTD9tB0WgY__zSczYiE-8-owYxhRsC-pJ6utDRPg>
+    <xme:i_gjYXbyE0c0giqp5_uFiwz6j_RG_S5NiGFhcBW0RTYkEQMaHKkzRq_IuZyk4Y4tj
+    hYItFxwYRX1viIw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddthedgudegtdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedfofgr
+    nhhuvghlucghrghgvghsrhgvihhthhgvrhdfuceoofgrnhghrghgsefhrghsthforghilh
+    drhffoqeenucggtffrrghtthgvrhhnpedvieeiudejheetuddvieduudegvdegkeeihfev
+    heejhefghfffkeejtdeltedtgeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmh
+    epmhgrihhlfhhrohhmpeforghnhggrgheshfgrshhtofgrihhlrdfhof
+X-ME-Proxy: <xmx:i_gjYW-YfP88926kOHm-VgW_3XRHzRHce1HFRI9C3TczIshVhudmLA>
+    <xmx:i_gjYWoNOMaMIMIc0YjUlBmZw7ElaU7pa5aOoVTry3BB6aCz1Qu_WQ>
+    <xmx:i_gjYXq25ketSTQvzXglPq8rzF9tnKbCX-gZHfS3KXaxv8cFdRkazg>
+    <xmx:i_gjYRG--1GvGHIf-TK1GmvMXgeGs6-YqHAjwFShEbb6vA4MAiPGGQ>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 099993C0F75; Mon, 23 Aug 2021 15:35:39 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-1118-g75eff666e5-fm-20210816.002-g75eff666
+Mime-Version: 1.0
+Message-Id: <4201eb99-b0e3-4f6b-9e0c-f1e0152de476@www.fastmail.com>
+In-Reply-To: 
+ <CAMKF1soX249Typnn9OoJmLbBg1S-8egj5rLvpXqHYv2aiTwWJw@mail.gmail.com>
+References: <36684fbc-136b-4802-a1f4-d82af4e6348c@www.fastmail.com>
+ <CAMKF1soX249Typnn9OoJmLbBg1S-8egj5rLvpXqHYv2aiTwWJw@mail.gmail.com>
+Date: Mon, 23 Aug 2021 21:35:18 +0200
+From: "Manuel Wagesreither" <ManWag@FastMail.FM>
+To: "Khem Raj" <raj.khem@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Wayland and X11 on Yocto
+Content-Type: text/plain
 
---00000000000079e9ea05ca3c99e8
-Content-Type: text/plain; charset="UTF-8"
+Hi all, hi Khem,
 
-Hi,
+Am Do, 19. Aug 2021, um 00:22, schrieb Khem Raj:
+> On Wed, Aug 18, 2021 at 3:06 PM Manuel Wagesreither <ManWag@fastmail.fm> wrote:
+> >
+> > Hello all,
+> >
+> > I'm building an image to run on various SBCs and would like to equip it with a graphical interface.
+> >
+> > There are quite a few things very unclear to me. Can someone help me with that?
+> >
+> > * Why is X11 enabled by setting an IMAGE_FEATURE (namely  x11, x11-base or x11-sato), while Wayland is enabled by IMAGE_INSTALL only (weston-init and weston)?
+> 
+> x11-* features is primarily to control what kind of x11 packages you
+> want to include in image e.g.
+> ./meta/recipes-sato/packagegroups/packagegroup-core-x11-sato.bb is
+> pulled in when x11-sato is added to IMAGE_FEATURES
+> we have many X11 based images and sato is one of them so thats why its
+> separated out.
+> 
+Okay, so if I get things right then IMAGE_FEATURES+="x11" is under the hood nothing more than an IMAGE_INSTALL+="packagegroup-core-x11". Is that right? If so, what's the purpose of adding the concept of IMAGE_FEATURE? I mean, it doesn't make things SO much easier. Setting an IMAGE_FEATURE or an IMAGE_INSTALL variable is the same to me.
 
-I've been playing with extensible SDK lately and got to a point, where I
-want to create a minimal SDK installer and install all the required
-packages in runtime via `devtool sdk-install`, so that every developer can
-get only the stuff that's actually needed.
+> you should really is looking at DISTRO_FEATURES e.g. wayland distro
+> feature is needed for core-image-weston to build.
+> 
+Yepp, I know. I left them out on purpose because I was mainly interested in where the configuration for X11 and wayland differs conceptually. With "conceptually" I mean that one is added through IMAGE_FEATURES while the other is through IMAGE_INSTALL.
 
-For the target part it works as expected, installing the content to
-${OECORE_TARGET_SYSROOT}, however for the host part the content gets
-installed to ${OECORE_NATIVE_SYSROOT}, but it's not visible in the PATH in
-some cases. E.g. for perl-native the binaries are installed to `<native
-sysroot>/bin/perl-native` and are not visible, unless I manually extend the
-PATH with this directory, then it works fine.
+> > * Theory: Is IMAGE_FEATURE +=x11 manipulating IMAGE_INSTALL under the hood so you don't have to do it manually? And as there is no IMAGE_FEATURE "wayland", you have do it manually. Correct?
+> > * Why is Wayland different in that it doesn't need an IMAGE_FEATURE to enable it?
+> 
+> there are not many wayland based compositors or images we have in core
+> as of now.
+> 
+And if there would be more wayland based compositors or images then you would turn extract this into an IMAGE_FEATURE as well? Why? How does that make things easier? Again, I feel there's something to IMAGE_FEATURES I didn't yet understand.
 
-So my questions are:
-* Is the runtime installation of packages meant to run on host actually
-supported? It surely works for e.g. compiler, so I assume it should be also
-fine for other packages?
-* Should I install `nativesdk-` or `-native` packages, if I want to use
-them this way? Or can I actually do both? In the eSDK talk by Paul Eggerton
-I saw that `nativesdk-cmake` was added, but the `nativesdk-` doesn't really
-seem to fit `mini Yocto environment` that eSDK basically is.
-* Am I possibly missing some configuration steps? In Yocto environment the
-PATH gets expanded with `bin/perl-native` automatically, but I wasn't able
-to pinpoint what file/task actually does it.
+> > * Why does core-image-weston.bb need to enable IMAGE_FEATURE hwcodec, while core-image-x11.bb does not? (Dunfell branch.)
+> 
+> openGL is needed for wayland/weston to work too but hwcodec feature is
+> infact to pull in machine specific drivers MACHINE_HWCODECS into image
+> if a given BSP defined it.
+> e.g. intel bsps define vaapi codecs and mediasdk for specific machines
+> via MACHINE_HWCODECS
+> defaults for this image features are empty
 
-Best Regards and thanks in advance,
-Jakub
+Thanks for the explanation on MACHINE_HWCODEC. I'm curious, so is core-image-x11 require DISTRO_FEATURE hwcodec or not? If yes, than it seems to be missing in the core-image-x11.bb (it's in the core-images-weston.bb, after all), if no, then why is it not required for X11?
 
---00000000000079e9ea05ca3c99e8
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div><br><div>I&#39;ve been playing with extensible SDK=
- lately and got to a point, where I want to create a minimal SDK installer =
-and install all the required packages in runtime via `devtool sdk-install`,=
- so that every developer can get only the stuff that&#39;s actually needed.=
-</div><div><br></div><div>For the target part it works as expected, install=
-ing the content to ${OECORE_TARGET_SYSROOT}, however for the host part the =
-content gets installed to ${OECORE_NATIVE_SYSROOT}, but it&#39;s not visibl=
-e in the PATH in some cases. E.g. for perl-native the binaries are installe=
-d to `&lt;native sysroot&gt;/bin/perl-native` and are not visible, unless I=
- manually extend the PATH with this directory, then it works fine.</div><di=
-v><br></div><div>So my questions are:</div><div>* Is the runtime installati=
-on of packages meant to run on host actually supported? It surely works for=
- e.g. compiler, so I assume it should be also fine for other packages?</div=
-><div>* Should I install `nativesdk-` or `-native` packages, if I want to u=
-se them this way? Or can I actually do both? In the eSDK talk by Paul Egger=
-ton I saw that `nativesdk-cmake` was added, but the `nativesdk-` doesn&#39;=
-t really seem to fit `mini Yocto environment` that eSDK basically is.</div>=
-<div>* Am I possibly missing some configuration steps? In Yocto environment=
- the PATH gets expanded with `bin/perl-native` automatically, but I wasn&#3=
-9;t able to pinpoint what file/task actually does it.</div><div><br></div><=
-div>Best Regards and thanks in advance,<br></div><div><div>Jakub</div></div=
-></div></div>
+I know I'm asking quite detailed questions, but I got the feeling I need to understand this once and for all.
 
---00000000000079e9ea05ca3c99e8--
+Thanks, regards, Manuel
