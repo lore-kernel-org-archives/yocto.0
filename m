@@ -1,76 +1,102 @@
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
- by mx.groups.io with SMTP id smtpd.web12.26350.1629735682729847139
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+ by mx.groups.io with SMTP id smtpd.web12.26552.1629736506091190324
  for <yocto@lists.yoctoproject.org>;
- Mon, 23 Aug 2021 09:21:22 -0700
+ Mon, 23 Aug 2021 09:35:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=O1IlqQLY;
- spf=pass (domain: gmail.com, ip: 209.85.210.169, mailfrom: raj.khem@gmail.com)
-Received: by mail-pf1-f169.google.com with SMTP id t42so13241090pfg.12
-        for <yocto@lists.yoctoproject.org>; Mon, 23 Aug 2021 09:21:22 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Bj8rWru2;
+ spf=pass (domain: gmail.com, ip: 209.85.210.52, mailfrom: darthtyranus666666@gmail.com)
+Received: by mail-ot1-f52.google.com with SMTP id m7-20020a9d4c87000000b0051875f56b95so37848742otf.6
+        for <yocto@lists.yoctoproject.org>; Mon, 23 Aug 2021 09:35:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:organization:in-reply-to:content-transfer-encoding;
-        bh=/BMl0Cw1EvxaTXHfcHRGat7has5mM+Y35u56xy3k0fE=;
-        b=O1IlqQLY+ecVOQ69T7DDaBhzyHLpWlIFNrJdrprg+17grtJBWXKs1IIWH26GMhlAg2
-         zjrQfZ8JbBFn6RMD5wrWlUP0ssjMLeEMaDyvn072GEBj5Y2fhykzf6wzKkPlhv6nS4oE
-         RyES8U5SsXOOltDcmA30o1WnlzwWfVFM48gk2FDJgNlg6yHuGUp8YIJCPAYU6iZrtHsh
-         LRvG/VZP/txcbl5YvERpoVeYiKcq58sKzagVCLm0hr0VvNVgQveExpiW8V8/SCY4ubU7
-         IVOIxastBjMphLk1sblTqiIWxo86PR7wIk03pELA7QrA/7gPEIpZP2w1Q19xWXaIw3Gk
-         FbHA==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=W9uCBnN1RI6LECXmvW+mxAlefkoucjFOfcLomRKU1/A=;
+        b=Bj8rWru24xXPAPrWou96qQ82EhF7qxdXB20l1b5FUxFQdM1cCWQU9YL1wNHCgAbKj2
+         qr18kyhD6+6Jc5fVrcJ7E8fzR4RAK6x0Scgix/vvs9Zv/k5k0jl5GCao1IeJGEuhjQZ2
+         r3tuyUiKnKA30oYVNGoYSX8XilgzUHiFWPm0qugshnBu66gqwQEOvHdIvFyed0FesBUi
+         kSGnBNNkuUvMhM6bTudBXh+ionxuJq+qEh09kdZLaOJsx3ljzt99Pe6TBglM9U2Lu+43
+         rfdJn3lu2Hu2rCct+Fx8Ugvk5SRyAOnYvYdft/7XW6lsIwsie16oVnVUDAjFr7kjiIoL
+         REqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=/BMl0Cw1EvxaTXHfcHRGat7has5mM+Y35u56xy3k0fE=;
-        b=tU1zRrZYzTwmEtU7ssqLZizLUZywSKH6bMdhAKKzHGWtWp4cGHJzekw/HwzLId+TSG
-         uoEGv7UuKqQjiDHXheWBRWNjy/44wn5x7KCikU0tMnp1MXppBjnPuZUE+PHLpcO/GSOl
-         hDblysMdcLq5ktlKYJiLUWeuUCWXmGrkEgV5CgbOgzCUx1wfhWlJSWfXNrCml1NL7NSc
-         98OD2XbeaaWy6CVKoKR3tM/q53bfWGVjXE1r1Tp1/OM0vm611bLwloUMCkVg8zFOPUPM
-         g+o0E9lQHsJXStm9IrEuVw6/1T+5eP7FVfRx09HuPJ7Q+hps+kwQePmu0ebNDfVA25Yj
-         dWCw==
-X-Gm-Message-State: AOAM533zjXz2gexIOy6VRITa43dzOYnH3rsn9y/Qh7+W61vXhfJRjY+h
-	zqA+V59F0XjxcRQkLlrFCfA=
-X-Google-Smtp-Source: ABdhPJzf+Qegkin7iUVgSY14bUBbpHmYqZZLdrysj1A69HVJiYb5YdwaP9luBZP9WntE2zmMqyIkWg==
-X-Received: by 2002:a62:8858:0:b029:2fb:6bb0:aba with SMTP id l85-20020a6288580000b02902fb6bb00abamr34858381pfd.32.1629735682241;
-        Mon, 23 Aug 2021 09:21:22 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPV6:2601:646:9200:a0f0:7cf5:888d:b618:582d? ([2601:646:9200:a0f0:7cf5:888d:b618:582d])
-        by smtp.gmail.com with UTF8SMTPSA id d4sm6074290pfo.214.2021.08.23.09.21.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Aug 2021 09:21:21 -0700 (PDT)
-Message-ID: <de417108-e131-39a3-43b6-0c6384d8ef2f@gmail.com>
-Date: Mon, 23 Aug 2021 09:21:20 -0700
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=W9uCBnN1RI6LECXmvW+mxAlefkoucjFOfcLomRKU1/A=;
+        b=AS7KY3diCByD+inC+poDhUPJbHwWeQtwucZ2Fy0A+/1w7A6Kdhq606erI+rs+QtWAv
+         hNghnlbIVR9DOZsTzH6hU4g6NEKSd9uhsFegFmHjgCK+L8KxCs6QYVNLDPzWHfawjqkC
+         0i8/MkqMZBCE7Y7rBwG10BWdMXE6QdcywwPFfmQlG/kjZwc2UcAP4ZK6IKuysAlxc0wX
+         vFtcnblEjP7q5etIeCd+nHAz7Ze+Svt0pZxaQQi67eD022e0MZPkaksyMIl1P+QH1qdO
+         kvImSzcEhu0nzPFpwHJ00aj0Y6oZqVLplCfsDYu2s5VPr/2/3Hni4G/5HnPHg4qDbbUW
+         25Ww==
+X-Gm-Message-State: AOAM531mnYUGX2+NBgq4sPVhk6oeMCDKz0WAgq4MlADBCbTsczGopqrR
+	CmU2Kp+gPGeLDKCu1kiUgdA3EIB90DXi2BjlRdopymlmIoQ=
+X-Google-Smtp-Source: ABdhPJwm82IL34y7NdMemWzT9GlmMmjB6iKNgVAndtYUcbBiHeHQdxB07/VIgoBKOhDYYMuvSK0QPMK0TfKklgWFx0U=
+X-Received: by 2002:aca:bb09:: with SMTP id l9mr12842602oif.120.1629736505304;
+ Mon, 23 Aug 2021 09:35:05 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.0.1
-Subject: Re: [yocto] meta-gnome error #yocto
-To: yasminebenghozzi6@gmail.com, yocto@lists.yoctoproject.org
-References: <zHK7.1629712512589292197.GWRl@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-In-Reply-To: <zHK7.1629712512589292197.GWRl@lists.yoctoproject.org>
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: "d0ku" <darthtyranus666666@gmail.com>
+Date: Mon, 23 Aug 2021 18:34:54 +0200
+Message-ID: <CAAdfB0JOpUsNrn9ouZw45ApXvhkFaFa4P31fW7WF1aX5RgRybg@mail.gmail.com>
+Subject: Extensible SDK - runtime packages installation
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000079e9ea05ca3c99e8"
 
+--00000000000079e9ea05ca3c99e8
+Content-Type: text/plain; charset="UTF-8"
 
+Hi,
 
-On 8/23/21 2:55 AM, yasminebenghozzi6@gmail.com wrote:
-> Hello, please can anyone help with this error ?
-> ERROR: ParseError at 
-> /home/yasmine/yocto/poky/meta-openembedded/meta-gnome/recipes-gnome/yelp/yelp_3.34.0.bb:7: 
-> Could not inherit file classes/itstool.bbclass
-> 
-> this is the line 7:
-> inherit gnomebase itstool autotools-brokensep gsettings gettext gtk-doc 
-> features_check mime-xdg
-> 
-> 
+I've been playing with extensible SDK lately and got to a point, where I
+want to create a minimal SDK installer and install all the required
+packages in runtime via `devtool sdk-install`, so that every developer can
+get only the stuff that's actually needed.
 
-this class is provided by meta-oe layer. Make sure you have meta-oe 
-layer in your bblayers.conf
+For the target part it works as expected, installing the content to
+${OECORE_TARGET_SYSROOT}, however for the host part the content gets
+installed to ${OECORE_NATIVE_SYSROOT}, but it's not visible in the PATH in
+some cases. E.g. for perl-native the binaries are installed to `<native
+sysroot>/bin/perl-native` and are not visible, unless I manually extend the
+PATH with this directory, then it works fine.
 
-> 
-> 
+So my questions are:
+* Is the runtime installation of packages meant to run on host actually
+supported? It surely works for e.g. compiler, so I assume it should be also
+fine for other packages?
+* Should I install `nativesdk-` or `-native` packages, if I want to use
+them this way? Or can I actually do both? In the eSDK talk by Paul Eggerton
+I saw that `nativesdk-cmake` was added, but the `nativesdk-` doesn't really
+seem to fit `mini Yocto environment` that eSDK basically is.
+* Am I possibly missing some configuration steps? In Yocto environment the
+PATH gets expanded with `bin/perl-native` automatically, but I wasn't able
+to pinpoint what file/task actually does it.
+
+Best Regards and thanks in advance,
+Jakub
+
+--00000000000079e9ea05ca3c99e8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br><div>I&#39;ve been playing with extensible SDK=
+ lately and got to a point, where I want to create a minimal SDK installer =
+and install all the required packages in runtime via `devtool sdk-install`,=
+ so that every developer can get only the stuff that&#39;s actually needed.=
+</div><div><br></div><div>For the target part it works as expected, install=
+ing the content to ${OECORE_TARGET_SYSROOT}, however for the host part the =
+content gets installed to ${OECORE_NATIVE_SYSROOT}, but it&#39;s not visibl=
+e in the PATH in some cases. E.g. for perl-native the binaries are installe=
+d to `&lt;native sysroot&gt;/bin/perl-native` and are not visible, unless I=
+ manually extend the PATH with this directory, then it works fine.</div><di=
+v><br></div><div>So my questions are:</div><div>* Is the runtime installati=
+on of packages meant to run on host actually supported? It surely works for=
+ e.g. compiler, so I assume it should be also fine for other packages?</div=
+><div>* Should I install `nativesdk-` or `-native` packages, if I want to u=
+se them this way? Or can I actually do both? In the eSDK talk by Paul Egger=
+ton I saw that `nativesdk-cmake` was added, but the `nativesdk-` doesn&#39;=
+t really seem to fit `mini Yocto environment` that eSDK basically is.</div>=
+<div>* Am I possibly missing some configuration steps? In Yocto environment=
+ the PATH gets expanded with `bin/perl-native` automatically, but I wasn&#3=
+9;t able to pinpoint what file/task actually does it.</div><div><br></div><=
+div>Best Regards and thanks in advance,<br></div><div><div>Jakub</div></div=
+></div></div>
+
+--00000000000079e9ea05ca3c99e8--
