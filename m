@@ -1,85 +1,229 @@
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
- by mx.groups.io with SMTP id smtpd.web08.11259.1629872415459784774
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+ by mx.groups.io with SMTP id smtpd.web11.11779.1629876211369725324
  for <yocto@lists.yoctoproject.org>;
- Tue, 24 Aug 2021 23:20:15 -0700
+ Wed, 25 Aug 2021 00:23:31 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Ku1tPSGv;
- spf=pass (domain: gmail.com, ip: 209.85.128.48, mailfrom: rybczynska@gmail.com)
-Received: by mail-wm1-f48.google.com with SMTP id q11-20020a7bce8b0000b02902e6880d0accso3457396wmj.0
-        for <yocto@lists.yoctoproject.org>; Tue, 24 Aug 2021 23:20:15 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=kJ3zysXa;
+ spf=pass (domain: gmail.com, ip: 209.85.219.171, mailfrom: jupiter.hce@gmail.com)
+Received: by mail-yb1-f171.google.com with SMTP id i8so46019755ybt.7
+        for <yocto@lists.yoctoproject.org>; Wed, 25 Aug 2021 00:23:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=aN+CTX8hE/Wa6rrXuoDUUZxoszMSq4yQ6cC3jO3JY7c=;
-        b=Ku1tPSGv2syTE932AJvrjHcZ+J2UTx6TDrTjd1i79n75XMiFJPYmwVxJJ5YoTjXIW7
-         oMqn8E1epD21/zz8plC14lFW/MD6xpbVG846VDZBl2mbaFvWiRXfmPfHf8A/J8oUqbuT
-         7tBiGrtHrn8erW5P2FczK0aKO6Cp7faWExvsI3kq261rtgP4iuTXSxpUiMxBi2nNIkgB
-         KjJCktXBoY5tLzMBwJDfFBOf1ZHuxQaTcBehR1gMfGMhbxR/OuPg23dLcccGSY78zZjt
-         VvC4mwqTgRB7L1kvOqe2fwoS4xxUkdKdFPSVRCNHDIoHnAf6GlLFxRj/97zNYoGp4AbH
-         fdhg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MjX4FpaqupOSpuyEiii3Ie38gZoulpUf9a5HQ58skkM=;
+        b=kJ3zysXa+V1+X1gLPkrn/wNwffIV9wcbzrH3cHxWZmvYUih3K0LjqQNFf/jYUGbrdT
+         t4o4pkisskovN4yfGxLeRKC4rhh9W3fED0NTRBlB3S1vQwCq6bUIzNEG5bU9YcwU8BPe
+         6R5WJb9AkfuzqpIggYMsSRCp09ZT88StUqwJwy+jU663ZVOO9+GwPmcfN0fM79SP7o4Z
+         oxleyb27eF6AK4x7rsBO3jmqDuJggwlgGQtBnVKsiZeMwVwLV/2RHV1bUVCxDGbc/0+K
+         2cbe7/lTdAInY1nSjoPOF6YhwsWU4IIWbzKyUo+cEoVxAKhCFBITZIznsUSwB1jMD2SK
+         7hqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=aN+CTX8hE/Wa6rrXuoDUUZxoszMSq4yQ6cC3jO3JY7c=;
-        b=VULbfvhMiuyxe2DGXUDhvAj45yMdLS6OOLDNtJ7IVwHcr8uaJTWDYFMTCBCI2YNw3G
-         9ID/Vyn+oXSKTKtk1G8QAdT+A7JZHUPi1nvgnCPM4KroyTnDNa7uZzJYInrZ57zraXmO
-         NHwqNFkHtsmxFUISPhOS2XlHbaJIpP/duP+4XUP0hEx94lcw/MXpHjSXZ6P5iJUufhBC
-         11kK0J92Lpg9E4My6VWdnBwCA433mIxzl/VzkvYaEbIwgLicQweR+wUyVhB2YfBeRNYr
-         x/PtSy3R8QhMTmTgZ0NlgUqXlsZgLuuWOmlYBgDf6xd0n4mw0jDYzXU09WNFDCP+2l/e
-         Ve6Q==
-X-Gm-Message-State: AOAM532+1gpgmreAEeQBHea5Sf+6Tg79WpM2JgIBrusPo5jBIo+0SwYR
-	b+pfKDUa2eKjVIj0aTCNNtiYcCjN4y4=
-X-Google-Smtp-Source: ABdhPJyF/e4vCV62wuvj6zBzDgEB3xYPaXgdmy8Jllc+FINgJGpPwNtwPDCCPk7VDjXp/whWK7k+ig==
-X-Received: by 2002:a05:600c:26c4:: with SMTP id 4mr7240512wmv.111.1629872413942;
-        Tue, 24 Aug 2021 23:20:13 -0700 (PDT)
-Return-Path: <rybczynska@gmail.com>
-Received: from localhost.localdomain ([80.215.138.76])
-        by smtp.gmail.com with ESMTPSA id d8sm19748751wrx.12.2021.08.24.23.20.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Aug 2021 23:20:13 -0700 (PDT)
-From: "Marta Rybczynska" <rybczynska@gmail.com>
-To: yocto@lists.yoctoproject.org,
-	akuster808@gmail.com
-Cc: Marta Rybczynska <rybczynska@gmail.com>
-Subject: [meta-hardening][PATCH] README: fix mailing lists
-Date: Wed, 25 Aug 2021 08:20:00 +0200
-Message-Id: <20210825062000.10223-1-rybczynska@gmail.com>
-X-Mailer: git-send-email 2.30.2
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MjX4FpaqupOSpuyEiii3Ie38gZoulpUf9a5HQ58skkM=;
+        b=dOSRRQryLtgKOcpnyUIJ03EaGfrrIq00e+wCyrBX2hTshfM2w5OE9fHqBLZ3YyP0Zl
+         Od1ynePMxXwfEkAS7dXeZywaceKMDCZQqzggj9nyumN6FUqW8OU6uyOtzRItYqK0ApvT
+         OYtL3qimuVGQAzeN9Mlqpe5ZYimpLdMO9m3xvmFt9PKEhf/cB++FGE5fBvMEhszqpFU4
+         mWhPyJSl2P7mdnS0tgE18RHiNOMCH7Y/XFo9rKd7yuzivNqxMlcZNdPYFxd+fH/nubrD
+         9oxfFpetoKKO2eIs/EXh6BFFm5DVJF5VhEF9cxP3nWjSHsiznn2JOOBKfFZa4QAJjl32
+         DRFg==
+X-Gm-Message-State: AOAM533p0iq9Veo0iTehP6jdb0/cHzgaapRMIiKhAFHBUI0yoOHiHTu+
+	yW7wMEkqJjdnhOu8IX7FpsrihHU2OcYb5PT8+wc=
+X-Google-Smtp-Source: ABdhPJzTQAbvtrDnpWvOdXTvCMrfqQmELybtKWKpDm1CYQn52+z5NaGeeDgPMaUAMdLTzSB4aJM3r8ph+k4DCgduZIo=
+X-Received: by 2002:a25:cd45:: with SMTP id d66mr56276422ybf.74.1629876210574;
+ Wed, 25 Aug 2021 00:23:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <CAA=hcWQAWZyiSTQ3r8DiTK2DFuJZZ7hDasAuggfR9shqwz2ioQ@mail.gmail.com>
+ <CAFiQ677d90DJCM6m+RgAJ-AieqpoBBY+soHXN-rH_bVP7Vgf6g@mail.gmail.com>
+In-Reply-To: <CAFiQ677d90DJCM6m+RgAJ-AieqpoBBY+soHXN-rH_bVP7Vgf6g@mail.gmail.com>
+From: "JH" <jupiter.hce@gmail.com>
+Date: Wed, 25 Aug 2021 17:22:54 +1000
+Message-ID: <CAA=hcWTXVcmu0YkOKeUf9Lo6puztqys=Z_+7i8=jstEdUQVyMQ@mail.gmail.com>
+Subject: Re: oFono Version 1.31 ofonod crash
+To: Sergei Golubtsov <s.e.golubtsov@gmail.com>
+Cc: oe-core <openembedded-core@lists.openembedded.org>, 
+	yocto <yocto@lists.yoctoproject.org>, 
+	Oleksandr Kravchuk <open.source@oleksandr-kravchuk.com>
+Content-Type: text/plain; charset="UTF-8"
 
-The address included in the meta-hardening documentation
-does not work and was changed in other places in 2019.
+Hi Sergei,
 
-Signed-off-by: Marta Rybczynska <rybczynska@gmail.com>
----
- meta-hardening/README | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Thanks for the advice, the latest ofono in oe-core master is 1.32, but
+I am in branch Hardknott, so I copied ofono 1.32 from master to my
+layer running Hardknott branch, but I could not build ofono 1.32 in
+Hardknott:
 
-diff --git a/meta-hardening/README b/meta-hardening/README
-index 37a0b7e..191253c 100644
---- a/meta-hardening/README
-+++ b/meta-hardening/README
-@@ -64,14 +64,14 @@ layers: meta-oe
- Maintenance
- -----------
- 
--Send pull requests, patches, comments or questions to yocto@yoctoproject.org
-+Send pull requests, patches, comments or questions to yocto@lists.yoctoproject.org
- 
- When sending single patches, please using something like:
--'git send-email -1 --to yocto@yoctoproject.org --subject-prefix=meta-hardening][PATCH'
-+'git send-email -1 --to yocto@lists.yoctoproject.org --subject-prefix=meta-hardening][PATCH'
- 
- These values can be set as defaults for this repository:
- 
--$ git config sendemail.to yocto@yoctoproject.org
-+$ git config sendemail.to yocto@lists.yoctoproject.org
- $ git config format.subjectPrefix meta-hardening][PATCH
- 
- Now you can just do 'git send-email origin/master' to send all local patches.
--- 
-2.30.2
+ERROR: ParseError at
+/build/oe-cor/../meta-solar/recipes-connectivity/ofono/ofono_1.32.bb:22:
+unparsed line: 'SYSTEMD_SERVICE:${PN} = "ofono.service"'
 
+I used ofono 1.30 and connman 1.37 in Zeus, both worked fine , but
+both connman 1.39 and ofono 1.31 failed to work properly in oe-core
+Hardknott branch, to narrow down if it is ofono issue or Yocto OE
+build or other library issue, I was able to build ofono 1.30 for
+Hardknott, I can confirm that ofono 1.30 failed just like the 1.31
+stuck at the statement add_serial_device.
+
+................
+ofonod[2806]: ../ofono-1.30/plugins/udevng.c:add_serial_device()
+Device is missing required OFONO_DRIVER property
+ofonod[2806]: ../ofono-1.30/plugins/udevng.c:add_serial_device()
+Device is missing required OFONO_DRIVER property
+ofonod[2806]: ../ofono-1.30/plugins/udevng.c:add_serial_device()
+Device is missing required OFONO_DRIVER property
+
+If I run ofono 1.30 built from Zeus build, the ofonod would pass
+missing OFONO_DRIVER property and kept it work:
+
+......
+ofonod[3712]: ../ofono-1.30/plugins/udevng.c:add_serial_device()
+Device is missing required OFONO_DRIVER property
+ofonod[3712]: ../ofono-1.30/plugins/udevng.c:create_modem()
+/sys/devices/soc0/soc/2100000.aips-bus/2184200.usb/ci_hdrc.1/usb1/1-1
+ofonod[3712]: ../ofono-1.30/plugins/udevng.c:create_modem() driver=ubloxqmi
+ofonod[3712]: ../ofono-1.30/src/modem.c:ofono_modem_create() name:
+(null), type: ubloxqmi
+ofonod[3712]: ../ofono-1.30/plugins/udevng.c:setup_ubloxqmi()
+/sys/devices/soc0/soc/2100000.aips-bus/2184200.usb/ci_hdrc.1/usb1/1-1
+.....
+
+So I don't think it is an oFono issue, but rather an OE Yocto build or
+library issue, can anyone run oFono in oe-core Hardknott branch?
+
+Thank you.
+
+Kind regards,
+
+- jupiter
+
+
+
+On 8/22/21, Sergei Golubtsov <s.e.golubtsov@gmail.com> wrote:
+> Hi jupiter,
+>
+> Please try to update ofono to the latest release. Seems to be a library
+> incompatibility issue or something like that.
+>
+> Yours sincerely,
+> Sergei Golubtsov.
+>
+>
+> On Sat, Aug 21, 2021 at 4:09 AM Jupiter <jupiter.hce@gmail.com> wrote:
+>
+>> Hi,
+>>
+>> I build ofono v1.31 from git://git.yoctoproject.org/poky branch
+>> hardknott,
+>>
+>> $ cat meta/recipes-connectivity/ofono/ofono_1.31.bb
+>>
+>> SUMMARY = "open source telephony"
+>> DESCRIPTION = "oFono is a stack for mobile telephony devices on Linux.
+>> oFono supports speaking to telephony devices through specific drivers,
+>> or with generic AT commands."
+>> HOMEPAGE = "http://www.ofono.org"
+>> BUGTRACKER = "https://01.org/jira/browse/OF"
+>> LICENSE = "GPLv2"
+>> LIC_FILES_CHKSUM = "file://COPYING;md5=eb723b61539feef013de476e68b5c50a \
+>>
+>>
+>> file://src/ofono.h;beginline=1;endline=20;md5=3ce17d5978ef3445def265b98899c2ee"
+>> DEPENDS = "dbus glib-2.0 udev mobile-broadband-provider-info ell"
+>>
+>> SRC_URI = "\
+>>     ${KERNELORG_MIRROR}/linux/network/${BPN}/${BP}.tar.xz \
+>>     file://ofono \
+>>     file://0001-mbim-add-an-optional-TEMP_FAILURE_RETRY-macro-copy.patch
+>> \
+>> "
+>> SRC_URI[md5sum] = "1c26340e3c6ed132cc812595081bb3dc"
+>> SRC_URI[sha256sum] =
+>> "a15c5d28096c10eb30e47a68b6dc2e7c4a5a99d7f4cfedf0b69624f33d859e9b"
+>>
+>> inherit autotools pkgconfig update-rc.d systemd
+>> gobject-introspection-data
+>>
+>> INITSCRIPT_NAME = "ofono"
+>> INITSCRIPT_PARAMS = "defaults 22"
+>> SYSTEMD_SERVICE_${PN} = "ofono.service"
+>>
+>> PACKAGECONFIG ??= "\
+>>     ${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)} \
+>>     ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', 'bluez', '', d)}
+>> \
+>> "
+>> PACKAGECONFIG[systemd] =
+>> "--with-systemdunitdir=${systemd_unitdir}/system/,--with-systemdunitdir="
+>> PACKAGECONFIG[bluez] = "--enable-bluetooth, --disable-bluetooth, bluez5"
+>>
+>> EXTRA_OECONF += "--enable-test --enable-external-ell"
+>>
+>> do_install_append() {
+>>   install -d ${D}${sysconfdir}/init.d/
+>>   install -m 0755 ${WORKDIR}/ofono ${D}${sysconfdir}/init.d/ofono
+>> }
+>>
+>> PACKAGES =+ "${PN}-tests"
+>>
+>> FILES_${PN} += "${systemd_unitdir}"
+>> FILES_${PN}-tests = "${libdir}/${BPN}/test"
+>>
+>> RDEPENDS_${PN} += "dbus"
+>> RDEPENDS_${PN}-tests = "\
+>>     python3-core \
+>>     python3-dbus \
+>>     ${@bb.utils.contains('GI_DATA_ENABLED', 'True',
+>> 'python3-pygobject', '', d)} \
+>> "
+>>
+>> RRECOMMENDS_${PN} += "kernel-module-tun mobile-broadband-provider-info"
+>>
+>> The build was fine, but running the v1.31 ofono.service crashed at
+>> udevng.c missing OFONO_DRIVER property, the ofono.service was repeated
+>> to be restarted every 6 seconds:
+>>
+>> .....
+>>
+>> ofonod[9005]: ../ofono-1.31/plugins/udevng.c:add_serial_device()
+>> Device is missing required OFONO_DRIVER property
+>> ofonod[9005]: ../ofono-1.31/plugins/udevng.c:add_serial_device()
+>> Device is missing required OFONO_DRIVER property
+>> ......
+>>
+>> I am not quite sure if it is ofono 1.31 problem or oe-core
+>> ofono_1.31.bb problem, could anyone have a look at and advise? Let me
+>> know if you need more debug information.
+>>
+>> Thank you.
+>>
+>> Kind regards,
+>>
+>> - jupiter
+>>
+>>
+>> On 8/20/21, Jupiter <jupiter.hce@gmail.com> wrote:
+>> > Hi,
+>> >
+>> > I upgraded from Zeus to Hardknotte, I was able to run dbus to get
+>> > interface properties, but I failed on Hardknotte ofono 1.31. Has
+>> > anyone got oFono 1.31 dbus work?
+>> >
+>> > Thank you.
+>> >
+>> > Kind regards,
+>> >
+>> > - jupiter
+>> >
+>> _______________________________________________
+>> ofono mailing list -- ofono@ofono.org
+>> To unsubscribe send an email to ofono-leave@ofono.org
+>>
+>
+
+
+--
+"A man can fail many times, but he isn't a failure until he begins to
+blame somebody else."
+-- John Burroughs
