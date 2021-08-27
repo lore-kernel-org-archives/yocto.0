@@ -1,50 +1,50 @@
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
- by mx.groups.io with SMTP id smtpd.web08.8900.1630074431792778411
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+ by mx.groups.io with SMTP id smtpd.web09.8802.1630074432682149786
  for <yocto@lists.yoctoproject.org>;
- Fri, 27 Aug 2021 07:27:11 -0700
+ Fri, 27 Aug 2021 07:27:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=t1TxCCs2;
- spf=pass (domain: gmail.com, ip: 209.85.216.46, mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f46.google.com with SMTP id u13-20020a17090abb0db0290177e1d9b3f7so9013276pjr.1
-        for <yocto@lists.yoctoproject.org>; Fri, 27 Aug 2021 07:27:11 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Nlki3Vhr;
+ spf=pass (domain: gmail.com, ip: 209.85.210.174, mailfrom: akuster808@gmail.com)
+Received: by mail-pf1-f174.google.com with SMTP id 18so5816387pfh.9
+        for <yocto@lists.yoctoproject.org>; Fri, 27 Aug 2021 07:27:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=lpmll8YkNB8GGIPOBDFElDAF29xYyzZ+kzgztTtIWzk=;
-        b=t1TxCCs2wb9ke6UcEySM7VRRXEL2vyEimZzWJmrGOqvM9egunAYCDJCtnNWH3Uk4Ol
-         tHDszxr7IDGBc5+XwJScHUys2U3mqW9mttOObPbzRkdwUeDCbPfM/EWSU7IPCHJtLBF1
-         /03Ayb3MzJPvh9ni43cxOIfVtJGl5dsgaxvds4BZnN7OYkwF3LmA+L95gEkMLetD+9Db
-         fMvtsV1A9lk/DBr1hdf7OlCYA1furIjFKNDMdOZ3TDiHBK3aIsEL7nG9hsV+pa/CMWMG
-         iY+wJ87PZBhHUJJnNTta9lvq2AfLAk2z9NANYL+LM9vxeE73t2yuIkcxHUNztVimuimF
-         0Wow==
+        bh=2fpJUGVgaZfnoyk76AMQ6Y6AJZ7FATGcLazGHAHssLM=;
+        b=Nlki3Vhr+ShxL+sy7HFGcjeChibUeEyCRtFRmmGKhlUQwJxOKcXJnd1xP97VFRegtf
+         ncrsTGIWGj38BLYJNGK35PZnHd0izFg4Vl5QRlHhRrBcWLDylkpJShPoow9mF8PxWdCY
+         MOMPAQb+FROifAylevNxAV6+aBe2AJyzD8Q3IDjWbiSwSUc1E0JXKKfMRBzt6zMvdBx8
+         peytS2zXiNIoRqja/6wF9EU+Tm8DXKxgHsQ6s3zDicz2oxscxlCUiDUaN4eGa6qzNwZ0
+         +lvvV3JP3Vpla2/Z3qNFml90CzB7uySa1zwHhOzSw+OvkucB5my3EjWwv4LEy1qjjjby
+         xNRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=lpmll8YkNB8GGIPOBDFElDAF29xYyzZ+kzgztTtIWzk=;
-        b=hzT24LPT4NyaZXuCBve55Zxkh1pOiRopAMSJFipFq8Fnb832VtJP6u2j2Xyy69Ex93
-         1xvp7v6nC6oWvWwC2dD+KMP+iG4+UxqRboDrjVtERS/t4rOTr/nH5vjcoQr4XBMutzm5
-         3gValrXTxZqq8Rs9bdJ9IqA+qjyf40oawactB8Or3LqVPa6E8Z0nt1qXVeljZ2FEeTSP
-         GBJRROch/dutgi3Q7Y65BrT8tZ2RTlS+rIdNDes6AHNza0uBloSW1pUiiZ1xLIlutOG1
-         aKC3lW5ATxvitm4Rm5CHDBTlcUUQyDtrNL91tj8NvI/u5F+tX/jjtwZcP9G8PE1xHyw6
-         6cpA==
-X-Gm-Message-State: AOAM533jzSLsguEXeD9zJ+QcYxn7mAInKp1imYqGFgo6XjX8+A8Kh5oB
-	zrsM02ZGM/ehfRAfwTWGP36N888GkW8=
-X-Google-Smtp-Source: ABdhPJxKr147C9ZVhHzEoFtboCJKNorgc/LDWnJKFJ7sAeaJcQ92Ol9t+xrCDjvmaJTexsB3c7pAPw==
-X-Received: by 2002:a17:902:ce87:b0:138:941a:5c72 with SMTP id f7-20020a170902ce8700b00138941a5c72mr4309046plg.24.1630074431169;
-        Fri, 27 Aug 2021 07:27:11 -0700 (PDT)
+        bh=2fpJUGVgaZfnoyk76AMQ6Y6AJZ7FATGcLazGHAHssLM=;
+        b=GsIcuK+Z1yi7CQ7WvAHkPKjU37zlHlj+HNKvwIHWecHhaN7EU0g8NxxLseZ2M7pSfJ
+         HeE3gMWz7FS2OENMkYqNxEb9t+AiT6F0WbZnX+XS2X07PH48+lMYdFK1cZJKqlUe2Uvj
+         csZ1oGfcbGbQ1h0BaEkrtmUu/tzOXQjbxzhwIhfn1PNe5OtGO1+9v5Vd78kubVahSWwD
+         IbtB+t4CQIr44Mb5Rzok9tlLf7t2fUPXHOigFAwB5yrkGcEnnqcRmvpYwq8R9nc7MNZy
+         RPefXVq27916d36TI4P8OgfvbLnW/B934oBc+TLtlk7Ltx8NOvgnz+pLBXy3f6m5g8Ui
+         WBFg==
+X-Gm-Message-State: AOAM533crgYaBLFHomh4R7F0BCdfNHHfI5kX17/Nl03+/75ZogF6Snvx
+	ee6ddcA7p5BuZjLyfReLa5p1bh2OoKc=
+X-Google-Smtp-Source: ABdhPJzf+TrzLw99LiNpY+0CynFYam+ODl4nHHTXA/BKkUGCSTDLm3aRpdt4flb+z+wx0pILTtiu9A==
+X-Received: by 2002:a62:6143:0:b029:3c9:3117:c620 with SMTP id v64-20020a6261430000b02903c93117c620mr9482650pfb.30.1630074432060;
+        Fri, 27 Aug 2021 07:27:12 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from keaua.caveonetworks.com ([2601:202:4180:a5c0:6d42:ed7e:4699:884f])
-        by smtp.gmail.com with ESMTPSA id u17sm6512064pfh.184.2021.08.27.07.27.10
+        by smtp.gmail.com with ESMTPSA id u17sm6512064pfh.184.2021.08.27.07.27.11
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Aug 2021 07:27:10 -0700 (PDT)
+        Fri, 27 Aug 2021 07:27:11 -0700 (PDT)
 From: "Armin Kuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 4/6] layer.conf: drop dynamic-layer
-Date: Fri, 27 Aug 2021 07:27:05 -0700
-Message-Id: <20210827142707.3710584-4-akuster808@gmail.com>
+Subject: [meta-security][PATCH 5/6] layer.conf: drop meta-rust
+Date: Fri, 27 Aug 2021 07:27:06 -0700
+Message-Id: <20210827142707.3710584-5-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210827142707.3710584-1-akuster808@gmail.com>
 References: <20210827142707.3710584-1-akuster808@gmail.com>
@@ -53,21 +53,20 @@ Content-Transfer-Encoding: 8bit
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- conf/layer.conf | 4 ----
- 1 file changed, 4 deletions(-)
+ meta-parsec/conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/conf/layer.conf b/conf/layer.conf
-index cdcfaee..ad9da56 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -16,7 +16,3 @@ LAYERDEPENDS_security = "core openembedded-layer perl-layer networking-layer met
- # Sanity check for meta-security layer.
- # Setting SKIP_META_SECURITY_SANITY_CHECK to "1" would skip the bbappend files check.
- INHERIT += "sanity-meta-security"
--
--BBFILES_DYNAMIC += " \
--rust-layer:${LAYERDIR}/dynamic-layers/meta-rust/recipes-*/*/*.bb  \
--"
+diff --git a/meta-parsec/conf/layer.conf b/meta-parsec/conf/layer.conf
+index 86d41b2..2eeb71b 100644
+--- a/meta-parsec/conf/layer.conf
++++ b/meta-parsec/conf/layer.conf
+@@ -10,5 +10,5 @@ BBFILE_PRIORITY_parsec-layer = "5"
+ 
+ LAYERSERIES_COMPAT_parsec-layer = "honister"
+ 
+-LAYERDEPENDS_parsec-layer = "core rust-layer clang-layer tpm-layer"
++LAYERDEPENDS_parsec-layer = "core clang-layer tpm-layer"
+ BBLAYERS_LAYERINDEX_NAME_parsec-layer = "meta-parsec"
 -- 
 2.25.1
 
