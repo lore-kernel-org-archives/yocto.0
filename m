@@ -1,121 +1,83 @@
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
- by mx.groups.io with SMTP id smtpd.web11.6385.1630061044450840854
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+ by mx.groups.io with SMTP id smtpd.web10.7400.1630068072072886041
  for <yocto@lists.yoctoproject.org>;
- Fri, 27 Aug 2021 03:44:05 -0700
+ Fri, 27 Aug 2021 05:41:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@denx.de header.s=phobos-20191101 header.b=MO8Lu0A0;
- spf=pass (domain: denx.de, ip: 85.214.62.61, mailfrom: lukma@denx.de)
-Received: from ktm (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: lukma@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 5E1BD8326B;
-	Fri, 27 Aug 2021 12:43:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1630061036;
-	bh=1W2UmkdsLWDSj1tWnSMH5x7cBCbTx+lG6aFTKMo+40A=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=MO8Lu0A0BZ7TUDWeWpgJemO9dsnyVcr8vHEuYdZJlLNZ+FKRhTrZ86Jqb7e01ZfSI
-	 35UiqB6kFrS8Y9ET/3kmqZ0dX2RByJhXx88cSCnkOD5M/JNkVIOdBow8NnazTalfge
-	 VnpUsLHKPsx+cJGN/XxsIEcWUzXalXolgq7eFU5tC1t07m9ObHJezdZ4gWxOLIk0uF
-	 sGMH1dQwzqG17cpInLVLyu4PWinRv/1EO3LK28PeiOrnt3icIsmbLfsvCZeSqgvQNr
-	 5GznVPqtslp1owzYfW9xGHK7YvaUPJpBhzsppiD/LCm+OrPz3zxaL2D3VL5CT8VXGY
-	 3KCjkABzWQJqw==
-Date: Fri, 27 Aug 2021 12:43:50 +0200
-From: "?ukasz Majewski" <lukma@denx.de>
-To: Anibal Limon <anibal.limon@linaro.org>
-Cc: yocto@lists.yoctoproject.org, Adrian Freihofer
- <adrian.freihofer@siemens.com>
-Subject: Re: [PATCH v2 ptest-runner 2/2] main: Do not return number of failed tests when calling ptest-runner
-Message-ID: <20210827124350.71c00d33@ktm>
-In-Reply-To: <20210817123812.18075-2-lukma@denx.de>
-References: <20210817123812.18075-1-lukma@denx.de>
-	<20210817123812.18075-2-lukma@denx.de>
-Organization: denx.de
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=YCnV/9zV;
+ spf=pass (domain: gmail.com, ip: 209.85.210.49, mailfrom: jpewhacker@gmail.com)
+Received: by mail-ot1-f49.google.com with SMTP id c19-20020a9d6153000000b0051829acbfc7so7644320otk.9
+        for <yocto@lists.yoctoproject.org>; Fri, 27 Aug 2021 05:41:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:subject:to:references:message-id:date:user-agent:mime-version
+         :in-reply-to:content-transfer-encoding:content-language;
+        bh=10qjXjPeVWESUS9Q0bwDiJRhArCeRH6+UercRLFPQQ8=;
+        b=YCnV/9zVPLwUlm5tHUTE7ktXQ863srrkfJDkkWP9PCbhpJ9L5eoUGEs2tyJyT+8gKL
+         NLDXia+EP3ELrjpCgtV5opgD7Ax++oXA8Uue64CSkmKd3W6rdKV3vOw9hWMI1b4fJFMo
+         GZY7xlr5d4q09AgcnEtE7BZtI9s66dTayXrirXZPDzPr5h/R+P0qu2qqOhH1siYFxiQX
+         MiHRK4HKKoccycdwlSi+twFOu+9uMpr+HS6BP0Am6g+7CD+qZX04JC92jbDQ5Gqi+mIh
+         mBp+Amj1TJ/o4x5/IdOdh8HNjAV9RixKP5H9qGoG6Xx5+jvWVs1VmX79kSJTkQIfY+wC
+         avrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:subject:to:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=10qjXjPeVWESUS9Q0bwDiJRhArCeRH6+UercRLFPQQ8=;
+        b=I3mpe+9CT69mY/zJNUMZtZ0C+0EulPnHDk0jwrsOJGkHE1qmuZe8aQ39h4q3qMGhfw
+         LsgLeOYkgPwq+JDuhk11s1S1GQVi344K6ae6PTb6i7JJHPX6WyqEdoDy0hEkdUNL8NDC
+         G+Xbxw4aAh0a8bU891qdF8ch0Cw70zVYMLLyyhBrnS1KI1HlqsnauTK8z1Gsk1Ksb4K0
+         7RO5R13W5bxrJ7ju3ATRY7dMWPJe/PuWDxwSVGdpF60YgpQvqR6Y5aFb9jMTGj82h4q4
+         MH4y7r3UCh0jZNB9hqFyFBsFxupX8ahypQye6rOi9GnxgRClaBT9aPOh4Q5CHH0Ee3FZ
+         Z3BA==
+X-Gm-Message-State: AOAM532xO/gON0b1P7Ahrf7qheD90QZ/0q+fOS8OgOC5JEUkcJvIRWqy
+	g2oLD9p5Tu/slUNVNxL7BtvszpJXJ7I=
+X-Google-Smtp-Source: ABdhPJzD8PJihwXaxMbHqHK5Aw4VYpWqcwbqvOafbLKoGNpsocYLKuZhRdZYyRELEDX1zgJg3UBlFg==
+X-Received: by 2002:a9d:1ae:: with SMTP id e43mr8016138ote.26.1630068071054;
+        Fri, 27 Aug 2021 05:41:11 -0700 (PDT)
+Return-Path: <jpewhacker@gmail.com>
+Received: from ?IPv6:2605:a601:ac3d:c100:e3e8:d9:3a56:e27d? ([2605:a601:ac3d:c100:e3e8:d9:3a56:e27d])
+        by smtp.gmail.com with ESMTPSA id a23sm1247076otp.44.2021.08.27.05.41.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Aug 2021 05:41:10 -0700 (PDT)
+From: "Joshua Watt" <JPEWhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
+Subject: Re: [meta-mingw] [PATCH] grpc: use the new PACKAGECONFIG to disable shared
+To: Sinan Kaya <okaya@kernel.org>, yocto@lists.yoctoproject.org
+References: <20210824164849.12717-1-okaya@kernel.org>
+Message-ID: <6ae884e8-4ec4-9595-d8ee-942fad9b0945@gmail.com>
+Date: Fri, 27 Aug 2021 07:41:09 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
-X-Groupsio-MsgNum: 54579
-Content-Type: multipart/signed; micalg=pgp-sha512;
- boundary="Sig_//2Dyv7m7.wDI8uBY1P2a=f9"; protocol="application/pgp-signature"
+In-Reply-To: <20210824164849.12717-1-okaya@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
---Sig_//2Dyv7m7.wDI8uBY1P2a=f9
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
 
-Hi Anibal,
-
-> Up till now ptest-runner2 returns number of failed tests with its
-> exit status code. Such use case is not recommended [1] and may cause
-> issues when there are more than 256 tests to be executed.
->=20
-> To alleviate this issue the number of total tests with number of
-> failed ones is printed before exit. To be more specific - failure of
-> tests (one or more) causes ptest-runner to provide exit code of 1.
->=20
-> One can test this change with executing:
-> ./ptest-runner -d tests/data fail
-
-Gentle ping on this patch.
-
->=20
-> Links:
-> [1] -
-> https://www.gnu.org/software/libc/manual/html_node/Exit-Status.html
->=20
-> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+On 8/24/21 11:48 AM, Sinan Kaya wrote:
+> There is a new PACKAGECONFIG for grpc to allows us
+> to selectively enable/disable shared builds.
+>
+> Signed-off-by: Sinan Kaya <okaya@kernel.org>
 > ---
-> Changes for v2:
-> - When number of failed tests is N, the ptest-runner returns value of
-> 1 to indicate error in the execution
-> ---
->  main.c | 3 +++
->  1 file changed, 3 insertions(+)
->=20
-> diff --git a/main.c b/main.c
-> index 890bc6a..bcec844 100644
-> --- a/main.c
-> +++ b/main.c
-> @@ -220,6 +220,9 @@ main(int argc, char *argv[])
->  		ptest_list_remove(run, opts.exclude[i], 1);
-> =20
->  	rc =3D run_ptests(run, opts, argv[0], stdout, stderr);
-> +	fprintf(stdout, "TOTAL: %d FAIL: %d\n",
-> ptest_list_length(run), rc);
-> +	if (rc > 0)
-> +		rc =3D 1;
-> =20
->  	ptest_list_free_all(&run);
-> =20
+>   .../openembedded-layers/recipes-devtools/grpc/grpc_%.bbappend  | 3 +--
+>   1 file changed, 1 insertion(+), 2 deletions(-)
+>
+> diff --git a/dynamic-layers/openembedded-layers/recipes-devtools/grpc/grpc_%.bbappend b/dynamic-layers/openembedded-layers/recipes-devtools/grpc/grpc_%.bbappend
+> index dc0ea42..4cbd1a4 100644
+> --- a/dynamic-layers/openembedded-layers/recipes-devtools/grpc/grpc_%.bbappend
+> +++ b/dynamic-layers/openembedded-layers/recipes-devtools/grpc/grpc_%.bbappend
+> @@ -1,5 +1,4 @@
+>   # doesn't build and not required
+>   DEPENDS:remove:mingw32 = "libnsl2"
+>   
+> -EXTRA_OECMAKE:remove:mingw32 = "-DBUILD_SHARED_LIBS=ON"
+> -EXTRA_OECMAKE:append:mingw32 = " -DBUILD_SHARED_LIBS=OFF"
+> +PACKAGECONFIG:remove:mingw32 = "shared"
+
+This is good, thanks. Is the libnsl2 also tied to some feature? Perhaps 
+you can explain why it needs to be removed from MinGW
 
 
-
-
-Best regards,
-
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_//2Dyv7m7.wDI8uBY1P2a=f9
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmEoweYACgkQAR8vZIA0
-zr0QRAgAqdgM8jQIEtM3/TyNkkVvkjqOYazz2XBIIO4fmTon3kzYswuaQZ3dvEl7
-mHJfRhMkuhmK+n/2sJjVGpI/T4Brf8tO24tuls+9rKxBrWkFqhhxct6s2F+lyFJy
-PhYqL/3wMHKHoMPqcHPNzAEIcVDK15fakWm0skbGVi1iwTorPKiYUIaw33H18ytB
-pPSZbXlURTaDgp3kVMk/cNYidsxoPLGwvP2SBlm0KwRMrctcOp0A0LJoqDcJbpRB
-zReahcoKjPxifNDj06q9g4p0nL8gs5h7vORBIWlO5oVsS0G03vkZuzU6S7f2LmSg
-i9VpEZxxLbS46VVyJoRTPRHMQCvtEQ==
-=nCx+
------END PGP SIGNATURE-----
-
---Sig_//2Dyv7m7.wDI8uBY1P2a=f9--
