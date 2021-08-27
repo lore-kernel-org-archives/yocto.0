@@ -1,75 +1,87 @@
-Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
- by mx.groups.io with SMTP id smtpd.web08.33772.1629998088813240643
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+ by mx.groups.io with SMTP id smtpd.web11.5322.1630051825468721143
  for <yocto@lists.yoctoproject.org>;
- Thu, 26 Aug 2021 10:14:49 -0700
+ Fri, 27 Aug 2021 01:10:25 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@foundries.io header.s=google header.b=QOyhumSl;
- spf=pass (domain: foundries.io, ip: 209.85.219.48, mailfrom: daiane.angolini@foundries.io)
-Received: by mail-qv1-f48.google.com with SMTP id gf5so2411472qvb.9
-        for <yocto@lists.yoctoproject.org>; Thu, 26 Aug 2021 10:14:48 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ai3wISBA;
+ spf=pass (domain: gmail.com, ip: 209.85.167.54, mailfrom: ivriabtsov@gmail.com)
+Received: by mail-lf1-f54.google.com with SMTP id b4so12610901lfo.13
+        for <yocto@lists.yoctoproject.org>; Fri, 27 Aug 2021 01:10:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=foundries.io; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=aY+8EB6/gc/e4SGrYFcgrg2yfQiY1151Fzgc/TBdMxI=;
-        b=QOyhumSlehJsM4/0OTDqBkof6Jz3v9YwXCwdW6l6B+o7Q4yU2cbJZD4JAppCp8y0cp
-         b9uvPj46+T6RUYSYZVbzyKVwuA8+U4Y9SHQMjKyR+OaywR7lN2Cy5IRR4GRdzQHQS9x2
-         Z6V7U6PEa8dy/vj7n3Sbb+lrVmAzBiJYhZ8gHFUkhYmeRPgF4zaikPdBE5jNaveo6TZc
-         YXeDNmG9w5hCCeXh3T/zq1HV5dm/LSWhiNfbyGRwaLPnaWzy4+jRvy3UH78G0ap6z3G8
-         RASOAEL72uHQdMNwabzCKn8T+ChvFgByUiiRDac8D/r0qbeR+6prQ959LXJOGP0mrmbS
-         at6Q==
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=1T07MTtZxHK/d26ne1yKkhVgxYvC+dBo9SW5ExOeLjE=;
+        b=ai3wISBARfmQSL7CrepqFybvwsu1PzABhOqDLuQlyFWp7TS3Txym+2FxU5UbGsr38/
+         RCLkcElfJTUzDLYEm3RiyQsZuZYEtQQW3NxQTHz84CsFINAxyJFzQKH8Q8IQ106mbNvx
+         OIV/7cTYKJZBaVsSmMddv6D1lmLuJVsWMICilDkg3pJoRlHMV8LeVBUZD5ZUg8g8pPgU
+         TiJkfxq/x9WP2wbeld0QD7t/P685Hs1bryxjAjK6BZcbWP4/IjGSSAV6FrL/dEgodvi/
+         sEoWrbUu2WXLBRwJ/E8VtkEPg1sfyBW4X8PLjjqk3a6zzNoFCf3lt/0sRCRy3c2ddfrt
+         DX8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=aY+8EB6/gc/e4SGrYFcgrg2yfQiY1151Fzgc/TBdMxI=;
-        b=i11ZuB7OVpI8jzD4W+rjIEubwZ/tT8CzviW0ZXRyZ4D+xU7Gql+gDL0IUMb1sqKA5M
-         ogIKqtyxr15YbprHMV5NbRVdjR66Bx+mB2G0WtP3IF2T+cXHGF4285poKYxCZVErXdBI
-         1JJA4d2cCmgTQvDtaTzglGZhHHfHhmw/ZsWkVwCcy8tr7qth0Sl9TQOEF8sB5BqJ4/z8
-         jDUHXeNYdNKX3oCO3OOK8PgkCE2JuHRsmF6O7Sl38Y5ROR3rIIAwa3IVJVDHAMiRGgJt
-         5wWGz2ZaQD8emA5r9IYhHXNWxXpxZNqo7mHoSs2m9tsbnpkrkzwk1Y+sBklvA0/oEOUl
-         6O3w==
-X-Gm-Message-State: AOAM531kadj5L0A6SM+Fyk5mvsGPEuACFn+QjJkyZ8YoWbl4ZIA5jI7k
-	2ZeQG5qkmapmn9pH9XDX+UAxvRn2nE/lzQ==
-X-Google-Smtp-Source: ABdhPJz0GSgqfr57ANak91iPN59gg7B/4h0AYVOz+Tnxa1ITGJ8fS+k6JvwqbG34R3JYFxvBgL7vgw==
-X-Received: by 2002:a0c:e88e:: with SMTP id b14mr5136420qvo.59.1629998087631;
-        Thu, 26 Aug 2021 10:14:47 -0700 (PDT)
-Return-Path: <daiane.angolini@foundries.io>
-Received: from localhost.localdomain ([2804:14c:3bac:19c0:8faf:3961:6718:ed3e])
-        by smtp.gmail.com with ESMTPSA id h2sm3051485qkf.106.2021.08.26.10.14.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Aug 2021 10:14:47 -0700 (PDT)
-From: "Daiane Angolini" <daiane.angolini@foundries.io>
-To: yocto@lists.yoctoproject.org
-Cc: Daiane Angolini <daiane.angolini@foundries.io>
-Subject: [PATCH] meta-integrity: kernel-modsign: Change weak default value
-Date: Thu, 26 Aug 2021 14:14:41 -0300
-Message-Id: <20210826171441.13246-1-daiane.angolini@foundries.io>
-X-Mailer: git-send-email 2.30.2
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=1T07MTtZxHK/d26ne1yKkhVgxYvC+dBo9SW5ExOeLjE=;
+        b=mtTM28mJYeIDwY6gNsTEdBP8Z4mWUyMETkgiNX50X1rzjt/pELNP8225SdNDP1heVp
+         /tyCDob5om9U8qFahvXgDiyu5B4an614ELoHpc1BQGWJSxFFhnuha0azXg8nYzruS+0s
+         OkXFf4BIz1jt15ksSe+sMyeiq5ucz/Kk3SsO//d4gtEN8iweduHp3p3Wjp23QG4Njvt1
+         pIrXdn9R7PPbcZIKHtVgUaY/Iz36wLJ0qMylScUswva4Lo+fg3grkRrGuewNNAg4fHpS
+         sD4xGwKL0yVpj5VEm4Pj/EHdzoQx1mR+fVDjtNcK6zTwHtQXTHwHHm2xbaiRpwJlUGIA
+         68VQ==
+X-Gm-Message-State: AOAM5330Slo0gFBH6WG/FOvhP3qwJdQj1/jAV82hjr9ZcF/bWD3ZION2
+	okoP2NvQSwHC6mF4LUgUCRmONKnV/CCA+fCPtidunRyqFzA=
+X-Google-Smtp-Source: ABdhPJwpXToBPyv+Q6StIG4LgMgUITWPEspD2ltSzzoHI/POasDQ2tuWNxFpndkiTSktcjnX3KoNsJvOrgGv1vYlj5E=
+X-Received: by 2002:a19:ac4c:: with SMTP id r12mr5608179lfc.217.1630051822985;
+ Fri, 27 Aug 2021 01:10:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: "Ivan Riabtsov" <ivriabtsov@gmail.com>
+Date: Fri, 27 Aug 2021 11:10:12 +0300
+Message-ID: <CAKAnv4HzhLS+X1Ld9EOCVDaSR4G25i6v7sou0h2=g2p_60SE-w@mail.gmail.com>
+Subject: building mbpoll
+To: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
-Assign a weak default value for MODSIGN_KEY_DIR so the other layers can
-set a default value for them as well.
+Hi All. i need to build mbpoll git://github.com/epsilonrt/mbpoll
+I was created layer:
 
-Signed-off-by: Daiane Angolini <daiane.angolini@foundries.io>
----
- meta-integrity/classes/kernel-modsign.bbclass | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ivr@home-machine:~/work/yocto_orig/sources/meta-mbpoll/recipes-mbpoll/mbpoll
+$ cat mbpoll_1.4.11.bb
+SUMMARY = "bitbake-layers recipe"
+DESCRIPTION = "mbpoll recipe"
+LICENSE = "CLOSED"
 
-diff --git a/meta-integrity/classes/kernel-modsign.bbclass b/meta-integrity/classes/kernel-modsign.bbclass
-index cf5d3eb..093c358 100644
---- a/meta-integrity/classes/kernel-modsign.bbclass
-+++ b/meta-integrity/classes/kernel-modsign.bbclass
-@@ -2,7 +2,7 @@
- # set explicitly in a local.conf before activating kernel-modsign.
- # To use the insecure (because public) example keys, use
- # MODSIGN_KEY_DIR = "${INTEGRITY_BASE}/data/debug-keys"
--MODSIGN_KEY_DIR ?= "MODSIGN_KEY_DIR_NOT_SET"
-+MODSIGN_KEY_DIR ??= "MODSIGN_KEY_DIR_NOT_SET"
- 
- # Private key for modules signing. The default is okay when
- # using the example key directory.
--- 
-2.30.2
+SRC_URI = "git://github.com/epsilonrt/mbpoll"
+SRCREV = "2b385d85d919138cefe79870c87c60eaa8b0d19c"
 
+DEPENDS = "libmodbus"
+
+i was run:
+rm -rf ./build/tmp ./build/sstate-cache ./build/deploy
+and
+bitbake mbpoll
+
+i am trying to search for a package
+
+ivr@home-machine:~/work/yocto_orig/build
+$ find . -name 'mbpoll*.ipk'
+./tmp/work/cortexa7t2hf-neon-vfpv4-phytec-linux-gnueabi/mbpoll/1.4.11-r0/deploy-ipks/cortexa7t2hf-neon-vfpv4/mbpoll-dev_1.4.11-r0_cortexa7t2hf-neon-vfpv4.ipk
+./tmp/work/cortexa7t2hf-neon-vfpv4-phytec-linux-gnueabi/mbpoll/1.4.11-r0/deploy-ipks/cortexa7t2hf-neon-vfpv4/mbpoll-dbg_1.4.11-r0_cortexa7t2hf-neon-vfpv4.ipk
+./deploy/ipk/cortexa7t2hf-neon-vfpv4/mbpoll-dev_1.4.11-r0_cortexa7t2hf-neon-vfpv4.ipk
+./deploy/ipk/cortexa7t2hf-neon-vfpv4/mbpoll-dbg_1.4.11-r0_cortexa7t2hf-neon-vfpv4.ipk
+
+but i have only debug and dev packages, not simple mbpoll_version.ipk
+
+i try to run:
+bitbake -c clean mbpoll --force
+and
+bitbake mbpoll --force
+but the task is done in a 1 second and
+
+$ find . -name 'mbpoll*.ipk'
+./tmp/work/cortexa7t2hf-neon-vfpv4-phytec-linux-gnueabi/mbpoll/1.4.11-r0/deploy-ipks/cortexa7t2hf-neon-vfpv4/mbpoll-dev_1.4.11-r0_cortexa7t2hf-neon-vfpv4.ipk
+./tmp/work/cortexa7t2hf-neon-vfpv4-phytec-linux-gnueabi/mbpoll/1.4.11-r0/deploy-ipks/cortexa7t2hf-neon-vfpv4/mbpoll-dbg_1.4.11-r0_cortexa7t2hf-neon-vfpv4.ipk
+./deploy/ipk/cortexa7t2hf-neon-vfpv4/mbpoll-dev_1.4.11-r0_cortexa7t2hf-neon-vfpv4.ipk
+./deploy/ipk/cortexa7t2hf-neon-vfpv4/mbpoll-dbg_1.4.11-r0_cortexa7t2hf-neon-vfpv4.ipk
+
+found nothing
+
+please tell me what am I doing wrong? Maybe I created the layer incorrectly?
