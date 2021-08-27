@@ -1,85 +1,121 @@
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
- by mx.groups.io with SMTP id smtpd.web11.5952.1630057474725098265
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+ by mx.groups.io with SMTP id smtpd.web11.6385.1630061044450840854
  for <yocto@lists.yoctoproject.org>;
- Fri, 27 Aug 2021 02:44:35 -0700
+ Fri, 27 Aug 2021 03:44:05 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@theyoctojester-info.20150623.gappssmtp.com header.s=20150623 header.b=EH8v/sP7;
- spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.128.54, mailfrom: jester@theyoctojester.info)
-Received: by mail-wm1-f54.google.com with SMTP id j17-20020a05600c1c1100b002e754875260so3900961wms.4
-        for <yocto@lists.yoctoproject.org>; Fri, 27 Aug 2021 02:44:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=theyoctojester-info.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-transfer-encoding;
-        bh=6A5cvVffLJcCzklp+387yRJ2zVtdnQD5ArFU0N43828=;
-        b=EH8v/sP7TPkfkahgl1e+6uqy5p/t0JddbZjzxBCvVNyP3bgxHVT48XVp9FlEomMIOp
-         6M8HtO/z1bJ/tEGzpiyuQWV+5xsvdwAyBrLCH0VUkMTEirRACZyfIddBQaRZQkCoqZZ0
-         BwelfeTi+DA19OGunk4HQTMpGKnidolvIHtC5I3hBufayyt9bBp2IomwOLHIq9Y9BnTS
-         jVXw+3eQdj0c2YXfKxlsRFd7tOHmasAaYj0QCRQkISCN5LLHZcEoM2zJKBYvNs9/A7wW
-         lpmALEoCASRJNtIwfNt+PPIfurN26iGVvA+xpwgFpkdJbwcNVt38jC9pFIJaZoFDEZQ4
-         4RSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding;
-        bh=6A5cvVffLJcCzklp+387yRJ2zVtdnQD5ArFU0N43828=;
-        b=f3DqJsheouYpn5Fk12AAgDzxA9jSJhOLLJ8yujiB/DGli/hDOOzSDFS8gsfDsaJI4l
-         nNXFSmunOGeflAx2abD/Z3PjD6x6bSl4cwPPXq72Uo3glJeMR54nzCso9ehK9QEv5xOG
-         THdGSRLub0xjwspcaG6LVGNHMSU8zKgJNyvSp/n4h0i0rJh3y7zXmEyDab5dctGXqWs3
-         Ox2USvhw8jtPyWphXecZ/BFJTLy7YkBik9Ckk7lEj6js0oDT6AEInK17+Cx2odHDfoHl
-         2k7dO/42XVfj35Us1grJrcRs8RIu1FakfmwUsXhEseTzzCmq/dx//hpqgrt4L6f8sn6q
-         6ASQ==
-X-Gm-Message-State: AOAM532WOHMZVZP/OB2sce6xMZ52/2qO2CxyKBtF5V8s4nF065vuZfr8
-	U9xGhIulNrAqhnmgPZQ1Leted9RHk9iBX4yV
-X-Google-Smtp-Source: ABdhPJz+WOuFnUznM7nFCaQptPWSbXXlr8vk5y47GE6sUR9LPqtzEgBa0z7C/mGTDWfbjFQWHSqqyA==
-X-Received: by 2002:a1c:40c:: with SMTP id 12mr18443987wme.158.1630057473074;
-        Fri, 27 Aug 2021 02:44:33 -0700 (PDT)
-Return-Path: <jester@theyoctojester.info>
-Received: from [172.16.3.179] (p50933415.dip0.t-ipconnect.de. [80.147.52.21])
-        by smtp.gmail.com with ESMTPSA id p11sm5284207wma.16.2021.08.27.02.44.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Aug 2021 02:44:32 -0700 (PDT)
-Subject: Re: [yocto] building mbpoll
-To: Ivan Riabtsov <ivriabtsov@gmail.com>, yocto@lists.yoctoproject.org
-References: <CAKAnv4HzhLS+X1Ld9EOCVDaSR4G25i6v7sou0h2=g2p_60SE-w@mail.gmail.com>
- <e4035b54-f2e2-d50d-a56a-dec61d8264fe@theyoctojester.info>
- <CAKAnv4HxRVZDwAgF4Umf7MQATc_MPWOBuHZbe01A96DnjbeV6g@mail.gmail.com>
-From: "Josef Holzmayr" <jester@theyoctojester.info>
-Message-ID: <2cd3cc61-158d-8f4d-433c-c86fb11a36f4@theyoctojester.info>
-Date: Fri, 27 Aug 2021 11:44:31 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+ dkim=pass header.i=@denx.de header.s=phobos-20191101 header.b=MO8Lu0A0;
+ spf=pass (domain: denx.de, ip: 85.214.62.61, mailfrom: lukma@denx.de)
+Received: from ktm (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: lukma@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 5E1BD8326B;
+	Fri, 27 Aug 2021 12:43:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1630061036;
+	bh=1W2UmkdsLWDSj1tWnSMH5x7cBCbTx+lG6aFTKMo+40A=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=MO8Lu0A0BZ7TUDWeWpgJemO9dsnyVcr8vHEuYdZJlLNZ+FKRhTrZ86Jqb7e01ZfSI
+	 35UiqB6kFrS8Y9ET/3kmqZ0dX2RByJhXx88cSCnkOD5M/JNkVIOdBow8NnazTalfge
+	 VnpUsLHKPsx+cJGN/XxsIEcWUzXalXolgq7eFU5tC1t07m9ObHJezdZ4gWxOLIk0uF
+	 sGMH1dQwzqG17cpInLVLyu4PWinRv/1EO3LK28PeiOrnt3icIsmbLfsvCZeSqgvQNr
+	 5GznVPqtslp1owzYfW9xGHK7YvaUPJpBhzsppiD/LCm+OrPz3zxaL2D3VL5CT8VXGY
+	 3KCjkABzWQJqw==
+Date: Fri, 27 Aug 2021 12:43:50 +0200
+From: "?ukasz Majewski" <lukma@denx.de>
+To: Anibal Limon <anibal.limon@linaro.org>
+Cc: yocto@lists.yoctoproject.org, Adrian Freihofer
+ <adrian.freihofer@siemens.com>
+Subject: Re: [PATCH v2 ptest-runner 2/2] main: Do not return number of failed tests when calling ptest-runner
+Message-ID: <20210827124350.71c00d33@ktm>
+In-Reply-To: <20210817123812.18075-2-lukma@denx.de>
+References: <20210817123812.18075-1-lukma@denx.de>
+	<20210817123812.18075-2-lukma@denx.de>
+Organization: denx.de
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <CAKAnv4HxRVZDwAgF4Umf7MQATc_MPWOBuHZbe01A96DnjbeV6g@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
+X-Virus-Status: Clean
+X-Groupsio-MsgNum: 54579
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ boundary="Sig_//2Dyv7m7.wDI8uBY1P2a=f9"; protocol="application/pgp-signature"
 
-(re-adding list)
+--Sig_//2Dyv7m7.wDI8uBY1P2a=f9
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Am 27.08.2021 um 11:17 schrieb Ivan Riabtsov:
-> maybe mbpoll is not cloned? I found the custom-rts.c file on the
-> mbpoll website and try to search for it in the build directory, but I
-> can't find anything
-> 
-> my mbpoll_1.4.11.bb file:
-> 
-> SUMMARY = "bitbake-layers recipe"
-> DESCRIPTION = "mbpoll recipe"
-> LICENSE = "CLOSED"
-> 
-> SRC_URI = "git://github.com/epsilonrt/mbpoll"
-> SRCREV = "2bf602817370000e69221eb50c4ece813d10c0b4"
-> 
-> DEPENDS = "libmodbus"
-> 
-> S = "${WORKDIR}/git"
-> 
-> inherit pkgconfig cmake
-> 
+Hi Anibal,
 
-again, any particular reason why you're poking the recipe by hand 
-instead of just using devtool (which perfectly works in this case)? it 
-would even give you a good start on the licenses, as well as not having 
-missed the inherits.
+> Up till now ptest-runner2 returns number of failed tests with its
+> exit status code. Such use case is not recommended [1] and may cause
+> issues when there are more than 256 tests to be executed.
+>=20
+> To alleviate this issue the number of total tests with number of
+> failed ones is printed before exit. To be more specific - failure of
+> tests (one or more) causes ptest-runner to provide exit code of 1.
+>=20
+> One can test this change with executing:
+> ./ptest-runner -d tests/data fail
 
-Greetz
+Gentle ping on this patch.
+
+>=20
+> Links:
+> [1] -
+> https://www.gnu.org/software/libc/manual/html_node/Exit-Status.html
+>=20
+> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+> ---
+> Changes for v2:
+> - When number of failed tests is N, the ptest-runner returns value of
+> 1 to indicate error in the execution
+> ---
+>  main.c | 3 +++
+>  1 file changed, 3 insertions(+)
+>=20
+> diff --git a/main.c b/main.c
+> index 890bc6a..bcec844 100644
+> --- a/main.c
+> +++ b/main.c
+> @@ -220,6 +220,9 @@ main(int argc, char *argv[])
+>  		ptest_list_remove(run, opts.exclude[i], 1);
+> =20
+>  	rc =3D run_ptests(run, opts, argv[0], stdout, stderr);
+> +	fprintf(stdout, "TOTAL: %d FAIL: %d\n",
+> ptest_list_length(run), rc);
+> +	if (rc > 0)
+> +		rc =3D 1;
+> =20
+>  	ptest_list_free_all(&run);
+> =20
+
+
+
+
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_//2Dyv7m7.wDI8uBY1P2a=f9
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmEoweYACgkQAR8vZIA0
+zr0QRAgAqdgM8jQIEtM3/TyNkkVvkjqOYazz2XBIIO4fmTon3kzYswuaQZ3dvEl7
+mHJfRhMkuhmK+n/2sJjVGpI/T4Brf8tO24tuls+9rKxBrWkFqhhxct6s2F+lyFJy
+PhYqL/3wMHKHoMPqcHPNzAEIcVDK15fakWm0skbGVi1iwTorPKiYUIaw33H18ytB
+pPSZbXlURTaDgp3kVMk/cNYidsxoPLGwvP2SBlm0KwRMrctcOp0A0LJoqDcJbpRB
+zReahcoKjPxifNDj06q9g4p0nL8gs5h7vORBIWlO5oVsS0G03vkZuzU6S7f2LmSg
+i9VpEZxxLbS46VVyJoRTPRHMQCvtEQ==
+=nCx+
+-----END PGP SIGNATURE-----
+
+--Sig_//2Dyv7m7.wDI8uBY1P2a=f9--
