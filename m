@@ -1,104 +1,157 @@
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
- by mx.groups.io with SMTP id smtpd.web11.3699.1630158412765267308
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+ by mx.groups.io with SMTP id smtpd.web12.1398.1630224256196837397
  for <yocto@lists.yoctoproject.org>;
- Sat, 28 Aug 2021 06:46:52 -0700
+ Sun, 29 Aug 2021 01:04:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=U4kkMdNQ;
- spf=pass (domain: gmail.com, ip: 209.85.214.176, mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f176.google.com with SMTP id n12so5852209plk.10
-        for <yocto@lists.yoctoproject.org>; Sat, 28 Aug 2021 06:46:52 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=jVEOm2U3;
+ spf=pass (domain: gmail.com, ip: 209.85.208.44, mailfrom: martin.jansa@gmail.com)
+Received: by mail-ed1-f44.google.com with SMTP id eb14so7429765edb.8
+        for <yocto@lists.yoctoproject.org>; Sun, 29 Aug 2021 01:04:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-transfer-encoding:content-language;
-        bh=sbyhxoLuZTmi+NzcYajlIJSFhjdtXplBtdImxIcmD30=;
-        b=U4kkMdNQF3ZaOG6mEuz66SpC31jFH4wIUkuDBVW8w/x7b4gdDqgkn2b8oZmP2KTaGN
-         nL2Xho/iaErU3FcFxyPT6BK7q+REAa2VFtGr1WV/YgLIDKLgvfScSPkuG2Hw4U1aQWYn
-         4EpEMnJM2wcfvNSPNZVREMM9XKgJf/G3xypHd6d+twnemxH/IJ5ewjXHbWGVCVx2H+5O
-         +xSf8vt1QMOlZDwIljxI7xSdyK1zLUQ8mupev0rgFka9OFU3Ryua/yzsJwEWNGyvnsvd
-         8Mj0i+W7WYnYPnzJC3w2TgT8iQaVFWrbffIi2JLf0Be4dhRXxRlTH6psz5OsiuU5KQvH
-         VX0A==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AKUBs3SwO3LMtI8KQqWjJWKm1IZurc3BstUzPMQx+bc=;
+        b=jVEOm2U363i4MEfCnZy0Gy0DmEL8Mlq235dwlnl63/F6dCu8jNq3fsu2BetM/YiG06
+         HiyqdPo0flCXSRuKjgEli7gZtOEmuUyNRQJSSO3ogkVHV4D1BiFybdlX7sFEw12dB2VA
+         7PCpD6bZlUjjpHs2CJQRTOUOr4meMb41OOHL2Z9PN4O9guG1Hs24zGzLpAttfng5TFhn
+         vDnWVm/syMU4JWpzMzqwC/FqO6/twbE8KOmYXc2FBsKqjOvZblkbfAJ4R4pFotrYgs5s
+         3+8fyAEkPbRbQANgTeh2oj7I0xpj0n1QvMele+kQd77IMQ3kYcabQKA84jRQBmr35sGP
+         vsQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=sbyhxoLuZTmi+NzcYajlIJSFhjdtXplBtdImxIcmD30=;
-        b=LU9rJB1cofE72lh4//usi/pjmLyNNvY9VbD3Btgw5AG5J8XXE0l1wbCR8dLTI4Vbc9
-         ucIMZbg/MEb4r1o64tJKOkVvLJVIYMVDky0wVaDVfv46eU/P+YHleCSsfi9l7gu0YRKp
-         1z/T0TTXFskr5rvKgH+YU2Ou/J9L3hgoEjisWvep+hwrTfTlond7E/bXfS4NffEG/8+S
-         +cNWDeYvuUOmpwWqoH6yO11OuYcf4YrGG7eFio7XByewH2qI7FdMvlXCv7M3ZB3/zkX7
-         h2GtVpvXqHK49zNLV9j6oDgAFMTB75/9CgQnsJ89lrlXtnM71OSmrbbfvdFSSK9gKx9C
-         hgYw==
-X-Gm-Message-State: AOAM530yQ8sw5Esw4aVQS4nBKQe4Q4pxIniikHFhC/n0fiZPUDUi/ccU
-	cjtxHUAgpwStVCzswH0SNDpx5JLW9ME=
-X-Google-Smtp-Source: ABdhPJyLKjLZaj+XI86I0h1w8qO8OOwaF0grGmuvG4MyVdQVOjl0UuwcBIqq4Bez6RXBbeas3ukj3Q==
-X-Received: by 2002:a17:90a:b016:: with SMTP id x22mr28841685pjq.205.1630158412182;
-        Sat, 28 Aug 2021 06:46:52 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
-Received: from ?IPv6:2601:202:4180:a5c0:b66e:f798:4f1:7aab? ([2601:202:4180:a5c0:b66e:f798:4f1:7aab])
-        by smtp.gmail.com with ESMTPSA id a20sm15263579pjh.46.2021.08.28.06.46.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 28 Aug 2021 06:46:51 -0700 (PDT)
-Subject: Re: [meta-tpm][PATCH v2] README: fix mailing lists and a typo
-To: Marta Rybczynska <rybczynska@gmail.com>, yocto@lists.yoctoproject.org
-References: <20210825132543.24390-1-rybczynska@gmail.com>
-From: "Armin Kuster" <akuster808@gmail.com>
-Message-ID: <fa89bd7b-67df-3bff-9e3d-8f16078ce499@gmail.com>
-Date: Sat, 28 Aug 2021 06:46:50 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AKUBs3SwO3LMtI8KQqWjJWKm1IZurc3BstUzPMQx+bc=;
+        b=Z5krcPjsoNM9P6156bYTgKAMIbWZ+rdHm0sNiJ95L/tptYLMBzA/WbwYqqSu1KccrV
+         ouahyiPyBkZYQU3ddgpqDPuvCIwO8sOutzRGfp3D8qF6gUfUYh0WjIvl0dzfhNXbDCWF
+         wSy39A/FFr4g95Il9DZ4uS9FSqMLwIno0ZlDciTz9kEaqaaSMZwbDqjNMtWYnoaJqdLd
+         Ol3JOi4O2i6gWTCeGx6Ju34HoTqfieIrxEJ5D/00SV4ou8oGh9DWv9q05XgntasZzIKk
+         0sLso5JvbqaWWMOUcOonHXF4U0TfPo+hg0oYnqGaBsf6g+j5VQiGcPbfFeR2OM3m7G9R
+         MuKQ==
+X-Gm-Message-State: AOAM530TGuO1gJKQ6BhLxm7fS8r2BeiRwAWQSV9cWLiBZYozCFRs+qYV
+	J+A8jmxSscqcVuKKpz0B7MvINQnI5APrlrWlvEs=
+X-Google-Smtp-Source: ABdhPJx1reIvoNPm+sofTPHCoUi0rDAJlW3vpy0R5osGIZdkE9DNq9mOkrX7n8KKJ7AUmKlLmgHVNCGrGCSui4ozE0k=
+X-Received: by 2002:a05:6402:2925:: with SMTP id ee37mr18626777edb.264.1630224254307;
+ Sun, 29 Aug 2021 01:04:14 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210825132543.24390-1-rybczynska@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+References: <20210802090220.10668-1-liuxiwei@inspur.com> <1698168669EBF7A3.25094@lists.yoctoproject.org>
+In-Reply-To: <1698168669EBF7A3.25094@lists.yoctoproject.org>
+From: "Martin Jansa" <Martin.Jansa@gmail.com>
+Date: Sun, 29 Aug 2021 10:04:03 +0200
+Message-ID: <CA+chaQdxbJBpw9m7NZZ+FJR4Ysg9_n_StUgg+qoqtYe7K8SCgg@mail.gmail.com>
+Subject: Re: [yocto] [oe][meta-security][PATCH] meta: Fix typos
+To: Martin Jansa <Martin.Jansa@gmail.com>
+Cc: George Liu <liuxiwei1013@gmail.com>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	openembedded-devel <openembedded-devel@lists.openembedded.org>, 
+	akuster808 <akuster808@gmail.com>, sergio.prado@toradex.com, 
+	George Liu <liuxiwei@inspur.com>
+Content-Type: multipart/alternative; boundary="00000000000095103205caae29b5"
 
-merged
-thanks
+--00000000000095103205caae29b5
+Content-Type: text/plain; charset="UTF-8"
 
-On 8/25/21 6:25 AM, Marta Rybczynska wrote:
-> A number of typo fixes:
-> - tmp->tpm in the DISTRO_FEATURES
-> - update the mailing list address as it was out of date
-> - update the distro name in the subject
+Please merge this one.
+
+On Wed, Aug 4, 2021 at 1:20 PM Martin Jansa via lists.yoctoproject.org
+<Martin.Jansa=gmail.com@lists.yoctoproject.org> wrote:
+
+> Acked-by: Martin Jansa <Martin.Jansa@gmail.com>
 >
-> Signed-off-by: Marta Rybczynska <rybczynska@gmail.com>
-> ---
->  meta-tpm/README | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
+> On Mon, Aug 2, 2021 at 11:02 AM George Liu <liuxiwei1013@gmail.com> wrote:
 >
-> diff --git a/meta-tpm/README b/meta-tpm/README
-> index 4441dd2..2b32a9f 100644
-> --- a/meta-tpm/README
-> +++ b/meta-tpm/README
-> @@ -5,7 +5,7 @@ The bbappend files for some recipes (e.g. linux-yocto) in this layer need
->  to have 'tpm' in DISTRO_FEATURES to have effect.
->  To enable them, add in configuration file the following line.
->  
-> -  DISTRO_FEATURES:append = " tmp"
-> +  DISTRO_FEATURES:append = " tpm"
->  
->  If meta-tpm is included, but tpm is not enabled as a
->  distro feature a warning is printed at parse time:
-> @@ -57,15 +57,15 @@ other layers needed. e.g.:
->  Maintenance
->  -----------
->  
-> -Send pull requests, patches, comments or questions to yocto@yoctoproject.org
-> +Send pull requests, patches, comments or questions to yocto@lists.yoctoproject.org
->  
->  When sending single patches, please using something like:
-> -'git send-email -1 --to yocto@yoctoproject.org --subject-prefix=meta-security][PATCH'
-> +'git send-email -1 --to yocto@lists.yoctoproject.org --subject-prefix=meta-tpm][PATCH'
->  
->  These values can be set as defaults for this repository:
->  
-> -$ git config sendemail.to yocto@yoctoproject.org
-> -$ git config format.subjectPrefix meta-security][PATCH
-> +$ git config sendemail.to yocto@lists.yoctoproject.org
-> +$ git config format.subjectPrefix meta-tpm][PATCH
->  
->  Now you can just do 'git send-email origin/master' to send all local patches.
->  
+>> Fix the variable spelling errors
+>> s/SKIP_META_SECUIRTY_SANITY_CHECK/SKIP_META_SECURITY_SANITY_CHECK
+>>
+>> Signed-off-by: George Liu <liuxiwei@inspur.com>
+>> ---
+>>  classes/sanity-meta-security.bbclass | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/classes/sanity-meta-security.bbclass
+>> b/classes/sanity-meta-security.bbclass
+>> index b6c6b9c..f9e2698 100644
+>> --- a/classes/sanity-meta-security.bbclass
+>> +++ b/classes/sanity-meta-security.bbclass
+>> @@ -1,7 +1,7 @@
+>>  addhandler security_bbappend_distrocheck
+>>  security_bbappend_distrocheck[eventmask] = "bb.event.SanityCheck"
+>>  python security_bbappend_distrocheck() {
+>> -    skip_check = e.data.getVar('SKIP_META_SECUIRTY_SANITY_CHECK') == "1"
+>> +    skip_check = e.data.getVar('SKIP_META_SECURITY_SANITY_CHECK') == "1"
+>>      if 'security' not in e.data.getVar('DISTRO_FEATURES').split() and
+>> not skip_check:
+>>          bb.warn("You have included the meta-security layer, but \
+>>  'security' has not been enabled in your DISTRO_FEATURES. Some bbappend
+>> files \
+>> --
+>> 2.30.2
+>>
+>>
+>>
+>>
+>>
+> 
+>
+>
 
+--00000000000095103205caae29b5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Please merge this one.</div><br><div class=3D"gmail_quote"=
+><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Aug 4, 2021 at 1:20 PM Marti=
+n Jansa via <a href=3D"http://lists.yoctoproject.org">lists.yoctoproject.or=
+g</a> &lt;Martin.Jansa=3D<a href=3D"mailto:gmail.com@lists.yoctoproject.org=
+">gmail.com@lists.yoctoproject.org</a>&gt; wrote:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Acked-by:=C2=A0Martin Ja=
+nsa &lt;<a href=3D"mailto:Martin.Jansa@gmail.com" target=3D"_blank">Martin.=
+Jansa@gmail.com</a>&gt;</div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
+" class=3D"gmail_attr">On Mon, Aug 2, 2021 at 11:02 AM George Liu &lt;<a hr=
+ef=3D"mailto:liuxiwei1013@gmail.com" target=3D"_blank">liuxiwei1013@gmail.c=
+om</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
+">Fix the variable spelling errors<br>
+s/SKIP_META_SECUIRTY_SANITY_CHECK/SKIP_META_SECURITY_SANITY_CHECK<br>
+<br>
+Signed-off-by: George Liu &lt;<a href=3D"mailto:liuxiwei@inspur.com" target=
+=3D"_blank">liuxiwei@inspur.com</a>&gt;<br>
+---<br>
+=C2=A0classes/sanity-meta-security.bbclass | 2 +-<br>
+=C2=A01 file changed, 1 insertion(+), 1 deletion(-)<br>
+<br>
+diff --git a/classes/sanity-meta-security.bbclass b/classes/sanity-meta-sec=
+urity.bbclass<br>
+index b6c6b9c..f9e2698 100644<br>
+--- a/classes/sanity-meta-security.bbclass<br>
++++ b/classes/sanity-meta-security.bbclass<br>
+@@ -1,7 +1,7 @@<br>
+=C2=A0addhandler security_bbappend_distrocheck<br>
+=C2=A0security_bbappend_distrocheck[eventmask] =3D &quot;bb.event.SanityChe=
+ck&quot;<br>
+=C2=A0python security_bbappend_distrocheck() {<br>
+-=C2=A0 =C2=A0 skip_check =3D e.data.getVar(&#39;SKIP_META_SECUIRTY_SANITY_=
+CHECK&#39;) =3D=3D &quot;1&quot;<br>
++=C2=A0 =C2=A0 skip_check =3D e.data.getVar(&#39;SKIP_META_SECURITY_SANITY_=
+CHECK&#39;) =3D=3D &quot;1&quot;<br>
+=C2=A0 =C2=A0 =C2=A0if &#39;security&#39; not in e.data.getVar(&#39;DISTRO_=
+FEATURES&#39;).split() and not skip_check:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0bb.warn(&quot;You have included the meta-=
+security layer, but \<br>
+=C2=A0&#39;security&#39; has not been enabled in your DISTRO_FEATURES. Some=
+ bbappend files \<br>
+-- <br>
+2.30.2<br>
+<br>
+<br>
+<br>
+<br>
+</blockquote></div>
+<br>
+<br>
+<br>
+</blockquote></div>
+
+--00000000000095103205caae29b5--
