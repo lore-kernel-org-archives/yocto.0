@@ -1,88 +1,602 @@
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
- by mx.groups.io with SMTP id smtpd.web12.3930.1630246437715423805
- for <yocto@lists.yoctoproject.org>;
- Sun, 29 Aug 2021 07:13:58 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=JEWakcw/;
- spf=pass (domain: gmail.com, ip: 209.85.221.53, mailfrom: robert.berger.yocto.user@gmail.com)
-Received: by mail-wr1-f53.google.com with SMTP id x6so10160026wrv.13
-        for <yocto@lists.yoctoproject.org>; Sun, 29 Aug 2021 07:13:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=n3NwE6KHxqETsTIrW4CxGTP6N46ST69B6BtwJklaipw=;
-        b=JEWakcw/8xWOCJ2l5enKzdvUQPlvpXFbq0Ij4Pps9wuP3OTa3Zulusl3YzltJnmbJa
-         AD6LzoGF8aXc9PUY/msbLXTEpXne6myGz6xaFtTNTSxvlqUQQx75jKMkps3XX3fxyRWu
-         racRxQRSuxgPXoHI88pkZBbgoofl6rwfqL0zwTYLoeVpZDIwtq2d+bYqTOR33pxnn5pp
-         sWqz2ZM8YtgL5UU6UtGiCV/2zKjR47rUI1elxUlGKFZ6WWLZsAF/Jk/uNg49CVME6BBW
-         WDofaVGWBg+8UzjwICA/uh2ckxQU48in9D9wFMkk7BVe4AMJ7fmUf9mETl5zal1Qm1jq
-         0QUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=n3NwE6KHxqETsTIrW4CxGTP6N46ST69B6BtwJklaipw=;
-        b=GRtPJfX4smjfg0Jnz8CP10sVYc2MMZ6yohG23k5xpgfc6PCn0xXuiFp3qv/qtRzllq
-         c3YTBamab6r6428J1/EqNYiX3ZK6nKOtauC2Sr2E0GZEkJA/KTO73fmGPkm/JCDN7aJN
-         xYC9HiTpPkD8elKW4FtW017MosfB/WaV9ho2kon2R7LY7DlLda/Rv9/kbGHd+B20S6Ed
-         +esQ4uQuk3FX885aVY2Hjqs86OQa+wno8VXOKIYMrOsnlOVn9VrVc30imDvbm2BJzTIX
-         lekbq9iJ0thutHyTPogT6Sxp0/qdpTYkhzSKe++G0AXS3FbvwnSrEqHmX3YwgyYSIfJm
-         Wvzw==
-X-Gm-Message-State: AOAM531wPmCRtMG/PISb/q76+R31pMwePKa5tWm66IJJ5vlexQW6MyGg
-	n8ERCeGLAAnE2U68wdSTCYyGDyGogRc=
-X-Google-Smtp-Source: ABdhPJxocbkm5W5/dctbOeXDGQ0Fu+6oYmjrVjJQ1GOBLVAl7PPr6gIRtIG8hQdJV3qIQ+yxgQYWpA==
-X-Received: by 2002:adf:fc4f:: with SMTP id e15mr20758188wrs.95.1630246436094;
-        Sun, 29 Aug 2021 07:13:56 -0700 (PDT)
-Return-Path: <robert.berger.yocto.user@gmail.com>
-Received: from [192.168.42.52] (ppp-94-66-232-217.home.otenet.gr. [94.66.232.217])
-        by smtp.gmail.com with ESMTPSA id e2sm14101109wrq.56.2021.08.29.07.13.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 Aug 2021 07:13:55 -0700 (PDT)
-Subject: Re: [yocto] Pyinstaller error in yocto #yocto
-To: yasminebenghozzi6@gmail.com, yocto@lists.yoctoproject.org
-References: <UnCS.1630234103126913538.1OOj@lists.yoctoproject.org>
-From: "Robert Berger" <robert.berger.yocto.user@gmail.com>
-Message-ID: <f5593fe5-e0f5-fdee-7386-aa273b3c2edd@gmail.com>
-Date: Sun, 29 Aug 2021 17:13:52 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Subject: kcrash package compile issue
+To: yocto@lists.yoctoproject.org
+From: "sateesh m" <sateesh0457@gmail.com>
+X-Originating-Location: Hyderabad, Telangana, IN (106.208.117.10)
+X-Originating-Platform: Linux Chrome 91
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <UnCS.1630234103126913538.1OOj@lists.yoctoproject.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Date: Sun, 29 Aug 2021 21:10:07 -0700
+Message-ID: <SB2h.1630296607398460920.bP2t@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="RvHkb16aBTt3Z8hcECSG"
 
-Hi,
+--RvHkb16aBTt3Z8hcECSG
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Please don't use screen shots, but pastebin instead. I already mentioned 
-this on fb.
+Hi Team,
 
-My comments are inline.
+I am trying to build kcrash package. I got below error.Can anybody know how=
+ to fix this please guide me.
 
-On 29/08/2021 13:48, yasminebenghozzi6@gmail.com wrote:
-> Hello,
-> I successfully installed pyinstaller in my yocto image , but while 
-> executing the command it doesn't work
+ERROR: kcrash-5.85.0-r0 do_configure: Execution of '/home/yocto/sources/fu5=
+40-build/tmp-glibc/work/riscv64-oe-linux/kcrash/5.85.0-r0/temp/run.do_confi=
+gure.12650' failed with exit code 1:
 
-It misses ldd.
+-- The C compiler identification is GNU 10.2.0
 
-It's here:
+-- The CXX compiler identification is GNU 10.2.0
 
-https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-core/glibc/glibc-package.inc
+-- Detecting C compiler ABI info
 
-You might want to try something like:
+-- Detecting C compiler ABI info - done
 
-IMAGE_INSTALL += "ldd"
+-- Check for working C compiler: /home/yocto/sources/fu540-build/tmp-glibc/=
+work/riscv64-oe-linux/kcrash/5.85.0-r0/recipe-sysroot-native/usr/bin/riscv6=
+4-oe-linux/riscv64-oe-linux-gcc - skipped
 
+-- Detecting C compile features
+
+-- Detecting C compile features - done
+
+-- Detecting CXX compiler ABI info
+
+-- Detecting CXX compiler ABI info - done
+
+-- Check for working CXX compiler: /home/yocto/sources/fu540-build/tmp-glib=
+c/work/riscv64-oe-linux/kcrash/5.85.0-r0/recipe-sysroot-native/usr/bin/risc=
+v64-oe-linux/riscv64-oe-linux-g++ - skipped
+
+-- Detecting CXX compile features
+
+-- Detecting CXX compile features - done
+
+--
+
+Installing in /usr. Run /home/yocto/sources/fu540-build/tmp-glibc/work/risc=
+v64-oe-linux/kcrash/5.85.0-r0/build/prefix.sh to set the environment for KC=
+rash.
+
+-- Looking for __GLIBC__
+
+-- Looking for __GLIBC__ - found
+
+-- Performing Test _OFFT_IS_64BIT
+
+-- Performing Test _OFFT_IS_64BIT - Success
+
+-- Performing Test HAVE_DATE_TIME
+
+-- Performing Test HAVE_DATE_TIME - Success
+
+-- Performing Test BSYMBOLICFUNCTIONS_AVAILABLE
+
+-- Performing Test BSYMBOLICFUNCTIONS_AVAILABLE - Success
+
+fatal: not a git repository (or any of the parent directories): .git
+
+-- Found X11: /home/yocto/sources/fu540-build/tmp-glibc/work/riscv64-oe-lin=
+ux/kcrash/5.85.0-r0/recipe-sysroot/usr/include
+
+-- Looking for XOpenDisplay in /home/yocto/sources/fu540-build/tmp-glibc/wo=
+rk/riscv64-oe-linux/kcrash/5.85.0-r0/recipe-sysroot/usr/lib/libX11.so;/home=
+/sateesh/yocto/sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/kcrash/5=
+.85.0-r0/recipe-sysroot/usr/lib/libXext.so
+
+-- Looking for XOpenDisplay in /home/yocto/sources/fu540-build/tmp-glibc/wo=
+rk/riscv64-oe-linux/kcrash/5.85.0-r0/recipe-sysroot/usr/lib/libX11.so;/home=
+/sateesh/yocto/sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/kcrash/5=
+.85.0-r0/recipe-sysroot/usr/lib/libXext.so - found
+
+-- Looking for gethostbyname
+
+-- Looking for gethostbyname - found
+
+-- Looking for connect
+
+-- Looking for connect - found
+
+-- Looking for remove
+
+-- Looking for remove - found
+
+-- Looking for shmat
+
+-- Looking for shmat - found
+
+-- Looking for IceConnectionNumber in ICE
+
+-- Looking for IceConnectionNumber in ICE - found
+
+-- Performing Test COMPILER_HAS_HIDDEN_VISIBILITY
+
+-- Performing Test COMPILER_HAS_HIDDEN_VISIBILITY - Success
+
+-- Performing Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY
+
+-- Performing Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY - Success
+
+-- Performing Test COMPILER_HAS_DEPRECATED_ATTR
+
+-- Performing Test COMPILER_HAS_DEPRECATED_ATTR - Success
+
+-- The following features have been enabled:
+
+* Core Pattern Raising, Raising signals to kernel core patterns (iff the pa=
+ttern is a process). You may wish to not install drkonqi if this can cause =
+a UI conflict.
+
+-- The following OPTIONAL packages have been found:
+
+* X11
+
+-- The following REQUIRED packages have been found:
+
+* ECM (required version >=3D 5.85.0), Extra CMake Modules., <https://commit=
+s.kde.org/extra-cmake-modules>
+
+* Qt5 (required version >=3D 5.15.0)
+
+* Qt5Core (required version >=3D 5.15.0)
+
+* KF5CoreAddons (required version >=3D 5.85.0)
+
+* Qt5Gui (required version >=3D 5.15.0)
+
+* KF5WindowSystem (required version >=3D 5.85.0)
+
+* Qt5X11Extras (required version >=3D 5.15.0)
+
+-- The following features have been disabled:
+
+* QCH, API documentation in QCH format (for e.g. Qt Assistant, Qt Creator &=
+ KDevelop)
+
+-- Configuring done
+
+CMake Error in src/CMakeLists.txt:
+
+Imported target "KF5::WindowSystem" includes non-existent path
+
+"/home/yocto/sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/kwindowsys=
+tem/5.85.0-r0/recipe-sysroot/usr/include"
+
+in its INTERFACE_INCLUDE_DIRECTORIES. Possible reasons include:
+
+* The path was deleted, renamed, or moved to another location.
+
+* An install or uninstall procedure did not complete successfully.
+
+* The installation package was faulty and references files it does not
+
+provide.
+
+CMake Error in src/CMakeLists.txt:
+
+Imported target "KF5::WindowSystem" includes non-existent path
+
+"/home/yocto/sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/kwindowsys=
+tem/5.85.0-r0/recipe-sysroot/usr/include"
+
+in its INTERFACE_INCLUDE_DIRECTORIES. Possible reasons include:
+
+* The path was deleted, renamed, or moved to another location.
+
+* An install or uninstall procedure did not complete successfully.
+
+* The installation package was faulty and references files it does not
+
+provide.
+
+-- Generating done
+
+CMake Warning:
+
+Manually-specified variables were not used by the project:
+
+BUILD_DESIGNERPLUGIN
+
+LIB_SUFFIX
+
+OE_KF5_PATH_HOST_ROOT
+
+OE_QMAKE_PATH_ARCHDATA
+
+OE_QMAKE_PATH_BINS
+
+OE_QMAKE_PATH_DATA
+
+OE_QMAKE_PATH_DOCS
+
+OE_QMAKE_PATH_EXAMPLES
+
+OE_QMAKE_PATH_HEADERS
+
+OE_QMAKE_PATH_HOST_BINS
+
+OE_QMAKE_PATH_HOST_DATA
+
+OE_QMAKE_PATH_HOST_LIBS
+
+OE_QMAKE_PATH_HOST_PREFIX
+
+OE_QMAKE_PATH_LIBEXECS
+
+OE_QMAKE_PATH_LIBS
+
+OE_QMAKE_PATH_PLUGINS
+
+OE_QMAKE_PATH_PREFIX
+
+OE_QMAKE_PATH_QML
+
+OE_QMAKE_PATH_QT_ARCHDATA
+
+OE_QMAKE_PATH_QT_BINS
+
+OE_QMAKE_PATH_QT_DATA
+
+OE_QMAKE_PATH_QT_DOCS
+
+OE_QMAKE_PATH_QT_EXAMPLES
+
+OE_QMAKE_PATH_QT_HEADERS
+
+OE_QMAKE_PATH_QT_SETTINGS
+
+OE_QMAKE_PATH_QT_TESTS
+
+OE_QMAKE_PATH_QT_TRANSLATIONS
+
+OE_QMAKE_PATH_SETTINGS
+
+OE_QMAKE_PATH_TESTS
+
+OE_QMAKE_PATH_TRANSLATIONS
+
+PYTHON_EXECUTABLE
+
+Python3_EXECUTABLE
+
+Python_EXECUTABLE
+
+CMake Generate step failed. Build files cannot be regenerated correctly.
+
+WARNING: exit code 1 from a shell command.
+
+ERROR: Logfile of failure stored in: /home/yocto/sources/fu540-build/tmp-gl=
+ibc/work/riscv64-oe-linux/kcrash/5.85.0-r0/temp/log.do_configure.12650
+
+--
 Regards,
+Sateesh
 
-Robert
+--RvHkb16aBTt3Z8hcECSG
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> 
-> 
-> 
-> 
+Hi Team,<br /><br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;I am tr=
+ying to build kcrash package. I got below error.Can anybody know how to fix=
+ this please guide me.<br /><br />
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">ERROR: kcrash-5.85.0-r0 do_configure: Execution of '/home/yocto/=
+sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/kcrash/5.85.0-r0/temp/r=
+un.do_configure.12650' failed with exit code 1:</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- The C compiler identification is GNU 10.2.0</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- The CXX compiler identification is GNU 10.2.0</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Detecting C compiler ABI info</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Detecting C compiler ABI info - done</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Check for working C compiler: /home/yocto/sources/fu540-build=
+/tmp-glibc/work/riscv64-oe-linux/kcrash/5.85.0-r0/recipe-sysroot-native/usr=
+/bin/riscv64-oe-linux/riscv64-oe-linux-gcc - skipped</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Detecting C compile features</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Detecting C compile features - done</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Detecting CXX compiler ABI info</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Detecting CXX compiler ABI info - done</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Check for working CXX compiler: /home/yocto/sources/fu540-bui=
+ld/tmp-glibc/work/riscv64-oe-linux/kcrash/5.85.0-r0/recipe-sysroot-native/u=
+sr/bin/riscv64-oe-linux/riscv64-oe-linux-g++ - skipped</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Detecting CXX compile features</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Detecting CXX compile features - done</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">--</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">Installing in /usr. Run /home/yocto/sources/fu540-build/tmp-glib=
+c/work/riscv64-oe-linux/kcrash/5.85.0-r0/build/prefix.sh to set the environ=
+ment for KCrash.</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Looking for __GLIBC__</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Looking for __GLIBC__ - found</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Performing Test _OFFT_IS_64BIT</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Performing Test _OFFT_IS_64BIT - Success</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Performing Test HAVE_DATE_TIME</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Performing Test HAVE_DATE_TIME - Success</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Performing Test BSYMBOLICFUNCTIONS_AVAILABLE</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Performing Test BSYMBOLICFUNCTIONS_AVAILABLE - Success</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">fatal: not a git repository (or any of the parent directories): =
+.git</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Found X11: /home/yocto/sources/fu540-build/tmp-glibc/work/ris=
+cv64-oe-linux/kcrash/5.85.0-r0/recipe-sysroot/usr/include</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Looking for XOpenDisplay in /home/yocto/sources/fu540-build/t=
+mp-glibc/work/riscv64-oe-linux/kcrash/5.85.0-r0/recipe-sysroot/usr/lib/libX=
+11.so;/home/sateesh/yocto/sources/fu540-build/tmp-glibc/work/riscv64-oe-lin=
+ux/kcrash/5.85.0-r0/recipe-sysroot/usr/lib/libXext.so</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Looking for XOpenDisplay in /home/yocto/sources/fu540-build/t=
+mp-glibc/work/riscv64-oe-linux/kcrash/5.85.0-r0/recipe-sysroot/usr/lib/libX=
+11.so;/home/sateesh/yocto/sources/fu540-build/tmp-glibc/work/riscv64-oe-lin=
+ux/kcrash/5.85.0-r0/recipe-sysroot/usr/lib/libXext.so - found</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Looking for gethostbyname</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Looking for gethostbyname - found</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Looking for connect</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Looking for connect - found</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Looking for remove</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Looking for remove - found</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Looking for shmat</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Looking for shmat - found</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Looking for IceConnectionNumber in ICE</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Looking for IceConnectionNumber in ICE - found</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Performing Test COMPILER_HAS_HIDDEN_VISIBILITY</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Performing Test COMPILER_HAS_HIDDEN_VISIBILITY - Success</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Performing Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Performing Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY - Succe=
+ss</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Performing Test COMPILER_HAS_DEPRECATED_ATTR</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Performing Test COMPILER_HAS_DEPRECATED_ATTR - Success</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- The following features have been enabled:</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">* Core Pattern Raising, Raising signals to kernel core patterns =
+(iff the pattern is a process). You may wish to not install drkonqi if this=
+ can cause a UI conflict.</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- The following OPTIONAL packages have been found:</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">* X11</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- The following REQUIRED packages have been found:</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">* ECM (required version &gt;=3D 5.85.0), Extra CMake Modules., &=
+lt;https://commits.kde.org/extra-cmake-modules&gt;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">* Qt5 (required version &gt;=3D 5.15.0)</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">* Qt5Core (required version &gt;=3D 5.15.0)</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">* KF5CoreAddons (required version &gt;=3D 5.85.0)</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">* Qt5Gui (required version &gt;=3D 5.15.0)</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">* KF5WindowSystem (required version &gt;=3D 5.85.0)</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">* Qt5X11Extras (required version &gt;=3D 5.15.0)</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- The following features have been disabled:</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">* QCH, API documentation in QCH format (for e.g. Qt Assistant, Q=
+t Creator &amp; KDevelop)</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Configuring done</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">CMake Error in src/CMakeLists.txt:</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">Imported target "KF5::WindowSystem" includes non-existent path</=
+p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">"/home/yocto/sources/fu540-build/tmp-glibc/work/riscv64-oe-linux=
+/kwindowsystem/5.85.0-r0/recipe-sysroot/usr/include"</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">in its INTERFACE_INCLUDE_DIRECTORIES. Possible reasons include:<=
+/p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">* The path was deleted, renamed, or moved to another location.</=
+p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">* An install or uninstall procedure did not complete successfull=
+y.</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">* The installation package was faulty and references files it do=
+es not</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">provide.</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">CMake Error in src/CMakeLists.txt:</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">Imported target "KF5::WindowSystem" includes non-existent path</=
+p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">"/home/yocto/sources/fu540-build/tmp-glibc/work/riscv64-oe-linux=
+/kwindowsystem/5.85.0-r0/recipe-sysroot/usr/include"</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">in its INTERFACE_INCLUDE_DIRECTORIES. Possible reasons include:<=
+/p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">* The path was deleted, renamed, or moved to another location.</=
+p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">* An install or uninstall procedure did not complete successfull=
+y.</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">* The installation package was faulty and references files it do=
+es not</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">provide.</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">-- Generating done</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">CMake Warning:</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">Manually-specified variables were not used by the project:</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">BUILD_DESIGNERPLUGIN</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">LIB_SUFFIX</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_KF5_PATH_HOST_ROOT</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_ARCHDATA</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_BINS</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_DATA</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_DOCS</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_EXAMPLES</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_HEADERS</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_HOST_BINS</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_HOST_DATA</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_HOST_LIBS</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_HOST_PREFIX</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_LIBEXECS</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_LIBS</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_PLUGINS</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_PREFIX</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_QML</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_QT_ARCHDATA</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_QT_BINS</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_QT_DATA</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_QT_DOCS</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_QT_EXAMPLES</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_QT_HEADERS</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_QT_SETTINGS</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_QT_TESTS</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_QT_TRANSLATIONS</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_SETTINGS</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_TESTS</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">OE_QMAKE_PATH_TRANSLATIONS</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">PYTHON_EXECUTABLE</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">Python3_EXECUTABLE</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">Python_EXECUTABLE</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">CMake Generate step failed. Build files cannot be regenerated co=
+rrectly.</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">WARNING: exit code 1 from a shell command.</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">&nbsp;</p>
+<p style=3D"margin-bottom: 0cm; line-height: 1px; color: #000000; font-size=
+: medium;">ERROR: Logfile of failure stored in: /home/yocto/sources/fu540-b=
+uild/tmp-glibc/work/riscv64-oe-linux/kcrash/5.85.0-r0/temp/log.do_configure=
+.12650</p>
+-- <br />Regards,<br />Sateesh
 
+--RvHkb16aBTt3Z8hcECSG--
