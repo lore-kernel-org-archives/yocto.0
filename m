@@ -1,125 +1,468 @@
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (EUR05-VI1-obe.outbound.protection.outlook.com [40.107.21.66])
- by mx.groups.io with SMTP id smtpd.web12.16464.1630328075278282439
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+ by mx.groups.io with SMTP id smtpd.web10.17025.1630330390214895310
  for <yocto@lists.yoctoproject.org>;
- Mon, 30 Aug 2021 05:54:37 -0700
+ Mon, 30 Aug 2021 06:33:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@optimeasgmbh.onmicrosoft.com header.s=selector2-optimeasgmbh-onmicrosoft-com header.b=Yds+tw2W;
- spf=pass (domain: optimeas.de, ip: 40.107.21.66, mailfrom: matthias.klein@optimeas.de)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ltmFOV6/3zVev9uTNomqmpUPlExwGWQJ94Xg+XsFLGDVpPFtAMsm0jO1Vf9Qi77ARptdZG4lfBMCRNebEofXQKBVjQZtt+GH2l9MV/1F/kVKYhN9K2l6X58I9KQhpraedy8xBRZjETp6B8OXAOzuMPURkEXsEpQ2dID0d4o/yH5cjyVhF54Fhew+kzKSKmefX5DUUJ9tQztqoc3KchFybpu5eyodW4u9qrbKu6AoWbBmpl6n9bfjJuSu90Vqh4/08RRBK9bnx++t0TXfub3qLYykuvynM71N2ezCsQTDxh21YK8Ghvn/t7Kx9zF78wMkfiS9nHcwDFqOLuurgL9Bjw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CQjmx8GSBN6GNjZyUvnudVD9US6i3yUdj8CTq/xlq+Y=;
- b=SrR0TB9/2/KdYCoeAKnCvFcE3SsZBwCI+cx194uB0oGe2X7ObgTyzJ9q5C/ZELTb4gB7yV/hJ+zTOA03+2aXf07xZyw25dclxyuv6PraR5kZHqL2pB2qREIUq5Z2xWv4ivO49ZjyC1wfkcplhMuA3e22/Q80TldGggZzh8KiHBxmpwYisr2NZv0cmz+dzu1VvZZpRuQLOdvYVhTg9CndHbveqmx+R9CrSLPpBgdghHJwWb8OeACVad53SSFBdtbpNlvSq+KXSLcULv/NcWFWyfv/3s5LJ/5qH0evtr736kDz/LcB8mEWvSM7XMh4nCa5bOGpqgPxe0OHaSp8XDSsEA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=optimeas.de; dmarc=pass action=none header.from=optimeas.de;
- dkim=pass header.d=optimeas.de; arc=none
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=FDaAHKZw;
+ spf=pass (domain: gmail.com, ip: 209.85.208.175, mailfrom: ivriabtsov@gmail.com)
+Received: by mail-lj1-f175.google.com with SMTP id q21so25898166ljj.6
+        for <yocto@lists.yoctoproject.org>; Mon, 30 Aug 2021 06:33:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=optimeasgmbh.onmicrosoft.com; s=selector2-optimeasgmbh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CQjmx8GSBN6GNjZyUvnudVD9US6i3yUdj8CTq/xlq+Y=;
- b=Yds+tw2W+HCttHLKN+j4tzfmRN01yZHAi8yh6bCNcDVKih2xQgXDSn2Aty1o9ombMlndopjfU5FZaF7ZX2R4c2ffLZNGfWvP+m3+/zhqM59HfJ/f6keKTRdJAMq/c6a48tJ0+Nv9WZiWx9hikNNuc9txDRFtEN/Et+ZGqe8nNlg=
-Received: from AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:128::16)
- by AM0PR10MB3170.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:180::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.23; Mon, 30 Aug
- 2021 12:54:32 +0000
-Received: from AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::1df1:442d:d6:9a54]) by AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::1df1:442d:d6:9a54%6]) with mapi id 15.20.4457.024; Mon, 30 Aug 2021
- 12:54:32 +0000
-From: "Matthias Klein" <matthias.klein@optimeas.de>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: extrausers-bbclass: plaintext password (since shadow update to 4.9)
-Thread-Topic: extrausers-bbclass: plaintext password (since shadow update to
- 4.9)
-Thread-Index: AdednfBjjf/Uk5A2TVymOPe4ar1MOw==
-Date: Mon, 30 Aug 2021 12:54:32 +0000
-Message-ID: 
- <AM0PR10MB310796884E3E3D545695708099CB9@AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=optimeas.de;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 8e590cb0-8798-4bd0-30d6-08d96bb5500c
-x-ms-traffictypediagnostic: AM0PR10MB3170:
-x-microsoft-antispam-prvs: 
- <AM0PR10MB3170EE84F23748BD4897681A99CB9@AM0PR10MB3170.EURPRD10.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- 6kweemN6chx5yc8jlh6oUo1RnSaELGQqKk1XahBGIjczh7RwIIeoOPHIDXbFjSZ0PmlsK6Ow2w4Mi5KmCXWIGUK1PPtucvjD09xmmybuGS7oVdFr0wZLpuSzPCbi86QY+rsd518pNZ+G8NHodzD5gBT2haVrTw43DUYFxz7/LDSjQAqZQS7TQduZcv/xmv/1QradLzx2uRe9M05V3heRt0u8DbG8BYUSfrEKYSPC/4QMDiuOrE5CPopVHK+1yZgKDQKN+MoAVIbcNPVPUsoYuF3ad4IjFsx603urZayqUZTI95815cC3zuy7bXCjUU3qeD5+RW69uBu69HTT2O7fLkj7YlkpntZmnJ8LQ84OyowQrbxsUgX8dQzjflIFnxcY8xzRb5b7iTFywrEb6/2zh2koPODjRahhjKdndaPIpcX/8xRlAs6EdXn7DNozqULveJiamlFgGPvPdWpoOf/zEh6DtMN7A2ZzkFONrI6h/fmveEvXw1z24ceh6OOfQNmLDzu9/xHIMhdz9YYp0NJG+EeiRPf7TAq055lqFda+uwZD64DfyP5y/uPzjLCESmtA4myl/5gtmSYhYQJmaKvN2Egbowd81R2VJ2I4tn1k3LEh2M/WrO6xYYH0vGA9iXltw8x2o9JmzpfRY9h2DHknbejuCFc3154L5meSa4PUul+px98PNNznZ50uCfAsJmeBPqmwV5pynSfIbPVeR20igchClb5CbsFqwKhRN82NCP8W4b7XTw7vt3SKOLGaMVyewGVSyy9Q3QRPwZqdO5LX+gszY+X9cGU2gNj9bSM1pq4=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(366004)(376002)(136003)(346002)(39830400003)(396003)(38070700005)(44832011)(6916009)(38100700002)(52536014)(55016002)(71200400001)(7696005)(478600001)(9686003)(5660300002)(64756008)(33656002)(316002)(83380400001)(186003)(8676002)(8936002)(76116006)(66446008)(4744005)(66946007)(2906002)(966005)(66556008)(66476007)(122000001)(86362001)(6506007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?WD3ycbRu1ynYw8wt0v+95zFKGu3g924c7WpeS3/BwqsbTBb1IZe3NWUMfkq2?=
- =?us-ascii?Q?Tj8vtolKgJXRPInysk4CG7cSyDWlFmVMU0JLcU7yCmbZEkYfT7+Jw3p9o+QP?=
- =?us-ascii?Q?DZXFJI/0e4jJBhdOq/WYX2WZIQjbNdV2B9zDwqVFYd16SP+PMcbYfL+jRv4/?=
- =?us-ascii?Q?NH7mi/jvLCr1OaRx7J40ks3fd0tXNOZMKOZ9f9gZkFhrxLhjWSJixRtP6hVB?=
- =?us-ascii?Q?IfvJAWCCpSAWiS+OeEOyuVlaPRI27ovVZXxNI580cJjisivnAgvZC+L4BvAF?=
- =?us-ascii?Q?ljpet95rgathO1wMOIWkZHdHwrXCAbuqxsonxD8FJLZfGlj3eFdVZo8jQ1FU?=
- =?us-ascii?Q?tYv/xa4kYkbmkx+m3Kt+wvBqadRx6dDXUG2tTEEIEoPCrTYQx1xAh4MKostg?=
- =?us-ascii?Q?7J+7r+ZpdQk0X4FDPVDg17hDaE8fBPq35BwEkZ/5cmQRAPrusIn3OaJIr2G0?=
- =?us-ascii?Q?rSmRtxvnk/f6FxQDDHjM71UHhuLdH6xQv+1KOuy8D3Jzkc2k9Ctk7CuCI+mK?=
- =?us-ascii?Q?LtOkyJuJm91p5ZHQ3XTVqTBhbN0UnyXglaxPVxmOvW5FRWHrExReeTqAWBuE?=
- =?us-ascii?Q?ewr0g05yD0IArzcZg/H3I/lFeoqoXEHWXcaj1Ah6zMLVN8xVaNcE6r6ikUa3?=
- =?us-ascii?Q?fUOAEcli+vWRDV0Pqs5p+sG9eTVLkPvUdvrFJtHGg3Yw/QYI5mHUbG08uuww?=
- =?us-ascii?Q?MBUeN1sUGzZVMvwW+I7tIMCfHC1ac9pywp393Fa0as4SsxZ+idAP9lKL67L+?=
- =?us-ascii?Q?eK/19fKTkfNH1xUyoEVu6TKyJU6LtyQ9VLInPq/MdKbOKp9YTmJ6XTyn6281?=
- =?us-ascii?Q?bSgXAZUbbkc/kOz2FoDE1xy30g11MUBcwRGdgLNy1Obg66dvVNcBEeDMMUva?=
- =?us-ascii?Q?LtdNz53TDpE6+fWvEjjk47a1u6ZNylIGlLHByof8HLbnkQWfft/MmWVoQ1U1?=
- =?us-ascii?Q?lGyQ/aKCGi1brcTrQRnH8GTTljtVrFDYHnBcOlz41zUQr/mb28J2x+KZ+u5Y?=
- =?us-ascii?Q?lhtFXSUQugLclkIA9AhNu99XlQO1blOfczsn5JiXyj0gSIzDdCjNfWrmWaIU?=
- =?us-ascii?Q?c11xjziu7VEMSYTDG6XL97eBoZAoyRVzjOdI22NlbeKiQGTk6yNKI9/N3Eoj?=
- =?us-ascii?Q?FuoxwWYNLS79g1cHBC+mR4R5O/FZdf9JlYNwYQufUkkm65VU0QfAaAYvJOAM?=
- =?us-ascii?Q?zWe8sDK3itJCONjkHIlx0KuHpc+ecMBfnnvyaIiEthXDCW/V65iZJVWw3MLe?=
- =?us-ascii?Q?tWnjm+cBq+rDou5e9xmOkrZqP1YLY9JTbuQ2y9K7mIL0tLaT1Yk4hVQyd5zW?=
- =?us-ascii?Q?bAsOpPAm/sAJ1x01M4FyLC6KtV7I9GmMv9rjxlBiz3xHLL0pEXJZ+hDEKcWI?=
- =?us-ascii?Q?inL+i/a5QAFgWQjHdrJBFeFga3OX?=
-x-ms-exchange-transport-forked: True
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=dVq0aZEu7OnA5lhWGXp6p+sLr2AG8+LQkCu7B3IdnPk=;
+        b=FDaAHKZwV5bvy8tiqoeHDi5RCJqv47YeidbDaODRp6T+OTnlf0WgYMJBQGknDUszLf
+         O2u/scz3OBBrJN6v8Yn8hqI9tSy7vLcxn87fOgoMLKgwVNwkwE23NfziNK3A2pTQd2sQ
+         WDYbU27jMlIk5XT84+zNDJz1TMDtlxd5SV7a7ubP7DyK4gs4wHdRaEgNgmWxCJR5AFlF
+         1OIEKoQ8Hx4sMGPgQ0HtuB5T9Q4TSM75WQvnEizutblayYifTh89IS0n0n5BvfR/k9jn
+         wTXNGth8oBZHVtJ5pFLl3p3F76Ram9AOppPMEEJSVWXK9Qp+w0N++D5JArgvd5bbsscF
+         4kfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=dVq0aZEu7OnA5lhWGXp6p+sLr2AG8+LQkCu7B3IdnPk=;
+        b=moGgLIZw6OctKkugC0wBHJsHXnpr0wI0LVjYSpbGi32j9bVma9sUgi2o6aoTm8oJcM
+         1YGlMIt+dOQ0t466MI4zbfJITdgTbT49hh/TbIYO6NMGOcftywur8g6GSkkQ9VZJ8h2q
+         aNJiZqkdKw/zGSbqj7BH5OLS0nluZosXDKYSw2TmjK+eRmB60A47IjtGuPxldGHVfFRp
+         4UrLl5eOgHPASrGVeZaNEHby2JZ/hnirM6YAFrk9ZOwabd3Lu8RM9RtXZI9NN7xy3fC1
+         sbUd95Yn+GmZKGqmdNT4HFhN//X58tHMzGwglr5+NlHnhE34qIw7hKBDshorSQbDNTzB
+         K3Dw==
+X-Gm-Message-State: AOAM532VbgKUDY974vq8cmWJDfEHXl9oQyUiFdZS/XN57hbAl4thFMaM
+	KwIrfXocQqubBjUDFORoU0sX5TpOPXfkgj3JovbBq9DcIeI=
+X-Google-Smtp-Source: ABdhPJz9859sUDoZud8OmMd21HueZlOpGWUzrHcDzUmYHBb/ofoEDJ24wcjTwkNrWwit/qMdVZzqRCYi+m9Ykt77To8=
+X-Received: by 2002:a2e:964b:: with SMTP id z11mr8468948ljh.91.1630330387782;
+ Mon, 30 Aug 2021 06:33:07 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: optimeas.de
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8e590cb0-8798-4bd0-30d6-08d96bb5500c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Aug 2021 12:54:32.5055
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 91b33c5b-e584-4ec0-893c-2a9180ad0602
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: TMCed23xmGMv3NFvbVHAWh3dUtSYkht/4V54tSJh6gwfOhohMdGNb8/b49FqYHV163+qESywlI7YF1nFPfikuUESlJKc0SzOSpJ5vSO+0zw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3170
-Content-Language: de-DE
-Content-Type: text/plain; charset="us-ascii"
+From: "Ivan Riabtsov" <ivriabtsov@gmail.com>
+Date: Mon, 30 Aug 2021 16:32:57 +0300
+Message-ID: <CAKAnv4HDouRmDgi9V60OjYF89bd_j_SOsgx2J7Av3Ae+jg0aNg@mail.gmail.com>
+Subject: downgrade openssl libraryes
+To: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+hello i am trying to rollback openssl version from 1.1.1i to 1.0.2j.
+Copied the recipe openssl_1.1.1i.bb to openssl_1.0.2j.bb, saved the
+openssl_1.1.1i.bb version with the name openssl_1.1.1i.bb.backup
 
-I am trying to find a working alternative for the old -P option.
+=D0=9E=D1=82=D1=80=D0=B5=D0=B4=D0=B0=D0=BA=D1=82=D0=B8=D1=80=D0=BE=D0=B2=D0=
+=B0=D0=BB =D0=BD=D0=BE=D0=B2=D1=8B=D0=B9 =D1=84=D0=B0=D0=B9=D0=BB, =D0=B2=
+=D0=BE=D1=82 =D1=80=D0=B0=D0=B7=D0=BD=D0=B8=D1=86=D0=B0 =D0=B2 =D1=84=D0=B0=
+=D0=B9=D0=BB=D0=B0=D1=85:
 
-Previous:=20
-EXTRA_USERS_PARAMS =3D "usermod -P toor root;"
+diff -Nau ./openssl_1.1.1i.bb.backup ./openssl_1.0.2j.bb
+--- ./openssl_1.1.1i.bb.backup 2021-08-27 14:46:07.085808702 +0300
++++ ./openssl_1.0.2j.bb 2021-08-27 16:12:14.216430734 +0300
+@@ -7,23 +7,19 @@
+ # "openssl" here actually means both OpenSSL and SSLeay licenses apply
+ # (see meta/files/common-licenses/OpenSSL to which "openssl" is
+SPDXLICENSEMAPped)
+ LICENSE =3D "openssl"
+-LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3Dd343e62fc9c833710bbbed25f27364c=
+8"
++LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D27ffa5d74bb5a337056c14b2ef93fbf=
+6"
 
-The suggestions from this thread don't seem to work: https://lists.openembe=
-dded.org/g/openembedded-core/topic/84548199
+ DEPENDS =3D "hostperl-runtime-native"
 
-Current:=20
-hash=3D"$(python3 -c "import crypt; print(crypt.crypt('toor', crypt.METHOD_=
-SHA512))")"
-EXTRA_USERS_PARAMS =3D "usermod -p ${hash} root;"
+ SRC_URI =3D "http://www.openssl.org/source/openssl-${PV}.tar.gz \
+            file://run-ptest \
+-           file://0001-skip-test_symbol_presence.patch \
+-           file://0001-buildinfo-strip-sysroot-and-debug-prefix-map-from-c=
+o.patch
+\
+-           file://afalg.patch \
+-           file://reproducible.patch \
+            "
 
-The hashed password does not seem to be escaped properly in the extrausers-=
-bbclass. The password in the shadow file is missing $ characters.
+ SRC_URI_append_class-nativesdk =3D " \
+            file://environment.d-openssl.sh \
+            "
 
-Is there a way (with the current master branch) to define a password?
+-SRC_URI[sha256sum] =3D
+"e8be6a35fe41d10603c3cc635e93289ed00bf34b79671a3a4de64fcee00d5242"
++SRC_URI[sha256sum] =3D
+"e7aff292be21c259c6af26469c7a9b3ba26e9abaaffd325e3dccc9785256c431"
 
-Many greetings,
-Matthias
+ inherit lib_package multilib_header multilib_script ptest
+ MULTILIB_SCRIPTS =3D "${PN}-bin:${bindir}/c_rehash"
+@@ -122,7 +118,7 @@
+  # WARNING: do not set compiler/linker flags (-I/-D etc.) in
+EXTRA_OECONF, as they will fully replace the
+  # environment variables set by bitbake. Adjust the environment
+variables instead.
+  HASHBANGPERL=3D"/usr/bin/env perl" PERL=3Dperl
+PERL5LIB=3D"${S}/external/perl/Text-Template-1.46/lib/" \
+- perl ${S}/Configure ${EXTRA_OECONF} ${PACKAGECONFIG_CONFARGS}
+--prefix=3D$useprefix --openssldir=3D${libdir}/ssl-1.1 --libdir=3D${libdir}
+$target
++ perl ${S}/Configure ${EXTRA_OECONF} ${PACKAGECONFIG_CONFARGS}
+--prefix=3D$useprefix --openssldir=3D${libdir}/ssl-1.0 --libdir=3D${libdir}
+$target
+  perl ${B}/configdata.pm --dump
+ }
 
+@@ -134,30 +130,30 @@
+  # Create SSL structure for packages such as ca-certificates which
+  # contain hard-coded paths to /etc/ssl. Debian does the same.
+  install -d ${D}${sysconfdir}/ssl
+- mv ${D}${libdir}/ssl-1.1/certs \
+-    ${D}${libdir}/ssl-1.1/private \
+-    ${D}${libdir}/ssl-1.1/openssl.cnf \
++ mv ${D}${libdir}/ssl-1.0/certs \
++    ${D}${libdir}/ssl-1.0/private \
++    ${D}${libdir}/ssl-1.0/openssl.cnf \
+     ${D}${sysconfdir}/ssl/
+
+  # Although absolute symlinks would be OK for the target, they become
+  # invalid if native or nativesdk are relocated from sstate.
+- ln -sf ${@oe.path.relative('${libdir}/ssl-1.1',
+'${sysconfdir}/ssl/certs')} ${D}${libdir}/ssl-1.1/certs
+- ln -sf ${@oe.path.relative('${libdir}/ssl-1.1',
+'${sysconfdir}/ssl/private')} ${D}${libdir}/ssl-1.1/private
+- ln -sf ${@oe.path.relative('${libdir}/ssl-1.1',
+'${sysconfdir}/ssl/openssl.cnf')} ${D}${libdir}/ssl-1.1/openssl.cnf
++ ln -sf ${@oe.path.relative('${libdir}/ssl-1.0',
+'${sysconfdir}/ssl/certs')} ${D}${libdir}/ssl-1.0/certs
++ ln -sf ${@oe.path.relative('${libdir}/ssl-1.0',
+'${sysconfdir}/ssl/private')} ${D}${libdir}/ssl-1.0/private
++ ln -sf ${@oe.path.relative('${libdir}/ssl-1.0',
+'${sysconfdir}/ssl/openssl.cnf')} ${D}${libdir}/ssl-1.0/openssl.cnf
+ }
+
+ do_install_append_class-native () {
+  create_wrapper ${D}${bindir}/openssl \
+-     OPENSSL_CONF=3D${libdir}/ssl-1.1/openssl.cnf \
+-     SSL_CERT_DIR=3D${libdir}/ssl-1.1/certs \
+-     SSL_CERT_FILE=3D${libdir}/ssl-1.1/cert.pem \
+-     OPENSSL_ENGINES=3D${libdir}/engines-1.1
++     OPENSSL_CONF=3D${libdir}/ssl-1.0/openssl.cnf \
++     SSL_CERT_DIR=3D${libdir}/ssl-1.0/certs \
++     SSL_CERT_FILE=3D${libdir}/ssl-1.0/cert.pem \
++     OPENSSL_ENGINES=3D${libdir}/engines-1.0
+ }
+
+ do_install_append_class-nativesdk () {
+  mkdir -p ${D}${SDKPATHNATIVE}/environment-setup.d
+  install -m 644 ${WORKDIR}/environment.d-openssl.sh
+${D}${SDKPATHNATIVE}/environment-setup.d/openssl.sh
+- sed 's|/usr/lib/ssl/|/usr/lib/ssl-1.1/|g' -i
+${D}${SDKPATHNATIVE}/environment-setup.d/openssl.sh
++ sed 's|/usr/lib/ssl/|/usr/lib/ssl-1.0/|g' -i
+${D}${SDKPATHNATIVE}/environment-setup.d/openssl.sh
+ }
+
+ PTEST_BUILD_HOST_FILES +=3D "configdata.pm"
+@@ -170,8 +166,8 @@
+  cp -r ${S}/external ${B}/test ${S}/test ${B}/fuzz ${S}/util
+${B}/util ${D}${PTEST_PATH}
+
+  # For test_shlibload
+- ln -s ${libdir}/libcrypto.so.1.1 ${D}${PTEST_PATH}/
+- ln -s ${libdir}/libssl.so.1.1 ${D}${PTEST_PATH}/
++ ln -s ${libdir}/libcrypto.so.1.0 ${D}${PTEST_PATH}/
++ ln -s ${libdir}/libssl.so.1.0 ${D}${PTEST_PATH}/
+
+  install -d ${D}${PTEST_PATH}/apps
+  ln -s ${bindir}/openssl ${D}${PTEST_PATH}/apps
+@@ -192,11 +188,11 @@
+ FILES_libcrypto =3D "${libdir}/libcrypto${SOLIBS}"
+ FILES_libssl =3D "${libdir}/libssl${SOLIBS}"
+ FILES_openssl-conf =3D "${sysconfdir}/ssl/openssl.cnf \
+-                      ${libdir}/ssl-1.1/openssl.cnf* \
++                      ${libdir}/ssl-1.0/openssl.cnf* \
+                       "
+-FILES_${PN}-engines =3D "${libdir}/engines-1.1"
+-FILES_${PN}-misc =3D "${libdir}/ssl-1.1/misc"
+-FILES_${PN} =3D+ "${libdir}/ssl-1.1/*"
++FILES_${PN}-engines =3D "${libdir}/engines-1.0"
++FILES_${PN}-misc =3D "${libdir}/ssl-1.0/misc"
++FILES_${PN} =3D+ "${libdir}/ssl-1.0/*"
+ FILES_${PN}_append_class-nativesdk =3D "
+${SDKPATHNATIVE}/environment-setup.d/openssl.sh"
+
+ CONFFILES_openssl-conf =3D "${sysconfdir}/ssl/openssl.cnf"
+
+
+=D0=B2=D0=BE=D1=82 =D0=BD=D0=BE=D0=B2=D1=8B=D0=B9 =D0=BF=D0=BE=D0=BB=D1=83=
+=D1=87=D0=B8=D0=B2=D1=88=D0=B8=D0=B9=D1=81=D1=8F =D1=84=D0=B0=D0=B9=D0=BB:
+
+
+cat openssl_1.0.2j.bb
+SUMMARY =3D "Secure Socket Layer"
+DESCRIPTION =3D "Secure Socket Layer (SSL) binary and related
+cryptographic tools."
+HOMEPAGE =3D "http://www.openssl.org/"
+BUGTRACKER =3D "http://www.openssl.org/news/vulnerabilities.html"
+SECTION =3D "libs/network"
+
+# "openssl" here actually means both OpenSSL and SSLeay licenses apply
+# (see meta/files/common-licenses/OpenSSL to which "openssl" is
+SPDXLICENSEMAPped)
+LICENSE =3D "openssl"
+LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D27ffa5d74bb5a337056c14b2ef93fbf6=
+"
+
+DEPENDS =3D "hostperl-runtime-native"
+
+SRC_URI =3D "http://www.openssl.org/source/openssl-${PV}.tar.gz \
+           file://run-ptest \
+           "
+
+SRC_URI_append_class-nativesdk =3D " \
+           file://environment.d-openssl.sh \
+           "
+
+SRC_URI[sha256sum] =3D
+"e7aff292be21c259c6af26469c7a9b3ba26e9abaaffd325e3dccc9785256c431"
+
+inherit lib_package multilib_header multilib_script ptest
+MULTILIB_SCRIPTS =3D "${PN}-bin:${bindir}/c_rehash"
+
+PACKAGECONFIG ?=3D ""
+PACKAGECONFIG_class-native =3D ""
+PACKAGECONFIG_class-nativesdk =3D ""
+
+PACKAGECONFIG[cryptodev-linux] =3D
+"enable-devcryptoeng,disable-devcryptoeng,cryptodev-linux,,cryptodev-module=
+"
+
+B =3D "${WORKDIR}/build"
+do_configure[cleandirs] =3D "${B}"
+
+#| ./libcrypto.so: undefined reference to `getcontext'
+#| ./libcrypto.so: undefined reference to `setcontext'
+#| ./libcrypto.so: undefined reference to `makecontext'
+EXTRA_OECONF_append_libc-musl =3D " no-async"
+EXTRA_OECONF_append_libc-musl_powerpc64 =3D " no-asm"
+
+# adding devrandom prevents openssl from using getrandom() which is
+not available on older glibc versions
+# (native versions can be built with newer glibc, but then relocated
+onto a system with older glibc)
+EXTRA_OECONF_class-native =3D "--with-rand-seed=3Dos,devrandom"
+EXTRA_OECONF_class-nativesdk =3D "--with-rand-seed=3Dos,devrandom"
+
+# Relying on hardcoded built-in paths causes openssl-native to not be
+relocateable from sstate.
+CFLAGS_append_class-native =3D " -DOPENSSLDIR=3D/not/builtin
+-DENGINESDIR=3D/not/builtin"
+CFLAGS_append_class-nativesdk =3D " -DOPENSSLDIR=3D/not/builtin
+-DENGINESDIR=3D/not/builtin"
+
+do_configure () {
+os=3D${HOST_OS}
+case $os in
+linux-gnueabi |\
+linux-gnuspe |\
+linux-musleabi |\
+linux-muslspe |\
+linux-musl )
+os=3Dlinux
+;;
+*)
+;;
+esac
+target=3D"$os-${HOST_ARCH}"
+case $target in
+linux-arm*)
+target=3Dlinux-armv4
+;;
+linux-aarch64*)
+target=3Dlinux-aarch64
+;;
+linux-i?86 | linux-viac3)
+target=3Dlinux-x86
+;;
+linux-gnux32-x86_64 | linux-muslx32-x86_64 )
+target=3Dlinux-x32
+;;
+linux-gnu64-x86_64)
+target=3Dlinux-x86_64
+;;
+linux-mips | linux-mipsel)
+# specifying TARGET_CC_ARCH prevents openssl from (incorrectly) adding
+target architecture flags
+target=3D"linux-mips32 ${TARGET_CC_ARCH}"
+;;
+linux-gnun32-mips*)
+target=3Dlinux-mips64
+;;
+linux-*-mips64 | linux-mips64 | linux-*-mips64el | linux-mips64el)
+target=3Dlinux64-mips64
+;;
+linux-microblaze* | linux-nios2* | linux-sh3 | linux-sh4 | linux-arc*)
+target=3Dlinux-generic32
+;;
+linux-powerpc)
+target=3Dlinux-ppc
+;;
+linux-powerpc64)
+target=3Dlinux-ppc64
+;;
+linux-powerpc64le)
+target=3Dlinux-ppc64le
+;;
+linux-riscv32)
+target=3Dlinux-generic32
+;;
+linux-riscv64)
+target=3Dlinux-generic64
+;;
+linux-sparc | linux-supersparc)
+target=3Dlinux-sparcv9
+;;
+esac
+
+useprefix=3D${prefix}
+if [ "x$useprefix" =3D "x" ]; then
+useprefix=3D/
+fi
+# WARNING: do not set compiler/linker flags (-I/-D etc.) in
+EXTRA_OECONF, as they will fully replace the
+# environment variables set by bitbake. Adjust the environment
+variables instead.
+HASHBANGPERL=3D"/usr/bin/env perl" PERL=3Dperl
+PERL5LIB=3D"${S}/external/perl/Text-Template-1.46/lib/" \
+perl ${S}/Configure ${EXTRA_OECONF} ${PACKAGECONFIG_CONFARGS}
+--prefix=3D$useprefix --openssldir=3D${libdir}/ssl-1.0 --libdir=3D${libdir}
+$target
+perl ${B}/configdata.pm --dump
+}
+
+do_install () {
+oe_runmake DESTDIR=3D"${D}" MANDIR=3D"${mandir}" MANSUFFIX=3Dssl install
+
+oe_multilib_header openssl/opensslconf.h
+
+# Create SSL structure for packages such as ca-certificates which
+# contain hard-coded paths to /etc/ssl. Debian does the same.
+install -d ${D}${sysconfdir}/ssl
+mv ${D}${libdir}/ssl-1.0/certs \
+   ${D}${libdir}/ssl-1.0/private \
+   ${D}${libdir}/ssl-1.0/openssl.cnf \
+   ${D}${sysconfdir}/ssl/
+
+# Although absolute symlinks would be OK for the target, they become
+# invalid if native or nativesdk are relocated from sstate.
+ln -sf ${@oe.path.relative('${libdir}/ssl-1.0',
+'${sysconfdir}/ssl/certs')} ${D}${libdir}/ssl-1.0/certs
+ln -sf ${@oe.path.relative('${libdir}/ssl-1.0',
+'${sysconfdir}/ssl/private')} ${D}${libdir}/ssl-1.0/private
+ln -sf ${@oe.path.relative('${libdir}/ssl-1.0',
+'${sysconfdir}/ssl/openssl.cnf')} ${D}${libdir}/ssl-1.0/openssl.cnf
+}
+
+do_install_append_class-native () {
+create_wrapper ${D}${bindir}/openssl \
+    OPENSSL_CONF=3D${libdir}/ssl-1.0/openssl.cnf \
+    SSL_CERT_DIR=3D${libdir}/ssl-1.0/certs \
+    SSL_CERT_FILE=3D${libdir}/ssl-1.0/cert.pem \
+    OPENSSL_ENGINES=3D${libdir}/engines-1.0
+}
+
+do_install_append_class-nativesdk () {
+mkdir -p ${D}${SDKPATHNATIVE}/environment-setup.d
+install -m 644 ${WORKDIR}/environment.d-openssl.sh
+${D}${SDKPATHNATIVE}/environment-setup.d/openssl.sh
+sed 's|/usr/lib/ssl/|/usr/lib/ssl-1.0/|g' -i
+${D}${SDKPATHNATIVE}/environment-setup.d/openssl.sh
+}
+
+PTEST_BUILD_HOST_FILES +=3D "configdata.pm"
+PTEST_BUILD_HOST_PATTERN =3D "perl_version =3D"
+do_install_ptest () {
+# Prune the build tree
+rm -f ${B}/fuzz/*.* ${B}/test/*.*
+
+cp ${S}/Configure ${B}/configdata.pm ${D}${PTEST_PATH}
+cp -r ${S}/external ${B}/test ${S}/test ${B}/fuzz ${S}/util ${B}/util
+${D}${PTEST_PATH}
+
+# For test_shlibload
+ln -s ${libdir}/libcrypto.so.1.0 ${D}${PTEST_PATH}/
+ln -s ${libdir}/libssl.so.1.0 ${D}${PTEST_PATH}/
+
+install -d ${D}${PTEST_PATH}/apps
+ln -s ${bindir}/openssl ${D}${PTEST_PATH}/apps
+install -m644 ${S}/apps/*.pem ${S}/apps/*.srl ${S}/apps/openssl.cnf
+${D}${PTEST_PATH}/apps
+install -m755 ${B}/apps/CA.pl ${D}${PTEST_PATH}/apps
+
+install -d ${D}${PTEST_PATH}/engines
+install -m755 ${B}/engines/ossltest.so ${D}${PTEST_PATH}/engines
+}
+
+# Add the openssl.cnf file to the openssl-conf package. Make the libcrypto
+# package RRECOMMENDS on this package. This will enable the configuration
+# file to be installed for both the openssl-bin package and the libcrypto
+# package since the openssl-bin package depends on the libcrypto package.
+
+PACKAGES =3D+ "libcrypto libssl openssl-conf ${PN}-engines ${PN}-misc"
+
+FILES_libcrypto =3D "${libdir}/libcrypto${SOLIBS}"
+FILES_libssl =3D "${libdir}/libssl${SOLIBS}"
+FILES_openssl-conf =3D "${sysconfdir}/ssl/openssl.cnf \
+                      ${libdir}/ssl-1.0/openssl.cnf* \
+                      "
+FILES_${PN}-engines =3D "${libdir}/engines-1.0"
+FILES_${PN}-misc =3D "${libdir}/ssl-1.0/misc"
+FILES_${PN} =3D+ "${libdir}/ssl-1.0/*"
+FILES_${PN}_append_class-nativesdk =3D "
+${SDKPATHNATIVE}/environment-setup.d/openssl.sh"
+
+CONFFILES_openssl-conf =3D "${sysconfdir}/ssl/openssl.cnf"
+
+RRECOMMENDS_libcrypto +=3D "openssl-conf"
+RDEPENDS_${PN}-ptest +=3D "openssl-bin perl perl-modules bash"
+
+RDEPENDS_${PN}-bin +=3D "openssl-conf"
+
+BBCLASSEXTEND =3D "native nativesdk"
+
+CVE_PRODUCT =3D "openssl:openssl"
+
+# Only affects OpenSSL >=3D 1.1.1 in combination with Apache < 2.4.37
+# Apache in meta-webserver is already recent enough
+CVE_CHECK_WHITELIST +=3D "CVE-2019-0190"
+
+
+I understand that I need to figure out the configs yourself, but I get
+this error when executing the
+
+bitbake openssl-native
+
+ERROR: Execution of
+'/home/ivr/work/yocto_orig/build/tmp/work/x86_64-linux/openssl-native/1.0.2=
+j-r0/temp/run.do_configure.1071458'
+failed with exit code 2:
+| unable to read opensslv.h:No such file or directory
+| Configuring for linux-x86_64
+|     no-devcryptoeng [option]   OPENSSL_NO_DEVCRYPTOENG (skip dir)
+|     no-ec_nistp_64_gcc_128 [default]  OPENSSL_NO_EC_NISTP_64_GCC_128
+(skip dir)
+|     no-gmp          [default]  OPENSSL_NO_GMP (skip dir)
+|     no-jpake        [experimental] OPENSSL_NO_JPAKE (skip dir)
+|     no-krb5         [krb5-flavor not specified] OPENSSL_NO_KRB5
+|     no-libunbound   [experimental] OPENSSL_NO_LIBUNBOUND (skip dir)
+|     no-md2          [default]  OPENSSL_NO_MD2 (skip dir)
+|     no-rc5          [default]  OPENSSL_NO_RC5 (skip dir)
+|     no-rfc3779      [default]  OPENSSL_NO_RFC3779 (skip dir)
+|     no-sctp         [default]  OPENSSL_NO_SCTP (skip dir)
+|     no-shared       [default]
+|     no-ssl-trace    [default]  OPENSSL_NO_SSL_TRACE (skip dir)
+|     no-ssl2         [default]  OPENSSL_NO_SSL2 (skip dir)
+|     no-store        [experimental] OPENSSL_NO_STORE (skip dir)
+|     no-unit-test    [default]  OPENSSL_NO_UNIT_TEST (skip dir)
+|     no-weak-ssl-ciphers [default]  OPENSSL_NO_WEAK_SSL_CIPHERS (skip dir)
+|     no-zlib         [default]
+|     no-zlib-dynamic [default]
+| IsMK1MF=3D0
+| WARNING: exit code 2 from a shell command.
+|
+
+As far as I can understand, the opensslv.h file is generated just at
+the configuration stage, why does the configuration stage give an
+error of the absence of this file?
