@@ -1,264 +1,128 @@
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by mx.groups.io with SMTP id smtpd.web09.8001.1630426590327338010
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+ by mx.groups.io with SMTP id smtpd.web09.8496.1630428632122988470
  for <yocto@lists.yoctoproject.org>;
- Tue, 31 Aug 2021 09:16:30 -0700
+ Tue, 31 Aug 2021 09:50:32 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linux.microsoft.com header.s=default header.b=Sh9ba/wt;
- spf=pass (domain: linux.microsoft.com, ip: 13.77.154.182, mailfrom: anbelski@linux.microsoft.com)
-Received: from [192.168.178.23] (i59F7C321.versanet.de [89.247.195.33])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 8AA5C20B9157;
-	Tue, 31 Aug 2021 09:16:28 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 8AA5C20B9157
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1630426589;
-	bh=9vgBm5z+QR2D6D9qUrbHEkrxEFfT2jRJMT5VEBldbcQ=;
-	h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-	b=Sh9ba/wtHQsNgBImHM0rqUdonBGGynAIdY+uS94JSSZd/me0c9jyygrOEEvORUUcU
-	 NRBOM2+t9xSL8iKI9MxW3BvqVZqmZLalU5+IH3/79a8jNZP9TOe/7ELXbFP3LOqNkA
-	 wvU2hM1d/Ct/b3ZDOzgcbxwb1ukjjwAh5Cb8Y8Ro=
-Subject: Re: [yocto] Binary compliance validation
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-Cc: yocto <yocto@lists.yoctoproject.org>,
- Karissa Sanchez <kasanchez519@gmail.com>
-References: <f23e2da3c978887b3072c4f79674391768804a72.camel@linux.microsoft.com>
- <CADkTA4MCDkW7RHq=EPrN5Qr2O=nJwmRBDnQ+RP-b3dTH_9RcLw@mail.gmail.com>
-From: "Anatol Belski" <anbelski@linux.microsoft.com>
-Message-ID: <dfa01d5f-f20e-9d1e-129e-f5c634f51998@linux.microsoft.com>
-Date: Tue, 31 Aug 2021 18:16:21 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=HAuDELC6;
+ spf=pass (domain: gmail.com, ip: 209.85.210.182, mailfrom: raj.khem@gmail.com)
+Received: by mail-pf1-f182.google.com with SMTP id u6so14818824pfi.0
+        for <yocto@lists.yoctoproject.org>; Tue, 31 Aug 2021 09:50:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=message-id:date:mime-version:user-agent:content-language:to:cc
+         :references:from:organization:subject:in-reply-to
+         :content-transfer-encoding;
+        bh=3viAP5xn7k7tz8dbxt9hooRMDg/JQ3pFP059Ojzq6tg=;
+        b=HAuDELC6NZBBefv5WLVw7AgIiNIMrVC3CI8B/zmiB2MNLhqaj2dF0R2+Y5drl5i+bE
+         U+opdzQ+K4c76c/oQvQynx0++8i+HcGaSaFPnCWczo+VtnClLVp38B9+8BvRyTDmSgL3
+         rJAU/mlmgjtulXItaA89MGj0oIlr+iwNEmmInZizsxAdiPQK8bO706WzVyzwUQGTDC/+
+         IGulOGRDx4K14g6J4OwsAhkF5xvNvYjrMwSv94PpMplMGzLIRlunEP9ctBWxuaQ5wSQV
+         E2qgTXSN3Tr4jSNyQbAa7k0BwfFtm0hC5aBa/HhgSSXNG9V/Jjj4iuCJL4e1VNg6GFhU
+         HlpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent
+         :content-language:to:cc:references:from:organization:subject
+         :in-reply-to:content-transfer-encoding;
+        bh=3viAP5xn7k7tz8dbxt9hooRMDg/JQ3pFP059Ojzq6tg=;
+        b=nX0wJAylGExbZFrUuMA/q5uTYWwvc9cVnLUympIVrKupgLELkPfNK2kdxOu+DshBav
+         59nC7dvM9X71QqS+a/yV4ydFOkU5XcLtIax8FN2C0T/jPsjcLWq3zVYEhscRaYIYt0ZT
+         BNyBYYQrODaLt7ArLeBSS4Ygz8yelSqBDyp6vae/ggzrCpDNNXS9UtGDaUT6NQjy3s9E
+         vdtOAFd6X0KXxLm2yNgiwoZRIcRIs+yBZG9hg61Gnd1mHPfEVwCuGjHqzria3IMmZtD8
+         HlRRxttvDbikwj9dfzvVksc/x1E/vIEmU0oeTVB0h3BAn42vAXagpm41+EoizWLEesJT
+         vV6A==
+X-Gm-Message-State: AOAM533BdUJV2IGv5p56V45p6kyAzBKq7pAATC79GrMASg1ox+ZUbtxA
+	n0KrFGCG9s5I4qP4QNgJMUk=
+X-Google-Smtp-Source: ABdhPJxH3iCCpJToA4u5ia95uejbtDBZ8wd6CwhMw/MV8rfipxhw3CawDsQpSy3HOnb8s36DhyafLQ==
+X-Received: by 2002:a63:b950:: with SMTP id v16mr27713545pgo.328.1630428631418;
+        Tue, 31 Aug 2021 09:50:31 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPV6:2601:646:9200:a0f0:f5c4:30bc:bcdc:7d1f? ([2601:646:9200:a0f0:f5c4:30bc:bcdc:7d1f])
+        by smtp.gmail.com with ESMTPSA id b8sm3463678pjo.51.2021.08.31.09.50.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Aug 2021 09:50:30 -0700 (PDT)
+Message-ID: <d385caa5-bf55-e4af-325c-b792db74320c@gmail.com>
+Date: Tue, 31 Aug 2021 09:50:29 -0700
 MIME-Version: 1.0
-In-Reply-To: <CADkTA4MCDkW7RHq=EPrN5Qr2O=nJwmRBDnQ+RP-b3dTH_9RcLw@mail.gmail.com>
-Content-Type: multipart/alternative;
- boundary="------------AC66A53C9DA8072FAB7370DD"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.0.3
+To: Ivan Riabtsov <ivriabtsov@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+References: <16A050FBE1213E46.30479@lists.yoctoproject.org>
+ <CAKAnv4EUDy9Z8M1BCv7rR-_4RBFkbMCXUuf-Po-CPDcmhmjaUA@mail.gmail.com>
+From: "Khem Raj" <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Subject: Re: [yocto] editing Makefile after configure stage to disable -Werror
+In-Reply-To: <CAKAnv4EUDy9Z8M1BCv7rR-_4RBFkbMCXUuf-Po-CPDcmhmjaUA@mail.gmail.com>
 Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
---------------AC66A53C9DA8072FAB7370DD
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
 
-Hi,
 
-On 8/31/2021 5:58 PM, Bruce Ashfield wrote:
-> On Tue, Aug 31, 2021 at 11:48 AM Anatol Belski
-> <anbelski@linux.microsoft.com> wrote:
->> Hi,
->>
->> I'm writing to present an ABI compliance check mechanism for Poky
->> recently developed to help improve the product stability. It is still
->> an early work which however has already proven itself useful and thus
->> the time seems right to ask for the community view.
->>
->> Binary compliance is an important metric, when a distrubition intends
->> to provide stability guarantees to consumers outside the monolithic
->> image build. For example, projects utilizing the SDK might not be in
->> sync with the image builds from even the same branch. Even in stable
->> branches where bugfixes, security patches or even non breaching
->> upgrades have to flow in as necessary, there's is currently no
->> verifiable mechainsm to ensure the binary compatibility long term.
->>
->> The currently implemented validation is based on libabigail and as such
->> is focused on the ABI compliance. Libabigail is a tool developed by Red
->> Hat and is in use for Fedora and RHEL RPM builds. Some companies are
->> known to utilize libabigail to support the kernel maintanance (Linux
->> kernel for Android). The meta layer contains a bbclass extending the
->> buildhistory functionality with the ABI serialization and comparison.
->> One buildhistory version taken as a baseline would serve the comparison
->> with any follow up builds. The ABI changes detected are then reported.
->>
->> The handling routines in Poky are currently attached to the install
->> task, which implies the baseline build needs to take place with the
->> sstate disabled. The follow up buids can use sstate and in that case
->> the postinstall routines will be invoked only if some change took place
->> and thus do_install has been called.
->>
->> The implementation is made as a core Python module, which can be used
->> in a Yocto layer or imported in any other script. The layer is
->> available under:
->> https://github.com/clio-project/meta-binaryaudit
->>
->> and the accompanying python module (which moves at some faster pace and
->> is synchronized into the layer) and a command line tool:
->> https://github.com/clio-project/python-binaryaudit
->>
->> The layer is yet an early work and the impluementation doesn't exhaust
->> all the possible features of Poky and libabigail. However, it already
->> proves itself helpful and is used for some real products to esure the
->> ABI stability. Certainly the mechanisms and the integration can be
->> improved.
->>
->> The future for this layer is open containing at least the topics below:
->>
->> - Binary size auditing.
->> - Security auditing.
->>
->> As a shorter term serviceableness, the ABI compliance validation
->> mechanism seems to be a useful tool in helping to keep promises on LTS,
->> but would most likely also help maintaining non LTS branches. It would
->> be great to receive any feedback, reviews and ideas in regard to meta-
->> binaryaudit.
-> Out of curiosity, are you coordinating with the work sent in March by BMW ?
->
-> see the email with the subject: [yocto] Demo of abi checker hook with hashequiv
->
-> And the associated layers: https://github.com/bmwcarit/meta-abicompat
-> and https://github.com/bmwcarit/meta-abicompat-poky
-
-Thanks for the pointer! Nope, there's no coordination, it's a separate 
-effort and seems the approach and goals are somewhat different. The 
-sstate handling is however a very interesting approach. One could check 
-if these works can be merged together, if there's an interest.
-
-Regards
-
-Anatol
-
-> Bruce
->
->> Thanks!
->>
->> Anatol
->>
->>
->>
->>
->
-> --
-> - Thou shalt not follow the NULL pointer, for chaos and madness await
-> thee at its end
-> - "Use the force Harry" - Gandalf, Star Trek II
->
+On 8/31/21 12:52 AM, Ivan Riabtsov wrote:
+> i cleaned out -Werror wherever possible with command:
 > 
->
+> sed -i 's/-Werror//g' $(find . -type f -exec egrep -l _no_Werror {} \;)
+> 
+> and elfutils is builded
 
---------------AC66A53C9DA8072FAB7370DD
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
+Please try backporting this fix
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>Hi,<br>
-    </p>
-    <div class="moz-cite-prefix">On 8/31/2021 5:58 PM, Bruce Ashfield
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CADkTA4MCDkW7RHq=EPrN5Qr2O=nJwmRBDnQ+RP-b3dTH_9RcLw@mail.gmail.com">
-      <pre class="moz-quote-pre" wrap="">On Tue, Aug 31, 2021 at 11:48 AM Anatol Belski
-<a class="moz-txt-link-rfc2396E" href="mailto:anbelski@linux.microsoft.com">&lt;anbelski@linux.microsoft.com&gt;</a> wrote:
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">
-Hi,
+https://sourceware.org/git/?p=elfutils.git;a=commit;h=a01938d584b91e747167bb4b3f30ec300c4d6e43
 
-I'm writing to present an ABI compliance check mechanism for Poky
-recently developed to help improve the product stability. It is still
-an early work which however has already proven itself useful and thus
-the time seems right to ask for the community view.
+if this is not enough then I think you just need to edit config/eu.am to 
+remove -Werror and perhaps thats enough, but upstream elfutils is 
+generally receptive to
+Werror issues, so I would also suggest that in parallel you report it
+upstream as well.
 
-Binary compliance is an important metric, when a distrubition intends
-to provide stability guarantees to consumers outside the monolithic
-image build. For example, projects utilizing the SDK might not be in
-sync with the image builds from even the same branch. Even in stable
-branches where bugfixes, security patches or even non breaching
-upgrades have to flow in as necessary, there's is currently no
-verifiable mechainsm to ensure the binary compatibility long term.
-
-The currently implemented validation is based on libabigail and as such
-is focused on the ABI compliance. Libabigail is a tool developed by Red
-Hat and is in use for Fedora and RHEL RPM builds. Some companies are
-known to utilize libabigail to support the kernel maintanance (Linux
-kernel for Android). The meta layer contains a bbclass extending the
-buildhistory functionality with the ABI serialization and comparison.
-One buildhistory version taken as a baseline would serve the comparison
-with any follow up builds. The ABI changes detected are then reported.
-
-The handling routines in Poky are currently attached to the install
-task, which implies the baseline build needs to take place with the
-sstate disabled. The follow up buids can use sstate and in that case
-the postinstall routines will be invoked only if some change took place
-and thus do_install has been called.
-
-The implementation is made as a core Python module, which can be used
-in a Yocto layer or imported in any other script. The layer is
-available under:
-<a class="moz-txt-link-freetext" href="https://github.com/clio-project/meta-binaryaudit">https://github.com/clio-project/meta-binaryaudit</a>
-
-and the accompanying python module (which moves at some faster pace and
-is synchronized into the layer) and a command line tool:
-<a class="moz-txt-link-freetext" href="https://github.com/clio-project/python-binaryaudit">https://github.com/clio-project/python-binaryaudit</a>
-
-The layer is yet an early work and the impluementation doesn't exhaust
-all the possible features of Poky and libabigail. However, it already
-proves itself helpful and is used for some real products to esure the
-ABI stability. Certainly the mechanisms and the integration can be
-improved.
-
-The future for this layer is open containing at least the topics below:
-
-- Binary size auditing.
-- Security auditing.
-
-As a shorter term serviceableness, the ABI compliance validation
-mechanism seems to be a useful tool in helping to keep promises on LTS,
-but would most likely also help maintaining non LTS branches. It would
-be great to receive any feedback, reviews and ideas in regard to meta-
-binaryaudit.
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-Out of curiosity, are you coordinating with the work sent in March by BMW ?
-
-see the email with the subject: [yocto] Demo of abi checker hook with hashequiv
-
-And the associated layers: <a class="moz-txt-link-freetext" href="https://github.com/bmwcarit/meta-abicompat">https://github.com/bmwcarit/meta-abicompat</a>
-and <a class="moz-txt-link-freetext" href="https://github.com/bmwcarit/meta-abicompat-poky">https://github.com/bmwcarit/meta-abicompat-poky</a>
-</pre>
-    </blockquote>
-    <p>Thanks for the pointer! Nope, there's no coordination, it's a
-      separate effort and seems the approach and goals are somewhat
-      different. The sstate handling is however a very interesting
-      approach. One could check if these works can be merged together,
-      if there's an interest.<br>
-    </p>
-    <p>Regards</p>
-    <p>Anatol<br>
-    </p>
-    <blockquote type="cite"
-cite="mid:CADkTA4MCDkW7RHq=EPrN5Qr2O=nJwmRBDnQ+RP-b3dTH_9RcLw@mail.gmail.com">
-      <pre class="moz-quote-pre" wrap="">
-Bruce
-
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">
-Thanks!
-
-Anatol
-
-
-
-
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-
---
-- Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end
-- "Use the force Harry" - Gandalf, Star Trek II
-</pre>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">
-
-
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------AC66A53C9DA8072FAB7370DD--
+> 
+> вт, 31 авг. 2021 г. в 09:41, Ivan Riabtsov via lists.yoctoproject.org
+> <ivriabtsov=gmail.com@lists.yoctoproject.org>:
+>>
+>> Hello, I have the following error:
+>>
+>> ../../elfutils-0.166/libelf/libelfP.h:53:30: error: ‘__elf64_msize’
+>> specifies less restrictive attribute than its target ‘elf64_fsize’:
+>> ‘const’ [-Werror=missing-attributes]
+>>
+>> i try to solve this by patch:
+>>
+>> diff -Naur elfutils-0.166_orig/libelf/libelfP.h elfutils-0.166/libelf/libelfP.h
+>> --- elfutils-0.166_orig/libelf/libelfP.h 2016-01-12 15:49:19.000000000 +0300
+>> +++ elfutils-0.166/libelf/libelfP.h 2021-08-30 19:38:44.866175082 +0300
+>> @@ -48,6 +48,8 @@
+>>
+>>
+>>   /* Helper Macros to write 32 bit and 64 bit functions.  */
+>> +#pragma GCC diagnostic push
+>> +#pragma GCC diagnostic ignored "-Wmissing-attributes"
+>>   #define __elfw2_(Bits, Name) __elf##Bits##_##Name
+>>   #define elfw2_(Bits, Name) elf##Bits##_##Name
+>>   #define ElfW2_(Bits, Name) Elf##Bits##_##Name
+>> @@ -632,4 +634,5 @@
+>>   #define INVALID_NDX(ndx, type, data) \
+>>     unlikely ((data)->d_size / sizeof (type) <= (unsigned int) (ndx))
+>>
+>> +#pragma GCC diagnostic pop
+>>   #endif  /* libelfP.h */
+>>
+>>
+>> But the patch does  not work, error appears again.
+>>
+>>
+>> i try to add --disable-werror to configure flags, but i have follows warning:
+>>
+>> configure: WARNING: unrecognized options: --disable-werror.
+>>
+>>
+>> The only solution to the problem I could think of is editing the
+>> Makefile after configuration, please tell me how this can be done?
+>>
+>>
+>>
+>>
+>>
+>> 
+>>
