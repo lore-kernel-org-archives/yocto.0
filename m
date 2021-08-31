@@ -1,83 +1,104 @@
-Received: from mailrelay1-2.pub.mailoutpod1-cph3.one.com (mailrelay1-2.pub.mailoutpod1-cph3.one.com [46.30.212.0])
- by mx.groups.io with SMTP id smtpd.web09.2449.1630395931623606496
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+ by mx.groups.io with SMTP id smtpd.web10.2543.1630396391819063671
  for <yocto@lists.yoctoproject.org>;
- Tue, 31 Aug 2021 00:45:32 -0700
+ Tue, 31 Aug 2021 00:53:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@berginkonsult.se header.s=20191106 header.b=ZE1SMYZX;
- spf=none, err=permanent DNS error (domain: berginkonsult.se, ip: 46.30.212.0, mailfrom: peter@berginkonsult.se)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=QHhI8SJ6;
+ spf=pass (domain: gmail.com, ip: 209.85.167.47, mailfrom: ivriabtsov@gmail.com)
+Received: by mail-lf1-f47.google.com with SMTP id l10so2452411lfg.4
+        for <yocto@lists.yoctoproject.org>; Tue, 31 Aug 2021 00:53:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=berginkonsult.se; s=20191106;
-	h=content-transfer-encoding:content-type:in-reply-to:mime-version:date:
-	 message-id:from:references:to:subject:from;
-	bh=17aN/pJLTfGNV3Ap2xR5Z0y1SQHFk0MgKW8NzdwrNMk=;
-	b=ZE1SMYZXRTdoIW1BjFqqC9UDCANq+I6KbSywNP21trAC1THh8ChZJRYPdfaygKPFjuLYdapTitoHI
-	 qHBNeAblYnmG9rDrlk/Tn2FNQdiF1jRzb/5ZipcwtEZ7lbTcP91+rl9SSksxhVEuiPURNH/uf1VE6D
-	 khD23Xtvn8GUs/TQQB8x13GpGVBr5GnVVU+7VgGH/Y/yo9Q24hISGJqv6vH7QhYsxRsHzi1JUYXmRx
-	 iv6PDVYjAwSHDSPSCALX39jb5iOCGGaJeC3oP3c8S+T/UsfvPqCu8LdD4bAzEgj1EgXz3GKBT6t++m
-	 69GZ8sAMmXc3Ww/uzSGOG9o0Hy1V58Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=berginkonsult.se; s=rsa1;
-	h=content-transfer-encoding:content-type:in-reply-to:mime-version:date:
-	 message-id:from:references:to:subject:from;
-	bh=17aN/pJLTfGNV3Ap2xR5Z0y1SQHFk0MgKW8NzdwrNMk=;
-	b=DkwkT/ylfsfPXX8UcKtiM3Dtdzc6muJYSc4azJNiC9l/QYI8gAv7TrvA37IiQVYQ/n0aNWRGXiFJk
-	 tpKMvIQ2i57jFURtr5xuu048PzTOYlverUiOOueRmunKJ+rLmgYwzUWWr0AYzYEqDzdGGKQ6o4EvLV
-	 sMCqxWnyls7uD1cSfMwTavCiov0zu0LNsVN34xwWK7C1GuxHoDbogeuIbl+fzDTGbBBLUxHfmltMEo
-	 nLaEcWINyng7OpU588eQgzat4loBRHGm6XxE4TcD0CsCbN6O7qTcvPEM9h1OgQ/BQiMHfUZUIleZrE
-	 n+sXlekea33LTb/cJGDfs4AAwum5XkA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
-	d=berginkonsult.se; s=ed1;
-	h=content-transfer-encoding:content-type:in-reply-to:mime-version:date:
-	 message-id:from:references:to:subject:from;
-	bh=17aN/pJLTfGNV3Ap2xR5Z0y1SQHFk0MgKW8NzdwrNMk=;
-	b=p8Nq8Gm0h3nag1dbIuooOfzUCWlypuhIOBIp+dLrqrgknGmfEqpokZ6FHzqqeDrrkOMxZAecY9bld
-	 V4hLfDcDQ==
-X-HalOne-Cookie: 108bd374ca25bde37b13da7c7da82391069cd190
-X-HalOne-ID: 693b862e-0a2f-11ec-b7ce-d0431ea8a283
-Received: from [192.168.12.23] (h-79-136-99-68.na.cust.bahnhof.se [79.136.99.68])
-	by mailrelay1.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
-	id 693b862e-0a2f-11ec-b7ce-d0431ea8a283;
-	Tue, 31 Aug 2021 07:45:28 +0000 (UTC)
-Subject: Re: [yocto] extrausers-bbclass: plaintext password (since shadow update to 4.9)
-To: Matthias Klein <matthias.klein@optimeas.de>,
- "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-References: <AM0PR10MB310796884E3E3D545695708099CB9@AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM>
- <d4829d94-aba0-e620-eb6c-8115efea9d23@berginkonsult.se>
- <AM0PR10MB31078836CD7F6E0B51ADD5AB99CC9@AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM>
-From: "Peter Bergin" <peter@berginkonsult.se>
-Message-ID: <1bbd7070-cc1a-c40b-5742-909472e2dffb@berginkonsult.se>
-Date: Tue, 31 Aug 2021 09:45:28 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=K4sz+mEcbCh3i/SOiwg4slCuYjPVxPajtSn6h20X0WE=;
+        b=QHhI8SJ6B8J74Ds3jncIQ8ie32xqERRnGke6iMXdjZCMK04DmsQZvMF8XhTQqE8ods
+         Hh90j7PRifyswJ1w4VKZ+M7JzA2TNfFPvq89HsjX9AySj54R6BeK6ezUco05uQs/82fu
+         Jv7veVikiMCsihOu2JgE3OgKZJwJqO3ZfzYZNmP4mDvm05Q3fBcxQTtCqS0hezvS3MMv
+         aIJWb6m+Ed0yuh4LdkjxWLE3nImHJUpjwgxJQtalfMCtRxQIg4r1Ek2gkexBOHbwpqI7
+         dWbLLoGCXuW61EkkM8NpvgVuIw4iIymFhkoGN+vpe2IC2Z0a4B1y01q+bGD9CkfH9k9d
+         wTvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=K4sz+mEcbCh3i/SOiwg4slCuYjPVxPajtSn6h20X0WE=;
+        b=sm3oVyQmrqmaIJRZCJgc74L9X+xlS9XRCnkSV6mO/JSb9eFk2eZdl2qsiAwD+fhnuE
+         aYedXqaQajFnJdvEI1AiO0gTyOaB8yvnoBOSs6A+HceDTjiC0C55MNx31ry6GUWlQ02a
+         2/AAc+HMWBeo2oIaz6a9S6DR3vbIX05GExhcNMLcGmSng9nRb7ykvOYKl0il+bNO28LF
+         V0HxvtqxbSMUKf3Ey8xbssM8iP9QRNyBdjl5q7EqBMaFL2TSxi/DEbStZJsauDwSUIlh
+         7YRfBT0381hv2bB/lJ1zr29cEde0ODMVPeRJeT7Xac47dRbRxlN7UdwH4dd9AUf2h88u
+         +AnQ==
+X-Gm-Message-State: AOAM5317C9xs1UuBJ8s979ZFMa4zf3qEBKdSszBcUIx6aU5WnfoOJhPS
+	TMQCgy4hlR+a9AlbQN1qHIDCcgKfB7Cygksq7LM=
+X-Google-Smtp-Source: ABdhPJxR7Lr9lWko/tEfm3mJYiy30nsvdSjFY09r+6SyaOgtZIfLYbs+lKHmAhYm7hQNSpl3vIWHegGA4DToq3CrSpw=
+X-Received: by 2002:a05:6512:1087:: with SMTP id j7mr20127410lfg.638.1630396389958;
+ Tue, 31 Aug 2021 00:53:09 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <AM0PR10MB31078836CD7F6E0B51ADD5AB99CC9@AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+References: <16A050FBE1213E46.30479@lists.yoctoproject.org>
+In-Reply-To: <16A050FBE1213E46.30479@lists.yoctoproject.org>
+From: "Ivan Riabtsov" <ivriabtsov@gmail.com>
+Date: Tue, 31 Aug 2021 10:52:58 +0300
+Message-ID: <CAKAnv4EUDy9Z8M1BCv7rR-_4RBFkbMCXUuf-Po-CPDcmhmjaUA@mail.gmail.com>
+Subject: Re: [yocto] editing Makefile after configure stage to disable -Werror
+To: ivriabtsov@gmail.com
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Matthias,
+i cleaned out -Werror wherever possible with command:
 
-On 2021-08-31 09:03, Matthias Klein wrote:
-> But I have not found a way to set the password with EXTRA_USERS_PARAMS.
-> Do you know a working variant?
+sed -i 's/-Werror//g' $(find . -type f -exec egrep -l _no_Werror {} \;)
 
-Is it a requirement that you need to regenerate the hash on every build? 
-If not one solution can be:
+and elfutils is builded
 
-     inherit extrausers
-
-     #
-     # HASH generated with this command:
-     # python3 -c "import crypt; print(crypt.crypt('toor', 
-crypt.METHOD_SHA512))"
-     #
-     HASH = 
-"\\\$6\\\$8Z5vMcqCIB19PgY8\\\$Sv4kAfsH1k.SANHL5JVb6hdqmQWHOeH0Rjrjyii7fGAK20Gclj/.qiBvUPnAfh.WSsr1.XV0pUNom2L9oYYDV/"
-
-     EXTRA_USERS_PARAMS = " \
-        usermod -p ${HASH} root; \
-     "
-
-Best regards,
-/Peter
-
+=D0=B2=D1=82, 31 =D0=B0=D0=B2=D0=B3. 2021 =D0=B3. =D0=B2 09:41, Ivan Riabts=
+ov via lists.yoctoproject.org
+<ivriabtsov=3Dgmail.com@lists.yoctoproject.org>:
+>
+> Hello, I have the following error:
+>
+> ../../elfutils-0.166/libelf/libelfP.h:53:30: error: =E2=80=98__elf64_msiz=
+e=E2=80=99
+> specifies less restrictive attribute than its target =E2=80=98elf64_fsize=
+=E2=80=99:
+> =E2=80=98const=E2=80=99 [-Werror=3Dmissing-attributes]
+>
+> i try to solve this by patch:
+>
+> diff -Naur elfutils-0.166_orig/libelf/libelfP.h elfutils-0.166/libelf/lib=
+elfP.h
+> --- elfutils-0.166_orig/libelf/libelfP.h 2016-01-12 15:49:19.000000000 +0=
+300
+> +++ elfutils-0.166/libelf/libelfP.h 2021-08-30 19:38:44.866175082 +0300
+> @@ -48,6 +48,8 @@
+>
+>
+>  /* Helper Macros to write 32 bit and 64 bit functions.  */
+> +#pragma GCC diagnostic push
+> +#pragma GCC diagnostic ignored "-Wmissing-attributes"
+>  #define __elfw2_(Bits, Name) __elf##Bits##_##Name
+>  #define elfw2_(Bits, Name) elf##Bits##_##Name
+>  #define ElfW2_(Bits, Name) Elf##Bits##_##Name
+> @@ -632,4 +634,5 @@
+>  #define INVALID_NDX(ndx, type, data) \
+>    unlikely ((data)->d_size / sizeof (type) <=3D (unsigned int) (ndx))
+>
+> +#pragma GCC diagnostic pop
+>  #endif  /* libelfP.h */
+>
+>
+> But the patch does  not work, error appears again.
+>
+>
+> i try to add --disable-werror to configure flags, but i have follows warn=
+ing:
+>
+> configure: WARNING: unrecognized options: --disable-werror.
+>
+>
+> The only solution to the problem I could think of is editing the
+> Makefile after configuration, please tell me how this can be done?
+>
+>=20
+>
