@@ -1,299 +1,102 @@
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
- by mx.groups.io with SMTP id smtpd.web12.409.1630517428433149827
+Received: from mailrelay1-2.pub.mailoutpod1-cph3.one.com (mailrelay1-2.pub.mailoutpod1-cph3.one.com [46.30.212.0])
+ by mx.groups.io with SMTP id smtpd.web12.2288.1630531109811724195
  for <yocto@lists.yoctoproject.org>;
- Wed, 01 Sep 2021 10:30:28 -0700
+ Wed, 01 Sep 2021 14:18:31 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=lHFYCu0J;
- spf=pass (domain: gmail.com, ip: 209.85.222.170, mailfrom: raj.khem@gmail.com)
-Received: by mail-qk1-f170.google.com with SMTP id a10so181921qka.12
-        for <yocto@lists.yoctoproject.org>; Wed, 01 Sep 2021 10:30:28 -0700 (PDT)
+ dkim=pass header.i=@berginkonsult.se header.s=20191106 header.b=gsRPaebz;
+ spf=none, err=permanent DNS error (domain: berginkonsult.se, ip: 46.30.212.0, mailfrom: peter@berginkonsult.se)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=05JduZrL3nxi0cadmT77/A+9BC3d5vb1CDVqZFcME1M=;
-        b=lHFYCu0JctxF8PgErkjEwD8rKdh2AnRpysOnD2xy4fWi8mIm4I4Bpqv/sGJls5XQFP
-         UoAgP1kdDsBHmQw6QtUV4Ft5KEeZuSfLosg5hgbRKBSGtb+Tqhx5L05cwAsY4xBE7SBN
-         jKv9DsBN+FXv+C4Cbotl+NzdbSaOfqDHRPZdCubOumVoW4jb8LNKyxLnUFnI2PL5XkyU
-         s6/y5vDS64uJD7doLMiWauTag57s/TzMknYdvwxFN3vJ9eevAGwhHtuzB2CuS1l3lyH7
-         2vPMvlqHGiTOi2gx6HbVdHN0ZD/vsPcS4xfGBOzovwxwiV7lpl3A/t9ql5yuhCqaV3c9
-         Qo6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=05JduZrL3nxi0cadmT77/A+9BC3d5vb1CDVqZFcME1M=;
-        b=ZRnQKL3Li7PXO9ZEgS71zZ+JEujm5rtUmchoRy6oyrnuPFCNdctQRgPrA+sMavhRR8
-         6AhEsG5li9DYNrQPL59oBbzS6jf3f27p88vR4U/Nw9umSTeNgAlLWQ0BKrRIwv0Cbd78
-         6mSajVRXht5hqc3iaXz8mnUA8T8Q8f8/GF2xmgls0VVK+wTNIxSBzRJEqzLM1XNgZzVK
-         LeJ1fMvroC1R4AMZlhGx3dM7CkkoBMvnLffMC/R7+UWM7c5nPeVfwpBxDjUnDiiF7Sx9
-         jbvpgdmR20nLtTtCx3aQNQMO/AiEnWKYz/oVyi/QwLYFUrd/EnGArTX+3De776H2AywQ
-         rp0Q==
-X-Gm-Message-State: AOAM532pg/i+E16SG6GKF5frLNiW2MpAjqY/p+FtXr7Ld8w/nLPaShCB
-	UQqgDTr3C6aTWGdkzW+7KSYsQvXOTDg4bX5NjEQ9/L83TDiNow==
-X-Google-Smtp-Source: ABdhPJw25ZBLt+SYKUOz9O52xG8ZiFPfwdrdr1fsXkkXF4bsIjaJ+u/5ZXXMCklJYv3oDw9XFrhVsJrMZrTvnJUIA10=
-X-Received: by 2002:a37:58b:: with SMTP id 133mr780971qkf.146.1630517427327;
- Wed, 01 Sep 2021 10:30:27 -0700 (PDT)
+	d=berginkonsult.se; s=20191106;
+	h=content-transfer-encoding:content-type:in-reply-to:mime-version:date:
+	 message-id:from:references:to:subject:from;
+	bh=gsRfBTP2zHN8CNzq0wBESZmzZL7AOqTbTOEzlsC8U1s=;
+	b=gsRPaebzS9LnPp6qXijagiiBNqUTX3PEBroGd7DyW2gVZXuSlfVxFnGe+yO/ZBgtZPXMJPKdQAJ3b
+	 DsYpODZeKvtAo2hCOy1DIq3QTaY0sI+M4af4yn1keuMVHEz7FPweOkrUFUGz1RXfVNO4bUbvduJ8hf
+	 fehxYXSSBgUOeG6cJLrtLcRU+jDueT9w/+c1iuKCTX0c87jb/RYJeLj011mhqSOmOX0Nr0t+V+ZAam
+	 ecMPBUT8VmhquLjntAX+g1bRt2Ucvzatohusvf4ZG5uV+Gigf01SjBpzEtk9Q1Y2RqNR7am7xy0sOK
+	 bBIKU5WjhFZIj2NXgU/8bJDLiudqLDg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=berginkonsult.se; s=rsa1;
+	h=content-transfer-encoding:content-type:in-reply-to:mime-version:date:
+	 message-id:from:references:to:subject:from;
+	bh=gsRfBTP2zHN8CNzq0wBESZmzZL7AOqTbTOEzlsC8U1s=;
+	b=NyLbWUkid5bHYe77FJdJdFzh7NH91NxmFrGzkyxAOmRcRDNxwCq05Ss32j2/9FZs677OFU6b3T7v8
+	 Zkwgy9AIx4iVM8LPgnGIOXAHaRF9OcQrJzdFB0LiUyY2oOuawPmy2jIKf9LzOxkgpJtIH9GIDArfL6
+	 VXgTlS5eavMBS8jj+4HIh+YYm2Le1ShjJRFMHAj+nw21ZlvdwK4zokzeRNi7/8n5zHecQ8Ttt5bBlG
+	 mr3l4XuZg8fCqgQ3F6xrN8K0aytwpy/CpI6ZCswFvFalQKRrvpNyvlQ5cbB5kGgbRowCV5okieF6Jm
+	 gCNLp43XjGZmBQEx3+O8C5XHvsIEzbQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+	d=berginkonsult.se; s=ed1;
+	h=content-transfer-encoding:content-type:in-reply-to:mime-version:date:
+	 message-id:from:references:to:subject:from;
+	bh=gsRfBTP2zHN8CNzq0wBESZmzZL7AOqTbTOEzlsC8U1s=;
+	b=d1o2BZUaMIvShTq4TOm26z9e+Xj+U0yO9NT/E1COZ6oxrHe9DA2bjhiGzWyGtQ+zKhI3iYO5N/4vs
+	 UL7bQWqDg==
+X-HalOne-Cookie: d6f3bf5922e6876b94c18ca11590b3084aa1d4b8
+X-HalOne-ID: 24665fe4-0b6a-11ec-b7ce-d0431ea8a283
+Received: from [192.168.100.145] (ua-85-227-233-29.bbcust.telenor.se [85.227.233.29])
+	by mailrelay1.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
+	id 24665fe4-0b6a-11ec-b7ce-d0431ea8a283;
+	Wed, 01 Sep 2021 21:18:25 +0000 (UTC)
+Subject: Re: [yocto] gpsd [version 3.23; master branch]: Is it possible to include / enable ubxtool?
+To: Matthias Klein <matthias.klein@optimeas.de>,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <AM0PR10MB310701696E98C78D98D5F3AE99CD9@AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM>
+ <3aefaadf-22fb-0295-8c3e-bfbb164f7e84@berginkonsult.se>
+ <AM0PR10MB3107A5A0480003FB260DD93899CD9@AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM>
+From: "Peter Bergin" <peter@berginkonsult.se>
+Message-ID: <2d00b451-23d9-bffa-8ecf-4dc9c83b5d2d@berginkonsult.se>
+Date: Wed, 1 Sep 2021 23:18:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <9YXg.1629971335581080377.YiDx@lists.yoctoproject.org>
-In-Reply-To: <9YXg.1629971335581080377.YiDx@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Wed, 1 Sep 2021 10:30:01 -0700
-Message-ID: <CAMKF1srVr1fm1-Q4epRgZ1wmBYkCdRQpHHADy46MDVRL0o9-uQ@mail.gmail.com>
-Subject: Re: [yocto] porting riscv on openjdk
-To: abhishek.kumar@exaleapsemi.com
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <AM0PR10MB3107A5A0480003FB260DD93899CD9@AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-please use https://github.com/riscv/riscv-openjdk fork.
+Hi Matthias,
 
-On Wed, Sep 1, 2021 at 7:22 AM <abhishek.kumar@exaleapsemi.com> wrote:
+On 2021-09-01 17:11, Matthias Klein wrote:
+> Hello Peter,
 >
-> hi sir
-> i am trying to build openjdk on riscv but i am facing problem can you suggest what steps i need to follow
+> I'm not sure it's that simple.
+Sorry for my quick and a bit oversimplified response. I did my first 
+build on an older version (3.20) where ubxtool was not built but present 
+in the repo root. I see now that in 3.23 gpsd have changed concept and 
+client/ubxtool.py.in is mangled through the build system to fill in some 
+stuff and produce the ubxtool script.
+> To me it looks like the recipe has bugs in python area, or my environment / build is causing problems.
+> In the log.do_compile file I see messages which make me wonder:
 >
-> root@exaleapsemi-3:~/abhi/jdk# bash configure
-> configure: Configuration created at Thu Aug 26 08:50:43 UTC 2021.
-> checking for basename... /usr/bin/basename
-> checking for dirname... /usr/bin/dirname
-> checking for file... /usr/bin/file
-> checking for ldd... no
-> checking for bash... /bin/bash
-> checking for cat... /bin/cat
-> checking for chmod... /bin/chmod
-> checking for cp... /bin/cp
-> checking for cut... /usr/bin/cut
-> checking for date... /bin/date
-> checking for gdiff... [not found]
-> checking for diff... /usr/bin/diff
-> checking for echo... echo [builtin]
-> checking for expr... /usr/bin/expr
-> checking for find... /usr/bin/find
-> checking for gunzip... /bin/gunzip
-> checking for pigz... [not found]
-> checking for gzip... /bin/gzip
-> checking for head... /usr/bin/head
-> checking for ln... /bin/ln
-> checking for ls... /bin/ls
-> checking for gmkdir... [not found]
-> checking for mkdir... /bin/mkdir
-> checking for mktemp... /bin/mktemp
-> checking for mv... /bin/mv
-> checking for gawk... /usr/bin/gawk
-> checking for printf... printf [builtin]
-> checking for rm... /bin/rm
-> checking for rmdir... /bin/rmdir
-> checking for sh... /bin/sh
-> checking for sort... /usr/bin/sort
-> checking for tail... /usr/bin/tail
-> checking for gtar... /bin/gtar
-> checking for tee... /usr/bin/tee
-> checking for touch... /bin/touch
-> checking for tr... /usr/bin/tr
-> checking for uname... /bin/uname
-> checking for wc... /usr/bin/wc
-> checking for xargs... /usr/bin/xargs
-> checking for grep that handles long lines and -e... /bin/grep
-> checking for egrep... /bin/grep -E
-> checking for fgrep... /bin/grep -F
-> checking for a sed that does not truncate output... /bin/sed
-> checking for df... /bin/df
-> checking for nice... /bin/nice
-> checking for greadlink... [not found]
-> checking for readlink... /usr/bin/readlink
-> checking for cygpath... [not found]
-> checking for wslpath... [not found]
-> checking for lsb_release... [not found]
-> checking for cmd.exe... [not found]
-> checking for cmp... /usr/bin/cmp
-> checking for uniq... /usr/bin/uniq
-> checking build system type... riscv64-unknown-linux-gnu
-> checking host system type... riscv64-unknown-linux-gnu
-> checking target system type... riscv64-unknown-linux-gnu
-> checking openjdk-build os-cpu... linux-riscv64
-> checking openjdk-build C library... gnu
-> checking openjdk-target os-cpu... linux-riscv64
-> checking openjdk-target C library... gnu
-> checking compilation type... native
-> checking for top-level directory... /home/root/abhi/jdk
-> checking if custom source is suppressed (openjdk-only)... disabled, default
-> checking for --enable-debug... disabled, default
-> checking which debug level to use... release
-> checking which variants of the JVM to build... server
-> checking if absolute paths should be allowed in the build output... no, release build
-> checking for sysroot...
-> checking for toolchain path...
-> checking for extra path...
-> checking where to store configuration... in default location
-> checking what configuration name to use... linux-riscv64-server-release
-> checking for zypper... [not found]
-> checking for apt-get... /usr/bin/apt-get
-> checking for pandoc... [not found]
-> checking for gmake... [not found]
-> checking for make... /usr/bin/make
-> configure: Testing potential make at /usr/bin/make, found using make in PATH
-> configure: Using GNU make at /usr/bin/make (version: GNU Make 4.3)
-> checking if make --output-sync is supported... yes
-> checking for output-sync value... none
-> checking if find supports -delete... yes
-> checking what type of tar was found... gnu
-> checking that grep (/bin/grep) -Fx handles empty lines in the pattern list correctly... yes
-> checking for unzip... /usr/bin/unzip
-> checking for zip... /usr/bin/zip
-> checking for greadelf... [not found]
-> checking for readelf... /usr/bin/readelf
-> checking for dot... [not found]
-> checking for hg... [not found]
-> checking for git... /usr/bin/git
-> checking for stat... /bin/stat
-> checking for time... time [builtin]
-> checking for flock... /usr/bin/flock
-> checking for dtrace... [not found]
-> checking for gpatch... [not found]
-> checking for patch... /usr/bin/patch
-> checking for ulimit... ulimit [builtin]
-> checking bash version... 5.0.18
-> checking if bash supports pipefail... yes
-> checking if bash supports errexit (-e)... yes
-> checking for pkg-config... /usr/bin/pkg-config
-> checking pkg-config is at least version 0.9.0... yes
-> checking for default LOG value...
-> checking if packaged modules are kept... enabled, default
-> checking for version string... 18-internal+0-adhoc.root.jdk
-> checking for javac... [not found]
-> checking for java... [not found]
-> configure: Could not find a valid Boot JDK. OpenJDK distributions are available at http://jdk.java.net/.
-> configure: This might be fixed by explicitly setting --with-boot-jdk
-> configure: error: Cannot continue
-> configure exiting with result code 1
-> root@exaleapsemi-3:~/abhi/jdk# apt-get install libcups2-dev
-> Reading package lists... Done
-> Building dependency tree
-> Reading state information... Done
-> E: Unable to locate package libcups2-dev
-> root@exaleapsemi-3:~/abhi/jdk# apt-get install libfontconfig1-dev
-> Reading package lists... Done
-> Building dependency tree
-> Reading state information... Done
-> E: Unable to locate package libfontconfig1-dev
-> root@exaleapsemi-3:~/abhi/jdk# apt-get install libasound2-dev
-> Reading package lists... Done
-> Building dependency tree
-> Reading state information... Done
-> E: Unable to locate package libasound2-dev
-> root@exaleapsemi-3:~/abhi/jdk# bash configure
-> configure: Configuration created at Thu Aug 26 08:52:37 UTC 2021.
-> checking for basename... /usr/bin/basename
-> checking for dirname... /usr/bin/dirname
-> checking for file... /usr/bin/file
-> checking for ldd... no
-> checking for bash... /bin/bash
-> checking for cat... /bin/cat
-> checking for chmod... /bin/chmod
-> checking for cp... /bin/cp
-> checking for cut... /usr/bin/cut
-> checking for date... /bin/date
-> checking for gdiff... [not found]
-> checking for diff... /usr/bin/diff
-> checking for echo... echo [builtin]
-> checking for expr... /usr/bin/expr
-> checking for find... /usr/bin/find
-> checking for gunzip... /bin/gunzip
-> checking for pigz... [not found]
-> checking for gzip... /bin/gzip
-> checking for head... /usr/bin/head
-> checking for ln... /bin/ln
-> checking for ls... /bin/ls
-> checking for gmkdir... [not found]
-> checking for mkdir... /bin/mkdir
-> checking for mktemp... /bin/mktemp
-> checking for mv... /bin/mv
-> checking for gawk... /usr/bin/gawk
-> checking for printf... printf [builtin]
-> checking for rm... /bin/rm
-> checking for rmdir... /bin/rmdir
-> checking for sh... /bin/sh
-> checking for sort... /usr/bin/sort
-> checking for tail... /usr/bin/tail
-> checking for gtar... /bin/gtar
-> checking for tee... /usr/bin/tee
-> checking for touch... /bin/touch
-> checking for tr... /usr/bin/tr
-> checking for uname... /bin/uname
-> checking for wc... /usr/bin/wc
-> checking for xargs... /usr/bin/xargs
-> checking for grep that handles long lines and -e... /bin/grep
-> checking for egrep... /bin/grep -E
-> checking for fgrep... /bin/grep -F
-> checking for a sed that does not truncate output... /bin/sed
-> checking for df... /bin/df
-> checking for nice... /bin/nice
-> checking for greadlink... [not found]
-> checking for readlink... /usr/bin/readlink
-> checking for cygpath... [not found]
-> checking for wslpath... [not found]
-> checking for lsb_release... [not found]
-> checking for cmd.exe... [not found]
-> checking for cmp... /usr/bin/cmp
-> checking for uniq... /usr/bin/uniq
-> checking build system type... riscv64-unknown-linux-gnu
-> checking host system type... riscv64-unknown-linux-gnu
-> checking target system type... riscv64-unknown-linux-gnu
-> checking openjdk-build os-cpu... linux-riscv64
-> checking openjdk-build C library... gnu
-> checking openjdk-target os-cpu... linux-riscv64
-> checking openjdk-target C library... gnu
-> checking compilation type... native
-> checking for top-level directory... /home/root/abhi/jdk
-> checking if custom source is suppressed (openjdk-only)... disabled, default
-> checking for --enable-debug... disabled, default
-> checking which debug level to use... release
-> checking which variants of the JVM to build... server
-> checking if absolute paths should be allowed in the build output... no, release build
-> checking for sysroot...
-> checking for toolchain path...
-> checking for extra path...
-> checking where to store configuration... in default location
-> checking what configuration name to use... linux-riscv64-server-release
-> checking for zypper... [not found]
-> checking for apt-get... /usr/bin/apt-get
-> checking for pandoc... [not found]
-> checking for gmake... [not found]
-> checking for make... /usr/bin/make
-> configure: Testing potential make at /usr/bin/make, found using make in PATH
-> configure: Using GNU make at /usr/bin/make (version: GNU Make 4.3)
-> checking if make --output-sync is supported... yes
-> checking for output-sync value... none
-> checking if find supports -delete... yes
-> checking what type of tar was found... gnu
-> checking that grep (/bin/grep) -Fx handles empty lines in the pattern list correctly... yes
-> checking for unzip... /usr/bin/unzip
-> checking for zip... /usr/bin/zip
-> checking for greadelf... [not found]
-> checking for readelf... /usr/bin/readelf
-> checking for dot... [not found]
-> checking for hg... [not found]
-> checking for git... /usr/bin/git
-> checking for stat... /bin/stat
-> checking for time... time [builtin]
-> checking for flock... /usr/bin/flock
-> checking for dtrace... [not found]
-> checking for gpatch... [not found]
-> checking for patch... /usr/bin/patch
-> checking for ulimit... ulimit [builtin]
-> checking bash version... 5.0.18
-> checking if bash supports pipefail... yes
-> checking if bash supports errexit (-e)... yes
-> checking for pkg-config... /usr/bin/pkg-config
-> checking pkg-config is at least version 0.9.0... yes
-> checking for default LOG value...
-> checking if packaged modules are kept... enabled, default
-> checking for version string... 18-internal+0-adhoc.root.jdk
-> checking for javac... [not found]
-> checking for java... [not found]
-> configure: Could not find a valid Boot JDK. OpenJDK distributions are available at http://jdk.java.net/.
-> configure: This might be fixed by explicitly setting --with-boot-jdk
-> configure: error: Cannot continue
-> configure exiting with result code 1
-> 
+> Checking whether python program exists...no
+> Target Python doesn't exist - disabling Python.
+> python = False (default True): build Python support and modules.
+> GPS regression tests suppressed because socket_export or python is off.
 >
+> It looks to me that everything Python specific is disabled.
+> Therefore I am missing on the target e.g. also the following file which should be generated:
+>
+> /usr/lib/python3.9/site-packages/gps/__init__.py
+> /usr/lib/python3.9/site-packages/gps/gps.py
+>
+> Can anyone confirm this?
+
+Confirmed!
+
+The issue is that the package gpsd requires /usr/bin/python to be 
+present as described in the documentation 
+(https://gitlab.com/gpsd/gpsd/-/blob/master/build.adoc#user-content-quick-start). 
+This is not the case in Yocto when using python3native bbclass. As 
+described in the documentation it is possible to add a symlink called 
+/usr/bin/python to the python interpreter in the sysroot. You can do 
+this by adding:
+
+     ln -sf python3-native/python3 ${STAGING_BINDIR_NATIVE}/python
+
+When scons finds /usr/bin/python the python packages are also built in 
+gpsd. Then you can continue to install and package ubxtool.
+
+Best regards,
+/Peter
+
