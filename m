@@ -1,429 +1,156 @@
-Subject: porting riscv on openjdk
-To: yocto@lists.yoctoproject.org
-From: abhishek.kumar@exaleapsemi.com
-X-Originating-Location: Bengaluru, Karnataka, IN (122.166.120.168)
-X-Originating-Platform: Linux Firefox 91
-User-Agent: GROUPS.IO Web Poster
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (EUR04-HE1-obe.outbound.protection.outlook.com [40.107.7.78])
+ by mx.groups.io with SMTP id smtpd.web10.9442.1630509091179357147
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 01 Sep 2021 08:11:33 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@optimeasgmbh.onmicrosoft.com header.s=selector2-optimeasgmbh-onmicrosoft-com header.b=FaV59rRS;
+ spf=pass (domain: optimeas.de, ip: 40.107.7.78, mailfrom: matthias.klein@optimeas.de)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TnuZ7EXfACQMd8iugWvDxvEj3tEdmvJ7vv9C/Nb/C2Yw4qEq2STiFuP7pogezbiGJKorpw+rSq+oSEr3ijCPtaMsn8oKPtTs1rWs3honyQriKMOOFaU8Jcpw6ssuEUFLInIJvU7ZnTGhrxzYAr31GZ/A8PvgcpamXVgPWi24HKUu8ieoAKAfgenrU0StKqrPHl7hufS/SdkO45N0aiZpkgaykGyhhuEVZG5jA174sDUYZmToq+9kjOeQUT6hMvKy1it+zmZQ+Dpfr6EDzZSVoAyjYEcl0gl2ziiw3Ymy5b5btVWfQcDbai9w9XwBUetzsWu5zKkAtRQwc1WhH/0POQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=Tgeahi92cAqoZFvuoFXBTLqjqGmzNyhRgXHB4z0hEI8=;
+ b=XdGE6MX3llvSQ69GEpbXYsY2D3ItotrbTHuyHjMz4gfwpeOyFRs5KxSYmvJ+BQ5S2nfXQ31pMYNp8S+smt4d3PV/JHje1e7CxqCiwO8KSy69QmfQtmPZwBzUMj86Y6phbDfeqspsW0rHdQNkagWRYu/f9LuTivC+chES/5kJS2dq6ipz2X77Qun16PORxu5+jRWFBDwpriZ/RcMl9679P8DRcFmkit5ECjZznuArLxtCusDAdcfN9nAbz9+iWtLVR1Z7Cc++Iz4XqQxGHxlN9TWjmNJsk6hWKs8wDCmOnBIDNU0ZVTZXxCQ9147nxojHs38+3s4aJPRWoMrKfRM0Nw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=optimeas.de; dmarc=pass action=none header.from=optimeas.de;
+ dkim=pass header.d=optimeas.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=optimeasgmbh.onmicrosoft.com; s=selector2-optimeasgmbh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Tgeahi92cAqoZFvuoFXBTLqjqGmzNyhRgXHB4z0hEI8=;
+ b=FaV59rRSRQ3gIa1UAsa2JI5IqUZXr8p8Xi2wVzDs2TVzafj5ezzydr+1GI4G3UjfpKXiYNliVoKGT1N+/52qHQbQd/faa2rE09zBIHGumBkSgNK8mVONnyCl9/VFbOJV5AnPuqwk97iWOhGntYXExfO3A8lTGNFj9oQgVukOgus=
+Received: from AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:128::16)
+ by AM0PR10MB2163.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:de::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.17; Wed, 1 Sep
+ 2021 15:11:26 +0000
+Received: from AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::1df1:442d:d6:9a54]) by AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::1df1:442d:d6:9a54%6]) with mapi id 15.20.4478.019; Wed, 1 Sep 2021
+ 15:11:26 +0000
+From: "Matthias Klein" <matthias.klein@optimeas.de>
+To: Peter Bergin <peter@berginkonsult.se>, "yocto@lists.yoctoproject.org"
+	<yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] gpsd [version 3.23; master branch]: Is it possible to include / enable ubxtool?
+Thread-Topic: [yocto] gpsd [version 3.23; master branch]: Is it possible to
+ include / enable ubxtool?
+Thread-Index: AdefHM6eXOO8G8BCSvGxUhhAKYo25gAFn2AAAAQNDzA=
+Date: Wed, 1 Sep 2021 15:11:26 +0000
+Message-ID: 
+ <AM0PR10MB3107A5A0480003FB260DD93899CD9@AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM>
+References: 
+ <AM0PR10MB310701696E98C78D98D5F3AE99CD9@AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM>
+ <3aefaadf-22fb-0295-8c3e-bfbb164f7e84@berginkonsult.se>
+In-Reply-To: <3aefaadf-22fb-0295-8c3e-bfbb164f7e84@berginkonsult.se>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: berginkonsult.se; dkim=none (message not signed)
+ header.d=none;berginkonsult.se; dmarc=none action=none
+ header.from=optimeas.de;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 1e8422fa-98ab-4423-c123-08d96d5ac4f0
+x-ms-traffictypediagnostic: AM0PR10MB2163:
+x-microsoft-antispam-prvs: 
+ <AM0PR10MB21638D2E44AA7CF2C79DA5E099CD9@AM0PR10MB2163.EURPRD10.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ jmruf2c/lg8niQak42qC7E928oL9YxysIpinuzIMimMbqF0xuL8ExV2bYcLQXj+9Xwv/1mnO0wIZ9lhh9iP2iJp5S3UBoyKt4RWRJdREr1bJdrLj7FqBRdc8x+8LW8M2ZGcjGFcS7dcwyPz8H1my2dxFfKFSEDtNyMiHqg3MYkyFyZeUNgpPj7qZP4tIjh8KSVZQ/vSNk/tZbgfJRXdGQPtiyxtJF/6qKarkBBDkWZhVp95sj6oXGfEon0gh4ANsmomwAz/YH1MD/dQMG2o+j1EVJoFRBt+PeOwpgPP4MP6Yhndmv1Vs2Zdv+nqr8ZXeHmBLJzb/mztZVGP/d6BapdghCBJ2ZNu07Kfuwcpeb3GtK5vNfHccjd/H8A4I9rBnBYQRIkoLeXH1eq0XmRiNaT3jEpp71Iq5rzrC/oGguB+LmWjXxFR1DUKfrXapAg+Bl3lyT41uUL7KxXUNejZ4a8R4oR9+kuM5wrvgMaSiIQfGmvFESr7F0Ws4SYQ1al4XFbMaMIzCGR0k2GMtL+A5PdZNyhsE/SEoJMIN4joS+/REZXGNOU8hdOiCFjeQMgkzEOFxjIsZy2PEBz8KzTc4HLxrCVkbxBIEUxZ64NT4taV6hGWfh88jLSh4PMtDhY+6JxZpEVBZtLlRDYy5dmcfp/y03nFmSD+HGJcGDrWRC4I9vrdIgdeTnhg1joURW7ROqpCZl0Te8UwjSRmfH0a+Qw==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(366004)(396003)(39830400003)(136003)(376002)(346002)(186003)(53546011)(38070700005)(44832011)(71200400001)(55016002)(6506007)(86362001)(7696005)(33656002)(9686003)(66574015)(8676002)(83380400001)(122000001)(508600001)(38100700002)(8936002)(66556008)(66946007)(66446008)(64756008)(66476007)(2906002)(76116006)(52536014)(316002)(5660300002)(110136005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?hsWTNMekH63/7KIBEUUQpdC4ILUmnoL4LPnDo7TK6u/6afPuzpKy2Xfcut?=
+ =?iso-8859-1?Q?lfPfNv4dt1s2NXg8rdJSncO8+4spZZ3mLEXcAOd7O+KgwHjba2xYCyTkNk?=
+ =?iso-8859-1?Q?gL5z7XfTeTmsCnNeJPhgSGb+PTBkkKCr8SeHJOPduAWKebYyXGNe++Rgem?=
+ =?iso-8859-1?Q?LrCFIu+8gl46wIoqLG805JBAfD0b7Bu97P6ef138hljbzUfmDjoJYiQNuk?=
+ =?iso-8859-1?Q?RcBL90DCqhH9IkQ285chOZRSlUHA3IQPJpvtbDegObmna1oJ+xbdgErl3l?=
+ =?iso-8859-1?Q?CAGHKxKhpN2xD5cO7vl5Ywsh5QCF33FctTtE+U5/k5tVTvYKAcJeypr6yj?=
+ =?iso-8859-1?Q?vLSIb5wB0Z3uBi/qsIbooyLfpmx8Na4BbZ9EwoBiCx3nsqThyBHrl9haYz?=
+ =?iso-8859-1?Q?gBorCsjcmKa0KImRSeDqbp9rwsEVnf53d4l/Tp2hdsgDn8p7PMd3RXXqtF?=
+ =?iso-8859-1?Q?ceoVGiG684E/V/XFGoSSaNamgJnpf+qLcrpASQAU3ij2kFkr9l42N48PNO?=
+ =?iso-8859-1?Q?R+asJ1A+hbOC6ZQn/TKx2fhS8gnYHoKLX4/SYv0iHrBY+OJ67XiDzZSf++?=
+ =?iso-8859-1?Q?WQIDkytPAFZNkcHEruC4WxDjEzKvcH7dX36SJg2d25IxSU/+jq3Lh55BH2?=
+ =?iso-8859-1?Q?EbHdG7Jlw9/5ukAICtELSh1YvmwODNCjWNEhewW2sUw9U1fcbkzxaLnLor?=
+ =?iso-8859-1?Q?MbipPEH4sV/qgE0h4Uc94m03J2dADvLulQHxtQQUI4jEtLdL7CnWakPcl0?=
+ =?iso-8859-1?Q?evAdeuHv/btKa68+LW8shCXT8SHPpcw4LkjujFpGbYIYe1aZmPzv47RfD9?=
+ =?iso-8859-1?Q?wxoN4tBJymlOjdRTVezldBrFnQ6FmUvBS2g+0BoQPUCp3Z5X/7UT1KKMPF?=
+ =?iso-8859-1?Q?mb02CyVh3r8DfCWVITNJBVL8mef06l7IUyi9SWJoY1uQzogOJYegU+1PvK?=
+ =?iso-8859-1?Q?rNxLhVeFmub6OGhRGGelPNWazr4Qog5punt2hExeX2JeNQ9o8wJ6JFl5c0?=
+ =?iso-8859-1?Q?oKxpotHyU5jy4CSEzW5wC/Rqq3ZlDp2XOFEL9+wcePFwKQ4N8jBrc0kGZ6?=
+ =?iso-8859-1?Q?dOVNp8edxKiDlqAKIhn0jQ+u+t8rRbykRHLXfkj5qIlPGup0ekYZSQxgY3?=
+ =?iso-8859-1?Q?mMoYPvJiQtSWbdIQjRJLqBf7w3fIvZkq9dgJhbk9wAjeIJ1ki7zW0cm+Jo?=
+ =?iso-8859-1?Q?/h4xFYAChZ4uuN9yblkkb9eAgfKdWjuogAPxGizSjT+YuXQQGmMqA7Yl1+?=
+ =?iso-8859-1?Q?ZHbL+Wdci+qHc2f1NOw2pccTDHmrJLlFUlcslZYH2PHRBIjhNnq9HFYoK7?=
+ =?iso-8859-1?Q?5/Qnts8z0oHKQCxHfnIYf0pHxAqQa0msvbXBC4wyGkKm2+OscpoC97aifB?=
+ =?iso-8859-1?Q?qW4YhxddZbfCq7THzg8Wa/Uj80ceZ+VWyYQqAtFPkzHc4XFLyYB/eYZ1yx?=
+ =?iso-8859-1?Q?5B5+1fm2NpN6MGoc?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-Date: Thu, 26 Aug 2021 02:48:55 -0700
-Message-ID: <9YXg.1629971335581080377.YiDx@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="rM6ndAFDO4yoI3mQC9Qo"
-
---rM6ndAFDO4yoI3mQC9Qo
-Content-Type: text/plain; charset="utf-8"
+X-OriginatorOrg: optimeas.de
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1e8422fa-98ab-4423-c123-08d96d5ac4f0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Sep 2021 15:11:26.7622
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 91b33c5b-e584-4ec0-893c-2a9180ad0602
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: l/tjEHzJJjBHVWnaUJitKntYBSzISzrBN2j7fvHyyciHCR7d5tn1+K+acbOq+EEAgUXeZZfGMYFhTKWzEOpus71j4DSO5VEk0XqfT/2Ci/Q=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB2163
+Content-Language: de-DE
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-hi sir
-i am trying to build openjdk on riscv but i am facing problem can you sugge=
-st what steps i need to follow
+Hello Peter,
 
-root@exaleapsemi-3:~/abhi/jdk# bash configure
-configure: Configuration created at Thu Aug 26 08:50:43 UTC 2021.
-checking for basename... /usr/bin/basename
-checking for dirname... /usr/bin/dirname
-checking for file... /usr/bin/file
-checking for ldd... no
-checking for bash... /bin/bash
-checking for cat... /bin/cat
-checking for chmod... /bin/chmod
-checking for cp... /bin/cp
-checking for cut... /usr/bin/cut
-checking for date... /bin/date
-checking for gdiff... [not found]
-checking for diff... /usr/bin/diff
-checking for echo... echo [builtin]
-checking for expr... /usr/bin/expr
-checking for find... /usr/bin/find
-checking for gunzip... /bin/gunzip
-checking for pigz... [not found]
-checking for gzip... /bin/gzip
-checking for head... /usr/bin/head
-checking for ln... /bin/ln
-checking for ls... /bin/ls
-checking for gmkdir... [not found]
-checking for mkdir... /bin/mkdir
-checking for mktemp... /bin/mktemp
-checking for mv... /bin/mv
-checking for gawk... /usr/bin/gawk
-checking for printf... printf [builtin]
-checking for rm... /bin/rm
-checking for rmdir... /bin/rmdir
-checking for sh... /bin/sh
-checking for sort... /usr/bin/sort
-checking for tail... /usr/bin/tail
-checking for gtar... /bin/gtar
-checking for tee... /usr/bin/tee
-checking for touch... /bin/touch
-checking for tr... /usr/bin/tr
-checking for uname... /bin/uname
-checking for wc... /usr/bin/wc
-checking for xargs... /usr/bin/xargs
-checking for grep that handles long lines and -e... /bin/grep
-checking for egrep... /bin/grep -E
-checking for fgrep... /bin/grep -F
-checking for a sed that does not truncate output... /bin/sed
-checking for df... /bin/df
-checking for nice... /bin/nice
-checking for greadlink... [not found]
-checking for readlink... /usr/bin/readlink
-checking for cygpath... [not found]
-checking for wslpath... [not found]
-checking for lsb_release... [not found]
-checking for cmd.exe... [not found]
-checking for cmp... /usr/bin/cmp
-checking for uniq... /usr/bin/uniq
-checking build system type... riscv64-unknown-linux-gnu
-checking host system type... riscv64-unknown-linux-gnu
-checking target system type... riscv64-unknown-linux-gnu
-checking openjdk-build os-cpu... linux-riscv64
-checking openjdk-build C library... gnu
-checking openjdk-target os-cpu... linux-riscv64
-checking openjdk-target C library... gnu
-checking compilation type... native
-checking for top-level directory... /home/root/abhi/jdk
-checking if custom source is suppressed (openjdk-only)... disabled, default
-checking for --enable-debug... disabled, default
-checking which debug level to use... release
-checking which variants of the JVM to build... server
-checking if absolute paths should be allowed in the build output... no, rel=
-ease build
-checking for sysroot...
-checking for toolchain path...
-checking for extra path...
-checking where to store configuration... in default location
-checking what configuration name to use... linux-riscv64-server-release
-checking for zypper... [not found]
-checking for apt-get... /usr/bin/apt-get
-checking for pandoc... [not found]
-checking for gmake... [not found]
-checking for make... /usr/bin/make
-configure: Testing potential make at /usr/bin/make, found using make in PAT=
-H
-configure: Using GNU make at /usr/bin/make (version: GNU Make 4.3)
-checking if make --output-sync is supported... yes
-checking for output-sync value... none
-checking if find supports -delete... yes
-checking what type of tar was found... gnu
-checking that grep (/bin/grep) -Fx handles empty lines in the pattern list =
-correctly... yes
-checking for unzip... /usr/bin/unzip
-checking for zip... /usr/bin/zip
-checking for greadelf... [not found]
-checking for readelf... /usr/bin/readelf
-checking for dot... [not found]
-checking for hg... [not found]
-checking for git... /usr/bin/git
-checking for stat... /bin/stat
-checking for time... time [builtin]
-checking for flock... /usr/bin/flock
-checking for dtrace... [not found]
-checking for gpatch... [not found]
-checking for patch... /usr/bin/patch
-checking for ulimit... ulimit [builtin]
-checking bash version... 5.0.18
-checking if bash supports pipefail... yes
-checking if bash supports errexit (-e)... yes
-checking for pkg-config... /usr/bin/pkg-config
-checking pkg-config is at least version 0.9.0... yes
-checking for default LOG value...
-checking if packaged modules are kept... enabled, default
-checking for version string... 18-internal+0-adhoc.root.jdk
-checking for javac... [not found]
-checking for java... [not found]
-configure: Could not find a valid Boot JDK. OpenJDK distributions are avail=
-able at http://jdk.java.net/.
-configure: This might be fixed by explicitly setting --with-boot-jdk
-configure: error: Cannot continue
-configure exiting with result code 1
-root@exaleapsemi-3:~/abhi/jdk# apt-get install libcups2-dev
-Reading package lists... Done
-Building dependency tree
-Reading state information... Done
-E: Unable to locate package libcups2-dev
-root@exaleapsemi-3:~/abhi/jdk# apt-get install libfontconfig1-dev
-Reading package lists... Done
-Building dependency tree
-Reading state information... Done
-E: Unable to locate package libfontconfig1-dev
-root@exaleapsemi-3:~/abhi/jdk# apt-get install libasound2-dev
-Reading package lists... Done
-Building dependency tree
-Reading state information... Done
-E: Unable to locate package libasound2-dev
-root@exaleapsemi-3:~/abhi/jdk# bash configure
-configure: Configuration created at Thu Aug 26 08:52:37 UTC 2021.
-checking for basename... /usr/bin/basename
-checking for dirname... /usr/bin/dirname
-checking for file... /usr/bin/file
-checking for ldd... no
-checking for bash... /bin/bash
-checking for cat... /bin/cat
-checking for chmod... /bin/chmod
-checking for cp... /bin/cp
-checking for cut... /usr/bin/cut
-checking for date... /bin/date
-checking for gdiff... [not found]
-checking for diff... /usr/bin/diff
-checking for echo... echo [builtin]
-checking for expr... /usr/bin/expr
-checking for find... /usr/bin/find
-checking for gunzip... /bin/gunzip
-checking for pigz... [not found]
-checking for gzip... /bin/gzip
-checking for head... /usr/bin/head
-checking for ln... /bin/ln
-checking for ls... /bin/ls
-checking for gmkdir... [not found]
-checking for mkdir... /bin/mkdir
-checking for mktemp... /bin/mktemp
-checking for mv... /bin/mv
-checking for gawk... /usr/bin/gawk
-checking for printf... printf [builtin]
-checking for rm... /bin/rm
-checking for rmdir... /bin/rmdir
-checking for sh... /bin/sh
-checking for sort... /usr/bin/sort
-checking for tail... /usr/bin/tail
-checking for gtar... /bin/gtar
-checking for tee... /usr/bin/tee
-checking for touch... /bin/touch
-checking for tr... /usr/bin/tr
-checking for uname... /bin/uname
-checking for wc... /usr/bin/wc
-checking for xargs... /usr/bin/xargs
-checking for grep that handles long lines and -e... /bin/grep
-checking for egrep... /bin/grep -E
-checking for fgrep... /bin/grep -F
-checking for a sed that does not truncate output... /bin/sed
-checking for df... /bin/df
-checking for nice... /bin/nice
-checking for greadlink... [not found]
-checking for readlink... /usr/bin/readlink
-checking for cygpath... [not found]
-checking for wslpath... [not found]
-checking for lsb_release... [not found]
-checking for cmd.exe... [not found]
-checking for cmp... /usr/bin/cmp
-checking for uniq... /usr/bin/uniq
-checking build system type... riscv64-unknown-linux-gnu
-checking host system type... riscv64-unknown-linux-gnu
-checking target system type... riscv64-unknown-linux-gnu
-checking openjdk-build os-cpu... linux-riscv64
-checking openjdk-build C library... gnu
-checking openjdk-target os-cpu... linux-riscv64
-checking openjdk-target C library... gnu
-checking compilation type... native
-checking for top-level directory... /home/root/abhi/jdk
-checking if custom source is suppressed (openjdk-only)... disabled, default
-checking for --enable-debug... disabled, default
-checking which debug level to use... release
-checking which variants of the JVM to build... server
-checking if absolute paths should be allowed in the build output... no, rel=
-ease build
-checking for sysroot...
-checking for toolchain path...
-checking for extra path...
-checking where to store configuration... in default location
-checking what configuration name to use... linux-riscv64-server-release
-checking for zypper... [not found]
-checking for apt-get... /usr/bin/apt-get
-checking for pandoc... [not found]
-checking for gmake... [not found]
-checking for make... /usr/bin/make
-configure: Testing potential make at /usr/bin/make, found using make in PAT=
-H
-configure: Using GNU make at /usr/bin/make (version: GNU Make 4.3)
-checking if make --output-sync is supported... yes
-checking for output-sync value... none
-checking if find supports -delete... yes
-checking what type of tar was found... gnu
-checking that grep (/bin/grep) -Fx handles empty lines in the pattern list =
-correctly... yes
-checking for unzip... /usr/bin/unzip
-checking for zip... /usr/bin/zip
-checking for greadelf... [not found]
-checking for readelf... /usr/bin/readelf
-checking for dot... [not found]
-checking for hg... [not found]
-checking for git... /usr/bin/git
-checking for stat... /bin/stat
-checking for time... time [builtin]
-checking for flock... /usr/bin/flock
-checking for dtrace... [not found]
-checking for gpatch... [not found]
-checking for patch... /usr/bin/patch
-checking for ulimit... ulimit [builtin]
-checking bash version... 5.0.18
-checking if bash supports pipefail... yes
-checking if bash supports errexit (-e)... yes
-checking for pkg-config... /usr/bin/pkg-config
-checking pkg-config is at least version 0.9.0... yes
-checking for default LOG value...
-checking if packaged modules are kept... enabled, default
-checking for version string... 18-internal+0-adhoc.root.jdk
-checking for javac... [not found]
-checking for java... [not found]
-configure: Could not find a valid Boot JDK. OpenJDK distributions are avail=
-able at http://jdk.java.net/.
-configure: This might be fixed by explicitly setting --with-boot-jdk
-configure: error: Cannot continue
-configure exiting with result code 1
+I'm not sure it's that simple.
 
---rM6ndAFDO4yoI3mQC9Qo
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+To me it looks like the recipe has bugs in python area, or my environment /=
+ build is causing problems.
+In the log.do_compile file I see messages which make me wonder:
 
-hi sir<br />i am trying to build openjdk on riscv but i am facing problem c=
-an you suggest what steps i need to follow<br /><br />root@exaleapsemi-3:~/=
-abhi/jdk# bash configure<br />configure: Configuration created at Thu Aug 2=
-6 08:50:43 UTC 2021.<br />checking for basename... /usr/bin/basename<br />c=
-hecking for dirname... /usr/bin/dirname<br />checking for file... /usr/bin/=
-file<br />checking for ldd... no<br />checking for bash... /bin/bash<br />c=
-hecking for cat... /bin/cat<br />checking for chmod... /bin/chmod<br />chec=
-king for cp... /bin/cp<br />checking for cut... /usr/bin/cut<br />checking =
-for date... /bin/date<br />checking for gdiff... [not found]<br />checking =
-for diff... /usr/bin/diff<br />checking for echo... echo [builtin]<br />che=
-cking for expr... /usr/bin/expr<br />checking for find... /usr/bin/find<br =
-/>checking for gunzip... /bin/gunzip<br />checking for pigz... [not found]<=
-br />checking for gzip... /bin/gzip<br />checking for head... /usr/bin/head=
-<br />checking for ln... /bin/ln<br />checking for ls... /bin/ls<br />check=
-ing for gmkdir... [not found]<br />checking for mkdir... /bin/mkdir<br />ch=
-ecking for mktemp... /bin/mktemp<br />checking for mv... /bin/mv<br />check=
-ing for gawk... /usr/bin/gawk<br />checking for printf... printf [builtin]<=
-br />checking for rm... /bin/rm<br />checking for rmdir... /bin/rmdir<br />=
-checking for sh... /bin/sh<br />checking for sort... /usr/bin/sort<br />che=
-cking for tail... /usr/bin/tail<br />checking for gtar... /bin/gtar<br />ch=
-ecking for tee... /usr/bin/tee<br />checking for touch... /bin/touch<br />c=
-hecking for tr... /usr/bin/tr<br />checking for uname... /bin/uname<br />ch=
-ecking for wc... /usr/bin/wc<br />checking for xargs... /usr/bin/xargs<br /=
->checking for grep that handles long lines and -e... /bin/grep<br />checkin=
-g for egrep... /bin/grep -E<br />checking for fgrep... /bin/grep -F<br />ch=
-ecking for a sed that does not truncate output... /bin/sed<br />checking fo=
-r df... /bin/df<br />checking for nice... /bin/nice<br />checking for gread=
-link... [not found]<br />checking for readlink... /usr/bin/readlink<br />ch=
-ecking for cygpath... [not found]<br />checking for wslpath... [not found]<=
-br />checking for lsb_release... [not found]<br />checking for cmd.exe... [=
-not found]<br />checking for cmp... /usr/bin/cmp<br />checking for uniq... =
-/usr/bin/uniq<br />checking build system type... riscv64-unknown-linux-gnu<=
-br />checking host system type... riscv64-unknown-linux-gnu<br />checking t=
-arget system type... riscv64-unknown-linux-gnu<br />checking openjdk-build =
-os-cpu... linux-riscv64<br />checking openjdk-build C library... gnu<br />c=
-hecking openjdk-target os-cpu... linux-riscv64<br />checking openjdk-target=
- C library... gnu<br />checking compilation type... native<br />checking fo=
-r top-level directory... /home/root/abhi/jdk<br />checking if custom source=
- is suppressed (openjdk-only)... disabled, default<br />checking for --enab=
-le-debug... disabled, default<br />checking which debug level to use... rel=
-ease<br />checking which variants of the JVM to build... server<br />checki=
-ng if absolute paths should be allowed in the build output... no, release b=
-uild<br />checking for sysroot... <br />checking for toolchain path... <br =
-/>checking for extra path... <br />checking where to store configuration...=
- in default location<br />checking what configuration name to use... linux-=
-riscv64-server-release<br />checking for zypper... [not found]<br />checkin=
-g for apt-get... /usr/bin/apt-get<br />checking for pandoc... [not found]<b=
-r />checking for gmake... [not found]<br />checking for make... /usr/bin/ma=
-ke<br />configure: Testing potential make at /usr/bin/make, found using mak=
-e in PATH<br />configure: Using GNU make at /usr/bin/make (version: GNU Mak=
-e 4.3)<br />checking if make --output-sync is supported... yes<br />checkin=
-g for output-sync value... none<br />checking if find supports -delete... y=
-es<br />checking what type of tar was found... gnu<br />checking that grep =
-(/bin/grep) -Fx handles empty lines in the pattern list correctly... yes<br=
- />checking for unzip... /usr/bin/unzip<br />checking for zip... /usr/bin/z=
-ip<br />checking for greadelf... [not found]<br />checking for readelf... /=
-usr/bin/readelf<br />checking for dot... [not found]<br />checking for hg..=
-. [not found]<br />checking for git... /usr/bin/git<br />checking for stat.=
-.. /bin/stat<br />checking for time... time [builtin]<br />checking for flo=
-ck... /usr/bin/flock<br />checking for dtrace... [not found]<br />checking =
-for gpatch... [not found]<br />checking for patch... /usr/bin/patch<br />ch=
-ecking for ulimit... ulimit [builtin]<br />checking bash version... 5.0.18<=
-br />checking if bash supports pipefail... yes<br />checking if bash suppor=
-ts errexit (-e)... yes<br />checking for pkg-config... /usr/bin/pkg-config<=
-br />checking pkg-config is at least version 0.9.0... yes<br />checking for=
- default LOG value... <br />checking if packaged modules are kept... enable=
-d, default<br />checking for version string... 18-internal+0-adhoc.root.jdk=
-<br />checking for javac... [not found]<br />checking for java... [not foun=
-d]<br />configure: Could not find a valid Boot JDK. OpenJDK distributions a=
-re available at http://jdk.java.net/.<br />configure: This might be fixed b=
-y explicitly setting --with-boot-jdk<br />configure: error: Cannot continue=
-<br />configure exiting with result code 1<br />root@exaleapsemi-3:~/abhi/j=
-dk# apt-get install libcups2-dev<br />Reading package lists... Done<br />Bu=
-ilding dependency tree&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br />Reading st=
-ate information... Done<br />E: Unable to locate package libcups2-dev<br />=
-root@exaleapsemi-3:~/abhi/jdk# apt-get install libfontconfig1-dev<br />Read=
-ing package lists... Done<br />Building dependency tree&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; &nbsp;<br />Reading state information... Done<br />E: Unable to =
-locate package libfontconfig1-dev<br />root@exaleapsemi-3:~/abhi/jdk# apt-g=
-et install libasound2-dev<br />Reading package lists... Done<br />Building =
-dependency tree&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br />Reading state inf=
-ormation... Done<br />E: Unable to locate package libasound2-dev<br />root@=
-exaleapsemi-3:~/abhi/jdk# bash configure<br />configure: Configuration crea=
-ted at Thu Aug 26 08:52:37 UTC 2021.<br />checking for basename... /usr/bin=
-/basename<br />checking for dirname... /usr/bin/dirname<br />checking for f=
-ile... /usr/bin/file<br />checking for ldd... no<br />checking for bash... =
-/bin/bash<br />checking for cat... /bin/cat<br />checking for chmod... /bin=
-/chmod<br />checking for cp... /bin/cp<br />checking for cut... /usr/bin/cu=
-t<br />checking for date... /bin/date<br />checking for gdiff... [not found=
-]<br />checking for diff... /usr/bin/diff<br />checking for echo... echo [b=
-uiltin]<br />checking for expr... /usr/bin/expr<br />checking for find... /=
-usr/bin/find<br />checking for gunzip... /bin/gunzip<br />checking for pigz=
-... [not found]<br />checking for gzip... /bin/gzip<br />checking for head.=
-.. /usr/bin/head<br />checking for ln... /bin/ln<br />checking for ls... /b=
-in/ls<br />checking for gmkdir... [not found]<br />checking for mkdir... /b=
-in/mkdir<br />checking for mktemp... /bin/mktemp<br />checking for mv... /b=
-in/mv<br />checking for gawk... /usr/bin/gawk<br />checking for printf... p=
-rintf [builtin]<br />checking for rm... /bin/rm<br />checking for rmdir... =
-/bin/rmdir<br />checking for sh... /bin/sh<br />checking for sort... /usr/b=
-in/sort<br />checking for tail... /usr/bin/tail<br />checking for gtar... /=
-bin/gtar<br />checking for tee... /usr/bin/tee<br />checking for touch... /=
-bin/touch<br />checking for tr... /usr/bin/tr<br />checking for uname... /b=
-in/uname<br />checking for wc... /usr/bin/wc<br />checking for xargs... /us=
-r/bin/xargs<br />checking for grep that handles long lines and -e... /bin/g=
-rep<br />checking for egrep... /bin/grep -E<br />checking for fgrep... /bin=
-/grep -F<br />checking for a sed that does not truncate output... /bin/sed<=
-br />checking for df... /bin/df<br />checking for nice... /bin/nice<br />ch=
-ecking for greadlink... [not found]<br />checking for readlink... /usr/bin/=
-readlink<br />checking for cygpath... [not found]<br />checking for wslpath=
-... [not found]<br />checking for lsb_release... [not found]<br />checking =
-for cmd.exe... [not found]<br />checking for cmp... /usr/bin/cmp<br />check=
-ing for uniq... /usr/bin/uniq<br />checking build system type... riscv64-un=
-known-linux-gnu<br />checking host system type... riscv64-unknown-linux-gnu=
-<br />checking target system type... riscv64-unknown-linux-gnu<br />checkin=
-g openjdk-build os-cpu... linux-riscv64<br />checking openjdk-build C libra=
-ry... gnu<br />checking openjdk-target os-cpu... linux-riscv64<br />checkin=
-g openjdk-target C library... gnu<br />checking compilation type... native<=
-br />checking for top-level directory... /home/root/abhi/jdk<br />checking =
-if custom source is suppressed (openjdk-only)... disabled, default<br />che=
-cking for --enable-debug... disabled, default<br />checking which debug lev=
-el to use... release<br />checking which variants of the JVM to build... se=
-rver<br />checking if absolute paths should be allowed in the build output.=
-.. no, release build<br />checking for sysroot... <br />checking for toolch=
-ain path... <br />checking for extra path... <br />checking where to store =
-configuration... in default location<br />checking what configuration name =
-to use... linux-riscv64-server-release<br />checking for zypper... [not fou=
-nd]<br />checking for apt-get... /usr/bin/apt-get<br />checking for pandoc.=
-.. [not found]<br />checking for gmake... [not found]<br />checking for mak=
-e... /usr/bin/make<br />configure: Testing potential make at /usr/bin/make,=
- found using make in PATH<br />configure: Using GNU make at /usr/bin/make (=
-version: GNU Make 4.3)<br />checking if make --output-sync is supported... =
-yes<br />checking for output-sync value... none<br />checking if find suppo=
-rts -delete... yes<br />checking what type of tar was found... gnu<br />che=
-cking that grep (/bin/grep) -Fx handles empty lines in the pattern list cor=
-rectly... yes<br />checking for unzip... /usr/bin/unzip<br />checking for z=
-ip... /usr/bin/zip<br />checking for greadelf... [not found]<br />checking =
-for readelf... /usr/bin/readelf<br />checking for dot... [not found]<br />c=
-hecking for hg... [not found]<br />checking for git... /usr/bin/git<br />ch=
-ecking for stat... /bin/stat<br />checking for time... time [builtin]<br />=
-checking for flock... /usr/bin/flock<br />checking for dtrace... [not found=
-]<br />checking for gpatch... [not found]<br />checking for patch... /usr/b=
-in/patch<br />checking for ulimit... ulimit [builtin]<br />checking bash ve=
-rsion... 5.0.18<br />checking if bash supports pipefail... yes<br />checkin=
-g if bash supports errexit (-e)... yes<br />checking for pkg-config... /usr=
-/bin/pkg-config<br />checking pkg-config is at least version 0.9.0... yes<b=
-r />checking for default LOG value... <br />checking if packaged modules ar=
-e kept... enabled, default<br />checking for version string... 18-internal+=
-0-adhoc.root.jdk<br />checking for javac... [not found]<br />checking for j=
-ava... [not found]<br />configure: Could not find a valid Boot JDK. OpenJDK=
- distributions are available at http://jdk.java.net/.<br />configure: This =
-might be fixed by explicitly setting --with-boot-jdk<br />configure: error:=
- Cannot continue<br />configure exiting with result code 1
+Checking whether python program exists...no
+Target Python doesn't exist - disabling Python.
+python =3D False (default True): build Python support and modules.
+GPS regression tests suppressed because socket_export or python is off.
 
---rM6ndAFDO4yoI3mQC9Qo--
+It looks to me that everything Python specific is disabled.
+Therefore I am missing on the target e.g. also the following file which sho=
+uld be generated:
+
+/usr/lib/python3.9/site-packages/gps/__init__.py
+/usr/lib/python3.9/site-packages/gps/gps.py
+
+Can anyone confirm this?
+
+Best regards,
+Matthias
+
+-----Urspr=FCngliche Nachricht-----
+Von: Peter Bergin <peter@berginkonsult.se>=20
+Gesendet: Mittwoch, 1. September 2021 15:15
+An: Matthias Klein <matthias.klein@optimeas.de>; yocto@lists.yoctoproject.o=
+rg
+Betreff: Re: [yocto] gpsd [version 3.23; master branch]: Is it possible to =
+include / enable ubxtool?
+
+Hi Matthias,
+
+On 2021-09-01 12:33, Matthias Klein wrote:
+> Hello,
+>
+> is it somehow possible to add the ubxtool in the gpsd-utils package?
+>
+> (I use the current master branch)
+>
+gpsd recipe is located in meta-oe. As the ubxtool file is present in the bu=
+ild it is possible to add it. Just make sure it is installed in the do_inst=
+all step and then that the file is added to FILES_gps-utils variable.
+
+Best regards,
+/Peter
+
