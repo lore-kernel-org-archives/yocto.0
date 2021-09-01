@@ -1,132 +1,299 @@
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
- by mx.groups.io with SMTP id smtpd.web11.385.1630517382760918408
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+ by mx.groups.io with SMTP id smtpd.web12.409.1630517428433149827
  for <yocto@lists.yoctoproject.org>;
- Wed, 01 Sep 2021 10:29:42 -0700
+ Wed, 01 Sep 2021 10:30:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=jA4cz+qw;
- spf=pass (domain: gmail.com, ip: 209.85.219.41, mailfrom: raj.khem@gmail.com)
-Received: by mail-qv1-f41.google.com with SMTP id e18so237231qvo.1
-        for <yocto@lists.yoctoproject.org>; Wed, 01 Sep 2021 10:29:42 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=lHFYCu0J;
+ spf=pass (domain: gmail.com, ip: 209.85.222.170, mailfrom: raj.khem@gmail.com)
+Received: by mail-qk1-f170.google.com with SMTP id a10so181921qka.12
+        for <yocto@lists.yoctoproject.org>; Wed, 01 Sep 2021 10:30:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=zhhYjOtYd8J0TBQrRnMjok+wT29yOhM+JAdQ6R/A0PQ=;
-        b=jA4cz+qwByz/IzAqexagLMbcZgS2X4ue74kLWYuofLwqLXC50ptkOFxr9LEsN+emeK
-         lLe8H0BU8ogMRdQQjluAUuj8kFs7II6vhnIDv0EpEd0lTGC1bVpO8MRxY8g/N6ZaRbz7
-         aaFLbTe2kw8RVzo0dDobWFD98SE1DWN3qkKrxOEIV2wW4mriGVVS7pJrcogrJjYCGhG0
-         vu9ChByOwkThuhoasO8oW3XOmYij3tl+8nyp3tVOHY+av+u5bYm9ggBtfQghed8Kq6Ae
-         x0GaYLyppztO4NzjIcZmQFHvJc6cRKToRTqrNttPefKn7nBZPU22VyaH8BJ5KeKcZyzN
-         5nbA==
+         :cc;
+        bh=05JduZrL3nxi0cadmT77/A+9BC3d5vb1CDVqZFcME1M=;
+        b=lHFYCu0JctxF8PgErkjEwD8rKdh2AnRpysOnD2xy4fWi8mIm4I4Bpqv/sGJls5XQFP
+         UoAgP1kdDsBHmQw6QtUV4Ft5KEeZuSfLosg5hgbRKBSGtb+Tqhx5L05cwAsY4xBE7SBN
+         jKv9DsBN+FXv+C4Cbotl+NzdbSaOfqDHRPZdCubOumVoW4jb8LNKyxLnUFnI2PL5XkyU
+         s6/y5vDS64uJD7doLMiWauTag57s/TzMknYdvwxFN3vJ9eevAGwhHtuzB2CuS1l3lyH7
+         2vPMvlqHGiTOi2gx6HbVdHN0ZD/vsPcS4xfGBOzovwxwiV7lpl3A/t9ql5yuhCqaV3c9
+         Qo6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=zhhYjOtYd8J0TBQrRnMjok+wT29yOhM+JAdQ6R/A0PQ=;
-        b=O24MVKmLgezvXTIXgnbmZoxcvBVsDmhUHjGhY4tYglUhTKALzbDvArLNU0eQTSXnUZ
-         7K7DLzhn2VBUJgyOuHc5LPNgl7V8d4lj2ZwEOvZmJG9OG1V4Y6/nsebsdBfinLM81whc
-         T98DqtzpXGFYCi0K8vOLH13poB+WbuFgYD7mHGOpNbG6c+vvPsRW+WjSXGY3nubVRAAf
-         Wa99EPi6rGGurWIDm2Zb0hj3CszLcmEvaUMIeNAmv2Ki7tmCR1LXqyJYgivMwIqAYozt
-         fSvyX8udeSJy5tLIDnMVst3yqC5T9mrXweZLoqhwtNxcTdX43ueQdMlJVHFHi8XM8BFG
-         hVDQ==
-X-Gm-Message-State: AOAM530v9wZ29NAhWiKXhVAgAAwLlyC1nfccCF1B6TPmXnmQY0I34DLa
-	0LFhcERvD/vCK31xVdU+X8ktgoH0zgyOHTXwTCc=
-X-Google-Smtp-Source: ABdhPJyePCoMzalG2pkp0mDo89LVe1UEdOMo4DjjqhiBBdoQtCulvPZz+4oz0iVlcuWvf4WTu/7aqC4yaTbtky4Kejg=
-X-Received: by 2002:a0c:e883:: with SMTP id b3mr889135qvo.16.1630517381711;
- Wed, 01 Sep 2021 10:29:41 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=05JduZrL3nxi0cadmT77/A+9BC3d5vb1CDVqZFcME1M=;
+        b=ZRnQKL3Li7PXO9ZEgS71zZ+JEujm5rtUmchoRy6oyrnuPFCNdctQRgPrA+sMavhRR8
+         6AhEsG5li9DYNrQPL59oBbzS6jf3f27p88vR4U/Nw9umSTeNgAlLWQ0BKrRIwv0Cbd78
+         6mSajVRXht5hqc3iaXz8mnUA8T8Q8f8/GF2xmgls0VVK+wTNIxSBzRJEqzLM1XNgZzVK
+         LeJ1fMvroC1R4AMZlhGx3dM7CkkoBMvnLffMC/R7+UWM7c5nPeVfwpBxDjUnDiiF7Sx9
+         jbvpgdmR20nLtTtCx3aQNQMO/AiEnWKYz/oVyi/QwLYFUrd/EnGArTX+3De776H2AywQ
+         rp0Q==
+X-Gm-Message-State: AOAM532pg/i+E16SG6GKF5frLNiW2MpAjqY/p+FtXr7Ld8w/nLPaShCB
+	UQqgDTr3C6aTWGdkzW+7KSYsQvXOTDg4bX5NjEQ9/L83TDiNow==
+X-Google-Smtp-Source: ABdhPJw25ZBLt+SYKUOz9O52xG8ZiFPfwdrdr1fsXkkXF4bsIjaJ+u/5ZXXMCklJYv3oDw9XFrhVsJrMZrTvnJUIA10=
+X-Received: by 2002:a37:58b:: with SMTP id 133mr780971qkf.146.1630517427327;
+ Wed, 01 Sep 2021 10:30:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <FaAm.1629388957926929267.SWXt@lists.yoctoproject.org>
-In-Reply-To: <FaAm.1629388957926929267.SWXt@lists.yoctoproject.org>
+References: <9YXg.1629971335581080377.YiDx@lists.yoctoproject.org>
+In-Reply-To: <9YXg.1629971335581080377.YiDx@lists.yoctoproject.org>
 From: "Khem Raj" <raj.khem@gmail.com>
-Date: Wed, 1 Sep 2021 10:29:15 -0700
-Message-ID: <CAMKF1spLZiVfNJv42rqbR1fDRfDd8CVX4ZtSe+Kmt9fdWWtB7w@mail.gmail.com>
-Subject: Re: [yocto] Issue baking a new layer for a custom kernel #kernel
-To: nagesh shamnur <nagesh.shamnur@gmail.com>
+Date: Wed, 1 Sep 2021 10:30:01 -0700
+Message-ID: <CAMKF1srVr1fm1-Q4epRgZ1wmBYkCdRQpHHADy46MDVRL0o9-uQ@mail.gmail.com>
+Subject: Re: [yocto] porting riscv on openjdk
+To: abhishek.kumar@exaleapsemi.com
 Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-ensure that you are using same release branches for all layer repos
-generally RDEPENDS and RRECOMMENDS should be replaced with
-RDEPENDS_<pkgname> etc.
+please use https://github.com/riscv/riscv-openjdk fork.
 
-On Wed, Sep 1, 2021 at 7:22 AM nagesh shamnur <nagesh.shamnur@gmail.com> wr=
-ote:
+On Wed, Sep 1, 2021 at 7:22 AM <abhishek.kumar@exaleapsemi.com> wrote:
 >
-> Hi Group,
->    I am trying to add a new layer for a custom RTOS which supports RISCV3=
-2 architecture. When i run bitbake i bumped into following error:
-> "
-> ERROR: /home/gitee-ohos/ohos/AllScenariosOS/sources/poky/../meta-openembe=
-dded/meta-python/recipes-devtools/python/python3-zopeinterface_4.7.1.bb: QA=
- Issue: /home/gitee-ohos/ohos/AllScenariosOS/sources/poky/../meta-openembed=
-ded/meta-python/recipes-devtools/python/python3-zopeinterface_4.7.1.bb: Var=
-iable RDEPENDS is set as not being package specific, please fix this. [pkgv=
-archeck]
-> ERROR: /home/gitee-ohos/ohos/AllScenariosOS/sources/poky/../meta-openembe=
-dded/meta-python/recipes-devtools/python/python3-zopeinterface_4.7.1.bb: QA=
- Issue: /home/gitee-ohos/ohos/AllScenariosOS/sources/poky/../meta-openembed=
-ded/meta-python/recipes-devtools/python/python3-zopeinterface_4.7.1.bb: Var=
-iable RRECOMMENDS is set as not being package specific, please fix this. [p=
-kgvarcheck]
-> ERROR: /home/gitee-ohos/ohos/AllScenariosOS/sources/poky/../meta-openembe=
-dded/meta-python/recipes-devtools/python/python3-zopeinterface_4.7.1.bb: Fa=
-tal QA errors found, failing task.
-> ERROR: Failed to parse recipe: /home/gitee-ohos/ohos/AllScenariosOS/sourc=
-es/poky/../meta-openembedded/meta-python/recipes-devtools/python/python3-zo=
-peinterface_4.7.1.bb
-> WARNING: /home/gitee-ohos/ohos/AllScenariosOS/sources/poky/../meta-openem=
-bedded/meta-python/recipes-devtools/python/python3-yappi_1.0.bb: Cooker rec=
-eived SIGTERM, shutting down...
-> ERROR: /home/gitee-ohos/ohos/AllScenariosOS/sources/poky/../meta-openembe=
-dded/meta-python/recipes-devtools/python/python3-werkzeug_1.0.0.bb: QA Issu=
-e: /home/gitee-ohos/ohos/AllScenariosOS/sources/poky/../meta-openembedded/m=
-eta-python/recipes-devtools/python/python3-werkzeug_1.0.0.bb: Variable RDEP=
-ENDS is set as not being package specific, please fix this. [pkgvarcheck]
-> ERROR: /home/gitee-ohos/ohos/AllScenariosOS/sources/poky/../meta-openembe=
-dded/meta-python/recipes-devtools/python/python3-werkzeug_1.0.0.bb: QA Issu=
-e: /home/gitee-ohos/ohos/AllScenariosOS/sources/poky/../meta-openembedded/m=
-eta-python/recipes-devtools/python/python3-werkzeug_1.0.0.bb: Variable RREC=
-OMMENDS is set as not being package specific, please fix this. [pkgvarcheck=
-]
-> ERROR: /home/gitee-ohos/ohos/AllScenariosOS/sources/poky/../meta-openembe=
-dded/meta-python/recipes-devtools/python/python3-werkzeug_1.0.0.bb: Fatal Q=
-A errors found, failing task.
-> WARNING: Cooker received SIGTERM, shutting down...
-> WARNING: /home/gitee-ohos/ohos/AllScenariosOS/sources/poky/../meta-openem=
-bedded/meta-python/recipes-devtools/python/python3-zipp_0.6.0.bb: Cooker re=
-ceived SIGTERM, shutting down...
-> WARNING: Cooker received SIGTERM, shutting down...
-> WARNING: Cooker received SIGTERM, shutting down...
-> WARNING: Cooker received SIGTERM, shutting down...
-> WARNING: Cooker received SIGTERM, shutting down...
-> WARNING: Cooker received SIGTERM, shutting down...
-> WARNING: Cooker received SIGTERM, shutting down...
-> WARNING: Cooker received SIGTERM, shutting down...
-> WARNING: Cooker received SIGTERM, shutting down...
-> WARNING: Cooker received SIGTERM, shutting down...
+> hi sir
+> i am trying to build openjdk on riscv but i am facing problem can you suggest what steps i need to follow
 >
-> Summary: There were 12 WARNING messages shown.
-> Summary: There were 7 ERROR messages shown, returning a non-zero exit cod=
-e.
-> "
->
-> Looking for the exact line which might have created a problem, found out =
-that the issue is happening in the following line
-> "PACKAGES =3D. "${PN}-test " from the file ./meta-openembedded/meta-pytho=
-n/recipes-devtools/python/python3-zopeinterface_4.7.1.bb.
->
-> i have tried the following options, but none of them have helped in solvi=
-ng the issue.
-> 1) I suspected that missing python3native might have resulted in the prob=
-lem and included "inherit python3native" in my recipe file,
-> 2) Also checked for presence of RDEPENDS in my recipe file as below: "LAY=
-ERDEPENDS_xxx =3D"core meta-python"
->
-> Please suggest a way out of this issue.
->
-> Thanks!
->
->
->=20
+> root@exaleapsemi-3:~/abhi/jdk# bash configure
+> configure: Configuration created at Thu Aug 26 08:50:43 UTC 2021.
+> checking for basename... /usr/bin/basename
+> checking for dirname... /usr/bin/dirname
+> checking for file... /usr/bin/file
+> checking for ldd... no
+> checking for bash... /bin/bash
+> checking for cat... /bin/cat
+> checking for chmod... /bin/chmod
+> checking for cp... /bin/cp
+> checking for cut... /usr/bin/cut
+> checking for date... /bin/date
+> checking for gdiff... [not found]
+> checking for diff... /usr/bin/diff
+> checking for echo... echo [builtin]
+> checking for expr... /usr/bin/expr
+> checking for find... /usr/bin/find
+> checking for gunzip... /bin/gunzip
+> checking for pigz... [not found]
+> checking for gzip... /bin/gzip
+> checking for head... /usr/bin/head
+> checking for ln... /bin/ln
+> checking for ls... /bin/ls
+> checking for gmkdir... [not found]
+> checking for mkdir... /bin/mkdir
+> checking for mktemp... /bin/mktemp
+> checking for mv... /bin/mv
+> checking for gawk... /usr/bin/gawk
+> checking for printf... printf [builtin]
+> checking for rm... /bin/rm
+> checking for rmdir... /bin/rmdir
+> checking for sh... /bin/sh
+> checking for sort... /usr/bin/sort
+> checking for tail... /usr/bin/tail
+> checking for gtar... /bin/gtar
+> checking for tee... /usr/bin/tee
+> checking for touch... /bin/touch
+> checking for tr... /usr/bin/tr
+> checking for uname... /bin/uname
+> checking for wc... /usr/bin/wc
+> checking for xargs... /usr/bin/xargs
+> checking for grep that handles long lines and -e... /bin/grep
+> checking for egrep... /bin/grep -E
+> checking for fgrep... /bin/grep -F
+> checking for a sed that does not truncate output... /bin/sed
+> checking for df... /bin/df
+> checking for nice... /bin/nice
+> checking for greadlink... [not found]
+> checking for readlink... /usr/bin/readlink
+> checking for cygpath... [not found]
+> checking for wslpath... [not found]
+> checking for lsb_release... [not found]
+> checking for cmd.exe... [not found]
+> checking for cmp... /usr/bin/cmp
+> checking for uniq... /usr/bin/uniq
+> checking build system type... riscv64-unknown-linux-gnu
+> checking host system type... riscv64-unknown-linux-gnu
+> checking target system type... riscv64-unknown-linux-gnu
+> checking openjdk-build os-cpu... linux-riscv64
+> checking openjdk-build C library... gnu
+> checking openjdk-target os-cpu... linux-riscv64
+> checking openjdk-target C library... gnu
+> checking compilation type... native
+> checking for top-level directory... /home/root/abhi/jdk
+> checking if custom source is suppressed (openjdk-only)... disabled, default
+> checking for --enable-debug... disabled, default
+> checking which debug level to use... release
+> checking which variants of the JVM to build... server
+> checking if absolute paths should be allowed in the build output... no, release build
+> checking for sysroot...
+> checking for toolchain path...
+> checking for extra path...
+> checking where to store configuration... in default location
+> checking what configuration name to use... linux-riscv64-server-release
+> checking for zypper... [not found]
+> checking for apt-get... /usr/bin/apt-get
+> checking for pandoc... [not found]
+> checking for gmake... [not found]
+> checking for make... /usr/bin/make
+> configure: Testing potential make at /usr/bin/make, found using make in PATH
+> configure: Using GNU make at /usr/bin/make (version: GNU Make 4.3)
+> checking if make --output-sync is supported... yes
+> checking for output-sync value... none
+> checking if find supports -delete... yes
+> checking what type of tar was found... gnu
+> checking that grep (/bin/grep) -Fx handles empty lines in the pattern list correctly... yes
+> checking for unzip... /usr/bin/unzip
+> checking for zip... /usr/bin/zip
+> checking for greadelf... [not found]
+> checking for readelf... /usr/bin/readelf
+> checking for dot... [not found]
+> checking for hg... [not found]
+> checking for git... /usr/bin/git
+> checking for stat... /bin/stat
+> checking for time... time [builtin]
+> checking for flock... /usr/bin/flock
+> checking for dtrace... [not found]
+> checking for gpatch... [not found]
+> checking for patch... /usr/bin/patch
+> checking for ulimit... ulimit [builtin]
+> checking bash version... 5.0.18
+> checking if bash supports pipefail... yes
+> checking if bash supports errexit (-e)... yes
+> checking for pkg-config... /usr/bin/pkg-config
+> checking pkg-config is at least version 0.9.0... yes
+> checking for default LOG value...
+> checking if packaged modules are kept... enabled, default
+> checking for version string... 18-internal+0-adhoc.root.jdk
+> checking for javac... [not found]
+> checking for java... [not found]
+> configure: Could not find a valid Boot JDK. OpenJDK distributions are available at http://jdk.java.net/.
+> configure: This might be fixed by explicitly setting --with-boot-jdk
+> configure: error: Cannot continue
+> configure exiting with result code 1
+> root@exaleapsemi-3:~/abhi/jdk# apt-get install libcups2-dev
+> Reading package lists... Done
+> Building dependency tree
+> Reading state information... Done
+> E: Unable to locate package libcups2-dev
+> root@exaleapsemi-3:~/abhi/jdk# apt-get install libfontconfig1-dev
+> Reading package lists... Done
+> Building dependency tree
+> Reading state information... Done
+> E: Unable to locate package libfontconfig1-dev
+> root@exaleapsemi-3:~/abhi/jdk# apt-get install libasound2-dev
+> Reading package lists... Done
+> Building dependency tree
+> Reading state information... Done
+> E: Unable to locate package libasound2-dev
+> root@exaleapsemi-3:~/abhi/jdk# bash configure
+> configure: Configuration created at Thu Aug 26 08:52:37 UTC 2021.
+> checking for basename... /usr/bin/basename
+> checking for dirname... /usr/bin/dirname
+> checking for file... /usr/bin/file
+> checking for ldd... no
+> checking for bash... /bin/bash
+> checking for cat... /bin/cat
+> checking for chmod... /bin/chmod
+> checking for cp... /bin/cp
+> checking for cut... /usr/bin/cut
+> checking for date... /bin/date
+> checking for gdiff... [not found]
+> checking for diff... /usr/bin/diff
+> checking for echo... echo [builtin]
+> checking for expr... /usr/bin/expr
+> checking for find... /usr/bin/find
+> checking for gunzip... /bin/gunzip
+> checking for pigz... [not found]
+> checking for gzip... /bin/gzip
+> checking for head... /usr/bin/head
+> checking for ln... /bin/ln
+> checking for ls... /bin/ls
+> checking for gmkdir... [not found]
+> checking for mkdir... /bin/mkdir
+> checking for mktemp... /bin/mktemp
+> checking for mv... /bin/mv
+> checking for gawk... /usr/bin/gawk
+> checking for printf... printf [builtin]
+> checking for rm... /bin/rm
+> checking for rmdir... /bin/rmdir
+> checking for sh... /bin/sh
+> checking for sort... /usr/bin/sort
+> checking for tail... /usr/bin/tail
+> checking for gtar... /bin/gtar
+> checking for tee... /usr/bin/tee
+> checking for touch... /bin/touch
+> checking for tr... /usr/bin/tr
+> checking for uname... /bin/uname
+> checking for wc... /usr/bin/wc
+> checking for xargs... /usr/bin/xargs
+> checking for grep that handles long lines and -e... /bin/grep
+> checking for egrep... /bin/grep -E
+> checking for fgrep... /bin/grep -F
+> checking for a sed that does not truncate output... /bin/sed
+> checking for df... /bin/df
+> checking for nice... /bin/nice
+> checking for greadlink... [not found]
+> checking for readlink... /usr/bin/readlink
+> checking for cygpath... [not found]
+> checking for wslpath... [not found]
+> checking for lsb_release... [not found]
+> checking for cmd.exe... [not found]
+> checking for cmp... /usr/bin/cmp
+> checking for uniq... /usr/bin/uniq
+> checking build system type... riscv64-unknown-linux-gnu
+> checking host system type... riscv64-unknown-linux-gnu
+> checking target system type... riscv64-unknown-linux-gnu
+> checking openjdk-build os-cpu... linux-riscv64
+> checking openjdk-build C library... gnu
+> checking openjdk-target os-cpu... linux-riscv64
+> checking openjdk-target C library... gnu
+> checking compilation type... native
+> checking for top-level directory... /home/root/abhi/jdk
+> checking if custom source is suppressed (openjdk-only)... disabled, default
+> checking for --enable-debug... disabled, default
+> checking which debug level to use... release
+> checking which variants of the JVM to build... server
+> checking if absolute paths should be allowed in the build output... no, release build
+> checking for sysroot...
+> checking for toolchain path...
+> checking for extra path...
+> checking where to store configuration... in default location
+> checking what configuration name to use... linux-riscv64-server-release
+> checking for zypper... [not found]
+> checking for apt-get... /usr/bin/apt-get
+> checking for pandoc... [not found]
+> checking for gmake... [not found]
+> checking for make... /usr/bin/make
+> configure: Testing potential make at /usr/bin/make, found using make in PATH
+> configure: Using GNU make at /usr/bin/make (version: GNU Make 4.3)
+> checking if make --output-sync is supported... yes
+> checking for output-sync value... none
+> checking if find supports -delete... yes
+> checking what type of tar was found... gnu
+> checking that grep (/bin/grep) -Fx handles empty lines in the pattern list correctly... yes
+> checking for unzip... /usr/bin/unzip
+> checking for zip... /usr/bin/zip
+> checking for greadelf... [not found]
+> checking for readelf... /usr/bin/readelf
+> checking for dot... [not found]
+> checking for hg... [not found]
+> checking for git... /usr/bin/git
+> checking for stat... /bin/stat
+> checking for time... time [builtin]
+> checking for flock... /usr/bin/flock
+> checking for dtrace... [not found]
+> checking for gpatch... [not found]
+> checking for patch... /usr/bin/patch
+> checking for ulimit... ulimit [builtin]
+> checking bash version... 5.0.18
+> checking if bash supports pipefail... yes
+> checking if bash supports errexit (-e)... yes
+> checking for pkg-config... /usr/bin/pkg-config
+> checking pkg-config is at least version 0.9.0... yes
+> checking for default LOG value...
+> checking if packaged modules are kept... enabled, default
+> checking for version string... 18-internal+0-adhoc.root.jdk
+> checking for javac... [not found]
+> checking for java... [not found]
+> configure: Could not find a valid Boot JDK. OpenJDK distributions are available at http://jdk.java.net/.
+> configure: This might be fixed by explicitly setting --with-boot-jdk
+> configure: error: Cannot continue
+> configure exiting with result code 1
+> 
 >
