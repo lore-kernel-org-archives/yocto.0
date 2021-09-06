@@ -1,46 +1,60 @@
-Subject: Re: Create a service on the raspberry pi #yocto
+Subject: Building Yocto on AWS container getting ERROR: The postinstall intercept hook 'update_icon_cache' failed, #yocto
 To: yocto@lists.yoctoproject.org
-From: "Marco Cavallini" <koansoftware@gmail.com>
-X-Originating-Location: Genoa, Liguria, IT (79.3.92.72)
-X-Originating-Platform: Linux Firefox 91
+From: mail2uvijay@gmail.com
+X-Originating-Location: Bengaluru, Karnataka, IN (165.225.122.242)
+X-Originating-Platform: Windows Chrome 93
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Mon, 06 Sep 2021 00:06:10 -0700
-References: <v5Oy.1630858797470009725.s4V4@lists.yoctoproject.org>
-In-Reply-To: <v5Oy.1630858797470009725.s4V4@lists.yoctoproject.org>
-Message-ID: <24593.1630911970573043758@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="5trMVxpJHi4yPyiCW8HT"
+Date: Mon, 06 Sep 2021 01:46:49 -0700
+Message-ID: <RWQe.1630918009123953136.8Mp7@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="LqFKCcCBVaZfDC96dsD0"
 
---5trMVxpJHi4yPyiCW8HT
+--LqFKCcCBVaZfDC96dsD0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-because you are using Yocto Project to generate your distribution you have =
-to create a recipe that does what you need.
+Hi All,
 
-In this case you need a systemd service.
-See here how to add a systemd service file into a Yocto image ( https://wik=
-i.koansoftware.com/index.php/Add_a_systemd_service_file_into_a_Yocto_image =
-)
+I am trying to build Yocto image on aws code buildfor SAMA5D27 from Microch=
+ip. Created container.
+Able to setup the environment successfully with the dependencies installed =
+on container. At the final step while creating rootfs image i am getting be=
+low error.
 
---
-Marco Cavallini | KOAN sas
-Bergamo - Italia
-embedded software engineering
-https://KoanSoftware.com
+"ERROR: The postinstall intercept hook 'update_icon_cache' failed,...
+ERROR:
+DEBUG: Python function do_rootfs finished
+ERROR: Function failed: do_rootfs
+"
 
---5trMVxpJHi4yPyiCW8HT
+Tried couple of options by installing libgdk-pixbuf2.0-0 in container, for =
+bb image script DEPENDS +=3D "qemuwrapper-cross"
+
+However I was able to build Yocto in virtual box ubuntu 16.04.
+
+Please let me know what i have missed..
+
+Regards,
+Vijay
+
+--LqFKCcCBVaZfDC96dsD0
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<p>Hi,<br />because you are using Yocto Project to generate your distributi=
-on you have to create a recipe that does what you need.</p>
-<p>In this case you need a systemd service.<br /><a href=3D"https://wiki.ko=
-ansoftware.com/index.php/Add_a_systemd_service_file_into_a_Yocto_image" tar=
-get=3D"_blank" rel=3D"noopener">See here how to add a systemd service file =
-into a Yocto image</a><br /><br />--<br />Marco Cavallini | KOAN sas<br />B=
-ergamo - Italia <br />embedded software engineering <br />https://KoanSoftw=
-are.com</p>
+Hi All,<br /><br />I am trying to build Yocto image on aws code buildfor SA=
+MA5D27 from Microchip. Created container.<br />Able to setup the environmen=
+t successfully with the dependencies installed on container. At the final s=
+tep while creating rootfs image i am getting below error.<br /><br />"ERROR=
+: The postinstall intercept hook 'update_icon_cache' failed,...<br />
+<div>ERROR:&nbsp;</div>
+<div>DEBUG: Python function do_rootfs finished</div>
+<div>ERROR: Function failed: do_rootfs<br />"</div>
+<br />Tried couple of options by installing&nbsp;<span style=3D"font-family=
+: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;=
+">libgdk-pixbuf2.0-0</span>&nbsp;in container, for bb image script&nbsp;<sp=
+an style=3D"font-family: 'Segoe UI', system-ui, 'Apple Color Emoji', 'Segoe=
+ UI Emoji', sans-serif;">DEPENDS +=3D "qemuwrapper-cross"</span><br /><br /=
+>However I was able to build Yocto in virtual box ubuntu 16.04.<br /><br />=
+Please let me know what i have missed..<br /><br />Regards,<br />Vijay
 
---5trMVxpJHi4yPyiCW8HT--
+--LqFKCcCBVaZfDC96dsD0--
