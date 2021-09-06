@@ -1,76 +1,77 @@
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
- by mx.groups.io with SMTP id smtpd.web10.26870.1630958401152228805
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+ by mx.groups.io with SMTP id smtpd.web12.26784.1630958627373291490
  for <yocto@lists.yoctoproject.org>;
- Mon, 06 Sep 2021 13:00:01 -0700
+ Mon, 06 Sep 2021 13:03:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=GMrAUoNf;
- spf=pass (domain: gmail.com, ip: 209.85.160.175, mailfrom: raj.khem@gmail.com)
-Received: by mail-qt1-f175.google.com with SMTP id r21so6200168qtw.11
-        for <yocto@lists.yoctoproject.org>; Mon, 06 Sep 2021 13:00:01 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=LW9i7POE;
+ spf=pass (domain: gmail.com, ip: 209.85.160.177, mailfrom: raj.khem@gmail.com)
+Received: by mail-qt1-f177.google.com with SMTP id r21so6207334qtw.11
+        for <yocto@lists.yoctoproject.org>; Mon, 06 Sep 2021 13:03:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=J3NMrFuC8RN7UHXvFKRZZO2UloAkD7AK7j8qD6fupSI=;
-        b=GMrAUoNfmqTR1QwpaisW03fFXu1x+KDg32HYqXnLN4IfNLrAyp1KeZ6y+FDfaaE5+Z
-         qL1Q0ZIHKAGlvi/29i7kAKL06n/YiQxEQbO/lpuLQ8n5dNI4I7UKv+EI1mLXiMHyKewk
-         8+nNbGQTZ+sr6UeDmYc7KskF8pG9RGfDeQGYBR4sJyv3KsJVrc17+LJIPgrFytPDTutu
-         oaY6nKJwCT7A92ODkAG4+kSFpm3iIvkv6HtmsQzXtIoEqE8mKpXw3CHFav2xqOCn+Czo
-         yLYuI3XDovGLEm5mhccC41N7x2d8izIW9OD6krzAFDM8GqSIzRBfeRiUprrBMv/PaLcQ
-         CN/A==
+        bh=tYNxiQUeFdqi5Os1E1c2GtM/h/AOnRN6K9b/SQyY4Yw=;
+        b=LW9i7POEdxz+BG6R+8kxzjDX60eco3BrWjfAu91v15r1rXb3kW2TWYqXgU+piZDPn3
+         Wvf3Ch31Lystm2xb2sl2bZgJD+Wi9WqRfz6wjzEhwDu/PGQZ/PVs5xlNHl/qduhmbQWT
+         lY0hxljT/VjnvM0q4/XEx6/MSUj0vurBod433w2wdEZapCv8umGfutk/VuPh8S0rjLRm
+         bossjzOdK6ICJ5KwYy5lIJd349TcTe84VtFlvjWU3/VbA2dXopDvmhoIBgz8R/AS0Fp8
+         VYLRkUWRtBlFpPRoijQXSoKw5R+MYhiKwPN9rx4kIAY3f5+B7shpExMDJMqOluaN+Uu+
+         FsLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=J3NMrFuC8RN7UHXvFKRZZO2UloAkD7AK7j8qD6fupSI=;
-        b=gbN2DwmdvSeo0wiLoiQUiUICG2KRehzVUypQDoSL9uvYaHt2Sv2GrnnurTwmXmNHm5
-         Nqdp9emy8Iwax/MRITwtK4Liorslaj4KCOe4K0PvhuNIuQJudtR4lyVJDgy8GQoMGtbL
-         kdSyKK2KuBReOJ8sr1THpnPLZexOSsuo7sqiPrIyNrX7SGqCASBk2ARvUVaiRGNBLZmA
-         h+RJefCsPznQOABIC6tXhc5p+77SHmc1PeJp4thLXXyKe0X7oUepHOfe91MajxVRNK4a
-         Ls5JztwAvHwojQf4lX7vkwh4r9tomZqAHudTIYM/cm3wP/DLteywvZ0tEoLiAjI644ka
-         Fm3A==
-X-Gm-Message-State: AOAM532Fp3GP1nR4uOpN4dgrisaIYEnNVgH25iyPv4YEr+ePGQ2VkWMv
-	DFUi3zXV6NqtN1Ct+Sp99pjEGRPpvQdOAE/fwIU=
-X-Google-Smtp-Source: ABdhPJytlgvZn9+OimZvSqmB4YwS3w82SU1pWl+UpS0LrRS5LunDEjG8x3bJgetDBMh6kN19p4AqnvVMyq7VaCAerYg=
-X-Received: by 2002:ac8:5d8a:: with SMTP id d10mr12225873qtx.225.1630958400190;
- Mon, 06 Sep 2021 13:00:00 -0700 (PDT)
+        bh=tYNxiQUeFdqi5Os1E1c2GtM/h/AOnRN6K9b/SQyY4Yw=;
+        b=L17vpram8Y/ZAJUvKLtwxlpPd8fDHvYPCZjmbRdcSL5RPzsNgivPYAK0RUoTXso9Fq
+         ODyaWu7+PCiCr9Jaqn2fpzBYcuPBa7xBl0R7bOYdCW3MtRGPxxB4V63XCR3Qd9O6FXqI
+         YSvbhsRy2OFQh3qhi6G7WZq50AaoY4j+rgNSt4uys2bw/F6P3s9gGTz/Keq3THKNhyMK
+         xXmwKpOHJOOgMQ3roEm61VDvpQH5pFZgUShhOomOsEBb+fNTnmONCvmuRtD64hbVa+tt
+         ZIRt7H0pwougwKOKQfeuJP2BHwkfXGMPcMG0ZoooEByBE+XIVhAHSDD74sJPWiS8S9ez
+         qJFA==
+X-Gm-Message-State: AOAM531OHAOM2Bv/JmRdj01X6U8enh4PDW/6I+nFZpi8K1mUvtK6c6is
+	0NpVj/PISlyZNftR+qHYAng/b748sFAjNzha1TXYaAcUOeo=
+X-Google-Smtp-Source: ABdhPJxxE9UfD+6NiSd3XCM8eOOhDNmJnZuozE82hCI1XQzJfOikcE9LvOwZCvmcY+Pj1T00q7mm9GmwJeqTQzWYn1s=
+X-Received: by 2002:ac8:7183:: with SMTP id w3mr12451053qto.116.1630958626397;
+ Mon, 06 Sep 2021 13:03:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <RWQe.1630918009123953136.8Mp7@lists.yoctoproject.org>
-In-Reply-To: <RWQe.1630918009123953136.8Mp7@lists.yoctoproject.org>
+References: <1004181630942804@mail.yandex.com> <14250171630944633@sas8-bb4816e87b9b.qloud-c.yandex.net>
+In-Reply-To: <14250171630944633@sas8-bb4816e87b9b.qloud-c.yandex.net>
 From: "Khem Raj" <raj.khem@gmail.com>
-Date: Mon, 6 Sep 2021 12:59:33 -0700
-Message-ID: <CAMKF1sqaUHdLOfeiFL7+7CN92wwWMermhSgjK5YXmfzUuGYRWQ@mail.gmail.com>
-Subject: Re: [yocto] Building Yocto on AWS container getting ERROR: The postinstall intercept hook 'update_icon_cache' failed, #yocto
-To: mail2uvijay@gmail.com
+Date: Mon, 6 Sep 2021 13:03:20 -0700
+Message-ID: <CAMKF1soTdYqd10biiQ0iDa74kAkwJRW94ouKJ-xGxVAQFTXnng@mail.gmail.com>
+Subject: Re: [yocto] Debating best tool to use
+To: KL <deco33000@yandex.com>
 Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Sep 6, 2021 at 1:46 AM <mail2uvijay@gmail.com> wrote:
+On Mon, Sep 6, 2021 at 9:10 AM KL <deco33000@yandex.com> wrote:
 >
-> Hi All,
 >
-> I am trying to build Yocto image on aws code buildfor SAMA5D27 from Microchip. Created container.
-> Able to setup the environment successfully with the dependencies installed on container. At the final step while creating rootfs image i am getting below error.
+> Hi,
 >
-> "ERROR: The postinstall intercept hook 'update_icon_cache' failed,...
-> ERROR:
-> DEBUG: Python function do_rootfs finished
-> ERROR: Function failed: do_rootfs
-> "
+> I plan to have a minimal embedded system with BT, wifi, no gui, to host my application with my own webserver.
 >
+> My webserver+app are responsible to manage the OS (so I don't want anything else to do it). They receive new programs and load them according to my rules (that is our manager at work).
+>
+> I would like to avoid the plague of multiple configuration files put everywhere in files (like now in different profile directories...), but instead have my custom manager handle ALL the different settings for the OS (centralized point).
+>
+> We, at the office, compile and maintain the different software needed and send them by wifi.
+>
+> I want that OS to be built on top of Linux.
+>
+> Would Yocto enable me to do that? Is it the best tool for that?
 
-Usually these errors pop up when qemu usermode fails to run the needed
-programs during cross build.
-check the logs thoroughly and see if it leaves traces when executing
-update_icon_cache of any such issues in executing qemu
+Yes, it lets you build custom Linux distribution and eases the way to
+add needed customization that one might require.
 
-> Tried couple of options by installing libgdk-pixbuf2.0-0 in container, for bb image script DEPENDS += "qemuwrapper-cross"
 >
-> However I was able to build Yocto in virtual box ubuntu 16.04.
+> Thanks,
 >
-> Please let me know what i have missed..
 >
-> Regards,
-> Vijay
+> --
+> MKL
+>
+>
 > 
 >
