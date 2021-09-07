@@ -1,66 +1,60 @@
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
- by mx.groups.io with SMTP id smtpd.web12.1001.1631029100079799473
+Received: from forward501j.mail.yandex.net (forward501j.mail.yandex.net [5.45.198.251])
+ by mx.groups.io with SMTP id smtpd.web11.1187.1631029876720316411
  for <yocto@lists.yoctoproject.org>;
- Tue, 07 Sep 2021 08:38:20 -0700
+ Tue, 07 Sep 2021 08:51:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=o8gtf+my;
- spf=pass (domain: burtonini.com, ip: 209.85.128.42, mailfrom: ross@burtonini.com)
-Received: by mail-wm1-f42.google.com with SMTP id z9-20020a7bc149000000b002e8861aff59so2227562wmi.0
-        for <yocto@lists.yoctoproject.org>; Tue, 07 Sep 2021 08:38:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ML/6dYdKjRm7zMXdIKFnlSd+FAh+AgxG7byeNA2cyLY=;
-        b=o8gtf+my7C9ij5kT6hXXceg6nBlMxcOS4FIhurBFKJzqeyuF4rG2yb1IpITev3uobG
-         G4iSh1cdMnMkiiGG7yCoNKNiVUwdY8nlLrYbzClIFKgIDTI2ljoa95JbQgz6cDEIxYhl
-         oDRNXEYvPUkeTY0/93PgOM0/rnZ8ngDmaQ2yCd8uEchoxNkq4p2BCQB27YHk4opQXZbm
-         7pqRFbmzY5B7inAglr8SahooVD8YwyHHlTTQVup1PUQEhODfYIGFtci8bdgjznnnocIv
-         +FHYcjplobauRPsrdZCi7ZtuywkMv2E9J8aAkCeSn9w0VqjIgwVkODC1D2+A5hRt7E9D
-         sTNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ML/6dYdKjRm7zMXdIKFnlSd+FAh+AgxG7byeNA2cyLY=;
-        b=DjMsS3kJq0zzWmuyMSK2ll2LKUA8Awkam6FglxDToSOYoqEFsWIUxNJUUfa1gIRYfR
-         7SXlpZyCvnVYSDz7j9tlBEimm+yFCOsCS+G6CgjuNQldVcnGr95+zy6qXwXANu8fixzw
-         qHFQ5VrtW4jQzePqQZEXJIXBWkSp5Nqm8K+RTg6rnP7Gi6VVX+5Xr6O4xLFp+BUJS6K2
-         kkQVtbkbGeZpt05m9M54Uv59xhJ/Cgv49CUeuYGDppgkXey/rC0fls3vPaEgOGuiY3Jc
-         UKeDGVuUvOnUpvBASrAz5NJ8BjmG62b2aZKbG7iZOGbeCbCmshLEUBuyN1YafQBu/OOS
-         DBvg==
-X-Gm-Message-State: AOAM531HZP/qsxjO/3Wee/9DJXi8wvG/NgtHypB8U/+J5SvMqWdbOjnn
-	3UevUt9LtmsyM5iPblM66ezVnExczmkpqe2rUzKJcw==
-X-Google-Smtp-Source: ABdhPJxTTjubf/SVf4jTv3x9Y4NNAXeh9B45hmDoXga9aGGNC0q+3HGLy6MnJfHFXdDSWaaok9e/5oTN8z+8qw6bWkA=
-X-Received: by 2002:a05:600c:3b9c:: with SMTP id n28mr4523427wms.184.1631029098509;
- Tue, 07 Sep 2021 08:38:18 -0700 (PDT)
-MIME-Version: 1.0
-References: <1004181630942804@mail.yandex.com> <14250171630944633@sas8-bb4816e87b9b.qloud-c.yandex.net>
- <CAMKF1soTdYqd10biiQ0iDa74kAkwJRW94ouKJ-xGxVAQFTXnng@mail.gmail.com> <5553891631010112@vla3-6a5326aeb4ee.qloud-c.yandex.net>
-In-Reply-To: <5553891631010112@vla3-6a5326aeb4ee.qloud-c.yandex.net>
-From: "Ross Burton" <ross@burtonini.com>
-Date: Tue, 7 Sep 2021 16:38:07 +0100
-Message-ID: <CAAnfSTukyWDu3Y=_bpWr4Jc-fM9byem0nKwcoBD28zovXP6X0Q@mail.gmail.com>
-Subject: Re: [yocto] Debating best tool to use
-To: KL <deco33000@yandex.com>
+ dkim=pass header.i=@yandex.com header.s=mail header.b=E4OXHZvk;
+ spf=pass (domain: yandex.com, ip: 5.45.198.251, mailfrom: deco33000@yandex.com)
+Received: from iva3-863a678c0048.qloud-c.yandex.net (iva3-863a678c0048.qloud-c.yandex.net [IPv6:2a02:6b8:c0c:380:0:640:863a:678c])
+	by forward501j.mail.yandex.net (Yandex) with ESMTP id 76D85623359
+	for <yocto@lists.yoctoproject.org>; Tue,  7 Sep 2021 18:51:13 +0300 (MSK)
+Received: from 2a02:6b8:c0c:299:0:640:ad25:6f95 (2a02:6b8:c0c:299:0:640:ad25:6f95 [2a02:6b8:c0c:299:0:640:ad25:6f95])
+	by iva3-863a678c0048.qloud-c.yandex.net (mxback/Yandex) with HTTP id CpRcTo0E1a61-pCECAGsA;
+	Tue, 07 Sep 2021 18:51:13 +0300
+To: undisclosed-recipients:;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.com; s=mail; t=1631029873;
+	bh=rR5yci0D0XNI+PQquRLeV5OtY7cK805F4gVesLYMc5E=;
+	h=Message-Id:Cc:Subject:Date:References:In-Reply-To:From;
+	b=E4OXHZvkZhEGDLIVbaDNO6Jina7QVedCoscZM6v/g8FHfHsfTCFZtsoIKbng0hu/1
+	 dYzTZuttqrs9LUU4pnIZ/icCBvGthtaAG2YBwNJMYgN8+Ev2YpMekfDB1cpNm0kymd
+	 ibL+m+tKf8gcdkyDwJD6kSIGgINpyGXGzpvtXkP0=
+Authentication-Results: iva3-863a678c0048.qloud-c.yandex.net; dkim=pass header.i=@yandex.com
+Received: by iva1-ad256f95df1b.qloud-c.yandex.net with HTTP;
+	Tue, 07 Sep 2021 18:51:12 +0300
+From: "KL" <deco33000@yandex.com>
+Envelope-From: deco33000@yandex.ru
 Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAAnfSTukyWDu3Y=_bpWr4Jc-fM9byem0nKwcoBD28zovXP6X0Q@mail.gmail.com>
+References: <1004181630942804@mail.yandex.com> <14250171630944633@sas8-bb4816e87b9b.qloud-c.yandex.net>
+	 <CAMKF1soTdYqd10biiQ0iDa74kAkwJRW94ouKJ-xGxVAQFTXnng@mail.gmail.com> <5553891631010112@vla3-6a5326aeb4ee.qloud-c.yandex.net> <CAAnfSTukyWDu3Y=_bpWr4Jc-fM9byem0nKwcoBD28zovXP6X0Q@mail.gmail.com>
+Subject: Re: [yocto] Debating best tool to use
+MIME-Version: 1.0
+X-Mailer: Yamail [ http://yandex.ru ] 5.0
+Date: Tue, 07 Sep 2021 17:51:12 +0200
+Message-Id: <34591631029872@iva1-ad256f95df1b.qloud-c.yandex.net>
+Content-Transfer-Encoding: base64
+Content-Type: text/html; charset=utf-8
 
-On Tue, 7 Sept 2021 at 11:22, KL <deco33000@yandex.com> wrote:
-> Thanks does that mean that I can reshape the whole "everything is a file" under unix?
->
-> I don't want /etc /var /usr (and any other premade structure you find in every linux distro...) but manage it differently via our db.
->
-> You confirm that doable?
-
-Doable? Yes, everything is open source.
-
-Sensible?  Not really.  I'm not sure you've considered the scale of
-what you're asking. For example, /etc/passwd and /etc/hosts are deeply
-tied into large amounts of software.
-
-You can make *your* software use whatever configuration database you
-want, but you'll have a lot of work to do if you want to move the user
-database or DNS resolver information out of /etc.
-
-Ross
+VGhhdCBpcyBleGFjdGx5IHdoYXQgSSB0aG91Z2h0IGFuZCB3aHkgSSBpbnNpc3RlZCB0aGF0IG11
+Y2guPGRpdj48YnIgLz48L2Rpdj48ZGl2Pkkgd2lsbCBzdGVwIGJhY2sgYW5kIGNvbnN0cmljdCB0
+byBteSBhcHAsIGFuZCBub3QgdGhlIHdob2xlIE9TLjwvZGl2PjxkaXY+PGJyIC8+PC9kaXY+PGRp
+dj5UaGFua3MhPGJyIC8+PGJyIC8+LS0gPGJyIC8+PGJyIC8+PC9kaXY+MTc6MzgsIDcgU2VwdGVt
+YmVyIDIwMjEsIFJvc3MgQnVydG9uICZsdDtyb3NzQGJ1cnRvbmluaS5jb20mZ3Q7OjxiciAvPjxi
+bG9ja3F1b3RlIGNsYXNzPSIyMTBlN2E4NDhlOGZjYjQ1d21pLXF1b3RlIj48cD5PbiBUdWUsIDcg
+U2VwdCAyMDIxIGF0IDExOjIyLCBLTCAmbHQ7PGEgaHJlZj0ibWFpbHRvOmRlY28zMzAwMEB5YW5k
+ZXguY29tIj5kZWNvMzMwMDBAeWFuZGV4LmNvbTwvYT4mZ3Q7IHdyb3RlOjxiciAvPjwvcD48Ymxv
+Y2txdW90ZSBjbGFzcz0iMjEwZTdhODQ4ZThmY2I0NXdtaS1xdW90ZSI+wqBUaGFua3MgZG9lcyB0
+aGF0IG1lYW4gdGhhdCBJIGNhbiByZXNoYXBlIHRoZSB3aG9sZSAiZXZlcnl0aGluZyBpcyBhIGZp
+bGUiIHVuZGVyIHVuaXg/PGJyIC8+PGJyIC8+wqBJIGRvbid0IHdhbnQgL2V0YyAvdmFyIC91c3Ig
+KGFuZCBhbnkgb3RoZXIgcHJlbWFkZSBzdHJ1Y3R1cmUgeW91IGZpbmQgaW4gZXZlcnkgbGludXgg
+ZGlzdHJvLi4uKSBidXQgbWFuYWdlIGl0IGRpZmZlcmVudGx5IHZpYSBvdXIgZGIuPGJyIC8+PGJy
+IC8+wqBZb3UgY29uZmlybSB0aGF0IGRvYWJsZT88YnIgLz48L2Jsb2NrcXVvdGU+PHA+PGJyIC8+
+RG9hYmxlPyBZZXMsIGV2ZXJ5dGhpbmcgaXMgb3BlbiBzb3VyY2UuPGJyIC8+PGJyIC8+U2Vuc2li
+bGU/ICBOb3QgcmVhbGx5LiAgSSdtIG5vdCBzdXJlIHlvdSd2ZSBjb25zaWRlcmVkIHRoZSBzY2Fs
+ZSBvZjxiciAvPndoYXQgeW91J3JlIGFza2luZy4gRm9yIGV4YW1wbGUsIC9ldGMvcGFzc3dkIGFu
+ZCAvZXRjL2hvc3RzIGFyZSBkZWVwbHk8YnIgLz50aWVkIGludG8gbGFyZ2UgYW1vdW50cyBvZiBz
+b2Z0d2FyZS48YnIgLz48YnIgLz5Zb3UgY2FuIG1ha2UgKnlvdXIqIHNvZnR3YXJlIHVzZSB3aGF0
+ZXZlciBjb25maWd1cmF0aW9uIGRhdGFiYXNlIHlvdTxiciAvPndhbnQsIGJ1dCB5b3UnbGwgaGF2
+ZSBhIGxvdCBvZiB3b3JrIHRvIGRvIGlmIHlvdSB3YW50IHRvIG1vdmUgdGhlIHVzZXI8YnIgLz5k
+YXRhYmFzZSBvciBETlMgcmVzb2x2ZXIgaW5mb3JtYXRpb24gb3V0IG9mIC9ldGMuPGJyIC8+PGJy
+IC8+Um9zczxiciAvPjwvcD48L2Jsb2NrcXVvdGU+
