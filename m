@@ -1,103 +1,137 @@
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
- by mx.groups.io with SMTP id smtpd.web08.28737.1630968836870176223
- for <yocto@lists.yoctoproject.org>;
- Mon, 06 Sep 2021 15:53:56 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=l+9MqoN6;
- spf=pass (domain: gmail.com, ip: 209.85.214.182, mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f182.google.com with SMTP id n4so4625231plh.9
-        for <yocto@lists.yoctoproject.org>; Mon, 06 Sep 2021 15:53:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=kLEYhI3WD+MnoRnqWfhyZu8NmtJM12Iamn4CxJsCtiE=;
-        b=l+9MqoN6XzTyDCaB+e1HUH7gLUF1jDK/WyW0dy7FhRdXfKQLOIfDP+be8zDMucsCuX
-         FZR8tEFQ4P6lPykl2L3OtLhG/QJ1lriG/OeOejSEiOpsRPL8oXs6nT8ZofDNRtMmHf/r
-         9q+okVy7D4WY/7e9DUGnrIQS3RScINxwuGzpyJqlSZhW22Fc2gNX140chCm+KeiKRZ74
-         drYsye4AOzeqM0M2037ozOPxhYYASBr3NFbokEuaVfgGX8Gj9/vaBI7cnqa0DuRKP/Rw
-         wQZm5P3rZeFd5qQWIPRScNHd8xtHbfu5I+TWQZW3J1OaKaxgRzyXzqN+elDQCW0T1LSl
-         d8Ow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=kLEYhI3WD+MnoRnqWfhyZu8NmtJM12Iamn4CxJsCtiE=;
-        b=atuuai+rFnwrOaOWQCwmhtFzwtMIEzVwElNAXnQ0SdJpIxv3oiwxqvpVt3UUzivGyg
-         cfWefn3H66zgwwcgk52xYvsoS83nNslhwChRowHct8uV1/ouCv+6hUEl38gF48Hv9sr1
-         mCL6NzdTfmaPgtDw33cv4OLXr6+X2sx6FghBx08tLy9Gz5j928xUaeKG0fLcoKZYP4J3
-         CX1OLhpuem8OImJA8gW328zDg//oIiTBgB4qYfuw3NTnDoHvGSNJdVk5VQrtN4HmJ89y
-         XqoWSyyS/crbn/g3gbuPd5LkSHlvD4IJxJIrMuHdKPGLqfa4g2aMys316wuHVCBDhG+9
-         2aSQ==
-X-Gm-Message-State: AOAM532qhpAo14UXN3ZcuYQWPsMEPbGSeqFngidwATMBcbVRiITi3xl+
-	P+fHIGTjEvmkYiwF6fMST00=
-X-Google-Smtp-Source: ABdhPJx27Sgnl5SX8sympl5OaFB/0ARmxE3RNwqNHVgl8OCw1bzue53Zy8OaMIO1IVn48d7uqoodEA==
-X-Received: by 2002:a17:90a:73c9:: with SMTP id n9mr1294540pjk.105.1630968836382;
-        Mon, 06 Sep 2021 15:53:56 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
-Received: from ?IPv6:2601:202:4180:a5c0:352e:86c8:8f80:ca55? ([2601:202:4180:a5c0:352e:86c8:8f80:ca55])
-        by smtp.gmail.com with ESMTPSA id n12sm386718pjj.2.2021.09.06.15.53.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Sep 2021 15:53:55 -0700 (PDT)
-Subject: Re: [yocto] [meta-security][PATCH] dm-verity-img.bbclass: Expose --data-block-size for configuration
-To: Paulo Neves <ptsneves@gmail.com>, yocto@lists.yoctoproject.org
-Cc: Christer Fletcher <christer.fletcher@inter.ikea.com>,
- Paulo Neves <paulo.neves1@inter.ikea.com>
-References: <20210901141801.1635611-1-ptsneves@gmail.com>
-From: "Armin Kuster" <akuster808@gmail.com>
-Message-ID: <87fb7167-9cab-75e4-70ee-ac8bd0fac1de@gmail.com>
-Date: Mon, 6 Sep 2021 15:53:54 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+Subject: Result of hello.service #yocto
+To: yocto@lists.yoctoproject.org
+From: yasminebenghozzi6@gmail.com
+X-Originating-Location: Sousse, Gouvernorat de Sousse, TN (197.0.201.10)
+X-Originating-Platform: Linux Chrome 92
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <20210901141801.1635611-1-ptsneves@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Date: Tue, 07 Sep 2021 03:09:53 -0700
+Message-ID: <uZcS.1631009393090820386.aTTh@lists.yoctoproject.org>
+X-Groupsio-MsgNum: 54663
+Content-Type: multipart/related; boundary="quXCAjnoRlF1KWQBBPhb"
 
-merged.
+--quXCAjnoRlF1KWQBBPhb
+Content-Type: multipart/alternative; boundary="ajiPY6T0hzebsQlM2AND"
 
-thanks
-Armin
+--ajiPY6T0hzebsQlM2AND
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 9/1/21 7:18 AM, Paulo Neves wrote:
-> From: Christer Fletcher <christer.fletcher@inter.ikea.com>
->
-> Add DM_VERITY_IMAGE_DATA_BLOCK_SIZE to be able to set the
-> --data-block-size used in veritysetup. Tuning this value effects the
-> performance and size of the resulting image.
->
-> Signed-off-by: Christer Fletcher <christer.fletcher@inter.ikea.com>
-> Signed-off-by: Paulo Neves <paulo.neves1@inter.ikea.com>
-> ---
->  classes/dm-verity-img.bbclass | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->
-> diff --git a/classes/dm-verity-img.bbclass b/classes/dm-verity-img.bbclass
-> index 16d395b..b311fc5 100644
-> --- a/classes/dm-verity-img.bbclass
-> +++ b/classes/dm-verity-img.bbclass
-> @@ -22,6 +22,9 @@
->  # is stored where it can be installed into associated initramfs rootfs.
->  STAGING_VERITY_DIR ?= "${TMPDIR}/work-shared/${MACHINE}/dm-verity"
->  
-> +# Define the data block size to use in veritysetup.
-> +DM_VERITY_IMAGE_DATA_BLOCK_SIZE ?= "1024"
-> +
->  # Process the output from veritysetup and generate the corresponding .env
->  # file. The output from veritysetup is not very machine-friendly so we need to
->  # convert it to some better format. Let's drop the first line (doesn't contain
-> @@ -57,7 +60,7 @@ verity_setup() {
->  
->      # Let's drop the first line of output (doesn't contain any useful info)
->      # and feed the rest to another function.
-> -    veritysetup --data-block-size=1024 --hash-offset=$SIZE format $OUTPUT $OUTPUT | tail -n +2 | process_verity
-> +    veritysetup --data-block-size=${DM_VERITY_IMAGE_DATA_BLOCK_SIZE} --hash-offset=$SIZE format $OUTPUT $OUTPUT | tail -n +2 | process_verity
->  }
->  
->  VERITY_TYPES = "ext2.verity ext3.verity ext4.verity btrfs.verity"
->
-> 
->
+Hello,
+AFter creating hello.service, I want to know if this is correct because as =
+saying Active:activated(auto-restart) (Result:exit-code) I really didn't un=
+derstand iit that much,
+anyone can explain please if its correct? because its supposed to tell me t=
+hat its working .
 
+--ajiPY6T0hzebsQlM2AND
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,&nbsp;<br />AFter creating hello.service, I want to know if this is c=
+orrect because as saying Active:activated(auto-restart) (Result:exit-code) =
+I really didn't understand iit that much,&nbsp;<br />anyone can explain ple=
+ase if its correct? because its supposed to tell me that its working .<br /=
+><br /><img src=3D"cid:attach_0_16A28266CC830AAD_15649@lists.yoctoproject.o=
+rg" />
+
+--ajiPY6T0hzebsQlM2AND--
+
+--quXCAjnoRlF1KWQBBPhb
+Content-Id: <attach_0_16A28266CC830AAD_15649@lists.yoctoproject.org>
+X-Attachment-Id: attach_0_16A28266CC830AAD_15649@lists.yoctoproject.org
+Content-Type: image/png; name="Screenshot from 2021-09-07 10-48-35.png"
+Content-Transfer-Encoding: base64
+Content-Disposition: inline; filename="Screenshot from 2021-09-07 10-48-35.png"
+
+iVBORw0KGgoAAAANSUhEUgAAAi4AAACjCAYAAACt+5XwAAAABHNCSVQICAgIfAhkiAAAABl0RVh0
+U29mdHdhcmUAZ25vbWUtc2NyZWVuc2hvdO8Dvz4AABNOSURBVHic7d2/qyVJFcDxmrcP/BE4uJiI
+CIsYCoIbaiYPYzEyMDAQDMTUyMxIDMTEUET8E4R1m40E03URczEQFyMTVxF9BkPP1qupU3VO/eiu
+0/f7gWLm9uuuOl3dt2/d6rrVz0IIjwEAAMCBu5aNtm1r2ia3nbQcsr3OVqm7NAZNTDPPh5Z4SnnV
+tj/qGKxwrAHgbHfxfz/y/PXwyY/fh2cTCnp4eDAtX9FKHxwPDw8vkzYuS/yz99XL+bBaPKOsdC4D
+gMV9CCF86s1vhu9+5xvhy597Hl4LH4S/vftW+OXPfxHe+fMHZ8e3FO8fYt7jBwDgPoQQfvyjb4fP
+3u/9LB8Ln/7S18MPfvKZ8NHv/zD85q//Ezfev7XFH4jxN7meD0prPtL6ueXbtj3pqUiXx9vGf8vF
+Yil3Nmm/4nhy+5erB2mblph2q+ZTqjdNPmeVqznfpHLjf2nQAvDm8e1te9xeSb99/PX3vvgYXgze
+fZL2deLX8b/pcum1dj1pu9r6peUj4reWW4o/TZb1a8el9FpavxaDJv6zzwfpX+35cMT5aanzlvNc
+2t5yfEkkEmmldB9CEMa03IXX33gjhPBe9q/St7Qz7p2n31qlb5zpNrn/98ZRK7e2Xe821v2ave9e
+xlLMOB+s5QIA6u7lPz2G/35gH+Ny1oVYut1jiWdvAMX/9sZz66gHAMBIdyGEkB3F8vjP8N7v3+3K
+fNa37TTf9D6+VO7sb/9nlTvbqPi918NVcVwAeHIfQgi/+uM/wre+8Dzc7feMHv8V/vL2T8PP3v67
+KbO00ZC7fZAbAJsut+YjrV/Kp7YP0iDcWeXOJtW/xDpotJZHms+o86FUbnosW46LJp6akeeD5Xwr
+lTvi+ALAGZ6FEB7Da8/D57/ytfDVN98In/jP++FPv3srvPOH98O/z45O0HsbBwAA+PSi4QIAAOBA
+05T/AAAAZ6DhcmMYiAkA8OzUhstRvzqaGcc24UGHs+KvjQ1K51+x5DtyvbN5/3VYPKC4ZdvcdjPO
+czxVqt+e+l/tuK0WD/yhx6XTVQcJaxs4Z1splharxe/l4Zclq9XpCJ7q/5Zc8VzzgIZLxhVPRk1v
+i/bi2HIR9f5LMC/xe4lzplH7f8XrQAjX3a/VUM/zFGbOPVdt/o/Scms+ufV7PwDOin82ae6P1vlR
+4vVzc7qkDwZM15diKq2fm6un5/bcCvFrYp3xENARx11aHs/Fk1seb5uro9Zy4+XaerbE3xKPpdx0
+eW59zX61nM+a/a3FX8qnlkdLPK3LNe9fvkjMc9qDkrbGh+yly6X1rctr5Wn34+z4LXVtOQ6t+6t9
+3bK/uRhr+Uj/eo2/tF2urN7z1bpdT72NiH/2dcAav7S9p/0acbx66621/me/f631TLKnZXtcJJvQ
+ch+1fghz7ycfEb81/9n7m+affgvSzoSrXX8vdwQv8UvHUSpr9nmVU6oHKZ50tt9RcdTKtZaniV+z
+vtVZ1zfr/lqNOu5SPrn4W85PbdkYy1XDJb04a06mlU4e7/GPJHX779K6qa0v5T/LVeI/mlQPlnji
+W2W9De8ZH7Q1LdeBEeW25C3Vs/frkhT/iPMT87kdnNvyZtduc8S30Znx58TfJuL8ju5t2Zfn4tr/
+X7qw5/Yjt55m+VXi7z2Os8733Pm2a6mHWXFJy/djOSr/3nVH5dW6X73lzrTvU8t7YY9/9Pt0hXq5
+qtN7XHLfTNOTZj8Rcx8S6f/TvGr5SPFo3wC59c+MfxSpHmrL4zgl0n5J29bWj+uxtr702lKfq8Vv
+Vcrfctyt+WjPZ22PVO49OrpcSyzabUrv/Rn1KcWgIfW29LzfW/OplWFZ13I+WN+/ITA49winD7RZ
+LW0XHlS18r6lsa0c6xXjn10fnpLn2G9tv1bdp1XjukLiIYtYyqhvYGfxHj/gDb0at4eGCwAAcMPt
+4NwUA6EAALi+bMNldCOglF/PCHftKHAAAHANqh6XmQ0C7k0CAAAtVcPFS+OCXhcAAK7t5TwutXlN
+pPkS0r9Zl0s0+QAAgNsz/KF56fJR+WvK5bfzJBKJRCJdNzXNnJvOFjijR4SeFQAAkGqe8j/3MKrS
+NPCt+QMAAOya5nHR/Az5jId4MYMiAADX9nLm3NzDDtPllkG48cO5pLx78pf+RsMFAIDrusyU/zRa
+AAC4vss0XAAAwPVd5llFAADg+mi4YCh+xm4z4jldWBfHCRhviVtFjE+5Bo5jG2u91aYdmHEMpBm0
+b5n2uHl9X+QaXaP3ozSjeq7erOvXyrbkr83niHrDyTPgSbPi1ta3/m2VNDv+M+tndvyrHa+zjkvr
+TNYz9uHM43V2PCOuWTPKO2s/e/ONX+c+F2rrW+K05m/JZ5XjduV06q2iuKU64gGJo1q1Z3Xvzm6V
+z8zf67fKFVjOfU/1PPt95KUeRj381cv+9rJ+LvT0tPQcG00+nt6vnjTPnDtbrstuX5brtpaWSa9r
+88RYuoFL+RwZf2v+pfXT5VZSnKU4euNp2a/W+sztV7p+KZ/ZrPtrmRdJUz897yPN+S+Vmf7NUq52
+uSYfq1q5ve/fEXG2XFdzrOVL69MwuE2ndfdIXXOaLkRLfpb8a2Vo9md2/KXtrPnXume19dHTrVqL
+v3Qc09SyX63HS4qnJR/tOSfVT1oHLfvbcv5ZzjfLeVmLzbpMOk9G1E9vPWnru/f923qdG3Vd1ZbR
+Wp9S/WiPe26b1nys+0+ypdN7XDbhG0xs5mDD3vJWjN9i9reVUXHmlGKP/6YZOLdF31qt39Q15c4W
+z1QdG7W/rTFpleozt18z4hjVU9Kq5bhY15n5fmzN33p8teu3HM9aLxfWcHrDZeabKr7opSf7iJMx
+zfOo+GeXO8qKcda6mzUXxRX3K4T8h/yI/T3CCjH0GBX/7OMyu56t+c9qtJzNS5xeuZjHRfpgGPWB
+kebT+q3B+rcR8beUW7N/AO7Jso01lhnxa+35x+WU9iO3fMS5YrnI1epZE79mf0ftV4t4u7jh3hvP
+6PW1+WiPr/Y87I2ntnxE3pr8pXpJx7uNbsyV8h+RD+Y7dR6X3DdXzSCvXBdebf1SF3rP4LU4ljPi
+z33L1uZfqv9a+TmWOEfEb4mjlk/r8Sr16klla45vSe24ac7D2vKZ57O0T+n6I68PlnK1y9NYS/Fo
+j68lnpHHvRaT9X2tyT/XUKid17n1a/mUytd+LrTkQ0NmrtMH2qyWthsfVJXuv6U+br3ueuv6SvXs
+IUbqgETyl5aYORfrafnmAQDAbDRcAACAGy4G5wIAAISQ/Bx61GClXF4jBuuV4tTGUBvMNeoWCbda
+AACY4zGEcQ+dyq1rzae0fi7OlnxaXrfse08+JBKJRCKRnqa7EJ72TFjmD2idH6DUq1MrryXOVq1x
+1vIBAABtmse4xBPvpMutt5TSfFb8oJf2tyWfPfWsb10OAMAVFKf8L/VqaCbcikkNk1o+q0zkM2J/
+axOHSeWm65fG7ljzBwDAk+qzijSzRsZ/lz4oSx+oqzdadpZYcvsbNwT31zX0nAAA8KHhD1mMP2h7
+Gh6rNVpGkXpfcjRTXgMAcEvuQmh/6FSuBybuSWi5rZLGkOafi3MWafzIiPysg4tz2zKWBQBwa57M
+nGuZx6U2mFY7j4s0FiTVOnbDOh/MiPljSvm0zmdTGmMjNTav2GMFAEDzb6lHzU/iYZ6TlWJknhgS
+iUQi3WriWUVO0bMCALhFNFwAQKE0NQSA4wz/VREAXJU0Xu0qPaBX/TUnruWQhktt/hevaoOI93W0
+g45b8u+18gVXmljvqHKPphl8PbPclnLiweOa5R7jkcpIjZqPSrv+yB8xtKx/dH5H8x7/lTVP+W8V
+/1T6Sj/hjfdLMwuudt2ebbTiifHS4zLqGF3pWPcYWQ+tP6OfQTPh5JFWiyduhGnX1ypdG27xfZfb
+59XqYbV4vDqs4eLJER/aK7bmV4pntV6Plcq98rfi1eLpEe9LrvGinb9KWl/atrWnynu9e48feqeO
+cUm/jbTO+zJjecucLblu2hkt7NwcObV5XCy3hOI60OQjHUcpn9ZbYJZ49tfa+YSk8kacn6X6LJVd
+Wq6Zf6ilXGn9UbcUW/JZLZ4RctcZTaNFmnsqXla6ZbX/veV2lPX8r+VTug6UrjNxnrn3fFpm6/u3
+x8j3I/Km/+Z627YnKV0ev47/PXq59Lq2X7ntpLJa8k/LkfJv2d9a/rX4tPVgPV809VzbX+lf7XEf
+dX7W6qElLu1ra7mW/a2VMWI/zoxH2j73vtS8z1vjLC2X3r+a87R2nhx1vbXUm/W6OmK/rKn1/UjS
+p8N6XDT3nq0t0FpLOf22nOu2zd0f7u2y3wZ2u5bqLVdOrh5KeVoH80n59xzHNP/c9qPqU4pfU+6M
+b0gjzpXa+Wwpt/ZtfZbV4jlCz/Uut2zkdUdbvpb1eJWuMyP2c+b50/J+hM1lfg5daxilJ3vP/WCN
++I0Rl7HyxaUmjb31zS81Mo9w1YvI7PNrtXpbLR6U5Y5X6Tow+/gelf/s6/2tcj04t/TtOf173AqW
+ltfy1Za/t7Jnvgn3N0QpVkv91MrS5q3JJ66fuJ6OfpPH9eC53Nr5PLrc0d9WV4tnlPSak+sdtcSe
+rj9yv2vXkpHl1a4DpXI1171audrlufU061rfj7BbssclPdi5Wzwzlodgu7iX8hklPbnTrtL49ch6
+SLs7c8u0t6XSfEap1X/u9YjjNao+tfnHcufnqHK18WjeL9Y4PcejibXWIxzHGP+/dE5L8dfy0e5n
+7/Wklo+1XOm6t/8tXSfNqzX+NLaa2e9HvHD6QJvV0sYAKhKJlKT0urAlg3Pj19a8Rq8/ah9J1MuK
+iWcVAYBC6dYwgOPQcJmACxwAAHMsOcbFE+n+de3edboOAACoO73hUvoglwbYxXIf/qWR57nBcrX1
+S3GWBt9Ze16O/nULAADeVBsuMz9MpQZE/P90JHm6fY019lJDSHo9Qm5/AQDAU0vO41L6yWJuHc3y
+WJxnS0Oh9jNbK83+AgCAqMelNB9A+rvzWk+JlE9sn3ekxa30SqRzptzCPgMAUPKy4ZJriFg/MKUG
+jWZ7bTmlnhJp2U4zNmW1wbNxnDReAAC3Ltvj0iqdFbC1wVMrI7ed5tc9uTJzMy0CAIA13Ycw7uF5
+IeRvJ9V+rUNjAQAAaLwyOLfUaJEGyeb+n+t9idO+vtRLkrslVHp+i6Xx0zsYNl2/t/HVO1gYAIBb
+cR9C+eF5tYdU1batSRsB0kO0RudvWb+lXKvSGBYaMgAAvMCU/500g4R7GnYAAOBDNFwm4FlFAADM
+QcMFAAC4seTMuXgVs+nCE85XALMM7XE54pk+Urkx6afd0q+TembwTZXGu2gfEpkrZ2Q9ev/lkvf4
+Nbw/fDQXJwCM8jgqbdtWfK3dbnS5ufzjZa3la7YrrXNU/czOr6W8nhhmxG/Nc2Ydls7f/f8t51Vt
+W6lc6/pH1BGJRLrdNPxWUfp8I43VvpWN6uauzYlzRm/LGbzHvwrN/EPS+aI5j1Z7+CgA5NzXV7FJ
+n62zk7qU0zli9mW5+WOO0HLh1uzDaLX6LC2v5WO9NVC6RSjVTe1v2vitSvurjUdaX1MPuXxilkdl
+5PaNRiKAWzCs+ybtWu7pYrbcytnXT7crbV/K33ILR8qnVAeWLnTN9lJZrcu1sfTs74j9aj0/NedA
+bfuj4teep5bz3/p+kda31hmJRCKNSMN7XEKQBwb25jFy/RF51R7geJSesqzHRVp/1NOrZ95aaHkI
+6Ih4Wsrdy245F9OeHstszHFPYTprNQCsYErDJZXrQr+69DbZqg+V1DYy47EVR8czI3/NcRh53ubK
+rd2SW+k8AYBVHD6Pi4dGizbGUu9D/M265wNIM05m9PiPOP5SD0GucdYSi2b8TW17zbrpOBNLuaX8
+a+tL5Ur1XOolicfXlBpApXxK+1Eb/Fvbvqd8ANA4pMclvVjnLuqzLnKlC30cU0s86b4cdZGWytUu
+r+VjLTf3gZer6/TWQ1r/1vjT2GpK+1uLJ7etdv2W8yTdX6l+R+dvWf+s8x8ATh9os1pacUDhijGt
+kKiXNRPHhUQizUo8qwgAALjBs4oAAIAbNFwAAIAbNFwAAIAbNFwAAIAbNFwAAIAbNFwAAIAbNFwA
+AIAbNFwAAIAbNFwAAIAbNFwAAIAbNFwAAIAbNFwAAIAbNFwAAIAbNFwAAIAbNFwAAIAbLxsu27aF
+3P8BAABWcRfCi4bKw8MDDRYAALC0J7eK9sbLw8PDWfEAAACInoUQHs8OAgAAQIPBuQAAwA0aLgAA
+wA0aLgAAwA0aLgAAwA0aLgAAwA0aLgAAwA0aLgAAwA0aLgAAwA0aLgAAwA0esggAANzgIYsAAMAN
+HrIIAADc4CGLAADADQbnAgAAN2i4AAAAN2i4AAAAN2i4AAAAN2i4AAAAN2i4AAAAN2i4AAAAN2i4
+AAAAN2i4AAAAN3jIIgAAcIOHLAIAADd4yCIAAHCDhywCAAA3GJwLAADcoOECAADcoOECAADcoOEC
+AADcoOECAADcoOECAADcoOECAADcoOECAADcoOECAADc4CGLAADADR6yCAAA3OAhiwAAwA0esggA
+ANxgcC4AAHCDhgsAAHDj/9EqUn8MsZqfAAAAAElFTkSuQmCC
+
+--quXCAjnoRlF1KWQBBPhb--
