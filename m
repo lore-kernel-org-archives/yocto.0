@@ -1,48 +1,118 @@
-Subject: Inactive service of hello world #yocto
-To: yocto@lists.yoctoproject.org
-From: yasminebenghozzi6@gmail.com
-X-Originating-Location: Sousse, Gouvernorat de Sousse, TN (197.0.201.10)
-X-Originating-Platform: Linux Chrome 92
-User-Agent: GROUPS.IO Web Poster
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+ by mx.groups.io with SMTP id smtpd.web08.270.1631036642278146351
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 07 Sep 2021 10:44:03 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@ibeeto-com.20150623.gappssmtp.com header.s=20150623 header.b=Dw418a7t;
+ spf=neutral (domain: ibeeto.com, ip: 209.85.208.170, mailfrom: rudolf.streif@ibeeto.com)
+Received: by mail-lj1-f170.google.com with SMTP id y6so17854587lje.2
+        for <yocto@lists.yoctoproject.org>; Tue, 07 Sep 2021 10:44:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Vps+hQdO0/ZxVNg9qImBudxXWCnFgNiuIF5XobWhe0Y=;
+        b=Dw418a7tnRyHxlb+fJ/kGT7Q8SU+TEPTbElh0no+90a17Y6UzVtN84rzN7AAl4xzUi
+         5Dec4J+A3Z69U/VL90l4MOi/98JCatNO3phdNvTtiQsSZeMyVp8rKdgXDYXTpl54xdbq
+         qwELvJvatnUbrL5OKh+QL5hL7gVJDOe73Sz9w8fgCqUjI2HL00RX5Tk+f5gTVDprI1ET
+         xHS78mFbM2pg8+lwDjvxHyFL97iDszNe/jsmge1TM1/oK6Duhoy38CEMQGQcTQO0uNtk
+         ySotla9MdgtZSfhNC1B+85+tSv1Z2fyZPL81Fw9FA65oCBtNruFoCCOWSeTiBBZ4Xdt9
+         juCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Vps+hQdO0/ZxVNg9qImBudxXWCnFgNiuIF5XobWhe0Y=;
+        b=cOVs3zP/Apc7RfjKyNjtZG2Xm9EZ9dNgnkcZhBuC1+Sa8e1bFEnAfB7Pt33T/wA5+D
+         6XZVBExvfG8/1CHqmLwd4cY87Bz8HNXm3c9KNXAf5j8+HkLZy1YrCLRSG0t0G7IG7u6e
+         EAI3tVlg1I8kKnyIJSLBYnyHLAvdZS0FWxt+lVmGG8UQDKpdyxzyHY5oUzrkBG+WwFYS
+         GD9IyjJYcOqBxeqT4jQIxuSq7m2bw0XR60Rfj1duvWc0q0AGAlfiJzaxIwvp8uvn8Ovd
+         TW42guZi342e2w0whVm88enGCEploEVW6svoRtNNKQ0CRkFxg3eQprPozgu6Qe+L2nB9
+         DtPQ==
+X-Gm-Message-State: AOAM533uoqSUZL7VSo+yHdr/zHGfICjuFZioNJJnvVfUHoUWiOv+JqXP
+	2WG6lUp8qu6vIpgzjDxUXKGVp3r/ygOnkhmgMK5puQ==
+X-Google-Smtp-Source: ABdhPJzy2wt/RyjtDbW7l/jiYdNMGdfZ32VcSa83QhTz5sfC2B4YzNoGXQerX2FnbBs+Ay/+caj0p/XdU53iXAGos8Y=
+X-Received: by 2002:a2e:a4db:: with SMTP id p27mr15969356ljm.161.1631036640060;
+ Tue, 07 Sep 2021 10:44:00 -0700 (PDT)
 MIME-Version: 1.0
-Date: Tue, 07 Sep 2021 10:20:33 -0700
-Message-ID: <TdLw.1631035233691526967.49VF@lists.yoctoproject.org>
-X-Groupsio-MsgNum: 54670
-Content-Type: multipart/related; boundary="eiFfKqRuLuilAkhMYve2"
+References: <TdLw.1631035233691526967.49VF@lists.yoctoproject.org>
+In-Reply-To: <TdLw.1631035233691526967.49VF@lists.yoctoproject.org>
+From: "Rudolf J Streif" <rudolf.streif@ibeeto.com>
+Date: Tue, 7 Sep 2021 10:43:48 -0700
+Message-ID: <CAPxNcnf11pBQtfuQ9COipkOASuz6rjorHOTk+35bzHAtwUi-Bg@mail.gmail.com>
+Subject: Re: [yocto] Inactive service of hello world #yocto
+To: yasminebenghozzi6@gmail.com
+Cc: Yocto <yocto@lists.yoctoproject.org>
+X-Groupsio-MsgNum: 54671
+Content-Type: multipart/related; boundary="0000000000008e07c205cb6b4f88"
 
---eiFfKqRuLuilAkhMYve2
-Content-Type: multipart/alternative; boundary="wVEhJ6IJqF7TPQkC5B7X"
+--0000000000008e07c205cb6b4f88
+Content-Type: multipart/alternative; boundary="0000000000008e07c105cb6b4f87"
 
---wVEhJ6IJqF7TPQkC5B7X
-Content-Type: text/plain; charset="utf-8"
+--0000000000008e07c105cb6b4f87
+Content-Type: text/plain; charset="UTF-8"
+
+What does your 'Hello World' service do? Just print 'Hello World' to the
+console and then exit?
+
+If so that would be the reason why it is inactive. Systemd starts it and
+then it exits. Typically, services keep running (except for some special
+cases) once they are started. That's what makes them a service. To stop
+them 'systemctl stop <service>' is used. By default systemctl sends SIGTERM
+to tell the service to clean up and terminate itself.
+
+:rjs
+
+
+On Tue, Sep 7, 2021, 10:20 <yasminebenghozzi6@gmail.com> wrote:
+
+> Hi everyone,
+>
+> I wanted to run the helloworld service, but it keeps telling that its
+> inactive , I really cant find why, I changed the service many times but no
+> solution.
+> I m sorry I ant copy paste from putty
+>
+> 
+>
+>
+
+--0000000000008e07c105cb6b4f87
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi everyone,
+<div dir=3D"auto"><div>What does your &#39;Hello World&#39; service do? Jus=
+t print &#39;Hello World&#39; to the console and then exit?<div dir=3D"auto=
+"><br></div><div dir=3D"auto">If so that would be the reason why it is inac=
+tive. Systemd starts it and then it exits. Typically, services keep running=
+ (except for some special cases) once they are started. That&#39;s what mak=
+es them a service. To stop them &#39;systemctl stop &lt;service&gt;&#39; is=
+ used. By default systemctl sends SIGTERM to tell the service to clean up a=
+nd terminate itself.</div><div dir=3D"auto"><br></div><div dir=3D"auto">:rj=
+s</div><br><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
+ttr">On Tue, Sep 7, 2021, 10:20  &lt;<a href=3D"mailto:yasminebenghozzi6@gm=
+ail.com">yasminebenghozzi6@gmail.com</a>&gt; wrote:<br></div><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;p=
+adding-left:1ex">Hi everyone,=C2=A0<br><br>I wanted to run the helloworld s=
+ervice, but it keeps telling that its inactive , I really cant find why, I =
+changed the service many times but no solution.<br>I m sorry I ant copy pas=
+te from putty<br><img src=3D"cid:attach_0_16A299E748560873_30199@lists.yoct=
+oproject.org"><img src=3D"cid:attach_1_16A299E748576FA3_30199@lists.yoctopr=
+oject.org">
+<br>
+<br>
+<br>
+</blockquote></div></div></div>
 
-I wanted to run the helloworld service, but it keeps telling that its inact=
-ive , I really cant find why, I changed the service many times but no solut=
-ion.
-I m sorry I ant copy paste from putty
+--0000000000008e07c105cb6b4f87--
 
---wVEhJ6IJqF7TPQkC5B7X
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi everyone,&nbsp;<br /><br />I wanted to run the helloworld service, but i=
-t keeps telling that its inactive , I really cant find why, I changed the s=
-ervice many times but no solution.<br />I m sorry I ant copy paste from put=
-ty<br /><img src=3D"cid:attach_0_16A299E748560873_30199@lists.yoctoproject.=
-org" /><img src=3D"cid:attach_1_16A299E748576FA3_30199@lists.yoctoproject.o=
-rg" />
-
---wVEhJ6IJqF7TPQkC5B7X--
-
---eiFfKqRuLuilAkhMYve2
-Content-Id: <attach_0_16A299E748560873_30199@lists.yoctoproject.org>
-X-Attachment-Id: attach_0_16A299E748560873_30199@lists.yoctoproject.org
+--0000000000008e07c205cb6b4f88
 Content-Type: image/png; name="Screenshot from 2021-09-07 17-57-50.png"
+Content-Disposition: inline; 
+	filename="Screenshot from 2021-09-07 17-57-50.png"
 Content-Transfer-Encoding: base64
-Content-Disposition: inline; filename="Screenshot from 2021-09-07 17-57-50.png"
+Content-ID: <attach_0_16A299E748560873_30199@lists.yoctoproject.org>
+X-Attachment-Id: attach_0_16A299E748560873_30199@lists.yoctoproject.org
 
 iVBORw0KGgoAAAANSUhEUgAAAfkAAACOCAYAAAAy5nEpAAAABHNCSVQICAgIfAhkiAAAABl0RVh0
 U29mdHdhcmUAZ25vbWUtc2NyZWVuc2hvdO8Dvz4AABkpSURBVHic7Z1P6GVHVsfr3d/tP5MowWFE
@@ -160,12 +230,13 @@ vcDVI/wDQLtkX+QBAAAA0DbDPMffeAcAAACAvhmcYAsdAAAAAPpjGE6G2hoAAAAAUIDBYSAPAAAA
 HCTD2end2hoAAAAAUIDhwzt3amsAAAAAQAGGH37ww9oaAAAAAFCA4d69/62tAQAAAAAFGC5cuFBb
 AwAAAAAKMDz2I4/X1gAAAACAAgwXL16srQEAAAAABfg/M7KcsL2+Qt0AAAAASUVORK5CYII=
 
---eiFfKqRuLuilAkhMYve2
-Content-Id: <attach_1_16A299E748576FA3_30199@lists.yoctoproject.org>
-X-Attachment-Id: attach_1_16A299E748576FA3_30199@lists.yoctoproject.org
+--0000000000008e07c205cb6b4f88
 Content-Type: image/png; name="Screenshot from 2021-09-07 17-58-34.png"
+Content-Disposition: inline; 
+	filename="Screenshot from 2021-09-07 17-58-34.png"
 Content-Transfer-Encoding: base64
-Content-Disposition: inline; filename="Screenshot from 2021-09-07 17-58-34.png"
+Content-ID: <attach_1_16A299E748576FA3_30199@lists.yoctoproject.org>
+X-Attachment-Id: attach_1_16A299E748576FA3_30199@lists.yoctoproject.org
 
 iVBORw0KGgoAAAANSUhEUgAAAVEAAADiCAYAAAD3X/QtAAAABHNCSVQICAgIfAhkiAAAABl0RVh0
 U29mdHdhcmUAZ25vbWUtc2NyZWVuc2hvdO8Dvz4AABTJSURBVHic7d3PzyNHXsfxT5Urz2QywyS7
@@ -264,4 +335,4 @@ NzcqNhvdlG2i4QIkzJsHgDT3f1/+fPvISxu/3ztPIAWAZuYbv/arvloCb1MU+vSzz0YuEgDMh5Ux
 8pL8PC8OAgCjct57+XKqEmEUAPLYjffyRhLNngCQzUmS9ypP6QEAOZyM2VVCfUEYBYAc/w80QADU
 1+xHbwAAAABJRU5ErkJggg==
 
---eiFfKqRuLuilAkhMYve2--
+--0000000000008e07c205cb6b4f88--
