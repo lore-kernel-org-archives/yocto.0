@@ -1,94 +1,106 @@
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
- by mx.groups.io with SMTP id smtpd.web12.7417.1631076512644533388
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+ by mx.groups.io with SMTP id smtpd.web12.7584.1631077994709188292
  for <yocto@lists.yoctoproject.org>;
- Tue, 07 Sep 2021 21:48:32 -0700
+ Tue, 07 Sep 2021 22:13:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=cAvJlB94;
- spf=pass (domain: gmail.com, ip: 209.85.167.177, mailfrom: arun.sivakumaran@gmail.com)
-Received: by mail-oi1-f177.google.com with SMTP id w19so1513106oik.10
-        for <yocto@lists.yoctoproject.org>; Tue, 07 Sep 2021 21:48:32 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=jz9cPSLy;
+ spf=pass (domain: gmail.com, ip: 209.85.221.169, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-vk1-f169.google.com with SMTP id k124so349431vke.5
+        for <yocto@lists.yoctoproject.org>; Tue, 07 Sep 2021 22:13:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=XY8l4dcFYdLHgtRh2dT7GHN14BWFoRGsJyk/4Gu6Hh8=;
-        b=cAvJlB94K4jh4z8xzTNLwNP58IxqqNai5e8GbfeifaqeU6OL6Tr8bCLhoeJhWOH3vJ
-         qIYH8CMxKLNVVeeAGtt9vEVpjFFzerZ8wc6h/f6FzWms6WrxC14X4Ba0CJkW0Xuoa0BJ
-         bpNqI+qSWUzKhPmUHWLty299vZ4UVBbqz0NMfp7lJbfrI/r/IGOy0Cjx2r9EJaC/TduT
-         Bdjo5iaElGi+NdFQAnCkkpmASzf0FrKt12KkQMroQ2CILRlhSIMwLKorigzPvlEQWzdO
-         ef69s3CsDZKYIS7eV7h6NwlAlYqr8jjcE+SH7V/iNRMau2JJYWQk/oe+lLtEpa/PXrga
-         o6fQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Q73glD186mUgslw6TFRCX/3AJue0PD6+Ytquv485eKg=;
+        b=jz9cPSLyhXflRuNX3829bXTSpC76mS0Wu7lCqYJhS9YT9bSUDhq859l9h9ZqCdJ+D5
+         vYbogYz8O83Ode5sPvjvc4qnncQrhLFJIexeQJo+atzhlLCuQ0mia30JOE/Dmgi7tQXS
+         BWi694oWhdRbE2/JkEBaj1QgZKBj7o3sOSwkyIQgr+gEukFOjNSRKgTcVl+6bmzmjJB6
+         l2Mn/xfPUQ4/WxBV8jebwr49sbaWe80MYBjmGERLZv9r1cSa02dDq6S2uX6Oh0yrjLPz
+         Z/VSGLziABuOLoeSUcbVeArbKizMQvkGdgztoMSkQzu1264LWkr4VVkIgXpuiUtImF9P
+         FuQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=XY8l4dcFYdLHgtRh2dT7GHN14BWFoRGsJyk/4Gu6Hh8=;
-        b=jir2Us2oy+/mjEQzx0+Nu3HLAAlf04ezPSBHbxX/0hahwUL63vCELeEQEZfGL6rWEL
-         Q1DPkuuiumG06u1sJjMUzxbxGu+IXwBC6UAEhDFGBk1NjqThHOAtcfHqve5mtAHZg+sz
-         cnC8YeHzOXdjVfhqvqcJmab3w1gDioJKJRQD09LX24HfWoqrFT8M/Nez4/sZZauzWvf3
-         Mo96OC1nMgLicWdKUNaIlmB9bq/XQO10EtZpysPvNuAOXLHpUxyNI9i3F9jAOT/tuPWy
-         1jWprs3GG2q1HRURNKSXr3UJoP6qwPLpgY9N7721IQl7cRgqVjrAPDF0ddi4PCFiMdNn
-         wzvw==
-X-Gm-Message-State: AOAM532ByUQ/GlEvXRVg30u9wyJymrWyGLXNC11QAhQkT3tVGulc+pXI
-	Em3Q4FehdDh4K5YF/FcT3Pudg3qhE1NhBsR3r838eQE3u0g=
-X-Google-Smtp-Source: ABdhPJztmOy9v+MSHyogMhpcvVryxMVYqG+Ia3twly3LifQsjDYwQOi1vAZsSDPcw3JDyo7WAC8z9/B4FOZXwHna3Lw=
-X-Received: by 2002:a54:4389:: with SMTP id u9mr1100627oiv.132.1631076511738;
- Tue, 07 Sep 2021 21:48:31 -0700 (PDT)
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Q73glD186mUgslw6TFRCX/3AJue0PD6+Ytquv485eKg=;
+        b=Jmq5aM8JwV+xxUgqbxrZc7y2tD3/oGHY4+7a6hSHbo8yJDefZ0sk1CORBeSgNoMb2I
+         oQRL1cs1eL8W6FeP6dP+5J0fQ3J5VlSutn6kMheyGdVmbCaM+qo8gah3svMBB/DaCZSY
+         fZS9NJ1AziHDaMVoa+++CKRp06qCoBR2srDtMFolqegotRO9agg3eVYQdHM5uqJNEXS4
+         fSWI4hfEC9HIWEph0SfxEEolDwIwUU5fxq+9FJaO148FfSwTv3H5ShOCVppDHIvVCxom
+         PGENqVCtqly1YK61pkcm9gZqYG2OsjrWSsU3lAD855rkKyVFQ1ecJ+LBQTiHiUI/BDM+
+         KMBg==
+X-Gm-Message-State: AOAM530xDek6DHWUxhPoCzTdaTt5Y2/dyznKxGZz9H+Xzr1xM7YFVNnN
+	SarOoPmBIvbEx/kWZRgDwasziw5xxPzWHj8RKL0=
+X-Google-Smtp-Source: ABdhPJwgIOchFzolMF6EmIi/7O++uaFQ0f5eNaVF6AVYcZRkEcDVUGeAWzKl7ooSjE1PdO5aQRHDBkr1oMtnLLzbv4Y=
+X-Received: by 2002:a1f:608e:: with SMTP id u136mr1013003vkb.15.1631077993791;
+ Tue, 07 Sep 2021 22:13:13 -0700 (PDT)
 MIME-Version: 1.0
-From: "Arun" <arun.sivakumaran@gmail.com>
-Date: Tue, 7 Sep 2021 21:48:21 -0700
-Message-ID: <CADphxr35hhr-1JT7YCYz-eG3RxsHv5ATA8AKJy5H9NPENo_q=Q@mail.gmail.com>
-Subject: multilib SDK
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000156d5405cb7498dd"
+References: <CAMKF1sqaUHdLOfeiFL7+7CN92wwWMermhSgjK5YXmfzUuGYRWQ@mail.gmail.com>
+ <30732.1631076442697613961@lists.yoctoproject.org>
+In-Reply-To: <30732.1631076442697613961@lists.yoctoproject.org>
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+Date: Wed, 8 Sep 2021 07:13:02 +0200
+Message-ID: <CANNYZj_0JxquV82oZxtyq3FrtghtxxZuNxEkia-1-DBY+Dyd_A@mail.gmail.com>
+Subject: Re: [yocto] Building Yocto on AWS container getting ERROR: The postinstall intercept hook 'update_icon_cache' failed, #yocto
+To: mail2uvijay@gmail.com
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000006bc4e005cb74f049"
 
---000000000000156d5405cb7498dd
+--0000000000006bc4e005cb74f049
 Content-Type: text/plain; charset="UTF-8"
 
-I have a custom project where I am building for 64-bit kernel and 32-bit
-userspace using multilib config
+It's right there at the very end:
+NOTE: Exit code 127. Output:
+/home/wlsom/YoctoCode/poky/build-microchip/tmp/work/sama5d27_wlsom1_ek_sd-poky-linux-gnueabi/utec-mcdgrill-image/1.0-r0/intercept_scripts-7f1ca27092c337bb8d06dfe7837dad99a9fb3e5e5ff266e8ce34762c23025acb/update_icon_cache:
+9:
+/home/wlsom/YoctoCode/poky/build-microchip/tmp/work/sama5d27_wlsom1_ek_sd-poky-linux-gnueabi/utec-mcdgrill-image/1.0-r0/intercept_scripts-7f1ca27092c337bb8d06dfe7837dad99a9fb3e5e5ff266e8ce34762c23025acb/update_icon_cache:
+/home/wlsom/YoctoCode/poky/build-microchip/tmp/work/sama5d27_wlsom1_ek_sd-poky-linux-gnueabi/utec-mcdgrill-image/1.0-r0/recipe-sysroot-native//gdk-pixbuf-2.0/gdk-pixbuf-query-loaders:
+not found
 
-*# for 32bit userspace build*
+This isn't easy to diagnose without having access to your build tree, but
+you can build plain core-image-sato for example and check that the binary
+does exist there and gets executed, and then untangle where the difference
+come from.
 
+Alex
 
-*require conf/multilib.confMULTILIBS =
-"multilib:lib32"DEFAULTTUNE_virtclass-multilib-lib32 = "armv7athf-neon"*
+On Wed, 8 Sept 2021 at 06:47, <mail2uvijay@gmail.com> wrote:
 
-I am successfully able to build the target image as
-*MACHINE=<custom_machine> bitbake lib32-<custom_target>*
+>
+> Raj thanks for the response. Couldnt able to find error from the logs..
+>
+> Attached detailed logs..
+> 
+>
+>
 
-However, when I try to build the SDK, I am noticing that the userspace
-recipes are being built for  both 64-bit and 32-bit. I am running into
-errors for 64-bit. I have no need for 64-bit, *is there any way I can
-disable 64-bit build for SDK?*
-
-note: I am building SDK via this command without lib32- prefix for target,
-following details from this commit message
-<http://git.openembedded.org/openembedded-core/commit/?id=77144bc808be02deb3351c9c1bf5b4f2b8c3a6ec>
-stating that lib32- prefix is not required
-*MACHINE=<custom_machine> bitbake -c populate_sdk <custom_target>*
-
-thanks
--Arun
-
---000000000000156d5405cb7498dd
+--0000000000006bc4e005cb74f049
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I have a custom project where I am building for 64-bit ker=
-nel and 32-bit userspace using multilib config<div><br></div><div><i># for =
-32bit userspace build</i><br><b style=3D"">require conf/multilib.conf<br>MU=
-LTILIBS =3D &quot;multilib:lib32&quot;<br>DEFAULTTUNE_virtclass-multilib-li=
-b32 =3D &quot;armv7athf-neon&quot;</b><br></div><div><br></div><div>I am su=
-ccessfully able to build the target image as</div><div><b><i>MACHINE=3D&lt;=
-custom_machine&gt; bitbake lib32-&lt;custom_target&gt;</i></b></div><div><b=
-r></div><div>However, when I try to build the SDK, I am noticing that the u=
-serspace recipes are being built for=C2=A0 both 64-bit and 32-bit. I am run=
-ning into errors for 64-bit. I have no need for 64-bit, <b>is there any way=
- I can disable 64-bit build for SDK?</b></div><div><br></div><div>note: I a=
-m building SDK via this command without lib32- prefix for target, following=
-=C2=A0details from <a href=3D"http://git.openembedded.org/openembedded-core=
-/commit/?id=3D77144bc808be02deb3351c9c1bf5b4f2b8c3a6ec">this commit message=
-</a> stating that lib32- prefix is not required</div><div><i><b>MACHINE=3D&=
-lt;custom_machine&gt; bitbake -c populate_sdk &lt;custom_target&gt;</b></i>=
-</div><div><i><b><br></b></i></div><div>thanks</div><div>-Arun</div></div>
+<div dir=3D"ltr"><div>It&#39;s right there at the very end:</div><div>NOTE:=
+ Exit code 127. Output:<br>/home/wlsom/YoctoCode/poky/build-microchip/tmp/w=
+ork/sama5d27_wlsom1_ek_sd-poky-linux-gnueabi/utec-mcdgrill-image/1.0-r0/int=
+ercept_scripts-7f1ca27092c337bb8d06dfe7837dad99a9fb3e5e5ff266e8ce34762c2302=
+5acb/update_icon_cache: 9: /home/wlsom/YoctoCode/poky/build-microchip/tmp/w=
+ork/sama5d27_wlsom1_ek_sd-poky-linux-gnueabi/utec-mcdgrill-image/1.0-r0/int=
+ercept_scripts-7f1ca27092c337bb8d06dfe7837dad99a9fb3e5e5ff266e8ce34762c2302=
+5acb/update_icon_cache: /home/wlsom/YoctoCode/poky/build-microchip/tmp/work=
+/sama5d27_wlsom1_ek_sd-poky-linux-gnueabi/utec-mcdgrill-image/1.0-r0/recipe=
+-sysroot-native//gdk-pixbuf-2.0/gdk-pixbuf-query-loaders: not found</div><d=
+iv><br></div><div>This isn&#39;t easy to diagnose without having access to =
+your build tree, but you can build plain core-image-sato for example and ch=
+eck that the binary does exist there and gets executed, and then untangle w=
+here the difference come from.</div><div><br></div><div>Alex<br></div></div=
+><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On We=
+d, 8 Sept 2021 at 06:47, &lt;<a href=3D"mailto:mail2uvijay@gmail.com">mail2=
+uvijay@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
+dding-left:1ex"><br>Raj thanks for the response. Couldnt able to find error=
+ from the logs..<br><br>Attached detailed logs..
+<br>
+<br>
+<br>
+</blockquote></div>
 
---000000000000156d5405cb7498dd--
+--0000000000006bc4e005cb74f049--
