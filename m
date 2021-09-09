@@ -1,118 +1,77 @@
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
- by mx.groups.io with SMTP id smtpd.web10.1762.1631206209855818157
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+ by mx.groups.io with SMTP id smtpd.web09.4509.1631217594824745485
  for <yocto@lists.yoctoproject.org>;
- Thu, 09 Sep 2021 09:50:10 -0700
+ Thu, 09 Sep 2021 12:59:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=hAY41dSw;
- spf=pass (domain: gmail.com, ip: 209.85.210.175, mailfrom: raj.khem@gmail.com)
-Received: by mail-pf1-f175.google.com with SMTP id n34so2263590pfv.7
-        for <yocto@lists.yoctoproject.org>; Thu, 09 Sep 2021 09:50:09 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=UwH5wRKZ;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.50, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f50.google.com with SMTP id g16so4216123wrb.3
+        for <yocto@lists.yoctoproject.org>; Thu, 09 Sep 2021 12:59:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:organization:in-reply-to:content-transfer-encoding;
-        bh=UrFVi+oRefC6h7fTeZO9l3KF7twtdZxZsdVDVitfoeA=;
-        b=hAY41dSww+dPLSfx9wda0Mi8TtWFJ9fNbyjAwb0RlU463Vf73xSKsm8hvrMs0a2z7y
-         oMQnmbU8/HkKXAqNpsC0AzncLC+6ScwpWXSomjmSEx8n6ZItug5YRT+nrHX0RRD0c33j
-         oTEeIYBZQ0aW67eZQYcQmclR1bcgh/m6chRDXrS9jdh/snYrfg3dkDkqVO+C44dF2EZq
-         LyuJRucYSnLY6ErrYasNVdjpK3QVPYL7hjiXgZ2v9rDE8d09wuZdpCsD4oZfvUmzeDx7
-         vjHvvezU17GzxevAyEANyEHNa7qkVWGOIaDNRQ4I2EbyMhiu//1t3QbBZhmyEfjUeikQ
-         unJA==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:user-agent:mime-version
+         :content-transfer-encoding;
+        bh=L+kE5k5evIz6vKQ2vSSO5WoBlVsmuNNKfwGdmw/nASo=;
+        b=UwH5wRKZ5DEVVIfbLBuYxJAareDCjLTMCqWtU82Hs42m//KtzmjWuGtPUXUSrPUSxi
+         99hDIshTaeJwUhKF2fHl3RwTsKL04d/lPbVXPYvkJEmfBLRaiEAVE69lD75JzkvCI93C
+         f+p9jb4jq4DP0u33e6gNBzTfPeB5ZUjsB9Q5M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=UrFVi+oRefC6h7fTeZO9l3KF7twtdZxZsdVDVitfoeA=;
-        b=Mv8EHeb//xUopa+dm2rBix5MWs8rkS9F6rqhnO61ql7vZznMTW4GiZOh+H/FOXFN2w
-         S2exdRZfUF3mSujOvh3jkozjIl8aw60qf1stuwiAiy95YP2MU32Txk/DgSIn9re/3CEw
-         13QENKTWcjenmBm7mocmE9TjB0IPmrwWdPxs8DNAILYA9trx36Bz5Hq5KAshOgNGrL96
-         qalm5qU/14GI6uVrXMVd8Y+unYP1iMeZjM83FzUVUI0+bB0A7u33m9BGlrTQ3t12HISi
-         1t8iS4larOzoIqKCQs/N/trk8tjWzT63ZbnpLLW0HWS3F81iraGcb7MC4N3G3+/Vt1JE
-         tNLg==
-X-Gm-Message-State: AOAM533LwC0b6V4BdU1UnOhzo8sE2oWBAILbRBSeUXZuT1pG5+Bls9qB
-	+To+Kd99qogs8T+GcNkeFFM=
-X-Google-Smtp-Source: ABdhPJwFgHpdoy4I3YPPlxRCk7/Q7u70+cV3fRfmGMF+dF8wGG6rUluvS3N9dQ0hjJfjKx5RqsXeWw==
-X-Received: by 2002:a62:798d:0:b0:3ef:72a4:e899 with SMTP id u135-20020a62798d000000b003ef72a4e899mr3969184pfc.13.1631206209285;
-        Thu, 09 Sep 2021 09:50:09 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPV6:2601:646:9200:a0f0:889e:9651:ed1e:11b0? ([2601:646:9200:a0f0:889e:9651:ed1e:11b0])
-        by smtp.gmail.com with ESMTPSA id c24sm3323897pgj.63.2021.09.09.09.50.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Sep 2021 09:50:08 -0700 (PDT)
-Message-ID: <105023f4-0713-9791-b29b-96e0b8b93ea7@gmail.com>
-Date: Thu, 9 Sep 2021 09:50:07 -0700
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=L+kE5k5evIz6vKQ2vSSO5WoBlVsmuNNKfwGdmw/nASo=;
+        b=UGI7Rx0IjqdwGXtFxEmU7kVGExfy+xXp8mYsYSnlKw5ujzgQsn0ONGEggK17F80PqM
+         AXGY2UiwQZQkwtdh/PcOB4eBjB3WKuVRzSU+xtnNwKJXYKkTCUyQ9cPOUZVs6Mc5vgm8
+         8eKuTgHJhg3TWuqMX115K/0SSoLYM9G1M3763/AYYQa0VK9+tlsIhLbPQqQ+fLAW5mZT
+         ZekMgbQF4N2e+rnRwGz6NUTAzKl7gPafY9oZesmjdLS4pIU5cFsesV4JKU/7uCqA43xh
+         npeEj3v5lxEjtnr7Lp2YxhyTxH0YZrzQB5T+P+ysYj+O6m8Xf+yWpfJ02fG64TFS7SQg
+         wTww==
+X-Gm-Message-State: AOAM530D/3DRBPX7QvE/60dmrkt/t6l3rXdO/agmGtXFHc4cnDU/f4sv
+	P+IVdi/1mzQw5jWRsR0kma/IZXA5qA+ikfsQ
+X-Google-Smtp-Source: ABdhPJxqrWYzyGeQzocNDP/tACoozetvXz9hMkQ0+IR4kYl9uHrydd6cI2KjyU/Qm5hZUVW8/kwnsw==
+X-Received: by 2002:adf:8070:: with SMTP id 103mr5603871wrk.74.1631217593172;
+        Thu, 09 Sep 2021 12:59:53 -0700 (PDT)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from ?IPv6:2001:8b0:aba:5f3c:69c:dc1e:bcce:ea45? ([2001:8b0:aba:5f3c:69c:dc1e:bcce:ea45])
+        by smtp.gmail.com with ESMTPSA id n3sm2728218wmi.0.2021.09.09.12.59.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Sep 2021 12:59:52 -0700 (PDT)
+Message-ID: <32334a100a5bd0c20239e42a463e5604f00345ec.camel@linuxfoundation.org>
+Subject: QA notification for completed autobuilder build (yocto-3.3.3.rc2)
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>
+Cc: qa-build-notification <qa-build-notification@lists.yoctoproject.org>
+Date: Thu, 09 Sep 2021 20:59:52 +0100
+User-Agent: Evolution 3.40.2-1build1 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.1.0
-Subject: Re: [yocto] regd pTest #systemd #yocto
-To: rpaluri@codeaurora.org, yocto@lists.yoctoproject.org
-References: <l5B2.1631185152502385599.WABY@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-In-Reply-To: <l5B2.1631185152502385599.WABY@lists.yoctoproject.org>
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+A build flagged for QA (yocto-3.3.3.rc2) was completed on the autobuilder and is
+available at:
+
+
+    https://autobuilder.yocto.io/pub/releases/yocto-3.3.3.rc2
+
+
+Build hash information: 
+
+bitbake: c7b506d11df78cfc4610db6578745eaa6220b13a
+meta-agl: 60344efa7a50dc2548fc4b5d68b5ad4d60c4023a
+meta-arm: ba82ea920a3a43244a0a72bd74817e2f00f4a1af
+meta-aws: 171aa2cf4d12ff4877e9104b6ec46be54128e3d8
+meta-gplv2: 9e119f333cc8f53bd3cf64326f826dbc6ce3db0f
+meta-intel: 5c4a6b02f650a99a5ec55561443fcf880a863d19
+meta-mingw: 422b96cb2b6116442be1f40dfb5bd77447d1219e
+meta-openembedded: 7bd7e1da9034e72ca4262dba55f70b2b23499aae
+oecore: 567dd35d893c5d8969d41f263a24da8fbae3fc2f
+poky: 0a2ca9d60f3851515a79d5aa9ddd8b4069b5a206
 
 
 
-On 9/9/21 3:59 AM, rpaluri@codeaurora.org wrote:
-> Hi,
-> 
->  1. I'm aware that yocto picks up packages from respective open source
->     community. For e.g. dbus package is picked from freedesktop.org etc.
->     In this regard, what kind of tests does yocto runs to ensure that
->     the package that is getting picked-up is stable enough?
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
 
-there is system integration testing that happens on autobuilders which 
-you can check reports for
 
->  2. Is it Yocto, that writes pTest's to ensure that the package that is
->     getting picked up is stable enough?
 
-ptests are generic and one can add more to a package but usually you 
-will see that its trying to run the unit tests of the given package in a 
-cross environment.
-
->  3. I could find pTest report for e.g. on Dunfell @
->     http://downloads.yoctoproject.org/releases/yocto/yocto-3.1.1/testreport.txt
->     <http://downloads.yoctoproject.org/releases/yocto/yocto-3.1.1/testreport.txt> (Refer
->     "qemuarm64 PTest Result Summary" or "qemux86-64 PTest Result
->     Summary" section for details). The test report only details the
->     number of pTest's that passed, failed or skipped for respective
->     package. Is there any report that *details* the pTest's, which
->     failed, passed or skipped?
-
-the detailed run logs would be available when you run it, I am not sure 
-if we preserve those in release notes.
-
-> 
-> Additionally, I'm looking for pTest's for systemd, udev and glibc packages.
-> Below are my observations on these packages w.r.t pTests.
-> 
->  1. pTest for systemd package has been removed with
->     http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/meta/recipes-core/systemd?h=dunfell&id=40db00818e3b1cce8aa85ee30f3081ae9a5f8e66
->     <http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/meta/recipes-core/systemd?h=dunfell&id=40db00818e3b1cce8aa85ee30f3081ae9a5f8e66> commit.
-> 
->  2. Similarly pTest for udev has been removed with
->     http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/meta/recipes-core?h=dunfell&id=3e5e540513665105b963262c2eaf33f197a0a36c
->     <http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/meta/recipes-core?h=dunfell&id=3e5e540513665105b963262c2eaf33f197a0a36c>.
-
-yes someone needs to step up and get ptests working with meson on these 
-packages, they are temporarily removed there.
-
->  3. I don't find ptest's for glibc package either.
-
-there is glibc-testsuite package which provides glibc testing.
-
-> 
-> As there aren't any pTests for these three packages, are there any other 
-> existing tests that can be run to validate these packages?
-> 
-> Thanks,
-> Ravi
-> 
-> 
-> 
-> 
