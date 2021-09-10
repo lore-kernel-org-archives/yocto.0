@@ -1,69 +1,84 @@
 Received: from mail1.wrs.com (mail1.wrs.com [147.11.146.13])
- by mx.groups.io with SMTP id smtpd.web09.6525.1631263012823028153
+ by mx.groups.io with SMTP id smtpd.web12.6423.1631263172364406318
  for <yocto@lists.yoctoproject.org>;
- Fri, 10 Sep 2021 01:36:52 -0700
+ Fri, 10 Sep 2021 01:39:33 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.146.13, mailfrom: kai.kang@windriver.com)
 Received: from mail.windriver.com (mail.wrs.com [147.11.1.11])
-	by mail1.wrs.com (8.15.2/8.15.2) with ESMTPS id 18A8apTr005005
+	by mail1.wrs.com (8.15.2/8.15.2) with ESMTPS id 18A8dV5b005373
 	(version=TLSv1.1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL)
-	for <yocto@lists.yoctoproject.org>; Fri, 10 Sep 2021 01:36:51 -0700
+	for <yocto@lists.yoctoproject.org>; Fri, 10 Sep 2021 01:39:31 -0700
 Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.corp.ad.wrs.com [147.11.82.252])
-	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id 18A8aoW5029947
+	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id 18A8dU49000755
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <yocto@lists.yoctoproject.org>; Fri, 10 Sep 2021 01:36:51 -0700 (PDT)
-Received: from ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) by
+	for <yocto@lists.yoctoproject.org>; Fri, 10 Sep 2021 01:39:31 -0700 (PDT)
+Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
  ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 10 Sep 2021 01:36:50 -0700
-Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
- ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.14; Fri, 10 Sep 2021 01:36:50 -0700
+ 15.1.2242.12; Fri, 10 Sep 2021 01:39:30 -0700
 Received: from pek-lpg-core3.wrs.com (128.224.153.232) by
  ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
- 15.1.2242.12 via Frontend Transport; Fri, 10 Sep 2021 01:36:49 -0700
+ 15.1.2242.12 via Frontend Transport; Fri, 10 Sep 2021 01:39:29 -0700
 From: "kai" <kai.kang@windriver.com>
 To: <yocto@lists.yoctoproject.org>
-Subject: [hardknott][PATCH] sssd: fix CVE-2021-3621
-Date: Fri, 10 Sep 2021 16:36:46 +0800
-Message-ID: <20210910083646.19595-1-kai.kang@windriver.com>
+Subject: [meta-security][PATCH] sssd: 2.5.1 -> 2.5.2
+Date: Fri, 10 Sep 2021 16:39:27 +0800
+Message-ID: <20210910083927.40482-1-kai.kang@windriver.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-MIME-Autoconverted: from 8bit to quoted-printable by mail1.wrs.com id 18A8apTr005005
+X-MIME-Autoconverted: from 8bit to quoted-printable by mail1.wrs.com id 18A8dV5b005373
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 From: Kai Kang <kai.kang@windriver.com>
 
-Backport patch to fix CVE-2021-3621.
+SSSD 2.5.2 Highlights
+* General information
+  - originalADgidNumber attribute in the SSSD cache is now indexed
+
+* New features
+  - Debug messages in data provider include a unique request ID that can
+    be used to track the request from its start to its end (requires
+    libtevent >=3D 0.11.0)
+
+* Important fixes
+  - Update large files in the files provider in batches to avoid timeouts
+
+* Configuration changes
+  - Add new config option fallback_to_nss
+
+Full release notes:
+* https://sssd.io/release-notes/sssd-2.5.2.html
+
+And backport patch to fix CVE-2021-3621.
 
 CVE: CVE-2021-3621
 
 Signed-off-by: Kai Kang <kai.kang@windriver.com>
 ---
- .../sssd/files/CVE-2021-3621.patch            | 291 ++++++++++++++++++
- recipes-security/sssd/sssd_1.16.5.bb          |   1 +
- 2 files changed, 292 insertions(+)
+ .../sssd/files/CVE-2021-3621.patch            | 288 ++++++++++++++++++
+ .../sssd/{sssd_2.5.1.bb =3D> sssd_2.5.2.bb}     |   3 +-
+ 2 files changed, 290 insertions(+), 1 deletion(-)
  create mode 100644 recipes-security/sssd/files/CVE-2021-3621.patch
+ rename recipes-security/sssd/{sssd_2.5.1.bb =3D> sssd_2.5.2.bb} (97%)
 
 diff --git a/recipes-security/sssd/files/CVE-2021-3621.patch b/recipes-se=
 curity/sssd/files/CVE-2021-3621.patch
 new file mode 100644
-index 0000000..3d2c707
+index 0000000..7a59df9
 --- /dev/null
 +++ b/recipes-security/sssd/files/CVE-2021-3621.patch
-@@ -0,0 +1,291 @@
+@@ -0,0 +1,288 @@
 +Backport patch to fix CVE-2021-3621.
 +
-+Upstream-Status: Backport [https://github.com/SSSD/sssd/commit/b4b3267]
++Upstream-Status: Backport [https://github.com/SSSD/sssd/commit/7ab83f9]
 +CVE: CVE-2021-3621
 +
 +Signed-off-by: Kai Kang <kai.kang@windriver.com>
 +
-+From b4b32677a886bc26d60ce0171505aa3ab0c82c8a Mon Sep 17 00:00:00 2001
++From 7ab83f97e1cbefb78ece17232185bdd2985f0bbe Mon Sep 17 00:00:00 2001
 +From: Alexey Tikhonov <atikhono@redhat.com>
-+Date: Fri, 30 Jul 2021 19:05:31 +0200
++Date: Fri, 18 Jun 2021 13:17:19 +0200
 +Subject: [PATCH] TOOLS: replace system() with execvp() to avoid executio=
 n of
 + user supplied command
@@ -84,17 +99,17 @@ n of
 +
 +Reviewed-by: Pavel B=C5=99ezina <pbrezina@redhat.com>
 +---
-+ src/tools/sssctl/sssctl.c      | 40 +++++++++++++++++-------
++ src/tools/sssctl/sssctl.c      | 39 ++++++++++++++++-------
 + src/tools/sssctl/sssctl.h      |  2 +-
 + src/tools/sssctl/sssctl_data.c | 57 +++++++++++-----------------------
-+ src/tools/sssctl/sssctl_logs.c | 31 ++++++++++++++----
++ src/tools/sssctl/sssctl_logs.c | 32 +++++++++++++++----
 + 4 files changed, 73 insertions(+), 57 deletions(-)
 +
 +diff --git a/src/tools/sssctl/sssctl.c b/src/tools/sssctl/sssctl.c
-+index afaa84bc0..403c89c35 100644
++index 2997dbf968..8adaf30910 100644
 +--- a/src/tools/sssctl/sssctl.c
 ++++ b/src/tools/sssctl/sssctl.c
-+@@ -97,22 +97,37 @@ sssctl_prompt(const char *message,
++@@ -97,22 +97,36 @@ sssctl_prompt(const char *message,
 +     return SSSCTL_PROMPT_ERROR;
 + }
 +=20
@@ -111,7 +126,7 @@ n of
 ++    ret =3D fork();
 +     if (ret =3D=3D -1) {
 +-        DEBUG(SSSDBG_CRIT_FAILURE, "Unable to execute %s\n", command);
-+         fprintf(stderr, _("Error while executing external command\n"));
++         ERROR("Error while executing external command\n");
 +         return EFAULT;
 +-    } else if (WEXITSTATUS(ret) !=3D 0) {
 +-        DEBUG(SSSDBG_CRIT_FAILURE, "Command %s failed with [%d]\n",
@@ -125,25 +140,23 @@ n of
 ++        "The statement about argv[] and envp[] being constants ... "
 ++        */
 ++        execvp(argv[0], discard_const_p(char * const, argv));
-+         fprintf(stderr, _("Error while executing external command\n"));
++         ERROR("Error while executing external command\n");
 +-        return EIO;
 ++        _exit(1);
 ++    } else {
 ++        if (waitpid(ret, &wstatus, 0) =3D=3D -1) {
-++            fprintf(stderr,
-++                    _("Error while executing external command '%s'\n"),=
- argv[0]);
+++            ERROR("Error while executing external command '%s'\n", argv=
+[0]);
 ++            return EFAULT;
 ++        } else if (WEXITSTATUS(wstatus) !=3D 0) {
-++            fprintf(stderr,
-++                    _("Command '%s' failed with [%d]\n"), argv[0], WEXI=
-TSTATUS(wstatus));
+++            ERROR("Command '%s' failed with [%d]\n",
+++                  argv[0], WEXITSTATUS(wstatus));
 ++            return EIO;
 ++        }
 +     }
 +=20
 +     return EOK;
-+@@ -132,11 +147,14 @@ static errno_t sssctl_manage_service(enum sssctl_s=
++@@ -132,11 +146,14 @@ static errno_t sssctl_manage_service(enum sssctl_s=
 vc_action action)
 + #elif defined(HAVE_SERVICE)
 +     switch (action) {
@@ -166,10 +179,10 @@ LL});
 + #endif
 +=20
 +diff --git a/src/tools/sssctl/sssctl.h b/src/tools/sssctl/sssctl.h
-+index 70fc19eff..71f798b2a 100644
++index 0115b2457c..599ef65196 100644
 +--- a/src/tools/sssctl/sssctl.h
 ++++ b/src/tools/sssctl/sssctl.h
-+@@ -42,7 +42,7 @@ enum sssctl_prompt_result
++@@ -47,7 +47,7 @@ enum sssctl_prompt_result
 + sssctl_prompt(const char *message,
 +               enum sssctl_prompt_result defval);
 +=20
@@ -181,7 +194,7 @@ and */
 + bool sssctl_restart_sssd(bool force);
 +diff --git a/src/tools/sssctl/sssctl_data.c b/src/tools/sssctl/sssctl_da=
 ta.c
-+index cc46cafbf..8a042664c 100644
++index 8d79b977fd..bf22913416 100644
 +--- a/src/tools/sssctl/sssctl_data.c
 ++++ b/src/tools/sssctl/sssctl_data.c
 +@@ -105,15 +105,15 @@ static errno_t sssctl_backup(bool force)
@@ -195,7 +208,7 @@ xport",
 ++                                              SSS_BACKUP_USER_OVERRIDES=
 , NULL});
 +     if (ret !=3D EOK) {
-+         fprintf(stderr, _("Unable to export user overrides\n"));
++         ERROR("Unable to export user overrides\n");
 +         return ret;
 +     }
 +=20
@@ -206,7 +219,7 @@ export",
 ++                                              SSS_BACKUP_GROUP_OVERRIDE=
 S, NULL});
 +     if (ret !=3D EOK) {
-+         fprintf(stderr, _("Unable to export group overrides\n"));
++         ERROR("Unable to export group overrides\n");
 +         return ret;
 +@@ -158,8 +158,8 @@ static errno_t sssctl_restore(bool force_start, bool=
  force_restart)
@@ -220,7 +233,7 @@ er-import",
 ++                                                  SSS_BACKUP_USER_OVERR=
 IDES, NULL});
 +         if (ret !=3D EOK) {
-+             fprintf(stderr, _("Unable to import user overrides\n"));
++             ERROR("Unable to import user overrides\n");
 +             return ret;
 +@@ -167,8 +167,8 @@ static errno_t sssctl_restore(bool force_start, bool=
  force_restart)
@@ -234,7 +247,7 @@ oup-import",
 ++                                                  SSS_BACKUP_GROUP_OVER=
 RIDES, NULL});
 +         if (ret !=3D EOK) {
-+             fprintf(stderr, _("Unable to import group overrides\n"));
++             ERROR("Unable to import group overrides\n");
 +             return ret;
 +@@ -296,40 +296,19 @@ errno_t sssctl_cache_expire(struct sss_cmdline *cm=
 dline,
@@ -290,18 +303,18 @@ dline,
 + }
 +diff --git a/src/tools/sssctl/sssctl_logs.c b/src/tools/sssctl/sssctl_lo=
 gs.c
-+index aca988c05..c85cc7a4b 100644
++index 9ff2be05b6..ebb2c4571c 100644
 +--- a/src/tools/sssctl/sssctl_logs.c
 ++++ b/src/tools/sssctl/sssctl_logs.c
-+@@ -32,6 +32,7 @@
++@@ -31,6 +31,7 @@
++ #include <ldb.h>
 + #include <popt.h>
 + #include <stdio.h>
-+ #include <signal.h>
 ++#include <glob.h>
 +=20
 + #include "util/util.h"
 + #include "tools/common/sss_process.h"
-+@@ -231,6 +232,7 @@ errno_t sssctl_logs_remove(struct sss_cmdline *cmdli=
++@@ -230,6 +231,7 @@ errno_t sssctl_logs_remove(struct sss_cmdline *cmdli=
 ne,
 + {
 +     struct sssctl_logs_opts opts =3D {0};
@@ -310,7 +323,7 @@ ne,
 +=20
 +     /* Parse command line. */
 +     struct poptOption options[] =3D {
-+@@ -254,8 +256,19 @@ errno_t sssctl_logs_remove(struct sss_cmdline *cmdl=
++@@ -253,8 +255,20 @@ errno_t sssctl_logs_remove(struct sss_cmdline *cmdl=
 ine,
 +=20
 +         sss_signal(SIGHUP);
@@ -324,18 +337,20 @@ bbuf);
 ++            return ret;
 ++        }
 ++        globbuf.gl_pathv[0] =3D discard_const_p(char, "truncate");
+++        globbuf.gl_pathv[1] =3D discard_const_p(char, "--no-create");
 ++        globbuf.gl_pathv[2] =3D discard_const_p(char, "--size");
 ++        globbuf.gl_pathv[3] =3D discard_const_p(char, "0");
 ++
-+         printf(_("Truncating log files...\n"));
-+-        ret =3D sssctl_run_command("truncate --size 0 " LOG_FILES);
++         PRINT("Truncating log files...\n");
++-        ret =3D sssctl_run_command("truncate --no-create --size 0 " LOG=
+_FILES);
 ++        ret =3D sssctl_run_command((const char * const*)globbuf.gl_path=
 v);
 ++        globfree(&globbuf);
 +         if (ret !=3D EOK) {
-+             fprintf(stderr, _("Unable to truncate log files\n"));
++             ERROR("Unable to truncate log files\n");
 +             return ret;
-+@@ -270,8 +283,8 @@ errno_t sssctl_logs_fetch(struct sss_cmdline *cmdlin=
++@@ -269,8 +283,8 @@ errno_t sssctl_logs_fetch(struct sss_cmdline *cmdlin=
 e,
 +                           void *pvt)
 + {
@@ -347,7 +362,7 @@ e,
 +     /* Parse command line. */
 +     ret =3D sss_tool_popt_ex(cmdline, NULL, SSS_TOOL_OPT_OPTIONAL, NULL=
 , NULL,
-+@@ -281,13 +294,19 @@ errno_t sssctl_logs_fetch(struct sss_cmdline *cmdl=
++@@ -280,13 +294,19 @@ errno_t sssctl_logs_fetch(struct sss_cmdline *cmdl=
 ine,
 +         return ret;
 +     }
@@ -355,7 +370,7 @@ ine,
 +-    cmd =3D talloc_asprintf(tool_ctx, "tar -czf %s %s", file, LOG_FILES=
 );
 +-    if (cmd =3D=3D NULL) {
-+-        fprintf(stderr, _("Out of memory!"));
++-        ERROR("Out of memory!");
 ++    globbuf.gl_offs =3D 3;
 ++    ret =3D glob(LOG_PATH"/*.log", GLOB_ERR|GLOB_DOOFFS, NULL, &globbuf=
 );
@@ -368,33 +383,36 @@ ine,
 ++    globbuf.gl_pathv[1] =3D discard_const_p(char, "-czf");
 ++    globbuf.gl_pathv[2] =3D discard_const_p(char, file);
 +=20
-+     printf(_("Archiving log files into %s...\n"), file);
++     PRINT("Archiving log files into %s...\n", file);
 +-    ret =3D sssctl_run_command(cmd);
 ++    ret =3D sssctl_run_command((const char * const*)globbuf.gl_pathv);
 ++    globfree(&globbuf);
 +     if (ret !=3D EOK) {
-+         fprintf(stderr, _("Unable to archive log files\n"));
++         ERROR("Unable to archive log files\n");
 +         return ret;
-+--=20
-+2.33.0
-+
-diff --git a/recipes-security/sssd/sssd_1.16.5.bb b/recipes-security/sssd=
-/sssd_1.16.5.bb
-index 9784ec7..02d0837 100644
---- a/recipes-security/sssd/sssd_1.16.5.bb
-+++ b/recipes-security/sssd/sssd_1.16.5.bb
-@@ -22,6 +22,7 @@ SRC_URI =3D "https://releases.pagure.org/SSSD/${BPN}/${=
-BP}.tar.gz \
-            file://0001-build-Don-t-use-AC_CHECK_FILE-when-building-manpa=
-ges.patch \
-            file://0001-nss-Collision-with-external-nss-symbol.patch \
-            file://0002-Provide-missing-defines-which-otherwise-are-avail=
-abl.patch \
+diff --git a/recipes-security/sssd/sssd_2.5.1.bb b/recipes-security/sssd/=
+sssd_2.5.2.bb
+similarity index 97%
+rename from recipes-security/sssd/sssd_2.5.1.bb
+rename to recipes-security/sssd/sssd_2.5.2.bb
+index 1c77480..76d6e03 100644
+--- a/recipes-security/sssd/sssd_2.5.1.bb
++++ b/recipes-security/sssd/sssd_2.5.2.bb
+@@ -23,9 +23,10 @@ SRC_URI =3D "https://github.com/SSSD/sssd/releases/dow=
+nload/${PV}/sssd-${PV}.tar.g
+            file://drop_ntpdate_chk.patch \
+            file://fix-ldblibdir.patch \
+            file://musl_fixup.patch \
 +           file://CVE-2021-3621.patch \
             "
 =20
- SRC_URI[sha256sum] =3D "2e1a7bf036b583f686d35164f2d79bdf4857b98f51fe8b0d=
-17aa0fa756e4d0c0"
+-SRC_URI[sha256sum] =3D "ce2f5d84a3f1750093318afd27f4fd75b1e3e75f7d80fc42=
+d21a40cc54b58ea4"
++SRC_URI[sha256sum] =3D "5e21b3c7b4a2f1063d0fbdd3216d29886b6eaba153b44fb5=
+961698367f399a0f"
+=20
+ inherit autotools pkgconfig gettext python3-dir features_check systemd
+=20
 --=20
 2.17.1
 
