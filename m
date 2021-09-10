@@ -1,174 +1,400 @@
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by mx.groups.io with SMTP id smtpd.web11.5584.1631255948590637942
+Received: from mail1.wrs.com (mail1.wrs.com [147.11.146.13])
+ by mx.groups.io with SMTP id smtpd.web09.6525.1631263012823028153
  for <yocto@lists.yoctoproject.org>;
- Thu, 09 Sep 2021 23:39:09 -0700
+ Fri, 10 Sep 2021 01:36:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=uDWPalUI;
- spf=pass (domain: intel.com, ip: 134.134.136.126, mailfrom: jay.shen.teoh@intel.com)
-X-IronPort-AV: E=McAfee;i="6200,9189,10102"; a="208116396"
-X-IronPort-AV: E=Sophos;i="5.85,282,1624345200"; 
-   d="scan'208";a="208116396"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Sep 2021 23:39:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,282,1624345200"; 
-   d="scan'208";a="694579656"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
-  by fmsmga006.fm.intel.com with ESMTP; 09 Sep 2021 23:39:07 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
+ dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.146.13, mailfrom: kai.kang@windriver.com)
+Received: from mail.windriver.com (mail.wrs.com [147.11.1.11])
+	by mail1.wrs.com (8.15.2/8.15.2) with ESMTPS id 18A8apTr005005
+	(version=TLSv1.1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL)
+	for <yocto@lists.yoctoproject.org>; Fri, 10 Sep 2021 01:36:51 -0700
+Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.corp.ad.wrs.com [147.11.82.252])
+	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id 18A8aoW5029947
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <yocto@lists.yoctoproject.org>; Fri, 10 Sep 2021 01:36:51 -0700 (PDT)
+Received: from ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Thu, 9 Sep 2021 23:39:07 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2242.12; Fri, 10 Sep 2021 01:36:50 -0700
+Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
+ ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Thu, 9 Sep 2021 23:39:06 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Frontend Transport; Thu, 9 Sep 2021 23:39:06 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.12; Thu, 9 Sep 2021 23:39:06 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=l60i6Ne6Ji3MdqIDi+MIcyY4YzGsery8mJWkXlb6fbgDI1SDBCAA2uNMLedAVD7U6CkaUcst+NnwXv9f9UnqbQS1cXHfepqxrHdSOOQX9E8DM7vtVCeQcjLVfRwIZSsju3MgbIcLd5OhovRixFy2JUsWShsThElYBZJhvviuUvHIyJvR0nxtnq7aP3XWyjJJAx6wtMTWc97rBi0eoYNq+cFDPKfagOtyGooWdStuDK2d248y5LEumdg7jYRk7PW83bZhFnkWZPqO59ISxeG2z8iBoAAwPH+fdThqyetgvc11ScwmbKYGV87e9gvzt5FP3JxRbqk9X/P3wXEacVqiSQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
- bh=v6V8LAfddRoIq0kjylixEuaaxWTyzNKUCsfapCJrUQQ=;
- b=bYPSwkOZiegQhTlEnzLP7DcFTZdAwqL4A6FDb8EywQ78l65dgM1aA6MvAiHZniqwa6Yixl9gpUHcHCghwbDQYH2IWoC3cUb9LA9faWZG5PymIsmTGzhiZMlPKb1KWidRIBQ1UITGMgDw0d/5M7CJpjvCeRAPNuAxd1PrN/6uSn0rgjp9d4j4VJ6/jy0Ymb/mRMRSz0/D5D2MjrpYv2HnPG8j2dRMCLgTp3E6CEyuAJ/OwpBKrlMuezK2AasH4sAzzWN84bZJvb9UNRkgRx3odEqvJ4EVx3Ug+P7twaunDW5ej3nf9UYc8dYtGrPNjjMwkaZf9D0obQLKefeQNl8G2A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=v6V8LAfddRoIq0kjylixEuaaxWTyzNKUCsfapCJrUQQ=;
- b=uDWPalUIl50vHx4t62DB6W+se05vOOodAJPTfq7TFGPRkLg3UeZg0lun5amsJHRBdSKMLSUyyVruXymrUCDEvnB9D9sBNaGFGDoI8L9dAy6zdFP9GDALq0VtV6pAEAQiD5bM1Uv+LeW3rgdcXvHMdY51bJfNfxn0cgGJDGiP9yo=
-Received: from BN9PR11MB5372.namprd11.prod.outlook.com (2603:10b6:408:105::5)
- by BN9PR11MB5498.namprd11.prod.outlook.com (2603:10b6:408:103::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.19; Fri, 10 Sep
- 2021 06:39:05 +0000
-Received: from BN9PR11MB5372.namprd11.prod.outlook.com
- ([fe80::9ef:5965:3a7e:7b8c]) by BN9PR11MB5372.namprd11.prod.outlook.com
- ([fe80::9ef:5965:3a7e:7b8c%8]) with mapi id 15.20.4500.017; Fri, 10 Sep 2021
- 06:39:05 +0000
-From: "Teoh, Jay Shen" <jay.shen.teoh@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-CC: "Jain, Sangeeta" <sangeeta.jain@intel.com>
-Subject: Re: [qa-build-notification] QA notification for completed autobuilder build (yocto-3.3.3.rc2)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-3.3.3.rc2)
-Thread-Index: AQHXpbVH6sWIQWJtO0yz1L11rcG/qKuc0Mow
-Date: Fri, 10 Sep 2021 06:39:05 +0000
-Message-ID: <BN9PR11MB53728D00D9321AE9BECCB725BBD69@BN9PR11MB5372.namprd11.prod.outlook.com>
-References: <32334a100a5bd0c20239e42a463e5604f00345ec.camel@linuxfoundation.org>
-In-Reply-To: <32334a100a5bd0c20239e42a463e5604f00345ec.camel@linuxfoundation.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f96e2e7c-0fb5-4c7d-1279-08d97425afa5
-x-ms-traffictypediagnostic: BN9PR11MB5498:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BN9PR11MB5498469F91A6E42D78445B8BBBD69@BN9PR11MB5498.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: baLZtK5JomtbRPQ4QRap1vw/jOPDwlXKmUyxy4eYIqif4vy+Nc5ur8KFIlf262xdP2E8Bf+Y16PnHivALITmPsl43D3xKYYcqMvnrpc//eXPMDkEZc5iaY5WE2J6g9pEUXpIZB+gWA5B4OszCJizmqQ0WdIKQRtnLZciO7Mivl18xiP03Usx8WjZ3d1rdDakle4Qg3WTasVAx9gxDMs7svb3SbTSwb8Z0Ydndd6y9n4XVihtvtaLVyU5Awp/jqr0Xeegx/KvJLYlD6JT/wN1hoDE+YkZoz4TJRwW24mUPaXS+GpZxwk2hKCvSYX9cxJPG4mfALAcyWRVAtRJSRYSruAG0f+kpDGW6hdj7mpkk0T5PsLKv8YmWuVtUhOtmUsh2oyMpZwPBiyQbFHgJHUMdAnDkGq7sbhLXE7ShDmItTGSewtwdza+p9cQqvzRCOmNAMFiaay5uJYc5tP3ZdZu7vTP4smuAGrY4wl3s85OjGbpwK+GoCrMKu+qSRQc1CnK1jqLaiXiI+/FlJ2vGiRSzwXB7D+ZPrI2IMumXnQOFSShWBE9KgzOy8x9ybJXfvZ3LUZSc68+AqiKUM2KFenD2Nu8d9BhhRa2BesvO8At/PcXjva8ORBY48YFVvZv2YpT4locTklObevYB8/pgRDW5s6tuunME3bgIbDkzzuKuGYH4acnX4bUFWtevBDZpXqRjkBZPMW3OrsUPKHpcvDoMu3GcEEA21k8dZNy6HiH+GzSq+NYmBaliU+P/+VxEUMtOs3O13NGqsNfZQDdF1b2mdVwPSqUvZO2qP8gaqz1knMpHg5mKpzwvDSZIW4CKXRiUf+bBiKvQKkLcxqf6VakKQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN9PR11MB5372.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(366004)(39860400002)(376002)(346002)(396003)(55016002)(8936002)(9686003)(64756008)(38100700002)(66446008)(316002)(2906002)(33656002)(6506007)(66556008)(66476007)(76116006)(71200400001)(83380400001)(7696005)(38070700005)(5660300002)(52536014)(53546011)(8676002)(186003)(110136005)(966005)(107886003)(15650500001)(4326008)(478600001)(86362001)(122000001)(66946007)(491001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?aEcxeUZidnVnUG1SMFNSSStGeXozV2crSTlRYlBVY0pNSDU0SDVYQWRJU0tC?=
- =?utf-8?B?NGNWTEtDZE1nQzBYNDlIR1pkWVBFazRJYURIdFZ5NVZTRElCT0loa1pVd1VI?=
- =?utf-8?B?aDlkQStLdTJIZisxS3JhT1NqVXlQT0lCUVhqQllETFRFMllhNUVwNzMrSG53?=
- =?utf-8?B?QzI4djljUWg3bk84ME5jQXhBd2FJa2dFajVsbVBEaEJtalF2b051RWZwR1ph?=
- =?utf-8?B?YWFMVkQwS21OVWQ0allTRE5iZXl6R05PdDUzRjJPZnQ2QlkwWlZQTldEbjBQ?=
- =?utf-8?B?RVY5NHhKYXpUUmJuQy8rQ2hVYmdMVG9iSVdoY0M5NGlFL0c3Sm9iMENSQ3d3?=
- =?utf-8?B?SDNnaHBKMlZObnN3V3J3bFpUdkFhYXlhblpJWVE1RE5tYnZLekQ3cXNsSmxa?=
- =?utf-8?B?Ym9DUXlHQWUwbHNUamVBbVNJWlNDaWpwVk9BMmZtZ01TRnRIMEl0WWs0bHZK?=
- =?utf-8?B?VWJtdG13UmJ0bXAvUGZPZkZJZ0tWbEtJT1AwL2krdHFiYzFMTWZ4TndHcVlz?=
- =?utf-8?B?WGNJSUlTZGhzaFY0anZyR2lPSGV5aFJ1VlRRTnZwSk5hc1JObG9MWVVzbk1w?=
- =?utf-8?B?TkVYbWJpZytaQTRlNXMyRDhUZDY5aDY2bmsxZmIwb2xPMzV3czFaMzhSYmZa?=
- =?utf-8?B?dUZ1SUdPTjlCY0h6T2JraXdsU2VOZU1SQXJhcG5tMytjRkZzcVF2b3ByL3ZI?=
- =?utf-8?B?b0puRWhtamh0UFJIY2FHNVpVU005SWkxOWdZb2JLMG02N0RrLzg5Sm5FcjRq?=
- =?utf-8?B?T1dJV1JGZUN3b2YzYWNGczVnbCtibzRkTmpUbWlIRG9ZUS9ieVBaNkl1L0RE?=
- =?utf-8?B?WlFtck5FcFBma0tZTW5OS3NXZzdGNC9tSGJaQVMvTVMwblZ3ekVNZEdyNVZM?=
- =?utf-8?B?TU9rckRrTTZDbDhacUxFVDNwMzdRTzRHbVRtcFJQalJqVERoZ3NhMXJsTjFn?=
- =?utf-8?B?SnJTR0wvakM3QWhoVUhiNWpIbGFuOC9jZnhPL2tuZ1F4VmZxb1ZKN0NDMFNL?=
- =?utf-8?B?d0d1UkhJUGVWWk1XSlRxNDAyM3huTXRNNlE2MEdKN0U0WUUvWG04MWNSOEZ3?=
- =?utf-8?B?cVo5bEo1NFFELzhzN0laU0xNcTkyWEYxU0sydXFTNkhMUndqa3ZQZ2pmMFJa?=
- =?utf-8?B?QWw3NmVzWTFnczJ4bHNJU2ZTQ0V6SHN0WUI1dldIQi9Jb25GbWU4T2pmUVFH?=
- =?utf-8?B?TnJueE1mc2hNanI0RHBiNXdCa2hQOTBEa2o1WjAxZGNabTMwUGNYTVNXTTdk?=
- =?utf-8?B?eWNlN3dPYjhDaFJ3SnRpWE9pM3N4eU5IWmVGOVpNNTYrekd0Qk5yYjVzb1RK?=
- =?utf-8?B?R0I2WjdvNXpwTVVrc1puN2JLZHAzdEJJNE1Pc3NpMGNyOTRzb1Z0Q0swc2FV?=
- =?utf-8?B?VTBjNlovVDBHSTdlbjFud0RjK01udDl0QVF3OFJTclkxQThxLzBkc1N3cVUr?=
- =?utf-8?B?YlgrVWVpeE1oN09zN0tLTUlzd1Ric3NGNXpUNE83eEVyUGxOY3FIdkdnNjVv?=
- =?utf-8?B?QjF0dTN1ZzVXS0t3QWYyZm1IUkplMzhTV29MZ0lrSno5WHFvdE1zMUZDOExQ?=
- =?utf-8?B?K280SjBqRnNxNkMxME5GNGlXSnp5U3VKWUwvcFBVa1YxRUdQaGV4aGd6d2hs?=
- =?utf-8?B?MGdKcnE3TVZtVlMwWjRLQ05iZ25kOFRNN0QwUEFoUTVQSnVRY25HUU53TlQ5?=
- =?utf-8?B?dzZ1WC8vemF0dTE0WkYxS3lXS0gvRGg0S01jQTRRQWtDTm1ld1VTdHZoa3No?=
- =?utf-8?B?UnVUVklheXZZUDdBL05KdmJRYU5ubjFkZ1BGU2dEWHlCUnc1em4xWXRiUFlm?=
- =?utf-8?B?SWExeHkveWk3WVhUclFteTI4QjJIWlhTbWlnSDUvT1k0RU1ONzk4RXhTK3RF?=
- =?utf-8?Q?W6MwaO4qvCvQf?=
+ 15.1.2308.14; Fri, 10 Sep 2021 01:36:50 -0700
+Received: from pek-lpg-core3.wrs.com (128.224.153.232) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
+ 15.1.2242.12 via Frontend Transport; Fri, 10 Sep 2021 01:36:49 -0700
+From: "kai" <kai.kang@windriver.com>
+To: <yocto@lists.yoctoproject.org>
+Subject: [hardknott][PATCH] sssd: fix CVE-2021-3621
+Date: Fri, 10 Sep 2021 16:36:46 +0800
+Message-ID: <20210910083646.19595-1-kai.kang@windriver.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5372.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f96e2e7c-0fb5-4c7d-1279-08d97425afa5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Sep 2021 06:39:05.8282
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: l3oR5qR0g2h2h8skUmbhsVW0xfsbLYLWYYOYlyjiFkkDwDDqa4IjrwHTyMHSr459AZgC+/Dd0xJzCC9aHh6Kpg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5498
-Return-Path: jay.shen.teoh@intel.com
-X-OriginatorOrg: intel.com
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-MIME-Autoconverted: from 8bit to quoted-printable by mail1.wrs.com id 18A8apTr005005
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGVsbG8gYWxsLA0KDQpJbnRlbCBhbmQgV1IgWVAgUUEgaXMgcGxhbm5pbmcgZm9yIFFBIGV4ZWN1
-dGlvbiBmb3IgWVAgYnVpbGQgeW9jdG8tMy4zLjMucmMyIFdlIGFyZSBwbGFubmluZyB0byBleGVj
-dXRlIGZvbGxvd2luZyB0ZXN0cyBmb3IgdGhpcyBjeWNsZToNCg0KT0VRQS1tYW51YWwgdGVzdHMg
-Zm9yIGZvbGxvd2luZyBtb2R1bGU6DQoxLiBPRS1Db3JlDQoyLiBCU1AtaHcNCg0KUnVudGltZSBh
-dXRvIHRlc3QgZm9yIGZvbGxvd2luZyBwbGF0Zm9ybXM6DQoxLiBNaW5ub3dUdXJib3QgMzItYml0
-DQoyLiBDb2ZmZWUgTGFrZQ0KMy4gTlVDIDcNCjQuIE5VQyA2DQo1LiBFZGdlcm91dGVyDQo2LiBC
-ZWFnbGVib25lDQoNCkVUQSBmb3IgY29tcGxldGlvbiBpcyBuZXh0IFdlZG5lc2RheSwgMTUgU2Vw
-dGVtYmVyLg0KDQpUaGFua3MsDQpKYXkNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4g
-RnJvbTogcWEtYnVpbGQtbm90aWZpY2F0aW9uQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcgPHFhLWJ1
-aWxkLQ0KPiBub3RpZmljYXRpb25AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gT24gQmVoYWxmIE9m
-IFJpY2hhcmQgUHVyZGllDQo+IFNlbnQ6IEZyaWRheSwgMTAgU2VwdGVtYmVyLCAyMDIxIDQ6MDAg
-QU0NCj4gVG86IDx5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPiA8eW9jdG9AbGlzdHMueW9j
-dG9wcm9qZWN0Lm9yZz4NCj4gQ2M6IHFhLWJ1aWxkLW5vdGlmaWNhdGlvbiA8cWEtYnVpbGQtbm90
-aWZpY2F0aW9uQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+DQo+IFN1YmplY3Q6IFtxYS1idWlsZC1u
-b3RpZmljYXRpb25dIFFBIG5vdGlmaWNhdGlvbiBmb3IgY29tcGxldGVkIGF1dG9idWlsZGVyIGJ1
-aWxkDQo+ICh5b2N0by0zLjMuMy5yYzIpDQo+IA0KPiBBIGJ1aWxkIGZsYWdnZWQgZm9yIFFBICh5
-b2N0by0zLjMuMy5yYzIpIHdhcyBjb21wbGV0ZWQgb24gdGhlIGF1dG9idWlsZGVyIGFuZCBpcw0K
-PiBhdmFpbGFibGUgYXQ6DQo+IA0KPiANCj4gICAgIGh0dHBzOi8vYXV0b2J1aWxkZXIueW9jdG8u
-aW8vcHViL3JlbGVhc2VzL3lvY3RvLTMuMy4zLnJjMg0KPiANCj4gDQo+IEJ1aWxkIGhhc2ggaW5m
-b3JtYXRpb246DQo+IA0KPiBiaXRiYWtlOiBjN2I1MDZkMTFkZjc4Y2ZjNDYxMGRiNjU3ODc0NWVh
-YTYyMjBiMTNhDQo+IG1ldGEtYWdsOiA2MDM0NGVmYTdhNTBkYzI1NDhmYzRiNWQ2OGI1YWQ0ZDYw
-YzQwMjNhDQo+IG1ldGEtYXJtOiBiYTgyZWE5MjBhM2E0MzI0NGEwYTcyYmQ3NDgxN2UyZjAwZjRh
-MWFmDQo+IG1ldGEtYXdzOiAxNzFhYTJjZjRkMTJmZjQ4NzdlOTEwNGI2ZWM0NmJlNTQxMjhlM2Q4
-DQo+IG1ldGEtZ3BsdjI6IDllMTE5ZjMzM2NjOGY1M2JkM2NmNjQzMjZmODI2ZGJjNmNlM2RiMGYN
-Cj4gbWV0YS1pbnRlbDogNWM0YTZiMDJmNjUwYTk5YTVlYzU1NTYxNDQzZmNmODgwYTg2M2QxOQ0K
-PiBtZXRhLW1pbmd3OiA0MjJiOTZjYjJiNjExNjQ0MmJlMWY0MGRmYjViZDc3NDQ3ZDEyMTllDQo+
-IG1ldGEtb3BlbmVtYmVkZGVkOiA3YmQ3ZTFkYTkwMzRlNzJjYTQyNjJkYmE1NWY3MGIyYjIzNDk5
-YWFlDQo+IG9lY29yZTogNTY3ZGQzNWQ4OTNjNWQ4OTY5ZDQxZjI2M2EyNGRhOGZiYWUzZmMyZg0K
-PiBwb2t5OiAwYTJjYTlkNjBmMzg1MTUxNWE3OWQ1YWE5ZGRkOGI0MDY5YjVhMjA2DQo+IA0KPiAN
-Cj4gDQo+IFRoaXMgaXMgYW4gYXV0b21hdGVkIG1lc3NhZ2UgZnJvbSB0aGUgWW9jdG8gUHJvamVj
-dCBBdXRvYnVpbGRlcg0KPiBHaXQ6IGdpdDovL2dpdC55b2N0b3Byb2plY3Qub3JnL3lvY3RvLWF1
-dG9idWlsZGVyMg0KPiBFbWFpbDogcmljaGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZw0K
-PiANCj4gDQo+IA0KPiANCj4gDQo+IA0KPiANCg0K
+From: Kai Kang <kai.kang@windriver.com>
+
+Backport patch to fix CVE-2021-3621.
+
+CVE: CVE-2021-3621
+
+Signed-off-by: Kai Kang <kai.kang@windriver.com>
+---
+ .../sssd/files/CVE-2021-3621.patch            | 291 ++++++++++++++++++
+ recipes-security/sssd/sssd_1.16.5.bb          |   1 +
+ 2 files changed, 292 insertions(+)
+ create mode 100644 recipes-security/sssd/files/CVE-2021-3621.patch
+
+diff --git a/recipes-security/sssd/files/CVE-2021-3621.patch b/recipes-se=
+curity/sssd/files/CVE-2021-3621.patch
+new file mode 100644
+index 0000000..3d2c707
+--- /dev/null
++++ b/recipes-security/sssd/files/CVE-2021-3621.patch
+@@ -0,0 +1,291 @@
++Backport patch to fix CVE-2021-3621.
++
++Upstream-Status: Backport [https://github.com/SSSD/sssd/commit/b4b3267]
++CVE: CVE-2021-3621
++
++Signed-off-by: Kai Kang <kai.kang@windriver.com>
++
++From b4b32677a886bc26d60ce0171505aa3ab0c82c8a Mon Sep 17 00:00:00 2001
++From: Alexey Tikhonov <atikhono@redhat.com>
++Date: Fri, 30 Jul 2021 19:05:31 +0200
++Subject: [PATCH] TOOLS: replace system() with execvp() to avoid executio=
+n of
++ user supplied command
++MIME-Version: 1.0
++Content-Type: text/plain; charset=3DUTF-8
++Content-Transfer-Encoding: 8bit
++
++:relnote: A flaw was found in SSSD, where the sssctl command was
++vulnerable to shell command injection via the logs-fetch and
++cache-expire subcommands. This flaw allows an attacker to trick
++the root user into running a specially crafted sssctl command,
++such as via sudo, to gain root access. The highest threat from this
++vulnerability is to confidentiality, integrity, as well as system
++availability.
++This patch fixes a flaw by replacing system() with execvp().
++
++:fixes: CVE-2021-3621
++
++Reviewed-by: Pavel B=C5=99ezina <pbrezina@redhat.com>
++---
++ src/tools/sssctl/sssctl.c      | 40 +++++++++++++++++-------
++ src/tools/sssctl/sssctl.h      |  2 +-
++ src/tools/sssctl/sssctl_data.c | 57 +++++++++++-----------------------
++ src/tools/sssctl/sssctl_logs.c | 31 ++++++++++++++----
++ 4 files changed, 73 insertions(+), 57 deletions(-)
++
++diff --git a/src/tools/sssctl/sssctl.c b/src/tools/sssctl/sssctl.c
++index afaa84bc0..403c89c35 100644
++--- a/src/tools/sssctl/sssctl.c
+++++ b/src/tools/sssctl/sssctl.c
++@@ -97,22 +97,37 @@ sssctl_prompt(const char *message,
++     return SSSCTL_PROMPT_ERROR;
++ }
++=20
++-errno_t sssctl_run_command(const char *command)
+++errno_t sssctl_run_command(const char *const argv[])
++ {
++     int ret;
+++    int wstatus;
++=20
++-    DEBUG(SSSDBG_TRACE_FUNC, "Running %s\n", command);
+++    DEBUG(SSSDBG_TRACE_FUNC, "Running '%s'\n", argv[0]);
++=20
++-    ret =3D system(command);
+++    ret =3D fork();
++     if (ret =3D=3D -1) {
++-        DEBUG(SSSDBG_CRIT_FAILURE, "Unable to execute %s\n", command);
++         fprintf(stderr, _("Error while executing external command\n"));
++         return EFAULT;
++-    } else if (WEXITSTATUS(ret) !=3D 0) {
++-        DEBUG(SSSDBG_CRIT_FAILURE, "Command %s failed with [%d]\n",
++-              command, WEXITSTATUS(ret));
+++    }
+++
+++    if (ret =3D=3D 0) {
+++        /* cast is safe - see
+++        https://pubs.opengroup.org/onlinepubs/9699919799/functions/exec=
+.html
+++        "The statement about argv[] and envp[] being constants ... "
+++        */
+++        execvp(argv[0], discard_const_p(char * const, argv));
++         fprintf(stderr, _("Error while executing external command\n"));
++-        return EIO;
+++        _exit(1);
+++    } else {
+++        if (waitpid(ret, &wstatus, 0) =3D=3D -1) {
+++            fprintf(stderr,
+++                    _("Error while executing external command '%s'\n"),=
+ argv[0]);
+++            return EFAULT;
+++        } else if (WEXITSTATUS(wstatus) !=3D 0) {
+++            fprintf(stderr,
+++                    _("Command '%s' failed with [%d]\n"), argv[0], WEXI=
+TSTATUS(wstatus));
+++            return EIO;
+++        }
++     }
++=20
++     return EOK;
++@@ -132,11 +147,14 @@ static errno_t sssctl_manage_service(enum sssctl_s=
+vc_action action)
++ #elif defined(HAVE_SERVICE)
++     switch (action) {
++     case SSSCTL_SVC_START:
++-        return sssctl_run_command(SERVICE_PATH" sssd start");
+++        return sssctl_run_command(
+++                      (const char *[]){SERVICE_PATH, "sssd", "start", N=
+ULL});
++     case SSSCTL_SVC_STOP:
++-        return sssctl_run_command(SERVICE_PATH" sssd stop");
+++        return sssctl_run_command(
+++                      (const char *[]){SERVICE_PATH, "sssd", "stop", NU=
+LL});
++     case SSSCTL_SVC_RESTART:
++-        return sssctl_run_command(SERVICE_PATH" sssd restart");
+++        return sssctl_run_command(
+++                      (const char *[]){SERVICE_PATH, "sssd", "restart",=
+ NULL});
++     }
++ #endif
++=20
++diff --git a/src/tools/sssctl/sssctl.h b/src/tools/sssctl/sssctl.h
++index 70fc19eff..71f798b2a 100644
++--- a/src/tools/sssctl/sssctl.h
+++++ b/src/tools/sssctl/sssctl.h
++@@ -42,7 +42,7 @@ enum sssctl_prompt_result
++ sssctl_prompt(const char *message,
++               enum sssctl_prompt_result defval);
++=20
++-errno_t sssctl_run_command(const char *command);
+++errno_t sssctl_run_command(const char *const argv[]); /* argv[0] - comm=
+and */
++ bool sssctl_start_sssd(bool force);
++ bool sssctl_stop_sssd(bool force);
++ bool sssctl_restart_sssd(bool force);
++diff --git a/src/tools/sssctl/sssctl_data.c b/src/tools/sssctl/sssctl_da=
+ta.c
++index cc46cafbf..8a042664c 100644
++--- a/src/tools/sssctl/sssctl_data.c
+++++ b/src/tools/sssctl/sssctl_data.c
++@@ -105,15 +105,15 @@ static errno_t sssctl_backup(bool force)
++         }
++     }
++=20
++-    ret =3D sssctl_run_command("sss_override user-export "
++-                             SSS_BACKUP_USER_OVERRIDES);
+++    ret =3D sssctl_run_command((const char *[]){"sss_override", "user-e=
+xport",
+++                                              SSS_BACKUP_USER_OVERRIDES=
+, NULL});
++     if (ret !=3D EOK) {
++         fprintf(stderr, _("Unable to export user overrides\n"));
++         return ret;
++     }
++=20
++-    ret =3D sssctl_run_command("sss_override group-export "
++-                             SSS_BACKUP_GROUP_OVERRIDES);
+++    ret =3D sssctl_run_command((const char *[]){"sss_override", "group-=
+export",
+++                                              SSS_BACKUP_GROUP_OVERRIDE=
+S, NULL});
++     if (ret !=3D EOK) {
++         fprintf(stderr, _("Unable to export group overrides\n"));
++         return ret;
++@@ -158,8 +158,8 @@ static errno_t sssctl_restore(bool force_start, bool=
+ force_restart)
++     }
++=20
++     if (sssctl_backup_file_exists(SSS_BACKUP_USER_OVERRIDES)) {
++-        ret =3D sssctl_run_command("sss_override user-import "
++-                                 SSS_BACKUP_USER_OVERRIDES);
+++        ret =3D sssctl_run_command((const char *[]){"sss_override", "us=
+er-import",
+++                                                  SSS_BACKUP_USER_OVERR=
+IDES, NULL});
++         if (ret !=3D EOK) {
++             fprintf(stderr, _("Unable to import user overrides\n"));
++             return ret;
++@@ -167,8 +167,8 @@ static errno_t sssctl_restore(bool force_start, bool=
+ force_restart)
++     }
++=20
++     if (sssctl_backup_file_exists(SSS_BACKUP_USER_OVERRIDES)) {
++-        ret =3D sssctl_run_command("sss_override group-import "
++-                                 SSS_BACKUP_GROUP_OVERRIDES);
+++        ret =3D sssctl_run_command((const char *[]){"sss_override", "gr=
+oup-import",
+++                                                  SSS_BACKUP_GROUP_OVER=
+RIDES, NULL});
++         if (ret !=3D EOK) {
++             fprintf(stderr, _("Unable to import group overrides\n"));
++             return ret;
++@@ -296,40 +296,19 @@ errno_t sssctl_cache_expire(struct sss_cmdline *cm=
+dline,
++                             void *pvt)
++ {
++     errno_t ret;
++-    char *cmd_args =3D NULL;
++-    const char *cachecmd =3D SSS_CACHE;
++-    char *cmd =3D NULL;
++-    int i;
++-
++-    if (cmdline->argc =3D=3D 0) {
++-        ret =3D sssctl_run_command(cachecmd);
++-        goto done;
++-    }
++=20
++-    cmd_args =3D talloc_strdup(tool_ctx, "");
++-    if (cmd_args =3D=3D NULL) {
++-        ret =3D ENOMEM;
++-        goto done;
+++    const char **args =3D talloc_array_size(tool_ctx,
+++                                          sizeof(char *),
+++                                          cmdline->argc + 2);
+++    if (!args) {
+++        return ENOMEM;
++     }
+++    memcpy(&args[1], cmdline->argv, sizeof(char *) * cmdline->argc);
+++    args[0] =3D SSS_CACHE;
+++    args[cmdline->argc + 1] =3D NULL;
++=20
++-    for (i =3D 0; i < cmdline->argc; i++) {
++-        cmd_args =3D talloc_strdup_append(cmd_args, cmdline->argv[i]);
++-        if (i !=3D cmdline->argc - 1) {
++-            cmd_args =3D talloc_strdup_append(cmd_args, " ");
++-        }
++-    }
++-
++-    cmd =3D talloc_asprintf(tool_ctx, "%s %s", cachecmd, cmd_args);
++-    if (cmd =3D=3D NULL) {
++-        ret =3D ENOMEM;
++-        goto done;
++-    }
++-
++-    ret =3D sssctl_run_command(cmd);
++-
++-done:
++-    talloc_free(cmd_args);
++-    talloc_free(cmd);
+++    ret =3D sssctl_run_command(args);
++=20
+++    talloc_free(args);
++     return ret;
++ }
++diff --git a/src/tools/sssctl/sssctl_logs.c b/src/tools/sssctl/sssctl_lo=
+gs.c
++index aca988c05..c85cc7a4b 100644
++--- a/src/tools/sssctl/sssctl_logs.c
+++++ b/src/tools/sssctl/sssctl_logs.c
++@@ -32,6 +32,7 @@
++ #include <popt.h>
++ #include <stdio.h>
++ #include <signal.h>
+++#include <glob.h>
++=20
++ #include "util/util.h"
++ #include "tools/common/sss_process.h"
++@@ -231,6 +232,7 @@ errno_t sssctl_logs_remove(struct sss_cmdline *cmdli=
+ne,
++ {
++     struct sssctl_logs_opts opts =3D {0};
++     errno_t ret;
+++    glob_t globbuf;
++=20
++     /* Parse command line. */
++     struct poptOption options[] =3D {
++@@ -254,8 +256,19 @@ errno_t sssctl_logs_remove(struct sss_cmdline *cmdl=
+ine,
++=20
++         sss_signal(SIGHUP);
++     } else {
+++        globbuf.gl_offs =3D 4;
+++        ret =3D glob(LOG_PATH"/*.log", GLOB_ERR|GLOB_DOOFFS, NULL, &glo=
+bbuf);
+++        if (ret !=3D 0) {
+++            DEBUG(SSSDBG_CRIT_FAILURE, "Unable to expand log files list=
+\n");
+++            return ret;
+++        }
+++        globbuf.gl_pathv[0] =3D discard_const_p(char, "truncate");
+++        globbuf.gl_pathv[2] =3D discard_const_p(char, "--size");
+++        globbuf.gl_pathv[3] =3D discard_const_p(char, "0");
+++
++         printf(_("Truncating log files...\n"));
++-        ret =3D sssctl_run_command("truncate --size 0 " LOG_FILES);
+++        ret =3D sssctl_run_command((const char * const*)globbuf.gl_path=
+v);
+++        globfree(&globbuf);
++         if (ret !=3D EOK) {
++             fprintf(stderr, _("Unable to truncate log files\n"));
++             return ret;
++@@ -270,8 +283,8 @@ errno_t sssctl_logs_fetch(struct sss_cmdline *cmdlin=
+e,
++                           void *pvt)
++ {
++     const char *file;
++-    const char *cmd;
++     errno_t ret;
+++    glob_t globbuf;
++=20
++     /* Parse command line. */
++     ret =3D sss_tool_popt_ex(cmdline, NULL, SSS_TOOL_OPT_OPTIONAL, NULL=
+, NULL,
++@@ -281,13 +294,19 @@ errno_t sssctl_logs_fetch(struct sss_cmdline *cmdl=
+ine,
++         return ret;
++     }
++=20
++-    cmd =3D talloc_asprintf(tool_ctx, "tar -czf %s %s", file, LOG_FILES=
+);
++-    if (cmd =3D=3D NULL) {
++-        fprintf(stderr, _("Out of memory!"));
+++    globbuf.gl_offs =3D 3;
+++    ret =3D glob(LOG_PATH"/*.log", GLOB_ERR|GLOB_DOOFFS, NULL, &globbuf=
+);
+++    if (ret !=3D 0) {
+++        DEBUG(SSSDBG_CRIT_FAILURE, "Unable to expand log files list\n")=
+;
+++        return ret;
++     }
+++    globbuf.gl_pathv[0] =3D discard_const_p(char, "tar");
+++    globbuf.gl_pathv[1] =3D discard_const_p(char, "-czf");
+++    globbuf.gl_pathv[2] =3D discard_const_p(char, file);
++=20
++     printf(_("Archiving log files into %s...\n"), file);
++-    ret =3D sssctl_run_command(cmd);
+++    ret =3D sssctl_run_command((const char * const*)globbuf.gl_pathv);
+++    globfree(&globbuf);
++     if (ret !=3D EOK) {
++         fprintf(stderr, _("Unable to archive log files\n"));
++         return ret;
++--=20
++2.33.0
++
+diff --git a/recipes-security/sssd/sssd_1.16.5.bb b/recipes-security/sssd=
+/sssd_1.16.5.bb
+index 9784ec7..02d0837 100644
+--- a/recipes-security/sssd/sssd_1.16.5.bb
++++ b/recipes-security/sssd/sssd_1.16.5.bb
+@@ -22,6 +22,7 @@ SRC_URI =3D "https://releases.pagure.org/SSSD/${BPN}/${=
+BP}.tar.gz \
+            file://0001-build-Don-t-use-AC_CHECK_FILE-when-building-manpa=
+ges.patch \
+            file://0001-nss-Collision-with-external-nss-symbol.patch \
+            file://0002-Provide-missing-defines-which-otherwise-are-avail=
+abl.patch \
++           file://CVE-2021-3621.patch \
+            "
+=20
+ SRC_URI[sha256sum] =3D "2e1a7bf036b583f686d35164f2d79bdf4857b98f51fe8b0d=
+17aa0fa756e4d0c0"
+--=20
+2.17.1
+
