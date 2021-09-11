@@ -1,164 +1,136 @@
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
- by mx.groups.io with SMTP id smtpd.web08.3751.1631366370769700974
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+ by mx.groups.io with SMTP id smtpd.web09.9538.1631398655032650587
  for <yocto@lists.yoctoproject.org>;
- Sat, 11 Sep 2021 06:19:31 -0700
+ Sat, 11 Sep 2021 15:17:35 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=CqJmJVF7;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.53, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f53.google.com with SMTP id b6so6808003wrh.10
-        for <yocto@lists.yoctoproject.org>; Sat, 11 Sep 2021 06:19:30 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=qu8BEcZp;
+ spf=pass (domain: gmail.com, ip: 209.85.215.176, mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f176.google.com with SMTP id t1so5492565pgv.3;
+        Sat, 11 Sep 2021 15:17:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=Qslk+KswhE/2gSB7JfTs76U86E6bRpJMew8X2sxVwGI=;
-        b=CqJmJVF7f+mkMGFH8xzqkVF8Qul7VjEUkq6zVsQ7fmyhqBj16HjVZdJmuB1O15Jm7Y
-         7Puk30h8HDW9nNKRITL81BHqWTgjumShPuw8FQNfXNtjXWVqSqUb4xwb6HOxepT/fqRU
-         sKbmLZY2nnl2A9S6K1xuS221yXDPCbwc4aHc4=
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=HPokKwdsL8Vd2OpJUjZZUEdNx28SDsijuGMC9R6KY3w=;
+        b=qu8BEcZpVRxWBWA+5magdamTGU/BOFgusN5jYs6xKLAxeZeOmSa/no3N33dH8Qw898
+         LWCy1NvAZznwT9anqKdq3xhVNeCk2IF53z8oufvWtGM+LqP4mZwRXyUugtj7dSApR+Xj
+         EPMKGZFr7ABrdVqeJW9chIq9WIxIBu0zGe6mG2jYx8p7dT9HFKKXQuW8u6wXV7s1Ec9J
+         TbDX3XZudYTzWzB4hte7fWsoLICAbolpTUo+A8Wa95drbQ7nObV2CT4mixPeRn1yIwZr
+         cBzwe9tzDmJ+WVjpXl8DJ65gkyvEu8vzX0/1CtIWb/bMNur/nUNPDC9eO9md5cIKq4Zr
+         Dxqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=Qslk+KswhE/2gSB7JfTs76U86E6bRpJMew8X2sxVwGI=;
-        b=41uf7rf+M0pDSrZxZoNJiusC40/HJHLQ5HABc0QxMpA7jAFCAHEsqvR7iFkIuGBKRH
-         cs5uVRm6wKmfjUPFEFOecFWeKObEIl1Tq63DHVGQms9lnk190z3e7xLF1LAFgyj2koFt
-         mqd2DnVlIyDho1Gv8skMCuvaQOjAm6Wmko1yFzIzvigaq5XTk8FC77Q3dHGKxtpzsy1A
-         EMlqDzxHo8AzrE/mZxBlX1yQmzdXKW4/BFvNiux6mluREZQmtELpnwNgZnHEZd9Aome7
-         UOkm4ssZ+QWn4Y9VYO4K1mKksD6b9UX8QEMD09g4Wh16hQcaACGsD26uM7BMdSXmnQeM
-         qZgg==
-X-Gm-Message-State: AOAM531tgkDjhbIShY5Eklyc/DqYXL8nNiHERX3Utt4o+0SU1ok6bbEl
-	PAKdtfdMij/+sAxy9jlOuX/3mg==
-X-Google-Smtp-Source: ABdhPJyB9BwnM6FRGnTP9As7myns6rqjE8o6IRsqRD8G3NnKga9OsZuk+4awJ4DKtLZ5uT3MWibjFg==
-X-Received: by 2002:a5d:58ef:: with SMTP id f15mr3198207wrd.160.1631366369299;
-        Sat, 11 Sep 2021 06:19:29 -0700 (PDT)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from ?IPv6:2001:8b0:aba:5f3c:a1a5:8b9e:48ea:5b97? ([2001:8b0:aba:5f3c:a1a5:8b9e:48ea:5b97])
-        by smtp.gmail.com with ESMTPSA id f7sm1578400wmh.20.2021.09.11.06.19.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Sep 2021 06:19:28 -0700 (PDT)
-Message-ID: <186f3ee985744067db2b31f66b2e655fca7bab46.camel@linuxfoundation.org>
-Subject: Re: [yocto] [yocto-autobuilder2][PATCH] add prioritizeBuilders
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: Trevor Gamblin <trevor.gamblin@windriver.com>, 
-	yocto@lists.yoctoproject.org
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Date: Sat, 11 Sep 2021 14:19:28 +0100
-In-Reply-To: <16A3C66D47A24401.21276@lists.yoctoproject.org>
-References: <20210909131012.1100416-1-trevor.gamblin@windriver.com>
-	 <16A3C66D47A24401.21276@lists.yoctoproject.org>
-User-Agent: Evolution 3.40.2-1build1 
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=HPokKwdsL8Vd2OpJUjZZUEdNx28SDsijuGMC9R6KY3w=;
+        b=qJO1gXJUNxDrOh0F6PtPuxF+x1N1qXMtfFxJAAu9UnAjXgja1ynnfRuN/sHq/T6JW1
+         +U+F9HH0Mbqy3W4QcvNWv8pH53fjh8q0wC9Ktow6zS72NTlDC7S65JnC4ND4tXx+TVVA
+         usNg/2O2Q1cPMkQuE/i83TC9ILeYgZc2sEHoM53H+2+4HTi061rx5DUyAyDjrpG+mt/+
+         tpJiqxFs4m1IVa2JGdA2MkOzAfQCW7vMAA71YaWm0ZwGZsKVO6phJ+YCwAAXxwNMBtU4
+         Q7VpvdJGFpPu61lcNe82OQ/LuD3g1SoZ5uhIhI5ghkooFTle81SCzmcq66MYwh2sNPFi
+         /VLw==
+X-Gm-Message-State: AOAM533RYC7RRExnkIwOZMene4r5tPULyPexPAn4zL8rF5oeyYPWIvdr
+	OInJxskYljTaHUhHsTKfyKw=
+X-Google-Smtp-Source: ABdhPJzRCW3SV5J1uwUtO0GxK+oiU0ppSILFwlNItIOfyNkUhQhknXGCaIb0+yhJAMMC+jW+YhkTAg==
+X-Received: by 2002:a63:cf44:: with SMTP id b4mr4189000pgj.215.1631398654526;
+        Sat, 11 Sep 2021 15:17:34 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from ?IPv6:2601:202:4180:a5c0:b27c:7a4e:d59f:d7eb? ([2601:202:4180:a5c0:b27c:7a4e:d59f:d7eb])
+        by smtp.gmail.com with ESMTPSA id 23sm2971140pgk.89.2021.09.11.15.17.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 11 Sep 2021 15:17:34 -0700 (PDT)
+Subject: Re: [qa-build-notification] QA notification for completed autobuilder build (yocto-3.3.3.rc2)
+To: qa-build-notification@lists.yoctoproject.org,
+ yocto@lists.yoctoproject.org,
+ "openembedded-core@lists.openembedded.org"
+ <openembedded-core@lists.openembedded.org>
+Cc: "Jain, Sangeeta" <sangeeta.jain@intel.com>
+References: <32334a100a5bd0c20239e42a463e5604f00345ec.camel@linuxfoundation.org>
+ <BN9PR11MB53728D00D9321AE9BECCB725BBD69@BN9PR11MB5372.namprd11.prod.outlook.com>
+From: "Armin Kuster" <akuster808@gmail.com>
+Message-ID: <997e565f-768a-2020-35ac-55497156f121@gmail.com>
+Date: Sat, 11 Sep 2021 15:17:32 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <BN9PR11MB53728D00D9321AE9BECCB725BBD69@BN9PR11MB5372.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-On Sat, 2021-09-11 at 14:07 +0100, Richard Purdie via lists.yoctoproject.org
-wrote:
-> On Thu, 2021-09-09 at 09:10 -0400, Trevor Gamblin wrote:
-> > This prioritizeBuilders function sorts builders by the length of their
-> > associated worker lists, so that builders that can only be assigned to a
-> > small number of workers are assigned to those workers before other
-> > builds that don't have specific needs when resources are limited. An
-> > example might be when a slot is available on an Ubuntu-based worker, and
-> > "oe-selftest-ubuntu" and "genericx86-64" build requests exist in the
-> > queue. Since oe-selftest-ubuntu requires an Ubuntu-based worker and
-> > genericx86-64 does not, genericx86-64 will be assigned a higher value
-> > (lower priority) so that oe-selftest-ubuntu is assigned to that worker
-> > first.
-> > 
-> > Signed-off-by: Trevor Gamblin <trevor.gamblin@windriver.com>
-> > ---
-> >  builders.py | 13 +++++++++++++
-> >  master.cfg  |  6 ++++++
-> >  2 files changed, 19 insertions(+)
-> > 
+
+
+On 9/9/21 11:39 PM, Teoh, Jay Shen wrote:
+> Hello all,
+>
+> Intel and WR YP QA is planning for QA execution for YP build yocto-3.3.3.rc2 We are planning to execute following tests for this cycle:
+>
+> OEQA-manual tests for following module:
+> 1. OE-Core
+> 2. BSP-hw
+>
+> Runtime auto test for following platforms:
+> 1. MinnowTurbot 32-bit
+> 2. Coffee Lake
+> 3. NUC 7
+> 4. NUC 6
+> 5. Edgerouter
+> 6. Beaglebone
+>
+> ETA for completion is next Wednesday, 15 September.
+Thanks,
+
+Your work is much appreciated.
+
+- armin
+>
+> Thanks,
+> Jay
+>> -----Original Message-----
+>> From: qa-build-notification@lists.yoctoproject.org <qa-build-
+>> notification@lists.yoctoproject.org> On Behalf Of Richard Purdie
+>> Sent: Friday, 10 September, 2021 4:00 AM
+>> To: <yocto@lists.yoctoproject.org> <yocto@lists.yoctoproject.org>
+>> Cc: qa-build-notification <qa-build-notification@lists.yoctoproject.org>
+>> Subject: [qa-build-notification] QA notification for completed autobuilder build
+>> (yocto-3.3.3.rc2)
+>>
+>> A build flagged for QA (yocto-3.3.3.rc2) was completed on the autobuilder and is
+>> available at:
+>>
+>>
+>>     https://autobuilder.yocto.io/pub/releases/yocto-3.3.3.rc2
+>>
+>>
+>> Build hash information:
+>>
+>> bitbake: c7b506d11df78cfc4610db6578745eaa6220b13a
+>> meta-agl: 60344efa7a50dc2548fc4b5d68b5ad4d60c4023a
+>> meta-arm: ba82ea920a3a43244a0a72bd74817e2f00f4a1af
+>> meta-aws: 171aa2cf4d12ff4877e9104b6ec46be54128e3d8
+>> meta-gplv2: 9e119f333cc8f53bd3cf64326f826dbc6ce3db0f
+>> meta-intel: 5c4a6b02f650a99a5ec55561443fcf880a863d19
+>> meta-mingw: 422b96cb2b6116442be1f40dfb5bd77447d1219e
+>> meta-openembedded: 7bd7e1da9034e72ca4262dba55f70b2b23499aae
+>> oecore: 567dd35d893c5d8969d41f263a24da8fbae3fc2f
+>> poky: 0a2ca9d60f3851515a79d5aa9ddd8b4069b5a206
+>>
+>>
+>>
+>> This is an automated message from the Yocto Project Autobuilder
+>> Git: git://git.yoctoproject.org/yocto-autobuilder2
+>> Email: richard.purdie@linuxfoundation.org
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>
+>
 > 
-> We did merge and start using this. Unfortunately whilst I thought it would work,
-> it has some unfortunate side effects and we'll probably have to disable it.
-> 
-> If you have two build requests for say "a-full" builds, it will allocate oe-
-> selftest-XXX and reproducible-XXX to the XXX workers, starving generic targets.
-> You therefore end up with two builds running, both with half their builder
-> targets and it will hurt completion.
-> 
-> I did talk with upstream buildbot a little on irc about this challenge.
-> 
-> The default prioritizeBuilders function (_defaultSorter in
-> buildrequestdistributor.py) sorts by build request time.
-> 
-> They were suggesting some things which are fairly invasive like adding a
-> estimated completion time to the defaultSorter so we could weight slow builds.
-> To be honest it's beyond my comfort level with twisted defereds trying to query
-> and obtain the right data.
-> 
-> I have started wondering if we can in fact cheat and tweak the order we trigger
-> the builds in the a-full and a-quick targets. I think we could influence the
-> order of builderNames in the Triggerable and that would then change the
-> buildrequest timestamps so the default sorting method would work better for us
-> again.
-> 
-> I think that translates to adding your sorting method in this patch to
-> builderNamesFromConfigQuick and builderNamesFromConfigFull. Probably worth a
-> try?
-
-Upstream gave this as an example which I think we can probably do something
-with:
-
-from datetime import datetime, timedelta
-
-from dateutil.tz import tzutc
-
-from twisted.internet import defer
-
-
-# this stores bonuses for builders, which takes in account longer build time
-builder_bonuses = {
-    'bldr1': timedelta(hours=1)
-}
-
-def BuilderSorter(master, builders):
-    # perform an asynchronous schwarzian transform, transforming None
-    # into a really big date, so that any
-    # date set to 'None' will appear at the
-    # end of the list during comparisons.
-    max_time = datetime.max
-    # Need to set the timezone on the date, in order
-    # to perform comparisons with other dates which
-    # have the time zone set.
-    max_time = max_time.replace(tzinfo=tzutc())
-
-    @defer.inlineCallbacks
-    def transform(bldr):
-        time = yield bldr.getOldestRequestTime()
-        if time is None:
-            time = max_time
-        else:
-            if bldr.name in builder_bonuses:
-                time = time + builder_bonuses[bldr.name]
-        defer.returnValue((time, bldr))
-
-    transformed = yield defer.gatherResults(
-        [transform(bldr) for bldr in builders])
-
-    # sort the transformed list synchronously, comparing None to the end of
-    # the list
-    def transformedKey(a):
-        (date, builder) = a
-        return (date, builder.name)
-
-    transformed.sort(key=transformedKey)
-
-    # and reverse the transform
-    rv = [xf[1] for xf in transformed]
-    return rv
-
-  c['prioritizeBuilders'] = BuilderSorter
-
-and then we're not relying on internal bebehaviours with the sorting. It was
-pointed out to me that the timestamps are only second accuracy so the global
-builders list sorting would probably have more effect.
-
-Cheers,
-
-Richard
-
+>
+>
 
