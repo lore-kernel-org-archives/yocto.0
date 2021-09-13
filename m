@@ -1,136 +1,80 @@
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
- by mx.groups.io with SMTP id smtpd.web09.9538.1631398655032650587
+Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
+ by mx.groups.io with SMTP id smtpd.web11.23876.1631497956520509931
  for <yocto@lists.yoctoproject.org>;
- Sat, 11 Sep 2021 15:17:35 -0700
+ Sun, 12 Sep 2021 18:52:37 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=qu8BEcZp;
- spf=pass (domain: gmail.com, ip: 209.85.215.176, mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f176.google.com with SMTP id t1so5492565pgv.3;
-        Sat, 11 Sep 2021 15:17:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=HPokKwdsL8Vd2OpJUjZZUEdNx28SDsijuGMC9R6KY3w=;
-        b=qu8BEcZpVRxWBWA+5magdamTGU/BOFgusN5jYs6xKLAxeZeOmSa/no3N33dH8Qw898
-         LWCy1NvAZznwT9anqKdq3xhVNeCk2IF53z8oufvWtGM+LqP4mZwRXyUugtj7dSApR+Xj
-         EPMKGZFr7ABrdVqeJW9chIq9WIxIBu0zGe6mG2jYx8p7dT9HFKKXQuW8u6wXV7s1Ec9J
-         TbDX3XZudYTzWzB4hte7fWsoLICAbolpTUo+A8Wa95drbQ7nObV2CT4mixPeRn1yIwZr
-         cBzwe9tzDmJ+WVjpXl8DJ65gkyvEu8vzX0/1CtIWb/bMNur/nUNPDC9eO9md5cIKq4Zr
-         Dxqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=HPokKwdsL8Vd2OpJUjZZUEdNx28SDsijuGMC9R6KY3w=;
-        b=qJO1gXJUNxDrOh0F6PtPuxF+x1N1qXMtfFxJAAu9UnAjXgja1ynnfRuN/sHq/T6JW1
-         +U+F9HH0Mbqy3W4QcvNWv8pH53fjh8q0wC9Ktow6zS72NTlDC7S65JnC4ND4tXx+TVVA
-         usNg/2O2Q1cPMkQuE/i83TC9ILeYgZc2sEHoM53H+2+4HTi061rx5DUyAyDjrpG+mt/+
-         tpJiqxFs4m1IVa2JGdA2MkOzAfQCW7vMAA71YaWm0ZwGZsKVO6phJ+YCwAAXxwNMBtU4
-         Q7VpvdJGFpPu61lcNe82OQ/LuD3g1SoZ5uhIhI5ghkooFTle81SCzmcq66MYwh2sNPFi
-         /VLw==
-X-Gm-Message-State: AOAM533RYC7RRExnkIwOZMene4r5tPULyPexPAn4zL8rF5oeyYPWIvdr
-	OInJxskYljTaHUhHsTKfyKw=
-X-Google-Smtp-Source: ABdhPJzRCW3SV5J1uwUtO0GxK+oiU0ppSILFwlNItIOfyNkUhQhknXGCaIb0+yhJAMMC+jW+YhkTAg==
-X-Received: by 2002:a63:cf44:: with SMTP id b4mr4189000pgj.215.1631398654526;
-        Sat, 11 Sep 2021 15:17:34 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
-Received: from ?IPv6:2601:202:4180:a5c0:b27c:7a4e:d59f:d7eb? ([2601:202:4180:a5c0:b27c:7a4e:d59f:d7eb])
-        by smtp.gmail.com with ESMTPSA id 23sm2971140pgk.89.2021.09.11.15.17.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 11 Sep 2021 15:17:34 -0700 (PDT)
-Subject: Re: [qa-build-notification] QA notification for completed autobuilder build (yocto-3.3.3.rc2)
-To: qa-build-notification@lists.yoctoproject.org,
- yocto@lists.yoctoproject.org,
- "openembedded-core@lists.openembedded.org"
- <openembedded-core@lists.openembedded.org>
-Cc: "Jain, Sangeeta" <sangeeta.jain@intel.com>
-References: <32334a100a5bd0c20239e42a463e5604f00345ec.camel@linuxfoundation.org>
- <BN9PR11MB53728D00D9321AE9BECCB725BBD69@BN9PR11MB5372.namprd11.prod.outlook.com>
-From: "Armin Kuster" <akuster808@gmail.com>
-Message-ID: <997e565f-768a-2020-35ac-55497156f121@gmail.com>
-Date: Sat, 11 Sep 2021 15:17:32 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+ dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: mingli.yu@windriver.com)
+Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.corp.ad.wrs.com [147.11.82.252])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 18D1qV8G022332
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sun, 12 Sep 2021 18:52:31 -0700
+Received: from ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Sun, 12 Sep 2021 18:52:31 -0700
+Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
+ ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.14; Sun, 12 Sep 2021 18:52:30 -0700
+Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
+ ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
+ 15.1.2242.12 via Frontend Transport; Sun, 12 Sep 2021 18:52:29 -0700
+From: "Yu, Mingli" <mingli.yu@windriver.com>
+To: <yocto@lists.yoctoproject.org>, <joe_macdonald@mentor.com>,
+        <joe@deserted.net>
+Subject: [meta-selinux][PATCH] coreutils/findutils/tar: remove pkgconfig from bbappend
+Date: Mon, 13 Sep 2021 09:48:08 +0800
+Message-ID: <20210913014808.23689-1-mingli.yu@windriver.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-In-Reply-To: <BN9PR11MB53728D00D9321AE9BECCB725BBD69@BN9PR11MB5372.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
+From: Mingli Yu <mingli.yu@windriver.com>
 
+When enable meta-gplv2 layer [1], there comes below error:
+  ERROR: coreutils-6.9-r5 do_configure: QA Issue: coreutils: configure was passed unrecognised options: --without-selinux [unknown-configure-option]
+  ERROR: coreutils-6.9-r5 do_configure: Fatal QA errors found, failing task.
 
-On 9/9/21 11:39 PM, Teoh, Jay Shen wrote:
-> Hello all,
->
-> Intel and WR YP QA is planning for QA execution for YP build yocto-3.3.3.rc2 We are planning to execute following tests for this cycle:
->
-> OEQA-manual tests for following module:
-> 1. OE-Core
-> 2. BSP-hw
->
-> Runtime auto test for following platforms:
-> 1. MinnowTurbot 32-bit
-> 2. Coffee Lake
-> 3. NUC 7
-> 4. NUC 6
-> 5. Edgerouter
-> 6. Beaglebone
->
-> ETA for completion is next Wednesday, 15 September.
-Thanks,
+It's because the old version of coreutils under meta-gplv2 layer
+doesn't support the above configure option, so move the related
+pkgconfig setting to the coreutils recipe under oe-core [2] which
+supports the configure option to fix the gap.
 
-Your work is much appreciated.
+And the findutils and tar also have the problem.
 
-- armin
->
-> Thanks,
-> Jay
->> -----Original Message-----
->> From: qa-build-notification@lists.yoctoproject.org <qa-build-
->> notification@lists.yoctoproject.org> On Behalf Of Richard Purdie
->> Sent: Friday, 10 September, 2021 4:00 AM
->> To: <yocto@lists.yoctoproject.org> <yocto@lists.yoctoproject.org>
->> Cc: qa-build-notification <qa-build-notification@lists.yoctoproject.org>
->> Subject: [qa-build-notification] QA notification for completed autobuilder build
->> (yocto-3.3.3.rc2)
->>
->> A build flagged for QA (yocto-3.3.3.rc2) was completed on the autobuilder and is
->> available at:
->>
->>
->>     https://autobuilder.yocto.io/pub/releases/yocto-3.3.3.rc2
->>
->>
->> Build hash information:
->>
->> bitbake: c7b506d11df78cfc4610db6578745eaa6220b13a
->> meta-agl: 60344efa7a50dc2548fc4b5d68b5ad4d60c4023a
->> meta-arm: ba82ea920a3a43244a0a72bd74817e2f00f4a1af
->> meta-aws: 171aa2cf4d12ff4877e9104b6ec46be54128e3d8
->> meta-gplv2: 9e119f333cc8f53bd3cf64326f826dbc6ce3db0f
->> meta-intel: 5c4a6b02f650a99a5ec55561443fcf880a863d19
->> meta-mingw: 422b96cb2b6116442be1f40dfb5bd77447d1219e
->> meta-openembedded: 7bd7e1da9034e72ca4262dba55f70b2b23499aae
->> oecore: 567dd35d893c5d8969d41f263a24da8fbae3fc2f
->> poky: 0a2ca9d60f3851515a79d5aa9ddd8b4069b5a206
->>
->>
->>
->> This is an automated message from the Yocto Project Autobuilder
->> Git: git://git.yoctoproject.org/yocto-autobuilder2
->> Email: richard.purdie@linuxfoundation.org
->>
->>
->>
->>
->>
->>
->>
->
->
-> 
->
->
+[1] http://git.yoctoproject.org/cgit/cgit.cgi/meta-gplv2/
+[2] https://git.openembedded.org/openembedded-core/
+
+Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
+---
+ recipes-core/coreutils/coreutils_%.bbappend     | 1 -
+ recipes-extended/findutils/findutils_%.bbappend | 1 -
+ recipes-extended/tar/tar_selinux.inc            | 2 --
+ 3 files changed, 4 deletions(-)
+
+diff --git a/recipes-core/coreutils/coreutils_%.bbappend b/recipes-core/coreutils/coreutils_%.bbappend
+index 138c23a..74e22b3 100644
+--- a/recipes-core/coreutils/coreutils_%.bbappend
++++ b/recipes-core/coreutils/coreutils_%.bbappend
+@@ -1,2 +1 @@
+ inherit ${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'enable-selinux', '', d)}
+-PACKAGECONFIG[selinux] = "--with-selinux,--without-selinux,libselinux"
+diff --git a/recipes-extended/findutils/findutils_%.bbappend b/recipes-extended/findutils/findutils_%.bbappend
+index 138c23a..74e22b3 100644
+--- a/recipes-extended/findutils/findutils_%.bbappend
++++ b/recipes-extended/findutils/findutils_%.bbappend
+@@ -1,2 +1 @@
+ inherit ${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'enable-selinux', '', d)}
+-PACKAGECONFIG[selinux] = "--with-selinux,--without-selinux,libselinux"
+diff --git a/recipes-extended/tar/tar_selinux.inc b/recipes-extended/tar/tar_selinux.inc
+index 0f64298..8c11cac 100644
+--- a/recipes-extended/tar/tar_selinux.inc
++++ b/recipes-extended/tar/tar_selinux.inc
+@@ -1,3 +1 @@
+ inherit enable-selinux
+-
+-PACKAGECONFIG[selinux] = "--with-selinux,--without-selinux,libselinux"
+-- 
+2.32.0
 
