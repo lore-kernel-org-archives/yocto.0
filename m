@@ -1,38 +1,32 @@
-Subject: Using Poetry For Python Package #python
+Subject: Re: multilib SDK
 To: yocto@lists.yoctoproject.org
-From: iwolosch@akamai.com
-X-Originating-Location: Somerville, Massachusetts, US (130.44.181.251)
+From: "Arun" <arun.sivakumaran@gmail.com>
+X-Originating-Location: Seattle, Washington, US (54.240.196.170)
 X-Originating-Platform: Mac Chrome 93
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Tue, 14 Sep 2021 11:49:10 -0700
-Message-ID: <9lCr.1631645350129723940.vwx9@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="k3vb6n6QISrLv5WBo8Cg"
+Date: Tue, 14 Sep 2021 15:41:03 -0700
+References: <CADphxr35hhr-1JT7YCYz-eG3RxsHv5ATA8AKJy5H9NPENo_q=Q@mail.gmail.com>
+In-Reply-To: <CADphxr35hhr-1JT7YCYz-eG3RxsHv5ATA8AKJy5H9NPENo_q=Q@mail.gmail.com>
+Message-ID: <7283.1631659263423256403@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="Cd4YDnUVPM9CKyEQpYqq"
 
---k3vb6n6QISrLv5WBo8Cg
+--Cd4YDnUVPM9CKyEQpYqq
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-I have a python package hosted in an internal git repo that is currently co=
-nfigured to use Poetry and as such does not have a setup.py file. Yocto app=
-ears to expect a setup.py file (via inherit distutils3). It seems my two op=
-tions are to either remove Poetry and convert from pyproject.toml to setup.=
-py or set up an internal pypi host that can serve a sdist file that would h=
-ave a setup.py file. Are there any other options I'm missing?
+Bumping this question...
 
-Thanks!
--Ian
+Is there a way for me to disable building of 64-bit packages when building =
+SDK with a multilib config? I have no use for 64-bit userspace package arti=
+facts.
 
---k3vb6n6QISrLv5WBo8Cg
+--Cd4YDnUVPM9CKyEQpYqq
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-I have a python package hosted in an internal git repo that is currently co=
-nfigured to use Poetry and as such does not have a setup.py file. Yocto app=
-ears to expect a setup.py file (via inherit distutils3). It seems my two op=
-tions are to either remove Poetry and convert from pyproject.toml to setup.=
-py or set up an internal pypi host that can serve a sdist file that would h=
-ave a setup.py file. Are there any other options I'm missing?<br /><br />Th=
-anks!<br />-Ian
+Bumping this question...<br /><br />Is there a way for me to disable buildi=
+ng of 64-bit packages when building SDK with a multilib config? I have no u=
+se for 64-bit userspace package artifacts.
 
---k3vb6n6QISrLv5WBo8Cg--
+--Cd4YDnUVPM9CKyEQpYqq--
