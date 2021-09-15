@@ -1,75 +1,110 @@
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
- by mx.groups.io with SMTP id smtpd.web11.2244.1631672489801074262
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+ by mx.groups.io with SMTP id smtpd.web09.2863.1631677351587949242
  for <yocto@lists.yoctoproject.org>;
- Tue, 14 Sep 2021 19:21:29 -0700
+ Tue, 14 Sep 2021 20:42:31 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=nyfjiuYq;
- spf=pass (domain: gmail.com, ip: 209.85.210.172, mailfrom: raj.khem@gmail.com)
-Received: by mail-pf1-f172.google.com with SMTP id e16so1284390pfc.6
-        for <yocto@lists.yoctoproject.org>; Tue, 14 Sep 2021 19:21:29 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=i20iEKvI;
+ spf=pass (domain: gmail.com, ip: 209.85.167.179, mailfrom: arun.sivakumaran@gmail.com)
+Received: by mail-oi1-f179.google.com with SMTP id j66so2323052oih.12
+        for <yocto@lists.yoctoproject.org>; Tue, 14 Sep 2021 20:42:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:organization:in-reply-to:content-transfer-encoding;
-        bh=EZ0r1eNNuMxO8wXYZC185ipxxnhw2umUh2//XhLK0j8=;
-        b=nyfjiuYqKLOiZBNvnhgEMNrqXyKjM/M22nNInnM3gSoJTgJOG7O1IEWngKwEQt3dVD
-         7DAzeuFPCuLRWk/YCrSr4vPhrTD6hGz1N/mgofKb7PhZ8hyqgMHaYX6t8RQ2J07T379q
-         gjsdu/xpRE1M/D9CTSeD+1DtlOdo8B8rAyYeNCFAdJuQAjZ79T02XT/UfA1Z05+4SQ06
-         yNw0pTn8YW0GujFigFhXQ5ZUMyXnnC9K4tMDSu2ZbyF/1ZolJoTX32TQfa5sHKRf4NIl
-         DrRNib9TGN9LrC23z7ZMAygmD0deBloSP0/cqXTig61SHIfJczH0lTnOI8PqOP05s8et
-         B2xA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jyDEVEuDIYQRqnuKwBAL4oplR4Vd529uVhukEBGUjOk=;
+        b=i20iEKvI0Ilz0pW3ASLNpkr1kBYn9l4IcbzSO4z/rFZH0qLSScS2Hhr7tXl9qBWagI
+         Cxg/eV8P/c91uQF//Fz5oUvC9dpMgrIcZjrhW7QxuYbiSavn/3wL2bRzCaefVjX4QYWK
+         CcuF3RQGZy+VMhyXPk9e/uY28GGyINMiRhVVVzw5aeNSsy7VJPCa2b/V/u9MMGJaC/BI
+         ZYOypSXIAIjxYEtipyMDpYRwAf9LFsVm4qmIjjEiBs9UZRmEag5HAdHE32OsolnbdFfQ
+         lByOLQMu9CCiJa3IdmzSzM6x4gDT59afoIxtgqjG49XTMbWxnw+HV1Wmr7Vb97MCRMiO
+         75cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=EZ0r1eNNuMxO8wXYZC185ipxxnhw2umUh2//XhLK0j8=;
-        b=MugzCUPnpqwqC38GULQA/XTP8r5LCjKbyJdeeN2DKYlZuwuYFN8dJluBcUEFmbgZeK
-         lbhi4iVT0y0rd2shzNtFwnhG5O7vCtCBhiAyHB+WM9Hso1jNgQyd3bHALm3rWJAhH6uB
-         O7No4k5w9M0NnB5oTVKcs0eJCAjjltBRZaOwk2fmqTeCnOLdsU3t83vElVNtYuEhrWpm
-         ehEHOynfTC9JjYvOYEJNlUkBOhEyEEKe4GRc9ti7FLkc3Z4+eEWEPTKKCxu7gBlQdkTL
-         tlvQeCwPPYyCHsGeMWFwn57aUTv8w68Fb1sBFyxVrjSKHYKZFdM/BAba7/GBZ5hKJUyr
-         1ytw==
-X-Gm-Message-State: AOAM530KJMgGBZQVrsAcbv4VRgEKpkSkzfmQ9qMIWbbFzLuUhxX3ChU6
-	Moau79TS9WMzjV/ZOlLY4Bs=
-X-Google-Smtp-Source: ABdhPJwJ8SXgNHo01hCWhEZ4dUvSqMU2WXCzEYSs6FeNZWflwvR+yN/VQBj8UmdNSXWOPAE5rj85cw==
-X-Received: by 2002:a63:6d09:: with SMTP id i9mr18001926pgc.480.1631672489099;
-        Tue, 14 Sep 2021 19:21:29 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPV6:2601:646:9200:a0f0:ddaf:c34:d8b0:df10? ([2601:646:9200:a0f0:ddaf:c34:d8b0:df10])
-        by smtp.gmail.com with ESMTPSA id h15sm11628508pfo.54.2021.09.14.19.21.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Sep 2021 19:21:28 -0700 (PDT)
-Message-ID: <84c9559c-7ec9-1b7c-9dc1-38ff31451e91@gmail.com>
-Date: Tue, 14 Sep 2021 19:21:27 -0700
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jyDEVEuDIYQRqnuKwBAL4oplR4Vd529uVhukEBGUjOk=;
+        b=azQLMzPTciwGn5kPlV0s23oO9YoHIYJRFp0NS1nsROPf3BSRcdX89bpHyxwhMaCsme
+         p+uSyo8Csw2cF9oOvaQR/XAbpTQHYPjC1vKHqP26Mm6GBNbkOMyd6r+aAtIfcVtDfZyh
+         9R7lZXz9tJKgfF9NUAgn1Z/7ZB+Zlmgr3lpxmM9aRM8/o0ciUuHzAGVslluiFkUL1KAv
+         m/EpbKCDKNwCkT8ttJ/Ov1lM6Es/OZtxrjrbzQ1LfTLsxCRZawZkbpDLrNKUm08vKzMP
+         HyNdjcS8owK3DmNV4v2e9vdPNRPx2b+s632Z+57azO1gj5RfMqEFkmWxoPqNRL6YdxRM
+         6lxg==
+X-Gm-Message-State: AOAM531bgdfN5Ev8fMJ0i3h/P/U1DnwjrKjzyiG6pVxxTunncC1JIffq
+	X8skdqOMMiH/yAuVCE3AVRFUEXmsrE7mIlD1OU8=
+X-Google-Smtp-Source: ABdhPJzhkU+oTZRSKOZ5GW6qtbJs5FhPoGA5jp0Rlc2IFJSBHKIidWOuBk/ZHePVufj00G43rH7U2MGiOYQ+CIdcc90=
+X-Received: by 2002:a05:6808:bc2:: with SMTP id o2mr3848162oik.73.1631677350655;
+ Tue, 14 Sep 2021 20:42:30 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.1.0
-Subject: Re: [yocto] multilib SDK
-To: Arun <arun.sivakumaran@gmail.com>, yocto@lists.yoctoproject.org
 References: <CAMKF1sqbzn9C1i512H0+gu9fdvosd6A9Cfirwx3TBVWKRdorUw@mail.gmail.com>
- <13347.1631668391953983661@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-In-Reply-To: <13347.1631668391953983661@lists.yoctoproject.org>
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+ <13347.1631668391953983661@lists.yoctoproject.org> <84c9559c-7ec9-1b7c-9dc1-38ff31451e91@gmail.com>
+In-Reply-To: <84c9559c-7ec9-1b7c-9dc1-38ff31451e91@gmail.com>
+From: "Arun" <arun.sivakumaran@gmail.com>
+Date: Tue, 14 Sep 2021 20:42:20 -0700
+Message-ID: <CADphxr1U6coPm7YvyzzVZ7awaK0oniJzgJK=MbMEym6v9ZcpTA@mail.gmail.com>
+Subject: Re: [yocto] multilib SDK
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000dfbc9f05cc007cff"
 
+--000000000000dfbc9f05cc007cff
+Content-Type: text/plain; charset="UTF-8"
 
+I see, are you talking about ${MLPREFIX} variable? The target itself
+compiles fine, all are 32-bit binaries in userspace. I have this issue only
+for SDK.
 
-On 9/14/21 6:13 PM, Arun wrote:
-> The packages that SDK is trying to build are userspace packages and they 
-> haven't been ported for 64-bit. There are quite a few of them and short 
-> of fixing 64-bit compile issues for all of them, I am trying to see if I 
-> can build SDK without these packages built for. 64-bit. The SDK users 
-> will only be developing for 32-bit anyway.
-> 
-> 
+On Tue, Sep 14, 2021 at 7:21 PM Khem Raj <raj.khem@gmail.com> wrote:
 
-you should check the dependencies and ensure they are multilib safe 
-sometimes dependencies could be hardcodes and cross the multilib 
-boundaries accidentally
+>
+>
+> On 9/14/21 6:13 PM, Arun wrote:
+> > The packages that SDK is trying to build are userspace packages and they
+> > haven't been ported for 64-bit. There are quite a few of them and short
+> > of fixing 64-bit compile issues for all of them, I am trying to see if I
+> > can build SDK without these packages built for. 64-bit. The SDK users
+> > will only be developing for 32-bit anyway.
+> >
+> >
+>
+> you should check the dependencies and ensure they are multilib safe
+> sometimes dependencies could be hardcodes and cross the multilib
+> boundaries accidentally
+>
+> > 
+> >
+>
 
-> 
-> 
+--000000000000dfbc9f05cc007cff
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I see, are you talking about ${MLPREFIX} variable? The tar=
+get itself compiles fine, all are 32-bit binaries in userspace. I have this=
+ issue only for SDK.</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
+lass=3D"gmail_attr">On Tue, Sep 14, 2021 at 7:21 PM Khem Raj &lt;<a href=3D=
+"mailto:raj.khem@gmail.com">raj.khem@gmail.com</a>&gt; wrote:<br></div><blo=
+ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
+:1px solid rgb(204,204,204);padding-left:1ex"><br>
+<br>
+On 9/14/21 6:13 PM, Arun wrote:<br>
+&gt; The packages that SDK is trying to build are userspace packages and th=
+ey <br>
+&gt; haven&#39;t been ported for 64-bit. There are quite a few of them and =
+short <br>
+&gt; of fixing 64-bit compile issues for all of them, I am trying to see if=
+ I <br>
+&gt; can build SDK without these packages built for. 64-bit. The SDK users =
+<br>
+&gt; will only be developing for 32-bit anyway.<br>
+&gt; <br>
+&gt; <br>
+<br>
+you should check the dependencies and ensure they are multilib safe <br>
+sometimes dependencies could be hardcodes and cross the multilib <br>
+boundaries accidentally<br>
+<br>
+&gt; <br>
+&gt; <br>
+</blockquote></div>
+
+--000000000000dfbc9f05cc007cff--
