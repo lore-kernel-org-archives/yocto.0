@@ -1,171 +1,409 @@
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by mx.groups.io with SMTP id smtpd.web11.4357.1631691216223371306
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+ by mx.groups.io with SMTP id smtpd.web08.8289.1631715458813322747
  for <yocto@lists.yoctoproject.org>;
- Wed, 15 Sep 2021 00:33:36 -0700
+ Wed, 15 Sep 2021 07:17:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=dGYonSTp;
- spf=pass (domain: intel.com, ip: 134.134.136.65, mailfrom: jay.shen.teoh@intel.com)
-X-IronPort-AV: E=McAfee;i="6200,9189,10107"; a="222303626"
-X-IronPort-AV: E=Sophos;i="5.85,294,1624345200"; 
-   d="scan'208";a="222303626"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Sep 2021 00:33:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,294,1624345200"; 
-   d="scan'208";a="698159334"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
-  by fmsmga006.fm.intel.com with ESMTP; 15 Sep 2021 00:33:35 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 15 Sep 2021 00:33:35 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 15 Sep 2021 00:33:34 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Frontend Transport; Wed, 15 Sep 2021 00:33:34 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.170)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.12; Wed, 15 Sep 2021 00:33:34 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bJQ2wDyDRbgl+cG6MJGL/lJluUC72g3lYyQ4mXYe2F5zg5UYm+BL5/72lujVdXUFspKITWwJApUNu2XpPzys1Q0Yd2DkrMkID7HOnFAAd7ELfGuvdkaKb9J72Fr/u8igeJweLkYZX9K7/7RaZqlmu4PPq6cxu1leBb+U/hPTPI3MyPTN1EHVH+VOR5B6AapRu5XNdBPw/K1rO1tm0T8xhtE2bLVtAcmVmEtB8iAJ1JS+JWraNupnl14TxybAz4qzUihc0xblKz3Ngk1ecp6vLV48tgzTxH/NUAFumD61XJPaXCgBDGhAJlOh7RzMFsDkzp8BUMV9dOUtDnUy4XamHg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
- bh=7pyerf+5ipfNtHLER31uV8nMlzqpvsTpTjciJM5ZLYk=;
- b=fbA0Z76+jgau6x2ATuzIJIk8+G9sC5lLhRwyyHTHoXcwXOHtFT2clB0Z0fGWxOuTC3fGaFEN1C9yM3C2FTLQtRSIyT6AbEWk3olmgaiiccHu/aXQjcWaHjh7ZFLKFVVKEppC9q20n6MAxU+QZONqsJLNH5I/StnDtOqkoZe6QlOzTizqYex83zPQGzlyK5uT0BlWI/GHDE1vVgAqdOsPQznpXnWN/f2/Q8XWrnLZqGp0ABf3wBnyvM5l9Uo4mt6PguHbQUOhxpdf346ptuxiuPfCzHRbs1Oup0fmdrRA8rRp7mrZ1/j1WtzYX4XqHQAk3JG9lQ6jrZuDNT6cDxegLw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7pyerf+5ipfNtHLER31uV8nMlzqpvsTpTjciJM5ZLYk=;
- b=dGYonSTpHOUgtQxpVLjcb8BNjdOM89D7J5lDDls1Kh6Xka4aUFfb1GgbHYCuXj808/uDB5i/t8jVomWVrgk6t17t7fypsrNRpus2aHL6TbQvpyuR1UNhk046LfXSQnMhhz82ezfFiP2JWYmi+oba6s+sgK/fvurcnXqUwrlT1kk=
-Received: from BN9PR11MB5372.namprd11.prod.outlook.com (2603:10b6:408:105::5)
- by BN9PR11MB5276.namprd11.prod.outlook.com (2603:10b6:408:135::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4523.14; Wed, 15 Sep
- 2021 07:33:33 +0000
-Received: from BN9PR11MB5372.namprd11.prod.outlook.com
- ([fe80::9ef:5965:3a7e:7b8c]) by BN9PR11MB5372.namprd11.prod.outlook.com
- ([fe80::9ef:5965:3a7e:7b8c%8]) with mapi id 15.20.4500.018; Wed, 15 Sep 2021
- 07:33:33 +0000
-From: "Teoh, Jay Shen" <jay.shen.teoh@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [qa-build-notification] QA notification for completed autobuilder build (yocto-3.3.3.rc2)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-3.3.3.rc2)
-Thread-Index: AQHXpbVH6sWIQWJtO0yz1L11rcG/qKuku0zw
-Date: Wed, 15 Sep 2021 07:33:33 +0000
-Message-ID: <BN9PR11MB5372A2F3298A6F0E66F2C360BBDB9@BN9PR11MB5372.namprd11.prod.outlook.com>
-References: <32334a100a5bd0c20239e42a463e5604f00345ec.camel@linuxfoundation.org>
-In-Reply-To: <32334a100a5bd0c20239e42a463e5604f00345ec.camel@linuxfoundation.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.6.200.16
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-authentication-results: lists.yoctoproject.org; dkim=none (message not signed)
- header.d=none;lists.yoctoproject.org; dmarc=none action=none
- header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4635f455-4573-4de3-3b0d-08d9781b1f58
-x-ms-traffictypediagnostic: BN9PR11MB5276:
-x-microsoft-antispam-prvs: <BN9PR11MB5276A049631722B535622292BBDB9@BN9PR11MB5276.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5797;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +ajX3jSC92HhUZXKYsP1r9fis10RujHXz9VneNvNBaRnAQaHHJ+ACUc4csGve23PAd4Ktp+ZCxRe54pVAA1b0U0IiXjNaXDNFoFIRFHBh3BQOe17u9og9mv2a2y8Eo7G6LCGvtncDk37X3uynvJ/IliSFhR1AgXzA3h41T1zwkCuqjCFUoAYBr0cO6+o7y3reBfO6cPyY+klAiyaPFo/QVd12knaWc3kxco3DEikSSGTfI3+o1O8HTQWulCba/UbdVomcHmJ11sWHn7fFujmhdy3BJVD0XlhrE8SzWSziw70Q+7gSosQ4rhbi8OHC4g8jUKkT6eRCVo65EYRTm6wiHegOaWcpoIj3G64vxyckHDERJVC+OTOG4TP+a/1NZ4ZQfsVOW2XiLTmyUCGlMD/uhmuhDaCDdpUApfzz2U6ki08m56locyZN1MzM1P/YCsn8pSeDTQMho9UQTtW9cuq3/2fgxRrkS87RbYnxiWbJmS2aon0aWGG7m1RjaYNLELYCDh7PHdEg29GWuazhECvHT6jD+pBQUQoJpvn/YpGgsO286EbOg9XoohLKAVvtzkYHW3dgiIc7Mvfo/3CKltrl40xwJ4RBhbmymq/JQDOIife39YftyXWIL6hsU/FKNeI84M5ErXLS1m4bn3Fer6IAVbORZOIdPFlXWtJiSn0iVwKJkYjCOk2JIe5dzUA8jMlb96+3ZrNVhSw5BnOBeEBv6ApKR9AairWjlVy9HDWLqf2S54rCwmecVXm6e9p+pWzEN8ooawbmhNHkkqBq/9DSa0E5YrMz7nizrCuGdwVSMuACfzyWYGl2wSx+Hp5OZak+9J3sAtlbWYJO6Gb9EY4Jw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN9PR11MB5372.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(136003)(366004)(346002)(39860400002)(86362001)(38100700002)(66446008)(26005)(9686003)(66556008)(66476007)(64756008)(83380400001)(122000001)(76116006)(8676002)(66946007)(186003)(6506007)(8936002)(316002)(110136005)(53546011)(38070700005)(7696005)(33656002)(5660300002)(52536014)(55016002)(15650500001)(478600001)(2906002)(966005)(71200400001)(491001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?aUtiZGVtajlKSlhBV0oxRzdMUktjR1FrL2tmZERMbzBYODk5Smk0N2swYWJj?=
- =?utf-8?B?dkpGUnBIVEUwTFhzYmo0ZjB6TGFvV2wzL20xZHp0SndyY3VrQVYydnMwL3FG?=
- =?utf-8?B?bnpvOWI0dlhNRWFnOC92M2RCK1pEeUl6UC9SYW9FMGVWZUpjblZHZFFLY1g1?=
- =?utf-8?B?YlNKWm5ndHluYWRjL3k1QTM1SERwN09ycVgyck91dkNJdlAwUkNXZHFxTTRn?=
- =?utf-8?B?YWQzYTE3b0xRNlNzQjBaM25Tek94NHg5bm5xcGRMZ3V1d3AweU03ZWNBUzM3?=
- =?utf-8?B?ZGlORG8rZGdZTTZJaWNkdktjMjdXTVdGT1VoZnV3UXR1SmVKMTZYVXgydm1O?=
- =?utf-8?B?UldrYVFza3JqbytqSjZueWFuUVdRUndMOHh5S2QxSldHMmVCRCt3ZzRyQnJK?=
- =?utf-8?B?UFFxdFpnaWRPb1BPUVZocGl4bzNMSWNQWDhjT2hWTjZsRVJxZ0JnWEVQcVBH?=
- =?utf-8?B?WmI0WkxRRHNtZDhVUisyUWFBaU9HSjZ6dWJVYUVvQjJjQmtqZHJVbnowWXht?=
- =?utf-8?B?NVBwaXFabml0Sjh5Z3lkNTNHNHBkWlBSeFBSTWV3SEFpajNyZThXNEticTh6?=
- =?utf-8?B?eDVlYXB0SS96WUx0THd5S3VmR1M4MlFDaFlNWmdqU2JHcFhWZEhpVzRlK1pK?=
- =?utf-8?B?dmNOdW5BckJBZTAyaFovaHMySUhCZStQWncxQ21OZWVWdHRGV3g1Qk4wamVs?=
- =?utf-8?B?ZkRTU1BPTGJsN2R6N1BIa09seFFLd1lLL3ZUd0V6b0NyMTlObEdSMm9USzRO?=
- =?utf-8?B?Mm94eSt4d0VNekJVSFJuL00vUDFoMUdFWExmWi93Q1RydGwxaWJQeTNoYnR3?=
- =?utf-8?B?VXZNT2k2TmYrV3BmRk1kZ0Fvc3ZDVDBLeXRMSXppekZHbll1bkZSN1B2cnVx?=
- =?utf-8?B?WENPRWhUUEJwSXkrMElUZWJrd084RHZQQ2ZnYXJOaTZ2dmFXcE1UbnhlVjZl?=
- =?utf-8?B?dDd5OEVobE9rVE1JVld4UXkreUJ0U25vL3U1Z3JsV3kveC82Q0hIa1NxbVYw?=
- =?utf-8?B?K0ZFOW04RTFUZ05JdUMvVGk4NnR0M0JBeDlaM0kwd1JwamthUVhvMmFyZDBP?=
- =?utf-8?B?MUZ2ZjhvMGVqZnB6QTM2VXQ5Vm91ZjBxQi9DcnMzRUpWei85TkNOQ0xWRHRp?=
- =?utf-8?B?QmhVd1VlMW13TmxyV2hsYXYvVjlFaDByT3lSUVlPdTRXSDNZaDhXU3RicW81?=
- =?utf-8?B?eGlLL0drem9jWHNuOFlxVjVzNzVtOXp6cEVyL2Yxakl5ZHh4TlYrOHpHQVNu?=
- =?utf-8?B?Z2pkQTFHTkdpUFh4eDZMb2VCR3R6TmR0aHdBbjFWRDBxVDNHcCsyWDF0Zk1k?=
- =?utf-8?B?R3N1dUFoRlNjNzdiQ3M5bzlJSVhNVnJsTlNXZXZ4WWlVT1VJZzR5L20rWW41?=
- =?utf-8?B?aGNyamkveFNmUlF4aVlJRTVYaXFvZkRnTEJrOXdLL2RxcEI1MmVjWHlmbFlq?=
- =?utf-8?B?SVJlbnVwVUwzSE91YnFZR29xaGFVQ3JIemxZaFUwc2crRC80R1pmNXkyLzVr?=
- =?utf-8?B?Zm9xRGEweGdNdjJ3UkNQSEN1TGRnQlhPeFpGTjBJazVCMU1xNERlVGFwdHFp?=
- =?utf-8?B?NTQva29jc3NoQzIvVFFMb2RYTWtuQUtKYlZZcmlMa1dRb25jOHQ2VSt5dXV1?=
- =?utf-8?B?bXVUTXRwbmhncG9lTFpLTFVqMTBHTXVCbzQ0TjZ4VnAwa05sSWNHMjlCRDJW?=
- =?utf-8?B?UlZFOVViT3pndkNqSjdITGFSL0tkYzRyNVRNRHBZQlFkR21RaVVmYzdUaERJ?=
- =?utf-8?Q?GeUvtCr0OaAM2m+5d4qmoy7uxAQ/DA77wZUFKu3?=
-x-ms-exchange-transport-forked: True
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=UDSNgHCX;
+ spf=pass (domain: gmail.com, ip: 209.85.215.172, mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f172.google.com with SMTP id f129so2887713pgc.1
+        for <yocto@lists.yoctoproject.org>; Wed, 15 Sep 2021 07:17:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-transfer-encoding:content-language;
+        bh=Bii5pdBAf7rlHMUTVx8aOC0NAGn0oIOjtlrs3mUauus=;
+        b=UDSNgHCXJIB2HhM9H8Y26zzY8vN6OJrR1PtYNIkzH6RsX+pfghegfoCI9iuyD78uug
+         oepncduvc+YO2Spi3aIsPDAE89N5L+/1BTvpNxEkW7CT2DAsrJAnzROvFFMo82Kj1se9
+         mc9hafYGXTderJnqUQtKUgbzTnhK41etG1a7PsLAth3mRE/PsLp4c3Tw3SIzMlIzerZM
+         fglWEK4pchvwl0u/asYZnO7J57NJ7/jCKWDkTGm8SyrKRKVbusXeG+pALT0Arjl2w1dL
+         tww0UPE5a+oLoa38nD8Pv7BjRJLhN2MJRBox3KzA2zdwH7nSHJzdc9Qps23Zw5Td3ACM
+         nhLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=Bii5pdBAf7rlHMUTVx8aOC0NAGn0oIOjtlrs3mUauus=;
+        b=eyFibGTzLk0XnW9EtPBCHH1YuLUxXx6aG7mXZtLB6ZmNuWLp9EoRUf6rdpLdOasNHi
+         avZ0ADx61PPQufEXaEAXCO44Ffs3mzMQzyo/swgZYhULiNc/93XIuQ7KIPkWpgd7M5K7
+         RO3SEAkuEraKNc1sBu0IuE/Ls1uxXzfZXgPLBBb821KDJ2dI8aeavdSowfMyd/krnbqH
+         IjfaOX3o4c1hKxkTZlSTyPrmGTXc9aFYtSekwaJFLjeMcsbqpo0am201RtHox5vKipAk
+         o4hcpABhnDLeNudrl9ccFZAeY3BQ/I+MFjCnlxdB56saPik1tkeQi8W6BqxDZE/waCUg
+         cn3g==
+X-Gm-Message-State: AOAM532oldFiDj7UA7KF92/E3Ok5roFH93FOF2UEt7yLURBuHMEGAZWM
+	3/8Vc4Hd8pKB3OGb8lUG2kNoPlnNPKQ=
+X-Google-Smtp-Source: ABdhPJwOiEKhRQ+qYXl0q9Wp4Ch0fV3OoXT5bfCfuyrPWmhOKk69iB+9wXIjW/G6alwm1g7NisfJ5A==
+X-Received: by 2002:a63:517:: with SMTP id 23mr20791551pgf.245.1631715457883;
+        Wed, 15 Sep 2021 07:17:37 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from ?IPv6:2601:202:4180:a5c0:35e:ec78:cef4:300f? ([2601:202:4180:a5c0:35e:ec78:cef4:300f])
+        by smtp.gmail.com with ESMTPSA id h16sm137123pfn.215.2021.09.15.07.17.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Sep 2021 07:17:37 -0700 (PDT)
+Subject: Re: [yocto] [meta-security][PATCH] sssd: 2.5.1 -> 2.5.2
+To: kai <kai.kang@windriver.com>, yocto@lists.yoctoproject.org
+References: <20210910083927.40482-1-kai.kang@windriver.com>
+From: "Armin Kuster" <akuster808@gmail.com>
+Message-ID: <6193a2ef-34a4-60e1-1e02-f4e2c6590931@gmail.com>
+Date: Wed, 15 Sep 2021 07:17:36 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5372.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4635f455-4573-4de3-3b0d-08d9781b1f58
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Sep 2021 07:33:33.3319
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: xuvTELRKHK+GUOwbG/Aly/MLO2HNc3Ho58HWOhaP3UYo4QLjKye1Cy4QDaCjRsOuIPgVY721BG3ZzGR3qWHjiA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5276
-Return-Path: jay.shen.teoh@intel.com
-X-OriginatorOrg: intel.com
+In-Reply-To: <20210910083927.40482-1-kai.kang@windriver.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
 
-SGVsbG8gYWxsLA0KDQpUaGlzIGlzIHRoZSBmdWxsIHJlcG9ydCBmb3IgeW9jdG8tMy4zLjMucmMy
-OiAgDQpodHRwczovL2dpdC55b2N0b3Byb2plY3Qub3JnL2NnaXQvY2dpdC5jZ2kveW9jdG8tdGVz
-dHJlc3VsdHMtY29udHJpYi90cmVlLz9oPWludGVsLXlvY3RvLXRlc3RyZXN1bHRzDQoNCj09PT09
-PT0gU3VtbWFyeSA9PT09PT09PQ0KTm8gaGlnaCBtaWxlc3RvbmUgZGVmZWN0cy4gDQoNCjEgaXNz
-dWUgZm91bmQgDQogICANCkJVRyBpZDoxNDQ5MSAtIHN0YXAuU3RhcFRlc3QudGVzdF9zdGFwIGZh
-aWx1cmUNCiAgDQogIA0KPT09PT09PSBCdWdzID09PT09PT09DQpodHRwczovL2J1Z3ppbGxhLnlv
-Y3RvcHJvamVjdC5vcmcvc2hvd19idWcuY2dpP2lkPTE0NDkxDQoNClRoYW5rcywNCkpheQ0KDQo+
-IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IHFhLWJ1aWxkLW5vdGlmaWNhdGlv
-bkBsaXN0cy55b2N0b3Byb2plY3Qub3JnIDxxYS1idWlsZC0NCj4gbm90aWZpY2F0aW9uQGxpc3Rz
-LnlvY3RvcHJvamVjdC5vcmc+IE9uIEJlaGFsZiBPZiBSaWNoYXJkIFB1cmRpZQ0KPiBTZW50OiBG
-cmlkYXksIDEwIFNlcHRlbWJlciwgMjAyMSA0OjAwIEFNDQo+IFRvOiA8eW9jdG9AbGlzdHMueW9j
-dG9wcm9qZWN0Lm9yZz4gPHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+DQo+IENjOiBxYS1i
-dWlsZC1ub3RpZmljYXRpb24gPHFhLWJ1aWxkLW5vdGlmaWNhdGlvbkBsaXN0cy55b2N0b3Byb2pl
-Y3Qub3JnPg0KPiBTdWJqZWN0OiBbcWEtYnVpbGQtbm90aWZpY2F0aW9uXSBRQSBub3RpZmljYXRp
-b24gZm9yIGNvbXBsZXRlZCBhdXRvYnVpbGRlciBidWlsZA0KPiAoeW9jdG8tMy4zLjMucmMyKQ0K
-PiANCj4gQSBidWlsZCBmbGFnZ2VkIGZvciBRQSAoeW9jdG8tMy4zLjMucmMyKSB3YXMgY29tcGxl
-dGVkIG9uIHRoZSBhdXRvYnVpbGRlciBhbmQgaXMNCj4gYXZhaWxhYmxlIGF0Og0KPiANCj4gDQo+
-ICAgICBodHRwczovL2F1dG9idWlsZGVyLnlvY3RvLmlvL3B1Yi9yZWxlYXNlcy95b2N0by0zLjMu
-My5yYzINCj4gDQo+IA0KPiBCdWlsZCBoYXNoIGluZm9ybWF0aW9uOg0KPiANCj4gYml0YmFrZTog
-YzdiNTA2ZDExZGY3OGNmYzQ2MTBkYjY1Nzg3NDVlYWE2MjIwYjEzYQ0KPiBtZXRhLWFnbDogNjAz
-NDRlZmE3YTUwZGMyNTQ4ZmM0YjVkNjhiNWFkNGQ2MGM0MDIzYQ0KPiBtZXRhLWFybTogYmE4MmVh
-OTIwYTNhNDMyNDRhMGE3MmJkNzQ4MTdlMmYwMGY0YTFhZg0KPiBtZXRhLWF3czogMTcxYWEyY2Y0
-ZDEyZmY0ODc3ZTkxMDRiNmVjNDZiZTU0MTI4ZTNkOA0KPiBtZXRhLWdwbHYyOiA5ZTExOWYzMzNj
-YzhmNTNiZDNjZjY0MzI2ZjgyNmRiYzZjZTNkYjBmDQo+IG1ldGEtaW50ZWw6IDVjNGE2YjAyZjY1
-MGE5OWE1ZWM1NTU2MTQ0M2ZjZjg4MGE4NjNkMTkNCj4gbWV0YS1taW5ndzogNDIyYjk2Y2IyYjYx
-MTY0NDJiZTFmNDBkZmI1YmQ3NzQ0N2QxMjE5ZQ0KPiBtZXRhLW9wZW5lbWJlZGRlZDogN2JkN2Ux
-ZGE5MDM0ZTcyY2E0MjYyZGJhNTVmNzBiMmIyMzQ5OWFhZQ0KPiBvZWNvcmU6IDU2N2RkMzVkODkz
-YzVkODk2OWQ0MWYyNjNhMjRkYThmYmFlM2ZjMmYNCj4gcG9reTogMGEyY2E5ZDYwZjM4NTE1MTVh
-NzlkNWFhOWRkZDhiNDA2OWI1YTIwNg0KPiANCj4gDQo+IA0KPiBUaGlzIGlzIGFuIGF1dG9tYXRl
-ZCBtZXNzYWdlIGZyb20gdGhlIFlvY3RvIFByb2plY3QgQXV0b2J1aWxkZXINCj4gR2l0OiBnaXQ6
-Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy95b2N0by1hdXRvYnVpbGRlcjINCj4gRW1haWw6IHJpY2hh
-cmQucHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmcNCj4gDQo+IA0KPiANCj4gDQo+IA0KPiANCj4g
-DQoNCg==
+merged
+thanks
+
+On 9/10/21 1:39 AM, kai wrote:
+> From: Kai Kang <kai.kang@windriver.com>
+>
+> SSSD 2.5.2 Highlights
+> * General information
+>   - originalADgidNumber attribute in the SSSD cache is now indexed
+>
+> * New features
+>   - Debug messages in data provider include a unique request ID that can
+>     be used to track the request from its start to its end (requires
+>     libtevent >= 0.11.0)
+>
+> * Important fixes
+>   - Update large files in the files provider in batches to avoid timeouts
+>
+> * Configuration changes
+>   - Add new config option fallback_to_nss
+>
+> Full release notes:
+> * https://sssd.io/release-notes/sssd-2.5.2.html
+>
+> And backport patch to fix CVE-2021-3621.
+>
+> CVE: CVE-2021-3621
+>
+> Signed-off-by: Kai Kang <kai.kang@windriver.com>
+> ---
+>  .../sssd/files/CVE-2021-3621.patch            | 288 ++++++++++++++++++
+>  .../sssd/{sssd_2.5.1.bb => sssd_2.5.2.bb}     |   3 +-
+>  2 files changed, 290 insertions(+), 1 deletion(-)
+>  create mode 100644 recipes-security/sssd/files/CVE-2021-3621.patch
+>  rename recipes-security/sssd/{sssd_2.5.1.bb => sssd_2.5.2.bb} (97%)
+>
+> diff --git a/recipes-security/sssd/files/CVE-2021-3621.patch b/recipes-security/sssd/files/CVE-2021-3621.patch
+> new file mode 100644
+> index 0000000..7a59df9
+> --- /dev/null
+> +++ b/recipes-security/sssd/files/CVE-2021-3621.patch
+> @@ -0,0 +1,288 @@
+> +Backport patch to fix CVE-2021-3621.
+> +
+> +Upstream-Status: Backport [https://github.com/SSSD/sssd/commit/7ab83f9]
+> +CVE: CVE-2021-3621
+> +
+> +Signed-off-by: Kai Kang <kai.kang@windriver.com>
+> +
+> +From 7ab83f97e1cbefb78ece17232185bdd2985f0bbe Mon Sep 17 00:00:00 2001
+> +From: Alexey Tikhonov <atikhono@redhat.com>
+> +Date: Fri, 18 Jun 2021 13:17:19 +0200
+> +Subject: [PATCH] TOOLS: replace system() with execvp() to avoid execution of
+> + user supplied command
+> +MIME-Version: 1.0
+> +Content-Type: text/plain; charset=UTF-8
+> +Content-Transfer-Encoding: 8bit
+> +
+> +:relnote: A flaw was found in SSSD, where the sssctl command was
+> +vulnerable to shell command injection via the logs-fetch and
+> +cache-expire subcommands. This flaw allows an attacker to trick
+> +the root user into running a specially crafted sssctl command,
+> +such as via sudo, to gain root access. The highest threat from this
+> +vulnerability is to confidentiality, integrity, as well as system
+> +availability.
+> +This patch fixes a flaw by replacing system() with execvp().
+> +
+> +:fixes: CVE-2021-3621
+> +
+> +Reviewed-by: Pavel Březina <pbrezina@redhat.com>
+> +---
+> + src/tools/sssctl/sssctl.c      | 39 ++++++++++++++++-------
+> + src/tools/sssctl/sssctl.h      |  2 +-
+> + src/tools/sssctl/sssctl_data.c | 57 +++++++++++-----------------------
+> + src/tools/sssctl/sssctl_logs.c | 32 +++++++++++++++----
+> + 4 files changed, 73 insertions(+), 57 deletions(-)
+> +
+> +diff --git a/src/tools/sssctl/sssctl.c b/src/tools/sssctl/sssctl.c
+> +index 2997dbf968..8adaf30910 100644
+> +--- a/src/tools/sssctl/sssctl.c
+> ++++ b/src/tools/sssctl/sssctl.c
+> +@@ -97,22 +97,36 @@ sssctl_prompt(const char *message,
+> +     return SSSCTL_PROMPT_ERROR;
+> + }
+> + 
+> +-errno_t sssctl_run_command(const char *command)
+> ++errno_t sssctl_run_command(const char *const argv[])
+> + {
+> +     int ret;
+> ++    int wstatus;
+> + 
+> +-    DEBUG(SSSDBG_TRACE_FUNC, "Running %s\n", command);
+> ++    DEBUG(SSSDBG_TRACE_FUNC, "Running '%s'\n", argv[0]);
+> + 
+> +-    ret = system(command);
+> ++    ret = fork();
+> +     if (ret == -1) {
+> +-        DEBUG(SSSDBG_CRIT_FAILURE, "Unable to execute %s\n", command);
+> +         ERROR("Error while executing external command\n");
+> +         return EFAULT;
+> +-    } else if (WEXITSTATUS(ret) != 0) {
+> +-        DEBUG(SSSDBG_CRIT_FAILURE, "Command %s failed with [%d]\n",
+> +-              command, WEXITSTATUS(ret));
+> ++    }
+> ++
+> ++    if (ret == 0) {
+> ++        /* cast is safe - see
+> ++        https://pubs.opengroup.org/onlinepubs/9699919799/functions/exec.html
+> ++        "The statement about argv[] and envp[] being constants ... "
+> ++        */
+> ++        execvp(argv[0], discard_const_p(char * const, argv));
+> +         ERROR("Error while executing external command\n");
+> +-        return EIO;
+> ++        _exit(1);
+> ++    } else {
+> ++        if (waitpid(ret, &wstatus, 0) == -1) {
+> ++            ERROR("Error while executing external command '%s'\n", argv[0]);
+> ++            return EFAULT;
+> ++        } else if (WEXITSTATUS(wstatus) != 0) {
+> ++            ERROR("Command '%s' failed with [%d]\n",
+> ++                  argv[0], WEXITSTATUS(wstatus));
+> ++            return EIO;
+> ++        }
+> +     }
+> + 
+> +     return EOK;
+> +@@ -132,11 +146,14 @@ static errno_t sssctl_manage_service(enum sssctl_svc_action action)
+> + #elif defined(HAVE_SERVICE)
+> +     switch (action) {
+> +     case SSSCTL_SVC_START:
+> +-        return sssctl_run_command(SERVICE_PATH" sssd start");
+> ++        return sssctl_run_command(
+> ++                      (const char *[]){SERVICE_PATH, "sssd", "start", NULL});
+> +     case SSSCTL_SVC_STOP:
+> +-        return sssctl_run_command(SERVICE_PATH" sssd stop");
+> ++        return sssctl_run_command(
+> ++                      (const char *[]){SERVICE_PATH, "sssd", "stop", NULL});
+> +     case SSSCTL_SVC_RESTART:
+> +-        return sssctl_run_command(SERVICE_PATH" sssd restart");
+> ++        return sssctl_run_command(
+> ++                      (const char *[]){SERVICE_PATH, "sssd", "restart", NULL});
+> +     }
+> + #endif
+> + 
+> +diff --git a/src/tools/sssctl/sssctl.h b/src/tools/sssctl/sssctl.h
+> +index 0115b2457c..599ef65196 100644
+> +--- a/src/tools/sssctl/sssctl.h
+> ++++ b/src/tools/sssctl/sssctl.h
+> +@@ -47,7 +47,7 @@ enum sssctl_prompt_result
+> + sssctl_prompt(const char *message,
+> +               enum sssctl_prompt_result defval);
+> + 
+> +-errno_t sssctl_run_command(const char *command);
+> ++errno_t sssctl_run_command(const char *const argv[]); /* argv[0] - command */
+> + bool sssctl_start_sssd(bool force);
+> + bool sssctl_stop_sssd(bool force);
+> + bool sssctl_restart_sssd(bool force);
+> +diff --git a/src/tools/sssctl/sssctl_data.c b/src/tools/sssctl/sssctl_data.c
+> +index 8d79b977fd..bf22913416 100644
+> +--- a/src/tools/sssctl/sssctl_data.c
+> ++++ b/src/tools/sssctl/sssctl_data.c
+> +@@ -105,15 +105,15 @@ static errno_t sssctl_backup(bool force)
+> +         }
+> +     }
+> + 
+> +-    ret = sssctl_run_command("sss_override user-export "
+> +-                             SSS_BACKUP_USER_OVERRIDES);
+> ++    ret = sssctl_run_command((const char *[]){"sss_override", "user-export",
+> ++                                              SSS_BACKUP_USER_OVERRIDES, NULL});
+> +     if (ret != EOK) {
+> +         ERROR("Unable to export user overrides\n");
+> +         return ret;
+> +     }
+> + 
+> +-    ret = sssctl_run_command("sss_override group-export "
+> +-                             SSS_BACKUP_GROUP_OVERRIDES);
+> ++    ret = sssctl_run_command((const char *[]){"sss_override", "group-export",
+> ++                                              SSS_BACKUP_GROUP_OVERRIDES, NULL});
+> +     if (ret != EOK) {
+> +         ERROR("Unable to export group overrides\n");
+> +         return ret;
+> +@@ -158,8 +158,8 @@ static errno_t sssctl_restore(bool force_start, bool force_restart)
+> +     }
+> + 
+> +     if (sssctl_backup_file_exists(SSS_BACKUP_USER_OVERRIDES)) {
+> +-        ret = sssctl_run_command("sss_override user-import "
+> +-                                 SSS_BACKUP_USER_OVERRIDES);
+> ++        ret = sssctl_run_command((const char *[]){"sss_override", "user-import",
+> ++                                                  SSS_BACKUP_USER_OVERRIDES, NULL});
+> +         if (ret != EOK) {
+> +             ERROR("Unable to import user overrides\n");
+> +             return ret;
+> +@@ -167,8 +167,8 @@ static errno_t sssctl_restore(bool force_start, bool force_restart)
+> +     }
+> + 
+> +     if (sssctl_backup_file_exists(SSS_BACKUP_USER_OVERRIDES)) {
+> +-        ret = sssctl_run_command("sss_override group-import "
+> +-                                 SSS_BACKUP_GROUP_OVERRIDES);
+> ++        ret = sssctl_run_command((const char *[]){"sss_override", "group-import",
+> ++                                                  SSS_BACKUP_GROUP_OVERRIDES, NULL});
+> +         if (ret != EOK) {
+> +             ERROR("Unable to import group overrides\n");
+> +             return ret;
+> +@@ -296,40 +296,19 @@ errno_t sssctl_cache_expire(struct sss_cmdline *cmdline,
+> +                             void *pvt)
+> + {
+> +     errno_t ret;
+> +-    char *cmd_args = NULL;
+> +-    const char *cachecmd = SSS_CACHE;
+> +-    char *cmd = NULL;
+> +-    int i;
+> +-
+> +-    if (cmdline->argc == 0) {
+> +-        ret = sssctl_run_command(cachecmd);
+> +-        goto done;
+> +-    }
+> + 
+> +-    cmd_args = talloc_strdup(tool_ctx, "");
+> +-    if (cmd_args == NULL) {
+> +-        ret = ENOMEM;
+> +-        goto done;
+> ++    const char **args = talloc_array_size(tool_ctx,
+> ++                                          sizeof(char *),
+> ++                                          cmdline->argc + 2);
+> ++    if (!args) {
+> ++        return ENOMEM;
+> +     }
+> ++    memcpy(&args[1], cmdline->argv, sizeof(char *) * cmdline->argc);
+> ++    args[0] = SSS_CACHE;
+> ++    args[cmdline->argc + 1] = NULL;
+> + 
+> +-    for (i = 0; i < cmdline->argc; i++) {
+> +-        cmd_args = talloc_strdup_append(cmd_args, cmdline->argv[i]);
+> +-        if (i != cmdline->argc - 1) {
+> +-            cmd_args = talloc_strdup_append(cmd_args, " ");
+> +-        }
+> +-    }
+> +-
+> +-    cmd = talloc_asprintf(tool_ctx, "%s %s", cachecmd, cmd_args);
+> +-    if (cmd == NULL) {
+> +-        ret = ENOMEM;
+> +-        goto done;
+> +-    }
+> +-
+> +-    ret = sssctl_run_command(cmd);
+> +-
+> +-done:
+> +-    talloc_free(cmd_args);
+> +-    talloc_free(cmd);
+> ++    ret = sssctl_run_command(args);
+> + 
+> ++    talloc_free(args);
+> +     return ret;
+> + }
+> +diff --git a/src/tools/sssctl/sssctl_logs.c b/src/tools/sssctl/sssctl_logs.c
+> +index 9ff2be05b6..ebb2c4571c 100644
+> +--- a/src/tools/sssctl/sssctl_logs.c
+> ++++ b/src/tools/sssctl/sssctl_logs.c
+> +@@ -31,6 +31,7 @@
+> + #include <ldb.h>
+> + #include <popt.h>
+> + #include <stdio.h>
+> ++#include <glob.h>
+> + 
+> + #include "util/util.h"
+> + #include "tools/common/sss_process.h"
+> +@@ -230,6 +231,7 @@ errno_t sssctl_logs_remove(struct sss_cmdline *cmdline,
+> + {
+> +     struct sssctl_logs_opts opts = {0};
+> +     errno_t ret;
+> ++    glob_t globbuf;
+> + 
+> +     /* Parse command line. */
+> +     struct poptOption options[] = {
+> +@@ -253,8 +255,20 @@ errno_t sssctl_logs_remove(struct sss_cmdline *cmdline,
+> + 
+> +         sss_signal(SIGHUP);
+> +     } else {
+> ++        globbuf.gl_offs = 4;
+> ++        ret = glob(LOG_PATH"/*.log", GLOB_ERR|GLOB_DOOFFS, NULL, &globbuf);
+> ++        if (ret != 0) {
+> ++            DEBUG(SSSDBG_CRIT_FAILURE, "Unable to expand log files list\n");
+> ++            return ret;
+> ++        }
+> ++        globbuf.gl_pathv[0] = discard_const_p(char, "truncate");
+> ++        globbuf.gl_pathv[1] = discard_const_p(char, "--no-create");
+> ++        globbuf.gl_pathv[2] = discard_const_p(char, "--size");
+> ++        globbuf.gl_pathv[3] = discard_const_p(char, "0");
+> ++
+> +         PRINT("Truncating log files...\n");
+> +-        ret = sssctl_run_command("truncate --no-create --size 0 " LOG_FILES);
+> ++        ret = sssctl_run_command((const char * const*)globbuf.gl_pathv);
+> ++        globfree(&globbuf);
+> +         if (ret != EOK) {
+> +             ERROR("Unable to truncate log files\n");
+> +             return ret;
+> +@@ -269,8 +283,8 @@ errno_t sssctl_logs_fetch(struct sss_cmdline *cmdline,
+> +                           void *pvt)
+> + {
+> +     const char *file;
+> +-    const char *cmd;
+> +     errno_t ret;
+> ++    glob_t globbuf;
+> + 
+> +     /* Parse command line. */
+> +     ret = sss_tool_popt_ex(cmdline, NULL, SSS_TOOL_OPT_OPTIONAL, NULL, NULL,
+> +@@ -280,13 +294,19 @@ errno_t sssctl_logs_fetch(struct sss_cmdline *cmdline,
+> +         return ret;
+> +     }
+> + 
+> +-    cmd = talloc_asprintf(tool_ctx, "tar -czf %s %s", file, LOG_FILES);
+> +-    if (cmd == NULL) {
+> +-        ERROR("Out of memory!");
+> ++    globbuf.gl_offs = 3;
+> ++    ret = glob(LOG_PATH"/*.log", GLOB_ERR|GLOB_DOOFFS, NULL, &globbuf);
+> ++    if (ret != 0) {
+> ++        DEBUG(SSSDBG_CRIT_FAILURE, "Unable to expand log files list\n");
+> ++        return ret;
+> +     }
+> ++    globbuf.gl_pathv[0] = discard_const_p(char, "tar");
+> ++    globbuf.gl_pathv[1] = discard_const_p(char, "-czf");
+> ++    globbuf.gl_pathv[2] = discard_const_p(char, file);
+> + 
+> +     PRINT("Archiving log files into %s...\n", file);
+> +-    ret = sssctl_run_command(cmd);
+> ++    ret = sssctl_run_command((const char * const*)globbuf.gl_pathv);
+> ++    globfree(&globbuf);
+> +     if (ret != EOK) {
+> +         ERROR("Unable to archive log files\n");
+> +         return ret;
+> diff --git a/recipes-security/sssd/sssd_2.5.1.bb b/recipes-security/sssd/sssd_2.5.2.bb
+> similarity index 97%
+> rename from recipes-security/sssd/sssd_2.5.1.bb
+> rename to recipes-security/sssd/sssd_2.5.2.bb
+> index 1c77480..76d6e03 100644
+> --- a/recipes-security/sssd/sssd_2.5.1.bb
+> +++ b/recipes-security/sssd/sssd_2.5.2.bb
+> @@ -23,9 +23,10 @@ SRC_URI = "https://github.com/SSSD/sssd/releases/download/${PV}/sssd-${PV}.tar.g
+>             file://drop_ntpdate_chk.patch \
+>             file://fix-ldblibdir.patch \
+>             file://musl_fixup.patch \
+> +           file://CVE-2021-3621.patch \
+>             "
+>  
+> -SRC_URI[sha256sum] = "ce2f5d84a3f1750093318afd27f4fd75b1e3e75f7d80fc42d21a40cc54b58ea4"
+> +SRC_URI[sha256sum] = "5e21b3c7b4a2f1063d0fbdd3216d29886b6eaba153b44fb5961698367f399a0f"
+>  
+>  inherit autotools pkgconfig gettext python3-dir features_check systemd
+>  
+>
+> 
+>
+
