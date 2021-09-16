@@ -5,86 +5,54 @@ X-Originating-Location: Syracuse, Utah, US (68.177.138.69)
 X-Originating-Platform: Linux Firefox 92
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Wed, 15 Sep 2021 21:26:11 -0700
+Date: Wed, 15 Sep 2021 21:34:17 -0700
 References: <ec02b6cfb338b5b2ca3242ecfd73ff9228e42129.camel@linuxfoundation.org>
 In-Reply-To: <ec02b6cfb338b5b2ca3242ecfd73ff9228e42129.camel@linuxfoundation.org>
-Message-ID: <10622.1631766371224484199@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="a5dOyMnLI6T2mfNQtxYz"
+Message-ID: <12063.1631766857327604520@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="DutptPOzjGCsxJvvxe1y"
 
---a5dOyMnLI6T2mfNQtxYz
+--DutptPOzjGCsxJvvxe1y
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Below is an accidental DM between Richard and myself. I am posting it here
-for others.
+Thanks for the replies, Richard.
 
-> When setting up a shared sstate cache via NFS, do all the build hosts hav=
-e
-> read/write access to the sstate cache at the same time?=C2=A0 Doesn't tha=
-t cause
-> corruption in the sstate cache?=C2=A0 If they only have read-only access,=
- is there
-> anything to consider when selecting which build host will generate the ss=
-tate
-> cache that is shared?
+Can SSTATE_DIR be shared across build hosts with different OS's=C2=A0 (Ubun=
+tu 18.04, ubuntu 20.04, etc, RHEL)?
 
-Writes to SSTATE_DIR are careful and should use atomic moves into place so
-sharing read/write via NFS should be safe. We do test this on our autobuild=
-er
-quite heavily.
+Our build hosts are somewhat ephemeral.=C2=A0 Occasionally we need to swap =
+out a build host for another one. So to bring on a new fresh build host and=
+ have it cooperate correctly with the other build hosts and the PR server, =
+what does it need?=C2=A0 I understand having the NFS mounted SSTATE_DIR, an=
+d using the PRSERV_HOST variable set correctly. But what else?=C2=A0 Does t=
+he new build host need access to a shared PERSISTENT_DIR or a shared BUILDH=
+ISTORY_DIR?
 
-The main gotcha people run into with sstate is deletion since we can't hand=
-le
-deletion of files from sstate with builds running without the builds potent=
-ially
-showing non-fatal errors. We just don't delete things often on the main AB.
+What happens if the shared SSTATE cache get corrupted and has to be deleted=
+?=C2=A0=C2=A0 Won't that cause all the PR server values to reset?=C2=A0 We =
+just want to make sure we know how to recover from a situation like that.
+Thanks a bunch.
+Rusty
 
-> Finally, Is it beneficial to use BUILDHISTORY_PUSH_REPO on all the build =
-hosts
-> so there is a unified build history?
-
-It can be useful, we do this for a subset of our core builds but the repo d=
-oes
-get large. The buildhistory codepaths are a lot more complex and likely to =
-have
-concurrency issues.
-
-> Is it problematic to share SSTATE across build hosts
-> (all Ubuntu 20.04 x86_64) if they build for different MACHINE types (ie
-> qemux86-64, imx8mq, beaglebone-yocto)?
-
-No, sstate is designed to be shared like that.
-
-Cheers,
-
-Richard
-
---a5dOyMnLI6T2mfNQtxYz
+--DutptPOzjGCsxJvvxe1y
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<span class=3D"im">Below is an accidental DM between Richard and myself. I =
-am posting it here <br />for others.<br /><br />&gt; When setting up a shar=
-ed sstate cache via NFS, do all the build hosts have<br />&gt; read/write a=
-ccess to the sstate cache at the same time?&nbsp; Doesn't that cause<br />&=
-gt; corruption in the sstate cache?&nbsp; If they only have read-only acces=
-s, is there<br />&gt; anything to consider when selecting which build host =
-will generate the sstate<br />&gt; cache that is shared?&nbsp; <br /><br />=
-</span> Writes to SSTATE_DIR are careful and should use atomic moves into p=
-lace so<br />sharing read/write via NFS should be safe. We do test this on =
-our autobuilder<br />quite heavily.<br /><br />The main gotcha people run i=
-nto with sstate is deletion since we can't handle<br />deletion of files fr=
-om sstate with builds running without the builds potentially<br />showing n=
-on-fatal errors. We just don't delete things often on the main AB.<span cla=
-ss=3D"im"><br /><br />&gt; Finally, Is it beneficial to use BUILDHISTORY_PU=
-SH_REPO on all the build hosts<br />&gt; so there is a unified build histor=
-y?<br /><br /></span> It can be useful, we do this for a subset of our core=
- builds but the repo does<br />get large. The buildhistory codepaths are a =
-lot more complex and likely to have<br />concurrency issues.<br /><br /><sp=
-an class=3D"im">&gt; Is it problematic to share SSTATE across build hosts<b=
-r />&gt; (all Ubuntu 20.04 x86_64) if they build for different MACHINE type=
-s (ie<br />&gt; qemux86-64, imx8mq, beaglebone-yocto)?<br /><br /></span> N=
-o, sstate is designed to be shared like that.<br /><br />Cheers,<br /><br /=
->Richard
+<div>Thanks for the replies, Richard.&nbsp; <br /><br />Can SSTATE_DIR be s=
+hared across build hosts with different OS's&nbsp; (Ubuntu 18.04, ubuntu 20=
+.04, etc, RHEL)?</div>
+<div>&nbsp;</div>
+<div>Our build hosts are somewhat ephemeral.&nbsp; Occasionally we need to =
+swap out a build host for another one. So to bring on a new fresh build hos=
+t and have it cooperate correctly with the other build hosts and the PR ser=
+ver, what does it need?&nbsp; I understand having the NFS mounted SSTATE_DI=
+R, and using the PRSERV_HOST variable set correctly. But what else?&nbsp; D=
+oes the new build host need access to a shared PERSISTENT_DIR or a shared B=
+UILDHISTORY_DIR?</div>
+<div>&nbsp;</div>
+What happens if the shared SSTATE cache get corrupted and has to be deleted=
+?&nbsp;&nbsp; Won't that cause all the PR server values to reset?&nbsp; We =
+just want to make sure we know how to recover from a situation like that.<b=
+r />Thanks a bunch.<br />Rusty
 
---a5dOyMnLI6T2mfNQtxYz--
+--DutptPOzjGCsxJvvxe1y--
