@@ -1,42 +1,42 @@
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
- by mx.groups.io with SMTP id smtpd.web10.498.1631796383874430090
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+ by mx.groups.io with SMTP id smtpd.web08.465.1631796384594256214
  for <yocto@lists.yoctoproject.org>;
  Thu, 16 Sep 2021 05:46:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=GsXFn+zu;
- spf=pass (domain: gmail.com, ip: 209.85.221.44, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-wr1-f44.google.com with SMTP id q26so9267231wrc.7
-        for <yocto@lists.yoctoproject.org>; Thu, 16 Sep 2021 05:46:23 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=Ixv093/Q;
+ spf=pass (domain: gmail.com, ip: 209.85.221.45, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-wr1-f45.google.com with SMTP id i23so9321457wrb.2
+        for <yocto@lists.yoctoproject.org>; Thu, 16 Sep 2021 05:46:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=eCEoraIjiyozv0Hj2FuqjApFYrcw+uDBA49Cq/mvh3s=;
-        b=GsXFn+zuyxVOcDbehW5U1JIjltdzTo58Y+9UK4MlYHLA2Sx1/wONInHpvxK8jywS/D
-         Z90HHZQoSFpw7X2h9cPXg9lVFDXbqh3CpWthz8r6N2zwywfuxK3M6V7UjTi+rRUlBl7+
-         +/3W+1hQef5OaqtQ+kFZ/cIhAwncn9APpVeoXPjtBfu35B2mNJxcqKtl1UTocDQib3rq
-         7rEAgJ4cl2X+JzYRa/Wg6Q7FPT6RCdPo1kqksNY+/9b7wZcVkTVqyL35dGH4H67Ik1BC
-         ViU/xtyqg3w2a4BHxKzXpMzbfApgd3RLKfkCFw63JfubG18M8DQQCXz9/iMZ1KSNn2tG
-         LNqA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=SA1tq3asZQRQLk7ikHf6yXWVBGwDXivdevRfiP4wmDA=;
+        b=Ixv093/QrNYPDZ9PREjEGK894IYDzfYhc51AbPdISBqKM5gjR2qWHMe9Hyufw8EYdF
+         d5iH/3XQLP1Hq6pM0szK7UxIUxiJXLnVh7zfof0cnwlfWeo4kpy7uMW0BkXbs20gWdow
+         JqmMLj/r8wqdLrbu79Khr6tHQIz6nFK3ebpsm5WutPUbpWlf4NpjRLmYAhn/sQAaZR5T
+         +QdDV0U5GphXEnukY+k/0bK9gRJLonmRaloWS2KClUhjBl3laEJLiJ4/bacozbPszMSc
+         q0vzm6WHaRruM5SuC84M8qEB57qIX/Cv6j3qEOyENEUOSUXtVaOKOirzxJpyiG+VuQKN
+         uSmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=eCEoraIjiyozv0Hj2FuqjApFYrcw+uDBA49Cq/mvh3s=;
-        b=Sv30nEdapZolOVcr7m1Yt26IsoRFCPVHVB+pQlFBkdug8prrm8kUsmDWk8he8IXd5i
-         o1TUhnbn1NWPqI8OqaikwIhRA4jYqCs8CBIb9QLxLwFyVBu/rWd0viIsSLszmh6SSOa7
-         /hFUEd3TynriHcPV0y0KI3PKplCOfrL2MhqG1mMryGdA0Y7eylfiuUjxGy4cDQaM820d
-         NeIAzm+D2N94SwvVpoBBTLXBDNv7YKYXnZDsfZCW053rG3r5rUUpuWtGeEGyAfASVSZZ
-         rsgtsqP7Bli4pabTfSih23itZ80voXmePaJUE/e3T4+HAJcb9I7BJ6p0hKsjoGhFNR1d
-         opcg==
-X-Gm-Message-State: AOAM530gTGKDxmpeKGPjQGH4b360gow6RqOmY68r2yZoaVZq8dpzQN/+
-	B7iqG3NEWzr99IQwJsrWXtFG/Bb0dcU=
-X-Google-Smtp-Source: ABdhPJzQ8GkxBjebBnsgzu2AmgMk5QZ95tWPFDZ8lq/dqZrFqfhD0D0gJMcBEOoTseQEh3znX+S9Eg==
-X-Received: by 2002:adf:cd92:: with SMTP id q18mr5827256wrj.211.1631796382517;
-        Thu, 16 Sep 2021 05:46:22 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=SA1tq3asZQRQLk7ikHf6yXWVBGwDXivdevRfiP4wmDA=;
+        b=WN/F9YYlwW07NPfUfWwfPcUoI5DFO/NJG+G3IZzi4NBliEid5nrX3cxdwlkQnohj6z
+         JQj84D4n1M/bQcKWXEz3b7sq3ewDn2wf9Of4d+1pCdzaEzG/8asSflycaHi6BI0+TRVV
+         AwX6Jgy1x0FXKiRfiXMGdYbihCfNkTO4ajGheKiQJS4c6Yc1UUwYJYvJX5xnyxz9P0Rq
+         BnlIy9sBn1XRbto3uRW7e8f3FJ6mmggB6kFu+N11Hur5nojIiwmr1qAz+AE6p2Rfcb99
+         5WI5y0ER/39S/bl0ae4NF51/Do8+xsawlyv4rejTj7buLUJLsAg3xn+85MXxYwdgWcXX
+         S9yg==
+X-Gm-Message-State: AOAM532AAC9o6FgogtvKRArquXWKlb7SYmVVSCzvj7Ndn1F0PXVB6MUt
+	BhEk2yrh0HpigKQpiSzSz1Djij3Cst0=
+X-Google-Smtp-Source: ABdhPJy3Rq8ThD29qxcQb7sFdgQBc18uH0NBYQCAW2nUeU+cpXOqZk2kVSEPK/WWC9DsBAGgJDFp4A==
+X-Received: by 2002:adf:e9c4:: with SMTP id l4mr5919627wrn.257.1631796383264;
+        Thu, 16 Sep 2021 05:46:23 -0700 (PDT)
 Return-Path: <alex.kanavin@gmail.com>
 Received: from alex-lx-laptop.tec.linutronix.de (b2b-109-90-143-202.unitymedia.biz. [109.90.143.202])
-        by smtp.gmail.com with ESMTPSA id l19sm3162383wrc.16.2021.09.16.05.46.21
+        by smtp.gmail.com with ESMTPSA id l19sm3162383wrc.16.2021.09.16.05.46.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Thu, 16 Sep 2021 05:46:22 -0700 (PDT)
 From: "Alexander Kanavin" <alex.kanavin@gmail.com>
@@ -44,103 +44,125 @@ X-Google-Original-From: Alexander Kanavin <alex@linutronix.de>
 To: yocto@lists.yoctoproject.org,
 	anibal.limon@linaro.org
 Cc: Alexander Kanavin <alex@linutronix.de>
-Subject: [ptest-runner][PATCH 1/3] tests/utils.c: fix a memory corruption in find_word
-Date: Thu, 16 Sep 2021 14:46:15 +0200
-Message-Id: <20210916124617.72791-1-alex@linutronix.de>
+Subject: [ptest-runner][PATCH 2/3] utils.c: handle test timeouts directly with poll()
+Date: Thu, 16 Sep 2021 14:46:16 +0200
+Message-Id: <20210916124617.72791-2-alex@linutronix.de>
 X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20210916124617.72791-1-alex@linutronix.de>
+References: <20210916124617.72791-1-alex@linutronix.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-I also took the opportunity to correct a weird API that
-returns a result (or not), depending on some internal condition.
+if poll()'s timeout expires that means the test did not
+produce any output, which is exactly what we need to catch.
+
+So there's no need to set up separate timeouts with signals
+and alarms, and this greatly simplifies more sophisticated
+processing of hanging tests (such as collecting overall system data).
 
 Signed-off-by: Alexander Kanavin <alex@linutronix.de>
 ---
- tests/utils.c | 35 ++++++++++++++++++-----------------
- 1 file changed, 18 insertions(+), 17 deletions(-)
+ utils.c | 34 ++++++++++------------------------
+ 1 file changed, 10 insertions(+), 24 deletions(-)
 
-diff --git a/tests/utils.c b/tests/utils.c
-index 8fffc18..19657ee 100644
---- a/tests/utils.c
-+++ b/tests/utils.c
-@@ -26,6 +26,7 @@
- #include <stdlib.h>
- #include <stdio.h>
- #include <errno.h>
-+#include <stdbool.h>
+diff --git a/utils.c b/utils.c
+index 128ff61..58c3aa1 100644
+--- a/utils.c
++++ b/utils.c
+@@ -51,7 +51,6 @@
+ #include "utils.h"
  
- #include <check.h>
+ #define GET_STIME_BUF_SIZE 1024
+-#define WAIT_CHILD_POLL_TIMEOUT_MS 200
+ #define WAIT_CHILD_BUF_MAX_SIZE 1024
  
-@@ -61,16 +62,13 @@ static char *ptests_not_found[] = {
+ #define UNUSED(x) (void)(x)
+@@ -296,7 +295,7 @@ read_child(void *arg)
+ 	pfds[1].events = POLLIN;
  
- static struct ptest_options EmptyOpts;
+ 	do {
+-		r = poll(pfds, 2, WAIT_CHILD_POLL_TIMEOUT_MS);
++		r = poll(pfds, 2, _child_reader.timeout*1000);
+ 		if (r > 0) {
+ 			char buf[WAIT_CHILD_BUF_MAX_SIZE];
+ 			ssize_t n;
+@@ -313,10 +312,10 @@ read_child(void *arg)
+ 					fwrite(buf, (size_t)n, 1, _child_reader.fps[1]);
+ 			}
  
--static inline void
--find_word(int *found, const char *line, const char *word)
-+static inline bool
-+find_word(const char *line, const char *word)
- {
+-			/* Child output reset alarm */
+-			alarm(0);
+-			alarm(_child_reader.timeout);
+-		}
++		} else if (r == 0) {
++			_child_reader.timeouted = 1;
++			kill(-_child_reader.pid, SIGKILL);
++                }
+ 
+ 		fflush(_child_reader.fps[0]);
+ 		fflush(_child_reader.fps[1]);
+@@ -344,26 +343,11 @@ run_child(char *run_ptest, int fd_stdout, int fd_stderr)
+ 	/* exit(1); not needed? */
+ }
+ 
+-static void
+-timeout_child_handler(int signo)
+-{
+-	UNUSED(signo);
+-	_child_reader.timeouted = 1;
+-	kill(-_child_reader.pid, SIGKILL);
+-}
 -
--	char *pivot = NULL;
--
--	pivot = strdup(line);
--	pivot[strlen(word)] = '\0';
--	if (strcmp(pivot, word) == 0) { *found = 1; }
--	free(pivot);
-+	if (strncmp(line, word, strlen(word)) == 0)
-+                return true;
-+        else
-+                return false;
- }
- 
- static void test_ptest_expected_failure(struct ptest_list *, const unsigned int, char *,
-@@ -206,18 +204,19 @@ search_for_timeout_and_duration(const int rp, FILE *fp_stdout)
- 	const char *timeout_str = "TIMEOUT";
- 	const char *duration_str = "DURATION";
- 	char line_buf[PRINT_PTEST_BUF_SIZE];
--	int found_timeout = 0, found_duration = 0;
-+	bool found_timeout = false, found_duration = false;
- 	char *line = NULL;
- 
- 	ck_assert(rp != 0);
- 
- 	while ((line = fgets(line_buf, PRINT_PTEST_BUF_SIZE, fp_stdout)) != NULL) {
--		find_word(&found_timeout, line, timeout_str);
--		find_word(&found_duration, line, duration_str);
-+		// once true, stay true
-+		found_timeout = found_timeout ? found_timeout : find_word(line, timeout_str);
-+		found_duration = found_duration ? found_duration : find_word(line, duration_str);
- 	}
- 
--	ck_assert(found_timeout == 1);
--	ck_assert(found_duration == 1);
-+	ck_assert(found_timeout == true);
-+	ck_assert(found_duration == true);
- }
- 
- START_TEST(test_run_timeout_duration_ptest)
-@@ -236,16 +235,18 @@ search_for_fail(const int rp, FILE *fp_stdout)
+ static inline int
+-wait_child(pid_t pid, unsigned int timeout)
++wait_child(pid_t pid)
  {
-         const char *fail_str = "ERROR: Exit status is 10";
-         char line_buf[PRINT_PTEST_BUF_SIZE];
--        int found_fail = 0;
-+        int found_fail = false;
-         char *line = NULL;
+ 	int status = -1;
  
-         ck_assert(rp != 0);
+-	_child_reader.timeout = timeout;
+-	_child_reader.timeouted = 0;
+-	_child_reader.pid = pid;
+-
+-	/* setup alarm to timeout based on std{out,err} in the child */
+-	alarm(timeout);
+-
+ 	waitpid(pid, &status, 0);
+ 	if (WIFEXITED(status))
+ 		status = WEXITSTATUS(status);
+@@ -462,6 +446,8 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
+ 		_child_reader.fds[1] = pipefd_stderr[0];
+ 		_child_reader.fps[0] = fp;
+ 		_child_reader.fps[1] = fp_stderr;
++		_child_reader.timeout = opts.timeout;
++		_child_reader.timeouted = 0;
+ 		rc = pthread_create(&tid, NULL, read_child, NULL);
+ 		if (rc != 0) {
+ 			fprintf(fp, "ERROR: Failed to create reader thread, %s\n", strerror(errno));
+@@ -469,7 +455,6 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
+ 			close(pipefd_stdout[1]);
+ 			break;
+ 		}
+-		signal(SIGALRM, timeout_child_handler);
  
-         while ((line = fgets(line_buf, PRINT_PTEST_BUF_SIZE, fp_stdout)) != NULL) {
--		find_word(&found_fail, line, fail_str);
-+		found_fail = find_word(line, fail_str);
-+		if (found_fail == true)
-+			break;
-         }
+ 		fprintf(fp, "START: %s\n", progname);
+ 		PTEST_LIST_ITERATE_START(head, p)
+@@ -511,6 +496,7 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
+ 			} else {
+ 				int status;
  
--        ck_assert(found_fail == 1);
-+        ck_assert(found_fail == true);
- }
++				_child_reader.pid = child;
+ 				if (setpgid(child, pgid) == -1) {
+ 					fprintf(fp, "ERROR: setpgid() failed, %s\n", strerror(errno));
+ 				}
+@@ -520,7 +506,7 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
+ 				fprintf(fp, "BEGIN: %s\n", ptest_dir);
  
- START_TEST(test_run_fail_ptest)
+ 
+-				status = wait_child(child, opts.timeout);
++				status = wait_child(child);
+ 
+ 				entime = time(NULL);
+ 				duration = entime - sttime;
 -- 
 2.33.0
 
