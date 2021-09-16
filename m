@@ -1,78 +1,77 @@
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
- by mx.groups.io with SMTP id smtpd.web11.6889.1631767870487273274
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+ by mx.groups.io with SMTP id smtpd.web09.7459.1631774174576690112
  for <yocto@lists.yoctoproject.org>;
- Wed, 15 Sep 2021 21:51:10 -0700
+ Wed, 15 Sep 2021 23:36:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=bUvELfIg;
- spf=pass (domain: gmail.com, ip: 209.85.160.172, mailfrom: raj.khem@gmail.com)
-Received: by mail-qt1-f172.google.com with SMTP id w17so4485206qta.9
-        for <yocto@lists.yoctoproject.org>; Wed, 15 Sep 2021 21:51:10 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=I0V+sMLc;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.45, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f45.google.com with SMTP id q11so7628647wrr.9
+        for <yocto@lists.yoctoproject.org>; Wed, 15 Sep 2021 23:36:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=jnoql0zYQKp9tUilXt67rjZFcKkr68hMaHA2nRmIGsQ=;
-        b=bUvELfIgcGkKFGxStKTk59GEgoSGad2YSWxx1ATXo0rbEyAQsr90WuV4UJP8OGK/yI
-         2UlQs8ELi7ZNPJM3TsQDK6eurLOJdmePWguhHOXnxHW4WxLIg3JFbeKtf3K1VTM9g+T2
-         BbUzZLpMRGAyW2jSB5Xvt5bNYgTRPpL0giFKc0039unHqiQCSVUXf4iufjW+YPZFI1dQ
-         ffmcbusX8ib91F1ogZdOtVuWRRcQnKwr6SHUDtFrQr0+sdfCiaw4aiiEzfSrNby/9VGd
-         iNyw2MHu6E+4L/Fp3GSqLzBa1gCRTVKjpp1P2t78GDK/fMDRK6TFtE60WN7khH1Q9Ru1
-         PSzw==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:user-agent:mime-version
+         :content-transfer-encoding;
+        bh=7iRcroh4W23q9hY0xGqSH4dQ6ygzdR8y/JISNiWthaY=;
+        b=I0V+sMLcV85jFKrIP87GidYGd4ov10lM530TqW0wDzOB+P2Q15m/EjChtu0WUnsCkY
+         tAa0TVmRU3L2H+uxMTQZmux5OwZ4i2yi5KbgZfwspgYeD8pcvC5aOa+eVPc76nnKpPdQ
+         IyY0sZnp1ZeeXm7ghNWK5wZ9D5lT+WVUwDjJM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=jnoql0zYQKp9tUilXt67rjZFcKkr68hMaHA2nRmIGsQ=;
-        b=p3Kwf4LpKcKQTv7n1kxM/EQbtZ77CSpo1mE4NGL/gGtGzRRANbclxPD48TIOMRyDJQ
-         fY4s/hJhxAD+pqw3vmQQQTpg4bDl01wzYswiua1lq8YQ3FYDkcWoSAq54HBNNEDENjvJ
-         PQVEP75khVS8B9xkQuvA4VC+oGBHMqW9CCh+wyshpGkvdFsQ3FRelAUDcR6Cd0wOkyKA
-         rFQqLWHxtHLr/JL8Q/BXWIMG0qWU251DKtLp2M+W6b2kGN9fEPA/1Gb4r/pcmq3sPqI+
-         4CL6taXUGeCSIvp2AHPVc7q1dsxBj7aQ3eN91I2MJvEKaZeixK8R9s+gnQuh8Hl//vNu
-         y2Ug==
-X-Gm-Message-State: AOAM531OqqsHukOCh6efkAlWTuuxJRQMX+wt30bHASj3ycREhtKcXhMs
-	O8lwGTYrwtovkT/1dgYw0lRJZnlZ4lTgbUuCigY=
-X-Google-Smtp-Source: ABdhPJzQQ7ovLiCMAST7Rx5Go9m2R1xG+W793srOl528+EAFOGOiom2G3bJY9bgfFyBDAtX7kMtLRrMnSIclon8/Kn0=
-X-Received: by 2002:ac8:5d8a:: with SMTP id d10mr3279600qtx.225.1631767869365;
- Wed, 15 Sep 2021 21:51:09 -0700 (PDT)
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=7iRcroh4W23q9hY0xGqSH4dQ6ygzdR8y/JISNiWthaY=;
+        b=4RLKDur48lr8dUnBl9RqVtWN1ESXDzEKv44iya/G93+90RYJYMZgZLo8yzC9nCI5Um
+         wE7myQ2MipCi9716vSBfK7n6MEvc03OJg3UU2wYTaE3wf1w6wPxtbB+Lp2OrAewlmhtj
+         tLf/YF3HnQEx5yTgL0l0VPheApwkAkQh0z2kDUMF3JEhZ+bbfAFzDel52UN+pM1tsaaW
+         4CUjUJUH1yHEOUYUpFSWa8DmUyf2/GjKZqrNFNEoZfFbUtK7h+eUj+t753WI/4prYgoh
+         5i5GsPRy5+fEOystvz/00tUoFs8TnTpukJxo4GTpkL4Mde27BhLLAlTFGh0FjddKtvIV
+         xNIA==
+X-Gm-Message-State: AOAM531U72cB1th2nJKtPQ4OQJzmrmkG1AyGHXO5cOG1kCkjX3uvyEMI
+	uHpvbd9kjjBG6hoMCKUuxaA42QeioRJx0dLF
+X-Google-Smtp-Source: ABdhPJxY+jL78bdw3wEQaKFfw2+cnNEV3fnFZ8B3/JzZqkBQMyAh6GRHo46CU8jgknnDD7znaV03sg==
+X-Received: by 2002:adf:f545:: with SMTP id j5mr4122725wrp.9.1631774172790;
+        Wed, 15 Sep 2021 23:36:12 -0700 (PDT)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from ?IPv6:2001:8b0:aba:5f3c:f11f:8fd1:42b2:e87c? ([2001:8b0:aba:5f3c:f11f:8fd1:42b2:e87c])
+        by smtp.gmail.com with ESMTPSA id a10sm2262091wrd.51.2021.09.15.23.36.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Sep 2021 23:36:12 -0700 (PDT)
+Message-ID: <c6530d49069932111797e610258038660a9f903c.camel@linuxfoundation.org>
+Subject: QA notification for completed autobuilder build (yocto-3.1.11.rc2)
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>
+Cc: qa-build-notification <qa-build-notification@lists.yoctoproject.org>
+Date: Thu, 16 Sep 2021 07:36:09 +0100
+User-Agent: Evolution 3.40.2-1build1 
 MIME-Version: 1.0
-References: <ec02b6cfb338b5b2ca3242ecfd73ff9228e42129.camel@linuxfoundation.org>
- <12063.1631766857327604520@lists.yoctoproject.org>
-In-Reply-To: <12063.1631766857327604520@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Wed, 15 Sep 2021 21:50:43 -0700
-Message-ID: <CAMKF1srGFp_t5aZOh=Hd_479JiqFY6=g4pwoXbmhLf+O2M_UYQ@mail.gmail.com>
-Subject: Re: [yocto] Sharing sstate cache across build nodes
-To: Rusty Howell <rustyhowell@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-On Wed, Sep 15, 2021 at 9:34 PM Rusty Howell <rustyhowell@gmail.com> wrote:
->
-> Thanks for the replies, Richard.
->
-> Can SSTATE_DIR be shared across build hosts with different OS's  (Ubuntu =
-18.04, ubuntu 20.04, etc, RHEL)?
+A build flagged for QA (yocto-3.1.11.rc2) was completed on the autobuilder and
+is available at:
 
-yes if you use uninative ( which is default in poky) then it should be
-able to share across multiple build hosts.
 
->
-> Our build hosts are somewhat ephemeral.  Occasionally we need to swap out=
- a build host for another one. So to bring on a new fresh build host and ha=
-ve it cooperate correctly with the other build hosts and the PR server, wha=
-t does it need?  I understand having the NFS mounted SSTATE_DIR, and using =
-the PRSERV_HOST variable set correctly. But what else?  Does the new build =
-host need access to a shared PERSISTENT_DIR or a shared BUILDHISTORY_DIR?
->
-> What happens if the shared SSTATE cache get corrupted and has to be delet=
-ed?   Won't that cause all the PR server values to reset?  We just want to =
-make sure we know how to recover from a situation like that.
+    https://autobuilder.yocto.io/pub/releases/yocto-3.1.11.rc2
 
-if you preserve PR server data then you should be good. sstate can be
-regenerated.
 
-> Thanks a bunch.
-> Rusty
->=20
->
+Build hash information: 
+
+bitbake: c2a3bda3a29e12472ef7862e424ea1552fab2959
+meta-agl: 60344efa7a50dc2548fc4b5d68b5ad4d60c4023a
+meta-arm: ce535dfb96de4d2529f091d7d85a7172c626001c
+meta-aws: c5164c1a795c21f7caccc3b68bb2e81a55bddb0e
+meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
+meta-intel: 6837552365d3cac5f8044a5ae910aa874435f766
+meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
+meta-openembedded: 2e7e98cd0cb82db214b13224c71134b9335a719b
+oecore: c7d2281eb6cda9c1637c20b3540b142073bca235
+poky: 74b22db6879b388d700f61e08cb3f239cf940d18
+
+
+
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+
