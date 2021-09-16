@@ -1,227 +1,190 @@
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
- by mx.groups.io with SMTP id smtpd.web10.5775.1631836253018176516
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+ by mx.groups.io with SMTP id smtpd.web09.5742.1631836658441342061
  for <yocto@lists.yoctoproject.org>;
- Thu, 16 Sep 2021 16:50:53 -0700
+ Thu, 16 Sep 2021 16:57:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=W0q0m2+Q;
- spf=pass (domain: gmail.com, ip: 209.85.210.174, mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f174.google.com with SMTP id j16so7476670pfc.2
-        for <yocto@lists.yoctoproject.org>; Thu, 16 Sep 2021 16:50:52 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=Jws0Xa5m;
+ spf=pass (domain: gmail.com, ip: 209.85.210.178, mailfrom: akuster808@gmail.com)
+Received: by mail-pf1-f178.google.com with SMTP id q23so5350281pfs.9
+        for <yocto@lists.yoctoproject.org>; Thu, 16 Sep 2021 16:57:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=i7liDdwaqA0DNT/++LzDtsyAZMkz4Wb9mvNuPZQur7s=;
-        b=W0q0m2+QGQhdliWOqc1KF0WRuBLFIYXlQcBcZuHpAnqtaqdEaQjyVgMlUHcxGtbHpo
-         o3Sjz3bZnaWX5mI3D9j5TOx13Vyy4oDcozRAFBbJP7CBZR3z96vbWZ8vGFmjYYEAcDA9
-         +6ktKkUiyOwL6wKoDHXvTcT64QbPWAkGIh3ybkYk1JY3gJMhVQaJ/OyzBjDLbjpAkAmG
-         O2ZykrnQW31WrVJf49WwPS1lF+PKRyTVfY+i1kqWDScN7svx96AEOmn641gYJ5AIjLRq
-         YMHTgzk5rgMae4bz6efYR0lxqT1/J91pP2MU4+J4qzdbnYa4BZnIKy7Kqu0MoFvlMy12
-         t+3A==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3tiv57bQk4MROcOcGR573rvqO7vsbw+Kb5BBlbb3AWM=;
+        b=Jws0Xa5mAkdD3lABAzxwb64qeDZalnoCMxUBaT4AlPMZfwmOPrcBcq81cSDSKUUOCh
+         3uNGgjdhHek16727p9nYaB3P6ZIIGlLxIiP3xGvBk1atIu+/wFZ0cHW6k6A13eK+NYCL
+         nHxCluRUYdifOLmWzjGDbHVmm6wyNUUYdsU6fZCD1QjwbO5uT6fxYsIjhiW28oTdqlgi
+         +p/nWRlt1uPQz7Z6cY0oXf3bq5StwM0Ry55YzODVxxbBwq1256lRBAF25Pls83GpWlRP
+         bFOLdyIr4J3tIjJ1jlbUAibDTVQ85AFZE4RXboiHfYqu5u1UBCUsUrI8zwNacv3Ni+rY
+         Rdhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=i7liDdwaqA0DNT/++LzDtsyAZMkz4Wb9mvNuPZQur7s=;
-        b=a57k9G+mvftd2A+6mSUx3VjddWhHn82CFzvxsgZkqlQ3WXjku3Qx7lg/jS60KrzXgl
-         e+InSW/CBkotxs3/s6crb2jbH/fpns6JhH7IAdIKMJZHCXr1/bJiQwwIO3lQG3xToh8J
-         YTJm/SZBDX+rfskl5EsJFp/okAksCAa1i8HbgPvnMj5W50bX8TR0krAv3EvUUrIqBXVy
-         NhLvozCn/w1Dy+lhutnsoeJfHtyEq+mqKdUaoSbMONtCsJCMLNXY4AysabaVleD0hbnU
-         7Bxl9Dv7Hsi6NzB6ZhOe9q044JVzicpGrAOwEPV5Tn7f9GHioA69g7FFLA/HdmuQHyFU
-         4KAg==
-X-Gm-Message-State: AOAM533yNDah3cT6OAwC3a6mb4P/a616YShflKaqEXAZCZhpmIVJ2dwN
-	QDPSLTgsEjwp+Ju80tHqxe4bt7XEWO8=
-X-Google-Smtp-Source: ABdhPJyWqaoKu837N7QccDOoyyuJktGpUQWqQTRq7qCoMpMFICTnqn4GeYGD87Jy5g29uwb4cIhZQA==
-X-Received: by 2002:a63:651:: with SMTP id 78mr7269262pgg.306.1631836252330;
-        Thu, 16 Sep 2021 16:50:52 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3tiv57bQk4MROcOcGR573rvqO7vsbw+Kb5BBlbb3AWM=;
+        b=7HktQiJpx1c+QSt6Ky3u4rkWXWv2/y6WsGwo5ScqBcyyhofa+YBWG3ZPx+MbH2KzeT
+         gIfcYkEIb3vqHJ/mdY2VWKfvUucRTQdOlAZovbX3eU0ysjeqQfa851U/KtnWXoUr7mKE
+         wlplNeuLxUTATBDVDtnfe3qteBFvzOkIrWQ6m/vZmfV6kgPAKICpzuxbbfXGi1sTFoib
+         GXAPnh8ZeEj5n7SC6t30M0t4n5HB22sgGkv14RHdJINEpN18oBDlnm9LiugC5Wpiatq9
+         TE1HTXPnohwVJnGdSQz0rZO0W8dxc9kw/l9o4StBELDjEt14MCpkzvdjVsPGVcjpHbAP
+         WJYQ==
+X-Gm-Message-State: AOAM531sn12GWCUkubLK0dSIVAG+OEDvti5ArLBe1K7DOZwcdfqfAK8a
+	i2oWVxH+QK4WnfeWp/yjIkfaAtL7sOI=
+X-Google-Smtp-Source: ABdhPJyC7jyMUG749HpGcpYdPL8gg0Oh1l9KC8cGUUObqxzjt4NsY7qxyYW8fmIQm28niy4C9CheGA==
+X-Received: by 2002:a63:6d09:: with SMTP id i9mr7199830pgc.480.1631836657728;
+        Thu, 16 Sep 2021 16:57:37 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from keaua.hsd1.ca.comcast.net ([2601:202:4180:a5c0:8e48:889d:1351:d2d2])
-        by smtp.gmail.com with ESMTPSA id c3sm4210107pgn.76.2021.09.16.16.50.51
+        by smtp.gmail.com with ESMTPSA id x9sm4248116pfo.172.2021.09.16.16.57.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Sep 2021 16:50:52 -0700 (PDT)
+        Thu, 16 Sep 2021 16:57:37 -0700 (PDT)
 From: "Armin Kuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
 Cc: Armin Kuster <akuster@mvista.com>
-Subject: [meta-selinux][PATCH 3/3] secilc: Security fix for CVE-2021-36087
-Date: Thu, 16 Sep 2021 16:50:49 -0700
-Message-Id: <20210916235049.2519448-3-akuster808@gmail.com>
+Subject: [meta-selinux][hardknott][PATCH 1/3] libsepol: Security fix CVE-2021-36084
+Date: Thu, 16 Sep 2021 16:57:34 -0700
+Message-Id: <20210916235736.2628153-1-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210916235049.2519448-1-akuster808@gmail.com>
-References: <20210916235049.2519448-1-akuster808@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
 From: Armin Kuster <akuster@mvista.com>
 
 Source: https://github.com/SELinuxProject/selinux
-MR: 111869
+MR: 111851
 Type: Security Fix
-Disposition: Backport from https://github.com/SELinuxProject/selinux/commit/bad0a746e9f4cf260dedba5828d9645d50176aac
-ChangeID: b282a68f76e509f548fe6ce46349af56d09481c6
+Disposition: Backport from https://github.com/SELinuxProject/selinux/commit/f34d3d30c8325e4847a6b696fe7a3936a8a361f3
+ChangeID: 7fae27568e26ccbb18be3d2a1ce7332d42706f18
 Description:
 
-Affects: secilc <= 3.2
+Affects: libsepol < 3.2
 
 Signed-off-by: Armin Kuster <akuster@mvista.com>
 ---
- .../selinux/secilc/CVE-2021-36087.patch       | 134 ++++++++++++++++++
- recipes-security/selinux/secilc_3.2.bb        |   2 +
- 2 files changed, 136 insertions(+)
- create mode 100644 recipes-security/selinux/secilc/CVE-2021-36087.patch
+ .../selinux/libsepol/CVE-2021-36084.patch     | 99 +++++++++++++++++++
+ recipes-security/selinux/libsepol_3.2.bb      |  2 +
+ 2 files changed, 101 insertions(+)
+ create mode 100644 recipes-security/selinux/libsepol/CVE-2021-36084.patch
 
-diff --git a/recipes-security/selinux/secilc/CVE-2021-36087.patch b/recipes-security/selinux/secilc/CVE-2021-36087.patch
+diff --git a/recipes-security/selinux/libsepol/CVE-2021-36084.patch b/recipes-security/selinux/libsepol/CVE-2021-36084.patch
 new file mode 100644
-index 0000000..5410477
+index 0000000..1001563
 --- /dev/null
-+++ b/recipes-security/selinux/secilc/CVE-2021-36087.patch
-@@ -0,0 +1,134 @@
-+From bad0a746e9f4cf260dedba5828d9645d50176aac Mon Sep 17 00:00:00 2001
++++ b/recipes-security/selinux/libsepol/CVE-2021-36084.patch
+@@ -0,0 +1,99 @@
++From f34d3d30c8325e4847a6b696fe7a3936a8a361f3 Mon Sep 17 00:00:00 2001
 +From: James Carter <jwcart2@gmail.com>
-+Date: Mon, 19 Apr 2021 09:06:15 -0400
-+Subject: [PATCH] secilc/docs: Update the CIL documentation for various blocks
++Date: Thu, 8 Apr 2021 13:32:01 -0400
++Subject: [PATCH] libsepol/cil: Destroy classperms list when resetting
++ classpermission
 +
-+Update the documentation for macros, booleans, booleanifs, tunables,
-+tunableifs, blocks, blockabstracts, blockinherits, and optionals to
-+tell where these statements can be used and, for those that have
-+blocks, what statements are not allowed in them.
++Nicolas Iooss reports:
++  A few months ago, OSS-Fuzz found a crash in the CIL compiler, which
++  got reported as
++  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=28648 (the title
++  is misleading, or is caused by another issue that conflicts with the
++  one I report in this message). Here is a minimized CIL policy which
++  reproduces the issue:
 +
++  (class CLASS (PERM))
++  (classorder (CLASS))
++  (sid SID)
++  (sidorder (SID))
++  (user USER)
++  (role ROLE)
++  (type TYPE)
++  (category CAT)
++  (categoryorder (CAT))
++  (sensitivity SENS)
++  (sensitivityorder (SENS))
++  (sensitivitycategory SENS (CAT))
++  (allow TYPE self (CLASS (PERM)))
++  (roletype ROLE TYPE)
++  (userrole USER ROLE)
++  (userlevel USER (SENS))
++  (userrange USER ((SENS)(SENS (CAT))))
++  (sidcontext SID (USER ROLE TYPE ((SENS)(SENS))))
++
++  (classpermission CLAPERM)
++
++  (optional OPT
++      (roletype nonexistingrole nonexistingtype)
++      (classpermissionset CLAPERM (CLASS (PERM)))
++  )
++
++  The CIL policy fuzzer (which mimics secilc built with clang Address
++  Sanitizer) reports:
++
++  ==36541==ERROR: AddressSanitizer: heap-use-after-free on address
++  0x603000004f98 at pc 0x56445134c842 bp 0x7ffe2a256590 sp
++  0x7ffe2a256588
++  READ of size 8 at 0x603000004f98 thread T0
++      #0 0x56445134c841 in __cil_verify_classperms
++  /selinux/libsepol/src/../cil/src/cil_verify.c:1620:8
++      #1 0x56445134a43e in __cil_verify_classpermission
++  /selinux/libsepol/src/../cil/src/cil_verify.c:1650:9
++      #2 0x56445134a43e in __cil_pre_verify_helper
++  /selinux/libsepol/src/../cil/src/cil_verify.c:1715:8
++      #3 0x5644513225ac in cil_tree_walk_core
++  /selinux/libsepol/src/../cil/src/cil_tree.c:272:9
++      #4 0x564451322ab1 in cil_tree_walk
++  /selinux/libsepol/src/../cil/src/cil_tree.c:316:7
++      #5 0x5644513226af in cil_tree_walk_core
++  /selinux/libsepol/src/../cil/src/cil_tree.c:284:9
++      #6 0x564451322ab1 in cil_tree_walk
++  /selinux/libsepol/src/../cil/src/cil_tree.c:316:7
++      #7 0x5644512b88fd in cil_pre_verify
++  /selinux/libsepol/src/../cil/src/cil_post.c:2510:7
++      #8 0x5644512b88fd in cil_post_process
++  /selinux/libsepol/src/../cil/src/cil_post.c:2524:7
++      #9 0x5644511856ff in cil_compile
++  /selinux/libsepol/src/../cil/src/cil.c:564:7
++
++The classperms list of a classpermission rule is created and filled
++in when classpermissionset rules are processed, so it doesn't own any
++part of the list and shouldn't retain any of it when it is reset.
++
++Destroy the classperms list (without destroying the data in it)  when
++resetting a classpermission rule.
++
++Reported-by: Nicolas Iooss <nicolas.iooss@m4x.org>
 +Signed-off-by: James Carter <jwcart2@gmail.com>
 +
 +Upstream-Status: Backport
-+CVE: CVE-2021-36087
++CVE: CVE-2021-36084
 +Signed-off-by: Armin Kuster <akuster@mvista.com>
 +
 +---
-+ docs/cil_call_macro_statements.md  |  2 ++
-+ docs/cil_conditional_statements.md |  6 +++++
-+ docs/cil_container_statements.md   | 28 +++++++++++++++--------
-+ 3 files changed, 26 insertions(+), 10 deletions(-)
++ libsepol/cil/src/cil_reset_ast.c | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
 +
-+Index: secilc/docs/cil_call_macro_statements.md
++Index: libsepol-3.0/cil/src/cil_reset_ast.c
 +===================================================================
-+--- secilc.orig/docs/cil_call_macro_statements.md
-++++ secilc/docs/cil_call_macro_statements.md
-+@@ -58,6 +58,8 @@ When resolving macros the following plac
++--- libsepol-3.0.orig/cil/src/cil_reset_ast.c
+++++ libsepol-3.0/cil/src/cil_reset_ast.c
++@@ -52,7 +52,7 @@ static void cil_reset_classpermission(st
++ 		return;
++ 	}
 + 
-+ -   Items defined in the global namespace
++-	cil_reset_classperms_list(cp->classperms);
+++	cil_list_destroy(&cp->classperms, CIL_FALSE);
++ }
 + 
-++[`tunable`](cil_conditional_statements.md#tunable), [`in`](cil_container_statements.md#in), [`block`](cil_container_statements.md#block), [`blockinherit`](cil_container_statements.md#blockinherit), [`blockabstract`](cil_container_statements.md#blockabstract), and other [`macro`](cil_call_macro_statements.md#macro) statements are not allowed in [`macro`](cil_call_macro_statements.md#macro) blocks.
-++
-+ **Statement definition:**
-+ 
-+ ```secil
-+Index: secilc/docs/cil_conditional_statements.md
-+===================================================================
-+--- secilc.orig/docs/cil_conditional_statements.md
-++++ secilc/docs/cil_conditional_statements.md
-+@@ -6,6 +6,8 @@ boolean
-+ 
-+ Declares a run time boolean as true or false in the current namespace. The [`booleanif`](cil_conditional_statements.md#booleanif) statement contains the CIL code that will be in the binary policy file.
-+ 
-++[`boolean`](cil_conditional_statements.md#boolean) are not allowed in [`booleanif`](cil_conditional_statements.md#booleanif) blocks.
-++
-+ **Statement definition:**
-+ 
-+ ```secil
-+@@ -126,6 +128,8 @@ Tunables are similar to booleans, howeve
-+ 
-+ Note that tunables can be treated as booleans by the CIL compiler command line parameter `-P` or `--preserve-tunables` flags.
-+ 
-++Since [`tunableif`](cil_conditional_statements.md#tunableif) statements are resolved first, [`tunable`](cil_conditional_statements.md#tunable) statements are not allowed in [`in`](cil_container_statements.md#in), [`macro`](cil_call_macro_statements.md#macro), [`optional`](cil_container_statements.md#optional), and [`booleanif`](cil_conditional_statements.md#booleanif) blocks. To simplify processing, they are also not allowed in [`tunableif`](cil_conditional_statements.md#tunableif) blocks.
-++
-+ **Statement definition:**
-+ 
-+ ```secil
-+@@ -164,6 +168,8 @@ tunableif
-+ 
-+ Compile time conditional statement that may or may not add CIL statements to be compiled.
-+ 
-++If tunables are being treated as booleans (by using the CIL compiler command line parameter `-P` or `--preserve-tunables` flag), then only the statements allowed in a [`booleanif`](cil_conditional_statements.md#booleanif) block are allowed in a [`tunableif`](cil_conditional_statements.md#tunableif) block. Otherwise, [`tunable`](cil_conditional_statements.md#tunable) statements are not allowed in a [`tunableif`](cil_conditional_statements.md#tunableif) block.
-++
-+ **Statement definition:**
-+ 
-+ ```secil
-+Index: secilc/docs/cil_container_statements.md
-+===================================================================
-+--- secilc.orig/docs/cil_container_statements.md
-++++ secilc/docs/cil_container_statements.md
-+@@ -4,7 +4,11 @@ Container Statements
-+ block
-+ -----
-+ 
-+-Start a new namespace where any CIL statement is valid.
-++Start a new namespace.
-++
-++Not allowed in [`macro`](cil_call_macro_statements.md#macro) and [`optional`](cil_container_statements.md#optional) blocks.
-++
-++[`sensitivity`](cil_mls_labeling_statements.md#sensitivity) and [`category`](cil_mls_labeling_statements.md#category) statements are not allowed in [`block`](cil_container_statements.md#block) blocks.
-+ 
-+ **Statement definition:**
-+ 
-+@@ -47,6 +51,8 @@ blockabstract
-+ 
-+ Declares the namespace as a 'template' and does not generate code until instantiated by another namespace that has a [`blockinherit`](cil_container_statements.md#blockinherit) statement.
-+ 
-++Not allowed in [`macro`](cil_call_macro_statements.md#macro) and [`optional`](cil_container_statements.md#optional) blocks.
-++
-+ **Statement definition:**
-+ 
-+ ```secil
-+@@ -97,6 +103,8 @@ blockinherit
-+ 
-+ Used to add common policy rules to the current namespace via a template that has been defined with the [`blockabstract`](cil_container_statements.md#blockabstract) statement. All [`blockinherit`](cil_container_statements.md#blockinherit) statements are resolved first and then the contents of the block are copied. This is so that inherited blocks will not be inherited. For a concrete example, please see the examples section.
-+ 
-++Not allowed in [`macro`](cil_call_macro_statements.md#macro) blocks.
-++
-+ **Statement definition:**
-+ 
-+ ```secil
-+@@ -199,15 +207,11 @@ This example contains a template `client
-+ optional
-+ --------
-+ 
-+-Declare an [`optional`](cil_container_statements.md#optional) namespace. All CIL statements in the optional block must be satisfied before instantiation in the binary policy. [`tunableif`](cil_conditional_statements.md#tunableif) and [`macro`](cil_call_macro_statements.md#macro) statements are not allowed in optional containers. The same restrictions apply to CIL policy statements within [`optional`](cil_container_statements.md#optional)'s that apply to kernel policy statements, i.e. only the policy statements shown in the following table are valid:
-++Declare an [`optional`](cil_container_statements.md#optional) namespace. All CIL statements in the optional block must be satisfied before instantiation in the binary policy.
-+ 
-+-|                     |                |                    |                    |
-+-| ------------------- | -------------- | ------------------ | ------------------ |
-+-| [`allow`](cil_access_vector_rules.md#allow)             | [`allowx`](cil_access_vector_rules.md#allowx)       | [`auditallow`](cil_access_vector_rules.md#auditallow)       | [`auditallowx`](cil_access_vector_rules.md#auditallowx)      |
-+-| [`booleanif`](cil_conditional_statements.md#booleanif)         | [`dontaudit`](cil_access_vector_rules.md#dontaudit)    | [`dontauditx`](cil_access_vector_rules.md#dontauditx)       | [`typepermissive`](cil_type_statements.md#typepermissive)   |
-+-| [`rangetransition`](cil_mls_labeling_statements.md#rangetransition)   | [`role`](cil_role_statements.md#role)         | [`roleallow`](cil_role_statements.md#roleallow)        | [`roleattribute`](cil_role_statements.md#roleattribute)    |
-+-| [`roletransition`](cil_role_statements.md#roletransition)    | [`type`](cil_type_statements.md#type)         | [`typealias`](cil_type_statements.md#typealias)        | [`typeattribute`](cil_type_statements.md#typeattribute)    |
-+-| [`typechange`](cil_type_statements.md#typechange)        | [`typemember`](cil_type_statements.md#typemember)   | [`typetransition`](cil_type_statements.md#typetransition)   |                    |
-++Not allowed in [`booleanif`](cil_conditional_statements.md#booleanif) blocks.
-++
-++[`tunable`](cil_conditional_statements.md#tunable), [`in`](cil_container_statements.md#in), [`block`](cil_container_statements.md#block), [`blockabstract`](cil_container_statements.md#blockabstract), and [`macro`](cil_call_macro_statements.md#macro) statements are not allowed in [`optional`](cil_container_statements.md#optional) blocks.
-+ 
-+ **Statement definition:**
-+ 
-+@@ -266,7 +270,11 @@ This example will instantiate the option
-+ in
-+ --
-+ 
-+-Allows the insertion of CIL statements into a named container ([`block`](cil_container_statements.md#block), [`optional`](cil_container_statements.md#optional) or [`macro`](cil_call_macro_statements.md#macro)). This statement is not allowed in [`booleanif`](cil_conditional_statements.md#booleanif) or [`tunableif`](cil_conditional_statements.md#tunableif) statements. This only works for containers that aren't inherited using [`blockinherit`](cil_conditional_statements.md#blockinherit).
-++Allows the insertion of CIL statements into a named container ([`block`](cil_container_statements.md#block), [`optional`](cil_container_statements.md#optional) or [`macro`](cil_call_macro_statements.md#macro)).
-++
-++Not allowed in [`macro`](cil_call_macro_statements.md#macro), [`booleanif`](cil_conditional_statements.md#booleanif), and other [`in`](cil_container_statements.md#in) blocks.
-++
-++[`tunable`](cil_conditional_statements.md#tunable) and [`in`](cil_container_statements.md#in) statements are not allowed in [`in`](cil_container_statements.md#in) blocks.
-+ 
-+ **Statement definition:**
-+ 
-diff --git a/recipes-security/selinux/secilc_3.2.bb b/recipes-security/selinux/secilc_3.2.bb
-index 60ab2fe..50413e0 100644
---- a/recipes-security/selinux/secilc_3.2.bb
-+++ b/recipes-security/selinux/secilc_3.2.bb
-@@ -8,6 +8,8 @@ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=c7e802b9a3b0c2c852669864c08b9138"
++ static void cil_reset_classperms_set(struct cil_classperms_set *cp_set)
+diff --git a/recipes-security/selinux/libsepol_3.2.bb b/recipes-security/selinux/libsepol_3.2.bb
+index 48d5f49..6215d24 100644
+--- a/recipes-security/selinux/libsepol_3.2.bb
++++ b/recipes-security/selinux/libsepol_3.2.bb
+@@ -9,6 +9,8 @@ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
  
  require selinux_common.inc
  
-+SRC_URI += "file://CVE-2021-36087.patch"
++SRC_URI += "file://CVE-2021-36084.patch"
 +
- DEPENDS += "libsepol xmlto-native"
+ inherit lib_package
  
- S = "${WORKDIR}/git/secilc"
+ S = "${WORKDIR}/git/libsepol"
 -- 
 2.25.1
 
