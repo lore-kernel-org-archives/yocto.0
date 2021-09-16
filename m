@@ -1,158 +1,99 @@
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
- by mx.groups.io with SMTP id smtpd.web09.5742.1631836658441342061
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+ by mx.groups.io with SMTP id smtpd.web09.5743.1631836659120921338
  for <yocto@lists.yoctoproject.org>;
- Thu, 16 Sep 2021 16:57:38 -0700
+ Thu, 16 Sep 2021 16:57:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Jws0Xa5m;
- spf=pass (domain: gmail.com, ip: 209.85.210.178, mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f178.google.com with SMTP id q23so5350281pfs.9
-        for <yocto@lists.yoctoproject.org>; Thu, 16 Sep 2021 16:57:38 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=jeSLf9sX;
+ spf=pass (domain: gmail.com, ip: 209.85.210.182, mailfrom: akuster808@gmail.com)
+Received: by mail-pf1-f182.google.com with SMTP id m26so7484607pff.3
+        for <yocto@lists.yoctoproject.org>; Thu, 16 Sep 2021 16:57:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=3tiv57bQk4MROcOcGR573rvqO7vsbw+Kb5BBlbb3AWM=;
-        b=Jws0Xa5mAkdD3lABAzxwb64qeDZalnoCMxUBaT4AlPMZfwmOPrcBcq81cSDSKUUOCh
-         3uNGgjdhHek16727p9nYaB3P6ZIIGlLxIiP3xGvBk1atIu+/wFZ0cHW6k6A13eK+NYCL
-         nHxCluRUYdifOLmWzjGDbHVmm6wyNUUYdsU6fZCD1QjwbO5uT6fxYsIjhiW28oTdqlgi
-         +p/nWRlt1uPQz7Z6cY0oXf3bq5StwM0Ry55YzODVxxbBwq1256lRBAF25Pls83GpWlRP
-         bFOLdyIr4J3tIjJ1jlbUAibDTVQ85AFZE4RXboiHfYqu5u1UBCUsUrI8zwNacv3Ni+rY
-         Rdhg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=svvuz9Ktzod7yr9YJQk/QSFcYOr75Pr1g4fupsAY3T4=;
+        b=jeSLf9sXVz0urneaoc8EEDVIWOUGqwy66WllJPX9jSsiixzz/oao0jbzmOW6SZ0nZ3
+         xpwXB7PKgv/+hf1JHWvXZXxP8/USlE9b8fTVkrdYpb9zEU3e8OpCZqFJMfWiOALJVLV8
+         MVKFhTbkPVjsOEx7Ykz//+BBp01nUZleN6thJZWJDx1XzeZKagQJDWbP8UKG+kV7/PrD
+         PesHflk8JH1TsNnW6ii6wNBHOsrHR6urx3YtXMBk0D7pg/v6+hu2EES8pdkPx6B4mqF6
+         wjC830hr3g4KVuEKMZ+6mkoa2eBBCBwgv7/JLXLba+CHqvYsDZszDf3z7YXXEzi34NPl
+         K05g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=3tiv57bQk4MROcOcGR573rvqO7vsbw+Kb5BBlbb3AWM=;
-        b=7HktQiJpx1c+QSt6Ky3u4rkWXWv2/y6WsGwo5ScqBcyyhofa+YBWG3ZPx+MbH2KzeT
-         gIfcYkEIb3vqHJ/mdY2VWKfvUucRTQdOlAZovbX3eU0ysjeqQfa851U/KtnWXoUr7mKE
-         wlplNeuLxUTATBDVDtnfe3qteBFvzOkIrWQ6m/vZmfV6kgPAKICpzuxbbfXGi1sTFoib
-         GXAPnh8ZeEj5n7SC6t30M0t4n5HB22sgGkv14RHdJINEpN18oBDlnm9LiugC5Wpiatq9
-         TE1HTXPnohwVJnGdSQz0rZO0W8dxc9kw/l9o4StBELDjEt14MCpkzvdjVsPGVcjpHbAP
-         WJYQ==
-X-Gm-Message-State: AOAM531sn12GWCUkubLK0dSIVAG+OEDvti5ArLBe1K7DOZwcdfqfAK8a
-	i2oWVxH+QK4WnfeWp/yjIkfaAtL7sOI=
-X-Google-Smtp-Source: ABdhPJyC7jyMUG749HpGcpYdPL8gg0Oh1l9KC8cGUUObqxzjt4NsY7qxyYW8fmIQm28niy4C9CheGA==
-X-Received: by 2002:a63:6d09:: with SMTP id i9mr7199830pgc.480.1631836657728;
-        Thu, 16 Sep 2021 16:57:37 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=svvuz9Ktzod7yr9YJQk/QSFcYOr75Pr1g4fupsAY3T4=;
+        b=SsCzGy0nJ2GBLqDZA7prVfscyPdRMZFJuAdJsBVMwWZtcsphB4i7ebesUGA79mP7Cf
+         v7DogH3+5oB/SWCyyGrs4ck1ng9KCEl7eKnO8u+GjS8sXT3L6T3Ql+fhhP+ZoOgYbjS/
+         96saGPM/e81miiALMfkQChi6ayAAhZRPvNaxixhNoOeivXUpsYQCEiAiPkPhOtZLDOsl
+         YcT0zia8zNyxRxSe6NYwXytFpgXv6POezSNMiRs8ggF1qLW8/eFfuO1Pff/a7ILm3lfi
+         M1Cr33ph6QVlahJsc6cs70xwVhV6bIDtyzbgXKUDLtdJsFvqFBW7DtVLtGY/1sIHOWOH
+         sicw==
+X-Gm-Message-State: AOAM53157eW0TyQs/AbAipZ/fv4VWsvlWwB3A7Bc8IjlLglHRBGWvjLY
+	u7ctobDI5Fp1DXsrVle9Wrcr+QWMbBI=
+X-Google-Smtp-Source: ABdhPJzr2IaTnrj/x21qokPR2IYFa2U3ddiBprvC03ggzez6PGr5YPYMAXja+RYml/nWH7ywOLuoYA==
+X-Received: by 2002:a05:6a00:4:b0:43d:32f3:e861 with SMTP id h4-20020a056a00000400b0043d32f3e861mr8062254pfk.60.1631836658476;
+        Thu, 16 Sep 2021 16:57:38 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from keaua.hsd1.ca.comcast.net ([2601:202:4180:a5c0:8e48:889d:1351:d2d2])
-        by smtp.gmail.com with ESMTPSA id x9sm4248116pfo.172.2021.09.16.16.57.36
+        by smtp.gmail.com with ESMTPSA id x9sm4248116pfo.172.2021.09.16.16.57.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Sep 2021 16:57:37 -0700 (PDT)
+        Thu, 16 Sep 2021 16:57:38 -0700 (PDT)
 From: "Armin Kuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
 Cc: Armin Kuster <akuster@mvista.com>
-Subject: [meta-selinux][hardknott][PATCH 1/3] libsepol: Security fix CVE-2021-36084
-Date: Thu, 16 Sep 2021 16:57:34 -0700
-Message-Id: <20210916235736.2628153-1-akuster808@gmail.com>
+Subject: [meta-selinux][hardknott][PATCH 2/3] libsepol: Security fix CVE-2021-36085
+Date: Thu, 16 Sep 2021 16:57:35 -0700
+Message-Id: <20210916235736.2628153-2-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210916235736.2628153-1-akuster808@gmail.com>
+References: <20210916235736.2628153-1-akuster808@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
 From: Armin Kuster <akuster@mvista.com>
 
-Source: https://github.com/SELinuxProject/selinux
-MR: 111851
+Source: https://github.com/SELinuxProject/selinux/
+MR: 111857
 Type: Security Fix
-Disposition: Backport from https://github.com/SELinuxProject/selinux/commit/f34d3d30c8325e4847a6b696fe7a3936a8a361f3
-ChangeID: 7fae27568e26ccbb18be3d2a1ce7332d42706f18
+Disposition: Backport from https://github.com/SELinuxProject/selinux/commit/2d35fcc7e9e976a2346b1de20e54f8663e8a6cba
+ChangeID: e50ae65189351ee618db2b278ba7105a5728e4c4
 Description:
 
-Affects: libsepol < 3.2
+Affects: libsepol <= 3.2
 
 Signed-off-by: Armin Kuster <akuster@mvista.com>
 ---
- .../selinux/libsepol/CVE-2021-36084.patch     | 99 +++++++++++++++++++
- recipes-security/selinux/libsepol_3.2.bb      |  2 +
- 2 files changed, 101 insertions(+)
- create mode 100644 recipes-security/selinux/libsepol/CVE-2021-36084.patch
+ .../selinux/libsepol/CVE-2021-36085.patch     | 38 +++++++++++++++++++
+ recipes-security/selinux/libsepol_3.2.bb      |  3 +-
+ 2 files changed, 40 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-security/selinux/libsepol/CVE-2021-36085.patch
 
-diff --git a/recipes-security/selinux/libsepol/CVE-2021-36084.patch b/recipes-security/selinux/libsepol/CVE-2021-36084.patch
+diff --git a/recipes-security/selinux/libsepol/CVE-2021-36085.patch b/recipes-security/selinux/libsepol/CVE-2021-36085.patch
 new file mode 100644
-index 0000000..1001563
+index 0000000..4bd05eb
 --- /dev/null
-+++ b/recipes-security/selinux/libsepol/CVE-2021-36084.patch
-@@ -0,0 +1,99 @@
-+From f34d3d30c8325e4847a6b696fe7a3936a8a361f3 Mon Sep 17 00:00:00 2001
++++ b/recipes-security/selinux/libsepol/CVE-2021-36085.patch
+@@ -0,0 +1,38 @@
++From 2d35fcc7e9e976a2346b1de20e54f8663e8a6cba Mon Sep 17 00:00:00 2001
 +From: James Carter <jwcart2@gmail.com>
-+Date: Thu, 8 Apr 2021 13:32:01 -0400
-+Subject: [PATCH] libsepol/cil: Destroy classperms list when resetting
-+ classpermission
++Date: Thu, 8 Apr 2021 13:32:04 -0400
++Subject: [PATCH] libsepol/cil: Destroy classperm list when resetting map perms
 +
-+Nicolas Iooss reports:
-+  A few months ago, OSS-Fuzz found a crash in the CIL compiler, which
-+  got reported as
-+  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=28648 (the title
-+  is misleading, or is caused by another issue that conflicts with the
-+  one I report in this message). Here is a minimized CIL policy which
-+  reproduces the issue:
++Map perms share the same struct as regular perms, but only the
++map perms use the classperms field. This field is a pointer to a
++list of classperms that is created and added to when resolving
++classmapping rules, so the map permission doesn't own any of the
++data in the list and this list should be destroyed when the AST is
++reset.
 +
-+  (class CLASS (PERM))
-+  (classorder (CLASS))
-+  (sid SID)
-+  (sidorder (SID))
-+  (user USER)
-+  (role ROLE)
-+  (type TYPE)
-+  (category CAT)
-+  (categoryorder (CAT))
-+  (sensitivity SENS)
-+  (sensitivityorder (SENS))
-+  (sensitivitycategory SENS (CAT))
-+  (allow TYPE self (CLASS (PERM)))
-+  (roletype ROLE TYPE)
-+  (userrole USER ROLE)
-+  (userlevel USER (SENS))
-+  (userrange USER ((SENS)(SENS (CAT))))
-+  (sidcontext SID (USER ROLE TYPE ((SENS)(SENS))))
++When resetting a perm, destroy the classperms list without destroying
++the data in the list.
 +
-+  (classpermission CLAPERM)
-+
-+  (optional OPT
-+      (roletype nonexistingrole nonexistingtype)
-+      (classpermissionset CLAPERM (CLASS (PERM)))
-+  )
-+
-+  The CIL policy fuzzer (which mimics secilc built with clang Address
-+  Sanitizer) reports:
-+
-+  ==36541==ERROR: AddressSanitizer: heap-use-after-free on address
-+  0x603000004f98 at pc 0x56445134c842 bp 0x7ffe2a256590 sp
-+  0x7ffe2a256588
-+  READ of size 8 at 0x603000004f98 thread T0
-+      #0 0x56445134c841 in __cil_verify_classperms
-+  /selinux/libsepol/src/../cil/src/cil_verify.c:1620:8
-+      #1 0x56445134a43e in __cil_verify_classpermission
-+  /selinux/libsepol/src/../cil/src/cil_verify.c:1650:9
-+      #2 0x56445134a43e in __cil_pre_verify_helper
-+  /selinux/libsepol/src/../cil/src/cil_verify.c:1715:8
-+      #3 0x5644513225ac in cil_tree_walk_core
-+  /selinux/libsepol/src/../cil/src/cil_tree.c:272:9
-+      #4 0x564451322ab1 in cil_tree_walk
-+  /selinux/libsepol/src/../cil/src/cil_tree.c:316:7
-+      #5 0x5644513226af in cil_tree_walk_core
-+  /selinux/libsepol/src/../cil/src/cil_tree.c:284:9
-+      #6 0x564451322ab1 in cil_tree_walk
-+  /selinux/libsepol/src/../cil/src/cil_tree.c:316:7
-+      #7 0x5644512b88fd in cil_pre_verify
-+  /selinux/libsepol/src/../cil/src/cil_post.c:2510:7
-+      #8 0x5644512b88fd in cil_post_process
-+  /selinux/libsepol/src/../cil/src/cil_post.c:2524:7
-+      #9 0x5644511856ff in cil_compile
-+  /selinux/libsepol/src/../cil/src/cil.c:564:7
-+
-+The classperms list of a classpermission rule is created and filled
-+in when classpermissionset rules are processed, so it doesn't own any
-+part of the list and shouldn't retain any of it when it is reset.
-+
-+Destroy the classperms list (without destroying the data in it)  when
-+resetting a classpermission rule.
-+
-+Reported-by: Nicolas Iooss <nicolas.iooss@m4x.org>
 +Signed-off-by: James Carter <jwcart2@gmail.com>
 +
 +Upstream-Status: Backport
-+CVE: CVE-2021-36084
++CVE: CVE-2021-36085
 +Signed-off-by: Armin Kuster <akuster@mvista.com>
 +
 +---
@@ -163,28 +104,29 @@ index 0000000..1001563
 +===================================================================
 +--- libsepol-3.0.orig/cil/src/cil_reset_ast.c
 ++++ libsepol-3.0/cil/src/cil_reset_ast.c
-+@@ -52,7 +52,7 @@ static void cil_reset_classpermission(st
-+ 		return;
-+ 	}
++@@ -34,7 +34,7 @@ static void cil_reset_class(struct cil_c
 + 
-+-	cil_reset_classperms_list(cp->classperms);
-++	cil_list_destroy(&cp->classperms, CIL_FALSE);
++ static void cil_reset_perm(struct cil_perm *perm)
++ {
++-	cil_reset_classperms_list(perm->classperms);
+++	cil_list_destroy(&perm->classperms, CIL_FALSE);
 + }
 + 
-+ static void cil_reset_classperms_set(struct cil_classperms_set *cp_set)
++ static inline void cil_reset_classperms(struct cil_classperms *cp)
 diff --git a/recipes-security/selinux/libsepol_3.2.bb b/recipes-security/selinux/libsepol_3.2.bb
-index 48d5f49..6215d24 100644
+index 6215d24..ef5de1e 100644
 --- a/recipes-security/selinux/libsepol_3.2.bb
 +++ b/recipes-security/selinux/libsepol_3.2.bb
-@@ -9,6 +9,8 @@ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
+@@ -9,7 +9,8 @@ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
  
  require selinux_common.inc
  
-+SRC_URI += "file://CVE-2021-36084.patch"
-+
+-SRC_URI += "file://CVE-2021-36084.patch"
++SRC_URI += "file://CVE-2021-36084.patch \
++            file://CVE-2021-36085.patch "
+ 
  inherit lib_package
  
- S = "${WORKDIR}/git/libsepol"
 -- 
 2.25.1
 
