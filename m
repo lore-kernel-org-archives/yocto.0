@@ -1,209 +1,89 @@
-Received: from mailout11.t-online.de (mailout11.t-online.de [194.25.134.85])
- by mx.groups.io with SMTP id smtpd.web09.1031.1632426355719273637
- for <yocto@lists.yoctoproject.org>;
- Thu, 23 Sep 2021 12:45:56 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=SPF record not found (domain: t-online.de, ip: 194.25.134.85, mailfrom: f_l_k@t-online.de)
-Received: from fwd82.dcpf.telekom.de (fwd82.aul.t-online.de [10.223.144.108])
-	by mailout11.t-online.de (Postfix) with SMTP id B2ABA3481
-	for <yocto@lists.yoctoproject.org>; Thu, 23 Sep 2021 21:45:06 +0200 (CEST)
-Received: from [192.168.178.83] ([79.219.228.58]) by fwd82.t-online.de
-	with (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384 encrypted)
-	esmtp id 1mTUeY-36NdPF0; Thu, 23 Sep 2021 21:45:06 +0200
-Subject: Re: [yocto] [meta-rockchip][PATCH] use uuid instead of hard-coding root device
+Subject: scikit-learn #gatesgarth #yocto
 To: yocto@lists.yoctoproject.org
-References: <20210917220121.26663-1-twoerner@gmail.com>
- <a7d1f5cd-8bb6-ba56-c2b4-39dfb283a22c@t-online.de>
- <20210923115919.GA25233@localhost>
-From: "Markus Volk" <f_l_k@t-online.de>
-Message-ID: <254c0237-f5c0-8f64-61a0-a5e8835d64f4@t-online.de>
-Date: Thu, 23 Sep 2021 21:45:06 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+From: "abhi" <abhishek.kumar@exaleapsemi.com>
+X-Originating-Location: Bengaluru, Karnataka, IN (14.98.179.254)
+X-Originating-Platform: Linux Firefox 92
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <20210923115919.GA25233@localhost>
-X-TOI-EXPURGATEID: 150726::1632426306-00001468-4F34C4DE/0/0 CLEAN NORMAL
-X-TOI-MSGID: 215c4ec1-45cf-4009-8a30-b2fccc346291
-Content-Type: multipart/alternative;
- boundary="------------6A74B96F8A8DF2AB0F8A9508"
-Content-Language: en-US
+Date: Fri, 17 Sep 2021 05:31:12 -0700
+Message-ID: <A0Xn.1631881872345937236.3pBJ@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="ei2J0nVd8nER7wxCh6Hc"
 
---------------6A74B96F8A8DF2AB0F8A9508
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--ei2J0nVd8nER7wxCh6Hc
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+hi guys,
 
-Am 23.09.21 um 13:59 schrieb Trevor Woerner:
-> Curious. I boot tested my patch on multiple boards and I've built and booted
-> numerous images on my rock-pi-4b and rock64 boards in the last day or so since
-> I applied the patch. I'll try some "clean" builds and see if that makes a
-> difference. I don't doubt your report (especially since Khem confirmed it),
-> I'd just like to know for myself what's different.
+i am trying to build scikit-learn on yocto but i am getting error of setup.=
+py ,it is showing failed i build all dependencies but it is giving error pl=
+ease try to give some i dea
 
-That is really strange. As soon as there are those /dev/sda* entries in my fstab
-my rock-pi-4c doesn't boot up anymore. As soon as i comment them out or delete them,
-everything is working again.
+ERROR: python3-sklearn-1.0-r0 do_compile: 'python3 setup.py build ' executi=
+on failed.
+ERROR: python3-sklearn-1.0-r0 do_compile: Execution of '/home/abhishek//sou=
+rces/fu540-build/tmp-glibc/work/riscv64-oe-linux/python3-sklearn/1.0-r0/tem=
+p/run.do_compile.17835' failed with exit code 1:
+/home/abhishek//sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/python3=
+-sklearn/1.0-r0/recipe-sysroot-native/usr/bin/python3-native/python3: can't=
+ open file '/home/abhishek/sources/fu540-build/tmp-glibc/work/riscv64-oe-li=
+nux/python3-sklearn/1.0-r0/scikit-learn-1.0/setup.py': [Errno 2] No such fi=
+le or directory
+WARNING: exit code 1 from a shell command.
 
-> I wonder if just applying your 2nd patch would be enough (i.e. the one that
-> removes the /dev/sda* lines from /etc/fstab)? It's odd that the first 6
-> entries in the wic file would need UUIDs since it's the SoC's ROM firmware
-> that uses them, and I'm pretty sure the Rockchip firmware isn't using UUIDs
-> (my guess is it's just blindly grabbing whatever it finds at specific
-> offsets). The things stored in those partitions are u-boot related bits (atf,
-> spl, the u-boot binary itself) so by the time Linux starts, those things are
-> already "behind" us. I can't see how adding UUIDs to the partitions holding
-> u-boot would affect how the kernel finds the root partition (?).
+ERROR: Logfile of failure stored in: /home/abhishek/exaleap/sources/fu540-b=
+uild/tmp-glibc/work/riscv64-oe-linux/python3-sklearn/1.0-r0/temp/log.do_com=
+pile.17835
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| /home/abhishek//sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/pytho=
+n3-sklearn/1.0-r0/recipe-sysroot-native/usr/bin/python3-native/python3: can=
+'t open file '/home/abhishek//sources/fu540-build/tmp-glibc/work/riscv64-oe=
+-linux/python3-sklearn/1.0-r0/scikit-learn-1.0/setup.py': [Errno 2] No such=
+ file or directory
+| ERROR: 'python3 setup.py build ' execution failed.
+| WARNING: exit code 1 from a shell command.
+| ERROR: Execution of '/home/abhishek//sources/fu540-build/tmp-glibc/work/r=
+iscv64-oe-linux/python3-sklearn/1.0-r0/temp/run.do_compile.17835' failed wi=
+th exit code 1:
+| /home/abhishek//sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/pytho=
+n3-sklearn/1.0-r0/recipe-sysroot-native/usr/bin/python3-native/python3: can=
+'t open file '/home/abhishek//sources/fu540-build/tmp-glibc/work/riscv64-oe=
+-linux/python3-sklearn/1.0-r0/scikit-learn-1.0/setup.py': [Errno 2] No such=
+ file or directory
+| WARNING: exit code 1 from a shell command.
 
-Applying only the second patch should be enough to hide the problem, but as soon as
-one decides to disable WIC_CREATE_EXTRA_ARGS for example because he/she wants /boot to be
-mounted automatically, those non working /dev/sda* entries will be written into fstab again.
-With the first patch they are included like this and are mountable via fstab:
+--ei2J0nVd8nER7wxCh6Hc
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+hi guys,<br /><br />i am trying to build scikit-learn on yocto but i am get=
+ting error of setup.py ,it is showing failed i build all dependencies but i=
+t is giving error please try to give some i dea<br /><br />ERROR: python3-s=
+klearn-1.0-r0 do_compile: 'python3 setup.py build ' execution failed.<br />=
+ERROR: python3-sklearn-1.0-r0 do_compile: Execution of '/home/abhishek//sou=
+rces/fu540-build/tmp-glibc/work/riscv64-oe-linux/python3-sklearn/1.0-r0/tem=
+p/run.do_compile.17835' failed with exit code 1:<br />/home/abhishek//sourc=
+es/fu540-build/tmp-glibc/work/riscv64-oe-linux/python3-sklearn/1.0-r0/recip=
+e-sysroot-native/usr/bin/python3-native/python3: can't open file '/home/abh=
+ishek/sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/python3-sklearn/1=
+.0-r0/scikit-learn-1.0/setup.py': [Errno 2] No such file or directory<br />=
+WARNING: exit code 1 from a shell command.<br /><br />ERROR: Logfile of fai=
+lure stored in: /home/abhishek/exaleap/sources/fu540-build/tmp-glibc/work/r=
+iscv64-oe-linux/python3-sklearn/1.0-r0/temp/log.do_compile.17835<br />Log d=
+ata follows:<br />| DEBUG: Executing shell function do_compile<br />| /home=
+/abhishek//sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/python3-skle=
+arn/1.0-r0/recipe-sysroot-native/usr/bin/python3-native/python3: can't open=
+ file '/home/abhishek//sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/=
+python3-sklearn/1.0-r0/scikit-learn-1.0/setup.py': [Errno 2] No such file o=
+r directory<br />| ERROR: 'python3 setup.py build ' execution failed.<br />=
+| WARNING: exit code 1 from a shell command.<br />| ERROR: Execution of '/h=
+ome/abhishek//sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/python3-s=
+klearn/1.0-r0/temp/run.do_compile.17835' failed with exit code 1:<br />| /h=
+ome/abhishek//sources/fu540-build/tmp-glibc/work/riscv64-oe-linux/python3-s=
+klearn/1.0-r0/recipe-sysroot-native/usr/bin/python3-native/python3: can't o=
+pen file '/home/abhishek//sources/fu540-build/tmp-glibc/work/riscv64-oe-lin=
+ux/python3-sklearn/1.0-r0/scikit-learn-1.0/setup.py': [Errno 2] No such fil=
+e or directory<br />| WARNING: exit code 1 from a shell command.
 
-UUID=0C48-9342	loader1	vfat	defaults	0	0
-UUID=C4D3-D17A	reserved1	vfat	defaults	0	0
-UUID=8FBE-2551	reserved2	vfat	defaults	0	0
-UUID=35FA-8BBB	loader2	vfat	defaults	0	0
-UUID=CFF3-5D80	atf	vfat	defaults	0	0
-UUID=832C-48C4	/boot	vfat	defaults	0	0
-
-
-u-boot is able to find its partitons even if '--use-uuid' is set. As you mentioned u-boot doesn't
-know about uuid but it seems to be able to find its partitions nevertheless. But if '--use-uuid'
-is not set, wic writes /dev/sda* instead of the correct  UUID values to fstab. So its not u-boot that
-needs uuid to be set but fstab.
-Of course it would be nice, if wic didn't try to add the u-boot partitions to fstab at all.
-I guess nobody ever needs to have them mounted into userspace ( except possibly /boot).
-
-> Are you using poky or a distro other than "nodistro"? Perhaps other
-> layers/distros are affecting the build?
-
-Thats not unlikely. I have a long layer-list in bblayers.conf to build my image:
-
-   /home/flk/build/poky/meta \
-   /home/flk/build/poky/meta-poky \
-   /home/flk/build/poky/meta-yocto-bsp \
-   /home/flk/build/poky/meta-rockchip \
-   /home/flk/build/poky/meta-rockchip-extras \
-   /home/flk/build/poky/meta-wayland \
-   /home/flk/build/poky/meta-retro \
-   /home/flk/build/poky/meta-retro-wayland \
-   /home/flk/build/poky/meta-rauc \
-   /home/flk/build/poky/meta-openembedded/meta-oe \
-   /home/flk/build/poky/meta-openembedded/meta-multimedia \
-   /home/flk/build/poky/meta-openembedded/meta-networking \
-   /home/flk/build/poky/meta-openembedded/meta-xfce \
-   /home/flk/build/poky/meta-openembedded/meta-gnome \
-   /home/flk/build/poky/meta-openembedded/meta-python \
-   /home/flk/build/poky/meta-openembedded/meta-filesystems \
-   /home/flk/build/poky/meta-arm/meta-arm \
-   /home/flk/build/poky/meta-arm/meta-arm-toolchain \
-   /home/flk/build/poky/meta-kodi \
-   /home/flk/build/poky/meta-browser/meta-chromium \
-   /home/flk/build/poky/meta-browser/meta-firefox \
-   /home/flk/build/poky/meta-clang \
-
-
-best regards,
-
-   Markus
-
-
---------------6A74B96F8A8DF2AB0F8A9508
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">Am 23.09.21 um 13:59 schrieb Trevor
-      Woerner:<br>
-    </div>
-    <blockquote type="cite" cite="mid:20210923115919.GA25233@localhost">
-      <pre class="moz-quote-pre" wrap="">Curious. I boot tested my patch on multiple boards and I've built and booted
-numerous images on my rock-pi-4b and rock64 boards in the last day or so since
-I applied the patch. I'll try some "clean" builds and see if that makes a
-difference. I don't doubt your report (especially since Khem confirmed it),
-I'd just like to know for myself what's different.</pre>
-    </blockquote>
-    <pre class="moz-quote-pre" wrap="">That is really strange. As soon as there are those /dev/sda* entries in my fstab
-my rock-pi-4c doesn't boot up anymore. As soon as i comment them out or delete them,
-everything is working again.
-</pre>
-    <blockquote type="cite" cite="mid:20210923115919.GA25233@localhost">
-      <pre class="moz-quote-pre" wrap="">I wonder if just applying your 2nd patch would be enough (i.e. the one that
-removes the /dev/sda* lines from /etc/fstab)? It's odd that the first 6
-entries in the wic file would need UUIDs since it's the SoC's ROM firmware
-that uses them, and I'm pretty sure the Rockchip firmware isn't using UUIDs
-(my guess is it's just blindly grabbing whatever it finds at specific
-offsets). The things stored in those partitions are u-boot related bits (atf,
-spl, the u-boot binary itself) so by the time Linux starts, those things are
-already "behind" us. I can't see how adding UUIDs to the partitions holding
-u-boot would affect how the kernel finds the root partition (?).
-</pre>
-    </blockquote>
-    <pre>Applying only the second patch should be enough to hide the problem, but as soon as
-one decides to disable WIC_CREATE_EXTRA_ARGS for example because he/she wants /boot to be
-mounted automatically, those non working /dev/sda* entries will be written into fstab again.
-With the first patch they are included like this and are mountable via fstab:
-
-
-UUID=0C48-9342	loader1	vfat	defaults	0	0
-UUID=C4D3-D17A	reserved1	vfat	defaults	0	0
-UUID=8FBE-2551	reserved2	vfat	defaults	0	0
-UUID=35FA-8BBB	loader2	vfat	defaults	0	0
-UUID=CFF3-5D80	atf	vfat	defaults	0	0
-UUID=832C-48C4	/boot	vfat	defaults	0	0
-
-
-u-boot is able to find its partitons even if '--use-uuid' is set. As you mentioned u-boot doesn't
-know about uuid but it seems to be able to find its partitions nevertheless. But if '--use-uuid'
-is not set, wic writes /dev/sda* instead of the correct  UUID values to fstab. So its not u-boot that
-needs uuid to be set but fstab.
-Of course it would be nice, if wic didn't try to add the u-boot partitions to fstab at all.
-I guess nobody ever needs to have them mounted into userspace ( except possibly /boot).
-
-</pre>
-    <blockquote type="cite" cite="mid:20210923115919.GA25233@localhost">
-      <pre class="moz-quote-pre" wrap="">
-Are you using poky or a distro other than "nodistro"? Perhaps other
-layers/distros are affecting the build?</pre>
-    </blockquote>
-    <pre>Thats not unlikely. I have a long layer-list in bblayers.conf to build my image:
-
-  /home/flk/build/poky/meta \
-  /home/flk/build/poky/meta-poky \
-  /home/flk/build/poky/meta-yocto-bsp \
-  /home/flk/build/poky/meta-rockchip \
-  /home/flk/build/poky/meta-rockchip-extras \
-  /home/flk/build/poky/meta-wayland \
-  /home/flk/build/poky/meta-retro \
-  /home/flk/build/poky/meta-retro-wayland \
-  /home/flk/build/poky/meta-rauc \
-  /home/flk/build/poky/meta-openembedded/meta-oe \
-  /home/flk/build/poky/meta-openembedded/meta-multimedia \
-  /home/flk/build/poky/meta-openembedded/meta-networking \
-  /home/flk/build/poky/meta-openembedded/meta-xfce \
-  /home/flk/build/poky/meta-openembedded/meta-gnome \
-  /home/flk/build/poky/meta-openembedded/meta-python \
-  /home/flk/build/poky/meta-openembedded/meta-filesystems \
-  /home/flk/build/poky/meta-arm/meta-arm \
-  /home/flk/build/poky/meta-arm/meta-arm-toolchain \
-  /home/flk/build/poky/meta-kodi \
-  /home/flk/build/poky/meta-browser/meta-chromium \
-  /home/flk/build/poky/meta-browser/meta-firefox \
-  /home/flk/build/poky/meta-clang \
-
-
-</pre>
-    <pre>best regards,</pre>
-    <pre>  Markus
-</pre>
-  </body>
-</html>
-
---------------6A74B96F8A8DF2AB0F8A9508--
+--ei2J0nVd8nER7wxCh6Hc--
