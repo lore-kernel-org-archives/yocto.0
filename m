@@ -1,167 +1,138 @@
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
- by mx.groups.io with SMTP id smtpd.web11.12720.1631886051746797050
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+ by mx.groups.io with SMTP id smtpd.web08.12784.1631886053154348660
  for <yocto@lists.yoctoproject.org>;
- Fri, 17 Sep 2021 06:40:52 -0700
+ Fri, 17 Sep 2021 06:40:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=LWrAtciJ;
- spf=pass (domain: gmail.com, ip: 209.85.221.50, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-wr1-f50.google.com with SMTP id t8so15265590wrq.4
-        for <yocto@lists.yoctoproject.org>; Fri, 17 Sep 2021 06:40:51 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=cpndqaKV;
+ spf=pass (domain: gmail.com, ip: 209.85.221.44, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-wr1-f44.google.com with SMTP id w29so15247395wra.8
+        for <yocto@lists.yoctoproject.org>; Fri, 17 Sep 2021 06:40:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=SA1tq3asZQRQLk7ikHf6yXWVBGwDXivdevRfiP4wmDA=;
-        b=LWrAtciJyozUnB7I6asB5OpnxiIaf25P9394kvhAUO6mIggwD0RlTkYcYKhozTdPzg
-         j1R9w/rBUnTDHAGUWV5MCbUcuGxjHuQ5vsWlOIb6P3XQuSH6Nmn061lpdgRAVilVEHFd
-         8Ve0B0D5VDHJDsLdwgSlFfcdcGHozuI//KDempnnE87wKH3lKGyn/E5oh6dh04svTEd2
-         6IzwR2AAe4dLHPfsAROmTL+khFFFMvL3DwgEgaZ3XsdL2fqcMyOEYkdjtKU77bqukkDx
-         uZyV+TfYFzdl0g578xOsCGXD20ge92froR6TKMs2mXgipIi9a0vbEmKcHB9r/jyEyFoG
-         +h4A==
+        bh=JK7RYG1eaVv+RJIsk46uYE8Zp4yoU6hGcqTqdDPNvP8=;
+        b=cpndqaKVzHPQwOyFH3t4wEBEvHoHgf7Evk6PKgEwPJNWEswRkljvTIxNcXwIwErykR
+         Pek4DleGgOld7CYLU6UWXvCntxskEBTWQrrqV/BDYstpIgVFM7Rd7CsHStLORgHyrFse
+         la5ygMMgFyAWp35kwFpM5Qw23IW2bH4jqH+uulaKPB4ZQSfHVYVhR1uoYcuyunf6SBtE
+         m1z05u46/opuVC8mN+104+XOHSBOxENqleOHh6AEHp1tDReksULH11KQ4AnPyc0IIqdR
+         bY9UGXxupayLqULiRWJy2qiSYWNuQ9GwR1RLbDqJ6QLBdJyc4sFCbupNQ/gBK8nTqR5l
+         OSHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=SA1tq3asZQRQLk7ikHf6yXWVBGwDXivdevRfiP4wmDA=;
-        b=FHPXE0A1NDvREDi+h3S2zNDyl0XDpTm6XvmvNuRBgIiyyRHTD5dVNakoPLXvGeISrB
-         98jZPNBijt+EWxVU84nwSSrbFfUXlKhVSfKXy9dQ+UclaMa15i2M7HgLvLaDKBnODqbA
-         bb0ebWGN5WdTcyKj3OhWJOXNW8YKh3/tLTCZCg70oFgxzRI4G8qMblGv5ep07HIXJkvz
-         J5DwIsxwL1Ynd/32SYXyUFm+HlYAGDLqVR3EOAAMHf7HbzMFvPrFRZdVhpLngQojtIIB
-         JI9c9BV6eaLoyfTNtOQlx20RKFkOLi6lV8tlM9iAHVW6+XST0fmVRYD5zMQ57ZPE4O1J
-         wH0A==
-X-Gm-Message-State: AOAM532O01kkNajB36v0uJfINBV09xPixfqkxCew4KxUtH/FpfgYAIUk
-	vj9hBzlRJLIEJSgCs9SoWYgjrdIeXEw=
-X-Google-Smtp-Source: ABdhPJxUPfZQaMbgHYk6ohXt/yLYYmXHalFaKiZJuHY3YZzQ2Pka1wo0VXmt4oAYN4wbr3YMFTjTOA==
-X-Received: by 2002:a5d:554e:: with SMTP id g14mr12328637wrw.48.1631886050217;
-        Fri, 17 Sep 2021 06:40:50 -0700 (PDT)
+        bh=JK7RYG1eaVv+RJIsk46uYE8Zp4yoU6hGcqTqdDPNvP8=;
+        b=EtJnYr1CjgXmm9bxyVySVdJCIMlDimXrCAiQmhhuuG8nXF0dDbJ8ZdupNJXq7bgI5Z
+         NmexLcPxM7nYQzP+UwZ/i8Sii+X/aU6rx3e0CNKVELwmf2iJj1e4n+ssScmFTf+2c88o
+         DJs6qDrLMqECO1uptNGHOwajh4V8RXqtpOrofkR0kJ09/iCp31rBz7U5IPaEdFeh5ITW
+         WYIIbRwu+uZKDzW8aStovNgMm1UXhBbzA2/tZzbNZOPE42hYveXrHZQITDcoig7fdA3l
+         zOQCprpqP4+6uNpUloBv1BMAM2VMk5/8yLxkn2SKKTgZmhbm3F5L5icRyNeZtnOt+t6L
+         1CZA==
+X-Gm-Message-State: AOAM533lzq70M4EW1aBa48gBaccsRMA+pJWvykpsZs6R1DZtJMsvLZPf
+	OSYYcPoyCFzZCj7SB6zmtqlw0zV/VQk=
+X-Google-Smtp-Source: ABdhPJxC+e1dpvR9Q1wQ9259tam5L3gdlcQjzwQfM9vchNBqGhquEI1Qq08E+diI1282zk8W9r47qg==
+X-Received: by 2002:a5d:54cf:: with SMTP id x15mr12580809wrv.27.1631886051475;
+        Fri, 17 Sep 2021 06:40:51 -0700 (PDT)
 Return-Path: <alex.kanavin@gmail.com>
 Received: from localhost.localdomain ([46.183.103.17])
-        by smtp.gmail.com with ESMTPSA id j23sm7317192wmo.14.2021.09.17.06.40.49
+        by smtp.gmail.com with ESMTPSA id j23sm7317192wmo.14.2021.09.17.06.40.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Sep 2021 06:40:49 -0700 (PDT)
+        Fri, 17 Sep 2021 06:40:51 -0700 (PDT)
 From: "Alexander Kanavin" <alex.kanavin@gmail.com>
 X-Google-Original-From: Alexander Kanavin <alex@linutronix.de>
 To: yocto@lists.yoctoproject.org
 Cc: Alexander Kanavin <alex@linutronix.de>
-Subject: [ptest-runner][PATCH 2/3] utils.c: handle test timeouts directly with poll()
-Date: Fri, 17 Sep 2021 15:40:41 +0200
-Message-Id: <20210917134042.179202-2-alex@linutronix.de>
+Subject: [ptest-runner][PATCH 3/3] utils.c: add system data collection when a test gets stuck.
+Date: Fri, 17 Sep 2021 15:40:42 +0200
+Message-Id: <20210917134042.179202-3-alex@linutronix.de>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20210917134042.179202-1-alex@linutronix.de>
 References: <20210917134042.179202-1-alex@linutronix.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-if poll()'s timeout expires that means the test did not
-produce any output, which is exactly what we need to catch.
-
-So there's no need to set up separate timeouts with signals
-and alarms, and this greatly simplifies more sophisticated
-processing of hanging tests (such as collecting overall system data).
+Currently, ptest-runner simply kills the offending test without further ado,
+which is not at all helpful when trying to figure out why it happens
+(especially if such hangs are intermittent and rare). There's now a script
+that gets executed before killing the test, so ideas on what to have in it
+are welcome.
 
 Signed-off-by: Alexander Kanavin <alex@linutronix.de>
 ---
- utils.c | 34 ++++++++++------------------------
- 1 file changed, 10 insertions(+), 24 deletions(-)
+ Makefile                         |  2 +-
+ ptest-runner-collect-system-data |  6 ++++++
+ utils.c                          | 24 ++++++++++++++++++++++++
+ 3 files changed, 31 insertions(+), 1 deletion(-)
+ create mode 100755 ptest-runner-collect-system-data
 
+diff --git a/Makefile b/Makefile
+index a6372de..168cf5a 100644
+--- a/Makefile
++++ b/Makefile
+@@ -43,7 +43,7 @@ $(TEST_EXECUTABLE): $(TEST_OBJECTS)
+ 	$(CC) $(LDFLAGS) $(TEST_OBJECTS) -o $@ $(TEST_LIBSTATIC) $(TEST_LDFLAGS)
+ 
+ check: $(TEST_EXECUTABLE)
+-	./$(TEST_EXECUTABLE) -d $(TEST_DATA)
++	PATH=.:$(PATH) ./$(TEST_EXECUTABLE) -d $(TEST_DATA)
+ 
+ .c.o:
+ 	$(CC) $(CFLAGS) -c $< -o $@
+diff --git a/ptest-runner-collect-system-data b/ptest-runner-collect-system-data
+new file mode 100755
+index 0000000..ba335da
+--- /dev/null
++++ b/ptest-runner-collect-system-data
+@@ -0,0 +1,6 @@
++#!/bin/sh
++# Other ideas on what to do when a ptest gets stuck welcome.
++dmesg
++pstree -a -l
++df
++free
 diff --git a/utils.c b/utils.c
-index 128ff61..58c3aa1 100644
+index 58c3aa1..a67ac11 100644
 --- a/utils.c
 +++ b/utils.c
-@@ -51,7 +51,6 @@
- #include "utils.h"
- 
- #define GET_STIME_BUF_SIZE 1024
--#define WAIT_CHILD_POLL_TIMEOUT_MS 200
- #define WAIT_CHILD_BUF_MAX_SIZE 1024
- 
- #define UNUSED(x) (void)(x)
-@@ -296,7 +295,7 @@ read_child(void *arg)
- 	pfds[1].events = POLLIN;
- 
- 	do {
--		r = poll(pfds, 2, WAIT_CHILD_POLL_TIMEOUT_MS);
-+		r = poll(pfds, 2, _child_reader.timeout*1000);
- 		if (r > 0) {
- 			char buf[WAIT_CHILD_BUF_MAX_SIZE];
- 			ssize_t n;
-@@ -313,10 +312,10 @@ read_child(void *arg)
- 					fwrite(buf, (size_t)n, 1, _child_reader.fps[1]);
- 			}
- 
--			/* Child output reset alarm */
--			alarm(0);
--			alarm(_child_reader.timeout);
--		}
-+		} else if (r == 0) {
-+			_child_reader.timeouted = 1;
-+			kill(-_child_reader.pid, SIGKILL);
-+                }
- 
- 		fflush(_child_reader.fps[0]);
- 		fflush(_child_reader.fps[1]);
-@@ -344,26 +343,11 @@ run_child(char *run_ptest, int fd_stdout, int fd_stderr)
- 	/* exit(1); not needed? */
+@@ -281,6 +281,27 @@ close_fds(void)
+    	}
  }
  
--static void
--timeout_child_handler(int signo)
--{
--	UNUSED(signo);
--	_child_reader.timeouted = 1;
--	kill(-_child_reader.pid, SIGKILL);
--}
--
- static inline int
--wait_child(pid_t pid, unsigned int timeout)
-+wait_child(pid_t pid)
++static void
++collect_system_state(FILE* fout)
++{
++	char *cmd = "ptest-runner-collect-system-data";
++
++	char buf[1024];
++	FILE *fp;
++
++	if ((fp = popen(cmd, "r")) == NULL) {
++		fprintf(fout, "Error opening pipe!\n");
++	}
++
++	while (fgets(buf, 1024, fp) != NULL) {
++		fprintf(fout, "%s", buf);
++	}
++
++	if(pclose(fp))  {
++		fprintf(fout, "Command not found or exited with error status\n");
++	}
++}
++
+ static void *
+ read_child(void *arg)
  {
- 	int status = -1;
+@@ -313,6 +334,9 @@ read_child(void *arg)
+ 			}
  
--	_child_reader.timeout = timeout;
--	_child_reader.timeouted = 0;
--	_child_reader.pid = pid;
--
--	/* setup alarm to timeout based on std{out,err} in the child */
--	alarm(timeout);
--
- 	waitpid(pid, &status, 0);
- 	if (WIFEXITED(status))
- 		status = WEXITSTATUS(status);
-@@ -462,6 +446,8 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
- 		_child_reader.fds[1] = pipefd_stderr[0];
- 		_child_reader.fps[0] = fp;
- 		_child_reader.fps[1] = fp_stderr;
-+		_child_reader.timeout = opts.timeout;
-+		_child_reader.timeouted = 0;
- 		rc = pthread_create(&tid, NULL, read_child, NULL);
- 		if (rc != 0) {
- 			fprintf(fp, "ERROR: Failed to create reader thread, %s\n", strerror(errno));
-@@ -469,7 +455,6 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
- 			close(pipefd_stdout[1]);
- 			break;
- 		}
--		signal(SIGALRM, timeout_child_handler);
- 
- 		fprintf(fp, "START: %s\n", progname);
- 		PTEST_LIST_ITERATE_START(head, p)
-@@ -511,6 +496,7 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
- 			} else {
- 				int status;
- 
-+				_child_reader.pid = child;
- 				if (setpgid(child, pgid) == -1) {
- 					fprintf(fp, "ERROR: setpgid() failed, %s\n", strerror(errno));
- 				}
-@@ -520,7 +506,7 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
- 				fprintf(fp, "BEGIN: %s\n", ptest_dir);
- 
- 
--				status = wait_child(child, opts.timeout);
-+				status = wait_child(child);
- 
- 				entime = time(NULL);
- 				duration = entime - sttime;
+ 		} else if (r == 0) {
++			// no output from the test after a timeout; the test is stuck, so collect
++			// as much data from the system as possible and kill the test
++			collect_system_state(_child_reader.fps[0]);
+ 			_child_reader.timeouted = 1;
+ 			kill(-_child_reader.pid, SIGKILL);
+                 }
 -- 
 2.33.0
 
