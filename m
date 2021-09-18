@@ -1,203 +1,196 @@
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
- by mx.groups.io with SMTP id smtpd.web12.1214.1631916090675553275
+Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
+ by mx.groups.io with SMTP id smtpd.web10.2990.1631946076708252038
  for <yocto@lists.yoctoproject.org>;
- Fri, 17 Sep 2021 15:01:30 -0700
+ Fri, 17 Sep 2021 23:21:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=HJEVWVEE;
- spf=pass (domain: gmail.com, ip: 209.85.222.177, mailfrom: twoerner@gmail.com)
-Received: by mail-qk1-f177.google.com with SMTP id bk29so21961646qkb.8
-        for <yocto@lists.yoctoproject.org>; Fri, 17 Sep 2021 15:01:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=iIvemyjkBm8cjnKtx8U4K6tKvI5WLNx7I7kOFGWQqCc=;
-        b=HJEVWVEE8Jpnz9/vdjEyvBW+DcSAJmuqLbspzECT3FnnQfmrT6GOjlZ7VETdVhTeKX
-         iHwiiboBjdI/wGyaoRmBWIeAftlkspWV6+q83yXtrHekY6kx1v2a+nq6Er9FO3h6DEZZ
-         ZGWP7uFKqxlPdoqis8vhXaNj50eUbNzY/DNAkqLN57apBxzw7/Wl/dIc+98JIzBPFY1C
-         U82sHAcLIhKJVZuP8bGWQSvAsYhsb1fWeG1v0UvxaJpgTpQ+uoYuPUPn60FJZXgoYlWY
-         97UVNK7aBpz9+PYKaFJCsVcfRBZYSaXY5u7GV2XAKIY4wEoBDE3ocrezZ6nqi1Ag65sx
-         U5CQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=iIvemyjkBm8cjnKtx8U4K6tKvI5WLNx7I7kOFGWQqCc=;
-        b=tXRbHglTBYojQiuY75oXnNwqmKPvd04bv0+FPLktWHYx5P7pR+dXTzeMgl2Fui+AB4
-         4LcoJnRKsQ1shgfDM1mcebT4Bf0KZ1CAhyEuGiTEBYVeOHVuUSgdmh3XUDnY3DSZwnyg
-         aoP4IXYgUIBBQBndarh5ZaiI6kb8WG/WTMlLg9vLeNTwyzBc4QX6Zh0AIj6zMw59zlJs
-         zhqlLLI097UTGdu9ogTyh1K/WbGIEeK6B3Qg+amLz6A1l1/D4e/8N5MoZdWEU27dpaXO
-         wjixtJrl8LMQxTY9R+CIHbjA/G1Yp3ZsFM+5iH9FOoF7aXY2UNl3C1JRWcc9HTHEhGmG
-         YlkQ==
-X-Gm-Message-State: AOAM5301c5MkeT0K+yEpwN/R/MFKLrrbqR9UgAtU35IFo0+hZuleYoqP
-	h6LulzdxeyWN8Wt5z8oYMyFdTcF38EI=
-X-Google-Smtp-Source: ABdhPJykHzW3834j27i6uth2MAY1RoTpPdHgc5HxhSHYls5ilzKezYXvgPHny9NHmpWydaD1Msx0Xg==
-X-Received: by 2002:a05:620a:1105:: with SMTP id o5mr13313515qkk.278.1631916089359;
-        Fri, 17 Sep 2021 15:01:29 -0700 (PDT)
-Return-Path: <twoerner@gmail.com>
-Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id m68sm5902920qkb.105.2021.09.17.15.01.28
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Sep 2021 15:01:28 -0700 (PDT)
-From: "Trevor Woerner" <twoerner@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-rockchip][PATCH] use uuid instead of hard-coding root device
-Date: Fri, 17 Sep 2021 18:01:21 -0400
-Message-Id: <20210917220121.26663-1-twoerner@gmail.com>
-X-Mailer: git-send-email 2.30.0.rc0
+ dkim=fail reason="body hash did not verify" header.i=@windriver.com header.s=pps06212021 header.b=KgWfF3qS;
+ spf=pass (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=48953b327d=changqing.li@windriver.com)
+Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18I6HEoX002268;
+	Sat, 18 Sep 2021 06:21:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com; h=to : cc : from :
+ subject : message-id : date : content-type : mime-version; s=PPS06212021;
+ bh=AMPtlEojzg0aaNLQtqN2NUB8zZMU2qhdDGrhPD1wQ88=;
+ b=KgWfF3qS4Pln27f6h8l54MiwiD6nNaZFq0mUg4YEfe6876rW6lw7PHFtV/YTUDTE65KS
+ bQqccFTzi09XsBgCWUGHOPEmAV4bvxXuaKb+vs5u+Vf8951HdX5SusMv0sd77LrHfNXG
+ +r1uPIyqpJRyA1+nXa1/tfLzB6ExHeHTCcT8SIfGMGY/Ie2bOTcdwoL4IFF6pOqlelXS
+ Waixj69NdxW5ztZ7tETa9F9eZup5DAoxp0tZzx3bq7bPVe09cndBazsk8wShBtl2sPC9
+ h0ula8cB0oSClr7b0NzhI5lS3YF5GzwbUNfC0O0Ga8Ie74qpOyMJ81ZVZQ/8blyjY8Q9 pw== 
+Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2049.outbound.protection.outlook.com [104.47.66.49])
+	by mx0a-0064b401.pphosted.com with ESMTP id 3b55b286ss-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 18 Sep 2021 06:21:14 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=na081NhAie+EBQaRHR0J+Hlpee4k1vfSjEhoLTrzzG63v0segqSosOVFRAc1Jz3mfYceROAGOooY7x/3BlOSN5ZeXLws2OJPRplWwh4jgzRoXBv0S9lhbxNcostEA2PBzWHZkuelo9EKYKi5SONhTVLBtFkyUIM/JEd/AaxstMU2LA8vq+l8qlAw09Nk/NZYgqhFHbaqGjzQTNed2IE0RnCNhejNzsUoEcKFD1EirheaE3mUZc2Bj7q/1pbmL+oQ9XEuL/Yl65ltRXP2ZGexsSF04a/au10pDeCFzwQKnnMQ6ydOFzJjzFl7CCg7GLBM+2Yz+eBx6FeIeBFRTj7IBg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=AMPtlEojzg0aaNLQtqN2NUB8zZMU2qhdDGrhPD1wQ88=;
+ b=RdLFrig4+CqXHBWo0OrXZPI+dzydd6kpWjZYkAnLCHIiu0mbnAvXRC1duDEirkQjKfKOkBM2HhY9l6HUV4oeyKsvcycYCqvDmD92pNEPOV2q38U/66bn1ZzgEgEwFtyCTYQJRoKKyFEP90pe8WO/mMFr5EkTTiQt62pAGmxROGiEANjM07gcCLhpWiYGuDOtp/qa09GP9mtlZW8eh0ZxXsL0DU/xDjPwu02ZTWgaF3q3PBZqbrScdLfeGHd7UXSzcXVFAVWLBoFuJUoQnbilskvwhLklRQuPmI4TX46q59haFICGumSGVYk5OJdAIjr4R2tHOtuZCFuitDbKnzcuIQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=windriver.com;
+Received: from SN6PR11MB2557.namprd11.prod.outlook.com (2603:10b6:805:56::33)
+ by SA2PR11MB5052.namprd11.prod.outlook.com (2603:10b6:806:fa::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4523.14; Sat, 18 Sep
+ 2021 06:21:11 +0000
+Received: from SN6PR11MB2557.namprd11.prod.outlook.com
+ ([fe80::a544:19b6:196b:f339]) by SN6PR11MB2557.namprd11.prod.outlook.com
+ ([fe80::a544:19b6:196b:f339%5]) with mapi id 15.20.4523.018; Sat, 18 Sep 2021
+ 06:21:11 +0000
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: yocto@lists.yoctoproject.org
+From: "Changqing Li" <changqing.li@windriver.com>
+Subject: layer index update failed
+Message-ID: <90c93098-3e73-10b9-2f3d-18017cf0c2a4@windriver.com>
+Date: Sat, 18 Sep 2021 14:21:05 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+X-ClientProxiedBy: BYAPR06CA0022.namprd06.prod.outlook.com
+ (2603:10b6:a03:d4::35) To SN6PR11MB2557.namprd11.prod.outlook.com
+ (2603:10b6:805:56::33)
 MIME-Version: 1.0
+Received: from [128.224.162.189] (60.247.85.82) by BYAPR06CA0022.namprd06.prod.outlook.com (2603:10b6:a03:d4::35) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4523.14 via Frontend Transport; Sat, 18 Sep 2021 06:21:10 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 100c4dc7-865a-4c60-5a5a-08d97a6c8265
+X-MS-TrafficTypeDiagnostic: SA2PR11MB5052:
+X-Microsoft-Antispam-PRVS: 
+	<SA2PR11MB50520BC1EE561B848F8C67D382DE9@SA2PR11MB5052.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	/fTMJZJBSyXJHsvz4H3RwVw3wduKdMH5Ue/pJKSj6TVGQULWzIcH3ZLMVNlIgORsbHEWe4347veGkENCoXZYZLYAl3tyABzylS4o1rZfgxgxNv/EQwrw5t08UmxOm3yvfyu5TNLXeVgtd0qzNAiSBAJwYxz+HbN6bGgxL6YuRewhzaIuEQM7XWw8jGz8FzAtRoFmAu2tZ1QjUkbcvuOLhE9Y7+dxleRkuqFNvtJ65k61TtcnPMsg6EsoA2+1+UXtNB9S+OQHoKerJBTsUFs6DtWQEFyHCtKlwcQv7A7Y29e3Y8PjGBPxDNQ8l5yF5CKE+c0zhBePkRzN7leTwA3DrbzK5T4RqdAT/1CdEOI5w2jvYuHkNIog4hyVzibZIJhAON6ltQACgE1gKr2GSHBr3nmhjxERwiac+l1ozJOSQ0EQ/zq0rysV6xGpEEOxuzlheqj+rtj54YWsVYJN4bbydTOZfOn86DvJUPZenY+/fxn1/T1TDrlLgj+swvjEdpBQRw4G3iwGBhTEWnQTcY0Nj3ic6BqobTZQc+L8OsvjgesR6JBIYpNALC/unoBY8NFJBfbfudVllcr2FYssvNQZ2koNWWWygITqQmYHunFLO5J/qIuZY4ZEQV86iEMIrBY0S9+wanSP6OS7UKwQfpimw0SioprsMLmK5IyJNPnYjNQ8kipncLQ+skXr3xhC+xgh1chFdskkMg8hfJRnoKBtj57U5ZhIhoxZbJQnXTDMM1OhZODXUiOLpvRgsJETkwU8EWmZRcsotWnGe9bPh5ddYCHrRp+EWKw1j3UK4s9ipAONWAxeIZCVU2BUHq66Cx4NWGHMdv6tVRktGwUkHnwgjPg44KU2x8tEQ2fvvqIsdujahYSVn0hIocWfIeIdr7927oc0jkPEM1mrTZLcl1JLCg==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR11MB2557.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(2616005)(15650500001)(36756003)(6916009)(8676002)(956004)(4326008)(6706004)(8936002)(6486002)(26005)(2906002)(166002)(38350700002)(44832011)(186003)(31696002)(86362001)(38100700002)(52116002)(16576012)(316002)(66476007)(66946007)(66556008)(3480700007)(33964004)(31686004)(6666004)(83380400001)(508600001)(5660300002)(158833001)(78286007)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?b0RJM1NMSUduQXJmVnZHRkR0YVVYdllIY1JVdUVFUlhoMDBMVG51bDlTUHhF?=
+ =?utf-8?B?ZnVMbndHWEswR0ZsRmlDUGVUSmdzb0lscWp2cnpNTTBCSlJLQTlWSk9obU94?=
+ =?utf-8?B?SUJoTHBaeWN6TUVBd1hpc1dCSnZDSnlPMlB5cXoxZWQzaXhPQWUrVUtJbDBF?=
+ =?utf-8?B?V2FoNFluQ2lneXdyWlNKUVdlYnIwWFNQMVFYNU9SdkN4c09IK00xSjI2MldS?=
+ =?utf-8?B?OUF3Y0lZbmQ0bjBOMmZNeTJJa2p2WGVqYStYZ2lIKy9DSlprNFpncGVjM3Rk?=
+ =?utf-8?B?Q1NaREk4SEdWZzU2MUxnVmJ1aWc4ZVZ0bXAvbzdKYTV3c2Vhek83UEJhcDJw?=
+ =?utf-8?B?azhPQ3EwSHlJRVBwLytHZE9TbnVMcjdGNHJXejFOUjNDanh1WDE3U0czUEZX?=
+ =?utf-8?B?emZxeTVDaS9Lb3NFVmo3Q1R1dnBDSUNBNWFnd0xtbTVYOVFidmhMWFNYN2Fq?=
+ =?utf-8?B?N2pnaVkxckhrVit5b3ptUkltMWw2MjBKTGttSWQyaUhzcy9wS0NoRE9sSnEv?=
+ =?utf-8?B?cVh6WXQ0ajhjVXUrRFFndDkwODkwOEsyKzVwRXVmb1d4eE5pcGV3VGtadklC?=
+ =?utf-8?B?QjEzSjJYYmZWZHY3ZDZhWUcxMVRwS21uaVNPWFVTTFV4cytrUUZOazkyVjkv?=
+ =?utf-8?B?bHhzQWYrRFl3OUhuRmp3WkJscm1SQi8welRHWGpoZk9Namdhd0RXV3cvRjda?=
+ =?utf-8?B?ajhjcm5OTHB1djJkOE85MGtsUkNvODI5SjE0a1pKeCtJTzRZcytMR2h4Z0lS?=
+ =?utf-8?B?ckZQcnhoeVRzNmhwTGEvNUx5a2ZLem1CUFRlbUJIanp4RVJSc3pkajNSMWU0?=
+ =?utf-8?B?WXFSTk44L2pIdU9GSTl5ME5Sc2hyKzNFQ0wxSEk2TzNDc2ppMXIxVVZoQ3V0?=
+ =?utf-8?B?WTFmaThhaDdsaVIraXU4RTlPTjhXbTVTSXBlcWhadEpiUkI1bDcxWkJiazEy?=
+ =?utf-8?B?ZnlKZVdrbEpJRE4xa3JicWc5N296VlFvKzR4LzZaK0J6VklvUXNxQzJYZFRM?=
+ =?utf-8?B?MXYwbjJac2NUR3gxdjJueStCZzVPLzhvOHFIN0QzUzJ0TUM2V2MvVDg4NTd3?=
+ =?utf-8?B?Znp3dVJNUnRzTHVzdXQ1SyswUTNyZG4wd1M3QnhxRzU5d0k5OTQvMzlsZnBh?=
+ =?utf-8?B?N1Z1TWRyeUhPVXMwejRnMENIOG1RS2JnaFFHMVdWMVArMys0a3RnNmdob1gx?=
+ =?utf-8?B?elRYNGlYakIxZkg1UEVhV25LYWE4ZnpmT1pGZWtXSDd2M1VESjNGTWVLNDkr?=
+ =?utf-8?B?RHQ3Uy9oNVVqaFNMVFZIMTAzM210eFM1cncrSFVnNmJxMm9HRHZpZ010VTA1?=
+ =?utf-8?B?a0UrNXVoRkw1TXV6QmpEZnhFaitiWDZrOGtwYTBuVllDcVpkMm1UOHgzTG9D?=
+ =?utf-8?B?cGZYNC9xdjlyZDVLSnplWXRYSzZ6RFJ1UGJBdmlmSGZnVHJLNDJGNjBma3Zw?=
+ =?utf-8?B?Mk4wWmxnRGZueDNxM2dTdXFMaVBBYXYzQjhFbFhNZmNLR1I0S2orM0MwUXU3?=
+ =?utf-8?B?MkJHbnRYa0JVUUJaWGlqRFNSNTIwMmp2N0oyZDhmUTlySkFtUGZRSFlocita?=
+ =?utf-8?B?eUo4ZlZRT29tZFNxMWdpcFh6UGRNRE9OQWhucVJlT2YxM3JqcXVoeFhNSVlV?=
+ =?utf-8?B?dU1nT1l5a0tJZ3hkV1ZCZTRIRzZHdDlyNnZwSmF5QklqZkFzenROZ3NHekpm?=
+ =?utf-8?B?bEVXWjgwQ09WaVA5eHdDeEF2c0UvTUNwNFVhM0FLYXV3SCswTDMwdW0yUzRj?=
+ =?utf-8?Q?0WYPrgPl3JOlQc2lA+Wgr8RUjRRJiNE44yyziBc?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 100c4dc7-865a-4c60-5a5a-08d97a6c8265
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR11MB2557.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2021 06:21:11.3881
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iV/vgliG2JUKz4fmRFf4cIxREtv2yki4a38efR2lRw5RuSXLfSdQY5l4Y9jeUTjniT4BsD/vsq2OjKPga02gtEixLsuhRWpjNqmiA0Lavjg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5052
+X-Proofpoint-ORIG-GUID: Boll8XGeGF_wAoee9Jsv_6n3OJeinLrs
+X-Proofpoint-GUID: Boll8XGeGF_wAoee9Jsv_6n3OJeinLrs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
+ definitions=2021-09-18_02,2021-09-17_02,2020-04-07_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
+ adultscore=0 malwarescore=0 mlxscore=0 spamscore=0 bulkscore=0
+ lowpriorityscore=0 clxscore=1011 impostorscore=0 priorityscore=1501
+ mlxlogscore=723 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2109030001 definitions=main-2109180042
+Content-Type: multipart/alternative;
+ boundary="------------12106EF764DDCAB867BABD33"
+Content-Language: en-US
+
+--------------12106EF764DDCAB867BABD33
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by mx0a-0064b401.pphosted.com id 18I6HEoX002268
+
+Hi, Richard
+
+Layer Index "https://layers.openembedded.org/" not works since below=20
+update failure.=C2=A0 I don't know who is the maintainer,
+
+Could you help to handle this to proper person? Thanks.
+
+Besides, I am trying to add a funtion that when there are errors, send a=20
+mail to maintainer, so we can know this failure sooner.
+
+ERROR: Traceback (most recent call last):
+   File "update_layer.py", line 380, in main
+     (tinfoil, tempdir) =3D recipeparse.init_parser(settings, branch, bit=
+bakepath, nocheckout=3Doptions.nocheckout, logger=3Dlogger)
+   File "/opt/layerindex/layerindex/recipeparse.py", line 83, in init_par=
+ser
+     tinfoil =3D utils.setup_tinfoil(bitbakepath, enable_tracking, loglev=
+el=3Dlogger.getEffectiveLevel())
+   File "/opt/layerindex/layerindex/utils.py", line 193, in setup_tinfoil
+     import bb.tinfoil
+   File "/opt/workdir/git___git_openembedded_org_bitbake/lib/bb/__init__.=
+py", line 16, in <module>
+     raise RuntimeError("Sorry, python 3.6.0 or later is required for thi=
+s version of bitbake")
+RuntimeError: Sorry, python 3.6.0 or later is required for this version o=
+f bitbake
+
+
+//Changqing
+
+
+--------------12106EF764DDCAB867BABD33
+Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
-Recent upstream kernel changes have made the mmc probing order unpredictable.
-Therefore, boards with both an emmc and sdmmc interface aren't guaranteed to
-boot with a hard-coded root device selected.
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p>Hi, Richard</p>
+    <p>Layer Index <a class="moz-txt-link-rfc2396E" href="https://layers.openembedded.org/">&quot;https://layers.openembedded.org/&quot;</a> not works since
+      below update failure.&nbsp; I don't know who is the maintainer, <br>
+    </p>
+    <p>Could you help to handle this to proper person? Thanks.</p>
+    <p>Besides, I am trying to add a funtion that when there are errors,
+      send a mail to maintainer, so we can know this failure sooner.<br>
+    </p>
+    <pre>ERROR: Traceback (most recent call last):
+  File &quot;update_layer.py&quot;, line 380, in main
+    (tinfoil, tempdir) = recipeparse.init_parser(settings, branch, bitbakepath, nocheckout=options.nocheckout, logger=logger)
+  File &quot;/opt/layerindex/layerindex/recipeparse.py&quot;, line 83, in init_parser
+    tinfoil = utils.setup_tinfoil(bitbakepath, enable_tracking, loglevel=logger.getEffectiveLevel())
+  File &quot;/opt/layerindex/layerindex/utils.py&quot;, line 193, in setup_tinfoil
+    import bb.tinfoil
+  File &quot;/opt/workdir/git___git_openembedded_org_bitbake/lib/bb/__init__.py&quot;, line 16, in &lt;module&gt;
+    raise RuntimeError(&quot;Sorry, python 3.6.0 or later is required for this version of bitbake&quot;)
+RuntimeError: Sorry, python 3.6.0 or later is required for this version of bitbake
 
-For example, on the rock64, with linux-yocto 5.10.y, using the uSD card (i.e.
-the sdmmc interface) about 50% of the time the boot would succeed, and roughly
-50% of the time it wouldn't:
 
-	...
-	[    0.612233] Waiting for root device /dev/mmcblk1p7...
-	[    0.634551] mmc_host mmc1: Bus speed (slot 0) = 300000Hz (slot req 300000Hz, actual 300000HZ div = 0)
-	[    0.639064] mmc_host mmc0: Bus speed (slot 0) = 50000000Hz (slot req 50000000Hz, actual 50000000HZ di)
-	[    0.640007] mmc0: new high speed SDXC card at address 5048
-	[    0.641176] mmcblk0: mmc0:5048 SD64G 58.0 GiB
-	[    0.647610] random: fast init done
-	[    0.648279] GPT:Primary header thinks Alt. header is not at the end of the disk.
-	[    0.648941] GPT:376479 != 121634815
-	[    0.649252] GPT:Alternate GPT header not at the end of the disk.
-	[    0.649796] GPT:376479 != 121634815
-	[    0.650106] GPT: Use GNU Parted to correct GPT errors.
-	[    0.650598]  mmcblk0: p1 p2 p3 p4 p5 p6 p7
+//Changqing
+</pre>
+  </body>
+</html>
 
-NOTE the discrepancy between the kernel waiting for device /dev/mmcblk1p7,
-which comes from the hard-coded kernel cmdline, and the kernel probing putting
-the sdmmc on mmcblk0.
-
-With linux-yocto 5.13.y on the rock64 using the uSD card the board would never
-boot, the sdmmc always appears on mmcblk0.
-
-Instead of simply changing the hard-coded root device (i.e. from mmcblk0 to
-mmcblk1) switch to using partition UUIDs instead. Hard-coding the boot device
-would work with 5.13.y but would fail 50% of the time with 5.10.y; who knows
-what other kernels will do?
-
-In any case, switching to UUIDs works regardless of board, kernel, or
-available mmc interfaces.
-
-Boot tested on:
-- rock64
-- nanopi-m4-2gb
-- tinker-board
-- rock-pi-e
-- rock-pi-4b
-
-Signed-off-by: Trevor Woerner <twoerner@gmail.com>
----
- conf/machine/include/nanopi-m4.inc    |  2 --
- conf/machine/include/rock-pi-4.inc    |  2 --
- conf/machine/include/rockchip-wic.inc |  4 ----
- conf/machine/rock64.conf              |  3 ---
- conf/machine/tinker-board-s.conf      |  2 --
- conf/machine/vyasa-rk3288.conf        |  2 --
- wic/rockchip.wks                      | 16 ++++++++--------
- 7 files changed, 8 insertions(+), 23 deletions(-)
-
-diff --git a/conf/machine/include/nanopi-m4.inc b/conf/machine/include/nanopi-m4.inc
-index ac6479d..3870b51 100644
---- a/conf/machine/include/nanopi-m4.inc
-+++ b/conf/machine/include/nanopi-m4.inc
-@@ -7,5 +7,3 @@ MACHINE_FEATURES += "usbhost serial"
- 
- KMACHINE = "nanopi-m4"
- KERNEL_DEVICETREE = "rockchip/rk3399-nanopi-m4.dtb"
--
--RK_BOOT_DEVICE = "mmcblk1"
-diff --git a/conf/machine/include/rock-pi-4.inc b/conf/machine/include/rock-pi-4.inc
-index b6fb3dd..0a86846 100644
---- a/conf/machine/include/rock-pi-4.inc
-+++ b/conf/machine/include/rock-pi-4.inc
-@@ -3,6 +3,4 @@ MACHINEOVERRIDES =. "rock-pi-4:"
- 
- require conf/machine/include/rk3399.inc
- 
--RK_BOOT_DEVICE = "mmcblk1"
--
- MACHINE_EXTRA_RRECOMMENDS += "kernel-modules"
-diff --git a/conf/machine/include/rockchip-wic.inc b/conf/machine/include/rockchip-wic.inc
-index b5939f7..15010a0 100644
---- a/conf/machine/include/rockchip-wic.inc
-+++ b/conf/machine/include/rockchip-wic.inc
-@@ -20,11 +20,7 @@ IMAGE_BOOT_FILES = " \
- RK_CONSOLE_BAUD ?= "${@d.getVar('SERIAL_CONSOLES').split(';')[0]}"
- RK_CONSOLE_DEVICE ?= "${@d.getVar('SERIAL_CONSOLES').split(';')[1].split()[0]}"
- 
--# boot device (sd-card/emmc)
--RK_BOOT_DEVICE ??= "mmcblk0"
--
- WICVARS:append = " \
--	RK_BOOT_DEVICE \
- 	RK_CONSOLE_BAUD \
- 	RK_CONSOLE_DEVICE \
- 	SPL_BINARY \
-diff --git a/conf/machine/rock64.conf b/conf/machine/rock64.conf
-index 21755a8..fa75a51 100644
---- a/conf/machine/rock64.conf
-+++ b/conf/machine/rock64.conf
-@@ -12,7 +12,4 @@ MACHINE_FEATURES += "usbhost serial"
- UBOOT_MACHINE = "rock64-rk3328_defconfig"
- KERNEL_DEVICETREE = "rockchip/rk3328-rock64.dtb"
- 
--# set to mmcblk0 for booting from optional eMMC
--RK_BOOT_DEVICE ?= "mmcblk1"
--
- KBUILD_DEFCONFIG = "defconfig"
-diff --git a/conf/machine/tinker-board-s.conf b/conf/machine/tinker-board-s.conf
-index 9f44f2f..870b9bc 100644
---- a/conf/machine/tinker-board-s.conf
-+++ b/conf/machine/tinker-board-s.conf
-@@ -9,5 +9,3 @@ require conf/machine/include/tinker.inc
- 
- KERNEL_DEVICETREE = "rk3288-tinker-s.dtb"
- UBOOT_MACHINE = "tinker-s-rk3288_defconfig"
--
--RK_BOOT_DEVICE ?= "mmcblk1"
-diff --git a/conf/machine/vyasa-rk3288.conf b/conf/machine/vyasa-rk3288.conf
-index 9ad1ed4..5b44257 100644
---- a/conf/machine/vyasa-rk3288.conf
-+++ b/conf/machine/vyasa-rk3288.conf
-@@ -13,5 +13,3 @@ KERNEL_DEVICETREE = "rk3288-vyasa.dtb"
- KERNEL_EXTRA_ARGS += "LOADADDR=0x02000000"
- 
- UBOOT_MACHINE = "vyasa-rk3288_defconfig"
--
--RK_BOOT_DEVICE = "mmcblk2"
-diff --git a/wic/rockchip.wks b/wic/rockchip.wks
-index eedae0d..5ee276b 100644
---- a/wic/rockchip.wks
-+++ b/wic/rockchip.wks
-@@ -15,12 +15,12 @@
- #   boot        32768           229376
- #   root        262144          -           (suggested)
- 
--part loader1    --offset 32     --fixed-size 4000K            --ondisk ${RK_BOOT_DEVICE} --source rawcopy                                      --sourceparams="file=${SPL_BINARY}"
--part reserved1  --offset 4032   --fixed-size 64K              --ondisk ${RK_BOOT_DEVICE}
--part reserved2  --offset 4096   --fixed-size 4096K            --ondisk ${RK_BOOT_DEVICE}
--part loader2    --offset 8192   --fixed-size 4096K            --ondisk ${RK_BOOT_DEVICE} --source rawcopy                                      --sourceparams="file=u-boot.${UBOOT_SUFFIX}"
--part atf        --offset 12288  --fixed-size 4096K            --ondisk ${RK_BOOT_DEVICE}
--part /boot      --offset 16384  --size       114688K --active --ondisk ${RK_BOOT_DEVICE} --source bootimg-partition --fstype=vfat --label boot --sourceparams="loader=u-boot"
--part /                                                        --ondisk ${RK_BOOT_DEVICE} --source rootfs            --fstype=ext4 --label root
-+part loader1    --offset 32     --fixed-size 4000K            --source rawcopy                                                 --sourceparams="file=${SPL_BINARY}"
-+part reserved1  --offset 4032   --fixed-size 64K
-+part reserved2  --offset 4096   --fixed-size 4096K
-+part loader2    --offset 8192   --fixed-size 4096K            --source rawcopy                                                 --sourceparams="file=u-boot.${UBOOT_SUFFIX}"
-+part atf        --offset 12288  --fixed-size 4096K
-+part /boot      --offset 16384  --size       114688K --active --source bootimg-partition --fstype=vfat --label boot            --sourceparams="loader=u-boot"
-+part /                                                        --source rootfs            --fstype=ext4 --label root --use-uuid
- 
--bootloader --ptable gpt --append="console=tty1 console=${RK_CONSOLE_DEVICE},${RK_CONSOLE_BAUD}n8 rw root=/dev/${RK_BOOT_DEVICE}p7 rootfstype=ext4 init=/sbin/init"
-+bootloader --ptable gpt --append="console=tty1 console=${RK_CONSOLE_DEVICE},${RK_CONSOLE_BAUD}n8 rw rootfstype=ext4 init=/sbin/init"
--- 
-2.30.0.rc0
-
+--------------12106EF764DDCAB867BABD33--
