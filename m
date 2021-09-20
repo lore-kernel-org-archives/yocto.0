@@ -1,111 +1,274 @@
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
- by mx.groups.io with SMTP id smtpd.web10.413.1632156856719357730
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+ by mx.groups.io with SMTP id smtpd.web09.1798.1632175138620967481
  for <yocto@lists.yoctoproject.org>;
- Mon, 20 Sep 2021 09:54:16 -0700
+ Mon, 20 Sep 2021 14:58:58 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=HIYi/eoX;
- spf=pass (domain: gmail.com, ip: 209.85.160.169, mailfrom: twoerner@gmail.com)
-Received: by mail-qt1-f169.google.com with SMTP id x9so3644438qtv.0
-        for <yocto@lists.yoctoproject.org>; Mon, 20 Sep 2021 09:54:16 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=NokhBUfP;
+ spf=pass (domain: gmail.com, ip: 209.85.214.173, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pl1-f173.google.com with SMTP id t11so1465597plq.11
+        for <yocto@lists.yoctoproject.org>; Mon, 20 Sep 2021 14:58:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=L1LyAKXVjHTWKjaRctbdLsAVlVToYGw4T5kS0zSQdpQ=;
-        b=HIYi/eoXitZn0kA32PYnCBMH+N+mHd6SAVK/BawqxcDbi7nEaPzjJ0CEBfl4ncGflw
-         I0cGaAgXUCSi+76AbFrPWs0lBxBmylUS5/f0fzJkSXxoanGOODnw5qB2+9PkLhQIujop
-         zLOvAkslRT3EwnrZEAlcAzUw4T/TlzCwdq7XYkYAi8aR72dKWxWIVwjNFW53BCogpDaH
-         LVci05OBtb/hV13yrKRXnYwJFP0Iqqzji69oeLDVteUMavrB4VjoT9B6gShXa9YDoWR3
-         K6S/oFc1T5DCP9KbPH7s9qGXPLo/1AsgD7pszIyJmOAYHgC43Na2WVCab3PIN6TdqZuD
-         i8pg==
+        h=from:to:subject:date:message-id:mime-version:content-language
+         :thread-index;
+        bh=V1+O4qEUjngeVVQKRGQVsoTsfVYlOf4DWFcgBK0502E=;
+        b=NokhBUfPnY1GbxKYYoVUm9qQ46ZImlZgGr0S+GtssgokUFHm2qjWe9JhYyM37LFb8c
+         jShs9+E3ws3470kP1lVzF2wUOaBhK/I+tyh6HsKp8/9GaaH8PelsPXY7KTctk9bJspGT
+         buqmJlBQWPQ2AtQoLcqlnoi0N/HXia5tdTcEyGchR/ZEZG9n98nXVfLURlOQhPbALOsp
+         7xZyaCGt/lSBBLUIC3J9AG19hhNL+ClXVVT41LkR09vzFfL5vVlRZxVC8YvaJk7ECHNL
+         8GeDYY6BxV5B6Xwo+XPOuNqmLBeCBKDQi9naMPMsUBJ1Tq92YLGZ9qy1SJ1FstRcMAGf
+         1PkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=L1LyAKXVjHTWKjaRctbdLsAVlVToYGw4T5kS0zSQdpQ=;
-        b=aphIV8W3OypyspOYowvyFirg8x9v7C4418BBZ2WkpfAeH3kA3FVefsKXvR2jmnbmpM
-         6XS+62l7haqjvyqoGoGi4WxSsz/Cep5Jup3lW7k5Ad2BlRLDMYsohb/pqnGypC3NM632
-         BQf9eS0pqimFNPx6nFFvPuK8yUls2l8IsIiUTDKtao9cgEH8sCLcUHVNZWrzXuPubo0l
-         9JbU4z0ZIyRnfd6UnJKcYuWhAMHGsSHq/0k/5UkgDVOkNIhCYl8fBErx29R+rur3SSlf
-         ZVz77PRmDYzmRdbVDNKwjwOo5VEOD3k36dzMFkyzlwJnJDLENNZfgpW/99OUDw4LSCNU
-         /gYQ==
-X-Gm-Message-State: AOAM533YHWsFNJrAlQV7z8KPdw1MyfH0HER6rphjKRacMe84YalL3ZQx
-	OJ/d4lEsReJdyDUGgxuPUVmiwq6prRU=
-X-Google-Smtp-Source: ABdhPJxtbv1Hgm7w/v0U+gBSY4xTb8WSs3qxlf+SvQ1BjqtgSx3dxMQdbkUfF740lDOA0Dieyx9wUw==
-X-Received: by 2002:ac8:764a:: with SMTP id i10mr1273676qtr.414.1632156855480;
-        Mon, 20 Sep 2021 09:54:15 -0700 (PDT)
-Return-Path: <twoerner@gmail.com>
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id h68sm12257132qkf.126.2021.09.20.09.54.14
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Sep 2021 09:54:14 -0700 (PDT)
-Date: Mon, 20 Sep 2021 12:54:13 -0400
-From: "Trevor Woerner" <twoerner@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] [meta-rockchip][PATCH] use uuid instead of hard-coding root device
-Message-ID: <20210920165413.GA12087@localhost>
-References: <16A5BB09DD6D5F75.29722@lists.yoctoproject.org>
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-language:thread-index;
+        bh=V1+O4qEUjngeVVQKRGQVsoTsfVYlOf4DWFcgBK0502E=;
+        b=2iAHbaNQ5wnoAgMasF4C4Uw9CGT4lD2Ao8fKp5Y/PGdOHD6T7Ckms2XSUEgXuWRfVi
+         iFwDIrIcs77lRFmFVC11jLORV9LuW9B87Cqk6rLqPfkS5aRr4MtUkJrKH5t6VQmOBohx
+         86ygJNwmLcJwTkUYa9mozaxKKfGxgVqXnuFg98tH7Ry000EF8DghiiuK9HkVQovAuyfq
+         Jb3W3XEbXmgWSxw1xD+bc7HYnLBLS0xau6MEitQMpYWxAN9WnQGCglwV51QliiCArT60
+         G0idN3bArODFkH3XblO1Q0+IGsJ0g0HZAPMjCNjjlv5zx1m4id4yxYvM4BjsWdYmtBXV
+         wf4g==
+X-Gm-Message-State: AOAM532uUvUj/WBFU+I8ENaE/1hCDz5qh0LjvwZRLibZg0h5A/ieRUJd
+	zQSvchrbW05zcIVqEpvOrP8=
+X-Google-Smtp-Source: ABdhPJzEd8h8lj29OAjY9hKfMufrfByOt1CtMEocEIMlqahEk9+ttP2pf1unTb/Gab4mbj6qX+7qog==
+X-Received: by 2002:a17:90a:b783:: with SMTP id m3mr1316495pjr.183.1632175138027;
+        Mon, 20 Sep 2021 14:58:58 -0700 (PDT)
+Return-Path: <sjolley.yp.pm@gmail.com>
+Received: from skjolley ([2600:8800:1d92:f800:3d20:962a:ff50:b14a])
+        by smtp.gmail.com with ESMTPSA id p15sm14857785pff.194.2021.09.20.14.58.56
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 20 Sep 2021 14:58:57 -0700 (PDT)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@lists.yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 20 Sep 2021 14:58:56 -0700
+Message-ID: <086c01d7ae6a$b63964a0$22ac2de0$@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <16A5BB09DD6D5F75.29722@lists.yoctoproject.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQH3uHEhJphsYNI6tARbS7RHLOdm1Q==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_086D_01D7AE30.09DCFDA0"
+Content-Language: en-us
 
-On Fri 2021-09-17 @ 06:01:21 PM, Trevor Woerner via lists.yoctoproject.org wrote:
-> Recent upstream kernel changes have made the mmc probing order unpredictable.
-> Therefore, boards with both an emmc and sdmmc interface aren't guaranteed to
-> boot with a hard-coded root device selected.
-> 
-> For example, on the rock64, with linux-yocto 5.10.y, using the uSD card (i.e.
-> the sdmmc interface) about 50% of the time the boot would succeed, and roughly
-> 50% of the time it wouldn't:
-> 
-> 	...
-> 	[    0.612233] Waiting for root device /dev/mmcblk1p7...
-> 	[    0.634551] mmc_host mmc1: Bus speed (slot 0) = 300000Hz (slot req 300000Hz, actual 300000HZ div = 0)
-> 	[    0.639064] mmc_host mmc0: Bus speed (slot 0) = 50000000Hz (slot req 50000000Hz, actual 50000000HZ di)
-> 	[    0.640007] mmc0: new high speed SDXC card at address 5048
-> 	[    0.641176] mmcblk0: mmc0:5048 SD64G 58.0 GiB
-> 	[    0.647610] random: fast init done
-> 	[    0.648279] GPT:Primary header thinks Alt. header is not at the end of the disk.
-> 	[    0.648941] GPT:376479 != 121634815
-> 	[    0.649252] GPT:Alternate GPT header not at the end of the disk.
-> 	[    0.649796] GPT:376479 != 121634815
-> 	[    0.650106] GPT: Use GNU Parted to correct GPT errors.
-> 	[    0.650598]  mmcblk0: p1 p2 p3 p4 p5 p6 p7
-> 
-> NOTE the discrepancy between the kernel waiting for device /dev/mmcblk1p7,
-> which comes from the hard-coded kernel cmdline, and the kernel probing putting
-> the sdmmc on mmcblk0.
-> 
-> With linux-yocto 5.13.y on the rock64 using the uSD card the board would never
-> boot, the sdmmc always appears on mmcblk0.
-> 
-> Instead of simply changing the hard-coded root device (i.e. from mmcblk0 to
-> mmcblk1) switch to using partition UUIDs instead. Hard-coding the boot device
-> would work with 5.13.y but would fail 50% of the time with 5.10.y; who knows
-> what other kernels will do?
-> 
-> In any case, switching to UUIDs works regardless of board, kernel, or
-> available mmc interfaces.
-> 
-> Boot tested on:
-> - rock64
-> - nanopi-m4-2gb
-> - tinker-board
-> - rock-pi-e
-> - rock-pi-4b
-> 
-> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
-> ---
->  conf/machine/include/nanopi-m4.inc    |  2 --
->  conf/machine/include/rock-pi-4.inc    |  2 --
->  conf/machine/include/rockchip-wic.inc |  4 ----
->  conf/machine/rock64.conf              |  3 ---
->  conf/machine/tinker-board-s.conf      |  2 --
->  conf/machine/vyasa-rk3288.conf        |  2 --
->  wic/rockchip.wks                      | 16 ++++++++--------
->  7 files changed, 8 insertions(+), 23 deletions(-)
+------=_NextPart_000_086D_01D7AE30.09DCFDA0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Applied to meta-rockchip master.
+All,
+
+ 
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+<https://bugzilla.yoctoproject.org/createaccount.cgi>
+https://bugzilla.yoctoproject.org/createaccount.cgi
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 389
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.4", "3.5, "3.99" and "Future", the more pressing/urgent issues
+being in "3.4" and then "3.5".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_086D_01D7AE30.09DCFDA0
+Content-Type: text/html;
+	boundary="----=_NextPart_000_037A_01D7A8AF.412D25E0";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The triage team is starting to try and =
+collect up and classify bugs which a newcomer to the project would be =
+able to work on in a way which means people can find them. They're being =
+listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a> and how to create a bugzilla account at: <a =
+href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
+style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
+/span></a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 389 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.4&#8221;, &#8220;3.5, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.4&quot; and then &#8220;3.5&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+
+------=_NextPart_000_086D_01D7AE30.09DCFDA0--
