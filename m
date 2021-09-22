@@ -1,176 +1,125 @@
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
- by mx.groups.io with SMTP id smtpd.web10.1829.1632324487576240602
- for <yocto@lists.yoctoproject.org>;
- Wed, 22 Sep 2021 08:28:07 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=LRBTYX1N;
- spf=pass (domain: gmail.com, ip: 209.85.214.177, mailfrom: raj.khem@gmail.com)
-Received: by mail-pl1-f177.google.com with SMTP id t4so2047460plo.0
-        for <yocto@lists.yoctoproject.org>; Wed, 22 Sep 2021 08:28:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:organization:in-reply-to:content-transfer-encoding;
-        bh=lzKWWYZzy+FLdweWZMnsTj7kxDM8OtgNzFeRlh6yL+U=;
-        b=LRBTYX1NU+tTnWloRvHvNbmB/NpnLO7iYTKo6NC0VqVC5EkZkZB/EgpjAFrHYnYcbt
-         m2DqTEEbbGumrnSpYiQCaHpKA99c+trylEFYWl0vQfQL4FxcABTLDfJK0q4XpGBo/8pa
-         6AKjtTuSXbIXvqhDhM1xE5yKEAyESHo7F3UKwDOD5QaPiKNYFZdol1/yOLEx1FuO4sJi
-         AYR/C0JjCXcjhup9QGZ9x1vVI7Bo/ggm3uzcTmiW+WaWLziO+6dvHJxynqjdziqC/u5N
-         9AbXHj03qH6fU89Ksj3IGE2THcKCQbQnEpqD9T0dJ8efajW3oXqb9dg4fW/YnxiO/Yec
-         paJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=lzKWWYZzy+FLdweWZMnsTj7kxDM8OtgNzFeRlh6yL+U=;
-        b=hyqLwtTtp8E1Buk4BLL6n0Z32IqgQqGTY4zR/C0S5ZuWS5CVObdvi1MXoRdTQdLPMM
-         jrrApSkVHf+cz3YzYwnfOv21mdMu6iZ1F6fZdW8fwoOVrMMyxIINhqG4DlERwTLiW/gO
-         vgwYNsXQaHxYMz30LDGKJP6EJS9cwsKkhdSwAfGkPus3etrRGo2BKXgxqdSvZYCquS3N
-         vvixUuJsi5id4DxBsinmTcw09bCFHmdK+sn5+ev9UJY7qay25nN2lqB2pwvXpGny0KmK
-         SnZZ3apR4BHOxcQpz7i/+V21S9HsWGgrKgygHOsJU8vkgNLUPFHKsApjweJRv9W/MkQR
-         YuMw==
-X-Gm-Message-State: AOAM5315oAJh1puVlt2peaGMkNVefjS20LMJgiej72+4sUgZ+663gUYt
-	eY3VgFf8wLbceFd8fOyilq2qHdKai3vPwg==
-X-Google-Smtp-Source: ABdhPJxP4qX1b4255m1GCRqTCRu40wq+6Ej233+tQXXsWuY2IzAvNK9yazMqLJJWia5WWhJ5aL4KLw==
-X-Received: by 2002:a17:90b:3810:: with SMTP id mq16mr11973959pjb.0.1632324487025;
-        Wed, 22 Sep 2021 08:28:07 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPV6:2601:646:9200:a0f0:39b5:4763:76fc:1c6? ([2601:646:9200:a0f0:39b5:4763:76fc:1c6])
-        by smtp.gmail.com with ESMTPSA id v3sm2830885pfc.193.2021.09.22.08.28.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Sep 2021 08:28:06 -0700 (PDT)
-Message-ID: <4440837f-5f69-28c4-7d8b-57653935790c@gmail.com>
-Date: Wed, 22 Sep 2021 08:28:05 -0700
+Subject: Permission denied with NFS shared download and sstate-cache
+To: yocto@lists.yoctoproject.org
+From: "Bel Hadj Salem Talel" <bhstalel@gmail.com>
+X-Originating-Location: TN (193.95.99.62)
+X-Originating-Platform: Linux Firefox 92
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.1.1
-Subject: Re: [yocto] googletest shared library
-To: Lijun Chen <lijchen@blackberry.com>,
- "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-References: <3925c5329d6f46f78c5921fe7965662b@blackberry.com>
- <AS8PR09MB4645D63449C60FC6463045E7A8A19@AS8PR09MB4645.eurprd09.prod.outlook.com>
- <16A6EE364B338B15.22723@lists.yoctoproject.org>
- <15166f538f2144adabe2299deb3b2a3c@blackberry.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-In-Reply-To: <15166f538f2144adabe2299deb3b2a3c@blackberry.com>
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Date: Wed, 22 Sep 2021 09:47:57 -0700
+Message-ID: <3heP.1632329277788400018.EkfO@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="g1YcnT2jZ6p61c03tCnD"
 
-The .h files will be in dev pkg in this case googletest-dev
-what happens if you add googletest to TOOLCHAIN_TARGET_TASK
+--g1YcnT2jZ6p61c03tCnD
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 9/22/21 6:18 AM, Lijun Chen wrote:
-> Hi,
-> 
-> 
-> Now I included googletest to the IMAGE_INSTALL in my image file, and 
-> built both board image and SDK image. I can see libgtest.so is available 
-> in both images. However, gtest/gtest.h is a not present in SDK. How do I 
-> add the header files to the SDK image? Looks the following lines affect 
-> that?
-> 
-> SOLIBS = ".so"
-> FILES_SOLIBSDEV = ""
-> 
-> Thanks,
-> Lijun
-> 
-> ------------------------------------------------------------------------
-> *From:* yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> on 
-> behalf of Lijun Chen <lijchen@blackberry.com>
-> *Sent:* Tuesday, September 21, 2021 3:50 PM
-> *To:* Konrad Weihmann; yocto@lists.yoctoproject.org
-> *Subject:* Re: [yocto] googletest shared library
-> 
-> Thanks Konrad. That worked.
-> 
-> ------------------------------------------------------------------------
-> *From:* Konrad Weihmann <kweihmann@outlook.com>
-> *Sent:* Tuesday, September 21, 2021 10:26:19 AM
-> *To:* Lijun Chen; yocto@lists.yoctoproject.org
-> *Subject:* Re: [yocto] googletest shared library
-> 
-> On 21.09.21 16:18, Lijun Chen wrote:
->> Hi,
->> 
->> I would like to include libgtest.so into my Yocto image. I added 
->> googletest to IMAGE_INSTALL and added the following line to 
->> sources/meta-openembedded/meta-oe/recipes-test/googletest/googletest_git.bb:
->> 
->> EXTRA_OECMAKE = "-DBUILD_SHARED_LIBS=ON "
->> 
->> 
->> The shared libraries were built successfully. However, there are errors 
->> in do_package_qc as following:
->> 
->> 
->> ERROR: googletest-1.10.0-r0 do_package_qa: QA Issue: -dev package 
->> googletest-dev contains non-symlink .so '/usr/lib/libgmock.so'
->> -dev package googletest-dev contains non-symlink .so 
->> '/usr/lib/libgtest_main.so'
->> -dev package googletest-dev contains non-symlink .so 
->> '/usr/lib/libgmock_main.so'
->> -dev package googletest-dev contains non-symlink .so 
->> '/usr/lib/libgtest.so' [dev-elf]
->> ERROR: googletest-1.10.0-r0 do_package_qa: QA run found fatal errors. 
->> Please consider fixing them.
-> 
-> https://urldefense.com/v3/__http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n34__;Iw!!COg3wY07Hnb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0NANM4iMsNNleww$ 
-> <https://urldefense.com/v3/__http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n34__;Iw!!COg3wY07Hnb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0NANM4iMsNNleww$> 
-> 
-> (and the next lines) might give you a hint what to do in this case.
-> Although one could also consider that's something that needs to be fixed
-> in the installation script of googletest, as versioned libraries are the
-> expected default
-> 
->> 
->> 
->> Any idea to fix this?
->> 
->> 
->> Thanks,
->> 
->> Lijun
->> 
->> 
->> ------------------------------------------------------------------------
->> This transmission (including any attachments) may contain confidential 
->> information, privileged material (including material protected by the 
->> solicitor-client or other applicable privileges), or constitute 
->> non-public information. Any use of this information by anyone other than 
->> the intended recipient is prohibited. If you have received this 
->> transmission in error, please immediately reply to the sender and delete 
->> this information from your system. Use, dissemination, distribution, or 
->> reproduction of this transmission by unintended recipients is not 
->> authorized and may be unlawful.
->> 
->> 
->> 
->> 
-> ------------------------------------------------------------------------
-> This transmission (including any attachments) may contain confidential 
-> information, privileged material (including material protected by the 
-> solicitor-client or other applicable privileges), or constitute 
-> non-public information. Any use of this information by anyone other than 
-> the intended recipient is prohibited. If you have received this 
-> transmission in error, please immediately reply to the sender and delete 
-> this information from your system. Use, dissemination, distribution, or 
-> reproduction of this transmission by unintended recipients is not 
-> authorized and may be unlawful.
-> ------------------------------------------------------------------------
-> This transmission (including any attachments) may contain confidential 
-> information, privileged material (including material protected by the 
-> solicitor-client or other applicable privileges), or constitute 
-> non-public information. Any use of this information by anyone other than 
-> the intended recipient is prohibited. If you have received this 
-> transmission in error, please immediately reply to the sender and delete 
-> this information from your system. Use, dissemination, distribution, or 
-> reproduction of this transmission by unintended recipients is not 
-> authorized and may be unlawful.
-> 
-> 
-> 
-> 
+Hi All,
+
+I have a server that's holding downloads and sstate-cache.
+
+I have a docker-compose file with nfs server that exposes the dowloads/ssta=
+te-cache volume.
+
+When I mount that in my PC and set the path into DL_DIR and SSTATE_DIR, I g=
+et this error :
+
+---------------
+ERROR: grub-efi-native-2.04-r0 do_configure: Build of do_configure failed
+ERROR: grub-efi-native-2.04-r0 do_configure: Traceback (most recent call la=
+st):
+File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/build.py", =
+line 644, in exec_task
+return _exec_task(fn, task, d, quieterr)
+File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/build.py", =
+line 618, in _exec_task
+event.fire(TaskSucceeded(task, fn, logfn, localdata), localdata)
+File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/event.py", =
+line 215, in fire
+fire_class_handlers(event, d)
+File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/event.py", =
+line 122, in fire_class_handlers
+execute_handler(name, handler, event, d)
+File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/event.py", =
+line 94, in execute_handler
+ret =3D handler(event)
+File "/home/talel/Desktop/YoctoWork/sources/poky/meta/classes/sstate.bbclas=
+s", line 1094, in sstate_eventhandler
+bb.siggen.dump_this_task(sstatepkg + '_' + taskname + ".tgz" ".siginfo", d)
+File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/siggen.py",=
+ line 648, in dump_this_task
+bb.parse.siggen.dump_sigtask(fn, task, outfile, "customfile:" + referencest=
+amp)
+File "/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/sstatesig.py",=
+ line 202, in dump_sigtask
+super(bb.siggen.SignatureGeneratorBasicHash, self).dump_sigtask(fn, task, s=
+tampbase, runtime)
+File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/siggen.py",=
+ line 362, in dump_sigtask
+fd, tmpfile =3D tempfile.mkstemp(dir=3Dos.path.dirname(sigfile), prefix=3D"=
+sigtask.")
+File "/usr/lib/python3.8/tempfile.py", line 470, in mkstemp
+return _mkstemp_inner(dir, prefix, suffix, flags, output_type)
+File "/usr/lib/python3.8/tempfile.py", line 389, in _mkstemp_inner
+fd =3D _os.open(file, flags, 0o600)
+PermissionError: [Errno 13] Permission denied: '/home/talel/Desktop/YoctoSh=
+are/tethys-cache/ubuntu-20.04/dd/sigtask.dgjx7ngq'
+
+ERROR: Task (virtual:native:/home/talel/Desktop/YoctoWork/sources/poky/meta=
+/recipes-bsp/grub/grub-efi_2.04.bb:do_configure) failed with exit code '1'
+---------------
+
+I can modify the mounted folder by creating a directory or a file, but it f=
+ails with yocto.
+
+How can I solve the issue?
+
+Thanks,
+Talel
+
+--g1YcnT2jZ6p61c03tCnD
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi All,<br /><br />I have a server that's holding downloads and sstate-cach=
+e.<br /><br />I have a docker-compose file with nfs server that exposes the=
+ dowloads/sstate-cache volume.<br /><br />When I mount that in my PC and se=
+t the path into DL_DIR and SSTATE_DIR, I get this error :<br /><br />------=
+---------<br />ERROR: grub-efi-native-2.04-r0 do_configure: Build of do_con=
+figure failed<br />ERROR: grub-efi-native-2.04-r0 do_configure: Traceback (=
+most recent call last):<br />&nbsp; File "/home/talel/Desktop/YoctoWork/sou=
+rces/poky/bitbake/lib/bb/build.py", line 644, in exec_task<br />&nbsp;&nbsp=
+;&nbsp; return _exec_task(fn, task, d, quieterr)<br />&nbsp; File "/home/ta=
+lel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/build.py", line 618, in _=
+exec_task<br />&nbsp;&nbsp;&nbsp; event.fire(TaskSucceeded(task, fn, logfn,=
+ localdata), localdata)<br />&nbsp; File "/home/talel/Desktop/YoctoWork/sou=
+rces/poky/bitbake/lib/bb/event.py", line 215, in fire<br />&nbsp;&nbsp;&nbs=
+p; fire_class_handlers(event, d)<br />&nbsp; File "/home/talel/Desktop/Yoct=
+oWork/sources/poky/bitbake/lib/bb/event.py", line 122, in fire_class_handle=
+rs<br />&nbsp;&nbsp;&nbsp; execute_handler(name, handler, event, d)<br />&n=
+bsp; File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/event.=
+py", line 94, in execute_handler<br />&nbsp;&nbsp;&nbsp; ret =3D handler(ev=
+ent)<br />&nbsp; File "/home/talel/Desktop/YoctoWork/sources/poky/meta/clas=
+ses/sstate.bbclass", line 1094, in sstate_eventhandler<br />&nbsp;&nbsp;&nb=
+sp; bb.siggen.dump_this_task(sstatepkg + '_' + taskname + ".tgz" ".siginfo"=
+, d)<br />&nbsp; File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/l=
+ib/bb/siggen.py", line 648, in dump_this_task<br />&nbsp;&nbsp;&nbsp; bb.pa=
+rse.siggen.dump_sigtask(fn, task, outfile, "customfile:" + referencestamp)<=
+br />&nbsp; File "/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/ss=
+tatesig.py", line 202, in dump_sigtask<br />&nbsp;&nbsp;&nbsp; super(bb.sig=
+gen.SignatureGeneratorBasicHash, self).dump_sigtask(fn, task, stampbase, ru=
+ntime)<br />&nbsp; File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake=
+/lib/bb/siggen.py", line 362, in dump_sigtask<br />&nbsp;&nbsp;&nbsp; fd, t=
+mpfile =3D tempfile.mkstemp(dir=3Dos.path.dirname(sigfile), prefix=3D"sigta=
+sk.")<br />&nbsp; File "/usr/lib/python3.8/tempfile.py", line 470, in mkste=
+mp<br />&nbsp;&nbsp;&nbsp; return _mkstemp_inner(dir, prefix, suffix, flags=
+, output_type)<br />&nbsp; File "/usr/lib/python3.8/tempfile.py", line 389,=
+ in _mkstemp_inner<br />&nbsp;&nbsp;&nbsp; fd =3D _os.open(file, flags, 0o6=
+00)<br />PermissionError: [Errno 13] Permission denied: '/home/talel/Deskto=
+p/YoctoShare/tethys-cache/ubuntu-20.04/dd/sigtask.dgjx7ngq'<br /><br />ERRO=
+R: Task (virtual:native:/home/talel/Desktop/YoctoWork/sources/poky/meta/rec=
+ipes-bsp/grub/grub-efi_2.04.bb:do_configure) failed with exit code '1'<br /=
+>---------------<br /><br />I can modify the mounted folder by creating a d=
+irectory or a file, but it fails with yocto.<br /><br />How can I solve the=
+ issue?<br /><br />Thanks,<br />Talel
+
+--g1YcnT2jZ6p61c03tCnD--
