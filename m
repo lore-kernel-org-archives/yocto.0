@@ -1,422 +1,214 @@
-Received: from smtp-pc10.blackberry.com (smtp-pc10.blackberry.com [74.82.81.42])
- by mx.groups.io with SMTP id smtpd.web12.120.1632332720666832722
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+ by mx.groups.io with SMTP id smtpd.web09.248.1632335474015520456
  for <yocto@lists.yoctoproject.org>;
- Wed, 22 Sep 2021 10:45:21 -0700
+ Wed, 22 Sep 2021 11:31:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@blackberry.com header.s=corp19 header.b=Vm15VGhl;
- spf=pass (domain: blackberry.com, ip: 74.82.81.42, mailfrom: lijchen@blackberry.com)
-Received: from pps.filterd (mhs400cnc.rim.net [127.0.0.1])
-	by mhs400cnc.rim.net (8.16.0.43/8.16.0.43) with SMTP id 18MHggIl071283;
-	Wed, 22 Sep 2021 13:45:17 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=blackberry.com; h=from : to :
- subject : date : message-id : references : in-reply-to : content-type :
- mime-version; s=corp19; bh=KhMiDVNyyEhDUwbdxEu6b+lj2oiluMs2yN+rark6NpE=;
- b=Vm15VGhlCPmgq5BtKN1PCSKD9mV0JFcuiwAYa58gQJTRdJd94pIJ9941N1WhgNQq+klN
- ytV/LT2cXEhT5iIeH6YFgzCN1AX/gC6mfUYZ4U/8hgCRM3ZOs27NvU1ADywM1szHOPRU
- pIUgnHJWGOBHutZkBiXAoObxfvbbbsokTVbfvHsiLQQ829/tGsAPywo93vpCfikIXLVa
- 5MVLQmB2/+Kk3fAV+HEmVsu0PDkOt0Q/4YQkM7payqDb9nJIKieKZF+5Su+2aipL5N2P
- xY3mfXCrX4dB+F1inq0XtBF0JfrtoRhXR1DYkPbzUnfFUDIUbm26tHNM9sv+4KM9wGzs LQ== 
-Received: from xch212cnc.rim.net (xch212cnc.rim.net [10.3.27.117])
-	by mhs400cnc.rim.net with ESMTP id 3b7q5wswcg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Wed, 22 Sep 2021 13:45:17 -0400
-Received: from XCH211YKF.rim.net (10.12.114.211) by XCH212CNC.rim.net
- (10.3.27.117) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.14; Wed, 22 Sep
- 2021 13:45:16 -0400
-Received: from XCH211YKF.rim.net ([fe80::dca:23f8:c2c0:7180]) by
- XCH211YKF.rim.net ([fe80::dca:23f8:c2c0:7180%5]) with mapi id 15.01.2308.014;
- Wed, 22 Sep 2021 13:45:16 -0400
-From: "Lijun Chen" <lijchen@blackberry.com>
-To: Khem Raj <raj.khem@gmail.com>,
-        "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] googletest shared library
-Thread-Topic: [yocto] googletest shared library
-Thread-Index: AQHXrvNmR2vvZSsL30OJxestQkC5W6uuznCAgAARxluAASeUKIAAaj2A///jB80=
-Date: Wed, 22 Sep 2021 17:45:16 +0000
-Message-ID: <34204df22ebb41b58292258f595ad404@blackberry.com>
-References: <3925c5329d6f46f78c5921fe7965662b@blackberry.com>
- <AS8PR09MB4645D63449C60FC6463045E7A8A19@AS8PR09MB4645.eurprd09.prod.outlook.com>
- <16A6EE364B338B15.22723@lists.yoctoproject.org>
- <15166f538f2144adabe2299deb3b2a3c@blackberry.com>,<4440837f-5f69-28c4-7d8b-57653935790c@gmail.com>
-In-Reply-To: <4440837f-5f69-28c4-7d8b-57653935790c@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [100.64.197.76]
+ dkim=pass header.i=@ibeeto-com.20210112.gappssmtp.com header.s=20210112 header.b=ldJhBiAg;
+ spf=neutral (domain: ibeeto.com, ip: 209.85.215.181, mailfrom: rudolf.streif@ibeeto.com)
+Received: by mail-pg1-f181.google.com with SMTP id w8so3644905pgf.5
+        for <yocto@lists.yoctoproject.org>; Wed, 22 Sep 2021 11:31:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ibeeto-com.20210112.gappssmtp.com; s=20210112;
+        h=to:from:autocrypt:subject:message-id:date:user-agent:mime-version;
+        bh=ccyCSkp7r4RkmCJ1jVUrM1UA6/GpHNUVjrqYenpTZXU=;
+        b=ldJhBiAgA9v/G/9R5eyPG1rTQoqBVFKpgpefmiuYlDhRAWYPueVECk2620gF4IOkp/
+         7fw7DyZdhv5noqDT8WggHvEHGv1Btu7roWwGGqYOX4G8neor6pswXjaLy6/qophK2eqe
+         SvKBKpFob7CjMDkGUCyL3dmSC+q0BRsBa4j/aAZ0j4qojwRLQoaE6a45K2paYUXRnEUr
+         pBgupRpTFDmar6WmL8E8XsxmdgkJ71S9bf8VPeRlE8wuRy6lIibJOjfSydK24qqv+Hbc
+         CbOoG97WT10WHqSoQVTvRXr3oPDO85u3wad9MgM+5w7/0u4gPU9bn18UxykIsNqUZ1UZ
+         pIvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:to:from:autocrypt:subject:message-id:date
+         :user-agent:mime-version;
+        bh=ccyCSkp7r4RkmCJ1jVUrM1UA6/GpHNUVjrqYenpTZXU=;
+        b=igYrIlbRqRX28qlqrUjLNgptvpPKHqux2fuSz0l+FwdJWN+sHM0CxfL7IDi7vk4i4X
+         wYGBNe3DBkytBNs8gLj1VLf2gAtxmD7p64T7UlenIAvsARzrN9r3e2LwfltC3SU+bPEB
+         uNfW2V1Jl7u6JTT8UcGKoSaoQPEHuQLR5DkhOC+2aftgGb7cqNoBwugGuw5hwGoGh/Ec
+         hpepWqCTJllSU+HOJOk12ern5OTxboHHlc/RkttmTsoBNBpjXk96y2EWO0gV725NqmRA
+         KsoN9sTA3aHiQSP2NZV2YTvulVpRyEt4i1rhWIk6HGbBfXUzRdsu+Ja41xdWR6dMFhYz
+         wz4g==
+X-Gm-Message-State: AOAM530JR6JDhX3YSrsUvHbaYq85DyGVaTz8/JXdnqaQpE9D5w22Mqfe
+	U2+5A8kmXMLHAHdOCLlRMDWRMNAGs9dp/Q==
+X-Google-Smtp-Source: ABdhPJz65e1ZQhfDKR/iP1kDLVTfqit3DOxnPPhWaqs0VMXHedS3vSxTlH7M0VVd7+ZrJU4xTC22NQ==
+X-Received: by 2002:a63:684a:: with SMTP id d71mr276357pgc.175.1632335472561;
+        Wed, 22 Sep 2021 11:31:12 -0700 (PDT)
+Return-Path: <rudolf.streif@ibeeto.com>
+Received: from [192.168.4.197] (ip72-220-244-209.sd.sd.cox.net. [72.220.244.209])
+        by smtp.gmail.com with ESMTPSA id t2sm6448330pje.5.2021.09.22.11.31.11
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Sep 2021 11:31:11 -0700 (PDT)
+To: Yocto <yocto@lists.yoctoproject.org>
+From: "Rudolf J Streif" <rudolf.streif@ibeeto.com>
+Autocrypt: addr=rudolf.streif@ibeeto.com; keydata=
+ xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvD
+ Qpe+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ
+ /Qymy+7Cbh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969
+ cQD/S9LNndnK5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM
+ 3sPiHrF+Y2HTdK7j7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEB
+ AAHNKlJ1ZG9sZiBKIFN0cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgA
+ IQUCWFAUBAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf0
+ 3GsVMG6C5QOLaPx6rOgj5qexCH3rfYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBk
+ txioE384/51QTIfCmW8ZG5X0cMC5d38LFvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xl
+ lpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR84ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+w
+ Xl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x5LZhUhGYoqbYwNy9imoBkUAZkbbViNOtX
+ zaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjVLmLHvzsBNBFhQFAQBCADXoLKCuF48
+ 5eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTqk3fb9+Ao6C6IliC9ZRXyAVLD/
+ RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIFpPBpxHRrZnDdEd5IKsy+z
+ w6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJSHWMBh0OMKDeBik5wl
+ svtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mCBCZ+IKhBQR36v
+ tUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIAAkFAlhQFAQC
+ GwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LYUpLNj
+ s4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9MbyE
+ fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8Tz
+ Yf9m2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/Nlouvce
+ P41tsC5daxZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/AN
+ ROZj4g==
+Subject: [WIC] bootimg-partition plugin
+Message-ID: <81c3bcac-289b-5179-be19-55d6ee454a52@ibeeto.com>
+Date: Wed, 22 Sep 2021 11:31:10 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-09-22_06:2021-09-22,2021-09-22 signatures=0
+X-Groupsio-MsgNum: 54800
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="5sJcdjVz66BdJFG5UuaM6EwzwRTKsizRa"
+
+--5sJcdjVz66BdJFG5UuaM6EwzwRTKsizRa
+Content-Type: multipart/mixed; boundary="xDaZ898UnVSdCq1hmmMKnPAICENvUfNhB";
+ protected-headers="v1"
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+To: Yocto <yocto@lists.yoctoproject.org>
+Message-ID: <81c3bcac-289b-5179-be19-55d6ee454a52@ibeeto.com>
+Subject: [WIC] bootimg-partition plugin
+
+--xDaZ898UnVSdCq1hmmMKnPAICENvUfNhB
+Content-Type: multipart/mixed;
+ boundary="------------86999047EA9EFC7EFA9F062D"
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_34204df22ebb41b58292258f595ad404blackberrycom_"
 
---_000_34204df22ebb41b58292258f595ad404blackberrycom_
-Content-Type: text/plain; charset="us-ascii"
+--------------86999047EA9EFC7EFA9F062D
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: base64
+
+QSBub3Qgc28gd2VsbC1rbm93biBmZWF0dXJlIG9mIHRoZSBXSUMgYm9vdGltZy1wYXJ0aXRp
+b24gcGx1Z2luIGlzIHRoYXQgCml0IGNhbiBpbnN0YWxsIGZpbGVzIGludG8gZGlmZmVyZW50
+IHBhcnRpdGlvbnMuIEZvciB0aGF0IHRoZSB2YXJpYWJsZSAKSU1BR0VfQk9PVF9GSUxFUyBo
+YXMgdG8gYmUgZGVmaW5lZCBhcyBvbmUgb2YgdGhlIGZvbGxvd2luZzoKCklNQUdFX0JPT1Rf
+RklMRVNfbGFiZWwtPHBhcnRsYWJlbD4gPSAiLi4uIgoKSU1BR0VfQk9PVF9GSUxFU191dWlk
+LTxwYXJ0dXVpZD4gPSAiLi4uIgoKVGhlIHBsdWdpbiB3aWxsIHRoZW4gdXNlIGVpdGhlciB0
+aGUgcGFydGl0aW9uIGxhYmVsIG9yIHRoZSBwYXJ0aXRpb24gCnV1aWQgZnJvbSB0aGUgV0tT
+IGZpbGUgInBhcnQiIGRpcmVjdGl2ZSB0byBsb29rIHVwIHRoZSBjb3JyZWN0IGZpbGUgbGlz
+dCAKdmFyaWFibGUuCgpUaGlzIGNvZGUgc25pcHBldCBmcm9tIHRoZSBwbHVnaW4gCihwb2t5
+L3NjcmlwdHMvbGliL3dpYy9wbHVnaW5zL3NvdXJjZS9ib290aW1nLXBhcnRpdGlvbi5weSkg
+aXMgc3VwcG9zZWQgCnRvIGRvIHRoZSB0cmljazoKCiA+Pj4+PgoKIMKgNTDCoMKgwqDCoMKg
+wqDCoMKgIGJvb3RfZmlsZXMgPSBOb25lCiDCoDUxwqDCoMKgwqDCoMKgwqDCoCBmb3IgKGZt
+dCwgaWQpIGluICgoIl91dWlkLSVzIiwgcGFydC51dWlkKSwgKCJfbGFiZWwtJXMiLCAKcGFy
+dC5sYWJlbCksIChOb25lLCBOb25lKSk6CiDCoDUywqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IGlmIGZtdDoKIMKgNTPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB2YXIgPSBm
+bXQgJSBpZAogwqA1NMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBlbHNlOgogwqA1NcKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHZhciA9ICIiCiDCoDU2CiDCoDU3wqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIHByaW50KCd2YXI6ICcsIHZhcikKIMKgNTgKIMKgNTnCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgYm9vdF9maWxlcyA9IGdldF9iaXRiYWtlX3ZhcigiSU1B
+R0VfQk9PVF9GSUxFUyIgKyB2YXIpCiDCoDYwwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGlm
+IGJvb3RfZmlsZXMgaXMgbm90IE5vbmU6CiDCoDYxwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAgYnJlYWsKCjw8PDw8CgpIb3dldmVyLCB0aGUgZnVuY3Rpb24gZ2V0X2JpdGJh
+a2VfdmFyKCkgZnJvbSAKcG9reS9zY3JpcHRzL2xpYi93aWMvbWlzYy5weSB1c2VzIHRoZSB0
+aGUgV0lDIGVudmlyb25tZW50IHdoaWNoIGlzIApjcmVhdGVkIGZyb20gdGhlIFdJQ1ZBUlMg
+dmFyaWFibGUgYnkgdGhlIApwb2t5L21ldGEvY2xhc3Nlcy9pbWFnZV90eXBlc193aWMuYmJj
+bGFzcy4gV0lDVkFSUyBpcyBkZWZpbmVkIGF0IHRoZSAKYmVnaW5uaW5nIG9mIHRoZSBjbGFz
+cyBhbmQgY29udGFpbnMgYWxsIGJpdGJha2UgdmFyaWFibGVzIHJlbGV2YW50IHRvIApXSUMu
+IEl0IG9mIGNvdXJzZSBpbmNsdWRlcyB0aGUgcGxhaW4gSU1BR0VfQk9PVF9GSUxFUy4gV2hl
+biB0aGUgY2xhc3MgCmNyZWF0ZXMgdGhlIGVudmlyb25tZW50IChkb19yb290ZnNfd2ljZW52
+KSBpcyBzaW1wbHkgc3BsaXRzIFdJQ1ZBUlMgYW5kIApsb29rcyB1cCB0aGUgdmFyaWFibGVz
+IG9uZS1ieS1vbmUgaW4gdGhlIERhdGFTbWFydCBkaWN0aW9uYXJ5IAooZC5nZXRWYXIoPHZh
+cm5hbWU+KS4gU2luY2UgdGhpcyBpcyBhIGtleSBsb29rdXAgaXQgd2lsbCBub3QgbWF0Y2gg
+YW55IAp2YXJpYWJsZXMgZm9yIElNQUdFX0JPT1RfRklMRVNfbGFiZWwtPHBhcnRsYWJlbD4g
+YW5kL29yIApJTUFHRV9CT09UX0ZJTEVTX3V1aWQtPHBhcnR1dWlkPi4KCkZvciB0aGlzIHRv
+IHdvcmsgdGhlcmUgc2hvdWxkIGJlIGEgbG9va3VwIGluIERhdGFTbWFydCB0aGF0IHN1cHBv
+cnRzIApnZXRWYXIoKSB3aXRoIGEgd2lsZGNhcmQgb3IgInN0YXJ0cyB3aXRoIi4gSSBhbSBu
+b3QgYWxsIGludG8gdGhlIGRldGFpbHMgCm9mIERhdGFTbWFydCBhbmQgbWF5YmUgdGhlcmUg
+aXMgc29tZXRoaW5nIGxpa2UgdGhpcyBhbHJlYWR5IGFuZCBJIGp1c3QgCmRvbid0IGtub3cg
+YWJvdXQgaXQuIEhlbmNlIHRoZSBxdWVzdGlvbiBoZXJlIGJlZm9yZSBJIHN0YXJ0IGhhY2tp
+bmcgYSAKa2x1ZGdlIGludG8gdGhlIGltYWdlX3R5cGVzX3dpYyBjbGFzcy4KClRoYW5rcywK
+ClJ1ZGkKCi0tIApSdWRvbGYgSiBTdHJlaWYKQ0VPL0NUTyBpYmVldG8KKzEuODU1LjQ0Mi4z
+Mzg2IHg3MDAKCg==
+
+--------------86999047EA9EFC7EFA9F062D
+Content-Type: application/pgp-keys;
+ name="OpenPGP_0x8D8CA82927339B75.asc"
 Content-Transfer-Encoding: quoted-printable
+Content-Description: OpenPGP public key
+Content-Disposition: attachment;
+ filename="OpenPGP_0x8D8CA82927339B75.asc"
 
-Tried adding googletest to TOOLCHAIN_TARGET_TASK. The gtest .h files are st=
-ill not showing up.
+-----BEGIN PGP PUBLIC KEY BLOCK-----
 
-Thanks,
-
-________________________________
-From: Khem Raj <raj.khem@gmail.com>
-Sent: Wednesday, September 22, 2021 11:28:05 AM
-To: Lijun Chen; yocto@lists.yoctoproject.org
-Subject: Re: [yocto] googletest shared library
-
-The .h files will be in dev pkg in this case googletest-dev
-what happens if you add googletest to TOOLCHAIN_TARGET_TASK
-
-On 9/22/21 6:18 AM, Lijun Chen wrote:
-> Hi,
->
->
-> Now I included googletest to the IMAGE_INSTALL in my image file, and
-> built both board image and SDK image. I can see libgtest.so is available
-> in both images. However, gtest/gtest.h is a not present in SDK. How do I
-> add the header files to the SDK image? Looks the following lines affect
-> that?
->
-> SOLIBS =3D ".so"
-> FILES_SOLIBSDEV =3D ""
->
-> Thanks,
-> Lijun
->
-> ------------------------------------------------------------------------
-> *From:* yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> on
-> behalf of Lijun Chen <lijchen@blackberry.com>
-> *Sent:* Tuesday, September 21, 2021 3:50 PM
-> *To:* Konrad Weihmann; yocto@lists.yoctoproject.org
-> *Subject:* Re: [yocto] googletest shared library
->
-> Thanks Konrad. That worked.
->
-> ------------------------------------------------------------------------
-> *From:* Konrad Weihmann <kweihmann@outlook.com>
-> *Sent:* Tuesday, September 21, 2021 10:26:19 AM
-> *To:* Lijun Chen; yocto@lists.yoctoproject.org
-> *Subject:* Re: [yocto] googletest shared library
->
-> On 21.09.21 16:18, Lijun Chen wrote:
->> Hi,
->>
->> I would like to include libgtest.so into my Yocto image. I added
->> googletest to IMAGE_INSTALL and added the following line to
->> sources/meta-openembedded/meta-oe/recipes-test/googletest/googletest_git=
-.bb:
->>
->> EXTRA_OECMAKE =3D "-DBUILD_SHARED_LIBS=3DON "
->>
->>
->> The shared libraries were built successfully. However, there are errors
->> in do_package_qc as following:
->>
->>
->> ERROR: googletest-1.10.0-r0 do_package_qa: QA Issue: -dev package
->> googletest-dev contains non-symlink .so '/usr/lib/libgmock.so'
->> -dev package googletest-dev contains non-symlink .so
->> '/usr/lib/libgtest_main.so'
->> -dev package googletest-dev contains non-symlink .so
->> '/usr/lib/libgmock_main.so'
->> -dev package googletest-dev contains non-symlink .so
->> '/usr/lib/libgtest.so' [dev-elf]
->> ERROR: googletest-1.10.0-r0 do_package_qa: QA run found fatal errors.
->> Please consider fixing them.
->
-> https://urldefense.com/v3/__http://git.yoctoproject.org/cgit/cgit.cgi/pok=
-y/tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n34__;Iw!!COg3wY07H=
-nb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0NANM4iMsNNleww$
-> <https://urldefense.com/v3/__http://git.yoctoproject.org/cgit/cgit.cgi/po=
-ky/tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n34__;Iw!!COg3wY07=
-Hnb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0NANM4iMsNNleww$>
->
-> (and the next lines) might give you a hint what to do in this case.
-> Although one could also consider that's something that needs to be fixed
-> in the installation script of googletest, as versioned libraries are the
-> expected default
->
->>
->>
->> Any idea to fix this?
->>
->>
->> Thanks,
->>
->> Lijun
->>
->>
->> ------------------------------------------------------------------------
->> This transmission (including any attachments) may contain confidential
->> information, privileged material (including material protected by the
->> solicitor-client or other applicable privileges), or constitute
->> non-public information. Any use of this information by anyone other than
->> the intended recipient is prohibited. If you have received this
->> transmission in error, please immediately reply to the sender and delete
->> this information from your system. Use, dissemination, distribution, or
->> reproduction of this transmission by unintended recipients is not
->> authorized and may be unlawful.
->>
->>
->>
->>
-> ------------------------------------------------------------------------
-> This transmission (including any attachments) may contain confidential
-> information, privileged material (including material protected by the
-> solicitor-client or other applicable privileges), or constitute
-> non-public information. Any use of this information by anyone other than
-> the intended recipient is prohibited. If you have received this
-> transmission in error, please immediately reply to the sender and delete
-> this information from your system. Use, dissemination, distribution, or
-> reproduction of this transmission by unintended recipients is not
-> authorized and may be unlawful.
-> ------------------------------------------------------------------------
-> This transmission (including any attachments) may contain confidential
-> information, privileged material (including material protected by the
-> solicitor-client or other applicable privileges), or constitute
-> non-public information. Any use of this information by anyone other than
-> the intended recipient is prohibited. If you have received this
-> transmission in error, please immediately reply to the sender and delete
-> this information from your system. Use, dissemination, distribution, or
-> reproduction of this transmission by unintended recipients is not
-> authorized and may be unlawful.
->
->
->=20
->
-
-----------------------------------------------------------------------
-This transmission (including any attachments) may contain confidential info=
-rmation, privileged material (including material protected by the solicitor=
--client or other applicable privileges), or constitute non-public informati=
-on. Any use of this information by anyone other than the intended recipient=
- is prohibited. If you have received this transmission in error, please imm=
-ediately reply to the sender and delete this information from your system. =
-Use, dissemination, distribution, or reproduction of this transmission by u=
-nintended recipients is not authorized and may be unlawful.
-
---_000_34204df22ebb41b58292258f595ad404blackberrycom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
-ding-left: 4pt; border-left: #800000 2px solid; } --></style>
-</head>
-<body>
-<meta content=3D"text/html; charset=3DUTF-8">
-<style type=3D"text/css" style=3D"">
-<!--
+xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvDQpe=
++
+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ/Qymy+7=
+C
+bh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969cQD/S9LNndn=
+K
+5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM3sPiHrF+Y2HTdK7=
+j
+7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEBAAHNKlJ1ZG9sZiBKIFN=
+0
+cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgAIQUCWFAUBAIbAwULCQgHAgY=
+V
+CAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf03GsVMG6C5QOLaPx6rOgj5qexCH3=
+r
+fYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBktxioE384/51QTIfCmW8ZG5X0cMC5d38=
+L
+Fvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xllpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR8=
+4
+ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+wXl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x=
+5
+LZhUhGYoqbYwNy9imoBkUAZkbbViNOtXzaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjV=
+L
+mLHvzsBNBFhQFAQBCADXoLKCuF485eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTq=
+k
+3fb9+Ao6C6IliC9ZRXyAVLD/RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIF=
 p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
-<div dir=3D"ltr">
-<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; col=
-or:#000000; font-family:Calibri,Helvetica,sans-serif">
-<p>Tried adding googletest to <font size=3D"2"><span style=3D"font-size:10p=
-t">TOOLCHAIN_TARGET_TASK</span></font>. The gtest .h files are still not sh=
-owing up.</p>
-<p>Thanks,<br>
-</p>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
-color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Khem Raj &lt;raj.kh=
-em@gmail.com&gt;<br>
-<b>Sent:</b> Wednesday, September 22, 2021 11:28:05 AM<br>
-<b>To:</b> Lijun Chen; yocto@lists.yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] googletest shared library</font>
-<div>&nbsp;</div>
-</div>
-</div>
-<font size=3D"2"><span style=3D"font-size:10pt;">
-<div class=3D"PlainText">The .h files will be in dev pkg in this case googl=
-etest-dev<br>
-what happens if you add googletest to TOOLCHAIN_TARGET_TASK<br>
-<br>
-On 9/22/21 6:18 AM, Lijun Chen wrote:<br>
-&gt; Hi,<br>
-&gt; <br>
-&gt; <br>
-&gt; Now I included googletest to the IMAGE_INSTALL in my image file, and <=
-br>
-&gt; built both board image and SDK image. I can see libgtest.so is availab=
-le <br>
-&gt; in both images. However, gtest/gtest.h is a not present in SDK. How do=
- I <br>
-&gt; add the header files to the SDK image? Looks the following lines affec=
-t <br>
-&gt; that?<br>
-&gt; <br>
-&gt; SOLIBS =3D &quot;.so&quot;<br>
-&gt; FILES_SOLIBSDEV =3D &quot;&quot;<br>
-&gt; <br>
-&gt; Thanks,<br>
-&gt; Lijun<br>
-&gt; <br>
-&gt; ----------------------------------------------------------------------=
---<br>
-&gt; *From:* yocto@lists.yoctoproject.org &lt;yocto@lists.yoctoproject.org&=
-gt; on <br>
-&gt; behalf of Lijun Chen &lt;lijchen@blackberry.com&gt;<br>
-&gt; *Sent:* Tuesday, September 21, 2021 3:50 PM<br>
-&gt; *To:* Konrad Weihmann; yocto@lists.yoctoproject.org<br>
-&gt; *Subject:* Re: [yocto] googletest shared library<br>
-&gt; <br>
-&gt; Thanks Konrad. That worked.<br>
-&gt; <br>
-&gt; ----------------------------------------------------------------------=
---<br>
-&gt; *From:* Konrad Weihmann &lt;kweihmann@outlook.com&gt;<br>
-&gt; *Sent:* Tuesday, September 21, 2021 10:26:19 AM<br>
-&gt; *To:* Lijun Chen; yocto@lists.yoctoproject.org<br>
-&gt; *Subject:* Re: [yocto] googletest shared library<br>
-&gt; <br>
-&gt; On 21.09.21 16:18, Lijun Chen wrote:<br>
-&gt;&gt; Hi,<br>
-&gt;&gt; <br>
-&gt;&gt; I would like to include libgtest.so into my Yocto image. I added <=
-br>
-&gt;&gt; googletest to IMAGE_INSTALL and added the following line to <br>
-&gt;&gt; sources/meta-openembedded/meta-oe/recipes-test/googletest/googlete=
-st_git.bb:<br>
-&gt;&gt; <br>
-&gt;&gt; EXTRA_OECMAKE =3D &quot;-DBUILD_SHARED_LIBS=3DON &quot;<br>
-&gt;&gt; <br>
-&gt;&gt; <br>
-&gt;&gt; The shared libraries were built successfully. However, there are e=
-rrors <br>
-&gt;&gt; in do_package_qc as following:<br>
-&gt;&gt; <br>
-&gt;&gt; <br>
-&gt;&gt; ERROR: googletest-1.10.0-r0 do_package_qa: QA Issue: -dev package =
-<br>
-&gt;&gt; googletest-dev contains non-symlink .so '/usr/lib/libgmock.so'<br>
-&gt;&gt; -dev package googletest-dev contains non-symlink .so <br>
-&gt;&gt; '/usr/lib/libgtest_main.so'<br>
-&gt;&gt; -dev package googletest-dev contains non-symlink .so <br>
-&gt;&gt; '/usr/lib/libgmock_main.so'<br>
-&gt;&gt; -dev package googletest-dev contains non-symlink .so <br>
-&gt;&gt; '/usr/lib/libgtest.so' [dev-elf]<br>
-&gt;&gt; ERROR: googletest-1.10.0-r0 do_package_qa: QA run found fatal erro=
-rs. <br>
-&gt;&gt; Please consider fixing them.<br>
-&gt; <br>
-&gt; <a href=3D"https://urldefense.com/v3/__http://git.yoctoproject.org/cgi=
-t/cgit.cgi/poky/tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n34__=
-;Iw!!COg3wY07Hnb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0NANM4=
-iMsNNleww$">
-https://urldefense.com/v3/__http://git.yoctoproject.org/cgit/cgit.cgi/poky/=
-tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n34__;Iw!!COg3wY07Hnb=
-7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0NANM4iMsNNleww$</a>
-<br>
-&gt; &lt;<a href=3D"https://urldefense.com/v3/__http://git.yoctoproject.org=
-/cgit/cgit.cgi/poky/tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n=
-34__;Iw!!COg3wY07Hnb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0N=
-ANM4iMsNNleww$">https://urldefense.com/v3/__http://git.yoctoproject.org/cgi=
-t/cgit.cgi/poky/tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n34__=
-;Iw!!COg3wY07Hnb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0NANM4=
-iMsNNleww$</a>&gt;
-<br>
-&gt; <br>
-&gt; (and the next lines) might give you a hint what to do in this case.<br=
->
-&gt; Although one could also consider that's something that needs to be fix=
-ed<br>
-&gt; in the installation script of googletest, as versioned libraries are t=
-he<br>
-&gt; expected default<br>
-&gt; <br>
-&gt;&gt; <br>
-&gt;&gt; <br>
-&gt;&gt; Any idea to fix this?<br>
-&gt;&gt; <br>
-&gt;&gt; <br>
-&gt;&gt; Thanks,<br>
-&gt;&gt; <br>
-&gt;&gt; Lijun<br>
-&gt;&gt; <br>
-&gt;&gt; <br>
-&gt;&gt; ------------------------------------------------------------------=
-------<br>
-&gt;&gt; This transmission (including any attachments) may contain confiden=
-tial <br>
-&gt;&gt; information, privileged material (including material protected by =
-the <br>
-&gt;&gt; solicitor-client or other applicable privileges), or constitute <b=
-r>
-&gt;&gt; non-public information. Any use of this information by anyone othe=
-r than <br>
-&gt;&gt; the intended recipient is prohibited. If you have received this <b=
-r>
-&gt;&gt; transmission in error, please immediately reply to the sender and =
-delete <br>
-&gt;&gt; this information from your system. Use, dissemination, distributio=
-n, or <br>
-&gt;&gt; reproduction of this transmission by unintended recipients is not =
-<br>
-&gt;&gt; authorized and may be unlawful.<br>
-&gt;&gt; <br>
-&gt;&gt; <br>
-&gt;&gt; <br>
-&gt;&gt; <br>
-&gt; ----------------------------------------------------------------------=
---<br>
-&gt; This transmission (including any attachments) may contain confidential=
- <br>
-&gt; information, privileged material (including material protected by the =
-<br>
-&gt; solicitor-client or other applicable privileges), or constitute <br>
-&gt; non-public information. Any use of this information by anyone other th=
-an <br>
-&gt; the intended recipient is prohibited. If you have received this <br>
-&gt; transmission in error, please immediately reply to the sender and dele=
-te <br>
-&gt; this information from your system. Use, dissemination, distribution, o=
-r <br>
-&gt; reproduction of this transmission by unintended recipients is not <br>
-&gt; authorized and may be unlawful.<br>
-&gt; ----------------------------------------------------------------------=
---<br>
-&gt; This transmission (including any attachments) may contain confidential=
- <br>
-&gt; information, privileged material (including material protected by the =
-<br>
-&gt; solicitor-client or other applicable privileges), or constitute <br>
-&gt; non-public information. Any use of this information by anyone other th=
-an <br>
-&gt; the intended recipient is prohibited. If you have received this <br>
-&gt; transmission in error, please immediately reply to the sender and dele=
-te <br>
-&gt; this information from your system. Use, dissemination, distribution, o=
-r <br>
-&gt; reproduction of this transmission by unintended recipients is not <br>
-&gt; authorized and may be unlawful.<br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-</div>
-</span></font>
+PBpxHRrZnDdEd5IKsy+zw6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJS=
+H
+WMBh0OMKDeBik5wlsvtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mC=
+B
+CZ+IKhBQR36vtUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIAAk=
+F
+AlhQFAQCGwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LY=
+U
+pLNjs4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9Mby=
+E
+fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8TzYf9=
+m
+2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/NlouvceP41tsC5=
+d
+axZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/ANROZj4g=3D=
+=3D
+=3DLHwf
+-----END PGP PUBLIC KEY BLOCK-----
 
-<HR>This transmission (including any attachments) may contain confidential =
-information, privileged material (including material protected by the solic=
-itor-client or other applicable privileges), or constitute non-public infor=
-mation. Any use of this information by anyone other than the intended recip=
-ient is prohibited. If you have received this transmission in error, please=
- immediately reply to the sender and delete this information from your syst=
-em. Use, dissemination, distribution, or reproduction of this transmission =
-by unintended recipients is not authorized and may be unlawful.<BR>
-</body>
-</html>
+--------------86999047EA9EFC7EFA9F062D--
 
---_000_34204df22ebb41b58292258f595ad404blackberrycom_--
+--xDaZ898UnVSdCq1hmmMKnPAICENvUfNhB--
+
+--5sJcdjVz66BdJFG5UuaM6EwzwRTKsizRa
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsB5BAABCAAjFiEEVg4uKeQrdCNuC2kVjYyoKSczm3UFAmFLdm4FAwAAAAAACgkQjYyoKSczm3Vt
+6gf+Kfzqv2k+cuIJvwE4y2IH/IOsWYUhFe3zn1cWOTEfT+E8paP4qCeGVYExnb2KRyIdsWTrZzJU
+4CRmHaUnVk+S36MImsBeo+vf9hFVpS4KFga4d3t6NxuTKSIVhojRa835Sw61JKVpCm2jigYmCkCI
+3zlm1YrnOVIGZOjhTqMf47N6eXmGTOdXVLyUYtNg8tLUhwt95tKbAwD0qLcSFyYSVBVquB8syC0c
+/aAg2foZR1dCdC+w1Zz6mXRdbe+2tcNGaSIz9hhUVOYzjucrIvKn5cVAeKg7JB4XiXpykS7/S7CT
+6edAPauS/lYypnG4lhWD6K4y9sc/9j+TU1AMYObosg==
+=QT3L
+-----END PGP SIGNATURE-----
+
+--5sJcdjVz66BdJFG5UuaM6EwzwRTKsizRa--
