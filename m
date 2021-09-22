@@ -1,100 +1,94 @@
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
- by mx.groups.io with SMTP id smtpd.web10.3135.1632329507053013153
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+ by mx.groups.io with SMTP id smtpd.web10.3209.1632329862903382782
  for <yocto@lists.yoctoproject.org>;
- Wed, 22 Sep 2021 09:51:47 -0700
+ Wed, 22 Sep 2021 09:57:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=RbXOtO+4;
- spf=pass (domain: gmail.com, ip: 209.85.222.177, mailfrom: raj.khem@gmail.com)
-Received: by mail-qk1-f177.google.com with SMTP id b65so11538416qkc.13
-        for <yocto@lists.yoctoproject.org>; Wed, 22 Sep 2021 09:51:46 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=HEmEUTxu;
+ spf=pass (domain: gmail.com, ip: 209.85.221.42, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-wr1-f42.google.com with SMTP id d6so8758643wrc.11
+        for <yocto@lists.yoctoproject.org>; Wed, 22 Sep 2021 09:57:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SaWdPrDOqAB8NLeXWJ9fnM9Em5ZFeg9Xzpofp5QtvUw=;
-        b=RbXOtO+4j0YgrHzHlDWG/YdwhxgixzvsWVHz8EScLH7nZtTkzrEFe+7LcCydTB3wih
-         x+ABDxieZvrr3oiR2DG6nEF8QXy519cizz8AGArHrcqqjh44EJ7G2KBhXA/aWfRq9e99
-         8NLkYKAz63BelvwBHxVbQcnQcqG9l9KiQJPAAd09Y0OhYWepESFDo9p1eso7luH56y+h
-         qlxFZqZMuSuv0cozIvl7T738CO0PYXwyGrddAFfuDEB8Ee/zKtQw4EC3qNS9GPGq28WG
-         OEuhYOH5jFDg1+/QTETvmAno459paaivxJR5wBROHhb4+iE9x7OU1JBSuzkdu3QgSmTX
-         GcYg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EY3YSybAaXbcmhzL43gJVS1iJDHz+Hnq4qC/3u/FNy4=;
+        b=HEmEUTxuKXsjQJZYB9wpOx+QbTbl2wph/hahspAkwUfyvVatBnMCJdKlyDrYlPIXnm
+         /7M0rIpMi/5aGmIXVWWKoKS2VKDV3NWDidvMNjWaA939xx1iX/7IA75KSLDzv9pUkfoI
+         R56fLxRUbG00uJxkG90nvSmLZnFW/SGVLcukaaRwzPUW73hlORZDgeqZOJpKvbLRu1pe
+         8xG2SzLZm++OhfPqL/zuCbK2dsDHUjtvDErvQoN80hPcYHFdUc4Nw25j6pdldKO2c4Vl
+         RjYWUM6b2BU2swO7hffy4XX6l4JwRjX9hG/P1rQoWW0/TTQAyE75iqbNUT4k06RKyAec
+         0C4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SaWdPrDOqAB8NLeXWJ9fnM9Em5ZFeg9Xzpofp5QtvUw=;
-        b=zI9YFW75cph6Y2SSKqEcVSH13cIGOs57h79ReajSkl6jhqi5e7wP/R0udCuuCgskSq
-         gQfirol7X8xVY+ltZy6q9eAximiHcd+aIKrkuuiWQVhme++Y5IRKXO/NkCtXsoa4LZGq
-         O9cAbo2ikVSAkxxym2MMRYYFKpomPbZiIjPt2sGJ5eoTXYSFnBiG1S+MOxXO1BfLTVhY
-         ResAxteVxX9pbTenmWJd/tJMdYocVllMMrQKhazhVecaJYZPr4i/TBY3uIPuSKXJv+Sh
-         JHq+OhfBD6+PDqub8SQuTmfH9KVv6qxDEdbko9+yYpq1NcGDUFf7UYjk22Zzicn50C90
-         NUpA==
-X-Gm-Message-State: AOAM533lz/bGaR88QCEwqwRmAXz+sNZb4trgyCjlo2lrmpfwDr7ZEbWs
-	zCOuO+zvLvhU4mB/TmbCMcLmSJsINhBqfdgGCEY=
-X-Google-Smtp-Source: ABdhPJxb0d4fE1esbqD1uzL2t775jkhcnG7jYCBVhi14Iwnvz4lj/R5ior0d7GKtseI+PUPil2N/Uttfx6gudewlSPY=
-X-Received: by 2002:a37:618c:: with SMTP id v134mr173678qkb.231.1632329505968;
- Wed, 22 Sep 2021 09:51:45 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EY3YSybAaXbcmhzL43gJVS1iJDHz+Hnq4qC/3u/FNy4=;
+        b=Ml2EgGqyzCaPBN0dvqSKlV2lWbjmAM1Go2LCBShSdwA+eYo/xtXb/ezZS1yiWqwR3n
+         VnfpXAvpiMm5yzqMKxZKmvnxPHMotX9zSe0WqnaPGX0Y4MoSZcVUOHVEaoVVwcu31QNF
+         WFMXXkDailCYGs0raPsnztxW3kzuw4e4KqDZvUOV9AG41EroeV+Bjct8wFXyINsKUZL7
+         /j54YmYSsPJLktU9dhg3RuyaOKJt9cP8IykiGpHEQcjdm/AsutYSPDKMxaMdp7dC82Ld
+         moTfB8qDCRasMAAmGWEC70o4hycQauGKdlF1fH/8wCFWRJzlEY1j49q9kfjpcTIUMNLG
+         RZbA==
+X-Gm-Message-State: AOAM530PyiKX1ZHx8fm8/0pAVcZ4Y7SfT0TFpp2qv/fF8AHjUfd2es62
+	n2EaKFRzpxLvBYdJ/APoE0SVM/xLiuo=
+X-Google-Smtp-Source: ABdhPJzi7E69a8Fq6PfOLaozRJQXYCPxJ/CNq40a7Z7Ega5KsLjp44vYP2OTzh1Z1p7FKHVCTzHJjA==
+X-Received: by 2002:a1c:2c3:: with SMTP id 186mr11640253wmc.43.1632329861040;
+        Wed, 22 Sep 2021 09:57:41 -0700 (PDT)
+Return-Path: <alex.kanavin@gmail.com>
+Received: from localhost.localdomain ([2a02:2454:29b:3b00:d35d:e3cf:58b5:748b])
+        by smtp.gmail.com with ESMTPSA id u13sm2754326wrt.41.2021.09.22.09.57.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Sep 2021 09:57:40 -0700 (PDT)
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: Alexander Kanavin <alex@linutronix.de>,
+	Alexander Kanavin <alex.kanavin@gmail.com>
+Subject: [PATCH yocto-autobuilder-helper] scripts/collect-results: publish everything in tmp/log/oeqa
+Date: Wed, 22 Sep 2021 18:57:34 +0200
+Message-Id: <20210922165734.412767-1-alex.kanavin@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <3heP.1632329277788400018.EkfO@lists.yoctoproject.org>
-In-Reply-To: <3heP.1632329277788400018.EkfO@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Wed, 22 Sep 2021 09:51:20 -0700
-Message-ID: <CAMKF1srakSaPuWdM5So3HkgOsp+rBtbkc+8+ArKS6o2Gvz_Z_g@mail.gmail.com>
-Subject: Re: [yocto] Permission denied with NFS shared download and sstate-cache
-To: Bel Hadj Salem Talel <bhstalel@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Wed, Sep 22, 2021 at 9:47 AM Bel Hadj Salem Talel <bhstalel@gmail.com> wrote:
->
-> Hi All,
->
-> I have a server that's holding downloads and sstate-cache.
->
-> I have a docker-compose file with nfs server that exposes the dowloads/sstate-cache volume.
->
-> When I mount that in my PC and set the path into DL_DIR and SSTATE_DIR, I get this error :
->
-> ---------------
-> ERROR: grub-efi-native-2.04-r0 do_configure: Build of do_configure failed
-> ERROR: grub-efi-native-2.04-r0 do_configure: Traceback (most recent call last):
->   File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/build.py", line 644, in exec_task
->     return _exec_task(fn, task, d, quieterr)
->   File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/build.py", line 618, in _exec_task
->     event.fire(TaskSucceeded(task, fn, logfn, localdata), localdata)
->   File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/event.py", line 215, in fire
->     fire_class_handlers(event, d)
->   File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/event.py", line 122, in fire_class_handlers
->     execute_handler(name, handler, event, d)
->   File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/event.py", line 94, in execute_handler
->     ret = handler(event)
->   File "/home/talel/Desktop/YoctoWork/sources/poky/meta/classes/sstate.bbclass", line 1094, in sstate_eventhandler
->     bb.siggen.dump_this_task(sstatepkg + '_' + taskname + ".tgz" ".siginfo", d)
->   File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/siggen.py", line 648, in dump_this_task
->     bb.parse.siggen.dump_sigtask(fn, task, outfile, "customfile:" + referencestamp)
->   File "/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/sstatesig.py", line 202, in dump_sigtask
->     super(bb.siggen.SignatureGeneratorBasicHash, self).dump_sigtask(fn, task, stampbase, runtime)
->   File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/siggen.py", line 362, in dump_sigtask
->     fd, tmpfile = tempfile.mkstemp(dir=os.path.dirname(sigfile), prefix="sigtask.")
->   File "/usr/lib/python3.8/tempfile.py", line 470, in mkstemp
->     return _mkstemp_inner(dir, prefix, suffix, flags, output_type)
->   File "/usr/lib/python3.8/tempfile.py", line 389, in _mkstemp_inner
->     fd = _os.open(file, flags, 0o600)
+From: Alexander Kanavin <alex@linutronix.de>
 
-its trying to create the file with 0600 mask. I wonder whats your
-global umask set to. and perhaps the user is not same when bitbake it
-running ?
+In addition to the testresult json, testimage class now also
+provides task logs and qemu console output (splitted into
+folders by image name to avoid clutter), which can be useful
+for debugging test failures or even checking qemu test runs
+when failures did not happen.
 
-> PermissionError: [Errno 13] Permission denied: '/home/talel/Desktop/YoctoShare/tethys-cache/ubuntu-20.04/dd/sigtask.dgjx7ngq'
->
-> ERROR: Task (virtual:native:/home/talel/Desktop/YoctoWork/sources/poky/meta/recipes-bsp/grub/grub-efi_2.04.bb:do_configure) failed with exit code '1'
-> ---------------
->
-> I can modify the mounted folder by creating a directory or a file, but it fails with yocto.
->
-> How can I solve the issue?
->
-> Thanks,
-> Talel
-> 
->
+Rather than duplicate specific file/folder names, let's copy all
+that is available, and define what is published in the testimage
+class itself.
+
+[YOCTO #14518]
+
+Signed-off-by: Alexander Kanavin <alex@linutronix.de>
+Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+---
+ scripts/collect-results | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
+
+diff --git a/scripts/collect-results b/scripts/collect-results
+index 93834d6..3663330 100755
+--- a/scripts/collect-results
++++ b/scripts/collect-results
+@@ -3,11 +3,9 @@ WORKDIR=$1
+ DEST=$2
+ target=$3
+ 
+-RESFILE=$WORKDIR/tmp/log/oeqa/testresults.json 
+-
+-if [ -e $RESFILE ]; then
+-    mkdir -p $DEST/$target
+-    cp $WORKDIR/tmp/log/oeqa/testresults.json  $DEST/$target/
++mkdir -p $DEST
++if [ -e $WORKDIR/tmp/log/oeqa/ ]; then
++    cp -rf $WORKDIR/tmp/log/oeqa/ $DEST/$target
+ fi
+ 
+ if [ -e $WORKDIR/buildhistory ]; then
+-- 
+2.31.1
+
