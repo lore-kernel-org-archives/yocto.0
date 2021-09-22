@@ -1,214 +1,619 @@
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
- by mx.groups.io with SMTP id smtpd.web09.248.1632335474015520456
+Received: from mailout06.t-online.de (mailout06.t-online.de [194.25.134.19])
+ by mx.groups.io with SMTP id smtpd.web10.500.1632336730705595769
  for <yocto@lists.yoctoproject.org>;
- Wed, 22 Sep 2021 11:31:14 -0700
+ Wed, 22 Sep 2021 11:52:11 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ibeeto-com.20210112.gappssmtp.com header.s=20210112 header.b=ldJhBiAg;
- spf=neutral (domain: ibeeto.com, ip: 209.85.215.181, mailfrom: rudolf.streif@ibeeto.com)
-Received: by mail-pg1-f181.google.com with SMTP id w8so3644905pgf.5
-        for <yocto@lists.yoctoproject.org>; Wed, 22 Sep 2021 11:31:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ibeeto-com.20210112.gappssmtp.com; s=20210112;
-        h=to:from:autocrypt:subject:message-id:date:user-agent:mime-version;
-        bh=ccyCSkp7r4RkmCJ1jVUrM1UA6/GpHNUVjrqYenpTZXU=;
-        b=ldJhBiAgA9v/G/9R5eyPG1rTQoqBVFKpgpefmiuYlDhRAWYPueVECk2620gF4IOkp/
-         7fw7DyZdhv5noqDT8WggHvEHGv1Btu7roWwGGqYOX4G8neor6pswXjaLy6/qophK2eqe
-         SvKBKpFob7CjMDkGUCyL3dmSC+q0BRsBa4j/aAZ0j4qojwRLQoaE6a45K2paYUXRnEUr
-         pBgupRpTFDmar6WmL8E8XsxmdgkJ71S9bf8VPeRlE8wuRy6lIibJOjfSydK24qqv+Hbc
-         CbOoG97WT10WHqSoQVTvRXr3oPDO85u3wad9MgM+5w7/0u4gPU9bn18UxykIsNqUZ1UZ
-         pIvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:to:from:autocrypt:subject:message-id:date
-         :user-agent:mime-version;
-        bh=ccyCSkp7r4RkmCJ1jVUrM1UA6/GpHNUVjrqYenpTZXU=;
-        b=igYrIlbRqRX28qlqrUjLNgptvpPKHqux2fuSz0l+FwdJWN+sHM0CxfL7IDi7vk4i4X
-         wYGBNe3DBkytBNs8gLj1VLf2gAtxmD7p64T7UlenIAvsARzrN9r3e2LwfltC3SU+bPEB
-         uNfW2V1Jl7u6JTT8UcGKoSaoQPEHuQLR5DkhOC+2aftgGb7cqNoBwugGuw5hwGoGh/Ec
-         hpepWqCTJllSU+HOJOk12ern5OTxboHHlc/RkttmTsoBNBpjXk96y2EWO0gV725NqmRA
-         KsoN9sTA3aHiQSP2NZV2YTvulVpRyEt4i1rhWIk6HGbBfXUzRdsu+Ja41xdWR6dMFhYz
-         wz4g==
-X-Gm-Message-State: AOAM530JR6JDhX3YSrsUvHbaYq85DyGVaTz8/JXdnqaQpE9D5w22Mqfe
-	U2+5A8kmXMLHAHdOCLlRMDWRMNAGs9dp/Q==
-X-Google-Smtp-Source: ABdhPJz65e1ZQhfDKR/iP1kDLVTfqit3DOxnPPhWaqs0VMXHedS3vSxTlH7M0VVd7+ZrJU4xTC22NQ==
-X-Received: by 2002:a63:684a:: with SMTP id d71mr276357pgc.175.1632335472561;
-        Wed, 22 Sep 2021 11:31:12 -0700 (PDT)
-Return-Path: <rudolf.streif@ibeeto.com>
-Received: from [192.168.4.197] (ip72-220-244-209.sd.sd.cox.net. [72.220.244.209])
-        by smtp.gmail.com with ESMTPSA id t2sm6448330pje.5.2021.09.22.11.31.11
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Sep 2021 11:31:11 -0700 (PDT)
-To: Yocto <yocto@lists.yoctoproject.org>
-From: "Rudolf J Streif" <rudolf.streif@ibeeto.com>
-Autocrypt: addr=rudolf.streif@ibeeto.com; keydata=
- xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvD
- Qpe+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ
- /Qymy+7Cbh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969
- cQD/S9LNndnK5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM
- 3sPiHrF+Y2HTdK7j7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEB
- AAHNKlJ1ZG9sZiBKIFN0cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgA
- IQUCWFAUBAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf0
- 3GsVMG6C5QOLaPx6rOgj5qexCH3rfYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBk
- txioE384/51QTIfCmW8ZG5X0cMC5d38LFvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xl
- lpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR84ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+w
- Xl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x5LZhUhGYoqbYwNy9imoBkUAZkbbViNOtX
- zaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjVLmLHvzsBNBFhQFAQBCADXoLKCuF48
- 5eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTqk3fb9+Ao6C6IliC9ZRXyAVLD/
- RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIFpPBpxHRrZnDdEd5IKsy+z
- w6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJSHWMBh0OMKDeBik5wl
- svtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mCBCZ+IKhBQR36v
- tUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIAAkFAlhQFAQC
- GwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LYUpLNj
- s4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9MbyE
- fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8Tz
- Yf9m2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/Nlouvce
- P41tsC5daxZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/AN
- ROZj4g==
-Subject: [WIC] bootimg-partition plugin
-Message-ID: <81c3bcac-289b-5179-be19-55d6ee454a52@ibeeto.com>
-Date: Wed, 22 Sep 2021 11:31:10 -0700
+ dkim=missing; spf=none, err=SPF record not found (domain: t-online.de, ip: 194.25.134.19, mailfrom: f_l_k@t-online.de)
+Received: from fwd83.dcpf.telekom.de (fwd83.aul.t-online.de [10.223.144.109])
+	by mailout06.t-online.de (Postfix) with SMTP id 42D0F8050;
+	Wed, 22 Sep 2021 20:49:45 +0200 (CEST)
+Received: from [192.168.178.83] ([84.163.35.76]) by fwd83.t-online.de
+	with (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384 encrypted)
+	esmtp id 1mT7JP-2d0yaf0; Wed, 22 Sep 2021 20:49:43 +0200
+Subject: Re: [yocto] [meta-rockchip][PATCH] use uuid instead of hard-coding root device
+To: Trevor Woerner <twoerner@gmail.com>
+References: <20210917220121.26663-1-twoerner@gmail.com>
+From: "Markus Volk" <f_l_k@t-online.de>
+Cc: yocto@lists.yoctoproject.org
+Message-ID: <a7d1f5cd-8bb6-ba56-c2b4-39dfb283a22c@t-online.de>
+Date: Wed, 22 Sep 2021 20:49:43 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-X-Groupsio-MsgNum: 54800
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="5sJcdjVz66BdJFG5UuaM6EwzwRTKsizRa"
-
---5sJcdjVz66BdJFG5UuaM6EwzwRTKsizRa
-Content-Type: multipart/mixed; boundary="xDaZ898UnVSdCq1hmmMKnPAICENvUfNhB";
- protected-headers="v1"
-From: Rudolf J Streif <rudolf.streif@ibeeto.com>
-To: Yocto <yocto@lists.yoctoproject.org>
-Message-ID: <81c3bcac-289b-5179-be19-55d6ee454a52@ibeeto.com>
-Subject: [WIC] bootimg-partition plugin
-
---xDaZ898UnVSdCq1hmmMKnPAICENvUfNhB
-Content-Type: multipart/mixed;
- boundary="------------86999047EA9EFC7EFA9F062D"
+In-Reply-To: <20210917220121.26663-1-twoerner@gmail.com>
+X-TOI-EXPURGATEID: 150726::1632336583-00001454-13173459/0/0 CLEAN NORMAL
+X-TOI-MSGID: 9805319d-6dee-41de-baa2-cd4158973e8e
+Content-Type: multipart/alternative;
+ boundary="------------744D394CAEA8E2413258FD80"
 Content-Language: en-US
 
---------------86999047EA9EFC7EFA9F062D
+--------------744D394CAEA8E2413258FD80
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: base64
-
-QSBub3Qgc28gd2VsbC1rbm93biBmZWF0dXJlIG9mIHRoZSBXSUMgYm9vdGltZy1wYXJ0aXRp
-b24gcGx1Z2luIGlzIHRoYXQgCml0IGNhbiBpbnN0YWxsIGZpbGVzIGludG8gZGlmZmVyZW50
-IHBhcnRpdGlvbnMuIEZvciB0aGF0IHRoZSB2YXJpYWJsZSAKSU1BR0VfQk9PVF9GSUxFUyBo
-YXMgdG8gYmUgZGVmaW5lZCBhcyBvbmUgb2YgdGhlIGZvbGxvd2luZzoKCklNQUdFX0JPT1Rf
-RklMRVNfbGFiZWwtPHBhcnRsYWJlbD4gPSAiLi4uIgoKSU1BR0VfQk9PVF9GSUxFU191dWlk
-LTxwYXJ0dXVpZD4gPSAiLi4uIgoKVGhlIHBsdWdpbiB3aWxsIHRoZW4gdXNlIGVpdGhlciB0
-aGUgcGFydGl0aW9uIGxhYmVsIG9yIHRoZSBwYXJ0aXRpb24gCnV1aWQgZnJvbSB0aGUgV0tT
-IGZpbGUgInBhcnQiIGRpcmVjdGl2ZSB0byBsb29rIHVwIHRoZSBjb3JyZWN0IGZpbGUgbGlz
-dCAKdmFyaWFibGUuCgpUaGlzIGNvZGUgc25pcHBldCBmcm9tIHRoZSBwbHVnaW4gCihwb2t5
-L3NjcmlwdHMvbGliL3dpYy9wbHVnaW5zL3NvdXJjZS9ib290aW1nLXBhcnRpdGlvbi5weSkg
-aXMgc3VwcG9zZWQgCnRvIGRvIHRoZSB0cmljazoKCiA+Pj4+PgoKIMKgNTDCoMKgwqDCoMKg
-wqDCoMKgIGJvb3RfZmlsZXMgPSBOb25lCiDCoDUxwqDCoMKgwqDCoMKgwqDCoCBmb3IgKGZt
-dCwgaWQpIGluICgoIl91dWlkLSVzIiwgcGFydC51dWlkKSwgKCJfbGFiZWwtJXMiLCAKcGFy
-dC5sYWJlbCksIChOb25lLCBOb25lKSk6CiDCoDUywqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-IGlmIGZtdDoKIMKgNTPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB2YXIgPSBm
-bXQgJSBpZAogwqA1NMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBlbHNlOgogwqA1NcKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHZhciA9ICIiCiDCoDU2CiDCoDU3wqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIHByaW50KCd2YXI6ICcsIHZhcikKIMKgNTgKIMKgNTnCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgYm9vdF9maWxlcyA9IGdldF9iaXRiYWtlX3ZhcigiSU1B
-R0VfQk9PVF9GSUxFUyIgKyB2YXIpCiDCoDYwwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGlm
-IGJvb3RfZmlsZXMgaXMgbm90IE5vbmU6CiDCoDYxwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAgYnJlYWsKCjw8PDw8CgpIb3dldmVyLCB0aGUgZnVuY3Rpb24gZ2V0X2JpdGJh
-a2VfdmFyKCkgZnJvbSAKcG9reS9zY3JpcHRzL2xpYi93aWMvbWlzYy5weSB1c2VzIHRoZSB0
-aGUgV0lDIGVudmlyb25tZW50IHdoaWNoIGlzIApjcmVhdGVkIGZyb20gdGhlIFdJQ1ZBUlMg
-dmFyaWFibGUgYnkgdGhlIApwb2t5L21ldGEvY2xhc3Nlcy9pbWFnZV90eXBlc193aWMuYmJj
-bGFzcy4gV0lDVkFSUyBpcyBkZWZpbmVkIGF0IHRoZSAKYmVnaW5uaW5nIG9mIHRoZSBjbGFz
-cyBhbmQgY29udGFpbnMgYWxsIGJpdGJha2UgdmFyaWFibGVzIHJlbGV2YW50IHRvIApXSUMu
-IEl0IG9mIGNvdXJzZSBpbmNsdWRlcyB0aGUgcGxhaW4gSU1BR0VfQk9PVF9GSUxFUy4gV2hl
-biB0aGUgY2xhc3MgCmNyZWF0ZXMgdGhlIGVudmlyb25tZW50IChkb19yb290ZnNfd2ljZW52
-KSBpcyBzaW1wbHkgc3BsaXRzIFdJQ1ZBUlMgYW5kIApsb29rcyB1cCB0aGUgdmFyaWFibGVz
-IG9uZS1ieS1vbmUgaW4gdGhlIERhdGFTbWFydCBkaWN0aW9uYXJ5IAooZC5nZXRWYXIoPHZh
-cm5hbWU+KS4gU2luY2UgdGhpcyBpcyBhIGtleSBsb29rdXAgaXQgd2lsbCBub3QgbWF0Y2gg
-YW55IAp2YXJpYWJsZXMgZm9yIElNQUdFX0JPT1RfRklMRVNfbGFiZWwtPHBhcnRsYWJlbD4g
-YW5kL29yIApJTUFHRV9CT09UX0ZJTEVTX3V1aWQtPHBhcnR1dWlkPi4KCkZvciB0aGlzIHRv
-IHdvcmsgdGhlcmUgc2hvdWxkIGJlIGEgbG9va3VwIGluIERhdGFTbWFydCB0aGF0IHN1cHBv
-cnRzIApnZXRWYXIoKSB3aXRoIGEgd2lsZGNhcmQgb3IgInN0YXJ0cyB3aXRoIi4gSSBhbSBu
-b3QgYWxsIGludG8gdGhlIGRldGFpbHMgCm9mIERhdGFTbWFydCBhbmQgbWF5YmUgdGhlcmUg
-aXMgc29tZXRoaW5nIGxpa2UgdGhpcyBhbHJlYWR5IGFuZCBJIGp1c3QgCmRvbid0IGtub3cg
-YWJvdXQgaXQuIEhlbmNlIHRoZSBxdWVzdGlvbiBoZXJlIGJlZm9yZSBJIHN0YXJ0IGhhY2tp
-bmcgYSAKa2x1ZGdlIGludG8gdGhlIGltYWdlX3R5cGVzX3dpYyBjbGFzcy4KClRoYW5rcywK
-ClJ1ZGkKCi0tIApSdWRvbGYgSiBTdHJlaWYKQ0VPL0NUTyBpYmVldG8KKzEuODU1LjQ0Mi4z
-Mzg2IHg3MDAKCg==
-
---------------86999047EA9EFC7EFA9F062D
-Content-Type: application/pgp-keys;
- name="OpenPGP_0x8D8CA82927339B75.asc"
 Content-Transfer-Encoding: quoted-printable
-Content-Description: OpenPGP public key
-Content-Disposition: attachment;
- filename="OpenPGP_0x8D8CA82927339B75.asc"
 
------BEGIN PGP PUBLIC KEY BLOCK-----
+Hi,
 
-xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvDQpe=
+with this change my rock-pi-4 doesnt boot up and falls to emergency=20
+shell because wic includes wrong devices into fstab. For some reason it=20
+assumes /dev/sda1. I was able to fix this for my machine by using uuid=20
+for all partitions.
+
+diff --git a/wic/rockchip.wks b/wic/rockchip.wks
+index 5ee276b..90bdb27 100644
+--- a/wic/rockchip.wks
++++ b/wic/rockchip.wks
+@@ -15,12 +15,12 @@
+ =C2=A0#=C2=A0=C2=A0 boot=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 32768=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 229376
+ =C2=A0#=C2=A0=C2=A0 root=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 262144=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (suggested)
+
+-part loader1=C2=A0=C2=A0=C2=A0 --offset 32=C2=A0=C2=A0=C2=A0=C2=A0 --fixed=
+-size 4000K --source rawcopy=20
+--sourceparams=3D"file=3D${SPL_BINARY}"
+-part reserved1=C2=A0 --offset 4032=C2=A0=C2=A0 --fixed-size 64K
+-part reserved2=C2=A0 --offset 4096=C2=A0=C2=A0 --fixed-size 4096K
+-part loader2=C2=A0=C2=A0=C2=A0 --offset 8192=C2=A0=C2=A0 --fixed-size 4096=
+K --source rawcopy=20
+--sourceparams=3D"file=3Du-boot.${UBOOT_SUFFIX}"
+-part atf=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --offset 12288=C2=A0 --=
+fixed-size 4096K
+-part /boot=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --offset 16384=C2=A0 --size=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 114688K --active --source=20
+bootimg-partition --fstype=3Dvfat --label boot --sourceparams=3D"loader=3Du=
+-boot"
+-part / --source rootfs=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 --fstype=3Dext4 --label root --use-uuid
++part loader1=C2=A0=C2=A0 --offset 32 --fixed-size 4000K --source rawcopy=
+=20
+--sourceparams=3D"file=3D${SPL_BINARY}" --use-uuid
++part reserved1 --offset 4032 --fixed-size 64K --use-uuid
++part reserved2 --offset 4096 --fixed-size 4096K --use-uuid
++part loader2=C2=A0=C2=A0 --offset 8192 --fixed-size 4096K --source rawcopy=
+=20
+--sourceparams=3D"file=3Du-boot.${UBOOT_SUFFIX}" --use-uuid
++part atf=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --offset 12288 --fixed-size 4=
+096K --use-uuid
++part /boot=C2=A0=C2=A0=C2=A0=C2=A0 --offset 16384 --size 114688K --active =
+--source=20
+bootimg-partition --fstype=3Dvfat --label boot=20
+--sourceparams=3D"loader=3Du-boot" --use-uuid
++part /=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --source rootfs --f=
+stype=3Dext4 --label root --use-uuid
+
+-bootloader --ptable gpt --append=3D"console=3Dtty1=20
+console=3D${RK_CONSOLE_DEVICE},${RK_CONSOLE_BAUD}n8 rw rootfstype=3Dext4=20
+init=3D/sbin/init"
++bootloader=C2=A0=C2=A0=C2=A0=C2=A0 --ptable gpt --append=3D"console=3Dtty1=
+=20
+console=3D${RK_CONSOLE_DEVICE},${RK_CONSOLE_BAUD}n8 rw rootfstype=3Dext4=20
+init=3D/sbin/init"
+
+
+In addition i added an option that avoids editing fstab by wic at all=20
+since the image also boots without mounting /boot, but i guess this is=20
+just a matter of taste.
+
+diff --git a/conf/machine/include/rockchip-wic.inc=20
+b/conf/machine/include/rockchip-wic.inc
+index 15010a0..30b0d57 100644
+--- a/conf/machine/include/rockchip-wic.inc
++++ b/conf/machine/include/rockchip-wic.inc
+@@ -26,3 +26,6 @@ WICVARS:append =3D " \
+ =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SPL_BINARY \
+ =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 UBOOT_SUFFIX \
+ =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "
 +
-Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ/Qymy+7=
-C
-bh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969cQD/S9LNndn=
-K
-5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM3sPiHrF+Y2HTdK7=
-j
-7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEBAAHNKlJ1ZG9sZiBKIFN=
-0
-cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgAIQUCWFAUBAIbAwULCQgHAgY=
-V
-CAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf03GsVMG6C5QOLaPx6rOgj5qexCH3=
-r
-fYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBktxioE384/51QTIfCmW8ZG5X0cMC5d38=
-L
-Fvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xllpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR8=
-4
-ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+wXl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x=
-5
-LZhUhGYoqbYwNy9imoBkUAZkbbViNOtXzaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjV=
-L
-mLHvzsBNBFhQFAQBCADXoLKCuF485eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTq=
-k
-3fb9+Ao6C6IliC9ZRXyAVLD/RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIF=
-p
-PBpxHRrZnDdEd5IKsy+zw6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJS=
-H
-WMBh0OMKDeBik5wlsvtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mC=
-B
-CZ+IKhBQR36vtUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIAAk=
-F
-AlhQFAQCGwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LY=
-U
-pLNjs4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9Mby=
-E
-fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8TzYf9=
-m
-2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/NlouvceP41tsC5=
-d
-axZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/ANROZj4g=3D=
-=3D
-=3DLHwf
------END PGP PUBLIC KEY BLOCK-----
++# Do not update fstab file while creating wic images
++WIC_CREATE_EXTRA_ARGS ?=3D "--no-fstab-update"
 
---------------86999047EA9EFC7EFA9F062D--
 
---xDaZ898UnVSdCq1hmmMKnPAICENvUfNhB--
+Am 18.09.21 um 00:01 schrieb Trevor Woerner:
+> Recent upstream kernel changes have made the mmc probing order unpredicta=
+ble.
+> Therefore, boards with both an emmc and sdmmc interface aren't guaranteed=
+ to
+> boot with a hard-coded root device selected.
+>
+> For example, on the rock64, with linux-yocto 5.10.y, using the uSD card (=
+i.e.
+> the sdmmc interface) about 50% of the time the boot would succeed, and ro=
+ughly
+> 50% of the time it wouldn't:
+>
+> 	...
+> 	[    0.612233] Waiting for root device /dev/mmcblk1p7...
+> 	[    0.634551] mmc_host mmc1: Bus speed (slot 0) =3D 300000Hz (slot req =
+300000Hz, actual 300000HZ div =3D 0)
+> 	[    0.639064] mmc_host mmc0: Bus speed (slot 0) =3D 50000000Hz (slot re=
+q 50000000Hz, actual 50000000HZ di)
+> 	[    0.640007] mmc0: new high speed SDXC card at address 5048
+> 	[    0.641176] mmcblk0: mmc0:5048 SD64G 58.0 GiB
+> 	[    0.647610] random: fast init done
+> 	[    0.648279] GPT:Primary header thinks Alt. header is not at the end o=
+f the disk.
+> 	[    0.648941] GPT:376479 !=3D 121634815
+> 	[    0.649252] GPT:Alternate GPT header not at the end of the disk.
+> 	[    0.649796] GPT:376479 !=3D 121634815
+> 	[    0.650106] GPT: Use GNU Parted to correct GPT errors.
+> 	[    0.650598]  mmcblk0: p1 p2 p3 p4 p5 p6 p7
+>
+> NOTE the discrepancy between the kernel waiting for device /dev/mmcblk1p7=
+,
+> which comes from the hard-coded kernel cmdline, and the kernel probing pu=
+tting
+> the sdmmc on mmcblk0.
+>
+> With linux-yocto 5.13.y on the rock64 using the uSD card the board would =
+never
+> boot, the sdmmc always appears on mmcblk0.
+>
+> Instead of simply changing the hard-coded root device (i.e. from mmcblk0 =
+to
+> mmcblk1) switch to using partition UUIDs instead. Hard-coding the boot de=
+vice
+> would work with 5.13.y but would fail 50% of the time with 5.10.y; who kn=
+ows
+> what other kernels will do?
+>
+> In any case, switching to UUIDs works regardless of board, kernel, or
+> available mmc interfaces.
+>
+> Boot tested on:
+> - rock64
+> - nanopi-m4-2gb
+> - tinker-board
+> - rock-pi-e
+> - rock-pi-4b
+>
+> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> ---
+>   conf/machine/include/nanopi-m4.inc    |  2 --
+>   conf/machine/include/rock-pi-4.inc    |  2 --
+>   conf/machine/include/rockchip-wic.inc |  4 ----
+>   conf/machine/rock64.conf              |  3 ---
+>   conf/machine/tinker-board-s.conf      |  2 --
+>   conf/machine/vyasa-rk3288.conf        |  2 --
+>   wic/rockchip.wks                      | 16 ++++++++--------
+>   7 files changed, 8 insertions(+), 23 deletions(-)
+>
+> diff --git a/conf/machine/include/nanopi-m4.inc b/conf/machine/include/na=
+nopi-m4.inc
+> index ac6479d..3870b51 100644
+> --- a/conf/machine/include/nanopi-m4.inc
+> +++ b/conf/machine/include/nanopi-m4.inc
+> @@ -7,5 +7,3 @@ MACHINE_FEATURES +=3D "usbhost serial"
+>  =20
+>   KMACHINE =3D "nanopi-m4"
+>   KERNEL_DEVICETREE =3D "rockchip/rk3399-nanopi-m4.dtb"
+> -
+> -RK_BOOT_DEVICE =3D "mmcblk1"
+> diff --git a/conf/machine/include/rock-pi-4.inc b/conf/machine/include/ro=
+ck-pi-4.inc
+> index b6fb3dd..0a86846 100644
+> --- a/conf/machine/include/rock-pi-4.inc
+> +++ b/conf/machine/include/rock-pi-4.inc
+> @@ -3,6 +3,4 @@ MACHINEOVERRIDES =3D. "rock-pi-4:"
+>  =20
+>   require conf/machine/include/rk3399.inc
+>  =20
+> -RK_BOOT_DEVICE =3D "mmcblk1"
+> -
+>   MACHINE_EXTRA_RRECOMMENDS +=3D "kernel-modules"
+> diff --git a/conf/machine/include/rockchip-wic.inc b/conf/machine/include=
+/rockchip-wic.inc
+> index b5939f7..15010a0 100644
+> --- a/conf/machine/include/rockchip-wic.inc
+> +++ b/conf/machine/include/rockchip-wic.inc
+> @@ -20,11 +20,7 @@ IMAGE_BOOT_FILES =3D " \
+>   RK_CONSOLE_BAUD ?=3D "${@d.getVar('SERIAL_CONSOLES').split(';')[0]}"
+>   RK_CONSOLE_DEVICE ?=3D "${@d.getVar('SERIAL_CONSOLES').split(';')[1].sp=
+lit()[0]}"
+>  =20
+> -# boot device (sd-card/emmc)
+> -RK_BOOT_DEVICE ??=3D "mmcblk0"
+> -
+>   WICVARS:append =3D " \
+> -	RK_BOOT_DEVICE \
+>   	RK_CONSOLE_BAUD \
+>   	RK_CONSOLE_DEVICE \
+>   	SPL_BINARY \
+> diff --git a/conf/machine/rock64.conf b/conf/machine/rock64.conf
+> index 21755a8..fa75a51 100644
+> --- a/conf/machine/rock64.conf
+> +++ b/conf/machine/rock64.conf
+> @@ -12,7 +12,4 @@ MACHINE_FEATURES +=3D "usbhost serial"
+>   UBOOT_MACHINE =3D "rock64-rk3328_defconfig"
+>   KERNEL_DEVICETREE =3D "rockchip/rk3328-rock64.dtb"
+>  =20
+> -# set to mmcblk0 for booting from optional eMMC
+> -RK_BOOT_DEVICE ?=3D "mmcblk1"
+> -
+>   KBUILD_DEFCONFIG =3D "defconfig"
+> diff --git a/conf/machine/tinker-board-s.conf b/conf/machine/tinker-board=
+-s.conf
+> index 9f44f2f..870b9bc 100644
+> --- a/conf/machine/tinker-board-s.conf
+> +++ b/conf/machine/tinker-board-s.conf
+> @@ -9,5 +9,3 @@ require conf/machine/include/tinker.inc
+>  =20
+>   KERNEL_DEVICETREE =3D "rk3288-tinker-s.dtb"
+>   UBOOT_MACHINE =3D "tinker-s-rk3288_defconfig"
+> -
+> -RK_BOOT_DEVICE ?=3D "mmcblk1"
+> diff --git a/conf/machine/vyasa-rk3288.conf b/conf/machine/vyasa-rk3288.c=
+onf
+> index 9ad1ed4..5b44257 100644
+> --- a/conf/machine/vyasa-rk3288.conf
+> +++ b/conf/machine/vyasa-rk3288.conf
+> @@ -13,5 +13,3 @@ KERNEL_DEVICETREE =3D "rk3288-vyasa.dtb"
+>   KERNEL_EXTRA_ARGS +=3D "LOADADDR=3D0x02000000"
+>  =20
+>   UBOOT_MACHINE =3D "vyasa-rk3288_defconfig"
+> -
+> -RK_BOOT_DEVICE =3D "mmcblk2"
+> diff --git a/wic/rockchip.wks b/wic/rockchip.wks
+> index eedae0d..5ee276b 100644
+> --- a/wic/rockchip.wks
+> +++ b/wic/rockchip.wks
+> @@ -15,12 +15,12 @@
+>   #   boot        32768           229376
+>   #   root        262144          -           (suggested)
+>  =20
+> -part loader1    --offset 32     --fixed-size 4000K            --ondisk $=
+{RK_BOOT_DEVICE} --source rawcopy                                      --so=
+urceparams=3D"file=3D${SPL_BINARY}"
+> -part reserved1  --offset 4032   --fixed-size 64K              --ondisk $=
+{RK_BOOT_DEVICE}
+> -part reserved2  --offset 4096   --fixed-size 4096K            --ondisk $=
+{RK_BOOT_DEVICE}
+> -part loader2    --offset 8192   --fixed-size 4096K            --ondisk $=
+{RK_BOOT_DEVICE} --source rawcopy                                      --so=
+urceparams=3D"file=3Du-boot.${UBOOT_SUFFIX}"
+> -part atf        --offset 12288  --fixed-size 4096K            --ondisk $=
+{RK_BOOT_DEVICE}
+> -part /boot      --offset 16384  --size       114688K --active --ondisk $=
+{RK_BOOT_DEVICE} --source bootimg-partition --fstype=3Dvfat --label boot --=
+sourceparams=3D"loader=3Du-boot"
+> -part /                                                        --ondisk $=
+{RK_BOOT_DEVICE} --source rootfs            --fstype=3Dext4 --label root
+> +part loader1    --offset 32     --fixed-size 4000K            --source r=
+awcopy                                                 --sourceparams=3D"fi=
+le=3D${SPL_BINARY}"
+> +part reserved1  --offset 4032   --fixed-size 64K
+> +part reserved2  --offset 4096   --fixed-size 4096K
+> +part loader2    --offset 8192   --fixed-size 4096K            --source r=
+awcopy                                                 --sourceparams=3D"fi=
+le=3Du-boot.${UBOOT_SUFFIX}"
+> +part atf        --offset 12288  --fixed-size 4096K
+> +part /boot      --offset 16384  --size       114688K --active --source b=
+ootimg-partition --fstype=3Dvfat --label boot            --sourceparams=3D"=
+loader=3Du-boot"
+> +part /                                                        --source r=
+ootfs            --fstype=3Dext4 --label root --use-uuid
+>  =20
+> -bootloader --ptable gpt --append=3D"console=3Dtty1 console=3D${RK_CONSOL=
+E_DEVICE},${RK_CONSOLE_BAUD}n8 rw root=3D/dev/${RK_BOOT_DEVICE}p7 rootfstyp=
+e=3Dext4 init=3D/sbin/init"
+> +bootloader --ptable gpt --append=3D"console=3Dtty1 console=3D${RK_CONSOL=
+E_DEVICE},${RK_CONSOLE_BAUD}n8 rw rootfstype=3Dext4 init=3D/sbin/init"
+>
+>=20
+>
 
---5sJcdjVz66BdJFG5UuaM6EwzwRTKsizRa
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+--------------744D394CAEA8E2413258FD80
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
------BEGIN PGP SIGNATURE-----
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8=
+">
+  </head>
+  <body>
+    <p>Hi,</p>
+    <p>with this change my rock-pi-4 doesnt boot up and falls to
+      emergency shell because wic includes wrong devices into fstab. For
+      some reason it assumes /dev/sda1. I was able to fix this for my
+      machine by using uuid for all partitions. <br>
+    </p>
+    <p>diff --git a/wic/rockchip.wks b/wic/rockchip.wks<br>
+      index 5ee276b..90bdb27 100644<br>
+      --- a/wic/rockchip.wks<br>
+      +++ b/wic/rockchip.wks<br>
+      @@ -15,12 +15,12 @@<br>
+      =C2=A0#=C2=A0=C2=A0 boot=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 32=
+768=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 229376<br>
+      =C2=A0#=C2=A0=C2=A0 root=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 26=
+2144=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (suggested)<br>
+      =C2=A0<br>
+      -part loader1=C2=A0=C2=A0=C2=A0 --offset 32=C2=A0=C2=A0=C2=A0=C2=A0 -=
+-fixed-size 4000K=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0
+      --source rawcopy=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0
+      --sourceparams=3D"file=3D${SPL_BINARY}"<br>
+      -part reserved1=C2=A0 --offset 4032=C2=A0=C2=A0 --fixed-size 64K<br>
+      -part reserved2=C2=A0 --offset 4096=C2=A0=C2=A0 --fixed-size 4096K<br=
+>
+      -part loader2=C2=A0=C2=A0=C2=A0 --offset 8192=C2=A0=C2=A0 --fixed-siz=
+e 4096K=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+      --source rawcopy=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0
+      --sourceparams=3D"file=3Du-boot.${UBOOT_SUFFIX}"<br>
+      -part atf=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --offset 12288=C2=
+=A0 --fixed-size 4096K<br>
+      -part /boot=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --offset 16384=C2=A0 --size=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 114688K --active
+      --source bootimg-partition --fstype=3Dvfat --label boot=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+      --sourceparams=3D"loader=3Du-boot"<br>
+      -part /=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+      --source rootfs=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 --fstype=3Dext4 --label root --use-uuid<br>
+      +part loader1=C2=A0=C2=A0 --offset 32 --fixed-size 4000K --source raw=
+copy
+      --sourceparams=3D"file=3D${SPL_BINARY}" --use-uuid<br>
+      +part reserved1 --offset 4032 --fixed-size 64K --use-uuid<br>
+      +part reserved2 --offset 4096 --fixed-size 4096K --use-uuid<br>
+      +part loader2=C2=A0=C2=A0 --offset 8192 --fixed-size 4096K --source r=
+awcopy
+      --sourceparams=3D"file=3Du-boot.${UBOOT_SUFFIX}" --use-uuid<br>
+      +part atf=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --offset 12288 --fixed-=
+size 4096K --use-uuid<br>
+      +part /boot=C2=A0=C2=A0=C2=A0=C2=A0 --offset 16384 --size 114688K --a=
+ctive --source
+      bootimg-partition --fstype=3Dvfat --label boot
+      --sourceparams=3D"loader=3Du-boot" --use-uuid<br>
+      +part /=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --source root=
+fs --fstype=3Dext4 --label root
+      --use-uuid<br>
+      =C2=A0<br>
+      -bootloader --ptable gpt --append=3D"console=3Dtty1
+      console=3D${RK_CONSOLE_DEVICE},${RK_CONSOLE_BAUD}n8 rw
+      rootfstype=3Dext4 init=3D/sbin/init"<br>
+      +bootloader=C2=A0=C2=A0=C2=A0=C2=A0 --ptable gpt --append=3D"console=
+=3Dtty1
+      console=3D${RK_CONSOLE_DEVICE},${RK_CONSOLE_BAUD}n8 rw
+      rootfstype=3Dext4 init=3D/sbin/init"<br>
+    </p>
+    <p><br>
+    </p>
+    <p>In addition i added an option that avoids editing fstab by wic at
+      all since the image also boots without mounting /boot, but i guess
+      this is just a matter of taste.</p>
+    <p>diff --git a/conf/machine/include/rockchip-wic.inc
+      b/conf/machine/include/rockchip-wic.inc<br>
+      index 15010a0..30b0d57 100644<br>
+      --- a/conf/machine/include/rockchip-wic.inc<br>
+      +++ b/conf/machine/include/rockchip-wic.inc<br>
+      @@ -26,3 +26,6 @@ WICVARS:append =3D " \<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SPL_BINARY \<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 UBOOT_SUFFIX \<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "<br>
+      +<br>
+      +# Do not update fstab file while creating wic images<br>
+      +WIC_CREATE_EXTRA_ARGS ?=3D "--no-fstab-update"<br>
+      <br>
+    </p>
+    <p><br>
+    </p>
+    <div class=3D"moz-cite-prefix">Am 18.09.21 um 00:01 schrieb Trevor
+      Woerner:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:20210917220121.26663-1-twoerner@gmail.com">
+      <pre class=3D"moz-quote-pre" wrap=3D"">Recent upstream kernel changes=
+ have made the mmc probing order unpredictable.
+Therefore, boards with both an emmc and sdmmc interface aren't guaranteed t=
+o
+boot with a hard-coded root device selected.
 
-wsB5BAABCAAjFiEEVg4uKeQrdCNuC2kVjYyoKSczm3UFAmFLdm4FAwAAAAAACgkQjYyoKSczm3Vt
-6gf+Kfzqv2k+cuIJvwE4y2IH/IOsWYUhFe3zn1cWOTEfT+E8paP4qCeGVYExnb2KRyIdsWTrZzJU
-4CRmHaUnVk+S36MImsBeo+vf9hFVpS4KFga4d3t6NxuTKSIVhojRa835Sw61JKVpCm2jigYmCkCI
-3zlm1YrnOVIGZOjhTqMf47N6eXmGTOdXVLyUYtNg8tLUhwt95tKbAwD0qLcSFyYSVBVquB8syC0c
-/aAg2foZR1dCdC+w1Zz6mXRdbe+2tcNGaSIz9hhUVOYzjucrIvKn5cVAeKg7JB4XiXpykS7/S7CT
-6edAPauS/lYypnG4lhWD6K4y9sc/9j+TU1AMYObosg==
-=QT3L
------END PGP SIGNATURE-----
+For example, on the rock64, with linux-yocto 5.10.y, using the uSD card (i.=
+e.
+the sdmmc interface) about 50% of the time the boot would succeed, and roug=
+hly
+50% of the time it wouldn't:
 
---5sJcdjVz66BdJFG5UuaM6EwzwRTKsizRa--
+	...
+	[    0.612233] Waiting for root device /dev/mmcblk1p7...
+	[    0.634551] mmc_host mmc1: Bus speed (slot 0) =3D 300000Hz (slot req 30=
+0000Hz, actual 300000HZ div =3D 0)
+	[    0.639064] mmc_host mmc0: Bus speed (slot 0) =3D 50000000Hz (slot req =
+50000000Hz, actual 50000000HZ di)
+	[    0.640007] mmc0: new high speed SDXC card at address 5048
+	[    0.641176] mmcblk0: mmc0:5048 SD64G 58.0 GiB
+	[    0.647610] random: fast init done
+	[    0.648279] GPT:Primary header thinks Alt. header is not at the end of =
+the disk.
+	[    0.648941] GPT:376479 !=3D 121634815
+	[    0.649252] GPT:Alternate GPT header not at the end of the disk.
+	[    0.649796] GPT:376479 !=3D 121634815
+	[    0.650106] GPT: Use GNU Parted to correct GPT errors.
+	[    0.650598]  mmcblk0: p1 p2 p3 p4 p5 p6 p7
+
+NOTE the discrepancy between the kernel waiting for device /dev/mmcblk1p7,
+which comes from the hard-coded kernel cmdline, and the kernel probing putt=
+ing
+the sdmmc on mmcblk0.
+
+With linux-yocto 5.13.y on the rock64 using the uSD card the board would ne=
+ver
+boot, the sdmmc always appears on mmcblk0.
+
+Instead of simply changing the hard-coded root device (i.e. from mmcblk0 to
+mmcblk1) switch to using partition UUIDs instead. Hard-coding the boot devi=
+ce
+would work with 5.13.y but would fail 50% of the time with 5.10.y; who know=
+s
+what other kernels will do?
+
+In any case, switching to UUIDs works regardless of board, kernel, or
+available mmc interfaces.
+
+Boot tested on:
+- rock64
+- nanopi-m4-2gb
+- tinker-board
+- rock-pi-e
+- rock-pi-4b
+
+Signed-off-by: Trevor Woerner <a class=3D"moz-txt-link-rfc2396E" href=3D"ma=
+ilto:twoerner@gmail.com">&lt;twoerner@gmail.com&gt;</a>
+---
+ conf/machine/include/nanopi-m4.inc    |  2 --
+ conf/machine/include/rock-pi-4.inc    |  2 --
+ conf/machine/include/rockchip-wic.inc |  4 ----
+ conf/machine/rock64.conf              |  3 ---
+ conf/machine/tinker-board-s.conf      |  2 --
+ conf/machine/vyasa-rk3288.conf        |  2 --
+ wic/rockchip.wks                      | 16 ++++++++--------
+ 7 files changed, 8 insertions(+), 23 deletions(-)
+
+diff --git a/conf/machine/include/nanopi-m4.inc b/conf/machine/include/nano=
+pi-m4.inc
+index ac6479d..3870b51 100644
+--- a/conf/machine/include/nanopi-m4.inc
++++ b/conf/machine/include/nanopi-m4.inc
+@@ -7,5 +7,3 @@ MACHINE_FEATURES +=3D "usbhost serial"
+=20
+ KMACHINE =3D "nanopi-m4"
+ KERNEL_DEVICETREE =3D "rockchip/rk3399-nanopi-m4.dtb"
+-
+-RK_BOOT_DEVICE =3D "mmcblk1"
+diff --git a/conf/machine/include/rock-pi-4.inc b/conf/machine/include/rock=
+-pi-4.inc
+index b6fb3dd..0a86846 100644
+--- a/conf/machine/include/rock-pi-4.inc
++++ b/conf/machine/include/rock-pi-4.inc
+@@ -3,6 +3,4 @@ MACHINEOVERRIDES =3D. "rock-pi-4:"
+=20
+ require conf/machine/include/rk3399.inc
+=20
+-RK_BOOT_DEVICE =3D "mmcblk1"
+-
+ MACHINE_EXTRA_RRECOMMENDS +=3D "kernel-modules"
+diff --git a/conf/machine/include/rockchip-wic.inc b/conf/machine/include/r=
+ockchip-wic.inc
+index b5939f7..15010a0 100644
+--- a/conf/machine/include/rockchip-wic.inc
++++ b/conf/machine/include/rockchip-wic.inc
+@@ -20,11 +20,7 @@ IMAGE_BOOT_FILES =3D " \
+ RK_CONSOLE_BAUD ?=3D <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:${@=
+d.getVar('SERIAL_CONSOLES').split(';')[0]}">"${@d.getVar('SERIAL_CONSOLES')=
+.split(';')[0]}"</a>
+ RK_CONSOLE_DEVICE ?=3D <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:$=
+{@d.getVar('SERIAL_CONSOLES').split(';')[1].split()[0]}">"${@d.getVar('SERI=
+AL_CONSOLES').split(';')[1].split()[0]}"</a>
+=20
+-# boot device (sd-card/emmc)
+-RK_BOOT_DEVICE ??=3D "mmcblk0"
+-
+ WICVARS:append =3D " \
+-	RK_BOOT_DEVICE \
+ 	RK_CONSOLE_BAUD \
+ 	RK_CONSOLE_DEVICE \
+ 	SPL_BINARY \
+diff --git a/conf/machine/rock64.conf b/conf/machine/rock64.conf
+index 21755a8..fa75a51 100644
+--- a/conf/machine/rock64.conf
++++ b/conf/machine/rock64.conf
+@@ -12,7 +12,4 @@ MACHINE_FEATURES +=3D "usbhost serial"
+ UBOOT_MACHINE =3D "rock64-rk3328_defconfig"
+ KERNEL_DEVICETREE =3D "rockchip/rk3328-rock64.dtb"
+=20
+-# set to mmcblk0 for booting from optional eMMC
+-RK_BOOT_DEVICE ?=3D "mmcblk1"
+-
+ KBUILD_DEFCONFIG =3D "defconfig"
+diff --git a/conf/machine/tinker-board-s.conf b/conf/machine/tinker-board-s=
+.conf
+index 9f44f2f..870b9bc 100644
+--- a/conf/machine/tinker-board-s.conf
++++ b/conf/machine/tinker-board-s.conf
+@@ -9,5 +9,3 @@ require conf/machine/include/tinker.inc
+=20
+ KERNEL_DEVICETREE =3D "rk3288-tinker-s.dtb"
+ UBOOT_MACHINE =3D "tinker-s-rk3288_defconfig"
+-
+-RK_BOOT_DEVICE ?=3D "mmcblk1"
+diff --git a/conf/machine/vyasa-rk3288.conf b/conf/machine/vyasa-rk3288.con=
+f
+index 9ad1ed4..5b44257 100644
+--- a/conf/machine/vyasa-rk3288.conf
++++ b/conf/machine/vyasa-rk3288.conf
+@@ -13,5 +13,3 @@ KERNEL_DEVICETREE =3D "rk3288-vyasa.dtb"
+ KERNEL_EXTRA_ARGS +=3D "LOADADDR=3D0x02000000"
+=20
+ UBOOT_MACHINE =3D "vyasa-rk3288_defconfig"
+-
+-RK_BOOT_DEVICE =3D "mmcblk2"
+diff --git a/wic/rockchip.wks b/wic/rockchip.wks
+index eedae0d..5ee276b 100644
+--- a/wic/rockchip.wks
++++ b/wic/rockchip.wks
+@@ -15,12 +15,12 @@
+ #   boot        32768           229376
+ #   root        262144          -           (suggested)
+=20
+-part loader1    --offset 32     --fixed-size 4000K            --ondisk ${R=
+K_BOOT_DEVICE} --source rawcopy                                      --sour=
+ceparams=3D"file=3D${SPL_BINARY}"
+-part reserved1  --offset 4032   --fixed-size 64K              --ondisk ${R=
+K_BOOT_DEVICE}
+-part reserved2  --offset 4096   --fixed-size 4096K            --ondisk ${R=
+K_BOOT_DEVICE}
+-part loader2    --offset 8192   --fixed-size 4096K            --ondisk ${R=
+K_BOOT_DEVICE} --source rawcopy                                      --sour=
+ceparams=3D"file=3Du-boot.${UBOOT_SUFFIX}"
+-part atf        --offset 12288  --fixed-size 4096K            --ondisk ${R=
+K_BOOT_DEVICE}
+-part /boot      --offset 16384  --size       114688K --active --ondisk ${R=
+K_BOOT_DEVICE} --source bootimg-partition --fstype=3Dvfat --label boot --so=
+urceparams=3D"loader=3Du-boot"
+-part /                                                        --ondisk ${R=
+K_BOOT_DEVICE} --source rootfs            --fstype=3Dext4 --label root
++part loader1    --offset 32     --fixed-size 4000K            --source raw=
+copy                                                 --sourceparams=3D"file=
+=3D${SPL_BINARY}"
++part reserved1  --offset 4032   --fixed-size 64K
++part reserved2  --offset 4096   --fixed-size 4096K
++part loader2    --offset 8192   --fixed-size 4096K            --source raw=
+copy                                                 --sourceparams=3D"file=
+=3Du-boot.${UBOOT_SUFFIX}"
++part atf        --offset 12288  --fixed-size 4096K
++part /boot      --offset 16384  --size       114688K --active --source boo=
+timg-partition --fstype=3Dvfat --label boot            --sourceparams=3D"lo=
+ader=3Du-boot"
++part /                                                        --source roo=
+tfs            --fstype=3Dext4 --label root --use-uuid
+=20
+-bootloader --ptable gpt --append=3D"console=3Dtty1 console=3D${RK_CONSOLE_=
+DEVICE},${RK_CONSOLE_BAUD}n8 rw root=3D/dev/${RK_BOOT_DEVICE}p7 rootfstype=
+=3Dext4 init=3D/sbin/init"
++bootloader --ptable gpt --append=3D"console=3Dtty1 console=3D${RK_CONSOLE_=
+DEVICE},${RK_CONSOLE_BAUD}n8 rw rootfstype=3Dext4 init=3D/sbin/init"
+</pre>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">
+
+
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------744D394CAEA8E2413258FD80--
