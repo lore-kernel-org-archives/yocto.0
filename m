@@ -1,103 +1,422 @@
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
- by mx.groups.io with SMTP id smtpd.web10.84.1632332611393053536
+Received: from smtp-pc10.blackberry.com (smtp-pc10.blackberry.com [74.82.81.42])
+ by mx.groups.io with SMTP id smtpd.web12.120.1632332720666832722
  for <yocto@lists.yoctoproject.org>;
- Wed, 22 Sep 2021 10:43:31 -0700
+ Wed, 22 Sep 2021 10:45:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=S1jrk2xv;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.45, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f45.google.com with SMTP id t8so9392932wri.1
-        for <yocto@lists.yoctoproject.org>; Wed, 22 Sep 2021 10:43:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=BMVBBowwFw7Bi73Tqv0+4LjVKsUUyHxar29l4Fd/phg=;
-        b=S1jrk2xvc8G2aGEJorZwjUlftapmzQspl6t4UG88B7x9OcdgCCmVA86KKqLVlJcdDh
-         0rsB17AsjxtP2WAy9kTRd8Zqj6fY4/QTZfsW0CL731yymz7qA3wRzJ/GYE0VfHeB7CNt
-         Z8pjgia3bGbOWLnvg713Ml8knHIM6ffF4t6gM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=BMVBBowwFw7Bi73Tqv0+4LjVKsUUyHxar29l4Fd/phg=;
-        b=zWdlzQ2tl9veZj8WtWJ9SRVy9GGxxsQnzpi3C3QYnGq4ahIQVrbmobme6SfuSt8dbI
-         YGnhT/itn+dxqtfDgZWKvV+mz9hT/L+ZvPiBcmug/wfAT5DC/D1Grq7iIOtjZebVuOrz
-         +FicZdjQV55yxd0dgwe3Un3vVqoSmgEdwHvTtXt3s/O4DBALpOYUgX4Z5Cwq9qB75Ob+
-         8oO7tOByz6bw7gh2p3mgbT9y9BGLRzAB5emTwxULT5w6mtAt2QX4zoOmb1Gc1BbyBKyP
-         hAMXPIWKu8fpZxFz+Buz/SEWM7xwGXiEvADMeKeBa+ANHokCxmCkWptGE7AelmZw9X2b
-         A7bg==
-X-Gm-Message-State: AOAM5314cEbPIdwI0tg8Jk17CZcn29fc4LrIliMiqT+F2W7Ucwc7Fo48
-	l/xaZ+B052fgDAdI1p91/pNq2Q==
-X-Google-Smtp-Source: ABdhPJzoTYmjEmqRH+4+kuZjqk3dUw9vKCJQ1aerFQlEvl65ThXwnmu/lpYw12cs+I/SmGvrRyNdAg==
-X-Received: by 2002:a05:600c:4642:: with SMTP id n2mr11666923wmo.39.1632332609622;
-        Wed, 22 Sep 2021 10:43:29 -0700 (PDT)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from ?IPv6:2001:8b0:aba:5f3c:4259:df2c:1481:cafd? ([2001:8b0:aba:5f3c:4259:df2c:1481:cafd])
-        by smtp.gmail.com with ESMTPSA id w14sm2814593wro.8.2021.09.22.10.43.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Sep 2021 10:43:29 -0700 (PDT)
-Message-ID: <d5e1168023762863148bd6688a966f4fe5f863f9.camel@linuxfoundation.org>
-Subject: Re: [yocto] Permission denied with NFS shared download and sstate-cache
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: Khem Raj <raj.khem@gmail.com>, Bel Hadj Salem Talel <bhstalel@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Date: Wed, 22 Sep 2021 18:43:27 +0100
-In-Reply-To: <CAMKF1srakSaPuWdM5So3HkgOsp+rBtbkc+8+ArKS6o2Gvz_Z_g@mail.gmail.com>
-References: <3heP.1632329277788400018.EkfO@lists.yoctoproject.org>
-	 <CAMKF1srakSaPuWdM5So3HkgOsp+rBtbkc+8+ArKS6o2Gvz_Z_g@mail.gmail.com>
-User-Agent: Evolution 3.40.4-1 
+ dkim=pass header.i=@blackberry.com header.s=corp19 header.b=Vm15VGhl;
+ spf=pass (domain: blackberry.com, ip: 74.82.81.42, mailfrom: lijchen@blackberry.com)
+Received: from pps.filterd (mhs400cnc.rim.net [127.0.0.1])
+	by mhs400cnc.rim.net (8.16.0.43/8.16.0.43) with SMTP id 18MHggIl071283;
+	Wed, 22 Sep 2021 13:45:17 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=blackberry.com; h=from : to :
+ subject : date : message-id : references : in-reply-to : content-type :
+ mime-version; s=corp19; bh=KhMiDVNyyEhDUwbdxEu6b+lj2oiluMs2yN+rark6NpE=;
+ b=Vm15VGhlCPmgq5BtKN1PCSKD9mV0JFcuiwAYa58gQJTRdJd94pIJ9941N1WhgNQq+klN
+ ytV/LT2cXEhT5iIeH6YFgzCN1AX/gC6mfUYZ4U/8hgCRM3ZOs27NvU1ADywM1szHOPRU
+ pIUgnHJWGOBHutZkBiXAoObxfvbbbsokTVbfvHsiLQQ829/tGsAPywo93vpCfikIXLVa
+ 5MVLQmB2/+Kk3fAV+HEmVsu0PDkOt0Q/4YQkM7payqDb9nJIKieKZF+5Su+2aipL5N2P
+ xY3mfXCrX4dB+F1inq0XtBF0JfrtoRhXR1DYkPbzUnfFUDIUbm26tHNM9sv+4KM9wGzs LQ== 
+Received: from xch212cnc.rim.net (xch212cnc.rim.net [10.3.27.117])
+	by mhs400cnc.rim.net with ESMTP id 3b7q5wswcg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Wed, 22 Sep 2021 13:45:17 -0400
+Received: from XCH211YKF.rim.net (10.12.114.211) by XCH212CNC.rim.net
+ (10.3.27.117) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.14; Wed, 22 Sep
+ 2021 13:45:16 -0400
+Received: from XCH211YKF.rim.net ([fe80::dca:23f8:c2c0:7180]) by
+ XCH211YKF.rim.net ([fe80::dca:23f8:c2c0:7180%5]) with mapi id 15.01.2308.014;
+ Wed, 22 Sep 2021 13:45:16 -0400
+From: "Lijun Chen" <lijchen@blackberry.com>
+To: Khem Raj <raj.khem@gmail.com>,
+        "yocto@lists.yoctoproject.org"
+	<yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] googletest shared library
+Thread-Topic: [yocto] googletest shared library
+Thread-Index: AQHXrvNmR2vvZSsL30OJxestQkC5W6uuznCAgAARxluAASeUKIAAaj2A///jB80=
+Date: Wed, 22 Sep 2021 17:45:16 +0000
+Message-ID: <34204df22ebb41b58292258f595ad404@blackberry.com>
+References: <3925c5329d6f46f78c5921fe7965662b@blackberry.com>
+ <AS8PR09MB4645D63449C60FC6463045E7A8A19@AS8PR09MB4645.eurprd09.prod.outlook.com>
+ <16A6EE364B338B15.22723@lists.yoctoproject.org>
+ <15166f538f2144adabe2299deb3b2a3c@blackberry.com>,<4440837f-5f69-28c4-7d8b-57653935790c@gmail.com>
+In-Reply-To: <4440837f-5f69-28c4-7d8b-57653935790c@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [100.64.197.76]
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
+ definitions=2021-09-22_06:2021-09-22,2021-09-22 signatures=0
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_34204df22ebb41b58292258f595ad404blackberrycom_"
 
-On Wed, 2021-09-22 at 09:51 -0700, Khem Raj wrote:
-> On Wed, Sep 22, 2021 at 9:47 AM Bel Hadj Salem Talel <bhstalel@gmail.com> wrote:
-> > 
-> > Hi All,
-> > 
-> > I have a server that's holding downloads and sstate-cache.
-> > 
-> > I have a docker-compose file with nfs server that exposes the dowloads/sstate-cache volume.
-> > 
-> > When I mount that in my PC and set the path into DL_DIR and SSTATE_DIR, I get this error :
-> > 
-> > ---------------
-> > ERROR: grub-efi-native-2.04-r0 do_configure: Build of do_configure failed
-> > ERROR: grub-efi-native-2.04-r0 do_configure: Traceback (most recent call last):
-> >   File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/build.py", line 644, in exec_task
-> >     return _exec_task(fn, task, d, quieterr)
-> >   File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/build.py", line 618, in _exec_task
-> >     event.fire(TaskSucceeded(task, fn, logfn, localdata), localdata)
-> >   File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/event.py", line 215, in fire
-> >     fire_class_handlers(event, d)
-> >   File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/event.py", line 122, in fire_class_handlers
-> >     execute_handler(name, handler, event, d)
-> >   File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/event.py", line 94, in execute_handler
-> >     ret = handler(event)
-> >   File "/home/talel/Desktop/YoctoWork/sources/poky/meta/classes/sstate.bbclass", line 1094, in sstate_eventhandler
-> >     bb.siggen.dump_this_task(sstatepkg + '_' + taskname + ".tgz" ".siginfo", d)
-> >   File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/siggen.py", line 648, in dump_this_task
-> >     bb.parse.siggen.dump_sigtask(fn, task, outfile, "customfile:" + referencestamp)
-> >   File "/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/sstatesig.py", line 202, in dump_sigtask
-> >     super(bb.siggen.SignatureGeneratorBasicHash, self).dump_sigtask(fn, task, stampbase, runtime)
-> >   File "/home/talel/Desktop/YoctoWork/sources/poky/bitbake/lib/bb/siggen.py", line 362, in dump_sigtask
-> >     fd, tmpfile = tempfile.mkstemp(dir=os.path.dirname(sigfile), prefix="sigtask.")
-> >   File "/usr/lib/python3.8/tempfile.py", line 470, in mkstemp
-> >     return _mkstemp_inner(dir, prefix, suffix, flags, output_type)
-> >   File "/usr/lib/python3.8/tempfile.py", line 389, in _mkstemp_inner
-> >     fd = _os.open(file, flags, 0o600)
-> 
-> its trying to create the file with 0600 mask. I wonder whats your
-> global umask set to. and perhaps the user is not same when bitbake it
-> running ?
+--_000_34204df22ebb41b58292258f595ad404blackberrycom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-The file is being created with python's tempfile function which will make it
-secure. Secure in this context means 00600...
+Tried adding googletest to TOOLCHAIN_TARGET_TASK. The gtest .h files are st=
+ill not showing up.
 
-I suspect you're right that creating a file securely here with this permissions
-likely can't work.
+Thanks,
 
-Cheers,
+________________________________
+From: Khem Raj <raj.khem@gmail.com>
+Sent: Wednesday, September 22, 2021 11:28:05 AM
+To: Lijun Chen; yocto@lists.yoctoproject.org
+Subject: Re: [yocto] googletest shared library
 
-Richard
+The .h files will be in dev pkg in this case googletest-dev
+what happens if you add googletest to TOOLCHAIN_TARGET_TASK
 
+On 9/22/21 6:18 AM, Lijun Chen wrote:
+> Hi,
+>
+>
+> Now I included googletest to the IMAGE_INSTALL in my image file, and
+> built both board image and SDK image. I can see libgtest.so is available
+> in both images. However, gtest/gtest.h is a not present in SDK. How do I
+> add the header files to the SDK image? Looks the following lines affect
+> that?
+>
+> SOLIBS =3D ".so"
+> FILES_SOLIBSDEV =3D ""
+>
+> Thanks,
+> Lijun
+>
+> ------------------------------------------------------------------------
+> *From:* yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> on
+> behalf of Lijun Chen <lijchen@blackberry.com>
+> *Sent:* Tuesday, September 21, 2021 3:50 PM
+> *To:* Konrad Weihmann; yocto@lists.yoctoproject.org
+> *Subject:* Re: [yocto] googletest shared library
+>
+> Thanks Konrad. That worked.
+>
+> ------------------------------------------------------------------------
+> *From:* Konrad Weihmann <kweihmann@outlook.com>
+> *Sent:* Tuesday, September 21, 2021 10:26:19 AM
+> *To:* Lijun Chen; yocto@lists.yoctoproject.org
+> *Subject:* Re: [yocto] googletest shared library
+>
+> On 21.09.21 16:18, Lijun Chen wrote:
+>> Hi,
+>>
+>> I would like to include libgtest.so into my Yocto image. I added
+>> googletest to IMAGE_INSTALL and added the following line to
+>> sources/meta-openembedded/meta-oe/recipes-test/googletest/googletest_git=
+.bb:
+>>
+>> EXTRA_OECMAKE =3D "-DBUILD_SHARED_LIBS=3DON "
+>>
+>>
+>> The shared libraries were built successfully. However, there are errors
+>> in do_package_qc as following:
+>>
+>>
+>> ERROR: googletest-1.10.0-r0 do_package_qa: QA Issue: -dev package
+>> googletest-dev contains non-symlink .so '/usr/lib/libgmock.so'
+>> -dev package googletest-dev contains non-symlink .so
+>> '/usr/lib/libgtest_main.so'
+>> -dev package googletest-dev contains non-symlink .so
+>> '/usr/lib/libgmock_main.so'
+>> -dev package googletest-dev contains non-symlink .so
+>> '/usr/lib/libgtest.so' [dev-elf]
+>> ERROR: googletest-1.10.0-r0 do_package_qa: QA run found fatal errors.
+>> Please consider fixing them.
+>
+> https://urldefense.com/v3/__http://git.yoctoproject.org/cgit/cgit.cgi/pok=
+y/tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n34__;Iw!!COg3wY07H=
+nb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0NANM4iMsNNleww$
+> <https://urldefense.com/v3/__http://git.yoctoproject.org/cgit/cgit.cgi/po=
+ky/tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n34__;Iw!!COg3wY07=
+Hnb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0NANM4iMsNNleww$>
+>
+> (and the next lines) might give you a hint what to do in this case.
+> Although one could also consider that's something that needs to be fixed
+> in the installation script of googletest, as versioned libraries are the
+> expected default
+>
+>>
+>>
+>> Any idea to fix this?
+>>
+>>
+>> Thanks,
+>>
+>> Lijun
+>>
+>>
+>> ------------------------------------------------------------------------
+>> This transmission (including any attachments) may contain confidential
+>> information, privileged material (including material protected by the
+>> solicitor-client or other applicable privileges), or constitute
+>> non-public information. Any use of this information by anyone other than
+>> the intended recipient is prohibited. If you have received this
+>> transmission in error, please immediately reply to the sender and delete
+>> this information from your system. Use, dissemination, distribution, or
+>> reproduction of this transmission by unintended recipients is not
+>> authorized and may be unlawful.
+>>
+>>
+>>
+>>
+> ------------------------------------------------------------------------
+> This transmission (including any attachments) may contain confidential
+> information, privileged material (including material protected by the
+> solicitor-client or other applicable privileges), or constitute
+> non-public information. Any use of this information by anyone other than
+> the intended recipient is prohibited. If you have received this
+> transmission in error, please immediately reply to the sender and delete
+> this information from your system. Use, dissemination, distribution, or
+> reproduction of this transmission by unintended recipients is not
+> authorized and may be unlawful.
+> ------------------------------------------------------------------------
+> This transmission (including any attachments) may contain confidential
+> information, privileged material (including material protected by the
+> solicitor-client or other applicable privileges), or constitute
+> non-public information. Any use of this information by anyone other than
+> the intended recipient is prohibited. If you have received this
+> transmission in error, please immediately reply to the sender and delete
+> this information from your system. Use, dissemination, distribution, or
+> reproduction of this transmission by unintended recipients is not
+> authorized and may be unlawful.
+>
+>
+>=20
+>
+
+----------------------------------------------------------------------
+This transmission (including any attachments) may contain confidential info=
+rmation, privileged material (including material protected by the solicitor=
+-client or other applicable privileges), or constitute non-public informati=
+on. Any use of this information by anyone other than the intended recipient=
+ is prohibited. If you have received this transmission in error, please imm=
+ediately reply to the sender and delete this information from your system. =
+Use, dissemination, distribution, or reproduction of this transmission by u=
+nintended recipients is not authorized and may be unlawful.
+
+--_000_34204df22ebb41b58292258f595ad404blackberrycom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
+ding-left: 4pt; border-left: #800000 2px solid; } --></style>
+</head>
+<body>
+<meta content=3D"text/html; charset=3DUTF-8">
+<style type=3D"text/css" style=3D"">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div dir=3D"ltr">
+<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; col=
+or:#000000; font-family:Calibri,Helvetica,sans-serif">
+<p>Tried adding googletest to <font size=3D"2"><span style=3D"font-size:10p=
+t">TOOLCHAIN_TARGET_TASK</span></font>. The gtest .h files are still not sh=
+owing up.</p>
+<p>Thanks,<br>
+</p>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Khem Raj &lt;raj.kh=
+em@gmail.com&gt;<br>
+<b>Sent:</b> Wednesday, September 22, 2021 11:28:05 AM<br>
+<b>To:</b> Lijun Chen; yocto@lists.yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] googletest shared library</font>
+<div>&nbsp;</div>
+</div>
+</div>
+<font size=3D"2"><span style=3D"font-size:10pt;">
+<div class=3D"PlainText">The .h files will be in dev pkg in this case googl=
+etest-dev<br>
+what happens if you add googletest to TOOLCHAIN_TARGET_TASK<br>
+<br>
+On 9/22/21 6:18 AM, Lijun Chen wrote:<br>
+&gt; Hi,<br>
+&gt; <br>
+&gt; <br>
+&gt; Now I included googletest to the IMAGE_INSTALL in my image file, and <=
+br>
+&gt; built both board image and SDK image. I can see libgtest.so is availab=
+le <br>
+&gt; in both images. However, gtest/gtest.h is a not present in SDK. How do=
+ I <br>
+&gt; add the header files to the SDK image? Looks the following lines affec=
+t <br>
+&gt; that?<br>
+&gt; <br>
+&gt; SOLIBS =3D &quot;.so&quot;<br>
+&gt; FILES_SOLIBSDEV =3D &quot;&quot;<br>
+&gt; <br>
+&gt; Thanks,<br>
+&gt; Lijun<br>
+&gt; <br>
+&gt; ----------------------------------------------------------------------=
+--<br>
+&gt; *From:* yocto@lists.yoctoproject.org &lt;yocto@lists.yoctoproject.org&=
+gt; on <br>
+&gt; behalf of Lijun Chen &lt;lijchen@blackberry.com&gt;<br>
+&gt; *Sent:* Tuesday, September 21, 2021 3:50 PM<br>
+&gt; *To:* Konrad Weihmann; yocto@lists.yoctoproject.org<br>
+&gt; *Subject:* Re: [yocto] googletest shared library<br>
+&gt; <br>
+&gt; Thanks Konrad. That worked.<br>
+&gt; <br>
+&gt; ----------------------------------------------------------------------=
+--<br>
+&gt; *From:* Konrad Weihmann &lt;kweihmann@outlook.com&gt;<br>
+&gt; *Sent:* Tuesday, September 21, 2021 10:26:19 AM<br>
+&gt; *To:* Lijun Chen; yocto@lists.yoctoproject.org<br>
+&gt; *Subject:* Re: [yocto] googletest shared library<br>
+&gt; <br>
+&gt; On 21.09.21 16:18, Lijun Chen wrote:<br>
+&gt;&gt; Hi,<br>
+&gt;&gt; <br>
+&gt;&gt; I would like to include libgtest.so into my Yocto image. I added <=
+br>
+&gt;&gt; googletest to IMAGE_INSTALL and added the following line to <br>
+&gt;&gt; sources/meta-openembedded/meta-oe/recipes-test/googletest/googlete=
+st_git.bb:<br>
+&gt;&gt; <br>
+&gt;&gt; EXTRA_OECMAKE =3D &quot;-DBUILD_SHARED_LIBS=3DON &quot;<br>
+&gt;&gt; <br>
+&gt;&gt; <br>
+&gt;&gt; The shared libraries were built successfully. However, there are e=
+rrors <br>
+&gt;&gt; in do_package_qc as following:<br>
+&gt;&gt; <br>
+&gt;&gt; <br>
+&gt;&gt; ERROR: googletest-1.10.0-r0 do_package_qa: QA Issue: -dev package =
+<br>
+&gt;&gt; googletest-dev contains non-symlink .so '/usr/lib/libgmock.so'<br>
+&gt;&gt; -dev package googletest-dev contains non-symlink .so <br>
+&gt;&gt; '/usr/lib/libgtest_main.so'<br>
+&gt;&gt; -dev package googletest-dev contains non-symlink .so <br>
+&gt;&gt; '/usr/lib/libgmock_main.so'<br>
+&gt;&gt; -dev package googletest-dev contains non-symlink .so <br>
+&gt;&gt; '/usr/lib/libgtest.so' [dev-elf]<br>
+&gt;&gt; ERROR: googletest-1.10.0-r0 do_package_qa: QA run found fatal erro=
+rs. <br>
+&gt;&gt; Please consider fixing them.<br>
+&gt; <br>
+&gt; <a href=3D"https://urldefense.com/v3/__http://git.yoctoproject.org/cgi=
+t/cgit.cgi/poky/tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n34__=
+;Iw!!COg3wY07Hnb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0NANM4=
+iMsNNleww$">
+https://urldefense.com/v3/__http://git.yoctoproject.org/cgit/cgit.cgi/poky/=
+tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n34__;Iw!!COg3wY07Hnb=
+7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0NANM4iMsNNleww$</a>
+<br>
+&gt; &lt;<a href=3D"https://urldefense.com/v3/__http://git.yoctoproject.org=
+/cgit/cgit.cgi/poky/tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n=
+34__;Iw!!COg3wY07Hnb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0N=
+ANM4iMsNNleww$">https://urldefense.com/v3/__http://git.yoctoproject.org/cgi=
+t/cgit.cgi/poky/tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n34__=
+;Iw!!COg3wY07Hnb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0NANM4=
+iMsNNleww$</a>&gt;
+<br>
+&gt; <br>
+&gt; (and the next lines) might give you a hint what to do in this case.<br=
+>
+&gt; Although one could also consider that's something that needs to be fix=
+ed<br>
+&gt; in the installation script of googletest, as versioned libraries are t=
+he<br>
+&gt; expected default<br>
+&gt; <br>
+&gt;&gt; <br>
+&gt;&gt; <br>
+&gt;&gt; Any idea to fix this?<br>
+&gt;&gt; <br>
+&gt;&gt; <br>
+&gt;&gt; Thanks,<br>
+&gt;&gt; <br>
+&gt;&gt; Lijun<br>
+&gt;&gt; <br>
+&gt;&gt; <br>
+&gt;&gt; ------------------------------------------------------------------=
+------<br>
+&gt;&gt; This transmission (including any attachments) may contain confiden=
+tial <br>
+&gt;&gt; information, privileged material (including material protected by =
+the <br>
+&gt;&gt; solicitor-client or other applicable privileges), or constitute <b=
+r>
+&gt;&gt; non-public information. Any use of this information by anyone othe=
+r than <br>
+&gt;&gt; the intended recipient is prohibited. If you have received this <b=
+r>
+&gt;&gt; transmission in error, please immediately reply to the sender and =
+delete <br>
+&gt;&gt; this information from your system. Use, dissemination, distributio=
+n, or <br>
+&gt;&gt; reproduction of this transmission by unintended recipients is not =
+<br>
+&gt;&gt; authorized and may be unlawful.<br>
+&gt;&gt; <br>
+&gt;&gt; <br>
+&gt;&gt; <br>
+&gt;&gt; <br>
+&gt; ----------------------------------------------------------------------=
+--<br>
+&gt; This transmission (including any attachments) may contain confidential=
+ <br>
+&gt; information, privileged material (including material protected by the =
+<br>
+&gt; solicitor-client or other applicable privileges), or constitute <br>
+&gt; non-public information. Any use of this information by anyone other th=
+an <br>
+&gt; the intended recipient is prohibited. If you have received this <br>
+&gt; transmission in error, please immediately reply to the sender and dele=
+te <br>
+&gt; this information from your system. Use, dissemination, distribution, o=
+r <br>
+&gt; reproduction of this transmission by unintended recipients is not <br>
+&gt; authorized and may be unlawful.<br>
+&gt; ----------------------------------------------------------------------=
+--<br>
+&gt; This transmission (including any attachments) may contain confidential=
+ <br>
+&gt; information, privileged material (including material protected by the =
+<br>
+&gt; solicitor-client or other applicable privileges), or constitute <br>
+&gt; non-public information. Any use of this information by anyone other th=
+an <br>
+&gt; the intended recipient is prohibited. If you have received this <br>
+&gt; transmission in error, please immediately reply to the sender and dele=
+te <br>
+&gt; this information from your system. Use, dissemination, distribution, o=
+r <br>
+&gt; reproduction of this transmission by unintended recipients is not <br>
+&gt; authorized and may be unlawful.<br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+</div>
+</span></font>
+
+<HR>This transmission (including any attachments) may contain confidential =
+information, privileged material (including material protected by the solic=
+itor-client or other applicable privileges), or constitute non-public infor=
+mation. Any use of this information by anyone other than the intended recip=
+ient is prohibited. If you have received this transmission in error, please=
+ immediately reply to the sender and delete this information from your syst=
+em. Use, dissemination, distribution, or reproduction of this transmission =
+by unintended recipients is not authorized and may be unlawful.<BR>
+</body>
+</html>
+
+--_000_34204df22ebb41b58292258f595ad404blackberrycom_--
