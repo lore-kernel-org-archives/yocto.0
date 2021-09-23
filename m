@@ -1,108 +1,98 @@
-Received: from smtp-pc11.blackberry.com (smtp-pc11.blackberry.com [74.82.81.43])
- by mx.groups.io with SMTP id smtpd.web08.206.1632416008215597833
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+ by mx.groups.io with SMTP id smtpd.web09.379.1632416792379125967
  for <yocto@lists.yoctoproject.org>;
- Thu, 23 Sep 2021 09:53:28 -0700
+ Thu, 23 Sep 2021 10:06:32 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@blackberry.com header.s=corp19 header.b=W8kMTipW;
- spf=pass (domain: blackberry.com, ip: 74.82.81.43, mailfrom: lijchen@blackberry.com)
-Received: from pps.filterd (mhs401cnc.rim.net [127.0.0.1])
-	by mhs401cnc.rim.net (8.16.0.43/8.16.0.43) with SMTP id 18NGrQLQ140502
-	for <yocto@lists.yoctoproject.org>; Thu, 23 Sep 2021 12:53:26 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=blackberry.com; h=from : to :
- subject : date : message-id : content-type : mime-version; s=corp19;
- bh=THySMTLkz6/TC1+U++vRszg+DutTOiWK/t3Z7dOPOvY=;
- b=W8kMTipW0ywTw14m/jOlk1yQst5EZwaBnN7fKZ8GRNjSw+yCEO06Lw/jbW2QvHI3RAtN
- 84F6K6kVx0GpuRIqxjtaZ1rWNSwqbKah7sq108ZATZx+2HPr9ch02CKou4Qp5YiSAjiX
- Al4yWglF2fm9r9BEBRl9cRZniswUmuD7rAV6QHZqcse/W+jbeWh4r0bOEuQWCA/cIW0A
- X4dz19tPgBN3H0XjAdTpIn7uZJP6VWwK53NheadnMZKpPgVFgWSxv6grdkkGzuJ3kiLc
- HSA3YthdPQAFsF/2i+fM3y12Bus1rHlMpKYIN7NB5OQZZ7zNJwIy4Tg22+pCRfbKJ0Of xw== 
-Received: from xch212cnc.rim.net (xch212cnc.rim.net [10.3.27.117])
-	by mhs401cnc.rim.net with ESMTP id 3b7q63v7qa-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <yocto@lists.yoctoproject.org>; Thu, 23 Sep 2021 12:53:26 -0400
-Received: from XCH211YKF.rim.net (10.12.114.211) by XCH212CNC.rim.net
- (10.3.27.117) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.14; Thu, 23 Sep
- 2021 12:53:26 -0400
-Received: from XCH211YKF.rim.net ([fe80::dca:23f8:c2c0:7180]) by
- XCH211YKF.rim.net ([fe80::dca:23f8:c2c0:7180%5]) with mapi id 15.01.2308.014;
- Thu, 23 Sep 2021 12:53:26 -0400
-From: "Lijun Chen" <lijchen@blackberry.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: gcov support for target in Yocto
-Thread-Topic: gcov support for target in Yocto
-Thread-Index: AQHXsJti8y0JtgWz/kqHFVxhBUEuMw==
-Date: Thu, 23 Sep 2021 16:53:26 +0000
-Message-ID: <cd74ff1907374ec2bd340f18d691123d@blackberry.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [100.64.197.207]
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=VjNwJyyK;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.52, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f52.google.com with SMTP id i23so19260875wrb.2
+        for <yocto@lists.yoctoproject.org>; Thu, 23 Sep 2021 10:06:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version;
+        bh=nQZEfPPQ+FPTQVOMizjg3Bzt0Sb1KUrDyKwHO+t2KH0=;
+        b=VjNwJyyK4TgwW7ANeN2nSmEmtkTymsAOroVRVECl+TBJGvyTWFrw+Dv2iG0NexsGSq
+         aLD5xSbGtbQFc5INZr+ef09MqZky8L0VnUHL4YLXZoqwCIAr3QOaOxmlGCTW6ZGATWws
+         wN9aFuMc8kY6TXYdlPAciB9xgHLUHW6J0ATpk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version;
+        bh=nQZEfPPQ+FPTQVOMizjg3Bzt0Sb1KUrDyKwHO+t2KH0=;
+        b=wTvUS3E06STzv5cY/lA3kTPFGIDYQAd1vwbMm1m8hI5xeFePLnSXaXDyGpPRMlj/6J
+         EZrk/z+ScdJvpe4tYczbfy0UWMjVoGYOyRJ+mCQtX3S4XKrZz6oHcfEt7RFrhPwer448
+         EfG1GtsqC2j1CdzQ5bQbNH8T2l8sawEa5zLTepehTorDYW5sDcDVrIR0KDcdxv2mKv7p
+         QfYgEcIP4lJdSnXQbjDr131WBORpTsWhdeGu13+gYFroockLfX9emIq9uZowgHSmx12b
+         E6JZbYWHqZSoql/E2ynHbyDbXxuSrp4SfIMTtB6e+8Uxb+4B6BxSaDwqWixiyRIbI2HV
+         DYFA==
+X-Gm-Message-State: AOAM533rE56TlVI5imlC2rRqS1j8i8U8OV/kemHdJkyPUX3Vf9OkYdqq
+	KQZv/dBt3T4AntNpD/5vkxsuuA==
+X-Google-Smtp-Source: ABdhPJwK+9QUJMhSrJEIIJ9hl22uNAPZiujZIUP+K07RvUxk2ek6S3aeZj0RFlIixcealbgXB2+4uw==
+X-Received: by 2002:adf:f247:: with SMTP id b7mr6339902wrp.283.1632416790887;
+        Thu, 23 Sep 2021 10:06:30 -0700 (PDT)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from ?IPv6:2001:8b0:aba:5f3c:3a36:9e9a:ccb5:f067? ([2001:8b0:aba:5f3c:3a36:9e9a:ccb5:f067])
+        by smtp.gmail.com with ESMTPSA id 4sm5347894wmv.42.2021.09.23.10.06.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Sep 2021 10:06:30 -0700 (PDT)
+Message-ID: <8f626dca9d71d3b2f20e19fd3f6be9f0101c8e60.camel@linuxfoundation.org>
+Subject: Re: Minutes: Yocto Project Weekly Triage Meeting 9/23/2021
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Trevor Gamblin <trevor.gamblin@windriver.com>, Yocto-mailing-list
+	 <yocto@lists.yoctoproject.org>
+Cc: steve@sakoman.com, "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>, 
+ alexandre.belloni@bootlin.com, Ross Burton <ross@burtonini.com>, "Wold,
+ Saul" <saul.wold@windriver.com>, "Surendran, Kiran"
+ <kiran.surendran@windriver.com>,  Bruce Ashfield
+ <bruce.ashfield@gmail.com>, "MacLeod, Randy" <Randy.MacLeod@windriver.com>
+Date: Thu, 23 Sep 2021 18:06:29 +0100
+In-Reply-To: <85d19597-9cd6-cef1-83cd-e2926b851e61@windriver.com>
+References: <85d19597-9cd6-cef1-83cd-e2926b851e61@windriver.com>
+User-Agent: Evolution 3.40.4-1 
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-09-23_05:2021-09-23,2021-09-23 signatures=0
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_cd74ff1907374ec2bd340f18d691123dblackberrycom_"
+Content-Type: multipart/alternative; boundary="=-PN88vfbVujyVJ3dhNlWv"
 
---_000_cd74ff1907374ec2bd340f18d691123dblackberrycom_
+--=-PN88vfbVujyVJ3dhNlWv
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+On Thu, 2021-09-23 at 11:40 -0400, Trevor Gamblin wrote:
+> Wiki: https://wiki.yoctoproject.org/wiki/Bug_Triage
+> Attendees: Alex, Bruce, Kiran, Randy, Richard, Ross, Saul, Stephen, Steve,
+> Trevor
+> ARs:
+> - Steve to review failure logs for 14557 and post any that might be useful
+> - Richard to have a look at bug 11801
+I did look at it. It was using a modified oe-selftest with threading instead of
+multiprocess. We're not using that so I closed it.
+
+Cheers,
+
+Richard
+
+
+
+--=-PN88vfbVujyVJ3dhNlWv
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
 
-Hi,
+<html><head>
 
+  </head>
+  <body><div>On Thu, 2021-09-23 at 11:40 -0400, Trevor Gamblin wrote:</div>=
+<blockquote type=3D"cite" style=3D"margin:0 0 0 .8ex; border-left:2px #729f=
+cf solid;padding-left:1ex"><div class=3D"moz-text-html" lang=3D"x-unicode">=
+<p><b>Wiki: </b><a class=3D"moz-txt-link-freetext" href=3D"https://wiki.yoc=
+toproject.org/wiki/Bug_Triage" moz-do-not-send=3D"true">https://wiki.yoctop=
+roject.org/wiki/Bug_Triage</a></p><p><b>Attendees:</b> Alex, Bruce, Kiran, =
+Randy, Richard, Ross, Saul, Stephen, Steve, Trevor<br></p><p><b>ARs:</b></p=
+></div><p>- Steve to review failure logs for 14557 and post any that might =
+be useful</p><p>- Richard to have a look at bug 11801<br></p></blockquote><=
+div>I did look at it. It was using a modified oe-selftest with threading in=
+stead of multiprocess. We're not using that so I closed it.</div><div><br><=
+/div><div>Cheers,</div><div><br></div><div>Richard</div><blockquote type=3D=
+"cite" style=3D"margin:0 0 0 .8ex; border-left:2px #729fcf solid;padding-le=
+ft:1ex"></blockquote><div><br></div><div><span></span></div></body></html>
 
-Anybody knows how to enable gcov support for the target in Yocto?
-
-
-Thanks,
-
-Lijun
-
-----------------------------------------------------------------------
-This transmission (including any attachments) may contain confidential info=
-rmation, privileged material (including material protected by the solicitor=
--client or other applicable privileges), or constitute non-public informati=
-on. Any use of this information by anyone other than the intended recipient=
- is prohibited. If you have received this transmission in error, please imm=
-ediately reply to the sender and delete this information from your system. =
-Use, dissemination, distribution, or reproduction of this transmission by u=
-nintended recipients is not authorized and may be unlawful.
-
---_000_cd74ff1907374ec2bd340f18d691123dblackberrycom_
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset="iso-8859-1"
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p>Hi,</p>
-<p><br>
-</p>
-<p>Anybody knows how to enable gcov support for the target in Yocto?</p>
-<p><br>
-</p>
-<p>Thanks,</p>
-<p>Lijun<br>
-</p>
-</div>
-
-<HR>This transmission (including any attachments) may contain confidential =
-information, privileged material (including material protected by the solic=
-itor-client or other applicable privileges), or constitute non-public infor=
-mation. Any use of this information by anyone other than the intended recip=
-ient is prohibited. If you have received this transmission in error, please=
- immediately reply to the sender and delete this information from your syst=
-em. Use, dissemination, distribution, or reproduction of this transmission =
-by unintended recipients is not authorized and may be unlawful.<BR>
-</body>
-</html>
-
---_000_cd74ff1907374ec2bd340f18d691123dblackberrycom_--
+--=-PN88vfbVujyVJ3dhNlWv--
