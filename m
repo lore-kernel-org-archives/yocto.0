@@ -1,92 +1,209 @@
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
- by mx.groups.io with SMTP id smtpd.web12.662.1632424942042478579
+Received: from mailout11.t-online.de (mailout11.t-online.de [194.25.134.85])
+ by mx.groups.io with SMTP id smtpd.web09.1031.1632426355719273637
  for <yocto@lists.yoctoproject.org>;
- Thu, 23 Sep 2021 12:22:22 -0700
+ Thu, 23 Sep 2021 12:45:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20210112.gappssmtp.com header.s=20210112 header.b=3qOsAe4s;
- spf=softfail (domain: sakoman.com, ip: 209.85.221.50, mailfrom: steve@sakoman.com)
-Received: by mail-wr1-f50.google.com with SMTP id d6so20091326wrc.11
-        for <yocto@lists.yoctoproject.org>; Thu, 23 Sep 2021 12:22:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=ykKpG65P45W+Dn5Mm8rtJqWOLOqCKDOZddACy9DRhes=;
-        b=3qOsAe4s9EI7jP7icwev7+4RFbbJUDqS+/g4nPdhIgxBTnnesogctLbafT2bQes4tH
-         9dxIXBMVjclAxh7CDT6AyytqUsuo78+JUuFZVgKrypEMZFfOJSt0083QUse/nBdIIpNI
-         e17Vi7ICNwOcB9WY9zeDNFv3NglnNnyaZu6gzMN6buclUOZwSQhKYNYj9/QsWvfPSRRt
-         8GgsZAR1aTTqqJyE7jqbJ9ygWx6ykjS5yc2C21bDkDEtXjU+7K9BtYB5/XmL8n5TJ/OS
-         AFHTzvelmsJdlw5ZK7WVLpLn+w4UcSPkfO/qrt+WKLCM/wQO3Bd+bFyL1Uis+1I2bkaR
-         iLpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=ykKpG65P45W+Dn5Mm8rtJqWOLOqCKDOZddACy9DRhes=;
-        b=m4JE/UUFyVczomr1nJAVd1Qtxmt6UEfrPsuG64mvwN9bpxDXwuLHCZQqok4o6nBChM
-         Zn0p9FI5zMYeVHtsSnmqMF7YKe/ePY7ESfEPExmvasMu8yBne5v/kBDeCpKPgPeyCnkV
-         3zSvIijV4gR7p+xO5GdGvSo2w9LcAONFepLKcWT9RtVoHdwoUDstMzbtlSH0nnIImrYy
-         RaJcCr/i2nOQgo61n0QJ4jiis0lt0tH/f/QU8xKW8Rr99+GuSRdv3/x1opGipZERyjZz
-         1cUz3aeGn+wxzCG1gxGGXAgo6nOImEBwtUv1SjZNnyxsr3S0LME2gIW4H8vEqdUAlSgM
-         SDEA==
-X-Gm-Message-State: AOAM533nPvik2kWowAR1sY388TiyaNJy2VFrArtEVYxH01/w0EWJvh1r
-	8S1XThn8A7HTOyhOUUiTKog5TO3S/GwR7sAvs6Cgmw==
-X-Google-Smtp-Source: ABdhPJzzy741jsoFj+aC0P198pw1UMSW8cXV2hlpmSD6PnLjeWVzHV9H374nnglKc8Z+OZsCv1S3Y7i6VyX4LNyTHFY=
-X-Received: by 2002:a05:600c:19d4:: with SMTP id u20mr17447307wmq.28.1632424940218;
- Thu, 23 Sep 2021 12:22:20 -0700 (PDT)
+ dkim=missing; spf=none, err=SPF record not found (domain: t-online.de, ip: 194.25.134.85, mailfrom: f_l_k@t-online.de)
+Received: from fwd82.dcpf.telekom.de (fwd82.aul.t-online.de [10.223.144.108])
+	by mailout11.t-online.de (Postfix) with SMTP id B2ABA3481
+	for <yocto@lists.yoctoproject.org>; Thu, 23 Sep 2021 21:45:06 +0200 (CEST)
+Received: from [192.168.178.83] ([79.219.228.58]) by fwd82.t-online.de
+	with (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384 encrypted)
+	esmtp id 1mTUeY-36NdPF0; Thu, 23 Sep 2021 21:45:06 +0200
+Subject: Re: [yocto] [meta-rockchip][PATCH] use uuid instead of hard-coding root device
+To: yocto@lists.yoctoproject.org
+References: <20210917220121.26663-1-twoerner@gmail.com>
+ <a7d1f5cd-8bb6-ba56-c2b4-39dfb283a22c@t-online.de>
+ <20210923115919.GA25233@localhost>
+From: "Markus Volk" <f_l_k@t-online.de>
+Message-ID: <254c0237-f5c0-8f64-61a0-a5e8835d64f4@t-online.de>
+Date: Thu, 23 Sep 2021 21:45:06 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <85d19597-9cd6-cef1-83cd-e2926b851e61@windriver.com>
-In-Reply-To: <85d19597-9cd6-cef1-83cd-e2926b851e61@windriver.com>
-From: "Steve Sakoman" <steve@sakoman.com>
-Date: Thu, 23 Sep 2021 09:22:09 -1000
-Message-ID: <CAOSpxdZQqtW4Jn4v=t1YPBtcChWnkGKBW8s_13dNx42G9X1ing@mail.gmail.com>
-Subject: Re: Minutes: Yocto Project Weekly Triage Meeting 9/23/2021
-To: Trevor Gamblin <trevor.gamblin@windriver.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>, 
-	"sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Ross Burton <ross@burtonini.com>, "Wold, Saul" <saul.wold@windriver.com>, 
-	"Surendran, Kiran" <kiran.surendran@windriver.com>, Bruce Ashfield <bruce.ashfield@gmail.com>, 
-	"MacLeod, Randy" <Randy.MacLeod@windriver.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210923115919.GA25233@localhost>
+X-TOI-EXPURGATEID: 150726::1632426306-00001468-4F34C4DE/0/0 CLEAN NORMAL
+X-TOI-MSGID: 215c4ec1-45cf-4009-8a30-b2fccc346291
+Content-Type: multipart/alternative;
+ boundary="------------6A74B96F8A8DF2AB0F8A9508"
+Content-Language: en-US
 
-On Thu, Sep 23, 2021 at 5:40 AM Trevor Gamblin
-<trevor.gamblin@windriver.com> wrote:
->
-> Wiki: https://wiki.yoctoproject.org/wiki/Bug_Triage
->
-> Attendees: Alex, Bruce, Kiran, Randy, Richard, Ross, Saul, Stephen, Steve=
-, Trevor
->
-> ARs:
->
-> - Steve to review failure logs for 14557 and post any that might be usefu=
-l
+--------------6A74B96F8A8DF2AB0F8A9508
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I was looking at two issues prior to the meeting.  Sadly, due to
-inadequate caffeine blood levels and the early hour I confused the
-two. So this explains why I couldn't find the logs during the meeting.
-So nothing to post  :-(
 
-Steve
+Am 23.09.21 um 13:59 schrieb Trevor Woerner:
+> Curious. I boot tested my patch on multiple boards and I've built and booted
+> numerous images on my rock-pi-4b and rock64 boards in the last day or so since
+> I applied the patch. I'll try some "clean" builds and see if that makes a
+> difference. I don't doubt your report (especially since Khem confirmed it),
+> I'd just like to know for myself what's different.
 
->
-> - Richard to have a look at bug 11801
->
->
-> Notes:
->
-> - (carried over) Steve encountered build failures such as the one in http=
-s://errors.yoctoproject.org/Errors/Details/593109/ when attempting to run d=
-unfell builds with the PARALLEL_MAKE load averaging added. WR is testing/in=
-vestigating on internal Autobuilder instance - Trevor is still planning on =
-looking into this!
->
-> Medium+ 3.4 Unassigned Enhancements/Bugs: 68 (No change)
->
-> Medium+ 3.5 Unassigned Enhancements/Bugs: 10 (No change)
->
-> Medium+ 3.99 Unassigned Enhancements/Bugs: 39 (Last week 38)
->
-> AB-INT Bugs: 54 (Last week 49)
+That is really strange. As soon as there are those /dev/sda* entries in my fstab
+my rock-pi-4c doesn't boot up anymore. As soon as i comment them out or delete them,
+everything is working again.
+
+> I wonder if just applying your 2nd patch would be enough (i.e. the one that
+> removes the /dev/sda* lines from /etc/fstab)? It's odd that the first 6
+> entries in the wic file would need UUIDs since it's the SoC's ROM firmware
+> that uses them, and I'm pretty sure the Rockchip firmware isn't using UUIDs
+> (my guess is it's just blindly grabbing whatever it finds at specific
+> offsets). The things stored in those partitions are u-boot related bits (atf,
+> spl, the u-boot binary itself) so by the time Linux starts, those things are
+> already "behind" us. I can't see how adding UUIDs to the partitions holding
+> u-boot would affect how the kernel finds the root partition (?).
+
+Applying only the second patch should be enough to hide the problem, but as soon as
+one decides to disable WIC_CREATE_EXTRA_ARGS for example because he/she wants /boot to be
+mounted automatically, those non working /dev/sda* entries will be written into fstab again.
+With the first patch they are included like this and are mountable via fstab:
+
+
+UUID=0C48-9342	loader1	vfat	defaults	0	0
+UUID=C4D3-D17A	reserved1	vfat	defaults	0	0
+UUID=8FBE-2551	reserved2	vfat	defaults	0	0
+UUID=35FA-8BBB	loader2	vfat	defaults	0	0
+UUID=CFF3-5D80	atf	vfat	defaults	0	0
+UUID=832C-48C4	/boot	vfat	defaults	0	0
+
+
+u-boot is able to find its partitons even if '--use-uuid' is set. As you mentioned u-boot doesn't
+know about uuid but it seems to be able to find its partitions nevertheless. But if '--use-uuid'
+is not set, wic writes /dev/sda* instead of the correct  UUID values to fstab. So its not u-boot that
+needs uuid to be set but fstab.
+Of course it would be nice, if wic didn't try to add the u-boot partitions to fstab at all.
+I guess nobody ever needs to have them mounted into userspace ( except possibly /boot).
+
+> Are you using poky or a distro other than "nodistro"? Perhaps other
+> layers/distros are affecting the build?
+
+Thats not unlikely. I have a long layer-list in bblayers.conf to build my image:
+
+   /home/flk/build/poky/meta \
+   /home/flk/build/poky/meta-poky \
+   /home/flk/build/poky/meta-yocto-bsp \
+   /home/flk/build/poky/meta-rockchip \
+   /home/flk/build/poky/meta-rockchip-extras \
+   /home/flk/build/poky/meta-wayland \
+   /home/flk/build/poky/meta-retro \
+   /home/flk/build/poky/meta-retro-wayland \
+   /home/flk/build/poky/meta-rauc \
+   /home/flk/build/poky/meta-openembedded/meta-oe \
+   /home/flk/build/poky/meta-openembedded/meta-multimedia \
+   /home/flk/build/poky/meta-openembedded/meta-networking \
+   /home/flk/build/poky/meta-openembedded/meta-xfce \
+   /home/flk/build/poky/meta-openembedded/meta-gnome \
+   /home/flk/build/poky/meta-openembedded/meta-python \
+   /home/flk/build/poky/meta-openembedded/meta-filesystems \
+   /home/flk/build/poky/meta-arm/meta-arm \
+   /home/flk/build/poky/meta-arm/meta-arm-toolchain \
+   /home/flk/build/poky/meta-kodi \
+   /home/flk/build/poky/meta-browser/meta-chromium \
+   /home/flk/build/poky/meta-browser/meta-firefox \
+   /home/flk/build/poky/meta-clang \
+
+
+best regards,
+
+   Markus
+
+
+--------------6A74B96F8A8DF2AB0F8A9508
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">Am 23.09.21 um 13:59 schrieb Trevor
+      Woerner:<br>
+    </div>
+    <blockquote type="cite" cite="mid:20210923115919.GA25233@localhost">
+      <pre class="moz-quote-pre" wrap="">Curious. I boot tested my patch on multiple boards and I've built and booted
+numerous images on my rock-pi-4b and rock64 boards in the last day or so since
+I applied the patch. I'll try some "clean" builds and see if that makes a
+difference. I don't doubt your report (especially since Khem confirmed it),
+I'd just like to know for myself what's different.</pre>
+    </blockquote>
+    <pre class="moz-quote-pre" wrap="">That is really strange. As soon as there are those /dev/sda* entries in my fstab
+my rock-pi-4c doesn't boot up anymore. As soon as i comment them out or delete them,
+everything is working again.
+</pre>
+    <blockquote type="cite" cite="mid:20210923115919.GA25233@localhost">
+      <pre class="moz-quote-pre" wrap="">I wonder if just applying your 2nd patch would be enough (i.e. the one that
+removes the /dev/sda* lines from /etc/fstab)? It's odd that the first 6
+entries in the wic file would need UUIDs since it's the SoC's ROM firmware
+that uses them, and I'm pretty sure the Rockchip firmware isn't using UUIDs
+(my guess is it's just blindly grabbing whatever it finds at specific
+offsets). The things stored in those partitions are u-boot related bits (atf,
+spl, the u-boot binary itself) so by the time Linux starts, those things are
+already "behind" us. I can't see how adding UUIDs to the partitions holding
+u-boot would affect how the kernel finds the root partition (?).
+</pre>
+    </blockquote>
+    <pre>Applying only the second patch should be enough to hide the problem, but as soon as
+one decides to disable WIC_CREATE_EXTRA_ARGS for example because he/she wants /boot to be
+mounted automatically, those non working /dev/sda* entries will be written into fstab again.
+With the first patch they are included like this and are mountable via fstab:
+
+
+UUID=0C48-9342	loader1	vfat	defaults	0	0
+UUID=C4D3-D17A	reserved1	vfat	defaults	0	0
+UUID=8FBE-2551	reserved2	vfat	defaults	0	0
+UUID=35FA-8BBB	loader2	vfat	defaults	0	0
+UUID=CFF3-5D80	atf	vfat	defaults	0	0
+UUID=832C-48C4	/boot	vfat	defaults	0	0
+
+
+u-boot is able to find its partitons even if '--use-uuid' is set. As you mentioned u-boot doesn't
+know about uuid but it seems to be able to find its partitions nevertheless. But if '--use-uuid'
+is not set, wic writes /dev/sda* instead of the correct  UUID values to fstab. So its not u-boot that
+needs uuid to be set but fstab.
+Of course it would be nice, if wic didn't try to add the u-boot partitions to fstab at all.
+I guess nobody ever needs to have them mounted into userspace ( except possibly /boot).
+
+</pre>
+    <blockquote type="cite" cite="mid:20210923115919.GA25233@localhost">
+      <pre class="moz-quote-pre" wrap="">
+Are you using poky or a distro other than "nodistro"? Perhaps other
+layers/distros are affecting the build?</pre>
+    </blockquote>
+    <pre>Thats not unlikely. I have a long layer-list in bblayers.conf to build my image:
+
+  /home/flk/build/poky/meta \
+  /home/flk/build/poky/meta-poky \
+  /home/flk/build/poky/meta-yocto-bsp \
+  /home/flk/build/poky/meta-rockchip \
+  /home/flk/build/poky/meta-rockchip-extras \
+  /home/flk/build/poky/meta-wayland \
+  /home/flk/build/poky/meta-retro \
+  /home/flk/build/poky/meta-retro-wayland \
+  /home/flk/build/poky/meta-rauc \
+  /home/flk/build/poky/meta-openembedded/meta-oe \
+  /home/flk/build/poky/meta-openembedded/meta-multimedia \
+  /home/flk/build/poky/meta-openembedded/meta-networking \
+  /home/flk/build/poky/meta-openembedded/meta-xfce \
+  /home/flk/build/poky/meta-openembedded/meta-gnome \
+  /home/flk/build/poky/meta-openembedded/meta-python \
+  /home/flk/build/poky/meta-openembedded/meta-filesystems \
+  /home/flk/build/poky/meta-arm/meta-arm \
+  /home/flk/build/poky/meta-arm/meta-arm-toolchain \
+  /home/flk/build/poky/meta-kodi \
+  /home/flk/build/poky/meta-browser/meta-chromium \
+  /home/flk/build/poky/meta-browser/meta-firefox \
+  /home/flk/build/poky/meta-clang \
+
+
+</pre>
+    <pre>best regards,</pre>
+    <pre>  Markus
+</pre>
+  </body>
+</html>
+
+--------------6A74B96F8A8DF2AB0F8A9508--
