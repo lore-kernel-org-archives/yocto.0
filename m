@@ -1,94 +1,129 @@
-Return-Path: <webhook@kernel.org>
+Return-Path: <f_l_k@t-online.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,URIBL_BLOCKED autolearn=no
+X-Spam-Status: No, score=-1.5 required=3.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE,NICE_REPLY_A,SPF_HELO_NONE,USER_AGENT_SANE_1 autolearn=no
 	autolearn_force=no version=3.4.0
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 23FD5C433EF
-	for <webhook@archiver.kernel.org>; Thu, 23 Sep 2021 21:39:45 +0000 (UTC)
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com
- [209.85.219.41])
- by mx.groups.io with SMTP id smtpd.web11.89.1632419835135311585
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 81D80C433F5
+	for <webhook@archiver.kernel.org>; Thu, 23 Sep 2021 22:26:15 +0000 (UTC)
+Received: from mailout05.t-online.de (mailout05.t-online.de [194.25.134.82])
+ by mx.groups.io with SMTP id smtpd.web11.389.1632435974448461272
  for <yocto@lists.yoctoproject.org>;
- Thu, 23 Sep 2021 10:57:15 -0700
+ Thu, 23 Sep 2021 15:26:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=LQp8k6U5;
- spf=pass (domain: gmail.com, ip: 209.85.219.41, mailfrom: raj.khem@gmail.com)
-Received: by mail-qv1-f41.google.com with SMTP id a13so4652533qvo.9
-        for <yocto@lists.yoctoproject.org>;
- Thu, 23 Sep 2021 10:57:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Ry1thctvkRLvRArsQCfq+0VBL10J3gkV3H5eciRkaY8=;
-        b=LQp8k6U55fS6mlUhnCLzT5PQ/YCVxml3tQ8wiaHM/+K7a8dnH3+O72+LRpLhqKVyMW
-         T08E+MNowuAlvS60YxCenypGacW3/SbWn9Yc9uE+KjcIi4UXahgk9JDFC9WvY1SFzKYm
-         da5bAVZfrkCmhvALZqgiRGkDc1dfwnFmaxVYMzkLi97Fr7MJGol8sbkvTRS6JnpcnIK/
-         8/M6y4yd+3/CEtaLTY30rvfx3IjCXspoIYrhvvFbya77GAx7WS7cjx9UImfmnBIBTcA1
-         P97+KE+d1DjyjFvuDYi5XYn50vhCrPtzK7JqRi3azKHw9qIFUkrvGxGHRuLQGNEf/ciw
-         VAzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Ry1thctvkRLvRArsQCfq+0VBL10J3gkV3H5eciRkaY8=;
-        b=di5khD56kYoUDsTDrLFbbOCyvCu8iLWn2gepqUluz9Dwmet8mgfQgl8uqKlMaATIpI
-         IwBMY2D7A3RNKmyfXTQ85xrWn1YI+dPkwuaHry2WjZF/jaVI1NdAiUgSjpjSGxFvAOjJ
-         Wc+rEJkGSXt7zZA9WbbcOhwDAz/OvMCQRnUwH6xs74m8Ea/YWAVtVfiheswKRcfxW5FN
-         EKfqojFHUkWTPh8OE32vJEyb1zykjkkdrESaScPXICfEXsrWlJQI+okvOWimG1GJfmrV
-         XK8qdoJs+amSRCY5fpVHetIW6MajxMvTD+cOWPIM8kEj6cHw7eGo9lkXQ/0GKp4ZIU8l
-         uXxg==
-X-Gm-Message-State: AOAM532VxU7uStRqSNyER9tGzL1p/3RObbZViPSK6N4M6NMwxicab4vk
-	tSPNgu+erNvGh5F8kLkq3ngogpK2DX7iptWO28CR7Nm8OOw=
-X-Google-Smtp-Source: 
- ABdhPJzjK5iGMrqQ4UvvsC14leg2Omk0xcz3Vz1BCQU8g5klkScWvace8Hb0NvTplXH+sy4d1YEI1bUqJ0w9rmUO0Pw=
-X-Received: by 2002:a0c:a952:: with SMTP id z18mr5759383qva.64.1632419834191;
- Thu, 23 Sep 2021 10:57:14 -0700 (PDT)
+ dkim=missing;
+ spf=none, err=SPF record not found (domain: t-online.de, ip: 194.25.134.82,
+ mailfrom: f_l_k@t-online.de)
+Received: from fwd84.dcpf.telekom.de (fwd84.aul.t-online.de [10.223.144.110])
+	by mailout05.t-online.de (Postfix) with SMTP id 6AF0E1F6EA;
+	Fri, 24 Sep 2021 00:23:59 +0200 (CEST)
+Received: from [192.168.178.83] ([79.219.228.58]) by fwd84.t-online.de
+	with (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384 encrypted)
+	esmtp id 1mTX8F-2wQZer0; Fri, 24 Sep 2021 00:23:55 +0200
+Subject: Re: [yocto] [meta-rockchip][PATCH] use uuid instead of hard-coding
+ root device
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+References: <20210917220121.26663-1-twoerner@gmail.com>
+ <a7d1f5cd-8bb6-ba56-c2b4-39dfb283a22c@t-online.de>
+ <20210923115919.GA25233@localhost>
+ <254c0237-f5c0-8f64-61a0-a5e8835d64f4@t-online.de>
+ <20210923205548.GA5309@localhost>
+From: Markus Volk <f_l_k@t-online.de>
+Message-ID: <255e8117-5135-6f34-3b7a-7b9b94f0b603@t-online.de>
+Date: Fri, 24 Sep 2021 00:23:55 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <JE6o.1632404774963332999.ccky@lists.yoctoproject.org>
-In-Reply-To: <JE6o.1632404774963332999.ccky@lists.yoctoproject.org>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 23 Sep 2021 10:56:48 -0700
-Message-ID: <CAMKF1sotbsQkE-Sb2Nc2xaq5ox+t6b9rw3ZYMHX-5fFAnViPDQ@mail.gmail.com>
-Subject: Re: [yocto] Using bitbake with external SDK #zeus #toolchain #sdk
-To: enrico.buffoli1994@gmail.com
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210923205548.GA5309@localhost>
+Content-Type: multipart/alternative;
+ boundary="------------1772FBB2BB82CB7BE259AE71"
+Content-Language: en-US
+X-TOI-EXPURGATEID: 150726::1632435835-00001473-3A56F2C8/0/0 CLEAN NORMAL
+X-TOI-MSGID: 3c45704d-f258-4e9a-a131-c8a18a24bbb3
 List-Id: <yocto.lists.yoctoproject.org>
-X-Webhook-Received: from
- bras-base-mtrlpq5031w-grc-32-216-209-220-181.dsl.bell.ca
- [216.209.220.181] by aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS
- for <yocto@lists.yoctoproject.org>; Thu, 23 Sep 2021 21:39:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54820
-Message-ID: <20210923175648.3VrgAR-Gbmi0xKSq3bqhbTjqWJ1wgIcV0U04OtbX6FI@z>
+X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
+ aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
+ <yocto@lists.yoctoproject.org>; Thu, 23 Sep 2021 22:26:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54827
 
-On Thu, Sep 23, 2021 at 6:46 AM <enrico.buffoli1994@gmail.com> wrote:
->
-> Hello,
->
-> It has been 2 years that i'm using the yocto project to build the image for an embedded system on IMX8M.
-> Now the system basic image is done outside and i receive the SDK.
-> All the additional packages that i was installing with my yocto project are missing because i receive the standard os image.
-> Is there a way to use the SDK that i receive to build the additional packages with bitbake?
->
+This is a multi-part message in MIME format.
+--------------1772FBB2BB82CB7BE259AE71
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-if its eSDK then you can, with standard application SDK not so much.
+> I'm surprised mount doesn't complain about those first 5 lines! Those are not
+> properly-formed fstab(5) entries.
 
-> Best regards
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#54808): https://lists.yoctoproject.org/g/yocto/message/54808
-> Mute This Topic: https://lists.yoctoproject.org/mt/85814142/1997914
-> Mute #sdk:https://lists.yoctoproject.org/g/yocto/mutehashtag/sdk
-> Mute #zeus:https://lists.yoctoproject.org/g/yocto/mutehashtag/zeus
-> Mute #toolchain:https://lists.yoctoproject.org/g/yocto/mutehashtag/toolchain
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+No, it doesn't. Those entries are ignored except /boot.
+One interesting thing: i always had that bunch of malformed fstab entries.
+Before the change from static to uuid it looked like this in fstab:
+
+/dev/mmcblk1p1	loader1	vfat	defaults	0	0
+/dev/mmcblk1p2	reserved1	vfat	defaults	0	0
+/dev/mmcblk1p3	reserved2	vfat	defaults	0	0
+/dev/mmcblk1p4	loader2	vfat	defaults	0	0
+/dev/mmcblk1p5	atf	vfat	defaults	0	0
+/dev/mmcblk1p6	/boot	vfat	defaults	0	0
+
+Now it looks like wic fails in getting the correct value and uses sda as a best bet
+
+> you're proposing (a bunch of malformed fstab(5) entries) should be considered
+> correct.
+
+I guess i just got used to it because it has always been like this since i build for the rock-pi
+
+> In the mean time I'd like to apply your patch 2/2, if you could please add
+> your SoB line?
+
+Have sent new patches. Just delete the first one if you dont need it
+
+
+--------------1772FBB2BB82CB7BE259AE71
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <blockquote type="cite" cite="mid:20210923205548.GA5309@localhost">
+      <pre class="moz-quote-pre" wrap="">I'm surprised mount doesn't complain about those first 5 lines! Those are not
+properly-formed fstab(5) entries.
+</pre>
+    </blockquote>
+    <pre>No, it doesn't. Those entries are ignored except /boot.
+One interesting thing: i always had that bunch of malformed fstab entries.
+Before the change from static to uuid it looked like this in fstab:
+
+/dev/mmcblk1p1	loader1	vfat	defaults	0	0
+/dev/mmcblk1p2	reserved1	vfat	defaults	0	0
+/dev/mmcblk1p3	reserved2	vfat	defaults	0	0
+/dev/mmcblk1p4	loader2	vfat	defaults	0	0
+/dev/mmcblk1p5	atf	vfat	defaults	0	0
+/dev/mmcblk1p6	/boot	vfat	defaults	0	0
+
+Now it looks like wic fails in getting the correct value and uses sda as a best bet
+</pre>
+    <blockquote type="cite" cite="mid:20210923205548.GA5309@localhost">
+      <pre class="moz-quote-pre" wrap="">you're proposing (a bunch of malformed fstab(5) entries) should be considered
+correct.</pre>
+    </blockquote>
+    <pre>I guess i just got used to it because it has always been like this since i build for the rock-pi
+</pre>
+    <p>
+    </p>
+    <blockquote type="cite" cite="mid:20210923205548.GA5309@localhost">
+      <pre class="moz-quote-pre" wrap="">
+In the mean time I'd like to apply your patch 2/2, if you could please add
+your SoB line?</pre>
+    </blockquote>
+    <pre>Have sent new patches. Just delete the first one if you dont need it</pre>
+  </body>
+</html>
+
+--------------1772FBB2BB82CB7BE259AE71--
 
