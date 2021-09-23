@@ -1,285 +1,298 @@
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
- by mx.groups.io with SMTP id smtpd.web08.7049.1632413922821478893
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+ by mx.groups.io with SMTP id smtpd.web12.7312.1632414807152399582
  for <yocto@lists.yoctoproject.org>;
- Thu, 23 Sep 2021 09:18:43 -0700
+ Thu, 23 Sep 2021 09:33:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=I0qQaoVj;
- spf=pass (domain: linaro.org, ip: 209.85.221.44, mailfrom: anibal.limon@linaro.org)
-Received: by mail-wr1-f44.google.com with SMTP id t8so18821186wrq.4
-        for <yocto@lists.yoctoproject.org>; Thu, 23 Sep 2021 09:18:42 -0700 (PDT)
+ dkim=pass header.i=@linaro.org header.s=google header.b=I0J7oF6T;
+ spf=pass (domain: linaro.org, ip: 209.85.221.50, mailfrom: anibal.limon@linaro.org)
+Received: by mail-wr1-f50.google.com with SMTP id u18so18925949wrg.5
+        for <yocto@lists.yoctoproject.org>; Thu, 23 Sep 2021 09:33:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=a0xGOXFyy3+hpGfj2rvrF4Mk/SBLQT8odhLE0RNRqSg=;
-        b=I0qQaoVjsCfPnNuhGZ2Ei2n2Sfv9PIXylNXV30sJZG7HUIoH6SBf/GjRslnMAI5LsD
-         /ZVmQOqTI6dbrKh9MyJwY5pt4y5/JHsl6YOSit83RnO9BXW6ihCSf08sC83oZrsfME7l
-         an5tRC6wzBDcCvNW4oMj88ZmqD7m6ELrYE8QtUZmfE1A+UyFRtSYffq5xyZn2E011n3v
-         EbQb857Xg/lHd6GfwdaSGScVD2reUPrYgEmJHWGO/RmhJeuw4iAP5BVPWbLxGagTrdpd
-         CqIPxFO7tibuRg3DpEdxQAKkuLtSBGfN01CdzH4WWSuHJQhivBaiNumVgSrf6uDNqak9
-         /pBg==
+        bh=5t5fAfJyORCp74+rOpoebRH5OqLcD+VO2Hfk5cYbVo0=;
+        b=I0J7oF6TfOijO59hx24EEBBdMYlD9BYq4YD/ThoF4s1JnJCPndczoMlp061kmLI/mm
+         1zcpm5Gkjhoq6lNCc9ykWlWha173/uP+rCiPZFddVRNiRdvaNe3+0EKQ38gWmbj6ljuF
+         bxzzZSVnHVsBHASQ7MPHBB9jPWEmUZQK2aGB/HlZbH7weyDO9OxHtCoHHItr3YOUsDc3
+         jhcnzqXcR2S9TzeOItN+FJP2FysVEYa9bdnLgwAp6VufkEdZu0KS18IYdvWtXzz1zTeG
+         WO2Q1ohID7aEoVVohCm/6gVnTq0UudfjTGB6OfA//ovgnoetmI6vn/kin50c6+kYdSEV
+         +Asw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=a0xGOXFyy3+hpGfj2rvrF4Mk/SBLQT8odhLE0RNRqSg=;
-        b=oXiJad3I3S0PlVdlYKG5QPPEHsXj2DBirGGxWJRieXincndKR0+832aBFiglTXkpNH
-         kOqQlj6OtE9CISWxrkpqE02haurHeIlR8Xp6ckLM3ed7NwV9iRVLi1aEj2v9YxdcVCBr
-         cIaqS+/jX4K1SbjqH5uMSc/3S3+bJ+JEkczM+qaqXIo786AP13kQzxCzqOsBa3Sya6h+
-         o+vGTW+o/20CgYZXa/wlIS4OSfSeaJJk6pVMu/GIli+zYwkR04URWFHHX8SbrLQ1FxGO
-         yDPr/MnI6FKqbmoxSMb0wr4zecL7Zagem0f1hdHf8AN8A/8gax/amtxZqWR/xM/KjJ/g
-         n9gg==
-X-Gm-Message-State: AOAM531Gyj2bawZgy9XHUczf7mxMnN/sLbGZiPm3UK1gfYH1H8wJpNtP
-	CJlsGLveNn09TcWJih/qmiVDs16czSZiqm3PTNhGoA==
-X-Google-Smtp-Source: ABdhPJygRZSmQiaCdNi99VeVatRwEX3Oif/9HSN7BpndWfWtq8a9bCcM5bg4OsXtJQxb/UMlIOFEemqmhxSh25qocMg=
-X-Received: by 2002:a1c:7413:: with SMTP id p19mr5493870wmc.98.1632413920986;
- Thu, 23 Sep 2021 09:18:40 -0700 (PDT)
+        bh=5t5fAfJyORCp74+rOpoebRH5OqLcD+VO2Hfk5cYbVo0=;
+        b=rIeEcTGW2SVYNZv2A7o6XVhhC3MPa2Sl3V4hhj8G9998dlnIzZWjriRjzSGnt7prj7
+         GUTaOKBs2E/i3WsGWOH8rMORMgoKULaQI49prozIhROUROLelijIm+HRK1pKUIfxdQ5w
+         L4vsXTVBSy3k3X8LSZ1xLM2e8437ZRJ5y9wH/xN+FwbbajKXS6qQzRJa79UWz4k/489x
+         A4KCJ30y2x0OFqmCit1tO4UW7uvvWN6NALuCvPKMTfqsshJW53h+CFQVmTwqhinyMBb2
+         QQyYPx161ochgFiM1boYA4ZE0ZurdRWyDpid2/LEEesm75szvyv6ucKmcYOZXOog+LKm
+         ysMA==
+X-Gm-Message-State: AOAM532TJP91eH14wc5kleff5AH/jE57vtS2fqqT+8HpPpvkklCpKUOG
+	QSDPLVi+ZrL5MFKfBjgc7CWkMj1Ata+zGFT4hOrnpA==
+X-Google-Smtp-Source: ABdhPJyr1roXgNFjKHy5O5QtKzP6jE3cVhRWLqMyk+ksa3n2Vcsz9VnrlCtxBok8Wu3dPc1EG7flgmrXWr1b1IlduIE=
+X-Received: by 2002:a1c:7714:: with SMTP id t20mr16946610wmi.163.1632414805447;
+ Thu, 23 Sep 2021 09:33:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210817123812.18075-1-lukma@denx.de> <20210817123812.18075-2-lukma@denx.de>
- <20210827124350.71c00d33@ktm> <20210920111852.174eff07@ktm> <CANNYZj8hGOPSa+zAKRSqGmMoEsueb4zB6yNPT7GPnc4Pe-Q+UQ@mail.gmail.com>
-In-Reply-To: <CANNYZj8hGOPSa+zAKRSqGmMoEsueb4zB6yNPT7GPnc4Pe-Q+UQ@mail.gmail.com>
+References: <20210916124617.72791-1-alex@linutronix.de> <20210916124617.72791-3-alex@linutronix.de>
+In-Reply-To: <20210916124617.72791-3-alex@linutronix.de>
 From: "Anibal Limon" <anibal.limon@linaro.org>
-Date: Thu, 23 Sep 2021 11:18:30 -0500
-Message-ID: <CA+_AqiteMrG04e=ZA216kKVQBervmHekKZLYypMBNU=Oj-zY2g@mail.gmail.com>
-Subject: Re: [yocto] [PATCH v2 ptest-runner 2/2] main: Do not return number of failed tests when calling ptest-runner
+Date: Thu, 23 Sep 2021 11:33:14 -0500
+Message-ID: <CA+_AqiuzWqMipirxNtDxUDBB1MoWD1Y4k6GSvu3aDgKOwhm4Hw@mail.gmail.com>
+Subject: Re: [ptest-runner][PATCH 3/3] utils.c: add system data collection when a test gets stuck.
 To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: "?ukasz Majewski" <lukma@denx.de>, Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	Adrian Freihofer <adrian.freihofer@siemens.com>
-Content-Type: multipart/alternative; boundary="000000000000e3206d05ccabfbea"
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>, Alexander Kanavin <alex@linutronix.de>
+Content-Type: multipart/alternative; boundary="0000000000009aea0d05ccac3072"
 
---000000000000e3206d05ccabfbea
+--0000000000009aea0d05ccac3072
 Content-Type: text/plain; charset="UTF-8"
 
-On Mon, 20 Sept 2021 at 04:23, Alexander Kanavin <alex.kanavin@gmail.com>
-wrote:
+Hi Alex,
 
-> I think we might be having an 'unresponsive maintainer' situation? How can
-> Anibal be reached?
->
+Do you have a repo/branch for this patch?.
 
-I was OOO for futher you can find me with nickname alimon at #yocto at
-Libera.
+I'm having issues applying...
 
+...
+alimon@blackbox:~/upstream/ptest-runner2$ git am -3
+~/Downloads/\[ptest-runner\]\[PATCH\ 3_3\]\ utils.c_\ add\ system\ data\
+collection\ when\ a\ test\ gets\ stuck..eml
+Applying: utils.c: add system data collection when a test gets stuck.
+error: sha1 information is lacking or useless (utils.c).
+error: could not build fake ancestor
+Patch failed at 0001 utils.c: add system data collection when a test gets
+stuck.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+...
 
->
-> Alex
->
-> On Mon, 20 Sept 2021 at 11:19, ?ukasz Majewski <lukma@denx.de> wrote:
->
->> Hi Anibal,
->>
->> > Hi Anibal,
->> >
->> > > Up till now ptest-runner2 returns number of failed tests with its
->> > > exit status code. Such use case is not recommended [1] and may cause
->> > > issues when there are more than 256 tests to be executed.
->> > >
->> > > To alleviate this issue the number of total tests with number of
->> > > failed ones is printed before exit. To be more specific - failure of
->> > > tests (one or more) causes ptest-runner to provide exit code of 1.
->> > >
->> > > One can test this change with executing:
->> > > ./ptest-runner -d tests/data fail
->> >
->> > Gentle ping on this patch.
->> >
->>
->> Gentle ping on this patch.
->>
->> Is it OK to be applied?
->>
->
-Applied,
-
-Thanks,
+Regards,
 Anibal
 
+On Thu, 16 Sept 2021 at 07:46, Alexander Kanavin <alex.kanavin@gmail.com>
+wrote:
 
+> Currently, ptest-runner simply kills the offending test without further
+> ado,
+> which is not at all helpful when trying to figure out why it happens
+> (especially if such hangs are intermittent and rare). There's now a script
+> that gets executed before killing the test, so ideas on what to have in it
+> are welcome.
 >
->> > >
->> > > Links:
->> > > [1] -
->> > > https://www.gnu.org/software/libc/manual/html_node/Exit-Status.html
->> > >
->> > > Signed-off-by: Lukasz Majewski <lukma@denx.de>
->> > > ---
->> > > Changes for v2:
->> > > - When number of failed tests is N, the ptest-runner returns value
->> > > of 1 to indicate error in the execution
->> > > ---
->> > >  main.c | 3 +++
->> > >  1 file changed, 3 insertions(+)
->> > >
->> > > diff --git a/main.c b/main.c
->> > > index 890bc6a..bcec844 100644
->> > > --- a/main.c
->> > > +++ b/main.c
->> > > @@ -220,6 +220,9 @@ main(int argc, char *argv[])
->> > >             ptest_list_remove(run, opts.exclude[i], 1);
->> > >
->> > >     rc = run_ptests(run, opts, argv[0], stdout, stderr);
->> > > +   fprintf(stdout, "TOTAL: %d FAIL: %d\n",
->> > > ptest_list_length(run), rc);
->> > > +   if (rc > 0)
->> > > +           rc = 1;
->> > >
->> > >     ptest_list_free_all(&run);
->> > >
->> >
->> >
->> >
->> >
->> > Best regards,
->> >
->> > Lukasz Majewski
->> >
->> > --
->> >
->> > DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
->> > HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
->> > Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email:
->> > lukma@denx.de
->>
->>
->>
->>
->> Best regards,
->>
->> Lukasz Majewski
->>
->> --
->>
->> DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
->> HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
->> Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
->>
->> 
->>
->>
+> Signed-off-by: Alexander Kanavin <alex@linutronix.de>
+> ---
+>  Makefile                         |  2 +-
+>  ptest-runner-collect-system-data |  5 +++++
+>  utils.c                          | 24 ++++++++++++++++++++++++
+>  3 files changed, 30 insertions(+), 1 deletion(-)
+>  create mode 100755 ptest-runner-collect-system-data
+>
+> diff --git a/Makefile b/Makefile
+> index a6372de..168cf5a 100644
+> --- a/Makefile
+> +++ b/Makefile
+> @@ -43,7 +43,7 @@ $(TEST_EXECUTABLE): $(TEST_OBJECTS)
+>         $(CC) $(LDFLAGS) $(TEST_OBJECTS) -o $@ $(TEST_LIBSTATIC)
+> $(TEST_LDFLAGS)
+>
+>  check: $(TEST_EXECUTABLE)
+> -       ./$(TEST_EXECUTABLE) -d $(TEST_DATA)
+> +       PATH=.:$(PATH) ./$(TEST_EXECUTABLE) -d $(TEST_DATA)
+>
+>  .c.o:
+>         $(CC) $(CFLAGS) -c $< -o $@
+> diff --git a/ptest-runner-collect-system-data
+> b/ptest-runner-collect-system-data
+> new file mode 100755
+> index 0000000..5bfeaf3
+> --- /dev/null
+> +++ b/ptest-runner-collect-system-data
+> @@ -0,0 +1,5 @@
+> +#!/bin/sh
+> +# Other ideas on what to do when a ptest gets stuck welcome.
+> +pstree -a -l
+> +df
+> +free
+> diff --git a/utils.c b/utils.c
+> index 58c3aa1..a67ac11 100644
+> --- a/utils.c
+> +++ b/utils.c
+> @@ -281,6 +281,27 @@ close_fds(void)
+>         }
+>  }
+>
+> +static void
+> +collect_system_state(FILE* fout)
+> +{
+> +       char *cmd = "ptest-runner-collect-system-data";
+> +
+> +       char buf[1024];
+> +       FILE *fp;
+> +
+> +       if ((fp = popen(cmd, "r")) == NULL) {
+> +               fprintf(fout, "Error opening pipe!\n");
+> +       }
+> +
+> +       while (fgets(buf, 1024, fp) != NULL) {
+> +               fprintf(fout, "%s", buf);
+> +       }
+> +
+> +       if(pclose(fp))  {
+> +               fprintf(fout, "Command not found or exited with error
+> status\n");
+> +       }
+> +}
+> +
+>  static void *
+>  read_child(void *arg)
+>  {
+> @@ -313,6 +334,9 @@ read_child(void *arg)
+>                         }
+>
+>                 } else if (r == 0) {
+> +                       // no output from the test after a timeout; the
+> test is stuck, so collect
+> +                       // as much data from the system as possible and
+> kill the test
+> +                       collect_system_state(_child_reader.fps[0]);
+>                         _child_reader.timeouted = 1;
+>                         kill(-_child_reader.pid, SIGKILL);
+>                  }
+> --
+> 2.33.0
+>
+>
 
---000000000000e3206d05ccabfbea
+--0000000000009aea0d05ccac3072
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Mon, 20 Sept 2021 at 04:23, Alexan=
-der Kanavin &lt;<a href=3D"mailto:alex.kanavin@gmail.com">alex.kanavin@gmai=
-l.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex"><div dir=3D"ltr"><div>I think we might be having an &#39;unresponsive =
-maintainer&#39; situation? How can Anibal be reached?</div></div></blockquo=
-te><div><br></div><div>I was OOO for futher you can find me with nickname a=
-limon at #yocto at Libera.</div><div>=C2=A0</div><blockquote class=3D"gmail=
-_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
-,204);padding-left:1ex"><div dir=3D"ltr"><div><br></div><div>Alex<br></div>=
-</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
-On Mon, 20 Sept 2021 at 11:19, ?ukasz Majewski &lt;<a href=3D"mailto:lukma@=
-denx.de" target=3D"_blank">lukma@denx.de</a>&gt; wrote:<br></div><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex">Hi Anibal,<br>
-<br>
-&gt; Hi Anibal,<br>
-&gt; <br>
-&gt; &gt; Up till now ptest-runner2 returns number of failed tests with its=
-<br>
-&gt; &gt; exit status code. Such use case is not recommended [1] and may ca=
-use<br>
-&gt; &gt; issues when there are more than 256 tests to be executed.<br>
-&gt; &gt; <br>
-&gt; &gt; To alleviate this issue the number of total tests with number of<=
-br>
-&gt; &gt; failed ones is printed before exit. To be more specific - failure=
- of<br>
-&gt; &gt; tests (one or more) causes ptest-runner to provide exit code of 1=
-.<br>
-&gt; &gt; <br>
-&gt; &gt; One can test this change with executing:<br>
-&gt; &gt; ./ptest-runner -d tests/data fail=C2=A0 <br>
-&gt; <br>
-&gt; Gentle ping on this patch.<br>
-&gt; <br>
-<br>
-Gentle ping on this patch.<br>
-<br>
-Is it OK to be applied?<br></blockquote></div></blockquote><div><br></div><=
-div>Applied,</div><div><br></div><div>Thanks,</div><div>Anibal</div><div>=
-=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div class=3D=
-"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-<br>
-&gt; &gt; <br>
-&gt; &gt; Links:<br>
-&gt; &gt; [1] -<br>
-&gt; &gt; <a href=3D"https://www.gnu.org/software/libc/manual/html_node/Exi=
-t-Status.html" rel=3D"noreferrer" target=3D"_blank">https://www.gnu.org/sof=
-tware/libc/manual/html_node/Exit-Status.html</a><br>
-&gt; &gt; <br>
-&gt; &gt; Signed-off-by: Lukasz Majewski &lt;<a href=3D"mailto:lukma@denx.d=
-e" target=3D"_blank">lukma@denx.de</a>&gt;<br>
-&gt; &gt; ---<br>
-&gt; &gt; Changes for v2:<br>
-&gt; &gt; - When number of failed tests is N, the ptest-runner returns valu=
-e<br>
-&gt; &gt; of 1 to indicate error in the execution<br>
-&gt; &gt; ---<br>
-&gt; &gt;=C2=A0 main.c | 3 +++<br>
-&gt; &gt;=C2=A0 1 file changed, 3 insertions(+)<br>
-&gt; &gt; <br>
-&gt; &gt; diff --git a/main.c b/main.c<br>
-&gt; &gt; index 890bc6a..bcec844 100644<br>
-&gt; &gt; --- a/main.c<br>
-&gt; &gt; +++ b/main.c<br>
-&gt; &gt; @@ -220,6 +220,9 @@ main(int argc, char *argv[])<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ptest_list_remove(=
-run, opts.exclude[i], 1);<br>
-&gt; &gt;=C2=A0 <br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0rc =3D run_ptests(run, opts, argv[0], stdout, =
-stderr);<br>
-&gt; &gt; +=C2=A0 =C2=A0fprintf(stdout, &quot;TOTAL: %d FAIL: %d\n&quot;,<b=
+<div dir=3D"ltr">Hi Alex,<div><br></div><div>Do you have a repo/branch for =
+this patch?.</div><div><br></div><div>I&#39;m having issues applying...</di=
+v><div><br></div><div>...</div><div>alimon@blackbox:~/upstream/ptest-runner=
+2$ git am -3 ~/Downloads/\[ptest-runner\]\[PATCH\ 3_3\]\ utils.c_\ add\ sys=
+tem\ data\ collection\ when\ a\ test\ gets\ stuck..eml<br>Applying: utils.c=
+: add system data collection when a test gets stuck.<br>error: sha1 informa=
+tion is lacking or useless (utils.c).<br>error: could not build fake ancest=
+or<br>Patch failed at 0001 utils.c: add system data collection when a test =
+gets stuck.<br>hint: Use &#39;git am --show-current-patch=3Ddiff&#39; to se=
+e the failed patch<br>When you have resolved this problem, run &quot;git am=
+ --continue&quot;.<br>If you prefer to skip this patch, run &quot;git am --=
+skip&quot; instead.<br>To restore the original branch and stop patching, ru=
+n &quot;git am --abort&quot;.<br></div><div>...</div><div><br></div><div>Re=
+gards,</div><div>Anibal</div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Thu, 16 Sept 2021 at 07:46, Alexander Kana=
+vin &lt;<a href=3D"mailto:alex.kanavin@gmail.com">alex.kanavin@gmail.com</a=
+>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
+ 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Cur=
+rently, ptest-runner simply kills the offending test without further ado,<b=
 r>
-&gt; &gt; ptest_list_length(run), rc);<br>
-&gt; &gt; +=C2=A0 =C2=A0if (rc &gt; 0)<br>
-&gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rc =3D 1;<br>
-&gt; &gt;=C2=A0 <br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0ptest_list_free_all(&amp;run);<br>
-&gt; &gt;=C2=A0 =C2=A0 <br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; Best regards,<br>
-&gt; <br>
-&gt; Lukasz Majewski<br>
-&gt; <br>
-&gt; --<br>
-&gt; <br>
-&gt; DENX Software Engineering GmbH,=C2=A0 =C2=A0 =C2=A0 Managing Director:=
- Wolfgang Denk<br>
-&gt; HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany<=
+which is not at all helpful when trying to figure out why it happens<br>
+(especially if such hangs are intermittent and rare). There&#39;s now a scr=
+ipt<br>
+that gets executed before killing the test, so ideas on what to have in it<=
 br>
-&gt; Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email:<br>
-&gt; <a href=3D"mailto:lukma@denx.de" target=3D"_blank">lukma@denx.de</a><b=
-r>
+are welcome.<br>
 <br>
+Signed-off-by: Alexander Kanavin &lt;<a href=3D"mailto:alex@linutronix.de" =
+target=3D"_blank">alex@linutronix.de</a>&gt;<br>
+---<br>
+=C2=A0Makefile=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 2 +-<br>
+=C2=A0ptest-runner-collect-system-data |=C2=A0 5 +++++<br>
+=C2=A0utils.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 24 ++++++++++++++++++++++++<br>
+=C2=A03 files changed, 30 insertions(+), 1 deletion(-)<br>
+=C2=A0create mode 100755 ptest-runner-collect-system-data<br>
 <br>
+diff --git a/Makefile b/Makefile<br>
+index a6372de..168cf5a 100644<br>
+--- a/Makefile<br>
++++ b/Makefile<br>
+@@ -43,7 +43,7 @@ $(TEST_EXECUTABLE): $(TEST_OBJECTS)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 $(CC) $(LDFLAGS) $(TEST_OBJECTS) -o $@ $(TEST_L=
+IBSTATIC) $(TEST_LDFLAGS)<br>
 <br>
+=C2=A0check: $(TEST_EXECUTABLE)<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0./$(TEST_EXECUTABLE) -d $(TEST_DATA)<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0PATH=3D.:$(PATH) ./$(TEST_EXECUTABLE) -d $(TEST=
+_DATA)<br>
 <br>
-Best regards,<br>
+=C2=A0.c.o:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 $(CC) $(CFLAGS) -c $&lt; -o $@<br>
+diff --git a/ptest-runner-collect-system-data b/ptest-runner-collect-system=
+-data<br>
+new file mode 100755<br>
+index 0000000..5bfeaf3<br>
+--- /dev/null<br>
++++ b/ptest-runner-collect-system-data<br>
+@@ -0,0 +1,5 @@<br>
++#!/bin/sh<br>
++# Other ideas on what to do when a ptest gets stuck welcome.<br>
++pstree -a -l<br>
++df<br>
++free<br>
+diff --git a/utils.c b/utils.c<br>
+index 58c3aa1..a67ac11 100644<br>
+--- a/utils.c<br>
++++ b/utils.c<br>
+@@ -281,6 +281,27 @@ close_fds(void)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+=C2=A0}<br>
 <br>
-Lukasz Majewski<br>
++static void<br>
++collect_system_state(FILE* fout)<br>
++{<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0char *cmd =3D &quot;ptest-runner-collect-system=
+-data&quot;;<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0char buf[1024];<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0FILE *fp;<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0if ((fp =3D popen(cmd, &quot;r&quot;)) =3D=3D N=
+ULL) {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fprintf(fout, &quot=
+;Error opening pipe!\n&quot;);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0while (fgets(buf, 1024, fp) !=3D NULL) {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fprintf(fout, &quot=
+;%s&quot;, buf);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0if(pclose(fp))=C2=A0 {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fprintf(fout, &quot=
+;Command not found or exited with error status\n&quot;);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
++}<br>
++<br>
+=C2=A0static void *<br>
+=C2=A0read_child(void *arg)<br>
+=C2=A0{<br>
+@@ -313,6 +334,9 @@ read_child(void *arg)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 }<br>
 <br>
---<br>
-<br>
-DENX Software Engineering GmbH,=C2=A0 =C2=A0 =C2=A0 Managing Director: Wolf=
-gang Denk<br>
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany<br>
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: <a href=3D"mailt=
-o:lukma@denx.de" target=3D"_blank">lukma@denx.de</a><br>
-<br>
-<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 } else if (r =3D=3D=
+ 0) {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0// no output from the test after a timeout; the test is stuck, so=
+ collect<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0// as much data from the system as possible and kill the test<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0collect_system_state(_child_reader.fps[0]);<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 _child_reader.timeouted =3D 1;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 kill(-_child_reader.pid, SIGKILL);<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+-- <br>
+2.33.0<br>
 <br>
 </blockquote></div>
-</blockquote></div></div>
 
---000000000000e3206d05ccabfbea--
+--0000000000009aea0d05ccac3072--
