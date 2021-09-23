@@ -1,847 +1,188 @@
-Received: from smtp-pc10.blackberry.com (smtp-pc10.blackberry.com [74.82.81.42])
- by mx.groups.io with SMTP id smtpd.web11.5628.1632408362752935629
+Received: from EUR03-DB5-obe.outbound.protection.outlook.com (EUR03-DB5-obe.outbound.protection.outlook.com [40.107.4.133])
+ by mx.groups.io with SMTP id smtpd.web08.6112.1632410165928686471
  for <yocto@lists.yoctoproject.org>;
- Thu, 23 Sep 2021 07:46:03 -0700
+ Thu, 23 Sep 2021 08:16:08 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@blackberry.com header.s=corp19 header.b=Tpi4+KRL;
- spf=pass (domain: blackberry.com, ip: 74.82.81.42, mailfrom: lijchen@blackberry.com)
-Received: from pps.filterd (mhs400cnc.rim.net [127.0.0.1])
-	by mhs400cnc.rim.net (8.16.0.43/8.16.0.43) with SMTP id 18NEc6qe183432;
-	Thu, 23 Sep 2021 10:45:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=blackberry.com; h=from : to : cc :
- subject : date : message-id : references : in-reply-to : content-type :
- mime-version; s=corp19; bh=hsvaBifktvxkw1UvvBDTrZxURv3Tolsq3M3CdjV0hqk=;
- b=Tpi4+KRL92QbcAp+jFamv1+HoxUwM5VtKszd0V60aCffok1/+kCGEOLa/+LMizqUvXAK
- f7OoL2dNyf+TO//IVDjum4QxqIXCwds3Pz8qD2RT1559IEdvIXoR5ELKoteIaX3xlpmN
- AOp75svBkKWcae98ecvPGLlVk3QN3PvDILjXxWoM2HEhDc2pFBxTmY5p58ElZr8zAnNg
- oBVQxKv6YtwJ+87a0lNiQU7n5VUh9Jiw2VsMQHZHo1D2hyVZPyOGhgjQN6ZigAnZybbH
- VOUDwqlwqSbhnJuH6S65MPxqSx96m9+vxScIxnb89oYtmchpnA/9mftr2mZkrFaBVx8s sg== 
-Received: from xch214cnc.rim.net (xch214cnc.rim.net [10.3.27.119])
-	by mhs400cnc.rim.net with ESMTP id 3b7q5wux3k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Thu, 23 Sep 2021 10:45:57 -0400
-Received: from XCH211YKF.rim.net (10.12.114.211) by XCH214CNC.rim.net
- (10.3.27.119) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.14; Thu, 23 Sep
- 2021 10:45:57 -0400
-Received: from XCH211YKF.rim.net ([fe80::dca:23f8:c2c0:7180]) by
- XCH211YKF.rim.net ([fe80::dca:23f8:c2c0:7180%5]) with mapi id 15.01.2308.014;
- Thu, 23 Sep 2021 10:45:57 -0400
-From: "Lijun Chen" <lijchen@blackberry.com>
-To: Federico Pellegrin <fede@evolware.org>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] googletest shared library
-Thread-Topic: [yocto] googletest shared library
-Thread-Index: AQHXrvNmR2vvZSsL30OJxestQkC5W6uuznCAgAARxluAASeUKIAAaj2A///jB82AAUnfsIAAVIyA///AtJk=
-Date: Thu, 23 Sep 2021 14:45:57 +0000
-Message-ID: <6be47b6387624c2686df9b5bdab5d1e1@blackberry.com>
-References: <3925c5329d6f46f78c5921fe7965662b@blackberry.com>
- <AS8PR09MB4645D63449C60FC6463045E7A8A19@AS8PR09MB4645.eurprd09.prod.outlook.com>
- <16A6EE364B338B15.22723@lists.yoctoproject.org>
- <15166f538f2144adabe2299deb3b2a3c@blackberry.com>
- <4440837f-5f69-28c4-7d8b-57653935790c@gmail.com>
- <16A735F63BB00E6A.1967@lists.yoctoproject.org>
- <1b84a7a456b54acaae9d98efc5731549@blackberry.com>,<CAM6O0Zgs5Fir2k8m+tTVG_OVVe6oq=uRvCEegxzA6x-AvgwSJw@mail.gmail.com>
-In-Reply-To: <CAM6O0Zgs5Fir2k8m+tTVG_OVVe6oq=uRvCEegxzA6x-AvgwSJw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [100.64.197.219]
+ dkim=pass header.i=@prevas.dk header.s=selector1 header.b=Lx1jUird;
+ spf=pass (domain: prevas.dk, ip: 40.107.4.133, mailfrom: rasmus.villemoes@prevas.dk)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WjrMHY8mdcXxpYr6g8rFMIfC0n9XTpibRdwlRHqiaVbLTRY9haP2qWJPNMFDKnppA5RWwwx7PbaPwwlT47wU6Th7xhMYZ1oGMFitcE72igoEQQcuurOcgZJVYPhj7rlm4XloZfxHRQDjQvO+65sX3kkMYsSLdQr8nJgGISKICV+ykRj0NAjDcAEvl/31KD227fFUqG1bDVfaYLqgtHKvx436KYtJtemI9IzJfWaLHI18xIvwaEXOv+byZEb5jxE1VR5PZZyosQf8QAreDgL/q9JnHLsvBdJ/lqwusInLSkCoSAG9U3+7uj2giDg54LcTcyHO+qYHDkXc7FxFdW/7CQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=rnYQhhPacRyeS4blcBDQMhY9XLY16iCJsv+kQomE6GQ=;
+ b=Bc6fkpKnOvxfIoY7AtNTCcIoO2QBr3EPxXw8FIBxk9L9FDsgqwpXhKAEhhJOKu9/WqFS6cksBlSGS9Axu5dSg9VxP+FQxPaKLvPxsvhL5Xvy5UgPjKbEZWHIJ4PqhSwdw5StFpIrm0NRoyW/kw8noVu1kIoDpz1zxUMnQktroLvm2kZjW0/H4edGon9DCKMOSB4e3ZqqKxakLTmWHv0cSqWl7pm87ofMw00LPGkEOenjmTEBRumEg4O7M+4rlvnT4crmtCfVH/5mUeEAqSnEHR4BL9oSZx/eyJLvBu1gzcIMcxWaG4AYu/CpVk1291JPZFmR157P34m2uhUwqBZaFA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=prevas.dk; dmarc=pass action=none header.from=prevas.dk;
+ dkim=pass header.d=prevas.dk; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prevas.dk;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rnYQhhPacRyeS4blcBDQMhY9XLY16iCJsv+kQomE6GQ=;
+ b=Lx1jUirdX2lsuiLVC392YOLl2SJLEzYSmmmkCjHAZ3oe7yoz2/D8hHbQosGHhv6Q47LJGDM80bppnzfwyy/7E7QKa5aNMbEdLepD79ePqXOdEDYxWp/s9JxFci6g9vAtbdEgP8QyNEQXNodpUnE9J4iy3Jqbs1AYBAmioBvwLcE=
+Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=prevas.dk;
+Received: from AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:3f::10)
+ by AM0PR10MB3444.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:156::28) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.15; Thu, 23 Sep
+ 2021 15:16:03 +0000
+Received: from AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::d9cd:f635:6e73:9bd3]) by AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::d9cd:f635:6e73:9bd3%3]) with mapi id 15.20.4544.013; Thu, 23 Sep 2021
+ 15:16:03 +0000
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+From: "Rasmus Villemoes" <rasmus.villemoes@prevas.dk>
+Subject: "stack smashing detected" when building aarch64 kernel
+Message-ID: <c81729e7-0bc2-7f7c-84ce-25d92ec09148@prevas.dk>
+Date: Thu, 23 Sep 2021 17:16:00 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+X-ClientProxiedBy: HE1PR06CA0145.eurprd06.prod.outlook.com
+ (2603:10a6:7:16::32) To AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:3f::10)
+Return-Path: rasmus.villemoes@prevas.dk
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-09-23_04:2021-09-23,2021-09-23 signatures=0
+Received: from [192.168.1.149] (80.208.69.72) by HE1PR06CA0145.eurprd06.prod.outlook.com (2603:10a6:7:16::32) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.13 via Frontend Transport; Thu, 23 Sep 2021 15:16:02 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: f1ae061f-1fbc-403e-880c-08d97ea50e6e
+X-MS-TrafficTypeDiagnostic: AM0PR10MB3444:
+X-Microsoft-Antispam-PRVS: 
+	<AM0PR10MB34446F7D7B7E6783171DA1A693A39@AM0PR10MB3444.EURPRD10.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	22eQ2YCh4AfLR5nev/2uffaZcWSA/8L7dTlaZGTefw2PnNX0byAou8u5btx4NULCEBsSz7T5mGc3jc2/dnNf5JhtdYAPTEtvvk7Cv4NDXQTNh/RsvFUBgIPNtd0yoFb2q/NGvCOfWfOK9AfUIK5iGbMfoiRR1EntQDIjB2DEfLmUJmgCUggL1W7yseqtsAN7uHetN/Y5ecSb62hDpgVkJFSHdw4NJBs5N1SNJAnatCTRAleEnUBoU4vuitXDAtVsOCDNWt1zPBGsMFrp9U3L69wsPKbdVa+QnIiMLfdQH9B29A50xmnE6JoehJlPqURPJP58n7WwME4ztghL84GJimS5BpMnMPOErHKWnoaN/BY/t37rkO0sdR6hqXdl0yp71KjzDkdrA6oym2PTKtCXqtNBqYyqvX/jSJeGllc05OlUNZbbYoMA+oNYLndbxfOQn+9bWfFaBtAfjbihf+0i2bSAlBI/m70jK/R78IsZeKJFSAFiNdcXRnTNS9HU81F+nFLBF2LopA9pPmV7yTq93WtMlLUZdHGmmsgS1Vlj/DROAZHRHvduAbudwPoltoV1EYH/EQ0BykHFCpUbqSpSaywfwNLrwfGMrOV6uAJKNqL1wl0LKlLoFShr3nbZuWLz02jie4Hj9V3eRJVrkV5J9u/94vonegctE4IeWizBk+gaL3jgSfgmRN0+ELkwHH/EZrH/dQwNFz3yS608fg1Ks2lJeIJysJyaF/YmHv2el6/5jjxfpizbIzz9qFYGBSY6HsW+QqjhezkCQSXwSEunAptRvTxRIGdhxZBuYJfycyHmiYaCTXhih53dUTEZiUlA8Y+sZ3SqtHmImDo3egiJngdyxu2ltsEzxLpVzmtBAnA=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(366004)(66476007)(6916009)(8976002)(8676002)(316002)(8936002)(5660300002)(44832011)(16576012)(86362001)(52116002)(2616005)(956004)(83380400001)(2906002)(31696002)(38350700002)(66556008)(38100700002)(31686004)(186003)(66946007)(26005)(36756003)(6486002)(508600001)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?Windows-1252?Q?d7sOaTQ/Q1XxCl4h2/wGzmAW3vtN5+cPGiwl8CT3lvie29IkSYxbnnyp?=
+ =?Windows-1252?Q?xDT9taqFIQ7YV8syT/NSbhX1gb3U7P8rIdNFQ1UJtirrew7Y18qNTfGu?=
+ =?Windows-1252?Q?oUaAVMEuEUG6AgeS0azlAKjEM88RWLMRSNlHyBjvvYYqtAgNhUZTIGS2?=
+ =?Windows-1252?Q?7biussQAKgQW+i7qHuyTBXwxPJuzAYE+euRS48yKgmY5O16snTnliDb/?=
+ =?Windows-1252?Q?ljmH7kxESf4hHi89YJDj/gFeDIkr2z9Qn/APSBXwCXZIOQpMjCrPVTTJ?=
+ =?Windows-1252?Q?I+tVn1WT9HJTc4WlR+WIRdIE+D+mhQyNyA0hBIMR6+wZakRI27uClUv3?=
+ =?Windows-1252?Q?CrgFUlc7TfGsmeKz/Nktz8y5gkeOA9BColPMwrlwwnB0yzVTqBDwzmCU?=
+ =?Windows-1252?Q?FT6oIthuuphGJT/OufIIeFmlXklt8gmVFA+TxvlYvEA56r/U97OWcDrf?=
+ =?Windows-1252?Q?WMcG6J3WuCn1nuU5DONExaJhyAYqT4pbxWS/eYrZcP+jRk7x/OO2JUBQ?=
+ =?Windows-1252?Q?tWHszNOlDF2Mc8AolliWvbZHfntbKtsZC64x/pewzwWYfCeGoRSA87cO?=
+ =?Windows-1252?Q?+MaSm7ul88ssJKRD+hS4bMqMzOn70p960UIqFFNGPzGp2UjwTg988Y04?=
+ =?Windows-1252?Q?oNeMX2C8Nl2yZEOwILGxGEpaWfI2j2emqZtNUCMqzeYbCRA/jb9GslsF?=
+ =?Windows-1252?Q?WQpL6vGq45MHoQWD1Le2CwohRmpQ574LqFArrLxEAYK5a5TjO5UqEkJB?=
+ =?Windows-1252?Q?G1vKtZdLSOg98biRFJndB/IJESOw2VhI69iUtKTGfV0s11ebHNKkgjIG?=
+ =?Windows-1252?Q?zgGDmIA6ET1Mch3tTud7YJwWSqOBqK9V8caQeD2rJSXVnwvnUG0YXb9j?=
+ =?Windows-1252?Q?icBwQtz5yoZzk7365DpY5yPgkAKtgrifUEBzI5QSW0eOUm/JDiz4N3zr?=
+ =?Windows-1252?Q?Kbrgm9PS3RD9mxJp0ipZ8WWjgNZxBSrdTXzH9eev/oPtkBXFLwar4X1y?=
+ =?Windows-1252?Q?TH0tfp9A32/YPRQrmNhuiPaXek41Tqgktnz/WFWIQHQQVulXLp29rSvY?=
+ =?Windows-1252?Q?h+wQl0GubgPlcCdv0ZlIFuND8+5klYvsVpRH79qfL5NTSNvZ7EmD9ADn?=
+ =?Windows-1252?Q?5rNcQ0Wl6avLdppY/5lWpwPOsiX4HF+ibBCZIZ6IN7aYtdUcol49PJ6J?=
+ =?Windows-1252?Q?nkUpGqJoeQJ6OyMily5OFdHCtrmvgYLaCleygM4pJubvw5KZ6+NDbXJ9?=
+ =?Windows-1252?Q?gHKETfHeBOjxDTJbbzxc6kp7boYys5SKtEEl12MmLQHpatNy9Efaijs0?=
+ =?Windows-1252?Q?Zqbnm+k1l1+AA7Wi3zg1QS1K3Bv02uUUvXhuSsNPsWXml1XFRuBc6y5j?=
+ =?Windows-1252?Q?u+fj1TE6cAgVi1ehJlCYZkGcvHR8wbXRpS612rgHJhSJbgWtB6GEu47Y?=
+X-OriginatorOrg: prevas.dk
+X-MS-Exchange-CrossTenant-Network-Message-Id: f1ae061f-1fbc-403e-880c-08d97ea50e6e
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2021 15:16:03.0791
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: d350cf71-778d-4780-88f5-071a4cb1ed61
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DNMG0wXvBdOArFY9G/x1ZXM+PX+p50FFw+3gPbqR36cZOFtLSxdPVIpuHpEMfk4A+ek5QC4chp7hueTzAU+Tv33YnfOiSc/2TJxgm2yuIbw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3444
+Content-Type: text/plain; charset=windows-1252
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_6be47b6387624c2686df9b5bdab5d1e1blackberrycom_"
+Content-Transfer-Encoding: 7bit
 
---_000_6be47b6387624c2686df9b5bdab5d1e1blackberrycom_
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+I've recently started getting an internal compiler error when building
+an aarch64 kernel. It only happens once in a while, and re-running the
+task usually just succeeds, so I don't know how to reproduce or trigger
+this at will.
 
-I tried INSANE_SKIP_${PN} +=3D "dev-elf" and "dev-so", still got the QA err=
-or:
+Two examples:
 
-ERROR: googletest-1.10.0-r0 do_package_qa: QA Issue: -dev package googletes=
-t-dev contains non-symlink .so '/usr/lib/libgmock.so'
--dev package googletest-dev contains non-symlink .so '/usr/lib/libgtest_mai=
-n.so'
--dev package googletest-dev contains non-symlink .so '/usr/lib/libgmock_mai=
-n.so'
--dev package googletest-dev contains non-symlink .so '/usr/lib/libgtest.so'=
- [dev-elf]
-ERROR: googletest-1.10.0-r0 do_package_qa: QA run found fatal errors. Pleas=
-e consider fixing them.
-ERROR: Logfile of failure stored in: /home/lijchen/hdd/ivdp/yocto/imx8/imx-=
-yocto-bsp-Hardknott/build-imx8qmmek/tmp/work/cortexa72-cortexa53-crypto-pok=
-y-linux/googletest/1.10.0-r0/temp/log.do_package_qa.24701
-ERROR: Task (/home/lijchen/hdd/ivdp/yocto/imx8/imx-yocto-bsp-Hardknott/sour=
-ces/meta-openembedded/meta-oe/recipes-test/googletest/googletest_git.bb:do_=
-package_qa) failed with exit code '1'
+===
+  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gm20b.o
+  CC [M]  drivers/net/ethernet/mellanox/mlx5/core/rl.o
+  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gp100.o
+*** stack smashing detected ***: <unknown> terminated
+In file included from .../kernel-source/arch/arm64/include/asm/atomic.h:15,
+                 from .../kernel-source/include/linux/atomic.h:7,
+                 from
+.../kernel-source/include/asm-generic/bitops/atomic.h:5,
+                 from .../kernel-source/arch/arm64/include/asm/bitops.h:26,
+                 from .../kernel-source/include/linux/bitops.h:29,
+                 from .../kernel-source/include/linux/kernel.h:12,
+                 from .../kernel-source/include/linux/uio.h:8,
+                 from .../kernel-source/include/linux/socket.h:8,
+                 from .../kernel-source/include/uapi/linux/if.h:25,
+                 from .../kernel-source/net/mac80211/led.c:7:
+.../kernel-source/include/net/inet_sock.h: In function 'inet_sk_state_load':
+.../kernel-source/arch/arm64/include/asm/barrier.h:114:8: internal
+compiler error: Aborted
+  114 |  union { __unqual_scalar_typeof(*p) __val; char __c[1]; } __u; \
+      |        ^
+.../kernel-source/include/asm-generic/barrier.h:142:29: note: in
+expansion of macro '__smp_load_acquire'
+  142 | #define smp_load_acquire(p) __smp_load_acquire(p)
+      |                             ^~~~~~~~~~~~~~~~~~
+.../kernel-source/include/net/inet_sock.h:312:9: note: in expansion of
+macro 'smp_load_acquire'
+  312 |  return smp_load_acquire(&sk->sk_state);
+      |         ^~~~~~~~~~~~~~~~
+Please submit a full bug report,
+with preprocessed source if appropriate.
+See <https://gcc.gnu.org/bugs/> for instructions.
+.../kernel-source/scripts/Makefile.build:279: recipe for target
+'net/mac80211/led.o' failed
+make[3]: *** [net/mac80211/led.o] Error 1
+make[3]: *** Waiting for unfinished jobs....
+  CC [M]  drivers/net/ethernet/mellanox/mlx5/core/lag.o
+===
+  CC [M]  drivers/gpu/drm/nouveau/nvkm/nvfw/ls.o
+  CC [M]  drivers/gpu/drm/drm_modeset_helper.o
+  CC [M]  drivers/gpu/drm/drm_scdc_helper.o
+*** stack smashing detected ***: <unknown> terminated
+In file included from
+.../kernel-source/include/linux/regulator/consumer.h:35,
+                 from
+.../kernel-source/drivers/gpu/drm/nouveau/include/nvif/os.h:27,
+                 from
+.../kernel-source/drivers/gpu/drm/nouveau/include/nvkm/core/os.h:4,
+                 from
+.../kernel-source/drivers/gpu/drm/nouveau/include/nvkm/core/oclass.h:3,
+                 from
+.../kernel-source/drivers/gpu/drm/nouveau/include/nvkm/core/device.h:4,
+                 from
+.../kernel-source/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h:4,
+                 from
+.../kernel-source/drivers/gpu/drm/nouveau/nvkm/nvfw/ls.c:22:
+.../kernel-source/include/linux/suspend.h:364:36: internal compiler
+error: Aborted
+  364 | extern void mark_free_pages(struct zone *zone);
+      |                                    ^~~~
+Please submit a full bug report,
+with preprocessed source if appropriate.
+See <https://gcc.gnu.org/bugs/> for instructions.
+.../kernel-source/scripts/Makefile.build:280: recipe for target
+'drivers/gpu/drm/nouveau/nvkm/nvfw/ls.o' failed
+make[5]: *** [drivers/gpu/drm/nouveau/nvkm/nvfw/ls.o] Error 1
+make[5]: *** Waiting for unfinished jobs....
+  CC [M]  drivers/gpu/drm/drm_gem_framebuffer_helper.o
+===
 
-I also tried adding " -DCMAKE_INSTALL_PREFIX=3D/usr/local" to EXTRA_OEMAKE,=
- and got the following error:
+This is with hardknott, aarch64-oe-linux-gcc (GCC) 10.2.0, building
+5.10.* kernels (5.10.45 and 5.10.65 in the cases above IIRC). The build
+is visiting drivers/gpu/drm/ in both cases, but in the former case it's
+not actually a TU in there that fails, but one in net/, so I'm not even
+sure it it has to do with something peculiar to the drivers/gpu/drm/
+modules.
 
-ERROR: googletest-1.10.0-r0 do_package: QA Issue: googletest: Files/directo=
-ries were installed but not shipped in any package:
-  /usr/local/include
-  /usr/local/lib/libgmock.so
-  /usr/local/lib/libgtest_main.so
-  /usr/local/lib/libgmock_main.so
-  /usr/local/lib/libgtest.so
-  /usr/local/lib/cmake
-  /usr/local/lib/pkgconfig
-  /usr/local/lib/cmake/GTest
-  /usr/local/lib/cmake/GTest/GTestTargets.cmake
-  /usr/local/lib/cmake/GTest/GTestConfigVersion.cmake
-  /usr/local/lib/cmake/GTest/GTestConfig.cmake
-  /usr/local/lib/cmake/GTest/GTestTargets-noconfig.cmake
-  /usr/local/lib/pkgconfig/gtest_main.pc
-  /usr/local/lib/pkgconfig/gtest.pc
-  /usr/local/lib/pkgconfig/gmock_main.pc
-  /usr/local/lib/pkgconfig/gmock.pc
-  /usr/local/include/gtest
-  /usr/local/include/gmock
-  /usr/local/include/gtest/gtest_prod.h
-  /usr/local/include/gtest/gtest-test-part.h
-  /usr/local/include/gtest/gtest_pred_impl.h
-  /usr/local/include/gtest/gtest-matchers.h
-  /usr/local/include/gtest/gtest-printers.h
-  /usr/local/include/gtest/gtest.h
-  /usr/local/include/gtest/gtest-param-test.h
-  /usr/local/include/gtest/gtest-death-test.h
-  /usr/local/include/gtest/gtest-typed-test.h
-  /usr/local/include/gtest/gtest-message.h
-  /usr/local/include/gtest/gtest-spi.h
-  /usr/local/include/gtest/internal
-  /usr/local/include/gtest/internal/gtest-death-test-internal.h
-  /usr/local/include/gtest/internal/gtest-filepath.h
-  /usr/local/include/gtest/internal/gtest-param-util.h
-  /usr/local/include/gtest/internal/gtest-string.h
-  /usr/local/include/gtest/internal/gtest-type-util.h
-  /usr/local/include/gtest/internal/gtest-internal.h
-  /usr/local/include/gtest/internal/gtest-type-util.h.pump
-  /usr/local/include/gtest/internal/gtest-port-arch.h
-  /usr/local/include/gtest/internal/gtest-port.h
-  /usr/local/include/gtest/internal/custom
-  /usr/local/include/gtest/internal/custom/gtest-printers.h
-  /usr/local/include/gtest/internal/custom/gtest.h
-  /usr/local/include/gtest/internal/custom/README.md
-  /usr/local/include/gtest/internal/custom/gtest-port.h
-  /usr/local/include/gmock/gmock-function-mocker.h
-  /usr/local/include/gmock/gmock-generated-function-mockers.h
-  /usr/local/include/gmock/gmock-generated-actions.h.pump
-  /usr/local/include/gmock/gmock-matchers.h
-  /usr/local/include/gmock/gmock-generated-matchers.h
-  /usr/local/include/gmock/gmock-more-matchers.h
-  /usr/local/include/gmock/gmock.h
-  /usr/local/include/gmock/gmock-generated-actions.h
-  /usr/local/include/gmock/gmock-nice-strict.h
-  /usr/local/include/gmock/gmock-spec-builders.h
-  /usr/local/include/gmock/gmock-more-actions.h
-  /usr/local/include/gmock/gmock-generated-function-mockers.h.pump
-  /usr/local/include/gmock/gmock-cardinalities.h
-  /usr/local/include/gmock/gmock-actions.h
-  /usr/local/include/gmock/gmock-generated-matchers.h.pump
-  /usr/local/include/gmock/internal
-  /usr/local/include/gmock/internal/gmock-port.h
-  /usr/local/include/gmock/internal/gmock-pp.h
-  /usr/local/include/gmock/internal/gmock-internal-utils.h
-  /usr/local/include/gmock/internal/custom
-  /usr/local/include/gmock/internal/custom/gmock-port.h
-  /usr/local/include/gmock/internal/custom/gmock-generated-actions.h.pump
-  /usr/local/include/gmock/internal/custom/gmock-matchers.h
-  /usr/local/include/gmock/internal/custom/gmock-generated-actions.h
-  /usr/local/include/gmock/internal/custom/README.md
-Please set FILES such that these items are packaged. Alternatively if they =
-are unneeded, avoid installing them or delete them within do_install.
-googletest: 69 installed and not shipped files. [installed-vs-shipped]
-ERROR: googletest-1.10.0-r0 do_package: Fatal QA errors found, failing task=
-.
+Has anyone seem something like this, or any ideas for figuring out
+what's going on?
 
-
-
-________________________________
-From: Federico Pellegrin <fede@evolware.org>
-Sent: Thursday, September 23, 2021 10:27:39 AM
-To: Lijun Chen
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] googletest shared library
-
-
-Hi,
-To skip the QA you can use:
-
-INSANE_SKIP_${PN} +=3D "dev-elf"
-
-(or any QA part you'd like to skip, ie. dev-elf or dev-so ...)
-
-Cheers,
-Federico
-
-
-
-Il giorno gio 23 set 2021 alle ore 15:33 Lijun Chen <lijchen@blackberry.com=
-<mailto:lijchen@blackberry.com>> ha scritto:
-
-Hi,
-
-
-If I switch to the default setting of the googletest recipe, the header fil=
-es are included in the SDK image. However, the libgtest libraries are stati=
-c.
-
-Looks FILES_SOLIBSDEV =3D "" disables googletest-dev to be included in the =
-SDK.
-
-
-Is there a way to change the library to dynamic and keep the header files? =
-i.e. just add EXTRA_OECMAKE =3D "-DBUILD_SHARED_LIBS=3DON " but skip the do=
-_package_qa part to avoid the QA issue due to un-versioned library?
-
-
-Thanks,
-
-Lijun
-
-
-________________________________
-From: yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org> <yo=
-cto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org>> on behalf =
-of Lijun Chen <lijchen@blackberry.com<mailto:lijchen@blackberry.com>>
-Sent: Wednesday, September 22, 2021 1:45 PM
-To: Khem Raj; yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.=
-org>
-Subject: Re: [yocto] googletest shared library
-
-
-Tried adding googletest to TOOLCHAIN_TARGET_TASK. The gtest .h files are st=
-ill not showing up.
-
-Thanks,
-
-________________________________
-From: Khem Raj <raj.khem@gmail.com<mailto:raj.khem@gmail.com>>
-Sent: Wednesday, September 22, 2021 11:28:05 AM
-To: Lijun Chen; yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoprojec=
-t.org>
-Subject: Re: [yocto] googletest shared library
-
-The .h files will be in dev pkg in this case googletest-dev
-what happens if you add googletest to TOOLCHAIN_TARGET_TASK
-
-On 9/22/21 6:18 AM, Lijun Chen wrote:
-> Hi,
->
->
-> Now I included googletest to the IMAGE_INSTALL in my image file, and
-> built both board image and SDK image. I can see libgtest.so is available
-> in both images. However, gtest/gtest.h is a not present in SDK. How do I
-> add the header files to the SDK image? Looks the following lines affect
-> that?
->
-> SOLIBS =3D ".so"
-> FILES_SOLIBSDEV =3D ""
->
-> Thanks,
-> Lijun
->
-> ------------------------------------------------------------------------
-> *From:* yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org>=
- <yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org>> on
-> behalf of Lijun Chen <lijchen@blackberry.com<mailto:lijchen@blackberry.co=
-m>>
-> *Sent:* Tuesday, September 21, 2021 3:50 PM
-> *To:* Konrad Weihmann; yocto@lists.yoctoproject.org<mailto:yocto@lists.yo=
-ctoproject.org>
-> *Subject:* Re: [yocto] googletest shared library
->
-> Thanks Konrad. That worked.
->
-> ------------------------------------------------------------------------
-> *From:* Konrad Weihmann <kweihmann@outlook.com<mailto:kweihmann@outlook.c=
-om>>
-> *Sent:* Tuesday, September 21, 2021 10:26:19 AM
-> *To:* Lijun Chen; yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctopr=
-oject.org>
-> *Subject:* Re: [yocto] googletest shared library
->
-> On 21.09.21 16:18, Lijun Chen wrote:
->> Hi,
->>
->> I would like to include libgtest.so into my Yocto image. I added
->> googletest to IMAGE_INSTALL and added the following line to
->> sources/meta-openembedded/meta-oe/recipes-test/googletest/googletest_git=
-.bb<https://urldefense.com/v3/__http://googletest_git.bb__;!!COg3wY07Hnb7!7=
-O_HT4lxGD2NMUNxv3WxuozghHtiiLg6jEedfRQlWFKmZAkTPU49ug2kIHlR9kH4xg$>:
->>
->> EXTRA_OECMAKE =3D "-DBUILD_SHARED_LIBS=3DON "
->>
->>
->> The shared libraries were built successfully. However, there are errors
->> in do_package_qc as following:
->>
->>
->> ERROR: googletest-1.10.0-r0 do_package_qa: QA Issue: -dev package
->> googletest-dev contains non-symlink .so '/usr/lib/libgmock.so'
->> -dev package googletest-dev contains non-symlink .so
->> '/usr/lib/libgtest_main.so'
->> -dev package googletest-dev contains non-symlink .so
->> '/usr/lib/libgmock_main.so'
->> -dev package googletest-dev contains non-symlink .so
->> '/usr/lib/libgtest.so' [dev-elf]
->> ERROR: googletest-1.10.0-r0 do_package_qa: QA run found fatal errors.
->> Please consider fixing them.
->
-> https://urldefense.com/v3/__http://git.yoctoproject.org/cgit/cgit.cgi/pok=
-y/tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n34__;Iw!!COg3wY07H=
-nb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0NANM4iMsNNleww$
-> <https://urldefense.com/v3/__http://git.yoctoproject.org/cgit/cgit.cgi/po=
-ky/tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n34__;Iw!!COg3wY07=
-Hnb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0NANM4iMsNNleww$>
->
-> (and the next lines) might give you a hint what to do in this case.
-> Although one could also consider that's something that needs to be fixed
-> in the installation script of googletest, as versioned libraries are the
-> expected default
->
->>
->>
->> Any idea to fix this?
->>
->>
->> Thanks,
->>
->> Lijun
->>
->>
->> ------------------------------------------------------------------------
->> This transmission (including any attachments) may contain confidential
->> information, privileged material (including material protected by the
->> solicitor-client or other applicable privileges), or constitute
->> non-public information. Any use of this information by anyone other than
->> the intended recipient is prohibited. If you have received this
->> transmission in error, please immediately reply to the sender and delete
->> this information from your system. Use, dissemination, distribution, or
->> reproduction of this transmission by unintended recipients is not
->> authorized and may be unlawful.
->>
->>
->>
->>
-> ------------------------------------------------------------------------
-> This transmission (including any attachments) may contain confidential
-> information, privileged material (including material protected by the
-> solicitor-client or other applicable privileges), or constitute
-> non-public information. Any use of this information by anyone other than
-> the intended recipient is prohibited. If you have received this
-> transmission in error, please immediately reply to the sender and delete
-> this information from your system. Use, dissemination, distribution, or
-> reproduction of this transmission by unintended recipients is not
-> authorized and may be unlawful.
-> ------------------------------------------------------------------------
-> This transmission (including any attachments) may contain confidential
-> information, privileged material (including material protected by the
-> solicitor-client or other applicable privileges), or constitute
-> non-public information. Any use of this information by anyone other than
-> the intended recipient is prohibited. If you have received this
-> transmission in error, please immediately reply to the sender and delete
-> this information from your system. Use, dissemination, distribution, or
-> reproduction of this transmission by unintended recipients is not
-> authorized and may be unlawful.
->
->
->
->
-________________________________
-This transmission (including any attachments) may contain confidential info=
-rmation, privileged material (including material protected by the solicitor=
--client or other applicable privileges), or constitute non-public informati=
-on. Any use of this information by anyone other than the intended recipient=
- is prohibited. If you have received this transmission in error, please imm=
-ediately reply to the sender and delete this information from your system. =
-Use, dissemination, distribution, or reproduction of this transmission by u=
-nintended recipients is not authorized and may be unlawful.
-________________________________
-This transmission (including any attachments) may contain confidential info=
-rmation, privileged material (including material protected by the solicitor=
--client or other applicable privileges), or constitute non-public informati=
-on. Any use of this information by anyone other than the intended recipient=
- is prohibited. If you have received this transmission in error, please imm=
-ediately reply to the sender and delete this information from your system. =
-Use, dissemination, distribution, or reproduction of this transmission by u=
-nintended recipients is not authorized and may be unlawful.
-
-
-
-----------------------------------------------------------------------
-This transmission (including any attachments) may contain confidential info=
-rmation, privileged material (including material protected by the solicitor=
--client or other applicable privileges), or constitute non-public informati=
-on. Any use of this information by anyone other than the intended recipient=
- is prohibited. If you have received this transmission in error, please imm=
-ediately reply to the sender and delete this information from your system. =
-Use, dissemination, distribution, or reproduction of this transmission by u=
-nintended recipients is not authorized and may be unlawful.
-
---_000_6be47b6387624c2686df9b5bdab5d1e1blackberrycom_
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset="iso-8859-1"
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; colo=
-r: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, &quot;EmojiFo=
-nt&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoCo=
-lorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymb=
-ols;">
-<p>I tried <span>INSANE_SKIP_${PN} &#43;=3D &quot;dev-elf&quot; and &quot;d=
-ev-so&quot;, still got the QA error:</span></p>
-<p><span></p>
-<div>ERROR: googletest-1.10.0-r0 do_package_qa: QA Issue: -dev package goog=
-letest-dev contains non-symlink .so '/usr/lib/libgmock.so'<br>
--dev package googletest-dev contains non-symlink .so '/usr/lib/libgtest_mai=
-n.so'<br>
--dev package googletest-dev contains non-symlink .so '/usr/lib/libgmock_mai=
-n.so'<br>
--dev package googletest-dev contains non-symlink .so '/usr/lib/libgtest.so'=
- [dev-elf]<br>
-ERROR: googletest-1.10.0-r0 do_package_qa: QA run found fatal errors. Pleas=
-e consider fixing them.<br>
-ERROR: Logfile of failure stored in: /home/lijchen/hdd/ivdp/yocto/imx8/imx-=
-yocto-bsp-Hardknott/build-imx8qmmek/tmp/work/cortexa72-cortexa53-crypto-pok=
-y-linux/googletest/1.10.0-r0/temp/log.do_package_qa.24701<br>
-ERROR: Task (/home/lijchen/hdd/ivdp/yocto/imx8/imx-yocto-bsp-Hardknott/sour=
-ces/meta-openembedded/meta-oe/recipes-test/googletest/googletest_git.bb:do_=
-package_qa) failed with exit code '1'<br>
-<br>
-</div>
-I also tried adding <span>&quot; -DCMAKE_INSTALL_PREFIX=3D/usr/local&quot;<=
-/span> to <span>EXTRA_OEMAKE</span>, and got the following error:</span>
-<p></p>
-<p><span></p>
-<div>ERROR: googletest-1.10.0-r0 do_package: QA Issue: googletest: Files/di=
-rectories were installed but not shipped in any package:<br>
-&nbsp; /usr/local/include<br>
-&nbsp; /usr/local/lib/libgmock.so<br>
-&nbsp; /usr/local/lib/libgtest_main.so<br>
-&nbsp; /usr/local/lib/libgmock_main.so<br>
-&nbsp; /usr/local/lib/libgtest.so<br>
-&nbsp; /usr/local/lib/cmake<br>
-&nbsp; /usr/local/lib/pkgconfig<br>
-&nbsp; /usr/local/lib/cmake/GTest<br>
-&nbsp; /usr/local/lib/cmake/GTest/GTestTargets.cmake<br>
-&nbsp; /usr/local/lib/cmake/GTest/GTestConfigVersion.cmake<br>
-&nbsp; /usr/local/lib/cmake/GTest/GTestConfig.cmake<br>
-&nbsp; /usr/local/lib/cmake/GTest/GTestTargets-noconfig.cmake<br>
-&nbsp; /usr/local/lib/pkgconfig/gtest_main.pc<br>
-&nbsp; /usr/local/lib/pkgconfig/gtest.pc<br>
-&nbsp; /usr/local/lib/pkgconfig/gmock_main.pc<br>
-&nbsp; /usr/local/lib/pkgconfig/gmock.pc<br>
-&nbsp; /usr/local/include/gtest<br>
-&nbsp; /usr/local/include/gmock<br>
-&nbsp; /usr/local/include/gtest/gtest_prod.h<br>
-&nbsp; /usr/local/include/gtest/gtest-test-part.h<br>
-&nbsp; /usr/local/include/gtest/gtest_pred_impl.h<br>
-&nbsp; /usr/local/include/gtest/gtest-matchers.h<br>
-&nbsp; /usr/local/include/gtest/gtest-printers.h<br>
-&nbsp; /usr/local/include/gtest/gtest.h<br>
-&nbsp; /usr/local/include/gtest/gtest-param-test.h<br>
-&nbsp; /usr/local/include/gtest/gtest-death-test.h<br>
-&nbsp; /usr/local/include/gtest/gtest-typed-test.h<br>
-&nbsp; /usr/local/include/gtest/gtest-message.h<br>
-&nbsp; /usr/local/include/gtest/gtest-spi.h<br>
-&nbsp; /usr/local/include/gtest/internal<br>
-&nbsp; /usr/local/include/gtest/internal/gtest-death-test-internal.h<br>
-&nbsp; /usr/local/include/gtest/internal/gtest-filepath.h<br>
-&nbsp; /usr/local/include/gtest/internal/gtest-param-util.h<br>
-&nbsp; /usr/local/include/gtest/internal/gtest-string.h<br>
-&nbsp; /usr/local/include/gtest/internal/gtest-type-util.h<br>
-&nbsp; /usr/local/include/gtest/internal/gtest-internal.h<br>
-&nbsp; /usr/local/include/gtest/internal/gtest-type-util.h.pump<br>
-&nbsp; /usr/local/include/gtest/internal/gtest-port-arch.h<br>
-&nbsp; /usr/local/include/gtest/internal/gtest-port.h<br>
-&nbsp; /usr/local/include/gtest/internal/custom<br>
-&nbsp; /usr/local/include/gtest/internal/custom/gtest-printers.h<br>
-&nbsp; /usr/local/include/gtest/internal/custom/gtest.h<br>
-&nbsp; /usr/local/include/gtest/internal/custom/README.md<br>
-&nbsp; /usr/local/include/gtest/internal/custom/gtest-port.h<br>
-&nbsp; /usr/local/include/gmock/gmock-function-mocker.h<br>
-&nbsp; /usr/local/include/gmock/gmock-generated-function-mockers.h<br>
-&nbsp; /usr/local/include/gmock/gmock-generated-actions.h.pump<br>
-&nbsp; /usr/local/include/gmock/gmock-matchers.h<br>
-&nbsp; /usr/local/include/gmock/gmock-generated-matchers.h<br>
-&nbsp; /usr/local/include/gmock/gmock-more-matchers.h<br>
-&nbsp; /usr/local/include/gmock/gmock.h<br>
-&nbsp; /usr/local/include/gmock/gmock-generated-actions.h<br>
-&nbsp; /usr/local/include/gmock/gmock-nice-strict.h<br>
-&nbsp; /usr/local/include/gmock/gmock-spec-builders.h<br>
-&nbsp; /usr/local/include/gmock/gmock-more-actions.h<br>
-&nbsp; /usr/local/include/gmock/gmock-generated-function-mockers.h.pump<br>
-&nbsp; /usr/local/include/gmock/gmock-cardinalities.h<br>
-&nbsp; /usr/local/include/gmock/gmock-actions.h<br>
-&nbsp; /usr/local/include/gmock/gmock-generated-matchers.h.pump<br>
-&nbsp; /usr/local/include/gmock/internal<br>
-&nbsp; /usr/local/include/gmock/internal/gmock-port.h<br>
-&nbsp; /usr/local/include/gmock/internal/gmock-pp.h<br>
-&nbsp; /usr/local/include/gmock/internal/gmock-internal-utils.h<br>
-&nbsp; /usr/local/include/gmock/internal/custom<br>
-&nbsp; /usr/local/include/gmock/internal/custom/gmock-port.h<br>
-&nbsp; /usr/local/include/gmock/internal/custom/gmock-generated-actions.h.p=
-ump<br>
-&nbsp; /usr/local/include/gmock/internal/custom/gmock-matchers.h<br>
-&nbsp; /usr/local/include/gmock/internal/custom/gmock-generated-actions.h<b=
-r>
-&nbsp; /usr/local/include/gmock/internal/custom/README.md<br>
-Please set FILES such that these items are packaged. Alternatively if they =
-are unneeded, avoid installing them or delete them within do_install.<br>
-googletest: 69 installed and not shipped files. [installed-vs-shipped]<br>
-ERROR: googletest-1.10.0-r0 do_package: Fatal QA errors found, failing task=
-.</div>
-<br>
-</span>
-<p></p>
-<p><span></span><br>
-</p>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" face=
-=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> Federico Pellegrin =
-&lt;fede@evolware.org&gt;<br>
-<b>Sent:</b> Thursday, September 23, 2021 10:27:39 AM<br>
-<b>To:</b> Lijun Chen<br>
-<b>Cc:</b> yocto@lists.yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] googletest shared library</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">
-<div><br>
-</div>
-<div>Hi,</div>
-<div>To skip the QA you can use:</div>
-<div><br>
-</div>
-<div>INSANE_SKIP_${PN} &#43;=3D &quot;dev-elf&quot;</div>
-<div><br>
-</div>
-<div>(or any QA part you'd like to skip, ie. dev-elf or dev-so ...)</div>
-<div><br>
-</div>
-<div>Cheers,</div>
-<div>Federico</div>
-<div><br>
-</div>
-<div><br>
-</div>
-</div>
-<br>
-<div class=3D"gmail_quote">
-<div dir=3D"ltr" class=3D"gmail_attr">Il giorno gio 23 set 2021 alle ore 15=
-:33 Lijun Chen &lt;<a href=3D"mailto:lijchen@blackberry.com">lijchen@blackb=
-erry.com</a>&gt; ha scritto:<br>
-</div>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; border=
--left:1px solid rgb(204,204,204); padding-left:1ex">
-<div dir=3D"ltr">
-<div id=3D"gmail-m_8376641144616927063divtagdefaultwrapper" dir=3D"ltr" sty=
-le=3D"font-size:12pt; color:rgb(0,0,0); font-family:Calibri,Helvetica,sans-=
-serif,&quot;EmojiFont&quot;,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Em=
-oji&quot;,NotoColorEmoji,&quot;Segoe UI Symbol&quot;,&quot;Android Emoji&qu=
-ot;,EmojiSymbols">
-<p>Hi,</p>
-<p><br>
-</p>
-<p>If I switch to the default setting of the googletest recipe, the header =
-files are included in the SDK image. However, the libgtest libraries are st=
-atic.</p>
-<p>Looks <font size=3D"2"><span style=3D"font-size:10pt">FILES_SOLIBSDEV =
-=3D &quot;&quot;</span></font> disables googletest-dev to be included in th=
-e SDK.</p>
-<p><br>
-</p>
-<p><span>Is there a way to change the library to dynamic and keep the heade=
-r files? i.e. just add
-<font size=3D"2"><span style=3D"font-size:10pt">EXTRA_OECMAKE =3D &quot;-DB=
-UILD_SHARED_LIBS=3DON &quot;</span></font> but skip the
-<font size=3D"2"><span style=3D"font-size:10pt">do_package_qa</span></font>=
- part to avoid the QA issue due to un-versioned library?</span></p>
-<p><span><br>
-</span></p>
-<p><span>Thanks,</span></p>
-<p><span>Lijun</span><br>
-</p>
-<br>
-<br>
-<div style=3D"color:rgb(0,0,0)">
-<hr style=3D"display:inline-block; width:98%">
-<div id=3D"gmail-m_8376641144616927063divRplyFwdMsg" dir=3D"ltr"><font styl=
-e=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#000000"><b>From=
-:</b>
-<a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blank">yocto@lis=
-ts.yoctoproject.org</a> &lt;<a href=3D"mailto:yocto@lists.yoctoproject.org"=
- target=3D"_blank">yocto@lists.yoctoproject.org</a>&gt; on behalf of Lijun =
-Chen &lt;<a href=3D"mailto:lijchen@blackberry.com" target=3D"_blank">lijche=
-n@blackberry.com</a>&gt;<br>
-<b>Sent:</b> Wednesday, September 22, 2021 1:45 PM<br>
-<b>To:</b> Khem Raj; <a href=3D"mailto:yocto@lists.yoctoproject.org" target=
-=3D"_blank">
-yocto@lists.yoctoproject.org</a><br>
-<b>Subject:</b> Re: [yocto] googletest shared library</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">
-<div id=3D"gmail-m_8376641144616927063x_divtagdefaultwrapper" dir=3D"ltr" s=
-tyle=3D"font-size:12pt; color:rgb(0,0,0); font-family:Calibri,Helvetica,san=
-s-serif,&quot;EmojiFont&quot;,&quot;Apple Color Emoji&quot;,&quot;Segoe UI =
-Emoji&quot;,NotoColorEmoji,&quot;Segoe UI Symbol&quot;,&quot;Android Emoji&=
-quot;,EmojiSymbols">
-<p>Tried adding googletest to <font size=3D"2"><span style=3D"font-size:10p=
-t">TOOLCHAIN_TARGET_TASK</span></font>. The gtest .h files are still not sh=
-owing up.</p>
-<p>Thanks,<br>
-</p>
-</div>
-<hr style=3D"display:inline-block; width:98%">
-<div id=3D"gmail-m_8376641144616927063x_divRplyFwdMsg" dir=3D"ltr"><font st=
-yle=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#000000"><b>Fr=
-om:</b> Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank=
-">raj.khem@gmail.com</a>&gt;<br>
-<b>Sent:</b> Wednesday, September 22, 2021 11:28:05 AM<br>
-<b>To:</b> Lijun Chen; <a href=3D"mailto:yocto@lists.yoctoproject.org" targ=
-et=3D"_blank">
-yocto@lists.yoctoproject.org</a><br>
-<b>Subject:</b> Re: [yocto] googletest shared library</font>
-<div>&nbsp;</div>
-</div>
-</div>
-<font size=3D"2"><span style=3D"font-size:10pt">
-<div>The .h files will be in dev pkg in this case googletest-dev<br>
-what happens if you add googletest to TOOLCHAIN_TARGET_TASK<br>
-<br>
-On 9/22/21 6:18 AM, Lijun Chen wrote:<br>
-&gt; Hi,<br>
-&gt; <br>
-&gt; <br>
-&gt; Now I included googletest to the IMAGE_INSTALL in my image file, and <=
-br>
-&gt; built both board image and SDK image. I can see libgtest.so is availab=
-le <br>
-&gt; in both images. However, gtest/gtest.h is a not present in SDK. How do=
- I <br>
-&gt; add the header files to the SDK image? Looks the following lines affec=
-t <br>
-&gt; that?<br>
-&gt; <br>
-&gt; SOLIBS =3D &quot;.so&quot;<br>
-&gt; FILES_SOLIBSDEV =3D &quot;&quot;<br>
-&gt; <br>
-&gt; Thanks,<br>
-&gt; Lijun<br>
-&gt; <br>
-&gt; ----------------------------------------------------------------------=
---<br>
-&gt; *From:* <a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_bla=
-nk">yocto@lists.yoctoproject.org</a> &lt;<a href=3D"mailto:yocto@lists.yoct=
-oproject.org" target=3D"_blank">yocto@lists.yoctoproject.org</a>&gt; on
-<br>
-&gt; behalf of Lijun Chen &lt;<a href=3D"mailto:lijchen@blackberry.com" tar=
-get=3D"_blank">lijchen@blackberry.com</a>&gt;<br>
-&gt; *Sent:* Tuesday, September 21, 2021 3:50 PM<br>
-&gt; *To:* Konrad Weihmann; <a href=3D"mailto:yocto@lists.yoctoproject.org"=
- target=3D"_blank">
-yocto@lists.yoctoproject.org</a><br>
-&gt; *Subject:* Re: [yocto] googletest shared library<br>
-&gt; <br>
-&gt; Thanks Konrad. That worked.<br>
-&gt; <br>
-&gt; ----------------------------------------------------------------------=
---<br>
-&gt; *From:* Konrad Weihmann &lt;<a href=3D"mailto:kweihmann@outlook.com" t=
-arget=3D"_blank">kweihmann@outlook.com</a>&gt;<br>
-&gt; *Sent:* Tuesday, September 21, 2021 10:26:19 AM<br>
-&gt; *To:* Lijun Chen; <a href=3D"mailto:yocto@lists.yoctoproject.org" targ=
-et=3D"_blank">
-yocto@lists.yoctoproject.org</a><br>
-&gt; *Subject:* Re: [yocto] googletest shared library<br>
-&gt; <br>
-&gt; On 21.09.21 16:18, Lijun Chen wrote:<br>
-&gt;&gt; Hi,<br>
-&gt;&gt; <br>
-&gt;&gt; I would like to include libgtest.so into my Yocto image. I added <=
-br>
-&gt;&gt; googletest to IMAGE_INSTALL and added the following line to <br>
-&gt;&gt; sources/meta-openembedded/meta-oe/recipes-test/googletest/<a href=
-=3D"https://urldefense.com/v3/__http://googletest_git.bb__;!!COg3wY07Hnb7!7=
-O_HT4lxGD2NMUNxv3WxuozghHtiiLg6jEedfRQlWFKmZAkTPU49ug2kIHlR9kH4xg$" target=
-=3D"_blank">googletest_git.bb</a>:<br>
-&gt;&gt; <br>
-&gt;&gt; EXTRA_OECMAKE =3D &quot;-DBUILD_SHARED_LIBS=3DON &quot;<br>
-&gt;&gt; <br>
-&gt;&gt; <br>
-&gt;&gt; The shared libraries were built successfully. However, there are e=
-rrors <br>
-&gt;&gt; in do_package_qc as following:<br>
-&gt;&gt; <br>
-&gt;&gt; <br>
-&gt;&gt; ERROR: googletest-1.10.0-r0 do_package_qa: QA Issue: -dev package =
-<br>
-&gt;&gt; googletest-dev contains non-symlink .so '/usr/lib/libgmock.so'<br>
-&gt;&gt; -dev package googletest-dev contains non-symlink .so <br>
-&gt;&gt; '/usr/lib/libgtest_main.so'<br>
-&gt;&gt; -dev package googletest-dev contains non-symlink .so <br>
-&gt;&gt; '/usr/lib/libgmock_main.so'<br>
-&gt;&gt; -dev package googletest-dev contains non-symlink .so <br>
-&gt;&gt; '/usr/lib/libgtest.so' [dev-elf]<br>
-&gt;&gt; ERROR: googletest-1.10.0-r0 do_package_qa: QA run found fatal erro=
-rs. <br>
-&gt;&gt; Please consider fixing them.<br>
-&gt; <br>
-&gt; <a href=3D"https://urldefense.com/v3/__http://git.yoctoproject.org/cgi=
-t/cgit.cgi/poky/tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n34__=
-;Iw!!COg3wY07Hnb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0NANM4=
-iMsNNleww$" target=3D"_blank">
-https://urldefense.com/v3/__http://git.yoctoproject.org/cgit/cgit.cgi/poky/=
-tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n34__;Iw!!COg3wY07Hnb=
-7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0NANM4iMsNNleww$</a>
-<br>
-&gt; &lt;<a href=3D"https://urldefense.com/v3/__http://git.yoctoproject.org=
-/cgit/cgit.cgi/poky/tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n=
-34__;Iw!!COg3wY07Hnb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0N=
-ANM4iMsNNleww$" target=3D"_blank">https://urldefense.com/v3/__http://git.yo=
-ctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-graphics/spir/spirv-too=
-ls_2021.2.bb*n34__;Iw!!COg3wY07Hnb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3n=
-YTCBoGJTY9-K0NANM4iMsNNleww$</a>&gt;
-<br>
-&gt; <br>
-&gt; (and the next lines) might give you a hint what to do in this case.<br=
->
-&gt; Although one could also consider that's something that needs to be fix=
-ed<br>
-&gt; in the installation script of googletest, as versioned libraries are t=
-he<br>
-&gt; expected default<br>
-&gt; <br>
-&gt;&gt; <br>
-&gt;&gt; <br>
-&gt;&gt; Any idea to fix this?<br>
-&gt;&gt; <br>
-&gt;&gt; <br>
-&gt;&gt; Thanks,<br>
-&gt;&gt; <br>
-&gt;&gt; Lijun<br>
-&gt;&gt; <br>
-&gt;&gt; <br>
-&gt;&gt; ------------------------------------------------------------------=
-------<br>
-&gt;&gt; This transmission (including any attachments) may contain confiden=
-tial <br>
-&gt;&gt; information, privileged material (including material protected by =
-the <br>
-&gt;&gt; solicitor-client or other applicable privileges), or constitute <b=
-r>
-&gt;&gt; non-public information. Any use of this information by anyone othe=
-r than <br>
-&gt;&gt; the intended recipient is prohibited. If you have received this <b=
-r>
-&gt;&gt; transmission in error, please immediately reply to the sender and =
-delete <br>
-&gt;&gt; this information from your system. Use, dissemination, distributio=
-n, or <br>
-&gt;&gt; reproduction of this transmission by unintended recipients is not =
-<br>
-&gt;&gt; authorized and may be unlawful.<br>
-&gt;&gt; <br>
-&gt;&gt; <br>
-&gt;&gt; <br>
-&gt;&gt; <br>
-&gt; ----------------------------------------------------------------------=
---<br>
-&gt; This transmission (including any attachments) may contain confidential=
- <br>
-&gt; information, privileged material (including material protected by the =
-<br>
-&gt; solicitor-client or other applicable privileges), or constitute <br>
-&gt; non-public information. Any use of this information by anyone other th=
-an <br>
-&gt; the intended recipient is prohibited. If you have received this <br>
-&gt; transmission in error, please immediately reply to the sender and dele=
-te <br>
-&gt; this information from your system. Use, dissemination, distribution, o=
-r <br>
-&gt; reproduction of this transmission by unintended recipients is not <br>
-&gt; authorized and may be unlawful.<br>
-&gt; ----------------------------------------------------------------------=
---<br>
-&gt; This transmission (including any attachments) may contain confidential=
- <br>
-&gt; information, privileged material (including material protected by the =
-<br>
-&gt; solicitor-client or other applicable privileges), or constitute <br>
-&gt; non-public information. Any use of this information by anyone other th=
-an <br>
-&gt; the intended recipient is prohibited. If you have received this <br>
-&gt; transmission in error, please immediately reply to the sender and dele=
-te <br>
-&gt; this information from your system. Use, dissemination, distribution, o=
-r <br>
-&gt; reproduction of this transmission by unintended recipients is not <br>
-&gt; authorized and may be unlawful.<br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-</div>
-</span></font>
-<hr>
-This transmission (including any attachments) may contain confidential info=
-rmation, privileged material (including material protected by the solicitor=
--client or other applicable privileges), or constitute non-public informati=
-on. Any use of this information
- by anyone other than the intended recipient is prohibited. If you have rec=
-eived this transmission in error, please immediately reply to the sender an=
-d delete this information from your system. Use, dissemination, distributio=
-n, or reproduction of this transmission
- by unintended recipients is not authorized and may be unlawful.<br>
-</div>
-</div>
-</div>
-<hr>
-This transmission (including any attachments) may contain confidential info=
-rmation, privileged material (including material protected by the solicitor=
--client or other applicable privileges), or constitute non-public informati=
-on. Any use of this information
- by anyone other than the intended recipient is prohibited. If you have rec=
-eived this transmission in error, please immediately reply to the sender an=
-d delete this information from your system. Use, dissemination, distributio=
-n, or reproduction of this transmission
- by unintended recipients is not authorized and may be unlawful.<br>
-</div>
-<br>
-<br>
-<br>
-</blockquote>
-</div>
-</div>
-</div>
-
-<HR>This transmission (including any attachments) may contain confidential =
-information, privileged material (including material protected by the solic=
-itor-client or other applicable privileges), or constitute non-public infor=
-mation. Any use of this information by anyone other than the intended recip=
-ient is prohibited. If you have received this transmission in error, please=
- immediately reply to the sender and delete this information from your syst=
-em. Use, dissemination, distribution, or reproduction of this transmission =
-by unintended recipients is not authorized and may be unlawful.<BR>
-</body>
-</html>
-
---_000_6be47b6387624c2686df9b5bdab5d1e1blackberrycom_--
+Rasmus
