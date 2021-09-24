@@ -1,112 +1,157 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CC525C433F5
-	for <webhook@archiver.kernel.org>; Fri, 24 Sep 2021 15:11:53 +0000 (UTC)
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com
- [209.85.219.42])
- by mx.groups.io with SMTP id smtpd.web09.413.1632496312617631699
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D074C433EF
+	for <webhook@archiver.kernel.org>; Fri, 24 Sep 2021 16:05:27 +0000 (UTC)
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com
+ [209.85.210.177])
+ by mx.groups.io with SMTP id smtpd.web12.1076.1632499526257005507
  for <yocto@lists.yoctoproject.org>;
- Fri, 24 Sep 2021 08:11:52 -0700
+ Fri, 24 Sep 2021 09:05:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=YgSamo3T;
- spf=pass (domain: gmail.com, ip: 209.85.219.42,
- mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-qv1-f42.google.com with SMTP id a14so6431881qvb.6
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=n2fAG0Fg;
+ spf=pass (domain: gmail.com, ip: 209.85.210.177,
+ mailfrom: raj.khem@gmail.com)
+Received: by mail-pf1-f177.google.com with SMTP id k26so4679120pfi.5
         for <yocto@lists.yoctoproject.org>;
- Fri, 24 Sep 2021 08:11:52 -0700 (PDT)
+ Fri, 24 Sep 2021 09:05:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
+        h=message-id:date:mime-version:user-agent:content-language:to
+         :references:from:organization:subject:in-reply-to
          :content-transfer-encoding;
-        bh=Sz1TdbIAxu+jW6lUy4V7k3VF2KaKN5B6ZhPKaTi5rcE=;
-        b=YgSamo3Ty+tQ/6X5U1lOaBc6+HZNcYe2RIg/MCyig8bXJuNc+2fUfj0Ew2JJlvu0AK
-         Mqpha3R5h/498tuvTYegrpOYSOKd8pi1xFSq02CpBUAPpFOeNY+48nviGVrA0/hcSjpV
-         EzxNa2sjDMXkl1DXBdKIxhMPt7RB9+tXkkHEdeYCXPXhpxbEgScPKh0G/7ViXevnM+uX
-         DefthDIDpo8nz1EHl3LmFTkHd0v96j7uV2ZHdotwYSrnZ0JrhEwLKDCRERhnVJVo+tpu
-         2jTGpY4t/r0mCFnuzXfZgy4CSw4aOi1ov515RbBZ1Pob6dTaosDYuhwYwhDB7lMKfPDB
-         ddSg==
+        bh=kXNjt2pURMnN0buf1nRfJOXMzQL07pggGbyTz1RG7Cc=;
+        b=n2fAG0FgLsaRe4uPW5qFg7Wn2sfGo/hwbFf5ffHTWfSbRoMdjqShZo2PAczhIDNiuL
+         Qj4UfBHprR2xd4ao70rJyvYu4/FOjE0feZtxjYRMaPq7o0zjERo36xzo+PuyPlskp2BG
+         Ow/Rx6/KDHgsuFQtIUNljxI1cKYVq1LJ7xX5daCdaLqDbURIzqQQWc4eC5Uct/jYqxN2
+         REx52UWgxyAGMfvvVWOdJN9RYis5XlUIrZ9eZROIpwUZMzhab0ARArsOEw59LARHb3BE
+         3Avj1ueve9dfz48UkFrTsom1W5Q0hyLXp7//o/qRPfNVmt0hcsQwN/ibHlH8FN272u5C
+         of5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Sz1TdbIAxu+jW6lUy4V7k3VF2KaKN5B6ZhPKaTi5rcE=;
-        b=H2hQqakx/7VLgRw3Xu0/+8YI97GFh1pcXBt/7k6RyWDlLonMOsq20HC8kfhAd8PNLM
-         ih1RxAwrpbJwB3gud3JR/zNZwEIfUePoZUOJ/bukduAQw0suTVpfM81Te1yk0L7kg/6g
-         99XVpoMFvJZ88C1Rs5dBacgWuFqbafWkTByWWPT2pBponjD1X7+JgMdrUGEgDHto9+Wo
-         FFWxERcE8gffrZ5VgqJNZ0/gh4XEKlhtk18dSDobVGKtwZBcgbKItxBgrPGJ+1filt5C
-         CcUfeyJliVSN7BOAdNPY0tuoeqelWPWqVV1a0qXEGnmbNKGl34VaQRxo56QEz2g/4YAQ
-         nBdw==
-X-Gm-Message-State: AOAM53312zcxpXh+LP7ILiR6K0mRa0l1RsRvTzFL9dkwoMXzmXl/Ts0J
-	Ct/qpIXsoweiI5/xrc68AxI=
+        h=x-gm-message-state:message-id:date:mime-version:user-agent
+         :content-language:to:references:from:organization:subject
+         :in-reply-to:content-transfer-encoding;
+        bh=kXNjt2pURMnN0buf1nRfJOXMzQL07pggGbyTz1RG7Cc=;
+        b=C24T1l4XBzOZvAunD34kz7NTje8JKpnkmhcXD3iMypjIqWkxSC6H4EFhOzLR8m+bYw
+         la1NUuv/E6Rao4kd3Y41l4Q3bU4O3Oa6igqI62J3y3Zng6LqDPAMk4JFAI27rUGnKzhT
+         vv8GkWmScq9w9xITIX8rFRzmbo/gP7HTwujIEQtvqHgjHBnePzwKgx3mqGDuSJWN+Ksw
+         j8OwZKPFRXMYOqQJLDMmhKJrZY7FpoG6WOTXjW1iJUEZ3zJxOuqSqTBySrajxyJLQf5V
+         j1mUnOPrQ5pP+WT72A+pZevI9Pzh09Sra1mlfSahYF1NTXBbzWhikjEQmyuYA+dsyiWO
+         Hsxg==
+X-Gm-Message-State: AOAM530XNoxVNxfYoTga0vaR+QFdA4fnRApiUxFXtkx7OI5ieVa7MfA5
+	KsJX9tfRBHHM7VgJMadZfas=
 X-Google-Smtp-Source: 
- ABdhPJzHkT1s9q0fjEfEgQntxx6TGrSOPziFwCKLOanGm4Bl23EeC8rThM3J+XP93mSf58jYgQMgXA==
-X-Received: by 2002:a05:6214:1353:: with SMTP id
- b19mr2469591qvw.3.1632496311778;
-        Fri, 24 Sep 2021 08:11:51 -0700 (PDT)
-Received: from build.lan
- (cpe04d4c4975b80-cmf4c11490699b.cpe.net.cable.rogers.com. [174.112.63.222])
+ ABdhPJx5nQrmMoDZ2NUSiaXRBPidpGzsSDz/EuzgaPPKgV7helNv1plcq55GmVvhbDHak6fvkiKxpw==
+X-Received: by 2002:a65:6287:: with SMTP id f7mr4508945pgv.444.1632499525537;
+        Fri, 24 Sep 2021 09:05:25 -0700 (PDT)
+Received: from ?IPV6:2601:646:9200:a0f0:1dda:37cf:b1d6:5d51?
+ ([2601:646:9200:a0f0:1dda:37cf:b1d6:5d51])
         by smtp.gmail.com with ESMTPSA id
- k203sm6442644qke.124.2021.09.24.08.11.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Sep 2021 08:11:51 -0700 (PDT)
-From: bruce.ashfield@gmail.com
-To: richard.purdie@linuxfoundation.org
-Cc: yocto@lists.yoctoproject.org
-Subject: [PATCH] yocto-bsp/5.13: drop recipes
-Date: Fri, 24 Sep 2021 11:11:50 -0400
-Message-Id: <20210924151150.14463-1-bruce.ashfield@gmail.com>
-X-Mailer: git-send-email 2.19.1
+ p2sm10557630pgd.84.2021.09.24.09.05.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Sep 2021 09:05:24 -0700 (PDT)
+Message-ID: <e69623f0-0f87-47fd-f8ab-3bed92f863e2@gmail.com>
+Date: Fri, 24 Sep 2021 09:05:23 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.1.1
+Content-Language: en-US
+To: arnaud.bienner@dolby.com, yocto@lists.yoctoproject.org
+References: <5SeU.1632474392921086265.Laoa@lists.yoctoproject.org>
+From: Khem Raj <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Subject: Re: [yocto] Cross-compiling or compiling on target VM?
+In-Reply-To: <5SeU.1632474392921086265.Laoa@lists.yoctoproject.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 24 Sep 2021 15:11:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54846
+ <yocto@lists.yoctoproject.org>; Fri, 24 Sep 2021 16:05:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54847
 
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
 
-5.13 has been removed from core, and we've moved the default
-support to 5.14, so we can drop our bbappend.
 
-Signed-off-by: Bruce Ashfield <bruce.ashfield@gmail.com>
----
- .../linux/linux-yocto_5.13.bbappend           | 23 -------------------
- 1 file changed, 23 deletions(-)
- delete mode 100644 meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.13.bbappend
+On 9/24/21 2:06 AM, arnaud.bienner@dolby.com wrote:
+> Hi,
+> 
+> We are starting a new project using Yocto to build a custom Linux image 
+> which matches our needs.
+> We are new to Yocto and still trying to figure out the best way to work 
+> with it.
+> 
+> Especially, if it is best to cross-compile or to build on a VM running 
+> an image of the target.
+> 
+> Some background:
+> Our target system is x86_64, and we are all working on x86_64 computers 
+> obviously.
+> For now, we don't have yet a physical target system so we are running 
+> the image generated by Yocto in VirtualBox or VMWare.
+> 
+> For practical reasons, since not all developers use the same OS 
+> (Windows, macOS) we decided to do all development work on Linux VM 
+> (Debian distribution) so everyone has the same system.
+> For now, we are cross-compiling applications using Yocto SDK in that 
+> Debian VM, copying it to the Yocto VM to run it.
+> Even though copying/deploying and running them could be somehow 
+> automated, since we are developing on a Linux VM anyway, I thought it 
+> could be best to build a Yocto image (maybe as an additional "dev" image 
+> based on the existing one) which contains all tools we need (gcc, cmake, 
+> etc.).
+> 
+> This way, we could execute the binaries (in particular the unit tests) 
+> locally.
+> For some of our unit tests in particular that we run at build time, it 
+> sounds easier to run them locally, compared to deploying them and 
+> running them remotely.
+> 
+> Any thoughts about this?
 
-diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.13.bbappend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.13.bbappend
-deleted file mode 100644
-index daf5fd2cd6..0000000000
---- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.13.bbappend
-+++ /dev/null
-@@ -1,23 +0,0 @@
--KBRANCH:genericx86  = "v5.13/standard/base"
--KBRANCH:genericx86-64  = "v5.13/standard/base"
--KBRANCH:edgerouter = "v5.13/standard/edgerouter"
--KBRANCH:beaglebone-yocto = "v5.13/standard/beaglebone"
--
--KMACHINE:genericx86 ?= "common-pc"
--KMACHINE:genericx86-64 ?= "common-pc-64"
--KMACHINE:beaglebone-yocto ?= "beaglebone"
--
--SRCREV_machine:genericx86 ?= "7280c93f5599946db3add473eeb05b34c364938d"
--SRCREV_machine:genericx86-64 ?= "7280c93f5599946db3add473eeb05b34c364938d"
--SRCREV_machine:edgerouter ?= "a832a0390e96c4f014d7b2bf9f161ac9477140f7"
--SRCREV_machine:beaglebone-yocto ?= "dbdc921374c057a75b2df92302124994e241ca51"
--
--COMPATIBLE_MACHINE:genericx86 = "genericx86"
--COMPATIBLE_MACHINE:genericx86-64 = "genericx86-64"
--COMPATIBLE_MACHINE:edgerouter = "edgerouter"
--COMPATIBLE_MACHINE:beaglebone-yocto = "beaglebone-yocto"
--
--LINUX_VERSION:genericx86 = "5.13.15"
--LINUX_VERSION:genericx86-64 = "5.13.15"
--LINUX_VERSION:edgerouter = "5.13.15"
--LINUX_VERSION:beaglebone-yocto = "5.13.15"
--- 
-2.19.1
+there are different possibilities you have with all great tooling you 
+get with yocto project, I think you have made a good choice.
 
+inherently Yocto project is a cross compiling infrastructure so lot of 
+commonly used workflows will be around cross-compiling, however you can 
+also leverage it in ways you described, where you build a development VM 
+using yocto project itself which includes all the tools your developers 
+would need and use that as build env + devtest env, see 
+core-image-sato-sdk. However, this will be more of less a static env, 
+which means devs wont be able to install packages like they might be 
+doing with debian VM, you will have to either rebuild the VM or publish 
+own feeds, but if you expect this to be static env then this might turn 
+out to be ok. Advantage is that you will use same tools that your final 
+target will use and you have ease of native development and folks not 
+familiar with yocto can be effective as well. However this is not a 
+common workflow that yocto project users might be using, so community 
+support might be scarce.
+
+Other option could be that you do cross builds on your debian VM and use 
+qemux86-64 as target and run your tests using ptest framework so you 
+will be running your target VM in qemu on top of your build running 
+debian which is running on windows/MacOS or Linux baremetal. There might 
+be some quirks to use qemu in VM but I think it should work out well. 
+This also means that in future when you target real hardware ( I assume 
+thats what you want eventually ) then not much changes, you add another 
+MACHINE and workflow remains pretty much same. But this would require 
+your devs to learn a bit of yocto-fu and cross-complation workflows.
+
+> 
+> In advance, thanks a lot for your help.
+> 
+> Best regards,
+> Arnaud
+> 
+> 
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#54838): https://lists.yoctoproject.org/g/yocto/message/54838
+> Mute This Topic: https://lists.yoctoproject.org/mt/85835019/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+> 
 
