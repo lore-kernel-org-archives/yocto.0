@@ -2,85 +2,97 @@ Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.5 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,SPF_HELO_NONE,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-16.5 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	SPF_HELO_NONE,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BD12DC433EF
-	for <webhook@archiver.kernel.org>; Fri, 24 Sep 2021 13:08:45 +0000 (UTC)
-Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com
- [209.85.219.46])
- by mx.groups.io with SMTP id smtpd.web10.7835.1632488924257824164
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B8692C433EF
+	for <webhook@archiver.kernel.org>; Fri, 24 Sep 2021 13:10:45 +0000 (UTC)
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com
+ [209.85.160.180])
+ by mx.groups.io with SMTP id smtpd.web09.7939.1632489044889701498
  for <yocto@lists.yoctoproject.org>;
- Fri, 24 Sep 2021 06:08:44 -0700
+ Fri, 24 Sep 2021 06:10:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=koPyRLbw;
- spf=pass (domain: gmail.com, ip: 209.85.219.46, mailfrom: twoerner@gmail.com)
-Received: by mail-qv1-f46.google.com with SMTP id r18so6173011qvy.8
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=lJ8LwJkw;
+ spf=pass (domain: gmail.com, ip: 209.85.160.180,
+ mailfrom: twoerner@gmail.com)
+Received: by mail-qt1-f180.google.com with SMTP id r16so9281268qtw.11
         for <yocto@lists.yoctoproject.org>;
- Fri, 24 Sep 2021 06:08:44 -0700 (PDT)
+ Fri, 24 Sep 2021 06:10:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=YiJfff9fMAc1NEIpDVtxui+mTsMbS+b4LjFNXItwJmA=;
-        b=koPyRLbwTW6LjO15jx6FYLN22SUaJwRUNzFb1hqWmr1mOMzzfdrmUK6LegNfPhSU+V
-         KyvVfc5ngxYOAzf9O2GBoLvJz/IfJIGj4Gqa6VOBLohBGosfZpqMftNL2ZrDISVtabpD
-         EwgrUhH07Xy/Tv1Zzp30zHa6jBACBmYDyFjEy5kGBhk9p8Vhjnf96PU9yzzvjE0IvDmy
-         E7dg0SVzhZ6qs6BWUr6+OvcNHYqgZKiMIs8lEQIzwH5yhEzTx0Oh2ZnRNOiY2IYp6eRB
-         SWDt0X/Olaw/qdlpObup9a224le1wX+t6xul5NRpwoGwo4awt6Q+zrkiYylV4aq9uLIg
-         +CBQ==
+        bh=Nd/Jo1nYWIFLfy1pS5xZ+HluFOaZAc7q/ucD/tAjMY8=;
+        b=lJ8LwJkwGao0WQUU4AeoqA87nEdOqtM2TJlemQNE6/bNRxhJ5yg0ncDIn+JPwkGbIb
+         zE9IzXS8WghPbtvvo8wLyiUnh4oYJLtPzFadOpPVQQnEXehlAKx4tzkofGSkutF7f1fj
+         lrd41t1/mbbnP5xJTepgcjm1gi6W8PH6Ci03rra5uyEZ6Q+c4QCd4P/wzBhlT662HSUP
+         Eyyq3BRRpFr/3yNMAV6SeiPP2c7cKVjcaca7VvYSbNvjXIPGCPbvyFLtbwmRkz+AuPzt
+         2ZhvBasAuP9OkeB+jfNoFh59DrwQ0WdV/x4kGyXB8qKPrVCYyVmwtehbf+adfI92Zy6h
+         6Nrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=YiJfff9fMAc1NEIpDVtxui+mTsMbS+b4LjFNXItwJmA=;
-        b=3b+inMoYba7YdKHcJVb3aIXLoTxSh33FxK5kOH3+Sz3jxO3Rd8BjlJVgDT8A1D2kDS
-         EAbBbHGm6HwF/Za1nVKEEjoGBwuZk+X1+cJLP5/T5ZTEEtKtJuV0O3fwGQPvYV6bh+p+
-         1ZSICVdLGzKly3VEItFrIn2+R/o8qEEvsAtG+QzqyoTT0FJRMk1+ZTdbIfukOSuY+Lf8
-         3WlFI/Q+SWBQPPd/EHbTDUznNEFDfdr5KZikUS57KjP6vTC1kDIchKiUiMu+8rjco7WB
-         5i3rhodKXwk3EC45BQmK8RYT7pEa9AeCijo9NDCo+XxAKNd7FKwH1PNYWwp6PHdi7s62
-         SG2g==
-X-Gm-Message-State: AOAM5327VuFZvrIH8UGzbu2Qbn0Teiv0k9L/gfzEORQhqN1ITO4+uXKg
-	00iTQV6r+vNsgUc2O8j4gS0=
+        bh=Nd/Jo1nYWIFLfy1pS5xZ+HluFOaZAc7q/ucD/tAjMY8=;
+        b=WDP1gzLA3DeS1tLqKYPxBstFd7Coss5tnMGN3hMw1ASd3IYL1GejrnQD52fZzw5IiW
+         x3gU8nhGNZPRJPg2e1QP6KsuKhPQBqzpOwblSqzKd/leWBTNgm9XsfzKQik7w57umhs9
+         OGDnAneBZm0zb1NjNRcMASaDQLEl0a7CB/pzZbGZ6U3xqk7pyh2Sdn10XcyW0SVrb1I5
+         uQniwprgfTGshII0g8oGXWkWA4I9gM2/K3x+FcTDOAwkVK/cXAFaMFaVGykm4XZmyHQt
+         /zNSaXXmf4fDWDxDfBUe+NLfpNkesUmCT4aSAHHgch3zKPRPMzIHYo7yoTYWWwonTNWZ
+         lhoQ==
+X-Gm-Message-State: AOAM533tOUZzPj4HJtrmvzKfFNUlQsSESImz4KbZ9rLXc/8fmNFdgVrE
+	VwESHNs+YtkfgGEpJhg/2RE=
 X-Google-Smtp-Source: 
- ABdhPJwA4UV6VagZkzW79TjvLzLz23zEu+75T6Pn7S8T+v1Gac2vSg42ewCmALZQhgz8qJAWDffr9Q==
-X-Received: by 2002:ad4:446f:: with SMTP id s15mr10030662qvt.3.1632488923378;
-        Fri, 24 Sep 2021 06:08:43 -0700 (PDT)
+ ABdhPJzB7gyBspFLXOF7bXMgkg8aNQm+PSuc7tcymDKbAcdlBI3GsSRBItqbx6vx7J69KZQbaSrIcw==
+X-Received: by 2002:a05:622a:181:: with SMTP id
+ s1mr3609658qtw.47.1632489044017;
+        Fri, 24 Sep 2021 06:10:44 -0700 (PDT)
 Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
         by smtp.gmail.com with ESMTPSA id
- i67sm6387426qkd.90.2021.09.24.06.08.40
+ q12sm6212301qkc.104.2021.09.24.06.10.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Sep 2021 06:08:41 -0700 (PDT)
-Date: Fri, 24 Sep 2021 09:08:39 -0400
+        Fri, 24 Sep 2021 06:10:43 -0700 (PDT)
+Date: Fri, 24 Sep 2021 09:10:41 -0400
 From: Trevor Woerner <twoerner@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Markus Volk <f_l_k@t-online.de>,
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] [meta-rockchip][PATCH] use uuid instead of hard-coding
- root device
-Message-ID: <20210924130839.GA29617@localhost>
-References: <20210917220121.26663-1-twoerner@gmail.com>
- <a7d1f5cd-8bb6-ba56-c2b4-39dfb283a22c@t-online.de>
- <20210923115919.GA25233@localhost>
- <254c0237-f5c0-8f64-61a0-a5e8835d64f4@t-online.de>
- <20210923205548.GA5309@localhost>
- <255e8117-5135-6f34-3b7a-7b9b94f0b603@t-online.de>
- <CAMKF1spTrnpFBLJVace9WcMesgEWw-7h9mqYA7Gp2HG_Gn=Jkw@mail.gmail.com>
+To: Markus Volk <f_l_k@t-online.de>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto][meta-rockchip][PATCH v2 2/2] rockchip-wic.inc: dont let
+ wic edit fstab by default
+Message-ID: <20210924131041.GB29617@localhost>
+References: <20210923211759.13676-1-f_l_k@t-online.de>
+ <20210923211759.13676-2-f_l_k@t-online.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: 
- <CAMKF1spTrnpFBLJVace9WcMesgEWw-7h9mqYA7Gp2HG_Gn=Jkw@mail.gmail.com>
+In-Reply-To: <20210923211759.13676-2-f_l_k@t-online.de>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 24 Sep 2021 13:08:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54843
+ <yocto@lists.yoctoproject.org>; Fri, 24 Sep 2021 13:10:45 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54844
 
-On Thu 2021-09-23 @ 09:46:40 PM, Khem Raj wrote:
-> are you both using systemd or sysvinit
+On Thu 2021-09-23 @ 11:17:59 PM, Markus Volk wrote:
+> Signed-off-by: MarkusVolk <f_l_k@t-online.de>
+> ---
+>  conf/machine/include/rockchip-wic.inc | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/conf/machine/include/rockchip-wic.inc b/conf/machine/include/rockchip-wic.inc
+> index 15010a0..30b0d57 100644
+> --- a/conf/machine/include/rockchip-wic.inc
+> +++ b/conf/machine/include/rockchip-wic.inc
+> @@ -26,3 +26,6 @@ WICVARS:append = " \
+>  	SPL_BINARY \
+>  	UBOOT_SUFFIX \
+>  	"
+> +
+> +# Do not update fstab file while creating wic images
+> +WIC_CREATE_EXTRA_ARGS ?= "--no-fstab-update"
 
-Ah, good catch. I'm using sysvinit.
+Thanks for the patch and the SoB line. I'm going to apply this patch, but I'm
+going to amend the commit message to capture some of the conversation we've
+had. There's a chance we'll want to know "why" at some point in the future ;-)
 
