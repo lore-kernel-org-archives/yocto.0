@@ -1,54 +1,44 @@
-Return-Path: <koansoftware@gmail.com>
+Return-Path: <enrico.buffoli1994@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=ALL_TRUSTED,BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,FREEMAIL_FROM,HTML_MESSAGE autolearn=no
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=ALL_TRUSTED,BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,HTML_MESSAGE
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9FA3BC433F5
-	for <webhook@archiver.kernel.org>; Fri, 24 Sep 2021 07:00:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 573FEC433F5
+	for <webhook@archiver.kernel.org>; Fri, 24 Sep 2021 07:17:49 +0000 (UTC)
 Subject: Re: Using bitbake with external SDK #zeus #toolchain #sdk
 To: yocto@lists.yoctoproject.org
-From: "Marco Cavallini" <koansoftware@gmail.com>
-X-Originating-Location: Genoa, Liguria, IT (79.3.92.72)
-X-Originating-Platform: Linux Firefox 92
+From: enrico.buffoli1994@gmail.com
+X-Originating-Location: Flero, Lombardy, IT (62.97.58.50)
+X-Originating-Platform: Windows Firefox 92
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Fri, 24 Sep 2021 00:00:19 -0700
-References: <JE6o.1632404774963332999.ccky@lists.yoctoproject.org>
-In-Reply-To: <JE6o.1632404774963332999.ccky@lists.yoctoproject.org>
-Message-ID: <9556.1632466819951490850@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="RzVI21kwTjqTrDDmzcaS"
+Date: Fri, 24 Sep 2021 00:17:44 -0700
+References: 
+ <CAMKF1sotbsQkE-Sb2Nc2xaq5ox+t6b9rw3ZYMHX-5fFAnViPDQ@mail.gmail.com>
+In-Reply-To: 
+ <CAMKF1sotbsQkE-Sb2Nc2xaq5ox+t6b9rw3ZYMHX-5fFAnViPDQ@mail.gmail.com>
+Message-ID: <13501.1632467864763137316@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="NzIv853lEqPx42LTlDji"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 24 Sep 2021 07:00:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54834
+ <yocto@lists.yoctoproject.org>; Fri, 24 Sep 2021 07:17:49 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54835
 
---RzVI21kwTjqTrDDmzcaS
+--NzIv853lEqPx42LTlDji
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Enrico,
-usually nowadays every honest hardware manufacturer provides all the source=
-s of the BSP and the development system to their customers.
-Try asking your supplier for them.
---
-Marco Cavallini | KOAN sas
-Bergamo - Italia
-embedded software engineering
-https://KoanSoftware.com
+With the eSDK i've to use devtool right?
 
---RzVI21kwTjqTrDDmzcaS
+--NzIv853lEqPx42LTlDji
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Enrico,<br />usually nowadays every honest hardware manufacturer prov=
-ides all the sources of the BSP and the development system to their custome=
-rs. <br />Try asking your supplier for them.<br />--<br />Marco Cavallini |=
- KOAN sas<br />Bergamo - Italia <br />embedded software engineering <br />h=
-ttps://KoanSoftware.com
+With the eSDK i've to use devtool right?
 
---RzVI21kwTjqTrDDmzcaS--
+--NzIv853lEqPx42LTlDji--
 
