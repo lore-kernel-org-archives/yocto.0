@@ -1,157 +1,92 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <f_l_k@t-online.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D074C433EF
-	for <webhook@archiver.kernel.org>; Fri, 24 Sep 2021 16:05:27 +0000 (UTC)
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com
- [209.85.210.177])
- by mx.groups.io with SMTP id smtpd.web12.1076.1632499526257005507
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 49E22C433F5
+	for <webhook@archiver.kernel.org>; Fri, 24 Sep 2021 16:53:31 +0000 (UTC)
+Received: from mailout09.t-online.de (mailout09.t-online.de [194.25.134.84])
+ by mx.groups.io with SMTP id smtpd.web09.1697.1632502395185598332
  for <yocto@lists.yoctoproject.org>;
- Fri, 24 Sep 2021 09:05:26 -0700
+ Fri, 24 Sep 2021 09:53:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=n2fAG0Fg;
- spf=pass (domain: gmail.com, ip: 209.85.210.177,
- mailfrom: raj.khem@gmail.com)
-Received: by mail-pf1-f177.google.com with SMTP id k26so4679120pfi.5
-        for <yocto@lists.yoctoproject.org>;
- Fri, 24 Sep 2021 09:05:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:content-language:to
-         :references:from:organization:subject:in-reply-to
-         :content-transfer-encoding;
-        bh=kXNjt2pURMnN0buf1nRfJOXMzQL07pggGbyTz1RG7Cc=;
-        b=n2fAG0FgLsaRe4uPW5qFg7Wn2sfGo/hwbFf5ffHTWfSbRoMdjqShZo2PAczhIDNiuL
-         Qj4UfBHprR2xd4ao70rJyvYu4/FOjE0feZtxjYRMaPq7o0zjERo36xzo+PuyPlskp2BG
-         Ow/Rx6/KDHgsuFQtIUNljxI1cKYVq1LJ7xX5daCdaLqDbURIzqQQWc4eC5Uct/jYqxN2
-         REx52UWgxyAGMfvvVWOdJN9RYis5XlUIrZ9eZROIpwUZMzhab0ARArsOEw59LARHb3BE
-         3Avj1ueve9dfz48UkFrTsom1W5Q0hyLXp7//o/qRPfNVmt0hcsQwN/ibHlH8FN272u5C
-         of5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent
-         :content-language:to:references:from:organization:subject
-         :in-reply-to:content-transfer-encoding;
-        bh=kXNjt2pURMnN0buf1nRfJOXMzQL07pggGbyTz1RG7Cc=;
-        b=C24T1l4XBzOZvAunD34kz7NTje8JKpnkmhcXD3iMypjIqWkxSC6H4EFhOzLR8m+bYw
-         la1NUuv/E6Rao4kd3Y41l4Q3bU4O3Oa6igqI62J3y3Zng6LqDPAMk4JFAI27rUGnKzhT
-         vv8GkWmScq9w9xITIX8rFRzmbo/gP7HTwujIEQtvqHgjHBnePzwKgx3mqGDuSJWN+Ksw
-         j8OwZKPFRXMYOqQJLDMmhKJrZY7FpoG6WOTXjW1iJUEZ3zJxOuqSqTBySrajxyJLQf5V
-         j1mUnOPrQ5pP+WT72A+pZevI9Pzh09Sra1mlfSahYF1NTXBbzWhikjEQmyuYA+dsyiWO
-         Hsxg==
-X-Gm-Message-State: AOAM530XNoxVNxfYoTga0vaR+QFdA4fnRApiUxFXtkx7OI5ieVa7MfA5
-	KsJX9tfRBHHM7VgJMadZfas=
-X-Google-Smtp-Source: 
- ABdhPJx5nQrmMoDZ2NUSiaXRBPidpGzsSDz/EuzgaPPKgV7helNv1plcq55GmVvhbDHak6fvkiKxpw==
-X-Received: by 2002:a65:6287:: with SMTP id f7mr4508945pgv.444.1632499525537;
-        Fri, 24 Sep 2021 09:05:25 -0700 (PDT)
-Received: from ?IPV6:2601:646:9200:a0f0:1dda:37cf:b1d6:5d51?
- ([2601:646:9200:a0f0:1dda:37cf:b1d6:5d51])
-        by smtp.gmail.com with ESMTPSA id
- p2sm10557630pgd.84.2021.09.24.09.05.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Sep 2021 09:05:24 -0700 (PDT)
-Message-ID: <e69623f0-0f87-47fd-f8ab-3bed92f863e2@gmail.com>
-Date: Fri, 24 Sep 2021 09:05:23 -0700
+ dkim=missing;
+ spf=none, err=SPF record not found (domain: t-online.de, ip: 194.25.134.84,
+ mailfrom: f_l_k@t-online.de)
+Received: from fwd75.dcpf.telekom.de (fwd75.aul.t-online.de [10.223.144.101])
+	by mailout09.t-online.de (Postfix) with SMTP id 5C0E71BE7A;
+	Fri, 24 Sep 2021 18:53:13 +0200 (CEST)
+Received: from [192.168.178.83] ([84.154.174.28]) by fwd75.t-online.de
+	with (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384 encrypted)
+	esmtp id 1mToRi-2yQ2cL0; Fri, 24 Sep 2021 18:53:10 +0200
+Subject: Re: [yocto][meta-rockchip][PATCH v2 2/2] rockchip-wic.inc: dont let
+ wic edit fstab by default
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+References: <20210923211759.13676-1-f_l_k@t-online.de>
+ <20210923211759.13676-2-f_l_k@t-online.de> <20210924131041.GB29617@localhost>
+From: Markus Volk <f_l_k@t-online.de>
+Message-ID: <10bc866b-fe4c-f2de-f200-c47d9733c4b5@t-online.de>
+Date: Fri, 24 Sep 2021 18:53:10 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.1.1
+In-Reply-To: <20210924131041.GB29617@localhost>
+Content-Type: multipart/alternative;
+ boundary="------------DD3FB4A82E26939D54CF08D6"
 Content-Language: en-US
-To: arnaud.bienner@dolby.com, yocto@lists.yoctoproject.org
-References: <5SeU.1632474392921086265.Laoa@lists.yoctoproject.org>
-From: Khem Raj <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-Subject: Re: [yocto] Cross-compiling or compiling on target VM?
-In-Reply-To: <5SeU.1632474392921086265.Laoa@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-TOI-EXPURGATEID: 150726::1632502390-00001454-61705105/0/0 CLEAN NORMAL
+X-TOI-MSGID: d6dbafda-d4d3-46b7-9b32-d8e743a64001
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 24 Sep 2021 16:05:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54847
+ <yocto@lists.yoctoproject.org>; Fri, 24 Sep 2021 16:53:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54848
+
+This is a multi-part message in MIME format.
+--------------DD3FB4A82E26939D54CF08D6
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
+Am 24.09.21 um 15:10 schrieb Trevor Woerner:
+> Thanks for the patch and the SoB line. I'm going to apply this patch, but I'm
+> going to amend the commit message to capture some of the conversation we've
+> had. There's a chance we'll want to know "why" at some point in the future ;-)
 
-On 9/24/21 2:06 AM, arnaud.bienner@dolby.com wrote:
-> Hi,
-> 
-> We are starting a new project using Yocto to build a custom Linux image 
-> which matches our needs.
-> We are new to Yocto and still trying to figure out the best way to work 
-> with it.
-> 
-> Especially, if it is best to cross-compile or to build on a VM running 
-> an image of the target.
-> 
-> Some background:
-> Our target system is x86_64, and we are all working on x86_64 computers 
-> obviously.
-> For now, we don't have yet a physical target system so we are running 
-> the image generated by Yocto in VirtualBox or VMWare.
-> 
-> For practical reasons, since not all developers use the same OS 
-> (Windows, macOS) we decided to do all development work on Linux VM 
-> (Debian distribution) so everyone has the same system.
-> For now, we are cross-compiling applications using Yocto SDK in that 
-> Debian VM, copying it to the Yocto VM to run it.
-> Even though copying/deploying and running them could be somehow 
-> automated, since we are developing on a Linux VM anyway, I thought it 
-> could be best to build a Yocto image (maybe as an additional "dev" image 
-> based on the existing one) which contains all tools we need (gcc, cmake, 
-> etc.).
-> 
-> This way, we could execute the binaries (in particular the unit tests) 
-> locally.
-> For some of our unit tests in particular that we run at build time, it 
-> sounds easier to run them locally, compared to deploying them and 
-> running them remotely.
-> 
-> Any thoughts about this?
+Thanks for applying :)
 
-there are different possibilities you have with all great tooling you 
-get with yocto project, I think you have made a good choice.
+It would be cool if wic had something like an 'exclude-from-fstab-update" option.
+That would make the 'fstab-update' much more useful.
 
-inherently Yocto project is a cross compiling infrastructure so lot of 
-commonly used workflows will be around cross-compiling, however you can 
-also leverage it in ways you described, where you build a development VM 
-using yocto project itself which includes all the tools your developers 
-would need and use that as build env + devtest env, see 
-core-image-sato-sdk. However, this will be more of less a static env, 
-which means devs wont be able to install packages like they might be 
-doing with debian VM, you will have to either rebuild the VM or publish 
-own feeds, but if you expect this to be static env then this might turn 
-out to be ok. Advantage is that you will use same tools that your final 
-target will use and you have ease of native development and folks not 
-familiar with yocto can be effective as well. However this is not a 
-common workflow that yocto project users might be using, so community 
-support might be scarce.
 
-Other option could be that you do cross builds on your debian VM and use 
-qemux86-64 as target and run your tests using ptest framework so you 
-will be running your target VM in qemu on top of your build running 
-debian which is running on windows/MacOS or Linux baremetal. There might 
-be some quirks to use qemu in VM but I think it should work out well. 
-This also means that in future when you target real hardware ( I assume 
-thats what you want eventually ) then not much changes, you add another 
-MACHINE and workflow remains pretty much same. But this would require 
-your devs to learn a bit of yocto-fu and cross-complation workflows.
+--------------DD3FB4A82E26939D54CF08D6
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-> 
-> In advance, thanks a lot for your help.
-> 
-> Best regards,
-> Arnaud
-> 
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#54838): https://lists.yoctoproject.org/g/yocto/message/54838
-> Mute This Topic: https://lists.yoctoproject.org/mt/85835019/1997914
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">Am 24.09.21 um 15:10 schrieb Trevor
+      Woerner:<br>
+    </div>
+    <blockquote type="cite" cite="mid:20210924131041.GB29617@localhost">
+      <pre class="moz-quote-pre" wrap="">
+Thanks for the patch and the SoB line. I'm going to apply this patch, but I'm
+going to amend the commit message to capture some of the conversation we've
+had. There's a chance we'll want to know "why" at some point in the future ;-)
+</pre>
+    </blockquote>
+    <pre>Thanks for applying :)
+
+It would be cool if wic had something like an 'exclude-from-fstab-update" option.
+That would make the 'fstab-update' much more useful.
+</pre>
+  </body>
+</html>
+
+--------------DD3FB4A82E26939D54CF08D6--
 
