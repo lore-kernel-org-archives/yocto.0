@@ -1,185 +1,92 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <f_l_k@t-online.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,SPF_HELO_NONE
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.5 required=3.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE,NICE_REPLY_A,SPF_HELO_NONE,USER_AGENT_SANE_1 autolearn=no
+	autolearn_force=no version=3.4.0
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B60E0C433F5
-	for <webhook@archiver.kernel.org>; Fri, 24 Sep 2021 09:30:51 +0000 (UTC)
-Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com
- [209.85.222.46])
- by mx.groups.io with SMTP id smtpd.web08.6047.1632475850258802605
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 16B0FC433EF
+	for <webhook@archiver.kernel.org>; Fri, 24 Sep 2021 10:07:21 +0000 (UTC)
+Received: from mailout11.t-online.de (mailout11.t-online.de [194.25.134.85])
+ by mx.groups.io with SMTP id smtpd.web09.6208.1632478040196631061
  for <yocto@lists.yoctoproject.org>;
- Fri, 24 Sep 2021 02:30:50 -0700
+ Fri, 24 Sep 2021 03:07:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Sv2iaWZQ;
- spf=pass (domain: gmail.com, ip: 209.85.222.46,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ua1-f46.google.com with SMTP id f24so6155498uav.8
-        for <yocto@lists.yoctoproject.org>;
- Fri, 24 Sep 2021 02:30:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=y/zdSYiFSlCIqOqFRMzzSRqdeG2UI9s6LWno6Peu3pA=;
-        b=Sv2iaWZQuW6DaOpVY0ezzqBYKcDMcqr70F1cJxDJrL9qj50af26CSOAYs45Jdwp4jP
-         AEitQt6B2yu3iKbiUZYwUxWe7kaXoWqEfxvplQY9AKF51wHt73EwvqEh1PHjXYrucUTM
-         7EjvcNYAqQsoC6f0mKb2LWP0Nejcxd9Xxhc7A0FkNuCZif3FO1lurqz3rAySr6KvVeJv
-         oLHO1/rS3GZFM3UuEBlj4RF/iqxKOZHIEPJMl4aUAInpsLUFy4//w9Gmn7yGuWlVhcZe
-         6bimuU5um6hkmCd2i51D5Qsza4aHcm2lAIwiMqqwBjLRyWyGO48Ml6l22+lMIZarFc8X
-         APfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=y/zdSYiFSlCIqOqFRMzzSRqdeG2UI9s6LWno6Peu3pA=;
-        b=0z4Ugs1wsniDNZfRrX65u8niiXvF0+ckO968QAiTjvUS2vsd0wqUxrRgvsFIuGjjfD
-         pNnlN4GXgXhUpo0HeSI1NEBWvGM3i7cbRMgIQaCQE5OwY/tjg9vW3kbUGv3w6hIsy4hx
-         RRg6mBiTGWH6ct6D9VWm16AKGbpvaHY+z6UQ/wA9ikvZ92Z/GRRtbvILj99NFkcYpjHY
-         umZRiHjAm103PUWNflxn0Qw3mvB0dlQwFHwyg08BU/Yh6nMqUvJOe9oz8V0TW8kC+7di
-         YBYWc9DKNvNyV1Vaymmgnq7qLzAJA/YVNgBTWFaokL7k7e6LhCIZGYiA7v7rkTv7wjUr
-         6W1g==
-X-Gm-Message-State: AOAM533v8nH1uw6dT3J9/6sCf/2LcelGfZdpr+VhoOVb72r4fzecZAGT
-	WnKaRfL7DcNXAX22RszzJJqaNejLT54pRsTfKiA=
-X-Google-Smtp-Source: 
- ABdhPJxAY3L3suuN6rapEl0Eo7myDyZKzgjVgmqxi+3LoANlCzVUSQ50YewZGOG/eexfTgn0/DvVPHuqaKhZhuLHnxE=
-X-Received: by 2002:ab0:550f:: with SMTP id t15mr8263206uaa.22.1632475849278;
- Fri, 24 Sep 2021 02:30:49 -0700 (PDT)
+ dkim=missing;
+ spf=none, err=SPF record not found (domain: t-online.de, ip: 194.25.134.85,
+ mailfrom: f_l_k@t-online.de)
+Received: from fwd81.dcpf.telekom.de (fwd81.aul.t-online.de [10.223.144.107])
+	by mailout11.t-online.de (Postfix) with SMTP id 86512B5E9;
+	Fri, 24 Sep 2021 12:07:17 +0200 (CEST)
+Received: from [192.168.178.83] ([84.154.174.28]) by fwd81.t-online.de
+	with (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384 encrypted)
+	esmtp id 1mTi6v-1u5gCv0; Fri, 24 Sep 2021 12:07:17 +0200
+Subject: Re: [yocto] [meta-rockchip][PATCH] use uuid instead of hard-coding
+ root device
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Trevor Woerner <twoerner@gmail.com>,
+ Yocto-mailing-list <yocto@lists.yoctoproject.org>
+References: <20210917220121.26663-1-twoerner@gmail.com>
+ <a7d1f5cd-8bb6-ba56-c2b4-39dfb283a22c@t-online.de>
+ <20210923115919.GA25233@localhost>
+ <254c0237-f5c0-8f64-61a0-a5e8835d64f4@t-online.de>
+ <20210923205548.GA5309@localhost>
+ <255e8117-5135-6f34-3b7a-7b9b94f0b603@t-online.de>
+ <CAMKF1spTrnpFBLJVace9WcMesgEWw-7h9mqYA7Gp2HG_Gn=Jkw@mail.gmail.com>
+From: Markus Volk <f_l_k@t-online.de>
+Message-ID: <f9a6b1b7-54d5-dddc-b24e-5e24575df374@t-online.de>
+Date: Fri, 24 Sep 2021 12:07:16 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <5SeU.1632474392921086265.Laoa@lists.yoctoproject.org>
-In-Reply-To: <5SeU.1632474392921086265.Laoa@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Fri, 24 Sep 2021 11:30:38 +0200
-Message-ID: 
- <CANNYZj8Bxvv=FsRDCZX=efXwio5crsm0hQknV2_8BW+v+xK+GQ@mail.gmail.com>
-Subject: Re: [yocto] Cross-compiling or compiling on target VM?
-To: arnaud.bienner@dolby.com
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000019c78405ccba672f"
+In-Reply-To: 
+ <CAMKF1spTrnpFBLJVace9WcMesgEWw-7h9mqYA7Gp2HG_Gn=Jkw@mail.gmail.com>
+Content-Type: multipart/alternative;
+ boundary="------------93C961603C3572024F17DB71"
+Content-Language: en-US
+X-TOI-EXPURGATEID: 150726::1632478037-00001460-86F0203B/0/0 CLEAN NORMAL
+X-TOI-MSGID: d08cdc9f-3b06-4545-bb33-f6c6420867ae
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 24 Sep 2021 09:30:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54840
+ <yocto@lists.yoctoproject.org>; Fri, 24 Sep 2021 10:07:21 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54841
 
---00000000000019c78405ccba672f
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------93C961603C3572024F17DB71
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Yocto has built-in qemu targets for this purpose, and associated
-infrastructure to start qemu VMs and run tests in them. But to make it
-practical, these qemu images need to be started on a baremetal Linux
-machine. So I'd suggest you start by giving all your developers Linux
-laptops.
 
-Alex
+Am 24.09.21 um 06:46 schrieb Khem Raj:
+> are you both using systemd or sysvinit
 
-On Fri, 24 Sept 2021 at 11:06, <arnaud.bienner@dolby.com> wrote:
+I am using systemd
 
-> Hi,
->
-> We are starting a new project using Yocto to build a custom Linux image
-> which matches our needs.
-> We are new to Yocto and still trying to figure out the best way to work
-> with it.
->
-> Especially, if it is best to cross-compile or to build on a VM running an
-> image of the target.
->
-> Some background:
-> Our target system is x86_64, and we are all working on x86_64 computers
-> obviously.
-> For now, we don't have yet a physical target system so we are running the
-> image generated by Yocto in VirtualBox or VMWare.
->
-> For practical reasons, since not all developers use the same OS (Windows,
-> macOS) we decided to do all development work on Linux VM (Debian
-> distribution) so everyone has the same system.
-> For now, we are cross-compiling applications using Yocto SDK in that
-> Debian VM, copying it to the Yocto VM to run it.
-> Even though copying/deploying and running them could be somehow automated,
-> since we are developing on a Linux VM anyway, I thought it could be best to
-> build a Yocto image (maybe as an additional "dev" image based on the
-> existing one) which contains all tools we need (gcc, cmake, etc.).
->
-> This way, we could execute the binaries (in particular the unit tests)
-> locally.
-> For some of our unit tests in particular that we run at build time, it
-> sounds easier to run them locally, compared to deploying them and running
-> them remotely.
->
-> Any thoughts about this?
->
-> In advance, thanks a lot for your help.
->
-> Best regards,
-> Arnaud
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#54838):
-> https://lists.yoctoproject.org/g/yocto/message/54838
-> Mute This Topic: https://lists.yoctoproject.org/mt/85835019/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
->
 
---00000000000019c78405ccba672f
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--------------93C961603C3572024F17DB71
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-<div dir=3D"ltr"><div>Yocto has built-in qemu targets for this purpose, and=
- associated infrastructure to start qemu VMs and run tests in them. But to =
-make it practical, these qemu images need to be started on a baremetal Linu=
-x machine. So I&#39;d suggest you start by giving all your developers Linux=
- laptops.</div><div><br></div><div>Alex<br></div></div><br><div class=3D"gm=
-ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, 24 Sept 2021 at 11=
-:06, &lt;<a href=3D"mailto:arnaud.bienner@dolby.com">arnaud.bienner@dolby.c=
-om</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
-">Hi,<br><br>We are starting a new project using Yocto to build a custom Li=
-nux image which matches our needs.<br>We are new to Yocto and still trying =
-to figure out the best way to work with it.<br><br>Especially, if it is bes=
-t to cross-compile or to build on a VM running an image of the target.<br><=
-br>Some background:<br>Our target system is x86_64, and we are all working =
-on x86_64 computers obviously.<br>For now, we don&#39;t have yet a physical=
- target system so we are running the image generated by Yocto in VirtualBox=
- or VMWare.<br><br>For practical reasons, since not all developers use the =
-same OS (Windows, macOS) we decided to do all development work on Linux VM =
-(Debian distribution) so everyone has the same system.<br>For now, we are c=
-ross-compiling applications using Yocto SDK in that Debian VM, copying it t=
-o the Yocto VM to run it.<br>Even though copying/deploying and running them=
- could be somehow automated, since we are developing on a Linux VM anyway, =
-I thought it could be best to build a Yocto image (maybe as an additional &=
-quot;dev&quot; image based on the existing one) which contains all tools we=
- need (gcc, cmake, etc.).<br><br>This way, we could execute the binaries (i=
-n particular the unit tests) locally.<br>For some of our unit tests in part=
-icular that we run at build time, it sounds easier to run them locally, com=
-pared to deploying them and running them remotely.<br><br>Any thoughts abou=
-t this?<br><br>In advance, thanks a lot for your help.<br><br>Best regards,=
-<br>Arnaud
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#54838): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/54838" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/54838</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/85835019/1686=
-489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/85835019/1686489</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.k=
-anavin@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">Am 24.09.21 um 06:46 schrieb Khem Raj:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAMKF1spTrnpFBLJVace9WcMesgEWw-7h9mqYA7Gp2HG_Gn=Jkw@mail.gmail.com">
+      <pre class="moz-quote-pre" wrap="">are you both using systemd or sysvinit
+</pre>
+    </blockquote>
+    <pre>I am using systemd
+</pre>
+  </body>
+</html>
 
---00000000000019c78405ccba672f--
+--------------93C961603C3572024F17DB71--
 
