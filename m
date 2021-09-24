@@ -1,175 +1,123 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <naveen.kumar.saini@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.0 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,SPF_HELO_NONE autolearn=no
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-21.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DA1B8C433EF
-	for <webhook@archiver.kernel.org>; Fri, 24 Sep 2021 04:59:07 +0000 (UTC)
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com
- [209.85.219.45])
- by mx.groups.io with SMTP id smtpd.web12.4155.1632459546622783398
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ECC23C433F5
+	for <webhook@archiver.kernel.org>; Fri, 24 Sep 2021 06:40:45 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by mx.groups.io with SMTP id smtpd.web10.4625.1632465645434458405
  for <yocto@lists.yoctoproject.org>;
- Thu, 23 Sep 2021 21:59:06 -0700
+ Thu, 23 Sep 2021 23:40:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=RAj62q4C;
- spf=pass (domain: gmail.com, ip: 209.85.219.45, mailfrom: raj.khem@gmail.com)
-Received: by mail-qv1-f45.google.com with SMTP id 11so5570970qvd.11
-        for <yocto@lists.yoctoproject.org>;
- Thu, 23 Sep 2021 21:59:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4E/ywvSDu1TlzRjCp9XuPs5loIR1iOWJpZd7wLUrXN4=;
-        b=RAj62q4C2eP1E4dbJxJEHc2NcX2eZiokaZk0yw3hu6zVeJaXwTOXU70h8vH9tkYhIk
-         JRZqh9tf7zbXbRrH/MkJc0l/JgLRO7gpmz9+SCR3QYQugYLebs43uriWk0nQ63Gc4r5+
-         F4qi2PeM89vfW2ajLWiDXjpz0NDzhSVXDef+Ec3D8ehXQx2Rq950RbTs47zewM/g6v48
-         gSTdvc618apoQgyh52NgzKyBKZ6UWgAoNdwEzvCyjIzbn3efhG/qjJF/05rL/6QGFr+U
-         iBjpKrAUo6NvRqMp+zhFmda91nYM+kYabWZ7wJ8NVsdb3gMGHMC/G8qFVuNbi7TlcnnS
-         zoNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4E/ywvSDu1TlzRjCp9XuPs5loIR1iOWJpZd7wLUrXN4=;
-        b=lfTwfUs9gGtAP+Q3UBKbpghtAqB2yjpoIjbKTDofnoP+c/x4z249dydJ12tyWJUVoP
-         yzPf7OK0gqCbl+oOH9gZ+WsNpfBjwJqqOm4mRCQFuzOYslUWXdoGc8wYqmNCfrq3NOlE
-         9tdIkj8owaK8phbLwC5Zx2JDqldGZC20vOXmZryjwCXRFJPO9pL4pkEnEpS+kgo6wxpJ
-         1Y6DCuYHnBVzIuSy+kaT8Ok62Ujuy7VFFt4pUrJYb78lvdaC59vHZRgyVHJA/z1FwiNv
-         3F93gStZGHiXW7vldfJtMaXxvtZZQ/BDsXqzS69EaokL+RL4XhjuCgeYbD4ADhcUXIWq
-         AAsg==
-X-Gm-Message-State: AOAM531L1nHLNqNn486bc19s0WaKzn+g8aEM3IgiVcsMyxf+4C5IdbSk
-	W2gVCnTQXZGTSYemJdTaUyGGQk0AGCR5CaeMWno=
-X-Google-Smtp-Source: 
- ABdhPJyCXuElMZ41yVt0gy3Cg5AhIWpC6+j+v6++3+vXbYTCno4NkDGvnXRDRglY8t/MtuVxXHP2a6I1SJJksX1IX+8=
-X-Received: by 2002:a0c:8061:: with SMTP id 88mr8225966qva.5.1632459545698;
- Thu, 23 Sep 2021 21:59:05 -0700 (PDT)
-MIME-Version: 1.0
-References: <c81729e7-0bc2-7f7c-84ce-25d92ec09148@prevas.dk>
-In-Reply-To: <c81729e7-0bc2-7f7c-84ce-25d92ec09148@prevas.dk>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 23 Sep 2021 21:58:39 -0700
-Message-ID: 
- <CAMKF1sq0ppgLXtSzdL0qSDQLrgSJGE8+CqEYy3A4ZME1ZfbBKg@mail.gmail.com>
-Subject: Re: [yocto] "stack smashing detected" when building aarch64 kernel
-To: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+ dkim=missing;
+ spf=pass (domain: intel.com, ip: 192.55.52.120, mailfrom: naveen.kumar.saini@intel.com)
+X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="222125569"
+X-IronPort-AV: E=Sophos;i="5.85,319,1624345200";
+   d="scan'208";a="222125569"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2021 23:40:45 -0700
+X-IronPort-AV: E=Sophos;i="5.85,319,1624345200";
+   d="scan'208";a="475885569"
+Received: from saininav-desk1.png.intel.com ([10.158.87.77])
+  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2021 23:40:44 -0700
+From: Naveen Saini <naveen.kumar.saini@intel.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-zephyr][PATCH 2/2] zephyr-kernel: upgrade 2.6.0 -> 2.6.1
+Date: Fri, 24 Sep 2021 14:55:18 +0800
+Message-Id: <20210924065518.13567-2-naveen.kumar.saini@intel.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210924065518.13567-1-naveen.kumar.saini@intel.com>
+References: <20210924065518.13567-1-naveen.kumar.saini@intel.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 24 Sep 2021 04:59:07 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54831
+ <yocto@lists.yoctoproject.org>; Fri, 24 Sep 2021 06:40:45 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54832
 
-its hard to say what might be going on. Perhaps enable builds with V=1
-so you can see if its always failing to compile at same file.
-or atleast you can get one file where it fails then you can use
-preprocessed file to build it in a loop and see if you can get it to
-fail more.
+It has GCC-11 fixes.
+https://github.com/zephyrproject-rtos/zephyr/issues/35707
 
-On Thu, Sep 23, 2021 at 8:16 AM Rasmus Villemoes via
-lists.yoctoproject.org
-<rasmus.villemoes=prevas.dk@lists.yoctoproject.org> wrote:
->
-> I've recently started getting an internal compiler error when building
-> an aarch64 kernel. It only happens once in a while, and re-running the
-> task usually just succeeds, so I don't know how to reproduce or trigger
-> this at will.
->
-> Two examples:
->
-> ===
->   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gm20b.o
->   CC [M]  drivers/net/ethernet/mellanox/mlx5/core/rl.o
->   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gp100.o
-> *** stack smashing detected ***: <unknown> terminated
-> In file included from .../kernel-source/arch/arm64/include/asm/atomic.h:15,
->                  from .../kernel-source/include/linux/atomic.h:7,
->                  from
-> .../kernel-source/include/asm-generic/bitops/atomic.h:5,
->                  from .../kernel-source/arch/arm64/include/asm/bitops.h:26,
->                  from .../kernel-source/include/linux/bitops.h:29,
->                  from .../kernel-source/include/linux/kernel.h:12,
->                  from .../kernel-source/include/linux/uio.h:8,
->                  from .../kernel-source/include/linux/socket.h:8,
->                  from .../kernel-source/include/uapi/linux/if.h:25,
->                  from .../kernel-source/net/mac80211/led.c:7:
-> .../kernel-source/include/net/inet_sock.h: In function 'inet_sk_state_load':
-> .../kernel-source/arch/arm64/include/asm/barrier.h:114:8: internal
-> compiler error: Aborted
->   114 |  union { __unqual_scalar_typeof(*p) __val; char __c[1]; } __u; \
->       |        ^
-> .../kernel-source/include/asm-generic/barrier.h:142:29: note: in
-> expansion of macro '__smp_load_acquire'
->   142 | #define smp_load_acquire(p) __smp_load_acquire(p)
->       |                             ^~~~~~~~~~~~~~~~~~
-> .../kernel-source/include/net/inet_sock.h:312:9: note: in expansion of
-> macro 'smp_load_acquire'
->   312 |  return smp_load_acquire(&sk->sk_state);
->       |         ^~~~~~~~~~~~~~~~
-> Please submit a full bug report,
-> with preprocessed source if appropriate.
-> See <https://gcc.gnu.org/bugs/> for instructions.
-> .../kernel-source/scripts/Makefile.build:279: recipe for target
-> 'net/mac80211/led.o' failed
-> make[3]: *** [net/mac80211/led.o] Error 1
-> make[3]: *** Waiting for unfinished jobs....
->   CC [M]  drivers/net/ethernet/mellanox/mlx5/core/lag.o
-> ===
->   CC [M]  drivers/gpu/drm/nouveau/nvkm/nvfw/ls.o
->   CC [M]  drivers/gpu/drm/drm_modeset_helper.o
->   CC [M]  drivers/gpu/drm/drm_scdc_helper.o
-> *** stack smashing detected ***: <unknown> terminated
-> In file included from
-> .../kernel-source/include/linux/regulator/consumer.h:35,
->                  from
-> .../kernel-source/drivers/gpu/drm/nouveau/include/nvif/os.h:27,
->                  from
-> .../kernel-source/drivers/gpu/drm/nouveau/include/nvkm/core/os.h:4,
->                  from
-> .../kernel-source/drivers/gpu/drm/nouveau/include/nvkm/core/oclass.h:3,
->                  from
-> .../kernel-source/drivers/gpu/drm/nouveau/include/nvkm/core/device.h:4,
->                  from
-> .../kernel-source/drivers/gpu/drm/nouveau/include/nvkm/core/subdev.h:4,
->                  from
-> .../kernel-source/drivers/gpu/drm/nouveau/nvkm/nvfw/ls.c:22:
-> .../kernel-source/include/linux/suspend.h:364:36: internal compiler
-> error: Aborted
->   364 | extern void mark_free_pages(struct zone *zone);
->       |                                    ^~~~
-> Please submit a full bug report,
-> with preprocessed source if appropriate.
-> See <https://gcc.gnu.org/bugs/> for instructions.
-> .../kernel-source/scripts/Makefile.build:280: recipe for target
-> 'drivers/gpu/drm/nouveau/nvkm/nvfw/ls.o' failed
-> make[5]: *** [drivers/gpu/drm/nouveau/nvkm/nvfw/ls.o] Error 1
-> make[5]: *** Waiting for unfinished jobs....
->   CC [M]  drivers/gpu/drm/drm_gem_framebuffer_helper.o
-> ===
->
-> This is with hardknott, aarch64-oe-linux-gcc (GCC) 10.2.0, building
-> 5.10.* kernels (5.10.45 and 5.10.65 in the cases above IIRC). The build
-> is visiting drivers/gpu/drm/ in both cases, but in the former case it's
-> not actually a TU in there that fails, but one in net/, so I'm not even
-> sure it it has to do with something peculiar to the drivers/gpu/drm/
-> modules.
->
-> Has anyone seem something like this, or any ideas for figuring out
-> what's going on?
->
-> Rasmus
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#54811): https://lists.yoctoproject.org/g/yocto/message/54811
-> Mute This Topic: https://lists.yoctoproject.org/mt/85816316/1997914
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+Commits included:
+2d6322d74a demand_paging: eviction/nru: fix incorrect dirty bit return val
+25771e6928 drivers: clock_control: stm32: enable PWR clock unconditionally
+92e36185e8 [Backport v2.6-branch] Microchip: XEC GPIO driver interrupt enable part 2
+68d33e3834 libc/minimal: locate the memory pool for malloc() to .bss
+7f3abab9bf net: tcp: accept [FIN, PSH, ACK] in TCP_FIN_WAIT_2 state
+533dcaf374 lib/os/cbprintf_nano.c: avoid sign extension on unsigned formats
+ea55ebfa74 tests: schedule_api: use stack array extern macro
+95bb8841b8 tests: mem_protect: fix warning on uninitialized variable
+1f8c53dfaf tests: kernel/common: avoid using compiler builtin popcount
+7bb7454a00 kernel: use proper macro to declare extern interrupt stacks
+25fd176014 kernel: add macros to allow declaring extern stack arrays
+e1cde092ac kernel: move Z_KERNEL_STACK_LEN higher in thread_stack.h
+244049bd71 x86: type cast to uint8_t* for bit ops
+5dae0c1bf0 kernel: ignore array bound warnings for generated syscall funcs
+5666e4d525 cmake: force GCC to emit DWARF version 4
+91a78866ca Bluetooth: Controller: Fix advertising after connections from same peer
+0afddb2341 x86/cache: fix issues in arch dcache flush function
+9bcf9b6a53 json: fix parsing first array-array element
+2595cce714 cmake: oneApi: add oneApi support on windows.
+18d314e750 cmake: oneApi: add oneApi support on windows
+c8755e0b46 (tag: v2.6.1-rc1) tests/benchmarks: add dynamic memory allocation measurement
+a4d35f0a3e doc: 2.6.1 release notes
+7094aaee55 release: Bump release to 2.6.1-rc1
+585c03a0b6 drivers/clock_control: stm32: Fix macro to get HCLK freq
+cacb0a4e59 Bluetooth: L2CAP: Fix missing net_buf_unref()
+78ab750540 timer: hpet: convert register access to functions
+d9df404d47 timer: hpet: don't force TIMER_READS_ITS_FREQUENCY_AT_RUNTIME
+8e80955511 timer: hpet: allow overriding MIN_DELAY
+99dc33faaf timer: hpet: extract Counter Clock Period into a macro
+02fbe652a5 logging: fs: fix leak of opened directories in check_log_file_exist()
+80b406d784 x86: acpi: limit search on where EBDA can be
+
+Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
+---
+ ...ephyr-kernel-src-2.6.0.inc => zephyr-kernel-src-2.6.1.inc} | 4 ++--
+ recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc            | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+ rename recipes-kernel/zephyr-kernel/{zephyr-kernel-src-2.6.0.inc => zephyr-kernel-src-2.6.1.inc} (90%)
+
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.1.inc
+similarity index 90%
+rename from recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc
+rename to recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.1.inc
+index 63665bf..109242e 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.0.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.6.1.inc
+@@ -1,5 +1,5 @@
+ SRCREV_FORMAT = "default_cmsis"
+-SRCREV_default = "837ab4a915f7802a6fb02a27e4b024e287ac93c2"
++SRCREV_default = "2d6322d74aaac838ead46bfcba0db619cff4b534"
+ SRCREV_cmsis = "c3bd2094f92d574377f7af2aec147ae181aa5f8e"
+ SRCREV_nordic = "574493fe29c79140df4827ab5d4a23df79d03681"
+ SRCREV_stm32 = "f8ff8d25aa0a9e65948040c7b47ec67f3fa300df"
+@@ -10,7 +10,7 @@ SRCREV_tinycrypt = "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
+ SRCREV_mbedtls = "5765cb7f75a9973ae9232d438e361a9d7bbc49e7"
+ 
+ ZEPHYR_BRANCH = "v2.6-branch"
+-PV = "2.6.0+git${SRCPV}"
++PV = "2.6.1+git${SRCPV}"
+ 
+ SRC_URI:append = " file://0001-cmake-add-yocto-toolchain.patch \
+                     file://0001-x86-fix-efi-binary-generation-issue-in-cross-compila.patch \
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+index abe755d..458ff1e 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+@@ -22,5 +22,5 @@ SRC_URI = "\
+ S = "${WORKDIR}/git"
+ 
+ # Default to a stable version
+-PREFERRED_VERSION_zephyr-kernel ??= "2.6.0"
++PREFERRED_VERSION_zephyr-kernel ??= "2.6.1"
+ include zephyr-kernel-src-${PREFERRED_VERSION_zephyr-kernel}.inc
+-- 
+2.17.1
+
 
