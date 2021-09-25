@@ -2,94 +2,116 @@ Return-Path: <jdmason@kudzu.us>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E9FB9C433EF
-	for <webhook@archiver.kernel.org>; Sat, 25 Sep 2021 19:34:51 +0000 (UTC)
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com
- [209.85.222.174])
- by mx.groups.io with SMTP id smtpd.web09.10560.1632598490970466407
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 07EF2C433EF
+	for <webhook@archiver.kernel.org>; Sat, 25 Sep 2021 19:38:15 +0000 (UTC)
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com
+ [209.85.160.169])
+ by mx.groups.io with SMTP id smtpd.web10.10472.1632598694251923132
  for <yocto@lists.yoctoproject.org>;
- Sat, 25 Sep 2021 12:34:51 -0700
+ Sat, 25 Sep 2021 12:38:14 -0700
 Authentication-Results: mx.groups.io;
  dkim=pass header.i=@kudzu-us.20210112.gappssmtp.com header.s=20210112
- header.b=yg51Gk+y;
- spf=none, err=permanent DNS error (domain: kudzu.us, ip: 209.85.222.174,
+ header.b=g4INUUGn;
+ spf=none, err=permanent DNS error (domain: kudzu.us, ip: 209.85.160.169,
  mailfrom: jdmason@kudzu.us)
-Received: by mail-qk1-f174.google.com with SMTP id d207so32506388qkg.0
+Received: by mail-qt1-f169.google.com with SMTP id m26so1305437qtn.1
         for <yocto@lists.yoctoproject.org>;
- Sat, 25 Sep 2021 12:34:50 -0700 (PDT)
+ Sat, 25 Sep 2021 12:38:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=kudzu-us.20210112.gappssmtp.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=W7rSUKN0PRm+kCa8CyT24kb3Pj8+X8nTufziHhd6uN0=;
-        b=yg51Gk+yPA0qjfTJUy4sD22yOQddXZcjTMcgaJvzatWZaVqsNMTI/jEmqwYK72TQwH
-         jKEIEtB4tRCltXk8IRY+NQ1FRWAiEb+84VT5zoxxb+IrwE1wnBlstm0N2vbcVFCY8UML
-         L8T+Aj75q1wzLD4J0mQyu1AWqvZZ1XiSQZ8AARvUoZM7QBHj2LQpdjKUmiixAC0I18ke
-         6u3tE4/UfcvkVO7qL++BbT0oY1gbJG1HeKnglUaf8/cp7juz2QZqjqxTdOfzXwuiFh9d
-         4cm2myUbJIRtj4p2SeWgBrfZCah6KEvZew152KoccSDgEzWvqg60on5+Yhlw0fapoGDb
-         bIfw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=598XWMiYzpOfgB3XNnfglwBQnbv7u6+iC3LB759Nrnw=;
+        b=g4INUUGnPMhBnLvGnVE9ILo0e1RIh/ugKhi3n6gN7bYCqTPISTdtMmGCdMOxuEa1Uh
+         t2d590vM93F2pVom39SRMh49UBI7ITkVgQsWcG/PdBxdaEBglhQCeIXfTm7N4rdD7PbO
+         UXWYDhPz5wSni7IJtw11CSsnFjnkZdmSF9ccDz+UJZ4mNkbwHA5wT1p5W16CsDESZZvu
+         CZff2SUDQd8obvyN5Jnn2eDwWFWcf+EcFoUUvaNCv6jUbXuv7eWN6x3p1hiz2KqvH9vb
+         /pvJ0jLhCugSQtlY2FHYxMZRSiQBUEbOMwutG7o7mOMew41R/1X8aUUJtvhAvdqU1m1h
+         xqDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=W7rSUKN0PRm+kCa8CyT24kb3Pj8+X8nTufziHhd6uN0=;
-        b=rUqSQ8VuwXQGY0ABBgHloleNl+ZSSYsspqS+BvUslGhT4y+jIi1zi7yBShJLnF2xng
-         BXT/N5POWDfSQU5TxHHPL7LBOW47NS7f5Fv3bdfO4L/rOLfglBxxqJGC+Dlb24xUGOtv
-         WvSArE6VUGvpjxx+mvkOG1CGYvwI9d/GcHCRxlBY+sMUDhf55C9flsi1nWyfBtsXDXKB
-         8SGfhFuRQoM3TYiIcFwrp96K45qWCYDRg76LqELBFWqShXSzdSPvpkcW2FdAxs8P5VQh
-         bOqzKAR4clklvt9A2F031zXtRxWW1lmI88+9O+8WJBfPHWkIELHm3LG95aozzVr1xicr
-         xXwQ==
-X-Gm-Message-State: AOAM530BSpH/uWasW+i5s9JGAoYZ93HPyDw3GsIeJk8MBgH/qdOgn61L
-	nGj0jAqBpS5JFmda/F7gXPmhxQiXfm598w==
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=598XWMiYzpOfgB3XNnfglwBQnbv7u6+iC3LB759Nrnw=;
+        b=tuF9BQcECfMpDSkIB5tvtkU9Bahvb5c6kCGWBDeiI8Y0dGIvJJtR8w77Uc2ffbzPCN
+         XCaJMutne74qqmW2qZGzsqRY4zwJJEY+adycdeDuVUJEzmJnnrNi0+1j2yG6fJqZPSBX
+         tMwoW87qYbSu0MprNyQ/tVLMz5DeXBAeWChdIUlKzX0aU8VXNuGYU3/UDgtt/fLxR31v
+         oq2i/bBzDmBXam/sL6yfeWcVffpiawf6TLaHk1tEUhbLeYlu6x0a93DAeG4LDVSbfdxH
+         bTeoVOzJfAx7q5cNE1BpUG3RsQCS2d4x5Ygh3ikQOd5LnnLKC0N+7dA6DcVpPdubc3u5
+         QlZQ==
+X-Gm-Message-State: AOAM5322Cxkb6wPKPoE+QP5zHUdWxOUwzysrtFqSe3xPbyLYtt+w3WY9
+	/p6DhH5QdHvDmvpwi1AjKOLE1zVwUqlNqdCMVueq3w==
 X-Google-Smtp-Source: 
- ABdhPJw/w8a8MZ9870eA525R4KXWIMkvKnBDnsLV0Fh2A/xUPKjpZV2jzJJdfZk/8mKBUpk78DvzFg==
-X-Received: by 2002:a37:b606:: with SMTP id g6mr3360778qkf.328.1632598489698;
-        Sat, 25 Sep 2021 12:34:49 -0700 (PDT)
-Received: from localhost ([2605:a601:a650:b700:5036:3ae8:708d:bad0])
-        by smtp.gmail.com with ESMTPSA id
- r13sm9503177qkk.73.2021.09.25.12.34.49
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Sep 2021 12:34:49 -0700 (PDT)
-From: Jon Mason <jdmason@kudzu.us>
-X-Google-Original-From: Jon Mason <jon.mason@arm.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-zephyr][PATCH] qemuzephyrrunner.py: use os._exit instead of
- sys.exit
-Date: Sat, 25 Sep 2021 15:34:48 -0400
-Message-Id: <20210925193448.15164-1-jon.mason@arm.com>
-X-Mailer: git-send-email 2.20.1
+ ABdhPJyAM4QO+pdfqwsXyVvncjFtUue4QI3tjrFJTg/+1qgejvlSnzew8j0KnlCKoNCQxrWFMzQvCEvi/MmN5zIzt9k=
+X-Received: by 2002:ac8:143:: with SMTP id f3mr10935866qtg.238.1632598693366;
+ Sat, 25 Sep 2021 12:38:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210924065518.13567-1-naveen.kumar.saini@intel.com>
+In-Reply-To: <20210924065518.13567-1-naveen.kumar.saini@intel.com>
+From: Jon Mason <jdmason@kudzu.us>
+Date: Sat, 25 Sep 2021 15:38:02 -0400
+Message-ID: 
+ <CAPoiz9xzYUn1QVzx+-Q0CNXT=OvAO2mDhP=2iRWGo4k1onZjNQ@mail.gmail.com>
+Subject: Re: [yocto] [meta-zephyr][PATCH 1/2] zephyr-qemuboot: fix parse build
+ failure
+To: Naveen Saini <naveen.kumar.saini@intel.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 25 Sep 2021 19:34:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54852
+ <yocto@lists.yoctoproject.org>; Sat, 25 Sep 2021 19:38:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54853
 
-sys.exit(0) can cause an error to be reported when the child exits, even
-though not an error.  Since this is a child process, os._exit(0) is the
-proper way to exit and not cause this issue.
+With both of these, and the patch I just sent out, I am able to get
+all of the boards building (except qemu-nios2) and passing testimage
+(for the qemu boards).
+https://gitlab.com/jonmason00/meta-zephyr/-/pipelines/376922543
 
-Signed-off-by: Jon Mason <jon.mason@arm.com>
----
- lib/oeqa/utils/qemuzephyrrunner.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks,
+Jon
 
-diff --git a/lib/oeqa/utils/qemuzephyrrunner.py b/lib/oeqa/utils/qemuzephyrrunner.py
-index a1ed30be1ca8..7b486ce8af3f 100644
---- a/lib/oeqa/utils/qemuzephyrrunner.py
-+++ b/lib/oeqa/utils/qemuzephyrrunner.py
-@@ -191,7 +191,7 @@ class QemuZephyrRunner(QemuRunner):
-             r = os.fdopen(r)
-             x = r.read()
-             os.killpg(os.getpgid(self.runqemu.pid), signal.SIGTERM)
--            sys.exit(0)
-+            os._exit(0)
- 
-         bb.note("qemu started, pid is %s" % self.runqemu.pid)
-         return self.create_socket()
--- 
-2.20.1
-
+On Fri, Sep 24, 2021 at 2:40 AM Naveen Saini
+<naveen.kumar.saini@intel.com> wrote:
+>
+> As OE-core explicitly have added depends for qemu-helper addto_recipe_sysroot task, which
+> breaks zephyr-qemuboot implementation of adding build dependencies
+> http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=282d596b8cc81d650b6d20c6131fdc236bad2c20
+>
+> ERROR: Error for meta-zephyr/recipes-kernel/zephyr-kernel/zephyr-helloworld.bb:
+> do_bootconf_write[depends], dependency qemu-helper-native:do_addto_recipe_sysroot:do_addto_recipe_sysroot in
+> ' qemu-helper-native:do_addto_recipe_sysroot:do_addto_recipe_sysroot qemu-helper-native:do_addto_recipe_sysroot:do_populate_sysroot' does not contain exactly one ':' character.
+>  Task 'depends' should be specified in the form 'packagename:task'
+> ERROR: Command execution failed: Exited with 1
+>
+> Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
+> ---
+>  classes/zephyr-qemuboot.bbclass | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/classes/zephyr-qemuboot.bbclass b/classes/zephyr-qemuboot.bbclass
+> index c268e9e..b45e6f6 100644
+> --- a/classes/zephyr-qemuboot.bbclass
+> +++ b/classes/zephyr-qemuboot.bbclass
+> @@ -48,7 +48,7 @@ python () {
+>          for dep in (d.getVar('EXTRA_IMAGEDEPENDS') or "").split():
+>          # Make sure we only add it for qemu
+>              if 'qemu-helper-native' in dep:
+> -                deps += " %s:%s" % (dep, task)
+> +                deps += " qemu-helper-native:%s" % (task)
+>          return deps
+>      d.appendVarFlag('do_bootconf_write', 'depends', extraimage_getdepends('do_addto_recipe_sysroot'))
+>      d.appendVarFlag('do_bootconf_write', 'depends', extraimage_getdepends('do_populate_sysroot'))
+> --
+> 2.17.1
+>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#54833): https://lists.yoctoproject.org/g/yocto/message/54833
+> Mute This Topic: https://lists.yoctoproject.org/mt/85833578/3616920
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [jdmason@kudzu.us]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
