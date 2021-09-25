@@ -1,129 +1,95 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <jdmason@kudzu.us>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B9924C433F5
-	for <webhook@archiver.kernel.org>; Sat, 25 Sep 2021 15:09:11 +0000 (UTC)
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com
- [209.85.160.172])
- by mx.groups.io with SMTP id smtpd.web08.7940.1632582551026560858
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E9FB9C433EF
+	for <webhook@archiver.kernel.org>; Sat, 25 Sep 2021 19:34:51 +0000 (UTC)
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com
+ [209.85.222.174])
+ by mx.groups.io with SMTP id smtpd.web09.10560.1632598490970466407
  for <yocto@lists.yoctoproject.org>;
- Sat, 25 Sep 2021 08:09:11 -0700
+ Sat, 25 Sep 2021 12:34:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=mXTY9ot3;
- spf=pass (domain: gmail.com, ip: 209.85.160.172,
- mailfrom: twoerner@gmail.com)
-Received: by mail-qt1-f172.google.com with SMTP id x9so12474843qtv.0
+ dkim=pass header.i=@kudzu-us.20210112.gappssmtp.com header.s=20210112
+ header.b=yg51Gk+y;
+ spf=none, err=permanent DNS error (domain: kudzu.us, ip: 209.85.222.174,
+ mailfrom: jdmason@kudzu.us)
+Received: by mail-qk1-f174.google.com with SMTP id d207so32506388qkg.0
         for <yocto@lists.yoctoproject.org>;
- Sat, 25 Sep 2021 08:09:10 -0700 (PDT)
+ Sat, 25 Sep 2021 12:34:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=dazbAihhUxuP+679rrq8AZdfjbeZe/IwnSwJmF2j+1s=;
-        b=mXTY9ot36DjCUHp/bILTALrCC5dZByV1xFY4UMWjzz0tlFWn4sAPA9sHHKRYeVGoJn
-         tqPmuY+gX6ztkkSPj8ijpVLNr4q/bWdopSICLQrEH3ByYWpdACu4ALEIJLgomZtuktkJ
-         5JtTKktB7lcHrgKuTkEC6o7atwabu7KThxdeX1rf54wdpUb3liMzPirT7HJ/ZqI4r3i+
-         RPUKa/SKIfS0IUPSiFJMhXeWglryZ86ec4HIstFZzFesIrAVgRkNV8ShnJ18SCUxYJ//
-         IEGYKdDy84T3YbAv2xXJayeCztCic1/JslriCagMUnnppTby01QR8dSYrR5yOsVHb2yw
-         3lQw==
+        d=kudzu-us.20210112.gappssmtp.com; s=20210112;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=W7rSUKN0PRm+kCa8CyT24kb3Pj8+X8nTufziHhd6uN0=;
+        b=yg51Gk+yPA0qjfTJUy4sD22yOQddXZcjTMcgaJvzatWZaVqsNMTI/jEmqwYK72TQwH
+         jKEIEtB4tRCltXk8IRY+NQ1FRWAiEb+84VT5zoxxb+IrwE1wnBlstm0N2vbcVFCY8UML
+         L8T+Aj75q1wzLD4J0mQyu1AWqvZZ1XiSQZ8AARvUoZM7QBHj2LQpdjKUmiixAC0I18ke
+         6u3tE4/UfcvkVO7qL++BbT0oY1gbJG1HeKnglUaf8/cp7juz2QZqjqxTdOfzXwuiFh9d
+         4cm2myUbJIRtj4p2SeWgBrfZCah6KEvZew152KoccSDgEzWvqg60on5+Yhlw0fapoGDb
+         bIfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=dazbAihhUxuP+679rrq8AZdfjbeZe/IwnSwJmF2j+1s=;
-        b=li9JkSw04TxajQ5JT7NZkq/W2K6JEo3mDpMgL+onyp9Y5G+jpogmvqwlRkuUrYX0KD
-         iBwsuScqkVUIIt1nVpynBuivc3AGilToGVjug3KseWxmgNSrvh87YvF35YC9+qgx331v
-         THcTo9gQjPQeDpOkhcw/mx36STsB+KM5PDYuK557lheDmsqhCY0TF3b5TSrR/UhreEDr
-         Zjfx7wpvBjgP0hy4lp7i4TvqqDPp2xNVDwFOpMVMH+NNhICTqCvwAQebLLHyY/oTpxQY
-         abXp9lD7UrIpQMFxCaiufHeczALNeYW6d6tb0bpBwf527I0NcrTaKSqviEJedv08MQQy
-         8/jA==
-X-Gm-Message-State: AOAM531fBqMrZqghjHEV97cIIb0YAa4Q7n6J5Udk1dUjQnqXwzXTpz8O
-	0gwqlMg6IzJBOs0GgAoaJos=
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=W7rSUKN0PRm+kCa8CyT24kb3Pj8+X8nTufziHhd6uN0=;
+        b=rUqSQ8VuwXQGY0ABBgHloleNl+ZSSYsspqS+BvUslGhT4y+jIi1zi7yBShJLnF2xng
+         BXT/N5POWDfSQU5TxHHPL7LBOW47NS7f5Fv3bdfO4L/rOLfglBxxqJGC+Dlb24xUGOtv
+         WvSArE6VUGvpjxx+mvkOG1CGYvwI9d/GcHCRxlBY+sMUDhf55C9flsi1nWyfBtsXDXKB
+         8SGfhFuRQoM3TYiIcFwrp96K45qWCYDRg76LqELBFWqShXSzdSPvpkcW2FdAxs8P5VQh
+         bOqzKAR4clklvt9A2F031zXtRxWW1lmI88+9O+8WJBfPHWkIELHm3LG95aozzVr1xicr
+         xXwQ==
+X-Gm-Message-State: AOAM530BSpH/uWasW+i5s9JGAoYZ93HPyDw3GsIeJk8MBgH/qdOgn61L
+	nGj0jAqBpS5JFmda/F7gXPmhxQiXfm598w==
 X-Google-Smtp-Source: 
- ABdhPJxzknwPX3ta3bF+O/ZCCVcbsWGTWO+KWDxJudgVJS/1gli0Q0NiCLVz5bK3dRL/Zj0sHLQTOw==
-X-Received: by 2002:ac8:4243:: with SMTP id r3mr10210338qtm.187.1632582550181;
-        Sat, 25 Sep 2021 08:09:10 -0700 (PDT)
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+ ABdhPJw/w8a8MZ9870eA525R4KXWIMkvKnBDnsLV0Fh2A/xUPKjpZV2jzJJdfZk/8mKBUpk78DvzFg==
+X-Received: by 2002:a37:b606:: with SMTP id g6mr3360778qkf.328.1632598489698;
+        Sat, 25 Sep 2021 12:34:49 -0700 (PDT)
+Received: from localhost ([2605:a601:a650:b700:5036:3ae8:708d:bad0])
         by smtp.gmail.com with ESMTPSA id
- u189sm8561014qkh.14.2021.09.25.08.09.09
+ r13sm9503177qkk.73.2021.09.25.12.34.49
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Sep 2021 08:09:09 -0700 (PDT)
-Date: Sat, 25 Sep 2021 11:09:07 -0400
-From: Trevor Woerner <twoerner@gmail.com>
-To: Markus Volk <f_l_k@t-online.de>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] [meta-rockchip][PATCH] use uuid instead of hard-coding
- root device
-Message-ID: <20210925150907.GB13525@localhost>
-References: <20210917220121.26663-1-twoerner@gmail.com>
- <a7d1f5cd-8bb6-ba56-c2b4-39dfb283a22c@t-online.de>
- <20210923115919.GA25233@localhost>
- <254c0237-f5c0-8f64-61a0-a5e8835d64f4@t-online.de>
- <20210923205548.GA5309@localhost>
- <4960bca2-905e-9fbf-3ccc-93483c838655@t-online.de>
+        Sat, 25 Sep 2021 12:34:49 -0700 (PDT)
+From: Jon Mason <jdmason@kudzu.us>
+X-Google-Original-From: Jon Mason <jon.mason@arm.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-zephyr][PATCH] qemuzephyrrunner.py: use os._exit instead of
+ sys.exit
+Date: Sat, 25 Sep 2021 15:34:48 -0400
+Message-Id: <20210925193448.15164-1-jon.mason@arm.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <4960bca2-905e-9fbf-3ccc-93483c838655@t-online.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 25 Sep 2021 15:09:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54851
+ <yocto@lists.yoctoproject.org>; Sat, 25 Sep 2021 19:34:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54852
 
-On Sat 2021-09-25 @ 09:56:21 AM, Markus Volk wrote:
-> 
-> Am 23.09.21 um 22:55 schrieb Trevor Woerner:
-> > We can add the --use-uuid line to the /boot entry if you really think it
-> > should be mounted on boot, but we shouldn't use it on the others and cause wic
-> > to generate a bad fstab. There are examples of other boards that don't mount
-> > /boot by default (raspi for sure, and I think bbb too).
-> 
-> Could the solution be as simple as this?
+sys.exit(0) can cause an error to be reported when the child exits, even
+though not an error.  Since this is a child process, os._exit(0) is the
+proper way to exit and not cause this issue.
 
-Probably.
+Signed-off-by: Jon Mason <jon.mason@arm.com>
+---
+ lib/oeqa/utils/qemuzephyrrunner.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-You'll need to re-send this with a better subject line and commit
-message so the right people will notice it. Otherwise they'll think it's
-meta-rockchip-specific.
+diff --git a/lib/oeqa/utils/qemuzephyrrunner.py b/lib/oeqa/utils/qemuzephyrrunner.py
+index a1ed30be1ca8..7b486ce8af3f 100644
+--- a/lib/oeqa/utils/qemuzephyrrunner.py
++++ b/lib/oeqa/utils/qemuzephyrrunner.py
+@@ -191,7 +191,7 @@ class QemuZephyrRunner(QemuRunner):
+             r = os.fdopen(r)
+             x = r.read()
+             os.killpg(os.getpgid(self.runqemu.pid), signal.SIGTERM)
+-            sys.exit(0)
++            os._exit(0)
+ 
+         bb.note("qemu started, pid is %s" % self.runqemu.pid)
+         return self.create_socket()
+-- 
+2.20.1
 
-> 
-> From b8ba56d84fbac53901e5b7ca122498320e51fbf4 Mon Sep 17 00:00:00 2001
-> From: MarkusVolk <f_l_k@t-online.de>
-> Date: Sat, 25 Sep 2021 09:21:15 +0200
-> Subject: [PATCH] wic:direct.py: improve filter for fstab update
-> 
-> Signed-off-by: MarkusVolk <f_l_k@t-online.de>
-> ---
->  scripts/lib/wic/plugins/imager/direct.py | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/scripts/lib/wic/plugins/imager/direct.py b/scripts/lib/wic/plugins/imager/direct.py
-> index 9d10ec01d0..15fa47356f 100644
-> --- a/scripts/lib/wic/plugins/imager/direct.py
-> +++ b/scripts/lib/wic/plugins/imager/direct.py
-> @@ -117,7 +117,7 @@ class DirectPlugin(ImagerPlugin):
->          updated = False
->          for part in self.parts:
->              if not part.realnum or not part.mountpoint \
-> -               or part.mountpoint == "/":
-> +               or part.mountpoint == "/" or not part.mountpoint.startswith('/'):
->                  continue
->              if part.use_uuid:
-> -- 
-> 2.25.1
-> 
-> With this patch wic only adds the /boot mountpoint. The invalid entries get filtered out.
-> We would then only need to set --use-uuid for /boot to avoid the system from crashing if
-> 'no-fstab-update' isn't expicitly given as an argument
-
-If (when) this patch gets applied upstream, then we can remove our
-work-around.
-
-This is a fantastic find, I'm guessing other BSP layers might find it useful.
-I was thinking of investigating adding a per-line "--no-fstab" option to wic
-to indicate specific lines not desired in the fstab, but this looks much
-nicer.
 
