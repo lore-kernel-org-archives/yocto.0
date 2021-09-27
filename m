@@ -1,405 +1,889 @@
-Return-Path: <anibal.limon@linaro.org>
+Return-Path: <anton.antonov@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 535E1C433F5
-	for <webhook@archiver.kernel.org>; Mon, 27 Sep 2021 18:59:59 +0000 (UTC)
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com
- [209.85.221.45])
- by mx.groups.io with SMTP id smtpd.web08.3522.1632769197816164095
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C9584C433EF
+	for <webhook@archiver.kernel.org>; Mon, 27 Sep 2021 19:57:34 +0000 (UTC)
+Received: from cam-smtp0.cambridge.arm.com (cam-smtp0.cambridge.arm.com
+ [217.140.106.54])
+ by mx.groups.io with SMTP id smtpd.web12.4340.1632772652758820794
  for <yocto@lists.yoctoproject.org>;
- Mon, 27 Sep 2021 11:59:58 -0700
+ Mon, 27 Sep 2021 12:57:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=zE2vfOEJ;
- spf=pass (domain: linaro.org, ip: 209.85.221.45,
- mailfrom: anibal.limon@linaro.org)
-Received: by mail-wr1-f45.google.com with SMTP id s21so13653320wra.7
-        for <yocto@lists.yoctoproject.org>;
- Mon, 27 Sep 2021 11:59:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=NAptuyY04r+0agA3wBmR4PU57lN3Cu3ZtA/9P/ltVzM=;
-        b=zE2vfOEJ9ChWLGgIMYju8uL/pm0/u7U2NQZtDqqhUNaegh0jUbOUryYzmo3IS0+zL5
-         shNjz1THIb9QZly90LPqToG/9e+QdIimKEWWUmY2Ey5GXjSkYpUXHMIRSecxaL8DqZeE
-         0E1C13P9O0m2pmMpkRdX+fDpxV9DH16FHPWe6w4Xf7YbtzcoNPDlXwl+tjAF4ElDhnzS
-         Yh6jphi2y801bpTaKRTGFR3XbbxL8Y/i7fTO0+XEPFdul1FvW3il50ICtGVTgt1S4eT+
-         b9IvYhGtnI2sby2EblrjrOnMmhXFNlWCm7oJeuXQYgjFu+r5Tl2RllMfxMGDuF8ja60v
-         IrHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NAptuyY04r+0agA3wBmR4PU57lN3Cu3ZtA/9P/ltVzM=;
-        b=aKFUqPNE2GfSx7nIBiQf4etFZrpCfET6OgxAo9/gEEyDdxwoasgjGjm6jX5rlLb5pR
-         R9g1TYBJmK4o090FVqnm4GBd29QWwpUMgUT7ax3c+GIECsFUo8iUuFC7hU5fkJTGhIx9
-         11ch97wgus7sIsi7WLfy5s9iEd0thnLz01F7ujjbJNnMkuAeNiQhK6uFHuhBFlMapkjj
-         Wiat7tiRCNAc9IvZLd8/IwY0eOhgBTWvRXlDCDAQwRmu9gsnL8uYzd6WVIyYTlH/IE/u
-         5GzLjasPE6qfQpdWesWA7hidHPz3LOnX9ny22mDOz2981+vy1QPZ1T6NN1NoR73YnZ6X
-         fRbQ==
-X-Gm-Message-State: AOAM532nXC6Y6bXoJfB7l8yzQMkvb//ZTNLpRQldIPek6ljaUVhOrAZW
-	4JmsDKA7qUMin/lijCv8rqK283H2fxTTcZk3n0JJxg==
-X-Google-Smtp-Source: 
- ABdhPJykKnrcAqsto4qTp1zH9yVqmcbKAzk6XaCrDd8EjNT8kmwZ6NP6SNBA54ZzcxxfosjYDjzObj18jNG7nDVE6r4=
-X-Received: by 2002:adf:ce89:: with SMTP id r9mr1730580wrn.238.1632769196239;
- Mon, 27 Sep 2021 11:59:56 -0700 (PDT)
+ dkim=missing;
+ spf=pass (domain: arm.com, ip: 217.140.106.54, mailfrom: anton.antonov@arm.com)
+Received: from atg-devlab-kelpie.cambridge.arm.com
+ (atg-devlab-kelpie.cambridge.arm.com [10.2.80.92])
+	by cam-smtp0.cambridge.arm.com (8.13.8/8.13.8) with ESMTP id 18RJvoDk027247;
+	Mon, 27 Sep 2021 20:57:51 +0100
+From: Anton Antonov <Anton.Antonov@arm.com>
+To: yocto@lists.yoctoproject.org
+Cc: Anton.Antonov@arm.com
+Subject: [meta-security][PATCH] Upgrade parsec-service 0.8.1 and parsec-tool
+ 0.4.0
+Date: Mon, 27 Sep 2021 20:57:20 +0100
+Message-Id: <20210927195720.2066221-1-Anton.Antonov@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210817123812.18075-1-lukma@denx.de>
- <20210817123812.18075-2-lukma@denx.de>
- <20210827124350.71c00d33@ktm> <20210920111852.174eff07@ktm>
- <CANNYZj8hGOPSa+zAKRSqGmMoEsueb4zB6yNPT7GPnc4Pe-Q+UQ@mail.gmail.com>
- <20210927100901.1ba0b8fb@ktm>
- <CANNYZj-=-DGpn8LyKgnN59tzaEq945yJEUteDgeAPjDzC=tTNQ@mail.gmail.com>
-In-Reply-To: 
- <CANNYZj-=-DGpn8LyKgnN59tzaEq945yJEUteDgeAPjDzC=tTNQ@mail.gmail.com>
-From: Anibal Limon <anibal.limon@linaro.org>
-Date: Mon, 27 Sep 2021 13:59:45 -0500
-Message-ID: 
- <CA+_AqiuOdpFHmmOFWZJ8UiwPRCM1k6aP9i86jappLbQ4CuR3Uw@mail.gmail.com>
-Subject: Re: [yocto] [PATCH v2 ptest-runner 2/2] main: Do not return number of
- failed tests when calling ptest-runner
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: Lukasz Majewski <lukma@denx.de>,
- Yocto-mailing-list <yocto@lists.yoctoproject.org>,
-	Adrian Freihofer <adrian.freihofer@siemens.com>
-Content-Type: multipart/alternative; boundary="000000000000f1443c05ccfeb3ca"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 27 Sep 2021 18:59:59 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54880
+ <yocto@lists.yoctoproject.org>; Mon, 27 Sep 2021 19:57:34 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54881
 
---000000000000f1443c05ccfeb3ca
-Content-Type: text/plain; charset="UTF-8"
+Signed-off-by: Anton Antonov <Anton.Antonov@arm.com>
+---
+ .../parsec-service/files/cryptoki.patch       |  18 --
+ .../parsec-service/parsec-service_0.7.0.inc   | 147 -----------
+ ...rvice_0.7.0.bb => parsec-service_0.8.1.bb} |  15 +-
+ .../parsec-service/parsec-service_0.8.1.inc   | 246 ++++++++++++++++++
+ .../parsec-tool/parsec-tool_0.3.0.inc         | 127 ---------
+ ...sec-tool_0.3.0.bb => parsec-tool_0.4.0.bb} |   3 +
+ .../parsec-tool/parsec-tool_0.4.0.inc         | 216 +++++++++++++++
+ 7 files changed, 477 insertions(+), 295 deletions(-)
+ delete mode 100644 meta-parsec/recipes-parsec/parsec-service/files/cryptoki.patch
+ delete mode 100644 meta-parsec/recipes-parsec/parsec-service/parsec-service_0.7.0.inc
+ rename meta-parsec/recipes-parsec/parsec-service/{parsec-service_0.7.0.bb => parsec-service_0.8.1.bb} (77%)
+ create mode 100644 meta-parsec/recipes-parsec/parsec-service/parsec-service_0.8.1.inc
+ delete mode 100644 meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.3.0.inc
+ rename meta-parsec/recipes-parsec/parsec-tool/{parsec-tool_0.3.0.bb => parsec-tool_0.4.0.bb} (75%)
+ create mode 100644 meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.4.0.inc
 
-On Mon, 27 Sept 2021 at 03:35, Alexander Kanavin <alex.kanavin@gmail.com>
-wrote:
+diff --git a/meta-parsec/recipes-parsec/parsec-service/files/cryptoki.patch b/meta-parsec/recipes-parsec/parsec-service/files/cryptoki.patch
+deleted file mode 100644
+index c234479..0000000
+--- a/meta-parsec/recipes-parsec/parsec-service/files/cryptoki.patch
++++ /dev/null
+@@ -1,18 +0,0 @@
+-
+-Use cryptoki v0.1.1 which supports the "generate-bindings" feature
+-required for building Parsec service 0.7.0 in Yocto.
+-
+-Signed-off-by: Anton Antonov <Anton.Antonov@arm.com>
+-Upstream-Status: Submitted
+-
+---- a/Cargo.toml	2021-04-01 10:29:50.333687763 +0100
+-+++ b/Cargo.toml	2021-04-01 10:27:13.051860002 +0100
+-@@ -37,7 +37,7 @@
+- version = "1.3.1"
+- 
+- [dependencies.cryptoki]
+--version = "0.1.0"
+-+version = "0.1.1"
+- features = ["psa-crypto-conversions"]
+- optional = true
+- 
+diff --git a/meta-parsec/recipes-parsec/parsec-service/parsec-service_0.7.0.inc b/meta-parsec/recipes-parsec/parsec-service/parsec-service_0.7.0.inc
+deleted file mode 100644
+index 59a47f9..0000000
+--- a/meta-parsec/recipes-parsec/parsec-service/parsec-service_0.7.0.inc
++++ /dev/null
+@@ -1,147 +0,0 @@
+-# This file is created from parsec-service repository Cargo.lock using cargo-bitbake tool
+-
+-SRC_URI += " \
+-    crate://crates.io/aho-corasick/0.7.15 \
+-    crate://crates.io/ansi_term/0.11.0 \
+-    crate://crates.io/anyhow/1.0.38 \
+-    crate://crates.io/atty/0.2.14 \
+-    crate://crates.io/autocfg/1.0.1 \
+-    crate://crates.io/base64/0.12.3 \
+-    crate://crates.io/base64/0.13.0 \
+-    crate://crates.io/bincode/1.3.2 \
+-    crate://crates.io/bindgen/0.56.0 \
+-    crate://crates.io/bindgen/0.57.0 \
+-    crate://crates.io/bitfield/0.13.2 \
+-    crate://crates.io/bitflags/1.2.1 \
+-    crate://crates.io/byteorder/1.3.4 \
+-    crate://crates.io/bytes/0.5.6 \
+-    crate://crates.io/bytes/1.0.1 \
+-    crate://crates.io/cc/1.0.67 \
+-    crate://crates.io/cexpr/0.4.0 \
+-    crate://crates.io/cfg-if/1.0.0 \
+-    crate://crates.io/clang-sys/1.1.1 \
+-    crate://crates.io/clap/2.33.3 \
+-    crate://crates.io/cmake/0.1.45 \
+-    crate://crates.io/cryptoauthlib-sys/0.1.0 \
+-    crate://crates.io/cryptoki-sys/0.1.1 \
+-    crate://crates.io/cryptoki/0.1.1 \
+-    crate://crates.io/derivative/2.2.0 \
+-    crate://crates.io/either/1.6.1 \
+-    crate://crates.io/enumflags2/0.6.4 \
+-    crate://crates.io/enumflags2_derive/0.6.4 \
+-    crate://crates.io/env_logger/0.8.3 \
+-    crate://crates.io/fixedbitset/0.2.0 \
+-    crate://crates.io/getrandom/0.2.2 \
+-    crate://crates.io/glob/0.3.0 \
+-    crate://crates.io/hashbrown/0.9.1 \
+-    crate://crates.io/heck/0.3.2 \
+-    crate://crates.io/hermit-abi/0.1.18 \
+-    crate://crates.io/hex/0.4.3 \
+-    crate://crates.io/hostname-validator/1.0.0 \
+-    crate://crates.io/humantime/2.1.0 \
+-    crate://crates.io/indexmap/1.6.2 \
+-    crate://crates.io/itertools/0.8.2 \
+-    crate://crates.io/itertools/0.9.0 \
+-    crate://crates.io/lazy_static/1.4.0 \
+-    crate://crates.io/lazycell/1.3.0 \
+-    crate://crates.io/libc/0.2.89 \
+-    crate://crates.io/libloading/0.7.0 \
+-    crate://crates.io/log/0.4.14 \
+-    crate://crates.io/mbox/0.5.0 \
+-    crate://crates.io/memchr/2.3.4 \
+-    crate://crates.io/multimap/0.8.3 \
+-    crate://crates.io/nom/5.1.2 \
+-    crate://crates.io/num-bigint/0.3.2 \
+-    crate://crates.io/num-complex/0.3.1 \
+-    crate://crates.io/num-derive/0.3.3 \
+-    crate://crates.io/num-integer/0.1.44 \
+-    crate://crates.io/num-iter/0.1.42 \
+-    crate://crates.io/num-rational/0.3.2 \
+-    crate://crates.io/num-traits/0.2.14 \
+-    crate://crates.io/num/0.3.1 \
+-    crate://crates.io/num_cpus/1.13.0 \
+-    crate://crates.io/oid/0.1.1 \
+-    crate://crates.io/parsec-interface/0.24.0 \
+-    crate://crates.io/peeking_take_while/0.1.2 \
+-    crate://crates.io/petgraph/0.5.1 \
+-    crate://crates.io/picky-asn1-der/0.2.4 \
+-    crate://crates.io/picky-asn1-x509/0.4.0 \
+-    crate://crates.io/picky-asn1/0.3.1 \
+-    crate://crates.io/pkg-config/0.3.19 \
+-    crate://crates.io/ppv-lite86/0.2.10 \
+-    crate://crates.io/proc-macro-error-attr/1.0.4 \
+-    crate://crates.io/proc-macro-error/1.0.4 \
+-    crate://crates.io/proc-macro2/1.0.24 \
+-    crate://crates.io/prost-build/0.6.1 \
+-    crate://crates.io/prost-build/0.7.0 \
+-    crate://crates.io/prost-derive/0.6.1 \
+-    crate://crates.io/prost-derive/0.7.0 \
+-    crate://crates.io/prost-types/0.6.1 \
+-    crate://crates.io/prost-types/0.7.0 \
+-    crate://crates.io/prost/0.6.1 \
+-    crate://crates.io/prost/0.7.0 \
+-    crate://crates.io/psa-crypto-sys/0.8.0 \
+-    crate://crates.io/psa-crypto/0.8.0 \
+-    crate://crates.io/quote/1.0.9 \
+-    crate://crates.io/rand/0.8.3 \
+-    crate://crates.io/rand_chacha/0.3.0 \
+-    crate://crates.io/rand_core/0.6.2 \
+-    crate://crates.io/rand_hc/0.3.0 \
+-    crate://crates.io/redox_syscall/0.2.5 \
+-    crate://crates.io/regex-syntax/0.6.23 \
+-    crate://crates.io/regex/1.4.5 \
+-    crate://crates.io/remove_dir_all/0.5.3 \
+-    crate://crates.io/rust-cryptoauthlib/0.1.0 \
+-    crate://crates.io/rustc-hash/1.1.0 \
+-    crate://crates.io/rustc_version/0.2.3 \
+-    crate://crates.io/same-file/1.0.6 \
+-    crate://crates.io/sd-notify/0.2.0 \
+-    crate://crates.io/secrecy/0.7.0 \
+-    crate://crates.io/semver-parser/0.7.0 \
+-    crate://crates.io/semver/0.9.0 \
+-    crate://crates.io/serde/1.0.124 \
+-    crate://crates.io/serde_bytes/0.11.5 \
+-    crate://crates.io/serde_derive/1.0.124 \
+-    crate://crates.io/shlex/0.1.1 \
+-    crate://crates.io/signal-hook-registry/1.3.0 \
+-    crate://crates.io/signal-hook/0.3.7 \
+-    crate://crates.io/stable_deref_trait/1.2.0 \
+-    crate://crates.io/strsim/0.8.0 \
+-    crate://crates.io/structopt-derive/0.4.14 \
+-    crate://crates.io/structopt/0.3.21 \
+-    crate://crates.io/strum_macros/0.19.4 \
+-    crate://crates.io/syn/1.0.64 \
+-    crate://crates.io/synstructure/0.12.4 \
+-    crate://crates.io/tempfile/3.2.0 \
+-    crate://crates.io/termcolor/1.1.2 \
+-    crate://crates.io/textwrap/0.11.0 \
+-    crate://crates.io/thiserror-impl/1.0.24 \
+-    crate://crates.io/thiserror/1.0.24 \
+-    crate://crates.io/threadpool/1.8.1 \
+-    crate://crates.io/toml/0.5.8 \
+-    crate://crates.io/tss-esapi-sys/0.1.0 \
+-    crate://crates.io/tss-esapi/5.0.0 \
+-    crate://crates.io/unicode-segmentation/1.7.1 \
+-    crate://crates.io/unicode-width/0.1.8 \
+-    crate://crates.io/unicode-xid/0.2.1 \
+-    crate://crates.io/users/0.11.0 \
+-    crate://crates.io/uuid/0.8.2 \
+-    crate://crates.io/vec_map/0.8.2 \
+-    crate://crates.io/version/3.0.0 \
+-    crate://crates.io/version_check/0.9.3 \
+-    crate://crates.io/walkdir/2.3.1 \
+-    crate://crates.io/wasi/0.10.2+wasi-snapshot-preview1 \
+-    crate://crates.io/which/3.1.1 \
+-    crate://crates.io/which/4.0.2 \
+-    crate://crates.io/winapi-i686-pc-windows-gnu/0.4.0 \
+-    crate://crates.io/winapi-util/0.1.5 \
+-    crate://crates.io/winapi-x86_64-pc-windows-gnu/0.4.0 \
+-    crate://crates.io/winapi/0.3.9 \
+-    crate://crates.io/zeroize/1.2.0 \
+-    crate://crates.io/zeroize_derive/1.0.1 \
+-    file://cryptoki.patch \
+-"
+-
+-LIC_FILES_CHKSUM = " \
+-    file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57 \
+-"
+diff --git a/meta-parsec/recipes-parsec/parsec-service/parsec-service_0.7.0.bb b/meta-parsec/recipes-parsec/parsec-service/parsec-service_0.8.1.bb
+similarity index 77%
+rename from meta-parsec/recipes-parsec/parsec-service/parsec-service_0.7.0.bb
+rename to meta-parsec/recipes-parsec/parsec-service/parsec-service_0.8.1.bb
+index 5f7a99b..b8bfa98 100644
+--- a/meta-parsec/recipes-parsec/parsec-service/parsec-service_0.7.0.bb
++++ b/meta-parsec/recipes-parsec/parsec-service/parsec-service_0.8.1.bb
+@@ -10,9 +10,18 @@ SRC_URI += "crate://crates.io/parsec-service/${PV} \
+             file://parsec-tmpfiles.conf \
+ "
+ 
+-DEPENDS = "tpm2-tss clang-native"
+-
+-CARGO_BUILD_FLAGS += " --features all-providers,cryptoki/generate-bindings,tss-esapi/generate-bindings"
++DEPENDS = "clang-native"
++
++PACKAGECONFIG ??= "TPM PKCS11 MBED-CRYPTO CRYPTOAUTHLIB"
++PACKAGECONFIG[ALL] = "all-providers,,tpm2-tss libts,libts"
++PACKAGECONFIG[TPM] = "tpm-provider,,tpm2-tss"
++PACKAGECONFIG[PKCS11] = "pkcs11-provider,"
++PACKAGECONFIG[MBED-CRYPTO] = "mbed-crypto-provider,"
++PACKAGECONFIG[CRYPTOAUTHLIB] = "cryptoauthlib-provider,"
++PACKAGECONFIG[TS] = "trusted-service-provider,,libts,libts"
++
++PARSEC_PROVIDERS = "${@d.getVar('PACKAGECONFIG_CONFARGS',True).replace(' ', ',')}"
++CARGO_BUILD_FLAGS += " --features ${PARSEC_PROVIDERS},cryptoki/generate-bindings,tss-esapi/generate-bindings"
+ 
+ inherit systemd
+ SYSTEMD_SERVICE:${PN} = "parsec.service"
+diff --git a/meta-parsec/recipes-parsec/parsec-service/parsec-service_0.8.1.inc b/meta-parsec/recipes-parsec/parsec-service/parsec-service_0.8.1.inc
+new file mode 100644
+index 0000000..fd88e87
+--- /dev/null
++++ b/meta-parsec/recipes-parsec/parsec-service/parsec-service_0.8.1.inc
+@@ -0,0 +1,246 @@
++# This file is created from parsec-service repository Cargo.lock using cargo-bitbake tool
++
++SRC_URI += " \
++    crate://crates.io/addr2line/0.15.2 \
++    crate://crates.io/adler/1.0.2 \
++    crate://crates.io/aho-corasick/0.7.15 \
++    crate://crates.io/ansi_term/0.11.0 \
++    crate://crates.io/anyhow/1.0.41 \
++    crate://crates.io/arrayvec/0.5.2 \
++    crate://crates.io/atty/0.2.14 \
++    crate://crates.io/autocfg/1.0.1 \
++    crate://crates.io/backtrace/0.3.59 \
++    crate://crates.io/base64/0.12.3 \
++    crate://crates.io/base64/0.13.0 \
++    crate://crates.io/bincode/1.3.3 \
++    crate://crates.io/bindgen/0.56.0 \
++    crate://crates.io/bindgen/0.57.0 \
++    crate://crates.io/bitfield/0.13.2 \
++    crate://crates.io/bitflags/1.2.1 \
++    crate://crates.io/bitvec/0.19.5 \
++    crate://crates.io/boringssl-src/0.3.0+688fc5c \
++    crate://crates.io/bumpalo/3.7.0 \
++    crate://crates.io/bytes/0.5.6 \
++    crate://crates.io/bytes/1.0.1 \
++    crate://crates.io/cc/1.0.68 \
++    crate://crates.io/cexpr/0.4.0 \
++    crate://crates.io/cfg-if/1.0.0 \
++    crate://crates.io/chrono/0.4.19 \
++    crate://crates.io/clang-sys/1.2.0 \
++    crate://crates.io/clap/2.33.3 \
++    crate://crates.io/cmake/0.1.45 \
++    crate://crates.io/const-oid/0.6.0 \
++    crate://crates.io/cryptoauthlib-sys/0.2.0 \
++    crate://crates.io/cryptoki-sys/0.1.2 \
++    crate://crates.io/cryptoki/0.2.0 \
++    crate://crates.io/data-encoding/2.3.2 \
++    crate://crates.io/der-oid-macro/0.4.0 \
++    crate://crates.io/der-parser/5.1.0 \
++    crate://crates.io/der/0.4.0 \
++    crate://crates.io/derivative/2.2.0 \
++    crate://crates.io/either/1.6.1 \
++    crate://crates.io/enumflags2/0.6.4 \
++    crate://crates.io/enumflags2_derive/0.6.4 \
++    crate://crates.io/env_logger/0.8.4 \
++    crate://crates.io/failure/0.1.8 \
++    crate://crates.io/failure_derive/0.1.8 \
++    crate://crates.io/fixedbitset/0.2.0 \
++    crate://crates.io/form_urlencoded/1.0.1 \
++    crate://crates.io/funty/1.1.0 \
++    crate://crates.io/futures-channel/0.3.15 \
++    crate://crates.io/futures-core/0.3.15 \
++    crate://crates.io/futures-executor/0.3.15 \
++    crate://crates.io/futures-io/0.3.15 \
++    crate://crates.io/futures-macro/0.3.15 \
++    crate://crates.io/futures-sink/0.3.15 \
++    crate://crates.io/futures-task/0.3.15 \
++    crate://crates.io/futures-util/0.3.15 \
++    crate://crates.io/futures/0.3.15 \
++    crate://crates.io/generic-array/0.14.4 \
++    crate://crates.io/getrandom/0.2.3 \
++    crate://crates.io/gimli/0.24.0 \
++    crate://crates.io/glob/0.3.0 \
++    crate://crates.io/grpcio-compiler/0.7.0 \
++    crate://crates.io/grpcio-sys/0.9.0+1.38.0 \
++    crate://crates.io/grpcio/0.9.0 \
++    crate://crates.io/hamming/0.1.3 \
++    crate://crates.io/hashbrown/0.9.1 \
++    crate://crates.io/heck/0.3.3 \
++    crate://crates.io/hermit-abi/0.1.18 \
++    crate://crates.io/hex/0.4.3 \
++    crate://crates.io/hostname-validator/1.1.0 \
++    crate://crates.io/humantime/2.1.0 \
++    crate://crates.io/idna/0.2.3 \
++    crate://crates.io/indexmap/1.6.2 \
++    crate://crates.io/instant/0.1.9 \
++    crate://crates.io/itertools/0.8.2 \
++    crate://crates.io/itertools/0.9.0 \
++    crate://crates.io/itoa/0.4.7 \
++    crate://crates.io/js-sys/0.3.51 \
++    crate://crates.io/jsonwebkey/0.3.2 \
++    crate://crates.io/jsonwebtoken/7.2.0 \
++    crate://crates.io/lazy_static/1.4.0 \
++    crate://crates.io/lazycell/1.3.0 \
++    crate://crates.io/lexical-core/0.7.6 \
++    crate://crates.io/libc/0.2.97 \
++    crate://crates.io/libloading/0.7.0 \
++    crate://crates.io/libz-sys/1.1.3 \
++    crate://crates.io/lock_api/0.4.4 \
++    crate://crates.io/log/0.4.14 \
++    crate://crates.io/matches/0.1.8 \
++    crate://crates.io/mbox/0.5.0 \
++    crate://crates.io/memchr/2.3.4 \
++    crate://crates.io/miniz_oxide/0.4.4 \
++    crate://crates.io/multimap/0.8.3 \
++    crate://crates.io/nom/5.1.2 \
++    crate://crates.io/nom/6.2.0 \
++    crate://crates.io/num-bigint/0.2.6 \
++    crate://crates.io/num-bigint/0.3.2 \
++    crate://crates.io/num-bigint/0.4.0 \
++    crate://crates.io/num-complex/0.3.1 \
++    crate://crates.io/num-derive/0.3.3 \
++    crate://crates.io/num-integer/0.1.44 \
++    crate://crates.io/num-iter/0.1.42 \
++    crate://crates.io/num-rational/0.3.2 \
++    crate://crates.io/num-traits/0.2.14 \
++    crate://crates.io/num/0.3.1 \
++    crate://crates.io/num_cpus/1.13.0 \
++    crate://crates.io/object/0.24.0 \
++    crate://crates.io/oid-registry/0.1.3 \
++    crate://crates.io/oid/0.1.1 \
++    crate://crates.io/once_cell/1.8.0 \
++    crate://crates.io/parking_lot/0.11.1 \
++    crate://crates.io/parking_lot_core/0.8.3 \
++    crate://crates.io/parsec-interface/0.25.0 \
++    crate://crates.io/peeking_take_while/0.1.2 \
++    crate://crates.io/pem/0.8.3 \
++    crate://crates.io/percent-encoding/2.1.0 \
++    crate://crates.io/petgraph/0.5.1 \
++    crate://crates.io/picky-asn1-der/0.2.4 \
++    crate://crates.io/picky-asn1-x509/0.4.0 \
++    crate://crates.io/picky-asn1/0.3.1 \
++    crate://crates.io/pin-project-lite/0.2.6 \
++    crate://crates.io/pin-utils/0.1.0 \
++    crate://crates.io/pkcs8/0.7.0 \
++    crate://crates.io/pkg-config/0.3.19 \
++    crate://crates.io/ppv-lite86/0.2.10 \
++    crate://crates.io/primal-bit/0.3.0 \
++    crate://crates.io/primal-check/0.3.1 \
++    crate://crates.io/primal-estimate/0.3.1 \
++    crate://crates.io/primal-sieve/0.3.1 \
++    crate://crates.io/primal/0.3.0 \
++    crate://crates.io/proc-macro-error-attr/1.0.4 \
++    crate://crates.io/proc-macro-error/1.0.4 \
++    crate://crates.io/proc-macro-hack/0.5.19 \
++    crate://crates.io/proc-macro-nested/0.1.7 \
++    crate://crates.io/proc-macro2/1.0.27 \
++    crate://crates.io/prost-build/0.7.0 \
++    crate://crates.io/prost-derive/0.6.1 \
++    crate://crates.io/prost-derive/0.7.0 \
++    crate://crates.io/prost-types/0.7.0 \
++    crate://crates.io/prost/0.6.1 \
++    crate://crates.io/prost/0.7.0 \
++    crate://crates.io/protobuf-codegen/2.24.1 \
++    crate://crates.io/protobuf/2.24.1 \
++    crate://crates.io/protoc-grpcio/3.0.0 \
++    crate://crates.io/protoc/2.24.1 \
++    crate://crates.io/psa-crypto-sys/0.9.0 \
++    crate://crates.io/psa-crypto/0.9.0 \
++    crate://crates.io/quote/1.0.9 \
++    crate://crates.io/radium/0.5.3 \
++    crate://crates.io/rand/0.8.4 \
++    crate://crates.io/rand_chacha/0.3.1 \
++    crate://crates.io/rand_core/0.6.3 \
++    crate://crates.io/rand_hc/0.3.1 \
++    crate://crates.io/redox_syscall/0.2.9 \
++    crate://crates.io/regex-syntax/0.6.25 \
++    crate://crates.io/regex/1.4.6 \
++    crate://crates.io/remove_dir_all/0.5.3 \
++    crate://crates.io/ring/0.16.20 \
++    crate://crates.io/rust-cryptoauthlib/0.4.0 \
++    crate://crates.io/rustc-demangle/0.1.20 \
++    crate://crates.io/rustc-hash/1.1.0 \
++    crate://crates.io/rustc_version/0.2.3 \
++    crate://crates.io/rusticata-macros/3.0.1 \
++    crate://crates.io/rustversion/1.0.5 \
++    crate://crates.io/ryu/1.0.5 \
++    crate://crates.io/same-file/1.0.6 \
++    crate://crates.io/scopeguard/1.1.0 \
++    crate://crates.io/sd-notify/0.2.0 \
++    crate://crates.io/secrecy/0.7.0 \
++    crate://crates.io/semver-parser/0.7.0 \
++    crate://crates.io/semver/0.9.0 \
++    crate://crates.io/serde/1.0.126 \
++    crate://crates.io/serde_bytes/0.11.5 \
++    crate://crates.io/serde_derive/1.0.126 \
++    crate://crates.io/serde_json/1.0.64 \
++    crate://crates.io/shlex/0.1.1 \
++    crate://crates.io/signal-hook-registry/1.4.0 \
++    crate://crates.io/signal-hook/0.3.9 \
++    crate://crates.io/simple_asn1/0.4.1 \
++    crate://crates.io/simple_asn1/0.5.3 \
++    crate://crates.io/slab/0.4.3 \
++    crate://crates.io/smallvec/1.6.1 \
++    crate://crates.io/spiffe/0.1.1 \
++    crate://crates.io/spin/0.5.2 \
++    crate://crates.io/spki/0.4.0 \
++    crate://crates.io/stable_deref_trait/1.2.0 \
++    crate://crates.io/static_assertions/1.1.0 \
++    crate://crates.io/strsim/0.8.0 \
++    crate://crates.io/structopt-derive/0.4.14 \
++    crate://crates.io/structopt/0.3.21 \
++    crate://crates.io/strum_macros/0.19.4 \
++    crate://crates.io/syn/1.0.73 \
++    crate://crates.io/synstructure/0.12.4 \
++    crate://crates.io/tap/1.0.1 \
++    crate://crates.io/target-lexicon/0.12.0 \
++    crate://crates.io/tempfile/3.2.0 \
++    crate://crates.io/termcolor/1.1.2 \
++    crate://crates.io/textwrap/0.11.0 \
++    crate://crates.io/thiserror-impl/1.0.25 \
++    crate://crates.io/thiserror/1.0.25 \
++    crate://crates.io/threadpool/1.8.1 \
++    crate://crates.io/time/0.1.44 \
++    crate://crates.io/tinyvec/1.2.0 \
++    crate://crates.io/tinyvec_macros/0.1.0 \
++    crate://crates.io/toml/0.5.8 \
++    crate://crates.io/tss-esapi-sys/0.2.0 \
++    crate://crates.io/tss-esapi/7.0.0-alpha.1 \
++    crate://crates.io/typenum/1.13.0 \
++    crate://crates.io/unicode-bidi/0.3.5 \
++    crate://crates.io/unicode-normalization/0.1.19 \
++    crate://crates.io/unicode-segmentation/1.7.1 \
++    crate://crates.io/unicode-width/0.1.8 \
++    crate://crates.io/unicode-xid/0.2.2 \
++    crate://crates.io/untrusted/0.7.1 \
++    crate://crates.io/url/2.2.2 \
++    crate://crates.io/users/0.11.0 \
++    crate://crates.io/uuid/0.8.2 \
++    crate://crates.io/vcpkg/0.2.15 \
++    crate://crates.io/vec_map/0.8.2 \
++    crate://crates.io/version/3.0.0 \
++    crate://crates.io/version_check/0.9.3 \
++    crate://crates.io/walkdir/2.3.2 \
++    crate://crates.io/wasi/0.10.0+wasi-snapshot-preview1 \
++    crate://crates.io/wasm-bindgen-backend/0.2.74 \
++    crate://crates.io/wasm-bindgen-macro-support/0.2.74 \
++    crate://crates.io/wasm-bindgen-macro/0.2.74 \
++    crate://crates.io/wasm-bindgen-shared/0.2.74 \
++    crate://crates.io/wasm-bindgen/0.2.74 \
++    crate://crates.io/web-sys/0.3.51 \
++    crate://crates.io/which/3.1.1 \
++    crate://crates.io/which/4.1.0 \
++    crate://crates.io/winapi-i686-pc-windows-gnu/0.4.0 \
++    crate://crates.io/winapi-util/0.1.5 \
++    crate://crates.io/winapi-x86_64-pc-windows-gnu/0.4.0 \
++    crate://crates.io/winapi/0.3.9 \
++    crate://crates.io/wyz/0.2.0 \
++    crate://crates.io/x509-parser/0.9.2 \
++    crate://crates.io/yasna/0.3.2 \
++    crate://crates.io/zeroize/1.3.0 \
++    crate://crates.io/zeroize_derive/1.1.0 \
++"
++
++LIC_FILES_CHKSUM = " \
++    file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57 \
++"
+diff --git a/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.3.0.inc b/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.3.0.inc
+deleted file mode 100644
+index 9560dcf..0000000
+--- a/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.3.0.inc
++++ /dev/null
+@@ -1,127 +0,0 @@
+-# This file is created from parsec-tool repository Cargo.lock using cargo-bitbake tool
+-
+-SRC_URI += " \
+-    crate://crates.io/aho-corasick/0.7.15 \
+-    crate://crates.io/ansi_term/0.11.0 \
+-    crate://crates.io/ansi_term/0.12.1 \
+-    crate://crates.io/anyhow/1.0.38 \
+-    crate://crates.io/atty/0.2.14 \
+-    crate://crates.io/autocfg/1.0.1 \
+-    crate://crates.io/base64/0.13.0 \
+-    crate://crates.io/bincode/1.3.1 \
+-    crate://crates.io/bitflags/1.2.1 \
+-    crate://crates.io/block-buffer/0.9.0 \
+-    crate://crates.io/byteorder/1.4.2 \
+-    crate://crates.io/bytes/0.5.6 \
+-    crate://crates.io/cc/1.0.66 \
+-    crate://crates.io/cfg-if/1.0.0 \
+-    crate://crates.io/clap/2.33.3 \
+-    crate://crates.io/clap/3.0.0-beta.2 \
+-    crate://crates.io/clap_derive/3.0.0-beta.2 \
+-    crate://crates.io/cmake/0.1.45 \
+-    crate://crates.io/cpuid-bool/0.1.2 \
+-    crate://crates.io/derivative/2.2.0 \
+-    crate://crates.io/digest/0.9.0 \
+-    crate://crates.io/either/1.6.1 \
+-    crate://crates.io/env_logger/0.8.3 \
+-    crate://crates.io/fixedbitset/0.2.0 \
+-    crate://crates.io/form_urlencoded/1.0.0 \
+-    crate://crates.io/generic-array/0.14.4 \
+-    crate://crates.io/getrandom/0.2.2 \
+-    crate://crates.io/hashbrown/0.9.1 \
+-    crate://crates.io/heck/0.3.2 \
+-    crate://crates.io/hermit-abi/0.1.18 \
+-    crate://crates.io/humantime/2.1.0 \
+-    crate://crates.io/idna/0.2.1 \
+-    crate://crates.io/indexmap/1.6.1 \
+-    crate://crates.io/itertools/0.8.2 \
+-    crate://crates.io/lazy_static/1.4.0 \
+-    crate://crates.io/libc/0.2.86 \
+-    crate://crates.io/log/0.4.14 \
+-    crate://crates.io/matches/0.1.8 \
+-    crate://crates.io/memchr/2.3.4 \
+-    crate://crates.io/multimap/0.8.2 \
+-    crate://crates.io/num-bigint/0.3.1 \
+-    crate://crates.io/num-complex/0.3.1 \
+-    crate://crates.io/num-derive/0.3.3 \
+-    crate://crates.io/num-integer/0.1.44 \
+-    crate://crates.io/num-iter/0.1.42 \
+-    crate://crates.io/num-rational/0.3.2 \
+-    crate://crates.io/num-traits/0.2.14 \
+-    crate://crates.io/num/0.3.1 \
+-    crate://crates.io/oid/0.1.1 \
+-    crate://crates.io/once_cell/1.5.2 \
+-    crate://crates.io/opaque-debug/0.3.0 \
+-    crate://crates.io/os_str_bytes/2.4.0 \
+-    crate://crates.io/parsec-client/0.12.0 \
+-    crate://crates.io/parsec-interface/0.24.0 \
+-    crate://crates.io/pem/0.8.3 \
+-    crate://crates.io/percent-encoding/2.1.0 \
+-    crate://crates.io/petgraph/0.5.1 \
+-    crate://crates.io/picky-asn1-der/0.2.4 \
+-    crate://crates.io/picky-asn1/0.3.1 \
+-    crate://crates.io/ppv-lite86/0.2.10 \
+-    crate://crates.io/proc-macro-error-attr/1.0.4 \
+-    crate://crates.io/proc-macro-error/1.0.4 \
+-    crate://crates.io/proc-macro2/1.0.24 \
+-    crate://crates.io/prost-build/0.6.1 \
+-    crate://crates.io/prost-derive/0.6.1 \
+-    crate://crates.io/prost-types/0.6.1 \
+-    crate://crates.io/prost/0.6.1 \
+-    crate://crates.io/psa-crypto-sys/0.8.0 \
+-    crate://crates.io/psa-crypto/0.8.0 \
+-    crate://crates.io/quote/1.0.9 \
+-    crate://crates.io/rand/0.8.3 \
+-    crate://crates.io/rand_chacha/0.3.0 \
+-    crate://crates.io/rand_core/0.6.2 \
+-    crate://crates.io/rand_hc/0.3.0 \
+-    crate://crates.io/redox_syscall/0.2.5 \
+-    crate://crates.io/regex-syntax/0.6.22 \
+-    crate://crates.io/regex/1.4.3 \
+-    crate://crates.io/remove_dir_all/0.5.3 \
+-    crate://crates.io/same-file/1.0.6 \
+-    crate://crates.io/secrecy/0.7.0 \
+-    crate://crates.io/serde/1.0.123 \
+-    crate://crates.io/serde_bytes/0.11.5 \
+-    crate://crates.io/serde_derive/1.0.123 \
+-    crate://crates.io/sha2/0.9.3 \
+-    crate://crates.io/strsim/0.10.0 \
+-    crate://crates.io/strsim/0.8.0 \
+-    crate://crates.io/structopt-derive/0.4.14 \
+-    crate://crates.io/structopt/0.3.21 \
+-    crate://crates.io/syn/1.0.60 \
+-    crate://crates.io/synstructure/0.12.4 \
+-    crate://crates.io/tempfile/3.2.0 \
+-    crate://crates.io/termcolor/1.1.2 \
+-    crate://crates.io/textwrap/0.11.0 \
+-    crate://crates.io/textwrap/0.12.1 \
+-    crate://crates.io/thiserror-impl/1.0.23 \
+-    crate://crates.io/thiserror/1.0.23 \
+-    crate://crates.io/thread_local/1.1.3 \
+-    crate://crates.io/tinyvec/1.1.1 \
+-    crate://crates.io/tinyvec_macros/0.1.0 \
+-    crate://crates.io/typenum/1.12.0 \
+-    crate://crates.io/unicode-bidi/0.3.4 \
+-    crate://crates.io/unicode-normalization/0.1.17 \
+-    crate://crates.io/unicode-segmentation/1.7.1 \
+-    crate://crates.io/unicode-width/0.1.8 \
+-    crate://crates.io/unicode-xid/0.2.1 \
+-    crate://crates.io/url/2.2.0 \
+-    crate://crates.io/users/0.10.0 \
+-    crate://crates.io/uuid/0.8.2 \
+-    crate://crates.io/vec_map/0.8.2 \
+-    crate://crates.io/version_check/0.9.2 \
+-    crate://crates.io/walkdir/2.3.1 \
+-    crate://crates.io/wasi/0.10.2+wasi-snapshot-preview1 \
+-    crate://crates.io/which/3.1.1 \
+-    crate://crates.io/winapi-i686-pc-windows-gnu/0.4.0 \
+-    crate://crates.io/winapi-util/0.1.5 \
+-    crate://crates.io/winapi-x86_64-pc-windows-gnu/0.4.0 \
+-    crate://crates.io/winapi/0.3.9 \
+-    crate://crates.io/zeroize/1.2.0 \
+-    crate://crates.io/zeroize_derive/1.0.1 \
+-"
+-
+-LIC_FILES_CHKSUM = " \
+-    file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57 \
+-"
+diff --git a/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.3.0.bb b/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.4.0.bb
+similarity index 75%
+rename from meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.3.0.bb
+rename to meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.4.0.bb
+index 881f8d8..4b053b9 100644
+--- a/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.3.0.bb
++++ b/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.4.0.bb
+@@ -7,9 +7,12 @@ inherit cargo
+ SRC_URI += "crate://crates.io/parsec-tool/${PV} \
+ "
+ 
++RDEPENDS:${PN} = "openssl-bin"
++
+ do_install() {
+   install -d ${D}/${bindir}
+   install -m 755 "${B}/target/${TARGET_SYS}/release/parsec-tool" "${D}${bindir}/parsec-tool"
++  install -m 755 "${S}/tests/parsec-cli-tests.sh" "${D}${bindir}/parsec-cli-tests.sh"
+ }
+ 
+ require parsec-tool_${PV}.inc
+diff --git a/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.4.0.inc b/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.4.0.inc
+new file mode 100644
+index 0000000..e706112
+--- /dev/null
++++ b/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.4.0.inc
+@@ -0,0 +1,216 @@
++# This file is created from parsec-tool repository Cargo.lock using cargo-bitbake tool
++
++SRC_URI += " \
++    crate://crates.io/addr2line/0.15.2 \
++    crate://crates.io/adler/1.0.2 \
++    crate://crates.io/aho-corasick/0.7.15 \
++    crate://crates.io/ansi_term/0.11.0 \
++    crate://crates.io/ansi_term/0.12.1 \
++    crate://crates.io/anyhow/1.0.42 \
++    crate://crates.io/arrayvec/0.5.2 \
++    crate://crates.io/atty/0.2.14 \
++    crate://crates.io/autocfg/1.0.1 \
++    crate://crates.io/backtrace/0.3.59 \
++    crate://crates.io/base64/0.12.3 \
++    crate://crates.io/base64/0.13.0 \
++    crate://crates.io/bincode/1.3.3 \
++    crate://crates.io/bindgen/0.57.0 \
++    crate://crates.io/bitflags/1.2.1 \
++    crate://crates.io/bitvec/0.19.5 \
++    crate://crates.io/block-buffer/0.9.0 \
++    crate://crates.io/boringssl-src/0.3.0+688fc5c \
++    crate://crates.io/bumpalo/3.7.0 \
++    crate://crates.io/bytes/0.5.6 \
++    crate://crates.io/cc/1.0.69 \
++    crate://crates.io/cexpr/0.4.0 \
++    crate://crates.io/cfg-if/1.0.0 \
++    crate://crates.io/chrono/0.4.19 \
++    crate://crates.io/clang-sys/1.2.0 \
++    crate://crates.io/clap/2.33.3 \
++    crate://crates.io/clap/3.0.0-beta.2 \
++    crate://crates.io/clap_derive/3.0.0-beta.2 \
++    crate://crates.io/cmake/0.1.45 \
++    crate://crates.io/const-oid/0.6.0 \
++    crate://crates.io/cpufeatures/0.1.5 \
++    crate://crates.io/data-encoding/2.3.2 \
++    crate://crates.io/der-oid-macro/0.4.0 \
++    crate://crates.io/der-parser/5.1.2 \
++    crate://crates.io/der/0.4.0 \
++    crate://crates.io/derivative/2.2.0 \
++    crate://crates.io/digest/0.9.0 \
++    crate://crates.io/either/1.6.1 \
++    crate://crates.io/env_logger/0.8.4 \
++    crate://crates.io/failure/0.1.8 \
++    crate://crates.io/failure_derive/0.1.8 \
++    crate://crates.io/form_urlencoded/1.0.1 \
++    crate://crates.io/funty/1.1.0 \
++    crate://crates.io/futures-channel/0.3.16 \
++    crate://crates.io/futures-core/0.3.16 \
++    crate://crates.io/futures-executor/0.3.16 \
++    crate://crates.io/futures-io/0.3.16 \
++    crate://crates.io/futures-macro/0.3.16 \
++    crate://crates.io/futures-sink/0.3.16 \
++    crate://crates.io/futures-task/0.3.16 \
++    crate://crates.io/futures-util/0.3.16 \
++    crate://crates.io/futures/0.3.16 \
++    crate://crates.io/generic-array/0.14.4 \
++    crate://crates.io/getrandom/0.2.3 \
++    crate://crates.io/gimli/0.24.0 \
++    crate://crates.io/glob/0.3.0 \
++    crate://crates.io/grpcio-compiler/0.7.0 \
++    crate://crates.io/grpcio-sys/0.9.0+1.38.0 \
++    crate://crates.io/grpcio/0.9.0 \
++    crate://crates.io/hashbrown/0.11.2 \
++    crate://crates.io/heck/0.3.3 \
++    crate://crates.io/hermit-abi/0.1.19 \
++    crate://crates.io/humantime/2.1.0 \
++    crate://crates.io/idna/0.2.3 \
++    crate://crates.io/indexmap/1.7.0 \
++    crate://crates.io/instant/0.1.10 \
++    crate://crates.io/itertools/0.8.2 \
++    crate://crates.io/itoa/0.4.7 \
++    crate://crates.io/js-sys/0.3.52 \
++    crate://crates.io/jsonwebkey/0.3.2 \
++    crate://crates.io/jsonwebtoken/7.2.0 \
++    crate://crates.io/lazy_static/1.4.0 \
++    crate://crates.io/lazycell/1.3.0 \
++    crate://crates.io/lexical-core/0.7.6 \
++    crate://crates.io/libc/0.2.102 \
++    crate://crates.io/libloading/0.7.0 \
++    crate://crates.io/libz-sys/1.1.3 \
++    crate://crates.io/lock_api/0.4.4 \
++    crate://crates.io/log/0.4.14 \
++    crate://crates.io/matches/0.1.8 \
++    crate://crates.io/memchr/2.3.4 \
++    crate://crates.io/miniz_oxide/0.4.4 \
++    crate://crates.io/nom/5.1.2 \
++    crate://crates.io/nom/6.2.1 \
++    crate://crates.io/num-bigint/0.2.6 \
++    crate://crates.io/num-bigint/0.3.2 \
++    crate://crates.io/num-bigint/0.4.0 \
++    crate://crates.io/num-complex/0.3.1 \
++    crate://crates.io/num-derive/0.3.3 \
++    crate://crates.io/num-integer/0.1.44 \
++    crate://crates.io/num-iter/0.1.42 \
++    crate://crates.io/num-rational/0.3.2 \
++    crate://crates.io/num-traits/0.2.14 \
++    crate://crates.io/num/0.3.1 \
++    crate://crates.io/object/0.24.0 \
++    crate://crates.io/oid-registry/0.1.5 \
++    crate://crates.io/oid/0.2.1 \
++    crate://crates.io/once_cell/1.8.0 \
++    crate://crates.io/opaque-debug/0.3.0 \
++    crate://crates.io/os_str_bytes/2.4.0 \
++    crate://crates.io/parking_lot/0.11.1 \
++    crate://crates.io/parking_lot_core/0.8.3 \
++    crate://crates.io/parsec-client/0.13.0 \
++    crate://crates.io/parsec-interface/0.25.0 \
++    crate://crates.io/peeking_take_while/0.1.2 \
++    crate://crates.io/pem/0.8.3 \
++    crate://crates.io/percent-encoding/2.1.0 \
++    crate://crates.io/picky-asn1-der/0.2.5 \
++    crate://crates.io/picky-asn1-x509/0.6.1 \
++    crate://crates.io/picky-asn1/0.3.3 \
++    crate://crates.io/pin-project-lite/0.2.7 \
++    crate://crates.io/pin-utils/0.1.0 \
++    crate://crates.io/pkcs8/0.7.5 \
++    crate://crates.io/pkg-config/0.3.19 \
++    crate://crates.io/ppv-lite86/0.2.10 \
++    crate://crates.io/proc-macro-error-attr/1.0.4 \
++    crate://crates.io/proc-macro-error/1.0.4 \
++    crate://crates.io/proc-macro-hack/0.5.19 \
++    crate://crates.io/proc-macro-nested/0.1.7 \
++    crate://crates.io/proc-macro2/1.0.28 \
++    crate://crates.io/prost-derive/0.6.1 \
++    crate://crates.io/prost/0.6.1 \
++    crate://crates.io/protobuf-codegen/2.24.1 \
++    crate://crates.io/protobuf/2.24.1 \
++    crate://crates.io/protoc-grpcio/3.0.0 \
++    crate://crates.io/protoc/2.24.1 \
++    crate://crates.io/psa-crypto-sys/0.9.0 \
++    crate://crates.io/psa-crypto/0.9.0 \
++    crate://crates.io/quote/1.0.9 \
++    crate://crates.io/radium/0.5.3 \
++    crate://crates.io/rand/0.8.4 \
++    crate://crates.io/rand_chacha/0.3.1 \
++    crate://crates.io/rand_core/0.6.3 \
++    crate://crates.io/rand_hc/0.3.1 \
++    crate://crates.io/redox_syscall/0.2.9 \
++    crate://crates.io/regex-syntax/0.6.25 \
++    crate://crates.io/regex/1.4.6 \
++    crate://crates.io/remove_dir_all/0.5.3 \
++    crate://crates.io/ring/0.16.20 \
++    crate://crates.io/rustc-demangle/0.1.20 \
++    crate://crates.io/rustc-hash/1.1.0 \
++    crate://crates.io/rusticata-macros/3.1.0 \
++    crate://crates.io/rustversion/1.0.5 \
++    crate://crates.io/ryu/1.0.5 \
++    crate://crates.io/same-file/1.0.6 \
++    crate://crates.io/scopeguard/1.1.0 \
++    crate://crates.io/secrecy/0.7.0 \
++    crate://crates.io/serde/1.0.127 \
++    crate://crates.io/serde_bytes/0.11.5 \
++    crate://crates.io/serde_derive/1.0.127 \
++    crate://crates.io/serde_json/1.0.66 \
++    crate://crates.io/sha2/0.9.5 \
++    crate://crates.io/shlex/0.1.1 \
++    crate://crates.io/simple_asn1/0.4.1 \
++    crate://crates.io/simple_asn1/0.5.4 \
++    crate://crates.io/slab/0.4.3 \
++    crate://crates.io/smallvec/1.6.1 \
++    crate://crates.io/spiffe/0.1.1 \
++    crate://crates.io/spin/0.5.2 \
++    crate://crates.io/spki/0.4.0 \
++    crate://crates.io/static_assertions/1.1.0 \
++    crate://crates.io/strsim/0.10.0 \
++    crate://crates.io/strsim/0.8.0 \
++    crate://crates.io/structopt-derive/0.4.15 \
++    crate://crates.io/structopt/0.3.22 \
++    crate://crates.io/syn/1.0.74 \
++    crate://crates.io/synstructure/0.12.5 \
++    crate://crates.io/tap/1.0.1 \
++    crate://crates.io/tempfile/3.2.0 \
++    crate://crates.io/termcolor/1.1.2 \
++    crate://crates.io/textwrap/0.11.0 \
++    crate://crates.io/textwrap/0.12.1 \
++    crate://crates.io/thiserror-impl/1.0.26 \
++    crate://crates.io/thiserror/1.0.26 \
++    crate://crates.io/time/0.1.44 \
++    crate://crates.io/tinyvec/1.3.1 \
++    crate://crates.io/tinyvec_macros/0.1.0 \
++    crate://crates.io/typenum/1.13.0 \
++    crate://crates.io/unicode-bidi/0.3.5 \
++    crate://crates.io/unicode-normalization/0.1.19 \
++    crate://crates.io/unicode-segmentation/1.8.0 \
++    crate://crates.io/unicode-width/0.1.8 \
++    crate://crates.io/unicode-xid/0.2.2 \
++    crate://crates.io/untrusted/0.7.1 \
++    crate://crates.io/url/2.2.2 \
++    crate://crates.io/users/0.10.0 \
++    crate://crates.io/uuid/0.8.2 \
++    crate://crates.io/vcpkg/0.2.15 \
++    crate://crates.io/vec_map/0.8.2 \
++    crate://crates.io/version_check/0.9.3 \
++    crate://crates.io/walkdir/2.3.2 \
++    crate://crates.io/wasi/0.10.0+wasi-snapshot-preview1 \
++    crate://crates.io/wasm-bindgen-backend/0.2.75 \
++    crate://crates.io/wasm-bindgen-macro-support/0.2.75 \
++    crate://crates.io/wasm-bindgen-macro/0.2.75 \
++    crate://crates.io/wasm-bindgen-shared/0.2.75 \
++    crate://crates.io/wasm-bindgen/0.2.75 \
++    crate://crates.io/web-sys/0.3.52 \
++    crate://crates.io/which/4.2.2 \
++    crate://crates.io/winapi-i686-pc-windows-gnu/0.4.0 \
++    crate://crates.io/winapi-util/0.1.5 \
++    crate://crates.io/winapi-x86_64-pc-windows-gnu/0.4.0 \
++    crate://crates.io/winapi/0.3.9 \
++    crate://crates.io/wyz/0.2.0 \
++    crate://crates.io/x509-parser/0.9.2 \
++    crate://crates.io/yasna/0.3.2 \
++    crate://crates.io/zeroize/1.3.0 \
++    crate://crates.io/zeroize_derive/1.1.0 \
++"
++
++LIC_FILES_CHKSUM = " \
++    file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57 \
++"
+-- 
+2.25.1
 
-> I think they're already in git?
->
-
-Hi,
-
-Yes they are.
-
-
->
-> Alex
->
-> On Mon, 27 Sept 2021 at 10:09, Lukasz Majewski <lukma@denx.de> wrote:
->
->> Hi Alexander,
->>
->> > I think we might be having an 'unresponsive maintainer' situation?
->> > How can Anibal be reached?
->>
->> I saw recenlty your patches on this topic. Is there a chance that
->> Anibal will pull/review them soon?
->>
->
-I just send recipe upgrade to OE-Core, the patches are already in git.
-
-Regards,
-Anibal
-
-
->
->> It looks like those are crucial for ptest-runner operation.
->>
->> >
->> > Alex
->> >
->> > On Mon, 20 Sept 2021 at 11:19, ?ukasz Majewski <lukma@denx.de> wrote:
->> >
->> > > Hi Anibal,
->> > >
->> > > > Hi Anibal,
->> > > >
->> > > > > Up till now ptest-runner2 returns number of failed tests with
->> > > > > its exit status code. Such use case is not recommended [1] and
->> > > > > may cause issues when there are more than 256 tests to be
->> > > > > executed.
->> > > > >
->> > > > > To alleviate this issue the number of total tests with number of
->> > > > > failed ones is printed before exit. To be more specific -
->> > > > > failure of tests (one or more) causes ptest-runner to provide
->> > > > > exit code of 1.
->> > > > >
->> > > > > One can test this change with executing:
->> > > > > ./ptest-runner -d tests/data fail
->> > > >
->> > > > Gentle ping on this patch.
->> > > >
->> > >
->> > > Gentle ping on this patch.
->> > >
->> > > Is it OK to be applied?
->> > >
->> > > > >
->> > > > > Links:
->> > > > > [1] -
->> > > > >
->> https://www.gnu.org/software/libc/manual/html_node/Exit-Status.html
->> > > > >
->> > > > > Signed-off-by: Lukasz Majewski <lukma@denx.de>
->> > > > > ---
->> > > > > Changes for v2:
->> > > > > - When number of failed tests is N, the ptest-runner returns
->> > > > > value of 1 to indicate error in the execution
->> > > > > ---
->> > > > >  main.c | 3 +++
->> > > > >  1 file changed, 3 insertions(+)
->> > > > >
->> > > > > diff --git a/main.c b/main.c
->> > > > > index 890bc6a..bcec844 100644
->> > > > > --- a/main.c
->> > > > > +++ b/main.c
->> > > > > @@ -220,6 +220,9 @@ main(int argc, char *argv[])
->> > > > >             ptest_list_remove(run, opts.exclude[i], 1);
->> > > > >
->> > > > >     rc = run_ptests(run, opts, argv[0], stdout, stderr);
->> > > > > +   fprintf(stdout, "TOTAL: %d FAIL: %d\n",
->> > > > > ptest_list_length(run), rc);
->> > > > > +   if (rc > 0)
->> > > > > +           rc = 1;
->> > > > >
->> > > > >     ptest_list_free_all(&run);
->> > > > >
->> > > >
->> > > >
->> > > >
->> > > >
->> > > > Best regards,
->> > > >
->> > > > Lukasz Majewski
->> > > >
->> > > > --
->> > > >
->> > > > DENX Software Engineering GmbH,      Managing Director: Wolfgang
->> > > > Denk HRB 165235 Munich, Office: Kirchenstr.5, D-82194
->> > > > Groebenzell, Germany Phone: (+49)-8142-66989-59 Fax:
->> > > > (+49)-8142-66989-80 Email: lukma@denx.de
->> > >
->> > >
->> > >
->> > >
->> > > Best regards,
->> > >
->> > > Lukasz Majewski
->> > >
->> > > --
->> > >
->> > > DENX Software Engineering GmbH,      Managing Director: Wolfgang
->> > > Denk HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell,
->> > > Germany Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email:
->> > > lukma@denx.de
->> > >
->> > > -=-=-=-=-=-=-=-=-=-=-=-
->> > > Links: You receive all messages sent to this group.
->> > > View/Reply Online (#54769):
->> > > https://lists.yoctoproject.org/g/yocto/message/54769
->> > > Mute This Topic: https://lists.yoctoproject.org/mt/84946492/1686489
->> > > Group Owner: yocto+owner@lists.yoctoproject.org
->> > > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
->> > > alex.kanavin@gmail.com]
->> > > -=-=-=-=-=-=-=-=-=-=-=-
->> > >
->> > >
->>
->>
->>
->>
->> Best regards,
->>
->> Lukasz Majewski
->>
->> --
->>
->> DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
->> HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
->> Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
->>
->
-
---000000000000f1443c05ccfeb3ca
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Mon, 27 Sept 2021 at 03:35, Alexan=
-der Kanavin &lt;<a href=3D"mailto:alex.kanavin@gmail.com">alex.kanavin@gmai=
-l.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex"><div dir=3D"ltr"><div>I think they&#39;re already in git?</div></div><=
-/blockquote><div><br></div><div>Hi,</div><div><br></div><div>Yes they are.<=
-/div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
- 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><di=
-v dir=3D"ltr"><div><br></div><div>Alex<br></div></div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, 27 Sept 2021 at 10:=
-09, Lukasz Majewski &lt;<a href=3D"mailto:lukma@denx.de" target=3D"_blank">=
-lukma@denx.de</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
-ng-left:1ex">Hi Alexander,<br>
-<br>
-&gt; I think we might be having an &#39;unresponsive maintainer&#39; situat=
-ion?<br>
-&gt; How can Anibal be reached?<br>
-<br>
-I saw recenlty your patches on this topic. Is there a chance that<br>
-Anibal will pull/review them soon?<br></blockquote></div></blockquote><div>=
-<br></div><div>I just send recipe upgrade to OE-Core, the patches are alrea=
-dy in git.</div><div><br></div><div>Regards,</div><div>Anibal</div><div>=C2=
-=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div class=3D"gm=
-ail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
-8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-<br>
-It looks like those are crucial for ptest-runner operation.<br>
-<br>
-&gt; <br>
-&gt; Alex<br>
-&gt; <br>
-&gt; On Mon, 20 Sept 2021 at 11:19, ?ukasz Majewski &lt;<a href=3D"mailto:l=
-ukma@denx.de" target=3D"_blank">lukma@denx.de</a>&gt; wrote:<br>
-&gt; <br>
-&gt; &gt; Hi Anibal,<br>
-&gt; &gt;=C2=A0 <br>
-&gt; &gt; &gt; Hi Anibal,<br>
-&gt; &gt; &gt;=C2=A0 <br>
-&gt; &gt; &gt; &gt; Up till now ptest-runner2 returns number of failed test=
-s with<br>
-&gt; &gt; &gt; &gt; its exit status code. Such use case is not recommended =
-[1] and<br>
-&gt; &gt; &gt; &gt; may cause issues when there are more than 256 tests to =
-be<br>
-&gt; &gt; &gt; &gt; executed.<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; To alleviate this issue the number of total tests with =
-number of<br>
-&gt; &gt; &gt; &gt; failed ones is printed before exit. To be more specific=
- -<br>
-&gt; &gt; &gt; &gt; failure of tests (one or more) causes ptest-runner to p=
-rovide<br>
-&gt; &gt; &gt; &gt; exit code of 1.<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; One can test this change with executing:<br>
-&gt; &gt; &gt; &gt; ./ptest-runner -d tests/data fail=C2=A0 <br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Gentle ping on this patch.<br>
-&gt; &gt; &gt;=C2=A0 <br>
-&gt; &gt;<br>
-&gt; &gt; Gentle ping on this patch.<br>
-&gt; &gt;<br>
-&gt; &gt; Is it OK to be applied?<br>
-&gt; &gt;=C2=A0 <br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; Links:<br>
-&gt; &gt; &gt; &gt; [1] -<br>
-&gt; &gt; &gt; &gt; <a href=3D"https://www.gnu.org/software/libc/manual/htm=
-l_node/Exit-Status.html" rel=3D"noreferrer" target=3D"_blank">https://www.g=
-nu.org/software/libc/manual/html_node/Exit-Status.html</a><br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; Signed-off-by: Lukasz Majewski &lt;<a href=3D"mailto:lu=
-kma@denx.de" target=3D"_blank">lukma@denx.de</a>&gt;<br>
-&gt; &gt; &gt; &gt; ---<br>
-&gt; &gt; &gt; &gt; Changes for v2:<br>
-&gt; &gt; &gt; &gt; - When number of failed tests is N, the ptest-runner re=
-turns<br>
-&gt; &gt; &gt; &gt; value of 1 to indicate error in the execution<br>
-&gt; &gt; &gt; &gt; ---<br>
-&gt; &gt; &gt; &gt;=C2=A0 main.c | 3 +++<br>
-&gt; &gt; &gt; &gt;=C2=A0 1 file changed, 3 insertions(+)<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; diff --git a/main.c b/main.c<br>
-&gt; &gt; &gt; &gt; index 890bc6a..bcec844 100644<br>
-&gt; &gt; &gt; &gt; --- a/main.c<br>
-&gt; &gt; &gt; &gt; +++ b/main.c<br>
-&gt; &gt; &gt; &gt; @@ -220,6 +220,9 @@ main(int argc, char *argv[])<br>
-&gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ptest_li=
-st_remove(run, opts.exclude[i], 1);<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0rc =3D run_ptests(run, opts, argv[0]=
-, stdout, stderr);<br>
-&gt; &gt; &gt; &gt; +=C2=A0 =C2=A0fprintf(stdout, &quot;TOTAL: %d FAIL: %d\=
-n&quot;,<br>
-&gt; &gt; &gt; &gt; ptest_list_length(run), rc);<br>
-&gt; &gt; &gt; &gt; +=C2=A0 =C2=A0if (rc &gt; 0)<br>
-&gt; &gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rc =3D 1;<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0ptest_list_free_all(&amp;run);<br>
-&gt; &gt; &gt; &gt;=C2=A0 <br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Best regards,<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Lukasz Majewski<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; --<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; DENX Software Engineering GmbH,=C2=A0 =C2=A0 =C2=A0 Managing=
- Director: Wolfgang<br>
-&gt; &gt; &gt; Denk HRB 165235 Munich, Office: Kirchenstr.5, D-82194<br>
-&gt; &gt; &gt; Groebenzell, Germany Phone: (+49)-8142-66989-59 Fax:<br>
-&gt; &gt; &gt; (+49)-8142-66989-80 Email: <a href=3D"mailto:lukma@denx.de" =
-target=3D"_blank">lukma@denx.de</a>=C2=A0 <br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt; Best regards,<br>
-&gt; &gt;<br>
-&gt; &gt; Lukasz Majewski<br>
-&gt; &gt;<br>
-&gt; &gt; --<br>
-&gt; &gt;<br>
-&gt; &gt; DENX Software Engineering GmbH,=C2=A0 =C2=A0 =C2=A0 Managing Dire=
-ctor: Wolfgang<br>
-&gt; &gt; Denk HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell=
-,<br>
-&gt; &gt; Germany Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email=
-:<br>
-&gt; &gt; <a href=3D"mailto:lukma@denx.de" target=3D"_blank">lukma@denx.de<=
-/a><br>
-&gt; &gt;<br>
-&gt; &gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt; &gt; Links: You receive all messages sent to this group.<br>
-&gt; &gt; View/Reply Online (#54769):<br>
-&gt; &gt; <a href=3D"https://lists.yoctoproject.org/g/yocto/message/54769" =
-rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto=
-/message/54769</a><br>
-&gt; &gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/849=
-46492/1686489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproj=
-ect.org/mt/84946492/1686489</a><br>
-&gt; &gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.o=
-rg" target=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-&gt; &gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/un=
-sub" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/=
-yocto/unsub</a> [<br>
-&gt; &gt; <a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.=
-kanavin@gmail.com</a>]<br>
-&gt; &gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt; &gt;<br>
-&gt; &gt;=C2=A0 <br>
-<br>
-<br>
-<br>
-<br>
-Best regards,<br>
-<br>
-Lukasz Majewski<br>
-<br>
---<br>
-<br>
-DENX Software Engineering GmbH,=C2=A0 =C2=A0 =C2=A0 Managing Director: Wolf=
-gang Denk<br>
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany<br>
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: <a href=3D"mailt=
-o:lukma@denx.de" target=3D"_blank">lukma@denx.de</a><br>
-</blockquote></div>
-</blockquote></div></div>
-
---000000000000f1443c05ccfeb3ca--
 
