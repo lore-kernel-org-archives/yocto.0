@@ -1,103 +1,69 @@
-Return-Path: <f_l_k@t-online.de>
+Return-Path: <kristian@klausen.dk>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7C326C433EF
-	for <webhook@archiver.kernel.org>; Mon, 27 Sep 2021 10:26:14 +0000 (UTC)
-Received: from mailout10.t-online.de (mailout10.t-online.de [194.25.134.21])
- by mx.groups.io with SMTP id smtpd.web10.29275.1632738373391358382
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C11FC433F5
+	for <webhook@archiver.kernel.org>; Mon, 27 Sep 2021 11:07:15 +0000 (UTC)
+Received: from mail.klausen.dk (mail.klausen.dk [157.90.24.29])
+ by mx.groups.io with SMTP id smtpd.web10.29617.1632740833668028660
  for <yocto@lists.yoctoproject.org>;
- Mon, 27 Sep 2021 03:26:13 -0700
+ Mon, 27 Sep 2021 04:07:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=none, err=SPF record not found (domain: t-online.de, ip: 194.25.134.21,
- mailfrom: f_l_k@t-online.de)
-Received: from fwd85.dcpf.telekom.de (fwd85.aul.t-online.de [10.223.144.111])
-	by mailout10.t-online.de (Postfix) with SMTP id DCC3B5EED
-	for <yocto@lists.yoctoproject.org>; Mon, 27 Sep 2021 12:25:40 +0200 (CEST)
-Received: from [192.168.178.83] ([84.154.160.244]) by fwd85.t-online.de
-	with (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384 encrypted)
-	esmtp id 1mUnpM-0HP1ub0; Mon, 27 Sep 2021 12:25:40 +0200
-Subject: [yocto] [meta-rockchip][PATCH] use uuid instead of hard-coding root
- device
-References: <bf6d701e-f884-57dd-7ab2-fdb513d7699e@t-online.de>
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-From: Markus Volk <f_l_k@t-online.de>
-X-Forwarded-Message-Id: <bf6d701e-f884-57dd-7ab2-fdb513d7699e@t-online.de>
-Message-ID: <8af45c64-b553-77a4-8f5c-bc33de94d85e@t-online.de>
-Date: Mon, 27 Sep 2021 12:25:39 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+ dkim=fail reason="body hash did not verify" header.i=@klausen.dk
+ header.s=dkim header.b=opvlr4NT;
+ spf=pass (domain: klausen.dk, ip: 157.90.24.29,
+ mailfrom: kristian@klausen.dk)
+From: Kristian Klausen <kristian@klausen.dk>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=klausen.dk; s=dkim;
+	t=1632740829;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=GTmVuq5gb49YMjAFhMfE5dlX3QoKflj+qYENydhs9rw=;
+	b=opvlr4NTBJmfIlRUJfBkSuFy7o5Yy3oGCRTnYRFDj3ramBuqDxS+7JthrqeFvJhDJD1VQe
+	z7EDleqtaxJyxb8jHgxsEX+1B/nIWoGS4oXNltCe5TvStEWqtonvkRuJ3XvyfqXjskoyTX
+	HQpe/3KEFbEYED+b0ThXOMB3HrwXaNo=
+To: yocto@lists.yoctoproject.org
+Cc: Kristian Klausen <kristian@klausen.dk>
+Subject: [meta-security][PATCH] libtpm: update to 0.8.7
+Date: Mon, 27 Sep 2021 13:07:03 +0200
+Message-Id: <20210927110703.31806-1-kristian@klausen.dk>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-In-Reply-To: <bf6d701e-f884-57dd-7ab2-fdb513d7699e@t-online.de>
-Content-Type: multipart/alternative;
- boundary="------------6821F79F658AD20BC2298430"
-Content-Language: en-US
-X-TOI-EXPURGATEID: 150726::1632738340-00001449-69A66885/0/0 CLEAN NORMAL
-X-TOI-MSGID: 68439721-d131-4a21-adf1-6f1b844a1790
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 27 Sep 2021 10:26:14 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54874
+ <yocto@lists.yoctoproject.org>; Mon, 27 Sep 2021 11:07:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54875
 
-This is a multi-part message in MIME format.
---------------6821F79F658AD20BC2298430
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Signed-off-by: Kristian Klausen <kristian@klausen.dk>
+---
+ .../recipes-tpm/libtpm/{libtpm_0.8.2.bb =3D> libtpm_0.8.7.bb}     | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ rename meta-tpm/recipes-tpm/libtpm/{libtpm_0.8.2.bb =3D> libtpm_0.8.7.bb=
+} (88%)
 
+diff --git a/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.2.bb b/meta-tpm/recip=
+es-tpm/libtpm/libtpm_0.8.7.bb
+similarity index 88%
+rename from meta-tpm/recipes-tpm/libtpm/libtpm_0.8.2.bb
+rename to meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb
+index 9784aa1..95ba5c5 100644
+--- a/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.2.bb
++++ b/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb
+@@ -2,7 +2,7 @@ SUMMARY =3D "LIBPM - Software TPM Library"
+ LICENSE =3D "BSD-3-Clause"
+ LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3De73f0786a936da3814896df06ad22=
+5a9"
+=20
+-SRCREV =3D "f66a719eda0b492ea3ec7852421a9d98db0a0621"
++SRCREV =3D "f6dd8f55eab4910131ec6a6a570dcd7951bd10e4"
+ SRC_URI =3D "git://github.com/stefanberger/libtpms.git;branch=3Dstable-0=
+.8"
+=20
+ PE =3D "1"
+--=20
+2.25.1
 
-Am 25.09.21 um 17:09 schrieb Trevor Woerner:
-> You'll need to re-send this with a better subject line and commit
-> message so the right people will notice it. Otherwise they'll think it's
-> meta-rockchip-specific.
->
-> If (when) this patch gets applied upstream, then we can remove our
-> work-around.
-
-The patch has been applied :)
-
-I had a quick look where this sda entries come from and i guess we fall to the default value here:
-https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/scripts/lib/wic/ksparser.py#n166
-
-We may avoid getting /dev/sda entries in fstab by either setting --use-uuid or --use-label for '/boot' ?
-
-
---------------6821F79F658AD20BC2298430
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <br>
-    <div class="moz-forward-container">
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      Am 25.09.21 um 17:09 schrieb Trevor Woerner:<br>
-      <blockquote type="cite"
-        cite="mid:20210925150907.GB13525@localhost">
-        <pre class="moz-quote-pre" wrap="">You'll need to re-send this with a better subject line and commit
-message so the right people will notice it. Otherwise they'll think it's
-meta-rockchip-specific.
-
-If (when) this patch gets applied upstream, then we can remove our
-work-around.
-</pre>
-      </blockquote>
-      <pre>The patch has been applied :)
-
-I had a quick look where this sda entries come from and i guess we fall to the default value here:
-<a class="moz-txt-link-freetext" href="https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/scripts/lib/wic/ksparser.py#n166" moz-do-not-send="true">https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/scripts/lib/wic/ksparser.py#n166</a>
-
-We may avoid getting /dev/sda entries in fstab by either setting --use-uuid or --use-label for '/boot' ?
-
-</pre>
-    </div>
-  </body>
-</html>
-
---------------6821F79F658AD20BC2298430--
 
