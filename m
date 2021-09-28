@@ -1,168 +1,213 @@
-Return-Path: <naveen.kumar.saini@intel.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3449FC433EF
-	for <webhook@archiver.kernel.org>; Tue, 28 Sep 2021 04:03:56 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by mx.groups.io with SMTP id smtpd.web12.9528.1632801834262636072
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3430CC433F5
+	for <webhook@archiver.kernel.org>; Tue, 28 Sep 2021 13:57:21 +0000 (UTC)
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com
+ [209.85.216.53])
+ by mx.groups.io with SMTP id smtpd.web12.14273.1632837440221808593
  for <yocto@lists.yoctoproject.org>;
- Mon, 27 Sep 2021 21:03:55 -0700
+ Tue, 28 Sep 2021 06:57:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com
- header.s=selector2-intel-onmicrosoft-com header.b=q8EVCRHj;
- spf=pass (domain: intel.com, ip: 192.55.52.88,
- mailfrom: naveen.kumar.saini@intel.com)
-X-IronPort-AV: E=McAfee;i="6200,9189,10120"; a="247117668"
-X-IronPort-AV: E=Sophos;i="5.85,328,1624345200";
-   d="scan'208";a="247117668"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2021 21:03:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,328,1624345200";
-   d="scan'208";a="706506767"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
-  by fmsmga006.fm.intel.com with ESMTP; 27 Sep 2021 21:03:52 -0700
-Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Mon, 27 Sep 2021 21:03:51 -0700
-Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
- fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Mon, 27 Sep 2021 21:03:51 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12 via Frontend Transport; Mon, 27 Sep 2021 21:03:51 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.12; Mon, 27 Sep 2021 21:03:51 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NGi3NivVDATZ21oPKoP1iM135y59wNbV9obGIq8gFArBuL9Lly8R+ylhkiArimO/YZoz3oojltktjYyR1d8OvUJ6JvZ8Jz86E7wWgTPsQo6EFnaxw/Fa2d8GqKR2gHyVYIH/tItmDuSy3rIiq8vmYeohuKaQn3ElSHrwiQNK1Us192bd5S/gMPBKq2oL4qkoDIOPANqNrS4ZEQDDmlx2B1Fc5Oty0LNlp532ZmZkdo3FV0rnGz8cnykOoTYWdFLVaaklPdBasWQhySijvbIbyX6uHIG1Tcbo8CgUe2D+q2pNGQpd5CFzfqXDgLj3jRIQr5ZqkC16bGXefEOtBDqqCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
- bh=m8R+uOCcu0WimtYmmMJADpnUkwiNBOX1/seATOVfNpU=;
- b=KbtGIR5AIvq5sY8gdmw1BVSbRQHbEGO3V/jJRBCL6y7e7nwGJ7iZKbKL9uEsJgi4A9amvuxBeMp1vA9lJE1fS60dnNGTUXl29mk6QztL7tRM56gP+B80srvFJV/jIdN7Pe6BcNDnKq1zf5kZovm4HVHub0HVj+Hc7xLNMB1rMSn5dlcbZUll/PIlCpi3i9cR3j0SX41xKkBhHyT7tHFDsLZMcQSfnU14YutsPtXOy29HCbuVTkfzMWP5f1uj59pL087Kk2KtdEUboDRSA3cNasObVT7b5SzjEmAQ+q/kBJhLpCt9kVBJq8rlkUtC87chho+Ak3i/tGPoIe+ZdenMpQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m8R+uOCcu0WimtYmmMJADpnUkwiNBOX1/seATOVfNpU=;
- b=q8EVCRHjwR22vEdFgm2ze+pabmYP5yQlvBmzQz+5+nzJJG6S+vS5zZlCN1aqHzgWISFv+yyCEOrsfVu0qxj/oDr7Q7ZDrtUipTnwshC9i9E/FQW3RYCfk5EV2mdP6o0iGjNFfz7cnxL51Gd2Orf8TIEhacPUcjGENgjkyGmuPTc=
-Received: from CO1PR11MB5026.namprd11.prod.outlook.com (2603:10b6:303:9c::13)
- by MWHPR11MB2013.namprd11.prod.outlook.com (2603:10b6:300:24::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.18; Tue, 28 Sep
- 2021 04:03:50 +0000
-Received: from CO1PR11MB5026.namprd11.prod.outlook.com
- ([fe80::c9e1:5831:ae58:def]) by CO1PR11MB5026.namprd11.prod.outlook.com
- ([fe80::c9e1:5831:ae58:def%9]) with mapi id 15.20.4544.022; Tue, 28 Sep 2021
- 04:03:50 +0000
-From: "Saini, Naveen Kumar" <naveen.kumar.saini@intel.com>
-To: Jon Mason <jdmason@kudzu.us>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: RE: [yocto] [meta-zephyr][hardknott] backport tmpfsdir from master
-Thread-Topic: [yocto] [meta-zephyr][hardknott] backport tmpfsdir from master
-Thread-Index: AQHXs6MkmnKbOgHv70m8FslHHOnIB6u41Eow
-Date: Tue, 28 Sep 2021 04:03:49 +0000
-Message-ID: 
- <CO1PR11MB5026265558B7347345EC977BC4A89@CO1PR11MB5026.namprd11.prod.outlook.com>
-References: 
- <CAPoiz9zKb5L9k1wsHQjr7AfUCSFC_2=SkCr-dZ=iH71R0VgVBg@mail.gmail.com>
-In-Reply-To: 
- <CAPoiz9zKb5L9k1wsHQjr7AfUCSFC_2=SkCr-dZ=iH71R0VgVBg@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-product: dlpe-windows
-dlp-version: 11.6.200.16
-authentication-results: kudzu.us; dkim=none (message not signed)
- header.d=none;kudzu.us; dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 42724238-000d-4073-eaee-08d98234fa68
-x-ms-traffictypediagnostic: MWHPR11MB2013:
-x-microsoft-antispam-prvs: 
- <MWHPR11MB20138B06AEFB6293FC72CF0DC4A89@MWHPR11MB2013.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- jjvUc3LO6dlqaXoBzb1RnPMJa+HUsjt1qS7DBONxuAck68lpm0BlgXgJAIus3aflh8+D3xvbiUh6pYHp9PXTqeTTrWZ1h/qnYSGrfrZRv8OgQWVPWubxJXLqAu+RwTlaCizLTc+ujUIqEU+YDzvtUCobHTRSYixZHPh5TIyygfr0j39whrz7R8eKlGVdQ5y4+9WQeGH6e0OXGmsAJm1jvFpSKtOtviX0Tdx817Kk9wPifWXIbEIDjGhS2DD9wB395DxAgn10oMYzOxwx3dacH2b2e0M7F8lxm/soGRR2BC2+KGAOh/PkfQ22VUIvFgfOv2JuXRF/iwpBHktGWLmMDenHWgiUQlEMZZ/f+MXckmDilwnVewdOSVSgwK3kS+TBNq+znHPMVU1GW7Lalb3YxQUtDqAXzQCgvJxBCA8O/qLkuGBkHCjZjEAJ9w4cnqn1zh6I8bEaJTUojUtoSWeOWa4CekSr4ktmvJY6gZUmhpqKwq2VGacCKgWRaIz7Y7RWsAEvwrhLe5uIokwUXSU1cpuWOD0t0Jah+roYMoXd68WvNIoIozFD+AxnDxnWPa+TPWNenSjA2KAC043kZ0AFa7um3Rd4laLbPPEy3O7nFKrLxZzBwto8oX1aigUe2b6DS5Hi16eMiMrDrBTeQe7LEb8X+F886oQkCZ21UNX5s+CZ6pvtT83BiLaV5J1zsViYhqBO6EsYXmpnN8yLZlBHLg==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5026.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(8936002)(316002)(55016002)(38070700005)(86362001)(26005)(52536014)(5660300002)(8676002)(4744005)(9686003)(122000001)(33656002)(38100700002)(6916009)(4326008)(7696005)(508600001)(76116006)(2906002)(64756008)(66476007)(66446008)(66556008)(66946007)(71200400001)(53546011)(6506007)(83380400001)(186003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?TDhYd1BMQTI5NkZGTU92UG5acy9vQVBKL2NUdkk2QURNb3ZWMlVGbll2RDVj?=
- =?utf-8?B?ejFkcW9NcSs5c3ZXcjFJT0dZZzhrT2c4Y05BeWlLZFZDL2dNcjNQS1RHaUJC?=
- =?utf-8?B?OXNmQ2R3eWRlRFRicS9jUFh2OHpJbElVazZ2eEU4Ykc3YkZpNlR0R1c5cGll?=
- =?utf-8?B?QjJ4ejNZeGpsb1hxVjh2b1EyMXVtYUM2dEg5Z2xTQmhDRUFrWG5rTFNEQ1l2?=
- =?utf-8?B?Nm5taXpUTkJMQW1wbGJCQ0dUSFUyUndhOFFhMEJubnNlcER3akdpMmJiWTFS?=
- =?utf-8?B?LzN3TTZXa0VNcTRZd2tQdFkxNVFodUk5Qk9uT0trTXNYTGptK0tJVy9VVi9K?=
- =?utf-8?B?UEdvd3NtZk1adHIxd2d1aS9rdXhnaXlpbnd4UmU2ajdPMFpDRjhGdTlqNWFk?=
- =?utf-8?B?c29TT28zK291Z2VRWW5OSktZdlpIY2d1NytBZ25aSytEMFNxYWpNeEMvNjNX?=
- =?utf-8?B?NDRLZTI1cHZ2SWw1c20wd2Z5OUZtS2FZNElXbGkxSFBOS3B6bWhpVXhRNHNH?=
- =?utf-8?B?b3NndENSWmVnekt6NXpoYTdEK0tKQWZ4R2RGUk5HSDREUFlFdUk1OUpML1JY?=
- =?utf-8?B?aDQwc2J0Ky9XNVozN0t1b056VU5aaS94SmpuTHo4bVpoTSsxTjlpb1ZTNDR4?=
- =?utf-8?B?MGU0ZnB3a2FUS243dyswYmIrdVVQenJFcUdRNE43REIweEd1TnBYem1sVTNl?=
- =?utf-8?B?TjBuWElJd3ljdWhLVEs0V2JERG9qRkhYYmZJSTcwdzAvTDFndVplbDJHWVJw?=
- =?utf-8?B?WUhvMU1WQUN4aHA0MEo3SUhENHVWcDdjajZHMjl6cWpSZEpOajFkNVlDL1N3?=
- =?utf-8?B?YUJDVFc0UllPWDBmNjUzUWxrZUhZUFR6b2JkODNHQ2I1TGoycUR1S01wZmhM?=
- =?utf-8?B?Vk5zQ1gxbitnSFdmc2pMUUJEUDZQRk5zVU9neDBVNWlhQWN2d1c0emtnQk91?=
- =?utf-8?B?WUVEK2pMbEVXOUtrQXpuYVo4Q3BpRGdmaHBZdUp3cGxXUkNzRFQ5NndWYkI1?=
- =?utf-8?B?cnZqUngvNjllTUxpWUk4YUVKY2t1QWVxWVhrc0ViUjI1U2pUN2pyOWxMK0sr?=
- =?utf-8?B?V0RyT1B1ckF5MW5qYldicG15VW4rZWRrVEtTelVYeVh1QVNKVktWam5iT3p5?=
- =?utf-8?B?VVNpOXByS0U2RFFDbUpXaWYrTi9pV0htdi9VVUdOYTVKN3BkQzcxNGY2cmJC?=
- =?utf-8?B?Q0RsZ0YxRWJPNW9WWFhNZjZ4eE95allVRGFNcVdmbVFMcWRTSUgyUWdUMW94?=
- =?utf-8?B?S0xQSU40WkRVYnN5YkFqcG5SeDVaTXBYN1A1MkZDN2d6eU1iMm41RFJmdVZN?=
- =?utf-8?B?eVo4cmFRTVlxN0R5Ti9aSzdtbVp2WkVUQVdhSnRpMHJiV2FLbVAyMDJFUW13?=
- =?utf-8?B?T3dRdXZ1all4K0kwUzhjMjJtaEVYcWhaMWhabjVDSC9BczZvQ2ZxY0loeVZu?=
- =?utf-8?B?MG04NE4vcnpzSkhNOUswWHliS1cwZE92OHUzVnBjTlMvaVBWZHpRVVRYY3Ir?=
- =?utf-8?B?VTF3b1pWaENLQUZVK1hHeXVUSkZnVVZCZlVvQ215czJCaXJ3T2JjWm9FbzZu?=
- =?utf-8?B?RkxJL0tHYmlWVEZRTTdRTExuODgwbDhMbzhTM3pLL1NaQ2VKazBqeTdzbXN5?=
- =?utf-8?B?VndrbGZNcWhod0p5M1hvcG4yb1RVdmlObFVqOWZad3JCdCtEMFZ1ZU1wRFdF?=
- =?utf-8?B?SnRoOHJ1OXdPd3BXSGVZZG5OTEJwOHRERVhpK1V1ek1qMHFhdmcwSXo0NTIy?=
- =?utf-8?Q?SfVzVjD9IdHD2UUdKmpTUEpnOCx5ryqE2Fj3bAk?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=V2MQWR1w;
+ spf=pass (domain: gmail.com, ip: 209.85.216.53,
+ mailfrom: akuster808@gmail.com)
+Received: by mail-pj1-f53.google.com with SMTP id
+ ce20-20020a17090aff1400b0019f13f6a749so1524196pjb.4
+        for <yocto@lists.yoctoproject.org>;
+ Tue, 28 Sep 2021 06:57:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-transfer-encoding:content-language;
+        bh=m08PbXDz45HzfxzhQn+T5jqsMvadU7N+p8D09l5/ing=;
+        b=V2MQWR1w2dpSCMUKpUG1E2GJu6EPGC7uveJI1UElZGtCNRkbEioCblSxOBPfllJrBz
+         UE+Y8xzB2uVc+wRQ/BvgFfmec8vFYO9r5h8AOcVo6ox/2UFuBxU92+KV92ruj2mW3vyr
+         S5cboLZFw//SzMX2BI1l+1SJz6H9kMWarp9IllyZOxvFzjjjk/fHSNlv6kHAYSsNAWx+
+         gC/Nw5/4x56A+Ff8MqFZ/iSbHY4exkbvYcg4r0qIzQsIS+icCdu+Ky9cG+C2TRR0OmAZ
+         b0xJNTgK4uTXCc+p0+QXlPURchtNlwpKup72XDZROHFCC4lJGA0lDeDS/3yohZfFH6kJ
+         UjBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=m08PbXDz45HzfxzhQn+T5jqsMvadU7N+p8D09l5/ing=;
+        b=HL+PovEyACdWZprmIiNWEiryPvAm3C+K+YE0ejX+J4hdTJXemXhHc41xJKjZVkDd5D
+         5cXc5C+SAfLR6MRNeg332Tn1Br3XVDP6NcdWfZ0sCiQEF+jUM/qaN3bc1nOQ/XbEzyhu
+         U5o+DKhI4vArycgGFxcftojIf+S/8pP4G4SFCJMORyaZWtXZQRJzqujG+2ZZSPz4YlY+
+         VBZtpO/CXp7FxM3moK2VkkPa3TXB9hV4V2Qj5/RtbrjEXOACfq7hWmGmxXZerwxAzuIO
+         yIKseo3ROJxecHlJRD1v/1sZzNj2edWO4SkgyNFZiscRQWvA6gscCfwcbUahzarNgnq9
+         v2Og==
+X-Gm-Message-State: AOAM532ZwvGe35xluLHxGewdlJF8pqudBphPXXPdTA5c/kFsMVxCYOcO
+	OyVuVxA+QeodMo1RClp0lxULxExKUX4=
+X-Google-Smtp-Source: 
+ ABdhPJzydQ0CJHREwRWKbDFeZZyT6tiiB6tyF7v0QXliNiaUgWIUbxv0OJdV/dsOoC3n14eHE1WwKw==
+X-Received: by 2002:a17:90a:9310:: with SMTP id
+ p16mr20304pjo.204.1632837439232;
+        Tue, 28 Sep 2021 06:57:19 -0700 (PDT)
+Received: from ?IPv6:2601:202:4180:a5c0:b669:1b22:84ea:4511?
+ ([2601:202:4180:a5c0:b669:1b22:84ea:4511])
+        by smtp.gmail.com with ESMTPSA id
+ x19sm20403199pfn.105.2021.09.28.06.57.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Sep 2021 06:57:18 -0700 (PDT)
+Subject: Re: [yocto] [meta-security][PATCH] swtpm: update to 0.6.1
+To: kristian@klausen.dk, yocto@lists.yoctoproject.org
+References: <20210927113927.31896-1-kristian@klausen.dk>
+From: akuster808 <akuster808@gmail.com>
+Message-ID: <9f763258-1486-4d52-5047-a60e4a612a71@gmail.com>
+Date: Tue, 28 Sep 2021 06:57:17 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5026.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 42724238-000d-4073-eaee-08d98234fa68
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Sep 2021 04:03:49.9740
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- Yrh/ATcam8CiaMqnQ56TiybGdkL8SRK0S+7qWeVYom7KjLTWRWtzcdqr2AlwK0p00g2V4L6g4DJKwlZQiDo7qUcj7H86gZtA/1xcY9KpnKI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB2013
-X-OriginatorOrg: intel.com
+In-Reply-To: <20210927113927.31896-1-kristian@klausen.dk>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 28 Sep 2021 04:03:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54889
+ <yocto@lists.yoctoproject.org>; Tue, 28 Sep 2021 13:57:21 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54890
 
-RG9uZS4gDQoNClJlZ2FyZHMsDQpOYXZlZW4NCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0t
-LQ0KPiBGcm9tOiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIDx5b2N0b0BsaXN0cy55b2N0
-b3Byb2plY3Qub3JnPiBPbg0KPiBCZWhhbGYgT2YgSm9uIE1hc29uDQo+IFNlbnQ6IE1vbmRheSwg
-U2VwdGVtYmVyIDI3LCAyMDIxIDk6MjQgUE0NCj4gVG86IFNhaW5pLCBOYXZlZW4gS3VtYXIgPG5h
-dmVlbi5rdW1hci5zYWluaUBpbnRlbC5jb20+DQo+IENjOiB5b2N0b0BsaXN0cy55b2N0b3Byb2pl
-Y3Qub3JnDQo+IFN1YmplY3Q6IFt5b2N0b10gW21ldGEtemVwaHlyXVtoYXJka25vdHRdIGJhY2tw
-b3J0IHRtcGZzZGlyIGZyb20gbWFzdGVyDQo+IA0KPiBIZXkgTmF2ZWVuLA0KPiBUaGUgaGFyZGtu
-b3R0IGJyYW5jaCBpbiBtZXRhLXplcGh5ciBuZWVkcyB0aGUgdG1wZnNkaXIgcGF0Y2gNCj4gKDY3
-ODYwMGJlZTYwOTJlNTgxMTBhODI2YTljYmVmYzJmNWM1MjkxNmMpIGZyb20gdGhlIG1hc3RlciBi
-cmFuY2gNCj4gY2hlcnJ5LXBpY2tlZCBiYWNrIHRvIGhhcmRrbm90dC4gIEl0IGhhcyB0aGUgc2Ft
-ZSBpc3N1ZSBtYXN0ZXIgaGFkIHdpdGgNCj4gYnJlYWtpbmcgd2hlbiB0cnlpbmcgdG8gcnVuIHFl
-bXUuICBDYW4geW91IHBsZWFzZSBwdWxsIGl0IGluPw0KPiANCj4gVGhhbmtzLA0KPiBKb24NCg==
+
+
+On 9/27/21 4:39 AM, Kristian Klausen via lists.yoctoproject.org wrote:
+> swtpm no longer depends on Python[1] so the dependencies have been
+> removed.
+>
+> "inherit perlnative" has been added due to (in oe-core):
+> deda455b3c ("bitbake.conf: drop pod2man from hosttools")
+>
+> Some leftover dependencies have also been removed, ex: tpm-tools
+> required in the past by swtpm_setup.sh (<0.4.0)[2].
+>
+> [1] https://github.com/stefanberger/swtpm/issues/437
+> [2] https://github.com/stefanberger/swtpm/commit/eee8cb5dfb13f87140dddda38f65bf61aff19508
+
+this is failing on qemux86-64
+
+https://errors.yoctoproject.org/Errors/Build/131312/
+>
+> Signed-off-by: Kristian Klausen <kristian@klausen.dk>
+> ---
+>  .../swtpm/swtpm-wrappers-native.bb            | 12 ++++------
+>  .../swtpm/{swtpm_0.5.2.bb => swtpm_0.6.1.bb}  | 23 ++++++++-----------
+>  2 files changed, 14 insertions(+), 21 deletions(-)
+>  rename meta-tpm/recipes-tpm/swtpm/{swtpm_0.5.2.bb => swtpm_0.6.1.bb} (72%)
+>
+> diff --git a/meta-tpm/recipes-tpm/swtpm/swtpm-wrappers-native.bb b/meta-tpm/recipes-tpm/swtpm/swtpm-wrappers-native.bb
+> index 644f3ac..bb93374 100644
+> --- a/meta-tpm/recipes-tpm/swtpm/swtpm-wrappers-native.bb
+> +++ b/meta-tpm/recipes-tpm/swtpm/swtpm-wrappers-native.bb
+> @@ -1,6 +1,6 @@
+>  SUMMARY = "SWTPM - OpenEmbedded wrapper scripts for native swtpm tools"
+>  LICENSE = "MIT"
+> -DEPENDS = "swtpm-native tpm-tools-native net-tools-native"
+> +DEPENDS = "swtpm-native"
+>  
+>  inherit native
+>  
+> @@ -14,23 +14,19 @@ do_create_wrapper () {
+>      for i in `find ${bindir} ${base_bindir} ${sbindir} ${base_sbindir} -name 'swtpm*' -perm /+x -type f`; do
+>          exe=`basename $i`
+>          case $exe in
+> -            swtpm_setup.sh)
+> +            swtpm_setup)
+>                  cat >${WORKDIR}/swtpm_setup_oe.sh <<EOF
+>  #! /bin/sh
+>  #
+> -# Wrapper around swtpm_setup.sh which adds parameters required to
+> +# Wrapper around swtpm_setup which adds parameters required to
+>  # run the setup as non-root directly from the native sysroot.
+>  
+>  PATH="${bindir}:${base_bindir}:${sbindir}:${base_sbindir}:\$PATH"
+>  export PATH
+>  
+> -# tcsd only allows to be run as root or tss. Pretend to be root...
+> -exec env ${FAKEROOTENV} ${FAKEROOTCMD} swtpm_setup.sh --config ${STAGING_DIR_NATIVE}/etc/swtpm_setup.conf "\$@"
+> +exec swtpm_setup --config ${STAGING_DIR_NATIVE}/etc/swtpm_setup.conf "\$@"
+>  EOF
+>                  ;;
+> -            swtpm_setup)
+> -                true
+> -                ;;
+>              *)
+>                  cat >${WORKDIR}/${exe}_oe.sh <<EOF
+>  #! /bin/sh
+> diff --git a/meta-tpm/recipes-tpm/swtpm/swtpm_0.5.2.bb b/meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb
+> similarity index 72%
+> rename from meta-tpm/recipes-tpm/swtpm/swtpm_0.5.2.bb
+> rename to meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb
+> index 912e939..807c02b 100644
+> --- a/meta-tpm/recipes-tpm/swtpm/swtpm_0.5.2.bb
+> +++ b/meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb
+> @@ -3,14 +3,11 @@ LICENSE = "BSD-3-Clause"
+>  LIC_FILES_CHKSUM = "file://LICENSE;md5=fe8092c832b71ef20dfe4c6d3decb3a8"
+>  SECTION = "apps"
+>  
+> -DEPENDS = "libtasn1 coreutils-native expect socat glib-2.0 net-tools-native libtpm libtpm-native"
+> +# coreutils-native and net-tools-native are reportedly only required for the tests
+> +DEPENDS = "libtasn1 coreutils-native expect socat glib-2.0 net-tools-native libtpm json-glib"
+>  
+> -# configure checks for the tools already during compilation and
+> -# then swtpm_setup needs them at runtime
+> -DEPENDS:append = " tpm-tools-native expect-native socat-native python3-pip-native python3-cryptography-native"
+> -
+> -SRCREV = "e59c0c1a7b4c8d652dbb280fd6126895a7057464"
+> -SRC_URI = "git://github.com/stefanberger/swtpm.git;branch=stable-0.5 \
+> +SRCREV = "98187d24fe14851653a7c46eb16e9c5f0b9beaa1"
+> +SRC_URI = "git://github.com/stefanberger/swtpm.git;branch=stable-0.6 \
+>             file://ioctl_h.patch \
+>             file://oe_configure.patch \
+>             "
+> @@ -19,7 +16,7 @@ PE = "1"
+>  S = "${WORKDIR}/git"
+>  
+>  PARALLEL_MAKE = ""
+> -inherit autotools pkgconfig python3native
+> +inherit autotools pkgconfig perlnative
+>  
+>  TSS_USER="tss"
+>  TSS_GROUP="tss"
+> @@ -28,7 +25,10 @@ PACKAGECONFIG ?= "openssl"
+>  PACKAGECONFIG += "${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'selinux', '', d)}"
+>  PACKAGECONFIG += "${@bb.utils.contains('BBFILE_COLLECTIONS', 'filesystems-layer', 'cuse', '', d)}"
+>  PACKAGECONFIG[openssl] = "--with-openssl, --without-openssl, openssl"
+> -PACKAGECONFIG[gnutls] = "--with-gnutls, --without-gnutls, gnutls"
+> +# expect, bash, tpm2-pkcs11-tools (tpm2_ptool), tpmtool and certtool is
+> +# used by swtpm-create-tpmca (the last two is provided by gnutls)
+> +# gnutls is required by: swtpm-create-tpmca, swtpm-localca and swtpm_cert
+> +PACKAGECONFIG[gnutls] = "--with-gnutls, --without-gnutls, gnutls, gnutls, expect bash tpm2-pkcs11-tools"
+>  PACKAGECONFIG[selinux] = "--with-selinux, --without-selinux, libselinux"
+>  PACKAGECONFIG[cuse] = "--with-cuse, --without-cuse, fuse"
+>  PACKAGECONFIG[seccomp] = "--with-seccomp, --without-seccomp, libseccomp"
+> @@ -41,14 +41,11 @@ USERADD_PARAM:${PN} = "--system -g ${TSS_GROUP} --home-dir  \
+>      --no-create-home  --shell /bin/false ${BPN}"
+>  
+>  
+> -PACKAGES =+ "${PN}-python"
+> -FILES:${PN}-python = "${PYTHON_SITEPACKAGES_DIR}"
+> -
+>  PACKAGE_BEFORE_PN = "${PN}-cuse"
+>  FILES:${PN}-cuse = "${bindir}/swtpm_cuse"
+>  
+>  INSANE_SKIP:${PN}   += "dev-so"
+>  
+> -RDEPENDS:${PN} = "libtpm expect socat bash tpm-tools python3 python3-cryptography python3-twisted"
+> +RDEPENDS:${PN} = "libtpm"
+>  
+>  BBCLASSEXTEND = "native nativesdk"
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#54876): https://lists.yoctoproject.org/g/yocto/message/54876
+> Mute This Topic: https://lists.yoctoproject.org/mt/85898116/3616698
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [akuster808@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
+
 
