@@ -1,100 +1,108 @@
-Return-Path: <opensource@keylevel.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AFE99C433F5
-	for <webhook@archiver.kernel.org>; Tue, 28 Sep 2021 21:58:50 +0000 (UTC)
-Received: from hs013.4uh.net (hs013.4uh.net [80.68.86.13])
- by mx.groups.io with SMTP id smtpd.web12.1003.1632866328396166783
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 83B84C433EF
+	for <webhook@archiver.kernel.org>; Tue, 28 Sep 2021 23:30:43 +0000 (UTC)
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com
+ [209.85.216.45])
+ by mx.groups.io with SMTP id smtpd.web08.1995.1632871842592010161
  for <yocto@lists.yoctoproject.org>;
- Tue, 28 Sep 2021 14:58:49 -0700
+ Tue, 28 Sep 2021 16:30:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@keylevel.com header.s=default header.b=DI2Z9FEw;
- spf=pass (domain: keylevel.com, ip: 80.68.86.13,
- mailfrom: opensource@keylevel.com)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=keylevel.com; s=default; h=To:Date:Message-Id:Subject:Mime-Version:
-	Content-Transfer-Encoding:Content-Type:From:Sender:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=odCxgJLt4ep8i/x5gKyU6m0zrg6Frto7Wm0GHm/60MQ=; b=DI2Z9FEwkLdI1bCnWgD3vvtWYq
-	UaAou9HPYuaeslJshApNysJCS+ACzCRKeVxrK0AaS9nJW6NvdOYggPdPD9tlsvEwG4lyl7ElQ3E3k
-	AYHrL8Vs1+xJwNqkePJriuakDjsAfz6Dg0ldHaNx0t+sDk9mq3wpa/XpTzuk4JVvFHewYhtZLFuRk
-	Wty7fI0deBPotEfQzWa5ClQoWqd7EF6mk3Fg2Vgv/sJnaSAJtimHt2jWfMkFlqwaNp40ffs5zgrGg
-	y+V4Ot97B09uakCtaQ62IL7CpPU5/PK3oSzJkZ5VUCHJ1tqruU+Swfys2uge6icxEpiFgN/UB2C2+
-	iq3/PK3A==;
-Received: from durham.keylevel.com ([88.97.77.109]:30103
- helo=smtpclient.apple)
-	by hs013.4uh.net with esmtpsa  (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <opensource@keylevel.com>)
-	id 1mVL7d-0002hc-4s
-	for yocto@lists.yoctoproject.org; Tue, 28 Sep 2021 22:58:44 +0100
-From: Chris Tapp <opensource@keylevel.com>
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Enabling tk for Python tkinter module 
-Message-Id: <D8593103-F731-447D-96B1-40DA4BD326AE@keylevel.com>
-Date: Tue, 28 Sep 2021 22:58:43 +0100
-To: yocto@lists.yoctoproject.org
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
-X-4UH-MailScanner-Information: Please contact the ISP for more information
-X-4UH-MailScanner-ID: 1mVL7d-0002hc-4s
-X-4UH-MailScanner: Found to be clean
-X-4UH-MailScanner-SpamCheck: 
-X-4UH-MailScanner-From: opensource@keylevel.com
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hs013.4uh.net
-X-AntiAbuse: Original Domain - lists.yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: hs013.4uh.net: authenticated_id:
- opensource@keylevel.com
-X-Authenticated-Sender: hs013.4uh.net: opensource@keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=ZB1SSCl6;
+ spf=pass (domain: gmail.com, ip: 209.85.216.45,
+ mailfrom: akuster808@gmail.com)
+Received: by mail-pj1-f45.google.com with SMTP id r7so226846pjo.3
+        for <yocto@lists.yoctoproject.org>;
+ Tue, 28 Sep 2021 16:30:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-transfer-encoding:content-language;
+        bh=RrmIJpEeIWrv9E4BgWicrBWepi1ZsqLjU8CYKsO/E4E=;
+        b=ZB1SSCl6Qko5wE1UTMLwJOYSW/vM8j7Y6Hq0GpFQbPzaBQgymPYznNhcblJjlZ2C3u
+         bn2iQxij9fRfCjN0geGKXBsYlTrdGeY5gxo2FVviMOyCFSHNHG6zxGQvb/smpfKNQRit
+         yQ8I68eylOe2rNwvjx92FMYop1B4wEZyEzDaoOjhoTef9vBt4aiDQyGE9HxDcSrp3cRu
+         gDp1OHvA2VG6/KkGotGDB3YtJYgTiulXn76B0geba3k4lYkafP/+9sGYSH8hYioLf+di
+         6G4O4pKXYCyEVelC9hsV29yWtjhKG5NhKyeq2dw+QnjsCrm4kWFlcgfMkTQYlA5TCu75
+         VXwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=RrmIJpEeIWrv9E4BgWicrBWepi1ZsqLjU8CYKsO/E4E=;
+        b=tnAfTuYygh0mHlTH6BVOvYCzsDBWiIKl7i7F683yj8F9pNe4K5k+3ax/DN4btFgQSy
+         p18AnGWAfjbRK+TvaW3QB0fJzNRtZzRH9SBg4LudgZY/jEok+Hdl1kq48a5wBOVPNPqy
+         V5y6AQbrIt//XUCuWtxUYKd/JYIVI+unyDug9QG+CqZjwmEw8D8T4mKF4Ot0/mXCNo0w
+         KNX51Ww7gSW/gWZbDZ1FX1WLwOrE46UUWQj7l9HbJaUtJvEtbRE1/UNJSkZrKSdzAmTR
+         mDgoWFToEJuwRBAHCg+6uddq7DHbRrKXfNY91bimUj8BHgVT+b0AWNY3YWy5SAMhl04n
+         o8Cw==
+X-Gm-Message-State: AOAM532N4redEktwJf/syNPfWSYPvsv9MJcp+mfOROYLoylwyl5mkP6n
+	ThmPJQyQLdsXsISHuBhcr/lB++qErsk=
+X-Google-Smtp-Source: 
+ ABdhPJzt79pwLIRWlolzNVRm+oG67a8R7TQ14pjMr3ChB7hrJRDlACegPVwCstUjm9xaKvEQ3DqTNA==
+X-Received: by 2002:a17:90a:e2d2:: with SMTP id
+ fr18mr2819385pjb.24.1632871841838;
+        Tue, 28 Sep 2021 16:30:41 -0700 (PDT)
+Received: from ?IPv6:2601:202:4180:a5c0:b669:1b22:84ea:4511?
+ ([2601:202:4180:a5c0:b669:1b22:84ea:4511])
+        by smtp.gmail.com with ESMTPSA id w11sm246350pgf.5.2021.09.28.16.30.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Sep 2021 16:30:41 -0700 (PDT)
+Subject: Re: [yocto] [meta-security][PATCH] libtpm: update to 0.8.7
+To: kristian@klausen.dk, yocto@lists.yoctoproject.org
+References: <20210927110703.31806-1-kristian@klausen.dk>
+From: akuster808 <akuster808@gmail.com>
+Message-ID: <e044dffd-5636-d483-a162-7df1d4de1d40@gmail.com>
+Date: Tue, 28 Sep 2021 16:30:40 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <20210927110703.31806-1-kristian@klausen.dk>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 28 Sep 2021 21:58:50 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54893
+ <yocto@lists.yoctoproject.org>; Tue, 28 Sep 2021 23:30:43 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54895
 
-I am trying to get PySimpleGUI running on an RPi4 using meta-raspberrypi =
-with hardknott.
+merged
 
-I have created a recipe for PySimpleGUI and added the following to my =
-local.conf:
-
-PACKAGECONFIG_pn-python3 =3D =E2=80=9Ctk=E2=80=9D
-IMAGE_INSTALL_append =3D " python3 python3-modules python3-pysimplegui =
-tk"
-
-However, the tkinter module fails to load, reporting =E2=80=9CNo module =
-named _tkinter=E2=80=9D, with a note above saying that Python may not be =
-configured for Tk.
-
-Looking on the target, /usr/lib/libtk.8.so is present.
-
-It looks as if there is something else I need to do to get Python to =
-build correctly, but I=E2=80=99m out of ideas ;-)
-
-I=E2=80=99ve found a few bits on the internet that seem related, but =
-they haven=E2=80=99t helped me get things going:
- https://www.mail-archive.com/yocto@yoctoproject.org/msg18232.html
- https://www.yoctoproject.org/pipermail/yocto/2014-July/020547.html
-
-Any pointers on where to look would be appreciated.
-
---
-
-Chris Tapp
-opensource@keylevel.com
-www.keylevel.com
+On 9/27/21 4:07 AM, Kristian Klausen via lists.yoctoproject.org wrote:
+> Signed-off-by: Kristian Klausen <kristian@klausen.dk>
+> ---
+>  .../recipes-tpm/libtpm/{libtpm_0.8.2.bb => libtpm_0.8.7.bb}     | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>  rename meta-tpm/recipes-tpm/libtpm/{libtpm_0.8.2.bb => libtpm_0.8.7.bb} (88%)
+>
+> diff --git a/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.2.bb b/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb
+> similarity index 88%
+> rename from meta-tpm/recipes-tpm/libtpm/libtpm_0.8.2.bb
+> rename to meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb
+> index 9784aa1..95ba5c5 100644
+> --- a/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.2.bb
+> +++ b/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb
+> @@ -2,7 +2,7 @@ SUMMARY = "LIBPM - Software TPM Library"
+>  LICENSE = "BSD-3-Clause"
+>  LIC_FILES_CHKSUM = "file://LICENSE;md5=e73f0786a936da3814896df06ad225a9"
+>  
+> -SRCREV = "f66a719eda0b492ea3ec7852421a9d98db0a0621"
+> +SRCREV = "f6dd8f55eab4910131ec6a6a570dcd7951bd10e4"
+>  SRC_URI = "git://github.com/stefanberger/libtpms.git;branch=stable-0.8"
+>  
+>  PE = "1"
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#54875): https://lists.yoctoproject.org/g/yocto/message/54875
+> Mute This Topic: https://lists.yoctoproject.org/mt/85897588/3616698
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [akuster808@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
 
