@@ -1,447 +1,1019 @@
-Return-Path: <opensource@keylevel.com>
+Return-Path: <lijchen@blackberry.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 59CA7C433F5
-	for <webhook@archiver.kernel.org>; Wed, 29 Sep 2021 09:47:54 +0000 (UTC)
-Received: from hs013.4uh.net (hs013.4uh.net [80.68.86.13])
- by mx.groups.io with SMTP id smtpd.web09.6621.1632908872617508154
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 97643C433EF
+	for <webhook@archiver.kernel.org>; Wed, 29 Sep 2021 14:56:42 +0000 (UTC)
+Received: from smtp-pc10.blackberry.com (smtp-pc10.blackberry.com
+ [74.82.81.42])
+ by mx.groups.io with SMTP id smtpd.web09.9896.1632927392710972411
  for <yocto@lists.yoctoproject.org>;
- Wed, 29 Sep 2021 02:47:53 -0700
+ Wed, 29 Sep 2021 07:56:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@keylevel.com header.s=default header.b=ipJfzoD9;
- spf=pass (domain: keylevel.com, ip: 80.68.86.13,
- mailfrom: opensource@keylevel.com)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=keylevel.com; s=default; h=References:To:Cc:In-Reply-To:Date:Subject:
-	Mime-Version:Content-Type:Message-Id:From:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=7SK0r6683oUFshzOOihfP/pJWEG1buYybS7N1fZwfUk=; b=ipJfzoD9jp9SXALah7zgMEFq1p
-	qA4dBt7tYnsUQcDI1wf3HzIWKUSCVAA/miJubS4IFxajjPe2OskaiZOQnP4WLnE0JJksIponJCVZR
-	cXINpe9t63FQTSYspFAKECmYNut0EZoRqjFwwkdd2/McJdbjjMfMHQ4Ud5LVJApoX0N/fXy7PatcB
-	M0tz+fHrY+cq5d+yZPUdxYcGN1T8xc2l1nb5Xl7Vkrb3HAe0xFTLKqB9LqTqtjPd/XAjyS45ifjYW
-	d4EL4XXahbAa721i5CGfFfGzPfsRNZAHZWq+QxwAX6oeZeIBae3vnQQv+4eoDzlXN19xvr3DXwUaR
-	x9EglrBw==;
-Received: from durham.keylevel.com ([88.97.77.109]:34537
- helo=smtpclient.apple)
-	by hs013.4uh.net with esmtpsa  (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <opensource@keylevel.com>)
-	id 1mVWBo-0000la-Cb; Wed, 29 Sep 2021 10:47:47 +0100
-From: Chris Tapp <opensource@keylevel.com>
-Message-Id: <31E7A0A6-977C-41FA-86D0-5A073DD38B94@keylevel.com>
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_DF250EA2-A69B-416F-957A-1F671D48D853"
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [yocto] Enabling tk for Python tkinter module
-Date: Wed, 29 Sep 2021 10:47:47 +0100
+ dkim=pass header.i=@blackberry.com header.s=corp19 header.b=NHPgmNQI;
+ spf=pass (domain: blackberry.com, ip: 74.82.81.42,
+ mailfrom: lijchen@blackberry.com)
+Received: from pps.filterd (mhs400cnc.rim.net [127.0.0.1])
+	by mhs400cnc.rim.net (8.16.0.43/8.16.0.43) with SMTP id 18TErqSZ114347;
+	Wed, 29 Sep 2021 10:56:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=blackberry.com;
+ h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ mime-version; s=corp19; bh=qoJNRVIAiWN30UMHiayOabpP5zon40zKD1j5N8HGRHU=;
+ b=NHPgmNQIadnH4xuCYY0yZqdzGUiei7vnr+HpTWlDbTHEA0pv4OIzq1pzjTdb2XEn9xLt
+ Q/Xr172V1paC/sUsMU8EZ7ZXMi8TXqI8pY2R2Iz0zMuUTwMNtwqA47x9M9nYm33QgOLr
+ g27svCLmsyfoSn7JkRjmL41dfLxXFmvZ5CF9pOmE0LtttO4H8vD/Jt73ZMUDettBMFhv
+ sTz5cyouT4sbVEfsK3lzkeg5wORezd7QrxFjPRhYqM7iUk1sjpgCqY+fyO17pgicoiQc
+ YP0pcDabhGvTbxvJqXs8QOqfesbCSPR7a/CEceWxUt4pGzXm3Ox6io3u4w+esjjwmhe6 bQ==
+Received: from xch210cnc.rim.net (xch210cnc.rim.net [10.3.27.115])
+	by mhs400cnc.rim.net with ESMTP id 3bc002tvu6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Wed, 29 Sep 2021 10:56:28 -0400
+Received: from XCH211YKF.rim.net (10.12.114.211) by XCH210CNC.rim.net
+ (10.3.27.115) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.14; Wed, 29 Sep
+ 2021 10:56:27 -0400
+Received: from XCH211YKF.rim.net ([fe80::dca:23f8:c2c0:7180]) by
+ XCH211YKF.rim.net ([fe80::dca:23f8:c2c0:7180%5]) with mapi id 15.01.2308.014;
+ Wed, 29 Sep 2021 10:56:27 -0400
+From: Lijun Chen <lijchen@blackberry.com>
+To: Federico Pellegrin <fede@evolware.org>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] googletest shared library
+Thread-Topic: [yocto] googletest shared library
+Thread-Index: 
+ AQHXrvNmR2vvZSsL30OJxestQkC5W6uuznCAgAARxluAASeUKIAAaj2A///jB82AAUnfsIAAVIyA///AtJmAAQPKgIAIbY1n
+Date: Wed, 29 Sep 2021 14:56:27 +0000
+Message-ID: <b0ca75bbe2da42339082d8d39e318c4a@blackberry.com>
+References: <3925c5329d6f46f78c5921fe7965662b@blackberry.com>
+ <AS8PR09MB4645D63449C60FC6463045E7A8A19@AS8PR09MB4645.eurprd09.prod.outlook.com>
+ <16A6EE364B338B15.22723@lists.yoctoproject.org>
+ <15166f538f2144adabe2299deb3b2a3c@blackberry.com>
+ <4440837f-5f69-28c4-7d8b-57653935790c@gmail.com>
+ <16A735F63BB00E6A.1967@lists.yoctoproject.org>
+ <1b84a7a456b54acaae9d98efc5731549@blackberry.com>
+ <CAM6O0Zgs5Fir2k8m+tTVG_OVVe6oq=uRvCEegxzA6x-AvgwSJw@mail.gmail.com>
+ <6be47b6387624c2686df9b5bdab5d1e1@blackberry.com>,<CAM6O0Zi4mM4ykAD8BxTZMmXzOtx9jnyyT+w_Rp48O1NqVZ1xiw@mail.gmail.com>
 In-Reply-To: 
- <CANx9H-D7kB8HHWQOsECKGVUCsC-wpK_OfhOAhPaB5_NCntgrfw@mail.gmail.com>
-Cc: yocto@lists.yoctoproject.org
-To: Tim Orling <ticotimo@gmail.com>
-References: <D8593103-F731-447D-96B1-40DA4BD326AE@keylevel.com>
- <CANx9H-D7kB8HHWQOsECKGVUCsC-wpK_OfhOAhPaB5_NCntgrfw@mail.gmail.com>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
-X-4UH-MailScanner-Information: Please contact the ISP for more information
-X-4UH-MailScanner-ID: 1mVWBo-0000la-Cb
-X-4UH-MailScanner: Found to be clean
-X-4UH-MailScanner-SpamCheck: 
-X-4UH-MailScanner-From: opensource@keylevel.com
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hs013.4uh.net
-X-AntiAbuse: Original Domain - lists.yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: hs013.4uh.net: authenticated_id:
- opensource@keylevel.com
-X-Authenticated-Sender: hs013.4uh.net: opensource@keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+ <CAM6O0Zi4mM4ykAD8BxTZMmXzOtx9jnyyT+w_Rp48O1NqVZ1xiw@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [100.64.197.198]
+Content-Type: multipart/alternative;
+	boundary="_000_b0ca75bbe2da42339082d8d39e318c4ablackberrycom_"
+MIME-Version: 1.0
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
+ definitions=2021-09-29_05:2021-09-29,2021-09-29 signatures=0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 29 Sep 2021 09:47:54 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54909
+ <yocto@lists.yoctoproject.org>; Wed, 29 Sep 2021 14:56:42 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54910
 
-
---Apple-Mail=_DF250EA2-A69B-416F-957A-1F671D48D853
+--_000_b0ca75bbe2da42339082d8d39e318c4ablackberrycom_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
 
-Hi Tim,
-
-Thanks, that=E2=80=99s got it going. I was close, but didn=E2=80=99t =
-quite cast the correct spell ;-)
-
-Next is to work out why the display is black when I create a window...
-
---
-
-Chris Tapp
-opensource@keylevel.com
-www.keylevel.com
-
-----
-You can tell you're getting older when your car insurance gets real =
-cheap!
-
-> On 29 Sep 2021, at 02:21, Tim Orling <ticotimo@gmail.com> wrote:
->=20
->=20
->=20
-> On Tue, Sep 28, 2021 at 2:58 PM Chris Tapp <opensource@keylevel.com =
-<mailto:opensource@keylevel.com>> wrote:
-> I am trying to get PySimpleGUI running on an RPi4 using =
-meta-raspberrypi with hardknott.
->=20
-> I have created a recipe for PySimpleGUI and added the following to my =
-local.conf:
->=20
-> PACKAGECONFIG_pn-python3 =3D =E2=80=9Ctk=E2=80=9D
-> IMAGE_INSTALL_append =3D " python3 python3-modules python3-pysimplegui =
-tk"
->=20
-> However, the tkinter module fails to load, reporting =E2=80=9CNo =
-module named _tkinter=E2=80=9D, with a note above saying that Python may =
-not be configured for Tk.
->=20
-> Looking on the target, /usr/lib/libtk.8.so <http://libtk.8.so/> is =
-present.
->=20
-> It looks as if there is something else I need to do to get Python to =
-build correctly, but I=E2=80=99m out of ideas ;-)
->=20
-> You need to add =E2=80=9Ctk=E2=80=9D to the package config for python3
-> =
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-devtools/=
-python/python3_3.9.6.bb#n110 =
-<http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-devtools=
-/python/python3_3.9.6.bb#n110>
->=20
-> Add the following to your distro|site|local.conf (or a =
-python3_%.bbappend)
->=20
-> PACKAGECONFIG:append:pn-python3 =3D =E2=80=9C tk=E2=80=9D
->=20
-> ( replace : with _ if you are on old release that doesn=E2=80=99t =
-support the new override syntax)
->=20
-> (This assumes you have meta-oe in your bblayers.conf so you can build =
-tk, which it sounds like you do)
->=20
-> This is because the _tkinter .so built by python3 is dynamically =
-loaded only if present=20
-> =
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-devtools/=
-python/python3/python3-manifest.json#n1161 =
-<http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-devtools=
-/python/python3/python3-manifest.json#n1161>
-> =E2=80=94Tim =E2=80=9Cmoto-timo=E2=80=9D Orling
->=20
->=20
-> I=E2=80=99ve found a few bits on the internet that seem related, but =
-they haven=E2=80=99t helped me get things going:
->  https://www.mail-archive.com/yocto@yoctoproject.org/msg18232.html =
-<https://www.mail-archive.com/yocto@yoctoproject.org/msg18232.html>
->  https://www.yoctoproject.org/pipermail/yocto/2014-July/020547.html =
-<https://www.yoctoproject.org/pipermail/yocto/2014-July/020547.html>
->=20
-> Any pointers on where to look would be appreciated.
->=20
-> --
->=20
-> Chris Tapp
-> opensource@keylevel.com <mailto:opensource@keylevel.com>
-> www.keylevel.com <http://www.keylevel.com/>
->=20
->=20
->=20
->=20
->=20
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#54900): =
-https://lists.yoctoproject.org/g/yocto/message/54900 =
-<https://lists.yoctoproject.org/g/yocto/message/54900>
-> Mute This Topic: https://lists.yoctoproject.org/mt/85935979/3617534 =
-<https://lists.yoctoproject.org/mt/85935979/3617534>
-> Group Owner: yocto+owner@lists.yoctoproject.org =
-<mailto:yocto+owner@lists.yoctoproject.org>
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub =
-<https://lists.yoctoproject.org/g/yocto/unsub> [opensource@keylevel.com =
-<mailto:opensource@keylevel.com>]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+Thanks, this also works for target image.
 
 
---Apple-Mail=_DF250EA2-A69B-416F-957A-1F671D48D853
+For SDK image, turns out we have to change the line:
+
+RDEPENDS_${PN}-dev +=3D "${PN}-staticdev"
+
+to
+
+RDEPENDS_${PN}-dev +=3D "${PN}-dev"
+
+
+to include the header files.
+
+
+Thanks,
+
+Lijun
+
+________________________________
+From: Federico Pellegrin <fede@evolware.org>
+Sent: Thursday, September 23, 2021 10:10:55 PM
+To: Lijun Chen
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] googletest shared library
+
+
+Hi,
+Regarding the INSANE_SKIP: as that files get packed in the "-dev" package, =
+you should probably then accordingly have:
+
+INSANE_SKIP_${PN}-dev +=3D "dev-elf"
+
+Cheers,
+Federico
+
+Il giorno gio 23 set 2021 alle ore 16:46 Lijun Chen <lijchen@blackberry.com=
+<mailto:lijchen@blackberry.com>> ha scritto:
+
+I tried INSANE_SKIP_${PN} +=3D "dev-elf" and "dev-so", still got the QA err=
+or:
+
+ERROR: googletest-1.10.0-r0 do_package_qa: QA Issue: -dev package googletes=
+t-dev contains non-symlink .so '/usr/lib/libgmock.so'
+-dev package googletest-dev contains non-symlink .so '/usr/lib/libgtest_mai=
+n.so'
+-dev package googletest-dev contains non-symlink .so '/usr/lib/libgmock_mai=
+n.so'
+-dev package googletest-dev contains non-symlink .so '/usr/lib/libgtest.so'=
+ [dev-elf]
+ERROR: googletest-1.10.0-r0 do_package_qa: QA run found fatal errors. Pleas=
+e consider fixing them.
+ERROR: Logfile of failure stored in: /home/lijchen/hdd/ivdp/yocto/imx8/imx-=
+yocto-bsp-Hardknott/build-imx8qmmek/tmp/work/cortexa72-cortexa53-crypto-pok=
+y-linux/googletest/1.10.0-r0/temp/log.do_package_qa.24701
+ERROR: Task (/home/lijchen/hdd/ivdp/yocto/imx8/imx-yocto-bsp-Hardknott/sour=
+ces/meta-openembedded/meta-oe/recipes-test/googletest/googletest_git.bb:do_=
+package_qa) failed with exit code '1'
+
+I also tried adding " -DCMAKE_INSTALL_PREFIX=3D/usr/local" to EXTRA_OEMAKE,=
+ and got the following error:
+
+ERROR: googletest-1.10.0-r0 do_package: QA Issue: googletest: Files/directo=
+ries were installed but not shipped in any package:
+  /usr/local/include
+  /usr/local/lib/libgmock.so
+  /usr/local/lib/libgtest_main.so
+  /usr/local/lib/libgmock_main.so
+  /usr/local/lib/libgtest.so
+  /usr/local/lib/cmake
+  /usr/local/lib/pkgconfig
+  /usr/local/lib/cmake/GTest
+  /usr/local/lib/cmake/GTest/GTestTargets.cmake
+  /usr/local/lib/cmake/GTest/GTestConfigVersion.cmake
+  /usr/local/lib/cmake/GTest/GTestConfig.cmake
+  /usr/local/lib/cmake/GTest/GTestTargets-noconfig.cmake
+  /usr/local/lib/pkgconfig/gtest_main.pc
+  /usr/local/lib/pkgconfig/gtest.pc
+  /usr/local/lib/pkgconfig/gmock_main.pc
+  /usr/local/lib/pkgconfig/gmock.pc
+  /usr/local/include/gtest
+  /usr/local/include/gmock
+  /usr/local/include/gtest/gtest_prod.h
+  /usr/local/include/gtest/gtest-test-part.h
+  /usr/local/include/gtest/gtest_pred_impl.h
+  /usr/local/include/gtest/gtest-matchers.h
+  /usr/local/include/gtest/gtest-printers.h
+  /usr/local/include/gtest/gtest.h
+  /usr/local/include/gtest/gtest-param-test.h
+  /usr/local/include/gtest/gtest-death-test.h
+  /usr/local/include/gtest/gtest-typed-test.h
+  /usr/local/include/gtest/gtest-message.h
+  /usr/local/include/gtest/gtest-spi.h
+  /usr/local/include/gtest/internal
+  /usr/local/include/gtest/internal/gtest-death-test-internal.h
+  /usr/local/include/gtest/internal/gtest-filepath.h
+  /usr/local/include/gtest/internal/gtest-param-util.h
+  /usr/local/include/gtest/internal/gtest-string.h
+  /usr/local/include/gtest/internal/gtest-type-util.h
+  /usr/local/include/gtest/internal/gtest-internal.h
+  /usr/local/include/gtest/internal/gtest-type-util.h.pump
+  /usr/local/include/gtest/internal/gtest-port-arch.h
+  /usr/local/include/gtest/internal/gtest-port.h
+  /usr/local/include/gtest/internal/custom
+  /usr/local/include/gtest/internal/custom/gtest-printers.h
+  /usr/local/include/gtest/internal/custom/gtest.h
+  /usr/local/include/gtest/internal/custom/README.md
+  /usr/local/include/gtest/internal/custom/gtest-port.h
+  /usr/local/include/gmock/gmock-function-mocker.h
+  /usr/local/include/gmock/gmock-generated-function-mockers.h
+  /usr/local/include/gmock/gmock-generated-actions.h.pump
+  /usr/local/include/gmock/gmock-matchers.h
+  /usr/local/include/gmock/gmock-generated-matchers.h
+  /usr/local/include/gmock/gmock-more-matchers.h
+  /usr/local/include/gmock/gmock.h
+  /usr/local/include/gmock/gmock-generated-actions.h
+  /usr/local/include/gmock/gmock-nice-strict.h
+  /usr/local/include/gmock/gmock-spec-builders.h
+  /usr/local/include/gmock/gmock-more-actions.h
+  /usr/local/include/gmock/gmock-generated-function-mockers.h.pump
+  /usr/local/include/gmock/gmock-cardinalities.h
+  /usr/local/include/gmock/gmock-actions.h
+  /usr/local/include/gmock/gmock-generated-matchers.h.pump
+  /usr/local/include/gmock/internal
+  /usr/local/include/gmock/internal/gmock-port.h
+  /usr/local/include/gmock/internal/gmock-pp.h
+  /usr/local/include/gmock/internal/gmock-internal-utils.h
+  /usr/local/include/gmock/internal/custom
+  /usr/local/include/gmock/internal/custom/gmock-port.h
+  /usr/local/include/gmock/internal/custom/gmock-generated-actions.h.pump
+  /usr/local/include/gmock/internal/custom/gmock-matchers.h
+  /usr/local/include/gmock/internal/custom/gmock-generated-actions.h
+  /usr/local/include/gmock/internal/custom/README.md
+Please set FILES such that these items are packaged. Alternatively if they =
+are unneeded, avoid installing them or delete them within do_install.
+googletest: 69 installed and not shipped files. [installed-vs-shipped]
+ERROR: googletest-1.10.0-r0 do_package: Fatal QA errors found, failing task.
+
+
+
+________________________________
+From: Federico Pellegrin <fede@evolware.org<mailto:fede@evolware.org>>
+Sent: Thursday, September 23, 2021 10:27:39 AM
+To: Lijun Chen
+Cc: yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] googletest shared library
+
+
+Hi,
+To skip the QA you can use:
+
+INSANE_SKIP_${PN} +=3D "dev-elf"
+
+(or any QA part you'd like to skip, ie. dev-elf or dev-so ...)
+
+Cheers,
+Federico
+
+
+
+Il giorno gio 23 set 2021 alle ore 15:33 Lijun Chen <lijchen@blackberry.com=
+<mailto:lijchen@blackberry.com>> ha scritto:
+
+Hi,
+
+
+If I switch to the default setting of the googletest recipe, the header fil=
+es are included in the SDK image. However, the libgtest libraries are stati=
+c.
+
+Looks FILES_SOLIBSDEV =3D "" disables googletest-dev to be included in the =
+SDK.
+
+
+Is there a way to change the library to dynamic and keep the header files? =
+i.e. just add EXTRA_OECMAKE =3D "-DBUILD_SHARED_LIBS=3DON " but skip the do=
+_package_qa part to avoid the QA issue due to un-versioned library?
+
+
+Thanks,
+
+Lijun
+
+
+________________________________
+From: yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org> <yo=
+cto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org>> on behalf =
+of Lijun Chen <lijchen@blackberry.com<mailto:lijchen@blackberry.com>>
+Sent: Wednesday, September 22, 2021 1:45 PM
+To: Khem Raj; yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.=
+org>
+Subject: Re: [yocto] googletest shared library
+
+
+Tried adding googletest to TOOLCHAIN_TARGET_TASK. The gtest .h files are st=
+ill not showing up.
+
+Thanks,
+
+________________________________
+From: Khem Raj <raj.khem@gmail.com<mailto:raj.khem@gmail.com>>
+Sent: Wednesday, September 22, 2021 11:28:05 AM
+To: Lijun Chen; yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoprojec=
+t.org>
+Subject: Re: [yocto] googletest shared library
+
+The .h files will be in dev pkg in this case googletest-dev
+what happens if you add googletest to TOOLCHAIN_TARGET_TASK
+
+On 9/22/21 6:18 AM, Lijun Chen wrote:
+> Hi,
+>
+>
+> Now I included googletest to the IMAGE_INSTALL in my image file, and
+> built both board image and SDK image. I can see libgtest.so is available
+> in both images. However, gtest/gtest.h is a not present in SDK. How do I
+> add the header files to the SDK image? Looks the following lines affect
+> that?
+>
+> SOLIBS =3D ".so"
+> FILES_SOLIBSDEV =3D ""
+>
+> Thanks,
+> Lijun
+>
+> ------------------------------------------------------------------------
+> *From:* yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org>=
+ <yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org>> on
+> behalf of Lijun Chen <lijchen@blackberry.com<mailto:lijchen@blackberry.co=
+m>>
+> *Sent:* Tuesday, September 21, 2021 3:50 PM
+> *To:* Konrad Weihmann; yocto@lists.yoctoproject.org<mailto:yocto@lists.yo=
+ctoproject.org>
+> *Subject:* Re: [yocto] googletest shared library
+>
+> Thanks Konrad. That worked.
+>
+> ------------------------------------------------------------------------
+> *From:* Konrad Weihmann <kweihmann@outlook.com<mailto:kweihmann@outlook.c=
+om>>
+> *Sent:* Tuesday, September 21, 2021 10:26:19 AM
+> *To:* Lijun Chen; yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctopr=
+oject.org>
+> *Subject:* Re: [yocto] googletest shared library
+>
+> On 21.09.21 16:18, Lijun Chen wrote:
+>> Hi,
+>>
+>> I would like to include libgtest.so into my Yocto image. I added
+>> googletest to IMAGE_INSTALL and added the following line to
+>> sources/meta-openembedded/meta-oe/recipes-test/googletest/googletest_git=
+.bb<https://urldefense.com/v3/__http://googletest_git.bb__;!!COg3wY07Hnb7!7=
+O_HT4lxGD2NMUNxv3WxuozghHtiiLg6jEedfRQlWFKmZAkTPU49ug2kIHlR9kH4xg$>:
+>>
+>> EXTRA_OECMAKE =3D "-DBUILD_SHARED_LIBS=3DON "
+>>
+>>
+>> The shared libraries were built successfully. However, there are errors
+>> in do_package_qc as following:
+>>
+>>
+>> ERROR: googletest-1.10.0-r0 do_package_qa: QA Issue: -dev package
+>> googletest-dev contains non-symlink .so '/usr/lib/libgmock.so'
+>> -dev package googletest-dev contains non-symlink .so
+>> '/usr/lib/libgtest_main.so'
+>> -dev package googletest-dev contains non-symlink .so
+>> '/usr/lib/libgmock_main.so'
+>> -dev package googletest-dev contains non-symlink .so
+>> '/usr/lib/libgtest.so' [dev-elf]
+>> ERROR: googletest-1.10.0-r0 do_package_qa: QA run found fatal errors.
+>> Please consider fixing them.
+>
+> https://urldefense.com/v3/__http://git.yoctoproject.org/cgit/cgit.cgi/pok=
+y/tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n34__;Iw!!COg3wY07H=
+nb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0NANM4iMsNNleww$
+> <https://urldefense.com/v3/__http://git.yoctoproject.org/cgit/cgit.cgi/po=
+ky/tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n34__;Iw!!COg3wY07=
+Hnb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0NANM4iMsNNleww$>
+>
+> (and the next lines) might give you a hint what to do in this case.
+> Although one could also consider that's something that needs to be fixed
+> in the installation script of googletest, as versioned libraries are the
+> expected default
+>
+>>
+>>
+>> Any idea to fix this?
+>>
+>>
+>> Thanks,
+>>
+>> Lijun
+>>
+>>
+>> ------------------------------------------------------------------------
+>> This transmission (including any attachments) may contain confidential
+>> information, privileged material (including material protected by the
+>> solicitor-client or other applicable privileges), or constitute
+>> non-public information. Any use of this information by anyone other than
+>> the intended recipient is prohibited. If you have received this
+>> transmission in error, please immediately reply to the sender and delete
+>> this information from your system. Use, dissemination, distribution, or
+>> reproduction of this transmission by unintended recipients is not
+>> authorized and may be unlawful.
+>>
+>>
+>>
+>>
+> ------------------------------------------------------------------------
+> This transmission (including any attachments) may contain confidential
+> information, privileged material (including material protected by the
+> solicitor-client or other applicable privileges), or constitute
+> non-public information. Any use of this information by anyone other than
+> the intended recipient is prohibited. If you have received this
+> transmission in error, please immediately reply to the sender and delete
+> this information from your system. Use, dissemination, distribution, or
+> reproduction of this transmission by unintended recipients is not
+> authorized and may be unlawful.
+> ------------------------------------------------------------------------
+> This transmission (including any attachments) may contain confidential
+> information, privileged material (including material protected by the
+> solicitor-client or other applicable privileges), or constitute
+> non-public information. Any use of this information by anyone other than
+> the intended recipient is prohibited. If you have received this
+> transmission in error, please immediately reply to the sender and delete
+> this information from your system. Use, dissemination, distribution, or
+> reproduction of this transmission by unintended recipients is not
+> authorized and may be unlawful.
+>
+>
+>
+>
+________________________________
+This transmission (including any attachments) may contain confidential info=
+rmation, privileged material (including material protected by the solicitor=
+-client or other applicable privileges), or constitute non-public informati=
+on. Any use of this information by anyone other than the intended recipient=
+ is prohibited. If you have received this transmission in error, please imm=
+ediately reply to the sender and delete this information from your system. =
+Use, dissemination, distribution, or reproduction of this transmission by u=
+nintended recipients is not authorized and may be unlawful.
+________________________________
+This transmission (including any attachments) may contain confidential info=
+rmation, privileged material (including material protected by the solicitor=
+-client or other applicable privileges), or constitute non-public informati=
+on. Any use of this information by anyone other than the intended recipient=
+ is prohibited. If you have received this transmission in error, please imm=
+ediately reply to the sender and delete this information from your system. =
+Use, dissemination, distribution, or reproduction of this transmission by u=
+nintended recipients is not authorized and may be unlawful.
+
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+Links: You receive all messages sent to this group.
+View/Reply Online (#54807): https://lists.yoctoproject.org/g/yocto/message/=
+54807<https://urldefense.com/v3/__https://lists.yoctoproject.org/g/yocto/me=
+ssage/54807__;!!COg3wY07Hnb7!7O_HT4lxGD2NMUNxv3WxuozghHtiiLg6jEedfRQlWFKmZA=
+kTPU49ug2kIHkkPvk7KA$>
+Mute This Topic: https://lists.yoctoproject.org/mt/85766613/5117409<https:/=
+/urldefense.com/v3/__https://lists.yoctoproject.org/mt/85766613/5117409__;!=
+!COg3wY07Hnb7!7O_HT4lxGD2NMUNxv3WxuozghHtiiLg6jEedfRQlWFKmZAkTPU49ug2kIHmbs=
+58Lwg$>
+Group Owner: yocto+owner@lists.yoctoproject.org<mailto:yocto%2Bowner@lists.=
+yoctoproject.org>
+Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub<https://urldefens=
+e.com/v3/__https://lists.yoctoproject.org/g/yocto/unsub__;!!COg3wY07Hnb7!7O=
+_HT4lxGD2NMUNxv3WxuozghHtiiLg6jEedfRQlWFKmZAkTPU49ug2kIHnXvmLp7Q$> [fede@ev=
+olware.org<mailto:fede@evolware.org>]
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+
+________________________________
+This transmission (including any attachments) may contain confidential info=
+rmation, privileged material (including material protected by the solicitor=
+-client or other applicable privileges), or constitute non-public informati=
+on. Any use of this information by anyone other than the intended recipient=
+ is prohibited. If you have received this transmission in error, please imm=
+ediately reply to the sender and delete this information from your system. =
+Use, dissemination, distribution, or reproduction of this transmission by u=
+nintended recipients is not authorized and may be unlawful.
+
+----------------------------------------------------------------------
+This transmission (including any attachments) may contain confidential info=
+rmation, privileged material (including material protected by the solicitor=
+-client or other applicable privileges), or constitute non-public informati=
+on. Any use of this information by anyone other than the intended recipient=
+ is prohibited. If you have received this transmission in error, please imm=
+ediately reply to the sender and delete this information from your system. =
+Use, dissemination, distribution, or reproduction of this transmission by u=
+nintended recipients is not authorized and may be unlawful.
+
+--_000_b0ca75bbe2da42339082d8d39e318c4ablackberrycom_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;" class=3D"">Hi =
-Tim,<div class=3D""><br class=3D""></div><div class=3D"">Thanks, =
-that=E2=80=99s got it going. I was close, but didn=E2=80=99t quite cast =
-the correct spell ;-)</div><div class=3D""><br class=3D""></div><div =
-class=3D"">Next is to work out why the display is black when I create a =
-window...</div><div class=3D""><br class=3D""><div class=3D"">
-<div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; orphans: =
-auto; text-align: start; text-indent: 0px; text-transform: none; =
-white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><span class=3D"Apple-style-span" style=3D"border-collapse: =
-separate; color: rgb(0, 0, 0); font-family: Helvetica; font-style: =
-normal; font-variant: normal; font-weight: normal; letter-spacing: =
-normal; line-height: normal; orphans: 2; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; =
-border-spacing: 0px; -webkit-text-decorations-in-effect: none; =
--webkit-text-stroke-width: 0px;"><div style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><div class=3D"">--</div><div class=3D""><br =
-class=3D""></div><div class=3D"">Chris Tapp</div><div class=3D""><a =
-href=3D"mailto:opensource@keylevel.com" =
-class=3D"">opensource@keylevel.com</a></div><div class=3D""><a =
-href=3D"http://www.keylevel.com" class=3D"">www.keylevel.com</a></div><div=
- class=3D""><br class=3D""></div><div class=3D"">----</div><div =
-class=3D"">You can tell you're getting older when your car insurance =
-gets real cheap!</div></div></span></div></div></div></div>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
+</head>
+<body>
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p>Thanks, this also works for target image.</p>
+<p><br>
+</p>
+<p>For SDK image, turns out we have to change the line:</p>
+<p><span>RDEPENDS_${PN}-dev &#43;=3D &quot;${PN}-staticdev&quot;</span></p>
+<p>to</p>
+<p><span>RDEPENDS_${PN}-dev &#43;=3D &quot;${PN}-dev&quot;</span></p>
+<p><br>
+</p>
+<p>to include the header files.</p>
+<p><br>
+</p>
+<p>Thanks,</p>
+<p>Lijun<br>
+</p>
 </div>
-<div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On 29 Sep 2021, at 02:21, Tim Orling &lt;<a =
-href=3D"mailto:ticotimo@gmail.com" class=3D"">ticotimo@gmail.com</a>&gt; =
-wrote:</div><br class=3D"Apple-interchange-newline"><div class=3D""><meta =
-charset=3D"UTF-8" class=3D""><div style=3D"caret-color: rgb(0, 0, 0); =
-font-family: HelveticaNeue; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><br =
-class=3D"Apple-interchange-newline"><br class=3D""><div =
-class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Sep =
-28, 2021 at 2:58 PM Chris Tapp &lt;<a =
-href=3D"mailto:opensource@keylevel.com" =
-class=3D"">opensource@keylevel.com</a>&gt; wrote:<br =
-class=3D""></div><blockquote class=3D"gmail_quote" style=3D"margin: 0px =
-0px 0px 0.8ex; border-left-width: 1px; border-left-style: solid; =
-padding-left: 1ex; border-left-color: rgb(204, 204, 204);">I am trying =
-to get PySimpleGUI running on an RPi4 using meta-raspberrypi with =
-hardknott.<br class=3D""><br class=3D"">I have created a recipe for =
-PySimpleGUI and added the following to my local.conf:<br class=3D""><br =
-class=3D"">PACKAGECONFIG_pn-python3 =3D =E2=80=9Ctk=E2=80=9D<br =
-class=3D"">IMAGE_INSTALL_append =3D " python3 python3-modules =
-python3-pysimplegui tk"<br class=3D""><br class=3D"">However, the =
-tkinter module fails to load, reporting =E2=80=9CNo module named =
-_tkinter=E2=80=9D, with a note above saying that Python may not be =
-configured for Tk.<br class=3D""><br class=3D"">Looking on the target, =
-/usr/lib/<a href=3D"http://libtk.8.so/" rel=3D"noreferrer" =
-target=3D"_blank" class=3D"">libtk.8.so</a><span =
-class=3D"Apple-converted-space">&nbsp;</span>is present.<br class=3D""><br=
- class=3D"">It looks as if there is something else I need to do to get =
-Python to build correctly, but I=E2=80=99m out of ideas ;-)<br =
-class=3D""></blockquote><div dir=3D"auto" class=3D""><br =
-class=3D""></div><div dir=3D"auto" class=3D"">You need to add =E2=80=9Ctk=E2=
-=80=9D to the package config for python3</div><div dir=3D"auto" =
-class=3D""><div class=3D""><a =
-href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-d=
-evtools/python/python3_3.9.6.bb#n110" =
-class=3D"">http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipe=
-s-devtools/python/python3_3.9.6.bb#n110</a></div><div dir=3D"auto" =
-class=3D""><br class=3D""></div><div dir=3D"auto" class=3D"">Add the =
-following to your distro|site|local.conf (or a =
-python3_%.bbappend)</div><div dir=3D"auto" class=3D""><br =
-class=3D""></div><div dir=3D"auto" =
-class=3D"">PACKAGECONFIG:append:pn-python3 =3D =E2=80=9C tk=E2=80=9D</div>=
-<div dir=3D"auto" class=3D""><br class=3D""></div><div dir=3D"auto" =
-class=3D"">( replace : with _ if you are on old release that doesn=E2=80=99=
-t support the new override syntax)</div><br class=3D""></div><div =
-dir=3D"auto" class=3D"">(This assumes you have meta-oe in your =
-bblayers.conf so you can build tk, which it sounds like you =
-do)</div><div dir=3D"auto" class=3D""><br class=3D""></div><div =
-dir=3D"auto" class=3D"">This is because the _tkinter .so built by =
-python3 is dynamically loaded only if present&nbsp;</div><div dir=3D"auto"=
- class=3D""><div class=3D""><a =
-href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-d=
-evtools/python/python3/python3-manifest.json#n1161" =
-class=3D"">http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipe=
-s-devtools/python/python3/python3-manifest.json#n1161</a></div><br =
-class=3D""></div><div dir=3D"auto" class=3D"">=E2=80=94Tim =
-=E2=80=9Cmoto-timo=E2=80=9D Orling</div><div dir=3D"auto" class=3D""><br =
-class=3D""></div><blockquote class=3D"gmail_quote" style=3D"margin: 0px =
-0px 0px 0.8ex; border-left-width: 1px; border-left-style: solid; =
-padding-left: 1ex; border-left-color: rgb(204, 204, 204);"><br =
-class=3D"">I=E2=80=99ve found a few bits on the internet that seem =
-related, but they haven=E2=80=99t helped me get things going:<br =
-class=3D"">&nbsp;<a =
-href=3D"https://www.mail-archive.com/yocto@yoctoproject.org/msg18232.html"=
- rel=3D"noreferrer" target=3D"_blank" =
-class=3D"">https://www.mail-archive.com/yocto@yoctoproject.org/msg18232.ht=
-ml</a><br class=3D"">&nbsp;<a =
-href=3D"https://www.yoctoproject.org/pipermail/yocto/2014-July/020547.html=
-" rel=3D"noreferrer" target=3D"_blank" =
-class=3D"">https://www.yoctoproject.org/pipermail/yocto/2014-July/020547.h=
-tml</a><br class=3D""><br class=3D"">Any pointers on where to look would =
-be appreciated.<br class=3D""><br class=3D"">--<br class=3D""><br =
-class=3D"">Chris Tapp<br class=3D""><a =
-href=3D"mailto:opensource@keylevel.com" target=3D"_blank" =
-class=3D"">opensource@keylevel.com</a><br class=3D""><a =
-href=3D"http://www.keylevel.com/" rel=3D"noreferrer" target=3D"_blank" =
-class=3D"">www.keylevel.com</a><br class=3D""><br class=3D""><br =
-class=3D""><br class=3D""><br class=3D""></blockquote></div></div><br =
-style=3D"caret-color: rgb(0, 0, 0); font-family: HelveticaNeue; =
-font-size: 12px; font-style: normal; font-variant-caps: normal; =
-font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none;" class=3D""><span style=3D"caret-color: rgb(0, 0, 0); font-family: =
-HelveticaNeue; font-size: 12px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none; float: none; display: inline !important;" =
-class=3D"">-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-</span><br =
-style=3D"caret-color: rgb(0, 0, 0); font-family: HelveticaNeue; =
-font-size: 12px; font-style: normal; font-variant-caps: normal; =
-font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none;" class=3D""><span style=3D"caret-color: rgb(0, 0, 0); font-family: =
-HelveticaNeue; font-size: 12px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none; float: none; display: inline !important;" class=3D"">Links: You =
-receive all messages sent to this group.</span><br style=3D"caret-color: =
-rgb(0, 0, 0); font-family: HelveticaNeue; font-size: 12px; font-style: =
-normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
-normal; text-align: start; text-indent: 0px; text-transform: none; =
-white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><span style=3D"caret-color: rgb(0, 0, =
-0); font-family: HelveticaNeue; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none; float: none; display: inline !important;" =
-class=3D"">View/Reply Online (#54900):<span =
-class=3D"Apple-converted-space">&nbsp;</span></span><a =
-href=3D"https://lists.yoctoproject.org/g/yocto/message/54900" =
-style=3D"font-family: HelveticaNeue; font-size: 12px; font-style: =
-normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
-normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;" =
-class=3D"">https://lists.yoctoproject.org/g/yocto/message/54900</a><br =
-style=3D"caret-color: rgb(0, 0, 0); font-family: HelveticaNeue; =
-font-size: 12px; font-style: normal; font-variant-caps: normal; =
-font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none;" class=3D""><span style=3D"caret-color: rgb(0, 0, 0); font-family: =
-HelveticaNeue; font-size: 12px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none; float: none; display: inline !important;" class=3D"">Mute This =
-Topic:<span class=3D"Apple-converted-space">&nbsp;</span></span><a =
-href=3D"https://lists.yoctoproject.org/mt/85935979/3617534" =
-style=3D"font-family: HelveticaNeue; font-size: 12px; font-style: =
-normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
-normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;" =
-class=3D"">https://lists.yoctoproject.org/mt/85935979/3617534</a><br =
-style=3D"caret-color: rgb(0, 0, 0); font-family: HelveticaNeue; =
-font-size: 12px; font-style: normal; font-variant-caps: normal; =
-font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none;" class=3D""><span style=3D"caret-color: rgb(0, 0, 0); font-family: =
-HelveticaNeue; font-size: 12px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none; float: none; display: inline !important;" class=3D"">Group =
-Owner:<span class=3D"Apple-converted-space">&nbsp;</span></span><a =
-href=3D"mailto:yocto+owner@lists.yoctoproject.org" style=3D"font-family: =
-HelveticaNeue; font-size: 12px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px;" =
-class=3D"">yocto+owner@lists.yoctoproject.org</a><br style=3D"caret-color:=
- rgb(0, 0, 0); font-family: HelveticaNeue; font-size: 12px; font-style: =
-normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
-normal; text-align: start; text-indent: 0px; text-transform: none; =
-white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;" class=3D""><span style=3D"caret-color: rgb(0, 0, =
-0); font-family: HelveticaNeue; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none; float: none; display: inline !important;" =
-class=3D"">Unsubscribe:<span =
-class=3D"Apple-converted-space">&nbsp;</span></span><a =
-href=3D"https://lists.yoctoproject.org/g/yocto/unsub" =
-style=3D"font-family: HelveticaNeue; font-size: 12px; font-style: =
-normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
-normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;" =
-class=3D"">https://lists.yoctoproject.org/g/yocto/unsub</a><span =
-style=3D"caret-color: rgb(0, 0, 0); font-family: HelveticaNeue; =
-font-size: 12px; font-style: normal; font-variant-caps: normal; =
-font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none; float: none; display: inline !important;" class=3D""><span =
-class=3D"Apple-converted-space">&nbsp;</span>[</span><a =
-href=3D"mailto:opensource@keylevel.com" style=3D"font-family: =
-HelveticaNeue; font-size: 12px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px;" =
-class=3D"">opensource@keylevel.com</a><span style=3D"caret-color: rgb(0, =
-0, 0); font-family: HelveticaNeue; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none; float: none; display: inline !important;" =
-class=3D"">]</span><br style=3D"caret-color: rgb(0, 0, 0); font-family: =
-HelveticaNeue; font-size: 12px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none;" class=3D""><span style=3D"caret-color: rgb(0, 0, 0); font-family: =
-HelveticaNeue; font-size: 12px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none; float: none; display: inline !important;" =
-class=3D"">-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-</span></div></blo=
-ckquote></div><br class=3D""></div></body></html>=
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Federico Pellegrin &l=
+t;fede@evolware.org&gt;<br>
+<b>Sent:</b> Thursday, September 23, 2021 10:10:55 PM<br>
+<b>To:</b> Lijun Chen<br>
+<b>Cc:</b> yocto@lists.yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] googletest shared library</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">
+<div><br>
+</div>
+<div>Hi,</div>
+<div>Regarding the INSANE_SKIP: as that files get packed in the &quot;-dev&=
+quot; package, you should probably then accordingly have:</div>
+<div><span><br>
+</span></div>
+<div><span>INSANE_SKIP_${PN}-dev &#43;=3D &quot;dev-elf&quot;</span></div>
+<div><br>
+</div>
+<div>Cheers,</div>
+<div>Federico<br>
+</div>
+</div>
+<br>
+<div class=3D"gmail_quote">
+<div dir=3D"ltr" class=3D"gmail_attr">Il giorno gio 23 set 2021 alle ore 16=
+:46 Lijun Chen &lt;<a href=3D"mailto:lijchen@blackberry.com">lijchen@blackb=
+erry.com</a>&gt; ha scritto:<br>
+</div>
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex">
+<div dir=3D"ltr">
+<div id=3D"gmail-m_4090285402321779064divtagdefaultwrapper" style=3D"font-s=
+ize:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-serif" dir=3D"=
+ltr">
+<div id=3D"gmail-m_4090285402321779064divtagdefaultwrapper" dir=3D"ltr" sty=
+le=3D"font-size:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-se=
+rif,&quot;EmojiFont&quot;,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoj=
+i&quot;,NotoColorEmoji,&quot;Segoe UI Symbol&quot;,&quot;Android Emoji&quot=
+;,EmojiSymbols">
+<p>I tried <span>INSANE_SKIP_${PN} &#43;=3D &quot;dev-elf&quot; and &quot;d=
+ev-so&quot;, still got the QA error:</span></p>
+<p><span></span></p>
+<div>ERROR: googletest-1.10.0-r0 do_package_qa: QA Issue: -dev package goog=
+letest-dev contains non-symlink .so '/usr/lib/libgmock.so'<br>
+-dev package googletest-dev contains non-symlink .so '/usr/lib/libgtest_mai=
+n.so'<br>
+-dev package googletest-dev contains non-symlink .so '/usr/lib/libgmock_mai=
+n.so'<br>
+-dev package googletest-dev contains non-symlink .so '/usr/lib/libgtest.so'=
+ [dev-elf]<br>
+ERROR: googletest-1.10.0-r0 do_package_qa: QA run found fatal errors. Pleas=
+e consider fixing them.<br>
+ERROR: Logfile of failure stored in: /home/lijchen/hdd/ivdp/yocto/imx8/imx-=
+yocto-bsp-Hardknott/build-imx8qmmek/tmp/work/cortexa72-cortexa53-crypto-pok=
+y-linux/googletest/1.10.0-r0/temp/log.do_package_qa.24701<br>
+ERROR: Task (/home/lijchen/hdd/ivdp/yocto/imx8/imx-yocto-bsp-Hardknott/sour=
+ces/meta-openembedded/meta-oe/recipes-test/googletest/googletest_git.bb:do_=
+package_qa) failed with exit code '1'<br>
+<br>
+</div>
+I also tried adding <span>&quot; -DCMAKE_INSTALL_PREFIX=3D/usr/local&quot;<=
+/span> to <span>EXTRA_OEMAKE</span>, and got the following error:
+<p></p>
+<p><span></span></p>
+<div>ERROR: googletest-1.10.0-r0 do_package: QA Issue: googletest: Files/di=
+rectories were installed but not shipped in any package:<br>
+&nbsp; /usr/local/include<br>
+&nbsp; /usr/local/lib/libgmock.so<br>
+&nbsp; /usr/local/lib/libgtest_main.so<br>
+&nbsp; /usr/local/lib/libgmock_main.so<br>
+&nbsp; /usr/local/lib/libgtest.so<br>
+&nbsp; /usr/local/lib/cmake<br>
+&nbsp; /usr/local/lib/pkgconfig<br>
+&nbsp; /usr/local/lib/cmake/GTest<br>
+&nbsp; /usr/local/lib/cmake/GTest/GTestTargets.cmake<br>
+&nbsp; /usr/local/lib/cmake/GTest/GTestConfigVersion.cmake<br>
+&nbsp; /usr/local/lib/cmake/GTest/GTestConfig.cmake<br>
+&nbsp; /usr/local/lib/cmake/GTest/GTestTargets-noconfig.cmake<br>
+&nbsp; /usr/local/lib/pkgconfig/gtest_main.pc<br>
+&nbsp; /usr/local/lib/pkgconfig/gtest.pc<br>
+&nbsp; /usr/local/lib/pkgconfig/gmock_main.pc<br>
+&nbsp; /usr/local/lib/pkgconfig/gmock.pc<br>
+&nbsp; /usr/local/include/gtest<br>
+&nbsp; /usr/local/include/gmock<br>
+&nbsp; /usr/local/include/gtest/gtest_prod.h<br>
+&nbsp; /usr/local/include/gtest/gtest-test-part.h<br>
+&nbsp; /usr/local/include/gtest/gtest_pred_impl.h<br>
+&nbsp; /usr/local/include/gtest/gtest-matchers.h<br>
+&nbsp; /usr/local/include/gtest/gtest-printers.h<br>
+&nbsp; /usr/local/include/gtest/gtest.h<br>
+&nbsp; /usr/local/include/gtest/gtest-param-test.h<br>
+&nbsp; /usr/local/include/gtest/gtest-death-test.h<br>
+&nbsp; /usr/local/include/gtest/gtest-typed-test.h<br>
+&nbsp; /usr/local/include/gtest/gtest-message.h<br>
+&nbsp; /usr/local/include/gtest/gtest-spi.h<br>
+&nbsp; /usr/local/include/gtest/internal<br>
+&nbsp; /usr/local/include/gtest/internal/gtest-death-test-internal.h<br>
+&nbsp; /usr/local/include/gtest/internal/gtest-filepath.h<br>
+&nbsp; /usr/local/include/gtest/internal/gtest-param-util.h<br>
+&nbsp; /usr/local/include/gtest/internal/gtest-string.h<br>
+&nbsp; /usr/local/include/gtest/internal/gtest-type-util.h<br>
+&nbsp; /usr/local/include/gtest/internal/gtest-internal.h<br>
+&nbsp; /usr/local/include/gtest/internal/gtest-type-util.h.pump<br>
+&nbsp; /usr/local/include/gtest/internal/gtest-port-arch.h<br>
+&nbsp; /usr/local/include/gtest/internal/gtest-port.h<br>
+&nbsp; /usr/local/include/gtest/internal/custom<br>
+&nbsp; /usr/local/include/gtest/internal/custom/gtest-printers.h<br>
+&nbsp; /usr/local/include/gtest/internal/custom/gtest.h<br>
+&nbsp; /usr/local/include/gtest/internal/custom/README.md<br>
+&nbsp; /usr/local/include/gtest/internal/custom/gtest-port.h<br>
+&nbsp; /usr/local/include/gmock/gmock-function-mocker.h<br>
+&nbsp; /usr/local/include/gmock/gmock-generated-function-mockers.h<br>
+&nbsp; /usr/local/include/gmock/gmock-generated-actions.h.pump<br>
+&nbsp; /usr/local/include/gmock/gmock-matchers.h<br>
+&nbsp; /usr/local/include/gmock/gmock-generated-matchers.h<br>
+&nbsp; /usr/local/include/gmock/gmock-more-matchers.h<br>
+&nbsp; /usr/local/include/gmock/gmock.h<br>
+&nbsp; /usr/local/include/gmock/gmock-generated-actions.h<br>
+&nbsp; /usr/local/include/gmock/gmock-nice-strict.h<br>
+&nbsp; /usr/local/include/gmock/gmock-spec-builders.h<br>
+&nbsp; /usr/local/include/gmock/gmock-more-actions.h<br>
+&nbsp; /usr/local/include/gmock/gmock-generated-function-mockers.h.pump<br>
+&nbsp; /usr/local/include/gmock/gmock-cardinalities.h<br>
+&nbsp; /usr/local/include/gmock/gmock-actions.h<br>
+&nbsp; /usr/local/include/gmock/gmock-generated-matchers.h.pump<br>
+&nbsp; /usr/local/include/gmock/internal<br>
+&nbsp; /usr/local/include/gmock/internal/gmock-port.h<br>
+&nbsp; /usr/local/include/gmock/internal/gmock-pp.h<br>
+&nbsp; /usr/local/include/gmock/internal/gmock-internal-utils.h<br>
+&nbsp; /usr/local/include/gmock/internal/custom<br>
+&nbsp; /usr/local/include/gmock/internal/custom/gmock-port.h<br>
+&nbsp; /usr/local/include/gmock/internal/custom/gmock-generated-actions.h.p=
+ump<br>
+&nbsp; /usr/local/include/gmock/internal/custom/gmock-matchers.h<br>
+&nbsp; /usr/local/include/gmock/internal/custom/gmock-generated-actions.h<b=
+r>
+&nbsp; /usr/local/include/gmock/internal/custom/README.md<br>
+Please set FILES such that these items are packaged. Alternatively if they =
+are unneeded, avoid installing them or delete them within do_install.<br>
+googletest: 69 installed and not shipped files. [installed-vs-shipped]<br>
+ERROR: googletest-1.10.0-r0 do_package: Fatal QA errors found, failing task=
+.</div>
+<br>
+<p></p>
+<p><span></span><br>
+</p>
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"gmail-m_4090285402321779064divRplyFwdMsg" dir=3D"ltr"><font styl=
+e=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#000000"><b>From=
+:</b> Federico Pellegrin &lt;<a href=3D"mailto:fede@evolware.org" target=3D=
+"_blank">fede@evolware.org</a>&gt;<br>
+<b>Sent:</b> Thursday, September 23, 2021 10:27:39 AM<br>
+<b>To:</b> Lijun Chen<br>
+<b>Cc:</b> <a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blank=
+">yocto@lists.yoctoproject.org</a><br>
+<b>Subject:</b> Re: [yocto] googletest shared library</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">
+<div><br>
+</div>
+<div>Hi,</div>
+<div>To skip the QA you can use:</div>
+<div><br>
+</div>
+<div>INSANE_SKIP_${PN} &#43;=3D &quot;dev-elf&quot;</div>
+<div><br>
+</div>
+<div>(or any QA part you'd like to skip, ie. dev-elf or dev-so ...)</div>
+<div><br>
+</div>
+<div>Cheers,</div>
+<div>Federico</div>
+<div><br>
+</div>
+<div><br>
+</div>
+</div>
+<br>
+<div class=3D"gmail_quote">
+<div dir=3D"ltr" class=3D"gmail_attr">Il giorno gio 23 set 2021 alle ore 15=
+:33 Lijun Chen &lt;<a href=3D"mailto:lijchen@blackberry.com" target=3D"_bla=
+nk">lijchen@blackberry.com</a>&gt; ha scritto:<br>
+</div>
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex">
+<div dir=3D"ltr">
+<div id=3D"gmail-m_4090285402321779064gmail-m_8376641144616927063divtagdefa=
+ultwrapper" dir=3D"ltr" style=3D"font-size:12pt;color:rgb(0,0,0);font-famil=
+y:Calibri,Helvetica,sans-serif,&quot;EmojiFont&quot;,&quot;Apple Color Emoj=
+i&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe UI Symbol&quo=
+t;,&quot;Android Emoji&quot;,EmojiSymbols">
+<p>Hi,</p>
+<p><br>
+</p>
+<p>If I switch to the default setting of the googletest recipe, the header =
+files are included in the SDK image. However, the libgtest libraries are st=
+atic.</p>
+<p>Looks <font size=3D"2"><span style=3D"font-size:10pt">FILES_SOLIBSDEV =
+=3D &quot;&quot;</span></font> disables googletest-dev to be included in th=
+e SDK.</p>
+<p><br>
+</p>
+<p><span>Is there a way to change the library to dynamic and keep the heade=
+r files? i.e. just add
+<font size=3D"2"><span style=3D"font-size:10pt">EXTRA_OECMAKE =3D &quot;-DB=
+UILD_SHARED_LIBS=3DON &quot;</span></font> but skip the
+<font size=3D"2"><span style=3D"font-size:10pt">do_package_qa</span></font>=
+ part to avoid the QA issue due to un-versioned library?</span></p>
+<p><span><br>
+</span></p>
+<p><span>Thanks,</span></p>
+<p><span>Lijun</span><br>
+</p>
+<br>
+<br>
+<div style=3D"color:rgb(0,0,0)">
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"gmail-m_4090285402321779064gmail-m_8376641144616927063divRplyFwd=
+Msg" dir=3D"ltr">
+<font style=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#00000=
+0"><b>From:</b>
+<a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blank">yocto@lis=
+ts.yoctoproject.org</a> &lt;<a href=3D"mailto:yocto@lists.yoctoproject.org"=
+ target=3D"_blank">yocto@lists.yoctoproject.org</a>&gt; on behalf of Lijun =
+Chen &lt;<a href=3D"mailto:lijchen@blackberry.com" target=3D"_blank">lijche=
+n@blackberry.com</a>&gt;<br>
+<b>Sent:</b> Wednesday, September 22, 2021 1:45 PM<br>
+<b>To:</b> Khem Raj; <a href=3D"mailto:yocto@lists.yoctoproject.org" target=
+=3D"_blank">
+yocto@lists.yoctoproject.org</a><br>
+<b>Subject:</b> Re: [yocto] googletest shared library</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">
+<div id=3D"gmail-m_4090285402321779064gmail-m_8376641144616927063x_divtagde=
+faultwrapper" dir=3D"ltr" style=3D"font-size:12pt;color:rgb(0,0,0);font-fam=
+ily:Calibri,Helvetica,sans-serif,&quot;EmojiFont&quot;,&quot;Apple Color Em=
+oji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe UI Symbol&q=
+uot;,&quot;Android Emoji&quot;,EmojiSymbols">
+<p>Tried adding googletest to <font size=3D"2"><span style=3D"font-size:10p=
+t">TOOLCHAIN_TARGET_TASK</span></font>. The gtest .h files are still not sh=
+owing up.</p>
+<p>Thanks,<br>
+</p>
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"gmail-m_4090285402321779064gmail-m_8376641144616927063x_divRplyF=
+wdMsg" dir=3D"ltr">
+<font style=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#00000=
+0"><b>From:</b> Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" target=
+=3D"_blank">raj.khem@gmail.com</a>&gt;<br>
+<b>Sent:</b> Wednesday, September 22, 2021 11:28:05 AM<br>
+<b>To:</b> Lijun Chen; <a href=3D"mailto:yocto@lists.yoctoproject.org" targ=
+et=3D"_blank">
+yocto@lists.yoctoproject.org</a><br>
+<b>Subject:</b> Re: [yocto] googletest shared library</font>
+<div>&nbsp;</div>
+</div>
+</div>
+<font size=3D"2"><span style=3D"font-size:10pt">
+<div>The .h files will be in dev pkg in this case googletest-dev<br>
+what happens if you add googletest to TOOLCHAIN_TARGET_TASK<br>
+<br>
+On 9/22/21 6:18 AM, Lijun Chen wrote:<br>
+&gt; Hi,<br>
+&gt; <br>
+&gt; <br>
+&gt; Now I included googletest to the IMAGE_INSTALL in my image file, and <=
+br>
+&gt; built both board image and SDK image. I can see libgtest.so is availab=
+le <br>
+&gt; in both images. However, gtest/gtest.h is a not present in SDK. How do=
+ I <br>
+&gt; add the header files to the SDK image? Looks the following lines affec=
+t <br>
+&gt; that?<br>
+&gt; <br>
+&gt; SOLIBS =3D &quot;.so&quot;<br>
+&gt; FILES_SOLIBSDEV =3D &quot;&quot;<br>
+&gt; <br>
+&gt; Thanks,<br>
+&gt; Lijun<br>
+&gt; <br>
+&gt; ----------------------------------------------------------------------=
+--<br>
+&gt; *From:* <a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_bla=
+nk">yocto@lists.yoctoproject.org</a> &lt;<a href=3D"mailto:yocto@lists.yoct=
+oproject.org" target=3D"_blank">yocto@lists.yoctoproject.org</a>&gt; on
+<br>
+&gt; behalf of Lijun Chen &lt;<a href=3D"mailto:lijchen@blackberry.com" tar=
+get=3D"_blank">lijchen@blackberry.com</a>&gt;<br>
+&gt; *Sent:* Tuesday, September 21, 2021 3:50 PM<br>
+&gt; *To:* Konrad Weihmann; <a href=3D"mailto:yocto@lists.yoctoproject.org"=
+ target=3D"_blank">
+yocto@lists.yoctoproject.org</a><br>
+&gt; *Subject:* Re: [yocto] googletest shared library<br>
+&gt; <br>
+&gt; Thanks Konrad. That worked.<br>
+&gt; <br>
+&gt; ----------------------------------------------------------------------=
+--<br>
+&gt; *From:* Konrad Weihmann &lt;<a href=3D"mailto:kweihmann@outlook.com" t=
+arget=3D"_blank">kweihmann@outlook.com</a>&gt;<br>
+&gt; *Sent:* Tuesday, September 21, 2021 10:26:19 AM<br>
+&gt; *To:* Lijun Chen; <a href=3D"mailto:yocto@lists.yoctoproject.org" targ=
+et=3D"_blank">
+yocto@lists.yoctoproject.org</a><br>
+&gt; *Subject:* Re: [yocto] googletest shared library<br>
+&gt; <br>
+&gt; On 21.09.21 16:18, Lijun Chen wrote:<br>
+&gt;&gt; Hi,<br>
+&gt;&gt; <br>
+&gt;&gt; I would like to include libgtest.so into my Yocto image. I added <=
+br>
+&gt;&gt; googletest to IMAGE_INSTALL and added the following line to <br>
+&gt;&gt; sources/meta-openembedded/meta-oe/recipes-test/googletest/<a href=
+=3D"https://urldefense.com/v3/__http://googletest_git.bb__;!!COg3wY07Hnb7!7=
+O_HT4lxGD2NMUNxv3WxuozghHtiiLg6jEedfRQlWFKmZAkTPU49ug2kIHlR9kH4xg$" target=
+=3D"_blank">googletest_git.bb</a>:<br>
+&gt;&gt; <br>
+&gt;&gt; EXTRA_OECMAKE =3D &quot;-DBUILD_SHARED_LIBS=3DON &quot;<br>
+&gt;&gt; <br>
+&gt;&gt; <br>
+&gt;&gt; The shared libraries were built successfully. However, there are e=
+rrors <br>
+&gt;&gt; in do_package_qc as following:<br>
+&gt;&gt; <br>
+&gt;&gt; <br>
+&gt;&gt; ERROR: googletest-1.10.0-r0 do_package_qa: QA Issue: -dev package =
+<br>
+&gt;&gt; googletest-dev contains non-symlink .so '/usr/lib/libgmock.so'<br>
+&gt;&gt; -dev package googletest-dev contains non-symlink .so <br>
+&gt;&gt; '/usr/lib/libgtest_main.so'<br>
+&gt;&gt; -dev package googletest-dev contains non-symlink .so <br>
+&gt;&gt; '/usr/lib/libgmock_main.so'<br>
+&gt;&gt; -dev package googletest-dev contains non-symlink .so <br>
+&gt;&gt; '/usr/lib/libgtest.so' [dev-elf]<br>
+&gt;&gt; ERROR: googletest-1.10.0-r0 do_package_qa: QA run found fatal erro=
+rs. <br>
+&gt;&gt; Please consider fixing them.<br>
+&gt; <br>
+&gt; <a href=3D"https://urldefense.com/v3/__http://git.yoctoproject.org/cgi=
+t/cgit.cgi/poky/tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n34__=
+;Iw!!COg3wY07Hnb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0NANM4=
+iMsNNleww$" target=3D"_blank">
+https://urldefense.com/v3/__http://git.yoctoproject.org/cgit/cgit.cgi/poky/=
+tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n34__;Iw!!COg3wY07Hnb=
+7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0NANM4iMsNNleww$</a>
+<br>
+&gt; &lt;<a href=3D"https://urldefense.com/v3/__http://git.yoctoproject.org=
+/cgit/cgit.cgi/poky/tree/meta/recipes-graphics/spir/spirv-tools_2021.2.bb*n=
+34__;Iw!!COg3wY07Hnb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3nYTCBoGJTY9-K0N=
+ANM4iMsNNleww$" target=3D"_blank">https://urldefense.com/v3/__http://git.yo=
+ctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-graphics/spir/spirv-too=
+ls_2021.2.bb*n34__;Iw!!COg3wY07Hnb7!4NI6d6tXUoxCQFleF-343dfbdFGnkZnqrYRVg3n=
+YTCBoGJTY9-K0NANM4iMsNNleww$</a>&gt;
+<br>
+&gt; <br>
+&gt; (and the next lines) might give you a hint what to do in this case.<br>
+&gt; Although one could also consider that's something that needs to be fix=
+ed<br>
+&gt; in the installation script of googletest, as versioned libraries are t=
+he<br>
+&gt; expected default<br>
+&gt; <br>
+&gt;&gt; <br>
+&gt;&gt; <br>
+&gt;&gt; Any idea to fix this?<br>
+&gt;&gt; <br>
+&gt;&gt; <br>
+&gt;&gt; Thanks,<br>
+&gt;&gt; <br>
+&gt;&gt; Lijun<br>
+&gt;&gt; <br>
+&gt;&gt; <br>
+&gt;&gt; ------------------------------------------------------------------=
+------<br>
+&gt;&gt; This transmission (including any attachments) may contain confiden=
+tial <br>
+&gt;&gt; information, privileged material (including material protected by =
+the <br>
+&gt;&gt; solicitor-client or other applicable privileges), or constitute <b=
+r>
+&gt;&gt; non-public information. Any use of this information by anyone othe=
+r than <br>
+&gt;&gt; the intended recipient is prohibited. If you have received this <b=
+r>
+&gt;&gt; transmission in error, please immediately reply to the sender and =
+delete <br>
+&gt;&gt; this information from your system. Use, dissemination, distributio=
+n, or <br>
+&gt;&gt; reproduction of this transmission by unintended recipients is not =
+<br>
+&gt;&gt; authorized and may be unlawful.<br>
+&gt;&gt; <br>
+&gt;&gt; <br>
+&gt;&gt; <br>
+&gt;&gt; <br>
+&gt; ----------------------------------------------------------------------=
+--<br>
+&gt; This transmission (including any attachments) may contain confidential=
+ <br>
+&gt; information, privileged material (including material protected by the =
+<br>
+&gt; solicitor-client or other applicable privileges), or constitute <br>
+&gt; non-public information. Any use of this information by anyone other th=
+an <br>
+&gt; the intended recipient is prohibited. If you have received this <br>
+&gt; transmission in error, please immediately reply to the sender and dele=
+te <br>
+&gt; this information from your system. Use, dissemination, distribution, o=
+r <br>
+&gt; reproduction of this transmission by unintended recipients is not <br>
+&gt; authorized and may be unlawful.<br>
+&gt; ----------------------------------------------------------------------=
+--<br>
+&gt; This transmission (including any attachments) may contain confidential=
+ <br>
+&gt; information, privileged material (including material protected by the =
+<br>
+&gt; solicitor-client or other applicable privileges), or constitute <br>
+&gt; non-public information. Any use of this information by anyone other th=
+an <br>
+&gt; the intended recipient is prohibited. If you have received this <br>
+&gt; transmission in error, please immediately reply to the sender and dele=
+te <br>
+&gt; this information from your system. Use, dissemination, distribution, o=
+r <br>
+&gt; reproduction of this transmission by unintended recipients is not <br>
+&gt; authorized and may be unlawful.<br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+</div>
+</span></font>
+<hr>
+This transmission (including any attachments) may contain confidential info=
+rmation, privileged material (including material protected by the solicitor=
+-client or other applicable privileges), or constitute non-public informati=
+on. Any use of this information
+ by anyone other than the intended recipient is prohibited. If you have rec=
+eived this transmission in error, please immediately reply to the sender an=
+d delete this information from your system. Use, dissemination, distributio=
+n, or reproduction of this transmission
+ by unintended recipients is not authorized and may be unlawful.<br>
+</div>
+</div>
+</div>
+<hr>
+This transmission (including any attachments) may contain confidential info=
+rmation, privileged material (including material protected by the solicitor=
+-client or other applicable privileges), or constitute non-public informati=
+on. Any use of this information
+ by anyone other than the intended recipient is prohibited. If you have rec=
+eived this transmission in error, please immediately reply to the sender an=
+d delete this information from your system. Use, dissemination, distributio=
+n, or reproduction of this transmission
+ by unintended recipients is not authorized and may be unlawful.<br>
+</div>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#54807): <a href=3D"https://urldefense.com/v3/__https://=
+lists.yoctoproject.org/g/yocto/message/54807__;!!COg3wY07Hnb7!7O_HT4lxGD2NM=
+UNxv3WxuozghHtiiLg6jEedfRQlWFKmZAkTPU49ug2kIHkkPvk7KA$" rel=3D"noreferrer" =
+target=3D"_blank">
+https://lists.yoctoproject.org/g/yocto/message/54807</a><br>
+Mute This Topic: <a href=3D"https://urldefense.com/v3/__https://lists.yocto=
+project.org/mt/85766613/5117409__;!!COg3wY07Hnb7!7O_HT4lxGD2NMUNxv3WxuozghH=
+tiiLg6jEedfRQlWFKmZAkTPU49ug2kIHmbs58Lwg$" rel=3D"noreferrer" target=3D"_bl=
+ank">
+https://lists.yoctoproject.org/mt/85766613/5117409</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">
+yocto&#43;owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://urldefense.com/v3/__https://lists.yoctoproj=
+ect.org/g/yocto/unsub__;!!COg3wY07Hnb7!7O_HT4lxGD2NMUNxv3WxuozghHtiiLg6jEed=
+fRQlWFKmZAkTPU49ug2kIHnXvmLp7Q$" rel=3D"noreferrer" target=3D"_blank">
+https://lists.yoctoproject.org/g/yocto/unsub</a> [<a href=3D"mailto:fede@ev=
+olware.org" target=3D"_blank">fede@evolware.org</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote>
+</div>
+</div>
+</div>
+<hr>
+This transmission (including any attachments) may contain confidential info=
+rmation, privileged material (including material protected by the solicitor=
+-client or other applicable privileges), or constitute non-public informati=
+on. Any use of this information
+ by anyone other than the intended recipient is prohibited. If you have rec=
+eived this transmission in error, please immediately reply to the sender an=
+d delete this information from your system. Use, dissemination, distributio=
+n, or reproduction of this transmission
+ by unintended recipients is not authorized and may be unlawful.<br>
+</div>
+</blockquote>
+</div>
+</div>
 
---Apple-Mail=_DF250EA2-A69B-416F-957A-1F671D48D853--
+<HR>This transmission (including any attachments) may contain confidential =
+information, privileged material (including material protected by the solic=
+itor-client or other applicable privileges), or constitute non-public infor=
+mation. Any use of this information by anyone other than the intended recip=
+ient is prohibited. If you have received this transmission in error, please=
+ immediately reply to the sender and delete this information from your syst=
+em. Use, dissemination, distribution, or reproduction of this transmission =
+by unintended recipients is not authorized and may be unlawful.<BR>
+</body>
+</html>
+
+--_000_b0ca75bbe2da42339082d8d39e318c4ablackberrycom_--
 
