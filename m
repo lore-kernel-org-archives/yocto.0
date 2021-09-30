@@ -1,134 +1,130 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A5347C433EF
-	for <webhook@archiver.kernel.org>; Thu, 30 Sep 2021 13:08:31 +0000 (UTC)
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com
- [209.85.217.48])
- by mx.groups.io with SMTP id smtpd.web11.12140.1633007309868418978
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8A4E2C433EF
+	for <webhook@archiver.kernel.org>; Thu, 30 Sep 2021 13:55:24 +0000 (UTC)
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
+ [209.85.210.173])
+ by mx.groups.io with SMTP id smtpd.web10.12832.1633010124025300943
  for <yocto@lists.yoctoproject.org>;
- Thu, 30 Sep 2021 06:08:30 -0700
+ Thu, 30 Sep 2021 06:55:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=qxz+sEUt;
- spf=pass (domain: gmail.com, ip: 209.85.217.48,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vs1-f48.google.com with SMTP id l19so7196651vst.7
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=I5iXKIFy;
+ spf=pass (domain: gmail.com, ip: 209.85.210.173,
+ mailfrom: akuster808@gmail.com)
+Received: by mail-pf1-f173.google.com with SMTP id h1so961088pfv.12
         for <yocto@lists.yoctoproject.org>;
- Thu, 30 Sep 2021 06:08:29 -0700 (PDT)
+ Thu, 30 Sep 2021 06:55:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=estk4Y9u+kpQQbYx9QucqoEZWtLsF9WPDolEg2Cf+Ag=;
-        b=qxz+sEUtjGxPrjFx9xfIaNzV/7vU92lF4lI8ECSJFt704bHmiiGGcXp8+V1UrHmTC3
-         74QarvUiqCRPUiP+cVmlfrlJb0YzDvT2hzJ7BJekV+C+3fXFFxz97sNSUSWZ3KJjCHR8
-         BQzS5NHekdeHVdldp7igBuBTFcT1Ad6P3ES94y1eK6N1DHUgUTfR4O8nZdIjndimv42b
-         Qe0jw5DwT1qX/vINuqG3x/ugTfABVeSMk6nXH0JPstzXbT9fIV/CG3qC+nhZ43RBVXuE
-         +NAVm901AuQPUnKCCS4QrQAWloYQqyD1xVkucLAxAOcWMcrYFPP0E2i2oB5lSk5sbWqd
-         Bqrg==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=SqoRg7M9YGDHzgKBq3+jqnmYOTPHJXlF5bC2wYI2UOo=;
+        b=I5iXKIFy9xJaBj81nGA2fTMBQ16vZ9lXbpjZ9HtUjWbuQ+0GonZsEBJ3NzwX0TZCeP
+         GmhD9AtrCHgT07J3vocIIYkPEN0cBNvJ4aH89ulLzBaFBXMgOQGV2qcio5KfDcHhcUWj
+         yHFjrjLcRspPb//q7kbnGDy7Bw3+G3NB12gghQEgLmdPTn6uN8rHgxvSPNkfVaNJz6z8
+         hJZTHnZGEF4KOVlML/J2rzrKr2cG6PlNRTYxbWqQlBYngj+Mmf+7bi5mbCYRZC5qquRQ
+         CK8e/bIzGw8Erfzimudim7Di4c7lRpgxOG9LMX1+/SeWz6R5IoiBMBhiamuYkctAT4lF
+         +PAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=estk4Y9u+kpQQbYx9QucqoEZWtLsF9WPDolEg2Cf+Ag=;
-        b=owF+UZ9PsrGKnMqnlOe0NGTIKay2OAfKJw3f/Yo4GdGrpEOa2AVgvkYM0+wSNY+zoK
-         FZHGvrn3hq+xP1tmb68hbNmjOTKtVUfVzVtlDJo2G2cI9JntiD+RJQxMxfYGTMv5gOOj
-         +vw7QKdPnIivMDXFnZW1f0F8t+bHmT0Xvt8OFb4hClWB9mPYL6JRE9+msCfcSUuFKjRQ
-         jteCkXo2oOH/pVnrnKhx6dNFF7gtfSsFbsbbfnIYXHo3JS0ODSRzN/HMWWE41gWyQuoZ
-         RgVIF4+osqYydroOX4BMBrtvGzZCmKTJTR/AKg+diiF3hQuwVOo7gq1jcl0p6jl8y/hK
-         ZAWg==
-X-Gm-Message-State: AOAM530UUlbJFylTxSb0nh1PEtkkf9tzMOmAGUnt2uZ75V+O8TYTtWP1
-	AQQ+634BzjZcBQcpnzZmnrJQwjTHUCHdk00CzJ4=
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=SqoRg7M9YGDHzgKBq3+jqnmYOTPHJXlF5bC2wYI2UOo=;
+        b=ltb+7GaAfB1eAIc1RT+FY1mAL98s9kNET3QOTf3YDfxzrPkOfYoRaQL0uBBdP6saQd
+         FeTfU1ydLzPkKk94S8l7JXepFjpjt1GcS4rYmqu0L5Nx3dbO1rDGV6EFM8x4NR9f+RVi
+         sYbxs/XhYDzUNP0e1gHH95x1o+4j9ppFtcVW4HwggLx2WFEly7LmVlICkHWjA3CH5OaN
+         wBYx8dVXfW+2wjMxwCJ7RBh25hnzJaqmgQrQ/UiMRngM4wACRWITmaF+nSfLtO2ZVVBe
+         RBsB3+gV3TN/aZ7JzEzgQu9JmU7gV7E1k/gY8MoTliEe42eSEQOe6WceLfe/fdF/yian
+         E9MQ==
+X-Gm-Message-State: AOAM530XZodjRPH3DUujJWqO++P7eLHOhgjvfohbPKaINXQqGD8BV4WR
+	2+s3mQU8EmeuvoGfcRPB1NDfUMsS6oY=
 X-Google-Smtp-Source: 
- ABdhPJxwnlOA6POiVCo2x1K25to+zDh6+vJAA/gaODDlYsMuHjWdwCGi5K3PIikxLx4l0A742iY4q7VYHl+mguOrFVw=
-X-Received: by 2002:a67:cf41:: with SMTP id f1mr3346441vsm.1.1633007308963;
- Thu, 30 Sep 2021 06:08:28 -0700 (PDT)
+ ABdhPJynd39arGjqbl4PAWqcvjjr3ycM4SIaJggNHMmeNjtOmVzl6Nz2bb7EnzD3WgjeBoBQAbhqQw==
+X-Received: by 2002:aa7:8d53:0:b0:44b:fcd8:112 with SMTP id
+ s19-20020aa78d53000000b0044bfcd80112mr2046008pfe.26.1633010122987;
+        Thu, 30 Sep 2021 06:55:22 -0700 (PDT)
+Received: from ?IPv6:2601:202:4180:a5c0:b057:74c9:aa8d:e27b?
+ ([2601:202:4180:a5c0:b057:74c9:aa8d:e27b])
+        by smtp.gmail.com with ESMTPSA id
+ y5sm1902643pju.33.2021.09.30.06.55.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Sep 2021 06:55:22 -0700 (PDT)
+Subject: Re: [yocto] [meta-security][PATCH 2/2] swtpm: fix build issues of
+ missing expect
+To: Kristian Klausen <kristian@klausen.dk>
+Cc: yocto@lists.yoctoproject.org
+References: <20210928233909.3574965-1-akuster808@gmail.com>
+ <20210928233909.3574965-2-akuster808@gmail.com> <YVQLW66LKT7DXF1Z@bob>
+From: akuster808 <akuster808@gmail.com>
+Message-ID: <645d5846-f5d3-7cc2-4d13-7191bfb48e25@gmail.com>
+Date: Thu, 30 Sep 2021 06:55:21 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <ktNB.1633006751293636060.0DMH@lists.yoctoproject.org>
-In-Reply-To: <ktNB.1633006751293636060.0DMH@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Thu, 30 Sep 2021 15:08:17 +0200
-Message-ID: 
- <CANNYZj8i_4GsEcMeEVuf7ybLYQdGmdnEZEDTd4jn1DqZnV504Q@mail.gmail.com>
-Subject: Re: [yocto] Both x86 and ARM binaries in building phase
-To: sepsukkadaa@gmail.com
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000091022905cd3624d8"
+In-Reply-To: <YVQLW66LKT7DXF1Z@bob>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 30 Sep 2021 13:08:31 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54918
+ <yocto@lists.yoctoproject.org>; Thu, 30 Sep 2021 13:55:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54919
 
---00000000000091022905cd3624d8
-Content-Type: text/plain; charset="UTF-8"
 
-The SDKs are designed around having a single toolchain and sysroot, so the
-answer is no. You need to make two SDKs from two build trees.
 
-Alex
+On 9/28/21 11:44 PM, Kristian Klausen wrote:
+> Den Tue, Sep 28, 2021 at 16:39:09 -0700 skrev Armin Kuster:
+>> Signed-off-by: Armin Kuster <akuster808@gmail.com>
+>> ---
+>>  meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb b/meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb
+>> index 807c02b..d602ee0 100644
+>> --- a/meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb
+>> +++ b/meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb
+>> @@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=fe8092c832b71ef20dfe4c6d3decb3a8"
+>>  SECTION = "apps"
+>>  
+>>  # coreutils-native and net-tools-native are reportedly only required for the tests
+>> -DEPENDS = "libtasn1 coreutils-native expect socat glib-2.0 net-tools-native libtpm json-glib"
+>> +DEPENDS = "libtasn1 coreutils-native expect socat glib-2.0 net-tools-native libtpm json-glib expect expect-native"
+> expect is there twice now (+ native). Would expect-native be enough or 
+> do we also need expect?
 
-On Thu, 30 Sept 2021 at 14:59, <sepsukkadaa@gmail.com> wrote:
-
-> Hi,
+expect-native only fixes the build issue.
 >
-> I'm quite new with yocto project and i did not find the answer from
-> manual. Currently I have project, where i can make SDK with ARM binaries
-> and those works fine. Now i have faced the situation where i need also x86
-> binaries. Is it possible to make one SDK which includes both ARM and x86
-> binaries? And if so, is it possible to do like own .bb file to x86 so i
-> could clarify what i need to take in to x86?
+>>  
+>>  SRCREV = "98187d24fe14851653a7c46eb16e9c5f0b9beaa1"
+>>  SRC_URI = "git://github.com/stefanberger/swtpm.git;branch=stable-0.6 \
+>> @@ -28,7 +28,7 @@ PACKAGECONFIG[openssl] = "--with-openssl, --without-openssl, openssl"
+>>  # expect, bash, tpm2-pkcs11-tools (tpm2_ptool), tpmtool and certtool is
+>>  # used by swtpm-create-tpmca (the last two is provided by gnutls)
+>>  # gnutls is required by: swtpm-create-tpmca, swtpm-localca and swtpm_cert
+>> -PACKAGECONFIG[gnutls] = "--with-gnutls, --without-gnutls, gnutls, gnutls, expect bash tpm2-pkcs11-tools"
+>> +PACKAGECONFIG[gnutls] = "--with-gnutls, --without-gnutls, gnutls, gnutls, bash tpm2-pkcs11-tools"
+> expect is needed as a runtime dependency for swtpm-create-tpmca, but I 
+> added it as a recommended dependency as I don't think all people are 
+> interesting in swtpm-create-tpmca working out-of-the-box.
+> expect should still be here, no?
 >
-> BR
-> Jyri See
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#54917):
-> https://lists.yoctoproject.org/g/yocto/message/54917
-> Mute This Topic: https://lists.yoctoproject.org/mt/85972823/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
->
+>>  PACKAGECONFIG[selinux] = "--with-selinux, --without-selinux, libselinux"
+>>  PACKAGECONFIG[cuse] = "--with-cuse, --without-cuse, fuse"
+>>  PACKAGECONFIG[seccomp] = "--with-seccomp, --without-seccomp, libseccomp"
+>> -- 
+>> 2.25.1
+>>
+>> -=-=-=-=-=-=-=-=-=-=-=-
+>> Links: You receive all messages sent to this group.
+>> View/Reply Online (#54899): https://lists.yoctoproject.org/g/yocto/message/54899
+>> Mute This Topic: https://lists.yoctoproject.org/mt/85937662/6376886
+>> Group Owner: yocto+owner@lists.yoctoproject.org
+>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [kristian@klausen.dk]
+>> -=-=-=-=-=-=-=-=-=-=-=-
+>>
 
---00000000000091022905cd3624d8
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>The SDKs are designed around having a single toolchai=
-n and sysroot, so the answer is no. You need to make two SDKs from two buil=
-d trees.<br></div><div><br></div><div>Alex<br></div></div><br><div class=3D=
-"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, 30 Sept 2021 at=
- 14:59, &lt;<a href=3D"mailto:sepsukkadaa@gmail.com">sepsukkadaa@gmail.com<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">H=
-i,<br><br>I&#39;m quite new with yocto project and i did not find the answe=
-r from manual. Currently I have project, where i can make SDK with ARM bina=
-ries and those works fine. Now i have faced the situation where i need also=
- x86 binaries. Is it possible to make one SDK which includes both ARM and x=
-86 binaries? And if so, is it possible to do like own .bb file to x86 so i =
-could clarify what i need to take in to x86?<br><br>BR<br>Jyri See
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#54917): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/54917" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/54917</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/85972823/1686=
-489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/85972823/1686489</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.k=
-anavin@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
-
---00000000000091022905cd3624d8--
 
