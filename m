@@ -1,197 +1,237 @@
-Return-Path: <kristian@klausen.dk>
+Return-Path: <lijchen@blackberry.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DB65DC433F5
-	for <webhook@archiver.kernel.org>; Sat,  2 Oct 2021 18:37:45 +0000 (UTC)
-Received: from mail.klausen.dk (mail.klausen.dk [157.90.24.29])
- by mx.groups.io with SMTP id smtpd.web08.13999.1633199864135426318
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0F968C433EF
+	for <webhook@archiver.kernel.org>; Sun,  3 Oct 2021 01:40:48 +0000 (UTC)
+Received: from smtp-pg10.blackberry.com (smtp-pg10.blackberry.com
+ [68.171.242.226])
+ by mx.groups.io with SMTP id smtpd.web11.17991.1633225246269955232
  for <yocto@lists.yoctoproject.org>;
- Sat, 02 Oct 2021 11:37:45 -0700
+ Sat, 02 Oct 2021 18:40:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@klausen.dk
- header.s=dkim header.b=yFa+gq32;
- spf=pass (domain: klausen.dk, ip: 157.90.24.29,
- mailfrom: kristian@klausen.dk)
-From: Kristian Klausen <kristian@klausen.dk>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=klausen.dk; s=dkim;
-	t=1633199860;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=7FWIgzgeP2Dfuthz4vJbLEhDyGrgTCS2FOfWSZVlm7M=;
-	b=yFa+gq3288DZ7lHPGKIrCI90v3TDDb0WuD+NpdjBrjgWd2/sESDJrhv29yGmtQkKmouJ/y
-	tneM7vXmoJL3YBShK50NNXhPi1NxyasnV9GQDh9sY+6RbVbXwVsx8AKjZJUsAU9iw/IEXp
-	3lIMqBCsS3af3Sx2DrAx7sEg+G4vjEg=
-To: yocto@lists.yoctoproject.org
-Cc: Kristian Klausen <kristian@klausen.dk>
-Subject: [meta-security][PATCH v2] swtpm: update to 0.6.1
-Date: Sat,  2 Oct 2021 20:37:38 +0200
-Message-Id: <20211002183738.1765-1-kristian@klausen.dk>
-X-Mailer: git-send-email 2.33.0
+ dkim=pass header.i=@blackberry.com header.s=corp19 header.b=WOe9Pjkr;
+ spf=pass (domain: blackberry.com, ip: 68.171.242.226,
+ mailfrom: lijchen@blackberry.com)
+Received: from pps.filterd (mhs400ykf.rim.net [127.0.0.1])
+	by mhs400ykf.rim.net (8.16.0.43/8.16.0.43) with SMTP id 1931ehN6000874;
+	Sat, 2 Oct 2021 21:40:43 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=blackberry.com;
+ h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ mime-version; s=corp19; bh=FDe9rfvGbxOBUzH05r5TK5UWz+43unMk2p3aIOKUX2g=;
+ b=WOe9PjkrgosyAR3ktZjlvfxgYP9+dBGCdHEsZENC2glVlWdwkXybkKXDQYXTx/Puxc7G
+ 7BiDVmb5PK/3oWwedRVPlzvqtJXq85EQwhzBg4LsH+aPTs/mPHSRPm7Kfb1bt6rSEiWb
+ dlcw06UlTLyxLLRtydqe1vh9NQlGBj30OvYBZaChMrV8PUdqauDUNEdTUM0e4pJR002K
+ fibvPYJc2qn4F4R9/xGF4/KMI3gaR+uGGiKQcrIlH8NMcGa2tJXPTRQZnz8B6CEC7QO9
+ e2m1NeXC254+lxdHtGkcAc5WYMfpi5jntLsu1N60nmHvBTo3ydAFPIwS0Qn99nvTYmmY dA==
+Received: from xch212ykf.rim.net (xch212ykf.rim.net [10.12.114.212])
+	by mhs400ykf.rim.net with ESMTP id 3bekm78kty-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Sat, 02 Oct 2021 21:40:43 -0400
+Received: from XCH211YKF.rim.net (10.12.114.211) by XCH212YKF.rim.net
+ (10.12.114.212) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.14; Sat, 2 Oct
+ 2021 21:40:42 -0400
+Received: from XCH211YKF.rim.net ([fe80::dca:23f8:c2c0:7180]) by
+ XCH211YKF.rim.net ([fe80::dca:23f8:c2c0:7180%5]) with mapi id 15.01.2308.014;
+ Sat, 2 Oct 2021 21:40:42 -0400
+From: Lijun Chen <lijchen@blackberry.com>
+To: Khem Raj <raj.khem@gmail.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] gcov support for target in Yocto
+Thread-Topic: [yocto] gcov support for target in Yocto
+Thread-Index: AQHXsJti8y0JtgWz/kqHFVxhBUEuM6uy4g8AgA2r9YQ=
+Date: Sun, 3 Oct 2021 01:40:42 +0000
+Message-ID: <3260b60dea6d427b97ec186d7ca3338e@blackberry.com>
+References: 
+ <cd74ff1907374ec2bd340f18d691123d@blackberry.com>,<CAMKF1spCmGPbJvCycwSYuiWW2hEMzcZKKvJZ=yOrGqa_LJyOqw@mail.gmail.com>
+In-Reply-To: 
+ <CAMKF1spCmGPbJvCycwSYuiWW2hEMzcZKKvJZ=yOrGqa_LJyOqw@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [100.64.197.209]
+Content-Type: multipart/alternative;
+	boundary="_000_3260b60dea6d427b97ec186d7ca3338eblackberrycom_"
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
+ definitions=2021-10-02_07:2021-10-01,2021-10-02 signatures=0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 02 Oct 2021 18:37:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54932
+ <yocto@lists.yoctoproject.org>; Sun, 03 Oct 2021 01:40:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54933
 
-swtpm no longer depends on Python[1] so the dependencies have been
-removed.
+--_000_3260b60dea6d427b97ec186d7ca3338eblackberrycom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-"inherit perlnative" has been added due to (in oe-core):
-deda455b3c ("bitbake.conf: drop pod2man from hosttools")
+Thank
 
-Some leftover dependencies have also been removed, ex: tpm-tools
-required in the past by swtpm_setup.sh (<0.4.0)[2].
+________________________________
+From: Khem Raj <raj.khem@gmail.com>
+Sent: Friday, September 24, 2021 12:53:26 AM
+To: Lijun Chen
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] gcov support for target in Yocto
 
-[1] https://github.com/stefanberger/swtpm/issues/437
-[2] https://github.com/stefanberger/swtpm/commit/eee8cb5dfb13f87140dddda3=
-8f65bf61aff19508
+On Thu, Sep 23, 2021 at 9:53 AM Lijun Chen <lijchen@blackberry.com> wrote:
+>
+> Hi,
+>
+>
+> Anybody knows how to enable gcov support for the target in Yocto?
+>
 
-Signed-off-by: Kristian Klausen <kristian@klausen.dk>
----
-V2:
-Squashed chnanges from https://lists.yoctoproject.org/g/yocto/topic/86012=
-566
-(decided to still use RRECOMMENDS for swtpm-create-tpmca deps)
-Fix build error due to missing expect (expect -> expect-native)
-Changed socat to socat-native
+IMAGE_INSTALL +=3D "gcov gcov-symlinks"
 
-Building tested with:
-bitbake swtpm && bitbake swtpm-native (with and without gnutls)
+>
+> Thanks,
+>
+> Lijun
+>
+> ________________________________
+> This transmission (including any attachments) may contain confidential in=
+formation, privileged material (including material protected by the solicit=
+or-client or other applicable privileges), or constitute non-public informa=
+tion. Any use of this information by anyone other than the intended recipie=
+nt is prohibited. If you have received this transmission in error, please i=
+mmediately reply to the sender and delete this information from your system=
+. Use, dissemination, distribution, or reproduction of this transmission by=
+ unintended recipients is not authorized and may be unlawful.
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#54817): https://urldefense.com/v3/__https://lists.yoc=
+toproject.org/g/yocto/message/54817__;!!COg3wY07Hnb7!5JnFgNjXAl35HXZGfGplYE=
+VO0T-S7j3NB5NgN_z4Eptw3Pj6cyGsHjwo87C0XJeTmw$
+> Mute This Topic: https://urldefense.com/v3/__https://lists.yoctoproject.o=
+rg/mt/85818669/1997914__;!!COg3wY07Hnb7!5JnFgNjXAl35HXZGfGplYEVO0T-S7j3NB5N=
+gN_z4Eptw3Pj6cyGsHjwo87D-XLhEtg$
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://urldefense.com/v3/__https://lists.yoctoproject.org/g=
+/yocto/unsub__;!!COg3wY07Hnb7!5JnFgNjXAl35HXZGfGplYEVO0T-S7j3NB5NgN_z4Eptw3=
+Pj6cyGsHjwo87Bi_bGkvw$  [raj.khem@gmail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
- .../swtpm/swtpm-wrappers-native.bb            | 12 ++++------
- .../swtpm/{swtpm_0.5.2.bb =3D> swtpm_0.6.1.bb}  | 23 ++++++++-----------
- 2 files changed, 14 insertions(+), 21 deletions(-)
- rename meta-tpm/recipes-tpm/swtpm/{swtpm_0.5.2.bb =3D> swtpm_0.6.1.bb} (=
-69%)
+----------------------------------------------------------------------
+This transmission (including any attachments) may contain confidential info=
+rmation, privileged material (including material protected by the solicitor=
+-client or other applicable privileges), or constitute non-public informati=
+on. Any use of this information by anyone other than the intended recipient=
+ is prohibited. If you have received this transmission in error, please imm=
+ediately reply to the sender and delete this information from your system. =
+Use, dissemination, distribution, or reproduction of this transmission by u=
+nintended recipients is not authorized and may be unlawful.
 
-diff --git a/meta-tpm/recipes-tpm/swtpm/swtpm-wrappers-native.bb b/meta-t=
-pm/recipes-tpm/swtpm/swtpm-wrappers-native.bb
-index 644f3ac..bb93374 100644
---- a/meta-tpm/recipes-tpm/swtpm/swtpm-wrappers-native.bb
-+++ b/meta-tpm/recipes-tpm/swtpm/swtpm-wrappers-native.bb
-@@ -1,6 +1,6 @@
- SUMMARY =3D "SWTPM - OpenEmbedded wrapper scripts for native swtpm tools=
-"
- LICENSE =3D "MIT"
--DEPENDS =3D "swtpm-native tpm-tools-native net-tools-native"
-+DEPENDS =3D "swtpm-native"
-=20
- inherit native
-=20
-@@ -14,23 +14,19 @@ do_create_wrapper () {
-     for i in `find ${bindir} ${base_bindir} ${sbindir} ${base_sbindir} -=
-name 'swtpm*' -perm /+x -type f`; do
-         exe=3D`basename $i`
-         case $exe in
--            swtpm_setup.sh)
-+            swtpm_setup)
-                 cat >${WORKDIR}/swtpm_setup_oe.sh <<EOF
- #! /bin/sh
- #
--# Wrapper around swtpm_setup.sh which adds parameters required to
-+# Wrapper around swtpm_setup which adds parameters required to
- # run the setup as non-root directly from the native sysroot.
-=20
- PATH=3D"${bindir}:${base_bindir}:${sbindir}:${base_sbindir}:\$PATH"
- export PATH
-=20
--# tcsd only allows to be run as root or tss. Pretend to be root...
--exec env ${FAKEROOTENV} ${FAKEROOTCMD} swtpm_setup.sh --config ${STAGING=
-_DIR_NATIVE}/etc/swtpm_setup.conf "\$@"
-+exec swtpm_setup --config ${STAGING_DIR_NATIVE}/etc/swtpm_setup.conf "\$=
-@"
- EOF
-                 ;;
--            swtpm_setup)
--                true
--                ;;
-             *)
-                 cat >${WORKDIR}/${exe}_oe.sh <<EOF
- #! /bin/sh
-diff --git a/meta-tpm/recipes-tpm/swtpm/swtpm_0.5.2.bb b/meta-tpm/recipes=
--tpm/swtpm/swtpm_0.6.1.bb
-similarity index 69%
-rename from meta-tpm/recipes-tpm/swtpm/swtpm_0.5.2.bb
-rename to meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb
-index 912e939..c7fc131 100644
---- a/meta-tpm/recipes-tpm/swtpm/swtpm_0.5.2.bb
-+++ b/meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb
-@@ -3,14 +3,11 @@ LICENSE =3D "BSD-3-Clause"
- LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3Dfe8092c832b71ef20dfe4c6d3decb=
-3a8"
- SECTION =3D "apps"
-=20
--DEPENDS =3D "libtasn1 coreutils-native expect socat glib-2.0 net-tools-n=
-ative libtpm libtpm-native"
-+# expect-native, socat-native, coreutils-native and net-tools-native are=
- reportedly only required for the tests
-+DEPENDS =3D "libtasn1 coreutils-native expect-native socat-native glib-2=
-.0 net-tools-native libtpm json-glib"
-=20
--# configure checks for the tools already during compilation and
--# then swtpm_setup needs them at runtime
--DEPENDS:append =3D " tpm-tools-native expect-native socat-native python3=
--pip-native python3-cryptography-native"
--
--SRCREV =3D "e59c0c1a7b4c8d652dbb280fd6126895a7057464"
--SRC_URI =3D "git://github.com/stefanberger/swtpm.git;branch=3Dstable-0.5=
- \
-+SRCREV =3D "98187d24fe14851653a7c46eb16e9c5f0b9beaa1"
-+SRC_URI =3D "git://github.com/stefanberger/swtpm.git;branch=3Dstable-0.6=
- \
-            file://ioctl_h.patch \
-            file://oe_configure.patch \
-            "
-@@ -19,7 +16,7 @@ PE =3D "1"
- S =3D "${WORKDIR}/git"
-=20
- PARALLEL_MAKE =3D ""
--inherit autotools pkgconfig python3native
-+inherit autotools pkgconfig perlnative
-=20
- TSS_USER=3D"tss"
- TSS_GROUP=3D"tss"
-@@ -28,7 +25,10 @@ PACKAGECONFIG ?=3D "openssl"
- PACKAGECONFIG +=3D "${@bb.utils.contains('DISTRO_FEATURES', 'selinux', '=
-selinux', '', d)}"
- PACKAGECONFIG +=3D "${@bb.utils.contains('BBFILE_COLLECTIONS', 'filesyst=
-ems-layer', 'cuse', '', d)}"
- PACKAGECONFIG[openssl] =3D "--with-openssl, --without-openssl, openssl"
--PACKAGECONFIG[gnutls] =3D "--with-gnutls, --without-gnutls, gnutls"
-+# expect, bash, tpm2-pkcs11-tools (tpm2_ptool), tpmtool and certtool is
-+# used by swtpm-create-tpmca (the last two is provided by gnutls)
-+# gnutls is required by: swtpm-create-tpmca, swtpm-localca and swtpm_cer=
-t
-+PACKAGECONFIG[gnutls] =3D "--with-gnutls, --without-gnutls, gnutls, gnut=
-ls, expect bash tpm2-pkcs11-tools"
- PACKAGECONFIG[selinux] =3D "--with-selinux, --without-selinux, libselinu=
-x"
- PACKAGECONFIG[cuse] =3D "--with-cuse, --without-cuse, fuse"
- PACKAGECONFIG[seccomp] =3D "--with-seccomp, --without-seccomp, libseccom=
-p"
-@@ -41,14 +41,11 @@ USERADD_PARAM:${PN} =3D "--system -g ${TSS_GROUP} --h=
-ome-dir  \
-     --no-create-home  --shell /bin/false ${BPN}"
-=20
-=20
--PACKAGES =3D+ "${PN}-python"
--FILES:${PN}-python =3D "${PYTHON_SITEPACKAGES_DIR}"
--
- PACKAGE_BEFORE_PN =3D "${PN}-cuse"
- FILES:${PN}-cuse =3D "${bindir}/swtpm_cuse"
-=20
- INSANE_SKIP:${PN}   +=3D "dev-so"
-=20
--RDEPENDS:${PN} =3D "libtpm expect socat bash tpm-tools python3 python3-c=
-ryptography python3-twisted"
-+RDEPENDS:${PN} =3D "libtpm"
-=20
- BBCLASSEXTEND =3D "native nativesdk"
---=20
-2.25.1
+--_000_3260b60dea6d427b97ec186d7ca3338eblackberrycom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
+ding-left: 4pt; border-left: #800000 2px solid; } --></style>
+</head>
+<body>
+<meta content=3D"text/html; charset=3DUTF-8">
+<style type=3D"text/css" style=3D"">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div dir=3D"ltr">
+<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; col=
+or:#000000; font-family:Calibri,Helvetica,sans-serif">
+<p>Thank<br>
+</p>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Khem Raj &lt;raj.kh=
+em@gmail.com&gt;<br>
+<b>Sent:</b> Friday, September 24, 2021 12:53:26 AM<br>
+<b>To:</b> Lijun Chen<br>
+<b>Cc:</b> yocto@lists.yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] gcov support for target in Yocto</font>
+<div>&nbsp;</div>
+</div>
+</div>
+<font size=3D"2"><span style=3D"font-size:10pt;">
+<div class=3D"PlainText">On Thu, Sep 23, 2021 at 9:53 AM Lijun Chen &lt;lij=
+chen@blackberry.com&gt; wrote:<br>
+&gt;<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt;<br>
+&gt; Anybody knows how to enable gcov support for the target in Yocto?<br>
+&gt;<br>
+<br>
+IMAGE_INSTALL &#43;=3D &quot;gcov gcov-symlinks&quot;<br>
+<br>
+&gt;<br>
+&gt; Thanks,<br>
+&gt;<br>
+&gt; Lijun<br>
+&gt;<br>
+&gt; ________________________________<br>
+&gt; This transmission (including any attachments) may contain confidential=
+ information, privileged material (including material protected by the soli=
+citor-client or other applicable privileges), or constitute non-public info=
+rmation. Any use of this information
+ by anyone other than the intended recipient is prohibited. If you have rec=
+eived this transmission in error, please immediately reply to the sender an=
+d delete this information from your system. Use, dissemination, distributio=
+n, or reproduction of this transmission
+ by unintended recipients is not authorized and may be unlawful.<br>
+&gt;<br>
+&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+&gt; Links: You receive all messages sent to this group.<br>
+&gt; You automatically follow any topics you start or reply to.<br>
+&gt; View/Reply Online (#54817): <a href=3D"https://urldefense.com/v3/__htt=
+ps://lists.yoctoproject.org/g/yocto/message/54817__;!!COg3wY07Hnb7!5JnFgNjX=
+Al35HXZGfGplYEVO0T-S7j3NB5NgN_z4Eptw3Pj6cyGsHjwo87C0XJeTmw$">
+https://urldefense.com/v3/__https://lists.yoctoproject.org/g/yocto/message/=
+54817__;!!COg3wY07Hnb7!5JnFgNjXAl35HXZGfGplYEVO0T-S7j3NB5NgN_z4Eptw3Pj6cyGs=
+Hjwo87C0XJeTmw$</a>
+<br>
+&gt; Mute This Topic: <a href=3D"https://urldefense.com/v3/__https://lists.=
+yoctoproject.org/mt/85818669/1997914__;!!COg3wY07Hnb7!5JnFgNjXAl35HXZGfGplY=
+EVO0T-S7j3NB5NgN_z4Eptw3Pj6cyGsHjwo87D-XLhEtg$">
+https://urldefense.com/v3/__https://lists.yoctoproject.org/mt/85818669/1997=
+914__;!!COg3wY07Hnb7!5JnFgNjXAl35HXZGfGplYEVO0T-S7j3NB5NgN_z4Eptw3Pj6cyGsHj=
+wo87D-XLhEtg$</a>
+<br>
+&gt; Group Owner: yocto&#43;owner@lists.yoctoproject.org<br>
+&gt; Unsubscribe: <a href=3D"https://urldefense.com/v3/__https://lists.yoct=
+oproject.org/g/yocto/unsub__;!!COg3wY07Hnb7!5JnFgNjXAl35HXZGfGplYEVO0T-S7j3=
+NB5NgN_z4Eptw3Pj6cyGsHjwo87Bi_bGkvw$">
+https://urldefense.com/v3/__https://lists.yoctoproject.org/g/yocto/unsub__;=
+!!COg3wY07Hnb7!5JnFgNjXAl35HXZGfGplYEVO0T-S7j3NB5NgN_z4Eptw3Pj6cyGsHjwo87Bi=
+_bGkvw$</a>&nbsp; [raj.khem@gmail.com]<br>
+&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+&gt;<br>
+</div>
+</span></font>
+
+<HR>This transmission (including any attachments) may contain confidential =
+information, privileged material (including material protected by the solic=
+itor-client or other applicable privileges), or constitute non-public infor=
+mation. Any use of this information by anyone other than the intended recip=
+ient is prohibited. If you have received this transmission in error, please=
+ immediately reply to the sender and delete this information from your syst=
+em. Use, dissemination, distribution, or reproduction of this transmission =
+by unintended recipients is not authorized and may be unlawful.<BR>
+</body>
+</html>
+
+--_000_3260b60dea6d427b97ec186d7ca3338eblackberrycom_--
 
