@@ -1,264 +1,278 @@
-Return-Path: <opensource@keylevel.com>
+Return-Path: <lijchen@blackberry.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 28DECC433EF
-	for <webhook@archiver.kernel.org>; Mon,  4 Oct 2021 08:21:18 +0000 (UTC)
-Received: from hs013.4uh.net (hs013.4uh.net [80.68.86.13])
- by mx.groups.io with SMTP id smtpd.web10.6535.1633335675968500431
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 08160C433F5
+	for <webhook@archiver.kernel.org>; Mon,  4 Oct 2021 13:12:44 +0000 (UTC)
+Received: from smtp-pg10.blackberry.com (smtp-pg10.blackberry.com
+ [68.171.242.226])
+ by mx.groups.io with SMTP id smtpd.web09.9088.1633353162607363685
  for <yocto@lists.yoctoproject.org>;
- Mon, 04 Oct 2021 01:21:16 -0700
+ Mon, 04 Oct 2021 06:12:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@keylevel.com header.s=default header.b=GYnDPxnG;
- spf=pass (domain: keylevel.com, ip: 80.68.86.13,
- mailfrom: opensource@keylevel.com)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=keylevel.com; s=default; h=Message-Id:In-Reply-To:To:References:Date:
-	Subject:Mime-Version:Content-Type:From:Sender:Reply-To:Cc:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=GH1A/Hcg+BQLYW4sd5mSC5EKzgXE6eHvmP9lrQDQooc=; b=GYnDPxnGa9ZtgATW2TVDhCtfy4
-	Do9lnwFIahkodGFXz4GxDWdanDWsUBnd8DXKnYnmoArZHMbTPoCou2iKV9UzrhPksZdNee2bq8tka
-	NM2XkfmDnnwQI7NddrzuvOKc9sAUtCb7AxUTyJovqvP8GTMLwNeTv4UmKrLtQixf5wYBWYRzQEZUq
-	KqV7H+ujG28o8yj664u4/NPRVg7siGHEiRZIEEwI5tTxsoSvshIJJzmJJY2Gtl7nL71lfH5RPM5WR
-	B5bqinPHfhveYoWLvjTFIPo8Jiz+K26Swhtw+4h49w4YNsabYI3YMCeLl83xI3yiBA7QbltNAe3V4
-	xDdlOW0g==;
-Received: from durham.keylevel.com ([88.97.77.109]:30608
- helo=smtpclient.apple)
-	by hs013.4uh.net with esmtpsa  (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <opensource@keylevel.com>)
-	id 1mXJDj-0003D8-BK
-	for yocto@lists.yoctoproject.org; Mon, 04 Oct 2021 09:21:11 +0100
-From: Chris Tapp <opensource@keylevel.com>
+ dkim=pass header.i=@blackberry.com header.s=corp19 header.b=F0e/EtEk;
+ spf=pass (domain: blackberry.com, ip: 68.171.242.226,
+ mailfrom: lijchen@blackberry.com)
+Received: from pps.filterd (mhs400ykf.rim.net [127.0.0.1])
+	by mhs400ykf.rim.net (8.16.0.43/8.16.0.43) with SMTP id 194D7dtg019200;
+	Mon, 4 Oct 2021 09:12:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=blackberry.com;
+ h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ mime-version; s=corp19; bh=vAAl8+1XvQ8jmIQzjVPFY8qbAW6ahWXZEjaL1xuF6Po=;
+ b=F0e/EtEkd1YzoHkN+a/Lulc6Vqy6M2Yb0ukFFD3BlAf8X0Wm1JP0Y2QL6Jb4xJZKxshF
+ 1PYHHx97lB+SgN6b4xgNDDVgZ4MYsFvamwxiSMPbDYsAcEly9v/iqF7/Ds1JE/fYqgPs
+ Jnu5CLJU+tKuEli1SwJEvuYtLNeFKkgWlArqe1Japfc2HgmUOqVM8vVDxoj/guORtVsz
+ z1jWBPDBZSBOlinzWvcs2SZfXaI/So0ftUg5dd1+VJDhzrMvn5U6k+xXRitdxcuhXwDQ
+ TETOJo3E3K7z7qGfKWxNis9ltb7NsDWr3hApRln5f1h7hRdO9AQXLXfqot8YKRNn8N0S 6g==
+Received: from xch210cnc.rim.net (xch210cnc.rim.net [10.3.27.115])
+	by mhs400ykf.rim.net with ESMTP id 3bekm79rcn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Mon, 04 Oct 2021 09:12:40 -0400
+Received: from XCH211YKF.rim.net (10.12.114.211) by XCH210CNC.rim.net
+ (10.3.27.115) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.14; Mon, 4 Oct
+ 2021 09:12:40 -0400
+Received: from XCH211YKF.rim.net ([fe80::dca:23f8:c2c0:7180]) by
+ XCH211YKF.rim.net ([fe80::dca:23f8:c2c0:7180%5]) with mapi id 15.01.2308.014;
+ Mon, 4 Oct 2021 09:12:40 -0400
+From: Lijun Chen <lijchen@blackberry.com>
+To: Khem Raj <raj.khem@gmail.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Shared lib symlinks in target image
+Thread-Topic: [yocto] Shared lib symlinks in target image
+Thread-Index: AQHXt/hkH3Oz20dKZEmAKPu+QWv1a6vA31EAgAHyyhI=
+Date: Mon, 4 Oct 2021 13:12:40 +0000
+Message-ID: <7508347f66784a1487e4f20bf1ad89f0@blackberry.com>
+References: 
+ <c7c1faf5ec0f43178b03bcd5bdacb744@blackberry.com>,<CAMKF1sp4aDrC4z9MBkM8ap=nqKEckAk9shReHKOifZ5X=KYtkQ@mail.gmail.com>
+In-Reply-To: 
+ <CAMKF1sp4aDrC4z9MBkM8ap=nqKEckAk9shReHKOifZ5X=KYtkQ@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [100.64.197.209]
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_0DB4F090-A5AE-48BA-B0BA-C965307BFD7F"
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [yocto] Meta-raspberrypi - how to configure device tree for
- MCP251x
-Date: Mon, 4 Oct 2021 09:21:10 +0100
-References: <16AA05EDD73208C2.24161@lists.yoctoproject.org>
-To: yocto@lists.yoctoproject.org
-In-Reply-To: <16AA05EDD73208C2.24161@lists.yoctoproject.org>
-Message-Id: <15448F47-97A9-4267-9D3B-682D8074D795@keylevel.com>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
-X-4UH-MailScanner-Information: Please contact the ISP for more information
-X-4UH-MailScanner-ID: 1mXJDj-0003D8-BK
-X-4UH-MailScanner: Found to be clean
-X-4UH-MailScanner-SpamCheck: 
-X-4UH-MailScanner-From: opensource@keylevel.com
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hs013.4uh.net
-X-AntiAbuse: Original Domain - lists.yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: hs013.4uh.net: authenticated_id:
- opensource@keylevel.com
-X-Authenticated-Sender: hs013.4uh.net: opensource@keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+	boundary="_000_7508347f66784a1487e4f20bf1ad89f0blackberrycom_"
+MIME-Version: 1.0
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
+ definitions=2021-10-04_04:2021-10-04,2021-10-04 signatures=0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 04 Oct 2021 08:21:18 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54936
+ <yocto@lists.yoctoproject.org>; Mon, 04 Oct 2021 13:12:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54937
 
-
---Apple-Mail=_0DB4F090-A5AE-48BA-B0BA-C965307BFD7F
+--_000_7508347f66784a1487e4f20bf1ad89f0blackberrycom_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
 
-Sorry, I meant to add that I have tried adding the following to =
-local.conf:
+I have an app built in a different environment that has lower versioned lib=
+s, such as boost. I was wondering if on the target there are symlinks to th=
+ose libs, whether the app can be run on a target that has newer libs withou=
+t resbuild against a matched env. Seems that is not viable.
 
-RPI_EXTRA_CONFIG =3D ' \n \
-    dtparam=3Dspi=3Don \n \
-    dtoverlay=3Dmcp2515-can0,oscillator=3D16000000,interrupt=3D25 \n \
-    dtoverlay=3Dmcp2515-can1,oscillator=3D16000000,interrupt=3D23 \n \
-    '
+________________________________
+From: Khem Raj <raj.khem@gmail.com>
+Sent: Saturday, October 2, 2021 11:23:58 PM
+To: Lijun Chen
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] Shared lib symlinks in target image
 
-However, this did not make any difference to the interrupts.
+On Sat, Oct 2, 2021 at 6:55 PM Lijun Chen <lijchen@blackberry.com> wrote:
+>
+> Hi,
+>
+>
+> When I build a yocto image, I added some packages into IMAGE_INSTALL, suc=
+h as boost, thrift, etc. I notice in the target OS image, the shared libs d=
+on't the symlinks. But in the SDK image, the symlinks are there. For exampl=
+e,
+>
+> lrwxrwxrwx 1 root root       22 Oct  2 16:41 libboost_filesystem-mt.so ->=
+ libboost_filesystem.so
+> lrwxrwxrwx 1 root root       29 Oct  2 16:41 libboost_filesystem.so -> li=
+bboost_filesystem.so.1.75.0
+>
+> Is there a way to add the symlinks to the target image as well?
+>
+>
+> With the symlinks, I assume we can run an old application even the depend=
+ent lib is a newer version?
+>
 
-Since then, I have manually changed mcp2515-can1-overlay.dts in the =
-kernel build tree (after running bitbake - c do_configure =
-virtual/kernel) and rebuilt the kernel / image. This does result in the =
-interrupt mapping changing, and both CAN channels then operate =
-correctly.
+unversioned symlinks should not be used they are there to be used for
+linking during build time. Unless you need to do builds on targets you
+really do not need them
+so explain you usecase. Are you trying to build stuff on device ?
 
-Does anyone know why RPI_EXTRA_CONFIG doesn=E2=80=99t appear to be =
-taking effect?
-
---
-
-Chris Tapp
-opensource@keylevel.com
-www.keylevel.com
-
-----
-You can tell you're getting older when your car insurance gets real =
-cheap!
-
-> On 1 Oct 2021, at 22:38, Chris Tapp <opensource@keylevel.com> wrote:
->=20
-> I am having trouble getting the Waveshare 2-CH CAN HAT working with an =
-RPI4. Channel 0 does not come up, channel 1 does, but it will only send =
-one message (eventually reporting "write: No buffer space available=E2=80=9D=
-) and not receive anything.
->=20
-> Looking at the mcp2515-can0-overlay.dts and mcp2515-can1-overlay.dts =
-device tree files in =
-/tmp/work-shared/raspberrypi4/kernel-source/arch/arm/boot/dts/overlays/, =
-it looks as if the interrupts are not mapped as required for the board.
->=20
->       DTS               HAT
-> CAN0  brcm,pins =3D <25>  PIN23
-> CAN1  brcm,pins =3D <25>  PIN25
->=20
-> This doesn=E2=80=99t look right, and seems consistent with the =
-behaviour I am seeing.
->=20
-> I would also like to check the device chip select signals, but I can't =
-see how (if) they are mapped in the dts files.
->=20
-> How can I override these settings when I build the image?
->=20
-> --
->=20
-> Chris Tapp
-> opensource@keylevel.com <mailto:opensource@keylevel.com>
-> www.keylevel.com
->=20
->=20
+>
+> Thanks,
+>
+> Lijun
+>
+> ________________________________
+> This transmission (including any attachments) may contain confidential in=
+formation, privileged material (including material protected by the solicit=
+or-client or other applicable privileges), or constitute non-public informa=
+tion. Any use of this information by anyone other than the intended recipie=
+nt is prohibited. If you have received this transmission in error, please i=
+mmediately reply to the sender and delete this information from your system=
+. Use, dissemination, distribution, or reproduction of this transmission by=
+ unintended recipients is not authorized and may be unlawful.
+>
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#54927): =
-https://lists.yoctoproject.org/g/yocto/message/54927
-> Mute This Topic: https://lists.yoctoproject.org/mt/86011706/3617534
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#54934): https://urldefense.com/v3/__https://lists.yoc=
+toproject.org/g/yocto/message/54934__;!!COg3wY07Hnb7!44p3yfVEnAD6rM-DM0muAS=
+h2wNizlchKqgoweZDAV8wx1sd8uvxVqOEHJORDalv1bA$
+> Mute This Topic: https://urldefense.com/v3/__https://lists.yoctoproject.o=
+rg/mt/86035483/1997914__;!!COg3wY07Hnb7!44p3yfVEnAD6rM-DM0muASh2wNizlchKqgo=
+weZDAV8wx1sd8uvxVqOEHJOTJ_1cQxQ$
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub =
-[opensource@keylevel.com]
+> Unsubscribe: https://urldefense.com/v3/__https://lists.yoctoproject.org/g=
+/yocto/unsub__;!!COg3wY07Hnb7!44p3yfVEnAD6rM-DM0muASh2wNizlchKqgoweZDAV8wx1=
+sd8uvxVqOEHJOQieFL_-A$  [raj.khem@gmail.com]
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->=20
+>
 
+----------------------------------------------------------------------
+This transmission (including any attachments) may contain confidential info=
+rmation, privileged material (including material protected by the solicitor=
+-client or other applicable privileges), or constitute non-public informati=
+on. Any use of this information by anyone other than the intended recipient=
+ is prohibited. If you have received this transmission in error, please imm=
+ediately reply to the sender and delete this information from your system. =
+Use, dissemination, distribution, or reproduction of this transmission by u=
+nintended recipients is not authorized and may be unlawful.
 
---Apple-Mail=_0DB4F090-A5AE-48BA-B0BA-C965307BFD7F
+--_000_7508347f66784a1487e4f20bf1ad89f0blackberrycom_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;" =
-class=3D"">Sorry, I meant to add that I have tried adding the following =
-to local.conf:<div class=3D""><br class=3D""></div><div class=3D""><div =
-class=3D""><font face=3D"Courier New" class=3D"">RPI_EXTRA_CONFIG =3D ' =
-\n \</font></div><div class=3D""><font face=3D"Courier New" =
-class=3D"">&nbsp; &nbsp; dtparam=3Dspi=3Don \n \</font></div><div =
-class=3D""><font face=3D"Courier New" class=3D"">&nbsp; &nbsp; =
-dtoverlay=3Dmcp2515-can0,oscillator=3D16000000,interrupt=3D25 \n =
-\</font></div><div class=3D""><font face=3D"Courier New" class=3D"">&nbsp;=
- &nbsp; dtoverlay=3Dmcp2515-can1,oscillator=3D16000000,interrupt=3D23 \n =
-\</font></div><div class=3D""><font face=3D"Courier New" class=3D"">&nbsp;=
- &nbsp; '</font></div></div><div class=3D""><br class=3D""></div><div =
-class=3D"">However, this did not make any difference to the =
-interrupts.</div><div class=3D""><br class=3D""></div><div =
-class=3D"">Since then, I have manually changed mcp2515-can1-overlay.dts =
-in the kernel build tree (after running bitbake - c do_configure =
-virtual/kernel) and rebuilt the kernel / image. This does result in the =
-interrupt mapping changing, and both CAN channels then operate =
-correctly.</div><div class=3D""><br class=3D""></div><div class=3D"">Does =
-anyone know why RPI_EXTRA_CONFIG doesn=E2=80=99t appear to be taking =
-effect?</div><div class=3D""><br class=3D""><div class=3D"">
-<div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; orphans: =
-auto; text-align: start; text-indent: 0px; text-transform: none; =
-white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><span class=3D"Apple-style-span" style=3D"border-collapse: =
-separate; font-family: Helvetica; font-variant-ligatures: normal; =
-font-variant-east-asian: normal; font-variant-position: normal; =
-line-height: normal; border-spacing: 0px; =
--webkit-text-decorations-in-effect: none;"><div style=3D"word-wrap: =
-break-word; -webkit-nbsp-mode: space; -webkit-line-break: =
-after-white-space;" class=3D""><div class=3D"">--</div><div class=3D""><br=
- class=3D""></div><div class=3D"">Chris Tapp</div><div class=3D""><a =
-href=3D"mailto:opensource@keylevel.com" =
-class=3D"">opensource@keylevel.com</a></div><div class=3D""><a =
-href=3D"http://www.keylevel.com" class=3D"">www.keylevel.com</a></div><div=
- class=3D""><br class=3D""></div><div class=3D"">----</div><div =
-class=3D"">You can tell you're getting older when your car insurance =
-gets real cheap!</div></div></span></div></div></div></div>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
+ding-left: 4pt; border-left: #800000 2px solid; } --></style>
+</head>
+<body>
+<meta content=3D"text/html; charset=3DUTF-8">
+<style type=3D"text/css" style=3D"">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div dir=3D"ltr">
+<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; col=
+or:#000000; font-family:Calibri,Helvetica,sans-serif">
+<p>I have an app built in a different environment that has lower versioned =
+libs, such as boost. I was wondering if on the target there are symlinks to=
+ those libs, whether the app can be run on a target that has newer libs wit=
+hout resbuild against a matched
+ env. Seems that is not viable.<br>
+</p>
 </div>
-<div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On 1 Oct 2021, at 22:38, Chris Tapp &lt;<a =
-href=3D"mailto:opensource@keylevel.com" =
-class=3D"">opensource@keylevel.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><meta =
-http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8" =
-class=3D""><div style=3D"word-wrap: break-word; -webkit-nbsp-mode: =
-space; line-break: after-white-space;" class=3D"">I am having trouble =
-getting the Waveshare 2-CH CAN HAT working with an RPI4. Channel 0 does =
-not come up, channel 1 does, but it will only&nbsp;send one message =
-(eventually reporting "write: No buffer space available=E2=80=9D) and =
-not receive anything.<br class=3D""><br class=3D"">Looking at the =
-mcp2515-can0-overlay.dts and mcp2515-can1-overlay.dts device tree files =
-in =
-/tmp/work-shared/raspberrypi4/kernel-source/arch/arm/boot/dts/overlays/, =
-it looks as if the interrupts are not mapped as required for the =
-board.<br class=3D""><br class=3D""><font face=3D"Courier New" =
-class=3D"">&nbsp; &nbsp; &nbsp; DTS &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp; HAT<br class=3D"">CAN0 &nbsp;brcm,pins =3D &lt;25&gt; =
-&nbsp;PIN23<br class=3D"">CAN1 &nbsp;brcm,pins =3D &lt;25&gt; =
-&nbsp;PIN25<br class=3D""></font><br class=3D"">This doesn=E2=80=99t =
-look right, and seems consistent with the behaviour I am seeing.<br =
-class=3D""><br class=3D"">I would also like to check the device chip =
-select signals, but I can't see how (if) they are mapped in the dts =
-files.<br class=3D""><br class=3D"">How can I override these settings =
-when I build the image?<br class=3D""><div class=3D""><br =
-class=3D"webkit-block-placeholder"></div><div class=3D"">--<br =
-class=3D""><br class=3D"">Chris Tapp<br class=3D""><a =
-href=3D"mailto:opensource@keylevel.com" =
-class=3D"">opensource@keylevel.com</a><br class=3D""><a =
-href=3D"http://www.keylevel.com" class=3D"">www.keylevel.com</a><br =
-class=3D""><br class=3D""></div></div><br =
-class=3D"">-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br =
-class=3D"">Links: You receive all messages sent to this group.<br =
-class=3D"">View/Reply Online (#54927): <a =
-href=3D"https://lists.yoctoproject.org/g/yocto/message/54927" =
-class=3D"">https://lists.yoctoproject.org/g/yocto/message/54927</a><br =
-class=3D"">Mute This Topic: <a =
-href=3D"https://lists.yoctoproject.org/mt/86011706/3617534" =
-class=3D"">https://lists.yoctoproject.org/mt/86011706/3617534</a><br =
-class=3D"">Group Owner: <a =
-href=3D"mailto:yocto+owner@lists.yoctoproject.org" =
-class=3D"">yocto+owner@lists.yoctoproject.org</a><br =
-class=3D"">Unsubscribe: <a =
-href=3D"https://lists.yoctoproject.org/g/yocto/unsub" =
-class=3D"">https://lists.yoctoproject.org/g/yocto/unsub</a> [<a =
-href=3D"mailto:opensource@keylevel.com" =
-class=3D"">opensource@keylevel.com</a>]<br =
-class=3D"">-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br class=3D""><br=
- class=3D""></div></blockquote></div><br class=3D""></div></body></html>=
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Khem Raj &lt;raj.kh=
+em@gmail.com&gt;<br>
+<b>Sent:</b> Saturday, October 2, 2021 11:23:58 PM<br>
+<b>To:</b> Lijun Chen<br>
+<b>Cc:</b> yocto@lists.yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] Shared lib symlinks in target image</font>
+<div>&nbsp;</div>
+</div>
+</div>
+<font size=3D"2"><span style=3D"font-size:10pt;">
+<div class=3D"PlainText">On Sat, Oct 2, 2021 at 6:55 PM Lijun Chen &lt;lijc=
+hen@blackberry.com&gt; wrote:<br>
+&gt;<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt;<br>
+&gt; When I build a yocto image, I added some packages into IMAGE_INSTALL, =
+such as boost, thrift, etc. I notice in the target OS image, the shared lib=
+s don't the symlinks. But in the SDK image, the symlinks are there. For exa=
+mple,<br>
+&gt;<br>
+&gt; lrwxrwxrwx 1 root root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 22 Oct&nbsp=
+; 2 16:41 libboost_filesystem-mt.so -&gt; libboost_filesystem.so<br>
+&gt; lrwxrwxrwx 1 root root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 29 Oct&nbsp=
+; 2 16:41 libboost_filesystem.so -&gt; libboost_filesystem.so.1.75.0<br>
+&gt;<br>
+&gt; Is there a way to add the symlinks to the target image as well?<br>
+&gt;<br>
+&gt;<br>
+&gt; With the symlinks, I assume we can run an old application even the dep=
+endent lib is a newer version?<br>
+&gt;<br>
+<br>
+unversioned symlinks should not be used they are there to be used for<br>
+linking during build time. Unless you need to do builds on targets you<br>
+really do not need them<br>
+so explain you usecase. Are you trying to build stuff on device ?<br>
+<br>
+&gt;<br>
+&gt; Thanks,<br>
+&gt;<br>
+&gt; Lijun<br>
+&gt;<br>
+&gt; ________________________________<br>
+&gt; This transmission (including any attachments) may contain confidential=
+ information, privileged material (including material protected by the soli=
+citor-client or other applicable privileges), or constitute non-public info=
+rmation. Any use of this information
+ by anyone other than the intended recipient is prohibited. If you have rec=
+eived this transmission in error, please immediately reply to the sender an=
+d delete this information from your system. Use, dissemination, distributio=
+n, or reproduction of this transmission
+ by unintended recipients is not authorized and may be unlawful.<br>
+&gt;<br>
+&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+&gt; Links: You receive all messages sent to this group.<br>
+&gt; You automatically follow any topics you start or reply to.<br>
+&gt; View/Reply Online (#54934): <a href=3D"https://urldefense.com/v3/__htt=
+ps://lists.yoctoproject.org/g/yocto/message/54934__;!!COg3wY07Hnb7!44p3yfVE=
+nAD6rM-DM0muASh2wNizlchKqgoweZDAV8wx1sd8uvxVqOEHJORDalv1bA$">
+https://urldefense.com/v3/__https://lists.yoctoproject.org/g/yocto/message/=
+54934__;!!COg3wY07Hnb7!44p3yfVEnAD6rM-DM0muASh2wNizlchKqgoweZDAV8wx1sd8uvxV=
+qOEHJORDalv1bA$</a>
+<br>
+&gt; Mute This Topic: <a href=3D"https://urldefense.com/v3/__https://lists.=
+yoctoproject.org/mt/86035483/1997914__;!!COg3wY07Hnb7!44p3yfVEnAD6rM-DM0muA=
+Sh2wNizlchKqgoweZDAV8wx1sd8uvxVqOEHJOTJ_1cQxQ$">
+https://urldefense.com/v3/__https://lists.yoctoproject.org/mt/86035483/1997=
+914__;!!COg3wY07Hnb7!44p3yfVEnAD6rM-DM0muASh2wNizlchKqgoweZDAV8wx1sd8uvxVqO=
+EHJOTJ_1cQxQ$</a>
+<br>
+&gt; Group Owner: yocto&#43;owner@lists.yoctoproject.org<br>
+&gt; Unsubscribe: <a href=3D"https://urldefense.com/v3/__https://lists.yoct=
+oproject.org/g/yocto/unsub__;!!COg3wY07Hnb7!44p3yfVEnAD6rM-DM0muASh2wNizlch=
+KqgoweZDAV8wx1sd8uvxVqOEHJOQieFL_-A$">
+https://urldefense.com/v3/__https://lists.yoctoproject.org/g/yocto/unsub__;=
+!!COg3wY07Hnb7!44p3yfVEnAD6rM-DM0muASh2wNizlchKqgoweZDAV8wx1sd8uvxVqOEHJOQi=
+eFL_-A$</a>&nbsp; [raj.khem@gmail.com]<br>
+&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+&gt;<br>
+</div>
+</span></font>
 
---Apple-Mail=_0DB4F090-A5AE-48BA-B0BA-C965307BFD7F--
+<HR>This transmission (including any attachments) may contain confidential =
+information, privileged material (including material protected by the solic=
+itor-client or other applicable privileges), or constitute non-public infor=
+mation. Any use of this information by anyone other than the intended recip=
+ient is prohibited. If you have received this transmission in error, please=
+ immediately reply to the sender and delete this information from your syst=
+em. Use, dissemination, distribution, or reproduction of this transmission =
+by unintended recipients is not authorized and may be unlawful.<BR>
+</body>
+</html>
+
+--_000_7508347f66784a1487e4f20bf1ad89f0blackberrycom_--
 
