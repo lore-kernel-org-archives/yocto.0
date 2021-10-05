@@ -1,80 +1,125 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <jpdoyon@newtrax.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4D6B8C433FE
-	for <webhook@archiver.kernel.org>; Tue,  5 Oct 2021 20:24:01 +0000 (UTC)
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com
- [209.85.160.180])
- by mx.groups.io with SMTP id smtpd.web11.2311.1633465440483461266
- for <yocto@lists.yoctoproject.org>;
- Tue, 05 Oct 2021 13:24:00 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=owCx12Yi;
- spf=pass (domain: gmail.com, ip: 209.85.160.180,
- mailfrom: twoerner@gmail.com)
-Received: by mail-qt1-f180.google.com with SMTP id x9so471221qtv.0
-        for <yocto@lists.yoctoproject.org>;
- Tue, 05 Oct 2021 13:24:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=/C/5e1nJV6ZhYMz4Hckz+TXXYYKqg7lkq5tTRCHmVCU=;
-        b=owCx12YiXdKKPxr/nb8alJ3VO+8ttAzZ/7W0IDer8qKZ7raU81gFodI4l4NJtN4eYP
-         LYo5uWJAPLtekJZhuTbslVpJoq4oydSflALmm2Cyd/C47xY1OhBWUAcx+0e+CG3PlJV/
-         kGdgYXHFoz6fKH2i6GasH6f/C/2rWLfyYeaeU8fnbHiT5vPwTxttC1wj4GIYt4Xsi5Kd
-         jbNgsNSu/PQhoqWvkaKjykaRXJJ/yATifV52MjOxZxgsZPKQFI5RHTtfKUe0YvTcWMWb
-         KjeEzkdiEMuoFqkw/Qijgia6DS8RXgZltV494t0Gi0SeUkMhSjtdFzdTMc9lZFIaVRM7
-         g8ag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=/C/5e1nJV6ZhYMz4Hckz+TXXYYKqg7lkq5tTRCHmVCU=;
-        b=CORHARg0ruTDzRzZBPFanXkLM0crh2crGYwilFyDEKvT/jaKKUvnq/aH0RK0QheY6O
-         mJzZEP8ll5+bUdWN2W+3PrMm/I1Yv8hqzZpsrwz06nP8B5EJla8P5bmN4Wv3kgqFkfjh
-         6TbWTIyMQwC79PJjYFV+dTn7sROpK47cCTUTfYrHmhb+DBfM7yOIl7xZbb0Ad8gudOeI
-         DilYWTmw6k8ln/2k9sDZ1jd/dzGxBngIkZMlnMwkCKD547kmCGF6LXiWJGQnk/qQktmR
-         e9NtEalwvKxhEIdXelGtkqcEyPlCtxpsCUtCSNeKoPUV+3E+CQ62dpFCtn29jmKqdIdU
-         9m7g==
-X-Gm-Message-State: AOAM531VjA6QiIcSAs76KN4UeksQ7AEKBmsWCyakzDdW0gvgxSqc9L/W
-	YM/QABgiPGcKeOlhhLNhcaYJ5VnrLLo=
-X-Google-Smtp-Source: 
- ABdhPJwpzUOgBcHd7TfCbci8X2u63uo68sYyPRaycKSJwOsblAtiDDCRNGEqM0msArtybpXeZd7lfg==
-X-Received: by 2002:ac8:4312:: with SMTP id z18mr21682305qtm.20.1633465439168;
-        Tue, 05 Oct 2021 13:23:59 -0700 (PDT)
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id
- f24sm11065153qtq.25.2021.10.05.13.23.58
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Oct 2021 13:23:58 -0700 (PDT)
-Date: Tue, 5 Oct 2021 16:23:56 -0400
-From: Trevor Woerner <twoerner@gmail.com>
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B5076C433F5
+	for <webhook@archiver.kernel.org>; Tue,  5 Oct 2021 20:59:21 +0000 (UTC)
+Subject: Getting absolute paths in yocto generated native binary #bitbake
+ #native #toolchain #sdk
 To: yocto@lists.yoctoproject.org
-Subject: Re: [meta-rockchip][PATCH 3/3] nanopi-m4: add common override
-Message-ID: <20211005202356.GC25572@localhost>
-References: <20210929052938.36819-1-twoerner@gmail.com>
- <20210929052938.36819-3-twoerner@gmail.com>
+From: "Jean-Pierre Doyon" <jpdoyon@newtrax.com>
+X-Originating-Location: Chambly, Quebec, CA (45.45.117.54)
+X-Originating-Platform: Windows Chrome 94
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210929052938.36819-3-twoerner@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Date: Tue, 05 Oct 2021 13:59:21 -0700
+Message-ID: <NG6b.1633467561448539724.rwQW@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="17dbqtuwVejQ8razqN1x"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 05 Oct 2021 20:24:01 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54967
+ <yocto@lists.yoctoproject.org>; Tue, 05 Oct 2021 20:59:21 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54970
 
-On Wed 2021-09-29 @ 01:29:38 AM, Trevor Woerner wrote:
-> Add a common override for both nanopi-m4 MACHINEs.
-> 
-> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
-> ---
->  conf/machine/include/nanopi-m4.inc | 3 +++
->  1 file changed, 3 insertions(+)
+--17dbqtuwVejQ8razqN1x
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Applied to meta-rockchip, master.
+I'm attempting to create a USB first boot tarball for our custom iMX6 board=
+ that would contain the imx-usb-loader executable, config files and u-boot/=
+SPL files. The goal being to deploy that to the production machine to progr=
+am the empty boards right after being assembled.
+
+While I had plenty of hurdles figuring out how to do this (I'm still pretty=
+ newbie with Yocyo), I managed to get everything just the way I wanted it. =
+But when I get the tarball to the production machine, which runs the exact =
+same Ubuntu 18.04 LTS Linux as the build machine, the imx_usb tool won't ru=
+n. The reason being that it's missing some library. Running LDD on the exec=
+utable turns up this:
+
+=E2=94=94=E2=94=80$> ldd usr/bin/imx_usb
+   linux-vdso.so.1 =3D>  (0x00007ffd7031d000)
+   libusb-1.0.so.0 =3D> /lib/x86_64-linux-gnu/libusb-1.0.so.0 (0x00007f986a=
+47e000)
+   libc.so.6 =3D> /lib/x86_64-linux-gnu/libc.so.6 (0x00007f986a0b4000)
+   libudev.so.1 =3D> /lib/x86_64-linux-gnu/libudev.so.1 (0x00007f986a86c000=
+)
+   libpthread.so.0 =3D> /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f9869=
+e97000)
+   /home/jpdoyon/newtrax-layersetup-dunfell/build/tmp/sysroots-uninative/x8=
+6_64-linux/lib/ld-linux-x86-64.so.2 =3D> /lib64/ld-linux-x86-64.so.2 (0x000=
+07f986a696000)
+   librt.so.1 =3D> /lib/x86_64-linux-gnu/librt.so.1 (0x00007f9869c8f000)
+
+Why is the ld-linux-x86-64.so.2 using an absolute path while all the other =
+libraries aren't?
+
+If I install the library in the location above, then the executable starts =
+working... So how do I make sure Yocto doesn't do this?
+
+--17dbqtuwVejQ8razqN1x
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p style=3D"margin-bottom: var(--s-prose-spacing); padding: 0px; border: 0p=
+x; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-st=
+retch: inherit; line-height: inherit; font-family: -apple-system, BlinkMacS=
+ystemFont, 'Segoe UI', 'Liberation Sans', sans-serif; font-size: 15px; vert=
+ical-align: baseline; box-sizing: inherit; clear: both; color: #232629;">I'=
+m attempting to create a USB first boot tarball for our custom iMX6 board t=
+hat would contain the imx-usb-loader executable, config files and u-boot/SP=
+L files. The goal being to deploy that to the production machine to program=
+ the empty boards right after being assembled.</p>
+<p style=3D"margin-bottom: var(--s-prose-spacing); padding: 0px; border: 0p=
+x; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-st=
+retch: inherit; line-height: inherit; font-family: -apple-system, BlinkMacS=
+ystemFont, 'Segoe UI', 'Liberation Sans', sans-serif; font-size: 15px; vert=
+ical-align: baseline; box-sizing: inherit; clear: both; color: #232629;">Wh=
+ile I had plenty of hurdles figuring out how to do this (I'm still pretty n=
+ewbie with Yocyo), I managed to get everything just the way I wanted it. Bu=
+t when I get the tarball to the production machine, which runs the exact sa=
+me Ubuntu 18.04 LTS Linux as the build machine, the imx_usb tool won't run.=
+ The reason being that it's missing some library. Running LDD on the execut=
+able turns up this:</p>
+<pre style=3D"margin-bottom: calc(var(--s-prose-spacing) + 0.4em); padding:=
+ 12px; font-variant-numeric: inherit; font-variant-east-asian: inherit; fon=
+t-stretch: inherit; line-height: 1.30769; font-family: var(--ff-mono); vert=
+ical-align: baseline; box-sizing: inherit; width: auto; max-height: 600px; =
+background-color: var(--highlight-bg); border-radius: 5px; overflow-wrap: n=
+ormal; color: var(--highlight-color); border: 0px initial initial;"><code s=
+tyle=3D"margin: 0px; border: 0px; font-style: inherit; font-variant: inheri=
+t; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-=
+family: var(--ff-mono); font-size: 13px; vertical-align: baseline; box-sizi=
+ng: inherit; white-space: inherit;">=E2=94=94=E2=94=80$&gt; ldd usr/bin/imx=
+_usb
+    linux-vdso.so.1 =3D&gt;  (0x00007ffd7031d000)
+    libusb-1.0.so.0 =3D&gt; /lib/x86_64-linux-gnu/libusb-1.0.so.0 (0x00007f=
+986a47e000)
+    libc.so.6 =3D&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007f986a0b4000)
+    libudev.so.1 =3D&gt; /lib/x86_64-linux-gnu/libudev.so.1 (0x00007f986a86=
+c000)
+    libpthread.so.0 =3D&gt; /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f=
+9869e97000)
+    /home/jpdoyon/newtrax-layersetup-dunfell/build/tmp/sysroots-uninative/x=
+86_64-linux/lib/ld-linux-x86-64.so.2 =3D&gt; /lib64/ld-linux-x86-64.so.2 (0=
+x00007f986a696000)
+    librt.so.1 =3D&gt; /lib/x86_64-linux-gnu/librt.so.1 (0x00007f9869c8f000=
+)
+</code></pre>
+<p style=3D"margin-bottom: var(--s-prose-spacing); padding: 0px; border: 0p=
+x; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-st=
+retch: inherit; line-height: inherit; font-family: -apple-system, BlinkMacS=
+ystemFont, 'Segoe UI', 'Liberation Sans', sans-serif; font-size: 15px; vert=
+ical-align: baseline; box-sizing: inherit; clear: both; color: #232629;">Wh=
+y is the ld-linux-x86-64.so.2 using an absolute path while all the other li=
+braries aren't?</p>
+<p style=3D"margin-bottom: 0px; padding: 0px; border: 0px; font-variant-num=
+eric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; lin=
+e-height: inherit; font-family: -apple-system, BlinkMacSystemFont, 'Segoe U=
+I', 'Liberation Sans', sans-serif; font-size: 15px; vertical-align: baselin=
+e; box-sizing: inherit; clear: both; color: #232629;">If I install the libr=
+ary in the location above, then the executable starts working... So how do =
+I make sure Yocto doesn't do this?</p>
+
+--17dbqtuwVejQ8razqN1x--
 
