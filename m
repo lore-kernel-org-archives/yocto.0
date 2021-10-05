@@ -1,239 +1,163 @@
-Return-Path: <gwilson@sakuraus.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1A5AEC433EF
-	for <webhook@archiver.kernel.org>; Tue,  5 Oct 2021 15:53:51 +0000 (UTC)
-Received: from outbound-ip2b.ess.barracuda.com
- (outbound-ip2b.ess.barracuda.com [209.222.82.184])
- by mx.groups.io with SMTP id smtpd.web08.2697.1633449229715565978
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C7329C433F5
+	for <webhook@archiver.kernel.org>; Tue,  5 Oct 2021 16:32:16 +0000 (UTC)
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com
+ [209.85.160.171])
+ by mx.groups.io with SMTP id smtpd.web08.3296.1633451536055271831
  for <yocto@lists.yoctoproject.org>;
- Tue, 05 Oct 2021 08:53:50 -0700
+ Tue, 05 Oct 2021 09:32:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=pass (domain: sakuraus.com, ip: 209.222.82.184, mailfrom: gwilson@sakuraus.com)
-Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
- mx-outbound22-141.us-east-2b.ess.aws.cudaops.com (version=TLSv1.2
- cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
- Tue, 05 Oct 2021 15:53:47 +0000
-Received: from SFAMAIL.SAKURAUS.LOCAL (172.23.0.14) by SFAMAIL.SAKURAUS.LOCAL
- (172.23.0.14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_DHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2242.12; Tue, 5 Oct 2021
- 08:53:46 -0700
-Received: from SFAMAIL.SAKURAUS.LOCAL ([fe80::212b:8377:8efd:15dd]) by
- SFAMAIL.SAKURAUS.LOCAL ([fe80::212b:8377:8efd:15dd%13]) with mapi id
- 15.01.2242.012; Tue, 5 Oct 2021 08:53:46 -0700
-From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-To: Khem Raj <raj.khem@gmail.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: RE: [yocto] virtual/egl on Raspberry Pi 4
-Thread-Topic: [yocto] virtual/egl on Raspberry Pi 4
-Thread-Index: Ade5V3yaHATh5XXBTUa/y6q/HGx7UAASGNoAAAriOaD//9qVgP//bzLA
-Date: Tue, 5 Oct 2021 15:53:46 +0000
-Message-ID: <05663a522f6a4b44b12746c31d96ca0f@sakuraus.com>
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=qlqQfgsH;
+ spf=pass (domain: gmail.com, ip: 209.85.160.171,
+ mailfrom: raj.khem@gmail.com)
+Received: by mail-qt1-f171.google.com with SMTP id r16so19655673qtw.11
+        for <yocto@lists.yoctoproject.org>;
+ Tue, 05 Oct 2021 09:32:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=ukWQnQHJLqnYBZCuiOI1InZluQ0RuzHsNiPA7sYzKiA=;
+        b=qlqQfgsH87tJ/4ePD9Qx+CMcFsibt9ZkZoF1aROJuQ/riKRc5aZ8Mu4gqRApYhbPXv
+         QjlQgqoqP6gTKHjWlDpYzGl/MFumCPEmdZAgwZVxwNQglL5YUI+t1lOLgdJxeTsx/IMz
+         qalxehhl57H+NsLnsXsjyKHCzcOSfie5s+pUtYRWx3ri75tJ9mPKxywsMSRdlPnsOXil
+         8L+OevO4BbmSe+ie8ipr1vgPhOovwLBJKQNvpFETrF+KBo6Lh337PsVdBlfJid3tfMzH
+         ThGK3pqpe/JhBzNnKWV/Qu7RRXvppUyhUprtqXqtwde+zKEZZUgnmyRvWRIkIxnXs2ay
+         wAQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=ukWQnQHJLqnYBZCuiOI1InZluQ0RuzHsNiPA7sYzKiA=;
+        b=D8s3eMxjQYWmMELoMUjj9Jc69TBCFOgrU0KtCYTfEuL0wZoBwCj5b88Xr2+Wz9HjhX
+         yL3zm0gOkRL5H/+8T2wG/vYdj4OUAUpGzY6B3WxD1jOmJw7DjYfyMr8IS7KPrHaVDkbj
+         2Oq7oagr/V/sd3QLlEOmdXc/q+rP5ZOJuMS5BXDjR3W+03n8RW4yuOVA0/n6sbZu3C3o
+         jlUjZfskVjMRZU0+jihTFdoXdWkdwaG3F6dPNfx5KBxdS6PT9ZUvOfVlyhBKrzy8DqJD
+         UUfMu2cy2gAzVVIHkBZ9hKpEOgQpxVz3puiLQWulDl0SW+Wiuy1wMxPzbTpUAts5DtgN
+         5Swg==
+X-Gm-Message-State: AOAM531mjISf0/KHBo8InJZyAfUGyH6bqtAMJhazJVg2vTT91Chfr3zm
+	rVEgl+JOV+idNncUxhbNEjwCtpOeGkM6HsP4RkY=
+X-Google-Smtp-Source: 
+ ABdhPJzVGzlPXuYLGOxdHH0hLLND5YTOBwgux415cxBLxaqs29c8GppYd1rAaLh7Ru9xordod4Uig9GHFH6Z6BsEaqg=
+X-Received: by 2002:ac8:435e:: with SMTP id
+ a30mr21144678qtn.227.1633451535082;
+ Tue, 05 Oct 2021 09:32:15 -0700 (PDT)
+MIME-Version: 1.0
 References: <0c6e789aba8141509bb31779a8393cbf@sakuraus.com>
  <0a038b52-6f11-662a-8d77-786919852079@gmail.com>
  <aa11888f9dc34eed9383c55ceae3eb9f@sakuraus.com>
  <CAMKF1srthNYZQq_N8p5s_z2KYyWhQ-xb8T5X=+JYri7G2iobmg@mail.gmail.com>
-In-Reply-To: 
- <CAMKF1srthNYZQq_N8p5s_z2KYyWhQ-xb8T5X=+JYri7G2iobmg@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.30.2.131]
-Content-Type: multipart/alternative;
-	boundary="_000_05663a522f6a4b44b12746c31d96ca0fsakurauscom_"
-MIME-Version: 1.0
-X-BESS-ID: 1633449227-105773-27578-3133-1
-X-BESS-VER: 2019.1_20211004.2220
-X-BESS-Apparent-Source-IP: 12.26.104.5
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2,
- rules version 3.2.2.234945 [from
-	cloudscan20-199.us-east-2b.ess.aws.cudaops.com]
-	Rule breakdown below
-	 pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 HTML_MESSAGE           BODY: HTML included in message
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
- KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
+ <05663a522f6a4b44b12746c31d96ca0f@sakuraus.com>
+In-Reply-To: <05663a522f6a4b44b12746c31d96ca0f@sakuraus.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 5 Oct 2021 09:31:49 -0700
+Message-ID: 
+ <CAMKF1sqR2qztzv+4HeuqhbzY57WYMh4wU57b2LJ=OTv-9ooJhA@mail.gmail.com>
+Subject: Re: [yocto] virtual/egl on Raspberry Pi 4
+To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 05 Oct 2021 15:53:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54960
+ <yocto@lists.yoctoproject.org>; Tue, 05 Oct 2021 16:32:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54961
 
---_000_05663a522f6a4b44b12746c31d96ca0fsakurauscom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+that should have worked well for userland recipe to provide it. Maybe
+you need to set
 
-SSBhbSBjb21waWxpbmcgaW4gMzIgYml0IG1vZGUuDQoNCkZyb206IEtoZW0gUmFqIDxyYWoua2hl
-bUBnbWFpbC5jb20+DQpTZW50OiBNb25kYXksIE9jdG9iZXIgNCwgMjAyMSA1OjE1IFBNDQpUbzog
-R3JlZyBXaWxzb24tTGluZGJlcmcgPEdXaWxzb25Ac2FrdXJhdXMuY29tPg0KQ2M6IHlvY3RvQGxp
-c3RzLnlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIHZpcnR1YWwvZWdsIG9u
-IFJhc3BiZXJyeSBQaSA0DQoNCkl0IHNob3VsZCBoYXZlIGF1dG9tYXRpY2FsbHkgZm91bmQgdXNl
-ciBsYW5kIHBhY2thZ2UgYXMgb25lIG9mIHByb3ZpZGVycyBidXQgaWYgaXQgaXMgbm90IGRvaW5n
-IHNvIHRoYXQgbWVhbnMgaXTigJlzIGJlaW5nIGlnbm9yZWQgYmVjYXVzZSBpdOKAmXMgbm90IGNv
-bXBhdGlibGUgYXJjaCBvciBzb21ldGhpbmcNCkFyZSB5b3UgY29tcGlsaW5nIDMyYml0IG1vZGUg
-Pw0KDQoNCk9uIE1vbiwgT2N0IDQsIDIwMjEgYXQgNDowOCBQTSBHcmVnIFdpbHNvbi1MaW5kYmVy
-ZyA8R1dpbHNvbkBzYWt1cmF1cy5jb208bWFpbHRvOkdXaWxzb25Ac2FrdXJhdXMuY29tPj4gd3Jv
-dGU6DQpIaSBLaGVtLA0KWWVzLCB0aGUgUmFzcGJlcnJ5IFBpIGJvYXJkcyBkbyB1c2UgY2xvc2Vk
-IHNvdXJjZSBkcml2ZXJzLiBXaGF0IEkgbmVlZCBpcyBob3cgZG8gSSBpbmNsdWRlIHRoZSBwcm9w
-ZXIgcGFja2FnZSB0aGF0IHdpbGwgYnJpbmcgaW4gdGhlIG5lY2Vzc2FyeSB2aXJ0dWFsL2VnbCBm
-b3IgdGhlIFJhc3BiZXJyeSBQaSA0Lg0KDQpHcmVnDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0t
-LS0tDQo+IEZyb206IEtoZW0gUmFqIDxyYWoua2hlbUBnbWFpbC5jb208bWFpbHRvOnJhai5raGVt
-QGdtYWlsLmNvbT4+DQo+IFNlbnQ6IE1vbmRheSwgT2N0b2JlciA0LCAyMDIxIDE0OjE3DQo+IFRv
-OiBHcmVnIFdpbHNvbi1MaW5kYmVyZyA8R1dpbHNvbkBzYWt1cmF1cy5jb208bWFpbHRvOkdXaWxz
-b25Ac2FrdXJhdXMuY29tPj47DQo+IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8bWFpbHRv
-OnlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+DQo+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIHZp
-cnR1YWwvZWdsIG9uIFJhc3BiZXJyeSBQaSA0DQo+DQo+DQo+DQo+IE9uIDEwLzQvMjEgMTI6Mzkg
-UE0sIEdyZWcgV2lsc29uLUxpbmRiZXJnIHdyb3RlOg0KPiA+IEhlbGxvIGxpc3QsDQo+ID4NCj4g
-PiBJJ20gd29ya2luZyBvbiBhIFF0IHN1cHBsaWVkIGJvb3QycXQgWW9jdG8gYnVpbGQgY3VycmVu
-dGx5IGJhc2VkIG9uDQo+ID4gWmV1cyB0aGF0IGlzIHJ1bm5pbmcgb24gYSBSYXNwYmVycnkgUGkg
-NC4gSSByZWNlbnRseSB1cGRhdGVkIHRoZSBxdA0KPiA+IHZlcnNpb24gdG8gNS4xNS42IGFuZCBR
-dCBjaGFuZ2VkIHNvbWV0aGluZyBpbiB0aGUgWW9jdG8gY29uZmlndXJhdGlvbg0KPiA+IHRoYXQg
-dGhleSBhcmUgdXNpbmcgYW5kIG5vdyBvbmUgb2YgdGhlIHJlY2lwZXMgdGhhdCB3ZSB1c2UgaXMg
-ZmFpbGluZw0KPiA+IHNheWluZyB0aGF0IGluIG5lZWRzICd2aXJ0dWFsL2VnbCcgYnV0IHRoYXQg
-aXQgaXMgbm90IHByb3ZpZGVkIGJ5IGFueSByZWNpcGUuDQo+ID4NCj4gPiBJbiB0aGUgc2VhcmNo
-aW5nIHRoYXQgSSBoYXZlIGRvbmUgSSBoYXZlIGZvdW5kIHRoYXQgdGhlIHJhc3BiZXJyeSBwaSA0
-DQo+ID4gaXMgcGFydGljdWxhciBvbiB3aGljaCBwYWNrYWdlIHN1cHBsaWVzIHRoZSB2aXJ0dWFs
-L2VnbCBidXQgSSBoYXZlbid0DQo+ID4gc2VlbiBhbnl0aGluZyB0aGF0IGluZGljYXRlcyB3aGF0
-IEkgc2hvdWxkIGRvIHRvIHJlLWVuYWJsZSBpdC4NCj4gPg0KPiA+IENhbiBhbnlvbmUgdGVsbCBt
-ZSB3aGF0IEkgbmVlZCB0byBkbyB0byBlbmFibGUgdGhlIGNvcnJlY3QgZHJpdmVyIHRvDQo+ID4g
-Z2V0IHZpcnR1YWwvZWdsIHByb3ZpZGVkIG9uIHRoZSBSYXNwYmVycnkgUGkgND8gT3IgbWF5YmUg
-ZXZlbiBiZXR0ZXIsDQo+ID4gaG93IEkgY291bGQgc2VhcmNoIHRocm91Z2ggdGhlIHBhY2thZ2Vz
-IHRoYXQgYXJlIGVuYWJsZWQgb24gdGhlIG9sZA0KPiA+IGFuZCBuZXcgWW9jdG8gdHJlZXMgc28g
-dGhhdCBJIGNhbiBmaWd1cmUgb3V0IHdoYXQgY2hhbmdlZCBiZXR3ZWVuIHRoZQ0KPiA+IHJlbGVh
-c2VzIGFuZCByZS1lbmFibGUgdGhlIHZpcnR1YWwvZWdsLg0KPiA+DQo+DQo+IGl0IHNob3VsZCBi
-ZSBwcm92aWRlZCBieSB1c2VybGFuZCBwYWNrYWdlIGlmIHlvdSBhcmUgdXNpbmcgY2xvc2VkIHNv
-dXJjZQ0KPiBncmFwaGljcyBkcml2ZXIuDQo+DQo+ID4gQmVzdCBSZWdhcmRzLA0KPiA+DQo+ID4g
-R3JlZyBXaWxzb24tTGluZGJlcmcNCj4gPg0KPiA+DQo+ID4NCj4gPiAtPS09LT0tPS09LT0tPS09
-LT0tPS09LQ0KPiA+IExpbmtzOiBZb3UgcmVjZWl2ZSBhbGwgbWVzc2FnZXMgc2VudCB0byB0aGlz
-IGdyb3VwLg0KPiA+IFlvdSBhdXRvbWF0aWNhbGx5IGZvbGxvdyBhbnkgdG9waWNzIHlvdSBzdGFy
-dCBvciByZXBseSB0by4NCj4gPiBWaWV3L1JlcGx5IE9ubGluZSAoIzU0OTQzKToNCj4gPiBodHRw
-czovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvZy95b2N0by9tZXNzYWdlLzU0OTQzDQo+ID4gTXV0
-ZSBUaGlzIFRvcGljOiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbXQvODYwNzY2MTEv
-MTk5NzkxNA0KPiA+IEdyb3VwIE93bmVyOiB5b2N0bytvd25lckBsaXN0cy55b2N0b3Byb2plY3Qu
-b3JnPG1haWx0bzp5b2N0byUyQm93bmVyQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+DQo+ID4gVW5z
-dWJzY3JpYmU6IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9nL3lvY3RvL3Vuc3ViDQo+
-ID4gW3Jhai5raGVtQGdtYWlsLmNvbTxtYWlsdG86cmFqLmtoZW1AZ21haWwuY29tPl0NCj4gPiAt
-PS09LT0tPS09LT0tPS09LT0tPS09LQ0KPiA+DQo=
+VC4GRAPHICS =3D ""
 
---_000_05663a522f6a4b44b12746c31d96ca0fsakurauscom_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+in local.conf
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQt
-ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsN
-Cgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9u
-OnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25h
-bC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5k
-b3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0K
-CWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0K
-CXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0K
-ZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1b
-aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1h
-eD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0K
-PG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9
-IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9k
-eSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSIgc3R5bGU9IndvcmQtd3Jh
-cDpicmVhay13b3JkIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj5JIGFtIGNvbXBpbGluZyBpbiAzMiBiaXQgbW9kZS48bzpwPjwvbzpwPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdiBzdHlsZT0iYm9y
-ZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBpbiAwaW4gMGlu
-IDQuMHB0Ij4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlk
-ICNFMUUxRTEgMS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48Yj5Gcm9tOjwvYj4gS2hlbSBSYWogJmx0O3Jhai5raGVtQGdtYWlsLmNvbSZndDsg
-PGJyPg0KPGI+U2VudDo8L2I+IE1vbmRheSwgT2N0b2JlciA0LCAyMDIxIDU6MTUgUE08YnI+DQo8
-Yj5Ubzo8L2I+IEdyZWcgV2lsc29uLUxpbmRiZXJnICZsdDtHV2lsc29uQHNha3VyYXVzLmNvbSZn
-dDs8YnI+DQo8Yj5DYzo8L2I+IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5T
-dWJqZWN0OjwvYj4gUmU6IFt5b2N0b10gdmlydHVhbC9lZ2wgb24gUmFzcGJlcnJ5IFBpIDQ8bzpw
-PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZu
-YnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JdCBzaG91bGQgaGF2
-ZSBhdXRvbWF0aWNhbGx5IGZvdW5kIHVzZXIgbGFuZCBwYWNrYWdlIGFzIG9uZSBvZiBwcm92aWRl
-cnMgYnV0IGlmIGl0IGlzIG5vdCBkb2luZyBzbyB0aGF0IG1lYW5zIGl04oCZcyBiZWluZyBpZ25v
-cmVkIGJlY2F1c2UgaXTigJlzIG5vdCBjb21wYXRpYmxlIGFyY2ggb3Igc29tZXRoaW5nJm5ic3A7
-PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5BcmUg
-eW91IGNvbXBpbGluZyAzMmJpdCBtb2RlID8mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0K
-PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+
-DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2
-Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIE1vbiwgT2N0IDQsIDIwMjEgYXQgNDow
-OCBQTSBHcmVnIFdpbHNvbi1MaW5kYmVyZyAmbHQ7PGEgaHJlZj0ibWFpbHRvOkdXaWxzb25Ac2Fr
-dXJhdXMuY29tIj5HV2lsc29uQHNha3VyYXVzLmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+
-PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6
-c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDYuMHB0O21hcmdpbi1sZWZ0
-OjQuOHB0O21hcmdpbi1yaWdodDowaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SGkgS2hlbSw8
-YnI+DQpZZXMsIHRoZSBSYXNwYmVycnkgUGkgYm9hcmRzIGRvIHVzZSBjbG9zZWQgc291cmNlIGRy
-aXZlcnMuIFdoYXQgSSBuZWVkIGlzIGhvdyBkbyBJIGluY2x1ZGUgdGhlIHByb3BlciBwYWNrYWdl
-IHRoYXQgd2lsbCBicmluZyBpbiB0aGUgbmVjZXNzYXJ5IHZpcnR1YWwvZWdsIGZvciB0aGUgUmFz
-cGJlcnJ5IFBpIDQuPGJyPg0KPGJyPg0KR3JlZzxicj4NCiZndDsgLS0tLS1PcmlnaW5hbCBNZXNz
-YWdlLS0tLS08YnI+DQomZ3Q7IEZyb206IEtoZW0gUmFqICZsdDs8YSBocmVmPSJtYWlsdG86cmFq
-LmtoZW1AZ21haWwuY29tIiB0YXJnZXQ9Il9ibGFuayI+cmFqLmtoZW1AZ21haWwuY29tPC9hPiZn
-dDs8YnI+DQomZ3Q7IFNlbnQ6IE1vbmRheSwgT2N0b2JlciA0LCAyMDIxIDE0OjE3PGJyPg0KJmd0
-OyBUbzogR3JlZyBXaWxzb24tTGluZGJlcmcgJmx0OzxhIGhyZWY9Im1haWx0bzpHV2lsc29uQHNh
-a3VyYXVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPkdXaWxzb25Ac2FrdXJhdXMuY29tPC9hPiZndDs7
-PGJyPg0KJmd0OyA8YSBocmVmPSJtYWlsdG86eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyIg
-dGFyZ2V0PSJfYmxhbmsiPnlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8L2E+PGJyPg0KJmd0
-OyBTdWJqZWN0OiBSZTogW3lvY3RvXSB2aXJ0dWFsL2VnbCBvbiBSYXNwYmVycnkgUGkgNDxicj4N
-CiZndDsgPGJyPg0KJmd0OyA8YnI+DQomZ3Q7IDxicj4NCiZndDsgT24gMTAvNC8yMSAxMjozOSBQ
-TSwgR3JlZyBXaWxzb24tTGluZGJlcmcgd3JvdGU6PGJyPg0KJmd0OyAmZ3Q7IEhlbGxvIGxpc3Qs
-PGJyPg0KJmd0OyAmZ3Q7PGJyPg0KJmd0OyAmZ3Q7IEknbSB3b3JraW5nIG9uIGEgUXQgc3VwcGxp
-ZWQgYm9vdDJxdCBZb2N0byBidWlsZCBjdXJyZW50bHkgYmFzZWQgb248YnI+DQomZ3Q7ICZndDsg
-WmV1cyB0aGF0IGlzIHJ1bm5pbmcgb24gYSBSYXNwYmVycnkgUGkgNC4gSSByZWNlbnRseSB1cGRh
-dGVkIHRoZSBxdDxicj4NCiZndDsgJmd0OyB2ZXJzaW9uIHRvIDUuMTUuNiBhbmQgUXQgY2hhbmdl
-ZCBzb21ldGhpbmcgaW4gdGhlIFlvY3RvIGNvbmZpZ3VyYXRpb248YnI+DQomZ3Q7ICZndDsgdGhh
-dCB0aGV5IGFyZSB1c2luZyBhbmQgbm93IG9uZSBvZiB0aGUgcmVjaXBlcyB0aGF0IHdlIHVzZSBp
-cyBmYWlsaW5nPGJyPg0KJmd0OyAmZ3Q7IHNheWluZyB0aGF0IGluIG5lZWRzICd2aXJ0dWFsL2Vn
-bCcgYnV0IHRoYXQgaXQgaXMgbm90IHByb3ZpZGVkIGJ5IGFueSByZWNpcGUuPGJyPg0KJmd0OyAm
-Z3Q7PGJyPg0KJmd0OyAmZ3Q7IEluIHRoZSBzZWFyY2hpbmcgdGhhdCBJIGhhdmUgZG9uZSBJIGhh
-dmUgZm91bmQgdGhhdCB0aGUgcmFzcGJlcnJ5IHBpIDQ8YnI+DQomZ3Q7ICZndDsgaXMgcGFydGlj
-dWxhciBvbiB3aGljaCBwYWNrYWdlIHN1cHBsaWVzIHRoZSB2aXJ0dWFsL2VnbCBidXQgSSBoYXZl
-bid0PGJyPg0KJmd0OyAmZ3Q7IHNlZW4gYW55dGhpbmcgdGhhdCBpbmRpY2F0ZXMgd2hhdCBJIHNo
-b3VsZCBkbyB0byByZS1lbmFibGUgaXQuPGJyPg0KJmd0OyAmZ3Q7PGJyPg0KJmd0OyAmZ3Q7IENh
-biBhbnlvbmUgdGVsbCBtZSB3aGF0IEkgbmVlZCB0byBkbyB0byBlbmFibGUgdGhlIGNvcnJlY3Qg
-ZHJpdmVyIHRvPGJyPg0KJmd0OyAmZ3Q7IGdldCB2aXJ0dWFsL2VnbCBwcm92aWRlZCBvbiB0aGUg
-UmFzcGJlcnJ5IFBpIDQ/IE9yIG1heWJlIGV2ZW4gYmV0dGVyLDxicj4NCiZndDsgJmd0OyBob3cg
-SSBjb3VsZCBzZWFyY2ggdGhyb3VnaCB0aGUgcGFja2FnZXMgdGhhdCBhcmUgZW5hYmxlZCBvbiB0
-aGUgb2xkPGJyPg0KJmd0OyAmZ3Q7IGFuZCBuZXcgWW9jdG8gdHJlZXMgc28gdGhhdCBJIGNhbiBm
-aWd1cmUgb3V0IHdoYXQgY2hhbmdlZCBiZXR3ZWVuIHRoZTxicj4NCiZndDsgJmd0OyByZWxlYXNl
-cyBhbmQgcmUtZW5hYmxlIHRoZSB2aXJ0dWFsL2VnbC48YnI+DQomZ3Q7ICZndDs8YnI+DQomZ3Q7
-IDxicj4NCiZndDsgaXQgc2hvdWxkIGJlIHByb3ZpZGVkIGJ5IHVzZXJsYW5kIHBhY2thZ2UgaWYg
-eW91IGFyZSB1c2luZyBjbG9zZWQgc291cmNlPGJyPg0KJmd0OyBncmFwaGljcyBkcml2ZXIuPGJy
-Pg0KJmd0OyA8YnI+DQomZ3Q7ICZndDsgQmVzdCBSZWdhcmRzLDxicj4NCiZndDsgJmd0Ozxicj4N
-CiZndDsgJmd0OyBHcmVnIFdpbHNvbi1MaW5kYmVyZzxicj4NCiZndDsgJmd0Ozxicj4NCiZndDsg
-Jmd0Ozxicj4NCiZndDsgJmd0Ozxicj4NCiZndDsgJmd0OyAtPS09LT0tPS09LT0tPS09LT0tPS09
-LTxicj4NCiZndDsgJmd0OyBMaW5rczogWW91IHJlY2VpdmUgYWxsIG1lc3NhZ2VzIHNlbnQgdG8g
-dGhpcyBncm91cC48YnI+DQomZ3Q7ICZndDsgWW91IGF1dG9tYXRpY2FsbHkgZm9sbG93IGFueSB0
-b3BpY3MgeW91IHN0YXJ0IG9yIHJlcGx5IHRvLjxicj4NCiZndDsgJmd0OyBWaWV3L1JlcGx5IE9u
-bGluZSAoIzU0OTQzKTo8YnI+DQomZ3Q7ICZndDsgPGEgaHJlZj0iaHR0cHM6Ly9saXN0cy55b2N0
-b3Byb2plY3Qub3JnL2cveW9jdG8vbWVzc2FnZS81NDk0MyIgdGFyZ2V0PSJfYmxhbmsiPg0KaHR0
-cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2cveW9jdG8vbWVzc2FnZS81NDk0MzwvYT48YnI+
-DQomZ3Q7ICZndDsgTXV0ZSBUaGlzIFRvcGljOiA8YSBocmVmPSJodHRwczovL2xpc3RzLnlvY3Rv
-cHJvamVjdC5vcmcvbXQvODYwNzY2MTEvMTk5NzkxNCIgdGFyZ2V0PSJfYmxhbmsiPg0KaHR0cHM6
-Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL210Lzg2MDc2NjExLzE5OTc5MTQ8L2E+PGJyPg0KJmd0
-OyAmZ3Q7IEdyb3VwIE93bmVyOiA8YSBocmVmPSJtYWlsdG86eW9jdG8lMkJvd25lckBsaXN0cy55
-b2N0b3Byb2plY3Qub3JnIiB0YXJnZXQ9Il9ibGFuayI+DQp5b2N0byYjNDM7b3duZXJAbGlzdHMu
-eW9jdG9wcm9qZWN0Lm9yZzwvYT48YnI+DQomZ3Q7ICZndDsgVW5zdWJzY3JpYmU6IDxhIGhyZWY9
-Imh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9nL3lvY3RvL3Vuc3ViIiB0YXJnZXQ9Il9i
-bGFuayI+DQpodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvZy95b2N0by91bnN1YjwvYT48
-YnI+DQomZ3Q7ICZndDsgWzxhIGhyZWY9Im1haWx0bzpyYWoua2hlbUBnbWFpbC5jb20iIHRhcmdl
-dD0iX2JsYW5rIj5yYWoua2hlbUBnbWFpbC5jb208L2E+XTxicj4NCiZndDsgJmd0OyAtPS09LT0t
-PS09LT0tPS09LT0tPS09LTxicj4NCiZndDsgJmd0OzxvOnA+PC9vOnA+PC9wPg0KPC9ibG9ja3F1
-b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
-
---_000_05663a522f6a4b44b12746c31d96ca0fsakurauscom_--
+On Tue, Oct 5, 2021 at 8:53 AM Greg Wilson-Lindberg
+<GWilson@sakuraus.com> wrote:
+>
+> I am compiling in 32 bit mode.
+>
+>
+>
+> From: Khem Raj <raj.khem@gmail.com>
+> Sent: Monday, October 4, 2021 5:15 PM
+> To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+> Cc: yocto@lists.yoctoproject.org
+> Subject: Re: [yocto] virtual/egl on Raspberry Pi 4
+>
+>
+>
+> It should have automatically found user land package as one of providers =
+but if it is not doing so that means it=E2=80=99s being ignored because it=
+=E2=80=99s not compatible arch or something
+>
+> Are you compiling 32bit mode ?
+>
+>
+>
+>
+>
+> On Mon, Oct 4, 2021 at 4:08 PM Greg Wilson-Lindberg <GWilson@sakuraus.com=
+> wrote:
+>
+> Hi Khem,
+> Yes, the Raspberry Pi boards do use closed source drivers. What I need is=
+ how do I include the proper package that will bring in the necessary virtu=
+al/egl for the Raspberry Pi 4.
+>
+> Greg
+> > -----Original Message-----
+> > From: Khem Raj <raj.khem@gmail.com>
+> > Sent: Monday, October 4, 2021 14:17
+> > To: Greg Wilson-Lindberg <GWilson@sakuraus.com>;
+> > yocto@lists.yoctoproject.org
+> > Subject: Re: [yocto] virtual/egl on Raspberry Pi 4
+> >
+> >
+> >
+> > On 10/4/21 12:39 PM, Greg Wilson-Lindberg wrote:
+> > > Hello list,
+> > >
+> > > I'm working on a Qt supplied boot2qt Yocto build currently based on
+> > > Zeus that is running on a Raspberry Pi 4. I recently updated the qt
+> > > version to 5.15.6 and Qt changed something in the Yocto configuration
+> > > that they are using and now one of the recipes that we use is failing
+> > > saying that in needs 'virtual/egl' but that it is not provided by any=
+ recipe.
+> > >
+> > > In the searching that I have done I have found that the raspberry pi =
+4
+> > > is particular on which package supplies the virtual/egl but I haven't
+> > > seen anything that indicates what I should do to re-enable it.
+> > >
+> > > Can anyone tell me what I need to do to enable the correct driver to
+> > > get virtual/egl provided on the Raspberry Pi 4? Or maybe even better,
+> > > how I could search through the packages that are enabled on the old
+> > > and new Yocto trees so that I can figure out what changed between the
+> > > releases and re-enable the virtual/egl.
+> > >
+> >
+> > it should be provided by userland package if you are using closed sourc=
+e
+> > graphics driver.
+> >
+> > > Best Regards,
+> > >
+> > > Greg Wilson-Lindberg
+> > >
+> > >
+> > >
+> > > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> > > Links: You receive all messages sent to this group.
+> > > You automatically follow any topics you start or reply to.
+> > > View/Reply Online (#54943):
+> > > https://lists.yoctoproject.org/g/yocto/message/54943
+> > > Mute This Topic: https://lists.yoctoproject.org/mt/86076611/1997914
+> > > Group Owner: yocto+owner@lists.yoctoproject.org
+> > > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub
+> > > [raj.khem@gmail.com]
+> > > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> > >
 
