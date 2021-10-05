@@ -1,233 +1,292 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CA9C9C433EF
-	for <webhook@archiver.kernel.org>; Tue,  5 Oct 2021 00:15:09 +0000 (UTC)
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com
- [209.85.219.54])
- by mx.groups.io with SMTP id smtpd.web11.18796.1633392908981709773
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3C1BDC433F5
+	for <webhook@archiver.kernel.org>; Tue,  5 Oct 2021 00:23:25 +0000 (UTC)
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com
+ [209.85.215.170])
+ by mx.groups.io with SMTP id smtpd.web10.18949.1633393403327411298
  for <yocto@lists.yoctoproject.org>;
- Mon, 04 Oct 2021 17:15:09 -0700
+ Mon, 04 Oct 2021 17:23:23 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=G2r8g5Zl;
- spf=pass (domain: gmail.com, ip: 209.85.219.54, mailfrom: raj.khem@gmail.com)
-Received: by mail-qv1-f54.google.com with SMTP id z15so1144339qvj.7
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=VrnGn4nJ;
+ spf=pass (domain: gmail.com, ip: 209.85.215.170,
+ mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pg1-f170.google.com with SMTP id q201so5510524pgq.12
         for <yocto@lists.yoctoproject.org>;
- Mon, 04 Oct 2021 17:15:08 -0700 (PDT)
+ Mon, 04 Oct 2021 17:23:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=x7RuQNIDbckxaB5t8BY/l2DuAOin8i6sGDl+M26tho8=;
-        b=G2r8g5ZluHLYWI21hEZthRKI1YfDZvWbwUfkV3l/rhpIotnMNK+rnD6lKIMI+YtQ3O
-         8LyvoW8saRSTHYOpi3XimjKHM0Tk24Ld7tg0ZfojQWwk0VSxkr+tFkg+Gbdjy2qOq8/z
-         WFnU6As6ydF+SvS92Wa6g1pxNLZBIbWf7bBh9RqU23qgksMmjoS9i2kMcZ6Ws2GDpSXx
-         4kKZHzyDmf2R92d3t97AtqVeaGgH7BnFQCQMi5Vvdh3X7jD/m9NyrNRhGreeNZaH/ZEg
-         7S5eadcz2Fe68xbe7n3IH+FU3MRnrnUbPDbCB7OTV4fNLHtz7bslwyJPk9VRy4bEk1IN
-         kJ0w==
+        h=from:to:subject:date:message-id:mime-version:thread-index
+         :content-language:importance;
+        bh=bNkANfulPePOqGMjHTjFSamjEnlJExMXPuAoJ4/9bWg=;
+        b=VrnGn4nJAjLvG9R4/WpVQn3brP2LXf1bJ1ArbFqMkNRDCMXB2Jl66GHM+SG2Z31XY4
+         1inAHivRSLYPnCNjW943rFFixXizrZWF1KMlm9PxUIPjgK4u/dXVDUjdCAjS21ZgEd4N
+         br9zuYnh3b1M56CUTVlqCYsmwkM1hcExMwc+kp6j/EB4eKalpnfD82ldTttKiWvBtI/a
+         cwloSGNFa8Z9iYkvrw0ryhzXOU2AcVNaCjbwD4I4plxkCO+ZFQmlVbCtpbqmjkYQAtOw
+         Z82QfVEcX4ZjglGmuha1nym8bEWsIYWXr3vemp2bBjGvUR+yqd/WPu54W4DVW3e0s0wj
+         b6Xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=x7RuQNIDbckxaB5t8BY/l2DuAOin8i6sGDl+M26tho8=;
-        b=n7HI/gnvqY0vVKnRz8QzTz9gnjhaW5sIYj83NdF0QbU3xJfBF+7DBeauHhWF4ayOee
-         kmGxF2OffACN7ElBDtd05+jZVVVfHMLWmwYm/QSTZR0QV3wL8hupQYxlwtPZ61mP7P0m
-         y9pwNEdYic9HBnC47dx0OEi9Gw9lN6HYyXTIHdhRnf/g3a1wWVcvew6MYFsdgq8JyhDb
-         ZNeMGA/Bwve/yHcMlNGvmNDZo9iVDzKqoHgLn3ucCyAY5jjO/CulTpHVio0UJRXsHjM/
-         psHOCuzGKjrzaowm4ZM038cYChLzEngQ02C/T6mDUSwjn10jz7zb7SJUHvH0lgMtUla+
-         X84A==
-X-Gm-Message-State: AOAM531lyMvP7eVaLL7yg/WWGUnyCqWgwS8Ctlm8c+jP5UxnEjjFpIFi
-	LZJsY0KpYBqqzKt0pAdvE7gojHrnkS/l6l88EDQ=
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :thread-index:content-language:importance;
+        bh=bNkANfulPePOqGMjHTjFSamjEnlJExMXPuAoJ4/9bWg=;
+        b=QjbPeEdJqvzpJRJei6KoBAB2ABHxMFylryI6fw1voBa2lnyILGJgOiMCEkmhA513SE
+         qlldbEAI2fFy0CNhkQmHpQPrF0NSR3uczaQ164rVZaK76Pr1um9tx7sHL7WUqPwWBEhm
+         mnkpYKDBKRCWwPQnz1gqHc+Ud7BLdGx1mzBtlG9KoquIyKw8+ejPeIubJYwpGjWvO9Nh
+         SatGNqo+HIUSSUbQrQGWHuyZ9Rd2TuDmdGaUXiupzaQ0/K2kdbHjbCf1qGyfwACHnNTZ
+         6iuxsP404seZgOHSe2SLgeIO+6dprb+G87sAFa0laQ/VqYwlmtonFXxloYjojX8iLM21
+         HIEg==
+X-Gm-Message-State: AOAM530/Z8FbDiEXNPVTdW6REpbmFz9Ld7qK2O9t74PAuK6ndcC5NGaG
+	bTuDLgqNdcvV/Asr/zh8Tvk=
 X-Google-Smtp-Source: 
- ABdhPJzwR+OllM60cBmLEZQz1L8p4dERKCUEY+2hQC05eMFnHhM9niMYAGnRSVzghNleh1xVX9Shg0+E6UBrITKJ83c=
-X-Received: by 2002:a0c:8061:: with SMTP id 88mr24695960qva.5.1633392908055;
- Mon, 04 Oct 2021 17:15:08 -0700 (PDT)
+ ABdhPJyRx7knV7FJakN/ChcNiNeqosbuU0MUCJaM6AUf9LTnw6F/vLrES9EfrkgSXay/Lu1F2hdYig==
+X-Received: by 2002:a63:6941:: with SMTP id
+ e62mr13329721pgc.114.1633393402645;
+        Mon, 04 Oct 2021 17:23:22 -0700 (PDT)
+Received: from skjolley ([2600:8800:1d92:f800:a908:3bc8:effa:7d71])
+        by smtp.gmail.com with ESMTPSA id
+ z9sm5250475pgz.94.2021.10.04.17.23.21
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 04 Oct 2021 17:23:22 -0700 (PDT)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@lists.yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Reminder: Yocto Project Technical Team Meeting @ Monthly from 8am on
+ the first Tuesday (PDT) 
+Date: Mon, 4 Oct 2021 17:23:22 -0700
+Message-ID: <0ae501d7b97f$35219f20$9f64dd60$@gmail.com>
 MIME-Version: 1.0
-References: <0c6e789aba8141509bb31779a8393cbf@sakuraus.com>
- <0a038b52-6f11-662a-8d77-786919852079@gmail.com>
- <aa11888f9dc34eed9383c55ceae3eb9f@sakuraus.com>
-In-Reply-To: <aa11888f9dc34eed9383c55ceae3eb9f@sakuraus.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 4 Oct 2021 17:14:57 -0700
-Message-ID: 
- <CAMKF1srthNYZQq_N8p5s_z2KYyWhQ-xb8T5X=+JYri7G2iobmg@mail.gmail.com>
-Subject: Re: [yocto] virtual/egl on Raspberry Pi 4
-To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000010371505cd8fec13"
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0AE6_01D7B944.88C2C720"
+X-Priority: 1 (Highest)
+X-MSMail-Priority: High
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQHOH+V5RaTNHr3OgrIi68cUa28A8Q==
+Content-Language: en-us
+Importance: High
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 05 Oct 2021 00:15:09 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54947
+ <yocto@lists.yoctoproject.org>; Tue, 05 Oct 2021 00:23:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54948
 
---00000000000010371505cd8fec13
-Content-Type: text/plain; charset="UTF-8"
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0AE6_01D7B944.88C2C720
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+All,
+
+ 
+
+Just a reminder we will hold the monthly Yocto Project Technical Meeting at
+8am PST tomorrow. (10/5)  
+
+ 
+
+Yocto Project Technical Team Meeting: We encourage people attending the
+meeting to logon and announce themselves on the Yocto Project IRC chancel
+during the meeting (optional):
+
+Yocto IRC: https://web.libera.chat/#yocto 
+
+Wiki: https://www.yoctoproject.org/public-virtual-meetings/
+
+ 
+
+When            Monthly from 8am to 9am on the first Tuesday Pacific Time
+
+Where           Zoom Meeting:
+https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09
+
+ 
+
+We are tracking the minutes at:
+https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7QwKC5wWVDg9d
+DH4/edit?pli=1 Please request access if you want to assist in editing them.
+The world should have view access. 
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_0AE6_01D7B944.88C2C720
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0597_01D7A323.053E22A0";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-It should have automatically found user land package as one of providers
-but if it is not doing so that means it=E2=80=99s being ignored because it=
-=E2=80=99s not
-compatible arch or something
-Are you compiling 32bit mode ?
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>All,</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span style=3D'color:#1F497D'>Just a =
+reminder we will hold the monthly Yocto Project Technical Meeting at 8am =
+PST tomorrow. (10/5)&nbsp; <o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span style=3D'color:#1F497D'>Yocto =
+Project Technical Team Meeting: We encourage people attending the =
+meeting to logon and announce themselves on the Yocto Project IRC =
+chancel during the meeting (optional):</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p><span =
+style=3D'color:#1F497D'>Yocto IRC: </span><a =
+href=3D"https://web.libera.chat/#yocto">https://web.libera.chat/#yocto</a=
+><span style=3D'color:#1F497D'>&nbsp;</span><o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>Wiki: </span><a =
+href=3D"https://www.yoctoproject.org/public-virtual-meetings/">https://ww=
+w.yoctoproject.org/public-virtual-meetings/</a><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>When&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; Monthly from 8am to 9am on the first Tuesday =
+Pacific Time</span><span style=3D'font-size:12.0pt;font-family:"Times =
+New Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>Where&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; Zoom Meeting: <a =
+href=3D"https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT0=
+9">https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT09</a>=
+<o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span style=3D'color:#1F497D'>We are =
+tracking the minutes at: </span><a =
+href=3D"https://docs.google.com/document/d/1ly8nyhO14kDNnFcW2QskANXW3ZT7Q=
+wKC5wWVDg9dDH4/edit?pli=3D1">https://docs.google.com/document/d/1ly8nyhO1=
+4kDNnFcW2QskANXW3ZT7QwKC5wWVDg9dDH4/edit?pli=3D1</a><span =
+style=3D'color:#1F497D'> Please request access if you want to assist in =
+editing them.&nbsp; The world should have view access. </span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'color:#1F497D'>Thanks,</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_000_0AE6_01D7B944.88C2C720--
 
-
-On Mon, Oct 4, 2021 at 4:08 PM Greg Wilson-Lindberg <GWilson@sakuraus.com>
-wrote:
-
-> Hi Khem,
-> Yes, the Raspberry Pi boards do use closed source drivers. What I need is
-> how do I include the proper package that will bring in the necessary
-> virtual/egl for the Raspberry Pi 4.
->
-> Greg
-> > -----Original Message-----
-> > From: Khem Raj <raj.khem@gmail.com>
-> > Sent: Monday, October 4, 2021 14:17
-> > To: Greg Wilson-Lindberg <GWilson@sakuraus.com>;
-> > yocto@lists.yoctoproject.org
-> > Subject: Re: [yocto] virtual/egl on Raspberry Pi 4
-> >
-> >
-> >
-> > On 10/4/21 12:39 PM, Greg Wilson-Lindberg wrote:
-> > > Hello list,
-> > >
-> > > I'm working on a Qt supplied boot2qt Yocto build currently based on
-> > > Zeus that is running on a Raspberry Pi 4. I recently updated the qt
-> > > version to 5.15.6 and Qt changed something in the Yocto configuration
-> > > that they are using and now one of the recipes that we use is failing
-> > > saying that in needs 'virtual/egl' but that it is not provided by any
-> recipe.
-> > >
-> > > In the searching that I have done I have found that the raspberry pi =
-4
-> > > is particular on which package supplies the virtual/egl but I haven't
-> > > seen anything that indicates what I should do to re-enable it.
-> > >
-> > > Can anyone tell me what I need to do to enable the correct driver to
-> > > get virtual/egl provided on the Raspberry Pi 4? Or maybe even better,
-> > > how I could search through the packages that are enabled on the old
-> > > and new Yocto trees so that I can figure out what changed between the
-> > > releases and re-enable the virtual/egl.
-> > >
-> >
-> > it should be provided by userland package if you are using closed sourc=
-e
-> > graphics driver.
-> >
-> > > Best Regards,
-> > >
-> > > Greg Wilson-Lindberg
-> > >
-> > >
-> > >
-> > > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > > Links: You receive all messages sent to this group.
-> > > You automatically follow any topics you start or reply to.
-> > > View/Reply Online (#54943):
-> > > https://lists.yoctoproject.org/g/yocto/message/54943
-> > > Mute This Topic: https://lists.yoctoproject.org/mt/86076611/1997914
-> > > Group Owner: yocto+owner@lists.yoctoproject.org
-> > > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub
-> > > [raj.khem@gmail.com]
-> > > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > >
->
-
---00000000000010371505cd8fec13
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">It should have automatically found user land package as o=
-ne of providers but if it is not doing so that means it=E2=80=99s being ign=
-ored because it=E2=80=99s not compatible arch or something=C2=A0</div><div =
-dir=3D"auto">Are you compiling 32bit mode ?=C2=A0</div><div dir=3D"auto"><b=
-r></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Mon, Oct 4, 2021 at 4:08 PM Greg Wilson-Lindberg &lt;<a href=3D"m=
-ailto:GWilson@sakuraus.com">GWilson@sakuraus.com</a>&gt; wrote:<br></div><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px =
-#ccc solid;padding-left:1ex">Hi Khem,<br>
-Yes, the Raspberry Pi boards do use closed source drivers. What I need is h=
-ow do I include the proper package that will bring in the necessary virtual=
-/egl for the Raspberry Pi 4.<br>
-<br>
-Greg<br>
-&gt; -----Original Message-----<br>
-&gt; From: Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_bl=
-ank">raj.khem@gmail.com</a>&gt;<br>
-&gt; Sent: Monday, October 4, 2021 14:17<br>
-&gt; To: Greg Wilson-Lindberg &lt;<a href=3D"mailto:GWilson@sakuraus.com" t=
-arget=3D"_blank">GWilson@sakuraus.com</a>&gt;;<br>
-&gt; <a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blank">yoct=
-o@lists.yoctoproject.org</a><br>
-&gt; Subject: Re: [yocto] virtual/egl on Raspberry Pi 4<br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; On 10/4/21 12:39 PM, Greg Wilson-Lindberg wrote:<br>
-&gt; &gt; Hello list,<br>
-&gt; &gt;<br>
-&gt; &gt; I&#39;m working on a Qt supplied boot2qt Yocto build currently ba=
-sed on<br>
-&gt; &gt; Zeus that is running on a Raspberry Pi 4. I recently updated the =
-qt<br>
-&gt; &gt; version to 5.15.6 and Qt changed something in the Yocto configura=
-tion<br>
-&gt; &gt; that they are using and now one of the recipes that we use is fai=
-ling<br>
-&gt; &gt; saying that in needs &#39;virtual/egl&#39; but that it is not pro=
-vided by any recipe.<br>
-&gt; &gt;<br>
-&gt; &gt; In the searching that I have done I have found that the raspberry=
- pi 4<br>
-&gt; &gt; is particular on which package supplies the virtual/egl but I hav=
-en&#39;t<br>
-&gt; &gt; seen anything that indicates what I should do to re-enable it.<br=
->
-&gt; &gt;<br>
-&gt; &gt; Can anyone tell me what I need to do to enable the correct driver=
- to<br>
-&gt; &gt; get virtual/egl provided on the Raspberry Pi 4? Or maybe even bet=
-ter,<br>
-&gt; &gt; how I could search through the packages that are enabled on the o=
-ld<br>
-&gt; &gt; and new Yocto trees so that I can figure out what changed between=
- the<br>
-&gt; &gt; releases and re-enable the virtual/egl.<br>
-&gt; &gt;<br>
-&gt; <br>
-&gt; it should be provided by userland package if you are using closed sour=
-ce<br>
-&gt; graphics driver.<br>
-&gt; <br>
-&gt; &gt; Best Regards,<br>
-&gt; &gt;<br>
-&gt; &gt; Greg Wilson-Lindberg<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt; &gt; Links: You receive all messages sent to this group.<br>
-&gt; &gt; You automatically follow any topics you start or reply to.<br>
-&gt; &gt; View/Reply Online (#54943):<br>
-&gt; &gt; <a href=3D"https://lists.yoctoproject.org/g/yocto/message/54943" =
-rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto=
-/message/54943</a><br>
-&gt; &gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/860=
-76611/1997914" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproj=
-ect.org/mt/86076611/1997914</a><br>
-&gt; &gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.o=
-rg" target=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-&gt; &gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/un=
-sub" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/=
-yocto/unsub</a><br>
-&gt; &gt; [<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem=
-@gmail.com</a>]<br>
-&gt; &gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt; &gt;<br>
-</blockquote></div></div>
-
---00000000000010371505cd8fec13--
 
