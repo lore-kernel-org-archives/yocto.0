@@ -2,111 +2,119 @@ Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C3953C433F5
-	for <webhook@archiver.kernel.org>; Tue,  5 Oct 2021 21:43:21 +0000 (UTC)
-Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com
- [209.85.219.48])
- by mx.groups.io with SMTP id smtpd.web11.3415.1633470200565669417
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 43BB2C433F5
+	for <webhook@archiver.kernel.org>; Tue,  5 Oct 2021 21:45:11 +0000 (UTC)
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com
+ [209.85.160.172])
+ by mx.groups.io with SMTP id smtpd.web12.3396.1633470309962500795
  for <yocto@lists.yoctoproject.org>;
- Tue, 05 Oct 2021 14:43:20 -0700
+ Tue, 05 Oct 2021 14:45:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=ArdUxeZ1;
- spf=pass (domain: gmail.com, ip: 209.85.219.48, mailfrom: raj.khem@gmail.com)
-Received: by mail-qv1-f48.google.com with SMTP id jo30so618361qvb.3
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=VwQdmiCk;
+ spf=pass (domain: gmail.com, ip: 209.85.160.172,
+ mailfrom: raj.khem@gmail.com)
+Received: by mail-qt1-f172.google.com with SMTP id m26so606247qtn.1
         for <yocto@lists.yoctoproject.org>;
- Tue, 05 Oct 2021 14:43:20 -0700 (PDT)
+ Tue, 05 Oct 2021 14:45:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=4xdpH3XNWxBdh46V4nb0mc0aYvZWtRlmndfIf7Am+oI=;
-        b=ArdUxeZ1sHupGESuswBm+qNgswiepMWhimUjPUxKpSgrnynJ3R9lAaewmLifh9zLFe
-         MCNQbMoWUVqsIW0oYpdWHn+ZgAjQaLSdY5aYa+5ONksyaYY839sx3jP+HiB2Hoe6nzqS
-         t199tBs0BjVqDcF0KUoihAWXqK9KCEGs0xD8/nUsWjZwiwRXyYzE6uJhTUPLF26VfuUK
-         w0b9qSCb++i/mmqQQLPbd59gZfTvan/5FFaf7wtP7vWgjavuzDvQZCa/hwOqRjXLYOUZ
-         nLjPF67encpa1D5TteyvpwxhuwxiYqo+nELzQ8DB1mxcbBqJ59fC1XCzHCynXxN5sBAg
-         fEgg==
+        bh=jiXO4Bnzy96PKSU0xHhQdSLvmNe2emMsn7ow7AUNg3M=;
+        b=VwQdmiCkOoLgCu4GjeUkIozAhuoerOBY8Ah6EGh7uOy2k3gVmXO9FMJB0wgTT05vsJ
+         rWOzCoG5+br+Ax/YRi7AWvLPyvB8ic5WG8tTtBv343GWq0geIwP9QohsgVEfunMkZBPL
+         ANFqdXeyhEGgoIvurUilThnXNh6S/DnvpdJh8VMk7gkZpR1+eqfAu7OKW0gNOIFZMDdn
+         HfBwLnIitbzZvhb0h6fa+/WUepBNQZRzaeOaCAqhQnDVxpWsZbPg5q+IZWr7HZs87aTi
+         VO7HJxvZ5TgbTkMcGSNfkD+EUs+gC6rKBa+y4BrNGL8KQii3UXRcLfylN38+dvHnC1b0
+         5WuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=4xdpH3XNWxBdh46V4nb0mc0aYvZWtRlmndfIf7Am+oI=;
-        b=HQhjt3/vGFgUbCBiTyri1WS/FggZ4An0MoUIlNDBp1ApuLJCBleKDSF8joKhYJh7lc
-         eK9232kE1MdRNwR06jDnDxpU87nMRjPFpe8Cr7FtRE0kxs+cQCGqncsxXJP6Uig/IYBW
-         2AGBLEDLr0soBF02CiDgbdMkxOLOeXCToLU9IaO5QCaOdHZS44QOuIuJZ5X/6XMT3Ser
-         LeaewESnBcyisUV9jX3GaZ20YXgT/ZiLAmvATZf4FEeQ6xpovSGvxo9bXb96M6lEV1WD
-         Z3x4juqk9BUmgl+qNtHFdgc+0G2QxGKWdjl7vcFB+jy1z6GqH7uEpXMhXm3cgE7c7fxu
-         OpFQ==
-X-Gm-Message-State: AOAM5303a0ymxE264jIEz0+r/FB+b+Zt/KAA/J8g3iXX1kpE6T3JqrjL
-	9kmeHp/C0sWOIlHIj4Di0k+7pmkXDzjeoRACGSU=
+        bh=jiXO4Bnzy96PKSU0xHhQdSLvmNe2emMsn7ow7AUNg3M=;
+        b=ZQ9T3aKyAtjhuWLJDTOhuYx4TmJWLtfYWLvqRi9Z7I1FoUAhH6K6y0IuvSfoDFEeI2
+         gr1J8VSmUW0ncH6nRbk7hgjGTG9DqGWYRA6+g1ngQws0p1GnK3bMK0qVa0xzSWN6hS9q
+         8T4UZ1iDdvZeOMK0CjVuqzgyVZEdMcoqH7NuE6bWskf4n7s8x4FYWWiVRKk8dezsMv7C
+         nuoZWWYsyoKfNtrzNCO5XeursmITFrLctQEhNwqgb82DMo/y0E6mE32lauIwsxIj9kll
+         yDKmJnR0gsWcl+zF3fqsA5T0VxW7ogIsTZfwKPW71qVg5DooOu3kWbhYgvyJ3rjMtj0d
+         mWqw==
+X-Gm-Message-State: AOAM530EPEAUAjhdSvbbCjy6f1ZVg8sZ7Aaxy5x6S8cP0B04CytpINWO
+	LWgE/AmjhT/O3IDtfkKVbjnHm9jCgNCyjz6LMjjFayE6umw=
 X-Google-Smtp-Source: 
- ABdhPJwKSaPGMX4lGJzMQo4iUwrbNtLuGw4OemEeu/m8HVfVSnXfF4JCjAqVTcwr6QcVXthFv84OuCk0VYPBThR/Gi8=
-X-Received: by 2002:a05:6214:42f:: with SMTP id
- a15mr11457565qvy.41.1633470199707;
- Tue, 05 Oct 2021 14:43:19 -0700 (PDT)
+ ABdhPJwrAnMeUdRrfmCwyYsUkbdV2VTcQevM35MmDvXH2Zfoq7clacbV63LcI2aVyRUVkseSUZtdUenGCThOPpSC5BM=
+X-Received: by 2002:a05:622a:316:: with SMTP id
+ q22mr22408612qtw.225.1633470309059;
+ Tue, 05 Oct 2021 14:45:09 -0700 (PDT)
 MIME-Version: 1.0
-References: 
- <CABKMkPKrjB5Wb9MOb74qzeqx7brs9Em3dmk1h5Zxm1CKKJmYkw@mail.gmail.com>
-In-Reply-To: 
- <CABKMkPKrjB5Wb9MOb74qzeqx7brs9Em3dmk1h5Zxm1CKKJmYkw@mail.gmail.com>
+References: <NG6b.1633467561448539724.rwQW@lists.yoctoproject.org>
+In-Reply-To: <NG6b.1633467561448539724.rwQW@lists.yoctoproject.org>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 5 Oct 2021 14:42:53 -0700
+Date: Tue, 5 Oct 2021 14:44:43 -0700
 Message-ID: 
- <CAMKF1srTpBs-cZOqbLbFxOpkowxjH9-Q9NgYoMX3eXiAoUo6fg@mail.gmail.com>
-Subject: Re: [yocto] Google GN support
-To: Joel Winarske <joel.winarske@gmail.com>
+ <CAMKF1soXKnMsmMjW5uM1_+j3L8gOvX0AiND8mD8pm_YuV3fkAQ@mail.gmail.com>
+Subject: Re: [yocto] Getting absolute paths in yocto generated native binary
+ #bitbake #native #toolchain #sdk
+To: Jean-Pierre Doyon <jpdoyon@newtrax.com>
 Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 05 Oct 2021 21:43:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54972
+ <yocto@lists.yoctoproject.org>; Tue, 05 Oct 2021 21:45:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54973
 
-On Tue, Oct 5, 2021 at 2:34 PM Joel Winarske <joel.winarske@gmail.com> wrot=
+On Tue, Oct 5, 2021 at 1:59 PM Jean-Pierre Doyon <jpdoyon@newtrax.com> wrot=
 e:
 >
-> I'm looking into best practice LTS support for Google GN based projects. =
- This includes Chromium, Flutter, SKIA, etc.
+> I'm attempting to create a USB first boot tarball for our custom iMX6 boa=
+rd that would contain the imx-usb-loader executable, config files and u-boo=
+t/SPL files. The goal being to deploy that to the production machine to pro=
+gram the empty boards right after being assembled.
 >
-> The weakness I see today for GN projects is that it's a build system with=
-in a build system, and doesn't  support idiomatic download caching, downloa=
-d vs patching isn't clear as it should be, etc.
+> While I had plenty of hurdles figuring out how to do this (I'm still pret=
+ty newbie with Yocyo), I managed to get everything just the way I wanted it=
+. But when I get the tarball to the production machine, which runs the exac=
+t same Ubuntu 18.04 LTS Linux as the build machine, the imx_usb tool won't =
+run. The reason being that it's missing some library. Running LDD on the ex=
+ecutable turns up this:
 >
-> Two approaches to resolve this come to mind:
-> 1. Do something similar to how meta-rust does it.  Pre-process GN build f=
-iles and generate Yocto recipes using a hostside tool (similar to cargo-bit=
-bake for meta-rust).  This would skip usage of gclient entirely, and the tr=
-adeoff is to incur download performance penalty.
+> =E2=94=94=E2=94=80$> ldd usr/bin/imx_usb
+>     linux-vdso.so.1 =3D>  (0x00007ffd7031d000)
+>     libusb-1.0.so.0 =3D> /lib/x86_64-linux-gnu/libusb-1.0.so.0 (0x00007f9=
+86a47e000)
+>     libc.so.6 =3D> /lib/x86_64-linux-gnu/libc.so.6 (0x00007f986a0b4000)
+>     libudev.so.1 =3D> /lib/x86_64-linux-gnu/libudev.so.1 (0x00007f986a86c=
+000)
+>     libpthread.so.0 =3D> /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f9=
+869e97000)
+>     /home/jpdoyon/newtrax-layersetup-dunfell/build/tmp/sysroots-uninative=
+/x86_64-linux/lib/ld-linux-x86-64.so.2 =3D> /lib64/ld-linux-x86-64.so.2 (0x=
+00007f986a696000)
+>     librt.so.1 =3D> /lib/x86_64-linux-gnu/librt.so.1 (0x00007f9869c8f000)
 >
-> 2. Implement build parsing in a gclient/gn fetcher class.
+> Why is the ld-linux-x86-64.so.2 using an absolute path while all the othe=
+r libraries aren't?
 >
-> I feel the first approach would be easier to maintain and provide better =
-flexibility.  It would incur a new host dependency, and require an addition=
-al step to generate an updated recipe.
+> If I install the library in the location above, then the executable start=
+s working... So how do I make sure Yocto doesn't do this?
 >
-> I suspect the second approach would be an OE maintenance headache, as com=
-plexities would be directly exposed in OE.  Is this why gclient fetcher sup=
-port came and went?
->
-> I'm figuring/hoping there are a few opinions floating around on this subj=
-ect.
->
-> Is there a better approach?
 
-look at meta-browser/meta-chromium as well.
+yocto provides a layer to abstract native binaries on top of build
+host and thats what you are seeing. Its as designed.
 
->
-> Thanks,
-> Joel
 >
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 > Links: You receive all messages sent to this group.
 > You automatically follow any topics you start or reply to.
-> View/Reply Online (#54971): https://lists.yoctoproject.org/g/yocto/messag=
-e/54971
-> Mute This Topic: https://lists.yoctoproject.org/mt/86105559/1997914
+> View/Reply Online (#54970): https://lists.yoctoproject.org/g/yocto/messag=
+e/54970
+> Mute This Topic: https://lists.yoctoproject.org/mt/86104726/1997914
+> Mute #toolchain:https://lists.yoctoproject.org/g/yocto/mutehashtag/toolch=
+ain
+> Mute #sdk:https://lists.yoctoproject.org/g/yocto/mutehashtag/sdk
+> Mute #bitbake:https://lists.yoctoproject.org/g/yocto/mutehashtag/bitbake
+> Mute #native:https://lists.yoctoproject.org/g/yocto/mutehashtag/native
 > Group Owner: yocto+owner@lists.yoctoproject.org
 > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
 .com]
