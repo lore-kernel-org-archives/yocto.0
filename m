@@ -2,90 +2,83 @@ Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 694F0C433EF
-	for <webhook@archiver.kernel.org>; Tue,  5 Oct 2021 20:23:11 +0000 (UTC)
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com
- [209.85.160.178])
- by mx.groups.io with SMTP id smtpd.web08.2205.1633465390388201716
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 33183C433FE
+	for <webhook@archiver.kernel.org>; Tue,  5 Oct 2021 20:23:37 +0000 (UTC)
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com
+ [209.85.222.170])
+ by mx.groups.io with SMTP id smtpd.web09.2289.1633465415970691450
  for <yocto@lists.yoctoproject.org>;
- Tue, 05 Oct 2021 13:23:10 -0700
+ Tue, 05 Oct 2021 13:23:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=IuIcPpYT;
- spf=pass (domain: gmail.com, ip: 209.85.160.178,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=YH/64Ud4;
+ spf=pass (domain: gmail.com, ip: 209.85.222.170,
  mailfrom: twoerner@gmail.com)
-Received: by mail-qt1-f178.google.com with SMTP id e16so366948qts.4
+Received: by mail-qk1-f170.google.com with SMTP id 138so232945qko.10
         for <yocto@lists.yoctoproject.org>;
- Tue, 05 Oct 2021 13:23:10 -0700 (PDT)
+ Tue, 05 Oct 2021 13:23:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=date:from:to:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=ceTO6Zp50G9GFXSfh/FCjE3hpXIiMo7W0Q84lGdvapM=;
-        b=IuIcPpYTPz+FyVl4FSyPTq1W+E/SYtmK6v35kfV9fV8EQh7gJc/NY+Z0IrOWIv2Twq
-         SX/JX3eRSd/XdScmrt2FhcHoOpYGAUSG9OUSXSm8/hgjm3AKl0kk53J8zEdEjmCTelSD
-         OK3B+ZKxkMq+RsNK6SGnzQ/eER3+hkrNu1y1QA6wjaYs1XvF11SF9n9cbQTvxA5gcINm
-         Mq583C/muMEXjClh7/87inOu91lOlZ5vAjC6qiXJ6rD0pKK99vrq6okxKR6smIjiVTl9
-         6huDOis+vsEaW6G30cYysdh4rVN/kE7/dlqDLv1IvQ1UOp6b1wLI0TjOqlJEIvgHUTAY
-         VFBg==
+        bh=XpKfI4WZtWWpsrjA0U4Xd+tKnj8aSGYxBYtkUK0q2TE=;
+        b=YH/64Ud4SWiTobGOVUerYrRJZBC40XgmXXZFFPJul7fd22OB+GUpTU8tD5W+epIZIn
+         k0+x7lJhi6l/6dfuhzyd5p3/w5nSh2ez8qE7H7/jjnXxv6ly0bk/Qaq3C5XDlRc5sPzj
+         PaEnKB/6vCtPAb9oHJTgCTrmu1SRa2OXKrnHhxrN2tW6TVbOCWNJ6egAmlzTZkkCkmnj
+         2NpJSupmauonEAquqjIvI8ePNXnaKXXibij87G+UWCptS4dBw5rg9CZF0HOEqS2gDtjM
+         h9+BILfBu7l+6SeWWqzD9DRngSPj3zcnTMQHBGXsaAxY9WlSSYcS8AOln6VzdiqLpM0Q
+         1fiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ceTO6Zp50G9GFXSfh/FCjE3hpXIiMo7W0Q84lGdvapM=;
-        b=rLO76MDyW/Ki9x3+X6+++qj1tmcM0wPu/KBmjvpXakpsim71zHdHqV8y66g3L+m28I
-         L68ezRQLdIAtlyXEs/Lmu1dmzQPpScgOGSJfJjrPufRCOxa+mwQIPMyyhLXtq8TtzXrX
-         foF2DSlhR7P/qez2GCdkixMp1eK5lk7AL/CcbEu4pTeKYxByPric4LEKFhWlT/VNBdKz
-         N5C0xqQMN2g7umkzcjWD/XNtUhDHl+9CyvvsFhvh7s/7Ko+h+qpj5C1YwhwoYykO94ap
-         btIeRdKg+Q9xm/xP4xcnR5IZpHFs2+b6/ZliGRFTEkePzEyIPtHIsyULQRbQ+R6m9DZJ
-         OEHw==
-X-Gm-Message-State: AOAM532fA0kOOsuT3VraEY6JBR7LPJU1s/HMsiUzu43qE4fb33BXJ5Jb
-	oOP/FoBvTDuIiexVDjmA7nYCEo7BIhE=
+        bh=XpKfI4WZtWWpsrjA0U4Xd+tKnj8aSGYxBYtkUK0q2TE=;
+        b=rbjkxvY+PEA6pZ+/k9EGLl0lVWOdbrevmJsHZza05xbF2bKuvUK2K4krxZyoLeCaMJ
+         hwnwlzXPi7o66N9d5QIUS/NVBujbgvzNA+1s7aff0nbjl1LPv1HKtcOVezkEvUa1/b+O
+         XHu6xZrzNE2uoSBNKq/i9s7L4uwTn/qZ7bG8ASFYy1My0hc1aDUelfuSnGXI1ARxq/Pu
+         c2Ev0e28MaB3dFd0czDl5bhWJRU0K0PBPvAsP8SBvQtDfBaW9sjxSg2ieNFk9FSrO55m
+         J4zK6tSWnYHftQdjwz3o0KYwNJfyh8JejO6sodAXO5qAGHWfNlVAAgLjujUMMFMfPL2Z
+         xNLg==
+X-Gm-Message-State: AOAM530O/BuPjfYtG+c15WI5NJLhDqODM3dMekD3u66JpgLkEC+n0ZBA
+	+yjb0KRdPbDr0RNLdfOtSbbucXI7Oes=
 X-Google-Smtp-Source: 
- ABdhPJzvWeDdeHcjpDPx3yY/mNveoXrFNX8M/pvoq4YHJwlQNtOyy/Yd2KqMMyYvVcPPNGj5Fglkzg==
-X-Received: by 2002:ac8:d3:: with SMTP id d19mr21993317qtg.409.1633465389249;
-        Tue, 05 Oct 2021 13:23:09 -0700 (PDT)
+ ABdhPJz3Nn/XTv7r6a0mZt3DstQ2S4QV6oM6NyhkyOZjmrkg8R6BXT7I8MHtfW6NauPaBiM76EIQ0g==
+X-Received: by 2002:a37:e93:: with SMTP id 141mr16436069qko.132.1633465414920;
+        Tue, 05 Oct 2021 13:23:34 -0700 (PDT)
 Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
         by smtp.gmail.com with ESMTPSA id
- g21sm10959669qtq.53.2021.10.05.13.23.08
+ 197sm504890qko.130.2021.10.05.13.23.34
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Oct 2021 13:23:08 -0700 (PDT)
-Date: Tue, 5 Oct 2021 16:23:06 -0400
+        Tue, 05 Oct 2021 13:23:34 -0700 (PDT)
+Date: Tue, 5 Oct 2021 16:23:32 -0400
 From: Trevor Woerner <twoerner@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: Re: [meta-rockchip][PATCH 1/3] linux-yocto: remove mmc aliases
-Message-ID: <20211005202306.GA25572@localhost>
+Subject: Re: [meta-rockchip][PATCH 2/3] include/nanopi-m4: remove KMACHINE
+Message-ID: <20211005202332.GB25572@localhost>
 References: <20210929052938.36819-1-twoerner@gmail.com>
+ <20210929052938.36819-2-twoerner@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210929052938.36819-1-twoerner@gmail.com>
+In-Reply-To: <20210929052938.36819-2-twoerner@gmail.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 05 Oct 2021 20:23:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54965
+ <yocto@lists.yoctoproject.org>; Tue, 05 Oct 2021 20:23:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54966
 
-On Wed 2021-09-29 @ 01:29:36 AM, Trevor Woerner wrote:
-> Now that we're booting via UUID, we no longer need these aliases in the DT.
-> Personally I wasn't able to prove to myself that they actually worked (at
-> least not with 5.13.y) and fiddling with these aliases didn't seem to affect
-> the mmc probe order on boot. Additionally it looks like some of these aliases
-> will be landing upstream shortly.
+On Wed 2021-09-29 @ 01:29:37 AM, Trevor Woerner wrote:
+> There is no "nanopi-m4" defined in any yocto kernel metadata (yet?), therefore
+> remove this superfluous line.
 > 
 > Build (core-image-base) and run tested (both systemd and sysvinit) on:
-> - rock64
-> - rock-pi-e
-> 
-> (i.e. the two rk3328 MACHINEs)
+> - nanopi-m4
 > 
 > Signed-off-by: Trevor Woerner <twoerner@gmail.com>
 > ---
->  ...an-dtsi-rk3328-add-mmc0-mmc1-aliases.patch | 27 -------------------
->  recipes-kernel/linux/linux-yocto%.bbappend    |  3 ---
->  2 files changed, 30 deletions(-)
->  delete mode 100644 recipes-kernel/linux/files/0001-ayufan-dtsi-rk3328-add-mmc0-mmc1-aliases.patch
+>  conf/machine/include/nanopi-m4.inc | 1 -
+>  1 file changed, 1 deletion(-)
 
 Applied to meta-rockchip, master.
 
