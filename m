@@ -1,165 +1,192 @@
-Return-Path: <bhupesh.sharma@linaro.org>
+Return-Path: <naveen.kumar.saini@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B968EC433F5
-	for <webhook@archiver.kernel.org>; Tue,  5 Oct 2021 06:25:27 +0000 (UTC)
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com
- [209.85.167.172])
- by mx.groups.io with SMTP id smtpd.web12.21883.1633415126279166985
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 721F1C433EF
+	for <webhook@archiver.kernel.org>; Tue,  5 Oct 2021 07:08:43 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by mx.groups.io with SMTP id smtpd.web12.22172.1633417721273165037
  for <yocto@lists.yoctoproject.org>;
- Mon, 04 Oct 2021 23:25:26 -0700
+ Tue, 05 Oct 2021 00:08:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=y/Z6t4bh;
- spf=pass (domain: linaro.org, ip: 209.85.167.172,
- mailfrom: bhupesh.sharma@linaro.org)
-Received: by mail-oi1-f172.google.com with SMTP id y201so24862267oie.3
-        for <yocto@lists.yoctoproject.org>;
- Mon, 04 Oct 2021 23:25:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8Pg59kfvdav9JSF9muvJmPyX5UjGT2tc8bBZgv6b+L8=;
-        b=y/Z6t4bh4dthXDyEZBKGa26jDJzYrDHtHP+AryQwKwMbRsJmEAY/xM8cBd5ARuKFrW
-         i8RKBT//D+ea+HviYHKV42FjkCYQuaadyDPI4n0hNLuoRHI9ROq63NNg+g8uKvidyvDJ
-         3liZjtuemIoXjhqXoCBJFx/IY8EeoTn1/2Q99iLBMLEIg0HnXCgjbm/4Pl/wNRgaJ8th
-         BUIEbmKe04yieBSxZI7EhvA0v+xLSm4k7QtddinPK6Nv4pXVHxBEE4/eHm8cYHfalXzf
-         uHFhyLncE7olKuD9w212s3SH3LXilljG0i74I9jVDd7FhePtYfBw0tbKzaokdHQoUOpL
-         DyLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8Pg59kfvdav9JSF9muvJmPyX5UjGT2tc8bBZgv6b+L8=;
-        b=WGN6VI83a6X9pCuaPzbw1yNrIEti/Ti4vKQWx7hmgOzWY1wdSxJv3IbpxCPI44e/kp
-         +F37cpTIoLBpLT7zlEptqaR+RoBEhIIK88tsEH6SkCX8C7EhI2mR76ex2JDlKBNlXUZ9
-         CPZTSpU4deInWMQPEjPTLW8fPrN8UfcxnAhPtJIv5Ql6eh4qKmxEFQKauu3GFUMpKUa8
-         nSqZCdrG34x7/3A7ANeY6BDxf8Ps6tvXzjIr03mRALBAPqAgXxVyD0yU9Yh42skZY9Io
-         9PLIYU/aM5uRfYVoxrdWL5nu3voc0GTP2g08HFb9eH/MBlDztf9Z9zJzgQDLBEvzJOKu
-         SH4w==
-X-Gm-Message-State: AOAM531lUdkUV9rezQDPLBQ1HhRP8JLILKkSbQsemSBfR30CjVGT8mit
-	1hkTCCC9D1PO4mqAfiEo5/uOcnUkoCar3HnHb+J5aw==
-X-Google-Smtp-Source: 
- ABdhPJyNkikUpsi8mBsyHgBI2NjScs3Z/rHDr4k+/fu0TAgBkUTupnFWFwySZ7w7SnPfa0/+0m6LOyn0+vZngH3PZW8=
-X-Received: by 2002:a05:6808:1686:: with SMTP id
- bb6mr1123119oib.40.1633415125437;
- Mon, 04 Oct 2021 23:25:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210919191928.3963092-1-bhupesh.sharma@linaro.org>
- <e5eaf119-402f-8f02-f161-2d195dfda941@gmail.com>
-In-Reply-To: <e5eaf119-402f-8f02-f161-2d195dfda941@gmail.com>
-From: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date: Tue, 5 Oct 2021 11:55:14 +0530
+ dkim=pass header.i=@intel.onmicrosoft.com
+ header.s=selector2-intel-onmicrosoft-com header.b=pdwEQGOW;
+ spf=pass (domain: intel.com, ip: 134.134.136.31,
+ mailfrom: naveen.kumar.saini@intel.com)
+X-IronPort-AV: E=McAfee;i="6200,9189,10127"; a="286549440"
+X-IronPort-AV: E=Sophos;i="5.85,348,1624345200";
+   d="scan'208";a="286549440"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2021 00:08:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,348,1624345200";
+   d="scan'208";a="623293239"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+  by fmsmga001.fm.intel.com with ESMTP; 05 Oct 2021 00:08:39 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Tue, 5 Oct 2021 00:08:38 -0700
+Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Tue, 5 Oct 2021 00:08:38 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12 via Frontend Transport; Tue, 5 Oct 2021 00:08:38 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.172)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2242.12; Tue, 5 Oct 2021 00:08:37 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iEKqdl/yNW1tUJ4PPqCUVBB/IQoOOgbk7jUTgXZsmwth95lXkKjxMo+NtTZ66oVFXPbnE1VpAYp8DzVhUPxOrfVHmiaZK0eo/X9FwSRXhYcUYpXagE+Jh95w7bSiZCbGaLXOBXHAwoWDfDykpGdqdYas0+Nv7/um05216KNsZBJFInvGyz7YQFpeDEppEnRAdlJPw/7gneQytfM8a0Sn3s9yx63Bc/JFftPoABRB2rdEZaFEnRvnPUFWLaFTAISyCLsn/cHzGtcX2XsWsmmNrSaLnKImwrNuc/99PBdsOO4kQq+6GmCCDpUSjg5z0eEQD7WdM2X6siqrSXlAOGHLjg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vxXiVKNumCWuo+hn3glgcKKqpiZJYBm3F9ZMeNGTZr4=;
+ b=Fa7+bPqvWMasdJIss29Y4m7oWgopYJa/Skb30+57JNbWgqMInlUETM+5b7fY6JZdiG7LM+YRVo3gAknapjlJpRCLwJ+9cLaseWQgbjL4NvoVYMJhagQqZInEIOPjPK8grCuPNNOCI6i402IMEN3E0S/Z7yNI4/jhEfhBKoVC7lQpnRxr2IeNc4Wdq6EShk0JHPoPhmKHyJ+qFcI7WJDYyuiBb44WZj3fW6YA2ChK4hdnjGR9+f6Ee8XyvV4XVNDXEgg9OwjY4Ws9ICoIPuF8viJcLqrbNzdXrkZcMGCbr4bpbiLTfQvzPHK3TnH0lM4KbVNqn/muydoG+ZE3wuBNZQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vxXiVKNumCWuo+hn3glgcKKqpiZJYBm3F9ZMeNGTZr4=;
+ b=pdwEQGOW/k3yM1KPtZyh76ES+36sdYmrt1pxQFfgvA2HJkrJW2NX/1fBEELlMtDr1Sm7nAxdKgqny0Km0cwbRsFW/qPKX5zOQz93MGsplWHV733acMJoI/z5Wei/GwUHboelZDtDEKf522HD6o1urIz+5uoP96iLJ5hpKwiss0I=
+Received: from CO1PR11MB5026.namprd11.prod.outlook.com (2603:10b6:303:9c::13)
+ by MWHPR1101MB2288.namprd11.prod.outlook.com (2603:10b6:301:53::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.14; Tue, 5 Oct
+ 2021 07:08:36 +0000
+Received: from CO1PR11MB5026.namprd11.prod.outlook.com
+ ([fe80::217f:42b:171d:c2fa]) by CO1PR11MB5026.namprd11.prod.outlook.com
+ ([fe80::217f:42b:171d:c2fa%3]) with mapi id 15.20.4566.022; Tue, 5 Oct 2021
+ 07:08:36 +0000
+From: "Saini, Naveen Kumar" <naveen.kumar.saini@intel.com>
+To: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+CC: Kumar Gala <kumar.gala@linaro.org>, Kevin Townsend
+	<kevin.townsend@linaro.org>
+Subject: RE: [yocto] [meta-zephyr 0/2] add support of the
+ zephyr-openamp-rsc-table sample on STM32MP157
+Thread-Topic: [yocto] [meta-zephyr 0/2] add support of the
+ zephyr-openamp-rsc-table sample on STM32MP157
+Thread-Index: AQHXtRY/FOtEB30igEaoZpckfoZWWKvEBLFQ
+Date: Tue, 5 Oct 2021 07:08:36 +0000
 Message-ID: 
- <CAH=2NtzAQwA6kdVWUAGe0fSKrm3ykbLb=h5s2MbLvoTA7DQ2NQ@mail.gmail.com>
-Subject: Re: [meta-security,dunfell][PATCH] recipes-security/fscrypt: Add
- fscrypt .bb file
-To: akuster808 <akuster808@gmail.com>
-Cc: yocto@lists.yoctoproject.org, bhupesh.linux@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+ <CO1PR11MB502616605AB95E80BB5DD098C4AF9@CO1PR11MB5026.namprd11.prod.outlook.com>
+References: <20210929094129.13951-1-arnaud.pouliquen@foss.st.com>
+In-Reply-To: <20210929094129.13951-1-arnaud.pouliquen@foss.st.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-reaction: no-action
+dlp-product: dlpe-windows
+dlp-version: 11.6.200.16
+authentication-results: foss.st.com; dkim=none (message not signed)
+ header.d=none;foss.st.com; dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 2005f395-d1a4-4497-758c-08d987cef38f
+x-ms-traffictypediagnostic: MWHPR1101MB2288:
+x-microsoft-antispam-prvs: 
+ <MWHPR1101MB22881AB944E9D470A0440AE9C4AF9@MWHPR1101MB2288.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ VoCAQQOrdcBd89RTJ2izG1ioK4TQgBwrGRdHTG0nIEiOchI3SZLWsuaVVpaLW7SXHedFcQaynxH8yOXms8738N6yMvShRx6XKs25JozrRowCdt6UO3WTjB50xDRnSJ2quZ2v2PcqS8HRu9QO6bjaBQCIku3YkctpIRZoxDyLMmTZLLkXtlUiqNEC/TEZXw8rDIlqFG829umVa2b5SIUjtF2f6Lm2j1JvetFBJFXGqXponwIzmYyKFo2Adpv9LgejI0I+3jc5ireVrwTav0FBYa7d8uWVeOU24oKzhmjnzXaGg37Uk3HFLOQyhJsBTwngtcmq0/G5o5lhI4vdyac0bWaMkla1f+Zdk6+UF6gKYCV+qsRHR8EGoo7GnRReJqV6Vp0kypgGPVyEQ57DeMclrtzaMIOXqxTJll7X9DX8gIE+jQsPUdgQMiHeeMH4oC8Vmvm0Z5fE+Ao7PJ3Kslq270IpvALApqpUhlhBk46vgIU9CipDqVaf3PXFTN700yrflCV3L7adGyuoNPwKaBWe8FQXa2bxqtCHnvqoom2gAC+EZnADcPDezIAl54mw1r+l5Z0qFry2g8Ch1AMSY6JyRYA8CWrYrrL8STATdoTB6wkkRzuIsy3PtqZrVgiWJ3MM1Q5OTJFu6ffeOIrKGJnUY9NNw/zb4FnAlWmsxk4uL4S0Q1LHFFhlrVg/ae4hiYiZ6LeJlxnXWYxO53+02c/Sxg==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5026.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(66946007)(316002)(52536014)(66556008)(5660300002)(9686003)(7696005)(2906002)(86362001)(33656002)(64756008)(66476007)(66446008)(110136005)(54906003)(55016002)(4326008)(508600001)(76116006)(8936002)(38100700002)(71200400001)(122000001)(26005)(83380400001)(38070700005)(53546011)(6506007)(8676002)(186003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?2S8zkvsMaQjEtt3fBMmU0ZR8WuuY2wqPLkb5mpjaR3slzXznnOR2Kzv8D98k?=
+ =?us-ascii?Q?hT9hT/tCImZI62xsJGykE5YWs6Jw0RBMnhT0TeXGNfrJwvSgtEvXHbuhqq/h?=
+ =?us-ascii?Q?NZ1TK8fJLKuuzHmi0CGWsBvurkzGHeBCzQfzSx/cvaonzFUp+k44sA0n5RZw?=
+ =?us-ascii?Q?VAxf0/rCM2j4dAUDUx7QspczfD+GLVdJvgKVJyOhpEbwgqCV1g8lCvjPRgWN?=
+ =?us-ascii?Q?CWjI37gQv4RXvYcyrR3cZxQTOipyKcdp9vT3cgrozM+w90WnXlRnSzE4P1t1?=
+ =?us-ascii?Q?cauwrvynaX/iP8S+s7fU4Mj6wr4wxs2Exw6ztcmX7Kc4kqxCLLHy+B+eX7YA?=
+ =?us-ascii?Q?z8D0sd8FAROBG+39U3p6bl4OnO+ShHH/P43ceYx54StsIPtcXdnl90wG+OVg?=
+ =?us-ascii?Q?UZpeFgqAJgj8nPBVRvj8Ci09HCKHVP8CWXxkEhnyU0v+dDFPXwk3LPxNXQPn?=
+ =?us-ascii?Q?vdu2ewMxQ+OtzTzYt+lSNmEs5rXd6gnK88y6Ol2IlvzF5AwaDDHzTKycodVw?=
+ =?us-ascii?Q?zz9qZXat9EwBxbN1uBoDQYtMD7tgzHGk8L2+htjrFzntbxFftdAIT+LbK5yp?=
+ =?us-ascii?Q?lNs2Mn/GF/NJ7k9AqEeFkiOsQ3B6W1KvrxmINpvFqoIfBxNem9edeIvVy/WV?=
+ =?us-ascii?Q?6nJMg1u1kS+V4gt0c/DDMNT/et2hxpDSHWT+SWk8TtVEYQzb1ncpgZWoFhE3?=
+ =?us-ascii?Q?4Gnyj4yYi4nTM/lpjeJ6s8ElHYTbeI5ngtJi2hOh5LDH3f4bsGz6kJQ+NTcs?=
+ =?us-ascii?Q?YepRdUOu0Haymu2t4OZvsnau/rp4C/XHq99p2YjmCYzPfhiwBCNCyKVOmPK1?=
+ =?us-ascii?Q?RPPL2jVhpyxnjtpOhAomgtEvkFDbpvxFLiaKR1d+800bCsM4llmSepCHAA6Q?=
+ =?us-ascii?Q?9o5iwMveV23+PoDyNukrYKLzQo/w9PyqzXRBBgJfEHB0w5K3D9NCX+P+ky9G?=
+ =?us-ascii?Q?Gai1b2Zs7DTT3CzR0N7iLvC58g+Akr9aVdr849squC5EsvEEAM9XrLMzjOAP?=
+ =?us-ascii?Q?KdpIqpisIylkH7YcESMuzSB8BHfifUuN7Ol+ICfEeZOkvLNT78U7IMemNtJv?=
+ =?us-ascii?Q?Iay/zIJr2oEKNG5FbmhR6dSmMZqtK6DbgnU60E7kKqr0+XQ8nwH5yaBSY4hV?=
+ =?us-ascii?Q?Tsu7wvkBfPp4UyrSgTbqu+vsn+WL4qwCdXsb9iwIMSlEIv34GTU7bUxM7lef?=
+ =?us-ascii?Q?+mZ+L+3pSECO8Q4BfxfIdhNrMW2l3NJ0Bk7lVy4j5tvAGBBxdQ8PvTWYpzgj?=
+ =?us-ascii?Q?tSHnFUvTIyI5sWdm96L/oP69PlMVoe85zygdkOVa48TahBJ8GZnBABejxLX3?=
+ =?us-ascii?Q?JENnM6eQbX5YyDu6i/MlDHDq?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5026.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 2005f395-d1a4-4497-758c-08d987cef38f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Oct 2021 07:08:36.7888
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 
+ jpnBjaOLQ/LWgRGKA/bL7jEw32MH3T6poU9h/uDS2WpdEo6ZHullbfe1KM2URmfe3/jzrDd3Dni9NAHhFCvf0xu8vFB+bUxbrKMFGly31Ts=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1101MB2288
+X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 05 Oct 2021 06:25:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54953
+ <yocto@lists.yoctoproject.org>; Tue, 05 Oct 2021 07:08:43 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54954
 
-Hello Armin,
+This is only cover letter, I do not see patches on mailing list..
 
-Many thanks for your review.
+Regards,
+Naveen
 
-On Sun, 26 Sept 2021 at 03:01, akuster808 <akuster808@gmail.com> wrote:
->
->
->
-> On 9/19/21 12:19 PM, Bhupesh Sharma wrote:
-> > fscrypt is a high-level tool for the management of Linux
-> > filesystem encryption. fscrypt manages metadata, key generation,
-> > key wrapping, PAM integration, and provides a uniform interface
-> > for creating and modifying encrypted directories.
-> >
-> > Add recipe for the same in 'recipes-security'.
->
-> Was this a double post? or a V2?
+> -----Original Message-----
+> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On
+> Behalf Of Arnaud Pouliquen
+> Sent: Wednesday, September 29, 2021 5:41 PM
+> To: yocto@lists.yoctoproject.org
+> Cc: Kumar Gala <kumar.gala@linaro.org>; Kevin Townsend
+> <kevin.townsend@linaro.org>
+> Subject: [yocto] [meta-zephyr 0/2] add support of the zephyr-openamp-rsc-
+> table sample on STM32MP157
+>=20
+> Add capability to genereate the "zephyr-openamp-rsc-table" sample in yoct=
+o
+> build.
+>=20
+> This example demonstrates inter-processor communication based on a
+> resource table, with the objective of responding to the Linux kernel rpms=
+g
+> sample.
+>=20
+> This sample is compatible with the stm32mp157c_dk2 board.
+> The support of the board is also added in this series.
+>=20
+> Arnaud Pouliquen (2):
+>   conf: machine: add stm32mp157c-dk2 support
+>   zephyr-kernel: add openamp-rsc-table sample
+>=20
+>  conf/machine/stm32mp157c-dk2.conf                      |  8 ++++++++
+>  .../zephyr-kernel/zephyr-openamp-rsc-table.bb          | 10 ++++++++++
+>  2 files changed, 18 insertions(+)
+>  create mode 100644 conf/machine/stm32mp157c-dk2.conf  create mode
+> 100644 recipes-kernel/zephyr-kernel/zephyr-openamp-rsc-table.bb
+>=20
+> --
+> 2.17.1
 
-Sorry for the double post, but since I had some issues subscribing to
-the OE-list, my first attempt to post was not accepted by the mailing
-list server.
-
-> I follow the OE/YP Stable process and this appears to be adding a new
-> package to a stable release which is not allowed..  I have no issue
-> taking it for Master.
-
-Sure. I realized my mistake later-on. I should have sent it for the
-'master' branch and not stable / dunfell. Can you please consider
-taking this into the 'master' branch, or should I send the patch
-separately.
-
-Thanks and sorry for the late reply,
-Bhupesh
-
-> -armin
-> >
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >  recipes-security/fscrypt/fscrypt_1.0.0.bb | 49 +++++++++++++++++++++++
-> >  1 file changed, 49 insertions(+)
-> >  create mode 100644 recipes-security/fscrypt/fscrypt_1.0.0.bb
-> >
-> > diff --git a/recipes-security/fscrypt/fscrypt_1.0.0.bb b/recipes-security/fscrypt/fscrypt_1.0.0.bb
-> > new file mode 100644
-> > index 0000000..a70d310
-> > --- /dev/null
-> > +++ b/recipes-security/fscrypt/fscrypt_1.0.0.bb
-> > @@ -0,0 +1,49 @@
-> > +SUMMARY = "fscrypt is a high-level tool for the management of Linux filesystem encryption"
-> > +DESCIPTION = "fscrypt manages metadata, key generation, key wrapping, PAM integration, \
-> > +and provides a uniform interface for creating and modifying encrypted directories. For \
-> > +a small, low-level tool that directly sets policies, see fscryptctl \
-> > +(https://github.com/google/fscryptcl)."
-> > +HOMEPAGE = "https://github.com/google/fscrypt"
-> > +SECTION = "base"
-> > +LICENSE = "Apache-2.0"
-> > +LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
-> > +
-> > +BBCLASSEXTEND = "native nativesdk"
-> > +
-> > +# fscrypt depends on go and libpam
-> > +DEPENDS += "go-dep-native libpam"
-> > +
-> > +SRCREV = "92b1e9a8670ccd3916a7d24a06cab1e4c9815bc4"
-> > +SRC_URI = "git://github.com/google/fscrypt.git"
-> > +GO_IMPORT = "import"
-> > +
-> > +S = "${WORKDIR}/git"
-> > +
-> > +inherit go
-> > +inherit goarch
-> > +
-> > +do_compile() {
-> > +     export GOARCH=${TARGET_GOARCH}
-> > +     export GOROOT="${STAGING_LIBDIR_NATIVE}/${TARGET_SYS}/go"
-> > +     export GOPATH="${WORKDIR}/git"
-> > +
-> > +     # Pass the needed cflags/ldflags so that cgo
-> > +     # can find the needed headers files and libraries
-> > +     export CGO_ENABLED="1"
-> > +     export CGO_CFLAGS="${CFLAGS} --sysroot=${STAGING_DIR_TARGET}"
-> > +     export CGO_LDFLAGS="${LDFLAGS} --sysroot=${STAGING_DIR_TARGET}"
-> > +
-> > +     cd ${S}/src/${GO_IMPORT}
-> > +     oe_runmake
-> > +
-> > +     # Golang forces permissions to 0500 on directories and 0400 on files in
-> > +     # the module cache which prevents us from easily cleaning up the build
-> > +     # directory. Let's just fix the permissions here so we don't have to
-> > +     # hack the clean tasks.
-> > +     chmod -R u+w ${S}/pkg/mod
-> > +}
-> > +
-> > +do_install() {
-> > +     install -d ${D}/${bindir}
-> > +     install ${S}/src/${GO_IMPORT}/bin/fscrypt ${D}/${bindir}/fscrypt
-> > +}
->
 
