@@ -1,235 +1,277 @@
-Return-Path: <trevor.gamblin@windriver.com>
+Return-Path: <steven.monsees@baesystems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B649DC4332F
-	for <webhook@archiver.kernel.org>; Thu,  7 Oct 2021 15:38:21 +0000 (UTC)
-Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com
- [205.220.178.238])
- by mx.groups.io with SMTP id smtpd.web11.49.1633621100257893363
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B6FD3C433F5
+	for <webhook@archiver.kernel.org>; Thu,  7 Oct 2021 16:22:15 +0000 (UTC)
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com
+ [149.32.232.65])
+ by mx.groups.io with SMTP id smtpd.web08.735.1633623734317613633
  for <yocto@lists.yoctoproject.org>;
- Thu, 07 Oct 2021 08:38:21 -0700
+ Thu, 07 Oct 2021 09:22:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=X94pGqcs;
- spf=pass (domain: windriver.com, ip: 205.220.178.238,
- mailfrom: prvs=5914fc6b21=trevor.gamblin@windriver.com)
-Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id
- 197BxQn3018902;
-	Thu, 7 Oct 2021 15:38:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
- h=from : subject :
- to : cc : message-id : date : content-type : mime-version; s=PPS06212021;
- bh=vxp+nA3hZ5ZWAwEACl9FYZSqk6R5avSx2dG+iNbprb0=;
- b=X94pGqcs/RMRmNLlhIX40or/p3vcY8oMgvRzy+NoMlsNSCQuvEG4FGGTbazTVhlhlhkF
- UT8INRi4NSAWTJcoqN/PMQcXol+961TZRc6Mn+RZi2V3gwdo+RB49r85O8kgVVe+4v3c
- oH2PExmXL7VYf/FrBB/vbdNRIkxdV7mPRhCHWLKdimNfijr7xBMfnQrPmkhBeEooWcYI
- GwPw5zsQ9jOo5FuMp1F4RpugLRaLBaJXkPYTCHY88fTabyRqy3At1iBx/jqM2zdh9mfB
- Mv5PKUCMNtonBrOpiXn5y5Ie9+Iz1DGWEwKZe0w7Aog7o+5YbRkfwXZLiKPu/L3H8nvT yA==
-Received: from nam12-bn8-obe.outbound.protection.outlook.com
- (mail-bn8nam12lp2177.outbound.protection.outlook.com [104.47.55.177])
-	by mx0a-0064b401.pphosted.com with ESMTP id 3bhe2s16dv-2
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 07 Oct 2021 15:38:12 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=llBCjs1UcmPtK9xwQneGwXN1JFOZvSIRLxduAEWcYRFJJXVPp7IdlnJ3zrxl9u8ki2W2G9W386UqWoMyiZ9mNm18ixZs0nWiTybT+BLpDoudMW8uECBWoZ156MV6nUtuR/92AWyx3kPIwU83wvxkFaiH4BmfA52Sdyql7EEHcvS4aJIapNV5nWNWk6KY7D0PiF+IGSmsZ4Bpd17l1m3Nk7og7OsWgzhT8ZO+bQO13JVfzNt/dFI2/k+ewxpQg8G+rZ+q6MmLa9QvRMV1cqr33EchQOJlHrSHLYjwfCh8mloY99TYxZhY2ZhGSE4Dgqt0mY/AlS73rqUPUfIoAmxXew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vxp+nA3hZ5ZWAwEACl9FYZSqk6R5avSx2dG+iNbprb0=;
- b=aCsSJw9tnMSov2hzoKxjiqSysivVBvL5GdTWXXy3OjeBQjiKXqStWHaV4cJSj3F6TgyHvpRl9xpwp8X+LQC6oezY8YAu2gefdSPNfPZwDtjGLWuxIyJYD2KrqdvK+02L0msbZV1lMUvKtDU6offvAbVwnhZdVZJlHz2KO+A323ly8HrOBtv40K6gloLFnyL177a0d1OCUpyNc198PgUWUNUbZqAtpWbkC+HXI7Ranf7p8Ji7v34MntaPUyjBKWsG/lZITzN9clluKxBk1ZDD1K8wW8q4YhBnadIYImx5PIgVZlyKDhNa9eyKvELnJfhLRDa3c6z9c5+C8S/Y0BM2fw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
-Authentication-Results: windriver.com; dkim=none (message not signed)
- header.d=none;windriver.com; dmarc=none action=none
- header.from=windriver.com;
-Received: from BY5PR11MB3909.namprd11.prod.outlook.com (2603:10b6:a03:191::13)
- by SJ0PR11MB4864.namprd11.prod.outlook.com (2603:10b6:a03:2d4::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.19; Thu, 7 Oct
- 2021 15:38:09 +0000
-Received: from BY5PR11MB3909.namprd11.prod.outlook.com
- ([fe80::ccb2:28ab:f000:8440]) by BY5PR11MB3909.namprd11.prod.outlook.com
- ([fe80::ccb2:28ab:f000:8440%3]) with mapi id 15.20.4587.019; Thu, 7 Oct 2021
- 15:38:09 +0000
-From: Trevor Gamblin <trevor.gamblin@windriver.com>
-Subject: Minutes: Yocto Project Weekly Triage Meeting 10/7/2021
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Cc: Richard Purdie <richard.purdie@linuxfoundation.org>,
-        trevor.gamblin@windriver.com,
-        "MacLeod, Randy"
- <Randy.MacLeod@windriver.com>,
-        "timothy.t.orling@intel.com" <timothy.t.orling@intel.com>,
-        "Wold, Saul" <saul.wold@windriver.com>,
-        Steve Sakoman <steve@sakoman.com>, Ross Burton <ross@burtonini.com>,
-        daiane.angolini@foundries.io,
-        Michael Opdenacker <michael.opdenacker@bootlin.com>,
-        "Surendran, Kiran" <kiran.surendran@windriver.com>,
-        "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>,
-        "jpewhacker@gmail.com" <jpewhacker@gmail.com>,
-        "Reyna, David" <david.reyna@windriver.com>
-Message-ID: <97694ce0-00ca-9142-1ca6-cbe7ecd09e3f@windriver.com>
-Date: Thu, 7 Oct 2021 11:38:04 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-Content-Type: multipart/alternative;
- boundary="------------CAEFFAD68D512B7C90521E41"
+ dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=ksWD0EC+;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.65,
+ mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1633623734; x=1791303734;
+  h=from:to:subject:date:mime-version;
+  bh=sZsNN+OPV18HzA+yqJwGz13KtBQTjq4MgQOAjW3OcO4=;
+  b=ksWD0EC+Gye3UCtEKGOGlJiArdbv69JHXpRYDUJJm6nuSj5ZbHLknaEU
+   GglOlS+q9doQzdqfZwF6oHhK4fpn9UDoizuDyqiQPDihh7fPCnvYnE3TS
+   PU7KL4YkFssoYJWLUCffVC+ARW7gVOz70RYl/gv8rdtOfmon108LXtNj5
+   0=;
+IronPort-SDR: 
+ Z3Oepkdy8OTe430eFv9emK/t8ITNjIsnv/UqV9IJHykbf9Ntdk4qiv4RNii3deIOEMo/Wfcbx2
+ A0W0namEUi3g==
+IronPort-PHdr: =?us-ascii?q?A9a23=3AzdS96Rav9FJtAW+cuWdZURj/LTGt0IqcDmcuA?=
+ =?us-ascii?q?noPtbtCf+yZ8oj4OwSHvLMx1gePBNSLoKMbw8Pt8InYEVQa5piAtH1QOLdtb?=
+ =?us-ascii?q?DQizfssogo7HcSeAlf6JvO5JwYzHcBFSUM3tyrjaRsdF8nxfUDdrWOv5jAOB?=
+ =?us-ascii?q?Br/KRB1JuPoEYLOksi7ze+/94PPbwlSmTawZbB/IBqyoAjTq8IbnZZsJqEtx?=
+ =?us-ascii?q?xXTv3BGYf5WxWRmJVKSmxbz+MK994N9/ipTpvws6ddOXb31cKokQ7NYCi8mM?=
+ =?us-ascii?q?30u683wqRbDVwqP6WACXWgQjxFFHhLK7BD+Xpf2ryv6qu9w0zSUMMHqUbw5X?=
+ =?us-ascii?q?ymp4qF2QxHqlSgHLSY0/mHJhMJtkKJVrhGvpx1jzIHbe4yaLuZyfqHHcN8GW?=
+ =?us-ascii?q?WZNQMBcXDFBDIOmaIsPCvIMMehfoYn6oVsOtgWxChe3BO/31zRGm2P20rMk0?=
+ =?us-ascii?q?+s/FwHNwRItFM8KvHvasdv5MakeWv2ywanT0TXMce1W1in76ITSdxAhpveMX?=
+ =?us-ascii?q?alufsXP0kkiDBjKgU+Opoz+PzKVzfgNvHae7+p7T+6gl2knqwRorzWp28wjh?=
+ =?us-ascii?q?ZXHiJgPxVDY6SV23pw1JdugRUB1b9OpDJpduiObOodoX88vXWJltSY+x7AJt?=
+ =?us-ascii?q?pO3YSYExZQoyRLCb/GKcYiF7x3iWeqMPzp1gHFodbGiihqv/katzPD3WMqs0?=
+ =?us-ascii?q?FtSsyZJjsPAu34P2hDJ9MSLVPtw8l2g1DuPzwzf9/1ILVo7mKfUMZIszaQ8m?=
+ =?us-ascii?q?ocTvEnFAyT4gl/5jLWMeUUh4uWo7uPnbaj4qZKELI90jx3+MrwpmsyiHeQ0K?=
+ =?us-ascii?q?ggOUHaf+eS7zLDj4UL4T69Mjv0zianUtIzWKdgHqqKkGQNV1Jws5wykADi8z?=
+ =?us-ascii?q?tsYhnkGLElZeB2ZiojpIEvCL+z/Dfe6m1iskTFryO7aPrD5H5nBMmLPnbnjc?=
+ =?us-ascii?q?Lpn9UJQ1go+wcpe6p9UEr0BJej8Wk71tNzWFB85NAm0zv78CNVhyIweR3yAA?=
+ =?us-ascii?q?qmDPKPXtl+I4PkvLPeSa48OozvyMOIq6OD1jX45gl8dYbem3Z4MaHyiAvtmJ?=
+ =?us-ascii?q?ECZbWL2gtgdCWcKohY+TOvyhVyCVj5ce2qyX6Un6zE/CYKmFpvDRpu3jL2B2?=
+ =?us-ascii?q?ye0AoFWZmdeClCWFnfodZuLVOsQaC6IJc9hiDMEBvCdTNprxBalqAjSz7t8M?=
+ =?us-ascii?q?vGS6yoTqZX7zt936ubP0xYo+nY8W9Wa2H2KZ2V1hX8TAS4x17x4uVZ6yFqIz?=
+ =?us-ascii?q?e5/mfMORvJJ4PYcGCI9M4XRwvc+Q+vuVxzMeJ+iABabeZTsSWUqUt8vztlIZ?=
+ =?us-ascii?q?kF7ANivlTjJ1iexEqQJmrmQQpcz9/SPjDDKO89hxiOeh+EahF48T54XXVA?=
+ =?us-ascii?q?=3D?=
+IronPort-Data: =?us-ascii?q?A9a23=3Ao3asp6us1DV6dwKNHdeiaSiZIOfnVGNcMUV32?=
+ =?us-ascii?q?f8akzHdYApBsoF/qtZmKWuOb/zZajbwf49xYY7g8EJV7JWBzdRjTgo6qStnR?=
+ =?us-ascii?q?CkXgMeUXt7xwmUcn8+xwm8vdK/shiknQoGowPscEzmM+39BDpC79SMljPnQG?=
+ =?us-ascii?q?eKnYAL5EnkZqTFMGX9JZS1LxrZRbr5A2bBVMivV0T/Ai5S31GyNh1aYBlkpB?=
+ =?us-ascii?q?5er83uDihhTVAQw5TTSbdgT1LPXeuJ84Jg3fcldJFOgKmVY83LTegrN8F251?=
+ =?us-ascii?q?juxExYFFsOslLPgIxVSGueUOwHIgHNbQLm5nhVHvWo51aNT2Pg0MB8R0GrPx?=
+ =?us-ascii?q?YosjosQ3XCzYV5B0qnkg/gQTRReVSR5O7ZL9aTvK3Gyqt2I00DDaD3nxPAG4?=
+ =?us-ascii?q?EQeYdRHp7krUD4XnRAfAHVXBvyZvMqnx7mnTcFoh98/N4/6O4gDvWl6yjPUB?=
+ =?us-ascii?q?upgRorMK5gmT/cwMCwY35gIRqmYPZBEL2QyBCksqiZnYj8/YK/SVs/12BETq?=
+ =?us-ascii?q?wFllW8=3D?=
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3Aw8dC6qHQRJQ9bhAjpLqEkceALOsnbusQ8z?=
+ =?us-ascii?q?AXPixKIiC9G/bwqynEpp4mPHHP4AosZA=3D=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2C2CACyHV9h/0HhJQpagQkJgVKBH4F?=
+ =?us-ascii?q?/gU2xZoF7CwEBAQEBAQEBAQgBQQQBAYdJJjoEDQECBAEBARIBAQYBAQEBAQY?=
+ =?us-ascii?q?EAYEjhWkMgjUihB9eARVrJgEEG4JqgX6udoEzGgJlhGmFDwkBgTCBZoUugna?=
+ =?us-ascii?q?GDEOPPwSOeTmeRJ92BwODMJ5YLxSWAQOREpYlpUUCBAIEBQIWgXsLgW9wgzp?=
+ =?us-ascii?q?QFwKOOxaOLoEsAgYLAQEDCZNhgRABAQ?=
+X-IPAS-Result: =?us-ascii?q?A2C2CACyHV9h/0HhJQpagQkJgVKBH4F/gU2xZoF7CwEBA?=
+ =?us-ascii?q?QEBAQEBAQgBQQQBAYdJJjoEDQECBAEBARIBAQYBAQEBAQYEAYEjhWkMgjUih?=
+ =?us-ascii?q?B9eARVrJgEEG4JqgX6udoEzGgJlhGmFDwkBgTCBZoUugnaGDEOPPwSOeTmeR?=
+ =?us-ascii?q?J92BwODMJ5YLxSWAQOREpYlpUUCBAIEBQIWgXsLgW9wgzpQFwKOOxaOLoEsA?=
+ =?us-ascii?q?gYLAQEDCZNhgRABAQ?=
+X-IronPort-AV: E=Sophos;i="5.85,355,1624320000";
+   d="scan'208,217";a="417574971"
+IronPort-SDR: 
+ dxfX6EvYf0i0V4yy2DnzaxgBFGhg3gfQFezI0x1p5p1q8wahWC3eTf9kjTPqWNmbihanTWuXR4
+ sA89GDd0c+CNzU01V9JbqA7590Pjus0kU17r/IafoiS9ItTOX+RlXJSIxgR/urmRVf37TSeFmE
+ rHifYw+lovqAH41tVQ3tyj348IBJFP+6hEC00X+Wy3qb36DRVSDMMpOJvCQLgMmuQouU1vK4ob
+ XVh2cHtLs8uV3nnFPzUaOviZWdOuMmL4Jf5/D63y41PGnZST4O5fGAQ9t1grekkF9buOcUqFKP
+ FcA=
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: #zeus meta-intel
+Thread-Topic: #zeus meta-intel
+Thread-Index: Ade7lYNzGnXDdfszSXOKckUgK88nGw==
+Date: Thu, 7 Oct 2021 16:20:40 +0000
+Accept-Language: en-US
 Content-Language: en-US
-X-ClientProxiedBy: BL1PR13CA0264.namprd13.prod.outlook.com
- (2603:10b6:208:2ba::29) To BY5PR11MB3909.namprd11.prod.outlook.com
- (2603:10b6:a03:191::13)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.44.4.15]
+Content-Type: multipart/alternative;
+	boundary="_000_3fa3f98c6d1141d792d8ae31684f2b77baesystemscom_"
 MIME-Version: 1.0
-Received: from [IPv6:2607:fea8:c29d:d7c0::81de] (2607:fea8:c29d:d7c0::81de) by
- BL1PR13CA0264.namprd13.prod.outlook.com (2603:10b6:208:2ba::29) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.4 via Frontend
- Transport; Thu, 7 Oct 2021 15:38:06 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c436fa6b-0292-459f-ed31-08d989a87692
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4864:
-X-LD-Processed: 8ddb2873-a1ad-4a18-ae4e-4644631433be,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: 
- <SJ0PR11MB4864574DF82E17A547A0945F9FB19@SJ0PR11MB4864.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
- 1uoy4IWDwB/37TeUcWMO8NBn5eDzEOF5qVLw3AZ2InK+dDDsvM68FglL9CIBrGa3P0a20p1aWyOSMaP/LzYT43EssJqlaEEj8t+jwMh7J2kIeCmcZwLcaxw2j6zajXDDc+EvWOcELfXNuW0IMiURn4akOHbTO8FuFqz0QXLj3qjVpFdIvKqqMfZkp4y0un5a2lM48NG8RLJYQmHd9OY6hedj1sPWY1sTyLY6++FFSMMClypOZ+8M48qkrtfb6aDb/j1sAqvVUj7aw4jU3AN4W4mt4PaMIIx7z5AvQfxLJhkR1bizwqD+5/e+sh1CabdoMojdy6ObGe2cTxs1jJIBtuodLRL/jcBRiSH+t/6NFb4YgoLt+xe4hba2fcAXlqXi9I9kBGki67mdjzLZLVH9oI62eM3UMUa47VJ4XHPHYA1bxMwp0fP2+UDAEnQHdWJD4cAZw8LXmJq8vPt7oRkqtE7pSipcq8P39LWJbwApFFWbDq8YhMNJQlH25lb1v/ru/dERdtXemJ6hyqXqhTj/13knAdN/0xBVjSVVAGi6CH0SwwJtEtYf2jiA1C1h0VcFaaCh8bUnf0Lu/yRLArqwAzh7W1g3xHPv4XaNs2RSucCp99/Ytr2+3dgZOHi2v1MSaS8axB2T1TgHRDyi1BegphtkQC2glC+im9A/a4xc15CI37xKD2ksX9MreUge5o+cxYhUhc78QDFKxCPwCFeojBEH+Vn67F4YojddC79s1YF5Z7kw2pcsAtFpyVDFmuspUQoSAoSjMStbOSCPzi15UT0NQqvYn6L+FR1yDGOwbBQ=
-X-Forefront-Antispam-Report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR11MB3909.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(54906003)(8676002)(316002)(107886003)(186003)(31686004)(66476007)(66556008)(38100700002)(166002)(66946007)(8936002)(2616005)(966005)(6916009)(6486002)(36756003)(4326008)(5660300002)(508600001)(44832011)(86362001)(2906002)(31696002)(33964004)(83380400001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
- =?utf-8?B?eUFWTGgzaGlZU3o3dWQyMmxPblM0eDNLajRnS3BvNEhkaVFjTEkzWWNycnFC?=
- =?utf-8?B?dGw5ZkVjWHp3NTU0bDBsZ3NxQmMzQko5ZVlwMThNcmpuSFI4WXFSbnFETmVG?=
- =?utf-8?B?TjBuS1VJMGFObi9ObzhOTGg2QlJnVE5CejRjTW9wNTE4TzFhZjFkNVNnbkYz?=
- =?utf-8?B?MjVDREdzTzgyRWQvOTdWc0Q4eG1Kdmh0NTVYZnRyNjhtSjdtVFdhZlJmQnpP?=
- =?utf-8?B?dndJR1V0a2FtOVVIVFRWcUNXOWZaMGFFUEYxam4xR1VSOHoyL1lYZnlWS2lU?=
- =?utf-8?B?YlBSbU9aQTNxY3pScnZBMTNralJnY1dpeUJ2QVFwWDBuUnM3TzBIUlBmc1hG?=
- =?utf-8?B?WmxyWXdTaWsvUFBkTXQrbGYraG1hQmxrMkhaZUNkS0hjbVVDY1hZeGg5amhp?=
- =?utf-8?B?K2hOQ3BHTnorV2h4MDhyNjExb1RnWk5HOEJkZENUMFE2eGVDVEl4c2VRRFpM?=
- =?utf-8?B?T2JiUkF3UnRDTlVyNXVTQk14WUpkaFdpby9mZFVhc2FDKy9rcFJXYVk1UDRD?=
- =?utf-8?B?NjRpVGUweWVmVXBVR0dMcDNTdGwxNnM0dW1Kc3RIVC9na2xCaWlYeDhNdWVz?=
- =?utf-8?B?TXRQRXR5ejliTmNhLytJUkVuV1p4OGJtUEhMV3pPN2o2Z0xLejlqZ21YWEkr?=
- =?utf-8?B?aHJSN3hmV0NyczVnNmVrUUNxUnF4WER6M2Jmc2IwOU12VEpvdTZ2N3ZvT3dJ?=
- =?utf-8?B?WThGVjUra0pNcWlWNERiN0RkWWkxQ2xsZWV0bmp5VkJmNTJ6YjNBVlVRSW0w?=
- =?utf-8?B?ZWRDdk1hcFVzYUZHTW9kbUEveGpxdTZXTmtjSnIwaWxhTkdzakc1UVplaHdi?=
- =?utf-8?B?K0p1VXhzTlVPd3AzWW40K1JRTFZ5ZHdOdmw0NDlZWHZML0xya1EyQytIR0hL?=
- =?utf-8?B?OTE2aUppeDliR2t6enZJSWh2WGUxdWxDVG5PUjZ2cU8vdXBQMEFSWVhVS1V1?=
- =?utf-8?B?TXRkMmJPZTVsWXdXZEpYeU5LQ0dEd0gvdzZBV1BWRmpGYjFSR2JoL2d1bTlw?=
- =?utf-8?B?MVNtcUM3YVhESjUzSE0reXBuT0wxTWpjZlFhMWdkazloTm5nWC9XWjFRUEY4?=
- =?utf-8?B?MXpLUG1GMDUzM1RwVXlyK3U0Ukc1M1JraWN2NkNDcVRJTXZOSzVuODBrMTh4?=
- =?utf-8?B?UUdoMXFpSVgzMDE3ZU5VWjB1NkFxZ2NUclZMdko2eUtoSWxLR2U2QnFLNEVB?=
- =?utf-8?B?Vy9hdmliWGdxbURiY1NmYUxYaXZ3aXJyMlJsNW1SYWZVSXo4OUh1N21KSHU1?=
- =?utf-8?B?Qk1vUGxUbVVHMEVMUTZFZy8wVFpvME5aTEdpSW1jeERUMEdaMy9vN0lXcHBo?=
- =?utf-8?B?K0xXaUs5UElkWUh5SmtoUVRPWWxtT3RudWRHb01kaDBCZXIwdnZSTDl1MUta?=
- =?utf-8?B?UWorNGNYUFZsK3hGakJIQzl6Wk5oSC9Fdkh5SHdxQ0ZtMFhxQUgwVldGb3JO?=
- =?utf-8?B?a3lMTXd3MlZXMzBiMDVYemxVTmozZnpxaSsrVHhjMEJmbG4vZFVQWmZnMmdQ?=
- =?utf-8?B?LzJOMThNeEJ2VGRacm55enpxalZDTGo4YkZFWWtiR3FaNGtNbTVIeS9Tb1V6?=
- =?utf-8?B?cVBDdmRLeG1ENjcwZnZyeDJHUjZJVFVHWnZUZVpwcDlKeGM5THFvYWlkUitw?=
- =?utf-8?B?ZkQvR1dWTEVqdnhKUzZSS1NuVE54dHFnY2JhblRTSVdqcnhRM295ejBkbE9l?=
- =?utf-8?B?SXg1K3ZveU1FKzV5TkIxL2VFY1FwS1cvZ3Nab2pmK1hLYm56ZWRreFdrZnpV?=
- =?utf-8?B?Tjh4ZFBxT3NGbEZTN1ZmaW82bGNOblZZVWFBMzhXbHNpblVUeC9DWTBHU09Y?=
- =?utf-8?B?dTRjZnNDdUh2aHhPSHNxdz09?=
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- c436fa6b-0292-459f-ed31-08d989a87692
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3909.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2021 15:38:08.8776
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- LrrRyziFY7FGVaUsOkguslgFpS4sFGXraUOUQ/muf5JIkPU17vopi94Y8xQQsBufsNnlYI6KpH3jebT1Dj/oWFQvbBOmEGu5u7ojgGJUQMg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4864
-X-Proofpoint-ORIG-GUID: a13nzr4L9f6N1T2ZlHNR9tzNUT6ZFBYZ
-X-Proofpoint-GUID: a13nzr4L9f6N1T2ZlHNR9tzNUT6ZFBYZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
- definitions=2021-10-07_02,2021-10-07_02,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0
- priorityscore=1501 impostorscore=0 mlxlogscore=697 clxscore=1015
- adultscore=0 mlxscore=0 malwarescore=0 bulkscore=0 lowpriorityscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2109230001 definitions=main-2110070101
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 07 Oct 2021 15:38:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54985
+ <yocto@lists.yoctoproject.org>; Thu, 07 Oct 2021 16:22:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54986
+Message-Id: <20211007162215.B6FD3C433F5@smtp.lore.kernel.org>
 
---------------CAEFFAD68D512B7C90521E41
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--_000_3fa3f98c6d1141d792d8ae31684f2b77baesystemscom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-*Wiki: *https://wiki.yoctoproject.org/wiki/Bug_Triage
 
-*Attendees:* Diane, Joshua, Kiran, Michael, Randy, Richard, Ross, Saul, 
-Stephen, Steve, Tim, Trevor
 
-*ARs:*
+I am looking at "meta-intel/dynamic-layers/clang-layer/recipes-opencl/compu=
+te-runtime"
+I have been "told" that this compute-runtime recipe should basically build =
+opencl (Neo) with all the required dependencies...
+I did not think Yocto had support for OpenCL, and was looking to build Neo =
+under the SDK.
 
-*- *David Reyna to update Future/3.99 Toaster bugs
-**
 
-*Notes:*
-*
-*
-- Stephen and Trevor will both be unavailable for the October 14th meeting
+(1)    Is this true, does meta-intell under zeus now support building OpenC=
+L and the OpenCL Graphics compiler under Yocto ?
 
-*Medium+ 3.4 Unassigned Enhancements/Bugs: *68 (Last week 69)
+(2)    Of so, what would be the proper way to pull this into my yocto build=
+ ?
 
-*Medium+ 3.5 Unassigned Enhancements/Bugs: *12 (Last week 10)
+Thanks,
+Steve
 
-*Medium+ 3.99 Unassigned Enhancements/Bugs: *39**(No change)
+--_000_3fa3f98c6d1141d792d8ae31684f2b77baesystemscom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-*AB Bugs: *64 (Last week 62)
-
---------------CAEFFAD68D512B7C90521E41
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <div class="moz-text-html" lang="x-unicode">
-      <p><b>Wiki: </b><a class="moz-txt-link-freetext" href="https://wiki.yoctoproject.org/wiki/Bug_Triage" moz-do-not-send="true">https://wiki.yoctoproject.org/wiki/Bug_Triage</a></p>
-      <p><b>Attendees:</b> Diane, Joshua, Kiran, Michael, Randy,
-        Richard, Ross, Saul, Stephen, Steve, Tim, Trevor<br>
-      </p>
-      <p><b>ARs:</b></p>
-      <p><b>- </b>David Reyna to update Future/3.99 Toaster bugs<br>
-        <b></b></p>
-    </div>
-    <span class="moz-txt-link-freetext"></span>
-    <div class="moz-text-html" lang="x-unicode"><b>Notes:</b></div>
-    <div class="moz-text-html" lang="x-unicode"><b><br>
-      </b></div>
-    <div class="moz-text-html" lang="x-unicode">- Stephen and Trevor
-      will both be unavailable for the October 14th meeting<br>
-    </div>
-    <div class="moz-text-html" lang="x-unicode">
-      <p><b>Medium+ 3.4 Unassigned Enhancements/Bugs: </b>68 (Last week
-        69)</p>
-      <p><b>Medium+ 3.5 Unassigned Enhancements/Bugs: </b>12 (Last week
-        10)<br>
-      </p>
-      <b>Medium+ 3.99 Unassigned Enhancements/Bugs: </b>39<b> </b>(No
-      change)<br>
-    </div>
-    <div class="moz-text-html" lang="x-unicode"><br>
-    </div>
-    <div class="moz-text-html" lang="x-unicode"><b>AB Bugs: </b>64
-      (Last week 62)<br>
-    </div>
-  </body>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1970889231;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-2049425350 1823623060 67698713 67698715 67698703 67=
+698713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-text:"\(%1\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	color:windowtext;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am looking at &#8220;meta-intel/dynamic-layers/cla=
+ng-layer/recipes-opencl/compute-runtime&#8221;<o:p></o:p></p>
+<p class=3D"MsoNormal">I have been &#8220;told&#8221; that this compute-run=
+time recipe should basically build opencl (Neo) with all the required depen=
+dencies&#8230;<o:p></o:p></p>
+<p class=3D"MsoNormal">I did not think Yocto had support for OpenCL, and wa=
+s looking to build Neo under the SDK.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">(1)<span style=
+=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style=3D"color:#1F497D">Is this true, does me=
+ta-intell under zeus now support building OpenCL and the OpenCL Graphics co=
+mpiler under Yocto ?<o:p></o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">(2)<span style=
+=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style=3D"color:#1F497D">Of so, what would be =
+the proper way to pull this into my yocto build ?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Thanks,<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Steve<o:p></o:p></span=
+></p>
+</div>
+</body>
 </html>
 
---------------CAEFFAD68D512B7C90521E41--
+--_000_3fa3f98c6d1141d792d8ae31684f2b77baesystemscom_--
 
