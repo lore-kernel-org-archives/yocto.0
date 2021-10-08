@@ -1,100 +1,220 @@
-Return-Path: <ManWag@FastMail.FM>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A64EEC4332F
-	for <webhook@archiver.kernel.org>; Fri,  8 Oct 2021 08:26:44 +0000 (UTC)
-Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com
- [66.111.4.29])
- by mx.groups.io with SMTP id smtpd.web11.6585.1633681593270973785
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E6590C433EF
+	for <webhook@archiver.kernel.org>; Fri,  8 Oct 2021 09:00:53 +0000 (UTC)
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com
+ [209.85.217.43])
+ by mx.groups.io with SMTP id smtpd.web10.6670.1633683652391712887
  for <yocto@lists.yoctoproject.org>;
- Fri, 08 Oct 2021 01:26:33 -0700
+ Fri, 08 Oct 2021 02:00:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@fastmail.fm header.s=fm1 header.b=bfxAgSq5;
- spf=pass (domain: fastmail.fm, ip: 66.111.4.29, mailfrom: manwag@fastmail.fm)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-	by mailout.nyi.internal (Postfix) with ESMTP id 4F2E85C010E
-	for <yocto@lists.yoctoproject.org>; Fri,  8 Oct 2021 04:26:31 -0400 (EDT)
-Received: from imap41 ([10.202.2.91])
-  by compute4.internal (MEProxy); Fri, 08 Oct 2021 04:26:31 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fastmail.fm; h=
-	mime-version:message-id:date:from:to:subject:content-type; s=
-	fm1; bh=LRKoY7/dfJn3M/OjSszlliACWm1zPjku83BUaWUkuQ0=; b=bfxAgSq5
-	WKpGkDgYpTlcFAp7YLC0oBqPDu6fiMJnmzetcT7hl6FwlZ/TdIIaON+5sdrmfEVO
-	ggK6AqxvyL3PNsXdcOBEqVGaW+DPQv+dEHImxxyuiojvu0+IKysB2P0g1PntMZDG
-	UhQRHF9DfL4rlixkYtVkYxg8zIY2EFlBx1LjhNlDkZfxU7a6xbHUKyKp4DYjm6EV
-	vn7kCcdxrQxrIv5z438woZMFfhsoHwtxY5V78K8s1v8bA30gIOq6Or8fxw35oezF
-	JmGihpinQxchmLyPiY8F7KVQFpdYxTNoqh9+R213Zg2eM1A4SOxqSYDGicjodmr+
-	1n4whp8ie5//qQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=content-type:date:from:message-id
-	:mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm1; bh=LRKoY7/dfJn3M/OjSszlliACWm1zP
-	jku83BUaWUkuQ0=; b=emm/NMedg3qUv1KQm9B2ggn/+JxzMOqYS3sSvzL57Oz5z
-	UiCYjqbiiAY/2HOGofkuO4ue88sR87CM9eFsx1iutY+eaNHBIxTDPa/hk9q5R07M
-	WZFVsGCWV4PwNT5bTft3IOVpPznqkjYa9L0BmwzsfN50qFeZuQk0Tqo3id064Lxq
-	MXgnQUbvcs09XCv0vDmPZhn82sOqaTm6NmfxDctx0osv5g3YFAFU0QB80mJwL3dz
-	rQUrtrMmMpaN3U8tqcjoIgdV28ef3qKMNK+c0n/z85OBY97c7x/N2Z/Rx7wRz6hV
-	4cXgmlN6IqhabsNkB7DuhMDWl1rtAr4oOOBdkHTCw==
-X-ME-Sender: <xms:twBgYV4rBOGJjxvsRuThDlV2l77lBFeB1uSHnPwzjqK78lBBLVI2ug>
-    <xme:twBgYS4HW1QEGDBrY5qY0tCzszQm4gwgu6d-MB1MbOZ19sSrKCA2bW4d8vTvvLve7
-    32fmalIgBHfBkqP>
-X-ME-Proxy-Cause: 
- gggruggvucftvghtrhhoucdtuddrgedvtddrvddttddgtddvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefofgggkfffhffvufgtsehttdertd
-    erredtnecuhfhrohhmpedfofgrnhhuvghlucghrghgvghsrhgvihhthhgvrhdfuceoofgr
-    nhghrghgsefhrghsthforghilhdrhffoqeenucggtffrrghtthgvrhhnpeeugedtieetud
-    euledugeffgefgteetkeeuteeukeefudfgudeukeffgeeliedvieenucevlhhushhtvghr
-    ufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpeforghnhggrgheshfgrshhtof
-    grihhlrdfhof
-X-ME-Proxy: <xmx:twBgYce6_Sx7r9pAOZiPKTzr3CtV-EJ3cKAYS_sYwnaGhj_zKOiQEw>
-    <xmx:twBgYeK8LiSOFOqzxFbMd65XjCrkLetWgkq3OeVRHF0Yq4KZH3nHFg>
-    <xmx:twBgYZI8Nb40IhUWJCEKYUKO1cOb9CjQk5QDEjnZ2-uT0F18LF6kQA>
-    <xmx:twBgYeVjX8ujqxHp74_Bzqn08WnevfxVR7YHT1lbWE4UDxbGISYHow>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 34E953C0246; Fri,  8 Oct 2021 04:26:31 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-1331-g5ae342296a-fm-20211005.001-g5ae34229
-Mime-Version: 1.0
-Message-Id: <31cf8b88-5441-4779-a26d-4b6b3c310b77@www.fastmail.com>
-Date: Fri, 08 Oct 2021 10:26:06 +0200
-From: "Manuel Wagesreither" <ManWag@FastMail.FM>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: How to enable graphics acceleration on qemux86-64?
-Content-Type: text/plain
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=pu6500ZH;
+ spf=pass (domain: gmail.com, ip: 209.85.217.43,
+ mailfrom: alex.kanavin@gmail.com)
+Received: by mail-vs1-f43.google.com with SMTP id 66so9705176vsd.11
+        for <yocto@lists.yoctoproject.org>;
+ Fri, 08 Oct 2021 02:00:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=RKY+BKlRC++V3BODa8c5jVZODYxJgrocWjOJmcBNRNs=;
+        b=pu6500ZHDsTs9/p7+oJubuqYtV/QRRT2lwffVjlIDq2CbxF3ab3HPBRQJG1SZ3yfcZ
+         BGCes+u/FJcZtwS5hgP35hJ8ThL7hY7KZWhZMvdGPlLS+qDbPEfOO4qWelJV38UudGCH
+         qyXIxAfwplubkefAhCWwoHa9UB9xg21T5fwTlnm79EKz0FnUkm2PetELsiyaNLMJP7Ry
+         FpYNrBcyk0xz+0doGbFZctakp46dalzo+JaOHYUr+XV6rFqyT8FsNOymbuKt6Ip3/TtN
+         QH2JAqKJf2vLqlK9K2DkbBS4QiBEhpfl7FXQjZI2JNeEXwwA/JJ6qjpGRpbaFHQmuixi
+         roiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RKY+BKlRC++V3BODa8c5jVZODYxJgrocWjOJmcBNRNs=;
+        b=NfwUFGJuwy7wOItCBRfrAUx2EDQDrXZgjVe1d6KLzkxqUX8wjk35XyHZ7+3H44EsTA
+         34GmlDQrN9lK3ua5jeyXolO8ZGN4smWg/BJwiBXHq1KWl22kqEyBo1tNC9YVauzgwrda
+         yy3RCHABUhGo37cA8J7oDWTcGfx7sZc5DJyepp9Z/aoTu6r9b095xiLpVNjPBkFe4IXA
+         grrb/L8Z1WBJPOmPJG+ALaTmF4zpRwuIOZWbWp2MmID6GPKNZXa84xBipvpgP+uHdRHW
+         8urvvK+kLxm+qsn/TYfO6PgDSdd4nteZSCsTbY3ez5lqg2T4tg7Cp3ag+UNlbP6Ckptb
+         U8Nw==
+X-Gm-Message-State: AOAM531WmhDlhKhrMYuJBRO5NM7KlZebddQ/MzG/5vBavDED31ByM0rk
+	40cQiv8dWU6G0UtthRuBTu7Tf9ma/esNURUfgp4=
+X-Google-Smtp-Source: 
+ ABdhPJymfz+SAJK5HsaTwjeLWDkXIWwNgX5pqZkeHKSKPMpRTytWgD/Ry/8X8RwXX6JoDvr4RiTX3vqTgmoi8akA0jY=
+X-Received: by 2002:a67:5cc1:: with SMTP id q184mr8874212vsb.13.1633683651467;
+ Fri, 08 Oct 2021 02:00:51 -0700 (PDT)
+MIME-Version: 1.0
+References: <31cf8b88-5441-4779-a26d-4b6b3c310b77@www.fastmail.com>
+In-Reply-To: <31cf8b88-5441-4779-a26d-4b6b3c310b77@www.fastmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Fri, 8 Oct 2021 11:00:39 +0200
+Message-ID: 
+ <CANNYZj_OpPwNOb+jADgG5Escpwj+WLcr_nhihfLd-NUhyHFTNQ@mail.gmail.com>
+Subject: Re: [yocto] How to enable graphics acceleration on qemux86-64?
+To: Manuel Wagesreither <ManWag@fastmail.fm>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000b89d2e05cdd39da6"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 08 Oct 2021 08:26:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54992
+ <yocto@lists.yoctoproject.org>; Fri, 08 Oct 2021 09:00:53 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54993
 
-Hello all,
+--000000000000b89d2e05cdd39da6
+Content-Type: text/plain; charset="UTF-8"
 
-How can I enable graphics acceleration on qemux86-64? My image is using wayland with weston and the GUI is not exactly fast.
+Something in your custom setup disables opengl in qemu-system-native.
 
-* When I do `runqemu slirp kvm gtk`, it throws the following error: `runqemu - ERROR - Failed to run qemu: qemu-system-x86_64: Display 'gtk' is not available.`
-* `runqemu slirp kvm sdl` works, but the weston GUI does not seem to be accelerated.
-* `runqemu slirp kvm sdl gl` emits the following: `runqemu - ERROR - Failed to run qemu: qemu-system-x86_64: OpenGL support is disabled`
+Can you try core-image-weston with plain poky only?
 
-Below I'm posting a snippet of `poky/scripts/runqemu` to have at hand the qemu options enabled by the runqemu options mentioned above:
-```
-            elif arg == 'sdl':
-                if 'gl' in sys.argv[1:]:
-                    self.qemu_opt_script += ' -vga virtio -display sdl,gl=on'
-                elif 'gl-es' in sys.argv[1:]:
-                    self.qemu_opt_script += ' -vga virtio -display sdl,gl=es'
-                else:
-                    self.qemu_opt_script += ' -display sdl'
-            elif arg == 'gtk':
-                if 'gl' in sys.argv[1:]:
-                    self.qemu_opt_script += ' -vga virtio -display gtk,gl=on'
-                elif 'gl-es' in sys.argv[1:]:
-                    self.qemu_opt_script += ' -vga virtio -display gtk,gl=es'
-                else:
-                    self.qemu_opt_script += ' -display gtk'
-```
+This is the test we use to ensure it does work, it lists all the settings
+that have to be in place
+(but in poky they are enabled by default, except the gtk frontend):
+http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/lib/oeqa/selftest/cases/runtime_test.py?h=master-next#n165
+http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/lib/oeqa/selftest/cases/runtime_test.py?h=master-next#n206
 
-Kind regards,
-Manuel
+Alex
+
+
+On Fri, 8 Oct 2021 at 10:26, Manuel Wagesreither <ManWag@fastmail.fm> wrote:
+
+> Hello all,
+>
+> How can I enable graphics acceleration on qemux86-64? My image is using
+> wayland with weston and the GUI is not exactly fast.
+>
+> * When I do `runqemu slirp kvm gtk`, it throws the following error:
+> `runqemu - ERROR - Failed to run qemu: qemu-system-x86_64: Display 'gtk' is
+> not available.`
+> * `runqemu slirp kvm sdl` works, but the weston GUI does not seem to be
+> accelerated.
+> * `runqemu slirp kvm sdl gl` emits the following: `runqemu - ERROR -
+> Failed to run qemu: qemu-system-x86_64: OpenGL support is disabled`
+>
+> Below I'm posting a snippet of `poky/scripts/runqemu` to have at hand the
+> qemu options enabled by the runqemu options mentioned above:
+> ```
+>             elif arg == 'sdl':
+>                 if 'gl' in sys.argv[1:]:
+>                     self.qemu_opt_script += ' -vga virtio -display
+> sdl,gl=on'
+>                 elif 'gl-es' in sys.argv[1:]:
+>                     self.qemu_opt_script += ' -vga virtio -display
+> sdl,gl=es'
+>                 else:
+>                     self.qemu_opt_script += ' -display sdl'
+>             elif arg == 'gtk':
+>                 if 'gl' in sys.argv[1:]:
+>                     self.qemu_opt_script += ' -vga virtio -display
+> gtk,gl=on'
+>                 elif 'gl-es' in sys.argv[1:]:
+>                     self.qemu_opt_script += ' -vga virtio -display
+> gtk,gl=es'
+>                 else:
+>                     self.qemu_opt_script += ' -display gtk'
+> ```
+>
+> Kind regards,
+> Manuel
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#54992):
+> https://lists.yoctoproject.org/g/yocto/message/54992
+> Mute This Topic: https://lists.yoctoproject.org/mt/86165780/1686489
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> alex.kanavin@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
+>
+
+--000000000000b89d2e05cdd39da6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Something in your custom setup disables opengl in qem=
+u-system-native. <br></div><div><br></div><div>Can you try core-image-westo=
+n with plain poky only?</div><div><br></div><div>This is the test we use to=
+ ensure it does work, it lists all the settings that have to be in place</d=
+iv><div>(but in poky they are enabled by default, except the gtk frontend):=
+</div><div><a href=3D"http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/l=
+ib/oeqa/selftest/cases/runtime_test.py?h=3Dmaster-next#n165">http://git.yoc=
+toproject.org/cgit.cgi/poky/tree/meta/lib/oeqa/selftest/cases/runtime_test.=
+py?h=3Dmaster-next#n165</a></div><div><a href=3D"http://git.yoctoproject.or=
+g/cgit.cgi/poky/tree/meta/lib/oeqa/selftest/cases/runtime_test.py?h=3Dmaste=
+r-next#n206">http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/lib/oeqa/s=
+elftest/cases/runtime_test.py?h=3Dmaster-next#n206</a></div><div><br></div>=
+<div>Alex</div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Fri, 8 Oct 2021 at 10:26, Manuel Wagesreit=
+her &lt;<a href=3D"mailto:ManWag@fastmail.fm">ManWag@fastmail.fm</a>&gt; wr=
+ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hello all,<=
+br>
+<br>
+How can I enable graphics acceleration on qemux86-64? My image is using way=
+land with weston and the GUI is not exactly fast.<br>
+<br>
+* When I do `runqemu slirp kvm gtk`, it throws the following error: `runqem=
+u - ERROR - Failed to run qemu: qemu-system-x86_64: Display &#39;gtk&#39; i=
+s not available.`<br>
+* `runqemu slirp kvm sdl` works, but the weston GUI does not seem to be acc=
+elerated.<br>
+* `runqemu slirp kvm sdl gl` emits the following: `runqemu - ERROR - Failed=
+ to run qemu: qemu-system-x86_64: OpenGL support is disabled`<br>
+<br>
+Below I&#39;m posting a snippet of `poky/scripts/runqemu` to have at hand t=
+he qemu options enabled by the runqemu options mentioned above:<br>
+```<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 elif arg =3D=3D &#39;sdl&#39;:<br=
+>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if &#39;gl&#39; in =
+sys.argv[1:]:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.=
+qemu_opt_script +=3D &#39; -vga virtio -display sdl,gl=3Don&#39;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 elif &#39;gl-es&#39=
+; in sys.argv[1:]:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.=
+qemu_opt_script +=3D &#39; -vga virtio -display sdl,gl=3Des&#39;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 else:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.=
+qemu_opt_script +=3D &#39; -display sdl&#39;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 elif arg =3D=3D &#39;gtk&#39;:<br=
+>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if &#39;gl&#39; in =
+sys.argv[1:]:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.=
+qemu_opt_script +=3D &#39; -vga virtio -display gtk,gl=3Don&#39;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 elif &#39;gl-es&#39=
+; in sys.argv[1:]:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.=
+qemu_opt_script +=3D &#39; -vga virtio -display gtk,gl=3Des&#39;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 else:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.=
+qemu_opt_script +=3D &#39; -display gtk&#39;<br>
+```<br>
+<br>
+Kind regards,<br>
+Manuel<br>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#54992): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/54992" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/54992</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/86165780/1686=
+489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
+/86165780/1686489</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.k=
+anavin@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div>
+
+--000000000000b89d2e05cdd39da6--
 
