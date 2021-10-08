@@ -1,144 +1,206 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <jonas.brich@bmw.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5AAB8C433EF
-	for <webhook@archiver.kernel.org>; Fri,  8 Oct 2021 13:07:37 +0000 (UTC)
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com
- [209.85.222.45])
- by mx.groups.io with SMTP id smtpd.web08.8867.1633698455880930635
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5CCADC433F5
+	for <webhook@archiver.kernel.org>; Fri,  8 Oct 2021 13:47:01 +0000 (UTC)
+Received: from esa2.hc324-48.eu.iphmx.com (esa2.hc324-48.eu.iphmx.com
+ [207.54.68.120])
+ by mx.groups.io with SMTP id smtpd.web10.9453.1633700818391386910
  for <yocto@lists.yoctoproject.org>;
- Fri, 08 Oct 2021 06:07:36 -0700
+ Fri, 08 Oct 2021 06:47:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=P/1g9xOK;
- spf=pass (domain: gmail.com, ip: 209.85.222.45,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ua1-f45.google.com with SMTP id q13so6710431uaq.2
-        for <yocto@lists.yoctoproject.org>;
- Fri, 08 Oct 2021 06:07:35 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@bmw.de header.s=mailing1
+ header.b=EPzVnRrZ;
+ spf=pass (domain: bmw.de, ip: 207.54.68.120,
+ mailfrom: prvs=908ae7fb5=jonas.brich@bmw.de)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=y+NgfAGnBwpxSWQk0wOJJsw6UWjqSIZ4X/fJ6Wqnxec=;
-        b=P/1g9xOK3NZnIywIYYwDjHKK8RvwrM2V2X+NaK/zPbGuKZ5mgkIrcX2hLMfx0IgWwH
-         I+gZNMAWcfShlROmYR0yFJyCZqZ2CNszpJmx24UZNzl+QYAnd09NhExqBAhXwGNcIdgb
-         jQbHbL9Pt2BfoBp6+l0egInySHVmCdSoQctaJ/+sHa7bxXBHXnDWMBup9swz52iasYzU
-         yJwuqhqK/ZS6UcDbZawouIIUVDLqBuzxIXhosvGW0KEqGUiocYKNfw4u68SzPd9XEdhi
-         96FQvQ42KTrmRTj0AAYHf/JhitHaVqPNK/51BaraQGSPQV+Zp2jnAstOQKhYjyQqrrU+
-         ADhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=y+NgfAGnBwpxSWQk0wOJJsw6UWjqSIZ4X/fJ6Wqnxec=;
-        b=553jKDzdFEEYiVbgBJLhebHitL0dLI3kUyZWvfYGHqcjtSVpA88OTUUYnmSFxOjhEY
-         /XJLXizgE7xzRoh4+jt5xEyIMX0k2MjNbaA7IH66VF2lnkEO1FZnaVOlRmqWVkwPGDvS
-         kd83/MKH7NaNIBjB/MNnf3kXBxPc8n4VosYPXv9tHnxRtlB5K+/5vaWPDQ0UzYyqMCZz
-         G/LM7kBk3lpY05rYfYzKEiESDVAJQjI5ejywI055Z1750QW8WtmnSU2WMv0nYIKr1Qh2
-         9rj1ss9Zg95ez1GItPRVn/5ItsbB9awrdwdx87X2w7w+B6jvxEfmlmrvJvwqW7Ufy1VL
-         nLfA==
-X-Gm-Message-State: AOAM532EVi+DIO/zRUot0pmBESIBfpzDp5XjelnQbg05HC8Ef7wK0pQh
-	xIKSTFZ27iyBYeawvAmvUxAuS2v3Bb1P4o0fhCs=
-X-Google-Smtp-Source: 
- ABdhPJxfhzX/WWs/GESvpqrSi3jxhTSQ/nC1fCw2YRb3EqzlNDlvtfZ2AKnFlWjrvBkWRIxZ09w6StHeyQ7SSLYGkZM=
-X-Received: by 2002:ab0:3c93:: with SMTP id a19mr2666935uax.93.1633698455020;
- Fri, 08 Oct 2021 06:07:35 -0700 (PDT)
+  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
+  t=1633700818; x=1665236818;
+  h=from:to:subject:date:message-id:mime-version;
+  bh=Eynhv8ISjRRHqROOLQLhs7YxHksVhoTK4gu2YZZ/tNA=;
+  b=EPzVnRrZu5IKLCDlKtWOJe8UJpyX3xbgzfES/yke+ZvwLUGkba3t8zLj
+   fQwK29Ru/9/v1pS1DuE04d4NiKpwOrwVWPbqH0T+OuX0rcV2ZmcrQ4xZ1
+   D9zp+naGjFoZPMKPguhntm+WsmKZx51rMIzKtoL5od0Gs+87R94kY3yw5
+   0=;
+Received: from esagw3.bmwgroup.com (HELO esagw3.muc) ([160.46.252.35]) by
+ esa2.hc324-48.eu.iphmx.com with ESMTP/TLS; 08 Oct 2021 15:46:54 +0200
+Received: from esabb2.muc ([160.50.100.34])  by esagw3.muc with ESMTP/TLS;
+ 08 Oct 2021 15:46:54 +0200
+Received: from smucm29k.bmwgroup.net (HELO SMUCM29K.europe.bmw.corp)
+ ([160.46.167.42])
+ by esabb2.muc with ESMTP/TLS; 08 Oct 2021 15:46:54 +0200
+Received: from SMUCM29J.europe.bmw.corp (160.46.167.41) by
+ SMUCM29K.europe.bmw.corp
+ (160.46.167.42) with Microsoft SMTP Server (TLS;
+ Fri, 8 Oct 2021 15:46:53 +0200
+Received: from SMUCM29J.europe.bmw.corp ([160.46.167.41]) by
+ SMUCM29J.europe.bmw.corp ([160.46.167.41]) with mapi id 15.00.1497.018; Fri,
+ 8 Oct 2021 15:46:53 +0200
+From: <Jonas.Brich@bmw.de>
+To: <yocto@lists.yoctoproject.org>
+Subject: [meta-selinux][dunfell][PATCH] libselinux: Backport NULL pointer fix
+ from 3.1
+Thread-Topic: [meta-selinux][dunfell][PATCH] libselinux: Backport NULL pointer
+ fix from 3.1
+Thread-Index: AQHXvEktApP/YafBckychEccfJ8FKg==
+Date: Fri, 8 Oct 2021 13:46:53 +0000
+Message-ID: <1633700814142.2401@bmw.de>
+Accept-Language: en-US, de-DE
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+Content-Type: multipart/mixed; boundary="_004_16337008141422401bmwde_"
 MIME-Version: 1.0
-References: 
- <CANNYZj_nVZ9P6AULwZ5d0o5MEQYO8ewyOo8-DedMV4g_cVpC9Q@mail.gmail.com>
- <15143.1633687046063540960@lists.yoctoproject.org>
- <CANNYZj9eQ9dZz0PsU-Dm7=c2CnH_C8dQ4RfVuJ23Q1rVV8K0tw@mail.gmail.com>
- <CAP71WjxQGbGs=Qfj0DZHU+nLwFsNn85wUxtQn0Kt3BxUFDCuTA@mail.gmail.com>
-In-Reply-To: 
- <CAP71WjxQGbGs=Qfj0DZHU+nLwFsNn85wUxtQn0Kt3BxUFDCuTA@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Fri, 8 Oct 2021 15:07:23 +0200
-Message-ID: 
- <CANNYZj8kNccXJVRhVfp5YKLUbwLqO1egZScgdsENJZfdpUoE8w@mail.gmail.com>
-Subject: Re: [yocto] How to submit/create a new repository in
- http://git.yoctoproject.org/
-To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Cc: tienhock.loh@starfivetech.com,
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000014e7aa05cdd7108d"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 08 Oct 2021 13:07:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54998
+ <yocto@lists.yoctoproject.org>; Fri, 08 Oct 2021 13:47:01 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/54999
 
---00000000000014e7aa05cdd7108d
-Content-Type: text/plain; charset="UTF-8"
+--_004_16337008141422401bmwde_
+Content-Type: multipart/alternative; boundary="_000_16337008141422401bmwde_"
 
-On Fri, 8 Oct 2021 at 14:05, Nicolas Dechesne <nicolas.dechesne@linaro.org>
-wrote:
-
-> hey,
->
-> On Fri, Oct 8, 2021 at 1:53 PM Alexander Kanavin <alex.kanavin@gmail.com>
-> wrote:
->
->> There's also a more specific thing you'd need to resolve: I believe you'd
->> need to pass all of the requirements listed here:
->> https://www.yoctoproject.org/ecosystem/branding/compatible-registration/
->>
->
-> Not really. We definitely believe that the Yocto Project Compatible
-> program is a valuable tool for our ecosystem. However, layers on
-> git.yp.org are not required to be compatible. But that's a good
-> suggestion for the future, perhaps ;)
->
-
-Still, that list has items that should be fulfilled even without seeking YP
-compatibility, for instance:
-
-9. All layers contain a README file which details the origin of the layer,
-its maintainer, where to submit changes, and any dependencies or version
-requirements.
-
-The layer linked above does not have that in its README. Passing the YP
-compatibility script is also a useful badge of quality.
-
-Alex
-
---00000000000014e7aa05cdd7108d
-Content-Type: text/html; charset="UTF-8"
+--_000_16337008141422401bmwde_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Fri, 8 Oct 2021 at 14:05, Nicolas Dechesne &lt;<a href=3D"mailto:=
-nicolas.dechesne@linaro.org">nicolas.dechesne@linaro.org</a>&gt; wrote:<br>=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
-order-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><d=
-iv dir=3D"ltr">hey,</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cl=
-ass=3D"gmail_attr">On Fri, Oct 8, 2021 at 1:53 PM Alexander Kanavin &lt;<a =
-href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.kanavin@gmail=
-.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
-ex"><div dir=3D"ltr"><div>There&#39;s also a more specific thing you&#39;d =
-need to resolve: I believe you&#39;d need to pass all of the requirements l=
-isted here:</div><div><a href=3D"https://www.yoctoproject.org/ecosystem/bra=
-nding/compatible-registration/" target=3D"_blank">https://www.yoctoproject.=
-org/ecosystem/branding/compatible-registration/</a></div></div></blockquote=
-><div><br></div><div>Not really. We definitely believe that the Yocto Proje=
-ct Compatible program=C2=A0is a valuable tool for our ecosystem. However, l=
-ayers on <a href=3D"http://git.yp.org" target=3D"_blank">git.yp.org</a> are=
- not required to be compatible. But that&#39;s a good suggestion for the fu=
-ture, perhaps ;)=C2=A0</div></div></div></blockquote><div><br></div>Still, =
-that list has items that should be fulfilled even without seeking YP compat=
-ibility, for instance:</div><div class=3D"gmail_quote"><label for=3D"dsp_yp=
-compatible_have_readme"><br></label></div><div class=3D"gmail_quote"><label=
- for=3D"dsp_ypcompatible_have_readme">9. All layers contain a README
- file which details the origin of the layer, its maintainer, where to=20
-submit changes, and any dependencies or version requirements.</label></div>=
-<div class=3D"gmail_quote"><label for=3D"dsp_ypcompatible_have_readme"><br>=
-</label></div><div class=3D"gmail_quote"><label for=3D"dsp_ypcompatible_hav=
-e_readme">The layer linked above does not have that in its README. Passing =
-the YP compatibility script is also a useful badge of quality.<br></label><=
-/div><div class=3D"gmail_quote"><label for=3D"dsp_ypcompatible_have_readme"=
-><br></label></div><div class=3D"gmail_quote"><label for=3D"dsp_ypcompatibl=
-e_have_readme">Alex<br></label></div></div>
+Attached the diff.
 
---00000000000014e7aa05cdd7108d--
+
+Thanks
+
+
+BMW Car IT GmbH
+Jonas Brich
+Spezialist Entwicklung
+Lise-Meitner-Str. 14
+89081 Ulm
+
+Tel.:  +49 731 3780 4292
+Mail: jonas.brich@bmw.de
+Web: http://www.bmw-carit.de
+----------------------------------------------------------------------
+BMW Car IT GmbH
+Geschaeftsfuehrer: Kai-Uwe Balszuweit und Michael B=F6ttrich
+Sitz und Registergericht: Muenchen HRB 134810
+----------------------------------------------------------------------
+
+--_000_16337008141422401bmwde_
+Content-Type: text/html; charset="iso-8859-1"
+Content-ID: <19DF18CB5583C54BA1382EE637EFCC48@bmwmail.corp>
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none"><!--P{margin-top:0;margin-b=
+ottom:0;} p=0A=
+	{margin-top:0;=0A=
+	margin-bottom:0}--></style>
+</head>
+<body dir=3D"ltr" style=3D"font-size:12pt;color:#000000;background-color:#F=
+FFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>Attached the diff.</p>
+<p><br>
+</p>
+<p>Thanks<br>
+</p>
+<p><br>
+</p>
+<div id=3D"Signature">
+<div name=3D"divtagdefaultwrapper" style=3D"font-family:Calibri,Arial,Helve=
+tica,sans-serif; font-size:; margin:0">
+<div style=3D"font-family:Tahoma; font-size:13px">
+<div style=3D"font-family:Tahoma; font-size:13px">
+<div style=3D"font-family:Tahoma; font-size:13px"><br>
+<b>BMW Car IT GmbH</b><br>
+Jonas Brich<br>
+Spezialist Entwicklung<br>
+Lise-Meitner-Str. 14<br>
+89081 Ulm<br>
+<br>
+Tel.:&nbsp; &#43;49 731 3780 4292<br>
+Mail: jonas.brich@bmw.de<br>
+Web: http://www.bmw-carit.de<br>
+<font size=3D"1">----------------------------------------------------------=
+------------<br>
+BMW Car IT GmbH<br>
+Geschaeftsfuehrer: Kai-Uwe Balszuweit und Michael B=F6ttrich</font></div>
+<div style=3D"font-family:Tahoma; font-size:13px"><font size=3D"1">Sitz und=
+ Registergericht: Muenchen HRB 134810<br>
+----------------------------------------------------------------------</fon=
+t><br>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_16337008141422401bmwde_--
+
+--_004_16337008141422401bmwde_
+Content-Type: text/x-patch; name="67803f9.diff"
+Content-Description: 67803f9.diff
+Content-Disposition: attachment; filename="67803f9.diff"; size=2852;
+	creation-date="Fri, 08 Oct 2021 13:44:13 GMT";
+	modification-date="Fri, 08 Oct 2021 13:44:13 GMT"
+Content-Transfer-Encoding: base64
+
+RnJvbSA2NzgwM2Y5MzkyMTBmOTk1ZmI0ZTM5YjNiNjdjNTdjYTIzOTU5NzI4IE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBKb25hcyBCcmljaCA8Sm9uYXMuQnJpY2hAYm13LmRlPgpEYXRl
+OiBGcmksIDA4IE9jdCAyMDIxIDE0OjQ3OjE0ICswMjAwClN1YmplY3Q6IFtQQVRDSF0gbGlic2Vs
+aW51eDogQmFja3BvcnQgTlVMTCBwb2ludGVyIGZpeCBmcm9tIDMuMQoKVXNpbmcgZnVuY3Rpb24g
+cmVzdG9yZWNvbl9pbml0IGluc2lkZSBzZWxpbnV4X3Jlc3RvcmVjb24uYyBjYW4KcmVzdWx0IGlu
+IGEgTlVMTCBwb2ludGVyLiBUaGlzIGhhcHBlbnMgYmVjYXVzZSBmdW5jdGlvbgpzZWxpbnV4X3Jl
+c3RvcmVjb25fc2V0X3NlaGFuZGxlIGNhbiByZXR1cm4gYSBOVUxMIHBvaW50ZXIuIEJ1dAppdCBp
+cyBub3QgY2hlY2tlZCBhbmQgZGlyZWN0bHkgZ2l2ZW4gdG8gdGhlIG5leHQgZnVuY3Rpb24uCgpU
+aGlzIHByb2JsZW0gaXMgYWxyZWFkeSBmaXhlZCBpbiBsaWJzZWxpbnV4IDMuMSBhbmQgYWJvdmUu
+ClRoZXJlZm9yZSBiYWNrcG9ydCB0aGlzIGZpeC4KClVwc3RyZWFtLVN0YXR1czogQmFja3BvcnQg
+W2h0dHBzOi8vZ2l0aHViLmNvbS9TRUxpbnV4UHJvamVjdC9zZWxpbnV4L2NvbW1pdC8wOGY1ZTMw
+MTc3MjE4ZmFlN2NlOWY1YzhkNjg1NjY5MDEyNmIyYjMwXQpJc3N1ZTogTUdVUlNVLTcyNTkKQ2hh
+bmdlLUlkOiBJY2U1YzdjOTQ5ODc0NDFiYTUzNDMxYWVmZmMyMDBjMGI5YzU2OTdhNAotLS0KCmRp
+ZmYgLS1naXQgYS9yZWNpcGVzLXNlY3VyaXR5L3NlbGludXgvbGlic2VsaW51eC8wMDAxLUZpeC1O
+VUxMLXBvaW50ZXItdXNlLWluLXNlbGludXhfcmVzdG9yZWNvbl9zZXRfc2VoYW5kbGUucGF0Y2gg
+Yi9yZWNpcGVzLXNlY3VyaXR5L3NlbGludXgvbGlic2VsaW51eC8wMDAxLUZpeC1OVUxMLXBvaW50
+ZXItdXNlLWluLXNlbGludXhfcmVzdG9yZWNvbl9zZXRfc2VoYW5kbGUucGF0Y2gKbmV3IGZpbGUg
+bW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMC4uOGE5ZmI3YwotLS0gL2Rldi9udWxsCisrKyBiL3Jl
+Y2lwZXMtc2VjdXJpdHkvc2VsaW51eC9saWJzZWxpbnV4LzAwMDEtRml4LU5VTEwtcG9pbnRlci11
+c2UtaW4tc2VsaW51eF9yZXN0b3JlY29uX3NldF9zZWhhbmRsZS5wYXRjaApAQCAtMCwwICsxLDMw
+IEBACitGcm9tIDA4ZjVlMzAxNzcyMThmYWU3Y2U5ZjVjOGQ2ODU2NjkwMTI2YjJiMzAgTW9uIFNl
+cCAxNyAwMDowMDowMCAyMDAxCitGcm9tOiBKaSBRaW4gPGppcWluLmppQGh1YXdlaS5jb20+CitE
+YXRlOiBTdW4sIDE0IEp1biAyMDIwIDIxOjIwOjIzIC0wNDAwCitTdWJqZWN0OiBbUEFUQ0hdIGxp
+YnNlbGludXg6IEZpeCBOVUxMIHBvaW50ZXIgdXNlIGluCisgc2VsaW51eF9yZXN0b3JlY29uX3Nl
+dF9zZWhhbmRsZQorCitlcnJvciBvY2N1ciB3aGVuIHNlbGludXhfcmVzdG9yZWNvbl9kZWZhdWx0
+X2hhbmRsZSByZXR1cm4gTlVMTCBpbgorcmVzdG9yZWNvbl9pbml0LgorCitmaXhlczogaHR0cHM6
+Ly9naXRodWIuY29tL1NFTGludXhQcm9qZWN0L3NlbGludXgvaXNzdWVzLzI0OQorCitTaWduZWQt
+b2ZmLWJ5OiBKaSBRaW4gPGppcWluLmppQGh1YXdlaS5jb20+CitBY2tlZC1ieTogU3RlcGhlbiBT
+bWFsbGV5IDxzdGVwaGVuLnNtYWxsZXkud29ya0BnbWFpbC5jb20+CistLS0KKyBsaWJzZWxpbnV4
+L3NyYy9zZWxpbnV4X3Jlc3RvcmVjb24uYyB8IDIgKysKKyAxIGZpbGUgY2hhbmdlZCwgMiBpbnNl
+cnRpb25zKCspCisKK2RpZmYgLS1naXQgYS9saWJzZWxpbnV4L3NyYy9zZWxpbnV4X3Jlc3RvcmVj
+b24uYyBiL2xpYnNlbGludXgvc3JjL3NlbGludXhfcmVzdG9yZWNvbi5jCitpbmRleCBkMWNlODMw
+YzUuLjY5OTNiZTZmZCAxMDA2NDQKKy0tLSBhL2xpYnNlbGludXgvc3JjL3NlbGludXhfcmVzdG9y
+ZWNvbi5jCisrKysgYi9saWJzZWxpbnV4L3NyYy9zZWxpbnV4X3Jlc3RvcmVjb24uYworQEAgLTEx
+NTQsNiArMTE1NCw4IEBAIHZvaWQgc2VsaW51eF9yZXN0b3JlY29uX3NldF9zZWhhbmRsZShzdHJ1
+Y3Qgc2VsYWJlbF9oYW5kbGUgKmhuZGwpCisgCXNpemVfdCBudW1fc3BlY2ZpbGVzLCBmY19kaWdl
+c3RfbGVuOworIAorIAlmY19zZWhhbmRsZSA9IChzdHJ1Y3Qgc2VsYWJlbF9oYW5kbGUgKikgaG5k
+bDsKKysJaWYgKCFmY19zZWhhbmRsZSkKKysJCXJldHVybjsKKyAKKyAJLyogQ2hlY2sgaWYgZGln
+ZXN0IHJlcXVlc3RlZCBpbiBzZWxhYmVsX29wZW4oMyksIGlmIHNvIHVzZSBpdC4gKi8KKyAJaWYg
+KHNlbGFiZWxfZGlnZXN0KGZjX3NlaGFuZGxlLCAmZmNfZGlnZXN0LCAmZmNfZGlnZXN0X2xlbiwK
+ZGlmZiAtLWdpdCBhL3JlY2lwZXMtc2VjdXJpdHkvc2VsaW51eC9saWJzZWxpbnV4XzMuMC5iYiBi
+L3JlY2lwZXMtc2VjdXJpdHkvc2VsaW51eC9saWJzZWxpbnV4XzMuMC5iYgppbmRleCAxN2EyNWE5
+Li4wMWY5YjdiIDEwMDY0NAotLS0gYS9yZWNpcGVzLXNlY3VyaXR5L3NlbGludXgvbGlic2VsaW51
+eF8zLjAuYmIKKysrIGIvcmVjaXBlcy1zZWN1cml0eS9zZWxpbnV4L2xpYnNlbGludXhfMy4wLmJi
+CkBAIC0xMyw0ICsxMyw1IEBACiAgICAgICAgIGZpbGU6Ly9saWJzZWxpbnV4LWRlZmluZS1GRF9D
+TE9FWEVDLWFzLW5lY2Vzc2FyeS5wYXRjaCBcCiAgICAgICAgIGZpbGU6Ly8wMDAxLUZpeC1idWls
+ZGluZy1hZ2FpbnN0LW11c2wtYW5kLXVDbGliYy1saWJjLWxpYnJhcmllcy5wYXRjaCBcCiAgICAg
+ICAgIGZpbGU6Ly8wMDAxLWxpYnNlbGludXgtZXhwb3J0LWZsdXNoX2NsYXNzX2NhY2hlLWNhbGwt
+aXQtb24tcG9saWMucGF0Y2ggXAorICAgICAgICBmaWxlOi8vMDAwMS1GaXgtTlVMTC1wb2ludGVy
+LXVzZS1pbi1zZWxpbnV4X3Jlc3RvcmVjb25fc2V0X3NlaGFuZGxlLnBhdGNoIFwKICAgICAgICAg
+Igo=
+
+--_004_16337008141422401bmwde_--
 
