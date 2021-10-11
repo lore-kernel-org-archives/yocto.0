@@ -1,143 +1,73 @@
-Return-Path: <jupiter.hce@gmail.com>
+Return-Path: <naveen.kumar.saini@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3FA4FC433EF
-	for <webhook@archiver.kernel.org>; Mon, 11 Oct 2021 09:05:33 +0000 (UTC)
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com
- [209.85.217.50])
- by mx.groups.io with SMTP id smtpd.web12.9306.1633943131727976500
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5522CC433EF
+	for <webhook@archiver.kernel.org>; Mon, 11 Oct 2021 09:06:58 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by mx.groups.io with SMTP id smtpd.web12.9318.1633943216951898421
  for <yocto@lists.yoctoproject.org>;
- Mon, 11 Oct 2021 02:05:31 -0700
+ Mon, 11 Oct 2021 02:06:57 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=S7BFv3ua;
- spf=pass (domain: gmail.com, ip: 209.85.217.50,
- mailfrom: jupiter.hce@gmail.com)
-Received: by mail-vs1-f50.google.com with SMTP id 66so18158670vsd.11
-        for <yocto@lists.yoctoproject.org>;
- Mon, 11 Oct 2021 02:05:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VqkZMOlXaJPwPzdnSpG3dBl/Ua5TJcd5wvjG/HyXoZ4=;
-        b=S7BFv3ua6EDTEmkjnJbIb9+zjdFFKnoVhkXFSYTIkk44xPTptVTbeDS+2kcnadcFmx
-         ncwuAe6XRKo1WZBWCLhd5BY6A0lshvB9U7mP0wndsYFkCwIM56bttbg4vLbiMe0Qak/q
-         vIkbkFY+0TnKUD7dshu2s5YNB1jrDBXa3DSEbGVhxWhZTAMN6KOpzYCz5immqmCDt0qR
-         jFPKyQZdTx0vUmqtgNlBnqaSJcC6+07DVFA7WVRM8EfN6BUuXaFl5V8kdaVuMjssjhWW
-         ecQVSDvlh8xgoV1KwLpJ/aVB9Mb+r/7fkIevU21o/PdgfToXdj6sb/F6pt9gIu9Z9eMy
-         xZVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VqkZMOlXaJPwPzdnSpG3dBl/Ua5TJcd5wvjG/HyXoZ4=;
-        b=2BjFvlrNJLVVPSMWv15V8Arel/G2dDKoTOHusxUbllOYkR+MwXFb4lSAtmCyFp4bvE
-         NRyFKXsxrbZXPX4pVk6UYFmxgRAjFb0yFjjmK0qm6fBzL6wYVd/AgljD7h2DZP9jQKVO
-         PuSGZKZYZYTIIkO+ihyJXyjyStdx4iRebqXd3DJbP3KzWdPg/A2IBFMYQUxzdlhvkFAm
-         Squl18Sk7Z/mvSfHz0CUKWppTuWDAJm7CRQJvDVACdS06yS85e9w6uMtSaLsv/GiP1PT
-         6FyJfc7RO6RW9+pWoEcC1AXnY28Ikn2l38DsaK/7jRpTuEKeSBCW4e1uLaR+ue1vopUW
-         boeg==
-X-Gm-Message-State: AOAM532BndpM+nnxl+lNSgS6XZQEAnMLSJTC/7IN4/u0JeYaJdcoY/2+
-	bEFC2gagQ5Y4rudJaeL+0MTlc3hfDTYNeXL0i68=
-X-Google-Smtp-Source: 
- ABdhPJxpCYHt7hkPgoE9NJSS5aACl/QdnK2xdf4KcCPKki9L4dSt+oduE4V3yZYI8eXqFm2Kr+WmWQWyjymPHGm8hf8=
-X-Received: by 2002:a67:f752:: with SMTP id w18mr13091553vso.51.1633943130744;
- Mon, 11 Oct 2021 02:05:30 -0700 (PDT)
-MIME-Version: 1.0
-References: 
- <CAA=hcWSfqgxOX8UjwW35tD4VMC8c0SHWVo=_=z38NH7+rq6dAg@mail.gmail.com>
- <CAM6O0Zg3qNqZbtkKjTXQdSwD9LAjrKOaumshWk9Swvb7OMT8VA@mail.gmail.com>
-In-Reply-To: 
- <CAM6O0Zg3qNqZbtkKjTXQdSwD9LAjrKOaumshWk9Swvb7OMT8VA@mail.gmail.com>
-From: Jupiter <jupiter.hce@gmail.com>
-Date: Mon, 11 Oct 2021 20:04:54 +1100
-Message-ID: 
- <CAA=hcWQvwDbg0106agTerDfq78yh2kvin1k4Xydi3Z6buEBK_g@mail.gmail.com>
-Subject: Re: [OE-core] How to trigger Yocto Linux /etc/profile or shell
- scripts in /etc/profile.d without shell logging in?
-To: Federico Pellegrin <fede@evolware.org>
-Cc: yocto <yocto@lists.yoctoproject.org>,
-	OE <openembedded-core@lists.openembedded.org>
-Content-Type: text/plain; charset="UTF-8"
+ dkim=missing;
+ spf=pass (domain: intel.com, ip: 134.134.136.31, mailfrom: naveen.kumar.saini@intel.com)
+X-IronPort-AV: E=McAfee;i="6200,9189,10133"; a="287711335"
+X-IronPort-AV: E=Sophos;i="5.85,364,1624345200";
+   d="scan'208";a="287711335"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2021 02:06:56 -0700
+X-IronPort-AV: E=Sophos;i="5.85,364,1624345200";
+   d="scan'208";a="490392207"
+Received: from saininav-desk1.png.intel.com ([10.158.87.77])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2021 02:06:55 -0700
+From: Naveen Saini <naveen.kumar.saini@intel.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-zephyr][PATCH 1/2] zephyr-kernel/2.7.0: add recipe
+Date: Mon, 11 Oct 2021 17:21:50 +0800
+Message-Id: <20211011092151.28048-1-naveen.kumar.saini@intel.com>
+X-Mailer: git-send-email 2.17.1
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 11 Oct 2021 09:05:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55015
+ <yocto@lists.yoctoproject.org>; Mon, 11 Oct 2021 09:06:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55016
 
-Hi Federico,
+https://github.com/zephyrproject-rtos/zephyr/commits/v2.7-branch
 
-Thanks for your response.
+Keeping the default PREFERRED_VERSION to 2.6.1 for now.
 
-> /etc/profile and similar are interactive shell (/bash) concepts, not really
-> system startup ones. So indeed: just on a login (be it local, ssh and so
-> on) they are executed.
+Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
+---
+ .../zephyr-kernel/zephyr-kernel-src-2.7.0.inc   | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+ create mode 100644 recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.0.inc
 
-Understood, here is what I try to figure out. I use several systemd
-services to start my tasks, each task is not just a system process, I
-found it also has a system environment similar in user login from
-/etcprofile, /home/user/.profile, my question is where is a system
-environment file that each systemd service runs from?
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.0.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.0.inc
+new file mode 100644
+index 0000000..e3424d2
+--- /dev/null
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.0.inc
+@@ -0,0 +1,17 @@
++SRCREV_FORMAT = "default_cmsis"
++SRCREV_default = "8a97c83040c0257d98c329dde55ae10e68544688"
++SRCREV_cmsis = "b0612c97c1401feeb4160add6462c3627fe90fc7"
++SRCREV_nordic = "a6e5299041f152da5ae0ab17b2e44e088bb96d6d"
++SRCREV_stm32 = "5c8275071ec1cf160bfe8c18bbd9330a7d714dc8"
++SRCREV_open-amp = "6010f0523cbc75f551d9256cf782f173177acdef"
++SRCREV_openthread = "5d706547ebcb0a85e11412bcd88e80e2af98c74d"
++SRCREV_libmetal = "39d049d4ae68e6f6d595fce7de1dcfc1024fb4eb"
++SRCREV_tinycrypt = "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
++SRCREV_mbedtls = "5765cb7f75a9973ae9232d438e361a9d7bbc49e7"
++
++ZEPHYR_BRANCH = "v2.7-branch"
++PV = "2.7.0+git${SRCPV}"
++
++SRC_URI:append = " file://0001-cmake-add-yocto-toolchain.patch \
++                    file://0001-x86-fix-efi-binary-generation-issue-in-cross-compila.patch \
++                    "
+-- 
+2.17.1
 
-I also thought that /etc/profile.d files should be automatically
-invoked for each user login, but a systemd service does not run
-/etc/profile.d files.
-
-> If you want to execute something else without the need for logging it, you
-> should look elsewhere, depending on your system manager: if systemd you
-> should create a service and enable it, if sysvinit a init.d script.
-
-Understood, that was what I did originally, I have to run the setup
-system environment in each service ExecStart script, that is why I am
-looking for a global environment setup file to avoid duplication of
-putting my environment scripts in each ExecStart execution file.
-
-Thank you.
-
-Kind regards,
-
-- jupiter
-
-> HTH,
-> Federico
->
->
-> Il giorno lun 11 ott 2021 alle ore 06:30 JH <jupiter.hce@gmail.com> ha
-> scritto:
->
->> Hi,
->>
->> The Yocto uses /etc/profile for root login, but there is no root
->> physical login in an embedded device so the /etc/profile is never
->> called, I added a shell script to /etc/profile.d, it was not called
->> either. Both /etc/profile and scripts in /etc/profile.d can only be
->> invoked when I physically log into the debug console, that is
->> impractical. Appreciate your advice, how do you resolve that kind of
->> problem?
->>
->> Thank you.
->>
->> Kind regards,
->>
->> - jupiter
->>
->> -=-=-=-=-=-=-=-=-=-=-=-
->> Links: You receive all messages sent to this group.
->> View/Reply Online (#156808):
->> https://lists.openembedded.org/g/openembedded-core/message/156808
->> Mute This Topic: https://lists.openembedded.org/mt/86229953/5117409
->> Group Owner: openembedded-core+owner@lists.openembedded.org
->> Unsubscribe: https://lists.openembedded.org/g/openembedded-core/unsub [
->> fede@evolware.org]
->> -=-=-=-=-=-=-=-=-=-=-=-
->>
->>
->
-
-
---
-"A man can fail many times, but he isn't a failure until he begins to
-blame somebody else."
--- John Burroughs
 
