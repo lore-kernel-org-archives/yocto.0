@@ -1,111 +1,127 @@
-Return-Path: <fede@evolware.org>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 26122C433F5
-	for <webhook@archiver.kernel.org>; Tue, 12 Oct 2021 16:27:44 +0000 (UTC)
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com
- [209.85.222.44])
- by mx.groups.io with SMTP id smtpd.web09.16490.1634056063500243008
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4927DC433EF
+	for <webhook@archiver.kernel.org>; Tue, 12 Oct 2021 16:55:27 +0000 (UTC)
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com
+ [209.85.216.50])
+ by mx.groups.io with SMTP id smtpd.web10.16963.1634057726545983297
  for <yocto@lists.yoctoproject.org>;
- Tue, 12 Oct 2021 09:27:43 -0700
+ Tue, 12 Oct 2021 09:55:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=pass (domain: gmail.com, ip: 209.85.222.44, mailfrom: fede.evol@gmail.com)
-Received: by mail-ua1-f44.google.com with SMTP id h4so19610278uaw.1
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=Sg/jSgn8;
+ spf=pass (domain: gmail.com, ip: 209.85.216.50, mailfrom: raj.khem@gmail.com)
+Received: by mail-pj1-f50.google.com with SMTP id oa4so102002pjb.2
         for <yocto@lists.yoctoproject.org>;
- Tue, 12 Oct 2021 09:27:43 -0700 (PDT)
+ Tue, 12 Oct 2021 09:55:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:organization:in-reply-to:content-transfer-encoding;
+        bh=YUhUeD36JZRMYh+P/D27TCpgGymd/LbDsLlQdjV6TCM=;
+        b=Sg/jSgn8A7X3lMylDduO+naocG8U1cud5VX6a9x89SdGXdiqd0CqOd0hi/mP2TDuSJ
+         VisQHoKiHn01V5dg+7lSTqJynb28+7LHS1O2mUH0UoA96/uh3rcDiR6L18bu7gZXNsPY
+         0sfbaj9u6nzvHCKdG77vicLikTVKNIxFLFTE9l0xPIIZFQgUKJnv+nukLf2YlfQtXrmb
+         EKchwb7Zc4yY1CX9cw1bZVd8c8tQWjZqd8MvFsqv77Zd/NmQ6OrQwf2BiEiZqsqDCYXY
+         VQ69u0qsl2uq09/yTWGKdwSxZjMx+S4DwCjhstrzNQA09dwRvzKB+YyRnWW+xC3lKRZc
+         Ux2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=ykF4gqwT/7P4cQPnZQ1qLQu3ODgf13QS/YI8Lwz9pr4=;
-        b=hG2jJwlCvQFtoaoAJStcXyKyhZy4JxSFTekIjDF3TcHycm1kgbkCJyFt3J95a7aBt9
-         z8MsYKiLWpisrP1VUyKM0jg86gF5kRNbQj7JX76H1juQyjTLat+Bu8W9NkcOREglfiIx
-         EMKm2Yfl0zF8vM2HLoD4LLIvHpV/LZFoJ6zt7jWPeNeCPZYy0vXl6FHy/IzHR05y14Ns
-         S0B+hU48VMsxajxVrWsaowxqiJQjDDCbTgyOaWSD84J9B2fInDcUCndeWHW5XdflkF80
-         EZcheQqQuY/AQlRcdFhz5HFamqNIx2/DVQaB92GTP8A5pyijMQo9icP80ffVvFxssSh1
-         GqFw==
-X-Gm-Message-State: AOAM532YUGY1tSyvvhdBHSgOOMKBYEwWjimHLj90U/JxEBLlum8Dgvzs
-	vH8WdeJ/NfCdhpyz05Ih4sRKAjJTB2yN4unuG1tBuqURuTCG7A==
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=YUhUeD36JZRMYh+P/D27TCpgGymd/LbDsLlQdjV6TCM=;
+        b=x7Xfsg7iZKLfACT9tVWK9NsWhE/aT/Fbl0JUP9z8B7Tco7tyc5ZEkt1wIX78qjNZDn
+         RYOv7aZREc0KAu45Ltjt8KoIZWfhmkcoLpOew3BIigVu474iN/BAQCMc5KmqX1oc97ZL
+         K8QgfwW9rW/yzLK6FAXQT+lAlfuYlN2MwHIulK647uAwHJ5Jo9eIYVmzGq/svx3E9Ykw
+         ZJnzZ8SO8EKa+V0Bmba59XH25EyA7xEZpNgJRbkCavV58J5a8yh4cFoxt++THi/nlEST
+         Z/ipr3YO01HAQ8QnvbrbRMqn7sz161zcTPwVoXIj8q9vhH+6XAc5zythtgRHoRiQQskn
+         xY7w==
+X-Gm-Message-State: AOAM532lm/aKi+BSVK7rqg4iZBrgdtVf9O6YS1dBXnRBC2DcMIY1UiDT
+	zrOWB/3s2ajb20toXhqXIbc=
 X-Google-Smtp-Source: 
- ABdhPJwS9HTPzq9kp3D9FMZpc9TQ1nlLMg0/LMtbSltivMxDePio1YdtuY1nOBNnlwYYOPQnZ3CFoblawZBdgvh8oYs=
-X-Received: by 2002:a67:2e16:: with SMTP id u22mr31833140vsu.61.1634056062392;
- Tue, 12 Oct 2021 09:27:42 -0700 (PDT)
+ ABdhPJzkozw4veK0qDKj1F8yMpiUBsfrFHopYnqaNvWxtKmIn+xuBQAkC94yJQQGLjz+yKdM57fnrA==
+X-Received: by 2002:a17:902:7c10:b0:13e:e11e:8d1c with SMTP id
+ x16-20020a1709027c1000b0013ee11e8d1cmr31155668pll.55.1634057725878;
+        Tue, 12 Oct 2021 09:55:25 -0700 (PDT)
+Received: from ?IPV6:2601:646:9200:a0f0:6c8b:1831:560d:271b?
+ ([2601:646:9200:a0f0:6c8b:1831:560d:271b])
+        by smtp.gmail.com with ESMTPSA id
+ 139sm11663391pfz.35.2021.10.12.09.55.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Oct 2021 09:55:25 -0700 (PDT)
+Message-ID: <deee2a0d-5de0-d18b-3b95-2e3132c8915a@gmail.com>
+Date: Tue, 12 Oct 2021 09:55:24 -0700
 MIME-Version: 1.0
-From: Federico Pellegrin <fede@evolware.org>
-Date: Tue, 12 Oct 2021 18:27:30 +0200
-Message-ID: 
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.2.0
+Subject: Re: [yocto] util-linux and --enable-raw with recent kernels
+Content-Language: en-US
+To: Federico Pellegrin <fede@evolware.org>,
+ Yocto-mailing-list <yocto@lists.yoctoproject.org>
+References: 
  <CAM6O0ZhZKspmeE02cgh1coOvjMUmhdUTMR8en3UbpJm3SL5fhA@mail.gmail.com>
-Subject: util-linux and --enable-raw with recent kernels
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000024770205ce2a53cf"
+From: Khem Raj <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+In-Reply-To: 
+ <CAM6O0ZhZKspmeE02cgh1coOvjMUmhdUTMR8en3UbpJm3SL5fhA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 12 Oct 2021 16:27:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55041
+ <yocto@lists.yoctoproject.org>; Tue, 12 Oct 2021 16:55:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55042
 
---00000000000024770205ce2a53cf
-Content-Type: text/plain; charset="UTF-8"
 
-Hello,
-Running on a quite recent kernel (5.14.10 from Fedora 34) I've came across
-a problem when building util-linux (2.35.2) native, namely in the configure
-phase:
 
-configure: error: raw selected, but required raw.h header file not available
+On 10/12/21 9:27 AM, Federico Pellegrin wrote:
+> 
+> Hello,
+> Running on a quite recent kernel (5.14.10 from Fedora 34) I've came 
+> across a problem when building util-linux (2.35.2) native, namely in the 
+> configure phase:
+> 
+> configure: error: raw selected, but required raw.h header file not available
+> 
 
-After a bit or research I believe it is due to:
-https://www.mail-archive.com/debian-bugs-dist@lists.debian.org/msg1820154.html
+you might want to use latest master, fix that you might find useful is
 
-Which is related to the change in the recent kernels here:
-https://github.com/torvalds/linux/commit/603e4922f1c81fc2ed3a87b4f91a8d3aafc7e093#diff-10d697dff14540ee1eb6539dcc53b2b88844b6187c1995c0698ba0936754304a
-where the raw.h file was indeed removed.
+https://git.openembedded.org/openembedded-core/commit/?id=7f577c10913104860121f682b9b3754870c4db23
 
-As per first link it may not be obvious to fix, and don't see an upstream
-fix for it, but from the Yocto perspective my current workaround is
-basically just to remove "--enable-raw" from the EXTRA_OECONF to disable
-the raw feature.
-
-While the whole image seemed to build fine with this, I'm not very sure if
-that configuration option had a precise use (which maybe it's being
-skipping in my specific build) or not, so I wanted to ask the experts if
-there is any opinion on this and/or should I do a merge request that
-removes it to handle this problem, at least until there is a better
-solution upstream in util-linux?
-
-Many thanks,
-Federico
-
---00000000000024770205ce2a53cf
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><br></div><div>Hello,</div><div>Running on a quite re=
-cent kernel (5.14.10 from Fedora 34) I&#39;ve came across a problem when bu=
-ilding util-linux (2.35.2) native, namely in the configure phase:</div><div=
-><br></div><div>configure: error: raw selected, but required raw.h header f=
-ile not available</div><div><br></div><div>After a bit or research I believ=
-e it is due to:</div><div><a href=3D"https://www.mail-archive.com/debian-bu=
-gs-dist@lists.debian.org/msg1820154.html">https://www.mail-archive.com/debi=
-an-bugs-dist@lists.debian.org/msg1820154.html</a></div><div><br></div><div>=
-Which is related to the change in the recent kernels here:</div><div><a hre=
-f=3D"https://github.com/torvalds/linux/commit/603e4922f1c81fc2ed3a87b4f91a8=
-d3aafc7e093#diff-10d697dff14540ee1eb6539dcc53b2b88844b6187c1995c0698ba09367=
-54304a">https://github.com/torvalds/linux/commit/603e4922f1c81fc2ed3a87b4f9=
-1a8d3aafc7e093#diff-10d697dff14540ee1eb6539dcc53b2b88844b6187c1995c0698ba09=
-36754304a</a></div><div>where the raw.h file was indeed removed.<br></div><=
-div><br></div><div>As per first link it may not be obvious to fix, and don&=
-#39;t see an upstream fix for it, but from the Yocto perspective my current=
- workaround is basically just to remove &quot;--enable-raw&quot; from the E=
-XTRA_OECONF to disable the raw feature.</div><div><br></div><div>While the =
-whole image seemed to build fine with this, I&#39;m not very sure if that c=
-onfiguration option had a precise use (which maybe it&#39;s being skipping =
-in my specific build) or not, so I wanted to ask the experts if there is an=
-y opinion on this and/or should I do a merge request that removes it to han=
-dle this problem, at least until there is a better solution upstream in uti=
-l-linux?</div><div><br></div><div>Many thanks,</div><div>Federico<br></div>=
-</div>
-
---00000000000024770205ce2a53cf--
+> After a bit or research I believe it is due to:
+> https://www.mail-archive.com/debian-bugs-dist@lists.debian.org/msg1820154.html 
+> <https://www.mail-archive.com/debian-bugs-dist@lists.debian.org/msg1820154.html>
+> 
+> Which is related to the change in the recent kernels here:
+> https://github.com/torvalds/linux/commit/603e4922f1c81fc2ed3a87b4f91a8d3aafc7e093#diff-10d697dff14540ee1eb6539dcc53b2b88844b6187c1995c0698ba0936754304a 
+> <https://github.com/torvalds/linux/commit/603e4922f1c81fc2ed3a87b4f91a8d3aafc7e093#diff-10d697dff14540ee1eb6539dcc53b2b88844b6187c1995c0698ba0936754304a>
+> where the raw.h file was indeed removed.
+> 
+> As per first link it may not be obvious to fix, and don't see an 
+> upstream fix for it, but from the Yocto perspective my current 
+> workaround is basically just to remove "--enable-raw" from the 
+> EXTRA_OECONF to disable the raw feature.
+> 
+> While the whole image seemed to build fine with this, I'm not very sure 
+> if that configuration option had a precise use (which maybe it's being 
+> skipping in my specific build) or not, so I wanted to ask the experts if 
+> there is any opinion on this and/or should I do a merge request that 
+> removes it to handle this problem, at least until there is a better 
+> solution upstream in util-linux?
+> 
+> Many thanks,
+> Federico
+> 
+> 
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#55041): https://lists.yoctoproject.org/g/yocto/message/55041
+> Mute This Topic: https://lists.yoctoproject.org/mt/86266370/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+> 
 
