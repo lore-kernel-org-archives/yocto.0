@@ -1,328 +1,175 @@
-Return-Path: <fede@evolware.org>
+Return-Path: <poornesh@elmeasure.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5BEFAC433EF
-	for <webhook@archiver.kernel.org>; Tue, 12 Oct 2021 03:00:15 +0000 (UTC)
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com
- [209.85.222.47])
- by mx.groups.io with SMTP id smtpd.web08.8472.1634007610960578831
- for <yocto@lists.yoctoproject.org>;
- Mon, 11 Oct 2021 20:00:11 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=pass (domain: gmail.com, ip: 209.85.222.47, mailfrom: fede.evol@gmail.com)
-Received: by mail-ua1-f47.google.com with SMTP id h4so16040578uaw.1
-        for <yocto@lists.yoctoproject.org>;
- Mon, 11 Oct 2021 20:00:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OmL527CmddVCFsrP5vd0luflnfZSNzGz/MgUr5dYWo4=;
-        b=dxQwNUXDbzFSPhkHo05VDIx+tT2J8OmgBT/Td++YCd2tNr3pe93vH+L+99ASi1EKsW
-         Za/7kVsLLNRzTrZdvbVn32jQgfSJhNuZIzMTeM5g/SS/xFb8ZFA4kGv72s8UoJ/qLBli
-         HAnCcPc+bs6WduQikHp4BD2COfV2PhDsbvWJu9UrM+jdELSt2y1oYDYw3SElym1DF7uZ
-         T5gWSXIG5wUidl6t34TgErvFGnhsJ1hhW8143OnUAmO9jSd5fNr6xLxccqglo3krSSfr
-         Te3u6ybTCRsZS4PhOKuIZ7S4jwk2M/R/to4qZHBBVXgh6KeMcF7dBrAR1ctdeVquyMZ/
-         rp+g==
-X-Gm-Message-State: AOAM532Vx8k3460N2HXVQ4O+yc0wxNr/eXl6jvzS361ryVIxAApm7MZJ
-	4ZPeBy5ojddUoGEvxTm83p85ZKQ/XZmZLGMjw60=
-X-Google-Smtp-Source: 
- ABdhPJyD2N7qsPfsd7TbqoOam0ZnvvTvdWy6yLLsReNqaIWmxLB8zsU2TsnKfsMEDqcHu0d+u/h1/05tLwg0castfj4=
-X-Received: by 2002:ab0:36b8:: with SMTP id
- v24mr11977032uat.112.1634007609857;
- Mon, 11 Oct 2021 20:00:09 -0700 (PDT)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DCDC2C433F5
+	for <webhook@archiver.kernel.org>; Tue, 12 Oct 2021 03:33:32 +0000 (UTC)
+Subject: Re: Error while installing Python modules using pip3 in yocto zeus
+ #zeus
+To: yocto@lists.yoctoproject.org
+From: poornesh@elmeasure.com
+X-Originating-Location: Bengaluru, Karnataka, IN (119.161.98.28)
+X-Originating-Platform: Linux Firefox 93
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: 
- <CAA=hcWSfqgxOX8UjwW35tD4VMC8c0SHWVo=_=z38NH7+rq6dAg@mail.gmail.com>
- <CAM6O0Zg3qNqZbtkKjTXQdSwD9LAjrKOaumshWk9Swvb7OMT8VA@mail.gmail.com>
- <CAA=hcWQvwDbg0106agTerDfq78yh2kvin1k4Xydi3Z6buEBK_g@mail.gmail.com>
-In-Reply-To: 
- <CAA=hcWQvwDbg0106agTerDfq78yh2kvin1k4Xydi3Z6buEBK_g@mail.gmail.com>
-From: Federico Pellegrin <fede@evolware.org>
-Date: Tue, 12 Oct 2021 04:59:58 +0200
-Message-ID: 
- <CAM6O0Zg3cq6=S933RNBo9Ffu_nEoX3==Y746LkxezMR6uSr-iw@mail.gmail.com>
-Subject: Re: [OE-core] How to trigger Yocto Linux /etc/profile or shell
- scripts in /etc/profile.d without shell logging in?
-To: Jupiter <jupiter.hce@gmail.com>
-Cc: yocto <yocto@lists.yoctoproject.org>,
-	OE <openembedded-core@lists.openembedded.org>
-Content-Type: multipart/alternative; boundary="0000000000002559a205ce1f0b02"
+Date: Mon, 11 Oct 2021 20:33:31 -0700
+Message-ID: <u8Ys.1634009611879842746.Oasa@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="sGVLQLFQPADQgOzyQFfO"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 12 Oct 2021 03:00:15 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55025
+ <yocto@lists.yoctoproject.org>; Tue, 12 Oct 2021 03:33:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55026
 
---0000000000002559a205ce1f0b02
-Content-Type: text/plain; charset="UTF-8"
+--sGVLQLFQPADQgOzyQFfO
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Jupiter,
-To centralize, agreed that you are using systemd, one way I could see is
-setting the variables in systemd-system.conf using the DefaultEnvironment
-directive, see:
-https://freedesktop.org/software/systemd/man/systemd-system.conf.html
+Greetings !
 
-This states:
+I am working on Rockpis Board with Yocto Zeus for development . When I am t=
+rying to install=C2=A0 Python modules " *backports.zoneinfo"* using pip3 I =
+am facing the below error . Kindly requesting any suggestions to resolve.
 
-----
-DefaultEnvironment=3D=C2=B6
-<https://freedesktop.org/software/systemd/man/systemd-system.conf.html#Defa=
-ultEnvironment=3D>
+*Error Log:*
+---------------------------------------------------------------------------=
+---------------------------------------------------------------------------=
+---------------------------------------
+Building wheels for collected packages: backports.zoneinfo
+Building wheel for backports.zoneinfo (PEP 517) ... error
+ERROR: Command errored out with exit status 1:
+command: /usr/bin/python3 /usr/lib/python3.7/site-packages/pip/_vendor/pep5=
+17/in_process/_in_process.py build_wheel /tmp/tmpj158xpon
+cwd: /tmp/pip-install-e1zrr5gk/backports-zoneinfo_fe1585f6e0ef47be9df309ad5=
+56bbecf
+Complete output (39 lines):
+running bdist_wheel
+running build
+running build_py
+creating build
+creating build/lib.linux-aarch64-3.7
+creating build/lib.linux-aarch64-3.7/backports
+copying src/backports/__init__.py -> build/lib.linux-aarch64-3.7/backports
+creating build/lib.linux-aarch64-3.7/backports/zoneinfo
+copying src/backports/zoneinfo/_zoneinfo.py -> build/lib.linux-aarch64-3.7/=
+backports/zoneinfo
+copying src/backports/zoneinfo/_version.py -> build/lib.linux-aarch64-3.7/b=
+ackports/zoneinfo
+copying src/backports/zoneinfo/_tzpath.py -> build/lib.linux-aarch64-3.7/ba=
+ckports/zoneinfo
+copying src/backports/zoneinfo/_common.py -> build/lib.linux-aarch64-3.7/ba=
+ckports/zoneinfo
+copying src/backports/zoneinfo/__init__.py -> build/lib.linux-aarch64-3.7/b=
+ackports/zoneinfo
+running egg_info
+writing src/backports.zoneinfo.egg-info/PKG-INFO
+writing dependency_links to src/backports.zoneinfo.egg-info/dependency_link=
+s.txt
+writing requirements to src/backports.zoneinfo.egg-info/requires.txt
+writing top-level names to src/backports.zoneinfo.egg-info/top_level.txt
+reading manifest file 'src/backports.zoneinfo.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no files found matching '*.png' under directory 'docs'
+warning: no files found matching '*.svg' under directory 'docs'
+no previously-included directories found matching 'docs/_build'
+no previously-included directories found matching 'docs/_output'
+adding license file 'LICENSE'
+adding license file 'licenses/LICENSE_APACHE'
+writing manifest file 'src/backports.zoneinfo.egg-info/SOURCES.txt'
+copying src/backports/zoneinfo/__init__.pyi -> build/lib.linux-aarch64-3.7/=
+backports/zoneinfo
+copying src/backports/zoneinfo/py.typed -> build/lib.linux-aarch64-3.7/back=
+ports/zoneinfo
+running build_ext
+building 'backports.zoneinfo._czoneinfo' extension
+creating build/temp.linux-aarch64-3.7
+creating build/temp.linux-aarch64-3.7/lib
+*aarch64-poky-linux-gcc -mcpu=3Dcortex-a35+crc+crypto -fstack-protector-str=
+ong -D_FORTIFY_SOURCE=3D2 -Wformat -Wformat-security -Werror=3Dformat-secur=
+ity -Wno-unused-result -Wsign-compare -DNDEBUG -g -O3 -Wa9*
+*lib/zoneinfo_module.c:1:10: fatal error: Python.h: No such file or directo=
+ry*
+*1 | #include "Python.h"*
+*|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~~~~~~~~~*
+*compilation terminated.*
+*error: command 'aarch64-poky-linux-gcc' failed with exit status 1*
+*----------------------------------------*
+*ERROR: Failed building wheel for backports.zoneinfo*
+Failed to build backports.zoneinfo
+ERROR: Could not build wheels for backports.zoneinfo which use PEP 517 and =
+cannot be installed directly
 
-Configures environment variables passed to all executed processes. Takes a
-space-separated list of variable assignments. See environ(7)
-<http://man7.org/linux/man-pages/man7/environ.7.html> for details about
-environment variables.
+---------------------------------------------------------------------------=
+---------------------------------------------------------------------------=
+----------------------------
 
-Simple "%"-specifier expansion is supported, see below for a list of
-supported specifiers.
+Thanks in Advance
 
-Example:
-
-DefaultEnvironment=3D"VAR1=3Dword1 word2" VAR2=3Dword3 "VAR3=3Dword 5 6"
-
-Sets three variables "VAR1", "VAR2", "VAR3".
-----
-
-This should have you variables management in each. Otherwise as you mention
-one can put in each script with either Environment to have them explicitly
-enumerated or with EnvironmentFile to read from a file, which may also fit
-your centralization hopes (but still require one line per startup script at
-least) and could be further sourced by non-systemd components as well if
-needed. (https://www.freedesktop.org/software/systemd/man/systemd.exec.html
-under Environment section)
-
-HTH,
-Federico
-
-
-Il giorno lun 11 ott 2021 alle ore 11:05 Jupiter <jupiter.hce@gmail.com> ha
-scritto:
-
-> Hi Federico,
->
-> Thanks for your response.
->
-> > /etc/profile and similar are interactive shell (/bash) concepts, not
-> really
-> > system startup ones. So indeed: just on a login (be it local, ssh and s=
-o
-> > on) they are executed.
->
-> Understood, here is what I try to figure out. I use several systemd
-> services to start my tasks, each task is not just a system process, I
-> found it also has a system environment similar in user login from
-> /etcprofile, /home/user/.profile, my question is where is a system
-> environment file that each systemd service runs from?
->
-> I also thought that /etc/profile.d files should be automatically
-> invoked for each user login, but a systemd service does not run
-> /etc/profile.d files.
->
-> > If you want to execute something else without the need for logging it,
-> you
-> > should look elsewhere, depending on your system manager: if systemd you
-> > should create a service and enable it, if sysvinit a init.d script.
->
-> Understood, that was what I did originally, I have to run the setup
-> system environment in each service ExecStart script, that is why I am
-> looking for a global environment setup file to avoid duplication of
-> putting my environment scripts in each ExecStart execution file.
->
-> Thank you.
->
-> Kind regards,
->
-> - jupiter
->
-> > HTH,
-> > Federico
-> >
-> >
-> > Il giorno lun 11 ott 2021 alle ore 06:30 JH <jupiter.hce@gmail.com> ha
-> > scritto:
-> >
-> >> Hi,
-> >>
-> >> The Yocto uses /etc/profile for root login, but there is no root
-> >> physical login in an embedded device so the /etc/profile is never
-> >> called, I added a shell script to /etc/profile.d, it was not called
-> >> either. Both /etc/profile and scripts in /etc/profile.d can only be
-> >> invoked when I physically log into the debug console, that is
-> >> impractical. Appreciate your advice, how do you resolve that kind of
-> >> problem?
-> >>
-> >> Thank you.
-> >>
-> >> Kind regards,
-> >>
-> >> - jupiter
-> >>
-> >> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> >> Links: You receive all messages sent to this group.
-> >> View/Reply Online (#156808):
-> >> https://lists.openembedded.org/g/openembedded-core/message/156808
-> >> Mute This Topic: https://lists.openembedded.org/mt/86229953/5117409
-> >> Group Owner: openembedded-core+owner@lists.openembedded.org
-> >> Unsubscribe: https://lists.openembedded.org/g/openembedded-core/unsub =
-[
-> >> fede@evolware.org]
-> >> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> >>
-> >>
-> >
->
->
-> --
-> "A man can fail many times, but he isn't a failure until he begins to
-> blame somebody else."
-> -- John Burroughs
->
-
---0000000000002559a205ce1f0b02
-Content-Type: text/html; charset="UTF-8"
+--sGVLQLFQPADQgOzyQFfO
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div><br></div><div>Hi Jupiter,</div><div=
->To centralize, agreed that you are using systemd, one way I could see is s=
-etting the variables in systemd-system.conf using the DefaultEnvironment di=
-rective, see: <a href=3D"https://freedesktop.org/software/systemd/man/syste=
-md-system.conf.html">https://freedesktop.org/software/systemd/man/systemd-s=
-ystem.conf.html</a> <br></div><div><br></div><div>This states:</div><div><b=
-r></div><div>----<br></div><div><dt id=3D"gmail-DefaultEnvironment=3D"><spa=
-n class=3D"gmail-term"><code class=3D"gmail-varname">DefaultEnvironment=3D<=
-/code></span><a class=3D"gmail-headerlink" title=3D"Permalink to this term"=
- href=3D"https://freedesktop.org/software/systemd/man/systemd-system.conf.h=
-tml#DefaultEnvironment=3D">=C2=B6</a></dt><dd><p>Configures environment var=
-iables passed to all executed processes. Takes a
-        space-separated list of variable assignments. See <a href=3D"http:/=
-/man7.org/linux/man-pages/man7/environ.7.html"><span class=3D"gmail-citeref=
-entry"><span class=3D"gmail-refentrytitle">environ</span>(7)</span></a> for
-        details about environment variables.</p><p>Simple &quot;<code class=
-=3D"gmail-literal">%</code>&quot;-specifier expansion is supported, see bel=
-ow for a list of supported
-        specifiers.</p><p>Example:
+Greetings !<br /><br />I am working on Rockpis Board with Yocto Zeus for de=
+velopment . When I am trying to install&nbsp; Python modules "<strong>backp=
+orts.zoneinfo"</strong> using pip3 I am facing the below error . Kindly req=
+uesting any suggestions to resolve.<br /><br /><strong>Error Log:</strong><=
+br />----------------------------------------------------------------------=
+---------------------------------------------------------------------------=
+--------------------------------------------<br />Building wheels for colle=
+cted packages: backports.zoneinfo<br />&nbsp; Building wheel for backports.=
+zoneinfo (PEP 517) ... error<br />&nbsp; ERROR: Command errored out with ex=
+it status 1:<br />&nbsp;&nbsp; command: /usr/bin/python3 /usr/lib/python3.7=
+/site-packages/pip/_vendor/pep517/in_process/_in_process.py build_wheel /tm=
+p/tmpj158xpon<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cwd: /tmp/pip-insta=
+ll-e1zrr5gk/backports-zoneinfo_fe1585f6e0ef47be9df309ad556bbecf<br />&nbsp;=
+ Complete output (39 lines):<br />&nbsp; running bdist_wheel<br />&nbsp; ru=
+nning build<br />&nbsp; running build_py<br />&nbsp; creating build<br />&n=
+bsp; creating build/lib.linux-aarch64-3.7<br />&nbsp; creating build/lib.li=
+nux-aarch64-3.7/backports<br />&nbsp; copying src/backports/__init__.py -&g=
+t; build/lib.linux-aarch64-3.7/backports<br />&nbsp; creating build/lib.lin=
+ux-aarch64-3.7/backports/zoneinfo<br />&nbsp; copying src/backports/zoneinf=
+o/_zoneinfo.py -&gt; build/lib.linux-aarch64-3.7/backports/zoneinfo<br />&n=
+bsp; copying src/backports/zoneinfo/_version.py -&gt; build/lib.linux-aarch=
+64-3.7/backports/zoneinfo<br />&nbsp; copying src/backports/zoneinfo/_tzpat=
+h.py -&gt; build/lib.linux-aarch64-3.7/backports/zoneinfo<br />&nbsp; copyi=
+ng src/backports/zoneinfo/_common.py -&gt; build/lib.linux-aarch64-3.7/back=
+ports/zoneinfo<br />&nbsp; copying src/backports/zoneinfo/__init__.py -&gt;=
+ build/lib.linux-aarch64-3.7/backports/zoneinfo<br />&nbsp; running egg_inf=
+o<br />&nbsp; writing src/backports.zoneinfo.egg-info/PKG-INFO<br />&nbsp; =
+writing dependency_links to src/backports.zoneinfo.egg-info/dependency_link=
+s.txt<br />&nbsp; writing requirements to src/backports.zoneinfo.egg-info/r=
+equires.txt<br />&nbsp; writing top-level names to src/backports.zoneinfo.e=
+gg-info/top_level.txt<br />&nbsp; reading manifest file 'src/backports.zone=
+info.egg-info/SOURCES.txt'<br />&nbsp; reading manifest template 'MANIFEST.=
+in'<br />&nbsp; warning: no files found matching '*.png' under directory 'd=
+ocs'<br />&nbsp; warning: no files found matching '*.svg' under directory '=
+docs'<br />&nbsp; no previously-included directories found matching 'docs/_=
+build'<br />&nbsp; no previously-included directories found matching 'docs/=
+_output'<br />&nbsp; adding license file 'LICENSE'<br />&nbsp; adding licen=
+se file 'licenses/LICENSE_APACHE'<br />&nbsp; writing manifest file 'src/ba=
+ckports.zoneinfo.egg-info/SOURCES.txt'<br />&nbsp; copying src/backports/zo=
+neinfo/__init__.pyi -&gt; build/lib.linux-aarch64-3.7/backports/zoneinfo<br=
+ />&nbsp; copying src/backports/zoneinfo/py.typed -&gt; build/lib.linux-aar=
+ch64-3.7/backports/zoneinfo<br />&nbsp; running build_ext<br />&nbsp; build=
+ing 'backports.zoneinfo._czoneinfo' extension<br />&nbsp; creating build/te=
+mp.linux-aarch64-3.7<br />&nbsp; creating build/temp.linux-aarch64-3.7/lib<=
+br /><strong>&nbsp; aarch64-poky-linux-gcc -mcpu=3Dcortex-a35+crc+crypto -f=
+stack-protector-strong -D_FORTIFY_SOURCE=3D2 -Wformat -Wformat-security -We=
+rror=3Dformat-security -Wno-unused-result -Wsign-compare -DNDEBUG -g -O3 -W=
+a9</strong><br /><strong>&nbsp; lib/zoneinfo_module.c:1:10: fatal error: Py=
+thon.h: No such file or directory</strong><br /><strong>&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp; 1 | #include "Python.h"</strong><br /><strong>&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp; ^~~~~~~~~~</strong><br /><strong>&nbsp; compilation terminated.</str=
+ong><br /><strong>&nbsp; error: command 'aarch64-poky-linux-gcc' failed wit=
+h exit status 1</strong><br /><strong>&nbsp; ------------------------------=
+----------</strong><br /><strong>&nbsp; ERROR: Failed building wheel for ba=
+ckports.zoneinfo</strong><br />Failed to build backports.zoneinfo<br />ERRO=
+R: Could not build wheels for backports.zoneinfo which use PEP 517 and cann=
+ot be installed directly<br /><br />---------------------------------------=
+---------------------------------------------------------------------------=
+----------------------------------------------------------------<br /><br /=
+>Thanks in Advance <br />
 
-        </p><pre class=3D"gmail-programlisting">DefaultEnvironment=3D&quot;=
-VAR1=3Dword1 word2&quot; VAR2=3Dword3 &quot;VAR3=3Dword 5 6&quot;</pre><p>
-
-        Sets three variables
-        &quot;<code class=3D"gmail-literal">VAR1</code>&quot;,
-        &quot;<code class=3D"gmail-literal">VAR2</code>&quot;,
-        &quot;<code class=3D"gmail-literal">VAR3</code>&quot;.</p></dd></di=
-v></div><div>----</div><div><br></div><div>This should have you variables m=
-anagement in each. Otherwise as you mention one can put in each script with=
- either Environment to have them explicitly enumerated or with EnvironmentF=
-ile to read from a file, which may also fit your centralization hopes (but =
-still require one line per startup script at least) and could be further so=
-urced by non-systemd components as well if needed. (<a href=3D"https://www.=
-freedesktop.org/software/systemd/man/systemd.exec.html">https://www.freedes=
-ktop.org/software/systemd/man/systemd.exec.html</a> under Environment secti=
-on)<br></div><div><br></div><div>HTH,</div><div>Federico</div><div><br></di=
-v><div><br></div><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">Il giorno lun 11 ott 2021 alle ore 11:05 Jupiter &lt;<a href=3D"mail=
-to:jupiter.hce@gmail.com">jupiter.hce@gmail.com</a>&gt; ha scritto:<br></di=
-v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
-r-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Federico,<br>
-<br>
-Thanks for your response.<br>
-<br>
-&gt; /etc/profile and similar are interactive shell (/bash) concepts, not r=
-eally<br>
-&gt; system startup ones. So indeed: just on a login (be it local, ssh and =
-so<br>
-&gt; on) they are executed.<br>
-<br>
-Understood, here is what I try to figure out. I use several systemd<br>
-services to start my tasks, each task is not just a system process, I<br>
-found it also has a system environment similar in user login from<br>
-/etcprofile, /home/user/.profile, my question is where is a system<br>
-environment file that each systemd service runs from?<br>
-<br>
-I also thought that /etc/profile.d files should be automatically<br>
-invoked for each user login, but a systemd service does not run<br>
-/etc/profile.d files.<br>
-<br>
-&gt; If you want to execute something else without the need for logging it,=
- you<br>
-&gt; should look elsewhere, depending on your system manager: if systemd yo=
-u<br>
-&gt; should create a service and enable it, if sysvinit a init.d script.<br=
->
-<br>
-Understood, that was what I did originally, I have to run the setup<br>
-system environment in each service ExecStart script, that is why I am<br>
-looking for a global environment setup file to avoid duplication of<br>
-putting my environment scripts in each ExecStart execution file.<br>
-<br>
-Thank you.<br>
-<br>
-Kind regards,<br>
-<br>
-- jupiter<br>
-<br>
-&gt; HTH,<br>
-&gt; Federico<br>
-&gt;<br>
-&gt;<br>
-&gt; Il giorno lun 11 ott 2021 alle ore 06:30 JH &lt;<a href=3D"mailto:jupi=
-ter.hce@gmail.com" target=3D"_blank">jupiter.hce@gmail.com</a>&gt; ha<br>
-&gt; scritto:<br>
-&gt;<br>
-&gt;&gt; Hi,<br>
-&gt;&gt;<br>
-&gt;&gt; The Yocto uses /etc/profile for root login, but there is no root<b=
-r>
-&gt;&gt; physical login in an embedded device so the /etc/profile is never<=
-br>
-&gt;&gt; called, I added a shell script to /etc/profile.d, it was not calle=
-d<br>
-&gt;&gt; either. Both /etc/profile and scripts in /etc/profile.d can only b=
-e<br>
-&gt;&gt; invoked when I physically log into the debug console, that is<br>
-&gt;&gt; impractical. Appreciate your advice, how do you resolve that kind =
-of<br>
-&gt;&gt; problem?<br>
-&gt;&gt;<br>
-&gt;&gt; Thank you.<br>
-&gt;&gt;<br>
-&gt;&gt; Kind regards,<br>
-&gt;&gt;<br>
-&gt;&gt; - jupiter<br>
-&gt;&gt;<br>
-&gt;&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt;&gt; Links: You receive all messages sent to this group.<br>
-&gt;&gt; View/Reply Online (#156808):<br>
-&gt;&gt; <a href=3D"https://lists.openembedded.org/g/openembedded-core/mess=
-age/156808" rel=3D"noreferrer" target=3D"_blank">https://lists.openembedded=
-.org/g/openembedded-core/message/156808</a><br>
-&gt;&gt; Mute This Topic: <a href=3D"https://lists.openembedded.org/mt/8622=
-9953/5117409" rel=3D"noreferrer" target=3D"_blank">https://lists.openembedd=
-ed.org/mt/86229953/5117409</a><br>
-&gt;&gt; Group Owner: <a href=3D"mailto:openembedded-core%2Bowner@lists.ope=
-nembedded.org" target=3D"_blank">openembedded-core+owner@lists.openembedded=
-.org</a><br>
-&gt;&gt; Unsubscribe: <a href=3D"https://lists.openembedded.org/g/openembed=
-ded-core/unsub" rel=3D"noreferrer" target=3D"_blank">https://lists.openembe=
-dded.org/g/openembedded-core/unsub</a> [<br>
-&gt;&gt; <a href=3D"mailto:fede@evolware.org" target=3D"_blank">fede@evolwa=
-re.org</a>]<br>
-&gt;&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;<br>
-<br>
-<br>
---<br>
-&quot;A man can fail many times, but he isn&#39;t a failure until he begins=
- to<br>
-blame somebody else.&quot;<br>
--- John Burroughs<br>
-</blockquote></div></div>
-
---0000000000002559a205ce1f0b02--
+--sGVLQLFQPADQgOzyQFfO--
 
