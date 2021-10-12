@@ -1,175 +1,271 @@
-Return-Path: <poornesh@elmeasure.com>
+Return-Path: <chuckkamas@yahoo.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DCDC2C433F5
-	for <webhook@archiver.kernel.org>; Tue, 12 Oct 2021 03:33:32 +0000 (UTC)
-Subject: Re: Error while installing Python modules using pip3 in yocto zeus
- #zeus
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7D9B5C433F5
+	for <webhook@archiver.kernel.org>; Tue, 12 Oct 2021 04:33:03 +0000 (UTC)
+Received: from sonic301-20.consmr.mail.gq1.yahoo.com
+ (sonic301-20.consmr.mail.gq1.yahoo.com [98.137.64.146])
+ by mx.groups.io with SMTP id smtpd.web08.9196.1634013182057685877
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 11 Oct 2021 21:33:02 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@yahoo.com header.s=s2048 header.b=YotzhleB;
+ spf=neutral (domain: yahoo.com, ip: 98.137.64.146,
+ mailfrom: chuckkamas@yahoo.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1634013181; bh=jM8kQusGD9DsjliW3NwJSZcedwsMbBH3lEdCIlxIhN8=;
+ h=Subject:To:References:From:Date:In-Reply-To:From:Subject:Reply-To;
+ b=YotzhleBN2jeEnE6y1zPYjOuD3NbXy/a+mbwxJ3p2WUg5MYvttvV68+3+05WF4wEjmKmrr3rhiSnWVVYui2c5XXX2xAsYcU5KMJSnYvRMIfJTiJZDLcLJD0LhGbHJ4WeitRyHaeCPBV0+PXJjuG1wgvyvZZSXxL9AMmoseFsbiF4yQHjYk+g0dGa2O3H8jFjq8mXvzdU18tekyfO0Nk7uKlm0J8TeU+cURKixM5tXfjRMJFYEkrGAP79ojZeXwVVPAfr0XZCKG7j7VOG+3+N5obaSpHftSMsmSQYDUR4qL2e1pfBn7l6u6SbE/FdWo4Xqm+92ddhjwBuxj4WknJCjw==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1634013181; bh=DSXe9+esEbGGhDV3dfASBX+jnQHbujPIhT4fH+SWNLr=;
+ h=X-Sonic-MF:Subject:To:From:Date:From:Subject;
+ b=FEr8iLe7ujsbfSFbmtXHrQTkwJg3BkcUtEMyFtray9BLsQbBG/042L/RLyhzrSnDrq7xtvNsaxfwvZNtC67fN2zJAHcaBxFbKIn6f5Bo2UAZUWe5dUg2htZs1CIz6aF51GCK5kpFJ+vYfnQVpWF+kRymm3qSHkZDiMwzFBof6ykP9xnU9W/gE8ylhKt68KVCyr+bItBxRJ+1l3AvfY1Gt4zdx8SDfZRI2wpqMwFyhN0XP3Qv+FGo+nlI0Nx/jfr+b0iuL653AC3igeeFQsZrQzeqFJ1BRyQ5hSSnvt11jvcRFMP5Oqu3/357t9KhtIc1IMoLEbmIvhe5LSAW0Eknsw==
+X-YMail-OSG: vg.JPD8VM1krDfLoDR3rZjlASSBqxK41hrvShMJ63Wk3Qs14dob5y_bPUljtmiJ
+ 823xPza8AcJy4IMhIzwTfkCIKYOffGOMXjkh2xCzc7im6qlIS61XPmQvMwi6IXufCnuBuoCF.XVg
+ Jo8FGJrJQs3gkNCWlJnllIf9VxaZy7z12O4rYDsz4gMgCXWWfpWjU1x5BiO2mrQJzIGJLu6PBc8q
+ hMWVyasMx8WEVLyyTMryx9NQ.CYI0aO6xo45T.yWtcgvGusORBLlRyjS4gLFvC_YRkNJzZlCJgDj
+ cswkZsvs1wgus623ro4iMseJXMVBoRqePyRwSicL7mwZxgrzkeIbYWZNaTl8_UGk5h95UPa6lSlv
+ a2roG9TOJbelV7u4H4QL0uQbaen1JTdoenCj_Fp7Skf9iKF.fflew0KxN8YfHUubGW.X1NvZSpmT
+ JcrHsqmTD8AYoAdTQLNxKc08BnjZIxyc4FymT.JNF48moFINPZserZ5_KckiRD2zxKXz1Ur5SvRc
+ Q_itF4jlgpDxdNGrldIomggmivdIpywZgUgoL_CfS7aobneEuVys7YPN_AS71QHakLEJUW1ob6mP
+ 8vHo7USVjIOq2N6tGyGIWc.LNVlNGO4bdmoiTtHD4hBEmyTTgIol1MqVJuK8ghVe8L3sstd1frcy
+ kjh9q7Gsy9RPUyKfjQfhJ4M6F4NOu3hsg8fSz6hGjgFzSFGNFY.rnKvFqFrpR385Gmp_NWmG0MtP
+ vZtdVol2PxrLvBwEoB8Hp_4RFvBCiIzyWC.7MDeSR.rNvCysqzjZrNHp7BzObkE4EIYJHO90Acvj
+ 7MMVxYBZtK1gqN3K1YrOeTbzIPlp1pJF_9g6a2Gr35P8cpAIWwEOvXeOPnrtDyItiTbE69BDY4zJ
+ DN1TP9CQzs5ROg.gFRFp7w1NGzyvzXre5vrcLarJTCMy1eq_pMQPXS5WT9gao33z5QijFovail9P
+ .qoY1ZtL_.D8YhXInUmWbyztrlNygRam3eIKV5TbIdhRA5Yw7AEXxqWctH5B9dWX1gml84hoQX8a
+ PCR6fmVn9bJcET38MxUVotL_8PlN7VJys_6zdrm_nrBdKFKcr7GN0Stem.jTN_71xkX4OoEDg.a4
+ v9j3zOKoFs2zMFJTVimwCztOZWSZT5IyZgbXl.4lpl0cE8JIxt_kNLtv.AQw9ZyJ0tJGUBOxVD92
+ pZjREEZhUdrR7mLnDlSUK3RBoDHUWJReHxW.JP3e3a14DZSOiSvyf3PlxKMrJnfcqdbyy7mD_4wk
+ VCjINB9pvls.6tmlKk4kbhW7oV9.uLOKP5tQGfYg.ZWi94bQOijO6R2dBwZ8y2DTRoZKjhsyiwCO
+ 3I8acHxgbA00FsU.VkCZ1qZXbO0ZaGhCMz8r9OGaV66jc9d1wA9lkP3g8m6v1u_jaM484Z3xRadS
+ 152xUun0bbgQAS59m2s.5COsMoFobQT7_Aj7JTlP2bPGFrNrCzfO0QsJg4FeJUXfI5mylUOmvY83
+ U40xOfIbCOJyt._6vGUU_Qhip00ur1dzAjialGlh186GrK7mRdkF1lrTJ.AU_zRR8Ka5LoDtEgE4
+ mZXvQJkc84Lv5sYftoNuWxan5t2p1amMJrt1SMg2gGZaTldhm1bAGoG1qglPURWY_cUKEFb3mAtq
+ ngJVH.26Uxvhal50GKO3WfGi_uElb2txZd9jK1b4zm9kLQZ9E4wId8s7fV79v1pDzBOC3lG5d_.9
+ bTlTwSflSS_g_irI99yzMfIemLAHKPfg5fIZRO6PvokNQKegyTaG0omacWllS4NBN1xZDCYX.ADW
+ lvHQ3NCPYqDxUwxS76_UZ9kyUX5b9dzQ0NnXXFGuwiO.tbUPWQrnmlmb.YbJEYrSzJcTJcwy4dYE
+ 5Eo49ajtPUYieglFKtRyhvj26vC28K2TCE8FuFN1Se_EG8IA6w7Vz1V0TGB1VBfQQBoSqLseWh7x
+ JTWVuSktJR5E3.rr_L.8iFf9a8G5r2JmnnOa2b_OeZKg5f2yV58Uub.HXfrvmrhHUdi7Fw9WArDy
+ 8IjEg6uidqvNXH8KjxH6jLv9rzZC74j3WuVgQ.QIlGw24QvPHtfU4SUcyrRVGQ6dhDpBBaoqYbH_
+ 3VN4xN7ed0xOj1MbYFa7W1O1qHUOUUgg2nlxu4M7jbMGipvSQw01x35BP74gVVIU2E6cQYMGJeTg
+ 5f_Fks3WkkRu7wQS5ckerP8ZyQ4gHuNO4_HBgwBZCFFea_9aYAsnUFSaDjzQA331_vzkGjjsL.G8
+ ktqr.gA7yZFsIlFBt28CU48J7qRrfnGi1bpXQwgoDaxTqVqVVDeVbZvektwltrGSPTC6T6S1vTd1
+ HlMlr8SFzBg9e3CITJ3SJTeIP066Bu1BChL7DOuKq3_8.o_Rt.ebmGQradHOgYNUVJQ--
+X-Sonic-MF: <chuckkamas@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic301.consmr.mail.gq1.yahoo.com with HTTP; Tue, 12 Oct 2021 04:33:01 +0000
+Received: by kubenode512.mail-prod1.omega.gq1.yahoo.com (VZM Hermes SMTP
+ Server) with ESMTPA ID 3e7d80eef81c0d541dd5ce3215a85fc9;
+          Tue, 12 Oct 2021 04:32:59 +0000 (UTC)
+Subject: Re: [yocto] building the kernel's usbipd daemon
 To: yocto@lists.yoctoproject.org
-From: poornesh@elmeasure.com
-X-Originating-Location: Bengaluru, Karnataka, IN (119.161.98.28)
-X-Originating-Platform: Linux Firefox 93
-User-Agent: GROUPS.IO Web Poster
+References: <71f6581d-6d01-51a8-7c58-3582d57509f9.ref@yahoo.com>
+ <71f6581d-6d01-51a8-7c58-3582d57509f9@yahoo.com>
+ <CADkTA4OiV40NZNYiUggSGjRQL62qW6gLbp8979ZfwY=8iR9RAg@mail.gmail.com>
+From: Chuck Kamas <chuckkamas@yahoo.com>
+Message-ID: <b90c3301-ca4a-3191-3a85-6084997dc9e0@yahoo.com>
+Date: Mon, 11 Oct 2021 21:32:58 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Date: Mon, 11 Oct 2021 20:33:31 -0700
-Message-ID: <u8Ys.1634009611879842746.Oasa@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="sGVLQLFQPADQgOzyQFfO"
+In-Reply-To: 
+ <CADkTA4OiV40NZNYiUggSGjRQL62qW6gLbp8979ZfwY=8iR9RAg@mail.gmail.com>
+Content-Type: multipart/alternative;
+ boundary="------------68CF0C22B020FB79C47A842F"
+Content-Language: en-US
+X-Mailer: WebService/1.1.19116
+ mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 12 Oct 2021 03:33:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55026
+ <yocto@lists.yoctoproject.org>; Tue, 12 Oct 2021 04:33:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55027
 
---sGVLQLFQPADQgOzyQFfO
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+This is a multi-part message in MIME format.
+--------------68CF0C22B020FB79C47A842F
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Greetings !
+Thanks for the quick reply. I looked at the perf recipe, and its quite 
+involved. Is there a simpler recipie to use as a template? Perhaps one 
+of these?
 
-I am working on Rockpis Board with Yocto Zeus for development . When I am t=
-rying to install=C2=A0 Python modules " *backports.zoneinfo"* using pip3 I =
-am facing the below error . Kindly requesting any suggestions to resolve.
+meta-openembedded/meta-oe/recipes-kernel/bpftool/bpftool.bb
 
-*Error Log:*
----------------------------------------------------------------------------=
----------------------------------------------------------------------------=
----------------------------------------
-Building wheels for collected packages: backports.zoneinfo
-Building wheel for backports.zoneinfo (PEP 517) ... error
-ERROR: Command errored out with exit status 1:
-command: /usr/bin/python3 /usr/lib/python3.7/site-packages/pip/_vendor/pep5=
-17/in_process/_in_process.py build_wheel /tmp/tmpj158xpon
-cwd: /tmp/pip-install-e1zrr5gk/backports-zoneinfo_fe1585f6e0ef47be9df309ad5=
-56bbecf
-Complete output (39 lines):
-running bdist_wheel
-running build
-running build_py
-creating build
-creating build/lib.linux-aarch64-3.7
-creating build/lib.linux-aarch64-3.7/backports
-copying src/backports/__init__.py -> build/lib.linux-aarch64-3.7/backports
-creating build/lib.linux-aarch64-3.7/backports/zoneinfo
-copying src/backports/zoneinfo/_zoneinfo.py -> build/lib.linux-aarch64-3.7/=
-backports/zoneinfo
-copying src/backports/zoneinfo/_version.py -> build/lib.linux-aarch64-3.7/b=
-ackports/zoneinfo
-copying src/backports/zoneinfo/_tzpath.py -> build/lib.linux-aarch64-3.7/ba=
-ckports/zoneinfo
-copying src/backports/zoneinfo/_common.py -> build/lib.linux-aarch64-3.7/ba=
-ckports/zoneinfo
-copying src/backports/zoneinfo/__init__.py -> build/lib.linux-aarch64-3.7/b=
-ackports/zoneinfo
-running egg_info
-writing src/backports.zoneinfo.egg-info/PKG-INFO
-writing dependency_links to src/backports.zoneinfo.egg-info/dependency_link=
-s.txt
-writing requirements to src/backports.zoneinfo.egg-info/requires.txt
-writing top-level names to src/backports.zoneinfo.egg-info/top_level.txt
-reading manifest file 'src/backports.zoneinfo.egg-info/SOURCES.txt'
-reading manifest template 'MANIFEST.in'
-warning: no files found matching '*.png' under directory 'docs'
-warning: no files found matching '*.svg' under directory 'docs'
-no previously-included directories found matching 'docs/_build'
-no previously-included directories found matching 'docs/_output'
-adding license file 'LICENSE'
-adding license file 'licenses/LICENSE_APACHE'
-writing manifest file 'src/backports.zoneinfo.egg-info/SOURCES.txt'
-copying src/backports/zoneinfo/__init__.pyi -> build/lib.linux-aarch64-3.7/=
-backports/zoneinfo
-copying src/backports/zoneinfo/py.typed -> build/lib.linux-aarch64-3.7/back=
-ports/zoneinfo
-running build_ext
-building 'backports.zoneinfo._czoneinfo' extension
-creating build/temp.linux-aarch64-3.7
-creating build/temp.linux-aarch64-3.7/lib
-*aarch64-poky-linux-gcc -mcpu=3Dcortex-a35+crc+crypto -fstack-protector-str=
-ong -D_FORTIFY_SOURCE=3D2 -Wformat -Wformat-security -Werror=3Dformat-secur=
-ity -Wno-unused-result -Wsign-compare -DNDEBUG -g -O3 -Wa9*
-*lib/zoneinfo_module.c:1:10: fatal error: Python.h: No such file or directo=
-ry*
-*1 | #include "Python.h"*
-*|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~~~~~~~~~*
-*compilation terminated.*
-*error: command 'aarch64-poky-linux-gcc' failed with exit status 1*
-*----------------------------------------*
-*ERROR: Failed building wheel for backports.zoneinfo*
-Failed to build backports.zoneinfo
-ERROR: Could not build wheels for backports.zoneinfo which use PEP 517 and =
-cannot be installed directly
+meta-openembedded/meta-oe/recipes-kernel/spidev-test/spidev-test.bb
 
----------------------------------------------------------------------------=
----------------------------------------------------------------------------=
-----------------------------
+meta-openembedded/meta-oe/recipes-kernel/cpupower/cpupower.bb
 
-Thanks in Advance
 
---sGVLQLFQPADQgOzyQFfO
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+all three of these appear to be basically the same very simple bb file.
 
-Greetings !<br /><br />I am working on Rockpis Board with Yocto Zeus for de=
-velopment . When I am trying to install&nbsp; Python modules "<strong>backp=
-orts.zoneinfo"</strong> using pip3 I am facing the below error . Kindly req=
-uesting any suggestions to resolve.<br /><br /><strong>Error Log:</strong><=
-br />----------------------------------------------------------------------=
----------------------------------------------------------------------------=
---------------------------------------------<br />Building wheels for colle=
-cted packages: backports.zoneinfo<br />&nbsp; Building wheel for backports.=
-zoneinfo (PEP 517) ... error<br />&nbsp; ERROR: Command errored out with ex=
-it status 1:<br />&nbsp;&nbsp; command: /usr/bin/python3 /usr/lib/python3.7=
-/site-packages/pip/_vendor/pep517/in_process/_in_process.py build_wheel /tm=
-p/tmpj158xpon<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cwd: /tmp/pip-insta=
-ll-e1zrr5gk/backports-zoneinfo_fe1585f6e0ef47be9df309ad556bbecf<br />&nbsp;=
- Complete output (39 lines):<br />&nbsp; running bdist_wheel<br />&nbsp; ru=
-nning build<br />&nbsp; running build_py<br />&nbsp; creating build<br />&n=
-bsp; creating build/lib.linux-aarch64-3.7<br />&nbsp; creating build/lib.li=
-nux-aarch64-3.7/backports<br />&nbsp; copying src/backports/__init__.py -&g=
-t; build/lib.linux-aarch64-3.7/backports<br />&nbsp; creating build/lib.lin=
-ux-aarch64-3.7/backports/zoneinfo<br />&nbsp; copying src/backports/zoneinf=
-o/_zoneinfo.py -&gt; build/lib.linux-aarch64-3.7/backports/zoneinfo<br />&n=
-bsp; copying src/backports/zoneinfo/_version.py -&gt; build/lib.linux-aarch=
-64-3.7/backports/zoneinfo<br />&nbsp; copying src/backports/zoneinfo/_tzpat=
-h.py -&gt; build/lib.linux-aarch64-3.7/backports/zoneinfo<br />&nbsp; copyi=
-ng src/backports/zoneinfo/_common.py -&gt; build/lib.linux-aarch64-3.7/back=
-ports/zoneinfo<br />&nbsp; copying src/backports/zoneinfo/__init__.py -&gt;=
- build/lib.linux-aarch64-3.7/backports/zoneinfo<br />&nbsp; running egg_inf=
-o<br />&nbsp; writing src/backports.zoneinfo.egg-info/PKG-INFO<br />&nbsp; =
-writing dependency_links to src/backports.zoneinfo.egg-info/dependency_link=
-s.txt<br />&nbsp; writing requirements to src/backports.zoneinfo.egg-info/r=
-equires.txt<br />&nbsp; writing top-level names to src/backports.zoneinfo.e=
-gg-info/top_level.txt<br />&nbsp; reading manifest file 'src/backports.zone=
-info.egg-info/SOURCES.txt'<br />&nbsp; reading manifest template 'MANIFEST.=
-in'<br />&nbsp; warning: no files found matching '*.png' under directory 'd=
-ocs'<br />&nbsp; warning: no files found matching '*.svg' under directory '=
-docs'<br />&nbsp; no previously-included directories found matching 'docs/_=
-build'<br />&nbsp; no previously-included directories found matching 'docs/=
-_output'<br />&nbsp; adding license file 'LICENSE'<br />&nbsp; adding licen=
-se file 'licenses/LICENSE_APACHE'<br />&nbsp; writing manifest file 'src/ba=
-ckports.zoneinfo.egg-info/SOURCES.txt'<br />&nbsp; copying src/backports/zo=
-neinfo/__init__.pyi -&gt; build/lib.linux-aarch64-3.7/backports/zoneinfo<br=
- />&nbsp; copying src/backports/zoneinfo/py.typed -&gt; build/lib.linux-aar=
-ch64-3.7/backports/zoneinfo<br />&nbsp; running build_ext<br />&nbsp; build=
-ing 'backports.zoneinfo._czoneinfo' extension<br />&nbsp; creating build/te=
-mp.linux-aarch64-3.7<br />&nbsp; creating build/temp.linux-aarch64-3.7/lib<=
-br /><strong>&nbsp; aarch64-poky-linux-gcc -mcpu=3Dcortex-a35+crc+crypto -f=
-stack-protector-strong -D_FORTIFY_SOURCE=3D2 -Wformat -Wformat-security -We=
-rror=3Dformat-security -Wno-unused-result -Wsign-compare -DNDEBUG -g -O3 -W=
-a9</strong><br /><strong>&nbsp; lib/zoneinfo_module.c:1:10: fatal error: Py=
-thon.h: No such file or directory</strong><br /><strong>&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; 1 | #include "Python.h"</strong><br /><strong>&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; ^~~~~~~~~~</strong><br /><strong>&nbsp; compilation terminated.</str=
-ong><br /><strong>&nbsp; error: command 'aarch64-poky-linux-gcc' failed wit=
-h exit status 1</strong><br /><strong>&nbsp; ------------------------------=
-----------</strong><br /><strong>&nbsp; ERROR: Failed building wheel for ba=
-ckports.zoneinfo</strong><br />Failed to build backports.zoneinfo<br />ERRO=
-R: Could not build wheels for backports.zoneinfo which use PEP 517 and cann=
-ot be installed directly<br /><br />---------------------------------------=
----------------------------------------------------------------------------=
-----------------------------------------------------------------<br /><br /=
->Thanks in Advance <br />
 
---sGVLQLFQPADQgOzyQFfO--
+Chuck
+
+
+On 10/11/21 5:46 PM, Bruce Ashfield wrote:
+> On Mon, Oct 11, 2021 at 6:16 PM chuck kamas via lists.yoctoproject.org
+> <chuckkamas=yahoo.com@lists.yoctoproject.org> wrote:
+>> Hi all,
+>>
+>>
+>> I've googled most of the day, but to no avail. How does one compile and
+>> add to the image the daemon usbipd? Is there a bitbake file already for
+>> this? The code is part of the kernel found in the kernel tree:
+>>
+>> KERNEL_SRC_PATH/tools/usb/usbip/src
+>>
+>> and is invoked from the KERNEL_SRC_PATH/tools directory by calling
+>>
+>> make usb
+>>
+>>
+>> from:
+>> https://wiki.st.com/stm32mpu/wiki/How_to_build_Linux_kernel_user_space_tools
+>>
+>> PC $> cd <Linux_kernel_source_path>/tools
+>> PC $> make <tool>
+>>
+>>
+>> I would think that there is a preexisting recipe.
+> There isn't one that I've ever heard of, and the layerindex
+> (http://layers.openembedded.org/) confirms that nothing registered
+> with it provides that recipe.
+>
+> So if you need it, you'd have to create a recipe .. and submit it to
+> somewhere like meta-openembedded if appropriate.
+>
+> Have a look at the perf recipe for one of the ways we build tools out
+> of the kernel source. Something similar will work in this case.
+>
+> Bruce
+>
+>> thanks,
+>>
+>> Chuck
+>>
+>>
+>>
+>>
+>>
+>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#55024): https://lists.yoctoproject.org/g/yocto/message/55024
+> Mute This Topic: https://lists.yoctoproject.org/mt/86249103/1051501
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [chuckkamas@yahoo.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
+
+--------------68CF0C22B020FB79C47A842F
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>Thanks for the quick reply. I looked at the perf recipe, and its
+      quite involved. Is there a simpler recipie to use as a template?
+      Perhaps one of these?</p>
+    <p>meta-openembedded/meta-oe/recipes-kernel/bpftool/bpftool.bb <br>
+    </p>
+    <p>meta-openembedded/meta-oe/recipes-kernel/spidev-test/spidev-test.bb
+      <br>
+    </p>
+    <p>meta-openembedded/meta-oe/recipes-kernel/cpupower/cpupower.bb</p>
+    <p><br>
+    </p>
+    <p>all three of these appear to be basically the same very simple bb
+      file.</p>
+    <p><br>
+    </p>
+    <p>Chuck</p>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 10/11/21 5:46 PM, Bruce Ashfield
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CADkTA4OiV40NZNYiUggSGjRQL62qW6gLbp8979ZfwY=8iR9RAg@mail.gmail.com">
+      <pre class="moz-quote-pre" wrap="">On Mon, Oct 11, 2021 at 6:16 PM chuck kamas via lists.yoctoproject.org
+<a class="moz-txt-link-rfc2396E" href="mailto:chuckkamas=yahoo.com@lists.yoctoproject.org">&lt;chuckkamas=yahoo.com@lists.yoctoproject.org&gt;</a> wrote:
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">
+Hi all,
+
+
+I've googled most of the day, but to no avail. How does one compile and
+add to the image the daemon usbipd? Is there a bitbake file already for
+this? The code is part of the kernel found in the kernel tree:
+
+KERNEL_SRC_PATH/tools/usb/usbip/src
+
+and is invoked from the KERNEL_SRC_PATH/tools directory by calling
+
+make usb
+
+
+from:
+<a class="moz-txt-link-freetext" href="https://wiki.st.com/stm32mpu/wiki/How_to_build_Linux_kernel_user_space_tools">https://wiki.st.com/stm32mpu/wiki/How_to_build_Linux_kernel_user_space_tools</a>
+
+PC $&gt; cd &lt;Linux_kernel_source_path&gt;/tools
+PC $&gt; make &lt;tool&gt;
+
+
+I would think that there is a preexisting recipe.
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+There isn't one that I've ever heard of, and the layerindex
+(<a class="moz-txt-link-freetext" href="http://layers.openembedded.org/">http://layers.openembedded.org/</a>) confirms that nothing registered
+with it provides that recipe.
+
+So if you need it, you'd have to create a recipe .. and submit it to
+somewhere like meta-openembedded if appropriate.
+
+Have a look at the perf recipe for one of the ways we build tools out
+of the kernel source. Something similar will work in this case.
+
+Bruce
+
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">
+thanks,
+
+Chuck
+
+
+
+
+
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+
+</pre>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+-=-=-=-=-=-=-=-=-=-=-=-
+Links: You receive all messages sent to this group.
+View/Reply Online (#55024): <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto/message/55024">https://lists.yoctoproject.org/g/yocto/message/55024</a>
+Mute This Topic: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/mt/86249103/1051501">https://lists.yoctoproject.org/mt/86249103/1051501</a>
+Group Owner: <a class="moz-txt-link-abbreviated" href="mailto:yocto+owner@lists.yoctoproject.org">yocto+owner@lists.yoctoproject.org</a>
+Unsubscribe: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto/unsub">https://lists.yoctoproject.org/g/yocto/unsub</a> [<a class="moz-txt-link-abbreviated" href="mailto:chuckkamas@yahoo.com">chuckkamas@yahoo.com</a>]
+-=-=-=-=-=-=-=-=-=-=-=-
+
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------68CF0C22B020FB79C47A842F--
 
