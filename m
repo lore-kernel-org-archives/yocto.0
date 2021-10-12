@@ -2,43 +2,43 @@ Return-Path: <yi.zhao@windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E6389C433F5
-	for <webhook@archiver.kernel.org>; Tue, 12 Oct 2021 07:01:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B81E7C4332F
+	for <webhook@archiver.kernel.org>; Tue, 12 Oct 2021 07:01:02 +0000 (UTC)
 Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com
  [205.220.166.238])
- by mx.groups.io with SMTP id smtpd.web11.10206.1634022060937719213
+ by mx.groups.io with SMTP id smtpd.web08.10112.1634022060947418970
  for <yocto@lists.yoctoproject.org>;
  Tue, 12 Oct 2021 00:01:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=bW3o6+84;
+ dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=DQeqgXrU;
  spf=pass (domain: windriver.com, ip: 205.220.166.238,
  mailfrom: prvs=5919fa73df=yi.zhao@windriver.com)
 Received: from pps.filterd (m0250809.ppops.net [127.0.0.1])
 	by mx0a-0064b401.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id
- 19C6uHe3032472;
-	Tue, 12 Oct 2021 00:00:59 -0700
+ 19C6uHe2032472;
+	Tue, 12 Oct 2021 00:00:58 -0700
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
  h=from : to :
  subject : date : message-id : in-reply-to : references :
  content-transfer-encoding : content-type : mime-version; s=PPS06212021;
- bh=gAkM4mPGwqryZigwzLHSF/kBBCKla/vqC0RgLzvluFQ=;
- b=bW3o6+84D1FNN0c39SUprtmblyx9oO/tbjMY72RemGDMu8s9HiUGNxe6enn3bnX9Bi71
- 1bXlbnSmucY2ChKFyZuU6mRZ5v+AtdYlqso+37LxgW0svhjuYlB1b7IDZJuIO6Hmig0k
- nlWencQQyxYZhB+YwP/nI+z5k4acqL9fOWnnPxMscTSCF1V4JwZDK+JjCPoINkqIfpRk
- R60SZqXpJMgy14eW6f0yh9z60bpBmY1GyULo/KJitxOgU9c+OsqltO+h+9k734kiMjWG
- UMV6cjyNUxPxEwzmBA/wSo8nR9KFGT9RGx+4UdmNSuQKXcvpwRKN4vWECNZCqAh5GLOb 2g==
+ bh=phaZ3E5yps467noU9NJy0VHrbPW9RtQL+53fHsa51jM=;
+ b=DQeqgXrULewjNaYvPv3Dnd4HQKkhS3KC3q9/Xv/m9jdhG1i1JT3B7McpbEMtAOFYu/gI
+ 81pDKPUjZhbG7Se5nbYVaXQJ/gx3fNQXDKJZkDqnecF5PfQ8oPloHzQDg2qj956mtZ/a
+ 61wko5gJaIec3VfwCBRcYhrX1PZ7c2CVhbT9+iagoKXWigIxY2ZSW3FRTKGeQnfvMto3
+ l1viO1rVUTjCd3Scol2Gi5lUAExJld51AOCbu1GIp/SL5CZNzeZwBEAdn9tnLPk+HRd/
+ 27bCvX1QDQerdwGakMieJyJt1MhyxEpt+T9m0dj/MMuAqRPHr0WHmWtsENJs8llvpuaV mg==
 Received: from nam12-mw2-obe.outbound.protection.outlook.com
  (mail-mw2nam12lp2042.outbound.protection.outlook.com [104.47.66.42])
-	by mx0a-0064b401.pphosted.com with ESMTP id 3bmy72g7ea-3
+	by mx0a-0064b401.pphosted.com with ESMTP id 3bmy72g7ea-2
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
 	Tue, 12 Oct 2021 00:00:58 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XXZKGdPmDFt7/fzAJ1UNQfhtbrmMejVXopbfPWsGld8oqV+EZMKa1xTknGbsgCsWpFn9pvL1VGW6U3Ly1qxV4xxZc2mGuGi168vlaCnLwSl1LD5ZPnyonGXr1XIuCWF4tIOYrtATIq1y8FkYkw6T1IK/lJJi/ioTt+NjWCJbTIyCPr5rSbianIwzjsI/S6O4qWDyYc4J2AI6cXfEk+//BBvY0o44iWMs8VgFu5mqGmy7XMr31+8tnPgbxezBN5rjlZtlIwYnCUqAkRAuKMZHUrF08yxsZSHW8ZawwEkBYj/VXyY6f3NczVP9pJMUyv58k2GyKmobBR/16eV5lPWAxg==
+ b=UzT9uqaMcYi7ZWrbYkcse51Ypqm5nDDTP+cXdMZZHplffnK3yGRKf95Xb86tPVdhYFouswY/1qCh6MDI2T/5djyhbvVyIgXIkclEJCFEy8EfVBbHI4j1mO2230WwDRxrI0Fmk1iyBaUL8fEa/IcjPgbf6O5p+FlXHbCSAGIxmHiUWgmepnkRpow+G2PVj/i8Rv/52XX4ZprOu3DIFZYM780E0xB4hCJgdiXBgbmLzvAotf1iwnv9ObFnwnYvOOfQtp5CRJs5M8+I+gOeuA399soiC/z1hOVnsSf75fNOV89Rbv2+o5AXtL/aY3RbM/bAvhDQG6JVsk0FquP6GVndYQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gAkM4mPGwqryZigwzLHSF/kBBCKla/vqC0RgLzvluFQ=;
- b=F1xPRD4ZomtUSoLvAFWp+qkdKBJv+mT5z1QAf2FWyjEGrJ3g3XNy2shy6SvIKAiLKIJo5lZAbW2nX3Vfxf44nHrKns5gK5dvT5pL3vrIqxq8gpC2Ex4nqHisyu6bJDXKDxOXc7ZcvwHCi44yqE8vk9Zmy3KPUgsdp3RXFbVmgkzOgxBWYKnsN9BoKr3p6TFObbAma3ETVQdWow9GdtaT1jKBN2cIncMKUsCmLbPQhmgyfzmgPLCtrOlQkS9FE2/GKsG6U+avAtdAZ+0TdxczDMoh+/WGaN83b5oq+IQuIFaF/uy61/0jEZLvBae75QKeixvnwfrRtr9rncLL7nF29A==
+ bh=phaZ3E5yps467noU9NJy0VHrbPW9RtQL+53fHsa51jM=;
+ b=b8asr/9SdBLdDo/EF8HV7mzEZEtK69G4aowQa1Xz5flNNErVG+TIXbWv1oHfNpbU1BjsYJgdHBe1GgL4+sD4wGhYapKf5npr4NX2MYdOcHNevR+4ct2SLR+Vofy/8lC2LUAByTlo03Vla8W7YqHNPndEPQWefaoKpVDC7kY/TeC7HQN/1LQlMOsogjsCF2Oilie+c8lWCPveM5RyK2z4EUoiV58KerB9BSde+YngqaFdlGazIIuStY2r+DPsFpk8JKtoJu5SDnSq15vfAHRDtRyDUvCztkTfsSAkDsdfXO0Mol/ygWilg1LFGQ7VPvuCsDi5DrIw+4OYOYOgEkCKHA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=windriver.com; dmarc=pass action=none
  header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
@@ -49,17 +49,17 @@ Received: from CO1PR11MB4867.namprd11.prod.outlook.com (2603:10b6:303:9a::13)
  by MWHPR1101MB2239.namprd11.prod.outlook.com (2603:10b6:301:5b::8) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.18; Tue, 12 Oct
- 2021 07:00:52 +0000
+ 2021 07:00:50 +0000
 Received: from CO1PR11MB4867.namprd11.prod.outlook.com
  ([fe80::455e:9cfb:d106:4480]) by CO1PR11MB4867.namprd11.prod.outlook.com
  ([fe80::455e:9cfb:d106:4480%9]) with mapi id 15.20.4587.026; Tue, 12 Oct 2021
- 07:00:52 +0000
+ 07:00:50 +0000
 From: Yi Zhao <yi.zhao@windriver.com>
 To: yocto@lists.yoctoproject.org, joe_macdonald@mentor.com, joe@deserted.net
-Subject: [meta-selinux][PATCH 4/4] selinux: move selinux scripts to
- selinux-scripts
-Date: Tue, 12 Oct 2021 15:00:32 +0800
-Message-Id: <20211012070032.124425-4-yi.zhao@windriver.com>
+Subject: [meta-selinux][PATCH 3/4] selinux-python: add RDEPENDES on
+ audit-python
+Date: Tue, 12 Oct 2021 15:00:31 +0800
+Message-Id: <20211012070032.124425-3-yi.zhao@windriver.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211012070032.124425-1-yi.zhao@windriver.com>
 References: <20211012070032.124425-1-yi.zhao@windriver.com>
@@ -73,149 +73,110 @@ Received: from pek-yzhao1-d1.wrs.com (60.247.85.82) by
  YT3PR01CA0045.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:82::13) with Microsoft
  SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.25 via Frontend
- Transport; Tue, 12 Oct 2021 07:00:50 +0000
+ Transport; Tue, 12 Oct 2021 07:00:48 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7b0b3232-e67c-4318-c270-08d98d4e0777
+X-MS-Office365-Filtering-Correlation-Id: 40913e6b-f7ae-4a52-6448-08d98d4e05fe
 X-MS-TrafficTypeDiagnostic: MWHPR1101MB2239:
 X-Microsoft-Antispam-PRVS: 
-	<MWHPR1101MB22394E55B45FE6AA8CA954FAF9B69@MWHPR1101MB2239.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
+	<MWHPR1101MB2239542323479792390FCB46F9B69@MWHPR1101MB2239.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:404;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	MpnGI8WMbL+jVput2TInySMfaJ9Ud9BhndkjN4TjYgzAl6CyjEhHtm/LAVHooikz8BIazajC6vQ7GRRQu1hdA5vMlPhAHTAF/Mau0sY61QQH1KZ0om5nDTOfkfp9xh/rYy6Sj82nbZpd5Pb8jlEmgdPD2eU/msr8qEKPSCbbj4stsdzGyALX3juzw2muSnJlhF69ifzB2O+qRvAhp0XXLvOlfQ4ZSO1VRiwLw6/s9ZzY61/bs1ZLxr46iPSYY+o8wzqbOWLesjWxGsY8ktiYu0R6MNiCveg6uqtV4Wmlkg9KSgjvQ5Cmfnps1viYYM8VwyXc3jTZH/0em18YYO5BsDC67yckZ5AfWBWhaY3ZIPPI2cmDVYTW5QkGkJ+5sCxlPp2aUws+v8hguNUEpMr4BGyBQwq+cQY1ein7jbYTKvxidrP7tvXcImlv2NlibafKrzKbmK1POjX9VOMEtbSI47tXqO2t7q3bm/ysrqx9F6gypHCwdrnhv2F6MEAIBBaXJmCCVUA/5klFvrJG0qoxb8XFrec+RclaZ/HIQ/34pt1O9RssE8yVmasoKt1Ga5+inRKEjRxB3fOmbuUZqF2OU9RBSIrJrLExq0bWykW5PJyWWsOkLfsf6Le454l8ie1Sm30+G2dzBNIDv3oikZHrAhG2R5yug12JFx/5g50ic721NxPUmQU41DoGYd/piQldqcQnlwoppCoDz51I8gk24vauHym8MIccA7o1F93fk2E=
+	V14CpD9ITlwSLv/WrEX8+8aOq30w8rQGdMCCKSE3/teChsYIV5qlG+gve5SPqDlk5xSX0GM4h1+COIwgNTCUBulDOm/HwFBwDWOROTQoIwS58NMZu44Bd/Veh4+ZLyI7OxkhbS2YAkMexJl57ArULLCBarXtIo574j4Ib0Ipvzmc2aXgz7pyNfX1m31zyFYDOw1bP0pblbLSJliQDFM+ZGBcVSPgdm8jqn38W2KZ7s5bTaIwzsp2b0+DMiJLV5npTyY6LuOOgKeFDxwDYVeJLZrr02XLLp+t5dQQHna8uCKxFbcsSLHgwKkflW47SDKCIkmBNWiviS9pyOhc4+4fkIdRzOmCMuS+Um6FyW9RSH1TqsvqPz0cYcgvjZydCbFL1GorHmrrAQrQHSGJL2udXZ1Q7WxIYlM1fkbGrkVmPXyX2Xs7f3WM8n2TSl3pZ/AOMVwZGotmn9haIwbxXluu7PhQju7gshc9lTgCggim/8ybWDuvAJDpCouHXO0vnpTGE1FLsSPsiG4jgE8WargeV2fSA1lZO5BwMTBzLZlXAZK4hmiYUFo+qb0O33i571pwuhb81+L36e7MenzIqDSHIG52MkjWD1U17z880+S/vxECjxGEx/jVG8ILtAe8cDNyLB6j90KjhMRirFo+kQLDrLfCMrrgWe37DHazmIcizKIWq30RHrsro432vt5rhPsU5Ex8a/oWYDjJ1mKUzwjYVg==
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4867.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(2906002)(316002)(2616005)(6512007)(44832011)(956004)(6666004)(5660300002)(83380400001)(38350700002)(38100700002)(66556008)(6486002)(6506007)(86362001)(26005)(8676002)(1076003)(508600001)(66946007)(36756003)(8936002)(186003)(66476007)(52116002)(72063004);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4867.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(2906002)(316002)(2616005)(6512007)(44832011)(956004)(6666004)(5660300002)(83380400001)(38350700002)(38100700002)(66556008)(6486002)(6506007)(86362001)(26005)(8676002)(1076003)(508600001)(66946007)(36756003)(8936002)(186003)(66476007)(52116002);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?YWJtmF5UNgemsmqTT1Ch7C/MobhsmDeydKIGzHPpNj5gN2mk5HKUMdNutSoN?=
- =?us-ascii?Q?mrr8BG04Wnx5xttUaCAmpiVFslKGIUiAaVk947/7r4j7d6owOPZtDFXOHNJR?=
- =?us-ascii?Q?3xn2s6ubD7YzQs1K4V7PdR+hnWj2Ziym+E4wn/VbeviTmftJUXJr9SRZseqH?=
- =?us-ascii?Q?W+DZplep/cPiTGhaQhYKXcnl/1FYQw3wlavziiSX+lGseXzCVrfkqYIO8SXx?=
- =?us-ascii?Q?XYf4or7U4n0df1gCHIZlQR0f7/9iy6bfP0agkdRqd1tB2P4no8f7UKPMuJsr?=
- =?us-ascii?Q?EwpJZ03DoxM7/5vX+1dcQL1/EAW8bm28LU+0Dp+zaQigEPdctxPZhDgs6oHL?=
- =?us-ascii?Q?KHXTKskmvOqZRLob80xQ1O13JzQdAhAAcJnpLu5Lvbz2AJ8ft+7C9w3aURfU?=
- =?us-ascii?Q?Zcfg2DTcuzgZZC7ioEA62hE2/gV6e3IdD6SBhURIU600g+lPrRxDd514YQrr?=
- =?us-ascii?Q?es+d8XEU0+/XeMBCZv0yjL+qz3syAybFbVXXC3C3kYAhz5NFlLubiNc04DtM?=
- =?us-ascii?Q?n9LkvuMLlMfhAyp4a1EJPXXXO54193EEvm2QhEhLkIiKzCS4f3kCDDUnSloM?=
- =?us-ascii?Q?w4JtNYpkmKfcb6a1+5iHCJPesOK8R6fBLv47IEgVzdR9QH3HSnnPl8ayOwph?=
- =?us-ascii?Q?Rc082vS/2vh4wzCoakqNABtWykyW6zy/3JttAFYMv+zEBAq5fE+IU9FpfFa0?=
- =?us-ascii?Q?oxIwYPRrAUQFpba4sm2yR3vXeJ/oaAB0ImKLa8jkrJxBH9GJRWH3DK2bqTJr?=
- =?us-ascii?Q?htfktfyQFagR2a+9lCK+3wEfUY3a7dqOqCVv3E0EW8pofxqk4WoJKE/pPZeJ?=
- =?us-ascii?Q?2FGJ778Wa+DRFALUdKV4ie+vz+Qi5+bYBkxxGOZedapw6v1PacNHPqdCW92J?=
- =?us-ascii?Q?UwkGIJ+prWHinvCEnRrj0WTwmI5XIlH+aa4CbAqWABJC5EPS25HALsSM+iRm?=
- =?us-ascii?Q?+y9WD4nM6Yc8nuQWvZ+cILutFRrXuyeDs/L/Zazcp98FgVjJQyEmAeSI0BGS?=
- =?us-ascii?Q?p6efOd+0J5SjybGBnFQxU5iWmqltUFQYoFkYUVNcSD2r183/nFJXnz0PzkSK?=
- =?us-ascii?Q?Cj2Q6NkueQ+Zzp72HQ0kt98w/IqxOtPaMKETizzUOCsrIWVQCGpWBu34WQgf?=
- =?us-ascii?Q?mB8y8QBH/bBVd04pg1BXhybryvZlgwU6mxCB3Ia8/fDvnh0nr75lqGrx0TUa?=
- =?us-ascii?Q?WNutd1M6sLDgHyBYbD6gihOmGwPRoMkiBaB6NhYMwtwtQLu/3IDTAz4ceQMi?=
- =?us-ascii?Q?klq/FpbX+ATNf+j16+swUDVuGUuLjXsPHiFlP0QLOEnvI9yJbk9MgA7ARhRX?=
- =?us-ascii?Q?eJCrpFXeFp2zu3jwgD4NZdxd?=
+	=?us-ascii?Q?2AnxwfNxB4axin7Yt2poSCHpJnFoRCzsoVQrsvT4ZXxJUVAI8aSi3fHnHpek?=
+ =?us-ascii?Q?igh0juhfIQFRz2iUjSgJjCZw9TttL75he5G6I3r1g9YPOFQtfdlqcxiWyJcr?=
+ =?us-ascii?Q?PX6aFpuZy4exhNMqB10ssVx+o2+fCeIQqcLEPbY87Y2Cn/yoRm1u7ieO3Tqh?=
+ =?us-ascii?Q?naLDTBTOyiXj03kidZrYjyCDxaWexQ9jhd4wO3kzE2kozSNFFW0RRkOoJb9j?=
+ =?us-ascii?Q?bVavfW77Fpq/3OTn368zpohqNzbxQeg5e0k2LrqFSZdBKsAfSZ/3LGDNhxlD?=
+ =?us-ascii?Q?RpTiOQV2Y46xY889TTuev1lNNqtfhGsPndYdCv3UF3K+O4HaO1kfcIUChH4S?=
+ =?us-ascii?Q?LNtTOfQY6OLfpIRj9UppLDfWmyMbs3kMrAsQkOZ5F807ZV0ST7BbC15xtnhn?=
+ =?us-ascii?Q?6xGKcws4Q279rj0gX55qVjf7XTFtlsLQw78TqoiHZmewQ27jaV/01MZS7Omn?=
+ =?us-ascii?Q?oD4MTtxu2nXHtOQlzd4pX0rkUbz4eUgT1KN9dJKM8wviUWI0772Wl4tv9vpL?=
+ =?us-ascii?Q?F7okNs6gqiWRtoOzNlbjTPsewhHTFO92C8r+H0dIwKle2xQoXpTPiWRIFO53?=
+ =?us-ascii?Q?K/oB9kGW+g+8NUu29OMNu3ojP/1gl4oOH/6atjmFTHpAZDytXaRybKt/hIvN?=
+ =?us-ascii?Q?OFkbwYv+XQIQ7WzNYk2sRpvSrodva4F/vakOZe2KjH1k2t+6AKIIKf8p6t9h?=
+ =?us-ascii?Q?PFVcGTZ/+P0Q6FU4tXHLPoKG+v+SVTc0oWsCSUizCX2FIu6hja9f9yHHJamx?=
+ =?us-ascii?Q?eNLsK4BNs8S7AuepxEW11vCZ6wtEtHQdjDcccGdD5PGDQnw1vH1AmLbF+CQ7?=
+ =?us-ascii?Q?Am6I06SCqMKsNmJp+j3ANk2Jk5n7aJkHUzm8XpKIhBfmbEBaWOxT67xZjjBo?=
+ =?us-ascii?Q?7jfeSy3AIJukGGcuSO/2LTFZpQi2ajiTf9xlHhLEfTFMLPZeyyoPBeJ8YmJ9?=
+ =?us-ascii?Q?JTgRI3A7mqbmOfsDXA6WiKrZXHDVz7+WRSCDLFBCnfdY0w5HmlrbNEYU2oh6?=
+ =?us-ascii?Q?HwBrxeMKRyzYG6RJ8GUbdbIFbHuz6El9Eud/1VUnWtyTOH+gZ2KpT0CTOc6v?=
+ =?us-ascii?Q?3Du8gjlC40nm5z4aKrNfSMDs4QCT1H4kFQ05bSO6cWvoKCrOG8lpfwgg+mba?=
+ =?us-ascii?Q?/EdYZpTrT842lUO8eYV9S3CxpZHoP4GlSyuzjtGYVCLPAVD7XSd/ZzuZIyev?=
+ =?us-ascii?Q?GK0ykx0WxzHEoHPyv9uVz5a9IS9+pPmpGitrh592ZG8xwSKjL6/SB3rg6dsb?=
+ =?us-ascii?Q?dDyzJk8rloczBNbCzvwypXnWj/cd5+BtLM9vDL8LzKBLpULifcREN/V1Nzwx?=
+ =?us-ascii?Q?kaDog+m3l4Vl2mkLpcO3svQA?=
 X-OriginatorOrg: windriver.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 7b0b3232-e67c-4318-c270-08d98d4e0777
+ 40913e6b-f7ae-4a52-6448-08d98d4e05fe
 X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4867.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2021 07:00:52.3573
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2021 07:00:50.0843
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
 X-MS-Exchange-CrossTenant-UserPrincipalName: 
- EYYV1W48H0EqHAeyh8er38835ms5EzXUwvjiq//+tGkx9V+5iRRC8GRHmQcpDjdsj0wk7+ZQP/60lN91WHUR/A==
+ aUfYqAtLMhD5OhY67Zzgxd6NgaHt7p+BCtiqTMT4Pz4iBwKFAeSEHK0WRnd0RHLmUzuYBXR5PC8qv5/025Z92g==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1101MB2239
-X-Proofpoint-ORIG-GUID: 6M8NG1MTMTIfPgAQQ5gnLhVlbv2cI2uM
-X-Proofpoint-GUID: 6M8NG1MTMTIfPgAQQ5gnLhVlbv2cI2uM
+X-Proofpoint-ORIG-GUID: WFqjPJ7LN4ywmz97mKE6kZMOF1dn9n64
+X-Proofpoint-GUID: WFqjPJ7LN4ywmz97mKE6kZMOF1dn9n64
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
  definitions=2021-10-12_01,2021-10-11_01,2020-04-07_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
  suspectscore=0
  lowpriorityscore=0 mlxscore=0 bulkscore=0 impostorscore=0 malwarescore=0
- spamscore=0 adultscore=0 phishscore=0 mlxlogscore=953 clxscore=1015
+ spamscore=0 adultscore=0 phishscore=0 mlxlogscore=999 clxscore=1015
  priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.12.0-2109230001 definitions=main-2110120038
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 12 Oct 2021 07:01:01 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55031
+ <yocto@lists.yoctoproject.org>; Tue, 12 Oct 2021 07:01:02 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55033
 
-There are too many recipes in recipes-security/selinux. Keep the selinux
-userspace recipes and move selinux scripts to selinux-scripts directory
-to make the directory hierarchy clearer.
+Add RDEPENDS on audit-python for selinux-python-semanage.
+
+Fixes:
+$ semanage fcontext -a -t user_home_t "/web(/.*)?"
+Traceback (most recent call last):
+  File "/usr/sbin/semanage", line 975, in <module>
+    do_parser()
+  File "/usr/sbin/semanage", line 947, in do_parser
+    args.func(args)
+  File "/usr/sbin/semanage", line 329, in handleFcontext
+    OBJECT.add(args.file_spec, args.type, args.ftype, args.range, args.seuser)
+  File "/usr/lib/python3.9/site-packages/seobject.py", line 2485, in add
+    self.__add(target, type, ftype, serange, seuser)
+  File "/usr/lib/python3.9/site-packages/seobject.py", line 2481, in __add
+    self.mylog.log_change("resrc=fcontext op=add %s ftype=%s tcontext=%s:%s:%s:%s"
+      % (audit.audit_encode_nv_string("tglob", target, 0), ftype_to_audit[ftype],)
+NameError: name 'audit' is not defined
 
 Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
 ---
- .../selinux-autorelabel/selinux-autorelabel.service               | 0
- .../selinux-autorelabel/selinux-autorelabel.sh                    | 0
- .../{selinux => selinux-scripts}/selinux-autorelabel_0.1.bb       | 0
- .../selinux-init/selinux-init.service                             | 0
- .../{selinux => selinux-scripts}/selinux-init/selinux-init.sh     | 0
- .../selinux-init/selinux-init.sh.sysvinit                         | 0
- recipes-security/{selinux => selinux-scripts}/selinux-init_0.1.bb | 0
- recipes-security/{selinux => selinux-scripts}/selinux-initsh.inc  | 0
- .../selinux-labeldev/selinux-labeldev.service                     | 0
- .../selinux-labeldev/selinux-labeldev.sh                          | 0
- .../{selinux => selinux-scripts}/selinux-labeldev_0.1.bb          | 0
- 11 files changed, 0 insertions(+), 0 deletions(-)
- rename recipes-security/{selinux => selinux-scripts}/selinux-autorelabel/selinux-autorelabel.service (100%)
- rename recipes-security/{selinux => selinux-scripts}/selinux-autorelabel/selinux-autorelabel.sh (100%)
- rename recipes-security/{selinux => selinux-scripts}/selinux-autorelabel_0.1.bb (100%)
- rename recipes-security/{selinux => selinux-scripts}/selinux-init/selinux-init.service (100%)
- rename recipes-security/{selinux => selinux-scripts}/selinux-init/selinux-init.sh (100%)
- rename recipes-security/{selinux => selinux-scripts}/selinux-init/selinux-init.sh.sysvinit (100%)
- rename recipes-security/{selinux => selinux-scripts}/selinux-init_0.1.bb (100%)
- rename recipes-security/{selinux => selinux-scripts}/selinux-initsh.inc (100%)
- rename recipes-security/{selinux => selinux-scripts}/selinux-labeldev/selinux-labeldev.service (100%)
- rename recipes-security/{selinux => selinux-scripts}/selinux-labeldev/selinux-labeldev.sh (100%)
- rename recipes-security/{selinux => selinux-scripts}/selinux-labeldev_0.1.bb (100%)
+ recipes-security/selinux/selinux-python_3.2.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/recipes-security/selinux/selinux-autorelabel/selinux-autorelabel.service b/recipes-security/selinux-scripts/selinux-autorelabel/selinux-autorelabel.service
-similarity index 100%
-rename from recipes-security/selinux/selinux-autorelabel/selinux-autorelabel.service
-rename to recipes-security/selinux-scripts/selinux-autorelabel/selinux-autorelabel.service
-diff --git a/recipes-security/selinux/selinux-autorelabel/selinux-autorelabel.sh b/recipes-security/selinux-scripts/selinux-autorelabel/selinux-autorelabel.sh
-similarity index 100%
-rename from recipes-security/selinux/selinux-autorelabel/selinux-autorelabel.sh
-rename to recipes-security/selinux-scripts/selinux-autorelabel/selinux-autorelabel.sh
-diff --git a/recipes-security/selinux/selinux-autorelabel_0.1.bb b/recipes-security/selinux-scripts/selinux-autorelabel_0.1.bb
-similarity index 100%
-rename from recipes-security/selinux/selinux-autorelabel_0.1.bb
-rename to recipes-security/selinux-scripts/selinux-autorelabel_0.1.bb
-diff --git a/recipes-security/selinux/selinux-init/selinux-init.service b/recipes-security/selinux-scripts/selinux-init/selinux-init.service
-similarity index 100%
-rename from recipes-security/selinux/selinux-init/selinux-init.service
-rename to recipes-security/selinux-scripts/selinux-init/selinux-init.service
-diff --git a/recipes-security/selinux/selinux-init/selinux-init.sh b/recipes-security/selinux-scripts/selinux-init/selinux-init.sh
-similarity index 100%
-rename from recipes-security/selinux/selinux-init/selinux-init.sh
-rename to recipes-security/selinux-scripts/selinux-init/selinux-init.sh
-diff --git a/recipes-security/selinux/selinux-init/selinux-init.sh.sysvinit b/recipes-security/selinux-scripts/selinux-init/selinux-init.sh.sysvinit
-similarity index 100%
-rename from recipes-security/selinux/selinux-init/selinux-init.sh.sysvinit
-rename to recipes-security/selinux-scripts/selinux-init/selinux-init.sh.sysvinit
-diff --git a/recipes-security/selinux/selinux-init_0.1.bb b/recipes-security/selinux-scripts/selinux-init_0.1.bb
-similarity index 100%
-rename from recipes-security/selinux/selinux-init_0.1.bb
-rename to recipes-security/selinux-scripts/selinux-init_0.1.bb
-diff --git a/recipes-security/selinux/selinux-initsh.inc b/recipes-security/selinux-scripts/selinux-initsh.inc
-similarity index 100%
-rename from recipes-security/selinux/selinux-initsh.inc
-rename to recipes-security/selinux-scripts/selinux-initsh.inc
-diff --git a/recipes-security/selinux/selinux-labeldev/selinux-labeldev.service b/recipes-security/selinux-scripts/selinux-labeldev/selinux-labeldev.service
-similarity index 100%
-rename from recipes-security/selinux/selinux-labeldev/selinux-labeldev.service
-rename to recipes-security/selinux-scripts/selinux-labeldev/selinux-labeldev.service
-diff --git a/recipes-security/selinux/selinux-labeldev/selinux-labeldev.sh b/recipes-security/selinux-scripts/selinux-labeldev/selinux-labeldev.sh
-similarity index 100%
-rename from recipes-security/selinux/selinux-labeldev/selinux-labeldev.sh
-rename to recipes-security/selinux-scripts/selinux-labeldev/selinux-labeldev.sh
-diff --git a/recipes-security/selinux/selinux-labeldev_0.1.bb b/recipes-security/selinux-scripts/selinux-labeldev_0.1.bb
-similarity index 100%
-rename from recipes-security/selinux/selinux-labeldev_0.1.bb
-rename to recipes-security/selinux-scripts/selinux-labeldev_0.1.bb
+diff --git a/recipes-security/selinux/selinux-python_3.2.bb b/recipes-security/selinux/selinux-python_3.2.bb
+index a954676..d130900 100644
+--- a/recipes-security/selinux/selinux-python_3.2.bb
++++ b/recipes-security/selinux/selinux-python_3.2.bb
+@@ -50,6 +50,7 @@ RDEPENDS:${BPN}-semanage += "\
+         python3-xml \
+         python3-misc \
+         libselinux-python \
++        audit-python \
+         ${BPN} \
+ "
+ RDEPENDS:${BPN}-sepolicy += "\
 -- 
 2.25.1
 
