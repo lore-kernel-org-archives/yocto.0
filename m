@@ -1,202 +1,126 @@
-Return-Path: <steven.monsees@baesystems.com>
+Return-Path: <sateesh0457@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C16D6C433FE
-	for <webhook@archiver.kernel.org>; Tue, 12 Oct 2021 11:22:59 +0000 (UTC)
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com
- [149.32.232.65])
- by mx.groups.io with SMTP id smtpd.web10.12570.1634037776494820490
- for <yocto@lists.yoctoproject.org>;
- Tue, 12 Oct 2021 04:22:58 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=CgTyP9d0;
- spf=pass (domain: baesystems.com, ip: 149.32.232.65,
- mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1634037776; x=1791717776;
-  h=from:to:subject:date:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=pObnlK12QJyq8yiG6Nxvsl7VYlOoeoLuXkxtCadEqaw=;
-  b=CgTyP9d029F9jGEjMkqtGSW84jfDaNTAIhL0oKpI98IJEBmReVTTDN7t
-   QPqIQG3wr/upvJ5Hz4yaoW3gpM51iz7JI8vob7gdMXzyN/x5yqZx+joKB
-   /V++YBP0hKqAQyKUNbC5r8YVKTQ5bqFr+9lq19ggkPBHtcstPFnl6GGbF
-   A=;
-IronPort-SDR: 
- 5dKJ5dd6ldWp74261wBujgONr86NOVrbHaVFa9mebLlmeua1bmUvuS59REt6JogygDqOm8ZjEZ
- VU0pvpKLxk3g==
-IronPort-PHdr: =?us-ascii?q?A9a23=3A6SvZSBwRdrTjlVzXCzIwzVBlVkEcU1XcAAcZ5?=
- =?us-ascii?q?9Idhq5Udez7ptK+ZhSZv609xweQFazgqNt8w9LMtK7hXWFSqb2gi1slNKJ2a?=
- =?us-ascii?q?hkelM8NlBYhCsPWQWfyLfrtcjBoVJ8aDAwt8H60K1VaF9jjbFPOvHKy8SQSG?=
- =?us-ascii?q?hLiPgZpO+j5AIHfg9qr2+yo5ZHffwZFiDWhbb9vMR67sRjfus4KjIV4N60/0?=
- =?us-ascii?q?AHJonxGe+RXwWNnO1eelAvi68mz4ZBu7T1et+ou+MBcX6r6eb84TaFDAzQ9L?=
- =?us-ascii?q?281/szrugLdQgaJ+3ART38ZkhtMAwjC8RH6QpL8uTb0u+ZhxCWXO9D9QKsqU?=
- =?us-ascii?q?jq+8ahkVB7oiD8GNzEn9mHXltdwh79frB64uhBz35LYbISTOfFjfK3SYMkaS?=
- =?us-ascii?q?HJBUMhPSiJBHo2yYYgBD+UDPOZXs4bzqFQVoBuiHgasBv/jxiNUinL026Axz?=
- =?us-ascii?q?uQvERvB3AwlB98CvnParNLzNKcJT++60rLIwS3eZP1LxTfy9pbIfQ4nofqRQ?=
- =?us-ascii?q?797bM7dxkcyGQ/AgFmbtIvoPyiJ1usTrWiU8exgWfiqi24grQFxuSagydk3i?=
- =?us-ascii?q?oTSnY0a0E7L9T55wYYuOd23Vkt7YcW+HJRMsCGaMpJ7T8U/SG5npCg00KcJu?=
- =?us-ascii?q?YKnfCcU0pQnwQbSZv2JfYSV4B/uVuWcLzd4iX9mZr6zmwi+/0eix+DhWMe50?=
- =?us-ascii?q?1lHoypEn9TPtn4A1RLd58mDR/Vy8UmtxTiB2Q/S5+xCPEs6m63bK5s7zb4xk?=
- =?us-ascii?q?JoeqUTCHijql0Xqi6+Wbl8k+u+q6+v5frrmuoWQN4huigHxKqgulc2/Afg4M?=
- =?us-ascii?q?ggTRGeX4/iz1Lrm/UHhTrVFlOQ2nrPcsJ/HI8kQu623AxdN34o+9xqzFTmr3?=
- =?us-ascii?q?dYCkXUZMl5IeAiLgonoNl3WPfz0Ee2zjlujnTtxyP3KJKDtD5XLI3PeirnuZ?=
- =?us-ascii?q?6x95FRZyAcryNBf4I9bBa8ZLfLoX0/xqMTYDhgkMwyo2+rnCMty1ocZWW+XH?=
- =?us-ascii?q?qCWKrjSvkON5uI0J+SBYIwYtCrjJ/Q/4f7hl2U1lkQHcqa3xpsWaGu4Huh4L?=
- =?us-ascii?q?EWcenrgmMsOEWAPvgYmTezqjkONUSJLanqvQ64w/D82BYC8AYvdWIyggKaN0?=
- =?us-ascii?q?Sa6E5FOY2BJEFGMEXPmd4WeXPcMbTqfItR9kjMaS7iuVYkh2QurtA/9zbpnN?=
- =?us-ascii?q?fTb9TMDtZ/4z9d6/fPclQoy9DxvE8SSzWSNT3pukmwUQD822bhzoVZhxVebz?=
- =?us-ascii?q?ah4n/tYGMRT5vNOTgg6KZncwvd+C9DzQQLBYsyJREymQ9WhHT4xUtUxw8cUY?=
- =?us-ascii?q?0Z6GdWtkAzM3zawD78SjbyLC898zqWJlV3wO9p0zzKO/a88jRNuFsJJKG/gg?=
- =?us-ascii?q?69j6wHXL4/Pj0id0a2tcPJYlGTc82yfykKKvVpES0hhVq7ZWmgFYUnbpsi/4?=
- =?us-ascii?q?VnNBff6GLMsLgxpzc+ZNrAMe9rikVJeXvDhNd/CJWWrlDHjKwyPw+bGSY3sY?=
- =?us-ascii?q?GgQx2GVM1QJjQ0VtV3OdTUFR23p93nCASJjExTqZEX3/ORlgHmyQ1Ql1B2Ha?=
- =?us-ascii?q?lYn3L2wrE1GzceAQu8ei+pX8BwqrC95SRPkh4q+Ng=3D=3D?=
-IronPort-Data: =?us-ascii?q?A9a23=3ArWcRBKq2TNaaGsi8Xt52Q113WbheBmIyZxIvg?=
- =?us-ascii?q?KrLsJaIsI4StFCztgarIBnUOKyPamDze9pxYYSy908C7ZeDzIRgQQVuqiw2E?=
- =?us-ascii?q?SwX+OPIVI+TRqvS04N+DSFhoHqKZKzyU/GYRCwPZiKa9krF3oTJ9yEmjPjQH?=
- =?us-ascii?q?+CkUYYoBwgoLeNaYHZ54f5cs7Nh6mJYqYDR7zKl4bsekeWGULOW82Ic3lYv1?=
- =?us-ascii?q?k62gEgHUMIeGd8vlgdWifhj5DcynpSOZX4VDfnZw3DQGuG4EgMmLtsvwo1V/?=
- =?us-ascii?q?kuBl/ssItisib3+aRxbEuaIew6HzHBfVrOzmQRPozd02aE+XBYeQR4PzW7W2?=
- =?us-ascii?q?YorlZMT6/RcSi9wVkHIsP8BXgdVFWd7Oqtd9bLcCXK2vNeC1FHLdmCqyPJrZ?=
- =?us-ascii?q?K0zFdFBqr0tUT0WqZT0LxhINHhvndme0bWwVu5EgsU4MNKtLYQUpnZ41zbbA?=
- =?us-ascii?q?P06B5fZTM33CXVwtNsrrpkWW62BIZBDNHwxMnz9j9R0Eg9/IPoDcC2A3xETq?=
- =?us-ascii?q?wFllW8=3D?=
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AqOpAEamIkusSVnsQ6GAlxMY1cXTpDfIt3D?=
- =?us-ascii?q?Abv31ZSRFFG/FwWfrOoB19726RtN9xYgBEpTnuAtjifZqxz/FICOoqVYtKNT?=
- =?us-ascii?q?OOhILPFuFfBKTZrwEIcBeOlNK1u50PT0EHMrbN5WwWt6vHCD7UKbwd/OU=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2APBADPbmVh/0LhJQpaHgEBCxIMQAm?=
- =?us-ascii?q?EcIFCC4Q8kQ4DhgiKDYwcgWgLAQEBAQEBAQEBCAEqCwwEAQGEfgIXgjImOBM?=
- =?us-ascii?q?BAgQBAQESAQEGAQEBAQEGBAGBI4VoDYI1KQGDYwEBAQEDASIRGjcEAgEIDQQ?=
- =?us-ascii?q?EAQEBAgIRFQICAiYJARUICAIEARIIFQSCTAWDFq5MNXqBMRoCZYNOARNBhVW?=
- =?us-ascii?q?BECqBZoUjD4J2g32CDUOEPz6CYwICAYEWCAoBEgE4FROCWYJlBIswFIF+UEA?=
- =?us-ascii?q?BBwECPwQKGgI5K5IRgxKJNp8/BwODMIpGjFSHQS8Ug2qBSIokhiwDi2OFL5Y?=
- =?us-ascii?q?mjE2TSQ0GKQ6EaAIEAgQFAhaBeDFccHCDOQlIFwKOOxaDUIUUhUp0OAIGAQo?=
- =?us-ascii?q?BAQMJkwWBEAEB?=
-X-IPAS-Result: =?us-ascii?q?A2APBADPbmVh/0LhJQpaHgEBCxIMQAmEcIFCC4Q8kQ4Dh?=
- =?us-ascii?q?giKDYwcgWgLAQEBAQEBAQEBCAEqCwwEAQGEfgIXgjImOBMBAgQBAQESAQEGA?=
- =?us-ascii?q?QEBAQEGBAGBI4VoDYI1KQGDYwEBAQEDASIRGjcEAgEIDQQEAQEBAgIRFQICA?=
- =?us-ascii?q?iYJARUICAIEARIIFQSCTAWDFq5MNXqBMRoCZYNOARNBhVWBECqBZoUjD4J2g?=
- =?us-ascii?q?32CDUOEPz6CYwICAYEWCAoBEgE4FROCWYJlBIswFIF+UEABBwECPwQKGgI5K?=
- =?us-ascii?q?5IRgxKJNp8/BwODMIpGjFSHQS8Ug2qBSIokhiwDi2OFL5YmjE2TSQ0GKQ6Ea?=
- =?us-ascii?q?AIEAgQFAhaBeDFccHCDOQlIFwKOOxaDUIUUhUp0OAIGAQoBAQMJkwWBEAEB?=
-X-IronPort-AV: E=Sophos;i="5.85,367,1624320000";
-   d="scan'208";a="418328404"
-IronPort-SDR: 
- oAkYgMtNgZ5zw3vYDjS926++A+j3fTkbOlwtjqML+Ih9wQZ1DabyXh5Sg7uO6DVs4C8jqLdALh
- ventvXVm3O2g==
-X-IronPort-AV: E=Sophos;i="5.85,367,1624320000";
-   d="scan'208";a="14918917"
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: "Mittal, Anuj" <anuj.mittal@intel.com>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
-Subject: RE: [yocto] #zeus meta-intel
-Thread-Topic: [yocto] #zeus meta-intel
-Thread-Index: 
- Ade7lYNzGnXDdfszSXOKckUgK88nGwAwKyaAAAC+XnAAASNjAAAAO6hgABbwMwAAp4rrkA==
-Date: Tue, 12 Oct 2021 11:21:49 +0000
-In-Reply-To: <e781fe16cb184843698c9bb417953be22c913a5d.camel@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.4.15]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6F676C433F5
+	for <webhook@archiver.kernel.org>; Tue, 12 Oct 2021 12:26:14 +0000 (UTC)
+Subject: Using meta-qt5-extra layer build KDE support on riscv target   #yocto
+To: yocto@lists.yoctoproject.org
+From: "sateesh m" <sateesh0457@gmail.com>
+X-Originating-Location: Bengaluru, Karnataka, IN (14.98.179.254)
+X-Originating-Platform: Linux Chrome 91
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
+Date: Tue, 12 Oct 2021 05:26:13 -0700
+Message-ID: <FyQ1.1634041573203203885.JcyN@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="WXyxG74Utocq9mPGIrtJ"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 12 Oct 2021 11:22:59 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55034
-Message-Id: <20211012112259.C16D6C433FE@smtp.lore.kernel.org>
+ <yocto@lists.yoctoproject.org>; Tue, 12 Oct 2021 12:26:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55035
 
-DQpBbnVqOg0KDQpBcmUgdGhlcmUgYW55IG90aGVyIHBvc3NpYmxlIGRlcGVuZGVuY2llcyBmb3Ig
-dGhlIOKAnG1ldGEtaW50ZWwvZHluYW1pYy1sYXllcnMvY2xhbmctbGF5ZXIvcmVjaXBlcy0NCm9w
-ZW5jbOKAnSA/DQoNCklzIHRoaXMgZGVwZW5kZW50IG9uIHN5c3RlbWQgPw0KDQpJdCBhcHBlYXJz
-IHRvIGJ1aWxkcyBjbGVhbiwgYnV0IGZhaWxzL2ZhdWx0cyB3aGlsZSBib290aW5nIGtlcm5lbC4u
-Lg0KDQpUaGFua3MgYWdhaW4sDQpTdGV2ZQ0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0K
-RnJvbTogTWl0dGFsLCBBbnVqIDxhbnVqLm1pdHRhbEBpbnRlbC5jb20+IA0KU2VudDogRnJpZGF5
-LCBPY3RvYmVyIDgsIDIwMjEgMTE6MDUgUE0NClRvOiBNb25zZWVzLCBTdGV2ZW4gQyAoVVMpIDxz
-dGV2ZW4ubW9uc2Vlc0BiYWVzeXN0ZW1zLmNvbT47IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5v
-cmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dICN6ZXVzIG1ldGEtaW50ZWwNCg0KRXh0ZXJuYWwgRW1h
-aWwgQWxlcnQNCg0KVGhpcyBlbWFpbCBoYXMgYmVlbiBzZW50IGZyb20gYW4gYWNjb3VudCBvdXRz
-aWRlIG9mIHRoZSBCQUUgU3lzdGVtcyBuZXR3b3JrLg0KDQpQbGVhc2UgdHJlYXQgdGhlIGVtYWls
-IHdpdGggY2F1dGlvbiwgZXNwZWNpYWxseSBpZiB5b3UgYXJlIHJlcXVlc3RlZCB0byBjbGljayBv
-biBhIGxpbmssIGRlY3J5cHQvb3BlbiBhbiBhdHRhY2htZW50LCBvciBlbmFibGUgbWFjcm9zLiAg
-Rm9yIGZ1cnRoZXIgaW5mb3JtYXRpb24gb24gaG93IHRvIHNwb3QgcGhpc2hpbmcsIGFjY2VzcyDi
-gJxDeWJlcnNlY3VyaXR5IE9uZVNwYWNlIFBhZ2XigJ0gYW5kIHJlcG9ydCBwaGlzaGluZyBieSBj
-bGlja2luZyB0aGUgYnV0dG9uIOKAnFJlcG9ydCBQaGlzaGluZ+KAnSBvbiB0aGUgT3V0bG9vayB0
-b29sYmFyLg0KDQoNCk9uIEZyaSwgMjAyMS0xMC0wOCBhdCAxNjoxMCArMDAwMCwgTW9uc2Vlcywg
-U3RldmVuIEMgKFVTKSB2aWEgbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyB3cm90ZToNCj4gDQo+IFNv
-cnJ5IGZvciBteSBpZ25vcmFuY2UsIGJ1dCBJIGFtIG1pc3NpbmcgeW91ciBwb2ludCwgd2hhdCBl
-eGFjdGx5IGRvZXMgDQo+IHRoZSByZWNpcGUgcHJvdmlkZSB3aGVuIGJ1aWx0LCBpbnRlbC1vcGVu
-Y2wtaWNkID8sIHdpbGwgaXQgcHVsbCBpbiBpZ2MgDQo+ID8NCg0KSXQgd2lsbCBwdWxsIGluIGln
-Yy4gVGhlcmUncyBhIHNlcGFyYXRlIHJlY2lwZSBmb3IgaWdjIGluIG1ldGEtaW50ZWwuDQpjb21w
-dXRlLXJ1bnRpbWUgd2lsbCBwcm92aWRlIGludGVsLW9wZW5jbC1pY2QgYnV0IHRoZSBwYWNrYWdl
-IG5hbWUgaXMgZGlmZmVyZW50Lg0KDQpZb3UgY2FuIHRyeSBidWlsZGluZyB0aGUgcmVjaXBlLg0K
-DQpUaGFua3MsDQoNCkFudWoNCg0KPiANCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4g
-RnJvbTogTWl0dGFsLCBBbnVqIDxhbnVqLm1pdHRhbEBpbnRlbC5jb20+DQo+IFNlbnQ6IEZyaWRh
-eSwgT2N0b2JlciA4LCAyMDIxIDEyOjAxIFBNDQo+IFRvOiBNb25zZWVzLCBTdGV2ZW4gQyAoVVMp
-IDxzdGV2ZW4ubW9uc2Vlc0BiYWVzeXN0ZW1zLmNvbT47IA0KPiB5b2N0b0BsaXN0cy55b2N0b3By
-b2plY3Qub3JnDQo+IFN1YmplY3Q6IFJlOiBbeW9jdG9dICN6ZXVzIG1ldGEtaW50ZWwNCj4gDQo+
-IEV4dGVybmFsIEVtYWlsIEFsZXJ0DQo+IA0KPiBUaGlzIGVtYWlsIGhhcyBiZWVuIHNlbnQgZnJv
-bSBhbiBhY2NvdW50IG91dHNpZGUgb2YgdGhlIEJBRSBTeXN0ZW1zIA0KPiBuZXR3b3JrLg0KPiAN
-Cj4gUGxlYXNlIHRyZWF0IHRoZSBlbWFpbCB3aXRoIGNhdXRpb24sIGVzcGVjaWFsbHkgaWYgeW91
-IGFyZSByZXF1ZXN0ZWQgDQo+IHRvIGNsaWNrIG9uIGEgbGluaywgZGVjcnlwdC9vcGVuIGFuIGF0
-dGFjaG1lbnQsIG9yIGVuYWJsZSBtYWNyb3MuDQo+IEZvciBmdXJ0aGVyIGluZm9ybWF0aW9uIG9u
-IGhvdyB0byBzcG90IHBoaXNoaW5nLCBhY2Nlc3Mg4oCcQ3liZXJzZWN1cml0eSANCj4gT25lU3Bh
-Y2UgUGFnZeKAnSBhbmQgcmVwb3J0IHBoaXNoaW5nIGJ5IGNsaWNraW5nIHRoZSBidXR0b24g4oCc
-UmVwb3J0IA0KPiBQaGlzaGluZ+KAnSBvbiB0aGUgT3V0bG9vayB0b29sYmFyLg0KPiANCj4gDQo+
-IFNvcnJ5LCBJIGRpZG4ndCB1bmRlcnN0YW5kIHRoZSBxdWVzdGlvbi4gSWYgeW91IHdhbnQgdG8g
-a25vdyB3aGljaCANCj4gdmVyc2lvbiBvZiBPcGVuQ0wgaXMgc3VwcG9ydGVkLCBwbGVhc2Ugc2Vl
-IHRoZSBSRUFETUUgZm9yIHZlcnNpb24gdGhhdCANCj4geW91J3JlIGJ1aWxkaW5nLiBBbHNvIHNl
-ZToNCj4gDQo+IGh0dHBzOi8vZ2l0aHViLmNvbS9pbnRlbC9jb21wdXRlLXJ1bnRpbWUvYmxvYi9t
-YXN0ZXIvb3BlbmNsL2RvYy9GQVEubWQNCj4gDQo+IFRoYW5rcywNCj4gDQo+IEFudWoNCj4gDQo+
-IE9uIEZyaSwgMjAyMS0xMC0wOCBhdCAxNTozMCArMDAwMCwgTW9uc2VlcywgU3RldmVuIEMgKFVT
-KSB3cm90ZToNCj4gPiANCj4gPiBUaGFuayB5b3UsIGp1c3QgZm9yIGNsYXJpZmljYXRpb24gLi4u
-DQo+ID4gDQo+ID4gIkJ1aWxkaW5nIHRoZSBOZW8gZHJpdmVyIiwgZG9lcyB0aGF0IG1lYW4gbm8g
-T3BlbkNMIGxpYnJhcnkgc3VwcG9ydCANCj4gPiA/DQo+ID4gDQo+ID4gLS0tLS1PcmlnaW5hbCBN
-ZXNzYWdlLS0tLS0NCj4gPiBGcm9tOiBNaXR0YWwsIEFudWogPGFudWoubWl0dGFsQGludGVsLmNv
-bT4NCj4gPiBTZW50OiBGcmlkYXksIE9jdG9iZXIgOCwgMjAyMSAxMTowNyBBTQ0KPiA+IFRvOiBN
-b25zZWVzLCBTdGV2ZW4gQyAoVVMpIDxzdGV2ZW4ubW9uc2Vlc0BiYWVzeXN0ZW1zLmNvbT47IA0K
-PiA+IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNCj4gPiBTdWJqZWN0OiBSZTogW3lvY3Rv
-XSAjemV1cyBtZXRhLWludGVsDQo+ID4gDQo+ID4gRXh0ZXJuYWwgRW1haWwgQWxlcnQNCj4gPiAN
-Cj4gPiBUaGlzIGVtYWlsIGhhcyBiZWVuIHNlbnQgZnJvbSBhbiBhY2NvdW50IG91dHNpZGUgb2Yg
-dGhlIEJBRSBTeXN0ZW1zIA0KPiA+IG5ldHdvcmsuDQo+ID4gDQo+ID4gUGxlYXNlIHRyZWF0IHRo
-ZSBlbWFpbCB3aXRoIGNhdXRpb24sIGVzcGVjaWFsbHkgaWYgeW91IGFyZSByZXF1ZXN0ZWQgDQo+
-ID4gdG8gY2xpY2sgb24gYSBsaW5rLCBkZWNyeXB0L29wZW4gYW4gYXR0YWNobWVudCwgb3IgZW5h
-YmxlIG1hY3Jvcy4NCj4gPiBGb3INCj4gPiBmdXJ0aGVyIGluZm9ybWF0aW9uIG9uIGhvdyB0byBz
-cG90IHBoaXNoaW5nLCBhY2Nlc3Mg4oCcQ3liZXJzZWN1cml0eSANCj4gPiBPbmVTcGFjZSBQYWdl
-4oCdIGFuZCByZXBvcnQgcGhpc2hpbmcgYnkgY2xpY2tpbmcgdGhlIGJ1dHRvbiDigJxSZXBvcnQg
-DQo+ID4gUGhpc2hpbmfigJ0gb24gdGhlIE91dGxvb2sgdG9vbGJhci4NCj4gPiANCj4gPiANCj4g
-PiBPbiBUaHUsIDIwMjEtMTAtMDcgYXQgMTY6MjAgKzAwMDAsIE1vbnNlZXMsIFN0ZXZlbiBDIChV
-UykgdmlhIA0KPiA+IGxpc3RzLnlvY3RvcHJvamVjdC5vcmcgd3JvdGU6DQo+ID4gPiDCoA0KPiA+
-ID4gwqANCj4gPiA+IEkgYW0gbG9va2luZyBhdCDigJxtZXRhLWludGVsL2R5bmFtaWMtbGF5ZXJz
-L2NsYW5nLWxheWVyL3JlY2lwZXMtDQo+ID4gPiBvcGVuY2wvY29tcHV0ZS1ydW50aW1l4oCdDQo+
-ID4gPiBJIGhhdmUgYmVlbiDigJx0b2xk4oCdIHRoYXQgdGhpcyBjb21wdXRlLXJ1bnRpbWUgcmVj
-aXBlIHNob3VsZCANCj4gPiA+IGJhc2ljYWxseSBidWlsZCBvcGVuY2wgKE5lbykgd2l0aCBhbGwg
-dGhlIHJlcXVpcmVkIGRlcGVuZGVuY2llc+KApiBJIA0KPiA+ID4gZGlkIG5vdCB0aGluayBZb2N0
-byBoYWQgc3VwcG9ydCBmb3IgT3BlbkNMLCBhbmQgd2FzIGxvb2tpbmcgdG8gDQo+ID4gPiBidWls
-ZCBOZW8gdW5kZXIgdGhlIFNESy4NCj4gPiA+IMKgDQo+ID4gPiAoMSnCoMKgwqBJcyB0aGlzIHRy
-dWUsIGRvZXMgbWV0YS1pbnRlbGwgdW5kZXIgemV1cyBub3cgc3VwcG9ydCANCj4gPiA+IGJ1aWxk
-aW5nIE9wZW5DTCBhbmQgdGhlIE9wZW5DTCBHcmFwaGljcyBjb21waWxlciB1bmRlciBZb2N0byA/
-DQo+ID4gDQo+ID4gY29tcHV0ZS1ydW50aW1lIHJlY2lwZSB3b3VsZCBhbGxvdyB5b3UgdG8gYnVp
-bGQgTkVPIGRyaXZlci4gemV1cyBpcyANCj4gPiBubyBsb25nZXIgbWFpbnRhaW5lZCBzbyB0aGUg
-dmVyc2lvbiB0aGVyZSBpcyBvbGQgYW5kIG5vdCB0ZXN0ZWQgbm93IA0KPiA+IGJ1dCBpdCBzaG91
-bGQgc3RpbGwgYnVpbGQuDQo+ID4gDQo+ID4gPiAoMinCoMKgwqBPZiBzbywgd2hhdCB3b3VsZCBi
-ZSB0aGUgcHJvcGVyIHdheSB0byBwdWxsIHRoaXMgaW50byBteSANCj4gPiA+IHlvY3RvIGJ1aWxk
-ID8NCj4gPiANCj4gPiBJbmNsdWRpbmcgbWV0YS1pbnRlbCBhbmQgbWV0YS1jbGFuZyBpbiBiYmxh
-eWVycyBzaG91bGQgYmUgZW5vdWdoLg0KPiA+IA0KPiA+IFRoYW5rcywNCj4gPiANCj4gPiBBbnVq
-DQo+IA0KPiANCj4gLT0tPS09LT0tPS09LT0tPS09LT0tPS0NCj4gTGlua3M6IFlvdSByZWNlaXZl
-IGFsbCBtZXNzYWdlcyBzZW50IHRvIHRoaXMgZ3JvdXAuDQo+IFZpZXcvUmVwbHkgT25saW5lICgj
-NTUwMDUpOg0KPiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvZy95b2N0by9tZXNzYWdl
-LzU1MDA1DQo+IE11dGUgVGhpcyBUb3BpYzogaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3Jn
-L210Lzg2MTQ5NDM3LzM2MTY3MDINCj4gTXV0ZSAjemV1czpodHRwczovL2xpc3RzLnlvY3RvcHJv
-amVjdC5vcmcvZy95b2N0by9tdXRlaGFzaHRhZy96ZXVzDQo+IEdyb3VwIE93bmVyOiB5b2N0bytv
-d25lckBsaXN0cy55b2N0b3Byb2plY3Qub3JnDQo+IFVuc3Vic2NyaWJlOg0KPiBodHRwczovL2xp
-c3RzLnlvY3RvcHJvamVjdC5vcmcvZy95b2N0by91bnN1YsKgW2FudWoubWl0dGFsQGludGVsLmNv
-bV0NCj4gLT0tPS09LT0tPS09LT0tPS09LT0tPS0NCj4gDQoNCg==
+--WXyxG74Utocq9mPGIrtJ
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Guys,
+
+I am facing bellow error while building KDE support using meta-qt5-extra la=
+yer.can any body know please suggest me how can i fix this problem.
+
+I have added already qttools -> this will provide Qt5LinguistTools but gett=
+ing below error.
+
+Error displayed:
+=C2=A0CMake Error at /usr/share/ECM/modules/ECMPoQmTools.cmake:144 (find_pa=
+ckage): Could not find a package configuration file provided by "Qt5Linguis=
+tTools"=C2=A0 with any of the following names:
+
+=C2=A0=C2=A0=C2=A0 Qt5LinguistToolsConfig.cmake
+=C2=A0=C2=A0=C2=A0 qt5linguisttools-config.cmake
+
+Add the installation prefix of "Qt5LinguistTools" to CMAKE_PREFIX_PATH or=
+=C2=A0 set "Qt5LinguistTools_DIR" to a directory containing one of the abov=
+e
+files.=C2=A0 If "Qt5LinguistTools" provides a separate development package =
+or=C2=A0 SDK, be sure it has been installed.
+Call Stack (most recent call first):
+/usr/share/ECM/modules/ECMPoQmTools.cmake:234 (ecm_process_po_files_as_qm)=
+=C2=A0 CMakeLists.txt:317 (ecm_install_po_files_as_qm)
+
+-- Configuring incomplete, errors occurred!
+See also "/usr/src/kde/phonon-4.10.3/build/CMakeFiles/CMakeOutput.log".
+
+--
+Regards,
+Sateesh
+
+--WXyxG74Utocq9mPGIrtJ
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<pre style=3D"font-family: courier, 'courier new', monospace; font-size: 14=
+px; white-space: pre-wrap; margin: 0em; color: #a01e1e; background-color: #=
+ffffff;">Hi Guys,<br /><br />I am facing bellow error while building KDE su=
+pport using meta-qt5-extra layer.can any body know please suggest me how ca=
+n i fix this problem.<br /><br />I have added already qttools -&gt; this wi=
+ll provide Qt5LinguistTools but getting below error.<br /><br />Error displ=
+ayed:
+</pre>
+<tt style=3D"margin: 0px; font-family: courier, 'courier new', monospace; c=
+olor: #a01e1e;"></tt>
+<pre style=3D"font-family: courier, 'courier new', monospace; font-size: 14=
+px; white-space: pre-wrap; margin: 0em; color: #a01e1e; background-color: #=
+ffffff;">&nbsp;</pre>
+<tt style=3D"margin: 0px; font-family: courier, 'courier new', monospace; c=
+olor: #a01e1e;">CMake Error at /usr/share/ECM/modules/ECMPoQmTools.cmake:14=
+4&nbsp;</tt><tt style=3D"margin: 0px; font-family: courier, 'courier new', =
+monospace; color: #a01e1e;">(find_package):&nbsp;</tt><tt style=3D"margin: =
+0px; font-family: courier, 'courier new', monospace; color: #a01e1e;">&nbsp=
+; Could not find a package configuration file provided by&nbsp;</tt><tt sty=
+le=3D"margin: 0px; font-family: courier, 'courier new', monospace; color: #=
+a01e1e;">"Qt5LinguistTools"</tt>
+<pre style=3D"font-family: courier, 'courier new', monospace; font-size: 14=
+px; white-space: pre-wrap; margin: 0em; color: #a01e1e; background-color: #=
+ffffff;">&nbsp; with any of the following names:
+
+&nbsp;&nbsp;&nbsp; Qt5LinguistToolsConfig.cmake
+&nbsp;&nbsp;&nbsp; qt5linguisttools-config.cmake
+
+</pre>
+<tt style=3D"margin: 0px; font-family: courier, 'courier new', monospace; c=
+olor: #a01e1e;">&nbsp; Add the installation prefix of "Qt5LinguistTools" to=
+&nbsp;</tt><tt style=3D"margin: 0px; font-family: courier, 'courier new', m=
+onospace; color: #a01e1e;">CMAKE_PREFIX_PATH or</tt>
+<pre style=3D"font-family: courier, 'courier new', monospace; font-size: 14=
+px; white-space: pre-wrap; margin: 0em; color: #a01e1e; background-color: #=
+ffffff;">&nbsp; set "Qt5LinguistTools_DIR" to a directory containing one of=
+ the above
+</pre>
+<tt style=3D"margin: 0px; font-family: courier, 'courier new', monospace; c=
+olor: #a01e1e;">&nbsp; files.&nbsp; If "Qt5LinguistTools" provides a separa=
+te development&nbsp;</tt><tt style=3D"margin: 0px; font-family: courier, 'c=
+ourier new', monospace; color: #a01e1e;">package or</tt>
+<pre style=3D"font-family: courier, 'courier new', monospace; font-size: 14=
+px; white-space: pre-wrap; margin: 0em; color: #a01e1e; background-color: #=
+ffffff;">&nbsp; SDK, be sure it has been installed.
+Call Stack (most recent call first):
+</pre>
+<tt style=3D"margin: 0px; font-family: courier, 'courier new', monospace; c=
+olor: #a01e1e;">&nbsp; /usr/share/ECM/modules/ECMPoQmTools.cmake:234&nbsp;<=
+/tt><tt style=3D"margin: 0px; font-family: courier, 'courier new', monospac=
+e; color: #a01e1e;">(ecm_process_po_files_as_qm)</tt>
+<pre style=3D"font-family: courier, 'courier new', monospace; font-size: 14=
+px; white-space: pre-wrap; margin: 0em; color: #a01e1e; background-color: #=
+ffffff;">&nbsp; CMakeLists.txt:317 (ecm_install_po_files_as_qm)
+
+
+-- Configuring incomplete, errors occurred!
+See also "/usr/src/kde/phonon-4.10.3/build/CMakeFiles/CMakeOutput.log".
+</pre>
+<div>&nbsp;</div>
+-- <br />Regards,<br />Sateesh
+
+--WXyxG74Utocq9mPGIrtJ--
 
