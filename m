@@ -1,113 +1,134 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <bruce.ashfield@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DF8C4C433F5
-	for <webhook@archiver.kernel.org>; Thu, 14 Oct 2021 16:51:12 +0000 (UTC)
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com
- [209.85.221.45])
- by mx.groups.io with SMTP id smtpd.web10.822.1634230271210821835
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E228C433F5
+	for <webhook@archiver.kernel.org>; Thu, 14 Oct 2021 19:40:02 +0000 (UTC)
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com
+ [209.85.208.43])
+ by mx.groups.io with SMTP id smtpd.web11.2084.1634240400957966171
  for <yocto@lists.yoctoproject.org>;
- Thu, 14 Oct 2021 09:51:11 -0700
+ Thu, 14 Oct 2021 12:40:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=dZBjnpcn;
- spf=pass (domain: gmail.com, ip: 209.85.221.45,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-wr1-f45.google.com with SMTP id r7so21486244wrc.10
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=fPYA8gCx;
+ spf=pass (domain: gmail.com, ip: 209.85.208.43,
+ mailfrom: bruce.ashfield@gmail.com)
+Received: by mail-ed1-f43.google.com with SMTP id y12so29727315eda.4
         for <yocto@lists.yoctoproject.org>;
- Thu, 14 Oct 2021 09:51:10 -0700 (PDT)
+ Thu, 14 Oct 2021 12:40:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=IJHM2q+SdD5x3lYGqc/FHk7GY1gGOR3Tb3foqRhEKeA=;
-        b=dZBjnpcnD7XqEAMJZiWqpici9q1e2RGdREcqxJPx9Cxyb7AZlA+KjTUVz3XRFZ3qxl
-         7auTdl0Zz8B2NLuQ8baLul+qvQn2ETLTOtMEDamgfxmhEe4zB8/q0OhtUVX+U2tcOufw
-         zzt+2dJjHVkM+l9+Fnfm6Mvp9ZGCSHwktO/ER84sAw/URLYf3Uhd6mJAfNTyNPjzQUNh
-         mhHWhb8qcb2B3dfg5PuNzXT5zI58VjDYll5f/EqJ7lAuhEyG8cAbKSNgNmShnRUAteO3
-         0ak9RYrNA6qsOoLM3y5MlT/3ZPQ1C7ODOa8Bo7Z7NWyPkaBcvC9RPzWo1AJef5yVtUSP
-         JeBQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=wNYpIk6kHYr/QwAFJPVaTJaG0RFN/yGN+ZOg/MteCpQ=;
+        b=fPYA8gCx7FQjN8/C2EU8OzoLvFZvVyQVIA/pADrDvs3frRigTIu78P0RM+SVz841kt
+         5CM6XNKsraxyDqfuLc+s5nOd2XiKSsvCu77wRd6jA7ehhOXX4GP8InD0a1pczmDb6+V0
+         Nu9FikCR+ZWhGAMHwk1g0EWd+F+SKLZmzuaYtw5O00BYbCbqGM24mHjdSc8A3t8L8GFG
+         /f5g77CVgxYirLvL0pOF6rxd7U77lY+REy9G0H7EHfQ0ojzVbM03TdhzG9phHUz6yVY0
+         QvddHDtb4/S2tVqnu9NPWLzjXHGYij1+t9wvEfAIFWzgASzjiYBRgeWX0ndLgqNmAb7U
+         vNOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=IJHM2q+SdD5x3lYGqc/FHk7GY1gGOR3Tb3foqRhEKeA=;
-        b=frxiNBP5h7n16TZ19kZGuc3sTM88HoWL301Pg058KXC6pqFjrCZljO7xcsVuSPoRX9
-         RZwWrpaG/EStDdEkiuWBcVLicD7oRWcurIgtiyp9/k190YIYFLpEubE9zrdfxW6FLJ7R
-         iHPVvId2vlo/EaKTXMCiYxpVgNLmIxSTgZDNW0ZEPsw1Q2ikUFBXGoQnDxZEYqIcq20U
-         hBWMqwVYl9tTxEeOpRVSgCfSr2YWchK89B5bAVu0h4EkS1AIj/iWyg0ITex6mC3bZLEA
-         TF2k76r5MbvkpSRX8KfMFkBd7HQ+glSa2/t1z5S4smw2NqY4eBRurt4BiJuFwkaVsapy
-         eKfw==
-X-Gm-Message-State: AOAM5332LwfJ+HRkrpnijDxTa9y+dlsEBZiqAQGHanhXqpkwRDZgMtZE
-	siU+s+UxSWwUiK7X/zgv8UTaItQe344=
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=wNYpIk6kHYr/QwAFJPVaTJaG0RFN/yGN+ZOg/MteCpQ=;
+        b=3rJVAZjYSLYD44Cam85t6swCs2TJk9gVl0WGy+XWvFhaZsCM7OEzCLVTlHTTOjKR++
+         Bd+mCYKpfIXkLcZGocK8O9eSEboKS0w2bnbRRZBnAlBMGF8InFa0NwxLh1nTeX8f/GXC
+         BQcKLHYsJMlDhQoh25KcXMo8F+f7662lAnVXLH8TM7cIkbNguQQ5IsKbW7WGIfyf0CmX
+         OjAASasjiSZlE9wpnPtgHhSOGgU1IcbANYMc6jNXTdjnGCRIIQbVsLMt8gdNaW67iYe9
+         BEF4b/YAQsOwhAr8fz1XLsXWY4X3XK2f0e6zp9YG/GSe+AJGvl+a0ZdVLmGci9VFHUox
+         VVPw==
+X-Gm-Message-State: AOAM532Hwjtq8ONBEf3w+LIoBo4EbUHW5pXuV8am1Js3gI6oHk740nBl
+	up96tEaS2JAG/pkXy+1NW6n4Lh+Vsca9OOiQ/Gs=
 X-Google-Smtp-Source: 
- ABdhPJz+BhvvMp3LJDgOXLdR4l8HTRFFUhyUtcGkax2RAUnQbWXpUEYO/LfmoWFbOS0RlsxbclG/VA==
-X-Received: by 2002:a05:6000:1885:: with SMTP id
- a5mr7803313wri.64.1634230269447;
-        Thu, 14 Oct 2021 09:51:09 -0700 (PDT)
-Received: from localhost.localdomain
- ([2a02:2454:29b:3b00:d35d:e3cf:58b5:748b])
-        by smtp.gmail.com with ESMTPSA id
- f15sm2775733wrt.38.2021.10.14.09.51.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Oct 2021 09:51:09 -0700 (PDT)
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: Alexander Kanavin <alex@linutronix.de>
-Subject: [PATCH yocto-autobuilder-helper] scripts/collect-results: publish
- everything in tmp/log/oeqa/
-Date: Thu, 14 Oct 2021 18:51:04 +0200
-Message-Id: <20211014165104.124764-1-alex.kanavin@gmail.com>
-X-Mailer: git-send-email 2.31.1
+ ABdhPJwc0ZR6knr2vcYVTkIA0+bZxZrJWJsyZr+NBQ5v9xNpgLPfiZdn/LHWcUEHQs5Vn8PgwpQVqUBx2uF+yvlTt2Q=
+X-Received: by 2002:a05:6402:11ca:: with SMTP id
+ j10mr11358940edw.223.1634240399447;
+ Thu, 14 Oct 2021 12:39:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <i1rt.1634228602998685993.yIPa@lists.yoctoproject.org>
+In-Reply-To: <i1rt.1634228602998685993.yIPa@lists.yoctoproject.org>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+Date: Thu, 14 Oct 2021 15:39:48 -0400
+Message-ID: 
+ <CADkTA4Mc9c=RVbxNCJRroO1BhVF_2WnQDjmROGkALsBUg4BtgQ@mail.gmail.com>
+Subject: Re: [yocto] docker fragment missing conntrack and netfilter entries?
+ #meta-virtualization
+To: crawford.benjamin15@gmail.com
+Cc: yocto <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 14 Oct 2021 16:51:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55077
+ <yocto@lists.yoctoproject.org>; Thu, 14 Oct 2021 19:40:02 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55078
 
-From: Alexander Kanavin <alex@linutronix.de>
+On Thu, Oct 14, 2021 at 12:23 PM <crawford.benjamin15@gmail.com> wrote:
+>
+> Hi,
+>
+> I have just completed a bringup of Poky on the ODROID N2+ platform, but noticed that Docker failed to start, complaining that it could not load the "nf_conntrack_netlink" module.
+> After checking docker.cfg, I noticed that a few configuration options I expected were missing.
+>
+> Shouldn't the following be added: (?)
+>
+> CONFIG_NETFILTER_NETLINK=m
+> CONFIG_NT_CT_NETLINK=m
+>
+> CONFIG_NETFILTER_XT_MATCH_CONNTRACK=m
 
-In addition to the testresult json, testimage class now also
-provides the testimage task log and qemu console output log
-which can be useful for debugging test failures or
-even checking qemu test runs when failures did not happen.
+FYI: you want the meta-virtualization mailing list, not the main yocto
+one for questions like this.
 
-Rather than duplicate specific file/folder names, let's copy all
-that is available, and define what is published in the testimage
-class itself (with appropriate folder structure if/when needed).
-At the moment there's just three files, and they are copied into
-folders named after image names, so there's no clutter or risk
-of mixing them up with unrelated logs.
+There's a balancing act with the fragments: they are as
+non-overlapping as possible, they often support a wide range of kernel
+versions and kernel providers, so there are sometimes more, or less
+options than you'd expect in a fragment.
 
-[YOCTO #14518]
+In particular the fragments in meta-virtualization are changing right
+now, and are being unified in the kernel-cache repository (that allows
+the duplicated options to be rationalized).
 
-Signed-off-by: Alexander Kanavin <alex@linutronix.de>
----
- scripts/collect-results | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+So depending on which docker.cfg you are looking at, you'd either send
+a patch to the linux-yocto mailing list, or the meta-virtualization
+list.
 
-diff --git a/scripts/collect-results b/scripts/collect-results
-index 93834d6..7caa177 100755
---- a/scripts/collect-results
-+++ b/scripts/collect-results
-@@ -3,11 +3,9 @@ WORKDIR=$1
- DEST=$2
- target=$3
- 
--RESFILE=$WORKDIR/tmp/log/oeqa/testresults.json 
--
--if [ -e $RESFILE ]; then
--    mkdir -p $DEST/$target
--    cp $WORKDIR/tmp/log/oeqa/testresults.json  $DEST/$target/
-+mkdir -p $DEST
-+if [ -e $WORKDIR/tmp/log/oeqa/ ]; then
-+    cp -Lrf $WORKDIR/tmp/log/oeqa/ $DEST/$target
- fi
- 
- if [ -e $WORKDIR/buildhistory ]; then
--- 
-2.31.1
+In particular, the netfilter fragment is what is expected to provide
+many of the needed options, and that's what has been happening with
+the out of box docker, lxc, podman, k8s, etc, configurations tested in
+meta-virt. The docker.scc fragment will start pulling that in
+automatically as part of the de-duplication effort I hinted at above.
 
+But there's no harm in sending a patch, I'll figure out how/where it
+applies as I go through those efforts.
+
+Cheers,
+
+Bruce
+
+
+
+
+
+
+>
+> Thanks,
+> Ben
+>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#55074): https://lists.yoctoproject.org/g/yocto/message/55074
+> Mute This Topic: https://lists.yoctoproject.org/mt/86318266/1050810
+> Mute #meta-virtualization:https://lists.yoctoproject.org/g/yocto/mutehashtag/meta-virtualization
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [bruce.ashfield@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
+
+
+--
+- Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end
+- "Use the force Harry" - Gandalf, Star Trek II
 
