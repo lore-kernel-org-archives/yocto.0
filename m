@@ -1,310 +1,341 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <anuj.mittal@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F153EC433F5
-	for <webhook@archiver.kernel.org>; Wed, 13 Oct 2021 22:58:56 +0000 (UTC)
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com
- [209.85.216.50])
- by mx.groups.io with SMTP id smtpd.web10.1989.1634165935742743048
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 190F8C433F5
+	for <webhook@archiver.kernel.org>; Thu, 14 Oct 2021 01:27:39 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by mx.groups.io with SMTP id smtpd.web09.3516.1634174857777330428
  for <yocto@lists.yoctoproject.org>;
- Wed, 13 Oct 2021 15:58:55 -0700
+ Wed, 13 Oct 2021 18:27:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=W6NvDZ7r;
- spf=pass (domain: gmail.com, ip: 209.85.216.50,
- mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f50.google.com with SMTP id
- pf6-20020a17090b1d8600b0019fa884ab85so5553390pjb.5
-        for <yocto@lists.yoctoproject.org>;
- Wed, 13 Oct 2021 15:58:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=LxZYcUhS2/kvCbLf3htt/nzyiikt09cBp6Nidr2Khpc=;
-        b=W6NvDZ7rlh1SSeupmuC2fOAFxfqfb7mrPQJk5Sj6P6MzXONvaVs4BP+klyaIE9VuX7
-         ll6z3QdFblboZSbg7x7cQmDmjNIHE6xAJhb0a9uMnWf6nA2ATYGNV9gpYpIOUwWd3muh
-         vKJAbN0VwhMBNY36KqUCRNMlONLa1j3IHDjodY20Y5OLvxpaI+Hy5P1Q8i+3rVaPVsEt
-         I7AYcP5rxdG4TCJPpWGgncXIFNUNgYDqXvpywfPsQPn87Toz+OBQrLeANfpzirhPrzpj
-         mmW1mtiwaFVqPGLhEbR42Sh6keJD/CROi35qZfO6f2lI40XbJDGOfU+YnrGeN1pO9PZ+
-         ao7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=LxZYcUhS2/kvCbLf3htt/nzyiikt09cBp6Nidr2Khpc=;
-        b=67/TieMg2OUcJSaJtkU9EAgFWRZKgtxXxjAIedPgu7G8pAon+D6upfP5bWy2wDa45F
-         +HOZK8YYAyst9SmeOUTR0EebGdFZPdzlC8Kt3kxFzRvxDWFOkgVWdvS/3jn5HQRh/xUO
-         9p0QbneR3GpYjbpbxhMtfXpZpWRqJghcSbw877d01mTSH0p6wYlkbBXLKeGcV46yr3x0
-         5F+f6WghLpEKkYTIWdDg5ZC6m58xiXZNcUnQ0XMrqaoXI4G/y/7HGjOdZ8+IxVkzqIYU
-         WnmhRi4/3SgLXq1CHv4awUsbhx6r9aGPqhp2tfUcp5N6qCkY9X5vVHw0FZETzgINtI8e
-         it9Q==
-X-Gm-Message-State: AOAM532cgjubuc6EGE/dB11Qh+raYTCAYrFn2Sv1SK+T8r6mLhPvBfBK
-	0LjSZf6YqeHeZ3uGUQV4ncpIaDlM1es=
-X-Google-Smtp-Source: 
- ABdhPJysLWbvajzDZSOfWASGXqhgJdIyq/aWa9yv+/MSzwyROcUHvFjdGyvVNv+Dm0/HJf6Fs44xXg==
-X-Received: by 2002:a17:90a:b314:: with SMTP id
- d20mr16837574pjr.174.1634165934661;
-        Wed, 13 Oct 2021 15:58:54 -0700 (PDT)
-Received: from keaua.hsd1.ca.comcast.net
- ([2601:202:4180:a5c0:dbb2:6e4b:f1d2:3def])
-        by smtp.gmail.com with ESMTPSA id
- u19sm507101pgo.73.2021.10.13.15.58.53
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Oct 2021 15:58:54 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] python3-fail2ban: fix build failure and
- cleanup
-Date: Wed, 13 Oct 2021 15:58:53 -0700
-Message-Id: <20211013225853.3018810-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
+ dkim=pass header.i=@intel.onmicrosoft.com
+ header.s=selector2-intel-onmicrosoft-com header.b=PWdvR/4z;
+ spf=pass (domain: intel.com, ip: 192.55.52.120,
+ mailfrom: anuj.mittal@intel.com)
+X-IronPort-AV: E=McAfee;i="6200,9189,10136"; a="226346536"
+X-IronPort-AV: E=Sophos;i="5.85,371,1624345200";
+   d="scan'208";a="226346536"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2021 18:27:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,371,1624345200";
+   d="scan'208";a="592397414"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+  by orsmga004.jf.intel.com with ESMTP; 13 Oct 2021 18:27:36 -0700
+Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Wed, 13 Oct 2021 18:27:36 -0700
+Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
+ ORSMSX609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Wed, 13 Oct 2021 18:27:35 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12 via Frontend Transport; Wed, 13 Oct 2021 18:27:35 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.43) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2242.12; Wed, 13 Oct 2021 18:27:35 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gqtH01q/C2adCuLq67JEaRNWl/yTDbiurVVF31nYoUhnmIFyw46NcIeiz2rY0TOLYgsMWTdpDBcq9k3jGEJcojgGjOvTvFA39NW67HvOtOH7+Ig/i0PyCSuzSuF1W8on0pVqMnYsi3vlZY/+h6HgDEFkjA1VoGAlWN/XjjOuITMVqH5w13CYfgPbe1yN71GqXKnvNWmesLk2VM32TNlx+kqKhBVrm0xmS0JO6fPyca3mrnw9h73cP9SptkA8vOEinvHmyoyeAahBxO+y/pH0Z6PPNK8rDiClwkuVRAHlj+twHkjnIJZN0LwXRZ856/pXGoaZPtv/umixO457ZN0vkA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Pb6Vw0/ELGSjf/fJEQ5XA8rKCOtR2DDsAlvRQTaU1TM=;
+ b=Bv4yDuoh4zfTPxQb/xyVXsQclRXx8vR29HE4hCpZ06C88aqRQmWsE6dMRnDueSoIGzfXiGkzO5AZxzkGpRxc9Uf4llHTfQb75Reh9JP9IoJEy0YarSRkck9YFHacnFXbZWM9ipryrnHsgMz9TaJup/K6LSml+JL8B4+mkKWJ8YnltOJkeO3sX4XqkyEfqzGEcGXJAoYKxCwv0mkccbexwUQZ/Ztm5wWNOIcDjDE+hYsZGyt2v8IdFFOGcUUfpfiOu9GKGdr8cUBj5mGn2z32TlFSXbf/mMsycHqtnl1GD58rl0nIxcinbz/reUzZF3/uULBNnKkg/LNzgEvYTtM30A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Pb6Vw0/ELGSjf/fJEQ5XA8rKCOtR2DDsAlvRQTaU1TM=;
+ b=PWdvR/4zCbffDZsPtQQue+x6A2j1Cfe9mwl1lBm+Gjwh8jIRRDEdw1CIXwncfcgt3HztW+I0WAhrW88PuFPwP43H6/BvuagDpk1NB5wjCwZK7kPxY7a8nzVZPI1qHcuNM+fsxf41+sT4GXO/puJfhS2bdkVQuFJ2ssygMrLc8xc=
+Received: from SJ0PR11MB4896.namprd11.prod.outlook.com (2603:10b6:a03:2dd::20)
+ by BYAPR11MB3448.namprd11.prod.outlook.com (2603:10b6:a03:76::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.20; Thu, 14 Oct
+ 2021 01:27:34 +0000
+Received: from SJ0PR11MB4896.namprd11.prod.outlook.com
+ ([fe80::8953:241d:7255:35be]) by SJ0PR11MB4896.namprd11.prod.outlook.com
+ ([fe80::8953:241d:7255:35be%4]) with mapi id 15.20.4608.016; Thu, 14 Oct 2021
+ 01:27:34 +0000
+From: "Mittal, Anuj" <anuj.mittal@intel.com>
+To: "steven.monsees@baesystems.com" <steven.monsees@baesystems.com>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] #zeus meta-intel
+Thread-Topic: [yocto] #zeus meta-intel
+Thread-Index: 
+ Ade7lYNzGnXDdfszSXOKckUgK88nGwAwKyaAAAC+XnAAASNjAAAAO6hgABbwMwAAp4rrkAADYIMQAARXqwAABO4zgAATEkuAABLJpBAAA91hIAAILftQABH3/AA=
+Date: Thu, 14 Oct 2021 01:27:34 +0000
+Message-ID: <5adffd49d0ac93ea0953696ccb2ace88f09b9e05.camel@intel.com>
+References: <9e8b91$7f8sbe@mga01.intel.com>
+In-Reply-To: <9e8b91$7f8sbe@mga01.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+authentication-results: baesystems.com; dkim=none (message not signed)
+ header.d=none;baesystems.com; dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 01e4f3ce-05a5-4649-3b7f-08d98eb1ccc3
+x-ms-traffictypediagnostic: BYAPR11MB3448:
+x-microsoft-antispam-prvs: 
+ <BYAPR11MB344837C7C167E6A763355819F8B89@BYAPR11MB3448.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ Hp48m1OXsO9o3JNtwoO4ApiHdDp9juaGvyvdaoTyCXUPMWEh/MYSifHW0ogJ0Jvr/t/0GnPzSkEO6c41QWcoxveJKaHlWDlM4LwYBpa8eho7eRsUeqM7li120LRDIMnoJoPoOGR4uYpCnzRfAj7gtCtlSK3szSqGQC+WPskypfkwN+ga41VsompJRVyweFqr70R46Kf41WiA703wFryX3BwtEI6Kcs8/yGD/79hFHh3Xjntp4ur7bKN9ecd41IHbc4GPZ+ohVfJL5XLCHNBaDIcmXi0w+zU02nU+ZCbJGM0nQkhbxvWATuUYBpJN3VI1WT7PrbwZDIoQYzIE8Hy+NN28cNlTJpbkhxQ8PV715JrdgmkveeLJD91Un441c3FV3PAtRh9zvG13zhGixk62EPO8TtmA77gbcDf1Up6H53gR2eYWckD4vble4cH3yjXI3hoCmnnb2+fe3rD817OvbZ9nA8AM4jsplglfYc/NFjAll9Si93zoeUMCad/fPmS6ArJLMcC4uZ/BILvT1mnw/FZIrfzmci2010tpIwAnuKoxi/IxdXTAWSe+oQB/qks7Z79kGbEjxglHvnlpAkDC185YYR9/8pEr4d4zCjmo3zXgHy7Y7yq2lzLZPZ3KpVkVz+D/LinC0axinewZVDITE5f86ZCxMxP4HFuXN73zK3EPcXeR5QhzvIzsQ7OBeT9MG6q/FejlQSp9MnUypn4+lA==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR11MB4896.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(508600001)(6512007)(110136005)(66476007)(38070700005)(66946007)(8936002)(45080400002)(86362001)(64756008)(66446008)(4001150100001)(316002)(82960400001)(8676002)(71200400001)(53546011)(66556008)(2616005)(83380400001)(186003)(76116006)(5660300002)(91956017)(26005)(6506007)(36756003)(2906002)(6486002)(122000001)(38100700002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?Sy80L2lhdkpSTklFYTk1M1NoNnhleDNyUWVmNWJFU0xoSjJ6WGVONmlDKzA3?=
+ =?utf-8?B?Y1RQTHkyTDVUM1RiZVU3RkI2Zmg4Q2NYd2t0eWNDS01DQk1XckxIUDgweXVZ?=
+ =?utf-8?B?NW5nZEVQaEhBeC9rbWRmTkRhVHZ0MW95cnA5VTBBVGtMTzByMWgyQW4vZ1I1?=
+ =?utf-8?B?Q2F1cDdyVlZ5aS9nWUlLOTVwa25NODc0TnNhTVpTemR5S3JqdSt2dTFmYmY3?=
+ =?utf-8?B?c3FaaEtLVzEzWjRJcjN5TzluVUN1RVVBdXZXNm5nVzBsYy9wSzdLVjhRYjRG?=
+ =?utf-8?B?TnFPaS9scGp2dGhrRUViY3ZpbFpNS0RtTW5pTktOY3F0ci9FSmJuaU5ZOTAz?=
+ =?utf-8?B?dkZSY2I1Z3cwcXpMb1gwSWN1QVY5RFJsRkxMTGNTUEdDOE5idmhvcnJRQ0Zw?=
+ =?utf-8?B?aWExU0prQ2dPRXBlMzBvNFhHbDJIbU5URVhCYUdrMkxkOEFvTVc0Z0NTUWpH?=
+ =?utf-8?B?OEVSKzBhWGJhVkdTYW1JQm51Rm1zY3k3dlFPZDZnbk11M0ptWFEzZUdRRFVZ?=
+ =?utf-8?B?YlRpaTBtTUsxeUFiejQzL2RtVnoveGdEcDVnWE1GeTdzTVdWWUNaMks3Sy9i?=
+ =?utf-8?B?MkYxRDl1WGF6d1NmM3JtMld4ZnlybDUzN2FScm90bmg2ZDdKUElYbVhjaFpN?=
+ =?utf-8?B?WnVnTkduMHhsSDhsblJJUS9XVFBIMC9ZOVlzd2hlVExaa0E4MElmZlRlUlFD?=
+ =?utf-8?B?cWx0alhHTlA1YldGcUpRL2svWWxSK3hObG9ET2YxamhIRVFScVRNZUVOaGJK?=
+ =?utf-8?B?aE1naVhMUVdRZzFjMC96emZyWFJKS0tydUFwL1JlNDR4WUFMbzZOR2xDQXhO?=
+ =?utf-8?B?M3ZySFg4anRxWExQenkwWFRrcE1ZbUhjWFYyQTczbXdjbGtHUHM5Yjh6K3I0?=
+ =?utf-8?B?ZXlVT0hDeThjU3ByNy9YSVJSdm02bngvalF5VVM4Vk56VHJ5eFB0NS9OSHd0?=
+ =?utf-8?B?UkFydjNpKyt3OWo2b0F6dkxUYktzcWpDTlI3VnIzMmkwZDVWV3RNbmI3ZDN5?=
+ =?utf-8?B?SFYxREZibm9jMk1YUFFJWld0SVpxcWtTTTBLWHRuYndGbStIWVYxejFVSkpE?=
+ =?utf-8?B?cW5VQTFpYk9jc3A4ME9YZjAzUEtDM0E1dGQ4ZG5QV0tOTHBSSmdpbExEUmxn?=
+ =?utf-8?B?MmZkTytoMkVZYzJDakx1Ykd3K2NzNmFPb3Nnb1R5SzVMUlNNdUZHZFdBK3pu?=
+ =?utf-8?B?N2ZYeTUyei9SRCtYQzVOZlEzT1ZYME9LdTdGY3RPVSs4SzdsSEIzV0EyWWtD?=
+ =?utf-8?B?aUpJR2NrZkJXVnhVcTcrWElaNkluTnMwNk9lY2M2WnhHR1VJNXJpKzFzZTQr?=
+ =?utf-8?B?b3JKaklyeFFyNks1cnpUdmNYL2NpOW5ybFVldytOdUM4ZSt5VGl2MXZpc25J?=
+ =?utf-8?B?eExYbmVBeEd0azZaOXU3VlRMQ1Z3RDk3cTVESGdVZlJiWnRsaGpsQVpUaUdD?=
+ =?utf-8?B?b3pmUjdobTRyQ0pnLzJ2VCtsTzdZTmRiTUN0VmNJbDFGemhzWk5pMEZIU0Ju?=
+ =?utf-8?B?WFlXUHVLVzRmQk1WTktnUjBIVkZjSDBOSXpXRTBtYmFGdzNFUXRpWnhTTXdH?=
+ =?utf-8?B?bjNVR09lTnJMQ0JxZlFrUDQ1S2p1UFkzdlFXaUZuQkh2aFRFL1VWRUNrMFZJ?=
+ =?utf-8?B?SzEyWnlIS0RpajhBTmxQNXlzUEJyY05nQ3NJV2ovTUQ5c0lEa3NyMTZMY3hV?=
+ =?utf-8?B?bnlUYU50L0hIWXVZWlRSSzN5WHpCd2cvYTNneFgyQW5xY3ZZUFlhTGRWYlF6?=
+ =?utf-8?B?dDlRS2YzN0REOEJva1NwNTZzZmJmMnVqSkFGWmxuSk4waWhaZGRjNzJQWGph?=
+ =?utf-8?B?c25hK3VzNEVOOEo0QjB0QT09?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <8F358CC494305D448043E5446FF4761A@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4896.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 01e4f3ce-05a5-4649-3b7f-08d98eb1ccc3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Oct 2021 01:27:34.4462
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 
+ bdZS7zr6SgyeizoTM8nZRkuJP7YHERPLO+IDCYYGAvUl4epENwlMpx2VqFZnV4BT4cbzZktLyFs64XwN/H9OTA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3448
+X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 13 Oct 2021 22:58:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55062
+ <yocto@lists.yoctoproject.org>; Thu, 14 Oct 2021 01:27:39 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55064
 
-Fixes:
-error in fail2ban setup command: use_2to3 is invalid.
-ERROR: 'python3 setup.py build ' execution failed.
-
-drop custom fail2ban_setup.py
-remove pyhton-fail2ban as its a symlink to python3
-
-Update to tip for 11.2 branch
-
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- .../fail2ban/files/fail2ban_setup.py          | 174 ------------------
- .../fail2ban/python3-fail2ban_0.11.2.bb       |   8 +-
- 2 files changed, 4 insertions(+), 178 deletions(-)
- delete mode 100755 recipes-security/fail2ban/files/fail2ban_setup.py
-
-diff --git a/recipes-security/fail2ban/files/fail2ban_setup.py b/recipes-security/fail2ban/files/fail2ban_setup.py
-deleted file mode 100755
-index e231949..0000000
---- a/recipes-security/fail2ban/files/fail2ban_setup.py
-+++ /dev/null
-@@ -1,174 +0,0 @@
--# emacs: -*- mode: python; py-indent-offset: 4; indent-tabs-mode: t -*-
--# vi: set ft=python sts=4 ts=4 sw=4 noet :
--
--# This file is part of Fail2Ban.
--#
--# Fail2Ban is free software; you can redistribute it and/or modify
--# it under the terms of the GNU General Public License as published by
--# the Free Software Foundation; either version 2 of the License, or
--# (at your option) any later version.
--#
--# Fail2Ban is distributed in the hope that it will be useful,
--# but WITHOUT ANY WARRANTY; without even the implied warranty of
--# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--# GNU General Public License for more details.
--#
--# You should have received a copy of the GNU General Public License
--# along with Fail2Ban; if not, write to the Free Software
--# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
--
--__author__ = "Cyril Jaquier, Steven Hiscocks, Yaroslav Halchenko"
--__copyright__ = "Copyright (c) 2004 Cyril Jaquier, 2008-2016 Fail2Ban Contributors"
--__license__ = "GPL"
--
--import platform
--
--try:
--	import setuptools
--	from setuptools import setup
--	from setuptools.command.install import install
--	from setuptools.command.install_scripts import install_scripts
--except ImportError:
--	setuptools = None
--	from distutils.core import setup
--
--# all versions
--from distutils.command.build_py import build_py
--from distutils.command.build_scripts import build_scripts
--if setuptools is None:
--	from distutils.command.install import install
--	from distutils.command.install_scripts import install_scripts
--try:
--	# python 3.x
--	from distutils.command.build_py import build_py_2to3
--	from distutils.command.build_scripts import build_scripts_2to3
--	_2to3 = True
--except ImportError:
--	# python 2.x
--	_2to3 = False
--
--import os
--from os.path import isfile, join, isdir, realpath
--import sys
--import warnings
--from glob import glob
--
--from fail2ban.setup import updatePyExec
--
--if setuptools and "test" in sys.argv:
--	import logging
--	logSys = logging.getLogger("fail2ban")
--	hdlr = logging.StreamHandler(sys.stdout)
--	fmt = logging.Formatter("%(asctime)-15s %(message)s")
--	hdlr.setFormatter(fmt)
--	logSys.addHandler(hdlr)
--	if set(["-q", "--quiet"]) & set(sys.argv):
--		logSys.setLevel(logging.CRITICAL)
--		warnings.simplefilter("ignore")
--		sys.warnoptions.append("ignore")
--	elif set(["-v", "--verbose"]) & set(sys.argv):
--		logSys.setLevel(logging.DEBUG)
--	else:
--		logSys.setLevel(logging.INFO)
--elif "test" in sys.argv:
--	print("python distribute required to execute fail2ban tests")
--	print("")
--
--longdesc = '''
--Fail2Ban scans log files like /var/log/pwdfail or
--/var/log/apache/error_log and bans IP that makes
--too many password failures. It updates firewall rules
--to reject the IP address or executes user defined
--commands.'''
--
--if setuptools:
--	setup_extra = {
--		'test_suite': "fail2ban.tests.utils.gatherTests",
--		'use_2to3': True,
--	}
--else:
--	setup_extra = {}
--
--data_files_extra = []
--
--# Installing documentation files only under Linux or other GNU/ systems
--# (e.g. GNU/kFreeBSD), since others might have protective mechanisms forbidding
--# installation there (see e.g. #1233)
--platform_system = platform.system().lower()
--doc_files = ['README.md', 'DEVELOP', 'FILTERS', 'doc/run-rootless.txt']
--if platform_system in ('solaris', 'sunos'):
--	doc_files.append('README.Solaris')
--if platform_system in ('linux', 'solaris', 'sunos') or platform_system.startswith('gnu'):
--	data_files_extra.append(
--		('/usr/share/doc/fail2ban', doc_files)
--	)
--
--# Get version number, avoiding importing fail2ban.
--# This is due to tests not functioning for python3 as 2to3 takes place later
--exec(open(join("fail2ban", "version.py")).read())
--
--setup(
--	name = "fail2ban",
--	version = version,
--	description = "Ban IPs that make too many password failures",
--	long_description = longdesc,
--	author = "Cyril Jaquier & Fail2Ban Contributors",
--	author_email = "cyril.jaquier@fail2ban.org",
--	url = "http://www.fail2ban.org",
--	license = "GPL",
--	platforms = "Posix",
--	cmdclass = {
--		'build_py': build_py, 'build_scripts': build_scripts, 
--	},
--	scripts = [
--		'bin/fail2ban-client',
--		'bin/fail2ban-server',
--		'bin/fail2ban-regex',
--		'bin/fail2ban-testcases',
--		# 'bin/fail2ban-python', -- link (binary), will be installed via install_scripts_f2b wrapper
--	],
--	packages = [
--		'fail2ban',
--		'fail2ban.client',
--		'fail2ban.server',
--		'fail2ban.tests',
--		'fail2ban.tests.action_d',
--	],
--	package_data = {
--		'fail2ban.tests':
--			[ join(w[0], f).replace("fail2ban/tests/", "", 1)
--				for w in os.walk('fail2ban/tests/files')
--				for f in w[2]] +
--			[ join(w[0], f).replace("fail2ban/tests/", "", 1)
--				for w in os.walk('fail2ban/tests/config')
--				for f in w[2]] +
--			[ join(w[0], f).replace("fail2ban/tests/", "", 1)
--				for w in os.walk('fail2ban/tests/action_d')
--				for f in w[2]]
--	},
--	data_files = [
--		('/etc/fail2ban',
--			glob("config/*.conf")
--		),
--		('/etc/fail2ban/filter.d',
--			glob("config/filter.d/*.conf")
--		),
--		('/etc/fail2ban/filter.d/ignorecommands',
--			[p for p in glob("config/filter.d/ignorecommands/*") if isfile(p)]
--		),
--		('/etc/fail2ban/action.d',
--			glob("config/action.d/*.conf") +
--			glob("config/action.d/*.py")
--		),
--		('/etc/fail2ban/fail2ban.d',
--			''
--		),
--		('/etc/fail2ban/jail.d',
--			''
--		),
--		('/var/lib/fail2ban',
--			''
--		),
--	] + data_files_extra,
--	**setup_extra
--)
-diff --git a/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb b/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
-index ed75a0e..627496f 100644
---- a/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
-+++ b/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
-@@ -9,10 +9,9 @@ HOMEPAGE = "http://www.fail2ban.org"
- LICENSE = "GPL-2.0"
- LIC_FILES_CHKSUM = "file://COPYING;md5=ecabc31e90311da843753ba772885d9f"
- 
--SRCREV ="eea1881b734b73599a21df2bfbe58b11f78d0a46"
-+SRCREV ="d6b884f3b72b8a42b21da863836569ef6836c2ea"
- SRC_URI = " git://github.com/fail2ban/fail2ban.git;branch=0.11 \
-         file://initd \
--        file://fail2ban_setup.py \
-         file://run-ptest \
- "
- 
-@@ -20,13 +19,13 @@ inherit update-rc.d ptest setuptools3
- 
- S = "${WORKDIR}/git"
- 
--do_compile:prepend () {
--    cp ${WORKDIR}/fail2ban_setup.py ${S}/setup.py
-+do_compile () {
-     cd ${S}
-     ./fail2ban-2to3
- }
- 
- do_install:append () {
-+    rm  -f ${D}/${bindir}/fail2ban-python
-     install -d ${D}/${sysconfdir}/fail2ban
-     install -d ${D}/${sysconfdir}/init.d
-     install -m 0755 ${WORKDIR}/initd ${D}${sysconfdir}/init.d/fail2ban-server
-@@ -38,6 +37,7 @@ do_install_ptest:append () {
-     install -d ${D}${PTEST_PATH}/bin
-     sed -i -e 's/##PYTHON##/${PYTHON_PN}/g' ${D}${PTEST_PATH}/run-ptest
-     install -D ${S}/bin/* ${D}${PTEST_PATH}/bin
-+    rm -f ${D}${PTEST_PATH}/bin/fail2ban-python
- }
- 
- FILES:${PN} += "/run"
--- 
-2.25.1
-
+VGhlcmUgYXJlIG5vIHBhdGNoZXMgbmVlZGVkIG90aGVyIHRoYW4gd2hhdCBpcyBhbHJlYWR5IGlu
+IG9lLWNvcmUvbWV0YS0NCmludGVsL21ldGEtY2xhbmcuIEkgdHJpZWQgYnVpbGRpbmcgemV1cyBv
+biBVYnVudHUgMTYuMDQgYW5kIGRpZG4ndCBzZWUNCmFueSBwcm9ibGVtLg0KDQp6ZXVzIGlzIG5v
+IGxvbmdlciBtYWludGFpbmVkIG9yIHN1cHBvcnRlZCBzbyBJJ2Qgc3VnZ2VzdCBjaGVja2luZyBh
+DQpuZXdlciByZWxlYXNlIG9yIGV4cGVyaW1lbnRpbmcgd2l0aG91dCB1c2luZyBidWlsZHRvb2xz
+IHRvIHNlZSBpZiB0aGF0DQppcyBleHBvc2luZyB0aGlzIHByb2JsZW0uIEl0IGRvZXMgbG9vayBs
+aWtlIHRoaW5ncyBhcmUgbm90IGJlaW5nDQpjb21waWxlZCBwcm9wZXJseSBvciBwZXJoYXBzIG9w
+ZW5jbC1jbGFuZy1uYXRpdmUgaXMgbGlua2luZyB0bw0KaW5jb3JyZWN0IExMVk0gLi4uIA0KDQpU
+aGFua3MsDQoNCkFudWoNCg0KT24gV2VkLCAyMDIxLTEwLTEzIGF0IDE2OjUzICswMDAwLCBNb25z
+ZWVzLCBTdGV2ZW4gQyAoVVMpIHdyb3RlOg0KPiANCj4gQW55dGhpbmcgPywgSSBoYXZlIHlldCB0
+byByZXNvbHZlIHRoaXMuDQo+IA0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9t
+OiBNb25zZWVzLCBTdGV2ZW4gQyAoVVMpIA0KPiBTZW50OiBXZWRuZXNkYXksIE9jdG9iZXIgMTMs
+IDIwMjEgOTowMyBBTQ0KPiBUbzogJ01pdHRhbCwgQW51aicgPGFudWoubWl0dGFsQGludGVsLmNv
+bT47DQo+ICd5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnJyA8eW9jdG9AbGlzdHMueW9jdG9w
+cm9qZWN0Lm9yZz4NCj4gU3ViamVjdDogUkU6IFt5b2N0b10gI3pldXMgbWV0YS1pbnRlbA0KPiAN
+Cj4gDQo+IEFyZSB0aGVyZSBhbnkgcGF0Y2hlcyByZXF1aXJlZCBmb3IgdGhlc2UgY29tcG9uZW50
+cyAoaWdjLCBvcGVuY2wtDQo+IGNsYW5nLCBhbmQgaW50ZWwtY29tcHV0ZS1ydW50aW1lKSA/DQo+
+IA0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBNb25zZWVzLCBTdGV2ZW4g
+QyAoVVMpIA0KPiBTZW50OiBXZWRuZXNkYXksIE9jdG9iZXIgMTMsIDIwMjEgNzoxMyBBTQ0KPiBU
+bzogJ01pdHRhbCwgQW51aicgPGFudWoubWl0dGFsQGludGVsLmNvbT47DQo+IHlvY3RvQGxpc3Rz
+LnlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDogUkU6IFt5b2N0b10gI3pldXMgbWV0YS1pbnRl
+bA0KPiANCj4gDQo+IEFudWo6DQo+IA0KPiBJIHJlYnVpbHQgdGhlIGVudGlyZSBpbWFnZSAoYnV0
+IGRpZCBub3QgZGVsZXRlIHRoZSBzdGF0ZV9jYWNoZSkuLi4NCj4gSSBhbSBidWlsZGluZyBtZXRh
+LWNsYW5nICh6ZXVzIGJhc2VkLCBJIGJlbGlldmUgaXQgaXMgOS4wLjEpLg0KPiANCj4gU3RldmUN
+Cj4gDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IE1pdHRhbCwgQW51aiA8
+YW51ai5taXR0YWxAaW50ZWwuY29tPg0KPiBTZW50OiBUdWVzZGF5LCBPY3RvYmVyIDEyLCAyMDIx
+IDEwOjEwIFBNDQo+IFRvOiBNb25zZWVzLCBTdGV2ZW4gQyAoVVMpIDxzdGV2ZW4ubW9uc2Vlc0Bi
+YWVzeXN0ZW1zLmNvbT47DQo+IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVj
+dDogUmU6IFt5b2N0b10gI3pldXMgbWV0YS1pbnRlbA0KPiANCj4gRXh0ZXJuYWwgRW1haWwgQWxl
+cnQNCj4gDQo+IFRoaXMgZW1haWwgaGFzIGJlZW4gc2VudCBmcm9tIGFuIGFjY291bnQgb3V0c2lk
+ZSBvZiB0aGUgQkFFIFN5c3RlbXMNCj4gbmV0d29yay4NCj4gDQo+IFBsZWFzZSB0cmVhdCB0aGUg
+ZW1haWwgd2l0aCBjYXV0aW9uLCBlc3BlY2lhbGx5IGlmIHlvdSBhcmUgcmVxdWVzdGVkDQo+IHRv
+IGNsaWNrIG9uIGEgbGluaywgZGVjcnlwdC9vcGVuIGFuIGF0dGFjaG1lbnQsIG9yIGVuYWJsZSBt
+YWNyb3MuwqANCj4gRm9yIGZ1cnRoZXIgaW5mb3JtYXRpb24gb24gaG93IHRvIHNwb3QgcGhpc2hp
+bmcsIGFjY2Vzcw0KPiDigJxDeWJlcnNlY3VyaXR5IE9uZVNwYWNlIFBhZ2XigJ0gYW5kIHJlcG9y
+dCBwaGlzaGluZyBieSBjbGlja2luZyB0aGUNCj4gYnV0dG9uIOKAnFJlcG9ydCBQaGlzaGluZ+KA
+nSBvbiB0aGUgT3V0bG9vayB0b29sYmFyLg0KPiANCj4gDQo+IERpZCB5b3UgYnVpbGQgZXZlcnl0
+aGluZyB3aXRoIHRoaXMgY29tcGlsZXIgZnJvbSBzdGFydD8gSXMgb3BlbmNsLQ0KPiBjbGFuZyBi
+dWlsZGluZyB3aXRoIHRoZSByaWdodCBMTFZNIGxpYiBmcm9tIG1ldGEtY2xhbmc/DQo+IA0KPiBU
+aGFua3MsDQo+IA0KPiBBbnVqDQo+IA0KPiBPbiBUdWUsIDIwMjEtMTAtMTIgYXQgMTc6MTUgKzAw
+MDAsIE1vbnNlZXMsIFN0ZXZlbiBDIChVUykgd3JvdGU6DQo+ID4gDQo+ID4gQW51ajoNCj4gPiAN
+Cj4gPiBJIHBpY2tlZCB1cCB0aGUgdGFyYmFsbCBmb3IgZm9yIHRoZSBiYXNlbGluZSBkdW5mZWxs
+IHRvb2xzIHBsYXRmb3JtDQo+ID4gdG8gDQo+ID4gdXBkYXRlIGhvc3QgdG9vbHMuLi4NCj4gPiAN
+Cj4gPiBJIGFtIHNlZWluZyBpdCBjb21waWxlIGNsZWFuZXIgYnV0IGZvciBvbmUgaXNzdWUgY2F1
+c25nIGxkIHRvIGZhaWw6DQo+ID4gDQo+ID4gL2Rpc2swL3NjcmF0Y2gvc21vbnNlZXMveW9jdG8v
+d29ya3NwYWNlXzEvYnVpbGRzMi9zYmNiLQ0KPiA+IGRlZmF1bHQvdG1wL3dvcmsveDg2XzY0LWxp
+bnV4L2ludGVsLWdyYXBoaWNzLWNvbXBpbGVyLQ0KPiA+IG5hdGl2ZS8xLjAuMTEtDQo+ID4gcjAv
+cmVjaXBlLXN5c3Jvb3QtDQo+ID4gbmF0aXZlL3Vzci9pbmNsdWRlL2xsdm0vU3VwcG9ydC9Db21t
+YW5kTGluZS5oOjEzMzE6DQo+ID4gdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgdnRhYmxlIGZvcg0K
+PiA+IGxsdm06OmNsOjpvcHQ8c3RkOjpfX2N4eDExOjpiYXNpY19zdHJpbmc8Y2hhciwNCj4gPiBz
+dGQ6OmNoYXJfdHJhaXRzPGNoYXI+LCANCj4gPiBzdGQ6OmFsbG9jYXRvcjxjaGFyPiA+LCBmYWxz
+ZSwgDQo+ID4gbGx2bTo6Y2w6OnBhcnNlcjxzdGQ6Ol9fY3h4MTE6OmJhc2ljX3N0cmluZzxjaGFy
+LA0KPiA+IHN0ZDo6Y2hhcl90cmFpdHM8Y2hhcj4sIHN0ZDo6YWxsb2NhdG9yPGNoYXI+ID4gPiA+
+Jw0KPiA+IA0KPiA+IElzbid0IExMVk0gYnJvdWdodCBpbiBhbG9uZyB3aXRoIGNsYW5nIHVuZGVy
+IG1ldGEtY2xhbmcgPw0KPiA+IA0KPiA+IElzIHRoZXJlIGEgbWlzc2luZyBidWlsZCBkZXBlbmRl
+bmN5ID8NCj4gPiANCj4gPiBUaGFua3MsDQo+ID4gU3RldmUNCj4gPiANCj4gPiBCdWlsZCBleGNl
+cnB0IHNob3dpbmcgbXVsdGlwbGUgIiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGB2dGFibGUgIg0K
+PiA+IGVycm9ycy4uLg0KPiA+IA0KPiA+IC9vcHQvcG9reS8zLjEuMy9zeXNyb290cy94ODZfNjQt
+cG9reXNkay1saW51eC91c3IvbGliL2djYy94ODZfNjQtDQo+ID4gcG9reXNkay1saW51eC85LjMu
+MC8uLi8uLi8uLi8uLi94ODZfNjQtcG9reXNkay1saW51eC9iaW4vbGQ6DQo+ID4gYGxsdm06OmNs
+OjpvcHQ8c3RkOjpfX2N4eDExOjpiYXNpY19zdHJpbmc8Y2hhciwNCj4gPiBzdGQ6OmNoYXJfdHJh
+aXRzPGNoYXI+LCBzdGQ6OmFsbG9jYXRvcjxjaGFyPiA+LCBmYWxzZSwgDQo+ID4gbGx2bTo6Y2w6
+OnBhcnNlcjxzdGQ6Ol9fY3h4MTE6OmJhc2ljX3N0cmluZzxjaGFyLA0KPiA+IHN0ZDo6Y2hhcl90
+cmFpdHM8Y2hhcj4sIHN0ZDo6YWxsb2NhdG9yPGNoYXI+ID4gPiA+Ojp+b3B0KCknOg0KPiA+IC9k
+aXNrMC9zY3JhdGNoL3Ntb25zZWVzL3lvY3RvL3dvcmtzcGFjZV8xL2J1aWxkczIvc2JjYi0NCj4g
+PiBkZWZhdWx0L3RtcC93b3JrL3g4Nl82NC1saW51eC9pbnRlbC1ncmFwaGljcy1jb21waWxlci0N
+Cj4gPiBuYXRpdmUvMS4wLjExLQ0KPiA+IHIwL3JlY2lwZS1zeXNyb290LQ0KPiA+IG5hdGl2ZS91
+c3IvaW5jbHVkZS9sbHZtL1N1cHBvcnQvQ29tbWFuZExpbmUuaDoxMzMxOg0KPiA+IHVuZGVmaW5l
+ZCByZWZlcmVuY2UgdG8gYHZ0YWJsZSBmb3INCj4gPiBsbHZtOjpjbDo6b3B0PHN0ZDo6X19jeHgx
+MTo6YmFzaWNfc3RyaW5nPGNoYXIsDQo+ID4gc3RkOjpjaGFyX3RyYWl0czxjaGFyPiwgDQo+ID4g
+c3RkOjphbGxvY2F0b3I8Y2hhcj4gPiwgZmFsc2UsIA0KPiA+IGxsdm06OmNsOjpwYXJzZXI8c3Rk
+OjpfX2N4eDExOjpiYXNpY19zdHJpbmc8Y2hhciwNCj4gPiBzdGQ6OmNoYXJfdHJhaXRzPGNoYXI+
+LCBzdGQ6OmFsbG9jYXRvcjxjaGFyPiA+ID4gPicNCj4gPiAvb3B0L3Bva3kvMy4xLjMvc3lzcm9v
+dHMveDg2XzY0LXBva3lzZGstbGludXgvdXNyL2xpYi9nY2MveDg2XzY0LQ0KPiA+IHBva3lzZGst
+bGludXgvOS4zLjAvLi4vLi4vLi4vLi4veDg2XzY0LXBva3lzZGstbGludXgvYmluL2xkOg0KPiA+
+IGBsbHZtOjpjbDo6T3B0aW9uVmFsdWU8c3RkOjpfX2N4eDExOjpiYXNpY19zdHJpbmc8Y2hhciwN
+Cj4gPiBzdGQ6OmNoYXJfdHJhaXRzPGNoYXI+LCBzdGQ6OmFsbG9jYXRvcjxjaGFyPiA+ID46Ok9w
+dGlvblZhbHVlKCknOg0KPiA+IC9kaXNrMC9zY3JhdGNoL3Ntb25zZWVzL3lvY3RvL3dvcmtzcGFj
+ZV8xL2J1aWxkczIvc2JjYi0NCj4gPiBkZWZhdWx0L3RtcC93b3JrL3g4Nl82NC1saW51eC9pbnRl
+bC1ncmFwaGljcy1jb21waWxlci0NCj4gPiBuYXRpdmUvMS4wLjExLQ0KPiA+IHIwL3JlY2lwZS1z
+eXNyb290LQ0KPiA+IG5hdGl2ZS91c3IvaW5jbHVkZS9sbHZtL1N1cHBvcnQvQ29tbWFuZExpbmUu
+aDo2MDE6DQo+ID4gdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgdnRhYmxlIGZvcg0KPiA+IGxsdm06
+OmNsOjpPcHRpb25WYWx1ZTxzdGQ6Ol9fY3h4MTE6OmJhc2ljX3N0cmluZzxjaGFyLA0KPiA+IHN0
+ZDo6Y2hhcl90cmFpdHM8Y2hhcj4sIHN0ZDo6YWxsb2NhdG9yPGNoYXI+ID4gPicNCj4gPiAvb3B0
+L3Bva3kvMy4xLjMvc3lzcm9vdHMveDg2XzY0LXBva3lzZGstbGludXgvdXNyL2xpYi9nY2MveDg2
+XzY0LQ0KPiA+IHBva3lzZGstbGludXgvOS4zLjAvLi4vLi4vLi4vLi4veDg2XzY0LXBva3lzZGst
+bGludXgvYmluL2xkOg0KPiA+IGBsbHZtOjpjbDo6b3B0PHN0ZDo6X19jeHgxMTo6YmFzaWNfc3Ry
+aW5nPGNoYXIsDQo+ID4gc3RkOjpjaGFyX3RyYWl0czxjaGFyPiwgc3RkOjphbGxvY2F0b3I8Y2hh
+cj4gPiwgZmFsc2UsIA0KPiA+IGxsdm06OmNsOjpwYXJzZXI8c3RkOjpfX2N4eDExOjpiYXNpY19z
+dHJpbmc8Y2hhciwNCj4gPiBzdGQ6OmNoYXJfdHJhaXRzPGNoYXI+LCBzdGQ6OmFsbG9jYXRvcjxj
+aGFyPiA+ID4NCj4gPiA+IDo6b3B0PGxsdm06OmNsOjpGb3JtYXR0aW5nRmxhZ3MsIGxsdm06OmNs
+OjpkZXNjLA0KPiA+IGxsdm06OmNsOjpkZXNjIGNvbnN0JiwgbGx2bTo6Y2w6OmluaXRpYWxpemVy
+PGNoYXIgWzJdPiBjb25zdCYpJzoNCj4gPiAvZGlzazAvc2NyYXRjaC9zbW9uc2Vlcy95b2N0by93
+b3Jrc3BhY2VfMS9idWlsZHMyL3NiY2ItDQo+ID4gZGVmYXVsdC90bXAvd29yay94ODZfNjQtbGlu
+dXgvaW50ZWwtZ3JhcGhpY3MtY29tcGlsZXItDQo+ID4gbmF0aXZlLzEuMC4xMS0NCj4gPiByMC9y
+ZWNpcGUtc3lzcm9vdC0NCj4gPiBuYXRpdmUvdXNyL2luY2x1ZGUvbGx2bS9TdXBwb3J0L0NvbW1h
+bmRMaW5lLmg6MTQwNzoNCj4gPiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGB2dGFibGUgZm9yDQo+
+ID4gbGx2bTo6Y2w6Om9wdDxzdGQ6Ol9fY3h4MTE6OmJhc2ljX3N0cmluZzxjaGFyLA0KPiA+IHN0
+ZDo6Y2hhcl90cmFpdHM8Y2hhcj4sIA0KPiA+IHN0ZDo6YWxsb2NhdG9yPGNoYXI+ID4sIGZhbHNl
+LCANCj4gPiBsbHZtOjpjbDo6cGFyc2VyPHN0ZDo6X19jeHgxMTo6YmFzaWNfc3RyaW5nPGNoYXIs
+DQo+ID4gc3RkOjpjaGFyX3RyYWl0czxjaGFyPiwgc3RkOjphbGxvY2F0b3I8Y2hhcj4gPiA+ID4n
+DQo+ID4gL29wdC9wb2t5LzMuMS4zL3N5c3Jvb3RzL3g4Nl82NC1wb2t5c2RrLWxpbnV4L3Vzci9s
+aWIvZ2NjL3g4Nl82NC0NCj4gPiBwb2t5c2RrLWxpbnV4LzkuMy4wLy4uLy4uLy4uLy4uL3g4Nl82
+NC1wb2t5c2RrLWxpbnV4L2Jpbi9sZDoNCj4gPiBgbGx2bTo6Y2w6OnBhcnNlcjxzdGQ6Ol9fY3h4
+MTE6OmJhc2ljX3N0cmluZzxjaGFyLA0KPiA+IHN0ZDo6Y2hhcl90cmFpdHM8Y2hhcj4sIHN0ZDo6
+YWxsb2NhdG9yPGNoYXI+ID4NCj4gPiA+IDo6cGFyc2VyKGxsdm06OmNsOjpPcHRpb24mKSc6DQo+
+ID4gL2Rpc2swL3NjcmF0Y2gvc21vbnNlZXMveW9jdG8vd29ya3NwYWNlXzEvYnVpbGRzMi9zYmNi
+LQ0KPiA+IGRlZmF1bHQvdG1wL3dvcmsveDg2XzY0LWxpbnV4L2ludGVsLWdyYXBoaWNzLWNvbXBp
+bGVyLQ0KPiA+IG5hdGl2ZS8xLjAuMTEtDQo+ID4gcjAvcmVjaXBlLXN5c3Jvb3QtDQo+ID4gbmF0
+aXZlL3Vzci9pbmNsdWRlL2xsdm0vU3VwcG9ydC9Db21tYW5kTGluZS5oOjEwNzI6DQo+ID4gdW5k
+ZWZpbmVkIHJlZmVyZW5jZSB0byBgdnRhYmxlIGZvcg0KPiA+IGxsdm06OmNsOjpwYXJzZXI8c3Rk
+OjpfX2N4eDExOjpiYXNpY19zdHJpbmc8Y2hhciwNCj4gPiBzdGQ6OmNoYXJfdHJhaXRzPGNoYXI+
+LCBzdGQ6OmFsbG9jYXRvcjxjaGFyPiA+ID4nDQo+ID4gL29wdC9wb2t5LzMuMS4zL3N5c3Jvb3Rz
+L3g4Nl82NC1wb2t5c2RrLWxpbnV4L3Vzci9saWIvZ2NjL3g4Nl82NC0NCj4gPiBwb2t5c2RrLWxp
+bnV4LzkuMy4wLy4uLy4uLy4uLy4uL3g4Nl82NC1wb2t5c2RrLWxpbnV4L2Jpbi9sZDoNCj4gPiBg
+bGx2bTo6Y2w6Om9wdDxzdGQ6Ol9fY3h4MTE6OmJhc2ljX3N0cmluZzxjaGFyLA0KPiA+IHN0ZDo6
+Y2hhcl90cmFpdHM8Y2hhcj4sIHN0ZDo6YWxsb2NhdG9yPGNoYXI+ID4sIGZhbHNlLCANCj4gPiBs
+bHZtOjpjbDo6cGFyc2VyPHN0ZDo6X19jeHgxMTo6YmFzaWNfc3RyaW5nPGNoYXIsDQo+ID4gc3Rk
+OjpjaGFyX3RyYWl0czxjaGFyPiwgc3RkOjphbGxvY2F0b3I8Y2hhcj4gPiA+ID46On5vcHQoKSc6
+DQo+ID4gL2Rpc2swL3NjcmF0Y2gvc21vbnNlZXMveW9jdG8vd29ya3NwYWNlXzEvYnVpbGRzMi9z
+YmNiLQ0KPiA+IGRlZmF1bHQvdG1wL3dvcmsveDg2XzY0LWxpbnV4L2ludGVsLWdyYXBoaWNzLWNv
+bXBpbGVyLQ0KPiA+IG5hdGl2ZS8xLjAuMTEtDQo+ID4gcjAvcmVjaXBlLXN5c3Jvb3QtDQo+ID4g
+bmF0aXZlL3Vzci9pbmNsdWRlL2xsdm0vU3VwcG9ydC9Db21tYW5kTGluZS5oOjEzMzE6DQo+ID4g
+dW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgdnRhYmxlIGZvcg0KPiA+IGxsdm06OmNsOjpvcHQ8c3Rk
+OjpfX2N4eDExOjpiYXNpY19zdHJpbmc8Y2hhciwNCj4gPiBzdGQ6OmNoYXJfdHJhaXRzPGNoYXI+
+LCANCj4gPiBzdGQ6OmFsbG9jYXRvcjxjaGFyPiA+LCBmYWxzZSwgDQo+ID4gbGx2bTo6Y2w6OnBh
+cnNlcjxzdGQ6Ol9fY3h4MTE6OmJhc2ljX3N0cmluZzxjaGFyLA0KPiA+IHN0ZDo6Y2hhcl90cmFp
+dHM8Y2hhcj4sIHN0ZDo6YWxsb2NhdG9yPGNoYXI+ID4gPiA+Jw0KPiA+IC9vcHQvcG9reS8zLjEu
+My9zeXNyb290cy94ODZfNjQtcG9reXNkay1saW51eC91c3IvbGliL2djYy94ODZfNjQtDQo+ID4g
+cG9reXNkay1saW51eC85LjMuMC8uLi8uLi8uLi8uLi94ODZfNjQtcG9reXNkay1saW51eC9iaW4v
+bGQ6DQo+ID4gYGxsdm06OmNsOjpPcHRpb25WYWx1ZTxzdGQ6Ol9fY3h4MTE6OmJhc2ljX3N0cmlu
+ZzxjaGFyLA0KPiA+IHN0ZDo6Y2hhcl90cmFpdHM8Y2hhcj4sIHN0ZDo6YWxsb2NhdG9yPGNoYXI+
+ID4gPjo6T3B0aW9uVmFsdWUoKSc6DQo+ID4gL2Rpc2swL3NjcmF0Y2gvc21vbnNlZXMveW9jdG8v
+d29ya3NwYWNlXzEvYnVpbGRzMi9zYmNiLQ0KPiA+IGRlZmF1bHQvdG1wL3dvcmsveDg2XzY0LWxp
+bnV4L2ludGVsLWdyYXBoaWNzLWNvbXBpbGVyLQ0KPiA+IG5hdGl2ZS8xLjAuMTEtDQo+ID4gcjAv
+cmVjaXBlLXN5c3Jvb3QtDQo+ID4gbmF0aXZlL3Vzci9pbmNsdWRlL2xsdm0vU3VwcG9ydC9Db21t
+YW5kTGluZS5oOjYwMToNCj4gPiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGB2dGFibGUgZm9yDQo+
+ID4gbGx2bTo6Y2w6Ok9wdGlvblZhbHVlPHN0ZDo6X19jeHgxMTo6YmFzaWNfc3RyaW5nPGNoYXIs
+DQo+ID4gc3RkOjpjaGFyX3RyYWl0czxjaGFyPiwgc3RkOjphbGxvY2F0b3I8Y2hhcj4gPiA+Jw0K
+PiA+IC9vcHQvcG9reS8zLjEuMy9zeXNyb290cy94ODZfNjQtcG9reXNkay1saW51eC91c3IvbGli
+L2djYy94ODZfNjQtDQo+ID4gcG9reXNkay1saW51eC85LjMuMC8uLi8uLi8uLi8uLi94ODZfNjQt
+cG9reXNkay1saW51eC9iaW4vbGQ6DQo+ID4gYGxsdm06OmNsOjpvcHQ8c3RkOjpfX2N4eDExOjpi
+YXNpY19zdHJpbmc8Y2hhciwNCj4gPiBzdGQ6OmNoYXJfdHJhaXRzPGNoYXI+LCBzdGQ6OmFsbG9j
+YXRvcjxjaGFyPiA+LCBmYWxzZSwgDQo+ID4gbGx2bTo6Y2w6OnBhcnNlcjxzdGQ6Ol9fY3h4MTE6
+OmJhc2ljX3N0cmluZzxjaGFyLA0KPiA+IHN0ZDo6Y2hhcl90cmFpdHM8Y2hhcj4sIHN0ZDo6YWxs
+b2NhdG9yPGNoYXI+ID4gPiA+OjpvcHQ8Y2hhciBbOV0sIA0KPiA+IGxsdm06OmNsOjpkZXNjPihj
+aGFyIGNvbnN0ICgmKSBbOV0sIGxsdm06OmNsOjpkZXNjIGNvbnN0JiknOg0KPiA+IC9kaXNrMC9z
+Y3JhdGNoL3Ntb25zZWVzL3lvY3RvL3dvcmtzcGFjZV8xL2J1aWxkczIvc2JjYi0NCj4gPiBkZWZh
+dWx0L3RtcC93b3JrL3g4Nl82NC1saW51eC9pbnRlbC1ncmFwaGljcy1jb21waWxlci0NCj4gPiBu
+YXRpdmUvMS4wLjExLQ0KPiA+IHIwL3JlY2lwZS1zeXNyb290LQ0KPiA+IG5hdGl2ZS91c3IvaW5j
+bHVkZS9sbHZtL1N1cHBvcnQvQ29tbWFuZExpbmUuaDoxNDA3Og0KPiA+IHVuZGVmaW5lZCByZWZl
+cmVuY2UgdG8gYHZ0YWJsZSBmb3INCj4gPiBsbHZtOjpjbDo6b3B0PHN0ZDo6X19jeHgxMTo6YmFz
+aWNfc3RyaW5nPGNoYXIsDQo+ID4gc3RkOjpjaGFyX3RyYWl0czxjaGFyPiwgDQo+ID4gc3RkOjph
+bGxvY2F0b3I8Y2hhcj4gPiwgZmFsc2UsIA0KPiA+IGxsdm06OmNsOjpwYXJzZXI8c3RkOjpfX2N4
+eDExOjpiYXNpY19zdHJpbmc8Y2hhciwNCj4gPiBzdGQ6OmNoYXJfdHJhaXRzPGNoYXI+LCBzdGQ6
+OmFsbG9jYXRvcjxjaGFyPiA+ID4gPicNCj4gPiAvb3B0L3Bva3kvMy4xLjMvc3lzcm9vdHMveDg2
+XzY0LXBva3lzZGstbGludXgvdXNyL2xpYi9nY2MveDg2XzY0LQ0KPiA+IHBva3lzZGstbGludXgv
+OS4zLjAvLi4vLi4vLi4vLi4veDg2XzY0LXBva3lzZGstbGludXgvYmluL2xkOg0KPiA+IGBsbHZt
+OjpjbDo6cGFyc2VyPHN0ZDo6X19jeHgxMTo6YmFzaWNfc3RyaW5nPGNoYXIsDQo+ID4gc3RkOjpj
+aGFyX3RyYWl0czxjaGFyPiwgc3RkOjphbGxvY2F0b3I8Y2hhcj4gPg0KPiA+ID4gOjpwYXJzZXIo
+bGx2bTo6Y2w6Ok9wdGlvbiYpJzoNCj4gPiAvZGlzazAvc2NyYXRjaC9zbW9uc2Vlcy95b2N0by93
+b3Jrc3BhY2VfMS9idWlsZHMyL3NiY2ItDQo+ID4gZGVmYXVsdC90bXAvd29yay94ODZfNjQtbGlu
+dXgvaW50ZWwtZ3JhcGhpY3MtY29tcGlsZXItDQo+ID4gbmF0aXZlLzEuMC4xMS0NCj4gPiByMC9y
+ZWNpcGUtc3lzcm9vdC0NCj4gPiBuYXRpdmUvdXNyL2luY2x1ZGUvbGx2bS9TdXBwb3J0L0NvbW1h
+bmRMaW5lLmg6MTA3MjoNCj4gPiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGB2dGFibGUgZm9yDQo+
+ID4gbGx2bTo6Y2w6OnBhcnNlcjxzdGQ6Ol9fY3h4MTE6OmJhc2ljX3N0cmluZzxjaGFyLA0KPiA+
+IHN0ZDo6Y2hhcl90cmFpdHM8Y2hhcj4sIHN0ZDo6YWxsb2NhdG9yPGNoYXI+ID4gPicNCj4gPiBj
+b2xsZWN0MjogZXJyb3I6IGxkIHJldHVybmVkIDEgZXhpdCBzdGF0dXMNCj4gPiANCj4gPiAtLS0t
+LU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+IEZyb206IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVj
+dC5vcmfCoDx5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPg0KPiA+IE9uIA0KPiA+IEJlaGFs
+ZiBPZiBBbnVqIE1pdHRhbA0KPiA+IFNlbnQ6IFR1ZXNkYXksIE9jdG9iZXIgMTIsIDIwMjEgMTA6
+NDMgQU0NCj4gPiBUbzogTW9uc2VlcywgU3RldmVuIEMgKFVTKSA8c3RldmVuLm1vbnNlZXNAYmFl
+c3lzdGVtcy5jb20+OyANCj4gPiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnDQo+ID4gU3Vi
+amVjdDogUmU6IFt5b2N0b10gI3pldXMgbWV0YS1pbnRlbA0KPiA+IA0KPiA+IEV4dGVybmFsIEVt
+YWlsIEFsZXJ0DQo+ID4gDQo+ID4gbmV0d29yay4NCj4gPiANCj4gPiBQbGVhc2UgdHJlYXQgdGhl
+IGVtYWlsIHdpdGggY2F1dGlvbiwgZXNwZWNpYWxseSBpZiB5b3UgYXJlDQo+ID4gcmVxdWVzdGVk
+IA0KPiA+IHRvIGNsaWNrIG9uIGEgbGluaywgZGVjcnlwdC9vcGVuIGFuIGF0dGFjaG1lbnQsIG9y
+IGVuYWJsZSBtYWNyb3MuwqANCj4gPiBGb3IgDQo+ID4gZnVydGhlciBpbmZvcm1hdGlvbiBvbiBo
+b3cgdG8gc3BvdCBwaGlzaGluZywgYWNjZXNzIOKAnEN5YmVyc2VjdXJpdHkgDQo+ID4gT25lU3Bh
+Y2UgUGFnZeKAnSBhbmQgcmVwb3J0IHBoaXNoaW5nIGJ5IGNsaWNraW5nIHRoZSBidXR0b24g4oCc
+UmVwb3J0IA0KPiA+IFBoaXNoaW5n4oCdIG9uIHRoZSBPdXRsb29rIHRvb2xiYXIuDQo+ID4gDQo+
+ID4gDQo+ID4gT24gVHVlLCAyMDIxLTEwLTEyIGF0IDEyOjQzICswMDAwLCBNb25zZWVzLCBTdGV2
+ZW4gQyAoVVMpIHdyb3RlOg0KPiA+ID4gZysrOiBlcnJvcjogdW5yZWNvZ25pemVkIGNvbW1hbmQg
+bGluZSBvcHRpb24g4oCYLXN0ZD1jKysxNOKAmQ0KPiA+IA0KPiA+IEl0IGxvb2tzIGxpa2UgdGhl
+IGdjYyB2ZXJzaW9uIGlzIHRvbyBvbGQgb24geW91ciBob3N0IGZvciB0aGlzIHRvDQo+ID4gd29y
+ay4NCj4gPiANCj4gPiBUaGFua3MsDQo+ID4gDQo+ID4gQW51ag0KPiANCg0K
 
