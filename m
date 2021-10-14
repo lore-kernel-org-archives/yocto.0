@@ -2,59 +2,61 @@ Return-Path: <pavel@zhukoff.net>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 112F0C433F5
-	for <webhook@archiver.kernel.org>; Thu, 14 Oct 2021 06:41:02 +0000 (UTC)
-Received: from forward106j.mail.yandex.net (forward106j.mail.yandex.net
- [5.45.198.249])
- by mx.groups.io with SMTP id smtpd.web08.5881.1634193660517569065
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DE835C433EF
+	for <webhook@archiver.kernel.org>; Thu, 14 Oct 2021 07:02:47 +0000 (UTC)
+Received: from forward108p.mail.yandex.net (forward108p.mail.yandex.net
+ [77.88.28.116])
+ by mx.groups.io with SMTP id smtpd.web11.6165.1634194966781334033
  for <yocto@lists.yoctoproject.org>;
- Wed, 13 Oct 2021 23:41:01 -0700
+ Thu, 14 Oct 2021 00:02:47 -0700
 Authentication-Results: mx.groups.io;
  dkim=fail reason="body hash did not verify" header.i=@zhukoff.net
- header.s=mail header.b=wzscyJRb;
- spf=pass (domain: zhukoff.net, ip: 5.45.198.249, mailfrom: pavel@zhukoff.net)
-Received: from sas2-77ef6549fc66.qloud-c.yandex.net
- (sas2-77ef6549fc66.qloud-c.yandex.net
- [IPv6:2a02:6b8:c08:b922:0:640:77ef:6549])
-	by forward106j.mail.yandex.net (Yandex) with ESMTP id 975B9136A708;
-	Thu, 14 Oct 2021 09:40:56 +0300 (MSK)
-Received: from sas2-34ddad429748.qloud-c.yandex.net
- (2a02:6b8:c08:b787:0:640:34dd:ad42 [2a02:6b8:c08:b787:0:640:34dd:ad42])
-	by sas2-77ef6549fc66.qloud-c.yandex.net (mxback/Yandex) with ESMTP id
- Z3YacNCDPw-euE89eAj;
-	Thu, 14 Oct 2021 09:40:56 +0300
+ header.s=mail header.b=Vk83XNN6;
+ spf=pass (domain: zhukoff.net, ip: 77.88.28.116, mailfrom: pavel@zhukoff.net)
+Received: from forward103q.mail.yandex.net (forward103q.mail.yandex.net
+ [IPv6:2a02:6b8:c0e:50:0:640:b21c:d009])
+	by forward108p.mail.yandex.net (Yandex) with ESMTP id 91D87267A451;
+	Thu, 14 Oct 2021 10:02:43 +0300 (MSK)
+Received: from vla1-4834b80a1080.qloud-c.yandex.net
+ (vla1-4834b80a1080.qloud-c.yandex.net
+ [IPv6:2a02:6b8:c0d:1e06:0:640:4834:b80a])
+	by forward103q.mail.yandex.net (Yandex) with ESMTP id 8FB7056A0013;
+	Thu, 14 Oct 2021 10:02:43 +0300 (MSK)
+Received: from vla5-8422ddc3185d.qloud-c.yandex.net
+ (2a02:6b8:c18:3495:0:640:8422:ddc3 [2a02:6b8:c18:3495:0:640:8422:ddc3])
+	by vla1-4834b80a1080.qloud-c.yandex.net (mxback/Yandex) with ESMTP id
+ FL04T2lMYx-2hDSqboF;
+	Thu, 14 Oct 2021 10:02:43 +0300
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zhukoff.net; s=mail;
- t=1634193656;
-	bh=zsDJX9jZ38wpMx0xdAX7E6RcN2aj+J9bEkIlfJKB+uE=;
+ t=1634194963;
+	bh=0xFpNilAyn5uylbp21CH55zwxVrdQJ9OB9WPfJkv+S4=;
 	h=Date:Subject:To:From:Message-Id:Cc;
-	b=wzscyJRb4qu0LKrz67OB/IEFuHLs71tzHOm3mjQyaGlnWEggFyljrblliqYGIdtGg
-	 M9LCUKwV+DBKkYV6s2LwtSkD+sXPplOwlA7v3xrMbGSa8fuuDTKwZ2znckBDxDNg2M
-	 WD0Vo+gq39fh9gEYmoXsyTqTX823Y1lQRQT2s9Hk=
-Authentication-Results: sas2-77ef6549fc66.qloud-c.yandex.net;
+	b=Vk83XNN6j9czlo4DPkRlTAzFIQV4ntPuKs1XaGwbIBR3wUaVsvlFvN2shS7U68pEe
+	 VloW/LyDIuxlDU/mLajYFPx7JZkGER5lZGIbuaor2imXaeQSqSeR2r4C70ow6JWmq9
+	 Xhq6drBYELTDpZJmrnfb9xGFYVoS0P+8nZ23Z97E=
+Authentication-Results: vla1-4834b80a1080.qloud-c.yandex.net;
  dkim=pass header.i=@zhukoff.net
-Received: by sas2-34ddad429748.qloud-c.yandex.net (smtp/Yandex) with ESMTPS id
- dfR4AHzWeg-etGaulhO;
-	Thu, 14 Oct 2021 09:40:55 +0300
+Received: by vla5-8422ddc3185d.qloud-c.yandex.net (smtp/Yandex) with ESMTPS id
+ y4OGB7vtBg-2gmSiEZ2;
+	Thu, 14 Oct 2021 10:02:42 +0300
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
 	(Client certificate not present)
 X-Yandex-Fwd: 2
 From: Pavel Zhukov <pavel@zhukoff.net>
 To: yocto@lists.yoctoproject.org
-Cc: Pavel Zhukov <pavel.zhukov@huawei.com>,
-	pavel@zhukoff.net
-Subject: [psplash][PATCH] Add configure options to disable progress bar
-Date: Thu, 14 Oct 2021 08:40:51 +0200
-Message-Id: <20211014064051.16475-1-pavel@zhukoff.net>
+Cc: Pavel Zhukov <pavel@zhukoff.net>,
+	Pavel Zhukov <pavel.zhukov@huawei.com>
+Subject: [psplash][PATCH v2] Add configure options to disable progress bar
+Date: Thu, 14 Oct 2021 09:02:17 +0200
+Message-Id: <20211014070216.17882-1-pavel@zhukoff.net>
 X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 14 Oct 2021 06:41:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55066
-
-From: Pavel Zhukov <pavel.zhukov@huawei.com>
+ <yocto@lists.yoctoproject.org>; Thu, 14 Oct 2021 07:02:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55067
 
 Progress bar can overlap with products logos, added
 --disable-progress-bar configure option to disable progress
