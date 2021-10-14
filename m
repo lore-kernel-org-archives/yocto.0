@@ -1,98 +1,112 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 95832C433EF
-	for <webhook@archiver.kernel.org>; Thu, 14 Oct 2021 16:24:37 +0000 (UTC)
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com
- [209.85.222.49])
- by mx.groups.io with SMTP id smtpd.web12.436.1634228677054606718
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 405D9C433F5
+	for <webhook@archiver.kernel.org>; Thu, 14 Oct 2021 16:37:23 +0000 (UTC)
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com
+ [209.85.214.172])
+ by mx.groups.io with SMTP id smtpd.web09.615.1634229442154429205
  for <yocto@lists.yoctoproject.org>;
- Thu, 14 Oct 2021 09:24:37 -0700
+ Thu, 14 Oct 2021 09:37:22 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=hQ2TpCKx;
- spf=pass (domain: gmail.com, ip: 209.85.222.49,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ua1-f49.google.com with SMTP id u5so12341790uao.13
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=Zq/AwAVn;
+ spf=pass (domain: gmail.com, ip: 209.85.214.172,
+ mailfrom: raj.khem@gmail.com)
+Received: by mail-pl1-f172.google.com with SMTP id n11so4557693plf.4
         for <yocto@lists.yoctoproject.org>;
- Thu, 14 Oct 2021 09:24:36 -0700 (PDT)
+ Thu, 14 Oct 2021 09:37:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=TlGAwnBNof0pjaSOlTfgjDJuhMaGEOpaVsdMsNbT5NQ=;
-        b=hQ2TpCKxIACrjWvA6fQ1fApgg/JUDSwrH2QwKaL+Ds5SP0y0EUILVUTTMh0hJLc8tL
-         T2I0HVoO2TxCa6g2O/RmlhcTJoMzJ1rW5aEjox/lkJfX1HFlOXz9uj5uQieRlUht3f5s
-         jSAeu9FvjhT1utwwFxTBLTITOb1VcxJNGEhcHESv3XH4kwyUUALzlAXxushPDRE1EwmR
-         JrNbkoSLSBGQ6zViUfeOhO1aqTFhzdmJPUzH+32jb8RxBBpyj7n1eKQLU/OhxeoJeXrs
-         uhaNrnwt5WjhedEsDRg77TKvhAg91f/iGlA1Og3vdlW6sgAuDcuw/HOgjk/6fjAmhc1A
-         CoNQ==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:organization:in-reply-to:content-transfer-encoding;
+        bh=DmyuBUMeRk7BfAqNQ0Vlxd2vpvjhBszgnCUUsVo9aUc=;
+        b=Zq/AwAVnIk6w9jCclM3UPp1RDWlppuVsGHxifDHD5RJFuvgKKLweZKUK4umTBv0ROK
+         OaMHDPgs01Pne6HsDO/Vx0k16kce2OujQr18rrDmdVBCuW/Z0tnihUwvBkl8GXFZ1Hjg
+         xPQmDULTc22mRjlkO29EzwGxWGJO/vhV0n6NkflVJ72OrKfzCY1p+JdI95AWgsbYAu9m
+         bOhQhvCiYpsj2xrFkmDpTnPzIfkgfQHtBX3h0tWdlusw9flk+uWxtvOVao017xzd+/W9
+         3cJ2To3IAa20Jaa0k1Qu27KcmuEeUs4bgQplqL+XP6EbAxYoP439q3/RWjKjKIK9R5xC
+         dwvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TlGAwnBNof0pjaSOlTfgjDJuhMaGEOpaVsdMsNbT5NQ=;
-        b=ndDDUKqHCCbvIyywIYpIaffEMf7Pzk5HWMo3oJCVhmPXufVe12lIsA1bnruokMUgfH
-         PidLOYsUQwDfk2vA5cKQjyA0BYizZ7EiXLnfU+D/hWUtaaCkP/CoMDh4IaRWJirGpFjq
-         YyVSHeTT35uPlfSUE4i5pZEkmmvz15J1Ivp0tSkV/wpLN8piTHsXwMvQP6eZnbAdL0dF
-         SdEVdrbP+VB6A84UAnot5MoWwETduc5UU6/OR15ly743eTpTbeyxrE02ngy1gpcFR5Hi
-         WiDttdMnP8/R6h5mMz9cI4zBpAIWHcYjzCB4KZrWaLjkYbjcChbo1YBGUHqB0ea3FA3B
-         EtHQ==
-X-Gm-Message-State: AOAM530kdoSdIToeoxHmCZw9Fv41+nSLvvZWBJ4yOOqdPfmxT5kicxwp
-	KkOGiOZD2hjqLHjG65zKBHDdUr0UWDJvXVmnUEs=
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=DmyuBUMeRk7BfAqNQ0Vlxd2vpvjhBszgnCUUsVo9aUc=;
+        b=gj4dg4bBNpCyj+bK8H4DXt1QMlQAXJBZ/hVmitTccgHg7Z72h77UXJaifn0yR59mOp
+         ECI/nOuMDiVwNj4YArsRi31SjwH6ojNXztYr7zy5WnVMhp59byt2TgZMGDZnFLrBkTTx
+         ohpkDwEX1fbsPXyYgCENSohaaw7IWcG2W3xDU0R6zLIZkck1bf9h9jlKaNzTyj5MbGkB
+         w3XYFfzZah36ljUi/+bh1KgJQIe4/cwBu8otcpKFPMqLd2BGxmgmE7oj0Clu0IT5oVFS
+         6m0nOJGLhd1SopwaNCjKjtN3Pre5/e6gETq8l5BzkC5jXHQmPzTW4/OEqP+DzcODtsrX
+         2DuQ==
+X-Gm-Message-State: AOAM530ErhHUxQ03n8gq98gYspH/zFK8eQG66VDt7yKGlDOKyJkDi+I5
+	RjU4fS3C+pqYfybfANJYqQo=
 X-Google-Smtp-Source: 
- ABdhPJxLlxVsr8eohzVhRGaglcyjz4MEle9PRdkF/tnCUblTuLELAF8/Ccecha9rSQvdwjQxLaz14b0FY0u2aQg5mgM=
-X-Received: by 2002:a67:df18:: with SMTP id s24mr7746171vsk.40.1634228676223;
- Thu, 14 Oct 2021 09:24:36 -0700 (PDT)
+ ABdhPJzpDIgyACss+5KxISs5O+j4g2PK81sNp+/K0TKkVibibtGXveBzcHmzvF9chj8qHHI4wPdKvg==
+X-Received: by 2002:a17:90a:7892:: with SMTP id
+ x18mr21764198pjk.33.1634229441305;
+        Thu, 14 Oct 2021 09:37:21 -0700 (PDT)
+Received: from ?IPV6:2601:646:9200:a0f0:f921:a382:258b:3024?
+ ([2601:646:9200:a0f0:f921:a382:258b:3024])
+        by smtp.gmail.com with ESMTPSA id
+ l11sm9141782pjg.22.2021.10.14.09.37.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Oct 2021 09:37:21 -0700 (PDT)
+Message-ID: <6e28f89b-2482-44a3-90ea-7b686a749aa2@gmail.com>
+Date: Thu, 14 Oct 2021 09:37:19 -0700
 MIME-Version: 1.0
-References: <20211013161839.90894-1-alex.kanavin@gmail.com>
- <a49f6d2eb665891e315e57b822e00672102dd36f.camel@linuxfoundation.org>
-In-Reply-To: 
- <a49f6d2eb665891e315e57b822e00672102dd36f.camel@linuxfoundation.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Thu, 14 Oct 2021 18:24:24 +0200
-Message-ID: 
- <CANNYZj8eL7nFAHW=1mfAyEkL16mf710v2sG9LZAw2wjrfdKJ_A@mail.gmail.com>
-Subject: Re: [yocto] [PATCH yocto-autobuilder-helper] scripts/collect-results:
- publish everything in tmp/log/oeqa/
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000ba674f05ce528329"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.2.0
+Subject: Re: [yocto] docker fragment missing conntrack and netfilter entries?
+ #meta-virtualization
+Content-Language: en-US
+To: crawford.benjamin15@gmail.com, yocto@lists.yoctoproject.org
+References: <i1rt.1634228602998685993.yIPa@lists.yoctoproject.org>
+From: Khem Raj <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+In-Reply-To: <i1rt.1634228602998685993.yIPa@lists.yoctoproject.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 14 Oct 2021 16:24:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55075
+ <yocto@lists.yoctoproject.org>; Thu, 14 Oct 2021 16:37:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55076
 
---000000000000ba674f05ce528329
-Content-Type: text/plain; charset="UTF-8"
 
-On Thu, 14 Oct 2021 at 18:08, Richard Purdie <
-richard.purdie@linuxfoundation.org> wrote:
 
-> Since that build directory contains symlinks, we may need something like
-> cp -L
-> here? I didn't test but I think we might run into an issue?
->
+On 10/14/21 9:23 AM, crawford.benjamin15@gmail.com wrote:
+> Hi,
+> 
+> I have just completed a bringup of Poky on the ODROID N2+ platform, but 
+> noticed that Docker failed to start, complaining that it could not load 
+> the "nf_conntrack_netlink" module.
+> After checking docker.cfg, I noticed that a few configuration options I 
+> expected were missing.
+> 
+> Shouldn't the following be added: (?)
+> 
+> |CONFIG_NETFILTER_NETLINK=m|
+> |CONFIG_NT_CT_NETLINK=m|
+> 
+> |CONFIG_NETFILTER_XT_MATCH_CONNTRACK=m
+> 
 
-That's right, -L is needed.
+seems fine. Please send a patch for enhancing it via docker.cfg
 
-Alex
-
---000000000000ba674f05ce528329
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Thu, 14 Oct 2021 at 18:08, Richard Purdie &lt;<a href=3D"mailto:r=
-ichard.purdie@linuxfoundation.org">richard.purdie@linuxfoundation.org</a>&g=
-t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Since =
-that build directory contains symlinks, we may need something like cp -L<br=
->
-here? I didn&#39;t test but I think we might run into an issue?<br></blockq=
-uote><div><br></div><div>That&#39;s right, -L is needed.</div><div><br></di=
-v><div>Alex<br></div></div></div>
-
---000000000000ba674f05ce528329--
+> Thanks,
+> Ben|
+> 
+> 
+> 
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#55074): https://lists.yoctoproject.org/g/yocto/message/55074
+> Mute This Topic: https://lists.yoctoproject.org/mt/86318266/1997914
+> Mute #meta-virtualization:https://lists.yoctoproject.org/g/yocto/mutehashtag/meta-virtualization
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+> 
 
