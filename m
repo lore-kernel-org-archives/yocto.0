@@ -1,134 +1,109 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <bluelightning@bluelightning.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E228C433F5
-	for <webhook@archiver.kernel.org>; Thu, 14 Oct 2021 19:40:02 +0000 (UTC)
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com
- [209.85.208.43])
- by mx.groups.io with SMTP id smtpd.web11.2084.1634240400957966171
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B66CFC433F5
+	for <webhook@archiver.kernel.org>; Fri, 15 Oct 2021 02:35:11 +0000 (UTC)
+Received: from mail-61-r20.ipv4.per01.ds.network
+ (mail-61-r20.ipv4.per01.ds.network [27.123.24.217])
+ by mx.groups.io with SMTP id smtpd.web11.4260.1634265308840715470
  for <yocto@lists.yoctoproject.org>;
- Thu, 14 Oct 2021 12:40:01 -0700
+ Thu, 14 Oct 2021 19:35:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=fPYA8gCx;
- spf=pass (domain: gmail.com, ip: 209.85.208.43,
- mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-ed1-f43.google.com with SMTP id y12so29727315eda.4
-        for <yocto@lists.yoctoproject.org>;
- Thu, 14 Oct 2021 12:40:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=wNYpIk6kHYr/QwAFJPVaTJaG0RFN/yGN+ZOg/MteCpQ=;
-        b=fPYA8gCx7FQjN8/C2EU8OzoLvFZvVyQVIA/pADrDvs3frRigTIu78P0RM+SVz841kt
-         5CM6XNKsraxyDqfuLc+s5nOd2XiKSsvCu77wRd6jA7ehhOXX4GP8InD0a1pczmDb6+V0
-         Nu9FikCR+ZWhGAMHwk1g0EWd+F+SKLZmzuaYtw5O00BYbCbqGM24mHjdSc8A3t8L8GFG
-         /f5g77CVgxYirLvL0pOF6rxd7U77lY+REy9G0H7EHfQ0ojzVbM03TdhzG9phHUz6yVY0
-         QvddHDtb4/S2tVqnu9NPWLzjXHGYij1+t9wvEfAIFWzgASzjiYBRgeWX0ndLgqNmAb7U
-         vNOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wNYpIk6kHYr/QwAFJPVaTJaG0RFN/yGN+ZOg/MteCpQ=;
-        b=3rJVAZjYSLYD44Cam85t6swCs2TJk9gVl0WGy+XWvFhaZsCM7OEzCLVTlHTTOjKR++
-         Bd+mCYKpfIXkLcZGocK8O9eSEboKS0w2bnbRRZBnAlBMGF8InFa0NwxLh1nTeX8f/GXC
-         BQcKLHYsJMlDhQoh25KcXMo8F+f7662lAnVXLH8TM7cIkbNguQQ5IsKbW7WGIfyf0CmX
-         OjAASasjiSZlE9wpnPtgHhSOGgU1IcbANYMc6jNXTdjnGCRIIQbVsLMt8gdNaW67iYe9
-         BEF4b/YAQsOwhAr8fz1XLsXWY4X3XK2f0e6zp9YG/GSe+AJGvl+a0ZdVLmGci9VFHUox
-         VVPw==
-X-Gm-Message-State: AOAM532Hwjtq8ONBEf3w+LIoBo4EbUHW5pXuV8am1Js3gI6oHk740nBl
-	up96tEaS2JAG/pkXy+1NW6n4Lh+Vsca9OOiQ/Gs=
-X-Google-Smtp-Source: 
- ABdhPJwc0ZR6knr2vcYVTkIA0+bZxZrJWJsyZr+NBQ5v9xNpgLPfiZdn/LHWcUEHQs5Vn8PgwpQVqUBx2uF+yvlTt2Q=
-X-Received: by 2002:a05:6402:11ca:: with SMTP id
- j10mr11358940edw.223.1634240399447;
- Thu, 14 Oct 2021 12:39:59 -0700 (PDT)
+ dkim=fail reason="no key for verify" header.i=@softec.co.nz header.s=default
+ header.b=bue6/+9n;
+ spf=none, err=permanent DNS error (domain: bluelightning.org,
+ ip: 27.123.24.217, mailfrom: bluelightning@bluelightning.org)
+Received: from server-72-r70.ipv4.per01.ds.network (cp-fp06.syd02.ds.network
+ [122.201.124.108])
+	by halon-out02.au.ds.network (Halon) with ESMTPS
+	id 769b7ad7-2d60-11ec-bc81-f8bc1204ff90;
+	Fri, 15 Oct 2021 10:34:47 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=softec.co.nz; s=default; h=Content-Type:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=NMkKAIOXyW2AUl6vfd/RuklX6FYJh50VE1G5fJTXXHU=; b=bue6/+9n/n/ZbQ13kB72m2apMY
+	0It3D4i2nGGNffiW/pbjzkRitM2DLpSHtMK8glRmA79YuDjuIx+YzG/LuQrlH33BGSG4Yh0WkvIRo
+	WP8W2z1aZwHRnCpSJ/S+iE4edkpfuQnefBudaMd7sC8n6DKWMI7Y/DD+Mn7F8ExhEuumWVT8rpsb9
+	e5gws+uTMVhLKsU6phMwyqTB59HVONV4YO6ReKgRSjCt1KhjrYBR3FbfVRhcCVOvBacI/8nSsYCrf
+	Vq92VVUTzKIp/2cBjNqWN/VMiAbF90dkBwvn8cHMtJs2q5WkMfvU6PLxr8H5yYvO1WcgYIgrn8yzZ
+	73Pj0IGw==;
+Received: from [151.210.140.148] (port=3890 helo=linc.localnet)
+	by cp-fp06.syd02.ds.network with esmtpsa  (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <bluelightning@bluelightning.org>)
+	id 1mbD3m-00Fwz3-5T
+	for yocto@lists.yoctoproject.org; Fri, 15 Oct 2021 13:35:02 +1100
+From: Paul Eggleton <bluelightning@bluelightning.org>
+To: yocto@lists.yoctoproject.org
+Subject: glibc -fstack-protector-strong
+Date: Fri, 15 Oct 2021 15:35:01 +1300
+Message-ID: <3379890.oiGErgHkdL@linc>
 MIME-Version: 1.0
-References: <i1rt.1634228602998685993.yIPa@lists.yoctoproject.org>
-In-Reply-To: <i1rt.1634228602998685993.yIPa@lists.yoctoproject.org>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Thu, 14 Oct 2021 15:39:48 -0400
-Message-ID: 
- <CADkTA4Mc9c=RVbxNCJRroO1BhVF_2WnQDjmROGkALsBUg4BtgQ@mail.gmail.com>
-Subject: Re: [yocto] docker fragment missing conntrack and netfilter entries?
- #meta-virtualization
-To: crawford.benjamin15@gmail.com
-Cc: yocto <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cp-fp06.syd02.ds.network
+X-AntiAbuse: Original Domain - lists.yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - bluelightning.org
+X-Get-Message-Sender-Via: cp-fp06.syd02.ds.network: authenticated_id:
+ paul@softec.co.nz
+X-Authenticated-Sender: cp-fp06.syd02.ds.network: paul@softec.co.nz
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 14 Oct 2021 19:40:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55078
+ <yocto@lists.yoctoproject.org>; Fri, 15 Oct 2021 02:35:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55079
 
-On Thu, Oct 14, 2021 at 12:23 PM <crawford.benjamin15@gmail.com> wrote:
->
-> Hi,
->
-> I have just completed a bringup of Poky on the ODROID N2+ platform, but noticed that Docker failed to start, complaining that it could not load the "nf_conntrack_netlink" module.
-> After checking docker.cfg, I noticed that a few configuration options I expected were missing.
->
-> Shouldn't the following be added: (?)
->
-> CONFIG_NETFILTER_NETLINK=m
-> CONFIG_NT_CT_NETLINK=m
->
-> CONFIG_NETFILTER_XT_MATCH_CONNTRACK=m
+Hi folks
 
-FYI: you want the meta-virtualization mailing list, not the main yocto
-one for questions like this.
+I'm looking at how -fstack-protector-strong might be enabled in the glibc
+recipe. It looks like it should already be enabled by default via 
+--enable-stack-protector=strong in EXTRA_OECONF, however looking at the
+compile logs it is passing -fno-stack-protector instead. Examining the
+configure log:
 
-There's a balancing act with the fragments: they are as
-non-overlapping as possible, they often support a wide range of kernel
-versions and kernel providers, so there are sometimes more, or less
-options than you'd expect in a fragment.
+checking for -fstack-protector... (cached) no
+checking for -fstack-protector-strong... (cached) no
+checking for -fstack-protector-all... (cached) no
 
-In particular the fragments in meta-virtualization are changing right
-now, and are being unified in the kernel-cache repository (that allows
-the duplicated options to be rationalized).
+This in turn comes from libc_cv_ssp_strong=no in CACHED_CONFIGUREVARS in
+glibc.inc. Searching back through the git history I can't find much by way of
+explanation as to why the stack protector options are disabled. Setting
+libc_cv_ssp_strong=yes however results in the following:
 
-So depending on which docker.cfg you are looking at, you'd either send
-a patch to the linux-yocto mailing list, or the meta-virtualization
-list.
+| x86_64-poky-linux-gcc  -m64 -march=core2 -mtune=core2 -msse3 -mfpmath=sse  --sysroot=/media/large/oe/poky/tmp/work/core2-64-poky-linux/glibc/2.31+gitAUTOINC+4f0a61f753-r0/recipe-sysroot -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed  -Wl,-z,relro,-z,now -fuse-ld=bfd  -nostdlib -nostartfiles -r -o /media/large/oe/poky/tmp/work/core2-64-poky-linux/glibc/2.31+gitAUTOINC+4f0a61f753-r0/build-x86_64-poky-linux/libc_pic.os \
+|  -Wl,-d -Wl,--whole-archive /media/large/oe/poky/tmp/work/core2-64-poky-linux/glibc/2.31+gitAUTOINC+4f0a61f753-r0/build-x86_64-poky-linux/libc_pic.a -o /media/large/oe/poky/tmp/work/core2-64-poky-linux/glibc/2.31+gitAUTOINC+4f0a61f753-r0/build-x86_64-poky-linux/libc_pic.os
+| x86_64-poky-linux-gcc  -m64 -march=core2 -mtune=core2 -msse3 -mfpmath=sse  --sysroot=/media/large/oe/poky/tmp/work/core2-64-poky-linux/glibc/2.31+gitAUTOINC+4f0a61f753-r0/recipe-sysroot -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed  -Wl,-z,relro,-z,now -fuse-ld=bfd  -nostdlib -nostartfiles -r -o /media/large/oe/poky/tmp/work/core2-64-poky-linux/glibc/2.31+gitAUTOINC+4f0a61f753-r0/build-x86_64-poky-linux/elf/librtld.map.o  \
+|       '-Wl,-(' /media/large/oe/poky/tmp/work/core2-64-poky-linux/glibc/2.31+gitAUTOINC+4f0a61f753-r0/build-x86_64-poky-linux/elf/dl-allobjs.os /media/large/oe/poky/tmp/work/core2-64-poky-linux/glibc/2.31+gitAUTOINC+4f0a61f753-r0/build-x86_64-poky-linux/libc_pic.a -lgcc '-Wl,-)' -Wl,-Map,/media/large/oe/poky/tmp/work/core2-64-poky-linux/glibc/2.31+gitAUTOINC+4f0a61f753-r0/build-x86_64-poky-linux/elf/librtld.mapT
+| /media/large/oe/poky/tmp/work/core2-64-poky-linux/glibc/2.31+gitAUTOINC+4f0a61f753-r0/recipe-sysroot-native/usr/bin/x86_64-poky-linux/../../libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/9.3.0/ld.bfd: /media/large/oe/poky/tmp/work/core2-64-poky-linux/glibc/2.31+gitAUTOINC+4f0a61f753-r0/build-x86_64-poky-linux/libc_pic.a(libc_fatal.os): in function `__GI___libc_fatal':
+| /usr/src/debug/glibc/2.31+gitAUTOINC+4f0a61f753-r0/git/libio/../sysdeps/posix/libc_fatal.c:161: multiple definition of `__GI___libc_fatal'; /media/large/oe/poky/tmp/work/core2-64-poky-linux/glibc/2.31+gitAUTOINC+4f0a61f753-r0/build-x86_64-poky-linux/elf/dl-allobjs.os:/usr/src/debug/glibc/2.31+gitAUTOINC+4f0a61f753-r0/git/elf/dl-minimal.c:188: first defined here
+| /media/large/oe/poky/tmp/work/core2-64-poky-linux/glibc/2.31+gitAUTOINC+4f0a61f753-r0/recipe-sysroot-native/usr/bin/x86_64-poky-linux/../../libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/9.3.0/ld.bfd: /media/large/oe/poky/tmp/work/core2-64-poky-linux/glibc/2.31+gitAUTOINC+4f0a61f753-r0/build-x86_64-poky-linux/libc_pic.a(libc_fatal.os): in function `__GI___libc_fatal':
+| /usr/src/debug/glibc/2.31+gitAUTOINC+4f0a61f753-r0/git/libio/../sysdeps/posix/libc_fatal.c:161: multiple definition of `__libc_fatal'; /media/large/oe/poky/tmp/work/core2-64-poky-linux/glibc/2.31+gitAUTOINC+4f0a61f753-r0/build-x86_64-poky-linux/elf/dl-allobjs.os:/usr/src/debug/glibc/2.31+gitAUTOINC+4f0a61f753-r0/git/elf/dl-minimal.c:188: first defined here
+| collect2: error: ld returned 1 exit status
+| make[2]: *** [Makefile:499: /media/large/oe/poky/tmp/work/core2-64-poky-linux/glibc/2.31+gitAUTOINC+4f0a61f753-r0/build-x86_64-poky-linux/elf/librtld.map] Error 1
+| make[2]: *** Waiting for unfinished jobs....
+| make[2]: Leaving directory '/media/large/oe/poky/tmp/work/core2-64-poky-linux/glibc/2.31+gitAUTOINC+4f0a61f753-r0/git/elf'
+| make[1]: *** [Makefile:490: elf/subdir_lib] Error 2
+| make[1]: Leaving directory '/media/large/oe/poky/tmp/work/core2-64-poky-linux/glibc/2.31+gitAUTOINC+4f0a61f753-r0/git'
+| make: *** [Makefile:9: all] Error 2
+| ERROR: oe_runmake failed
 
-In particular, the netfilter fragment is what is expected to provide
-many of the needed options, and that's what has been happening with
-the out of box docker, lxc, podman, k8s, etc, configurations tested in
-meta-virt. The docker.scc fragment will start pulling that in
-automatically as part of the de-duplication effort I hinted at above.
+This is not an area I have looked much into before; does anyone have any insights?
 
-But there's no harm in sending a patch, I'll figure out how/where it
-applies as I go through those efforts.
-
-Cheers,
-
-Bruce
+Thanks
+Paul
 
 
 
 
-
-
->
-> Thanks,
-> Ben
->
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#55074): https://lists.yoctoproject.org/g/yocto/message/55074
-> Mute This Topic: https://lists.yoctoproject.org/mt/86318266/1050810
-> Mute #meta-virtualization:https://lists.yoctoproject.org/g/yocto/mutehashtag/meta-virtualization
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [bruce.ashfield@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
-
-
---
-- Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end
-- "Use the force Harry" - Gandalf, Star Trek II
 
