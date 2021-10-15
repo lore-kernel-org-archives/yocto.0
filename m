@@ -1,101 +1,106 @@
-Return-Path: <mikko.rapeli@bmw.de>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 16CC9C433EF
-	for <webhook@archiver.kernel.org>; Fri, 15 Oct 2021 13:18:19 +0000 (UTC)
-Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.25])
- by mx.groups.io with SMTP id smtpd.web08.9180.1634303897844294780
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C2170C433F5
+	for <webhook@archiver.kernel.org>; Fri, 15 Oct 2021 13:58:12 +0000 (UTC)
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
+ [209.85.128.42])
+ by mx.groups.io with SMTP id smtpd.web11.9551.1634306291168443013
  for <yocto@lists.yoctoproject.org>;
- Fri, 15 Oct 2021 06:18:18 -0700
+ Fri, 15 Oct 2021 06:58:11 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=none, err=permanent DNS error (domain: lakka.kapsi.fi, ip: 91.232.154.25,
- mailfrom: mcfrisk@lakka.kapsi.fi)
-Received: from kapsi.fi ([2001:67c:1be8::11] helo=lakka.kapsi.fi)
-	by mail.kapsi.fi with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.89)
-	(envelope-from <mcfrisk@lakka.kapsi.fi>)
-	id 1mbN6D-0003Fy-2m; Fri, 15 Oct 2021 16:18:13 +0300
-Received: from mcfrisk by lakka.kapsi.fi with local (Exim 4.92)
-	(envelope-from <mcfrisk@lakka.kapsi.fi>)
-	id 1mbN6D-0004BY-1Q; Fri, 15 Oct 2021 16:18:13 +0300
-From: Mikko Rapeli <mikko.rapeli@bmw.de>
-To: yocto@lists.yoctoproject.org
-Cc: Mikko Rapeli <mikko.rapeli@bmw.de>,
-	Armin Kuster <akuster808@gmail.com>,
-	Joe MacDonald <joe@deserted.net>
-Subject: [PATCH][meta-selinux][dunfell] MAINTAINERS: update email address
-Date: Fri, 15 Oct 2021 16:18:05 +0300
-Message-Id: <20211015131805.15295-1-mikko.rapeli@bmw.de>
-X-Mailer: git-send-email 2.20.1
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=eeVCWjp1;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.42,
+ mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f42.google.com with SMTP id g2so2650140wme.4
+        for <yocto@lists.yoctoproject.org>;
+ Fri, 15 Oct 2021 06:58:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=2jeVzkai3OhvzSA1VJkMxR2TMGDqbcmGtsa8/E3wwnA=;
+        b=eeVCWjp1TXxmZUYTrdokMmREZYK6xh8YOtFN1pc3jaxYuOFQNKfuXcDD3voSJVLmzE
+         6qFfI0ESSKhuogYa4tZe633WCW0+4XRiAIZ4gxNsMsbBfUCiQL1ICpR8TY14LjIiP/he
+         wTZPLNgl4xrbm1t0z5S6qyT6Lq61OMwdsKDoc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=2jeVzkai3OhvzSA1VJkMxR2TMGDqbcmGtsa8/E3wwnA=;
+        b=aUedX5Q27ljYShGPbTtSWLFNpbu20HNJy3c1n8qJjNXGTJdhL+hlb81qc3zgkSyc8H
+         Z21wv/AooLRLtJO2eCdnTnL2cFX/OThHuu+C6MtGBXTyef+Oanr8so/hTGTDzeA6lgLF
+         3vuLSQqOWR+y68MALAMlrHQPkuZzFsTfF9z6eW7jw/UhDI2iM9EMl0eup3WWF9kx87mX
+         lM5KW25uxphHIVz00iXMArS7XUe9NQDjEPb1TT5SR0Ft3oWjuNg/baZuPauByM55mtJA
+         ThbAiKYyfRq3Aw1+pAHsEFgk6ZFZ/ZX/y8L4B9CqQZ+1fwyHviGCEAgxDOfeWd1HWsqU
+         /7yA==
+X-Gm-Message-State: AOAM533XHSPtnghS7VBVIhlcUnb11hwEpCtcW3F1QzTYvPsLuWDcDxag
+	1lIsWCPqZq1GYdf0+xat4ufgMA==
+X-Google-Smtp-Source: 
+ ABdhPJxN6El2koex2KAnc3vYiEfhUHw0qwARDC7tvjt+ZqnnXoxt715AF3Xw53lOIjdvuxO+0nkESQ==
+X-Received: by 2002:a1c:2b85:: with SMTP id
+ r127mr26348053wmr.134.1634306289607;
+        Fri, 15 Oct 2021 06:58:09 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:3c2a:82f4:3a7b:54b1?
+ ([2001:8b0:aba:5f3c:3c2a:82f4:3a7b:54b1])
+        by smtp.gmail.com with ESMTPSA id
+ e16sm4803308wrw.17.2021.10.15.06.58.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Oct 2021 06:58:09 -0700 (PDT)
+Message-ID: 
+ <0aa3c9a451e96ccf921e4915be0ae56cb55cb6a4.camel@linuxfoundation.org>
+Subject: Re: [yocto] SRC_URI Directory Change
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Chuck Wolber <chuckwolber@gmail.com>, yocto
+ <yocto@lists.yoctoproject.org>
+Date: Fri, 15 Oct 2021 14:58:06 +0100
+In-Reply-To: 
+ <CAB=6tBSqYakp12-xZXk_d58HX+gQbkPz04RMfcKgqJp9r0=3jw@mail.gmail.com>
+References: 
+	<CAB=6tBSqYakp12-xZXk_d58HX+gQbkPz04RMfcKgqJp9r0=3jw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4-1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspam-Score: 2.3 (++)
-X-Rspam-Report: Action: no action
- Symbol: RCVD_TLS_LAST(0.00)
- Symbol: ARC_NA(0.00)
- Symbol: RCVD_COUNT_TWO(0.00)
- Symbol: FROM_HAS_DN(0.00)
- Symbol: RCPT_COUNT_THREE(0.00)
- Symbol: R_MISSING_CHARSET(2.50)
- Symbol: FREEMAIL_ENVRCPT(0.00)
- Symbol: MIME_GOOD(-0.10)
- Symbol: TO_MATCH_ENVRCPT_ALL(0.00)
- Symbol: BROKEN_CONTENT_TYPE(1.50)
- Symbol: TO_DN_SOME(0.00)
- Symbol: DMARC_POLICY_SOFTFAIL(0.10)
- Symbol: MID_CONTAINS_FROM(1.00)
- Symbol: R_SPF_NA(0.00)
- Symbol: FORGED_SENDER(0.30)
- Symbol: R_DKIM_NA(0.00)
- Symbol: MIME_TRACE(0.00)
- Symbol: ASN(0.00)
- Symbol: FROM_NEQ_ENVFROM(0.00)
- Symbol: BAYES_HAM(-3.00)
- Symbol: FREEMAIL_CC(0.00)
- Message-ID: 20211015131805.15295-1-mikko.rapeli@bmw.de
-X-SA-Exim-Connect-IP: 2001:67c:1be8::11
-X-SA-Exim-Mail-From: mcfrisk@lakka.kapsi.fi
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 15 Oct 2021 13:18:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55084
+ <yocto@lists.yoctoproject.org>; Fri, 15 Oct 2021 13:58:12 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55085
 
-From: Armin Kuster <akuster808@gmail.com>
+On Fri, 2021-10-15 at 03:03 -0700, Chuck Wolber wrote:
+> Is there a recommended strategy to get do_fetch to invalidate on directory
+> path changes in paths pointed to by file:// URLs in SRC_URI?
+> 
+> Example:
+> 
+> SRC_URI += "file://src;subdir=${S}"
+> 
+> A file at src/foo/bar/baz is recognized just fine. But then a directory change
+> to something like src/foo/bar2/baz is not recognized and does not invalidate
+> any tasks in subsequent builds.
+> 
+> Use case is a recipe that has a fair bit of metadata that is not even remotely
+> amenable to the typical flat layout expected of a set of patches.
+> 
+> ..Ch:W..
+> 
+> P.S. I attempted to do this with an event handler that was run when
+> bb.event.RecipePreFinalise is is fired. It would compare directory trees and
+> set do_fetch[nostamp] = "1" to invalidate the fetcher task. But I got really
+> spotty behavior. It seems like event handlers are cached like tasks.
 
-Include example send-email
+I can see why this breaks and it isn't entirely straightforward to fix since
+we'd have to add data to the file-checksums entries which are generated by both
+OE and Bitbake.
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
-Signed-off-by: Joe MacDonald <joe@deserted.net>
-(cherry picked from commit 48038b45dc114592991c069eb66d174820c0701d)
----
- MAINTAINERS | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+I have a bit of a horrible idea to do this in master-next which does solve the
+problem. We probably need a new bitbake selftest testcase before I could think
+about merging it though.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 36c451f..0dc492e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1,7 +1,14 @@
- This file contains a list of maintainers for the meta-selinux layer.
- 
- Please submit any patches against meta-selinux to the Yocto Project mailing
--list (yocto@yoctoproject.org).
-+list (yocto@lists.yoctoproject.org).
-+
-+git send-email -1 --to yocto@lists.yoctoproject.org --subject-prefix=meta-selinux][PATCH
-+
-+These values can be set as defaults for this repository:
-+
-+$ git config sendemail.to yocto@lists.yoctoproject.org
-+$ git config format.subjectPrefix meta-selinux][PATCH
- 
- You may also contact the maintainers directly.
- 
--- 
-2.20.1
+Cheers,
+
+Richard
 
 
