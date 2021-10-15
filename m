@@ -1,117 +1,135 @@
-Return-Path: <chuckwolber@gmail.com>
+Return-Path: <jonas.brich@bmw.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7C74FC433EF
-	for <webhook@archiver.kernel.org>; Fri, 15 Oct 2021 10:04:09 +0000 (UTC)
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com
- [209.85.219.174])
- by mx.groups.io with SMTP id smtpd.web11.7320.1634292248708665259
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D87D8C433F5
+	for <webhook@archiver.kernel.org>; Fri, 15 Oct 2021 13:10:12 +0000 (UTC)
+Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.25])
+ by mx.groups.io with SMTP id smtpd.web11.8902.1634303411173705145
  for <yocto@lists.yoctoproject.org>;
- Fri, 15 Oct 2021 03:04:08 -0700
+ Fri, 15 Oct 2021 06:10:11 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Pyh9Y+D1;
- spf=pass (domain: gmail.com, ip: 209.85.219.174,
- mailfrom: chuckwolber@gmail.com)
-Received: by mail-yb1-f174.google.com with SMTP id s4so21433698ybs.8
-        for <yocto@lists.yoctoproject.org>;
- Fri, 15 Oct 2021 03:04:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=m68685j7l1T35ySngL+qjMUI6OKwiWXIInXfwnukVkE=;
-        b=Pyh9Y+D12LOReYimvhXwQgFXtQ/1XUW/qlI7g4w0MTkOZ37/bot6v9pY+iMRA8aB44
-         CxKv+eU1QeBHSp04+okBjxlFClCL5ykj3R2t+OrJHRj7KFAFtlU1kYc+fL5stN8mQcKW
-         e1MrjSmYoiaXjRmK14SKb9Ymbb5Cck+7oc7tBAMICGWHFIHa9M9WE8ln6OwR/GpaeckU
-         4T5gvL9BXQrMEGPlNldszPaVS6I9oA5awWDDFY0kdrNhJoPgQGzjMo+W0a/BXUdpPiOT
-         OlH5d23AiNveZ/LnOzrqSSG3rH5yfwpI3vlp/BRtswXe7qlOBWvQVJaCL4kFqYOzk2Kv
-         UqFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=m68685j7l1T35ySngL+qjMUI6OKwiWXIInXfwnukVkE=;
-        b=vTmstIGvRdFGreGZOcm029HbYoOfYrCkaioPPiBkc0u9WGFwjvq8uHHAhY/+PEHsPw
-         0P9Y6L0ljW/+m2rSvgYUZVe5iEziOc88AdiWYzFJwGppZUTQ3Zor0K6oQpdz1crY9DBz
-         8ddDXzh4iBCssvZBIZkclpfxodsfEx673ddCM1AIoY5xn6jM8MYiJHnAbsyLVmxmOUV1
-         vXNOg5xPAWXAcytA5KlPI2lvTO6Uz8B79WnZmoQqCzf5gn3Ntx1aNDIaa3pBTsZbKAoT
-         sXH3ZEmE0BwRowMOvnJnK9ktlwXlbu6jqTJ2qd5dSSL4Wtg+MCC/RNmpDSTaaJMuEiQ3
-         J0Rg==
-X-Gm-Message-State: AOAM5332X9k6ZjcYHOmi5As1ZajpQcK5w5Y76kR/JUn4BkSQIJUJVt15
-	JEQeZEroZBE5PRzVCNlie9Q3jpwAFDQGvsUk6wYInwfzW6g=
-X-Google-Smtp-Source: 
- ABdhPJzNDG1NrTYBDYi96YPPVySDVAQ9rcd4ENNmokkiBNQIvZRe77UHqiYK8VE70ndRwTPa6KHf8fjRo8kmFsg4U4M=
-X-Received: by 2002:a25:d0ce:: with SMTP id
- h197mr11596420ybg.153.1634292247485;
- Fri, 15 Oct 2021 03:04:07 -0700 (PDT)
+ dkim=missing;
+ spf=none, err=permanent DNS error (domain: lakka.kapsi.fi, ip: 91.232.154.25,
+ mailfrom: mcfrisk@lakka.kapsi.fi)
+Received: from kapsi.fi ([2001:67c:1be8::11] helo=lakka.kapsi.fi)
+	by mail.kapsi.fi with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.89)
+	(envelope-from <mcfrisk@lakka.kapsi.fi>)
+	id 1mbMyG-0001I2-1o; Fri, 15 Oct 2021 16:10:02 +0300
+Received: from mcfrisk by lakka.kapsi.fi with local (Exim 4.92)
+	(envelope-from <mcfrisk@lakka.kapsi.fi>)
+	id 1mbMyG-0007PF-0S; Fri, 15 Oct 2021 16:10:00 +0300
+From: Jonas Brich <Jonas.Brich@bmw.de>
+To: yocto@lists.yoctoproject.org
+Cc: Mikko Rapeli <mikko.rapeli@bmw.de>,
+	Jonas Brich <Jonas.Brich@bmw.de>
+Subject: [PATCH][meta-selinux][dunfell] libselinux: Backport NULL pointer fix
+ from 3.1
+Date: Fri, 15 Oct 2021 16:09:09 +0300
+Message-Id: <20211015130909.26804-1-Jonas.Brich@bmw.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Chuck Wolber <chuckwolber@gmail.com>
-Date: Fri, 15 Oct 2021 03:03:56 -0700
-Message-ID: 
- <CAB=6tBSqYakp12-xZXk_d58HX+gQbkPz04RMfcKgqJp9r0=3jw@mail.gmail.com>
-Subject: SRC_URI Directory Change
-To: yocto <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000dee22705ce615009"
+Content-Transfer-Encoding: 8bit
+X-Rspam-Score: 2.3 (++)
+X-Rspam-Report: Action: no action
+ Symbol: RCVD_TLS_LAST(0.00)
+ Symbol: ARC_NA(0.00)
+ Symbol: DMARC_POLICY_SOFTFAIL(0.10)
+ Symbol: FROM_HAS_DN(0.00)
+ Symbol: RCPT_COUNT_THREE(0.00)
+ Symbol: R_MISSING_CHARSET(2.50)
+ Symbol: TO_MATCH_ENVRCPT_ALL(0.00)
+ Symbol: MIME_GOOD(-0.10)
+ Symbol: BROKEN_CONTENT_TYPE(1.50)
+ Symbol: TO_DN_SOME(0.00)
+ Symbol: MID_CONTAINS_FROM(1.00)
+ Symbol: R_SPF_NA(0.00)
+ Symbol: FORGED_SENDER(0.30)
+ Symbol: R_DKIM_NA(0.00)
+ Symbol: MIME_TRACE(0.00)
+ Symbol: ASN(0.00)
+ Symbol: FROM_NEQ_ENVFROM(0.00)
+ Symbol: BAYES_HAM(-3.00)
+ Symbol: RCVD_COUNT_TWO(0.00)
+ Message-ID: 20211015130909.26804-1-Jonas.Brich@bmw.de
+X-SA-Exim-Connect-IP: 2001:67c:1be8::11
+X-SA-Exim-Mail-From: mcfrisk@lakka.kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 15 Oct 2021 10:04:09 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55082
+ <yocto@lists.yoctoproject.org>; Fri, 15 Oct 2021 13:10:12 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55083
 
---000000000000dee22705ce615009
-Content-Type: text/plain; charset="UTF-8"
+From: Mikko Rapeli <mikko.rapeli@bmw.de>
 
-Is there a recommended strategy to get do_fetch to invalidate on directory
-path changes in paths pointed to by file:// URLs in SRC_URI?
+From: Jonas Brich <Jonas.Brich@bmw.de>
 
-Example:
+Using function restorecon_init inside selinux_restorecon.c can
+result in a NULL pointer. This happens because function
+selinux_restorecon_set_sehandle can return a NULL pointer. But
+it is not checked and directly given to the next function.
 
-SRC_URI += "file://src;subdir=${S}"
+This problem is already fixed in libselinux 3.1 and above.
+Therefore backport this fix.
 
-A file at src/foo/bar/baz is recognized just fine. But then a directory
-change to something like src/foo/bar2/baz is not recognized and does not
-invalidate any tasks in subsequent builds.
+Signed-off-by: Jonas Brich <Jonas.Brich@bmw.de>
+---
+ ...e-in-selinux_restorecon_set_sehandle.patch | 32 +++++++++++++++++++
+ recipes-security/selinux/libselinux_3.0.bb    |  1 +
+ 2 files changed, 33 insertions(+)
+ create mode 100644 recipes-security/selinux/libselinux/0001-Fix-NULL-pointer-use-in-selinux_restorecon_set_sehandle.patch
 
-Use case is a recipe that has a fair bit of metadata that is not even
-remotely amenable to the typical flat layout expected of a set of patches.
-
-..Ch:W..
-
-P.S. I attempted to do this with an event handler that was run when
-bb.event.RecipePreFinalise is is fired. It would compare directory trees
-and set do_fetch[nostamp] = "1" to invalidate the fetcher task. But I got
-really spotty behavior. It seems like event handlers are cached like tasks.
-
-
+diff --git a/recipes-security/selinux/libselinux/0001-Fix-NULL-pointer-use-in-selinux_restorecon_set_sehandle.patch b/recipes-security/selinux/libselinux/0001-Fix-NULL-pointer-use-in-selinux_restorecon_set_sehandle.patch
+new file mode 100644
+index 0000000..f12164f
+--- /dev/null
++++ b/recipes-security/selinux/libselinux/0001-Fix-NULL-pointer-use-in-selinux_restorecon_set_sehandle.patch
+@@ -0,0 +1,32 @@
++From 08f5e30177218fae7ce9f5c8d6856690126b2b30 Mon Sep 17 00:00:00 2001
++From: Ji Qin <jiqin.ji@huawei.com>
++Date: Sun, 14 Jun 2020 21:20:23 -0400
++Subject: [PATCH] libselinux: Fix NULL pointer use in
++ selinux_restorecon_set_sehandle
++
++error occur when selinux_restorecon_default_handle return NULL in
++restorecon_init.
++
++fixes: https://github.com/SELinuxProject/selinux/issues/249
++
++Signed-off-by: Ji Qin <jiqin.ji@huawei.com>
++Acked-by: Stephen Smalley <stephen.smalley.work@gmail.com>
++---
++ libselinux/src/selinux_restorecon.c | 2 ++
++ 1 file changed, 2 insertions(+)
++
++Upstream-Status: Backport [https://github.com/SELinuxProject/selinux/commit/08f5e30177218fae7ce9f5c8d6856690126b2b30]
++
++diff --git libselinux/src/selinux_restorecon.c libselinux/src/selinux_restorecon.c
++index d1ce830c5..6993be6fd 100644
++--- libselinux/src/selinux_restorecon.c
+++++ libselinux/src/selinux_restorecon.c
++@@ -1154,6 +1154,8 @@ void selinux_restorecon_set_sehandle(struct selabel_handle *hndl)
++ 	size_t num_specfiles, fc_digest_len;
++ 
++ 	fc_sehandle = (struct selabel_handle *) hndl;
+++	if (!fc_sehandle)
+++		return;
++ 
++ 	/* Check if digest requested in selabel_open(3), if so use it. */
++ 	if (selabel_digest(fc_sehandle, &fc_digest, &fc_digest_len,
+diff --git a/recipes-security/selinux/libselinux_3.0.bb b/recipes-security/selinux/libselinux_3.0.bb
+index 17a25a9..01f9b7b 100644
+--- a/recipes-security/selinux/libselinux_3.0.bb
++++ b/recipes-security/selinux/libselinux_3.0.bb
+@@ -13,4 +13,5 @@ SRC_URI += "\
+         file://libselinux-define-FD_CLOEXEC-as-necessary.patch \
+         file://0001-Fix-building-against-musl-and-uClibc-libc-libraries.patch \
+         file://0001-libselinux-export-flush_class_cache-call-it-on-polic.patch \
++        file://0001-Fix-NULL-pointer-use-in-selinux_restorecon_set_sehandle.patch \
+         "
 -- 
-*"Perfection must be reached by degrees; she requires the slow hand of
-time." - Voltaire*
+2.20.1
 
---000000000000dee22705ce615009
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Is there a recommended strategy to get do_fetch to invalid=
-ate on=20
-directory path changes in paths pointed to by file:// URLs in SRC_URI?<br c=
-lear=3D"all"><div><br></div><div>Example:</div><div><br></div><div>SRC_URI =
-+=3D &quot;file://src;subdir=3D${S}&quot;<br></div><div><br></div><div>A
- file at src/foo/bar/baz is recognized just fine. But then a directory=20
-change to something like src/foo/bar2/baz is not recognized and does not
- invalidate any tasks in subsequent builds.</div><div><br></div><div>Use
- case is a recipe that has a fair bit of metadata that is not even=20
-remotely amenable to the typical flat layout expected of a set of=20
-patches.<br></div><div><br></div><div>..Ch:W..</div><div><br></div><div>P.S=
-.
- I attempted to do this with an event handler that was run when=20
-bb.event.RecipePreFinalise is is fired. It would compare directory trees
- and set do_fetch[nostamp] =3D &quot;1&quot; to invalidate the fetcher task=
-. But I=20
-got really spotty behavior. It seems like event handlers are cached=20
-like tasks.</div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"gma=
-il_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><b><=
-span style=3D"font-family:monospace">&quot;Perfection must be reached by de=
-grees; she requires the slow hand of time.&quot; - Voltaire</span></b></div=
-></div></div></div>
-
---000000000000dee22705ce615009--
 
