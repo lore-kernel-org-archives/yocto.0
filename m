@@ -1,106 +1,82 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <patrick.boettcher@posteo.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C2170C433F5
-	for <webhook@archiver.kernel.org>; Fri, 15 Oct 2021 13:58:12 +0000 (UTC)
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
- [209.85.128.42])
- by mx.groups.io with SMTP id smtpd.web11.9551.1634306291168443013
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B95D7C433FE
+	for <webhook@archiver.kernel.org>; Fri, 15 Oct 2021 20:03:57 +0000 (UTC)
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+ by mx.groups.io with SMTP id smtpd.web12.2340.1634328236026347925
  for <yocto@lists.yoctoproject.org>;
- Fri, 15 Oct 2021 06:58:11 -0700
+ Fri, 15 Oct 2021 13:03:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=eeVCWjp1;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.42,
- mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f42.google.com with SMTP id g2so2650140wme.4
-        for <yocto@lists.yoctoproject.org>;
- Fri, 15 Oct 2021 06:58:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=2jeVzkai3OhvzSA1VJkMxR2TMGDqbcmGtsa8/E3wwnA=;
-        b=eeVCWjp1TXxmZUYTrdokMmREZYK6xh8YOtFN1pc3jaxYuOFQNKfuXcDD3voSJVLmzE
-         6qFfI0ESSKhuogYa4tZe633WCW0+4XRiAIZ4gxNsMsbBfUCiQL1ICpR8TY14LjIiP/he
-         wTZPLNgl4xrbm1t0z5S6qyT6Lq61OMwdsKDoc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=2jeVzkai3OhvzSA1VJkMxR2TMGDqbcmGtsa8/E3wwnA=;
-        b=aUedX5Q27ljYShGPbTtSWLFNpbu20HNJy3c1n8qJjNXGTJdhL+hlb81qc3zgkSyc8H
-         Z21wv/AooLRLtJO2eCdnTnL2cFX/OThHuu+C6MtGBXTyef+Oanr8so/hTGTDzeA6lgLF
-         3vuLSQqOWR+y68MALAMlrHQPkuZzFsTfF9z6eW7jw/UhDI2iM9EMl0eup3WWF9kx87mX
-         lM5KW25uxphHIVz00iXMArS7XUe9NQDjEPb1TT5SR0Ft3oWjuNg/baZuPauByM55mtJA
-         ThbAiKYyfRq3Aw1+pAHsEFgk6ZFZ/ZX/y8L4B9CqQZ+1fwyHviGCEAgxDOfeWd1HWsqU
-         /7yA==
-X-Gm-Message-State: AOAM533XHSPtnghS7VBVIhlcUnb11hwEpCtcW3F1QzTYvPsLuWDcDxag
-	1lIsWCPqZq1GYdf0+xat4ufgMA==
-X-Google-Smtp-Source: 
- ABdhPJxN6El2koex2KAnc3vYiEfhUHw0qwARDC7tvjt+ZqnnXoxt715AF3Xw53lOIjdvuxO+0nkESQ==
-X-Received: by 2002:a1c:2b85:: with SMTP id
- r127mr26348053wmr.134.1634306289607;
-        Fri, 15 Oct 2021 06:58:09 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:3c2a:82f4:3a7b:54b1?
- ([2001:8b0:aba:5f3c:3c2a:82f4:3a7b:54b1])
-        by smtp.gmail.com with ESMTPSA id
- e16sm4803308wrw.17.2021.10.15.06.58.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Oct 2021 06:58:09 -0700 (PDT)
-Message-ID: 
- <0aa3c9a451e96ccf921e4915be0ae56cb55cb6a4.camel@linuxfoundation.org>
-Subject: Re: [yocto] SRC_URI Directory Change
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Chuck Wolber <chuckwolber@gmail.com>, yocto
- <yocto@lists.yoctoproject.org>
-Date: Fri, 15 Oct 2021 14:58:06 +0100
-In-Reply-To: 
- <CAB=6tBSqYakp12-xZXk_d58HX+gQbkPz04RMfcKgqJp9r0=3jw@mail.gmail.com>
-References: 
-	<CAB=6tBSqYakp12-xZXk_d58HX+gQbkPz04RMfcKgqJp9r0=3jw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4-1 
+ dkim=pass header.i=@posteo.de header.s=2017 header.b=Ut9kVkBM;
+ spf=pass (domain: posteo.de, ip: 185.67.36.65,
+ mailfrom: patrick.boettcher@posteo.de)
+Received: from submission (posteo.de [89.146.220.130])
+	by mout01.posteo.de (Postfix) with ESMTPS id 49C3224002A
+	for <yocto@lists.yoctoproject.org>; Fri, 15 Oct 2021 22:03:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.de; s=2017;
+	t=1634328234; bh=Rc70Osfnnkj/fyW7BvDnmK761TlbhUxc/kIEzAsioyw=;
+	h=Date:From:To:Subject:From;
+	b=Ut9kVkBMolw+dLdRWct9TYr6okdRPfZRaw+Q5VZBBiFr+dPfUzoK92vgqxdSURBd5
+	 bDn06rUuUGQI94DM8FHpAPuUeByHUh/zduwsNxKXvY/Gh5Q/Q2Gj2mJvcUVe4lxePy
+	 +eoShOjqq6+chHyxUV1o5Rd6h8JAyUp3CBCcB2XSVAnJUxXlTl11N8uNJU+n1Q4qWX
+	 SSyyHy8duG+77aMLhRE7TRwxgD42pvZTr7kcIKtkgujx7gnjVmDy3T+C2n/DJ+Lg6a
+	 txSdq/yX3gLtf4GsumNKmISubupBgsRxKk7MOm3I57Nd3LXO0tYIWoIWninl2K503Y
+	 zqxlpAdFaKwOg==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4HWHK53RW4z6tmF;
+	Fri, 15 Oct 2021 22:03:53 +0200 (CEST)
+Date: Fri, 15 Oct 2021 20:03:52 +0000
+From: Patrick Boettcher <patrick.boettcher@posteo.de>
+To: yocto@lists.yoctoproject.org, Christophe Blaess <Christophe@Blaess.fr>
+Subject: Dunfell: problem with kernel-module install and libkmod.so
+Message-ID: <20211015220352.2c4becd1@yaise-pc1>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 15 Oct 2021 13:58:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55085
+ <yocto@lists.yoctoproject.org>; Fri, 15 Oct 2021 20:03:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55086
 
-On Fri, 2021-10-15 at 03:03 -0700, Chuck Wolber wrote:
-> Is there a recommended strategy to get do_fetch to invalidate on directory
-> path changes in paths pointed to by file:// URLs in SRC_URI?
-> 
-> Example:
-> 
-> SRC_URI += "file://src;subdir=${S}"
-> 
-> A file at src/foo/bar/baz is recognized just fine. But then a directory change
-> to something like src/foo/bar2/baz is not recognized and does not invalidate
-> any tasks in subsequent builds.
-> 
-> Use case is a recipe that has a fair bit of metadata that is not even remotely
-> amenable to the typical flat layout expected of a set of patches.
-> 
-> ..Ch:W..
-> 
-> P.S. I attempted to do this with an event handler that was run when
-> bb.event.RecipePreFinalise is is fired. It would compare directory trees and
-> set do_fetch[nostamp] = "1" to invalidate the fetcher task. But I got really
-> spotty behavior. It seems like event handlers are cached like tasks.
+Hi list,
 
-I can see why this breaks and it isn't entirely straightforward to fix since
-we'd have to add data to the file-checksums entries which are generated by both
-OE and Bitbake.
+I'm facing an issue with a BSP I created using dunfell (up-to-date on
+poky and oe). I'm using a stable kernel and u-boot 2021.07 from denx's
+mainline-stable-layer.
 
-I have a bit of a horrible idea to do this in master-next which does solve the
-problem. We probably need a new bitbake selftest testcase before I could think
-about merging it though.
+I stripped down my machine.conf and basically the boot is working fine.
+Was working fine.
 
-Cheers,
+When finally I created a functional defconfig (one which didn't strip
+down the kernel next to nothing - thanks to KCONFIG_MODE="alldefconfig"
+). I started to create fragments to remove unused parts.
 
-Richard
+The very first fragment I created was leading to rootfs which crashed
+at the moment when /sbin/init was invoked, with the strangest errors
+I've ever seen:
+
+  /sbin/init: error while loading shared libraries: libkmod.so.2:
+  cannot open shared object file: No such file or directory
+
+Of course libkmod.so.2 (and its target) is present.
+
+Then I realized that no modules where installed in the rootfs. (modules
+are there if I don't have the fragment)
+
+So I added kernel-modules to IMAGE_INSTALL:append .
+
+The modules appeared, but the panic still occurred.
+
+What can I do to understand what's going on? I diff'ed the rootfs, the
+only difference I could was in ldconfig's aux-cache.
+
+Thanks for any help in advance,
+--
+Patrick.
+
+
 
 
