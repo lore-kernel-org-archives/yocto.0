@@ -1,373 +1,324 @@
-Return-Path: <chuckwolber@gmail.com>
+Return-Path: <kai.kang@windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D4DEEC433F5
-	for <webhook@archiver.kernel.org>; Sun, 17 Oct 2021 22:00:08 +0000 (UTC)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com
- [209.85.219.180])
- by mx.groups.io with SMTP id smtpd.web10.28241.1634508007701254898
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 23929C433EF
+	for <webhook@archiver.kernel.org>; Mon, 18 Oct 2021 01:56:33 +0000 (UTC)
+Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com
+ [205.220.178.238])
+ by mx.groups.io with SMTP id smtpd.web12.31004.1634522191919375486
  for <yocto@lists.yoctoproject.org>;
- Sun, 17 Oct 2021 15:00:07 -0700
+ Sun, 17 Oct 2021 18:56:32 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=YpOZqTUK;
- spf=pass (domain: gmail.com, ip: 209.85.219.180,
- mailfrom: chuckwolber@gmail.com)
-Received: by mail-yb1-f180.google.com with SMTP id s64so1060575yba.11
-        for <yocto@lists.yoctoproject.org>;
- Sun, 17 Oct 2021 15:00:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WvFigVzAEtMJMYkg1/B7xZQxCcJdGwQJIb9QE/ywL/E=;
-        b=YpOZqTUKqGt20ENh4xAOWNznYyOFg+H0i2HW0RRspd5YyIDHBum1DPLwCEYhSeAJQE
-         mYdhoB4B0H6BaYxZIsJr1SqvzDRMUHclQnnz3O5Gh13J9TrqsvIGWQY+DEYjN+UvZmts
-         8LGHTWCY1jAKdzElJ9OtC+9pZEMfYdf1qEKuJq3xzJksfQQjd6tq2figSnfzZuYiUYtv
-         awz4yNwiQoJ776a7gJGsu+E12BUdmTo8hm+oLJQhazX1sj8UjX2zP4doDyLPbhw0rcGg
-         wn5LOhcP5lp+EiHUplTvIv0vypObjvCz2SwkO7ybBcq8gg2qp7ziZ24eUIg0PPSQGy/b
-         ZAaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WvFigVzAEtMJMYkg1/B7xZQxCcJdGwQJIb9QE/ywL/E=;
-        b=Vwkh792ustghfPjU3a0OxemKp9wSqXiNt2zu1NATJDO8/YRulumAu2co1DsyAGyLd4
-         plT4hfTVTeH4DLheURzggbfjyLr5e2jgQEgN9NhMYE9MJMXTIjQDWTcJFSIKhtZvAcE2
-         FuZStdYuyvIhqsO4qgDXOwmcdMtMoVQin28KQR3C/r+u0kG1P2lpugXTLE3OFHuwyRv/
-         xkKaNgMDcEwi9/oS7STpsJ4qfHfNEJnIFfmc3GtVTGxMNZOlf02y6TSOUJ0tBGGoJP0a
-         CvqqXAtkH6dp213FyjClB2izvC7HRpGdTFT6DtJ6iENUJktSCLo2wl+JpzDkm7V94ode
-         74SA==
-X-Gm-Message-State: AOAM531OPHbxtf393Upptoi6wavvXBjC1LmDmcwQOTf0oh0GVZ+ogGXq
-	YltlcFPlnH32r4feR/rUZqQQfcvYqyiZD3Qf/0o=
-X-Google-Smtp-Source: 
- ABdhPJzQr++kgHTAIf5Z9qPNeJeeqZHAwg8RixS2E++pbprumzn6e+HRMjX7yOduLXZbWdZc3P25CSnB0eubBdtx0o8=
-X-Received: by 2002:a05:6902:1242:: with SMTP id
- t2mr775273ybu.518.1634508006444;
- Sun, 17 Oct 2021 15:00:06 -0700 (PDT)
+ dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=kmTsZhlc;
+ spf=pass (domain: windriver.com, ip: 205.220.178.238,
+ mailfrom: prvs=592536268e=kai.kang@windriver.com)
+Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id
+ 19I1miUT032100;
+	Mon, 18 Oct 2021 01:56:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+ h=subject : from :
+ to : cc : references : message-id : date : in-reply-to : content-type :
+ mime-version; s=PPS06212021;
+ bh=TnPbkm9H87jWmPDxrIqNlHKl5TcnRM0EjEPmKXU7HbQ=;
+ b=kmTsZhlcYoJ4NEppjdksnPdvMEw9pLocWvcRIPfoTFu/+ELvor8GPp/j6zRPZxD8rEIN
+ cYu+qdJn795C8NE1Vp/M4myGldbEV88VnVxl8pmf1wNABpc0owhkFpAg0iDdyRVkdNE/
+ xAFtEAzwysB58UBVKrnIduEKKctI0dTRKDdNmpaF8cWFgoNZQvqY2kPultzVJNDJKNia
+ JmfhqWVmTAv9U3aWPxz2CXDzPcJj2ykYbHE7XJCc41ruHWkXAjJF6fLS83ez+X7Exi2o
+ YwKIs1g2Xh5KC2MIievXIL6qckLB0C84hKLuRpXubPjUnATQLnc7Yhxt+2v1BbkkF0OD 8Q==
+Received: from nam12-dm6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12lp2168.outbound.protection.outlook.com [104.47.59.168])
+	by mx0a-0064b401.pphosted.com with ESMTP id 3bre05rf2n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 18 Oct 2021 01:56:29 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HdnOiwaTUs5BagsnTeam5uEe3y9FfiQ3UvMeLbG76f+77lTJNh2T+o2V3yxUw5gsrvj3U0yMTR+4N2tK9xW9fsCGo9ORT1gw2xByTBt2X6W8WdpIvGDv5POg2pV4MnbNCHMBDRxNmB5Zb+241zWLtDA4Nv3rIrnUCv7wIwLVefOjY1x5LY2ckUVfniRaZClmIrZqfbi06Jy/pIo2SJS3jBiWN2m4vA6jv9pZ8JX7tIOhuhn9UUQ4qAsv/SyDbBCwVR/r/XqdOMI5NWauiNCHUZyxhbyZJlRoF4+3h3Y+jqg3bS1stCJJDLjgLtYobd9OSRtEqmKglDfXzN2cGiMlKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TnPbkm9H87jWmPDxrIqNlHKl5TcnRM0EjEPmKXU7HbQ=;
+ b=b5pqI3k4QcbNQaN9mxtbb1LGtDWkT2ZQf+q4L6qWyBtlfh6aHIll0nIdaHrLuhjkPROCDjvwAqyrBGB2PWd5VVB3qVVky5jww1bN8GC+u1YXtv5rJr9EIuewF7P8Dq4OaG6Gc6Vps/gxYh4/Ax8Ietes8fRG8ZygMwSlXG84mALTE+sE36CoFFrTUY0tvWZ/dXZv4wfR6OxveLCD7hrqxMKCNo8fohjwbo/6uhLw9JgRjMfGGPepKj3g5qkCdt7lQ0D6eceyRmY5mR8JqmPsSdog/wBpXdfRyU0cFX/QwcTBlUFSQyy8C9n9Jpa3/42o/tNcutnD3boEljjEaGt5vg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Authentication-Results: windriver.com; dkim=none (message not signed)
+ header.d=none;windriver.com; dmarc=none action=none
+ header.from=windriver.com;
+Received: from CO6PR11MB5651.namprd11.prod.outlook.com (2603:10b6:5:356::20)
+ by CO6PR11MB5650.namprd11.prod.outlook.com (2603:10b6:5:35a::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16; Mon, 18 Oct
+ 2021 01:56:27 +0000
+Received: from CO6PR11MB5651.namprd11.prod.outlook.com
+ ([fe80::4c98:111b:1f1e:898f]) by CO6PR11MB5651.namprd11.prod.outlook.com
+ ([fe80::4c98:111b:1f1e:898f%5]) with mapi id 15.20.4608.018; Mon, 18 Oct 2021
+ 01:56:27 +0000
+Subject: Re: [yocto] [PATCH v2 1/1] sssd: re-package to fix QA issues
+From: Kai <kai.kang@windriver.com>
+To: akuster808@gmail.com
+Cc: yocto@lists.yoctoproject.org
+References: <20211014085911.32587-1-kai.kang@windriver.com>
+ <16ADDA0756FAD7E5.7007@lists.yoctoproject.org>
+Message-ID: <177d7ef6-dcb2-afcc-8b69-7a511fddc6f3@windriver.com>
+Date: Mon, 18 Oct 2021 09:56:20 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+In-Reply-To: <16ADDA0756FAD7E5.7007@lists.yoctoproject.org>
+Content-Type: multipart/alternative;
+ boundary="------------6E04FB0E218687EB942E49EB"
+Content-Language: en-US
+X-ClientProxiedBy: HKAPR04CA0011.apcprd04.prod.outlook.com
+ (2603:1096:203:d0::21) To CO6PR11MB5651.namprd11.prod.outlook.com
+ (2603:10b6:5:356::20)
 MIME-Version: 1.0
-References: 
- <CAB=6tBSqYakp12-xZXk_d58HX+gQbkPz04RMfcKgqJp9r0=3jw@mail.gmail.com>
- <0aa3c9a451e96ccf921e4915be0ae56cb55cb6a4.camel@linuxfoundation.org>
-In-Reply-To: 
- <0aa3c9a451e96ccf921e4915be0ae56cb55cb6a4.camel@linuxfoundation.org>
-From: Chuck Wolber <chuckwolber@gmail.com>
-Date: Sun, 17 Oct 2021 14:59:55 -0700
-Message-ID: 
- <CAB=6tBSOhKxzZ1UitD+CY9UrUqCt9UuaUQvbGpneVgS5sN2EAQ@mail.gmail.com>
-Subject: Re: [yocto] SRC_URI Directory Change
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: yocto <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000001b534105ce938dd8"
+Received: from [128.224.162.156] (60.247.85.82) by
+ HKAPR04CA0011.apcprd04.prod.outlook.com (2603:1096:203:d0::21) with Microsoft
+ SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.25 via Frontend
+ Transport; Mon, 18 Oct 2021 01:56:25 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: a76385fe-83e5-4873-5f1a-08d991da7eb6
+X-MS-TrafficTypeDiagnostic: CO6PR11MB5650:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: 
+	<CO6PR11MB565037D35209AE7D29C0F90D95BC9@CO6PR11MB5650.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:644;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	i0AwY7RJMU09Mz4IxBv3SEDEfn3gfDWJsR6UoAg302jMfWDnvLg3tVcFNsA8xDEJRBzjn26Tgx0bsqRI0wTphzm0Y1bWwDGtKQWf/VZsHN/EgXPdQjsuDah/xOYHBT+yp0QhimQ5Qp1pt7CMQk7+ZrJHKvVnZf+64NX4B3lnIYhW6DO9m04mhh26imblb2Lkj6mkoTMDTsLx9cu9PgXrwa3VaGSlbWCLMhu6U+He7Lg51KOpKvfRJQydcSClwcwJS9gxnwd+f0v+933PQ8ZOLN44BUzPJm6RuSPlxMAO5ojkjsF6C8WiFTBhgFQRrfxAiBcEW8Qw9SZSTHOrbqWAlaI5H7OCjmrBn1sy49dV6acM9br48OVyCdHmZyk5qYhJdouBiJYveMgAnPNxmr/hESV4v3QjA7vVe4fruv+149HITynzOhIvzTmI9avKPxEE/t2MwWfMCRtjBX3p5Of3G0N+4gXs38yYgQ9cevpn9oDlniErvMwD5PL3mj14jVJnIDrX3lMAnwVDzb4PMt9EFxYAczDSxCHsTjeo/mc7yne/rmzlfZcEuIOiFvzpoG5c0arLifF6WK7OMP0lr3PYOywXhZg1VRpTTtVIcF7FwwLmKIxcibkDvgAxTAdQOqtH0vJdroQe3gFAN4WMfWhsow3wOP//G4OtXoYP7WS6LYsBhmM4cLyjG/p/dSl1OM3IJ42Rl+NIM2rfPWYthnxm2HJUZd2UxLzrBzqm+07Y3f5hcTpHlkt2qTRFd9QWGf7uWw2kUFDJM4W6alTNZB6H8Q3h2Np2RCxwPyrRlsGi+FxSEpMGp5nytfJ72Ymg5In/xEUNZu/1XcCWLgsna7SSLn53cJndMMMKwOqPVI7M4o2DCaaTIE6fBV18Rl1yirlrYsVAiT4Vf7YRz9OnEuRfVg==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR11MB5651.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(8936002)(5660300002)(66556008)(2906002)(6666004)(26005)(6706004)(31696002)(53546011)(186003)(6916009)(6486002)(966005)(66476007)(33964004)(83380400001)(66946007)(2616005)(52116002)(956004)(38350700002)(16576012)(508600001)(316002)(8676002)(38100700002)(86362001)(166002)(36756003)(31686004)(4326008)(78286007)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?S0ZmQndQZmZMRzdkeDZqcVM3TDlmY1A0aXVTMk5vZVpBRVFrYkh5d09lVzhN?=
+ =?utf-8?B?aUhwL2xkakxLaEVpTWs5RzFQSkx1SVVqZWVJdUV2TVRlYjdrN3dQcC9hS013?=
+ =?utf-8?B?eThTN0pqa3NRY3l6SzNRQXZkdlU1NUVjZEY3WmZxNFg2U1RmQzVrQ3J0eVVv?=
+ =?utf-8?B?dnh3Q08wSWZBYmxpcExVQ2ZQQk9WVUQ4RnZsU3M2cHZ4UUVLQTJqMHlRWlFY?=
+ =?utf-8?B?eFdFUERKK01VNVJpNlllMVlYV2ZRckJNSGptU1lvbnMxNHZEWkFLZHlibDQy?=
+ =?utf-8?B?VVhEQm5KMWFzQnlyZkcwNzRuQ1FXZGRORmhVYWNvM0lPdmR1VHJVY0hLQVlU?=
+ =?utf-8?B?NjdVWmh1T04rdGhWS2lXVW9vcWs4TWJQY0dlZWhrYlRyZTF2ajFmZWJHZ2V2?=
+ =?utf-8?B?bHl2NlNQNjdBaWhMQ3AzanhHN2xPR0xKN1IvWjFDWXZVdW9vM1Z2cUFXWC8w?=
+ =?utf-8?B?SW5qWXNFNTVTT05NRjQydHRNd1hlTGloM0E4K0Z4TFhKRmJSQ0dzWUs1TnV0?=
+ =?utf-8?B?bnpwTFNkaGR1ejgrcExKOFBRa3RtNkF6OHRHMnpGZXFRQjVOQnJPN1FhYnE2?=
+ =?utf-8?B?dm5uV2JDTzl1Tkl2M2lhOGtITXhFK21EUGhuREJ0cVFkVUtPRVAxTVFhcm1v?=
+ =?utf-8?B?WmFLakUxVFJJeHRwbXo4SU1XbU9hMnN3Tnd6VmhyK09QZGV6dWtJb2NmTDYz?=
+ =?utf-8?B?UFBkcU9pSkU1c2hqSG5oMXpiVkRsaktOOUJRVnRMVlZ1VW4yZG5aVGNkT0dm?=
+ =?utf-8?B?ZExrNUs2YWJtQkt3QktXVVhtMU8rOW50K2NkMThkY1Q4QWg1QkI2V3Zzc1Ax?=
+ =?utf-8?B?RlpBRG1mSitUcDYzTFBqWWlaS3g2MGNCZ0o3ZzZ2RFJrdkRUempuSTlIRE9P?=
+ =?utf-8?B?Ukl4R29SZk83alNoWXRyS3hRSm5udmlFb0FqNCtpYWRlVkV3NHJrYWR3NXov?=
+ =?utf-8?B?UzR5ZS8rb2FaekFEd0daSlkrNHBFeTNFMjZpZmN6MTBpaGVueGlLSWkxa1ZL?=
+ =?utf-8?B?MytxMzE5QWFQUUEvWFpSdkRDQjNUMnNlQmtEV3dHSEVsTURNU3oyaDZZZG9i?=
+ =?utf-8?B?TWFDVlg3NkpNanlzb2V0dk13YzZPM1ZqZ2ZKUjRsWmJlVVVjLzBWMzFYWHdp?=
+ =?utf-8?B?ZmVrL2lFKzFJUW4yVm51dzVaWjBLcXlnaU5tbUcwYjBaWS8vcTI0T3lyQ1RZ?=
+ =?utf-8?B?U0FUVVUyVDN5SEkrbzhYYld5SGppRnlDRVFGUkg1d043TVVZYVZxbkVoeW01?=
+ =?utf-8?B?Mk5ldDRTK0ZYTFpSYW1qNnRjVGNIK1ZYb1AzQjJ4SkdsYytyTG9MMUM2dXR5?=
+ =?utf-8?B?SW1NUFVhYnR2RHlwSk84L1pUN2gyc1pkbjJ5ZHREY1dNQVU1UlI1aXNFN2pB?=
+ =?utf-8?B?NWNiUDZzcnZaVGRmRVdBcE9pNFVQZTNiejBrSVUvb09RUTMyZklWVXgvMnFl?=
+ =?utf-8?B?R0J0R3BEUTR0WksrTGo3UGxGS1JEVVA0RllrYUh2cURLWitDcWlZNWt3ZDli?=
+ =?utf-8?B?RHI3N2xONVBDTHlUcUhBTzRZV0VPK01uTVduV1lFQjREU3dUbHk1ajZERU5z?=
+ =?utf-8?B?ditjMkhQZDcvaGZoMmFTU2JWVGVDR0hoYm1XY0ZMZUdBRjJkc2NsemR5cjAw?=
+ =?utf-8?B?V2o1eFdaSFRVSXZIb3IrYTJ4SnNhYXFOWkQ2VXNndk9kcGE5bTlMaDMzSXFn?=
+ =?utf-8?B?amY4bFZNK2JpczFxS3d6VjdUN09jRGVQR1J6eEV1YmE0d2hVcTk0Rk02Tjlx?=
+ =?utf-8?Q?bcZ/sQk5ZIp87dkYApVoIxK5jDJcfC0HYFAWSDw?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ a76385fe-83e5-4873-5f1a-08d991da7eb6
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR11MB5651.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2021 01:56:26.8885
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ ePZ9ifZ5oDSeWbdpJAQTp7nBgFhYl+zidAcOniiCTy6HdtGoO+C//PURAqoHpZmMFw48WJF2Ck5xSnwCjzyg2A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR11MB5650
+X-Proofpoint-ORIG-GUID: c2b7A93Q5_3BAdAgzKl6zas_zlwpnR_F
+X-Proofpoint-GUID: c2b7A93Q5_3BAdAgzKl6zas_zlwpnR_F
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
+ definitions=2021-10-17_07,2021-10-14_02,2020-04-07_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0
+ lowpriorityscore=0 bulkscore=0 mlxscore=0 priorityscore=1501
+ suspectscore=0 phishscore=0 clxscore=1015 mlxlogscore=754 adultscore=0
+ malwarescore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2109230001 definitions=main-2110180011
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 17 Oct 2021 22:00:08 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55089
+ <yocto@lists.yoctoproject.org>; Mon, 18 Oct 2021 01:56:33 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55090
 
---0000000000001b534105ce938dd8
-Content-Type: text/plain; charset="UTF-8"
+--------------6E04FB0E218687EB942E49EB
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Oct 15, 2021 at 6:58 AM Richard Purdie <
-richard.purdie@linuxfoundation.org> wrote:
+On 10/14/21 4:59 PM, kai wrote:
+> From: Kai Kang <kai.kang@windriver.com>
+>
+> It packages all file in ${libdir} to package sssd, including the .so
+> symlink files. Then it causes QA issues:
+>
+> | ERROR: QA Issue: sssd rdepends on dbus-dev [dev-deps]
+> | ERROR: QA Issue: sssd rdepends on ding-libs-dev [dev-deps]
+>
+> So re-package sssd then the .so symlink files and .pc files are packaged
+> to sssd-dev which should be.
+>
+> File ${libdir}/libsss_sudo.so is not a symlink file but packaged to
+> sssd-dev too. Then causes another QA issue:
+>
+> | ERROR: sssd-2.5.2-r0 do_package_qa: QA Issue:
+>      -dev package sssd-dev contains non-symlink .so '/usr/lib/libsss_sudo.so' [dev-elf]
+>
+> So create a new sub-package libsss-sudo to package file libsss_sudo.so
+> and make sssd rdepends on it.
+
+Hi Armin,
+
+Ping in case you may miss it.
+
+Regards,
+Kai
 
 >
-> I have a bit of a horrible idea to do this in master-next which does solve
-> the
-> problem. We probably need a new bitbake selftest testcase before I could
-> think
-> about merging it though.
+> Signed-off-by: Kai Kang <kai.kang@windriver.com>
+> ---
+>   recipes-security/sssd/sssd_2.5.2.bb | 14 +++++++++-----
+>   1 file changed, 9 insertions(+), 5 deletions(-)
 >
-
-I tested the patch you posted on IRC against bitbake 1.50.0. It seems to
-work
-quite well, but I think I found two minor bugs in it. I pasted an updated
-patch below.
-
-In a nutshell...
-
-If you have a SRC_URI file:// entry that ends in a "/", then you get a "."
-that is
-not enclosed in "/./" when running the checksum_dir method, which causes
-checksum_file to throw warnings that look like this:
-
-WARNING: Unable to get checksum for gettext-minimal-native SRC_URI entry
-.intlmacosx.m4: [Errno 2] No such file or directory:
-'/mnt/openembedded-core/meta/recipes-core/gettext/gettext-minimal-0.21/aclocal/.intlmacosx.m4'
-
-I think the simplest fix is to add a "pth = pth.rstrip("/")" in the
-checksum_dir method after
-the guard statement. But then that exposes a different issue in the patch.
-
-For recipes that trigger the above warning, the rstrip() fix fixes the
-warning, but then you
-expose a new problem in siggen.py calc_taskhash().
-
-In your patched version, the check for the "/" fails to include the
-filename in the hash calculation
-for files at the root of a SRC_URI entry (there is no "/" to be found).
-This results in a task hash
-mismatch error on the first build, but not on subsequent builds for fairly
-obvious reasons.
-
-I solved this by adding a third field to the tuple with a True/False value,
-which is a much more reliable semaphore (IMHO).
-
-I tested these fixes and it worked perfectly. Here is an updated version of
-your patch that takes into
-account the fixes I described. I can produce a "patch against your patch"
-if these fixes are
-considered correct and do not cause even bigger problems that are not
-obvious to me.
-
-diff --git a/bitbake/lib/bb/checksum.py b/bitbake/lib/bb/checksum.py
-index 1d50a26426..fb8a77f6ab 100644
---- a/bitbake/lib/bb/checksum.py
-+++ b/bitbake/lib/bb/checksum.py
-@@ -50,6 +50,7 @@ class FileChecksumCache(MultiProcessCache):
-         MultiProcessCache.__init__(self)
-
-     def get_checksum(self, f):
-+        f = os.path.normpath(f)
-         entry = self.cachedata[0].get(f)
-         cmtime = self.mtime_cache.cached_mtime(f)
-         if entry:
-@@ -84,15 +85,24 @@ class FileChecksumCache(MultiProcessCache):
-                 return None
-             return checksum
-
-+        #
-+        # Changing the format of file-checksums is problematic as
-both OE and Bitbake have
-+        # knowledge of them. We need to encode a new piece of data,
-the portion of the path
-+        # we care about from a checksum perspective. This means that
-files that change subdirectory
-+        # are tracked by the task hashes. To do this, we do something
-horrible and put a "/./" into
-+        # the path. The filesystem handles it but it gives us a
-marker to know which subsection
-+        # of the path to cache.
-+        #
-         def checksum_dir(pth):
-             # Handle directories recursively
-             if pth == "/":
-                 bb.fatal("Refusing to checksum /")
-+            pth = pth.rstrip("/")
-             dirchecksums = []
-             for root, dirs, files in os.walk(pth, topdown=True):
-                 [dirs.remove(d) for d in list(dirs) if d in localdirsexclude]
-                 for name in files:
--                    fullpth = os.path.join(root, name)
-+                    fullpth = os.path.join(root, name).replace(pth,
-os.path.join(pth, "."))
-                     checksum = checksum_file(fullpth)
-                     if checksum:
-                         dirchecksums.append((fullpth, checksum))
-diff --git a/bitbake/lib/bb/siggen.py b/bitbake/lib/bb/siggen.py
-index 0d88c6ec68..f649f39ced 100644
---- a/bitbake/lib/bb/siggen.py
-+++ b/bitbake/lib/bb/siggen.py
-@@ -308,13 +308,14 @@ class SignatureGeneratorBasic(SignatureGenerator):
-         return
-
-     def get_taskhash(self, tid, deps, dataCaches):
--
-         data = self.basehash[tid]
-         for dep in self.runtaskdeps[tid]:
-             data = data + self.get_unihash(dep)
-
-         for (f, cs) in self.file_checksum_values[tid]:
-             if cs:
-+                if "/./" in f:
-+                    data = data + f.split("/./")[1]
-                 data = data + cs
-
-         if tid in self.taints:
-@@ -372,7 +373,12 @@ class SignatureGeneratorBasic(SignatureGenerator):
-
-         if runtime and tid in self.taskhash:
-             data['runtaskdeps'] = self.runtaskdeps[tid]
--            data['file_checksum_values'] = [(os.path.basename(f), cs)
-for f,cs in self.file_checksum_values[tid]]
-+            data['file_checksum_values'] = []
-+            for f,cs in self.file_checksum_values[tid]:
-+                if "/./" in f:
-+
-data['file_checksum_values'].append((f.split("/./")[1], cs, True))
-+                else:
-+
-data['file_checksum_values'].append((os.path.basename(f), cs, False))
-             data['runtaskhashes'] = {}
-             for dep in data['runtaskdeps']:
-                 data['runtaskhashes'][dep] = self.get_unihash(dep)
-@@ -1017,6 +1023,8 @@ def calc_taskhash(sigdata):
-
-     for c in sigdata['file_checksum_values']:
-         if c[1]:
-+            if c[2]:
-+                data = data + c[0]
-             data = data + c[1]
-
-     if 'taint' in sigdata:
-
-
-..Ch:W..
-
-P.S. The gettext-minimal-native_0.21.bb (from OEC) is a very good example
-of something that triggers this behavior. But I found plenty of others as
-well.
+> diff --git a/recipes-security/sssd/sssd_2.5.2.bb b/recipes-security/sssd/sssd_2.5.2.bb
+> index 76d6e03..ed8af5e 100644
+> --- a/recipes-security/sssd/sssd_2.5.2.bb
+> +++ b/recipes-security/sssd/sssd_2.5.2.bb
+> @@ -125,10 +125,14 @@ SYSTEMD_SERVICE:${PN} = " \
+>   "
+>   SYSTEMD_AUTO_ENABLE = "disable"
+>   
+> -FILES:${PN} += "${libdir} ${datadir} ${base_libdir}/security/pam_sss*.so"
+> -FILES:${PN}-dev = " ${includedir}/* ${libdir}/*la ${libdir}/*/*la"
+> +PACKAGES =+ "libsss-sudo"
+> +ALLOW_EMPTY:libsss-sudo = "1"
+>   
+> -# The package contains symlinks that trip up insane
+> -INSANE_SKIP:${PN} = "dev-so"
+> +FILES:${PN} += "${base_libdir}/security/pam_sss*.so  \
+> +                ${datadir}/dbus-1/system-services/*.service \
+> +                ${libdir}/krb5/* \
+> +                ${libdir}/ldb/* \
+> +                "
+> +FILES:libsss-sudo = "${libdir}/libsss_sudo.so"
+>   
+> -RDEPENDS:${PN} = "bind bind-utils dbus libldb libpam"
+> +RDEPENDS:${PN} = "bind bind-utils dbus libldb libpam libsss-sudo"
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#55069): https://lists.yoctoproject.org/g/yocto/message/55069
+> Mute This Topic: https://lists.yoctoproject.org/mt/86307938/3616933
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [kai.kang@windriver.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
 -- 
-*"Perfection must be reached by degrees; she requires the slow hand of
-time." - Voltaire*
+Kai Kang
+Wind River Linux
 
---0000000000001b534105ce938dd8
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Fri, Oct 15, 2021 at 6:58 AM Richa=
-rd Purdie &lt;<a href=3D"mailto:richard.purdie@linuxfoundation.org">richard=
-.purdie@linuxfoundation.org</a>&gt; wrote:<br></div><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
-204,204);padding-left:1ex">
-<br>
-I have a bit of a horrible idea to do this in master-next which does solve =
-the<br>
-problem. We probably need a new bitbake selftest testcase before I could th=
-ink<br>
-about merging it though.<br clear=3D"all"></blockquote><div><br></div><div>=
-I tested the patch you posted on IRC against bitbake 1.50.0. It seems to wo=
-rk</div><div>quite well, but I think I found two minor bugs in it. I pasted=
- an updated patch below.</div><div><br></div><div>In a nutshell...<br></div=
-><div><br></div><div>If you have a SRC_URI  file:// entry that ends in a &q=
-uot;/&quot;, then you get a &quot;.&quot; that is</div><div>not enclosed in=
- &quot;/./&quot; when running the checksum_dir method, which causes</div><d=
-iv>checksum_file to throw warnings that look like this:<br></div><div><br><=
-/div>WARNING: Unable to get checksum for gettext-minimal-native SRC_URI ent=
-ry
- .intlmacosx.m4: [Errno 2] No such file or directory:=20
-&#39;/mnt/openembedded-core/meta/recipes-core/gettext/gettext-minimal-0.21/=
-aclocal/.intlmacosx.m4&#39;</div><div class=3D"gmail_quote"><br></div><div =
-class=3D"gmail_quote">I think the simplest fix is to add a &quot;pth =3D pt=
-h.rstrip(&quot;/&quot;)&quot; in the checksum_dir method after</div><div cl=
-ass=3D"gmail_quote"><div>the guard statement. But then that exposes a diffe=
-rent issue in the patch.</div><div><br></div><div>For recipes that trigger =
-the above warning, the rstrip() fix fixes the warning, but then you</div><d=
-iv>expose a new problem in siggen.py calc_taskhash().</div><div><br></div><=
-div>In your patched version, the check for the &quot;/&quot; fails to inclu=
-de the filename in the hash calculation</div><div>for files at the root of =
-a SRC_URI entry (there is no &quot;/&quot; to be found). This results in a =
-task hash</div><div>mismatch error on the first build, but not on subsequen=
-t builds for fairly obvious reasons.<br></div><div><br></div><div>I solved =
-this by adding a third field to the tuple with a True/False value, which is=
- a much more reliable semaphore (IMHO).<br></div><div><br></div><div>I test=
-ed these fixes and it worked perfectly. Here is an updated version of your =
-patch that takes into</div><div> account the fixes I described. I can produ=
-ce a &quot;patch against your patch&quot; if these fixes are</div><div>cons=
-idered correct and do not cause even bigger problems that are not obvious t=
-o me.<br></div></div><div class=3D"gmail_quote"><br></div><div class=3D"gma=
-il_quote">
-<pre>diff --git a/bitbake/lib/bb/checksum.py b/bitbake/lib/bb/checksum.py
-index 1d50a26426..fb8a77f6ab 100644
---- a/bitbake/lib/bb/checksum.py
-+++ b/bitbake/lib/bb/checksum.py
-@@ -50,6 +50,7 @@ class FileChecksumCache(MultiProcessCache):
-         MultiProcessCache.__init__(self)
-=20
-     def get_checksum(self, f):
-+        f =3D os.path.normpath(f)
-         entry =3D self.cachedata[0].get(f)
-         cmtime =3D self.mtime_cache.cached_mtime(f)
-         if entry:
-@@ -84,15 +85,24 @@ class FileChecksumCache(MultiProcessCache):
-                 return None
-             return checksum
-=20
-+        #
-+        # Changing the format of file-checksums is problematic as both OE =
-and Bitbake have
-+        # knowledge of them. We need to encode a new piece of data, the po=
-rtion of the path
-+        # we care about from a checksum perspective. This means that files=
- that change subdirectory
-+        # are tracked by the task hashes. To do this, we do something horr=
-ible and put a &quot;/./&quot; into
-+        # the path. The filesystem handles it but it gives us a marker to =
-know which subsection
-+        # of the path to cache.
-+        #
-         def checksum_dir(pth):
-             # Handle directories recursively
-             if pth =3D=3D &quot;/&quot;:
-                 bb.fatal(&quot;Refusing to checksum /&quot;)
-+            pth =3D pth.rstrip(&quot;/&quot;)
-             dirchecksums =3D []
-             for root, dirs, files in os.walk(pth, topdown=3DTrue):
-                 [dirs.remove(d) for d in list(dirs) if d in localdirsexclu=
-de]
-                 for name in files:
--                    fullpth =3D os.path.join(root, name)
-+                    fullpth =3D os.path.join(root, name).replace(pth, os.p=
-ath.join(pth, &quot;.&quot;))
-                     checksum =3D checksum_file(fullpth)
-                     if checksum:
-                         dirchecksums.append((fullpth, checksum))
-diff --git a/bitbake/lib/bb/siggen.py b/bitbake/lib/bb/siggen.py
-index 0d88c6ec68..f649f39ced 100644
---- a/bitbake/lib/bb/siggen.py
-+++ b/bitbake/lib/bb/siggen.py
-@@ -308,13 +308,14 @@ class SignatureGeneratorBasic(SignatureGenerator):
-         return
-=20
-     def get_taskhash(self, tid, deps, dataCaches):
--
-         data =3D self.basehash[tid]
-         for dep in self.runtaskdeps[tid]:
-             data =3D data + self.get_unihash(dep)
-=20
-         for (f, cs) in self.file_checksum_values[tid]:
-             if cs:
-+                if &quot;/./&quot; in f:
-+                    data =3D data + f.split(&quot;/./&quot;)[1]
-                 data =3D data + cs
-=20
-         if tid in self.taints:
-@@ -372,7 +373,12 @@ class SignatureGeneratorBasic(SignatureGenerator):
-=20
-         if runtime and tid in self.taskhash:
-             data[&#39;runtaskdeps&#39;] =3D self.runtaskdeps[tid]
--            data[&#39;file_checksum_values&#39;] =3D [(os.path.basename(f)=
-, cs) for f,cs in self.file_checksum_values[tid]]
-+            data[&#39;file_checksum_values&#39;] =3D []
-+            for f,cs in self.file_checksum_values[tid]:
-+                if &quot;/./&quot; in f:
-+                    data[&#39;file_checksum_values&#39;].append((f.split(&=
-quot;/./&quot;)[1], cs, True))
-+                else:
-+                    data[&#39;file_checksum_values&#39;].append((os.path.b=
-asename(f), cs, False))
-             data[&#39;runtaskhashes&#39;] =3D {}
-             for dep in data[&#39;runtaskdeps&#39;]:
-                 data[&#39;runtaskhashes&#39;][dep] =3D self.get_unihash(de=
-p)
-@@ -1017,6 +1023,8 @@ def calc_taskhash(sigdata):
-=20
-     for c in sigdata[&#39;file_checksum_values&#39;]:
-         if c[1]:
-+            if c[2]:
-+                data =3D data + c[0]
-             data =3D data + c[1]
-=20
-     if &#39;taint&#39; in sigdata:</pre><div><br></div><div>..Ch:W..</div>=
-<div><br></div><div>P.S. The <a href=3D"http://gettext-minimal-native_0.21.=
-bb">gettext-minimal-native_0.21.bb</a> (from OEC) is a very good example of=
- something that triggers this behavior. But I found plenty of others as wel=
-l.<br></div><div>=C2=A0</div></div>-- <br><div dir=3D"ltr" class=3D"gmail_s=
-ignature"><div dir=3D"ltr"><div><b><span style=3D"font-family:monospace">&q=
-uot;Perfection must be reached by degrees; she requires the slow hand of ti=
-me.&quot; - Voltaire</span></b></div></div></div></div>
+--------------6E04FB0E218687EB942E49EB
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
---0000000000001b534105ce938dd8--
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <div class="moz-cite-prefix">On 10/14/21 4:59 PM, kai wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:16ADDA0756FAD7E5.7007@lists.yoctoproject.org">
+      <pre class="moz-quote-pre" wrap="">From: Kai Kang <a class="moz-txt-link-rfc2396E" href="mailto:kai.kang@windriver.com">&lt;kai.kang@windriver.com&gt;</a>
+
+It packages all file in ${libdir} to package sssd, including the .so
+symlink files. Then it causes QA issues:
+
+| ERROR: QA Issue: sssd rdepends on dbus-dev [dev-deps]
+| ERROR: QA Issue: sssd rdepends on ding-libs-dev [dev-deps]
+
+So re-package sssd then the .so symlink files and .pc files are packaged
+to sssd-dev which should be.
+
+File ${libdir}/libsss_sudo.so is not a symlink file but packaged to
+sssd-dev too. Then causes another QA issue:
+
+| ERROR: sssd-2.5.2-r0 do_package_qa: QA Issue:
+    -dev package sssd-dev contains non-symlink .so '/usr/lib/libsss_sudo.so' [dev-elf]
+
+So create a new sub-package libsss-sudo to package file libsss_sudo.so
+and make sssd rdepends on it.</pre>
+    </blockquote>
+    <p>Hi Armin,</p>
+    <p>Ping in case you may miss it.</p>
+    <p>Regards,<br>
+      Kai<br>
+    </p>
+    <blockquote type="cite" cite="mid:16ADDA0756FAD7E5.7007@lists.yoctoproject.org">
+      <pre class="moz-quote-pre" wrap="">
+
+Signed-off-by: Kai Kang <a class="moz-txt-link-rfc2396E" href="mailto:kai.kang@windriver.com">&lt;kai.kang@windriver.com&gt;</a>
+---
+ recipes-security/sssd/sssd_2.5.2.bb | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
+
+diff --git a/recipes-security/sssd/sssd_2.5.2.bb b/recipes-security/sssd/sssd_2.5.2.bb
+index 76d6e03..ed8af5e 100644
+--- a/recipes-security/sssd/sssd_2.5.2.bb
++++ b/recipes-security/sssd/sssd_2.5.2.bb
+@@ -125,10 +125,14 @@ SYSTEMD_SERVICE:${PN} = &quot; \
+ &quot;
+ SYSTEMD_AUTO_ENABLE = &quot;disable&quot;
+ 
+-FILES:${PN} += &quot;${libdir} ${datadir} ${base_libdir}/security/pam_sss*.so&quot;
+-FILES:${PN}-dev = &quot; ${includedir}/* ${libdir}/*la ${libdir}/*/*la&quot;
++PACKAGES =+ &quot;libsss-sudo&quot;
++ALLOW_EMPTY:libsss-sudo = &quot;1&quot;
+ 
+-# The package contains symlinks that trip up insane
+-INSANE_SKIP:${PN} = &quot;dev-so&quot;
++FILES:${PN} += &quot;${base_libdir}/security/pam_sss*.so  \
++                ${datadir}/dbus-1/system-services/*.service \
++                ${libdir}/krb5/* \
++                ${libdir}/ldb/* \
++                &quot;
++FILES:libsss-sudo = &quot;${libdir}/libsss_sudo.so&quot;
+ 
+-RDEPENDS:${PN} = &quot;bind bind-utils dbus libldb libpam&quot;
++RDEPENDS:${PN} = &quot;bind bind-utils dbus libldb libpam libsss-sudo&quot;
+</pre>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+-=-=-=-=-=-=-=-=-=-=-=-
+Links: You receive all messages sent to this group.
+View/Reply Online (#55069): <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto/message/55069">https://lists.yoctoproject.org/g/yocto/message/55069</a>
+Mute This Topic: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/mt/86307938/3616933">https://lists.yoctoproject.org/mt/86307938/3616933</a>
+Group Owner: <a class="moz-txt-link-abbreviated" href="mailto:yocto+owner@lists.yoctoproject.org">yocto+owner@lists.yoctoproject.org</a>
+Unsubscribe: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto/unsub">https://lists.yoctoproject.org/g/yocto/unsub</a> [<a class="moz-txt-link-abbreviated" href="mailto:kai.kang@windriver.com">kai.kang@windriver.com</a>]
+-=-=-=-=-=-=-=-=-=-=-=-
+
+</pre>
+    </blockquote>
+    <p><br>
+    </p>
+    <pre class="moz-signature" cols="72">-- 
+Kai Kang
+Wind River Linux</pre>
+  </body>
+</html>
+
+--------------6E04FB0E218687EB942E49EB--
 
