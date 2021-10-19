@@ -1,135 +1,111 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <jonas.brich@bmw.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DC69BC433FE
-	for <webhook@archiver.kernel.org>; Tue, 19 Oct 2021 04:46:29 +0000 (UTC)
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com
- [209.85.216.48])
- by mx.groups.io with SMTP id smtpd.web08.5477.1634618789177379822
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 36F80C433F5
+	for <webhook@archiver.kernel.org>; Tue, 19 Oct 2021 13:59:19 +0000 (UTC)
+Received: from esa10.hc324-48.eu.iphmx.com (esa10.hc324-48.eu.iphmx.com
+ [207.54.69.29])
+ by mx.groups.io with SMTP id smtpd.web10.10188.1634651956705320757
  for <yocto@lists.yoctoproject.org>;
- Mon, 18 Oct 2021 21:46:29 -0700
+ Tue, 19 Oct 2021 06:59:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=S6UHTziI;
- spf=pass (domain: gmail.com, ip: 209.85.216.48,
- mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f48.google.com with SMTP id
- g13-20020a17090a3c8d00b00196286963b9so1047396pjc.3
-        for <yocto@lists.yoctoproject.org>;
- Mon, 18 Oct 2021 21:46:29 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@bmw.de header.s=mailing1
+ header.b=l4+LWm/I;
+ spf=pass (domain: bmw.de, ip: 207.54.69.29,
+ mailfrom: prvs=919444964=jonas.brich@bmw.de)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=3YoXO63FMSUW9qI6XYLNa2M5WEy0H6lBnexrPGi88hI=;
-        b=S6UHTziIMkX/CCaDL7cxnYKivjtAqcJs6U9m+5aQw9tvVFeiDot5mx70F1nVdY3Dye
-         TD35S/ANDqVbQapF7UwTghf/+3hlk7oTsNwTn0xTb0PJk3LWbO8MVsHpIpYV5U9SzuWG
-         wRAkwUn0n9JwLgD4EjElDl8qt4hJJzpuhuTdV67MMgJ9IY9zJu9lXiLAulV5spSwmZii
-         iuroj/Bg3ZXUTJybfTHSfH8THY22auggzTGmYSKeVHaQUpNWaayz0Zb7KJlHAPSjuQ5Q
-         kt9wKGlzjZgSoUDkr7wQrD16181tqSD2iPCoCRAfrDaMk5/s9zLlOkyJnRiZ6dIAhjPa
-         TP4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=3YoXO63FMSUW9qI6XYLNa2M5WEy0H6lBnexrPGi88hI=;
-        b=sDbTlYPNX1LfJ3GHFj4y+NWukzCdEPqAS9O02TleS+sUTIdSS/e8egRg2mKMLC8tVt
-         f+O7cJ5Q/qnVlMIa/zBKA+eiC4NLriFxp2hKO3U9HagooVLIqV7PnfFFu3WE96PBEa/X
-         YDN2ZvnEDDCPOhAloAJqWVSjwq4CJpq0bXt+YDxc3NSUA4neFU6+maIhnmxM9bhYwhhd
-         d9eEtnTkMBC05RUfExqxIkOYyZKNVQ7A5k2rfYkCeOs2laG3/kyKroUiwyW8u9M+BfWU
-         vXEbf9aXfwQao+Z2rv3WNMPJdjcTXGfiEEC5GUqDzoERMd5CQT5DTl2wp14ocLgS86kG
-         Hjjg==
-X-Gm-Message-State: AOAM531GyAKAjdzwmZ4tBYtXfJ1C+FMas/tiZ89nRcHzMKY3n7DbYPiL
-	KTGxSeoZSA3js/6z95tA1enxJqUKcGU=
-X-Google-Smtp-Source: 
- ABdhPJxMStOpt7aieSafyBvvosQTlJ/WQL4xoqLrqiXkvBdGXrBOwQ21C5qXA9ZsxXDBFSnLqkSIdA==
-X-Received: by 2002:a17:902:da83:b0:13f:704:d731 with SMTP id
- j3-20020a170902da8300b0013f0704d731mr31011244plx.77.1634618788556;
-        Mon, 18 Oct 2021 21:46:28 -0700 (PDT)
-Received: from keaua.hsd1.ca.comcast.net
- ([2601:202:4180:a5c0:677f:e53b:886f:cd0])
-        by smtp.gmail.com with ESMTPSA id
- x65sm1009579pjj.42.2021.10.18.21.46.28
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Oct 2021 21:46:28 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-parsec][v2][PATCH] meta-parsec/README: remove rust layer req.
-Date: Mon, 18 Oct 2021 21:46:27 -0700
-Message-Id: <20211019044627.3438627-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
+  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
+  t=1634651956; x=1666187956;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   content-transfer-encoding:mime-version;
+  bh=r0Bxmf0nbtm95us7CIzHvJ38FJ23JX2fAeDQU4s+I7k=;
+  b=l4+LWm/I28tQQUTv9a7cjCiMRmtgQGz10JM1HuhRNdzlpEQ2XYQt8MiU
+   fbXDufS9af95GPUNn3o/Qsb3zsis3bPFqFc32Kd7h5S1zleRyyyigKeCm
+   +dKvNP8Ka6PshydmxKMkc4udDN5bFOn9O0s7YfKcnuYrbak6dnLDw3CwZ
+   4=;
+Received: from esagw6.bmwgroup.com (HELO esagw6.muc) ([160.46.252.49]) by
+ esa10.hc324-48.eu.iphmx.com with ESMTP/TLS; 19 Oct 2021 15:59:13 +0200
+Received: from esabb2.muc ([160.50.100.34])  by esagw6.muc with ESMTP/TLS;
+ 19 Oct 2021 15:59:12 +0200
+Received: from smucm29m.bmwgroup.net (HELO SMUCM29M.europe.bmw.corp)
+ ([160.46.167.44])
+ by esabb2.muc with ESMTP/TLS; 19 Oct 2021 15:58:58 +0200
+Received: from SMUCM29J.europe.bmw.corp (160.46.167.41) by
+ SMUCM29M.europe.bmw.corp
+ (160.46.167.44) with Microsoft SMTP Server (TLS;
+ Tue, 19 Oct 2021 15:58:58 +0200
+Received: from SMUCM29J.europe.bmw.corp ([160.46.167.41]) by
+ SMUCM29J.europe.bmw.corp ([160.46.167.41]) with mapi id 15.00.1497.018; Tue,
+ 19 Oct 2021 15:58:58 +0200
+From: <Jonas.Brich@bmw.de>
+To: <jandryuk@gmail.com>, <joe@deserted.net>, <yocto@lists.yoctoproject.org>,
+	<flihp@twobit.us>, <yi.zhao@windriver.com>
+Subject: Re: meta-selinux: dunfell: libselinux:
+ 0001-Fix-NULL-pointer-use-in-selinux_restorecon_set_sehandle.patch fails to
+ apply
+Thread-Topic: meta-selinux: dunfell: libselinux:
+ 0001-Fix-NULL-pointer-use-in-selinux_restorecon_set_sehandle.patch fails to
+ apply
+Thread-Index: AQHXxPCVM59SIjcI7EuXSNpPlxuFkavaWO3d
+Date: Tue, 19 Oct 2021 13:58:58 +0000
+Message-ID: <1634651938337.20616@bmw.de>
+References: 
+ <CAKf6xpvYyQkPd+yrX4DR70w7x0DVD0-ODT1r6+Jgb58RKZbxeQ@mail.gmail.com>
+In-Reply-To: 
+ <CAKf6xpvYyQkPd+yrX4DR70w7x0DVD0-ODT1r6+Jgb58RKZbxeQ@mail.gmail.com>
+Accept-Language: en-US, de-DE
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 19 Oct 2021 04:46:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55098
+ <yocto@lists.yoctoproject.org>; Tue, 19 Oct 2021 13:59:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55099
 
-Rust is now in core. No need to include the layer referenece.
-
-Drop Priority and ref from repo definition. Not used
-
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
-
-[v2]
-fixup mailing list
----
- meta-parsec/README.md | 16 ++--------------
- 1 file changed, 2 insertions(+), 14 deletions(-)
-
-diff --git a/meta-parsec/README.md b/meta-parsec/README.md
-index 24958ac..aeb48a6 100644
---- a/meta-parsec/README.md
-+++ b/meta-parsec/README.md
-@@ -11,23 +11,12 @@ This layer depends on:
- 
-     URI: git://git.openembedded.org/meta-openembedded
-     branch: master
--    revision: HEAD
--    prio: default
- 
-     URI git://git.yoctoproject.org/meta-security
-     branch: master
--    revision: HEAD
--    prio: default
--
--    URI https://github.com/meta-rust/meta-rust.git
--    branch: master
--    revision: HEAD
--    prio: default
- 
-     URI https://github.com/kraj/meta-clang.git
-     branch: master
--    revision: HEAD
--    prio: default
- 
- Adding the meta-parsec layer to your build
- ==========================================
-@@ -44,7 +33,6 @@ other layers needed. e.g.:
-       /path/to/yocto/meta-yocto-bsp \
-       /path/to/meta-openembedded/meta-oe \
-       /path/to/meta-openembedded/meta-python \
--      /path/to/meta-rust \
-       /path/to/meta-clang \
-       /path/to/meta-security/meta-tpm \
-       /path/to/meta-security/meta-parsec \
-@@ -165,11 +153,11 @@ Maintenance
- Send pull requests, patches, comments or questions to yocto@yoctoproject.org
- 
- When sending single patches, please using something like:
--'git send-email -1 --to yocto@yoctoproject.org --subject-prefix=meta-parsec][PATCH'
-+'git send-email -1 --to yocto@lists.yoctoproject.org --subject-prefix=meta-parsec][PATCH'
- 
- These values can be set as defaults for this repository:
- 
--$ git config sendemail.to yocto@yoctoproject.org
-+$ git config sendemail.to yocto@lists.yoctoproject.org
- $ git config format.subjectPrefix meta-parsec][PATCH
- 
- Now you can just do 'git send-email origin/master' to send all local patches.
--- 
-2.25.1
-
+Hi,=0A=
+=0A=
+yes college uploaded again. That is the correct patch.=0A=
+=0A=
+Thanks=0A=
+=0A=
+=0A=
+BMW Car IT GmbH=0A=
+Jonas Brich=0A=
+Spezialist Entwicklung=0A=
+Lise-Meitner-Str. 14=0A=
+89081 Ulm=0A=
+=0A=
+Tel.:  +49 731 3780 4292=0A=
+Mail: jonas.brich@bmw.de=0A=
+Web: http://www.bmw-carit.de=0A=
+----------------------------------------------------------------------=0A=
+BMW Car IT GmbH=0A=
+Geschaeftsfuehrer: Kai-Uwe Balszuweit und Michael B=F6ttrich=0A=
+Sitz und Registergericht: Muenchen HRB 134810=0A=
+----------------------------------------------------------------------=0A=
+=0A=
+________________________________________=0A=
+From: Jason Andryuk <jandryuk@gmail.com>=0A=
+Sent: Tuesday, October 19, 2021 3:51 PM=0A=
+To: joe@deserted.net; Brich Jonas, JC-4; yocto@lists.yoctoproject.org; flih=
+p@twobit.us; yi.zhao@windriver.com=0A=
+Subject: meta-selinux: dunfell: libselinux: 0001-Fix-NULL-pointer-use-in-se=
+linux_restorecon_set_sehandle.patch fails to apply=0A=
+=0A=
+Hi,=0A=
+=0A=
+libselinux in meta-selinux dunfell fails in do_patch.  Patch=0A=
+0001-Fix-NULL-pointer-use-in-selinux_restorecon_set_sehandle.patch=0A=
+fails to apply.  The patch in git has a leading a/b path component,=0A=
+which throws off the strip level.  The posting here doesn't have the=0A=
+a/b: https://lists.yoctoproject.org/g/yocto/message/55083 so it should=0A=
+work.=0A=
+=0A=
+Thanks,=0A=
+Jason=0A=
 
