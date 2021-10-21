@@ -1,75 +1,59 @@
-Return-Path: <zach.welch@timesys.com>
+Return-Path: <naveen.kumar.saini@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CACCBC433F5
-	for <webhook@archiver.kernel.org>; Wed, 20 Oct 2021 20:52:30 +0000 (UTC)
-Received: from abbott.mandolincreekfarm.com (abbott.mandolincreekfarm.com
- [192.173.156.27])
- by mx.groups.io with SMTP id smtpd.web08.133.1634763149207666047
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8A4D8C433FE
+	for <webhook@archiver.kernel.org>; Thu, 21 Oct 2021 05:32:26 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by mx.groups.io with SMTP id smtpd.web12.5250.1634794345116992106
  for <yocto@lists.yoctoproject.org>;
- Wed, 20 Oct 2021 13:52:29 -0700
+ Wed, 20 Oct 2021 22:32:25 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing;
- spf=permerror,
- err=parse error for token &{10 18 _spf.google.com}: parse error for token
- &{10 18 _netblocks2.google.com}: limit exceeded (domain: timesys.com,
- ip: 192.173.156.27, mailfrom: zach.welch@timesys.com)
-Received: from timesys (fluffy.mandolincreekfarm.com [192.173.156.26])
-	by abbott.mandolincreekfarm.com (Postfix) with SMTP id 4AD0FE2053E;
-	Wed, 20 Oct 2021 13:52:25 -0700 (PDT)
-Received: by timesys (sSMTP sendmail emulation);
- Wed, 20 Oct 2021 13:52:24 -0700
-From: Zachary T Welch <zach.welch@timesys.com>
+ spf=pass (domain: intel.com, ip: 192.55.52.43, mailfrom: naveen.kumar.saini@intel.com)
+X-IronPort-AV: E=McAfee;i="6200,9189,10143"; a="315152916"
+X-IronPort-AV: E=Sophos;i="5.87,168,1631602800";
+   d="scan'208";a="315152916"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2021 22:32:24 -0700
+X-IronPort-AV: E=Sophos;i="5.87,168,1631602800";
+   d="scan'208";a="444648808"
+Received: from saininav-desk1.png.intel.com ([10.158.87.77])
+  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2021 22:32:23 -0700
+From: Naveen Saini <naveen.kumar.saini@intel.com>
 To: yocto@lists.yoctoproject.org
-Cc: Zachary T Welch <zach.welch@timesys.com>
-Subject: [psplash][PATCH] Improve warnings from probing for double buffering
-Date: Wed, 20 Oct 2021 13:51:54 -0700
-Message-Id: <20211020205154.18972-1-zach.welch@timesys.com>
-X-Mailer: git-send-email 2.33.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Subject: [meta-zephyr][PATCH 1/2] zephyr-kernel/2.7.0: update to release tag
+ Zephyr v2.7.0
+Date: Thu, 21 Oct 2021 13:47:25 +0800
+Message-Id: <20211021054726.27237-1-naveen.kumar.saini@intel.com>
+X-Mailer: git-send-email 2.17.1
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 20 Oct 2021 20:52:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55110
+ <yocto@lists.yoctoproject.org>; Thu, 21 Oct 2021 05:32:26 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55111
 
-Adds missing newline characters in output, while clarifying that these
-messages are warnings that may be safely ignored.
+https://github.com/zephyrproject-rtos/zephyr/releases/tag/zephyr-v2.7.0
 
-Signed-off-by: Zachary T Welch <zach.welch@timesys.com>
+Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
 ---
- psplash-fb.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.0.inc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/psplash-fb.c b/psplash-fb.c
-index 6603572..2babb5f 100644
---- a/psplash-fb.c
-+++ b/psplash-fb.c
-@@ -197,7 +197,8 @@ psplash_fb_new (int angle, int fbdev_id)
-=20
-   /* Setup double virtual resolution for double buffering */
-   if (ioctl(fb->fd, FBIOPAN_DISPLAY, &fb_var) =3D=3D -1) {
--    fprintf(stderr, "FBIOPAN_DISPLAY not supported, double buffering dis=
-abled");
-+    fprintf(stderr, "warning: FBIOPAN_DISPLAY not supported, "
-+                    "double buffering disabled\n");
-   } else {
-     if (fb_var.yres_virtual =3D=3D fb_var.yres * 2) {
-       DBG("Virtual resolution already double");
-@@ -205,7 +206,8 @@ psplash_fb_new (int angle, int fbdev_id)
-     } else {
-       fb_var.yres_virtual =3D fb_var.yres * 2;
-       if (ioctl(fb->fd, FBIOPUT_VSCREENINFO, &fb_var) =3D=3D -1) {
--        fprintf(stderr, "FBIOPUT_VSCREENINFO failed, double buffering di=
-sabled");
-+        fprintf(stderr, "warning: FBIOPUT_VSCREENINFO failed, "
-+                        "double buffering disabled\n");
-       } else {
-         if (ioctl(fb->fd, FBIOGET_FSCREENINFO, &fb_fix) =3D=3D -1) {
-           perror(" Error getting the fixed framebuffer info");
---=20
-2.33.1
+diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.0.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.0.inc
+index e3424d2..a1619a7 100644
+--- a/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.0.inc
++++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.0.inc
+@@ -1,5 +1,5 @@
+ SRCREV_FORMAT = "default_cmsis"
+-SRCREV_default = "8a97c83040c0257d98c329dde55ae10e68544688"
++SRCREV_default = "3f826560aaf81a444018293bd6acce3c339fe150"
+ SRCREV_cmsis = "b0612c97c1401feeb4160add6462c3627fe90fc7"
+ SRCREV_nordic = "a6e5299041f152da5ae0ab17b2e44e088bb96d6d"
+ SRCREV_stm32 = "5c8275071ec1cf160bfe8c18bbd9330a7d714dc8"
+-- 
+2.17.1
 
 
