@@ -1,144 +1,123 @@
-Return-Path: <changqing.li@windriver.com>
+Return-Path: <anton.antonov@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DDDD3C433FE
-	for <webhook@archiver.kernel.org>; Fri, 22 Oct 2021 04:04:07 +0000 (UTC)
-Received: from mail1.wrs.com (mail1.wrs.com [147.11.3.146])
- by mx.groups.io with SMTP id smtpd.web11.3836.1634875446745487911
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 92E29C433EF
+	for <webhook@archiver.kernel.org>; Fri, 22 Oct 2021 12:45:04 +0000 (UTC)
+Received: from cam-smtp0.cambridge.arm.com (cam-smtp0.cambridge.arm.com
+ [217.140.106.49])
+ by mx.groups.io with SMTP id smtpd.web12.7726.1634906702635172869
  for <yocto@lists.yoctoproject.org>;
- Thu, 21 Oct 2021 21:04:07 -0700
+ Fri, 22 Oct 2021 05:45:03 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing;
- spf=fail (domain: windriver.com, ip: 147.11.3.146, mailfrom: changqing.li@windriver.com)
-Received: from mail.windriver.com (mail.wrs.com [147.11.1.11])
-	by mail1.wrs.com (8.15.2/8.15.2) with ESMTPS id 19M445mi008780
-	(version=TLSv1.1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL)
-	for <yocto@lists.yoctoproject.org>; Thu, 21 Oct 2021 21:04:06 -0700
-Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.corp.ad.wrs.com
- [147.11.82.252])
-	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id 19M4403G025782
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <yocto@lists.yoctoproject.org>; Thu, 21 Oct 2021 21:04:05 -0700 (PDT)
-Received: from ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Thu, 21 Oct 2021 21:04:00 -0700
-Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
- ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.14; Thu, 21 Oct 2021 21:04:00 -0700
-Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
- 15.1.2242.12 via Frontend Transport; Thu, 21 Oct 2021 21:03:59 -0700
-From: <changqing.li@windriver.com>
-To: <yocto@lists.yoctoproject.org>
-Subject: [layerindex-web][PATCH] import_layer.py: support import layer to
- non-master branch
-Date: Fri, 22 Oct 2021 12:03:02 +0800
-Message-ID: <20211022040302.32088-1-changqing.li@windriver.com>
-X-Mailer: git-send-email 2.17.1
+ spf=pass (domain: arm.com, ip: 217.140.106.49, mailfrom: anton.antonov@arm.com)
+Received: from atg-devlab-kelpie.cambridge.arm.com
+ (atg-devlab-kelpie.cambridge.arm.com [10.2.80.92])
+	by cam-smtp0.cambridge.arm.com (8.13.8/8.13.8) with ESMTP id 19MCjYrd009525;
+	Fri, 22 Oct 2021 13:45:34 +0100
+From: Anton Antonov <Anton.Antonov@arm.com>
+To: yocto@lists.yoctoproject.org
+Cc: Anton.Antonov@arm.com
+Subject: [meta-security][PATCH] Parsec service. Update PACKAGECONFIG
+ definitions and README.md
+Date: Fri, 22 Oct 2021 13:44:55 +0100
+Message-Id: <20211022124455.1879936-1-Anton.Antonov@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 22 Oct 2021 04:04:07 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55116
+ <yocto@lists.yoctoproject.org>; Fri, 22 Oct 2021 12:45:04 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55120
 
-From: Changqing Li <changqing.li@windriver.com>
-
-Before this commit, it only support create layer on master branch,
-support import layer to other branch to fix following issue:
-
-For layer A, it only works on NON-MASTER branch. If we import
-it use this tool, it will by default import it to master branch.
-In master branch, bitbake is newer, and use new overrides style, but
-layer A use old style overrides style, which make update.py -b
-master report error:
-INFO: Collecting data for layer A on branch master (NON-MASTER)
-NOTE: Starting bitbake server...
-ERROR: Variable PREMIRRORS_append contains an operation using the old override syntax. Please convert this layer/metadata before attempting to use with a newer bitbake.
-ERROR: Traceback (most recent call last):
-  File "update_layer.py", line 486, in main
-    layer_config_data = layerconfparser.parse_layer(layerdir)
-  File "/path/to/layerindex-web/layerindex/layerconfparse.py", line 47, in parse_layer
-    utils.parse_layer_conf(layerdir, self.config_data_copy, logger=self.logger)
-  File "/path/to/layerindex-web/layerindex/utils.py", line 288, in parse_layer_conf
-    data = parse_conf(conf_file, data)
-  File "/path/to/layerindex-web/layerindex/utils.py", line 273, in parse_conf
-    data = bb.parse.handle(conf_file, d, include=True)
-  File "/path/to/layerindex/git___lxgit_wrs_com_bitbake/lib/bb/parse/__init__.py", line 107, in handle
-    return h['handle'](fn, data, include)
-  File "/path/to/layerindex/git___lxgit_wrs_com_bitbake/lib/bb/parse/parse_py/ConfHandler.py", line 149, in handle
-    statements.eval(data)
-  File "/path/to/layerindex/git___lxgit_wrs_com_bitbake/lib/bb/parse/ast.py", line 19, in eval
-    statement.eval(data)
-  File "/path/to/layerindex/git___lxgit_wrs_com_bitbake/lib/bb/parse/ast.py", line 145, in eval
-    data.setVar(key, val, parsing=True, **loginfo)
-  File "/path/to/layerindex/git___lxgit_wrs_com_bitbake/lib/bb/tinfoil.py", line 97, in remoteCommand
-    ret = self.tinfoil.run_command('dataStoreConnectorCmd', self.dsindex, cmd, args, kwargs)
-  File "/path/to/layerindex/git___lxgit_wrs_com_bitbake/lib/bb/tinfoil.py", line 469, in run_command
-    result = self.server_connection.connection.runCommand(commandline)
-  File "/path/to/layerindex/git___lxgit_wrs_com_bitbake/lib/bb/server/process.py", line 410, in runCommand
-    raise bb.BBHandledException()
-
-Signed-off-by: Changqing Li <changqing.li@windriver.com>
+Signed-off-by: Anton Antonov <Anton.Antonov@arm.com>
 ---
- layerindex/tools/import_layer.py | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+ meta-parsec/README.md                         | 23 +++++++++++++++----
+ .../parsec-service/parsec-service_0.8.1.bb    | 10 ++++----
+ 2 files changed, 23 insertions(+), 10 deletions(-)
 
-diff --git a/layerindex/tools/import_layer.py b/layerindex/tools/import_layer.py
-index dfe887c..0c4881f 100755
---- a/layerindex/tools/import_layer.py
-+++ b/layerindex/tools/import_layer.py
-@@ -236,6 +236,9 @@ def main():
-     parser.add_option("-a", "--actual-branch",
-             help = "Set actual branch",
-             action="store", dest="actual_branch")
-+    parser.add_option("-b", "--branch",
-+            help = "Set branch to import",
-+            action="store", dest="branch", default="master")
+diff --git a/meta-parsec/README.md b/meta-parsec/README.md
+index aeb48a6..c5635d3 100644
+--- a/meta-parsec/README.md
++++ b/meta-parsec/README.md
+@@ -1,8 +1,7 @@
+ meta-parsec layer
+ ==============
  
-     options, args = parser.parse_args(sys.argv)
+-This layer contains recipes for the Parsec service with Mbed-Crypto,
+-Pkcs11 and TPM providers and parsec tools.
++This layer contains recipes for the Parsec service and parsec tools.
  
-@@ -284,7 +287,7 @@ def main():
-     if not os.path.exists(fetchdir):
-         os.makedirs(fetchdir)
+ Dependencies
+ ============
+@@ -43,9 +42,16 @@ local.conf:
  
--    master_branch = utils.get_branch('master')
-+    master_branch = utils.get_branch(options.branch)
-     core_layer = None
-     try:
-         with transaction.atomic():
-@@ -311,7 +314,7 @@ def main():
-                 logger.error("Fetch failed: %s" % str(e))
-                 sys.exit(1)
+     IMAGE_INSTALL:append = " parsec-service"
  
--            actual_branch = 'master'
-+            actual_branch = options.branch
-             if (options.actual_branch):
-                 actual_branch = options.actual_branch
-             try:
-@@ -324,7 +327,7 @@ def main():
-                         actual_branch = line.split('-> origin/')[-1]
-                         break
-                 if not actual_branch:
--                    logger.error("Repository has no master branch nor origin/HEAD")
-+                    logger.error("Repository has no %s branch nor origin/HEAD" % options.branch)
-                     sys.exit(1)
-                 out = utils.runcmd(['git', 'checkout', 'origin/%s' % actual_branch], repodir, logger=logger)
+-  The Parsec service will be deployed into the image built with all the supported
+-providers and with the default config file from the Parsec repository:
++  By default the Parsec service will be deployed into the image with
++TPM, PKCS11, MBED-CRYPTO and CRYPTOAUTHLIB providers build in
++and with the default config file from the Parsec repository:
+ https://github.com/parallaxsecond/parsec/blob/main/config.toml
++
++  You can use PACKAGECONFIG for Parsec servic recipe to define
++what providers should be built in. For example,
++
++    PACKAGECONFIG:pn-parsec-service = "TPM"
++
+   The default Parsec service config file contains the MbedCrypto provider
+ enabled. The config file needs to be updated to use the Parsec service
+ with other providers like TPM or PKCS11. The required procedures are
+@@ -80,12 +86,19 @@ manual testing of the Parsec service:
+ to test the Parsec service base functionality:
+ https://www.youtube.com/watch?v=ido0CyUdMHM&list=PLKjl7IFAwc4S7WQqqphCsyy6DPDxJ2Skg&index=4
  
-@@ -332,7 +335,7 @@ def main():
-             if options.subdir:
-                 layerdir = os.path.join(repodir, options.subdir)
-                 if not os.path.exists(layerdir):
--                    logger.error("Subdirectory %s does not exist in repository for master branch" % options.subdir)
-+                    logger.error("Subdirectory %s does not exist in repository for %s branch" % (options.subdir, options.branch))
-                     sys.exit(1)
-                 if not os.path.exists(os.path.join(layerdir, 'conf/layer.conf')):
-                     logger.error("conf/layer.conf not found in subdirectory %s" % options.subdir)
++  The parsec-tool recipe also includes `parsec-cli-tests.sh` script
++which runs e2e tests against all providers enabled and configured
++in Parsec service.
++
+   You can use runqemu to start a VM with a built image file and run
+ manual tests with parsec-tool.
+ 
++Enabling Parsec providers for manual testing
++============================================
++
+ 1. MbedCrypto provider
+   The default Parsec service config file contains the MbedCrypto provider
+-enabled. No changes required for manual testing.
++enabled. No changes required.
+ 
+ 2. PKCS11 provider
+   The Software HSM can be used for manual testing of the provider by
+diff --git a/meta-parsec/recipes-parsec/parsec-service/parsec-service_0.8.1.bb b/meta-parsec/recipes-parsec/parsec-service/parsec-service_0.8.1.bb
+index b8bfa98..9161872 100644
+--- a/meta-parsec/recipes-parsec/parsec-service/parsec-service_0.8.1.bb
++++ b/meta-parsec/recipes-parsec/parsec-service/parsec-service_0.8.1.bb
+@@ -13,15 +13,15 @@ SRC_URI += "crate://crates.io/parsec-service/${PV} \
+ DEPENDS = "clang-native"
+ 
+ PACKAGECONFIG ??= "TPM PKCS11 MBED-CRYPTO CRYPTOAUTHLIB"
+-PACKAGECONFIG[ALL] = "all-providers,,tpm2-tss libts,libts"
+-PACKAGECONFIG[TPM] = "tpm-provider,,tpm2-tss"
+-PACKAGECONFIG[PKCS11] = "pkcs11-provider,"
++PACKAGECONFIG[ALL] = "all-providers cryptoki/generate-bindings tss-esapi/generate-bindings,,tpm2-tss libts,libts"
++PACKAGECONFIG[TPM] = "tpm-provider tss-esapi/generate-bindings,,tpm2-tss"
++PACKAGECONFIG[PKCS11] = "pkcs11-provider cryptoki/generate-bindings,"
+ PACKAGECONFIG[MBED-CRYPTO] = "mbed-crypto-provider,"
+ PACKAGECONFIG[CRYPTOAUTHLIB] = "cryptoauthlib-provider,"
+ PACKAGECONFIG[TS] = "trusted-service-provider,,libts,libts"
+ 
+-PARSEC_PROVIDERS = "${@d.getVar('PACKAGECONFIG_CONFARGS',True).replace(' ', ',')}"
+-CARGO_BUILD_FLAGS += " --features ${PARSEC_PROVIDERS},cryptoki/generate-bindings,tss-esapi/generate-bindings"
++PARSEC_FEATURES = "${@d.getVar('PACKAGECONFIG_CONFARGS',True).strip().replace(' ', ',')}"
++CARGO_BUILD_FLAGS += " --features ${PARSEC_FEATURES}"
+ 
+ inherit systemd
+ SYSTEMD_SERVICE:${PN} = "parsec.service"
 -- 
-2.17.1
+2.25.1
 
 
