@@ -2,39 +2,114 @@ Return-Path: <jared_terry@dell.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2211FC433F5
-	for <webhook@archiver.kernel.org>; Fri, 22 Oct 2021 21:40:10 +0000 (UTC)
-Subject: [meta-qt4]
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 495F3C433F5
+	for <webhook@archiver.kernel.org>; Fri, 22 Oct 2021 21:43:38 +0000 (UTC)
+Subject: Re: [meta-qt4]
 To: yocto@lists.yoctoproject.org
 From: jared_terry@dell.com
 X-Originating-Location: Cedar Park, Texas, US (70.124.160.59)
 X-Originating-Platform: Windows Chrome 94
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Fri, 22 Oct 2021 14:40:09 -0700
-Message-ID: <CdGu.1634938809417556311.RCfj@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="31cKpXLXoEkT4XFcPHMN"
+Date: Fri, 22 Oct 2021 14:43:37 -0700
+References: <CdGu.1634938809417556311.RCfj@lists.yoctoproject.org>
+In-Reply-To: <CdGu.1634938809417556311.RCfj@lists.yoctoproject.org>
+Message-ID: <8982.1634939017560197829@lists.yoctoproject.org>
+Content-Type: multipart/mixed; boundary="pmpEvFzWgsc1cg9wLp2R"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 22 Oct 2021 21:40:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55123
+ <yocto@lists.yoctoproject.org>; Fri, 22 Oct 2021 21:43:38 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55124
 
---31cKpXLXoEkT4XFcPHMN
+--pmpEvFzWgsc1cg9wLp2R
+Content-Type: multipart/alternative; boundary="DXRDasNGfdmy3WuzYfZr"
+
+--DXRDasNGfdmy3WuzYfZr
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-How do I get meta-qt4 patches applied?=C2=A0 I tried to contact the maintai=
-ner listed and the email comes back undeliverable.=C2=A0 I have the needed =
-patch but now way to deliver it.
+Here is the patch if anybody is interested, should have attached that the f=
+irst time.
 
---31cKpXLXoEkT4XFcPHMN
+--DXRDasNGfdmy3WuzYfZr
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-How do I get meta-qt4 patches applied?&nbsp; I tried to contact the maintai=
-ner listed and the email comes back undeliverable.&nbsp; I have the needed =
-patch but now way to deliver it.
+Here is the patch if anybody is interested, should have attached that the f=
+irst time.
 
---31cKpXLXoEkT4XFcPHMN--
+--DXRDasNGfdmy3WuzYfZr--
+
+--pmpEvFzWgsc1cg9wLp2R
+Content-Type: application/octet-stream;
+ name="0001-qt4-fix-distro_features_check-build-warnings.patch"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename="0001-qt4-fix-distro_features_check-build-warnings.patch"
+
+RnJvbSA0MDBjNTE2Yzg5N2QwZDA3MGRlNDI0ZWUzZDU1ZDA3NDE2MWYxNjkxIE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBqYXJlZF90ZXJyeSA8amFyZWRfdGVycnlAZGVsbC5jb20+CkRh
+dGU6IEZyaSwgMjIgT2N0IDIwMjEgMTU6NTc6MTcgLTA1MDAKU3ViamVjdDogW1BBVENIXSBxdDQ6
+IGZpeCBkaXN0cm9fZmVhdHVyZXNfY2hlY2sgYnVpbGQgd2FybmluZ3MKCmRpc3Ryb19mZWF0dXJl
+c19jaGVjay5iYmNsYXNzIHdhcyBkZXByZWNhdGVkLCB1cGRhdGluZyB0bwpmZWF0dXJlc19jaGVj
+ay5iYmNsYXNzIHRvIHJlbW92ZSBidWlsZCB3YXJuaW5nLgoKU2lnbmVkLW9mZi1ieTogSmFyZWQg
+VGVycnkgPGphcmVkLnRlcnJ5QGRlbGwuY29tPgotLS0KIGNsYXNzZXMvcXQ0eDExLmJiY2xhc3Mg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAyICstCiBjb25mL2xheWVy
+LmNvbmYgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgMiAr
+LQogcmVjaXBlcy1xdDQvaW1hZ2VzL2NvcmUtaW1hZ2UtbHNiLXF0NC5iYiAgICAgICAgICAgICAg
+ICAgICAgICB8IDIgKy0KIHJlY2lwZXMtcXQ0L3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLWNv
+cmUtcXQuYmIgICAgICAgICAgICAgfCAyICstCiByZWNpcGVzLXF0NC9wYWNrYWdlZ3JvdXBzL3Bh
+Y2thZ2Vncm91cC1xdC10b29sY2hhaW4tdGFyZ2V0LmJiIHwgMiArLQogcmVjaXBlcy1xdDQvcmVj
+aXBlcy1weXRob24vcHl0aG9uLXB5cXRfNC4xMi5iYiAgICAgICAgICAgICAgICB8IDIgKy0KIDYg
+ZmlsZXMgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspLCA2IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdp
+dCBhL2NsYXNzZXMvcXQ0eDExLmJiY2xhc3MgYi9jbGFzc2VzL3F0NHgxMS5iYmNsYXNzCmluZGV4
+IDZmMDZkMzQuLjdmNjVkODEgMTAwNjQ0Ci0tLSBhL2NsYXNzZXMvcXQ0eDExLmJiY2xhc3MKKysr
+IGIvY2xhc3Nlcy9xdDR4MTEuYmJjbGFzcwpAQCAtNCw3ICs0LDcgQEAgREVQRU5EU19wcmVwZW5k
+ID0gIiR7UVQ0REVQRU5EU30iCiAjIGRlcGVuZHMgb24gcXQ0LXgxMQogUkVRVUlSRURfRElTVFJP
+X0ZFQVRVUkVTICs9ICJ4MTEiCiAKLWluaGVyaXQgcW1ha2UyIGRpc3Ryb19mZWF0dXJlc19jaGVj
+aworaW5oZXJpdCBxbWFrZTIgZmVhdHVyZXNfY2hlY2sKIAogUVRfQkFTRV9OQU1FID0gInF0NCIK
+IFFUX0RJUl9OQU1FID0gInF0NCIKZGlmZiAtLWdpdCBhL2NvbmYvbGF5ZXIuY29uZiBiL2NvbmYv
+bGF5ZXIuY29uZgppbmRleCBjOGQzMWJiLi5mOWQzY2ZkIDEwMDY0NAotLS0gYS9jb25mL2xheWVy
+LmNvbmYKKysrIGIvY29uZi9sYXllci5jb25mCkBAIC04LDQgKzgsNCBAQCBCQkZJTEVfQ09MTEVD
+VElPTlMgKz0gInF0NC1sYXllciIKIEJCRklMRV9QQVRURVJOX3F0NC1sYXllciA9ICJeJHtMQVlF
+UkRJUn0vIgogQkJGSUxFX1BSSU9SSVRZX3F0NC1sYXllciA9ICI2IgogCi1MQVlFUlNFUklFU19D
+T01QQVRfcXQ0LWxheWVyID0gInRodWQgd2FycmlvciB6ZXVzIgorTEFZRVJTRVJJRVNfQ09NUEFU
+X3F0NC1sYXllciA9ICJ0aHVkIHdhcnJpb3IgemV1cyBkdW5mZWxsIgpkaWZmIC0tZ2l0IGEvcmVj
+aXBlcy1xdDQvaW1hZ2VzL2NvcmUtaW1hZ2UtbHNiLXF0NC5iYiBiL3JlY2lwZXMtcXQ0L2ltYWdl
+cy9jb3JlLWltYWdlLWxzYi1xdDQuYmIKaW5kZXggMDNkMjdmOC4uYzVjOGYyYiAxMDA2NDQKLS0t
+IGEvcmVjaXBlcy1xdDQvaW1hZ2VzL2NvcmUtaW1hZ2UtbHNiLXF0NC5iYgorKysgYi9yZWNpcGVz
+LXF0NC9pbWFnZXMvY29yZS1pbWFnZS1sc2ItcXQ0LmJiCkBAIC05LDUgKzksNSBAQCBJTUFHRV9J
+TlNUQUxMID0gIlwKIAogaW5oZXJpdCBjb3JlLWltYWdlCiAKLWluaGVyaXQgZGlzdHJvX2ZlYXR1
+cmVzX2NoZWNrCitpbmhlcml0IGZlYXR1cmVzX2NoZWNrCiBSRVFVSVJFRF9ESVNUUk9fRkVBVFVS
+RVMgPSAieDExIgpkaWZmIC0tZ2l0IGEvcmVjaXBlcy1xdDQvcGFja2FnZWdyb3Vwcy9wYWNrYWdl
+Z3JvdXAtY29yZS1xdC5iYiBiL3JlY2lwZXMtcXQ0L3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3Vw
+LWNvcmUtcXQuYmIKaW5kZXggYjdkZTY5ZS4uMTk4OTY0NiAxMDA2NDQKLS0tIGEvcmVjaXBlcy1x
+dDQvcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtY29yZS1xdC5iYgorKysgYi9yZWNpcGVzLXF0
+NC9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1jb3JlLXF0LmJiCkBAIC05LDcgKzksNyBAQCBQ
+UiA9ICJyNCIKICMgUXQ0IGNvdWxkIE5PVCBiZSBidWlsdCBvbiBNSVBTNjQgd2l0aCA2NCBiaXRz
+IHVzZXJzcGFjZQogQ09NUEFUSUJMRV9IT1NUX21pcHM2NCA9ICJudWxsIgogCi1pbmhlcml0IHBh
+Y2thZ2Vncm91cCBkaXN0cm9fZmVhdHVyZXNfY2hlY2sKK2luaGVyaXQgcGFja2FnZWdyb3VwIGZl
+YXR1cmVzX2NoZWNrCiAKICMgVGhlIHF1aWNreSBhbmQgZm90b3dhbGwgcmVxdWlyZXMgeDExIGlu
+IERJU1RST19GRUFUVVJFUwogUkVRVUlSRURfRElTVFJPX0ZFQVRVUkVTID0gIngxMSIKZGlmZiAt
+LWdpdCBhL3JlY2lwZXMtcXQ0L3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLXF0LXRvb2xjaGFp
+bi10YXJnZXQuYmIgYi9yZWNpcGVzLXF0NC9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1xdC10
+b29sY2hhaW4tdGFyZ2V0LmJiCmluZGV4IDc3MmMxNTEuLjdlNmY4MzkgMTAwNjQ0Ci0tLSBhL3Jl
+Y2lwZXMtcXQ0L3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLXF0LXRvb2xjaGFpbi10YXJnZXQu
+YmIKKysrIGIvcmVjaXBlcy1xdDQvcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtcXQtdG9vbGNo
+YWluLXRhcmdldC5iYgpAQCAtNCw3ICs0LDcgQEAgUVRMSUJQUkVGSVggPSAiIgogCiByZXF1aXJl
+IHBhY2thZ2Vncm91cC1xdC10b29sY2hhaW4tdGFyZ2V0LmluYwogCi1pbmhlcml0IGRpc3Ryb19m
+ZWF0dXJlc19jaGVjaworaW5oZXJpdCBmZWF0dXJlc19jaGVjawogIyBkZXBlbmRzIG9uIHF0NC14
+MTEtZnJlZQogUkVRVUlSRURfRElTVFJPX0ZFQVRVUkVTID0gIngxMSIKIApkaWZmIC0tZ2l0IGEv
+cmVjaXBlcy1xdDQvcmVjaXBlcy1weXRob24vcHl0aG9uLXB5cXRfNC4xMi5iYiBiL3JlY2lwZXMt
+cXQ0L3JlY2lwZXMtcHl0aG9uL3B5dGhvbi1weXF0XzQuMTIuYmIKaW5kZXggYmM1MWQ1Yi4uNWZm
+OGE2MSAxMDA2NDQKLS0tIGEvcmVjaXBlcy1xdDQvcmVjaXBlcy1weXRob24vcHl0aG9uLXB5cXRf
+NC4xMi5iYgorKysgYi9yZWNpcGVzLXF0NC9yZWNpcGVzLXB5dGhvbi9weXRob24tcHlxdF80LjEy
+LmJiCkBAIC0xOCw3ICsxOCw3IEBAIFMgPSAiJHtXT1JLRElSfS9QeVF0NF9ncGxfeDExLSR7UFZ9
+IgogCiBQQVJBTExFTF9NQUtFID0gIiIKIAotaW5oZXJpdCBxbWFrZTIgcHl0aG9ubmF0aXZlIHB5
+dGhvbi1kaXIgZGlzdHJvX2ZlYXR1cmVzX2NoZWNrCitpbmhlcml0IHFtYWtlMiBweXRob25uYXRp
+dmUgcHl0aG9uLWRpciBmZWF0dXJlc19jaGVjawogIyBkZXBlbmRzIG9uIHF0NC14MTEtZnJlZQog
+UkVRVUlSRURfRElTVFJPX0ZFQVRVUkVTID0gIngxMSIKIAotLSAKMi45LjMKCg==
+
+--pmpEvFzWgsc1cg9wLp2R--
 
