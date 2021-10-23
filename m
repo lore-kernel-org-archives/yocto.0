@@ -1,115 +1,105 @@
-Return-Path: <jared_terry@dell.com>
+Return-Path: <paul@pbarker.dev>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 495F3C433F5
-	for <webhook@archiver.kernel.org>; Fri, 22 Oct 2021 21:43:38 +0000 (UTC)
-Subject: Re: [meta-qt4]
-To: yocto@lists.yoctoproject.org
-From: jared_terry@dell.com
-X-Originating-Location: Cedar Park, Texas, US (70.124.160.59)
-X-Originating-Platform: Windows Chrome 94
-User-Agent: GROUPS.IO Web Poster
-MIME-Version: 1.0
-Date: Fri, 22 Oct 2021 14:43:37 -0700
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0AC75C433EF
+	for <webhook@archiver.kernel.org>; Sat, 23 Oct 2021 14:00:31 +0000 (UTC)
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com
+ [64.147.123.21])
+ by mx.groups.io with SMTP id smtpd.web09.6789.1634997629518667797
+ for <yocto@lists.yoctoproject.org>;
+ Sat, 23 Oct 2021 07:00:29 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@pbarker.dev header.s=fm2 header.b=R3SK9043;
+ spf=pass (domain: pbarker.dev, ip: 64.147.123.21, mailfrom: paul@pbarker.dev)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+	by mailout.west.internal (Postfix) with ESMTP id 9C9D73201C40;
+	Sat, 23 Oct 2021 10:00:28 -0400 (EDT)
+Received: from imap42 ([10.202.2.92])
+  by compute4.internal (MEProxy); Sat, 23 Oct 2021 10:00:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pbarker.dev; h=
+	mime-version:message-id:in-reply-to:references:date:from:to:cc
+	:subject:content-type:content-transfer-encoding; s=fm2; bh=AvhiV
+	0jYI+IrllRa2aIR1jO2vhZJ47iXGYf1H9GrweM=; b=R3SK9043gFLsmxDfLrdIT
+	aXaF+gUxBvg0NsX0a93E28MxhQEftcipFnf/3+yfA831V0ZZS5CyOyEogeIxQM3T
+	Mj6yWuNfEB/jqm2FS0Q3gYTX4cqvNVbK66iSJZYJzgmdyFvDh3GJwP43GqBwzCn0
+	x/0SWt/NIv32ECGWhmJvZ9S6GLG5W53FiFDe+j5ynbHJaAltoeJi0iosdN6oAEjI
+	HpPIoDUW4cwm+qsX0FJWkr/KEft7zN1deixS4BwpDSMHOc5JmbgYjHIa+n55rQen
+	cYUf5c5Z/uHdJ6X/XCv6e4Z4gH3scvbhT6aqKyWHZvWt1N2Z+bJAKedj7o7/jHiI
+	A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-transfer-encoding:content-type
+	:date:from:in-reply-to:message-id:mime-version:references
+	:subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm1; bh=AvhiV0jYI+IrllRa2aIR1jO2vhZJ47iXGYf1H9Grw
+	eM=; b=cQ/cs4rBvgcO3hPliV/SJT36BEqObG/CEeDo1iFuMb61ch1LYp6gx4eHY
+	B7PjUPM1419xwQg77RNrvwdXJQcyrEHV36WI45ksr5XQKttfCLQlq+nkfRzei1Jm
+	2p7ulP0vOB2JyCI8LIfebBuWSC2LAsDR01A4x8Qn33Eb/4RbCBfEXh/AoqNIzIEF
+	mn1dCBQ/EY2y0yhZn8Xd+NoBEBjM8by+5DGPM0553sZYgnC8uM9lqp3KLxKRXfl/
+	P0ejbRvlflXP0VHDJNGOh5XZPXKoKXcj5o96xrAbgqaO1E98PMo98cMTAMUTSn8x
+	kswiQ1WhvHL4jA+NnKF6+3ZChrNzA==
+X-ME-Sender: <xms:exV0YaJorCUq23cBhc6wkDtJPqnVZK6kinGHh8tra8F_T7wXeY4ycA>
+    <xme:exV0YSI1uCn_-ikmzqn-ne2Ly4b5_ga_bv4gLjynWPQ0QqpLOw2xCUtaNkdmwUJRE
+    _RcUrgmly5OTp6qCuw>
+X-ME-Proxy-Cause: 
+ gggruggvucftvghtrhhoucdtuddrgedvtddrvdeftddgjedtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgfgsehtqhertderreejnecuhfhrohhmpedfrfgr
+    uhhluceurghrkhgvrhdfuceophgruhhlsehpsggrrhhkvghrrdguvghvqeenucggtffrrg
+    htthgvrhhnpeehfeefueehgedukeefffevheejvdetheeuffeivdevhfevteffveeiudej
+    vddugfenucffohhmrghinhephihotghtohhprhhojhgvtghtrdhorhhgpdhpsggrrhhkvg
+    hrrdguvghvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhho
+    mhepphgruhhlsehpsggrrhhkvghrrdguvghv
+X-ME-Proxy: <xmx:exV0YauD47EmMUghkzlTzAWn5iReh8OXUzYk8WVlE3Z7fHOsbhIl_w>
+    <xmx:exV0YfYdshYlSdyp5TuVJkhauuOsscgFc6sqOHw2Jb_s21OqA39byg>
+    <xmx:exV0YRaKzd8LV4PkotAnvr7U18pKsnbbElRM2G1j-nmpWE0Fv1jVcg>
+    <xmx:fBV0YQyydsfPuqz7xegNA0fJyVeJECXJdK6B3EK-eLaO7Zq3AqJkRA>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id C451E21803D8; Sat, 23 Oct 2021 10:00:27 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-1369-gd055fb5e7c-fm-20211018.002-gd055fb5e
+Mime-Version: 1.0
+Message-Id: <6ea3645f-a4ac-47e1-bb03-969aaa5b6791@www.fastmail.com>
+In-Reply-To: <ec823e5d-705c-0930-985b-993e9e3578da@gmail.com>
 References: <CdGu.1634938809417556311.RCfj@lists.yoctoproject.org>
-In-Reply-To: <CdGu.1634938809417556311.RCfj@lists.yoctoproject.org>
-Message-ID: <8982.1634939017560197829@lists.yoctoproject.org>
-Content-Type: multipart/mixed; boundary="pmpEvFzWgsc1cg9wLp2R"
+ <ec823e5d-705c-0930-985b-993e9e3578da@gmail.com>
+Date: Sat, 23 Oct 2021 15:00:06 +0100
+From: "Paul Barker" <paul@pbarker.dev>
+To: "Khem Raj" <raj.khem@gmail.com>, jared_terry@dell.com,
+ yocto@lists.yoctoproject.org
+Cc: "Paul Eggleton" <paul.eggleton@linux.microsoft.com>
+Subject: Re: [yocto] [meta-qt4]
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 22 Oct 2021 21:43:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55124
+ <yocto@lists.yoctoproject.org>; Sat, 23 Oct 2021 14:00:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55127
 
---pmpEvFzWgsc1cg9wLp2R
-Content-Type: multipart/alternative; boundary="DXRDasNGfdmy3WuzYfZr"
+On Sat, 23 Oct 2021, at 00:30, Khem Raj wrote:
+> Hi Jared
+>
+> On 10/22/21 2:40 PM, jared_terry@dell.com wrote:
+>> How do I get meta-qt4 patches applied?=C2=A0 I tried to contact the=20
+>> maintainer listed and the email comes back undeliverable.=C2=A0 I hav=
+e the=20
+>> needed patch but now way to deliver it.
+>>=20
+>
+>
+> Please see [1] usually sending to the right mailing list and CCing the=20
+> maintainers is the usual way to send patches
+>
+> [1] https://git.yoctoproject.org/cgit/cgit.cgi/meta-qt4/tree/README
 
---DXRDasNGfdmy3WuzYfZr
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Cc'd Paul Eggleton's current email. Perhaps the readme file in meta-qt4 =
+needs updating.
 
-Here is the patch if anybody is interested, should have attached that the f=
-irst time.
+Thanks,
 
---DXRDasNGfdmy3WuzYfZr
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Here is the patch if anybody is interested, should have attached that the f=
-irst time.
-
---DXRDasNGfdmy3WuzYfZr--
-
---pmpEvFzWgsc1cg9wLp2R
-Content-Type: application/octet-stream;
- name="0001-qt4-fix-distro_features_check-build-warnings.patch"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment;
- filename="0001-qt4-fix-distro_features_check-build-warnings.patch"
-
-RnJvbSA0MDBjNTE2Yzg5N2QwZDA3MGRlNDI0ZWUzZDU1ZDA3NDE2MWYxNjkxIE1vbiBTZXAgMTcg
-MDA6MDA6MDAgMjAwMQpGcm9tOiBqYXJlZF90ZXJyeSA8amFyZWRfdGVycnlAZGVsbC5jb20+CkRh
-dGU6IEZyaSwgMjIgT2N0IDIwMjEgMTU6NTc6MTcgLTA1MDAKU3ViamVjdDogW1BBVENIXSBxdDQ6
-IGZpeCBkaXN0cm9fZmVhdHVyZXNfY2hlY2sgYnVpbGQgd2FybmluZ3MKCmRpc3Ryb19mZWF0dXJl
-c19jaGVjay5iYmNsYXNzIHdhcyBkZXByZWNhdGVkLCB1cGRhdGluZyB0bwpmZWF0dXJlc19jaGVj
-ay5iYmNsYXNzIHRvIHJlbW92ZSBidWlsZCB3YXJuaW5nLgoKU2lnbmVkLW9mZi1ieTogSmFyZWQg
-VGVycnkgPGphcmVkLnRlcnJ5QGRlbGwuY29tPgotLS0KIGNsYXNzZXMvcXQ0eDExLmJiY2xhc3Mg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAyICstCiBjb25mL2xheWVy
-LmNvbmYgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgMiAr
-LQogcmVjaXBlcy1xdDQvaW1hZ2VzL2NvcmUtaW1hZ2UtbHNiLXF0NC5iYiAgICAgICAgICAgICAg
-ICAgICAgICB8IDIgKy0KIHJlY2lwZXMtcXQ0L3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLWNv
-cmUtcXQuYmIgICAgICAgICAgICAgfCAyICstCiByZWNpcGVzLXF0NC9wYWNrYWdlZ3JvdXBzL3Bh
-Y2thZ2Vncm91cC1xdC10b29sY2hhaW4tdGFyZ2V0LmJiIHwgMiArLQogcmVjaXBlcy1xdDQvcmVj
-aXBlcy1weXRob24vcHl0aG9uLXB5cXRfNC4xMi5iYiAgICAgICAgICAgICAgICB8IDIgKy0KIDYg
-ZmlsZXMgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspLCA2IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdp
-dCBhL2NsYXNzZXMvcXQ0eDExLmJiY2xhc3MgYi9jbGFzc2VzL3F0NHgxMS5iYmNsYXNzCmluZGV4
-IDZmMDZkMzQuLjdmNjVkODEgMTAwNjQ0Ci0tLSBhL2NsYXNzZXMvcXQ0eDExLmJiY2xhc3MKKysr
-IGIvY2xhc3Nlcy9xdDR4MTEuYmJjbGFzcwpAQCAtNCw3ICs0LDcgQEAgREVQRU5EU19wcmVwZW5k
-ID0gIiR7UVQ0REVQRU5EU30iCiAjIGRlcGVuZHMgb24gcXQ0LXgxMQogUkVRVUlSRURfRElTVFJP
-X0ZFQVRVUkVTICs9ICJ4MTEiCiAKLWluaGVyaXQgcW1ha2UyIGRpc3Ryb19mZWF0dXJlc19jaGVj
-aworaW5oZXJpdCBxbWFrZTIgZmVhdHVyZXNfY2hlY2sKIAogUVRfQkFTRV9OQU1FID0gInF0NCIK
-IFFUX0RJUl9OQU1FID0gInF0NCIKZGlmZiAtLWdpdCBhL2NvbmYvbGF5ZXIuY29uZiBiL2NvbmYv
-bGF5ZXIuY29uZgppbmRleCBjOGQzMWJiLi5mOWQzY2ZkIDEwMDY0NAotLS0gYS9jb25mL2xheWVy
-LmNvbmYKKysrIGIvY29uZi9sYXllci5jb25mCkBAIC04LDQgKzgsNCBAQCBCQkZJTEVfQ09MTEVD
-VElPTlMgKz0gInF0NC1sYXllciIKIEJCRklMRV9QQVRURVJOX3F0NC1sYXllciA9ICJeJHtMQVlF
-UkRJUn0vIgogQkJGSUxFX1BSSU9SSVRZX3F0NC1sYXllciA9ICI2IgogCi1MQVlFUlNFUklFU19D
-T01QQVRfcXQ0LWxheWVyID0gInRodWQgd2FycmlvciB6ZXVzIgorTEFZRVJTRVJJRVNfQ09NUEFU
-X3F0NC1sYXllciA9ICJ0aHVkIHdhcnJpb3IgemV1cyBkdW5mZWxsIgpkaWZmIC0tZ2l0IGEvcmVj
-aXBlcy1xdDQvaW1hZ2VzL2NvcmUtaW1hZ2UtbHNiLXF0NC5iYiBiL3JlY2lwZXMtcXQ0L2ltYWdl
-cy9jb3JlLWltYWdlLWxzYi1xdDQuYmIKaW5kZXggMDNkMjdmOC4uYzVjOGYyYiAxMDA2NDQKLS0t
-IGEvcmVjaXBlcy1xdDQvaW1hZ2VzL2NvcmUtaW1hZ2UtbHNiLXF0NC5iYgorKysgYi9yZWNpcGVz
-LXF0NC9pbWFnZXMvY29yZS1pbWFnZS1sc2ItcXQ0LmJiCkBAIC05LDUgKzksNSBAQCBJTUFHRV9J
-TlNUQUxMID0gIlwKIAogaW5oZXJpdCBjb3JlLWltYWdlCiAKLWluaGVyaXQgZGlzdHJvX2ZlYXR1
-cmVzX2NoZWNrCitpbmhlcml0IGZlYXR1cmVzX2NoZWNrCiBSRVFVSVJFRF9ESVNUUk9fRkVBVFVS
-RVMgPSAieDExIgpkaWZmIC0tZ2l0IGEvcmVjaXBlcy1xdDQvcGFja2FnZWdyb3Vwcy9wYWNrYWdl
-Z3JvdXAtY29yZS1xdC5iYiBiL3JlY2lwZXMtcXQ0L3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3Vw
-LWNvcmUtcXQuYmIKaW5kZXggYjdkZTY5ZS4uMTk4OTY0NiAxMDA2NDQKLS0tIGEvcmVjaXBlcy1x
-dDQvcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtY29yZS1xdC5iYgorKysgYi9yZWNpcGVzLXF0
-NC9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1jb3JlLXF0LmJiCkBAIC05LDcgKzksNyBAQCBQ
-UiA9ICJyNCIKICMgUXQ0IGNvdWxkIE5PVCBiZSBidWlsdCBvbiBNSVBTNjQgd2l0aCA2NCBiaXRz
-IHVzZXJzcGFjZQogQ09NUEFUSUJMRV9IT1NUX21pcHM2NCA9ICJudWxsIgogCi1pbmhlcml0IHBh
-Y2thZ2Vncm91cCBkaXN0cm9fZmVhdHVyZXNfY2hlY2sKK2luaGVyaXQgcGFja2FnZWdyb3VwIGZl
-YXR1cmVzX2NoZWNrCiAKICMgVGhlIHF1aWNreSBhbmQgZm90b3dhbGwgcmVxdWlyZXMgeDExIGlu
-IERJU1RST19GRUFUVVJFUwogUkVRVUlSRURfRElTVFJPX0ZFQVRVUkVTID0gIngxMSIKZGlmZiAt
-LWdpdCBhL3JlY2lwZXMtcXQ0L3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLXF0LXRvb2xjaGFp
-bi10YXJnZXQuYmIgYi9yZWNpcGVzLXF0NC9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1xdC10
-b29sY2hhaW4tdGFyZ2V0LmJiCmluZGV4IDc3MmMxNTEuLjdlNmY4MzkgMTAwNjQ0Ci0tLSBhL3Jl
-Y2lwZXMtcXQ0L3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLXF0LXRvb2xjaGFpbi10YXJnZXQu
-YmIKKysrIGIvcmVjaXBlcy1xdDQvcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtcXQtdG9vbGNo
-YWluLXRhcmdldC5iYgpAQCAtNCw3ICs0LDcgQEAgUVRMSUJQUkVGSVggPSAiIgogCiByZXF1aXJl
-IHBhY2thZ2Vncm91cC1xdC10b29sY2hhaW4tdGFyZ2V0LmluYwogCi1pbmhlcml0IGRpc3Ryb19m
-ZWF0dXJlc19jaGVjaworaW5oZXJpdCBmZWF0dXJlc19jaGVjawogIyBkZXBlbmRzIG9uIHF0NC14
-MTEtZnJlZQogUkVRVUlSRURfRElTVFJPX0ZFQVRVUkVTID0gIngxMSIKIApkaWZmIC0tZ2l0IGEv
-cmVjaXBlcy1xdDQvcmVjaXBlcy1weXRob24vcHl0aG9uLXB5cXRfNC4xMi5iYiBiL3JlY2lwZXMt
-cXQ0L3JlY2lwZXMtcHl0aG9uL3B5dGhvbi1weXF0XzQuMTIuYmIKaW5kZXggYmM1MWQ1Yi4uNWZm
-OGE2MSAxMDA2NDQKLS0tIGEvcmVjaXBlcy1xdDQvcmVjaXBlcy1weXRob24vcHl0aG9uLXB5cXRf
-NC4xMi5iYgorKysgYi9yZWNpcGVzLXF0NC9yZWNpcGVzLXB5dGhvbi9weXRob24tcHlxdF80LjEy
-LmJiCkBAIC0xOCw3ICsxOCw3IEBAIFMgPSAiJHtXT1JLRElSfS9QeVF0NF9ncGxfeDExLSR7UFZ9
-IgogCiBQQVJBTExFTF9NQUtFID0gIiIKIAotaW5oZXJpdCBxbWFrZTIgcHl0aG9ubmF0aXZlIHB5
-dGhvbi1kaXIgZGlzdHJvX2ZlYXR1cmVzX2NoZWNrCitpbmhlcml0IHFtYWtlMiBweXRob25uYXRp
-dmUgcHl0aG9uLWRpciBmZWF0dXJlc19jaGVjawogIyBkZXBlbmRzIG9uIHF0NC14MTEtZnJlZQog
-UkVRVUlSRURfRElTVFJPX0ZFQVRVUkVTID0gIngxMSIKIAotLSAKMi45LjMKCg==
-
---pmpEvFzWgsc1cg9wLp2R--
+--=20
+Paul Barker
+https://pbarker.dev/
 
