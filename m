@@ -1,105 +1,62 @@
-Return-Path: <mhalstead@linuxfoundation.org>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 15CE8C433EF
-	for <webhook@archiver.kernel.org>; Mon, 25 Oct 2021 18:03:06 +0000 (UTC)
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
- [209.85.216.42])
- by mx.groups.io with SMTP id smtpd.web08.637.1635184984892432467
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E8EB7C4167B
+	for <webhook@archiver.kernel.org>; Mon, 25 Oct 2021 19:56:55 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web11.2303.1635191814736433886
  for <yocto@lists.yoctoproject.org>;
- Mon, 25 Oct 2021 11:03:05 -0700
+ Mon, 25 Oct 2021 12:56:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=dSaR3DHr;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.216.42,
- mailfrom: mhalstead@linuxfoundation.org)
-Received: by mail-pj1-f42.google.com with SMTP id oa4so8908997pjb.2
-        for <yocto@lists.yoctoproject.org>;
- Mon, 25 Oct 2021 11:03:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=OkReHyX2qmepzMSdQmmbeARrv68PbYITP8eYNH24Ht8=;
-        b=dSaR3DHrcTG5DWpEnmvNRxkXRJklAwlaa/+3eyu48V5Q75dSWH/Kt8KecjPXf+PgI1
-         U+1QVterCMDXEY4Sk+nTlsez/oSnk9t10vOOfMwcfodsZNCgp/12/KEAnjs6YVYInkEx
-         anb6wHHURl9byZIeN5s9O1DwO68ev5L1bZ7jg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=OkReHyX2qmepzMSdQmmbeARrv68PbYITP8eYNH24Ht8=;
-        b=jE92vi5DrfnloBtEO4VWChecnVbrmEztYBd5ct/rVuZPtgeh6vXtkObZKRuid/J/D0
-         F0AfcFkBXSK0E1NIhsPkp3rzrueRtPe+wdSF4vmVhtTftgq0a/G0NaV/KSisJoLLgrD0
-         Updd/xenmH2JzSJU/285iwKIVrDPsj5fmVl6TEBjCl+fDD90ELgJyrj3/wvG85gvTk+o
-         LWV8DfvAT51Yrp+fHvQ1LFtaT+EUSJVAR3RhvhrtLc2OH2ZIQ+8/eZhevBogDJt573ob
-         bNq+OXeA/Ws5cRQV/6wuL1l+tFE7q51FBlXrPSYq7KEjRhc9qzf7cZXaxh/F+SK5LfLP
-         c++g==
-X-Gm-Message-State: AOAM532CFm1ObEbcDSNE8PSurwh0wKQJq8gIGqGH8tgzIeWmJ919GCOk
-	21iSkZfq1ADjiQ3i/9/Q4nPRmr6DG0A65IVG
-X-Google-Smtp-Source: 
- ABdhPJwrUVw1IX/XZFUU10svWmh3G4ISYspKBSLst6fDFiSrnS7Fx4fV6rOl2lHCTbfmrEV4OrXIbQ==
-X-Received: by 2002:a17:90b:228b:: with SMTP id
- kx11mr11922584pjb.126.1635184983734;
-        Mon, 25 Oct 2021 11:03:03 -0700 (PDT)
-Received: from fedora.pdx.yoctoproject.org
- (c-67-160-160-127.hsd1.or.comcast.net. [67.160.160.127])
-        by smtp.gmail.com with ESMTPSA id
- d13sm21131124pfu.196.2021.10.25.11.03.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Oct 2021 11:03:02 -0700 (PDT)
-From: Michael Halstead <mhalstead@linuxfoundation.org>
-To: yocto@lists.yoctoproject.org
-Cc: Michael Halstead <mhalstead@linuxfoundation.org>
-Subject: [PATCH yocto-autobuilder-helper] auh: update the from address to
- valid domain
-Date: Mon, 25 Oct 2021 11:02:27 -0700
-Message-Id: <20211025180227.435283-1-mhalstead@linuxfoundation.org>
-X-Mailer: git-send-email 2.31.1
+ dkim=missing;
+ spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64,
+ mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id C5B7A40C47;
+	Mon, 25 Oct 2021 19:56:53 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 5Nyx6HNiJhEO; Mon, 25 Oct 2021 19:56:53 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+ [100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 9AA3D40031;
+	Mon, 25 Oct 2021 19:56:49 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id CBD181746A8; Mon, 25 Oct 2021 15:56:48 -0400 (EDT)
+Date: Mon, 25 Oct 2021 15:56:48 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: "openembedded-devel@lists.openembedded.org"
+ <openembedded-devel@lists.openembedded.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>,
+	openembedded-architecture <openembedded-architecture@lists.openembedded.org>,
+	Yocto Project <yocto@lists.yoctoproject.org>,
+	openembedded-members@lists.openembedded.org
+Subject: OpenEmbedded Happy Hour October 27 9pm/2100 UTC
+Message-ID: <20211025195648.GG10132@denix.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 25 Oct 2021 18:03:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55152
+ <yocto@lists.yoctoproject.org>; Mon, 25 Oct 2021 19:56:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55153
 
-The auh.yoctoproject.org domain is no longer used and cannot be
-validated.
+All,
 
-Signed-off-by: Michael Halstead <mhalstead@linuxfoundation.org>
----
- scripts/auh-config/upgrade-helper.conf | 2 +-
- scripts/setup-auh                      | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+Our next OpenEmbedded Happy Hour is on October 27 for Asia/Pacific timezones @ 
+2100/9pm UTC (5pm ET / 2pm PT):
 
-diff --git a/scripts/auh-config/upgrade-helper.conf b/scripts/auh-config/upgrade-helper.conf
-index 5284b4a..6255f3f 100644
---- a/scripts/auh-config/upgrade-helper.conf
-+++ b/scripts/auh-config/upgrade-helper.conf
-@@ -11,7 +11,7 @@ blacklist=linux-libc-headers linux-yocto alsa-utils-scripts build-appliance-imag
- # SMTP server
- smtp=mail.yoctoproject.org:25
- # from whom should the mails arrive
--from=auh@auh.yoctoproject.org
-+from=auh@yoctoproject.org
- # who should get the status mail with statistics, at the end
- status_recipients=openembedded-core@lists.openembedded.org
- # who should be CCd with upgrade emails
-diff --git a/scripts/setup-auh b/scripts/setup-auh
-index 23f3d44..5f49e38 100755
---- a/scripts/setup-auh
-+++ b/scripts/setup-auh
-@@ -14,7 +14,7 @@ pushd $1
- 
- git clone git://git.yoctoproject.org/poky
- pushd poky
--git config user.email auh@auh.yoctoproject.org
-+git config user.email auh@yoctoproject.org
- git config user.name "Auto Upgrade Helper"
- popd
- git clone git://git.yoctoproject.org/auto-upgrade-helper
+https://www.openembedded.org/wiki/Calendar
+https://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenEmbedded+Happy+Hour+October+27&iso=20211027T21
+
 -- 
-2.31.1
-
+Regards,
+Denys Dmytriyenko <denis@denix.org>
+PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
+Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
 
