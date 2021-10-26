@@ -2,61 +2,62 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D63CEC433F5
-	for <webhook@archiver.kernel.org>; Tue, 26 Oct 2021 14:24:30 +0000 (UTC)
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com
- [209.85.215.170])
- by mx.groups.io with SMTP id smtpd.web12.12842.1635258270318870628
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DA4C7C433F5
+	for <webhook@archiver.kernel.org>; Tue, 26 Oct 2021 14:24:32 +0000 (UTC)
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com
+ [209.85.210.180])
+ by mx.groups.io with SMTP id smtpd.web10.12978.1635258272400327786
  for <yocto@lists.yoctoproject.org>;
- Tue, 26 Oct 2021 07:24:30 -0700
+ Tue, 26 Oct 2021 07:24:32 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=KI+Ec0Gf;
- spf=pass (domain: gmail.com, ip: 209.85.215.170,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=g26uHF7/;
+ spf=pass (domain: gmail.com, ip: 209.85.210.180,
  mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f170.google.com with SMTP id s136so14307362pgs.4
+Received: by mail-pf1-f180.google.com with SMTP id t184so14532220pfd.0
         for <yocto@lists.yoctoproject.org>;
- Tue, 26 Oct 2021 07:24:30 -0700 (PDT)
+ Tue, 26 Oct 2021 07:24:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=TYMPoTJmCumsR8GlmzNsWjW7QovoTSbBgSOMUh5LPBE=;
-        b=KI+Ec0Gfx0JNTJQSU4+cAT4jCi8Rlcp3paLVUewIm6j0x7boGuoED6VIH8buo15EKl
-         KwMpkuTjL+SnnxUIq2hh2VzV5VwpLv/KC6F1QB4ES++Vltdb0dIN+J6tn05QqJNOfjFJ
-         eUVJcwckI1V2TaLjYSrhbAm5c38u7BIc3MaI5mMvq0jxlM7Fh2ozMgfU/MAqPn1ZN3zi
-         hJc2o0UKMTwY9zToMaLb+l29BmWSdsfpA0IzjOfJSU++7RKuk5OOrTUT2cK3JMH3vvYS
-         QLda9TJKzUmRBGb201NcM5BWivX7zDUd/YQOJRymOZU0qW+SJLKR2+kKfJ/EOZ7BJf+W
-         3OeA==
+        bh=pdYgbtSW1zY8/nCkJ9oQ+40HBoO51nqYB4kmffPtncY=;
+        b=g26uHF7/T0TiCfmEeKYIVFP034NOoqUysAK9ZstnksOk7sscKCrWOfKHVOJBQR4eZu
+         2GehGnJ1dxYIdVo8AugYNBHL6/c9Kbi+/YhF5slFXSvv70LuKlvJ/Tgz+vhx1ukakI9s
+         AmmNQ457aBsJ/UkOhurmUJcQq+hJMdBm+uVvCCO6NikLGIJmWBtciu3kD6TmZ+DzG/ih
+         g4NZGfRfzA9iOzlZHZIPqftlFUZJolA1BukOe8a2zSXZlMm85MerzOPmTEbZkkNWJj9z
+         sdUt1ftqjgNsoN1G7m65jJv/uapNG7DAkj6skXqwgnDVZwGqiAzcjfr95StcflJuJ1sK
+         ElkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=TYMPoTJmCumsR8GlmzNsWjW7QovoTSbBgSOMUh5LPBE=;
-        b=dWDLO9yW1LFbFmOeVhfbITtHhQNScHl6fKVGJOitsPesJsQTBVi5v73S6SxkRI4Xcu
-         EkuOCs4hhvulPabGVysnK2dI+JXHhjMvAX3y5lFVHcDsG1vqUXT/AbcUmOulpLO0PSjQ
-         Z5WG1/Wqg+DwKA3ORwRrbhkYg1JJ2h0wukuRU2a5tWkdhJJUyMUgdbk3sp/lPOg968av
-         7wC8GngSeSL1wAiQxKgUKfEoqOWzWCKkOWM1Cfw/MStZYTZFgBjJR+sZMMfyzjja0eMD
-         f0T1zurln4jYEGq/pVTTSSti8F4XIi359RMVPS7J3FK/zRS2EJ2tsq+ZCCr0Q5tmKu6W
-         Wkww==
-X-Gm-Message-State: AOAM533FplLWxXQvpwtzc7wHjwO1GIYwD9BPNwv4uarBV+xb0w0+M374
-	Njr7zbfAw+adfVwy11LqLiSZajnfS3c=
+        bh=pdYgbtSW1zY8/nCkJ9oQ+40HBoO51nqYB4kmffPtncY=;
+        b=CTAariq6prpBv93YlGc32nBDZ77dyGFk2dj61Rr7o4xIZVphlja1/vhvdu/KUSMYd1
+         V6UMhCWNOmHfuyMem1T68Y53jT8rolmZqYHhhHcV+twZ+rMTIa1E8xOOtkjt6Yaeg98a
+         vah2KRp/C3pij2l2/pYTq4Llem57coAi/KEanL08VeV6a184lfRi8PUbWRync1xsG+mP
+         QCohx30u9MUY5GIfsaGjUqGrNfgJLtIjNosKQ0D2ROOQcCgvwlQscydDJCzRcsm4EyVv
+         Q0Mquld6gNUdle09tKADLjqPj0Z3thOVXk4KtyWhR+tpjjOcVb9D3D/nJ5Ugtky72sHF
+         dlVg==
+X-Gm-Message-State: AOAM5323VNnyIqNlkn0Ytxe75DPvWLOpCQUvEQlxZeThBMkltIWclnSL
+	hYdfZhobVzxGUFxorWAa9yjRONxmdyM=
 X-Google-Smtp-Source: 
- ABdhPJyIXtYNkJIrS3sIVBmGIyELyjvFTfymaBEHM0bLWRqfFAaVfOCE1k2Ql+C/5l9pjfFRlKiAHQ==
-X-Received: by 2002:a05:6a00:2405:b0:44c:1ec3:8dbe with SMTP id
- z5-20020a056a00240500b0044c1ec38dbemr26407264pfh.33.1635258269561;
-        Tue, 26 Oct 2021 07:24:29 -0700 (PDT)
+ ABdhPJyu8sxM/Yv6oaHO9BfbQH1/j9Yfi65VF5Z5tz+kdZBGxxfzqLgW92LQQxvO9knUE39rz9uuxA==
+X-Received: by 2002:a63:3f4f:: with SMTP id
+ m76mr19377245pga.315.1635258270439;
+        Tue, 26 Oct 2021 07:24:30 -0700 (PDT)
 Received: from keaua.hsd1.ca.comcast.net
  ([2601:202:4180:a5c0:bc55:5a93:ebf6:406e])
         by smtp.gmail.com with ESMTPSA id
- p25sm25821553pfh.86.2021.10.26.07.24.28
+ p25sm25821553pfh.86.2021.10.26.07.24.29
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Oct 2021 07:24:29 -0700 (PDT)
+        Tue, 26 Oct 2021 07:24:30 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 3/4] tpm2-tools: update to 5.2
-Date: Tue, 26 Oct 2021 07:24:25 -0700
-Message-Id: <20211026142426.1476128-3-akuster808@gmail.com>
+Subject: [meta-security][PATCH 4/4] openssl-tpm-engine: fix build issue with
+ openssl 3
+Date: Tue, 26 Oct 2021 07:24:26 -0700
+Message-Id: <20211026142426.1476128-4-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211026142426.1476128-1-akuster808@gmail.com>
 References: <20211026142426.1476128-1-akuster808@gmail.com>
@@ -65,34 +66,48 @@ Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 26 Oct 2021 14:24:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55165
+ <yocto@lists.yoctoproject.org>; Tue, 26 Oct 2021 14:24:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55166
 
-openssl 3.0 support
+ERROR: openssl-tpm-engine-0.5.0-r0 do_package: QA Issue: openssl-tpm-engine: Files/directories were installed but not shipped in any package:
+  /usr/lib/engines-3/tpm.so
 
-see https://github.com/tpm2-software/tpm2-tools/releases/tag/5.2
+fix engine locations
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../tpm2-tools/{tpm2-tools_5.0.bb => tpm2-tools_5.2.bb}         | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
- rename meta-tpm/recipes-tpm2/tpm2-tools/{tpm2-tools_5.0.bb => tpm2-tools_5.2.bb} (81%)
+ .../openssl-tpm-engine/openssl-tpm-engine_0.5.0.bb | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.0.bb b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb
-similarity index 81%
-rename from meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.0.bb
-rename to meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb
-index dbd324a..6e95a0e 100644
---- a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.0.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_5.2.bb
-@@ -8,6 +8,6 @@ DEPENDS = "tpm2-abrmd tpm2-tss openssl curl autoconf-archive"
+diff --git a/meta-tpm/recipes-tpm/openssl-tpm-engine/openssl-tpm-engine_0.5.0.bb b/meta-tpm/recipes-tpm/openssl-tpm-engine/openssl-tpm-engine_0.5.0.bb
+index 9ad8967..dab1589 100644
+--- a/meta-tpm/recipes-tpm/openssl-tpm-engine/openssl-tpm-engine_0.5.0.bb
++++ b/meta-tpm/recipes-tpm/openssl-tpm-engine/openssl-tpm-engine_0.5.0.bb
+@@ -46,17 +46,17 @@ do_configure:prepend() {
+     touch NEWS AUTHORS ChangeLog README
+ }
  
- SRC_URI = "https://github.com/tpm2-software/${BPN}/releases/download/${PV}/${BPN}-${PV}.tar.gz"
+-FILES:${PN}-staticdev += "${libdir}/ssl/engines-1.1/tpm.la"
++FILES:${PN}-staticdev += "${libdir}/ssl/engines-3/tpm.la"
+ FILES:${PN}-dbg += "\
+-    ${libdir}/ssl/engines-1.1/.debug \
+-    ${libdir}/engines-1.1/.debug \
+-    ${prefix}/local/ssl/lib/engines-1.1/.debug \
++    ${libdir}/ssl/engines-3/.debug \
++    ${libdir}/engines-3/.debug \
++    ${prefix}/local/ssl/lib/engines-3/.debug \
+ "
+ FILES:${PN} += "\
+-    ${libdir}/ssl/engines-1.1/tpm.so* \
+-    ${libdir}/engines-1.1/tpm.so* \
++    ${libdir}/ssl/engines-3/tpm.so* \
++    ${libdir}/engines-3/tpm.so* \
+     ${libdir}/libtpm.so* \
+-    ${prefix}/local/ssl/lib/engines-1.1/tpm.so* \
++    ${prefix}/local/ssl/lib/engines-3/tpm.so* \
+ "
  
--SRC_URI[sha256sum] = "e1b907fe29877628052e08ad84eebc6c3f7646d29505ed4862e96162a8c91ba1"
-+SRC_URI[sha256sum] = "c0b402f6a7b3456e8eb2445211e2d41c46c7e769e05fe4d8909ff64119f7a630"
- 
- inherit autotools pkgconfig bash-completion
+ RDEPENDS:${PN} += "libcrypto libtspi"
 -- 
 2.25.1
 
