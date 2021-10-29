@@ -1,139 +1,247 @@
-Return-Path: <sazzalin@dares.tech>
+Return-Path: <trevor.gamblin@windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 23E5BC433EF
-	for <webhook@archiver.kernel.org>; Fri, 29 Oct 2021 08:22:05 +0000 (UTC)
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com
- (EUR04-HE1-obe.outbound.protection.outlook.com [40.107.7.115])
- by mx.groups.io with SMTP id smtpd.web11.2691.1635495723029526564
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B6CF4C433FE
+	for <webhook@archiver.kernel.org>; Fri, 29 Oct 2021 13:23:09 +0000 (UTC)
+Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com
+ [205.220.178.238])
+ by mx.groups.io with SMTP id smtpd.web10.5278.1635513784522530043
  for <yocto@lists.yoctoproject.org>;
- Fri, 29 Oct 2021 01:22:03 -0700
+ Fri, 29 Oct 2021 06:23:05 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify"
- header.i=@b66557844.onmicrosoft.com
- header.s=selector1-b66557844-onmicrosoft-com header.b=T6jVHBUe;
- spf=pass (domain: dares.tech, ip: 40.107.7.115,
- mailfrom: sazzalin@dares.tech)
+ dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=o/9bPpvV;
+ spf=pass (domain: windriver.com, ip: 205.220.178.238,
+ mailfrom: prvs=693691a099=trevor.gamblin@windriver.com)
+Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19TCTWnX007588
+	for <yocto@lists.yoctoproject.org>; Fri, 29 Oct 2021 13:23:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+ h=from : to :
+ subject : date : message-id : content-transfer-encoding : content-type :
+ mime-version; s=PPS06212021;
+ bh=nLJGKDuXIqRP2MuKKTUA9W1IFAqZ7EGPBO0pNtgyGBQ=;
+ b=o/9bPpvVE38yc/RmzMcDS5MDA+qBhn8fQw7ApSvOc2ljHb2FjIM/SvbdTifRkXzlv7Ko
+ fn0jXOPav2sZ7aUjtHjvxn5bin61ac5CUtltAVGvx7Z+MOnPj1GBlXcAHG/HPSl5bFcS
+ H9mVOMEZxyUR7Lgn9XU1yTTwHP98t7fO09+OUfEyk+h+HE9naUTn6jaaTm+zhAe0CJ4/
+ U+aEieYfDzJyxnXCbqCuJHDx52WgmSRws8NNDuQm76HKNqFFAj/NLNj7A4U/g48moeHy
+ 93dzAd/YtiVjtNet2u8kiblhS16ulLjn1yqXvFBgh7an0wo73ZidOYyiOTu8GhLXA9F8 BA==
+Received: from nam11-co1-obe.outbound.protection.outlook.com
+ (mail-co1nam11lp2177.outbound.protection.outlook.com [104.47.56.177])
+	by mx0a-0064b401.pphosted.com with ESMTP id 3c0gxxg191-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+	for <yocto@lists.yoctoproject.org>; Fri, 29 Oct 2021 13:23:03 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Tyz0+EQf514McWJ2frNXrYuXGgbQUBfaUgPeD4PKULt5bzAJ7vsFJ4SHbYq2qYV7iq0s9cN9KnjQ6yWqYInoDv/cAIcL1fUAVXvGZdK32yy7kV9aJaR7YZhM3uCCu4ug6h7Tn2C5hX/bsGC2d7AvF+2FRwL7O6aWoDi+Xo6lannnJsWErmkOb+ODH/GR6JeDAyo/cnPAUyQnFDA0oLaW53NCuBfLlaZjE6S19NgyV8WLv+5LLsmqHREYSo/B7U0/RGZ+Xi+DLbpPkHOXY8hZVrHnYYcHyiaobiYIAWlPKaok2xZxix6KTwy7QL+iOYQBe64hfTczk1fFEog0Kgkvfw==
+ b=MVRpYNYkN4KYzBUIN/97WCkqNyUTovG0cC+v9Jjl4WC4GkD3HW32+SomRt49jDVLDQFH1mmnEbEwgKqcM/x8Zjk/Tjx6WvuuA36NConqBORybetd4YSl254ApssMvWZTAwuzniyCy0cFn0DtBpXxMG2H3ohdJoj44DwOEzJAOAhw6GGAThAkg05GMOYAVEkikpAK33E8kkZXVjmGDEG7MRRrtwcsSqeWQF9ABTWdSmKEmN504YbqsJURwdWb1+es8Q6hxJB5x1zmJFsMINorKne7DZdSyNHVSA9R49kIBim/U3WtpzPYrqlufkAgb0UK1NBa6hbAwzja03m/ibjXeg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2Xu12k5I/5H/7+kWKMBalmBcU+iqm2dz9g0jhyUL6uQ=;
- b=kd20dATh1JX/GQOd3nd3JEh3DYOjSr8C/UfavmfKrdwCz2fdJJ/tzVvzxTSGbmql7tlC9+mlKQUr5W53P8NV/Ygt2ARmeZU6PV14DpFG4u1rqknGl3IIPadtt/468BMERlRzN22WB8yuFHlfysgmpTdQdnYwMOhZ7P5ZdUR+uOnVWtS8PBY0FCl3apTgyhqcG2aCeZ/Y54lyLLPJldfZUXTPl/mioG2qWUYATcIOYsOIw1FVsQNLx8mJKNCHt9gSUFn1ROoET4vhgLFDkt9Pe8RxOhLMC9g9Xj7aOBiV8Shr3sWdyQGXPbMrIbg5AkGwHMv8dElG35/ATjhIgvqbrA==
+ bh=nLJGKDuXIqRP2MuKKTUA9W1IFAqZ7EGPBO0pNtgyGBQ=;
+ b=hT40bM8gZNOC8KD7Nv3HgsWODlsoirSVLcc5qa2Aaa6v7bCWw4m3s/qar0/eq3wvPATl5raa21PFHX7+S5c9TslEtjnOHszNF0iWKjhzfMX98idhOll9JzyoIHjF1xoaZW74X2Rx/cN2OjOAP5BKjAaEgaX3xRWT468hXzodrgQ+IoHQnsmT8dC4ODPYqPloo9Nj9sxBsiMGlbtoNVNlUTubLy+wnlxAPjmuEptn/8klxBVxidXNTvTZJ5BdAIUMon5KSgt2QFse7tIz9abUw5XT5xDnIaKd7XHY3tlTm33O+UbqM1/KjW96WEwWMZBTZ6cCIJN6jdE5+pEPfrFmxw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=dares.tech; dmarc=pass action=none header.from=dares.tech;
- dkim=pass header.d=dares.tech; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=B66557844.onmicrosoft.com; s=selector1-B66557844-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2Xu12k5I/5H/7+kWKMBalmBcU+iqm2dz9g0jhyUL6uQ=;
- b=T6jVHBUejSAzERL6gWSOFLkVCsiJX6MRq8bHmVHkhwYckIP84q0rj3++JrKAyfAVcm8Jk0/FO/j0HQUAdgjYnKxrH/ax6L0pShqLmdvWI3edo86m5Q/kn5VgsDJqznUCTHH/QKQVdCXpXei71MRSdQq1UOQqe2NqQv3ZEtgxrVc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=dares.tech;
-Received: from AM0P194MB0452.EURP194.PROD.OUTLOOK.COM (2603:10a6:208:5a::15)
- by AM9P194MB1249.EURP194.PROD.OUTLOOK.COM (2603:10a6:20b:3a9::24) with
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Authentication-Results: lists.yoctoproject.org; dkim=none (message not signed)
+ header.d=none;lists.yoctoproject.org; dmarc=none action=none
+ header.from=windriver.com;
+Received: from BY5PR11MB3909.namprd11.prod.outlook.com (2603:10b6:a03:191::13)
+ by BY5PR11MB3912.namprd11.prod.outlook.com (2603:10b6:a03:190::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.13; Fri, 29 Oct
- 2021 08:21:59 +0000
-Received: from AM0P194MB0452.EURP194.PROD.OUTLOOK.COM
- ([fe80::1db9:f4ed:3c2f:bb2]) by AM0P194MB0452.EURP194.PROD.OUTLOOK.COM
- ([fe80::1db9:f4ed:3c2f:bb2%6]) with mapi id 15.20.4649.015; Fri, 29 Oct 2021
- 08:21:59 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.15; Fri, 29 Oct
+ 2021 13:22:59 +0000
+Received: from BY5PR11MB3909.namprd11.prod.outlook.com
+ ([fe80::ccb2:28ab:f000:8440]) by BY5PR11MB3909.namprd11.prod.outlook.com
+ ([fe80::ccb2:28ab:f000:8440%3]) with mapi id 15.20.4649.015; Fri, 29 Oct 2021
+ 13:22:59 +0000
+From: Trevor Gamblin <trevor.gamblin@windriver.com>
 To: yocto@lists.yoctoproject.org
-From: Simone Azzalin <sazzalin@dares.tech>
-Subject: How to set IMAGE_ROOTFS_SIZE ?
-Message-ID: <a5daf1cd-7e24-c92e-04b2-18d48bac112f@dares.tech>
-Date: Fri, 29 Oct 2021 10:21:57 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
-X-ClientProxiedBy: LNXP265CA0013.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:5e::25) To AM0P194MB0452.EURP194.PROD.OUTLOOK.COM
- (2603:10a6:208:5a::15)
+Subject: [yocto-autobuilder2][PATCH] builders.py: Add canStartBuild disk space
+ check
+Date: Fri, 29 Oct 2021 09:22:47 -0400
+Message-Id: <20211029132247.205325-1-trevor.gamblin@windriver.com>
+X-Mailer: git-send-email 2.31.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BL0PR01CA0030.prod.exchangelabs.com (2603:10b6:208:71::43)
+ To BY5PR11MB3909.namprd11.prod.outlook.com (2603:10b6:a03:191::13)
 MIME-Version: 1.0
-Received: from [192.168.8.101] (77.208.45.242) by
- LNXP265CA0013.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:5e::25) with Microsoft
+Received: from yow-tgamblin-lx3.corp.ad.wrs.com (2607:fea8:c29d:d7c0::60cb) by
+ BL0PR01CA0030.prod.exchangelabs.com (2603:10b6:208:71::43) with Microsoft
  SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.15 via Frontend
- Transport; Fri, 29 Oct 2021 08:21:59 +0000
+ Transport; Fri, 29 Oct 2021 13:22:59 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8e8d586a-1e50-4e0e-6f3d-08d99ab52d95
-X-MS-TrafficTypeDiagnostic: AM9P194MB1249:
+X-MS-Office365-Filtering-Correlation-Id: 7ae87003-0025-4eb1-3b66-08d99adf3a2f
+X-MS-TrafficTypeDiagnostic: BY5PR11MB3912:
 X-Microsoft-Antispam-PRVS: 
-	<AM9P194MB12496022F7B00EA40C941F7EB7879@AM9P194MB1249.EURP194.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+	<BY5PR11MB391230B927C0A5B535CD51009F879@BY5PR11MB3912.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	OpZFpwsIwCe4nrO8UflWTE3WpKJYC22Vj6LCsjF97dk6Jf3gfKxKgF6ZMQRTPIYafQ8LbO4ooRxYOsHiLaobL1gawHZtAjWWm1tWSI6QM8pZgQWDp0P3P+hNcHFOqvGlT3p+BRivWBc8kArwIXHqT28tGlZXofqy36OWhw1rySpoF2H6SL837V9SmduCA1K6qz45NsAwsnbiamdqophQKwOz8LihblktEYZezaduDkU4HRhRiOXHsZBBKmiNLSNNjM6lzcs+vlPtzWHDqmFUbApuRTX10QE7wRDm51IB8bcCsnlQxL0aKUeKtbHTLKe5BPAU+tVzc7TMyKNGk9E9duBDHLClbLoVdiIuroF3CzHBYJu+HA7vQ4ua+r5Qxe9S5mpeuoN2NsuxLyh3PS0c5Opy2i1RYCxRJTo4z6PSOpbZ1RO1bcvYah3kXoM7mcanDQ+2UR6NyQfbw5ef3z8uALTG8K0jc98BKnfqVfPrkswyH1h0cYc8aLR5xUYhVwIZEjlZ0BXF7jGnTNLg/97K4VrNB6rcwPZ5HyewzS/J7iA00XCICixmsRWYT65yR4zZwaoWJUMU9rTWKubwwyFoXtEdupGZY3f8vp2YlWnApwPcQs08vMJ4aRtv+qAm5tR7VgwLuuA2jMh7Cm7Gd8Y915dXhKbuJeySUNOiXpREocvKUUES1kj9ymUQg0S1S4+v4Jv/LbI08/RQN8QlWwBJAlvcqtf5JUAE7vmMgjkexncV0nHa6oSrj4ETdeMtuRsLX9znTExHIAHPlugrmNwUeA==
+	8ySKaGIe11aEPuOSbfDX/M/jOsEwlk44EknAuPvDmntYjxC6fIydQKE2oUXsZqoBPDtUGqMCsBhuv/Cmkc+OBg/XeUjUdBVnMfCnm/dSV6dv0aK4PGYqv92glGUzVr2L5o1MjBMSgmpwTL019cwCdD+N2AIHfwtCrvHQeASiXht6wx+eW8yoSOWoWqOV0kFSLQC0OFl1u8Fr4RpcO3ZHLkJCFuRj12X6ui9VDvMAw8arvR88lcqwV6SwfQUuPSWUo9Cb84qzh/6Vl0oMZeSmu35VxZUN2EgofgVctOix+1Z3qL/HH5r4jgD0t9rD0itLTjKQj8r2B1QFUKgTpP+VkOoiJYGha0HqTA3DTNy6zoIPN65NG2QhbywzLMRflo0sD1eG8bMm1BP1PBF0Wux9MnLyPcbWIBK7Z8i8/j6e54vLtmPwPs/0sNZmdjK2/ehnwR4hHw8/fsNgUHCM8Ez3+tQCa0TT1XrF29cnMBAz3mvmWGLhV3bSN6YS12sdzbpWYuRK3hBGyzlhqpN2EfC/s4g+iOtHEfzXP9OwMsGxOPGHlHfrlAkrGvceMx9hO8bCpwABadsodoTnezw30I25BthSKb7KeIMBhWg0EnoFWK3+7Ay/Fs9hyyJ3ZP2qLRDxcCZHePwppUjLslwfU4iFkWaboZf4f1Om/nTV1ednkAnS821/t/hhTK3TtSJ6QWn6hHSAeeFESXXa13c/AIkmS6WiqbuG+WiVWYM3qAddR2Q=
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0P194MB0452.EURP194.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(136003)(346002)(376002)(366004)(396003)(39830400003)(86362001)(52116002)(956004)(186003)(66476007)(4744005)(66556008)(66946007)(316002)(2616005)(31686004)(31696002)(6916009)(5660300002)(38350700002)(26005)(16576012)(508600001)(6486002)(2906002)(36756003)(38100700002)(8936002)(8676002)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR11MB3909.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(66574015)(8936002)(2906002)(6916009)(5660300002)(186003)(6506007)(8676002)(38100700002)(316002)(44832011)(83380400001)(36756003)(66946007)(66556008)(6666004)(6486002)(52116002)(66476007)(6512007)(86362001)(508600001)(1076003)(966005)(2616005);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?pPMaljTk3yqH+6K9DsGeYnOd7FTO4fT1OVMcguK6tN7r0ONwPF12bBG7VsFZ?=
- =?us-ascii?Q?DI+8nsUvyu7Mfk1pBLVHc6J2zsgJVWm94Fd4T+GStclfAFdksLI+HT6B6S2P?=
- =?us-ascii?Q?M+4nW+72yCoPYZSH3EYzAjk7ZphyLZMnjyM4N4bfYjhvd6QLD2pe1zHZDiBQ?=
- =?us-ascii?Q?flU3DTQ2L/Y9gNcY0fF43QbEv+6k4KoYlZPFrX2jmoZZkDo6anAXsq+qsl0D?=
- =?us-ascii?Q?s5RRYfk6hlwORdC8XhTqzhkYxjei2GWVTNx1NSFb5n5ayVce6YEuDACHGy6W?=
- =?us-ascii?Q?eU95ETJuossUQkXYryKJryvWKnvCxHwkXIq+ayHD1pBHobbAWWP8SSvNOqYO?=
- =?us-ascii?Q?aprFa7O4wK4o1+jAU02C3LLp3+a8WnOdYwh2a+v5biz8LqAzuKUY0a1OXOY1?=
- =?us-ascii?Q?LOCIRY9o4rT/dKzWz+31sZ1o0rM9W0vOsG8iqViBUOV0ldAnZLgeHdpaehl0?=
- =?us-ascii?Q?dwTEqrnp4BtyIkXgvfflkcvDiuLpVvcv5gZykl7DfuJSoAb4EktOChTv65bz?=
- =?us-ascii?Q?DhHeNEo/gHLTgc0p6Ii4uh289v6qv6XTqawn4sGzuvGw2btqBxLFpULW3OGK?=
- =?us-ascii?Q?Tscn5fWj5OENonZkpo74CWUGF5uIJYX6IkzWOwVWz7kBw4HfeegLNx5zasTx?=
- =?us-ascii?Q?rVbU1UPEf8ECYr0P8R3B77xY2rZnOSlOwfsVphIrgg20Jn5nf49U2Z0d53kq?=
- =?us-ascii?Q?XpFXzVB3AicZtZpGFFD/KO2FUslYnt8ks7a4XmIOlAW8fleI2yEU9cxpBlQV?=
- =?us-ascii?Q?a5Sbo6qcJ6JJlnycyubyUVc8FPj0LCAkEVBVoVwxBupMaLrUib8PgKZfMJRH?=
- =?us-ascii?Q?95o55LcgJypPogBGm1RH4jY6ZwGa30ue66Rdg3CyuTo8sd9Q9YRzt+02pnl8?=
- =?us-ascii?Q?l75oLmQPkbxTgBMzExCG4qSWHgBMpNvWQ2WpmQx0oe/PZx+50yQR19YLQ+m/?=
- =?us-ascii?Q?wAIohG5aGb+7uHhnzmDRR2X18bYupO2FfCoKix5EqmgmhEfXxPJdKQdhHSZx?=
- =?us-ascii?Q?NCMHSm3gdsq62DwyBI3ANxfIvsT+StPEsF9todkf7+RsskbjKeqZN2THt97X?=
- =?us-ascii?Q?SoAJLCOwOzw/tKsNZZeqDFsagsO5dMW0U2FXocmm+cD4Fyn/GwceRCAe1tAP?=
- =?us-ascii?Q?WJZcav60p7hwSjtu5cs448bxRyLvQTqMsbpvWB7U1z8q7DtdkNQjSC5Mr0JI?=
- =?us-ascii?Q?9jt2hbtUxR6LhRxAjve2opFS9eiocp6yY8e68vVWeldKazv/Ez/6wHGllm+P?=
- =?us-ascii?Q?uUB1GJUbIOjy5X69NH8oZOx1gSGfUMc7mPRBw5T4EMaIHamfHYU+A55EpTN8?=
- =?us-ascii?Q?IraSvR1E8n3gbxtzbrE0QJlOF/vweG0tbd4ZVyX/+xn80Odulyu9QW8NRjIe?=
- =?us-ascii?Q?vABWr+ZCBvip28QEC6fCNwgRHkrRGyVbAvfeAi83k9pUULgSCgyz/SRUZ28L?=
- =?us-ascii?Q?0uceHAtaJ7Doii9bCddYfzjwlIJgm2NF7KunW4KK40dm6paUiFa86+E1o5WG?=
- =?us-ascii?Q?J6mWRlVlfF7FCn8WxodNjhT/6VqP665F52gp3HpK4YdMXVyOvF88xhNEHJCc?=
- =?us-ascii?Q?wc2jPUaPGyBFyHc3L5UKrtxH+ERJRzBOq6l8KWWEaEh/ULw1TI300Q1MQvCT?=
- =?us-ascii?Q?pdcx0IVDu3v9WstUo7fmiWc=3D?=
-X-OriginatorOrg: dares.tech
+	=?us-ascii?Q?7JC6jhEqx+drS6UfHaiVBT9OuKLuY4bwPhT4OTtbsNdeZ9N0hRtx+TLjGGue?=
+ =?us-ascii?Q?YzQ/CcbcynkFeOB2owjaYu1/qJWk+ez1UutUsPMsueJkI75PuTkEXdbNjeJs?=
+ =?us-ascii?Q?9YcrZgAisiyc5Phy0og2dbGMURG3sFCgNT5itGx3vtrPxG88f+FkqIOUn7ir?=
+ =?us-ascii?Q?wejBxwPTeGGlx7zKL5gVJBmyENERiYWsya/Q4mm6pGiA3e2g55yeU6AgfuPc?=
+ =?us-ascii?Q?z17kkMRR4sS7NI/hK5DrVcMuX9h48rkA9qnGo7bxBAmQft3jw/qblN4CruQl?=
+ =?us-ascii?Q?XNiKbm2uYjS9nDMvjxMHdyGKketKhAVCASGF4k7FMqBGM0h6h0JIqIuQ3Rgf?=
+ =?us-ascii?Q?vh+3mhWQAL2/fxgmUOtUpHw7h5Jb7N5isAGYQ2K09IhBnokC20E5X+WMn2AB?=
+ =?us-ascii?Q?zzcuUhuHZ5NeQuQmm52aSBl/Brt5DB3sp9/3c8z2eoN58yg7mhwCfdRODjfl?=
+ =?us-ascii?Q?IjmyEu7hFds4reICYZWlyIj9QNh1AD/UlhKpZL5lqkVPDN7Iv0/fInI+RCov?=
+ =?us-ascii?Q?rjDmMQ/V9dxdJdYg15Mgb0GJtHS9JGxfjEMlyOlA0V608rhLcCHO2TLmzwS9?=
+ =?us-ascii?Q?5T8dr/cm1i25vXhayrYZsFoezmDRhIRP9brwSENeJiBp14TiwImsNwCzwg6Q?=
+ =?us-ascii?Q?ZiV7n7Yev7xQJj10AveOKWNle+p54DrHlnVXObWS/eySwQ7oniNMuUGyfON6?=
+ =?us-ascii?Q?hdNoMgn42US6h8FRRgdIqhHdCcQJQ3aDwYUPGxjBs2v+GM4Nm7Hglgsr1u98?=
+ =?us-ascii?Q?JORGFAXk2ekKaSORit5UMwqUxSBQIr4RrVck3jcLXPmmLwPg6ecq6Zg1BzCG?=
+ =?us-ascii?Q?1ElsV9TH7vmuaVWSNlT7yG5DQauiKi1PSwKxUd6sG+J4lQtfsbLcfCZucZ9u?=
+ =?us-ascii?Q?woy39wWFViBzEC/5iM/2sDcG6s3CfX+i+wQrFatCa/MqUJGq31q175AWgyTw?=
+ =?us-ascii?Q?hmv69nooMJg0j2XFVW3gUO93GcB5hw/PztUJkfT07g0HOBGLsof2fvpUgdId?=
+ =?us-ascii?Q?2DORzdRhIV6dWGu5/B6fS5hulodLzaoqrDR5xZZpzsrki5zauIBmMJaj4Cpm?=
+ =?us-ascii?Q?6evNUtsJKXAMuDvsAVjvcF021SXwy4vCA0we1UvBpvgzU1am27gikXKTvVJW?=
+ =?us-ascii?Q?Ee2gmSHHkB/UZ0pYBA+43tJXf2UmTpNjnUsRGwsGhYXXqfJ49Wpr67yz1yH9?=
+ =?us-ascii?Q?W5OvRHhFgleGPj+AquyHzR5h6ues3rQgVv9lfFrOrNbHsWTnJV/KnlHDh82h?=
+ =?us-ascii?Q?dRF6kAZwKy7pHibWMpCXFgDyyGasvbhPbEGgm2ttMmlCTo7LjofaXfd6I4gd?=
+ =?us-ascii?Q?14gbnFWyxyXTwZKuVQusepKWtrJC88eGYLtm81IyvFsiDhX9957mr2BzCf7d?=
+ =?us-ascii?Q?noRvjUkhjauzRjU4qtKtBo6pYREqlRgUKjd2ceSeHGcUq9eI9QK+kswELsmB?=
+ =?us-ascii?Q?ZL375IDKF4aGrn7w7hpmOF+sTFcxXMErVMLm3w73wqnbQz7HrMcO+BDQDLRc?=
+ =?us-ascii?Q?/eM/paYVMG03iWsNbrVp4fYm4OEtRjm5o1A0ClVJGVSTz/XFy8V/aq9SHmRr?=
+ =?us-ascii?Q?UtCM1wbtEyAdZ90ZPkGh+jOK6aPlJLd+y1+CXNkY7W4HjRpudY7AUpuTihpO?=
+ =?us-ascii?Q?t/378AiSctPQB36Zf23tn9TkWSKv6PwS9t3jt6pH+AH1GA4MmnBezJJ1AOnC?=
+ =?us-ascii?Q?3dk2ZJAiYVHMfhb8kPd6sneQroKHQYrgUpDyJcPNwLcL9WJM?=
+X-OriginatorOrg: windriver.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 8e8d586a-1e50-4e0e-6f3d-08d99ab52d95
-X-MS-Exchange-CrossTenant-AuthSource: AM0P194MB0452.EURP194.PROD.OUTLOOK.COM
+ 7ae87003-0025-4eb1-3b66-08d99adf3a2f
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3909.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2021 08:21:59.5641
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2021 13:22:59.5673
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 7f455517-e1d1-41dc-8637-685b5d7585e3
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
 X-MS-Exchange-CrossTenant-UserPrincipalName: 
- g3YnM78fto5ZGP03615as8EqM58M/q2mDRWG6QeZK9gRaHiH5jMgRZwFlHsjtn+KCOdFSWXMb9s/OmENpZM9Nw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9P194MB1249
+ Y5h713AUqB+48l9ByCfB0c1/U4MDlhdjazBzauIq2N+RsaD03piBNTgSeRpjQ7kSz8hFtKUxzwVSvtZKjK/CQmTJpl+I15h0it5QSfdeABY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR11MB3912
+X-Proofpoint-ORIG-GUID: HZVUM6LKFoqESFL_xitG2RJ8knHTsav9
+X-Proofpoint-GUID: HZVUM6LKFoqESFL_xitG2RJ8knHTsav9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
+ definitions=2021-10-29_03,2021-10-29_01,2020-04-07_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 mlxscore=0
+ bulkscore=0 adultscore=0 mlxlogscore=999 phishscore=0 malwarescore=0
+ spamscore=0 clxscore=1031 suspectscore=0 priorityscore=1501
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2110150000 definitions=main-2110290079
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 29 Oct 2021 08:22:05 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55183
+ <yocto@lists.yoctoproject.org>; Fri, 29 Oct 2021 13:23:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55184
 
-Hello,
+We need a way to limit the builds for when a given worker has less than
+a certain amount of disk space available. This implements a
+canStartBuild method based on the example in the Buildbot docs and
+blocks a build if the worker has less than 60GB of disk space available.
+Unlike the example code, we want the stdout of the command so that we
+can calculate the amount of disk space, rather than just relying on the
+remote command's return code.
 
-I am trying to set a default size for the rootfs.jffs2 generated by Yocto.
-For this purpose, if I am not wrong, this can be done using the=20
-IMAGE_ROOTFS_SIZE option.
+Docs: https://docs.buildbot.net/latest/manual/customization.html#canstartbuild-functions
 
-But where=C2=A0 I have to configure this option ? So, in which configuratio=
-n=20
-file ?
-It seems that this detail has not been specified in the reference manual.
+[YOCTO #14591]
 
-Thanks,
-Simon
+Signed-off-by: Trevor Gamblin <trevor.gamblin@windriver.com>
+---
+ builders.py | 44 ++++++++++++++++++++++++++++++++++++++++----
+ 1 file changed, 40 insertions(+), 4 deletions(-)
+
+diff --git a/builders.py b/builders.py
+index 5773950..0d1facc 100644
+--- a/builders.py
++++ b/builders.py
+@@ -8,6 +8,7 @@ from yoctoabb import config
+ from yoctoabb.steps.writelayerinfo import WriteLayerInfo
+ from yoctoabb.steps.runconfig import get_publish_dest, get_publish_resultdir, get_publish_name, RunConfigCheckSteps, TargetPresent
+ from buildbot.process.results import Results, SUCCESS, FAILURE, CANCELLED, WARNINGS, SKIPPED, EXCEPTION, RETRY
++from buildbot.process.remotecommand import RemoteCommand
+ 
+ from twisted.python import log
+ from twisted.internet import defer
+@@ -45,6 +46,41 @@ def ensure_props_set(props):
+         "publish_destination": props.getProperty("publish_destination", "")
+     }
+ 
++@defer.inlineCallbacks
++def shell(command, worker, builder):
++    args = {
++        'command': command,
++        'workdir': worker.worker_basedir,
++        'logEnviron': False,
++        'want_stdout': True,
++        'want_stderr': False,
++    }
++
++    cmd = RemoteCommand('shell', args, collectStdout=True, stdioLogName="stdio")
++    cmd.worker = worker
++    yield cmd.run(None, worker.conn, builder.name)
++    return cmd
++
++@defer.inlineCallbacks
++def canStartBuild(builder, wfb, request):
++    log.msg("Checking available disk space...")
++
++    cmd = yield shell("df -BG | grep $(findmnt -T . | awk '{print $2}' | sed -n 2p) | awk '{print $4}' | sed 's/[^0-9]*//g'", wfb.worker, builder)
++    threshold = 60 # GB of space
++    if int(cmd.stdout) < threshold:
++        log.msg("Detected {0} GB of space available, less than threshold of {1} GB. Can't start build".format(cmd.stdout, threshold))
++        wfb.worker.putInQuarantine()
++        return False
++    else:
++        log.msg("Detected {0} GB of space available, more than threshold of {1} GB. OK to build".format(cmd.stdout, threshold))
++
++    wfb.worker.quarantine_timeout = 120
++    wfb.worker.putInQuarantine()
++
++    wfb.worker.resetQuarantine()
++
++    return True
++
+ def create_builder_factory():
+     f = util.BuildFactory()
+ 
+@@ -136,7 +172,7 @@ for builder in config.subbuilders:
+     if not workers:
+         workers = config.builder_to_workers['default']
+     builders.append(util.BuilderConfig(name=builder,
+-                                       workernames=workers, nextWorker=nextWorker, nextBuild=nextBuild,
++                                       workernames=workers, canStartBuild=canStartBuild, nextWorker=nextWorker, nextBuild=nextBuild,
+                                        factory=f, env=extra_env))
+ 
+ # Prioritize assigning builders to available workers based on the length
+@@ -300,8 +336,8 @@ def create_parent_builder_factory(buildername, waitname):
+ 
+     return factory
+ 
+-builders.append(util.BuilderConfig(name="a-quick", workernames=config.workers, factory=create_parent_builder_factory("a-quick", "wait-quick"), nextWorker=nextWorker, nextBuild=nextBuild, env=extra_env))
+-builders.append(util.BuilderConfig(name="a-full", workernames=config.workers, factory=create_parent_builder_factory("a-full", "wait-full"), nextWorker=nextWorker, nextBuild=nextBuild, env=extra_env))
++builders.append(util.BuilderConfig(name="a-quick", workernames=config.workers, factory=create_parent_builder_factory("a-quick", "wait-quick"), canStartBuild=canStartBuild, nextWorker=nextWorker, nextBuild=nextBuild, env=extra_env))
++builders.append(util.BuilderConfig(name="a-full", workernames=config.workers, factory=create_parent_builder_factory("a-full", "wait-full"), canStartBuild=canStartBuild,nextWorker=nextWorker, nextBuild=nextBuild, env=extra_env))
+ 
+ def create_doc_builder_factory():
+     f = util.BuildFactory()
+@@ -345,4 +381,4 @@ def create_doc_builder_factory():
+ 
+ # Only run one docs build at a time
+ docs_lock = util.MasterLock("docs_lock")
+-builders.append(util.BuilderConfig(name="docs", workernames=config.workers, factory=create_doc_builder_factory(), nextWorker=nextWorker, nextBuild=nextBuild, env=extra_env, locks=[docs_lock.access('exclusive')]))
++builders.append(util.BuilderConfig(name="docs", workernames=config.workers, factory=create_doc_builder_factory(), canStartBuild=canStartBuild, nextWorker=nextWorker, nextBuild=nextBuild, env=extra_env, locks=[docs_lock.access('exclusive')]))
+-- 
+2.31.1
 
 
