@@ -2,61 +2,61 @@ Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2845AC433F5
-	for <webhook@archiver.kernel.org>; Sat, 30 Oct 2021 12:33:11 +0000 (UTC)
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
- [209.85.221.43])
- by mx.groups.io with SMTP id smtpd.web10.18383.1635597190411011080
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 688F7C433F5
+	for <webhook@archiver.kernel.org>; Sat, 30 Oct 2021 12:38:12 +0000 (UTC)
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
+ [209.85.128.51])
+ by mx.groups.io with SMTP id smtpd.web09.18419.1635597490927499522
  for <yocto@lists.yoctoproject.org>;
- Sat, 30 Oct 2021 05:33:10 -0700
+ Sat, 30 Oct 2021 05:38:11 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=PL73uKvM;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.43,
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=AMe6IKbV;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.51,
  mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f43.google.com with SMTP id p14so20893299wrd.10
+Received: by mail-wm1-f51.google.com with SMTP id 133so909442wme.0
         for <yocto@lists.yoctoproject.org>;
- Sat, 30 Oct 2021 05:33:10 -0700 (PDT)
+ Sat, 30 Oct 2021 05:38:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linuxfoundation.org; s=google;
         h=message-id:subject:from:to:date:in-reply-to:references:user-agent
          :mime-version:content-transfer-encoding;
-        bh=xxaaUnLnhnOnwT9ZlhyNt+hJ5pe1pylQAmCjSsDm84A=;
-        b=PL73uKvMWuqMlySxwudV52ZS8/jPZwd7vgirJ6PBRJEY+0M/R3/JxyTzIh+BiP0MWM
-         0PWLtpMS3HrDyPwShdgZugVFvgwgoLpwi4ZdRNy28LtuC3SW0iHQuU8tiSd1RvJ2ucVI
-         wpckUsS3ylgxNzj72MWNS0LmggXCzuyv7p7RI=
+        bh=FTONPYwZHUZECZP0KQ5xp1DHRjT7TpraRtpsXuFNx+c=;
+        b=AMe6IKbVRLvf5jau/LQg0J1ikiZ4tT7dNDFpaTUuURc05MQ/3WGLfMYCH7emtN2uEy
+         0yOEJ7dM5hGQxe15/xtgGWgPLalKpV2T830CIl1N9wERE5W521Cu3169wPNeL//HseOm
+         Zq0WUjuJNmu+rD8K6w8vHu/i13QzD/41pWeQk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
          :references:user-agent:mime-version:content-transfer-encoding;
-        bh=xxaaUnLnhnOnwT9ZlhyNt+hJ5pe1pylQAmCjSsDm84A=;
-        b=jdmYP8UrdOfNtGwBYSkl0ARm6zW6iloZ8YwrteK8rTMwNW46o6GJX1K7AmVu1lWKND
-         8o4SjJ/yH0/bjyiJP34z451mKKu3yQf4W58Bda+zzti1clyiSDwApjzQfYx1fyTpZMxJ
-         lW7v96JG5sVXBanKKegTHxSLBZ2CT82/5DPduKx/052D0hNTD5l+dSas32s4JuvcIG4I
-         i0yGa5PJwucRCGUSvVqseM7ZrNOAjBmh30kny3dLzBPoU+yuYXIu5vAG3BSEe0iHHHEL
-         iO+v0uuXN1iuNtAkTafYuCPt7JcZebdOD9dwtqRR/IqIVamsmz9rSxOIyP0gfDJLaywm
-         S1Fg==
-X-Gm-Message-State: AOAM532P7j2b+AgJoYcNf6Yl0QBpsjj0HCJIu7QsZQAvqE4tLRaeb8t8
-	plQrPDMvJR2ckGXgaBB6+r3FQw==
+        bh=FTONPYwZHUZECZP0KQ5xp1DHRjT7TpraRtpsXuFNx+c=;
+        b=T9Hye8cU474vT8OJJsjnzyZrEN7NM2CGITsb31WQhPQ1GyP1Ejsz8WWeW/mbBkZBxq
+         SdeR7eIQ2TutY0HrGh6Rnx03rWzd8M4xZ0OfsLweVStjg4/ppFdifqMp3zM6SgIYf30u
+         h+CavVSEraOimmOGe2ZQAsTqxIzO4DHAoIuqW1V9ztYyjIAJ2rXVmqevsIuFptJEOIyg
+         RISku9ciI5nDRi2/00gZpwEkTBcp1DPXawrJ9NoD2sS541zFeevJ7EWyQuvwhCIgkc9G
+         IMPaHhFisaHFlssS8qfN0l0w6IldFdhv5coNPLipt2vxipCw9TfXrwZbAuLu9TUbg8UO
+         6u5w==
+X-Gm-Message-State: AOAM530yir89mmvvPGfdCt86UEvbNhHFQtDIFrVT60cz9IuttLb0+oxd
+	i8vqgtRnGVMsncw5gMK3fp8WrA==
 X-Google-Smtp-Source: 
- ABdhPJxZpHV1iiyh3IWVX69xyWjzn6T2qmooF87kNZhz25+M415ijeRFO/i+FxaMTxcoqcIxG03GeQ==
-X-Received: by 2002:adf:ce0e:: with SMTP id p14mr314439wrn.423.1635597188813;
-        Sat, 30 Oct 2021 05:33:08 -0700 (PDT)
+ ABdhPJzeoop24MeWDquh4VhBKJI7BUUVFehmMDPrdK3wVdO96huXb4KoIoMOazZ3z5IbTW79r872Rg==
+X-Received: by 2002:a1c:8:: with SMTP id 8mr13752086wma.106.1635597489387;
+        Sat, 30 Oct 2021 05:38:09 -0700 (PDT)
 Received: from ?IPv6:2001:8b0:aba:5f3c:af33:8564:b018:31d5?
  ([2001:8b0:aba:5f3c:af33:8564:b018:31d5])
         by smtp.gmail.com with ESMTPSA id
- k22sm8369069wrd.59.2021.10.30.05.33.07
+ n7sm6648529wro.68.2021.10.30.05.38.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Oct 2021 05:33:08 -0700 (PDT)
+        Sat, 30 Oct 2021 05:38:08 -0700 (PDT)
 Message-ID: 
- <fb302152e4230a1db2df3f7d4dce2def2d32e224.camel@linuxfoundation.org>
-Subject: Re: [yocto] [yocto-autobuilder2][PATCH] builders.py: Add
- canStartBuild disk space check
+ <6574572b2916ce3ff0b208a459c52c06c0ad496e.camel@linuxfoundation.org>
+Subject: Re: [yocto] [yocto-autobuilder2][PATCH] builders.py: subtract
+ builder weight instead of add
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
 To: Trevor Gamblin <trevor.gamblin@windriver.com>,
 	yocto@lists.yoctoproject.org
-Date: Sat, 30 Oct 2021 13:33:04 +0100
-In-Reply-To: <20211029132247.205325-1-trevor.gamblin@windriver.com>
-References: <20211029132247.205325-1-trevor.gamblin@windriver.com>
+Date: Sat, 30 Oct 2021 13:38:04 +0100
+In-Reply-To: <20211029153951.211636-1-trevor.gamblin@windriver.com>
+References: <20211029153951.211636-1-trevor.gamblin@windriver.com>
 Content-Type: text/plain; charset="UTF-8"
 User-Agent: Evolution 3.40.4-1 
 MIME-Version: 1.0
@@ -64,85 +64,51 @@ Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 30 Oct 2021 12:33:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55192
+ <yocto@lists.yoctoproject.org>; Sat, 30 Oct 2021 12:38:12 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55193
 
-On Fri, 2021-10-29 at 09:22 -0400, Trevor Gamblin wrote:
-> We need a way to limit the builds for when a given worker has less than
-> a certain amount of disk space available. This implements a
-> canStartBuild method based on the example in the Buildbot docs and
-> blocks a build if the worker has less than 60GB of disk space available.
-> Unlike the example code, we want the stdout of the command so that we
-> can calculate the amount of disk space, rather than just relying on the
-> remote command's return code.
-> 
-> Docs: https://docs.buildbot.net/latest/manual/customization.html#canstartbuild-functions
-> 
-> [YOCTO #14591]
-> 
+On Fri, 2021-10-29 at 11:39 -0400, Trevor Gamblin wrote:
 > Signed-off-by: Trevor Gamblin <trevor.gamblin@windriver.com>
 > ---
->  builders.py | 44 ++++++++++++++++++++++++++++++++++++++++----
->  1 file changed, 40 insertions(+), 4 deletions(-)
+>  builders.py | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 > diff --git a/builders.py b/builders.py
-> index 5773950..0d1facc 100644
+> index f94d1dd..fc92e36 100644
 > --- a/builders.py
 > +++ b/builders.py
-> @@ -8,6 +8,7 @@ from yoctoabb import config
->  from yoctoabb.steps.writelayerinfo import WriteLayerInfo
->  from yoctoabb.steps.runconfig import get_publish_dest, get_publish_resultdir, get_publish_name, RunConfigCheckSteps, TargetPresent
->  from buildbot.process.results import Results, SUCCESS, FAILURE, CANCELLED, WARNINGS, SKIPPED, EXCEPTION, RETRY
-> +from buildbot.process.remotecommand import RemoteCommand
+> @@ -168,7 +168,7 @@ def prioritizeBuilders(master, builders):
+>              time = max_time
+>          else:
+>              if bldr.name in builder_bonuses:
+> -                time = time + builder_bonuses[bldr.name]
+> +                time = time - builder_bonuses[bldr.name]
+>          defer.returnValue((time, bldr))
 >  
->  from twisted.python import log
->  from twisted.internet import defer
-> @@ -45,6 +46,41 @@ def ensure_props_set(props):
->          "publish_destination": props.getProperty("publish_destination", "")
->      }
->  
-> +@defer.inlineCallbacks
-> +def shell(command, worker, builder):
-> +    args = {
-> +        'command': command,
-> +        'workdir': worker.worker_basedir,
-> +        'logEnviron': False,
-> +        'want_stdout': True,
-> +        'want_stderr': False,
-> +    }
-> +
-> +    cmd = RemoteCommand('shell', args, collectStdout=True, stdioLogName="stdio")
-> +    cmd.worker = worker
-> +    yield cmd.run(None, worker.conn, builder.name)
-> +    return cmd
-> +
-> +@defer.inlineCallbacks
-> +def canStartBuild(builder, wfb, request):
-> +    log.msg("Checking available disk space...")
-> +
-> +    cmd = yield shell("df -BG | grep $(findmnt -T . | awk '{print $2}' | sed -n 2p) | awk '{print $4}' | sed 's/[^0-9]*//g'", wfb.worker, builder)
-> +    threshold = 60 # GB of space
-> +    if int(cmd.stdout) < threshold:
-> +        log.msg("Detected {0} GB of space available, less than threshold of {1} GB. Can't start build".format(cmd.stdout, threshold))
-> +        wfb.worker.putInQuarantine()
-> +        return False
-> +    else:
-> +        log.msg("Detected {0} GB of space available, more than threshold of {1} GB. OK to build".format(cmd.stdout, threshold))
-> +
-> +    wfb.worker.quarantine_timeout = 120
-> +    wfb.worker.putInQuarantine()
-> +
-> +    wfb.worker.resetQuarantine()
-> +
-> +    return True
-> +
+>      transformed = yield defer.gatherResults(
 
-Unfortunately this quarantine piece is causing problems. It means that even if
-there is free space on the builder and always was, a maximum of one build every
-2 minutes can be started.
+This didn't work (and wasn't merged) although I still think it is probably the
+correct thing to do with that code.
 
-I'll probably drop the quarantine piece as it was a nice to have soft start for
-recovery rather than an essential.
+I did some digging and the issue is that when we trigger builds, it triggers
+them one at a time as part of a buildSet and the prioritisation function
+therefore sees each build by itself and therefore gives it priority.
+
+That raises the question of the order the triggers are run in. A list of builder
+names is passed which is translated to a list of builderids. I think the order
+is therefore determined by the database ID of the builders. I did wonder if
+sorting the builders list would help but it does not.
+
+There is code in schedulers/base.py which does:
+
+        builderids = list()
+        for bldr in (yield self.master.data.get(('builders', ))):
+            if bldr['name'] in builderNames:
+                builderids.append(bldr['builderid'])
+
+which I think is where the sorting comes from.
+
+I think we're going to have discuss this with upstream.
 
 Cheers,
 
