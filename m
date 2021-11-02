@@ -1,187 +1,176 @@
-Return-Path: <steven.monsees@baesystems.com>
+Return-Path: <bruce.ashfield@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1CDDBC433F5
-	for <webhook@archiver.kernel.org>; Tue,  2 Nov 2021 16:23:53 +0000 (UTC)
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com
- [149.32.232.65])
- by mx.groups.io with SMTP id smtpd.web08.136.1635870232233975438
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D6DEC433F5
+	for <webhook@archiver.kernel.org>; Tue,  2 Nov 2021 16:26:09 +0000 (UTC)
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com
+ [209.85.208.51])
+ by mx.groups.io with SMTP id smtpd.web09.201.1635870367468945565
  for <yocto@lists.yoctoproject.org>;
- Tue, 02 Nov 2021 09:23:52 -0700
+ Tue, 02 Nov 2021 09:26:07 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=ZmNsXhbU;
- spf=pass (domain: baesystems.com, ip: 149.32.232.65,
- mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1635870232; x=1793550232;
-  h=from:to:subject:date:mime-version;
-  bh=4VfS4FdaONMD2bvkWZJLgJWZn0hfbVUIOBVynq+oZTo=;
-  b=ZmNsXhbUDz+VybV8piFOoO3zbo0Rj7XVj7GZmHm0uAhNmQYGJZ98PP06
-   5LCO55u6z8LVo4Ya8RaDRrs+jHSB2G6fDmupWlXDF+2o09A1v8APyGzyR
-   Qd8VSIEh9wNyr3eghcBdevLYoWlaQwNgIbFVuLjt9XddePOGBRidWZvqw
-   E=;
-IronPort-SDR: 
- 9gKd3ILX1n/vsfmkI3sHWEDH9M7japG28nVwXJRbbLt+oV95siJjQWFPNHJ6Amia3FYpYqf30W
- uE0bhvY93ZFQ==
-IronPort-PHdr: =?us-ascii?q?A9a23=3ABtbWYBwUtB2i2bfXCzK8zVBlVkEcU1XcAAcZ5?=
- =?us-ascii?q?9Idhq5Udez7ptK+ZhWZva0m1gSBHd2Cra4e06yO6+GocFdDyK7JiGoFfp1IW?=
- =?us-ascii?q?k1NouQttCtkPvS4D1bmJuXhdS0wEZcKflZk+3amLRodQ56mNBXdrXKo8DEdB?=
- =?us-ascii?q?Aj0OxZrKeTpAI7SiNm82/yv95HJbAhEmiexbaluIBmqogndqMcbipZmJqot1?=
- =?us-ascii?q?xfFuHRFd/pKyW9yOV6fgxPw7dqs8ZB+9Chdp+gv/NNaX6XgeKQ4Q71YDDA4P?=
- =?us-ascii?q?G0w+cbmqxrNQxaR63UFSmkZnQZGDAbD7BHhQ5f+qTD6ufZn2CmbJsL5U7Y5U?=
- =?us-ascii?q?im/4qhxSR/ojCAHNyMl8GzSl8d9gr5XrA6nqhdixYPffYObO+dkfq7Ffd0UW?=
- =?us-ascii?q?3dPXtpfWSJCA4Ozc4QAAvEbMupErYnwvUcCoQegCQSqGejhyiVIhnjz3aAi3?=
- =?us-ascii?q?egvFgbG3Ao7H90QrnvUt835P7oPX+Cp0qbI0yvMb/VL0jrj9YPEdh4ur+yJU?=
- =?us-ascii?q?b5+bMHczlIvFx/bgVWOt4PlOSmZ1uEKs2id9OpvS/ygi3U8pg5quDeg2Nwsi?=
- =?us-ascii?q?4nShoIJ1F/E8D55zJwpKt2/TU52eNipG4ZfuC+GLYV5WN8iQ312tyYgzL0Lo?=
- =?us-ascii?q?ZC1cSYWxZkmxRPSauKLf5WW7x/gVOucJTh1iX14dLyxhxu8/lWsx+n+W8S03?=
- =?us-ascii?q?1tHrzdJn8fIu30O1BHe99WLRPR780y82jiPzxje5vxYLUwum6fWKYQtzqAum?=
- =?us-ascii?q?pcTq0jOHy77lF3rgKOKbEkp9eel5/7ob7n8u5ORN4l5gRzkPKs0gMywG+E4P?=
- =?us-ascii?q?xALX2ic5OuzyqXu/Vb8QLVWlv02lbTZsIzCKcQbuKG5BwhV354/5BmlFDepz?=
- =?us-ascii?q?NEYnWIDIV9Bex+Lk5blN0vIIP/iF/uwmE6jnylwx/HGJb3hHovCLn3YkLv7Y?=
- =?us-ascii?q?bl97EtcxBIyzdBZ+Z1UFqkMLO/vVkPrutHVDAU1PxKqz+vnEtlw14ITVXqKA?=
- =?us-ascii?q?qCDMaPStVGI5vgoI+mJfIIVoyr9JOY75/Hwi381g1odfa6v3ZsMdn+3AO9mL?=
- =?us-ascii?q?l6CbnX2nNgBCmcLvhEiTOP0jV2CSiRfaGq1X6I5/j07Ep6pDZ/fRoCxh7yMx?=
- =?us-ascii?q?Ce6HppKaWBaDVCBCnPod4SfW/cQcyKeOM9gkjsYWri9TI8hzQuutAj4y7V5M?=
- =?us-ascii?q?uXU5jcUtZX51Nh6tKXvkkR45Dt/E8O112CWU3oyj2QDWzguxqd9rEdhjFCZ3?=
- =?us-ascii?q?uIw1+1fHsBUz/dISRshc4/bxPB9E8r1WA/KYpGOUlnwEfu8BjRkBPc2xcQDb?=
- =?us-ascii?q?l05U+6+gw7O2WKBS/8orP3BTMgv7q/C0n63IsF70HvLz4ErhlQ9U9BTOGi9w?=
- =?us-ascii?q?KV48l6AVMbyj0yFmvPyJuwn1ynX+TLbpVc=3D?=
-IronPort-Data: =?us-ascii?q?A9a23=3AOCduSKBVuxZe4hVW/wPhw5YqxClBgxIJ4kV8j?=
- =?us-ascii?q?S/XYbTApDglhWYPyGcfWzqEafePMzCkfIx1PIvkpxkB65CHzIViOVdlrnsFo?=
- =?us-ascii?q?1CmCSbm6XZ1Fqp7Vs+rBpWroHlPsoNONbEsEOhuFiWF/071aOC7xZVB/fjgq?=
- =?us-ascii?q?oTUWbas1h9ZGFcMpBcJ0XqPqsZh6mJaqYHR7zCl5bsel/bi1GqNgFaYBI61B?=
- =?us-ascii?q?5Wr83uDtNyq0N8RU8dXifpj5DcynFFNZH4TyD3YEpf2fmVUNrbSq+frx7ii9?=
- =?us-ascii?q?WbCrkZ9UonjlL+9eEQHWa/JIQWLkTxdXK3Kbhpq/3R0ifl9bqBBLxkJ49mKt?=
- =?us-ascii?q?4kZJNFlroC9VwoveKjLnv8QXgJwGShzJrxd5LLCOj60tsn7I0juLyG2kqw1V?=
- =?us-ascii?q?h5sVWEf0qMtaY1UztQJLzsRaTiHhvmq2/SqTeJwgdw5K8vmN59ZvWtvpQw1p?=
- =?us-ascii?q?95OrYvrGv2MvoAehm1twJ4QdcsyrvExMVJHBCksqTUVUrvPNK8DoQ=3D=3D?=
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3Aq8IlTawxYe6k4fHltiCUKrPwRb1zdoMgy1?=
- =?us-ascii?q?knxilNoH1uHPBw+/rFoB1473TJYUcqN03I8OroUJVoKkmxyXca2+QsAYs=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2DECAAaZYFh/0LhJQpaHQEBPAEFBQE?=
- =?us-ascii?q?CAQkBFQmBUoEfGwIBgWKBTbNwCwEBAQEBAQEBAQgBEi8EAQGHVyY4EwECBAE?=
- =?us-ascii?q?BARIBAQYBAQEBAQYEAYEjhWkMgjUihB9eAQwJayYBBBuCaoF+rn+BMxoCZYR?=
- =?us-ascii?q?phQ+BOAIBAQGBY4U1gnqGD0OPPwSSI3OeNaAFBwODNJ5nLxWWDQORGIoqi2Q?=
- =?us-ascii?q?fpWICBAIEBQIWgXiBfXCDOlAXApx/gSwCBgsBAQMJkV+BEAEB?=
-X-IPAS-Result: =?us-ascii?q?A2DECAAaZYFh/0LhJQpaHQEBPAEFBQECAQkBFQmBUoEfG?=
- =?us-ascii?q?wIBgWKBTbNwCwEBAQEBAQEBAQgBEi8EAQGHVyY4EwECBAEBARIBAQYBAQEBA?=
- =?us-ascii?q?QYEAYEjhWkMgjUihB9eAQwJayYBBBuCaoF+rn+BMxoCZYRphQ+BOAIBAQGBY?=
- =?us-ascii?q?4U1gnqGD0OPPwSSI3OeNaAFBwODNJ5nLxWWDQORGIoqi2QfpWICBAIEBQIWg?=
- =?us-ascii?q?XiBfXCDOlAXApx/gSwCBgsBAQMJkV+BEAEB?=
-X-IronPort-AV: E=Sophos;i="5.87,203,1631577600";
-   d="scan'208,217";a="422913272"
-IronPort-SDR: 
- ofWrTaYjlNcb8hjBvJOiJhTSBW+X/IJ31PlkB/Ot2nHcUjOhYFy478a7Y+MDwbRXrFHk/60dz4
- CKEnCKSb1yEQ==
-X-IronPort-AV: E=Sophos;i="5.87,203,1631577600";
-   d="scan'208,217";a="16395782"
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: yocto preempt-rt
-Thread-Topic: yocto preempt-rt
-Thread-Index: AdfQBVSS+xBN07W3QtaQoD00G0U6MA==
-Date: Tue, 2 Nov 2021 16:23:47 +0000
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.4.15]
-Content-Type: multipart/alternative;
-	boundary="_000_100826b456f94f78a8cce7c14a8056e1baesystemscom_"
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=T4grk4bU;
+ spf=pass (domain: gmail.com, ip: 209.85.208.51,
+ mailfrom: bruce.ashfield@gmail.com)
+Received: by mail-ed1-f51.google.com with SMTP id z20so78400347edc.13
+        for <yocto@lists.yoctoproject.org>;
+ Tue, 02 Nov 2021 09:26:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=A8mvxw9Lg/KzLJkU+d2DM559ZK+rgs4ATQigDvnZPEk=;
+        b=T4grk4bUo3GQ2JQxpJSu0JN1cKQg6G03HqJ/iHSwJzWs4/EcydnjGCYTM5vNMJfs5S
+         qjyh+hui5oWFvx0/VVagZzgAqJ+3+j86P/ajh9lZSfdfO5puFT6eqrFBS/rl+L7ajSGm
+         knAjdArJRDYYRhV3d9x3wgQCImaQieZ0SUdJs13t+evlio41broZGVOqK1XP5kZRPAsu
+         q30LYEqqlmGsC0pDVvzBcQ03Z99Xajwkg8c+yuv8KQNGD27VB1P4Qwm+htUiBn7oVmPw
+         uQvgehwt2ax5tuJ+divU7FCdEEB20n90Uhk4nAh9bc+q0SuRbgwFvzm021CDS/BJjhO8
+         swYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=A8mvxw9Lg/KzLJkU+d2DM559ZK+rgs4ATQigDvnZPEk=;
+        b=5LyiRJadgVNRmSiG2v0hBhapXNPBrQ2mW9zaxxL3iLVv5MedA1slp2sPktiXrlLEAr
+         pijz4JNsbLLN69Lw3LvhORVIJKTvqnmoM0jg6d3vS7XsEwig/BnEh/7leZapxlnBKocl
+         Td4pV46RwOifNf/ZCldbcaU+ogDXcdlHTkwXOkAwnaZT29951qd+oNRod5eUad/qh2nJ
+         jgkn+9jCTCImwHeoSrnbalUyOM5ws93a+k4GJ2jian8caoj/2Zfr361ZjhzkWPb3289s
+         7zdpM4yZtVoD/io//Sv1JHerN3Mmc5i+geG4Pdv/PrJgjVrKgsFPuzOGuzbXiPRaoBlo
+         aLcQ==
+X-Gm-Message-State: AOAM531SYZxar3qvTyBZIkow/por1p9Ud9mWM+wm+5R1HNd6G7zPWBIe
+	auSND+QRHAeYtK459mD4jERvyxcAi9tELaXoed8=
+X-Google-Smtp-Source: 
+ ABdhPJxXfIWGHvQxyvzDWgJjWGGRCksVyMt5TWv5HvpuKzQLH5FnBZ4AyBvlT0PidHIhfmkVCQl+czNC9JBHvYZtIqc=
+X-Received: by 2002:a05:6402:3554:: with SMTP id
+ f20mr52875026edd.354.1635870364878;
+ Tue, 02 Nov 2021 09:26:04 -0700 (PDT)
 MIME-Version: 1.0
+References: <MADEUP.16B3C74F343D36F7.18236@lists.yoctoproject.org>
+In-Reply-To: <MADEUP.16B3C74F343D36F7.18236@lists.yoctoproject.org>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+Date: Tue, 2 Nov 2021 12:25:53 -0400
+Message-ID: 
+ <CADkTA4MK42-jw8yWWaHM8uDM=ayhJRqcdjEHq6zZDya+JswkQw@mail.gmail.com>
+Subject: Re: [yocto] yocto preempt-rt
+To: steven.monsees@baesystems.com
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000ff4cc905cfd0bf6f"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 02 Nov 2021 16:23:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55215
-Message-Id: <20211102162353.1CDDBC433F5@smtp.lore.kernel.org>
+ <yocto@lists.yoctoproject.org>; Tue, 02 Nov 2021 16:26:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55216
 
---_000_100826b456f94f78a8cce7c14a8056e1baesystemscom_
-Content-Type: text/plain; charset="us-ascii"
+--000000000000ff4cc905cfd0bf6f
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
+Correct.
 
-Is it true that no patch work is required if out under
-.../poky/meta/recipes-kernel, there exists  a yocto-linux-rt_##.##.bb recip=
-e that matches your kernel release?, and that it will build the full preemp=
-tive RT Kernel ?
+The rt patches are already integrated on the branches that that recipe will
+build out of the linux-yocto repository.
 
-Thanks,
-Steve
+Bruce
 
+On Tue, Nov 2, 2021 at 12:23 PM Monsees, Steven C (US) via
+lists.yoctoproject.org <steven.monsees=3Dbaesystems.com@lists.yoctoproject.=
+org>
+wrote:
 
---_000_100826b456f94f78a8cce7c14a8056e1baesystemscom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Is it true that no patch work is required if out und=
-er <o:p>
-</o:p></p>
-<p class=3D"MsoNormal">&#8230;/poky/meta/recipes-kernel, there exists &nbsp=
-;a yocto-linux-rt_##.##.bb recipe that matches your kernel release?, and th=
-at it will build the full preemptive RT Kernel ?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Steve<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+>
+> Is it true that no patch work is required if out under
+>
+> =E2=80=A6/poky/meta/recipes-kernel, there exists  a yocto-linux-rt_##.##.=
+bb recipe
+> that matches your kernel release?, and that it will build the full
+> preemptive RT Kernel ?
+>
+>
+>
+> Thanks,
+>
+> Steve
+>
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#55215):
+> https://lists.yoctoproject.org/g/yocto/message/55215
+> Mute This Topic: https://lists.yoctoproject.org/mt/86770123/1050810
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> bruce.ashfield@gmail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
 
---_000_100826b456f94f78a8cce7c14a8056e1baesystemscom_--
+--=20
+- Thou shalt not follow the NULL pointer, for chaos and madness await thee
+at its end
+- "Use the force Harry" - Gandalf, Star Trek II
+
+--000000000000ff4cc905cfd0bf6f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fon=
+t-size:small">Correct.</div><div class=3D"gmail_default" style=3D"font-size=
+:small"><br></div><div class=3D"gmail_default" style=3D"font-size:small">Th=
+e rt patches are already integrated on the branches that that recipe will b=
+uild out of the linux-yocto repository.</div><div class=3D"gmail_default" s=
+tyle=3D"font-size:small"><br></div><div class=3D"gmail_default" style=3D"fo=
+nt-size:small">Bruce</div></div><br><div class=3D"gmail_quote"><div dir=3D"=
+ltr" class=3D"gmail_attr">On Tue, Nov 2, 2021 at 12:23 PM Monsees, Steven C=
+ (US) via <a href=3D"http://lists.yoctoproject.org">lists.yoctoproject.org<=
+/a> &lt;steven.monsees=3D<a href=3D"mailto:baesystems.com@lists.yoctoprojec=
+t.org">baesystems.com@lists.yoctoproject.org</a>&gt; wrote:<br></div><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US">
+<div class=3D"gmail-m_3136401887904943306WordSection1">
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Is it true that no patch work is required if out und=
+er <u></u>
+<u></u></p>
+<p class=3D"MsoNormal">=E2=80=A6/poky/meta/recipes-kernel, there exists =C2=
+=A0a yocto-linux-rt_##.##.bb recipe that matches your kernel release?, and =
+that it will build the full preemptive RT Kernel ?<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Thanks,<u></u><u></u></p>
+<p class=3D"MsoNormal">Steve<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div>
+
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#55215): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/55215" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/55215</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/86770123/1050=
+810" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
+/86770123/1050810</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:bruce.ashfield@gmail.com" target=3D"_blank">bruc=
+e.ashfield@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature">- Thou shalt not follow the NULL pointer, for ch=
+aos and madness await thee at its end<br>- &quot;Use the force Harry&quot; =
+- Gandalf, Star Trek II<br><br></div></div>
+
+--000000000000ff4cc905cfd0bf6f--
 
