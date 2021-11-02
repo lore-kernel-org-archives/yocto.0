@@ -1,165 +1,1549 @@
-Return-Path: <steven.monsees@baesystems.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8910AC433EF
-	for <webhook@archiver.kernel.org>; Tue,  2 Nov 2021 12:28:59 +0000 (UTC)
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com
- [149.32.232.65])
- by mx.groups.io with SMTP id smtpd.web10.40.1635856135171317836
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A47E1C433F5
+	for <webhook@archiver.kernel.org>; Tue,  2 Nov 2021 14:46:28 +0000 (UTC)
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com
+ [209.85.215.175])
+ by mx.groups.io with SMTP id smtpd.web09.761.1635864388063817649
  for <yocto@lists.yoctoproject.org>;
- Tue, 02 Nov 2021 05:28:57 -0700
+ Tue, 02 Nov 2021 07:46:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=jEbhMisf;
- spf=pass (domain: baesystems.com, ip: 149.32.232.65,
- mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1635856135; x=1793536135;
-  h=from:to:cc:subject:date:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=AXoe3CxWPt2xyr4BTdvQTIVsAoTRaPd7rKyYYJu7Zxg=;
-  b=jEbhMisf/Hgl+ZlREMNDtawVYl2hUogx+U3BtRqabh79dh2fYj82ICEW
-   7tYWFGT9Vif1LEkZ9qI6RgqMh1PgjmIrUraDCBZiQRFLoeY5GQAL8rOiX
-   7mT4t8dfrEnn2AFOR2PtUyHaFA/4rGl4teAwYj3nEm+KHGYjXJeyrm0Ol
-   E=;
-IronPort-SDR: 
- hIsbv77fM7a7DLLgwASd3oyH/8/90PFG39QPY0UG4If1hUDqU/7U8qp0dJubUD4WFCsE9w5Bbj
- 1rPpBqm1feKg==
-IronPort-PHdr: =?us-ascii?q?A9a23=3AHmQhMxK2sb/+4x4CQ9mcuLNhWUAX0o4c3iYr4?=
- =?us-ascii?q?5Yqw4hDbr6kt8y7ehCFvbM30QKCBNmTwskHotKei7rnV20E7MTJm1E5W7sIa?=
- =?us-ascii?q?SU4j94LlRcrGs+PBB6zBvfraysnAJYKDwc9rDm0PkdPBcnxeUDZrGGs4j4OA?=
- =?us-ascii?q?BX/Mhd+KvjoFoLIgMm7yfy+94fNbwhIhDexbq5+IRqrpgjNq8cahpdvJLwsw?=
- =?us-ascii?q?RXTuHtIfOpWxWJsJV2Nmhv3+9m98p1+/SlOovwt78FPX7n0cKQ+VrxYES8pM?=
- =?us-ascii?q?3sp683xtBnMVhWA630BWWgLiBVIAgzF7BbnXpfttybxq+Rw1DWGMcDwULs5Q?=
- =?us-ascii?q?iqp4bt1RxD0iScHLz85/3/Risxsl6JQvRatqwViz4LIfI2ZMfxzdb7fc9wHX?=
- =?us-ascii?q?2pMRsZfWTJcDIOgYYUBDOQBMuRZr4bhqFUBogCzBRW3C+Pt1jNEmmP60K883?=
- =?us-ascii?q?u88EQ/GxgsgH9cWvXjaq9v1M6ESUfurw6bW1jXPd+5d1yrh6IfWbBAuv/eMV?=
- =?us-ascii?q?q9ufMHMzUUgGR7LglCepYf4OD6VzfgNvHaF7+V+U+KjkWsnqwZ3oji02Mgjl?=
- =?us-ascii?q?JLJi5kOxV/e6yp524Y0JcakSEFlZN6kC4FcuD2dN4tzW84vRXxjtykmxLMco?=
- =?us-ascii?q?5G7YDQKx4o9xx7Zc/GKcoeG7xDtWuuSLjp0mX1rda6+ihuw70WuyvDxW82p3?=
- =?us-ascii?q?VtUqidIktbBu2wC2hHS9sWLV/tz80S81TuTyg3d5e5KLEYpnqTVLJ4hx6Q/l?=
- =?us-ascii?q?psVsUnbBS/2mVj5g7GNeUU+4Oeo7fjoYrX8qpCAMI90jxnyM6QpmsOjHeQ4N?=
- =?us-ascii?q?RAOX3Kc+eS+yrLs4VH5TK9Njv0snanUto3RK8cDpqOhHgNZzpwv5hi9Aju8z?=
- =?us-ascii?q?dgVmXcKIEhEdR+Gl4TlJk3CLOr3APqwmVihny1ny+3GM7DnH57DNGLMkK37c?=
- =?us-ascii?q?rZ480NczQ0zws1B6J9MEbEBJe7zWlf2tNzFEh81Kwy0zPjjCNV6zo4eX2KPA?=
- =?us-ascii?q?qmDP6PXql+F5eIiL/WQaIMIojr9LeIq6+T1gnAjh1AdZqmo3YALaH+mG/RmO?=
- =?us-ascii?q?F+VbmbrgtcECWsKvww+Q/L2iFCaTDJfe2y+Uqw+6z0hFY6rCYnOSpqsjbGAx?=
- =?us-ascii?q?Cu7G4dZZmFCClCCC3focICEVu8XaCKOPMBhjCILVb67R48k0hGushT6xKR5I?=
- =?us-ascii?q?erP4SAXrojs28Zu5+zTjhEy6SJ7D8GG022XU250mWYISycs3K9juUx91kuD0?=
- =?us-ascii?q?a9gjv1YEtxc++9JUgAhOJ7Yzux6EMzyWhnbctaJT1apXsmmATYpTtIrxN8OY?=
- =?us-ascii?q?VhyFMm+jhzZ2CqqGbAVxPS2Aocp+Pfcw2TpPJQ6jHLHz7U6yUghSddILXehh?=
- =?us-ascii?q?KN0607UHYGOnAKIkK22cuMB2jXQ/jS+y3GTtn1VQBIlUbnZRWtNIQzSrM/l/?=
- =?us-ascii?q?QXTSLSyDqw9NQlMwtLELbFFLdKunFJNWPCkJdLFfmjip2DlIRuPwPuza4fxZ?=
- =?us-ascii?q?2gb1ijHBwBQlw0U+16dNAQzDD2opWneSjdpEAS8TVnr9Lw0jXS9VUI51EXCV?=
- =?us-ascii?q?FFsybezsjVdxcGnCrlbiqkYtTksrXNxG1Cm0t/NI9CJqhFwZ7lRZMh761BCg?=
- =?us-ascii?q?zGK/zdhN4CtevgxzmUVdB566ga3j00fNw=3D=3D?=
-IronPort-Data: =?us-ascii?q?A9a23=3Ajgw2z65kh5+jj7xYgO3lLAxRtBLFchMFZxGqf?=
- =?us-ascii?q?qrLsTDasY5as4F+vjMbDWyEbPvfNzT1KttwO4XjoEMHuJfXxtJqQFA5ry03Z?=
- =?us-ascii?q?n8b8sCt6fZ1jqvT04F+FiBIJa5ex512huLocYZkERcwmj/3auK49CAkj/nRL?=
- =?us-ascii?q?lbBILes1h5ZFFcMpBgJ1EoLd94R2uaEsPDha++/kYqaT/73ZDdJ7wVJ3lc8s?=
- =?us-ascii?q?Mpvnv/OUMPa41v0tnRmDRxCUcS3e3M9VPrzLonpR5f0rxU9IwK0ewrD5OnRE?=
- =?us-ascii?q?mLx+RcrA9a+wuujKhRMRLeUNwGDkWtNR6WnmV5JoSlaPqQTbaJaMhgR0mTS2?=
- =?us-ascii?q?Y4voDlOncXYpQMBJbHBhukbFRxfFTpzMLZu8rbKOmmkrcGW1AvNdH6EL/BGU?=
- =?us-ascii?q?BtsbdRHoL8taY1J3blCQNwXVTiSgOmqx5q/S/JwnYIyK8L3O5sFvXNtxi2fC?=
- =?us-ascii?q?uwpKa0v6Y2iCcRwhW923Z8IRKeFIZRHAQeDpS/oO3VnUmr7wrpk9AtwukTCT?=
- =?us-ascii?q?g=3D=3D?=
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3A8eNTO6M8VL6+oMBcTsGjsMiBIKoaSvp037?=
- =?us-ascii?q?BN7TESdfU1SL36qynAppkmPHPP5Ar5O0tBpTnjAse9qBrnnPYfi7X5VY3SOD?=
- =?us-ascii?q?UO01HIEGgN1+TfKhTbakjDHrE379YGT0HVMqyXMWRH?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2CMAwDKLYFh/0LBJQpaHgEBCxIMQAm?=
- =?us-ascii?q?BRQuDIYFCC4Q8kREDhgmKDYwigWgLAQEBAQEBAQEBCAEqCwwEAQGFAgIXgjw?=
- =?us-ascii?q?mNwYOAQIEAQEBEgEBBgEBAQEBBgQBgSOFaA2CNQUCAx8BBoNdAQEBAQMBIhE?=
- =?us-ascii?q?aByQMBAIBCA0EBAEBAQICERUCAgImCQEVCAgBAQQOBQgVBIJMBYMWq1k1eoE?=
- =?us-ascii?q?xGgJlg04BgRqFDwkBgQYqgWaEF1Q9D4Z6gg1DhD8+gmMEAYEWCAoBEgExBxU?=
- =?us-ascii?q?TglmCZQSODRQ9CIE4AVBAAQcBQQ4aOyuSHYMUlmqSLgcDgzSKS4xYh0QvFYN?=
- =?us-ascii?q?sgUmKKIYwA4tnhTGWDox0k1sNBhYhhGgCBAIEBQIWgXcyXHBwgzkJSBcCkiG?=
- =?us-ascii?q?FFIVKdAIBNQIGAQoBAQMJkQNcgRABAQ?=
-X-IPAS-Result: =?us-ascii?q?A2CMAwDKLYFh/0LBJQpaHgEBCxIMQAmBRQuDIYFCC4Q8k?=
- =?us-ascii?q?REDhgmKDYwigWgLAQEBAQEBAQEBCAEqCwwEAQGFAgIXgjwmNwYOAQIEAQEBE?=
- =?us-ascii?q?gEBBgEBAQEBBgQBgSOFaA2CNQUCAx8BBoNdAQEBAQMBIhEaByQMBAIBCA0EB?=
- =?us-ascii?q?AEBAQICERUCAgImCQEVCAgBAQQOBQgVBIJMBYMWq1k1eoExGgJlg04BgRqFD?=
- =?us-ascii?q?wkBgQYqgWaEF1Q9D4Z6gg1DhD8+gmMEAYEWCAoBEgExBxUTglmCZQSODRQ9C?=
- =?us-ascii?q?IE4AVBAAQcBQQ4aOyuSHYMUlmqSLgcDgzSKS4xYh0QvFYNsgUmKKIYwA4tnh?=
- =?us-ascii?q?TGWDox0k1sNBhYhhGgCBAIEBQIWgXcyXHBwgzkJSBcCkiGFFIVKdAIBNQIGA?=
- =?us-ascii?q?QoBAQMJkQNcgRABAQ?=
-X-IronPort-AV: E=Sophos;i="5.87,202,1631577600";
-   d="scan'208";a="422817212"
-IronPort-SDR: 
- /aKBAXeywPuSGDfPvREXSPBBgMjyLZ0nrwhd7yz/qwa4+ZuBpB9rweEmJXpS+kG2bWC7+Mga1v
- fPZiCYYl436f0t0K8TTH0wg+ieb7OBeJK9Pk3SDgUSF0WBQm8FsOqq8eql5EJP8OJIP/mGL8sk
- l/Mk2XfIyoG/9sgxsWKCbFR5LM2SOnHIbVbXfurWtTxFcl63ak4nnP2MzPwNpV/PnNme5JD162
- mcw2SjyUuQw7neScYWFRJpmFVcAcpaZk3iKndePRktDogQL3/8dK6gY+2VVTNYZCQ0nTY0yZjU
- nvs=
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: Leon Woestenberg <leon@sidebranch.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: RE: [yocto] yocto meta-intel preempt-rt
-Thread-Topic: [yocto] yocto meta-intel preempt-rt
-Thread-Index: AdfP3NytXKGDh2awTCGnp/Z+kYbnewAKU2yAAAhQ0ZA=
-Date: Tue, 2 Nov 2021 12:27:52 +0000
-In-Reply-To: 
- <CAMjhiJiGdjYTSL+tkdjY9tQELJeiBm7hGxyWXUfc0rsZjM9FGg@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.4.15]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=kB1yT56E;
+ spf=pass (domain: gmail.com, ip: 209.85.215.175,
+ mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pg1-f175.google.com with SMTP id b4so13288884pgh.10
+        for <yocto@lists.yoctoproject.org>;
+ Tue, 02 Nov 2021 07:46:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:mime-version:content-language
+         :thread-index;
+        bh=cZTkfn7IIs1K1M1em5yrSyeGTGdRzMvIYw3oumqfAO4=;
+        b=kB1yT56E8RGE6POw/YdCa8Hd1Rfwl/I+tcofZARAFKtEa0eiQlseQt1xIwGugPpJYu
+         LIDPsm2Eclhn2eSCO2PczwPfhkI8CwJbRA8d7dIMQj2fkstiUJqasUYCHKtCpcYamz6k
+         9ipWIp47PhiqF7gd0N3RXhPIDu3fmFx9EY9K3B6lmLW+W9c7AOtlPXaZhGo87WK+Lpdw
+         9E0yIZnblJkiidTR2TR+fzP/Cu9qJTIQDl9Sc2eB7tKWvnKTH/QsDVZiCqqgvHQpd8hH
+         pk1tuwKHVgXdlPMXsArtGA50kX8YpOMI7mVa9vjRmAN64b2xJFky25Z7MCINE5ZSMm6W
+         aqFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-language:thread-index;
+        bh=cZTkfn7IIs1K1M1em5yrSyeGTGdRzMvIYw3oumqfAO4=;
+        b=XIpbEfRqeCMwVWsBHdUPHYdi7EPgjekrBvmtdNNunlBP2EgLWN2caFfJX6Sm30WgYB
+         L2mfOfAKJ+BO8uYk9SzAXiDRCHZWEdkbPsm6DmmVkDtxdZD3JrN5P3KP1WfVLxeHQhZy
+         rFo1dYsj2qgs1+nxzfJP8d26iNgOtIBpJ5a6sZTsl49o2n8NULUFsDYuJ219IODLG3NN
+         fNowLsBhfMMKm0uJ8J+tOVSuE1fHgsKxrGfFJBfEi5Qq8SxF5k4in2lliALGAElAAht3
+         ImtOrVULJHBattiYIYfrGqksnUFwCqXRsJ7cZzccdq7EGUMhnoZDtTI2umATR/roQMdV
+         3/Iw==
+X-Gm-Message-State: AOAM532N3QY31lx88EujeqvmCPhOHurM7pny9QgyTuTRxrM+KczJvIc7
+	pCujAKKfXa6TnTV6xKzzXKU=
+X-Google-Smtp-Source: 
+ ABdhPJyiZYNiiLLJgVOvS5rjyQLIMCxmy5mwbG+b2UPJnKXOzz4qMBCtuJ8LTSOaVIi4kwODpisCvQ==
+X-Received: by 2002:a65:5845:: with SMTP id s5mr7797237pgr.221.1635864387246;
+        Tue, 02 Nov 2021 07:46:27 -0700 (PDT)
+Received: from skjolley ([2600:8800:1d92:f800:fdf0:3277:b605:78a8])
+        by smtp.gmail.com with ESMTPSA id
+ f7sm7026658pfv.98.2021.11.02.07.46.26
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 02 Nov 2021 07:46:26 -0700 (PDT)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@lists.yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Status WW43`21
+Date: Tue, 2 Nov 2021 07:46:26 -0700
+Message-ID: <152801d7cff8$6a215f50$3e641df0$@gmail.com>
 MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_1529_01D7CFBD.BDC74240"
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-us
+Thread-Index: AQKBSAJhvoil+Yvbv5q6tRrS0xoKMQ==
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 02 Nov 2021 12:28:59 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55213
-Message-Id: <20211102122859.8910AC433EF@smtp.lore.kernel.org>
+ <yocto@lists.yoctoproject.org>; Tue, 02 Nov 2021 14:46:28 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55214
 
-DQpJIHdpbGwgY2hlY2suLi4NCg0KV291bGQgeW91IGhhdmUgYW4gZXhhbXBsZSBvZiBhIHJlY2lw
-ZSB0aGF0IHNob3dzIGhvdyB0byBhcHBseSB0aGUgcnQgcGF0aCA/DQoNClRoYW5rcywNClN0ZXZl
-DQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBMZW9uIFdvZXN0ZW5iZXJnIDxs
-ZW9uQHNpZGVicmFuY2guY29tPiANClNlbnQ6IFR1ZXNkYXksIE5vdmVtYmVyIDIsIDIwMjEgODoy
-NSBBTQ0KVG86IE1vbnNlZXMsIFN0ZXZlbiBDIChVUykgPHN0ZXZlbi5tb25zZWVzQGJhZXN5c3Rl
-bXMuY29tPg0KQ2M6IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBb
-eW9jdG9dIHlvY3RvIG1ldGEtaW50ZWwgcHJlZW1wdC1ydA0KDQpFeHRlcm5hbCBFbWFpbCBBbGVy
-dA0KDQpUaGlzIGVtYWlsIGhhcyBiZWVuIHNlbnQgZnJvbSBhbiBhY2NvdW50IG91dHNpZGUgb2Yg
-dGhlIEJBRSBTeXN0ZW1zIG5ldHdvcmsuDQoNClBsZWFzZSB0cmVhdCB0aGUgZW1haWwgd2l0aCBj
-YXV0aW9uLCBlc3BlY2lhbGx5IGlmIHlvdSBhcmUgcmVxdWVzdGVkIHRvIGNsaWNrIG9uIGEgbGlu
-aywgZGVjcnlwdC9vcGVuIGFuIGF0dGFjaG1lbnQsIG9yIGVuYWJsZSBtYWNyb3MuICBGb3IgZnVy
-dGhlciBpbmZvcm1hdGlvbiBvbiBob3cgdG8gc3BvdCBwaGlzaGluZywgYWNjZXNzIOKAnEN5YmVy
-c2VjdXJpdHkgT25lU3BhY2UgUGFnZeKAnSBhbmQgcmVwb3J0IHBoaXNoaW5nIGJ5IGNsaWNraW5n
-IHRoZSBidXR0b24g4oCcUmVwb3J0IFBoaXNoaW5n4oCdIG9uIHRoZSBPdXRsb29rIHRvb2xiYXIu
-DQoNCg0KSGVsbG8gU3RldmUsDQoNCkkgaGF2ZSBiZWVuIHJ1bm5pbmcgdGhlIFBSRUVNUFRfUlQg
-Zm9yIEludGVsIHBsYXRmb3JtcyBmb3IgYSBmZXcgcmVsZWFzZXMsIEkgcmVtZW1iZXIgaXQgZmV0
-Y2hlZCBzb3VyY2VzIGZyb20gYSBHSVQgYnJhbmNoIGZvciAtcnQgKFBSRUVNUFRfUlQpLiBTbyBp
-dCBkb2VzIG5vdCBuZWVkIHRvIGFwcGx5IHNlcGFyYXRlIHBhdGNoZXMgaW4gdGhhdCBjYXNlLg0K
-DQpDb3VsZCB5b3UgY2hlY2sgaWYgdGhpcyBpcyB0aGUgY2FzZSBmb3IgeW91IGFzIHdlbGw/DQoN
-ClJlZ2FyZHMsDQoNCkxlb24uDQoNCnAucy4gU2xpZ2h0bHkgb2ZmLXRvcGljLCBJIG1vdmVkIGF3
-YXkgZnJvbSBQUkVFTVBUX1JUIGluIGZhdm9yIG9mIHRhc2sgaXNvbGF0aW9uIG1vZGUsIHdoZXJl
-IHdlIHVzZSBvbmUgQ1BVIGNvcmUgaW4gaXNvbGF0ZWQgc2luZ2xlIHRhc2sgbW9kZSwgZm9yICpt
-dWNoKiBsb3dlciBsYXRlbmNpZXMgdGhhbiBQUkVFTVBUX1JUIGNhbiBwcm92aWRlLg0KDQoNCi0t
-DQpMZW9uIFdvZXN0ZW5iZXJnDQpsZW9uQHNpZGVicmFuY2guY29tDQpUOiArMzEgNDAgNzExIDQy
-IDc2DQpNOiArMzEgNiA0NzIgMzAgMzcyDQoNClNpZGVicmFuY2ggRW1iZWRkZWQgU3lzdGVtcw0K
-RWluZGhvdmVuLCBUaGUgTmV0aGVybGFuZHMNCmh0dHA6Ly93d3cuc2lkZWJyYW5jaC5jb20NCg0K
-DQoNCk9uIFR1ZSwgTm92IDIsIDIwMjEgYXQgMTI6MzAgUE0gTW9uc2VlcywgU3RldmVuIEMgKFVT
-KSB2aWEgbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyA8c3RldmVuLm1vbnNlZXM9YmFlc3lzdGVtcy5j
-b21AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gd3JvdGU6DQo+DQo+DQo+DQo+IEkgaGF2ZSBhbiBJ
-bnRlbCBiYXNlZCBwbGF0Zm9ybSwgYW5kIHdhcyBsb29raW5nIHRvIGltcGxlbWVudCBwcmVlbXB0
-LXJ0IG9uIGl0IHRvIHRlc3QuDQo+DQo+DQo+DQo+IEZvciBJbnRlbCwgdGhlIG1ldGEtaW50ZWwg
-Y29tcG9uZW50IHJlY2lwZSBhcHBlYXJzIHRvIHN1cHBvcnRzIA0KPiDigJxsaW51eC1pbnRlbC1y
-dOKAnSwgYW5kIEkgY2FuIGJ1aWxkIG15IGludGVsIGJhc2VkIHBsYXRmb3JtIHdpdGggdGhpcyAg
-DQo+IGFuZCBpdCBib290c+KApiAgTXkgcGxhdGZvcm0ga2VybmVsIGlzIGN1cnJlbnRseSA0LjE5
-IGJhc2VkIHVuZGVyIHRoZSANCj4gbWV0YS1pbnRlSSBjb21wb25lbnQgSSBkbyBub3Qgc2VlIHRo
-ZSBydCBwYXRjaC9wYXRjaGVzIGJlaW5nIGFwcGxpZWTigKYNCj4NCj4NCj4NCj4gSXMgbWV0YS1p
-bnRlbCBjb21wb25lbnQgcmVjaXBlIGJ1aWxkaW5nIHRoZSBmdWxsIHByZWVtcHQtcnQgc3VwcG9y
-dCA/LCBvciBkbyBJIHN0aWxsIG5lZWQgdG8gYXBwbHkgdGhlIHBhdGNoID8NCj4NCj4NCj4NCj4g
-VGhhbmtzLA0KPg0KPiBTdGV2ZQ0KPg0KPg0KPg0KPg0KPiAtPS09LT0tPS09LT0tPS09LT0tPS09
-LQ0KPiBMaW5rczogWW91IHJlY2VpdmUgYWxsIG1lc3NhZ2VzIHNlbnQgdG8gdGhpcyBncm91cC4N
-Cj4gVmlldy9SZXBseSBPbmxpbmUgKCM1NTIxMSk6IA0KPiBodHRwczovL2xpc3RzLnlvY3RvcHJv
-amVjdC5vcmcvZy95b2N0by9tZXNzYWdlLzU1MjExDQo+IE11dGUgVGhpcyBUb3BpYzogaHR0cHM6
-Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL210Lzg2NzYzNTA3LzEwNTE3NzQNCj4gR3JvdXAgT3du
-ZXI6IHlvY3RvK293bmVyQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNCj4gVW5zdWJzY3JpYmU6IGh0
-dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9nL3lvY3RvL3Vuc3ViIA0KPiBbbGVvbkBzaWRl
-YnJhbmNoLmNvbV0NCj4gLT0tPS09LT0tPS09LT0tPS09LT0tPS0NCj4NCg==
+This is a multipart message in MIME format.
+
+------=_NextPart_000_1529_01D7CFBD.BDC74240
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Current Dev Position: YP 3.5 M1
+
+Next Deadline: 6th Dec. 2021 YP 3.5 M1 build
+
+ 
+
+Next Team Meetings:
+
+*	Bug Triage meeting Thursday Nov. 4th at 7:30am PDT (
+<https://zoom.us/j/454367603?pwd=ZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09>
+https://zoom.us/j/454367603?pwd=ZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09)
+*	Monthly Project Meeting Tuesday Nov. 2nd at 8am PDT (
+<https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09>
+https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09
+<https://zoom.us/j/990892712> )
+*	Weekly Engineering Sync Tuesday Nov. 9th at 8am PDT (
+<https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09>
+https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09
+<https://zoom.us/j/990892712> )
+*	Twitch -  See https://www.twitch.tv/theyoctojester
+
+ 
+
+Key Status/Updates:
+
+*	YP 3.4 has been released. Thanks to everyone who contributed!
+*	YP 3.3.4 is due to build this week and will be the last planned
+release of the hardknott series.
+*	YP 3.5 Planning document:
+<https://docs.google.com/document/d/1OXw-NKoL_Vb9RWI6sRPs3zTcAn4hHPtG0Y2BIs7
+xIzo/edit?usp=sharing>
+https://docs.google.com/document/d/1OXw-NKoL_Vb9RWI6sRPs3zTcAn4hHPtG0Y2BIs7x
+Izo/edit?usp=sharing
+*	Git's default branch choice could potentially change in the future
+and we're seeing service providers like github change policy too. To react
+to this variability the project really needs to start encoding the branch
+name used in SRC_URI rather than having a default of master. OE-Core has
+been converted and there is a script ( scripts/contrib/convert-srcuri.py) to
+help with conversions. Bitbake will start warning where this is unset soon
+(patch in master-next).
+*	Github has announced that git protocol support will be dropped as of
+January. We use this in a number of our SRC_URIs. This has been discussed on
+the architecture list and we have a plan to warn (and later error) on
+problematic urls and magically map to the correct urls within bitbake. The
+latter change is easily backported to older bitbake releases and will allow
+older branches to continue to function without invasive changes. The
+conversion script mentioned above can also convert github urls.
+*	We have seen a drop in the number of patches in "Pending" state,
+partly thanks to work from Richard to send libtool and gcc patches upstream
+or otherwise clean them up. Others are also stepping forward to try and
+reduce the number of patches in Pending state, help would be much
+appreciated as spread over a number of people this could be quickly handled
+and reduced.
+*	Intermittent issues continue to rise and help is very much welcome
+on these issues. You can see the list of failures we're continuing to see by
+searching for the "AB-INT" tag in bugzilla:
+<https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=AB-INT>
+https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=AB-INT
+
+ 
+
+Ways to contribute:
+
+*	There are bugs identified as possible for newcomers to the project:
+<https://wiki.yoctoproject.org/wiki/Newcomers>
+https://wiki.yoctoproject.org/wiki/Newcomers
+*	There are bugs that are currently unassigned for YP 3.4. See:
+<https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2B_3.4_Unassigned_Enha
+ncements.2FBugs>
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2B_3.4_Unassigned_Enhan
+cements.2FBugs
+*	We'd welcome new maintainers for recipes in OE-Core. Please see the
+list at:
+<http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/conf/distro/include/mai
+ntainers.inc>
+http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/conf/distro/include/main
+tainers.inc and discuss with the existing maintainer, or ask on the OE-Core
+mailing list. We will likely move a chunk of these to "Unassigned" soon to
+help facilitate this.
+
+ 
+
+YP 3.5 Milestone Dates:
+
+*	YP 3.5 M1 build date 2021/12/06
+*	YP 3.5 M1 Release date 2021/12/17
+*	YP 3.5 M2 build date 2022/01/10
+*	YP 3.5 M2 Release date 2022/1/21
+*	YP 3.5 M3 build date 2022/2/21
+*	YP 3.5 M3 Release date 2022/03/04
+*	YP 3.5 M4 build date 2022/04/04
+*	YP 3.5 M4 Release date 2022/04/29
+
+ 
+
+Upcoming dot releases:
+
+*	YP 3.3.4 build date 2021/11/01
+*	YP 3.3.4 Release date 2021/11/12
+*	YP 3.1.12 build date 2021/11/15
+*	YP 3.1.12 Release date 2021/11/26
+*	YP 3.4.1 build date 2021/11/22
+*	YP 3.4.1 Release date 2021/12/03
+*	YP 3.1.13 build date 2021/12/13
+*	YP 3.1.13 Release date 2021/12/22
+*	YP 3.1.14 build date 2022/01/24
+*	YP 3.1.14 Release date 2022/02/04
+*	YP 3.4.2 build date 2022/02/07
+*	YP 3.4.2 Release date 2022/02/18
+*	YP 3.1.15 build date 2022/03/14
+*	YP 3.1.15 Release date 2022/03/25
+*	YP 3.4.3 build date 2022/03/21
+*	YP 3.4.3 Release date 2022/04/01
+*	YP 3.1.16 build date 2022/04/25
+*	YP 3.1.16 Release date 2022/05/06
+
+ 
+
+Tracking Metrics:
+
+*	WDD 2655 (last week 2655) (
+<https://wiki.yoctoproject.org/charts/combo.html>
+https://wiki.yoctoproject.org/charts/combo.html)
+*	OE-Core/Poky Patch Metrics
+
+*	Total patches found: 1283 (last week 1288)
+*	Patches in the Pending State: 463 (36%) [last week 476 (37%)]
+
+ 
+
+The Yocto Project's technical governance is through its Technical Steering
+Committee, more information is available at:
+
+ <https://wiki.yoctoproject.org/wiki/TSC>
+https://wiki.yoctoproject.org/wiki/TSC
+
+ 
+
+The Status reports are now stored on the wiki at:
+<https://wiki.yoctoproject.org/wiki/Weekly_Status>
+https://wiki.yoctoproject.org/wiki/Weekly_Status
+
+ 
+
+[If anyone has suggestions for other information you'd like to see on this
+weekly status update, let us know!]
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_1529_01D7CFBD.BDC74240
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0C6D_01D7CA3D.B5188DA0";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:45489877;
+	mso-list-template-ids:415825668;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1
+	{mso-list-id:51778762;
+	mso-list-template-ids:1457010796;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2
+	{mso-list-id:181939472;
+	mso-list-template-ids:-249115142;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l2:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3
+	{mso-list-id:239566279;
+	mso-list-template-ids:-37955548;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l3:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l3:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4
+	{mso-list-id:904998869;
+	mso-list-template-ids:1476801444;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l4:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l4:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5
+	{mso-list-id:1027293499;
+	mso-list-template-ids:2137143976;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l5:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l5:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6
+	{mso-list-id:1176504574;
+	mso-list-template-ids:870351622;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l6:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l6:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7
+	{mso-list-id:1380320892;
+	mso-list-template-ids:-348380078;}
+@list l7:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l7:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l7:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8
+	{mso-list-id:1383168122;
+	mso-list-template-ids:2031004372;}
+@list l8:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l8:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l8:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9
+	{mso-list-id:1806047468;
+	mso-list-template-ids:1912210656;}
+@list l9:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l9:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l9:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10
+	{mso-list-id:1963655241;
+	mso-list-template-ids:911215358;}
+@list l10:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l10:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l10:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l10:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11
+	{mso-list-id:2058581699;
+	mso-list-template-ids:-806063048;}
+@list l11:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l11:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l11:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l11:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Current Dev =
+Position: YP 3.5 M1</span><o:p></o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Next Deadline: 6th =
+Dec. 2021 YP 3.5 M1 build</span><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Next Team =
+Meetings:</span><o:p></o:p></p><ul =
+style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l4 level1 =
+lfo7;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Bug Triage meeting Thursday =
+Nov. 4th at 7:30am PDT (<a =
+href=3D"https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz0=
+9"><span =
+style=3D'color:#1155CC'>https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y=
+0bFd5aVpHVVZ6dz09</span></a>)<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l4 level1 =
+lfo7;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Monthly Project Meeting Tuesday =
+Nov. 2nd at 8am PDT (<a =
+href=3D"https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT0=
+9"><span =
+style=3D'color:#1155CC'>https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck8=
+1bkcrYjRrcmJsUT09</span></a><a =
+href=3D"https://zoom.us/j/990892712"><span =
+style=3D'color:#1155CC'>)</span></a><o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l4 level1 =
+lfo7;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Weekly Engineering Sync Tuesday =
+Nov. 9th at 8am PDT (<a =
+href=3D"https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT0=
+9"><span =
+style=3D'color:#1155CC'>https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck8=
+1bkcrYjRrcmJsUT09</span></a><a =
+href=3D"https://zoom.us/j/990892712"><span =
+style=3D'color:#1155CC'>)</span></a><o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l4 level1 =
+lfo7;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Twitch -&nbsp; See =
+https://www.twitch.tv/theyoctojester<o:p></o:p></span></li></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Key =
+Status/Updates:</span><o:p></o:p></p><ul =
+style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l8 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.4 has been released. =
+Thanks to everyone who contributed!<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l8 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.3.4 is due to build this =
+week and will be the last planned release of the hardknott =
+series.<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l8 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.5 Planning document: <a =
+href=3D"https://docs.google.com/document/d/1OXw-NKoL_Vb9RWI6sRPs3zTcAn4hH=
+PtG0Y2BIs7xIzo/edit?usp=3Dsharing"><span =
+style=3D'color:#1155CC'>https://docs.google.com/document/d/1OXw-NKoL_Vb9R=
+WI6sRPs3zTcAn4hHPtG0Y2BIs7xIzo/edit?usp=3Dsharing</span></a><o:p></o:p></=
+span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l8 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Git&#8217;s default branch =
+choice could potentially change in the future and we&#8217;re seeing =
+service providers like github change policy too. To react to this =
+variability the project really needs to start encoding the branch name =
+used in SRC_URI rather than having a default of master. OE-Core has been =
+converted and there is a script ( scripts/contrib/convert-srcuri.py) to =
+help with conversions. Bitbake will start warning where this is unset =
+soon (patch in master-next).<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l8 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Github has announced that git =
+protocol support will be dropped as of January. We use this in a number =
+of our SRC_URIs. This has been discussed on the architecture list and we =
+have a plan to warn (and later error) on problematic urls and magically =
+map to the correct urls within bitbake. The latter change is easily =
+backported to older bitbake releases and will allow older branches to =
+continue to function without invasive changes. The conversion script =
+mentioned above can also convert github urls.<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l8 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>We have seen a drop in the =
+number of patches in &#8220;Pending&#8221; state, partly thanks to work =
+from Richard to send libtool and gcc patches upstream or otherwise clean =
+them up. Others are also stepping forward to try and reduce the number =
+of patches in Pending state, help would be much appreciated as spread =
+over a number of people this could be quickly handled and =
+reduced.<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l8 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Intermittent issues continue to =
+rise and help is very much welcome on these issues. You can see the list =
+of failures we&#8217;re continuing to see by searching for the =
+&#8220;AB-INT&#8221; tag in bugzilla: <a =
+href=3D"https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=3DAB-IN=
+T"><span =
+style=3D'color:#1155CC'>https://bugzilla.yoctoproject.org/buglist.cgi?qui=
+cksearch=3DAB-INT</span></a><o:p></o:p></span></li></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Ways to =
+contribute:</span><o:p></o:p></p><ul =
+style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+lfo9;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>There are bugs identified as =
+possible for newcomers to the project: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Newcomers"><span =
+style=3D'color:#1155CC'>https://wiki.yoctoproject.org/wiki/Newcomers</spa=
+n></a><o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+lfo9;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>There are bugs that are =
+currently unassigned for YP 3.4. See: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2B_3.4_Unass=
+igned_Enhancements.2FBugs"><span =
+style=3D'color:#1155CC'>https://wiki.yoctoproject.org/wiki/Bug_Triage#Med=
+ium.2B_3.4_Unassigned_Enhancements.2FBugs</span></a><o:p></o:p></span></l=
+i><li style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 =
+level1 lfo9;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>We&#8217;d welcome new =
+maintainers for recipes in OE-Core. Please see the list at: <a =
+href=3D"http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/conf/distro/i=
+nclude/maintainers.inc"><span =
+style=3D'color:#1155CC'>http://git.yoctoproject.org/cgit.cgi/poky/tree/me=
+ta/conf/distro/include/maintainers.inc</span></a> and discuss with the =
+existing maintainer, or ask on the OE-Core mailing list. We will likely =
+move a chunk of these to &#8220;Unassigned&#8221; soon to help =
+facilitate this.<o:p></o:p></span></li></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>YP 3.5 Milestone =
+Dates:</span><o:p></o:p></p><ul =
+style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
+level1 lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.5 M1 build date =
+2021/12/06<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
+level1 lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.5 M1 Release date =
+2021/12/17<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
+level1 lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.5 M2 build date =
+2022/01/10<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
+level1 lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.5 M2 Release date =
+2022/1/21<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
+level1 lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.5 M3 build date =
+2022/2/21<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
+level1 lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.5 M3 Release date =
+2022/03/04<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
+level1 lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.5 M4 build date =
+2022/04/04<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
+level1 lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.5 M4 Release date =
+2022/04/29<o:p></o:p></span></li></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Upcoming dot =
+releases:</span><o:p></o:p></p><ul =
+style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.3.4 build date =
+2021/11/01<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.3.4 Release date =
+2021/11/12<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.12 build date =
+2021/11/15<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.12 Release date =
+2021/11/26<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.4.1 build date =
+2021/11/22<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.4.1 Release date =
+2021/12/03<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.13 build date =
+2021/12/13<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.13 Release date =
+2021/12/22<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.14 build date =
+2022/01/24<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.14 Release date =
+2022/02/04<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.4.2 build date =
+2022/02/07<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.4.2 Release date =
+2022/02/18<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.15 build date =
+2022/03/14<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.15 Release date =
+2022/03/25<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.4.3 build date =
+2022/03/21<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.4.3 Release date =
+2022/04/01<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.16 build date =
+2022/04/25<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+lfo11;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1.16 Release date =
+2022/05/06<o:p></o:p></span></li></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Tracking =
+Metrics:</span><o:p></o:p></p><ul =
+style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l5 level1 =
+lfo12;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>WDD 2655 (last week =
+2655)</span><span style=3D'font-family:Consolas'> (</span><span =
+style=3D'font-family:"Arial",sans-serif'><a =
+href=3D"https://wiki.yoctoproject.org/charts/combo.html"><span =
+style=3D'color:#1155CC'>https://wiki.yoctoproject.org/charts/combo.html</=
+span></a></span><span style=3D'font-family:Consolas'>)</span><span =
+style=3D'font-family:"Arial",sans-serif'><o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l5 level1 =
+lfo12;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>OE-Core/Poky Patch =
+Metrics</span><span =
+style=3D'font-family:Consolas'><o:p></o:p></span></li><ul =
+style=3D'margin-top:0in;padding-inline-start:48px' type=3Dcircle><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l5 level2 =
+lfo12;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Total patches found: 1283 (last =
+week 1288)<o:p></o:p></span></li><li =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l5 level2 =
+lfo12;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Patches in the Pending State: =
+463 (36%) [last week 476 (37%)]</span><span =
+style=3D'font-family:Consolas'><o:p></o:p></span></li></ul></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>The Yocto =
+Project&#8217;s technical governance is through its Technical Steering =
+Committee, more information is available at:</span><o:p></o:p></p><p =
+style=3D'margin:0in'><a =
+href=3D"https://wiki.yoctoproject.org/wiki/TSC"><span =
+style=3D'font-family:"Arial",sans-serif;color:#1155CC'>https://wiki.yocto=
+project.org/wiki/TSC</span></a><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>The Status reports =
+are now stored on the wiki at: </span><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Weekly_Status"><span =
+style=3D'font-family:"Arial",sans-serif;color:#1155CC'>https://wiki.yocto=
+project.org/wiki/Weekly_Status</span></a><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>[If anyone has =
+suggestions for other information you&#8217;d like to see on this weekly =
+status update, let us know!]</span><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_000_1529_01D7CFBD.BDC74240--
+
 
