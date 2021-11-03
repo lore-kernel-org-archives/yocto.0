@@ -1,290 +1,542 @@
-Return-Path: <steven.monsees@baesystems.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 645B9C433EF
-	for <webhook@archiver.kernel.org>; Wed,  3 Nov 2021 13:40:34 +0000 (UTC)
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com
- [149.32.232.65])
- by mx.groups.io with SMTP id smtpd.web08.7623.1635946832842767960
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E2550C433F5
+	for <webhook@archiver.kernel.org>; Wed,  3 Nov 2021 14:17:01 +0000 (UTC)
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
+ [209.85.214.173])
+ by mx.groups.io with SMTP id smtpd.web08.8214.1635949020948996008
  for <yocto@lists.yoctoproject.org>;
- Wed, 03 Nov 2021 06:40:33 -0700
+ Wed, 03 Nov 2021 07:17:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=aLqWSlBG;
- spf=pass (domain: baesystems.com, ip: 149.32.232.65,
- mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1635946833; x=1793626833;
-  h=from:to:subject:date:in-reply-to:mime-version;
-  bh=fiaxCsDB6GvzRveA2wIbIuyi/OTaarlE3Ak72/6E2uw=;
-  b=aLqWSlBGOu5fTSrSJZBK+Z8+2Uu2kcdlZTxlFlxSlpqgHJ5DeGgNM7p6
-   2sHcC9vajEuHCxU8ZiBFbW7EkjN2hKh0mZInX82pKDFx9SaEEgw4nAbzP
-   h+q9BvLbKC+ofFm0BpwN0RXoZ7WdDCFTXXQ2GpMduD9ytlUOUrWolX2Fu
-   o=;
-IronPort-SDR: 
- pSCvv+fc5yBFVHHnihlDQho4ktlOEgq8DaYcXLJJI4UNJDub2KAvWdyks4Y/zCZxMkzA/yM4do
- A7+2tdGdK9/A==
-IronPort-PHdr: =?us-ascii?q?A9a23=3Apsq5ExQhLfSQPOXLqDSgXTXWFNpsoqCYAWYlg?=
- =?us-ascii?q?6HPa5pwe6iut67vIFbYra00ygOTBMODsrkd0bCe8/i5HzBaudDZ6DFKWacPf?=
- =?us-ascii?q?idNsd8RkQ0kDZzNImzAB9muURYHGt9fXkRu5XCxPBsdMs//Y1rPvi/6tmZKS?=
- =?us-ascii?q?V3wOgVvO+v6BJPZgdip2OCu4Z3TZBhDiCagbb9oIxi6sxjdutMKjYd/Jao91?=
- =?us-ascii?q?wXFrmVVcOhS2W9kOEifkhni6sus5pJv7zhct/c8/MNcTKv2eLg1Q6ZFBzo8K?=
- =?us-ascii?q?WA148PrtRjHTQSR43YXT3sbnBlVDQXb9R/2Rpj+vDf0uep7wymaINb5TasoV?=
- =?us-ascii?q?jS47qdkUwHnhSEaPDMk6m7Xi8hwjKVGoBK9ohF03oDZbJ2JOPd4Y6jQe84RS?=
- =?us-ascii?q?2hcUcZLTyFPAp2yYZYTD+QPPuhYoYvyp1oSohSxHgSjHv/jyj1Si3PqwaE30?=
- =?us-ascii?q?eIsGhzG0gw6GNIOtWzZoNvyOqcVV+C117fHwivYb/9OxDzz9ZTIfQ4/of6SW?=
- =?us-ascii?q?7J7bNTcwlQrGwzLk1ucrILpNC6S2+QWr2iU8fRgWvypi2I9rgFxpT6vxtwyh?=
- =?us-ascii?q?YbXnYIY0UvL+j9nz4YuJdy4U1J7bsChEJtLrS2VK4x2QsY7TmxupS01xaEIt?=
- =?us-ascii?q?4ShcygW1JQo2QTfa/qffoaG5h/vSeifLSt3in9qZb6xhwi//Fajx+D/V8S50?=
- =?us-ascii?q?llHoyhLnNTCqH0ByQLe5MaDR/Z/4kuv1jaC2hzc5O1ZI005k7fQJZAmwr41j?=
- =?us-ascii?q?JUTsELDEzf2mUXxkKCWakIk+vCy6+TgYLXpuIOTN5NuhgH5KKQulcqyCvk7P?=
- =?us-ascii?q?AgWR2WX5Piw2Kft8ED7WrlGk/k7n6fDvJ3bJckXvrO1DxNP3oss5BuzFTir3?=
- =?us-ascii?q?M4FkXQHKl9OZQiJgJLzO17UJfD1FfK/g1Oxnzh13/3GJbjhAonVLnjEjbfhY?=
- =?us-ascii?q?a5x605Cxwo3ytBS/4xUBasBIPL1X0/xr9jVAxs9PgCo3urrEtN92ZkEVW2UG?=
- =?us-ascii?q?KCWLrjSsF+T5uIzPeaMYZQVtCzhJPgi4v7ilX45mVkDcqm1xZYbdWy0Eu5oL?=
- =?us-ascii?q?kibe3bgn9MMHGkQsgc/TOHmkFiCXiRSZ3a2UaI8/DY7CIe+AIfYWoCinqKB0?=
- =?us-ascii?q?zm9HpFMY2BGDVaMEWz2eIqaQPcBczmdLdV/nTwfVbmhUJMh2g+rtA/h0bZoM?=
- =?us-ascii?q?u3U+igAuZL5yNd1//HTlQ019TFsD8Wd1H2CT31znm4TQz823bt/oVBmyluZ0?=
- =?us-ascii?q?al4hOBXFcBU5/NRSAc6MpzcwPJmBNDuQA7Bec2JSFn1CumhVHs6Sd4s2NkJa?=
- =?us-ascii?q?FpgAdO/lTjbxS22BLkQnr2PQpcz9+iUi3P2K9tmzXHNyLQ7iUQ9atNVMnGhg?=
- =?us-ascii?q?Kt29gyVDInMxQHR3betfrgb9CrM73uYi3uJt11fSBR3U6jOQTYYfESc5YDo4?=
- =?us-ascii?q?UjeSJeqCK87KU1QzsWeLbNQbd/khkkAQ+3sbofweWW0zi2VAhCTy76XKMLRZ?=
- =?us-ascii?q?2gD0SOVIwBErjtStz7SLhQzGCqn5WfZCidjGEnHaUrh6vhltH6+VQk/yATcP?=
- =?us-ascii?q?B4p7Ka85hNA3a/UcPgUxL9R4E8c?=
-IronPort-Data: =?us-ascii?q?A9a23=3AmsQ2+aAmMYNyIBVW/wPhw5YqxClBgxIJ4kV8j?=
- =?us-ascii?q?S/XYbTApDl20DZVnWNJCmqOMquOMWbyfdBwbdy28hlQsZLRydUxOVdlrnsFo?=
- =?us-ascii?q?1CmCSbm6XZ1Fqp7Vs+rBpWroHlPsoNONbEsEOhuFiWF/071aeC7xZVB/fjgq?=
- =?us-ascii?q?oTUWbas1h9ZGFcMpBcJ0XqPqsZh6mJaqYHR7zCl5bsel/bi1GqNgFaYBI61B?=
- =?us-ascii?q?5Wr83uDtNyq0N8RU8dXifpj5DcynFFNZH4TyD3YEpf2fmVUNrbSq+fr0ri5+?=
- =?us-ascii?q?GbCrkZ8UorjlL+9eEQHWa/JIQWLkTxdXK3Kbhpq/3R0ifl9batHLxkK49mKt?=
- =?us-ascii?q?4kZJNFlroC9VwoveKjLnv8QXgJwGShzJrxd5LLCOj60tsn7I0juLyG3ma0yX?=
- =?us-ascii?q?B5tVWEf0qMtaY1UztQJLzsRaTiHhvmq2/SqTeJwgdw5K8vmN59ZvWtvpQw1p?=
- =?us-ascii?q?95OrYvrGv2MvoAehWZrwJ4TdcsyrvExMVJHBCksqTURUrvPNK8DoQ=3D=3D?=
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AQtqBVqBckAhUMLXlHemq55DYdb4zR+YMi2?=
- =?us-ascii?q?TDsHoBLSC9E/bo8vxG885w6faZslgssXwb9OxoRpPqfVr77p56paQYILvKZm?=
- =?us-ascii?q?nbUQKTRelfBODZsl7d8kPFl9K1rp0QEZSXHbbLYWSTeq3BjzWFLw=3D=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2DcCwDSkIJh/0HBJQpaHAEBATwBAQQ?=
- =?us-ascii?q?EAQECAQEHAQEegVACgR+CAA6BNAuEPJERA4YJig2MDhSBaAsBAQEBAQEBAQE?=
- =?us-ascii?q?IARICFgEMCgQBAYUCAheCPSY0CQ4BAgQBAQESAQEGAQEBAQEGBAGBI4VoDYI?=
- =?us-ascii?q?1IoNrAQEBAQMBIgpcAgEGAg0EBAEBFhIDAgICJgoUCQgBAQQBEgiCZQWBflc?=
- =?us-ascii?q?DPpFQml01eoExGgJlhyIZgj0JAYEwAYFlhTUBAYZ6gg1DhD8+gmMEAYEWCAo?=
- =?us-ascii?q?BEgFXCYJZgmUEjhUUgVMrUEEHgQ8WkgREgxSJE6AFBwODNIpLjFiHRC8Vg2y?=
- =?us-ascii?q?BSYoohjADi2eFMZNBgk0fiAqCA4JIhFCPCw0GN4RoAgQCBAUCFoFhSFxwcIM?=
- =?us-ascii?q?5CUgXApIhhRSFSnQCAQEBMwIGAQoBAQMJkBuBEAEB?=
-X-IPAS-Result: =?us-ascii?q?A2DcCwDSkIJh/0HBJQpaHAEBATwBAQQEAQECAQEHAQEeg?=
- =?us-ascii?q?VACgR+CAA6BNAuEPJERA4YJig2MDhSBaAsBAQEBAQEBAQEIARICFgEMCgQBA?=
- =?us-ascii?q?YUCAheCPSY0CQ4BAgQBAQESAQEGAQEBAQEGBAGBI4VoDYI1IoNrAQEBAQMBI?=
- =?us-ascii?q?gpcAgEGAg0EBAEBFhIDAgICJgoUCQgBAQQBEgiCZQWBflcDPpFQml01eoExG?=
- =?us-ascii?q?gJlhyIZgj0JAYEwAYFlhTUBAYZ6gg1DhD8+gmMEAYEWCAoBEgFXCYJZgmUEj?=
- =?us-ascii?q?hUUgVMrUEEHgQ8WkgREgxSJE6AFBwODNIpLjFiHRC8Vg2yBSYoohjADi2eFM?=
- =?us-ascii?q?ZNBgk0fiAqCA4JIhFCPCw0GN4RoAgQCBAUCFoFhSFxwcIM5CUgXApIhhRSFS?=
- =?us-ascii?q?nQCAQEBMwIGAQoBAQMJkBuBEAEB?=
-X-IronPort-AV: E=Sophos;i="5.87,205,1631577600";
-   d="scan'208,217";a="423204873"
-IronPort-SDR: 
- 7KIDA6gb8ZOs+10VSkR7cZ11LdUaTJ75nU8Vsf44kuXGVPtHJV4T49Zvxp1c6EJ9qq2/WbiUmy
- wDTsC7M1YgOw==
-X-IronPort-AV: E=Sophos;i="5.87,205,1631577600";
-   d="scan'208,217";a="37438477"
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: "codusnocturnus@protonmail.com" <codusnocturnus@protonmail.com>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: RE: [yocto] preempt-rt
-Thread-Topic: [yocto] preempt-rt
-Thread-Index: AdfQr78wMp7uaAmrSeesMdhJ29qxngAJ/IAAAAfW4SA=
-Date: Wed, 3 Nov 2021 13:40:28 +0000
-In-Reply-To: 
- <J6uhO4xdHvmmAEv95Raej96BW9diIdtegO8A3S5MarV7jqpGTQuZxnXdhj90D3XBXYK4tjuzKE4Cj3LLT6YtUIyMO4mabXONli-EO6CYk5w=@protonmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.4.15]
-Content-Type: multipart/alternative;
-	boundary="_000_b0e02f747a0f4e6ab54015381bd2a732baesystemscom_"
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=Nzp1PeQN;
+ spf=pass (domain: gmail.com, ip: 209.85.214.173,
+ mailfrom: akuster808@gmail.com)
+Received: by mail-pl1-f173.google.com with SMTP id u11so2596254plf.3
+        for <yocto@lists.yoctoproject.org>;
+ Wed, 03 Nov 2021 07:17:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yey0yyIrHNU7HlrdhxLMa8wfpDvPCsJb6Ok4WqKEcqA=;
+        b=Nzp1PeQNH4OAlBDotSZVpm9RvU1+eJ49nOgoZwylHF71yYsvHB+wZBPxSLRjcUQykR
+         vcphhKwGkgrkUYefO1ysFf0zfj/AiE4smshCEk6UIapk0kJo+9onfndiak5ZvhZUwH46
+         UJ8u5NcWrd+G/LR13EBCcj2rm/eVE131WaaubQjtOgL21ntAQL51teuZ36L9AEff/f5/
+         SDJUCM9HIDHWlyrcRFUUh1/YrlTmwfTZXQXT8a/ahXUV4S/o5xNnXmkDJUfKzrX3gqMR
+         rWWqZ2H4j0LLThwFfjONEK+/AwAVFtegKP9TWRoOJDFAv+uaTc1RCTCf4XG5fSaIJGhF
+         f1Qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yey0yyIrHNU7HlrdhxLMa8wfpDvPCsJb6Ok4WqKEcqA=;
+        b=D7TLQdDLWfFT0wbBCGoCoyybZi3UaLmrWlAWDMOgni60Ic/9vNjwZ5Jt87OxyjWnmo
+         wTsezDU3Xx950X+jl9aGc3Fx9A1jmrXYxHPknIjQ7cqOF7JI4AfZDikDRtMPa5+yWT3u
+         ZJtVSXzbnAWmQBfDlSgj+oj1mOfaUL+nJ3PG49gHVh8SSdMlvBV3FLr2TgJj6abGtXIm
+         pRdZ2BmxnFOk+r7Zn1+RbcJpwPeK82H36CacUGoMoFZgz7KnzmRENTMbPhBp4cT7rIKX
+         1h2DSpi4MbKyKr/jOdATZD/d+MQLJnV6xvr98T+v8nn3VSccOn7mmUq0nzF0+q3FDvRO
+         mLWw==
+X-Gm-Message-State: AOAM531lJSCNMHqwwHLnK8PwxIbhkIvwdOqD+Ric5PahoLKQVwSzLtRM
+	hEsK+9keo2hnm08u+qnkKVZo1csAhOA=
+X-Google-Smtp-Source: 
+ ABdhPJwFJ0cMAtzuyrdLLn98kp9KaU4U2zaL331KHOgz3EbqV2QB8/87dfNBKT5+5GNQPxvshjmeKw==
+X-Received: by 2002:a17:90b:390f:: with SMTP id
+ ob15mr10396084pjb.82.1635949019523;
+        Wed, 03 Nov 2021 07:16:59 -0700 (PDT)
+Received: from keaua.hsd1.ca.comcast.net
+ ([2601:202:4180:a5c0:4452:8642:ebb7:38af])
+        by smtp.gmail.com with ESMTPSA id
+ f11sm2076570pga.11.2021.11.03.07.16.58
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Nov 2021 07:16:58 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH] recipes: Update SRC_URI branch and protocols
+Date: Wed,  3 Nov 2021 07:16:57 -0700
+Message-Id: <20211103141657.30300-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 03 Nov 2021 13:40:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55229
-Message-Id: <20211103134034.645B9C433EF@smtp.lore.kernel.org>
+ <yocto@lists.yoctoproject.org>; Wed, 03 Nov 2021 14:17:01 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55230
 
---_000_b0e02f747a0f4e6ab54015381bd2a732baesystemscom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+This patch updates SRC_URIs using git to include branch=master if no branch is set
+and also to use protocol=https for github urls as generated by the conversion script
+in OE-Core.
 
-VGhhbmtz4oCmDQoNCg0KRnJvbTogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyA8eW9jdG9A
-bGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gT24gQmVoYWxmIE9mIGNvZHVzbm9jdHVybnVzIHZpYSBs
-aXN0cy55b2N0b3Byb2plY3Qub3JnDQpTZW50OiBXZWRuZXNkYXksIE5vdmVtYmVyIDMsIDIwMjEg
-OToyNSBBTQ0KVG86IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBb
-eW9jdG9dIHByZWVtcHQtcnQNCg0KRXh0ZXJuYWwgRW1haWwgQWxlcnQNCg0KVGhpcyBlbWFpbCBo
-YXMgYmVlbiBzZW50IGZyb20gYW4gYWNjb3VudCBvdXRzaWRlIG9mIHRoZSBCQUUgU3lzdGVtcyBu
-ZXR3b3JrLg0KUGxlYXNlIHRyZWF0IHRoZSBlbWFpbCB3aXRoIGNhdXRpb24sIGVzcGVjaWFsbHkg
-aWYgeW91IGFyZSByZXF1ZXN0ZWQgdG8gY2xpY2sgb24gYSBsaW5rLCBkZWNyeXB0L29wZW4gYW4g
-YXR0YWNobWVudCwgb3IgZW5hYmxlIG1hY3Jvcy4gIEZvciBmdXJ0aGVyIGluZm9ybWF0aW9uIG9u
-IGhvdyB0byBzcG90IHBoaXNoaW5nLCBhY2Nlc3Mg4oCcQ3liZXJzZWN1cml0eSBPbmVTcGFjZSBQ
-YWdl4oCdIGFuZCByZXBvcnQgcGhpc2hpbmcgYnkgY2xpY2tpbmcgdGhlIGJ1dHRvbiDigJxSZXBv
-cnQgUGhpc2hpbmfigJ0gb24gdGhlIE91dGxvb2sgdG9vbGJhci4NCg0KDQoNCg0K4oCQ4oCQ4oCQ
-4oCQ4oCQ4oCQ4oCQIE9yaWdpbmFsIE1lc3NhZ2Ug4oCQ4oCQ4oCQ4oCQ4oCQ4oCQ4oCQDQpPbiBX
-ZWRuZXNkYXksIE5vdmVtYmVyIDNyZCwgMjAyMSBhdCA1OjQzIEFNLCBNb25zZWVzLCBTdGV2ZW4g
-QyAoVVMpIHZpYSBsaXN0cy55b2N0b3Byb2plY3Qub3JnIDxzdGV2ZW4ubW9uc2Vlcz1iYWVzeXN0
-ZW1zLmNvbUBsaXN0cy55b2N0b3Byb2plY3Qub3JnPG1haWx0bzpzdGV2ZW4ubW9uc2Vlcz1iYWVz
-eXN0ZW1zLmNvbUBsaXN0cy55b2N0b3Byb2plY3Qub3JnPj4gd3JvdGU6DQoNCg0KDQoNCkkgaGF2
-ZSBhIHBsYXRmb3JtIGJhc2VkIG9mZiBhIGFhcm02NCBYaWxpbnggYmFzZWQga2VybmVsLCB3aGlj
-aCBpcyBub3QgYSBjb21wbGlhbnQgbWFpbmxpbmUga2VybmVs4oCmIHNvLCBJIHdpbGwgbmVlZCB0
-byBnbyB0aGUgcHJlZW1wLXJ0IHBhdGNoIHJvdXRlLg0KDQoNCg0KQ2FuIHlvdSBzdXBwbHkgYW4g
-ZXhhbXBsZSBZb2N0byByZWNpcGUgdGhhdCBhcHBsaWVzIHRoZSBwYXRjaCwgZG9lc27igJl0IGV2
-ZW4gaGF2ZSB0byBiZSBhcm0gYmFzZWTigKYganVzdCBsb29raW5nIGZvciBiYXNlbGluZSBJIG1p
-Z2h0IHVzZSB0byBjYXJ2ZSBvdXQgc3VwcG9ydCBmb3IgbXkgcGxhdGZvcm0uDQoNClRoZXJlIGFy
-ZSBhIGZldyBkZXRhaWxzIHRvIHNvcnQgb3V0IChsaWtlIGZpbmRpbmcgYSBwYXRjaCBjb21wYXRp
-YmxlIHdpdGggdGhlIGtlcm5lbCByZWNpcGUgeW91IHdhbnQgdG8gdXNlLCBvciBhIGNvbXByb21p
-c2Ugb2YgdGhlIHR3byksIGJ1dCBiYXNpY2FsbHkgYSBrZXJuZWwgLmJiYXBwZW5kIHdpdGggdGhl
-IGZvbGxvd2luZyB3aWxsIHN1ZmZpY2UgdG8ganVzdCBwYXRjaCB0aGUga2VybmVsLg0KRklMRVNf
-RVhUUkFQQVRIU19wcmVwZW5kIDo9ICIke1RISVNESVJ9L2ZpbGVzOiINClNSQ19VUklfYXBwZW5k
-ID0gIiBodHRwczovL2Nkbi5rZXJuZWwub3JnL3B1Yi9saW51eC9rZXJuZWwvcHJvamVjdHMvcnQv
-NS4xMi9wYXRjaC01LjEyLXJjMy1ydDMucGF0Y2guZ3oiDQoNCkFmdGVyIHRoYXQsIHlvdSBuZWVk
-IGEgY29uZmlndXJhdGlvbiBmcmFnbWVudCB0byBlbmFibGUgUFJFRU1QVC1SVCBpbiB0aGUgYnVp
-bGQuDQpDT05GSUdfUFJFRU1QVF9SVD15DQoNCg0KDQoNClRoYW5rcywNCg0KU3RldmUNClNlbnQg
-d2l0aCBQcm90b25NYWlsPGh0dHBzOi8vcHJvdG9ubWFpbC5jb20vPiBTZWN1cmUgRW1haWwuDQoN
-Cg0KDQo=
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ .../recipes-openscap/oe-scap/oe-scap_1.0.bb                     | 2 +-
+ .../recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb  | 2 +-
+ .../recipes-openscap/openscap/openscap_1.3.3.bb                 | 2 +-
+ .../recipes-openscap/openscap/openscap_git.bb                   | 2 +-
+ .../scap-security-guide/scap-security-guide_0.1.44.bb           | 2 +-
+ .../scap-security-guide/scap-security-guide_git.bb              | 2 +-
+ meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb                     | 2 +-
+ .../recipes-tpm/openssl-tpm-engine/openssl-tpm-engine_0.5.0.bb  | 2 +-
+ meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb               | 2 +-
+ meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb                       | 2 +-
+ meta-tpm/recipes-tpm/tpm-quote-tools/tpm-quote-tools_1.0.4.bb   | 2 +-
+ meta-tpm/recipes-tpm/tpm-tools/tpm-tools_1.3.9.2.bb             | 2 +-
+ meta-tpm/recipes-tpm/trousers/trousers_git.bb                   | 2 +-
+ meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.4.0.bb            | 2 +-
+ meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.7.0.bb          | 2 +-
+ meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb    | 2 +-
+ meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.3.0.bb              | 2 +-
+ meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.1.0.bb  | 2 +-
+ recipes-ids/crowdsec/crowdsec_1.1.1.bb                          | 2 +-
+ recipes-ids/ossec/ossec-hids_3.6.0.bb                           | 2 +-
+ recipes-ids/tripwire/tripwire_2.4.3.7.bb                        | 2 +-
+ recipes-mac/smack/smack_1.3.1.bb                                | 2 +-
+ recipes-scanners/checksec/checksec_2.4.0.bb                     | 2 +-
+ recipes-scanners/clamav/clamav_0.104.0.bb                       | 2 +-
+ recipes-security/chipsec/chipsec_git.bb                         | 2 +-
+ recipes-security/fail2ban/python3-fail2ban_0.11.2.bb            | 2 +-
+ recipes-security/fscrypt/fscrypt_1.0.0.bb                       | 2 +-
+ recipes-security/fscryptctl/fscryptctl_1.0.0.bb                 | 2 +-
+ .../google-authenticator-libpam_1.08.bb                         | 2 +-
+ recipes-security/libest/libest_3.2.0.bb                         | 2 +-
+ recipes-security/libmspack/libmspack_1.9.1.bb                   | 2 +-
+ recipes-security/ncrack/ncrack_0.7.bb                           | 2 +-
+ recipes-security/nikto/nikto_2.1.6.bb                           | 2 +-
+ 33 files changed, 33 insertions(+), 33 deletions(-)
 
---_000_b0e02f747a0f4e6ab54015381bd2a732baesystemscom_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+diff --git a/meta-security-compliance/recipes-openscap/oe-scap/oe-scap_1.0.bb b/meta-security-compliance/recipes-openscap/oe-scap/oe-scap_1.0.bb
+index 0fef233..7e9f214 100644
+--- a/meta-security-compliance/recipes-openscap/oe-scap/oe-scap_1.0.bb
++++ b/meta-security-compliance/recipes-openscap/oe-scap/oe-scap_1.0.bb
+@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://README.md;md5=46dec9f167b6e05986cb4023df6d92f4"
+ LICENSE = "MIT"
+ 
+ SRCREV = "7147871d7f37d408c0dd7720ef0fd3ec1b54ad98"
+-SRC_URI = "git://github.com/akuster/oe-scap.git"
++SRC_URI = "git://github.com/akuster/oe-scap.git;branch=master;protocol=https"
+ SRC_URI += " \
+             file://run_cve.sh \
+             file://run_test.sh \
+diff --git a/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb b/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
+index f109566..549a888 100644
+--- a/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
++++ b/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
+@@ -9,7 +9,7 @@ LICENSE = "LGPL-2.1"
+ DEPENDS = "python3-dbus"
+ 
+ SRCREV = "f25b16afb6ac761fea13132ff406fba4cdfd2b76"
+-SRC_URI = "git://github.com/OpenSCAP/openscap-daemon.git \
++SRC_URI = "git://github.com/OpenSCAP/openscap-daemon.git;branch=master;protocol=https \
+            file://0001-Renamed-module-and-variables-to-get-rid-of-async.patch \
+           "
+ 
+diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.3.bb b/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.3.bb
+index 51fa9ee..192b008 100644
+--- a/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.3.bb
++++ b/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.3.bb
+@@ -3,7 +3,7 @@ SUMARRY = "NIST Certified SCAP 1.2 toolkit"
+ require openscap.inc
+ 
+ SRCREV = "0cb55c55af6be9934d6fd0caf4563b206f289732"
+-SRC_URI = "git://github.com/OpenSCAP/openscap.git;branch=maint-1.3 \
++SRC_URI = "git://github.com/OpenSCAP/openscap.git;branch=maint-1.3;protocol=https \
+ "
+ 
+ DEFAULT_PREFERENCE = "-1"
+diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb b/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
+index 73a4729..a18cbd1 100644
+--- a/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
++++ b/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
+@@ -6,7 +6,7 @@ SUMARRY = "NIST Certified SCAP 1.2 toolkit with OE changes"
+ include openscap.inc
+ 
+ SRCREV = "a85943eee400fdbe59234d1c4a02d8cf710c4625"
+-SRC_URI = "git://github.com/akuster/openscap.git;branch=oe-1.3 \
++SRC_URI = "git://github.com/akuster/openscap.git;branch=oe-1.3;protocol=https \
+ "
+ 
+ PV = "1.3.3+git${SRCPV}"
+diff --git a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_0.1.44.bb b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_0.1.44.bb
+index d80ecd7..ecf136d 100644
+--- a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_0.1.44.bb
++++ b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_0.1.44.bb
+@@ -1,7 +1,7 @@
+ SUMARRY = "SCAP content for various platforms, upstream version"
+ 
+ SRCREV = "8cb2d0f351faff5440742258782281164953b0a6"
+-SRC_URI = "git://github.com/ComplianceAsCode/content.git"
++SRC_URI = "git://github.com/ComplianceAsCode/content.git;branch=master;protocol=https"
+ 
+ DEFAULT_PREFERENCE = "-1"
+ 
+diff --git a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_git.bb b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_git.bb
+index 0617c56..ddde5cc 100644
+--- a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_git.bb
++++ b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_git.bb
+@@ -1,7 +1,7 @@
+ SUMARRY = "SCAP content for various platforms, OE changes"
+ 
+ SRCREV = "5fdfdcb2e95afbd86ace555beca5d20cbf1043ed"
+-SRC_URI = "git://github.com/akuster/scap-security-guide.git;branch=oe-0.1.44; \
++SRC_URI = "git://github.com/akuster/scap-security-guide.git;branch=oe-0.1.44;;protocol=https \
+            file://0001-Fix-XML-parsing-of-the-remediation-functions-file.patch \
+            file://0002-Fixed-the-broken-fix-when-greedy-regex-ate-the-whole.patch \
+            file://0001-fix-deprecated-instance-of-element.getchildren.patch \
+diff --git a/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb b/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb
+index 95ba5c5..8fe62cf 100644
+--- a/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb
++++ b/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb
+@@ -3,7 +3,7 @@ LICENSE = "BSD-3-Clause"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=e73f0786a936da3814896df06ad225a9"
+ 
+ SRCREV = "f6dd8f55eab4910131ec6a6a570dcd7951bd10e4"
+-SRC_URI = "git://github.com/stefanberger/libtpms.git;branch=stable-0.8"
++SRC_URI = "git://github.com/stefanberger/libtpms.git;branch=stable-0.8;protocol=https"
+ 
+ PE = "1"
+ 
+diff --git a/meta-tpm/recipes-tpm/openssl-tpm-engine/openssl-tpm-engine_0.5.0.bb b/meta-tpm/recipes-tpm/openssl-tpm-engine/openssl-tpm-engine_0.5.0.bb
+index dab1589..ef663eb 100644
+--- a/meta-tpm/recipes-tpm/openssl-tpm-engine/openssl-tpm-engine_0.5.0.bb
++++ b/meta-tpm/recipes-tpm/openssl-tpm-engine/openssl-tpm-engine_0.5.0.bb
+@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=11f0ee3af475c85b907426e285c9bb52"
+ DEPENDS += "openssl trousers"
+ 
+ SRC_URI = "\
+-    git://github.com/mgerstner/openssl_tpm_engine.git \
++    git://github.com/mgerstner/openssl_tpm_engine.git;branch=master;protocol=https \
+     file://0001-create-tpm-key-support-well-known-key-option.patch \
+     file://0002-libtpm-support-env-TPM_SRK_PW.patch \
+     file://0003-tpm-openssl-tpm-engine-parse-an-encrypted-tpm-SRK-pa.patch \
+diff --git a/meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb b/meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb
+index f8347b7..77f65ae 100644
+--- a/meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb
++++ b/meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb
+@@ -9,7 +9,7 @@ DEPENDS = "libtspi"
+ PV = "0.1+git${SRCPV}"
+ SRCREV = "c02ad8f628b3d99f6d4c087b402fe31a40ee6316"
+ 
+-SRC_URI = "git://github.com/flihp/pcr-extend.git \
++SRC_URI = "git://github.com/flihp/pcr-extend.git;branch=master;protocol=https \
+            file://fix_openssl11_build.patch "
+ 
+ inherit autotools
+diff --git a/meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb b/meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb
+index c7fc131..63734b9 100644
+--- a/meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb
++++ b/meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb
+@@ -7,7 +7,7 @@ SECTION = "apps"
+ DEPENDS = "libtasn1 coreutils-native expect-native socat-native glib-2.0 net-tools-native libtpm json-glib"
+ 
+ SRCREV = "98187d24fe14851653a7c46eb16e9c5f0b9beaa1"
+-SRC_URI = "git://github.com/stefanberger/swtpm.git;branch=stable-0.6 \
++SRC_URI = "git://github.com/stefanberger/swtpm.git;branch=stable-0.6;protocol=https \
+            file://ioctl_h.patch \
+            file://oe_configure.patch \
+            "
+diff --git a/meta-tpm/recipes-tpm/tpm-quote-tools/tpm-quote-tools_1.0.4.bb b/meta-tpm/recipes-tpm/tpm-quote-tools/tpm-quote-tools_1.0.4.bb
+index 53cf8ff..4672bba 100644
+--- a/meta-tpm/recipes-tpm/tpm-quote-tools/tpm-quote-tools_1.0.4.bb
++++ b/meta-tpm/recipes-tpm/tpm-quote-tools/tpm-quote-tools_1.0.4.bb
+@@ -15,7 +15,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=8ec30b01163d242ecf07d9cd84e3611f"
+ 
+ DEPENDS = "libtspi tpm-tools"
+ 
+-SRC_URI = "git://git.code.sf.net/p/tpmquotetools/tpm-quote-tools"
++SRC_URI = "git://git.code.sf.net/p/tpmquotetools/tpm-quote-tools;branch=master"
+ SRCREV = "4511874d5c9b4504bb96e94f8a14bd6c39a36295"
+ 
+ S = "${WORKDIR}/git"
+diff --git a/meta-tpm/recipes-tpm/tpm-tools/tpm-tools_1.3.9.2.bb b/meta-tpm/recipes-tpm/tpm-tools/tpm-tools_1.3.9.2.bb
+index dbe1647..3b3da4f 100644
+--- a/meta-tpm/recipes-tpm/tpm-tools/tpm-tools_1.3.9.2.bb
++++ b/meta-tpm/recipes-tpm/tpm-tools/tpm-tools_1.3.9.2.bb
+@@ -14,7 +14,7 @@ DEPENDS:class-native = "trousers-native"
+ 
+ SRCREV = "bf43837575c5f7d31865562dce7778eae970052e"
+ SRC_URI = " \
+-    git://git.code.sf.net/p/trousers/tpm-tools \
++    git://git.code.sf.net/p/trousers/tpm-tools;branch=master \
+     file://tpm-tools-extendpcr.patch \
+     file://04-fix-FTBFS-clang.patch \
+     file://openssl1.1_fix.patch \
+diff --git a/meta-tpm/recipes-tpm/trousers/trousers_git.bb b/meta-tpm/recipes-tpm/trousers/trousers_git.bb
+index 5e03b71..192c66c 100644
+--- a/meta-tpm/recipes-tpm/trousers/trousers_git.bb
++++ b/meta-tpm/recipes-tpm/trousers/trousers_git.bb
+@@ -10,7 +10,7 @@ SRCREV = "94144b0a1dcef6e31845d6c319e9bd7357208eb9"
+ PV = "0.3.15+git${SRCPV}"
+ 
+ SRC_URI = " \
+-	git://git.code.sf.net/p/trousers/trousers \
++	git://git.code.sf.net/p/trousers/trousers;branch=master \
+     	file://trousers.init.sh \
+     	file://trousers-udev.rules \
+     	file://tcsd.service \
+diff --git a/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.4.0.bb b/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.4.0.bb
+index b80ef79..1818171 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.4.0.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.4.0.bb
+@@ -13,7 +13,7 @@ DEPENDS = "autoconf-archive dbus glib-2.0 tpm2-tss glib-2.0-native \
+             libtss2 libtss2-mu libtss2-tcti-device libtss2-tcti-mssim"
+ 
+ SRC_URI = "\
+-    git://github.com/tpm2-software/tpm2-abrmd.git \
++    git://github.com/tpm2-software/tpm2-abrmd.git;branch=master;protocol=https \
+     file://tpm2-abrmd-init.sh \
+     file://tpm2-abrmd.default \
+ "
+diff --git a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.7.0.bb b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.7.0.bb
+index 649338a..366e9da 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.7.0.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.7.0.bb
+@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=0fc19f620a102768d6dbd1e7166e78ab"
+ 
+ DEPENDS = "autoconf-archive pkgconfig dstat sqlite3 openssl libtss2-dev tpm2-tools libyaml p11-kit python3-setuptools-native"
+ 
+-SRC_URI = "git://github.com/tpm2-software/tpm2-pkcs11.git;branch=master \
++SRC_URI = "git://github.com/tpm2-software/tpm2-pkcs11.git;branch=master;protocol=https \
+            file://bootstrap_fixup.patch \
+            file://0001-remove-local-binary-checkes.patch \
+            "
+diff --git a/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
+index 47113d2..2bf1eed 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
+@@ -4,7 +4,7 @@ LICENSE = "BSD-2-Clause"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=500b2e742befc3da00684d8a1d5fd9da"
+ DEPENDS = "libtss2-dev libtss2-mu-dev gnu-efi-native gnu-efi pkgconfig autoconf-archive-native"
+ 
+-SRC_URI = "git://github.com/tpm2-software/tpm2-tcti-uefi.git \
++SRC_URI = "git://github.com/tpm2-software/tpm2-tcti-uefi.git;branch=master;protocol=https \
+            file://configure_oe_fixup.patch \
+            file://0001-configure.ac-stop-inserting-host-directories-into-co.patch \
+            file://fix_header_file.patch \
+diff --git a/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.3.0.bb b/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.3.0.bb
+index dfebc07..d324e33 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.3.0.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.3.0.bb
+@@ -10,7 +10,7 @@ DEPENDS = "autoconf-archive libtss2-dev qrencode"
+ PE = "1"
+ 
+ SRCREV = "96a1448753a48974149003bc90ea3990ae8e8d0b"
+-SRC_URI = "git://github.com/tpm2-software/tpm2-totp.git"
++SRC_URI = "git://github.com/tpm2-software/tpm2-totp.git;branch=master;protocol=https"
+ 
+ inherit autotools-brokensep pkgconfig
+ 
+diff --git a/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.1.0.bb b/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.1.0.bb
+index 3069b1f..4d1f425 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.1.0.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.1.0.bb
+@@ -9,7 +9,7 @@ SECTION = "security/tpm"
+ DEPENDS = "autoconf-archive-native bash-completion libtss2 libgcrypt openssl"
+ 
+ SRCREV = "6f387a4efe2049f1b4833e8f621c77231bc1eef4"
+-SRC_URI = "git://github.com/tpm2-software/tpm2-tss-engine.git;branch=v1.1.x"
++SRC_URI = "git://github.com/tpm2-software/tpm2-tss-engine.git;branch=v1.1.x;protocol=https"
+ 
+ inherit autotools-brokensep pkgconfig systemd
+ 
+diff --git a/recipes-ids/crowdsec/crowdsec_1.1.1.bb b/recipes-ids/crowdsec/crowdsec_1.1.1.bb
+index 887c75d..81f2b8f 100644
+--- a/recipes-ids/crowdsec/crowdsec_1.1.1.bb
++++ b/recipes-ids/crowdsec/crowdsec_1.1.1.bb
+@@ -3,7 +3,7 @@ SUMMARY = "CrowdSec is a free, modern & collaborative behavior detection engine,
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://src/import/LICENSE;md5=105e75b680b2ab82fa5718661b41f3bf"
+ 
+-SRC_URI = "git://github.com/crowdsecurity/crowdsec.git;branch=master"
++SRC_URI = "git://github.com/crowdsecurity/crowdsec.git;branch=master;protocol=https"
+ SRCREV = "73e0bbaf93070f4a640eb5a22212b5dcf26699de"
+ 
+ DEPENDS = "jq-native"
+diff --git a/recipes-ids/ossec/ossec-hids_3.6.0.bb b/recipes-ids/ossec/ossec-hids_3.6.0.bb
+index 309ca52..853facf 100644
+--- a/recipes-ids/ossec/ossec-hids_3.6.0.bb
++++ b/recipes-ids/ossec/ossec-hids_3.6.0.bb
+@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=d625d1520b5e38faefb81cf9772badc9"
+ 
+ 
+ DEPENDS = "openssl libpcre2 zlib libevent"
+-SRC_URI = "git://github.com/ossec/ossec-hids;branch=master \
++SRC_URI = "git://github.com/ossec/ossec-hids;branch=master;protocol=https \
+            file://0001-Makefile-drop-running-scrips-install.patch  \
+            file://0002-Makefile-don-t-set-uid-gid.patch \
+            "
+diff --git a/recipes-ids/tripwire/tripwire_2.4.3.7.bb b/recipes-ids/tripwire/tripwire_2.4.3.7.bb
+index 3a9bc1d..93cb443 100644
+--- a/recipes-ids/tripwire/tripwire_2.4.3.7.bb
++++ b/recipes-ids/tripwire/tripwire_2.4.3.7.bb
+@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=1c069be8dbbe48e89b580ab4ed86c127"
+ SRCREV = "6e64a9e5b70a909ec439bc5a099e3fcf38c614b0"
+ 
+ SRC_URI = "\
+-	git://github.com/Tripwire/tripwire-open-source.git \
++	git://github.com/Tripwire/tripwire-open-source.git;branch=master;protocol=https \
+ 	file://tripwire.cron \
+ 	file://tripwire.sh \
+ 	file://tripwire.txt \
+diff --git a/recipes-mac/smack/smack_1.3.1.bb b/recipes-mac/smack/smack_1.3.1.bb
+index 6c2f041..79a8f5a 100644
+--- a/recipes-mac/smack/smack_1.3.1.bb
++++ b/recipes-mac/smack/smack_1.3.1.bb
+@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=4fbd65380cdd255951079008b364516c"
+ 
+ SRCREV = "4a102c7584b39ce693995ffb65e0918a9df98dd8"
+ SRC_URI = " \
+-	git://github.com/smack-team/smack.git \
++	git://github.com/smack-team/smack.git;branch=master;protocol=https \
+ 	file://smack_generator_make_fixup.patch \
+ 	file://run-ptest"
+ 
+diff --git a/recipes-scanners/checksec/checksec_2.4.0.bb b/recipes-scanners/checksec/checksec_2.4.0.bb
+index 12c9bce..9a6e44a 100644
+--- a/recipes-scanners/checksec/checksec_2.4.0.bb
++++ b/recipes-scanners/checksec/checksec_2.4.0.bb
+@@ -7,7 +7,7 @@ HOMEPAGE="https://github.com/slimm609/checksec.sh"
+ LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=8d90285f711cf1f378e2c024457066d8"
+ 
+ SRCREV = "c3754e45e04f9104db93b2048afd094427102d48"
+-SRC_URI = "git://github.com/slimm609/checksec.sh"
++SRC_URI = "git://github.com/slimm609/checksec.sh;branch=master;protocol=https"
+ 
+ S = "${WORKDIR}/git"
+ 
+diff --git a/recipes-scanners/clamav/clamav_0.104.0.bb b/recipes-scanners/clamav/clamav_0.104.0.bb
+index 25123dc..e59f5ff 100644
+--- a/recipes-scanners/clamav/clamav_0.104.0.bb
++++ b/recipes-scanners/clamav/clamav_0.104.0.bb
+@@ -11,7 +11,7 @@ LIC_FILES_CHKSUM = "file://COPYING.txt;beginline=2;endline=3;md5=f7029fbbc5898b2
+ # July 27th
+ SRCREV = "c389dfa4c3af92b006ada4f7595bbc3e6df3f356"
+ 
+-SRC_URI = "git://github.com/vrtadmin/clamav-devel;branch=rel/0.104 \
++SRC_URI = "git://github.com/vrtadmin/clamav-devel;branch=rel/0.104;protocol=https \
+     file://clamd.conf \
+     file://freshclam.conf \
+     file://volatiles.03_clamav \
+diff --git a/recipes-security/chipsec/chipsec_git.bb b/recipes-security/chipsec/chipsec_git.bb
+index 3339dc1..e265a08 100644
+--- a/recipes-security/chipsec/chipsec_git.bb
++++ b/recipes-security/chipsec/chipsec_git.bb
+@@ -7,7 +7,7 @@ DESCRIPTION = "CHIPSEC is a framework for analyzing the security \
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=bc2d1f9b427be5fb63f6af9da56f7c5d"
+ 
+-SRC_URI = "git://github.com/chipsec/chipsec.git;branch=master \
++SRC_URI = "git://github.com/chipsec/chipsec.git;branch=master;protocol=https \
+           "
+ 
+ SRCREV = "b2a61684826dc8b9f622a844a40efea579cd7e7d"
+diff --git a/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb b/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
+index 627496f..fcf044a 100644
+--- a/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
++++ b/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
+@@ -10,7 +10,7 @@ LICENSE = "GPL-2.0"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=ecabc31e90311da843753ba772885d9f"
+ 
+ SRCREV ="d6b884f3b72b8a42b21da863836569ef6836c2ea"
+-SRC_URI = " git://github.com/fail2ban/fail2ban.git;branch=0.11 \
++SRC_URI = " git://github.com/fail2ban/fail2ban.git;branch=0.11;protocol=https \
+         file://initd \
+         file://run-ptest \
+ "
+diff --git a/recipes-security/fscrypt/fscrypt_1.0.0.bb b/recipes-security/fscrypt/fscrypt_1.0.0.bb
+index a70d310..66bf429 100644
+--- a/recipes-security/fscrypt/fscrypt_1.0.0.bb
++++ b/recipes-security/fscrypt/fscrypt_1.0.0.bb
+@@ -14,7 +14,7 @@ BBCLASSEXTEND = "native nativesdk"
+ DEPENDS += "go-dep-native libpam"
+ 
+ SRCREV = "92b1e9a8670ccd3916a7d24a06cab1e4c9815bc4"
+-SRC_URI = "git://github.com/google/fscrypt.git"
++SRC_URI = "git://github.com/google/fscrypt.git;branch=master;protocol=https"
+ GO_IMPORT = "import"
+ 
+ S = "${WORKDIR}/git"
+diff --git a/recipes-security/fscryptctl/fscryptctl_1.0.0.bb b/recipes-security/fscryptctl/fscryptctl_1.0.0.bb
+index 26f549b..d319e48 100644
+--- a/recipes-security/fscryptctl/fscryptctl_1.0.0.bb
++++ b/recipes-security/fscryptctl/fscryptctl_1.0.0.bb
+@@ -10,7 +10,7 @@ LICENSE = "Apache-2.0"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
+ 
+ SRCREV = "56b898c896240328adef7407090215abbe9ee03d"
+-SRC_URI = "git://github.com/google/fscryptctl.git"
++SRC_URI = "git://github.com/google/fscryptctl.git;branch=master;protocol=https"
+ 
+ S = "${WORKDIR}/git"
+ 
+diff --git a/recipes-security/google-authenticator-libpam/google-authenticator-libpam_1.08.bb b/recipes-security/google-authenticator-libpam/google-authenticator-libpam_1.08.bb
+index 4ab8374..e8ddf29 100644
+--- a/recipes-security/google-authenticator-libpam/google-authenticator-libpam_1.08.bb
++++ b/recipes-security/google-authenticator-libpam/google-authenticator-libpam_1.08.bb
+@@ -3,7 +3,7 @@ HOME_PAGE = "https://github.com/google/google-authenticator-libpam"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
+ LICENSE = "Apache-2.0"
+ 
+-SRC_URI = "git://github.com/google/google-authenticator-libpam.git"
++SRC_URI = "git://github.com/google/google-authenticator-libpam.git;branch=master;protocol=https"
+ SRCREV = "2c7415d950fb0b4a7f779f045910666447b100ef"
+ 
+ DEPENDS = "libpam"
+diff --git a/recipes-security/libest/libest_3.2.0.bb b/recipes-security/libest/libest_3.2.0.bb
+index fda2df4..31fbe3c 100644
+--- a/recipes-security/libest/libest_3.2.0.bb
++++ b/recipes-security/libest/libest_3.2.0.bb
+@@ -6,7 +6,7 @@ LICENSE = "OpenSSL"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=ecb78acde8e3b795de8ef6b61aed5885"
+ 
+ SRCREV = "4ca02c6d7540f2b1bcea278a4fbe373daac7103b"
+-SRC_URI = "git://github.com/cisco/libest;branch=main"
++SRC_URI = "git://github.com/cisco/libest;branch=main;protocol=https"
+ 
+ DEPENDS = "openssl"
+ 
+diff --git a/recipes-security/libmspack/libmspack_1.9.1.bb b/recipes-security/libmspack/libmspack_1.9.1.bb
+index 8c288be..65db10f 100644
+--- a/recipes-security/libmspack/libmspack_1.9.1.bb
++++ b/recipes-security/libmspack/libmspack_1.9.1.bb
+@@ -7,7 +7,7 @@ DEPENDS = ""
+ LIC_FILES_CHKSUM = "file://COPYING.LIB;beginline=1;endline=2;md5=5b1fd1f66ef926b3c8a5bb00a72a28dd"
+ 
+ SRCREV = "63d3faf90423a4a6c174539a7d32111a840adadc"
+-SRC_URI = "git://github.com/kyz/libmspack.git"
++SRC_URI = "git://github.com/kyz/libmspack.git;branch=master;protocol=https"
+ 
+ inherit autotools
+ 
+diff --git a/recipes-security/ncrack/ncrack_0.7.bb b/recipes-security/ncrack/ncrack_0.7.bb
+index 8b221e5..f151e4e 100644
+--- a/recipes-security/ncrack/ncrack_0.7.bb
++++ b/recipes-security/ncrack/ncrack_0.7.bb
+@@ -7,7 +7,7 @@ LICENSE = "GPL-2.0"
+ LIC_FILES_CHKSUM = "file://COPYING;beginline=7;endline=12;md5=66938a7e5b4c118eda78271de14874c2"
+ 
+ SRCREV = "dc570e7e3cec1fb176c0168eaedc723084bd0426"
+-SRC_URI = "git://github.com/nmap/ncrack.git"
++SRC_URI = "git://github.com/nmap/ncrack.git;branch=master;protocol=https"
+ 
+ DEPENDS = "openssl zlib"
+ 
+diff --git a/recipes-security/nikto/nikto_2.1.6.bb b/recipes-security/nikto/nikto_2.1.6.bb
+index 242f3ac..8542d69 100644
+--- a/recipes-security/nikto/nikto_2.1.6.bb
++++ b/recipes-security/nikto/nikto_2.1.6.bb
+@@ -7,7 +7,7 @@ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0-only;md5=801f80980d171dd6425610833a22dbe6"
+ 
+ SRCREV = "f1bbd1a8756c076c8fd4f4dd0bc34a8ef215ae79"
+-SRC_URI = "git://github.com/sullo/nikto.git \
++SRC_URI = "git://github.com/sullo/nikto.git;branch=master;protocol=https \
+            file://location.patch"
+ 
+ S = "${WORKDIR}/git/program"
+-- 
+2.25.1
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiTHVjaWRhIFNhbnMgVW5pY29kZSI7DQoJ
-cGFub3NlLTE6MiAxMSA2IDIgMyA1IDQgMiAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8N
-CnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsN
-CgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWls
-eToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJ
-e21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1
-bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1z
-dHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpwdXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVy
-bGluZTt9DQpwDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tbWFyZ2luLXRvcC1hbHQ6
-YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGluOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0K
-CW1hcmdpbi1sZWZ0OjBpbjsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1l
-cyBOZXcgUm9tYW4iLHNlcmlmO30NCnAubXNvbm9ybWFsMCwgbGkubXNvbm9ybWFsMCwgZGl2Lm1z
-b25vcm1hbDANCgl7bXNvLXN0eWxlLW5hbWU6bXNvbm9ybWFsOw0KCW1zby1tYXJnaW4tdG9wLWFs
-dDphdXRvOw0KCW1hcmdpbi1yaWdodDowaW47DQoJbXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG87
-DQoJbWFyZ2luLWxlZnQ6MGluOw0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6IlRp
-bWVzIE5ldyBSb21hbiIsc2VyaWY7fQ0Kc3Bhbi5FbWFpbFN0eWxlMjANCgl7bXNvLXN0eWxlLXR5
-cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJ
-Y29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQt
-b25seTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQpAcGFnZSBXb3JkU2Vj
-dGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEu
-MGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHls
-ZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQi
-IHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+
-PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0
-IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFk
-Pg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBj
-bGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJp
-Zjtjb2xvcjojMUY0OTdEIj5UaGFua3PigKY8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTom
-cXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2Nv
-bG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJp
-ZiI+IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcgJmx0O3lvY3RvQGxpc3RzLnlvY3RvcHJv
-amVjdC5vcmcmZ3Q7DQo8Yj5PbiBCZWhhbGYgT2YgPC9iPmNvZHVzbm9jdHVybnVzIHZpYSBsaXN0
-cy55b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U2VudDo8L2I+IFdlZG5lc2RheSwgTm92ZW1iZXIg
-MywgMjAyMSA5OjI1IEFNPGJyPg0KPGI+VG86PC9iPiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qu
-b3JnPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbeW9jdG9dIHByZWVtcHQtcnQ8bzpwPjwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4N
-CjxkaXY+DQo8dGFibGUgY2xhc3M9Ik1zb05vcm1hbFRhYmxlIiBib3JkZXI9IjEiIGNlbGxzcGFj
-aW5nPSIwIiBjZWxscGFkZGluZz0iMCIgd2lkdGg9Ijk3JSIgc3R5bGU9IndpZHRoOjk3LjAlO21h
-cmdpbi1sZWZ0OjUuNHB0O2JvcmRlci1jb2xsYXBzZTpjb2xsYXBzZTtib3JkZXI6bm9uZSI+DQo8
-dGJvZHk+DQo8dHIgc3R5bGU9ImhlaWdodDoyMS4ycHQiPg0KPHRkIHdpZHRoPSI5NyUiIHZhbGln
-bj0idG9wIiBzdHlsZT0id2lkdGg6OTcuMCU7Ym9yZGVyOnNvbGlkIHJlZCAxLjBwdDtwYWRkaW5n
-OjBpbiA1LjRwdCAwaW4gNS40cHQ7aGVpZ2h0OjIxLjJwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-IiBhbGlnbj0iY2VudGVyIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bWFyZ2luLWJv
-dHRvbTo0LjBwdDt0ZXh0LWFsaWduOmNlbnRlcjtiYWNrZ3JvdW5kOndoaXRlIj4NCjxzdHJvbmc+
-PHU+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMy41cHQ7Y29sb3I6cmVkIj5FeHRlcm5hbCBFbWFp
-bCBBbGVydDwvc3Bhbj48L3U+PC9zdHJvbmc+PG86cD48L286cD48L3A+DQo8L3RkPg0KPC90cj4N
-Cjx0ciBzdHlsZT0iaGVpZ2h0OjIxLjJwdCI+DQo8dGQgd2lkdGg9IjY4NiIgdmFsaWduPSJ0b3Ai
-IHN0eWxlPSJ3aWR0aDoxNS4waW47Ym9yZGVyOnNvbGlkIHJlZCAxLjBwdDtib3JkZXItdG9wOm5v
-bmU7cGFkZGluZzowaW4gNS40cHQgMGluIDUuNHB0O2hlaWdodDoyMS4ycHQiPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCIgYWxpZ249ImNlbnRlciIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDozLjBw
-dDttYXJnaW4tcmlnaHQ6MGluO21hcmdpbi1ib3R0b206NC4wcHQ7bWFyZ2luLWxlZnQ6MGluO3Rl
-eHQtYWxpZ246Y2VudGVyO2JhY2tncm91bmQ6d2hpdGUiPg0KPHN0cm9uZz48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjEwLjBwdDtjb2xvcjpibGFjayI+VGhpcyBlbWFpbCBoYXMgYmVlbiBzZW50IGZy
-b20gYW4gYWNjb3VudCBvdXRzaWRlIG9mIHRoZSBCQUUgU3lzdGVtcyBuZXR3b3JrLjwvc3Bhbj48
-L3N0cm9uZz48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIGFsaWduPSJjZW50
-ZXIiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttYXJnaW4tYm90dG9tOjQuMHB0O3Rl
-eHQtYWxpZ246Y2VudGVyIj4NCjxzcGFuIHN0eWxlPSJmb250LXNpemU6Ny41cHQiPlBsZWFzZSB0
-cmVhdCB0aGUgZW1haWwgd2l0aCBjYXV0aW9uLCBlc3BlY2lhbGx5IGlmIHlvdSBhcmUgcmVxdWVz
-dGVkIHRvIGNsaWNrIG9uIGEgbGluaywgZGVjcnlwdC9vcGVuIGFuIGF0dGFjaG1lbnQsIG9yIGVu
-YWJsZSBtYWNyb3MuJm5ic3A7IEZvciBmdXJ0aGVyIGluZm9ybWF0aW9uIG9uIGhvdyB0byBzcG90
-IHBoaXNoaW5nLCBhY2Nlc3Mg4oCcQ3liZXJzZWN1cml0eSBPbmVTcGFjZSBQYWdl4oCdIGFuZCBy
-ZXBvcnQNCiBwaGlzaGluZyBieSBjbGlja2luZyB0aGUgYnV0dG9uIOKAnFJlcG9ydCBQaGlzaGlu
-Z+KAnSBvbiB0aGUgT3V0bG9vayB0b29sYmFyLjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvdGQ+
-DQo8L3RyPg0KPC90Ym9keT4NCjwvdGFibGU+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZu
-YnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
-bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7
-PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPuKA
-kOKAkOKAkOKAkOKAkOKAkOKAkCBPcmlnaW5hbCBNZXNzYWdlIOKAkOKAkOKAkOKAkOKAkOKAkOKA
-kDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+T24gV2VkbmVzZGF5LCBOb3ZlbWJlciAzcmQsIDIwMjEgYXQgNTo0MyBBTSwg
-TW9uc2VlcywgU3RldmVuIEMgKFVTKSB2aWEgbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyAmbHQ7PGEg
-aHJlZj0ibWFpbHRvOnN0ZXZlbi5tb25zZWVzPWJhZXN5c3RlbXMuY29tQGxpc3RzLnlvY3RvcHJv
-amVjdC5vcmciPnN0ZXZlbi5tb25zZWVzPWJhZXN5c3RlbXMuY29tQGxpc3RzLnlvY3RvcHJvamVj
-dC5vcmc8L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90
-ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxwPiZuYnNw
-OzxvOnA+PC9vOnA+PC9wPg0KPHA+SSBoYXZlIGEgcGxhdGZvcm0gYmFzZWQgb2ZmIGEgYWFybTY0
-IFhpbGlueCBiYXNlZCBrZXJuZWwsIHdoaWNoIGlzIG5vdCBhIGNvbXBsaWFudCBtYWlubGluZSBr
-ZXJuZWzigKYgc28sIEkgd2lsbCBuZWVkIHRvIGdvIHRoZSBwcmVlbXAtcnQgcGF0Y2ggcm91dGUu
-PG86cD48L286cD48L3A+DQo8cD4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwPkNhbiB5b3Ugc3Vw
-cGx5IGFuIGV4YW1wbGUgWW9jdG8gcmVjaXBlIHRoYXQgYXBwbGllcyB0aGUgcGF0Y2gsIGRvZXNu
-4oCZdCBldmVuIGhhdmUgdG8gYmUgYXJtIGJhc2Vk4oCmIGp1c3QgbG9va2luZyBmb3IgYmFzZWxp
-bmUgSSBtaWdodCB1c2UgdG8gY2FydmUgb3V0IHN1cHBvcnQgZm9yIG15IHBsYXRmb3JtLjxvOnA+
-PC9vOnA+PC9wPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj5UaGVyZSBhcmUgYSBmZXcgZGV0YWlscyB0byBzb3J0IG91dCAobGlrZSBmaW5kaW5n
-IGEgcGF0Y2ggY29tcGF0aWJsZSB3aXRoIHRoZSBrZXJuZWwgcmVjaXBlIHlvdSB3YW50IHRvIHVz
-ZSwgb3IgYSBjb21wcm9taXNlIG9mIHRoZSB0d28pLCBidXQgYmFzaWNhbGx5IGEga2VybmVsIC5i
-YmFwcGVuZCB3aXRoIHRoZSBmb2xsb3dpbmcgd2lsbCBzdWZmaWNlIHRvIGp1c3QgcGF0Y2ggdGhl
-IGtlcm5lbC48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPkZJTEVTX0VYVFJBUEFUSFNfcHJlcGVuZCA6PSAmcXVvdDske1RISVNESVJ9L2ZpbGVzOiZx
-dW90OzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-U1JDX1VSSV9hcHBlbmQgPSAmcXVvdDsmbmJzcDs8YSBocmVmPSJodHRwczovL2Nkbi5rZXJuZWwu
-b3JnL3B1Yi9saW51eC9rZXJuZWwvcHJvamVjdHMvcnQvNS4xMi9wYXRjaC01LjEyLXJjMy1ydDMu
-cGF0Y2guZ3oiPmh0dHBzOi8vY2RuLmtlcm5lbC5vcmcvcHViL2xpbnV4L2tlcm5lbC9wcm9qZWN0
-cy9ydC81LjEyL3BhdGNoLTUuMTItcmMzLXJ0My5wYXRjaC5nejwvYT4mcXVvdDs8bzpwPjwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+QWZ0ZXIgdGhhdCwg
-eW91IG5lZWQgYSBjb25maWd1cmF0aW9uIGZyYWdtZW50IHRvIGVuYWJsZSBQUkVFTVBULVJUIGlu
-IHRoZSBidWlsZC48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPkNPTkZJR19QUkVFTVBUX1JUPXk8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2
-Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBw
-dCI+DQo8cD4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwPlRoYW5rcyw8bzpwPjwvbzpwPjwvcD4N
-CjxwPlN0ZXZlPG86cD48L286cD48L3A+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxkaXY+DQo8
-ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5TZW50IHdpdGggPGEgaHJl
-Zj0iaHR0cHM6Ly9wcm90b25tYWlsLmNvbS8iIHRhcmdldD0iX2JsYW5rIj4NClByb3Rvbk1haWw8
-L2E+IFNlY3VyZSBFbWFpbC48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+
-DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rp
-dj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwv
-aHRtbD4NCg==
-
---_000_b0e02f747a0f4e6ab54015381bd2a732baesystemscom_--
 
