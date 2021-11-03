@@ -1,201 +1,190 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <steven.monsees@baesystems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 50E3EC433EF
-	for <webhook@archiver.kernel.org>; Tue,  2 Nov 2021 20:42:11 +0000 (UTC)
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com
- [209.85.222.44])
- by mx.groups.io with SMTP id smtpd.web10.1161.1635885730028383403
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 28455C4321E
+	for <webhook@archiver.kernel.org>; Wed,  3 Nov 2021 12:44:50 +0000 (UTC)
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com
+ [149.32.232.65])
+ by mx.groups.io with SMTP id smtpd.web08.6829.1635943487518264803
  for <yocto@lists.yoctoproject.org>;
- Tue, 02 Nov 2021 13:42:10 -0700
+ Wed, 03 Nov 2021 05:44:49 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=g9wahIbq;
- spf=pass (domain: gmail.com, ip: 209.85.222.44,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ua1-f44.google.com with SMTP id ay21so426702uab.12
-        for <yocto@lists.yoctoproject.org>;
- Tue, 02 Nov 2021 13:42:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0pBRVMQUtYQRIfHql9WcTBTdAiyHm5NPC2BMyDXGJ1M=;
-        b=g9wahIbqpWBRdPgf0+KJnYJw3SSsfWGVQQGEd0HtqP6vTqrACaCc+gDIBSV4ly+yNz
-         tOB4ikk4scOP0yXYE5U5MaiMa2xHwkU2Goh4xyjcNSt/jBjq9lXMvxvwnKRwHJ+Koc1x
-         PMRvS6nCi2ArIZXMgCTRPHUPCHJUCSuBjaR/UE9b7MmTULjUpMBitYW5arHhnRGdeh5i
-         f42v7ZIBJerJkIWT9/oJ7yoeBFpljUtCbR/6pmEpjOpqbw2HZPjejnMXoykeRpEaOcip
-         aAeEU7m0O5VluQQIdAeHDvfeUVMLc08NkmzTe5V1NQuTPJGrgHOMJ2VFY+lPFdeNmEyy
-         QRjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0pBRVMQUtYQRIfHql9WcTBTdAiyHm5NPC2BMyDXGJ1M=;
-        b=2Jl4O2EKeXy8/jFRS9ZFo4yS/dHvPxrDHmuMHg9BThnXTfQyOYWjHEl91HILwAzaD3
-         3EgLqC8cfwijv+imlyLPeOyBUB/Jaab46TpmsTyw93755n8eUcvw45DYLxbdLGNqQdP7
-         7nDBpgP74PBL9gBNUg79jEhdQF1+GXyIo6Vy4UdQwUTbc1Myq45zBF6Ap4+OG9R4nIjT
-         b97Nl5AxCVB/NMKAA5qHzTbOYtenfmkYwmSTp8M3qr8qr3NAx4kwL+ZD8ypOTQqkX0U6
-         h6LBJvCWldgAJ85KlIGloUoPGzmLiLWPA6F+KR3hPXlQK6J2OQdZ+ylUV4Oy//KeA1cR
-         iXsA==
-X-Gm-Message-State: AOAM532prucu0jxUyTCID64MUynI9AU7UwGUcaHgTeTx788oUe+l6lsE
-	BlXdoAiPdFyffVg/NRr/uSaORb+uCZBtziSgY+g=
-X-Google-Smtp-Source: 
- ABdhPJxAZzAQxY9nTg7kdk6v2i9+JooWfiEpKQs+2zMjExeN5AaSpXVqvVc7Bzsmct71IRmsUAnF7kG71vqc18Mv7kA=
-X-Received: by 2002:ab0:30e1:: with SMTP id d1mr40731481uam.22.1635885729135;
- Tue, 02 Nov 2021 13:42:09 -0700 (PDT)
+ dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=kZOY/x4/;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.65,
+ mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1635943488; x=1793623488;
+  h=from:to:subject:date:mime-version;
+  bh=N232QDmxt6HdM9JZVXylaG8qUeyrJdQ1BvcMoNS4Up8=;
+  b=kZOY/x4/xSc/XQNfAD9sXpI13Zo1FLsCdpQMziNbm3mwifCPrEjcalT2
+   PccA+uYkIXeSHAeJtJ9q8Wm7KUgpcpFGgFSSy1MT8z+qIRsq8Ij54Hpm+
+   HZS1aIbOh+Dw7IISiLuER7xHh+8DHF/7mJibZfGqSICukS5rTFHXn6AZp
+   o=;
+IronPort-SDR: 
+ Mke16mw4O7lEBdnEZiQAWA3c9A0YbS+u/SeK/r/z854V7gsHqjuAaTJJjVrKOuXcYLjMtg2z9k
+ m+MtLwwkSCGQ==
+IronPort-PHdr: =?us-ascii?q?A9a23=3AchaFJBxqQRfcXVLXCzK5zVBlVkEcU1XcAAcZ5?=
+ =?us-ascii?q?9Idhq5Udez7ptK+ZhWZvawm1QWTFcWDsrQY0bKQ6/ihEUU7or+5+EgYd5JNU?=
+ =?us-ascii?q?xJXwe43pCcHRPC/NEvgMfTxZDY7FskRHHVs/nW8LFQHUJ2mPw6arXK99yMdF?=
+ =?us-ascii?q?QviPgRpOOv1BpTSj8Oq3Oyu5pHfeQpFiCSgbb9oMBm6sArdutQIjYd8N609z?=
+ =?us-ascii?q?gfFrmZSd+lZ229kOUifkwrg6su14ZVu7zlet/U9+sBaTK70Zb44TbtWDDQnN?=
+ =?us-ascii?q?2A6+sjmvgTdQAWM+3URTHwYngJHDAbZ4h76WIzxsjbhuepmxCaaJ8z2QqsqV?=
+ =?us-ascii?q?jmk8qxmVQXniCYDNz4+7WHXlsl9h79VrR69uxByxZPfbYeIP/R8Y6zdZ8sXS?=
+ =?us-ascii?q?2pfUMhMSyxPDICyb4oTAOUOJutXtZXxp1kUoBeiGQWgGuXiwSJIiH/s2q061?=
+ =?us-ascii?q?vwsHQ/B0gwnGdIOq2rbo8vuNKsKTOu70bXIwivdb/xI3zf29ZbFeQ0lrf6CQ?=
+ =?us-ascii?q?Lx8dMTdwlQoGgPeklWft5LlMC2T1ugXtmib6OxgVfmxhGE5sAF8uSOgyd0yh?=
+ =?us-ascii?q?YnShoMV0UzE+jt8wIYuP9G3VEl7Ydu9HZZWqiqVOJd4TNk4TGF0pCY11KcGu?=
+ =?us-ascii?q?ZijcSYExpkq2x/SZv6GfoSW/x7uSuWcLDd8iX9qd7+zmhi8/EivxOHhUsS50?=
+ =?us-ascii?q?lZHoyVEn9XRqH0A0x/e58uaR/dg8Ums3yuE2QPL6uxcPEw4ibDXJpAjz7Iqi?=
+ =?us-ascii?q?5YetUrOEjX3lUj2lKOaa1ko9vKn5unoeLnrqYWQO5J0hwz4L68ggNawAf4iP?=
+ =?us-ascii?q?QgLR2Wb/OO826D98kDhW7VKi+E2krHesJDHOcQXvq65DBFR0oYk8xu/ES2p0?=
+ =?us-ascii?q?NQenXkCN1JIfBaKgoz1N13TOvz4C+2wj063nzhx2f/GJb3gAo7RLnfdlbfhZ?=
+ =?us-ascii?q?qxx5FJbyAo21dxf5pRUBa8dIP/rR0P9qMbUAxE7PgCu3urqDNtw2pkfVG+PG?=
+ =?us-ascii?q?qOZNbndsV6M5uIhOemMY4oVtS7mK/g5+fHuk2E2mVkHcams2psXbmu4Eep4L?=
+ =?us-ascii?q?EWCenfjmc0OHnkRvgs+V+zqlEONUTtIZ3qoQ6084TQ7BJq8DYjfXoCtnKCB3?=
+ =?us-ascii?q?CCjE5xWYWBJFkyMEXDzeoWAWvcMcz6SItR7nj0EUriuV5Mh1Ra2tA/gzLpnL?=
+ =?us-ascii?q?PTb9TEEtZ7509h1/eLTxlkO8mk+HsOWz2alS2BvgnhOVjg9wKdnu0t/x1yfl?=
+ =?us-ascii?q?69ijLYQQc1U7O9OegM7LoLHif19AMz1QhjGfNqCVBChWNrwUh8rSddkifoJZ?=
+ =?us-ascii?q?V1wFs7mxivf0jSnBfc+3/y2P91+uvbHw3XvKsA7znHAz6QslHEsS8ZUJHa6i?=
+ =?us-ascii?q?6tksQPUAtiawA2ii6+2ePFEj2b2/2CZwD/W1Hw=3D?=
+IronPort-Data: =?us-ascii?q?A9a23=3AKtFnFaOP3HaHWyLvrR2QlcFynXyQoLVcMsEvi?=
+ =?us-ascii?q?/4bfWQNrUoj0DUBn2QfCz+FbvnZMGrwe98gO9m28k0AvJWHmoc2SnM5pCpnJ?=
+ =?us-ascii?q?55oRWopJjg7wn8dtEp+F+WbJK5cx5hYOoaowPwcFCeG/070auO59xGQ6InRL?=
+ =?us-ascii?q?lbCIL+cUsxObVI8IMsRoUoLd98R2uaEs/Dga+++kY+aT/nkBbOQ82Uc3lT4S?=
+ =?us-ascii?q?k60gEgHUPza4Fv0t7GlDBxBlAe2e3I9VPrzKUwtRkYUTLW4HsbiLwrC5K+w/?=
+ =?us-ascii?q?mXc5EZ8W4v81LDyNEcDT6XDJhSDj2EQUK+n6vRAjnVqlP1kcqNNMgEJ1l1ln?=
+ =?us-ascii?q?PgooDlJnYesRBkkOOvJn+IGXhRDOyt3MLZX46PKJGP5usuWp6HDWye2mKw+V?=
+ =?us-ascii?q?R9qbeX0/c4yWwmi78cwOTcGcherg+Ot3Kn9W+5nmsM7Ns7pMYgD/HZ6wlnk4?=
+ =?us-ascii?q?VwOKXzYa/ySo4QHmm5h3YYQQJ7jiwMiQWIHRHz9j9dnYQt/5EoCodqV?=
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AwCuW46Grn38DoW4FpLqE18eALOsnbusQ8z?=
+ =?us-ascii?q?AXPo5KOGVom62j5riTdZEgvyMc5wxhPU3I9erwWpVoBEmslqKdgrNxAV7BZn?=
+ =?us-ascii?q?iDhILAFugLhrcKgQeBJ8SUzJ876U4PSdkZNDQyNzRHZATBjTVQ3+xO/DBPys?=
+ =?us-ascii?q?6Vuds=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2BWBwDLg4Jh/0HBJQpaHQEBPAEFBQE?=
+ =?us-ascii?q?CAQkBFQmBUAKBHxsCgWOBTbF0gXwLAQEBAQEBAQEBCAESLwQBAYdYJjYHDgE?=
+ =?us-ascii?q?CBAEBARIBAQYBAQEBAQYEAYEjhWkMgjUihB9eAQwJayYBBBuCaoF+rlWBMxo?=
+ =?us-ascii?q?CZYRphQ+BOAIBAYFkhTWCeoYPQ48/BJJknm+gBQcDgzSeZy8Vlg0DkRiTQYJ?=
+ =?us-ascii?q?NH6ViAgQCBAUCFoFoBoIHcIM6UBcCnH+BLAIGCwEBAwmQG4EQAQE?=
+X-IPAS-Result: =?us-ascii?q?A2BWBwDLg4Jh/0HBJQpaHQEBPAEFBQECAQkBFQmBUAKBH?=
+ =?us-ascii?q?xsCgWOBTbF0gXwLAQEBAQEBAQEBCAESLwQBAYdYJjYHDgECBAEBARIBAQYBA?=
+ =?us-ascii?q?QEBAQYEAYEjhWkMgjUihB9eAQwJayYBBBuCaoF+rlWBMxoCZYRphQ+BOAIBA?=
+ =?us-ascii?q?YFkhTWCeoYPQ48/BJJknm+gBQcDgzSeZy8Vlg0DkRiTQYJNH6ViAgQCBAUCF?=
+ =?us-ascii?q?oFoBoIHcIM6UBcCnH+BLAIGCwEBAwmQG4EQAQE?=
+X-IronPort-AV: E=Sophos;i="5.87,205,1631577600";
+   d="scan'208,217";a="423181648"
+IronPort-SDR: 
+ g4CBeGa14ieKoDJOjfAc4YIu9faGszAFWD1h1qhN31vDoTzi52vgOIsQ75I71Oj2cyCieEl28D
+ c6RfwvbDj0Jw==
+X-IronPort-AV: E=Sophos;i="5.87,205,1631577600";
+   d="scan'208,217";a="37419992"
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: preempt-rt
+Thread-Topic: preempt-rt
+Thread-Index: AdfQr78wMp7uaAmrSeesMdhJ29qxng==
+Date: Wed, 3 Nov 2021 12:43:29 +0000
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.44.4.15]
+Content-Type: multipart/alternative;
+	boundary="_000_ee9be9d1671a4b80bc4f78c3b370a192baesystemscom_"
 MIME-Version: 1.0
-References: <63c81a59-469d-41b4-2053-269465491bf5@systech.com>
- <CANNYZj83J3Z5FKyLK4jytGQULHNqTaPFnHN1OAm9OZgRqj3zyg@mail.gmail.com>
- <75f51cd6-5afc-2856-c180-4bc032b8ec49@systech.com>
-In-Reply-To: <75f51cd6-5afc-2856-c180-4bc032b8ec49@systech.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Tue, 2 Nov 2021 21:41:57 +0100
-Message-ID: 
- <CANNYZj9M48zP04TApty4NsL3bXndPmSY7yAPqKkKuxByZRf4zg@mail.gmail.com>
-Subject: Re: [yocto] Yocto Unauthenticated git Protocol No Longer Supported
-To: Jay Foster <jay.foster@systech.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000c73dab05cfd45308"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 02 Nov 2021 20:42:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55222
+ <yocto@lists.yoctoproject.org>; Wed, 03 Nov 2021 12:44:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55223
+Message-Id: <20211103124450.28455C4321E@smtp.lore.kernel.org>
 
---000000000000c73dab05cfd45308
-Content-Type: text/plain; charset="UTF-8"
-
-This, I think:
-http://git.yoctoproject.org/cgit.cgi/poky/commit/?h=master-next&id=164bb5e9287497b492f21985dd1a8d85e1a4ed23
-
-Alex
-
-On Tue, 2 Nov 2021 at 21:18, Jay Foster <jay.foster@systech.com> wrote:
-
-> Thanks.  Can you provide links to these patches?  I have no choice in
-> using rocko.
-> Note that the failure was in the do_packagedata task, where it is issuing
-> a 'git -c core.fsyncobjectfiles=0 ls-remote <git-url>' command.  I am using
-> a source premirror so it has not (yet) shown up in do_fetch.
->
-> Jay
->
-> On 11/2/2021 1:03 PM, Alexander Kanavin wrote:
->
-> There are patches in master-next for this. You can backport them, but you
-> really shouldn't be using rocko.
->
-> Alex
->
-> On Tue, 2 Nov 2021 at 20:50, Jay Foster <jay.foster@systech.com> wrote:
->
->> My yocto builds started failing today (November 2, 2021) due to this
->> (
->> https://github.blog/2021-09-01-improving-git-protocol-security-github/#no-more-unauthenticated-git)
->>
->> issue.  Is there a fix for the yocto fetcher?  I using rocko.
->>
->> Jay
->>
->> -=-=-=-=-=-=-=-=-=-=-=-
->> Links: You receive all messages sent to this group.
->> View/Reply Online (#55219):
->> https://lists.yoctoproject.org/g/yocto/message/55219
->> Mute This Topic: https://lists.yoctoproject.org/mt/86775338/1686489
->> Group Owner: yocto+owner@lists.yoctoproject.org
->> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
->> alex.kanavin@gmail.com]
->> -=-=-=-=-=-=-=-=-=-=-=-
->>
->>
->
-
---000000000000c73dab05cfd45308
-Content-Type: text/html; charset="UTF-8"
+--_000_ee9be9d1671a4b80bc4f78c3b370a192baesystemscom_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>This, I think:</div><div><a href=3D"http://git.yoctop=
-roject.org/cgit.cgi/poky/commit/?h=3Dmaster-next&amp;id=3D164bb5e9287497b49=
-2f21985dd1a8d85e1a4ed23">http://git.yoctoproject.org/cgit.cgi/poky/commit/?=
-h=3Dmaster-next&amp;id=3D164bb5e9287497b492f21985dd1a8d85e1a4ed23</a></div>=
-<div><br></div><div>Alex<br></div></div><br><div class=3D"gmail_quote"><div=
- dir=3D"ltr" class=3D"gmail_attr">On Tue, 2 Nov 2021 at 21:18, Jay Foster &=
-lt;<a href=3D"mailto:jay.foster@systech.com">jay.foster@systech.com</a>&gt;=
- wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
 
- =20
-  <div>
-    Thanks.=C2=A0 Can you provide links to these patches?=C2=A0 I have no c=
-hoice
-    in using rocko.<br>
-    Note that the failure was in the do_packagedata task, where it is
-    issuing a &#39;git -c core.fsyncobjectfiles=3D0 ls-remote &lt;git-url&g=
-t;&#39;
-    command.=C2=A0 I am using a source premirror so it has not (yet) shown =
-up
-    in do_fetch.<br>
-    <br>
-    Jay<br>
-    <br>
-    <div>On 11/2/2021 1:03 PM, Alexander Kanavin
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <div dir=3D"ltr">
-        <div>There are patches in master-next for this. You can backport
-          them, but you really shouldn&#39;t be using rocko.</div>
-        <div><br>
-        </div>
-        <div>Alex<br>
-        </div>
-      </div>
-      <br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Tue, 2 Nov 2021 at 20:50,
-          Jay Foster &lt;<a href=3D"mailto:jay.foster@systech.com" target=
-=3D"_blank">jay.foster@systech.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex">My
-          yocto builds started failing today (November 2, 2021) due to
-          this <br>
-          (<a href=3D"https://github.blog/2021-09-01-improving-git-protocol=
--security-github/#no-more-unauthenticated-git" rel=3D"noreferrer" target=3D=
-"_blank">https://github.blog/2021-09-01-improving-git-protocol-security-git=
-hub/#no-more-unauthenticated-git</a>)
-          <br>
-          issue.=C2=A0 Is there a fix for the yocto fetcher?=C2=A0 I using =
-rocko.<br>
-          <br>
-          Jay<br>
-          <br>
-          -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-          Links: You receive all messages sent to this group.<br>
-          View/Reply Online (#55219): <a href=3D"https://lists.yoctoproject=
-.org/g/yocto/message/55219" rel=3D"noreferrer" target=3D"_blank">https://li=
-sts.yoctoproject.org/g/yocto/message/55219</a><br>
-          Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/867=
-75338/1686489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproj=
-ect.org/mt/86775338/1686489</a><br>
-          Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.o=
-rg" target=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-          Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/un=
-sub" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/=
-yocto/unsub</a>
-          [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex=
-.kanavin@gmail.com</a>]<br>
-          -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-          <br>
-        </blockquote>
-      </div>
-    </blockquote>
-    <br>
-  </div>
-</blockquote></div>
+I have a platform based off a aarm64 Xilinx based kernel, which is not a co=
+mpliant mainline kernel... so, I will need to go the preemp-rt patch route.
 
---000000000000c73dab05cfd45308--
+Can you supply an example Yocto recipe that applies the patch, doesn't even=
+ have to be arm based... just looking for baseline I might use to carve out=
+ support for my platform.
+
+Thanks,
+Steve
+
+--_000_ee9be9d1671a4b80bc4f78c3b370a192baesystemscom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I have a platform based off a aarm64 Xilinx based ke=
+rnel, which is not a compliant mainline kernel&#8230; so, I will need to go=
+ the preemp-rt patch route.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Can you supply an example Yocto recipe that applies =
+the patch, doesn&#8217;t even have to be arm based&#8230; just looking for =
+baseline I might use to carve out support for my platform.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Steve<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_ee9be9d1671a4b80bc4f78c3b370a192baesystemscom_--
 
