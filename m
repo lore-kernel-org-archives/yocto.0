@@ -1,542 +1,238 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <steven.monsees@baesystems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E2550C433F5
-	for <webhook@archiver.kernel.org>; Wed,  3 Nov 2021 14:17:01 +0000 (UTC)
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
- [209.85.214.173])
- by mx.groups.io with SMTP id smtpd.web08.8214.1635949020948996008
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 47343C433EF
+	for <webhook@archiver.kernel.org>; Wed,  3 Nov 2021 17:57:21 +0000 (UTC)
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com
+ [149.32.232.65])
+ by mx.groups.io with SMTP id smtpd.web12.13.1635962239813161019
  for <yocto@lists.yoctoproject.org>;
- Wed, 03 Nov 2021 07:17:01 -0700
+ Wed, 03 Nov 2021 10:57:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Nzp1PeQN;
- spf=pass (domain: gmail.com, ip: 209.85.214.173,
- mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f173.google.com with SMTP id u11so2596254plf.3
-        for <yocto@lists.yoctoproject.org>;
- Wed, 03 Nov 2021 07:17:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=yey0yyIrHNU7HlrdhxLMa8wfpDvPCsJb6Ok4WqKEcqA=;
-        b=Nzp1PeQNH4OAlBDotSZVpm9RvU1+eJ49nOgoZwylHF71yYsvHB+wZBPxSLRjcUQykR
-         vcphhKwGkgrkUYefO1ysFf0zfj/AiE4smshCEk6UIapk0kJo+9onfndiak5ZvhZUwH46
-         UJ8u5NcWrd+G/LR13EBCcj2rm/eVE131WaaubQjtOgL21ntAQL51teuZ36L9AEff/f5/
-         SDJUCM9HIDHWlyrcRFUUh1/YrlTmwfTZXQXT8a/ahXUV4S/o5xNnXmkDJUfKzrX3gqMR
-         rWWqZ2H4j0LLThwFfjONEK+/AwAVFtegKP9TWRoOJDFAv+uaTc1RCTCf4XG5fSaIJGhF
-         f1Qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=yey0yyIrHNU7HlrdhxLMa8wfpDvPCsJb6Ok4WqKEcqA=;
-        b=D7TLQdDLWfFT0wbBCGoCoyybZi3UaLmrWlAWDMOgni60Ic/9vNjwZ5Jt87OxyjWnmo
-         wTsezDU3Xx950X+jl9aGc3Fx9A1jmrXYxHPknIjQ7cqOF7JI4AfZDikDRtMPa5+yWT3u
-         ZJtVSXzbnAWmQBfDlSgj+oj1mOfaUL+nJ3PG49gHVh8SSdMlvBV3FLr2TgJj6abGtXIm
-         pRdZ2BmxnFOk+r7Zn1+RbcJpwPeK82H36CacUGoMoFZgz7KnzmRENTMbPhBp4cT7rIKX
-         1h2DSpi4MbKyKr/jOdATZD/d+MQLJnV6xvr98T+v8nn3VSccOn7mmUq0nzF0+q3FDvRO
-         mLWw==
-X-Gm-Message-State: AOAM531lJSCNMHqwwHLnK8PwxIbhkIvwdOqD+Ric5PahoLKQVwSzLtRM
-	hEsK+9keo2hnm08u+qnkKVZo1csAhOA=
-X-Google-Smtp-Source: 
- ABdhPJwFJ0cMAtzuyrdLLn98kp9KaU4U2zaL331KHOgz3EbqV2QB8/87dfNBKT5+5GNQPxvshjmeKw==
-X-Received: by 2002:a17:90b:390f:: with SMTP id
- ob15mr10396084pjb.82.1635949019523;
-        Wed, 03 Nov 2021 07:16:59 -0700 (PDT)
-Received: from keaua.hsd1.ca.comcast.net
- ([2601:202:4180:a5c0:4452:8642:ebb7:38af])
-        by smtp.gmail.com with ESMTPSA id
- f11sm2076570pga.11.2021.11.03.07.16.58
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Nov 2021 07:16:58 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] recipes: Update SRC_URI branch and protocols
-Date: Wed,  3 Nov 2021 07:16:57 -0700
-Message-Id: <20211103141657.30300-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
+ dkim=fail reason="signature has expired" header.i=@baesystems.com
+ header.s=trusted01 header.b=S5h/SM1+;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.65,
+ mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1635962239; x=1793642239;
+  h=from:to:subject:date:mime-version;
+  bh=XzuKTUR67Prvt3aVlxgHb2Y/FHa4ES9HfXnnj9IqGUo=;
+  b=S5h/SM1+JDuMwAa7UKDLECLbouDFTKlTyhvKJ8gilb6UnA7tV+Kfruf5
+   Ue4D77xyKnecNrPMYI+tVkuyjFzJM8MbwjAOnKHDTqqk42FFjx4pqxBxI
+   oEvjlpCgO7tI+j2CkaV551sGtKBQbH/DvitImFzhjyyesSLSTxpa8Wp/7
+   w=;
+IronPort-SDR: 
+ DiwZRuH3/EBCDhmSyH2ijsag1EW478oNZMkcMtHapn8POTJKQ3h39EOH2KhXxn9zcVNgZ7wzt0
+ iKubF2fje1iQ==
+IronPort-PHdr: =?us-ascii?q?A9a23=3AmWIG0hOZGGWgcfr/uyol6nZjChdPi9zP1u491?=
+ =?us-ascii?q?JMrhvp0f7i5+Ny6ZQqDv6wr1AaCBN+Bo7Ic0qyK6fimATRBqb+681k6OKRWU?=
+ =?us-ascii?q?BEEjchE1ycBO+WiTXPBEfjxciYhF95DXlI2t1uyMExSBdqsLwaK+i764jEdA?=
+ =?us-ascii?q?AjwOhRoLerpBIHSk9631+ev8JHPfglEnjWwba1vIBmssQndq8YajZZ8Jqov1?=
+ =?us-ascii?q?xDFpmdEd/lMyW5nO16fgwzw6tus8JJm7i9dp+8v+8lcXKvgYq82V6ZYDDMoM?=
+ =?us-ascii?q?2A04M3kqxzORhaR63UfT2sbjANGDxDK4x/mUJjxtDD6tvdm1ymBIcL2V7E0V?=
+ =?us-ascii?q?i+84KptVRTllT0INz898GHQl8xwkKdWqw+vqhBj34LZZpyeOfxjda3fYNwaX?=
+ =?us-ascii?q?3JMUMZPWSJcHoOyYYgBD+sdMulXtITyvUcCrRmkCAWwGO/j1DlFjWL2060g1?=
+ =?us-ascii?q?OQhFBnL0AInEdIJtnTUt8v6O7kJUeyt0aLG0CnDYO1I2Tjj7ojDbw4squyIU?=
+ =?us-ascii?q?b1+bMTdzEcjHB7Cg1WLtYzqIS2V2foLs2SB6upgUuSvi3U5pA5vuTii3dwjh?=
+ =?us-ascii?q?ZPXiYIOylHE7jl5z5gwJd2jUkJ0fdmkEJ5JuiycKoB5Td8sTXtytyYm1r0Jp?=
+ =?us-ascii?q?4S7fC4SxZopyRPSd/2KfoqJ7x79SeqcPzR1iXJhdb+wiBu+7Eaux+3zWMWp1?=
+ =?us-ascii?q?FtHrCpIn9bNu3wQyRHe7suKR/hg80u81jiC0R3Y5OJcIU0siKbXN4Qtz7Aym?=
+ =?us-ascii?q?5YJr0jPAC/7lF/3gaKXbkko5/Sk5/7ob7jpvJOROJV4hhz+P6koh8exG/43M?=
+ =?us-ascii?q?hIUUGie4em80brj8lDnT7hSlf02l7XZsIjdJcQGuq61Gw9V3Zgn6xa4Fzqpz?=
+ =?us-ascii?q?M4XnWIbI1JAYxKKi4zkNlLSLPzmF/u/hU6jnC1wyP/cILLhGZXMLmPfkLj/e?=
+ =?us-ascii?q?LZ98FRQxxY0zdBa/55UC7cBL+zvWkLpqdDUEgU1PgK2zur9FtlxyIMTVXiOD?=
+ =?us-ascii?q?6KYKK/StEWH5uMrI+mCfo8VvzP9JuA+5/7yk3A5h0ESfa+z0ZsSb3C4GO9mL?=
+ =?us-ascii?q?FuHbnr3mdoOCn0FsRQlTO3qk12CTSBcZ3OpX64m+j47D4emAZ/ZRo+xmLyBw?=
+ =?us-ascii?q?Du7HppOa2FGDVCDDWvod4KfVvcIaSKSOdNhkiceWbmhTI8uyQ2utAjiy7p9K?=
+ =?us-ascii?q?erU+DMXuo7/1NRv4O3Tjx4ypnRICJHXwmaGU2ZcmmITWyRwzad0vUtl0FCB3?=
+ =?us-ascii?q?KNkxftCGpYbs+JOWRs9HZrd1PBhTcH1UR7GZs2OSlutXpOhGz5nHfwrxNpbK?=
+ =?us-ascii?q?WN6Hc6vgwuHlxG2DqEYkfSgTNwJyeOWlyzqO8tjxnCA0a4nlFQrWeNFPGC9l?=
+ =?us-ascii?q?7Vj+g3IQYXOlhPKxO6Raa0A0XuVpy+4xm2UsRQAODM=3D?=
+IronPort-Data: =?us-ascii?q?A9a23=3ARI0Rz6O7xSLTkt/vrR2PlcFynXyQoLVcMsEvi?=
+ =?us-ascii?q?/4bfWQNrUor0TwFz2RLXG+Ob/reNDH2LtB0aoq390lXuMDdzdAxSnM5pCpnJ?=
+ =?us-ascii?q?55oRWopJjg7wn8dtEp+F+WbJK5cx5hYOoaowPwcFCeG/070auO59hGQ6InRL?=
+ =?us-ascii?q?lbCIL+cUsxObVI8IMsRoUoLd98R2uaEs/Dga+++kY+aT/nkBbOQ82Uc3lT4S?=
+ =?us-ascii?q?k60gEgHUPza4Fv0t7GlDBxBlAe2e3I9VPrzKUwtRkYUTLW4HsbiLwrC5Lqw5?=
+ =?us-ascii?q?Wjc5EZ8Wov/1LDyNEcDT6XDJhSDj2EQUK+n6vRAjnVqlP1kcqBGNAEJ1V1ln?=
+ =?us-ascii?q?PgooDlJnYesRBkkOOvJn+IGXhRDOyt3MLZX46PKJGP5usuWp6HDWye2mK42V?=
+ =?us-ascii?q?RtrZ+X0/c4yWwmi78cwOTcGcherg+Ot3Kn9W+5nmsM7Ns7pMYgD/HZ6wlnk4?=
+ =?us-ascii?q?VwOKXzYa/ySo4QHmm1q24YQQ57jiwMiQWIHRHz9j9dnYz/70K4Dodo=3D?=
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3An7JFT6p/r05vHUFBQ0MFV9gaV5oseYIsim?=
+ =?us-ascii?q?QD101hICG9E/bo8fxG+c5wuCMc5wxxZJhNo7C90dC7L080lqQFhrX5X43SOT?=
+ =?us-ascii?q?UO0VHAROpfBO3Zsl7d8kXFmtK1vp0QF5SWZueAb2STUq7BjzVRdL4bsaC6zJ?=
+ =?us-ascii?q?w=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2B/BADLzIJh/0LhJQpaHgE8DAILFQm?=
+ =?us-ascii?q?BUIEhggCBTbF0gXwLAQEBAQEBAQEBCAFBBAEBgg2FSyY1CA4BAgQBAQESAQE?=
+ =?us-ascii?q?GAQEBAQEGBAGBI4VpDII1IoQfXgEVax8HAQQbE4JXgX6vS4EzGgJlhGmFDwk?=
+ =?us-ascii?q?BgTCBZoU1gnqGD0OPPwSQBTEdbg9pkkg5jCOgBQcDgzSeZy8Vlg0DkRiWDh+?=
+ =?us-ascii?q?hEYRRAgQCBAUCFoFjAYIRcFCCalAXAo47Fo4ugSwCBgsBAQMJkBuBEAEB?=
+X-IPAS-Result: =?us-ascii?q?A2B/BADLzIJh/0LhJQpaHgE8DAILFQmBUIEhggCBTbF0g?=
+ =?us-ascii?q?XwLAQEBAQEBAQEBCAFBBAEBgg2FSyY1CA4BAgQBAQESAQEGAQEBAQEGBAGBI?=
+ =?us-ascii?q?4VpDII1IoQfXgEVax8HAQQbE4JXgX6vS4EzGgJlhGmFDwkBgTCBZoU1gnqGD?=
+ =?us-ascii?q?0OPPwSQBTEdbg9pkkg5jCOgBQcDgzSeZy8Vlg0DkRiWDh+hEYRRAgQCBAUCF?=
+ =?us-ascii?q?oFjAYIRcFCCalAXAo47Fo4ugSwCBgsBAQMJkBuBEAEB?=
+X-IronPort-AV: E=Sophos;i="5.87,206,1631577600";
+   d="scan'208,217";a="423301252"
+IronPort-SDR: 
+ QQyi/w3D6SrDJE233vWuE09/izzQ4CGBmRAsRgesIt4lVAzbsJo60+tGdSutha3uIPA8n8oJyU
+ KFw15APrVqjA==
+X-IronPort-AV: E=Sophos;i="5.87,206,1631577600";
+   d="scan'208,217";a="16508211"
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: how to handle third party licenses
+Thread-Topic: how to handle third party licenses
+Thread-Index: AdfQ2zQkTSfUzOHqTW+aTeJKfy5iBg==
+Date: Wed, 3 Nov 2021 17:57:15 +0000
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.44.4.15]
+Content-Type: multipart/alternative;
+	boundary="_000_d638c396a3ee4650b09035cd17734b24baesystemscom_"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 03 Nov 2021 14:17:01 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55230
+ <yocto@lists.yoctoproject.org>; Wed, 03 Nov 2021 17:57:21 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55231
+Message-Id: <20211103175721.47343C433EF@smtp.lore.kernel.org>
 
-This patch updates SRC_URIs using git to include branch=master if no branch is set
-and also to use protocol=https for github urls as generated by the conversion script
-in OE-Core.
+--_000_d638c396a3ee4650b09035cd17734b24baesystemscom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- .../recipes-openscap/oe-scap/oe-scap_1.0.bb                     | 2 +-
- .../recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb  | 2 +-
- .../recipes-openscap/openscap/openscap_1.3.3.bb                 | 2 +-
- .../recipes-openscap/openscap/openscap_git.bb                   | 2 +-
- .../scap-security-guide/scap-security-guide_0.1.44.bb           | 2 +-
- .../scap-security-guide/scap-security-guide_git.bb              | 2 +-
- meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb                     | 2 +-
- .../recipes-tpm/openssl-tpm-engine/openssl-tpm-engine_0.5.0.bb  | 2 +-
- meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb               | 2 +-
- meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb                       | 2 +-
- meta-tpm/recipes-tpm/tpm-quote-tools/tpm-quote-tools_1.0.4.bb   | 2 +-
- meta-tpm/recipes-tpm/tpm-tools/tpm-tools_1.3.9.2.bb             | 2 +-
- meta-tpm/recipes-tpm/trousers/trousers_git.bb                   | 2 +-
- meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.4.0.bb            | 2 +-
- meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.7.0.bb          | 2 +-
- meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb    | 2 +-
- meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.3.0.bb              | 2 +-
- meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.1.0.bb  | 2 +-
- recipes-ids/crowdsec/crowdsec_1.1.1.bb                          | 2 +-
- recipes-ids/ossec/ossec-hids_3.6.0.bb                           | 2 +-
- recipes-ids/tripwire/tripwire_2.4.3.7.bb                        | 2 +-
- recipes-mac/smack/smack_1.3.1.bb                                | 2 +-
- recipes-scanners/checksec/checksec_2.4.0.bb                     | 2 +-
- recipes-scanners/clamav/clamav_0.104.0.bb                       | 2 +-
- recipes-security/chipsec/chipsec_git.bb                         | 2 +-
- recipes-security/fail2ban/python3-fail2ban_0.11.2.bb            | 2 +-
- recipes-security/fscrypt/fscrypt_1.0.0.bb                       | 2 +-
- recipes-security/fscryptctl/fscryptctl_1.0.0.bb                 | 2 +-
- .../google-authenticator-libpam_1.08.bb                         | 2 +-
- recipes-security/libest/libest_3.2.0.bb                         | 2 +-
- recipes-security/libmspack/libmspack_1.9.1.bb                   | 2 +-
- recipes-security/ncrack/ncrack_0.7.bb                           | 2 +-
- recipes-security/nikto/nikto_2.1.6.bb                           | 2 +-
- 33 files changed, 33 insertions(+), 33 deletions(-)
 
-diff --git a/meta-security-compliance/recipes-openscap/oe-scap/oe-scap_1.0.bb b/meta-security-compliance/recipes-openscap/oe-scap/oe-scap_1.0.bb
-index 0fef233..7e9f214 100644
---- a/meta-security-compliance/recipes-openscap/oe-scap/oe-scap_1.0.bb
-+++ b/meta-security-compliance/recipes-openscap/oe-scap/oe-scap_1.0.bb
-@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://README.md;md5=46dec9f167b6e05986cb4023df6d92f4"
- LICENSE = "MIT"
- 
- SRCREV = "7147871d7f37d408c0dd7720ef0fd3ec1b54ad98"
--SRC_URI = "git://github.com/akuster/oe-scap.git"
-+SRC_URI = "git://github.com/akuster/oe-scap.git;branch=master;protocol=https"
- SRC_URI += " \
-             file://run_cve.sh \
-             file://run_test.sh \
-diff --git a/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb b/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
-index f109566..549a888 100644
---- a/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
-+++ b/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
-@@ -9,7 +9,7 @@ LICENSE = "LGPL-2.1"
- DEPENDS = "python3-dbus"
- 
- SRCREV = "f25b16afb6ac761fea13132ff406fba4cdfd2b76"
--SRC_URI = "git://github.com/OpenSCAP/openscap-daemon.git \
-+SRC_URI = "git://github.com/OpenSCAP/openscap-daemon.git;branch=master;protocol=https \
-            file://0001-Renamed-module-and-variables-to-get-rid-of-async.patch \
-           "
- 
-diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.3.bb b/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.3.bb
-index 51fa9ee..192b008 100644
---- a/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.3.bb
-+++ b/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.3.bb
-@@ -3,7 +3,7 @@ SUMARRY = "NIST Certified SCAP 1.2 toolkit"
- require openscap.inc
- 
- SRCREV = "0cb55c55af6be9934d6fd0caf4563b206f289732"
--SRC_URI = "git://github.com/OpenSCAP/openscap.git;branch=maint-1.3 \
-+SRC_URI = "git://github.com/OpenSCAP/openscap.git;branch=maint-1.3;protocol=https \
- "
- 
- DEFAULT_PREFERENCE = "-1"
-diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb b/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
-index 73a4729..a18cbd1 100644
---- a/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
-+++ b/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
-@@ -6,7 +6,7 @@ SUMARRY = "NIST Certified SCAP 1.2 toolkit with OE changes"
- include openscap.inc
- 
- SRCREV = "a85943eee400fdbe59234d1c4a02d8cf710c4625"
--SRC_URI = "git://github.com/akuster/openscap.git;branch=oe-1.3 \
-+SRC_URI = "git://github.com/akuster/openscap.git;branch=oe-1.3;protocol=https \
- "
- 
- PV = "1.3.3+git${SRCPV}"
-diff --git a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_0.1.44.bb b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_0.1.44.bb
-index d80ecd7..ecf136d 100644
---- a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_0.1.44.bb
-+++ b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_0.1.44.bb
-@@ -1,7 +1,7 @@
- SUMARRY = "SCAP content for various platforms, upstream version"
- 
- SRCREV = "8cb2d0f351faff5440742258782281164953b0a6"
--SRC_URI = "git://github.com/ComplianceAsCode/content.git"
-+SRC_URI = "git://github.com/ComplianceAsCode/content.git;branch=master;protocol=https"
- 
- DEFAULT_PREFERENCE = "-1"
- 
-diff --git a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_git.bb b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_git.bb
-index 0617c56..ddde5cc 100644
---- a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_git.bb
-+++ b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_git.bb
-@@ -1,7 +1,7 @@
- SUMARRY = "SCAP content for various platforms, OE changes"
- 
- SRCREV = "5fdfdcb2e95afbd86ace555beca5d20cbf1043ed"
--SRC_URI = "git://github.com/akuster/scap-security-guide.git;branch=oe-0.1.44; \
-+SRC_URI = "git://github.com/akuster/scap-security-guide.git;branch=oe-0.1.44;;protocol=https \
-            file://0001-Fix-XML-parsing-of-the-remediation-functions-file.patch \
-            file://0002-Fixed-the-broken-fix-when-greedy-regex-ate-the-whole.patch \
-            file://0001-fix-deprecated-instance-of-element.getchildren.patch \
-diff --git a/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb b/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb
-index 95ba5c5..8fe62cf 100644
---- a/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb
-+++ b/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb
-@@ -3,7 +3,7 @@ LICENSE = "BSD-3-Clause"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=e73f0786a936da3814896df06ad225a9"
- 
- SRCREV = "f6dd8f55eab4910131ec6a6a570dcd7951bd10e4"
--SRC_URI = "git://github.com/stefanberger/libtpms.git;branch=stable-0.8"
-+SRC_URI = "git://github.com/stefanberger/libtpms.git;branch=stable-0.8;protocol=https"
- 
- PE = "1"
- 
-diff --git a/meta-tpm/recipes-tpm/openssl-tpm-engine/openssl-tpm-engine_0.5.0.bb b/meta-tpm/recipes-tpm/openssl-tpm-engine/openssl-tpm-engine_0.5.0.bb
-index dab1589..ef663eb 100644
---- a/meta-tpm/recipes-tpm/openssl-tpm-engine/openssl-tpm-engine_0.5.0.bb
-+++ b/meta-tpm/recipes-tpm/openssl-tpm-engine/openssl-tpm-engine_0.5.0.bb
-@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=11f0ee3af475c85b907426e285c9bb52"
- DEPENDS += "openssl trousers"
- 
- SRC_URI = "\
--    git://github.com/mgerstner/openssl_tpm_engine.git \
-+    git://github.com/mgerstner/openssl_tpm_engine.git;branch=master;protocol=https \
-     file://0001-create-tpm-key-support-well-known-key-option.patch \
-     file://0002-libtpm-support-env-TPM_SRK_PW.patch \
-     file://0003-tpm-openssl-tpm-engine-parse-an-encrypted-tpm-SRK-pa.patch \
-diff --git a/meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb b/meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb
-index f8347b7..77f65ae 100644
---- a/meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb
-+++ b/meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb
-@@ -9,7 +9,7 @@ DEPENDS = "libtspi"
- PV = "0.1+git${SRCPV}"
- SRCREV = "c02ad8f628b3d99f6d4c087b402fe31a40ee6316"
- 
--SRC_URI = "git://github.com/flihp/pcr-extend.git \
-+SRC_URI = "git://github.com/flihp/pcr-extend.git;branch=master;protocol=https \
-            file://fix_openssl11_build.patch "
- 
- inherit autotools
-diff --git a/meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb b/meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb
-index c7fc131..63734b9 100644
---- a/meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb
-+++ b/meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb
-@@ -7,7 +7,7 @@ SECTION = "apps"
- DEPENDS = "libtasn1 coreutils-native expect-native socat-native glib-2.0 net-tools-native libtpm json-glib"
- 
- SRCREV = "98187d24fe14851653a7c46eb16e9c5f0b9beaa1"
--SRC_URI = "git://github.com/stefanberger/swtpm.git;branch=stable-0.6 \
-+SRC_URI = "git://github.com/stefanberger/swtpm.git;branch=stable-0.6;protocol=https \
-            file://ioctl_h.patch \
-            file://oe_configure.patch \
-            "
-diff --git a/meta-tpm/recipes-tpm/tpm-quote-tools/tpm-quote-tools_1.0.4.bb b/meta-tpm/recipes-tpm/tpm-quote-tools/tpm-quote-tools_1.0.4.bb
-index 53cf8ff..4672bba 100644
---- a/meta-tpm/recipes-tpm/tpm-quote-tools/tpm-quote-tools_1.0.4.bb
-+++ b/meta-tpm/recipes-tpm/tpm-quote-tools/tpm-quote-tools_1.0.4.bb
-@@ -15,7 +15,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=8ec30b01163d242ecf07d9cd84e3611f"
- 
- DEPENDS = "libtspi tpm-tools"
- 
--SRC_URI = "git://git.code.sf.net/p/tpmquotetools/tpm-quote-tools"
-+SRC_URI = "git://git.code.sf.net/p/tpmquotetools/tpm-quote-tools;branch=master"
- SRCREV = "4511874d5c9b4504bb96e94f8a14bd6c39a36295"
- 
- S = "${WORKDIR}/git"
-diff --git a/meta-tpm/recipes-tpm/tpm-tools/tpm-tools_1.3.9.2.bb b/meta-tpm/recipes-tpm/tpm-tools/tpm-tools_1.3.9.2.bb
-index dbe1647..3b3da4f 100644
---- a/meta-tpm/recipes-tpm/tpm-tools/tpm-tools_1.3.9.2.bb
-+++ b/meta-tpm/recipes-tpm/tpm-tools/tpm-tools_1.3.9.2.bb
-@@ -14,7 +14,7 @@ DEPENDS:class-native = "trousers-native"
- 
- SRCREV = "bf43837575c5f7d31865562dce7778eae970052e"
- SRC_URI = " \
--    git://git.code.sf.net/p/trousers/tpm-tools \
-+    git://git.code.sf.net/p/trousers/tpm-tools;branch=master \
-     file://tpm-tools-extendpcr.patch \
-     file://04-fix-FTBFS-clang.patch \
-     file://openssl1.1_fix.patch \
-diff --git a/meta-tpm/recipes-tpm/trousers/trousers_git.bb b/meta-tpm/recipes-tpm/trousers/trousers_git.bb
-index 5e03b71..192c66c 100644
---- a/meta-tpm/recipes-tpm/trousers/trousers_git.bb
-+++ b/meta-tpm/recipes-tpm/trousers/trousers_git.bb
-@@ -10,7 +10,7 @@ SRCREV = "94144b0a1dcef6e31845d6c319e9bd7357208eb9"
- PV = "0.3.15+git${SRCPV}"
- 
- SRC_URI = " \
--	git://git.code.sf.net/p/trousers/trousers \
-+	git://git.code.sf.net/p/trousers/trousers;branch=master \
-     	file://trousers.init.sh \
-     	file://trousers-udev.rules \
-     	file://tcsd.service \
-diff --git a/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.4.0.bb b/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.4.0.bb
-index b80ef79..1818171 100644
---- a/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.4.0.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.4.0.bb
-@@ -13,7 +13,7 @@ DEPENDS = "autoconf-archive dbus glib-2.0 tpm2-tss glib-2.0-native \
-             libtss2 libtss2-mu libtss2-tcti-device libtss2-tcti-mssim"
- 
- SRC_URI = "\
--    git://github.com/tpm2-software/tpm2-abrmd.git \
-+    git://github.com/tpm2-software/tpm2-abrmd.git;branch=master;protocol=https \
-     file://tpm2-abrmd-init.sh \
-     file://tpm2-abrmd.default \
- "
-diff --git a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.7.0.bb b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.7.0.bb
-index 649338a..366e9da 100644
---- a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.7.0.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.7.0.bb
-@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=0fc19f620a102768d6dbd1e7166e78ab"
- 
- DEPENDS = "autoconf-archive pkgconfig dstat sqlite3 openssl libtss2-dev tpm2-tools libyaml p11-kit python3-setuptools-native"
- 
--SRC_URI = "git://github.com/tpm2-software/tpm2-pkcs11.git;branch=master \
-+SRC_URI = "git://github.com/tpm2-software/tpm2-pkcs11.git;branch=master;protocol=https \
-            file://bootstrap_fixup.patch \
-            file://0001-remove-local-binary-checkes.patch \
-            "
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
-index 47113d2..2bf1eed 100644
---- a/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
-@@ -4,7 +4,7 @@ LICENSE = "BSD-2-Clause"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=500b2e742befc3da00684d8a1d5fd9da"
- DEPENDS = "libtss2-dev libtss2-mu-dev gnu-efi-native gnu-efi pkgconfig autoconf-archive-native"
- 
--SRC_URI = "git://github.com/tpm2-software/tpm2-tcti-uefi.git \
-+SRC_URI = "git://github.com/tpm2-software/tpm2-tcti-uefi.git;branch=master;protocol=https \
-            file://configure_oe_fixup.patch \
-            file://0001-configure.ac-stop-inserting-host-directories-into-co.patch \
-            file://fix_header_file.patch \
-diff --git a/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.3.0.bb b/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.3.0.bb
-index dfebc07..d324e33 100644
---- a/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.3.0.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.3.0.bb
-@@ -10,7 +10,7 @@ DEPENDS = "autoconf-archive libtss2-dev qrencode"
- PE = "1"
- 
- SRCREV = "96a1448753a48974149003bc90ea3990ae8e8d0b"
--SRC_URI = "git://github.com/tpm2-software/tpm2-totp.git"
-+SRC_URI = "git://github.com/tpm2-software/tpm2-totp.git;branch=master;protocol=https"
- 
- inherit autotools-brokensep pkgconfig
- 
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.1.0.bb b/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.1.0.bb
-index 3069b1f..4d1f425 100644
---- a/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.1.0.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.1.0.bb
-@@ -9,7 +9,7 @@ SECTION = "security/tpm"
- DEPENDS = "autoconf-archive-native bash-completion libtss2 libgcrypt openssl"
- 
- SRCREV = "6f387a4efe2049f1b4833e8f621c77231bc1eef4"
--SRC_URI = "git://github.com/tpm2-software/tpm2-tss-engine.git;branch=v1.1.x"
-+SRC_URI = "git://github.com/tpm2-software/tpm2-tss-engine.git;branch=v1.1.x;protocol=https"
- 
- inherit autotools-brokensep pkgconfig systemd
- 
-diff --git a/recipes-ids/crowdsec/crowdsec_1.1.1.bb b/recipes-ids/crowdsec/crowdsec_1.1.1.bb
-index 887c75d..81f2b8f 100644
---- a/recipes-ids/crowdsec/crowdsec_1.1.1.bb
-+++ b/recipes-ids/crowdsec/crowdsec_1.1.1.bb
-@@ -3,7 +3,7 @@ SUMMARY = "CrowdSec is a free, modern & collaborative behavior detection engine,
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://src/import/LICENSE;md5=105e75b680b2ab82fa5718661b41f3bf"
- 
--SRC_URI = "git://github.com/crowdsecurity/crowdsec.git;branch=master"
-+SRC_URI = "git://github.com/crowdsecurity/crowdsec.git;branch=master;protocol=https"
- SRCREV = "73e0bbaf93070f4a640eb5a22212b5dcf26699de"
- 
- DEPENDS = "jq-native"
-diff --git a/recipes-ids/ossec/ossec-hids_3.6.0.bb b/recipes-ids/ossec/ossec-hids_3.6.0.bb
-index 309ca52..853facf 100644
---- a/recipes-ids/ossec/ossec-hids_3.6.0.bb
-+++ b/recipes-ids/ossec/ossec-hids_3.6.0.bb
-@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=d625d1520b5e38faefb81cf9772badc9"
- 
- 
- DEPENDS = "openssl libpcre2 zlib libevent"
--SRC_URI = "git://github.com/ossec/ossec-hids;branch=master \
-+SRC_URI = "git://github.com/ossec/ossec-hids;branch=master;protocol=https \
-            file://0001-Makefile-drop-running-scrips-install.patch  \
-            file://0002-Makefile-don-t-set-uid-gid.patch \
-            "
-diff --git a/recipes-ids/tripwire/tripwire_2.4.3.7.bb b/recipes-ids/tripwire/tripwire_2.4.3.7.bb
-index 3a9bc1d..93cb443 100644
---- a/recipes-ids/tripwire/tripwire_2.4.3.7.bb
-+++ b/recipes-ids/tripwire/tripwire_2.4.3.7.bb
-@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=1c069be8dbbe48e89b580ab4ed86c127"
- SRCREV = "6e64a9e5b70a909ec439bc5a099e3fcf38c614b0"
- 
- SRC_URI = "\
--	git://github.com/Tripwire/tripwire-open-source.git \
-+	git://github.com/Tripwire/tripwire-open-source.git;branch=master;protocol=https \
- 	file://tripwire.cron \
- 	file://tripwire.sh \
- 	file://tripwire.txt \
-diff --git a/recipes-mac/smack/smack_1.3.1.bb b/recipes-mac/smack/smack_1.3.1.bb
-index 6c2f041..79a8f5a 100644
---- a/recipes-mac/smack/smack_1.3.1.bb
-+++ b/recipes-mac/smack/smack_1.3.1.bb
-@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=4fbd65380cdd255951079008b364516c"
- 
- SRCREV = "4a102c7584b39ce693995ffb65e0918a9df98dd8"
- SRC_URI = " \
--	git://github.com/smack-team/smack.git \
-+	git://github.com/smack-team/smack.git;branch=master;protocol=https \
- 	file://smack_generator_make_fixup.patch \
- 	file://run-ptest"
- 
-diff --git a/recipes-scanners/checksec/checksec_2.4.0.bb b/recipes-scanners/checksec/checksec_2.4.0.bb
-index 12c9bce..9a6e44a 100644
---- a/recipes-scanners/checksec/checksec_2.4.0.bb
-+++ b/recipes-scanners/checksec/checksec_2.4.0.bb
-@@ -7,7 +7,7 @@ HOMEPAGE="https://github.com/slimm609/checksec.sh"
- LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=8d90285f711cf1f378e2c024457066d8"
- 
- SRCREV = "c3754e45e04f9104db93b2048afd094427102d48"
--SRC_URI = "git://github.com/slimm609/checksec.sh"
-+SRC_URI = "git://github.com/slimm609/checksec.sh;branch=master;protocol=https"
- 
- S = "${WORKDIR}/git"
- 
-diff --git a/recipes-scanners/clamav/clamav_0.104.0.bb b/recipes-scanners/clamav/clamav_0.104.0.bb
-index 25123dc..e59f5ff 100644
---- a/recipes-scanners/clamav/clamav_0.104.0.bb
-+++ b/recipes-scanners/clamav/clamav_0.104.0.bb
-@@ -11,7 +11,7 @@ LIC_FILES_CHKSUM = "file://COPYING.txt;beginline=2;endline=3;md5=f7029fbbc5898b2
- # July 27th
- SRCREV = "c389dfa4c3af92b006ada4f7595bbc3e6df3f356"
- 
--SRC_URI = "git://github.com/vrtadmin/clamav-devel;branch=rel/0.104 \
-+SRC_URI = "git://github.com/vrtadmin/clamav-devel;branch=rel/0.104;protocol=https \
-     file://clamd.conf \
-     file://freshclam.conf \
-     file://volatiles.03_clamav \
-diff --git a/recipes-security/chipsec/chipsec_git.bb b/recipes-security/chipsec/chipsec_git.bb
-index 3339dc1..e265a08 100644
---- a/recipes-security/chipsec/chipsec_git.bb
-+++ b/recipes-security/chipsec/chipsec_git.bb
-@@ -7,7 +7,7 @@ DESCRIPTION = "CHIPSEC is a framework for analyzing the security \
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=bc2d1f9b427be5fb63f6af9da56f7c5d"
- 
--SRC_URI = "git://github.com/chipsec/chipsec.git;branch=master \
-+SRC_URI = "git://github.com/chipsec/chipsec.git;branch=master;protocol=https \
-           "
- 
- SRCREV = "b2a61684826dc8b9f622a844a40efea579cd7e7d"
-diff --git a/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb b/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
-index 627496f..fcf044a 100644
---- a/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
-+++ b/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
-@@ -10,7 +10,7 @@ LICENSE = "GPL-2.0"
- LIC_FILES_CHKSUM = "file://COPYING;md5=ecabc31e90311da843753ba772885d9f"
- 
- SRCREV ="d6b884f3b72b8a42b21da863836569ef6836c2ea"
--SRC_URI = " git://github.com/fail2ban/fail2ban.git;branch=0.11 \
-+SRC_URI = " git://github.com/fail2ban/fail2ban.git;branch=0.11;protocol=https \
-         file://initd \
-         file://run-ptest \
- "
-diff --git a/recipes-security/fscrypt/fscrypt_1.0.0.bb b/recipes-security/fscrypt/fscrypt_1.0.0.bb
-index a70d310..66bf429 100644
---- a/recipes-security/fscrypt/fscrypt_1.0.0.bb
-+++ b/recipes-security/fscrypt/fscrypt_1.0.0.bb
-@@ -14,7 +14,7 @@ BBCLASSEXTEND = "native nativesdk"
- DEPENDS += "go-dep-native libpam"
- 
- SRCREV = "92b1e9a8670ccd3916a7d24a06cab1e4c9815bc4"
--SRC_URI = "git://github.com/google/fscrypt.git"
-+SRC_URI = "git://github.com/google/fscrypt.git;branch=master;protocol=https"
- GO_IMPORT = "import"
- 
- S = "${WORKDIR}/git"
-diff --git a/recipes-security/fscryptctl/fscryptctl_1.0.0.bb b/recipes-security/fscryptctl/fscryptctl_1.0.0.bb
-index 26f549b..d319e48 100644
---- a/recipes-security/fscryptctl/fscryptctl_1.0.0.bb
-+++ b/recipes-security/fscryptctl/fscryptctl_1.0.0.bb
-@@ -10,7 +10,7 @@ LICENSE = "Apache-2.0"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
- 
- SRCREV = "56b898c896240328adef7407090215abbe9ee03d"
--SRC_URI = "git://github.com/google/fscryptctl.git"
-+SRC_URI = "git://github.com/google/fscryptctl.git;branch=master;protocol=https"
- 
- S = "${WORKDIR}/git"
- 
-diff --git a/recipes-security/google-authenticator-libpam/google-authenticator-libpam_1.08.bb b/recipes-security/google-authenticator-libpam/google-authenticator-libpam_1.08.bb
-index 4ab8374..e8ddf29 100644
---- a/recipes-security/google-authenticator-libpam/google-authenticator-libpam_1.08.bb
-+++ b/recipes-security/google-authenticator-libpam/google-authenticator-libpam_1.08.bb
-@@ -3,7 +3,7 @@ HOME_PAGE = "https://github.com/google/google-authenticator-libpam"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
- LICENSE = "Apache-2.0"
- 
--SRC_URI = "git://github.com/google/google-authenticator-libpam.git"
-+SRC_URI = "git://github.com/google/google-authenticator-libpam.git;branch=master;protocol=https"
- SRCREV = "2c7415d950fb0b4a7f779f045910666447b100ef"
- 
- DEPENDS = "libpam"
-diff --git a/recipes-security/libest/libest_3.2.0.bb b/recipes-security/libest/libest_3.2.0.bb
-index fda2df4..31fbe3c 100644
---- a/recipes-security/libest/libest_3.2.0.bb
-+++ b/recipes-security/libest/libest_3.2.0.bb
-@@ -6,7 +6,7 @@ LICENSE = "OpenSSL"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=ecb78acde8e3b795de8ef6b61aed5885"
- 
- SRCREV = "4ca02c6d7540f2b1bcea278a4fbe373daac7103b"
--SRC_URI = "git://github.com/cisco/libest;branch=main"
-+SRC_URI = "git://github.com/cisco/libest;branch=main;protocol=https"
- 
- DEPENDS = "openssl"
- 
-diff --git a/recipes-security/libmspack/libmspack_1.9.1.bb b/recipes-security/libmspack/libmspack_1.9.1.bb
-index 8c288be..65db10f 100644
---- a/recipes-security/libmspack/libmspack_1.9.1.bb
-+++ b/recipes-security/libmspack/libmspack_1.9.1.bb
-@@ -7,7 +7,7 @@ DEPENDS = ""
- LIC_FILES_CHKSUM = "file://COPYING.LIB;beginline=1;endline=2;md5=5b1fd1f66ef926b3c8a5bb00a72a28dd"
- 
- SRCREV = "63d3faf90423a4a6c174539a7d32111a840adadc"
--SRC_URI = "git://github.com/kyz/libmspack.git"
-+SRC_URI = "git://github.com/kyz/libmspack.git;branch=master;protocol=https"
- 
- inherit autotools
- 
-diff --git a/recipes-security/ncrack/ncrack_0.7.bb b/recipes-security/ncrack/ncrack_0.7.bb
-index 8b221e5..f151e4e 100644
---- a/recipes-security/ncrack/ncrack_0.7.bb
-+++ b/recipes-security/ncrack/ncrack_0.7.bb
-@@ -7,7 +7,7 @@ LICENSE = "GPL-2.0"
- LIC_FILES_CHKSUM = "file://COPYING;beginline=7;endline=12;md5=66938a7e5b4c118eda78271de14874c2"
- 
- SRCREV = "dc570e7e3cec1fb176c0168eaedc723084bd0426"
--SRC_URI = "git://github.com/nmap/ncrack.git"
-+SRC_URI = "git://github.com/nmap/ncrack.git;branch=master;protocol=https"
- 
- DEPENDS = "openssl zlib"
- 
-diff --git a/recipes-security/nikto/nikto_2.1.6.bb b/recipes-security/nikto/nikto_2.1.6.bb
-index 242f3ac..8542d69 100644
---- a/recipes-security/nikto/nikto_2.1.6.bb
-+++ b/recipes-security/nikto/nikto_2.1.6.bb
-@@ -7,7 +7,7 @@ LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0-only;md5=801f80980d171dd6425610833a22dbe6"
- 
- SRCREV = "f1bbd1a8756c076c8fd4f4dd0bc34a8ef215ae79"
--SRC_URI = "git://github.com/sullo/nikto.git \
-+SRC_URI = "git://github.com/sullo/nikto.git;branch=master;protocol=https \
-            file://location.patch"
- 
- S = "${WORKDIR}/git/program"
--- 
-2.25.1
+Looking for the proper Yocto way to handle third party software ported to Y=
+octo and built into kernel...
 
+I'm not having issues when I recognize the license as a generic license. Bu=
+t the license provided to us by the vendor is not part of the generic licen=
+ses list that you (Yocto) recognize.
+
+I was wondering if you could explain how to add a custom license to a recip=
+e in yocto.
+
+The vendor has provided us with a generic license.txt file and I was able t=
+o add that to the our recipe. I do get a warning though which says:
+
+WARNING: aiox-defaultfs-1.0-r0 do_rootfs: The license listed DataDeviceCorp=
+oration was not in the licenses collected for recipe acexpci
+
+Though the warning occurs, I can see the license.txt being saved inside the=
+ rootfs on our board and is saved under tmp/deploy/licenses/acexpci. I've b=
+een trying to get rid of this warning when the image builds, but I can't se=
+em to find anything in the manual or online. One solution says : Add LICENS=
+E_PATH +=3D "${LAYERDIR}/custom-licenses" under conf/layer.conf, which does=
+ not resolve this warning.
+
+I am currently building with Yocto zeus...
+
+Thanks,
+Steve
+
+
+--_000_d638c396a3ee4650b09035cd17734b24baesystemscom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Looking for the proper Yocto way to handle third par=
+ty software ported to Yocto and built into kernel&#8230;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I&#8217;m not having i=
+ssues when I recognize the license as a generic license. But the license pr=
+ovided to us by the vendor is not part of the generic licenses list that yo=
+u (Yocto) recognize.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I was wondering if you=
+ could explain how to add a custom license to a recipe in yocto.<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal">The vendor has provided us with a generic license.tx=
+t file and I was able to add that to the our recipe. I do get a warning tho=
+ugh which says:
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><i><o:p>&nbsp;</o:p></i></p>
+<p class=3D"MsoNormal"><i><span style=3D"color:red">WARNING: aiox-defaultfs=
+-1.0-r0 do_rootfs: The license listed DataDeviceCorporation was not in the =
+licenses collected for recipe acexpci<o:p></o:p></span></i></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Though the warning occurs, I can see the license.txt=
+ being saved inside the rootfs on our board and is saved under tmp/deploy/l=
+icenses/acexpci. I&#8217;ve been trying to get rid of this warning when the=
+ image builds, but I can&#8217;t seem to find
+ anything in the manual or online. One solution says : Add <b>LICENSE_PATH =
+&#43;=3D &quot;${LAYERDIR}/custom-licenses&quot;</b> under conf/layer.conf,=
+ which does not resolve this warning.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am currently building with Yocto zeus&#8230;<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Steve<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_d638c396a3ee4650b09035cd17734b24baesystemscom_--
 
