@@ -1,54 +1,193 @@
-Return-Path: <maksym.iliev@litmus.io>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2677EC433F5
-	for <webhook@archiver.kernel.org>; Wed,  3 Nov 2021 20:45:23 +0000 (UTC)
-Subject: Bitbake build fails because of a python function
-To: yocto@lists.yoctoproject.org
-From: "Maksym Iliev" <maksym.iliev@litmus.io>
-X-Originating-Location: Montreal, Quebec, CA (66.22.161.94)
-X-Originating-Platform: Windows Chrome 95
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4F94AC433EF
+	for <webhook@archiver.kernel.org>; Wed,  3 Nov 2021 20:48:01 +0000 (UTC)
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com
+ [209.85.221.176])
+ by mx.groups.io with SMTP id smtpd.web09.2474.1635972479849417325
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 03 Nov 2021 13:48:00 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=mlVKCHUu;
+ spf=pass (domain: gmail.com, ip: 209.85.221.176,
+ mailfrom: alex.kanavin@gmail.com)
+Received: by mail-vk1-f176.google.com with SMTP id b125so1947027vkb.9
+        for <yocto@lists.yoctoproject.org>;
+ Wed, 03 Nov 2021 13:47:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=t9UDyIW0J3IJMRtIIIPIECEh6jcTkFpdQtK0Up/irpo=;
+        b=mlVKCHUuLDZz+GIRSwelNV1qYC59iinSqoHUkXZ/UJ3EhFGgX9CLIC6xQ33Zj/1T9C
+         Rsvm7fMkm3KvMsaiHvCkwN4YQbZoBU3H8VsidYvT51iCVTaPNx2gWxUUQRDJxF7pQTA0
+         DBpuB2Gu6I6GArSMY6dFC1jApVnULGb8YtOyvFUOlhsuinTuJrO8UJfd6smjbEvbYpzF
+         z5nXv6oqSAzu2uTgr/WQTgYJPdsXpLkyHCNB6ZzD81RE1pgobiUweKddAOdg1GFE4vLb
+         EXH6qRQ3YbL+uVLcep/rQgawR2zy8U7moGx3NWXYTVttwCSvZQc48hYNPAXGVIQqbLaI
+         mW8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=t9UDyIW0J3IJMRtIIIPIECEh6jcTkFpdQtK0Up/irpo=;
+        b=MpKoVLz9drs6MzwochumMBmygNVAnX8pm9RtIRyBPTstkbpAkLKx23O1CyKXd2NV99
+         RV/njT1vvHlsX9aBB9O9rsdTfgdJBhu4Vjev5UW4/XqiNJ6Zf7+y81XCswbqauC3bira
+         y5/N+khq7xe+LxcWoBXksyytnHM9QA3+uSIW+0Kf5m6ldst2wZyqwBemPDOQSpv3ur64
+         rdAOUpfKGwCbY6nQ2sGXyFD7L9QboDh+MnhIdR3bfZL9EpJVD4lmO1oQNcSWWFSGc+Rm
+         vvRUDJGgMZ1wxF6k+MkviYCupPgEqfaKPmp64zivPmSS9c2cIC42VEAUeLaRAAqYEi/+
+         1s4g==
+X-Gm-Message-State: AOAM533vlo4SqliaVNqg2K+tlo11oPMukUGIOiM4ds5R/3KBtU+wv4BA
+	w8R6yG0spqCnQQGIyxTS1eUgWtIljtV0pr4Tdlw=
+X-Google-Smtp-Source: 
+ ABdhPJwjQM0BbYpz/dNIXxa/sOyBi0UX8k8aI/2ZJZqyX9sAqGPlHMisdgkX3hWXzVUYYaAPsB5y4TsW2D/t2jU8izk=
+X-Received: by 2002:a05:6122:50a:: with SMTP id
+ x10mr15648467vko.15.1635972478904;
+ Wed, 03 Nov 2021 13:47:58 -0700 (PDT)
 MIME-Version: 1.0
-Date: Wed, 03 Nov 2021 13:45:22 -0700
-Message-ID: <euYj.1635972322068884592.0Er3@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="r7F06pUfoMgG02XwAAH9"
+References: <euYj.1635972322068884592.0Er3@lists.yoctoproject.org>
+In-Reply-To: <euYj.1635972322068884592.0Er3@lists.yoctoproject.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Wed, 3 Nov 2021 21:47:47 +0100
+Message-ID: 
+ <CANNYZj-fw0kscaYn3BP2DQzb-6Mgr9AJSw8wpbfBwmAGQhLHCA@mail.gmail.com>
+Subject: Re: [yocto] Bitbake build fails because of a python function
+To: maksym.iliev@litmus.io
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="00000000000077ab0405cfe88607"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 03 Nov 2021 20:45:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55234
+ <yocto@lists.yoctoproject.org>; Wed, 03 Nov 2021 20:48:01 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55235
 
---r7F06pUfoMgG02XwAAH9
-Content-Type: text/plain; charset="utf-8"
+--00000000000077ab0405cfe88607
+Content-Type: text/plain; charset="UTF-8"
+
+It's hard to say if we can't replicate the issue. Check
+/srv/yocto/build/tmp/work/corei7-64-poky-linux/perl/5.30.1-r0/temp/log.do_package_write_rpm,
+it might have useful debugging info.
+
+Alex
+
+
+
+On Wed, 3 Nov 2021 at 21:45, Maksym Iliev via lists.yoctoproject.org
+<maksym.iliev=litmus.io@lists.yoctoproject.org> wrote:
+
+> Hello guys. I am brand new to yocto and bitbake and I am looking for any
+> help/advice/hints I can get. I have inherited someone else's code for
+> building yocto project images, but the bitbake fails with the following
+> error:
+>
+> ERROR: perl-5.30.1-r0 do_package_write_rpm: Error executing a python function in exec_func_python()
+> autogenerated:The stack trace of python calls that resulted in this exception/failure was: File: 'exec_func_python() autogenerated', lineno: 2, function: <module>
+> 0001: ***
+> 0002:do_package_rpm(d)
+> 0003:
+> File: '/srv/yocto/poky/meta/classes/package_rpm.bbclass', lineno: 712, function: do_package_rpm
+> 0708:
+> 0709:    # Build the rpm package!
+> 0710:    d.setVar('BUILDSPEC', cmd + \"\\n\" + cleanupcmd + \"\\n\")
+> 0711:    d.setVarFlag('BUILDSPEC', 'func', '1')
+> 0712:    bb.build.exec_func('BUILDSPEC', d)
+> 0713:
+> 0714:    if d.getVar('RPM_SIGN_PACKAGES') == '1':
+> 0715:        bb.build.exec_func(\"sign_rpm\", d)
+> 0716:}
+> File: '/srv/yocto/poky/bitbake/lib/bb/build.py', lineno: 254, function: exec_func
+> 0250:    with bb.utils.fileslocked(lockfiles):
+> 0251:    if ispython:
+> 0252:            exec_func_python(func, d, runfile, cwd=adir)
+> 0253:    else: ***
+> 0254:            exec_func_shell(func, d, runfile, cwd=adir)
+> 0255:
+> 0256:    try:
+> 0257:        curcwd = os.getcwd()
+> 0258:    except:
+> File: '/srv/yocto/poky/bitbake/lib/bb/build.py', lineno: 455, function: exec_func_shell
+> 0451:    with open(fifopath, 'r+b', buffering=0) as fifo:
+> 0452:        try:
+> 0453:            bb.debug(2, \"Executing shell function %s\" % func)
+> 0454:            with open(os.devnull, 'r+') as stdin, logfile: ***
+> 0455:                bb.process.run(cmd, shell=False, stdin=stdin, log=logfile, extrafiles=[(fifo,readfifo)])
+> 0456:        finally:
+> 0457:            os.unlink(fifopath)
+> 0458:
+> 0459:    bb.debug(2, \"Shell function %s finished\" % func)
+> File: '/srv/yocto/poky/bitbake/lib/bb/process.py', lineno: 184, function: run
+> 0180:
+> 0181:    if pipe.returncode != 0:
+> 0182:        if log:
+> 0183:            # Don't duplicate the output in the exception if logging it ***
+> 0184:            raise ExecutionError(cmd, pipe.returncode, None, None)
+> 0185:        raise ExecutionError(cmd, pipe.returncode, stdout, stderr)
+> 0186:    return stdout, stderr Exception: bb.process.ExecutionError: Execution of '/srv/yocto/build/tmp/work/corei7-64-poky-linux/perl/5.30.1-r0/temp/run.BUILDSPEC.35372' failed with exit code 1
+>
+> Would anyone be able to point me in the right direction as to what could
+> be potentially causing this issue?
+>
+> Thanks in advance,
+> Maksym
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#55234):
+> https://lists.yoctoproject.org/g/yocto/message/55234
+> Mute This Topic: https://lists.yoctoproject.org/mt/86801772/1686489
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> alex.kanavin@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
+>
+
+--00000000000077ab0405cfe88607
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello guys. I am brand new to yocto and bitbake and I am looking for any he=
-lp/advice/hints I can get. I have inherited someone else's code for buildin=
-g yocto project images, but the bitbake fails with the following error:
-
-ERROR: perl-5.30.1-r0 do_package_write_rpm: Error executing a python functi=
-on in exec_func_python()=20
+<div dir=3D"ltr"><div>It&#39;s hard to say if we can&#39;t replicate the is=
+sue. Check /srv/yocto/build/tmp/work/corei7-64-poky-linux/perl/5.30.1-r0/te=
+mp/log.do_package_write_rpm, it might have useful debugging info.</div><div=
+><br></div><div>Alex<br></div><pre style=3D"box-sizing:inherit;margin-top:4=
+px;margin-bottom:4px;padding:8px;font-size:12px;line-height:1.50001;font-va=
+riant-ligatures:none;white-space:pre-wrap;word-break:normal;color:rgb(29,28=
+,29);font-family:Monaco,Menlo,Consolas,&quot;Courier New&quot;,monospace"><=
+br></pre></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
+il_attr">On Wed, 3 Nov 2021 at 21:45, Maksym Iliev via <a href=3D"http://li=
+sts.yoctoproject.org">lists.yoctoproject.org</a> &lt;maksym.iliev=3D<a href=
+=3D"mailto:litmus.io@lists.yoctoproject.org">litmus.io@lists.yoctoproject.o=
+rg</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
+"><p>Hello guys. I am brand new to yocto and bitbake and I am looking for a=
+ny help/advice/hints I can get. I have inherited someone else&#39;s code fo=
+r building yocto project images, but the bitbake fails with the following e=
+rror:</p>
+<pre style=3D"box-sizing:inherit;margin-top:4px;margin-bottom:4px;padding:8=
+px;font-size:12px;line-height:1.50001;font-variant-ligatures:none;white-spa=
+ce:pre-wrap;word-break:normal;color:rgb(29,28,29);font-family:Monaco,Menlo,=
+Consolas,&quot;Courier New&quot;,monospace">ERROR: perl-5.30.1-r0 do_packag=
+e_write_rpm: Error executing a python function in exec_func_python()=20
 autogenerated:The stack trace of python calls that resulted in this excepti=
-on/failure was: File: 'exec_func_python() autogenerated', lineno: 2, functi=
-on: <module>
+on/failure was: File: &#39;exec_func_python() autogenerated&#39;, lineno: 2=
+, function: &lt;module&gt;
 0001: ***=20
 0002:do_package_rpm(d)    =20
 0003:
-File: '/srv/yocto/poky/meta/classes/package_rpm.bbclass', lineno: 712, func=
-tion: do_package_rpm    =20
+File: &#39;/srv/yocto/poky/meta/classes/package_rpm.bbclass&#39;, lineno: 7=
+12, function: do_package_rpm    =20
 0708:    =20
 0709:    # Build the rpm package!    =20
-0710:    d.setVar('BUILDSPEC', cmd + \"\\n\" + cleanupcmd + \"\\n\")    =20
-0711:    d.setVarFlag('BUILDSPEC', 'func', '1')
-0712:    bb.build.exec_func('BUILDSPEC', d)    =20
+0710:    d.setVar(&#39;BUILDSPEC&#39;, cmd + \&quot;\\n\&quot; + cleanupcmd=
+ + \&quot;\\n\&quot;)    =20
+0711:    d.setVarFlag(&#39;BUILDSPEC&#39;, &#39;func&#39;, &#39;1&#39;)
+0712:    bb.build.exec_func(&#39;BUILDSPEC&#39;, d)    =20
 0713:    =20
-0714:    if d.getVar('RPM_SIGN_PACKAGES') =3D=3D '1':
-0715:        bb.build.exec_func(\"sign_rpm\", d)    =20
+0714:    if d.getVar(&#39;RPM_SIGN_PACKAGES&#39;) =3D=3D &#39;1&#39;:
+0715:        bb.build.exec_func(\&quot;sign_rpm\&quot;, d)    =20
 0716:}
-File: '/srv/yocto/poky/bitbake/lib/bb/build.py', lineno: 254, function: exe=
-c_func    =20
+File: &#39;/srv/yocto/poky/bitbake/lib/bb/build.py&#39;, lineno: 254, funct=
+ion: exec_func    =20
 0250:    with bb.utils.fileslocked(lockfiles):    =20
 0251:    if ispython:    =20
 0252:            exec_func_python(func, d, runfile, cwd=3Dadir)    =20
@@ -58,123 +197,60 @@ c_func    =20
 0256:    try:    =20
 0257:        curcwd =3D os.getcwd()    =20
 0258:    except:
-File: '/srv/yocto/poky/bitbake/lib/bb/build.py', lineno: 455, function: exe=
-c_func_shell    =20
-0451:    with open(fifopath, 'r+b', buffering=3D0) as fifo:    =20
+File: &#39;/srv/yocto/poky/bitbake/lib/bb/build.py&#39;, lineno: 455, funct=
+ion: exec_func_shell    =20
+0451:    with open(fifopath, &#39;r+b&#39;, buffering=3D0) as fifo:    =20
 0452:        try:    =20
-0453:            bb.debug(2, \"Executing shell function %s\" % func)   =20
-0454:            with open(os.devnull, 'r+') as stdin, logfile: ***=20
+0453:            bb.debug(2, \&quot;Executing shell function %s\&quot; % fu=
+nc)   =20
+0454:            with open(os.devnull, &#39;r+&#39;) as stdin, logfile: ***=
+=20
 0455:                bb.process.run(cmd, shell=3DFalse, stdin=3Dstdin, log=
 =3Dlogfile, extrafiles=3D[(fifo,readfifo)])    =20
 0456:        finally:    =20
 0457:            os.unlink(fifopath)   =20
 0458:    =20
-0459:    bb.debug(2, \"Shell function %s finished\" % func)
-File: '/srv/yocto/poky/bitbake/lib/bb/process.py', lineno: 184, function: r=
-un    =20
+0459:    bb.debug(2, \&quot;Shell function %s finished\&quot; % func)
+File: &#39;/srv/yocto/poky/bitbake/lib/bb/process.py&#39;, lineno: 184, fun=
+ction: run    =20
 0180:    =20
 0181:    if pipe.returncode !=3D 0:    =20
 0182:        if log:    =20
-0183:            # Don't duplicate the output in the exception if logging i=
-t ***=20
+0183:            # Don&#39;t duplicate the output in the exception if loggi=
+ng it ***=20
 0184:            raise ExecutionError(cmd, pipe.returncode, None, None)    =
 =20
 0185:        raise ExecutionError(cmd, pipe.returncode, stdout, stderr)    =
 =20
 0186:    return stdout, stderr Exception: bb.process.ExecutionError: Execut=
-ion of '/srv/yocto/build/tmp/work/corei7-64-poky-linux/perl/5.30.1-r0/temp/=
-run.BUILDSPEC.35372' failed with exit code 1 Would anyone be able to point =
-me in the right direction as to what could be potentially causing this issu=
-e?
+ion of &#39;/srv/yocto/build/tmp/work/corei7-64-poky-linux/perl/5.30.1-r0/t=
+emp/run.BUILDSPEC.35372&#39; failed with exit code 1</pre>
+<pre style=3D"vertical-align:baseline;font-variant-numeric:inherit;font-var=
+iant-east-asian:inherit;font-stretch:inherit;box-sizing:inherit;max-height:=
+600px;border-radius:5px"><code style=3D"font-style:inherit;font-variant:inh=
+erit;font-weight:inherit;font-stretch:inherit;line-height:inherit;box-sizin=
+g:inherit;white-space:inherit"></code><code></code></pre>
+<span style=3D"font-size:11pt;font-family:&quot;Calibri&quot;,sans-serif">W=
+ould anyone be able to point me in the right direction as to what could be =
+potentially causing this issue?<br><br></span>Thanks in advance,<br>Maksym
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#55234): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/55234" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/55234</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/86801772/1686=
+489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
+/86801772/1686489</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.k=
+anavin@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div>
 
-Thanks in advance,
-Maksym
-
---r7F06pUfoMgG02XwAAH9
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hello guys. I am brand new to yocto and bitbake and I am looking for any=
- help/advice/hints I can get. I have inherited someone else's code for buil=
-ding yocto project images, but the bitbake fails with the following error:<=
-/p>
-<pre class=3D"c-mrkdwn__pre" style=3D"box-sizing: inherit; margin-top: 4px;=
- margin-bottom: 4px; padding: 8px; --saf-0: rgba(var(--sk_foreground_low,29=
-,28,29),0.13); font-size: 12px; line-height: 1.50001; font-variant-ligature=
-s: none; white-space: pre-wrap; word-break: normal; tab-size: 4; border: 1p=
-x solid var(--saf-0); background: rgba(var(--sk_foreground_min,29,28,29),0.=
-04); counter-reset: list-0 0 list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 l=
-ist-6 0 list-7 0 list-8 0 list-9 0; color: #1d1c1d; font-family: Monaco, Me=
-nlo, Consolas, 'Courier New', monospace !important;" data-stringify-type=3D=
-"pre">ERROR: perl-5.30.1-r0 do_package_write_rpm: Error executing a python =
-function in exec_func_python()=20
-autogenerated:The stack trace of python calls that resulted in this excepti=
-on/failure was: File: 'exec_func_python() autogenerated', lineno: 2, functi=
-on: &lt;module&gt;
-0001: ***=20
-0002:do_package_rpm(d)    =20
-0003:
-File: '/srv/yocto/poky/meta/classes/package_rpm.bbclass', lineno: 712, func=
-tion: do_package_rpm    =20
-0708:    =20
-0709:    # Build the rpm package!    =20
-0710:    d.setVar('BUILDSPEC', cmd + \"\\n\" + cleanupcmd + \"\\n\")    =20
-0711:    d.setVarFlag('BUILDSPEC', 'func', '1')
-0712:    bb.build.exec_func('BUILDSPEC', d)    =20
-0713:    =20
-0714:    if d.getVar('RPM_SIGN_PACKAGES') =3D=3D '1':
-0715:        bb.build.exec_func(\"sign_rpm\", d)    =20
-0716:}
-File: '/srv/yocto/poky/bitbake/lib/bb/build.py', lineno: 254, function: exe=
-c_func    =20
-0250:    with bb.utils.fileslocked(lockfiles):    =20
-0251:    if ispython:    =20
-0252:            exec_func_python(func, d, runfile, cwd=3Dadir)    =20
-0253:    else: ***=20
-0254:            exec_func_shell(func, d, runfile, cwd=3Dadir)    =20
-0255:    =20
-0256:    try:    =20
-0257:        curcwd =3D os.getcwd()    =20
-0258:    except:
-File: '/srv/yocto/poky/bitbake/lib/bb/build.py', lineno: 455, function: exe=
-c_func_shell    =20
-0451:    with open(fifopath, 'r+b', buffering=3D0) as fifo:    =20
-0452:        try:    =20
-0453:            bb.debug(2, \"Executing shell function %s\" % func)   =20
-0454:            with open(os.devnull, 'r+') as stdin, logfile: ***=20
-0455:                bb.process.run(cmd, shell=3DFalse, stdin=3Dstdin, log=
-=3Dlogfile, extrafiles=3D[(fifo,readfifo)])    =20
-0456:        finally:    =20
-0457:            os.unlink(fifopath)   =20
-0458:    =20
-0459:    bb.debug(2, \"Shell function %s finished\" % func)
-File: '/srv/yocto/poky/bitbake/lib/bb/process.py', lineno: 184, function: r=
-un    =20
-0180:    =20
-0181:    if pipe.returncode !=3D 0:    =20
-0182:        if log:    =20
-0183:            # Don't duplicate the output in the exception if logging i=
-t ***=20
-0184:            raise ExecutionError(cmd, pipe.returncode, None, None)    =
-=20
-0185:        raise ExecutionError(cmd, pipe.returncode, stdout, stderr)    =
-=20
-0186:    return stdout, stderr Exception: bb.process.ExecutionError: Execut=
-ion of '/srv/yocto/build/tmp/work/corei7-64-poky-linux/perl/5.30.1-r0/temp/=
-run.BUILDSPEC.35372' failed with exit code 1</pre>
-<pre style=3D"vertical-align: baseline; font-variant-numeric: inherit; font=
--variant-east-asian: inherit; font-stretch: inherit; box-sizing: inherit; m=
-ax-height: 600px; border-radius: 5px;"><code style=3D"font-style: inherit; =
-font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-he=
-ight: inherit; box-sizing: inherit; white-space: inherit;"></code><code></c=
-ode></pre>
-<span style=3D"font-size: 11.0pt; font-family: 'Calibri',sans-serif; mso-as=
-cii-theme-font: minor-latin; mso-fareast-font-family: 'Times New Roman'; ms=
-o-hansi-theme-font: minor-latin; mso-bidi-font-family: 'Times New Roman'; m=
-so-bidi-theme-font: minor-bidi; mso-ansi-language: EN-CA; mso-fareast-langu=
-age: EN-GB; mso-bidi-language: AR-SA;">Would anyone be able to point me in =
-the right direction as to what could be potentially causing this issue?<br =
-/><br /></span>Thanks in advance,<br />Maksym
-
---r7F06pUfoMgG02XwAAH9--
+--00000000000077ab0405cfe88607--
 
