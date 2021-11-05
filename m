@@ -1,97 +1,120 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C576FC433F5
-	for <webhook@archiver.kernel.org>; Fri,  5 Nov 2021 10:57:40 +0000 (UTC)
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
- [209.85.128.47])
- by mx.groups.io with SMTP id smtpd.web11.3956.1636109860172048543
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BCA60C433F5
+	for <webhook@archiver.kernel.org>; Fri,  5 Nov 2021 13:25:45 +0000 (UTC)
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com
+ [209.85.215.173])
+ by mx.groups.io with SMTP id smtpd.web12.5401.1636118744844307702
  for <yocto@lists.yoctoproject.org>;
- Fri, 05 Nov 2021 03:57:40 -0700
+ Fri, 05 Nov 2021 06:25:44 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=XJXHRttz;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.47,
- mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f47.google.com with SMTP id
- b184-20020a1c1bc1000000b0033140bf8dd5so6150137wmb.5
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=Juyd3/vJ;
+ spf=pass (domain: gmail.com, ip: 209.85.215.173,
+ mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f173.google.com with SMTP id r28so8409944pga.0
         for <yocto@lists.yoctoproject.org>;
- Fri, 05 Nov 2021 03:57:39 -0700 (PDT)
+ Fri, 05 Nov 2021 06:25:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:cc:date:user-agent:mime-version
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=6eZOe+x9sr+alXlONFhhqMQVLOteO1SOQzRUw6jC0G4=;
-        b=XJXHRttz86TLUEE3TcSubMOLeDtszFQprNxKKyW/Enjt1/7ghu2gNgJqRu0opnbO1F
-         q/SdCL8gPW0cbekhBd6mddqLGqVrIK4Fa8Ci3WywtylYzEILqqWxvb75zb1HvgXl4iqu
-         fZkMtjaqLzFZuvOhugsyqEtSFhLkWTfX6bZmk=
+        bh=2s7IbAtrsg0sLkyp5gySDCoFRl2/swcqAWYLo36BhwM=;
+        b=Juyd3/vJr0zcFlz9G3J44Zil08MeWCu6Fa/q7aflCjyEQIGr4mj3UQ79+i1PCdkUb/
+         NVJlSGZTmmpvF+C9awJaneqhmknSR//K/ejQ4MB8B7+Xe/M7Q4PCFQMP1ZXYNwRNbgn5
+         dJn4Tw0YDX0QINgzp5yUJdw4wMmm37rlB3MkZFkJg6oatV7qKsMmLixEDQoDj1OIU3kj
+         RFIAnig5VbVUFEQVXAVonDUB6tUNNUuhVF8SyS6xETCkwDn2UullaO3eC8bOWRLgqJ+m
+         daAIk/y/1K1hrzAuomXSmPNknfyyMCIvSCmMdterleSc0Etanwno683zAr0zAflTxiYU
+         6Kbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=6eZOe+x9sr+alXlONFhhqMQVLOteO1SOQzRUw6jC0G4=;
-        b=GeCQgND4DYGRQ2UoYWYJRGi+ceyhx1TD/BGb/iaQFxWaRyp1BGBcUYU/7/EiWc89Sb
-         WnGR90li3ntGg1v7cOCbSZYi4Ca3NMkgFNDhikMXHfB+WBmS82TdcY8b3yH2fbHFo7de
-         SgM4rjPrbztDsUkLNCRjE9YAewdoRmVBCoWCvvp4nZTVZLtPfIeEmY8tnaK4tJikZHx3
-         Irad10ph+PPPYG7JMS1jeBulcHA7OE0W+fNU9Zi8n/InGfRdLT52/tG+CMC7ky6NUZZ/
-         DvA66vRcNSS9LBv1K/WKnBq3G+2Z5QtIGI5obZiP+H81F2YyeVXnIYLfdIN12NfUc/Yz
-         cm+w==
-X-Gm-Message-State: AOAM533rjyfmli4WLSQhqr7lWi3OLur/FTMbxGU0ByoKJUQNtkVzgpwo
-	NHjrzs+RwfozP9gcwBD3uRmbCzBG2fYv6A==
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2s7IbAtrsg0sLkyp5gySDCoFRl2/swcqAWYLo36BhwM=;
+        b=c9Zqf8CezjqBts1WGdt15rmKeaXoZpQzk3rY5uaS+WlLL7iwNSbaYFXsxfSuIhQNsY
+         qdIpEENQU9q/2yimf3cYzbqMxnftK0bazDuOeDG/hJi6rgwX79pllL/+AdkLuabk8ThN
+         M02QuA9wz4r6Mb4qJ/1uWkbBmEwcQ7AiCBpOJl92qDLTpxHCYjctMLdKOhYQAnCOXC7u
+         cpUXi5Vlz0mq+Z0oqwGRguihcb4CZQKgaUoRrx2HLTdYbRMegV4MDR8xLG5mY8YwCj0Z
+         6li7PtVJkGrg7G/JMgOBfPxWWeIq6UF9+lAH9GDZTVugGc3dBydDsRQFHYpLSdrqh5mk
+         DK0w==
+X-Gm-Message-State: AOAM533VF7piIoUMBHxaTBM4Mce2dz6NJXklaRq1AopCp0MFvJFvQ38J
+	bEcJBE+as1uXtZ+RLCAMR+9v6PK5s24=
 X-Google-Smtp-Source: 
- ABdhPJxCOFyIw/zLEL+Vidjn/VZdpkZR5y4naY8GejHqLuJpOaRz9aKC/ocyG+bGXWCRc+zTkNz/+w==
-X-Received: by 2002:a05:600c:4fca:: with SMTP id
- o10mr8181614wmq.175.1636109858384;
-        Fri, 05 Nov 2021 03:57:38 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:38e6:15ea:3134:28e5?
- ([2001:8b0:aba:5f3c:38e6:15ea:3134:28e5])
+ ABdhPJzOPuafsgq8SqxZNOs5aKM5FDV1hKgSfe/1S9E8z0InvDEpaBBsx5HYSc5G3W6W74JFM7MGsw==
+X-Received: by 2002:a63:7512:: with SMTP id q18mr1813789pgc.418.1636118744059;
+        Fri, 05 Nov 2021 06:25:44 -0700 (PDT)
+Received: from keaua.hsd1.ca.comcast.net
+ ([2601:202:4180:a5c0:1036:3e93:cc4e:1fe7])
         by smtp.gmail.com with ESMTPSA id
- v7sm7429511wrq.25.2021.11.05.03.57.38
+ s30sm8133126pfg.17.2021.11.05.06.25.43
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Nov 2021 03:57:38 -0700 (PDT)
-Message-ID: 
- <66a7acb9281ca15da0ef81a257c69f32fd7bcf8c.camel@linuxfoundation.org>
-Subject: QA notification for completed autobuilder build (yocto-3.3.4.rc1)
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>
-Cc: qa-build-notification <qa-build-notification@lists.yoctoproject.org>
-Date: Fri, 05 Nov 2021 10:57:37 +0000
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4-1 
+        Fri, 05 Nov 2021 06:25:43 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH 1/3] sssd: Create /var/log/sssd in runtime
+Date: Fri,  5 Nov 2021 06:25:40 -0700
+Message-Id: <20211105132542.723232-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 05 Nov 2021 10:57:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55246
+ <yocto@lists.yoctoproject.org>; Fri, 05 Nov 2021 13:25:45 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55247
 
-A build flagged for QA (yocto-3.3.4.rc1) was completed on the autobuilder and is
-available at:
+/var/log is normally a link to /var/volatile/log and /var/volatile is a
+tmpfs mount. So anything created in /var/log will not be available when
+the tmpfs is mounted.
 
+[Thanks to Peter Kjellerstedt for example]
 
-    https://autobuilder.yocto.io/pub/releases/yocto-3.3.4.rc1
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/sssd/sssd_2.5.2.bb | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
 
-
-Build hash information: 
-
-bitbake: 0fe1a9e2d2e33f80d807cefc7a23df4a5f760c74
-meta-agl: d997986f27e239400cf01e0cdef942cee278ea66
-meta-arm: 71686ac05c34e53950268bfe0d52c3624e78c190
-meta-aws: cad1c714434fe0adc566006e1e1626b4657bcf40
-meta-gplv2: 9e119f333cc8f53bd3cf64326f826dbc6ce3db0f
-meta-intel: 76495b60dd915846d2f84d03b9c9cfbb548e9dc0
-meta-mingw: 422b96cb2b6116442be1f40dfb5bd77447d1219e
-meta-openembedded: d378e4293d18e374f5d1494a88bfc3caee4d02df
-oecore: 0ca080a23c2770a15138f702d4c879bbd90ca360
-poky: c40ac16d79026169639f47be76a3f7b9d8b5178e
-
-
-
-This is an automated message from the Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder2
-Email: richard.purdie@linuxfoundation.org
-
-
+diff --git a/recipes-security/sssd/sssd_2.5.2.bb b/recipes-security/sssd/sssd_2.5.2.bb
+index ed8af5e..8bc8787 100644
+--- a/recipes-security/sssd/sssd_2.5.2.bb
++++ b/recipes-security/sssd/sssd_2.5.2.bb
+@@ -86,13 +86,23 @@ do_install () {
+     rmdir --ignore-fail-on-non-empty "${D}/${bindir}"
+     install -d ${D}/${sysconfdir}/${BPN}
+     install -m 600 ${WORKDIR}/${BPN}.conf ${D}/${sysconfdir}/${BPN}
+-    install -D -m 644 ${WORKDIR}/volatiles.99_sssd ${D}/${sysconfdir}/default/volatiles/99_sssd
++
++    # /var/log/sssd needs to be created in runtime. Use rmdir to catch if
++    # upstream stops creating /var/log/sssd, or adds something else in
++    # /var/log.
++    rmdir ${D}${localstatedir}/log/${BPN} ${D}${localstatedir}/log
++    rmdir --ignore-fail-on-non-empty ${D}${localstatedir}
+ 
+     if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
+         install -d ${D}${sysconfdir}/tmpfiles.d
+         echo "d /var/log/sssd 0750 - - - -" > ${D}${sysconfdir}/tmpfiles.d/sss.conf
+     fi
+ 
++    if [ "${@bb.utils.filter('DISTRO_FEATURES', 'sysvinit', d)}" ]; then
++        install -d ${D}${sysconfdir}/default/volatiles
++        echo "d ${SSSD_UID}:${SSSD_GID} 0755 ${localstatedir}/log/${BPN} none" > ${D}${sysconfdir}/default/volatiles/99_${BPN}
++    fi
++
+     # Remove /run as it is created on startup
+     rm -rf ${D}/run
+ 
+@@ -106,6 +116,8 @@ fi
+     chown ${SSSD_UID}:${SSSD_GID} ${sysconfdir}/${BPN}/${BPN}.conf
+ }
+ 
++FILES:${PN} += "${nonarch_libdir}/tmpfiles.d"
++
+ CONFFILES:${PN} = "${sysconfdir}/${BPN}/${BPN}.conf"
+ 
+ INITSCRIPT_NAME = "sssd"
+-- 
+2.25.1
 
 
