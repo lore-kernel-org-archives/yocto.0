@@ -2,62 +2,62 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8CD18C433EF
-	for <webhook@archiver.kernel.org>; Fri,  5 Nov 2021 13:25:46 +0000 (UTC)
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
- [209.85.210.173])
- by mx.groups.io with SMTP id smtpd.web11.5469.1636118745618374216
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F295C433F5
+	for <webhook@archiver.kernel.org>; Fri,  5 Nov 2021 13:25:47 +0000 (UTC)
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com
+ [209.85.216.53])
+ by mx.groups.io with SMTP id smtpd.web11.5470.1636118746344779912
  for <yocto@lists.yoctoproject.org>;
- Fri, 05 Nov 2021 06:25:45 -0700
+ Fri, 05 Nov 2021 06:25:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=TJC2adfg;
- spf=pass (domain: gmail.com, ip: 209.85.210.173,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=qSKERHEE;
+ spf=pass (domain: gmail.com, ip: 209.85.216.53,
  mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f173.google.com with SMTP id l3so6924067pfu.13
+Received: by mail-pj1-f53.google.com with SMTP id
+ n11-20020a17090a2bcb00b001a1e7a0a6a6so3361047pje.0
         for <yocto@lists.yoctoproject.org>;
- Fri, 05 Nov 2021 06:25:45 -0700 (PDT)
+ Fri, 05 Nov 2021 06:25:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=SNwcUnXiYBydRx0jTLcHadLDNi85q3XGMDL5kyRz6y8=;
-        b=TJC2adfgs5SWCM/QhxbfNSAj36ebZQPlrz0JL6I3gZQ6t55jCN7xAtdpiXcQg3fFl5
-         5RDTW1P6pgw57WzNsKwZAoKq9KTAe++ogdql0nyfboGNc2nvpHFajdqQWj9QEIiAE5wB
-         GF4l5+Sn8RsEE7hERkdliSai+3nRgtT5cHICJhuqvtl0K4l3oVVJkw5uPGaMcq1slB0K
-         gxdm3kDX72GVAFLDe3wpS8uq8AATfoxYUPEW7HG1/pw4woIMTDVrOcN79q5ZBOroy25m
-         NBTyghZY6Dqdvcwxm/2gss8/YLycUxRoln/R2aBNo5ZwR5/CTGzlwMo/p1xHJmZQI1Wa
-         saMA==
+        bh=u8Pxl+k4NxK7H8OFhfc3sMB3oYek295MxFJeZHT56gg=;
+        b=qSKERHEENF/IRu8pCokdvrx5S9mLFxHzEaZt51+0quAa6WQM3Dw5ulq6INuHzlQW3/
+         wTt0/tiVqKzHcGG6fLnbbwRngO9VmR+h0ZEvblY9pmzo9+zu1bw/kx8cACxuyVcCPg5u
+         zmx40pr8DXgs1Ea+7w1dC9NdCUpoV5o3o4fSO9PmqBBMxjvicSwFtedhZA6ZrK2bSF87
+         dD3uH7LYFf4+yYLGzIP2k3UV4S8IVS3M8FrDrc3Xw2AZ3WybCxwS214H7iyfZnx3Pddm
+         UDiNv0Nh2Uzmizdv9HYBcavuG1/WcWHzwgJWu9D4vmBmRx+TMG+iLPcn5eLPDo3427jv
+         5nPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=SNwcUnXiYBydRx0jTLcHadLDNi85q3XGMDL5kyRz6y8=;
-        b=s+FNbZayYvyfY+uBUfpeGUcG1w0OBUVy5Be28FZpS5M1OMf3IxUY8q62PpaTw/MEzX
-         aKQbXeFGo6x/bGdRfqW0BF4aDnuenn310ql87OCSjIVqL0D2rB+990lI2K2yY181jwpn
-         8ImZNTqmuZuSufjuqAP7jUT06W4qv2Wii1ZMBdSsSqcuJZAwUjeu6BRML3H2Zy0gjBUM
-         MDQMjOm4OtQVxaDi9V/KVjrg3O6MjIMkO8SXrStCGeSt4dXojL6w0YIMJYJeRM4Jko+b
-         yPfp7H98sXFqYGB66DKPIK7y1nJnVVlGOXVtvhqp2MiTUha7KDsNCvmf+nfBu9oqQqzE
-         mwzg==
-X-Gm-Message-State: AOAM531F97wPWMkumSPWfKTjiSXX66HzoP0+M25GvXmbDXJ/dr0hWx9A
-	/tJ7ekGdfyZmWlG51EDCUPQyzDiUKBQ=
+        bh=u8Pxl+k4NxK7H8OFhfc3sMB3oYek295MxFJeZHT56gg=;
+        b=7YOo+xJtE46praKjwWDLiGk1Q0zI8KmzMWI4/ovsLL315qyyesat7zbycjWQwv0D2t
+         ndsNcz5SX+ycIRblndI9m/Mr5PIBIPuAjcYCre1Xb3cD/RQzZkir/1m5VDX9DrFLq81I
+         KgmnCJWQyKjoWprqJ41pg6TFeTyNN6rMqMocjHdPlpHFcF0cKJx8JpK0ClJMEPbm6U29
+         nBfJEZSMOBZCPDx0ebGnJOVXfbVh9/W4ZPzJitDXG/8fX1pLZsnbXJLoenZQwLM8zt2b
+         D+YNnomHzvZeUN35+imEhtVR/xKGwvEx5wARGZYVGAzN9LijDCOIRPdy06k8J0WWJEZu
+         nqkw==
+X-Gm-Message-State: AOAM5307ORPHVhV3dpk6uxZQvV1ggzOUut4uNwBEkJhpFzoFJPx2Egth
+	jhm5B+/ynyAdV1yj8u+DgVS6S1nNcwE=
 X-Google-Smtp-Source: 
- ABdhPJxmHL2ihgFvdg12mq/tzXkjex4QxDmMuhlxniMzbaMT5pZUdYuEI/DURlXOk7Ko6xNbgWaD9g==
-X-Received: by 2002:a62:3084:0:b0:494:65fa:64f with SMTP id
- w126-20020a623084000000b0049465fa064fmr11036743pfw.22.1636118744795;
-        Fri, 05 Nov 2021 06:25:44 -0700 (PDT)
+ ABdhPJynOl1Hvtvkzcjixz/1jGhFt6nM/SKT0HKoiPE42/aPAm71bKGag5vgNsFlcDmMo+QAJOTQ6A==
+X-Received: by 2002:a17:90b:fd5:: with SMTP id
+ gd21mr28697070pjb.37.1636118745629;
+        Fri, 05 Nov 2021 06:25:45 -0700 (PDT)
 Received: from keaua.hsd1.ca.comcast.net
  ([2601:202:4180:a5c0:1036:3e93:cc4e:1fe7])
         by smtp.gmail.com with ESMTPSA id
- s30sm8133126pfg.17.2021.11.05.06.25.44
+ s30sm8133126pfg.17.2021.11.05.06.25.45
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Nov 2021 06:25:44 -0700 (PDT)
+        Fri, 05 Nov 2021 06:25:45 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 2/3] bastille: Create /var/log/Bastille in
- runtime
-Date: Fri,  5 Nov 2021 06:25:41 -0700
-Message-Id: <20211105132542.723232-2-akuster808@gmail.com>
+Subject: [meta-security][PATCH 3/3] python3-fail2ban: remove /run
+Date: Fri,  5 Nov 2021 06:25:42 -0700
+Message-Id: <20211105132542.723232-3-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211105132542.723232-1-akuster808@gmail.com>
 References: <20211105132542.723232-1-akuster808@gmail.com>
@@ -66,48 +66,38 @@ Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 05 Nov 2021 13:25:46 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55248
+ <yocto@lists.yoctoproject.org>; Fri, 05 Nov 2021 13:25:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55249
+
+Fixes:
+
+ERROR: python3-fail2ban-0.11.2-r0 do_package_qa: QA Issue: python3-fail2ban installs files in /run, but it is expected to be empty [empty-dirs]
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-security/bastille/bastille_3.2.1.bb | 17 +++++++++++++++--
- 1 file changed, 15 insertions(+), 2 deletions(-)
+ recipes-security/fail2ban/python3-fail2ban_0.11.2.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-security/bastille/bastille_3.2.1.bb b/recipes-security/bastille/bastille_3.2.1.bb
-index 72281c5..2d82983 100644
---- a/recipes-security/bastille/bastille_3.2.1.bb
-+++ b/recipes-security/bastille/bastille_3.2.1.bb
-@@ -48,7 +48,6 @@ do_install () {
- 	install -d ${D}${datadir}/Bastille/OSMap/Modules
- 	install -d ${D}${datadir}/Bastille/Questions
- 	install -d ${D}${datadir}/Bastille/FKL/configs/
--	install -d ${D}${localstatedir}/log/Bastille
- 	install -d ${D}${sysconfdir}/Bastille
- 	install -m 0755 AutomatedBastille  ${D}${sbindir}
- 	install -m 0755 BastilleBackEnd    ${D}${sbindir}
-@@ -148,6 +147,20 @@ do_install () {
- 	${THISDIR}/files/set_required_questions.py ${D}${sysconfdir}/Bastille/config ${D}${datadir}/Bastille/Questions
- 
- 	ln -s RevertBastille ${D}${sbindir}/UndoBastille
-+
-+    # Create /var/log/Bastille in runtime.
-+    if [ "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}" ]; then
-+        install -d ${D}${nonarch_libdir}/tmpfiles.d
-+        echo "d ${localstatedir}/log/Bastille - - - -" > ${D}${nonarch_libdir}/tmpfiles.d/Bastille.conf
-+    fi
-+    if [ "${@bb.utils.filter('DISTRO_FEATURES', 'sysvinit', d)}" ]; then
-+        install -d ${D}${sysconfdir}/default/volatiles
-+        echo "d root root 0755 ${localstatedir}/log/Bastille none" > ${D}${sysconfdir}/default/volatiles/99_Bastille
-+    fi
+diff --git a/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb b/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
+index fcf044a..4e344c8 100644
+--- a/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
++++ b/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
+@@ -30,6 +30,7 @@ do_install:append () {
+     install -d ${D}/${sysconfdir}/init.d
+     install -m 0755 ${WORKDIR}/initd ${D}${sysconfdir}/init.d/fail2ban-server
+     chown -R root:root ${D}/${bindir}
++    rm -rf ${D}/run
  }
  
--FILES:${PN} += "${datadir}/Bastille ${libdir}/Bastille ${libdir}/perl* ${sysconfdir}/*"
-+FILES:${PN} += "${datadir}/Bastille \
-+                ${libdir}/Bastille \
-+                ${libdir}/perl* \
-+                ${sysconfdir}/* \
-+                ${nonarch_libdir}/tmpfiles.d"
+ do_install_ptest:append () {
+@@ -40,7 +41,6 @@ do_install_ptest:append () {
+     rm -f ${D}${PTEST_PATH}/bin/fail2ban-python
+ }
+ 
+-FILES:${PN} += "/run"
+ 
+ INITSCRIPT_PACKAGES = "${PN}"
+ INITSCRIPT_NAME = "fail2ban-server"
 -- 
 2.25.1
 
