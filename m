@@ -1,545 +1,87 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 29D3AC433F5
-	for <webhook@archiver.kernel.org>; Fri,  5 Nov 2021 23:39:11 +0000 (UTC)
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com
- [209.85.216.47])
- by mx.groups.io with SMTP id smtpd.web10.13360.1636155550671963085
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 69661C433F5
+	for <webhook@archiver.kernel.org>; Sat,  6 Nov 2021 00:35:58 +0000 (UTC)
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com
+ [209.85.216.51])
+ by mx.groups.io with SMTP id smtpd.web08.13954.1636158957511520883
  for <yocto@lists.yoctoproject.org>;
- Fri, 05 Nov 2021 16:39:10 -0700
+ Fri, 05 Nov 2021 17:35:57 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=qrBwuYUG;
- spf=pass (domain: gmail.com, ip: 209.85.216.47,
- mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f47.google.com with SMTP id
- x16-20020a17090a789000b001a69735b339so4429613pjk.5
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=nzDwNVYQ;
+ spf=pass (domain: gmail.com, ip: 209.85.216.51, mailfrom: raj.khem@gmail.com)
+Received: by mail-pj1-f51.google.com with SMTP id
+ w33-20020a17090a6ba400b001a722a06212so1329836pjj.0
         for <yocto@lists.yoctoproject.org>;
- Fri, 05 Nov 2021 16:39:10 -0700 (PDT)
+ Fri, 05 Nov 2021 17:35:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version
+        h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=MzkyNU5/vYRtiYHzasd1S8Wc9GsOK2AF8s6OoRXICRA=;
-        b=qrBwuYUGOawnj32MUiZLFNqD3GynkxWR6N7zyGo2mZGkkaNtmjtcw5OZkIH44Jaq/E
-         t7C9lYBWs48mF5PFMXxK5m7IgHChYz1Cx+nQLtTT+VI9taau+C1Si7MuBkbw+DG54vl2
-         kDpZYwidWdPOyMBNhrAoEkcCc+ELnC5Uvv/9YgEuGVJ0GWvkM5SFHUZIL/g2nvJ1x7CN
-         QSu9v0VFaW95ieYjPNi6IhiFRZJYKyUxAbdPAXo2oA5z1utDN31BR4M5jUutF+VYhObN
-         8LKfLSUcuraYZKt0M4A4uTqJ/0JunIuOI6hYv7zgUQ8NbLobzg7Lg59osN0QwS6FDxe+
-         brGQ==
+        bh=tKGfvJFeXwl5GkIgbC8FJHucWQZBmxS3W5/DRN+Ut3Q=;
+        b=nzDwNVYQY275uPCNKPFJSHRtT4xE9CKXIcFBejA9nsr2pVQBJFOUc390+hcYgjME96
+         fBhL6wydQf8HcGB/M9cSavow7g8KQHeupUCNdO85l51H9RveXdO5/Y3JLCGrybaUpyfH
+         UOO8ztIfuPun/U5YUZCirzsOgL83tdxTdlyhnayBccHTXRySwYwEoaiKit6S5J1LdXyu
+         S9sZEJZh+az125PQ21IG9UAjBZL4WVaPlS3/+HPMvYYxi+bDfgN4+73o+6tYMN+dRqNN
+         Ko0lrToqlZfwaK6kw1+t3f0EpozLi7q2RUVtcVOuS/WPcsQts7Sgb5Ys10EZXuxJ8XrX
+         yXsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=MzkyNU5/vYRtiYHzasd1S8Wc9GsOK2AF8s6OoRXICRA=;
-        b=JUZsog0RdG87dTa+c5nXfaRpj84OQibWMPwWOV9O05j17mxWXbb6k67Vt3o4D8+x0x
-         s9fj4SUgE/cuTIi3N4k+BzgWqPaM/qh1adANuEzKEbZrQ2gzyyqvNgFCv5U7p3+7ERJh
-         F/VFb3mejqmnLBARXdePo+n3KUSyRN/XCOHdQAUsHE0gfXh2MBJWQDuZ3lFuBegmFZKV
-         keOmXtiVxP2w7rjTym7L4Ew9pFnPFKWqtX02/oWVOF4PwUYSmPzOCdw3ktEMet7sTZt1
-         I7RUr95oRVKp72K1dEIfdg9iob1fS8uk2LU3roiYNY97IMnurqau2QQ0qUgst96YRwdA
-         Tqmg==
-X-Gm-Message-State: AOAM532lF8M9dbN/lb828NG4+Pi6XWcQjjBaRcgaR80nzp3z9FRKW+jL
-	eWiUYtkK0A9PXdgkubrTvhUkHwtVleo=
+        bh=tKGfvJFeXwl5GkIgbC8FJHucWQZBmxS3W5/DRN+Ut3Q=;
+        b=xeyBdetDTpC4yRK+lDj8iQfhjLG4l2km9H/wKdrmSd1b4IkWt4mhtPrWvlY0AB5uzJ
+         /r7aeDMlB+ZdQlHGghdvUd2aTZDMgk+GFCDKKakSgnyXfXMCZJfZoiQzEPyl2Sd2w6A9
+         K8nKtJrX6PwJ3qO9jtZfJY3MAOR543IAg0nPYurriAbSr5lVX6OQmiXMyDkBCbtt2Wfj
+         vW/5QrrM2nDLDxwt3fHntMkJhVK2uNjz8gVYcTXcCTChlEW0izx2CFUDgOpKLac2D3Bz
+         2wqa35gE9NQUf0NlAe04d+xnRGb59ECYg8gMDDIa0Rbd0l+c+EBlWJxh4Iu0qcQ6ihvv
+         n3pg==
+X-Gm-Message-State: AOAM530J+PHlISVRnOlqooI+9P3sjFx8rBxSx4hZbo58fvUxJhQy6bfD
+	5KkWiujWApR+4bN5rh2V8qKjFMmbnks=
 X-Google-Smtp-Source: 
- ABdhPJzHfn6FVHw/+Jlq4+yZFIeQzeNCGy1d5MlaDEs4zPtdL3U3qukC8En/Z3ya2A9lYSbAfMvGYw==
-X-Received: by 2002:a17:903:246:b0:13f:75bb:cabd with SMTP id
- j6-20020a170903024600b0013f75bbcabdmr54855188plh.30.1636155549560;
-        Fri, 05 Nov 2021 16:39:09 -0700 (PDT)
-Received: from keaua.hsd1.ca.comcast.net
- ([2601:202:4180:a5c0:3f79:2869:a087:86ee])
+ ABdhPJzdQgoiKis7iy+ATjSc5raG/j+wAY99xDx+kZ+tgDIG3pb3Yb3pawSjHXWwrXeLcBoRZUXn+w==
+X-Received: by 2002:a17:90b:4c4f:: with SMTP id
+ np15mr31632056pjb.65.1636158956542;
+        Fri, 05 Nov 2021 17:35:56 -0700 (PDT)
+Received: from apollo.hsd1.ca.comcast.net ([2601:646:9200:a0f0::f94a])
         by smtp.gmail.com with ESMTPSA id
- c11sm325792pfm.29.2021.11.05.16.39.08
-        for <yocto@lists.yoctoproject.org>
+ f19sm5948065pfe.153.2021.11.05.17.35.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Nov 2021 16:39:09 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
+        Fri, 05 Nov 2021 17:35:56 -0700 (PDT)
+From: Khem Raj <raj.khem@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][honister][PATCH] recipes: Update SRC_URI branch and
- protocols
-Date: Fri,  5 Nov 2021 16:39:07 -0700
-Message-Id: <20211105233907.734757-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
+Cc: jpewhacker@gmail.com,
+	Khem Raj <raj.khem@gmail.com>
+Subject: [meta-mingw] [PATCH] flex: Add missing dependency on libgnurx
+Date: Fri,  5 Nov 2021 17:35:53 -0700
+Message-Id: <20211106003553.2858091-1-raj.khem@gmail.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 05 Nov 2021 23:39:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55260
+ <yocto@lists.yoctoproject.org>; Sat, 06 Nov 2021 00:35:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55261
 
-This patch updates SRC_URIs using git to include branch=master if no branch is set
-and also to use protocol=https for github urls as generated by the conversion script
-in OE-Core.
-
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
-(cherry picked from commit 7e27eb5fca7a22e82251f79103bb12d2b70307fb)
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
- .../recipes-openscap/oe-scap/oe-scap_1.0.bb                     | 2 +-
- .../recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb  | 2 +-
- .../recipes-openscap/openscap/openscap_1.3.3.bb                 | 2 +-
- .../recipes-openscap/openscap/openscap_git.bb                   | 2 +-
- .../scap-security-guide/scap-security-guide_0.1.44.bb           | 2 +-
- .../scap-security-guide/scap-security-guide_git.bb              | 2 +-
- meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb                     | 2 +-
- .../recipes-tpm/openssl-tpm-engine/openssl-tpm-engine_0.5.0.bb  | 2 +-
- meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb               | 2 +-
- meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb                       | 2 +-
- meta-tpm/recipes-tpm/tpm-quote-tools/tpm-quote-tools_1.0.4.bb   | 2 +-
- meta-tpm/recipes-tpm/tpm-tools/tpm-tools_1.3.9.2.bb             | 2 +-
- meta-tpm/recipes-tpm/trousers/trousers_git.bb                   | 2 +-
- meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.4.0.bb            | 2 +-
- meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.6.0.bb          | 2 +-
- meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb    | 2 +-
- meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.3.0.bb              | 2 +-
- meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.1.0.bb  | 2 +-
- recipes-ids/crowdsec/crowdsec_1.1.1.bb                          | 2 +-
- recipes-ids/ossec/ossec-hids_3.6.0.bb                           | 2 +-
- recipes-ids/tripwire/tripwire_2.4.3.7.bb                        | 2 +-
- recipes-mac/smack/smack_1.3.1.bb                                | 2 +-
- recipes-scanners/checksec/checksec_2.4.0.bb                     | 2 +-
- recipes-scanners/clamav/clamav_0.104.0.bb                       | 2 +-
- recipes-security/chipsec/chipsec_git.bb                         | 2 +-
- recipes-security/fail2ban/python3-fail2ban_0.11.2.bb            | 2 +-
- recipes-security/fscrypt/fscrypt_1.0.0.bb                       | 2 +-
- recipes-security/fscryptctl/fscryptctl_1.0.0.bb                 | 2 +-
- .../google-authenticator-libpam_1.08.bb                         | 2 +-
- recipes-security/libest/libest_3.2.0.bb                         | 2 +-
- recipes-security/libmspack/libmspack_1.9.1.bb                   | 2 +-
- recipes-security/ncrack/ncrack_0.7.bb                           | 2 +-
- recipes-security/nikto/nikto_2.1.6.bb                           | 2 +-
- 33 files changed, 33 insertions(+), 33 deletions(-)
+ recipes-devtools/flex/flex_%.bbappend | 3 +++
+ 1 file changed, 3 insertions(+)
+ create mode 100644 recipes-devtools/flex/flex_%.bbappend
 
-diff --git a/meta-security-compliance/recipes-openscap/oe-scap/oe-scap_1.0.bb b/meta-security-compliance/recipes-openscap/oe-scap/oe-scap_1.0.bb
-index 0fef233..7e9f214 100644
---- a/meta-security-compliance/recipes-openscap/oe-scap/oe-scap_1.0.bb
-+++ b/meta-security-compliance/recipes-openscap/oe-scap/oe-scap_1.0.bb
-@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://README.md;md5=46dec9f167b6e05986cb4023df6d92f4"
- LICENSE = "MIT"
- 
- SRCREV = "7147871d7f37d408c0dd7720ef0fd3ec1b54ad98"
--SRC_URI = "git://github.com/akuster/oe-scap.git"
-+SRC_URI = "git://github.com/akuster/oe-scap.git;branch=master;protocol=https"
- SRC_URI += " \
-             file://run_cve.sh \
-             file://run_test.sh \
-diff --git a/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb b/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
-index f109566..549a888 100644
---- a/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
-+++ b/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
-@@ -9,7 +9,7 @@ LICENSE = "LGPL-2.1"
- DEPENDS = "python3-dbus"
- 
- SRCREV = "f25b16afb6ac761fea13132ff406fba4cdfd2b76"
--SRC_URI = "git://github.com/OpenSCAP/openscap-daemon.git \
-+SRC_URI = "git://github.com/OpenSCAP/openscap-daemon.git;branch=master;protocol=https \
-            file://0001-Renamed-module-and-variables-to-get-rid-of-async.patch \
-           "
- 
-diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.3.bb b/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.3.bb
-index 51fa9ee..192b008 100644
---- a/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.3.bb
-+++ b/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.3.bb
-@@ -3,7 +3,7 @@ SUMARRY = "NIST Certified SCAP 1.2 toolkit"
- require openscap.inc
- 
- SRCREV = "0cb55c55af6be9934d6fd0caf4563b206f289732"
--SRC_URI = "git://github.com/OpenSCAP/openscap.git;branch=maint-1.3 \
-+SRC_URI = "git://github.com/OpenSCAP/openscap.git;branch=maint-1.3;protocol=https \
- "
- 
- DEFAULT_PREFERENCE = "-1"
-diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb b/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
-index 73a4729..a18cbd1 100644
---- a/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
-+++ b/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
-@@ -6,7 +6,7 @@ SUMARRY = "NIST Certified SCAP 1.2 toolkit with OE changes"
- include openscap.inc
- 
- SRCREV = "a85943eee400fdbe59234d1c4a02d8cf710c4625"
--SRC_URI = "git://github.com/akuster/openscap.git;branch=oe-1.3 \
-+SRC_URI = "git://github.com/akuster/openscap.git;branch=oe-1.3;protocol=https \
- "
- 
- PV = "1.3.3+git${SRCPV}"
-diff --git a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_0.1.44.bb b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_0.1.44.bb
-index d80ecd7..ecf136d 100644
---- a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_0.1.44.bb
-+++ b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_0.1.44.bb
-@@ -1,7 +1,7 @@
- SUMARRY = "SCAP content for various platforms, upstream version"
- 
- SRCREV = "8cb2d0f351faff5440742258782281164953b0a6"
--SRC_URI = "git://github.com/ComplianceAsCode/content.git"
-+SRC_URI = "git://github.com/ComplianceAsCode/content.git;branch=master;protocol=https"
- 
- DEFAULT_PREFERENCE = "-1"
- 
-diff --git a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_git.bb b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_git.bb
-index 0617c56..ddde5cc 100644
---- a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_git.bb
-+++ b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_git.bb
-@@ -1,7 +1,7 @@
- SUMARRY = "SCAP content for various platforms, OE changes"
- 
- SRCREV = "5fdfdcb2e95afbd86ace555beca5d20cbf1043ed"
--SRC_URI = "git://github.com/akuster/scap-security-guide.git;branch=oe-0.1.44; \
-+SRC_URI = "git://github.com/akuster/scap-security-guide.git;branch=oe-0.1.44;;protocol=https \
-            file://0001-Fix-XML-parsing-of-the-remediation-functions-file.patch \
-            file://0002-Fixed-the-broken-fix-when-greedy-regex-ate-the-whole.patch \
-            file://0001-fix-deprecated-instance-of-element.getchildren.patch \
-diff --git a/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb b/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb
-index 95ba5c5..8fe62cf 100644
---- a/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb
-+++ b/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb
-@@ -3,7 +3,7 @@ LICENSE = "BSD-3-Clause"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=e73f0786a936da3814896df06ad225a9"
- 
- SRCREV = "f6dd8f55eab4910131ec6a6a570dcd7951bd10e4"
--SRC_URI = "git://github.com/stefanberger/libtpms.git;branch=stable-0.8"
-+SRC_URI = "git://github.com/stefanberger/libtpms.git;branch=stable-0.8;protocol=https"
- 
- PE = "1"
- 
-diff --git a/meta-tpm/recipes-tpm/openssl-tpm-engine/openssl-tpm-engine_0.5.0.bb b/meta-tpm/recipes-tpm/openssl-tpm-engine/openssl-tpm-engine_0.5.0.bb
-index 9ad8967..687ddac 100644
---- a/meta-tpm/recipes-tpm/openssl-tpm-engine/openssl-tpm-engine_0.5.0.bb
-+++ b/meta-tpm/recipes-tpm/openssl-tpm-engine/openssl-tpm-engine_0.5.0.bb
-@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=11f0ee3af475c85b907426e285c9bb52"
- DEPENDS += "openssl trousers"
- 
- SRC_URI = "\
--    git://github.com/mgerstner/openssl_tpm_engine.git \
-+    git://github.com/mgerstner/openssl_tpm_engine.git;branch=master;protocol=https \
-     file://0001-create-tpm-key-support-well-known-key-option.patch \
-     file://0002-libtpm-support-env-TPM_SRK_PW.patch \
-     file://0003-tpm-openssl-tpm-engine-parse-an-encrypted-tpm-SRK-pa.patch \
-diff --git a/meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb b/meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb
-index f8347b7..77f65ae 100644
---- a/meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb
-+++ b/meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb
-@@ -9,7 +9,7 @@ DEPENDS = "libtspi"
- PV = "0.1+git${SRCPV}"
- SRCREV = "c02ad8f628b3d99f6d4c087b402fe31a40ee6316"
- 
--SRC_URI = "git://github.com/flihp/pcr-extend.git \
-+SRC_URI = "git://github.com/flihp/pcr-extend.git;branch=master;protocol=https \
-            file://fix_openssl11_build.patch "
- 
- inherit autotools
-diff --git a/meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb b/meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb
-index c7fc131..63734b9 100644
---- a/meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb
-+++ b/meta-tpm/recipes-tpm/swtpm/swtpm_0.6.1.bb
-@@ -7,7 +7,7 @@ SECTION = "apps"
- DEPENDS = "libtasn1 coreutils-native expect-native socat-native glib-2.0 net-tools-native libtpm json-glib"
- 
- SRCREV = "98187d24fe14851653a7c46eb16e9c5f0b9beaa1"
--SRC_URI = "git://github.com/stefanberger/swtpm.git;branch=stable-0.6 \
-+SRC_URI = "git://github.com/stefanberger/swtpm.git;branch=stable-0.6;protocol=https \
-            file://ioctl_h.patch \
-            file://oe_configure.patch \
-            "
-diff --git a/meta-tpm/recipes-tpm/tpm-quote-tools/tpm-quote-tools_1.0.4.bb b/meta-tpm/recipes-tpm/tpm-quote-tools/tpm-quote-tools_1.0.4.bb
-index 53cf8ff..4672bba 100644
---- a/meta-tpm/recipes-tpm/tpm-quote-tools/tpm-quote-tools_1.0.4.bb
-+++ b/meta-tpm/recipes-tpm/tpm-quote-tools/tpm-quote-tools_1.0.4.bb
-@@ -15,7 +15,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=8ec30b01163d242ecf07d9cd84e3611f"
- 
- DEPENDS = "libtspi tpm-tools"
- 
--SRC_URI = "git://git.code.sf.net/p/tpmquotetools/tpm-quote-tools"
-+SRC_URI = "git://git.code.sf.net/p/tpmquotetools/tpm-quote-tools;branch=master"
- SRCREV = "4511874d5c9b4504bb96e94f8a14bd6c39a36295"
- 
- S = "${WORKDIR}/git"
-diff --git a/meta-tpm/recipes-tpm/tpm-tools/tpm-tools_1.3.9.2.bb b/meta-tpm/recipes-tpm/tpm-tools/tpm-tools_1.3.9.2.bb
-index dbe1647..3b3da4f 100644
---- a/meta-tpm/recipes-tpm/tpm-tools/tpm-tools_1.3.9.2.bb
-+++ b/meta-tpm/recipes-tpm/tpm-tools/tpm-tools_1.3.9.2.bb
-@@ -14,7 +14,7 @@ DEPENDS:class-native = "trousers-native"
- 
- SRCREV = "bf43837575c5f7d31865562dce7778eae970052e"
- SRC_URI = " \
--    git://git.code.sf.net/p/trousers/tpm-tools \
-+    git://git.code.sf.net/p/trousers/tpm-tools;branch=master \
-     file://tpm-tools-extendpcr.patch \
-     file://04-fix-FTBFS-clang.patch \
-     file://openssl1.1_fix.patch \
-diff --git a/meta-tpm/recipes-tpm/trousers/trousers_git.bb b/meta-tpm/recipes-tpm/trousers/trousers_git.bb
-index 5e03b71..192c66c 100644
---- a/meta-tpm/recipes-tpm/trousers/trousers_git.bb
-+++ b/meta-tpm/recipes-tpm/trousers/trousers_git.bb
-@@ -10,7 +10,7 @@ SRCREV = "94144b0a1dcef6e31845d6c319e9bd7357208eb9"
- PV = "0.3.15+git${SRCPV}"
- 
- SRC_URI = " \
--	git://git.code.sf.net/p/trousers/trousers \
-+	git://git.code.sf.net/p/trousers/trousers;branch=master \
-     	file://trousers.init.sh \
-     	file://trousers-udev.rules \
-     	file://tcsd.service \
-diff --git a/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.4.0.bb b/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.4.0.bb
-index b80ef79..1818171 100644
---- a/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.4.0.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.4.0.bb
-@@ -13,7 +13,7 @@ DEPENDS = "autoconf-archive dbus glib-2.0 tpm2-tss glib-2.0-native \
-             libtss2 libtss2-mu libtss2-tcti-device libtss2-tcti-mssim"
- 
- SRC_URI = "\
--    git://github.com/tpm2-software/tpm2-abrmd.git \
-+    git://github.com/tpm2-software/tpm2-abrmd.git;branch=master;protocol=https \
-     file://tpm2-abrmd-init.sh \
-     file://tpm2-abrmd.default \
- "
-diff --git a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.6.0.bb b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.6.0.bb
-index fdeda26..ef0c642 100644
---- a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.6.0.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.6.0.bb
-@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=0fc19f620a102768d6dbd1e7166e78ab"
- 
- DEPENDS = "autoconf-archive pkgconfig dstat sqlite3 openssl libtss2-dev tpm2-tools libyaml p11-kit python3-setuptools-native"
- 
--SRC_URI = "git://github.com/tpm2-software/tpm2-pkcs11.git;branch=master \
-+SRC_URI = "git://github.com/tpm2-software/tpm2-pkcs11.git;branch=master;protocol=https \
-            file://bootstrap_fixup.patch \
-            file://0001-remove-local-binary-checkes.patch \
-            file://677.patch \
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
-index 47113d2..2bf1eed 100644
---- a/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
-@@ -4,7 +4,7 @@ LICENSE = "BSD-2-Clause"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=500b2e742befc3da00684d8a1d5fd9da"
- DEPENDS = "libtss2-dev libtss2-mu-dev gnu-efi-native gnu-efi pkgconfig autoconf-archive-native"
- 
--SRC_URI = "git://github.com/tpm2-software/tpm2-tcti-uefi.git \
-+SRC_URI = "git://github.com/tpm2-software/tpm2-tcti-uefi.git;branch=master;protocol=https \
-            file://configure_oe_fixup.patch \
-            file://0001-configure.ac-stop-inserting-host-directories-into-co.patch \
-            file://fix_header_file.patch \
-diff --git a/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.3.0.bb b/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.3.0.bb
-index dfebc07..d324e33 100644
---- a/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.3.0.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.3.0.bb
-@@ -10,7 +10,7 @@ DEPENDS = "autoconf-archive libtss2-dev qrencode"
- PE = "1"
- 
- SRCREV = "96a1448753a48974149003bc90ea3990ae8e8d0b"
--SRC_URI = "git://github.com/tpm2-software/tpm2-totp.git"
-+SRC_URI = "git://github.com/tpm2-software/tpm2-totp.git;branch=master;protocol=https"
- 
- inherit autotools-brokensep pkgconfig
- 
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.1.0.bb b/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.1.0.bb
-index 3069b1f..4d1f425 100644
---- a/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.1.0.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.1.0.bb
-@@ -9,7 +9,7 @@ SECTION = "security/tpm"
- DEPENDS = "autoconf-archive-native bash-completion libtss2 libgcrypt openssl"
- 
- SRCREV = "6f387a4efe2049f1b4833e8f621c77231bc1eef4"
--SRC_URI = "git://github.com/tpm2-software/tpm2-tss-engine.git;branch=v1.1.x"
-+SRC_URI = "git://github.com/tpm2-software/tpm2-tss-engine.git;branch=v1.1.x;protocol=https"
- 
- inherit autotools-brokensep pkgconfig systemd
- 
-diff --git a/recipes-ids/crowdsec/crowdsec_1.1.1.bb b/recipes-ids/crowdsec/crowdsec_1.1.1.bb
-index 887c75d..81f2b8f 100644
---- a/recipes-ids/crowdsec/crowdsec_1.1.1.bb
-+++ b/recipes-ids/crowdsec/crowdsec_1.1.1.bb
-@@ -3,7 +3,7 @@ SUMMARY = "CrowdSec is a free, modern & collaborative behavior detection engine,
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://src/import/LICENSE;md5=105e75b680b2ab82fa5718661b41f3bf"
- 
--SRC_URI = "git://github.com/crowdsecurity/crowdsec.git;branch=master"
-+SRC_URI = "git://github.com/crowdsecurity/crowdsec.git;branch=master;protocol=https"
- SRCREV = "73e0bbaf93070f4a640eb5a22212b5dcf26699de"
- 
- DEPENDS = "jq-native"
-diff --git a/recipes-ids/ossec/ossec-hids_3.6.0.bb b/recipes-ids/ossec/ossec-hids_3.6.0.bb
-index 309ca52..853facf 100644
---- a/recipes-ids/ossec/ossec-hids_3.6.0.bb
-+++ b/recipes-ids/ossec/ossec-hids_3.6.0.bb
-@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=d625d1520b5e38faefb81cf9772badc9"
- 
- 
- DEPENDS = "openssl libpcre2 zlib libevent"
--SRC_URI = "git://github.com/ossec/ossec-hids;branch=master \
-+SRC_URI = "git://github.com/ossec/ossec-hids;branch=master;protocol=https \
-            file://0001-Makefile-drop-running-scrips-install.patch  \
-            file://0002-Makefile-don-t-set-uid-gid.patch \
-            "
-diff --git a/recipes-ids/tripwire/tripwire_2.4.3.7.bb b/recipes-ids/tripwire/tripwire_2.4.3.7.bb
-index 3a9bc1d..93cb443 100644
---- a/recipes-ids/tripwire/tripwire_2.4.3.7.bb
-+++ b/recipes-ids/tripwire/tripwire_2.4.3.7.bb
-@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=1c069be8dbbe48e89b580ab4ed86c127"
- SRCREV = "6e64a9e5b70a909ec439bc5a099e3fcf38c614b0"
- 
- SRC_URI = "\
--	git://github.com/Tripwire/tripwire-open-source.git \
-+	git://github.com/Tripwire/tripwire-open-source.git;branch=master;protocol=https \
- 	file://tripwire.cron \
- 	file://tripwire.sh \
- 	file://tripwire.txt \
-diff --git a/recipes-mac/smack/smack_1.3.1.bb b/recipes-mac/smack/smack_1.3.1.bb
-index 6c2f041..79a8f5a 100644
---- a/recipes-mac/smack/smack_1.3.1.bb
-+++ b/recipes-mac/smack/smack_1.3.1.bb
-@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=4fbd65380cdd255951079008b364516c"
- 
- SRCREV = "4a102c7584b39ce693995ffb65e0918a9df98dd8"
- SRC_URI = " \
--	git://github.com/smack-team/smack.git \
-+	git://github.com/smack-team/smack.git;branch=master;protocol=https \
- 	file://smack_generator_make_fixup.patch \
- 	file://run-ptest"
- 
-diff --git a/recipes-scanners/checksec/checksec_2.4.0.bb b/recipes-scanners/checksec/checksec_2.4.0.bb
-index 12c9bce..9a6e44a 100644
---- a/recipes-scanners/checksec/checksec_2.4.0.bb
-+++ b/recipes-scanners/checksec/checksec_2.4.0.bb
-@@ -7,7 +7,7 @@ HOMEPAGE="https://github.com/slimm609/checksec.sh"
- LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=8d90285f711cf1f378e2c024457066d8"
- 
- SRCREV = "c3754e45e04f9104db93b2048afd094427102d48"
--SRC_URI = "git://github.com/slimm609/checksec.sh"
-+SRC_URI = "git://github.com/slimm609/checksec.sh;branch=master;protocol=https"
- 
- S = "${WORKDIR}/git"
- 
-diff --git a/recipes-scanners/clamav/clamav_0.104.0.bb b/recipes-scanners/clamav/clamav_0.104.0.bb
-index 25123dc..e59f5ff 100644
---- a/recipes-scanners/clamav/clamav_0.104.0.bb
-+++ b/recipes-scanners/clamav/clamav_0.104.0.bb
-@@ -11,7 +11,7 @@ LIC_FILES_CHKSUM = "file://COPYING.txt;beginline=2;endline=3;md5=f7029fbbc5898b2
- # July 27th
- SRCREV = "c389dfa4c3af92b006ada4f7595bbc3e6df3f356"
- 
--SRC_URI = "git://github.com/vrtadmin/clamav-devel;branch=rel/0.104 \
-+SRC_URI = "git://github.com/vrtadmin/clamav-devel;branch=rel/0.104;protocol=https \
-     file://clamd.conf \
-     file://freshclam.conf \
-     file://volatiles.03_clamav \
-diff --git a/recipes-security/chipsec/chipsec_git.bb b/recipes-security/chipsec/chipsec_git.bb
-index 3339dc1..e265a08 100644
---- a/recipes-security/chipsec/chipsec_git.bb
-+++ b/recipes-security/chipsec/chipsec_git.bb
-@@ -7,7 +7,7 @@ DESCRIPTION = "CHIPSEC is a framework for analyzing the security \
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=bc2d1f9b427be5fb63f6af9da56f7c5d"
- 
--SRC_URI = "git://github.com/chipsec/chipsec.git;branch=master \
-+SRC_URI = "git://github.com/chipsec/chipsec.git;branch=master;protocol=https \
-           "
- 
- SRCREV = "b2a61684826dc8b9f622a844a40efea579cd7e7d"
-diff --git a/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb b/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
-index 627496f..fcf044a 100644
---- a/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
-+++ b/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
-@@ -10,7 +10,7 @@ LICENSE = "GPL-2.0"
- LIC_FILES_CHKSUM = "file://COPYING;md5=ecabc31e90311da843753ba772885d9f"
- 
- SRCREV ="d6b884f3b72b8a42b21da863836569ef6836c2ea"
--SRC_URI = " git://github.com/fail2ban/fail2ban.git;branch=0.11 \
-+SRC_URI = " git://github.com/fail2ban/fail2ban.git;branch=0.11;protocol=https \
-         file://initd \
-         file://run-ptest \
- "
-diff --git a/recipes-security/fscrypt/fscrypt_1.0.0.bb b/recipes-security/fscrypt/fscrypt_1.0.0.bb
-index a70d310..66bf429 100644
---- a/recipes-security/fscrypt/fscrypt_1.0.0.bb
-+++ b/recipes-security/fscrypt/fscrypt_1.0.0.bb
-@@ -14,7 +14,7 @@ BBCLASSEXTEND = "native nativesdk"
- DEPENDS += "go-dep-native libpam"
- 
- SRCREV = "92b1e9a8670ccd3916a7d24a06cab1e4c9815bc4"
--SRC_URI = "git://github.com/google/fscrypt.git"
-+SRC_URI = "git://github.com/google/fscrypt.git;branch=master;protocol=https"
- GO_IMPORT = "import"
- 
- S = "${WORKDIR}/git"
-diff --git a/recipes-security/fscryptctl/fscryptctl_1.0.0.bb b/recipes-security/fscryptctl/fscryptctl_1.0.0.bb
-index 26f549b..d319e48 100644
---- a/recipes-security/fscryptctl/fscryptctl_1.0.0.bb
-+++ b/recipes-security/fscryptctl/fscryptctl_1.0.0.bb
-@@ -10,7 +10,7 @@ LICENSE = "Apache-2.0"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
- 
- SRCREV = "56b898c896240328adef7407090215abbe9ee03d"
--SRC_URI = "git://github.com/google/fscryptctl.git"
-+SRC_URI = "git://github.com/google/fscryptctl.git;branch=master;protocol=https"
- 
- S = "${WORKDIR}/git"
- 
-diff --git a/recipes-security/google-authenticator-libpam/google-authenticator-libpam_1.08.bb b/recipes-security/google-authenticator-libpam/google-authenticator-libpam_1.08.bb
-index 4ab8374..e8ddf29 100644
---- a/recipes-security/google-authenticator-libpam/google-authenticator-libpam_1.08.bb
-+++ b/recipes-security/google-authenticator-libpam/google-authenticator-libpam_1.08.bb
-@@ -3,7 +3,7 @@ HOME_PAGE = "https://github.com/google/google-authenticator-libpam"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
- LICENSE = "Apache-2.0"
- 
--SRC_URI = "git://github.com/google/google-authenticator-libpam.git"
-+SRC_URI = "git://github.com/google/google-authenticator-libpam.git;branch=master;protocol=https"
- SRCREV = "2c7415d950fb0b4a7f779f045910666447b100ef"
- 
- DEPENDS = "libpam"
-diff --git a/recipes-security/libest/libest_3.2.0.bb b/recipes-security/libest/libest_3.2.0.bb
-index fda2df4..31fbe3c 100644
---- a/recipes-security/libest/libest_3.2.0.bb
-+++ b/recipes-security/libest/libest_3.2.0.bb
-@@ -6,7 +6,7 @@ LICENSE = "OpenSSL"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=ecb78acde8e3b795de8ef6b61aed5885"
- 
- SRCREV = "4ca02c6d7540f2b1bcea278a4fbe373daac7103b"
--SRC_URI = "git://github.com/cisco/libest;branch=main"
-+SRC_URI = "git://github.com/cisco/libest;branch=main;protocol=https"
- 
- DEPENDS = "openssl"
- 
-diff --git a/recipes-security/libmspack/libmspack_1.9.1.bb b/recipes-security/libmspack/libmspack_1.9.1.bb
-index 8c288be..65db10f 100644
---- a/recipes-security/libmspack/libmspack_1.9.1.bb
-+++ b/recipes-security/libmspack/libmspack_1.9.1.bb
-@@ -7,7 +7,7 @@ DEPENDS = ""
- LIC_FILES_CHKSUM = "file://COPYING.LIB;beginline=1;endline=2;md5=5b1fd1f66ef926b3c8a5bb00a72a28dd"
- 
- SRCREV = "63d3faf90423a4a6c174539a7d32111a840adadc"
--SRC_URI = "git://github.com/kyz/libmspack.git"
-+SRC_URI = "git://github.com/kyz/libmspack.git;branch=master;protocol=https"
- 
- inherit autotools
- 
-diff --git a/recipes-security/ncrack/ncrack_0.7.bb b/recipes-security/ncrack/ncrack_0.7.bb
-index 8b221e5..f151e4e 100644
---- a/recipes-security/ncrack/ncrack_0.7.bb
-+++ b/recipes-security/ncrack/ncrack_0.7.bb
-@@ -7,7 +7,7 @@ LICENSE = "GPL-2.0"
- LIC_FILES_CHKSUM = "file://COPYING;beginline=7;endline=12;md5=66938a7e5b4c118eda78271de14874c2"
- 
- SRCREV = "dc570e7e3cec1fb176c0168eaedc723084bd0426"
--SRC_URI = "git://github.com/nmap/ncrack.git"
-+SRC_URI = "git://github.com/nmap/ncrack.git;branch=master;protocol=https"
- 
- DEPENDS = "openssl zlib"
- 
-diff --git a/recipes-security/nikto/nikto_2.1.6.bb b/recipes-security/nikto/nikto_2.1.6.bb
-index 242f3ac..8542d69 100644
---- a/recipes-security/nikto/nikto_2.1.6.bb
-+++ b/recipes-security/nikto/nikto_2.1.6.bb
-@@ -7,7 +7,7 @@ LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0-only;md5=801f80980d171dd6425610833a22dbe6"
- 
- SRCREV = "f1bbd1a8756c076c8fd4f4dd0bc34a8ef215ae79"
--SRC_URI = "git://github.com/sullo/nikto.git \
-+SRC_URI = "git://github.com/sullo/nikto.git;branch=master;protocol=https \
-            file://location.patch"
- 
- S = "${WORKDIR}/git/program"
+diff --git a/recipes-devtools/flex/flex_%.bbappend b/recipes-devtools/flex/flex_%.bbappend
+new file mode 100644
+index 0000000..898c75a
+--- /dev/null
++++ b/recipes-devtools/flex/flex_%.bbappend
+@@ -0,0 +1,3 @@
++FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
++
++DEPENDS:append:class-nativesdk:mingw32 = " nativesdk-mingw-libgnurx"
 -- 
-2.25.1
+2.33.1
 
 
