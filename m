@@ -1,134 +1,100 @@
-Return-Path: <pidge@pidge.org>
+Return-Path: <brgl@bgdev.pl>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 33A8FC433EF
-	for <webhook@archiver.kernel.org>; Tue,  9 Nov 2021 13:54:56 +0000 (UTC)
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
- [209.85.128.46])
- by mx.groups.io with SMTP id smtpd.web10.12090.1636466094289230029
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 27FBFC433EF
+	for <webhook@archiver.kernel.org>; Tue,  9 Nov 2021 14:43:20 +0000 (UTC)
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
+ [209.85.221.43])
+ by mx.groups.io with SMTP id smtpd.web08.13052.1636468999369801116
  for <yocto@lists.yoctoproject.org>;
- Tue, 09 Nov 2021 05:54:54 -0800
+ Tue, 09 Nov 2021 06:43:19 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@pidge.org header.s=google header.b=e48g4oHv;
- spf=pass (domain: pidge.org, ip: 209.85.128.46, mailfrom: pidge@pidge.org)
-Received: by mail-wm1-f46.google.com with SMTP id
- c71-20020a1c9a4a000000b0032cdcc8cbafso2311216wme.3
+ dkim=pass header.i=@bgdev-pl.20210112.gappssmtp.com header.s=20210112
+ header.b=c9vNClUv;
+ spf=none, err=SPF record not found (domain: bgdev.pl, ip: 209.85.221.43,
+ mailfrom: brgl@bgdev.pl)
+Received: by mail-wr1-f43.google.com with SMTP id d3so33393823wrh.8
         for <yocto@lists.yoctoproject.org>;
- Tue, 09 Nov 2021 05:54:53 -0800 (PST)
+ Tue, 09 Nov 2021 06:43:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pidge.org; s=google;
-        h=mime-version:from:date:message-id:subject:to:cc;
-        bh=KrcXYR8NZYdeYoXtDRZspznFoxn35bKHztEzlk8OyQg=;
-        b=e48g4oHv7AVt7a2JlCkSNIRYeyGQebCf6eVPiEmLQ7zB6NcNU1/tCfU3IO/GmXZI0F
-         5pV9plS8I2u8CwvwLdndw5PKRTZehRaTFJbhbUX/wfx7Yk5YAqkfhPcYdz9u1VWLKsQ5
-         JT7XhATMojq0x4rMhGoVEVaXwtq6sWogKlDQiQWgr9NXPOGMhATmb4hO6808y5yOYmaJ
-         Yi3MC/l/y18FOyV328E+1yw272Ms+TBvG3+8rTwoS4Wx2b24rUpEJIPtK5dvQte2IBnY
-         jE4rpAlmJC+4BDRADFRbC0GF0wB6Q8xQMOpsgkEvyMXwVkGZ/Sa1JrtbNuMpKQDkBm8Y
-         R+hQ==
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=h4L6YWlqt/7UjRobG2Q0F7RK9QBU0kOQ+3nHIsYxhhE=;
+        b=c9vNClUvQ+sOIT19XZREdEr/X8dPa8AiBINAoTKJPSsPGCIicB+YkpFFikA+LqILWy
+         /GedQSLLFZHCpV7RMgYvQhqFKqEkS60m+I+X55hgDkr6Eo6ol60SgvvrmHKk2HU0KjJp
+         PX4M9RdxdSqzXgBUOcArMRlUBTO1j/p+fSiBrBVy8fL0xRd8z40z4BEyMeqyfo+E1rNx
+         5S99uoMtk2qkSSejrwNA/PtsiS2I/4GMLqKosR5gJg3yxrv6EJVZfa4a4voO0TtKr6dE
+         Dp74C7tQs312NcpteSfRCDd30pDOC95kw968Q2IZfxFCL7mjcK4s4fBOQLqFzNVg+igE
+         ZbdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-        bh=KrcXYR8NZYdeYoXtDRZspznFoxn35bKHztEzlk8OyQg=;
-        b=E/wwoMgC0BTWhf/SG9WdwN168Mx1oeMoWYWk5XskwCwleSETTIrRw+YBFHhKYbLghM
-         0df7wLv06vDOYAcJhIv99gjVhk0B3A1ocHzpWnPlLFYDdGbjTHKfN6QLOJbApCodrBEr
-         K81qy5Ajp1mJQujpk6Uko+/OhrKQ4HlDST7WwsSnE8RNpVhDpfa53/I9U+fFiine31Aj
-         aDGwwITa7ZKfG7HdX9gGpaNLk++s7dN/0+LdRM98M8WrzLRHFq8mOGpvySyLkINEJ3cw
-         Uyucot+jq4rmrxunezjn6Nt3BSCyIazsFOzy/cK9hp6aOph+mo1A3a/8xUQ88IUs0QCt
-         GpgA==
-X-Gm-Message-State: AOAM530VixbH43FlRKctvzp86xIzZeiBRbQklFhPvpxz4R+hd5zrXO6w
-	AGeURhx9ouA74mkiuOd9JIimJ+bt4P5xqJ6EQJU5DJm4Ujtf15pkDpw=
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=h4L6YWlqt/7UjRobG2Q0F7RK9QBU0kOQ+3nHIsYxhhE=;
+        b=CFzTE+wFGOgkZEPS3HKOnw00SvxRR4fsPXidZEC2lI1QP3iT+BT6kLpB/MqUJdNM26
+         HawkDD/6C/EB8PNXd9Zn8yWLEYZjcffvYJSN++YMm4pPajEVnVFcKsW6yr6k1NWBvcLv
+         /L0DiUTyqfDlnCGmFm35bJNLVcPetsZBnJa0U8zV6PQ9QnVVfyGoPCKcxkt2ydNfp6v7
+         wklKpQxTGIs+FGaq8kYXbcu8jDYIrKiscWdC+2FWt0/uMQrNWUx8Grz8jBJM9zgN5FLc
+         Ukd0LEm4CGQacMg6XFpuN+o6yHtmcH3gUBpug3rUsn48RLreoMcgBvUkk9B7KDYYfX/p
+         fQXg==
+X-Gm-Message-State: AOAM531qxQfOzqaZdyZkJgXh1fstPB5C2I0VHVRWwcqusdmrGO6ZwwkI
+	23tCXl5TC7A1e+VNzxiFkg2pkjNOjRXkiA==
 X-Google-Smtp-Source: 
- ABdhPJwjpU5C/rdkUwXOKYmXPt8586S7+tN+cKFd93fl2KjoVmIvsqjrBoxdeGbDYaITKJW5cu6FDq6WjYhpkkOVKAc=
-X-Received: by 2002:a7b:c049:: with SMTP id u9mr7488112wmc.102.1636466092283;
- Tue, 09 Nov 2021 05:54:52 -0800 (PST)
-MIME-Version: 1.0
-From: =?UTF-8?B?RWlsw61zIE7DrSBGaGxhbm5hZ8OhaW4=?= <pidge@pidge.org>
-Date: Tue, 9 Nov 2021 13:54:16 +0000
-Message-ID: 
- <CALnXEm5R-BxsH5UYAg4czv0Q0vdScDtHbRC6nGnj8HyGXu+tSQ@mail.gmail.com>
-Subject: [meta-zephyr] Issues and possible solutions
+ ABdhPJxG0Dk0h5BQ1S8iwSxM2o4CsocccQCI15SdTVGBWY8bp+kiyOPhhrwSak8mXXIEemHJWcQJag==
+X-Received: by 2002:a5d:4b06:: with SMTP id v6mr9904682wrq.194.1636468997446;
+        Tue, 09 Nov 2021 06:43:17 -0800 (PST)
+Received: from debian-brgl.home ([2a01:cb1d:334:ac00:7d50:ff5:f5c1:e225])
+        by smtp.gmail.com with ESMTPSA id
+ d24sm2644302wmb.35.2021.11.09.06.43.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Nov 2021 06:43:17 -0800 (PST)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
 To: yocto@lists.yoctoproject.org
-Cc: brgl@bgdev.pl, "Saini, Naveen Kumar" <naveen.kumar.saini@intel.com>,
-	Diego Sueiro <Diego.Sueiro@arm.com>, Jon Mason <Jon.Mason@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: [meta-zephyr][PATCH v2 0/4] zephyr-lvgl: make it possible to build
+ the zephyr lvgl sample
+Date: Tue,  9 Nov 2021 15:43:07 +0100
+Message-Id: <20211109144311.26110-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.30.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 09 Nov 2021 13:54:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55285
+ <yocto@lists.yoctoproject.org>; Tue, 09 Nov 2021 14:43:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55286
 
-Following on from Bartosz's recent patch, Naveen suggested I take this
-to the list. We've been recently discussing some of the drawbacks of
-meta-zephyr between myself, Diego Sueiro and Jon Mason at ARM and
-Bartosz Golaszewski and we've come up with a few ideas we want to
-propose. (Diego, Jon, Bartosz, please add anything I may have missed
-from my notes)
+This series adds a recipe for the lvgl sample from zephyr. Due to how
+meta-zephyr works we need to pull in some additional modules for the
+build to succeed.
 
-The main issues we've seen with the layer are:
+The first three patches are just coding style improvements, the last patch
+adds the recipe.
 
-1. No separation of BSP layer and functionality.
-2. Limited machine support.
-3. Kernel SRC_URI is incomplete.
-4. Needing to maintain two sets of build information/configuration.
+v1 -> v2:
+- rebase patches on top of current master
 
-I'd like to propose a few solutions to this and get your thoughts and
-feedback before we go further.
+Bartosz Golaszewski (4):
+  zephyr-kernel-src: order the SRCREV assignments alphabetically
+  zephyr-kernel-src: use the preferred coding style for multi-line
+    assignments
+  zephyr-kernel-src: order git repos alphabetically
+  zephyr-lvgl: new recipe
 
-First, I would like to refactor the layer into a slightly different setup:
+ ...0001-cmake-added-missing-file-ext-to.patch | 42 +++++++++++++++++++
+ .../zephyr-kernel/zephyr-kernel-common.inc    |  1 +
+ .../zephyr-kernel/zephyr-kernel-src-2.6.1.inc | 20 +++++----
+ .../zephyr-kernel/zephyr-kernel-src-2.7.0.inc | 18 ++++----
+ .../zephyr-kernel/zephyr-kernel-src.inc       |  5 ++-
+ recipes-kernel/zephyr-kernel/zephyr-lvgl.bb   | 11 +++++
+ 6 files changed, 81 insertions(+), 16 deletions(-)
+ create mode 100644 recipes-kernel/zephyr-kernel/files/0001-cmake-added-missing-file-ext-to.patch
+ create mode 100644 recipes-kernel/zephyr-kernel/zephyr-lvgl.bb
 
-meta-zephyr
-  |-meta-zephyr-bsp
-  |-meta-zephyr-core
-  |-meta-zephyr-west
+-- 
+2.30.1
 
-Where:
-meta-zephyr-bsp: contains MACHINE configs and base kernel recipes and
-nothing more.
-meta-zephyr-core: contains images (zephyr-hello-world.bb, etc),
-classes, and nativesdk bits.
-meta-zephyr-west: contains a west build implementation and additions
-to the sdk needed for this.
-
-There are a few reasons why I'm proposing this.
-
-meta-zephyr-bsp:
-For YP compatibility we really should be splitting bsp layers out from
-core functionality.
-
-Secondly, I've been working on a meta-zephyr-bsp layer that contains
-285 machine configurations autogenerated from zephyr. You can view the
-layer here https://booting.oniroproject.org/distro/meta-zephyr-bsp and
-the patch to zephyr I use to generate these here
-https://booting.oniroproject.org/distro/meta-zephyr-bsp/-/blob/dunfell/recipes-core/meta/files/0001-zephyr-Export-an-OpenEmbedded-machine-config.patch.
-It's missing some bits, specifically around do_flash_usb, but it gets
-us many more machines than what we currently have. (keep in mind, this
-is dunfell and zephyr v2.6.0 atm)
-
-I also want to split out the base kernel bits (zephyr-kernel*) into
-the bsp layer and move all the "image" recipes like zephyr-blinky, etc
-into meta-zephyr-core/meta-zephyr-core/recipes-core/images.
-
-meta-zephyr-west:
-We need to do a lot of MACHINE_OVERRIDES with ZEPHYR_MODULES. Short of
-tracking all of this (which is a maintenance nightmare), or generating
-them from KConfigs, the only way Diego and I have figured out how to
-do this is to offload that onto zephyr itself.
-
-One way we've looked at this is that we can do it via a west.bbclass
-where bitbake need not know anything about the oecmake flags, it just
-essentially shells out and runs west. Modifying the Kconfigs is done
-via menuconfig as usual. Doing this avoids the need to do all those
-overrides and track every single module in zephyr (or not in zephyr
-even). As well, those MACHINE_OVERRIDES have no knowledge of what is
-in the Kconfig, so this would allow us to detangle some of that.
-
-Both Diego and I have come up with a solution for this (mine bbclass
-based, Diego doing do_compile overrides directly in the recipe). My
-thought would be extending the meta-zephyr layer with a
-meta-zephyr-west layer inside that would allow people to use both the
-CMAKE way of building zephyr or the west way, depending on their needs
-but we're open for some suggestions/ideas.
-
--b
 
