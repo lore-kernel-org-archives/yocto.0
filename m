@@ -1,99 +1,86 @@
-Return-Path: <joel.winarske@gmail.com>
+Return-Path: <bluelightning@bluelightning.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 64E9FC433EF
-	for <webhook@archiver.kernel.org>; Tue,  9 Nov 2021 22:09:02 +0000 (UTC)
-Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com
- [209.85.222.46])
- by mx.groups.io with SMTP id smtpd.web12.3589.1636495741465365189
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 66E19C433FE
+	for <webhook@archiver.kernel.org>; Tue,  9 Nov 2021 23:11:36 +0000 (UTC)
+Received: from mail-61-r20.ipv4.per01.ds.network
+ (mail-61-r20.ipv4.per01.ds.network [27.123.24.217])
+ by mx.groups.io with SMTP id smtpd.web11.4489.1636499493974040118
  for <yocto@lists.yoctoproject.org>;
- Tue, 09 Nov 2021 14:09:01 -0800
+ Tue, 09 Nov 2021 15:11:35 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=LA1LA3kd;
- spf=pass (domain: gmail.com, ip: 209.85.222.46,
- mailfrom: joel.winarske@gmail.com)
-Received: by mail-ua1-f46.google.com with SMTP id v3so648943uam.10
-        for <yocto@lists.yoctoproject.org>;
- Tue, 09 Nov 2021 14:09:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=BmMCP6Dq5pz2PuSC9Hc/ZUgQJx6XLD4vFZamZ0pXhl4=;
-        b=LA1LA3kd5DAs0iEC5ldGjWibs63LdSiVlMN9s267cqQJrC+XPmu4bYgjmoG9rqgr/c
-         0KwEA1qNhalfblRmOmVDtJKpAI08H3KyEP5Eo/A0DZryeyn7QOvMZ/k00igiPorKizhk
-         vnt/dYQta1yKAaWCMgWQkwa/7w0DX6al1LqiRRHIYGD3495rZRTyBy8cvGwfmz712roT
-         ZEdjJ6RK+9rN2F+Znx7JktF5XGqRYAfNKZTLr5SKIqr9eW0asU/GfF9Ywjj/MQAyeQ6b
-         roRrfBCqg3nia3hLUx2UFoyn12KaYewmtMY7NnpiZxwGM+vT07SEGPX8py4MqiSL7qx9
-         T0WA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=BmMCP6Dq5pz2PuSC9Hc/ZUgQJx6XLD4vFZamZ0pXhl4=;
-        b=FBZOnajLTA/ObBdqWxbQUA0Iz1nYknszr+9uzHIfNzFZbMooH3wQ7SpmfGzsuUsr37
-         SZk1u0r5nFrnrfXVY3tYnH2qmSMdGk2RUbcOXb26eS62U+DJzdhUnz/3fN7PQqX0vgRB
-         249TmzkykJ6mVkpCN+SHSt5ZH2fGghIaSxovllGqH4w+fvqCAykHuEGQ876cD2q/a2iD
-         H63bKBih6uVHb+zNqNKumRuTQhJ0szjn8jDm2qycWNjh487cym87FvZiCbNOzp0ZDRJ/
-         cDzRd5mtQUFGQgBTqeiiO5vziamSqkUwUBCpa2cM2MbufZAAFJC1NEDme4kHFw7YnZgu
-         9QOQ==
-X-Gm-Message-State: AOAM532z2AkW5AuQrkhCPQc78gy9uUYJTIcfRMZttNPGH9hhMCNQbBAp
-	Cab3lmvLbEyJGRO+dyOA2jVfFzzMyrSGXYN86xPBBpEHBAw=
-X-Google-Smtp-Source: 
- ABdhPJwJmnN8IstVwgeD+sMDFPzn/Hzljdb/I35VpA/UCb9Efc19V/bDNY9z+noGnbW61VT5wprA26Nx/P45uKgso04=
-X-Received: by 2002:a67:b005:: with SMTP id z5mr118897098vse.59.1636495740292;
- Tue, 09 Nov 2021 14:09:00 -0800 (PST)
+ dkim=fail reason="no key for verify" header.i=@softec.co.nz header.s=default
+ header.b=rcnCy2J6;
+ spf=none, err=permanent DNS error (domain: bluelightning.org,
+ ip: 27.123.24.217, mailfrom: bluelightning@bluelightning.org)
+Received: from server-72-r70.ipv4.per01.ds.network (cp-fp06.syd02.ds.network
+ [122.201.124.108])
+	by halon-out02.au.ds.network (Halon) with ESMTPS
+	id 329e3d8c-41b2-11ec-bc81-f8bc1204ff90;
+	Wed, 10 Nov 2021 07:10:15 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=softec.co.nz; s=default; h=Content-Type:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=YDQd+RDBvSWtzW6cpv8RGgwZKSmmrT8I2aoJgK4cDFM=; b=rcnCy2J6kLZaStJcT9S6AvHpKd
+	1vkUbWEOaaT43HhL3nLiSREt9S00qoxK0/3CpJQ85y/TeiOO7xSQzvcVHFXosyWSpXUAc1wuIFiPC
+	WQLwVocfzvp3xsmMTBYzWZu0tWi3+qgrjAvtgcDEK12FlkuTgRYwqX8c94sg+7gLwHRPx/v5x5Snh
+	wHPW4Ktq1isCvjAzYDyDOt12awS8w8u0Ru3HJ4EltZUGK4IrSFnQHVXdbn+l0H6kgGPdbOTqq4hQH
+	JT97B9n+g/sLhZ6nTPSTIEi+sLqfLs4tzi9vWwC9hkBf42a7/CwO6GUxQAhxgNR9V/S8wg04hhgiv
+	xZmNw+mA==;
+Received: from [151.210.145.152] (port=15158 helo=linc.localnet)
+	by cp-fp06.syd02.ds.network with esmtpsa  (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <bluelightning@bluelightning.org>)
+	id 1mkaH3-001Gpw-4q; Wed, 10 Nov 2021 10:11:29 +1100
+From: Paul Eggleton <bluelightning@bluelightning.org>
+To: jared_terry@dell.com
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] [meta-qt4]
+Date: Wed, 10 Nov 2021 12:11:28 +1300
+Message-ID: <12104483.O9o76ZdvQC@linc>
+In-Reply-To: <29451.1636491939328486440@lists.yoctoproject.org>
+References: <6ea3645f-a4ac-47e1-bb03-969aaa5b6791@www.fastmail.com>
+ <29451.1636491939328486440@lists.yoctoproject.org>
 MIME-Version: 1.0
-From: Joel Winarske <joel.winarske@gmail.com>
-Date: Tue, 9 Nov 2021 14:08:49 -0800
-Message-ID: 
- <CABKMkPK4pBDU2aVsz8pc0UFzjJhLQvJcaHoLeEz9ZdJD2SJg0g@mail.gmail.com>
-Subject: pre-built native only tool for native and nativesdk
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000046d2de05d0625b39"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cp-fp06.syd02.ds.network
+X-AntiAbuse: Original Domain - lists.yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - bluelightning.org
+X-Get-Message-Sender-Via: cp-fp06.syd02.ds.network: authenticated_id:
+ paul@softec.co.nz
+X-Authenticated-Sender: cp-fp06.syd02.ds.network: paul@softec.co.nz
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 09 Nov 2021 22:09:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55293
+ <yocto@lists.yoctoproject.org>; Tue, 09 Nov 2021 23:11:36 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55294
 
---00000000000046d2de05d0625b39
-Content-Type: text/plain; charset="UTF-8"
+Hi Jared / all
 
-I'm trying to sort out how to install a pre-built host-only tool for native
-and nativesdk only.
+On Wednesday, 10 November 2021 10:05:39 NZDT jared_terry@dell.com wrote:
+> I don't see a response yet from Paul Eggleton, how do we proceeded in
+> getting this fixed?
 
-Using `inherit native` my-recipe-native and nativesdk-my-recipe both build
-fine, only -c populate_sdk generates "rdepends upon non-existent task
-do_package_write_rpm".  Looking at native.bbclass it includes `inherit
-nopackage` which explains the error.
+My apologies - I've applied the fix and pushed it to master, thank you!
 
-If I remove the `inherit native` and update my recipe name to not include
-`-native` I can build the -native version, only I can't build
-nativesdk-*-native.  A target build is invalid.
+I think it's fair to say this layer is pretty much unmaintained at the moment. 
+I'd be more than happy if someone wants to take it over, FWIW.
 
-What is the recommended pattern to do this, and is there an example of this
-anywhere?
+Cheers
+Paul
 
 
-Thanks,
-Joel
 
---00000000000046d2de05d0625b39
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>I&#39;m trying to sort out how to install a pre-built=
- host-only tool for native and nativesdk only.</div><div><br></div><div>Usi=
-ng `inherit native` my-recipe-native and nativesdk-my-recipe both build fin=
-e, only -c populate_sdk generates <code>&quot;rdepends upon non-existent ta=
-sk do_package_write_rpm&quot;</code>.=C2=A0 Looking at native.bbclass it in=
-cludes `inherit nopackage` which explains the error.<br></div><div><br></di=
-v><div>If I remove the `inherit native` and update my recipe name to not in=
-clude `-native` I can build the -native version, only I can&#39;t build nat=
-ivesdk-*-native.=C2=A0 A target build is invalid.<br></div><div><br></div>W=
-hat is the recommended pattern to do this, and is there an example of this =
-anywhere?<br><div><br></div><div><br></div><div>Thanks,</div><div>Joel<br><=
-/div></div>
-
---00000000000046d2de05d0625b39--
 
