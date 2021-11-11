@@ -1,95 +1,126 @@
-Return-Path: <marek.belisko@gmail.com>
+Return-Path: <foss@0leil.net>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 61671C433FE
-	for <webhook@archiver.kernel.org>; Thu, 11 Nov 2021 07:45:01 +0000 (UTC)
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com
- [209.85.219.176])
- by mx.groups.io with SMTP id smtpd.web09.7697.1636616700526851940
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 25385C433EF
+	for <webhook@archiver.kernel.org>; Thu, 11 Nov 2021 08:33:20 +0000 (UTC)
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net
+ [217.70.183.199])
+ by mx.groups.io with SMTP id smtpd.web09.8016.1636619594307540547
  for <yocto@lists.yoctoproject.org>;
- Wed, 10 Nov 2021 23:45:00 -0800
+ Thu, 11 Nov 2021 00:33:14 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=WVWNPM5N;
- spf=pass (domain: gmail.com, ip: 209.85.219.176,
- mailfrom: marek.belisko@gmail.com)
-Received: by mail-yb1-f176.google.com with SMTP id v64so12987816ybi.5
-        for <yocto@lists.yoctoproject.org>;
- Wed, 10 Nov 2021 23:45:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=m2sMCfthd5BjQX2ZnxJEAbkHd4w7PjeLaFvZI0R3Drk=;
-        b=WVWNPM5NDfvbXPQkHW8jNqg8Cv7eV0lh3vxjocByGZOU8T3sv0XjulzSpKYurKeb2d
-         xKXvjJf/Yf1/MsBoAq/Bq4d4D2PhThY4rmEnyuva+zBYxKzMItDLNVVLyyMZBFwrqLZB
-         4AfRmXmt3D/EtzLwj6FO7b9WIX+QuZnXqlObzgShxHj801n3RgA347w7uloL2OL+tRgM
-         DT8Qw08w7wzN2b16H6p4cpHkNB9Ek5tJQzy67+8IwqFoK7qo4lVbC0rnP1NU4uUY5x5W
-         c9d8TJiewDj0XtoZhWT795TMPuIjf89Mjibs3FOeJcInPu/UD8LF4xnfnLwV1di3AC4k
-         xLQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=m2sMCfthd5BjQX2ZnxJEAbkHd4w7PjeLaFvZI0R3Drk=;
-        b=TmrKxXW/qowh6dS2L0l+k7rdYmCzFuf8I+rt9fJJaIeKF1YxrbYnddiGFePFTk/lnX
-         D7qVe3M30GYO3GweNZ8YlwB2BlrCRzmIz3M21oA66eUVnvENAVRbVJnEEIDTSMMx14td
-         5ll/5eAUoXymgWfFETOYNNXDhaiEwPqxST2Rm5SBrBlK2b4PTPdY7gn1cnwHYeq3oN0m
-         dHS+JoAgsie0/SOJ1vKshR8cnTqADTMQPrIPvPXwGdGFaf4s7pSCAPpReKGdyhuTx+XF
-         4yzuDwPmnjdL52YJStUiEuSESZWLzBpF0mGIbTFMkaYeOZbPd4vG6rlAUVBRZZjn1JJb
-         LnXA==
-X-Gm-Message-State: AOAM532V6A32RES5HV46z28DijjimD6h2jd5sgdUdN0C2D/SciS/1QAy
-	HO/Le/OTqeZ74RhjL2gh3Poc4Wty/vkSkeDs4KhWBsg8
-X-Google-Smtp-Source: 
- ABdhPJxLPzzzWd8qipGlgXAf1NFf/OJNrGKDkXukF3B8NozsZFo1tn2eHohK5tZpTpIe2zfWgEjHJ92LGt9/npJLEoA=
-X-Received: by 2002:a05:6902:704:: with SMTP id
- k4mr6654009ybt.201.1636616699383;
- Wed, 10 Nov 2021 23:44:59 -0800 (PST)
+ dkim=missing;
+ spf=none, err=permanent DNS error (domain: 0leil.net, ip: 217.70.183.199,
+ mailfrom: foss@0leil.net)
+Received: (Authenticated sender: foss@0leil.net)
+	by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id C60D7FF802;
+	Thu, 11 Nov 2021 08:33:11 +0000 (UTC)
+Date: Thu, 11 Nov 2021 09:33:07 +0100
+From: Quentin Schulz <foss@0leil.net>
+To: yocto@lists.yoctoproject.org, vishal.rana118@gmail.com
+Subject: 
+ =?US-ASCII?Q?Re=3A_=5Byocto=5D_Unable_to_parse_/home/PATH/meta-swupdat?=
+ =?US-ASCII?Q?e/recipes-support/swupdate/swupdate=5Fgit=2Ebb_=23swupdate?=
+In-Reply-To: <oXe3.1636605764505636153.kXhn@lists.yoctoproject.org>
+References: <oXe3.1636605764505636153.kXhn@lists.yoctoproject.org>
+Message-ID: <A08FCEE5-72E6-47DF-A80E-164F77D83EA2@0leil.net>
 MIME-Version: 1.0
-References: 
- <CAAfyv36OOxr2XHq6bk=XrA829X+kEdx3pdv2WoQytW5A3SuxCg@mail.gmail.com>
-In-Reply-To: 
- <CAAfyv36OOxr2XHq6bk=XrA829X+kEdx3pdv2WoQytW5A3SuxCg@mail.gmail.com>
-From: Belisko Marek <marek.belisko@gmail.com>
-Date: Thu, 11 Nov 2021 08:44:48 +0100
-Message-ID: 
- <CAAfyv34cx7i5HHiHEOYTK1-2eBywBTRv6jB8RcD86Q5mRQJvRQ@mail.gmail.com>
-Subject: [meta-rockchip] dunfell: u-boot build issue when added patch to
- u-boot
-To: Yocto <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 11 Nov 2021 07:45:01 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55309
+ <yocto@lists.yoctoproject.org>; Thu, 11 Nov 2021 08:33:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55310
 
-Hello,
+Hi Vishal,
 
-I'm trying to integrate mender for tinker-board-s using meta-rockchip
-dunfell branch. When added meta-mender which add few patches to
-u-boot I'm seeing u-boot compilation issues like:
+On November 11, 2021 5:42:44 AM GMT+01:00, vishal=2Erana118@gmail=2Ecom wr=
+ote:
+>Hi Team,
+>
+>I am new with Yocto and SWupdate framework=2E I am trying to integrate SW=
+update framework in our existing yocto code=2E
+>I am using *SUMO version*=2E while trying to build kernel image I am gett=
+ing below error=2E
+>*MACHINE=3Dimx6s-comg-mtech DISTRO=3Dfsl-imx-fb EULA=3D1 source setup-env=
+ironment build-mtech*
+>*bitbake linux-comg-mtech-4=2E14=2E78=2Elocal*
+>
+>////////////////////////////////////////////////////////Error log////////=
+///////////////////////////////////////////////////////////////////////////=
+//////////////////////////////////////////////////////
+>ERROR: Unable to parse /home/Mtech/Graphics_Gx_Mtech/Graphics_GX_Mtech/BS=
+P/yocto/sources/meta-swupdate/recipes-support/swupdate/swupdate_git=2Ebb
+>Traceback (most recent call last):
+>File "/home/Mtech/Graphics_Gx_Mtech/Graphics_GX_Mtech/BSP/yocto/sources/p=
+oky/bitbake/lib/bb/parse/__init__=2Epy", line 117, in handle(fn=3D'/home/Mt=
+ech/Graphics_Gx_Mtech/Graphics_GX_Mtech/BSP/yocto/sources/meta-swupdate/rec=
+ipes-support/swupdate/swupdate_git=2Ebb', data=3D<bb=2Edata_smart=2EDataSma=
+rt object at 0x7f2675a782b0>, include=3D0):
+>with data=2Einchistory=2Einclude(fn):
+>>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return h['handle=
+'](fn, data, include)
+>raise ParseError("not a BitBake file", fn)
+>File "/home/Mtech/Graphics_Gx_Mtech/Graphics_GX_Mtech/BSP/yocto/sources/p=
+oky/bitbake/lib/bb/parse/parse_py/BBHandler=2Epy", line 154, in handle(fn=
+=3D'/home/Mtech/Graphics_Gx_Mtech/Graphics_GX_Mtech/BSP/yocto/sources/meta-=
+swupdate/recipes-support/swupdate/swupdate_git=2Ebb', d=3D<bb=2Edata_smart=
+=2EDataSmart object at 0x7f2675a782b0>, include=3D0):
+>if ext !=3D "=2Ebbclass" and include =3D=3D 0:
+>>=C2=A0 =C2=A0 =C2=A0 =C2=A0 return ast=2Emulti_finalize(fn, d)
+>
+>File "/home/Mtech/Graphics_Gx_Mtech/Graphics_GX_Mtech/BSP/yocto/sources/p=
+oky/bitbake/lib/bb/parse/ast=2Epy", line 391, in multi_finalize(fn=3D'/home=
+/Mtech/Graphics_Gx_Mtech/Graphics_GX_Mtech/BSP/yocto/sources/meta-swupdate/=
+recipes-support/swupdate/swupdate_git=2Ebb', d=3D<bb=2Edata_smart=2EDataSma=
+rt object at 0x7f2675a782b0>):
+>logger=2Edebug(1, "Appending =2Ebbappend file %s to %s", append, fn)
+>>=C2=A0 =C2=A0 =C2=A0 =C2=A0 bb=2Eparse=2EBBHandler=2Ehandle(append, d, T=
+rue)
+>
+>File "/home/Mtech/Graphics_Gx_Mtech/Graphics_GX_Mtech/BSP/yocto/sources/p=
+oky/bitbake/lib/bb/parse/parse_py/BBHandler=2Epy", line 132, in handle(fn=
+=3D'/home/Mtech/Graphics_Gx_Mtech/Graphics_GX_Mtech/BSP/yocto/sources/meta-=
+mylayer/recipes-support/swupdate/swupdate_%d', d=3D<bb=2Edata_smart=2EDataS=
+mart object at 0x7f2675a782b0>, include=3DTrue):
+>
+>>=C2=A0 =C2=A0 abs_fn =3D resolve_file(fn, d)
+>
+>File "/home/Mtech/Graphics_Gx_Mtech/Graphics_GX_Mtech/BSP/yocto/sources/p=
+oky/bitbake/lib/bb/parse/__init__=2Epy", line 141, in resolve_file(fn=3D'/h=
+ome/Mtech/Graphics_Gx_Mtech/Graphics_GX_Mtech/BSP/yocto/sources/meta-mylaye=
+r/recipes-support/swupdate/swupdate_%d', d=3D<bb=2Edata_smart=2EDataSmart o=
+bject at 0x7f2675a782b0>):
+>if not os=2Epath=2Eisfile(fn):
+>>=C2=A0 =C2=A0 =C2=A0 =C2=A0 raise IOError(errno=2EENOENT, "file %s not f=
+ound" % fn)
+>
+>FileNotFoundError: [Errno 2] file /home/Mtech/Graphics_Gx_Mtech/Graphics_=
+GX_Mtech/BSP/yocto/sources/meta-mylayer/recipes-support/swupdate/swupdate_%=
+d not found
 
-Error: SPL image is too large (size 0x11000 than 0x8000)
-| Error: Bad parameters for image type
+What's the exact filename of files in the home/Mtech/Graphics_Gx_Mtech/Gra=
+phics_GX_Mtech/BSP/yocto/sources/meta-mylayer/recipes-support/swupdate/ dir=
+ectory?
 
-Error is clear to me but patches which mender adds are related mostly
-to the environment so I'm not sure how SPL can increase size. Any
-ideas on how to resolve this issue?
+I suspect that you have a swupdate_%d=2Ebbappend which isn't valid in bitb=
+ake=2E It should be swupdate_%=2Ebbappend=2E
 
-Thanks and regards,
+Cheers
+Quentin
 
-marek
-
-
---
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
-
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
+>/////////////////////////////////////////////////////////////////////////=
+///////////////////////////////////////////////////////////////////////////=
+///////////////////////////////////////////////////////////////////////////=
+///////////////////////////////////////
+>
+>Not able to understand the root cause of this because without adding "met=
+a-swupdate" layer I am able to build the code=2E
+>Please help me to resolve this issue=2E
+>
+>Regards,
+>Vishal Rana
 
