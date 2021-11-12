@@ -1,69 +1,52 @@
-Return-Path: <ross@burtonini.com>
+Return-Path: <bojanjov@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A8969C433EF
-	for <webhook@archiver.kernel.org>; Fri, 12 Nov 2021 14:03:09 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by mx.groups.io with SMTP id smtpd.web11.16096.1636725788675306365
- for <yocto@lists.yoctoproject.org>;
- Fri, 12 Nov 2021 06:03:08 -0800
-Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=pass (domain: arm.com, ip: 217.140.110.172, mailfrom: ross.burton@arm.com)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4D193ED1;
-	Fri, 12 Nov 2021 06:03:08 -0800 (PST)
-Received: from oss-tx204.lab.cambridge.arm.com
- (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D20483F70D;
-	Fri, 12 Nov 2021 06:03:07 -0800 (PST)
-From: Ross Burton <ross.burton@arm.com>
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 63171C433EF
+	for <webhook@archiver.kernel.org>; Fri, 12 Nov 2021 19:38:04 +0000 (UTC)
+Subject: Re: Cross-compile custom ROS2 package for Yocto #bitbake
 To: yocto@lists.yoctoproject.org
-Cc: jpewhacker@gmail.com
-Subject: [meta-mingw] [PATCH] dtc: update for recipe changes in oe-core
-Date: Fri, 12 Nov 2021 14:02:57 +0000
-Message-Id: <20211112140257.575574-1-ross.burton@arm.com>
-X-Mailer: git-send-email 2.25.1
+From: "bojankoce" <bojanjov@gmail.com>
+X-Originating-Location: =?utf-8?b?QXJwYWpvbiwgw45sZS1kZS1GcmFuY2UsIEZSICg5?=
+ =?utf-8?b?MS4xNzQuMjM1LjIwMSk=?=
+X-Originating-Platform: Windows Firefox 94
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Date: Fri, 12 Nov 2021 11:38:03 -0800
+References: <55121fce-4a5c-381d-6829-958f1789b5de@googlemail.com>
+In-Reply-To: <55121fce-4a5c-381d-6829-958f1789b5de@googlemail.com>
+Message-ID: <18988.1636745883858363081@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="YS5l01fZq5SE4175nWME"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 12 Nov 2021 14:03:09 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55323
+ <yocto@lists.yoctoproject.org>; Fri, 12 Nov 2021 19:38:04 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55324
 
-The tools now build for MinGW so we don't need to disable them, but
-as ncurses still fails we should continue to remove the bash RDEPENDS.
+--YS5l01fZq5SE4175nWME
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Ross Burton <ross.burton@arm.com>
----
- recipes-core/dtc/dtc_%.bbappend | 15 ---------------
- 1 file changed, 15 deletions(-)
+Hello, Matthias.
 
-diff --git a/recipes-core/dtc/dtc_%.bbappend b/recipes-core/dtc/dtc_%.bba=
-ppend
-index 2d27a0a..b71c46b 100644
---- a/recipes-core/dtc/dtc_%.bbappend
-+++ b/recipes-core/dtc/dtc_%.bbappend
-@@ -1,16 +1 @@
--
--do_configure:append:mingw32 () {
--		# don't try to build the other dtc components when installing libs
--		sed -i 's/install-lib: all/install-lib: libfdt/g' ${S}/Makefile
--}
--
--do_compile:mingw32 () {
--		oe_runmake libfdt
--}
--
--do_install:mingw32 () {
--		oe_runmake install-lib install-includes
--}
--
- RDEPENDS:${PN}-misc:remove:mingw32 =3D "bash"
--
---=20
-2.25.1
+It seems the issue was around naming. Now it works fine even without FILES:=
+${PN} at the end of .bb file.
+I am now good to move forward.
 
+Thank you very much for your assistance. It is really appreciated.
+
+Sincerely,
+Bojan.
+
+--YS5l01fZq5SE4175nWME
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello, Matthias. <br /><br />It seems the issue was around naming. Now it w=
+orks fine even without <code></code><code>FILES:${PN}</code> at the end of =
+.bb file. <br />I am now good to move forward. <br /><br />Thank you very m=
+uch for your assistance. It is really appreciated. <br /><br />Sincerely,<b=
+r />Bojan.
+
+--YS5l01fZq5SE4175nWME--
 
