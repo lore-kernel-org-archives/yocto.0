@@ -1,52 +1,43 @@
-Return-Path: <bojanjov@gmail.com>
+Return-Path: <akash.hadke@kpit.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 63171C433EF
-	for <webhook@archiver.kernel.org>; Fri, 12 Nov 2021 19:38:04 +0000 (UTC)
-Subject: Re: Cross-compile custom ROS2 package for Yocto #bitbake
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 027FFC433EF
+	for <webhook@archiver.kernel.org>; Sat, 13 Nov 2021 13:58:47 +0000 (UTC)
+Subject: Re: [meta-selinux][PATCH] openssh: don't overwrite sshd_config
+ unconditionally
 To: yocto@lists.yoctoproject.org
-From: "bojankoce" <bojanjov@gmail.com>
-X-Originating-Location: =?utf-8?b?QXJwYWpvbiwgw45sZS1kZS1GcmFuY2UsIEZSICg5?=
- =?utf-8?b?MS4xNzQuMjM1LjIwMSk=?=
-X-Originating-Platform: Windows Firefox 94
+From: "akash hadke" <akash.hadke@kpit.com>
+X-Originating-Location: DE (104.151.9.18)
+X-Originating-Platform: Linux Firefox 88
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Fri, 12 Nov 2021 11:38:03 -0800
-References: <55121fce-4a5c-381d-6829-958f1789b5de@googlemail.com>
-In-Reply-To: <55121fce-4a5c-381d-6829-958f1789b5de@googlemail.com>
-Message-ID: <18988.1636745883858363081@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="YS5l01fZq5SE4175nWME"
+Date: Sat, 13 Nov 2021 05:58:46 -0800
+References: 
+ <PNZPR01MB4224C79C0B030215B176AA2B904D9@PNZPR01MB4224.INDPRD01.PROD.OUTLOOK.COM>
+In-Reply-To: 
+ <PNZPR01MB4224C79C0B030215B176AA2B904D9@PNZPR01MB4224.INDPRD01.PROD.OUTLOOK.COM>
+Message-ID: <2512.1636811926670548003@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="B0aNrk7BFVL7kp12UiiI"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 12 Nov 2021 19:38:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55324
+ <yocto@lists.yoctoproject.org>; Sat, 13 Nov 2021 13:58:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55325
 
---YS5l01fZq5SE4175nWME
+--B0aNrk7BFVL7kp12UiiI
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello, Matthias.
+Hi,
 
-It seems the issue was around naming. Now it works fine even without FILES:=
-${PN} at the end of .bb file.
-I am now good to move forward.
+Is there any update for this patch?
 
-Thank you very much for your assistance. It is really appreciated.
-
-Sincerely,
-Bojan.
-
---YS5l01fZq5SE4175nWME
+--B0aNrk7BFVL7kp12UiiI
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello, Matthias. <br /><br />It seems the issue was around naming. Now it w=
-orks fine even without <code></code><code>FILES:${PN}</code> at the end of =
-.bb file. <br />I am now good to move forward. <br /><br />Thank you very m=
-uch for your assistance. It is really appreciated. <br /><br />Sincerely,<b=
-r />Bojan.
+Hi,<br /><br />Is there any update for this patch?
 
---YS5l01fZq5SE4175nWME--
+--B0aNrk7BFVL7kp12UiiI--
 
