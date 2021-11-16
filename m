@@ -1,127 +1,159 @@
-Return-Path: <jpuhlman@mvista.com>
+Return-Path: <marek.belisko@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C989AC433EF
-	for <webhook@archiver.kernel.org>; Tue, 16 Nov 2021 03:56:22 +0000 (UTC)
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com
- [209.85.222.171])
- by mx.groups.io with SMTP id smtpd.web08.5386.1637034981810438379
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2824CC433EF
+	for <webhook@archiver.kernel.org>; Tue, 16 Nov 2021 06:19:02 +0000 (UTC)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com
+ [209.85.219.171])
+ by mx.groups.io with SMTP id smtpd.web10.6457.1637043541034595820
  for <yocto@lists.yoctoproject.org>;
- Mon, 15 Nov 2021 19:56:22 -0800
+ Mon, 15 Nov 2021 22:19:01 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista.com header.s=google header.b=X14GxWox;
- spf=pass (domain: mvista.com, ip: 209.85.222.171,
- mailfrom: jpuhlman@mvista.com)
-Received: by mail-qk1-f171.google.com with SMTP id 132so19195153qkj.11
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=hJaJOtjv;
+ spf=pass (domain: gmail.com, ip: 209.85.219.171,
+ mailfrom: marek.belisko@gmail.com)
+Received: by mail-yb1-f171.google.com with SMTP id y3so54330774ybf.2
         for <yocto@lists.yoctoproject.org>;
- Mon, 15 Nov 2021 19:56:21 -0800 (PST)
+ Mon, 15 Nov 2021 22:19:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista.com; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=eKdcMwVtuqrM1fERwbTvUyb/DBOLpczsEQcxHd8Dd7w=;
-        b=X14GxWoxQjwJ8Q4vdcBelF7ulQZ1UisUFRIA0zC90M/liYsSZ+j2u7PiJD3sgbqWyq
-         7GJxkPHWJaiJf2bcmEE/7YMHLRaR0/3nvs7zwj8u7au4Mns3V/NzB94KLemSna/ERjZ1
-         N+qp54UrqPjyPy2LNRNUA7ZuVWpx178Rhm8io=
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=EemunlefXdBA1mtcDmjr37kQ9djH5eFKlr6wbeeRXGk=;
+        b=hJaJOtjv8kr83N8ujdN42fOpZfOVlit4DAIM5yvLlAzzy/nkJrdUX2OezLSnbDTAqq
+         nhjI4zkwvv2uG5wIUp9doakbJsUib/B3MQOjjvU9HODtWosED6idcJfH/xms7RVP2kS8
+         BeCnCjKRQhLTK95Xozkdy96IVGKdmfNvL6QVcQ+bPtb9mM5wJTu2yM7StbmUSxbm/6XR
+         GmAtwWmUgQYwZ4fUIIQqzfL1WXIFGO8dfOA2YinUacJ+6Y4h0I/4EW/liChbbTHMeuz9
+         buUKHLfNiW8NO+/H01BrzbzH951gslBnSSJiAui7NVTegngM9Hpe8TtT7HC+LTH7Hivg
+         Cs2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=eKdcMwVtuqrM1fERwbTvUyb/DBOLpczsEQcxHd8Dd7w=;
-        b=ZYBhlBAtxr5iO2/ru9p3A+QAGh48TcCmCmxtdkEeMUdi3DZZ9XSxs/VJ5L+l0GFVR8
-         DYjSqJCwNKXcp5pec8lcnCvsmGL1xj3j72yW4yxvYJHpzIaWhXGsBRJFKnAj4b4miWa4
-         xGiy6UJqNOlDVEMrgVhEsLZJxJB4KeK64w+bcIc59ulbvQutsY7uktAbz1pQCdxckOYP
-         XoVZVOKgXTgItuLpm/1KzFhok+vCzeH4sL7iot8ntAMCt4JNdp71yxIbsbhe3lqZmPOs
-         Og1p9YQ6h+dJBJHg5lJ3AU5/mrMwfcN1FYfsQXTzWIR8Y/4jetl+zBSFvO/I7Y5s4QDS
-         MZLw==
-X-Gm-Message-State: AOAM5323MV5ilJkRlH022g2Wf1a0FU4XFZwqqIOBN3oh3MRz2UFk8WHZ
-	r2cxNSdfX3PSo6nw7BzDu229wcx9LAlY6w==
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=EemunlefXdBA1mtcDmjr37kQ9djH5eFKlr6wbeeRXGk=;
+        b=BhwPv8ducWAUb4t797EfhrAmT2TO0+H2Xr+zf6j/gi2mrU8X0Un1FG0w5iorXjgUFe
+         nIje2MH0y81COjnMbA+mSWZPcVB6OXAdYe3DG1nVdnZwKeoTevJuDWMf69MPhedPUcDA
+         Rrs3Vi1fBG0fFhRu+pABIEmAgCGA5hPjP0K6tnTASVyrTLG8YiN8bhLrTov0b24ORN4l
+         9khUZmFRBlNfyFIfYgEo5UoNCeOoaZ6oHa4ApcD/tz/iMR3nT3i+JnNPUpLYCRiLIoc+
+         5XaR2ZItfbZpzAicKQPcXXH9L6a0eHgrJveI0SANiczaRT6uiq5K990729DMI0vD8aMi
+         093Q==
+X-Gm-Message-State: AOAM533X+Ne3OY/Rx2Ls2b/Izcv+IvyNwRAOLvUBNdoG4tTDG7/W07E/
+	kKQnhqJMMJ1DmgCSytwSzrfmrN0pbAWm9CLyKyAgTR9cwhfGgw==
 X-Google-Smtp-Source: 
- ABdhPJx44NdAPk+DIAZzjeeu6/TQZZsbnkVRfNX0V+7cRNHMVE0cRIfDmqGgv/syLjtRocBVrb3KEw==
-X-Received: by 2002:a05:620a:254d:: with SMTP id
- s13mr3627573qko.39.1637034980399;
-        Mon, 15 Nov 2021 19:56:20 -0800 (PST)
-Received: from [192.168.1.23] (99-14-97-149.lightspeed.frokca.sbcglobal.net.
- [99.14.97.149])
-        by smtp.gmail.com with ESMTPSA id
- v5sm8305243qtc.60.2021.11.15.19.56.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Nov 2021 19:56:20 -0800 (PST)
-Message-ID: <62a94b06-8207-77f4-207f-7c0287be31ff@mvista.com>
-Date: Mon, 15 Nov 2021 19:56:19 -0800
+ ABdhPJzc5eCo9dynRChxgJks30NMc3Enh/pmuNik3hvpHahCe2qZfhaBEmY1yCZ0l696GzBLzTNrvSUFXs6UEo1Xo/g=
+X-Received: by 2002:a05:6902:4d3:: with SMTP id
+ v19mr5337116ybs.500.1637043539906;
+ Mon, 15 Nov 2021 22:18:59 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Subject: Re: [meta-security][hardknott][PATCH] sssd: re-package to fix QA
- issues
-Content-Language: en-US
-To: yocto@lists.yoctoproject.org
-Cc: Kai Kang <kai.kang@windriver.com>, Armin Kuster <akuster808@gmail.com>
-References: <20211116035054.13447-1-jpuhlman@mvista.com>
-From: Jeremy Puhlman <jpuhlman@mvista.com>
-In-Reply-To: <20211116035054.13447-1-jpuhlman@mvista.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Belisko Marek <marek.belisko@gmail.com>
+Date: Tue, 16 Nov 2021 07:18:45 +0100
+Message-ID: 
+ <CAAfyv34cq6D3Nf447mYR5XNyabQBSjx47g4SwZHpM-TMt-_SjQ@mail.gmail.com>
+Subject: wic crash when building image with multiple partitions
+To: Yocto <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 16 Nov 2021 03:56:22 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55336
+ <yocto@lists.yoctoproject.org>; Tue, 16 Nov 2021 06:19:02 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55337
 
-Hold up, there is a problem with these.
-On 11/15/2021 7:50 PM, Jeremy A. Puhlman wrote:
-> It packages all file in ${libdir} to package sssd, including the .so
-> symlink files. Then it causes QA issues:
->
-> | ERROR: QA Issue: sssd rdepends on dbus-dev [dev-deps]
-> | ERROR: QA Issue: sssd rdepends on ding-libs-dev [dev-deps]
->
-> So re-package sssd then the .so symlink files and .pc files are packaged
-> to sssd-dev which should be.
->
-> File ${libdir}/libsss_sudo.so is not a symlink file but packaged to
-> sssd-dev too. Then causes another QA issue:
->
-> | ERROR: sssd-2.5.2-r0 do_package_qa: QA Issue:
->      -dev package sssd-dev contains non-symlink .so '/usr/lib/libsss_sudo.so' [dev-elf]
->
-> So create a new sub-package libsss-sudo to package file libsss_sudo.so
-> and make sssd rdepends on it.
->
-> Signed-off-by: Kai Kang <kai.kang@windriver.com>
-> Signed-off-by: Armin Kuster <akuster808@gmail.com>
-> (cherry picked from commit e81c15f851ca5396c78c8737967ee38db0ebe0cd)
-> Signed-off-by: Jeremy A. Puhlman <jpuhlman@mvista.com>
-> ---
->   recipes-security/sssd/sssd_1.16.5.bb | 15 ++++++++++-----
->   1 file changed, 10 insertions(+), 5 deletions(-)
->
-> diff --git a/recipes-security/sssd/sssd_1.16.5.bb b/recipes-security/sssd/sssd_1.16.5.bb
-> index 02d0837..01ee88b 100644
-> --- a/recipes-security/sssd/sssd_1.16.5.bb
-> +++ b/recipes-security/sssd/sssd_1.16.5.bb
-> @@ -120,10 +120,15 @@ SYSTEMD_SERVICE_${PN} = " \
->   "
->   SYSTEMD_AUTO_ENABLE = "disable"
->   
-> -FILES_${PN} += "${libdir} ${datadir} ${base_libdir}/security/pam_sss.so"
-> -FILES_${PN}-dev = " ${includedir}/* ${libdir}/*la ${libdir}/*/*la"
-> +PACKAGES =+ "libsss-sudo"
-> +ALLOW_EMPTY_libsss-sudo = "1"
->   
-> -# The package contains symlinks that trip up insane
-> -INSANE_SKIP_${PN} = "dev-so"
-> +FILES_${PN} += "${base_libdir}/security/pam_sss*.so  \
-> +                ${datadir}/dbus-1/system-services/*.service \
-> +                ${libdir}/krb5/* \
-> +                ${libdir}/ldb/* \
-> +                "
->   
-> -RDEPENDS_${PN} = "bind dbus libldb libpam"
-> +FILES_libsss-sudo = "${libdir}/libsss_sudo.so"
-> +
-> +RDEPENDS_${PN} = "bind dbus libldb libpam libsss-sudo"
+Hello,
 
+I'm on dunfell release and building mender image with following wks file:
+| + echo '### Contents of wks file ###'
+| ### Contents of wks file ###
+| + cat /home/marek/projects/kas-test/build/tmp/work/raspberrypi4-poky-linux-gnueabi/core-image-minimal/1.0-r0/mender-sdimg.wks
+| part --source rawcopy
+--sourceparams="file=/home/marek/projects/kas-test/build/tmp/work/raspberrypi4-poky-linux-gnueabi/core-image-minimal/1.0-r0/uboot.env"
+--ondisk "mmcblk0" --align 8192 --no-table
+| part --source rootfs --rootfs-dir
+/home/marek/projects/kas-test/build/tmp/work/raspberrypi4-poky-linux-gnueabi/core-image-minimal/1.0-r0/bootfs.image_sdimg
+--ondisk "mmcblk0" --fstype=vfat --label boot --align 8192
+--fixed-size 16 --active
+| part --source rawcopy
+--sourceparams="file=/home/marek/projects/kas-test/build/tmp/work/raspberrypi4-poky-linux-gnueabi/core-image-minimal/1.0-r0/deploy-core-image-minimal-image-complete/core-image-minimal-raspberrypi4.ext4"
+--ondisk "mmcblk0" --align 8192 --fixed-size 172032k
+| part --source rawcopy
+--sourceparams="file=/home/marek/projects/kas-test/build/tmp/work/raspberrypi4-poky-linux-gnueabi/core-image-minimal/1.0-r0/deploy-core-image-minimal-image-complete/core-image-minimal-raspberrypi4.ext4"
+--ondisk "mmcblk0" --align 8192 --fixed-size 172032k
+| part swap --ondisk "mmcblk0" --fstype=swap --label swap --align 8192
+--size 512
+| part --source rawcopy
+--sourceparams="file=/home/marek/projects/kas-test/build/tmp/work/raspberrypi4-poky-linux-gnueabi/core-image-minimal/1.0-r0/deploy-core-image-minimal-image-complete/core-image-minimal-raspberrypi4.dataimg"
+--ondisk "mmcblk0" --align 8192 --fixed-size 128
+|
+| bootloader --ptable msdos
+| + echo '### End of contents of wks file ###'
+| ### End of contents of wks file ###
+
+Without a swap partition image is built fine without any issue. When
+swap partition is added to wks file I'm getting following error:
+
+| INFO: Creating image(s)...
+|
+| Traceback (most recent call last):
+|   File "/home/marek/projects/kas-test/poky/scripts/wic", line 542, in <module>
+|     sys.exit(main(sys.argv[1:]))
+|   File "/home/marek/projects/kas-test/poky/scripts/wic", line 537, in main
+|     return hlp.invoke_subcommand(args, parser, hlp.wic_help_usage,
+subcommands)
+|   File "/home/marek/projects/kas-test/poky/scripts/lib/wic/help.py",
+line 83, in invoke_subcommand
+|     subcmd[0](args, usage)
+|   File "/home/marek/projects/kas-test/poky/scripts/wic", line 219,
+in wic_create_subcommand
+|     engine.wic_create(wks_file, rootfs_dir, bootimg_dir, kernel_dir,
+|   File "/home/marek/projects/kas-test/poky/scripts/lib/wic/engine.py",
+line 190, in wic_create
+|     plugin.do_create()
+|   File "/home/marek/projects/kas-test/poky/scripts/lib/wic/plugins/imager/direct.py",
+line 96, in do_create
+|     self.create()
+|   File "/home/marek/projects/kas-test/poky/scripts/lib/wic/plugins/imager/direct.py",
+line 180, in create
+|     self._image.prepare(self)
+|   File "/home/marek/projects/kas-test/poky/scripts/lib/wic/plugins/imager/direct.py",
+line 354, in prepare
+|     part.prepare(imager, imager.workdir, imager.oe_builddir,
+|   File "/home/marek/projects/kas-test/poky/scripts/lib/wic/partition.py",
+line 182, in prepare
+|     plugin.do_prepare_partition(self, srcparams_dict, creator,
+|   File "/home/marek/projects/kas-test/poky/scripts/lib/wic/plugins/source/rootfs.py",
+line 112, in do_prepare_partition
+|     copyhardlinktree(orig_dir, new_rootfs)
+|   File "/home/marek/projects/kas-test/poky/meta/lib/oe/path.py",
+line 121, in copyhardlinktree
+|     subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT)
+|   File "/home/marek/projects/kas-test/build/tmp/work/raspberrypi4-poky-linux-gnueabi/core-image-minimal/1.0-r0/recipe-sysroot-native/usr/lib/python3.8/subprocess.py",
+line 411, in check_output
+|     return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+|   File "/home/marek/projects/kas-test/build/tmp/work/raspberrypi4-poky-linux-gnueabi/core-image-minimal/1.0-r0/recipe-sysroot-native/usr/lib/python3.8/subprocess.py",
+line 512, in run
+|     raise CalledProcessError(retcode, process.args,
+| subprocess.CalledProcessError: Command 'cd
+/home/marek/projects/kas-test/build/tmp/work/raspberrypi4-poky-linux-gnueabi/core-image-minimal/1.0-r0/bootfs.image_sdimg;
+find . -type d -print | tar --xattrs --xattrs-include='*' -cf - -S -C
+/home/marek/projects/kas-test/build/tmp/work/raspberrypi4-poky-linux-gnueabi/core-image-minimal/1.0-r0/bootfs.image_sdimg
+-p --no-recursion --files-from - | tar --xattrs --xattrs-include='*'
+-xhf - -C /home/marek/projects/kas-test/build/tmp/work/raspberrypi4-poky-linux-gnueabi/core-image-minimal/1.0-r0/deploy-core-image-minimal-image-complete/core-image-minimal-raspberrypi4-20211115212420-sdimg/tmp.wic.1oe9hwjw/rootfs2'
+returned non-zero exit status 2.
+
+I tried to debug it but didn't find anything obvious. I'm sure this
+was working fine in previous releases. Any ideas?
+
+Thanks and BR,
+
+marek
+
+-- 
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
+
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
 
