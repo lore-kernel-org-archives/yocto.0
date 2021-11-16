@@ -1,180 +1,96 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C1CCAC433EF
-	for <webhook@archiver.kernel.org>; Tue, 16 Nov 2021 18:50:41 +0000 (UTC)
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com
- [209.85.160.177])
- by mx.groups.io with SMTP id smtpd.web08.300.1637088640706755049
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 40FD1C433F5
+	for <webhook@archiver.kernel.org>; Tue, 16 Nov 2021 22:25:07 +0000 (UTC)
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
+ [209.85.128.45])
+ by mx.groups.io with SMTP id smtpd.web09.562.1637101506304158510
  for <yocto@lists.yoctoproject.org>;
- Tue, 16 Nov 2021 10:50:40 -0800
+ Tue, 16 Nov 2021 14:25:06 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=O6++Ang4;
- spf=pass (domain: gmail.com, ip: 209.85.160.177,
- mailfrom: raj.khem@gmail.com)
-Received: by mail-qt1-f177.google.com with SMTP id z9so110212qtj.9
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=e5Rj1jZi;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.45,
+ mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f45.google.com with SMTP id
+ az33-20020a05600c602100b00333472fef04so3182360wmb.5
         for <yocto@lists.yoctoproject.org>;
- Tue, 16 Nov 2021 10:50:40 -0800 (PST)
+ Tue, 16 Nov 2021 14:25:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=XNeoarIPUNI/z9NrkenW1eAzTtjpafyOEzcbvDFTGjA=;
-        b=O6++Ang4c1uyW2khTv/j9jcR+niL5U1q9h2ZgI0DmOtm7j2aj4UsOJeyMpDwSaRsfy
-         D6RdVW2ETUykS8KqEhk///N7QiL32mk4LqiEW26/qDTMaeTEWgk38Y6kh3sLhXtn0R3L
-         lIQXsduC6vUo35X/AdQAY0HtHVLF0C6gdOGPHJ82S7a6v5wuwj5BQ5RH+qTcvxXaxXUn
-         EjS6IeE7SDvgcJJm8Tmx/H2X361xIRr4BfhW6zvK3xZ2NlPFZhX6iQfSxZEJDu763QxI
-         HF6H2Cp3jQih2l16M6voSxULO0jaPWri4p627VVzE1raE6ZJz0Y8POWRMoNFF44/y1Dh
-         zqvQ==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:user-agent:mime-version
+         :content-transfer-encoding;
+        bh=XT+40nZzaL9YQgcfwzXGRWPqXt6XKgKezbfYB5/97SI=;
+        b=e5Rj1jZiMNcrUfsmpI3mQUY3w4qux4/yScQVd5Ers3J0AzsWL2oqtR93h0CCKO5y31
+         NWxRc8fFuIYVWOtnPJNu3/87Z+9+4tQ3pKXDlgkYSfgPjOgPdLawG3kwibKhCfYyZPku
+         LHsJfDIz0rbNfd//5gXTMcpOac0rWj70zZDuY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=XNeoarIPUNI/z9NrkenW1eAzTtjpafyOEzcbvDFTGjA=;
-        b=qFwVcveQkFIK01LLEeeM4SltVwbPma4H+Sl7HnG1hL3jcezCQj7ld8RRVm8Fw9kUG+
-         aiVMbF462dwrwtc8cIWuqkv4Xtbp9Gp223aAlbEqu1sKbAiA9RA6A44F+2FVzV6MwxaL
-         ca34++w/R9GEyloGKR2OtlWh4Gmlsrv1nPY9TnmpzJ1eAjXW3bRh4kOJ+VXmZVi0FxpK
-         6RekaCL8UfXrK4pb7GuJIjrCm4uBl7Q1RdmYspmtZUuR3ZUBkntj5HnjZ08vTg/J3qv0
-         M6VunhXZKf3nTbob1K2CzhJ7R2ZViWJvrqYOCVfLtT+jjIeK71/s5u/tfaguZ8HFBaPZ
-         y0LA==
-X-Gm-Message-State: AOAM530/oSvbMZ/toC4sxRYcBrasSMfEz0mJ7ZODmrfkc5qqP6jYJbJZ
-	wiNZBWMOkQURDV3lZQ9NkKdRqnjTo8K0vtJiy3E=
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=XT+40nZzaL9YQgcfwzXGRWPqXt6XKgKezbfYB5/97SI=;
+        b=AehYzyqjT33XNy8Ru+QnsriC3RHTR66aWJfmevukIYUcONPTYHzMusJtZcvTlMv0It
+         8u+Qe6H5lmFDGGZRRaviGWH/dtmufSUvU5nMJZdWTl3VOerlYjFAiTfnI/XAk7u7/k73
+         Du1qDosptvLKoM7SjgCQJPfZEEB7ifCIW//Q2UNqxDopEGaN3e5EDDS2GqSty22Kg30q
+         HmWrGWquxfVm8/ZxiBJkNEL8qxJgvONfRAR5sOl+qB+mN/oO8DtInbPQXI6ALDQkXPLC
+         eoIUsgyttHcCYKHXTMdJRZ8boT2r3RUfc9rfNJQU3Wg6KbTcilMRQMCVs79j9p2jHUxf
+         gaqA==
+X-Gm-Message-State: AOAM532uCgowtm0q0lJPGK1uqMLo5t6OhxJwyTvh+slxJ0Z6vHQbLtmS
+	hlXpc/Gt0WpVV83NFo430RIv5xq0KVhdNw==
 X-Google-Smtp-Source: 
- ABdhPJwK29qCwWBk4N1ENyX1Oj1U/V6FYLXqRnZ6h7bObkON4+Ozbv0aMoBn9j/FIpmEdZUl6fJxUazZOf7kiyWw+bc=
-X-Received: by 2002:ac8:4e41:: with SMTP id e1mr9952782qtw.116.1637088639722;
- Tue, 16 Nov 2021 10:50:39 -0800 (PST)
-MIME-Version: 1.0
-References: <20211116153256.3639663-1-quentin.schulz@theobroma-systems.com>
- <CAMKF1sq+cj8e31L1ExHSKckEVab-ZdeUCF3_CTSr0VPtZ=_sVQ@mail.gmail.com>
- <20211116170406.abau3j6liwsdonbp@fedora>
- <CAMKF1srfKKzNYBJPMKo_V13QKXuq1+mz-ULDd7hk3UEH_QwCNQ@mail.gmail.com>
- <20211116171242.7dyycd3d2qwb4ske@fedora>
- <CAMKF1soUeJES6ZG-wvng3VDfW_unw_7Fo4KSPWr3Cr8uR9T=eA@mail.gmail.com>
- <69C8168A-27F2-4B12-9592-264E80EFBC2D@0leil.net>
-In-Reply-To: <69C8168A-27F2-4B12-9592-264E80EFBC2D@0leil.net>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 16 Nov 2021 10:50:13 -0800
+ ABdhPJxUVMsh8Z8qDiU7PIJd1f8xyOCkamN1oKyTRgvG2CC/rmbLAGs66ndrA+4a0nF+wjL2D5FaQQ==
+X-Received: by 2002:a05:600c:3b28:: with SMTP id
+ m40mr73729147wms.100.1637101504380;
+        Tue, 16 Nov 2021 14:25:04 -0800 (PST)
+Received: from ?IPv6:2001:8b0:aba:5f3c:41f4:5ebc:325d:efc3?
+ ([2001:8b0:aba:5f3c:41f4:5ebc:325d:efc3])
+        by smtp.gmail.com with ESMTPSA id
+ f133sm3579276wmf.31.2021.11.16.14.25.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Nov 2021 14:25:03 -0800 (PST)
 Message-ID: 
- <CAMKF1sq2vE9NuXpLYG6upqxBfa7XZ9yO0G2qNe-+yRBMcaTxVg@mail.gmail.com>
-Subject: Re: [yocto] [meta-rockchip][PATCH] kernel: linux-yocto: fix broken
- Ethernet MAC controller on RK3399 on 5.14 >= version <= 5.14.11
-To: Quentin Schulz <foss@0leil.net>
-Cc: Quentin Schulz <quentin.schulz@theobroma-systems.com>,
-	Quentin Schulz <foss+yocto@0leil.net>, Trevor Woerner <twoerner@gmail.com>,
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+ <581c5d14ffc3eca5b39297c422a08eabba4f6d93.camel@linuxfoundation.org>
+Subject: QA notification for completed autobuilder build (yocto-3.1.12.rc1)
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>
+Cc: qa-build-notification <qa-build-notification@lists.yoctoproject.org>
+Date: Tue, 16 Nov 2021 22:25:00 +0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.40.4-1 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 16 Nov 2021 18:50:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55353
+ <yocto@lists.yoctoproject.org>; Tue, 16 Nov 2021 22:25:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55354
 
-On Tue, Nov 16, 2021 at 10:03 AM Quentin Schulz <foss@0leil.net> wrote:
->
->
->
-> On November 16, 2021 6:45:05 PM GMT+01:00, Khem Raj <raj.khem@gmail.com> =
-wrote:
-> >On Tue, Nov 16, 2021 at 9:12 AM Quentin Schulz <
-> >quentin.schulz@theobroma-systems.com> wrote:
-> >
-> >> On Tue, Nov 16, 2021 at 09:08:41AM -0800, Khem Raj wrote:
-> >> > On Tue, Nov 16, 2021 at 9:04 AM Quentin Schulz
-> >> > <quentin.schulz@theobroma-systems.com> wrote:
-> >> > >
-> >> > > On Tue, Nov 16, 2021 at 09:00:42AM -0800, Khem Raj wrote:
-> >> > > > On Tue, Nov 16, 2021 at 7:52 AM Quentin Schulz
-> >> > > > <quentin.schulz@theobroma-systems.com> wrote:
-> >> > > > >
-> >> > > > > From Linux kernel v5.14 to v5.14.11 (both included), the Ether=
-net
-> >> MAC
-> >> > > > > controller found on RK3399 is not working.
-> >> > > > >
-> >> > > > > A fix is available in v5.14.12 and later (available also in v5=
-.15)
-> >> > > > > which is provided here and applied to linux-yocto source tree =
-if
-> >> > > > > linux-yocto version is of the impacted ones.
-> >> > > > >
-> >> > > > > The conditional patching is unfortunately required because
-> >> Honister 3.4
-> >> > > > > has linux-yocto v5.14.9 and Honister 3.4.1 will have at least
-> >> > > > > linux-yocto v5.14.14.
-> >> > > >
-> >> > > > Patching piece below looks quite a bit.
-> >> > > > lets just fix v5.14.14 and dont worry about 3.4
-> >> > > >
-> >> > >
-> >> > > v5.14.14 is already fixed. The only release currently is 3.4 and I=
- hit
-> >> > > that issue, hence the patch.
-> >> > > I assume not everybody is updating to 3.4.1 when it's out, I've se=
-en
-> >> > > people running behind dot releases.
-> >> > > What's bothering you?
-> >> >
-> >> > once dot release is out then thats whats maintained not the original
-> >> > release since they are incremental.
-> >> > the anon python to apply a patch. Can you explain why we want to pat=
-ch
-> >> > applied this way ?
-> >> >
-> >>
-> >> I could define a python function and use it like this:
-> >> SRC_URI:append:rk3399 =3D "${@rk3399_fix_mac(d)}"
-> >>
-> >> Would that work better for you?
-> >
-> >
-> >I am not yet convinced why should we have such version specific patch
-> >
->
-> If you could explain what's *really* bothering you, I could try to find a=
- proper explanation or agree with you but it's a bit too vague to me right =
-now. Anyway, I'll do some guesses in the next paragraphs.
->
-> Because Ethernet does not work for all RK3399-based boards in the latest =
-and only release of Honister?
+A build flagged for QA (yocto-3.1.12.rc1) was completed on the autobuilder and
+is available at:
 
-meta-rockchip does not have honister branch for now. So it expects
-master to keep working with honister for now. kernel upgrades are
-already committed into honister branch on meta-yocto-bsps so fix it
-already available in latest honister
-branch and will be in imminent point release soon as well.
 
->
-> meta-rockchip is the BSP layer for Rockchip based devices, if not there, =
-where should I put this patch?
->
-> Or are we just going to say "Ethernet does not work, we know" to people a=
-sking instead of having this patch in? Obviously you could tell them to upg=
-rade their oe-core/poky git repo to rolling honister or 3.4.1 once it's out=
- but having this patch in avoid those questions.
->
+    https://autobuilder.yocto.io/pub/releases/yocto-3.1.12.rc1
 
-I would say yes, document it as that of a known issue and possible fix
-if someone is using exact point release. They might have snapshotted
-meta-rockpi too and in that case it will be easy for them to carry a
-local patch if needed.
-vesion specific patching would also be setting a not so desired
-patching practice, so I am trying to avoid it if we can.
 
-> I understand we're talking about policy here. I am not fond of this patch=
- either but Ethernet is quite critical on boards which don't have WiFi for =
-example. I don't have anything better to suggest to fix this in the *latest=
-* release.
+Build hash information: 
 
-Update to latest honister branch or wait for 3.4.1, would be my suggestion.
+bitbake: c0348de8121c3a842bf44906f7e2f79e93f7275b
+meta-agl: 0406cbb235fb08ce9e6f9d07e64e0932b20050a9
+meta-arm: ce535dfb96de4d2529f091d7d85a7172c626001c
+meta-aws: 2f72301f5a73279c4d2f12fc6218876629666e06
+meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
+meta-intel: 625da85e7b01b71cc310267b0ba7119eb139e9f7
+meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
+meta-openembedded: 7889158dcd187546fc5e99fd81d0779cad3e8d17
+oecore: 44b1970c40e9d73f6e63fb10cdc55837a26f5921
+poky: 0839888394a6e42e96f9f0d201376eb38bc79b24
 
->
-> Cheers
-> Quentin
-> >>
-> >>
-> >> Cheers,
-> >> Quentin
-> >>
+
+
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
 
