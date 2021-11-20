@@ -1,186 +1,259 @@
-Return-Path: <yi.zhao@windriver.com>
+Return-Path: <randy.macleod@windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 48450C433F5
-	for <webhook@archiver.kernel.org>; Fri, 19 Nov 2021 15:18:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7E66AC433EF
+	for <webhook@archiver.kernel.org>; Sat, 20 Nov 2021 17:04:11 +0000 (UTC)
 Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com
  [205.220.166.238])
- by mx.groups.io with SMTP id smtpd.web11.10231.1637335120411008879
+ by mx.groups.io with SMTP id smtpd.web12.394.1637427850389731582
  for <yocto@lists.yoctoproject.org>;
- Fri, 19 Nov 2021 07:18:40 -0800
+ Sat, 20 Nov 2021 09:04:10 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=fXtRvb5M;
+ dkim=fail reason="body hash did not verify" header.i=@windriver.com
+ header.s=pps06212021 header.b=B2qcCDZC;
  spf=pass (domain: windriver.com, ip: 205.220.166.238,
- mailfrom: prvs=6957fbbf1c=yi.zhao@windriver.com)
+ mailfrom: prvs=6958589b75=randy.macleod@windriver.com)
 Received: from pps.filterd (m0250810.ppops.net [127.0.0.1])
 	by mx0a-0064b401.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id
- 1AJEZbwS004010
-	for <yocto@lists.yoctoproject.org>; Fri, 19 Nov 2021 07:18:40 -0800
+ 1AKGuEJX032615;
+	Sat, 20 Nov 2021 09:04:09 -0800
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
- h=from : to :
- subject : date : message-id : in-reply-to : references :
- content-transfer-encoding : content-type : mime-version; s=PPS06212021;
- bh=Ln6LbagxEr7naltlTlSNdtDaOuUtsMwEYYDLwR64TVE=;
- b=fXtRvb5M9U1Lp5qFf3jSCXjyFMLYxeHplUJDkJDsmeD4Fp+kVADmLaRmXFyNieDHHQKE
- GETunEqjosgtz47wJH1MjwwkywJMh3XNPO0DdY7P3BUbp9CKWxTes12VKa4+egzqz1Pf
- Z2BI63oWRl6HvwVwGxZ31v6gmzroAnl7tXV7sNh5jJ27t8pmPEoWTtY7im2o7Otw5KM4
- rJC1uSxsoBUPmIrYPR1BBnvPyhXpLoynV9JQT9lc+PIkvR3em+FPYWAroPSHPZ8TiS5u
- aEdWc9Ssl3iz02bcg6eh+uMjHUpT9QBSWxs3b6VLal24VHd31rLeVPpAYoNQgbWVJ+cx ig==
-Received: from nam12-bn8-obe.outbound.protection.outlook.com
- (mail-bn8nam12lp2168.outbound.protection.outlook.com [104.47.55.168])
-	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3cdssgryab-2
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
-	for <yocto@lists.yoctoproject.org>; Fri, 19 Nov 2021 07:18:40 -0800
+ h=subject : to :
+ references : from : message-id : date : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=PPS06212021;
+ bh=FxVvxmVv3rMmYDTXFXo5zihtQ37dZhi83HF1UujUo5A=;
+ b=B2qcCDZC6hG1WPdGKnntMF4elAqWzqgzUDg8Bqq+ux2eowQqn4JuYwWwUULa92sCIhoG
+ fZhE5YoWS8DG97WGmQimzz/CN3CVpL8UgOKM8kMa330kJTOqiiXn2U3/ZFuAV2JSBekp
+ saEuJNb4y6+QYNOOtpbXXc5xjxj6PH1hFLWU30D/ycEHkog6/dkbezK3Kt0trRmqnbdr
+ pvlt7p7t0ChxTnmYX2NdFUhBY919KeZh5u/v0Q9ZhGH9v4wnpADk5bkR96e/hnbRl5tN
+ t2ZdEfGnorW0dKNS96C9KwEeSnX8KqVqo2o2sEdW0skuLxEyLgZci1QSMT2VApvosKRA Gg==
+Received: from nam04-mw2-obe.outbound.protection.outlook.com
+ (mail-mw2nam08lp2175.outbound.protection.outlook.com [104.47.73.175])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3cew67r7u7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 20 Nov 2021 09:04:09 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NXSgEENeXlxRxUc8DUYaoiNNh3xvgebDT/ADb+faO5h1kxK3avTIOnJXECixxDOtqKxJlpy9xb37qFIfwPOigJ2e/JcLRIT41ohhN3pL/nreNVJr44K7R0jAzk0f/ckCuRAa8HpEBhWIkXFXsqzzthqDs4BCmQJJgVAdl/OvP3W34yMzTA9bp6LhVeb/pexz5EbitV7kl/Fz79bKfUrtaiWIwE9RM3Iu4tKzH+LawgR7/L/I+ysbsgMBE/5xQ6d0GJnJYUVxsm9uNl+iwRkxSs2hByGpmtOUZPWzIh/yuITTsvmQ9j3iDqd7HPRUPn0vbWW/hBku4mzCbUCopNjP+w==
+ b=Ri4yDGrYwfBdF1MvBWcqoT265XwfHn86PtduoEffPWmaGIeuLV7Lfrg1u3NLPpMz2TqqlPCosUpIUbvMTihRI0a3vriiuGkWS7jFwdpLezq0Qh+L6wv0wBau1dss1F4FHl+h6nHbmlQJY4y5S3gUv8vs2SkOg8dFC79mdwAzGq+KyRNX/EsXzMP0liUNKNz+1F6/UMSWoCMu/txSUmuXXswQvZvgR/s0O7+fLDbZ+tKvyqh2jQg84lvF0me6EN8+rImVPDNgrH2M+uBUsp+pgqbY0kMhAo/5Wef3bsWr86/A+o13ZAZG1kIq0zCgbBjSCzMGbY9LZ/D0V5UGiX/y/A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ln6LbagxEr7naltlTlSNdtDaOuUtsMwEYYDLwR64TVE=;
- b=J8zu9tf55zObU+OLGuUzsXrYGFAkUo0LRzIq+mw9VjKvtRbYLBatJQRj+EAwU6gnPVuxXH2Au0zcCUL26CWhmaCSclVH1UcJQGqkTr9Jlr8sw+yUSPd57DldrFi6NR1SwEKBByQ/VI95D1IGDoIw1/LzfWsQGlYXsIONmsqu3sevKIjCgrjDm1VcUeUND2U/vUpVxRpes/7vuigNBKwBhQfrVz5CHQPyh/WCT3hm0E3E16MscCYZGRT9B3htKQQUGqKCJIJ2zuSAqio+7xhZAnT6QKVizvhycmecdHngbQ368zvenJAeiV6uRXxRawglStWHFtrccVOSErRGNg6zDA==
+ bh=FxVvxmVv3rMmYDTXFXo5zihtQ37dZhi83HF1UujUo5A=;
+ b=CpEEOwb7FrKfsogRN0jvBAZyMm0TmK0z0NBRZJXX4zDze9K2CWsTItcmc+30QjRqvbkeH6x+9xLkt5/gDaKZRH4RxwCPZqviW7UL0k+oPWtCecbQI6RA+d49/UiPi+xFisvNQzJqU8JKtzHRHXQBU6TtYD8pexOV6JnY5c2NFH502mApaQTelENK/cSNswk09FcSEUgKCSuUN+Ejl+VPFMpT35shvhPb9lQuPv5udIEg4mlmfRGdwUQgCAcXBdagv2mu+fnoF2ssovueJfAIuMoRYq65tbrEO9zKyLm+K+ZGxqTEFcKJjrrf+z1/oGYnQBhUmAe3K2UGJMUYXoxakQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=windriver.com; dmarc=pass action=none
  header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
-Received: from CO1PR11MB4867.namprd11.prod.outlook.com (2603:10b6:303:9a::13)
- by MWHPR11MB1984.namprd11.prod.outlook.com (2603:10b6:300:110::11) with
+Received: from DM6PR11MB3994.namprd11.prod.outlook.com (2603:10b6:5:193::19)
+ by DM5PR1101MB2186.namprd11.prod.outlook.com (2603:10b6:4:52::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.27; Fri, 19 Nov
- 2021 15:18:38 +0000
-Received: from CO1PR11MB4867.namprd11.prod.outlook.com
- ([fe80::455e:9cfb:d106:4480]) by CO1PR11MB4867.namprd11.prod.outlook.com
- ([fe80::455e:9cfb:d106:4480%9]) with mapi id 15.20.4713.022; Fri, 19 Nov 2021
- 15:18:38 +0000
-From: Yi Zhao <yi.zhao@windriver.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 2/2] meta-parsec/README.md: fix for append
- operator combined with +=
-Date: Fri, 19 Nov 2021 23:18:25 +0800
-Message-Id: <20211119151825.530200-2-yi.zhao@windriver.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211119151825.530200-1-yi.zhao@windriver.com>
-References: <20211119151825.530200-1-yi.zhao@windriver.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: HK2PR06CA0005.apcprd06.prod.outlook.com
- (2603:1096:202:2e::17) To CO1PR11MB4867.namprd11.prod.outlook.com
- (2603:10b6:303:9a::13)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.26; Sat, 20 Nov
+ 2021 17:04:07 +0000
+Received: from DM6PR11MB3994.namprd11.prod.outlook.com
+ ([fe80::f1b5:133d:c04b:46a3]) by DM6PR11MB3994.namprd11.prod.outlook.com
+ ([fe80::f1b5:133d:c04b:46a3%4]) with mapi id 15.20.4690.027; Sat, 20 Nov 2021
+ 17:04:07 +0000
+Subject: Re: [yocto] #yocto Remove hexdump from image
+To: lucapirozzi@protonmail.com, yocto@lists.yoctoproject.org
+References: <e6e4d436-cdbc-6d45-1cf3-4c0587e162a8@theyoctojester.info>
+ <32256.1637313163129550695@lists.yoctoproject.org>
+From: Randy MacLeod <randy.macleod@windriver.com>
+Message-ID: <c40518ac-68a1-3d56-db15-e7451553502c@windriver.com>
+Date: Sat, 20 Nov 2021 12:04:02 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+In-Reply-To: <32256.1637313163129550695@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-CA
+X-ClientProxiedBy: SJ0PR13CA0053.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c2::28) To DM6PR11MB3994.namprd11.prod.outlook.com
+ (2603:10b6:5:193::19)
 MIME-Version: 1.0
-Received: from pek-yzhao1-d1.wrs.com (60.247.85.82) by
- HK2PR06CA0005.apcprd06.prod.outlook.com (2603:1096:202:2e::17) with Microsoft
- SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.19 via Frontend
- Transport; Fri, 19 Nov 2021 15:18:37 +0000
+Received: from [172.25.44.7] (198.48.226.187) by
+ SJ0PR13CA0053.namprd13.prod.outlook.com (2603:10b6:a03:2c2::28) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.7 via Frontend
+ Transport; Sat, 20 Nov 2021 17:04:06 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5a247935-f33a-4230-b9fc-08d9ab6fdc73
-X-MS-TrafficTypeDiagnostic: MWHPR11MB1984:
+X-MS-Office365-Filtering-Correlation-Id: e14c2db4-ea1a-4ee4-00b6-08d9ac47c325
+X-MS-TrafficTypeDiagnostic: DM5PR1101MB2186:
 X-Microsoft-Antispam-PRVS: 
-	<MWHPR11MB1984C4EAB55DBFDB629C1551F99C9@MWHPR11MB1984.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
+	<DM5PR1101MB21861DA2D3105FAB3F4A658DF89D9@DM5PR1101MB2186.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	yAJqNEqaA6FXH3glcHsqQXVNTCYuhmGIBhGA2S6z+nAZACfhYjYzqhsMT5EwgqvncWWF+JR4ikG0V3P8fR//FCFF7Je3XrRNxaBHhWjUqU2CK1qgqtvKFBv6uex+c1AFQRucVpR1ktOlF8YDiYiWXLeCwzhJ2tHPqIH8Tppo7Wexogel3QKGpoATLhAeodOp61s837lBD5REzrFAFcryPU+FWBHsWzQk8Ktfyg7zxyRqvf3ZF8IwNIgYNAF9sEwis8M4pL+5XBTx5Vkj69ysV4oaVZ4GgvT4DefE+4WDR3zPH2M7Px43Wk2wvYZvYj+zzhUbNPvM+lLEoGcQm1+bhxIjRiphIT5KaZRVk3oUWcr0/X16b4frXYc837wUNUk6pfCWNX3ChIm4rYLZH7Nm5CLsje2Jnzw+fUdCn1f1FV/94vmW4CNOKzuLJddi8oA03pOA4AquVTkPcDFWuqUL/Ug44NQED+Qu40SjkVWvU3G+Fuq9y3p1Pe/TLjey89zHqqOMhnAvN3Q5s9CxwjYcMG4uFqEW+Riv8Cu68X4f8z9MRQjkcEyAWCOHQv04xFBdS32A7e9w6xLPmn2lwyfykC+x4XuB1Gh/QppcRnj02Wt3kCw3CPddK9S9Y1GBakdnTrY+UrR05p18Nl7PKCsF+ne1w5ZpClvXkxhjmQrLwQgHq5F3jRgMgT+YCoaWDOSNezmLIT5Gm0LgcpZU9K+IlQ==
+	Plth2Dx60POSkawsSJWB2Akl3kXvUVm1rjWaTcH8ZokJn1lP3jwenmU457TnQAgo4wvJjJDZF3RUgi2kIAAhF5DlfnBc48xbvcOm4TuUckjwEqLU2TGg1DaxKwuIYdPq4Db+yNWm4YC3w4G+E5mq+QlQ2SkCochXtHYvyqabmLlBsRyqIQ7wXMOgMD1yNbrjQvcUJLm5CcZxGHuLssIQwXxihz102NWqeSWXi1wcc1at2aKLnu4shW+qZWBJkfBsfvTF4dZQZc9ZZ2sLwZI/nQJdWwyHRaHAK8rT8V8HfG1bgeq7nC2tABvMlfUMhVJ+rC1Wg/cSs0+L0c+RPro1e/AfLEdXrtyalbNmcEju5dJzRd4qpUQUIF6v7D9lMa5yJJ4U5kqUcxe7HQOfOTROMjwhOfhqv2j4ZVAZnoKIbvHjmUHIc0mB0UicbtsYfz12/hvOjxnWMjXo8QTEJzi54wdUWJ4JT5rj+n+CQzDGr4mlbd10GtnYiXawXx2pXfKpbkb3gehL5zehQRxGT9e+7ulK4Dzcu/oH1+7cOHN/F2fOdkTaTbPwUTi+eh6uL7WwkF/Q01HYUTuGZeND7J5QFwRWnPtjCbFnH0qcgBg6r+ZqFiJmeVnxoNpeh0BnwUAiiEyYJ1DnSE29n3y502X46C5Ro7axNBjkS8qfHvrEabg8vHzD3pJgRVssOWqMdnP2wGVPMQ/EKT4UopYpcr3RYO2UBi2GKgO9ZiN6q3iRsCLcAzk0d3Ks9bKUTKNMvereFloMaXk7ThUaAbfSms+OCg==
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4867.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(6512007)(2616005)(38100700002)(316002)(186003)(52116002)(66946007)(6486002)(66556008)(6916009)(5660300002)(38350700002)(66476007)(86362001)(8676002)(6506007)(6666004)(8936002)(1076003)(956004)(26005)(44832011)(508600001)(2906002)(36756003)(83380400001);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3994.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(8676002)(956004)(86362001)(16576012)(66476007)(36756003)(31686004)(38100700002)(4001150100001)(31696002)(2616005)(53546011)(6666004)(5660300002)(38350700002)(508600001)(66946007)(52116002)(8936002)(26005)(186003)(2906002)(66556008)(83380400001)(6486002)(316002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?pB9uSJ1C+XBQnzFzII7vTMgBIk8oL3yo6EDsUlOc2h0ogfYEPForLMwM8v9g?=
- =?us-ascii?Q?2FTJ3IQ6KVbMP9TE0I2RY7dyrnxM3IdUpHmII9IInICHW8PPSbUaw1SylN2a?=
- =?us-ascii?Q?WGKnYnlp6Qv4Gj68y+UCl7zqtvie3PTqCI1ouPKZ7OtDxibuDb45Wd4c6Kh/?=
- =?us-ascii?Q?qwZZwXInAgyh/W24QWEJUlRXn3icF26dWvjmghhEN1q9WHVORFtN8XSaTtEj?=
- =?us-ascii?Q?f2lxsGu/S2K/1065S7WQ5aQOtsIJuJPur753M1hihhB5IKSqe3LshvGHfypp?=
- =?us-ascii?Q?cv2hCzKwvM71UDG3GBd/Q77MTValJ7vuCink4wGWmeryAtZlJfqVXjA10Dik?=
- =?us-ascii?Q?9LMgfFyFRjerW5x1NfP4IQF59AYtxyi/Xa01zAm+fVmZZHwJOornq2Mqu+br?=
- =?us-ascii?Q?t1JUGM/LqOhs1Qb4lepV6/7iiLB6ZMFQd5i7WUqLGPwtdVd56wACKpaCzDRL?=
- =?us-ascii?Q?LEMpYQZctPmHPR9a04W2x8WxO1SN0+xdE3bTcVPeJwpDrr81NNZhUwL/0xiP?=
- =?us-ascii?Q?O0mZJHvJxB/+gxKXs8sC+hq6MlNs/ofcH4DS0K+xvA4dHneBJPIEr89EC+Da?=
- =?us-ascii?Q?1p9Lo7xJ5e9SCevrpBzN87MTxympaBFaiEJu1alpDVAYpEJYelfdhn+QiGMM?=
- =?us-ascii?Q?zkO3IGvfiDoUASOHJ3nQWy6va+iR9ySKATkPrhlWjJrLTF49qRjfo5GyWv3F?=
- =?us-ascii?Q?JSNzICe40YngDsZ968J/yFPbIofBH3E1hJVNZ0EffXPPO17ap2ux2sIihaLG?=
- =?us-ascii?Q?DhmxHIXsaBHFwP0qarmHvlrvTGdi2NkZnwryo9F5Y0eiNGBGQqv0+RNUPvdA?=
- =?us-ascii?Q?U0IPzQKdq5dJxy1wr8XYe+XJOh5YOgBB+kuhbio1a4aMnErrr6SW+zQIs5yn?=
- =?us-ascii?Q?riBCEghYNqXMnIJwrZA+c96YcqIa03VHghyYGOv5EijUZ2//PjNIz2PsBmAb?=
- =?us-ascii?Q?fK2IpmbHqKTMwE4mo1XMlylT3antWCGEHDlfwXdKoE8SgpvdRGdFAWeofDeu?=
- =?us-ascii?Q?PAQ3XpCC5Nh83OhE1+PGn6gnmIhpY2NiGttdQmzoFzZxr3qUBo36qqmWT3al?=
- =?us-ascii?Q?HJaHeWJov7iwHFW2moSIFE+dn2MQmQtfpCu8gqv75Wo02xqgWYyhAYY4HVTr?=
- =?us-ascii?Q?ZCoORbNYMJugPQVv/GQkwLl1limHJgTqCztq6lkl5obno2PR943tRUg7dcc/?=
- =?us-ascii?Q?d/2+1NRTEWnwOb7Wls1JwlttJ/9/wYV+E9mzCYBXkDaq3la5hcfb9+YGAGER?=
- =?us-ascii?Q?CIIAxAGLFtWQTYSIfIulnrLFxQWO7tkqq5DdCXEHXc6sWrJ62JFm+NweXc9a?=
- =?us-ascii?Q?/rTa79N+sLtzJp/tBha1Oxzd1j8+DSGgMXd+xrHF5SU9wg/stnst/SJwuzFN?=
- =?us-ascii?Q?StQbhZDrT19Isv+m9Vg6EwKNLAjttYKhYfv+HmdQqy81NJxbQbwcKp51A9iu?=
- =?us-ascii?Q?x3aB87mEYgdtODpPMo2NDn58eIU3GC1ZUuvXWDEbD9nEGN3dq0cYlZDvIKF/?=
- =?us-ascii?Q?yS3nFzfoolaYYgPOGuqS2ABZ/FYIKNZlNIyBGGdOLVp0h6AyMtQCyRB+v2fs?=
- =?us-ascii?Q?atipLzxgwneCy97KJumPtmvrwjZjwpbQKfZkkch3MCpblbNu83DsdVlgeh5s?=
- =?us-ascii?Q?4lUPl0ZtHcHlHIbS9qImMGw=3D?=
+	=?utf-8?B?cnBPaWMxNCt6T0RSMFkyM3IyM0orUWFLK2JicHVnYzBmaVNMaldZWWxLbnlR?=
+ =?utf-8?B?K3ZReGp4ZDhNd0JkZzNKM1NUM0J5WU9XdjF5QWpIdzUwNW1YQU4zcThqKzQ4?=
+ =?utf-8?B?bU01NDl0ZStTV29xUVlMSXR5NHloVDVZUVJNU0tKSk0xV3pIQklNWHY3Nms4?=
+ =?utf-8?B?YTVvNkwyN2JmQkdQZ2VZTXNlSk5HY0U2dE83ZiszTW9MMGVOV2J5L3hvTEZ0?=
+ =?utf-8?B?UG1BZkV6RGtuandmNExkQ1ZuQWJmOENBZ1MzRnYwa1Q3SEtBa29MTmExYmZt?=
+ =?utf-8?B?eFpJdm5wdFd3VkVWekNudTJZME42bzRiMTEwN1pIUHdDVmxJdlNFSzNJQ1ZQ?=
+ =?utf-8?B?WkdxTHgrSnJjcUpBaUh1Q3NYZS95dEZydTM4VkxCZERrWkdaUEF1N05JakJk?=
+ =?utf-8?B?RW5RS3d1T0Rza1lTZmFhK1luZEtvWG9pODZ2MTZ5Y3RRSWM2dEVFcFBUMWFi?=
+ =?utf-8?B?b3NJNlJWR0RhY1F0dlZaWTRxbnllcTVBaHkraWRwRjNsVGV1bWNBcWhnVW4v?=
+ =?utf-8?B?NnNzcjQ0UUI5NmVvWmNkRVZhNG9HZ1lWcERrajc0emlWRFg3YURneUI5Ym9H?=
+ =?utf-8?B?S1lvT1g0OU1mNC9rS0VVZG5jWU80Z1JPRFczQ2s2a0F5a1F0em1SUWlnSTdJ?=
+ =?utf-8?B?TjQ4UEllYlJXYVNiT3ZhQWFRKzZRQ3NnZk96a0dXNWJmMzJNTy9pVWJ1Q1NS?=
+ =?utf-8?B?TXZIUTJKMkNkanVjZFJzVWJhb0h6NWwyeDRXYUpNZGxaQzJSN08vcDRXTlNa?=
+ =?utf-8?B?L1Jya0REbElETjlDZUZrbTZSUFZsTUJ0cEp5SmhoeHpxa0JubC9PdlRDM0ly?=
+ =?utf-8?B?Y1dmaEZWRUhhY2ozU0w5WktkNEZyY21DUDRuL003YkRNeXR0WExWRzdRZGlE?=
+ =?utf-8?B?cEJEVGk4a0dQanlFM0dvVlNsTXRqdm5nMEJYVCt6bm44MHNRTHVwZVhzSlVO?=
+ =?utf-8?B?MTU5em5GcUpIbFVNYXpNUHBKeVpSN2ltbkl2enlMeXZOVmdGQjd3MGdGL216?=
+ =?utf-8?B?TndZUnREV2ZCMlNrbkNGQmVXMnBzSHNOOW0xdDNsYW9wak9jWWV2VDZHSlE2?=
+ =?utf-8?B?SDhMOFZBK1pHVDdhTEJqbGpOMTU1cG9xSDlmaDByeStXeUN6TlZYYSthcG1v?=
+ =?utf-8?B?OXR1SFZSMCtDV0REWmY5OUo2SGlWSG45alRtWDRBSU5HYVQ3TTIxRDVFL1pF?=
+ =?utf-8?B?RjF6REdVR0srL04zNWpCRFBBU0hISW55TlZPZnBEVjJwcDgyYkdZMlNwMWRI?=
+ =?utf-8?B?Uzk4VitJQWVqVU5kakhUUk5VMnRFYU4xTS92Z3lNelkrcUtDTUtPa2tod0Y5?=
+ =?utf-8?B?RkVWdGdGaEUrTk52R2xCMG1rZjlpV25QbzBOS0l6UDRRSDlIakxuK3ppY3hH?=
+ =?utf-8?B?WHRqb3hKTWVuODRqL2NvRGRJVUpsTk5tZEcxYmlTbm5Td3UyenNIWGd3dU1G?=
+ =?utf-8?B?dGMrZGJIMEpCNTg5STd5TlBobHEyK2FMUFcyZkVoRmMwRFhKZXJoWk5TLzFo?=
+ =?utf-8?B?ak52YjRSbE1XSGhTSjg1bmtacUR4eE80U1RuMFBrTlRwdXJ1NjgwSkRlU2xC?=
+ =?utf-8?B?OXFnSDAwYkVJZDBncUF3NnI3RFBwcW4wMWh5ZWJIR3lyZ05BK0RXMnpFSmU2?=
+ =?utf-8?B?c3ZtbFN3MkFJcUJ3cTkzdUdxNGNYZnd1ZysxRVV3WTVrSWRBVnNtblpyS1hK?=
+ =?utf-8?B?Wmw2RXRUZFd5aW5zRHNyOU1DZmNXeGpBZ2RSYnRiMEF4SVFNSEF1OURtY203?=
+ =?utf-8?B?VG55elVIYXlMdzNkZ1dXK1l0VVBxRjVMclJOQVE5M0tPVERncHZjYk5ueDhk?=
+ =?utf-8?B?WjVEbldSNjZOdERqYkVVMlAyUSsvNlVubE9XellodGlKa3ZISWs1OTZvVVV5?=
+ =?utf-8?B?Z09IcTdEQ2FhTm9SQUQwT0pURWJlNW1MSW41YW9tZnB1b2t0YWJCTXlXME9h?=
+ =?utf-8?B?M0x1bW1ZZEtCSXpXd0hUamEzamFLVGFsa1psai9VVTFMVjhySm1UYk9PWDJ6?=
+ =?utf-8?B?aDAzVmpSbjBLSjZwSHg2a0p1eHZCUFBQVVF5SmQxWmZvUHJLUlhZNkVYL25m?=
+ =?utf-8?B?MU5IZ0lvckFUZXE0VVFzSGtQUHVKUHRRbnluYXpIY3U4a042RGVhejhVMDAv?=
+ =?utf-8?B?RUFlUklvZ3FuOEo4WDJkckMxWU5aaDFjaDZ0SzJ1MVVtTG9tekprTDRFTEFw?=
+ =?utf-8?B?Y2pMSnJvSC9yakpOa2tLbTJwQXhUdWQ0TzNmTnordmluVmFQSVRkdnVSTndM?=
+ =?utf-8?B?MXphZ2VjN3Z3OC9vNXo4TkRJczhBPT0=?=
 X-OriginatorOrg: windriver.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 5a247935-f33a-4230-b9fc-08d9ab6fdc73
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4867.namprd11.prod.outlook.com
+ e14c2db4-ea1a-4ee4-00b6-08d9ac47c325
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3994.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2021 15:18:38.0575
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2021 17:04:06.9051
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
 X-MS-Exchange-CrossTenant-UserPrincipalName: 
- k/Iyb/kX/AD5NtD6kC3oEip3pNYw8qXYJtxoCOUN63eqkpL1vl/tJ7GzRoIiykDo+VX0oJTv8LloVulV97bpbA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1984
-X-Proofpoint-ORIG-GUID: x5FM_ToVSxSrZsoju6bIRPQXAxAYH_EB
-X-Proofpoint-GUID: x5FM_ToVSxSrZsoju6bIRPQXAxAYH_EB
+ Zb1pLHNyueGe02y4TpONfsnciM+LXnDJ37FyHcRmwN4W2C+5fpoG4EiFzmft57/v9Yt16s6aGqcd2QXiaJsxN+CSkqWGY/4LEeh1GbYr3QE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1101MB2186
+X-Proofpoint-GUID: fPnjaw2j_odZ7e1xd0-jaXZYMNkWQofB
+X-Proofpoint-ORIG-GUID: fPnjaw2j_odZ7e1xd0-jaXZYMNkWQofB
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-11-19_09,2021-11-17_01,2020-04-07_01
+ definitions=2021-11-20_05,2021-11-17_01,2020-04-07_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 phishscore=0
- spamscore=0 adultscore=0 suspectscore=0 malwarescore=0 mlxlogscore=445
- mlxscore=0 lowpriorityscore=48 bulkscore=48 impostorscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2110150000 definitions=main-2111190085
+ priorityscore=1501
+ malwarescore=0 suspectscore=0 mlxscore=0 bulkscore=0 clxscore=1011
+ impostorscore=0 lowpriorityscore=0 adultscore=0 mlxlogscore=994
+ spamscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2110150000 definitions=main-2111200110
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by
+ mx0a-0064b401.pphosted.com id 1AKGuEJX032615
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 19 Nov 2021 15:18:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55377
+ <yocto@lists.yoctoproject.org>; Sat, 20 Nov 2021 17:04:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55379
 
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
----
- meta-parsec/README.md | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+On 2021-11-19 4:12 a.m., lucapirozzi via lists.yoctoproject.org wrote:
+> Hi Joseph,
+>=20
+> thank you for replying.
+>=20
+> Shall I use the oe-pkgdata-util find-path this way?
+>=20
+> oe-pkgdata-util=C2=A0 find-path /usr/bin/hexdump
+>=20
+> Because I'm encountering an error
+> ERROR: Unable to find any package producing path /usr/bin/hexdump
+>=20
+> So I think I am doing something wrong
 
-diff --git a/meta-parsec/README.md b/meta-parsec/README.md
-index c5635d3..bb4c2b9 100644
---- a/meta-parsec/README.md
-+++ b/meta-parsec/README.md
-@@ -80,7 +80,7 @@ Manual testing with runqemu
-   This layer also contains a recipe for pasec-tool which can be used for
- manual testing of the Parsec service:
- 
--    IMAGE_INSTALL:append += " parsec-tools"
-+    IMAGE_INSTALL:append = " parsec-tools"
- 
-   There are a series of Parsec Demo videos showing how to use parsec-tool
- to test the Parsec service base functionality:
-@@ -104,7 +104,7 @@ enabled. No changes required.
-   The Software HSM can be used for manual testing of the provider by
- including it into your test image:
- 
--    IMAGE_INSTALL:append += " softhsm"
-+    IMAGE_INSTALL:append = " softhsm"
- 
- Inside the running VM:
- - Stop Parsec
-@@ -135,7 +135,7 @@ systemctl start parsec
-   The IBM Software TPM service can be used for manual testing of the provider by
- including it into your test image:
- 
--    IMAGE_INSTALL:append += " ibmswtpm2 tpm2-tools libtss2 libtss2-tcti-mssim"
-+    IMAGE_INSTALL:append = " ibmswtpm2 tpm2-tools libtss2 libtss2-tcti-mssim"
- 
- Inside the running VM:
- - Stop Parsec
--- 
-2.25.1
+
+Hi Luca,
+
+I think you either need the right key/string:
+
+$ oe-pkgdata-util  find-path /bin/ls.coreutils
+
+coreutils: /bin/ls.coreutils
+
+
+or to use a wildcard and quotes:
+
+$ oe-pkgdata-util  find-path "/bin/ls*"
+
+coreutils: /bin/ls.coreutils
+
+kmod: /bin/lsmod.kmod
+
+
+
+For help:
+
+$ oe-pkgdata-util
+
+oe-pkgdata-util: error: the following arguments are required: <subcommand=
+>
+
+usage: oe-pkgdata-util [-h] [-d] [-p PKGDATA_DIR] <subcommand> ...
+
+
+
+OpenEmbedded pkgdata tool - queries the pkgdata files written out during
+
+do_package
+
+
+
+options:
+
+   -h, --help            show this help message and exit
+
+   -d, --debug           Enable debug output
+
+   -p PKGDATA_DIR, --pkgdata-dir PKGDATA_DIR
+
+                         Path to pkgdata directory (determined=20
+automatically if
+
+                         not specified)
+
+
+
+subcommands:
+
+   lookup-pkg            Translate between recipe-space package names and
+
+                         runtime package names
+
+   list-pkgs             List packages
+
+   list-pkg-files        List files within a package
+
+   lookup-recipe         Find recipe producing one or more packages
+
+   package-info          Show version, recipe and size information for=20
+one or
+
+                         more packages
+
+   find-path             Find package providing a target path
+
+   read-value            Read any pkgdata value for one or more packages
+
+   glob                  Expand package name glob expression
+
+Use oe-pkgdata-util <subcommand> --help to get help on a specific command
+
+
+
+--=20
+# Randy MacLeod
+# Wind River Linux
 
 
