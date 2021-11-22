@@ -2,267 +2,65 @@ Return-Path: <taylor.winning@fundamentals-group.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E635C433EF
-	for <webhook@archiver.kernel.org>; Mon, 22 Nov 2021 08:15:50 +0000 (UTC)
-Subject: Useradd recipe not generating /etc/passwd entries #dunfell 
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ABAD2C433F5
+	for <webhook@archiver.kernel.org>; Mon, 22 Nov 2021 09:19:25 +0000 (UTC)
+Subject: Re: Useradd recipe not generating /etc/passwd entries #dunfell
 To: yocto@lists.yoctoproject.org
 From: taylor.winning@fundamentals-group.com
 X-Originating-Location: Perth, Western Australia, AU (110.145.30.150)
 X-Originating-Platform: Windows Firefox 95
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Mon, 22 Nov 2021 00:15:49 -0800
-Message-ID: <tasT.1637568949701136232.XcDr@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="8kECA91v9w1FWkSv7SLh"
+Date: Mon, 22 Nov 2021 01:19:25 -0800
+References: <tasT.1637568949701136232.XcDr@lists.yoctoproject.org>
+In-Reply-To: <tasT.1637568949701136232.XcDr@lists.yoctoproject.org>
+Message-ID: <28096.1637572765176121824@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="gCbbo7TSOyCy13zy0PBa"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 22 Nov 2021 08:15:50 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55380
+ <yocto@lists.yoctoproject.org>; Mon, 22 Nov 2021 09:19:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55381
 
---8kECA91v9w1FWkSv7SLh
+--gCbbo7TSOyCy13zy0PBa
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Okay, I seem to have achieved this by adding:
 
-I=E2=80=99m attempting to create a few service users for our software produ=
-cts. Initially I had inherited useradd in each recipe that required the use=
-r, then had a corresponding user added from within the image recipe. I know=
- this is not ideal, however I have been unable to solve some issues I=E2=80=
-=99m having so I=E2=80=99m hoping someone can help.
+ALLOW_EMPTY_${PN}=3D"1"
 
-I'm on Dunfell branch.
+To the adh-user-add recipe that everything is depending on (including the i=
+mage recipe).
 
-I now have a recipe that creates two users, that all other recipes DEPENDS =
-on. Here is the contents of that recipe (adh-user-add.bb):
+I'm a bit confused as to why that was such a hassle to achieve something I =
+would have thought was a simple adding of a few users. Definitely would've =
+appreciated a warning that the build system was attempting to add an empty =
+package or something like that. I wouldn't think I'm on the fringe's of Yoc=
+to development here, but perhaps my use case is resulting in an 'empty pack=
+age' being created via my image recipe that most other use-cases aren't tri=
+ggering?
 
-FILESEXTRAPATHS_prepend :=3D "${THISDIR}:"
+I would be very glad to hear any input despite having this resolved.
 
-SUMMARY =3D "Add adh and adhX user for other recipes"
-
-LICENSE=3D"CLOSED"
-
-PV =3D "${ADH_ADH_SVN_REVISION}"
-
-require require/revisions.inc
-
-PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-
-inherit useradd
-
-USERADD_PACKAGES =3D "${PN}"
-
-USERADD_PARAM_${PN} =3D "--system --uid 420 -g adh adh; --system --uid 421 =
--g adhX adhX "
-
-GROUPADD_PARAM_${PN} =3D "-g 420 adh; -g 421 adhX "
-
-Each recipe that needs these users simply DEPENDS on it from within its own=
- recipe. I understand that is the preferred way of doing this?
-
-However, inside my image (development-image.bb) once its built, my /etc/pas=
-swd file does not contain these users at all. I have tried the following th=
-ings:
-
-* IMAGE_INSTALL_append +=3D =E2=80=9C adh-user-add=E2=80=9D
-* DEPENDS +=3D =E2=80=9C adh-user-add=E2=80=9D
-* RDEPENDS +=3D =E2=80=9C adh-user-add=E2=80=9D
-
-Each time I get a passwd file inside of adh-user-add/recipe-sysroots and de=
-velopment-image/recipe-sysroots that contains both users, however the passw=
-d file on the device is missing those users entirely.
-
-My image recipe looks like this:
-
-SUMMARY =3D "Development image"
-
-inherit core-image extrausers
-
-require require/revisions.inc
-
-PV =3D "${CUBE_IMAGE_VERSION}"
-
-PR =3D "${CUBE_IMAGE_REVISION}"
-
-IMAGE_FSTYPES_append +=3D "wic wic.xz"
-
-WKS_FILE =3D "sgc30cube.wks"
-
-IMAGE_INSTALL =3D "packagegroup-core-boot ${CORE_IMAGE_EXTRA_INSTALL} "
-
-IMAGE_INSTALL_append =3D " \
-
-*** packages removed ***
-
-"
-
-IMAGE_FEATURES_append =3D " ssh-server-dropbear"
-
-MACHINE_FEATURES_remove =3D "kernel26 nc screen ext2 alsa gpu touchscreen q=
-emu-usermode"
-
-DEPENDS +=3D "adh-user-add"
-
-IMAGE_FEATURES_append =3D " debug-tweaks"
-
-I feel like I'm going crazy trying to figure this out. I wish I could figur=
-e out how the final passwd file is generated. I've looked in some logs that=
- I've seen suggested online, but have been unable to ascertain if there are=
- any errors occurring.
-
-Any help would be greatly appreciated,
-
-Thanks,
-
-Taylor W
-
---8kECA91v9w1FWkSv7SLh
+--gCbbo7TSOyCy13zy0PBa
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"mso-ans=
-i-language: EN-US;" lang=3D"EN-US">Hi,<br/><br/></span>I=E2=80=99m attempti=
-ng to create a few service users for our software products. Initially I had=
- inherited useradd in each recipe that required the user, then had a corres=
-ponding user added from within the image recipe. I know this is not ideal, =
-however I have been unable to solve some issues I=E2=80=99m having so I=E2=
-=80=99m hoping someone can help. <br/><br/>I&#39;m on Dunfell branch.<br/><=
-br/>I now have a recipe that creates two users, that all other recipes DEPE=
-NDS on. Here is the contents of that recipe (adh-user-add.bb):</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">=C2=A0</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">FILESEXTRAPATHS_prepend :=3D &#34;${THI=
-SDIR}:&#34;</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">SUMMARY =3D &#34;Add adh and adhX user =
-for other recipes&#34;</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">LICENSE=3D&#34;CLOSED&#34;</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">PV =3D &#34;${ADH_ADH_SVN_REVISION}&#34=
-;</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">require require/revisions.inc</span></p=
->
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">PACKAGE_ARCH =3D &#34;${MACHINE_ARCH}&#=
-34;</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">=C2=A0</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">inherit useradd</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">=C2=A0</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">USERADD_PACKAGES =3D &#34;${PN}&#34;</s=
-pan></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">USERADD_PARAM_${PN} =3D &#34;--system -=
--uid 420 -g adh adh; --system --uid 421 -g adhX adhX &#34;</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">GROUPADD_PARAM_${PN} =3D &#34;-g 420 ad=
-h; -g 421 adhX &#34;</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">=C2=A0</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">Each recipe that needs=
- these users simply DEPENDS on it from within its own recipe. I understand =
-that is the preferred way of doing this?</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">=C2=A0</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">However, inside my ima=
-ge (development-image.bb) once its built, my /etc/passwd file does not cont=
-ain these users at all. I have tried the following things:</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">=C2=A0</p>
-<ol style=3D"margin-top: 0cm;" start=3D"1" type=3D"1">
-<li class=3D"MsoListParagraph" style=3D"margin-left: 0cm; mso-list: l0 leve=
-l1 lfo1;">IMAGE_INSTALL_append +=3D =E2=80=9C adh-user-add=E2=80=9D</li>
-<li class=3D"MsoListParagraph" style=3D"margin-left: 0cm; mso-list: l0 leve=
-l1 lfo1;">DEPENDS +=3D =E2=80=9C adh-user-add=E2=80=9D</li>
-<li class=3D"MsoListParagraph" style=3D"margin-left: 0cm; mso-list: l0 leve=
-l1 lfo1;">RDEPENDS +=3D =E2=80=9C adh-user-add=E2=80=9D</li>
-</ol>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">=C2=A0</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">Each time I get a pass=
-wd file inside of adh-user-add/recipe-sysroots and development-image/recipe=
--sysroots that contains both users, however the passwd file on the device i=
-s missing those users entirely.</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">=C2=A0</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">My image recipe looks =
-like this:</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">=C2=A0</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">SUMMARY =3D &#34;Development image&#34;=
-</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">inherit core-image extrausers</span></p=
->
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">require require/revisions.inc</span></p=
->
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">=C2=A0</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">PV =3D &#34;${CUBE_IMAGE_VERSION}&#34;<=
-/span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">PR =3D &#34;${CUBE_IMAGE_REVISION}&#34;=
-</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">=C2=A0</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">IMAGE_FSTYPES_append +=3D &#34;wic wic.=
-xz&#34;</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">=C2=A0</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">WKS_FILE =3D &#34;sgc30cube.wks&#34;</s=
-pan></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">IMAGE_INSTALL =3D &#34;packagegroup-cor=
-e-boot ${CORE_IMAGE_EXTRA_INSTALL}<span style=3D"mso-spacerun: yes;">=C2=A0=
- </span>&#34;</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">=C2=A0</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">IMAGE_INSTALL_append =3D &#34; \</span>=
-</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;"><span style=3D"mso-tab-count: 3;">=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=
-=3D"mso-spacerun: yes;">=C2=A0</span>*** packages removed ***</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;"><span style=3D"mso-tab-count: 3;">=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=
-=3D"mso-spacerun: yes;">=C2=A0</span>&#34;</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">=C2=A0</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">IMAGE_FEATURES_append =3D &#34; ssh-ser=
-ver-dropbear&#34;</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">MACHINE_FEATURES_remove =3D &#34;kernel=
-26 nc screen ext2 alsa gpu touchscreen qemu-usermode&#34;</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">=C2=A0</span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">DEPENDS +=3D &#34;adh-user-add&#34;</sp=
-an></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span style=3D"font-fa=
-mily: courier_newregular, courier;">IMAGE_FEATURES_append =3D &#34; debug-t=
-weaks&#34;<br/><br/><span style=3D"font-family: arial, helvetica, sans-seri=
-f;">I feel like I&#39;m going crazy trying to figure this out. I wish I cou=
-ld figure out how the final passwd file is generated. I&#39;ve looked in so=
-me logs that I&#39;ve seen suggested online, but have been unable to ascert=
-ain if there are any errors occurring. </span><br/><br/><span style=3D"font=
--family: helvetica;">Any help would be greatly appreciated,</span><br/><br/=
-></span></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">Thanks,</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">Taylor W</p>
+<p class=3D"MsoPlainText">Okay, I seem to have achieved this by adding:</p>
+<p class=3D"MsoPlainText"><span style=3D"font-family: courier_newregular, c=
+ourier;">ALLOW_EMPTY_${PN}=3D"1"</span></p>
+<p class=3D"MsoPlainText">To the adh-user-add recipe that everything is dep=
+ending on (including the image recipe).</p>
+<p class=3D"MsoPlainText">I'm a bit confused as to why that was such a hass=
+le to achieve something I would have thought was a simple adding of a few u=
+sers. Definitely would've appreciated a warning that the build system was a=
+ttempting to add an empty package or something like that. I wouldn't think =
+I'm on the fringe's of Yocto development here, but perhaps my use case is r=
+esulting in an 'empty package' being created via my image recipe that most =
+other use-cases aren't triggering?</p>
+<p class=3D"MsoPlainText">I would be very glad to hear any input despite ha=
+ving this resolved.</p>
 <!-- [if gte mso 9]><xml>
  <o:OfficeDocumentSettings>
   <o:AllowPNG/>
@@ -292,12 +90,12 @@ ain if there are any errors occurring. </span><br/><br/><span style=3D"font=
    <w:EnableOpenTypeKerning/>
    <w:DontFlipMirrorIndents/>
    <w:OverrideTableStyleHps/>
-   <w:UseFELayout/>
   </w:Compatibility>
+  <w:DoNotOptimizeForBrowser/>
   <m:mathPr>
    <m:mathFont m:val=3D"Cambria Math"/>
    <m:brkBin m:val=3D"before"/>
-   <m:brkBinSub m:val=3D"--"/>
+   <m:brkBinSub m:val=3D"&#45;-"/>
    <m:smallFrac m:val=3D"off"/>
    <m:dispDef/>
    <m:lMargin m:val=3D"0"/>
@@ -1195,9 +993,21 @@ ue"
 	mso-hansi-font-family:Calibri;
 	mso-hansi-theme-font:minor-latin;
 	mso-bidi-font-family:"Times New Roman";
-	mso-bidi-theme-font:minor-bidi;}
+	mso-bidi-theme-font:minor-bidi;
+	mso-fareast-language:EN-US;}
 </style>
 <![endif]-->
+<table class=3D"highlight tab-size js-file-line-container js-code-nav-conta=
+iner js-tagsearch-file" data-tab-size=3D"8" data-paste-markdown-skip=3D"" d=
+ata-tagsearch-lang=3D"BitBake" data-tagsearch-path=3D"recipes-caros/carosap=
+p/carosapp_1.0.0.bb">
+<tbody>
+<tr>
+<td id=3D"LC38" class=3D"blob-code blob-code-inner js-file-line">&nbsp;</td=
+>
+</tr>
+</tbody>
+</table>
 
---8kECA91v9w1FWkSv7SLh--
+--gCbbo7TSOyCy13zy0PBa--
 
