@@ -1,310 +1,181 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <ddbabich@bootseeds.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 67D4BC433F5
-	for <webhook@archiver.kernel.org>; Mon, 22 Nov 2021 22:30:38 +0000 (UTC)
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
- [209.85.210.173])
- by mx.groups.io with SMTP id smtpd.web09.3404.1637620237633580355
- for <yocto@lists.yoctoproject.org>;
- Mon, 22 Nov 2021 14:30:37 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=LmPYz4SL;
- spf=pass (domain: gmail.com, ip: 209.85.210.173,
- mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-pf1-f173.google.com with SMTP id z6so17394389pfe.7
-        for <yocto@lists.yoctoproject.org>;
- Mon, 22 Nov 2021 14:30:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version:thread-index
-         :content-language;
-        bh=4UmPLHePyfbjtV2xHnpvQJ1aWjWHWDPzfi9uwaCNdPg=;
-        b=LmPYz4SL44pfIk/MIVnPRw9yvkmMkTxP6ZDt/QSQCr2Whzks2bG4R3SaVV6tNgmCbA
-         WOk5sCUVKxlr6Jzj0MmJWgOSPrmhC/ZtoQc2f49aPdljPGgnQCBdppBZyzX09e4Aotgn
-         xu11fBlO7bVEpq5yEF8+/4d81le61xEZOcoasrGH+kI0zTfhoNhBLQ4JqrncG2wpIbo2
-         /0GRPNEirFBIpkNA+TmycUxvaRxLKmIs0HA96VUGnWGH0SdfqM4TGs/vo9+mo7cm6YAd
-         5B3Cz4vkvFAwNHRFDQxr5JZKl/4haA2X7w/iWHRZEyTLfma18tF3b5DJC5vxssgcB21n
-         LuJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :thread-index:content-language;
-        bh=4UmPLHePyfbjtV2xHnpvQJ1aWjWHWDPzfi9uwaCNdPg=;
-        b=1NAGrTX1Bo7V78gtBc9pXMcdOiXyp9z6YgP6dWlRDeZD8EDZuWvbvjk5wMWZzdsXGR
-         ePUo8ATzqkYiFhALl6Wp/XX2b4t6IVbe32j8JoKtOmObL/NE+aHzjUr0qQj5INfqW+4U
-         fTOxSMUpD2oCzYmgnpjiRKac3iLZLSW0I7RWnEm0HLpJ+lQG11qFwXuYLP0SKNwSqgWN
-         N12pp/Us1bhsSg3AnbLcyMh/wBpDZevGd4G5XgonY7QCbVW/6SWXPDdbOSBZDvCny+JF
-         Al7gD+WLPkS008izONuXGlJTfE7Y6J3rSoUh2WbCxAGIlL5zRLuzQwbqawpS4i/lDIQW
-         NBQw==
-X-Gm-Message-State: AOAM532M+Yb4Sje1JQu1NSoWbBwKIsgHjz2vy+SXyTHqsX4vovxZr/zk
-	xPeA2ZQwLfp4ZLL3d7hgN/w=
-X-Google-Smtp-Source: 
- ABdhPJzJxSOg5n5sNLC2FvfYbjiZMy9+RUn0u6VJib2VBhGJ0CpkFW+GVb0zyYNstX4auTMaeGTNrA==
-X-Received: by 2002:a65:4886:: with SMTP id n6mr286603pgs.87.1637620237125;
-        Mon, 22 Nov 2021 14:30:37 -0800 (PST)
-Received: from skjolley ([2600:8800:1d92:f800:293c:e2d4:1418:7020])
-        by smtp.gmail.com with ESMTPSA id
- o1sm19415935pjs.30.2021.11.22.14.30.36
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 22 Nov 2021 14:30:36 -0800 (PST)
-From: <sjolley.yp.pm@gmail.com>
-To: <yocto@lists.yoctoproject.org>
-Subject: Enhancements/Bugs closed WW47!
-Date: Mon, 22 Nov 2021 15:30:35 -0700
-Message-ID: <05e601d7dff0$92306830$b6913890$@gmail.com>
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1F452C433EF
+	for <webhook@archiver.kernel.org>; Mon, 22 Nov 2021 22:36:11 +0000 (UTC)
+Subject: Problem installing python package from a wheel #bitbake #python
+To: yocto@lists.yoctoproject.org
+From: "David Babich" <ddbabich@bootseeds.com>
+X-Originating-Location: Boardman, Oregon, US (52.61.197.79)
+X-Originating-Platform: Linux Chrome 95
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_05E7_01D7DFB5.E5D19030"
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: Adff8IkwfMcJd+4wRT+6SsGgZHV44Q==
-Content-Language: en-us
+Date: Mon, 22 Nov 2021 14:36:10 -0800
+Message-ID: <qUQg.1637620570327649228.fQLs@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="fpP6qDfTSSFbMKWeaLrZ"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 22 Nov 2021 22:30:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55388
+ <yocto@lists.yoctoproject.org>; Mon, 22 Nov 2021 22:36:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55389
 
-This is a multipart message in MIME format.
-
-------=_NextPart_000_05E7_01D7DFB5.E5D19030
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-All,
-
-The below were the owners of enhancements or bugs closed during the last
-week!
-
-
-Who
-
-Count
-
-
-richard.purdie@linuxfoundation.org
-
-4
-
-
-randy.macleod@windriver.com
-
-2
-
-
-ross@burtonini.com
-
-1
-
-
-steve@sakoman.com
-
-1
-
-
-akuster808@gmail.com
-
-1
-
-
-Grand Total
-
-9
-
-Thanks,
-
- 
-
-Stephen K. Jolley
-
-Yocto Project Program Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> 
-
- 
-
-
-------=_NextPart_000_05E7_01D7DFB5.E5D19030
-Content-Type: text/html;
-	boundary="----=_NextPart_000_0D3E_01D7DA43.F6887140";
-	charset="us-ascii"
+--fpP6qDfTSSFbMKWeaLrZ
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal><span =
-style=3D'color:black'>All,<br><br>The below were the owners of =
-enhancements or bugs closed during the last =
-week!<o:p></o:p></span></p><table class=3DMsoNormalTable border=3D0 =
-cellspacing=3D0 cellpadding=3D0 width=3D293 =
-style=3D'width:220.0pt;margin-left:-.15pt;border-collapse:collapse'><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>Who<o:p></o:p></span></b></p></td><td width=3D43 =
-nowrap valign=3Dbottom style=3D'width:32.0pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Count<o:p></o:p></span></b></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>4<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>ross@burtonini.com<o:p></o:p></span></p></td><td =
-width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>steve@sakoman.com<o:p></o:p></span></p></td><td =
-width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>akuster808@gmail.com<o:p></o:p></span></p></td><td =
-width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Grand Total<o:p></o:p></span></b></p></td><td =
-width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext =
-1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal align=3Dright style=3D'text-align:right'><b><span =
-style=3D'color:black'>9<o:p></o:p></span></b></p></td></tr></table><p =
-class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Program Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_000_05E7_01D7DFB5.E5D19030--
+Hi,
+I'm attempting to create a recipe for pytorch for the TX2i using a wheel fi=
+le obtained from here:
 
+https://forums.developer.nvidia.com/t/pytorch-for-jetson-version-1-10-now-a=
+vailable/72048
+
+Here is what I have so far for the recipe:
+
+```
+
+DESCRIPTION =3D "NVIDIA's Python Torch"
+
+HOMEPAGE =3D "https://nvidia.com"
+
+LICENSE =3D "BSD-3-Clause"
+
+LIC_FILES_CHKSUM =3D "file://../LICENSE;md5=3D91a5dfdaccf53b27488cb3a639e98=
+6d5"
+
+inherit setuptools3
+
+SRC_URI =3D "\
+
+file://torch-1.10.0-cp36-cp36m-linux_aarch64.whl \
+
+file://LICENSE \
+
+"
+
+COMPATIBLE_MACHINE =3D "jetson-tx2-devkit-tx2i"
+
+PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+
+S =3D "${WORKDIR}/${PN}-${PV}"
+
+do_configure() {
+
+:
+
+}
+
+do_compile() {
+
+:
+
+}
+
+do_install() {
+
+pip3 install ${WORKDIR}/torch-1.10.0-cp36-cp36m-linux_aarch64.whl
+
+}
+
+DEPENDS =3D "python3-pip-native"
+
+```
+
+When I build I get the following ambiguous error during do_install:
+
+| WARNING: The directory '/home/ddbabich/.cache/pip' or its parent director=
+y is not owned or is not writable by the current user. The cache has been d=
+isabled. Check the permissions and owner of that directory. If executing pi=
+p with sudo, you should use sudo's -H flag.
+
+| ERROR: torch-1.10.0-cp36-cp36m-linux_aarch64.whl is not a supported wheel=
+ on this platform.
+
+It seems like I'm missing something with the host vs. the target settings?=
+=C2=A0 But I really don't have any ideas.=C2=A0 Any help is appreciated.
+THanks
+-David
+
+--fpP6qDfTSSFbMKWeaLrZ
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hi,<br />I'm attempting to create a recipe for pytorch for the TX2i usin=
+g a wheel file obtained from here:</p>
+<p><a href=3D"https://forums.developer.nvidia.com/t/pytorch-for-jetson-vers=
+ion-1-10-now-available/72048" target=3D"_blank" rel=3D"noopener">https://fo=
+rums.developer.nvidia.com/t/pytorch-for-jetson-version-1-10-now-available/7=
+2048</a><br /><br />Here is what I have so far for the recipe:</p>
+<p>```</p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">DESCRIPTION =3D "NVIDIA's Python Torch"</span></p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">HOMEPAGE =3D "https://nvidia.com"</span></p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">LICENSE =3D "BSD-3-Clause"</span></p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">LIC_FILES_CHKSUM =3D "file://../LICENSE;md5=3D91a5dfdaccf53b27488cb3a639=
+e986d5"</span></p>
+<p>&nbsp;</p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">inherit setuptools3</span></p>
+<p>&nbsp;</p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">SRC_URI =3D "\</span></p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">&nbsp; &nbsp; &nbsp; &nbsp; file://torch-1.10.0-cp36-cp36m-linux_aarch64=
+.whl \</span></p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">&nbsp; &nbsp; &nbsp; &nbsp; file://LICENSE \</span></p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">"</span></p>
+<p>&nbsp;</p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">COMPATIBLE_MACHINE =3D "jetson-tx2-devkit-tx2i"</span></p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">PACKAGE_ARCH =3D "${MACHINE_ARCH}"</span></p>
+<p>&nbsp;</p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">S =3D "${WORKDIR}/${PN}-${PV}"</span></p>
+<p>&nbsp;</p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">do_configure() {</span></p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">&nbsp; &nbsp; &nbsp; &nbsp; :</span></p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">}</span></p>
+<p>&nbsp;</p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">do_compile() {</span></p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">&nbsp; &nbsp; &nbsp; &nbsp; :</span></p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">}</span></p>
+<p>&nbsp;</p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">do_install() {</span></p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">&nbsp; &nbsp; &nbsp; &nbsp; pip3 install ${WORKDIR}/torch-1.10.0-cp36-cp=
+36m-linux_aarch64.whl</span></p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">}</span></p>
+<p>&nbsp;</p>
+<p><span style=3D"font-family: courier_newregular, courier; font-size: 10pt=
+;">DEPENDS =3D "python3-pip-native"</span></p>
+<p>```<br /><br />When I build I get the following ambiguous error during d=
+o_install:</p>
+<p>| WARNING: The directory '/home/ddbabich/.cache/pip' or its parent direc=
+tory is not owned or is not writable by the current user. The cache has bee=
+n disabled. Check the permissions and owner of that directory. If executing=
+ pip with sudo, you should use sudo's -H flag.</p>
+<p>| ERROR: torch-1.10.0-cp36-cp36m-linux_aarch64.whl is not a supported wh=
+eel on this platform.</p>
+<div><br />It seems like I'm missing something with the host vs. the target=
+ settings?&nbsp; But I really don't have any ideas.&nbsp; Any help is appre=
+ciated.<br />THanks<br />-David</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+--fpP6qDfTSSFbMKWeaLrZ--
 
