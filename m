@@ -1,103 +1,112 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <ross@burtonini.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DE88FC433FE
-	for <webhook@archiver.kernel.org>; Tue, 23 Nov 2021 17:43:52 +0000 (UTC)
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
- [209.85.221.50])
- by mx.groups.io with SMTP id smtpd.web08.14561.1637689432111451943
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1CAE2C433F5
+	for <webhook@archiver.kernel.org>; Tue, 23 Nov 2021 19:53:48 +0000 (UTC)
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
+ [209.85.128.43])
+ by mx.groups.io with SMTP id smtpd.web12.16528.1637697226596959296
  for <yocto@lists.yoctoproject.org>;
- Tue, 23 Nov 2021 09:43:52 -0800
+ Tue, 23 Nov 2021 11:53:47 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=TzavWTMJ;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.50,
- mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f50.google.com with SMTP id a9so40301564wrr.8
+ dkim=pass header.i=@burtonini-com.20210112.gappssmtp.com header.s=20210112
+ header.b=zXnclmKe;
+ spf=pass (domain: burtonini.com, ip: 209.85.128.43,
+ mailfrom: ross@burtonini.com)
+Received: by mail-wm1-f43.google.com with SMTP id i12so49295wmq.4
         for <yocto@lists.yoctoproject.org>;
- Tue, 23 Nov 2021 09:43:51 -0800 (PST)
+ Tue, 23 Nov 2021 11:53:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=jufl7Htbu1gT+x8MuCNr0GbVNQclHQAAyHtfZhOiSQk=;
-        b=TzavWTMJsjiI3qqq3ZMcNJVz8+7FLgvKCtEqr4aCzUe/iP5hD5C6GHJkWJlFezOdWM
-         1AgrYzUzNmghWOz9TkpfZQq0q2NhcRjfDHX9vcVlwTlI9Dqzm32vOhslmuLQSrsyrvtv
-         YBqAOp0PK6gok04QKrwTtx8CC0yDtndqW0BhY=
+        d=burtonini-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=kFT/d8jX3AjCsON8qCrctaTqq+d9nBMNax0RVi8BFnI=;
+        b=zXnclmKea4pSkIvA4bqIFSG2KjWIgjdLs4nAAKMjB9joN8DgTUv1uRdRXkAU+VlmOM
+         Z40B973yCbgXj2dImZCA5WQB3msetlYcOtLbbDXSUhbJlLtWJZXH2/l07KZ6JVUJDJxV
+         6Inzl3rV2nQGhQIZ3ZSh3GHQRNlAzso7zijpM+OqMkirLDspUBU50M2NgSBjt4uj4qDU
+         je4a+3we01L1rWXgeEgQobC6axrAVCrdUSB/n6cWFWq/+sRHph7uN6Ey9Q5dckNJfjGN
+         If1+IOyv+ETL+aMz3/vVC06xzlaSzFS04pmeU0ufkJcssvTGo5Yzlh0hMEXDKpUabtIV
+         1Mlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=jufl7Htbu1gT+x8MuCNr0GbVNQclHQAAyHtfZhOiSQk=;
-        b=SJuR6RHt3o851S5iyrQ3eISx7poo8Wc5E6YKzt9hSLqGo8KuWFVPzHawFwQIDx0+51
-         acetKEMNNXcA8HYpmpFyo+a6qrOlH/kO1ZeroB4MVjva5vVWuxVdTwtHT40SQZ5uUubp
-         G5M8y79Yv2Byb2hw9mrqntqYOzqzuQ5wmjt/6CGHKU/n9Oa3RlY5GbSPX4Gp6BcKZyoT
-         MJZH2bcTX6N1bfulVJQS+nVKSiLZUDMUJPfU3r39q5PpzfNcQcE1E8wI5akjlkhQAGE6
-         ytNzwY6heb4x5t8O+ZRYlcBLGVMn2k1OE13V+6eaP/ydUb1RmZtqS+JVgwG9xa04K8UF
-         bMpg==
-X-Gm-Message-State: AOAM532oin+HxxyjfDwXLrsaVJQDaUP0pRfKuYeJb/RbTHuujDAdjYTV
-	PGtD78i+JnKeBACbBJ1F6yTv0w==
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=kFT/d8jX3AjCsON8qCrctaTqq+d9nBMNax0RVi8BFnI=;
+        b=SeqRD6tQJRK3KKzTPZajqGPPV/O4jVgOSRxQ+ves4COrv2O+ubvQFwz+OX4JrZqIQb
+         oWnW/29ENMMrM1mACySs0cvzHi58iP/vyHsf4vkgdwL5IV5DUuYQMZFDHrp7/nm783Si
+         vLq0PAI3JfYcYJHe36wsYMjB3oTaIbeSRHAq5MT/qVmEEVcVs+cjpCnslVDkLmt6SFL0
+         tJkZhvCQQRnaMlBVkA05gsDoz9BxXrrLufwEbetwXXobU/pzr3oJeVFn/d3TpsfGixAv
+         bnnjV39Vt20vedug4++eMywiW47OJqQzS9L06yqHazE2fpvud+S2rdErL+yc7X2l215o
+         AWOg==
+X-Gm-Message-State: AOAM530+3M0xrg54W7twrMTKEroStkiyi2h6QcAw6PDC2Dh3TzEomGal
+	6UvISnbWsa3Y9dB2mYYqOc9wdZ4yxpOU6jd8WP4PVg==
 X-Google-Smtp-Source: 
- ABdhPJxg0yUXRZQtQkz3oHTiFH6/FvklyA2bN0QiaN8PbWx5YX0d8rQZ0YwwnPQInlBZyFSmJv23pQ==
-X-Received: by 2002:a5d:47c9:: with SMTP id o9mr9187723wrc.348.1637689430434;
-        Tue, 23 Nov 2021 09:43:50 -0800 (PST)
-Received: from ?IPv6:2001:8b0:aba:5f3c:e990:5f99:797d:8988?
- ([2001:8b0:aba:5f3c:e990:5f99:797d:8988])
-        by smtp.gmail.com with ESMTPSA id
- m7sm1630407wml.38.2021.11.23.09.43.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Nov 2021 09:43:50 -0800 (PST)
-Message-ID: 
- <acb4b7e9d576aae4b4ee8374f0e26033a65bff47.camel@linuxfoundation.org>
-Subject: Re: [qa-build-notification] [yocto] QA notification for completed
- autobuilder build (yocto-3.1.12.rc1)
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: qa-build-notification@lists.yoctoproject.org,
-	"<yocto@lists.yoctoproject.org>"
-	 <yocto@lists.yoctoproject.org>, OE-core
-	 <openembedded-core@lists.openembedded.org>
-Cc: Lee Chee Yang <chee.yang.lee@intel.com>, "Tummalapalli, Vineela"
-	 <vineela.tummalapalli@intel.com>, "Stephen K Jolley (via Google Docs)"
-	 <sjolley.yp.pm@gmail.com>
-Date: Tue, 23 Nov 2021 17:43:46 +0000
-In-Reply-To: 
- <BN9PR11MB5372F9B07F411F0B1708A930BB609@BN9PR11MB5372.namprd11.prod.outlook.com>
-References: 
-	<581c5d14ffc3eca5b39297c422a08eabba4f6d93.camel@linuxfoundation.org>
-	 <BN9PR11MB5372F9B07F411F0B1708A930BB609@BN9PR11MB5372.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4-1 
+ ABdhPJwFyNhuXk7OQ55XLTply076CDVBPkLXIatbOTl1/7BcjJ7+iBwkIooVV4SM7N+iE+Ke7fL4tAarpz1oCuXxZSE=
+X-Received: by 2002:a1c:7e41:: with SMTP id z62mr6915051wmc.62.1637697224965;
+ Tue, 23 Nov 2021 11:53:44 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+References: <20211123150331.2431516-1-ross.burton@arm.com>
+ <CANNYZj8WZgGfNjF3pf2i5Fg1yJ0BEJVX3jhjDyTa+0Bs-H5ZAg@mail.gmail.com>
+In-Reply-To: 
+ <CANNYZj8WZgGfNjF3pf2i5Fg1yJ0BEJVX3jhjDyTa+0Bs-H5ZAg@mail.gmail.com>
+From: Ross Burton <ross@burtonini.com>
+Date: Tue, 23 Nov 2021 19:53:34 +0000
+Message-ID: 
+ <CAAnfSTvi57f0i83T80Z2SEKpXG6ch3kiSAKJwo3g=2u9-F_j=Q@mail.gmail.com>
+Subject: Re: [yocto] [PATCH yocto-autobuilder-helper] config.json: set
+ ZSTD_THREADS like XZ_THREADS
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 23 Nov 2021 17:43:52 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55399
+ <yocto@lists.yoctoproject.org>; Tue, 23 Nov 2021 19:53:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55400
 
-On Tue, 2021-11-23 at 11:54 +0000, Teoh, Jay Shen wrote:
-> This is the full report for yocto-3.1.12.rc1:  
-> https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?h=intel-yocto-testresults
-> 
-> ======= Summary ========
-> No high milestone defects. 
-> 
-> new issue found 
-> 
-> Bug 14622 - bsps-hw.bsps-hw.Test_Seek_bar_and_volume_control manual test case failure
->    
-> ======= Bugs ========
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=14622
-> 
-> Thanks,
-> Jay
+My personal build machine has been crashing and dying due to overload
+with the default ZSTD_THREADS, and the AB has had problems with xz due
+to overload so I was being proactive and ensuring zstd is limited on
+the AB the same way xz is.
 
-Thanks Jay.
+Ross
 
-The TSC discussed 3.1.12 and are happy for rc1 to be released.
-
-Cheers,
-
-Richard
-
+On Tue, 23 Nov 2021 at 17:11, Alexander Kanavin <alex.kanavin@gmail.com> wrote:
+>
+> Is there a particular reason?
+>
+> Alex
+>
+> On Tue, 23 Nov 2021 at 16:03, Ross Burton <ross@burtonini.com> wrote:
+>>
+>> Signed-off-by: Ross Burton <ross.burton@arm.com>
+>> ---
+>>  config.json | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/config.json b/config.json
+>> index 7203783..c0543d9 100644
+>> --- a/config.json
+>> +++ b/config.json
+>> @@ -47,6 +47,7 @@
+>>              "PARALLEL_MAKE = '-j 16 -l 52'",
+>>              "XZ_MEMLIMIT = '5%'",
+>>              "XZ_THREADS = '8'",
+>> +            "ZSTD_THREADS = '8'",
+>>              "BB_TASK_NICE_LEVEL = '5'",
+>>              "BB_TASK_NICE_LEVEL:task-testimage = '0'",
+>>              "BB_TASK_IONICE_LEVEL = '2.7'",
+>> --
+>> 2.25.1
+>>
+>>
+>> -=-=-=-=-=-=-=-=-=-=-=-
+>> Links: You receive all messages sent to this group.
+>> View/Reply Online (#55396): https://lists.yoctoproject.org/g/yocto/message/55396
+>> Mute This Topic: https://lists.yoctoproject.org/mt/87260143/1686489
+>> Group Owner: yocto+owner@lists.yoctoproject.org
+>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
+>> -=-=-=-=-=-=-=-=-=-=-=-
+>>
 
