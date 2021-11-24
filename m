@@ -1,204 +1,427 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <bhstalel@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6FDF1C433F5
-	for <webhook@archiver.kernel.org>; Wed, 24 Nov 2021 08:00:37 +0000 (UTC)
-Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com
- [209.85.222.54])
- by mx.groups.io with SMTP id smtpd.web12.3444.1637740836232629768
- for <yocto@lists.yoctoproject.org>;
- Wed, 24 Nov 2021 00:00:36 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=ecdeUxWz;
- spf=pass (domain: gmail.com, ip: 209.85.222.54,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ua1-f54.google.com with SMTP id r15so3330346uao.3
-        for <yocto@lists.yoctoproject.org>;
- Wed, 24 Nov 2021 00:00:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Nxy2so5wCFH7C1PGfdL1uRG/ubbJmcyDmSFZ/q7HHn4=;
-        b=ecdeUxWzKzUaDDMPHGtzpoXTkRVHA1Ffuipp1NHcTIFY2q5FTyxysULqzf3Y1svpaC
-         dwD/udRlOTBMeiDlU4hxz9XRdUsdFft4OoZ/kXwyN6a24oAVHNRBOphXW83ikgVcpzVM
-         Uv/aAoV5M/ZOuhLTdoTC0Tax1bFmjQZrlCJXzgWQh2xZJdw7nqN8qCYsZ2GLU8T53CDA
-         Rp5Nv44frZiZKCCLKwYSX56JR1sQms+YKx54gJQ/2P3n1PVJNFrsVd78bf5Fv3nAfQN6
-         +6odD7m69u5eV1HHfr0C/dFmFdvpt829rGCu1ZLMB5iPEpjGJzKEjZTiGhL6hjxUcY2y
-         G7gQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Nxy2so5wCFH7C1PGfdL1uRG/ubbJmcyDmSFZ/q7HHn4=;
-        b=BqFx7xYqrxQN9jZRFLtQgbIHXiVXrt4HVqavGDGMXY9ccls7cGHG1ybRtI35/6vDNu
-         IbhIr87GS/mTby73UcHDQtaBuAjXFG274kVdIXUanrv+PN2JAb0U59X2WH0ux6Sjbpvw
-         WPDeTBrsWWptAfxXruyy8cbr3dGMDBS3aiLsZ91gJXp/2ne0x9bE7TvKpog4vpi5/7uN
-         k8K3QkDRJPJ3YNM7Yt/Oz6kOrfAImIdM3jDuct0lM+G35++4n5pqgYdqq72eg74o6hvp
-         RnHsj7qwTyW033X4cafA0AuDnCysIsX7tP2WmVWCDJzp0w1ia7RWl5cv4dHf9nR6Fqxt
-         qdyQ==
-X-Gm-Message-State: AOAM531Dz1kvYSC9JkVyE8ibMvbQX3s1X1g8IKN7pJunLx6JzwlLYSDl
-	EVPJZ+vpk0N9XsGkpS9/lVUO/NtjXb9ZsMvSWEN9Nah8ly4=
-X-Google-Smtp-Source: 
- ABdhPJwmsdm4Z/V61DHbWwG1Ok4zaeQTrNROfV0KMvypxN8zwTiUs51mPse2csJnD3NqL8PjSV1eal2JwJUk8EHRf7I=
-X-Received: by 2002:ab0:6f14:: with SMTP id r20mr7308015uah.22.1637740835267;
- Wed, 24 Nov 2021 00:00:35 -0800 (PST)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B87E3C433EF
+	for <webhook@archiver.kernel.org>; Wed, 24 Nov 2021 09:02:53 +0000 (UTC)
+Subject: cross-localedef file not found in do_rootfs #zeus #yocto
+To: yocto@lists.yoctoproject.org
+From: "Bel Hadj Salem Talel" <bhstalel@gmail.com>
+X-Originating-Location: TN (196.203.207.110)
+X-Originating-Platform: Linux Chrome 96
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <20211123150331.2431516-1-ross.burton@arm.com>
- <CANNYZj8WZgGfNjF3pf2i5Fg1yJ0BEJVX3jhjDyTa+0Bs-H5ZAg@mail.gmail.com>
- <CAAnfSTvi57f0i83T80Z2SEKpXG6ch3kiSAKJwo3g=2u9-F_j=Q@mail.gmail.com>
-In-Reply-To: 
- <CAAnfSTvi57f0i83T80Z2SEKpXG6ch3kiSAKJwo3g=2u9-F_j=Q@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 24 Nov 2021 09:00:24 +0100
-Message-ID: 
- <CANNYZj9hoiUbuqjiMY00bG3BSAqNL1qrmK1HASdHiD1YyVMn1Q@mail.gmail.com>
-Subject: Re: [yocto] [PATCH yocto-autobuilder-helper] config.json: set
- ZSTD_THREADS like XZ_THREADS
-To: Ross Burton <ross@burtonini.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000b8652105d1844045"
+Date: Wed, 24 Nov 2021 01:02:53 -0800
+Message-ID: <xYgZ.1637744573339189516.ggUE@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="oVcgToDt8qTKB1CL8QbR"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 24 Nov 2021 08:00:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55402
+ <yocto@lists.yoctoproject.org>; Wed, 24 Nov 2021 09:02:53 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55403
 
---000000000000b8652105d1844045
-Content-Type: text/plain; charset="UTF-8"
-
-But the AB has not been exhibiting any problems with zstd, and this will
-degrade performance. Let's only fix what is broken.
-
-Alex
-
-On Tue, 23 Nov 2021 at 20:53, Ross Burton <ross@burtonini.com> wrote:
-
-> My personal build machine has been crashing and dying due to overload
-> with the default ZSTD_THREADS, and the AB has had problems with xz due
-> to overload so I was being proactive and ensuring zstd is limited on
-> the AB the same way xz is.
->
-> Ross
->
-> On Tue, 23 Nov 2021 at 17:11, Alexander Kanavin <alex.kanavin@gmail.com>
-> wrote:
-> >
-> > Is there a particular reason?
-> >
-> > Alex
-> >
-> > On Tue, 23 Nov 2021 at 16:03, Ross Burton <ross@burtonini.com> wrote:
-> >>
-> >> Signed-off-by: Ross Burton <ross.burton@arm.com>
-> >> ---
-> >>  config.json | 1 +
-> >>  1 file changed, 1 insertion(+)
-> >>
-> >> diff --git a/config.json b/config.json
-> >> index 7203783..c0543d9 100644
-> >> --- a/config.json
-> >> +++ b/config.json
-> >> @@ -47,6 +47,7 @@
-> >>              "PARALLEL_MAKE = '-j 16 -l 52'",
-> >>              "XZ_MEMLIMIT = '5%'",
-> >>              "XZ_THREADS = '8'",
-> >> +            "ZSTD_THREADS = '8'",
-> >>              "BB_TASK_NICE_LEVEL = '5'",
-> >>              "BB_TASK_NICE_LEVEL:task-testimage = '0'",
-> >>              "BB_TASK_IONICE_LEVEL = '2.7'",
-> >> --
-> >> 2.25.1
-> >>
-> >>
-> >> -=-=-=-=-=-=-=-=-=-=-=-
-> >> Links: You receive all messages sent to this group.
-> >> View/Reply Online (#55396):
-> https://lists.yoctoproject.org/g/yocto/message/55396
-> >> Mute This Topic: https://lists.yoctoproject.org/mt/87260143/1686489
-> >> Group Owner: yocto+owner@lists.yoctoproject.org
-> >> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> alex.kanavin@gmail.com]
-> >> -=-=-=-=-=-=-=-=-=-=-=-
-> >>
->
-
---000000000000b8652105d1844045
-Content-Type: text/html; charset="UTF-8"
+--oVcgToDt8qTKB1CL8QbR
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>But the AB has not been exhibiting any problems with =
-zstd, and this will degrade performance. Let&#39;s only fix what is broken.=
-</div><div><br></div><div>Alex<br></div></div><br><div class=3D"gmail_quote=
-"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, 23 Nov 2021 at 20:53, Ross =
-Burton &lt;<a href=3D"mailto:ross@burtonini.com">ross@burtonini.com</a>&gt;=
- wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">My perso=
-nal build machine has been crashing and dying due to overload<br>
-with the default ZSTD_THREADS, and the AB has had problems with xz due<br>
-to overload so I was being proactive and ensuring zstd is limited on<br>
-the AB the same way xz is.<br>
-<br>
-Ross<br>
-<br>
-On Tue, 23 Nov 2021 at 17:11, Alexander Kanavin &lt;<a href=3D"mailto:alex.=
-kanavin@gmail.com" target=3D"_blank">alex.kanavin@gmail.com</a>&gt; wrote:<=
-br>
-&gt;<br>
-&gt; Is there a particular reason?<br>
-&gt;<br>
-&gt; Alex<br>
-&gt;<br>
-&gt; On Tue, 23 Nov 2021 at 16:03, Ross Burton &lt;<a href=3D"mailto:ross@b=
-urtonini.com" target=3D"_blank">ross@burtonini.com</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; Signed-off-by: Ross Burton &lt;<a href=3D"mailto:ross.burton@arm.c=
-om" target=3D"_blank">ross.burton@arm.com</a>&gt;<br>
-&gt;&gt; ---<br>
-&gt;&gt;=C2=A0 config.json | 1 +<br>
-&gt;&gt;=C2=A0 1 file changed, 1 insertion(+)<br>
-&gt;&gt;<br>
-&gt;&gt; diff --git a/config.json b/config.json<br>
-&gt;&gt; index 7203783..c0543d9 100644<br>
-&gt;&gt; --- a/config.json<br>
-&gt;&gt; +++ b/config.json<br>
-&gt;&gt; @@ -47,6 +47,7 @@<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;PARALLEL_MAK=
-E =3D &#39;-j 16 -l 52&#39;&quot;,<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;XZ_MEMLIMIT =
-=3D &#39;5%&#39;&quot;,<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;XZ_THREADS =
-=3D &#39;8&#39;&quot;,<br>
-&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;ZSTD_THREADS =3D =
-&#39;8&#39;&quot;,<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;BB_TASK_NICE=
-_LEVEL =3D &#39;5&#39;&quot;,<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;BB_TASK_NICE=
-_LEVEL:task-testimage =3D &#39;0&#39;&quot;,<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;BB_TASK_IONI=
-CE_LEVEL =3D &#39;2.7&#39;&quot;,<br>
-&gt;&gt; --<br>
-&gt;&gt; 2.25.1<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt;&gt; Links: You receive all messages sent to this group.<br>
-&gt;&gt; View/Reply Online (#55396): <a href=3D"https://lists.yoctoproject.=
-org/g/yocto/message/55396" rel=3D"noreferrer" target=3D"_blank">https://lis=
-ts.yoctoproject.org/g/yocto/message/55396</a><br>
-&gt;&gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/8726=
-0143/1686489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproje=
-ct.org/mt/87260143/1686489</a><br>
-&gt;&gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.or=
-g" target=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-&gt;&gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/uns=
-ub" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/y=
-octo/unsub</a> [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank"=
->alex.kanavin@gmail.com</a>]<br>
-&gt;&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt;&gt;<br>
-</blockquote></div>
+Hello All,
 
---000000000000b8652105d1844045--
+I created a simple image recipe for initramfs type of image with no *IMAGE_=
+FEATURES* and simply:
+>=20
+>=20
+> IMAGE_INSTALL =3D "packagegroup-core-boot busybox"
+
+When I bitbake the image I get the following error:
+
+---------------------------
+ERROR: menzu-image-initramfs-1.0-r0 do_rootfs: Error executing a python fun=
+ction in exec_python_func() autogenerated:
+
+The stack trace of python calls that resulted in this exception/failure was=
+:
+File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+0001:
+*** 0002:do_rootfs(d)
+0003:
+File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/classes/image.bbclas=
+s', lineno: 245, function: do_rootfs
+0241:=C2=A0 =C2=A0 progress_reporter.next_stage()
+0242:
+0243:=C2=A0 =C2=A0 # generate rootfs
+0244:=C2=A0 =C2=A0 d.setVarFlag('REPRODUCIBLE_TIMESTAMP_ROOTFS', 'export', =
+'1')
+*** 0245:=C2=A0 =C2=A0 create_rootfs(d, progress_reporter=3Dprogress_report=
+er, logcatcher=3Dlogcatcher)
+0246:
+0247:=C2=A0 =C2=A0 progress_reporter.finish()
+0248:}
+0249:do_rootfs[dirs] =3D "${TOPDIR}"
+File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/rootfs.py', l=
+ineno: 978, function: create_rootfs
+0974:=C2=A0 =C2=A0 img_type =3D d.getVar('IMAGE_PKGTYPE')
+0975:=C2=A0 =C2=A0 if img_type =3D=3D "rpm":
+0976:=C2=A0 =C2=A0 =C2=A0 =C2=A0 RpmRootfs(d, manifest_dir, progress_report=
+er, logcatcher).create()
+0977:=C2=A0 =C2=A0 elif img_type =3D=3D "ipk":
+*** 0978:=C2=A0 =C2=A0 =C2=A0 =C2=A0 OpkgRootfs(d, manifest_dir, progress_r=
+eporter, logcatcher).create()
+0979:=C2=A0 =C2=A0 elif img_type =3D=3D "deb":
+0980:=C2=A0 =C2=A0 =C2=A0 =C2=A0 DpkgRootfs(d, manifest_dir, progress_repor=
+ter, logcatcher).create()
+0981:
+0982:=C2=A0 =C2=A0 os.environ.clear()
+File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/rootfs.py', l=
+ineno: 204, function: create
+0200:=C2=A0 =C2=A0 =C2=A0 =C2=A0 if self.progress_reporter:
+0201:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.progress_reporter.next_=
+stage()
+0202:
+0203:=C2=A0 =C2=A0 =C2=A0 =C2=A0 # call the package manager dependent creat=
+e method
+*** 0204:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self._create()
+0205:
+0206:=C2=A0 =C2=A0 =C2=A0 =C2=A0 sysconfdir =3D self.image_rootfs + self.d.=
+getVar('sysconfdir')
+0207:=C2=A0 =C2=A0 =C2=A0 =C2=A0 bb.utils.mkdirhier(sysconfdir)
+0208:=C2=A0 =C2=A0 =C2=A0 =C2=A0 with open(sysconfdir + "/version", "w+") a=
+s ver:
+File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/rootfs.py', l=
+ineno: 922, function: _create
+0918:
+0919:=C2=A0 =C2=A0 =C2=A0 =C2=A0 if self.progress_reporter:
+0920:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.progress_reporter.next_=
+stage()
+0921:
+*** 0922:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.pm.install_complementary()
+0923:
+0924:=C2=A0 =C2=A0 =C2=A0 =C2=A0 if self.progress_reporter:
+0925:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.progress_reporter.next_=
+stage()
+0926:
+File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/package_manag=
+er.py', lineno: 614, function: install_complementary
+0610:
+0611:=C2=A0 =C2=A0 =C2=A0 =C2=A0 target_arch =3D self.d.getVar('TARGET_ARCH=
+')
+0612:=C2=A0 =C2=A0 =C2=A0 =C2=A0 localedir =3D oe.path.join(self.target_roo=
+tfs, self.d.getVar("libdir"), "locale")
+0613:=C2=A0 =C2=A0 =C2=A0 =C2=A0 if os.path.exists(localedir) and os.listdi=
+r(localedir):
+*** 0614:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 generate_locale_archive(=
+self.d, self.target_rootfs, target_arch, localedir)
+0615:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # And now delete the binary =
+locales
+0616:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.remove(fnmatch.filter(s=
+elf.list_installed(), "glibc-binary-localedata-*"), False)
+0617:
+0618:=C2=A0 =C2=A0 def deploy_dir_lock(self):
+File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/package_manag=
+er.py', lineno: 140, function: generate_locale_archive
+0136:=C2=A0 =C2=A0 =C2=A0 =C2=A0 if os.path.isdir(path):
+0137:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cmd =3D ["cross-localedef", =
+"--verbose"]
+0138:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cmd +=3D arch_options
+0139:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cmd +=3D ["--add-to-archive"=
+, path]
+*** 0140:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 subprocess.check_output(=
+cmd, env=3Denv, stderr=3Dsubprocess.STDOUT)
+0141:
+0142:class Indexer(object, metaclass=3DABCMeta):
+0143:=C2=A0 =C2=A0 def __init__(self, d, deploy_dir):
+0144:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.d =3D d
+File: '/usr/lib/python3.8/subprocess.py', lineno: 415, function: check_outp=
+ut
+0411:=C2=A0 =C2=A0 =C2=A0 =C2=A0 else:
+0412:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 empty =3D b''
+0413:=C2=A0 =C2=A0 =C2=A0 =C2=A0 kwargs['input'] =3D empty
+0414:
+*** 0415:=C2=A0 =C2=A0 return run(*popenargs, stdout=3DPIPE, timeout=3Dtime=
+out, check=3DTrue,
+0416:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0**kwargs).stdou=
+t
+0417:
+0418:
+0419:class CompletedProcess(object):
+File: '/usr/lib/python3.8/subprocess.py', lineno: 493, function: run
+0489:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0'with capture_output.')
+0490:=C2=A0 =C2=A0 =C2=A0 =C2=A0 kwargs['stdout'] =3D PIPE
+0491:=C2=A0 =C2=A0 =C2=A0 =C2=A0 kwargs['stderr'] =3D PIPE
+0492:
+*** 0493:=C2=A0 =C2=A0 with Popen(*popenargs, **kwargs) as process:
+0494:=C2=A0 =C2=A0 =C2=A0 =C2=A0 try:
+0495:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 stdout, stderr =3D process.c=
+ommunicate(input, timeout=3Dtimeout)
+0496:=C2=A0 =C2=A0 =C2=A0 =C2=A0 except TimeoutExpired as exc:
+0497:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 process.kill()
+File: '/usr/lib/python3.8/subprocess.py', lineno: 858, function: __init__
+0854:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if self.text_m=
+ode:
+0855:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+self.stderr =3D io.TextIOWrapper(self.stderr,
+0856:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 encoding=3Dencoding, errors=3Derrors)
+0857:
+*** 0858:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self._execute_child(args=
+, executable, preexec_fn, close_fds,
+0859:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 pass_fds, cwd, env,
+0860:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 startupinfo, creationflags, shell=
+,
+0861:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 p2cread, p2cwrite,
+0862:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 c2pread, c2pwrite,
+File: '/usr/lib/python3.8/subprocess.py', lineno: 1704, function: _execute_=
+child
+1700:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+else:
+1701:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 err_filename =3D orig_executable
+1702:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+if errno_num !=3D 0:
+1703:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 err_msg =3D os.strerror(errno_num)
+*** 1704:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 raise child_exception_type(errno_num, err_msg, err_filename)
+1705:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 raise child_ex=
+ception_type(err_msg)
+1706:
+1707:
+1708:=C2=A0 =C2=A0 =C2=A0 =C2=A0 def _handle_exitstatus(self, sts, _WIFSIGN=
+ALED=3Dos.WIFSIGNALED,
+Exception: FileNotFoundError: [Errno 2] No such file or directory: 'cross-l=
+ocaledef'
+
+ERROR: Logfile of failure stored in: /home/talel/Desktop/YoctoWork/arken/tm=
+p/work/menzu-poky-linux/menzu-image-initramfs/1.0-r0/temp/log.do_rootfs.143=
+822
+ERROR: Task (/home/talel/Documents/FinalGit/SelfArkenWork/arken/meta-menzu/=
+recipes-core/images/menzu-image-initramfs.bb:do_rootfs) failed with exit co=
+de '1'
+---------------------------
+
+I was building the image with success, but now it fails, I don't know why.
+The other normal images build successfully.
+
+Thanks,
+Talel
+
+--oVcgToDt8qTKB1CL8QbR
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello All,<br /><br />I created a simple image recipe for initramfs type of=
+ image with no <strong>IMAGE_FEATURES</strong> and simply:
+<blockquote>IMAGE_INSTALL =3D "packagegroup-core-boot busybox"</blockquote>
+When I bitbake the image I get the following error:<br /><br />------------=
+---------------<br />
+<div>ERROR: menzu-image-initramfs-1.0-r0 do_rootfs: Error executing a pytho=
+n function in exec_python_func() autogenerated:</div>
+<div>&nbsp;</div>
+<div>The stack trace of python calls that resulted in this exception/failur=
+e was:</div>
+<div>File: 'exec_python_func() autogenerated', lineno: 2, function: &lt;mod=
+ule&gt;</div>
+<div>&nbsp; &nbsp; &nbsp;0001:</div>
+<div>&nbsp;*** 0002:do_rootfs(d)</div>
+<div>&nbsp; &nbsp; &nbsp;0003:</div>
+<div>File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/classes/image.b=
+bclass', lineno: 245, function: do_rootfs</div>
+<div>&nbsp; &nbsp; &nbsp;0241:&nbsp; &nbsp; progress_reporter.next_stage()<=
+/div>
+<div>&nbsp; &nbsp; &nbsp;0242:</div>
+<div>&nbsp; &nbsp; &nbsp;0243:&nbsp; &nbsp; # generate rootfs</div>
+<div>&nbsp; &nbsp; &nbsp;0244:&nbsp; &nbsp; d.setVarFlag('REPRODUCIBLE_TIME=
+STAMP_ROOTFS', 'export', '1')</div>
+<div>&nbsp;*** 0245:&nbsp; &nbsp; create_rootfs(d, progress_reporter=3Dprog=
+ress_reporter, logcatcher=3Dlogcatcher)</div>
+<div>&nbsp; &nbsp; &nbsp;0246:</div>
+<div>&nbsp; &nbsp; &nbsp;0247:&nbsp; &nbsp; progress_reporter.finish()</div=
+>
+<div>&nbsp; &nbsp; &nbsp;0248:}</div>
+<div>&nbsp; &nbsp; &nbsp;0249:do_rootfs[dirs] =3D "${TOPDIR}"</div>
+<div>File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/rootfs.p=
+y', lineno: 978, function: create_rootfs</div>
+<div>&nbsp; &nbsp; &nbsp;0974:&nbsp; &nbsp; img_type =3D d.getVar('IMAGE_PK=
+GTYPE')</div>
+<div>&nbsp; &nbsp; &nbsp;0975:&nbsp; &nbsp; if img_type =3D=3D "rpm":</div>
+<div>&nbsp; &nbsp; &nbsp;0976:&nbsp; &nbsp; &nbsp; &nbsp; RpmRootfs(d, mani=
+fest_dir, progress_reporter, logcatcher).create()</div>
+<div>&nbsp; &nbsp; &nbsp;0977:&nbsp; &nbsp; elif img_type =3D=3D "ipk":</di=
+v>
+<div>&nbsp;*** 0978:&nbsp; &nbsp; &nbsp; &nbsp; OpkgRootfs(d, manifest_dir,=
+ progress_reporter, logcatcher).create()</div>
+<div>&nbsp; &nbsp; &nbsp;0979:&nbsp; &nbsp; elif img_type =3D=3D "deb":</di=
+v>
+<div>&nbsp; &nbsp; &nbsp;0980:&nbsp; &nbsp; &nbsp; &nbsp; DpkgRootfs(d, man=
+ifest_dir, progress_reporter, logcatcher).create()</div>
+<div>&nbsp; &nbsp; &nbsp;0981:</div>
+<div>&nbsp; &nbsp; &nbsp;0982:&nbsp; &nbsp; os.environ.clear()</div>
+<div>File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/rootfs.p=
+y', lineno: 204, function: create</div>
+<div>&nbsp; &nbsp; &nbsp;0200:&nbsp; &nbsp; &nbsp; &nbsp; if self.progress_=
+reporter:</div>
+<div>&nbsp; &nbsp; &nbsp;0201:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sel=
+f.progress_reporter.next_stage()</div>
+<div>&nbsp; &nbsp; &nbsp;0202:</div>
+<div>&nbsp; &nbsp; &nbsp;0203:&nbsp; &nbsp; &nbsp; &nbsp; # call the packag=
+e manager dependent create method</div>
+<div>&nbsp;*** 0204:&nbsp; &nbsp; &nbsp; &nbsp; self._create()</div>
+<div>&nbsp; &nbsp; &nbsp;0205:</div>
+<div>&nbsp; &nbsp; &nbsp;0206:&nbsp; &nbsp; &nbsp; &nbsp; sysconfdir =3D se=
+lf.image_rootfs + self.d.getVar('sysconfdir')</div>
+<div>&nbsp; &nbsp; &nbsp;0207:&nbsp; &nbsp; &nbsp; &nbsp; bb.utils.mkdirhie=
+r(sysconfdir)</div>
+<div>&nbsp; &nbsp; &nbsp;0208:&nbsp; &nbsp; &nbsp; &nbsp; with open(sysconf=
+dir + "/version", "w+") as ver:</div>
+<div>File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/rootfs.p=
+y', lineno: 922, function: _create</div>
+<div>&nbsp; &nbsp; &nbsp;0918:</div>
+<div>&nbsp; &nbsp; &nbsp;0919:&nbsp; &nbsp; &nbsp; &nbsp; if self.progress_=
+reporter:</div>
+<div>&nbsp; &nbsp; &nbsp;0920:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sel=
+f.progress_reporter.next_stage()</div>
+<div>&nbsp; &nbsp; &nbsp;0921:</div>
+<div>&nbsp;*** 0922:&nbsp; &nbsp; &nbsp; &nbsp; self.pm.install_complementa=
+ry()</div>
+<div>&nbsp; &nbsp; &nbsp;0923:</div>
+<div>&nbsp; &nbsp; &nbsp;0924:&nbsp; &nbsp; &nbsp; &nbsp; if self.progress_=
+reporter:</div>
+<div>&nbsp; &nbsp; &nbsp;0925:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sel=
+f.progress_reporter.next_stage()</div>
+<div>&nbsp; &nbsp; &nbsp;0926:</div>
+<div>File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/package_=
+manager.py', lineno: 614, function: install_complementary</div>
+<div>&nbsp; &nbsp; &nbsp;0610:</div>
+<div>&nbsp; &nbsp; &nbsp;0611:&nbsp; &nbsp; &nbsp; &nbsp; target_arch =3D s=
+elf.d.getVar('TARGET_ARCH')</div>
+<div>&nbsp; &nbsp; &nbsp;0612:&nbsp; &nbsp; &nbsp; &nbsp; localedir =3D oe.=
+path.join(self.target_rootfs, self.d.getVar("libdir"), "locale")</div>
+<div>&nbsp; &nbsp; &nbsp;0613:&nbsp; &nbsp; &nbsp; &nbsp; if os.path.exists=
+(localedir) and os.listdir(localedir):</div>
+<div>&nbsp;*** 0614:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; generate_loca=
+le_archive(self.d, self.target_rootfs, target_arch, localedir)</div>
+<div>&nbsp; &nbsp; &nbsp;0615:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # A=
+nd now delete the binary locales</div>
+<div>&nbsp; &nbsp; &nbsp;0616:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sel=
+f.remove(fnmatch.filter(self.list_installed(), "glibc-binary-localedata-*")=
+, False)</div>
+<div>&nbsp; &nbsp; &nbsp;0617:</div>
+<div>&nbsp; &nbsp; &nbsp;0618:&nbsp; &nbsp; def deploy_dir_lock(self):</div=
+>
+<div>File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/package_=
+manager.py', lineno: 140, function: generate_locale_archive</div>
+<div>&nbsp; &nbsp; &nbsp;0136:&nbsp; &nbsp; &nbsp; &nbsp; if os.path.isdir(=
+path):</div>
+<div>&nbsp; &nbsp; &nbsp;0137:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cmd=
+ =3D ["cross-localedef", "--verbose"]</div>
+<div>&nbsp; &nbsp; &nbsp;0138:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cmd=
+ +=3D arch_options</div>
+<div>&nbsp; &nbsp; &nbsp;0139:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cmd=
+ +=3D ["--add-to-archive", path]</div>
+<div>&nbsp;*** 0140:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; subprocess.ch=
+eck_output(cmd, env=3Denv, stderr=3Dsubprocess.STDOUT)</div>
+<div>&nbsp; &nbsp; &nbsp;0141:</div>
+<div>&nbsp; &nbsp; &nbsp;0142:class Indexer(object, metaclass=3DABCMeta):</=
+div>
+<div>&nbsp; &nbsp; &nbsp;0143:&nbsp; &nbsp; def __init__(self, d, deploy_di=
+r):</div>
+<div>&nbsp; &nbsp; &nbsp;0144:&nbsp; &nbsp; &nbsp; &nbsp; self.d =3D d</div=
+>
+<div>File: '/usr/lib/python3.8/subprocess.py', lineno: 415, function: check=
+_output</div>
+<div>&nbsp; &nbsp; &nbsp;0411:&nbsp; &nbsp; &nbsp; &nbsp; else:</div>
+<div>&nbsp; &nbsp; &nbsp;0412:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; emp=
+ty =3D b''</div>
+<div>&nbsp; &nbsp; &nbsp;0413:&nbsp; &nbsp; &nbsp; &nbsp; kwargs['input'] =
+=3D empty</div>
+<div>&nbsp; &nbsp; &nbsp;0414:</div>
+<div>&nbsp;*** 0415:&nbsp; &nbsp; return run(*popenargs, stdout=3DPIPE, tim=
+eout=3Dtimeout, check=3DTrue,</div>
+<div>&nbsp; &nbsp; &nbsp;0416:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp;**kwargs).stdout</div>
+<div>&nbsp; &nbsp; &nbsp;0417:</div>
+<div>&nbsp; &nbsp; &nbsp;0418:</div>
+<div>&nbsp; &nbsp; &nbsp;0419:class CompletedProcess(object):</div>
+<div>File: '/usr/lib/python3.8/subprocess.py', lineno: 493, function: run</=
+div>
+<div>&nbsp; &nbsp; &nbsp;0489:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;'with capture_ou=
+tput.')</div>
+<div>&nbsp; &nbsp; &nbsp;0490:&nbsp; &nbsp; &nbsp; &nbsp; kwargs['stdout'] =
+=3D PIPE</div>
+<div>&nbsp; &nbsp; &nbsp;0491:&nbsp; &nbsp; &nbsp; &nbsp; kwargs['stderr'] =
+=3D PIPE</div>
+<div>&nbsp; &nbsp; &nbsp;0492:</div>
+<div>&nbsp;*** 0493:&nbsp; &nbsp; with Popen(*popenargs, **kwargs) as proce=
+ss:</div>
+<div>&nbsp; &nbsp; &nbsp;0494:&nbsp; &nbsp; &nbsp; &nbsp; try:</div>
+<div>&nbsp; &nbsp; &nbsp;0495:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; std=
+out, stderr =3D process.communicate(input, timeout=3Dtimeout)</div>
+<div>&nbsp; &nbsp; &nbsp;0496:&nbsp; &nbsp; &nbsp; &nbsp; except TimeoutExp=
+ired as exc:</div>
+<div>&nbsp; &nbsp; &nbsp;0497:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pro=
+cess.kill()</div>
+<div>File: '/usr/lib/python3.8/subprocess.py', lineno: 858, function: __ini=
+t__</div>
+<div>&nbsp; &nbsp; &nbsp;0854:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; if self.text_mode:</div>
+<div>&nbsp; &nbsp; &nbsp;0855:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; self.stderr =3D io.TextIOWrapper(self.stderr,</div=
+>
+<div>&nbsp; &nbsp; &nbsp;0856:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; encoding=3Dencoding, e=
+rrors=3Derrors)</div>
+<div>&nbsp; &nbsp; &nbsp;0857:</div>
+<div>&nbsp;*** 0858:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self._execute=
+_child(args, executable, preexec_fn, close_fds,</div>
+<div>&nbsp; &nbsp; &nbsp;0859:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pass_fds=
+, cwd, env,</div>
+<div>&nbsp; &nbsp; &nbsp;0860:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; startupi=
+nfo, creationflags, shell,</div>
+<div>&nbsp; &nbsp; &nbsp;0861:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; p2cread,=
+ p2cwrite,</div>
+<div>&nbsp; &nbsp; &nbsp;0862:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c2pread,=
+ c2pwrite,</div>
+<div>File: '/usr/lib/python3.8/subprocess.py', lineno: 1704, function: _exe=
+cute_child</div>
+<div>&nbsp; &nbsp; &nbsp;1700:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; else:</div>
+<div>&nbsp; &nbsp; &nbsp;1701:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; err_filename =3D orig_executable</di=
+v>
+<div>&nbsp; &nbsp; &nbsp;1702:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; if errno_num !=3D 0:</div>
+<div>&nbsp; &nbsp; &nbsp;1703:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; err_msg =3D os.strerror(errno_num)</=
+div>
+<div>&nbsp;*** 1704:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; raise child_exception_type(errno_num, err_msg, err_filename)=
+</div>
+<div>&nbsp; &nbsp; &nbsp;1705:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; raise child_exception_type(err_msg)</div>
+<div>&nbsp; &nbsp; &nbsp;1706:</div>
+<div>&nbsp; &nbsp; &nbsp;1707:</div>
+<div>&nbsp; &nbsp; &nbsp;1708:&nbsp; &nbsp; &nbsp; &nbsp; def _handle_exits=
+tatus(self, sts, _WIFSIGNALED=3Dos.WIFSIGNALED,</div>
+<div>Exception: FileNotFoundError: [Errno 2] No such file or directory: 'cr=
+oss-localedef'</div>
+<div>&nbsp;</div>
+<div>ERROR: Logfile of failure stored in: /home/talel/Desktop/YoctoWork/ark=
+en/tmp/work/menzu-poky-linux/menzu-image-initramfs/1.0-r0/temp/log.do_rootf=
+s.143822</div>
+<div>ERROR: Task (/home/talel/Documents/FinalGit/SelfArkenWork/arken/meta-m=
+enzu/recipes-core/images/menzu-image-initramfs.bb:do_rootfs) failed with ex=
+it code '1'<br />---------------------------<br /><br />I was building the =
+image with success, but now it fails, I don't know why.<br />The other norm=
+al images build successfully.<br /><br />Thanks,<br />Talel</div>
+
+--oVcgToDt8qTKB1CL8QbR--
 
