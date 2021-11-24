@@ -1,427 +1,163 @@
-Return-Path: <bhstalel@gmail.com>
+Return-Path: <jeffrey.simons@boonedam.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B87E3C433EF
-	for <webhook@archiver.kernel.org>; Wed, 24 Nov 2021 09:02:53 +0000 (UTC)
-Subject: cross-localedef file not found in do_rootfs #zeus #yocto
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BB0D8C433F5
+	for <webhook@archiver.kernel.org>; Wed, 24 Nov 2021 14:05:56 +0000 (UTC)
+Subject: Re: User configuration & host contamination
 To: yocto@lists.yoctoproject.org
-From: "Bel Hadj Salem Talel" <bhstalel@gmail.com>
-X-Originating-Location: TN (196.203.207.110)
-X-Originating-Platform: Linux Chrome 96
+From: "Jeffrey Simons" <jeffrey.simons@boonedam.com>
+X-Originating-Location: Assendelft, North Holland, NL (178.84.56.61)
+X-Originating-Platform: Linux Chrome 94
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Wed, 24 Nov 2021 01:02:53 -0800
-Message-ID: <xYgZ.1637744573339189516.ggUE@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="oVcgToDt8qTKB1CL8QbR"
+Date: Wed, 24 Nov 2021 06:05:56 -0800
+References: 
+ <AM0PR0702MB3761E551236BFCE0AC36B57DFE949@AM0PR0702MB3761.eurprd07.prod.outlook.com>
+In-Reply-To: 
+ <AM0PR0702MB3761E551236BFCE0AC36B57DFE949@AM0PR0702MB3761.eurprd07.prod.outlook.com>
+Message-ID: <9905.1637762756025711481@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="mGd7gwYa2Ic0SuD68BiU"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 24 Nov 2021 09:02:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55403
+ <yocto@lists.yoctoproject.org>; Wed, 24 Nov 2021 14:05:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55405
 
---oVcgToDt8qTKB1CL8QbR
+--mGd7gwYa2Ic0SuD68BiU
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello All,
+On Thu, Nov 11, 2021 at 03:34 PM, Jeffrey Simons wrote:
 
-I created a simple image recipe for initramfs type of image with no *IMAGE_=
-FEATURES* and simply:
+>=20
+> Hi Manuel,
 >=20
 >=20
-> IMAGE_INSTALL =3D "packagegroup-core-boot busybox"
+>> Subject: Re: [yocto] User configuration & host contamination
+>>=20
+>> Hi Jeffrey,
+>>=20
+>> Does the recipe which builds the application DEPEND on the recipe which
+>> sets up the user? This is what I would try. If I understand
+>> things correctly, Yocto/Bitbake provides every recipe a pristine
+>> environment unnaffected from other recipes going into the same image.
+>> For example, if you want to link your application against some libraries
+>> provided by other recipes, you need to add them to DEPENDS.
+>> That populates your build environment with that other recipes output. I'=
+m
+>> not sure this applies to user accounts as well, but I guess it's worth a
+>> try.
+>>=20
+>> Please note I probably used the termins "recipe" and "package"
+>> incorrectly.
+>>=20
+>> Hope this helps,
+>> Manuel
+>=20
+> Thank you for your reply and suggestion.
+> I already have a dependency on the user-configuration script, see the
+> below snippet from my recipe.
+>=20
+> # Compile-time dependencies for testapp
+> DEPENDS =3D "user-configuration"
+>=20
+> # Run-time dependencies for testapp
+> RDEPENDS_${PN} +=3D "rsyslog \
+>=20
+> Unfortunately that did not work, I have seen some suggestions on
+> stack-overflow where they added the user multiple times per recipe by
+> using extrauseradd (I believe).
+> That seems a bit weird to me to add every time the same user, also the
+> drawback is that if the user changes then I have to adjust all recipes
+> that rely on that specific user.
+> What I did today to circumvent the issue is to assign the user by
+> reference of UID and GID, but I'm not sure if this is the intended Yocto
+> way. As you stated before
+> Yocto presents you with a pristine environment with all information
+> present, so I would expect that my user is there. Perhaps I did not
+> include the user-configuration
+> correctly?
+> I did include the user-configuration by adding it into our distribution
+> description, see the next coding snippet.
+>=20
+> #
+> # Usernames that will be used within the distro.
+> # Can be changed when desired, each recipe must use this user for the
+> application.
+> #
+> TEST_USER =3D "testuser"
+> TEST_USER_UID =3D "1200"
+>=20
+> DISTRO_EXTRA_RDEPENDS +=3D "user-configuration"
+>=20
+> Can you or any one else clarify if this is the correct way or not?
+>=20
+> Thank you in advance.
+>=20
+> Jeffrey Simons
+>=20
+> Software Engineer
+> Royal Boon Edam International B.V.
 
-When I bitbake the image I get the following error:
+Hi All,
 
----------------------------
-ERROR: menzu-image-initramfs-1.0-r0 do_rootfs: Error executing a python fun=
-ction in exec_python_func() autogenerated:
+Can anyone elaborate on my fix if this is the correct way, or point me in t=
+he correct direction.
 
-The stack trace of python calls that resulted in this exception/failure was=
-:
-File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
-0001:
-*** 0002:do_rootfs(d)
-0003:
-File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/classes/image.bbclas=
-s', lineno: 245, function: do_rootfs
-0241:=C2=A0 =C2=A0 progress_reporter.next_stage()
-0242:
-0243:=C2=A0 =C2=A0 # generate rootfs
-0244:=C2=A0 =C2=A0 d.setVarFlag('REPRODUCIBLE_TIMESTAMP_ROOTFS', 'export', =
-'1')
-*** 0245:=C2=A0 =C2=A0 create_rootfs(d, progress_reporter=3Dprogress_report=
-er, logcatcher=3Dlogcatcher)
-0246:
-0247:=C2=A0 =C2=A0 progress_reporter.finish()
-0248:}
-0249:do_rootfs[dirs] =3D "${TOPDIR}"
-File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/rootfs.py', l=
-ineno: 978, function: create_rootfs
-0974:=C2=A0 =C2=A0 img_type =3D d.getVar('IMAGE_PKGTYPE')
-0975:=C2=A0 =C2=A0 if img_type =3D=3D "rpm":
-0976:=C2=A0 =C2=A0 =C2=A0 =C2=A0 RpmRootfs(d, manifest_dir, progress_report=
-er, logcatcher).create()
-0977:=C2=A0 =C2=A0 elif img_type =3D=3D "ipk":
-*** 0978:=C2=A0 =C2=A0 =C2=A0 =C2=A0 OpkgRootfs(d, manifest_dir, progress_r=
-eporter, logcatcher).create()
-0979:=C2=A0 =C2=A0 elif img_type =3D=3D "deb":
-0980:=C2=A0 =C2=A0 =C2=A0 =C2=A0 DpkgRootfs(d, manifest_dir, progress_repor=
-ter, logcatcher).create()
-0981:
-0982:=C2=A0 =C2=A0 os.environ.clear()
-File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/rootfs.py', l=
-ineno: 204, function: create
-0200:=C2=A0 =C2=A0 =C2=A0 =C2=A0 if self.progress_reporter:
-0201:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.progress_reporter.next_=
-stage()
-0202:
-0203:=C2=A0 =C2=A0 =C2=A0 =C2=A0 # call the package manager dependent creat=
-e method
-*** 0204:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self._create()
-0205:
-0206:=C2=A0 =C2=A0 =C2=A0 =C2=A0 sysconfdir =3D self.image_rootfs + self.d.=
-getVar('sysconfdir')
-0207:=C2=A0 =C2=A0 =C2=A0 =C2=A0 bb.utils.mkdirhier(sysconfdir)
-0208:=C2=A0 =C2=A0 =C2=A0 =C2=A0 with open(sysconfdir + "/version", "w+") a=
-s ver:
-File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/rootfs.py', l=
-ineno: 922, function: _create
-0918:
-0919:=C2=A0 =C2=A0 =C2=A0 =C2=A0 if self.progress_reporter:
-0920:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.progress_reporter.next_=
-stage()
-0921:
-*** 0922:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.pm.install_complementary()
-0923:
-0924:=C2=A0 =C2=A0 =C2=A0 =C2=A0 if self.progress_reporter:
-0925:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.progress_reporter.next_=
-stage()
-0926:
-File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/package_manag=
-er.py', lineno: 614, function: install_complementary
-0610:
-0611:=C2=A0 =C2=A0 =C2=A0 =C2=A0 target_arch =3D self.d.getVar('TARGET_ARCH=
-')
-0612:=C2=A0 =C2=A0 =C2=A0 =C2=A0 localedir =3D oe.path.join(self.target_roo=
-tfs, self.d.getVar("libdir"), "locale")
-0613:=C2=A0 =C2=A0 =C2=A0 =C2=A0 if os.path.exists(localedir) and os.listdi=
-r(localedir):
-*** 0614:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 generate_locale_archive(=
-self.d, self.target_rootfs, target_arch, localedir)
-0615:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # And now delete the binary =
-locales
-0616:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.remove(fnmatch.filter(s=
-elf.list_installed(), "glibc-binary-localedata-*"), False)
-0617:
-0618:=C2=A0 =C2=A0 def deploy_dir_lock(self):
-File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/package_manag=
-er.py', lineno: 140, function: generate_locale_archive
-0136:=C2=A0 =C2=A0 =C2=A0 =C2=A0 if os.path.isdir(path):
-0137:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cmd =3D ["cross-localedef", =
-"--verbose"]
-0138:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cmd +=3D arch_options
-0139:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cmd +=3D ["--add-to-archive"=
-, path]
-*** 0140:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 subprocess.check_output(=
-cmd, env=3Denv, stderr=3Dsubprocess.STDOUT)
-0141:
-0142:class Indexer(object, metaclass=3DABCMeta):
-0143:=C2=A0 =C2=A0 def __init__(self, d, deploy_dir):
-0144:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.d =3D d
-File: '/usr/lib/python3.8/subprocess.py', lineno: 415, function: check_outp=
-ut
-0411:=C2=A0 =C2=A0 =C2=A0 =C2=A0 else:
-0412:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 empty =3D b''
-0413:=C2=A0 =C2=A0 =C2=A0 =C2=A0 kwargs['input'] =3D empty
-0414:
-*** 0415:=C2=A0 =C2=A0 return run(*popenargs, stdout=3DPIPE, timeout=3Dtime=
-out, check=3DTrue,
-0416:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0**kwargs).stdou=
-t
-0417:
-0418:
-0419:class CompletedProcess(object):
-File: '/usr/lib/python3.8/subprocess.py', lineno: 493, function: run
-0489:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0'with capture_output.')
-0490:=C2=A0 =C2=A0 =C2=A0 =C2=A0 kwargs['stdout'] =3D PIPE
-0491:=C2=A0 =C2=A0 =C2=A0 =C2=A0 kwargs['stderr'] =3D PIPE
-0492:
-*** 0493:=C2=A0 =C2=A0 with Popen(*popenargs, **kwargs) as process:
-0494:=C2=A0 =C2=A0 =C2=A0 =C2=A0 try:
-0495:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 stdout, stderr =3D process.c=
-ommunicate(input, timeout=3Dtimeout)
-0496:=C2=A0 =C2=A0 =C2=A0 =C2=A0 except TimeoutExpired as exc:
-0497:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 process.kill()
-File: '/usr/lib/python3.8/subprocess.py', lineno: 858, function: __init__
-0854:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if self.text_m=
-ode:
-0855:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-self.stderr =3D io.TextIOWrapper(self.stderr,
-0856:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 encoding=3Dencoding, errors=3Derrors)
-0857:
-*** 0858:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self._execute_child(args=
-, executable, preexec_fn, close_fds,
-0859:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 pass_fds, cwd, env,
-0860:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 startupinfo, creationflags, shell=
-,
-0861:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 p2cread, p2cwrite,
-0862:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 c2pread, c2pwrite,
-File: '/usr/lib/python3.8/subprocess.py', lineno: 1704, function: _execute_=
-child
-1700:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-else:
-1701:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 err_filename =3D orig_executable
-1702:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-if errno_num !=3D 0:
-1703:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 err_msg =3D os.strerror(errno_num)
-*** 1704:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 raise child_exception_type(errno_num, err_msg, err_filename)
-1705:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 raise child_ex=
-ception_type(err_msg)
-1706:
-1707:
-1708:=C2=A0 =C2=A0 =C2=A0 =C2=A0 def _handle_exitstatus(self, sts, _WIFSIGN=
-ALED=3Dos.WIFSIGNALED,
-Exception: FileNotFoundError: [Errno 2] No such file or directory: 'cross-l=
-ocaledef'
+With kind regards,
+Jeffrey Simons
 
-ERROR: Logfile of failure stored in: /home/talel/Desktop/YoctoWork/arken/tm=
-p/work/menzu-poky-linux/menzu-image-initramfs/1.0-r0/temp/log.do_rootfs.143=
-822
-ERROR: Task (/home/talel/Documents/FinalGit/SelfArkenWork/arken/meta-menzu/=
-recipes-core/images/menzu-image-initramfs.bb:do_rootfs) failed with exit co=
-de '1'
----------------------------
+Software Engineer
+Royal Boon Edam International B.V.
 
-I was building the image with success, but now it fails, I don't know why.
-The other normal images build successfully.
-
-Thanks,
-Talel
-
---oVcgToDt8qTKB1CL8QbR
+--mGd7gwYa2Ic0SuD68BiU
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello All,<br /><br />I created a simple image recipe for initramfs type of=
- image with no <strong>IMAGE_FEATURES</strong> and simply:
-<blockquote>IMAGE_INSTALL =3D "packagegroup-core-boot busybox"</blockquote>
-When I bitbake the image I get the following error:<br /><br />------------=
----------------<br />
-<div>ERROR: menzu-image-initramfs-1.0-r0 do_rootfs: Error executing a pytho=
-n function in exec_python_func() autogenerated:</div>
-<div>&nbsp;</div>
-<div>The stack trace of python calls that resulted in this exception/failur=
-e was:</div>
-<div>File: 'exec_python_func() autogenerated', lineno: 2, function: &lt;mod=
-ule&gt;</div>
-<div>&nbsp; &nbsp; &nbsp;0001:</div>
-<div>&nbsp;*** 0002:do_rootfs(d)</div>
-<div>&nbsp; &nbsp; &nbsp;0003:</div>
-<div>File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/classes/image.b=
-bclass', lineno: 245, function: do_rootfs</div>
-<div>&nbsp; &nbsp; &nbsp;0241:&nbsp; &nbsp; progress_reporter.next_stage()<=
-/div>
-<div>&nbsp; &nbsp; &nbsp;0242:</div>
-<div>&nbsp; &nbsp; &nbsp;0243:&nbsp; &nbsp; # generate rootfs</div>
-<div>&nbsp; &nbsp; &nbsp;0244:&nbsp; &nbsp; d.setVarFlag('REPRODUCIBLE_TIME=
-STAMP_ROOTFS', 'export', '1')</div>
-<div>&nbsp;*** 0245:&nbsp; &nbsp; create_rootfs(d, progress_reporter=3Dprog=
-ress_reporter, logcatcher=3Dlogcatcher)</div>
-<div>&nbsp; &nbsp; &nbsp;0246:</div>
-<div>&nbsp; &nbsp; &nbsp;0247:&nbsp; &nbsp; progress_reporter.finish()</div=
->
-<div>&nbsp; &nbsp; &nbsp;0248:}</div>
-<div>&nbsp; &nbsp; &nbsp;0249:do_rootfs[dirs] =3D "${TOPDIR}"</div>
-<div>File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/rootfs.p=
-y', lineno: 978, function: create_rootfs</div>
-<div>&nbsp; &nbsp; &nbsp;0974:&nbsp; &nbsp; img_type =3D d.getVar('IMAGE_PK=
-GTYPE')</div>
-<div>&nbsp; &nbsp; &nbsp;0975:&nbsp; &nbsp; if img_type =3D=3D "rpm":</div>
-<div>&nbsp; &nbsp; &nbsp;0976:&nbsp; &nbsp; &nbsp; &nbsp; RpmRootfs(d, mani=
-fest_dir, progress_reporter, logcatcher).create()</div>
-<div>&nbsp; &nbsp; &nbsp;0977:&nbsp; &nbsp; elif img_type =3D=3D "ipk":</di=
-v>
-<div>&nbsp;*** 0978:&nbsp; &nbsp; &nbsp; &nbsp; OpkgRootfs(d, manifest_dir,=
- progress_reporter, logcatcher).create()</div>
-<div>&nbsp; &nbsp; &nbsp;0979:&nbsp; &nbsp; elif img_type =3D=3D "deb":</di=
-v>
-<div>&nbsp; &nbsp; &nbsp;0980:&nbsp; &nbsp; &nbsp; &nbsp; DpkgRootfs(d, man=
-ifest_dir, progress_reporter, logcatcher).create()</div>
-<div>&nbsp; &nbsp; &nbsp;0981:</div>
-<div>&nbsp; &nbsp; &nbsp;0982:&nbsp; &nbsp; os.environ.clear()</div>
-<div>File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/rootfs.p=
-y', lineno: 204, function: create</div>
-<div>&nbsp; &nbsp; &nbsp;0200:&nbsp; &nbsp; &nbsp; &nbsp; if self.progress_=
-reporter:</div>
-<div>&nbsp; &nbsp; &nbsp;0201:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sel=
-f.progress_reporter.next_stage()</div>
-<div>&nbsp; &nbsp; &nbsp;0202:</div>
-<div>&nbsp; &nbsp; &nbsp;0203:&nbsp; &nbsp; &nbsp; &nbsp; # call the packag=
-e manager dependent create method</div>
-<div>&nbsp;*** 0204:&nbsp; &nbsp; &nbsp; &nbsp; self._create()</div>
-<div>&nbsp; &nbsp; &nbsp;0205:</div>
-<div>&nbsp; &nbsp; &nbsp;0206:&nbsp; &nbsp; &nbsp; &nbsp; sysconfdir =3D se=
-lf.image_rootfs + self.d.getVar('sysconfdir')</div>
-<div>&nbsp; &nbsp; &nbsp;0207:&nbsp; &nbsp; &nbsp; &nbsp; bb.utils.mkdirhie=
-r(sysconfdir)</div>
-<div>&nbsp; &nbsp; &nbsp;0208:&nbsp; &nbsp; &nbsp; &nbsp; with open(sysconf=
-dir + "/version", "w+") as ver:</div>
-<div>File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/rootfs.p=
-y', lineno: 922, function: _create</div>
-<div>&nbsp; &nbsp; &nbsp;0918:</div>
-<div>&nbsp; &nbsp; &nbsp;0919:&nbsp; &nbsp; &nbsp; &nbsp; if self.progress_=
-reporter:</div>
-<div>&nbsp; &nbsp; &nbsp;0920:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sel=
-f.progress_reporter.next_stage()</div>
-<div>&nbsp; &nbsp; &nbsp;0921:</div>
-<div>&nbsp;*** 0922:&nbsp; &nbsp; &nbsp; &nbsp; self.pm.install_complementa=
-ry()</div>
-<div>&nbsp; &nbsp; &nbsp;0923:</div>
-<div>&nbsp; &nbsp; &nbsp;0924:&nbsp; &nbsp; &nbsp; &nbsp; if self.progress_=
-reporter:</div>
-<div>&nbsp; &nbsp; &nbsp;0925:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sel=
-f.progress_reporter.next_stage()</div>
-<div>&nbsp; &nbsp; &nbsp;0926:</div>
-<div>File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/package_=
-manager.py', lineno: 614, function: install_complementary</div>
-<div>&nbsp; &nbsp; &nbsp;0610:</div>
-<div>&nbsp; &nbsp; &nbsp;0611:&nbsp; &nbsp; &nbsp; &nbsp; target_arch =3D s=
-elf.d.getVar('TARGET_ARCH')</div>
-<div>&nbsp; &nbsp; &nbsp;0612:&nbsp; &nbsp; &nbsp; &nbsp; localedir =3D oe.=
-path.join(self.target_rootfs, self.d.getVar("libdir"), "locale")</div>
-<div>&nbsp; &nbsp; &nbsp;0613:&nbsp; &nbsp; &nbsp; &nbsp; if os.path.exists=
-(localedir) and os.listdir(localedir):</div>
-<div>&nbsp;*** 0614:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; generate_loca=
-le_archive(self.d, self.target_rootfs, target_arch, localedir)</div>
-<div>&nbsp; &nbsp; &nbsp;0615:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # A=
-nd now delete the binary locales</div>
-<div>&nbsp; &nbsp; &nbsp;0616:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sel=
-f.remove(fnmatch.filter(self.list_installed(), "glibc-binary-localedata-*")=
-, False)</div>
-<div>&nbsp; &nbsp; &nbsp;0617:</div>
-<div>&nbsp; &nbsp; &nbsp;0618:&nbsp; &nbsp; def deploy_dir_lock(self):</div=
->
-<div>File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/package_=
-manager.py', lineno: 140, function: generate_locale_archive</div>
-<div>&nbsp; &nbsp; &nbsp;0136:&nbsp; &nbsp; &nbsp; &nbsp; if os.path.isdir(=
-path):</div>
-<div>&nbsp; &nbsp; &nbsp;0137:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cmd=
- =3D ["cross-localedef", "--verbose"]</div>
-<div>&nbsp; &nbsp; &nbsp;0138:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cmd=
- +=3D arch_options</div>
-<div>&nbsp; &nbsp; &nbsp;0139:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cmd=
- +=3D ["--add-to-archive", path]</div>
-<div>&nbsp;*** 0140:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; subprocess.ch=
-eck_output(cmd, env=3Denv, stderr=3Dsubprocess.STDOUT)</div>
-<div>&nbsp; &nbsp; &nbsp;0141:</div>
-<div>&nbsp; &nbsp; &nbsp;0142:class Indexer(object, metaclass=3DABCMeta):</=
-div>
-<div>&nbsp; &nbsp; &nbsp;0143:&nbsp; &nbsp; def __init__(self, d, deploy_di=
-r):</div>
-<div>&nbsp; &nbsp; &nbsp;0144:&nbsp; &nbsp; &nbsp; &nbsp; self.d =3D d</div=
->
-<div>File: '/usr/lib/python3.8/subprocess.py', lineno: 415, function: check=
-_output</div>
-<div>&nbsp; &nbsp; &nbsp;0411:&nbsp; &nbsp; &nbsp; &nbsp; else:</div>
-<div>&nbsp; &nbsp; &nbsp;0412:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; emp=
-ty =3D b''</div>
-<div>&nbsp; &nbsp; &nbsp;0413:&nbsp; &nbsp; &nbsp; &nbsp; kwargs['input'] =
-=3D empty</div>
-<div>&nbsp; &nbsp; &nbsp;0414:</div>
-<div>&nbsp;*** 0415:&nbsp; &nbsp; return run(*popenargs, stdout=3DPIPE, tim=
-eout=3Dtimeout, check=3DTrue,</div>
-<div>&nbsp; &nbsp; &nbsp;0416:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp;**kwargs).stdout</div>
-<div>&nbsp; &nbsp; &nbsp;0417:</div>
-<div>&nbsp; &nbsp; &nbsp;0418:</div>
-<div>&nbsp; &nbsp; &nbsp;0419:class CompletedProcess(object):</div>
-<div>File: '/usr/lib/python3.8/subprocess.py', lineno: 493, function: run</=
-div>
-<div>&nbsp; &nbsp; &nbsp;0489:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;'with capture_ou=
-tput.')</div>
-<div>&nbsp; &nbsp; &nbsp;0490:&nbsp; &nbsp; &nbsp; &nbsp; kwargs['stdout'] =
-=3D PIPE</div>
-<div>&nbsp; &nbsp; &nbsp;0491:&nbsp; &nbsp; &nbsp; &nbsp; kwargs['stderr'] =
-=3D PIPE</div>
-<div>&nbsp; &nbsp; &nbsp;0492:</div>
-<div>&nbsp;*** 0493:&nbsp; &nbsp; with Popen(*popenargs, **kwargs) as proce=
-ss:</div>
-<div>&nbsp; &nbsp; &nbsp;0494:&nbsp; &nbsp; &nbsp; &nbsp; try:</div>
-<div>&nbsp; &nbsp; &nbsp;0495:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; std=
-out, stderr =3D process.communicate(input, timeout=3Dtimeout)</div>
-<div>&nbsp; &nbsp; &nbsp;0496:&nbsp; &nbsp; &nbsp; &nbsp; except TimeoutExp=
-ired as exc:</div>
-<div>&nbsp; &nbsp; &nbsp;0497:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pro=
-cess.kill()</div>
-<div>File: '/usr/lib/python3.8/subprocess.py', lineno: 858, function: __ini=
-t__</div>
-<div>&nbsp; &nbsp; &nbsp;0854:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; if self.text_mode:</div>
-<div>&nbsp; &nbsp; &nbsp;0855:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; self.stderr =3D io.TextIOWrapper(self.stderr,</div=
->
-<div>&nbsp; &nbsp; &nbsp;0856:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; encoding=3Dencoding, e=
-rrors=3Derrors)</div>
-<div>&nbsp; &nbsp; &nbsp;0857:</div>
-<div>&nbsp;*** 0858:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self._execute=
-_child(args, executable, preexec_fn, close_fds,</div>
-<div>&nbsp; &nbsp; &nbsp;0859:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pass_fds=
-, cwd, env,</div>
-<div>&nbsp; &nbsp; &nbsp;0860:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; startupi=
-nfo, creationflags, shell,</div>
-<div>&nbsp; &nbsp; &nbsp;0861:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; p2cread,=
- p2cwrite,</div>
-<div>&nbsp; &nbsp; &nbsp;0862:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c2pread,=
- c2pwrite,</div>
-<div>File: '/usr/lib/python3.8/subprocess.py', lineno: 1704, function: _exe=
-cute_child</div>
-<div>&nbsp; &nbsp; &nbsp;1700:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; else:</div>
-<div>&nbsp; &nbsp; &nbsp;1701:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; err_filename =3D orig_executable</di=
-v>
-<div>&nbsp; &nbsp; &nbsp;1702:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; if errno_num !=3D 0:</div>
-<div>&nbsp; &nbsp; &nbsp;1703:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; err_msg =3D os.strerror(errno_num)</=
-div>
-<div>&nbsp;*** 1704:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; raise child_exception_type(errno_num, err_msg, err_filename)=
-</div>
-<div>&nbsp; &nbsp; &nbsp;1705:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; raise child_exception_type(err_msg)</div>
-<div>&nbsp; &nbsp; &nbsp;1706:</div>
-<div>&nbsp; &nbsp; &nbsp;1707:</div>
-<div>&nbsp; &nbsp; &nbsp;1708:&nbsp; &nbsp; &nbsp; &nbsp; def _handle_exits=
-tatus(self, sts, _WIFSIGNALED=3Dos.WIFSIGNALED,</div>
-<div>Exception: FileNotFoundError: [Errno 2] No such file or directory: 'cr=
-oss-localedef'</div>
-<div>&nbsp;</div>
-<div>ERROR: Logfile of failure stored in: /home/talel/Desktop/YoctoWork/ark=
-en/tmp/work/menzu-poky-linux/menzu-image-initramfs/1.0-r0/temp/log.do_rootf=
-s.143822</div>
-<div>ERROR: Task (/home/talel/Documents/FinalGit/SelfArkenWork/arken/meta-m=
-enzu/recipes-core/images/menzu-image-initramfs.bb:do_rootfs) failed with ex=
-it code '1'<br />---------------------------<br /><br />I was building the =
-image with success, but now it fails, I don't know why.<br />The other norm=
-al images build successfully.<br /><br />Thanks,<br />Talel</div>
+On Thu, Nov 11, 2021 at 03:34 PM, Jeffrey Simons wrote:<br />
+<blockquote>Hi Manuel,<br /><br />
+<blockquote>Subject: Re: [yocto] User configuration &amp; host contaminatio=
+n<br /><br />Hi Jeffrey,<br /><br />Does the recipe which builds the applic=
+ation DEPEND on the recipe which sets up the user? This is what I would try=
+. If I understand <br />things correctly, Yocto/Bitbake provides every reci=
+pe a pristine environment unnaffected from other recipes going into the sam=
+e image. <br />For example, if you want to link your application against so=
+me libraries provided by other recipes, you need to add them to DEPENDS. <b=
+r />That populates your build environment with that other recipes output. I=
+'m not sure this applies to user accounts as well, but I guess it's worth a=
+ try.<br /><br />Please note I probably used the termins "recipe" and "pack=
+age" incorrectly.<br /><br />Hope this helps,<br />Manuel</blockquote>
+Thank you for your reply and suggestion.<br />I already have a dependency o=
+n the user-configuration script, see the below snippet from my recipe.<br /=
+><br /># Compile-time dependencies for testapp<br />DEPENDS =3D "user-confi=
+guration"<br /><br /># Run-time dependencies for testapp<br />RDEPENDS_${PN=
+} +=3D "rsyslog \<br /><br />Unfortunately that did not work, I have seen s=
+ome suggestions on stack-overflow where they added the user multiple times =
+per recipe by using extrauseradd (I believe).<br />That seems a bit weird t=
+o me to add every time the same user, also the drawback is that if the user=
+ changes then I have to adjust all recipes that rely on that specific user.=
+<br />What I did today to circumvent the issue is to assign the user by ref=
+erence of UID and GID, but I'm not sure if this is the intended Yocto way. =
+As you stated before<br />Yocto presents you with a pristine environment wi=
+th all information present, so I would expect that my user is there. Perhap=
+s I did not include the user-configuration<br />correctly?<br />I did inclu=
+de the user-configuration by adding it into our distribution description, s=
+ee the next coding snippet.<br /><br />#<br /># Usernames that will be used=
+ within the distro.<br /># Can be changed when desired, each recipe must us=
+e this user for the application.<br />#<br />TEST_USER =3D "testuser"<br />=
+TEST_USER_UID =3D "1200"<br /><br />DISTRO_EXTRA_RDEPENDS +=3D "user-config=
+uration" <br /><br />Can you or any one else clarify if this is the correct=
+ way or not?<br /><br />Thank you in advance.<br /><br />Jeffrey Simons<br =
+/><br />Software Engineer<br />Royal Boon Edam International B.V.</blockquo=
+te>
+Hi All,<br /><br />Can anyone elaborate on my fix if this is the correct wa=
+y, or point me in the correct direction.<br /><br />With kind regards,<br /=
+><span style=3D"white-space: pre-wrap;">Jeffrey Simons</span><br style=3D"w=
+hite-space: pre-wrap;" /><br style=3D"white-space: pre-wrap;" /><span style=
+=3D"white-space: pre-wrap;">Software Engineer</span><br style=3D"white-spac=
+e: pre-wrap;" /><span style=3D"white-space: pre-wrap;">Royal Boon Edam Inte=
+rnational B.V.</span>
 
---oVcgToDt8qTKB1CL8QbR--
+--mGd7gwYa2Ic0SuD68BiU--
 
