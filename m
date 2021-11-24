@@ -2,209 +2,111 @@ Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8409FC433F5
-	for <webhook@archiver.kernel.org>; Wed, 24 Nov 2021 18:16:10 +0000 (UTC)
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com
- [209.85.219.49])
- by mx.groups.io with SMTP id smtpd.web09.1773.1637777769878496799
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D6605C433F5
+	for <webhook@archiver.kernel.org>; Wed, 24 Nov 2021 18:21:34 +0000 (UTC)
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com
+ [209.85.222.182])
+ by mx.groups.io with SMTP id smtpd.web09.1851.1637778093534793534
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Nov 2021 10:16:10 -0800
+ Wed, 24 Nov 2021 10:21:33 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=FiWX4DO1;
- spf=pass (domain: gmail.com, ip: 209.85.219.49, mailfrom: raj.khem@gmail.com)
-Received: by mail-qv1-f49.google.com with SMTP id jo22so2345436qvb.13
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=m8L59wIq;
+ spf=pass (domain: gmail.com, ip: 209.85.222.182,
+ mailfrom: raj.khem@gmail.com)
+Received: by mail-qk1-f182.google.com with SMTP id b67so3785973qkg.6
         for <yocto@lists.yoctoproject.org>;
- Wed, 24 Nov 2021 10:16:09 -0800 (PST)
+ Wed, 24 Nov 2021 10:21:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=7ybYE9XZXBvpkwhN2zB4/jLRPrGCCaYo5oOR5NisWkY=;
-        b=FiWX4DO1DkdFQQHiTbosCp3y7JeUmq05XdTKGIlZyyLU2V7tWwM3yeo0pmWIn0vzFU
-         XqJyrIR1e7UsrApS+0E63UQSdyFEdidddPV1NSQ8FAvhThKj83wkJ4UkubgCDkSSSJsi
-         6eNyn7VTWxvjrF2Wj2YjW5Bh7iLwApozt8gsBJO9HXiZTC6zIg3SFakTmwExvyG5W41a
-         zLgj/lz9/qi/pm0wAEYw4e+ftscvEsWqkj/SogIVhMAmuTRqJSaxPtn4PlN+XLwpFEh9
-         w3ET4a5bfY8FFPvU3+GoDOQRdwsKsr51vSwTCjG3mlQIOkms6p6YySm98uYEDx7lyMbF
-         4eAw==
+        bh=CIo/oeQaH+JDYQgCWuKDXoxZNX9y91Pxd0h7JKm33Qw=;
+        b=m8L59wIqgCF6LebjuFD33oAfmhdwWYgnnAcqXbABW5/1w/PvGuop0hWxG01O1/4s3F
+         b0U0kezMTOrAeTiVUZod0XhcHMLrS6Vx/hhgLXWTWHouIQU/Re0RlE0gnFB9OhbzcZXt
+         OeVwnZP22ldarpVSTbIaKeh56/rgtPK2A4iE8IVEqXlr7WCuxdaWHxygNf8nT4pLXBb3
+         anUIl6AfGQewb+sIHsdoqkKVp8ciRMuq2MTA/dxnczjBaikBvQeesKk6fIhgimDHHX8y
+         xv2Wtj1KaadInj47rDtJrtOX+ihG90Eu5pLPKn8ugUeJLeHLX0Lx1dUpCNtFOMNOEKFk
+         QpLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=7ybYE9XZXBvpkwhN2zB4/jLRPrGCCaYo5oOR5NisWkY=;
-        b=LOi3p+s8ZOOBqE/D6Hgxy8NVwfl93wD1cc3lSnXPBPtia2R0KAVNpE4g29ULrk86LH
-         py1gHVSOL9zx9pazp3bFyK/NJ733r6U1F9DTMKlutByY54YuvyrspJAPx6PImQgJcLEb
-         znwj37u3cb2FvRHRlveUp0hKmPvRiTUN8ZPj0T5mhCvOy2IXA7Qa1BCi9YErpGzh7g9l
-         Gm5Fk9lZKRQg06Bm4i9ubdl6MhLW9jTFKdTEkwcHTGCcTRXwcvMEdyz272Sk8uMasd72
-         MaEru3o1Yf1/N+hPH8LRG4k0x9STH5xuiO00INr0K3hYmWHOKCDL5duTQHTdCR6knbzO
-         wESA==
-X-Gm-Message-State: AOAM531q8EH0sd/9R+gqtV21jlvKTFM1F656udDiMRYwSyz/zSCcp6ZN
-	8ulEuh5+KuJNvAMd26W2tcKrpMLak5bwMgPzDCE=
+        bh=CIo/oeQaH+JDYQgCWuKDXoxZNX9y91Pxd0h7JKm33Qw=;
+        b=GhcrU6OWP3GOcf/49Gtq6pt0ViZM8zBns+kS42UGwQEwN49/7PWBstYUZzwNOPWzxs
+         o0LWPfrP9zM58hdm9ftbX2hXnKR6EgPPiKHE67Lgs3YC2PAG9cs3JEsfKnhPZZPr8Zjl
+         1Seh4drHIEkk8sGtr1RP6F4YpvMA70wzcaW/HXta8sYHJc7TqlgLgeAsV2zCYiexmxdG
+         NPRXkaN7cFPw5bRLwAEm+87voT05fRgee4/pBkeK3DSyy3ZVkM/c+Jpic81JWsOj/D9j
+         +k0UwDP/HWYtq1RKsgxWsOjYCpgCWqzoKEvFCubmCCvJww/kz8fv019vBi75VCDl9T3Q
+         xTNw==
+X-Gm-Message-State: AOAM532s+WDFS05uoqY1U9NCtwFgT3XTlBgha/+wfAN1jWRamzI00TVI
+	sLpW6PCm71eJnSJViPzr3AfsQbPLydLudXWNE8o=
 X-Google-Smtp-Source: 
- ABdhPJw1jSyo2L8iWDdsJq4GjaG86Ovp4l1XHLCOkVf3HCyJhPKY59S/tPJKaKhAjsK2mQtIqLyLXYMX61A1DNp7IZU=
-X-Received: by 2002:a05:6214:27ee:: with SMTP id
- jt14mr10080378qvb.5.1637777768912;
- Wed, 24 Nov 2021 10:16:08 -0800 (PST)
+ ABdhPJwAmXyTw4G4guLBChM3nihOshFlR4zDbUPLtegiQzajT5tqeSF/vjpC6OWXceQ1q3nb5nfplMjDlqnY0SyCjLU=
+X-Received: by 2002:a37:dd4:: with SMTP id 203mr8027640qkn.149.1637778092612;
+ Wed, 24 Nov 2021 10:21:32 -0800 (PST)
 MIME-Version: 1.0
-References: <xYgZ.1637744573339189516.ggUE@lists.yoctoproject.org>
-In-Reply-To: <xYgZ.1637744573339189516.ggUE@lists.yoctoproject.org>
+References: <20211123150331.2431516-1-ross.burton@arm.com>
+ <CANNYZj8WZgGfNjF3pf2i5Fg1yJ0BEJVX3jhjDyTa+0Bs-H5ZAg@mail.gmail.com>
+ <CAAnfSTvi57f0i83T80Z2SEKpXG6ch3kiSAKJwo3g=2u9-F_j=Q@mail.gmail.com>
+ <CANNYZj9hoiUbuqjiMY00bG3BSAqNL1qrmK1HASdHiD1YyVMn1Q@mail.gmail.com>
+ <473510c439b0d732d956ab327a425221f6019cc7.camel@linuxfoundation.org>
+In-Reply-To: 
+ <473510c439b0d732d956ab327a425221f6019cc7.camel@linuxfoundation.org>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 24 Nov 2021 10:15:42 -0800
+Date: Wed, 24 Nov 2021 10:21:06 -0800
 Message-ID: 
- <CAMKF1somq0XP74etgxf_wwgsX0defsg2DprBhKJ3wb9HyzF6Yw@mail.gmail.com>
-Subject: Re: [yocto] cross-localedef file not found in do_rootfs #zeus #yocto
-To: Bel Hadj Salem Talel <bhstalel@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+ <CAMKF1sq+zY0SqPHganABa0nZdKK1mg0mvJ2MwhvwXnPeU_HS=w@mail.gmail.com>
+Subject: Re: [yocto] [PATCH yocto-autobuilder-helper] config.json: set
+ ZSTD_THREADS like XZ_THREADS
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>,
+ Ross Burton <ross@burtonini.com>,
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 24 Nov 2021 18:16:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55409
+ <yocto@lists.yoctoproject.org>; Wed, 24 Nov 2021 18:21:34 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55410
 
-On Wed, Nov 24, 2021 at 1:02 AM Bel Hadj Salem Talel <bhstalel@gmail.com> wrote:
+On Wed, Nov 24, 2021 at 2:18 AM Richard Purdie
+<richard.purdie@linuxfoundation.org> wrote:
 >
-> Hello All,
+> On Wed, 2021-11-24 at 09:00 +0100, Alexander Kanavin wrote:
+> > But the AB has not been exhibiting any problems with zstd, and this will
+> > degrade performance. Let's only fix what is broken.
 >
-> I created a simple image recipe for initramfs type of image with no IMAGE_FEATURES and simply:
+> I'm not sure I agree with that.
 >
-> IMAGE_INSTALL = "packagegroup-core-boot busybox"
+> We have 60+ "intermittent" bugs and some of us are in weekly meetings trying to
+> do something about working out why these are failing. It feels like we're not
+> really getting too far with some subset of them and it is using up a lot of the
+> SWAT and bug triage time.
+>
+> We've made a few changes to try and reduce the load spikes on the systems and
+> this fits with the other changes we've made.
 >
 
-to get more info, can you try adding
+From a different data point, we have clipped the parallelism for XZ
+and ZSTD internally to very low ( 2 and 4 )
+and it has in fact reduced unexpected failures and seen no impact on
+build performance. Since parallelism settings
+are myopic for these tools, they greedily take every CPU which is not
+best for overall build thats doing many
+things in parallel, so its best to curtail them to a conservative value.
 
-IMAGE_LINGUAS = " "
-
-and see if this changes anything ?
-
-> When I bitbake the image I get the following error:
+> Cheers,
 >
-> ---------------------------
-> ERROR: menzu-image-initramfs-1.0-r0 do_rootfs: Error executing a python function in exec_python_func() autogenerated:
+> Richard
 >
-> The stack trace of python calls that resulted in this exception/failure was:
-> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
->      0001:
->  *** 0002:do_rootfs(d)
->      0003:
-> File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/classes/image.bbclass', lineno: 245, function: do_rootfs
->      0241:    progress_reporter.next_stage()
->      0242:
->      0243:    # generate rootfs
->      0244:    d.setVarFlag('REPRODUCIBLE_TIMESTAMP_ROOTFS', 'export', '1')
->  *** 0245:    create_rootfs(d, progress_reporter=progress_reporter, logcatcher=logcatcher)
->      0246:
->      0247:    progress_reporter.finish()
->      0248:}
->      0249:do_rootfs[dirs] = "${TOPDIR}"
-> File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/rootfs.py', lineno: 978, function: create_rootfs
->      0974:    img_type = d.getVar('IMAGE_PKGTYPE')
->      0975:    if img_type == "rpm":
->      0976:        RpmRootfs(d, manifest_dir, progress_reporter, logcatcher).create()
->      0977:    elif img_type == "ipk":
->  *** 0978:        OpkgRootfs(d, manifest_dir, progress_reporter, logcatcher).create()
->      0979:    elif img_type == "deb":
->      0980:        DpkgRootfs(d, manifest_dir, progress_reporter, logcatcher).create()
->      0981:
->      0982:    os.environ.clear()
-> File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/rootfs.py', lineno: 204, function: create
->      0200:        if self.progress_reporter:
->      0201:            self.progress_reporter.next_stage()
->      0202:
->      0203:        # call the package manager dependent create method
->  *** 0204:        self._create()
->      0205:
->      0206:        sysconfdir = self.image_rootfs + self.d.getVar('sysconfdir')
->      0207:        bb.utils.mkdirhier(sysconfdir)
->      0208:        with open(sysconfdir + "/version", "w+") as ver:
-> File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/rootfs.py', lineno: 922, function: _create
->      0918:
->      0919:        if self.progress_reporter:
->      0920:            self.progress_reporter.next_stage()
->      0921:
->  *** 0922:        self.pm.install_complementary()
->      0923:
->      0924:        if self.progress_reporter:
->      0925:            self.progress_reporter.next_stage()
->      0926:
-> File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/package_manager.py', lineno: 614, function: install_complementary
->      0610:
->      0611:        target_arch = self.d.getVar('TARGET_ARCH')
->      0612:        localedir = oe.path.join(self.target_rootfs, self.d.getVar("libdir"), "locale")
->      0613:        if os.path.exists(localedir) and os.listdir(localedir):
->  *** 0614:            generate_locale_archive(self.d, self.target_rootfs, target_arch, localedir)
->      0615:            # And now delete the binary locales
->      0616:            self.remove(fnmatch.filter(self.list_installed(), "glibc-binary-localedata-*"), False)
->      0617:
->      0618:    def deploy_dir_lock(self):
-> File: '/home/talel/Desktop/YoctoWork/sources/poky/meta/lib/oe/package_manager.py', lineno: 140, function: generate_locale_archive
->      0136:        if os.path.isdir(path):
->      0137:            cmd = ["cross-localedef", "--verbose"]
->      0138:            cmd += arch_options
->      0139:            cmd += ["--add-to-archive", path]
->  *** 0140:            subprocess.check_output(cmd, env=env, stderr=subprocess.STDOUT)
->      0141:
->      0142:class Indexer(object, metaclass=ABCMeta):
->      0143:    def __init__(self, d, deploy_dir):
->      0144:        self.d = d
-> File: '/usr/lib/python3.8/subprocess.py', lineno: 415, function: check_output
->      0411:        else:
->      0412:            empty = b''
->      0413:        kwargs['input'] = empty
->      0414:
->  *** 0415:    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
->      0416:               **kwargs).stdout
->      0417:
->      0418:
->      0419:class CompletedProcess(object):
-> File: '/usr/lib/python3.8/subprocess.py', lineno: 493, function: run
->      0489:                             'with capture_output.')
->      0490:        kwargs['stdout'] = PIPE
->      0491:        kwargs['stderr'] = PIPE
->      0492:
->  *** 0493:    with Popen(*popenargs, **kwargs) as process:
->      0494:        try:
->      0495:            stdout, stderr = process.communicate(input, timeout=timeout)
->      0496:        except TimeoutExpired as exc:
->      0497:            process.kill()
-> File: '/usr/lib/python3.8/subprocess.py', lineno: 858, function: __init__
->      0854:                if self.text_mode:
->      0855:                    self.stderr = io.TextIOWrapper(self.stderr,
->      0856:                            encoding=encoding, errors=errors)
->      0857:
->  *** 0858:            self._execute_child(args, executable, preexec_fn, close_fds,
->      0859:                                pass_fds, cwd, env,
->      0860:                                startupinfo, creationflags, shell,
->      0861:                                p2cread, p2cwrite,
->      0862:                                c2pread, c2pwrite,
-> File: '/usr/lib/python3.8/subprocess.py', lineno: 1704, function: _execute_child
->      1700:                    else:
->      1701:                        err_filename = orig_executable
->      1702:                    if errno_num != 0:
->      1703:                        err_msg = os.strerror(errno_num)
->  *** 1704:                    raise child_exception_type(errno_num, err_msg, err_filename)
->      1705:                raise child_exception_type(err_msg)
->      1706:
->      1707:
->      1708:        def _handle_exitstatus(self, sts, _WIFSIGNALED=os.WIFSIGNALED,
-> Exception: FileNotFoundError: [Errno 2] No such file or directory: 'cross-localedef'
 >
-> ERROR: Logfile of failure stored in: /home/talel/Desktop/YoctoWork/arken/tmp/work/menzu-poky-linux/menzu-image-initramfs/1.0-r0/temp/log.do_rootfs.143822
-> ERROR: Task (/home/talel/Documents/FinalGit/SelfArkenWork/arken/meta-menzu/recipes-core/images/menzu-image-initramfs.bb:do_rootfs) failed with exit code '1'
-> ---------------------------
 >
-> I was building the image with success, but now it fails, I don't know why.
-> The other normal images build successfully.
->
-> Thanks,
-> Talel
 >
 > -=-=-=-=-=-=-=-=-=-=-=-
 > Links: You receive all messages sent to this group.
 > You automatically follow any topics you start or reply to.
-> View/Reply Online (#55403): https://lists.yoctoproject.org/g/yocto/message/55403
-> Mute This Topic: https://lists.yoctoproject.org/mt/87277750/1997914
-> Mute #yocto:https://lists.yoctoproject.org/g/yocto/mutehashtag/yocto
-> Mute #zeus:https://lists.yoctoproject.org/g/yocto/mutehashtag/zeus
+> View/Reply Online (#55404): https://lists.yoctoproject.org/g/yocto/message/55404
+> Mute This Topic: https://lists.yoctoproject.org/mt/87260143/1997914
 > Group Owner: yocto+owner@lists.yoctoproject.org
 > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail.com]
 > -=-=-=-=-=-=-=-=-=-=-=-
