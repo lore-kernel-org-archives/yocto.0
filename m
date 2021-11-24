@@ -1,114 +1,97 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <michael.opdenacker@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D6605C433F5
-	for <webhook@archiver.kernel.org>; Wed, 24 Nov 2021 18:21:34 +0000 (UTC)
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com
- [209.85.222.182])
- by mx.groups.io with SMTP id smtpd.web09.1851.1637778093534793534
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D9566C433F5
+	for <webhook@archiver.kernel.org>; Wed, 24 Nov 2021 18:45:55 +0000 (UTC)
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net
+ [217.70.183.198])
+ by mx.groups.io with SMTP id smtpd.web10.2262.1637779553753668086
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Nov 2021 10:21:33 -0800
+ Wed, 24 Nov 2021 10:45:54 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=m8L59wIq;
- spf=pass (domain: gmail.com, ip: 209.85.222.182,
- mailfrom: raj.khem@gmail.com)
-Received: by mail-qk1-f182.google.com with SMTP id b67so3785973qkg.6
-        for <yocto@lists.yoctoproject.org>;
- Wed, 24 Nov 2021 10:21:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CIo/oeQaH+JDYQgCWuKDXoxZNX9y91Pxd0h7JKm33Qw=;
-        b=m8L59wIqgCF6LebjuFD33oAfmhdwWYgnnAcqXbABW5/1w/PvGuop0hWxG01O1/4s3F
-         b0U0kezMTOrAeTiVUZod0XhcHMLrS6Vx/hhgLXWTWHouIQU/Re0RlE0gnFB9OhbzcZXt
-         OeVwnZP22ldarpVSTbIaKeh56/rgtPK2A4iE8IVEqXlr7WCuxdaWHxygNf8nT4pLXBb3
-         anUIl6AfGQewb+sIHsdoqkKVp8ciRMuq2MTA/dxnczjBaikBvQeesKk6fIhgimDHHX8y
-         xv2Wtj1KaadInj47rDtJrtOX+ihG90Eu5pLPKn8ugUeJLeHLX0Lx1dUpCNtFOMNOEKFk
-         QpLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CIo/oeQaH+JDYQgCWuKDXoxZNX9y91Pxd0h7JKm33Qw=;
-        b=GhcrU6OWP3GOcf/49Gtq6pt0ViZM8zBns+kS42UGwQEwN49/7PWBstYUZzwNOPWzxs
-         o0LWPfrP9zM58hdm9ftbX2hXnKR6EgPPiKHE67Lgs3YC2PAG9cs3JEsfKnhPZZPr8Zjl
-         1Seh4drHIEkk8sGtr1RP6F4YpvMA70wzcaW/HXta8sYHJc7TqlgLgeAsV2zCYiexmxdG
-         NPRXkaN7cFPw5bRLwAEm+87voT05fRgee4/pBkeK3DSyy3ZVkM/c+Jpic81JWsOj/D9j
-         +k0UwDP/HWYtq1RKsgxWsOjYCpgCWqzoKEvFCubmCCvJww/kz8fv019vBi75VCDl9T3Q
-         xTNw==
-X-Gm-Message-State: AOAM532s+WDFS05uoqY1U9NCtwFgT3XTlBgha/+wfAN1jWRamzI00TVI
-	sLpW6PCm71eJnSJViPzr3AfsQbPLydLudXWNE8o=
-X-Google-Smtp-Source: 
- ABdhPJwAmXyTw4G4guLBChM3nihOshFlR4zDbUPLtegiQzajT5tqeSF/vjpC6OWXceQ1q3nb5nfplMjDlqnY0SyCjLU=
-X-Received: by 2002:a37:dd4:: with SMTP id 203mr8027640qkn.149.1637778092612;
- Wed, 24 Nov 2021 10:21:32 -0800 (PST)
+ dkim=missing;
+ spf=pass (domain: bootlin.com, ip: 217.70.183.198, mailfrom: michael.opdenacker@bootlin.com)
+Received: (Authenticated sender: michael.opdenacker@bootlin.com)
+	by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id C1124C000B;
+	Wed, 24 Nov 2021 18:45:51 +0000 (UTC)
+Cc: docs@lists.yoctoproject.org
+Subject: Re: [yocto] [docs] [PATCH yocto-autobuilder-helper]
+ scripts/run-docs-build: remove gatesgarth
+To: Richard Purdie <richard.purdie@linuxfoundation.org>,
+ yocto@lists.yoctoproject.org
+References: <20211124171617.2088604-1-michael.opdenacker@bootlin.com>
+ <98664c40610ee3163638a373f105f29c9c70a912.camel@linuxfoundation.org>
+From: Michael Opdenacker <michael.opdenacker@bootlin.com>
+Organization: Bootlin
+Message-ID: <1914a66b-2f8a-da6b-d892-53fbe6b45562@bootlin.com>
+Date: Wed, 24 Nov 2021 19:45:51 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-References: <20211123150331.2431516-1-ross.burton@arm.com>
- <CANNYZj8WZgGfNjF3pf2i5Fg1yJ0BEJVX3jhjDyTa+0Bs-H5ZAg@mail.gmail.com>
- <CAAnfSTvi57f0i83T80Z2SEKpXG6ch3kiSAKJwo3g=2u9-F_j=Q@mail.gmail.com>
- <CANNYZj9hoiUbuqjiMY00bG3BSAqNL1qrmK1HASdHiD1YyVMn1Q@mail.gmail.com>
- <473510c439b0d732d956ab327a425221f6019cc7.camel@linuxfoundation.org>
 In-Reply-To: 
- <473510c439b0d732d956ab327a425221f6019cc7.camel@linuxfoundation.org>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 24 Nov 2021 10:21:06 -0800
-Message-ID: 
- <CAMKF1sq+zY0SqPHganABa0nZdKK1mg0mvJ2MwhvwXnPeU_HS=w@mail.gmail.com>
-Subject: Re: [yocto] [PATCH yocto-autobuilder-helper] config.json: set
- ZSTD_THREADS like XZ_THREADS
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: Alexander Kanavin <alex.kanavin@gmail.com>,
- Ross Burton <ross@burtonini.com>,
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+ <98664c40610ee3163638a373f105f29c9c70a912.camel@linuxfoundation.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 24 Nov 2021 18:21:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55410
+ <yocto@lists.yoctoproject.org>; Wed, 24 Nov 2021 18:45:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55411
 
-On Wed, Nov 24, 2021 at 2:18 AM Richard Purdie
-<richard.purdie@linuxfoundation.org> wrote:
->
-> On Wed, 2021-11-24 at 09:00 +0100, Alexander Kanavin wrote:
-> > But the AB has not been exhibiting any problems with zstd, and this will
-> > degrade performance. Let's only fix what is broken.
->
-> I'm not sure I agree with that.
->
-> We have 60+ "intermittent" bugs and some of us are in weekly meetings trying to
-> do something about working out why these are failing. It feels like we're not
-> really getting too far with some subset of them and it is using up a lot of the
-> SWAT and bug triage time.
->
-> We've made a few changes to try and reduce the load spikes on the systems and
-> this fits with the other changes we've made.
->
+Hi Richard,
 
-From a different data point, we have clipped the parallelism for XZ
-and ZSTD internally to very low ( 2 and 4 )
-and it has in fact reduced unexpected failures and seen no impact on
-build performance. Since parallelism settings
-are myopic for these tools, they greedily take every CPU which is not
-best for overall build thats doing many
-things in parallel, so its best to curtail them to a conservative value.
+Thanks for the review!
 
-> Cheers,
->
-> Richard
->
->
->
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#55404): https://lists.yoctoproject.org/g/yocto/message/55404
-> Mute This Topic: https://lists.yoctoproject.org/mt/87260143/1997914
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+On 11/24/21 7:10 PM, Richard Purdie wrote:
+> On Wed, 2021-11-24 at 18:16 +0100, Michael Opdenacker wrote:
+>> Together with the corresponding Bitbake version, which are no
+>> longer supported.
+>>
+>> Signed-off-by: Michael Opdenacker <michael.opdenacker@bootlin.com>
+>> ---
+>>  scripts/run-docs-build | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/scripts/run-docs-build b/scripts/run-docs-build
+>> index 3db4a97..5e1d649 100755
+>> --- a/scripts/run-docs-build
+>> +++ b/scripts/run-docs-build
+>> @@ -35,7 +35,7 @@ mkdir $outputdir/bitbake/next
+>>  cp -r ./_build/final/* $outputdir/bitbake/next
+>>  
+>>  # stable branches
+>> -for branch in 1.46 1.48 1.50 1.52; do
+>> +for branch in 1.46 1.50 1.52; do
+>>      git checkout $branch
+>>      make clean
+>>      make publish
+>> @@ -68,7 +68,7 @@ mkdir $outputdir/next
+>>  cp -r ./_build/final/* $outputdir/next
+>>  
+>>  # stable branches
+>> -for branch in dunfell gatesgarth hardknott honister; do
+>> +for branch in dunfell hardknott honister; do
+>>      cd $ypdocs
+>>      git checkout $branch
+>>      make clean
+> I'm a bit torn on this. They are no longer officially supported releases now but
+> it may make sense to rebuild all the sphinx docs in this script rather than some
+> subset?
+
+
+I understand. Your decision to make.
+I just proposed this change for consistency with the current implementation.
+
+Any other opinions?
+
+Cheers
+Michael.
+
+-- 
+Michael Opdenacker, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
