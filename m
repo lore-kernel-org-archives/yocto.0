@@ -1,154 +1,46 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <bhstalel@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9BBA1C433F5
-	for <webhook@archiver.kernel.org>; Thu, 25 Nov 2021 08:44:53 +0000 (UTC)
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
- [209.85.221.51])
- by mx.groups.io with SMTP id smtpd.web09.9694.1637829891959663686
- for <yocto@lists.yoctoproject.org>;
- Thu, 25 Nov 2021 00:44:52 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=IdD6WJwA;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.51,
- mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f51.google.com with SMTP id d24so10003925wra.0
-        for <yocto@lists.yoctoproject.org>;
- Thu, 25 Nov 2021 00:44:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=jn/dvJlnmmpldfiw7Ti+bSQjWmrHLcCNRtIsIm3yBXU=;
-        b=IdD6WJwAxWk4HYi0zwi4wyq2yULIzylgS+vlIydcZTddn55TrjvKG4eyGtWE8ILti/
-         HeStdrH4jcxlgxS3bXyR9IqnlUKxiAC/cq2PtZVO4jtBxnHRGrREAIbNvlrnPoXfi7um
-         iQw03+i5OWjpAyuCOZpQDoSGQBWWDt9K5aV+4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=jn/dvJlnmmpldfiw7Ti+bSQjWmrHLcCNRtIsIm3yBXU=;
-        b=hrni+GUMOv7eXYUrgD6hBkmNzxsfYNCjaFBW4XgHCjYdW9BrI8jl8sBnzkybMfY0o+
-         yPBLmjou5om/tfGxzfWawq8MI5NPFggKJH8omDXa0u268eerGw6Tt1BQtuXmjtEgGSip
-         FK0Dq5jGazr1M5ohe6r3ooS/gFPHtdVfeBN7oLZ+7isjLUVZs6MS+FZqLTXI0QAQIm1u
-         UZGIOKCmaK+FKa1wBTCeQND5PLfHazNSUekogCTWsFx8poeN+2AmTAZdDO8oWPwZC5dy
-         QyV6NldbgHH+ZZ6DeAtAgHtW4nc2+ej9usrt+TL+OSmloDCiM1i4sgBC3duKEkVxX00d
-         ja0g==
-X-Gm-Message-State: AOAM533zdlZYlJm3bujwlWEUEdN5WcHDufUqFJgdeubUCw96vnXak4R8
-	sq/i0BHosDgtaziZJdHlzSk+XJv9KRTxuA==
-X-Google-Smtp-Source: 
- ABdhPJyvcjTnySSaKTgYfnaBlzoWKiwf1cYtJ2XA2+XJLdqmqVVRNtAe6vxX00VWmtRIrFyfx5I2YA==
-X-Received: by 2002:a05:6000:252:: with SMTP id
- m18mr4581540wrz.117.1637829890346;
-        Thu, 25 Nov 2021 00:44:50 -0800 (PST)
-Received: from ?IPv6:2001:8b0:aba:5f3c:6a3f:a87f:f605:c96b?
- ([2001:8b0:aba:5f3c:6a3f:a87f:f605:c96b])
-        by smtp.gmail.com with ESMTPSA id
- r15sm7036266wmh.13.2021.11.25.00.44.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Nov 2021 00:44:50 -0800 (PST)
-Message-ID: 
- <76414455cf6f3cb1eeadfc1daba71614dbd9f733.camel@linuxfoundation.org>
-Subject: Re: [yocto] Selectively disable uninative for a recipe
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Mohammed Billoo <mab@mab-labs.com>, yocto@lists.yoctoproject.org
-Date: Thu, 25 Nov 2021 08:44:47 +0000
-In-Reply-To: 
- <CALkjhPoa1YEqVAq6J-wQhf6f5pV4BLL3TYLvFMaAcxxBn=Lvvw@mail.gmail.com>
-References: 
-	<CALkjhPomzPv7jrj4hnbi04Sbi8hg1p=PpzPf1oiaTVhhBXnZsA@mail.gmail.com>
-	 <CALkjhPoa1YEqVAq6J-wQhf6f5pV4BLL3TYLvFMaAcxxBn=Lvvw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4-1 
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A249EC433F5
+	for <webhook@archiver.kernel.org>; Thu, 25 Nov 2021 09:19:11 +0000 (UTC)
+Subject: Re: cross-localedef file not found in do_rootfs #yocto #zeus
+To: yocto@lists.yoctoproject.org
+From: "Bel Hadj Salem Talel" <bhstalel@gmail.com>
+X-Originating-Location: TN (196.203.207.110)
+X-Originating-Platform: Linux Chrome 96
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Date: Thu, 25 Nov 2021 01:19:11 -0800
+References: 
+ <CAMKF1somq0XP74etgxf_wwgsX0defsg2DprBhKJ3wb9HyzF6Yw@mail.gmail.com>
+In-Reply-To: 
+ <CAMKF1somq0XP74etgxf_wwgsX0defsg2DprBhKJ3wb9HyzF6Yw@mail.gmail.com>
+Message-ID: <6088.1637831951421749963@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="LYPBTTBtcEFwFXjAnYug"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 25 Nov 2021 08:44:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55418
+ <yocto@lists.yoctoproject.org>; Thu, 25 Nov 2021 09:19:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55419
 
-On Wed, 2021-11-24 at 19:21 -0500, Mohammed Billoo wrote:
-> Hi,
-> 
-> I need to add TI MCU firmware as part of an OE/Yocto build for a
-> project that I am working on. Basically, the firmware needs to be
-> built during the overall image build and be stored in the RFS. My
-> strategy to build the firmware was to set up the TI toolchain as part
-> of the image build. Since I have the toolchain components and believe
-> it to be unnecessary (if not impossible) to build them from source, I
-> have the necessary pre-built components (provided by TI) as tarballs
-> uploaded somewhere.
-> 
-> In determining the best way to use a pre-built toolchain, I just
-> copied the gcc-linaro-baremetal-arm-native recipe. But, when I go to
-> bake my recipe for the toolchain, I get the following error:
-> 
-> ERROR: ti-bios-1.0-r0 do_populate_sysroot: Error executing a python
-> function in exec_python_func() autogenerated:
-> 
-> The stack trace of python calls that resulted in this exception/failure was:
-> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
->      0001:
->  *** 0002:uninative_changeinterp(d)
->      0003:
-> File: '/home/mbilloo/yocto-builds/norbert/yocto/build-doris/../layers/poky/meta/classes/uninative.bbclass',
-> lineno: 170, function: uninative_changeinterp
->      0166:                continue
->      0167:            if not elf.isDynamic():
->      0168:                continue
->      0169:
->  *** 0170:            subprocess.check_output(("patchelf-uninative",
-> "--set-interpreter", d.getVar("UNINATIVE_LOADER"), f),
-> stderr=subprocess.STDOUT)
->      0171:}
-> File: '/usr/lib64/python3.8/subprocess.py', lineno: 411, function: check_output
->      0407:        # Explicitly passing input=None was previously
-> equivalent to passing an
->      0408:        # empty string. That is maintained here for
-> backwards compatibility.
->      0409:        kwargs['input'] = '' if
-> kwargs.get('universal_newlines', False) else b''
->      0410:
->  *** 0411:    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
->      0412:               **kwargs).stdout
->      0413:
->      0414:
->      0415:class CompletedProcess(object):
-> File: '/usr/lib64/python3.8/subprocess.py', lineno: 512, function: run
->      0508:            # We don't call process.wait() as .__exit__ does
-> that for us.
->      0509:            raise
->      0510:        retcode = process.poll()
->      0511:        if check and retcode:
->  *** 0512:            raise CalledProcessError(retcode, process.args,
->      0513:                                     output=stdout, stderr=stderr)
->      0514:    return CompletedProcess(process.args, retcode, stdout, stderr)
->      0515:
->      0516:
-> Exception: subprocess.CalledProcessError: Command
-> '('patchelf-uninative', '--set-interpreter',
-> '/home/mbilloo/yocto-builds/norbert/yocto/build-doris/tmp/sysroots-uninative/x86_64-linux/lib/ld-linux-x86-64.so.2',
-> '/home/mbilloo/yocto-builds/norbert/yocto/build-doris/tmp/work/x86_64-linux/ti-bios/1.0-r0/sstate-build-populate_sysroot/recipe-sysroot-native/usr/share/bios_6_73_01_01/packages/ti/platforms/sim6xxx/Solaris/kelvin')'
-> returned non-zero exit status 1.
-> 
-> Subprocess output:
-> patchelf: cannot find section '.gnu.version_r'
-> 
-> It looks like uninative is ultimately being inherited and there are
-> some steps taken to eliminate any host-dependencies for the toolchain
-> binaries. Is there a way to disable this inheritance only for this
-> recipe (if I globally disable uninative in my conf file, the recipe
-> bakes just fine, but obviously can't do that)? Or, is there a better
-> way of accomplishing my goal?
+--LYPBTTBtcEFwFXjAnYug
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-You could define a new uninative_changeinterp() function in your recipe to
-override the core one and make it do nothing. Not a particularly elegant
-solution but should work...
+Thanks for the reply,
 
-Cheers,
+I tried adding IMAGE_LINGUAS =3D " ", it passes but do_image_cpio gives not=
+hing (means no image.gpio.gz) is generated.
+I don't know why.
 
-Richard
+--LYPBTTBtcEFwFXjAnYug
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+Thanks for the reply,<br /><br />I tried adding IMAGE_LINGUAS =3D " ", it p=
+asses but do_image_cpio gives nothing (means no image.gpio.gz) is generated=
+.<br />I don't know why.
+
+--LYPBTTBtcEFwFXjAnYug--
 
