@@ -1,120 +1,137 @@
-Return-Path: <jupiter.hce@gmail.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 342A8C433F5
-	for <webhook@archiver.kernel.org>; Fri, 26 Nov 2021 06:26:57 +0000 (UTC)
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com
- [209.85.222.44])
- by mx.groups.io with SMTP id smtpd.web10.21052.1637908016470725844
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EBB80C433F5
+	for <webhook@archiver.kernel.org>; Fri, 26 Nov 2021 18:41:46 +0000 (UTC)
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
+ [209.85.214.179])
+ by mx.groups.io with SMTP id smtpd.web12.27470.1637952105892818690
  for <yocto@lists.yoctoproject.org>;
- Thu, 25 Nov 2021 22:26:56 -0800
+ Fri, 26 Nov 2021 10:41:45 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=mUPKJ0mV;
- spf=pass (domain: gmail.com, ip: 209.85.222.44,
- mailfrom: jupiter.hce@gmail.com)
-Received: by mail-ua1-f44.google.com with SMTP id t13so16634438uad.9
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=Jhk7LyhW;
+ spf=pass (domain: gmail.com, ip: 209.85.214.179,
+ mailfrom: akuster808@gmail.com)
+Received: by mail-pl1-f179.google.com with SMTP id m24so7206247pls.10
         for <yocto@lists.yoctoproject.org>;
- Thu, 25 Nov 2021 22:26:56 -0800 (PST)
+ Fri, 26 Nov 2021 10:41:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9D/UhP4+/1rJ285OI1X5QB6mO/60x3W6JPH4IH4ZuKA=;
-        b=mUPKJ0mVffhv1LIzalC88XV9wtNtVEKrNl+2xSkl3ukvDdCS5TDfU57TULOXdMrtwO
-         lyxJVBlQ47iB6e2/o0BgcbOjNmaOwmZRl7iLt3KCVOpL9sRgVQU6AjViJwEtPq1dWvV4
-         XlknXM4Bjrq4QpF3lTGilheSOfgUjAt+Q0UDtB89xupemWWXDczJbemUTP9R70jTZaHi
-         PZc2tDaNFVgPI37V1bQdl92IJOpykOQHMruAlfMIrzNP6Uybl1zq6AUhRGIql09ct3L5
-         WTLaR+/ag+O//k4AoyM8U5yvdSnXXgaZW4VfLImWCqAN8hxD0Gz6tmn3eS7zYA3sMECv
-         NdEQ==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=xSrQzlgkaLvB0KEJ7ANYRMXyb01sNUznuxOaiDdix9k=;
+        b=Jhk7LyhWm0XrB5S+3zhdE/jb36z0N6Ggc0sPS7yh1wIVdhxn0Tu3bNvUw+S8zZsQj1
+         drtQMJ73g5WfK/uoo21cWtpoRG2xBIhM/Nc2sm847UygXYWnLZrOjMAcwyKNrgDwOGTz
+         nXn4KdUUioGQqEXCzA8E2y+QsIdawLIqV9txXHu3LpV4eLhoXODEAk/WFvVMglZmaS+W
+         n0RUt7cnisWdMAe3i/ceRwavRFagkZ0ujD2tjq1jKHWm2dhqPQ08oOFdAqA4vEdADKgG
+         g9NvlBZzt0en/nSTuoufFJ2uczEM1DEhtHBC5OL5qSb5IwSxZtG9DZzWPRC0nMI80GSh
+         Wgzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9D/UhP4+/1rJ285OI1X5QB6mO/60x3W6JPH4IH4ZuKA=;
-        b=g62AFQC/HDPTWXDGGgQXxN5OGX1ube/qYL3aG9U1xdjd4zcd8XmXD4adNULVFxACZ1
-         Rvq6/0qPHd3pjzgTiksckC8XTDrqc3XuvDofSaeY6dmisW7mhKxxp6BnDUOQ+0cMtUBZ
-         6Tw4o5v8V8zracShAbeRfBQyg1uSHTdystLOhoTnAACgnikGK4GlWMiJGfAhphkhR2wt
-         S2zAs1YdhTfXLPcwpvvUop5C4a1HlhgRjqBGMn2ArHRuVKBp3Xqien74tshaKyYTlSXS
-         has43OTrceq5X09F9nKgJWCNh7x0L8LvO8WY2hRaIzxL/i08sP30vSh6Z83ucICFsO2L
-         uXKQ==
-X-Gm-Message-State: AOAM530gm9H2gwzdaF0m7fj2sve/wW5SWUBpRWUYunpiNcBGt2vicENL
-	trDkUyggpfLtzXQB7nHt5HOFYvm/ee+NoWdr9b3xIVHX
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=xSrQzlgkaLvB0KEJ7ANYRMXyb01sNUznuxOaiDdix9k=;
+        b=NRJS1qUqpOkoGwoErHwJxCKqjFSSJZxaRlOVuwrpDjkhHiQ2EZxDpfIwbJqNWGR2HY
+         lPJE4NoNd2uqCi66zFKHlmfICexB7eslyw/GxAHHL7RSd65rTBdi6CUH9fQBt3onwsFG
+         oAXOf8shxJ0q4xmOGxmSy+OIcKNA/AtR4np0viHRXDrc6GcQ4lZdEf7X0bCViDOnPdHV
+         ME6Mf71L7SKXeHBVBsJRUB77qXgBUs54RwmmvXnxIBc801KQ93M2oc8JASasYSSpqCue
+         W4Oes3o04Hmp8yt2gYVBTGXuNu75G6d54fjQTsPTs6gFAnCnU8WREAvkT/LWG/GUKTvM
+         E7QA==
+X-Gm-Message-State: AOAM533VfSrZQbNMs9MibXPU3YKDKpLOJLHZKLZnHl8pKm7zs5M0BH4y
+	UmuVNmj2aKQ0tkjxxyF03ZE=
 X-Google-Smtp-Source: 
- ABdhPJwmxDU7HlplXUoZihzSEi17OfWL1pQmth/I0bsK5mpOSiU6UwIQ/lFCPD/uew+ym2KMsoMmLFYWbI/Oj5pJq7E=
-X-Received: by 2002:ab0:6ecf:: with SMTP id
- c15mr33289403uav.113.1637908015515;
- Thu, 25 Nov 2021 22:26:55 -0800 (PST)
+ ABdhPJxlBk0MQThSZNFngranBUDCPde2WWhYYeyaXfwxsMFReVWbFlGUCqB9XGjJjgNqN78YtwKQ4Q==
+X-Received: by 2002:a17:902:ab94:b0:143:beb5:b6a7 with SMTP id
+ f20-20020a170902ab9400b00143beb5b6a7mr41178948plr.30.1637952105351;
+        Fri, 26 Nov 2021 10:41:45 -0800 (PST)
+Received: from ?IPv6:2601:202:4180:a5c0:b37a:c334:1b6b:758c?
+ ([2601:202:4180:a5c0:b37a:c334:1b6b:758c])
+        by smtp.gmail.com with ESMTPSA id
+ on6sm13652475pjb.47.2021.11.26.10.41.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Nov 2021 10:41:44 -0800 (PST)
+Subject: Re: [meta-security][hardknott][PATCH v2] sssd: re-package to fix QA
+ issues
+To: "Jeremy A. Puhlman" <jpuhlman@mvista.com>, yocto@lists.yoctoproject.org
+Cc: Kai Kang <kai.kang@windriver.com>
+References: <20211116182829.24177-1-jpuhlman@mvista.com>
+From: akuster808 <akuster808@gmail.com>
+Message-ID: <1de53270-8a8f-8a8e-2ada-2ae0a6211cdc@gmail.com>
+Date: Fri, 26 Nov 2021 10:41:43 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-References: <16BAEC7B11896AEA.23256@lists.yoctoproject.org>
-In-Reply-To: <16BAEC7B11896AEA.23256@lists.yoctoproject.org>
-From: Jupiter <jupiter.hce@gmail.com>
-Date: Fri, 26 Nov 2021 17:26:19 +1100
-Message-ID: 
- <CAA=hcWSA8-8TCJDD8_Zib11Vaizok-xZvQMqSevjKJLrQ+GuhA@mail.gmail.com>
-Subject: How to create connman_1.40.bbappend to enable and to build connman
- with iwd?
-To: yocto <yocto@lists.yoctoproject.org>
-Cc: oe-core <openembedded-core@lists.openembedded.org>,
-	comman <connman@lists.linux.dev>, Daniel Wagner <wagi@monom.org>,
-	Armin Kuster <akuster808@gmail.com>,
- Alexander Kanavin <alex.kanavin@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20211116182829.24177-1-jpuhlman@mvista.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 26 Nov 2021 06:26:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55427
+ <yocto@lists.yoctoproject.org>; Fri, 26 Nov 2021 18:41:46 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55428
 
-Hi,
+merged.
 
-Given the high profile of iwd and advocating connman with iwd, I
-believe someone have already built Yocto connman and iwd,
-surprisingly, I could not even find an iwd recipe in
-https://github.com/openembedded/openembedded/tree/master/recipes, nor
-can I find connman document and instructions to replace wpa_supplicant
-by iwd, what could I be missing here?
-
-Appreciate your kind advice.
-
-Thank you.
-
-Kind regards,
-
-- jh
-
-
-On 11/26/21, JH via lists.yoctoproject.org
-<jupiter.hce=gmail.com@lists.yoctoproject.org> wrote:
-> Hi,
+On 11/16/21 10:28 AM, Jeremy A. Puhlman wrote:
+> It packages all file in ${libdir} to package sssd, including the .so
+> symlink files. Then it causes QA issues:
 >
-> Please correct me, but it seems to me the connman is moving to a
-> direction to ditch out wpa_supplicant and to use iwd, but the Honister
-> still configure connman with wpa_supplicant by default, appreciate
-> your advice:
+> | ERROR: QA Issue: sssd rdepends on dbus-dev [dev-deps]
+> | ERROR: QA Issue: sssd rdepends on ding-libs-dev [dev-deps]
 >
-> - Is connman with iwd stable enough?
+> So re-package sssd then the .so symlink files and .pc files are packaged
+> to sssd-dev which should be.
 >
-> - How can I create a connman_1.40.bbappend  to replace wpa_supplicant
-> by iwd configure?
+> File ${libdir}/libsss_sudo.so is not a symlink file but packaged to
+> sssd-dev too. Then causes another QA issue:
 >
-> - Where are the documents for configuring and building connman with
-> iwd? Where is the operational guidance to run connman with iwd? Can I
-> use the same connman dbus APIs or are there any dbus API changes to
-> run connman with iwd?
+> | ERROR: sssd-2.5.2-r0 do_package_qa: QA Issue:
+>     -dev package sssd-dev contains non-symlink .so '/usr/lib/libsss_sudo.so' [dev-elf]
 >
-> My apology for FAQs.
+> So create a new sub-package libsss-sudo to package file libsss_sudo.so
+> and make sssd rdepends on it.
 >
-> Thank you very much.
+> JP: Updated for version differences.
 >
-> Kind regards,
+> Signed-off-by: Kai Kang <kai.kang@windriver.com>
+> Signed-off-by: Armin Kuster <akuster808@gmail.com>
+> (cherry picked from commit e81c15f851ca5396c78c8737967ee38db0ebe0cd)
+> Signed-off-by: Jeremy A. Puhlman <jpuhlman@mvista.com>
+> ---
+>  recipes-security/sssd/sssd_1.16.5.bb | 21 ++++++++++++++-------
+>  1 file changed, 14 insertions(+), 7 deletions(-)
 >
-> - JH
->
+> diff --git a/recipes-security/sssd/sssd_1.16.5.bb b/recipes-security/sssd/sssd_1.16.5.bb
+> index 02d0837..f13fc49 100644
+> --- a/recipes-security/sssd/sssd_1.16.5.bb
+> +++ b/recipes-security/sssd/sssd_1.16.5.bb
+> @@ -120,10 +120,17 @@ SYSTEMD_SERVICE_${PN} = " \
+>  "
+>  SYSTEMD_AUTO_ENABLE = "disable"
+>  
+> -FILES_${PN} += "${libdir} ${datadir} ${base_libdir}/security/pam_sss.so"
+> -FILES_${PN}-dev = " ${includedir}/* ${libdir}/*la ${libdir}/*/*la"
+> -
+> -# The package contains symlinks that trip up insane
+> -INSANE_SKIP_${PN} = "dev-so"
+> -
+> -RDEPENDS_${PN} = "bind dbus libldb libpam"
+> +PACKAGES =+ "libsss-sudo libsss-autofs"
+> +ALLOW_EMPTY_libsss-sudo = "1"
+> +ALLOW_EMPTY_libsss-autofs = "1"
+> +
+> +FILES_${PN}-dev += "${libdir}/sssd/modules/lib*.so"
+> +FILES_${PN} += "${base_libdir}/security/pam_sss*.so  \
+> +                ${datadir}/dbus-1/system-services/*.service \
+> +                ${libdir}/krb5/* \
+> +                ${libdir}/ldb/* \
+> +                "
+> +FILES_libsss-autofs = "${libdir}/sssd/modules/libsss_autofs.so"
+> +FILES_libsss-sudo = "${libdir}/libsss_sudo.so"
+> +
+> +RDEPENDS_${PN} = "bind dbus libldb libpam libsss-sudo libsss-autofs"
 
-
---
-"A man can fail many times, but he isn't a failure until he begins to
-blame somebody else."
--- John Burroughs
 
