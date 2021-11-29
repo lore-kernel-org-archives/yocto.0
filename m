@@ -2,101 +2,117 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 325F1C433EF
-	for <webhook@archiver.kernel.org>; Mon, 29 Nov 2021 00:11:13 +0000 (UTC)
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com
- [209.85.210.177])
- by mx.groups.io with SMTP id smtpd.web09.54649.1638144672580038114
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5FB50C433EF
+	for <webhook@archiver.kernel.org>; Mon, 29 Nov 2021 00:17:41 +0000 (UTC)
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com
+ [209.85.215.172])
+ by mx.groups.io with SMTP id smtpd.web08.54772.1638145060272769831
  for <yocto@lists.yoctoproject.org>;
- Sun, 28 Nov 2021 16:11:12 -0800
+ Sun, 28 Nov 2021 16:17:40 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=lHQZnM/h;
- spf=pass (domain: gmail.com, ip: 209.85.210.177,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=eQtfYju7;
+ spf=pass (domain: gmail.com, ip: 209.85.215.172,
  mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f177.google.com with SMTP id p13so7220459pfw.2
+Received: by mail-pg1-f172.google.com with SMTP id r138so14083766pgr.13
         for <yocto@lists.yoctoproject.org>;
- Sun, 28 Nov 2021 16:11:12 -0800 (PST)
+ Sun, 28 Nov 2021 16:17:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=i+8e8TU/UOgZx9Eb6q6lUJ80NG0zeNxWIW0QIZIz6is=;
-        b=lHQZnM/hv7ico9ZTdAeZt5jpDrpSRU+D4lzBQrJ8vBfITYp6fj+tSy5fBsJlmDhvEV
-         +FHUVToSozcDrAfWm2YpNAVfCwrOT7NaH+51W9ZJJXODLfuRMUzxy8PkdTtphsuaDXGQ
-         SwYdl1gg4zIu80AfOmI1djTERm42uTopn7BRAX8CjSeaVQuY8XffRhDoy8FNaWah3wvH
-         WvpTt5r+/FDi5bsI2c/hz+ZDg818y1SdcrCKn9j+5zP2+VMWiYXsEkzpVKwquximtKYy
-         FVllbqOqRHwr/D6PMx1QzdTookMbRva8UO2opjq5wi4jlCLJ9OHrG/x9aSdlYYgOW6RW
-         Dzpg==
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-transfer-encoding:content-language;
+        bh=6m11HRVvX3bRFZ1tgCpt/KxIsU4qhFwAHkYlwx5CZVg=;
+        b=eQtfYju7gt3CLDSVrjztTwNZ0wQL5jLHt3g/aboxYUqtpzdeRoX9q5NL7jC5+O41sv
+         GYTVOpYmXVHgkfMBloYJ8yZt7d/jxe18QOyISPKvoIfatPTeNSkgpxaMVFrZQIUZncKC
+         wrM9bHSmS0lBYa56Tq7g0cWMF4cRvczBiA2YyC/cHDnMoc4gUzQouvOEh3WDbPIn49th
+         OUFEaDRy2ECPggGhsB4qkJrpXgVRcOcABwBBp1L+UbqZicUmunEt65vj49hlnN/ihB8C
+         MhbUmUHcqfrkRucB2yRMuEhmobWkPmEQ5jH+3Fv3Zc6W2YhIUh6mLwGR6+4Dfm5B2abX
+         NPQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=i+8e8TU/UOgZx9Eb6q6lUJ80NG0zeNxWIW0QIZIz6is=;
-        b=yE13YLIYkgUNm/DqlynFZKgp+AAZsOmOfDEXPsVlWzH7XttAzhmgiP4j5PAso/f7Wm
-         CKSD5r+PxZp1KjFGvu4noZxUmGo5B32cEU59OaEU6ZwciJKBO/s6P/jPpTMjwoU8H5t+
-         uypLzT0X61jddqU2DT1zy/9JMfpnd/ypUz1dO6C4XlJ9QuFJlavElsbVYKQFYinKbrzg
-         msvf/BhVgaXY7vRYg2/ilRhJh7QxH6KcKfdaAaPxx7oKkj+yuGCe1kpgJf1A7qy4ADye
-         9+ORCMbuvDcjlDkbL8fwpRaW5JH4xXeUhdVaxgt2z7jkxMniyK961cMM8g1S0J17o/0W
-         h58w==
-X-Gm-Message-State: AOAM530ilSqpgPOWsyr+pQjFtZy89MSBNZ8QOOVusdJHYOYBggy9dkcb
-	Iafez9g1oSeQSKgXjiLaAakJnH3tut4=
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=6m11HRVvX3bRFZ1tgCpt/KxIsU4qhFwAHkYlwx5CZVg=;
+        b=6QqpdSNAJFwp//8AKl8O+6e4TvxCB5Wj1a8AJQRtxXO6goHJUNEf7V5ZM25NdkBu/+
+         EecMTpNkhxYyfe1FAoOc/goG0LWOGRZHJQTJoodQk5sCuiFtMxCcm3jbmnqDsRWKtGuo
+         1DGmf8R7aIHjhzChmMSr3fLEREMCeG1ldI5s2kqh7VEnzC9COfdSc6XLa1LrcamSKcpj
+         +5G0Op8C8G/0lTjiq1qKMMopqLcD7T1eEDxJvjZym3Co0IF/pmIy49iLAWdGoGWpwV21
+         C1ON4l+tILLUcWUQivAgFaqVVy6WdopvuXadDt/YKZNYv5SCLhh1i+3SrbZt7/flBvRP
+         lM3A==
+X-Gm-Message-State: AOAM532RK0t46nT0hLkaPYexA4e1z5HyRtHg0Cj5QTQeqq7iVi87QR19
+	W5DI4vIGJzxm1GxS0Cd/q2bXdi+T+Oo=
 X-Google-Smtp-Source: 
- ABdhPJzkySvMSAk3EPgMZFcmo4UiDbvK9+VhLVb06OH2R9MT737zZqWhSOCPyOnyAB5/tEiY2Fh0jQ==
-X-Received: by 2002:a63:2b08:: with SMTP id r8mr33377604pgr.211.1638144671837;
-        Sun, 28 Nov 2021 16:11:11 -0800 (PST)
-Received: from keaua.hsd1.ca.comcast.net
+ ABdhPJzyM5h1XMIHr/tvArxDyeK1lC555ZbnviMBHcJEYK3Pl0EZZci0ffdSjqy+Bh83BsbtJrKdhg==
+X-Received: by 2002:a63:82c3:: with SMTP id
+ w186mr32303367pgd.301.1638145059405;
+        Sun, 28 Nov 2021 16:17:39 -0800 (PST)
+Received: from ?IPv6:2601:202:4180:a5c0:ab2d:45ef:1126:5ad9?
  ([2601:202:4180:a5c0:ab2d:45ef:1126:5ad9])
         by smtp.gmail.com with ESMTPSA id
- p15sm15938712pfo.143.2021.11.28.16.11.11
+ h186sm14214743pfg.59.2021.11.28.16.17.38
         for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Nov 2021 16:11:11 -0800 (PST)
-From: Armin Kuster <akuster808@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 28 Nov 2021 16:17:39 -0800 (PST)
+Subject: Re: [yocto] [meta-security][PATCH] apparmor: fix warning of remove
+ operator combined with +=
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] libest: does not build with openssl 3.x
-Date: Sun, 28 Nov 2021 16:11:10 -0800
-Message-Id: <20211129001110.3521628-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
+References: <20211119070612.28233-1-kai.kang@windriver.com>
+From: akuster808 <akuster808@gmail.com>
+Message-ID: <6a8bd0c6-4210-25b9-907e-363b68126a14@gmail.com>
+Date: Sun, 28 Nov 2021 16:17:38 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211119070612.28233-1-kai.kang@windriver.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 29 Nov 2021 00:11:13 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55435
+ <yocto@lists.yoctoproject.org>; Mon, 29 Nov 2021 00:17:41 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55436
 
-blacklist for now. Remove from pkg grp
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-core/packagegroup/packagegroup-core-security.bb | 1 -
- recipes-security/libest/libest_3.2.0.bb                 | 3 +++
- 2 files changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/recipes-core/packagegroup/packagegroup-core-security.bb b/recipes-core/packagegroup/packagegroup-core-security.bb
-index e9dad5b..fefc66d 100644
---- a/recipes-core/packagegroup/packagegroup-core-security.bb
-+++ b/recipes-core/packagegroup/packagegroup-core-security.bb
-@@ -38,7 +38,6 @@ RDEPENDS:packagegroup-security-utils = "\
-     python3-privacyidea \
-     python3-fail2ban \
-     softhsm \
--    libest \
-     sshguard \
-     ${@bb.utils.contains_any("TUNE_FEATURES", "riscv32 ", "", " libseccomp",d)} \
-     ${@bb.utils.contains("DISTRO_FEATURES", "pam", "sssd google-authenticator-libpam", "",d)} \
-diff --git a/recipes-security/libest/libest_3.2.0.bb b/recipes-security/libest/libest_3.2.0.bb
-index 31fbe3c..41a4025 100644
---- a/recipes-security/libest/libest_3.2.0.bb
-+++ b/recipes-security/libest/libest_3.2.0.bb
-@@ -25,3 +25,6 @@ S = "${WORKDIR}/git"
- PACKAGES = "${PN} ${PN}-dbg ${PN}-dev"
- 
- FILES:${PN} = "${bindir}/* ${libdir}/libest-3.2.0p.so"
-+
-+# https://github.com/cisco/libest/issues/104
-+PNBLACKLIST[libest] ?= "Needs porting to openssl 3.x"
--- 
-2.25.1
+On 11/18/21 11:06 PM, kai wrote:
+> From: Kai Kang <kai.kang@windriver.com>
+>
+> Fix warning for apparmor:
+>
+> | WARNING: /path/to/meta-security/recipes-mac/AppArmor/apparmor_3.0.1.bb:
+> |  RDEPENDS:${PN}:remove += is not a recommended operator combination,
+> |  please replace it.
+thanks,
+merged.
+
+>
+> Signed-off-by: Kai Kang <kai.kang@windriver.com>
+> ---
+>  recipes-mac/AppArmor/apparmor_3.0.1.bb | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/recipes-mac/AppArmor/apparmor_3.0.1.bb b/recipes-mac/AppArmor/apparmor_3.0.1.bb
+> index 389e72a..818be15 100644
+> --- a/recipes-mac/AppArmor/apparmor_3.0.1.bb
+> +++ b/recipes-mac/AppArmor/apparmor_3.0.1.bb
+> @@ -168,7 +168,7 @@ RDEPENDS:${PN}:libc-glibc +=  "glibc-utils"
+>  
+>  # Add coreutils and findutils only if sysvinit scripts are in use
+>  RDEPENDS:${PN} +=  "${@["coreutils findutils", ""][(d.getVar('VIRTUAL-RUNTIME_init_manager') == 'systemd')]} ${@bb.utils.contains('PACKAGECONFIG','python','python3-core python3-modules','', d)}"
+> -RDEPENDS:${PN}:remove += "${@bb.utils.contains('PACKAGECONFIG','perl','','perl', d)}"
+> +RDEPENDS:${PN}:remove = "${@bb.utils.contains('PACKAGECONFIG','perl','','perl', d)}"
+>  RDEPENDS:${PN}-ptest += "perl coreutils dbus-lib bash"
+>  
+>  INSANE_SKIP:${PN} = "ldflags"
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#55369): https://lists.yoctoproject.org/g/yocto/message/55369
+> Mute This Topic: https://lists.yoctoproject.org/mt/87162916/3616698
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [akuster808@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
 
