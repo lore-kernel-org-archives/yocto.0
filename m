@@ -1,90 +1,90 @@
-Return-Path: <silvan.murer@gmail.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B5C2FC433EF
-	for <webhook@archiver.kernel.org>; Mon, 29 Nov 2021 12:58:32 +0000 (UTC)
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com
- [209.85.167.170])
- by mx.groups.io with SMTP id smtpd.web11.60072.1638190712297467358
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6E474C433F5
+	for <webhook@archiver.kernel.org>; Mon, 29 Nov 2021 15:14:41 +0000 (UTC)
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com
+ [209.85.214.169])
+ by mx.groups.io with SMTP id smtpd.web12.62173.1638198881043806221
  for <yocto@lists.yoctoproject.org>;
- Mon, 29 Nov 2021 04:58:32 -0800
+ Mon, 29 Nov 2021 07:14:41 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=px//IbWW;
- spf=pass (domain: gmail.com, ip: 209.85.167.170,
- mailfrom: silvan.murer@gmail.com)
-Received: by mail-oi1-f170.google.com with SMTP id bk14so34429797oib.7
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=SttseIy8;
+ spf=pass (domain: gmail.com, ip: 209.85.214.169,
+ mailfrom: akuster808@gmail.com)
+Received: by mail-pl1-f169.google.com with SMTP id z6so12434630plk.6
         for <yocto@lists.yoctoproject.org>;
- Mon, 29 Nov 2021 04:58:32 -0800 (PST)
+ Mon, 29 Nov 2021 07:14:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=Bv77yIfBUHGcFB8kaekcCXQWNCyvXArP+kfqWLXJfV8=;
-        b=px//IbWWxy6sv0kWSpLlKoGSIFujCtBy/NnurnbPVQqIQLkA6MpKgJD+x9YKihK6rr
-         /1AhqD3norvdjSMAzqyoWUw1v0SwdUuroOSvz0eh/UexU1bM6F5TDfYv/nrkAp44cppB
-         DVw6JbX3GRg4dXWtPxX9VKLgvyFvPn4Bq2975ekHxd2iCK+bXZn+GWPrEAfRhDSfePHJ
-         NvOllxx8wmjtxNQP7OjBCDoUOT/drYSvJgqxGGPYrO7B2OXxG/E7vgWQbP9VyTPhoULB
-         PQXkPrt7mdy/ohsAERVBwQ1BROcakV8zP82ghyBLY26fOzN0/1GY6oeBdNOElfYHg4I0
-         UVag==
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=f3GXufrKrcpA6XZJDSwOT3v4WPP6AtGU+VXCys5WO98=;
+        b=SttseIy8iYYeprAKHls+fsJ7VgeSygf39B/Qs7gI/u3Y/JVzOm8/d8Zer8YPAkKwLZ
+         UHKXBLov9LuwQq0WNXoyirMQFydF2//hYnpaTxd0LYwBq4IC2OHsJWklSrQHDR3m0OV7
+         PynkvBPEeHscrCKP+k3K+enUUuAqy4niUOIFcjYuRzrYqWLz1fvcpqhRNgFA3m0R0WkK
+         I9BiUtsnmAsOzBfIF1mLI6m6HosEtKh5iWsgW7yMCRMTkLWQn8IAVVGZIlW6nsdPz4TE
+         jJUZs7h0ujQVBkVR2vsTJEmewjPSQDJgaygcVqZ2Eude3lX0RMR/7uIKBXWHdR2vM+gI
+         to5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=Bv77yIfBUHGcFB8kaekcCXQWNCyvXArP+kfqWLXJfV8=;
-        b=BT+ikYaHzxOSRhUmc8ZIGew83G8Aqr6ow8gA+ZizmmTkPatpn6YPAadcmCFWQJU+7n
-         Nqna1ompWuql4oBKbccwbVc+xs1ScUwOyg/qDhCxio463US27UBoaa7mIBnMBo2ciiiT
-         nJl6hsyf4i7HZtZsg74F7/2S6ddC9Ub7Cqf+lv0Eppp5uRmRYLdc4Bg0JDBOkPo4bzTn
-         L6qshP3FfqKRiH7/ZGPaILu8ZbqNzns8wA3DsuRPPqMIO9aV7IG8K4fHvmUo+0Gc4rZk
-         ToI+0Xg0sJamdV2padJ/xmX6fk+nSfmXOo1L59GrrNiT0zsD980JyJf+g2UfYNqMRLFg
-         FK1w==
-X-Gm-Message-State: AOAM5312mWSvj7smPWQUtq9oRUMQFoYFpHquvmu1Ug1haX18erAsnR0t
-	nNp5hlVgcNYiEKth632v6RX0FwLxfXTecGNynsf9li1yFMY=
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=f3GXufrKrcpA6XZJDSwOT3v4WPP6AtGU+VXCys5WO98=;
+        b=dl7ndheQ13FiF7Hdv30VqmQgW12CNJKRIDdu7CBjIn228CkiQWzqxwg8dh8X2Prtz8
+         j9SCjtEP4+uH3fHI+Onit+roj7N9RDc15YHdkzjcF8RnsO4gdNGAN3SK/tBQGxDampW2
+         bQ3TD9I8p1FiPfGSWRZmKLeePpwDg1Wfu5GbftFChIZ6J4bWPG8LZS2wzqpypRnQHwfQ
+         zLOQZpMffwMkV+3hSB+E4jzGElPNIM3PO221Ub17uN5RkgjtSqWfG8OAxbYdlTWGoerv
+         8qffo3YMwJukHEy5LD5ELijURRZGL2kB7iuVCZDNmDcLXjoSvCxCxwbebsKecXaoHjW8
+         OJhQ==
+X-Gm-Message-State: AOAM531epuTZlt/eKsc6vPDnOAzazTiSbsCZs97DRLE3ZL+enudP5g9u
+	xN6XRb93TaXbJPe6SfhSnfELEc15/kk=
 X-Google-Smtp-Source: 
- ABdhPJztfBcPo040SL3meya6pQ+MzQAPhwTolAH07fNUQDW8fyXkcDjHO9No74hR1V5xZ+NMVCGRdmoVNvAdcRZwA6k=
-X-Received: by 2002:a05:6808:8d4:: with SMTP id
- k20mr41578421oij.106.1638190711381;
- Mon, 29 Nov 2021 04:58:31 -0800 (PST)
-MIME-Version: 1.0
-From: Silvan Murer <silvan.murer@gmail.com>
-Date: Mon, 29 Nov 2021 13:58:20 +0100
-Message-ID: 
- <CAAGspX_2G=D5nU3xtzSm0SFnPbLeTo6xyZ-0gg3PJbZL5Lep8Q@mail.gmail.com>
-Subject: [yocto] define extended partition in wks file
+ ABdhPJwPi6cgtwgwbXkj5HT0VMAoZZxVvVRGKnfXcQptz/LlqOKuZr27gogyboX+353M40D2QtPjtg==
+X-Received: by 2002:a17:902:b7cb:b0:141:b33a:9589 with SMTP id
+ v11-20020a170902b7cb00b00141b33a9589mr60469778plz.9.1638198880053;
+        Mon, 29 Nov 2021 07:14:40 -0800 (PST)
+Received: from keaua.hsd1.ca.comcast.net
+ ([2601:202:4180:a5c0:98f6:148e:a6d7:2df2])
+        by smtp.gmail.com with ESMTPSA id
+ c2sm2622440pfl.200.2021.11.29.07.14.39
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Nov 2021 07:14:39 -0800 (PST)
+From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Subject: [meta-security][PATCH] python3-fail2ban: update to tip
+Date: Mon, 29 Nov 2021 07:14:38 -0800
+Message-Id: <20211129151438.2908260-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 29 Nov 2021 12:58:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55439
+ <yocto@lists.yoctoproject.org>; Mon, 29 Nov 2021 15:14:41 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55440
 
-Hi,
-I'm using wic for creating a boot image in my yocto layer. An extended
-partition is automatically created, when build an image with more than
-four partitions.
-The extended partition is added at the end and in my case, the last
-two logic partitions are included there.
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/fail2ban/python3-fail2ban_0.11.2.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Does an option exist which allows the definition of the partitions
-which are included in the extended partition? In may case, I'm looking
-for an option to put the two rootfs partitions (rootfs1 and rootfs2)
-into a common extended partition. And the data partition at the end
-should be in its own logic partition. Does some option exist or is it
-possible to handle them in another way? probably by creating an own
-wic plugin?
+diff --git a/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb b/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
+index 4e344c8..f6394cc 100644
+--- a/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
++++ b/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
+@@ -9,7 +9,7 @@ HOMEPAGE = "http://www.fail2ban.org"
+ LICENSE = "GPL-2.0"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=ecabc31e90311da843753ba772885d9f"
+ 
+-SRCREV ="d6b884f3b72b8a42b21da863836569ef6836c2ea"
++SRCREV ="4fe4ac8dde6ba14841da598ec37f8c6911fe0f64"
+ SRC_URI = " git://github.com/fail2ban/fail2ban.git;branch=0.11;protocol=https \
+         file://initd \
+         file://run-ptest \
+-- 
+2.25.1
 
-The *.wks file contains the following entries:
-
-part --source rawcopy --sourceparams="file=u-boot-splx4.sfp" --ondisk
-mmcblk0 --system-id=a2 --align 1024 --fixed-size 10M
-part /run/mount/bootloader --source bootimg-partition --ondisk mmcblk0
---fstype=vfat --label boot --active --align 1024 --size 500M
-part / --source rootfs --ondisk mmcblk0 --fstype=ext4 --label rootfs1
---align 1024 --fixed-size 2G
-part  --source rootfs --ondisk mmcblk0 --fstype=ext4 --label rootfs2
---align 1024 --fixed-size 2G
-part /run/mount/data --ondisk mmcblk0 --fstype=ext4 --label data
---align 1024 --fixed-size 3G
-
-Thanks,
-Silvan
 
