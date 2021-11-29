@@ -1,174 +1,293 @@
-Return-Path: <ddbabich@bootseeds.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C5983C433EF
-	for <webhook@archiver.kernel.org>; Mon, 29 Nov 2021 19:35:58 +0000 (UTC)
-Subject: Re: Problem installing python package from a wheel #bitbake
-To: yocto@lists.yoctoproject.org
-From: "David Babich" <ddbabich@bootseeds.com>
-X-Originating-Location: Boardman, Oregon, US (52.61.197.79)
-X-Originating-Platform: Linux Chrome 95
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A979DC433EF
+	for <webhook@archiver.kernel.org>; Mon, 29 Nov 2021 22:10:27 +0000 (UTC)
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
+ [209.85.214.171])
+ by mx.groups.io with SMTP id smtpd.web10.68234.1638223827120114140
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 29 Nov 2021 14:10:27 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=Lr3mWeCZ;
+ spf=pass (domain: gmail.com, ip: 209.85.214.171,
+ mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pl1-f171.google.com with SMTP id u11so13323075plf.3
+        for <yocto@lists.yoctoproject.org>;
+ Mon, 29 Nov 2021 14:10:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:mime-version:content-language
+         :thread-index;
+        bh=51jhZdrQ7+AdoaA4xqz4b/WXY+L361jA8RFqZQaMUOI=;
+        b=Lr3mWeCZRmjFsnjg1PpmpGzWotGXFlNmB9wueHOTsTsJA2xIVnChGMVceL6sjIXtry
+         JVYEnuQOY8eCepNQeDCsbAfgNBl+6bErqm3gLZmJ31ieiyoO0HNv07I7olPe4Aizu//f
+         KJVx6BWmD2J2b6N2+j0Mn6XUvMlx/D6Z4jyVbZMRTs22uPcNby9lCXL9fATb8xy2c6Wi
+         CtC2Ha+PhKAsiDpMBpg/4gzTip/ihCRjKNni+ISSspkze8Bv/KHfC2bGYOxPGg5J315q
+         D/v13WtjsLRsJ8tPKNEHHtCG7kcJ+H8woBd7EFqiiAQ7lHoQ0AZXYsnB07ac6wZHOQP9
+         zm3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-language:thread-index;
+        bh=51jhZdrQ7+AdoaA4xqz4b/WXY+L361jA8RFqZQaMUOI=;
+        b=hZhxUQbp5Cc+GLTyDjvPPEV8feZ1PQBMZtobKUkF6oX8FNfb+Q7AtRR0NmDEJixREQ
+         bTJSttro3Sjst0Ni+O8LYpjRACwf9atvZp8QPI6dXuOPa2Tz2LvH6o1We9HY5PjSo16G
+         lXztvF9t4+nRwoWjJuiLWEz3twVKkXtaRvxQrE02L9BDibQY5kEBdIVIaCq8T2YD+hpS
+         GiKVN5Nl5jPJe6zLCTWyESgFLjOdp1/CApkVQFc4At/EDLWvfEgYD+QCMln3OFJBquQD
+         mRYrUHC6/XsK8Q2CM0VJt8NTMbyGTjoK/pLSpEHAp3DV6zo7RdsfahvQhb+RfuF1QQgo
+         cN/w==
+X-Gm-Message-State: AOAM530OgPndN5dF/wTonXzWwInXsl8ERgqVrcADHZBAEVLSR1YOn/Gt
+	JFHnUrkRcrV8NSa1AEwke0E=
+X-Google-Smtp-Source: 
+ ABdhPJx1Q7kyFBspv2MtM3ajXrg8RFIID8o62x9BmabpQU9MziopS8EHQVkfjSvHp0CI7MbWPDf7Uw==
+X-Received: by 2002:a17:902:6b05:b0:142:83f9:6e29 with SMTP id
+ o5-20020a1709026b0500b0014283f96e29mr64128025plk.32.1638223826611;
+        Mon, 29 Nov 2021 14:10:26 -0800 (PST)
+Received: from skjolley ([2600:8800:1d92:f800:252b:bb20:30b:2a36])
+        by smtp.gmail.com with ESMTPSA id
+ f29sm12825047pgf.34.2021.11.29.14.10.25
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 29 Nov 2021 14:10:26 -0800 (PST)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@lists.yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 29 Nov 2021 15:10:25 -0700
+Message-ID: <06d201d7e56d$e9e1e310$bda5a930$@gmail.com>
 MIME-Version: 1.0
-Date: Mon, 29 Nov 2021 11:35:58 -0800
-References: <78f33f57d2ad4ed03a057c1c69865261b2612e98.camel@delisys.ch>
-In-Reply-To: <78f33f57d2ad4ed03a057c1c69865261b2612e98.camel@delisys.ch>
-Message-ID: <32437.1638214558031475373@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="XsXhM857a7uENgotqcJR"
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_06D3_01D7E533.3D85CA30"
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-us
+Thread-Index: AQHtdyJHanR4sIo0bWbP9rIolCjp7A==
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 29 Nov 2021 19:35:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55443
+ <yocto@lists.yoctoproject.org>; Mon, 29 Nov 2021 22:10:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55444
 
---XsXhM857a7uENgotqcJR
-Content-Type: text/plain; charset="utf-8"
+This is a multipart message in MIME format.
+
+------=_NextPart_000_06D3_01D7E533.3D85CA30
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+All,
+
+ 
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+<https://bugzilla.yoctoproject.org/createaccount.cgi>
+https://bugzilla.yoctoproject.org/createaccount.cgi
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 391
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.4", "3.5, "3.99" and "Future", the more pressing/urgent issues
+being in "3.4" and then "3.5".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_06D3_01D7E533.3D85CA30
+Content-Type: text/html;
+	boundary="----=_NextPart_000_05D3_01D7DFB3.FE64FC10";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 25, 2021 at 02:45 AM, Nicolas Jeker wrote:
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The triage team is starting to try and =
+collect up and classify bugs which a newcomer to the project would be =
+able to work on in a way which means people can find them. They're being =
+listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a> and how to create a bugzilla account at: <a =
+href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
+style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
+/span></a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 391 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.4&#8221;, &#8220;3.5, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.4&quot; and then &#8220;3.5&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_000_06D3_01D7E533.3D85CA30--
 
->=20
-> On Wed, 2021-11-24 at 09:55 -0800, Tim Orling wrote:
->=20
->> On Mon, Nov 22, 2021 at 2:54 PM David Babich <ddbabich@bootseeds.com>
->> wrote:
->>=20
->>> I made it a little further by adding=C2=A0--no-cache-dir=C2=A0to the pi=
-p3
->>> install command.=C2=A0 That got rid fo the warning about not being able
->>> to access the .cache/pip.=C2=A0 However I still have the error:
->>> | ERROR: torch-1.10.0-cp36-cp36m-linux_aarch64.whl is not a
->>> supported wheel on this platform.
->>=20
->> Installing third-party wheels is not something we are likely to ever
->> support in Yocto Project/OpenEmbedded recipes.
->>=20
->> Are you trying to install using pip3 on target?
->> Note that many factors will make it tricky for python wheels with
->> binary content (C or Rust extensions). The python3 version must
->> match, as will the libraries it requires.
->>=20
->> The wheel you listed was built for Python 3.6 (cp36) and ARM v8
->> (aarch64).=C2=A0 The error is what you would see if you were trying to
->> install an aarch64 wheel on an x86-64 target, but other reasons could
->> lead to that error. We don't know what version of glibc, gcc, etc.
->> was used and whether those are going to be compatible.
->=20
->=20
-
-Ah OK, I wasn't aware of the the python naming convention.=C2=A0 That is li=
-kely my problem since I'm using Honister which uses Python 3.9.=C2=A0 I pul=
-led the wheel from NVIDIA's forums for pytorch, unfortunately they've not r=
-eleased one for Python 3.9 so I will likely have to create it myself using =
-the build from scratch method described in the article I linked.=C2=A0 Unfo=
-rtunately this will likely open a new can of worms...
-
->=20
-> There's a section about building from source with a patch in the
-> article he linked with his first message. I don't know much about
-> python in yocto, but maybe doing that in a recipe could work?
->=20
->=20
->> Also, when asking questions, please tell us which release of Yocto
->> Project you are using, what the MACHINE you are building for is,
->> which layers you are using (and at what release) and other
->> information to help us help you.
->=20
->=20
-
-I'm using Honister and the machine is 'jetson-tx2-dev-kit-tx2i', I'm making=
- a custom distro based on the meta-tegra-demo from this:
-
-https://github.com/OE4T
-
-A large part of the problem that I have is that many of these custom packag=
-es don't provide a nice .tar.gz pypi source distribution that I could use w=
-ith the pypi class.=C2=A0 My target install ends up on a spacecraft, so the=
-re is a strong desire to have a fully managed build that can just be flashe=
-d onto the target tx2i without the need to do any post installation or conf=
-iguration.=C2=A0 Sadly I'm finding that a lot of these third party dependen=
-cies do not lend themselves well to the yocto paradigm.=C2=A0 I'm thinking =
-that I may have to setup the target board, install the third party packages=
- on the target using whatever is required to do that, then copy the build p=
-roducts back to the host and use a bitbake recipe to just do_install:append=
- the built products into the rootfs during the yocto build.=C2=A0 Does that=
- sound feasible?=C2=A0 I've not had to do this before, but it seems like it=
- might be a reasonable approach given the complexity of the situation.
-
->=20
->=20
->>=20
->> Cheers,
->> --Tim
->=20
->=20
-
-Thanks
--David
-
---XsXhM857a7uENgotqcJR
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Nov 25, 2021 at 02:45 AM, Nicolas Jeker wrote:<br />
-<blockquote>On Wed, 2021-11-24 at 09:55 -0800, Tim Orling wrote:<br />
-<blockquote>On Mon, Nov 22, 2021 at 2:54 PM David Babich &lt;ddbabich@boots=
-eeds.com&gt;<br />wrote:<br />
-<blockquote>I made it a little further by adding&nbsp;--no-cache-dir&nbsp;t=
-o the pip3<br />install command.&nbsp; That got rid fo the warning about no=
-t being able<br />to access the .cache/pip.&nbsp; However I still have the =
-error:<br />| ERROR: torch-1.10.0-cp36-cp36m-linux_aarch64.whl is not a<br =
-/>supported wheel on this platform.</blockquote>
-Installing third-party wheels is not something we are likely to ever<br />s=
-upport in Yocto Project/OpenEmbedded recipes.<br /><br />Are you trying to =
-install using pip3 on target?<br />Note that many factors will make it tric=
-ky for python wheels with<br />binary content (C or Rust extensions). The p=
-ython3 version must<br />match, as will the libraries it requires.&nbsp;<br=
- /><br />The wheel you listed was built for Python 3.6 (cp36) and ARM v8<br=
- />(aarch64).&nbsp; The error is what you would see if you were trying to<b=
-r />install an aarch64 wheel on an x86-64 target, but other reasons could<b=
-r />lead to that error. We don't know what version of glibc, gcc, etc.<br /=
->was used and whether those are going to be compatible.</blockquote>
-</blockquote>
-Ah OK, I wasn't aware of the the python naming convention.&nbsp; That is li=
-kely my problem since I'm using Honister which uses Python 3.9.&nbsp; I pul=
-led the wheel from NVIDIA's forums for pytorch, unfortunately they've not r=
-eleased one for Python 3.9 so I will likely have to create it myself using =
-the build from scratch method described in the article I linked.&nbsp; Unfo=
-rtunately this will likely open a new can of worms...<br />
-<blockquote>There's a section about building from source with a patch in th=
-e<br />article he linked with his first message. I don't know much about<br=
- />python in yocto, but maybe doing that in a recipe could work?<br /><br /=
->
-<blockquote>Also, when asking questions, please tell us which release of Yo=
-cto<br />Project you are using, what the MACHINE you are building for is,<b=
-r />which layers you are using (and at what release) and other<br />informa=
-tion to help us help you.</blockquote>
-</blockquote>
-<p>I'm using Honister and the machine is 'jetson-tx2-dev-kit-tx2i', I'm mak=
-ing a custom distro based on the meta-tegra-demo from this:</p>
-<p><a href=3D"https://github.com/OE4T" target=3D"_blank" rel=3D"noopener">h=
-ttps://github.com/OE4T</a></p>
-<p>A large part of the problem that I have is that many of these custom pac=
-kages don't provide a nice .tar.gz pypi source distribution that I could us=
-e with the pypi class.&nbsp; My target install ends up on a spacecraft, so =
-there is a strong desire to have a fully managed build that can just be fla=
-shed onto the target tx2i without the need to do any post installation or c=
-onfiguration.&nbsp; Sadly I'm finding that a lot of these third party depen=
-dencies do not lend themselves well to the yocto paradigm.&nbsp; I'm thinki=
-ng that I may have to setup the target board, install the third party packa=
-ges on the target using whatever is required to do that, then copy the buil=
-d products back to the host and use a bitbake recipe to just do_install:app=
-end the built products into the rootfs during the yocto build.&nbsp; Does t=
-hat sound feasible?&nbsp; I've not had to do this before, but it seems like=
- it might be a reasonable approach given the complexity of the situation.</=
-p>
-<blockquote>
-<blockquote><br />Cheers,<br />--Tim</blockquote>
-</blockquote>
-Thanks<br />-David<br />&nbsp;
-<p>&nbsp;</p>
-
---XsXhM857a7uENgotqcJR--
 
