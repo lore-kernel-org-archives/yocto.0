@@ -1,145 +1,85 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <michael.opdenacker@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F098C433FE
-	for <webhook@archiver.kernel.org>; Wed,  1 Dec 2021 11:40:02 +0000 (UTC)
-Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com
- [209.85.222.54])
- by mx.groups.io with SMTP id smtpd.web10.90940.1638358800892102856
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B5C7C433EF
+	for <webhook@archiver.kernel.org>; Wed,  1 Dec 2021 13:49:44 +0000 (UTC)
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net
+ [217.70.183.200])
+ by mx.groups.io with SMTP id smtpd.web09.92327.1638366582455939236
  for <yocto@lists.yoctoproject.org>;
- Wed, 01 Dec 2021 03:40:01 -0800
+ Wed, 01 Dec 2021 05:49:43 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=CtjmnTbX;
- spf=pass (domain: gmail.com, ip: 209.85.222.54,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ua1-f54.google.com with SMTP id l24so48324472uak.2
-        for <yocto@lists.yoctoproject.org>;
- Wed, 01 Dec 2021 03:40:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mVGa0m+kHBI6xzvVZYdQ9wEw7GxEaoQoR+NkiJo1RUg=;
-        b=CtjmnTbX0GSwEJzxL2SusHCeGqymyBJVhhbdkBJDkhzzHr9CXA96PQi2h6fjZ8xTl0
-         JvRRP6CDCl6Y/XG05aD0MtQuhun2cgaDp9JNSSFJH8sf7BridiTALOKk27wstA8+GZ2Y
-         Lj1mSj4M0sUibF4PFPlwO0bKQG63fVvFI/IhWAkHcNrjHeJpUng+11oIxH7qqFqcoLcI
-         pdf44C4BoZWyHvk9FPj8N13+bitQ5op5lpyEO1j+ihkCiEDpMg+H4d/ZH1317/t6vQ4F
-         G1Ql5PXZtXK897rWNX3LXoE0nYuA6iHBT0ijYY4enzYzeTSEaCLHnpsvpjmTor+yc+OL
-         Gr3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mVGa0m+kHBI6xzvVZYdQ9wEw7GxEaoQoR+NkiJo1RUg=;
-        b=1PztBFIApWiNwDkcvNzVRTFew72W8XPhOmUA2wqjDcJVv3SnluqtqSgTYjYTRqLsoL
-         U/tz1ofGYbiMGakjQjZw8lO0EBs8i9KgIG5c5uEv8kbTuqfFKBx8dtZuYirheD7vG+Se
-         +FGw3HNMhY3sJ9Whh1lyPgTtq+psbnSAH7Poy6gMf4ZmWIorz7XO1CjhGTSiwE0xB8ta
-         CVvHDLHaL6FmnWfu9uqmRoUWobXH52qKNheOiWZq37VnTO+Senl9uK48RSBsWbcuHYRw
-         GArwrQ8G4cYRjUs061LSJFspZJ0aagAqo57wGoIXm5EnjGjhssRPZz8u/98iWpQOogAb
-         Dj+g==
-X-Gm-Message-State: AOAM531MvCB/r/r1KG05RC5Gl2u8u8pjwbXGEyOICskE7Oo92NTqo71i
-	X4woTm9DHmsKWXQwxY5VfWwf7P3/IWjVFGxm21w=
-X-Google-Smtp-Source: 
- ABdhPJyeUqpqtXqPmBFX6b6pX0TF0IFYOi4yh1zKl4lFQ1wiOc6xDTFPoVnG7Mc3Z1q4AVuQSro/MCS8FRRA4GUVGVo=
-X-Received: by 2002:a9f:218c:: with SMTP id 12mr6055517uac.71.1638358799999;
- Wed, 01 Dec 2021 03:39:59 -0800 (PST)
+ dkim=missing;
+ spf=pass (domain: bootlin.com, ip: 217.70.183.200, mailfrom: michael.opdenacker@bootlin.com)
+Received: (Authenticated sender: michael.opdenacker@bootlin.com)
+	by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 90E2920002;
+	Wed,  1 Dec 2021 13:49:40 +0000 (UTC)
+From: Michael Opdenacker <michael.opdenacker@bootlin.com>
+To: yocto@lists.yoctoproject.org
+Cc: docs@lists.yoctoproject.org,
+	Michael Opdenacker <michael.opdenacker@bootlin.com>
+Subject: [PATCH yocto-autobuilder-helper] scripts/run-docs-build: make all
+ versions list releases known to master
+Date: Wed,  1 Dec 2021 14:49:31 +0100
+Message-Id: <20211201134931.193455-1-michael.opdenacker@bootlin.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <09c001d7e62a$8837c450$98a74cf0$@gmail.com>
-In-Reply-To: <09c001d7e62a$8837c450$98a74cf0$@gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 1 Dec 2021 12:39:49 +0100
-Message-ID: 
- <CANNYZj-dVSOw42YQVJQuJ-FrEQiWuMrpZME4tkePNMc+Cpujbw@mail.gmail.com>
-Subject: Re: [OE-core] Yocto Project Status WW48`21
-To: Stephen Jolley <sjolley.yp.pm@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>,
-	OE-core <openembedded-core@lists.openembedded.org>
-Content-Type: multipart/alternative; boundary="00000000000049e89f05d2142271"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 01 Dec 2021 11:40:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55457
+ <yocto@lists.yoctoproject.org>; Wed, 01 Dec 2021 13:49:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55458
 
---00000000000049e89f05d2142271
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This allows all versions of Bitbake and Yocto Project manuals
+to see the manuals for the latest versions.
 
-On Tue, 30 Nov 2021 at 21:40, Stephen Jolley <sjolley.yp.pm@gmail.com>
-wrote:
+This also simplifies the release process, not having to update the
+releases.rst file for all releases every time a new release is made.
 
-> We continue to see a reduction in the number of patches in =E2=80=9CPendi=
-ng=E2=80=9D
-> state. Many thanks to everyone who has taken the time to review patch
-> status and handle accordingly, particularly where they were accepted
-> upstream. This will significantly benefit the project in the long term.
->
-Patches in the Pending State: 412 (32%) [last week 422 (33%)]
->
+Note that such synchronization is already done for the
+switchers.js file (but in a different way). This way, advertised
+releases are in sync with switchers.js.
 
-I went ahead and made a list of top 10 'owners of pending patches'. I have
-to stress that this is absolutely not a 'wall of shame' or anything
-negative: these patches are in itself significant work, and sending patches
-upstream - and crucially, rebasing, fixing CI fails and following up on
-upstream feedback - is a significant effort on top, and when yocto project
-itself needs to move forward and company management is asking to deliver a
-product at the same time, the time for upstreaming may simply not be there.
-So  please keep these numbers in mind and try to avoid making them bigger.
+Signed-off-by: Michael Opdenacker <michael.opdenacker@bootlin.com>
+---
+ scripts/run-docs-build | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-109 Khem Raj
-29 Richard Purdie
-24 Alexander Kanavin
-15 unknown
-15 Ross Burton
-15 Robert Yang
-11 Hongxu Jia
-10 Martin Jansa
-8 Joe Slater
-8 Chen Qi
+diff --git a/scripts/run-docs-build b/scripts/run-docs-build
+index 4451018..5d6d24a 100755
+--- a/scripts/run-docs-build
++++ b/scripts/run-docs-build
+@@ -39,8 +39,11 @@ cp -r ./_build/final/* $outputdir/bitbake/next
+ # A decision was made to keep updating all the Sphinx generated docs for the moment,
+ # even the ones corresponding to no longer supported releases
+ # https://lists.yoctoproject.org/g/docs/message/2193
++# We copy the releases.rst file from master so that all versions of the docs
++# see the latest releases.
+ for branch in 1.46 1.48 1.50 1.52; do
+     git checkout $branch
++    git checkout master doc/releases.rst
+     make clean
+     make publish
+     mkdir $outputdir/bitbake/$branch
+@@ -76,6 +79,7 @@ cp -r ./_build/final/* $outputdir/next
+ for branch in dunfell gatesgarth hardknott honister; do
+     cd $ypdocs
+     git checkout $branch
++    git checkout master documentation/releases.rst
+     make clean
+     make publish
+     mkdir $outputdir/$branch
+@@ -97,6 +101,7 @@ for tag in $(git tag --list 'yocto-*'); do
+         if [ "$tag" = "yocto-3.3" ] || [ "$tag" = "yocto-3.4" ]; then
+             git am "${scriptdir}/${tag}/0001-conf-update-for-release.patch"
+         fi
++        git checkout master documentation/releases.rst
+         make clean
+         make publish
+         version=$(echo $tag | cut -c7-)
+-- 
+2.25.1
 
-Another interesting statistic is that of 108 people with pending patches,
-80 own only one or two patches.
-
-Alex
-
---00000000000049e89f05d2142271
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Tue, 30 Nov 2021 at 21:40, Stephen Jolley &lt;<a href=3D"mailto:s=
-jolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex"><div style=3D"overflow-wrap:=
- break-word;" lang=3D"EN-US"><div><span style=3D"font-family:&quot;Arial&qu=
-ot;,sans-serif">We continue to see a reduction in the number of patches in =
-=E2=80=9CPending=E2=80=9D state. Many thanks to everyone who has taken the =
-time to review patch status and handle accordingly, particularly where they=
- were accepted upstream. This will significantly benefit the project in the=
- long term.</span><span style=3D"font-family:&quot;Arial&quot;,sans-serif">=
-</span> <br></div></div></blockquote><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex"><div style=3D"overflow-wrap: break-word;" lang=3D"EN-US"><div><=
-span style=3D"font-family:&quot;Arial&quot;,sans-serif">Patches in the Pend=
-ing State: 412 (32%) [last week 422 (33%)]</span><span style=3D"font-family=
-:Consolas"></span></div></div></blockquote></div><div class=3D"gmail_quote"=
-><br></div><div class=3D"gmail_quote">I went ahead and made a list of top 1=
-0 &#39;owners of pending patches&#39;. I have to stress that this is absolu=
-tely not a &#39;wall of shame&#39; or anything negative: these patches are =
-in itself significant work, and sending patches upstream - and crucially, r=
-ebasing, fixing CI fails and following up on upstream feedback - is a signi=
-ficant effort on top, and when yocto project itself needs to move forward a=
-nd company management is asking to deliver a product at the same time, the =
-time for upstreaming may simply not be there. So=C2=A0 please keep these nu=
-mbers in mind and try to avoid making them bigger.<br></div><div class=3D"g=
-mail_quote"><br></div><div class=3D"gmail_quote">109 Khem Raj<br>29 Richard=
- Purdie<br>24 Alexander Kanavin<br>15 unknown<br>15 Ross Burton<br>15 Rober=
-t Yang<br>11 Hongxu Jia<br>10 Martin Jansa<br>8 Joe Slater<br>8 Chen Qi</di=
-v><div class=3D"gmail_quote"><br></div><div class=3D"gmail_quote">Another i=
-nteresting statistic is that of 108 people with pending patches, 80 own onl=
-y one or two patches.<br></div><div class=3D"gmail_quote"><br></div><div cl=
-ass=3D"gmail_quote">Alex<br></div></div>
-
---00000000000049e89f05d2142271--
 
