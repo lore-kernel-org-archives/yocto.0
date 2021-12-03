@@ -2,156 +2,242 @@ Return-Path: <nicolas.dechesne@linaro.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 71EA3C433EF
-	for <webhook@archiver.kernel.org>; Fri,  3 Dec 2021 09:49:53 +0000 (UTC)
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
- [209.85.208.44])
- by mx.groups.io with SMTP id smtpd.web08.9774.1638524992416022747
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 72B1FC433F5
+	for <webhook@archiver.kernel.org>; Fri,  3 Dec 2021 10:48:47 +0000 (UTC)
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com
+ [209.85.208.46])
+ by mx.groups.io with SMTP id smtpd.web08.10183.1638528522344474850
  for <yocto@lists.yoctoproject.org>;
- Fri, 03 Dec 2021 01:49:52 -0800
+ Fri, 03 Dec 2021 02:48:42 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=lcWde3Fi;
- spf=pass (domain: linaro.org, ip: 209.85.208.44,
+ dkim=pass header.i=@linaro.org header.s=google header.b=YFmAK+PJ;
+ spf=pass (domain: linaro.org, ip: 209.85.208.46,
  mailfrom: nicolas.dechesne@linaro.org)
-Received: by mail-ed1-f44.google.com with SMTP id e3so9229851edu.4
+Received: by mail-ed1-f46.google.com with SMTP id e3so9825028edu.4
         for <yocto@lists.yoctoproject.org>;
- Fri, 03 Dec 2021 01:49:52 -0800 (PST)
+ Fri, 03 Dec 2021 02:48:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=BtKfM3xwRCKyQYl9U9RAeISF+ufDaYU813YtyXmwBk8=;
-        b=lcWde3FiYMHAGOjG8BQyfQgdh/aBWSpJ4MmoBcZEp8QmjpSqsKZYmSfmz/RijMQkt7
-         KPgA0wzhWLaPi2Rw81JGWk8IqN8ougShLP82NPji98yXw3WQPsr9/anxNL0e7ntEbiCB
-         TUkIffU91EX94XfshPDt+EtBKM2qeGk7NCeP7+xmYaCUCCjUlnE/kEGR8seQPXq09B6o
-         oTwbsz2EKW8oIVrIrhGjbfXvRpjCNsICehZn5fzzZ2e1U7KhJFnzFKQTlUJX7AJn3UV3
-         j3qVV+9hRUbZriwXnUUw3kwRfsSzOhbRPgCJGiIakh1RhLMg4Z6Lpb6Cc5j/kJ57Z/r5
-         bbrg==
+        bh=QA/3XGUi2zF5i6NX+QBtztTLTYco3WMsNzcNjUiizQE=;
+        b=YFmAK+PJGDN86ZRflZyLpdmkeWvOw+PkzbVoEIOS1P4E4E5bsjxVvv1fuFbR4fSIrd
+         Iq+DrFsw5tplq5jWBa7Wky97zOpF5H/X56Gq+h8K6i887pi/aitnYLFmEv7DlttqyscG
+         2smiYYJSHLsoKk6GT3Kxu9f+uE6kYi+jvrJoudIBNIuRe+peJcXuveFug859onsVlJ2T
+         YNKdd4j1A6e5y9em5hrxxMTyq7aWENn71BEaJM6NrE/Gj9Zm9K5eDbEwKACNGrmSlLml
+         iAMULaFwg3BhNzMVpCT1k5ESX2DoNpAzsW2tYjDBvspp8AvaMiC9u0fP623ftDeizElv
+         lR3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=BtKfM3xwRCKyQYl9U9RAeISF+ufDaYU813YtyXmwBk8=;
-        b=NimKobFMbQx5lnP8e4+sYhfebfOdxFqGKgCEzsZYvUX1h9ZzzXlmF6PFlc8bUi4Krw
-         a43OYyXhASIVcs5KPzHcFrWQQWrJ3P8deaNQUNQBIV1Q4N1yHookTip324bZ/P4YEsJd
-         VyQz07SNNiV+x+ts0xNNFGgx9j2pFwYkGIAZ1a5CVLOh76n6jugCPZHpqMChMmUb3NuA
-         CwEs0Lg+VUlYdhwMgPCulZJ8WsKUhvirqDKRh4ZLmYHnipwSJ1jRrdOoJAvd7TBQ1Rqr
-         rNfrDVDFlA7fQd1DV3fLUb6He4S6/dv5q7bj43X7qw61QlBVB41UVUGO1vvpVulFnSEg
-         19Rw==
-X-Gm-Message-State: AOAM533oXrfbQH2uJ7/K4drFe0uqq6ao3MVXq0OiZyMRtQjnx3iIyKw3
-	p7pW+gzL6+9SJGScfohhXVAndy1PwZMerpQOK2N4DA==
+        bh=QA/3XGUi2zF5i6NX+QBtztTLTYco3WMsNzcNjUiizQE=;
+        b=AVpFRJoof1rYyYaPGbpnMjT8wtBB5dHkCt9vCiVI3P94XqpJoIQDIbrqR1M16W299G
+         MLdfWyRPjrKmOKhSUzwRXQEdw0/yCcdYvUlyCymrWMxbHTe40c3IcHo/o+6jlv4wFWcN
+         9INQGWUifzljmTuckYiS1MP5VmMKWzf8sTaiWq45cWas0EwwzekybbBFMi3FgtUN3WnO
+         0wHc8YmmsTn9VBPG+Vgg3myP1IaXQd+PoCsgWRUbnv1xRrHSlPSVGN/czGQw/WTsvK1O
+         cin1skQJAEQ8AtNKN/6ArT6ZfAgRQRmAxUZfxMyqmt7O2E6wE6THZAQcwmomWkMEXscE
+         fvRw==
+X-Gm-Message-State: AOAM531gSUfyP1hytqITH8/pXvEyuIfG5gXaedv49y5g+vXvwKh+Sp8Y
+	3EiAmEwZpyLk6yI2+xx0IAFeS+BkUDiyWe9VAY2vYg==
 X-Google-Smtp-Source: 
- ABdhPJxKyyVYMwHVgoAvA/kN0L2w5c+9fNuwYdEPgLv4ommTW9QxiFY85OoPPN8VtHERkvUsGl89cdMdtOGIqAQtXZk=
-X-Received: by 2002:a17:907:6d07:: with SMTP id
- sa7mr22633609ejc.339.1638524990650;
- Fri, 03 Dec 2021 01:49:50 -0800 (PST)
+ ABdhPJwrN0tmMF6whvMensH/Itw6v71TcrebUuOcJv/dlfF/NG6EpLfd9Nque+qBGLXVKK95OhOhEyp5Ytxw9iNmloY=
+X-Received: by 2002:a05:6402:12c1:: with SMTP id
+ k1mr25403260edx.355.1638528520296;
+ Fri, 03 Dec 2021 02:48:40 -0800 (PST)
 MIME-Version: 1.0
 References: <20211201135949.193842-1-michael.opdenacker@bootlin.com>
  <20211203093452.sk3e6ksnwmsbnjn2@fedora>
-In-Reply-To: <20211203093452.sk3e6ksnwmsbnjn2@fedora>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Fri, 3 Dec 2021 10:49:40 +0100
-Message-ID: 
  <CAP71WjwoVHYOvLSKkW+fSSO2T5MupA-vEt1_cDfwdMjy8ZhP0g@mail.gmail.com>
+ <20211203100259.54n7h7ghlqfr5tia@fedora>
+In-Reply-To: <20211203100259.54n7h7ghlqfr5tia@fedora>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Fri, 3 Dec 2021 11:48:29 +0100
+Message-ID: 
+ <CAP71Wjxp04oP_YXX-em4OhRAvbjztATUEy9fozZ4+ves7NvVTw@mail.gmail.com>
 Subject: Re: [docs] [PATCH yocto-autobuilder-helper] scripts/run-docs-build:
  stop using the "transition" branch
 To: Quentin Schulz <quentin.schulz@theobroma-systems.com>
 Cc: Michael Opdenacker <michael.opdenacker@bootlin.com>,
  yocto@lists.yoctoproject.org,
 	docs@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000000613e805d23ad4b6"
+Content-Type: multipart/alternative; boundary="00000000000068351c05d23ba6bc"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 03 Dec 2021 09:49:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55470
+ <yocto@lists.yoctoproject.org>; Fri, 03 Dec 2021 10:48:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55471
 
---0000000000000613e805d23ad4b6
+--00000000000068351c05d23ba6bc
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 3, 2021 at 10:34 AM Quentin Schulz <
+On Fri, Dec 3, 2021 at 11:03 AM Quentin Schulz <
 quentin.schulz@theobroma-systems.com> wrote:
 
-> On Wed, Dec 01, 2021 at 02:59:49PM +0100, Michael Opdenacker wrote:
-> > No longer necessary now that the transition from DocBook to Sphinx is
-> over
+> Hi Nicolas,
+>
+> On Fri, Dec 03, 2021 at 10:49:40AM +0100, Nicolas Dechesne wrote:
+> > On Fri, Dec 3, 2021 at 10:34 AM Quentin Schulz <
+> > quentin.schulz@theobroma-systems.com> wrote:
 > >
-> > Signed-off-by: Michael Opdenacker <michael.opdenacker@bootlin.com>
+> > > On Wed, Dec 01, 2021 at 02:59:49PM +0100, Michael Opdenacker wrote:
+> > > > No longer necessary now that the transition from DocBook to Sphinx =
+is
+> > > over
+> > > >
+> > > > Signed-off-by: Michael Opdenacker <michael.opdenacker@bootlin.com>
+> > >
+> > > Reviewed-by: Quentin Schulz <foss+yocto@0leil.net>
+> > >
+> >
+> > I don't understand. With this change, we no longer build the pages we
+> > reference here:
+> >
+> https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__docs.yoctoproject.=
+org_releases.html-23outdated-2Drelease-2Dmanuals&d=3DDwIBaQ&c=3D_sEr5x9kUWh=
+uk4_nFwjJtA&r=3DLYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172=
+IIy1t&m=3DnyCl21erajBNcx6SkCKI_BEntNgbh6114vcdWp_vB5yDzorVFjmzdqp0WXIIpQyK&=
+s=3Drw5wG0nk_9KQ8RLvE1-sbSicy4NslWaeMwoyTSUuIyY&e=3D
+> >
+> > Or am I missing here?
+> >
 >
-> Reviewed-by: Quentin Schulz <foss+yocto@0leil.net>
+> Indeed. But this should be fixed, because we should handle this the same
+> way documentation/releases.html is, with a common one across all
+> releases. With the current implementation, only master has a list of all
+> outdated releases. e.g.
+> https://docs.yoctoproject.org/3.3/releases.html#outdated-release-manuals
+> does not exist, but
+> https://docs.yoctoproject.org/releases.html#outdated-release-manuals
+> does (and weirdly enough 3.4 too).
 >
 
-I don't understand. With this change, we no longer build the pages we
-reference here:
-https://docs.yoctoproject.org/releases.html#outdated-release-manuals
+Yes, this part is indeed poorly implemented. But I don't think we can
+remove the transition branch until we fix it, so I don't think we can take
+this patch now.
 
-Or am I missing here?
+perhaps we should maintain the overall documentation (for all versions) in
+the same branch.. all these branches are making everything much
+complicated.. Or perhaps we should split the documentation 'content' and
+the documentation config and scripts. I am wondering how other projects are
+doing it to support such complex doc setup (multiple versions to support
+and to publish)!
 
 
 >
-> Thanks,
+> I assume we want this in all branches. Therefore I think we should move
+> documentation/transition from that branch to master and copy the whole
+> directory for each non-master branch (with the git checkout master trick
+> from an earlier patch from Michael). I think this makes more sense than
+> keeping a transition branch? Especially since I assume we want to move
+> every 6 months one release from "Supported release manuals" to "Outdated
+> releae manuals" ?
+>
+
+I think we had the 'transition' pages in master initially, and we moved
+that to its own branch. I believe it's something we discussed with
+Richard.. but i forgot the details.
+
+
+>
+> Cheers,
 > Quentin
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#2215):
-> https://lists.yoctoproject.org/g/docs/message/2215
-> Mute This Topic: https://lists.yoctoproject.org/mt/87428499/1279857
-> Group Owner: docs+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/docs/unsub [
-> nicolas.dechesne@linaro.org]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+> > >
 >
 
---0000000000000613e805d23ad4b6
+--00000000000068351c05d23ba6bc
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 3, 2021 at 10:34 AM Quent=
+<div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 3, 2021 at 11:03 AM Quent=
 in Schulz &lt;<a href=3D"mailto:quentin.schulz@theobroma-systems.com">quent=
 in.schulz@theobroma-systems.com</a>&gt; wrote:<br></div><blockquote class=
 =3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">On Wed, Dec 01, 2021 at 02:59:49PM +0100, =
-Michael Opdenacker wrote:<br>
-&gt; No longer necessary now that the transition from DocBook to Sphinx is =
-over<br>
+b(204,204,204);padding-left:1ex">Hi Nicolas,<br>
+<br>
+On Fri, Dec 03, 2021 at 10:49:40AM +0100, Nicolas Dechesne wrote:<br>
+&gt; On Fri, Dec 3, 2021 at 10:34 AM Quentin Schulz &lt;<br>
+&gt; <a href=3D"mailto:quentin.schulz@theobroma-systems.com" target=3D"_bla=
+nk">quentin.schulz@theobroma-systems.com</a>&gt; wrote:<br>
 &gt; <br>
-&gt; Signed-off-by: Michael Opdenacker &lt;<a href=3D"mailto:michael.opdena=
-cker@bootlin.com" target=3D"_blank">michael.opdenacker@bootlin.com</a>&gt;<=
-br>
+&gt; &gt; On Wed, Dec 01, 2021 at 02:59:49PM +0100, Michael Opdenacker wrot=
+e:<br>
+&gt; &gt; &gt; No longer necessary now that the transition from DocBook to =
+Sphinx is<br>
+&gt; &gt; over<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; Signed-off-by: Michael Opdenacker &lt;<a href=3D"mailto:mich=
+ael.opdenacker@bootlin.com" target=3D"_blank">michael.opdenacker@bootlin.co=
+m</a>&gt;<br>
+&gt; &gt;<br>
+&gt; &gt; Reviewed-by: Quentin Schulz &lt;<a href=3D"mailto:foss%2Byocto@0l=
+eil.net" target=3D"_blank">foss+yocto@0leil.net</a>&gt;<br>
+&gt; &gt;<br>
+&gt; <br>
+&gt; I don&#39;t understand. With this change, we no longer build the pages=
+ we<br>
+&gt; reference here:<br>
+&gt; <a href=3D"https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__docs=
+.yoctoproject.org_releases.html-23outdated-2Drelease-2Dmanuals&amp;d=3DDwIB=
+aQ&amp;c=3D_sEr5x9kUWhuk4_nFwjJtA&amp;r=3DLYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8=
+yBP6m6qZZ4njZguQhZhkI_-172IIy1t&amp;m=3DnyCl21erajBNcx6SkCKI_BEntNgbh6114vc=
+dWp_vB5yDzorVFjmzdqp0WXIIpQyK&amp;s=3Drw5wG0nk_9KQ8RLvE1-sbSicy4NslWaeMwoyT=
+SUuIyY&amp;e=3D" rel=3D"noreferrer" target=3D"_blank">https://urldefense.pr=
+oofpoint.com/v2/url?u=3Dhttps-3A__docs.yoctoproject.org_releases.html-23out=
+dated-2Drelease-2Dmanuals&amp;d=3DDwIBaQ&amp;c=3D_sEr5x9kUWhuk4_nFwjJtA&amp=
+;r=3DLYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&amp;m=
+=3DnyCl21erajBNcx6SkCKI_BEntNgbh6114vcdWp_vB5yDzorVFjmzdqp0WXIIpQyK&amp;s=
+=3Drw5wG0nk_9KQ8RLvE1-sbSicy4NslWaeMwoyTSUuIyY&amp;e=3D</a> <br>
+&gt; <br>
+&gt; Or am I missing here?<br>
+&gt; <br>
 <br>
-Reviewed-by: Quentin Schulz &lt;<a href=3D"mailto:foss%2Byocto@0leil.net" t=
-arget=3D"_blank">foss+yocto@0leil.net</a>&gt;<br></blockquote><div><br></di=
-v><div>I don&#39;t understand. With this change, we no longer build the pag=
-es we reference here:</div><div><a href=3D"https://docs.yoctoproject.org/re=
-leases.html#outdated-release-manuals">https://docs.yoctoproject.org/release=
-s.html#outdated-release-manuals</a></div><div><br></div><div>Or am I missin=
-g here?=C2=A0</div><div>=C2=A0<br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
-ding-left:1ex">
+Indeed. But this should be fixed, because we should handle this the same<br=
+>
+way documentation/releases.html is, with a common one across all<br>
+releases. With the current implementation, only master has a list of all<br=
+>
+outdated releases. e.g.<br>
+<a href=3D"https://docs.yoctoproject.org/3.3/releases.html#outdated-release=
+-manuals" rel=3D"noreferrer" target=3D"_blank">https://docs.yoctoproject.or=
+g/3.3/releases.html#outdated-release-manuals</a><br>
+does not exist, but<br>
+<a href=3D"https://docs.yoctoproject.org/releases.html#outdated-release-man=
+uals" rel=3D"noreferrer" target=3D"_blank">https://docs.yoctoproject.org/re=
+leases.html#outdated-release-manuals</a><br>
+does (and weirdly enough 3.4 too).<br></blockquote><div><br></div><div>Yes,=
+ this part is indeed poorly implemented. But I don&#39;t think we can remov=
+e the transition branch until we fix it, so I don&#39;t think we can take t=
+his patch now.=C2=A0</div><div><br></div><div>perhaps we should maintain th=
+e overall documentation (for all versions) in the same branch.. all these b=
+ranches are making everything much complicated.. Or perhaps we should split=
+ the documentation &#39;content&#39; and the documentation config and scrip=
+ts. I am wondering how other projects are doing it to support such complex =
+doc setup (multiple versions to support and to publish)!</div><div>=C2=A0</=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex">
 <br>
-Thanks,<br>
+I assume we want this in all branches. Therefore I think we should move<br>
+documentation/transition from that branch to master and copy the whole<br>
+directory for each non-master branch (with the git checkout master trick<br=
+>
+from an earlier patch from Michael). I think this makes more sense than<br>
+keeping a transition branch? Especially since I assume we want to move<br>
+every 6 months one release from &quot;Supported release manuals&quot; to &q=
+uot;Outdated<br>
+releae manuals&quot; ?<br></blockquote><div><br></div><div>I think we had t=
+he &#39;transition&#39; pages in master initially, and we moved that to its=
+ own branch. I believe it&#39;s something we discussed with Richard.. but i=
+ forgot the details.=C2=A0</div><div>=C2=A0</div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex">
+<br>
+Cheers,<br>
 Quentin<br>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#2215): <a href=3D"https://lists.yoctoproject.org/g/docs=
-/message/2215" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproj=
-ect.org/g/docs/message/2215</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/87428499/1279=
-857" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/87428499/1279857</a><br>
-Group Owner: <a href=3D"mailto:docs%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">docs+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/docs/unsub" rel=3D=
-"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/docs/unsub<=
-/a> [<a href=3D"mailto:nicolas.dechesne@linaro.org" target=3D"_blank">nicol=
-as.dechesne@linaro.org</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
+&gt; &gt;<br>
 </blockquote></div></div>
 
---0000000000000613e805d23ad4b6--
+--00000000000068351c05d23ba6bc--
 
