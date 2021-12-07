@@ -1,132 +1,96 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <jdmason@kudzu.us>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 989E3C433EF
-	for <webhook@archiver.kernel.org>; Tue,  7 Dec 2021 00:35:02 +0000 (UTC)
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
- [209.85.128.41])
- by mx.groups.io with SMTP id smtpd.web09.60429.1638837300925223838
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B5F88C433FE
+	for <webhook@archiver.kernel.org>; Tue,  7 Dec 2021 01:01:32 +0000 (UTC)
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com
+ [209.85.222.169])
+ by mx.groups.io with SMTP id smtpd.web12.60879.1638838891775056462
  for <yocto@lists.yoctoproject.org>;
- Mon, 06 Dec 2021 16:35:01 -0800
+ Mon, 06 Dec 2021 17:01:32 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Npv8WHI4;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.41,
- mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f41.google.com with SMTP id
- n33-20020a05600c502100b0032fb900951eso478000wmr.4
+ dkim=pass header.i=@kudzu-us.20210112.gappssmtp.com header.s=20210112
+ header.b=YU56b7pd;
+ spf=none, err=permanent DNS error (domain: kudzu.us, ip: 209.85.222.169,
+ mailfrom: jdmason@kudzu.us)
+Received: by mail-qk1-f169.google.com with SMTP id 193so13051186qkh.10
         for <yocto@lists.yoctoproject.org>;
- Mon, 06 Dec 2021 16:35:00 -0800 (PST)
+ Mon, 06 Dec 2021 17:01:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=HOH8DUo57g6lO307V7eCpSd9qoY8jPgKJSi7wm1tDO8=;
-        b=Npv8WHI4YweiZVRr3MkOaNc1yvPbh/7ZgK3tPIEjoz0zuK7Uys/NDiiPxSFZy3MhKb
-         Fv4J3tncDeMH3P+fnHBJpoOLjUCisV4lbUZQt5TmyT6HKAY4ZoMS7We5TCVR/kpUTXEy
-         2DsEN0Fy30o0WGQQ5HsZ9WgeoS4MG+0JPlKDk=
+        d=kudzu-us.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=AWyXIP1f4fnIPmsuJ1WoTtPg0cN6nJR9DhEYRPY506w=;
+        b=YU56b7pdjHKE3o1wov9YnSySvrYS9yKHjkkHsdAYjsJhWgYOA+7ecFO/4FsXBPmqQR
+         HGL1cfP0PTq3VBEbuuvEMJbGaHbQy3squ1PMyXHeIvjjGGz39ZUuRDd1HHu7CtHO0bib
+         AFEVKfLLhnyfZffUaok/KHOeM6S7NlQGtOA4gofz8JLGd0AZD/rmfTADtLwpW+LlMoui
+         eHPNGUnedhT+dRsMjIxGIPVhPH/Ks8dSDayCL7p4I/yBQm7npXCITkwdHVsYPX2WusZ+
+         vlnE1x8pBmuPacOUuwYOaeOVaAaKgPtDlsrgZLJX2qwALTT0+1CqZ2R8GMA3Epq7OfEw
+         slEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=HOH8DUo57g6lO307V7eCpSd9qoY8jPgKJSi7wm1tDO8=;
-        b=dNtLic+v3dj+OvtLKbB6bM0Y5VKSDh1DRHXmoiu2UtxylqBRJZYJQT3MkmojIEu8+o
-         H68k30eKSlVZRem04fzUnjC4uk6rbHlOMfMp8FRMv4I3V9GTx2bu5bp0Wpi15uQ5G/Bt
-         AYyITkGGJ0Z9mscq5kDOQyB5n8CS7vLQHm1iNZQq3CujgKAD75Gj//0LKHonFdv57JLd
-         8UyqseMznjumSo34D+SbmW9m/B6iNlcHrCrbepRajLQDEShtwPmqS+zZKWlOXHgUItiT
-         GWSU8G4upcwLTIU/Ov6pywohigfioDViJOLuZ/Hl/3LLAXErkJFrS8nzhhhmo9jEGk0Y
-         TKog==
-X-Gm-Message-State: AOAM532nmE0jhUQ6ynm6CdsBBlE6CvGTvq0hvUkZ6t8PaGJmuR4psSLH
-	tBBg0hQ0Iqp1R+9TxOFGhtR36w==
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=AWyXIP1f4fnIPmsuJ1WoTtPg0cN6nJR9DhEYRPY506w=;
+        b=mwYIDaIc+yT0+2VB9ziZyfv2hqahJYuZ2yrDnSkdUmubus8qZlGOkBmG3x2YPD46VC
+         IyUT10P4haYD2FCM2zYXmoRjJrXwKj3uCug69cj1zcMcdr2y4O0tQ/RdnZARPJtCeMco
+         9XSKrfcPDRRRGOVT429MRuqTi8ENe2yJSgdL901gYyqFY0BiduEFowKwdmMaCZrmzID3
+         lQvydZpWNULbm+fqC5dvxl/tIY/rsv4UKksUmGIntr46LzCGDgtIQmTY9ysdEPGDjWuU
+         VahBNsWAryxDT9zpSUM6syPbWhUXZMVc3F03aeVQmVzNAPRy/gPBTM6fuZr1IucDRyrm
+         XmpQ==
+X-Gm-Message-State: AOAM533KLVvfqof8RXLAZm30HLiY+sKSvKj2oWoRwXV1EmX5/13/UybZ
+	3aHNs1Te6290TdBw+8Rjtgimmk3+NSKE7P8PUvEITxnhdKG7tA==
 X-Google-Smtp-Source: 
- ABdhPJwX2z6mNGV+KW7qP3UXhKsPjNBf+ARcVNUOQV8aLMcXS2VMMTPHNqbGoOvpl/KnobAlhFY4lw==
-X-Received: by 2002:a1c:f20e:: with SMTP id s14mr2584228wmc.186.1638837299353;
-        Mon, 06 Dec 2021 16:34:59 -0800 (PST)
-Received: from ?IPv6:2001:8b0:aba:5f3c:a430:ef69:a06e:8b4a?
- ([2001:8b0:aba:5f3c:a430:ef69:a06e:8b4a])
-        by smtp.gmail.com with ESMTPSA id
- e8sm12612712wrr.26.2021.12.06.16.34.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Dec 2021 16:34:59 -0800 (PST)
-Message-ID: 
- <41007b2c8c85ad4e0f30d73a29080accb70a4189.camel@linuxfoundation.org>
-Subject: Re: [yocto] Setting BUILDNAME to a string broke in 3.1.12
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Steve Sakoman <steve@sakoman.com>, Henrik Riomar
- <henrik.riomar@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Date: Tue, 07 Dec 2021 00:34:58 +0000
-In-Reply-To: 
- <CAOSpxdap8+v96Dkk9ofrQmFkbc43Cuv=VErjgdj6CDupJ=uGxg@mail.gmail.com>
-References: 
-	<CAF1P4FEULketOK1DizcW5hmutF2HZdVyPZLhD4gh3cuiP31GAg@mail.gmail.com>
-	 <CAOSpxdap8+v96Dkk9ofrQmFkbc43Cuv=VErjgdj6CDupJ=uGxg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4-1 
+ ABdhPJyaUUshKHLzsiPOOmHKe4wP+Xa8uwdy986tcd8cihgLLhU8ZUk4WwDCW6CnS/sU2eQpfUTT0bkLzOIVtfwBG9E=
+X-Received: by 2002:a05:620a:4622:: with SMTP id
+ br34mr37816049qkb.504.1638838890715;
+ Mon, 06 Dec 2021 17:01:30 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Jon Mason <jdmason@kudzu.us>
+Date: Mon, 6 Dec 2021 20:01:20 -0500
+Message-ID: 
+ <CAPoiz9zni1rhmpFP+YOeseYyaT7BJGE_oZjYbDicWiYo5x0_eA@mail.gmail.com>
+Subject: Help with Inclusive Language in OpenEmbedded/Yocto Project
+To: yocto@lists.yoctoproject.org,
+	Patches and discussions about the oe-core layer
+ <openembedded-core@lists.openembedded.org>,
+	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 07 Dec 2021 00:35:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55491
+ <yocto@lists.yoctoproject.org>; Tue, 07 Dec 2021 01:01:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55492
 
-On Mon, 2021-12-06 at 14:27 -1000, Steve Sakoman wrote:
-> On Mon, Dec 6, 2021 at 6:40 AM Henrik Riomar <henrik.riomar@gmail.com> wrote:
-> > 
-> > Hi,
-> > 
-> > We set the BUILDNAME (via local.conf) variable to the output of "git
-> > describe --long --always" so this info ends up in /etc/version instead
-> > of a date. (i.e to know the exact source version of the code
-> > deployed on a target)
-> > 
-> > This has worked fine for us up until 3.1.12, but now we just get a
-> > date (201803...) in /etc/version.
-> 
-> After doing a bit of bisecting it appears that this commit is the culprit:
-> 
-> reproducible_build: Remove BUILD_REPRODUCIBLE_BINARIES checking
-> https://git.yoctoproject.org/poky/commit/?h=dunfell&id=0d6ebaf8ff3232248ebf0e859cd09aefaee54a8a
-> 
-> Since this was cherry-picked from master to fix some reproducibililty
-> errors I suspected that the issue might also exist in the master
-> branch.
-> 
-> A quick test with:
-> 
-> BUILD_REPRODUCIBLE_BINARIES = "0"
-> BUILDNAME = "my custom name"
-> 
-> added to local.conf confirmed that /etc/version was indeed
-> "20180309123456" instead of the expected "my custom name"
-> 
-> I'm out of time to work on this today, but perhaps Richard might have
-> some ideas on how to address this.
+This email is a follow-up from the session held on Friday at the
+OpenEmbedded Developer's Virtual Meeting (see
+https://www.openembedded.org/wiki/OEDVM_Nov_2021)
 
-rootfs-postcommands.bbclass says:
+The session was not recorded, but the slides can be found at
+https://docs.google.com/presentation/d/146ueVVTMeA8JI43wqv5kFmdYEygqqmfGH0z1VRL2bDA/edit?usp=sharing
 
-# Perform any additional adjustments needed to make rootf binary reproducible
-rootfs_reproducible () {
-        if [ "${REPRODUCIBLE_TIMESTAMP_ROOTFS}" != "" ]; then
-                # Convert UTC into %4Y%2m%2d%2H%2M%2S
-                sformatted=`date -u -d @${REPRODUCIBLE_TIMESTAMP_ROOTFS} +%4Y%2m%2d%2H%2M%2S`
-                echo $sformatted > ${IMAGE_ROOTFS}/etc/version
-                bbnote "rootfs_reproducible: set /etc/version to $sformatted"
+The outcome from the discussion was that inclusive language changes
+are something that we want to accomplish in the kirkstone release
+timeframe (with an exception for the "master" branch name, which will
+be handled at a future date).
 
-                if [ -d ${IMAGE_ROOTFS}${sysconfdir}/gconf ]; then
-                        find ${IMAGE_ROOTFS}${sysconfdir}/gconf -name '%gconf.xml' -print0 | xargs -0r \
-                        sed -i -e 's@\bmtime="[0-9][0-9]*"@mtime="'${REPRODUCIBLE_TIMESTAMP_ROOTFS}'"@g'
-                fi
-        fi
-}
+There has already been a pass at collecting the needed changes at
+https://wiki.yoctoproject.org/wiki/Inclusive_language
 
-so I'd try setting REPRODUCIBLE_TIMESTAMP_ROOTFS to "". I suspect the change
-above started setting that to some value incidentally.
+This is not as simple as a find/replace of offending words.  There is
+a desire for backward compatibility or to provide some kind of "you
+want X, which is now Y" (which complicates things).
 
-Cheers,
+The intention of this email is to see who is interested in helping
+out.  Once we know how many people are available and what time frames,
+we can plan out a roadmap.  So, please email me (or respond to this
+thread publicly) and I'll add you to the list.  There will then be a
+follow-up zoom call in the next week or so to plan out the roadmap.
 
-Richard
+We will document the roadmap and everything else on the YP wiki page above.
 
+Questions and comments are welcome, but not interested in debating the
+necessity or timeframe of this task.  It has already been decided.
 
+Thanks,
+Jon
 
