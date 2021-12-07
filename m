@@ -2,87 +2,86 @@ Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7C0B6C433EF
-	for <webhook@archiver.kernel.org>; Tue,  7 Dec 2021 16:09:17 +0000 (UTC)
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com
- [209.85.160.177])
- by mx.groups.io with SMTP id smtpd.web09.68796.1638893356464837093
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B9F3C433EF
+	for <webhook@archiver.kernel.org>; Tue,  7 Dec 2021 16:10:52 +0000 (UTC)
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com
+ [209.85.160.182])
+ by mx.groups.io with SMTP id smtpd.web12.69007.1638893452045863192
  for <yocto@lists.yoctoproject.org>;
- Tue, 07 Dec 2021 08:09:16 -0800
+ Tue, 07 Dec 2021 08:10:52 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=EPdK1hNn;
- spf=pass (domain: gmail.com, ip: 209.85.160.177,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=NJSvoe/l;
+ spf=pass (domain: gmail.com, ip: 209.85.160.182,
  mailfrom: raj.khem@gmail.com)
-Received: by mail-qt1-f177.google.com with SMTP id q14so14713717qtx.10
+Received: by mail-qt1-f182.google.com with SMTP id a2so14698524qtx.11
         for <yocto@lists.yoctoproject.org>;
- Tue, 07 Dec 2021 08:09:16 -0800 (PST)
+ Tue, 07 Dec 2021 08:10:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=s5whqiDIwA2x11yHXpiVVN8ol+W3yODuQr9XfHuWWYc=;
-        b=EPdK1hNnmSAFq7UyTEg640mm9X1SjYEcUxGGSgvojU+4UWGLsT3BKJuYqBHUbWN8TD
-         qqZNpaLSMSAPwiUq06l6Rw67Lc1UKR5mSb5xZn5gQQZ0lQUxFLBw7Z0R7Bo/CTRUsiEy
-         YfOgxY3YN+qjE4bo0WE0fTWGUrxCSshyECtC25PxOGKw56W7L71pG6RwXd+WPBVboUNL
-         TUV173alAQwo9PiUTYTS/HWpUlRcSC4WPD4iS+Jxq49npZagnRB+hHykUxH/l9JytBHB
-         JYSiTdEI9HM3S02GOu0zN4TcTXsfYkG4fEo0TZrBvaGwr+TX+hnzaT0hF8k4lFzztKum
-         R69g==
+         :cc;
+        bh=wd3AdjZD6eas4hUzYvunqM6gq7w03lkFBv3mM2l/Ujo=;
+        b=NJSvoe/lDfiDIB00d6Dx1YHUwoe2791nr3M2xoaxgZ1CjjA2ck86ILW+Nk2gERMAHl
+         +FfP8v4dNJ8aWM6BU/HtDBDH7/wY564DusvKJ3vYP8EfYBKE/k75dMXx7+nTNNitNLXe
+         heGvH2hIHiTcgDnIPOpU+YanFuMR1va6inQMe+/bGZb5pNyHMDQxjAe8i/E4L8F44qCE
+         ub686hIyR7Z2p6Elgcj+ZlpF4982DPljwYvzlD0g/IduvSzdozNbLK7SmYOt6TQloJS9
+         XeldW1SVSn4yJfgIiXLrCXjD9O/THoaiebJ37otSt20dMw1DC8ivhpzY9UMlx6zZkDGa
+         zQbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=s5whqiDIwA2x11yHXpiVVN8ol+W3yODuQr9XfHuWWYc=;
-        b=BT8ym7AJcUXIJNb0aQlQgKoNgdUPr8km/mNk2feONRAbI4x96vksb/Jf719D46qz7m
-         0XuKuWZoCZkaeTn+F5pOUr03Nkiinc+DGQwSU1BCyxCledg7crKQpqwRDcmM9RZ/g8Cc
-         gy8/5KjsxuFXDyuP6FzKEzjkBGE9dx7iXlLvAZTdCN5BjqUnMOylIbn0c64fZab8Oifd
-         IHxb6VRWBBsHsAcg7vqoZ/LqkPTeIBw1eFVAa2NtJdVDRTNz6J9e3Mz0vr1J6a+NW8js
-         zCk2QnjhgXLOi4bz8Gky6SSBUjFQlJ6cH90dEx/gDDN4EWCVWK9SQVgBITLpiopkvAI/
-         0nPA==
-X-Gm-Message-State: AOAM530M/uzk6phMtRcotM98ZNRB9358OdhdxSUF8sGUZPe4B0iXNeAW
-	syhTZ3zuSDDxBDU4FPlLH4/1eCZT+i6eYNtyyjE=
+         :message-id:subject:to:cc;
+        bh=wd3AdjZD6eas4hUzYvunqM6gq7w03lkFBv3mM2l/Ujo=;
+        b=bYOrBA2nl4mtAzIzWuB/ogoe8gNvr5X09WxB/fHK6iMAuFaWNHKBWtKXOtuWjMauQu
+         2hgEtZvZTninFuulQWydUd5M+zxjKRPODfRIrGuMqN53tsdKINo27TgLx9IJRPd90OaB
+         2cYhTdD9L6NhZX3OhwgefkPHBr/7uS/41tCl8bf/20Ok223FkSPVggCRo4bdaqPZRvlv
+         E3Fgs+xV90immxPSGFge85fbp5mSaPwPrXMSTy+WisRbDzZl5ofZh+mP+Qr2F/J72gY0
+         JMU8jgP1deHNNzr6uOnu3av/zj89yHDRqEJAP4WWJ0utBamKyaWJHBe8N7nEvGN/amRh
+         hlnQ==
+X-Gm-Message-State: AOAM5313bP4HqIMUY/sgaNLmd2H2nLgRDNQSa7XWvvp8xxeHB+FqqlJ5
+	VYFMA879g6wGtR80CqBgYkdwTAgxHeRLTloVusU4+8GYAY9Q5A==
 X-Google-Smtp-Source: 
- ABdhPJyWmngr5c1TVM3KVddCRAS6xNA1L9HE73Q0tbAgm7Z4m621paLijNrUBctk0dUvRIP5qvf2ClPgnILjsQqBlVQ=
-X-Received: by 2002:ac8:518e:: with SMTP id
- c14mr49827065qtn.665.1638893355491;
- Tue, 07 Dec 2021 08:09:15 -0800 (PST)
+ ABdhPJwIctFOeOx26jO3YUVBYUvSugwmPiM9msUa2zsWFi2n8ua2KwVqQmnTdT1KQ+rhYndybemdNDKILzd+x/imAK0=
+X-Received: by 2002:ac8:7f4d:: with SMTP id g13mr29448qtk.215.1638893451196;
+ Tue, 07 Dec 2021 08:10:51 -0800 (PST)
 MIME-Version: 1.0
-References: <DVPA.1638870325425629163.dxqv@lists.yoctoproject.org>
-In-Reply-To: <DVPA.1638870325425629163.dxqv@lists.yoctoproject.org>
+References: <OrLs.1638861855420347300.mDj1@lists.yoctoproject.org>
+In-Reply-To: <OrLs.1638861855420347300.mDj1@lists.yoctoproject.org>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 7 Dec 2021 08:08:49 -0800
+Date: Tue, 7 Dec 2021 08:10:24 -0800
 Message-ID: 
- <CAMKF1sqXXDJ5BrnVQZD+4E20XYL_5w6WVp5S34kbCyQS1jpJPw@mail.gmail.com>
-Subject: Re: [yocto] ls command
-To: msabood2014@gmail.com
+ <CAMKF1srEV=J-jfdLWbE3TeQPCRdRdB0Dxafr3S5W_GR23YTqLg@mail.gmail.com>
+Subject: Re: [yocto] Is there any recipe for #FRR
+To: mousavy.system2005@gmail.com
 Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 07 Dec 2021 16:09:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55504
+ <yocto@lists.yoctoproject.org>; Tue, 07 Dec 2021 16:10:52 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55505
 
-On Tue, Dec 7, 2021 at 1:45 AM <msabood2014@gmail.com> wrote:
+check
+
+https://layers.openembedded.org/layerindex/branch/master/recipes/
+
+if its not there then perhaps no one published it yet.
+
+On Mon, Dec 6, 2021 at 11:24 PM <mousavy.system2005@gmail.com> wrote:
 >
-> Hi Guys i am new in YOCTO project. i have build images before and the ima=
-ges were included the "ls" and "clear" and all busybox commands. i do not k=
-now what happend now the image does not have anymore the "ls" or "clear" an=
-d all that commands and also there is a folder named && in the root directo=
-ry ? What to do ?
-> Sorry if my question is stupid but i am just a new in Yocto and linux
-
-try to see if /bin/ls exists. if its not there then maybe its deleted
-somehow. best is to flash a new rootfs
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Hi
+> There is an old discussion regarding this in this link:
+> https://lists.frrouting.org/pipermail/frog/2019-January/000445.html
+> But I can't find any updated one. Is there an updated recipe to build FRR?
+> Thanks
+> -=-=-=-=-=-=-=-=-=-=-=-
 > Links: You receive all messages sent to this group.
 > You automatically follow any topics you start or reply to.
-> View/Reply Online (#55499): https://lists.yoctoproject.org/g/yocto/messag=
-e/55499
-> Mute This Topic: https://lists.yoctoproject.org/mt/87561721/1997914
+> View/Reply Online (#55495): https://lists.yoctoproject.org/g/yocto/message/55495
+> Mute This Topic: https://lists.yoctoproject.org/mt/87560560/1997914
+> Mute #frr:https://lists.yoctoproject.org/g/yocto/mutehashtag/frr
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
-.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
 >
 
