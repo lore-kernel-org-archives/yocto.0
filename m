@@ -1,235 +1,125 @@
-Return-Path: <abeltran@linux.microsoft.com>
+Return-Path: <steve@sakoman.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0C577C433F5
-	for <webhook@archiver.kernel.org>; Mon,  6 Dec 2021 23:54:52 +0000 (UTC)
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by mx.groups.io with SMTP id smtpd.web10.60223.1638834890755540850
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 72E74C433F5
+	for <webhook@archiver.kernel.org>; Tue,  7 Dec 2021 00:27:21 +0000 (UTC)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
+ [209.85.128.48])
+ by mx.groups.io with SMTP id smtpd.web09.60336.1638836840029232878
  for <yocto@lists.yoctoproject.org>;
- Mon, 06 Dec 2021 15:54:51 -0800
+ Mon, 06 Dec 2021 16:27:20 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@linux.microsoft.com
- header.s=default header.b=Bbq9Eca0;
- spf=pass (domain: linux.microsoft.com, ip: 13.77.154.182,
- mailfrom: abeltran@linux.microsoft.com)
-Received: from [192.168.1.103] (unknown [186.69.115.196])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 87E8620E6F21
-	for <yocto@lists.yoctoproject.org>; Mon,  6 Dec 2021 15:54:49 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 87E8620E6F21
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1638834889;
-	bh=pXTKgM60WAOkeKXuobPqLjSjU2YPTLDqIZ2OnyhZ3cQ=;
-	h=To:From:Subject:Date:From;
-	b=Bbq9Eca0XNHnLVgUNYvt0Z51vwSqazSLaH8O2rw658DJy9vbRzkNRg7oXLhimFxVZ
-	 P5u5E7LB5B/QUGj2TqyFY7UCOSPkcv3l4rp4htlqGggGbrrN5+2luBZQozaA3ejPPI
-	 NAPocC6FcsTAkXvTrMjPkQH7BdIlNDZFSA0GU1cI=
-To: yocto@lists.yoctoproject.org
-From: Andres Beltran <abeltran@linux.microsoft.com>
-Subject: spdx: Extending SPDX SBOMs for SDKs
-Message-ID: <5e48a03f-d635-0b49-29a0-ea9bb3bc8bb6@linux.microsoft.com>
-Date: Mon, 6 Dec 2021 18:54:49 -0500
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.1
+ dkim=pass header.i=@sakoman-com.20210112.gappssmtp.com header.s=20210112
+ header.b=eOgCjdiv;
+ spf=softfail (domain: sakoman.com, ip: 209.85.128.48,
+ mailfrom: steve@sakoman.com)
+Received: by mail-wm1-f48.google.com with SMTP id
+ az34-20020a05600c602200b0033bf8662572so1053395wmb.0
+        for <yocto@lists.yoctoproject.org>;
+ Mon, 06 Dec 2021 16:27:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sakoman-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xGRX2PkiZ6mAcfgLt1VkTPc9ZfPJcmP6VFMR9Ww9HgE=;
+        b=eOgCjdivqtl9T21ppBb2TwgQQ/Ryiuh21S3UacO/lPvGbHx16tFt7ay8h+gBovCSTV
+         V6Al7GJqam877x+8ObzPpFDOrvbQ2lnWgbuo5YLDbpSE6C3Bbq4U0dtqH8sOt1Hj2O2q
+         xe/Jc3mQnMqGZFFXYfFKZPHSguWVUfn54865zykEudbe5afIl14AOl6G86K8serLPkZp
+         q979wdGHW1Hx5OdVKxqz59iYzBhk4RBl4BNSjQ6farbdubs3YbgJai5gXBh2meOZg1Bs
+         7xecXvsJ8yhV+Qh4tMr07wtqc1gRWJp+1VDd3/uvH7wdFOHAb22SUH/Ckb6su2IvyxRH
+         IUEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xGRX2PkiZ6mAcfgLt1VkTPc9ZfPJcmP6VFMR9Ww9HgE=;
+        b=wPWgXza9Q4hfQd5/yrrs+0DVvITjbmeAtVkItW41aKLKD9LEJMvnEzfyH9aBaWQYF9
+         5BHpLTEll3BNHYayiDRxHnHc+efXnpEZAtIltDZ37pSe0nPAcbJ14FkjOltdW0rO2FwF
+         rs1lrPI1IJXg1XnEhH5MgdM41Gq2QOgK6S0OJXgiIx8YE0MvXGnIS+j6Sa2ttFv9OK5e
+         0tUCys5z5j8JuOMfMbM+JHTEerHzc5zDLnStITSJx7kRCjC9Gw4qmDJm7/nRCrWmKLKZ
+         Uoy6S2sZ3C2ZlAcHk6Y788KsPhlSZkif9sgqb18GxEyl19lQW4WdCqhmmr1nK1a2maKH
+         ydrw==
+X-Gm-Message-State: AOAM532CFVRMiTiUkqaO5zo3fcV/LOEQoWFM9bIdTcHLvfgx3gPtU+Jz
+	DADu+IIakeTtjons5zodmSHRR0RQFQPt1EV4EqsiZQ==
+X-Google-Smtp-Source: 
+ ABdhPJw6LKAALfz6eOlahDdc8JuJj8CfJzW+M+PY9VJtt5tjbGuM7yJ2hz4FcSLBOaqd3IkgKi1pMCp4qN530Nonq7w=
+X-Received: by 2002:a05:600c:1988:: with SMTP id
+ t8mr2477545wmq.48.1638836838363;
+ Mon, 06 Dec 2021 16:27:18 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
- boundary="------------CC9314A10A8E80E03496A87B"
-Content-Language: en-US
+References: 
+ <CAF1P4FEULketOK1DizcW5hmutF2HZdVyPZLhD4gh3cuiP31GAg@mail.gmail.com>
+In-Reply-To: 
+ <CAF1P4FEULketOK1DizcW5hmutF2HZdVyPZLhD4gh3cuiP31GAg@mail.gmail.com>
+From: Steve Sakoman <steve@sakoman.com>
+Date: Mon, 6 Dec 2021 14:27:01 -1000
+Message-ID: 
+ <CAOSpxdap8+v96Dkk9ofrQmFkbc43Cuv=VErjgdj6CDupJ=uGxg@mail.gmail.com>
+Subject: Re: [yocto] Setting BUILDNAME to a string broke in 3.1.12
+To: Henrik Riomar <henrik.riomar@gmail.com>
+Cc: yocto@lists.yoctoproject.org,
+	Richard Purdie <richard.purdie@linuxfoundation.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 06 Dec 2021 23:54:52 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55489
+ <yocto@lists.yoctoproject.org>; Tue, 07 Dec 2021 00:27:21 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55490
 
-This is a multi-part message in MIME format.
---------------CC9314A10A8E80E03496A87B
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+On Mon, Dec 6, 2021 at 6:40 AM Henrik Riomar <henrik.riomar@gmail.com> wrote:
+>
+> Hi,
+>
+> We set the BUILDNAME (via local.conf) variable to the output of "git
+> describe --long --always" so this info ends up in /etc/version instead
+> of a date. (i.e to know the exact source version of the code
+> deployed on a target)
+>
+> This has worked fine for us up until 3.1.12, but now we just get a
+> date (201803...) in /etc/version.
 
-Hello,
+After doing a bit of bisecting it appears that this commit is the culprit:
 
+reproducible_build: Remove BUILD_REPRODUCIBLE_BINARIES checking
+https://git.yoctoproject.org/poky/commit/?h=dunfell&id=0d6ebaf8ff3232248ebf0e859cd09aefaee54a8a
 
-I've been working on extending SPDX SBOMs for SDKs. In 
-poky/meta/classes/create-spdx.bbclass I added:
+Since this was cherry-picked from master to fix some reproducibililty
+errors I suspected that the issue might also exist in the master
+branch.
 
-/do_populate_sdk[recrdeptask] += "do_create_spdx do_create_runtime_spdx"/
+A quick test with:
 
-I ran into a dependency loop when I try to build an SDK that contains 
-nativesdk-clang (it works fine for other SDKs):
+BUILD_REPRODUCIBLE_BINARIES = "0"
+BUILDNAME = "my custom name"
 
-/ERROR: /
+added to local.conf confirmed that /etc/version was indeed
+"20180309123456" instead of the expected "my custom name"
 
-//
+I'm out of time to work on this today, but perhaps Richard might have
+some ideas on how to address this.
 
-/Dependency loop #1 found:/
-
-//
-
-/Task 
-mc:lnx-sdk:/__w/1/s/sources/poky/../meta-clang/recipes-devtools/clang/clang-crosssdk_git.bb:do_create_spdx 
-(dependent Tasks ['glibc_2.31.bb:do_create_spdx', 
-'binutils-crosssdk_2.34.bb:do_create_spdx', 
-'clang_git.bb:do_create_spdx', 
-'quilt-native_0.66.bb:do_populate_sysroot', 
-'nativesdk-clang-glue.bb:do_create_spdx'])/
-
-//
-
-//
-
-//
-
-/Task 
-mc:lnx-sdk:virtual:nativesdk:/__w/1/s/sources/poky/../meta-clang/recipes-devtools/clang/clang_git.bb:do_create_spdx 
-(dependent Tasks ['clang_git.bb:do_packagedata', 
-'cmake-native_3.16.5.bb:do_create_spdx', 
-'swig_3.0.12.bb:do_create_spdx', 
-'libedit_20191231-3.1.bb:do_create_spdx', 
-'binutils-crosssdk_2.34.bb:do_create_spdx', 
-'chrpath_0.16.bb:do_create_spdx', 'libffi_3.3.bb:do_create_spdx', 
-'clang-crosssdk_git.bb:do_create_spdx', 'zlib_1.2.11.bb:do_create_spdx', 
-'clang_git.bb:do_package', 'python3_3.8.2.bb:do_create_spdx', 
-'libxml2_2.9.10.bb:do_create_spdx', 'python3_3.8.2.bb:do_create_spdx', 
-'pkgconfig_git.bb:do_create_spdx', 'binutils_2.34.bb:do_create_spdx', 
-'quilt-native_0.66.bb:do_populate_sysroot', 
-'libedit_20191231-3.1.bb:do_create_spdx', 
-'libxml2_2.9.10.bb:do_create_spdx', 'ninja_1.10.0.bb:do_create_spdx'])/
-
-//
-
-//
-
-//
-
-/Task 
-mc:lnx-sdk:/__w/1/s/sources/poky/../meta-clang/recipes-devtools/clang/nativesdk-clang-glue.bb:do_create_spdx 
-(dependent Tasks ['gcc-runtime_9.3.bb:do_create_spdx', 
-'glibc_2.31.bb:do_create_spdx', 'nativesdk-clang-glue.bb:do_package', 
-'gcc-crosssdk_9.3.bb:do_create_spdx', 'chrpath_0.16.bb:do_create_spdx', 
-'quilt-native_0.66.bb:do_populate_sysroot', 
-'nativesdk-clang-glue.bb:do_packagedata', 'clang_git.bb:do_create_spdx'])/
-
-Any help on this would be appreciated.
-
-Thanks,
-
-Andres Beltran
+Steve
 
 
---------------CC9314A10A8E80E03496A87B
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-
-    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <p>
-    </p>
-    <p style=3D"margin:0in;font-family:Calibri;font-size:11.0pt">Hello,</=
-p>
-    <p style=3D"margin:0in;font-family:Calibri;font-size:11.0pt"><br>
-    </p>
-    <p style=3D"margin:0in;font-family:Calibri;font-size:11.0pt">I've bee=
-n
-      working on
-      extending SPDX SBOMs for SDKs. In
-      poky/meta/classes/create-spdx.bbclass I
-      added:</p>
-    <p style=3D"margin:0in;font-family:Calibri;font-size:11.0pt">=C2=A0</=
-p>
-    <p style=3D"margin:0in;font-family:Calibri;font-size:11.0pt"><i>do_po=
-pulate_sdk[recrdeptask]
-        +=3D "do_create_spdx do_create_runtime_spdx"</i></p>
-    <p style=3D"margin:0in;font-family:Calibri;font-size:11.0pt">=C2=A0</=
-p>
-    <p style=3D"margin:0in;font-family:Calibri;font-size:11.0pt">I ran
-      into a
-      dependency loop when I try to build an SDK that contains
-      nativesdk-clang (it
-      works fine for other SDKs):</p>
-    <p style=3D"margin:0in;font-family:Calibri;font-size:11.0pt">=C2=A0</=
-p>
-    <p style=3D"margin:0in;font-family:Calibri;font-size:11.0pt"><i>ERROR=
-:
-      </i></p>
-    <i>
-    </i>
-    <p style=3D"margin:0in;font-family:Calibri;font-size:11.0pt"><i>Depen=
-dency
-        loop #1
-        found:</i></p>
-    <i>
-    </i>
-    <p style=3D"margin:0in;font-family:Calibri;font-size:11.0pt"><i>Task
-mc:lnx-sdk:/__w/1/s/sources/poky/../meta-clang/recipes-devtools/clang/cla=
-ng-crosssdk_git.bb:do_create_spdx
-        (dependent Tasks ['glibc_2.31.bb:do_create_spdx',
-        'binutils-crosssdk_2.34.bb:do_create_spdx',
-        'clang_git.bb:do_create_spdx',
-        'quilt-native_0.66.bb:do_populate_sysroot',
-        'nativesdk-clang-glue.bb:do_create_spdx'])</i></p>
-    <i>
-    </i>
-    <p style=3D"margin:0in;font-family:Calibri;font-size:11.0pt"><i>=C2=A0=
-</i></p>
-    <i>
-    </i>
-    <p style=3D"margin:0in;font-family:Calibri;font-size:11.0pt"><i>Task
-mc:lnx-sdk:virtual:nativesdk:/__w/1/s/sources/poky/../meta-clang/recipes-=
-devtools/clang/clang_git.bb:do_create_spdx
-        (dependent Tasks ['clang_git.bb:do_packagedata',
-        'cmake-native_3.16.5.bb:do_create_spdx',
-        'swig_3.0.12.bb:do_create_spdx',
-        'libedit_20191231-3.1.bb:do_create_spdx',
-        'binutils-crosssdk_2.34.bb:do_create_spdx',
-        'chrpath_0.16.bb:do_create_spdx',
-        'libffi_3.3.bb:do_create_spdx',
-        'clang-crosssdk_git.bb:do_create_spdx',
-        'zlib_1.2.11.bb:do_create_spdx', 'clang_git.bb:do_package',
-        'python3_3.8.2.bb:do_create_spdx',
-        'libxml2_2.9.10.bb:do_create_spdx',
-        'python3_3.8.2.bb:do_create_spdx',
-        'pkgconfig_git.bb:do_create_spdx',
-        'binutils_2.34.bb:do_create_spdx',
-        'quilt-native_0.66.bb:do_populate_sysroot',
-        'libedit_20191231-3.1.bb:do_create_spdx',
-        'libxml2_2.9.10.bb:do_create_spdx',
-        'ninja_1.10.0.bb:do_create_spdx'])</i></p>
-    <i>
-    </i>
-    <p style=3D"margin:0in;font-family:Calibri;font-size:11.0pt"><i>=C2=A0=
-</i></p>
-    <i>
-    </i>
-    <p style=3D"margin:0in;font-family:Calibri;font-size:11.0pt"><i>Task
-mc:lnx-sdk:/__w/1/s/sources/poky/../meta-clang/recipes-devtools/clang/nat=
-ivesdk-clang-glue.bb:do_create_spdx
-        (dependent Tasks ['gcc-runtime_9.3.bb:do_create_spdx',
-        'glibc_2.31.bb:do_create_spdx',
-        'nativesdk-clang-glue.bb:do_package',
-        'gcc-crosssdk_9.3.bb:do_create_spdx',
-        'chrpath_0.16.bb:do_create_spdx',
-        'quilt-native_0.66.bb:do_populate_sysroot',
-        'nativesdk-clang-glue.bb:do_packagedata',
-        'clang_git.bb:do_create_spdx'])</i></p>
-    <p style=3D"margin:0in;font-family:Calibri;font-size:11.0pt">=C2=A0</=
-p>
-    <p style=3D"margin:0in;font-family:Calibri;font-size:11.0pt">Any help
-      on this
-      would be appreciated.</p>
-    <p style=3D"margin:0in;font-family:Calibri;font-size:11.0pt">=C2=A0</=
-p>
-    <p style=3D"margin:0in;font-family:Calibri;font-size:11.0pt">Thanks,<=
-/p>
-    <p style=3D"margin:0in;font-family:Calibri;font-size:11.0pt">Andres
-      Beltran<br>
-    </p>
-  </body>
-</html>
-
---------------CC9314A10A8E80E03496A87B--
+>
+> Note that since switching to Dunfell we were forced to set
+> BUILD_REPRODUCIBLE_BINARIES to 0, so the build system would not "mess
+> up" /etc/version, but not even that helps now.
+>
+> What's the official way to get something more useful than a date (in
+> the long past) in /etc/version?
+>
+> Thanks,
+>  Henrik
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#55484): https://lists.yoctoproject.org/g/yocto/message/55484
+> Mute This Topic: https://lists.yoctoproject.org/mt/87544009/3620601
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [steve@sakoman.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
