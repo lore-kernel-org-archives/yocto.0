@@ -1,82 +1,123 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 71AB6C433F5
-	for <webhook@archiver.kernel.org>; Thu,  9 Dec 2021 02:04:36 +0000 (UTC)
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com
- [209.85.222.180])
- by mx.groups.io with SMTP id smtpd.web12.5913.1639015475461610712
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F05AAC433F5
+	for <webhook@archiver.kernel.org>; Thu,  9 Dec 2021 02:38:02 +0000 (UTC)
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com
+ [209.85.222.176])
+ by mx.groups.io with SMTP id smtpd.web11.6426.1639017482060657245
  for <yocto@lists.yoctoproject.org>;
- Wed, 08 Dec 2021 18:04:35 -0800
+ Wed, 08 Dec 2021 18:38:02 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=ff4dUuY+;
- spf=pass (domain: gmail.com, ip: 209.85.222.180,
- mailfrom: twoerner@gmail.com)
-Received: by mail-qk1-f180.google.com with SMTP id t83so3767845qke.8
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=nTaDsyjE;
+ spf=pass (domain: gmail.com, ip: 209.85.222.176,
+ mailfrom: raj.khem@gmail.com)
+Received: by mail-qk1-f176.google.com with SMTP id w14so3841779qkf.5
         for <yocto@lists.yoctoproject.org>;
- Wed, 08 Dec 2021 18:04:35 -0800 (PST)
+ Wed, 08 Dec 2021 18:38:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=NSLcFnkU2OonXRyYfBNDNmQBA1ajTMGBChDRN76Pu4w=;
-        b=ff4dUuY+qfRssyVsb+dRg25pLGoeIyL3Qn/BXm1U2B3Z4Gc0gcK2RDukoKS7qt4u0n
-         X8R87w+sHnlANDxbaK2F2d4CHNCZCOs/ej3AoeQn9Wb/ynblLudo0oPbI4V6BymlDqPZ
-         vyvgoJhE/qVEnC+tl6d7FIkfcMHEWiVaKmz5nv7ySmfUMLxYFNnUxH5mYIK56h5Q/cON
-         PXxUY7eaeQuoEmsMu5f1JmgPgt5lsaXDkIyxYcPlDKAuEeM6/hym+yYdLQMNN0BUdDC1
-         VGD6ocd+y8z03TJ8214aNFDw+uTCUpcQ+TeBf6GHN49T4vGVeZU4lwLWSd6S6IFd+3PI
-         Hc2w==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fnHVNOzqJVAQBV5GN60A1tQY3GDvJQ1trxIH1rCHB9Q=;
+        b=nTaDsyjEKStrAlzVcH83kan1R7Jzynzco+out9ArMODd5imRFTRlKb8DFeyobvmwvW
+         gwbyVoCrdl02hIpqP1GuDtfvTpFgDUItT0E8IZgO19HKQpQYBrIiCvKlAupA/Wa/LFCg
+         1GBiu22gIyiaT5Rs7xi2K1B4a9llRDHWpz8lOK4oM0/nBRtkUd3tMzNXrL6X/skB4Bll
+         ds/Ocwjn8rPDqthg0aE2AIkZQ1JwOIx2ljxqYMXHX079A38uGybpmKWpWqGXKz865YA9
+         QS5oV0KdBNi/DVmvftJm+ia21ff6ocWDeUUE8dNqIqcWWls1PYwqk/aDM9PJg2F4ji+7
+         8ZBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=NSLcFnkU2OonXRyYfBNDNmQBA1ajTMGBChDRN76Pu4w=;
-        b=POrYeRkY2j4v6uzg2P4lCEWn3QoC/Hyf459lDw3pkTbw0uooAvL/ODv9PoFokm3clD
-         iwCJ55R+AhLhHQsB+uddAJrKNTVX/dGNklNxvwAuWT0NzuxZe+UfBa16gGTbI7kNsKnQ
-         Hy39lQVOx54O7GRV5hvDU417Iq1DVei4qAl9w9ZpM8ZSiFhhprV6Cd1CbmN7K+qDSJVo
-         7t5SQ7MaZ0+ZMI03T2bskLt82xuc1UG2/Pfx24zWWp+qPJudEPcz5n+FGmyjmH7Xpg5m
-         0fgVBG7p6ym1MI+/UujB+welElKnZJp6P147bO9ykiYc+FlRYeQU35yNesK61R5p9zA/
-         Vhow==
-X-Gm-Message-State: AOAM531JE29166nbVUSdYmoCRV0+EEjJdEXSuxIV9WdILhjx1ZWXorcn
-	XthyD/hi1DfjtQlOKwslCSOI797PEh4=
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fnHVNOzqJVAQBV5GN60A1tQY3GDvJQ1trxIH1rCHB9Q=;
+        b=UFW0X5ygGz2pA2f1AoIDCbYQAWAFXysWG2D0VhKKSCNF7/PVOtYmbyOrwi9KXSz9yp
+         Kc/+TKE6lbF2LWTFOkhks8s02WAmLghP/t9JuUQ+LlY4A5c4d/JnsAxbMFPFXdktX2IE
+         kFOKqkWltwtasaUnsWWJ3THhZXXim9it4HLHnO6FzpJsIAWejkxT7axzMhhyc3o3eJv4
+         rQwvLU7G4rUGAmBdqXeIch3S0nxqC0smUYKJH6V85JK7z9wyN7YBilHbEiDceECRIWMw
+         UEIbVYRjrR7JZBHW/D+jufg9XJg5OsF8JxHfsDjwPMH3rp6JF4K2fT0IQ5KTzmOTG5kW
+         3eew==
+X-Gm-Message-State: AOAM533f4hSMhthDPNjiI9IKi/xkQ2BT9Ba0xE3ZnfGpMMC+hO5/rrzl
+	3dWrL1BdA025ciGS1tERpR/6YD2ZR0GsTip37o/XI1gu
 X-Google-Smtp-Source: 
- ABdhPJwqRvYuCTIGcz8lUQRdGkDI3BI5cXd121LaNV6pBARzwoDhoe2xXDNkj49NlKYmDnsCLoWLgQ==
-X-Received: by 2002:a37:8d84:: with SMTP id
- p126mr10949925qkd.684.1639015474442;
-        Wed, 08 Dec 2021 18:04:34 -0800 (PST)
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id
- o21sm2788884qta.89.2021.12.08.18.04.33
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Dec 2021 18:04:33 -0800 (PST)
-Date: Wed, 8 Dec 2021 21:04:32 -0500
-From: Trevor Woerner <twoerner@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: Re: [meta-rockchip][PATCH] u-boot: remove "virtual" keyword in
- dependency
-Message-ID: <20211209020432.GC4676@localhost>
-References: <20211208202914.3860-1-twoerner@gmail.com>
+ ABdhPJw9/7qA7WKt6nPd3FWoEcOyCPD0Ax7DTBbJMl9gyo5InMZL90IlPOaNHcW3T4Yr186ao2w5tk0m/6a6ApKOpVY=
+X-Received: by 2002:a37:dd4:: with SMTP id 203mr10970344qkn.149.1639017481195;
+ Wed, 08 Dec 2021 18:38:01 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20211208202914.3860-1-twoerner@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20211208211526.3287971-1-raj.khem@gmail.com>
+ <20211209020340.GB4676@localhost>
+In-Reply-To: <20211209020340.GB4676@localhost>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 8 Dec 2021 18:37:50 -0800
+Message-ID: 
+ <CAMKF1soBOm0y9O4ZFLxBevqeb2Ey6ywx4egZ-hzhCy1BQyyvDA@mail.gmail.com>
+Subject: Re: [meta-rockchip][PATCH] u-boot: Replace virtual/trusted-firmware-a
+ with trusted-firmware-a
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000bf563505d2ad7e9e"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 09 Dec 2021 02:04:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55529
+ <yocto@lists.yoctoproject.org>; Thu, 09 Dec 2021 02:38:02 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55530
 
-On Wed 2021-12-08 @ 03:29:14 PM, Trevor Woerner wrote:
-> The latest trusted-firmware-a recipe in meta-arm no longer considers
-> trusted-firmware-a to have potentially multiple providers.
-> 
-> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
-> ---
->  recipes-bsp/u-boot/u-boot%.bbappend | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+--000000000000bf563505d2ad7e9e
+Content-Type: text/plain; charset="UTF-8"
 
-Applied to meta-rockchip (with Khem's SoB added) master.
+On Wed, Dec 8, 2021 at 6:03 PM Trevor Woerner <twoerner@gmail.com> wrote:
+
+> On Wed 2021-12-08 @ 01:15:26 PM, Khem Raj wrote:
+> > meta-arm has dropped exporting virtual/trusted-firmware-a and expects
+> > direct use of trusted-firmware-a on depends sections
+> >
+> > Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> > ---
+> >  recipes-bsp/u-boot/u-boot%.bbappend | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> Oops, looks like we both noticed this at about the same time.
+> Since both our patches are identical, I simply added your SoB line.
+
+
+Cool
+
+
+>
+> Thanks!
+>
+
+--000000000000bf563505d2ad7e9e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><br></div><div><br><div class=3D"gmail_quote"><div dir=3D=
+"ltr" class=3D"gmail_attr">On Wed, Dec 8, 2021 at 6:03 PM Trevor Woerner &l=
+t;<a href=3D"mailto:twoerner@gmail.com">twoerner@gmail.com</a>&gt; wrote:<b=
+r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left-width:1px;border-left-style:solid;padding-left:1ex;border-left=
+-color:rgb(204,204,204)">On Wed 2021-12-08 @ 01:15:26 PM, Khem Raj wrote:<b=
+r>
+&gt; meta-arm has dropped exporting virtual/trusted-firmware-a and expects<=
+br>
+&gt; direct use of trusted-firmware-a on depends sections<br>
+&gt; <br>
+&gt; Signed-off-by: Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" targ=
+et=3D"_blank">raj.khem@gmail.com</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 recipes-bsp/u-boot/u-boot%.bbappend | 4 ++--<br>
+&gt;=C2=A0 1 file changed, 2 insertions(+), 2 deletions(-)<br>
+<br>
+Oops, looks like we both noticed this at about the same time.<br>
+Since both our patches are identical, I simply added your SoB line.</blockq=
+uote><div dir=3D"auto"><br></div><div dir=3D"auto">Cool</div><div dir=3D"au=
+to"><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left-width:1px;border-left-style:solid;padding-left:1ex;borde=
+r-left-color:rgb(204,204,204)" dir=3D"auto"><br>
+<br>
+Thanks!<br>
+</blockquote></div></div>
+
+--000000000000bf563505d2ad7e9e--
 
