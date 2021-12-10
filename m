@@ -1,109 +1,83 @@
-Return-Path: <f_l_k@t-online.de>
+Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9E636C433EF
-	for <webhook@archiver.kernel.org>; Fri, 10 Dec 2021 05:40:03 +0000 (UTC)
-Received: from mailout01.t-online.de (mailout01.t-online.de [194.25.134.80])
- by mx.groups.io with SMTP id smtpd.web08.3559.1639114801972658973
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 85955C433EF
+	for <webhook@archiver.kernel.org>; Fri, 10 Dec 2021 05:40:24 +0000 (UTC)
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com
+ [209.85.219.43])
+ by mx.groups.io with SMTP id smtpd.web10.3583.1639114823546743233
  for <yocto@lists.yoctoproject.org>;
- Thu, 09 Dec 2021 21:40:02 -0800
+ Thu, 09 Dec 2021 21:40:23 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=none, err=SPF record not found (domain: t-online.de, ip: 194.25.134.80,
- mailfrom: f_l_k@t-online.de)
-Received: from fwd78.dcpf.telekom.de (fwd78.aul.t-online.de [10.223.144.104])
-	by mailout01.t-online.de (Postfix) with SMTP id 9AB7121CF
-	for <yocto@lists.yoctoproject.org>; Fri, 10 Dec 2021 06:38:46 +0100 (CET)
-Received: from localhost.localdomain ([84.163.46.27]) by fwd78.t-online.de
-	with (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384 encrypted)
-	esmtp id 1mvYcD-0RyrYX0; Fri, 10 Dec 2021 06:38:41 +0100
-From: MarkusVolk <f_l_k@t-online.de>
-To: yocto@lists.yoctoproject.org
-Cc: MarkusVolk <f_l_k@t-online.de>
-Subject: [OE-core] [PATCH] libva: move wayland PACKAGECONFIG to libva.inc
-Date: Fri, 10 Dec 2021 06:38:16 +0100
-Message-Id: <20211210053816.1298142-1-f_l_k@t-online.de>
-X-Mailer: git-send-email 2.25.1
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=Uw0fHkfX;
+ spf=pass (domain: gmail.com, ip: 209.85.219.43, mailfrom: twoerner@gmail.com)
+Received: by mail-qv1-f43.google.com with SMTP id a24so7164289qvb.5
+        for <yocto@lists.yoctoproject.org>;
+ Thu, 09 Dec 2021 21:40:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=ENZXzrGZJmvYYOuoiX/2SIU+SxMKyiS/3IwQvZJ/2q8=;
+        b=Uw0fHkfX5fyghqIitng2nPSPDz1yn2loWqThbjqYEIXVAMXg2yTeXba8aTgHc3cMkC
+         ONTz59XqJuoerlya4r6G6svChlbZmMW7ykdr/sm4OYTI3lr6v/mTRE4CmyuWBRmtjXAM
+         ABuUQwA+qf81MkxQPDWBj/3ZDiiIfx0dEQuawpWumxr9xZtfuXh7BOGoA+cxU92N7ZO2
+         e2AY2QARJ8ZZvNG870M2iDFJGzuQ01drJXnp8goKkEoeQZfbXV9lEEv6xdc8TWG1JBb4
+         5/NS+zTJAypXkoJd+nrS0MM1zpnCmy+O8WEDAiTG691NkieVRNpA3zbmGApary5uFwgU
+         r+pQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=ENZXzrGZJmvYYOuoiX/2SIU+SxMKyiS/3IwQvZJ/2q8=;
+        b=hnFQ5KPNijbQXG5SvdVQ7ptK/9y2JgK4atD7iHGlj3gM0IkmrDpLKorU4N1lwyRrr5
+         fKxTX9FCKkqCWBqgfwYJ+ovcspsOJcaBhXO9mlDkQVuAMbw3XVc6d/rcbJKPhryPr6QP
+         cH4OqCsPgM1oBb7hnBqpHbKCkjeW8gVpgNLrW52KFDSGWWno+6T71OkDy4SC1zNt2LkI
+         mPh1sSTWPon9AjqI7X+ZP9lElAE4vyEljCEG3oxdtQOCnwhZMm8UvNHtZgmXDPJzb/s9
+         crHXh+UrValApvhwKS0Et3MMpEx9YNTSgKp0NrCN8slXvS0/oD7RhXFuId9Kkqwfwk+e
+         1J/w==
+X-Gm-Message-State: AOAM530pERLEMg4seb149uacTp7vu3lSBS0Ha6d67VZ7dqgMqYYF1bBo
+	18uBbbj1dAZ9IBkSBCj+eLw=
+X-Google-Smtp-Source: 
+ ABdhPJyz52iaAYCsfGgH9JWYCEimxZXuehwoayBhR6rKzlmtXYel3sPXQZyFh4mc0RtPVX2UbY58rw==
+X-Received: by 2002:a05:6214:2308:: with SMTP id
+ gc8mr22906771qvb.12.1639114822754;
+        Thu, 09 Dec 2021 21:40:22 -0800 (PST)
+Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id
+ b11sm1372687qtx.85.2021.12.09.21.40.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Dec 2021 21:40:22 -0800 (PST)
+Date: Fri, 10 Dec 2021 00:40:20 -0500
+From: Trevor Woerner <twoerner@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@lists.yoctoproject.org, Jon Mason <jon.mason@arm.com>,
+	Ross Burton <ross.burton@arm.com>
+Subject: Re: [meta-rockchip][PATCH] trusted-firmware-a: Pin to use gcc for now
+Message-ID: <20211210054019.GA40862@localhost>
+References: <20211210011458.1664766-1-raj.khem@gmail.com>
 MIME-Version: 1.0
-X-TOI-EXPURGATEID: 150726::1639114721-0000146A-586646E3/0/0 CLEAN NORMAL
-X-TOI-MSGID: 5a6a56d0-b834-45c3-8b4f-cde16c2bd153
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20211210011458.1664766-1-raj.khem@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 10 Dec 2021 05:40:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55544
+ <yocto@lists.yoctoproject.org>; Fri, 10 Dec 2021 05:40:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55545
 
-I encountered an error while trying to build libva under wayland. libva-i=
-nitial
-was missing wayland-native dependency and failed like this:
+On Thu 2021-12-09 @ 05:14:58 PM, Khem Raj wrote:
+> tf-a built with clang is bloated for rk3399 SOCs with 2.6+
+> it needs looking into, until then use gcc always to build it
+> 
+> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> Cc: Jon Mason <jon.mason@arm.com>
+> Cc: Ross Burton <ross.burton@arm.com>
+> ---
+>  .../trusted-firmware-a/trusted-firmware-a_%.bbappend       | 7 +++++++
+>  1 file changed, 7 insertions(+)
 
-| Run-time dependency xfixes found: NO (tried pkgconfig and cmake)
-| Run-time dependency wayland-client found: YES 1.19.0
-| Program wayland-scanner /usr/bin/wayland-scanner found: NO
-|
-| ../libva-2.13.0/meson.build:107:4: ERROR: Program 'wayland-scanner /usr=
-/bin/wayland-scanner' not found
-|
-| A full log can be found at /home/flk/build/poky/build-rock/tmp/work/cor=
-texa72-cortexa53-crypto-poky-linux/libva-initial/2.13.0-r0/build/meson-lo=
-gs/meson-log.txt
-| ERROR: meson failed
-| WARNING: exit code 1 from a shell command.
-
-This commit moves the PACKAGECONFIG[wayland] to libva.inc to make it avai=
-lable to libva-initial also
-
-Signed-off-by: MarkusVolk <f_l_k@t-online.de>
----
- meta/recipes-graphics/libva/libva.inc       | 7 +++++++
- meta/recipes-graphics/libva/libva_2.13.0.bb | 4 +---
- 2 files changed, 8 insertions(+), 3 deletions(-)
-
-diff --git a/meta/recipes-graphics/libva/libva.inc b/meta/recipes-graphic=
-s/libva/libva.inc
-index bcf9757c1a..0e2721e291 100644
---- a/meta/recipes-graphics/libva/libva.inc
-+++ b/meta/recipes-graphics/libva/libva.inc
-@@ -27,3 +27,10 @@ UPSTREAM_CHECK_URI =3D "https://github.com/intel/libva=
-/releases"
- DEPENDS =3D "libdrm"
-=20
- inherit meson pkgconfig
-+
-+PACKAGECONFIG:append =3D " \
-+    ${@bb.utils.filter('DISTRO_FEATURES', 'wayland', d)} \
-+"
-+
-+PACKAGECONFIG[wayland] =3D "-Dwith_wayland=3Dyes,-Dwith_wayland=3Dno,way=
-land-native wayland"
-+
-diff --git a/meta/recipes-graphics/libva/libva_2.13.0.bb b/meta/recipes-g=
-raphics/libva/libva_2.13.0.bb
-index ed2be289fc..a8c6355b01 100644
---- a/meta/recipes-graphics/libva/libva_2.13.0.bb
-+++ b/meta/recipes-graphics/libva/libva_2.13.0.bb
-@@ -2,14 +2,12 @@ require libva.inc
-=20
- PACKAGECONFIG ??=3D " \
-     ${@bb.utils.contains('DISTRO_FEATURES', 'x11 opengl', 'glx', '', d)}=
- \
--    ${@bb.utils.filter('DISTRO_FEATURES', 'x11 wayland', d)} \
-+    ${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)} \
- "
-=20
- PACKAGECONFIG[x11] =3D "-Dwith_x11=3Dyes,-Dwith_x11=3Dno,virtual/libx11 =
-libxext libxfixes"
- PACKAGECONFIG[glx] =3D "-Dwith_glx=3Dyes,-Dwith_glx=3Dno,virtual/mesa"
-=20
--PACKAGECONFIG[wayland] =3D "-Dwith_wayland=3Dyes,-Dwith_wayland=3Dno,way=
-land-native wayland"
--
- PACKAGES =3D+ "${PN}-x11 ${PN}-glx ${PN}-wayland"
-=20
- RDEPENDS:${PN}-x11 =3D+ "${PN}"
---=20
-2.25.1
-
+Applied to meta-rockchip master. Thanks!
 
