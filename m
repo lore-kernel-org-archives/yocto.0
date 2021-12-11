@@ -2,69 +2,68 @@ Return-Path: <twoerner@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3B614C433F5
-	for <webhook@archiver.kernel.org>; Fri, 10 Dec 2021 17:53:00 +0000 (UTC)
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com
- [209.85.222.177])
- by mx.groups.io with SMTP id smtpd.web09.10558.1639158778949345200
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7ABA4C433F5
+	for <webhook@archiver.kernel.org>; Sat, 11 Dec 2021 13:56:01 +0000 (UTC)
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com
+ [209.85.160.171])
+ by mx.groups.io with SMTP id smtpd.web10.21726.1639230959901496101
  for <yocto@lists.yoctoproject.org>;
- Fri, 10 Dec 2021 09:52:59 -0800
+ Sat, 11 Dec 2021 05:56:00 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Tq5au5Tz;
- spf=pass (domain: gmail.com, ip: 209.85.222.177,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=jYdajOEc;
+ spf=pass (domain: gmail.com, ip: 209.85.160.171,
  mailfrom: twoerner@gmail.com)
-Received: by mail-qk1-f177.google.com with SMTP id b67so8452740qkg.6
+Received: by mail-qt1-f171.google.com with SMTP id p19so11012658qtw.12
         for <yocto@lists.yoctoproject.org>;
- Fri, 10 Dec 2021 09:52:58 -0800 (PST)
+ Sat, 11 Dec 2021 05:55:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=xjQXZgwgqeadIJBbJ8eP7UZCansBJ+e+Ap+8tBprfP8=;
-        b=Tq5au5TzEGbLc7Aa5iwaPv5fc4GtEPq2nH1JYj+k13Mz3ObzNfn00xZTvmnyJIdhja
-         bAWc3pnenWE3g7WmIYOMkFb4dfUmqQwxaalu+IaQQpDwLMQLDweEZZONV2qAht9Jv4/g
-         /eB//407xsvKlJQpRsl+877W6XVAXu61yveffBsMdof4533HfParuOJ8XpH0iJ8HMq95
-         b2hldDo1zgjPi3tJ2B5vCUSMRUlDPSJfndfe5tetCFxfrr675EiiG4x8lvVl6poG2YCP
-         IXbgaO1xGliqhzO4JuXNFJs9kLYv+lpZZ1Pzgm1m7d63CEytowEb78oo898/XphO+q6L
-         vnGg==
+        bh=y4qFlo9JKyqKZudG5GDk/h3E0UzeJcGC6F3h65EpKa0=;
+        b=jYdajOEcp+UXSWCg3DTW5fKzWViU6JG4MtRTdkGLvtbZzHWQOjDfm+TmINZ5tud0wi
+         NidvYkW4tvRNKxfADYb1+IWp+/k4d4vihnXpo9XOwdkNPhR2O710ROZXhrnyn/Z5xXN+
+         u5OfekIvE2ELoKH9Pp3KNVmchj8RHLjN5kMiivpsdiSQueKgt1tzNRl9+DmGlAwbOGXU
+         EM0BIVbQ/zGVqwDPfmrNriedyk02HzApJtCuN8+sHFgCG/Fzw6NdswzPhVaPiO4iJhmn
+         ULVMzniEknZ2qoFw7HBYXAUV4Cl1HE9DX3HhoMuJViHF+lZ3TYAh5jYlkqQkDDCcVZ1/
+         NUpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=xjQXZgwgqeadIJBbJ8eP7UZCansBJ+e+Ap+8tBprfP8=;
-        b=YB/0Zr2qOLKkZva/nZhYhzCCGYoaxsHcBlMn0fd9Ldp0nVdloX+DfvILS5kTpZo1Ak
-         kU94g8s3RKt6DGPP3bmc+qOfATsvGBw2dR7ecwzhpEKkxZqtla/eebkz1PnFTLmVtQfv
-         /Hl6YFrlCj6dsPRk94vtibws5eZjv9iDvwnQBDxy5wQZ600HQPJxXD9BJrXyIaWTOes7
-         TNiNNFPJHZUX/fciVW23ThnPeMNKJp9wgOfwXnlP4PQr9Q/6r3wz47mCJC8mCFpE8VRq
-         JBfiS6NUKs9ZyORQomdT7GXHOCxZcnIHT7gxvFa211bCdmVvG5+9SPVTRCn9VPGcLGjd
-         mLtA==
-X-Gm-Message-State: AOAM5336GWNtnK1ORZpuassItkWstYPjsDLqgLDZUFB0x06JfblMKEce
-	HJ+x9/3kLArGzU+rIj/PItPGRFbI1n4=
+        bh=y4qFlo9JKyqKZudG5GDk/h3E0UzeJcGC6F3h65EpKa0=;
+        b=3vclpoii0VcB99aiQXsdv+y0H4OgtFBqn/rUNSaCBx7/CGmqpMEoAh+P1J6boYQJ5X
+         BZfgQxIt0jqr0WfLhr+UzaRJSiEtSwIwQN71GbPreIfa0V/3zHd1IQxYtDS6NP4449i1
+         Hk0l0lxAQXVHfdxaLPP3+9J6dxczUvd6nn49y1hUq4kpvdTKRcJe2eV7hTJ4Q6DGagvV
+         zMxvrx+4Lq1LEopoXOPJAn/zI2tWHEix1WgpxYDlC9mOa67LFUlQQhqIwwjuKvm6sAZ7
+         EO9UFSLTqKZo59+FxvCKTLOzFAl9EeeimZDFWwd1nXpa1jLiBh0Vf8UYdnpW97LZehKW
+         gGjg==
+X-Gm-Message-State: AOAM532uTiffMKu5zu8XWvNCT9ZJGrihBAOrsRrsK/s3/Y2xvlDzbsIX
+	qArAc5oedjBGC0EHO+ECptArNMKSEHU=
 X-Google-Smtp-Source: 
- ABdhPJxgwJQgusSi4zhK6T3Ip/3a+QsPQnLj6+wAF3rRG8OhV2vlU8T9CBeFmMH3CgCqJlk3fskX4A==
-X-Received: by 2002:a05:620a:bd6:: with SMTP id
- s22mr21833259qki.348.1639158777707;
-        Fri, 10 Dec 2021 09:52:57 -0800 (PST)
+ ABdhPJyp9fMtJ9YqtkCdO99qS8X+J9l90QjpcDiZWsP2ev5X96olx4wVhak1prOhYvKwBQbQnq1Tow==
+X-Received: by 2002:ac8:5b89:: with SMTP id a9mr32466081qta.363.1639230958593;
+        Sat, 11 Dec 2021 05:55:58 -0800 (PST)
 Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca.
  [209.91.167.254])
         by smtp.gmail.com with ESMTPSA id
- g19sm2216167qtg.82.2021.12.10.09.52.56
+ v9sm3017246qkf.90.2021.12.11.05.55.57
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Dec 2021 09:52:57 -0800 (PST)
+        Sat, 11 Dec 2021 05:55:58 -0800 (PST)
 From: Trevor Woerner <twoerner@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-rockchip][PATCH] rock-pi-e: override syntax fixup
-Date: Fri, 10 Dec 2021 12:52:46 -0500
-Message-Id: <20211210175246.8101-1-twoerner@gmail.com>
+Subject: [meta-rockchip][PATCH v2] override syntax fixup
+Date: Sat, 11 Dec 2021 08:55:43 -0500
+Message-Id: <20211211135543.15070-1-twoerner@gmail.com>
 X-Mailer: git-send-email 2.34.1.75.gabe6bb3905
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 10 Dec 2021 17:53:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55549
+ <yocto@lists.yoctoproject.org>; Sat, 11 Dec 2021 13:56:01 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55550
 
 The _virtual notation is not an override. These syntax "fixes" need to be
 reverted.
@@ -75,17 +74,64 @@ will suffice. So this mistake actually switched the rock-pi-e from
 linux-yocto-dev back to linux-yocto inadvertently but at a time when
 linux-yocto-dev was no longer required.
 
-In the case of the bootloader override, u-boot was always the default, so this
-override was always redundant.
+In the case of the bootloader overrides, u-boot was always the default, so
+these overrides were always redundant.
 
-Therefore, in the end, simply removing both these overrides is the best way
-forward.
+Therefore, in the end, simply removing these overrides is the best way
+forward (considering these aren't doing anything, and the builds are working
+fine regardless).
 
 Signed-off-by: Trevor Woerner <twoerner@gmail.com>
 ---
- conf/machine/rock-pi-e.conf | 2 --
- 1 file changed, 2 deletions(-)
+ conf/machine/include/rk3288.inc            | 1 -
+ conf/machine/include/rk3328.inc            | 2 --
+ conf/machine/include/rk3399.inc            | 2 --
+ conf/machine/include/rockchip-defaults.inc | 1 -
+ conf/machine/rock-pi-e.conf                | 2 --
+ 5 files changed, 8 deletions(-)
 
+diff --git a/conf/machine/include/rk3288.inc b/conf/machine/include/rk3288.inc
+index 5b84e94..1d4a0e3 100644
+--- a/conf/machine/include/rk3288.inc
++++ b/conf/machine/include/rk3288.inc
+@@ -12,5 +12,4 @@ SERIAL_CONSOLES = "115200;ttyS2"
+ KBUILD_DEFCONFIG ?= "multi_v7_defconfig"
+ KERNEL_IMAGETYPE = "zImage"
+ 
+-PREFERRED_PROVIDER:virtual/bootloader ?= "u-boot"
+ UBOOT_SUFFIX ?= "bin"
+diff --git a/conf/machine/include/rk3328.inc b/conf/machine/include/rk3328.inc
+index 0f3a730..acc9afd 100644
+--- a/conf/machine/include/rk3328.inc
++++ b/conf/machine/include/rk3328.inc
+@@ -19,5 +19,3 @@ TFA_BUILD_TARGET = "bl31"
+ 
+ UBOOT_SUFFIX ?= "itb"
+ UBOOT_ENTRYPOINT ?= "0x06000000"
+-
+-PREFERRED_PROVIDER:virtual/bootloader ?= "u-boot"
+diff --git a/conf/machine/include/rk3399.inc b/conf/machine/include/rk3399.inc
+index 09c87c0..1e6c3b6 100644
+--- a/conf/machine/include/rk3399.inc
++++ b/conf/machine/include/rk3399.inc
+@@ -19,5 +19,3 @@ TFA_BUILD_TARGET = "bl31"
+ 
+ UBOOT_SUFFIX ?= "itb"
+ UBOOT_ENTRYPOINT ?= "0x06000000"
+-
+-PREFERRED_PROVIDER:virtual/bootloader ?= "u-boot"
+diff --git a/conf/machine/include/rockchip-defaults.inc b/conf/machine/include/rockchip-defaults.inc
+index 455cca8..ca94249 100644
+--- a/conf/machine/include/rockchip-defaults.inc
++++ b/conf/machine/include/rockchip-defaults.inc
+@@ -5,7 +5,6 @@ PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
+ KCONFIG_MODE ?= "alldefconfig"
+ 
+ # xserver
+-PREFERRED_PROVIDER:virtual/xserver = "xserver-xorg"
+ XSERVER = " \
+ 	xserver-xorg \
+ 	xserver-xorg-utils \
 diff --git a/conf/machine/rock-pi-e.conf b/conf/machine/rock-pi-e.conf
 index 7f49c9f..0e2856f 100644
 --- a/conf/machine/rock-pi-e.conf
