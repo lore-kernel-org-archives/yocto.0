@@ -1,252 +1,292 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EC649C433EF
-	for <webhook@archiver.kernel.org>; Mon, 13 Dec 2021 17:36:21 +0000 (UTC)
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com
- [209.85.219.53])
- by mx.groups.io with SMTP id smtpd.web09.14365.1639416981333430985
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C7E8AC433F5
+	for <webhook@archiver.kernel.org>; Mon, 13 Dec 2021 22:19:03 +0000 (UTC)
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com
+ [209.85.215.175])
+ by mx.groups.io with SMTP id smtpd.web11.18036.1639433942488912665
  for <yocto@lists.yoctoproject.org>;
- Mon, 13 Dec 2021 09:36:21 -0800
+ Mon, 13 Dec 2021 14:19:02 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=TxAeuhNZ;
- spf=pass (domain: gmail.com, ip: 209.85.219.53, mailfrom: raj.khem@gmail.com)
-Received: by mail-qv1-f53.google.com with SMTP id i12so15031726qvh.11
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=CYCZ6L2S;
+ spf=pass (domain: gmail.com, ip: 209.85.215.175,
+ mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pg1-f175.google.com with SMTP id 200so6929812pgg.3
         for <yocto@lists.yoctoproject.org>;
- Mon, 13 Dec 2021 09:36:21 -0800 (PST)
+ Mon, 13 Dec 2021 14:19:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Q9z85AGZgsbwJqItIFkJD2DkuJllE0Szues4CN0VdDA=;
-        b=TxAeuhNZbxJogbjd4jN1HBRMPYAsKTncHokp1JefEwZxdLom8QVoVv8Pp78ar8kcOv
-         1bQzSJB6riA5NOULYq1IMpo6oArP05eiTx42mD/ICNkWR/4QzDwnnC/q0esl8USG18uw
-         mJm8/pudADEzr6Qeqs+H4fKkWKYo2RuXteEl9a5KVElO766heMOpQTME4RnbWS+BAlUC
-         y7nV+D9P3LogJc/yuHWfsv4OuFCC9W+81CgnA0ARzbwtHBdaArGae+XEG29Lwf0R2Sao
-         HVJTMg4bAqsSK2uMdi/2u3PwJTosh0D7CVKnTctyiGfB8PyRENt+eNRHpOV8pIfMK2FI
-         5krw==
+        h=from:to:subject:date:message-id:mime-version:content-language
+         :thread-index;
+        bh=Tlos53MZ5DEfnTHtb25IULmc4FzcZqOFowG2ENEvWn0=;
+        b=CYCZ6L2Sh6lzEALUJZ3xl1R5OXvujM0WUk9piQPNkADxQfr0z/tLVypsIqhv8L8OLV
+         VH8rv4RYdVV4xJZAYx68efJhOkOCvgqknognOXPIt+pmmtOVBqJGbOLBkTwaHe4TJE7W
+         uryEnEmVCiOZ9Po1NIKFcxDdLLiSHKva9kJ1OzYIdZ50WPTlnITV6mnI93ojKaEKuq0w
+         ccWfV1+cUrGOfkfLoL5f8iGySVlR+ifWnqmI7FLYH+CieCqU2b/styqb5+VyAqtMCYXZ
+         BVLvkVaeR5cI1wNjr+RR/Zwmg1aosKIrZxd1vrgHShIoOZEFw7N2Jt0aHCE3O1l+ljeo
+         YKZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Q9z85AGZgsbwJqItIFkJD2DkuJllE0Szues4CN0VdDA=;
-        b=gEdccH1R+Ja5BFnEnlk1xPSyDXelfvHcfuycX4qe0oeHmDygQ/Y0i7qUArkgT9m312
-         OKDY7qS3SWw/heLYoHGQqxuWQC6fVtNBfAJwCsnV/Po9l2yacgZlLCYJJQ+Jcm906LrK
-         k13mXyrX0uVDb9svecMNqN7Ko0bNN3APkHCc3lhsnCOPMxa5nRCqLvQ4jHpRYE3tMUoZ
-         n/A5JM7vGqzNmgoktc58PwFcf0ZI6qhAfUF+zkjHKn6QjtsNr/5O4t1jsqBhbCiTnWrh
-         2M7KCM75c941NTS7yBqloJak9R2WEj5JTI3tqSvPAC8HkZiLFiTheKseli6kiTZBHo60
-         NYig==
-X-Gm-Message-State: AOAM532dSkmS/nhevPzpIHV42jcrRmBHKJ/QVxgPJt7hKW3IbiJGwYFm
-	dtBGW6n0SVY6C4eiaST7GlL19JuLd3hWI9Al+/Y=
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-language:thread-index;
+        bh=Tlos53MZ5DEfnTHtb25IULmc4FzcZqOFowG2ENEvWn0=;
+        b=TUD6yWpJUglKAEIA4aM10L0YWHyNKEf3mSY+KK/XCcBQqsaWPRSte9XOq1DtRQYL0j
+         0rwJbkLEDYLCyhN7UERnhEl4n10Krk/LCqisGZ2JpRQl2eC8kIImRjA7xELvbSwXjk0e
+         XL7Y2ZDP/Trk40/9W/gyH6LHtbUEPeCLMNxv766cGtSwNl6bwBKthZakxiuAU3tPYfM2
+         yhMzez5GplpaJGCZdAvfZ+v9l1s5HRQJjpmOvRplCW2MDe4v0HjuzhfG2aYiS6G3kNMF
+         eYzohfXIbfi7DlW0Ypfq/rfL8vHt52s+pB7lg0PX00jevpPLG3Ol9MEOsTP12aZXA8Zt
+         w5bw==
+X-Gm-Message-State: AOAM533gCKVjEd3DYO0GmwGBhUHBkriedTajDcsmAcfc1ahry8mCFNYr
+	WMEWKfGByzHLeIpoxhBY+mI=
 X-Google-Smtp-Source: 
- ABdhPJxtSkAZZxyhVOTeYS8k+9CgLG8ufESgf5POWmIcq0xrVRmPKhx1oLUS9wQDVLME7D9bqjOitrsa/ITPydqLyJo=
-X-Received: by 2002:a05:6214:2429:: with SMTP id
- gy9mr203364qvb.36.1639416980290;
- Mon, 13 Dec 2021 09:36:20 -0800 (PST)
+ ABdhPJzYdq0FGJOZgJKyDEFRaOiDSlatY/3sNAQeJpwPKzYx547ZllZfOwHpswwZMSeqE62lA0NUqA==
+X-Received: by 2002:a63:864a:: with SMTP id x71mr1001422pgd.297.1639433941875;
+        Mon, 13 Dec 2021 14:19:01 -0800 (PST)
+Received: from skjolley ([2600:8800:1d92:f800:a505:753b:e452:1553])
+        by smtp.gmail.com with ESMTPSA id
+ h13sm13137565pfv.84.2021.12.13.14.19.00
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 13 Dec 2021 14:19:01 -0800 (PST)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@lists.yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 13 Dec 2021 15:19:00 -0700
+Message-ID: <12ff01d7f06f$6e5e2a20$4b1a7e60$@gmail.com>
 MIME-Version: 1.0
-References: <20211116153256.3639663-1-quentin.schulz@theobroma-systems.com>
- <CAMKF1sq+cj8e31L1ExHSKckEVab-ZdeUCF3_CTSr0VPtZ=_sVQ@mail.gmail.com>
- <20211116170406.abau3j6liwsdonbp@fedora>
- <CAMKF1srfKKzNYBJPMKo_V13QKXuq1+mz-ULDd7hk3UEH_QwCNQ@mail.gmail.com>
- <20211116171242.7dyycd3d2qwb4ske@fedora>
- <CAMKF1soUeJES6ZG-wvng3VDfW_unw_7Fo4KSPWr3Cr8uR9T=eA@mail.gmail.com>
- <69C8168A-27F2-4B12-9592-264E80EFBC2D@0leil.net>
- <CAMKF1sq2vE9NuXpLYG6upqxBfa7XZ9yO0G2qNe-+yRBMcaTxVg@mail.gmail.com>
- <20211213090032.dy47s56sykoikbfc@fedora>
- <CAMKF1srokMzJfW8ZU=djZVaaXUTdXd9giCz6GgbhqX+X7RU8kQ@mail.gmail.com>
- <C99AA08F-5ECC-4989-8B8B-F4C6EF182ABD@0leil.net>
-In-Reply-To: <C99AA08F-5ECC-4989-8B8B-F4C6EF182ABD@0leil.net>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 13 Dec 2021 09:35:53 -0800
-Message-ID: 
- <CAMKF1sorO4VR2GaN0gn2rS5-Lti_rXGy=9GsQWCgEAgN5gO9nQ@mail.gmail.com>
-Subject: Re: [yocto] [meta-rockchip][PATCH] kernel: linux-yocto: fix broken
- Ethernet MAC controller on RK3399 on 5.14 >= version <= 5.14.11
-To: Quentin Schulz <foss+yocto@0leil.net>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>,
-	Quentin Schulz <quentin.schulz@theobroma-systems.com>,
- Trevor Woerner <twoerner@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_1300_01D7F034.C2019C10"
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-us
+Thread-Index: AQF+70POaus2QI3xv8luQ5IxLzyoIg==
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 13 Dec 2021 17:36:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55563
+ <yocto@lists.yoctoproject.org>; Mon, 13 Dec 2021 22:19:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55564
 
-On Mon, Dec 13, 2021 at 9:18 AM Quentin Schulz <foss+yocto@0leil.net> wrote=
-:
->
-> Hi Khem,
->
-> On December 13, 2021 4:04:03 PM GMT+01:00, Khem Raj <raj.khem@gmail.com> =
-wrote:
-> >On Mon, Dec 13, 2021 at 1:00 AM Quentin Schulz <
-> >quentin.schulz@theobroma-systems.com> wrote:
-> >
-> >> Hi Trevor,
-> >>
-> >> Gentle ping :)
-> >>
-> >> Honister 3.4.1 being out it's less of an issue but the question remain=
-s
-> >> at least for settling on a policy :)
-> >
-> >
-> >Do we still need this patch ? I think now that dot release is out it=E2=
-=80=99s less
-> >of a problem. Version specific patching will set a different preset for =
-the
-> >layer to carry unexcercised patches
-> >
->
-> We need this patch for honister 3.4 but what I meant is that even though =
-it's not needed for honister >=3D 3.4.1, I'm still interested in what the p=
-olicy should be. Especially what we should have done between 3.4 and 3.4.1,=
- before the latter was released.
->
-> I understand the precedent it creates but also, it's a bit sad for a "BSP=
-" layer to have some support broken between Yocto releases.
+This is a multipart message in MIME format.
 
-I agree with you that broken is not good as it was for sometime, but
-now with the latest  supported release in 3.4 series ( which is 3.4.1)
-things should be good.
+------=_NextPart_000_1300_01D7F034.C2019C10
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
->
-> Cheers,
-> Quentin
->
-> >
-> >>
-> >> Cheers,
-> >> Quentin
-> >>
-> >> On Tue, Nov 16, 2021 at 10:50:13AM -0800, Khem Raj wrote:
-> >> > On Tue, Nov 16, 2021 at 10:03 AM Quentin Schulz <foss@0leil.net> wro=
-te:
-> >> > >
-> >> > >
-> >> > >
-> >> > > On November 16, 2021 6:45:05 PM GMT+01:00, Khem Raj <
-> >> raj.khem@gmail.com> wrote:
-> >> > > >On Tue, Nov 16, 2021 at 9:12 AM Quentin Schulz <
-> >> > > >quentin.schulz@theobroma-systems.com> wrote:
-> >> > > >
-> >> > > >> On Tue, Nov 16, 2021 at 09:08:41AM -0800, Khem Raj wrote:
-> >> > > >> > On Tue, Nov 16, 2021 at 9:04 AM Quentin Schulz
-> >> > > >> > <quentin.schulz@theobroma-systems.com> wrote:
-> >> > > >> > >
-> >> > > >> > > On Tue, Nov 16, 2021 at 09:00:42AM -0800, Khem Raj wrote:
-> >> > > >> > > > On Tue, Nov 16, 2021 at 7:52 AM Quentin Schulz
-> >> > > >> > > > <quentin.schulz@theobroma-systems.com> wrote:
-> >> > > >> > > > >
-> >> > > >> > > > > From Linux kernel v5.14 to v5.14.11 (both included), th=
-e
-> >> Ethernet
-> >> > > >> MAC
-> >> > > >> > > > > controller found on RK3399 is not working.
-> >> > > >> > > > >
-> >> > > >> > > > > A fix is available in v5.14.12 and later (available als=
-o in
-> >> v5.15)
-> >> > > >> > > > > which is provided here and applied to linux-yocto sourc=
-e
-> >> tree if
-> >> > > >> > > > > linux-yocto version is of the impacted ones.
-> >> > > >> > > > >
-> >> > > >> > > > > The conditional patching is unfortunately required beca=
-use
-> >> > > >> Honister 3.4
-> >> > > >> > > > > has linux-yocto v5.14.9 and Honister 3.4.1 will have at
-> >> least
-> >> > > >> > > > > linux-yocto v5.14.14.
-> >> > > >> > > >
-> >> > > >> > > > Patching piece below looks quite a bit.
-> >> > > >> > > > lets just fix v5.14.14 and dont worry about 3.4
-> >> > > >> > > >
-> >> > > >> > >
-> >> > > >> > > v5.14.14 is already fixed. The only release currently is 3.=
-4
-> >> and I hit
-> >> > > >> > > that issue, hence the patch.
-> >> > > >> > > I assume not everybody is updating to 3.4.1 when it's out, =
-I've
-> >> seen
-> >> > > >> > > people running behind dot releases.
-> >> > > >> > > What's bothering you?
-> >> > > >> >
-> >> > > >> > once dot release is out then thats whats maintained not the
-> >> original
-> >> > > >> > release since they are incremental.
-> >> > > >> > the anon python to apply a patch. Can you explain why we want=
- to
-> >> patch
-> >> > > >> > applied this way ?
-> >> > > >> >
-> >> > > >>
-> >> > > >> I could define a python function and use it like this:
-> >> > > >> SRC_URI:append:rk3399 =3D "${@rk3399_fix_mac(d)}"
-> >> > > >>
-> >> > > >> Would that work better for you?
-> >> > > >
-> >> > > >
-> >> > > >I am not yet convinced why should we have such version specific p=
-atch
-> >> > > >
-> >> > >
-> >> > > If you could explain what's *really* bothering you, I could try to
-> >> find a proper explanation or agree with you but it's a bit too vague t=
-o me
-> >> right now. Anyway, I'll do some guesses in the next paragraphs.
-> >> > >
-> >> > > Because Ethernet does not work for all RK3399-based boards in the
-> >> latest and only release of Honister?
-> >> >
-> >> > meta-rockchip does not have honister branch for now. So it expects
-> >> > master to keep working with honister for now. kernel upgrades are
-> >> > already committed into honister branch on meta-yocto-bsps so fix it
-> >> > already available in latest honister
-> >> > branch and will be in imminent point release soon as well.
-> >> >
-> >> > >
-> >> > > meta-rockchip is the BSP layer for Rockchip based devices, if not
-> >> there, where should I put this patch?
-> >> > >
-> >> > > Or are we just going to say "Ethernet does not work, we know" to
-> >> people asking instead of having this patch in? Obviously you could tel=
-l
-> >> them to upgrade their oe-core/poky git repo to rolling honister or 3.4=
-.1
-> >> once it's out but having this patch in avoid those questions.
-> >> > >
-> >> >
-> >> > I would say yes, document it as that of a known issue and possible f=
-ix
-> >> > if someone is using exact point release. They might have snapshotted
-> >> > meta-rockpi too and in that case it will be easy for them to carry a
-> >> > local patch if needed.
-> >> > vesion specific patching would also be setting a not so desired
-> >> > patching practice, so I am trying to avoid it if we can.
-> >> >
-> >> > > I understand we're talking about policy here. I am not fond of thi=
-s
-> >> patch either but Ethernet is quite critical on boards which don't have=
- WiFi
-> >> for example. I don't have anything better to suggest to fix this in th=
-e
-> >> *latest* release.
-> >> >
-> >> > Update to latest honister branch or wait for 3.4.1, would be my
-> >> suggestion.
-> >> >
-> >> > >
-> >> > > Cheers
-> >> > > Quentin
-> >> > > >>
-> >> > > >>
-> >> > > >> Cheers,
-> >> > > >> Quentin
-> >> > > >>
-> >>
+All,
+
+ 
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+<https://bugzilla.yoctoproject.org/createaccount.cgi>
+https://bugzilla.yoctoproject.org/createaccount.cgi
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 399
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.4", "3.5, "3.99" and "Future", the more pressing/urgent issues
+being in "3.4" and then "3.5".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_1300_01D7F034.C2019C10
+Content-Type: text/html;
+	boundary="----=_NextPart_000_20DB_01D7EAAE.1F2BC410";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The triage team is starting to try and =
+collect up and classify bugs which a newcomer to the project would be =
+able to work on in a way which means people can find them. They're being =
+listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a> and how to create a bugzilla account at: <a =
+href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
+style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
+/span></a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 399 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.4&#8221;, &#8220;3.5, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.4&quot; and then &#8220;3.5&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_000_1300_01D7F034.C2019C10--
+
 
