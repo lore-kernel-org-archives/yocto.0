@@ -1,138 +1,151 @@
-Return-Path: <joseantonio.cardenas@niko.eu>
+Return-Path: <l.v.d.beek@student.tue.nl>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 48186C433EF
-	for <webhook@archiver.kernel.org>; Mon, 13 Dec 2021 11:26:36 +0000 (UTC)
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com
- (EUR04-VI1-obe.outbound.protection.outlook.com [40.107.8.47])
- by mx.groups.io with SMTP id smtpd.web12.10067.1639394793592989974
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 86C67C433F5
+	for <webhook@archiver.kernel.org>; Mon, 13 Dec 2021 14:40:10 +0000 (UTC)
+Received: from EUR02-AM5-obe.outbound.protection.outlook.com
+ (EUR02-AM5-obe.outbound.protection.outlook.com [40.107.0.99])
+ by mx.groups.io with SMTP id smtpd.web08.11730.1639406407549786629
  for <yocto@lists.yoctoproject.org>;
- Mon, 13 Dec 2021 03:26:35 -0800
+ Mon, 13 Dec 2021 06:40:10 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@niko.eu header.s=selector2 header.b=JvmEzvCp;
- spf=pass (domain: niko.eu, ip: 40.107.8.47,
- mailfrom: joseantonio.cardenas@niko.eu)
+ dkim=pass header.i=@student.tue.nl header.s=selector1 header.b=c1FiRcgB;
+ spf=pass (domain: student.tue.nl, ip: 40.107.0.99,
+ mailfrom: l.v.d.beek@student.tue.nl)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AyNI1Ie3O8DlbciNizdgJ+3zA3AjPFyfpSK/myIgFidFpBd24fmtPdWxusJgZomZzfSyvVklDRSEC3o0XIKD5UMbe9HN3EfcjfmkqzbZnzvOZ+Pqbytdm1ADeCXZjYAvmnIz4lwPJZKlW4e+oC6v2A5vw08tpESqsLNQ7buRN5CimZpWfqk1+6X/F898m2hfCFTUt7MPURZwlz3eCqNlaoFOZ8szu5BnJGAKtkV8cvq8E2410TcoLCmnRrlMAVNh4jgIwxePi28drl+N6WvwKEhsdBk7yFFLJrxvbaVjREElvyAkAroHV4ZkMZWaAfe8DUw05V2xuSYIesCTKp4lqA==
+ b=kvV9ymmJ1KsyCFmRpuxF43prTN+3MKXMpWNqV1QhuB++xQHikUssDukUKNd8WyH10o0vq1ukPyvT4n01eldJOxpdOQ5rr05ZeX+6uvssEziDFS66hR4yGD8xDubmEoJuRqud2zKJIwpcdXSPYMCkEEZ2RoqJcZTrQTDH/sgzcNUUv0QCevwtu2PB4akPdCTZHrmWPFePszZ/Le+YObm8nqyScimofFpz5A+J4/RGduDD8nIcslsx8y1AHQFFY5PW8UmnGLfr7b3ToDzpeva1mraZohk2w/k9RCCplU/jC8Esbbl2rDyt7zqh7vNVxYbd5Q8J8oX2IgTodOi6H0fb1A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=266w0T6vCJKywGLVpd9ktXQqMO+3jhtsXcEZ4ClJnJg=;
- b=S4bZXH6LSBRCmOF2RCBZv4g/L1pCUyK3iHgBRxdCpeAT2G2i72h/jd0da6Y3erMcswKI5kePVANAgg0j8USqEfl+1End7GPlAZwKAbn9wYtilJ9eaRG+Nay99xXIio84RiUVcIeEbmaQoUXAFwJ4niwRi2IqRrIqy59pR4MuB63QVEf8QYw8JYXE5Ji+QIeHlJyX43nwR5mKHwsRXPKHXb5TgEvXFCU7AAdmrnI7o9QOijPC6OjOcamf8taazysYGi1UvXwxRiguj4ZJTyMXD/tobNOK3/y25EeQNpQZyJIJI4xtNsmRf/sC9pWrUI01jjW3xpwmZuGIn0vz0M6a5Q==
+ bh=20xOqeoqal54hrv6ZBRpLXdt0Myph2REzZFj+pglBMU=;
+ b=HxaUzVumP2+Y/pi3SGkmZraKb+ao0GXCDVWawMmi9YN7fvX9yTO7sAQG48pQuOk339wcyb31d62oc2oxtH+EgzTJiTpuxze9PEd4LIsl0X8/iYI0BLhamHQNh1XN/tm1otI3jRs8ETiQYl4e9kMltjLEyetL3eyStaVYappkzItWT1YBgcZAxKO8r6pbQG58X/ycWk3xtLgcFfRvQ/b8Rl8hg+XDMIoiG3BEfczM311u6gEqrEG5M5/lJIp/2VZDORuEZzeN/Zg+Jl0/6c+n4ie/81zy31BOy80/qDFJnZVzKUaz00uOu+DzeDZ7i+chQr/nVDcvJzFda0BBuH+YBw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=niko.eu; dmarc=pass action=none header.from=niko.eu; dkim=pass
- header.d=niko.eu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=niko.eu; s=selector2;
+ smtp.mailfrom=student.tue.nl; dmarc=pass action=none
+ header.from=student.tue.nl; dkim=pass header.d=student.tue.nl; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=student.tue.nl;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=266w0T6vCJKywGLVpd9ktXQqMO+3jhtsXcEZ4ClJnJg=;
- b=JvmEzvCpmJ8rD2IK6FmAG3atuOKxOB1+h1buWeEvUs0qtUxSkYIptPNT39fLMSPGJJIPMImv0Mv8fotvIjA8KVg5fwnHaLzqkbteix4zuBSUGlavaNQN/lKJSNRnuT75BbYOFyv3cn5YliFdtEtGtR3+SnoRRqMx4GgaBL6rUS0=
-Received: from PR3PR08MB5657.eurprd08.prod.outlook.com (2603:10a6:102:87::14)
- by PAXPR08MB6464.eurprd08.prod.outlook.com (2603:10a6:102:df::22) with
+ bh=20xOqeoqal54hrv6ZBRpLXdt0Myph2REzZFj+pglBMU=;
+ b=c1FiRcgBONxy9nS8h6snJP7kfRvEa7dV8Axhp4kigUJ0gsnQfUegtmfu7qTHOeGg/ziEaci8wB3hrg2kd3Zlo0riT8W3I37jsfvalG/2EWqXD512QrQADPUXNgefD0n1g6X4uGZJfW/oipCjGElVevtIELCyz1Dh+srfGtbPqtdF39WyRfGfnkwhtSGzK5Abt1YLX3KHVTlv8XPZhP0DzUTK+3FgoXYdyS978k388l1zuldma43HYok4oSPaKpNCDXtlMP6xjZARDjPvuiEv/4RDiiWEgbaFr05tl70iQ/UXm6AfMXfGsQHS4STyZi711nHQXo1p/68OSrXrUewVkg==
+Received: from AM0PR09MB4148.eurprd09.prod.outlook.com (2603:10a6:208:1a0::22)
+ by AM9PR09MB4529.eurprd09.prod.outlook.com (2603:10a6:20b:283::15) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.13; Mon, 13 Dec
- 2021 11:26:29 +0000
-Received: from PR3PR08MB5657.eurprd08.prod.outlook.com
- ([fe80::9d42:8737:5d7f:e761]) by PR3PR08MB5657.eurprd08.prod.outlook.com
- ([fe80::9d42:8737:5d7f:e761%6]) with mapi id 15.20.4778.017; Mon, 13 Dec 2021
- 11:26:29 +0000
-From: "Cardenas Jose Antonio (JCARDENA)" <JoseAntonio.Cardenas@niko.eu>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.17; Mon, 13 Dec
+ 2021 14:40:05 +0000
+Received: from AM0PR09MB4148.eurprd09.prod.outlook.com
+ ([fe80::3138:623c:2402:11f5]) by AM0PR09MB4148.eurprd09.prod.outlook.com
+ ([fe80::3138:623c:2402:11f5%6]) with mapi id 15.20.4778.017; Mon, 13 Dec 2021
+ 14:40:05 +0000
+From: =?iso-8859-1?Q?Beek=2C_L=E9on_van_de?= <l.v.d.beek@student.tue.nl>
 To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: help with ERROR: Nothing RPROVIDES <recipe> error
-Thread-Topic: help with ERROR: Nothing RPROVIDES <recipe> error
-Thread-Index: AdfwE+RjtuHOs8LCT+CLL+ixESaxTQ==
-Date: Mon, 13 Dec 2021 11:26:29 +0000
+Subject: Is it possible to run a read-only fs without IMAGE_FEATURE =
+ "read-only-rootfs"
+Thread-Topic: Is it possible to run a read-only fs without IMAGE_FEATURE =
+ "read-only-rootfs"
+Thread-Index: AdfwLr7J66JOCVomR+qhS+TH+dfZ1g==
+Date: Mon, 13 Dec 2021 14:40:05 +0000
 Message-ID: 
- <PR3PR08MB5657B3DDFFDB5107D8BB07F38B749@PR3PR08MB5657.eurprd08.prod.outlook.com>
-Accept-Language: es-ES, en-US
-Content-Language: es-ES
+ <AM0PR09MB414814992DC0FEF845E33BB3AC749@AM0PR09MB4148.eurprd09.prod.outlook.com>
+Accept-Language: nl-NL, en-US
+Content-Language: nl-NL
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=niko.eu;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: fbfc2120-d008-4308-6cdc-08d9be2b68ac
-x-ms-traffictypediagnostic: PAXPR08MB6464:EE_
+x-ms-office365-filtering-correlation-id: 80585052-f7a2-4615-8d22-08d9be4673fd
+x-ms-traffictypediagnostic: AM9PR09MB4529:EE_
 x-microsoft-antispam-prvs: 
- <PAXPR08MB646485A6DEA34D62797583078B749@PAXPR08MB6464.eurprd08.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5516;
+ <AM9PR09MB452967D88D27BAA66ADC8887AC749@AM9PR09MB4529.eurprd09.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info: 
- 1aLZKBoY7+aaLyNUbs2UL0z+cvu2YliH1Of1QvGP/H5HohGx8KBEAPrPCh64nUoNG51LQ9DRtEEEdBPYnOqtFJp/CJjnMLbzRbA/gjAF5J0sUQzQFi1GHDNZo9dBo8kDthn9qT+fou+OINEi3Rb2a9Fl2tM+Abpz56kGxoT0UMD/UEmjFb35KaNNiRaOlXVxXz3CunRzFS5p+5muW9FCFjECVvizArdBN12giaz/IF/05HWG7HFHBUf6K4Av45pBjSVZ4gUlkQMHg0g4HaYxnAnBiHvg3+WfR+HqdsPxQGCkhF391Zp0zOfOx7H8dl9CKB7s4+SYObo0joXG1D/91chB880dAQdO3fJ0q3GlGLW+/mPtVhCs4uoHxkWiveZzRY9+kz+HP1I97KqBKIugScXEkuURyQcSt89MFJlYdnB+BzVJaUKID1nMRk8yufFxEqz448MkwWnzhf3IOMFiBZh0R6ch3z6LqGhCV6Sry+zlVCBKHoGlVCgUURfDVAak4AMmZKtufLI4UJT3+G84ZuNJ/g+C4Vpb3pIguMgxagxrmUCOAmUKB+T3wgSrOZg+WJWz4Q+Mx4tzRb2ANDDvhEsUFRsENJBvFRkPO3WY8m6OtNPe8w2tzbgIaRHvlktKnE7m3PbaBEtWhUnsxOXWRcPnuepIkAVGIFMrz8WGTIm0O1bqRaS8bqMq0Yjt7SReg5GKN8l//BBZXKd0xXfwJw==
+ gcNJTKpTwlk3N075hhtlNF9xjfcuyR5E/r/6vn3u3mvdO7loLoRMjFAqFn6KapTiE7MSZUxVcueSjav9wJCc/OMBcVs2I3D4cLi4/mw14dWeudHcL4sIo4qFDKBulPqV3yznMCxV2oZj5D0UvMYWqnn93rKrBFZJjA+H9ms0UrT9gsCunB65E2tXmOMl5q5bmWHeOPKB6biJttlrAXjflNNZmsNhmO6F8HrTOba3F72FuMuLJsfU/B7WHLG755Ha/ML4oXAD0/CqJONMbIY4EkNxjlHaecQpBLLaMa7jxR2I0iTCa6slXXJvz5HTcYNjJYHWuhlJfHh7VLtUPL0kIWCyxbnZhcBpGC6hlLefd1tZKE0CYHPMFt/8WC23lijiSMu47Ldj5fO9G3MX30T7R3aRLMmWDpv9QjDIQVHcHaPX4d4c0BfgaRvNqJZijGD+vWGWxnLAi44IB1BM5LXEIv27yLc+l3pDHpY1jN6idKnOzZBkRNjhpUzv3Tm+WrZfnDRMmQZA753zdC6jH+VwJC13I3z/rp8wVVmLxHZZ4+Tv2z1Nzm2waixDKI8fno4Zpw5FJIhCkZcMxTILfOml3dPm+dosllhxj9e8/X9ASDwGYHXsfWxHjN0qgwD9j9BZyVVKFYNi+RlBjIBN50nsYFN2of+MfPygfXO8wiOMy0sf+gNaCpeVyVoJp3x6+SvNMbn7smBALpAzu0GRGiD/dQ==
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PR3PR08MB5657.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(508600001)(6506007)(7696005)(4744005)(2906002)(9686003)(6916009)(38070700005)(86362001)(5660300002)(8676002)(71200400001)(66446008)(38100700002)(122000001)(316002)(186003)(33656002)(64756008)(66476007)(52536014)(66946007)(66556008)(8936002)(26005)(76116006)(19627235002)(55016003);DIR:OUT;SFP:1101;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR09MB4148.eurprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(2906002)(9686003)(786003)(6916009)(7696005)(71200400001)(52536014)(316002)(186003)(83380400001)(26005)(6506007)(508600001)(64756008)(66556008)(66446008)(4744005)(76116006)(66946007)(66476007)(122000001)(38100700002)(8676002)(8936002)(66574015)(55016003)(86362001)(33656002)(38070700005)(5660300002);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?s/7YaAQx9bpgbDcHHAdv9a9qQT3Vk4yaVB5FRT8VMk67PVMDFyns7k2/6M?=
- =?iso-8859-1?Q?4oGn3eqBjXGFZ4TWoCm6t3WyOEbg5Y+tODoK51e8LGy18VUN9IQ2mEKqVj?=
- =?iso-8859-1?Q?Pvezkz/Rx7ybG6Iv+djDWrvI+LecACblh/TevXZGteoszZ20nmKBBQ0siS?=
- =?iso-8859-1?Q?++yu8QLQE4vWxU4hzjJvPeW59wb0cTDTw9m3nqB8BHPQfux0VAh+FbYvTk?=
- =?iso-8859-1?Q?xn6VX2T4zZ0w4P0SYPvaLE3pKd5pN5ooUPSbxHBb5PHbPFwd0ZxVcLVYoA?=
- =?iso-8859-1?Q?cA8TeDy479hR447eobRy1QzpFEbobP3z78cJIOwWkNNLh/0YrKUQ3xvfY0?=
- =?iso-8859-1?Q?+i5yK74k95dzIzm1u4+85BXZivgEg+sRTVySZ4wnoeCQT58OdJGAjti4I1?=
- =?iso-8859-1?Q?gH29VS0NZ70HxMDlduqCHar0DM9BhIKpinpkqjdqWhM9NDvIr44RqZmYk5?=
- =?iso-8859-1?Q?FiTDkOqZ1CxUsJL8P9vABzdb9JyK1yUM1gsY0Vru1XdwQsr4XX6BAyutG5?=
- =?iso-8859-1?Q?e3FpxJirPV3NgP32xcl80U/KPSAgI0PD3umu7+wndzUQXxD3bIFeY9qWFS?=
- =?iso-8859-1?Q?44LRPpv0LPe2PDE0/kKnKSNcCb7M4qgHq39MmUZq4YZPeSWzneQGJnJs6G?=
- =?iso-8859-1?Q?JSWp98WbIGCjSag5nhBd+uWFr77kpShS2K1CTljkXPyuu5SHAiSh00BuJX?=
- =?iso-8859-1?Q?ha+v50cY8F0ccMH95MjNjJwXxVwXGG9aZ0Dcj9VweR5TzNU1GvISGmc20o?=
- =?iso-8859-1?Q?nYWK7c/INDgr0MQW47dKXtO1pKnYBwzQ5x3yEQVJM1wlr7CRwtJjP09aq3?=
- =?iso-8859-1?Q?yyCbNPX5Jyh6PdNByW2A/y2O+NrrZNDJCo70LW+hrMVk26Xbm4C6bNYxdf?=
- =?iso-8859-1?Q?XPnzJDzcIErjaTu0sU5jlA2zX3XJcNbCyqmJHMK5WCaG+PHrFXPBuJ2TnN?=
- =?iso-8859-1?Q?YJ/RH5gX4tLNX1ka5LXqyPfi8w+46djiKbJ/eg2NDMaK6xdN81+ankno7M?=
- =?iso-8859-1?Q?lMJMt2jjDdqe14EnjtjoFklLGqnm+M/G2eerOvA8aEOJLgC6VWisjsOH+t?=
- =?iso-8859-1?Q?SYHPN3H5geTS+lRd3NP9WgPgNpf6uj0OkAot7UoPt4Hn5oWYBeVQ4mhRMa?=
- =?iso-8859-1?Q?0UVXkznfxec3IEgPeRxt1hjhPGjgx6KCqsTCKQqzK9HIaxbpX0uG6fAHkf?=
- =?iso-8859-1?Q?tg1iUWzrE/yH/EHAN/lKUKUhCWfHQzbcAd9JmggKtcbJXzFR4/euJ0QtJ6?=
- =?iso-8859-1?Q?/fA3Q1RKXbtLTOxy0GvpPmuM6kZG89Xg1gXhel1P/GoTr+XauvaCIi3GI4?=
- =?iso-8859-1?Q?Yo4D+ynRzZze3BcZ+LMTAiE7jkDjeMcdKw7TBxrQb42g8AYXZW4MESUA7N?=
- =?iso-8859-1?Q?Nu93AI8vVEmI+Jxk3OMa5UUQVUQ8UQOeVH2dj+Swl1WblvhNmwndw476B1?=
- =?iso-8859-1?Q?tKgY2XghFLsqk6NKv2AAOxrONqG8+qIWy9lG4T/tXEE8a6Qv4Jncoe9Roy?=
- =?iso-8859-1?Q?zEzCLkgS/DWYXtnF2FsIN7fEvpPCHKPZD9jxVoBp9WIfo2wj+sBfFIiZ0H?=
- =?iso-8859-1?Q?g5mwTaNJqKtQQdLyDMfvVAbvOmXSxL9DFPwVLYg6jDcdDytWVYdbP43j6y?=
- =?iso-8859-1?Q?vduuc2faG9v17yv6zLD8fp3YproIYji/O0YTGRTkZCG/NUDilLW+ZE8F0o?=
- =?iso-8859-1?Q?+U85oqzdEgjBWpQVzPH+Nq8xcEE+xSn03OuAr6LW1KOKx6McOpT4M7Dj5j?=
- =?iso-8859-1?Q?a8Rg=3D=3D?=
+ =?iso-8859-1?Q?X8bhp5AiwDbl/n4S/zTD9HLkc5BJUQ6mOdUO7yOC3SjVL+xSv2XyPLgOXc?=
+ =?iso-8859-1?Q?XWw0Z1DDaswq0aW/cOrkN4NAdTz0aBDu5yQ19lEBovtqvkI1l8MX3mKMKY?=
+ =?iso-8859-1?Q?ihw5TIlgfBsX7HhKRqKzDY6cnhpx2YhFe55P6/jvJ2VM5uJKONK8g/d8cA?=
+ =?iso-8859-1?Q?MVCWAiEUzYxn4EqSIrfKV/utciYxDDIQen6G7sqNTRAASdny/YDuQTwWv+?=
+ =?iso-8859-1?Q?4kWzA0vkTZnDSHMRmKdPR5X0SxZxXg9PVGou+BGnabUWsvKrDg5qQamc/Q?=
+ =?iso-8859-1?Q?BvhtE3Z19eIZksHAOYpKdelbAThYqSn2BGNEyPw6UEReOEMXh1RZVVPx2q?=
+ =?iso-8859-1?Q?Pv6DYhwUL9tACUDsrelTGjfkBuR9RNY2dFvXENOw4TR2qBXiWv9GRazyEa?=
+ =?iso-8859-1?Q?VKGXnCokN7pAoTGNDqYDOtMPxEjKZ7b++rNDg5uvHdoVIFGq50iFx5jTCv?=
+ =?iso-8859-1?Q?hnJ9OdJrCRqTfNswBE5ApABINKbIO9U7tJXyX/lBVRZnuWQ0pBus7Llvip?=
+ =?iso-8859-1?Q?R9SPlRgoeRV93KHlyUcSTMEzVoRvWY8LckMvzgVczInZgIgzW1NOgu1PX0?=
+ =?iso-8859-1?Q?bOQ+RgOA+4b3097WazrYJd6zZVRhrztugoK40xQa58mkWfPhltjeRknGxO?=
+ =?iso-8859-1?Q?+HEYGdq5KFKTxPhcO4Uk7hbfE9sFpKDf8bBGYvvzec8sBArB2/rQ2XO+lB?=
+ =?iso-8859-1?Q?oRYHTDxvypt69ofs+N6aPKmjYxGkkUORsT/eYKDxF9MtyT9643l8aSwz2T?=
+ =?iso-8859-1?Q?7IXkvcT71nbolTCgH4OaL0y7wlDeoLN1b/LofDsdlInt0mU0h3/SdVvNcd?=
+ =?iso-8859-1?Q?o2eJFbnTQZ9BVbw09L5J6Mx2ANDLqxncD2OdTH4MDXV/fX3TOu4WkvUaHo?=
+ =?iso-8859-1?Q?IgypkNsVrs82E2C8RKpaxJE4iHTBXUE9KVmdaaNDVsE717osWs2j/8Yavg?=
+ =?iso-8859-1?Q?H4xXAfpDUTxxcqnaa+J1XcljsFy9h4wjezXXqySzVqNB1Csxue5H4GQzg+?=
+ =?iso-8859-1?Q?FJdMQ+gCvONwDclBify5hmEQtZwn7lLz+FG3OA5FWqnIiPCxTevagYV0v+?=
+ =?iso-8859-1?Q?Ue7w6Dr+jnkL86Od4VlU4VaZMpR4c9tsjkF/M+Z8D+FjueBsfqi8HH5ww9?=
+ =?iso-8859-1?Q?n7i1SMQUVkW/htn2z29HnGj7xJN5D2KB/ZxvJUDSDQ2RCsTFb4f9uD68PM?=
+ =?iso-8859-1?Q?a70OF3qXdhUnISH98ELJLZt/In4cI2qwAkP4kwWLrSdSIoQQaotvE/AoiH?=
+ =?iso-8859-1?Q?DB1ZPf2qdW73I3+CclbuEtlNXuBefC8lYt4k8jLnoRUJ6+NP2qG6C3Lf2A?=
+ =?iso-8859-1?Q?zlALqA1J/7vGN3DbWDXdYO+lgbHlAvL3UZ+9AZPlLuQ6NlJubj/mPzKVYy?=
+ =?iso-8859-1?Q?PK+R8IQJ3g+pKH01ZM0OBlT9nf3ouqLzWEIR6wSpTgF/Zx5hKfmvYEzspO?=
+ =?iso-8859-1?Q?PP/dDh+k/OKpg02SX5kmZLF6NpA9Y2bCQ8n7L+TQ0fCtB4C0GBPIayYu5k?=
+ =?iso-8859-1?Q?5e1RGkgBczOEpvt5vJocphgTwAhpV/gY38bimQlY9mIpNWS8Uu3a81/akv?=
+ =?iso-8859-1?Q?Ai37jQGN/9cHzW1DmbZseJyObLwwHnuRDm7JMk/YxFzd5ImZX+qSGwTHQw?=
+ =?iso-8859-1?Q?F9JFyYk/sODM5VOBs3St/hkJQMjxAIKz0+0vqSNpx+McIApqje5vz8VOpZ?=
+ =?iso-8859-1?Q?tvik+HQIRJXlfDVf80UOvdaEGe3Vb9jP8iI4C9gPmw9DZ009Ndf3+eC9nH?=
+ =?iso-8859-1?Q?RIGg=3D=3D?=
 Content-Type: multipart/alternative;
-	boundary="_000_PR3PR08MB5657B3DDFFDB5107D8BB07F38B749PR3PR08MB5657eurp_"
+	boundary="_000_AM0PR09MB414814992DC0FEF845E33BB3AC749AM0PR09MB4148eurp_"
 MIME-Version: 1.0
-X-OriginatorOrg: niko.eu
+X-OriginatorOrg: student.tue.nl
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PR3PR08MB5657.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR09MB4148.eurprd09.prod.outlook.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- fbfc2120-d008-4308-6cdc-08d9be2b68ac
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Dec 2021 11:26:29.7910
+ 80585052-f7a2-4615-8d22-08d9be4673fd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Dec 2021 14:40:05.1834
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a4faf0fe-ff3f-4912-b675-3cfe1470e385
+X-MS-Exchange-CrossTenant-id: cc7df247-60ce-4a0f-9d75-704cf60efc64
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
 X-MS-Exchange-CrossTenant-userprincipalname: 
- /Mn1U4+RV2cOXLIgSxujOTtIPpctW2psJtSYgPkSQUm0fiIHNC/8a+GmbwYihA4LFc/ctvjiH73hDswy3toni1CdVsN0p/1+jHlqfvLyQ8s=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR08MB6464
+ nnSQOckfVy/l2XH2cxgaxuxjdxuv1HV4kVI7/olX4v0OzliLOb4TlioOX4/lzzsy2C6E8s8/VWTHv6Uwj3HLyfZd4XQN0gkGNJzWLzwtn0s=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR09MB4529
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 13 Dec 2021 11:26:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55557
+ <yocto@lists.yoctoproject.org>; Mon, 13 Dec 2021 14:40:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55558
 
---_000_PR3PR08MB5657B3DDFFDB5107D8BB07F38B749PR3PR08MB5657eurp_
+--_000_AM0PR09MB414814992DC0FEF845E33BB3AC749AM0PR09MB4148eurp_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi all.
+Dear all,
 
-I have added a recipe to BBMASK to skip the processing of this recipe for n=
-ow, but when I try to compile the image i get ERROR: Nothing RPROVIDES <rec=
-ipe> error. It's like I should say to yocto to reparse all recipes but I do=
-n't find the way to do it without remove the build directory and build agai=
-n.
+Currently I have created an image which upon boot mounts my rootfs as reado=
+nly in an overlay with my data partition. I set out to change the FS type o=
+f my rootfs to something that is actuall read-only like squashfs, however I=
+ am getting a kernel panic whenever I boot saying:
 
-Regards.
-Jos=E9
+"Not syncing: vfs: Unable to mount root fs on unknown-blick(179,2)"
 
---_000_PR3PR08MB5657B3DDFFDB5107D8BB07F38B749PR3PR08MB5657eurp_
+The steps I took to convert to a read-only rootfs:
+
+  *   Change -fstype in .wks file to squashfs
+  *   Changed IMAGE_FSTYPE=3D "squashfs wic.bz2", in local.conf, however I =
+do not believe this is necessary actually
+
+Are there steps I am missing? I believe that IMAGE_FEATURE =3D "read-only-r=
+ootfs" should not be necessary as I am mounting the rootfs in an overlay be=
+fore starting /sbin/init , but I might be wrong.
+
+Kind regards,
+
+L=E9on van de Beek
+
+--_000_AM0PR09MB414814992DC0FEF845E33BB3AC749AM0PR09MB4148eurp_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -147,6 +160,12 @@ xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 <style><!--
 /* Font Definitions */
 @font-face
+	{font-family:Helvetica;
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;}
 @font-face
@@ -158,19 +177,99 @@ p.MsoNormal, li.MsoNormal, div.MsoNormal
 	font-size:11.0pt;
 	font-family:"Calibri",sans-serif;
 	mso-fareast-language:EN-US;}
-span.EstiloCorreo17
-	{mso-style-type:personal-compose;
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	font-size:11.0pt;
 	font-family:"Calibri",sans-serif;
-	color:windowtext;}
+	mso-fareast-language:EN-US;}
 .MsoChpDefault
 	{mso-style-type:export-only;
 	font-family:"Calibri",sans-serif;
 	mso-fareast-language:EN-US;}
 @page WordSection1
 	{size:612.0pt 792.0pt;
-	margin:70.85pt 3.0cm 70.85pt 3.0cm;}
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
 div.WordSection1
 	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1120997966;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1798819598 982430998 68354051 68354053 68354049 683=
+54051 68354053 68354049 68354051 68354053;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-font-family:Calibri;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
 --></style><!--[if gte mso 9]><xml>
 <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
@@ -178,24 +277,47 @@ div.WordSection1
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
 </head>
-<body lang=3D"ES" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:bre=
+<body lang=3D"NL" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:bre=
 ak-word">
 <div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi all. <o:p></o:p></p>
+<p class=3D"MsoNormal">Dear all,<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I have added a recipe to BBMASK=
- to skip the processing of this recipe for now, but when I try to compile t=
-he image i get
-<b>ERROR: Nothing RPROVIDES &lt;recipe&gt; </b>error. It&#8217;s like I sho=
-uld say to yocto to reparse all recipes but I don&#8217;t find the way to d=
-o it without remove the build directory and build again.
-<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Currently I have created an ima=
+ge which upon boot mounts my rootfs as readonly in an overlay with my data =
+partition. I set out to change the FS type of my rootfs to something that i=
+s actuall read-only like squashfs, however
+ I am getting a kernel panic whenever I boot saying:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
+family:&quot;Helvetica&quot;,sans-serif;color:#333333;background:white"><o:=
+p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
+family:&quot;Helvetica&quot;,sans-serif;color:#333333;background:white">&#8=
+220;Not syncing: vfs: Unable to mount root fs on unknown-blick(179,2)&#8221=
+;<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Regards. <o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Jos=E9<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">The steps I took to convert to =
+a read-only rootfs:<o:p></o:p></span></p>
+<ul style=3D"margin-top:0cm" type=3D"disc">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l0 level1 =
+lfo1"><span lang=3D"EN-US">Change -fstype in .wks file to squashfs<o:p></o:=
+p></span></li><li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-l=
+ist:l0 level1 lfo1"><span lang=3D"EN-US">Changed IMAGE_FSTYPE=3D &#8220;squ=
+ashfs wic.bz2&#8221;, in local.conf, however I do not believe this is neces=
+sary actually<o:p></o:p></span></li></ul>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Are there steps I am missing? I=
+ believe that IMAGE_FEATURE =3D &quot;read-only-rootfs&quot; should not be =
+necessary as I am mounting the rootfs in an overlay before starting /sbin/i=
+nit , but I might be wrong.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Kind regards,<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">L=E9on van de Beek<o:p></o:p></=
+span></p>
 </div>
 </body>
 </html>
 
---_000_PR3PR08MB5657B3DDFFDB5107D8BB07F38B749PR3PR08MB5657eurp_--
+--_000_AM0PR09MB414814992DC0FEF845E33BB3AC749AM0PR09MB4148eurp_--
 
