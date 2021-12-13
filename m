@@ -1,323 +1,379 @@
-Return-Path: <l.v.d.beek@student.tue.nl>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 86C67C433F5
-	for <webhook@archiver.kernel.org>; Mon, 13 Dec 2021 14:40:10 +0000 (UTC)
-Received: from EUR02-AM5-obe.outbound.protection.outlook.com
- (EUR02-AM5-obe.outbound.protection.outlook.com [40.107.0.99])
- by mx.groups.io with SMTP id smtpd.web08.11730.1639406407549786629
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B3113C433FE
+	for <webhook@archiver.kernel.org>; Mon, 13 Dec 2021 15:04:16 +0000 (UTC)
+Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com
+ [209.85.219.48])
+ by mx.groups.io with SMTP id smtpd.web08.12038.1639407855237885822
  for <yocto@lists.yoctoproject.org>;
- Mon, 13 Dec 2021 06:40:10 -0800
+ Mon, 13 Dec 2021 07:04:15 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@student.tue.nl header.s=selector1 header.b=c1FiRcgB;
- spf=pass (domain: student.tue.nl, ip: 40.107.0.99,
- mailfrom: l.v.d.beek@student.tue.nl)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kvV9ymmJ1KsyCFmRpuxF43prTN+3MKXMpWNqV1QhuB++xQHikUssDukUKNd8WyH10o0vq1ukPyvT4n01eldJOxpdOQ5rr05ZeX+6uvssEziDFS66hR4yGD8xDubmEoJuRqud2zKJIwpcdXSPYMCkEEZ2RoqJcZTrQTDH/sgzcNUUv0QCevwtu2PB4akPdCTZHrmWPFePszZ/Le+YObm8nqyScimofFpz5A+J4/RGduDD8nIcslsx8y1AHQFFY5PW8UmnGLfr7b3ToDzpeva1mraZohk2w/k9RCCplU/jC8Esbbl2rDyt7zqh7vNVxYbd5Q8J8oX2IgTodOi6H0fb1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=20xOqeoqal54hrv6ZBRpLXdt0Myph2REzZFj+pglBMU=;
- b=HxaUzVumP2+Y/pi3SGkmZraKb+ao0GXCDVWawMmi9YN7fvX9yTO7sAQG48pQuOk339wcyb31d62oc2oxtH+EgzTJiTpuxze9PEd4LIsl0X8/iYI0BLhamHQNh1XN/tm1otI3jRs8ETiQYl4e9kMltjLEyetL3eyStaVYappkzItWT1YBgcZAxKO8r6pbQG58X/ycWk3xtLgcFfRvQ/b8Rl8hg+XDMIoiG3BEfczM311u6gEqrEG5M5/lJIp/2VZDORuEZzeN/Zg+Jl0/6c+n4ie/81zy31BOy80/qDFJnZVzKUaz00uOu+DzeDZ7i+chQr/nVDcvJzFda0BBuH+YBw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=student.tue.nl; dmarc=pass action=none
- header.from=student.tue.nl; dkim=pass header.d=student.tue.nl; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=student.tue.nl;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=20xOqeoqal54hrv6ZBRpLXdt0Myph2REzZFj+pglBMU=;
- b=c1FiRcgBONxy9nS8h6snJP7kfRvEa7dV8Axhp4kigUJ0gsnQfUegtmfu7qTHOeGg/ziEaci8wB3hrg2kd3Zlo0riT8W3I37jsfvalG/2EWqXD512QrQADPUXNgefD0n1g6X4uGZJfW/oipCjGElVevtIELCyz1Dh+srfGtbPqtdF39WyRfGfnkwhtSGzK5Abt1YLX3KHVTlv8XPZhP0DzUTK+3FgoXYdyS978k388l1zuldma43HYok4oSPaKpNCDXtlMP6xjZARDjPvuiEv/4RDiiWEgbaFr05tl70iQ/UXm6AfMXfGsQHS4STyZi711nHQXo1p/68OSrXrUewVkg==
-Received: from AM0PR09MB4148.eurprd09.prod.outlook.com (2603:10a6:208:1a0::22)
- by AM9PR09MB4529.eurprd09.prod.outlook.com (2603:10a6:20b:283::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.17; Mon, 13 Dec
- 2021 14:40:05 +0000
-Received: from AM0PR09MB4148.eurprd09.prod.outlook.com
- ([fe80::3138:623c:2402:11f5]) by AM0PR09MB4148.eurprd09.prod.outlook.com
- ([fe80::3138:623c:2402:11f5%6]) with mapi id 15.20.4778.017; Mon, 13 Dec 2021
- 14:40:05 +0000
-From: =?iso-8859-1?Q?Beek=2C_L=E9on_van_de?= <l.v.d.beek@student.tue.nl>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Is it possible to run a read-only fs without IMAGE_FEATURE =
- "read-only-rootfs"
-Thread-Topic: Is it possible to run a read-only fs without IMAGE_FEATURE =
- "read-only-rootfs"
-Thread-Index: AdfwLr7J66JOCVomR+qhS+TH+dfZ1g==
-Date: Mon, 13 Dec 2021 14:40:05 +0000
-Message-ID: 
- <AM0PR09MB414814992DC0FEF845E33BB3AC749@AM0PR09MB4148.eurprd09.prod.outlook.com>
-Accept-Language: nl-NL, en-US
-Content-Language: nl-NL
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 80585052-f7a2-4615-8d22-08d9be4673fd
-x-ms-traffictypediagnostic: AM9PR09MB4529:EE_
-x-microsoft-antispam-prvs: 
- <AM9PR09MB452967D88D27BAA66ADC8887AC749@AM9PR09MB4529.eurprd09.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- gcNJTKpTwlk3N075hhtlNF9xjfcuyR5E/r/6vn3u3mvdO7loLoRMjFAqFn6KapTiE7MSZUxVcueSjav9wJCc/OMBcVs2I3D4cLi4/mw14dWeudHcL4sIo4qFDKBulPqV3yznMCxV2oZj5D0UvMYWqnn93rKrBFZJjA+H9ms0UrT9gsCunB65E2tXmOMl5q5bmWHeOPKB6biJttlrAXjflNNZmsNhmO6F8HrTOba3F72FuMuLJsfU/B7WHLG755Ha/ML4oXAD0/CqJONMbIY4EkNxjlHaecQpBLLaMa7jxR2I0iTCa6slXXJvz5HTcYNjJYHWuhlJfHh7VLtUPL0kIWCyxbnZhcBpGC6hlLefd1tZKE0CYHPMFt/8WC23lijiSMu47Ldj5fO9G3MX30T7R3aRLMmWDpv9QjDIQVHcHaPX4d4c0BfgaRvNqJZijGD+vWGWxnLAi44IB1BM5LXEIv27yLc+l3pDHpY1jN6idKnOzZBkRNjhpUzv3Tm+WrZfnDRMmQZA753zdC6jH+VwJC13I3z/rp8wVVmLxHZZ4+Tv2z1Nzm2waixDKI8fno4Zpw5FJIhCkZcMxTILfOml3dPm+dosllhxj9e8/X9ASDwGYHXsfWxHjN0qgwD9j9BZyVVKFYNi+RlBjIBN50nsYFN2of+MfPygfXO8wiOMy0sf+gNaCpeVyVoJp3x6+SvNMbn7smBALpAzu0GRGiD/dQ==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR09MB4148.eurprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(2906002)(9686003)(786003)(6916009)(7696005)(71200400001)(52536014)(316002)(186003)(83380400001)(26005)(6506007)(508600001)(64756008)(66556008)(66446008)(4744005)(76116006)(66946007)(66476007)(122000001)(38100700002)(8676002)(8936002)(66574015)(55016003)(86362001)(33656002)(38070700005)(5660300002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?X8bhp5AiwDbl/n4S/zTD9HLkc5BJUQ6mOdUO7yOC3SjVL+xSv2XyPLgOXc?=
- =?iso-8859-1?Q?XWw0Z1DDaswq0aW/cOrkN4NAdTz0aBDu5yQ19lEBovtqvkI1l8MX3mKMKY?=
- =?iso-8859-1?Q?ihw5TIlgfBsX7HhKRqKzDY6cnhpx2YhFe55P6/jvJ2VM5uJKONK8g/d8cA?=
- =?iso-8859-1?Q?MVCWAiEUzYxn4EqSIrfKV/utciYxDDIQen6G7sqNTRAASdny/YDuQTwWv+?=
- =?iso-8859-1?Q?4kWzA0vkTZnDSHMRmKdPR5X0SxZxXg9PVGou+BGnabUWsvKrDg5qQamc/Q?=
- =?iso-8859-1?Q?BvhtE3Z19eIZksHAOYpKdelbAThYqSn2BGNEyPw6UEReOEMXh1RZVVPx2q?=
- =?iso-8859-1?Q?Pv6DYhwUL9tACUDsrelTGjfkBuR9RNY2dFvXENOw4TR2qBXiWv9GRazyEa?=
- =?iso-8859-1?Q?VKGXnCokN7pAoTGNDqYDOtMPxEjKZ7b++rNDg5uvHdoVIFGq50iFx5jTCv?=
- =?iso-8859-1?Q?hnJ9OdJrCRqTfNswBE5ApABINKbIO9U7tJXyX/lBVRZnuWQ0pBus7Llvip?=
- =?iso-8859-1?Q?R9SPlRgoeRV93KHlyUcSTMEzVoRvWY8LckMvzgVczInZgIgzW1NOgu1PX0?=
- =?iso-8859-1?Q?bOQ+RgOA+4b3097WazrYJd6zZVRhrztugoK40xQa58mkWfPhltjeRknGxO?=
- =?iso-8859-1?Q?+HEYGdq5KFKTxPhcO4Uk7hbfE9sFpKDf8bBGYvvzec8sBArB2/rQ2XO+lB?=
- =?iso-8859-1?Q?oRYHTDxvypt69ofs+N6aPKmjYxGkkUORsT/eYKDxF9MtyT9643l8aSwz2T?=
- =?iso-8859-1?Q?7IXkvcT71nbolTCgH4OaL0y7wlDeoLN1b/LofDsdlInt0mU0h3/SdVvNcd?=
- =?iso-8859-1?Q?o2eJFbnTQZ9BVbw09L5J6Mx2ANDLqxncD2OdTH4MDXV/fX3TOu4WkvUaHo?=
- =?iso-8859-1?Q?IgypkNsVrs82E2C8RKpaxJE4iHTBXUE9KVmdaaNDVsE717osWs2j/8Yavg?=
- =?iso-8859-1?Q?H4xXAfpDUTxxcqnaa+J1XcljsFy9h4wjezXXqySzVqNB1Csxue5H4GQzg+?=
- =?iso-8859-1?Q?FJdMQ+gCvONwDclBify5hmEQtZwn7lLz+FG3OA5FWqnIiPCxTevagYV0v+?=
- =?iso-8859-1?Q?Ue7w6Dr+jnkL86Od4VlU4VaZMpR4c9tsjkF/M+Z8D+FjueBsfqi8HH5ww9?=
- =?iso-8859-1?Q?n7i1SMQUVkW/htn2z29HnGj7xJN5D2KB/ZxvJUDSDQ2RCsTFb4f9uD68PM?=
- =?iso-8859-1?Q?a70OF3qXdhUnISH98ELJLZt/In4cI2qwAkP4kwWLrSdSIoQQaotvE/AoiH?=
- =?iso-8859-1?Q?DB1ZPf2qdW73I3+CclbuEtlNXuBefC8lYt4k8jLnoRUJ6+NP2qG6C3Lf2A?=
- =?iso-8859-1?Q?zlALqA1J/7vGN3DbWDXdYO+lgbHlAvL3UZ+9AZPlLuQ6NlJubj/mPzKVYy?=
- =?iso-8859-1?Q?PK+R8IQJ3g+pKH01ZM0OBlT9nf3ouqLzWEIR6wSpTgF/Zx5hKfmvYEzspO?=
- =?iso-8859-1?Q?PP/dDh+k/OKpg02SX5kmZLF6NpA9Y2bCQ8n7L+TQ0fCtB4C0GBPIayYu5k?=
- =?iso-8859-1?Q?5e1RGkgBczOEpvt5vJocphgTwAhpV/gY38bimQlY9mIpNWS8Uu3a81/akv?=
- =?iso-8859-1?Q?Ai37jQGN/9cHzW1DmbZseJyObLwwHnuRDm7JMk/YxFzd5ImZX+qSGwTHQw?=
- =?iso-8859-1?Q?F9JFyYk/sODM5VOBs3St/hkJQMjxAIKz0+0vqSNpx+McIApqje5vz8VOpZ?=
- =?iso-8859-1?Q?tvik+HQIRJXlfDVf80UOvdaEGe3Vb9jP8iI4C9gPmw9DZ009Ndf3+eC9nH?=
- =?iso-8859-1?Q?RIGg=3D=3D?=
-Content-Type: multipart/alternative;
-	boundary="_000_AM0PR09MB414814992DC0FEF845E33BB3AC749AM0PR09MB4148eurp_"
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=pcxmGJoW;
+ spf=pass (domain: gmail.com, ip: 209.85.219.48, mailfrom: raj.khem@gmail.com)
+Received: by mail-qv1-f48.google.com with SMTP id j9so14567447qvm.10
+        for <yocto@lists.yoctoproject.org>;
+ Mon, 13 Dec 2021 07:04:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KLKmS0dDdi0kn4pSPLN/HlZoInE3H3+SAKX4wtjpSns=;
+        b=pcxmGJoWXk2bk6+DuCOpdf0uvNtDHTXs9ADVVLKwTbBEFn0Wy63RmHgNViRlpyevzA
+         YRGfiUHNGpXOHaCwOdxiXO3Zm+hs0kom7a7LXnaDiWoicZLUMVXEX+TYoUkUy0jXDp0K
+         4cZJw+fXmBcvj7n77zbSCkIDEoBONzThA16TusPDN53VBdKgN2gCvMizaSwmFJADYi0c
+         6kMS3f54avJECyiYZJ0rzWbwI8o+NDut7i3QForZ4U71xSNO/lsPH3Fr+FZ75VIPE6yD
+         bQRV138aNabKM0JFhSZm9iUDhk8wz0LqRz3658lFDIWQICwfRYmXCnPgDQzfUxiwOsiZ
+         1L+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KLKmS0dDdi0kn4pSPLN/HlZoInE3H3+SAKX4wtjpSns=;
+        b=2vSNAM4+EO/XhkrHewC8RMzFb/q2g1iQAJF94UpIgTuAgDjY9LmDnA2em1knn1lWok
+         xJMijJo+Yw8mHjGixeC8bBbI8Kjkngt97o++IkCFECm0a8ld5RZhyZybUUywFus2fvMp
+         Tz653hC21wkqoIvTIE0TgonzRMIwnh6aRNUeTtn6UiEJZZK+taW6Z082WrNRz0vERV/z
+         4G9VWCB3hz2Y008B4a6tOr6UEUzrBuML03aLXM/FS6IpozjUdlRKJjYk30yQMeHCH0cY
+         OppKzuwM4GSup7VqenL6Cht/OAfLbJ6o+PiyMLI6NRsvTbw1bTxJkAtAqWfE3JtPgI5P
+         PLcg==
+X-Gm-Message-State: AOAM530qazCDK7iw9ju4Lqejpga9ZmiLU8D4Zg4ebbAXNAnGHyIuF+Oa
+	2SQJbi2LkYxOOAktgK95UXKVGsFOEqch70Ob4/E=
+X-Google-Smtp-Source: 
+ ABdhPJzDovaw5teCRaYS2S4HQ10CBRJzqGJAwICcqJxOIT4bRXq5WygWGKtO7HNB8mkmIndyz+bIns0yOTQdNcVlCwo=
+X-Received: by 2002:a05:6214:c28:: with SMTP id
+ a8mr44389599qvd.24.1639407854196;
+ Mon, 13 Dec 2021 07:04:14 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: student.tue.nl
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR09MB4148.eurprd09.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 80585052-f7a2-4615-8d22-08d9be4673fd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Dec 2021 14:40:05.1834
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: cc7df247-60ce-4a0f-9d75-704cf60efc64
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- nnSQOckfVy/l2XH2cxgaxuxjdxuv1HV4kVI7/olX4v0OzliLOb4TlioOX4/lzzsy2C6E8s8/VWTHv6Uwj3HLyfZd4XQN0gkGNJzWLzwtn0s=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR09MB4529
+References: <20211116153256.3639663-1-quentin.schulz@theobroma-systems.com>
+ <CAMKF1sq+cj8e31L1ExHSKckEVab-ZdeUCF3_CTSr0VPtZ=_sVQ@mail.gmail.com>
+ <20211116170406.abau3j6liwsdonbp@fedora>
+ <CAMKF1srfKKzNYBJPMKo_V13QKXuq1+mz-ULDd7hk3UEH_QwCNQ@mail.gmail.com>
+ <20211116171242.7dyycd3d2qwb4ske@fedora>
+ <CAMKF1soUeJES6ZG-wvng3VDfW_unw_7Fo4KSPWr3Cr8uR9T=eA@mail.gmail.com>
+ <69C8168A-27F2-4B12-9592-264E80EFBC2D@0leil.net>
+ <CAMKF1sq2vE9NuXpLYG6upqxBfa7XZ9yO0G2qNe-+yRBMcaTxVg@mail.gmail.com>
+ <20211213090032.dy47s56sykoikbfc@fedora>
+In-Reply-To: <20211213090032.dy47s56sykoikbfc@fedora>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 13 Dec 2021 07:04:03 -0800
+Message-ID: 
+ <CAMKF1srokMzJfW8ZU=djZVaaXUTdXd9giCz6GgbhqX+X7RU8kQ@mail.gmail.com>
+Subject: Re: [yocto] [meta-rockchip][PATCH] kernel: linux-yocto: fix broken
+ Ethernet MAC controller on RK3399 on 5.14 >= version <= 5.14.11
+To: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Cc: Quentin Schulz <foss+yocto@0leil.net>,
+ Trevor Woerner <twoerner@gmail.com>,
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000ca9cdb05d3086226"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 13 Dec 2021 14:40:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55558
+ <yocto@lists.yoctoproject.org>; Mon, 13 Dec 2021 15:04:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55559
 
---_000_AM0PR09MB414814992DC0FEF845E33BB3AC749AM0PR09MB4148eurp_
-Content-Type: text/plain; charset="iso-8859-1"
+--000000000000ca9cdb05d3086226
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Dear all,
+On Mon, Dec 13, 2021 at 1:00 AM Quentin Schulz <
+quentin.schulz@theobroma-systems.com> wrote:
 
-Currently I have created an image which upon boot mounts my rootfs as reado=
-nly in an overlay with my data partition. I set out to change the FS type o=
-f my rootfs to something that is actuall read-only like squashfs, however I=
- am getting a kernel panic whenever I boot saying:
+> Hi Trevor,
+>
+> Gentle ping :)
+>
+> Honister 3.4.1 being out it's less of an issue but the question remains
+> at least for settling on a policy :)
 
-"Not syncing: vfs: Unable to mount root fs on unknown-blick(179,2)"
 
-The steps I took to convert to a read-only rootfs:
+Do we still need this patch ? I think now that dot release is out it=E2=80=
+=99s less
+of a problem. Version specific patching will set a different preset for the
+layer to carry unexcercised patches
 
-  *   Change -fstype in .wks file to squashfs
-  *   Changed IMAGE_FSTYPE=3D "squashfs wic.bz2", in local.conf, however I =
-do not believe this is necessary actually
 
-Are there steps I am missing? I believe that IMAGE_FEATURE =3D "read-only-r=
-ootfs" should not be necessary as I am mounting the rootfs in an overlay be=
-fore starting /sbin/init , but I might be wrong.
+>
+> Cheers,
+> Quentin
+>
+> On Tue, Nov 16, 2021 at 10:50:13AM -0800, Khem Raj wrote:
+> > On Tue, Nov 16, 2021 at 10:03 AM Quentin Schulz <foss@0leil.net> wrote:
+> > >
+> > >
+> > >
+> > > On November 16, 2021 6:45:05 PM GMT+01:00, Khem Raj <
+> raj.khem@gmail.com> wrote:
+> > > >On Tue, Nov 16, 2021 at 9:12 AM Quentin Schulz <
+> > > >quentin.schulz@theobroma-systems.com> wrote:
+> > > >
+> > > >> On Tue, Nov 16, 2021 at 09:08:41AM -0800, Khem Raj wrote:
+> > > >> > On Tue, Nov 16, 2021 at 9:04 AM Quentin Schulz
+> > > >> > <quentin.schulz@theobroma-systems.com> wrote:
+> > > >> > >
+> > > >> > > On Tue, Nov 16, 2021 at 09:00:42AM -0800, Khem Raj wrote:
+> > > >> > > > On Tue, Nov 16, 2021 at 7:52 AM Quentin Schulz
+> > > >> > > > <quentin.schulz@theobroma-systems.com> wrote:
+> > > >> > > > >
+> > > >> > > > > From Linux kernel v5.14 to v5.14.11 (both included), the
+> Ethernet
+> > > >> MAC
+> > > >> > > > > controller found on RK3399 is not working.
+> > > >> > > > >
+> > > >> > > > > A fix is available in v5.14.12 and later (available also i=
+n
+> v5.15)
+> > > >> > > > > which is provided here and applied to linux-yocto source
+> tree if
+> > > >> > > > > linux-yocto version is of the impacted ones.
+> > > >> > > > >
+> > > >> > > > > The conditional patching is unfortunately required because
+> > > >> Honister 3.4
+> > > >> > > > > has linux-yocto v5.14.9 and Honister 3.4.1 will have at
+> least
+> > > >> > > > > linux-yocto v5.14.14.
+> > > >> > > >
+> > > >> > > > Patching piece below looks quite a bit.
+> > > >> > > > lets just fix v5.14.14 and dont worry about 3.4
+> > > >> > > >
+> > > >> > >
+> > > >> > > v5.14.14 is already fixed. The only release currently is 3.4
+> and I hit
+> > > >> > > that issue, hence the patch.
+> > > >> > > I assume not everybody is updating to 3.4.1 when it's out, I'v=
+e
+> seen
+> > > >> > > people running behind dot releases.
+> > > >> > > What's bothering you?
+> > > >> >
+> > > >> > once dot release is out then thats whats maintained not the
+> original
+> > > >> > release since they are incremental.
+> > > >> > the anon python to apply a patch. Can you explain why we want to
+> patch
+> > > >> > applied this way ?
+> > > >> >
+> > > >>
+> > > >> I could define a python function and use it like this:
+> > > >> SRC_URI:append:rk3399 =3D "${@rk3399_fix_mac(d)}"
+> > > >>
+> > > >> Would that work better for you?
+> > > >
+> > > >
+> > > >I am not yet convinced why should we have such version specific patc=
+h
+> > > >
+> > >
+> > > If you could explain what's *really* bothering you, I could try to
+> find a proper explanation or agree with you but it's a bit too vague to m=
+e
+> right now. Anyway, I'll do some guesses in the next paragraphs.
+> > >
+> > > Because Ethernet does not work for all RK3399-based boards in the
+> latest and only release of Honister?
+> >
+> > meta-rockchip does not have honister branch for now. So it expects
+> > master to keep working with honister for now. kernel upgrades are
+> > already committed into honister branch on meta-yocto-bsps so fix it
+> > already available in latest honister
+> > branch and will be in imminent point release soon as well.
+> >
+> > >
+> > > meta-rockchip is the BSP layer for Rockchip based devices, if not
+> there, where should I put this patch?
+> > >
+> > > Or are we just going to say "Ethernet does not work, we know" to
+> people asking instead of having this patch in? Obviously you could tell
+> them to upgrade their oe-core/poky git repo to rolling honister or 3.4.1
+> once it's out but having this patch in avoid those questions.
+> > >
+> >
+> > I would say yes, document it as that of a known issue and possible fix
+> > if someone is using exact point release. They might have snapshotted
+> > meta-rockpi too and in that case it will be easy for them to carry a
+> > local patch if needed.
+> > vesion specific patching would also be setting a not so desired
+> > patching practice, so I am trying to avoid it if we can.
+> >
+> > > I understand we're talking about policy here. I am not fond of this
+> patch either but Ethernet is quite critical on boards which don't have Wi=
+Fi
+> for example. I don't have anything better to suggest to fix this in the
+> *latest* release.
+> >
+> > Update to latest honister branch or wait for 3.4.1, would be my
+> suggestion.
+> >
+> > >
+> > > Cheers
+> > > Quentin
+> > > >>
+> > > >>
+> > > >> Cheers,
+> > > >> Quentin
+> > > >>
+>
 
-Kind regards,
-
-L=E9on van de Beek
-
---_000_AM0PR09MB414814992DC0FEF845E33BB3AC749AM0PR09MB4148eurp_
-Content-Type: text/html; charset="iso-8859-1"
+--000000000000ca9cdb05d3086226
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Helvetica;
-	panose-1:2 11 6 4 2 2 2 2 2 4;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:1120997966;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-1798819598 982430998 68354051 68354053 68354049 683=
-54051 68354053 68354049 68354051 68354053;}
-@list l0:level1
-	{mso-level-start-at:0;
-	mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-font-family:Calibri;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0cm;}
-ul
-	{margin-bottom:0cm;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"NL" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:bre=
-ak-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Dear all,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Currently I have created an ima=
-ge which upon boot mounts my rootfs as readonly in an overlay with my data =
-partition. I set out to change the FS type of my rootfs to something that i=
-s actuall read-only like squashfs, however
- I am getting a kernel panic whenever I boot saying:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:&quot;Helvetica&quot;,sans-serif;color:#333333;background:white"><o:=
-p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:&quot;Helvetica&quot;,sans-serif;color:#333333;background:white">&#8=
-220;Not syncing: vfs: Unable to mount root fs on unknown-blick(179,2)&#8221=
-;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">The steps I took to convert to =
-a read-only rootfs:<o:p></o:p></span></p>
-<ul style=3D"margin-top:0cm" type=3D"disc">
-<li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l0 level1 =
-lfo1"><span lang=3D"EN-US">Change -fstype in .wks file to squashfs<o:p></o:=
-p></span></li><li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-l=
-ist:l0 level1 lfo1"><span lang=3D"EN-US">Changed IMAGE_FSTYPE=3D &#8220;squ=
-ashfs wic.bz2&#8221;, in local.conf, however I do not believe this is neces=
-sary actually<o:p></o:p></span></li></ul>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Are there steps I am missing? I=
- believe that IMAGE_FEATURE =3D &quot;read-only-rootfs&quot; should not be =
-necessary as I am mounting the rootfs in an overlay before starting /sbin/i=
-nit , but I might be wrong.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Kind regards,<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">L=E9on van de Beek<o:p></o:p></=
-span></p>
-</div>
-</body>
-</html>
+<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Mon, Dec 13, 2021 at 1:00 AM Quentin Schulz &lt;<a href=
+=3D"mailto:quentin.schulz@theobroma-systems.com">quentin.schulz@theobroma-s=
+ystems.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;=
+padding-left:1ex;border-left-color:rgb(204,204,204)">Hi Trevor,<br>
+<br>
+Gentle ping :)<br>
+<br>
+Honister 3.4.1 being out it&#39;s less of an issue but the question remains=
+<br>
+at least for settling on a policy :)</blockquote><div dir=3D"auto"><br></di=
+v><div dir=3D"auto">Do we still need this patch ? I think now that dot rele=
+ase is out it=E2=80=99s less of a problem. Version specific patching will s=
+et a different preset for the layer to carry unexcercised patches</div><div=
+ dir=3D"auto"><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;padding-left=
+:1ex;border-left-color:rgb(204,204,204)" dir=3D"auto"><br>
+<br>
+Cheers,<br>
+Quentin<br>
+<br>
+On Tue, Nov 16, 2021 at 10:50:13AM -0800, Khem Raj wrote:<br>
+&gt; On Tue, Nov 16, 2021 at 10:03 AM Quentin Schulz &lt;<a href=3D"mailto:=
+foss@0leil.net" target=3D"_blank">foss@0leil.net</a>&gt; wrote:<br>
+&gt; &gt;<br>
+&gt; &gt;<br>
+&gt; &gt;<br>
+&gt; &gt; On November 16, 2021 6:45:05 PM GMT+01:00, Khem Raj &lt;<a href=
+=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;=
+ wrote:<br>
+&gt; &gt; &gt;On Tue, Nov 16, 2021 at 9:12 AM Quentin Schulz &lt;<br>
+&gt; &gt; &gt;<a href=3D"mailto:quentin.schulz@theobroma-systems.com" targe=
+t=3D"_blank">quentin.schulz@theobroma-systems.com</a>&gt; wrote:<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt;&gt; On Tue, Nov 16, 2021 at 09:08:41AM -0800, Khem Raj wrote=
+:<br>
+&gt; &gt; &gt;&gt; &gt; On Tue, Nov 16, 2021 at 9:04 AM Quentin Schulz<br>
+&gt; &gt; &gt;&gt; &gt; &lt;<a href=3D"mailto:quentin.schulz@theobroma-syst=
+ems.com" target=3D"_blank">quentin.schulz@theobroma-systems.com</a>&gt; wro=
+te:<br>
+&gt; &gt; &gt;&gt; &gt; &gt;<br>
+&gt; &gt; &gt;&gt; &gt; &gt; On Tue, Nov 16, 2021 at 09:00:42AM -0800, Khem=
+ Raj wrote:<br>
+&gt; &gt; &gt;&gt; &gt; &gt; &gt; On Tue, Nov 16, 2021 at 7:52 AM Quentin S=
+chulz<br>
+&gt; &gt; &gt;&gt; &gt; &gt; &gt; &lt;<a href=3D"mailto:quentin.schulz@theo=
+broma-systems.com" target=3D"_blank">quentin.schulz@theobroma-systems.com</=
+a>&gt; wrote:<br>
+&gt; &gt; &gt;&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt;&gt; &gt; &gt; &gt; &gt; From Linux kernel v5.14 to v5.14.11 =
+(both included), the Ethernet<br>
+&gt; &gt; &gt;&gt; MAC<br>
+&gt; &gt; &gt;&gt; &gt; &gt; &gt; &gt; controller found on RK3399 is not wo=
+rking.<br>
+&gt; &gt; &gt;&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt;&gt; &gt; &gt; &gt; &gt; A fix is available in v5.14.12 and l=
+ater (available also in v5.15)<br>
+&gt; &gt; &gt;&gt; &gt; &gt; &gt; &gt; which is provided here and applied t=
+o linux-yocto source tree if<br>
+&gt; &gt; &gt;&gt; &gt; &gt; &gt; &gt; linux-yocto version is of the impact=
+ed ones.<br>
+&gt; &gt; &gt;&gt; &gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt;&gt; &gt; &gt; &gt; &gt; The conditional patching is unfortun=
+ately required because<br>
+&gt; &gt; &gt;&gt; Honister 3.4<br>
+&gt; &gt; &gt;&gt; &gt; &gt; &gt; &gt; has linux-yocto v5.14.9 and Honister=
+ 3.4.1 will have at least<br>
+&gt; &gt; &gt;&gt; &gt; &gt; &gt; &gt; linux-yocto v5.14.14.<br>
+&gt; &gt; &gt;&gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt;&gt; &gt; &gt; &gt; Patching piece below looks quite a bit.<b=
+r>
+&gt; &gt; &gt;&gt; &gt; &gt; &gt; lets just fix v5.14.14 and dont worry abo=
+ut 3.4<br>
+&gt; &gt; &gt;&gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt;&gt; &gt; &gt;<br>
+&gt; &gt; &gt;&gt; &gt; &gt; v5.14.14 is already fixed. The only release cu=
+rrently is 3.4 and I hit<br>
+&gt; &gt; &gt;&gt; &gt; &gt; that issue, hence the patch.<br>
+&gt; &gt; &gt;&gt; &gt; &gt; I assume not everybody is updating to 3.4.1 wh=
+en it&#39;s out, I&#39;ve seen<br>
+&gt; &gt; &gt;&gt; &gt; &gt; people running behind dot releases.<br>
+&gt; &gt; &gt;&gt; &gt; &gt; What&#39;s bothering you?<br>
+&gt; &gt; &gt;&gt; &gt;<br>
+&gt; &gt; &gt;&gt; &gt; once dot release is out then thats whats maintained=
+ not the original<br>
+&gt; &gt; &gt;&gt; &gt; release since they are incremental.<br>
+&gt; &gt; &gt;&gt; &gt; the anon python to apply a patch. Can you explain w=
+hy we want to patch<br>
+&gt; &gt; &gt;&gt; &gt; applied this way ?<br>
+&gt; &gt; &gt;&gt; &gt;<br>
+&gt; &gt; &gt;&gt;<br>
+&gt; &gt; &gt;&gt; I could define a python function and use it like this:<b=
+r>
+&gt; &gt; &gt;&gt; SRC_URI:append:rk3399 =3D &quot;${@rk3399_fix_mac(d)}&qu=
+ot;<br>
+&gt; &gt; &gt;&gt;<br>
+&gt; &gt; &gt;&gt; Would that work better for you?<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt;I am not yet convinced why should we have such version specif=
+ic patch<br>
+&gt; &gt; &gt;<br>
+&gt; &gt;<br>
+&gt; &gt; If you could explain what&#39;s *really* bothering you, I could t=
+ry to find a proper explanation or agree with you but it&#39;s a bit too va=
+gue to me right now. Anyway, I&#39;ll do some guesses in the next paragraph=
+s.<br>
+&gt; &gt;<br>
+&gt; &gt; Because Ethernet does not work for all RK3399-based boards in the=
+ latest and only release of Honister?<br>
+&gt; <br>
+&gt; meta-rockchip does not have honister branch for now. So it expects<br>
+&gt; master to keep working with honister for now. kernel upgrades are<br>
+&gt; already committed into honister branch on meta-yocto-bsps so fix it<br=
+>
+&gt; already available in latest honister<br>
+&gt; branch and will be in imminent point release soon as well.<br>
+&gt; <br>
+&gt; &gt;<br>
+&gt; &gt; meta-rockchip is the BSP layer for Rockchip based devices, if not=
+ there, where should I put this patch?<br>
+&gt; &gt;<br>
+&gt; &gt; Or are we just going to say &quot;Ethernet does not work, we know=
+&quot; to people asking instead of having this patch in? Obviously you coul=
+d tell them to upgrade their oe-core/poky git repo to rolling honister or 3=
+.4.1 once it&#39;s out but having this patch in avoid those questions.<br>
+&gt; &gt;<br>
+&gt; <br>
+&gt; I would say yes, document it as that of a known issue and possible fix=
+<br>
+&gt; if someone is using exact point release. They might have snapshotted<b=
+r>
+&gt; meta-rockpi too and in that case it will be easy for them to carry a<b=
+r>
+&gt; local patch if needed.<br>
+&gt; vesion specific patching would also be setting a not so desired<br>
+&gt; patching practice, so I am trying to avoid it if we can.<br>
+&gt; <br>
+&gt; &gt; I understand we&#39;re talking about policy here. I am not fond o=
+f this patch either but Ethernet is quite critical on boards which don&#39;=
+t have WiFi for example. I don&#39;t have anything better to suggest to fix=
+ this in the *latest* release.<br>
+&gt; <br>
+&gt; Update to latest honister branch or wait for 3.4.1, would be my sugges=
+tion.<br>
+&gt; <br>
+&gt; &gt;<br>
+&gt; &gt; Cheers<br>
+&gt; &gt; Quentin<br>
+&gt; &gt; &gt;&gt;<br>
+&gt; &gt; &gt;&gt;<br>
+&gt; &gt; &gt;&gt; Cheers,<br>
+&gt; &gt; &gt;&gt; Quentin<br>
+&gt; &gt; &gt;&gt;<br>
+</blockquote></div></div>
 
---_000_AM0PR09MB414814992DC0FEF845E33BB3AC749AM0PR09MB4148eurp_--
+--000000000000ca9cdb05d3086226--
 
