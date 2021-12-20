@@ -1,50 +1,58 @@
-Return-Path: <sanjaycvr35412@gmail.com>
+Return-Path: <duy.dang.yw@renesas.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 45091C433F5
-	for <webhook@archiver.kernel.org>; Mon, 20 Dec 2021 05:27:51 +0000 (UTC)
-Subject: echo and read shell script functions in post install script doesn't
- display messages #armv6
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C1012C433F5
+	for <webhook@archiver.kernel.org>; Mon, 20 Dec 2021 06:33:55 +0000 (UTC)
+Subject: #systemd Weston service restarting timeout on dunfell branch
 To: yocto@lists.yoctoproject.org
-From: sanjaycvr35412@gmail.com
-X-Originating-Location: Bengaluru, Karnataka, IN (165.225.122.162)
-X-Originating-Platform: Windows Chrome 96
+From: "Duy" <duy.dang.yw@renesas.com>
+X-Originating-Location: Ho Chi Minh City, Ho Chi Minh, VN (27.74.253.134)
+X-Originating-Platform: Windows Firefox 92
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Sun, 19 Dec 2021 21:27:50 -0800
-Message-ID: <P4xU.1639978070269825157.MKoU@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="wFJXKLeckx2frY3OFJFv"
+Date: Sun, 19 Dec 2021 22:33:54 -0800
+Message-ID: <2FQr.1639982034696800392.mBjt@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="2JXXsj9dAMoSFxL0YONi"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 20 Dec 2021 05:27:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55620
+ <yocto@lists.yoctoproject.org>; Mon, 20 Dec 2021 06:33:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55621
 
---wFJXKLeckx2frY3OFJFv
+--2JXXsj9dAMoSFxL0YONi
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-I have to execute a script to setup static IP address of the ARM board. Thi=
-s I need to do it on first boot of the Yocto Linux. I wrote post install sc=
-ript to do it, but it doesn't print interactive messages to user asking for=
- IP address, netmask, gateway etc. i.e. it doesn't print echo and read mess=
-ages.
-I need to run this script only once on first boot of the ARM board.
-Kindly suggest me a way to display echo/read messages to make setup script =
-more interactive.
+Hi,
 
---wFJXKLeckx2frY3OFJFv
+In 3.1.12, I noticed weston service type was changed to Nofity. This make w=
+eston service cannot be restarted by "systemctl restart weston@root" comman=
+d. The service is then timeout and fail.
+
+Investigating systemd unit document, it seems that the notification message=
+ is required for a notify unit to finish its launch. So I tried to add this=
+ command to /usr/bin/weston-start script:
+systemd-notify --ready The service can be restart normally. Is it considere=
+d a bug? Or do we have any workaround?
+
+--2JXXsj9dAMoSFxL0YONi
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-I have to execute a script to setup static IP address of the ARM board. Thi=
-s I need to do it on first boot of the Yocto Linux. I wrote post install sc=
-ript to do it, but it doesn't print interactive messages to user asking for=
- IP address, netmask, gateway etc. i.e. it doesn't print echo and read mess=
-ages.<br />I need to run this script only once on first boot of the ARM boa=
-rd.<br />Kindly suggest me a way to display echo/read messages to make setu=
-p script more interactive.&nbsp;
+Hi,<br /><br />In 3.1.12, I noticed weston service type was changed to Nofi=
+ty. This make weston service cannot be restarted by "systemctl restart <a h=
+ref=3D"mailto:weston@root&quot;" target=3D"_blank" rel=3D"noopener">weston@=
+root"</a> command. The service is then timeout and fail.<br /><br />Investi=
+gating systemd unit document, it seems that the notification message is req=
+uired for a notify unit to finish its launch. So I tried to add this comman=
+d to /usr/bin/weston-start script: <br />
+<pre><code class=3D"diff syntaxhl"><span class=3D"CodeRay"><span class=3D"l=
+ine insert"><span class=3D"insert"></span>systemd-notify --ready</span></sp=
+an></code></pre>
+The service can be restart normally. Is it considered a bug? Or do we have =
+any workaround?<br /><br /><code class=3D"diff syntaxhl"><span class=3D"Cod=
+eRay"><span class=3D"line insert"></span></span></code>
 
---wFJXKLeckx2frY3OFJFv--
+--2JXXsj9dAMoSFxL0YONi--
 
