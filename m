@@ -1,113 +1,95 @@
-Return-Path: <arik.kleiman@gmail.com>
+Return-Path: <jstephan@baylibre.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 07164C433EF
-	for <webhook@archiver.kernel.org>; Tue, 21 Dec 2021 08:11:07 +0000 (UTC)
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com
- [209.85.210.44])
- by mx.groups.io with SMTP id smtpd.web09.3471.1640074263537229267
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0DB9AC433EF
+	for <webhook@archiver.kernel.org>; Tue, 21 Dec 2021 08:43:08 +0000 (UTC)
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
+ [209.85.128.42])
+ by mx.groups.io with SMTP id smtpd.web08.3592.1640076186154686759
  for <yocto@lists.yoctoproject.org>;
- Tue, 21 Dec 2021 00:11:03 -0800
+ Tue, 21 Dec 2021 00:43:06 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=hR5qUupG;
- spf=pass (domain: gmail.com, ip: 209.85.210.44,
- mailfrom: arik.kleiman@gmail.com)
-Received: by mail-ot1-f44.google.com with SMTP id
- h19-20020a9d3e53000000b0056547b797b2so15734556otg.4
+ dkim=pass header.i=@baylibre-com.20210112.gappssmtp.com header.s=20210112
+ header.b=Uh5AfNWH;
+ spf=pass (domain: baylibre.com, ip: 209.85.128.42,
+ mailfrom: jstephan@baylibre.com)
+Received: by mail-wm1-f42.google.com with SMTP id b73so8572620wmd.0
         for <yocto@lists.yoctoproject.org>;
- Tue, 21 Dec 2021 00:11:03 -0800 (PST)
+ Tue, 21 Dec 2021 00:43:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=UhrDR16yRSLxIRKPrIPIemmMxEmOPkVF0gyjCRaFxuo=;
-        b=hR5qUupGG8KeoV/ejt0JNy59G+vwtaCx7yKJKJ5hAy3wYTiE1NRC7DX8lnUDZlnly2
-         Y5dWvGYg2LWDkq5NCRlT8UnQFn1aFn0/CI680WwEMwbV+RvFMbnqIZ1T1Ex6Z9HpDg1J
-         HyNj9DYyeE4hQBZpehpvM/S8LO/ngZa1ULyCyQsnGWOHSdd/fDbY0YSf7yZBvS62XKzf
-         6YUJ8V/eSyQJEmCYTwIeSFZy6iN0yRKDABIIH6dmJGy/+HGSuvImY/Jg+Y1QGbNpm1JY
-         YmzDQhY/eVMGxXlEUiDmaDzcVJMAFkrN66b1ADL6x/3rTgUI+kFeE2A5XGGkgbHWv+2s
-         N1tA==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gb52hKqQ/gsP2nhVrwDcp2lMM/RcVAeq7koUVicEiec=;
+        b=Uh5AfNWHQaisIl598HYSsd3+b0tg+pP0GPkeXxSkczPal80myDhtpFYXBPkOR3IRsR
+         044TyAMtutC8KbysDFLS8iG9rdPHo7j7TbHHsnZR5z3TPqDKM826DqYOf710Y1d8VfGB
+         Y7PrS1UQC+6UNl7qD0Ij0HBOSf0b+ET8D8XWj2W2riUc9WlmHfi9RauAZbzBhEW3c09f
+         me8fI8VzBRgW+YMJZsC8yKTHLOuEL65SpKQCbwV94f4EIK3ZxCURBQCD+rmcYrUpwlQV
+         JEmi47f8LjCywfFbmeHRGzwW8WNdvIX2G5DOmnOnClBBhB2aS9cB9JXqYWeafkkjjt2g
+         Iofw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=UhrDR16yRSLxIRKPrIPIemmMxEmOPkVF0gyjCRaFxuo=;
-        b=sR0zvK47khMQy3BvVDit6fsu4R73Oys/ooFEb7tv7dIsAtVF0fPoR/ds7KFbaJHSTw
-         zmfvTohMgtvjxy5xHeueiJLkJqof736r5wZef6SnixtW2Tqhhn0bIw/TZSYkob2th5RL
-         T9i8bjWMEi2k8lppZE3kYfP5Ig6qrwImc6GUa9INUwWmt23b5A1f1NBh37o/p3S9RNjA
-         Q5lYfOM0r+bhXl1HFh0GjQyERPUIz+G7HOQiyqq2/1Fb6tDqwUL/89U7I6ITM4T17Kbm
-         N6XJsjzp8sRR76YptF6vl8BMSfpK37e1cRvYSUM8PlLp2B/BMRDulcH9Pz69gwFZkn4a
-         IaEg==
-X-Gm-Message-State: AOAM532j0Nt+mFgOkh2T+5NtOGEHbqUWcUzDR2btz5hFKwYbKeerVkr1
-	Y8gAzIu9KyUtgt4HND8sUaLa1RFlU0I2iGn+LoKj9oHS
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gb52hKqQ/gsP2nhVrwDcp2lMM/RcVAeq7koUVicEiec=;
+        b=oBkoT2uTEsHrjN53cvzOFFJEbfntO4cVLv0NOG1H7hEzDEz9oc7QUJAQqeyCq2HQrC
+         hrQWWP7qtpU1xZPym9JX0SEMgauEWTqJfmWgWZFHOUkTI6JXnnmqPALh8jxWXzd/1WxT
+         bTlaW81w1Pfo4crpGSZm9oRnqUU9dBUzVjyS7htdEeokhN7UvUHUmuw8+jAvb2xo5hvw
+         5Dj8Chv6TlgB9kjLczsGz7DUweRyjNaFgiIKNsMkrO4fkVIGbZi/etyJiEAbYsoSw9Zu
+         omRt8Nkkv/pmDixRJSioaL8pvIJXz2yTF0KzaRuAsjCtbDmHdHUcn4QdZCUK6GmHazjs
+         uYnQ==
+X-Gm-Message-State: AOAM532WfxGLyBYCJOg3TWF+dTlwLqlPCNJzqXJF4vPYNo+BZdBC3Nbf
+	FFOnVeL+LP0oUt1Bd9nloE8uFm6DCfco/ha/
 X-Google-Smtp-Source: 
- ABdhPJyYE2E3KWk2pNyLMo4kpTHaaDwfgImb9enULqi0DeW8imlrefA11N3t/QRYT1q8SeKxQvA3YwWMdU9B2SRGUYg=
-X-Received: by 2002:a9d:7084:: with SMTP id l4mr1347671otj.225.1640074262617;
- Tue, 21 Dec 2021 00:11:02 -0800 (PST)
-MIME-Version: 1.0
-From: Arik Kleiman <arik.kleiman@gmail.com>
-Date: Tue, 21 Dec 2021 10:08:51 +0200
-Message-ID: 
- <CAGeH+D0Wo9TNb-OA9_-fEzE5KhhK1Ls1XttH0PZozcJ=DJjQ8A@mail.gmail.com>
-Subject: timedatectl (update read only system with local time)
+ ABdhPJwqwrTRyCZmgh+BuQCt+ub5qXzHnZR5ov37PDQ8LXiUiwFWtiAOVAu03QtprI2KxGIQj2KNQA==
+X-Received: by 2002:a1c:f60a:: with SMTP id w10mr1654959wmc.53.1640076184247;
+        Tue, 21 Dec 2021 00:43:04 -0800 (PST)
+Received: from localhost.localdomain (179.160.117.78.rev.sfr.net.
+ [78.117.160.179])
+        by smtp.gmail.com with ESMTPSA id
+ d62sm1680617wmd.3.2021.12.21.00.43.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Dec 2021 00:43:03 -0800 (PST)
+From: Julien STEPHAN <jstephan@baylibre.com>
 To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000d424e205d3a38b8c"
+Cc: Julien STEPHAN <jstephan@baylibre.com>
+Subject: [meta-tensorflow][PATCH 1/3] tensorflow: do not fail on chmod failure
+Date: Tue, 21 Dec 2021 09:42:20 +0100
+Message-Id: <20211221084222.1442456-1-jstephan@baylibre.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 21 Dec 2021 08:11:07 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55631
+ <yocto@lists.yoctoproject.org>; Tue, 21 Dec 2021 08:43:08 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55632
 
---000000000000d424e205d3a38b8c
-Content-Type: text/plain; charset="UTF-8"
+every recipe using tensorflow.inc will inherits the do_compile:append
+task but sometimes, the chmod inside this task fails because the target
+files are not generated, we can safely ignore the chmod exit code and
+always return 0
 
-Im looking for a way to add timedatectl to image.
+Signed-off-by: Julien STEPHAN <jstephan@baylibre.com>
+---
+ recipes-framework/tensorflow/tensorflow.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-What i need is basically setting up local date (according to time zone) on
-a read only file system.
+diff --git a/recipes-framework/tensorflow/tensorflow.inc b/recipes-framework/tensorflow/tensorflow.inc
+index e30cca5..25d2ebf 100644
+--- a/recipes-framework/tensorflow/tensorflow.inc
++++ b/recipes-framework/tensorflow/tensorflow.inc
+@@ -39,6 +39,6 @@ TF_CONFIG ?= " \
+ inherit tensorflow_ver
+ 
+ do_compile:append() {
+-    chmod a+w ${BAZEL_DIR}/output_base/execroot/org_tensorflow/bazel-out/*/bin/tensorflow/lite/python/schema_py_srcs_no_include_all
+-    chmod a+w ${BAZEL_DIR}/output_base/execroot/org_tensorflow/bazel-out/*/bin/tensorflow/lite/python/schema_py_srcs_no_include_all/tflite
++    chmod a+w ${BAZEL_DIR}/output_base/execroot/org_tensorflow/bazel-out/*/bin/tensorflow/lite/python/schema_py_srcs_no_include_all || true
++    chmod a+w ${BAZEL_DIR}/output_base/execroot/org_tensorflow/bazel-out/*/bin/tensorflow/lite/python/schema_py_srcs_no_include_all/tflite || true
+ }
+-- 
+2.34.1
 
-
-From what i read, there is a way to do this via timedatectl, but can't find
-recipe for that.
- (is there another way?)
-
-
-Thanks
-Arik
-
---000000000000d424e205d3a38b8c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto"><span style=3D"background-color:rgb(255,255,255)">Im look=
-ing for=C2=A0</span><span style=3D"background-color:rgb(255,255,255);color:=
-rgb(33,33,33);font-family:-apple-system,helveticaneue;font-size:16px">a way=
- to add timedatectl to image.</span><div dir=3D"auto"><div dir=3D"auto" sty=
-le=3D"color:rgb(33,33,33);font-family:-apple-system,helveticaneue;font-size=
-:16px;background-color:rgb(255,255,255)"><br></div><div dir=3D"auto" style=
-=3D"color:rgb(33,33,33);font-family:-apple-system,helveticaneue;font-size:1=
-6px;background-color:rgb(255,255,255)">What i need is basically setting up =
-local date (according to time zone) on a read only file system.</div><div d=
-ir=3D"auto" style=3D"color:rgb(33,33,33);font-family:-apple-system,helvetic=
-aneue;font-size:16px;background-color:rgb(255,255,255)"><br></div><div dir=
-=3D"auto" style=3D"color:rgb(33,33,33);font-family:-apple-system,helvetican=
-eue;font-size:16px;background-color:rgb(255,255,255)"><br></div><div dir=3D=
-"auto" style=3D"color:rgb(33,33,33);font-family:-apple-system,helveticaneue=
-;font-size:16px;background-color:rgb(255,255,255)">From what i read, there =
-is a way to do this via=C2=A0<span style=3D"line-height:1.5">timedatectl, b=
-ut can&#39;t find recipe for that.</span></div><div dir=3D"auto" style=3D"c=
-olor:rgb(33,33,33);font-family:-apple-system,helveticaneue;font-size:16px;b=
-ackground-color:rgb(255,255,255)"><span style=3D"line-height:1.5">=C2=A0(is=
- there another way?)<br></span></div><div dir=3D"auto" style=3D"color:rgb(3=
-3,33,33);font-family:-apple-system,helveticaneue;font-size:16px;background-=
-color:rgb(255,255,255)"><span style=3D"line-height:1.5"><br></span></div><d=
-iv dir=3D"auto" style=3D"color:rgb(33,33,33);font-family:-apple-system,helv=
-eticaneue;font-size:16px;background-color:rgb(255,255,255)"><span style=3D"=
-line-height:1.5"><br></span></div><div dir=3D"auto" style=3D"color:rgb(33,3=
-3,33);font-family:-apple-system,helveticaneue;font-size:16px;background-col=
-or:rgb(255,255,255)"><span style=3D"line-height:1.5">Thanks=C2=A0</span></d=
-iv><div dir=3D"auto" style=3D"color:rgb(33,33,33);font-family:-apple-system=
-,helveticaneue;font-size:16px;background-color:rgb(255,255,255)"><span styl=
-e=3D"line-height:1.5">Arik</span></div><br></div></div>
-
---000000000000d424e205d3a38b8c--
 
