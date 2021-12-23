@@ -1,371 +1,254 @@
-Return-Path: <l.v.d.beek@student.tue.nl>
+Return-Path: <mingli.yu@windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9AC5FC433EF
-	for <webhook@archiver.kernel.org>; Wed, 22 Dec 2021 19:22:10 +0000 (UTC)
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com
- (EUR01-VE1-obe.outbound.protection.outlook.com [40.107.14.94])
- by mx.groups.io with SMTP id smtpd.web09.23586.1640200927714664107
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C2D03C433EF
+	for <webhook@archiver.kernel.org>; Thu, 23 Dec 2021 02:25:38 +0000 (UTC)
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com
+ [205.220.166.238])
+ by mx.groups.io with SMTP id smtpd.web09.28277.1640226338217057945
  for <yocto@lists.yoctoproject.org>;
- Wed, 22 Dec 2021 11:22:09 -0800
+ Wed, 22 Dec 2021 18:25:38 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@student.tue.nl header.s=selector1 header.b=MWNB573a;
- spf=pass (domain: student.tue.nl, ip: 40.107.14.94,
- mailfrom: l.v.d.beek@student.tue.nl)
+ dkim=fail reason="body hash did not verify" header.i=@windriver.com
+ header.s=pps06212021 header.b=srngeYwg;
+ spf=permerror,
+ err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}:
+ invalid domain name (domain: windriver.com, ip: 205.220.166.238,
+ mailfrom: prvs=79914c8961=mingli.yu@windriver.com)
+Received: from pps.filterd (m0250810.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id
+ 1BN2CKeA024793;
+	Wed, 22 Dec 2021 18:25:36 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+ h=subject : to : cc
+ : references : from : message-id : date : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=PPS06212021;
+ bh=0t1YhI8sjGrQw1gQjOdQvCmskpeZSCglsoHwYYYRr28=;
+ b=srngeYwgMM01lWJQcZAioUoSDc6sXSGRroMKuHSze2ee0U4DER8UlYxbWNhkLq6si44q
+ v9Dtza/sNtuPRA9nxPgwB5LJE57Siv520esWiuDReAJrDOOk6IZDUZon0595yN8Fsef+
+ THGaE5/ffOBTqaAJ0kKQKIxnF4Sq11TG8llXTNgh8BlNtg2NI+rgounsJk606HCSMsYm
+ 8qKk3lrwZciE1YpxtHEzoy8iZN0uO+VGJ7tkwgwCov3DX090YhTQ+JnLYBFuyMzkL9FL
+ v3s9r2AeQiv9Zypj/k5Qlipe+hl6aQ5uGZrE/gghSsPS4hQbM5rY14X4cABBiRrRmQoS aw==
+Received: from nam12-dm6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12lp2172.outbound.protection.outlook.com [104.47.59.172])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3d3vk4rs77-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 Dec 2021 18:25:36 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K1PC76AHOVpf7VRZ5yqvxOtqujvF2nCwqpXVNNXkl9vSFLQ2QLxd8m4kc+OhUhRz8kvHeHdcULYa+TLPZYFKkVYQNBJY0Ev2YpnWF+NCegnHpWmkwK4oBcknSJN52jMmGxRIv8+Eh2T6DCtjYI3nUmnZACiI/45beBvUjxLFAEtpHjMwVnqTyBc53NfckNXoK7gHNkA3Tk7nXs9E1HJsO7d09Mha3Ze7ECu2oF9N2h+rn3DzzQDQ+8hLU5cO7+6iq0tBG8WptU3QPFhFhjXj3Ntpdb+qxOkIBgt0ewNthSa55kTwEQ1yyzAUOmd5rNBA9pKSwaOUOWtfY5nsuwIkWg==
+ b=gacVg5MpEO3Feal5fEb+DQI3B2/frEvB1kPfA0psgetZ/1P7oLEbkI74CbnhPHQY1SCc4UPcqLddKkZCDjKgERDB2PSTc+q3LhGc6yMVIa1JKqTYp/TFg+jZVEV2e06nTlBzTYu/2hs7YIjHaSVzpOImb2qVYFoDAEXQ/7GPilPtL9SmEcvs7FGBxFePHlzPbTYBjT2TH4LPiEX6IXZIMbmD0W7mLu2F8yE9GY9nXDzGFMErDN0qeiVJRHaVPUqVpniwDZ/LFVBCYCKb9oT8wUwuLEb5PJxM8azijS2Bpw6mJ+fP0YlvdumBlaAL1hl5utjoz+8fUO6O8WeIHNJnxw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8FTcTLMOjH7Hc3BYQy8b6+oqJgAUQnS/w6oVA5BddhQ=;
- b=c25Enh58+XSMAjfZLFvv91Xe6oJQ+gt0OkWdsrrTNSzUgwUSltFjKBvtXrbIBTfLL548lZBeWTYaHb7wabXs6e7frcEFLpeFbvdpY1SSisn7ustiowwTW9uAuPewfoMmriwjMbFhEWUg5OEfHRZI1mUZUtvJL6vrCa1CXmk3YQp63J5N1PgJytmlvG4qBCpEsSBzizfsvry4um0DcV0DPfDEiBTWX4r2nOeNJPGZmpEZNjd0Ots6nTqdhvq/Mv4SxQI6EnVI5pqwrnDidd2m0lwOnCrACvh7bGcS+VarY9UpG14U7G2CMenqDDhTUxWlMWCz1tJ4/QZ2Xx/qrBMtIg==
+ bh=0t1YhI8sjGrQw1gQjOdQvCmskpeZSCglsoHwYYYRr28=;
+ b=MxUJi7Ac3+YafOeU9b7NlNKzWM4PLIkR+esTEZl1OZM26+Kw1jW0PJR7QjaXkbAAr4p5SHbyMRmzPzkHcTHNk5cePi2UniE0GI1qBmlNJ41f2+1G4z5gEgTStRDaz5u91vVVEKiszWUlOM2QwsCR4DUxaFIq30PT4RL1/Svl1ZPaSe09P/F1WjQ8KpHd2XzoX1qnMJ5TMTeZr+OQFOmC8lPovdYl2borUAxvS9v9YgvP8SLFs6Ca4o6+meWq+2fNjW4CNb3Kg/PjvOcS72Tkz9EhUf1RA7PRMqgsK1xEcw0AXhGpYAcpDHxsXu4XEBjHIlaziv5V9+RzlmcYPidRTQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=student.tue.nl; dmarc=pass action=none
- header.from=student.tue.nl; dkim=pass header.d=student.tue.nl; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=student.tue.nl;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8FTcTLMOjH7Hc3BYQy8b6+oqJgAUQnS/w6oVA5BddhQ=;
- b=MWNB573a+eHFXrHZPHXynzFbzzO2N+9k26UNHabp/uc5cChkKG7YQO3EcXALsnOqVVrM6zSkovZan6IHgh6+IuM06qdoZ+0ciWn8CcDz+BA69vobthCj8KRrNh2TVnb5PtU5UxzFyRMYsvud0GhN9zyj+2RcVn14f21uqKKkqZZOSQOSbdvYWOOh0RbKSkSeqLwTQA0SkDHJr11bwO7ac/w0tCOirU3mDQfCCl48RIu4zh8s0mIy5x/jUpGm9R4J4qVWjskf6Fp3VdEc78V+Q2aMrCl4M2935wLv+qpxIDtDPV163UZByK5eNiVT+w7vS3OkgB6IxwcLZAqvvZURrw==
-Received: from AM0PR09MB4148.eurprd09.prod.outlook.com (2603:10a6:208:1a0::22)
- by AM4PR0902MB1730.eurprd09.prod.outlook.com (2603:10a6:200:94::16) with
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Received: from CO1PR11MB5009.namprd11.prod.outlook.com (2603:10b6:303:9e::11)
+ by MWHPR11MB1854.namprd11.prod.outlook.com (2603:10b6:300:10c::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.17; Wed, 22 Dec
- 2021 19:22:04 +0000
-Received: from AM0PR09MB4148.eurprd09.prod.outlook.com
- ([fe80::3138:623c:2402:11f5]) by AM0PR09MB4148.eurprd09.prod.outlook.com
- ([fe80::3138:623c:2402:11f5%6]) with mapi id 15.20.4801.023; Wed, 22 Dec 2021
- 19:22:04 +0000
-From: =?iso-8859-1?Q?Beek=2C_L=E9on_van_de?= <l.v.d.beek@student.tue.nl>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Docker exec/attach not working on overlayed root
-Thread-Topic: Docker exec/attach not working on overlayed root
-Thread-Index: Adf3Z4TRvtrwIoKHQqyjUBRv9EpANA==
-Date: Wed, 22 Dec 2021 19:22:04 +0000
-Message-ID: 
- <AM0PR09MB4148CD58509BA3C7C965923BAC7D9@AM0PR09MB4148.eurprd09.prod.outlook.com>
-Accept-Language: nl-NL, en-US
-Content-Language: nl-NL
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f0551f00-e276-4692-4e89-08d9c580566c
-x-ms-traffictypediagnostic: AM4PR0902MB1730:EE_
-x-microsoft-antispam-prvs: 
- <AM4PR0902MB173050A451DD1C2EFFDC8005AC7D9@AM4PR0902MB1730.eurprd09.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- 9AkcV6Mz0qovVAJbdrU4nFEu9/1vir/ERa9KKwHlPQY5M82WuhHivRSmVFwmTOTXYOwKwn+snqJNQp3NNH1VE5MVak1W1I9gkxLkncVzN1mbfSMqkAOmFNHYXL7leBF2Z1lyitsLl7EiIqV9j7hUwzaHVFHMmqgCTtuz5o8RYnpZApdY5VM2/LB8MSUUuYGh5cjvFEE/wNf68U9x+gfkVULcLUMVWulmBvQc8aWHJbDGKW7z3k7ey+9UlBPFKxuFskxpLPOflq5H4XSwwSnDBdAIwy7hierpB9LAQZ9Y7UGXzKOzmciYbV2XZqLLKpS+qCHrwwG2W6JZoODXl7rkSmHpnZmQvZar4Tb+6JLuXyOx4LmuOkYUk4mzF+E3bEhX5r681Dq9wlGWG6lfo5EbcFxdTFXmrmh/heAF83nIaWeBu1busoJZ2E/XtDo/7QQ27NxyVtSOB+OUfbQvG+tE4+AScjmV74cPmUjdRHmSTJcjg82zB9YjDeAf2VRm2AZfkoYNudaYYCdeMqog/+YM41kb5vk+rrkmezNCjbBR1h9Gi/btemfS8SjRHXB1QKEyyrvEO4mbXx9BDCJktGfU6L1khJQ/8HHV35pCUBZa8WSbWToV0iu1kAbIlybnfQUHc4fNZO0Qz1EPthiByIOuY0SQ94anzflk6zvca4PEynLZfBFBO170duPEHsuuaM6aKVG++WGUkdmJUCTJ8AmrrckwdCz+jNFphOpS91GJsMUd4/DjE7IEKfk4zA5MDw0ABUaO+HiFuwfpu0ULsNJg6k1qBX5d6MLX7ykrzxlLzu0=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR09MB4148.eurprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(66574015)(33656002)(122000001)(66446008)(166002)(83380400001)(38100700002)(55016003)(786003)(66556008)(66476007)(64756008)(66946007)(71200400001)(9686003)(7696005)(26005)(316002)(2906002)(52536014)(5660300002)(966005)(8676002)(6916009)(8936002)(508600001)(86362001)(186003)(6506007)(76116006)(38070700005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?rnUoK4+1iCyears7ZK/5kJXhW96pAQ1jxoDk9bIyokjL591xdjhMSUG7Q5?=
- =?iso-8859-1?Q?jc+20Wx6vu3yHg3tGWnxuM2tzPQt1An6ahqn8IU3eT9pZPUH8EtVs0gCF1?=
- =?iso-8859-1?Q?VZvjjEqNm9RTs+kLFWIGlcSDTglOJ1jKvMB0J+Rp8OVghl0i/RnzWfds7b?=
- =?iso-8859-1?Q?MIqjdPdor5lXVUthrxusyrE+rohPmuAzZSp9O9n+HKdCsT5PmYRXjVW+/N?=
- =?iso-8859-1?Q?SKJ+URKy1BRan01x+ZgiLzbGU6620MzO5udKp+dK9Jg38Y0/ITKMaMFyXd?=
- =?iso-8859-1?Q?2/OZOIL+PUu4Vj9A/0QQBONvk3fXsrwqqtyv9TMIW+Ia71LvqdauwpBtdm?=
- =?iso-8859-1?Q?ZiIFuTDQHKWUIh3pZAN/mkyCHRHx/2Un0nw50eWc8Ad57Do3a2RjP/DHiS?=
- =?iso-8859-1?Q?Awk2OIdYIwAld0U73k2vkMIM8UpCQzj31+V72CXRHm/UMhddqn9oj8UnUq?=
- =?iso-8859-1?Q?QYUUiPwaqgqQhtkZv0F1nYnJn66pwuo7ViQYib8zT/CcKFMddRIZ2LbgfU?=
- =?iso-8859-1?Q?erGGjwnuyAUSemXkJGelEVAZRH7ES8h1afeTGABhbXiNyhwJHjnVqhquyx?=
- =?iso-8859-1?Q?U3EYwIKkkyEtDsHlmJc/rn42K0GXXq3657PJNnhFTzvLMEubEZYeXSNWrX?=
- =?iso-8859-1?Q?bbbphZbjufwM3aKTtv7zShwHN4otL3HKFWcGqilRVpJxHoX/s1WjQwdZzj?=
- =?iso-8859-1?Q?4mFgvstYtBSFz/bJIBOdQCoVLlybZ3PnCojSqIVT7I2eWV5p2k/evikvhr?=
- =?iso-8859-1?Q?FyW+qfwFq4/G9rkwznJVAPzdrVeG0Ol6CqOj0gM1oTBNH+1bUTTPwLdO/I?=
- =?iso-8859-1?Q?BS42AAgKziu7btV2q0+pbTaavyQCWPX0+guBQZOLZ7OS5QbFNt/y7QYu4z?=
- =?iso-8859-1?Q?JCe30hzC5G1STT1p4nEtawYy923ETDnOG6G+ew9RhKEI/NdoJIg4Lv3Rnd?=
- =?iso-8859-1?Q?Hjk7NdksvMEo8SlfAF6RPUotMJaBQaH4iR7wy8FPGhnGnsRaIx7LrANhiy?=
- =?iso-8859-1?Q?9eLvUTF3pKCS+ZhleRnAhgZDvPzp3hrnsCx77yYVXMY8C61xPoPLDe07Dq?=
- =?iso-8859-1?Q?vC967gzj5JhNChErqGf7pQgmhbOPT9WEtOqajtNGzpTLyxxn2ZlzK2MXzZ?=
- =?iso-8859-1?Q?layibO5VAR82MQ+8dMx5pffNei1otWyzRjxQksApAcE7y44vURv71VdC/3?=
- =?iso-8859-1?Q?CSbZK89G7cnoIUN0vQ3WAT+GjCfvmvEqoAJLGTZ16vUpYJUkHoTLLis/Ey?=
- =?iso-8859-1?Q?uQykDrQMHFQ/Zc2MrnfKQ6vRBTGK/OvwmOjHRov15C5WjVEENkpZWdKOh6?=
- =?iso-8859-1?Q?xhmfZhGVIAXRWoTaJnR1A8HidwlP6dj5eskJCyT1qvwSIRMZfD/Tdyao9y?=
- =?iso-8859-1?Q?9oDN60U1OhFWGD+53SjvUw3dK+6TZaJ+hAQ5hWTRneWNYGeWVUMcvgsBjG?=
- =?iso-8859-1?Q?qjyLaKrzcRFQHlZeAaXXd6d1PxZHnljgKQgn3Pcu6GhYYeCbmY+Qa9vkVx?=
- =?iso-8859-1?Q?skXZbO3k+ajH/STV0/utqbBSdynp+CENWOKGAFyrNEC6sGEsdHg0ClD8CA?=
- =?iso-8859-1?Q?aQvvB4TGA6DVIajOV4Zwm/Ukxd7RoHm8eqwrmJ6sKoAjJSNl/y1ymBYzOK?=
- =?iso-8859-1?Q?51m90YlLv24xcD+Kn2i99MWJIA/GDbOZzo7KY0yr3QoWzRHvZzHlLvfkmo?=
- =?iso-8859-1?Q?FAqSjjCvk3l2kVZOJB9QXBmCpHLKipKzeDeNBMKl7TGV17HEr/kSHSHHO5?=
- =?iso-8859-1?Q?+H/w=3D=3D?=
-Content-Type: multipart/alternative;
-	boundary="_000_AM0PR09MB4148CD58509BA3C7C965923BAC7D9AM0PR09MB4148eurp_"
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.15; Thu, 23 Dec
+ 2021 02:25:32 +0000
+Received: from CO1PR11MB5009.namprd11.prod.outlook.com
+ ([fe80::3d37:c25a:72c6:6601]) by CO1PR11MB5009.namprd11.prod.outlook.com
+ ([fe80::3d37:c25a:72c6:6601%5]) with mapi id 15.20.4823.019; Thu, 23 Dec 2021
+ 02:25:32 +0000
+Subject: Re: [yocto] [meta-raspberrypi][PATCH] xserver-xorg: remove xshmfence
+ configure option
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+References: <20211209025956.41679-1-mingli.yu@windriver.com>
+ <CAMKF1spEXRKjDgoC9AA42=yitDtWO8YYPhuLnuCKsRzTBdJN9Q@mail.gmail.com>
+From: "Yu, Mingli" <mingli.yu@windriver.com>
+Message-ID: <13128829-b222-869f-944b-268df6482711@windriver.com>
+Date: Thu, 23 Dec 2021 10:25:23 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+In-Reply-To: 
+ <CAMKF1spEXRKjDgoC9AA42=yitDtWO8YYPhuLnuCKsRzTBdJN9Q@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+X-ClientProxiedBy: HK2PR04CA0088.apcprd04.prod.outlook.com
+ (2603:1096:202:15::32) To CO1PR11MB5009.namprd11.prod.outlook.com
+ (2603:10b6:303:9e::11)
 MIME-Version: 1.0
-X-OriginatorOrg: student.tue.nl
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR09MB4148.eurprd09.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: ada8a7ce-8d69-44d3-8a3a-08d9c5bb7e5f
+X-MS-TrafficTypeDiagnostic: MWHPR11MB1854:EE_
+X-Microsoft-Antispam-PRVS: 
+	<MWHPR11MB1854654B5A6A3B5D34D4B99DF17E9@MWHPR11MB1854.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1284;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	/W/NfH6fLZHPwk9gw0WZYZHX3hlhtkZH2s71hxh1oZzEi6H7NbEJm7y7S8mDleAb7litHB/oD+HeKbrG8HgJJsOzQCtO1UTmsgPeuShvK1hj/UgN9Y68lU51pJXZAufqCmhsa0XRFQshJuCw+Lylz/c791WveP0+y2JEsVW1UtzaUni+7wKCBHjtZI5SwxdMLlFQ0IN88lXc1obOe117ghBSmyASQyF0zLg4M90dMfgrBgJztZZz6lORXJza1F5t/q3U/FBRjqindY5VRJ5cjQiPe7mPsvgHFEIXrAEOA40fwFg6TDRR6hNWaoEat00jekwF1pciDnKDOgEwGs06aW3+yrGSNz08dY5swP1otKAT2n0cRNr1ebBSaTOHvRCfc8ccDx6vcajNxc5FS4ldR6FwUlfBPWT0jT6KCswzAiOoHOPIT9Uw/UQ0NHtU1rMNRF3aDlxTEsfTwnkMjXs1El9SWlq25WNVXRia4b0rY1/O18gTsdHiyGw3iOkdmLZn1PVE1t8ZTTc1LPqYn7ivGT1xFhsB12qruY5LfBaA7G2BxgcoUtZHEj4Sj9FKgV3Ug1V3pmL7BBjbJ4F8IlUJgksBM6ibYgA3daW7zMNCig/gJ1M7LHE3BDyr2g3+ndMr5do1t/3Vsgvisc+mGjMUGN1MKsYgVkbYrWSkrEITSrpqT0JP0d/MukM8OHc2q4pkF1h07w8h0Zz71pPbBJJKWnKrhWMgIa8VTDhV9RtJl/0g2HqEgkeSPmZxU2ABVLAsB4mT39GhyDw73a+Tp410BKP7v1mAJAKhmTVR0nlgzgUv7t0nr61ViBVcQikJfisrpYiTPct1t295cpPSIVE91cPq3vJSBSTVkwar1seDC+yd/BmDM6hTrN3WWOEtA2TZ
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5009.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(83380400001)(4326008)(38350700002)(2906002)(6666004)(31686004)(38100700002)(66476007)(66556008)(186003)(316002)(5660300002)(6486002)(53546011)(6512007)(31696002)(26005)(2616005)(508600001)(6916009)(8676002)(966005)(8936002)(36756003)(86362001)(66946007)(52116002)(6506007)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?Z0x3RTc1WE4wTzczQXlQejB0SFNQa3hQMmVienY5S2hnVXZwQkNOQVVQZ1NN?=
+ =?utf-8?B?M1FRU0p6RVo2SjJuWjFqa2xNeWlEWnJvUkU3Sjk1T3d6Q0VUNkp2QkVhWlJL?=
+ =?utf-8?B?eVRTTHFLWjVvWG53aXNjSXhETndlWGwwdERUMWE2TXQ0d0RFNzdjT2psVndE?=
+ =?utf-8?B?TWhTRkRiWklYNXJXeXJOUEdKVjJ0ZGFwd2hpSjJubEhOMGJxNDlpdGVrUzRR?=
+ =?utf-8?B?S0hZUENPanZBb2ZtdTMrMlBoSFExZGczVFBHemV0ZXVTNVcxQmlibDc0Tlkx?=
+ =?utf-8?B?OTBKOWdlOUJMRlQ1Wkkyb3dKUklQNGc4elg1RnlLbWhWZDB4bjVJcElQVUh2?=
+ =?utf-8?B?bTdxSlNlaHZZZ3JZUjJ4UW5qc2JPVnFaRFVxNG1ZWkVVUzcydjFodGluVmI0?=
+ =?utf-8?B?bVNOaGxOZy8wajJ4Y1JDMTFWRTBISlBwMkkyRHB6WGd2VSsyeFB4UGR3SGQ4?=
+ =?utf-8?B?SEtXc2dzZHp1dVpLY2Q3QlR6WHNUR2dRU0ZiMWV3eXAvNDFkcmlTaWY4RjZp?=
+ =?utf-8?B?cFRMZlN5WTlPZlMvSjlEbjVjRzBNcHpSSng2ck1iV3NvaUN2NHJNVWRiZFZU?=
+ =?utf-8?B?Q2laZHd4dTZHcHN6NUg1ZlJFeSthRkJlWjlsOTlFTDVDbXNtRXlsTS9CSFNr?=
+ =?utf-8?B?Qi9FbWRWM1N6SnY2L2RoK3h5L2dqc1g5OHhqVmJNY2tQWmhMZVV4Z1VlQS9H?=
+ =?utf-8?B?bGJmQm5QUjg1VVhLOVorY2VSWTROenpvY2F5R3Avb3dCSFVMNUlaRFJjN2U3?=
+ =?utf-8?B?QTFzYlVlVktwL1Ixb2FlMDZkdElEQ2VXSzRJNE81dVp0cGRielpndzVmdW15?=
+ =?utf-8?B?QVJmUnBjcGs4UHZ1dk5OOGdxTFlxclNpaEx2ZnJBcElQYWtqdlZiazJWNmwy?=
+ =?utf-8?B?Y3RRblB3eDhPUTVSM1A1cEZZWklnT3NTOVJDdnRVYVBrMW4yOFh0aXB0ZHlE?=
+ =?utf-8?B?MktLMjhkanIySkltNC9naVdXaENud2N2bU5GRjgyNE9Yc2JmQkJpOHlwWTVn?=
+ =?utf-8?B?OTZmZ3JGMk5UZEp4WDJOTG5FRkFHZVpGQWwxb3RSWkMySHFkaGRJVUFtaUsw?=
+ =?utf-8?B?TS8vKzNxaGx3RnFkQm9yRFJPWDFsYlYwbGQ5QWhza2R4OTQ1akU2Q0lFc3hw?=
+ =?utf-8?B?M2JSMDdYUW04a2dHZlhlUU9yR3FIYUpHaEJwdlFjQkFkVS8yL1NMS1hDWmZB?=
+ =?utf-8?B?RzYrTEFWOGp5ZFdTNTU1ckRIT3lKRlFmS1pYRFNVbUpBNHlyQ3RicFlraklk?=
+ =?utf-8?B?YmZBaWJJNWhyZFBZeFZBRWZCYklWbFIzS3VBZEFqa0FsTWFzNHdFcUJybkFp?=
+ =?utf-8?B?MzE3S1VKaEdjQTRKWkxiT0crVTNFUXh0QnN0VTRMY1ljMGkzRGxya3B5a3Yw?=
+ =?utf-8?B?ZDhIekErc0RJVS9wZ1JtOUlteDdGbnc4M0xzMlV5ZkUvYkJ6bTRzZE91TG1K?=
+ =?utf-8?B?d080SGpmTEMrUVVSckNnc1RDdy9BaUhrT2dnck01ZGJMalBBc3J0M1dSUVJF?=
+ =?utf-8?B?QjFzWXFLT2FZTzM2ZU84Z250R3NPT1M5T1dxM1FmR0hiSFdkTmN2Ui94ZVI1?=
+ =?utf-8?B?Q3J6VFVyMVNFbFc0M2cxbUN2dTY2WXlDYnBaVmhKekZ0SVVkaEFNVHl2TDlG?=
+ =?utf-8?B?bXZKWEF1UTA2clN0R29zQldXc0hRN2lRdkRmYzJ3Vzc3ek5TcjQ2Z0JkaW5z?=
+ =?utf-8?B?WXBlT2o5TEY4cnhLSDFNRGpWcFM4dGY5SUFuRnFobXd6VGZOcER6eWdmejUz?=
+ =?utf-8?B?Z2hxYmtPbDA2WERIaW5GZWN5UmFvN2Q4Ym9LVEEyMEVHaThoK3p0bUdqQ2ZU?=
+ =?utf-8?B?SElpMW1velJYeUNxdnN2U1NQeVNZSzhDWEhYY3FrVmJMZWNCYVUzVGd0Z3Q2?=
+ =?utf-8?B?YUd0S0hzZXRyczI5MEZYWWE3ZUJjSGpDS29DekJVUmgwME9mV2RtTkI2VWRo?=
+ =?utf-8?B?dnVZV0FSZUFUVGtkMDIxbURVQWNyUXRhbzFZODdPVWVKQ2grOHVlVTdNTHU1?=
+ =?utf-8?B?bmpDYmU2T2ZjZ3QyQXY3a2xzVFZKWkY1OXA3REpzY3Nqb0RsUlFzdHFkMEpE?=
+ =?utf-8?B?cWFRTzNETjdqV1NFMUk0cFQxYUhxZXNLMlUrLzJSWGxHRnVBM2VCQWQzTzNa?=
+ =?utf-8?B?UmtndHZhc3IwL1UzUVR2czlpT01ub0VhQjJwbWRKSDMxYkJMSHZTczhqUGhZ?=
+ =?utf-8?Q?o85SJToH5/yhGP2GTdJaYtY=3D?=
+X-OriginatorOrg: windriver.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- f0551f00-e276-4692-4e89-08d9c580566c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Dec 2021 19:22:04.4964
+ ada8a7ce-8d69-44d3-8a3a-08d9c5bb7e5f
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5009.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Dec 2021 02:25:32.1035
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: cc7df247-60ce-4a0f-9d75-704cf60efc64
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- c+Sqor57/CHEUMNu6HoyCyea4r9I2b9TQIAtMC1j7nSmS1Iv+9C6mgRKLmysCXZ0sxXLqYdd63vaAwLnnpJTKs9TULjGpacvouff9592kxA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM4PR0902MB1730
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ nMOZgSIk9xi29WOg9agn4kofJGcKz02J0wv/zGHGGkemRThKXKH5SghtcJqIa6luWi4NBxo/9Crsgwth9CvNWQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1854
+X-Proofpoint-ORIG-GUID: mEn_491SkKaCil59h9CP9FzXZEezM0yy
+X-Proofpoint-GUID: mEn_491SkKaCil59h9CP9FzXZEezM0yy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2021-12-22_09,2021-12-22_01,2021-12-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1011
+ lowpriorityscore=0 phishscore=0 malwarescore=0 mlxlogscore=816
+ suspectscore=0 spamscore=0 impostorscore=0 mlxscore=0 bulkscore=0
+ priorityscore=1501 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2110150000 definitions=main-2112230009
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by
+ mx0a-0064b401.pphosted.com id 1BN2CKeA024793
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 22 Dec 2021 19:22:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55646
+ <yocto@lists.yoctoproject.org>; Thu, 23 Dec 2021 02:25:38 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55647
 
---_000_AM0PR09MB4148CD58509BA3C7C965923BAC7D9AM0PR09MB4148eurp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Bruce,
 
-To be honest, I am not quite sure where to ask this, as it is a very specif=
-ic scenario, so feel free to forward me and my question to someone/somewher=
-e else.
+On 12/9/21 1:37 PM, Khem Raj wrote:
+> **[Please note: This e-mail is from an EXTERNAL e-mail address]
+>=20
+>=20
+>=20
+> On Wed, Dec 8, 2021 at 7:03 PM Yu, Mingli <mingli.yu@windriver.com=20
+> <mailto:mingli.yu@windriver.com>> wrote:
+>=20
+>     From: Mingli Yu <mingli.yu@windriver.com
+>     <mailto:mingli.yu@windriver.com>>
+>=20
+>     After the commit [1] introduced in openembedded-core layer,
+>     some configure options is't carried over include xshmfence
+>     option, so remove the xshmfence configure option to silence
+>     the below warning.
+>      =C2=A0 WARNING: xserver-xorg-2_21.1.1-r0 do_configure: QA Issue:
+>     xserver-xorg: invalid PACKAGECONFIG: xshmfence [invalid-packageconf=
+ig]
+>=20
+>=20
+> That=E2=80=99s ok to remove it but more importantly does it work now wi=
+thout=20
+> this option
 
-Situation:
+First we should keep consistent with the change with=20
+openembedded-core(https://git.openembedded.org/openembedded-core/commit/?=
+id=3De05abd87ee5d23750c641d0129d9c83db68ee2e8)=20
+and also not found any issue related to this option until now.
 
-  *   Yocto Hardknott running meta-virtualization, meta-raspberrypi with Do=
-cker installed: Dockers works fine and is tested. Docker exec and attach wo=
-rks too
-  *   Now changed the rootfs to be squashfs, and an overlay of root + a RW =
-ext4 partition is changed to be / at boot. This script is based on: https:/=
-/github.com/cmhe/meta-readonly-rootfs-overlay
-  *   Docker's overlay2 file driver does not work on top of an overlay: htt=
-ps://docs.docker.com/storage/storagedriver/select-storage-driver/
-  *   Solution: create /etc/docker/daemon.json with the line in it: "data-r=
-oot"=3D"/docker-data". Note: /docker-data is a separate EXT4 partition on t=
-he SD card.
-  *   Restart machine/dockerd. The result is that we see the /docker-data i=
-s now full of docker files and the containers and overlay2 folders are ther=
-e. Docker info shows: Storage driver: overlay2
-Containers run fine. Hello-world example runs. Alpine runs, and when starti=
-ng Alpine with -it arguments I can mess around in shell all I want, everyth=
-ing works.
-  *   Problem: Whenever I create a container, for example: docker run -d -t=
- -name=3Dtest alpine, and later try to exec into it using "docker exec test=
- echo hello" I get this result:
-Error running exec: OCI-runtime exec failed: exec failed: container_linux.g=
-o:367"starting container process caused: read init-p: connection reset by p=
-eer: unknown
-  *   I restarted dockerd with -log-level=3Ddebug and noticed that it says:=
- attach: stderr: begin, stream copy error: reading from a closed fifo. (Sam=
-e for stdout)
+Thanks,
 
-I removed the overlaying again and can confirm that exec and attach also wo=
-rked before adding this, but on Google I can not find a single thing that c=
-losely relates to the issue I am facing.
-
-Hope any of you might be able to help me out here, I feel truly stuck on th=
-is.
-
-Kind regards,
-L=E9on van de Beek
-
---_000_AM0PR09MB4148CD58509BA3C7C965923BAC7D9AM0PR09MB4148eurp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:70587635;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-177804872 465866746 68354051 68354053 68354049 6835=
-4051 68354053 68354049 68354051 68354053;}
-@list l0:level1
-	{mso-level-start-at:0;
-	mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-font-family:Calibri;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0cm;}
-ul
-	{margin-bottom:0cm;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"NL" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:bre=
-ak-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi Bruce,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">To be honest, I am not quite su=
-re where to ask this, as it is a very specific scenario, so feel free to fo=
-rward me and my question to someone/somewhere else.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Situation:<o:p></o:p></span></p=
->
-<ul style=3D"margin-top:0cm" type=3D"disc">
-<li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l0 level1 =
-lfo1"><span lang=3D"EN-US">Yocto Hardknott running meta-virtualization, met=
-a-raspberrypi with Docker installed: Dockers works fine and is tested. Dock=
-er exec and attach works too<o:p></o:p></span></li><li class=3D"MsoListPara=
-graph" style=3D"margin-left:0cm;mso-list:l0 level1 lfo1"><span lang=3D"EN-U=
-S">Now changed the rootfs to be squashfs, and an overlay of root + a RW ext=
-4 partition is changed to be / at boot. This script is based on:
-<a href=3D"https://github.com/cmhe/meta-readonly-rootfs-overlay">https://gi=
-thub.com/cmhe/meta-readonly-rootfs-overlay</a><o:p></o:p></span></li><li cl=
-ass=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l0 level1 lfo1">=
-<span lang=3D"EN-US">Docker&#8217;s overlay2 file driver does not work on t=
-op of an overlay:
-<a href=3D"https://docs.docker.com/storage/storagedriver/select-storage-dri=
-ver/">https://docs.docker.com/storage/storagedriver/select-storage-driver/<=
-/a><o:p></o:p></span></li><li class=3D"MsoListParagraph" style=3D"margin-le=
-ft:0cm;mso-list:l0 level1 lfo1"><span lang=3D"EN-US">Solution: create /etc/=
-docker/daemon.json with the line in it: &#8220;data-root&#8221;=3D&#8221;/d=
-ocker-data&#8221;. Note: /docker-data is a separate EXT4 partition on the S=
-D card.
-<o:p></o:p></span></li><li class=3D"MsoListParagraph" style=3D"margin-left:=
-0cm;mso-list:l0 level1 lfo1"><span lang=3D"EN-US">Restart machine/dockerd. =
-The result is that we see the /docker-data is now full of docker files and =
-the containers and overlay2 folders are there. Docker info shows:
- Storage driver: overlay2<br>
-Containers run fine. Hello-world example runs. Alpine runs, and when starti=
-ng Alpine with -it arguments I can mess around in shell all I want, everyth=
-ing works.<o:p></o:p></span></li><li class=3D"MsoListParagraph" style=3D"ma=
-rgin-left:0cm;mso-list:l0 level1 lfo1"><span lang=3D"EN-US">Problem: Whenev=
-er I create a container, for example: docker run -d -t &#8211;name=3Dtest a=
-lpine, and later try to exec into it using &#8220;docker exec test echo hel=
-lo&#8221; I get
- this result: <br>
-Error running exec: OCI-runtime exec failed: exec failed: container_linux.g=
-o:367&#8221;starting container process caused: read init-p: connection rese=
-t by peer: unknown<o:p></o:p></span></li><li class=3D"MsoListParagraph" sty=
-le=3D"margin-left:0cm;mso-list:l0 level1 lfo1"><span lang=3D"EN-US">I resta=
-rted dockerd with &#8211;log-level=3Ddebug and noticed that it says: attach=
-: stderr: begin, stream copy error: reading from a closed fifo. (Same for s=
-tdout)<o:p></o:p></span></li></ul>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I removed the overlaying again =
-and can confirm that exec and attach also worked before adding this, but on=
- Google I can not find a single thing that closely relates to the issue I a=
-m facing.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Hope any of you might be able t=
-o help me out here, I feel truly stuck on this.
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Kind regards,<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">L=E9on van de Beek<o:p></o:p></=
-span></p>
-</div>
-</body>
-</html>
-
---_000_AM0PR09MB4148CD58509BA3C7C965923BAC7D9AM0PR09MB4148eurp_--
+>=20
+>=20
+>     [1]
+>     https://git.openembedded.org/openembedded-core/commit/?id=3De05abd8=
+7ee5d23750c641d0129d9c83db68ee2e8
+>     <https://urldefense.com/v3/__https://git.openembedded.org/openembed=
+ded-core/commit/?id=3De05abd87ee5d23750c641d0129d9c83db68ee2e8__;!!AjveYd=
+w8EvQ!O1dnnmQhKwEt9e40TMNLjFCci501QrS-7Erm4Fz5co01OzoGEk8NfXDGEi2vpfa5oCE=
+$>
+>=20
+>     Signed-off-by: Mingli Yu <mingli.yu@windriver.com
+>     <mailto:mingli.yu@windriver.com>>
+>     ---
+>      =C2=A0recipes-graphics/xorg-xserver/xserver-xorg_%.bbappend | 2 +-
+>      =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+>     diff --git a/recipes-graphics/xorg-xserver/xserver-xorg_%.bbappend
+>     b/recipes-graphics/xorg-xserver/xserver-xorg_%.bbappend
+>     index 25829c2..ee4812f 100644
+>     --- a/recipes-graphics/xorg-xserver/xserver-xorg_%.bbappend
+>     +++ b/recipes-graphics/xorg-xserver/xserver-xorg_%.bbappend
+>     @@ -1,4 +1,4 @@
+>     -OPENGL_PKGCONFIGS:rpi =3D "dri glx
+>     ${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', 'dri3
+>     xshmfence glamor', '', d)}"
+>     +OPENGL_PKGCONFIGS:rpi =3D "dri glx
+>     ${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', 'dri3
+>     glamor', '', d)}"
+>=20
+>      =C2=A0# when using userland graphic KHR/khrplatform.h is provided =
+by
+>     userland but virtual/libgl is provided by mesa-gl where
+>      =C2=A0# we explicitly delete KHR/khrplatform.h since its already c=
+oming
+>     from userland package
+>     --=20
+>     2.17.1
+>=20
+>=20
+>     -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>     Links: You receive all messages sent to this group.
+>     You automatically follow any topics you start or reply to.
+>     View/Reply Online (#55531):
+>     https://lists.yoctoproject.org/g/yocto/message/55531
+>     <https://urldefense.com/v3/__https://lists.yoctoproject.org/g/yocto=
+/message/55531__;!!AjveYdw8EvQ!O1dnnmQhKwEt9e40TMNLjFCci501QrS-7Erm4Fz5co=
+01OzoGEk8NfXDGEi2vXmKGDl8$>
+>     Mute This Topic: https://lists.yoctoproject.org/mt/87605115/1997914
+>     <https://urldefense.com/v3/__https://lists.yoctoproject.org/mt/8760=
+5115/1997914__;!!AjveYdw8EvQ!O1dnnmQhKwEt9e40TMNLjFCci501QrS-7Erm4Fz5co01=
+OzoGEk8NfXDGEi2vWeRAtqk$>
+>     Group Owner: yocto+owner@lists.yoctoproject.org
+>     <mailto:yocto%2Bowner@lists.yoctoproject.org>
+>     Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub
+>     <https://urldefense.com/v3/__https://lists.yoctoproject.org/g/yocto=
+/unsub__;!!AjveYdw8EvQ!O1dnnmQhKwEt9e40TMNLjFCci501QrS-7Erm4Fz5co01OzoGEk=
+8NfXDGEi2vSS7YAOE$>
+>     [raj.khem@gmail.com <mailto:raj.khem@gmail.com>]
+>     -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>=20
 
