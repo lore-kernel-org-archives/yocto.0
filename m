@@ -1,95 +1,86 @@
-Return-Path: <jupiter.hce@gmail.com>
+Return-Path: <foss@0leil.net>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9D1DAC433F5
-	for <webhook@archiver.kernel.org>; Thu, 23 Dec 2021 10:29:32 +0000 (UTC)
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com
- [209.85.221.180])
- by mx.groups.io with SMTP id smtpd.web09.31346.1640255371756789650
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DE0D4C433EF
+	for <webhook@archiver.kernel.org>; Thu, 23 Dec 2021 12:24:31 +0000 (UTC)
+Received: from relay12.mail.gandi.net (relay12.mail.gandi.net
+ [217.70.178.232])
+ by mx.groups.io with SMTP id smtpd.web09.32160.1640262266301385370
  for <yocto@lists.yoctoproject.org>;
- Thu, 23 Dec 2021 02:29:31 -0800
+ Thu, 23 Dec 2021 04:24:26 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=JyBkbv/b;
- spf=pass (domain: gmail.com, ip: 209.85.221.180,
- mailfrom: jupiter.hce@gmail.com)
-Received: by mail-vk1-f180.google.com with SMTP id s144so2943946vkb.8
-        for <yocto@lists.yoctoproject.org>;
- Thu, 23 Dec 2021 02:29:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to:cc;
-        bh=MgkmWlINq6SZ6FIG+lENBKk+MMEI8PdC0Rc6dfgEe7Y=;
-        b=JyBkbv/bOwQcvK4/jeIKuNy/8+81hfHeauJb4APyT5b5v5tXMcYYaSgVlj/p5CzHjN
-         Yr5wiBcG4+Jbp12XR6Eypmk1Ex1Zjto1XEfrCFUoJgC+EeNI1WNXCc9WSgEmGYft2AMA
-         1vQ2NX/5wsrNj36yxLF1u0M+hwrWsvY4GwFLif9dGakuVrimoJIdjTfBQeXYhy9NEBTQ
-         aCxvm27Da+AVcxMoucGTU37dwsFfV76e6KwpOQZ4ccQwJoSXBH8j/nOIpE5nSULtxROX
-         OC0wJFHWX0/WcijeZA51IZ+BPMG3RCvbCVzJkXf9aKsHZ3q32xHeNG2GinyWSrGphyov
-         frXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-        bh=MgkmWlINq6SZ6FIG+lENBKk+MMEI8PdC0Rc6dfgEe7Y=;
-        b=qABOyTSuh5N+aaGlEeJYSlM621V8Egmg3OkpmNpRmq1H2VxwUbbifSLBZR418ngUFd
-         NPIu7Gx01AiV8dXZj7fvRAFNaCz0UWsGITQqd9SW9iuHmThAs9vl/cDvZHJCwwD2xx6N
-         d/vEyw0Wz4xOIH5vN1LhPLA0nuMoPezmLUXPhaqcYy01gKFmYS97JCfsADUszQwwS0y/
-         FHcXkrjWn3S/LeLvacEdnga8ix33du7maZLIgx5hRH59nlUtvjVWLKUhd1NaPVvleuXQ
-         WCY3qLffDQHhnS3SFOxMfrk8IL6OgSK6Yxv3t+JrLxJS46SHytGhvEvCLH3KaoDg+9Xc
-         egOA==
-X-Gm-Message-State: AOAM533UbCOj/PPP+nXLa2O0xFclYHFVP/KF1GXs5Ff/3OANWcC13E5V
-	PwuGtDKCEY+GkGYI7qXvIQEJ33q3hmq1EErGHxeaPe86
-X-Google-Smtp-Source: 
- ABdhPJwxkI296UtwANBdwj18OKzRxZ8RIjpfY3BCWNQE0y9QDruZf8AOswYQSjnE7r7etHebykJGUWEc72Ru8aZ8IWE=
-X-Received: by 2002:a05:6122:218b:: with SMTP id
- j11mr476144vkd.11.1640255370786;
- Thu, 23 Dec 2021 02:29:30 -0800 (PST)
-MIME-Version: 1.0
-From: Jupiter <jupiter.hce@gmail.com>
-Date: Thu, 23 Dec 2021 21:28:55 +1100
-Message-ID: 
+ dkim=missing;
+ spf=none, err=permanent DNS error (domain: 0leil.net, ip: 217.70.178.232,
+ mailfrom: foss+yocto@0leil.net)
+Received: (Authenticated sender: foss@0leil.net)
+	by relay12.mail.gandi.net (Postfix) with ESMTPSA id D7EC7200003;
+	Thu, 23 Dec 2021 12:24:23 +0000 (UTC)
+Date: Thu, 23 Dec 2021 13:24:19 +0100
+From: Quentin Schulz <foss+yocto@0leil.net>
+To: yocto@lists.yoctoproject.org, JH <jupiter.hce@gmail.com>,
+ yocto <yocto@lists.yoctoproject.org>
+CC: oe-core <openembedded-core@lists.openembedded.org>
+Subject: Re: [yocto] Where to define udev to load kernel modules in boot?
+In-Reply-To: 
  <CAA=hcWSFfUY8rh4WCvqNmbDPOO2=BMH5CUA9ZkEXuKit+3LK6Q@mail.gmail.com>
-Subject: Where to define udev to load kernel modules in boot?
-To: yocto <yocto@lists.yoctoproject.org>
-Cc: oe-core <openembedded-core@lists.openembedded.org>
-Content-Type: text/plain; charset="UTF-8"
+References: 
+ <CAA=hcWSFfUY8rh4WCvqNmbDPOO2=BMH5CUA9ZkEXuKit+3LK6Q@mail.gmail.com>
+Message-ID: <41D27EB7-6A9C-4640-8224-9BA33FBCC0CB@0leil.net>
+MIME-Version: 1.0
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 23 Dec 2021 10:29:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55648
+ <yocto@lists.yoctoproject.org>; Thu, 23 Dec 2021 12:24:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55649
 
-Hi,
+Hi JH,
 
-I built an OE/Yocto IoT device to include kernel modules of usb_wwan,
-usbserial, mwifiex_sdio, mwifiex etc, there is one udev from
-meta-freescale/recipes-core/udev/udev-rules-imx/10-imx.rules
+On December 23, 2021 11:28:55 AM GMT+01:00, JH <jupiter=2Ehce@gmail=2Ecom>=
+ wrote:
+>Hi,
+>
+>I built an OE/Yocto IoT device to include kernel modules of usb_wwan,
+>usbserial, mwifiex_sdio, mwifiex etc, there is one udev from
+>meta-freescale/recipes-core/udev/udev-rules-imx/10-imx=2Erules
+>
+># ls /etc/udev/rules=2Ed
+>10-imx=2Erules       touchscreen=2Erules
+>
+>My device does not have a touchscreen so that touchscreen=2Erules should
+>not be there=2E The 10-imx=2Erules does not define any kernel modules
+>usb_wwan, usbserial, mwifiex_sdio, mwifiex, the device does not have
+>video or any input
+>
+># cat /etc/udev/rules=2Ed/10-imx=2Erules
+>KERNEL=3D=3D"mc13783_connectiv*",  NAME=3D"mc13783_connectivity"
+># Anyone has readonly permission to IIM device file
+>KERNEL=3D=3D"mxc_iim",  MODE=3D"0444", SYMLINK+=3D"mxc_mem"
+>KERNEL=3D=3D"mxs_viim", MODE=3D"0444", SYMLINK+=3D"mxc_mem"
+>KERNEL=3D=3D"mxc_ipu",  MODE=3D"0666"
+>KERNEL=3D=3D"mxc_vpu",  MODE=3D"0666"
+>SUBSYSTEM=3D=3D"video", MODE=3D"0660"
+>KERNEL=3D=3D"fb[0-9]",  MODE=3D"0660", GROUP=3D"video"
+>KERNEL=3D=3D"gsl_kmod", MODE=3D"0660", GROUP=3D"video"
+>KERNEL=3D=3D"galcore",  MODE=3D"0660", GROUP=3D"video"
+>
+>How can I define udev in recipes to make the system to load kernel
+>modules of usb_wwan, usbserial, mwifiex_sdio, mwifiex in boot?
+>
 
-# ls /etc/udev/rules.d
-10-imx.rules       touchscreen.rules
+IIRC, you need to add your package to KERNEL_MODULE_AUTOLOAD, c=2Ef=2E htt=
+ps://docs=2Eyoctoproject=2Eorg/ref-manual/variables=2Ehtml#term-KERNEL_MODU=
+LE_AUTOLOAD
 
-My device does not have a touchscreen so that touchscreen.rules should
-not be there. The 10-imx.rules does not define any kernel modules
-usb_wwan, usbserial, mwifiex_sdio, mwifiex, the device does not have
-video or any input
+Cheers,
+Quentin
 
-# cat /etc/udev/rules.d/10-imx.rules
-KERNEL=="mc13783_connectiv*",  NAME="mc13783_connectivity"
-# Anyone has readonly permission to IIM device file
-KERNEL=="mxc_iim",  MODE="0444", SYMLINK+="mxc_mem"
-KERNEL=="mxs_viim", MODE="0444", SYMLINK+="mxc_mem"
-KERNEL=="mxc_ipu",  MODE="0666"
-KERNEL=="mxc_vpu",  MODE="0666"
-SUBSYSTEM=="video", MODE="0660"
-KERNEL=="fb[0-9]",  MODE="0660", GROUP="video"
-KERNEL=="gsl_kmod", MODE="0660", GROUP="video"
-KERNEL=="galcore",  MODE="0660", GROUP="video"
-
-How can I define udev in recipes to make the system to load kernel
-modules of usb_wwan, usbserial, mwifiex_sdio, mwifiex in boot?
-
-Thank you.
-
-Kind regards,
-
-- jh
+>Thank you=2E
+>
+>Kind regards,
+>
+>- jh
 
