@@ -1,412 +1,311 @@
-Return-Path: <f_l_k@t-online.de>
+Return-Path: <michael.ho@ieee.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7E30BC433EF
-	for <webhook@archiver.kernel.org>; Wed, 29 Dec 2021 06:26:45 +0000 (UTC)
-Received: from mailout04.t-online.de (mailout04.t-online.de [194.25.134.18])
- by mx.groups.io with SMTP id smtpd.web11.48151.1640759203690855954
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 695B7C433F5
+	for <webhook@archiver.kernel.org>; Wed, 29 Dec 2021 06:53:37 +0000 (UTC)
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com
+ [209.85.222.42])
+ by mx.groups.io with SMTP id smtpd.web09.48159.1640760816189430483
  for <yocto@lists.yoctoproject.org>;
- Tue, 28 Dec 2021 22:26:44 -0800
+ Tue, 28 Dec 2021 22:53:36 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=none, err=SPF record not found (domain: t-online.de, ip: 194.25.134.18,
- mailfrom: f_l_k@t-online.de)
-Received: from fwd83.dcpf.telekom.de (fwd83.aul.t-online.de [10.223.144.109])
-	by mailout04.t-online.de (Postfix) with SMTP id 2F1A06634
-	for <yocto@lists.yoctoproject.org>; Wed, 29 Dec 2021 07:26:40 +0100 (CET)
-Received: from [192.168.178.83] ([84.163.47.249]) by fwd83.t-online.de
-	with (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384 encrypted)
-	esmtp id 1n2SPt-3UAdkH0; Wed, 29 Dec 2021 07:26:29 +0100
-Subject: Re: [yocto] /bin/sh: 1: bison: not found while compiling own kernel
- module with poky-dunfell #bitbake
-To: yocto@lists.yoctoproject.org
-References: <SUq3.1640758576674182643.xC9E@lists.yoctoproject.org>
-From: Markus Volk <f_l_k@t-online.de>
-Message-ID: <dbd1e026-5d60-eed8-5f51-7642cb309313@t-online.de>
-Date: Wed, 29 Dec 2021 07:26:28 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+ dkim=pass header.i=@ieee.org header.s=google header.b=B1ho6DAq;
+ spf=pass (domain: ieee.org, ip: 209.85.222.42, mailfrom: michael.ho@ieee.org)
+Received: by mail-ua1-f42.google.com with SMTP id p1so13760196uap.9
+        for <yocto@lists.yoctoproject.org>;
+ Tue, 28 Dec 2021 22:53:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ieee.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zfF5L3Kv99wcyXNxQ1upncJqne7F3QeNPAy6npU0wTg=;
+        b=B1ho6DAqcN5ThVwdFMb58tX9Xa82gAt7Krp51GxBx/FYc/pm3m+jN38O4AL2wUU+xY
+         pW2WLICZXSrwqZVKSoEey9fMTr6tfoOiNpTC6kzV8G1s+Ys6VE79qFddy6Z6KUYzsmhG
+         JBTndyAOfkddQ+RLBdkEEwcZEJfX58t9htQYA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zfF5L3Kv99wcyXNxQ1upncJqne7F3QeNPAy6npU0wTg=;
+        b=ifvLHuNbabzceiHygg1c9x8le4T9WyXo4+dwHwKfSyJKrVHsYsRZ+SkkKo2+y5Pb+k
+         uDQkL4x6/N694iY54ASlf897kcUxP+xc52iOnNmalMA3EEy/rZBN6XbEorMfLK/8hTZt
+         Q+CRFhrDSadd9su9mJq7wh1lwf9s8c/4aZB1jRNVAooqJs9YFBiIzSGZ6muNnA0Npu1u
+         RNtMVIxBypBdvVxO+Cn9T07omYAIh14JGryicb04cS8LBk9yRvzwkGseUINPCUwKGR5B
+         R4AwpFOzb96K7zTP8biA3qxV9+m082dvOUYlKV3arTjCXCpbVZGuLscvIYpQn6EzMoLf
+         OGkg==
+X-Gm-Message-State: AOAM530Bd2KgSp8Msh6zi0Raemnf9Z2vHz/eHJ33q6k93EF4EZwYFJ8J
+	H2WJIalcrKBtAA4zx0p0ZA5wWsuGbPuv7bWhp8q7lQ==
+X-Google-Smtp-Source: 
+ ABdhPJz/tPdxD22aKYwsXLij7Cv9VPyr3Sih4J2CoEj2OuYyvhhitZYLeT6VDIScHS9yYxUofJHB7uDWshKcrnTG08k=
+X-Received: by 2002:ab0:6882:: with SMTP id t2mr4475384uar.40.1640760815226;
+ Tue, 28 Dec 2021 22:53:35 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <SUq3.1640758576674182643.xC9E@lists.yoctoproject.org>
-Content-Type: multipart/alternative;
- boundary="------------411F1EE6DD6AA9EF84F49987"
-Content-Language: en-US
-X-TOI-EXPURGATEID: 150726::1640759189-0000EDC4-CAB931B5/0/0 CLEAN NORMAL
-X-TOI-MSGID: c106673a-6b86-485a-9cb3-b6f21a88cb44
+References: <UgWJ.1640715121424616879.MnGk@lists.yoctoproject.org>
+In-Reply-To: <UgWJ.1640715121424616879.MnGk@lists.yoctoproject.org>
+From: Michael Ho <michael.ho@ieee.org>
+Date: Wed, 29 Dec 2021 07:53:24 +0100
+Message-ID: 
+ <CALpKvHq0AC-sx9xUUiq+heXmc9uLaZVbCiMo6LnVKJ2SDX56cA@mail.gmail.com>
+Subject: Re: [yocto] unparsed line #yocto
+To: Kevin Kettinger <kkettinger@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000008db38805d443658d"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 29 Dec 2021 06:26:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55684
+ <yocto@lists.yoctoproject.org>; Wed, 29 Dec 2021 06:53:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55685
 
-This is a multi-part message in MIME format.
---------------411F1EE6DD6AA9EF84F49987
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+--0000000000008db38805d443658d
+Content-Type: text/plain; charset="UTF-8"
 
-hello,
+It looks like you have a dunfell yocto setup which doesn't support that new
+recipe syntax. Maybe you need to check out the dunfell branch of those meta
+layers to get them to be compatible.
 
-try to add 'bison-native' to DEPENDS.
+Michael
 
-Am 29.12.21 um 07:16 schrieb prashantsingh@dialtronics.com:
-> hello team,
-> I'm trying to build my own kernel module with yocto for raspberry-pi=20
-> kernel, but it's giving me error that "*bison not found*", as-
+On Tue, 28 Dec 2021, 7:12 pm Kevin Kettinger, <kkettinger@gmail.com> wrote:
+
+> Hello,
 >
-> DEBUG: Executing shell function do_compile
-> NOTE: make -j 12=20
-> KERNEL_SRC=3D/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BS=
-P/workspace/FXS/tmp/work-shared/raspberrypi3/kernel-source=20
-> KSRC=3D/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BSP/work=
-space/FXS/tmp/work-shared/raspberrypi3/kernel-build-artifacts=20
-> KERNEL_PATH=3D/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_B=
-SP/workspace/FXS/tmp/work-shared/raspberrypi3/kernel-source=20
-> KERNEL_VERSION=3D5.4.72-v7 CC=3Darm-poky-linux-gnueabi-gcc=20
-> -mno-thumb-interwork -marm -fuse-ld=3Dbfd=20
-> -fmacro-prefix-map=3D/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUIL=
-D/FXS_BSP/workspace/FXS/tmp/work/raspberrypi3-poky-linux-gnueabi/ax88772/=
-1.0-r0=3D/usr/src/debug/ax88772/1.0-r0=20
-> -fdebug-prefix-map=3D/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUIL=
-D/FXS_BSP/workspace/FXS/tmp/work/raspberrypi3-poky-linux-gnueabi/ax88772/=
-1.0-r0=3D/usr/src/debug/ax88772/1.0-r0=20
-> -fdebug-prefix-map=3D/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUIL=
-D/FXS_BSP/workspace/FXS/tmp/work/raspberrypi3-poky-linux-gnueabi/ax88772/=
-1.0-r0/recipe-sysroot=3D=20
-> -fdebug-prefix-map=3D/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUIL=
-D/FXS_BSP/workspace/FXS/tmp/work/raspberrypi3-poky-linux-gnueabi/ax88772/=
-1.0-r0/recipe-sysroot-native=3D=20
-> -fdebug-prefix-map=3D/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUIL=
-D/FXS_BSP/workspace/FXS/tmp/work-shared/raspberrypi3/kernel-source=3D/usr=
-/src/kernel=20
-> LD=3Darm-poky-linux-gnueabi-ld.bfd=C2=A0=C2=A0 AR=3Darm-poky-linux-gnue=
-abi-ar=20
-> O=3D/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BSP/workspa=
-ce/FXS/tmp/work-shared/raspberrypi3/kernel-build-artifacts=20
-> KBUILD_EXTRA_SYMBOLS=3D
-> make -C=20
-> /home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BSP/workspace/F=
-XS/tmp/work-shared/raspberrypi3/kernel-build-artifacts=20
-> SUBDIRS=3D/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BSP/w=
-orkspace/FXS/tmp/work/raspberrypi3-poky-linux-gnueabi/ax88772/1.0-r0=20
-> modules
-> make[1]: warning: jobserver unavailable: using -j1.=C2=A0 Add '+' to pa=
-rent=20
-> make rule.
-> make[1]: Entering directory=20
-> '/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BSP/workspace/=
-FXS/tmp/work-shared/raspberrypi3/kernel-build-artifacts'
-> =C2=A0 GEN=C2=A0=C2=A0=C2=A0=C2=A0 Makefile
-> =C2=A0 YACC=C2=A0=C2=A0=C2=A0 scripts/kconfig/parser.tab.[ch]
-> /bin/sh: 1: bison: not found
-> make[4]: *** [scripts/Makefile.host:17: scripts/kconfig/parser.tab.h]=20
-> Error 127
-> make[3]: ***=20
-> [/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BSP/workspace/=
-FXS/tmp/work-shared/raspberrypi3/kernel-source/Makefile:590:=20
-> syncconfig] Error 2
-> make[2]: ***=20
-> [/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BSP/workspace/=
-FXS/tmp/work-shared/raspberrypi3/kernel-source/Makefile:696:=20
-> include/config/auto.conf.cmd] Error 2
-> make[1]: ***=20
-> [/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BSP/workspace/=
-FXS/tmp/work-shared/raspberrypi3/kernel-source/Makefile:179:=20
-> sub-make] Error 2
-> make[1]: Leaving directory=20
-> '/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BSP/workspace/=
-FXS/tmp/work-shared/raspberrypi3/kernel-build-artifacts'
-> make: *** [Makefile:19: default] Error 2
-> ERROR: oe_runmake failed
-> WARNING: exit code 1 from a shell command.
+> after including the meta-qt5 and meta-boot2qt layer from
+> https://code.qt.io/cgit/yocto, and adding them to my bblayers.conf,
+> bitbake breaks directly while parsing the recipes:
+> ---------------------------------------------
+> ERROR: ParseError at
+> /home/yocto/projects/faseroptik-dunfell/build/../layers/meta-qt5/classes/cmake_qt5.bbclass:4:
+> unparsed line: 'DEPENDS:prepend = "${QTBASEDEPENDS}
+> "'
+> | ETA:  --:--:--
 >
+> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+> ---------------------------------------------
 >
-> *Here is my bb file for the same-*
+> If i restart bitbake, the offending file changes now and then, but just
+> for completion, here is the file:
+> ---------------------------------------------
+> inherit cmake
+> inherit qmake5_paths
 >
-> SUMMARY =3D "WAN IC asix kernel module"
-> LICENSE =3D "GPLv2"
-> LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D014e508ee78ef83e5007b9cb3834=
-f0e9"
+> DEPENDS:prepend = "${QTBASEDEPENDS} "
+> QTBASEDEPENDS = "qtbase qtbase-native"
+> QTBASEDEPENDS:class-native = "qtbase-native"
+> QTBASEDEPENDS:class-nativesdk = "nativesdk-qtbase qtbase-native"
 >
-> DEPENDS =3D "virtual/kernel bc bison"
->
-> inherit module
->
-> PR =3D "r0"
-> PV =3D "1.0"
->
-> SRC_URI =3D "file://Makefile \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 file://asix.c \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 file://asix.h \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 file://axusbnet.=
-c \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 file://axusbnet.=
-h \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 file://command.h=
- \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 file://debug.txt=
- \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 file://eeprom_da=
-ta.tar.bz2 \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 file://ioctl.c \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 file://ioctl.h \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 file://ioctl_rea=
-dme \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 file://readme \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 file://readme \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 file://LICENSE \
+> EXTRA_OECMAKE:prepend = " \
+>     -DOE_QMAKE_PATH_PREFIX=${OE_QMAKE_PATH_PREFIX} \
+>     -DOE_QMAKE_PATH_HEADERS=${OE_QMAKE_PATH_HEADERS} \
+>     -DOE_QMAKE_PATH_LIBS=${OE_QMAKE_PATH_LIBS} \
+>     -DOE_QMAKE_PATH_ARCHDATA=${OE_QMAKE_PATH_ARCHDATA} \
+>     -DOE_QMAKE_PATH_DATA=${OE_QMAKE_PATH_DATA} \
+>     -DOE_QMAKE_PATH_BINS=${OE_QMAKE_PATH_BINS} \
+>     -DOE_QMAKE_PATH_LIBEXECS=${OE_QMAKE_PATH_LIBEXECS} \
+>     -DOE_QMAKE_PATH_PLUGINS=${OE_QMAKE_PATH_PLUGINS} \
+>     -DOE_QMAKE_PATH_QML=${OE_QMAKE_PATH_QML} \
+>     -DOE_QMAKE_PATH_TRANSLATIONS=${OE_QMAKE_PATH_TRANSLATIONS} \
+>     -DOE_QMAKE_PATH_DOCS=${OE_QMAKE_PATH_DOCS} \
+>     -DOE_QMAKE_PATH_SETTINGS=${OE_QMAKE_PATH_SETTINGS} \
+>     -DOE_QMAKE_PATH_EXAMPLES=${OE_QMAKE_PATH_EXAMPLES} \
+>     -DOE_QMAKE_PATH_TESTS=${OE_QMAKE_PATH_TESTS} \
+>     -DOE_QMAKE_PATH_HOST_PREFIX=${OE_QMAKE_PATH_HOST_PREFIX} \
+>     -DOE_QMAKE_PATH_HOST_BINS=${OE_QMAKE_PATH_HOST_BINS} \
+>     -DOE_QMAKE_PATH_HOST_DATA=${OE_QMAKE_PATH_HOST_DATA} \
+>     -DOE_QMAKE_PATH_HOST_LIBS=${OE_QMAKE_PATH_HOST_LIBS} \
+>     -DOE_QMAKE_PATH_EXTERNAL_HOST_BINS=${OE_QMAKE_PATH_EXTERNAL_HOST_BINS}
+> \
+>     -DOE_QMAKE_PATH_QT_HEADERS=${OE_QMAKE_PATH_QT_HEADERS} \
+>     -DOE_QMAKE_PATH_QT_ARCHDATA=${OE_QMAKE_PATH_QT_ARCHDATA} \
+>     -DOE_QMAKE_PATH_QT_DATA=${OE_QMAKE_PATH_QT_DATA} \
+>     -DOE_QMAKE_PATH_QT_BINS=${OE_QMAKE_PATH_QT_BINS} \
+>     -DOE_QMAKE_PATH_QT_TRANSLATIONS=${OE_QMAKE_PATH_QT_TRANSLATIONS} \
+>     -DOE_QMAKE_PATH_QT_DOCS=${OE_QMAKE_PATH_QT_DOCS} \
+>     -DOE_QMAKE_PATH_QT_SETTINGS=${OE_QMAKE_PATH_QT_SETTINGS} \
+>     -DOE_QMAKE_PATH_QT_EXAMPLES=${OE_QMAKE_PATH_QT_EXAMPLES} \
+>     -DOE_QMAKE_PATH_QT_TESTS=${OE_QMAKE_PATH_QT_TESTS} \
 > "
+> ---------------------------------------------
 >
-> S =3D "${WORKDIR}"
+> The exact same layer with the exact same commit & files is working fine on
+> the original boot2qt environment, but not on my environment.
 >
-> export TARGET_SYS
-> EXTRA_OEMAKE +=3D "KSRC=3D${STAGING_KERNEL_BUILDDIR}"
+> My bblayers.conf looks like this:
+> ---------------------------------------------
+> LCONF_VERSION = "7"
 >
-> do_compile_append() {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ${CC} ioctl.c -o ioctl
-> }
+> BBPATH = "${TOPDIR}"
+> BBFILES ?= ""
 >
-> do_install_prepend() {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 export DESTDIR=3D"${D}"
-> }
+> BBLAYERS ?= " \
+>   ${TOPDIR}/../layers/meta-toradex-nxp \
+>   ${TOPDIR}/../layers/meta-freescale \
+>   ${TOPDIR}/../layers/meta-freescale-3rdparty \
+>   ${TOPDIR}/../layers/meta-toradex-tegra \
+>   ${TOPDIR}/../layers/meta-toradex-bsp-common \
+>   ${TOPDIR}/../layers/meta-openembedded/meta-oe \
+>   ${TOPDIR}/../layers/meta-openembedded/meta-filesystems \
+>   ${TOPDIR}/../layers/meta-openembedded/meta-gnome \
+>   ${TOPDIR}/../layers/meta-openembedded/meta-xfce \
+>   ${TOPDIR}/../layers/meta-openembedded/meta-initramfs \
+>   ${TOPDIR}/../layers/meta-openembedded/meta-networking \
+>   ${TOPDIR}/../layers/meta-openembedded/meta-multimedia \
+>   ${TOPDIR}/../layers/meta-openembedded/meta-python \
+>   ${TOPDIR}/../layers/meta-freescale-distro \
+>   ${TOPDIR}/../layers/meta-toradex-demos \
+>   ${TOPDIR}/../layers/meta-boot2qt/meta-boot2qt \
+>   ${TOPDIR}/../layers/meta-boot2qt/meta-boot2qt-distro \
+>   ${TOPDIR}/../layers/meta-qt5 \
+>   ${TOPDIR}/../layers/meta-toradex-distro \
+>   ${TOPDIR}/../layers/meta-yocto/meta-poky \
+>   ${TOPDIR}/../layers/openembedded-core/meta \
+>   ${TOPDIR}/../layers/meta-mender/meta-mender-core \
+>   ${TOPDIR}/../layers/meta-mender-community/meta-mender-toradex-nxp \
+>   ${TOPDIR}/../layers/meta-mender/meta-mender-demo \
+>   "
+> ---------------------------------------------
 >
+> On the working boot2qt environment poky 3.1.11 is used, i'm using poky
+> 3.1.8.
 >
+> Is there anything i can do to track this issue down? bitbake -v doesn't
+> report more infos.
 >
+> I appreciate any help here, thank you.
 >
-> # The inherit of module.bbclass will automatically name module=20
-> packages with
-> # "kernel-module-" prefix as required by the oe-core build environment.
->
->
->
-> Same kernel module with poky zeus and rpi kernel 4.19 got compiled=20
-> successfully, but here I'm getting issue with poky dunfell with Rpi=20
-> kernel 5.4
->
-> Please help me resolve this issue.
->
-> Thanks.
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Best regards,
+> Kevin
+> -=-=-=-=-=-=-=-=-=-=-=-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#55683): https://lists.yoctoproject.org/g/yocto/mess=
-age/55683
-> Mute This Topic: https://lists.yoctoproject.org/mt/88010629/3618223
-> Mute #bitbake:https://lists.yoctoproject.org/g/yocto/mutehashtag/bitbak=
-e
+> View/Reply Online (#55675):
+> https://lists.yoctoproject.org/g/yocto/message/55675
+> Mute This Topic: https://lists.yoctoproject.org/mt/88000093/3618434
+> Mute #yocto:https://lists.yoctoproject.org/g/yocto/mutehashtag/yocto
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [f_l_k@t-onli=
-ne.de]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> michael.ho@ieee.org]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 >
 
---------------411F1EE6DD6AA9EF84F49987
-Content-Type: text/html; charset=utf-8
+--0000000000008db38805d443658d
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <p>hello,</p>
-    <p>try to add 'bison-native' to DEPENDS.</p>
-    <div class=3D"moz-cite-prefix">Am 29.12.21 um 07:16 schrieb
-      <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:prashantsingh@=
-dialtronics.com">prashantsingh@dialtronics.com</a>:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:SUq3.1640758576674182643.xC9E@lists.yoctoproject.org">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      hello team,<br>
-      I'm trying to build my own kernel module with yocto for
-      raspberry-pi kernel, but it's giving me error that "<strong>bison
-        not found</strong>", as-<br>
-      <br>
-      DEBUG: Executing shell function do_compile<br>
-      NOTE: make -j 12
-KERNEL_SRC=3D/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BSP/=
-workspace/FXS/tmp/work-shared/raspberrypi3/kernel-source
-KSRC=3D/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BSP/worksp=
-ace/FXS/tmp/work-shared/raspberrypi3/kernel-build-artifacts
-KERNEL_PATH=3D/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BSP=
-/workspace/FXS/tmp/work-shared/raspberrypi3/kernel-source
-      KERNEL_VERSION=3D5.4.72-v7 CC=3Darm-poky-linux-gnueabi-gcc=C2=A0
-      -mno-thumb-interwork -marm -fuse-ld=3Dbfd
--fmacro-prefix-map=3D/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/=
-FXS_BSP/workspace/FXS/tmp/work/raspberrypi3-poky-linux-gnueabi/ax88772/1.=
-0-r0=3D/usr/src/debug/ax88772/1.0-r0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+<div dir=3D"auto"><div dir=3D"auto">It looks like you have a dunfell yocto =
+setup which doesn&#39;t support that new recipe syntax. Maybe you need to c=
+heck out the dunfell branch of those meta layers to get them to be compatib=
+le.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Michael</div></div><=
+br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue,=
+ 28 Dec 2021, 7:12 pm Kevin Kettinger, &lt;<a href=3D"mailto:kkettinger@gma=
+il.com">kkettinger@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-l=
+eft:1ex">Hello,<br><br>after including the meta-qt5 and meta-boot2qt layer =
+from <a href=3D"https://code.qt.io/cgit/yocto" rel=3D"noopener noreferrer" =
+target=3D"_blank">https://code.qt.io/cgit/yocto</a>, and adding them to my =
+bblayers.conf, bitbake breaks directly while parsing the recipes:<br>------=
+---------------------------------------<br>ERROR: ParseError at /home/yocto=
+/projects/faseroptik-dunfell/build/../layers/meta-qt5/classes/cmake_qt5.bbc=
+lass:4: unparsed line: &#39;DEPENDS:prepend =3D &quot;${QTBASEDEPENDS} &quo=
+t;&#39;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
 =A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0
--fdebug-prefix-map=3D/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/=
-FXS_BSP/workspace/FXS/tmp/work/raspberrypi3-poky-linux-gnueabi/ax88772/1.=
-0-r0=3D/usr/src/debug/ax88772/1.0-r0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
 =A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0
--fdebug-prefix-map=3D/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/=
-FXS_BSP/workspace/FXS/tmp/work/raspberrypi3-poky-linux-gnueabi/ax88772/1.=
-0-r0/recipe-sysroot=3D=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
--fdebug-prefix-map=3D/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/=
-FXS_BSP/workspace/FXS/tmp/work/raspberrypi3-poky-linux-gnueabi/ax88772/1.=
-0-r0/recipe-sysroot-native=3D=C2=A0
--fdebug-prefix-map=3D/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/=
-FXS_BSP/workspace/FXS/tmp/work-shared/raspberrypi3/kernel-source=3D/usr/s=
-rc/kernel
-      LD=3Darm-poky-linux-gnueabi-ld.bfd=C2=A0=C2=A0 AR=3Darm-poky-linux-=
-gnueabi-ar=C2=A0
-O=3D/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BSP/workspace=
-/FXS/tmp/work-shared/raspberrypi3/kernel-build-artifacts
-      KBUILD_EXTRA_SYMBOLS=3D<br>
-      make -C
-/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BSP/workspace/FXS=
-/tmp/work-shared/raspberrypi3/kernel-build-artifacts
-SUBDIRS=3D/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BSP/wor=
-kspace/FXS/tmp/work/raspberrypi3-poky-linux-gnueabi/ax88772/1.0-r0
-      modules<br>
-      make[1]: warning: jobserver unavailable: using -j1.=C2=A0 Add '+' t=
-o
-      parent make rule.<br>
-      make[1]: Entering directory
-'/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BSP/workspace/FX=
-S/tmp/work-shared/raspberrypi3/kernel-build-artifacts'<br>
-      =C2=A0 GEN=C2=A0=C2=A0=C2=A0=C2=A0 Makefile<br>
-      =C2=A0 YACC=C2=A0=C2=A0=C2=A0 scripts/kconfig/parser.tab.[ch]<br>
-      /bin/sh: 1: bison: not found<br>
-      make[4]: *** [scripts/Makefile.host:17:
-      scripts/kconfig/parser.tab.h] Error 127<br>
-      make[3]: ***
-[/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BSP/workspace/FX=
-S/tmp/work-shared/raspberrypi3/kernel-source/Makefile:590:
-      syncconfig] Error 2<br>
-      make[2]: ***
-[/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BSP/workspace/FX=
-S/tmp/work-shared/raspberrypi3/kernel-source/Makefile:696:
-      include/config/auto.conf.cmd] Error 2<br>
-      make[1]: ***
-[/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BSP/workspace/FX=
-S/tmp/work-shared/raspberrypi3/kernel-source/Makefile:179:
-      sub-make] Error 2<br>
-      make[1]: Leaving directory
-'/home/dialtronics/DIALT_WORK/RPI_YOCTO/PS_RPI_BUILD/FXS_BSP/workspace/FX=
-S/tmp/work-shared/raspberrypi3/kernel-build-artifacts'<br>
-      make: *** [Makefile:19: default] Error 2<br>
-      ERROR: oe_runmake failed<br>
-      WARNING: exit code 1 from a shell command.<br>
-      <br>
-      <br>
-      <strong>Here is my bb file for the same-</strong><br>
-      <br>
-      SUMMARY =3D "WAN IC asix kernel module"<br>
-      LICENSE =3D "GPLv2"<br>
-      LIC_FILES_CHKSUM =3D
-      <a class=3D"moz-txt-link-rfc2396E" href=3D"file://LICENSE;md5=3D014=
-e508ee78ef83e5007b9cb3834f0e9">"file://LICENSE;md5=3D014e508ee78ef83e5007=
-b9cb3834f0e9"</a><br>
-      <br>
-      DEPENDS =3D "virtual/kernel bc bison"<br>
-      <br>
-      inherit module<br>
-      <br>
-      PR =3D "r0"<br>
-      PV =3D "1.0"<br>
-      <br>
-      SRC_URI =3D "<a class=3D"moz-txt-link-freetext" href=3D"file://Make=
-file">file://Makefile</a> \<br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <a class=3D"=
-moz-txt-link-freetext" href=3D"file://asix.c">file://asix.c</a> \<br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <a class=3D"=
-moz-txt-link-freetext" href=3D"file://asix.h">file://asix.h</a> \<br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <a class=3D"=
-moz-txt-link-freetext" href=3D"file://axusbnet.c">file://axusbnet.c</a> \=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | ETA:=C2=A0 --:--:--<br><br>=
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.<b=
+r>---------------------------------------------<br><br>If i restart bitbake=
+, the offending file changes now and then, but just for completion, here is=
+ the file:<br>---------------------------------------------<br>inherit cmak=
+e<br>inherit qmake5_paths<br><br>DEPENDS:prepend =3D &quot;${QTBASEDEPENDS}=
+ &quot;<br>QTBASEDEPENDS =3D &quot;qtbase qtbase-native&quot;<br>QTBASEDEPE=
+NDS:class-native =3D &quot;qtbase-native&quot;<br>QTBASEDEPENDS:class-nativ=
+esdk =3D &quot;nativesdk-qtbase qtbase-native&quot;<br><br>EXTRA_OECMAKE:pr=
+epend =3D &quot; \<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_PREFIX=3D${OE_QMAK=
+E_PATH_PREFIX} \<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_HEADERS=3D${OE_QMAKE=
+_PATH_HEADERS} \<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_LIBS=3D${OE_QMAKE_PA=
+TH_LIBS} \<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_ARCHDATA=3D${OE_QMAKE_PATH=
+_ARCHDATA} \<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_DATA=3D${OE_QMAKE_PATH_D=
+ATA} \<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_BINS=3D${OE_QMAKE_PATH_BINS} \=
+<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_LIBEXECS=3D${OE_QMAKE_PATH_LIBEXECS}=
+ \<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_PLUGINS=3D${OE_QMAKE_PATH_PLUGINS}=
+ \<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_QML=3D${OE_QMAKE_PATH_QML} \<br>=
+=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_TRANSLATIONS=3D${OE_QMAKE_PATH_TRANSLATI=
+ONS} \<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_DOCS=3D${OE_QMAKE_PATH_DOCS} \=
+<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_SETTINGS=3D${OE_QMAKE_PATH_SETTINGS}=
+ \<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_EXAMPLES=3D${OE_QMAKE_PATH_EXAMPLE=
+S} \<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_TESTS=3D${OE_QMAKE_PATH_TESTS} \=
+<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_HOST_PREFIX=3D${OE_QMAKE_PATH_HOST_P=
+REFIX} \<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_HOST_BINS=3D${OE_QMAKE_PATH_=
+HOST_BINS} \<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_HOST_DATA=3D${OE_QMAKE_P=
+ATH_HOST_DATA} \<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_HOST_LIBS=3D${OE_QMA=
+KE_PATH_HOST_LIBS} \<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_EXTERNAL_HOST_BI=
+NS=3D${OE_QMAKE_PATH_EXTERNAL_HOST_BINS} \<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE=
+_PATH_QT_HEADERS=3D${OE_QMAKE_PATH_QT_HEADERS} \<br>=C2=A0=C2=A0=C2=A0 -DOE=
+_QMAKE_PATH_QT_ARCHDATA=3D${OE_QMAKE_PATH_QT_ARCHDATA} \<br>=C2=A0=C2=A0=C2=
+=A0 -DOE_QMAKE_PATH_QT_DATA=3D${OE_QMAKE_PATH_QT_DATA} \<br>=C2=A0=C2=A0=C2=
+=A0 -DOE_QMAKE_PATH_QT_BINS=3D${OE_QMAKE_PATH_QT_BINS} \<br>=C2=A0=C2=A0=C2=
+=A0 -DOE_QMAKE_PATH_QT_TRANSLATIONS=3D${OE_QMAKE_PATH_QT_TRANSLATIONS} \<br=
+>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_QT_DOCS=3D${OE_QMAKE_PATH_QT_DOCS} \<br=
+>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_QT_SETTINGS=3D${OE_QMAKE_PATH_QT_SETTIN=
+GS} \<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_QT_EXAMPLES=3D${OE_QMAKE_PATH_Q=
+T_EXAMPLES} \<br>=C2=A0=C2=A0=C2=A0 -DOE_QMAKE_PATH_QT_TESTS=3D${OE_QMAKE_P=
+ATH_QT_TESTS} \<br>&quot;<br>---------------------------------------------<=
+br><br>The exact same layer with the exact same commit &amp; files is worki=
+ng fine on the original boot2qt environment, but not on my environment.<br>=
+<br>My bblayers.conf looks like this:<br>----------------------------------=
+-----------<br>LCONF_VERSION =3D &quot;7&quot;<br><br>BBPATH =3D &quot;${TO=
+PDIR}&quot;<br>BBFILES ?=3D &quot;&quot;<br><br>BBLAYERS ?=3D &quot; \<br>=
+=C2=A0 ${TOPDIR}/../layers/meta-toradex-nxp \<br>=C2=A0 ${TOPDIR}/../layers=
+/meta-freescale \<br>=C2=A0 ${TOPDIR}/../layers/meta-freescale-3rdparty \<b=
+r>=C2=A0 ${TOPDIR}/../layers/meta-toradex-tegra \<br>=C2=A0 ${TOPDIR}/../la=
+yers/meta-toradex-bsp-common \<br>=C2=A0 ${TOPDIR}/../layers/meta-openembed=
+ded/meta-oe \<br>=C2=A0 ${TOPDIR}/../layers/meta-openembedded/meta-filesyst=
+ems \<br>=C2=A0 ${TOPDIR}/../layers/meta-openembedded/meta-gnome \<br>=C2=
+=A0 ${TOPDIR}/../layers/meta-openembedded/meta-xfce \<br>=C2=A0 ${TOPDIR}/.=
+./layers/meta-openembedded/meta-initramfs \<br>=C2=A0 ${TOPDIR}/../layers/m=
+eta-openembedded/meta-networking \<br>=C2=A0 ${TOPDIR}/../layers/meta-opene=
+mbedded/meta-multimedia \<br>=C2=A0 ${TOPDIR}/../layers/meta-openembedded/m=
+eta-python \<br>=C2=A0 ${TOPDIR}/../layers/meta-freescale-distro \<br>=C2=
+=A0 ${TOPDIR}/../layers/meta-toradex-demos \<br>=C2=A0 ${TOPDIR}/../layers/=
+meta-boot2qt/meta-boot2qt \<br>=C2=A0 ${TOPDIR}/../layers/meta-boot2qt/meta=
+-boot2qt-distro \<br>=C2=A0 ${TOPDIR}/../layers/meta-qt5 \<br>=C2=A0 ${TOPD=
+IR}/../layers/meta-toradex-distro \<br>=C2=A0 ${TOPDIR}/../layers/meta-yoct=
+o/meta-poky \<br>=C2=A0 ${TOPDIR}/../layers/openembedded-core/meta \<br>=C2=
+=A0 ${TOPDIR}/../layers/meta-mender/meta-mender-core \<br>=C2=A0 ${TOPDIR}/=
+../layers/meta-mender-community/meta-mender-toradex-nxp \<br>=C2=A0 ${TOPDI=
+R}/../layers/meta-mender/meta-mender-demo \<br>=C2=A0 &quot;<br>-----------=
+----------------------------------<br><br>On the working boot2qt environmen=
+t poky 3.1.11 is used, i&#39;m using poky 3.1.8.<br><br>Is there anything i=
+ can do to track this issue down? bitbake -v doesn&#39;t report more infos.=
+<br><br>I appreciate any help here, thank you.<br><br>Best regards,<br>Kevi=
+n
 <br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <a class=3D"=
-moz-txt-link-freetext" href=3D"file://axusbnet.h">file://axusbnet.h</a> \=
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#55675): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/55675" rel=3D"noreferrer noreferrer" target=3D"_blank">https://l=
+ists.yoctoproject.org/g/yocto/message/55675</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/88000093/3618=
+434" rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctopro=
+ject.org/mt/88000093/3618434</a><br>
+Mute #yocto:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehashtag/y=
+octo" rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctopr=
+oject.org/g/yocto/mutehashtag/yocto</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank" rel=3D"noreferrer">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctoproject.org=
+/g/yocto/unsub</a> [<a href=3D"mailto:michael.ho@ieee.org" target=3D"_blank=
+" rel=3D"noreferrer">michael.ho@ieee.org</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
 <br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <a class=3D"=
-moz-txt-link-freetext" href=3D"file://command.h">file://command.h</a> \<b=
-r>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <a class=3D"=
-moz-txt-link-freetext" href=3D"file://debug.txt">file://debug.txt</a> \<b=
-r>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <a class=3D"=
-moz-txt-link-freetext" href=3D"file://eeprom_data.tar.bz2">file://eeprom_=
-data.tar.bz2</a> \<br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <a class=3D"=
-moz-txt-link-freetext" href=3D"file://ioctl.c">file://ioctl.c</a> \<br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <a class=3D"=
-moz-txt-link-freetext" href=3D"file://ioctl.h">file://ioctl.h</a> \<br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <a class=3D"=
-moz-txt-link-freetext" href=3D"file://ioctl_readme">file://ioctl_readme</=
-a> \<br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <a class=3D"=
-moz-txt-link-freetext" href=3D"file://readme">file://readme</a> \<br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <a class=3D"=
-moz-txt-link-freetext" href=3D"file://readme">file://readme</a> \<br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <a class=3D"=
-moz-txt-link-freetext" href=3D"file://LICENSE">file://LICENSE</a> \<br>
-      "<br>
-      <br>
-      S =3D "${WORKDIR}"<br>
-      <br>
-      export TARGET_SYS<br>
-      EXTRA_OEMAKE +=3D "KSRC=3D${STAGING_KERNEL_BUILDDIR}"<br>
-      <br>
-      do_compile_append() {<br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ${CC} ioctl.c -o ioctl<b=
-r>
-      }<br>
-      <br>
-      do_install_prepend() {<br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 export DESTDIR=3D"${D}"<=
-br>
-      }<br>
-      <br>
-      <br>
-      <br>
-      <br>
-      # The inherit of module.bbclass will automatically name module
-      packages with<br>
-      # "kernel-module-" prefix as required by the oe-core build
-      environment.<br>
-      <br>
-      <br>
-      <br>
-      Same kernel module with poky zeus and rpi kernel 4.19 got compiled
-      successfully, but here I'm getting issue with poky dunfell with
-      Rpi kernel 5.4<br>
-      <br>
-      Please help me resolve this issue.<br>
-      <br>
-      Thanks.
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-Links: You receive all messages sent to this group.
-View/Reply Online (#55683): <a class=3D"moz-txt-link-freetext" href=3D"ht=
-tps://lists.yoctoproject.org/g/yocto/message/55683">https://lists.yoctopr=
-oject.org/g/yocto/message/55683</a>
-Mute This Topic: <a class=3D"moz-txt-link-freetext" href=3D"https://lists=
-.yoctoproject.org/mt/88010629/3618223">https://lists.yoctoproject.org/mt/=
-88010629/3618223</a>
-Mute #bitbake:<a class=3D"moz-txt-link-freetext" href=3D"https://lists.yo=
-ctoproject.org/g/yocto/mutehashtag/bitbake">https://lists.yoctoproject.or=
-g/g/yocto/mutehashtag/bitbake</a>
-Group Owner: <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:yocto+o=
-wner@lists.yoctoproject.org">yocto+owner@lists.yoctoproject.org</a>
-Unsubscribe: <a class=3D"moz-txt-link-freetext" href=3D"https://lists.yoc=
-toproject.org/g/yocto/unsub">https://lists.yoctoproject.org/g/yocto/unsub=
-</a> [<a class=3D"moz-txt-link-abbreviated" href=3D"mailto:f_l_k@t-online=
-.de">f_l_k@t-online.de</a>]
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+</blockquote></div>
 
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------411F1EE6DD6AA9EF84F49987--
+--0000000000008db38805d443658d--
 
