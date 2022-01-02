@@ -1,94 +1,95 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <staticd@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 90912C433F5
-	for <webhook@archiver.kernel.org>; Sun,  2 Jan 2022 16:25:49 +0000 (UTC)
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
- [209.85.221.52])
- by mx.groups.io with SMTP id smtpd.web11.14592.1641140748823804656
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 41B33C433F5
+	for <webhook@archiver.kernel.org>; Sun,  2 Jan 2022 17:06:04 +0000 (UTC)
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com
+ [209.85.210.175])
+ by mx.groups.io with SMTP id smtpd.web11.15229.1641143162895948321
  for <yocto@lists.yoctoproject.org>;
- Sun, 02 Jan 2022 08:25:49 -0800
+ Sun, 02 Jan 2022 09:06:03 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=b3J8+4qF;
- spf=pass (domain: gmail.com, ip: 209.85.221.52,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-wr1-f52.google.com with SMTP id q16so65590451wrg.7
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=KuG8VnOE;
+ spf=pass (domain: gmail.com, ip: 209.85.210.175, mailfrom: staticd@gmail.com)
+Received: by mail-pf1-f175.google.com with SMTP id u20so27631991pfi.12
         for <yocto@lists.yoctoproject.org>;
- Sun, 02 Jan 2022 08:25:48 -0800 (PST)
+ Sun, 02 Jan 2022 09:06:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ghiR+T7MdKl3CoUNkCNgDDVZCFaeWbTn/A7rrpE5O2s=;
-        b=b3J8+4qFNxesPubKdkStCIzr3o8JR9wwXxNqBwfTQ0gI7S3FEc44XpwNS1Dhj0heV3
-         ywYzH7Gqx1dqmToWyoWuWWCiRJdp8xX8n44gDSRnrFK13xdsdsxShq2zrERDP8ogWY/Q
-         ol+u/xjfrKtS+PcmFCElwDSmdrlfsQcLVmEeUCgZnwtYmo5mkNCqLkSMsdjZ/CDqgxHy
-         f7VdQ+qm940lczE6U2lizZy+EN0MzNSI5jI0n6SOisOi2W1p8iSzrQIwd/QHJOtyR9Hy
-         BmGmArcYCwOiSBlKsS/9JNm9QJBCfPqpJuDAlMIf5RHyS+eOTwY+2PFjdG6OF8eiZBVX
-         Z52w==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=uVCDZG7YLQGXYKc2OhzJwG+PLvZDM3+m6+m9RFgK5tQ=;
+        b=KuG8VnOEbRAnDT2ZC4XS9nJAcWnyDYsxdDAURduLHDht1PT4pu+2lhWS4Nzgff3Bg4
+         otomURoMtTJkcC+9LD54R4p2aUfERFBCBHmjA4Sybe7FiwlLM+68+5ZrTF7LZC2ITbsG
+         Nzn/FMzs+B+wQ2tHjEZMWw4b10OZhLiJoK4POYQiAClb8ZFQztEoMZdh5PbhcgMcpSdt
+         mNh0ADnf0+N6HZAGFm9gekwHv5OwJj9QCAO1WqZB32LnsIoAUH2ukWoP+dhjhugI0IPH
+         qDAfqSGXFLVWJnXDLO822ijRO+oJoeg6FlFOLOnvvlpQgXZIHKwACfPZ+hH0sUjGSb4G
+         91WA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ghiR+T7MdKl3CoUNkCNgDDVZCFaeWbTn/A7rrpE5O2s=;
-        b=4i8CcrvuPrvpCBn0PXXXCx8Y/pu+/r2eVeyrUZIj1amvOTUbfvLWgPZT5waHrgf1K3
-         3mB6z+uFp/kOzDq/luZx70BsVUoyuN8zFCyWVDLUaH+zE5XrFEmzJv3fKsXnCkRqFup8
-         u/O4Y17UbcCHt00Ete0Wn2Qdw+3StiemUEOUcI+m2EefZU1/+Altx/Wj+YkWjLpQjxei
-         c0EiC6msNfOhyXThlwIVRVVjr1rV2d80sGzPpWp38rmMZ7ZdWnsB9e8wnCHjNkufahml
-         r2fT52l8vzkzTARmvyI8K5tfDSvXCaeQ9jPtk6E6k6lv+K68Q2Pi4X3uVxioCTVgcB4M
-         apqA==
-X-Gm-Message-State: AOAM5325X/Th2QBf9nXzJsAcmUr1FLp399t4ECKRgj0GifmBgF5nTBNy
-	mV0rm2kh5pokiFKBQEZGQuNFsnizNxc=
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=uVCDZG7YLQGXYKc2OhzJwG+PLvZDM3+m6+m9RFgK5tQ=;
+        b=Me2aWhp9NRi8meB03H6H75L4oDUs68A8gvRMHeY7Z/2Y+wkkrxORzmtqJE7VzTbpKe
+         eAO1Vz+jRYwoy+Amu95nw8bE3JCiIxfBcvQsu7hCagUFWCKGdV5yr+qWiPmKWO+bAkDs
+         cbyGlyc44GHBpAALcqXfh9KwzZSUb0gxb1gao0/8g7M/o8qhMsQJ0GkQ78xRk7EwDjkH
+         BYY9p0lqLD8Av5TqNa+wDNQ8KXJiktKoH6OvBRL0rBRDIvrNN3Of3XsRU2sLrfLIpvV8
+         edl8HJVptDtyOSTd2w8FLMqia2mVvNUBhmjPzl/yDvczgQEKjDPLjcPb32lhDBoPBOVm
+         QBoA==
+X-Gm-Message-State: AOAM530BdNWnWdYRHLFZ8uMXyNK9bhKGRdq0LNgE73AeBXaC99JNL02R
+	2VpXE7uEreUrplKnU7COvEYHHWQpqyWDlNmxAER5k3KjYvvfyw==
 X-Google-Smtp-Source: 
- ABdhPJwKAFRvG1oflxOo6ujhQnvkmSG5WxqkP8GiT7ppUA9SY+HNhcMd4Oh6XjUnc2ZQ8bU0adGcFw==
-X-Received: by 2002:a05:6000:144a:: with SMTP id
- v10mr35355744wrx.357.1641140747274;
-        Sun, 02 Jan 2022 08:25:47 -0800 (PST)
-Received: from localhost.localdomain
- ([2a02:2454:29b:3b00:d35d:e3cf:58b5:748b])
-        by smtp.gmail.com with ESMTPSA id
- z11sm39380093wmf.9.2022.01.02.08.25.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Jan 2022 08:25:46 -0800 (PST)
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: Alexander Kanavin <alex.kanavin@gmail.com>
-Subject: [auto-upgrade-helper][PATCH] devtool: return both stdout and stderr
-Date: Sun,  2 Jan 2022 17:25:39 +0100
-Message-Id: <20220102162539.406212-1-alex.kanavin@gmail.com>
-X-Mailer: git-send-email 2.33.1
+ ABdhPJyqjJz95OWjhv5kSj1Eo019YMXiirNiQ7B4r+6dX+PmHEhslFMq8kPWFxlgERf9UUQ94/oNnAUNHKvBNu4VgHw=
+X-Received: by 2002:a63:2bd5:: with SMTP id
+ r204mr37778597pgr.434.1641143162188;
+ Sun, 02 Jan 2022 09:06:02 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: staticd <staticd@gmail.com>
+Date: Sun, 2 Jan 2022 12:05:51 -0500
+Message-ID: 
+ <CAFC2zY1xWRvmZ75r6JG=3ZZ4xX83584Q1RDXgdGEBCi4Gr+gSw@mail.gmail.com>
+Subject: libquadmath
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000003539f305d49c6bc9"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 02 Jan 2022 16:25:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55699
+ <yocto@lists.yoctoproject.org>; Sun, 02 Jan 2022 17:06:04 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55700
 
-At some point devtool started printing to stderr, which means
-patch rebase issues weren't anymore correctly caught, and bogus
-updates were being sent out.
+--0000000000003539f305d49c6bc9
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
----
- modules/utils/devtool.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+okay...I think I have a more interesting question now...
 
-diff --git a/modules/utils/devtool.py b/modules/utils/devtool.py
-index 0d27bb0..c26061f 100644
---- a/modules/utils/devtool.py
-+++ b/modules/utils/devtool.py
-@@ -19,7 +19,7 @@ class Devtool(object):
-             raise DevtoolError("The following devtool command failed: " + operation,
-                         e.stdout, e.stderr)
- 
--        return stdout
-+        return stdout + stderr
- 
-     def upgrade(self, recipe, version = None, revision = None):
-         cmd = " upgrade " + recipe
--- 
-2.33.1
+In the package I am building I have some Fortran code that requires
+`libquadmath`
 
+I see that `gcc-runtime` provides the library but I need the library
+present in `recipe-sysroot/lib` when my `do_compile` runs
+
+Is there a way for me to do that?
+
+My current approach is to build my image, copy the libraries/includes to my
+recipe and `install` them in `recipe-sysroot` before `do_compile`
+
+This doesn't seem like the correct approach but I am not sure how else to
+do it at this point
+
+Any help would be greatly appreciated.
+
+--0000000000003539f305d49c6bc9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">okay...I think I have a more interesting question now...<b=
+r><br>In the package I am building I have some Fortran code that requires `=
+libquadmath`<br><br>I see that `gcc-runtime` provides the library but I nee=
+d the library present in `recipe-sysroot/lib` when my `do_compile` runs<br>=
+<br>Is there a way for me to do that?<br><br>My current approach is to buil=
+d my image, copy the libraries/includes to my recipe and `install` them in =
+`recipe-sysroot` before `do_compile`<br><br>This doesn&#39;t seem like the =
+correct approach but I am not sure how else to do it at this point<br><br>A=
+ny help would be greatly appreciated.<br></div>
+
+--0000000000003539f305d49c6bc9--
 
