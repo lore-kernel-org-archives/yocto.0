@@ -2,48 +2,48 @@ Return-Path: <staticd@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 03832C433EF
-	for <webhook@archiver.kernel.org>; Sun,  2 Jan 2022 19:18:05 +0000 (UTC)
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com
- [209.85.210.178])
- by mx.groups.io with SMTP id smtpd.web12.17034.1641151084239874922
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 63216C433EF
+	for <webhook@archiver.kernel.org>; Sun,  2 Jan 2022 22:13:41 +0000 (UTC)
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
+ [209.85.214.180])
+ by mx.groups.io with SMTP id smtpd.web10.19337.1641161620741677066
  for <yocto@lists.yoctoproject.org>;
- Sun, 02 Jan 2022 11:18:04 -0800
+ Sun, 02 Jan 2022 14:13:40 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=GCxLmPD+;
- spf=pass (domain: gmail.com, ip: 209.85.210.178, mailfrom: staticd@gmail.com)
-Received: by mail-pf1-f178.google.com with SMTP id 8so27807567pfo.4
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=iOeULK4S;
+ spf=pass (domain: gmail.com, ip: 209.85.214.180, mailfrom: staticd@gmail.com)
+Received: by mail-pl1-f180.google.com with SMTP id u16so23713493plg.9
         for <yocto@lists.yoctoproject.org>;
- Sun, 02 Jan 2022 11:18:04 -0800 (PST)
+ Sun, 02 Jan 2022 14:13:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=QSHL6cpPL8BuZRg3sFxoDTBZuNGiIuRD6FTkBpfQMKI=;
-        b=GCxLmPD+/tX3wprIxa7YtYntHDeBXHpvKcWa8mzlUg/OYZYeWI9lKcedTnEDIUUS0j
-         gQ1DECQLTdBQQt3kRyVH3MEErqNBPAAbr3Og5U/sDLnO8/jJpc7DeRo6Ruo/QnZqQZEZ
-         bSZ3pnJwe+jpAC+44/OXh2amRpFFri8/+k/9rIzce9qffS1InvwMiQ0cY7Nr9ixwmhbm
-         1CppLClDlPsZiyLBFuSyJ4fRcetYRPbL40vt9sTDr28t61BN3cZZsdxw9/qgodMJleYH
-         Z16rAAzAj1wKoSgoN8dvKW1Fak9YZM6m8xi9j1d1Icp6M1DLTgGoV6gJT+wUDt8qcbsq
-         6yzg==
+        bh=QOzSmxCteqdPaPVSm5QR6nnW0C7aVXztANa/qOVJQDs=;
+        b=iOeULK4Sqmi7KxImnekKyha/WQz3BepGaI4sUTOCtA/oAqstYIASjSnGMZ9i9RfWoY
+         s3ynueJ1AJU7eg6Y5M/+kx2+SfWWJci4ZNmVbjC7JiEUccKJG0msIU4jnWotXXo7lH+6
+         VSV1FQTwlqbZtyFBHfe8opwv/vPtWBp8jW+nfLlkIG73+1PSbWYzjiNmi/mtKOLmmBsV
+         rz+uk9ZbCJ0TY78KjeHWOYBONE40NSiHKorx11hBMzFF1socsIqzcSjCLv2HVVMpVoi4
+         9YY4+ykGmJGfRZlL+uIF3dNQlH9bpiuV3wZiFA8/krpwS5ZTYe9s1EbdeQotdYdVdBlu
+         fE/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=QSHL6cpPL8BuZRg3sFxoDTBZuNGiIuRD6FTkBpfQMKI=;
-        b=yyCzJON7wrhJyqCrKlVLv5C3wqejiUeUx5ipCgXDvylEZ8tiHbS+x+IzsQ+WAdyB3a
-         gi1fu0nOSY5XuJxg13giIpCZdn4P0+BDH9yB888UGwSWHoA6tTe+XdG3nsMqc02QVg0m
-         cRe1rYt62iZwlgUA3eWEJ96YLLOgPSNM6G2JZnuALauF6HRp1PccSyLM+ClpgbtP1Cef
-         ufcx+kFwnuZ7JYydn2Q3ACo0+KjKfb1jds1SrKDAt42zPg4Z46EAN080z3BoLBGEZI44
-         ihWtg+SptcWN2S2BOPSJieRsha7MgaPqeA0ERQ+cB/xvkQ3ivc5iPvZkCYbBwPH75jq1
-         fOZQ==
-X-Gm-Message-State: AOAM531OeIu10Px/nIB6qc+ijcXmzi7bdDiDxjgn7D07hB/a8X1r5NPx
-	FYWiFyAX4iv+B9ZEfHlEwqS3nz9VQfjGkgjLZnc=
+        bh=QOzSmxCteqdPaPVSm5QR6nnW0C7aVXztANa/qOVJQDs=;
+        b=0AysXwsEcNnF+x77q/Iq0IYBVt9Nf8OSBmhifuyin/MLghOvRpzEq+zG0OG2JOCFvZ
+         ZfzVCedAD9wvA6X50Qu8LzdPPalEgittMf9aDoHur0Rw+LYq4E/06FHYgGMXeAqbHTQS
+         ka5VjacmXnNjjYqn1AlJfH8fgW+NFFrKk3+isC8a5bndHfE95Jwqp1dZVlcXwlrPcB6F
+         ah7KtTyyjlmM8TE4UvxzO4vUPV+hqoiIYXR6hDrm1R1XqCtQ8FSKqEvw5NqQczwsMn2F
+         qkFaql1qmzTSBAptYddnHyJVcDydNWfpFfVvhQYcAtHgAlUUG6HyHd3wctHQv0M3rlF4
+         odTw==
+X-Gm-Message-State: AOAM532E94yXWd3/XGhyawpZJovblrGuEoR5839xjT3aynEnSdnr0zXs
+	tMxwGSwTbSD0uc1uxkw2buyj5GWnP5+BPxMfKQs=
 X-Google-Smtp-Source: 
- ABdhPJznl25JEEacN67N2+ryU51mW7CfnRzTXMuAXdDWFvE9pCkJiEy2+yEwauGL0fMJCM7FOAcylS8CnMXDlFQmyLo=
-X-Received: by 2002:a05:6a00:1789:b0:4ba:ca5d:35e2 with SMTP id
- s9-20020a056a00178900b004baca5d35e2mr44067390pfg.21.1641151083649; Sun, 02
- Jan 2022 11:18:03 -0800 (PST)
+ ABdhPJxcOWmyw8qoyHj/Yxn+4r6uI+byHrLmqTrqFHSHC323v7WCEEypS66sUT3l+zVTMhOSpfGB3BV8rYFKH8PyrhA=
+X-Received: by 2002:a17:90a:6c65:: with SMTP id
+ x92mr52695600pjj.14.1641161620075;
+ Sun, 02 Jan 2022 14:13:40 -0800 (PST)
 MIME-Version: 1.0
 References: 
  <CAFC2zY1xWRvmZ75r6JG=3ZZ4xX83584Q1RDXgdGEBCi4Gr+gSw@mail.gmail.com>
@@ -51,175 +51,205 @@ References:
  <CAFC2zY1RbDGbeZZD7YtzKBFF66aSo8qiXfn3tFCujAEWqqk_oA@mail.gmail.com>
  <CAFC2zY10Hi9mT03biAvbsyfmPjvNNukmOCrwH1-mYKAG4NT9qA@mail.gmail.com>
  <AM9PR09MB464282949C9AB4859002D0BFA8489@AM9PR09MB4642.eurprd09.prod.outlook.com>
-In-Reply-To: 
- <AM9PR09MB464282949C9AB4859002D0BFA8489@AM9PR09MB4642.eurprd09.prod.outlook.com>
+ <16C68A3757A696DC.7129@lists.yoctoproject.org>
+In-Reply-To: <16C68A3757A696DC.7129@lists.yoctoproject.org>
 From: staticd <staticd@gmail.com>
-Date: Sun, 2 Jan 2022 14:17:52 -0500
+Date: Sun, 2 Jan 2022 17:13:28 -0500
 Message-ID: 
- <CAFC2zY0BupcxPcLvoLz=U1hkJ0CwDTXwFMZgTOTPOLe56V1XSw@mail.gmail.com>
+ <CAFC2zY3jEP82uyquBpC-oXzoiV8-_ZMohxBxQyiL25sfbyjo6w@mail.gmail.com>
 Subject: Re: [yocto] libquadmath
-To: Konrad Weihmann <kweihmann@outlook.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000005d1e6105d49e43ba"
+To: Static D <staticd@gmail.com>
+Cc: Konrad Weihmann <kweihmann@outlook.com>, yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000062379b05d4a0b7b2"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 02 Jan 2022 19:18:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55706
+ <yocto@lists.yoctoproject.org>; Sun, 02 Jan 2022 22:13:41 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55707
 
---0000000000005d1e6105d49e43ba
+--00000000000062379b05d4a0b7b2
 Content-Type: text/plain; charset="UTF-8"
 
-Thank you, Konrad.
+So, I built the latest poky and created the example recipe with the
+`DEPENDS` from my recipe and indeed, I see `libquadmath.so` in
+`sysroots-components/`.
 
-I have tried both of the approaches (local.conf and
-gcc-runtime_%.bbappend/gcc_%.bbappend), still `libquadmath.so` is not being
-built.
+I am really scratching my head now.  I must be missing something silly
+somewhere...
 
-I will keep fiddling but I think we are onto something.
+My build environment is running `zeus`  and the latest `poky` I grabbed is
+`honister`  Perhaps something changed that I am just overlooking somehow.
 
-The interesting thing I found is that `libquadmath.so` IS being built for
-the nativesdk but NOT when I add `DEPENDS =
-"virtual/${TARGET_PREFIX}compillerlibs"` to my recipe.
+On Sun, Jan 2, 2022 at 2:18 PM staticd via lists.yoctoproject.org <staticd=
+gmail.com@lists.yoctoproject.org> wrote:
 
-Perhaps, because `FORTRAN = ""` is in the gcc_%.bb, maybe that should be
-something less strict?
-
-I might be screwing up my bbappend too...
-
-My append is in `meta-mylayer/recipes-devtools/gcc/gcc-runtime_%.bbappend`
-
-Which is mapped correctly to $BBFILES n my layers `layer.conf`
-
-On Sun, Jan 2, 2022 at 2:07 PM Konrad Weihmann <kweihmann@outlook.com>
-wrote:
-
-> The following I just found in local.conf.sample.extended
+> Thank you, Konrad.
 >
-> # Enabling FORTRAN
-> # Note this is not officially supported and is just illustrated here to
-> # show an example of how it can be done
-> # You'll also need your fortran recipe to depend on libgfortran
-> FORTRAN:forcevariable = ",fortran"
+> I have tried both of the approaches (local.conf and
+> gcc-runtime_%.bbappend/gcc_%.bbappend), still `libquadmath.so` is not being
+> built.
 >
-> guess that will solve your issue without the need for a bbappend.
-> Just inject that line via distro or local.conf
+> I will keep fiddling but I think we are onto something.
 >
-> On 02.01.22 18:31, staticd wrote:
-> > I think to clarify...what I need are these files:
-> >
-> > --- snipped from gcc-runtime.inc ---
-> > ```
-> > FILES_libquadmath = "${libdir}/libquadmath*.so.*"
-> > SUMMARY_libquadmath = "GNU quad-precision math library"
-> > FILES_libquadmath-dev = "\
-> >      ${libdir}/${TARGET_SYS}/${BINV}/include/quadmath* \
-> >      ${libdir}/libquadmath*.so \
-> >      ${libdir}/libquadmath.la <http://libquadmath.la> \
-> > "
-> > ```
-> > ---
-> > to be in my $STAGING_LIBDIR
-> >
-> > So far, I have been unable to figure out how to do that, unfortunately.
-> >
-> > On Sun, Jan 2, 2022 at 12:23 PM staticd <staticd@gmail.com
-> > <mailto:staticd@gmail.com>> wrote:
-> >
-> >     Thank you, Michael.
-> >
-> >     I have `DEPENDS = "virtual/arm-oe-linux-gnueabi-compilerlibs"`
-> >
-> >     and `do_compile[depends] +=
-> >     "virtual/arm-oe-linux-gnueabi-compilerlibs:do_check"`
-> >
-> >     However, libquadmath.so is still not present in `recipe-sysroot/lib`
-> >
-> >     I used the `do_check` task from gcc_runtime but that still isn't
-> >     providing `libquadmath.so` in my $STAGING_LIBDIR, which is where I
-> >     need it.
-> >
-> >     Many thanks.
-> >
-> >     On Sun, Jan 2, 2022 at 12:17 PM Michael Ho <michael.ho@ieee.org
-> >     <mailto:michael.ho@ieee.org>> wrote:
-> >
-> >         Not familiar with Fortran but maybe it helps to know that this
-> >         is normally handled with the DEPENDS mechanism. When you add
-> >         other recipes as dependencies to your recipe, the task
-> >         do_prepare_recipe_sysroot (run before do_compile) will make hard
-> >         links to the files from those dependency recipes into that
-> >         recipe-sysroot directory.
-> >
-> >         See:
-> >
-> https://docs.yoctoproject.org/singleindex.html#do-prepare-recipe-sysroot
-> >         <
-> https://docs.yoctoproject.org/singleindex.html#do-prepare-recipe-sysroot>
-> >
-> >         Kind regards,
-> >         Michael
-> >
-> >         On Sun, 2 Jan 2022, 6:06 pm staticd, <staticd@gmail.com
-> >         <mailto:staticd@gmail.com>> wrote:
-> >
-> >             okay...I think I have a more interesting question now...
-> >
-> >             In the package I am building I have some Fortran code that
-> >             requires `libquadmath`
-> >
-> >             I see that `gcc-runtime` provides the library but I need the
-> >             library present in `recipe-sysroot/lib` when my `do_compile`
-> >             runs
-> >
-> >             Is there a way for me to do that?
-> >
-> >             My current approach is to build my image, copy the
-> >             libraries/includes to my recipe and `install` them in
-> >             `recipe-sysroot` before `do_compile`
-> >
-> >             This doesn't seem like the correct approach but I am not
-> >             sure how else to do it at this point
-> >
-> >             Any help would be greatly appreciated.
-> >
-> >
-> >
-> >
-> >
-> > -=-=-=-=-=-=-=-=-=-=-=-
-> > Links: You receive all messages sent to this group.
-> > View/Reply Online (#55703):
-> https://lists.yoctoproject.org/g/yocto/message/55703
-> > Mute This Topic: https://lists.yoctoproject.org/mt/88095036/3647476
-> > Group Owner: yocto+owner@lists.yoctoproject.org
-> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> kweihmann@outlook.com]
-> > -=-=-=-=-=-=-=-=-=-=-=-
-> >
+> The interesting thing I found is that `libquadmath.so` IS being built for
+> the nativesdk but NOT when I add `DEPENDS =
+> "virtual/${TARGET_PREFIX}compillerlibs"` to my recipe.
+>
+> Perhaps, because `FORTRAN = ""` is in the gcc_%.bb, maybe that should be
+> something less strict?
+>
+> I might be screwing up my bbappend too...
+>
+> My append is in `meta-mylayer/recipes-devtools/gcc/gcc-runtime_%.bbappend`
+>
+> Which is mapped correctly to $BBFILES n my layers `layer.conf`
+>
+> On Sun, Jan 2, 2022 at 2:07 PM Konrad Weihmann <kweihmann@outlook.com>
+> wrote:
+>
+>> The following I just found in local.conf.sample.extended
+>>
+>> # Enabling FORTRAN
+>> # Note this is not officially supported and is just illustrated here to
+>> # show an example of how it can be done
+>> # You'll also need your fortran recipe to depend on libgfortran
+>> FORTRAN:forcevariable = ",fortran"
+>>
+>> guess that will solve your issue without the need for a bbappend.
+>> Just inject that line via distro or local.conf
+>>
+>> On 02.01.22 18:31, staticd wrote:
+>> > I think to clarify...what I need are these files:
+>> >
+>> > --- snipped from gcc-runtime.inc ---
+>> > ```
+>> > FILES_libquadmath = "${libdir}/libquadmath*.so.*"
+>> > SUMMARY_libquadmath = "GNU quad-precision math library"
+>> > FILES_libquadmath-dev = "\
+>> >      ${libdir}/${TARGET_SYS}/${BINV}/include/quadmath* \
+>> >      ${libdir}/libquadmath*.so \
+>> >      ${libdir}/libquadmath.la <http://libquadmath.la> \
+>> > "
+>> > ```
+>> > ---
+>> > to be in my $STAGING_LIBDIR
+>> >
+>> > So far, I have been unable to figure out how to do that, unfortunately.
+>> >
+>> > On Sun, Jan 2, 2022 at 12:23 PM staticd <staticd@gmail.com
+>> > <mailto:staticd@gmail.com>> wrote:
+>> >
+>> >     Thank you, Michael.
+>> >
+>> >     I have `DEPENDS = "virtual/arm-oe-linux-gnueabi-compilerlibs"`
+>> >
+>> >     and `do_compile[depends] +=
+>> >     "virtual/arm-oe-linux-gnueabi-compilerlibs:do_check"`
+>> >
+>> >     However, libquadmath.so is still not present in `recipe-sysroot/lib`
+>> >
+>> >     I used the `do_check` task from gcc_runtime but that still isn't
+>> >     providing `libquadmath.so` in my $STAGING_LIBDIR, which is where I
+>> >     need it.
+>> >
+>> >     Many thanks.
+>> >
+>> >     On Sun, Jan 2, 2022 at 12:17 PM Michael Ho <michael.ho@ieee.org
+>> >     <mailto:michael.ho@ieee.org>> wrote:
+>> >
+>> >         Not familiar with Fortran but maybe it helps to know that this
+>> >         is normally handled with the DEPENDS mechanism. When you add
+>> >         other recipes as dependencies to your recipe, the task
+>> >         do_prepare_recipe_sysroot (run before do_compile) will make hard
+>> >         links to the files from those dependency recipes into that
+>> >         recipe-sysroot directory.
+>> >
+>> >         See:
+>> >
+>> https://docs.yoctoproject.org/singleindex.html#do-prepare-recipe-sysroot
+>> >         <
+>> https://docs.yoctoproject.org/singleindex.html#do-prepare-recipe-sysroot>
+>> >
+>> >         Kind regards,
+>> >         Michael
+>> >
+>> >         On Sun, 2 Jan 2022, 6:06 pm staticd, <staticd@gmail.com
+>> >         <mailto:staticd@gmail.com>> wrote:
+>> >
+>> >             okay...I think I have a more interesting question now...
+>> >
+>> >             In the package I am building I have some Fortran code that
+>> >             requires `libquadmath`
+>> >
+>> >             I see that `gcc-runtime` provides the library but I need the
+>> >             library present in `recipe-sysroot/lib` when my `do_compile`
+>> >             runs
+>> >
+>> >             Is there a way for me to do that?
+>> >
+>> >             My current approach is to build my image, copy the
+>> >             libraries/includes to my recipe and `install` them in
+>> >             `recipe-sysroot` before `do_compile`
+>> >
+>> >             This doesn't seem like the correct approach but I am not
+>> >             sure how else to do it at this point
+>> >
+>> >             Any help would be greatly appreciated.
+>> >
+>> >
+>> >
+>> >
+>> >
+>> >
+>> >
+>>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#55706):
+> https://lists.yoctoproject.org/g/yocto/message/55706
+> Mute This Topic: https://lists.yoctoproject.org/mt/88095036/6660187
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> staticd@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 >
 
---0000000000005d1e6105d49e43ba
+--00000000000062379b05d4a0b7b2
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thank you, Konrad.<div><br></div><div>I have tried both of=
- the approaches (local.conf and gcc-runtime_%.bbappend/gcc_%.bbappend), sti=
-ll `libquadmath.so` is not being built.</div><div><br></div><div>I will kee=
-p fiddling but I think we are onto something.</div><div><br></div><div>The =
-interesting thing I found is that `libquadmath.so` IS being built for the n=
-ativesdk but NOT when I add `DEPENDS =3D &quot;virtual/${TARGET_PREFIX}comp=
-illerlibs&quot;` to my recipe.</div><div><br></div><div>Perhaps, because `F=
-ORTRAN =3D &quot;&quot;` is in the gcc_%.bb, maybe that should be something=
- less strict?</div><div><br></div><div>I might be screwing up my bbappend t=
-oo...</div><div><br></div><div>My append is in `meta-mylayer/recipes-devtoo=
-ls/gcc/gcc-runtime_%.bbappend`</div><div><br></div><div>Which is mapped cor=
-rectly to $BBFILES n my layers `layer.conf`</div></div><br><div class=3D"gm=
-ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Jan 2, 2022 at 2:0=
-7 PM Konrad Weihmann &lt;<a href=3D"mailto:kweihmann@outlook.com">kweihmann=
-@outlook.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
+<div dir=3D"ltr">So, I built the latest poky and created the example recipe=
+ with the `DEPENDS` from my recipe and indeed, I see `libquadmath.so` in `s=
+ysroots-components/`.<div><br></div><div>I am really scratching my head now=
+.=C2=A0 I must be missing something silly somewhere...</div><div><br></div>=
+<div>My build environment=C2=A0is running `zeus`=C2=A0 and the latest `poky=
+` I grabbed is `honister`=C2=A0 Perhaps something changed that I am just ov=
+erlooking somehow.</div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Sun, Jan 2, 2022 at 2:18 PM staticd via <a href=
+=3D"http://lists.yoctoproject.org">lists.yoctoproject.org</a> &lt;staticd=
+=3D<a href=3D"mailto:gmail.com@lists.yoctoproject.org">gmail.com@lists.yoct=
+oproject.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
 e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex">The following I just found in local.conf.sample.extended<br>
+g-left:1ex"><div dir=3D"ltr">Thank you, Konrad.<div><br></div><div>I have t=
+ried both of the approaches (local.conf and gcc-runtime_%.bbappend/gcc_%.bb=
+append), still `libquadmath.so` is not being built.</div><div><br></div><di=
+v>I will keep fiddling but I think we are onto something.</div><div><br></d=
+iv><div>The interesting thing I found is that `libquadmath.so` IS being bui=
+lt for the nativesdk but NOT when I add `DEPENDS =3D &quot;virtual/${TARGET=
+_PREFIX}compillerlibs&quot;` to my recipe.</div><div><br></div><div>Perhaps=
+, because `FORTRAN =3D &quot;&quot;` is in the gcc_%.bb, maybe that should =
+be something less strict?</div><div><br></div><div>I might be screwing up m=
+y bbappend too...</div><div><br></div><div>My append is in `meta-mylayer/re=
+cipes-devtools/gcc/gcc-runtime_%.bbappend`</div><div><br></div><div>Which i=
+s mapped correctly to $BBFILES n my layers `layer.conf`</div></div><br><div=
+ class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Jan 2,=
+ 2022 at 2:07 PM Konrad Weihmann &lt;<a href=3D"mailto:kweihmann@outlook.co=
+m" target=3D"_blank">kweihmann@outlook.com</a>&gt; wrote:<br></div><blockqu=
+ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
+ solid rgb(204,204,204);padding-left:1ex">The following I just found in loc=
+al.conf.sample.extended<br>
 <br>
 # Enabling FORTRAN<br>
 # Note this is not officially supported and is just illustrated here to<br>
@@ -352,23 +382,27 @@ ly appreciated.<br>
 &gt; <br>
 &gt; <br>
 &gt; <br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt; Links: You receive all messages sent to this group.<br>
-&gt; View/Reply Online (#55703): <a href=3D"https://lists.yoctoproject.org/=
-g/yocto/message/55703" rel=3D"noreferrer" target=3D"_blank">https://lists.y=
-octoproject.org/g/yocto/message/55703</a><br>
-&gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/88095036=
-/3647476" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.o=
-rg/mt/88095036/3647476</a><br>
-&gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" t=
-arget=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-&gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" =
-rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto=
-/unsub</a> [<a href=3D"mailto:kweihmann@outlook.com" target=3D"_blank">kwei=
-hmann@outlook.com</a>]<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+&gt; <br>
 &gt; <br>
 </blockquote></div>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#55706): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/55706" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/55706</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/88095036/6660=
+187" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
+/88095036/6660187</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:staticd@gmail.com" target=3D"_blank">staticd@gma=
+il.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div>
 
---0000000000005d1e6105d49e43ba--
+--00000000000062379b05d4a0b7b2--
 
