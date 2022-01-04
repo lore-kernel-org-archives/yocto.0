@@ -1,278 +1,212 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <davis.roman84@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 922FAC433EF
-	for <webhook@archiver.kernel.org>; Tue,  4 Jan 2022 20:31:50 +0000 (UTC)
-Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com
- [209.85.222.54])
- by mx.groups.io with SMTP id smtpd.web10.1640.1641328309091725009
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3DF6BC43219
+	for <webhook@archiver.kernel.org>; Tue,  4 Jan 2022 23:01:28 +0000 (UTC)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com
+ [209.85.219.171])
+ by mx.groups.io with SMTP id smtpd.web10.1052.1641337286702317966
  for <yocto@lists.yoctoproject.org>;
- Tue, 04 Jan 2022 12:31:49 -0800
+ Tue, 04 Jan 2022 15:01:26 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=eNuRWytj;
- spf=pass (domain: gmail.com, ip: 209.85.222.54,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ua1-f54.google.com with SMTP id p37so65140990uae.8
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=NrTr0OQZ;
+ spf=pass (domain: gmail.com, ip: 209.85.219.171,
+ mailfrom: davis.roman84@gmail.com)
+Received: by mail-yb1-f171.google.com with SMTP id o185so85351997ybo.12
         for <yocto@lists.yoctoproject.org>;
- Tue, 04 Jan 2022 12:31:48 -0800 (PST)
+ Tue, 04 Jan 2022 15:01:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EdqVo+lXOedzoGLoeNyOoK0OBMJFKmC0AxxZgG3xdW4=;
-        b=eNuRWytjA4KGiw3v5qCj6zxZSOlDyc7smOvUTZvxBEqgp/IQWSKypI10YD2INX3mtC
-         B5t6V5AJH8fbdaNpZRLwbXfvmdlcxq9QFqhtjkCLd9oWiX0FONAxx3LiUsb31SepSkXP
-         nkKqeavPoaaWNRoRg44dLy8XoOdWUMCGOuI+cPkXm6ABOlQu8SRfYkckMAd9msA5xXf8
-         89qEIO9S0dHiQ2z86HV1pOFlOyfMMLqpvXDsro1uDxJT/oTgHGfBSWWX3y+/aRkv1VgS
-         YjCg/mekyJE9tfRh/dPK5iZyKWuEVdu1vE0GSCUbz/LqjTshKYUQZ89AqhKmCZrsZZ1f
-         da6Q==
+         :cc:content-transfer-encoding;
+        bh=x+MDqimg+D3/BviXJpxcqJqUcF0JDZdmKeA6cX3a/CA=;
+        b=NrTr0OQZXsRviOxFIBmy0/VqrDjyONqknhV2h3bcDHr9MblHYjZoclD0Sq2Q14xSnr
+         xDO5QeVjn5HloE2nKQIJs6G2VYBDZ5dqeGOFx5UkPhlsASzN5lXIkFyLzprHYerH3G0w
+         48FIccS1L/JuOEJbQvSeazzxtZVepBTNQho7DZdPIgMmLTt0K0PqmCW0yJ7PuLjms8Gy
+         Ukmy8FTVsP5/6YAesVHCUmwknGRWonu+uf1ZddbAGuYmL8v3aGZMKyg76ARXTmiD0ITl
+         A2AxO7Z5nLZBOsUvTdJoExlaNhDepezvcjPbUXhsdja/mLc7bRcXq/CWl7XhXNaw1z/J
+         oW8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EdqVo+lXOedzoGLoeNyOoK0OBMJFKmC0AxxZgG3xdW4=;
-        b=HOkgXLxVNzxKn/auabKOhMbHUnSynFkAqJonl4DPrR5QMejbdt0n7TDGD4qk3E7o/5
-         2V+GzRQPztrc+unWfbTOkxBSLFyZTX35UBATbXiRO8d5/pG5CcOiayFzzui3iake2dqv
-         eQ/1H+3Te8f503FZ8XYHUniLSJNsY5qvbv2/gbBWqEJ8gVGi7HFgioO3BcjVoJs7FpJV
-         G40Vi6QobAlUvYpFBLX5C5f0+GIksQ2GVdXO2vyJzAfRvl8U5bz9DyJQWKH0+AwFDzlA
-         dvxx/D445gZeXD0p8jvWY8acXfsvtR4DPl8cXeHTC57MRMjhjXKejCqJ1JtQsO7QB1qg
-         gVlQ==
-X-Gm-Message-State: AOAM531D+zMFyd93RE+iktKDpHQ548TCqpDjisbaIDR5k/AeRnVh92U6
-	8lkBO57FX7vhXgLfT4KLxnhwi/E4jGsFJ1uqPsw=
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=x+MDqimg+D3/BviXJpxcqJqUcF0JDZdmKeA6cX3a/CA=;
+        b=VV2lLco5t5Wv8Tme5LWUrSDGNChRKU5ERpe3cEzztimVUeAvqMyJr8zBIWSUoqEeiJ
+         57CXiiLAEHofQAU3zUXAsOv2nSLh7on1fB1nM3TGI23JzynzBVtXtTadHEPhfSwdXuQz
+         Itc6VsIzyQuwjyIsDAs3fujOvnVvMJi8wlfNjyUxTtfsXD+ihWiWsFNZKeg/LJh/HYEB
+         gpocpoC3WjnCfOp4vhc88Cs0bHS6M7mP3gjIqRZJWjBJhYJbJTmbnmLl4BBo2xa9pyNk
+         y19e4UEVmYuA///gtJHatE+PW26N1AL48KMV0zk7Kd069Zj3ko67Hsik6DVERmDa1es1
+         rURQ==
+X-Gm-Message-State: AOAM531HXaRBItZCS3G5dnHbK7tbGhQW/QOxwvn9lPmLtB6c2SPapcXe
+	nC+7mLx3NwcD+dLCimkExulnKmmdpzn4XHHtI8s=
 X-Google-Smtp-Source: 
- ABdhPJwJxY3Tufwv59498wlrj5Oxum5SDnuFkakOHKR3wZI70yWGqxtVSJmUUR9zTItICnMtWuhmqKqi30auzDtLPCA=
-X-Received: by 2002:a05:6102:370c:: with SMTP id
- s12mr14274468vst.42.1641328308157;
- Tue, 04 Jan 2022 12:31:48 -0800 (PST)
+ ABdhPJxqsL1K8bAE93Z+U0cVc/JXrJ9u3QXmsluSj0Wno9XdQ+foUZOZ43nL6zRozUkVGVE6N0KceoodZuL+xz55DD0=
+X-Received: by 2002:a05:6902:1507:: with SMTP id
+ q7mr40056459ybu.396.1641337285729;
+ Tue, 04 Jan 2022 15:01:25 -0800 (PST)
 MIME-Version: 1.0
-References: <MADEUP.16C728626400C98E.31076@lists.yoctoproject.org>
-In-Reply-To: <MADEUP.16C728626400C98E.31076@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Tue, 4 Jan 2022 21:31:37 +0100
+References: 
+ <CACfi_Z0ct76Dv9o+NU_Wf3Hz0Eb7Gcsbbds3AkMuy_1511jhYw@mail.gmail.com>
+ <ba8ff6fe-f017-38e9-e211-b91654de8d4c@gmail.com>
+ <CACfi_Z36+pYBU-jUKxa1qAQaVZDPi1NXwiubovv-+XM0onFVLg@mail.gmail.com>
+ <A98BAD8D-4355-424F-9949-1094B0C64A7A@iki.fi>
+ <CACfi_Z3aRtoxr+7GdGw4C2e9JouwXH-ckAbqY7HKJC+0GFrniQ@mail.gmail.com>
+ <CAMKF1srJf66rX78pS0diXF7tGMZ=63OhuOSMqnerULu=3cEo+A@mail.gmail.com>
+ <CACfi_Z0WVsnoJ+s_dHnTDxoykOZoPtorf_QUJzb6muj3ph=2vA@mail.gmail.com>
+ <CACfi_Z2Nz2UTD-EztnVQQY2LKpDHNJ5oe9TK=Vzho+XGvX-g=Q@mail.gmail.com>
+In-Reply-To: 
+ <CACfi_Z2Nz2UTD-EztnVQQY2LKpDHNJ5oe9TK=Vzho+XGvX-g=Q@mail.gmail.com>
+From: Davis Roman <davis.roman84@gmail.com>
+Date: Tue, 4 Jan 2022 18:01:08 -0500
 Message-ID: 
- <CANNYZj86UR7e77HXjtf50Vz-jcbUtMc_q72QYJrw_tbdTmmndg@mail.gmail.com>
-Subject: Re: [yocto] BBLAYERS
-To: steven.monsees@baesystems.com
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000c4814105d4c78616"
+ <CACfi_Z1oytr550hy_mm-i4Ed0bYYx4xtKmTe=F1jk4t-sdbMBw@mail.gmail.com>
+Subject: Re: [yocto] building image for Realtek RTS3916N mips SoC using vendor
+ provided prebuilt external uClibc toolchain
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Anders Montonen <Anders.Montonen@iki.fi>,
+ song li <ghosty.lee.1984@gmail.com>,
+	yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 04 Jan 2022 20:31:50 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55731
+ <yocto@lists.yoctoproject.org>; Tue, 04 Jan 2022 23:01:28 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55732
 
---000000000000c4814105d4c78616
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Wed, Dec 29, 2021 at 7:40 PM Davis Roman <davis.roman84@gmail.com> wrote=
+:
+>
+> On Wed, Dec 29, 2021 at 6:15 PM Davis Roman <davis.roman84@gmail.com> wro=
+te:
+> >
+> > On Wed, Dec 29, 2021 at 5:30 PM Khem Raj <raj.khem@gmail.com> wrote:
+> > >
+> > >
+> > >
+> > > On Wed, Dec 29, 2021 at 2:20 PM Davis Roman <davis.roman84@gmail.com>=
+ wrote:
+> > >>
+> > >> On Wed, Dec 29, 2021 at 2:21 PM Anders Montonen <Anders.Montonen@iki=
+.fi> wrote:
+> > >> >
+> > >> > Hi,
+> > >> >
+> > >> > > On 29 Dec 2021, at 9:53, davis roman <davis.roman84@gmail.com> w=
+rote:
+> > >> > >
+> > >> > > I generated an internal mips toolchain built against musl and I =
+tried
+> > >> > > to compile u-boot but unfortunately, I'm getting "opcode not
+> > >> > > supported" error messages. https://pastebin.com/QdcLxy69
+> > >> > > If instead I use the realtek provided prebuilt toolchain then u-=
+boot
+> > >> > > compiles successfully. https://pastebin.com/zcQ5kc20
+> > >> > >
+> > >> > > I'm thinking that Realtek's toolchain has patches specific to th=
+eir
+> > >> > > SoC that have not been pushed upstream. Could this be the reason=
+ I'm
+> > >> > > unable to compile uboot?
+> > >> >
+> > >> > I=E2=80=99m guessing that your U-Boot config doesn=E2=80=99t set t=
+he correct MIPS architecture revision. The compiler error shows that you=E2=
+=80=99re trying to assemble a MIPS32r1 instruction, but the compiler is tar=
+geting the original MIPS1 architecture. The Realtek toolchain may have set =
+the default architecture to match the SoC, but the fix is to update the con=
+fig to match the hardware.
+> > >>
+> > >> You're right. I didn't realize the RX5281 core on the RTS3916N only
+> > >> supports mips1 or mips16 (https://pasteboard.co/IpsqN6GkBYAs.png).
+> > >>
+> > >> I happened to have a mips sourcery toolchain installed on my machine
+> > >> (https://sourcery.sw.siemens.com/GNUToolchain/package12797/public/mi=
+ps-linux-gnu/mips-2014.05-27-mips-linux-gnu-i686-pc-linux-gnu.tar.bz2)
+> > >> so I pointed that to u-boot without modifying anything else and it w=
+as
+> > >> able to compile u-boot successfully. Woot!
+> > >> https://pastebin.com/ySPFae5u
+> > >>
+> > >> I suppose the next step would be to generate a mips1 yocto toolchain
+> > >> however according to the available tune values it appears only mips3=
+2
+> > >> or mips64 is available
+> > >>
+> > >> Any suggestions on how to generate a mips1 yocto toolchain or if
+> > >> that's even supported?
+> > >
+> > >
+> > > Yes it=E2=80=99s supported although it=E2=80=99s not default for qemu=
+mips so the simple trick you can do is change the DEFAULTTUNE setting in th=
+e qemumips.conf away from mips32r2
+> >
+> > Sorry Khem, I'm not quite following you. I tried the following patch
+> > (https://pastebin.com/rkmQ3t6P) thinking perhaps this is what you
+> > meant however my build configuration still shows the tune set to
+> > mips32r2 https://pastebin.com/izP9thVW
+> >
+> > What am I missing?
+> >
+>
+> Nevermind, I scraped the last patch, recreated my BUILD_DIR, set
+> MACHINE =3D "qemumips" and added DEFAULTTUNE =3D "mips" in my local.conf.
+> Now the build configuration correct https://pastebin.com/pkkRVL58 and
+> I'm now waiting for the toolchain to finish so I can attempt to build
+> realtek's u-boot.
 
-You need to set up a separate build directory for each of the layer
-configurations: the point of the build directory is to actually specify
-which layers you want. Just make sure they all share sstate cache dir, and
-downloads dir, and bitbake will reuse what it can.
+Unfortunately, I still get the original u-boot error
+(https://pastebin.com/8eKzFWQh) even after creating a toolchain using
+DEFAULTTUNE=3Dmips.
 
-Alex
+Later I re-read what Anders Montonen had mentioned regarding the arch
+needs to be set in the u-boot source itself (since the yocto toolchain
+does not contain the same defaults as the realtek toolchain) so I
+decided to tweak arch/mips/Makefile to set the arch to mips32 ( it
+should be backwards compatible with mips1)
 
-On Tue, 4 Jan 2022 at 20:36, Monsees, Steven C (US) via
-lists.yoctoproject.org <steven.monsees=3Dbaesystems.com@lists.yoctoproject.=
-org>
-wrote:
+------------------------------------------
+diff --git a/arch/mips/Makefile b/arch/mips/Makefile
+index efe7e44..0c0f0c2 100644
+--- a/arch/mips/Makefile
++++ b/arch/mips/Makefile
+@@ -29,6 +29,7 @@ arch-$(CONFIG_CPU_MIPS32_R6) +=3D -march=3Dmips32r6 -Wa,-=
+mips32r6
+ arch-$(CONFIG_CPU_MIPS64_R1) +=3D -march=3Dmips64 -Wa,-mips64
+ arch-$(CONFIG_CPU_MIPS64_R2) +=3D -march=3Dmips64r2 -Wa,-mips64r2
+ arch-$(CONFIG_CPU_MIPS64_R6) +=3D -march=3Dmips64r6 -Wa,-mips64r6
++arch-$(CONFIG_CPU_TAROKO)    +=3D -march=3Dmips32 -Wa,-mips32
 
->
->
-> Is it possible to use BBMASK to remove from builds ?
->
->
->
-> *From:* Monsees, Steven C (US)
-> *Sent:* Tuesday, January 4, 2022 2:32 PM
-> *To:* 'yocto@lists.yoctoproject.org' <yocto@lists.yoctoproject.org>
-> *Subject:* RE: BBLAYERS
->
->
->
->
->
-> Any suggestions=E2=80=A6 ?
->
->
->
-> *From:* Monsees, Steven C (US)
-> *Sent:* Tuesday, January 4, 2022 7:22 AM
-> *To:* yocto@lists.yoctoproject.org
-> *Subject:* BBLAYERS
->
->
->
->
->
-> Under my Yocto build, I have basically 2 build directories (one for Arm
-> and one for Intel platforms)=E2=80=A6 each build directory has its own bb=
-layer.conf.
->
->
->
-> Under each of these directories I build multiple images for each platform=
-=E2=80=A6
->
->
->
-> If say, on the Intel side, I can build for 3 MACHINES creating 3 unique
-> kernel images A, B, and C (they all share a common bblayer.conf) and I th=
-en
-> want to modify one kernel to include meta-virtualization=E2=80=A6
->
->
->
-> *How would I manage the bblayer.conf to add this layer to only B=E2=80=99=
-s build
-> so as not to impact the building of =E2=80=9CA=E2=80=9D  or =E2=80=9CC=E2=
-=80=9D ?*
->
->
->
-> If I just add it to the common bblayer.conf, =E2=80=9CA=E2=80=9D and =E2=
-=80=9CC=E2=80=9D are impacted by
-> the addition and show:
->
->
->
-> WARNING: You have included the meta-virtualization layer, but
-> 'virtualization' has not been enabled in your DISTRO_FEATURES. Some
-> bbappend files may not take effect. See the meta-virtualization README fo=
-r
-> details on enabling virtualization support.
->
->
->
-> Thanks,
->
-> Steve
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#55730):
-> https://lists.yoctoproject.org/g/yocto/message/55730
-> Mute This Topic: https://lists.yoctoproject.org/mt/88188555/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> alex.kanavin@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
+ # Allow extra optimization for specific CPUs/SoCs
+ tune-$(CONFIG_MIPS_TUNE_4KC) +=3D -mtune=3D4kc
+------------------------------------------
 
---000000000000c4814105d4c78616
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+With this patch, my build was able to get a little farther
+(https://pastebin.com/BkC2NY1Y) however I got the following linker
+error:
 
-<div dir=3D"ltr"><div>You need to set up a separate build directory for eac=
-h of the layer configurations: the point of the build directory is to actua=
-lly specify which layers you want. Just make sure they all share sstate cac=
-he dir, and downloads dir, and bitbake will reuse what it can.</div><div><b=
-r></div><div>Alex<br></div></div><br><div class=3D"gmail_quote"><div dir=3D=
-"ltr" class=3D"gmail_attr">On Tue, 4 Jan 2022 at 20:36, Monsees, Steven C (=
-US) via <a href=3D"http://lists.yoctoproject.org">lists.yoctoproject.org</a=
-> &lt;steven.monsees=3D<a href=3D"mailto:baesystems.com@lists.yoctoproject.=
-org">baesystems.com@lists.yoctoproject.org</a>&gt; wrote:<br></div><blockqu=
-ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
- solid rgb(204,204,204);padding-left:1ex">
+mipsel-poky-linux-ld.bfd: u-boot: error: PHDR segment not covered by
+LOAD segment
+Makefile:1214: recipe for target 'u-boot' failed
+make: *** [u-boot] Error 1
+
+Any idea what this could be about? or thoughts in general?
 
 
+I'm not sure if the gcc dumpspecs for each toolchain would be useful
+but here they are just in case.
+yocto toolchain - https://pastebin.com/BLRveGWD ( not able to compile
+realtek u-boot)
+realtek toolchain - https://pastebin.com/cPwRa9jf ( able to compile
+realtek u-boot)
+code sourcery mips 2016.05 - https://pastebin.com/RXbf9Q50 ( able to
+compile realtek u-boot)
 
-
-
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_958662905684647653WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)"><u></u>=C2=A0<u=
-></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">Is it possible =
-to use BBMASK to remove from builds ?<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)"><u></u>=C2=A0<u=
-></u></span></p>
-<div>
-<div style=3D"border-color:rgb(225,225,225) currentcolor currentcolor;borde=
-r-style:solid none none;border-width:1pt medium medium;padding:3pt 0in 0in"=
 >
-<p class=3D"MsoNormal"><b>From:</b> Monsees, Steven C (US) <br>
-<b>Sent:</b> Tuesday, January 4, 2022 2:32 PM<br>
-<b>To:</b> &#39;<a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_=
-blank">yocto@lists.yoctoproject.org</a>&#39; &lt;<a href=3D"mailto:yocto@li=
-sts.yoctoproject.org" target=3D"_blank">yocto@lists.yoctoproject.org</a>&gt=
-;<br>
-<b>Subject:</b> RE: BBLAYERS<u></u><u></u></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)"><u></u>=C2=A0<u=
-></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)">Any suggestions=
-=E2=80=A6 ?<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(31,73,125)"><u></u>=C2=A0<u=
-></u></span></p>
-<div>
-<div style=3D"border-color:rgb(225,225,225) currentcolor currentcolor;borde=
-r-style:solid none none;border-width:1pt medium medium;padding:3pt 0in 0in"=
->
-<p class=3D"MsoNormal"><b>From:</b> Monsees, Steven C (US) <br>
-<b>Sent:</b> Tuesday, January 4, 2022 7:22 AM<br>
-<b>To:</b> <a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blank=
-">yocto@lists.yoctoproject.org</a><br>
-<b>Subject:</b> BBLAYERS<u></u><u></u></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Under my Yocto build, I have basically 2 build direc=
-tories (one for Arm and one for Intel platforms)=E2=80=A6 each build direct=
-ory has its own bblayer.conf.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Under each of these directories I build multiple ima=
-ges for each platform=E2=80=A6
-<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">If say, on the Intel side, I can build for 3 MACHINE=
-S creating 3 unique kernel images A, B, and C (they all share a common bbla=
-yer.conf) and I then want to modify one kernel to include meta-virtualizati=
-on=E2=80=A6
-<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><b>How would I manage the bblayer.conf to add this l=
-ayer to only B=E2=80=99s build so as not to impact the building of =E2=80=
-=9CA=E2=80=9D=C2=A0 or =E2=80=9CC=E2=80=9D ?<u></u><u></u></b></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">If I just add it to the common bblayer.conf, =E2=80=
-=9CA=E2=80=9D and =E2=80=9CC=E2=80=9D are impacted by the addition and show=
-:<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">WARNING: You have included the meta-virtualization l=
-ayer, but &#39;virtualization&#39; has not been enabled in your DISTRO_FEAT=
-URES. Some bbappend files may not take effect. See the meta-virtualization =
-README for details on enabling virtualization
- support.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Thanks,<u></u><u></u></p>
-<p class=3D"MsoNormal">Steve<u></u><u></u></p>
-</div>
-</div>
-
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#55730): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/55730" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/55730</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/88188555/1686=
-489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/88188555/1686489</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.k=
-anavin@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
-
---000000000000c4814105d4c78616--
+> > >>
+> > >>
+> > >>
+> > >> >
+> > >> > Regards,
+> > >> > Anders Montonen
 
