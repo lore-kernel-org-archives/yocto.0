@@ -2,117 +2,126 @@ Return-Path: <steven.monsees@baesystems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EF650C433EF
-	for <webhook@archiver.kernel.org>; Tue,  4 Jan 2022 19:32:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F4CCC433F5
+	for <webhook@archiver.kernel.org>; Tue,  4 Jan 2022 19:36:33 +0000 (UTC)
 Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com
  [149.32.232.65])
- by mx.groups.io with SMTP id smtpd.web09.770.1641324724227063476
+ by mx.groups.io with SMTP id smtpd.web12.772.1641324989970911207
  for <yocto@lists.yoctoproject.org>;
- Tue, 04 Jan 2022 11:32:06 -0800
+ Tue, 04 Jan 2022 11:36:32 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=I/59Vw0X;
+ dkim=fail reason="signature has expired" header.i=@baesystems.com
+ header.s=trusted01 header.b=Pc5RnH/P;
  spf=pass (domain: baesystems.com, ip: 149.32.232.65,
  mailfrom: steven.monsees@baesystems.com)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1641324724; x=1799004724;
+  s=trusted01; t=1641324989; x=1799004989;
   h=from:to:subject:date:mime-version;
-  bh=zUqmwJiDeZOPfYr/kVAVNo+0jh3DcTZnzeWK+atrCCU=;
-  b=I/59Vw0XPDaA55CAqcaWkUZVWHjs8l5fCe4TecngfemVuZ+34Y/9Juii
-   MjmjzY1BtVhKz0pZVBGM8mcuWXBdloYHxB0VCh6igf/gLfY+zZ9i3jthP
-   IzeAwXTVQNdl3JTrbGwBE66Lh28pg+BhgoQ/6RRWWiy4rMOVRxONJfV8I
-   c=;
+  bh=lEhs1p0QO9CS4YKjEcxzhUxeZisixQcFDBMmPUaOw+M=;
+  b=Pc5RnH/PCyf3tUUrhMdyPGlw06W8fBn8QMDFBrzQBW7f1wJEDHe1B/Od
+   SId4I5KX/0wn+Har/XhwC1vPA3HPok7quTSQhbfTDZJzDS+6PuR4B/19L
+   ZJWu+NgG0ihjHtHmTyraV5y8K6nbUDLQ2tVIPiby2ENzKGi5siTlQTr8t
+   I=;
 IronPort-SDR: 
- TdF2NEFJpTzHoj7zJ0RTMjWazxHsHrWu3r8LabmEQ9Tj/l90QTFlvIok2YjpgsTEpLoO0WXW6H
- k0xxwNnqT9YA==
-IronPort-PHdr: =?us-ascii?q?A9a23=3A8SsHFxATuOhWGDpJYiITUyQU60MY04WdBeb1w?=
- =?us-ascii?q?qQuh78GSKm/5ZOqZBWZua80ygaSBs6Csa4MotGVmpioYXYH75eFvSJKW713f?=
- =?us-ascii?q?DhBt/8rmRc9CtWOE0zxIa2iRSU7GMNfSA0tpCnjYgBaF8nkelLdvGC54yIMF?=
- =?us-ascii?q?RXjLwp1Ifn+FpLPg8it2O2+5YDfbx9ViDezb75+Iwi6oRveu8ILnYZsN6E9x?=
- =?us-ascii?q?wfTrHBVYepW32RoJVySnxb4+Mi9+YNo/jpTtfw86cNOSL32cKskQ7NWCjQmK?=
- =?us-ascii?q?H0169bwtRbfVwuP52ATXXsQnxFVHgXK9hD6XpP2sivnqupw3TSRMMPqQbwoX?=
- =?us-ascii?q?zmp8qFmQwLqhigaLT406GHZhNJtgqJHrhyvpB1/zJLbb4yOLvVyYqHdcMkGS?=
- =?us-ascii?q?WZdQMpcUTFKDIOmb4sICuoMJehUoY76p1sIthuxGxejBPj3xjRVm3H2wbM10?=
- =?us-ascii?q?/o/HgHAwQctAc8FvHDao9voMaseX/2+wa7TzTXfcfxWxyny6I7SfhAkpvGMW?=
- =?us-ascii?q?6lwftTPxkk0DA7KlU+fppL+PzKVzeQNr3aU7+97Ve61l2EnrARxryGpy8wxh?=
- =?us-ascii?q?YbHmpgbxUrY9SVl3ok1P9u4RVZ1b9OqDJZdtiOXOopoTs8/XWxluyY3x7kJt?=
- =?us-ascii?q?JO0YSQExpQqyRHCZ/GDcYWF4h3uWeeMLTpmgH9oe7Gyiguv/UavzOD3S8q60?=
- =?us-ascii?q?E5SoyZYjtXArH4A2h7J5sSaTvZw8F2t1DeP2gzL9+1IPVo4mKXUJpI7zbM8j?=
- =?us-ascii?q?IcfvETFEyTrgkv5lrWWeV8h+uWw7uTnZajpqYGEOo9vjwH+LrwumsuiAeQkK?=
- =?us-ascii?q?gQOX3aU+eC71LD74032WrVKjvszkqnCtJ3XIcAWqrKkDwNP1IYs8QyzACy83?=
- =?us-ascii?q?9sGhnkGLElFeA6ZgIjsIFHCOuz3DfC6g1i0kTdrwe7JPqH5D5nQMnTPirnsc?=
- =?us-ascii?q?LRn50JBzAc+w8pT6pNUB70ZJfL8QE7xtNjWDh8jNAy0xv7qCM5h1owAR2KAH?=
- =?us-ascii?q?KmZPLnXsV+P4OIvOPeDa5EOuDvmMPcq/eDhjWQ5mF8GYammw54XaGuiEvt6J?=
- =?us-ascii?q?EWZZGLggs0dHmcSogo+UOvqhUWCUD5Ue3myQ6U86yo/CIKnFofDWputjKaB3?=
- =?us-ascii?q?Se8ApJWemdGCkiWEXfvdYWLResDaD6ILs9miDwEWuvpd4h0nwCpvxP9475mN?=
- =?us-ascii?q?fbPvDwfvo7kzMJy5eDYiVc17zM+R5CM1GqRSElwn3gUXHkn26tjplRnzVWO2?=
- =?us-ascii?q?rQ+hOZXQ499/fRMB00fMpjHwuFhT5jJRg/fc9HBYx7mf+7nS3llVc483dIIJ?=
- =?us-ascii?q?UN6Hc6vgwvr1SOnGK4Oi7GOH9o/9aeKjCu5HNp013uTjPpptFIhWMYabQWb?=
-IronPort-Data: =?us-ascii?q?A9a23=3AsLksSaie2rbE0uRqTuDXOJt5X161ShIKZh0uj?=
- =?us-ascii?q?C45NGQN5FlHY01jehtvX2uDOKyOYGP2Lt1wad6/9xtQu5Ldz9M2SARtpXhhE?=
- =?us-ascii?q?iNjpJueD7x1DKtQ0wB+jCH7ockOA/w2MrEsF+hpCC+MzvuRGuK59yMkjPnUH?=
+ dudy2JmGhlbGLuMuVdfyZnJCaFVkj3X4G773xLRU8r5izuEly40UsURqjVc8/FWQAsd9HTskpD
+ wqUFwYLyfQEA==
+IronPort-PHdr: =?us-ascii?q?A9a23=3ADzYouhSuCfqNSBeyJSl6pOpul9psojifAWYlg?=
+ =?us-ascii?q?6HPa5pwe6iut67vIFbYra00ygOTBMOCsKkP0rCK+4nbGkU4qa6bt34DdJEeH?=
+ =?us-ascii?q?zQksu4x2zIaPcieFEfgJ+TrZSFpVO5LVVti4m3peRMNQJW2aFLduGC94iAPE?=
+ =?us-ascii?q?RvjKwV1Ov71GonPhMiryuy+4ZLebxtViDanfL9/Ihu7oQrMusUIjoZpN7o8x?=
+ =?us-ascii?q?AbOrnZUYepd2HlmJUiUnxby58ew+IBs/iFNsP8/9MBOTLv3cb0gQbNXEDopP?=
+ =?us-ascii?q?WY15Nb2tRbYVguA+mEcUmQNnRVWBQXO8Qz3UY3wsiv+sep9xTWaMMjrRr06R?=
+ =?us-ascii?q?Tiu86FmQwLuhSwaNTA27XvXh9RwgqxFvRyhuxJxzY3VYI6JO/VzZbnScc8YR?=
+ =?us-ascii?q?WdbQspdSzJND4WhZIUPFeoBOuNYopHzq1UJqhu+AxKsC/3xxT9TnnP9wLA00?=
+ =?us-ascii?q?/g/HgHYwgMgGc8FvWrJp9nxOqgcTOW5wKfVxjjEdPNWxSny6JbWfRAnu/2MW?=
+ =?us-ascii?q?LVwcczKyUYxCQzFlU6dppf/MDyLzeQMs3Ob7/Z+WuKqkG4rsR1+oj+qxso1j?=
+ =?us-ascii?q?ITCm40axEze+ypj3IY1OcO3SFR9YdO8HpVduT2XOop0T84jXW1kpTg3x74Gt?=
+ =?us-ascii?q?JO/cyUHx4kryRDfZvKIboSF5hDuWeaeLDp5mX5oZrayihWx/EW91+HyWc+52?=
+ =?us-ascii?q?0tJoCpditTAq2wB2wbd58WFUPdx40Os1DiV2w3S6uxIOV04mbbBJ5MuzbM8j?=
+ =?us-ascii?q?JUevV7eEiL2nkj9kbWYeV8++uey7uTqerDmppiBOIBqkgz+KaEumtCnAeQ/L?=
+ =?us-ascii?q?wgOQ3CX+eSi273n+k30WKtKgec2kqnftZDaPsAWq6q9DgNJz4ov8RC/AC283?=
+ =?us-ascii?q?NsDh3YIMklFeRKcj4j1JV7OJev4Ae2jjFSrlTdn3/HGPrv/DZXRNnXPjavtc?=
+ =?us-ascii?q?axz5kNe0gY/0NRS6pxOBrwAIP//Qkrxu8bZDh89PQy02eHnCNBl24MFRWKAH?=
+ =?us-ascii?q?LGZP73UsVOS4+IvJO+MZJQLtznjMPgo/OXhgmUnll8GfaipxocXZ269HvR9O?=
+ =?us-ascii?q?UmWfX3sgtIZHWcQogU+VPDqiEGFUTNLZ3eyWL4z5i08CI+9CYfDR5utgKCa3?=
+ =?us-ascii?q?CuhHpxWYXxJCkyLEXfwbYWEXPUMZzyOLc99iDAEUqKhS4BynS2p4UXrzLF7K?=
+ =?us-ascii?q?cLQ+zYErtTy09Np4PXJkhM//iAyCN6SmSnZXmZ/gmQgQz4twLs5sEt21lCby?=
+ =?us-ascii?q?696jvdEU9tJ6KUafB09MMuW6ut8EN3/QUaJRcuEVlugCv7uQQwKD5h5l8QSb?=
+ =?us-ascii?q?lhwHZOniRbY0iexK7UcmqeaH4A597ma1H/0cZUug03a3bUs2gF1CvBEMner0?=
+ =?us-ascii?q?/YXyg=3D=3D?=
+IronPort-Data: =?us-ascii?q?A9a23=3Ar8hrNahj08bhkGdMCTImQms9X161ShIKZh0uj?=
+ =?us-ascii?q?C45NGQN5FlHY01jehtvWTrTP/ePMzOhfd4gPIm2909V757WxtNgHFc4qX1hR?=
+ =?us-ascii?q?SpjpJueD7x1DKtQ0wB+jCH7ockOA/w2MrEsF+hpCC+MzvuRGuK59yMkjPnUH?=
  =?us-ascii?q?uCU5NPsY0ideyc1EE/Ntjo+w4bVsqYw6TSIK1vlVeHa+qUzC3f5s9JACV/43?=
  =?us-ascii?q?orYwP9ZUFUejxtD1rA2TagjUFYzDBD5BrpHTU26ByOQroW5goeHq+j/ILGRp?=
  =?us-ascii?q?gs1/j8zA9Ojl62qIxxSG/jUNE6Eg3dNSrO+jx1Z4Cc1187XNtJFMQEM1HPQz?=
  =?us-ascii?q?os3loglWZ+YEG/FOoXXhOkDXh8eFiZ4JqBL45fNKHWkoNePwkjdNXDrxp2CC?=
- =?us-ascii?q?WlqYdVCo78sWTsmGfswbWplggq4r/Oxy668Yu1tndg4atjsN58YomtnzzzSE?=
- =?us-ascii?q?bAhW5+rfklgzbe0xx9p3oYVQrCHNpFfN2cHUfgJWDUXUn9/NX70tL3AaqHDT?=
+ =?us-ascii?q?WlqYdVCo7woUD0mGfswbWplggq4r/Oxy668Yu1tndg4atjsN58YomtnzzzSE?=
+ =?us-ascii?q?bAhW5+rfklgzbe0xx9p3oYVQrCHNpFfN2cHUfgJWDUXUn9/NX70tL7AaqHDT?=
  =?us-ascii?q?gBl?=
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3ANyzgJKrmV+TKHyNjQvtesqUaV5r3eYIsim?=
- =?us-ascii?q?QD101hICG9E/bo7PxG+c5x6faaslgssR0b9Oxoe5PwJU80jKQV3WBJB9eftW?=
- =?us-ascii?q?rdyQmVxeNZnPPfKlTbckWVygc679YET0EUMrLN5DZB4foSrzPIdOrIbeP3lp?=
- =?us-ascii?q?yAlKP19V8oZwdvcqRh5wByBkKgFFFsTgUuP+tbKHPZ3Ls/mwad?=
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AnqeP8a0i2SPp5ucjmf03HwqjBKUkLtp133?=
+ =?us-ascii?q?Aq2lEZdPU1SL36qynKpp9w6faaskdyZJheo6HkBEDtex7hHP1OgbX5X43NYO?=
+ =?us-ascii?q?COggLBEGgF1+ffKlbbehEWmNQz6U5oSdkbNOHN?=
 X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2AbBQDxn9Rh/0HBJQpaHgErCwYMIgm?=
- =?us-ascii?q?CcYIFgUILlVKeSAsBAQEBAQEBAQEIASoBFgQBAYhEJjgTAQIEAQEBEgEBBgE?=
- =?us-ascii?q?BAQEBBgQBgRuFVhMMgjUig2sBAQIDAQshXgEIDQQEAQFXCh0JAQQTCIJ3gg6?=
- =?us-ascii?q?taniBMxoCZYRqhRAJAYEwgWaFRIJ+hhdDhD8+ikIEkRmBCxuBQpIhjRWgQAc?=
- =?us-ascii?q?Dg0KXXIdWMBWWNgORLiqWDCChNIRTAgQCBAUCFoF4gX1wgzlRFwKcf3Q4AgY?=
- =?us-ascii?q?LAQEDCY4OgRABAQ?=
-X-IPAS-Result: =?us-ascii?q?A2AbBQDxn9Rh/0HBJQpaHgErCwYMIgmCcYIFgUILlVKeS?=
- =?us-ascii?q?AsBAQEBAQEBAQEIASoBFgQBAYhEJjgTAQIEAQEBEgEBBgEBAQEBBgQBgRuFV?=
- =?us-ascii?q?hMMgjUig2sBAQIDAQshXgEIDQQEAQFXCh0JAQQTCIJ3gg6taniBMxoCZYRqh?=
- =?us-ascii?q?RAJAYEwgWaFRIJ+hhdDhD8+ikIEkRmBCxuBQpIhjRWgQAcDg0KXXIdWMBWWN?=
- =?us-ascii?q?gORLiqWDCChNIRTAgQCBAUCFoF4gX1wgzlRFwKcf3Q4AgYLAQEDCY4OgRABA?=
- =?us-ascii?q?Q?=
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2AbBQAZodRh/0HBJQpagQkJgnGCBYF?=
+ =?us-ascii?q?CC5VSnkgLAQEBAQEBAQEBCAEqARYEAQGFBgKDPCY4EwECBAEBARIBAQYBAQE?=
+ =?us-ascii?q?BAQYEAYEbhVYTDII1IoNrAQECAwELIV4BCA0EBAEBKC8KFAkJAQQTCIJ3gg6?=
+ =?us-ascii?q?tYHiBMxoCZYRqhRAJAYEwgWaFRIJ+hhdDhD8+hHuFRwSRGYELG4ECQJIhjRW?=
+ =?us-ascii?q?NJpMaBwODQpdch1YwFZY2A4NXjVcqlgwgoTSEUwIEAgQFAhaBeIF9cIM5URc?=
+ =?us-ascii?q?CnH90OAIGCwEBAwmODoEQAQE?=
+X-IPAS-Result: =?us-ascii?q?A2AbBQAZodRh/0HBJQpagQkJgnGCBYFCC5VSnkgLAQEBA?=
+ =?us-ascii?q?QEBAQEBCAEqARYEAQGFBgKDPCY4EwECBAEBARIBAQYBAQEBAQYEAYEbhVYTD?=
+ =?us-ascii?q?II1IoNrAQECAwELIV4BCA0EBAEBKC8KFAkJAQQTCIJ3gg6tYHiBMxoCZYRqh?=
+ =?us-ascii?q?RAJAYEwgWaFRIJ+hhdDhD8+hHuFRwSRGYELG4ECQJIhjRWNJpMaBwODQpdch?=
+ =?us-ascii?q?1YwFZY2A4NXjVcqlgwgoTSEUwIEAgQFAhaBeIF9cIM5URcCnH90OAIGCwEBA?=
+ =?us-ascii?q?wmODoEQAQE?=
 X-IronPort-AV: E=Sophos;i="5.88,261,1635206400";
-   d="scan'208,217";a="440211302"
+   d="scan'208,217";a="440212794"
 IronPort-SDR: 
- HJ579Bi/l0HkigPWf9o6mZkJ5oPYx4mnYJI1aG47E0N+cs7mLIYUsMwJ5mIGH6SZVRauuK6Qzr
- IwZNBd2RaWFQ==
+ rVZn2BwWoZKrL4yj4nOvV1QCX8jcseQ4yv7ZcSwDBKN0vDbsPB1LOpLxziw+1RxiG6SREBm3d+
+ iV8fX7mpq3/Q==
 X-IronPort-AV: E=Sophos;i="5.88,261,1635206400";
-   d="scan'208,217";a="47703877"
+   d="scan'208,217";a="47704594"
 From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
 To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
 Subject: RE: BBLAYERS
 Thread-Topic: BBLAYERS
-Thread-Index: AdgBYsLFEEBNlMFQRG27gM5V2hTVSgAPutVw
-Date: Tue, 4 Jan 2022 19:32:01 +0000
+Thread-Index: AdgBYsLFEEBNlMFQRG27gM5V2hTVSgAPutVwAAAZPZA=
+Date: Tue, 4 Jan 2022 19:35:24 +0000
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.44.4.15]
 Content-Type: multipart/alternative;
-	boundary="_000_6e82fad1a67e4f169e0916d4fb9918c6baesystemscom_"
+	boundary="_000_4572f27a5d8d4700b45ab4b0e10d40c7baesystemscom_"
 MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 04 Jan 2022 19:32:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55729
-Message-Id: <20220104193206.EF650C433EF@smtp.lore.kernel.org>
+ <yocto@lists.yoctoproject.org>; Tue, 04 Jan 2022 19:36:33 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55730
+Message-Id: <20220104193633.2F4CCC433F5@smtp.lore.kernel.org>
 
---_000_6e82fad1a67e4f169e0916d4fb9918c6baesystemscom_
+--_000_4572f27a5d8d4700b45ab4b0e10d40c7baesystemscom_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+
+Is it possible to use BBMASK to remove from builds ?
+
+From: Monsees, Steven C (US)
+Sent: Tuesday, January 4, 2022 2:32 PM
+To: 'yocto@lists.yoctoproject.org' <yocto@lists.yoctoproject.org>
+Subject: RE: BBLAYERS
 
 
 Any suggestions... ?
 
 From: Monsees, Steven C (US)
 Sent: Tuesday, January 4, 2022 7:22 AM
-To: yocto@lists.yoctoproject.org
+To: yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org>
 Subject: BBLAYERS
 
 
@@ -140,7 +149,7 @@ virtualization support.
 Thanks,
 Steve
 
---_000_6e82fad1a67e4f169e0916d4fb9918c6baesystemscom_
+--_000_4572f27a5d8d4700b45ab4b0e10d40c7baesystemscom_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -187,6 +196,10 @@ span.EmailStyle18
 	font-family:"Calibri",sans-serif;
 	color:windowtext;}
 span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EmailStyle20
 	{mso-style-type:personal-reply;
 	font-family:"Calibri",sans-serif;
 	color:#1F497D;}
@@ -209,6 +222,23 @@ div.WordSection1
 <div class=3D"WordSection1">
 <p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
 n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Is it possible to use =
+BBMASK to remove from builds ?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b>From:</b> Monsees, Steven C (US) <br>
+<b>Sent:</b> Tuesday, January 4, 2022 2:32 PM<br>
+<b>To:</b> 'yocto@lists.yoctoproject.org' &lt;yocto@lists.yoctoproject.org&=
+gt;<br>
+<b>Subject:</b> RE: BBLAYERS<o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
 <p class=3D"MsoNormal"><span style=3D"color:#1F497D">Any suggestions&#8230;=
  ?<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
@@ -218,7 +248,8 @@ n></p>
 0in 0in">
 <p class=3D"MsoNormal"><b>From:</b> Monsees, Steven C (US) <br>
 <b>Sent:</b> Tuesday, January 4, 2022 7:22 AM<br>
-<b>To:</b> yocto@lists.yoctoproject.org<br>
+<b>To:</b> <a href=3D"mailto:yocto@lists.yoctoproject.org">yocto@lists.yoct=
+oproject.org</a><br>
 <b>Subject:</b> BBLAYERS<o:p></o:p></p>
 </div>
 </div>
@@ -258,5 +289,5 @@ or details on enabling virtualization
 </body>
 </html>
 
---_000_6e82fad1a67e4f169e0916d4fb9918c6baesystemscom_--
+--_000_4572f27a5d8d4700b45ab4b0e10d40c7baesystemscom_--
 
