@@ -1,182 +1,224 @@
-Return-Path: <bevenson@melinkcorp.com>
+Return-Path: <trevor.gamblin@windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6FA4CC433F5
-	for <webhook@archiver.kernel.org>; Thu,  6 Jan 2022 14:32:17 +0000 (UTC)
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (NAM02-BN1-obe.outbound.protection.outlook.com [40.107.212.118])
- by mx.groups.io with SMTP id smtpd.web11.9358.1641479535845151477
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 49A25C433EF
+	for <webhook@archiver.kernel.org>; Thu,  6 Jan 2022 16:22:09 +0000 (UTC)
+Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com
+ [205.220.178.238])
+ by mx.groups.io with SMTP id smtpd.web11.10998.1641486127797448124
  for <yocto@lists.yoctoproject.org>;
- Thu, 06 Jan 2022 06:32:16 -0800
+ Thu, 06 Jan 2022 08:22:08 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@melink.onmicrosoft.com
- header.s=selector1-melink-onmicrosoft-com header.b=i+fQA7MG;
- spf=pass (domain: melinkcorp.com, ip: 40.107.212.118,
- mailfrom: bevenson@melinkcorp.com)
+ dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=qySCi+XE;
+ spf=permerror,
+ err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}:
+ invalid domain name (domain: windriver.com, ip: 205.220.178.238,
+ mailfrom: prvs=80056b75b6=trevor.gamblin@windriver.com)
+Received: from pps.filterd (m0250812.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id
+ 206FQAFE012872;
+	Thu, 6 Jan 2022 16:22:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+ h=content-type :
+ message-id : date : from : subject : to : cc : mime-version;
+ s=PPS06212021; bh=eElc1hAmwqEMhh5eKkxDD+vT3E+IRCFab/wGV6ndITk=;
+ b=qySCi+XEX+R+QF/6MSSV0uedOrN0gUHvXTRePRsZl5F4a2v1ofrmRViGSE1aUFREZjR5
+ 8UJ+KO+Nmo9dx28RV6whBDWCYg1xb/SCdi8K6Y4OWw8UyYC77ZwzmMPCT/2B5a0jK67y
+ IJQCkqkqW5H4ASTuK7FyL/FPH7KUQDO10y32wGQyhL18/yzQ6mqCMS0BL/yLUY37gwXH
+ EKrFwbon5oAybOthQXfK4Sup/NqJAO4C3HmFbnFibJ+vVmYKa7CgfYgOV0N14j/fMjyU
+ VJRu8XzoX0wk0ZjciRVUp3nvNtD8uBku5selniDkiLfOOdHk7paKgJoFqOmgCXZCtieq FQ==
+Received: from nam10-bn7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10lp2104.outbound.protection.outlook.com [104.47.70.104])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3ddnd7gfwp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 06 Jan 2022 16:22:01 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m6othbZJ0CpjgCwfjws2hQUgU11YvCCiAB2ptgirWildX90IT6ap0l/kxj+8dGKADc/EgGL40UYxQXoSJ8qF6vq5B5E1JOELKUfgH/MTk8IF52WJaWMEqPBU5SDl/Civc4MDoPyxSR9oH3+aK9LR0XIYFzd1ykDsLCybJd2PvU3H8KWRjUj4/Mnx8zAFihgKWPKjJFw9iBXnwipgAVkKRaND8IA7FLrO5zKRgZX5F9f2A+u21r3JPpCBR5rDo9wehfVOIXthdvve8Z1cNJIgd4kqoWCipochGxoopXNQwFn+23xkJNuNvObLgXkiiQ5Yy6OkAyHmBFLwkqzwYrSq8A==
+ b=bVWge+idSCnOIZH2cuAAVYU5Tw7eb+QRcBVEv3LOSTdo/eUO56rYPPiiYvIEBtWqtDZBT9OQySJ4thjI8IbBBRwIuRx1zaefI6kyZzhwR31UgxmxwbaV0dNEvYVJ0tV0KG4d7wMLY5Y5zQj6vTTQ1eiCyeKhoSP6IyaU8tnwzva0JqZ6L8E8yS7a3+zBCM5evPWnURpMFVZ4hmzSAZZkpB5wsE6I8HS7aQX06z3ac8jK/iBNd7EogK3IvibFG87oy/r8PONEhCe4x2rUDkrwZ3x3Ap9fkC221fejojTc6/yAw9FJlFRxi2o205rsMdrrB8fGgA/nQtdDqetRcguugA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M5ZK2FiCZCRqnaTp/37xowtPobunwHCn33nCVO9Ea1k=;
- b=mT55H18I50JiEdzayIp9m1u3voIGM7S8nkFZOIpodMTa9nzuKhHWNYaIpj6Y7LCjORSPOMRq7fgZ9qWUe1PJMZClBTps2+o8wgYSWGWk4HSuKBYM1+rJD2Nb48UdmTGgL5H74+j6fYnbFy56TYuZeLgK0rYuPqnJ5r63bksvegg0kp0TccZd20asx2BVlG1ZIB/ZcSlze7qKgd7hI2RPQIvL4HqipqpeZTNZACTdQ1gvyvFMk29VBhgK0buTex9k8bFFdxtOLD0GGMMIebX0SVydMfPjWOowL0XwUqmHvy+Mr7v6k2v9DJ+zqdEoU19DylYD5+pbKCsmoPxdIOgJOw==
+ bh=eElc1hAmwqEMhh5eKkxDD+vT3E+IRCFab/wGV6ndITk=;
+ b=ZSyyTbSl5qyD53214c3rY7Lp+Zibph5f+56UPkBo4/eGBoWQ5fKtO15zb7SGKrLvV9YrsKzuli7Q4qhNeLZ5TBYslIfMBi562B0v7W7PqDHXTRmkDl3juMUxJpFFomOyKClNEXkVBX94Eo7ZI0JnKj5l2IgJtIcgjOWqFXkvRK2syQpkeVn747qTSkPMjn8RwtxyysapDiwmIoPzPjLlh2xTE4waQr+ZlirZ3+7qfgrPilOrFfsYdZRHJJmh6YDsAauKzGXNB9M/XB1kzWIFaljqc8zF+JHrMBm37hBFkxSl3j7+ERe8D5jBcEsTWXA4sbhwxT8rvx+G0JI3dMLoyA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=melinkcorp.com; dmarc=pass action=none
- header.from=melinkcorp.com; dkim=pass header.d=melinkcorp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Melink.onmicrosoft.com; s=selector1-Melink-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M5ZK2FiCZCRqnaTp/37xowtPobunwHCn33nCVO9Ea1k=;
- b=i+fQA7MGIrRbihC7eYsXb0PScV0TypFtSAna7aqu15/4uxhZuC2TO/qdaUrS3lZuoN7+8UcWpG1hEllUlQ/GP96QZLLAafokfEomrcbOnITOZ9IPXnwFIke7zE9Kst7p/SJTrdpQIA2zkid82vnkFcSmVAh4FihWcM3Dxd5Ei05AX5NUbQjCm4vbmLuYHE7C9o6U2K+jBHZYRihJPXT9GWPaTQdSdWqUxB3oFzKJc+FBuzeFb4dMPO01g7dYsIOWr22kp4E/yAD/NVBr0xD2MW+33KnTHt10fdYtMK68P4hteg6XVMtvZsrgQ3vyUlqx4wOnTTSOqRMl9ifIFRMjZA==
-Received: from CH0PR20MB3948.namprd20.prod.outlook.com (2603:10b6:610:c6::22)
- by CH2PR20MB3000.namprd20.prod.outlook.com (2603:10b6:610:e::21) with
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Received: from BY5PR11MB3909.namprd11.prod.outlook.com (2603:10b6:a03:191::13)
+ by BY5PR11MB3894.namprd11.prod.outlook.com (2603:10b6:a03:18c::20) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4867.7; Thu, 6 Jan
- 2022 14:32:13 +0000
-Received: from CH0PR20MB3948.namprd20.prod.outlook.com
- ([fe80::5d6b:e641:470e:e3be]) by CH0PR20MB3948.namprd20.prod.outlook.com
- ([fe80::5d6b:e641:470e:e3be%4]) with mapi id 15.20.4867.009; Thu, 6 Jan 2022
- 14:32:13 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Problems switching from busybox-udhcpc to dhcpcd
-Thread-Topic: Problems switching from busybox-udhcpc to dhcpcd
-Thread-Index: AdgDBVPB5tU7v1CyRxmBtJ+HRjRyaQ==
-Date: Thu, 6 Jan 2022 14:32:13 +0000
-Message-ID: 
- <CH0PR20MB394892B757A14C3EC17B61E8BB4C9@CH0PR20MB3948.namprd20.prod.outlook.com>
-Accept-Language: en-US
+ 2022 16:21:58 +0000
+Received: from BY5PR11MB3909.namprd11.prod.outlook.com
+ ([fe80::2c56:bbbb:8def:1f37]) by BY5PR11MB3909.namprd11.prod.outlook.com
+ ([fe80::2c56:bbbb:8def:1f37%5]) with mapi id 15.20.4867.009; Thu, 6 Jan 2022
+ 16:21:58 +0000
+Content-Type: multipart/alternative;
+ boundary="------------d0AhAJJK0mRkoHV7i7zrZ50E"
+Message-ID: <ad48f342-be1c-eac5-dda7-318c756c9aec@windriver.com>
+Date: Thu, 6 Jan 2022 11:21:53 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+From: Trevor Gamblin <trevor.gamblin@windriver.com>
+Subject: Minutes: Yocto Project Weekly Triage Meeting 1/6/2022
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Cc: Richard Purdie <richard.purdie@linuxfoundation.org>,
+        trevor.gamblin@windriver.com,
+        "MacLeod, Randy"
+ <Randy.MacLeod@windriver.com>,
+        "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>,
+        Steve Sakoman <steve@sakoman.com>,
+        "Wold, Saul" <saul.wold@windriver.com>, tim.orling@konsulko.com,
+        Michael Opdenacker
+ <michael.opdenacker@bootlin.com>,
+        alexandre.belloni@bootlin.com,
+        "jpewhacker@gmail.com" <jpewhacker@gmail.com>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-bromium-msgid: 2aca6832-9e0e-4b80-b85d-20623614e3f9
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=melinkcorp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 75cc6825-4046-428a-090b-08d9d1215490
-x-ms-traffictypediagnostic: CH2PR20MB3000:EE_
-x-microsoft-antispam-prvs: 
- <CH2PR20MB300022EF15C89C04D643454CBB4C9@CH2PR20MB3000.namprd20.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- ekoDAC9U+OE218E/H8f6OOwSloj+CyoQv65ZFKpb2vzBQkiyCNTZ2v71GnHOf+5KwDWUEiOEWPtiSrLSnvGduyKAadqpZy+RD7xe9c1tBK1luxVjeCIMqmY2q3j8LwedOpVYGCR3IxzGrf0hnmNWJaoxCBmN06sKXJvUQIuZlt8zoOabROfdDVmednxLoQVCZ+eGsThHRaJcRWgfWcsiDF70tTXp/XmcElnI6wrR9FLiDSl7LfnPJmdjEoWVvOawRn7/jWnI21NhUTqaaoudvBQaMk/wEiPnlyGbyQsVnSdrzsXjm+sqK85qOyjNRougZUSILBTA1Fwz7oStWaja46J+V4tLxfYBEIoyN6ARlAXemqmXaxuL1vb/cx4Bu+pRWUoZfr+kYzwwnHHNcpszSlFTe730z+apAyvNxoyk8XCQRVuZasQGfNUrhzKLvsJEv5UJOQ0c8O5TcPLuI97L6ClAI8CkdcfoXZxHl+taDjqtfs8XVn91MzSAGELgmK+Ds0STqbH9ePoUddngHEZBM9lUNyVZHFt5XV1FZYhX+T+r6pGW2EvaHoZOwHH7lMMC3un387D4LWxxViU+aDfw7MR5hrSK+Ev+ya73bas8VZEgMFAiBRSmYRiC+q08Y+WDhGvYkycodvKTGpUUW0Rr/KVzKrGXoBeZJ+XY0ITU1G/twb073wDpXsang4AOohTzpK8YvTWrmbYvnzFIsoipqy+97phkNL6G2CRN55L8aqEHhCrxJWhqvYUEIlLau1uKosultiohr2dTF2BTJAENeg==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH0PR20MB3948.namprd20.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(346002)(376002)(396003)(366004)(39840400004)(186003)(9686003)(71200400001)(508600001)(8936002)(6916009)(122000001)(2906002)(86362001)(83380400001)(26005)(66946007)(7696005)(33656002)(38070700005)(8676002)(316002)(38100700002)(66446008)(66556008)(6506007)(64756008)(66476007)(55016003)(76116006)(52536014)(5660300002)(17423001)(156123004);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?wtSjI4LLs3lvEGY0P2IZh9v9s49ZtQ/UKPNDzwmm4cqL8aqOxl/GmKXPRMW6?=
- =?us-ascii?Q?tjE15j/LnyZ+zTLu+f7jUx6TOmjxOLOM1nTIbqKtNBNHw1W5E5mZaXtJy0yD?=
- =?us-ascii?Q?/imAEDc7VWwLoGjDONXpFxaBEWv4cz3CIzV0ueYAjizh0GfPTjE04ffaUS7K?=
- =?us-ascii?Q?mlXEKUs4bGZ8a/vWIq28rrRWX53NZhaFV2r47uqISiqEgbU671MXxf4bcgF3?=
- =?us-ascii?Q?Fb+ROZAiHSz/AIHiObqqfgsDUpbrLyQXB5ondiGoGEkzcaGfiDzrB2h0lRBx?=
- =?us-ascii?Q?w54VBZz8iMiRrmEJoS9CJwFVsWJXNe3Ontdv9Xoa4hgXUNbfwNPVa+h4CAnK?=
- =?us-ascii?Q?4OyE8LP61z8IlA06gSWofRAAOKJ5dkdU45r50QqSIzWDn/wJ6zfK6G+4SFOp?=
- =?us-ascii?Q?kKuQbqxZK03LHaPKtHzvTHLgzRriF5nVkHyf1Pf0xWmpPopmJRdzyLsRhPyR?=
- =?us-ascii?Q?6jfp0x1FTU+dbCxBk3q+LH/cjTkuvT+xPDX0Z8caTpkqjg5VGZx0+sx0ZoHT?=
- =?us-ascii?Q?a7Syr8iZwqmSZtOD+bud+ReBPumUhw+FclHgpTImFRHZOlY8xiSBzzrv8xDn?=
- =?us-ascii?Q?eXJrziIez0/cUvk0BafAFuVHlAoostf+lMqcSv7eEVThbdcmSxLDGRUiudd5?=
- =?us-ascii?Q?qX0Iy74j1i+nxc0X7E+Sw5c/36FzsDDOrL7l4fhrL84tLg2LNR2liVZiGOEI?=
- =?us-ascii?Q?B2XDys8ic6KF3Qa4NsNjSViUvyz9bWQt+FqH84e4HBAdTwmCMtIJXwd+eBis?=
- =?us-ascii?Q?d+pnJSCTF2yOy047lIiHxqoCGXw0PBJTnHq8o89erjIitJbGi+uB02v+6so/?=
- =?us-ascii?Q?bYIMf+UCYTjR6jc0K62k8Pdbhxd1Rft9Gzspb9MlL8ruzL4TXUKpyRGEtBxe?=
- =?us-ascii?Q?I/QYT7BleTk+IGUCPRimuYv5OVJdOkbUfrqObPvWjLRao8R/xNGw/JAITJYa?=
- =?us-ascii?Q?N06NhIUoJ5JZvxLNl4WCbFTy88xVVrEqTI/qOx51LqxjuSe8Jslz0+WqA4lZ?=
- =?us-ascii?Q?/xCXELxKaZ8ky/fbKaf1NmWk1we2hgaAAXwUcKdAxXmzMjw70TR8hRsO8oQK?=
- =?us-ascii?Q?xZUtDdbj0t9hw3M2wwuFY1jshjvIbOyLumMud6M9Ky0FuRu42EYtvJFScswK?=
- =?us-ascii?Q?X7MAqHcyCvoTXa01PPpnoBYuq9PxFDHmYPM4er5MLOnyVbWBAlxN8pRmZolJ?=
- =?us-ascii?Q?TdlRkDI+j4vWUtgQTIOIYZ037oM1FDduYbDOKVjUTIlaPilrpEPy0+BArP0X?=
- =?us-ascii?Q?eBig0CgESCBSnY9KbJKlbHM5e3AOpICQn7tWEitO7xFICENv4auxx1VqkFfd?=
- =?us-ascii?Q?tDq2FN/8ACMDT7Jncc778xGeFxMgzefJQPe4auUWfMHd5E1h2W24dw2xT/Lk?=
- =?us-ascii?Q?BXHV2sehqLHnQ0AdG0GDwz3n1swRpGAlB1lcT583udXlimtrb4aMg0tqGN/w?=
- =?us-ascii?Q?cZVrpXXIc8KNGqp/UXtXChaDNSFNgkuKf3O3mx1+n7Adf6TP28hJAmsFACF/?=
- =?us-ascii?Q?dUA6Y+7CsUbiUN2ap6AE5/v2rDMVrw87KuFxAjlJzryDapvlK08iTv3/41l9?=
- =?us-ascii?Q?5feS0tLly7H1Jt9P9waRE+YyXcxGeNqnpnyp/Fq2604CiTY9Bid0Ay/47Szm?=
- =?us-ascii?Q?MdM/ux6jK5Ss3G1ZLzAW1oA=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: BL1PR13CA0304.namprd13.prod.outlook.com
+ (2603:10b6:208:2c1::9) To BY5PR11MB3909.namprd11.prod.outlook.com
+ (2603:10b6:a03:191::13)
 MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR20MB3948.namprd20.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: ffb527e7-c54b-4a73-12af-08d9d130a950
+X-MS-TrafficTypeDiagnostic: BY5PR11MB3894:EE_
+X-Microsoft-Antispam-PRVS: 
+	<BY5PR11MB3894656B9486332D8174C5619F4C9@BY5PR11MB3894.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	5nLaLcVb+RYz2tl6i9eboE5bJcD/mK0Fx+QmarV/lZdFhUh5KNB/5Xo7gdy5itVUURu77HpVLRx8u/yp9zIMkbYRYoKO2mwojFk8UKedMZjtDswJoeVv3/SbWPfD9IqvhwkjNhjDQ+alG0uiVc8+K39qHYSiaRP4ZubgDGZQGQdcx70vUnguAKYoqIjFJ+2lJR2wzglFjT4zBaYJksQmhmF83HVmkCK2P9z/HZY89uXIbm5wZ3Rc6x1my72+rXWUYQ7fLIUuamEiOs+SqyOErExrPfHfJXNVLUNTLpqD41syppuGnfdzP2M1W4SxYILY4j430UtTDLE2Lu1+O8zHHYt7zb4Hq2Fmx3WENz0WjXZ9b2KXT+Y1Tlo0wUb1koZq1nLUeOAUsRC4BhGHHV35vhKyBehsITQ+hsZaKELioTkks/7i5ERXVpgz7kdHTUGzfRhAWK/Vy0j0NYSuZ4G00a1gQCQotFsqDWuJLm6eGuoPSwFBQhFmGYKZ6RxIksqDrpU0fSIsZZaLfATJGDqqCAlGr9uDXflGdp7oiZznXxCjAZRzV3F+LVdQYEnCcsGl/C9O+MIyCVIUR6Alhr0I4uj+gL92qGxj1ZB++w1M9FR5vqloGxI7Y/9H/bm7cxfBBHDXrUB7C8+kTK+wVGT3tSOjAH/WXnn8tthm2CsXyUvd1TVMJ8EHnlaQs6lOmmHcBwh3MRln8czg2COZevjZT8XvNzbFHmrqqhEUpm/4Ms5hlmh3nl51JHuRP702IxfJ4I/ec3Cm0jqTpGIT1XDK93TJo5ofV1GoveViGYcs2bHio9b+nrM2RgpPGnA/bNTw
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR11MB3909.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(316002)(166002)(6916009)(38100700002)(508600001)(6486002)(4326008)(44832011)(2616005)(66946007)(66476007)(66556008)(6506007)(6666004)(186003)(966005)(86362001)(31686004)(83380400001)(6512007)(8676002)(2906002)(31696002)(36756003)(54906003)(33964004)(5660300002)(8936002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?LzhKdWxQRDVZbGV6bzlvdjhuMFQ1WUJuQ3ZvV3FVN080bG1vY1F1NDM4Q2Jw?=
+ =?utf-8?B?NUFxSlppdkxibHNKRk5sWFVybmJPSndGQm9FZ3VBM2lVUnAyVE94bWs4TGtJ?=
+ =?utf-8?B?NzZnemo3RWI5OS9qNVRQVERDL0lvTzcyR2dwQ0t4SGtGcUxRVlhCMnhlcnBV?=
+ =?utf-8?B?ZEFQZnAra2FqNllyOHMvMkxZWTk1VkRrODFSNXZGQUkwdDZxMXE1RW16WGpu?=
+ =?utf-8?B?d3NDd3RjdGlWUURqVVFqeDBsSXlJUTg2eXZxamhSVUl4MDJmYXVHSGdadnM4?=
+ =?utf-8?B?SnpmTFZpeGxrdEEwYWZkQ2NRU0htRGRoS3NIb1EySFhXaU1YYzR0UWpkNS9a?=
+ =?utf-8?B?ODlFQXJ2dGFnNmcrcTBnS1BtWUE2SVBvejRubHArTmk0OHdJd2Z6WGhPZkpO?=
+ =?utf-8?B?TGN3UEY4bE5ZV29xRTZyQWZHa3AyZlJnRG1RbG9NcWtmZ0IwL1A1UExueDNk?=
+ =?utf-8?B?QUlsWHYvTk9pTlU1SFZKaXlFUWtpTVhHMmtFd21yUHp3RTN3Uzd2RHpNam1W?=
+ =?utf-8?B?MXZUYk8ycEMyMDF2Tjh1aU9QdGtHejMyejRxTXl1Nk0xWUpKZ2wycWZaVCt4?=
+ =?utf-8?B?Vk9HYm5TdmVHUDI5Rm5remN1WlZFRUxCUzVKNTV1b1pMM2t0bk9Cekl1K0s1?=
+ =?utf-8?B?VFdMYjFQZktMV01pTXIrMlEvNlhsQ3FjT2V1dnRWMHBMbGd4eDdqWUdBY2F3?=
+ =?utf-8?B?Y3RtcUdjb0M0Sk9pZmJYQ2RQRGdSenpWemJuNWMwUWJFaVE4WmJJdzdKZ0s0?=
+ =?utf-8?B?OGJYcm9SYndHV3N4b0l6MFp5MUJmbTNCOEZKRlhzSjBGQ3BJOXJYeVR4QXNt?=
+ =?utf-8?B?L2ZJcDFRNlhrMnpVZGJHZDQwVTYwTi93TGF0ZmMvY1czSjJKV1RuU200cDlG?=
+ =?utf-8?B?OWhPdGorNkFtM21rTlpIWlNtWFZ4ZHdaM1d1Y2hXSmJUREVON29aZC9rMlN1?=
+ =?utf-8?B?L2JkZWlnTEN3YU9jS2ZqU2xiVmdQdVRaeFVDUGgvcDRXQ0l1b0NWYURNQW1n?=
+ =?utf-8?B?WU53VjFUaGRmOTF4QkhHQmR5WWRLTHdMazZLWUhPTWlpcHV5enJhT0lDaFl1?=
+ =?utf-8?B?b0ZtWVNKeTl6YW5iSCt3K2hwTU1tYUhOazVQZFRpRE5ia2pnV1dkT3VJeWhq?=
+ =?utf-8?B?R3hqQUEvVGZ4bk9vLzFqTmFXV01KdVpzWVBiOFA0WjA5Zk5YMW1Oai9Fa1hx?=
+ =?utf-8?B?azhFZHdnK25UU0xBV1VQNG5uYlFQVFJnS3NHWnlrUmZXcUFGUnpaUjVhL1pW?=
+ =?utf-8?B?dGdEejI4L3ZsNHRFYnpaUVgyRlNoelJON25PR1ZBOVMxMnVOc05NeFZqVFlT?=
+ =?utf-8?B?YlBadGhCdlhFTnZvUGp0ZzNpUTBIWkh0N1FzRElSYVZLREUwZVZUUWd2QU16?=
+ =?utf-8?B?WFdnSDJuOG9SVERFZ1k1Ymw1S3BrbDVqdFBwYS9xcFVYSUFvL0NUZXYvbHVI?=
+ =?utf-8?B?T2xZTE0ycHg5a2JzS3pvdnVkN0tLMUJWR3lKYndnU2U3dXRKc2VON052bnhK?=
+ =?utf-8?B?WkRZdnlxdG5GdEcrUlpTbGV3eC8zeXVCdkhCWjJ1SWR0UWdKOVRTSmswTCtM?=
+ =?utf-8?B?amgyZFZuMWVBYlU3aVJhRWJWdTdldWV6TlVZaHUxeDM3RjltZzduN0Jtek43?=
+ =?utf-8?B?azBpL0VEQVVzd21wdjN1WUZOZW9YcDFKWG5lYm12L29BWlVYV3p5cnFpbzZG?=
+ =?utf-8?B?RzAxMVFYWUtNYUlJMDZCa0gyanFGOS9NTmFtOWVlbEFTek0vYkxzWVlreGtH?=
+ =?utf-8?B?SENFdjZzWjUwVFBNbzJ3aC9RdEV6QmZGeDRhdDRUbFN3YzNMOGNVVFE0ejFr?=
+ =?utf-8?B?YWROMGJWcVdxd3JKQjFQeFc0aHFnbEpIcHMxVCtsM3pTQnJBeEpvT0JaRUlX?=
+ =?utf-8?B?eG93Y3Jta0dSSXF0TjdPODdWaFdHdFdmMW5ZanVpQmpldklId2p2T0dNaGdl?=
+ =?utf-8?B?N0lKSHY2ZjhWMzB2U2dHS1hpVDMyYkkwYlFCVTAxdFlVRWZ1eGtmVUMwM2FI?=
+ =?utf-8?B?cDUxRGRqSXc1QXB3aHV4K2lVY3hOTWw4ZkpJOEFyVTJTMUxleE90WW5UOGVE?=
+ =?utf-8?B?YW9tWm9vUjRNaVJJOGszZWtmUDkybGF1eGp1U3BmV2dqK0Zaa05aWDI5aWV0?=
+ =?utf-8?B?NFhQcTM5R3M4U2srSzhrMlZuNGQ2aXpUczlZMVNpam9IaktGYkRYVGlnNHNa?=
+ =?utf-8?B?cVptMTd5Vno5RXAzL1NIaDVseEd0YzI2QW5GV25ORnRkN01JNlhYZjBhd1dn?=
+ =?utf-8?B?T3ZMRGJjYjRyRTFjeU9FdFQxaHZKWGlhOE1xaysvQTQ1TkpnTzZFdlNkQkhN?=
+ =?utf-8?Q?/NZmoAv/huo9vXa9za?=
+X-OriginatorOrg: windriver.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 75cc6825-4046-428a-090b-08d9d1215490
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jan 2022 14:32:13.1393
+ ffb527e7-c54b-4a73-12af-08d9d130a950
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3909.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2022 16:21:58.1211
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- +pPSPsL9iGXrG+YJjleig2CKTRcCWStk7YZ0vnU7ofKMZuzEfhWV7U/c1RuUIZqfLfx9qjTCyyIWjNKW645bJg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR20MB3000
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ xVFQXEsca2KIlQqWV8p1iKC2tMHLm18N9hfONV7Nz7wo01QQUXssNaLsS2vFli0JAOCl0TqAETmqj0JYRWQgiCvai230u6q4KRUsTtdLCKA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR11MB3894
+X-Proofpoint-GUID: J6aUT0fr_1jRGdL8dwXOiJabCVo15IXw
+X-Proofpoint-ORIG-GUID: J6aUT0fr_1jRGdL8dwXOiJabCVo15IXw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-01-06_06,2022-01-06_01,2021-12-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501
+ spamscore=0 impostorscore=0 malwarescore=0 suspectscore=0 mlxlogscore=682
+ mlxscore=0 bulkscore=0 adultscore=0 phishscore=0 clxscore=1015
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2112160000 definitions=main-2201060114
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 06 Jan 2022 14:32:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55750
+ <yocto@lists.yoctoproject.org>; Thu, 06 Jan 2022 16:22:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55751
 
-I have a system that is based off core-image-minimal which uses sysvinit an=
-d busybox-udhcpc.  I'm trying to switch to dhcpcd because I want to get the=
- NTP server list from the local DHCP server; dhcpcd supports this feature a=
-nd busybox-udhcpc does not.  I'm on the dunfell branch.  I think I finally =
-got firmware upgrade to work cleanly (with opkg) but I'm having trouble tri=
-ggering dhcpcd.  It doesn't work straight out of the box and I'm looking fo=
-r assistance in how to get dhcpcd started.
+--------------d0AhAJJK0mRkoHV7i7zrZ50E
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-First, here are the recipe changes I made in my custom layer to install dhc=
-pcd onto my image and for it to get pulled in on firmware upgrade.
-1. I added the following to my busybox_%.bbappend:
+*Wiki: *https://wiki.yoctoproject.org/wiki/Bug_Triage
 
-Do not install busybox-udcpcd, since we are using dhcpcd
-RRECOMMENDS_${PN} =3D ""
+*Attendees: *Alexandre, Joshua, Michael, Randy, Richard, Saul, Stephen, 
+Steve, Tim, Trevor
 
-2. I modified my busybox defconfig to unset all the udhcpc related configur=
-ation features
+*ARs:*
 
-3. I created a dhcpcd_%.bbappend with these contents:
-# Set the package to conflict with busybox-udhcpc
-RCONFLICTS_${PN} =3D "busybox-udhcpc"
-RREPLACES_${PN} =3D "busybox-udhcpc"
+- Joshua to send a patch limiting the size of diffoscope output for 
+reproducibility
 
-# Add configuration settings to enable NTP configuration
-PACKAGECONFIG +=3D " \
-                   ntp \
-                 "
-PACKAGECONFIG[ntp] =3D "--with-hook=3Dntp, , , ntp"
+*Notes:*
 
-# Include the hook scripts on the system
-EXTRA_OECONF +=3D " \
-                 --with-hooks \
-                "
-4. In my init-ifupdown_%.bbappend:
-	a. I added dhcpcd to the RDEPENDS list
-	b. I added a script to start dhcpcd and installed it in the ${D}${sysconfd=
-ir}/network/if-up directory
+N/A
 
-5. Here is the if-up script (note: I only have one Ethernet port on this de=
-vice which will always be eth0):
-#!/bin/sh
+*Medium+ 3.5 Unassigned Enhancements/Bugs: *75 (Last week 75)
 
-# Only do this for eth0 and not the loopback interface
-if [ "$IFACE" =3D=3D "eth0" ]; then
-  # Start the DHCP client
-  dhcpcd -4 -6 -f /etc/dhcpcd.conf "$IFACE"
-fi
+*Medium+ 3.99 Unassigned Enhancements/Bugs: *38**(Last week 38)
 
+*AB Bugs: *66 (Last week 70)
+--------------d0AhAJJK0mRkoHV7i7zrZ50E
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-I think I'm close, but the dhcpcd never gets called when the Ethernet inter=
-face starts up.  As best I can tell from my debugging, I think $IFACE is ne=
-ver set whenever my if-up script is called.  I'm not sure why that is, beca=
-use I have a pre-up script that depends on $IFACE that has been working for=
- years for me.
-
-Has anyone else made this transition that can offer some more support?  Are=
- there some examples floating around on how to start dhcpcd on ifup that I =
-am missing?
-
-Thanks,
-Bryan Evenson
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <div class="moz-text-html" lang="x-unicode">
+      <p><b>Wiki: </b><a class="moz-txt-link-freetext" href="https://wiki.yoctoproject.org/wiki/Bug_Triage" moz-do-not-send="true">https://wiki.yoctoproject.org/wiki/Bug_Triage</a></p>
+      <p><b>Attendees: </b>Alexandre, Joshua, Michael, Randy, Richard,
+        Saul, Stephen, Steve, Tim, Trevor<br>
+      </p>
+      <p><b>ARs:</b></p>
+      <p>- Joshua to send a patch limiting the size of diffoscope output
+        for reproducibility <br>
+      </p>
+    </div>
+    <span class="moz-txt-link-freetext"></span>
+    <div class="moz-text-html" lang="x-unicode"><b>Notes:</b></div>
+    <p>N/A<br>
+    </p>
+    <div class="moz-text-html" lang="x-unicode">
+      <p><b>Medium+ 3.5 Unassigned Enhancements/Bugs: </b>75 (Last week
+        75)<br>
+      </p>
+      <b>Medium+ 3.99 Unassigned Enhancements/Bugs: </b>38<b> </b>(Last
+      week 38)<br>
+    </div>
+    <div class="moz-text-html" lang="x-unicode"><br>
+    </div>
+    <div class="moz-text-html" lang="x-unicode"><b>AB Bugs: </b>66
+      (Last week 70)<br>
+    </div>
+  </body>
+</html>
+--------------d0AhAJJK0mRkoHV7i7zrZ50E--
 
