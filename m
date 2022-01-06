@@ -1,114 +1,99 @@
-Return-Path: <abeltran@linux.microsoft.com>
+Return-Path: <jupiter.hce@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A2D26C433F5
-	for <webhook@archiver.kernel.org>; Wed,  5 Jan 2022 21:59:58 +0000 (UTC)
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by mx.groups.io with SMTP id smtpd.web09.205.1641419997146815077
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D9C8FC433EF
+	for <webhook@archiver.kernel.org>; Thu,  6 Jan 2022 09:55:30 +0000 (UTC)
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com
+ [209.85.222.53])
+ by mx.groups.io with SMTP id smtpd.web12.6625.1641462929669405882
  for <yocto@lists.yoctoproject.org>;
- Wed, 05 Jan 2022 13:59:57 -0800
+ Thu, 06 Jan 2022 01:55:29 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linux.microsoft.com header.s=default header.b=pvbnx+7z;
- spf=pass (domain: linux.microsoft.com, ip: 13.77.154.182,
- mailfrom: abeltran@linux.microsoft.com)
-Received: from [192.168.1.103] (unknown [186.69.115.196])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 749B720B7179;
-	Wed,  5 Jan 2022 13:59:55 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 749B720B7179
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1641419996;
-	bh=oVGVpeV9PL/R7otIf2aMIj7fmMMwqLpuawd5t2ufI0Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pvbnx+7zxkZDKW21aKT5ZGlRfcX5cgXHhRqPfcP/nQa4q/eTjqiN7NWgAOk8Ey/9E
-	 W3cMOUj0VAxEQgdg6cDpvx6FODOKBms6A6V8SdzM+2ccGP2RkmJSxdf/YJV9XywkFJ
-	 NxzOg7JWvSIL1rf3LUdbpghMgVvuRCNsfMZkYbFg=
-Message-ID: <ee24bf2e-8fcc-e44c-aeed-950e0e826b8d@linux.microsoft.com>
-Date: Wed, 5 Jan 2022 16:59:52 -0500
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=HIhuFkNV;
+ spf=pass (domain: gmail.com, ip: 209.85.222.53,
+ mailfrom: jupiter.hce@gmail.com)
+Received: by mail-ua1-f53.google.com with SMTP id y4so3312047uad.1
+        for <yocto@lists.yoctoproject.org>;
+ Thu, 06 Jan 2022 01:55:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=gW5/ULElTd6jtxCwTYj8NoEgC85f3dgYxJnHtnqmdds=;
+        b=HIhuFkNV9g/Pc7zwdox09o56eEthBeGHGxyL1a1bSZ77hSCuQL+klsxtraYduSy7Er
+         Uqoc3spuUu+e02BTbv033q6dIp1FWKr9JDEjYGBS7AtVVKvIA1sE2GWSWkicYKw4crdq
+         SnFTfI19GbJnbD2e9ocV0mLjO6uXW+eKe0FkO53YIlMl+5X7LuOfbWAXCl8FYuKgytMX
+         Kx5GlztkykCD+eSjzHZdkn+lNNJ8oIDwt/njWg0caDNYAMkTbVkXywVF40z5VASPA58W
+         BqLNFJllmtHtGyWnSowSxoWkTbjaLZy3bgIj3sRroFU/p0SE89boEtdtNg/CzJFNFsui
+         8VPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=gW5/ULElTd6jtxCwTYj8NoEgC85f3dgYxJnHtnqmdds=;
+        b=wGxWbbGXpDk9bhdC0dedGotVehxsjKDzJTNBXKKKSbFmmNU2c6s5BMX+lwrVyZ2xL9
+         1Xu/v4gbWTzQ0bAR2ur0jldOJWcKakuXuShfhWsFfhG5maoObuPeROynlbqzeBgbS2Pt
+         12GTfbSXxlIsHdQI3w6BR/4I8iISVAyTFgFljfoA1P4Xr6PXmBwylvIJuSGrNlKC1vCZ
+         HPSYqMlHDiJRkkeV2uASAVvFaU5xSPGxeGaJhgijlm6K1RT6KaETNtPBK9zCPu/wESux
+         2QlG6qxaOrnNiDYkfj5oRaORfzLqJjUFDVLEjbvZDWNiE8+6BXXn1608lKinyr18JD44
+         K26g==
+X-Gm-Message-State: AOAM533mfWLDFSOO59NOz8CyNWRKi/jwBrj2cbTih6jRb6G7APAsJbPe
+	zLBsR6Ty82eYAb856+V7PbrWaYUNS3QQBTpf56SirUl0F1s=
+X-Google-Smtp-Source: 
+ ABdhPJwHCRFI5MR+kGxwhjl3OFjhItG4m8zCjKpONfi2T2IxA0Nr/g2/ivy+FLwQgzUYChx8A3Ws17TXCXGGYr98XYg=
+X-Received: by 2002:a67:fd6a:: with SMTP id h10mr19469143vsa.38.1641462928651;
+ Thu, 06 Jan 2022 01:55:28 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.0
-Subject: Re: [yocto] spdx: Extending SPDX SBOMs for SDKs
-Content-Language: en-US
-To: raj.khem@gmail.com
-Cc: yocto@lists.yoctoproject.org, Saul.Wold@windriver.com,
- Joshua Watt <jpewhacker@gmail.com>
-References: <16BE4FA6969E32DE.28785@lists.yoctoproject.org>
- <6a61f35f-6684-a5ce-a697-acd2f3743a6d@linux.microsoft.com>
- <CAJdd5GYxf3HgrgnExCY9HQb_tHR_uqOs-j+ZH859Ah+Ljw_NfA@mail.gmail.com>
-From: Andres Beltran <abeltran@linux.microsoft.com>
-In-Reply-To: 
- <CAJdd5GYxf3HgrgnExCY9HQb_tHR_uqOs-j+ZH859Ah+Ljw_NfA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Jupiter <jupiter.hce@gmail.com>
+Date: Thu, 6 Jan 2022 20:54:52 +1100
+Message-ID: 
+ <CAA=hcWT5BFAwLfER2ZWnfO9VFAtZ4uo40Q3vGpRNE7+PdhWWBA@mail.gmail.com>
+Subject: Honister wrong date time
+To: yocto <yocto@lists.yoctoproject.org>
+Cc: oe-core <openembedded-core@lists.openembedded.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 05 Jan 2022 21:59:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55745
+ <yocto@lists.yoctoproject.org>; Thu, 06 Jan 2022 09:55:30 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55746
 
-+ Khem Raj (clang recipes)
+Hi,
 
-On 12/15/2021 5:45 PM, Joshua Watt wrote:
-> On Wed, Dec 15, 2021 at 3:33 PM Andres Beltran
-> <abeltran@linux.microsoft.com> wrote:
->> + Joshua, Saul
->>
->> On 12/6/2021 6:54 PM, Andres Beltran wrote:
->>
->> Hello,
->>
->>
->> I've been working on extending SPDX SBOMs for SDKs. In poky/meta/classes/create-spdx.bbclass I added:
->>
->>
->>
->> do_populate_sdk[recrdeptask] += "do_create_spdx do_create_runtime_spdx"
->>
->>
->>
->> I ran into a dependency loop when I try to build an SDK that contains nativesdk-clang (it works fine for other SDKs):
->>
->>
->>
->> ERROR:
->>
->> Dependency loop #1 found:
->>
->> Task mc:lnx-sdk:/__w/1/s/sources/poky/../meta-clang/recipes-devtools/clang/clang-crosssdk_git.bb:do_create_spdx (dependent Tasks ['glibc_2.31.bb:do_create_spdx', 'binutils-crosssdk_2.34.bb:do_create_spdx', 'clang_git.bb:do_create_spdx', 'quilt-native_0.66.bb:do_populate_sysroot', 'nativesdk-clang-glue.bb:do_create_spdx'])
->>
->>
->>
->> Task mc:lnx-sdk:virtual:nativesdk:/__w/1/s/sources/poky/../meta-clang/recipes-devtools/clang/clang_git.bb:do_create_spdx (dependent Tasks ['clang_git.bb:do_packagedata', 'cmake-native_3.16.5.bb:do_create_spdx', 'swig_3.0.12.bb:do_create_spdx', 'libedit_20191231-3.1.bb:do_create_spdx', 'binutils-crosssdk_2.34.bb:do_create_spdx', 'chrpath_0.16.bb:do_create_spdx', 'libffi_3.3.bb:do_create_spdx', 'clang-crosssdk_git.bb:do_create_spdx', 'zlib_1.2.11.bb:do_create_spdx', 'clang_git.bb:do_package', 'python3_3.8.2.bb:do_create_spdx', 'libxml2_2.9.10.bb:do_create_spdx', 'python3_3.8.2.bb:do_create_spdx', 'pkgconfig_git.bb:do_create_spdx', 'binutils_2.34.bb:do_create_spdx', 'quilt-native_0.66.bb:do_populate_sysroot', 'libedit_20191231-3.1.bb:do_create_spdx', 'libxml2_2.9.10.bb:do_create_spdx', 'ninja_1.10.0.bb:do_create_spdx'])
->>
->>
->>
->> Task mc:lnx-sdk:/__w/1/s/sources/poky/../meta-clang/recipes-devtools/clang/nativesdk-clang-glue.bb:do_create_spdx (dependent Tasks ['gcc-runtime_9.3.bb:do_create_spdx', 'glibc_2.31.bb:do_create_spdx', 'nativesdk-clang-glue.bb:do_package', 'gcc-crosssdk_9.3.bb:do_create_spdx', 'chrpath_0.16.bb:do_create_spdx', 'quilt-native_0.66.bb:do_populate_sysroot', 'nativesdk-clang-glue.bb:do_packagedata', 'clang_git.bb:do_create_spdx'])
-> Looks like the loop is:
->    nativesdk-clang-glue.bb:do_create_spdx ->
-> clang_git.bb:do_create_spdx -> clang-crosssdk_git.bb:do_create_spdx ->
-> nativesdk-clang-glue.bb:do_create_spdx
->
-> I don't know enough about the clang recipes to be able to help you
-> much beyond that however
->
->>
->>
->> Any help on this would be appreciated.
->>
->>
->>
->> Thanks,
->>
->> Andres Beltran
->>
->>
->> -=-=-=-=-=-=-=-=-=-=-=-
->> Links: You receive all messages sent to this group.
->> View/Reply Online (#55489): https://lists.yoctoproject.org/g/yocto/message/55489
->> Mute This Topic: https://lists.yoctoproject.org/mt/87554396/6294599
->> Group Owner: yocto+owner@lists.yoctoproject.org
->> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [abeltran@linux.microsoft.com]
->> -=-=-=-=-=-=-=-=-=-=-=-
->>
+Strangely, my system built by Honister always has a wrong date despite
+NTP service being active, has anyone got that issue from Honister?
+
+# timedatectl status
+               Local time: Wed 2021-08-04 15:17:10 UTC
+           Universal time: Wed 2021-08-04 15:17:10 UTC
+                 RTC time: Thu 1970-01-01 00:06:20
+                Time zone: UTC (UTC, +0000)
+System clock synchronized: no
+              NTP service: active
+          RTC in local TZ: no
+# ping google.com
+PING google.com (142.250.70.238): 56 data bytes
+64 bytes from 142.250.70.238: seq=0 ttl=60 time=9.462 ms
+64 bytes from 142.250.70.238: seq=1 ttl=60 time=13.289 ms
+64 bytes from 142.250.70.238: seq=2 ttl=60 time=12.869 ms
+64 bytes from 142.250.70.238: seq=3 ttl=60 time=13.129 ms
+
+I have never had date issues built by Zeus:
+
+~# date
+Thu Jan  6 09:26:35 UTC 2022
+root@solar:~# timedatectl status
+               Local time: Thu 2022-01-06 09:26:45 UTC
+           Universal time: Thu 2022-01-06 09:26:45 UTCk
+                 RTC time: Thu 2022-01-06 09:26:45
+                Time zone: n/a (UTC, +0000)
+System clock synchronized: yes
+              NTP service: active
+          RTC in local TZ: no
+
+
+Thank you.
+
+Kind regards,
+
+jh
 
