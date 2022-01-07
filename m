@@ -2,30 +2,32 @@ Return-Path: <foss@0leil.net>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 53423C433EF
-	for <webhook@archiver.kernel.org>; Thu,  6 Jan 2022 19:28:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 74E30C433EF
+	for <webhook@archiver.kernel.org>; Fri,  7 Jan 2022 22:21:44 +0000 (UTC)
 Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net
  [217.70.183.199])
- by mx.groups.io with SMTP id smtpd.web09.13952.1641497323467275728
+ by mx.groups.io with SMTP id smtpd.web08.287.1641594103607760414
  for <yocto@lists.yoctoproject.org>;
- Thu, 06 Jan 2022 11:28:43 -0800
+ Fri, 07 Jan 2022 14:21:43 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing;
  spf=none, err=permanent DNS error (domain: 0leil.net, ip: 217.70.183.199,
  mailfrom: foss+yocto@0leil.net)
 Received: (Authenticated sender: foss@0leil.net)
-	by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 13EF8FF802;
-	Thu,  6 Jan 2022 19:28:40 +0000 (UTC)
-Date: Thu, 06 Jan 2022 20:28:36 +0100
+	by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 20E8DFF802;
+	Fri,  7 Jan 2022 22:21:39 +0000 (UTC)
+Date: Fri, 07 Jan 2022 23:21:38 +0100
 From: Quentin Schulz <foss+yocto@0leil.net>
-To: Trevor Woerner <twoerner@gmail.com>
-CC: yocto@lists.yoctoproject.org, kas-devel <kas-devel@googlegroups.com>
+To: yocto@lists.yoctoproject.org, Trevor Woerner <twoerner@gmail.com>
+CC: kas-devel <kas-devel@googlegroups.com>
 Subject: Re: [yocto] pseudo error building master with kas-container
-In-Reply-To: <20220106135047.GA15963@localhost>
+In-Reply-To: <20220107201240.GA13417@localhost>
 References: <20220104192528.GA25696@localhost>
  <5A44F13B-F383-449C-8FB9-87BEBEF1272D@0leil.net>
  <20220106135047.GA15963@localhost>
-Message-ID: <E46D1565-EFA6-448E-95EC-DBB010C444BE@0leil.net>
+ <E46D1565-EFA6-448E-95EC-DBB010C444BE@0leil.net>
+ <20220107201240.GA13417@localhost>
+Message-ID: <2AF48BF0-EE03-4443-878C-EB2CB52C8E64@0leil.net>
 MIME-Version: 1.0
 Content-Type: text/plain;
  charset=utf-8
@@ -33,100 +35,87 @@ Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 06 Jan 2022 19:28:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55752
+ <yocto@lists.yoctoproject.org>; Fri, 07 Jan 2022 22:21:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55761
 
 Hi Trevor,
 
-On January 6, 2022 2:50:47 PM GMT+01:00, Trevor Woerner <twoerner@gmail=2E=
+On January 7, 2022 9:12:41 PM GMT+01:00, Trevor Woerner <twoerner@gmail=2E=
 com> wrote:
 >Hey Quentin,
 >
->On Wed 2022-01-05 @ 12:08:15 AM, Quentin Schulz wrote:
->> I've had similar issues recently with kas-container and podman=2E What =
-was
->> required were two things:
->>  - passing --tmpfs /tmp to podman run,
->
->I don't think --tmpfs is an option, but I modified my kas-container scrip=
-t to
->add a "--tmpdir /tmp" option (and verified it with ps while running)
+>Wow not bad, I'm batting 0/2 so far=E2=80=A6 lol!
 >
 
-https://docs=2Epodman=2Eio/en/latest/markdown/podman-run=2E1=2Ehtml#tmpfs-=
-fs
+To be fair, I didn't take the time to formulate correctly and point to the=
+ docs =E2=98=BA=EF=B8=8F
 
->>  - increase pids_limit in container=2Econf (your system's), we've set i=
-t to
->>  1000000 abritrarily for now and it seems to run fine for the few build=
-s
->>  we've made so far),
+>On Thu 2022-01-06 @ 08:28:36 PM, Quentin Schulz wrote:
+>> On January 6, 2022 2:50:47 PM GMT+01:00, Trevor Woerner <twoerner@gmail=
+=2Ecom> wrote:
+>> >On Wed 2022-01-05 @ 12:08:15 AM, Quentin Schulz wrote:
+>> >> I've had similar issues recently with kas-container and podman=2E Wh=
+at was
+>> >> required were two things:
+>> >>  - passing --tmpfs /tmp to podman run,
+>> >
+>> >I don't think --tmpfs is an option, but I modified my kas-container sc=
+ript to
+>> >add a "--tmpdir /tmp" option (and verified it with ps while running)
+>> >
+>>=20
+>> https://docs=2Epodman=2Eio/en/latest/markdown/podman-run=2E1=2Ehtml#tmp=
+fs-fs
 >
->There seem to be a couple places to update the uid/gid mappings=2E Origin=
-ally,
->following the podman docs, I created /etc/subuid and /etc/subgid and had =
-them
->both contain:
+>Curious=2E When I run "podman -h" on the cmdline it only shows a --tmpdir=
+ option
 >
->	trevor:100000:123456
->
->I wasn't seeing any problems with the couple builds that I did, but based
->on your suggestion I had a look at /etc/containers/storage=2Econf and add=
-ed
->(uncommented):
->
->	remap-uids =3D "0:1668442479:1000000"
->	remap-gids =3D "0:1668442479:1000000"
->
->I also bumped /etc/sub{gu}id to:
->
->	trevor:100000:1000000
->
->but I'm still seeing pseudo failures even after incorporating both of you=
-r
->suggestions=2E
+>	$ podman -h | grep tmp
+>		--tmpdir string		Path to the tmp directory for libpod state content=2E
+>					Note: use the environment variable 'TMPDIR' to change the temporary =
+storage location for container images, '/var/tmp'=2E
 >
 
-I wasn't talking about uids or gids, but pids_limit in containers=2Econf f=
-or podman on your host=2E See:=20
-https://man=2Earchlinux=2Eorg/man/containers=2Econf=2E5=2Een
+podman run --help | grep tmp
 
-We discovered that it just had nothing to do with Bitbake/pseudo or whatev=
-er, because with a fork bomb we reached the max of 2048 processes (within t=
-he container) before the container started to fail us=2E
+Does return it though=2E It's just that some options are specific to subco=
+mmands and not the whole set of supported subcommands=2E The docs=2Epodman=
+=2Eio website is a gold mine, I only ever go to that place to find about pa=
+rameters =E2=98=BA=EF=B8=8F
 
-Without those two changes, I've never been able to successfully build even=
- core-image-minimal for qemu-x86_64=2E
+>> I wasn't talking about uids or gids, but pids_limit in containers=2Econ=
+f for podman on your host=2E See:=20
+>> https://man=2Earchlinux=2Eorg/man/containers=2Econf=2E5=2Een
+>>=20
+>> We discovered that it just had nothing to do with Bitbake/pseudo or
+>> whatever, because with a fork bomb we reached the max of 2048 processes
+>> (within the container) before the container started to fail us=2E
+>>=20
+>> Without those two changes, I've never been able to successfully build e=
+ven
+>> core-image-minimal for qemu-x86_64=2E
+>
+>Very nice, thanks for the info :-)
+>
+>In my experiments it seems like all I need is the update to kas-container=
+ to
+>add "--tmpfs /tmp" to KAS_RUNTIME_ARGS (around line 125)=2E Are you going=
+ to
+>submit a patch to kas upstream?
+
+Feel free to do it, I don't use kas-container, I use the kas container fro=
+m ghcr=2Eio directly so this won't impact me and I wouldn't be able to "mai=
+ntain" this part and see if something breaks it=2E I anyway have as many cl=
+ues as you have on why this fixes pseudo issues so I wouldn't be able to wr=
+ite a better commit log than you'd do=2E
+
+I'll read the script though to see if I've missed any important parameter =
+to set=2E
+
+Re: not needing the pids_limit=2E It seemed to be ok at first but I'd have=
+ intermittent fails much later in the build=2E Increasing it made all my pr=
+oblems go away (well=2E=2E for now =F0=9F=98=81)=2E
 
 Cheers,
 Quentin
-
->I expanded my testing and discovered that using kas-container with podman=
- on
->my openSUSE 15=2E3 machine I can't build qemux86 for anything including a=
-nd past
->dunfell=2E All failures are due to pseudo=2E
->
->qemux86 builds using kas-container with podman on openSUSE 15=2E3:
->	working:
->	- thud (2=2E6)
->	- warrior (2=2E7)
->	- zeus (3=2E0)
->
->	not working:
->	- dunfell (3=2E1)
->	- gatesgarth (3=2E2)
->	- hardknott (3=2E3)
->	- honister (3=2E4)
->	- master
->
->I did a kas-container build on my Ubuntu 18=2E04 machine using docker of =
-qemux86
->on master and it worked=2E
->
->I suspect something changed with pseudo in 3=2E1 and beyond that either i=
-sn't
->working well with openSUSE 15=2E3 or isn't working well with podman=2E
->
->Next I'll try using docker instead of podman=2E
 
