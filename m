@@ -1,118 +1,78 @@
-Return-Path: <pidge@pidge.org>
+Return-Path: <ivriabtsov@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4339CC433EF
-	for <webhook@archiver.kernel.org>; Mon, 10 Jan 2022 12:51:51 +0000 (UTC)
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com
- [209.85.221.48])
- by mx.groups.io with SMTP id smtpd.web10.31094.1641819109998667480
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 29674C433F5
+	for <webhook@archiver.kernel.org>; Mon, 10 Jan 2022 13:13:33 +0000 (UTC)
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com
+ [209.85.167.52])
+ by mx.groups.io with SMTP id smtpd.web09.31356.1641820411575089340
  for <yocto@lists.yoctoproject.org>;
- Mon, 10 Jan 2022 04:51:50 -0800
+ Mon, 10 Jan 2022 05:13:32 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@pidge.org header.s=google header.b=T9P8T9yh;
- spf=pass (domain: pidge.org, ip: 209.85.221.48, mailfrom: pidge@pidge.org)
-Received: by mail-wr1-f48.google.com with SMTP id t28so19805267wrb.4
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=nTx/prjY;
+ spf=pass (domain: gmail.com, ip: 209.85.167.52,
+ mailfrom: ivriabtsov@gmail.com)
+Received: by mail-lf1-f52.google.com with SMTP id k21so44266774lfu.0
         for <yocto@lists.yoctoproject.org>;
- Mon, 10 Jan 2022 04:51:49 -0800 (PST)
+ Mon, 10 Jan 2022 05:13:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pidge.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=OSHp5362O05zoOcgxLjlnHBKXzSP1uyh/3G2WwBzTjI=;
-        b=T9P8T9yhIKYhr0rDUr2YfqMrxxV3bsNLdcKlk89EnbSv/TgfcPyWjISVFjTXszjP9e
-         4R6mtIdOaMHjkLAjUWrr/afl4vL+KLe0KCL0XQtttru+oy7ZhjIABx9m5kaClq1vgO8M
-         aYqF+Ha4+AABhVyAjiLdBt3molhRk4Y40oV6XWi7QndWR6ELqr5BN3aZFNRfd5aDmggg
-         JoxYmHuakMS1RZGTYsfMnXVMt6U4xGDTakMW/6WcP9awOwnj95kORBqfp8vK/hzhYao8
-         hb9Bx3IhjrrbRGTu0V/rcrTWb+bv2xceKHfvVpyj2s9FuDUvV3bPxJfbTlhU6vnRac2J
-         UsPg==
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=FNTwzF7iIP0parAPYwj/ZUsiHBQM+RkYNpAKh3IIWow=;
+        b=nTx/prjYV9lrfOo/rvBCkQpW/LdJwAS9HSqTA6pSBzsd1thop9hw1wIPw0TTKN5mtY
+         PzOqsefrbWuyLoO6Zpz7pBbkvQ6ytQoqugZ5AzOdeIDH8QIPlbu0Qtp1peqkUn8zhbAB
+         ZNVoA+J7+MHyqEgB/MPOFOoTyql49HMThaDJ7pzpRZ40ls5rlZ1O5s/qd0uO20dozQ49
+         HZXXnLoyK2OpYqRAOv/DdAV3E7usP8IY+oTAA1/7o382HxRsxC/Vp+YugaRsRHalcBYu
+         YU6AOhnIWurGCqNnfkZCkiwlesHuA7WZW74yyi44XCxRKtG8+0U8QnyDYa9Du6MBQQmh
+         ZD+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=OSHp5362O05zoOcgxLjlnHBKXzSP1uyh/3G2WwBzTjI=;
-        b=V+Ee1uK78VYqulZD2jSZZCEVVoO3macNVvIsVWly6yJPEiwF2x32hZBC3VJ/fxjRKN
-         IT+XSAz5Lil7RbdiQ0SjouC6vn1XhgtaRT6XXcOYn1FoJ6PonZEv6zivkfAJFZvGgL65
-         CYHyXnKKQOcpjYV+XSfv7YoV1cD7d3e3pgRNMItwl2DFuB4tElgami+ynYt9zwL2HrGZ
-         atmVCV4BLUR9QINe1EHYgIUsWmhV5IkC5T0gC06Iqzl7RxFq7z8xF7SjSnapWrxPKMDZ
-         YLZuHTbgyZF73FK1/Cfz/eKs6kwFvRi9bdY7yOal4oV96Jdskb+YTM2G1Tp5wJP0rQWF
-         BFKQ==
-X-Gm-Message-State: AOAM533KKkvrG/Z5y4dyAQSp5Jj6TmzoyoaK5XOUWzNgSKtH9FJBseZt
-	MqCG0UCz86yh3rOAuxorXwGXicBfNf6YX0iC2uRgXw==
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=FNTwzF7iIP0parAPYwj/ZUsiHBQM+RkYNpAKh3IIWow=;
+        b=PymRA+onzpCfljfPLbvlJeAm4Mw7RX461awHugdRQz6/s9G8NbswzVx45AKKTeSEPi
+         tQ0reNerNZnKxiwYWPh/XsfaoolzDDi/p29Nu32qHJ+Lc7VEq0b8vasq1JGK1DORvGSF
+         FxO4/x3wtN+5NvSRuKSgM19T11Z6E0XhyMJEYLg+2Jq2ylornHNy0HwbFf06wIsv9ygl
+         jg3VtatfoNF9ohjCQuYVJvu88ptX630FUV2ow5QpkUHMojdUFx8bFdboxmbYpOQj8BWR
+         1oCX7QZnKWQyCQzExOd5YNmz9bQrcFdAv1dZ76teCKyjdUNpILaLAkWiSl+wVLHatMQS
+         dxuw==
+X-Gm-Message-State: AOAM530nEU0p4j+rl6U8Y7/CSCypiSOcOgQgyVLPLDwWIC+IbkOedKGU
+	hBvimxLkUF5OnCEa2L39kU9kxAXb+fL5pxip8y6+7DNlcxFsyg==
 X-Google-Smtp-Source: 
- ABdhPJzZUJFVNuM2FNC2rJR+6sM9z8X+42mXsyV8n8lPZt6a7t/bVMS/kHx4sNCxzEFbfebAoG6VVhLfCdsy0Qa+fno=
-X-Received: by 2002:a5d:6f18:: with SMTP id
- ay24mr3270578wrb.694.1641819108092;
- Mon, 10 Jan 2022 04:51:48 -0800 (PST)
+ ABdhPJxz1Gxc0KSsbLBr5rEcG+IwLHV256xBfjPffCJNyyo3UatrI/vAO8l69pm8pKLi4WWyJVjMxzgojE9L6Fxipew=
+X-Received: by 2002:a05:6512:3986:: with SMTP id
+ j6mr62863907lfu.170.1641820409124;
+ Mon, 10 Jan 2022 05:13:29 -0800 (PST)
 MIME-Version: 1.0
-References: <20220107141025.218084-1-pidge@pidge.org>
- <CO1PR11MB5026AA3C25B9A702ECC5FB1BC4509@CO1PR11MB5026.namprd11.prod.outlook.com>
-In-Reply-To: 
- <CO1PR11MB5026AA3C25B9A702ECC5FB1BC4509@CO1PR11MB5026.namprd11.prod.outlook.com>
-From: =?UTF-8?B?RWlsw61zIE7DrSBGaGxhbm5hZ8OhaW4=?= <pidge@pidge.org>
-Date: Mon, 10 Jan 2022 12:51:12 +0000
+From: Ivan Riabtsov <ivriabtsov@gmail.com>
+Date: Mon, 10 Jan 2022 16:13:03 +0300
 Message-ID: 
- <CALnXEm6CfFjoAiBNzEQwF4rc6EA9K6AqBrHsH1UJynCqz0ykBA@mail.gmail.com>
-Subject: Re: [meta-zephyr][RFC][PATCH 0/6] Additional machines and removal of
- MACHINEOVERRIDES.
-To: "Saini, Naveen Kumar" <naveen.kumar.saini@intel.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	=?UTF-8?B?RWlsw61zIE7DrSBGaGxhbm5hZ8OhaW4=?= <elizabeth.flanagan@huawei.com>
+ <CAKAnv4FS33+yfaoYRo3nC=odXT_VKmdsYoWpE6zb7f9fRXyB5A@mail.gmail.com>
+Subject: rebuilding images
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 10 Jan 2022 12:51:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55770
+ <yocto@lists.yoctoproject.org>; Mon, 10 Jan 2022 13:13:33 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55771
 
-On Mon, 10 Jan 2022 at 09:36, Saini, Naveen Kumar
-<naveen.kumar.saini@intel.com> wrote:
->
-> Thank you Eil=C3=ADs N=C3=AD Fhlannag=C3=A1in.
->
-> I faced failures, when I tried to build few recipes:
->
-> (1)  'zephyr-lvgl' with 'nrf52840dk-nrf52840' machine.
->
-> Error log:
-> abi/zephyr-lvgl/2.7.1+gitAUTOINC+e4da3e5280_b0612c97c1-r0/recipe-sysroot-=
-native/etc/quiltrc push', 0, 'stdout: Applying patch 0001-cmake-added-missi=
-ng-file-ext-to.patch
-> patching file CMakeLists.txt
-> Hunk #1 FAILED at 58.
-> 1 out of 1 hunk FAILED -- rejects in file CMakeLists.txt
-> Patch 0001-cmake-added-missing-file-ext-to.patch can be reverse-applied
+I build the image with the command
 
-This patch is now promoted to zephyr-kernel-src-2.*.1.inc so removing
-this from zephyr-lvgl fixes this.
+#bitbake phytec-headless-image
 
->
-> (2) 'zephyr-http-client' with '96b-nitrogen' machine:
-> | Merged configuration '/home/saininav/work/development/zephyr-workspace/=
-poky/build-zephyr/tmp-newlib/work/armv7m-yocto-eabi/zephyr-http-client/2.7.=
-1+gitAUTOINC+e4da3e5280_b0612c97c1-r0/git/samples/net/sockets/http_client/p=
-rj.conf'
-> |
-> | error: Aborting due to Kconfig warnings
-> |
-> | CMake Error at /home/saininav/work/development/zephyr-workspace/poky/bu=
-ild-zephyr/tmp-newlib/work/armv7m-yocto-eabi/zephyr-http-client/2.7.1+gitAU=
-TOINC+e4da3e5280_b0612c97c1-r0/git/cmake/kconfig.cmake:269 (message):
-> |   command failed with return code: 1
-> | Call Stack (most recent call first):
->
+then I need to add something to the image and I do it like this
 
-Ah, yes. This is caused by having ZEPHYR_MODULES in the sample
-recipes. I've removed them from all the samples builds and have each
-one building now.
+#rm -rf tmp sstate-cache deploy
 
-<snipping a lot of lines>
+and
 
-As for python recipes, I'm removing dups that are in meta-python.
+#bitbake phytec-headless-image
 
-And as far as I can tell, the last is documenting the machine
-generation recipe. I'll have a new patchset today for you.
-
--b
+but this is too long, the question is: what to remove , so as not to
+rebuild all the packages, but so that the package was added to the
+image, for example, I modified local.conf, it was like this:
+IMAGE_INSTALL_append = "mbpoll mosquitto"
+it became like this
+IMAGE_INSTALL_append = "mbpoll mosquitto ntp ntpdate rsyslog"
 
