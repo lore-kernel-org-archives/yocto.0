@@ -2,61 +2,61 @@ Return-Path: <bruce.ashfield@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F77EC433EF
-	for <webhook@archiver.kernel.org>; Tue, 11 Jan 2022 18:06:28 +0000 (UTC)
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com
- [209.85.160.182])
- by mx.groups.io with SMTP id smtpd.web10.11564.1641924387716675180
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A541DC4332F
+	for <webhook@archiver.kernel.org>; Tue, 11 Jan 2022 18:06:29 +0000 (UTC)
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com
+ [209.85.160.174])
+ by mx.groups.io with SMTP id smtpd.web08.11399.1641924388545742337
  for <yocto@lists.yoctoproject.org>;
- Tue, 11 Jan 2022 10:06:27 -0800
+ Tue, 11 Jan 2022 10:06:28 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=TJPIJFbA;
- spf=pass (domain: gmail.com, ip: 209.85.160.182,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=OJsgryhR;
+ spf=pass (domain: gmail.com, ip: 209.85.160.174,
  mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-qt1-f182.google.com with SMTP id h4so100876qth.11
+Received: by mail-qt1-f174.google.com with SMTP id l17so125345qtk.7
         for <yocto@lists.yoctoproject.org>;
- Tue, 11 Jan 2022 10:06:27 -0800 (PST)
+ Tue, 11 Jan 2022 10:06:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=yZ+OBvFx+CNvGtNWi9Kas5JA2uEpahf8JfsHhxVChnU=;
-        b=TJPIJFbAalEMn1EbQgmxc0U9KNjIJ9ITOyhLMqy3hpfrE4XQnO+JoCpx00hJstfD8V
-         LsqcYAe9AWvXB9w4jjMe4aPgunP9rqb9/lLwaNsZ85+MzCW7xlgYCzv4rzmXDvu2C2P0
-         R3ClFX97mmIjBH6GKmyLZjaVDGclJ1X79n3bs5VphzeHx2wHH9tgE74zjy0n9jTmRgW5
-         iBUOmHc3wtl56o58fvz/VnYHGOpuZVgCYuyVP8E7A/CVURXklUcDVm8S9HkG28Ju4G0G
-         FAZUQ4ORmoOaD4sL2VnMpD45Wp+p6+8NOo8tE2qPDM8qcAcc4z2aRCTmfY1swc+FNfkx
-         /kaQ==
+        bh=UEThi+C81NxY8wC6EYOvoKrYSfUWlnI34BhJZiQQFM8=;
+        b=OJsgryhRdB4yrppV6Fx5+g1gM8NSFNfVhqEP0XHec8wssVFqBJlLHs/KXLhb943Zm0
+         8HMndGy/seyEpnBEQbcb/bacHT81smuXxAqImvHLO+1G+RvQX4HalRZF5y41sVkYGGjo
+         rYnli+cqhVjTqt4Mk38lvBp877dpWhIp3Je6UgtvI46Vs2SH4HaWkLbD48+ULxJid+es
+         XveK4mz3N8YatPw4VUNdppipuRnLJb4ri7TfoWQljAOhIHsK51K35ePxCTA6AbZRUkEV
+         vTecQVwLu/NdNGNLjlYZffiodj2mlWTwkRiViSukwxkHUBXBTFu4qOceFrQroR4DE8dZ
+         7Zyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=yZ+OBvFx+CNvGtNWi9Kas5JA2uEpahf8JfsHhxVChnU=;
-        b=3mFgrSK9dT4Y3I8ErOjDKupQFuwN/L4qtSCxL7dQ2XXSLrqRPKPZBizEF/97ZgDvRv
-         k63aBx1PJMekw72ajFOmn4181HM3bsLSMY8+AsQimvN85KyS2m8gfMZvdp+tPWpmuQpF
-         MJY3KarRAjrD7TfDHBMFcg3EbtijyxyN8RcgBzebdk6afo6Eka9xQpZ1i72jkP9KLMto
-         p5v8e5zNqgpuDZnAI378lh3S/aXhSEhVzspOes9ChXXDc4uMUK4hyfAltjNvkfnRUSlI
-         FA7Ud494wxY3sT2cCOpA7+tqciYnX2iSKmxjinVg4/OhUHxGEERn2fA0kuMcht41o5On
-         lhKg==
-X-Gm-Message-State: AOAM530J6nzdHjmsstGcN38fU80tUdozMWSf253oFPevO/zaQOWYhRrC
-	bJ78CtgmZTlmybRziA6Oa+IuEEq6EOppHw==
+        bh=UEThi+C81NxY8wC6EYOvoKrYSfUWlnI34BhJZiQQFM8=;
+        b=foR/G7pt4hO3jQWYOncwjfJRpXx//avimUm/cyU54+wQCrcARUn8n6eC8mniVeb8Pz
+         9GfBRZnNYw1Q/IBPDttHmvAXjI9sScx8ccFbUxhRCSSSXRtNxRINfwPjb9II3kLybvc6
+         JaNoGCtx6G7gVbZADCE7itTUQfHDDpbePEgtDp4sM6AcLR4MlD6KhH82USsvVvTHVyEv
+         Ir7Ek/dpcQ4Lih7WS4gj3S8MmQCyXVKaSGm5XglV1WrW+mWeyVuXaVNfyj/HaGf/mdR2
+         4MjF5FVrEQ+/XpQNIPCxZEUpV1It78mWlt415mbbr/72c+GTIfIaAjFsCU/HudfsN1Af
+         zPxA==
+X-Gm-Message-State: AOAM5319b+RSPU0cMPT0J9PPEHxk5YYKj/e2sptkPfLTWr5DRV6tMhhN
+	P4C8kO5imeBVO1sVvaeLU/Dah1jRz4DxSQ==
 X-Google-Smtp-Source: 
- ABdhPJycoKJ3jdEtTEp00Flr9Hzg+9H380EqfIGhhbYxnn12GeSWjAdD6wsxZxI8uO52LQMjjXyG2A==
-X-Received: by 2002:a05:622a:242:: with SMTP id
- c2mr4558555qtx.559.1641924386741;
-        Tue, 11 Jan 2022 10:06:26 -0800 (PST)
+ ABdhPJxEHP7hORL6Qgoj7m9MA83rCVabfWG9yayAwgSgJ1riVVsVIm+2EsYBMlWW5u+Spxtn5nw+Bw==
+X-Received: by 2002:a05:622a:1792:: with SMTP id
+ s18mr3036030qtk.684.1641924387636;
+        Tue, 11 Jan 2022 10:06:27 -0800 (PST)
 Received: from build.lan
  (cpe04d4c4975b80-cmf4c11490699b.cpe.net.cable.rogers.com. [174.112.63.222])
         by smtp.gmail.com with ESMTPSA id
  k8sm7543018qtx.35.2022.01.11.10.06.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jan 2022 10:06:26 -0800 (PST)
+        Tue, 11 Jan 2022 10:06:27 -0800 (PST)
 From: bruce.ashfield@gmail.com
 To: richard.purdie@linuxfoundation.org
 Cc: yocto@lists.yoctoproject.org
-Subject: [PATCH 2/3] yocto-bsp/5.14: drop recipes
-Date: Tue, 11 Jan 2022 13:06:23 -0500
-Message-Id: <20220111180624.45586-2-bruce.ashfield@gmail.com>
+Subject: [PATCH 3/3] poky: set default kernel to 5.15
+Date: Tue, 11 Jan 2022 13:06:24 -0500
+Message-Id: <20220111180624.45586-3-bruce.ashfield@gmail.com>
 X-Mailer: git-send-email 2.19.1
 In-Reply-To: <20220111180624.45586-1-bruce.ashfield@gmail.com>
 References: <20220111180624.45586-1-bruce.ashfield@gmail.com>
@@ -65,49 +65,48 @@ Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 11 Jan 2022 18:06:28 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55805
+ <yocto@lists.yoctoproject.org>; Tue, 11 Jan 2022 18:06:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55806
 
 From: Bruce Ashfield <bruce.ashfield@gmail.com>
 
-5.14 has been removed from core, so we drop our bbappend. 5.15
-is now the default kernel version for the reference BSPs.
+5.14 is no longer actively maintained, so we bump our default
+to the 5.15 LTS.
 
 Signed-off-by: Bruce Ashfield <bruce.ashfield@gmail.com>
 ---
- .../linux/linux-yocto_5.14.bbappend           | 23 -------------------
- 1 file changed, 23 deletions(-)
- delete mode 100644 meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.14.bbappend
+ meta-poky/conf/distro/poky-tiny.conf | 2 +-
+ meta-poky/conf/distro/poky.conf      | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.14.bbappend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.14.bbappend
-deleted file mode 100644
-index af4a7392f0..0000000000
---- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.14.bbappend
-+++ /dev/null
-@@ -1,23 +0,0 @@
--KBRANCH:genericx86  = "v5.14/standard/base"
--KBRANCH:genericx86-64  = "v5.14/standard/base"
--KBRANCH:edgerouter = "v5.14/standard/edgerouter"
--KBRANCH:beaglebone-yocto = "v5.14/standard/beaglebone"
--
--KMACHINE:genericx86 ?= "common-pc"
--KMACHINE:genericx86-64 ?= "common-pc-64"
--KMACHINE:beaglebone-yocto ?= "beaglebone"
--
--SRCREV_machine:genericx86 ?= "9d5572038eacda2e2a86e3f743f35ec415319fb4"
--SRCREV_machine:genericx86-64 ?= "9d5572038eacda2e2a86e3f743f35ec415319fb4"
--SRCREV_machine:edgerouter ?= "7ae156be3bdbf033839f7f3ec2e9a0ffffb18818"
--SRCREV_machine:beaglebone-yocto ?= "7ae156be3bdbf033839f7f3ec2e9a0ffffb18818"
--
--COMPATIBLE_MACHINE:genericx86 = "genericx86"
--COMPATIBLE_MACHINE:genericx86-64 = "genericx86-64"
--COMPATIBLE_MACHINE:edgerouter = "edgerouter"
--COMPATIBLE_MACHINE:beaglebone-yocto = "beaglebone-yocto"
--
--LINUX_VERSION:genericx86 = "5.14.21"
--LINUX_VERSION:genericx86-64 = "5.14.21"
--LINUX_VERSION:edgerouter = "5.14.6"
--LINUX_VERSION:beaglebone-yocto = "5.14.6"
+diff --git a/meta-poky/conf/distro/poky-tiny.conf b/meta-poky/conf/distro/poky-tiny.conf
+index 756c65a2f9..b6c4eeccd0 100644
+--- a/meta-poky/conf/distro/poky-tiny.conf
++++ b/meta-poky/conf/distro/poky-tiny.conf
+@@ -43,7 +43,7 @@ FULL_OPTIMIZATION="-Os -pipe ${DEBUG_FLAGS}"
+ # Distro config is evaluated after the machine config, so we have to explicitly
+ # set the kernel provider to override a machine config.
+ PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-tiny"
+-PREFERRED_VERSION_linux-yocto-tiny ?= "5.14%"
++PREFERRED_VERSION_linux-yocto-tiny ?= "5.15%"
+ 
+ # We can use packagegroup-core-boot, but in the future we may need a new packagegroup-core-tiny
+ #POKY_DEFAULT_EXTRA_RDEPENDS += "packagegroup-core-boot"
+diff --git a/meta-poky/conf/distro/poky.conf b/meta-poky/conf/distro/poky.conf
+index b92784fdc4..2dc3606ae5 100644
+--- a/meta-poky/conf/distro/poky.conf
++++ b/meta-poky/conf/distro/poky.conf
+@@ -19,8 +19,8 @@ POKY_DEFAULT_EXTRA_RRECOMMENDS = "kernel-module-af-packet"
+ 
+ DISTRO_FEATURES ?= "${DISTRO_FEATURES_DEFAULT} ${POKY_DEFAULT_DISTRO_FEATURES}"
+ 
+-PREFERRED_VERSION_linux-yocto ?= "5.14%"
+-PREFERRED_VERSION_linux-yocto-rt ?= "5.14%"
++PREFERRED_VERSION_linux-yocto ?= "5.15%"
++PREFERRED_VERSION_linux-yocto-rt ?= "5.15%"
+ 
+ SDK_NAME = "${DISTRO}-${TCLIBC}-${SDKMACHINE}-${IMAGE_BASENAME}-${TUNE_PKGARCH}-${MACHINE}"
+ SDKPATHINSTALL = "/opt/${DISTRO}/${SDK_VERSION}"
 -- 
 2.19.1
 
