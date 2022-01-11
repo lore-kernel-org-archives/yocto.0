@@ -1,85 +1,77 @@
-Return-Path: <foss@0leil.net>
+Return-Path: <JPEWhacker@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 812FBC433F5
-	for <webhook@archiver.kernel.org>; Tue, 11 Jan 2022 18:46:52 +0000 (UTC)
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net
- [217.70.183.199])
- by mx.groups.io with SMTP id smtpd.web09.11993.1641926810582868013
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 766A4C433EF
+	for <webhook@archiver.kernel.org>; Tue, 11 Jan 2022 19:48:38 +0000 (UTC)
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
+ [209.85.221.51])
+ by mx.groups.io with SMTP id smtpd.web09.12944.1641930517185878129
  for <yocto@lists.yoctoproject.org>;
- Tue, 11 Jan 2022 10:46:51 -0800
+ Tue, 11 Jan 2022 11:48:37 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=none, err=permanent DNS error (domain: 0leil.net, ip: 217.70.183.199,
- mailfrom: foss@0leil.net)
-Received: (Authenticated sender: foss@0leil.net)
-	by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 5A55FFF804;
-	Tue, 11 Jan 2022 18:46:47 +0000 (UTC)
-Date: Tue, 11 Jan 2022 19:46:45 +0100
-From: Quentin Schulz <foss@0leil.net>
-To: yocto@lists.yoctoproject.org,
- Michael Opdenacker <michael.opdenacker@bootlin.com>,
- "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
- YP docs mailing list <docs@lists.yoctoproject.org>
-Subject: Re: [yocto] How to unpack a .tgz archive in a .zip file?
-In-Reply-To: <a55c6066-cc1d-934c-68a3-5122cd6c4a79@bootlin.com>
-References: <a55c6066-cc1d-934c-68a3-5122cd6c4a79@bootlin.com>
-Message-ID: <00C1BF23-5182-42AC-8D8A-1E07187DFB71@0leil.net>
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=PTkEIR5P;
+ spf=pass (domain: gmail.com, ip: 209.85.221.51,
+ mailfrom: jpewhacker@gmail.com)
+Received: by mail-wr1-f51.google.com with SMTP id k18so161851wrg.11
+        for <yocto@lists.yoctoproject.org>;
+ Tue, 11 Jan 2022 11:48:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=aAotV/WZAN4IrX8NsiPXkAaxZYXoQ7BuSz0SKVMJ11U=;
+        b=PTkEIR5P8fThg+muwLB6CGGKygk4xVZmeJspthZivuoTK6LQS19QkQ1RNOBjwiLJRL
+         in+xj3rn2KwqAauAVAdC+jTdD9g0/EQwt02yEZS2oNdJX65b/wYaOR+KJP3pJC0ApIqi
+         O9++r1BgzimvKPZ3QiPUlVV0LQBejzHLJ0boEZreOqZc3QQ7ZIpmkVXCwl7MhhPGyMQF
+         mkysffnrEXD9FjLxflKj8afy7gIRhukg3yzzOkFkfga9UJNsOPNZ60NbkqEMGslvmIlm
+         Se8y+n3obktmOpX7adfEGDMvOKfsnCvy+4DyogvM/39DlHHsWefLuFPP/CxesLMW65Wl
+         AVBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=aAotV/WZAN4IrX8NsiPXkAaxZYXoQ7BuSz0SKVMJ11U=;
+        b=s4Qd7QXcvxNaF3OdxLMaayDp0O7keVM0tGGv61hJq4ffq22xHUPpIofDaEID7ylnUa
+         O7O4ck62ex+mch5PQAzxBmfLPYxQgm/amqAk95bXer8/8U03VNcA/TynigzS1XiU35SE
+         aNb58v0/FQAz4fZqLuFS3YXe62jYBnfZC1U5CewcljEqnAwelDTs2iAOQ8U9V0BNlkvL
+         Xf+6yZDpallxHaRjMSTwJCzNbTQ9in20PiAXBcrkDheI5MqGkZiOnj4lBGcPCDFkmzg3
+         jhS+/zh82zdee8ZhfEAe69dcHG2h8gXI4V8AJFf4V8RXZqLIf8t5Rns0ByewU+iwaepP
+         uZZw==
+X-Gm-Message-State: AOAM532/pZd8hmNCPo40EYDQLdvzTgVaVGsbyxsT71XgUVq44Dce6/ZA
+	yMQgYVjFyffNWumvrAuuV1rUkY+sIiG+F1XM+u0=
+X-Google-Smtp-Source: 
+ ABdhPJyZlxhGW3Q1d+/sCOp4yB+JekUKYdZOW5UG5WPq/9rLuvaZh7kFD120R09VPWgcXu9YWzTx2NyKRvGTjzeBBKw=
+X-Received: by 2002:adf:e2cc:: with SMTP id d12mr5075817wrj.107.1641930515709;
+ Tue, 11 Jan 2022 11:48:35 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+From: Joshua Watt <jpewhacker@gmail.com>
+Date: Tue, 11 Jan 2022 13:48:24 -0600
+Message-ID: 
+ <CAJdd5GYy58np+zpzGQg=KEcNv2OTHzu0uXjxK2J7v1LKbTnQVw@mail.gmail.com>
+Subject: Reproducible build website broken (CORS setting on
+ git.yoctoproject.org?)
+To: Michael Halstead <mhalstead@linuxfoundation.org>
+Cc: yocto <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 11 Jan 2022 18:46:52 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55807
+ <yocto@lists.yoctoproject.org>; Tue, 11 Jan 2022 19:48:38 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55809
 
-Hi Michael,
+Michael,
 
-On January 11, 2022 11:38:06 AM GMT+01:00, Michael Opdenacker <michael=2Eo=
-pdenacker@bootlin=2Ecom> wrote:
->Hello
->
->I'm working on adding the wiki guidelines for dealing with pre-compiled
->libraries
->(https://wiki=2Eyoctoproject=2Eorg/wiki/TipsAndTricks/Packaging_Prebuilt_=
-Libraries#Versioned_Libraries)
->into the main documentation=2E
->
->I'm trying to test the example recipe, but the latest pre-compiled
->versions of libft4422=2Eso are now available in
->https://ftdichip=2Ecom/wp-content/uploads/2021/01/libft4222-linux-1=2E4=
-=2E4=2E44=2Ezip,
->which actually contains a =2Etgz file!
->
->I know that's absurd, but how would you handle this case? Through a
->custom "do_unpack" task in the recipe?
->
+I noticed that the
+https://www.yoctoproject.org/reproducible-build-results/ website went
+down (it always shows "Error fetching test results"). I did a little
+debugging and I think that the CORS setting on git.yoctoproject.org is
+not allowing www.yoctoproject.org to request the data anymore. I
+thought we had fixed this at one point in the past and maybe it got
+lost somewhere along the way?
 
-IMO that makes it unsuitable for the docs as we strive to have "simple" ex=
-amples and having some custom unpack task seems a bit too much to me=2E Any=
-way, just my 2=C2=A2 and I don't have any other prebuilt lib to suggest as =
-replacement right now=2E
+If that's something we can fix, that would be great, otherwise we
+might need to look into another solution for fetching the
+reproducibility data.
 
-Back to the topic:
-I think you could have an :append for do_unpack and probably call oe_unpac=
-k ( https://github=2Ecom/openembedded/openembedded/blob/fabd8e6d07d3cd0cc93=
-c2a0fc804f8c8f316c649/classes/base=2Ebbclass#L158) on this specific file (a=
-fter it's been unzipped), or even call unpack_file from the OE libs directl=
-y ( https://github=2Ecom/openembedded/openembedded/blob/fabd8e6d07d3cd0cc93=
-c2a0fc804f8c8f316c649/lib/oe/unpack=2Epy#L50) like oe_unpack is doing=2E Be=
- aware though that since it is a Python task, your :append shall be Python =
-code too=2E
-
-Maybe there's another way but I don't see it right now=2E
-
-Cheers,
-Quentin
-
->Thanks in advance for your insights=2E=2E=2E
->Cheers
->Michael=2E
->
+Thanks,
+Joshua Watt
 
