@@ -1,891 +1,13073 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <jdmason@kudzu.us>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 78333C433F5
-	for <webhook@archiver.kernel.org>; Mon, 10 Jan 2022 21:42:52 +0000 (UTC)
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com
- [209.85.214.169])
- by mx.groups.io with SMTP id smtpd.web12.38503.1641850971302213362
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D95CEC433EF
+	for <webhook@archiver.kernel.org>; Tue, 11 Jan 2022 00:07:27 +0000 (UTC)
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com
+ [209.85.219.44])
+ by mx.groups.io with SMTP id smtpd.web09.746.1641859645935448490
  for <yocto@lists.yoctoproject.org>;
- Mon, 10 Jan 2022 13:42:51 -0800
+ Mon, 10 Jan 2022 16:07:26 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=X3extccX;
- spf=pass (domain: gmail.com, ip: 209.85.214.169,
- mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-pl1-f169.google.com with SMTP id n16so14090139plc.2
+ dkim=pass header.i=@kudzu-us.20210112.gappssmtp.com header.s=20210112
+ header.b=XrqaVIFN;
+ spf=none, err=permanent DNS error (domain: kudzu.us, ip: 209.85.219.44,
+ mailfrom: jdmason@kudzu.us)
+Received: by mail-qv1-f44.google.com with SMTP id p12so16641883qvj.6
         for <yocto@lists.yoctoproject.org>;
- Mon, 10 Jan 2022 13:42:51 -0800 (PST)
+ Mon, 10 Jan 2022 16:07:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version:content-language
-         :thread-index;
-        bh=Isgg5lo7tXc2w2M6dWEAjmzXxaeEB7pfXDPACVhLCTA=;
-        b=X3extccXUKNviswLVOux34nVbLW5EPQMst1tTg7dFuXLTGI/jsRZtu6j5KoeVryFm7
-         lnRi33W9X5z/+JqV4mYsZFhsx1ztxUQdL90kQSM2mle0lcMIh1Q1HimgIRrOhKUbN3wf
-         E8VNrSvCkJ4/7ts7v9N7r5+2++aaTYa5I9NlyIwa1+98stscef5OXZQmvaAbd7zqp5kL
-         HY6cZam6MQhvAjcybfQn6AcxcWZNs0a9VrVrOha9IZ8+1cxxFAT5e1eu1iulqGhgYWqP
-         Ae6QVIQtJtpBW4MqWsY1aOzQaUutEjqxBJFEaiyLYG1/ErDQRDTEjwyS7ds2j5wrIYSw
-         pmtA==
+        d=kudzu-us.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=Eo3Y4V51q9Gsgihb14p3qVjdS+Qucqx35Ixukv1FNpU=;
+        b=XrqaVIFNS5eyzitRn81fI0YcjpW2Se9eQaEhrCULyDpSRvtKCGTRkqT8Cc134HJmo7
+         wK8YOqbf5lFSgjOMhcnj2T5d2N22+tJvFYTY5pKkfHtHVG3FK1SN6sVy+VyE3S2sxkjb
+         ew0jt+m+V6WcroN+9qYtXT9lZqjtsgM3IC730KS51069eYo/LgbQtrSiZzTtzOxfXO7w
+         D7f1GFFKKiHKt3IteB5eSD8nBktbOB8S2Ws+7Xpm+coursjI1RqAlm/GMjHu75ZXx8wT
+         09toT19Fvh0dAYuP1Pnnz1ssfNTzhjTYZIgNSDyBAz378c3L6687o0blpLoSPnPVbvWn
+         ls3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-language:thread-index;
-        bh=Isgg5lo7tXc2w2M6dWEAjmzXxaeEB7pfXDPACVhLCTA=;
-        b=f+6c32PJ6MHKXwIbov0TVnE9HCctXmrgcWowxT342CoyGRbFh6U3QOj/n43Wkcuo4C
-         ifMKUeC8NsFIJYg8IZdMCBBRhyzrmh9na13Chpjae2KLOYSOGSJsJRF5/iof/KUZTpUK
-         2qIlZGgMwedExxMatB+DNr3xTs+v0u1jAg1Hyyo6SKZ9t17bWJXF1BKmNAtKEeTKl8v2
-         smmZxaWrd7zPkHd61rsji6GCHL3PFBktlyp9FkDOE+rqpQmpJpqdi1nWxByvhV5C+8/v
-         HWtGQTJs+0YQvQaPiYsYuHwZfsOgcPLe9DO+2J+8nPy/+2k9NPdu/SZWcMuQYPxTuGJK
-         Ko3w==
-X-Gm-Message-State: AOAM532jZ/PGTfQfdiC8uqU05pcEkWQqu5WDFG2h60Dt3vat07RddixQ
-	SL2URHghvki8Zx598aCD/cUemoePqqA=
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Eo3Y4V51q9Gsgihb14p3qVjdS+Qucqx35Ixukv1FNpU=;
+        b=2+1CuXQZieFUVXruXHfJUDI4jDRRIOcL6/OPEon8KQK+6SlTOcA0Nap4XH4YHFCKWO
+         Y0NNWTyd/pzngrdCSQ9IGIhkX9Zsuavq6pYdzRKxrgL9bauny9X6siZP5Uqf9sybSZFO
+         ZhC57KqHE5IMBYerJXxTXazO/XzHyR6doERH8b1mPtWJBUe5bcjh+ZSnJt5kSZImvRNJ
+         RAaMnnq9Z0/+gcZBHfiwF1/l/LVva6p50W+tM+xZu5hvLXNullh1S3f3pRH8jrh1E2jK
+         XrGxPEdnQWZ9/Us0GK8KNc7FjQ0aOajhCxOU7EewZx8YDtOdfUbuEbt7kVHZKXbnL0Vk
+         0i1Q==
+X-Gm-Message-State: AOAM533W7UwvCuVIYWblNYsXzJL5Ggao8rHz0obRNrrCtD1tKUR0lX8m
+	6/edJ9gyw8ebkVz9T1sqwfrHXbLoYbudSfEGaN2RZg==
 X-Google-Smtp-Source: 
- ABdhPJwuRV6pMKA8+af1R0IrhhKp0N7sK/XJsNTe6eu6oq6vd3/iCblKZeA6D7Vz9AlZi+ktnSef2A==
-X-Received: by 2002:a17:902:7297:b0:149:ee00:8a8a with SMTP id
- d23-20020a170902729700b00149ee008a8amr1566238pll.130.1641850970815;
-        Mon, 10 Jan 2022 13:42:50 -0800 (PST)
-Received: from skjolley ([2600:8800:1d92:f800:293c:e2d4:1418:7020])
-        by smtp.gmail.com with ESMTPSA id e7sm8123404pfv.9.2022.01.10.13.42.50
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 10 Jan 2022 13:42:50 -0800 (PST)
-From: <sjolley.yp.pm@gmail.com>
-To: <yocto@lists.yoctoproject.org>
-Subject: M+ & H bugs with Milestone Movements WW02
-Date: Mon, 10 Jan 2022 14:42:50 -0700
-Message-ID: <0e2301d8066b$04880500$0d980f00$@gmail.com>
+ ABdhPJycaGR2rjrI7H/F0lo8+T4ayyXPBNpjl5JVI2ydNLTqb4YaEjaeaBBx4aqleIseburfuIVWe2k3ley6iIQCRMM=
+X-Received: by 2002:a05:6214:240d:: with SMTP id
+ fv13mr1889207qvb.25.1641859642745;
+ Mon, 10 Jan 2022 16:07:22 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0E24_01D80630.582B76F0"
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: en-us
-Thread-Index: AdgGavORtsetjTFoQlyB2IYzBCAwxg==
+References: <20220110181632.464278-7-pidge@pidge.org>
+In-Reply-To: <20220110181632.464278-7-pidge@pidge.org>
+From: Jon Mason <jdmason@kudzu.us>
+Date: Mon, 10 Jan 2022 19:07:10 -0500
+Message-ID: 
+ <CAPoiz9wnBmfcnZqC0N+ruv74ybe77Md3p+dmbU+isec9uJn23w@mail.gmail.com>
+Subject: Re: [yocto] [meta-zephyr][PATCH] meta-zephyr-bsp: Add autogenerated
+ machines.
+To: =?UTF-8?B?RWlsw61zIE7DrSBGaGxhbm5hZ8OhaW4=?= <pidge@pidge.org>
+Cc: yocto@lists.yoctoproject.org, naveen.kumar.saini@intel.com,
+	=?UTF-8?B?RWlsw61zIE7DrSBGaGxhbm5hZ8OhaW4=?= <elizabeth.flanagan@huawei.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 10 Jan 2022 21:42:52 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55790
+ <yocto@lists.yoctoproject.org>; Tue, 11 Jan 2022 00:07:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55791
 
-This is a multipart message in MIME format.
+On Mon, Jan 10, 2022 at 1:16 PM Eil=C3=ADs N=C3=AD Fhlannag=C3=A1in <pidge@=
+pidge.org> wrote:
+>
+> From: Eil=C3=ADs N=C3=AD Fhlannag=C3=A1in <elizabeth.flanagan@huawei.com>
+>
+> This commit adds 382 autogenerated machines generated via
+> generate-zephyr-machines.bb. These machines have obviously not all been
+> tested due to hardware access, but should work out of box.
+>
+> Signed-off-by: Eil=C3=ADs N=C3=AD Fhlannag=C3=A1in <elizabeth.flanagan@hu=
+awei.com>
+> ---
+>  .../conf/machine/96b-aerocore2.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/96b-argonkey.conf            | 22 +++++++++++++++++++
+>  .../conf/machine/96b-carbon-nrf51.conf        | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/96b-carbon.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/96b-meerkat96.conf           | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/96b-neonkey.conf | 22 +++++++++++++++++++
+>  .../conf/machine/96b-stm32-sensor-mez.conf    | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/96b-wistrio.conf | 22 +++++++++++++++++++
+>  .../conf/machine/acrn-ehl-crb.conf            | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/acrn.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/actinius-icarus-bee-ns.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/actinius-icarus-bee.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/actinius-icarus-ns.conf      | 22 +++++++++++++++++++
+>  .../conf/machine/actinius-icarus-som-ns.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/actinius-icarus-som.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/actinius-icarus.conf         | 22 +++++++++++++++++++
+>  .../adafruit-feather-m0-basic-proto.conf      | 22 +++++++++++++++++++
+>  .../machine/adafruit-feather-nrf52840.conf    | 22 +++++++++++++++++++
+>  .../machine/adafruit-feather-stm32f405.conf   | 22 +++++++++++++++++++
+>  .../adafruit-itsybitsy-m4-express.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/adafruit-trinket-m0.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/adp-xc7k-ae350.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/altera-max10.conf            | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/arduino-due.conf | 22 +++++++++++++++++++
+>  .../conf/machine/arduino-nano-33-iot.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/arduino-zero.conf            | 22 +++++++++++++++++++
+>  .../machine/arty-a7-arm-designstart-m1.conf   | 22 +++++++++++++++++++
+>  .../machine/arty-a7-arm-designstart-m3.conf   | 22 +++++++++++++++++++
+>  .../conf/machine/atsamd20-xpro.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/atsamd21-xpro.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/atsame54-xpro.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/atsamr21-xpro.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/b-l072z-lrwan1.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/b-l4s5i-iot01a.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/b-u585i-iot02a.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/bbc-microbit-v2.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/bbc-microbit.conf            | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/bcm958401m2.conf | 22 +++++++++++++++++++
+>  .../conf/machine/bcm958402m2-a72.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/bcm958402m2-m7.conf          | 22 +++++++++++++++++++
+>  .../machine/beaglev-starlight-jh7100.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/bl5340-dvk-cpuapp-ns.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/bl5340-dvk-cpuapp.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/bl5340-dvk-cpunet.conf       | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/bl652-dvk.conf   | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/bl653-dvk.conf   | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/bl654-dvk.conf   | 22 +++++++++++++++++++
+>  .../conf/machine/bl654-sensor-board.conf      | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/bl654-usb.conf   | 22 +++++++++++++++++++
+>  .../conf/machine/black-f407ve.conf            | 22 +++++++++++++++++++
+>  .../conf/machine/black-f407zg-pro.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/blackpill-f401ce.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/blackpill-f411ce.conf        | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/bt510.conf       | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/bt610.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/cc1352r-sensortag.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/cc1352r1-launchxl.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/cc26x2r1-launchxl.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/cc3220sf-launchxl.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/cc3235sf-launchxl.conf       | 22 +++++++++++++++++++
+>  .../circuitdojo-feather-nrf9160-ns.conf       | 22 +++++++++++++++++++
+>  .../machine/circuitdojo-feather-nrf9160.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/colibri-imx7d-m4.conf        | 22 +++++++++++++++++++
+>  .../machine/contextualelectronics-abc.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/cy8ckit-062-ble-m0.conf      | 22 +++++++++++++++++++
+>  .../conf/machine/cy8ckit-062-ble-m4.conf      | 22 +++++++++++++++++++
+>  .../conf/machine/cy8ckit-062-wifi-bt-m0.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/cy8ckit-062-wifi-bt-m4.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/decawave-dwm1001-dev.conf    | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/degu-evk.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/disco-l475-iot1.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/dragino-lsn50.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/dragino-nbsn95.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/efm32gg-slwstk6121a.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/efm32gg-stk3701a.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/efm32hg-slstk3400a.conf      | 22 +++++++++++++++++++
+>  .../conf/machine/efm32pg-stk3401a.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/efm32pg-stk3402a-jg.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/efm32pg-stk3402a.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/efm32wg-stk3800.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/efr32-radio-brd4104a.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/efr32-radio-brd4180a.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/efr32-radio-brd4250b.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/efr32-radio-brd4255a.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/efr32mg-sltb004a.conf        | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/ehl-crb-sbl.conf | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/ehl-crb.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/em-starterkit-em11d.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/em-starterkit-em7d-v22.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/em-starterkit-em7d.conf      | 22 +++++++++++++++++++
+>  .../conf/machine/em-starterkit.conf           | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/emsdp-em4.conf   | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/emsdp-em5d.conf  | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/emsdp-em6.conf   | 22 +++++++++++++++++++
+>  .../conf/machine/emsdp-em7d-esp.conf          | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/emsdp-em7d.conf  | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/emsdp-em9d.conf  | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/emsdp.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/esp32c3-devkitm.conf         | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/faze.conf        | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/frdm-k22f.conf   | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/frdm-k64f.conf   | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/frdm-k82f.conf   | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/frdm-kl25z.conf  | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/frdm-kw41z.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/fvp-base-revc-2xaemv8a.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/fvp-baser-aemv8r-smp.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/fvp-baser-aemv8r.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/google-kukui.conf            | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/gr716a-mini.conf | 22 +++++++++++++++++++
+>  .../conf/machine/hexiwear-k64.conf            | 22 +++++++++++++++++++
+>  .../conf/machine/hexiwear-kw40z.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/hifive-unleashed.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/hifive-unmatched.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/hifive1-revb.conf            | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/hifive1.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/holyiot-yj16019.conf         | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/hsdk-2cores.conf | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/hsdk.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/intel-adsp-cavs15.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/intel-adsp-cavs18.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/intel-adsp-cavs20.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/intel-adsp-cavs25.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/intel-s1000-crb.conf         | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/iotdk.conf       | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/ip-k66f.conf     | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/it8xxx2-evb.conf | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/legend.conf      | 22 +++++++++++++++++++
+>  .../conf/machine/litex-vexriscv.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/lora-e5-dev-board.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/lpcxpresso11u68.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/lpcxpresso54114-m0.conf      | 22 +++++++++++++++++++
+>  .../conf/machine/lpcxpresso54114-m4.conf      | 22 +++++++++++++++++++
+>  .../conf/machine/lpcxpresso55s16.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/lpcxpresso55s28.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/lpcxpresso55s69-cpu0.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/lpcxpresso55s69-cpu1.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/lpcxpresso55s69-ns.conf      | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/m2gl025-miv.conf | 22 +++++++++++++++++++
+>  .../conf/machine/mec1501modular-assy6885.conf | 22 +++++++++++++++++++
+>  .../conf/machine/mec15xxevb-assy6853.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/mec172xevb-assy6906.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/mec2016evb-assy6797.conf     | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/mercury-xu.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/mikroe-clicker-2.conf        | 22 +++++++++++++++++++
+>  .../machine/mikroe-mini-m4-for-stm32.conf     | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/mimx8mm-evk.conf | 22 +++++++++++++++++++
+>  .../conf/machine/mimxrt1010-evk.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/mimxrt1015-evk.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/mimxrt1020-evk.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/mimxrt1024-evk.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/mimxrt1050-evk-qspi.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/mimxrt1050-evk.conf          | 22 +++++++++++++++++++
+>  .../machine/mimxrt1060-evk-hyperflash.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/mimxrt1060-evk.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/mimxrt1064-evk.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/mimxrt1170-evk-cm4.conf      | 22 +++++++++++++++++++
+>  .../conf/machine/mimxrt1170-evk-cm7.conf      | 22 +++++++++++++++++++
+>  .../conf/machine/mimxrt685-evk-cm33.conf      | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/mm-feather.conf  | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/mm-swiftio.conf  | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/mps2-an385.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/mps2-an521-ns.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/mps2-an521-remote.conf       | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/mps2-an521.conf  | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/mps3-an547.conf  | 22 +++++++++++++++++++
+>  .../machine/msp-exp432p401r-launchxl.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/native-posix-64.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/native-posix.conf            | 22 +++++++++++++++++++
+>  .../conf/machine/npcx7m6fb-evb.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/npcx9m6f-evb.conf            | 22 +++++++++++++++++++
+>  .../conf/machine/nrf21540dk-nrf52840.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/nrf51-ble400.conf            | 22 +++++++++++++++++++
+>  .../conf/machine/nrf51-blenano.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nrf51-vbluno51.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/nrf51dk-nrf51422.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/nrf51dongle-nrf51422.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/nrf52-adafruit-feather.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/nrf52-blenano2.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/nrf52-sparkfun.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/nrf52-vbluno52.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/nrf52832-mdk.conf            | 22 +++++++++++++++++++
+>  .../conf/machine/nrf52833dk-nrf52820.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/nrf52833dk-nrf52833.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/nrf52840-blip.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nrf52840-mdk.conf            | 22 +++++++++++++++++++
+>  .../conf/machine/nrf52840-papyr.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/nrf52840dk-nrf52811.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/nrf52840dongle-nrf52840.conf | 22 +++++++++++++++++++
+>  .../conf/machine/nrf52dk-nrf52805.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/nrf52dk-nrf52810.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/nrf52dk-nrf52832.conf        | 22 +++++++++++++++++++
+>  .../machine/nrf5340dk-nrf5340-cpuapp-ns.conf  | 22 +++++++++++++++++++
+>  .../machine/nrf5340dk-nrf5340-cpuapp.conf     | 22 +++++++++++++++++++
+>  .../machine/nrf5340dk-nrf5340-cpunet.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/nrf9160-innblue21-ns.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/nrf9160-innblue21.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/nrf9160-innblue22-ns.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/nrf9160-innblue22.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/nrf9160dk-nrf52840.conf      | 22 +++++++++++++++++++
+>  .../conf/machine/nrf9160dk-nrf9160-ns.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/nrf9160dk-nrf9160.conf       | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/nsim-em.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/nsim-em7d-v22.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nsim-hs-mpuv6.conf           | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/nsim-hs-smp.conf | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/nsim-hs.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/nsim-hs6x-smp.conf           | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/nsim-hs6x.conf   | 22 +++++++++++++++++++
+>  .../machine/nsim-sem-mpu-stack-guard.conf     | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/nsim-sem.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-f030r8.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-f031k6.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-f070rb.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-f091rc.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-f103rb.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-f207zg.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-f302r8.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-f303k8.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-f303re.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-f334r8.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-f401re.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-f410rb.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-f411re.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-f412zg.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-f413zh.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-f429zi.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-f446re.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-f746zg.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-f756zg.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-f767zi.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-g071rb.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-g0b1re.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-g431rb.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-g474re.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-h723zg.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-h743zi.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-h745zi-q-m4.conf      | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-h745zi-q-m7.conf      | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-h753zi.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-l011k4.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-l031k6.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-l053r8.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-l073rz.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-l152re.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-l412rb-p.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-l432kc.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-l433rc-p.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-l452re-p.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-l452re.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-l476rg.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-l496zg.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-l4r5zi.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-l552ze-q-ns.conf      | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-l552ze-q.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-u575zi-q.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-wb55rg.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nucleo-wl55jc.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/nuvoton-pfm-m487.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/nxp-adsp-imx8.conf           | 22 +++++++++++++++++++
+>  .../machine/nxp-ls1046ardb-smp-2cores.conf    | 22 +++++++++++++++++++
+>  .../machine/nxp-ls1046ardb-smp-4cores.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/nxp-ls1046ardb.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/olimex-stm32-e407.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/olimex-stm32-h103.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/olimex-stm32-h407.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/olimex-stm32-p405.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/olimexino-stm32.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/particle-argon.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/particle-boron.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/particle-xenon.conf          | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/pico-pi-m4.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/pinetime-devkit0.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/pinnacle-100-dvk.conf        | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/qemu-arc-em.conf | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/qemu-arc-hs.conf | 22 +++++++++++++++++++
+>  .../conf/machine/qemu-arc-hs6x.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/qemu-cortex-a53-smp.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/qemu-cortex-a53-xip.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/qemu-cortex-a53.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/qemu-cortex-m0.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/qemu-cortex-r5.conf          | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/qemu-leon3.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/qemu-riscv32-xip.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/qemu-riscv32.conf            | 22 +++++++++++++++++++
+>  .../conf/machine/qemu-riscv64.conf            | 22 +++++++++++++++++++
+>  .../conf/machine/qemu-x86-64-nokpti.conf      | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/qemu-x86-64.conf | 22 +++++++++++++++++++
+>  .../conf/machine/qemu-x86-lakemont.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/qemu-x86-nokpti.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/qemu-x86-nommu.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/qemu-x86-nopae.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/qemu-x86-tiny.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/qemu-x86-virt.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/qemu-x86-xip.conf            | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/qemu-xtensa.conf | 22 +++++++++++++++++++
+>  .../conf/machine/quick-feather.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/rak4631-nrf52840.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/rak5010-nrf52840.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/rcar-h3ulcb-cr7.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/reel-board-v2.conf           | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/reel-board.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/ronoth-lodev.conf            | 22 +++++++++++++++++++
+>  .../conf/machine/ruuvi-ruuvitag.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/rv32m1-vega-ri5cy.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/rv32m1-vega-zero-riscy.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/sam-e70-xplained.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/sam-e70b-xplained.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/sam-v71-xult.conf            | 22 +++++++++++++++++++
+>  .../conf/machine/sam-v71b-xult.conf           | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/sam4e-xpro.conf  | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/sam4l-ek.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/sam4s-xplained.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/seeeduino-xiao.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/segger-trb-stm32f407.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/sensortile-box.conf          | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/serpente.conf    | 22 +++++++++++++++++++
+>  .../sparkfun-thing-plus-nrf9160-ns.conf       | 22 +++++++++++++++++++
+>  .../machine/sparkfun-thing-plus-nrf9160.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/steval-fcu001v1.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/stm32-min-dev-black.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/stm32-min-dev-blue.conf      | 22 +++++++++++++++++++
+>  .../conf/machine/stm3210c-eval.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/stm32373c-eval.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/stm32f0-disco.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/stm32f030-demo.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/stm32f072-eval.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/stm32f072b-disco.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/stm32f103-mini.conf          | 22 +++++++++++++++++++
+>  .../conf/machine/stm32f3-disco.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/stm32f4-disco.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/stm32f411e-disco.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/stm32f412g-disco.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/stm32f429i-disc1.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/stm32f469i-disco.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/stm32f723e-disco.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/stm32f746g-disco.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/stm32f769i-disco.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/stm32g0316-disco.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/stm32g071b-disco.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/stm32h735g-disco.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/stm32h747i-disco-m4.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/stm32h747i-disco-m7.conf     | 22 +++++++++++++++++++
+>  .../conf/machine/stm32l1-disco.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/stm32l476g-disco.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/stm32l496g-disco.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/stm32l562e-dk-ns.conf        | 22 +++++++++++++++++++
+>  .../conf/machine/stm32l562e-dk.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/stm32vl-disco.conf           | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/teensy40.conf    | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/teensy41.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/thingy52-nrf52832.conf       | 22 +++++++++++++++++++
+>  .../machine/thingy53-nrf5340-cpuapp-ns.conf   | 22 +++++++++++++++++++
+>  .../conf/machine/thingy53-nrf5340-cpuapp.conf | 22 +++++++++++++++++++
+>  .../conf/machine/thingy53-nrf5340-cpunet.conf | 22 +++++++++++++++++++
+>  .../conf/machine/tlsr9518adk80d.conf          | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/twr-ke18f.conf   | 22 +++++++++++++++++++
+>  .../conf/machine/twr-kv58f220m.conf           | 22 +++++++++++++++++++
+>  .../conf/machine/ubx-bmd300eval-nrf52832.conf | 22 +++++++++++++++++++
+>  .../conf/machine/ubx-bmd330eval-nrf52810.conf | 22 +++++++++++++++++++
+>  .../conf/machine/ubx-bmd340eval-nrf52840.conf | 22 +++++++++++++++++++
+>  .../conf/machine/ubx-bmd345eval-nrf52840.conf | 22 +++++++++++++++++++
+>  .../conf/machine/ubx-bmd360eval-nrf52811.conf | 22 +++++++++++++++++++
+>  .../conf/machine/ubx-bmd380eval-nrf52840.conf | 22 +++++++++++++++++++
+>  .../conf/machine/ubx-evkannab1-nrf52832.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/ubx-evkninab1-nrf52832.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/ubx-evkninab3-nrf52840.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/ubx-evkninab4-nrf52833.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/udoo-neo-full-m4.conf        | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/up-squared.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/usb-kw24d512.conf            | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/v2m-beetle.conf  | 22 +++++++++++++++++++
+>  .../conf/machine/v2m-musca-b1-ns.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/v2m-musca-b1.conf            | 22 +++++++++++++++++++
+>  .../conf/machine/v2m-musca-s1-ns.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/v2m-musca-s1.conf            | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/warp7-m4.conf    | 22 +++++++++++++++++++
+>  .../conf/machine/waveshare-open103z.conf      | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/xenvm.conf       | 22 +++++++++++++++++++
+>  .../conf/machine/xmc45-relax-kit.conf         | 22 +++++++++++++++++++
+>  .../conf/machine/xt-sim-intel-s1000.conf      | 22 +++++++++++++++++++
+>  meta-zephyr-bsp/conf/machine/xt-sim.conf      | 22 +++++++++++++++++++
+>  382 files changed, 8404 insertions(+)
+>  create mode 100755 meta-zephyr-bsp/conf/machine/96b-aerocore2.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/96b-argonkey.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/96b-carbon-nrf51.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/96b-carbon.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/96b-meerkat96.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/96b-neonkey.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/96b-stm32-sensor-mez.con=
+f
+>  create mode 100755 meta-zephyr-bsp/conf/machine/96b-wistrio.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/acrn-ehl-crb.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/acrn.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/actinius-icarus-bee-ns.c=
+onf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/actinius-icarus-bee.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/actinius-icarus-ns.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/actinius-icarus-som-ns.c=
+onf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/actinius-icarus-som.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/actinius-icarus.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/adafruit-feather-m0-basi=
+c-proto.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/adafruit-feather-nrf5284=
+0.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/adafruit-feather-stm32f4=
+05.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/adafruit-itsybitsy-m4-ex=
+press.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/adafruit-trinket-m0.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/adp-xc7k-ae350.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/altera-max10.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/arduino-due.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/arduino-nano-33-iot.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/arduino-zero.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/arty-a7-arm-designstart-=
+m1.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/arty-a7-arm-designstart-=
+m3.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/atsamd20-xpro.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/atsamd21-xpro.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/atsame54-xpro.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/atsamr21-xpro.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/b-l072z-lrwan1.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/b-l4s5i-iot01a.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/b-u585i-iot02a.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/bbc-microbit-v2.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/bbc-microbit.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/bcm958401m2.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/bcm958402m2-a72.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/bcm958402m2-m7.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/beaglev-starlight-jh7100=
+.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/bl5340-dvk-cpuapp-ns.con=
+f
+>  create mode 100755 meta-zephyr-bsp/conf/machine/bl5340-dvk-cpuapp.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/bl5340-dvk-cpunet.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/bl652-dvk.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/bl653-dvk.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/bl654-dvk.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/bl654-sensor-board.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/bl654-usb.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/black-f407ve.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/black-f407zg-pro.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/blackpill-f401ce.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/blackpill-f411ce.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/bt510.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/bt610.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/cc1352r-sensortag.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/cc1352r1-launchxl.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/cc26x2r1-launchxl.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/cc3220sf-launchxl.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/cc3235sf-launchxl.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/circuitdojo-feather-nrf9=
+160-ns.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/circuitdojo-feather-nrf9=
+160.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/colibri-imx7d-m4.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/contextualelectronics-ab=
+c.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/cy8ckit-062-ble-m0.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/cy8ckit-062-ble-m4.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/cy8ckit-062-wifi-bt-m0.c=
+onf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/cy8ckit-062-wifi-bt-m4.c=
+onf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/decawave-dwm1001-dev.con=
+f
+>  create mode 100755 meta-zephyr-bsp/conf/machine/degu-evk.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/disco-l475-iot1.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/dragino-lsn50.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/dragino-nbsn95.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/efm32gg-slwstk6121a.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/efm32gg-stk3701a.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/efm32hg-slstk3400a.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/efm32pg-stk3401a.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/efm32pg-stk3402a-jg.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/efm32pg-stk3402a.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/efm32wg-stk3800.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/efr32-radio-brd4104a.con=
+f
+>  create mode 100755 meta-zephyr-bsp/conf/machine/efr32-radio-brd4180a.con=
+f
+>  create mode 100755 meta-zephyr-bsp/conf/machine/efr32-radio-brd4250b.con=
+f
+>  create mode 100755 meta-zephyr-bsp/conf/machine/efr32-radio-brd4255a.con=
+f
+>  create mode 100755 meta-zephyr-bsp/conf/machine/efr32mg-sltb004a.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/ehl-crb-sbl.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/ehl-crb.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/em-starterkit-em11d.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/em-starterkit-em7d-v22.c=
+onf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/em-starterkit-em7d.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/em-starterkit.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/emsdp-em4.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/emsdp-em5d.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/emsdp-em6.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/emsdp-em7d-esp.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/emsdp-em7d.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/emsdp-em9d.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/emsdp.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/esp32c3-devkitm.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/faze.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/frdm-k22f.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/frdm-k64f.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/frdm-k82f.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/frdm-kl25z.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/frdm-kw41z.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/fvp-base-revc-2xaemv8a.c=
+onf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/fvp-baser-aemv8r-smp.con=
+f
+>  create mode 100755 meta-zephyr-bsp/conf/machine/fvp-baser-aemv8r.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/google-kukui.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/gr716a-mini.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/hexiwear-k64.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/hexiwear-kw40z.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/hifive-unleashed.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/hifive-unmatched.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/hifive1-revb.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/hifive1.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/holyiot-yj16019.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/hsdk-2cores.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/hsdk.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/intel-adsp-cavs15.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/intel-adsp-cavs18.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/intel-adsp-cavs20.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/intel-adsp-cavs25.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/intel-s1000-crb.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/iotdk.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/ip-k66f.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/it8xxx2-evb.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/legend.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/litex-vexriscv.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/lora-e5-dev-board.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/lpcxpresso11u68.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/lpcxpresso54114-m0.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/lpcxpresso54114-m4.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/lpcxpresso55s16.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/lpcxpresso55s28.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/lpcxpresso55s69-cpu0.con=
+f
+>  create mode 100755 meta-zephyr-bsp/conf/machine/lpcxpresso55s69-cpu1.con=
+f
+>  create mode 100755 meta-zephyr-bsp/conf/machine/lpcxpresso55s69-ns.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/m2gl025-miv.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mec1501modular-assy6885.=
+conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mec15xxevb-assy6853.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mec172xevb-assy6906.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mec2016evb-assy6797.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mercury-xu.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mikroe-clicker-2.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mikroe-mini-m4-for-stm32=
+.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mimx8mm-evk.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mimxrt1010-evk.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mimxrt1015-evk.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mimxrt1020-evk.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mimxrt1024-evk.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mimxrt1050-evk-qspi.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mimxrt1050-evk.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mimxrt1060-evk-hyperflas=
+h.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mimxrt1060-evk.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mimxrt1064-evk.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mimxrt1170-evk-cm4.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mimxrt1170-evk-cm7.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mimxrt685-evk-cm33.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mm-feather.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mm-swiftio.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mps2-an385.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mps2-an521-ns.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mps2-an521-remote.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mps2-an521.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/mps3-an547.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/msp-exp432p401r-launchxl=
+.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/native-posix-64.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/native-posix.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/npcx7m6fb-evb.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/npcx9m6f-evb.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf21540dk-nrf52840.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf51-ble400.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf51-blenano.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf51-vbluno51.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf51dk-nrf51422.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf51dongle-nrf51422.con=
+f
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf52-adafruit-feather.c=
+onf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf52-blenano2.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf52-sparkfun.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf52-vbluno52.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf52832-mdk.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf52833dk-nrf52820.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf52833dk-nrf52833.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf52840-blip.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf52840-mdk.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf52840-papyr.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf52840dk-nrf52811.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf52840dongle-nrf52840.=
+conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf52dk-nrf52805.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf52dk-nrf52810.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf52dk-nrf52832.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf5340dk-nrf5340-cpuapp=
+-ns.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf5340dk-nrf5340-cpuapp=
+.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf5340dk-nrf5340-cpunet=
+.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf9160-innblue21-ns.con=
+f
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf9160-innblue21.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf9160-innblue22-ns.con=
+f
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf9160-innblue22.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf9160dk-nrf52840.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf9160dk-nrf9160-ns.con=
+f
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nrf9160dk-nrf9160.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nsim-em.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nsim-em7d-v22.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nsim-hs-mpuv6.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nsim-hs-smp.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nsim-hs.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nsim-hs6x-smp.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nsim-hs6x.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nsim-sem-mpu-stack-guard=
+.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nsim-sem.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-f030r8.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-f031k6.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-f070rb.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-f091rc.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-f103rb.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-f207zg.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-f302r8.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-f303k8.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-f303re.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-f334r8.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-f401re.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-f410rb.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-f411re.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-f412zg.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-f413zh.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-f429zi.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-f446re.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-f746zg.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-f756zg.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-f767zi.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-g071rb.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-g0b1re.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-g431rb.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-g474re.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-h723zg.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-h743zi.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-h745zi-q-m4.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-h745zi-q-m7.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-h753zi.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-l011k4.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-l031k6.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-l053r8.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-l073rz.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-l152re.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-l412rb-p.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-l432kc.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-l433rc-p.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-l452re-p.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-l452re.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-l476rg.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-l496zg.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-l4r5zi.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-l552ze-q-ns.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-l552ze-q.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-u575zi-q.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-wb55rg.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nucleo-wl55jc.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nuvoton-pfm-m487.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nxp-adsp-imx8.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nxp-ls1046ardb-smp-2core=
+s.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nxp-ls1046ardb-smp-4core=
+s.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/nxp-ls1046ardb.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/olimex-stm32-e407.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/olimex-stm32-h103.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/olimex-stm32-h407.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/olimex-stm32-p405.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/olimexino-stm32.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/particle-argon.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/particle-boron.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/particle-xenon.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/pico-pi-m4.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/pinetime-devkit0.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/pinnacle-100-dvk.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-arc-em.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-arc-hs.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-arc-hs6x.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-cortex-a53-smp.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-cortex-a53-xip.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-cortex-a53.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-cortex-m0.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-cortex-r5.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-leon3.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-riscv32-xip.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-riscv32.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-riscv64.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-x86-64-nokpti.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-x86-64.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-x86-lakemont.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-x86-nokpti.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-x86-nommu.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-x86-nopae.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-x86-tiny.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-x86-virt.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-x86-xip.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/qemu-xtensa.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/quick-feather.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/rak4631-nrf52840.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/rak5010-nrf52840.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/rcar-h3ulcb-cr7.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/reel-board-v2.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/reel-board.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/ronoth-lodev.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/ruuvi-ruuvitag.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/rv32m1-vega-ri5cy.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/rv32m1-vega-zero-riscy.c=
+onf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/sam-e70-xplained.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/sam-e70b-xplained.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/sam-v71-xult.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/sam-v71b-xult.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/sam4e-xpro.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/sam4l-ek.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/sam4s-xplained.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/seeeduino-xiao.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/segger-trb-stm32f407.con=
+f
+>  create mode 100755 meta-zephyr-bsp/conf/machine/sensortile-box.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/serpente.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/sparkfun-thing-plus-nrf9=
+160-ns.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/sparkfun-thing-plus-nrf9=
+160.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/steval-fcu001v1.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32-min-dev-black.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32-min-dev-blue.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm3210c-eval.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32373c-eval.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32f0-disco.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32f030-demo.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32f072-eval.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32f072b-disco.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32f103-mini.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32f3-disco.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32f4-disco.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32f411e-disco.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32f412g-disco.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32f429i-disc1.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32f469i-disco.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32f723e-disco.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32f746g-disco.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32f769i-disco.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32g0316-disco.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32g071b-disco.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32h735g-disco.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32h747i-disco-m4.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32h747i-disco-m7.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32l1-disco.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32l476g-disco.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32l496g-disco.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32l562e-dk-ns.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32l562e-dk.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/stm32vl-disco.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/teensy40.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/teensy41.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/thingy52-nrf52832.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/thingy53-nrf5340-cpuapp-=
+ns.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/thingy53-nrf5340-cpuapp.=
+conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/thingy53-nrf5340-cpunet.=
+conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/tlsr9518adk80d.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/twr-ke18f.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/twr-kv58f220m.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/ubx-bmd300eval-nrf52832.=
+conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/ubx-bmd330eval-nrf52810.=
+conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/ubx-bmd340eval-nrf52840.=
+conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/ubx-bmd345eval-nrf52840.=
+conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/ubx-bmd360eval-nrf52811.=
+conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/ubx-bmd380eval-nrf52840.=
+conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/ubx-evkannab1-nrf52832.c=
+onf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/ubx-evkninab1-nrf52832.c=
+onf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/ubx-evkninab3-nrf52840.c=
+onf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/ubx-evkninab4-nrf52833.c=
+onf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/udoo-neo-full-m4.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/up-squared.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/usb-kw24d512.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/v2m-beetle.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/v2m-musca-b1-ns.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/v2m-musca-b1.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/v2m-musca-s1-ns.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/v2m-musca-s1.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/warp7-m4.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/waveshare-open103z.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/xenvm.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/xmc45-relax-kit.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/xt-sim-intel-s1000.conf
+>  create mode 100755 meta-zephyr-bsp/conf/machine/xt-sim.conf
+>
+> diff --git a/meta-zephyr-bsp/conf/machine/96b-aerocore2.conf b/meta-zephy=
+r-bsp/conf/machine/96b-aerocore2.conf
+> new file mode 100755
+> index 0000000..6b8c958
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/96b-aerocore2.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: 96b-aerocore2
+> +#@DESCRIPTION: Machine configuration for 96b-aerocore2 , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_96b-aerocore2 =3D "arm"
 
-------=_NextPart_000_0E24_01D80630.582B76F0
-Content-Type: text/plain;
-	charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Every instance of ARCH_ needs to be ARCH:
 
-All,
+Also, it needs a path to the tune files.  In this case,
+require conf/machine/include/arm/armv7m/tune-cortexm4.inc
 
-YP M+ or high bugs which moved to a new milestone in WW02 are listed =
-below:=20
+When I correct both of those, it will compile for me (on master
+branches).  I only did one to confirm, but it should be easy enough to
+script for each one.
 
+BTW, I did test building and testing the previously existing machines
+and my rudamentary gitlab ci passes.
 
-Priority
+Also, for some reason these patches aren't showing up on
+https://lore.kernel.org/yocto/
+I'm guessing it's something to do with spam filters, but Halstead
+might be helpful there.
 
-Bug ID
+Thanks,
+Jon
 
-Short Description
-
-Changer
-
-Owner
-
-Was
-
-Became
-
-
-Medium+
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D8191> 8191
-
-apply kernel config fragments to arbitrary kernels
-
-randy.macleod@windriver.com
-
-bruce.ashfield@gmail.com
-
-3.5 M1
-
-3.5 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12937> 12937
-
-Consistent naming scheme for deployed artifacts
-
-randy.macleod@windriver.com
-
-Martin.Jansa@gmail.com
-
-3.5 M1
-
-3.5 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13051> 13051
-
-allow Open Container compliant "images" to be generated from oe images =
-(container or not)
-
-randy.macleod@windriver.com
-
-bruce.ashfield@gmail.com
-
-3.5 M1
-
-3.5 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13360> 13360
-
-kernel-dev: package full kernel source and headers for reference =
-purposes
-
-randy.macleod@windriver.com
-
-bruce.ashfield@gmail.com
-
-3.5 M1
-
-3.5 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13731> 13731
-
-Cross canadian GCC fails to find header files when using tclibc-newlib
-
-randy.macleod@windriver.com
-
-alejandro@enedino.org
-
-3.5 M1
-
-3.5 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14303> 14303
-
-Result of build is not stored in testresult.json with resulttool
-
-randy.macleod@windriver.com
-
-jay.shen.teoh@intel.com
-
-3.5 M1
-
-3.5 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14348> 14348
-
-Layer dependencies not updated
-
-randy.macleod@windriver.com
-
-bluelightning@bluelightning.org
-
-3.5 M1
-
-3.5 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14357> 14357
-
-No PDF and EPUB versions of the manuals available on the website
-
-randy.macleod@windriver.com
-
-mhalstead@linuxfoundation.org
-
-3.5 M1
-
-3.5 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14394> 14394
-
-Add a banner on the old documentation docs
-
-randy.macleod@windriver.com
-
-mhalstead@linuxfoundation.org
-
-3.5 M1
-
-3.5 M3
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14539> 14539
-
-Remove vague "BSD" license
-
-randy.macleod@windriver.com
-
-ross@burtonini.com
-
-3.5 M1
-
-3.5 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14552> 14552
-
-Timeout reported as "ERROR: Exit status is 9" which is not very helpful
-
-randy.macleod@windriver.com
-
-limon.anibal@gmail.com
-
-3.5 M1
-
-3.5 M2
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14573> 14573
-
-boost doesn't build for armv5
-
-randy.macleod@windriver.com
-
-jon.mason@arm.com
-
-3.5 M1
-
-3.5 M3
-
-Thanks,=20
-
-=20
-
-Stephen K. Jolley
-
-Yocto Project Program Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com =
-<mailto:sjolley.yp.pm@gmail.com>=20
-
-=20
-
-
-------=_NextPart_000_0E24_01D80630.582B76F0
-Content-Type: text/html;
-	boundary="----=_NextPart_000_0411_01D7FB3D.448A7360";
-	charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered =
-medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal><span =
-style=3D'color:black'>All,<br><br>YP M+ or high bugs which moved to a =
-new milestone in WW02 are listed below: <o:p></o:p></span></p><table =
-class=3DMsoNormalTable border=3D0 cellspacing=3D0 cellpadding=3D0 =
-width=3D1276 =
-style=3D'width:956.7pt;margin-left:-.15pt;border-collapse:collapse'><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>Priority<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom style=3D'width:38.8pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Bug ID<o:p></o:p></span></b></p></td><td =
-width=3D555 nowrap valign=3Dbottom style=3D'width:415.95pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Short =
-Description<o:p></o:p></span></b></p></td><td width=3D236 nowrap =
-valign=3Dbottom style=3D'width:177.0pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Changer<o:p></o:p></span></b></p></td><td =
-width=3D243 nowrap valign=3Dbottom style=3D'width:182.0pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Owner<o:p></o:p></span></b></p></td><td width=3D59 =
-nowrap valign=3Dbottom style=3D'width:44.6pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Was<o:p></o:p></span></b></p></td><td width=3D58 =
-nowrap valign=3Dbottom style=3D'width:43.45pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Became<o:p></o:p></span></b></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>Medium+<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D8191" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>8191</span></a><o:p></o:p></sp=
-an></b></p></td><td width=3D555 nowrap valign=3Dbottom =
-style=3D'width:415.95pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>apply kernel config fragments to arbitrary =
-kernels<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>bruce.ashfield@gmail.com<o:p></o:p></span></p></td>=
-<td width=3D59 nowrap valign=3Dbottom =
-style=3D'width:44.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M1<o:p></o:p></span></p></td><td width=3D58 =
-nowrap valign=3Dbottom =
-style=3D'width:43.45pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12937" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>12937</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D555 nowrap valign=3Dbottom =
-style=3D'width:415.95pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Consistent naming scheme for deployed =
-artifacts<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Martin.Jansa@gmail.com<o:p></o:p></span></p></td><t=
-d width=3D59 nowrap valign=3Dbottom =
-style=3D'width:44.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M1<o:p></o:p></span></p></td><td width=3D58 =
-nowrap valign=3Dbottom =
-style=3D'width:43.45pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13051" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13051</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D555 nowrap valign=3Dbottom =
-style=3D'width:415.95pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>allow Open Container compliant &quot;images&quot; =
-to be generated from oe images (container or =
-not)<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>bruce.ashfield@gmail.com<o:p></o:p></span></p></td>=
-<td width=3D59 nowrap valign=3Dbottom =
-style=3D'width:44.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M1<o:p></o:p></span></p></td><td width=3D58 =
-nowrap valign=3Dbottom =
-style=3D'width:43.45pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13360" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13360</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D555 nowrap valign=3Dbottom =
-style=3D'width:415.95pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>kernel-dev: package full kernel source and headers =
-for reference purposes<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>bruce.ashfield@gmail.com<o:p></o:p></span></p></td>=
-<td width=3D59 nowrap valign=3Dbottom =
-style=3D'width:44.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M1<o:p></o:p></span></p></td><td width=3D58 =
-nowrap valign=3Dbottom =
-style=3D'width:43.45pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13731" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>13731</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D555 nowrap valign=3Dbottom =
-style=3D'width:415.95pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Cross canadian GCC fails to find header files when =
-using tclibc-newlib<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>alejandro@enedino.org<o:p></o:p></span></p></td><td=
- width=3D59 nowrap valign=3Dbottom =
-style=3D'width:44.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M1<o:p></o:p></span></p></td><td width=3D58 =
-nowrap valign=3Dbottom =
-style=3D'width:43.45pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14303" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14303</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D555 nowrap valign=3Dbottom =
-style=3D'width:415.95pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Result of build is not stored in testresult.json =
-with resulttool<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>jay.shen.teoh@intel.com<o:p></o:p></span></p></td><=
-td width=3D59 nowrap valign=3Dbottom =
-style=3D'width:44.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M1<o:p></o:p></span></p></td><td width=3D58 =
-nowrap valign=3Dbottom =
-style=3D'width:43.45pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14348" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14348</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D555 nowrap valign=3Dbottom =
-style=3D'width:415.95pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Layer dependencies not =
-updated<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>bluelightning@bluelightning.org<o:p></o:p></span></=
-p></td><td width=3D59 nowrap valign=3Dbottom =
-style=3D'width:44.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M1<o:p></o:p></span></p></td><td width=3D58 =
-nowrap valign=3Dbottom =
-style=3D'width:43.45pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14357" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14357</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D555 nowrap valign=3Dbottom =
-style=3D'width:415.95pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>No PDF and EPUB versions of the manuals available =
-on the website<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>mhalstead@linuxfoundation.org<o:p></o:p></span></p>=
-</td><td width=3D59 nowrap valign=3Dbottom =
-style=3D'width:44.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M1<o:p></o:p></span></p></td><td width=3D58 =
-nowrap valign=3Dbottom =
-style=3D'width:43.45pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14394" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14394</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D555 nowrap valign=3Dbottom =
-style=3D'width:415.95pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Add a banner on the old documentation =
-docs<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>mhalstead@linuxfoundation.org<o:p></o:p></span></p>=
-</td><td width=3D59 nowrap valign=3Dbottom =
-style=3D'width:44.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M1<o:p></o:p></span></p></td><td width=3D58 =
-nowrap valign=3Dbottom =
-style=3D'width:43.45pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M3<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14539" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14539</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D555 nowrap valign=3Dbottom =
-style=3D'width:415.95pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Remove vague &quot;BSD&quot; =
-license<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>ross@burtonini.com<o:p></o:p></span></p></td><td =
-width=3D59 nowrap valign=3Dbottom =
-style=3D'width:44.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M1<o:p></o:p></span></p></td><td width=3D58 =
-nowrap valign=3Dbottom =
-style=3D'width:43.45pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14552" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14552</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D555 nowrap valign=3Dbottom =
-style=3D'width:415.95pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Timeout reported as &quot;ERROR: Exit status is =
-9&quot; which is not very helpful<o:p></o:p></span></p></td><td =
-width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>limon.anibal@gmail.com<o:p></o:p></span></p></td><t=
-d width=3D59 nowrap valign=3Dbottom =
-style=3D'width:44.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M1<o:p></o:p></span></p></td><td width=3D58 =
-nowrap valign=3Dbottom =
-style=3D'width:43.45pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14573" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14573</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D555 nowrap valign=3Dbottom =
-style=3D'width:415.95pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>boost doesn't build for =
-armv5<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>jon.mason@arm.com<o:p></o:p></span></p></td><td =
-width=3D59 nowrap valign=3Dbottom =
-style=3D'width:44.6pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M1<o:p></o:p></span></p></td><td width=3D58 =
-nowrap valign=3Dbottom =
-style=3D'width:43.45pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>3.5 M3<o:p></o:p></span></p></td></tr></table><p =
-class=3DMsoNormal><span style=3D'color:black'>Thanks,</span><span =
-style=3D'color:white'> <o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'color:white'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Program Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_000_0E24_01D80630.582B76F0--
-
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: 96b_aerocore2
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F427xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D24000000"
+> +
+> +ZEPHYR_BOARD =3D "96b_aerocore2"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/96b-argonkey.conf b/meta-zephyr=
+-bsp/conf/machine/96b-argonkey.conf
+> new file mode 100755
+> index 0000000..46af448
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/96b-argonkey.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: 96b-argonkey
+> +#@DESCRIPTION: Machine configuration for 96b-argonkey , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_96b-argonkey =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: 96b_argonkey
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F412Cx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D16000000"
+> +
+> +ZEPHYR_BOARD =3D "96b_argonkey"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/96b-carbon-nrf51.conf b/meta-ze=
+phyr-bsp/conf/machine/96b-carbon-nrf51.conf
+> new file mode 100755
+> index 0000000..779cc0f
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/96b-carbon-nrf51.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: 96b-carbon-nrf51
+> +#@DESCRIPTION: Machine configuration for 96b-carbon-nrf51 , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_96b-carbon-nrf51 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0
+> +# ARCH: arm
+> +# BOARD: 96b_carbon_nrf51
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF51 -DNRF51422_X=
+XAC"
+> +
+> +ZEPHYR_BOARD =3D "96b_carbon_nrf51"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/96b-carbon.conf b/meta-zephyr-b=
+sp/conf/machine/96b-carbon.conf
+> new file mode 100755
+> index 0000000..a1a94e0
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/96b-carbon.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: 96b-carbon
+> +#@DESCRIPTION: Machine configuration for 96b-carbon , build: zephyr-v2.7=
+.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_96b-carbon =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: 96b_carbon
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F401xE -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D16000000"
+> +
+> +ZEPHYR_BOARD =3D "96b_carbon"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/96b-meerkat96.conf b/meta-zephy=
+r-bsp/conf/machine/96b-meerkat96.conf
+> new file mode 100755
+> index 0000000..efe4ebb
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/96b-meerkat96.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: 96b-meerkat96
+> +#@DESCRIPTION: Machine configuration for 96b-meerkat96 , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_96b-meerkat96 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: 96b_meerkat96
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "96b_meerkat96"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/96b-neonkey.conf b/meta-zephyr-=
+bsp/conf/machine/96b-neonkey.conf
+> new file mode 100755
+> index 0000000..de86440
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/96b-neonkey.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: 96b-neonkey
+> +#@DESCRIPTION: Machine configuration for 96b-neonkey , build: zephyr-v2.=
+7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_96b-neonkey =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: 96b_neonkey
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F411xE -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "96b_neonkey"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/96b-stm32-sensor-mez.conf b/met=
+a-zephyr-bsp/conf/machine/96b-stm32-sensor-mez.conf
+> new file mode 100755
+> index 0000000..2bb6a13
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/96b-stm32-sensor-mez.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: 96b-stm32-sensor-mez
+> +#@DESCRIPTION: Machine configuration for 96b-stm32-sensor-mez , build: z=
+ephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_96b-stm32-sensor-mez =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: 96b_stm32_sensor_mez
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F446xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D16000000"
+> +
+> +ZEPHYR_BOARD =3D "96b_stm32_sensor_mez"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/96b-wistrio.conf b/meta-zephyr-=
+bsp/conf/machine/96b-wistrio.conf
+> new file mode 100755
+> index 0000000..fbd04cb
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/96b-wistrio.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: 96b-wistrio
+> +#@DESCRIPTION: Machine configuration for 96b-wistrio , build: zephyr-v2.=
+7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_96b-wistrio =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm3"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3
+> +# ARCH: arm
+> +# BOARD: 96b_wistrio
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L151xBA -DUSE=
+_HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "96b_wistrio"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/acrn-ehl-crb.conf b/meta-zephyr=
+-bsp/conf/machine/acrn-ehl-crb.conf
+> new file mode 100755
+> index 0000000..4537100
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/acrn-ehl-crb.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: acrn-ehl-crb
+> +#@DESCRIPTION: Machine configuration for acrn-ehl-crb , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_acrn-ehl-crb =3D "x86"
+> +
+> +DEFAULTUNE ?=3D "core2-64"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: x86
+> +# BOARD: acrn_ehl_crb
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "acrn_ehl_crb"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/acrn.conf b/meta-zephyr-bsp/con=
+f/machine/acrn.conf
+> new file mode 100755
+> index 0000000..7225a24
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/acrn.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: acrn
+> +#@DESCRIPTION: Machine configuration for acrn , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_acrn =3D "x86"
+> +
+> +DEFAULTUNE ?=3D "core2-64"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: x86
+> +# BOARD: acrn
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "acrn"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/actinius-icarus-bee-ns.conf b/m=
+eta-zephyr-bsp/conf/machine/actinius-icarus-bee-ns.conf
+> new file mode 100755
+> index 0000000..6b6b5cb
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/actinius-icarus-bee-ns.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: actinius-icarus-bee-ns
+> +#@DESCRIPTION: Machine configuration for actinius-icarus-bee-ns , build:=
+ zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_actinius-icarus-bee-ns =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: actinius_icarus_bee_ns
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF9160_XXAA -DNRF=
+_TRUSTZONE_NONSECURE"
+> +
+> +ZEPHYR_BOARD =3D "actinius_icarus_bee_ns"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/actinius-icarus-bee.conf b/meta=
+-zephyr-bsp/conf/machine/actinius-icarus-bee.conf
+> new file mode 100755
+> index 0000000..1f82cd6
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/actinius-icarus-bee.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: actinius-icarus-bee
+> +#@DESCRIPTION: Machine configuration for actinius-icarus-bee , build: ze=
+phyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_actinius-icarus-bee =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: actinius_icarus_bee
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF9160_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "actinius_icarus_bee"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/actinius-icarus-ns.conf b/meta-=
+zephyr-bsp/conf/machine/actinius-icarus-ns.conf
+> new file mode 100755
+> index 0000000..a8b5ff8
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/actinius-icarus-ns.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: actinius-icarus-ns
+> +#@DESCRIPTION: Machine configuration for actinius-icarus-ns , build: zep=
+hyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_actinius-icarus-ns =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: actinius_icarus_ns
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF9160_XXAA -DNRF=
+_TRUSTZONE_NONSECURE"
+> +
+> +ZEPHYR_BOARD =3D "actinius_icarus_ns"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/actinius-icarus-som-ns.conf b/m=
+eta-zephyr-bsp/conf/machine/actinius-icarus-som-ns.conf
+> new file mode 100755
+> index 0000000..f1d50e7
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/actinius-icarus-som-ns.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: actinius-icarus-som-ns
+> +#@DESCRIPTION: Machine configuration for actinius-icarus-som-ns , build:=
+ zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_actinius-icarus-som-ns =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: actinius_icarus_som_ns
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF9160_XXAA -DNRF=
+_TRUSTZONE_NONSECURE"
+> +
+> +ZEPHYR_BOARD =3D "actinius_icarus_som_ns"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/actinius-icarus-som.conf b/meta=
+-zephyr-bsp/conf/machine/actinius-icarus-som.conf
+> new file mode 100755
+> index 0000000..732d1aa
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/actinius-icarus-som.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: actinius-icarus-som
+> +#@DESCRIPTION: Machine configuration for actinius-icarus-som , build: ze=
+phyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_actinius-icarus-som =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: actinius_icarus_som
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF9160_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "actinius_icarus_som"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/actinius-icarus.conf b/meta-zep=
+hyr-bsp/conf/machine/actinius-icarus.conf
+> new file mode 100755
+> index 0000000..043413c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/actinius-icarus.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: actinius-icarus
+> +#@DESCRIPTION: Machine configuration for actinius-icarus , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_actinius-icarus =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: actinius_icarus
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF9160_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "actinius_icarus"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/adafruit-feather-m0-basic-proto=
+.conf b/meta-zephyr-bsp/conf/machine/adafruit-feather-m0-basic-proto.conf
+> new file mode 100755
+> index 0000000..a4cfee5
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/adafruit-feather-m0-basic-proto.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: adafruit-feather-m0-basic-proto
+> +#@DESCRIPTION: Machine configuration for adafruit-feather-m0-basic-proto=
+ , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_adafruit-feather-m0-basic-proto =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: adafruit_feather_m0_basic_proto
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "adafruit_feather_m0_basic_proto"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/adafruit-feather-nrf52840.conf =
+b/meta-zephyr-bsp/conf/machine/adafruit-feather-nrf52840.conf
+> new file mode 100755
+> index 0000000..6fc13a4
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/adafruit-feather-nrf52840.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: adafruit-feather-nrf52840
+> +#@DESCRIPTION: Machine configuration for adafruit-feather-nrf52840 , bui=
+ld: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_adafruit-feather-nrf52840 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: adafruit_feather_nrf52840
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "adafruit_feather_nrf52840"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/adafruit-feather-stm32f405.conf=
+ b/meta-zephyr-bsp/conf/machine/adafruit-feather-stm32f405.conf
+> new file mode 100755
+> index 0000000..46f75e6
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/adafruit-feather-stm32f405.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: adafruit-feather-stm32f405
+> +#@DESCRIPTION: Machine configuration for adafruit-feather-stm32f405 , bu=
+ild: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_adafruit-feather-stm32f405 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: adafruit_feather_stm32f405
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F405xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D12000000"
+> +
+> +ZEPHYR_BOARD =3D "adafruit_feather_stm32f405"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/adafruit-itsybitsy-m4-express.c=
+onf b/meta-zephyr-bsp/conf/machine/adafruit-itsybitsy-m4-express.conf
+> new file mode 100755
+> index 0000000..a3f0f40
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/adafruit-itsybitsy-m4-express.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: adafruit-itsybitsy-m4-express
+> +#@DESCRIPTION: Machine configuration for adafruit-itsybitsy-m4-express ,=
+ build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_adafruit-itsybitsy-m4-express =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: adafruit_itsybitsy_m4_express
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "adafruit_itsybitsy_m4_express"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/adafruit-trinket-m0.conf b/meta=
+-zephyr-bsp/conf/machine/adafruit-trinket-m0.conf
+> new file mode 100755
+> index 0000000..23a478b
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/adafruit-trinket-m0.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: adafruit-trinket-m0
+> +#@DESCRIPTION: Machine configuration for adafruit-trinket-m0 , build: ze=
+phyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_adafruit-trinket-m0 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: adafruit_trinket_m0
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "adafruit_trinket_m0"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/adp-xc7k-ae350.conf b/meta-zeph=
+yr-bsp/conf/machine/adp-xc7k-ae350.conf
+> new file mode 100755
+> index 0000000..d4ae227
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/adp-xc7k-ae350.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: adp-xc7k-ae350
+> +#@DESCRIPTION: Machine configuration for adp-xc7k-ae350 , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_adp-xc7k-ae350 =3D "riscv"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: riscv
+> +# BOARD: adp_xc7k_ae350
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "adp_xc7k_ae350"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/altera-max10.conf b/meta-zephyr=
+-bsp/conf/machine/altera-max10.conf
+> new file mode 100755
+> index 0000000..431725d
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/altera-max10.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: altera-max10
+> +#@DESCRIPTION: Machine configuration for altera-max10 , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_altera-max10 =3D "nios2"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: nios2
+> +# BOARD: altera_max10
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -DZEPHYR_RTOS"
+> +
+> +ZEPHYR_BOARD =3D "altera_max10"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/arduino-due.conf b/meta-zephyr-=
+bsp/conf/machine/arduino-due.conf
+> new file mode 100755
+> index 0000000..539828b
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/arduino-due.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: arduino-due
+> +#@DESCRIPTION: Machine configuration for arduino-due , build: zephyr-v2.=
+7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_arduino-due =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm3"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3
+> +# ARCH: arm
+> +# BOARD: arduino_due
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "arduino_due"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/arduino-nano-33-iot.conf b/meta=
+-zephyr-bsp/conf/machine/arduino-nano-33-iot.conf
+> new file mode 100755
+> index 0000000..ce77958
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/arduino-nano-33-iot.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: arduino-nano-33-iot
+> +#@DESCRIPTION: Machine configuration for arduino-nano-33-iot , build: ze=
+phyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_arduino-nano-33-iot =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: arduino_nano_33_iot
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "arduino_nano_33_iot"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/arduino-zero.conf b/meta-zephyr=
+-bsp/conf/machine/arduino-zero.conf
+> new file mode 100755
+> index 0000000..b11af93
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/arduino-zero.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: arduino-zero
+> +#@DESCRIPTION: Machine configuration for arduino-zero , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_arduino-zero =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: arduino_zero
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "arduino_zero"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/arty-a7-arm-designstart-m1.conf=
+ b/meta-zephyr-bsp/conf/machine/arty-a7-arm-designstart-m1.conf
+> new file mode 100755
+> index 0000000..f6126ac
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/arty-a7-arm-designstart-m1.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: arty-a7-arm-designstart-m1
+> +#@DESCRIPTION: Machine configuration for arty-a7-arm-designstart-m1 , bu=
+ild: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_arty-a7-arm-designstart-m1 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm1"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m1
+> +# ARCH: arm
+> +# BOARD: arty_a7_arm_designstart_m1
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "arty_a7_arm_designstart_m1"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/arty-a7-arm-designstart-m3.conf=
+ b/meta-zephyr-bsp/conf/machine/arty-a7-arm-designstart-m3.conf
+> new file mode 100755
+> index 0000000..6c225f2
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/arty-a7-arm-designstart-m3.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: arty-a7-arm-designstart-m3
+> +#@DESCRIPTION: Machine configuration for arty-a7-arm-designstart-m3 , bu=
+ild: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_arty-a7-arm-designstart-m3 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm3"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3
+> +# ARCH: arm
+> +# BOARD: arty_a7_arm_designstart_m3
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "arty_a7_arm_designstart_m3"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/atsamd20-xpro.conf b/meta-zephy=
+r-bsp/conf/machine/atsamd20-xpro.conf
+> new file mode 100755
+> index 0000000..528af6c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/atsamd20-xpro.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: atsamd20-xpro
+> +#@DESCRIPTION: Machine configuration for atsamd20-xpro , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_atsamd20-xpro =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: atsamd20_xpro
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "atsamd20_xpro"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/atsamd21-xpro.conf b/meta-zephy=
+r-bsp/conf/machine/atsamd21-xpro.conf
+> new file mode 100755
+> index 0000000..129fc4d
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/atsamd21-xpro.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: atsamd21-xpro
+> +#@DESCRIPTION: Machine configuration for atsamd21-xpro , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_atsamd21-xpro =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: atsamd21_xpro
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "atsamd21_xpro"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/atsame54-xpro.conf b/meta-zephy=
+r-bsp/conf/machine/atsame54-xpro.conf
+> new file mode 100755
+> index 0000000..abd1076
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/atsame54-xpro.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: atsame54-xpro
+> +#@DESCRIPTION: Machine configuration for atsame54-xpro , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_atsame54-xpro =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: atsame54_xpro
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "atsame54_xpro"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/atsamr21-xpro.conf b/meta-zephy=
+r-bsp/conf/machine/atsamr21-xpro.conf
+> new file mode 100755
+> index 0000000..9c408a0
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/atsamr21-xpro.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: atsamr21-xpro
+> +#@DESCRIPTION: Machine configuration for atsamr21-xpro , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_atsamr21-xpro =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: atsamr21_xpro
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "atsamr21_xpro"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/b-l072z-lrwan1.conf b/meta-zeph=
+yr-bsp/conf/machine/b-l072z-lrwan1.conf
+> new file mode 100755
+> index 0000000..adfdfe3
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/b-l072z-lrwan1.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: b-l072z-lrwan1
+> +#@DESCRIPTION: Machine configuration for b-l072z-lrwan1 , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_b-l072z-lrwan1 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: b_l072z_lrwan1
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L072xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "b_l072z_lrwan1"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/b-l4s5i-iot01a.conf b/meta-zeph=
+yr-bsp/conf/machine/b-l4s5i-iot01a.conf
+> new file mode 100755
+> index 0000000..143bb90
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/b-l4s5i-iot01a.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: b-l4s5i-iot01a
+> +#@DESCRIPTION: Machine configuration for b-l4s5i-iot01a , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_b-l4s5i-iot01a =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: b_l4s5i_iot01a
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L4S5xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "b_l4s5i_iot01a"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/b-u585i-iot02a.conf b/meta-zeph=
+yr-bsp/conf/machine/b-u585i-iot02a.conf
+> new file mode 100755
+> index 0000000..133d15c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/b-u585i-iot02a.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: b-u585i-iot02a
+> +#@DESCRIPTION: Machine configuration for b-u585i-iot02a , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_b-u585i-iot02a =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: b_u585i_iot02a
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32U585xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "b_u585i_iot02a"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/bbc-microbit-v2.conf b/meta-zep=
+hyr-bsp/conf/machine/bbc-microbit-v2.conf
+> new file mode 100755
+> index 0000000..62f036d
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/bbc-microbit-v2.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: bbc-microbit-v2
+> +#@DESCRIPTION: Machine configuration for bbc-microbit-v2 , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_bbc-microbit-v2 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: bbc_microbit_v2
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52833_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "bbc_microbit_v2"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/bbc-microbit.conf b/meta-zephyr=
+-bsp/conf/machine/bbc-microbit.conf
+> new file mode 100755
+> index 0000000..43ff247
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/bbc-microbit.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: bbc-microbit
+> +#@DESCRIPTION: Machine configuration for bbc-microbit , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_bbc-microbit =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0
+> +# ARCH: arm
+> +# BOARD: bbc_microbit
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF51 -DNRF51422_X=
+XAA"
+> +
+> +ZEPHYR_BOARD =3D "bbc_microbit"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/bcm958401m2.conf b/meta-zephyr-=
+bsp/conf/machine/bcm958401m2.conf
+> new file mode 100755
+> index 0000000..bbda910
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/bcm958401m2.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: bcm958401m2
+> +#@DESCRIPTION: Machine configuration for bcm958401m2 , build: zephyr-v2.=
+7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_bcm958401m2 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: bcm958401m2
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "bcm958401m2"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/bcm958402m2-a72.conf b/meta-zep=
+hyr-bsp/conf/machine/bcm958402m2-a72.conf
+> new file mode 100755
+> index 0000000..5df9982
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/bcm958402m2-a72.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: bcm958402m2-a72
+> +#@DESCRIPTION: Machine configuration for bcm958402m2-a72 , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_bcm958402m2-a72 =3D "arm64"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-a7=
+2
+> +# ARCH: arm64
+> +# BOARD: bcm958402m2_a72
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "bcm958402m2_a72"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/bcm958402m2-m7.conf b/meta-zeph=
+yr-bsp/conf/machine/bcm958402m2-m7.conf
+> new file mode 100755
+> index 0000000..29fc5d5
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/bcm958402m2-m7.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: bcm958402m2-m7
+> +#@DESCRIPTION: Machine configuration for bcm958402m2-m7 , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_bcm958402m2-m7 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: bcm958402m2_m7
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "bcm958402m2_m7"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/beaglev-starlight-jh7100.conf b=
+/meta-zephyr-bsp/conf/machine/beaglev-starlight-jh7100.conf
+> new file mode 100755
+> index 0000000..69109be
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/beaglev-starlight-jh7100.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: beaglev-starlight-jh7100
+> +#@DESCRIPTION: Machine configuration for beaglev-starlight-jh7100 , buil=
+d: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_beaglev-starlight-jh7100 =3D "riscv"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: riscv
+> +# BOARD: beaglev_starlight_jh7100
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "beaglev_starlight_jh7100"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/bl5340-dvk-cpuapp-ns.conf b/met=
+a-zephyr-bsp/conf/machine/bl5340-dvk-cpuapp-ns.conf
+> new file mode 100755
+> index 0000000..13e4e75
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/bl5340-dvk-cpuapp-ns.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: bl5340-dvk-cpuapp-ns
+> +#@DESCRIPTION: Machine configuration for bl5340-dvk-cpuapp-ns , build: z=
+ephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_bl5340-dvk-cpuapp-ns =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: bl5340_dvk_cpuapp_ns
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF5340_XXAA_APPLI=
+CATION -DNRF_TRUSTZONE_NONSECURE"
+> +
+> +ZEPHYR_BOARD =3D "bl5340_dvk_cpuapp_ns"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/bl5340-dvk-cpuapp.conf b/meta-z=
+ephyr-bsp/conf/machine/bl5340-dvk-cpuapp.conf
+> new file mode 100755
+> index 0000000..d3acb11
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/bl5340-dvk-cpuapp.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: bl5340-dvk-cpuapp
+> +#@DESCRIPTION: Machine configuration for bl5340-dvk-cpuapp , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_bl5340-dvk-cpuapp =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: bl5340_dvk_cpuapp
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF5340_XXAA_APPLI=
+CATION"
+> +
+> +ZEPHYR_BOARD =3D "bl5340_dvk_cpuapp"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/bl5340-dvk-cpunet.conf b/meta-z=
+ephyr-bsp/conf/machine/bl5340-dvk-cpunet.conf
+> new file mode 100755
+> index 0000000..630b1a2
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/bl5340-dvk-cpunet.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: bl5340-dvk-cpunet
+> +#@DESCRIPTION: Machine configuration for bl5340-dvk-cpunet , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_bl5340-dvk-cpunet =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-main"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3+nodsp
+> +# ARCH: arm
+> +# BOARD: bl5340_dvk_cpunet
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF5340_XXAA_NETWO=
+RK"
+> +
+> +ZEPHYR_BOARD =3D "bl5340_dvk_cpunet"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/bl652-dvk.conf b/meta-zephyr-bs=
+p/conf/machine/bl652-dvk.conf
+> new file mode 100755
+> index 0000000..5339375
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/bl652-dvk.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: bl652-dvk
+> +#@DESCRIPTION: Machine configuration for bl652-dvk , build: zephyr-v2.7.=
+1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_bl652-dvk =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: bl652_dvk
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52832_XXAA -DNR=
+F52832_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "bl652_dvk"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/bl653-dvk.conf b/meta-zephyr-bs=
+p/conf/machine/bl653-dvk.conf
+> new file mode 100755
+> index 0000000..2e52c62
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/bl653-dvk.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: bl653-dvk
+> +#@DESCRIPTION: Machine configuration for bl653-dvk , build: zephyr-v2.7.=
+1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_bl653-dvk =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: bl653_dvk
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52833_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "bl653_dvk"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/bl654-dvk.conf b/meta-zephyr-bs=
+p/conf/machine/bl654-dvk.conf
+> new file mode 100755
+> index 0000000..c3a0c41
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/bl654-dvk.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: bl654-dvk
+> +#@DESCRIPTION: Machine configuration for bl654-dvk , build: zephyr-v2.7.=
+1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_bl654-dvk =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: bl654_dvk
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "bl654_dvk"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/bl654-sensor-board.conf b/meta-=
+zephyr-bsp/conf/machine/bl654-sensor-board.conf
+> new file mode 100755
+> index 0000000..a7272df
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/bl654-sensor-board.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: bl654-sensor-board
+> +#@DESCRIPTION: Machine configuration for bl654-sensor-board , build: zep=
+hyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_bl654-sensor-board =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: bl654_sensor_board
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "bl654_sensor_board"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/bl654-usb.conf b/meta-zephyr-bs=
+p/conf/machine/bl654-usb.conf
+> new file mode 100755
+> index 0000000..a90009f
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/bl654-usb.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: bl654-usb
+> +#@DESCRIPTION: Machine configuration for bl654-usb , build: zephyr-v2.7.=
+1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_bl654-usb =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: bl654_usb
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "bl654_usb"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/black-f407ve.conf b/meta-zephyr=
+-bsp/conf/machine/black-f407ve.conf
+> new file mode 100755
+> index 0000000..bc92e6f
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/black-f407ve.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: black-f407ve
+> +#@DESCRIPTION: Machine configuration for black-f407ve , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_black-f407ve =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: black_f407ve
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F407xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "black_f407ve"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/black-f407zg-pro.conf b/meta-ze=
+phyr-bsp/conf/machine/black-f407zg-pro.conf
+> new file mode 100755
+> index 0000000..237259e
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/black-f407zg-pro.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: black-f407zg-pro
+> +#@DESCRIPTION: Machine configuration for black-f407zg-pro , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_black-f407zg-pro =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: black_f407zg_pro
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F407xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "black_f407zg_pro"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/blackpill-f401ce.conf b/meta-ze=
+phyr-bsp/conf/machine/blackpill-f401ce.conf
+> new file mode 100755
+> index 0000000..24f2dc5
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/blackpill-f401ce.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: blackpill-f401ce
+> +#@DESCRIPTION: Machine configuration for blackpill-f401ce , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_blackpill-f401ce =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: blackpill_f401ce
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F401xE -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D25000000"
+> +
+> +ZEPHYR_BOARD =3D "blackpill_f401ce"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/blackpill-f411ce.conf b/meta-ze=
+phyr-bsp/conf/machine/blackpill-f411ce.conf
+> new file mode 100755
+> index 0000000..931f864
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/blackpill-f411ce.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: blackpill-f411ce
+> +#@DESCRIPTION: Machine configuration for blackpill-f411ce , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_blackpill-f411ce =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: blackpill_f411ce
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F411xE -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D25000000"
+> +
+> +ZEPHYR_BOARD =3D "blackpill_f411ce"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/bt510.conf b/meta-zephyr-bsp/co=
+nf/machine/bt510.conf
+> new file mode 100755
+> index 0000000..0286fa2
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/bt510.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: bt510
+> +#@DESCRIPTION: Machine configuration for bt510 , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_bt510 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: bt510
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "bt510"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/bt610.conf b/meta-zephyr-bsp/co=
+nf/machine/bt610.conf
+> new file mode 100755
+> index 0000000..1b15c2a
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/bt610.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: bt610
+> +#@DESCRIPTION: Machine configuration for bt610 , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_bt610 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: bt610
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "bt610"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/cc1352r-sensortag.conf b/meta-z=
+ephyr-bsp/conf/machine/cc1352r-sensortag.conf
+> new file mode 100755
+> index 0000000..4578414
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/cc1352r-sensortag.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: cc1352r-sensortag
+> +#@DESCRIPTION: Machine configuration for cc1352r-sensortag , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_cc1352r-sensortag =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: cc1352r_sensortag
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "cc1352r_sensortag"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/cc1352r1-launchxl.conf b/meta-z=
+ephyr-bsp/conf/machine/cc1352r1-launchxl.conf
+> new file mode 100755
+> index 0000000..cf74fc3
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/cc1352r1-launchxl.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: cc1352r1-launchxl
+> +#@DESCRIPTION: Machine configuration for cc1352r1-launchxl , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_cc1352r1-launchxl =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: cc1352r1_launchxl
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "cc1352r1_launchxl"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/cc26x2r1-launchxl.conf b/meta-z=
+ephyr-bsp/conf/machine/cc26x2r1-launchxl.conf
+> new file mode 100755
+> index 0000000..75d16fc
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/cc26x2r1-launchxl.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: cc26x2r1-launchxl
+> +#@DESCRIPTION: Machine configuration for cc26x2r1-launchxl , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_cc26x2r1-launchxl =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: cc26x2r1_launchxl
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "cc26x2r1_launchxl"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/cc3220sf-launchxl.conf b/meta-z=
+ephyr-bsp/conf/machine/cc3220sf-launchxl.conf
+> new file mode 100755
+> index 0000000..7b94be8
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/cc3220sf-launchxl.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: cc3220sf-launchxl
+> +#@DESCRIPTION: Machine configuration for cc3220sf-launchxl , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_cc3220sf-launchxl =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: cc3220sf_launchxl
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DUSE_CC3220_ROM_DRV=
+_API"
+> +
+> +ZEPHYR_BOARD =3D "cc3220sf_launchxl"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/cc3235sf-launchxl.conf b/meta-z=
+ephyr-bsp/conf/machine/cc3235sf-launchxl.conf
+> new file mode 100755
+> index 0000000..5266bce
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/cc3235sf-launchxl.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: cc3235sf-launchxl
+> +#@DESCRIPTION: Machine configuration for cc3235sf-launchxl , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_cc3235sf-launchxl =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: cc3235sf_launchxl
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DUSE_CC3220_ROM_DRV=
+_API"
+> +
+> +ZEPHYR_BOARD =3D "cc3235sf_launchxl"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/circuitdojo-feather-nrf9160-ns.=
+conf b/meta-zephyr-bsp/conf/machine/circuitdojo-feather-nrf9160-ns.conf
+> new file mode 100755
+> index 0000000..8c5ab10
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/circuitdojo-feather-nrf9160-ns.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: circuitdojo-feather-nrf9160-ns
+> +#@DESCRIPTION: Machine configuration for circuitdojo-feather-nrf9160-ns =
+, build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_circuitdojo-feather-nrf9160-ns =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: circuitdojo_feather_nrf9160_ns
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF9160_XXAA -DNRF=
+_TRUSTZONE_NONSECURE"
+> +
+> +ZEPHYR_BOARD =3D "circuitdojo_feather_nrf9160_ns"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/circuitdojo-feather-nrf9160.con=
+f b/meta-zephyr-bsp/conf/machine/circuitdojo-feather-nrf9160.conf
+> new file mode 100755
+> index 0000000..965696c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/circuitdojo-feather-nrf9160.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: circuitdojo-feather-nrf9160
+> +#@DESCRIPTION: Machine configuration for circuitdojo-feather-nrf9160 , b=
+uild: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_circuitdojo-feather-nrf9160 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: circuitdojo_feather_nrf9160
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF9160_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "circuitdojo_feather_nrf9160"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/colibri-imx7d-m4.conf b/meta-ze=
+phyr-bsp/conf/machine/colibri-imx7d-m4.conf
+> new file mode 100755
+> index 0000000..1908982
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/colibri-imx7d-m4.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: colibri-imx7d-m4
+> +#@DESCRIPTION: Machine configuration for colibri-imx7d-m4 , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_colibri-imx7d-m4 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: colibri_imx7d_m4
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "colibri_imx7d_m4"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/contextualelectronics-abc.conf =
+b/meta-zephyr-bsp/conf/machine/contextualelectronics-abc.conf
+> new file mode 100755
+> index 0000000..ada8f67
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/contextualelectronics-abc.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: contextualelectronics-abc
+> +#@DESCRIPTION: Machine configuration for contextualelectronics-abc , bui=
+ld: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_contextualelectronics-abc =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: contextualelectronics_abc
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "contextualelectronics_abc"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/cy8ckit-062-ble-m0.conf b/meta-=
+zephyr-bsp/conf/machine/cy8ckit-062-ble-m0.conf
+> new file mode 100755
+> index 0000000..4fda05d
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/cy8ckit-062-ble-m0.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: cy8ckit-062-ble-m0
+> +#@DESCRIPTION: Machine configuration for cy8ckit-062-ble-m0 , build: zep=
+hyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_cy8ckit-062-ble-m0 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: cy8ckit_062_ble_m0
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCY8C6347BZI_BLD53 =
+-D__copy_table_start__=3D0 -D__copy_table_end__=3D0 -D__bss_start__=3D0 -D_=
+_bss_end__=3D0"
+> +
+> +ZEPHYR_BOARD =3D "cy8ckit_062_ble_m0"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/cy8ckit-062-ble-m4.conf b/meta-=
+zephyr-bsp/conf/machine/cy8ckit-062-ble-m4.conf
+> new file mode 100755
+> index 0000000..a093ac1
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/cy8ckit-062-ble-m4.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: cy8ckit-062-ble-m4
+> +#@DESCRIPTION: Machine configuration for cy8ckit-062-ble-m4 , build: zep=
+hyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_cy8ckit-062-ble-m4 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: cy8ckit_062_ble_m4
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCY8C6347BZI_BLD53 =
+-D__copy_table_start__=3D0 -D__copy_table_end__=3D0 -D__bss_start__=3D0 -D_=
+_bss_end__=3D0"
+> +
+> +ZEPHYR_BOARD =3D "cy8ckit_062_ble_m4"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/cy8ckit-062-wifi-bt-m0.conf b/m=
+eta-zephyr-bsp/conf/machine/cy8ckit-062-wifi-bt-m0.conf
+> new file mode 100755
+> index 0000000..12be80a
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/cy8ckit-062-wifi-bt-m0.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: cy8ckit-062-wifi-bt-m0
+> +#@DESCRIPTION: Machine configuration for cy8ckit-062-wifi-bt-m0 , build:=
+ zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_cy8ckit-062-wifi-bt-m0 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: cy8ckit_062_wifi_bt_m0
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCY8C6247BZI_D54 -D=
+__copy_table_start__=3D0 -D__copy_table_end__=3D0 -D__bss_start__=3D0 -D__b=
+ss_end__=3D0"
+> +
+> +ZEPHYR_BOARD =3D "cy8ckit_062_wifi_bt_m0"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/cy8ckit-062-wifi-bt-m4.conf b/m=
+eta-zephyr-bsp/conf/machine/cy8ckit-062-wifi-bt-m4.conf
+> new file mode 100755
+> index 0000000..a29e2ea
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/cy8ckit-062-wifi-bt-m4.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: cy8ckit-062-wifi-bt-m4
+> +#@DESCRIPTION: Machine configuration for cy8ckit-062-wifi-bt-m4 , build:=
+ zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_cy8ckit-062-wifi-bt-m4 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: cy8ckit_062_wifi_bt_m4
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCY8C6247BZI_D54 -D=
+__copy_table_start__=3D0 -D__copy_table_end__=3D0 -D__bss_start__=3D0 -D__b=
+ss_end__=3D0"
+> +
+> +ZEPHYR_BOARD =3D "cy8ckit_062_wifi_bt_m4"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/decawave-dwm1001-dev.conf b/met=
+a-zephyr-bsp/conf/machine/decawave-dwm1001-dev.conf
+> new file mode 100755
+> index 0000000..70c4b65
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/decawave-dwm1001-dev.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: decawave-dwm1001-dev
+> +#@DESCRIPTION: Machine configuration for decawave-dwm1001-dev , build: z=
+ephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_decawave-dwm1001-dev =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: decawave_dwm1001_dev
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52832_XXAA -DNR=
+F52832_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "decawave_dwm1001_dev"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/degu-evk.conf b/meta-zephyr-bsp=
+/conf/machine/degu-evk.conf
+> new file mode 100755
+> index 0000000..35270de
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/degu-evk.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: degu-evk
+> +#@DESCRIPTION: Machine configuration for degu-evk , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_degu-evk =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: degu_evk
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "degu_evk"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/disco-l475-iot1.conf b/meta-zep=
+hyr-bsp/conf/machine/disco-l475-iot1.conf
+> new file mode 100755
+> index 0000000..e356da7
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/disco-l475-iot1.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: disco-l475-iot1
+> +#@DESCRIPTION: Machine configuration for disco-l475-iot1 , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_disco-l475-iot1 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: disco_l475_iot1
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L475xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "disco_l475_iot1"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/dragino-lsn50.conf b/meta-zephy=
+r-bsp/conf/machine/dragino-lsn50.conf
+> new file mode 100755
+> index 0000000..0554a7e
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/dragino-lsn50.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: dragino-lsn50
+> +#@DESCRIPTION: Machine configuration for dragino-lsn50 , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_dragino-lsn50 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: dragino_lsn50
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L072xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "dragino_lsn50"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/dragino-nbsn95.conf b/meta-zeph=
+yr-bsp/conf/machine/dragino-nbsn95.conf
+> new file mode 100755
+> index 0000000..d46d091
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/dragino-nbsn95.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: dragino-nbsn95
+> +#@DESCRIPTION: Machine configuration for dragino-nbsn95 , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_dragino-nbsn95 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: dragino_nbsn95
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L072xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "dragino_nbsn95"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/efm32gg-slwstk6121a.conf b/meta=
+-zephyr-bsp/conf/machine/efm32gg-slwstk6121a.conf
+> new file mode 100755
+> index 0000000..0f796c5
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/efm32gg-slwstk6121a.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: efm32gg-slwstk6121a
+> +#@DESCRIPTION: Machine configuration for efm32gg-slwstk6121a , build: ze=
+phyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_efm32gg-slwstk6121a =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: efm32gg_slwstk6121a
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DEFM32GG11B820F2048=
+GM64"
+> +
+> +ZEPHYR_BOARD =3D "efm32gg_slwstk6121a"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/efm32gg-stk3701a.conf b/meta-ze=
+phyr-bsp/conf/machine/efm32gg-stk3701a.conf
+> new file mode 100755
+> index 0000000..f6aa296
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/efm32gg-stk3701a.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: efm32gg-stk3701a
+> +#@DESCRIPTION: Machine configuration for efm32gg-stk3701a , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_efm32gg-stk3701a =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: efm32gg_stk3701a
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DEFM32GG11B820F2048=
+GL192"
+> +
+> +ZEPHYR_BOARD =3D "efm32gg_stk3701a"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/efm32hg-slstk3400a.conf b/meta-=
+zephyr-bsp/conf/machine/efm32hg-slstk3400a.conf
+> new file mode 100755
+> index 0000000..fae6607
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/efm32hg-slstk3400a.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: efm32hg-slstk3400a
+> +#@DESCRIPTION: Machine configuration for efm32hg-slstk3400a , build: zep=
+hyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_efm32hg-slstk3400a =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: efm32hg_slstk3400a
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DEFM32HG322F64"
+> +
+> +ZEPHYR_BOARD =3D "efm32hg_slstk3400a"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/efm32pg-stk3401a.conf b/meta-ze=
+phyr-bsp/conf/machine/efm32pg-stk3401a.conf
+> new file mode 100755
+> index 0000000..93f9dbe
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/efm32pg-stk3401a.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: efm32pg-stk3401a
+> +#@DESCRIPTION: Machine configuration for efm32pg-stk3401a , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_efm32pg-stk3401a =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: efm32pg_stk3401a
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DEFM32PG1B200F256GM=
+48"
+> +
+> +ZEPHYR_BOARD =3D "efm32pg_stk3401a"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/efm32pg-stk3402a-jg.conf b/meta=
+-zephyr-bsp/conf/machine/efm32pg-stk3402a-jg.conf
+> new file mode 100755
+> index 0000000..9b713e2
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/efm32pg-stk3402a-jg.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: efm32pg-stk3402a-jg
+> +#@DESCRIPTION: Machine configuration for efm32pg-stk3402a-jg , build: ze=
+phyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_efm32pg-stk3402a-jg =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm3"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3
+> +# ARCH: arm
+> +# BOARD: efm32pg_stk3402a_jg
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DEFM32JG12B500F1024=
+GL125"
+> +
+> +ZEPHYR_BOARD =3D "efm32pg_stk3402a_jg"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/efm32pg-stk3402a.conf b/meta-ze=
+phyr-bsp/conf/machine/efm32pg-stk3402a.conf
+> new file mode 100755
+> index 0000000..62ea0ea
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/efm32pg-stk3402a.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: efm32pg-stk3402a
+> +#@DESCRIPTION: Machine configuration for efm32pg-stk3402a , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_efm32pg-stk3402a =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: efm32pg_stk3402a
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DEFM32PG12B500F1024=
+GL125"
+> +
+> +ZEPHYR_BOARD =3D "efm32pg_stk3402a"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/efm32wg-stk3800.conf b/meta-zep=
+hyr-bsp/conf/machine/efm32wg-stk3800.conf
+> new file mode 100755
+> index 0000000..6f2e73a
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/efm32wg-stk3800.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: efm32wg-stk3800
+> +#@DESCRIPTION: Machine configuration for efm32wg-stk3800 , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_efm32wg-stk3800 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: efm32wg_stk3800
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DEFM32WG990F256"
+> +
+> +ZEPHYR_BOARD =3D "efm32wg_stk3800"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/efr32-radio-brd4104a.conf b/met=
+a-zephyr-bsp/conf/machine/efr32-radio-brd4104a.conf
+> new file mode 100755
+> index 0000000..05156b1
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/efr32-radio-brd4104a.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: efr32-radio-brd4104a
+> +#@DESCRIPTION: Machine configuration for efr32-radio-brd4104a , build: z=
+ephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_efr32-radio-brd4104a =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: efr32_radio_brd4104a
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DEFR32BG13P632F512G=
+M48"
+> +
+> +ZEPHYR_BOARD =3D "efr32_radio_brd4104a"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/efr32-radio-brd4180a.conf b/met=
+a-zephyr-bsp/conf/machine/efr32-radio-brd4180a.conf
+> new file mode 100755
+> index 0000000..233fd9d
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/efr32-radio-brd4180a.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: efr32-radio-brd4180a
+> +#@DESCRIPTION: Machine configuration for efr32-radio-brd4180a , build: z=
+ephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_efr32-radio-brd4180a =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: efr32_radio_brd4180a
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DEFR32MG21A020F1024=
+IM32"
+> +
+> +ZEPHYR_BOARD =3D "efr32_radio_brd4180a"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/efr32-radio-brd4250b.conf b/met=
+a-zephyr-bsp/conf/machine/efr32-radio-brd4250b.conf
+> new file mode 100755
+> index 0000000..d09b3c6
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/efr32-radio-brd4250b.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: efr32-radio-brd4250b
+> +#@DESCRIPTION: Machine configuration for efr32-radio-brd4250b , build: z=
+ephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_efr32-radio-brd4250b =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: efr32_radio_brd4250b
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DEFR32FG1P133F256GM=
+48"
+> +
+> +ZEPHYR_BOARD =3D "efr32_radio_brd4250b"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/efr32-radio-brd4255a.conf b/met=
+a-zephyr-bsp/conf/machine/efr32-radio-brd4255a.conf
+> new file mode 100755
+> index 0000000..ff3acc3
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/efr32-radio-brd4255a.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: efr32-radio-brd4255a
+> +#@DESCRIPTION: Machine configuration for efr32-radio-brd4255a , build: z=
+ephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_efr32-radio-brd4255a =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: efr32_radio_brd4255a
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DEFR32FG13P233F512G=
+M48"
+> +
+> +ZEPHYR_BOARD =3D "efr32_radio_brd4255a"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/efr32mg-sltb004a.conf b/meta-ze=
+phyr-bsp/conf/machine/efr32mg-sltb004a.conf
+> new file mode 100755
+> index 0000000..a791053
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/efr32mg-sltb004a.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: efr32mg-sltb004a
+> +#@DESCRIPTION: Machine configuration for efr32mg-sltb004a , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_efr32mg-sltb004a =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: efr32mg_sltb004a
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DEFR32MG12P332F1024=
+GL125"
+> +
+> +ZEPHYR_BOARD =3D "efr32mg_sltb004a"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/ehl-crb-sbl.conf b/meta-zephyr-=
+bsp/conf/machine/ehl-crb-sbl.conf
+> new file mode 100755
+> index 0000000..39c90fd
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/ehl-crb-sbl.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: ehl-crb-sbl
+> +#@DESCRIPTION: Machine configuration for ehl-crb-sbl , build: zephyr-v2.=
+7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_ehl-crb-sbl =3D "x86"
+> +
+> +DEFAULTUNE ?=3D "core2-64"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: x86
+> +# BOARD: ehl_crb_sbl
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "ehl_crb_sbl"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/ehl-crb.conf b/meta-zephyr-bsp/=
+conf/machine/ehl-crb.conf
+> new file mode 100755
+> index 0000000..c4a8f58
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/ehl-crb.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: ehl-crb
+> +#@DESCRIPTION: Machine configuration for ehl-crb , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_ehl-crb =3D "x86"
+> +
+> +DEFAULTUNE ?=3D "core2-64"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: x86
+> +# BOARD: ehl_crb
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "ehl_crb"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/em-starterkit-em11d.conf b/meta=
+-zephyr-bsp/conf/machine/em-starterkit-em11d.conf
+> new file mode 100755
+> index 0000000..2f2f12c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/em-starterkit-em11d.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: em-starterkit-em11d
+> +#@DESCRIPTION: Machine configuration for em-starterkit-em11d , build: ze=
+phyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_em-starterkit-em11d =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: em4_fpuda
+> +# ARCH: arc
+> +# BOARD: em_starterkit_em11d
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "em_starterkit_em11d"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/em-starterkit-em7d-v22.conf b/m=
+eta-zephyr-bsp/conf/machine/em-starterkit-em7d-v22.conf
+> new file mode 100755
+> index 0000000..e8684b1
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/em-starterkit-em7d-v22.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: em-starterkit-em7d-v22
+> +#@DESCRIPTION: Machine configuration for em-starterkit-em7d-v22 , build:=
+ zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_em-starterkit-em7d-v22 =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: em4_dmips
+> +# ARCH: arc
+> +# BOARD: em_starterkit_em7d_v22
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "em_starterkit_em7d_v22"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/em-starterkit-em7d.conf b/meta-=
+zephyr-bsp/conf/machine/em-starterkit-em7d.conf
+> new file mode 100755
+> index 0000000..79e878d
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/em-starterkit-em7d.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: em-starterkit-em7d
+> +#@DESCRIPTION: Machine configuration for em-starterkit-em7d , build: zep=
+hyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_em-starterkit-em7d =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: em4_dmips
+> +# ARCH: arc
+> +# BOARD: em_starterkit_em7d
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "em_starterkit_em7d"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/em-starterkit.conf b/meta-zephy=
+r-bsp/conf/machine/em-starterkit.conf
+> new file mode 100755
+> index 0000000..b309b76
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/em-starterkit.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: em-starterkit
+> +#@DESCRIPTION: Machine configuration for em-starterkit , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_em-starterkit =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: em4_fpus
+> +# ARCH: arc
+> +# BOARD: em_starterkit
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "em_starterkit"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/emsdp-em4.conf b/meta-zephyr-bs=
+p/conf/machine/emsdp-em4.conf
+> new file mode 100755
+> index 0000000..f27e9d5
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/emsdp-em4.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: emsdp-em4
+> +#@DESCRIPTION: Machine configuration for emsdp-em4 , build: zephyr-v2.7.=
+1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_emsdp-em4 =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: arcem
+> +# ARCH: arc
+> +# BOARD: emsdp_em4
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "emsdp_em4"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/emsdp-em5d.conf b/meta-zephyr-b=
+sp/conf/machine/emsdp-em5d.conf
+> new file mode 100755
+> index 0000000..1838da8
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/emsdp-em5d.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: emsdp-em5d
+> +#@DESCRIPTION: Machine configuration for emsdp-em5d , build: zephyr-v2.7=
+.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_emsdp-em5d =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: em4_fpuda
+> +# ARCH: arc
+> +# BOARD: emsdp_em5d
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "emsdp_em5d"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/emsdp-em6.conf b/meta-zephyr-bs=
+p/conf/machine/emsdp-em6.conf
+> new file mode 100755
+> index 0000000..4e3a14b
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/emsdp-em6.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: emsdp-em6
+> +#@DESCRIPTION: Machine configuration for emsdp-em6 , build: zephyr-v2.7.=
+1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_emsdp-em6 =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: arcem
+> +# ARCH: arc
+> +# BOARD: emsdp_em6
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "emsdp_em6"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/emsdp-em7d-esp.conf b/meta-zeph=
+yr-bsp/conf/machine/emsdp-em7d-esp.conf
+> new file mode 100755
+> index 0000000..1f9302f
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/emsdp-em7d-esp.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: emsdp-em7d-esp
+> +#@DESCRIPTION: Machine configuration for emsdp-em7d-esp , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_emsdp-em7d-esp =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: em4_fpuda
+> +# ARCH: arc
+> +# BOARD: emsdp_em7d_esp
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "emsdp_em7d_esp"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/emsdp-em7d.conf b/meta-zephyr-b=
+sp/conf/machine/emsdp-em7d.conf
+> new file mode 100755
+> index 0000000..8307615
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/emsdp-em7d.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: emsdp-em7d
+> +#@DESCRIPTION: Machine configuration for emsdp-em7d , build: zephyr-v2.7=
+.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_emsdp-em7d =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: em4_fpuda
+> +# ARCH: arc
+> +# BOARD: emsdp_em7d
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "emsdp_em7d"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/emsdp-em9d.conf b/meta-zephyr-b=
+sp/conf/machine/emsdp-em9d.conf
+> new file mode 100755
+> index 0000000..5d39947
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/emsdp-em9d.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: emsdp-em9d
+> +#@DESCRIPTION: Machine configuration for emsdp-em9d , build: zephyr-v2.7=
+.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_emsdp-em9d =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: em4_fpuda
+> +# ARCH: arc
+> +# BOARD: emsdp_em9d
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "emsdp_em9d"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/emsdp.conf b/meta-zephyr-bsp/co=
+nf/machine/emsdp.conf
+> new file mode 100755
+> index 0000000..165e71c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/emsdp.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: emsdp
+> +#@DESCRIPTION: Machine configuration for emsdp , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_emsdp =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: em4_fpuda
+> +# ARCH: arc
+> +# BOARD: emsdp
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "emsdp"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/esp32c3-devkitm.conf b/meta-zep=
+hyr-bsp/conf/machine/esp32c3-devkitm.conf
+> new file mode 100755
+> index 0000000..080e136
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/esp32c3-devkitm.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: esp32c3-devkitm
+> +#@DESCRIPTION: Machine configuration for esp32c3-devkitm , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_esp32c3-devkitm =3D "riscv"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: riscv
+> +# BOARD: esp32c3_devkitm
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__ets__ -DESP_PLATFORM -DESPRESSIF_U=
+SE"
+> +
+> +ZEPHYR_BOARD =3D "esp32c3_devkitm"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/faze.conf b/meta-zephyr-bsp/con=
+f/machine/faze.conf
+> new file mode 100755
+> index 0000000..ebc5f25
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/faze.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: faze
+> +#@DESCRIPTION: Machine configuration for faze , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_faze =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: faze
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "faze"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/frdm-k22f.conf b/meta-zephyr-bs=
+p/conf/machine/frdm-k22f.conf
+> new file mode 100755
+> index 0000000..232196c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/frdm-k22f.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: frdm-k22f
+> +#@DESCRIPTION: Machine configuration for frdm-k22f , build: zephyr-v2.7.=
+1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_frdm-k22f =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: frdm_k22f
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MK22FN512VLH12=
+ -DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "frdm_k22f"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/frdm-k64f.conf b/meta-zephyr-bs=
+p/conf/machine/frdm-k64f.conf
+> new file mode 100755
+> index 0000000..057cf52
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/frdm-k64f.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: frdm-k64f
+> +#@DESCRIPTION: Machine configuration for frdm-k64f , build: zephyr-v2.7.=
+1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_frdm-k64f =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: frdm_k64f
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MK64FN1M0VLL12=
+ -DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "frdm_k64f"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/frdm-k82f.conf b/meta-zephyr-bs=
+p/conf/machine/frdm-k82f.conf
+> new file mode 100755
+> index 0000000..e16a751
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/frdm-k82f.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: frdm-k82f
+> +#@DESCRIPTION: Machine configuration for frdm-k82f , build: zephyr-v2.7.=
+1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_frdm-k82f =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: frdm_k82f
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MK82FN256VLL15=
+ -DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "frdm_k82f"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/frdm-kl25z.conf b/meta-zephyr-b=
+sp/conf/machine/frdm-kl25z.conf
+> new file mode 100755
+> index 0000000..eeb01d7
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/frdm-kl25z.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: frdm-kl25z
+> +#@DESCRIPTION: Machine configuration for frdm-kl25z , build: zephyr-v2.7=
+.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_frdm-kl25z =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: frdm_kl25z
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MKL25Z128VLK4 =
+-DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "frdm_kl25z"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/frdm-kw41z.conf b/meta-zephyr-b=
+sp/conf/machine/frdm-kw41z.conf
+> new file mode 100755
+> index 0000000..4ec7e0f
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/frdm-kw41z.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: frdm-kw41z
+> +#@DESCRIPTION: Machine configuration for frdm-kw41z , build: zephyr-v2.7=
+.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_frdm-kw41z =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: frdm_kw41z
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MKW41Z512VHT4 =
+-DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "frdm_kw41z"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/fvp-base-revc-2xaemv8a.conf b/m=
+eta-zephyr-bsp/conf/machine/fvp-base-revc-2xaemv8a.conf
+> new file mode 100755
+> index 0000000..a607932
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/fvp-base-revc-2xaemv8a.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: fvp-base-revc-2xaemv8a
+> +#@DESCRIPTION: Machine configuration for fvp-base-revc-2xaemv8a , build:=
+ zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_fvp-base-revc-2xaemv8a =3D "arm64"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-a5=
+3
+> +# ARCH: arm64
+> +# BOARD: fvp_base_revc_2xaemv8a
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "fvp_base_revc_2xaemv8a"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/fvp-baser-aemv8r-smp.conf b/met=
+a-zephyr-bsp/conf/machine/fvp-baser-aemv8r-smp.conf
+> new file mode 100755
+> index 0000000..6edf153
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/fvp-baser-aemv8r-smp.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: fvp-baser-aemv8r-smp
+> +#@DESCRIPTION: Machine configuration for fvp-baser-aemv8r-smp , build: z=
+ephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_fvp-baser-aemv8r-smp =3D "arm64"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: arm64
+> +# BOARD: fvp_baser_aemv8r_smp
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "fvp_baser_aemv8r_smp"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/fvp-baser-aemv8r.conf b/meta-ze=
+phyr-bsp/conf/machine/fvp-baser-aemv8r.conf
+> new file mode 100755
+> index 0000000..23fb9d6
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/fvp-baser-aemv8r.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: fvp-baser-aemv8r
+> +#@DESCRIPTION: Machine configuration for fvp-baser-aemv8r , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_fvp-baser-aemv8r =3D "arm64"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: arm64
+> +# BOARD: fvp_baser_aemv8r
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "fvp_baser_aemv8r"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/google-kukui.conf b/meta-zephyr=
+-bsp/conf/machine/google-kukui.conf
+> new file mode 100755
+> index 0000000..74acbe9
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/google-kukui.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: google-kukui
+> +#@DESCRIPTION: Machine configuration for google-kukui , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_google-kukui =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0
+> +# ARCH: arm
+> +# BOARD: google_kukui
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F098xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "google_kukui"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/gr716a-mini.conf b/meta-zephyr-=
+bsp/conf/machine/gr716a-mini.conf
+> new file mode 100755
+> index 0000000..1f5538d
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/gr716a-mini.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: gr716a-mini
+> +#@DESCRIPTION: Machine configuration for gr716a-mini , build: zephyr-v2.=
+7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_gr716a-mini =3D "sparc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: sparc
+> +# BOARD: gr716a_mini
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "gr716a_mini"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/hexiwear-k64.conf b/meta-zephyr=
+-bsp/conf/machine/hexiwear-k64.conf
+> new file mode 100755
+> index 0000000..f6f31c5
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/hexiwear-k64.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: hexiwear-k64
+> +#@DESCRIPTION: Machine configuration for hexiwear-k64 , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_hexiwear-k64 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: hexiwear_k64
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MK64FN1M0VDC12=
+ -DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "hexiwear_k64"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/hexiwear-kw40z.conf b/meta-zeph=
+yr-bsp/conf/machine/hexiwear-kw40z.conf
+> new file mode 100755
+> index 0000000..54aaff2
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/hexiwear-kw40z.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: hexiwear-kw40z
+> +#@DESCRIPTION: Machine configuration for hexiwear-kw40z , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_hexiwear-kw40z =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: hexiwear_kw40z
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MKW40Z160VHT4 =
+-DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "hexiwear_kw40z"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/hifive-unleashed.conf b/meta-ze=
+phyr-bsp/conf/machine/hifive-unleashed.conf
+> new file mode 100755
+> index 0000000..dafbf3d
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/hifive-unleashed.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: hifive-unleashed
+> +#@DESCRIPTION: Machine configuration for hifive-unleashed , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_hifive-unleashed =3D "riscv"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: riscv
+> +# BOARD: hifive_unleashed
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "hifive_unleashed"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/hifive-unmatched.conf b/meta-ze=
+phyr-bsp/conf/machine/hifive-unmatched.conf
+> new file mode 100755
+> index 0000000..0cead26
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/hifive-unmatched.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: hifive-unmatched
+> +#@DESCRIPTION: Machine configuration for hifive-unmatched , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_hifive-unmatched =3D "riscv"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: riscv
+> +# BOARD: hifive_unmatched
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "hifive_unmatched"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/hifive1-revb.conf b/meta-zephyr=
+-bsp/conf/machine/hifive1-revb.conf
+> new file mode 100755
+> index 0000000..e0b1a35
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/hifive1-revb.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: hifive1-revb
+> +#@DESCRIPTION: Machine configuration for hifive1-revb , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_hifive1-revb =3D "riscv"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: riscv
+> +# BOARD: hifive1_revb
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "hifive1_revb"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/hifive1.conf b/meta-zephyr-bsp/=
+conf/machine/hifive1.conf
+> new file mode 100755
+> index 0000000..2e47deb
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/hifive1.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: hifive1
+> +#@DESCRIPTION: Machine configuration for hifive1 , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_hifive1 =3D "riscv"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: riscv
+> +# BOARD: hifive1
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "hifive1"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/holyiot-yj16019.conf b/meta-zep=
+hyr-bsp/conf/machine/holyiot-yj16019.conf
+> new file mode 100755
+> index 0000000..bab70f6
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/holyiot-yj16019.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: holyiot-yj16019
+> +#@DESCRIPTION: Machine configuration for holyiot-yj16019 , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_holyiot-yj16019 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: holyiot_yj16019
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52832_XXAA -DNR=
+F52832_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "holyiot_yj16019"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/hsdk-2cores.conf b/meta-zephyr-=
+bsp/conf/machine/hsdk-2cores.conf
+> new file mode 100755
+> index 0000000..da504e9
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/hsdk-2cores.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: hsdk-2cores
+> +#@DESCRIPTION: Machine configuration for hsdk-2cores , build: zephyr-v2.=
+7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_hsdk-2cores =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: archs
+> +# ARCH: arc
+> +# BOARD: hsdk_2cores
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "hsdk_2cores"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/hsdk.conf b/meta-zephyr-bsp/con=
+f/machine/hsdk.conf
+> new file mode 100755
+> index 0000000..9a6280f
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/hsdk.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: hsdk
+> +#@DESCRIPTION: Machine configuration for hsdk , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_hsdk =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: archs
+> +# ARCH: arc
+> +# BOARD: hsdk
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "hsdk"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/intel-adsp-cavs15.conf b/meta-z=
+ephyr-bsp/conf/machine/intel-adsp-cavs15.conf
+> new file mode 100755
+> index 0000000..6d7e181
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/intel-adsp-cavs15.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: intel-adsp-cavs15
+> +#@DESCRIPTION: Machine configuration for intel-adsp-cavs15 , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_intel-adsp-cavs15 =3D "xtensa"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: xtensa
+> +# BOARD: intel_adsp_cavs15
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "intel_adsp_cavs15"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/intel-adsp-cavs18.conf b/meta-z=
+ephyr-bsp/conf/machine/intel-adsp-cavs18.conf
+> new file mode 100755
+> index 0000000..8dcc0f5
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/intel-adsp-cavs18.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: intel-adsp-cavs18
+> +#@DESCRIPTION: Machine configuration for intel-adsp-cavs18 , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_intel-adsp-cavs18 =3D "xtensa"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: xtensa
+> +# BOARD: intel_adsp_cavs18
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "intel_adsp_cavs18"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/intel-adsp-cavs20.conf b/meta-z=
+ephyr-bsp/conf/machine/intel-adsp-cavs20.conf
+> new file mode 100755
+> index 0000000..0d1d430
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/intel-adsp-cavs20.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: intel-adsp-cavs20
+> +#@DESCRIPTION: Machine configuration for intel-adsp-cavs20 , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_intel-adsp-cavs20 =3D "xtensa"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: xtensa
+> +# BOARD: intel_adsp_cavs20
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "intel_adsp_cavs20"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/intel-adsp-cavs25.conf b/meta-z=
+ephyr-bsp/conf/machine/intel-adsp-cavs25.conf
+> new file mode 100755
+> index 0000000..86a4a4f
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/intel-adsp-cavs25.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: intel-adsp-cavs25
+> +#@DESCRIPTION: Machine configuration for intel-adsp-cavs25 , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_intel-adsp-cavs25 =3D "xtensa"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: xtensa
+> +# BOARD: intel_adsp_cavs25
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "intel_adsp_cavs25"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/intel-s1000-crb.conf b/meta-zep=
+hyr-bsp/conf/machine/intel-s1000-crb.conf
+> new file mode 100755
+> index 0000000..5e59c59
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/intel-s1000-crb.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: intel-s1000-crb
+> +#@DESCRIPTION: Machine configuration for intel-s1000-crb , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_intel-s1000-crb =3D "xtensa"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: xtensa
+> +# BOARD: intel_s1000_crb
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "intel_s1000_crb"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/iotdk.conf b/meta-zephyr-bsp/co=
+nf/machine/iotdk.conf
+> new file mode 100755
+> index 0000000..1cb547e
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/iotdk.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: iotdk
+> +#@DESCRIPTION: Machine configuration for iotdk , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_iotdk =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: em4_fpus
+> +# ARCH: arc
+> +# BOARD: iotdk
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "iotdk"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/ip-k66f.conf b/meta-zephyr-bsp/=
+conf/machine/ip-k66f.conf
+> new file mode 100755
+> index 0000000..a6d8232
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/ip-k66f.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: ip-k66f
+> +#@DESCRIPTION: Machine configuration for ip-k66f , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_ip-k66f =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: ip_k66f
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MK66FN2M0VMD18=
+ -DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "ip_k66f"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/it8xxx2-evb.conf b/meta-zephyr-=
+bsp/conf/machine/it8xxx2-evb.conf
+> new file mode 100755
+> index 0000000..f9338b9
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/it8xxx2-evb.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: it8xxx2-evb
+> +#@DESCRIPTION: Machine configuration for it8xxx2-evb , build: zephyr-v2.=
+7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_it8xxx2-evb =3D "riscv"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: riscv
+> +# BOARD: it8xxx2_evb
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "it8xxx2_evb"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/legend.conf b/meta-zephyr-bsp/c=
+onf/machine/legend.conf
+> new file mode 100755
+> index 0000000..261ce3f
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/legend.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: legend
+> +#@DESCRIPTION: Machine configuration for legend , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_legend =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0
+> +# ARCH: arm
+> +# BOARD: legend
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F070xB -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "legend"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/litex-vexriscv.conf b/meta-zeph=
+yr-bsp/conf/machine/litex-vexriscv.conf
+> new file mode 100755
+> index 0000000..dc71e4f
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/litex-vexriscv.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: litex-vexriscv
+> +#@DESCRIPTION: Machine configuration for litex-vexriscv , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_litex-vexriscv =3D "riscv"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: riscv
+> +# BOARD: litex_vexriscv
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "litex_vexriscv"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/lora-e5-dev-board.conf b/meta-z=
+ephyr-bsp/conf/machine/lora-e5-dev-board.conf
+> new file mode 100755
+> index 0000000..75f266c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/lora-e5-dev-board.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: lora-e5-dev-board
+> +#@DESCRIPTION: Machine configuration for lora-e5-dev-board , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_lora-e5-dev-board =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: lora_e5_dev_board
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32WLE5xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "lora_e5_dev_board"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/lpcxpresso11u68.conf b/meta-zep=
+hyr-bsp/conf/machine/lpcxpresso11u68.conf
+> new file mode 100755
+> index 0000000..d0397cc
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/lpcxpresso11u68.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: lpcxpresso11u68
+> +#@DESCRIPTION: Machine configuration for lpcxpresso11u68 , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_lpcxpresso11u68 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: lpcxpresso11u68
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "lpcxpresso11u68"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/lpcxpresso54114-m0.conf b/meta-=
+zephyr-bsp/conf/machine/lpcxpresso54114-m0.conf
+> new file mode 100755
+> index 0000000..6353f76
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/lpcxpresso54114-m0.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: lpcxpresso54114-m0
+> +#@DESCRIPTION: Machine configuration for lpcxpresso54114-m0 , build: zep=
+hyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_lpcxpresso54114-m0 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: lpcxpresso54114_m0
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_LPC54114J256BD=
+64_cm0plus -DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024"
+> +
+> +ZEPHYR_BOARD =3D "lpcxpresso54114_m0"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/lpcxpresso54114-m4.conf b/meta-=
+zephyr-bsp/conf/machine/lpcxpresso54114-m4.conf
+> new file mode 100755
+> index 0000000..7640d95
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/lpcxpresso54114-m4.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: lpcxpresso54114-m4
+> +#@DESCRIPTION: Machine configuration for lpcxpresso54114-m4 , build: zep=
+hyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_lpcxpresso54114-m4 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: lpcxpresso54114_m4
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_LPC54114J256BD=
+64_cm4 -DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024"
+> +
+> +ZEPHYR_BOARD =3D "lpcxpresso54114_m4"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/lpcxpresso55s16.conf b/meta-zep=
+hyr-bsp/conf/machine/lpcxpresso55s16.conf
+> new file mode 100755
+> index 0000000..482c144
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/lpcxpresso55s16.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: lpcxpresso55s16
+> +#@DESCRIPTION: Machine configuration for lpcxpresso55s16 , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_lpcxpresso55s16 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: lpcxpresso55s16
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_LPC55S16JBD100=
+ -DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024"
+> +
+> +ZEPHYR_BOARD =3D "lpcxpresso55s16"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/lpcxpresso55s28.conf b/meta-zep=
+hyr-bsp/conf/machine/lpcxpresso55s28.conf
+> new file mode 100755
+> index 0000000..05419e0
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/lpcxpresso55s28.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: lpcxpresso55s28
+> +#@DESCRIPTION: Machine configuration for lpcxpresso55s28 , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_lpcxpresso55s28 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: lpcxpresso55s28
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_LPC55S28JBD100=
+ -DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024"
+> +
+> +ZEPHYR_BOARD =3D "lpcxpresso55s28"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/lpcxpresso55s69-cpu0.conf b/met=
+a-zephyr-bsp/conf/machine/lpcxpresso55s69-cpu0.conf
+> new file mode 100755
+> index 0000000..719125a
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/lpcxpresso55s69-cpu0.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: lpcxpresso55s69-cpu0
+> +#@DESCRIPTION: Machine configuration for lpcxpresso55s69-cpu0 , build: z=
+ephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_lpcxpresso55s69-cpu0 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: lpcxpresso55s69_cpu0
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_LPC55S69JBD100=
+_cm33_core0 -DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024"
+> +
+> +ZEPHYR_BOARD =3D "lpcxpresso55s69_cpu0"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/lpcxpresso55s69-cpu1.conf b/met=
+a-zephyr-bsp/conf/machine/lpcxpresso55s69-cpu1.conf
+> new file mode 100755
+> index 0000000..ac29fd0
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/lpcxpresso55s69-cpu1.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: lpcxpresso55s69-cpu1
+> +#@DESCRIPTION: Machine configuration for lpcxpresso55s69-cpu1 , build: z=
+ephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_lpcxpresso55s69-cpu1 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-main"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3+nodsp
+> +# ARCH: arm
+> +# BOARD: lpcxpresso55s69_cpu1
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_LPC55S69JBD100=
+_cm33_core1 -DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024"
+> +
+> +ZEPHYR_BOARD =3D "lpcxpresso55s69_cpu1"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/lpcxpresso55s69-ns.conf b/meta-=
+zephyr-bsp/conf/machine/lpcxpresso55s69-ns.conf
+> new file mode 100755
+> index 0000000..1fe805d
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/lpcxpresso55s69-ns.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: lpcxpresso55s69-ns
+> +#@DESCRIPTION: Machine configuration for lpcxpresso55s69-ns , build: zep=
+hyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_lpcxpresso55s69-ns =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: lpcxpresso55s69_ns
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_LPC55S69JBD100=
+_cm33_core0 -DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024"
+> +
+> +ZEPHYR_BOARD =3D "lpcxpresso55s69_ns"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/m2gl025-miv.conf b/meta-zephyr-=
+bsp/conf/machine/m2gl025-miv.conf
+> new file mode 100755
+> index 0000000..73f4a90
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/m2gl025-miv.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: m2gl025-miv
+> +#@DESCRIPTION: Machine configuration for m2gl025-miv , build: zephyr-v2.=
+7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_m2gl025-miv =3D "riscv"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: riscv
+> +# BOARD: m2gl025_miv
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "m2gl025_miv"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mec1501modular-assy6885.conf b/=
+meta-zephyr-bsp/conf/machine/mec1501modular-assy6885.conf
+> new file mode 100755
+> index 0000000..0191138
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mec1501modular-assy6885.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mec1501modular-assy6885
+> +#@DESCRIPTION: Machine configuration for mec1501modular-assy6885 , build=
+: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mec1501modular-assy6885 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: mec1501modular_assy6885
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "mec1501modular_assy6885"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mec15xxevb-assy6853.conf b/meta=
+-zephyr-bsp/conf/machine/mec15xxevb-assy6853.conf
+> new file mode 100755
+> index 0000000..aae48bf
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mec15xxevb-assy6853.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mec15xxevb-assy6853
+> +#@DESCRIPTION: Machine configuration for mec15xxevb-assy6853 , build: ze=
+phyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mec15xxevb-assy6853 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: mec15xxevb_assy6853
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "mec15xxevb_assy6853"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mec172xevb-assy6906.conf b/meta=
+-zephyr-bsp/conf/machine/mec172xevb-assy6906.conf
+> new file mode 100755
+> index 0000000..04f5b5e
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mec172xevb-assy6906.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mec172xevb-assy6906
+> +#@DESCRIPTION: Machine configuration for mec172xevb-assy6906 , build: ze=
+phyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mec172xevb-assy6906 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: mec172xevb_assy6906
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "mec172xevb_assy6906"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mec2016evb-assy6797.conf b/meta=
+-zephyr-bsp/conf/machine/mec2016evb-assy6797.conf
+> new file mode 100755
+> index 0000000..03f3b9c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mec2016evb-assy6797.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mec2016evb-assy6797
+> +#@DESCRIPTION: Machine configuration for mec2016evb-assy6797 , build: ze=
+phyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mec2016evb-assy6797 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: mec2016evb_assy6797
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "mec2016evb_assy6797"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mercury-xu.conf b/meta-zephyr-b=
+sp/conf/machine/mercury-xu.conf
+> new file mode 100755
+> index 0000000..72dd27d
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mercury-xu.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mercury-xu
+> +#@DESCRIPTION: Machine configuration for mercury-xu , build: zephyr-v2.7=
+.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mercury-xu =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexr5"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-r5
+> +# ARCH: arm
+> +# BOARD: mercury_xu
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "mercury_xu"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mikroe-clicker-2.conf b/meta-ze=
+phyr-bsp/conf/machine/mikroe-clicker-2.conf
+> new file mode 100755
+> index 0000000..35347e2
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mikroe-clicker-2.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mikroe-clicker-2
+> +#@DESCRIPTION: Machine configuration for mikroe-clicker-2 , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mikroe-clicker-2 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: mikroe_clicker_2
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F407xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D25000000"
+> +
+> +ZEPHYR_BOARD =3D "mikroe_clicker_2"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mikroe-mini-m4-for-stm32.conf b=
+/meta-zephyr-bsp/conf/machine/mikroe-mini-m4-for-stm32.conf
+> new file mode 100755
+> index 0000000..3553787
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mikroe-mini-m4-for-stm32.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mikroe-mini-m4-for-stm32
+> +#@DESCRIPTION: Machine configuration for mikroe-mini-m4-for-stm32 , buil=
+d: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mikroe-mini-m4-for-stm32 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: mikroe_mini_m4_for_stm32
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F415xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D16000000"
+> +
+> +ZEPHYR_BOARD =3D "mikroe_mini_m4_for_stm32"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mimx8mm-evk.conf b/meta-zephyr-=
+bsp/conf/machine/mimx8mm-evk.conf
+> new file mode 100755
+> index 0000000..7d1bad8
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mimx8mm-evk.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mimx8mm-evk
+> +#@DESCRIPTION: Machine configuration for mimx8mm-evk , build: zephyr-v2.=
+7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mimx8mm-evk =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: mimx8mm_evk
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MIMX8MM6DVTLZ =
+-DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024"
+> +
+> +ZEPHYR_BOARD =3D "mimx8mm_evk"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mimxrt1010-evk.conf b/meta-zeph=
+yr-bsp/conf/machine/mimxrt1010-evk.conf
+> new file mode 100755
+> index 0000000..3aca568
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mimxrt1010-evk.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mimxrt1010-evk
+> +#@DESCRIPTION: Machine configuration for mimxrt1010-evk , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mimxrt1010-evk =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: mimxrt1010_evk
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MIMXRT1011DAE5=
+A -DXIP_BOOT_HEADER_ENABLE=3D1 -DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024 =
+-DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "mimxrt1010_evk"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mimxrt1015-evk.conf b/meta-zeph=
+yr-bsp/conf/machine/mimxrt1015-evk.conf
+> new file mode 100755
+> index 0000000..af4ab6c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mimxrt1015-evk.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mimxrt1015-evk
+> +#@DESCRIPTION: Machine configuration for mimxrt1015-evk , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mimxrt1015-evk =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: mimxrt1015_evk
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MIMXRT1015DAF5=
+A -DXIP_BOOT_HEADER_ENABLE=3D1 -DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024 =
+-DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "mimxrt1015_evk"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mimxrt1020-evk.conf b/meta-zeph=
+yr-bsp/conf/machine/mimxrt1020-evk.conf
+> new file mode 100755
+> index 0000000..bc66f47
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mimxrt1020-evk.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mimxrt1020-evk
+> +#@DESCRIPTION: Machine configuration for mimxrt1020-evk , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mimxrt1020-evk =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: mimxrt1020_evk
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MIMXRT1021DAG5=
+A -DXIP_BOOT_HEADER_ENABLE=3D1 -DXIP_BOOT_HEADER_DCD_ENABLE=3D1 -DBOARD_FLA=
+SH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "mimxrt1020_evk"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mimxrt1024-evk.conf b/meta-zeph=
+yr-bsp/conf/machine/mimxrt1024-evk.conf
+> new file mode 100755
+> index 0000000..79fdd67
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mimxrt1024-evk.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mimxrt1024-evk
+> +#@DESCRIPTION: Machine configuration for mimxrt1024-evk , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mimxrt1024-evk =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: mimxrt1024_evk
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MIMXRT1024DAG5=
+A -DXIP_BOOT_HEADER_ENABLE=3D1 -DXIP_BOOT_HEADER_DCD_ENABLE=3D1 -DBOARD_FLA=
+SH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "mimxrt1024_evk"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mimxrt1050-evk-qspi.conf b/meta=
+-zephyr-bsp/conf/machine/mimxrt1050-evk-qspi.conf
+> new file mode 100755
+> index 0000000..736c7c2
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mimxrt1050-evk-qspi.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mimxrt1050-evk-qspi
+> +#@DESCRIPTION: Machine configuration for mimxrt1050-evk-qspi , build: ze=
+phyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mimxrt1050-evk-qspi =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: mimxrt1050_evk_qspi
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MIMXRT1052DVL6=
+B -DXIP_BOOT_HEADER_ENABLE=3D1 -DXIP_BOOT_HEADER_DCD_ENABLE=3D1 -DBOARD_FLA=
+SH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "mimxrt1050_evk_qspi"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mimxrt1050-evk.conf b/meta-zeph=
+yr-bsp/conf/machine/mimxrt1050-evk.conf
+> new file mode 100755
+> index 0000000..43e8e53
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mimxrt1050-evk.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mimxrt1050-evk
+> +#@DESCRIPTION: Machine configuration for mimxrt1050-evk , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mimxrt1050-evk =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: mimxrt1050_evk
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MIMXRT1052DVL6=
+B -DXIP_BOOT_HEADER_ENABLE=3D1 -DXIP_BOOT_HEADER_DCD_ENABLE=3D1 -DBOARD_FLA=
+SH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "mimxrt1050_evk"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mimxrt1060-evk-hyperflash.conf =
+b/meta-zephyr-bsp/conf/machine/mimxrt1060-evk-hyperflash.conf
+> new file mode 100755
+> index 0000000..e328c68
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mimxrt1060-evk-hyperflash.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mimxrt1060-evk-hyperflash
+> +#@DESCRIPTION: Machine configuration for mimxrt1060-evk-hyperflash , bui=
+ld: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mimxrt1060-evk-hyperflash =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: mimxrt1060_evk_hyperflash
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MIMXRT1062DVL6=
+A -DXIP_BOOT_HEADER_ENABLE=3D1 -DXIP_BOOT_HEADER_DCD_ENABLE=3D1 -DBOARD_FLA=
+SH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "mimxrt1060_evk_hyperflash"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mimxrt1060-evk.conf b/meta-zeph=
+yr-bsp/conf/machine/mimxrt1060-evk.conf
+> new file mode 100755
+> index 0000000..91c35b3
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mimxrt1060-evk.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mimxrt1060-evk
+> +#@DESCRIPTION: Machine configuration for mimxrt1060-evk , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mimxrt1060-evk =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: mimxrt1060_evk
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MIMXRT1062DVL6=
+A -DXIP_BOOT_HEADER_ENABLE=3D1 -DXIP_BOOT_HEADER_DCD_ENABLE=3D1 -DBOARD_FLA=
+SH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "mimxrt1060_evk"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mimxrt1064-evk.conf b/meta-zeph=
+yr-bsp/conf/machine/mimxrt1064-evk.conf
+> new file mode 100755
+> index 0000000..d60c5e7
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mimxrt1064-evk.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mimxrt1064-evk
+> +#@DESCRIPTION: Machine configuration for mimxrt1064-evk , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mimxrt1064-evk =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: mimxrt1064_evk
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MIMXRT1064DVL6=
+A -DXIP_BOOT_HEADER_ENABLE=3D1 -DXIP_BOOT_HEADER_DCD_ENABLE=3D1 -DBOARD_FLA=
+SH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "mimxrt1064_evk"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mimxrt1170-evk-cm4.conf b/meta-=
+zephyr-bsp/conf/machine/mimxrt1170-evk-cm4.conf
+> new file mode 100755
+> index 0000000..bb3eeb6
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mimxrt1170-evk-cm4.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mimxrt1170-evk-cm4
+> +#@DESCRIPTION: Machine configuration for mimxrt1170-evk-cm4 , build: zep=
+hyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mimxrt1170-evk-cm4 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: mimxrt1170_evk_cm4
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MIMXRT1176DVMA=
+A_cm4 -DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "mimxrt1170_evk_cm4"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mimxrt1170-evk-cm7.conf b/meta-=
+zephyr-bsp/conf/machine/mimxrt1170-evk-cm7.conf
+> new file mode 100755
+> index 0000000..49f3ef3
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mimxrt1170-evk-cm7.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mimxrt1170-evk-cm7
+> +#@DESCRIPTION: Machine configuration for mimxrt1170-evk-cm7 , build: zep=
+hyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mimxrt1170-evk-cm7 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: mimxrt1170_evk_cm7
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MIMXRT1176DVMA=
+A_cm7 -DXIP_BOOT_HEADER_ENABLE=3D1 -DXIP_BOOT_HEADER_DCD_ENABLE=3D1 -DBOARD=
+_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "mimxrt1170_evk_cm7"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mimxrt685-evk-cm33.conf b/meta-=
+zephyr-bsp/conf/machine/mimxrt685-evk-cm33.conf
+> new file mode 100755
+> index 0000000..583c2a4
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mimxrt685-evk-cm33.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mimxrt685-evk-cm33
+> +#@DESCRIPTION: Machine configuration for mimxrt685-evk-cm33 , build: zep=
+hyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mimxrt685-evk-cm33 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: mimxrt685_evk_cm33
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MIMXRT685SFVKB=
+_cm33 -DBOOT_HEADER_ENABLE=3D1 -DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024"
+> +
+> +ZEPHYR_BOARD =3D "mimxrt685_evk_cm33"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mm-feather.conf b/meta-zephyr-b=
+sp/conf/machine/mm-feather.conf
+> new file mode 100755
+> index 0000000..371904b
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mm-feather.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mm-feather
+> +#@DESCRIPTION: Machine configuration for mm-feather , build: zephyr-v2.7=
+.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mm-feather =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: mm_feather
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MIMXRT1062DVL6=
+A -DXIP_BOOT_HEADER_ENABLE=3D1 -DXIP_BOOT_HEADER_DCD_ENABLE=3D1 -DBOARD_FLA=
+SH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "mm_feather"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mm-swiftio.conf b/meta-zephyr-b=
+sp/conf/machine/mm-swiftio.conf
+> new file mode 100755
+> index 0000000..5e4df1f
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mm-swiftio.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mm-swiftio
+> +#@DESCRIPTION: Machine configuration for mm-swiftio , build: zephyr-v2.7=
+.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mm-swiftio =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: mm_swiftio
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MIMXRT1052DVL6=
+B -DXIP_BOOT_HEADER_ENABLE=3D1 -DXIP_BOOT_HEADER_DCD_ENABLE=3D1 -DBOARD_FLA=
+SH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "mm_swiftio"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mps2-an385.conf b/meta-zephyr-b=
+sp/conf/machine/mps2-an385.conf
+> new file mode 100755
+> index 0000000..d3cd26b
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mps2-an385.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mps2-an385
+> +#@DESCRIPTION: Machine configuration for mps2-an385 , build: zephyr-v2.7=
+.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mps2-an385 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm3"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3
+> +# ARCH: arm
+> +# BOARD: mps2_an385
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "mps2_an385"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mps2-an521-ns.conf b/meta-zephy=
+r-bsp/conf/machine/mps2-an521-ns.conf
+> new file mode 100755
+> index 0000000..a889463
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mps2-an521-ns.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mps2-an521-ns
+> +#@DESCRIPTION: Machine configuration for mps2-an521-ns , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mps2-an521-ns =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-main"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3+nodsp
+> +# ARCH: arm
+> +# BOARD: mps2_an521_ns
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "mps2_an521_ns"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mps2-an521-remote.conf b/meta-z=
+ephyr-bsp/conf/machine/mps2-an521-remote.conf
+> new file mode 100755
+> index 0000000..0ad4e76
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mps2-an521-remote.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mps2-an521-remote
+> +#@DESCRIPTION: Machine configuration for mps2-an521-remote , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mps2-an521-remote =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: mps2_an521_remote
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "mps2_an521_remote"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mps2-an521.conf b/meta-zephyr-b=
+sp/conf/machine/mps2-an521.conf
+> new file mode 100755
+> index 0000000..25d0165
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mps2-an521.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mps2-an521
+> +#@DESCRIPTION: Machine configuration for mps2-an521 , build: zephyr-v2.7=
+.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mps2-an521 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-main"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3+nodsp
+> +# ARCH: arm
+> +# BOARD: mps2_an521
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "mps2_an521"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/mps3-an547.conf b/meta-zephyr-b=
+sp/conf/machine/mps3-an547.conf
+> new file mode 100755
+> index 0000000..657e9ab
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/mps3-an547.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: mps3-an547
+> +#@DESCRIPTION: Machine configuration for mps3-an547 , build: zephyr-v2.7=
+.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_mps3-an547 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm55"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m5=
+5
+> +# ARCH: arm
+> +# BOARD: mps3_an547
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "mps3_an547"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/msp-exp432p401r-launchxl.conf b=
+/meta-zephyr-bsp/conf/machine/msp-exp432p401r-launchxl.conf
+> new file mode 100755
+> index 0000000..4ec86ef
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/msp-exp432p401r-launchxl.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: msp-exp432p401r-launchxl
+> +#@DESCRIPTION: Machine configuration for msp-exp432p401r-launchxl , buil=
+d: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_msp-exp432p401r-launchxl =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: msp_exp432p401r_launchxl
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__MSP432P401R__ -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "msp_exp432p401r_launchxl"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/native-posix-64.conf b/meta-zep=
+hyr-bsp/conf/machine/native-posix-64.conf
+> new file mode 100755
+> index 0000000..b0391e3
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/native-posix-64.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: native-posix-64
+> +#@DESCRIPTION: Machine configuration for native-posix-64 , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_native-posix-64 =3D "posix"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: posix
+> +# BOARD: native_posix_64
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D_POSIX_C_SOURCE=3D200809 -D_XOPEN_SO=
+URCE=3D600 -D_XOPEN_SOURCE_EXTENDED"
+> +
+> +ZEPHYR_BOARD =3D "native_posix_64"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/native-posix.conf b/meta-zephyr=
+-bsp/conf/machine/native-posix.conf
+> new file mode 100755
+> index 0000000..f8e05f7
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/native-posix.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: native-posix
+> +#@DESCRIPTION: Machine configuration for native-posix , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_native-posix =3D "posix"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: posix
+> +# BOARD: native_posix
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D_POSIX_C_SOURCE=3D200809 -D_XOPEN_SO=
+URCE=3D600 -D_XOPEN_SOURCE_EXTENDED"
+> +
+> +ZEPHYR_BOARD =3D "native_posix"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/npcx7m6fb-evb.conf b/meta-zephy=
+r-bsp/conf/machine/npcx7m6fb-evb.conf
+> new file mode 100755
+> index 0000000..bfec38f
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/npcx7m6fb-evb.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: npcx7m6fb-evb
+> +#@DESCRIPTION: Machine configuration for npcx7m6fb-evb , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_npcx7m6fb-evb =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: npcx7m6fb_evb
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "npcx7m6fb_evb"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/npcx9m6f-evb.conf b/meta-zephyr=
+-bsp/conf/machine/npcx9m6f-evb.conf
+> new file mode 100755
+> index 0000000..c4e18cf
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/npcx9m6f-evb.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: npcx9m6f-evb
+> +#@DESCRIPTION: Machine configuration for npcx9m6f-evb , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_npcx9m6f-evb =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: npcx9m6f_evb
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "npcx9m6f_evb"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf21540dk-nrf52840.conf b/meta=
+-zephyr-bsp/conf/machine/nrf21540dk-nrf52840.conf
+> new file mode 100755
+> index 0000000..ef4787b
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf21540dk-nrf52840.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf21540dk-nrf52840
+> +#@DESCRIPTION: Machine configuration for nrf21540dk-nrf52840 , build: ze=
+phyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf21540dk-nrf52840 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nrf21540dk_nrf52840
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf21540dk_nrf52840"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf51-ble400.conf b/meta-zephyr=
+-bsp/conf/machine/nrf51-ble400.conf
+> new file mode 100755
+> index 0000000..30f1c1c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf51-ble400.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf51-ble400
+> +#@DESCRIPTION: Machine configuration for nrf51-ble400 , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf51-ble400 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0
+> +# ARCH: arm
+> +# BOARD: nrf51_ble400
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF51 -DNRF51422_X=
+XAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf51_ble400"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf51-blenano.conf b/meta-zephy=
+r-bsp/conf/machine/nrf51-blenano.conf
+> new file mode 100755
+> index 0000000..a633156
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf51-blenano.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf51-blenano
+> +#@DESCRIPTION: Machine configuration for nrf51-blenano , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf51-blenano =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0
+> +# ARCH: arm
+> +# BOARD: nrf51_blenano
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF51 -DNRF51422_X=
+XAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf51_blenano"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf51-vbluno51.conf b/meta-zeph=
+yr-bsp/conf/machine/nrf51-vbluno51.conf
+> new file mode 100755
+> index 0000000..5dedbc6
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf51-vbluno51.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf51-vbluno51
+> +#@DESCRIPTION: Machine configuration for nrf51-vbluno51 , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf51-vbluno51 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0
+> +# ARCH: arm
+> +# BOARD: nrf51_vbluno51
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF51 -DNRF51422_X=
+XAC"
+> +
+> +ZEPHYR_BOARD =3D "nrf51_vbluno51"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf51dk-nrf51422.conf b/meta-ze=
+phyr-bsp/conf/machine/nrf51dk-nrf51422.conf
+> new file mode 100755
+> index 0000000..2848d3b
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf51dk-nrf51422.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf51dk-nrf51422
+> +#@DESCRIPTION: Machine configuration for nrf51dk-nrf51422 , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf51dk-nrf51422 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0
+> +# ARCH: arm
+> +# BOARD: nrf51dk_nrf51422
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF51 -DNRF51422_X=
+XAC"
+> +
+> +ZEPHYR_BOARD =3D "nrf51dk_nrf51422"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf51dongle-nrf51422.conf b/met=
+a-zephyr-bsp/conf/machine/nrf51dongle-nrf51422.conf
+> new file mode 100755
+> index 0000000..0497423
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf51dongle-nrf51422.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf51dongle-nrf51422
+> +#@DESCRIPTION: Machine configuration for nrf51dongle-nrf51422 , build: z=
+ephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf51dongle-nrf51422 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0
+> +# ARCH: arm
+> +# BOARD: nrf51dongle_nrf51422
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF51 -DNRF51422_X=
+XAC"
+> +
+> +ZEPHYR_BOARD =3D "nrf51dongle_nrf51422"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf52-adafruit-feather.conf b/m=
+eta-zephyr-bsp/conf/machine/nrf52-adafruit-feather.conf
+> new file mode 100755
+> index 0000000..f97f874
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf52-adafruit-feather.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf52-adafruit-feather
+> +#@DESCRIPTION: Machine configuration for nrf52-adafruit-feather , build:=
+ zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf52-adafruit-feather =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nrf52_adafruit_feather
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52832_XXAA -DNR=
+F52832_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf52_adafruit_feather"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf52-blenano2.conf b/meta-zeph=
+yr-bsp/conf/machine/nrf52-blenano2.conf
+> new file mode 100755
+> index 0000000..d468764
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf52-blenano2.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf52-blenano2
+> +#@DESCRIPTION: Machine configuration for nrf52-blenano2 , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf52-blenano2 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nrf52_blenano2
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52832_XXAA -DNR=
+F52832_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf52_blenano2"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf52-sparkfun.conf b/meta-zeph=
+yr-bsp/conf/machine/nrf52-sparkfun.conf
+> new file mode 100755
+> index 0000000..968fd59
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf52-sparkfun.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf52-sparkfun
+> +#@DESCRIPTION: Machine configuration for nrf52-sparkfun , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf52-sparkfun =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nrf52_sparkfun
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52832_XXAA -DNR=
+F52832_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf52_sparkfun"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf52-vbluno52.conf b/meta-zeph=
+yr-bsp/conf/machine/nrf52-vbluno52.conf
+> new file mode 100755
+> index 0000000..5e06316
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf52-vbluno52.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf52-vbluno52
+> +#@DESCRIPTION: Machine configuration for nrf52-vbluno52 , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf52-vbluno52 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nrf52_vbluno52
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52832_XXAA -DNR=
+F52832_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf52_vbluno52"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf52832-mdk.conf b/meta-zephyr=
+-bsp/conf/machine/nrf52832-mdk.conf
+> new file mode 100755
+> index 0000000..37db366
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf52832-mdk.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf52832-mdk
+> +#@DESCRIPTION: Machine configuration for nrf52832-mdk , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf52832-mdk =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nrf52832_mdk
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52832_XXAA -DNR=
+F52832_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf52832_mdk"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf52833dk-nrf52820.conf b/meta=
+-zephyr-bsp/conf/machine/nrf52833dk-nrf52820.conf
+> new file mode 100755
+> index 0000000..67c9a58
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf52833dk-nrf52820.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf52833dk-nrf52820
+> +#@DESCRIPTION: Machine configuration for nrf52833dk-nrf52820 , build: ze=
+phyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf52833dk-nrf52820 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nrf52833dk_nrf52820
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -DDEVELOP_IN_NRF52833 -DNRFX_COREDEP_D=
+ELAY_US_LOOP_CYCLES=3D3 -D__PROGRAM_START -DNRF52820_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf52833dk_nrf52820"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf52833dk-nrf52833.conf b/meta=
+-zephyr-bsp/conf/machine/nrf52833dk-nrf52833.conf
+> new file mode 100755
+> index 0000000..6f99a90
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf52833dk-nrf52833.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf52833dk-nrf52833
+> +#@DESCRIPTION: Machine configuration for nrf52833dk-nrf52833 , build: ze=
+phyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf52833dk-nrf52833 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nrf52833dk_nrf52833
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52833_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf52833dk_nrf52833"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf52840-blip.conf b/meta-zephy=
+r-bsp/conf/machine/nrf52840-blip.conf
+> new file mode 100755
+> index 0000000..5d542fc
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf52840-blip.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf52840-blip
+> +#@DESCRIPTION: Machine configuration for nrf52840-blip , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf52840-blip =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nrf52840_blip
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf52840_blip"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf52840-mdk.conf b/meta-zephyr=
+-bsp/conf/machine/nrf52840-mdk.conf
+> new file mode 100755
+> index 0000000..96a073b
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf52840-mdk.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf52840-mdk
+> +#@DESCRIPTION: Machine configuration for nrf52840-mdk , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf52840-mdk =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nrf52840_mdk
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf52840_mdk"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf52840-papyr.conf b/meta-zeph=
+yr-bsp/conf/machine/nrf52840-papyr.conf
+> new file mode 100755
+> index 0000000..ef55106
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf52840-papyr.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf52840-papyr
+> +#@DESCRIPTION: Machine configuration for nrf52840-papyr , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf52840-papyr =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nrf52840_papyr
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf52840_papyr"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf52840dk-nrf52811.conf b/meta=
+-zephyr-bsp/conf/machine/nrf52840dk-nrf52811.conf
+> new file mode 100755
+> index 0000000..0574979
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf52840dk-nrf52811.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf52840dk-nrf52811
+> +#@DESCRIPTION: Machine configuration for nrf52840dk-nrf52811 , build: ze=
+phyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf52840dk-nrf52811 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nrf52840dk_nrf52811
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -DDEVELOP_IN_NRF52840 -DNRFX_COREDEP_D=
+ELAY_US_LOOP_CYCLES=3D3 -D__PROGRAM_START -DNRF52811_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf52840dk_nrf52811"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf52840dongle-nrf52840.conf b/=
+meta-zephyr-bsp/conf/machine/nrf52840dongle-nrf52840.conf
+> new file mode 100755
+> index 0000000..bc50c95
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf52840dongle-nrf52840.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf52840dongle-nrf52840
+> +#@DESCRIPTION: Machine configuration for nrf52840dongle-nrf52840 , build=
+: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf52840dongle-nrf52840 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nrf52840dongle_nrf52840
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf52840dongle_nrf52840"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf52dk-nrf52805.conf b/meta-ze=
+phyr-bsp/conf/machine/nrf52dk-nrf52805.conf
+> new file mode 100755
+> index 0000000..39906e0
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf52dk-nrf52805.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf52dk-nrf52805
+> +#@DESCRIPTION: Machine configuration for nrf52dk-nrf52805 , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf52dk-nrf52805 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nrf52dk_nrf52805
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -DDEVELOP_IN_NRF52832 -DNRFX_COREDEP_D=
+ELAY_US_LOOP_CYCLES=3D3 -D__PROGRAM_START -DNRF52805_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf52dk_nrf52805"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf52dk-nrf52810.conf b/meta-ze=
+phyr-bsp/conf/machine/nrf52dk-nrf52810.conf
+> new file mode 100755
+> index 0000000..ee2ba8a
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf52dk-nrf52810.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf52dk-nrf52810
+> +#@DESCRIPTION: Machine configuration for nrf52dk-nrf52810 , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf52dk-nrf52810 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nrf52dk_nrf52810
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -DDEVELOP_IN_NRF52832 -DNRFX_COREDEP_D=
+ELAY_US_LOOP_CYCLES=3D3 -D__PROGRAM_START -DNRF52810_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf52dk_nrf52810"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf52dk-nrf52832.conf b/meta-ze=
+phyr-bsp/conf/machine/nrf52dk-nrf52832.conf
+> new file mode 100755
+> index 0000000..1d2d76f
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf52dk-nrf52832.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf52dk-nrf52832
+> +#@DESCRIPTION: Machine configuration for nrf52dk-nrf52832 , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf52dk-nrf52832 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nrf52dk_nrf52832
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52832_XXAA -DNR=
+F52832_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf52dk_nrf52832"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf5340dk-nrf5340-cpuapp-ns.con=
+f b/meta-zephyr-bsp/conf/machine/nrf5340dk-nrf5340-cpuapp-ns.conf
+> new file mode 100755
+> index 0000000..bae7612
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf5340dk-nrf5340-cpuapp-ns.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf5340dk-nrf5340-cpuapp-ns
+> +#@DESCRIPTION: Machine configuration for nrf5340dk-nrf5340-cpuapp-ns , b=
+uild: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf5340dk-nrf5340-cpuapp-ns =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: nrf5340dk_nrf5340_cpuapp_ns
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF5340_XXAA_APPLI=
+CATION -DNRF_TRUSTZONE_NONSECURE"
+> +
+> +ZEPHYR_BOARD =3D "nrf5340dk_nrf5340_cpuapp_ns"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf5340dk-nrf5340-cpuapp.conf b=
+/meta-zephyr-bsp/conf/machine/nrf5340dk-nrf5340-cpuapp.conf
+> new file mode 100755
+> index 0000000..20773a5
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf5340dk-nrf5340-cpuapp.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf5340dk-nrf5340-cpuapp
+> +#@DESCRIPTION: Machine configuration for nrf5340dk-nrf5340-cpuapp , buil=
+d: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf5340dk-nrf5340-cpuapp =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: nrf5340dk_nrf5340_cpuapp
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF5340_XXAA_APPLI=
+CATION"
+> +
+> +ZEPHYR_BOARD =3D "nrf5340dk_nrf5340_cpuapp"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf5340dk-nrf5340-cpunet.conf b=
+/meta-zephyr-bsp/conf/machine/nrf5340dk-nrf5340-cpunet.conf
+> new file mode 100755
+> index 0000000..3b71038
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf5340dk-nrf5340-cpunet.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf5340dk-nrf5340-cpunet
+> +#@DESCRIPTION: Machine configuration for nrf5340dk-nrf5340-cpunet , buil=
+d: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf5340dk-nrf5340-cpunet =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-main"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3+nodsp
+> +# ARCH: arm
+> +# BOARD: nrf5340dk_nrf5340_cpunet
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF5340_XXAA_NETWO=
+RK"
+> +
+> +ZEPHYR_BOARD =3D "nrf5340dk_nrf5340_cpunet"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf9160-innblue21-ns.conf b/met=
+a-zephyr-bsp/conf/machine/nrf9160-innblue21-ns.conf
+> new file mode 100755
+> index 0000000..685cc3a
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf9160-innblue21-ns.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf9160-innblue21-ns
+> +#@DESCRIPTION: Machine configuration for nrf9160-innblue21-ns , build: z=
+ephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf9160-innblue21-ns =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: nrf9160_innblue21_ns
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF9160_XXAA -DNRF=
+_TRUSTZONE_NONSECURE"
+> +
+> +ZEPHYR_BOARD =3D "nrf9160_innblue21_ns"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf9160-innblue21.conf b/meta-z=
+ephyr-bsp/conf/machine/nrf9160-innblue21.conf
+> new file mode 100755
+> index 0000000..3b2a52c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf9160-innblue21.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf9160-innblue21
+> +#@DESCRIPTION: Machine configuration for nrf9160-innblue21 , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf9160-innblue21 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: nrf9160_innblue21
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF9160_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf9160_innblue21"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf9160-innblue22-ns.conf b/met=
+a-zephyr-bsp/conf/machine/nrf9160-innblue22-ns.conf
+> new file mode 100755
+> index 0000000..6bca3b4
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf9160-innblue22-ns.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf9160-innblue22-ns
+> +#@DESCRIPTION: Machine configuration for nrf9160-innblue22-ns , build: z=
+ephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf9160-innblue22-ns =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: nrf9160_innblue22_ns
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF9160_XXAA -DNRF=
+_TRUSTZONE_NONSECURE"
+> +
+> +ZEPHYR_BOARD =3D "nrf9160_innblue22_ns"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf9160-innblue22.conf b/meta-z=
+ephyr-bsp/conf/machine/nrf9160-innblue22.conf
+> new file mode 100755
+> index 0000000..2ad4fff
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf9160-innblue22.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf9160-innblue22
+> +#@DESCRIPTION: Machine configuration for nrf9160-innblue22 , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf9160-innblue22 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: nrf9160_innblue22
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF9160_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf9160_innblue22"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf9160dk-nrf52840.conf b/meta-=
+zephyr-bsp/conf/machine/nrf9160dk-nrf52840.conf
+> new file mode 100755
+> index 0000000..b4be5b8
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf9160dk-nrf52840.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf9160dk-nrf52840
+> +#@DESCRIPTION: Machine configuration for nrf9160dk-nrf52840 , build: zep=
+hyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf9160dk-nrf52840 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nrf9160dk_nrf52840
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf9160dk_nrf52840"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf9160dk-nrf9160-ns.conf b/met=
+a-zephyr-bsp/conf/machine/nrf9160dk-nrf9160-ns.conf
+> new file mode 100755
+> index 0000000..b8501b2
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf9160dk-nrf9160-ns.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf9160dk-nrf9160-ns
+> +#@DESCRIPTION: Machine configuration for nrf9160dk-nrf9160-ns , build: z=
+ephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf9160dk-nrf9160-ns =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: nrf9160dk_nrf9160_ns
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF9160_XXAA -DNRF=
+_TRUSTZONE_NONSECURE"
+> +
+> +ZEPHYR_BOARD =3D "nrf9160dk_nrf9160_ns"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nrf9160dk-nrf9160.conf b/meta-z=
+ephyr-bsp/conf/machine/nrf9160dk-nrf9160.conf
+> new file mode 100755
+> index 0000000..69fd059
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nrf9160dk-nrf9160.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nrf9160dk-nrf9160
+> +#@DESCRIPTION: Machine configuration for nrf9160dk-nrf9160 , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nrf9160dk-nrf9160 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: nrf9160dk_nrf9160
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF9160_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "nrf9160dk_nrf9160"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nsim-em.conf b/meta-zephyr-bsp/=
+conf/machine/nsim-em.conf
+> new file mode 100755
+> index 0000000..9274abe
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nsim-em.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nsim-em
+> +#@DESCRIPTION: Machine configuration for nsim-em , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nsim-em =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: em4_fpuda
+> +# ARCH: arc
+> +# BOARD: nsim_em
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "nsim_em"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nsim-em7d-v22.conf b/meta-zephy=
+r-bsp/conf/machine/nsim-em7d-v22.conf
+> new file mode 100755
+> index 0000000..a7f9950
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nsim-em7d-v22.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nsim-em7d-v22
+> +#@DESCRIPTION: Machine configuration for nsim-em7d-v22 , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nsim-em7d-v22 =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: em4_fpuda
+> +# ARCH: arc
+> +# BOARD: nsim_em7d_v22
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "nsim_em7d_v22"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nsim-hs-mpuv6.conf b/meta-zephy=
+r-bsp/conf/machine/nsim-hs-mpuv6.conf
+> new file mode 100755
+> index 0000000..5d5718a
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nsim-hs-mpuv6.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nsim-hs-mpuv6
+> +#@DESCRIPTION: Machine configuration for nsim-hs-mpuv6 , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nsim-hs-mpuv6 =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: archs
+> +# ARCH: arc
+> +# BOARD: nsim_hs_mpuv6
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "nsim_hs_mpuv6"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nsim-hs-smp.conf b/meta-zephyr-=
+bsp/conf/machine/nsim-hs-smp.conf
+> new file mode 100755
+> index 0000000..1c88f60
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nsim-hs-smp.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nsim-hs-smp
+> +#@DESCRIPTION: Machine configuration for nsim-hs-smp , build: zephyr-v2.=
+7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nsim-hs-smp =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: archs
+> +# ARCH: arc
+> +# BOARD: nsim_hs_smp
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "nsim_hs_smp"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nsim-hs.conf b/meta-zephyr-bsp/=
+conf/machine/nsim-hs.conf
+> new file mode 100755
+> index 0000000..83ce5a4
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nsim-hs.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nsim-hs
+> +#@DESCRIPTION: Machine configuration for nsim-hs , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nsim-hs =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: archs
+> +# ARCH: arc
+> +# BOARD: nsim_hs
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "nsim_hs"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nsim-hs6x-smp.conf b/meta-zephy=
+r-bsp/conf/machine/nsim-hs6x-smp.conf
+> new file mode 100755
+> index 0000000..f7547f9
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nsim-hs6x-smp.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nsim-hs6x-smp
+> +#@DESCRIPTION: Machine configuration for nsim-hs6x-smp , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nsim-hs6x-smp =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: arc64
+> +# ARCH: arc
+> +# BOARD: nsim_hs6x_smp
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "nsim_hs6x_smp"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nsim-hs6x.conf b/meta-zephyr-bs=
+p/conf/machine/nsim-hs6x.conf
+> new file mode 100755
+> index 0000000..8de4f88
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nsim-hs6x.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nsim-hs6x
+> +#@DESCRIPTION: Machine configuration for nsim-hs6x , build: zephyr-v2.7.=
+1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nsim-hs6x =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: arc64
+> +# ARCH: arc
+> +# BOARD: nsim_hs6x
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "nsim_hs6x"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nsim-sem-mpu-stack-guard.conf b=
+/meta-zephyr-bsp/conf/machine/nsim-sem-mpu-stack-guard.conf
+> new file mode 100755
+> index 0000000..ab77f07
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nsim-sem-mpu-stack-guard.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nsim-sem-mpu-stack-guard
+> +#@DESCRIPTION: Machine configuration for nsim-sem-mpu-stack-guard , buil=
+d: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nsim-sem-mpu-stack-guard =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: em4_fpuda
+> +# ARCH: arc
+> +# BOARD: nsim_sem_mpu_stack_guard
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "nsim_sem_mpu_stack_guard"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nsim-sem.conf b/meta-zephyr-bsp=
+/conf/machine/nsim-sem.conf
+> new file mode 100755
+> index 0000000..d19e14d
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nsim-sem.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nsim-sem
+> +#@DESCRIPTION: Machine configuration for nsim-sem , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nsim-sem =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: em4_fpuda
+> +# ARCH: arc
+> +# BOARD: nsim_sem
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "nsim_sem"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-f030r8.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-f030r8.conf
+> new file mode 100755
+> index 0000000..4c87cb1
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-f030r8.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-f030r8
+> +#@DESCRIPTION: Machine configuration for nucleo-f030r8 , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-f030r8 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0
+> +# ARCH: arm
+> +# BOARD: nucleo_f030r8
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F030x8 -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_f030r8"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-f031k6.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-f031k6.conf
+> new file mode 100755
+> index 0000000..129bfda
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-f031k6.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-f031k6
+> +#@DESCRIPTION: Machine configuration for nucleo-f031k6 , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-f031k6 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0
+> +# ARCH: arm
+> +# BOARD: nucleo_f031k6
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F031x6 -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_f031k6"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-f070rb.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-f070rb.conf
+> new file mode 100755
+> index 0000000..c055cac
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-f070rb.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-f070rb
+> +#@DESCRIPTION: Machine configuration for nucleo-f070rb , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-f070rb =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0
+> +# ARCH: arm
+> +# BOARD: nucleo_f070rb
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F070xB -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_f070rb"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-f091rc.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-f091rc.conf
+> new file mode 100755
+> index 0000000..787d24c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-f091rc.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-f091rc
+> +#@DESCRIPTION: Machine configuration for nucleo-f091rc , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-f091rc =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0
+> +# ARCH: arm
+> +# BOARD: nucleo_f091rc
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F091xC -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_f091rc"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-f103rb.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-f103rb.conf
+> new file mode 100755
+> index 0000000..6eef806
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-f103rb.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-f103rb
+> +#@DESCRIPTION: Machine configuration for nucleo-f103rb , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-f103rb =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm3"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3
+> +# ARCH: arm
+> +# BOARD: nucleo_f103rb
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F103xB -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_f103rb"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-f207zg.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-f207zg.conf
+> new file mode 100755
+> index 0000000..ec434a0
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-f207zg.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-f207zg
+> +#@DESCRIPTION: Machine configuration for nucleo-f207zg , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-f207zg =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm3"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3
+> +# ARCH: arm
+> +# BOARD: nucleo_f207zg
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F207xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_f207zg"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-f302r8.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-f302r8.conf
+> new file mode 100755
+> index 0000000..195aa71
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-f302r8.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-f302r8
+> +#@DESCRIPTION: Machine configuration for nucleo-f302r8 , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-f302r8 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_f302r8
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F302x8 -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_f302r8"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-f303k8.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-f303k8.conf
+> new file mode 100755
+> index 0000000..49974a4
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-f303k8.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-f303k8
+> +#@DESCRIPTION: Machine configuration for nucleo-f303k8 , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-f303k8 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_f303k8
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F303x8 -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_f303k8"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-f303re.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-f303re.conf
+> new file mode 100755
+> index 0000000..c28aeb8
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-f303re.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-f303re
+> +#@DESCRIPTION: Machine configuration for nucleo-f303re , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-f303re =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_f303re
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F303xE -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_f303re"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-f334r8.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-f334r8.conf
+> new file mode 100755
+> index 0000000..7ee5162
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-f334r8.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-f334r8
+> +#@DESCRIPTION: Machine configuration for nucleo-f334r8 , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-f334r8 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_f334r8
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F334x8 -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_f334r8"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-f401re.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-f401re.conf
+> new file mode 100755
+> index 0000000..a325f66
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-f401re.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-f401re
+> +#@DESCRIPTION: Machine configuration for nucleo-f401re , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-f401re =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_f401re
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F401xE -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_f401re"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-f410rb.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-f410rb.conf
+> new file mode 100755
+> index 0000000..400ea54
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-f410rb.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-f410rb
+> +#@DESCRIPTION: Machine configuration for nucleo-f410rb , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-f410rb =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_f410rb
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F410Rx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_f410rb"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-f411re.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-f411re.conf
+> new file mode 100755
+> index 0000000..0c81906
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-f411re.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-f411re
+> +#@DESCRIPTION: Machine configuration for nucleo-f411re , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-f411re =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_f411re
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F411xE -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_f411re"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-f412zg.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-f412zg.conf
+> new file mode 100755
+> index 0000000..0e9d6f3
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-f412zg.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-f412zg
+> +#@DESCRIPTION: Machine configuration for nucleo-f412zg , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-f412zg =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_f412zg
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F412Zx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_f412zg"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-f413zh.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-f413zh.conf
+> new file mode 100755
+> index 0000000..3be787d
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-f413zh.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-f413zh
+> +#@DESCRIPTION: Machine configuration for nucleo-f413zh , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-f413zh =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_f413zh
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F413xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_f413zh"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-f429zi.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-f429zi.conf
+> new file mode 100755
+> index 0000000..320b7d6
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-f429zi.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-f429zi
+> +#@DESCRIPTION: Machine configuration for nucleo-f429zi , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-f429zi =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_f429zi
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F429xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_f429zi"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-f446re.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-f446re.conf
+> new file mode 100755
+> index 0000000..aed71fc
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-f446re.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-f446re
+> +#@DESCRIPTION: Machine configuration for nucleo-f446re , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-f446re =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_f446re
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F446xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_f446re"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-f746zg.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-f746zg.conf
+> new file mode 100755
+> index 0000000..2da861c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-f746zg.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-f746zg
+> +#@DESCRIPTION: Machine configuration for nucleo-f746zg , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-f746zg =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: nucleo_f746zg
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F746xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM7 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_f746zg"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-f756zg.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-f756zg.conf
+> new file mode 100755
+> index 0000000..628213a
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-f756zg.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-f756zg
+> +#@DESCRIPTION: Machine configuration for nucleo-f756zg , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-f756zg =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: nucleo_f756zg
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F756xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM7 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_f756zg"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-f767zi.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-f767zi.conf
+> new file mode 100755
+> index 0000000..2809f4b
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-f767zi.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-f767zi
+> +#@DESCRIPTION: Machine configuration for nucleo-f767zi , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-f767zi =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: nucleo_f767zi
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F767xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM7 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_f767zi"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-g071rb.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-g071rb.conf
+> new file mode 100755
+> index 0000000..32eed89
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-g071rb.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-g071rb
+> +#@DESCRIPTION: Machine configuration for nucleo-g071rb , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-g071rb =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: nucleo_g071rb
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32G071xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_g071rb"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-g0b1re.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-g0b1re.conf
+> new file mode 100755
+> index 0000000..b5845bb
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-g0b1re.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-g0b1re
+> +#@DESCRIPTION: Machine configuration for nucleo-g0b1re , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-g0b1re =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: nucleo_g0b1re
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32G0B1xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_g0b1re"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-g431rb.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-g431rb.conf
+> new file mode 100755
+> index 0000000..0a22503
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-g431rb.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-g431rb
+> +#@DESCRIPTION: Machine configuration for nucleo-g431rb , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-g431rb =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_g431rb
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32G431xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D24000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_g431rb"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-g474re.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-g474re.conf
+> new file mode 100755
+> index 0000000..cd22101
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-g474re.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-g474re
+> +#@DESCRIPTION: Machine configuration for nucleo-g474re , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-g474re =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_g474re
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32G474xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D24000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_g474re"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-h723zg.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-h723zg.conf
+> new file mode 100755
+> index 0000000..ac381bd
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-h723zg.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-h723zg
+> +#@DESCRIPTION: Machine configuration for nucleo-h723zg , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-h723zg =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: nucleo_h723zg
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32H723xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM7 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_h723zg"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-h743zi.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-h743zi.conf
+> new file mode 100755
+> index 0000000..1a00dfa
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-h743zi.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-h743zi
+> +#@DESCRIPTION: Machine configuration for nucleo-h743zi , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-h743zi =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: nucleo_h743zi
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32H743xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM7 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_h743zi"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-h745zi-q-m4.conf b/meta-=
+zephyr-bsp/conf/machine/nucleo-h745zi-q-m4.conf
+> new file mode 100755
+> index 0000000..3f06beb
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-h745zi-q-m4.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-h745zi-q-m4
+> +#@DESCRIPTION: Machine configuration for nucleo-h745zi-q-m4 , build: zep=
+hyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-h745zi-q-m4 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_h745zi_q_m4
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32H745xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_h745zi_q_m4"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-h745zi-q-m7.conf b/meta-=
+zephyr-bsp/conf/machine/nucleo-h745zi-q-m7.conf
+> new file mode 100755
+> index 0000000..bd08436
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-h745zi-q-m7.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-h745zi-q-m7
+> +#@DESCRIPTION: Machine configuration for nucleo-h745zi-q-m7 , build: zep=
+hyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-h745zi-q-m7 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: nucleo_h745zi_q_m7
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32H745xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM7 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_h745zi_q_m7"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-h753zi.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-h753zi.conf
+> new file mode 100755
+> index 0000000..06d9045
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-h753zi.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-h753zi
+> +#@DESCRIPTION: Machine configuration for nucleo-h753zi , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-h753zi =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: nucleo_h753zi
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32H753xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM7 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_h753zi"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-l011k4.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-l011k4.conf
+> new file mode 100755
+> index 0000000..d8ddf96
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-l011k4.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-l011k4
+> +#@DESCRIPTION: Machine configuration for nucleo-l011k4 , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-l011k4 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: nucleo_l011k4
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L011xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_l011k4"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-l031k6.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-l031k6.conf
+> new file mode 100755
+> index 0000000..e2a441e
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-l031k6.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-l031k6
+> +#@DESCRIPTION: Machine configuration for nucleo-l031k6 , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-l031k6 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: nucleo_l031k6
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L031xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_l031k6"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-l053r8.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-l053r8.conf
+> new file mode 100755
+> index 0000000..b5fd303
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-l053r8.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-l053r8
+> +#@DESCRIPTION: Machine configuration for nucleo-l053r8 , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-l053r8 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: nucleo_l053r8
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L053xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_l053r8"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-l073rz.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-l073rz.conf
+> new file mode 100755
+> index 0000000..91bb63e
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-l073rz.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-l073rz
+> +#@DESCRIPTION: Machine configuration for nucleo-l073rz , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-l073rz =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: nucleo_l073rz
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L073xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_l073rz"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-l152re.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-l152re.conf
+> new file mode 100755
+> index 0000000..4fe8554
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-l152re.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-l152re
+> +#@DESCRIPTION: Machine configuration for nucleo-l152re , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-l152re =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm3"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3
+> +# ARCH: arm
+> +# BOARD: nucleo_l152re
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L152xE -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_l152re"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-l412rb-p.conf b/meta-zep=
+hyr-bsp/conf/machine/nucleo-l412rb-p.conf
+> new file mode 100755
+> index 0000000..6f48a3c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-l412rb-p.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-l412rb-p
+> +#@DESCRIPTION: Machine configuration for nucleo-l412rb-p , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-l412rb-p =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_l412rb_p
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L412xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_l412rb_p"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-l432kc.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-l432kc.conf
+> new file mode 100755
+> index 0000000..a28366f
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-l432kc.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-l432kc
+> +#@DESCRIPTION: Machine configuration for nucleo-l432kc , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-l432kc =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_l432kc
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L432xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_l432kc"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-l433rc-p.conf b/meta-zep=
+hyr-bsp/conf/machine/nucleo-l433rc-p.conf
+> new file mode 100755
+> index 0000000..325bfab
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-l433rc-p.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-l433rc-p
+> +#@DESCRIPTION: Machine configuration for nucleo-l433rc-p , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-l433rc-p =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_l433rc_p
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L433xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_l433rc_p"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-l452re-p.conf b/meta-zep=
+hyr-bsp/conf/machine/nucleo-l452re-p.conf
+> new file mode 100755
+> index 0000000..4fe3fa4
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-l452re-p.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-l452re-p
+> +#@DESCRIPTION: Machine configuration for nucleo-l452re-p , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-l452re-p =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_l452re_p
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L452xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_l452re_p"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-l452re.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-l452re.conf
+> new file mode 100755
+> index 0000000..e91db35
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-l452re.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-l452re
+> +#@DESCRIPTION: Machine configuration for nucleo-l452re , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-l452re =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_l452re
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L452xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_l452re"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-l476rg.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-l476rg.conf
+> new file mode 100755
+> index 0000000..21fae97
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-l476rg.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-l476rg
+> +#@DESCRIPTION: Machine configuration for nucleo-l476rg , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-l476rg =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_l476rg
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L476xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_l476rg"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-l496zg.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-l496zg.conf
+> new file mode 100755
+> index 0000000..d2c8f97
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-l496zg.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-l496zg
+> +#@DESCRIPTION: Machine configuration for nucleo-l496zg , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-l496zg =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_l496zg
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L496xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_l496zg"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-l4r5zi.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-l4r5zi.conf
+> new file mode 100755
+> index 0000000..5f6df9c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-l4r5zi.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-l4r5zi
+> +#@DESCRIPTION: Machine configuration for nucleo-l4r5zi , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-l4r5zi =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_l4r5zi
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L4R5xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_l4r5zi"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-l552ze-q-ns.conf b/meta-=
+zephyr-bsp/conf/machine/nucleo-l552ze-q-ns.conf
+> new file mode 100755
+> index 0000000..5b1ecb9
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-l552ze-q-ns.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-l552ze-q-ns
+> +#@DESCRIPTION: Machine configuration for nucleo-l552ze-q-ns , build: zep=
+hyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-l552ze-q-ns =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: nucleo_l552ze_q_ns
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L552xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_l552ze_q_ns"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-l552ze-q.conf b/meta-zep=
+hyr-bsp/conf/machine/nucleo-l552ze-q.conf
+> new file mode 100755
+> index 0000000..c5daeb0
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-l552ze-q.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-l552ze-q
+> +#@DESCRIPTION: Machine configuration for nucleo-l552ze-q , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-l552ze-q =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: nucleo_l552ze_q
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L552xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_l552ze_q"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-u575zi-q.conf b/meta-zep=
+hyr-bsp/conf/machine/nucleo-u575zi-q.conf
+> new file mode 100755
+> index 0000000..1c27ab9
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-u575zi-q.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-u575zi-q
+> +#@DESCRIPTION: Machine configuration for nucleo-u575zi-q , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-u575zi-q =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: nucleo_u575zi_q
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32U575xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_u575zi_q"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-wb55rg.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-wb55rg.conf
+> new file mode 100755
+> index 0000000..6e0324a
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-wb55rg.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-wb55rg
+> +#@DESCRIPTION: Machine configuration for nucleo-wb55rg , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-wb55rg =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_wb55rg
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32WB55xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D32000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_wb55rg"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nucleo-wl55jc.conf b/meta-zephy=
+r-bsp/conf/machine/nucleo-wl55jc.conf
+> new file mode 100755
+> index 0000000..d2c4bd2
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nucleo-wl55jc.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nucleo-wl55jc
+> +#@DESCRIPTION: Machine configuration for nucleo-wl55jc , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nucleo-wl55jc =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nucleo_wl55jc
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32WL55xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "nucleo_wl55jc"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nuvoton-pfm-m487.conf b/meta-ze=
+phyr-bsp/conf/machine/nuvoton-pfm-m487.conf
+> new file mode 100755
+> index 0000000..bf36fd0
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nuvoton-pfm-m487.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nuvoton-pfm-m487
+> +#@DESCRIPTION: Machine configuration for nuvoton-pfm-m487 , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nuvoton-pfm-m487 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: nuvoton_pfm_m487
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "nuvoton_pfm_m487"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nxp-adsp-imx8.conf b/meta-zephy=
+r-bsp/conf/machine/nxp-adsp-imx8.conf
+> new file mode 100755
+> index 0000000..52e38d1
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nxp-adsp-imx8.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nxp-adsp-imx8
+> +#@DESCRIPTION: Machine configuration for nxp-adsp-imx8 , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nxp-adsp-imx8 =3D "xtensa"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: xtensa
+> +# BOARD: nxp_adsp_imx8
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "nxp_adsp_imx8"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nxp-ls1046ardb-smp-2cores.conf =
+b/meta-zephyr-bsp/conf/machine/nxp-ls1046ardb-smp-2cores.conf
+> new file mode 100755
+> index 0000000..541a48c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nxp-ls1046ardb-smp-2cores.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nxp-ls1046ardb-smp-2cores
+> +#@DESCRIPTION: Machine configuration for nxp-ls1046ardb-smp-2cores , bui=
+ld: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nxp-ls1046ardb-smp-2cores =3D "arm64"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-a7=
+2
+> +# ARCH: arm64
+> +# BOARD: nxp_ls1046ardb_smp_2cores
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "nxp_ls1046ardb_smp_2cores"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nxp-ls1046ardb-smp-4cores.conf =
+b/meta-zephyr-bsp/conf/machine/nxp-ls1046ardb-smp-4cores.conf
+> new file mode 100755
+> index 0000000..41ab288
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nxp-ls1046ardb-smp-4cores.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nxp-ls1046ardb-smp-4cores
+> +#@DESCRIPTION: Machine configuration for nxp-ls1046ardb-smp-4cores , bui=
+ld: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nxp-ls1046ardb-smp-4cores =3D "arm64"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-a7=
+2
+> +# ARCH: arm64
+> +# BOARD: nxp_ls1046ardb_smp_4cores
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "nxp_ls1046ardb_smp_4cores"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/nxp-ls1046ardb.conf b/meta-zeph=
+yr-bsp/conf/machine/nxp-ls1046ardb.conf
+> new file mode 100755
+> index 0000000..37b4e58
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/nxp-ls1046ardb.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: nxp-ls1046ardb
+> +#@DESCRIPTION: Machine configuration for nxp-ls1046ardb , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_nxp-ls1046ardb =3D "arm64"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-a7=
+2
+> +# ARCH: arm64
+> +# BOARD: nxp_ls1046ardb
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "nxp_ls1046ardb"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/olimex-stm32-e407.conf b/meta-z=
+ephyr-bsp/conf/machine/olimex-stm32-e407.conf
+> new file mode 100755
+> index 0000000..782f341
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/olimex-stm32-e407.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: olimex-stm32-e407
+> +#@DESCRIPTION: Machine configuration for olimex-stm32-e407 , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_olimex-stm32-e407 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: olimex_stm32_e407
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F407xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D12000000"
+> +
+> +ZEPHYR_BOARD =3D "olimex_stm32_e407"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/olimex-stm32-h103.conf b/meta-z=
+ephyr-bsp/conf/machine/olimex-stm32-h103.conf
+> new file mode 100755
+> index 0000000..f492f77
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/olimex-stm32-h103.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: olimex-stm32-h103
+> +#@DESCRIPTION: Machine configuration for olimex-stm32-h103 , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_olimex-stm32-h103 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm3"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3
+> +# ARCH: arm
+> +# BOARD: olimex_stm32_h103
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F103xB -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "olimex_stm32_h103"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/olimex-stm32-h407.conf b/meta-z=
+ephyr-bsp/conf/machine/olimex-stm32-h407.conf
+> new file mode 100755
+> index 0000000..9ac884b
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/olimex-stm32-h407.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: olimex-stm32-h407
+> +#@DESCRIPTION: Machine configuration for olimex-stm32-h407 , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_olimex-stm32-h407 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: olimex_stm32_h407
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F407xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D12000000"
+> +
+> +ZEPHYR_BOARD =3D "olimex_stm32_h407"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/olimex-stm32-p405.conf b/meta-z=
+ephyr-bsp/conf/machine/olimex-stm32-p405.conf
+> new file mode 100755
+> index 0000000..11db9a2
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/olimex-stm32-p405.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: olimex-stm32-p405
+> +#@DESCRIPTION: Machine configuration for olimex-stm32-p405 , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_olimex-stm32-p405 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: olimex_stm32_p405
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F405xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "olimex_stm32_p405"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/olimexino-stm32.conf b/meta-zep=
+hyr-bsp/conf/machine/olimexino-stm32.conf
+> new file mode 100755
+> index 0000000..33cd43d
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/olimexino-stm32.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: olimexino-stm32
+> +#@DESCRIPTION: Machine configuration for olimexino-stm32 , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_olimexino-stm32 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm3"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3
+> +# ARCH: arm
+> +# BOARD: olimexino_stm32
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F103xB -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "olimexino_stm32"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/particle-argon.conf b/meta-zeph=
+yr-bsp/conf/machine/particle-argon.conf
+> new file mode 100755
+> index 0000000..fe22012
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/particle-argon.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: particle-argon
+> +#@DESCRIPTION: Machine configuration for particle-argon , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_particle-argon =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: particle_argon
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "particle_argon"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/particle-boron.conf b/meta-zeph=
+yr-bsp/conf/machine/particle-boron.conf
+> new file mode 100755
+> index 0000000..3c2853c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/particle-boron.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: particle-boron
+> +#@DESCRIPTION: Machine configuration for particle-boron , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_particle-boron =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: particle_boron
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "particle_boron"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/particle-xenon.conf b/meta-zeph=
+yr-bsp/conf/machine/particle-xenon.conf
+> new file mode 100755
+> index 0000000..8adcd1f
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/particle-xenon.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: particle-xenon
+> +#@DESCRIPTION: Machine configuration for particle-xenon , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_particle-xenon =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: particle_xenon
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "particle_xenon"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/pico-pi-m4.conf b/meta-zephyr-b=
+sp/conf/machine/pico-pi-m4.conf
+> new file mode 100755
+> index 0000000..6019337
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/pico-pi-m4.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: pico-pi-m4
+> +#@DESCRIPTION: Machine configuration for pico-pi-m4 , build: zephyr-v2.7=
+.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_pico-pi-m4 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: pico_pi_m4
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "pico_pi_m4"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/pinetime-devkit0.conf b/meta-ze=
+phyr-bsp/conf/machine/pinetime-devkit0.conf
+> new file mode 100755
+> index 0000000..0e6a7b7
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/pinetime-devkit0.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: pinetime-devkit0
+> +#@DESCRIPTION: Machine configuration for pinetime-devkit0 , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_pinetime-devkit0 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: pinetime_devkit0
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52832_XXAA -DNR=
+F52832_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "pinetime_devkit0"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/pinnacle-100-dvk.conf b/meta-ze=
+phyr-bsp/conf/machine/pinnacle-100-dvk.conf
+> new file mode 100755
+> index 0000000..11b8e60
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/pinnacle-100-dvk.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: pinnacle-100-dvk
+> +#@DESCRIPTION: Machine configuration for pinnacle-100-dvk , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_pinnacle-100-dvk =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: pinnacle_100_dvk
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "pinnacle_100_dvk"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-arc-em.conf b/meta-zephyr-=
+bsp/conf/machine/qemu-arc-em.conf
+> new file mode 100755
+> index 0000000..4bbe803
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-arc-em.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-arc-em
+> +#@DESCRIPTION: Machine configuration for qemu-arc-em , build: zephyr-v2.=
+7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-arc-em =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: arcem
+> +# ARCH: arc
+> +# BOARD: qemu_arc_em
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "qemu_arc_em"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-arc-hs.conf b/meta-zephyr-=
+bsp/conf/machine/qemu-arc-hs.conf
+> new file mode 100755
+> index 0000000..10632a2
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-arc-hs.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-arc-hs
+> +#@DESCRIPTION: Machine configuration for qemu-arc-hs , build: zephyr-v2.=
+7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-arc-hs =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: archs
+> +# ARCH: arc
+> +# BOARD: qemu_arc_hs
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "qemu_arc_hs"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-arc-hs6x.conf b/meta-zephy=
+r-bsp/conf/machine/qemu-arc-hs6x.conf
+> new file mode 100755
+> index 0000000..2649946
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-arc-hs6x.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-arc-hs6x
+> +#@DESCRIPTION: Machine configuration for qemu-arc-hs6x , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-arc-hs6x =3D "arc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: arc64
+> +# ARCH: arc
+> +# BOARD: qemu_arc_hs6x
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "qemu_arc_hs6x"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-cortex-a53-smp.conf b/meta=
+-zephyr-bsp/conf/machine/qemu-cortex-a53-smp.conf
+> new file mode 100755
+> index 0000000..c332358
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-cortex-a53-smp.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-cortex-a53-smp
+> +#@DESCRIPTION: Machine configuration for qemu-cortex-a53-smp , build: ze=
+phyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-cortex-a53-smp =3D "arm64"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-a5=
+3
+> +# ARCH: arm64
+> +# BOARD: qemu_cortex_a53_smp
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "qemu_cortex_a53_smp"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-cortex-a53-xip.conf b/meta=
+-zephyr-bsp/conf/machine/qemu-cortex-a53-xip.conf
+> new file mode 100755
+> index 0000000..8708a35
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-cortex-a53-xip.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-cortex-a53-xip
+> +#@DESCRIPTION: Machine configuration for qemu-cortex-a53-xip , build: ze=
+phyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-cortex-a53-xip =3D "arm64"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-a5=
+3
+> +# ARCH: arm64
+> +# BOARD: qemu_cortex_a53_xip
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "qemu_cortex_a53_xip"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-cortex-a53.conf b/meta-zep=
+hyr-bsp/conf/machine/qemu-cortex-a53.conf
+> new file mode 100755
+> index 0000000..a78fd5a
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-cortex-a53.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-cortex-a53
+> +#@DESCRIPTION: Machine configuration for qemu-cortex-a53 , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-cortex-a53 =3D "arm64"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-a5=
+3
+> +# ARCH: arm64
+> +# BOARD: qemu_cortex_a53
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "qemu_cortex_a53"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-cortex-m0.conf b/meta-zeph=
+yr-bsp/conf/machine/qemu-cortex-m0.conf
+> new file mode 100755
+> index 0000000..efc12a4
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-cortex-m0.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-cortex-m0
+> +#@DESCRIPTION: Machine configuration for qemu-cortex-m0 , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-cortex-m0 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0
+> +# ARCH: arm
+> +# BOARD: qemu_cortex_m0
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF51 -DNRF51422_X=
+XAA"
+> +
+> +ZEPHYR_BOARD =3D "qemu_cortex_m0"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-cortex-r5.conf b/meta-zeph=
+yr-bsp/conf/machine/qemu-cortex-r5.conf
+> new file mode 100755
+> index 0000000..bf046e0
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-cortex-r5.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-cortex-r5
+> +#@DESCRIPTION: Machine configuration for qemu-cortex-r5 , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-cortex-r5 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexr5"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-r5
+> +# ARCH: arm
+> +# BOARD: qemu_cortex_r5
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "qemu_cortex_r5"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-leon3.conf b/meta-zephyr-b=
+sp/conf/machine/qemu-leon3.conf
+> new file mode 100755
+> index 0000000..ce2d957
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-leon3.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-leon3
+> +#@DESCRIPTION: Machine configuration for qemu-leon3 , build: zephyr-v2.7=
+.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-leon3 =3D "sparc"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: sparc
+> +# BOARD: qemu_leon3
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "qemu_leon3"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-riscv32-xip.conf b/meta-ze=
+phyr-bsp/conf/machine/qemu-riscv32-xip.conf
+> new file mode 100755
+> index 0000000..48f1192
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-riscv32-xip.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-riscv32-xip
+> +#@DESCRIPTION: Machine configuration for qemu-riscv32-xip , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-riscv32-xip =3D "riscv"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: riscv
+> +# BOARD: qemu_riscv32_xip
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "qemu_riscv32_xip"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-riscv32.conf b/meta-zephyr=
+-bsp/conf/machine/qemu-riscv32.conf
+> new file mode 100755
+> index 0000000..437dfbb
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-riscv32.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-riscv32
+> +#@DESCRIPTION: Machine configuration for qemu-riscv32 , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-riscv32 =3D "riscv"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: riscv
+> +# BOARD: qemu_riscv32
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "qemu_riscv32"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-riscv64.conf b/meta-zephyr=
+-bsp/conf/machine/qemu-riscv64.conf
+> new file mode 100755
+> index 0000000..9480ad5
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-riscv64.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-riscv64
+> +#@DESCRIPTION: Machine configuration for qemu-riscv64 , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-riscv64 =3D "riscv"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: riscv
+> +# BOARD: qemu_riscv64
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "qemu_riscv64"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-x86-64-nokpti.conf b/meta-=
+zephyr-bsp/conf/machine/qemu-x86-64-nokpti.conf
+> new file mode 100755
+> index 0000000..b7e32ee
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-x86-64-nokpti.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-x86-64-nokpti
+> +#@DESCRIPTION: Machine configuration for qemu-x86-64-nokpti , build: zep=
+hyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-x86-64-nokpti =3D "x86"
+> +
+> +DEFAULTUNE ?=3D "core2-64"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: x86
+> +# BOARD: qemu_x86_64_nokpti
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "qemu_x86_64_nokpti"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-x86-64.conf b/meta-zephyr-=
+bsp/conf/machine/qemu-x86-64.conf
+> new file mode 100755
+> index 0000000..a7bd354
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-x86-64.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-x86-64
+> +#@DESCRIPTION: Machine configuration for qemu-x86-64 , build: zephyr-v2.=
+7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-x86-64 =3D "x86"
+> +
+> +DEFAULTUNE ?=3D "core2-64"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: x86
+> +# BOARD: qemu_x86_64
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "qemu_x86_64"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-x86-lakemont.conf b/meta-z=
+ephyr-bsp/conf/machine/qemu-x86-lakemont.conf
+> new file mode 100755
+> index 0000000..7483f29
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-x86-lakemont.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-x86-lakemont
+> +#@DESCRIPTION: Machine configuration for qemu-x86-lakemont , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-x86-lakemont =3D "x86"
+> +
+> +DEFAULTUNE ?=3D "core2-32"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: x86
+> +# BOARD: qemu_x86_lakemont
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "qemu_x86_lakemont"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-x86-nokpti.conf b/meta-zep=
+hyr-bsp/conf/machine/qemu-x86-nokpti.conf
+> new file mode 100755
+> index 0000000..25fa908
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-x86-nokpti.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-x86-nokpti
+> +#@DESCRIPTION: Machine configuration for qemu-x86-nokpti , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-x86-nokpti =3D "x86"
+> +
+> +DEFAULTUNE ?=3D "core2-32"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: x86
+> +# BOARD: qemu_x86_nokpti
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "qemu_x86_nokpti"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-x86-nommu.conf b/meta-zeph=
+yr-bsp/conf/machine/qemu-x86-nommu.conf
+> new file mode 100755
+> index 0000000..0736ada
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-x86-nommu.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-x86-nommu
+> +#@DESCRIPTION: Machine configuration for qemu-x86-nommu , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-x86-nommu =3D "x86"
+> +
+> +DEFAULTUNE ?=3D "core2-32"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: x86
+> +# BOARD: qemu_x86_nommu
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "qemu_x86_nommu"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-x86-nopae.conf b/meta-zeph=
+yr-bsp/conf/machine/qemu-x86-nopae.conf
+> new file mode 100755
+> index 0000000..3cffc87
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-x86-nopae.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-x86-nopae
+> +#@DESCRIPTION: Machine configuration for qemu-x86-nopae , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-x86-nopae =3D "x86"
+> +
+> +DEFAULTUNE ?=3D "core2-32"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: x86
+> +# BOARD: qemu_x86_nopae
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "qemu_x86_nopae"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-x86-tiny.conf b/meta-zephy=
+r-bsp/conf/machine/qemu-x86-tiny.conf
+> new file mode 100755
+> index 0000000..edbc9c7
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-x86-tiny.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-x86-tiny
+> +#@DESCRIPTION: Machine configuration for qemu-x86-tiny , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-x86-tiny =3D "x86"
+> +
+> +DEFAULTUNE ?=3D "core2-32"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: x86
+> +# BOARD: qemu_x86_tiny
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "qemu_x86_tiny"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-x86-virt.conf b/meta-zephy=
+r-bsp/conf/machine/qemu-x86-virt.conf
+> new file mode 100755
+> index 0000000..8db6640
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-x86-virt.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-x86-virt
+> +#@DESCRIPTION: Machine configuration for qemu-x86-virt , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-x86-virt =3D "x86"
+> +
+> +DEFAULTUNE ?=3D "core2-32"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: x86
+> +# BOARD: qemu_x86_virt
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "qemu_x86_virt"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-x86-xip.conf b/meta-zephyr=
+-bsp/conf/machine/qemu-x86-xip.conf
+> new file mode 100755
+> index 0000000..b4a2d2a
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-x86-xip.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-x86-xip
+> +#@DESCRIPTION: Machine configuration for qemu-x86-xip , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-x86-xip =3D "x86"
+> +
+> +DEFAULTUNE ?=3D "core2-32"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: x86
+> +# BOARD: qemu_x86_xip
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "qemu_x86_xip"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/qemu-xtensa.conf b/meta-zephyr-=
+bsp/conf/machine/qemu-xtensa.conf
+> new file mode 100755
+> index 0000000..a664b42
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/qemu-xtensa.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: qemu-xtensa
+> +#@DESCRIPTION: Machine configuration for qemu-xtensa , build: zephyr-v2.=
+7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_qemu-xtensa =3D "xtensa"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: xtensa
+> +# BOARD: qemu_xtensa
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "qemu_xtensa"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/quick-feather.conf b/meta-zephy=
+r-bsp/conf/machine/quick-feather.conf
+> new file mode 100755
+> index 0000000..d2af1e5
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/quick-feather.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: quick-feather
+> +#@DESCRIPTION: Machine configuration for quick-feather , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_quick-feather =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: quick_feather
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "quick_feather"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/rak4631-nrf52840.conf b/meta-ze=
+phyr-bsp/conf/machine/rak4631-nrf52840.conf
+> new file mode 100755
+> index 0000000..286c003
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/rak4631-nrf52840.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: rak4631-nrf52840
+> +#@DESCRIPTION: Machine configuration for rak4631-nrf52840 , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_rak4631-nrf52840 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: rak4631_nrf52840
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "rak4631_nrf52840"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/rak5010-nrf52840.conf b/meta-ze=
+phyr-bsp/conf/machine/rak5010-nrf52840.conf
+> new file mode 100755
+> index 0000000..035f9ce
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/rak5010-nrf52840.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: rak5010-nrf52840
+> +#@DESCRIPTION: Machine configuration for rak5010-nrf52840 , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_rak5010-nrf52840 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: rak5010_nrf52840
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "rak5010_nrf52840"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/rcar-h3ulcb-cr7.conf b/meta-zep=
+hyr-bsp/conf/machine/rcar-h3ulcb-cr7.conf
+> new file mode 100755
+> index 0000000..2098895
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/rcar-h3ulcb-cr7.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: rcar-h3ulcb-cr7
+> +#@DESCRIPTION: Machine configuration for rcar-h3ulcb-cr7 , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_rcar-h3ulcb-cr7 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexr7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-r7
+> +# ARCH: arm
+> +# BOARD: rcar_h3ulcb_cr7
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "rcar_h3ulcb_cr7"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/reel-board-v2.conf b/meta-zephy=
+r-bsp/conf/machine/reel-board-v2.conf
+> new file mode 100755
+> index 0000000..5db4d78
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/reel-board-v2.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: reel-board-v2
+> +#@DESCRIPTION: Machine configuration for reel-board-v2 , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_reel-board-v2 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: reel_board_v2
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "reel_board_v2"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/reel-board.conf b/meta-zephyr-b=
+sp/conf/machine/reel-board.conf
+> new file mode 100755
+> index 0000000..9528b52
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/reel-board.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: reel-board
+> +#@DESCRIPTION: Machine configuration for reel-board , build: zephyr-v2.7=
+.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_reel-board =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: reel_board
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "reel_board"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/ronoth-lodev.conf b/meta-zephyr=
+-bsp/conf/machine/ronoth-lodev.conf
+> new file mode 100755
+> index 0000000..28468f0
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/ronoth-lodev.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: ronoth-lodev
+> +#@DESCRIPTION: Machine configuration for ronoth-lodev , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_ronoth-lodev =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: ronoth_lodev
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L073xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "ronoth_lodev"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/ruuvi-ruuvitag.conf b/meta-zeph=
+yr-bsp/conf/machine/ruuvi-ruuvitag.conf
+> new file mode 100755
+> index 0000000..4a64e7c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/ruuvi-ruuvitag.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: ruuvi-ruuvitag
+> +#@DESCRIPTION: Machine configuration for ruuvi-ruuvitag , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_ruuvi-ruuvitag =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: ruuvi_ruuvitag
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52832_XXAA -DNR=
+F52832_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "ruuvi_ruuvitag"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/rv32m1-vega-ri5cy.conf b/meta-z=
+ephyr-bsp/conf/machine/rv32m1-vega-ri5cy.conf
+> new file mode 100755
+> index 0000000..547c846
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/rv32m1-vega-ri5cy.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: rv32m1-vega-ri5cy
+> +#@DESCRIPTION: Machine configuration for rv32m1-vega-ri5cy , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_rv32m1-vega-ri5cy =3D "riscv"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: riscv
+> +# BOARD: rv32m1_vega_ri5cy
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -DCPU_RV32M1_ri5cy -DXCVR_GENFSK_ENABL=
+ED"
+> +
+> +ZEPHYR_BOARD =3D "rv32m1_vega_ri5cy"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/rv32m1-vega-zero-riscy.conf b/m=
+eta-zephyr-bsp/conf/machine/rv32m1-vega-zero-riscy.conf
+> new file mode 100755
+> index 0000000..5abc687
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/rv32m1-vega-zero-riscy.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: rv32m1-vega-zero-riscy
+> +#@DESCRIPTION: Machine configuration for rv32m1-vega-zero-riscy , build:=
+ zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_rv32m1-vega-zero-riscy =3D "riscv"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: riscv
+> +# BOARD: rv32m1_vega_zero_riscy
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -DCPU_RV32M1_zero_riscy -DXCVR_GENFSK_=
+ENABLED"
+> +
+> +ZEPHYR_BOARD =3D "rv32m1_vega_zero_riscy"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/sam-e70-xplained.conf b/meta-ze=
+phyr-bsp/conf/machine/sam-e70-xplained.conf
+> new file mode 100755
+> index 0000000..d4d81aa
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/sam-e70-xplained.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: sam-e70-xplained
+> +#@DESCRIPTION: Machine configuration for sam-e70-xplained , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_sam-e70-xplained =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: sam_e70_xplained
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "sam_e70_xplained"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/sam-e70b-xplained.conf b/meta-z=
+ephyr-bsp/conf/machine/sam-e70b-xplained.conf
+> new file mode 100755
+> index 0000000..6169e37
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/sam-e70b-xplained.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: sam-e70b-xplained
+> +#@DESCRIPTION: Machine configuration for sam-e70b-xplained , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_sam-e70b-xplained =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: sam_e70b_xplained
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "sam_e70b_xplained"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/sam-v71-xult.conf b/meta-zephyr=
+-bsp/conf/machine/sam-v71-xult.conf
+> new file mode 100755
+> index 0000000..0c3250e
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/sam-v71-xult.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: sam-v71-xult
+> +#@DESCRIPTION: Machine configuration for sam-v71-xult , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_sam-v71-xult =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: sam_v71_xult
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "sam_v71_xult"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/sam-v71b-xult.conf b/meta-zephy=
+r-bsp/conf/machine/sam-v71b-xult.conf
+> new file mode 100755
+> index 0000000..1034b68
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/sam-v71b-xult.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: sam-v71b-xult
+> +#@DESCRIPTION: Machine configuration for sam-v71b-xult , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_sam-v71b-xult =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: sam_v71b_xult
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "sam_v71b_xult"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/sam4e-xpro.conf b/meta-zephyr-b=
+sp/conf/machine/sam4e-xpro.conf
+> new file mode 100755
+> index 0000000..e71ffc5
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/sam4e-xpro.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: sam4e-xpro
+> +#@DESCRIPTION: Machine configuration for sam4e-xpro , build: zephyr-v2.7=
+.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_sam4e-xpro =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: sam4e_xpro
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "sam4e_xpro"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/sam4l-ek.conf b/meta-zephyr-bsp=
+/conf/machine/sam4l-ek.conf
+> new file mode 100755
+> index 0000000..23ed071
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/sam4l-ek.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: sam4l-ek
+> +#@DESCRIPTION: Machine configuration for sam4l-ek , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_sam4l-ek =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: sam4l_ek
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "sam4l_ek"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/sam4s-xplained.conf b/meta-zeph=
+yr-bsp/conf/machine/sam4s-xplained.conf
+> new file mode 100755
+> index 0000000..89c727f
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/sam4s-xplained.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: sam4s-xplained
+> +#@DESCRIPTION: Machine configuration for sam4s-xplained , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_sam4s-xplained =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: sam4s_xplained
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "sam4s_xplained"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/seeeduino-xiao.conf b/meta-zeph=
+yr-bsp/conf/machine/seeeduino-xiao.conf
+> new file mode 100755
+> index 0000000..1f7b81e
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/seeeduino-xiao.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: seeeduino-xiao
+> +#@DESCRIPTION: Machine configuration for seeeduino-xiao , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_seeeduino-xiao =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: seeeduino_xiao
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "seeeduino_xiao"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/segger-trb-stm32f407.conf b/met=
+a-zephyr-bsp/conf/machine/segger-trb-stm32f407.conf
+> new file mode 100755
+> index 0000000..3ff8e20
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/segger-trb-stm32f407.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: segger-trb-stm32f407
+> +#@DESCRIPTION: Machine configuration for segger-trb-stm32f407 , build: z=
+ephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_segger-trb-stm32f407 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: segger_trb_stm32f407
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F407xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D12000000"
+> +
+> +ZEPHYR_BOARD =3D "segger_trb_stm32f407"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/sensortile-box.conf b/meta-zeph=
+yr-bsp/conf/machine/sensortile-box.conf
+> new file mode 100755
+> index 0000000..b41f126
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/sensortile-box.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: sensortile-box
+> +#@DESCRIPTION: Machine configuration for sensortile-box , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_sensortile-box =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: sensortile_box
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L4R9xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D16000000"
+> +
+> +ZEPHYR_BOARD =3D "sensortile_box"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/serpente.conf b/meta-zephyr-bsp=
+/conf/machine/serpente.conf
+> new file mode 100755
+> index 0000000..de18f18
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/serpente.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: serpente
+> +#@DESCRIPTION: Machine configuration for serpente , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_serpente =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: serpente
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "serpente"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/sparkfun-thing-plus-nrf9160-ns.=
+conf b/meta-zephyr-bsp/conf/machine/sparkfun-thing-plus-nrf9160-ns.conf
+> new file mode 100755
+> index 0000000..39cc155
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/sparkfun-thing-plus-nrf9160-ns.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: sparkfun-thing-plus-nrf9160-ns
+> +#@DESCRIPTION: Machine configuration for sparkfun-thing-plus-nrf9160-ns =
+, build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_sparkfun-thing-plus-nrf9160-ns =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: sparkfun_thing_plus_nrf9160_ns
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF9160_XXAA -DNRF=
+_TRUSTZONE_NONSECURE"
+> +
+> +ZEPHYR_BOARD =3D "sparkfun_thing_plus_nrf9160_ns"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/sparkfun-thing-plus-nrf9160.con=
+f b/meta-zephyr-bsp/conf/machine/sparkfun-thing-plus-nrf9160.conf
+> new file mode 100755
+> index 0000000..7940fa6
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/sparkfun-thing-plus-nrf9160.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: sparkfun-thing-plus-nrf9160
+> +#@DESCRIPTION: Machine configuration for sparkfun-thing-plus-nrf9160 , b=
+uild: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_sparkfun-thing-plus-nrf9160 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: sparkfun_thing_plus_nrf9160
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF9160_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "sparkfun_thing_plus_nrf9160"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/steval-fcu001v1.conf b/meta-zep=
+hyr-bsp/conf/machine/steval-fcu001v1.conf
+> new file mode 100755
+> index 0000000..1e058e5
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/steval-fcu001v1.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: steval-fcu001v1
+> +#@DESCRIPTION: Machine configuration for steval-fcu001v1 , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_steval-fcu001v1 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: steval_fcu001v1
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F401xC -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D16000000"
+> +
+> +ZEPHYR_BOARD =3D "steval_fcu001v1"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32-min-dev-black.conf b/meta=
+-zephyr-bsp/conf/machine/stm32-min-dev-black.conf
+> new file mode 100755
+> index 0000000..e3348a4
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32-min-dev-black.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32-min-dev-black
+> +#@DESCRIPTION: Machine configuration for stm32-min-dev-black , build: ze=
+phyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32-min-dev-black =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm3"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3
+> +# ARCH: arm
+> +# BOARD: stm32_min_dev_black
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F103xB -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32_min_dev_black"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32-min-dev-blue.conf b/meta-=
+zephyr-bsp/conf/machine/stm32-min-dev-blue.conf
+> new file mode 100755
+> index 0000000..1fbb5b0
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32-min-dev-blue.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32-min-dev-blue
+> +#@DESCRIPTION: Machine configuration for stm32-min-dev-blue , build: zep=
+hyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32-min-dev-blue =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm3"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3
+> +# ARCH: arm
+> +# BOARD: stm32_min_dev_blue
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F103xB -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32_min_dev_blue"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm3210c-eval.conf b/meta-zephy=
+r-bsp/conf/machine/stm3210c-eval.conf
+> new file mode 100755
+> index 0000000..c60e849
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm3210c-eval.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm3210c-eval
+> +#@DESCRIPTION: Machine configuration for stm3210c-eval , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm3210c-eval =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm3"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3
+> +# ARCH: arm
+> +# BOARD: stm3210c_eval
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F107xC -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm3210c_eval"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32373c-eval.conf b/meta-zeph=
+yr-bsp/conf/machine/stm32373c-eval.conf
+> new file mode 100755
+> index 0000000..fe6b130
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32373c-eval.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32373c-eval
+> +#@DESCRIPTION: Machine configuration for stm32373c-eval , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32373c-eval =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: stm32373c_eval
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F373xC -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32373c_eval"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32f0-disco.conf b/meta-zephy=
+r-bsp/conf/machine/stm32f0-disco.conf
+> new file mode 100755
+> index 0000000..8b95d40
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32f0-disco.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32f0-disco
+> +#@DESCRIPTION: Machine configuration for stm32f0-disco , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32f0-disco =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0
+> +# ARCH: arm
+> +# BOARD: stm32f0_disco
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F051x8 -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32f0_disco"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32f030-demo.conf b/meta-zeph=
+yr-bsp/conf/machine/stm32f030-demo.conf
+> new file mode 100755
+> index 0000000..852c174
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32f030-demo.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32f030-demo
+> +#@DESCRIPTION: Machine configuration for stm32f030-demo , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32f030-demo =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0
+> +# ARCH: arm
+> +# BOARD: stm32f030_demo
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F030x6 -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32f030_demo"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32f072-eval.conf b/meta-zeph=
+yr-bsp/conf/machine/stm32f072-eval.conf
+> new file mode 100755
+> index 0000000..a4ffaa5
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32f072-eval.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32f072-eval
+> +#@DESCRIPTION: Machine configuration for stm32f072-eval , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32f072-eval =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0
+> +# ARCH: arm
+> +# BOARD: stm32f072_eval
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F072xB -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32f072_eval"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32f072b-disco.conf b/meta-ze=
+phyr-bsp/conf/machine/stm32f072b-disco.conf
+> new file mode 100755
+> index 0000000..1500e02
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32f072b-disco.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32f072b-disco
+> +#@DESCRIPTION: Machine configuration for stm32f072b-disco , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32f072b-disco =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0
+> +# ARCH: arm
+> +# BOARD: stm32f072b_disco
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F072xB -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32f072b_disco"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32f103-mini.conf b/meta-zeph=
+yr-bsp/conf/machine/stm32f103-mini.conf
+> new file mode 100755
+> index 0000000..3aab904
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32f103-mini.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32f103-mini
+> +#@DESCRIPTION: Machine configuration for stm32f103-mini , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32f103-mini =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm3"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3
+> +# ARCH: arm
+> +# BOARD: stm32f103_mini
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F103xE -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32f103_mini"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32f3-disco.conf b/meta-zephy=
+r-bsp/conf/machine/stm32f3-disco.conf
+> new file mode 100755
+> index 0000000..68d4ad0
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32f3-disco.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32f3-disco
+> +#@DESCRIPTION: Machine configuration for stm32f3-disco , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32f3-disco =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: stm32f3_disco
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F303xC -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32f3_disco"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32f4-disco.conf b/meta-zephy=
+r-bsp/conf/machine/stm32f4-disco.conf
+> new file mode 100755
+> index 0000000..f7fb1ad
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32f4-disco.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32f4-disco
+> +#@DESCRIPTION: Machine configuration for stm32f4-disco , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32f4-disco =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: stm32f4_disco
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F407xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32f4_disco"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32f411e-disco.conf b/meta-ze=
+phyr-bsp/conf/machine/stm32f411e-disco.conf
+> new file mode 100755
+> index 0000000..29494b4
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32f411e-disco.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32f411e-disco
+> +#@DESCRIPTION: Machine configuration for stm32f411e-disco , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32f411e-disco =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: stm32f411e_disco
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F411xE -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32f411e_disco"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32f412g-disco.conf b/meta-ze=
+phyr-bsp/conf/machine/stm32f412g-disco.conf
+> new file mode 100755
+> index 0000000..6839c05
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32f412g-disco.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32f412g-disco
+> +#@DESCRIPTION: Machine configuration for stm32f412g-disco , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32f412g-disco =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: stm32f412g_disco
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F412Zx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32f412g_disco"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32f429i-disc1.conf b/meta-ze=
+phyr-bsp/conf/machine/stm32f429i-disc1.conf
+> new file mode 100755
+> index 0000000..1151ef9
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32f429i-disc1.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32f429i-disc1
+> +#@DESCRIPTION: Machine configuration for stm32f429i-disc1 , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32f429i-disc1 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: stm32f429i_disc1
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F429xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32f429i_disc1"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32f469i-disco.conf b/meta-ze=
+phyr-bsp/conf/machine/stm32f469i-disco.conf
+> new file mode 100755
+> index 0000000..c41e23c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32f469i-disco.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32f469i-disco
+> +#@DESCRIPTION: Machine configuration for stm32f469i-disco , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32f469i-disco =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: stm32f469i_disco
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F469xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32f469i_disco"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32f723e-disco.conf b/meta-ze=
+phyr-bsp/conf/machine/stm32f723e-disco.conf
+> new file mode 100755
+> index 0000000..b465307
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32f723e-disco.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32f723e-disco
+> +#@DESCRIPTION: Machine configuration for stm32f723e-disco , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32f723e-disco =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: stm32f723e_disco
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F723xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM7 -DHSE_VALUE=3D25000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32f723e_disco"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32f746g-disco.conf b/meta-ze=
+phyr-bsp/conf/machine/stm32f746g-disco.conf
+> new file mode 100755
+> index 0000000..d8a4800
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32f746g-disco.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32f746g-disco
+> +#@DESCRIPTION: Machine configuration for stm32f746g-disco , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32f746g-disco =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: stm32f746g_disco
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F746xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM7 -DHSE_VALUE=3D25000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32f746g_disco"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32f769i-disco.conf b/meta-ze=
+phyr-bsp/conf/machine/stm32f769i-disco.conf
+> new file mode 100755
+> index 0000000..290366b
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32f769i-disco.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32f769i-disco
+> +#@DESCRIPTION: Machine configuration for stm32f769i-disco , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32f769i-disco =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: stm32f769i_disco
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F769xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM7 -DHSE_VALUE=3D25000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32f769i_disco"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32g0316-disco.conf b/meta-ze=
+phyr-bsp/conf/machine/stm32g0316-disco.conf
+> new file mode 100755
+> index 0000000..e0d3102
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32g0316-disco.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32g0316-disco
+> +#@DESCRIPTION: Machine configuration for stm32g0316-disco , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32g0316-disco =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: stm32g0316_disco
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32G031xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32g0316_disco"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32g071b-disco.conf b/meta-ze=
+phyr-bsp/conf/machine/stm32g071b-disco.conf
+> new file mode 100755
+> index 0000000..33a7e3e
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32g071b-disco.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32g071b-disco
+> +#@DESCRIPTION: Machine configuration for stm32g071b-disco , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32g071b-disco =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm0plus"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m0=
+plus
+> +# ARCH: arm
+> +# BOARD: stm32g071b_disco
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32G071xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32g071b_disco"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32h735g-disco.conf b/meta-ze=
+phyr-bsp/conf/machine/stm32h735g-disco.conf
+> new file mode 100755
+> index 0000000..391175a
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32h735g-disco.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32h735g-disco
+> +#@DESCRIPTION: Machine configuration for stm32h735g-disco , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32h735g-disco =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: stm32h735g_disco
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32H735xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM7 -DHSE_VALUE=3D25000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32h735g_disco"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32h747i-disco-m4.conf b/meta=
+-zephyr-bsp/conf/machine/stm32h747i-disco-m4.conf
+> new file mode 100755
+> index 0000000..7e90cd0
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32h747i-disco-m4.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32h747i-disco-m4
+> +#@DESCRIPTION: Machine configuration for stm32h747i-disco-m4 , build: ze=
+phyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32h747i-disco-m4 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: stm32h747i_disco_m4
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32H747xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32h747i_disco_m4"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32h747i-disco-m7.conf b/meta=
+-zephyr-bsp/conf/machine/stm32h747i-disco-m7.conf
+> new file mode 100755
+> index 0000000..659586d
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32h747i-disco-m7.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32h747i-disco-m7
+> +#@DESCRIPTION: Machine configuration for stm32h747i-disco-m7 , build: ze=
+phyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32h747i-disco-m7 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: stm32h747i_disco_m7
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32H747xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM7 -DHSE_VALUE=3D25000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32h747i_disco_m7"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32l1-disco.conf b/meta-zephy=
+r-bsp/conf/machine/stm32l1-disco.conf
+> new file mode 100755
+> index 0000000..5e98c44
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32l1-disco.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32l1-disco
+> +#@DESCRIPTION: Machine configuration for stm32l1-disco , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32l1-disco =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm3"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3
+> +# ARCH: arm
+> +# BOARD: stm32l1_disco
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L151xB -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32l1_disco"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32l476g-disco.conf b/meta-ze=
+phyr-bsp/conf/machine/stm32l476g-disco.conf
+> new file mode 100755
+> index 0000000..d0249ae
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32l476g-disco.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32l476g-disco
+> +#@DESCRIPTION: Machine configuration for stm32l476g-disco , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32l476g-disco =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: stm32l476g_disco
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L476xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32l476g_disco"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32l496g-disco.conf b/meta-ze=
+phyr-bsp/conf/machine/stm32l496g-disco.conf
+> new file mode 100755
+> index 0000000..3e79086
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32l496g-disco.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32l496g-disco
+> +#@DESCRIPTION: Machine configuration for stm32l496g-disco , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32l496g-disco =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: stm32l496g_disco
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L496xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DCORE_CM4 -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32l496g_disco"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32l562e-dk-ns.conf b/meta-ze=
+phyr-bsp/conf/machine/stm32l562e-dk-ns.conf
+> new file mode 100755
+> index 0000000..3e7fbac
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32l562e-dk-ns.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32l562e-dk-ns
+> +#@DESCRIPTION: Machine configuration for stm32l562e-dk-ns , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32l562e-dk-ns =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: stm32l562e_dk_ns
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L562xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32l562e_dk_ns"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32l562e-dk.conf b/meta-zephy=
+r-bsp/conf/machine/stm32l562e-dk.conf
+> new file mode 100755
+> index 0000000..1793676
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32l562e-dk.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32l562e-dk
+> +#@DESCRIPTION: Machine configuration for stm32l562e-dk , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32l562e-dk =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: stm32l562e_dk
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32L562xx -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32l562e_dk"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/stm32vl-disco.conf b/meta-zephy=
+r-bsp/conf/machine/stm32vl-disco.conf
+> new file mode 100755
+> index 0000000..9bf439d
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/stm32vl-disco.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: stm32vl-disco
+> +#@DESCRIPTION: Machine configuration for stm32vl-disco , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_stm32vl-disco =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm3"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3
+> +# ARCH: arm
+> +# BOARD: stm32vl_disco
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F100xB -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "stm32vl_disco"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/teensy40.conf b/meta-zephyr-bsp=
+/conf/machine/teensy40.conf
+> new file mode 100755
+> index 0000000..a1ca582
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/teensy40.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: teensy40
+> +#@DESCRIPTION: Machine configuration for teensy40 , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_teensy40 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: teensy40
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MIMXRT1062DVL6=
+A -DXIP_BOOT_HEADER_ENABLE=3D1 -DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024 =
+-DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "teensy40"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/teensy41.conf b/meta-zephyr-bsp=
+/conf/machine/teensy41.conf
+> new file mode 100755
+> index 0000000..5469104
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/teensy41.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: teensy41
+> +#@DESCRIPTION: Machine configuration for teensy41 , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_teensy41 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: teensy41
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MIMXRT1062DVJ6=
+A -DXIP_BOOT_HEADER_ENABLE=3D1 -DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024 =
+-DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "teensy41"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/thingy52-nrf52832.conf b/meta-z=
+ephyr-bsp/conf/machine/thingy52-nrf52832.conf
+> new file mode 100755
+> index 0000000..a40d44f
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/thingy52-nrf52832.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: thingy52-nrf52832
+> +#@DESCRIPTION: Machine configuration for thingy52-nrf52832 , build: zeph=
+yr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_thingy52-nrf52832 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: thingy52_nrf52832
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52832_XXAA -DNR=
+F52832_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "thingy52_nrf52832"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/thingy53-nrf5340-cpuapp-ns.conf=
+ b/meta-zephyr-bsp/conf/machine/thingy53-nrf5340-cpuapp-ns.conf
+> new file mode 100755
+> index 0000000..fe583f4
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/thingy53-nrf5340-cpuapp-ns.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: thingy53-nrf5340-cpuapp-ns
+> +#@DESCRIPTION: Machine configuration for thingy53-nrf5340-cpuapp-ns , bu=
+ild: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_thingy53-nrf5340-cpuapp-ns =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: thingy53_nrf5340_cpuapp_ns
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF5340_XXAA_APPLI=
+CATION -DNRF_TRUSTZONE_NONSECURE"
+> +
+> +ZEPHYR_BOARD =3D "thingy53_nrf5340_cpuapp_ns"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/thingy53-nrf5340-cpuapp.conf b/=
+meta-zephyr-bsp/conf/machine/thingy53-nrf5340-cpuapp.conf
+> new file mode 100755
+> index 0000000..a835bc6
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/thingy53-nrf5340-cpuapp.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: thingy53-nrf5340-cpuapp
+> +#@DESCRIPTION: Machine configuration for thingy53-nrf5340-cpuapp , build=
+: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_thingy53-nrf5340-cpuapp =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-maine"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3
+> +# ARCH: arm
+> +# BOARD: thingy53_nrf5340_cpuapp
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF5340_XXAA_APPLI=
+CATION"
+> +
+> +ZEPHYR_BOARD =3D "thingy53_nrf5340_cpuapp"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/thingy53-nrf5340-cpunet.conf b/=
+meta-zephyr-bsp/conf/machine/thingy53-nrf5340-cpunet.conf
+> new file mode 100755
+> index 0000000..96ce13f
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/thingy53-nrf5340-cpunet.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: thingy53-nrf5340-cpunet
+> +#@DESCRIPTION: Machine configuration for thingy53-nrf5340-cpunet , build=
+: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_thingy53-nrf5340-cpunet =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-main"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3+nodsp
+> +# ARCH: arm
+> +# BOARD: thingy53_nrf5340_cpunet
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF5340_XXAA_NETWO=
+RK"
+> +
+> +ZEPHYR_BOARD =3D "thingy53_nrf5340_cpunet"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/tlsr9518adk80d.conf b/meta-zeph=
+yr-bsp/conf/machine/tlsr9518adk80d.conf
+> new file mode 100755
+> index 0000000..b2fc8f0
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/tlsr9518adk80d.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: tlsr9518adk80d
+> +#@DESCRIPTION: Machine configuration for tlsr9518adk80d , build: zephyr-=
+v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_tlsr9518adk80d =3D "riscv"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: riscv
+> +# BOARD: tlsr9518adk80d
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "tlsr9518adk80d"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/twr-ke18f.conf b/meta-zephyr-bs=
+p/conf/machine/twr-ke18f.conf
+> new file mode 100755
+> index 0000000..f037f0e
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/twr-ke18f.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: twr-ke18f
+> +#@DESCRIPTION: Machine configuration for twr-ke18f , build: zephyr-v2.7.=
+1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_twr-ke18f =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: twr_ke18f
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MKE18F512VLL16=
+ -DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "twr_ke18f"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/twr-kv58f220m.conf b/meta-zephy=
+r-bsp/conf/machine/twr-kv58f220m.conf
+> new file mode 100755
+> index 0000000..bdaeb2b
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/twr-kv58f220m.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: twr-kv58f220m
+> +#@DESCRIPTION: Machine configuration for twr-kv58f220m , build: zephyr-v=
+2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_twr-kv58f220m =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm7"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m7
+> +# ARCH: arm
+> +# BOARD: twr_kv58f220m
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MKV58F1M0VLQ24=
+ -DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "twr_kv58f220m"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/ubx-bmd300eval-nrf52832.conf b/=
+meta-zephyr-bsp/conf/machine/ubx-bmd300eval-nrf52832.conf
+> new file mode 100755
+> index 0000000..2288d05
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/ubx-bmd300eval-nrf52832.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: ubx-bmd300eval-nrf52832
+> +#@DESCRIPTION: Machine configuration for ubx-bmd300eval-nrf52832 , build=
+: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_ubx-bmd300eval-nrf52832 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: ubx_bmd300eval_nrf52832
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52832_XXAA -DNR=
+F52832_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "ubx_bmd300eval_nrf52832"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/ubx-bmd330eval-nrf52810.conf b/=
+meta-zephyr-bsp/conf/machine/ubx-bmd330eval-nrf52810.conf
+> new file mode 100755
+> index 0000000..db66a8a
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/ubx-bmd330eval-nrf52810.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: ubx-bmd330eval-nrf52810
+> +#@DESCRIPTION: Machine configuration for ubx-bmd330eval-nrf52810 , build=
+: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_ubx-bmd330eval-nrf52810 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: ubx_bmd330eval_nrf52810
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52810_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "ubx_bmd330eval_nrf52810"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/ubx-bmd340eval-nrf52840.conf b/=
+meta-zephyr-bsp/conf/machine/ubx-bmd340eval-nrf52840.conf
+> new file mode 100755
+> index 0000000..5b714e0
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/ubx-bmd340eval-nrf52840.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: ubx-bmd340eval-nrf52840
+> +#@DESCRIPTION: Machine configuration for ubx-bmd340eval-nrf52840 , build=
+: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_ubx-bmd340eval-nrf52840 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: ubx_bmd340eval_nrf52840
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "ubx_bmd340eval_nrf52840"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/ubx-bmd345eval-nrf52840.conf b/=
+meta-zephyr-bsp/conf/machine/ubx-bmd345eval-nrf52840.conf
+> new file mode 100755
+> index 0000000..7cd456c
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/ubx-bmd345eval-nrf52840.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: ubx-bmd345eval-nrf52840
+> +#@DESCRIPTION: Machine configuration for ubx-bmd345eval-nrf52840 , build=
+: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_ubx-bmd345eval-nrf52840 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: ubx_bmd345eval_nrf52840
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "ubx_bmd345eval_nrf52840"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/ubx-bmd360eval-nrf52811.conf b/=
+meta-zephyr-bsp/conf/machine/ubx-bmd360eval-nrf52811.conf
+> new file mode 100755
+> index 0000000..ba42a61
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/ubx-bmd360eval-nrf52811.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: ubx-bmd360eval-nrf52811
+> +#@DESCRIPTION: Machine configuration for ubx-bmd360eval-nrf52811 , build=
+: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_ubx-bmd360eval-nrf52811 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: ubx_bmd360eval_nrf52811
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52811_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "ubx_bmd360eval_nrf52811"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/ubx-bmd380eval-nrf52840.conf b/=
+meta-zephyr-bsp/conf/machine/ubx-bmd380eval-nrf52840.conf
+> new file mode 100755
+> index 0000000..7df59ca
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/ubx-bmd380eval-nrf52840.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: ubx-bmd380eval-nrf52840
+> +#@DESCRIPTION: Machine configuration for ubx-bmd380eval-nrf52840 , build=
+: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_ubx-bmd380eval-nrf52840 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: ubx_bmd380eval_nrf52840
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "ubx_bmd380eval_nrf52840"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/ubx-evkannab1-nrf52832.conf b/m=
+eta-zephyr-bsp/conf/machine/ubx-evkannab1-nrf52832.conf
+> new file mode 100755
+> index 0000000..da3352b
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/ubx-evkannab1-nrf52832.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: ubx-evkannab1-nrf52832
+> +#@DESCRIPTION: Machine configuration for ubx-evkannab1-nrf52832 , build:=
+ zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_ubx-evkannab1-nrf52832 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: ubx_evkannab1_nrf52832
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52832_XXAA -DNR=
+F52832_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "ubx_evkannab1_nrf52832"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/ubx-evkninab1-nrf52832.conf b/m=
+eta-zephyr-bsp/conf/machine/ubx-evkninab1-nrf52832.conf
+> new file mode 100755
+> index 0000000..c80bc65
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/ubx-evkninab1-nrf52832.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: ubx-evkninab1-nrf52832
+> +#@DESCRIPTION: Machine configuration for ubx-evkninab1-nrf52832 , build:=
+ zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_ubx-evkninab1-nrf52832 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: ubx_evkninab1_nrf52832
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52832_XXAA -DNR=
+F52832_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "ubx_evkninab1_nrf52832"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/ubx-evkninab3-nrf52840.conf b/m=
+eta-zephyr-bsp/conf/machine/ubx-evkninab3-nrf52840.conf
+> new file mode 100755
+> index 0000000..af7cdef
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/ubx-evkninab3-nrf52840.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: ubx-evkninab3-nrf52840
+> +#@DESCRIPTION: Machine configuration for ubx-evkninab3-nrf52840 , build:=
+ zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_ubx-evkninab3-nrf52840 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: ubx_evkninab3_nrf52840
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52840_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "ubx_evkninab3_nrf52840"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/ubx-evkninab4-nrf52833.conf b/m=
+eta-zephyr-bsp/conf/machine/ubx-evkninab4-nrf52833.conf
+> new file mode 100755
+> index 0000000..f8c3c77
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/ubx-evkninab4-nrf52833.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: ubx-evkninab4-nrf52833
+> +#@DESCRIPTION: Machine configuration for ubx-evkninab4-nrf52833 , build:=
+ zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_ubx-evkninab4-nrf52833 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: ubx_evkninab4_nrf52833
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DNRF52833_XXAA"
+> +
+> +ZEPHYR_BOARD =3D "ubx_evkninab4_nrf52833"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/udoo-neo-full-m4.conf b/meta-ze=
+phyr-bsp/conf/machine/udoo-neo-full-m4.conf
+> new file mode 100755
+> index 0000000..a518c7b
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/udoo-neo-full-m4.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: udoo-neo-full-m4
+> +#@DESCRIPTION: Machine configuration for udoo-neo-full-m4 , build: zephy=
+r-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_udoo-neo-full-m4 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: udoo_neo_full_m4
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "udoo_neo_full_m4"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/up-squared.conf b/meta-zephyr-b=
+sp/conf/machine/up-squared.conf
+> new file mode 100755
+> index 0000000..ce95c95
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/up-squared.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: up-squared
+> +#@DESCRIPTION: Machine configuration for up-squared , build: zephyr-v2.7=
+.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_up-squared =3D "x86"
+> +
+> +DEFAULTUNE ?=3D "core2-64"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: x86
+> +# BOARD: up_squared
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "up_squared"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/usb-kw24d512.conf b/meta-zephyr=
+-bsp/conf/machine/usb-kw24d512.conf
+> new file mode 100755
+> index 0000000..434f2bd
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/usb-kw24d512.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: usb-kw24d512
+> +#@DESCRIPTION: Machine configuration for usb-kw24d512 , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_usb-kw24d512 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: usb_kw24d512
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DCPU_MKW24D512VHA5 =
+-DBOARD_FLASH_SIZE=3DCONFIG_FLASH_SIZE*1024 -DNDEBUG"
+> +
+> +ZEPHYR_BOARD =3D "usb_kw24d512"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/v2m-beetle.conf b/meta-zephyr-b=
+sp/conf/machine/v2m-beetle.conf
+> new file mode 100755
+> index 0000000..b393ca2
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/v2m-beetle.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: v2m-beetle
+> +#@DESCRIPTION: Machine configuration for v2m-beetle , build: zephyr-v2.7=
+.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_v2m-beetle =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm3"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3
+> +# ARCH: arm
+> +# BOARD: v2m_beetle
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "v2m_beetle"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/v2m-musca-b1-ns.conf b/meta-zep=
+hyr-bsp/conf/machine/v2m-musca-b1-ns.conf
+> new file mode 100755
+> index 0000000..202f732
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/v2m-musca-b1-ns.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: v2m-musca-b1-ns
+> +#@DESCRIPTION: Machine configuration for v2m-musca-b1-ns , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_v2m-musca-b1-ns =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-main"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3+nodsp
+> +# ARCH: arm
+> +# BOARD: v2m_musca_b1_ns
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "v2m_musca_b1_ns"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/v2m-musca-b1.conf b/meta-zephyr=
+-bsp/conf/machine/v2m-musca-b1.conf
+> new file mode 100755
+> index 0000000..50de472
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/v2m-musca-b1.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: v2m-musca-b1
+> +#@DESCRIPTION: Machine configuration for v2m-musca-b1 , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_v2m-musca-b1 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-main"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3+nodsp
+> +# ARCH: arm
+> +# BOARD: v2m_musca_b1
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "v2m_musca_b1"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/v2m-musca-s1-ns.conf b/meta-zep=
+hyr-bsp/conf/machine/v2m-musca-s1-ns.conf
+> new file mode 100755
+> index 0000000..fe21fbe
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/v2m-musca-s1-ns.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: v2m-musca-s1-ns
+> +#@DESCRIPTION: Machine configuration for v2m-musca-s1-ns , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_v2m-musca-s1-ns =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-main"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3+nodsp
+> +# ARCH: arm
+> +# BOARD: v2m_musca_s1_ns
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "v2m_musca_s1_ns"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/v2m-musca-s1.conf b/meta-zephyr=
+-bsp/conf/machine/v2m-musca-s1.conf
+> new file mode 100755
+> index 0000000..f935ec7
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/v2m-musca-s1.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: v2m-musca-s1
+> +#@DESCRIPTION: Machine configuration for v2m-musca-s1 , build: zephyr-v2=
+.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_v2m-musca-s1 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "armv8m-main"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3=
+3+nodsp
+> +# ARCH: arm
+> +# BOARD: v2m_musca_s1
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "v2m_musca_s1"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/warp7-m4.conf b/meta-zephyr-bsp=
+/conf/machine/warp7-m4.conf
+> new file mode 100755
+> index 0000000..acd00ad
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/warp7-m4.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: warp7-m4
+> +#@DESCRIPTION: Machine configuration for warp7-m4 , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_warp7-m4 =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: warp7_m4
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START"
+> +
+> +ZEPHYR_BOARD =3D "warp7_m4"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/waveshare-open103z.conf b/meta-=
+zephyr-bsp/conf/machine/waveshare-open103z.conf
+> new file mode 100755
+> index 0000000..ac0f14f
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/waveshare-open103z.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: waveshare-open103z
+> +#@DESCRIPTION: Machine configuration for waveshare-open103z , build: zep=
+hyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_waveshare-open103z =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm3"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m3
+> +# ARCH: arm
+> +# BOARD: waveshare_open103z
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DSTM32F103xE -DUSE_=
+HAL_DRIVER -DUSE_FULL_LL_DRIVER -DHSE_VALUE=3D8000000"
+> +
+> +ZEPHYR_BOARD =3D "waveshare_open103z"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/xenvm.conf b/meta-zephyr-bsp/co=
+nf/machine/xenvm.conf
+> new file mode 100755
+> index 0000000..5d0fa54
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/xenvm.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: xenvm
+> +#@DESCRIPTION: Machine configuration for xenvm , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_xenvm =3D "arm64"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-a7=
+2
+> +# ARCH: arm64
+> +# BOARD: xenvm
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "xenvm"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/xmc45-relax-kit.conf b/meta-zep=
+hyr-bsp/conf/machine/xmc45-relax-kit.conf
+> new file mode 100755
+> index 0000000..e50a11e
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/xmc45-relax-kit.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: xmc45-relax-kit
+> +#@DESCRIPTION: Machine configuration for xmc45-relax-kit , build: zephyr=
+-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_xmc45-relax-kit =3D "arm"
+> +
+> +DEFAULTUNE ?=3D "cortexm4"
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU: cortex-m4
+> +# ARCH: arm
+> +# BOARD: xmc45_relax_kit
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1 -D__PROGRAM_START -DXMC4500_F100x1024 =
+-DCORE_CM4"
+> +
+> +ZEPHYR_BOARD =3D "xmc45_relax_kit"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/xt-sim-intel-s1000.conf b/meta-=
+zephyr-bsp/conf/machine/xt-sim-intel-s1000.conf
+> new file mode 100755
+> index 0000000..f76b983
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/xt-sim-intel-s1000.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: xt-sim-intel-s1000
+> +#@DESCRIPTION: Machine configuration for xt-sim-intel-s1000 , build: zep=
+hyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_xt-sim-intel-s1000 =3D "xtensa"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: xtensa
+> +# BOARD: xt-sim_intel_s1000
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "xt-sim_intel_s1000"
+> +
+> diff --git a/meta-zephyr-bsp/conf/machine/xt-sim.conf b/meta-zephyr-bsp/c=
+onf/machine/xt-sim.conf
+> new file mode 100755
+> index 0000000..a782a1d
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/xt-sim.conf
+> @@ -0,0 +1,22 @@
+> +#@TYPE: Machine
+> +#@NAME: xt-sim
+> +#@DESCRIPTION: Machine configuration for xt-sim , build: zephyr-v2.7.1
+> +#
+> +# This file is autogenerated.
+> +
+> +ARCH_xt-sim =3D "xtensa"
+> +
+> +
+> +
+> +# We were unable to find a tuning for this board. # GCC_M_CPU:
+> +# ARCH: xtensa
+> +# BOARD: xt-sim
+> +
+> +
+> +# MACHINE_OVERRIDES based on default kconfig in zephyr
+> +
+> +
+> +#ZEPHYR_EXTRA_OECMAKE +=3D"  -DKERNEL -D__ZEPHYR__=3D1 -D_FORTIFY_SOURCE=
+=3D2 -DBUILD_VERSION=3Dzephyr-v2.7.1"
+> +
+> +ZEPHYR_BOARD =3D "xt-sim"
+> +
+> --
+> 2.25.1
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#55785): https://lists.yoctoproject.org/g/yocto/messag=
+e/55785
+> Mute This Topic: https://lists.yoctoproject.org/mt/88330113/3616920
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [jdmason@kudzu.=
+us]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
