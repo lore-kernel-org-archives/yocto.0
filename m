@@ -1,177 +1,179 @@
-Return-Path: <JPEWhacker@gmail.com>
+Return-Path: <r.spencer.white@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D0CA8C433F5
-	for <webhook@archiver.kernel.org>; Thu, 13 Jan 2022 17:49:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F3FD5C433EF
+	for <webhook@archiver.kernel.org>; Thu, 13 Jan 2022 20:15:35 +0000 (UTC)
 Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com
  [209.85.221.45])
- by mx.groups.io with SMTP id smtpd.web09.406.1642096173833718182
+ by mx.groups.io with SMTP id smtpd.web12.2409.1642104934850859703
  for <yocto@lists.yoctoproject.org>;
- Thu, 13 Jan 2022 09:49:34 -0800
+ Thu, 13 Jan 2022 12:15:35 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=BcrMNmZR;
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=mgOw2HfW;
  spf=pass (domain: gmail.com, ip: 209.85.221.45,
- mailfrom: jpewhacker@gmail.com)
-Received: by mail-wr1-f45.google.com with SMTP id h10so11570344wrb.1
+ mailfrom: r.spencer.white@gmail.com)
+Received: by mail-wr1-f45.google.com with SMTP id d19so12305694wrb.0
         for <yocto@lists.yoctoproject.org>;
- Thu, 13 Jan 2022 09:49:33 -0800 (PST)
+ Thu, 13 Jan 2022 12:15:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=PoGvbxKsAnRI3jD/PMyqMGBnarsViA106VmpEtYyx2U=;
-        b=BcrMNmZR2dVrqil6eLULcfk5Eu2rAPoqvqeT+R7qDsXh7TKnjTuHXhBJ43voW9klfF
-         xDABBruKlgAsCjAwX2CmgxKN8AUJjRrItEE/20ZFdJv2STUABkOq6x4xXYQvr6zFCHBz
-         JxDAAYBXqlbz93jGSDDrIiqXx0NOq58tmy0z2iwJL3pw6uI3iOIuu4ntPHo9c+E6AQGg
-         IN2sPIcs6akDHVlCGA4urCKWVtSwUi/3QAXMkW6UosS1hyGm+lzMQHlH7G/c6Pamo5Kq
-         zhvHq46uudukCM3MCnUVR/AuymDnRpk86TGMlTiEgZp5jfe6AUbWa05VDIzmRpqP/Chl
-         +xiA==
+         :cc;
+        bh=fAVhcGCdohfzo4hltGK5ipH4FSLLizgx5+Sea9kWuS8=;
+        b=mgOw2HfWq3cGbcx5O0CnziCFtZn64TaBBZA2GNVr0qgIkBS6Yzs8lbVJaa71pHojQM
+         gVYcvi9hhLtNvhenELYNntE1vSHg5711CdGbi5Cw6r4om5bJR3PYWxFGMewjUKm51S6+
+         GQTb+a1VwaG/CBT5AqoVMz4maB/azkm2IA5wTqHZTZWN03Kc10z5SYgBx11xag9L6BlN
+         nyrWnKSC6jVoa1yQvsICfeIXurz8OrdFTEWNFX7QzRxze9lz4IwOa6Qal0+JFAJSE1ot
+         du76q6Nt1pEb7e5tQCo8aYlRs1RfOVdhMIirce9uuXrWrZL6IXmgZwmZTx06dsuRk5as
+         OEtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=PoGvbxKsAnRI3jD/PMyqMGBnarsViA106VmpEtYyx2U=;
-        b=Bd9PpN7lL1ZTJvSd9PUeHonNAgG4ApSpb3SSzbwucLB0f/yrHKD9Vov7lFxqZ7n3xN
-         ZPb4KkEyRT2E3dPTbetutXlxanyaWpbl4J6ix4SaeCLeaj4f1fHgKEXBiy+wA3VLKfXs
-         qy/PLYs1L7P5Snzc6Dh8XpzpAGrNxidyokwWeeEx8VAm+J5fy//z+aqHhECsgEJUtnCT
-         xc9tjZz3KqMuaAUE5TRB3SBQCcidWgl/hb6+KIHxpRdrQaBn/C8eCZ4T9WpgrOAtMqxC
-         F9yQRCbxrB9YU8wmhV6ZghuNBK8gNRPq2Xeh5g1+OnPpnwOzLdsZFac7wiyAP4mz9LTh
-         dlEA==
-X-Gm-Message-State: AOAM530B48No1jmBunTlzi6tZjyCFZ5VAvD+j/xroPN4I8NrgHVoumcg
-	OVEVRs3/gFbnKieg5cMuSpiW8DCNDWh0CGBFNng=
+         :message-id:subject:to:cc;
+        bh=fAVhcGCdohfzo4hltGK5ipH4FSLLizgx5+Sea9kWuS8=;
+        b=TjNmqgRo6eDd1aACyKlr2bpLSn6zDHoO2Ohd5jcZ2abXq5KakXeWZ73hys5XPBimD5
+         kRAPVLPgtz3WlWR1yB6eKKFD531/rBgSEYprWRYVtbC9mHALMAuITO3Zf0owVwSi1DHf
+         vE/nV/w2GPbstOQJgBbOo2Kiyh2i9CqDgM4ZjT3UXlWbaBdiGwmEONhTwyKsErwHnKfJ
+         e7f629NgbNFBI0cTyur3nrqMICoAPyzJOxRpQmeU8FDgGPkDWaIRlhI8wLygg7fL2bon
+         0hsb80DT/LOelS7jeRMYTuqZznARdoCLI1a404LUC8LFR8wTdzxnUQLjhdFUAhGaOpNb
+         Maqw==
+X-Gm-Message-State: AOAM530Vq11sdaDCz3I9Tv9SNwS+F10Zy5vi/7dNq/ZUhS0Lgrtv4xTG
+	7iWNHI6MrLl1MTNVaeLbUt2VJkPJ2w+aDjY05Vo=
 X-Google-Smtp-Source: 
- ABdhPJwKJ95SQNyMoXycIteJHRda3T1XHxo2KIkkqW+VTYkPYCs9Q1tCXXox3ieyl6xZnyLsasY83s78wc5ZlEbQErA=
-X-Received: by 2002:a5d:4145:: with SMTP id c5mr5033211wrq.188.1642096172295;
- Thu, 13 Jan 2022 09:49:32 -0800 (PST)
+ ABdhPJw+/pbwtsdMdJNMABn3DRhvkASmOsqe3QlPBhKdC+erUJe0mc/Tvazn+5l6hQA4iN8UwyqmDL55ZXMQAqN71s8=
+X-Received: by 2002:a5d:59a7:: with SMTP id p7mr5478354wrr.258.1642104933269;
+ Thu, 13 Jan 2022 12:15:33 -0800 (PST)
 MIME-Version: 1.0
-References: <b4336117-2693-c1f4-30fb-08b92a5e5e1a@bootlin.com>
-In-Reply-To: <b4336117-2693-c1f4-30fb-08b92a5e5e1a@bootlin.com>
-From: Joshua Watt <jpewhacker@gmail.com>
-Date: Thu, 13 Jan 2022 11:49:20 -0600
+References: <cakt.1642012455158813295.G6KK@lists.yoctoproject.org>
+ <CAAnfSTuy5AXvwEQDjjo5_dtUJML8RT4xN7PVd0jc=scxGeLhDQ@mail.gmail.com>
+In-Reply-To: 
+ <CAAnfSTuy5AXvwEQDjjo5_dtUJML8RT4xN7PVd0jc=scxGeLhDQ@mail.gmail.com>
+From: Spencer White <r.spencer.white@gmail.com>
+Date: Thu, 13 Jan 2022 14:15:24 -0600
 Message-ID: 
- <CAJdd5GaD-P8CR3JGVWtE=U4MVYkB8EUk3NC-HkWAfgT-TUBkiQ@mail.gmail.com>
-Subject: Re: [yocto] Red alert but apparently harmless setscene errors
-To: Michael Opdenacker <michael.opdenacker@bootlin.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ <CADpa9=7OUchxdjF0XFqd6bqco8PHB+UHAT770WTG=EHPyL+_cg@mail.gmail.com>
+Subject: Re: [yocto] problem with interpreter
+To: Ross Burton <ross@burtonini.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000003b441705d57c5959"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 13 Jan 2022 17:49:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55840
+ <yocto@lists.yoctoproject.org>; Thu, 13 Jan 2022 20:15:35 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55842
 
-On Thu, Jan 13, 2022 at 11:23 AM Michael Opdenacker
-<michael.opdenacker@bootlin.com> wrote:
->
-> Hi,
->
-> Sharing this before opening a bug if needed...
->
-> I'm building the latest Poky ("core-image-minimal" plus a few extra
-> packages).
->
-> I'm always getting the below setscene errors after upgrading my Poky
-> sources:
->
-> ... <more similar errors before>
-> WARNING: libffi-native-3.4.2-r0 do_populate_sysroot_setscene: Failed to
-> fetch URL
-> file://universal/c8/be/sstate:libffi-native:x86_64-linux:3.4.2:r0:x86_64:=
-7:c8be7b784ce8ebbf6d897367bc8e96f6718040858d61f9a4f6aa5325821b0ce5_populate=
-_sysroot.tar.zst.siginfo;downloadfilename=3Duniversal/c8/be/sstate:libffi-n=
-ative:x86_64-linux:3.4.2:r0:x86_64:7:c8be7b784ce8ebbf6d897367bc8e96f6718040=
-858d61f9a4f6aa5325821b0ce5_populate_sysroot.tar.zst.siginfo,
-> attempting MIRRORS if available
-> ERROR: libffi-native-3.4.2-r0 do_populate_sysroot_setscene: Fetcher
-> failure: Unable to find file
-> file://universal/c8/be/sstate:libffi-native:x86_64-linux:3.4.2:r0:x86_64:=
-7:c8be7b784ce8ebbf6d897367bc8e96f6718040858d61f9a4f6aa5325821b0ce5_populate=
-_sysroot.tar.zst.siginfo;downloadfilename=3Duniversal/c8/be/sstate:libffi-n=
-ative:x86_64-linux:3.4.2:r0:x86_64:7:c8be7b784ce8ebbf6d897367bc8e96f6718040=
-858d61f9a4f6aa5325821b0ce5_populate_sysroot.tar.zst.siginfo
-> anywhere. The paths that were searched were:
->     /media/mike/ssd/yocto/poky/build/sstate-cache
->     /media/mike/ssd/yocto/poky/build/sstate-cache
-> WARNING: libpcre2-native-10.39-r0 do_populate_sysroot_setscene: Failed
-> to fetch URL
-> file://universal/bf/03/sstate:libpcre2-native:x86_64-linux:10.39:r0:x86_6=
-4:7:bf035286ff06470377fe9c9298ba116222c9d557f2fa44d418beb919aa185db9_popula=
-te_sysroot.tar.zst.siginfo;downloadfilename=3Duniversal/bf/03/sstate:libpcr=
-e2-native:x86_64-linux:10.39:r0:x86_64:7:bf035286ff06470377fe9c9298ba116222=
-c9d557f2fa44d418beb919aa185db9_populate_sysroot.tar.zst.siginfo,
-> attempting MIRRORS if available
-> ERROR: libpcre2-native-10.39-r0 do_populate_sysroot_setscene: Fetcher
-> failure: Unable to find file
-> file://universal/bf/03/sstate:libpcre2-native:x86_64-linux:10.39:r0:x86_6=
-4:7:bf035286ff06470377fe9c9298ba116222c9d557f2fa44d418beb919aa185db9_popula=
-te_sysroot.tar.zst.siginfo;downloadfilename=3Duniversal/bf/03/sstate:libpcr=
-e2-native:x86_64-linux:10.39:r0:x86_64:7:bf035286ff06470377fe9c9298ba116222=
-c9d557f2fa44d418beb919aa185db9_populate_sysroot.tar.zst.siginfo
-> anywhere. The paths that were searched were:
->     /media/mike/ssd/yocto/poky/build/sstate-cache
->     /media/mike/ssd/yocto/poky/build/sstate-cache
-> ERROR: libpcre2-native-10.39-r0 do_populate_sysroot_setscene: No
-> suitable staging package found
-> ERROR: Logfile of failure stored in:
-> /media/mike/ssd/yocto/poky/build/tmp/work/x86_64-linux/libpcre2-native/10=
-.39-r0/temp/log.do_populate_sysroot_setscene.315121
-> WARNING: Setscene task
-> (virtual:native:/media/mike/ssd/yocto/poky/meta/recipes-support/libpcre/l=
-ibpcre2_10.39.bb:do_populate_sysroot_setscene)
-> failed with exit code '1' - real task will be run instead
-> Currently  4 running tasks (1838 of 1838/467 of 4630)  10%
-> |################
->
-> As expected, the error messages are highlighted in red, but they are not
-> critical as BitBake can always build the corresponding recipes from sourc=
-es.
->
-> Two questions:
->
->   * Anything wrong with my local sstate cache? Should I erase it?
+--0000000000003b441705d57c5959
+Content-Type: text/plain; charset="UTF-8"
 
-This usually happens when there is a sstate archive (.tar.zst), but no
-corresponding siginfo file (.tar.zst.siginfo). The sstate code assumes
-the siginfo file is present if archive is present, and "errors" if
-not. In my experience, this usually happens when you try to clean out
-the sstate cache using a mechanism that is unaware of the relationship
-and deletes the siginfo and not the archive (e.g. some form of "find
--delete ...")
+Thanks man, I appreciate it. After reading your response, I understood the
+issue and was able to create a bunch of patches to mak it work.
 
->   * Should these issues really be treated as errors, scaring users that
->     something could be wrong while the resulting build looks correct anyw=
-ay?
+On Wed, Jan 12, 2022, 3:52 PM Ross Burton <ross@burtonini.com> wrote:
 
-As noted by the build, it will actually just execute the missing
-tasks; one annoyance (depending on context) is that bitbake will
-return a non-zero exit code if any ERROR occurs in the build, even
-though in this case it was recovered.
+> On Wed, 12 Jan 2022 at 18:34, swhite <r.spencer.white@gmail.com> wrote:
+> > I need to include an old open source project named judy for a legacy
+> > utility dependency. The recipe I have so far is listed at the end of
+> this email. The
+> > build host is 64bit linux, I'm using dunfell and the MACHINE I'm build
+> for is "genericx86-64".
+> > The issue I'm seeing is when compiling judy, it builds and then executes
+> a
+> > binary named "JudyLTablesGen" as part of the process. However the
+> execution
+> > fails with:
+> >
+> >     /bin/sh: ./JudyLTablesGen: No such file or directory
+>
+> This is a classic problem with software that doesn't consider
+> cross-compilation (and even when building for a similar architecture,
+> like genericx86-64 on an x86 host, you're cross-compiling in Yocto).
+>
+> The makefiles generate a binary that it expects to be able to run.
+> This is a bad assumption as you're cross-compiling: that binary needs
+> to be built with the host compiler (BUILD_CC) instead.  However, the
+> Makefile.am does this:
+>
+> JudyLTables.c: JudyLTablesGen.c
+>         $(CC) $(INCLUDES) $(AM_CFLAGS) @CFLAGS@ -o JudyLTablesGen
+> JudyLTablesGen.c; ./JudyLTablesGen
+>
+> A non-upstreamable fix would be to simply change that line to
+> $(BUILD_CC) $(BUILD_CFLAGS) $(BUILD_LDFLAGS) -o JudyLTablesGen [...].
+> As the project is dead, an upstreamable fix isn't useful.
+>
+> Whilst I'm here that FILESEXTRAPATHS_prepend is redundant, and the
+> source of Judy looks like fairly typical autoconf so you can remove
+> your do_configure and just 'inherit autotools', this will also pass
+> the correct host/build/target flags and so on.
+>
+> Also note that a more recently maintained fork appears to be at
+> https://github.com/netdata/libjudy.
+>
+> Ross
+>
 
-This has been discussed at length before (I can't find a citation
-ATM), and I believe it was left this way because this particular case
-is considered an actual error that should never happen and needs
-investigation on the YP Autobuilder.
+--0000000000003b441705d57c5959
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"auto">Thanks man, I appreciate it. After reading your response,=
+ I understood the issue and was able to create a bunch of patches to mak it=
+ work.</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
+attr">On Wed, Jan 12, 2022, 3:52 PM Ross Burton &lt;<a href=3D"mailto:ross@=
+burtonini.com">ross@burtonini.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex">On Wed, 12 Jan 2022 at 18:34, swhite &lt;<a href=3D"mailto:r.=
+spencer.white@gmail.com" target=3D"_blank" rel=3D"noreferrer">r.spencer.whi=
+te@gmail.com</a>&gt; wrote:<br>
+&gt; I need to include an old open source project named judy for a legacy<b=
+r>
+&gt; utility dependency. The recipe I have so far is listed at the end of t=
+his email. The<br>
+&gt; build host is 64bit linux, I&#39;m using dunfell and the MACHINE I&#39=
+;m build for is &quot;genericx86-64&quot;.<br>
+&gt; The issue I&#39;m seeing is when compiling judy, it builds and then ex=
+ecutes a<br>
+&gt; binary named &quot;JudyLTablesGen&quot; as part of the process. Howeve=
+r the execution<br>
+&gt; fails with:<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0/bin/sh: ./JudyLTablesGen: No such file or director=
+y<br>
+<br>
+This is a classic problem with software that doesn&#39;t consider<br>
+cross-compilation (and even when building for a similar architecture,<br>
+like genericx86-64 on an x86 host, you&#39;re cross-compiling in Yocto).<br=
 >
-> Thanks in advance
-> Michael.
->
-> --
-> Michael Opdenacker, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#55838): https://lists.yoctoproject.org/g/yocto/messag=
-e/55838
-> Mute This Topic: https://lists.yoctoproject.org/mt/88401713/3616693
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [JPEWhacker@gma=
-il.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+<br>
+The makefiles generate a binary that it expects to be able to run.<br>
+This is a bad assumption as you&#39;re cross-compiling: that binary needs<b=
+r>
+to be built with the host compiler (BUILD_CC) instead.=C2=A0 However, the<b=
+r>
+Makefile.am does this:<br>
+<br>
+JudyLTables.c: JudyLTablesGen.c<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 $(CC) $(INCLUDES) $(AM_CFLAGS) @CFLAGS@ -o Judy=
+LTablesGen<br>
+JudyLTablesGen.c; ./JudyLTablesGen<br>
+<br>
+A non-upstreamable fix would be to simply change that line to<br>
+$(BUILD_CC) $(BUILD_CFLAGS) $(BUILD_LDFLAGS) -o JudyLTablesGen [...].<br>
+As the project is dead, an upstreamable fix isn&#39;t useful.<br>
+<br>
+Whilst I&#39;m here that FILESEXTRAPATHS_prepend is redundant, and the<br>
+source of Judy looks like fairly typical autoconf so you can remove<br>
+your do_configure and just &#39;inherit autotools&#39;, this will also pass=
+<br>
+the correct host/build/target flags and so on.<br>
+<br>
+Also note that a more recently maintained fork appears to be at<br>
+<a href=3D"https://github.com/netdata/libjudy" rel=3D"noreferrer noreferrer=
+" target=3D"_blank">https://github.com/netdata/libjudy</a>.<br>
+<br>
+Ross<br>
+</blockquote></div>
+
+--0000000000003b441705d57c5959--
 
