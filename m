@@ -2,148 +2,103 @@ Return-Path: <ticotimo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2D0B8C433EF
-	for <webhook@archiver.kernel.org>; Fri, 14 Jan 2022 05:55:06 +0000 (UTC)
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com
- [209.85.210.172])
- by mx.groups.io with SMTP id smtpd.web08.3878.1642139704973654769
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 22BAFC433F5
+	for <webhook@archiver.kernel.org>; Fri, 14 Jan 2022 05:55:09 +0000 (UTC)
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com
+ [209.85.215.179])
+ by mx.groups.io with SMTP id smtpd.web10.3809.1642139708410966193
  for <yocto@lists.yoctoproject.org>;
- Thu, 13 Jan 2022 21:55:05 -0800
+ Thu, 13 Jan 2022 21:55:08 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=XmjWQ3Vb;
- spf=pass (domain: gmail.com, ip: 209.85.210.172,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=Z+10VOqm;
+ spf=pass (domain: gmail.com, ip: 209.85.215.179,
  mailfrom: ticotimo@gmail.com)
-Received: by mail-pf1-f172.google.com with SMTP id p37so1869485pfh.4
+Received: by mail-pg1-f179.google.com with SMTP id t32so1914975pgm.7
         for <yocto@lists.yoctoproject.org>;
- Thu, 13 Jan 2022 21:55:04 -0800 (PST)
+ Thu, 13 Jan 2022 21:55:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=aolrqiYCSlnHOdYlDvIUYjXIf2Gd09tGnEjDcgdBGk4=;
-        b=XmjWQ3VbzpDsei17g5DuuQ4Ml/xMnkTMcD1pkHYa/XrNpQbR//x5rc9V3UPOOeOWt1
-         jBYiTg6O980m8y9Vi8oNuaQ5kRsJd7Y3wpDSwCE4pLSj6Dl649Cq6RebAGsme2gr5pwI
-         aA9GQ8wLtCz8bBaWhwXbfEMBQVEX/yaE+e8qTRaTST6EDtnPgUwy2l2EgELj2bM3lMFC
-         tLEvstDJM86J0WSSIAmFWich5ZVg6+KzxQA9KSyxd3RYbYPB9eWBwwvFHKfNjWCiZ3bZ
-         fsFA+MD/qTEKQuQ4rgWbXfA1jHLHaxoJcfGEti+i5Qj65fdjCavnDCA0gbpBvPnF8cYy
-         wfNA==
+        bh=H8MxJd0XiYMg+XOTEs2HDqKzqKtTC1aBNok4te0Xegk=;
+        b=Z+10VOqmyomT4vmlDo7ADj9/uz/Tkq51PAhQxpHpHIZzyLiefXV2jeRosbaEQfGD2a
+         eodDOmwqSUt7Tx1AfXlY2KOdgYtbi90jdPeVgu4/62SL5qsFtIm997nP29CTaN2Q29Hr
+         mOgPo1AjKx8kMl8xYRHdm2R6bC5DkB17glHtTJIHbZZH0QugvqvqRTHtL0FkH9FpzsRu
+         gbW4nQPpzPLxKxPIIK9i2zn0LHqH4nD98MBkr8RgRc0QWVLvRnXgpc/BCHPuhKTrL+0X
+         TP7OzEYomFfAQTBBONQCqOlnJ2j39AVM3qUDSlxzTynDiVBRqzCr8/dSe/mbzBblKWJh
+         mjuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=aolrqiYCSlnHOdYlDvIUYjXIf2Gd09tGnEjDcgdBGk4=;
-        b=m90W8uPSdz8pm4NZc/EHeAZFV4UNNW2krxRDlgaeU5LOIKqSp1VPpJl7IvQWAZcVI+
-         2g41jEloTRy59uBfuG8+EdOdFRMXp/I6YMhWmOQOJ0F5wOB1tLT3kvfIGbWAddgDO4pr
-         /AfIaEqmXiEh5t1IcIbYTIMsok83eyCnjgLOrcIUgrxt4TZRK1wgeB8gHbJ2eYkLeYkQ
-         x4vhu09GkjczU4oIooQok9FBD0eooCGkZW6jBv1gs3hX4RyMrzEyPeYRGBG/GnjZJ9mu
-         Aar+ELeCWLNLuFoqYXQg+SGsFrmeRasYxnPvH683vDgyriIMZyRIZjwZZ8F9vsINxIXX
-         azRw==
-X-Gm-Message-State: AOAM53243juL0tNWJFJYg5AYVq2HdRaUIf6d80PWk+HAzSg/bLBJxwHW
-	M5EV/mliyFvg3tPSewYgfKZXzee5U+9ysw==
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=H8MxJd0XiYMg+XOTEs2HDqKzqKtTC1aBNok4te0Xegk=;
+        b=tQetU6KZjmuZpWSLp4QQl/j9Q+z9dUb14ZIR2LnwGoUolzR0vUFPNZqtFqOCGHoh4a
+         WGJNPl5DZseUcDLrgQDMNLA2Le70IaKw5JvvH8kphsZ6QQHUBan+Sp76mwX5Dxo2BrRT
+         CSLokoAlh8LVte5ssQlZUnEEDEGqP3herriqRPRxBv2C+KyZmzDw1Lh7FCXELqMBiCjo
+         Jc/xt/0MOm2epZks7EJhFyFAyb34VhgB3D9tAwFSb/zahLj6G48r7JuS7Qan2geqz0Vr
+         GIRA+16l/h6l6pfb6tYEhcCwaDb6mV/ueL4XUzghL0YaySsG08Cyy44CEhco3uOFBykO
+         bDrg==
+X-Gm-Message-State: AOAM5306SiK1R/kIa6we019TYsjXgAn0/zpq2SkFSWhBcyrh+SC/9/jF
+	3/Nt1/CBxqNNUFzE3Mz2UjwGrWnPuCtR2g==
 X-Google-Smtp-Source: 
- ABdhPJzgm8JshQnacU3pPiKFTiUN4IdBMDZhkRx3Inv0IOyBdW/r7A+Tt/pGvBAB7N0mAJx+WuafqQ==
-X-Received: by 2002:aa7:8592:0:b0:4be:2691:bb88 with SMTP id
- w18-20020aa78592000000b004be2691bb88mr7679514pfn.20.1642139703536;
-        Thu, 13 Jan 2022 21:55:03 -0800 (PST)
+ ABdhPJzMlG/Y0j5D1P6VrwTbthCsIkfBoglAWGyjlgbdRwrc2OEmSuYQGqtt7V4jkcR3Eq3Dp+xX7w==
+X-Received: by 2002:a63:8ac4:: with SMTP id
+ y187mr5693021pgd.508.1642139707664;
+        Thu, 13 Jan 2022 21:55:07 -0800 (PST)
 Received: from nereus.hsd1.or.comcast.net
  ([2601:1c0:6000:1b20:bf73:e59:4f56:2dd4])
         by smtp.gmail.com with ESMTPSA id
- d2sm4514714pfu.76.2022.01.13.21.55.03
+ d2sm4514714pfu.76.2022.01.13.21.55.07
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jan 2022 21:55:03 -0800 (PST)
+        Thu, 13 Jan 2022 21:55:07 -0800 (PST)
 From: Tim Orling <ticotimo@gmail.com>
 X-Google-Original-From: Tim Orling <tim.orling@konsulko.com>
 To: yocto@lists.yoctoproject.org
-Subject: [layerindex][PATCH v2 00/18] Upgrade to Django 3.2 LTS and Celery 5
-Date: Thu, 13 Jan 2022 21:54:23 -0800
-Message-Id: <cover.1642138698.git.tim.orling@konsulko.com>
+Subject: [layerindex][PATCH v2 01/18] dockersetup.py: fix EMAIL_USE_SSL/TLS
+Date: Thu, 13 Jan 2022 21:54:24 -0800
+Message-Id: 
+ <df4a764d59b273a6ea66d8810eea5a6bbe930adc.1642138698.git.tim.orling@konsulko.com>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <cover.1642138698.git.tim.orling@konsulko.com>
+References: <cover.1642138698.git.tim.orling@konsulko.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 14 Jan 2022 05:55:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55851
+ <yocto@lists.yoctoproject.org>; Fri, 14 Jan 2022 05:55:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55852
 
-The current code base uses Django 2.2.x which will go out of extended
-support in April 2022, but also holds us back from updating a number of
-dependencies and is currently failing to update layers.
+From: Tim Orling <timothy.t.orling@intel.com>
 
-Update to the current Django 3.2.11 LTS and also the latest Celery 5.2.3.
-Celery 4 has not had any commits since 2020 and is unlikely to be
-getting much more attention from the developers.
+Need to concatenate str(boolean), not bool
 
-While we are at it, upgrade all of our dependencies to the latest
-versions.
+Signed-off-by: Tim Orling <timothy.t.orling@intel.com>
+---
+ dockersetup.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-This series re-introduces python2 to the Dockerfile as we still have
-layers depending upon it and this is causing layer updates to fail.
-
-This series includes fixes to the Recipe Reporting System (rrs app) and
-the layerindex app itself for newer components and latest Django 3.2.11
-
-Each of these commits was tested sequentially over a period of time, so
-they should be considered a group of snapshots.
-
-Changes in v2:
-  - update email address
-  - add fixes for rrs
-  - re-introduce python2
-  - update all requirements.txt
-
-The following changes since commit ccc1fa775b0b5aa2f4760509c7696d3ea712a94d:
-
-  Report charset for text & CSV views (2021-10-20 11:07:46 +1300)
-
-are available in the Git repository at:
-
-  git://github.com/moto-timo/layerindex-web timo/django-3.2.11
-  https://github.com/moto-timo/layerindex-web/tree/timo/django-3.2.11
-
-Tim Orling (18):
-  dockersetup.py: fix EMAIL_USE_SSL/TLS
-  Dockerfile: cleanup, install python3-wheel
-  dockersetup.py: letsencrypt 2048 bit rsa
-  layerindex/*: make all shebangs python3
-  requirements.txt: bump to Django 3.0
-  Updates for Django 3.0
-  requirements.txt: bump to Django 3.1
-  docker-compose: bump mariadb to 10.3
-  requirements.txt: update all to latest
-  requirements.txt: bump to Django 3.2 LTS
-  settings: set DEFAULT_AUTO_FIELD
-  docker-compose: fix celery
-  README.devel: update versions
-  rrs/admin.py: drop curry import
-  Dockerfile: fix warnings
-  rrs: add 0030_alter_recipeupgrade_maintainer.py miagration
-  Dockerfile: add back python2 dependencies
-  requirements.txt: bump all to latest
-
- Dockerfile                                    | 12 +++--
- README.devel                                  |  6 +--
- docker-compose.yml                            |  4 +-
- docker/settings.py                            |  6 ++-
- dockersetup.py                                |  6 +--
- layerindex/bulkchange.py                      |  2 +-
- .../0045_layerbranch_classicrecipe.py         | 19 ++++++++
- layerindex/recipedesc.py                      |  2 +-
- layerindex/tools/import_classic_wiki.py       |  2 +-
- layerindex/tools/import_wiki_layers.py        |  2 +-
- layerindex/tools/site_name.py                 |  2 +-
- layerindex/tools/update_classic_status.py     |  2 +-
- layerindex/update_layer.py                    |  2 +-
- requirements.txt                              | 48 +++++++++----------
- rrs/admin.py                                  |  2 -
- .../0030_alter_recipeupgrade_maintainer.py    | 20 ++++++++
- settings.py                                   |  6 ++-
- templates/base.html                           |  2 +-
- 18 files changed, 97 insertions(+), 48 deletions(-)
- create mode 100644 layerindex/migrations/0045_layerbranch_classicrecipe.py
- create mode 100644 rrs/migrations/0030_alter_recipeupgrade_maintainer.py
-
+diff --git a/dockersetup.py b/dockersetup.py
+index e45a846..04dec91 100755
+--- a/dockersetup.py
++++ b/dockersetup.py
+@@ -353,13 +353,13 @@ def edit_dockercompose(hostname, dbpassword, dbapassword, secretkey, rmqpassword
+         elif '- "EMAIL_USE_SSL' in line:
+             format = line[0:line.find('- "EMAIL_USE_SSL')].replace("#", "")
+             if email_ssl:
+-                newlines.append(format + '- "EMAIL_USE_SSL=' + email_ssl + '"\n')
++                newlines.append(format + '- "EMAIL_USE_SSL=' + str(email_ssl) + '"\n')
+             else:
+                 newlines.append(format + '#- "EMAIL_USE_SSL=<set this here if needed>"\n')
+         elif '- "EMAIL_USE_TLS' in line:
+             format = line[0:line.find('- "EMAIL_USE_TLS')].replace("#", "")
+             if email_tls:
+-                newlines.append(format + '- "EMAIL_USE_TLS=' + email_tls + '"\n')
++                newlines.append(format + '- "EMAIL_USE_TLS=' + str(email_tls) + '"\n')
+             else:
+                 newlines.append(format + '#- "EMAIL_USE_TLS=<set this here if needed>"\n')
+         elif "ports:" in line:
 -- 
 2.30.2
 
