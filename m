@@ -2,62 +2,63 @@ Return-Path: <ticotimo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 24D0FC433F5
-	for <webhook@archiver.kernel.org>; Fri, 14 Jan 2022 05:55:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 26224C433FE
+	for <webhook@archiver.kernel.org>; Fri, 14 Jan 2022 05:55:28 +0000 (UTC)
 Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com
  [209.85.216.51])
- by mx.groups.io with SMTP id smtpd.web11.3760.1642139726104385069
+ by mx.groups.io with SMTP id smtpd.web08.3888.1642139727625739762
  for <yocto@lists.yoctoproject.org>;
- Thu, 13 Jan 2022 21:55:26 -0800
+ Thu, 13 Jan 2022 21:55:27 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=iFwTwtk3;
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=FnX1e8Fd;
  spf=pass (domain: gmail.com, ip: 209.85.216.51, mailfrom: ticotimo@gmail.com)
-Received: by mail-pj1-f51.google.com with SMTP id hv15so12497147pjb.5
+Received: by mail-pj1-f51.google.com with SMTP id
+ ie23-20020a17090b401700b001b38a5318easo13206698pjb.2
         for <yocto@lists.yoctoproject.org>;
- Thu, 13 Jan 2022 21:55:26 -0800 (PST)
+ Thu, 13 Jan 2022 21:55:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=nioy7Hz9j3WqQIecvcOhJ2VXIV1y1gXUMiwiRfobdzY=;
-        b=iFwTwtk3qYKx+3Kpuh7M4UdH1dVi9/9iIzvwUYo8aJmGuLCO3sGhQBBVufegt+OvD3
-         8XwbXUoq59SQuD86fmWyn8W9D2Ws5UJK9+fEr9cgsM//b/1lFv3uHurij04AvETUJ17q
-         +VtBZuuJjh93fYBMUk02Ii3i7HzhZNMVSLPwKQfXGyUUS18xUSFKvlLD96z3WSd9UCQG
-         TZCPy9O60eFSo2WdDR8AroxeosXmXu8dcG7kbLnqXAAiblS5EvMWvoyHZgDDBvkWpEkw
-         wpeREpyO88e2yVyEj0waX/a+ELaIF5r4D9+s4jEkp3DRu/rpBfXNs6eJmGbxaTOidKk2
-         +nfg==
+        bh=GxEA3n9gR9k4Us9chfn3akqUoIlwbWMvn30nnfacuqo=;
+        b=FnX1e8FdSfc1+jPnC5UrcmLZPbgdoeY3YQBzagThOe5cGR44MFD4WCapb3a02ugMKF
+         0eQHPtJ14qY8q0hhGTjVsDzvh62trBEzHY5tHaRO9SfkrwR/f6A4815m0i0GDXRqg7JW
+         bPzkimdLFNdlP0KCwTdId7124rtVUAYonnTIn11HRO128qHk89+Gg0dK1KknDVGsR7/D
+         siS0Xmzcb0r/RRdAhtc+l/1xzsODvt5mkMFAlNSWvMrkWKwP9POCv6YZN4cMvSw6x3S8
+         AOXTToqTuClVBLjK7+BrlrZ403xoDX1HI85memphdENFxr2YaT8hwzb80EpimLEDt0Mt
+         bUog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=nioy7Hz9j3WqQIecvcOhJ2VXIV1y1gXUMiwiRfobdzY=;
-        b=dHcJMw19QAoiUkkwxHot/k8vwWTW57qt7REhWkHps47va7x5xnofegbjCiHBMLH0EK
-         ZHhJZA7M++NUtXrnJACI3ufQjdU6LhSrVKpTClJtCvE0MohubvvE8mTSCxGnOen9qTgj
-         FFbNsRhPwK4dsIABFpLqeH7lyrs7jhiNYjgz8rZDZTO2Ln6Qxu22tZrL3TTvynCAfCnp
-         9z3WnefEyzyouhXf2uMhjQZN7RC8h7e3RUyLdv189KfWbdi2CjqA/u3cXGsPkh5OQRkt
-         QiPE/DXztIOM600Lcy8wwAfCVKPbYZ6pNYA17QwZsSqruBLjhfXoq445u+iPTA88pOIH
-         fuxQ==
-X-Gm-Message-State: AOAM5301edI0KRpdu+gAClbxgTzbCBzFedIyGcDwCx03MDJ2W7jDLWlg
-	XGzr90eIKXz8ZLt+cxZ9bcvr0CyGj+cilQ==
+        bh=GxEA3n9gR9k4Us9chfn3akqUoIlwbWMvn30nnfacuqo=;
+        b=gsS1in0qSp6Xigz5eEE7G1PjfBVtfEKZ0Wg8M+GqqHeC1YcVoiBzP9Ey3BPQ6/8Qlp
+         AVD6aImqkex/t9b0EjkPHUcy3VOaRzKaRZTIa8smPMxoeRMydxOE9iUy1dsl0q5kvxnA
+         dFuCUcvkkgA9fbt8WZqItLNf/oLrDS9wPbaU2xZVamA3Vx+6nXyJ2+p5EVF30YcNayuM
+         fWytMdMg4/UGymPN7g/C+JgOm03bGYwOrJ12QDvPU5G0nb81xK/jImAIbOB9v6bo/8+Z
+         T1BvixQpf7JwWm9QuJrl2+W+kjEpo5u4AkZTVZWQDfWv/vzotvivxtCK3V6o1Ea8a35i
+         Pveg==
+X-Gm-Message-State: AOAM530Xbxac9ElTNnJY8D3FT1v736359t73bDty0BH0eBXKmY9OLwtN
+	ke3rMmu7HkLxLOEihft23jYajWwHTKWGjg==
 X-Google-Smtp-Source: 
- ABdhPJzi7Z4gXpWEfaIhjCzFTBTRV1jnR8NRZcxe6Iyf8YAme3s9HKj/syDCF5bNknvty9Fdfvo4PA==
-X-Received: by 2002:a17:90a:c582:: with SMTP id
- l2mr9078605pjt.78.1642139725420;
-        Thu, 13 Jan 2022 21:55:25 -0800 (PST)
+ ABdhPJz4YE9XzSU0B6FGzloyLrtBDcnuDK0cJVKAtPsshEDLxQjFJcsLQYAozPeYbv0Jj6pWCxv6+w==
+X-Received: by 2002:a17:90a:2f06:: with SMTP id
+ s6mr8833730pjd.230.1642139726891;
+        Thu, 13 Jan 2022 21:55:26 -0800 (PST)
 Received: from nereus.hsd1.or.comcast.net
  ([2601:1c0:6000:1b20:bf73:e59:4f56:2dd4])
         by smtp.gmail.com with ESMTPSA id
- d2sm4514714pfu.76.2022.01.13.21.55.24
+ d2sm4514714pfu.76.2022.01.13.21.55.26
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jan 2022 21:55:24 -0800 (PST)
+        Thu, 13 Jan 2022 21:55:26 -0800 (PST)
 From: Tim Orling <ticotimo@gmail.com>
 X-Google-Original-From: Tim Orling <tim.orling@konsulko.com>
 To: yocto@lists.yoctoproject.org
-Subject: [layerindex][PATCH v2 11/18] settings: set DEFAULT_AUTO_FIELD
-Date: Thu, 13 Jan 2022 21:54:34 -0800
+Subject: [layerindex][PATCH v2 12/18] docker-compose: fix celery
+Date: Thu, 13 Jan 2022 21:54:35 -0800
 Message-Id: 
- <67679306b0605f219e3125584c4acb68d23cbeda.1642138698.git.tim.orling@konsulko.com>
+ <f1dbcde4c468b1bc4df0762c24d9b09e5c728670.1642138698.git.tim.orling@konsulko.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1642138698.git.tim.orling@konsulko.com>
 References: <cover.1642138698.git.tim.orling@konsulko.com>
@@ -66,52 +67,34 @@ Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 14 Jan 2022 05:55:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55862
+ <yocto@lists.yoctoproject.org>; Fri, 14 Jan 2022 05:55:28 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55863
 
-New in Django 3.2
+In celery 5, the --workdir argument must come
+before the 'worker' subcommand.
 
-To quiet warnings, set DEFAULT_AUTO_FIELD to the
-default value 'django.db.models.AutoField'
-
-NOTE: The default value for newly created Django 3.2
-      projects is django.db.models.BigAutoField, but
-      this causes the need for a migration in 'captcha'.
+Without this, celery cannot load the layerindex
+module and this causes the celery container to
+continually restart.
 
 Signed-off-by: Tim Orling <tim.orling@konsulko.com>
 ---
- docker/settings.py | 3 +++
- settings.py        | 3 +++
- 2 files changed, 6 insertions(+)
+ docker-compose.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/docker/settings.py b/docker/settings.py
-index 894974f..a3f007d 100644
---- a/docker/settings.py
-+++ b/docker/settings.py
-@@ -140,6 +140,9 @@ TEMPLATES = [
-     },
- ]
- 
-+# New in Django 3.2
-+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
-+
- INSTALLED_APPS = (
-     'django.contrib.auth',
-     'django.contrib.contenttypes',
-diff --git a/settings.py b/settings.py
-index d03d15c..a69eb53 100644
---- a/settings.py
-+++ b/settings.py
-@@ -140,6 +140,9 @@ TEMPLATES = [
-     },
- ]
- 
-+# New in Django 3.2
-+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
-+
- INSTALLED_APPS = (
-     'django.contrib.auth',
-     'django.contrib.contenttypes',
+diff --git a/docker-compose.yml b/docker-compose.yml
+index 3e16e95..2dfff41 100644
+--- a/docker-compose.yml
++++ b/docker-compose.yml
+@@ -80,7 +80,7 @@ services:
+      #- "EMAIL_USE_TLS=<set this here if needed>"
+      #- "DEBUG=1"
+     restart: unless-stopped
+-    command: /usr/local/bin/celery -A layerindex.tasks worker --loglevel=info --workdir=/opt/layerindex
++    command: /usr/local/bin/celery --workdir=/opt/layerindex --app layerindex.tasks worker --loglevel=INFO
+   #layerscertbot:
+   #  image: certbot/certbot
+   #  volumes:
 -- 
 2.30.2
 
