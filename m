@@ -2,103 +2,110 @@ Return-Path: <ticotimo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 25D96C433FE
-	for <webhook@archiver.kernel.org>; Fri, 14 Jan 2022 05:55:32 +0000 (UTC)
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com
- [209.85.215.182])
- by mx.groups.io with SMTP id smtpd.web10.3821.1642139731741422382
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3B643C433F5
+	for <webhook@archiver.kernel.org>; Fri, 14 Jan 2022 05:55:34 +0000 (UTC)
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com
+ [209.85.210.182])
+ by mx.groups.io with SMTP id smtpd.web09.3766.1642139733161849694
  for <yocto@lists.yoctoproject.org>;
- Thu, 13 Jan 2022 21:55:31 -0800
+ Thu, 13 Jan 2022 21:55:33 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=WJlp0Hpo;
- spf=pass (domain: gmail.com, ip: 209.85.215.182,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=HMsGBXwe;
+ spf=pass (domain: gmail.com, ip: 209.85.210.182,
  mailfrom: ticotimo@gmail.com)
-Received: by mail-pg1-f182.google.com with SMTP id x83so1913948pgx.4
+Received: by mail-pf1-f182.google.com with SMTP id x83so1872943pfc.0
         for <yocto@lists.yoctoproject.org>;
- Thu, 13 Jan 2022 21:55:31 -0800 (PST)
+ Thu, 13 Jan 2022 21:55:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=aXuDyBvJIkcvhgjvSvf3dkOTb8VfKk6pGfwGSUPe+IE=;
-        b=WJlp0HpoSuW0EdF3ZRnTOYjwTjoULL5QquJ5VLR2Xv/WDTSxv+trsE7Ph85TLhS51G
-         2p/8iGC1XACso6Q/VxVhvl8lMFqNeEtgY/fSDggYf6ecF2Tmqq0aMuURT6JZJURKFg4T
-         oslh1veDuMhIbKKyKqqaNrF3jc11H1Ted4ZAlQSkX4W5ORHNKZPxxpPIXfRLaLQe1hf5
-         6zgXMb83z5CwSVwORLynS2fzARyYAb3fW7JDsB6yjUhKisA3fsUDsi/nbtDWHLF+GWf8
-         5CNjdsthhwDMJ5kOKsvt5VGTgHbXJqOgkng2KbCb3oMGZkCClkibmZ0vru0yMLMvAgec
-         iI2w==
+        bh=aNOixQBx/gFjbMuFSwdbb+V5jBUDeP6L8SMJx/ruToM=;
+        b=HMsGBXweYq063nLe3/ich5TQDEnR0Tex6LwI0J8fgBYc38Rt2hazZ10LlQyHrg3oFR
+         i5RZNRSNq9EzFlHaVd9iJqpfRukCiw/3cxTyPt744MOt9fvIyrqWd+P9eFho8fmG/7Es
+         +oF1fX5bojZTIXsRNczlBIOH0o3ZeP1nY+j7qnhRx/g0SaSoqSZx4kVIBxQpqs4/emQM
+         qIEYOY65Q2uWxzWVQhfU7H4O6guI56ofPIUTAI6wYEZ4Mp8rfF7Ku3GkanPM0cIWzUbJ
+         ZQ76Q4HjmFML5T8U0Gi/yjoyzcXTgjI7dPdb2ac+uRRTXe8p0Fl38SSHXXO1O7ND1F4B
+         vMmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=aXuDyBvJIkcvhgjvSvf3dkOTb8VfKk6pGfwGSUPe+IE=;
-        b=0ObvT0ZbiD5A7CYCzOuAPrbzmHO8T0U78ed/ADEZSnTQCFKoIKPlU/Xn8hbG118uyr
-         exmS6gH12C2D6ff75JpJkmqcY2GPpyt0WyU63F/3c+2pTLKEL6HZpzeoaJ4/xtUQe90m
-         6ZrhELs/mYbZe6kTeBVI3pr6RtvKyWsr7+rMgrVRttvetV+b+c3wkonjKVjuWd0j7pxO
-         BWRpO9z8B2TOErHiFDAD/bPl/yeoPJ/Ro+CGr+XuTBDpVOKCJiy5Doj+moZrC6xu4Rpg
-         q7/90YNrZ2SRDfz/vzeHfdynBO4eN1racRboA9bwqLXuBdKqE9+7JwHks2osAb3IgJr3
-         wQxA==
-X-Gm-Message-State: AOAM531HL3OlzHGAvcFvLLas6ZMigI7L8nQ1qAADoqwM54Bto48NAypG
-	nqLcyp1NuDcJltYX+6jnA/MavmFevrjKKA==
+        bh=aNOixQBx/gFjbMuFSwdbb+V5jBUDeP6L8SMJx/ruToM=;
+        b=OqHjH+DjpPMJY3Ut5uPyHK71ke+0v2jecoUqi7vywTzwRoS73Y5d93//n+/bhpgVAn
+         6MiA/R2XreUjGaLqlWREb7JBgU18/L4byW6n6/xaUSR1+FKWgm3MLFunYc9V8DK5soSR
+         3O9l/hr+J7l36Xgntz7/R4jLzHEikXMwnBDSaOpqCchkN+UQdH2Xrq1jSqb9EHWK2EWC
+         LdfKDQStzkeThIeMxxFZvI2cZ7oS+XLLEExv9Y8H8L0Zlc70vovgbgbbAmmlZCBvP1Wk
+         N3SIsJ5AmylBVk8zgTXgOGCNce2U6vbeFq3KSyxKkxpHO6hrdI3fCa1CPNRMl39GdCw5
+         e0Eg==
+X-Gm-Message-State: AOAM530ldanV/q7XGe9qMpN/Dj7tGfMsSwa0PhIN15pkAEVlFY/Sj7Go
+	tomIPXPBRGUTKrBvrp4onLSi//1c2rtyBA==
 X-Google-Smtp-Source: 
- ABdhPJzNB768JQd/Ehu2DWceQPYztPHLRm9msUk6S4jgGRxu6EHhoyJv+pQyq3BQa2aCg1TYF1pZtA==
-X-Received: by 2002:a63:9f0a:: with SMTP id g10mr6668687pge.387.1642139731033;
-        Thu, 13 Jan 2022 21:55:31 -0800 (PST)
+ ABdhPJynGAd9dElN+r8CpGrCpQMY5Q4V50v8vVfKUhaFmK9QmeaUq+s01jqG0HwjTaYyJTttQzh0wA==
+X-Received: by 2002:a63:8bca:: with SMTP id
+ j193mr6767520pge.227.1642139732441;
+        Thu, 13 Jan 2022 21:55:32 -0800 (PST)
 Received: from nereus.hsd1.or.comcast.net
  ([2601:1c0:6000:1b20:bf73:e59:4f56:2dd4])
         by smtp.gmail.com with ESMTPSA id
- d2sm4514714pfu.76.2022.01.13.21.55.30
+ d2sm4514714pfu.76.2022.01.13.21.55.31
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jan 2022 21:55:30 -0800 (PST)
+        Thu, 13 Jan 2022 21:55:32 -0800 (PST)
 From: Tim Orling <ticotimo@gmail.com>
 X-Google-Original-From: Tim Orling <tim.orling@konsulko.com>
 To: yocto@lists.yoctoproject.org
-Subject: [layerindex][PATCH 15/18] Dockerfile: fix warnings
-Date: Thu, 13 Jan 2022 21:54:38 -0800
+Subject: [layerindex][PATCH 16/18] rrs: add
+ 0030_alter_recipeupgrade_maintainer.py miagration
+Date: Thu, 13 Jan 2022 21:54:39 -0800
 Message-Id: 
- <c99a1ed4e7c087bdc5ef7075417e64ec561a038c.1642138698.git.tim.orling@konsulko.com>
+ <722f1f3a376f79719cf1512b57cc7ffeb9c16918.1642138698.git.tim.orling@konsulko.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1642138698.git.tim.orling@konsulko.com>
 References: <cover.1642138698.git.tim.orling@konsulko.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 14 Jan 2022 05:55:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55866
-
-* Define LANGUAGE
-* Set DEBIAN_FRONTEND=noninteractive before apt call
+ <yocto@lists.yoctoproject.org>; Fri, 14 Jan 2022 05:55:34 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55867
 
 Signed-off-by: Tim Orling <tim.orling@konsulko.com>
 ---
- Dockerfile | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ .../0030_alter_recipeupgrade_maintainer.py    | 20 +++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+ create mode 100644 rrs/migrations/0030_alter_recipeupgrade_maintainer.py
 
-diff --git a/Dockerfile b/Dockerfile
-index f6623fa..25ab5ea 100644
---- a/Dockerfile
-+++ b/Dockerfile
-@@ -4,6 +4,7 @@ FROM debian:buster
- LABEL maintainer="Michael Halstead <mhalstead@linuxfoundation.org>"
- 
- ENV PYTHONUNBUFFERED=1 \
-+    LANGUAGE=en_US \
-     LANG=en_US.UTF-8 \
-     LC_ALL=en_US.UTF-8 \
-     LC_CTYPE=en_US.UTF-8
-@@ -15,7 +16,7 @@ ENV PYTHONUNBUFFERED=1 \
- # NOTE: we don't purge gcc below as we have some places in the OE metadata that look for it
- 
- COPY requirements.txt /
--RUN apt-get update \
-+RUN DEBIAN_FRONTEND=noninteractive apt-get update \
-     && apt-get install -y --no-install-recommends \
- 	autoconf \
- 	g++ \
--- 
+diff --git a/rrs/migrations/0030_alter_recipeupgrade_maintainer.py b/rrs/mi=
+grations/0030_alter_recipeupgrade_maintainer.py
+new file mode 100644
+index 0000000..7044739
+--- /dev/null
++++ b/rrs/migrations/0030_alter_recipeupgrade_maintainer.py
+@@ -0,0 +1,20 @@
++# -*- coding: utf-8 -*-=0D
++# Generated by Django 3.2.11 on 2022-01-13 22:16=0D
++=0D
++from django.db import migrations, models=0D
++import django.db.models.deletion=0D
++=0D
++=0D
++class Migration(migrations.Migration):=0D
++=0D
++    dependencies =3D [=0D
++        ('rrs', '0029_rrs_license_group'),=0D
++    ]=0D
++=0D
++    operations =3D [=0D
++        migrations.AlterField(=0D
++            model_name=3D'recipeupgrade',=0D
++            name=3D'maintainer',=0D
++            field=3Dmodels.ForeignKey(blank=3DTrue, null=3DTrue, on_delete=
+=3Ddjango.db.models.deletion.SET_NULL, to=3D'rrs.maintainer'),=0D
++        ),=0D
++    ]=0D
+--=20
 2.30.2
 
 
