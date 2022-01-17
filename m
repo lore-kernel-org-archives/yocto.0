@@ -1,332 +1,375 @@
-Return-Path: <dushara.jayasinghe@asdpl.com>
+Return-Path: <joseantonio.cardenas@niko.eu>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9B925C433EF
-	for <webhook@archiver.kernel.org>; Mon, 17 Jan 2022 07:25:26 +0000 (UTC)
-Received: from se2d-iad1.servconfig.com (se2d-iad1.servconfig.com
- [173.231.248.10])
- by mx.groups.io with SMTP id smtpd.web10.8414.1642404325249211422
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 79625C433EF
+	for <webhook@archiver.kernel.org>; Mon, 17 Jan 2022 07:46:42 +0000 (UTC)
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com
+ (EUR05-AM6-obe.outbound.protection.outlook.com [40.107.22.72])
+ by mx.groups.io with SMTP id smtpd.web08.8475.1642405594543256933
  for <yocto@lists.yoctoproject.org>;
- Sun, 16 Jan 2022 23:25:25 -0800
+ Sun, 16 Jan 2022 23:46:36 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="no key for verify" header.i=@asdpl.com header.s=default
- header.b=CVaVgQCo;
- spf=none, err=permanent DNS error (domain: asdpl.com, ip: 173.231.248.10,
- mailfrom: dushara.jayasinghe@asdpl.com)
-Received: from biz220.inmotionhosting.com ([192.145.239.52])
-	by se2-iad1.servconfig.com with esmtps (TLSv1.2:AES128-GCM-SHA256:128)
-	(Exim 4.92)
-	(envelope-from <dushara.jayasinghe@asdpl.com>)
-	id 1n9MOH-0005Dc-Pb
-	for yocto@lists.yoctoproject.org; Mon, 17 Jan 2022 02:25:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=asdpl.com;
-	s=default; h=Content-Type:MIME-Version:Message-ID:Date:Subject:In-Reply-To:
-	References:To:From:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=0zBndicUeernhK2kwKBvAOT/HaUEerp4niwdZ7tofy0=; b=CVaVgQCoxyTbR0QjBUhONJS/Db
-	rLKr08Q23NGyVRUs0UkhWVjeVgfK1ljY49ePzY/lV0IH6nPm4LdujYznEXds350X+ZBXHn7sasHX2
-	+ZAljoqoTThxZtk3ECJJoR1O9HbcP/IbxlS40YTexL+f4EQuy8/LBHyhe/jiFnq4ZAYVZuGYGLz32
-	e6QT7b6UX/VG5qC0bN9AlvAI7OurYpjThSs+TcmtDU17ozrnSCewIkN+7fqn3lj5rHSzJTvP8lj40
-	sXFCrAU+vJW1OCNHSFZZLO3tG+EJ/MZS8AFGHPV98wBR+g80F7JTGUOAH+UyzOMS8/UmXaDNQ62HD
-	HWuf1eUA==;
-Received: from [119.18.18.27] (port=58001 helo=DESKTOPVQR93PN)
-	by biz220.inmotionhosting.com with esmtpsa  (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <dushara.jayasinghe@asdpl.com>)
-	id 1n9MOG-00Gv3H-AN
-	for yocto@lists.yoctoproject.org; Sun, 16 Jan 2022 23:25:20 -0800
-From: <dushara.jayasinghe@asdpl.com>
-To: <yocto@lists.yoctoproject.org>
+ dkim=pass header.i=@niko.eu header.s=selector2 header.b=odBehU+q;
+ spf=pass (domain: niko.eu, ip: 40.107.22.72,
+ mailfrom: joseantonio.cardenas@niko.eu)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=K9qd2bLzSptBp1Bt3IF1OBXi2SExgRBFRrdFvyIsSTDtUosTjYGGSwk0k+MbzP1++Z5euETq/0RHAeaX6vFoTV1Mf7JEObC3I5B6ertCYRDygBoIqiu6qvhFC3IoXA6ejsY4YQDTgUeMl9cgtR6XopgdjdEobVsLP/jMoQsn9OdpiQifweu18wzX+I+nCFZZfrb0Eapb1X3rfRgeeC11KLzEuGKh31UgRGUmnElyitP2ExdRUogcd5pguJ2sDdexjHxLg7FtgUJ+pfB6cz0Mcfeyq93J4O9Cq78UcJRo+uNRthi3ShGoPTjlu9TnQowiNIrEayoKyf94KE6/6ATOaQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=y2V3tphrPWJCnj3BDhC0/V/W8B/q0i3igMkjWbAQwr0=;
+ b=JSpgQtN3cGMFI3ysk9a9rRQ9pQ96Rfs5JT54g7TW/agJhl5De2CIe+tbuQYNRUEgMfGnzRIqcOKi3403pmIg92Y4FcRMExVI1sycfnSB44eMLxjWfZqm2im5ax3gC/em8YdJVoGXIxpk1DIq0MD5kPU+3rP5mmruRrDu32s7+NxSYUbZDTen95B6YILxf9wQUTyQI1Rgj9P9C+VO5jNcKbztLhhMhSQGMXN/rNC+1a+QHzTPaHMP2m+qTnncI0S/ArX5/ERkzrp4a0wHcz5wAqwiiiwKg97uuQyEPek98yZDIsYys2bLEVoskxsubBSx/qhz0MSHLhi3GT7RHOGCLA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=niko.eu; dmarc=pass action=none header.from=niko.eu; dkim=pass
+ header.d=niko.eu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=niko.eu; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=y2V3tphrPWJCnj3BDhC0/V/W8B/q0i3igMkjWbAQwr0=;
+ b=odBehU+qVZoBLza3uF4yC8SPPeevHVILOaklSqc1NBDV19+Ma5/euFRVOlw0Ri0L4td/n/L8HRtPT/B4/RMp44i9iE/xGfBYfVaBVjzBWqEOCU8BGVnE8PAXlBeptGIJ9B/ETz81iPGwaVq0MZStgezbMFSY8Lpi6wuhUVCxHIM=
+Received: from PR3PR08MB5657.eurprd08.prod.outlook.com (2603:10a6:102:87::14)
+ by DB8PR08MB4987.eurprd08.prod.outlook.com (2603:10a6:10:e2::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.11; Mon, 17 Jan
+ 2022 07:46:30 +0000
+Received: from PR3PR08MB5657.eurprd08.prod.outlook.com
+ ([fe80::61a0:8e2a:b775:d451]) by PR3PR08MB5657.eurprd08.prod.outlook.com
+ ([fe80::61a0:8e2a:b775:d451%8]) with mapi id 15.20.4888.013; Mon, 17 Jan 2022
+ 07:46:30 +0000
+From: "Cardenas Jose Antonio (JCARDENA)" <JoseAntonio.Cardenas@niko.eu>
+To: Khem Raj <raj.khem@gmail.com>, Michael Opdenacker
+	<michael.opdenacker@bootlin.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: RE: [yocto] perf compilation fails
+Thread-Topic: [yocto] perf compilation fails
+Thread-Index: AdgIiYHeiKwPwazzQMmfoi64CvFyxQApEfaAABSuPAAAfW4hYA==
+Date: Mon, 17 Jan 2022 07:46:30 +0000
+Message-ID: 
+ <PR3PR08MB56574E98786D04B046E60B1A8B579@PR3PR08MB5657.eurprd08.prod.outlook.com>
 References: 
+ <DBAPR08MB56530E09A8937590E092F4F08B539@DBAPR08MB5653.eurprd08.prod.outlook.com>
+ <6f90a2ff-5fd5-6460-6bfa-9072b2dcb294@bootlin.com>
+ <CAMKF1sp4WgtW16BZ=dYb9xD+yDdoFVAzT6b9ioWDm47Da767vQ@mail.gmail.com>
 In-Reply-To: 
-Subject: Fetching svn projects with space in URI
-Date: Mon, 17 Jan 2022 18:25:17 +1100
-Message-ID: <002e01d80b73$621fb7a0$265f26e0$@asdpl.com>
+ <CAMKF1sp4WgtW16BZ=dYb9xD+yDdoFVAzT6b9ioWDm47Da767vQ@mail.gmail.com>
+Accept-Language: es-ES, en-US
+Content-Language: es-ES
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=niko.eu;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 1a594fa9-81f4-44d8-cfda-08d9d98d79c2
+x-ms-traffictypediagnostic: DB8PR08MB4987:EE_
+x-microsoft-antispam-prvs: 
+ <DB8PR08MB4987B5A20CA9482BFAA426348B579@DB8PR08MB4987.eurprd08.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5797;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ iOkRip0IJen7qJQFbXcOm+ww5UXnO/bdS/An9B9KfUdZLCiVnuZaN1CHFPE/Icl3cEvZmi8Qz1pGU6QVoffS9TMl8UM/gluFGB9nNLMIUB1NEfhsZR2bYiyFcguT1jw7kzN41BKlGEOJRLf6p5flqmkqZm90a5fYnnqXzP2Mh7Ore8aCnn5V+pfKDWxThn52qaW1fkvrZ4zOPV4WIxAGc0/NPNXiPzQ+kuscLkE6iV2crKHYtu//WMLA56Qb1zDxo7FcVLzz9jyf5aB07Nl/X8V7gbd3WYmzhHIwEC5377xFbI6oDGs2flZeyCmxlu5Aab1h0/7M6v7C4O4rk9CMcSUAwULxRtfFCHlniZkSnTYijDl7n44f8ScFxIURF1ir2IRRldn15q+9pxmiHKV9ig0toi8hrK0h1JBLew5mlg05X5HzAxnZNe2nTYEJUjIQ9Wj2fcAUItUeaWsGTnaqRL/H17RKTpcXXyFQFMIG39Fq2syC3rkkcmY/r4BO7bx3CIFkfpaDCiivYWFCDySHksKNDGeyKu7nQ0Oimw3Tb+iYU+oCCUseU6cWTxsu4FJ5V3zrV4Ot2GP6DHE2DieWDY6JyNnmUyYGLucCv8AVPaZ33BkcGL4a/R+y6xXOcb05kQTaOesp0kvK2nBL8r8QKf0HCDRHiBzK84PrCjsI5NBXxzUf9ONxe/1fMdC6nxmzxH5ND3gRruvkAe3yuZMM2Ns2jLiL5G5HeZOTBOCRY4fQrYOhEjN5Xhtmle8DVj6prnqqwjSVmsrma3OY9qsIfyRK9fpWniL71vqUO/TBYsQ=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PR3PR08MB5657.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(110136005)(66446008)(316002)(66476007)(66946007)(30864003)(55016003)(9686003)(2906002)(64756008)(508600001)(71200400001)(66556008)(83380400001)(33656002)(53546011)(6506007)(966005)(8676002)(38100700002)(52536014)(5660300002)(186003)(7696005)(26005)(38070700005)(122000001)(86362001)(4326008)(8936002)(76116006);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?ZEh1R005UmhvTmdMR05pYUVQUnBTOERVVUZSOHpwOWl2K2NTRWhpa1BlMks4?=
+ =?utf-8?B?dWRlc3dCSlFmc0Y4RE5Id0tHM0x1S2QxekJ5YzBrcG1DdGpROUNGaThXQXND?=
+ =?utf-8?B?VXVVOEF1dUJFRW1vYklLWm43YWZRV0Q5UUpYVjVBcUpUSXNzRUhOTmtTN0NE?=
+ =?utf-8?B?WkdlcXRUYTROdXpmdncwTmZHeUN1WS8zUWQxS2xQSkpwZ0VPUldPNk9wL2sw?=
+ =?utf-8?B?QzJrQ1dlZlliSVh3TzdoYnZjNWFvbXNrU1VqM2RsUGYrQnZ5QW04RVNaWk1F?=
+ =?utf-8?B?UXg5SWFBWitzYjBqRkZHQzZqN2hOM1dCMnBUV2g2K3NZdWIvcDZYRDhrUk5R?=
+ =?utf-8?B?RlMrQlVxdjJ1bmdOcnlpc1lkQkwwZG11OWxORXU2UHdxTTd0OG5Bd0pjQS9W?=
+ =?utf-8?B?dVp2ZTI0b1JqMm5EVmFwY0IyeWZoSk5wTW9QbncyTFBTMEVLNlpoN3BwK3V6?=
+ =?utf-8?B?VGRSTXBCWkpRRmVrWXBIbWFhUDd6eE9qdlNwcEJObkVCYmpiTzRiczRQSzJN?=
+ =?utf-8?B?V2tRSVRMblpsVTUyRTZsV3FDZGE3VndqOGp3cjZHSm03NlAzcE9WY0xDWjFn?=
+ =?utf-8?B?QXI0Vy8zUmI3b1k2dkMrVUtJVy9Lelp3OWpyQ0JHL1NIZ1FGUmdLZG1QSFFZ?=
+ =?utf-8?B?SFpkRXB4MHc1NCt0YllEblI4NndZald0Q1ZTUmFTOWR1YlQ1NDV0SEREbUVz?=
+ =?utf-8?B?ejIrQnBkRC9PY2lCSkQxcllIRVB4VE1MUGwrS0hpRk5HckRBWjNKbUhsL3RM?=
+ =?utf-8?B?azFQSjlRWkgwYm1oMnBWUCtUcnVNY3Q2T1FhTmRsaXZTVnJwWlhiS1p1bGhN?=
+ =?utf-8?B?dUlNNXozenhmd2dPemoxWm1RaEptcExlakRvbEpyUmx4ZVRxSGNPNzZzWk8z?=
+ =?utf-8?B?aWpmdld5cDJqdythaTRQd1V5dTdRdHV1R1FSYWkxSE5UZjZPc3ZwSnlaaFRE?=
+ =?utf-8?B?L05HMGppZEhQMGFBUG5zT2xBQnRFR3NEcTk3aWRxV1Uwa2hlOXRrYmNOVE5N?=
+ =?utf-8?B?YVFNUXBiOEU0RGJJYW4xcldlL0VGQWVRR1M3d0lPRE0rSW1RSTVsVVVFZG1M?=
+ =?utf-8?B?ZWZ3dzJ3cUV5bjZ4ejdqVjlQd3RlcnFnWlJUTEtaWWYxSm9NQ0pGV0tjTVYw?=
+ =?utf-8?B?SzMyUzZUMVBlNkV3OFRHdU1SYmFKMXFCMm1YTFR5WHJ0OWU5WGVSOTFzVW1M?=
+ =?utf-8?B?dkpyTFkySGtsWjYxKzh0Z2Nld21nclI0V3JnV1hUcFZ0MU10MHZWSEVPK0JS?=
+ =?utf-8?B?bU5qemtBeG5yODZQcHVRdk9xc011ajVKdXR4eWYzM2RvNWZQc2RWSUZnT2Zw?=
+ =?utf-8?B?b01UWWRid1ljWGxZOUN6THV0WjZsRnRERHJTQ2I1QXJ1L3ZkL0ljNDJ4MUpM?=
+ =?utf-8?B?bnhsVWlCak5Na2o0ZEViZXRGTHJtZ3BvNlJVTjdybFpIb2VteHdHWU5TN0s5?=
+ =?utf-8?B?RkZrTzl6YmlrWjFDT0cwN0EvclJqeFc5THZsWGl4SlQyVnErUDc0NG1ITjl4?=
+ =?utf-8?B?Y2Q3L1paRlFuQWx6NnJ4SE9CQU0zbjZ0RXdaSnVObFNPSFhzdVpNaS9iWHl3?=
+ =?utf-8?B?Q3pScW51aFI5RTQ5ODNYb2t5d3VSTDEyV1g3S01CYmExLytPYkEyRUJVeXh0?=
+ =?utf-8?B?dnV6VGZ5bFdKR2QyRVZLNTQ2V1dYa1g4K09XTlZrR2YyQXhBR3FJTnViYk1o?=
+ =?utf-8?B?bE1Rd3lNVm5sc05rWGlZZ3JqYXFVWW1vajdtQ0xNTzZvaWp1SmZoSzc4VEUy?=
+ =?utf-8?B?TUhpdFpad1lBQ0ZXMHJFZWc5YzVVdTJkSjZRdXBZZkJaY1h6M0c2c1JyMG5j?=
+ =?utf-8?B?MUpmeGc2OUZyV0xyalN3VnRtQ1E1Vkc2cUh3T2l1dFc5ZTduZnEvK1hZUWhU?=
+ =?utf-8?B?UFdDRnh6Q0xBNUdNa1g2cXN6dzQxNXFpWkxCeE9ReGJXVjB2ZVFRMTdnQzFV?=
+ =?utf-8?B?WVlNUG1CaTBBMGx3cDVNR2thRVc5MnIvLytjaHRhemFINFhKamRFaDRHcE9Z?=
+ =?utf-8?B?TlJOZTg1WEMxL2JGY29odXNXMHo5Rm9MK0R3YlNBQkpvcTRwU281a2h2OElu?=
+ =?utf-8?B?R1F0SXB6Zlp5dWorRzdVQS9pU2dUdE9uY0lMcEdWMWFmRmFlVmdaaFY5OVN6?=
+ =?utf-8?B?bC9ZWTZOMVJMRkUwdUJzSGNYYXc1UmNCdkRFdHUyTHZ0ZVZzWGM2Zkw4ajJI?=
+ =?utf-8?B?V1l0eW9aZXp4QVE4c1VvOWVBaVlGYWNPTk1Lb1FvV1lZSldDRFM2REx0QU14?=
+ =?utf-8?B?cEtvdTlvQXQ1UWg2RGhGMmVYNEtBPT0=?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_002F_01D80BCF.95914110"
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQFJ+/3iAUMLLLlpEPNesvbI74bObq2C7piw
-Content-Language: en-au
-X-Get-Message-Sender-Via: biz220.inmotionhosting.com: authenticated_id:
- dushara.jayasinghe@asdpl.com
-X-Authenticated-Sender: biz220.inmotionhosting.com:
- dushara.jayasinghe@asdpl.com
-X-Originating-IP: 192.145.239.52
-X-SpamExperts-Domain: biz220.inmotionhosting.com
-X-SpamExperts-Username: 192.145.239.52
-Authentication-Results: servconfig.com;
- auth=pass smtp.auth=192.145.239.52@biz220.inmotionhosting.com
-X-SpamExperts-Outgoing-Class: ham
-X-SpamExperts-Outgoing-Evidence: Combined (0.15)
-X-Recommended-Action: accept
-X-Filter-ID: 
- Pt3MvcO5N4iKaDQ5O6lkdGlMVN6RH8bjRMzItlySaT9WLQux0N3HQm8ltz8rnu+BPUtbdvnXkggZ
- 3YnVId/Y5jcf0yeVQAvfjHznO7+bT5zddOVhj1YHhpbQayN2s2E/5ZX+VW4rt+Hs37fP4pfw449w
- knWGobBIYos3d1n2bRFpBHl2OLxWhd+SyQZkzCDI5WCy5VkstzhnxgTXqsdmp7Fcasf1RZqk3i0l
- tCVuDUXrA0/rP1BVRv7YryHOfZJmyBK4r2+jWAnn9gHfWhAESuWkNE71bXB92707BxGgHK+63k+m
- SsFC55X5iDnCosr8rmtbNt1svWhT5qsmEEKRJKeiqzwpJQJp5aGHp7lTCYqu1WaiZswnh7amfkLT
- IEwd6LkGFt94dBx3TpAokA4UmbCGVypsM2xk+Fb6Uy9BG+eG09xLM7yGwGwdmctNXf+yF45HU3lW
- dqhlsf8B0aV+vPUiiHKeygO6f7B36UEMF2jXJbH/eREZ32uf97rVbut3BoCKrJ44DyMbfkCW+Top
- C15Fp1TkJK0B1mzsYckU6LaSTwMUHD8nvT6qjZo9eXrfmUo5plW9Y81go6R4YdVo2al1r07cmbef
- hNqx0U8Yjj0Cn996kLU2Kwz4sRK+A9mnrSOIPpeqwlm2NDGXIJ2x7B67Q+HsWaFHyFpORQ4db+0f
- bQKXQp+MVUpMGH9yl8j38e6KJofFQ6yV7BOHExqlaGz7KwJQy1ROLKlEPC1ZGMN/lAs4U16Yumao
- R4AJ8MkeMzg958IFbKKlNc0N5cagQhEVniihuDwEGDcmr6e3OPRIuz/+yGVjxH5HWgO7RPnXcibM
- VfWjjFX9dRVxry9T9FAPUwiR6s7lcrXpSSulhkNZ6j7GA1bTinxdrgbFajuGXPWlFdaGOH191uXj
- gjQN/Ubnqapc5QITPzxqfshNq2J0x8O5ZTR461LCDcZRXrEe7aTOBNzLYZ4l8DJ8gRFT2qPnV2ZT
- eZ/Gv5YEw5PH11xnu243bsLlznfnRGG52NGttipuLACdUPlQF11jyLtB/ehEQjf02DvD6NbBWC62
- Mae1qXL+49o8azgi4BgggOeeh5Tiu8X8hMpGwgktvShv4wSIGxzBF2u2H7X6hZMNOOz6I6RtJFJt
- Bs6tjE3ZCKx3
-X-Report-Abuse-To: spam@se1-lax1.servconfig.com
+X-OriginatorOrg: niko.eu
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PR3PR08MB5657.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 1a594fa9-81f4-44d8-cfda-08d9d98d79c2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jan 2022 07:46:30.4968
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a4faf0fe-ff3f-4912-b675-3cfe1470e385
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 
+ BrDmoyKSEkaoYIkN8tZ1b+NPz36+lqWSYDz+Ysey3YKIj4AC9N1rDQou3LuhazGuSnnU1fvMskKIMA+ftJGTzKcuZe6uhSkiDj4JyqVdmcQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR08MB4987
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 17 Jan 2022 07:25:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55887
+ <yocto@lists.yoctoproject.org>; Mon, 17 Jan 2022 07:46:42 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55888
 
-This is a multipart message in MIME format.
-
-------=_NextPart_000_002F_01D80BCF.95914110
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-Hello,
-
- 
-
-I'm trying to create a recipe for one of our existing code bases which is
-under svn.
-
- 
-
-The URI of this project contains space characters and I'm struggling to
-properly set the SRC_URI field in the recipe.
-
- 
-
-I did try replacing space with %20 as below:
-
- 
-
-SRC_URI =
-"svn://server.local.net/project/My%20Application;module=trunk;rev=61238;user
-=uuuu;pswd=pppp;externals=allowed"
-
- 
-
-However, this results in the following error when I try to build the recipe:
-
- 
-
-WARNING: project-bin-0.1-r0 do_fetch: Failed to fetch URL
-svn://server.local.net/project/My%20Application;module=trunk;rev=61238;user=
-uuuu;pswd=pppp;externals=allowed, attempting MIRRORS if available
-
-ERROR: project-bin-0.1-r0 do_fetch: Fetcher failure: Fetch command export
-PSEUDO_DISABLED=1; export
-DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"; export
-SSH_AGENT_PID="867"; export SSH_AUTH_SOCK="/run/user/1000/keyring/ssh";
-export
-PATH="/home/developer/src/STM32MP15-Ecosystem-v3.1.0/Distribution-Package/op
-enstlinux-5.10-dunfell-mp1-21-11-17/build-openstlinuxweston-stm32mp1/tmp-gli
-bc/sysroots-uninative/x86_64-linux/usr/bin:/home/developer/src/STM32MP15-Eco
-system-v3.1.0/Distribution-Package/openstlinux-5.10-dunfell-mp1-21-11-17/lay
-ers/openembedded-core/scripts:/home/developer/src/STM32MP15-Ecosystem-v3.1.0
-/Distribution-Package/openstlinux-5.10-dunfell-mp1-21-11-17/build-openstlinu
-xweston-stm32mp1/tmp-glibc/work/cortexa7t2hf-neon-vfpv4-ostl-linux-gnueabi/p
-roject-bin/0.1-r0/recipe-sysroot-native/usr/bin/arm-ostl-linux-gnueabi:/home
-/developer/src/STM32MP15-Ecosystem-v3.1.0/Distribution-Package/openstlinux-5
-.10-dunfell-mp1-21-11-17/build-openstlinuxweston-stm32mp1/tmp-glibc/work/cor
-texa7t2hf-neon-vfpv4-ostl-linux-gnueabi/project-bin/0.1-r0/recipe-sysroot/us
-r/bin/crossscripts:/home/developer/src/STM32MP15-Ecosystem-v3.1.0/Distributi
-on-Package/openstlinux-5.10-dunfell-mp1-21-11-17/build-openstlinuxweston-stm
-32mp1/tmp-glibc/work/cortexa7t2hf-neon-vfpv4-ostl-linux-gnueabi/project-bin/
-0.1-r0/recipe-sysroot-native/usr/sbin:/home/developer/src/STM32MP15-Ecosyste
-m-v3.1.0/Distribution-Package/openstlinux-5.10-dunfell-mp1-21-11-17/build-op
-enstlinuxweston-stm32mp1/tmp-glibc/work/cortexa7t2hf-neon-vfpv4-ostl-linux-g
-nueabi/project-bin/0.1-r0/recipe-sysroot-native/usr/bin:/home/developer/src/
-STM32MP15-Ecosystem-v3.1.0/Distribution-Package/openstlinux-5.10-dunfell-mp1
--21-11-17/build-openstlinuxweston-stm32mp1/tmp-glibc/work/cortexa7t2hf-neon-
-vfpv4-ostl-linux-gnueabi/project-bin/0.1-r0/recipe-sysroot-native/sbin:/home
-/developer/src/STM32MP15-Ecosystem-v3.1.0/Distribution-Package/openstlinux-5
-.10-dunfell-mp1-21-11-17/build-openstlinuxweston-stm32mp1/tmp-glibc/work/cor
-texa7t2hf-neon-vfpv4-ostl-linux-gnueabi/project-bin/0.1-r0/recipe-sysroot-na
-tive/bin:/home/developer/src/STM32MP15-Ecosystem-v3.1.0/Distribution-Package
-/openstlinux-5.10-dunfell-mp1-21-11-17/layers/openembedded-core/bitbake/bin:
-/home/developer/src/STM32MP15-Ecosystem-v3.1.0/Distribution-Package/openstli
-nux-5.10-dunfell-mp1-21-11-17/build-openstlinuxweston-stm32mp1/tmp-glibc/hos
-ttools"; export HOME="/home/developer"; /usr/bin/env svn --non-interactive
---trust-server-cert co --no-auth-cache --username uuuu --password pppp -r
-61238 svn://server.local.net/project/My Application/trunk@61238 trunk failed
-with exit code 1, output:
-
-svn: E160013: File not found: revision 61240, path '/project/My'
-
- 
-
-ERROR: project-bin-0.1-r0 do_fetch: Fetcher failure for URL:
-'svn://server.local.net/project/My%20Application;module=trunk;rev=61238;user
-=uuuu;pswd=pppp;externals=allowed'. Unable to fetch URL from any source.
-
-ERROR: Logfile of failure stored in:
-/home/developer/src/STM32MP15-Ecosystem-v3.1.0/Distribution-Package/openstli
-nux-5.10-dunfell-mp1-21-11-17/build-openstlinuxweston-stm32mp1/tmp-glibc/wor
-k/cortexa7t2hf-neon-vfpv4-ostl-linux-gnueabi/project-bin/0.1-r0/temp/log.do_
-fetch.247992
-
-ERROR: Task
-(/home/developer/src/STM32MP15-Ecosystem-v3.1.0/Distribution-Package/openstl
-inux-5.10-dunfell-mp1-21-11-17/layers/meta-project/recipes-project/project-b
-in/project-bin_0.1.bb:do_fetch) failed with exit code '1'
-
- 
-
-How exactly should the space be handled?
-
- 
-
-Thank you.
-
- 
-
-Regards.
-
- 
-
-Dushara
-
- 
-
-
-------=_NextPart_000_002F_01D80BCF.95914110
-Content-Type: text/html;
-	charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-AU =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal>Hello,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I&#8217;m =
-trying to create a recipe for one of our existing code bases which is =
-under svn.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal>The URI of this project contains space characters and =
-I&#8217;m struggling to properly set the SRC_URI field in the =
-recipe.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal>I did try replacing space with %20 as =
-below:<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal>SRC_URI =3D =
-&quot;svn://server.local.net/project/My%20Application;module=3Dtrunk;rev=3D=
-61238;user=3Duuuu;pswd=3Dpppp;externals=3Dallowed&quot;<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>However, =
-this results in the following error when I try to build the =
-recipe:<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal>WARNING: project-bin-0.1-r0 do_fetch: Failed to fetch =
-URL =
-svn://server.local.net/project/My%20Application;module=3Dtrunk;rev=3D6123=
-8;user=3Duuuu;pswd=3Dpppp;externals=3Dallowed, attempting MIRRORS if =
-available<o:p></o:p></p><p class=3DMsoNormal>ERROR: project-bin-0.1-r0 =
-do_fetch: Fetcher failure: Fetch command export PSEUDO_DISABLED=3D1; =
-export =
-DBUS_SESSION_BUS_ADDRESS=3D&quot;unix:path=3D/run/user/1000/bus&quot;; =
-export SSH_AGENT_PID=3D&quot;867&quot;; export =
-SSH_AUTH_SOCK=3D&quot;/run/user/1000/keyring/ssh&quot;; export =
-PATH=3D&quot;/home/developer/src/STM32MP15-Ecosystem-v3.1.0/Distribution-=
-Package/openstlinux-5.10-dunfell-mp1-21-11-17/build-openstlinuxweston-stm=
-32mp1/tmp-glibc/sysroots-uninative/x86_64-linux/usr/bin:/home/developer/s=
-rc/STM32MP15-Ecosystem-v3.1.0/Distribution-Package/openstlinux-5.10-dunfe=
-ll-mp1-21-11-17/layers/openembedded-core/scripts:/home/developer/src/STM3=
-2MP15-Ecosystem-v3.1.0/Distribution-Package/openstlinux-5.10-dunfell-mp1-=
-21-11-17/build-openstlinuxweston-stm32mp1/tmp-glibc/work/cortexa7t2hf-neo=
-n-vfpv4-ostl-linux-gnueabi/project-bin/0.1-r0/recipe-sysroot-native/usr/b=
-in/arm-ostl-linux-gnueabi:/home/developer/src/STM32MP15-Ecosystem-v3.1.0/=
-Distribution-Package/openstlinux-5.10-dunfell-mp1-21-11-17/build-openstli=
-nuxweston-stm32mp1/tmp-glibc/work/cortexa7t2hf-neon-vfpv4-ostl-linux-gnue=
-abi/project-bin/0.1-r0/recipe-sysroot/usr/bin/crossscripts:/home/develope=
-r/src/STM32MP15-Ecosystem-v3.1.0/Distribution-Package/openstlinux-5.10-du=
-nfell-mp1-21-11-17/build-openstlinuxweston-stm32mp1/tmp-glibc/work/cortex=
-a7t2hf-neon-vfpv4-ostl-linux-gnueabi/project-bin/0.1-r0/recipe-sysroot-na=
-tive/usr/sbin:/home/developer/src/STM32MP15-Ecosystem-v3.1.0/Distribution=
--Package/openstlinux-5.10-dunfell-mp1-21-11-17/build-openstlinuxweston-st=
-m32mp1/tmp-glibc/work/cortexa7t2hf-neon-vfpv4-ostl-linux-gnueabi/project-=
-bin/0.1-r0/recipe-sysroot-native/usr/bin:/home/developer/src/STM32MP15-Ec=
-osystem-v3.1.0/Distribution-Package/openstlinux-5.10-dunfell-mp1-21-11-17=
-/build-openstlinuxweston-stm32mp1/tmp-glibc/work/cortexa7t2hf-neon-vfpv4-=
-ostl-linux-gnueabi/project-bin/0.1-r0/recipe-sysroot-native/sbin:/home/de=
-veloper/src/STM32MP15-Ecosystem-v3.1.0/Distribution-Package/openstlinux-5=
-.10-dunfell-mp1-21-11-17/build-openstlinuxweston-stm32mp1/tmp-glibc/work/=
-cortexa7t2hf-neon-vfpv4-ostl-linux-gnueabi/project-bin/0.1-r0/recipe-sysr=
-oot-native/bin:/home/developer/src/STM32MP15-Ecosystem-v3.1.0/Distributio=
-n-Package/openstlinux-5.10-dunfell-mp1-21-11-17/layers/openembedded-core/=
-bitbake/bin:/home/developer/src/STM32MP15-Ecosystem-v3.1.0/Distribution-P=
-ackage/openstlinux-5.10-dunfell-mp1-21-11-17/build-openstlinuxweston-stm3=
-2mp1/tmp-glibc/hosttools&quot;; export =
-HOME=3D&quot;/home/developer&quot;; /usr/bin/env svn --non-interactive =
---trust-server-cert co --no-auth-cache --username uuuu --password pppp =
--r 61238 svn://server.local.net/project/My Application/trunk@61238 trunk =
-failed with exit code 1, output:<o:p></o:p></p><p class=3DMsoNormal>svn: =
-E160013: File not found: revision 61240, path =
-'/project/My'<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal>ERROR: project-bin-0.1-r0 do_fetch: Fetcher failure =
-for URL: =
-'svn://server.local.net/project/My%20Application;module=3Dtrunk;rev=3D612=
-38;user=3Duuuu;pswd=3Dpppp;externals=3Dallowed'. Unable to fetch URL =
-from any source.<o:p></o:p></p><p class=3DMsoNormal>ERROR: Logfile of =
-failure stored in: =
-/home/developer/src/STM32MP15-Ecosystem-v3.1.0/Distribution-Package/opens=
-tlinux-5.10-dunfell-mp1-21-11-17/build-openstlinuxweston-stm32mp1/tmp-gli=
-bc/work/cortexa7t2hf-neon-vfpv4-ostl-linux-gnueabi/project-bin/0.1-r0/tem=
-p/log.do_fetch.247992<o:p></o:p></p><p class=3DMsoNormal>ERROR: Task =
-(/home/developer/src/STM32MP15-Ecosystem-v3.1.0/Distribution-Package/open=
-stlinux-5.10-dunfell-mp1-21-11-17/layers/meta-project/recipes-project/pro=
-ject-bin/project-bin_0.1.bb:do_fetch) failed with exit code =
-'1'<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal>How exactly should the space be =
-handled?<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal>Thank you.<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal>Regards.<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal>Dushara<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_000_002F_01D80BCF.95914110--
-
+WWVzLCB0aGF0IHdvcmtlZCEgVGhhbmsgeW91IHZlcnkgbXVjaCENCg0KLS0tLS1NZW5zYWplIG9y
+aWdpbmFsLS0tLS0NCkRlOiBLaGVtIFJhaiA8cmFqLmtoZW1AZ21haWwuY29tPiANCkVudmlhZG8g
+ZWw6IHZpZXJuZXMsIDE0IGRlIGVuZXJvIGRlIDIwMjIgMjA6NTQNClBhcmE6IE1pY2hhZWwgT3Bk
+ZW5hY2tlciA8bWljaGFlbC5vcGRlbmFja2VyQGJvb3RsaW4uY29tPg0KQ0M6IENhcmRlbmFzIEpv
+c2UgQW50b25pbyAoSkNBUkRFTkEpIDxKb3NlQW50b25pby5DYXJkZW5hc0BuaWtvLmV1PjsgeW9j
+dG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KQXN1bnRvOiBSZTogW3lvY3RvXSBwZXJmIGNvbXBp
+bGF0aW9uIGZhaWxzDQoNCkNBVVRJT046IFRoaXMgZW1haWwgb3JpZ2luYXRlZCBmcm9tIG91dHNp
+ZGUgdGhlIG9yZ2FuaXphdGlvbi4gRG8gbm90IGNsaWNrIG9uIGxpbmtzIG9yIG9wZW4gYXR0YWNo
+bWVudHMgdW5sZXNzIHlvdSByZWNvZ25pemUgdGhlIHNlbmRlciBhbmQga25vdyB0aGUgY29udGVu
+dCBpcyBzYWZlLg0KDQp0YWtlIGEgbG9vayBhdCBmb2xsb3dpbmcgbGluaywgaXQgd2lsbCBoZWxw
+IHNvbHZlIHRoaXMgaG9wZWZ1bGx5DQoNCmh0dHBzOi8vd2lraS5nZW50b28ub3JnL3dpa2kvUHJv
+amVjdDpUb29sY2hhaW4vQmludXRpbHNfMi4zNF9wb3J0aW5nX25vdGVzL3VuZGVmaW5lZF9yZWZl
+cmVuY2VfdG9fYmZkX2dldF9zZWN0aW9uXyoNCg0KT24gRnJpLCBKYW4gMTQsIDIwMjIgYXQgMjow
+MiBBTSBNaWNoYWVsIE9wZGVuYWNrZXIgPG1pY2hhZWwub3BkZW5hY2tlckBib290bGluLmNvbT4g
+d3JvdGU6DQo+DQo+IEhpIEpvc2UgQW50b25pbw0KPg0KPiBPbiAxLzEzLzIyIDM6MjkgUE0sIENh
+cmRlbmFzIEpvc2UgQW50b25pbyAoSkNBUkRFTkEpIHdyb3RlOg0KPiA+DQo+ID4gSGkgZ3V5cw0K
+PiA+DQo+ID4NCj4gPg0KPiA+IEnigJltIG5vIHRhYmxlIHRvIGJ1aWxkIGNvcnJlY3RseSBwZXJm
+IHBhY2thZ2UuDQo+ID4NCj4gPg0KPiA+DQo+ID4gSXQgbG9va3MgbGlrZSBzb21lIHNvdXJjZXMg
+aGF2ZSBubyBiZWVuIGNvbXBpbGVkIGJlY2F1c2UgSeKAmW0gZ2V0dGluZyANCj4gPiBhbiDigJx1
+bmRlZmluZWQgcmVmZXJlbmNlIHRv4oCdIGVycm9yLg0KPiA+DQo+ID4NCj4gPg0KPiA+IFRoaXMg
+cHJvYmxlbSBoYXMgYXBwZWFyZWQgc2luY2Ugd2UgaGF2ZSB1cGdyYWRlZCB0aGUgdmVyc2lvbiBv
+ZiANCj4gPiB5b2N0byB6ZXVzLg0KPiA+DQo+ID4NCj4gPg0KPiA+IEnigJltIGdldHRpbmcgdGhp
+cyBlcnJvcg0KPiA+DQo+ID4NCj4gPg0KPiA+ICAgIGFybS1wb2t5LWxpbnV4LWdudWVhYmktbGQN
+Cj4gPiAtLXN5c3Jvb3Q9L2hvbWUvYm9iL2RldmVsb3AveW9jdG8vYnVpbGQvdG1wL3dvcmsvZW1w
+ZXJvci1wb2t5LWxpbnV4LQ0KPiA+IGdudWVhYmkvcGVyZi8xLjAtcjkvcmVjaXBlLXN5c3Jvb3QN
+Cj4gPiAtciAtbw0KPiA+IC9ob21lL2JvYi9kZXZlbG9wL3lvY3RvL2J1aWxkL3RtcC93b3JrL2Vt
+cGVyb3ItcG9reS1saW51eC1nbnVlYWJpL3BlDQo+ID4gcmYvMS4wLXI5L3BlcmYtMS4wL3BlcmYt
+aW4ubyANCj4gPiAvaG9tZS9ib2IvZGV2ZWxvcC95b2N0by9idWlsZC90bXAvd29yay9lbXBlcm9y
+LXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+IHJmLzEuMC1yOS9wZXJmLTEuMC9idWlsdGluLWJl
+bmNoLm8NCj4gPiAvaG9tZS9ib2IvZGV2ZWxvcC95b2N0by9idWlsZC90bXAvd29yay9lbXBlcm9y
+LXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+IHJmLzEuMC1yOS9wZXJmLTEuMC9idWlsdGluLWFu
+bm90YXRlLm8NCj4gPiAvaG9tZS9ib2IvZGV2ZWxvcC95b2N0by9idWlsZC90bXAvd29yay9lbXBl
+cm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+IHJmLzEuMC1yOS9wZXJmLTEuMC9idWlsdGlu
+LWNvbmZpZy5vDQo+ID4gL2hvbWUvYm9iL2RldmVsb3AveW9jdG8vYnVpbGQvdG1wL3dvcmsvZW1w
+ZXJvci1wb2t5LWxpbnV4LWdudWVhYmkvcGUNCj4gPiByZi8xLjAtcjkvcGVyZi0xLjAvYnVpbHRp
+bi1kaWZmLm8gDQo+ID4gL2hvbWUvYm9iL2RldmVsb3AveW9jdG8vYnVpbGQvdG1wL3dvcmsvZW1w
+ZXJvci1wb2t5LWxpbnV4LWdudWVhYmkvcGUNCj4gPiByZi8xLjAtcjkvcGVyZi0xLjAvYnVpbHRp
+bi1ldmxpc3Qubw0KPiA+IC9ob21lL2JvYi9kZXZlbG9wL3lvY3RvL2J1aWxkL3RtcC93b3JrL2Vt
+cGVyb3ItcG9reS1saW51eC1nbnVlYWJpL3BlDQo+ID4gcmYvMS4wLXI5L3BlcmYtMS4wL2J1aWx0
+aW4tZnRyYWNlLm8NCj4gPiAvaG9tZS9ib2IvZGV2ZWxvcC95b2N0by9idWlsZC90bXAvd29yay9l
+bXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+IHJmLzEuMC1yOS9wZXJmLTEuMC9idWls
+dGluLWhlbHAubyANCj4gPiAvaG9tZS9ib2IvZGV2ZWxvcC95b2N0by9idWlsZC90bXAvd29yay9l
+bXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+IHJmLzEuMC1yOS9wZXJmLTEuMC9idWls
+dGluLXNjaGVkLm8NCj4gPiAvaG9tZS9ib2IvZGV2ZWxvcC95b2N0by9idWlsZC90bXAvd29yay9l
+bXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+IHJmLzEuMC1yOS9wZXJmLTEuMC9idWls
+dGluLWJ1aWxkaWQtbGlzdC5vDQo+ID4gL2hvbWUvYm9iL2RldmVsb3AveW9jdG8vYnVpbGQvdG1w
+L3dvcmsvZW1wZXJvci1wb2t5LWxpbnV4LWdudWVhYmkvcGUNCj4gPiByZi8xLjAtcjkvcGVyZi0x
+LjAvYnVpbHRpbi1idWlsZGlkLWNhY2hlLm8NCj4gPiAvaG9tZS9ib2IvZGV2ZWxvcC95b2N0by9i
+dWlsZC90bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+IHJmLzEuMC1y
+OS9wZXJmLTEuMC9idWlsdGluLWthbGxzeW1zLm8NCj4gPiAvaG9tZS9ib2IvZGV2ZWxvcC95b2N0
+by9idWlsZC90bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+IHJmLzEu
+MC1yOS9wZXJmLTEuMC9idWlsdGluLWxpc3QubyANCj4gPiAvaG9tZS9ib2IvZGV2ZWxvcC95b2N0
+by9idWlsZC90bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+IHJmLzEu
+MC1yOS9wZXJmLTEuMC9idWlsdGluLXJlY29yZC5vDQo+ID4gL2hvbWUvYm9iL2RldmVsb3AveW9j
+dG8vYnVpbGQvdG1wL3dvcmsvZW1wZXJvci1wb2t5LWxpbnV4LWdudWVhYmkvcGUNCj4gPiByZi8x
+LjAtcjkvcGVyZi0xLjAvYnVpbHRpbi1yZXBvcnQubw0KPiA+IC9ob21lL2JvYi9kZXZlbG9wL3lv
+Y3RvL2J1aWxkL3RtcC93b3JrL2VtcGVyb3ItcG9reS1saW51eC1nbnVlYWJpL3BlDQo+ID4gcmYv
+MS4wLXI5L3BlcmYtMS4wL2J1aWx0aW4tc3RhdC5vIA0KPiA+IC9ob21lL2JvYi9kZXZlbG9wL3lv
+Y3RvL2J1aWxkL3RtcC93b3JrL2VtcGVyb3ItcG9reS1saW51eC1nbnVlYWJpL3BlDQo+ID4gcmYv
+MS4wLXI5L3BlcmYtMS4wL2J1aWx0aW4tdGltZWNoYXJ0Lm8NCj4gPiAvaG9tZS9ib2IvZGV2ZWxv
+cC95b2N0by9idWlsZC90bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+
+IHJmLzEuMC1yOS9wZXJmLTEuMC9idWlsdGluLXRvcC5vIA0KPiA+IC9ob21lL2JvYi9kZXZlbG9w
+L3lvY3RvL2J1aWxkL3RtcC93b3JrL2VtcGVyb3ItcG9reS1saW51eC1nbnVlYWJpL3BlDQo+ID4g
+cmYvMS4wLXI5L3BlcmYtMS4wL2J1aWx0aW4tc2NyaXB0Lm8NCj4gPiAvaG9tZS9ib2IvZGV2ZWxv
+cC95b2N0by9idWlsZC90bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+
+IHJmLzEuMC1yOS9wZXJmLTEuMC9idWlsdGluLWttZW0ubyANCj4gPiAvaG9tZS9ib2IvZGV2ZWxv
+cC95b2N0by9idWlsZC90bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+
+IHJmLzEuMC1yOS9wZXJmLTEuMC9idWlsdGluLWxvY2subyANCj4gPiAvaG9tZS9ib2IvZGV2ZWxv
+cC95b2N0by9idWlsZC90bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+
+IHJmLzEuMC1yOS9wZXJmLTEuMC9idWlsdGluLWt2bS5vIA0KPiA+IC9ob21lL2JvYi9kZXZlbG9w
+L3lvY3RvL2J1aWxkL3RtcC93b3JrL2VtcGVyb3ItcG9reS1saW51eC1nbnVlYWJpL3BlDQo+ID4g
+cmYvMS4wLXI5L3BlcmYtMS4wL2J1aWx0aW4taW5qZWN0Lm8NCj4gPiAvaG9tZS9ib2IvZGV2ZWxv
+cC95b2N0by9idWlsZC90bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+
+IHJmLzEuMC1yOS9wZXJmLTEuMC9idWlsdGluLW1lbS5vIA0KPiA+IC9ob21lL2JvYi9kZXZlbG9w
+L3lvY3RvL2J1aWxkL3RtcC93b3JrL2VtcGVyb3ItcG9reS1saW51eC1nbnVlYWJpL3BlDQo+ID4g
+cmYvMS4wLXI5L3BlcmYtMS4wL2J1aWx0aW4tZGF0YS5vIA0KPiA+IC9ob21lL2JvYi9kZXZlbG9w
+L3lvY3RvL2J1aWxkL3RtcC93b3JrL2VtcGVyb3ItcG9reS1saW51eC1nbnVlYWJpL3BlDQo+ID4g
+cmYvMS4wLXI5L3BlcmYtMS4wL2J1aWx0aW4tdmVyc2lvbi5vDQo+ID4gL2hvbWUvYm9iL2RldmVs
+b3AveW9jdG8vYnVpbGQvdG1wL3dvcmsvZW1wZXJvci1wb2t5LWxpbnV4LWdudWVhYmkvcGUNCj4g
+PiByZi8xLjAtcjkvcGVyZi0xLjAvYnVpbHRpbi1jMmMubyANCj4gPiAvaG9tZS9ib2IvZGV2ZWxv
+cC95b2N0by9idWlsZC90bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+
+IHJmLzEuMC1yOS9wZXJmLTEuMC9idWlsdGluLXByb2JlLm8NCj4gPiAvaG9tZS9ib2IvZGV2ZWxv
+cC95b2N0by9idWlsZC90bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+
+IHJmLzEuMC1yOS9wZXJmLTEuMC9iZW5jaC9wZXJmLWluLm8NCj4gPiAvaG9tZS9ib2IvZGV2ZWxv
+cC95b2N0by9idWlsZC90bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+
+IHJmLzEuMC1yOS9wZXJmLTEuMC90ZXN0cy9wZXJmLWluLm8NCj4gPiAvaG9tZS9ib2IvZGV2ZWxv
+cC95b2N0by9idWlsZC90bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+
+IHJmLzEuMC1yOS9wZXJmLTEuMC9wZXJmLm8gDQo+ID4gL2hvbWUvYm9iL2RldmVsb3AveW9jdG8v
+YnVpbGQvdG1wL3dvcmsvZW1wZXJvci1wb2t5LWxpbnV4LWdudWVhYmkvcGUNCj4gPiByZi8xLjAt
+cjkvcGVyZi0xLjAvdXRpbC9wZXJmLWluLm8gDQo+ID4gL2hvbWUvYm9iL2RldmVsb3AveW9jdG8v
+YnVpbGQvdG1wL3dvcmsvZW1wZXJvci1wb2t5LWxpbnV4LWdudWVhYmkvcGUNCj4gPiByZi8xLjAt
+cjkvcGVyZi0xLjAvYXJjaC9wZXJmLWluLm8gDQo+ID4gL2hvbWUvYm9iL2RldmVsb3AveW9jdG8v
+YnVpbGQvdG1wL3dvcmsvZW1wZXJvci1wb2t5LWxpbnV4LWdudWVhYmkvcGUNCj4gPiByZi8xLjAt
+cjkvcGVyZi0xLjAvdWkvcGVyZi1pbi5vIA0KPiA+IC9ob21lL2JvYi9kZXZlbG9wL3lvY3RvL2J1
+aWxkL3RtcC93b3JrL2VtcGVyb3ItcG9reS1saW51eC1nbnVlYWJpL3BlDQo+ID4gcmYvMS4wLXI5
+L3BlcmYtMS4wL3NjcmlwdHMvcGVyZi1pbi5vDQo+ID4NCj4gPiBhcm0tcG9reS1saW51eC1nbnVl
+YWJpLWdjYyAgLW1hcmNoPWFybXY3LWEgLW1mcHU9bmVvbiANCj4gPiAtbWZsb2F0LWFiaT1oYXJk
+IC1mc3RhY2stcHJvdGVjdG9yLXN0cm9uZyAgLURfRk9SVElGWV9TT1VSQ0U9MiANCj4gPiAtV2Zv
+cm1hdCAtV2Zvcm1hdC1zZWN1cml0eSAtV2Vycm9yPWZvcm1hdC1zZWN1cml0eSAtT3MgLXBpcGUg
+LWcgDQo+ID4gLWZlbGltaW5hdGUtdW51c2VkLWRlYnVnLXR5cGVzDQo+ID4gLWZtYWNyby1wcmVm
+aXgtbWFwPS9ob21lL2JvYi9kZXZlbG9wL3lvY3RvL2J1aWxkL3RtcC93b3JrL2VtcGVyb3ItcG8N
+Cj4gPiBreS1saW51eC1nbnVlYWJpL3BlcmYvMS4wLXI5PS91c3Ivc3JjL2RlYnVnL3BlcmYvMS4w
+LXI5DQo+ID4gLWZkZWJ1Zy1wcmVmaXgtbWFwPS9ob21lL2JvYi9kZXZlbG9wL3lvY3RvL2J1aWxk
+L3RtcC93b3JrL2VtcGVyb3ItcG8NCj4gPiBreS1saW51eC1nbnVlYWJpL3BlcmYvMS4wLXI5PS91
+c3Ivc3JjL2RlYnVnL3BlcmYvMS4wLXI5DQo+ID4gLWZkZWJ1Zy1wcmVmaXgtbWFwPS9ob21lL2Jv
+Yi9kZXZlbG9wL3lvY3RvL2J1aWxkL3RtcC93b3JrL2VtcGVyb3ItcG8NCj4gPiBreS1saW51eC1n
+bnVlYWJpL3BlcmYvMS4wLXI5L3JlY2lwZS1zeXNyb290PQ0KPiA+IC1mZGVidWctcHJlZml4LW1h
+cD0vaG9tZS9ib2IvZGV2ZWxvcC95b2N0by9idWlsZC90bXAvd29yay9lbXBlcm9yLXBvDQo+ID4g
+a3ktbGludXgtZ251ZWFiaS9wZXJmLzEuMC1yOS9yZWNpcGUtc3lzcm9vdC1uYXRpdmU9DQo+ID4g
+LS1zeXNyb290PS9ob21lL2JvYi9kZXZlbG9wL3lvY3RvL2J1aWxkL3RtcC93b3JrL2VtcGVyb3It
+cG9reS1saW51eC0NCj4gPiBnbnVlYWJpL3BlcmYvMS4wLXI5L3JlY2lwZS1zeXNyb290DQo+ID4g
+LWxkdyAtV2JhZC1mdW5jdGlvbi1jYXN0IC1XZGVjbGFyYXRpb24tYWZ0ZXItc3RhdGVtZW50IA0K
+PiA+IC1XZm9ybWF0LXNlY3VyaXR5IC1XZm9ybWF0LXkyayAtV2luaXQtc2VsZiAtV21pc3Npbmct
+ZGVjbGFyYXRpb25zIA0KPiA+IC1XbWlzc2luZy1wcm90b3R5cGVzIC1XbmVzdGVkLWV4dGVybnMg
+LVduby1zeXN0ZW0taGVhZGVycyANCj4gPiAtV29sZC1zdHlsZS1kZWZpbml0aW9uIC1XcGFja2Vk
+IC1XcmVkdW5kYW50LWRlY2xzIA0KPiA+IC1Xc3RyaWN0LXByb3RvdHlwZXMgLVdzd2l0Y2gtZGVm
+YXVsdCAtV3N3aXRjaC1lbnVtIC1XdW5kZWYgDQo+ID4gLVd3cml0ZS1zdHJpbmdzIC1XZm9ybWF0
+DQo+ID4gLVdzdHJpY3QtYWxpYXNpbmc9MyAtV3NoYWRvdyAtREhBVkVfUEVSRl9SRUdTX1NVUFBP
+UlQgLU82IA0KPiA+IC1mbm8tb21pdC1mcmFtZS1wb2ludGVyIC1nZ2RiMyAtZnVud2luZC10YWJs
+ZXMgLVdhbGwgLVdleHRyYQ0KPiA+IC1zdGQ9Z251OTkgLWZzdGFjay1wcm90ZWN0b3ItYWxsIC1E
+X0ZPUlRJRllfU09VUkNFPTIgDQo+ID4gLUkvaG9tZS9ib2IvZGV2ZWxvcC95b2N0by9idWlsZC90
+bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS8NCj4gPiBwZXJmLzEuMC1yOS9wZXJm
+LTEuMC90b29scy9wZXJmL3V0aWwvaW5jbHVkZQ0KPiA+IC1JL2hvbWUvYm9iL2RldmVsb3AveW9j
+dG8vYnVpbGQvdG1wL3dvcmsvZW1wZXJvci1wb2t5LWxpbnV4LWdudWVhYmkvDQo+ID4gcGVyZi8x
+LjAtcjkvcGVyZi0xLjAvdG9vbHMvcGVyZi9hcmNoL2FybS9pbmNsdWRlDQo+ID4gLUkvaG9tZS9i
+b2IvZGV2ZWxvcC95b2N0by9idWlsZC90bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFi
+aS8NCj4gPiBwZXJmLzEuMC1yOS9wZXJmLTEuMC90b29scy9pbmNsdWRlL3VhcGkNCj4gPiAtSS9o
+b21lL2JvYi9kZXZlbG9wL3lvY3RvL2J1aWxkL3RtcC93b3JrL2VtcGVyb3ItcG9reS1saW51eC1n
+bnVlYWJpLw0KPiA+IHBlcmYvMS4wLXI5L3BlcmYtMS4wL3Rvb2xzL2luY2x1ZGUvDQo+ID4gLUkv
+aG9tZS9ib2IvZGV2ZWxvcC95b2N0by9idWlsZC90bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgt
+Z251ZWFiaS8NCj4gPiBwZXJmLzEuMC1yOS9wZXJmLTEuMC90b29scy9hcmNoL2FybS9pbmNsdWRl
+L3VhcGkNCj4gPiAtSS9ob21lL2JvYi9kZXZlbG9wL3lvY3RvL2J1aWxkL3RtcC93b3JrL2VtcGVy
+b3ItcG9reS1saW51eC1nbnVlYWJpLw0KPiA+IHBlcmYvMS4wLXI5L3BlcmYtMS4wL3Rvb2xzL2Fy
+Y2gvYXJtL2luY2x1ZGUvDQo+ID4gLUkvaG9tZS9ib2IvZGV2ZWxvcC95b2N0by9idWlsZC90bXAv
+d29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS8NCj4gPiBwZXJmLzEuMC1yOS9wZXJmLTEu
+MC90b29scy9hcmNoL2FybS8NCj4gPiAtSS9ob21lL2JvYi9kZXZlbG9wL3lvY3RvL2J1aWxkL3Rt
+cC93b3JrL2VtcGVyb3ItcG9reS1saW51eC1nbnVlYWJpLw0KPiA+IHBlcmYvMS4wLXI5L3BlcmYt
+MS4wLy91dGlsIA0KPiA+IC1JL2hvbWUvYm9iL2RldmVsb3AveW9jdG8vYnVpbGQvdG1wL3dvcmsv
+ZW1wZXJvci1wb2t5LWxpbnV4LWdudWVhYmkvDQo+ID4gcGVyZi8xLjAtcjkvcGVyZi0xLjAvIA0K
+PiA+IC1JL2hvbWUvYm9iL2RldmVsb3AveW9jdG8vYnVpbGQvdG1wL3dvcmsvZW1wZXJvci1wb2t5
+LWxpbnV4LWdudWVhYmkvDQo+ID4gcGVyZi8xLjAtcjkvcGVyZi0xLjAvdG9vbHMvcGVyZi91dGls
+DQo+ID4gLUkvaG9tZS9ib2IvZGV2ZWxvcC95b2N0by9idWlsZC90bXAvd29yay9lbXBlcm9yLXBv
+a3ktbGludXgtZ251ZWFiaS8NCj4gPiBwZXJmLzEuMC1yOS9wZXJmLTEuMC90b29scy9wZXJmIA0K
+PiA+IC1JL2hvbWUvYm9iL2RldmVsb3AveW9jdG8vYnVpbGQvdG1wL3dvcmsvZW1wZXJvci1wb2t5
+LWxpbnV4LWdudWVhYmkvDQo+ID4gcGVyZi8xLjAtcjkvcGVyZi0xLjAvdG9vbHMvbGliLyAtRF9M
+QVJHRUZJTEU2NF9TT1VSQ0UgDQo+ID4gLURfRklMRV9PRkZTRVRfQklUUz02NCAtRF9HTlVfU09V
+UkNFIA0KPiA+IC1ESEFWRV9TWU5DX0NPTVBBUkVfQU5EX1NXQVBfU1VQUE9SVA0KPiA+IC1ESEFW
+RV9QVEhSRUFEX0FUVFJfU0VUQUZGSU5JVFlfTlAgLURIQVZFX1BUSFJFQURfQkFSUklFUiANCj4g
+PiAtREhBVkVfRVZFTlRGRCAtREhBVkVfR0VUX0NVUlJFTlRfRElSX05BTUUgLURIQVZFX0dFVFRJ
+RCANCj4gPiAtREhBVkVfRFdBUkZfR0VUTE9DQVRJT05TX1NVUFBPUlQgLURIQVZFX0dMSUJDX1NV
+UFBPUlQgDQo+ID4gLURIQVZFX0FJT19TVVBQT1JUIC1ESEFWRV9TQ0hFRF9HRVRDUFVfU1VQUE9S
+VCAtREhBVkVfU0VUTlNfU1VQUE9SVCANCj4gPiAtREhBVkVfTElCRUxGX1NVUFBPUlQgLURIQVZF
+X0xJQkVMRl9NTUFQX1NVUFBPUlQgDQo+ID4gLURIQVZFX0VMRl9HRVRQSERSTlVNX1NVUFBPUlQg
+LURIQVZFX0dFTEZfR0VUTk9URV9TVVBQT1JUIA0KPiA+IC1ESEFWRV9FTEZfR0VUU0hEUlNUUk5E
+WF9TVVBQT1JUIC1ESEFWRV9MSUJCUEZfU1VQUE9SVCANCj4gPiAtREhBVkVfSklURFVNUCAtREhB
+VkVfRFdBUkZfVU5XSU5EX1NVUFBPUlQgLURIQVZFX0xJQlVOV0lORF9TVVBQT1JUIA0KPiA+IC1J
+L2hvbWUvYm9iL2RldmVsb3AveW9jdG8vYnVpbGQvdG1wL3dvcmsvZW1wZXJvci1wb2t5LWxpbnV4
+LWdudWVhYmkvDQo+ID4gcGVyZi8xLjAtcjkvcmVjaXBlLXN5c3Jvb3QvdXNyL2luY2x1ZGUNCj4g
+PiAtREhBVkVfTElCQ1JZUFRPX1NVUFBPUlQgLURIQVZFX1NMQU5HX1NVUFBPUlQgLUROT19MSUJQ
+RVJMIA0KPiA+IC1ESEFWRV9USU1FUkZEX1NVUFBPUlQgLUROT19MSUJQWVRIT04gLURIQVZFX0NQ
+TFVTX0RFTUFOR0xFX1NVUFBPUlQgDQo+ID4gLURIQVZFX0xJQkJGRF9TVVBQT1JUIC1ESEFWRV9a
+TElCX1NVUFBPUlQgLURIQVZFX0xaTUFfU1VQUE9SVCANCj4gPiAtREhBVkVfQkFDS1RSQUNFX1NV
+UFBPUlQgLURESVNBU01fRk9VUl9BUkdTX1NJR05BVFVSRSANCj4gPiAtREhBVkVfQVVYVFJBQ0Vf
+U1VQUE9SVCANCj4gPiAtSS9ob21lL2JvYi9kZXZlbG9wL3lvY3RvL2J1aWxkL3RtcC93b3JrL2Vt
+cGVyb3ItcG9reS1saW51eC1nbnVlYWJpLw0KPiA+IHBlcmYvMS4wLXI5L3BlcmYtMS4wLyAtbGRs
+IC1sdXRpbCAtV2wsLXosbm9leGVjc3RhY2sgLWx1bndpbmQgDQo+ID4gLWx1bndpbmQtYXJtIA0K
+PiA+IC1ML2hvbWUvYm9iL2RldmVsb3AveW9jdG8vYnVpbGQvdG1wL3dvcmsvZW1wZXJvci1wb2t5
+LWxpbnV4LWdudWVhYmkvDQo+ID4gcGVyZi8xLjAtcjkvcmVjaXBlLXN5c3Jvb3QvdXNyL2xpYg0K
+PiA+IC1YbGlua2VyDQo+ID4gLS1keW5hbWljLWxpc3Q9L2hvbWUvYm9iL2RldmVsb3AveW9jdG8v
+YnVpbGQvdG1wL3dvcmsvZW1wZXJvci1wb2t5LWwNCj4gPiBpbnV4LWdudWVhYmkvcGVyZi8xLjAt
+cjkvcGVyZi0xLjAvbGlidHJhY2VldmVudC1keW5hbWljLWxpc3QNCj4gPiBcDQo+ID4NCj4gPg0K
+PiA+IC9ob21lL2JvYi9kZXZlbG9wL3lvY3RvL2J1aWxkL3RtcC93b3JrL2VtcGVyb3ItcG9reS1s
+aW51eC1nbnVlYWJpL3BlDQo+ID4gcmYvMS4wLXI5L3BlcmYtMS4wL3BlcmYtaW4ubyANCj4gPiAv
+aG9tZS9ib2IvZGV2ZWxvcC95b2N0by9idWlsZC90bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgt
+Z251ZWFiaS9wZQ0KPiA+IHJmLzEuMC1yOS9wZXJmLTEuMC9wbXUtZXZlbnRzL3BtdS1ldmVudHMt
+aW4ubw0KPiA+IC9ob21lL2JvYi9kZXZlbG9wL3lvY3RvL2J1aWxkL3RtcC93b3JrL2VtcGVyb3It
+cG9reS1saW51eC1nbnVlYWJpL3BlDQo+ID4gcmYvMS4wLXI5L3BlcmYtMS4wL2xpYnBlcmYtaW4u
+bw0KPiA+IC1XbCwtLXdob2xlLWFyY2hpdmUNCj4gPiAvaG9tZS9ib2IvZGV2ZWxvcC95b2N0by9i
+dWlsZC90bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+IHJmLzEuMC1y
+OS9wZXJmLTEuMC9saWJhcGkuYSANCj4gPiAvaG9tZS9ib2IvZGV2ZWxvcC95b2N0by9idWlsZC90
+bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+IHJmLzEuMC1yOS9wZXJm
+LTEuMC9saWJ0cmFjZWV2ZW50LmENCj4gPiAvaG9tZS9ib2IvZGV2ZWxvcC95b2N0by9idWlsZC90
+bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+IHJmLzEuMC1yOS9wZXJm
+LTEuMC9saWJzdWJjbWQuYSANCj4gPiAvaG9tZS9ib2IvZGV2ZWxvcC95b2N0by9idWlsZC90bXAv
+d29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+IHJmLzEuMC1yOS9wZXJmLTEu
+MC9saWJicGYuYSAtV2wsLS1uby13aG9sZS1hcmNoaXZlIC1XbCwtLXN0YXJ0LWdyb3VwIA0KPiA+
+IC1scHRocmVhZCAtbHJ0IC1sbSAtbGRsIC1sZWxmIC1sdW53aW5kIC1sdW53aW5kLWFybSAtbGNy
+eXB0byAtbHNsYW5nIA0KPiA+IC1sYmZkIC1sb3Bjb2RlcyAtbGliZXJ0eSAtbHogLWxsem1hIC1X
+bCwtLWVuZC1ncm91cCAtbyANCj4gPiAvaG9tZS9ib2IvZGV2ZWxvcC95b2N0by9idWlsZC90bXAv
+d29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+IHJmLzEuMC1yOS9wZXJmLTEu
+MC9wZXJmDQo+ID4NCj4gPiAvaG9tZS9ib2IvZGV2ZWxvcC95b2N0by9idWlsZC90bXAvd29yay9l
+bXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZXJmLzEuMC1yOS9yZWNpcGUtc3lzcm9vdC1uYXRp
+dmUvdXNyL2Jpbi9hcm0tcG9reS1saW51eC1nbnVlYWJpLy4uLy4uL2xpYmV4ZWMvYXJtLXBva3kt
+bGludXgtZ251ZWFiaS9nY2MvYXJtLXBva3ktbGludXgtZ251ZWFiaS85LjMuMC9sZDoNCj4gPiAv
+aG9tZS9ib2IvZGV2ZWxvcC95b2N0by9idWlsZC90bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgt
+Z251ZWFiaS9wZXJmLzEuMC1yOS9wZXJmLTEuMC9wZXJmLWluLm86DQo+ID4gaW4gZnVuY3Rpb24g
+YGZpbmRfYWRkcmVzc19pbl9zZWN0aW9uJzoNCj4gPg0KPiA+IC91c3Ivc3JjL2RlYnVnL3BlcmYv
+MS4wLXI5L3BlcmYtMS4wL3Rvb2xzL3BlcmYvdXRpbC9zcmNsaW5lLmM6MjAwOg0KPiA+IHVuZGVm
+aW5lZCByZWZlcmVuY2UgdG8gYGJmZF9nZXRfc2VjdGlvbl9mbGFncycNCj4gPg0KPiA+IC9ob21l
+L2JvYi9kZXZlbG9wL3lvY3RvL2J1aWxkL3RtcC93b3JrL2VtcGVyb3ItcG9reS1saW51eC1nbnVl
+YWJpL3BlcmYvMS4wLXI5L3JlY2lwZS1zeXNyb290LW5hdGl2ZS91c3IvYmluL2FybS1wb2t5LWxp
+bnV4LWdudWVhYmkvLi4vLi4vbGliZXhlYy9hcm0tcG9reS1saW51eC1nbnVlYWJpL2djYy9hcm0t
+cG9reS1saW51eC1nbnVlYWJpLzkuMy4wL2xkOg0KPiA+IC91c3Ivc3JjL2RlYnVnL3BlcmYvMS4w
+LXI5L3BlcmYtMS4wL3Rvb2xzL3BlcmYvdXRpbC9zcmNsaW5lLmM6MjA0Og0KPiA+IHVuZGVmaW5l
+ZCByZWZlcmVuY2UgdG8gYGJmZF9nZXRfc2VjdGlvbl92bWEnDQo+ID4NCj4gPiAvaG9tZS9ib2Iv
+ZGV2ZWxvcC95b2N0by9idWlsZC90bXAvd29yay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9w
+ZXJmLzEuMC1yOS9yZWNpcGUtc3lzcm9vdC1uYXRpdmUvdXNyL2Jpbi9hcm0tcG9reS1saW51eC1n
+bnVlYWJpLy4uLy4uL2xpYmV4ZWMvYXJtLXBva3ktbGludXgtZ251ZWFiaS9nY2MvYXJtLXBva3kt
+bGludXgtZ251ZWFiaS85LjMuMC9sZDoNCj4gPiAvdXNyL3NyYy9kZWJ1Zy9wZXJmLzEuMC1yOS9w
+ZXJmLTEuMC90b29scy9wZXJmL3V0aWwvc3JjbGluZS5jOjIwNToNCj4gPiB1bmRlZmluZWQgcmVm
+ZXJlbmNlIHRvIGBiZmRfZ2V0X3NlY3Rpb25fc2l6ZScNCj4gPg0KPiA+IGNvbGxlY3QyOiBlcnJv
+cjogbGQgcmV0dXJuZWQgMSBleGl0IHN0YXR1cw0KPiA+DQo+ID4gbWFrZVsyXTogKioqIFtNYWtl
+ZmlsZS5wZXJmOjYwODoNCj4gPiAvaG9tZS9ib2IvZGV2ZWxvcC95b2N0by9idWlsZC90bXAvd29y
+ay9lbXBlcm9yLXBva3ktbGludXgtZ251ZWFiaS9wZQ0KPiA+IHJmLzEuMC1yOS9wZXJmLTEuMC9w
+ZXJmXQ0KPiA+IEVycm9yIDENCj4gPg0KPiA+IG1ha2VbMV06ICoqKiBbTWFrZWZpbGUucGVyZjoy
+MTk6IHN1Yi1tYWtlXSBFcnJvciAyDQo+ID4NCj4gPiBtYWtlOiAqKiogW01ha2VmaWxlOjcwOiBh
+bGxdIEVycm9yIDINCj4gPg0KPiA+IG1ha2U6IExlYXZpbmcgZGlyZWN0b3J5DQo+ID4gJy9ob21l
+L2JvYi9kZXZlbG9wL3lvY3RvL2J1aWxkL3RtcC93b3JrL2VtcGVyb3ItcG9reS1saW51eC1nbnVl
+YWJpL3BlcmYvMS4wLXI5L3BlcmYtMS4wL3Rvb2xzL3BlcmYnDQo+ID4NCj4gPiBFUlJPUjogb2Vf
+cnVubWFrZSBmYWlsZWQNCj4gPg0KPiA+IFdBUk5JTkc6DQo+ID4gL2hvbWUvYm9iL2RldmVsb3Av
+eW9jdG8vYnVpbGQvdG1wL3dvcmsvZW1wZXJvci1wb2t5LWxpbnV4LWdudWVhYmkvcGUNCj4gPiBy
+Zi8xLjAtcjkvdGVtcC9ydW4uZG9fY29tcGlsZS4xNDYwNDU6MQ0KPiA+IGV4aXQgMSBmcm9tICdl
+eGl0IDEnDQo+ID4NCj4gPiBFUlJPUjogRXhlY3V0aW9uIG9mDQo+ID4gJy9ob21lL2JvYi9kZXZl
+bG9wL3lvY3RvL2J1aWxkL3RtcC93b3JrL2VtcGVyb3ItcG9reS1saW51eC1nbnVlYWJpL3BlcmYv
+MS4wLXI5L3RlbXAvcnVuLmRvX2NvbXBpbGUuMTQ2MDQ1Jw0KPiA+IGZhaWxlZCB3aXRoIGV4aXQg
+Y29kZSAxDQo+ID4NCj4NCj4gV2VpcmQsIHRoaXMgZG9lc24ndCBoYXBwZW4gYnVpbGRpbmcgY29y
+ZS1pbWFnZS1taW5pbWFsICpmb3IgeDg2XzY0KiBvbiANCj4gdGhlIGxhdGVzdCBQb2t5LCB3aXRo
+IGdjYyAxMS4yLg0KPiBUaGlzIG1heSBub3QgaGVscCBtdWNoLCBidXQgYXQgbGVhc3QgeW91IGNv
+dWxkIGNvbXBhcmUuDQo+IENoZWVycw0KPiBNaWNoYWVsLg0KPg0KPiAtLQ0KPiBNaWNoYWVsIE9w
+ZGVuYWNrZXIsIEJvb3RsaW4NCj4gRW1iZWRkZWQgTGludXggYW5kIEtlcm5lbCBlbmdpbmVlcmlu
+Zw0KPiBodHRwczovL2Jvb3RsaW4uY29tDQo+DQo+DQo+IC09LT0tPS09LT0tPS09LT0tPS09LT0t
+DQo+IExpbmtzOiBZb3UgcmVjZWl2ZSBhbGwgbWVzc2FnZXMgc2VudCB0byB0aGlzIGdyb3VwLg0K
+PiBZb3UgYXV0b21hdGljYWxseSBmb2xsb3cgYW55IHRvcGljcyB5b3Ugc3RhcnQgb3IgcmVwbHkg
+dG8uDQo+IFZpZXcvUmVwbHkgT25saW5lICgjNTU4NzQpOiANCj4gaHR0cHM6Ly9saXN0cy55b2N0
+b3Byb2plY3Qub3JnL2cveW9jdG8vbWVzc2FnZS81NTg3NA0KPiBNdXRlIFRoaXMgVG9waWM6IGh0
+dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9tdC84ODM5NzQ3OC8xOTk3OTE0DQo+IEdyb3Vw
+IE93bmVyOiB5b2N0bytvd25lckBsaXN0cy55b2N0b3Byb2plY3Qub3JnDQo+IFVuc3Vic2NyaWJl
+OiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvZy95b2N0by91bnN1YiANCj4gW3Jhai5r
+aGVtQGdtYWlsLmNvbV0NCj4gLT0tPS09LT0tPS09LT0tPS09LT0tPS0NCj4NCg==
 
