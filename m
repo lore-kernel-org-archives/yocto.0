@@ -1,193 +1,60 @@
-Return-Path: <MichalHorn@eaton.com>
+Return-Path: <rgovostes@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C0504C433F5
-	for <webhook@archiver.kernel.org>; Mon, 17 Jan 2022 10:39:55 +0000 (UTC)
-Subject: [psplash][PATCH] psplash: Fix double buffering initialization 
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E2CFC433EF
+	for <webhook@archiver.kernel.org>; Mon, 17 Jan 2022 21:22:50 +0000 (UTC)
+Subject: Re: Building uImage with appended DTB
 To: yocto@lists.yoctoproject.org
-From: "Horn, Michal" <MichalHorn@eaton.com>
-X-Originating-Location: Prague, Hlavni mesto Praha, CZ (185.63.97.23)
-X-Originating-Platform: Linux Chrome 95
+From: "Ryan Govostes" <rgovostes@gmail.com>
+X-Originating-Location: Jamaica Plain, Massachusetts, US (72.74.129.106)
+X-Originating-Platform: Mac Safari 15.2
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Mon, 17 Jan 2022 02:39:54 -0800
-Message-ID: <aXTT.1642415994763997866.L6JQ@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="rKMJqjWmawxi43geSiin"
+Date: Mon, 17 Jan 2022 13:22:48 -0800
+References: <mt8I.1642398119365665679.kouk@lists.yoctoproject.org>
+In-Reply-To: <mt8I.1642398119365665679.kouk@lists.yoctoproject.org>
+Message-ID: <6198.1642454568890211581@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="8pFPTZOQOdEd1efXKNhG"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 17 Jan 2022 10:39:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55890
+ <yocto@lists.yoctoproject.org>; Mon, 17 Jan 2022 21:22:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55891
 
---rKMJqjWmawxi43geSiin
+--8pFPTZOQOdEd1efXKNhG
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Some fb drivers do not implement double buffering completely or correctly.
-For example mxsfb driver does not set yres_virtual to double on
-initialization, nor it allows its doubling by FBIOPUT_VSCREENINFO ioctl
-call. In such case, the double buffering gets enabled, but psplash fails
-to display every second frame with error 'psplash_fb_flip: FBIOPAN_DISPLAY =
-failed: Invalid argument'.
+A solution that seems to work is to create a new .bbclass inherited from my=
+ layer's linux .bbappend file that implements uboot_prep_kimage:append() to=
+ append the DTB to linux.bin. This code would run at the beginning of=C2=A0=
+do_uboot_mkimage() before the uImage is created.
 
-Panning the display by FBIOPAN_DISPLAY ioctl is always checking carefully
-that the resolution, virtual buffer resolutin and offsets are in
-bounds at fb_pan_display - https://elixir.bootlin.com/linux/v4.9.275/source=
-/drivers/video/fbdev/core/fbmem.c#L891.
+There are a couple of prerequisites such as setting KEEPUIMAGE =3D "yes" an=
+d=C2=A0KERNEL_DEVICETREE_BUNDLE =3D "0".
 
-Swapping the front and back buffers is done by switching the
-yoffset between 0 and yres values. For double buffering, the whole buffer
-must have yres_virtual buffer size double of yres.
+https://gist.github.com/rgov/0628785685ab858a99c5bfca626c1d8f
 
-But in case of the mxsfb driver, the yres_virtual is always equal to yres,
-so drawing with the offset set to yres would overrun the buffer. So the
-panning is stopped and error 'Invalid argument' is returned.
+I would still be curious to know why=C2=A0KERNEL_DEVICETREE_BUNDLE doesn't =
+work as expected if that is supposed to be the supported method of achievin=
+g this, but my solution at least lets me move on.
 
-Psplash tries to double the=C2=A0yres_virtual on initialization by FBIOPUT_=
-VSCREENINFO ioctl call,
-that at some point calls the mxsfb_check_var - https://elixir.bootlin.com/l=
-inux/v4.9.275/source/drivers/video/fbdev/mxsfb.c#L269
-function, which for some reason always sets the yres_virtual back to yres,
-effectively canceling the doubling. But no error is returned in this case,
-so it gets silently ignored.
-
-So in general, checking for the ioctl call success is not enough as some
-drivers may pass this test, but fail double buffering anyway.
-So now we double check the yres_virtual on fb_new and disable double
-buffering in case of doubling yres_virtual fails.
-
-Signed-off-by: Michal Horn <michalhorn@eaton.com>
----
-psplash-fb.c | 14 ++++++++++++--
-1 file changed, 12 insertions(+), 2 deletions(-)
-
-diff --git a/psplash-fb.c b/psplash-fb.c
-index 2babb5f..1b73807 100644
---- a/psplash-fb.c
-+++ b/psplash-fb.c
-@@ -213,8 +213,18 @@ psplash_fb_new (int angle, int fbdev_id)
-perror(" Error getting the fixed framebuffer info");
-goto fail;
-} else {
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 DBG("Virtual resolution set to double")=
-;
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 fb->double_buffering =3D 1;
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (ioctl(fb->fd, FBIOPAN_DISPLAY, &fb_=
-var) =3D=3D -1) {
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 fprintf(stderr, "warning: FBIOPA=
-N_DISPLAY failed, "
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 "dou=
-ble buffering disabled\n");
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 } else {
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (fb_var.yres_virtual =3D=3D f=
-b_var.yres * 2) {
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 DBG("Virtual resolution s=
-et to double");
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 fb->double_buffering =3D =
-1;
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 } else {
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 fprintf(stderr, "warning:=
- Doubling virtual "
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 "resolution failed, double buffering disabled\n");
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 }
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 }
-}
-}
-}
---
-2.25.1
-
---rKMJqjWmawxi43geSiin
+--8pFPTZOQOdEd1efXKNhG
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>Some fb drivers do not implement double buffering completely or correc=
-tly.</div>
-<div>For example mxsfb driver does not set yres_virtual to double on</div>
-<div>initialization, nor it allows its doubling by FBIOPUT_VSCREENINFO ioct=
-l</div>
-<div>call. In such case, the double buffering gets enabled, but psplash fai=
-ls</div>
-<div>to display every second frame with error 'psplash_fb_flip: FBIOPAN_DIS=
-PLAY failed: Invalid argument'.</div>
-<div>&nbsp;</div>
-<div>Panning the display by FBIOPAN_DISPLAY ioctl is always checking carefu=
-lly</div>
-<div>that the resolution, virtual buffer resolutin and offsets are in</div>
-<div>bounds at fb_pan_display - https://elixir.bootlin.com/linux/v4.9.275/s=
-ource/drivers/video/fbdev/core/fbmem.c#L891.</div>
-<div>&nbsp;</div>
-<div>Swapping the front and back buffers is done by switching the</div>
-<div>yoffset between 0 and yres values. For double buffering, the whole buf=
-fer</div>
-<div>must have yres_virtual buffer size double of yres.</div>
-<div>&nbsp;</div>
-<div>But in case of the mxsfb driver, the yres_virtual is always equal to y=
-res,</div>
-<div>so drawing with the offset set to yres would overrun the buffer. So th=
-e</div>
-<div>panning is stopped and error 'Invalid argument' is returned.</div>
-<div>&nbsp;</div>
-<div>Psplash tries to double the&nbsp;yres_virtual on initialization by FBI=
-OPUT_VSCREENINFO ioctl call,</div>
-<div>that at some point calls the mxsfb_check_var - https://elixir.bootlin.=
-com/linux/v4.9.275/source/drivers/video/fbdev/mxsfb.c#L269</div>
-<div>function, which for some reason always sets the yres_virtual back to y=
-res,</div>
-<div>effectively canceling the doubling. But no error is returned in this c=
-ase,</div>
-<div>so it gets silently ignored.<br /><br />So in general, checking for th=
-e ioctl call success is not enough as some<br />drivers may pass this test,=
- but fail double buffering anyway.</div>
-<div>So now we double check the yres_virtual on fb_new and disable double<b=
-r />buffering in case of doubling yres_virtual fails.</div>
-<div>&nbsp;</div>
-<div>Signed-off-by: Michal Horn &lt;michalhorn@eaton.com&gt;</div>
-<div>---</div>
-<div>&nbsp;psplash-fb.c | 14 ++++++++++++--</div>
-<div>&nbsp;1 file changed, 12 insertions(+), 2 deletions(-)</div>
-<div>&nbsp;</div>
-<div>diff --git a/psplash-fb.c b/psplash-fb.c</div>
-<div>index 2babb5f..1b73807 100644</div>
-<div>--- a/psplash-fb.c</div>
-<div>+++ b/psplash-fb.c</div>
-<div>@@ -213,8 +213,18 @@ psplash_fb_new (int angle, int fbdev_id)</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;perror(" Error getting the fi=
-xed framebuffer info");</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;goto fail;</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} else {</div>
-<div>-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; DBG("Virtual resolution set to dou=
-ble");</div>
-<div>-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fb-&gt;double_buffering =3D 1;</di=
-v>
-<div>+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (ioctl(fb-&gt;fd, FBIOPAN_DISPL=
-AY, &amp;fb_var) =3D=3D -1) {</div>
-<div>+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fprintf(stderr, "warning: F=
-BIOPAN_DISPLAY failed, "</div>
-<div>+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- "double buffering disabled\n");</div>
-<div>+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } else {</div>
-<div>+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (fb_var.yres_virtual =3D=
-=3D fb_var.yres * 2) {</div>
-<div>+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; DBG("Virtual resolut=
-ion set to double");</div>
-<div>+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fb-&gt;double_buffer=
-ing =3D 1;</div>
-<div>+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } else {</div>
-<div>+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fprintf(stderr, "war=
-ning: Doubling virtual "</div>
-<div>+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; "resolution failed, double buffering disabled\n");</div>
-<div>+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
-<div>+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp;}</div>
-<div>&nbsp; &nbsp; &nbsp;}</div>
-<div>--&nbsp;</div>
-<div>2.25.1</div>
-<div>&nbsp;</div>
+A solution that seems to work is to create a new .bbclass inherited from my=
+ layer's linux .bbappend file that implements uboot_prep_kimage:append() to=
+ append the DTB to linux.bin. This code would run at the beginning of&nbsp;=
+do_uboot_mkimage() before the uImage is created.<br /><br />There are a cou=
+ple of prerequisites such as setting KEEPUIMAGE =3D "yes" and&nbsp;KERNEL_D=
+EVICETREE_BUNDLE =3D "0".<br /><br /><a href=3D"https://gist.github.com/rgo=
+v/0628785685ab858a99c5bfca626c1d8f" target=3D"_blank" rel=3D"noopener">http=
+s://gist.github.com/rgov/0628785685ab858a99c5bfca626c1d8f</a><br /><br />I =
+would still be curious to know why&nbsp;KERNEL_DEVICETREE_BUNDLE doesn't wo=
+rk as expected if that is supposed to be the supported method of achieving =
+this, but my solution at least lets me move on.
 
---rKMJqjWmawxi43geSiin--
+--8pFPTZOQOdEd1efXKNhG--
 
