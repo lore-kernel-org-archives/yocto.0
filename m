@@ -1,109 +1,79 @@
-Return-Path: <n.jeker@delisys.ch>
+Return-Path: <michael.opdenacker@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D4682C433FE
-	for <webhook@archiver.kernel.org>; Tue, 18 Jan 2022 17:04:33 +0000 (UTC)
-Received: from wp323.webpack.hosteurope.de (wp323.webpack.hosteurope.de
- [80.237.133.92])
- by mx.groups.io with SMTP id smtpd.web10.15477.1642525471416311624
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8E5F9C433F5
+	for <webhook@archiver.kernel.org>; Tue, 18 Jan 2022 17:18:34 +0000 (UTC)
+Received: from relay12.mail.gandi.net (relay12.mail.gandi.net
+ [217.70.178.232])
+ by mx.groups.io with SMTP id smtpd.web09.15805.1642526312120110826
  for <yocto@lists.yoctoproject.org>;
- Tue, 18 Jan 2022 09:04:33 -0800
+ Tue, 18 Jan 2022 09:18:33 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing;
- spf=pass (domain: delisys.ch, ip: 80.237.133.92, mailfrom: n.jeker@delisys.ch)
-Received: from 84-75-156-97.dclient.hispeed.ch ([84.75.156.97]
- helo=smtpclient.apple); authenticated
-	by wp323.webpack.hosteurope.de running ExIM with esmtpsa
- (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	id 1n9ruF-0004dK-OJ; Tue, 18 Jan 2022 18:04:28 +0100
-Content-Type: text/plain;
-	charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.40.0.1.81\))
-Subject: Re: [yocto] Building uImage with appended DTB
-From: Nicolas Jeker <n.jeker@delisys.ch>
-In-Reply-To: <mt8I.1642398119365665679.kouk@lists.yoctoproject.org>
-Date: Tue, 18 Jan 2022 18:04:27 +0100
-Cc: yocto@lists.yoctoproject.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <996633AD-BFCA-49EA-8BAE-ABC62C06FB65@delisys.ch>
-References: <mt8I.1642398119365665679.kouk@lists.yoctoproject.org>
-To: rgovostes@gmail.com
-X-Mailer: Apple Mail (2.3693.40.0.1.81)
-X-bounce-key: webpack.hosteurope.de;n.jeker@delisys.ch;1642525471;8a125c70;
-X-HE-SMSGID: 1n9ruF-0004dK-OJ
+ spf=pass (domain: bootlin.com, ip: 217.70.178.232, mailfrom: michael.opdenacker@bootlin.com)
+Received: (Authenticated sender: michael.opdenacker@bootlin.com)
+	by relay12.mail.gandi.net (Postfix) with ESMTPSA id E5DEF200003;
+	Tue, 18 Jan 2022 17:18:29 +0000 (UTC)
+Subject: Re: [yocto] Advertise lore.kernel.org archives on website?
+To: Richard Purdie <richard.purdie@linuxfoundation.org>,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+ Nicolas Dechesne <nicolas.dechesne@linaro.org>
+References: <f06c5032-edd5-e0da-512d-e8ccb0d1eca9@bootlin.com>
+ <fb0ca4c357451549e87969b53a383ec99eaf8623.camel@linuxfoundation.org>
+From: Michael Opdenacker <michael.opdenacker@bootlin.com>
+Organization: Bootlin
+Message-ID: <f7515ce3-ecc2-8930-763e-04dc03b6f1ed@bootlin.com>
+Date: Tue, 18 Jan 2022 18:18:29 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: 
+ <fb0ca4c357451549e87969b53a383ec99eaf8623.camel@linuxfoundation.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 18 Jan 2022 17:04:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55902
+ <yocto@lists.yoctoproject.org>; Tue, 18 Jan 2022 17:18:34 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55903
 
 
-> On 17 Jan 2022, at 06:41, rgovostes@gmail.com wrote:
->=20
-> I'm a complete newcomer to Yocto, trying to translate a manual process =
-of building software for an embedded device based on the PHYTEC =
-phyCORE-LPC3250 SOM. I did not find an existing BSP layer for this board =
-so I am trying to create my own.
+On 1/18/22 12:04 PM, Richard Purdie wrote:
+> On Tue, 2022-01-18 at 10:44 +0100, Michael Opdenacker wrote:
+>> Greetings,
+>>
+>> I see more and more people using links to the lore.kernel.org archives,
+>> for example the ones for this list: https://lore.kernel.org/yocto/
+>>
+>> These look more convenient to use than the ones on
+>> https://lists.yoctoproject.org/.
+>>
+>> So what about advertising such archives on
+>> https://www.yoctoproject.org/community/mailing-lists/, at least for the
+>> ones which have archives on lore.kernel.org? I was thinking about just
+>> adding an "(archives)" or "(archives / public mailbox) link at the end
+>> of the description for each list.
+>>
+>> What do you think?
+> Sounds fine to me.
 
-Just a short hint if you didn=E2=80=99t discover it yourself, there is a =
-(very) old BSP available from PHYTEC [1]. The downloads don=E2=80=99t =
-seem to work, but they=E2=80=99re available on a probably forgotten FTP =
-server [2].
 
-[1]: =
-https://web.archive.org/web/20120501212117/http://www.phytec.com/products/=
-linux/bsp-LPC3180.html
-[2]: ftp://ftp.phytec.com/temp/PCM-031_phyCORE-LPC3180
+Thanks for the feedback.
+Done on https://www.yoctoproject.org/community/mailing-lists/
 
->=20
-> When I build a kernel for this device manually, I use the =
-CONFIG_APPENDED_DTB=3Dy option, which instructs the kernel to find the =
-device tree right after the kernel image itself. I build the zImage, =
-then append my DTB and finally create the uImage file:
->=20
->     cat arch/arm/boot/zImage ./arch/arm/boot/dts/lpc3250-phy3250.dtb > =
-arch/arm/boot/zImage-dtb
->     mkimage -A arm -O linux -C none -T kernel -a 0x80008000 -e =
-0x80008000 -n Linux -d arch/arm/boot/zImage-dtb arch/arm/boot/uImage-dtb
->=20
-> I'm trying to figure out how to properly replicate this process in =
-Yocto.
->=20
-> I see that Poky's meta/classes/kernel-devicetree.bbclass uses the =
-KERNEL_DEVICETREE_BUNDLE variable to do something similar. If I have =
-KERNEL_IMAGETYPE set to "zImage", then it will create a zImage+DTB file.
->=20
-> However, it expects the zImage file to be called "zImage", and the one =
-that gets built is called "zImage-5.14.6-yocto-standard". Since it =
-cannot find "zImage", the build fails.
->=20
->     cat: =
-.../tmp/work/lpc3250-poky-linux-gnueabi/linux-yocto/5.14.6+gitAUTOINC+4f4a=
-d2c808_7ae156be3b-r0/image/boot/zImage: No such file or directory
->=20
->=20
-> I also see that meta-ti has a bundle-devicetree.inc file that has a =
-similar aim, but it deals with uImages instead.
->=20
-> =
-https://git.yoctoproject.org/meta-ti/tree/recipes-kernel/linux/bundle-devi=
-cetree.inc
->=20
-> My concern with using this is that it appends the DTB directly to the =
-uImage. However the uImage header structure includes a field for data =
-size and another one for checksum. These fields are only computed =
-correctly if the DTB is already appended before the uImage file is =
-built.
->=20
->=20
-> I think if I can figure out how to make KERNEL_DEVICETREE_BUNDLE =
-create the zImage+DTB file, then I can write a do_deploy:append() =
-function that invokes mkimage to produce the uImage. But I'm not sure =
-how to diagnose the problem.
->=20
-> Thanks,
-> Ryan
->=20
+I added lore.kernel.org links when applicable, and also added the
+openembedded-devel mailing list which was missing.
+I could shorten "Archives / Public Inbox" by just "Public Inbox" if you
+think it makes more sense.
+
+Cheers
+Michael.
+
+-- 
+Michael Opdenacker, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
