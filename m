@@ -1,212 +1,176 @@
-Return-Path: <matthias.klein@optimeas.de>
+Return-Path: <mike.looijmans@topic.nl>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 40ADDC433F5
-	for <webhook@archiver.kernel.org>; Thu, 20 Jan 2022 11:20:09 +0000 (UTC)
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com
- (EUR04-DB3-obe.outbound.protection.outlook.com [40.107.6.43])
- by mx.groups.io with SMTP id smtpd.web09.10479.1642677606174027201
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5AFC5C433F5
+	for <webhook@archiver.kernel.org>; Thu, 20 Jan 2022 13:47:40 +0000 (UTC)
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com
+ (EUR01-VE1-obe.outbound.protection.outlook.com [40.107.14.52])
+ by mx.groups.io with SMTP id smtpd.web12.11773.1642686455965505826
  for <yocto@lists.yoctoproject.org>;
- Thu, 20 Jan 2022 03:20:07 -0800
+ Thu, 20 Jan 2022 05:47:39 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@optimeasgmbh.onmicrosoft.com
- header.s=selector2-optimeasgmbh-onmicrosoft-com header.b=CMJEeqPB;
- spf=pass (domain: optimeas.de, ip: 40.107.6.43,
- mailfrom: matthias.klein@optimeas.de)
+ dkim=pass header.i=@topic.nl header.s=selector2 header.b=heSFLscq;
+ spf=pass (domain: topicproducts.com, ip: 40.107.14.52,
+ mailfrom: mike.looijmans@topicproducts.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=topic.nl; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8JzgKR/1ThfMoab+56KI+VnTty15uLYlb3WzWXdQ84w=;
+ b=heSFLscqWDEGk1fQAHH2rRZHjdwkUmJBjAttZx586aJOVZ9oiGOx5l5ydEobJAEuGFX/Itaa13SRBRqWip7+bKI5C2jGtwHa6tMUKeK7ZZ0RFSLhkyLpQM4ZkzTujsEu9YzGmoYPdumjV6bF6v3gwTACS9drfSeO0dvExjtWQqxaP7lz9+TiKdwAlHL8qsHY4E06Xma7PiPP6JBp1GV+tPCc9zJMGRRYCa0MNdRbDpfP7PCt8pmphfmR07PpVguGsb1x7YyZ2/h4UnSKjUR9OUB/TNN7IpcfZiZndpWZdsBm+A9P30Xx4ZCIOh9GTw3wbwwWLGBjvxiHAT55gXknuw==
+Received: from DU2PR04CA0072.eurprd04.prod.outlook.com (2603:10a6:10:232::17)
+ by DB9PR04MB9428.eurprd04.prod.outlook.com (2603:10a6:10:368::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.10; Thu, 20 Jan
+ 2022 13:47:32 +0000
+Received: from DB5EUR01FT032.eop-EUR01.prod.protection.outlook.com
+ (2603:10a6:10:232:cafe::a9) by DU2PR04CA0072.outlook.office365.com
+ (2603:10a6:10:232::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.10 via Frontend
+ Transport; Thu, 20 Jan 2022 13:47:32 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 20.93.157.195)
+ smtp.mailfrom=topicproducts.com; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=topic.nl;
+Received-SPF: Pass (protection.outlook.com: domain of topicproducts.com
+ designates 20.93.157.195 as permitted sender)
+ receiver=protection.outlook.com; client-ip=20.93.157.195;
+ helo=westeu11-emailsignatures-cloud.codetwo.com;
+Received: from westeu11-emailsignatures-cloud.codetwo.com (20.93.157.195) by
+ DB5EUR01FT032.mail.protection.outlook.com (10.152.4.250) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4909.7 via Frontend Transport; Thu, 20 Jan 2022 13:47:32 +0000
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (104.47.13.53) by
+ westeu11-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12)
+ via SMTP; Thu, 20 Jan 2022 13:47:31 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dbt59D7q8j5rW1vJNew+KYnBjuBB850h5wOto7pgyfLNupJ7Pjt9NHl7ZQH3tu7AXKGJH8i/b6jo/tNAXo6Ka0v4dL7xhhRcvhxI/wUHwQPmabtprFda2qjnyczsyL9SaXtdC6ZnTzFlmNyr5bzj3J3lTS/+sedoPc31loXL0Nhta3q1WtyKNYPrgsWJW69TFq2j0IMCDiB2CmIk92vDTx6Fd/obnlkxUbz1NaTbi5Z5khkVDsL23cjh0j9h2rIsRp8j4N4yTFLBwmKsvZd2qbwjtjDKnK12tLGp3NJzRYBi8bhoXL8PztEQpUYItMVg88ZGneKHa1UvBw7iMch7xA==
+ b=eXOye6AcfIEQvv5NOhT01VeJzUVYj04aRVvfN6jPSx+GPQBC3OL4RHGQdtlRg4zNVeZoNj2FvrFLrywWofuq9MC/OHXhVyQd50Nwl6g1qrfvhA3iOuW87eGhHQQek5ggSYsBwsyOd3p3eRgMWI9WzNBn5f2bt4tHozLpp2dPuhSI0nQ9bsFzw9gzAh5/09Z2iKHAdljP2a9LpeBXZ9aZOMMtdEzGYpwjfh5kJXc77t2Ff7ZPKmnrvQn9q9JiswARo2vWKbDlYcZheMSJG0o7mXVYoRxy7ZyAi+jw/i5vc1AadoQzDt8jjpxXO3vOCNZt2ECghHmI3VSpW2EM+1yN/w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yyigRcgpy8xYcwrL8aePFQ6TUjOQ5+2NbaYLOFHNIZo=;
- b=Vi6W4HqocrUP5HNEnYGxz0IL60N19DnB8vXEm3qPoZQro4yoaX7diNVww+3R+jrEwBmNjv1s7AfmXru2aOPST3IqaamroPAGzv2EN51WiMhgjM6Sy0kYcmL1g5vThpjCk7lgf0cP+P93YU52EXeggGTJw/GG2piFFQkzcdAD3G246IhlSQiaPthKvWpT+eEPKcIQQsA5NOJ1OMQ44Cz3EFxF98koWSj+Nm+vpopf6EdNItJh33zbQMg4XqGX6K8kKkncw0UWNMcnvt8/pGf0pu6cd4phwZxlfJopKKp3o8yreFlxJnF6j6DFkcMX/GgErVZOcZlDzWYbygH3ActK3g==
+ bh=DX/DIy0KU190ioX+vawG/Yoe+KbV12KhMzTrRVmO+YY=;
+ b=l/1+nP3XtO2lWVcTkK69+Geh/a6xGZZAmyBkO40ra+zClnif9M2Mc6/j2YoFxUlh5WoVkdqZxwK4o0+wUCqo+R/L3wAIHz0AUILa/k2Yn5bLDHYJOcEPF1yY+jrLH04uP2P6p/Tbzk1ibQBDNPxHx9FBvEvEVVu4OAZQ8as8+gHO2Ey3UJG9QC8iVvxT6+VoMVvw6ZDGNCocfDIFMjkOZwPvK7n1cNKPik2WuPcfDbMOLhb/Mkkj8ObGZByY0PwLPXdPAxdQHwWhUwOOAh6yTtbjZYx/Pd4uQ0S89AfjD0E5PEdSWHzrDfFoapeExSTlt96w24DXRiTKZWvfLtAhqA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
  dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=optimeasgmbh.onmicrosoft.com; s=selector2-optimeasgmbh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yyigRcgpy8xYcwrL8aePFQ6TUjOQ5+2NbaYLOFHNIZo=;
- b=CMJEeqPBUxzkHs3JXveaxGmLeW7b19YHoHC3hkzymi7IBEm+qcX+5mReFo8Su+DcsZj6XbMOSKvRPSpOOooNGijA4MLDQySSqrUkLBCuUG5mF2OSjyQ3aOT05yNKX2EqIkpo/BrjOjdWaglTKT/PQmoOyvdzG+y0icWiJ6dUnR4=
-Received: from AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:128::16)
- by AS8PR10MB5123.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:426::12) with
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=topic.nl;
+Received: from DB8PR04MB6523.eurprd04.prod.outlook.com (2603:10a6:10:10f::26)
+ by AM5PR0402MB2833.eurprd04.prod.outlook.com (2603:10a6:203:99::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.11; Thu, 20 Jan
- 2022 11:20:02 +0000
-Received: from AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::f1e6:715e:a4e3:d01b]) by AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::f1e6:715e:a4e3:d01b%2]) with mapi id 15.20.4909.008; Thu, 20 Jan 2022
- 11:20:02 +0000
-From: Matthias Klein <matthias.klein@optimeas.de>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: bbappend conditional check for advanced metadata
- (yocto-kernel-cache)?
-Thread-Topic: bbappend conditional check for advanced metadata
- (yocto-kernel-cache)?
-Thread-Index: AdgN7ubUUC36HiM1SPG+HymGrCxk1w==
-Date: Thu, 20 Jan 2022 11:20:02 +0000
-Message-ID: 
- <AM0PR10MB3107A3C6E22FB1D8AD02ED77995A9@AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=optimeas.de;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b232ec55-77fd-4e24-d406-08d9dc06cd8b
-x-ms-traffictypediagnostic: AS8PR10MB5123:EE_
-x-microsoft-antispam-prvs: 
- <AS8PR10MB5123FD26D40EAE6DC9D86594995A9@AS8PR10MB5123.EURPRD10.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- UckJ/wgGIPtuLJzU1e5H+ljPn7MGDovUqmvflmGUXgox7aCX83lg+QCbc3w3PIChWcuzsJiIliyfWNV8kgjgKgJDproHxvcedhNfW1lkO0HkCANWieGh/cx5CYd09n4TBB23mjLHnZB1dodDFuIMvkdAIM31L4birS1Pei7X/9HYA+9pkHlGo2ueEIQsbftr7/Fg43T/IkTAVbm/IP4UoycHJMKsBdqPOT9aQ9jB3VHyF8EuRzUeNIh3HSY2qPDLUtgDcmj8+jA/BsZ4PTJ7NdP8+EVEoGqBcgk33BGl3d4Qjc+42EavebhJ+iad8RWZy0sbAzwT8nOa+OLJ3loiXG8jPuHSnd44tcxNKt1oO1PR0RWmAEx3Gj01A/1lPxix9rimwzB1MLwfyLwsPR/nh8Sty+Pz+KLQUKqlgLr12RZ9hv2cgoqUFIGvwMBEz993Fp8SrthNOdijUiFUMz1N5i6s9k0wFK3Adjkqu9gu4P9iLH/p9weslp7e+ou+3Jjsj6QmLgTiHp+xVaAi+H/fK6WaCA2MpZFIRerywimYzprZXyKMzvjCqIHmezxMipp+iBJL8Y11eoLY35tUhul9n22bQ92StaQ/n54Qgf9QHk4BX9Nwo24CRKU/7pBk3nQRxcOV/1PHF5o1SK3E8Myra9Bw6hBq062zen1g+NLmhMVVhoFHLFMQNE88z6sytVx1V/L3/EC2ytyxSanziNzyaA==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(39830400003)(376002)(346002)(366004)(136003)(396003)(122000001)(9686003)(52536014)(66556008)(86362001)(71200400001)(66476007)(5660300002)(66946007)(2906002)(38070700005)(4744005)(64756008)(66446008)(55016003)(316002)(8676002)(33656002)(76116006)(508600001)(8936002)(7696005)(19627235002)(38100700002)(44832011)(186003)(6506007)(6916009);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?vLjU3eBwHGE+wHEfobwdRRjOoobBITkfnfjkYHcnbillUK9Zvd0HxOpm0Ojd?=
- =?us-ascii?Q?/uT9qS9Boz8efSGrU5kSpmVeVJmkpF5dKy0XHDxlEY1gvHfd4lGediCT/XcL?=
- =?us-ascii?Q?W0f5/b4MstqSy/CktyVz/vF7q4zSo8h9LMEOAh2kqJOl1bJ/eKttHUlnSNiZ?=
- =?us-ascii?Q?H2036LgzmS1NYYWSTPRZhC0YngjhgxORx5kqDWkH+ZskWlx6uu0OkchCUrX3?=
- =?us-ascii?Q?dM/4mAViuAl64ly1iAKWRY1dpuIu7IXGHE5VK6K+Av5ZBr7aZfRvRpMooWKh?=
- =?us-ascii?Q?C1PxHECAga6zEcd1cO+U0rTqMM5S3+TlY2Dz6/8kFjTvkqCaZj9LDpyaFfjE?=
- =?us-ascii?Q?93sOM9KE7BmgVmM3iQYKWiM/MIVfPYS/uEmO7kzIH7ngijfPXMcB41iPXgZF?=
- =?us-ascii?Q?IW/06z1waalCB9sLFjQgHzgHS/jUO0a2A0Qx51d0MnDPosTNvEbBH670lAUK?=
- =?us-ascii?Q?Qf2Zp/bgFg26z6xZ5HLUfuoCIca/9A6iKA1CdnvX2iqz+iMjucU76P48qhj2?=
- =?us-ascii?Q?tbkRDbWezBo1fwH4S2F5UVVFEKSHC/7EyRQmEGQplM5SpkMJAJXdd5N5Sp6c?=
- =?us-ascii?Q?+6eDIUId0sxEKQW6PjkeJkOHYTT+EAbRQEQu1RzbiMXv2KwTXfrdOiHZV1Fm?=
- =?us-ascii?Q?k4VAuhp+G/LOUArnUpi1jr4ZcuF+KQyJpLVaHNhptLxJTZp2sWS6F/HWhyRU?=
- =?us-ascii?Q?j0hJbNCacnoqLhiPVka3isMBCeEFUqoW6nRvGpIHYakoaNWd4HR9RYH1Pdeb?=
- =?us-ascii?Q?nUxjrBd4AnMo6zGSTyOk2fSM5UCNuRhonZrh6FIJbcun5LM8qcoxMmiytW2T?=
- =?us-ascii?Q?Z2pveqrdRYm5R6Hg4nTvoc4rfvrA/XXc+JS7nKx/Q/V2g49SyJlIeCy6mNOl?=
- =?us-ascii?Q?awjKhkCILpyu3jau5mXyfmFsimanuWJPjScmuHxMJsfUjdem2GsOsi0SR1JS?=
- =?us-ascii?Q?j+jW3x86j6tbJdVzV3gcyi2pHlsuP1ruD/7LOawe6YumHyDWtG/YUmVvRGId?=
- =?us-ascii?Q?aa/OXSvusmkRWMcysBXGGv97/RlNBX+KOuLFd0ve/aRMJ0CsnCEiuCklywSt?=
- =?us-ascii?Q?I/n1t+fv8sNpxkV1z3WMR5zGRWC46YY6aXQ1uiuF31w+qHIP4dWljQrWYwI0?=
- =?us-ascii?Q?8qOJOcTYEb/ypqdg99pATqHNh3kYElkFId6m5LRp784XO+I4Szie1k3emGYE?=
- =?us-ascii?Q?wG7jDaeDU6RiwFy0dwbmkRIoQ3pinPLNmye1NcEIKEgQQ7GP6f4cIE7+DVn8?=
- =?us-ascii?Q?fUdFaGjlp/XKVTV9rKZzhp0JC/WqWhomuBmgrwOcGkDdxBrM08SltopDtgEy?=
- =?us-ascii?Q?lXS55pPn+kysp+1vv/x9Lh89bdPgOemgwY0+5j+v2vqyMevep52cTt2D25JJ?=
- =?us-ascii?Q?aOU7pbPLmp0X19avDg/VbcouCrkOZHWCF9nXyyKaxDTgnj/vsqeIaatxKpNs?=
- =?us-ascii?Q?eojQN2tz856rcDQbO9I0E9+hBaMLuw1ncy+jf0I7/Mym+unmJToN2ZbQOJks?=
- =?us-ascii?Q?VahM7kIrp7bAKZaKR4CSZDfs+2y5kxWmI6sp3iDvq5CgmKOKUxNH0fzESQEF?=
- =?us-ascii?Q?NH57ETc6vjO5/kOSqNMtvu/aeqqNVQwgpB9HSXROtaNpO3yYZuhpANE52F9F?=
- =?us-ascii?Q?LszHgY6tYOOvc8tVjKo2o5N+noV1XG8GBB++MqTciHG3Xk5GLm+d24kuPk3k?=
- =?us-ascii?Q?oNSsVmpbVC7CZvMzbci+xYyBq9Mq4abr5Qtaa2OHt6ni/Ax3u0rT9UeMUc9h?=
- =?us-ascii?Q?k6rA9Pr2KQ=3D=3D?=
-Content-Type: multipart/alternative;
-	boundary="_000_AM0PR10MB3107A3C6E22FB1D8AD02ED77995A9AM0PR10MB3107EURP_"
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.8; Thu, 20 Jan
+ 2022 13:47:30 +0000
+Received: from DB8PR04MB6523.eurprd04.prod.outlook.com
+ ([fe80::7520:fbcd:f912:1edb]) by DB8PR04MB6523.eurprd04.prod.outlook.com
+ ([fe80::7520:fbcd:f912:1edb%4]) with mapi id 15.20.4888.014; Thu, 20 Jan 2022
+ 13:47:30 +0000
+Message-ID: <43c59fb9-554d-89ea-e1e3-0f86ba754f49@topic.nl>
+Date: Thu, 20 Jan 2022 14:47:28 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [yocto] Installing only python .pyc files onto the image #yocto
+Content-Language: en-CA
+To: yocto@lists.yoctoproject.org
+References: <VbzN.1642483781624340218.oKJy@lists.yoctoproject.org>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.3b026e8f-d15a-4044-8225-1f448bb392d7@emailsignatures365.codetwo.com>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.0d2bd5fa-15cc-4b27-b94e-83614f9e5b38.67dca1f0-7085-4d3c-b068-0e8b12a7659c@emailsignatures365.codetwo.com>
+From: Mike Looijmans <mike.looijmans@topic.nl>
+Organization: TOPIC
+In-Reply-To: <VbzN.1642483781624340218.oKJy@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: AM3PR05CA0125.eurprd05.prod.outlook.com
+ (2603:10a6:207:2::27) To DB8PR04MB6523.eurprd04.prod.outlook.com
+ (2603:10a6:10:10f::26)
 MIME-Version: 1.0
-X-OriginatorOrg: optimeas.de
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- b232ec55-77fd-4e24-d406-08d9dc06cd8b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jan 2022 11:20:02.4949
+X-MS-Office365-Filtering-Correlation-Id: 8646bfca-4858-4e39-0899-08d9dc1b688f
+X-MS-TrafficTypeDiagnostic: 
+	AM5PR0402MB2833:EE_|DB5EUR01FT032:EE_|DB9PR04MB9428:EE_
+X-Microsoft-Antispam-PRVS: 
+	<DB9PR04MB9428DF2C72893724E6BCBB47965A9@DB9PR04MB9428.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: 
+ d1hrmhTxIobMFra1otl7I9CeFF2YyJSd7sDtpoVmc98hOFoQELgyEbFXDUuM1UzwX3pZ5ZqI8kr9PIml0AxCZRbYvaqLzjbFsWLsiIFhQtuRpQ0wqlRd4URfRhSdYuzRDRX+jQH42y9jabgiye2Ol1xroEjBALaxaPNAKWediKVgz1nsmpqyiEZXY0cAd+no8u54iZDlLAR5kCMEbhvGVoSKCaCqu3oK8+qtDrMPti+DktYlQixEp8ZsOhqn/vLWBDRYPAc71CyajDxe8gACbR5Fy9AQmEqGr2xVImk+poU/B9HcdFetbgXiejiAtP+tjAM5NCUt50DxZdAPTPkSQXddkc3rCEkgnHn+JNNp5Pg3KbmVxsl2CNsNDkxE/CFaCJnjI0uClhAvhm6hLR1cJFl5GLszsRqdMXYmSOXMIw3O+I/mkd0ELePdJKBKMCtMp8gJQ9hH2nqsgmwsI2HACCbNDV1C8vkcPuyF4BaJg9/kf2RALffedI4KxzjnwfDXhnAseFE7fNThu5dlZaqRTgCVJpA1hrjl3uoT1ZLSwPjLY6VLtploQZEq8NFdkHjwKUK5SEpUalayXi/WeOK28S10flyR7kXpkxkcwKNqcKi0JpZIAm/74ENwMSc5A5GruIE6L2ACJ0kVkzT8dIvIEilHsnee9XhKQtf8ggv0ydbVT2XiPGUT7+Ho5YWcp2A9nlOC7FwVF0J0uzfgRFLwxtZ52+ksBL9Wyu9bytvqQ/9tUyo85sJPzM8ts6BWUofveXx12PHacTTwNRCTkmEs9tHwDPQVkukdsF61qy1t54Y=
+X-Forefront-Antispam-Report-Untrusted: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6523.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(376002)(396003)(366004)(346002)(39840400004)(186003)(2616005)(66476007)(66556008)(83170400001)(31696002)(36756003)(66946007)(42882007)(44832011)(5660300002)(36916002)(8936002)(53546011)(8676002)(26005)(6512007)(6506007)(6916009)(52116002)(31686004)(4744005)(38350700002)(38100700002)(508600001)(316002)(6486002)(2906002)(83380400001)(142923001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0402MB2833
+X-CodeTwo-MessageID: 
+ 626a2c4d-b0ff-4804-a267-41b2e9449a43.20220120134731@westeu11-emailsignatures-cloud.codetwo.com
+X-CodeTwoProcessed: true
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
+ DB5EUR01FT032.eop-EUR01.prod.protection.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 
+	2bcd2220-5d6b-4a50-58f3-08d9dc1b671f
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	TlGwfr95Q7fF1TpKZHyCb7STJavfrta3taNw4qHnb5m7AFeffo7G5Bbwhzti5/3JK4ZMFRcCFlegH41UdL0i3AzB0QxVvwig+9eSlOnURPpyApFx1FWyWIW2CcGiiyf2VNG7JrryOWexCa/2C58R5sdbbz9Y1+GPMkYMAszBLiV2OOW5ueDBsdHHpRrPVMuhAVnU+nuEes9J8uCRBjKsHI/Hc5f9q9gjgX0Cp38ZDOGBvT1CljnPRwAYKsv1z7b1bgLpYIePuQKBdfcqH7Acd79ImyYys/bPsaC7YekXQmQJdKub3sPW5s4+N6A9tWWkJ65n6GCWz8VXX4uTHUoBcfdfuUide965SX0fTDNpasx0y769lBY4mNRwmnhVaVuB0qyLFC0JITaeTF5JXQ6waB5ZIGHURwChKve/ZzR7bDh9YhbRQSglr1Ec0W0++v8Tqk8WFLUY/71Jb6zcM2fVPwghjZQBgKglD08nBzcuMgQb27oPZTAEugUZQSdmWqTVC1NnTYNq2JAonT3z7DYSslzFFGvmGj4Xh3308UWrf7H6VzHKtEqZhfHs7JCzxYeuXp+3XOuvMNZikWQe02mT3kIofp6AYcGSvDSJGhFdJB5lXfxavctl8j3RYwhKsPbAH+QFieetnmvafINi1nHD9CqBz3gbYD7EADT5sMrZOHoqKBUct9LdNsm0hxwFAeXtz46St/31VrL7YPUk+fnqOuXFAmEmtEIciwcQbf0FchaFzNax6llEuvSjh02jPCDrxzyFYeQW6q0v3cWVlI9UX07g3rYa2bvCw1N/GhAH/jBopv14WjNFqjO0lAn3YYux5atz5gzjBpS+18A8Hc2TeR4rcT6leuhZIZwpbHRsUtJhSldvZikg4j3q0QqYzyay
+X-Forefront-Antispam-Report: 
+	CIP:20.93.157.195;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu11-emailsignatures-cloud.codetwo.com;PTR:westeu11-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(4636009)(39840400004)(346002)(376002)(396003)(136003)(46966006)(36840700001)(83170400001)(15974865002)(47076005)(2616005)(7636003)(7596003)(6512007)(356005)(316002)(5660300002)(31686004)(70206006)(36916002)(31696002)(70586007)(6916009)(44832011)(40480700001)(2906002)(508600001)(36860700001)(42882007)(8936002)(36756003)(336012)(82310400004)(8676002)(26005)(186003)(83380400001)(6486002)(6506007)(53546011)(142923001)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: topic.nl
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2022 13:47:32.5755
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 91b33c5b-e584-4ec0-893c-2a9180ad0602
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- DMtXjz7Uqztgo48oYc+fbUL66UBPOBD5DRT7+5FnrciHxpiWL05bDpS33TK5JoxlCJO+PEmToE+A8HXuvzZn/GgPFKGvOMBQCXQktMG55zI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR10MB5123
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 8646bfca-4858-4e39-0899-08d9dc1b688f
+X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
+ TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[20.93.157.195];Helo=[westeu11-emailsignatures-cloud.codetwo.com]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	DB5EUR01FT032.eop-EUR01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9428
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 20 Jan 2022 11:20:09 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55930
+ <yocto@lists.yoctoproject.org>; Thu, 20 Jan 2022 13:47:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55931
 
---_000_AM0PR10MB3107A3C6E22FB1D8AD02ED77995A9AM0PR10MB3107EURP_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Met vriendelijke groet / kind regards,=0A=
+=0A=
+Mike Looijmans=0A=
+System Expert=0A=
+=0A=
+=0A=
+TOPIC Embedded Products B.V.=0A=
+Materiaalweg 4, 5681 RJ Best=0A=
+The Netherlands=0A=
+=0A=
+T: +31 (0) 499 33 69 69=0A=
+E: mike.looijmans@topicproducts.com=0A=
+W: www.topic.nl=0A=
+=0A=
+Please consider the environment before printing this e-mail=0A=
+On 18-01-2022 06:29, Sam via lists.yoctoproject.org wrote:
+> Was wondering if there was a way to edit the distitils3.bbclass or a simi=
+lar=20
+> file to only install the python .pyc files onto a yocto image?
+>=20
+> I saw something about editing the distutils-common-base.bbclass online,=20
+> however, it was only mentioned and not elaborated on.
+>=20
+> I am currently working with a setup that installs .py files, then generat=
+es=20
+> the .pyc files and removes the .py files. I am now looking for a method t=
+hat=20
+> will only install the .pyc files.
+>=20
+> Any help would be appreciated.
 
-I would like to create a linux-%.bbappend file and add the following to it,=
- for example:
+What works well in many recipes is to just move the source files into their=
+=20
+own packages, e.g.
 
-KERNEL_FEATURES:append =3D " features/overlayfs/overlayfs.scc".
+PACKAGES =3D+ "${PN}-src"
+FILES_${PN}-src =3D "${mypythondir}/*.py"
 
-Works also for all kernels which use the advanced metadata. Unfortunately i=
-t leads to an error with a kernel which uses a defconfig.
-I would only enable the above line if the kernel uses the advanced metadata=
-. Is this possible?
+That removes the py files from the package, but still allows you to install=
+=20
+the sources to target if you need them...
 
-Many greetings,
-Matthias
-
---_000_AM0PR10MB3107A3C6E22FB1D8AD02ED77995A9AM0PR10MB3107EURP_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:bre=
-ak-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I would like to create a linux-%.bbappend file and a=
-dd the following to it, for example:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">KERNEL_FEATURES:append =3D &quot; features/overlayfs=
-/overlayfs.scc&quot;.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Works also for all kernels which use the advanced me=
-tadata. Unfortunately it leads to an error with a kernel which uses a defco=
-nfig.<o:p></o:p></p>
-<p class=3D"MsoNormal">I would only enable the above line if the kernel use=
-s the advanced metadata. Is this possible?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Many greetings,<o:p></o:p></p>
-<p class=3D"MsoNormal">Matthias<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_AM0PR10MB3107A3C6E22FB1D8AD02ED77995A9AM0PR10MB3107EURP_--
+If you don't want a "src" package, adding them to the "dbg" package also wo=
+rks=20
+okay.
 
