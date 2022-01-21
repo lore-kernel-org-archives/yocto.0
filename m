@@ -1,303 +1,375 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <winfried_mb2@xmsnet.nl>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 66E89C433F5
-	for <webhook@archiver.kernel.org>; Fri, 21 Jan 2022 19:09:53 +0000 (UTC)
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com
- [209.85.222.47])
- by mx.groups.io with SMTP id smtpd.web11.173.1642792192836139807
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D2895C433F5
+	for <webhook@archiver.kernel.org>; Fri, 21 Jan 2022 20:01:11 +0000 (UTC)
+Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl
+ [195.121.94.169])
+ by mx.groups.io with SMTP id smtpd.web11.825.1642795262859711579
  for <yocto@lists.yoctoproject.org>;
- Fri, 21 Jan 2022 11:09:53 -0800
+ Fri, 21 Jan 2022 12:01:10 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=UoESylCe;
- spf=pass (domain: gmail.com, ip: 209.85.222.47,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ua1-f47.google.com with SMTP id b37so872685uad.12
-        for <yocto@lists.yoctoproject.org>;
- Fri, 21 Jan 2022 11:09:52 -0800 (PST)
+ dkim=pass header.i=@xmsnet.nl header.s=xmsnet01 header.b=jEb3Y2F+;
+ spf=pass (domain: xmsnet.nl, ip: 195.121.94.169,
+ mailfrom: winfried_mb2@xmsnet.nl)
+X-KPN-MessageId: d5fb248d-7af4-11ec-bb40-005056abad63
+Received: from mta.kpnmail.nl (unknown [10.31.162.62])
+	by ewsoutbound.so.kpn.org (Halon) with ESMTPS
+	id d5fb248d-7af4-11ec-bb40-005056abad63;
+	Fri, 21 Jan 2022 21:00:52 +0100 (CET)
+Received: from mtaoutbound.kpnmail.nl (unknown [10.128.138.62])
+	by mta.kpnmail.nl (Halon) with ESMTP
+	id da1f5ccb-7af4-11ec-9c54-005056ab0606;
+	Fri, 21 Jan 2022 21:00:59 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QvQ+NwbkKoQj7/WmEKSVtm/xobdFiKP3lzpvgl9cAwY=;
-        b=UoESylCeErY3phHk4bi8meSjNJmg0jzgeIWJU58SxRfQlCxu1dA9MkOGLdFm/wkOKL
-         hziN6jLs0yXNtlrIEsfH5vHRqDuBwaj2UoRQoUeb5Mf7Nct6G/13LsKT/5jshLnV3Hxu
-         he/8tzxh8G1/spE3vppg8X7IzUHNqxZVelB9yA/qoEKLZo3JKJNBr13M4rtxrNxaA/at
-         BqrHSfEmo5FJEhHLlIA12mr7nay/aRupnqY/dITYgYqjicqzojphK9Prd/IeOOu4ZOXM
-         vWYsNu9XnvFVqwpALRtYmI96dEJuuYWBmHTICDVVsQZLm62AsiaF2XGx66dyovFFUcJF
-         d7jA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QvQ+NwbkKoQj7/WmEKSVtm/xobdFiKP3lzpvgl9cAwY=;
-        b=fmjTdgWqeN6xdJL2a1MOlHpI8wiSHY6KdU3RVQ7rBJL4lnMfO+mwPaR8kRSEW+rjr1
-         frClJzz2epBG32qNaDl4S3GRur0fGbBJbJLVFVHoAfFu24BuzmYIxwvQpYg2QSVSvknE
-         2Zdfj+UufJGx37SsqBHtEk/xu6SqApjRqEpD3SdaUUC9DC8w5SSmGIgqR+LQB+8bMlkz
-         6nP97I6nVFTJN1275rYrXAM98qoH8LbKB7PyJYIIv0VSB5rfAxHgBO8NOMiixsHQ5ki1
-         FFmrX6PYKUnCbFlGkdrjlRTsc8N3zTH9MlEb6sFzkOOubROBOw8q3AXXO3MNscboa/pY
-         NaXA==
-X-Gm-Message-State: AOAM5329FRKH6+1vmrHCGIRiBRx8zT0H4udkMHNKhcS+RSBwgXZczu4d
-	ovEFLXgHoYvrwU5Bc0zZehS9zMb4HpCLAFCZSMAHlWHX
-X-Google-Smtp-Source: 
- ABdhPJzWiq+8YMLhAbBKWaKFnT+Kh4EXJfR+xkcYRNYk85V9iaRo2kXFLwG0qnOpW2Llucs1/YOWru9qqYZk3o5ZLfY=
-X-Received: by 2002:a9f:3e01:: with SMTP id o1mr2497685uai.89.1642792191192;
- Fri, 21 Jan 2022 11:09:51 -0800 (PST)
-MIME-Version: 1.0
+	d=xmsnet.nl; s=xmsnet01;
+	h=content-type:mime-version:subject:message-id:to:from:date;
+	bh=seNVg0aunwloqv/ZENyGFOhgA6cC5EotTQ5iR2rjJgo=;
+	b=jEb3Y2F+zCuO6k2+j2qWl7YZsiNHmyuFrl+YY+veesBJEFm3PK6zpDXANNb1DICIZnNjy7gDLXcAL
+	 vyGZUAGNhlhpMQ3j20q/d5hSi/swPGHdIjFryfBSzgMUBO2N6JwR1rxk3055cfFkC5JV1EUaVzlHdH
+	 YzDtNkoAA339G7pk=
+X-KPN-MID: 33|z39PO9vyv1N15H4aHYnXwQ/vMP/7VmxmA6H3CG4IDqOd+3Q+xAquOYSlWkh6FQe
+ ldybh3zyYKd/26eO68JiYcW9eOjOA1Qhq5IWX/CsD4d8=
+X-CMASSUN: 33|MUC/Flq+GiwSGqZ1F1MdceUYiwfjKnELVkjRi6nJuT2lzjQrZCBvBHtnWcNG5qb
+ rIPsdbAYNo6al4rMEfZvwfQ==
+X-KPN-VerifiedSender: Yes
+Received: from cpxoxapps-mh106 (unknown [10.128.138.84])
+	by mtaoutbound.kpnmail.nl (Halon) with ESMTPSA
+	id da04f3cf-7af4-11ec-9de0-005056aba2e5;
+	Fri, 21 Jan 2022 21:00:59 +0100 (CET)
+Date: Fri, 21 Jan 2022 21:00:58 +0100 (CET)
+From: Winfried <winfried_mb2@xmsnet.nl>
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Message-ID: <1829306086.4198839.1642795259001@kpc.webmail.kpnmail.nl>
+In-Reply-To: 
+ <CANNYZj9jP9TRmgGcWmPcgF7TJwLJnPxVAXj6SdykxzFzDRYcaw@mail.gmail.com>
 References: <195584031.4249850.1642792001108@kpc.webmail.kpnmail.nl>
-In-Reply-To: <195584031.4249850.1642792001108@kpc.webmail.kpnmail.nl>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Fri, 21 Jan 2022 20:09:40 +0100
-Message-ID: 
  <CANNYZj9jP9TRmgGcWmPcgF7TJwLJnPxVAXj6SdykxzFzDRYcaw@mail.gmail.com>
 Subject: Re: [yocto] non-existent task do_package_write_rpm error
-To: "W. Dobbe" <winfried_mb2@xmsnet.nl>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000fef1fd05d61c5cd6"
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_Part_4198838_1361169104.1642795258996"
+X-Priority: 3
+Importance: Normal
+X-Originating-IP: 217.166.50.194
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 21 Jan 2022 19:09:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55941
+ <yocto@lists.yoctoproject.org>; Fri, 21 Jan 2022 20:01:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55942
 
---000000000000fef1fd05d61c5cd6
-Content-Type: text/plain; charset="UTF-8"
+------=_Part_4198838_1361169104.1642795258996
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-You need to drop the -native suffix when installing to target image or SDK.
--native is only for the bitbake build itself.
+Hi Alex,
 
-Alex
+Thanks for the tip. When I add hardening-check to IMAGE_INSTALL the build does indeed succeed.
+But then the script is installed in the target sysroot of the SDK. I would like to have it in the native (x86_64-pokysdk-linux) sysroot as it is a tool to use on the build server.
 
-On Fri, 21 Jan 2022 at 20:07, W. Dobbe <winfried_mb2@xmsnet.nl> wrote:
+Any idea how to achieve that ?
 
-> Hi,
->
-> I'm writing a recipe for package hardening-check
-> <http://deb.debian.org/debian/pool/main/h/hardening-wrapper/> .
-> This package builds with only a simple Makefile (that has no install
-> target). The recipe only installs a script hardening-check in /usr/bin.
->
-> I would like to include this script in our SDK.
-> The recipe itself builds fine (bitbake hardening-check-native).
->
-> But when I add hardening-check-native to IMAGE_INSTALL in my image the
-> build fails with:
->
-> Task do_populate_sdk in myimage.bb rdepends upon non-existent task do_package_write_rpm in virtual:native:(...)/recipes-devtools/hardening-check/hardening-check_2.6.bb
->
-> Same error when I append the package to TOOLCHAIN_HOST_TASK instead.
->
-> Any idea how to solve this? Do I need to inherit my recipe from something?
-> Recipe included below.
->
-> Thanks in advance for the help!
->
-> regards,
-> Winfried
->
->
-> SUMMARY = "Script to check an executable for certain security weaknesses."
-> LICENSE = "GPLv2"
-> LIC_FILES_CHKSUM =
-> "file://debian/copyright;md5=06ff97d53f05a9b8ce2a416b30f496b9"
->
-> SRC_URI = "
-> http://ftp.debian.org/debian/pool/main/h/hardening-wrapper/hardening-wrapper_${PV}.tar.xz
-> \
->           file://0001-perl_regex.patch \
->          "
-> SRC_URI[md5sum] = "47c93c05b4d0199be8df0d35dbd68192"
-> SRC_URI[sha256sum] =
-> "c5fc46439646d0929a0605e4f3db67e57eefbbf5ceec5a2888440dbdf4450224"
->
-> RDEPENDS_${PN} = "perl"
->
-> S = "${WORKDIR}/hardening-wrapper"
->
-> do_patch () {
->    cd ${S}
->    patch -p1 -u -i ${WORKDIR}/0001-perl_regex.patch
-> }
->
-> do_configure () {
->        # Specify any needed configure commands here
->        :
-> }
->
-> do_compile () {
->        export DEB_HOST_ARCH=`uname -m`
->        export DEB_HOST_ARCH_OS=`uname -s`
->        oe_runmake
-> }
->
-> do_install () {
->    install -d ${D}/${bindir}
->    install -m 755 ${S}/build-tree/hardening-check ${D}/${bindir}
-> }
->
-> BBCLASSEXTEND = "native nativesdk"
->
+Thanks,
+Winfried
+
+> Op 21-01-2022 20:09 schreef Alexander Kanavin <alex.kanavin@gmail.com>:
+> 
+> 
+> You need to drop the -native suffix when installing to target image or SDK. -native is only for the bitbake build itself.
+> 
+> Alex
+> 
+> On Fri, 21 Jan 2022 at 20:07, W. Dobbe <winfried_mb2@xmsnet.nl mailto:winfried_mb2@xmsnet.nl > wrote:
+> 
+> > Hi,
+> > 
+> > I'm writing a recipe for package hardening-check http://deb.debian.org/debian/pool/main/h/hardening-wrapper/ .
+> > This package builds with only a simple Makefile (that has no install target). The recipe only installs a script hardening-check in /usr/bin.
+> > 
+> > I would like to include this script in our SDK.
+> > The recipe itself builds fine (bitbake hardening-check-native).
+> > 
+> > But when I add hardening-check-native to IMAGE_INSTALL in my image the build fails with:
+> > 
+> > Task do_populate_sdk in http://myimage.bb rdepends upon non-existent task do_package_write_rpm in virtual:native:(...)/recipes-devtools/hardening-check/http://hardening-check_2.6.bb
+> > 
+> > Same error when I append the package to TOOLCHAIN_HOST_TASK instead.
+> > 
+> > Any idea how to solve this? Do I need to inherit my recipe from something?
+> > Recipe included below.
+> > 
+> > Thanks in advance for the help!
+> > 
+> > regards,
+> > Winfried
+> > 
+> > 
+> > SUMMARY = "Script to check an executable for certain security weaknesses."
+> > LICENSE = "GPLv2"
+> > LIC_FILES_CHKSUM = "file://debian/copyright;md5=06ff97d53f05a9b8ce2a416b30f496b9"
+> > 
+> > SRC_URI = "http://ftp.debian.org/debian/pool/main/h/hardening-wrapper/hardening-wrapper_${PV}.tar.xz http://ftp.debian.org/debian/pool/main/h/hardening-wrapper/hardening-wrapper_$%7BPV%7D.tar.xz \
+> >           file://0001-perl_regex.patch \
+> >          "
+> > SRC_URI[md5sum] = "47c93c05b4d0199be8df0d35dbd68192"
+> > SRC_URI[sha256sum] = "c5fc46439646d0929a0605e4f3db67e57eefbbf5ceec5a2888440dbdf4450224"
+> > 
+> > RDEPENDS_${PN} = "perl"
+> > 
+> > S = "${WORKDIR}/hardening-wrapper"
+> > 
+> > do_patch () {
+> >    cd ${S}
+> >    patch -p1 -u -i ${WORKDIR}/0001-perl_regex.patch
+> > }
+> > 
+> > do_configure () {
+> >        # Specify any needed configure commands here
+> >        :
+> > }
+> > 
+> > do_compile () {
+> >        export DEB_HOST_ARCH=`uname -m`
+> >        export DEB_HOST_ARCH_OS=`uname -s`
+> >        oe_runmake
+> > }
+> > 
+> > do_install () {
+> >    install -d ${D}/${bindir}
+> >    install -m 755 ${S}/build-tree/hardening-check ${D}/${bindir}
+> > }
+> > 
+> > BBCLASSEXTEND = "native nativesdk"
+> > 
+> > 
+> > 
+> > 
+> 
 > -=-=-=-=-=-=-=-=-=-=-=-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#55940):
-> https://lists.yoctoproject.org/g/yocto/message/55940
-> Mute This Topic: https://lists.yoctoproject.org/mt/88590330/1686489
+> View/Reply Online (#55941): https://lists.yoctoproject.org/g/yocto/message/55941
+> Mute This Topic: https://lists.yoctoproject.org/mt/88590330/3617711
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> alex.kanavin@gmail.com]
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [winfried_mb2@xmsnet.nl]
 > -=-=-=-=-=-=-=-=-=-=-=-
->
->
+> 
+> 
 
---000000000000fef1fd05d61c5cd6
-Content-Type: text/html; charset="UTF-8"
+------=_Part_4198838_1361169104.1642795258996
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>You need to drop the -native suffix when installing t=
-o target image or SDK. -native is only for the bitbake build itself.</div><=
-div><br></div><div>Alex<br></div></div><br><div class=3D"gmail_quote"><div =
-dir=3D"ltr" class=3D"gmail_attr">On Fri, 21 Jan 2022 at 20:07, W. Dobbe &lt=
-;<a href=3D"mailto:winfried_mb2@xmsnet.nl">winfried_mb2@xmsnet.nl</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><u></u>
-
- =20
-  =20
-=20
- <div>
+<!doctype html>
+<html>
+ <head>=20
+  <meta charset=3D"UTF-8">=20
+ </head>
+ <body>
   <div>
-   Hi,
+   Hi Alex,
    <br>
   </div>
-  <div>
+  <div class=3D"default-style">
    <br>
   </div>
-  <div>
-   I&#39;m writing a recipe for package <a href=3D"http://deb.debian.org/de=
-bian/pool/main/h/hardening-wrapper/" target=3D"_blank">hardening-check</a> =
-.
+  <div class=3D"default-style">
+   Thanks for the tip. When I add hardening-check to IMAGE_INSTALL the buil=
+d does indeed succeed.
    <br>
   </div>
-  <div>
-   This package builds with only a simple Makefile (that has no install tar=
-get). The recipe only installs a script hardening-check in /usr/bin.
+  <div class=3D"default-style">
+   But then the script is installed in the target sysroot of the SDK. I wou=
+ld like to have it in the native (x86_64-pokysdk-linux) sysroot as it is a =
+tool to use on the build server.
    <br>
   </div>
-  <div>
+  <div class=3D"default-style">
    <br>
   </div>
-  <div>
-   I would like to include this script in our SDK.
+  <div class=3D"default-style">
+   Any idea how to achieve that ?
    <br>
   </div>
-  <div>
-   The recipe itself builds fine (bitbake hardening-check-native).
+  <div class=3D"default-style">
    <br>
   </div>
-  <div>
+  <div class=3D"default-style">
+   Thanks,
    <br>
   </div>
-  <div>
-   But when I add hardening-check-native to IMAGE_INSTALL in my image the b=
-uild fails with:
-  </div>
-  <pre><span style=3D"font-family:monospace"><span style=3D"color:rgb(0,0,0=
-)"><span style=3D"background-color:rgb(255,255,255)">Task do_populate_sdk i=
-n <a href=3D"http://myimage.bb" target=3D"_blank">myimage.bb</a> rdepends u=
-pon non-existent task do_package_write_rpm i</span>n virtual:native:(...)/r=
-ecipes-devtools/hardening-check/<a href=3D"http://hardening-check_2.6.bb" t=
-arget=3D"_blank">hardening-check_2.6.bb</a></span><br></span></pre>
-  <div>
-   Same error when I append the package to <span style=3D"font-family:monos=
-pace"><span style=3D"color:rgb(0,0,0);background-color:rgb(255,255,255)">TO=
-OLCHAIN_HOST_TASK <span style=3D"font-family:-apple-system,BlinkMacSystemFo=
-nt,helvetica,sans-serif">instead</span></span></span>.
-   <br>
-  </div>
-  <div>
-   <br>
-  </div>
-  <div>
-   Any idea how to solve this? Do I need to inherit my recipe from somethin=
-g?
-  </div>
-  <div>
-   Recipe included below.
-   <br>
-  </div>
-  <div>
-   <br>
-  </div>
-  <div>
-   Thanks in advance for the help!
-   <br>
-  </div>
-  <div>
-   <br>
-  </div>
-  <div>
-   regards,
-   <br>
-  </div>
-  <div>
+  <div class=3D"default-style">
    Winfried
    <br>
   </div>
-  <div>
+  <blockquote type=3D"cite">
+   <div>
+    Op 21-01-2022 20:09 schreef Alexander Kanavin &lt;alex.kanavin@gmail.co=
+m&gt;:
+   </div>
+   <div>
+    <br>
+   </div>
+   <div>
+    <br>
+   </div>
+   <div dir=3D"ltr">
+    <div>
+     You need to drop the -native suffix when installing to target image or=
+ SDK. -native is only for the bitbake build itself.
+    </div>
+    <div>
+     <br>
+    </div>
+    <div>
+     Alex
+     <br>
+    </div>
+   </div>
    <br>
-  </div>
-  <div>
+   <div class=3D"gmail_quote">
+    <div dir=3D"ltr" class=3D"gmail_attr">
+     On Fri, 21 Jan 2022 at 20:07, W. Dobbe &lt;<a href=3D"mailto:winfried_=
+mb2@xmsnet.nl">winfried_mb2@xmsnet.nl</a>&gt; wrote:
+     <br>
+    </div>
+    <blockquote>
+     <u></u>
+     <div>
+      <div>
+       Hi,=20
+       <br>
+      </div>
+      <div>
+       <br>
+      </div>
+      <div>
+       I'm writing a recipe for package <a href=3D"http://deb.debian.org/de=
+bian/pool/main/h/hardening-wrapper/" target=3D"_blank" rel=3D"noopener">har=
+dening-check</a> .=20
+       <br>
+      </div>
+      <div>
+       This package builds with only a simple Makefile (that has no install=
+ target). The recipe only installs a script hardening-check in /usr/bin.=20
+       <br>
+      </div>
+      <div>
+       <br>
+      </div>
+      <div>
+       I would like to include this script in our SDK.=20
+       <br>
+      </div>
+      <div>
+       The recipe itself builds fine (bitbake hardening-check-native).=20
+       <br>
+      </div>
+      <div>
+       <br>
+      </div>
+      <div>
+       But when I add hardening-check-native to IMAGE_INSTALL in my image t=
+he build fails with:
+      </div>
+      <pre><span style=3D"font-family: monospace;"><span style=3D"color: #0=
+00000;"><span style=3D"background-color: #ffffff;">Task do_populate_sdk in =
+<a href=3D"http://myimage.bb" target=3D"_blank" rel=3D"noopener">myimage.bb=
+</a> rdepends upon non-existent task do_package_write_rpm i</span>n virtual=
+:native:(...)/recipes-devtools/hardening-check/<a href=3D"http://hardening-=
+check_2.6.bb" target=3D"_blank" rel=3D"noopener">hardening-check_2.6.bb</a>=
+</span><br></span></pre>
+      <div>
+       Same error when I append the package to <span style=3D"font-family: =
+monospace;"><span style=3D"color: #000000; background-color: #ffffff;">TOOL=
+CHAIN_HOST_TASK <span style=3D"font-family: -apple-system,BlinkMacSystemFon=
+t,helvetica,sans-serif;">instead</span></span></span>.=20
+       <br>
+      </div>
+      <div>
+       <br>
+      </div>
+      <div>
+       Any idea how to solve this? Do I need to inherit my recipe from some=
+thing?
+      </div>
+      <div>
+       Recipe included below.=20
+       <br>
+      </div>
+      <div>
+       <br>
+      </div>
+      <div>
+       Thanks in advance for the help!=20
+       <br>
+      </div>
+      <div>
+       <br>
+      </div>
+      <div>
+       regards,=20
+       <br>
+      </div>
+      <div>
+       Winfried=20
+       <br>
+      </div>
+      <div>
+       <br>
+      </div>
+      <div>
+       <br>
+      </div>
+      <div>
+       <span style=3D"font-family: monospace;"><span style=3D"color: #00000=
+0; background-color: #ffffff;">SUMMARY =3D "Script to check an executable f=
+or certain security weaknesses." </span><br>LICENSE =3D "GPLv2" <br>LIC_FIL=
+ES_CHKSUM =3D "file://debian/copyright;md5=3D06ff97d53f05a9b8ce2a416b30f496=
+b9" <br><br>SRC_URI =3D "<a href=3D"http://ftp.debian.org/debian/pool/main/=
+h/hardening-wrapper/hardening-wrapper_$%7BPV%7D.tar.xz" target=3D"_blank" r=
+el=3D"noopener">http://ftp.debian.org/debian/pool/main/h/hardening-wrapper/=
+hardening-wrapper_${PV}.tar.xz</a> \ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;file://0001-perl_regex.patch \ <br>&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" <br>SRC_URI[md5sum] =3D "47c93c05=
+b4d0199be8df0d35dbd68192" <br>SRC_URI[sha256sum] =3D "c5fc46439646d0929a060=
+5e4f3db67e57eefbbf5ceec5a2888440dbdf4450224" <br><br>RDEPENDS_${PN} =3D "pe=
+rl" <br><br>S =3D "${WORKDIR}/hardening-wrapper"<br><br>do_patch () { <br>&=
+nbsp;&nbsp;&nbsp;cd ${S} <br>&nbsp;&nbsp;&nbsp;patch -p1 -u -i ${WORKDIR}/0=
+001-perl_regex.patch <br>} <br><br>do_configure () { <br>&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;# Specify any needed configure commands here <br>&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <br>} <br><br>do_compile () <span=
+ style=3D"color: #000000; background-color: #18b2b2;">{</span> <br>&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;export DEB_HOST_ARCH=3D`uname -m` <br>&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;export DEB_HOST_ARCH_OS=3D`uname -s`=
+ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oe_runmake <br><span style=
+=3D"color: #000000; background-color: #18b2b2;">}</span> <br><br>do_install=
+ () { <br>&nbsp;&nbsp;&nbsp;install -d ${D}/${bindir} <br>&nbsp;&nbsp;&nbsp=
+;install -m 755 ${S}/build-tree/hardening-check ${D}/${bindir} <br>} <br><b=
+r>BBCLASSEXTEND =3D "native nativesdk"<br></span>
+      </div>
+     </div>
+     <br>
+     <br>
+     <br>
+    </blockquote>
+   </div>
+   <br>-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+   <br>Links: You receive all messages sent to this group.
+   <br>View/Reply Online (#55941): https://lists.yoctoproject.org/g/yocto/m=
+essage/55941
+   <br>Mute This Topic: https://lists.yoctoproject.org/mt/88590330/3617711
+   <br>Group Owner: yocto+owner@lists.yoctoproject.org
+   <br>Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [winfried_=
+mb2@xmsnet.nl]
+   <br>-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
    <br>
-  </div>
-  <div>
-   <span style=3D"font-family:monospace"><span style=3D"color:rgb(0,0,0);ba=
-ckground-color:rgb(255,255,255)">SUMMARY =3D &quot;Script to check an execu=
-table for certain security weaknesses.&quot; </span><br>LICENSE =3D &quot;G=
-PLv2&quot; <br>LIC_FILES_CHKSUM =3D &quot;file://debian/copyright;md5=3D06f=
-f97d53f05a9b8ce2a416b30f496b9&quot; <br><br>SRC_URI =3D &quot;<a href=3D"ht=
-tp://ftp.debian.org/debian/pool/main/h/hardening-wrapper/hardening-wrapper_=
-$%7BPV%7D.tar.xz" target=3D"_blank">http://ftp.debian.org/debian/pool/main/=
-h/hardening-wrapper/hardening-wrapper_${PV}.tar.xz</a> \ <br>=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0file://0001-perl_regex.patc=
-h \ <br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0&quot; <br>SR=
-C_URI[md5sum] =3D &quot;47c93c05b4d0199be8df0d35dbd68192&quot; <br>SRC_URI[=
-sha256sum] =3D &quot;c5fc46439646d0929a0605e4f3db67e57eefbbf5ceec5a2888440d=
-bdf4450224&quot; <br><br>RDEPENDS_${PN} =3D &quot;perl&quot; <br><br>S =3D =
-&quot;${WORKDIR}/hardening-wrapper&quot;<br><br>do_patch () { <br>=C2=A0=C2=
-=A0=C2=A0cd ${S} <br>=C2=A0=C2=A0=C2=A0patch -p1 -u -i ${WORKDIR}/0001-perl=
-_regex.patch <br>} <br><br>do_configure () { <br>=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0# Specify any needed configure commands here <br>=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0: <br>} <br><br>do_compile () <span sty=
-le=3D"color:rgb(0,0,0);background-color:rgb(24,178,178)">{</span> <br>=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0export DEB_HOST_ARCH=3D`uname -m` <b=
-r>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0export DEB_HOST_ARCH_OS=3D`unam=
-e -s` <br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0oe_runmake <br><span st=
-yle=3D"color:rgb(0,0,0);background-color:rgb(24,178,178)">}</span> <br><br>=
-do_install () { <br>=C2=A0=C2=A0=C2=A0install -d ${D}/${bindir} <br>=C2=A0=
-=C2=A0=C2=A0install -m 755 ${S}/build-tree/hardening-check ${D}/${bindir} <=
-br>} <br><br>BBCLASSEXTEND =3D &quot;native nativesdk&quot;<br></span>
-  </div>
- </div>
-
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#55940): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/55940" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/55940</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/88590330/1686=
-489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/88590330/1686489</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.k=
-anavin@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
-
---000000000000fef1fd05d61c5cd6--
+   <br>
+  </blockquote>
+ </body>
+</html>
+------=_Part_4198838_1361169104.1642795258996--
 
