@@ -1,145 +1,244 @@
-Return-Path: <nodeax@gmail.com>
+Return-Path: <winfried_mb2@xmsnet.nl>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 32275C433F5
-	for <webhook@archiver.kernel.org>; Fri, 21 Jan 2022 16:33:21 +0000 (UTC)
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com
- [209.85.222.179])
- by mx.groups.io with SMTP id smtpd.web09.14168.1642782799609083043
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4CBDFC433F5
+	for <webhook@archiver.kernel.org>; Fri, 21 Jan 2022 19:06:51 +0000 (UTC)
+Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl
+ [195.121.94.169])
+ by mx.groups.io with SMTP id smtpd.web09.135.1642792004577091205
  for <yocto@lists.yoctoproject.org>;
- Fri, 21 Jan 2022 08:33:19 -0800
+ Fri, 21 Jan 2022 11:06:50 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=XIlWQwTA;
- spf=pass (domain: gmail.com, ip: 209.85.222.179, mailfrom: nodeax@gmail.com)
-Received: by mail-qk1-f179.google.com with SMTP id c190so10417567qkg.9
-        for <yocto@lists.yoctoproject.org>;
- Fri, 21 Jan 2022 08:33:19 -0800 (PST)
+ dkim=pass header.i=@xmsnet.nl header.s=xmsnet01 header.b=M2pIKp/a;
+ spf=pass (domain: xmsnet.nl, ip: 195.121.94.169,
+ mailfrom: winfried_mb2@xmsnet.nl)
+X-KPN-MessageId: 40365fee-7aed-11ec-bb40-005056abad63
+Received: from mta.kpnmail.nl (unknown [10.31.162.62])
+	by ewsoutbound.so.kpn.org (Halon) with ESMTPS
+	id 40365fee-7aed-11ec-bb40-005056abad63;
+	Fri, 21 Jan 2022 20:06:34 +0100 (CET)
+Received: from mtaoutbound.kpnmail.nl (unknown [10.128.138.61])
+	by mta.kpnmail.nl (Halon) with ESMTP
+	id 444c83fe-7aed-11ec-9c54-005056ab0606;
+	Fri, 21 Jan 2022 20:06:41 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=q/FONmIen8LgmZjAfDealm+mo8XbYe4c401dWpX+75E=;
-        b=XIlWQwTA/wGVCJshO6zZIRyVAUlefejf9hV9BLEWMLZYx6+JkPSiiQYxbsiy5C8PG8
-         osyE3kf+3eLTi1CZCJo/k0P/IavZaxGV+9HQZlBlouO9uPwgELsZUTF1iqIRG6GeMxN0
-         TbbqbtT8ocnfeI536gvN9M2d8+b6sDPwcsl5EbKQEz+ICEsSnwXYDJvaEDWw8qyaGeX3
-         wjvcV/Fd3Bg8l/vfIA4LIJ5igzIWFAHcOXAL6ey8FVE9BBjvj7KdjrXDTPtwbSMn6CII
-         +eEkt5gSV36qmQmrQ8fP4pPdnif0INd6uP7dSTKR+mzPNxvlTiTsPTvOoRfNo+0z7vya
-         Lf8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=q/FONmIen8LgmZjAfDealm+mo8XbYe4c401dWpX+75E=;
-        b=zOU9rag9cdRuAZJk54aF8J+nugC/Rrd7vmwR53I7Z0yjtnfLhLpLj9GnLOjIOb2PIP
-         ObEQJMrwTZ/ssXSwI++R+Weuki2dK2CNRAM8astvz0IS2IeGeGgoYe+xR/W1B9OtebE6
-         2MyJRxm4OrwUrcWy96z2xQtfGa8TfktrKfPhCYfxgYaqXbLuUhhL+uZZuXbnhjfv+M7X
-         lvPFIDMG9sXOFrGQCBtIk/RXjbbZ8YdrYpahqK2wq/MxeS/thlj898ru/i2fddgCOUE6
-         upQJResusjF8gvwGHeE5Q1viT4xB5L3aCbiqBipyXcAGYGRdqh9q1elVjkikT5pv+ZQp
-         Dwgw==
-X-Gm-Message-State: AOAM530JZ7Qe3atnWRsITQUkzpvr/iWJp4Fh1SkyqiXMkuoK1rO6W2Xm
-	n83d3s2Dq+TA9xzQLVWRTZUgBuFjLbdZnQ==
-X-Google-Smtp-Source: 
- ABdhPJxTTKs9oWvYQ4HTzjetji+xy21BapU8ZfkzgJELrQR1u+IDPkce674/BVYmc9px8a51F51+mQ==
-X-Received: by 2002:a05:620a:1aa9:: with SMTP id
- bl41mr3287504qkb.715.1642782798388;
-        Fri, 21 Jan 2022 08:33:18 -0800 (PST)
-Received: from nodeax-ThinkPad-T14s-Gen-2a.fios-router.home
- (pool-74-111-105-118.pitbpa.fios.verizon.net. [74.111.105.118])
-        by smtp.gmail.com with ESMTPSA id
- y17sm3360948qtw.0.2022.01.21.08.33.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jan 2022 08:33:17 -0800 (PST)
-From: Akshay Bhat <nodeax@gmail.com>
-X-Google-Original-From: Akshay Bhat <akshay.bhat@timesys.com>
-To: yocto@lists.yoctoproject.org
-Cc: Akshay Bhat <akshay.bhat@timesys.com>
-Subject: [meta-hardening][PATCH] meta-hardening: Fix override syntax
-Date: Fri, 21 Jan 2022 11:32:39 -0500
-Message-Id: <20220121163239.1922917-1-akshay.bhat@timesys.com>
-X-Mailer: git-send-email 2.25.1
+	d=xmsnet.nl; s=xmsnet01;
+	h=content-type:mime-version:subject:message-id:to:from:date;
+	bh=j0EwbCJ/q754IPbGVoQuCqeWchqp8HJPZzggNcrALiM=;
+	b=M2pIKp/azr3YjJ9D/r3UbILkfbzsr3Rz+iwo6T5Lv8oybv4hHqCS+WLa/PH7nWinUozbaI+W+TSK/
+	 N3XdPIlZR4bKXwNbfKe+NDljI6fNmPRAtJdalawRh066DkndGHuZw42vFwFYSkR4NJK4J4B74M3l3g
+	 A4/016EgWhFgidAg=
+X-KPN-MID: 33|jVexgdU0RAfW4w947RFI2Fc9gRhTkWp5OrVX1S+S8dmHCxAydIZs5eTmtiOUFCD
+ ff9MbEeVK7LZPX6yKHv2TKQ1qz1zIj4GKVIXn7NhDOAw=
+X-CMASSUN: 33|Do5fGC6mFipMiuQcftJhKGzE16BSYN8FP1j6o9BpaUVdKdZCVTfL33Z/b0KoR5H
+ oy7U03iBj7YdDb++10Tw/4xMK7r3X08xYsZdFVWx+SQw=
+X-KPN-VerifiedSender: Yes
+Received: from cpxoxapps-mh102 (unknown [10.128.138.80])
+	by mtaoutbound.kpnmail.nl (Halon) with ESMTPSA
+	id 442a3e11-7aed-11ec-be57-005056ab135f;
+	Fri, 21 Jan 2022 20:06:41 +0100 (CET)
+Date: Fri, 21 Jan 2022 20:06:41 +0100 (CET)
+From: Winfried <winfried_mb2@xmsnet.nl>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Message-ID: <195584031.4249850.1642792001108@kpc.webmail.kpnmail.nl>
+Subject: non-existent task do_package_write_rpm error
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/alternative;
+	boundary="----=_Part_4249849_1894156042.1642792001104"
+X-Priority: 3
+Importance: Normal
+X-Originating-IP: 217.166.50.194
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 21 Jan 2022 16:33:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55939
+ <yocto@lists.yoctoproject.org>; Fri, 21 Jan 2022 19:06:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55940
 
-Commit 352e6498a missed updating the override syntax for the
-"harden" distro override.
+------=_Part_4249849_1894156042.1642792001104
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Fixes: 352e6498a ("meta-hardening: Convert to new override syntax")
+Hi,
 
-Signed-off-by: Akshay Bhat <akshay.bhat@timesys.com>
----
- .../recipes-connectivity/openssh/openssh_%.bbappend         | 2 +-
- .../recipes-core/base-files/base-files_%.bbappend           | 2 +-
- .../recipes-core/initscripts/initscripts_1.0.bbappend       | 6 +++---
- meta-hardening/recipes-extended/shadow/shadow_%.bbappend    | 2 +-
- meta-hardening/recipes-extended/sudo/sudo_%.bbappend        | 4 ++--
- 5 files changed, 8 insertions(+), 8 deletions(-)
+I'm writing a recipe for package hardening-check http://deb.debian.org/debian/pool/main/h/hardening-wrapper/ .
+This package builds with only a simple Makefile (that has no install target). The recipe only installs a script hardening-check in /usr/bin.
 
-diff --git a/meta-hardening/recipes-connectivity/openssh/openssh_%.bbappend b/meta-hardening/recipes-connectivity/openssh/openssh_%.bbappend
-index 17c06ed..e192d3d 100644
---- a/meta-hardening/recipes-connectivity/openssh/openssh_%.bbappend
-+++ b/meta-hardening/recipes-connectivity/openssh/openssh_%.bbappend
-@@ -1,4 +1,4 @@
--do_install:append_harden () {
-+do_install:append:harden () {
- 	# to hardend
- 	sed -i -e 's:#AllowTcpForwarding yes:AllowTcpForwarding no:' ${D}${sysconfdir}/ssh/sshd_config
- 	sed -i -e 's:ClientAliveCountMax 4:ClientAliveCountMax 2:' ${D}${sysconfdir}/ssh/sshd_config
-diff --git a/meta-hardening/recipes-core/base-files/base-files_%.bbappend b/meta-hardening/recipes-core/base-files/base-files_%.bbappend
-index 0f0384f..4710b49 100644
---- a/meta-hardening/recipes-core/base-files/base-files_%.bbappend
-+++ b/meta-hardening/recipes-core/base-files/base-files_%.bbappend
-@@ -1,4 +1,4 @@
- 
--do_install:append_harden () {
-+do_install:append:harden () {
-     sed -i 's/umask.*/umask 027/g' ${D}/${sysconfdir}/profile
- }
-diff --git a/meta-hardening/recipes-core/initscripts/initscripts_1.0.bbappend b/meta-hardening/recipes-core/initscripts/initscripts_1.0.bbappend
-index b27dee9..92e364c 100644
---- a/meta-hardening/recipes-core/initscripts/initscripts_1.0.bbappend
-+++ b/meta-hardening/recipes-core/initscripts/initscripts_1.0.bbappend
-@@ -1,8 +1,8 @@
--FILESEXTRAPATHS:prepend_harden := "${THISDIR}/files:"
-+FILESEXTRAPATHS:prepend:harden := "${THISDIR}/files:"
- 
--SRC_URI:append_harden = " file://mountall.sh"
-+SRC_URI:append:harden = " file://mountall.sh"
- 
--do_install:append_harden() {
-+do_install:append:harden() {
-     install -d ${D}${sysconfdir}/init.d
-     install -m 0755 ${WORKDIR}/mountall.sh ${D}${sysconfdir}/init.d
- }
-diff --git a/meta-hardening/recipes-extended/shadow/shadow_%.bbappend b/meta-hardening/recipes-extended/shadow/shadow_%.bbappend
-index 3058b55..793a075 100644
---- a/meta-hardening/recipes-extended/shadow/shadow_%.bbappend
-+++ b/meta-hardening/recipes-extended/shadow/shadow_%.bbappend
-@@ -1,4 +1,4 @@
--do_install:append_harden () {
-+do_install:append:harden () {
- 	# to hardend
- 	sed -i -e 's:UMASK.*:UMASK 027:' ${D}${sysconfdir}/login.defs
- 	sed -i -e 's:PASS_MAX_DAYS.*:PASS_MAX_DAYS 365:' ${D}${sysconfdir}/login.defs
-diff --git a/meta-hardening/recipes-extended/sudo/sudo_%.bbappend b/meta-hardening/recipes-extended/sudo/sudo_%.bbappend
-index 97c5f49..2860e8a 100644
---- a/meta-hardening/recipes-extended/sudo/sudo_%.bbappend
-+++ b/meta-hardening/recipes-extended/sudo/sudo_%.bbappend
-@@ -1,6 +1,6 @@
- 
--PACKAGECONFIG:append_harden = " pam-wheel"
--do_install:append_harden () {
-+PACKAGECONFIG:append:harden = " pam-wheel"
-+do_install:append:harden () {
-     if [ "${@bb.utils.contains('DISABLE_ROOT', 'True', 'yes', 'no', d)}" = "yes" ]; then
-         sed -i -e 's:root ALL=(ALL) ALL:#root ALL=(ALL) ALL:' ${D}${sysconfdir}/sudoers
-     fi
--- 
-2.25.1
+I would like to include this script in our SDK.
+The recipe itself builds fine (bitbake hardening-check-native).
 
+But when I add hardening-check-native to IMAGE_INSTALL in my image the build fails with:
+
+Task do_populate_sdk in myimage.bb rdepends upon non-existent task do_package_write_rpm in virtual:native:(...)/recipes-devtools/hardening-check/hardening-check_2.6.bb
+
+Same error when I append the package to TOOLCHAIN_HOST_TASK instead.
+
+Any idea how to solve this? Do I need to inherit my recipe from something?
+Recipe included below.
+
+Thanks in advance for the help!
+
+regards,
+Winfried
+
+
+SUMMARY = "Script to check an executable for certain security weaknesses."
+LICENSE = "GPLv2"
+LIC_FILES_CHKSUM = "file://debian/copyright;md5=06ff97d53f05a9b8ce2a416b30f496b9"
+
+SRC_URI = "http://ftp.debian.org/debian/pool/main/h/hardening-wrapper/hardening-wrapper_${PV}.tar.xz \
+          file://0001-perl_regex.patch \
+         "
+SRC_URI[md5sum] = "47c93c05b4d0199be8df0d35dbd68192"
+SRC_URI[sha256sum] = "c5fc46439646d0929a0605e4f3db67e57eefbbf5ceec5a2888440dbdf4450224"
+
+RDEPENDS_${PN} = "perl"
+
+S = "${WORKDIR}/hardening-wrapper"
+
+do_patch () {
+   cd ${S}
+   patch -p1 -u -i ${WORKDIR}/0001-perl_regex.patch
+}
+
+do_configure () {
+       # Specify any needed configure commands here
+       :
+}
+
+do_compile () {
+       export DEB_HOST_ARCH=`uname -m`
+       export DEB_HOST_ARCH_OS=`uname -s`
+       oe_runmake
+}
+
+do_install () {
+   install -d ${D}/${bindir}
+   install -m 755 ${S}/build-tree/hardening-check ${D}/${bindir}
+}
+
+BBCLASSEXTEND = "native nativesdk"
+
+------=_Part_4249849_1894156042.1642792001104
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!doctype html>
+<html>
+ <head>=20
+  <meta charset=3D"UTF-8">=20
+ </head>
+ <body>
+  <div style=3D"" class=3D"default-style">
+   Hi,
+   <br>
+  </div>
+  <div style=3D"" class=3D"default-style">
+   <br>
+  </div>
+  <div style=3D"" class=3D"default-style">
+   I'm writing a recipe for package <a href=3D"http://deb.debian.org/debian=
+/pool/main/h/hardening-wrapper/">hardening-check</a> .
+   <br>
+  </div>
+  <div style=3D"" class=3D"default-style">
+   This package builds with only a simple Makefile (that has no install tar=
+get). The recipe only installs a script hardening-check in /usr/bin.
+   <br>
+  </div>
+  <div style=3D"" class=3D"default-style">
+   <br>
+  </div>
+  <div style=3D"" class=3D"default-style">
+   I would like to include this script in our SDK.
+   <br>
+  </div>
+  <div style=3D"" class=3D"default-style">
+   The recipe itself builds fine (bitbake hardening-check-native).
+   <br>
+  </div>
+  <div style=3D"" class=3D"default-style">
+   <br>
+  </div>
+  <div style=3D"" class=3D"default-style">
+   But when I add hardening-check-native to IMAGE_INSTALL in my image the b=
+uild fails with:
+  </div>
+  <pre class=3D"default-style"><span style=3D"font-family: monospace;"><spa=
+n style=3D"color: rgb(0, 0, 0);"><span style=3D"background-color: rgb(255, =
+255, 255);">Task do_populate_sdk in myimage.bb rdepends upon non-existent t=
+ask do_package_write_rpm i</span>n virtual:native:(...)/recipes-devtools/ha=
+rdening-check/hardening-check_2.6.bb</span><br></span></pre>
+  <div style=3D"" class=3D"default-style">
+   Same error when I append the package to <span style=3D"font-family: mono=
+space;"><span style=3D"color: #000000; background-color: #ffffff;">TOOLCHAI=
+N_HOST_TASK <span style=3D"font-family: -apple-system, BlinkMacSystemFont, =
+helvetica, sans-serif;">instead</span></span></span>.
+   <br>
+  </div>
+  <div style=3D"" class=3D"default-style">
+   <br>
+  </div>
+  <div style=3D"" class=3D"default-style">
+   Any idea how to solve this? Do I need to inherit my recipe from somethin=
+g?
+  </div>
+  <div style=3D"" class=3D"default-style">
+   Recipe included below.
+   <br>
+  </div>
+  <div style=3D"" class=3D"default-style">
+   <br>
+  </div>
+  <div style=3D"" class=3D"default-style">
+   Thanks in advance for the help!
+   <br>
+  </div>
+  <div style=3D"" class=3D"default-style">
+   <br>
+  </div>
+  <div style=3D"" class=3D"default-style">
+   regards,
+   <br>
+  </div>
+  <div style=3D"" class=3D"default-style">
+   Winfried
+   <br>
+  </div>
+  <div style=3D"" class=3D"default-style">
+   <br>
+  </div>
+  <div style=3D"" class=3D"default-style">
+   <br>
+  </div>
+  <div style=3D"" class=3D"default-style">
+   <span style=3D"font-family: monospace;"><span style=3D"color: #000000; b=
+ackground-color: #ffffff;">SUMMARY =3D "Script to check an executable for c=
+ertain security weaknesses." </span><br>LICENSE =3D "GPLv2" <br>LIC_FILES_C=
+HKSUM =3D "file://debian/copyright;md5=3D06ff97d53f05a9b8ce2a416b30f496b9" =
+<br><br>SRC_URI =3D "http://ftp.debian.org/debian/pool/main/h/hardening-wra=
+pper/hardening-wrapper_${PV}.tar.xz \ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;file://0001-perl_regex.patch \ <br>&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" <br>SRC_URI[md5sum] =3D "47c93c0=
+5b4d0199be8df0d35dbd68192" <br>SRC_URI[sha256sum] =3D "c5fc46439646d0929a06=
+05e4f3db67e57eefbbf5ceec5a2888440dbdf4450224" <br><br>RDEPENDS_${PN} =3D "p=
+erl" <br><br>S =3D "${WORKDIR}/hardening-wrapper"<br><br>do_patch () { <br>=
+&nbsp;&nbsp;&nbsp;cd ${S} <br>&nbsp;&nbsp;&nbsp;patch -p1 -u -i ${WORKDIR}/=
+0001-perl_regex.patch <br>} <br><br>do_configure () { <br>&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;# Specify any needed configure commands here <br>&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <br>} <br><br>do_compile () <spa=
+n style=3D"color: #000000; background-color: #18b2b2;">{</span> <br>&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;export DEB_HOST_ARCH=3D`uname -m` <br>&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;export DEB_HOST_ARCH_OS=3D`uname -s=
+` <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oe_runmake <br><span style=
+=3D"color: #000000; background-color: #18b2b2;">}</span> <br><br>do_install=
+ () { <br>&nbsp;&nbsp;&nbsp;install -d ${D}/${bindir} <br>&nbsp;&nbsp;&nbsp=
+;install -m 755 ${S}/build-tree/hardening-check ${D}/${bindir} <br>} <br><b=
+r>BBCLASSEXTEND =3D "native nativesdk"<br></span>
+  </div>
+ </body>
+</html>
+------=_Part_4249849_1894156042.1642792001104--
 
