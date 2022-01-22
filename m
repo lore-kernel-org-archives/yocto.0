@@ -1,409 +1,169 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <yi.zhao@windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 43DC0C433EF
-	for <webhook@archiver.kernel.org>; Fri, 21 Jan 2022 22:26:53 +0000 (UTC)
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com
- [209.85.221.180])
- by mx.groups.io with SMTP id smtpd.web11.1208.1642804012590218079
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DF971C433F5
+	for <webhook@archiver.kernel.org>; Sat, 22 Jan 2022 07:45:10 +0000 (UTC)
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com
+ [205.220.166.238])
+ by mx.groups.io with SMTP id smtpd.web10.5843.1642837509593859099
  for <yocto@lists.yoctoproject.org>;
- Fri, 21 Jan 2022 14:26:52 -0800
+ Fri, 21 Jan 2022 23:45:10 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=no2RA98R;
- spf=pass (domain: gmail.com, ip: 209.85.221.180,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vk1-f180.google.com with SMTP id 19so6419106vkl.2
-        for <yocto@lists.yoctoproject.org>;
- Fri, 21 Jan 2022 14:26:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mtWea557dV/3m61Yd5e72bJuu+i/wwAabQ2d9IFSkuc=;
-        b=no2RA98Ru0TxU4jVv8iHQTE7ya1g/YAR0O3IPgNKoKKLrjoKsj7NB4GB1vMJH1yr1y
-         miSq/BG2bSgfQ8zDtG8kI0gko6YJPS/FVd1oyYLEQ2O9XTWsqld5xN+bHutrqK5o/xR7
-         molfdJhdR4Gwo2mUgPXTj5tMhhIYcUHX/L9P78hwEKAwOSVMEX2hKhZLuE1CBpBDOtnm
-         z7tlktcTZEF9AoZz48yoVmQOKKlrIEFQtJsQITvwRJopaQhRkyC72847ZVlO0+dsATxn
-         qVVPwxcqBJnPOAT9vfrefw48SQ8iv+vj2QeTZtR1C2pocnSUWpBZO+wK6tAv2V6hsJo1
-         m5UA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mtWea557dV/3m61Yd5e72bJuu+i/wwAabQ2d9IFSkuc=;
-        b=zOiD+QCOtlkvFTZ6k+JUqwx+Rvt2qkS84MBWKrFyZmUd3rGwiwGtNfM3ZAbMRG0MMa
-         a3P/GjIrE22FqrFpJCs3K7OiI7sDCJxzlVsQmygla/8DW6QEjZOQuCWgBqFyaWvfw8Tz
-         cJ+hbK/5qhtbvW2dEce0xmjqJL/ydOJB/A/Arxx74PnQSM0DHMgSsx5zNragYLVMget0
-         bXZIih24MTSREHoao2ikk7I55IYChJaJS6mBX+XrKy/DKTLwt5aLPaxx8/30zUo1aapM
-         stqbFKtZfDWj2Wxu1xoXVxWX/ma0tWFF45la4b/z8Hr2NNhoYzk/Nz3PbrNnRuz2DXKI
-         erbQ==
-X-Gm-Message-State: AOAM532yGhDM2rSF1wEVMY5I2/P8eacp8/p9F/D0Ch8oLMTRtBKpJqJm
-	54I5oBtAsxuwodeAjX6UYUiOIhCFYhq1Wj1xFNY=
-X-Google-Smtp-Source: 
- ABdhPJyjbRj9laR4pl6VLKUyaS6nUctyweyAlbrbIB/rg3On5wvOsUzyej2ZvIxBxS26yCdKHViINeoiSvpHffKftZU=
-X-Received: by 2002:a05:6122:d93:: with SMTP id
- bc19mr2619990vkb.21.1642804011664;
- Fri, 21 Jan 2022 14:26:51 -0800 (PST)
+ dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=qbHJvpa6;
+ spf=permerror,
+ err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}:
+ invalid domain name (domain: windriver.com, ip: 205.220.166.238,
+ mailfrom: prvs=8021fa1707=yi.zhao@windriver.com)
+Received: from pps.filterd (m0250809.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id
+ 20M7j8TJ022266;
+	Fri, 21 Jan 2022 23:45:08 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+ h=from : to :
+ subject : date : message-id : content-transfer-encoding : content-type :
+ mime-version; s=PPS06212021;
+ bh=KTRa0I+CDAihtGeVK89MsPU9ZY7Ih+TPkQmW/KtIqAA=;
+ b=qbHJvpa60t4x9iFD56SjkN84rUSHLi7rYonq3dRyHLkY11xHx2Bfr9DAUgmXEWbYWK+F
+ I0YwS4GuI7tCLDw5wAfsexlPw5ZRTfQQCP/KnN6LK/jqejb3T1j79eWel8qKciBAVsBU
+ zW5761U9eIitnmeVA9N0HexVuO+efWgFr2xU/fEs50rZ1RFDeEArRsW7elYfT/5WY1Dy
+ 3RJV8BPHi8AnawMCIBk9QuQPaSKlH3bBBbMtily+ysEU2WOjhWOq18D5lII30/DXmDnp
+ RfGF12qlBSQODfNq1sy9yf+ukGGFBTwwW0msg3ggMK66nUF6tOA4KYO/Ew69BJ0oedMz Ag==
+Received: from nam12-dm6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12lp2171.outbound.protection.outlook.com [104.47.59.171])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3dqhx18wxx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 21 Jan 2022 23:45:07 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NwrRrCWAskS4T7FdKUjDHIioq2dGh6NscAbAIxB/7GsvyEn5o4Y6WLXNkoaOqCcv2qrmi8XnE0NHmp7ETOQFmBXDU03LGIL00tcjMnz+EnPCIgSGwoOmod6Fdh/Qm/fcdadibY48lCirvj8rDa0GyR8g6AGBukkSDzWgSS0I1Bqs8nAoGCk4ikMurYDskTu0g+p5svTIDZt7IRCWeJ8nq22vptD75CU589lGsppC7nKBHLPzLX0y/HEC3JkaO2kX5VTLTiij9xrnhIYZl8pzCiIMfMqZSwGGL2Llq8/NPpNURVUqpiDaVLkiJFYN/HeiUm7rhKVIjm/uie/7m0ljIA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KTRa0I+CDAihtGeVK89MsPU9ZY7Ih+TPkQmW/KtIqAA=;
+ b=oI+5g7Kw5vC9xpMOv2dVZ9uHfAN28AvHT2uEi7vxd9u+UnwnMDr3Qg7YM8ob9hZmL0q0wol4yDcFf7Cp3ureKuWZ4KElY9HTejt8bw/26Yynw3hwYhCFMeXQOfEgKrDLO6U5PMzc7wyFcTshDpMDEJRmHveeg5uulOAjVwkc+yKyK4OUNGN8p1/3FFmPd8SZ9HtQVPftEMLqkHtsFJrYM62mpa6aQf4uQXjvW7e/+VLjnbj102PVqxw/j+ZydOrvfwDlZco9cghMwdUJRK0fv/KaDcVWzTi4lg4L1mqjhS0irKUxZxBoXGzGp3Zu+8ajKoWSWXnrmpwwmmVaLR8fww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Received: from CO1PR11MB4867.namprd11.prod.outlook.com (2603:10b6:303:9a::13)
+ by BN6PR11MB4130.namprd11.prod.outlook.com (2603:10b6:405:77::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.7; Sat, 22 Jan
+ 2022 07:45:05 +0000
+Received: from CO1PR11MB4867.namprd11.prod.outlook.com
+ ([fe80::1446:8499:7fbb:a706]) by CO1PR11MB4867.namprd11.prod.outlook.com
+ ([fe80::1446:8499:7fbb:a706%7]) with mapi id 15.20.4909.013; Sat, 22 Jan 2022
+ 07:45:05 +0000
+From: Yi Zhao <yi.zhao@windriver.com>
+To: yocto@lists.yoctoproject.org, akuster808@gmail.com
+Subject: [meta-security][PATCH] samhain: upgrade 4.4.3 -> 4.4.6
+Date: Sat, 22 Jan 2022 15:44:50 +0800
+Message-Id: <20220122074450.392752-1-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SL2P216CA0130.KORP216.PROD.OUTLOOK.COM (2603:1096:101:1::9)
+ To CO1PR11MB4867.namprd11.prod.outlook.com (2603:10b6:303:9a::13)
 MIME-Version: 1.0
-References: <195584031.4249850.1642792001108@kpc.webmail.kpnmail.nl>
- <CANNYZj9jP9TRmgGcWmPcgF7TJwLJnPxVAXj6SdykxzFzDRYcaw@mail.gmail.com>
- <1829306086.4198839.1642795259001@kpc.webmail.kpnmail.nl>
-In-Reply-To: <1829306086.4198839.1642795259001@kpc.webmail.kpnmail.nl>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Fri, 21 Jan 2022 23:26:40 +0100
-Message-ID: 
- <CANNYZj_F4KBF-rdWAxwNpps-iA7=egh1rar1Gs78ZTfVX7wsuQ@mail.gmail.com>
-Subject: Re: [yocto] non-existent task do_package_write_rpm error
-To: Winfried <winfried_mb2@xmsnet.nl>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000008d07c005d61f1d33"
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 945237a6-8458-4bba-0a3f-08d9dd7b1b04
+X-MS-TrafficTypeDiagnostic: BN6PR11MB4130:EE_
+X-Microsoft-Antispam-PRVS: 
+	<BN6PR11MB413012859E9256AA2158B38AF95C9@BN6PR11MB4130.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:546;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	pwKT9S6MPiJVI4SNtysmJ2fcAdtTYUYnbYv+vUtNyGzYGQ+KBwwGE2GifDS8TnUXBF1HhShylVBgAnXlIC49P5yHTST9PSU5ds1H1Kk5RLSaf9rn0Oq5oPouwT/SFyzOXacjOif9WPWkUloHTlcivJyCAE4icqMuJkzTIDv27CMY0xiiN3wlzLlvCVXquLhzlesCTSkl4KeIiUK4wdRo/bOs6M6yMnh2+fBn6Ou7zj2i8ruC1ZomjMCRlocAAjfEliTQZVAYRfFUOzbkXfosAVKuo0pNAJpMPvCd8/rVggMqTgtILNVW4Md68SW7VsAs07kyqp7Y6upYDf+Qshq0/zj6+A0dc5XsBgTpVxXK5hxRlQqqW42H0tQoXtZUb4Uy8tdPVMcNRncsXFriglNgWr1pFjrAv6xPNIotxlLbF0FyXvsCVDIqcdAz9+XFnlx1ftYnMnaFAcRy3gnpBLCzEkGzXjli9YAAZBWycvgUEfi5FTEE3FyGmSkwlegDFSPQFa/kTzysC+NMzHbEBaKRsZbmPS+G+DRxsxOe2BWtif063KffyKS/Q5ywWx6ObcvPvV4gcSBWpOEhHe4N1uwcv7fVHwIitBVemQnjp59XHB9YTCOBU53A+stsGCXbgCgTCv21x5vyfHxdoXQmFpD1uVMy9hHPimB6ICOOPlwN8uQe+i+Pn1VwRRa+E1AlBJSgK22PA912EM9ipOjq75+02gPl/BwNQm1cB2st9f7ndX/qHI5S8tKztsQ6pBh+9LQxiysTu0qEWHPOhItedCLwne7ymui0VMxnClZAJ/T1B5E=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4867.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(186003)(1076003)(26005)(6506007)(86362001)(36756003)(5660300002)(83380400001)(38350700002)(38100700002)(52116002)(6486002)(508600001)(8936002)(2616005)(2906002)(6666004)(316002)(6512007)(66556008)(66946007)(66476007)(8676002)(44832011);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?us-ascii?Q?VASukcYxGLQhu8QSQZeVgl3Dt+Hgao/RyQXxgO3AqISCzvi8EWguN4ilXQNw?=
+ =?us-ascii?Q?lEPHgVmoy3Rur0rkacxYzJA0kDpwhNDHj8U1PPJyrUYeK7AXhRrDPB+dadw2?=
+ =?us-ascii?Q?mndHYVqN2E24MAGVych5b/DbE4fAcJeRSk5m8lStIlXAC4+EYOsvqYTYntt4?=
+ =?us-ascii?Q?biPOZYJEvEop9GflfQtFZUCxQ0bvUv8KAHoO2HTcZxw11eij4LhWP2KL5Jkl?=
+ =?us-ascii?Q?gn6QC5TOwZSl6FtziPYdG0jSGj3J3ZlPSP163nw7sduu0O9eP9pYeh+kGuTT?=
+ =?us-ascii?Q?oOF5mLELMbJ6an8GqxdSTXzMmLW2ObUfa2WSYRyPJWKHXxFyVgLt6m9H6m9N?=
+ =?us-ascii?Q?c1Vc/ihjU89iG+QOO90oXeGHJyalGuZ2pNwGcIR/a/Ln3VjEkWGvlJVxN2rt?=
+ =?us-ascii?Q?8tvizh3qH/3DvXTMXqndpOkTvpNbwI+s+OZp98LtYrA8ZYUZPcizoRera2+g?=
+ =?us-ascii?Q?WlG9dvrmrhiVoKnamWfZUzqyovttsKlce+P+z85DEdYzNsU28UjddwNKbWsx?=
+ =?us-ascii?Q?I51jySMFXfncZt2lZhroQc8vBnuomM91Su1KAuRsMboHmfU4CnO75emYqX2u?=
+ =?us-ascii?Q?YN8QZ+riyzikC3GhdSglLUeJf/t+NF4KxlCcRUfa6yLvT9oW8Ut0GnOJP/tW?=
+ =?us-ascii?Q?0O4vS637tFLLhxeJrE1eZixjHQQEB+UWqGjAQ7ZeFwv5kQZJMz8w2KYMZe6M?=
+ =?us-ascii?Q?8opW+90w+/lDsuNxu8j6UYk09hYcKmo+0c63A4uJUHvIHkYhPJUgK+MTDezo?=
+ =?us-ascii?Q?VMjwkxMk8PbcwtUSqiXezjK2tZxPUSMKUiTq2BH9/UKqu2cSuigzTjTvn7Jd?=
+ =?us-ascii?Q?YXNkbUcSg533SXjxwhZSWsdrjNUfvT171I518RXP5/XCZdJ/vKqROXFM+F/5?=
+ =?us-ascii?Q?mQg22w9hj6RMnNz0FAlbfqe+jw5BCR7M17I7vuBbbrEOrx15TDND3Dvg/IfL?=
+ =?us-ascii?Q?5mQwVtNC6KJUBQlx1cDxM6hHwXkM4LV7lt800NOKHzZlN7LO3qTzKlQQTX2v?=
+ =?us-ascii?Q?cvbKpOtrPy2Q3hSQGyUydqGET6r4mdWQP0z0KcE0ew7ajvtd29qurydPV5dF?=
+ =?us-ascii?Q?Me6zJW6MKLohXhBQkqWh5rH5oLIU53WcSadkHmntwwIqBrRPF3CwInKEfykR?=
+ =?us-ascii?Q?COFrhVuICX4onC2YiC5YeiRACN5oNqZjN/0lMGx8HPpPphZQlvm5AHbTCUCy?=
+ =?us-ascii?Q?gF/03aEDGf2L4yUjKytguvgfStOE76y/m9jARmgOKTzxwdAlglbo71WSpTQ+?=
+ =?us-ascii?Q?Q2jptkQ8gLJoY5IvaYIGCXS2LZKgL1TXWZHZa187xTbJlaFnyU/MfeJde4g/?=
+ =?us-ascii?Q?OSGG5aTGVXWIQN2DThETlizOrZPtaDLJBIoOsG697zxAEgu04lIy6iHzFUzA?=
+ =?us-ascii?Q?LUWt6xH4rJKmPNgvy4mhYkg5dWrsnaqMDWZ3lxt6kcHNe1kT8uv/X/Ntvp5o?=
+ =?us-ascii?Q?6IoTWbHOLxLGbfLd9uXnHYK9+YmdR3EoJ3S3Z9piB0oy6gbnfHYLWqHmpYhI?=
+ =?us-ascii?Q?KPr+eoUAWlUAsw7gXNO/wvqwJjKrMkOmm2dXulAceKCIbxkHoAAGGJiIz18h?=
+ =?us-ascii?Q?XWEbxecRl3o5plLiNFsWm+R1SvjAKgPZ+ebkl5I8T941p2/lV2WLh4MdQleD?=
+ =?us-ascii?Q?EmJqWsG1dg+3g6PufXTkkaM=3D?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 945237a6-8458-4bba-0a3f-08d9dd7b1b04
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4867.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2022 07:45:05.6426
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ J342oxdV4kCLarLtJXY3Dmi0oT3q4yK1VkSAiK3x3yJjA2T0H9ga8GxPmoAFDA1SahIB4MvoHlCPDE79i5ejwQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB4130
+X-Proofpoint-GUID: 9UHegw9oilUe4Hj4ywG03wyUrBmQj0zm
+X-Proofpoint-ORIG-GUID: 9UHegw9oilUe4Hj4ywG03wyUrBmQj0zm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-01-22_03,2022-01-21_01,2021-12-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 mlxscore=0
+ spamscore=0 bulkscore=0 mlxlogscore=816 priorityscore=1501 malwarescore=0
+ clxscore=1015 phishscore=0 suspectscore=0 lowpriorityscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2201110000 definitions=main-2201220049
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 21 Jan 2022 22:26:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55943
+ <yocto@lists.yoctoproject.org>; Sat, 22 Jan 2022 07:45:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55944
 
---0000000000008d07c005d61f1d33
-Content-Type: text/plain; charset="UTF-8"
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+---
+ recipes-ids/samhain/samhain.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Use TOOLCHAIN_HOST_TASK:append = " ..." in your image recipe.
+diff --git a/recipes-ids/samhain/samhain.inc b/recipes-ids/samhain/samhain.inc
+index 97f5f2d..077e118 100644
+--- a/recipes-ids/samhain/samhain.inc
++++ b/recipes-ids/samhain/samhain.inc
+@@ -3,7 +3,7 @@ HOMEPAGE    = "http://www.la-samhna.de/samhain/"
+ LICENSE     = "GPLv2"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=8ca43cbc842c2336e835926c2166c28b"
+ 
+-PV = "4.4.3"
++PV = "4.4.6"
+ 
+ SRC_URI = "https://la-samhna.de/archive/samhain_signed-${PV}.tar.gz \
+            file://${INITSCRIPT_NAME}.init \
+@@ -21,7 +21,7 @@ SRC_URI = "https://la-samhna.de/archive/samhain_signed-${PV}.tar.gz \
+            file://samhain-fix-initializer-element-is-not-constant.patch \
+            "
+ 
+-SRC_URI[sha256sum] = "3e57574036d5055e9557ec5095818b419ea6c4365370fc2ccce1e9f87f9fad08"
++SRC_URI[sha256sum] = "0b511a184066759cd864f6d15fe941ed3fe60f0cdc886dab68daa191d567de24"
+ 
+ UPSTREAM_CHECK_URI = "https://www.la-samhna.de/samhain/archive.html"
+ UPSTREAM_CHECK_REGEX = "samhain_signed-(?P<pver>(\d+(\.\d+)+))\.tar"
+-- 
+2.25.1
 
-Alex
-
-On Fri, 21 Jan 2022 at 21:00, Winfried <winfried_mb2@xmsnet.nl> wrote:
-
-> Hi Alex,
->
-> Thanks for the tip. When I add hardening-check to IMAGE_INSTALL the build
-> does indeed succeed.
-> But then the script is installed in the target sysroot of the SDK. I would
-> like to have it in the native (x86_64-pokysdk-linux) sysroot as it is a
-> tool to use on the build server.
->
-> Any idea how to achieve that ?
->
-> Thanks,
-> Winfried
->
-> Op 21-01-2022 20:09 schreef Alexander Kanavin <alex.kanavin@gmail.com>:
->
->
-> You need to drop the -native suffix when installing to target image or
-> SDK. -native is only for the bitbake build itself.
->
-> Alex
->
-> On Fri, 21 Jan 2022 at 20:07, W. Dobbe <winfried_mb2@xmsnet.nl> wrote:
->
-> Hi,
->
-> I'm writing a recipe for package hardening-check
-> <http://deb.debian.org/debian/pool/main/h/hardening-wrapper/> .
-> This package builds with only a simple Makefile (that has no install
-> target). The recipe only installs a script hardening-check in /usr/bin.
->
-> I would like to include this script in our SDK.
-> The recipe itself builds fine (bitbake hardening-check-native).
->
-> But when I add hardening-check-native to IMAGE_INSTALL in my image the
-> build fails with:
->
-> Task do_populate_sdk in myimage.bb rdepends upon non-existent task do_package_write_rpm in virtual:native:(...)/recipes-devtools/hardening-check/hardening-check_2.6.bb
->
-> Same error when I append the package to TOOLCHAIN_HOST_TASK instead.
->
-> Any idea how to solve this? Do I need to inherit my recipe from something?
-> Recipe included below.
->
-> Thanks in advance for the help!
->
-> regards,
-> Winfried
->
->
-> SUMMARY = "Script to check an executable for certain security weaknesses."
-> LICENSE = "GPLv2"
-> LIC_FILES_CHKSUM =
-> "file://debian/copyright;md5=06ff97d53f05a9b8ce2a416b30f496b9"
->
-> SRC_URI = "
-> http://ftp.debian.org/debian/pool/main/h/hardening-wrapper/hardening-wrapper_${PV}.tar.xz
-> \
->           file://0001-perl_regex.patch \
->          "
-> SRC_URI[md5sum] = "47c93c05b4d0199be8df0d35dbd68192"
-> SRC_URI[sha256sum] =
-> "c5fc46439646d0929a0605e4f3db67e57eefbbf5ceec5a2888440dbdf4450224"
->
-> RDEPENDS_${PN} = "perl"
->
-> S = "${WORKDIR}/hardening-wrapper"
->
-> do_patch () {
->    cd ${S}
->    patch -p1 -u -i ${WORKDIR}/0001-perl_regex.patch
-> }
->
-> do_configure () {
->        # Specify any needed configure commands here
->        :
-> }
->
-> do_compile () {
->        export DEB_HOST_ARCH=`uname -m`
->        export DEB_HOST_ARCH_OS=`uname -s`
->        oe_runmake
-> }
->
-> do_install () {
->    install -d ${D}/${bindir}
->    install -m 755 ${S}/build-tree/hardening-check ${D}/${bindir}
-> }
->
-> BBCLASSEXTEND = "native nativesdk"
->
->
->
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#55941):
-> https://lists.yoctoproject.org/g/yocto/message/55941
-> Mute This Topic: https://lists.yoctoproject.org/mt/88590330/3617711
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> winfried_mb2@xmsnet.nl]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
->
-
---0000000000008d07c005d61f1d33
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Use TOOLCHAIN_HOST_TASK:append =3D &quot; ...&quot; i=
-n your image recipe.</div><div><br></div><div>Alex<br></div></div><br><div =
-class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, 21 Jan =
-2022 at 21:00, Winfried &lt;<a href=3D"mailto:winfried_mb2@xmsnet.nl">winfr=
-ied_mb2@xmsnet.nl</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
- style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
-adding-left:1ex"><u></u>
-
- =20
-  =20
-=20
- <div>
-  <div>
-   Hi Alex,
-   <br>
-  </div>
-  <div>
-   <br>
-  </div>
-  <div>
-   Thanks for the tip. When I add hardening-check to IMAGE_INSTALL the buil=
-d does indeed succeed.
-   <br>
-  </div>
-  <div>
-   But then the script is installed in the target sysroot of the SDK. I wou=
-ld like to have it in the native (x86_64-pokysdk-linux) sysroot as it is a =
-tool to use on the build server.
-   <br>
-  </div>
-  <div>
-   <br>
-  </div>
-  <div>
-   Any idea how to achieve that ?
-   <br>
-  </div>
-  <div>
-   <br>
-  </div>
-  <div>
-   Thanks,
-   <br>
-  </div>
-  <div>
-   Winfried
-   <br>
-  </div>
-  <blockquote type=3D"cite">
-   <div>
-    Op 21-01-2022 20:09 schreef Alexander Kanavin &lt;<a href=3D"mailto:ale=
-x.kanavin@gmail.com" target=3D"_blank">alex.kanavin@gmail.com</a>&gt;:
-   </div>
-   <div>
-    <br>
-   </div>
-   <div>
-    <br>
-   </div>
-   <div dir=3D"ltr">
-    <div>
-     You need to drop the -native suffix when installing to target image or=
- SDK. -native is only for the bitbake build itself.
-    </div>
-    <div>
-     <br>
-    </div>
-    <div>
-     Alex
-     <br>
-    </div>
-   </div>
-   <br>
-   <div class=3D"gmail_quote">
-    <div dir=3D"ltr" class=3D"gmail_attr">
-     On Fri, 21 Jan 2022 at 20:07, W. Dobbe &lt;<a href=3D"mailto:winfried_=
-mb2@xmsnet.nl" target=3D"_blank">winfried_mb2@xmsnet.nl</a>&gt; wrote:
-     <br>
-    </div>
-    <blockquote>
-     <u></u>
-     <div>
-      <div>
-       Hi,=20
-       <br>
-      </div>
-      <div>
-       <br>
-      </div>
-      <div>
-       I&#39;m writing a recipe for package <a href=3D"http://deb.debian.or=
-g/debian/pool/main/h/hardening-wrapper/" rel=3D"noopener" target=3D"_blank"=
->hardening-check</a> .=20
-       <br>
-      </div>
-      <div>
-       This package builds with only a simple Makefile (that has no install=
- target). The recipe only installs a script hardening-check in /usr/bin.=20
-       <br>
-      </div>
-      <div>
-       <br>
-      </div>
-      <div>
-       I would like to include this script in our SDK.=20
-       <br>
-      </div>
-      <div>
-       The recipe itself builds fine (bitbake hardening-check-native).=20
-       <br>
-      </div>
-      <div>
-       <br>
-      </div>
-      <div>
-       But when I add hardening-check-native to IMAGE_INSTALL in my image t=
-he build fails with:
-      </div>
-      <pre><span style=3D"font-family:monospace"><span style=3D"color:rgb(0=
-,0,0)"><span style=3D"background-color:rgb(255,255,255)">Task do_populate_s=
-dk in <a href=3D"http://myimage.bb" rel=3D"noopener" target=3D"_blank">myim=
-age.bb</a> rdepends upon non-existent task do_package_write_rpm i</span>n v=
-irtual:native:(...)/recipes-devtools/hardening-check/<a href=3D"http://hard=
-ening-check_2.6.bb" rel=3D"noopener" target=3D"_blank">hardening-check_2.6.=
-bb</a></span><br></span></pre>
-      <div>
-       Same error when I append the package to <span style=3D"font-family:m=
-onospace"><span style=3D"color:rgb(0,0,0);background-color:rgb(255,255,255)=
-">TOOLCHAIN_HOST_TASK <span style=3D"font-family:-apple-system,BlinkMacSyst=
-emFont,helvetica,sans-serif">instead</span></span></span>.=20
-       <br>
-      </div>
-      <div>
-       <br>
-      </div>
-      <div>
-       Any idea how to solve this? Do I need to inherit my recipe from some=
-thing?
-      </div>
-      <div>
-       Recipe included below.=20
-       <br>
-      </div>
-      <div>
-       <br>
-      </div>
-      <div>
-       Thanks in advance for the help!=20
-       <br>
-      </div>
-      <div>
-       <br>
-      </div>
-      <div>
-       regards,=20
-       <br>
-      </div>
-      <div>
-       Winfried=20
-       <br>
-      </div>
-      <div>
-       <br>
-      </div>
-      <div>
-       <br>
-      </div>
-      <div>
-       <span style=3D"font-family:monospace"><span style=3D"color:rgb(0,0,0=
-);background-color:rgb(255,255,255)">SUMMARY =3D &quot;Script to check an e=
-xecutable for certain security weaknesses.&quot; </span><br>LICENSE =3D &qu=
-ot;GPLv2&quot; <br>LIC_FILES_CHKSUM =3D &quot;file://debian/copyright;md5=
-=3D06ff97d53f05a9b8ce2a416b30f496b9&quot; <br><br>SRC_URI =3D &quot;<a href=
-=3D"http://ftp.debian.org/debian/pool/main/h/hardening-wrapper/hardening-wr=
-apper_$%7BPV%7D.tar.xz" rel=3D"noopener" target=3D"_blank">http://ftp.debia=
-n.org/debian/pool/main/h/hardening-wrapper/hardening-wrapper_${PV}.tar.xz</=
-a> \ <br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0file:/=
-/0001-perl_regex.patch \ <br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0&quot; <br>SRC_URI[md5sum] =3D &quot;47c93c05b4d0199be8df0d35dbd68=
-192&quot; <br>SRC_URI[sha256sum] =3D &quot;c5fc46439646d0929a0605e4f3db67e5=
-7eefbbf5ceec5a2888440dbdf4450224&quot; <br><br>RDEPENDS_${PN} =3D &quot;per=
-l&quot; <br><br>S =3D &quot;${WORKDIR}/hardening-wrapper&quot;<br><br>do_pa=
-tch () { <br>=C2=A0=C2=A0=C2=A0cd ${S} <br>=C2=A0=C2=A0=C2=A0patch -p1 -u -=
-i ${WORKDIR}/0001-perl_regex.patch <br>} <br><br>do_configure () { <br>=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0# Specify any needed configure comma=
-nds here <br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0: <br>} <br><br>do_c=
-ompile () <span style=3D"color:rgb(0,0,0);background-color:rgb(24,178,178)"=
->{</span> <br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0export DEB_HOST_ARC=
-H=3D`uname -m` <br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0export DEB_HOS=
-T_ARCH_OS=3D`uname -s` <br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0oe_run=
-make <br><span style=3D"color:rgb(0,0,0);background-color:rgb(24,178,178)">=
-}</span> <br><br>do_install () { <br>=C2=A0=C2=A0=C2=A0install -d ${D}/${bi=
-ndir} <br>=C2=A0=C2=A0=C2=A0install -m 755 ${S}/build-tree/hardening-check =
-${D}/${bindir} <br>} <br><br>BBCLASSEXTEND =3D &quot;native nativesdk&quot;=
-<br></span>
-      </div>
-     </div>
-     <br>
-     <br>
-     <br>
-    </blockquote>
-   </div>
-   <br>-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-   <br>Links: You receive all messages sent to this group.
-   <br>View/Reply Online (#55941): <a href=3D"https://lists.yoctoproject.or=
-g/g/yocto/message/55941" target=3D"_blank">https://lists.yoctoproject.org/g=
-/yocto/message/55941</a>
-   <br>Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/885903=
-30/3617711" target=3D"_blank">https://lists.yoctoproject.org/mt/88590330/36=
-17711</a>
-   <br>Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org"=
- target=3D"_blank">yocto+owner@lists.yoctoproject.org</a>
-   <br>Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub=
-" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/unsub</a> [<a hr=
-ef=3D"mailto:winfried_mb2@xmsnet.nl" target=3D"_blank">winfried_mb2@xmsnet.=
-nl</a>]
-   <br>-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-   <br>
-   <br>
-  </blockquote>
- </div>
-</blockquote></div>
-
---0000000000008d07c005d61f1d33--
 
