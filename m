@@ -1,127 +1,206 @@
-Return-Path: <andrei@gherzan.com>
+Return-Path: <jdmason@kudzu.us>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C1C4EC433EF
-	for <webhook@archiver.kernel.org>; Mon, 24 Jan 2022 12:43:41 +0000 (UTC)
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com
- [66.111.4.26])
- by mx.groups.io with SMTP id smtpd.web09.3070.1643028221014446226
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 52F76C433FE
+	for <webhook@archiver.kernel.org>; Mon, 24 Jan 2022 16:18:11 +0000 (UTC)
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com
+ [209.85.160.181])
+ by mx.groups.io with SMTP id smtpd.web08.5873.1643041090174458096
  for <yocto@lists.yoctoproject.org>;
- Mon, 24 Jan 2022 04:43:41 -0800
+ Mon, 24 Jan 2022 08:18:10 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gherzan.com header.s=fm1 header.b=XvTXda4N;
- spf=pass (domain: gherzan.com, ip: 66.111.4.26, mailfrom: andrei@gherzan.com)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-	by mailout.nyi.internal (Postfix) with ESMTP id 59E165C0127;
-	Mon, 24 Jan 2022 07:43:40 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Mon, 24 Jan 2022 07:43:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gherzan.com; h=
-	cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:sender
-	:subject:subject:to:to; s=fm1; bh=zOaJ0HIOCKCrEa7ZgwYII6/WqbTGgd
-	eol6ELDQnLhoU=; b=XvTXda4NWCUZv29FNZw89MFaxIwmO+IrXAjIPrMBNiSoo6
-	ot0idzZs7MMzdLcHXqaCXBUdtcvaUfpEzgS0QIkDGwsEafkZlJaOHF4EPOCO/nCS
-	W0z2LiLTtPDCAJjrm0NKDq1XhDnuLafG0VBidkt+QWyw19aisrcMwoCe7Ne8UCZ3
-	iDN8qzwdqCJgGmhi2T+0ZTvoouElM9L0LbmWBb5UPRxi5Tv0VVZ0CxnbjG+TFO3G
-	QmWDhhk6fzWOhFYptDY6xYAFlSHTXcp+rMD9nJwOKrrtY0BPQqNMyx34Wq+zXboE
-	h5vE4omly5YNDBghchkW0UwYQi1udy67TNrwpyiA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:sender:subject:subject:to:to:x-me-proxy
-	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=zOaJ0H
-	IOCKCrEa7ZgwYII6/WqbTGgdeol6ELDQnLhoU=; b=A0c/0qh2MbzzxYeNwks7mM
-	t8B9h3pt3xI4FjC6rUAvjgyhq0TBe12ngfF2Z1lS65us76jdXvkylpgRCJobElAQ
-	/VwXqRYw70059t4UBZHbXaYCPkllSt7STxmd8xZ4FPJ5FZBE9osVURtQD2RCixnt
-	r6p2i4MjeRdsHwyBDP7xp0Vr6jouyzZ8yPduDRYJzv8DwjGcXQ5avZGTlb7JR3+n
-	UOOcT1isiCK5nyFPoVT2bhlfQs8LgbMPYL/YroQ/TtHjv9OJB9mcdYhowL2hdbmw
-	RtoVTcafjpGNCGVf4QE7X7BjzWbRCs2V19wras184MZNNvS4GYqWasfMAw+NgsQg
-	==
-X-ME-Sender: <xms:_J7uYUR_upght3Uf7X8HTvRhy7QbzapdS9D7tIEUG3pMOnMT5zp9bg>
-    <xme:_J7uYRxkZSiQN7rx-Y9WlHhiXSisjC4KRe5GJXhdxc60jm-3Au6avN8qENWHiWfqp
-    oKpEycjxho89z8dpUU>
-X-ME-Received: 
- <xmr:_J7uYR0gTdSot5uFoY_0Q5pHK7rkhhneeNMygT2l5oDQunowEJB5TXfH-M1g37S3zh9-f2L81W5VKg16184LfdrwRio4vGNB6VJT8tsMUTIEME7neS9ot_lp>
-X-ME-Proxy-Cause: 
- gggruggvucftvghtrhhoucdtuddrgedvvddrvdeigdeggecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomheptehnughrvghi
-    ucfihhgvrhiirghnuceorghnughrvghisehghhgvrhiirghnrdgtohhmqeenucggtffrrg
-    htthgvrhhnpeettddvffefkeetveekteeiveeggeevieeiudejfeeitedvkeelvdekheej
-    lefffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grnhgurhgvihesghhhvghriigrnhdrtghomh
-X-ME-Proxy: <xmx:_J7uYYAmULUZQp95hT8ijVIG-tOBM-0J_0Rx8bNzDp-OWe9zWS70cQ>
-    <xmx:_J7uYdgo--9llFQwdB-gTHmwcWPMd9NTcwQo9vvile5gVQ2qvNDBUQ>
-    <xmx:_J7uYUoQqUy-WiW8mDduLfpza-AkbqSgOdjhrDzjU4pzZ3-KJBMTSA>
-    <xmx:_J7uYQt5wblxrWOmSEd8Vt0Wgr_f3MklhAmY1NMRF69s3qGpSVqdsA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 24 Jan 2022 07:43:39 -0500 (EST)
-From: Andrei Gherzan <andrei@gherzan.com>
-To: yocto@lists.yoctoproject.org
-Cc: andrei@gherzan.com,
-	Stefan Schmidt <stefan.schmidt@huawei.com>,
-	Andrei Gherzan <andrei.gherzan@huawei.com>
-Subject: [meta-zephyr][PATCH 2/2] zephyr-flash-bossac.bbclass: Use internal
- bossac tool instead looking up PATH
-Date: Mon, 24 Jan 2022 13:43:04 +0100
-Message-Id: <20220124124304.2492266-2-andrei@gherzan.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220124124304.2492266-1-andrei@gherzan.com>
-References: <20220124124304.2492266-1-andrei@gherzan.com>
+ dkim=pass header.i=@kudzu-us.20210112.gappssmtp.com header.s=20210112
+ header.b=FFwiibau;
+ spf=none, err=permanent DNS error (domain: kudzu.us, ip: 209.85.160.181,
+ mailfrom: jdmason@kudzu.us)
+Received: by mail-qt1-f181.google.com with SMTP id b5so2700190qtq.11
+        for <yocto@lists.yoctoproject.org>;
+ Mon, 24 Jan 2022 08:18:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=kudzu-us.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=NQeTE4W7eSt5/Eql7AYwYQcSSTTiryMSMVw+fMh5MpA=;
+        b=FFwiibaucrownzGX1h5+NyzNciTWRaYfQG6Dy8NWByGALxFPdZYRQIxX1U2BF98GU8
+         ZKXtRN7EBpbiSTqln/4UVqI6bqwHz7CJ0yc9tjQeqRrnDhs+nDXHUg6ctmIWAaOKXl6y
+         wCrzbCOAtiKiQwEzLerqOzebx6LDg9DbFtn6i8W4liht8L4f/cTi6TSvtLepuQkictrS
+         GIYdjQRejpvTzDkQdcCVwFbb91HYD43hnADaQfvyD73u1vL+y5v3w7HWu9J309vfGkC4
+         /Lni2qbUHeubAWkUl7whyTTj3srKafIGzq1Ae0SHWVjH6HWYOmDRJyZbEZqaNhGuxwi/
+         +C0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=NQeTE4W7eSt5/Eql7AYwYQcSSTTiryMSMVw+fMh5MpA=;
+        b=3Mf1U5vgH+sTMf8SC/99XvAOYw6gHfngBYKTmH23d+qkqXhy3D5xhQzUou3TX4s7PH
+         JStdYWUeIr8vQt8DvsIPxZdVTlU6f6xUKPLjdmy2Vdor11C2ib4+8iqHnCAiwQiFxmZq
+         nwglNyrzhfbg2+SWNkWnKsr2JzfvMeTu5FKEexPHQJno6LsL/KuFeZDIZ2kGiBDHypTY
+         gZfgOslGiuxVC7aAYur5HVr/4FFqLmQmbBjIiKrLhsA2fPZEYjM3ww+TpdKHVmmaf3DO
+         CIeFD/R2BLoMzUyJony/HbSrn6k2yK2limCy/IMCx8Fe+GEJvKB3rdMxZq4BbjLZ7KKO
+         cC9w==
+X-Gm-Message-State: AOAM533bdC2DVZsGudWG9xcBN2UTMWVdEqxBXKGMzhdjjWf6VxprOVVj
+	5OCOo24zkMqUKilIwhg8Lr9WTznPTL10sSdNbpbzuG0EVJxPGQ==
+X-Google-Smtp-Source: 
+ ABdhPJyIUYnxZie9eAzmxepZdOCyV//SE3T8dhme+t9B5tRXAYFT5ASYvKauS4wUOP4uCpElqLv/hLz2/rlKpwvMN5k=
+X-Received: by 2002:a05:622a:248:: with SMTP id
+ c8mr12888884qtx.661.1643041089038;
+ Mon, 24 Jan 2022 08:18:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: Jon Mason <jdmason@kudzu.us>
+Date: Mon, 24 Jan 2022 11:17:58 -0500
+Message-ID: 
+ <CAPoiz9wL16OTzxNHdw_5-L72GOHkhhM0--WZF7An071cx6sr_A@mail.gmail.com>
+Subject: Inclusive Language Proposal for YP/OE
+To: yocto@lists.yoctoproject.org,
+	Patches and discussions about the oe-core layer
+ <openembedded-core@lists.openembedded.org>,
+	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 24 Jan 2022 12:43:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55954
+ <yocto@lists.yoctoproject.org>; Mon, 24 Jan 2022 16:18:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55955
 
-From: Stefan Schmidt <stefan.schmidt@huawei.com>
+From the beginning, OpenEmbedded and The Yocto Project have always
+strived to be as inclusive as possible to all races, sexes,
+orientations, religions, nationalities, and any other thing which
+might divide people.  As continuation of this striving, there are
+suggested changes below that are being proposed to make the projects
+more inclusive and show the community as the professional, friendly,
+and welcoming group that it is.   There are words in use by the
+projects directly or one of its derivative layers that could be
+offensive to some.  For more information on which words we selected
+and why, please consult
+https://inclusivenaming.org/word-lists/overview/
 
-Instead of looking in PATH on the host to find bossac we now depend on the
-native variant we build and set the path to our yocto build tool.
+In the process of changing these, we are using this opportunity to
+make the terms more obvious and useful, as well as removing cruft and
+other unused code.  This is the pure definition of a win-win solution.
 
-Signed-off-by: Stefan Schmidt <stefan.schmidt@huawei.com>
-Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
----
- meta-zephyr-core/classes/zephyr-flash-bossac.bbclass | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
+With this in mind, a group of people have tried to identify issues and
+come up with a plan to address these.   We=E2=80=99ve divided the tasks int=
+o 3
+areas: bitbake variables, oe-core variables, and everything else.
 
-diff --git a/meta-zephyr-core/classes/zephyr-flash-bossac.bbclass b/meta-zephyr-core/classes/zephyr-flash-bossac.bbclass
-index 50222d5..51f2dd3 100644
---- a/meta-zephyr-core/classes/zephyr-flash-bossac.bbclass
-+++ b/meta-zephyr-core/classes/zephyr-flash-bossac.bbclass
-@@ -1,17 +1,17 @@
- #@DESCRIPTION: class file to flash boards like Arduino Nano BLE which depends on bossac for flashing
- 
-+DEPENDS += "bossa-native"
-+
- python do_flash_usb() {
-     import shutil
-     import subprocess
-     import serial.tools.list_ports
- 
--    # Note: make sure the installed bossac is set to PATH before running flash_usb()
-     # Check if bossac is avaiable for flashing
--    origbbenv = d.getVar("BB_ORIGENV", False)
--    bossac_path = shutil.which("bossac", path=origbbenv.getVar('PATH'))
-+    bossac_path = shutil.which("bossac")
- 
-     if not bossac_path:
--       bb.fatal("ERROR: bossac not found, please install first and add to PATH")
-+       bb.fatal("ERROR: bossac not found.")
- 
-     board = d.getVar('BOARD')
- 
-@@ -47,4 +47,3 @@ python do_flash_usb() {
- addtask do_flash_usb after do_deploy
- 
- do_flash_usb[nostamp] = "1"
--do_flash_usb[vardepsexclude] = "BB_ORIGENV"
--- 
-2.25.1
+Bitbake Variables
+Taking issues in turn, for bitbake:
 
+For BB_DISKMON_DIRS, the actions "ABORT, STOPTASKS and WARN" would
+become "HALT, NO_NEW_TASKS and "WARN".
+
+BB_ENV_WHITELIST -> BB_ENV_PASSTHROUGH
+BB_ENV_EXTRAWHITE -> BB_ENV_PASSTHROUGH_ADDITIONS
+
+BB_HASHCONFIG_WHITELIST -> BB_HASHCONFIG_IGNORE_VARS
+BB_SETSCENE_ENFORCE_WHITELIST -> BB_SETSCENE_ENFORCE_IGNORE_TASKS
+BB_HASHBASE_WHITELIST -> BB_BASEHASH_IGNORE_VARS
+MULTI_PROVIDER_WHITELIST -> BB_MULTI_PROVIDER_ALLOWED
+BB_STAMP_WHITELIST and BB_STAMP_POLICY -> delete the code (already merged)
+
+basewhitelist and taskwhitelist as used in sigdata/siginfo will need
+to be renamed and older file usage of the variables renamed at import
+for backwards compatibility. The variables in bitbake along with usage
+of abort will be renamed as appropriate.
+
+For most variables, errors will be shown to the user if the old
+variable names are set. Mostly this can be done in event hooks but
+some like the BB_ENV changes will need special handling.
+
+These changes hopefully improve consistency (e.g. a consistent BB_
+prefix and BASHHASH as terminology used elsewhere) and also improve
+the description of the variables to be more understandable to users.
+
+OE-Core Variables
+For OE-Core, the proposals are:
+
+For blacklist.bbclass, the proposal is to add the functionality to the
+anonymous Python in base.bbclass instead. PNBLACKLIST[xxx] would
+become SKIP_RECIPE[xxx]. INHERIT_BLACKLIST would simply be dropped.
+
+SSTATE_DUPWHITELIST -> SSTATE_ALLOW_OVERLAP_FILES
+CVE_CHECK_PN_WHITELIST -> CVE_CHECK_SKIPRECIPE
+CVE_CHECK_WHITELIST -> CVE_CHECK_IGNORECVE
+SYSROOT_DIRS_BLACKLIST -> SYSROOT_DIRS_IGNORE
+LICENSE_FLAGS_WHITELIST -> LICENSE_FLAGS_ACCEPTED
+UNKNOWN_CONFIGURE_WHITELIST -> UNKNOWN_CONFIGURE_OPT_IGNORE
+SDK_LOCAL_CONF_BLACKLIST -> ESDK_LOCALCONF_REMOVE
+SDK_LOCAL_CONF_WHITELIST -> ESDK_LOCALCONF_ALLOW
+SDK_INHERIT_BLACKLIST -> ESDK_CLASS_INHERIT_DISABLE
+TUNEABI_WHITELIST - already removed as obsolete
+
+For the ICECC_USER_XXX and ICECC_SYSTEM_XXX, we think these can likely
+be merged into single variables:
+
+ICECC_USER_CLASS_BL -> ICECC_CLASS_DISABLE
+ICECC_SYSTEM_CLASS_BL -> ICECC_CLASS_DISABLE
+ICECC_USER_PACKAGE_WL -> ICECC_RECIPE_ENABLE
+ICECC_USER_PACKAGE_BL -> ICECC_RECIPE_DISABLE
+ICECC_SYSTEM_PACKAGE_BL -> ICECC_RECIPE_DISABLE
+
+For license handling, we=E2=80=99d use the opportunity to clean up the
+WHITELIST_(ANY LICENSE) syntax and replace it with a
+INCOMPATIBLE_LICENSE_ALLOWED_RECIPES, which would be a list of recipes
+which are of a blocked the INCOMPATIBLE_LICENSE list.
+
+Everything else
+The migration plan includes writing a script to assist with the
+migration. In many cases it can likely make the translation. In cases
+where that isn=E2=80=99t possible, it will aim to list the areas the user
+needs to fix references.
+
+A warning mechanism will be added to bitbake to detect usage of old
+variable names (post parsing), except for BB_ENV issues which will
+likely need special handling. A (limited) conversion script will be
+created to help with the migration. For those instances where a 1-1
+mapping is not achievable, a list of the occurrences and what it
+should be changed to will occur.
+
+
+Patch files in OE to be renamed:
+11_tcpd_blacklist.patch -> 11_tcpd_blocklist.patch
+mount.blacklist -> mount.disallow
+0001-lxdm.conf.in-blacklist-root-for-release-images.patch ->
+0001-lxdm.conf.in-deny-root-for-release-images.patch
+022-RH-Remove-the-property-blacklist-exception-builtin.patch ->
+022-RH-Remove-the-default-property-exception-builtin.patch
+0001-Cargo.toml-do-not-abort-on-panic.patch ->
+0001-Cargo.toml-do-not-exit-on-panic.patch
+0004-Cargo.toml-do-not-abort-on-panic.patch ->
+0004-Cargo.toml-do-not-exit-on-panic.patch
+Also, there are a few others outside of OE that should probably be patched =
+too.
+
+Branch Names
+The =E2=80=9Cmaster=E2=80=9D branches on the relevant OpenEmbedded and Yoct=
+o Project
+git trees will be changed to an alternative name at some point in the
+future.  The current preferred name is =E2=80=9Cdevel=E2=80=9D.  There is n=
+o time
+table for this currently, and there is no obligation or requirement to
+change the branch name for any downstream project which is beyond the
+project=E2=80=99s remit.
+
+Similarly, there is no need to change any recipes that are using a
+=E2=80=9Cmaster=E2=80=9D branch as part of the SRC_URI.  Those are outside =
+the scope
+of YP/OE and this effort.
+
+Note
+These changes are only to bitbake and OE-Core.  There is no
+requirement to change any other layers but we=E2=80=99d note consistency is
+encouraged and helpful to users.
+
+Helping
+If you would like to help, please put your name by the items in
+question on the inclusive language wiki page.
+https://wiki.yoctoproject.org/wiki/Inclusive_language
+
+Thanks
+Special thanks to Richard Purdie, Michael Opdenacker. Marta
+Rybczynska, Scott Murray, Jan-Simon Moeller, Saul Wold, and Armin
+Kuster for providing their time, technical details, text, and feedback
+on this task.
 
