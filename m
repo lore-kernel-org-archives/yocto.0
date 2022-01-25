@@ -1,94 +1,60 @@
-Return-Path: <michael.opdenacker@bootlin.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 237B2C433F5
-	for <webhook@archiver.kernel.org>; Tue, 25 Jan 2022 16:46:18 +0000 (UTC)
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net
- [217.70.183.201])
- by mx.groups.io with SMTP id smtpd.web10.9779.1643129177190360492
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E594C4332F
+	for <webhook@archiver.kernel.org>; Tue, 25 Jan 2022 18:36:22 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web10.1038.1643135780989033776
  for <yocto@lists.yoctoproject.org>;
- Tue, 25 Jan 2022 08:46:17 -0800
+ Tue, 25 Jan 2022 10:36:21 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing;
- spf=pass (domain: bootlin.com, ip: 217.70.183.201, mailfrom: michael.opdenacker@bootlin.com)
-Received: (Authenticated sender: michael.opdenacker@bootlin.com)
-	by mail.gandi.net (Postfix) with ESMTPSA id C34BD1BF214;
-	Tue, 25 Jan 2022 16:46:14 +0000 (UTC)
-From: Michael Opdenacker <michael.opdenacker@bootlin.com>
-To: yocto@lists.yoctoproject.org
-Cc: Michael Opdenacker <michael.opdenacker@bootlin.com>
-Subject: [PATCH yocto-autobuilder-helper] run-docs-build: fix checkout of
- releases.rst from master
-Date: Tue, 25 Jan 2022 17:45:46 +0100
-Message-Id: <20220125164546.846218-1-michael.opdenacker@bootlin.com>
-X-Mailer: git-send-email 2.25.1
+ spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64,
+ mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id E3A9840CBB;
+	Tue, 25 Jan 2022 18:36:19 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id u508alEK4ahy; Tue, 25 Jan 2022 18:36:19 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+ [100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id BED2C40CAB;
+	Tue, 25 Jan 2022 18:36:16 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 03702174722; Tue, 25 Jan 2022 13:36:15 -0500 (EST)
+Date: Tue, 25 Jan 2022 13:36:15 -0500
+From: Denys Dmytriyenko <denis@denix.org>
+To: openembedded-devel@lists.openembedded.org,
+	openembedded-core@lists.openembedded.org,
+	yocto@lists.yoctoproject.org,
+	openembedded-members@lists.openembedded.org
+Subject: OpenEmbedded Happy Hour January 26 5pm/1700 UTC
+Message-ID: <20220125183615.GW26229@denix.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 25 Jan 2022 16:46:18 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55967
+ <yocto@lists.yoctoproject.org>; Tue, 25 Jan 2022 18:36:22 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55969
 
-A wrong path was given given the working directory.
+All,
 
-Also revert the changes with "git reset --hard" to
-have a clean state before further branch switches.
+Our next OpenEmbedded Happy Hour is on January 26 for Europe/Americas 
+timezones @ 1700/5pm UTC (12pm ET / 9am PT):
 
-Signed-off-by: Michael Opdenacker <michael.opdenacker@bootlin.com>
----
- scripts/run-docs-build | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+https://www.openembedded.org/wiki/Calendar
+https://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenEmbedded+Happy+Hour+January+26&iso=20220126T17
 
-diff --git a/scripts/run-docs-build b/scripts/run-docs-build
-index 5d6d24a..c93b3e6 100755
---- a/scripts/run-docs-build
-+++ b/scripts/run-docs-build
-@@ -43,11 +43,12 @@ cp -r ./_build/final/* $outputdir/bitbake/next
- # see the latest releases.
- for branch in 1.46 1.48 1.50 1.52; do
-     git checkout $branch
--    git checkout master doc/releases.rst
-+    git checkout master releases.rst
-     make clean
-     make publish
-     mkdir $outputdir/bitbake/$branch
-     cp -r ./_build/final/* $outputdir/bitbake/$branch
-+    git reset --hard
- done
- 
- # only sync bitbake folder for now. We need bitbake to be published first
-@@ -79,11 +80,12 @@ cp -r ./_build/final/* $outputdir/next
- for branch in dunfell gatesgarth hardknott honister; do
-     cd $ypdocs
-     git checkout $branch
--    git checkout master documentation/releases.rst
-+    git checkout master releases.rst
-     make clean
-     make publish
-     mkdir $outputdir/$branch
-     cp -r ./_build/final/* $outputdir/$branch
-+    git reset --hard
- done
- 
- # Yocto Project releases/tags
-@@ -101,12 +103,13 @@ for tag in $(git tag --list 'yocto-*'); do
-         if [ "$tag" = "yocto-3.3" ] || [ "$tag" = "yocto-3.4" ]; then
-             git am "${scriptdir}/${tag}/0001-conf-update-for-release.patch"
-         fi
--        git checkout master documentation/releases.rst
-+        git checkout master releases.rst
-         make clean
-         make publish
-         version=$(echo $tag | cut -c7-)
-         mkdir $outputdir/$version
-         cp -r ./_build/final/* $outputdir/$version
-+        git reset --hard
-     fi
- done
- 
 -- 
-2.25.1
-
+Regards,
+Denys Dmytriyenko <denis@denix.org>
+PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
+Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
 
