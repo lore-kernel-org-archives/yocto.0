@@ -1,84 +1,94 @@
-Return-Path: <ross@burtonini.com>
+Return-Path: <michael.opdenacker@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 68115C433FE
-	for <webhook@archiver.kernel.org>; Tue, 25 Jan 2022 16:30:53 +0000 (UTC)
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
- [209.85.221.43])
- by mx.groups.io with SMTP id smtpd.web12.9631.1643128252463623988
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 237B2C433F5
+	for <webhook@archiver.kernel.org>; Tue, 25 Jan 2022 16:46:18 +0000 (UTC)
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net
+ [217.70.183.201])
+ by mx.groups.io with SMTP id smtpd.web10.9779.1643129177190360492
  for <yocto@lists.yoctoproject.org>;
- Tue, 25 Jan 2022 08:30:52 -0800
+ Tue, 25 Jan 2022 08:46:17 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@burtonini-com.20210112.gappssmtp.com header.s=20210112
- header.b=bkxBsV9p;
- spf=pass (domain: burtonini.com, ip: 209.85.221.43,
- mailfrom: ross@burtonini.com)
-Received: by mail-wr1-f43.google.com with SMTP id a13so20932931wrh.9
-        for <yocto@lists.yoctoproject.org>;
- Tue, 25 Jan 2022 08:30:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=burtonini-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dFHbCqyAMunuBZ3FgqYd6fHQcYqmiDM8b0QR3lI5pP8=;
-        b=bkxBsV9pqZ1tovaLbNaZErNk4FNplNpgArkz/RXoDJVTTmG1PQg8wBaghnxp6R13Tn
-         jGaaKFceMNq31qqB5dOcXOifhl4UkLP9BF7kSQn+NnuX6hKUs33uuarYQnYNWSPXuu3g
-         1PtXDLnKMyeqLYsvNgs2PKL2bbQvNc4gwx2BbVG5imlknRG/7bXxcRwqEGB4hcOiHbem
-         RmWK5b3n90US3H00Og/A1ZeWXF0lb4bFqRvjPGPWEfR+evzvUmMWZf39rdOGmx5ISZsE
-         Jstf/Hh0oc5ISmLCZpG27NoBmPWUqx+loTcYtCEA1FPNFQ9PhstA3rTdSf9DkKRg7qD5
-         76Ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dFHbCqyAMunuBZ3FgqYd6fHQcYqmiDM8b0QR3lI5pP8=;
-        b=NbLhNtPKPANT4nTmXvj9P31fNuY1+IHGviS3ilAYMbjQWDXwzJiSyaD27ceTkbjhr+
-         OFX3sZSVMKJTHIbJ8DUnItu8pXL58e0KMJk5pNCwQg/M8QHUMVl5CQAuLOTnoq18FADm
-         P+cKLmlP8PSZYQOamvFwT8IXRoZukkUN1u4xTEI/2K2PRGYrof9UOl9jYwcHqVo3Mc6P
-         5jGacnCK3Xy4Kr8L9ovnrv7/C3ofLEqoJnhdGk3c5vlut8tvFdtDMSRTQ7KOxvvODpi3
-         yN7SVacFXSZWym913TtZ+cezCsh+BsikEZgjE2ZRrgcXT3BhiMgDTuuG6FvVMUM3h/H2
-         qKmA==
-X-Gm-Message-State: AOAM531lpCFqdBYTjyyP/bIpGICTdbkm+4GypIe6Bel43BMVzt30DvRW
-	hevwEGPGhkpbikdInyt+gp32F99IXCePafgH3x7C7Q==
-X-Google-Smtp-Source: 
- ABdhPJyO6TclGeD9jXIIrTlR42CCUf6+aToiXJQyE+QWXPf1EI1HxQgyYf1zfm+nF05fuA4HH27BIDQUuTHAL5HmKV0=
-X-Received: by 2002:a05:6000:1c11:: with SMTP id
- ba17mr10421769wrb.405.1643128250889;
- Tue, 25 Jan 2022 08:30:50 -0800 (PST)
+ dkim=missing;
+ spf=pass (domain: bootlin.com, ip: 217.70.183.201, mailfrom: michael.opdenacker@bootlin.com)
+Received: (Authenticated sender: michael.opdenacker@bootlin.com)
+	by mail.gandi.net (Postfix) with ESMTPSA id C34BD1BF214;
+	Tue, 25 Jan 2022 16:46:14 +0000 (UTC)
+From: Michael Opdenacker <michael.opdenacker@bootlin.com>
+To: yocto@lists.yoctoproject.org
+Cc: Michael Opdenacker <michael.opdenacker@bootlin.com>
+Subject: [PATCH yocto-autobuilder-helper] run-docs-build: fix checkout of
+ releases.rst from master
+Date: Tue, 25 Jan 2022 17:45:46 +0100
+Message-Id: <20220125164546.846218-1-michael.opdenacker@bootlin.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: 
- <CAPoiz9wL16OTzxNHdw_5-L72GOHkhhM0--WZF7An071cx6sr_A@mail.gmail.com>
-In-Reply-To: 
- <CAPoiz9wL16OTzxNHdw_5-L72GOHkhhM0--WZF7An071cx6sr_A@mail.gmail.com>
-From: Ross Burton <ross@burtonini.com>
-Date: Tue, 25 Jan 2022 16:30:40 +0000
-Message-ID: 
- <CAAnfSTu1eneGztK0Kmzcv5Qq89kodoCrgDWzF6JQ7eFStD6Uzg@mail.gmail.com>
-Subject: Re: [oe] Inclusive Language Proposal for YP/OE
-To: Jon Mason <jdmason@kudzu.us>
-Cc: yocto@lists.yoctoproject.org,
-	Patches and discussions about the oe-core layer
- <openembedded-core@lists.openembedded.org>,
-	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 25 Jan 2022 16:30:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55966
+ <yocto@lists.yoctoproject.org>; Tue, 25 Jan 2022 16:46:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55967
 
-On Mon, 24 Jan 2022 at 16:18, Jon Mason <jdmason@kudzu.us> wrote:
-> CVE_CHECK_PN_WHITELIST -> CVE_CHECK_SKIPRECIPE
-> CVE_CHECK_WHITELIST -> CVE_CHECK_IGNORECVE
+A wrong path was given given the working directory.
 
-This is the only one that sticks out to me.  I think it needs another
-_, SKIP_RECIPE and IGNORE_CVE.
+Also revert the changes with "git reset --hard" to
+have a clean state before further branch switches.
 
-Other than that, +1.
+Signed-off-by: Michael Opdenacker <michael.opdenacker@bootlin.com>
+---
+ scripts/run-docs-build | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-Will we have a bit of logic to detect the obsolete names being set and
-emit warnings/errors?
+diff --git a/scripts/run-docs-build b/scripts/run-docs-build
+index 5d6d24a..c93b3e6 100755
+--- a/scripts/run-docs-build
++++ b/scripts/run-docs-build
+@@ -43,11 +43,12 @@ cp -r ./_build/final/* $outputdir/bitbake/next
+ # see the latest releases.
+ for branch in 1.46 1.48 1.50 1.52; do
+     git checkout $branch
+-    git checkout master doc/releases.rst
++    git checkout master releases.rst
+     make clean
+     make publish
+     mkdir $outputdir/bitbake/$branch
+     cp -r ./_build/final/* $outputdir/bitbake/$branch
++    git reset --hard
+ done
+ 
+ # only sync bitbake folder for now. We need bitbake to be published first
+@@ -79,11 +80,12 @@ cp -r ./_build/final/* $outputdir/next
+ for branch in dunfell gatesgarth hardknott honister; do
+     cd $ypdocs
+     git checkout $branch
+-    git checkout master documentation/releases.rst
++    git checkout master releases.rst
+     make clean
+     make publish
+     mkdir $outputdir/$branch
+     cp -r ./_build/final/* $outputdir/$branch
++    git reset --hard
+ done
+ 
+ # Yocto Project releases/tags
+@@ -101,12 +103,13 @@ for tag in $(git tag --list 'yocto-*'); do
+         if [ "$tag" = "yocto-3.3" ] || [ "$tag" = "yocto-3.4" ]; then
+             git am "${scriptdir}/${tag}/0001-conf-update-for-release.patch"
+         fi
+-        git checkout master documentation/releases.rst
++        git checkout master releases.rst
+         make clean
+         make publish
+         version=$(echo $tag | cut -c7-)
+         mkdir $outputdir/$version
+         cp -r ./_build/final/* $outputdir/$version
++        git reset --hard
+     fi
+ done
+ 
+-- 
+2.25.1
 
-Ross
 
