@@ -2,109 +2,89 @@ Return-Path: <hrsourabh011@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9033CC28CF5
-	for <webhook@archiver.kernel.org>; Wed, 26 Jan 2022 07:16:30 +0000 (UTC)
-Subject: Fetch private gitlab repo using ssh with Yocto recipe #bitbake
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EEEA3C2BA4C
+	for <webhook@archiver.kernel.org>; Wed, 26 Jan 2022 07:19:58 +0000 (UTC)
+Subject: Building yocto image for RPi CM4 #raspberrypi
 To: yocto@lists.yoctoproject.org
 From: hrsourabh011@gmail.com
 X-Originating-Location: Sesslach, Bavaria, DE (217.24.55.250)
 X-Originating-Platform: Windows Firefox 91
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Tue, 25 Jan 2022 23:16:29 -0800
-Message-ID: <uhQ4.1643181389477081324.P09X@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="MGFNrF3YjCbSuQqyWPkI"
+Date: Tue, 25 Jan 2022 23:19:58 -0800
+Message-ID: <QnMF.1643181598131429709.jlQx@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="hjK3SAmbynSLhQm3vARF"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 26 Jan 2022 07:16:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55975
+ <yocto@lists.yoctoproject.org>; Wed, 26 Jan 2022 07:19:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55976
 
---MGFNrF3YjCbSuQqyWPkI
+--hjK3SAmbynSLhQm3vARF
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-I am trying to fetch a private gitlab repo within Yocto image recipe using =
-SSH protocol. In my image recipe I have passed SRC_URI as:
+Hello All,
 
-SRC_URI =3D " \
-       gitsm://git@git.example.com:2224/blah/blah/blah/blah;protocol=3Dssh;=
-branch=3Dmaster \
-" But this results in the error:
+Advice on working with Yocto and Raspberry Pi CM4 Lite would be helpful.
 
-ERROR: Fetcher failure: Fetch command export PSEUDO_DISABLED=3D1; export PA=
-TH=3D"/root /build-swu-v2/tmp/sysroots-uninative/x86_64-linux/usr/bin:/root=
-/sources/poky/scripts: /root/build-swu-v2/tmp/work/cortexa7t2hf-neon-vfpv4-=
-poky-linux-gnueabi/awsclient/1.4- r0/recipe-sysroot-native/usr/bin/arm-poky=
--linux-gnueabi:/root/build-swu-v2/tmp /work/cortexa7t2hf-neon-vfpv4-poky-li=
-nux-gnueabi/awsclient/1.4-r0/recipe-sysroot/usr/bin /crossscripts:/root/bui=
-ld-swu-v2/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi /awsclient/1.=
-4-r0/recipe-sysroot-native/usr/sbin:/root/build-swu-v2/tmp/work/cortexa7t2h=
-f- neon-vfpv4-poky-linux-gnueabi/awsclient/1.4-r0/recipe-sysroot-native/usr=
-/bin:/root/build- swu-v2/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueab=
-i/awsclient/1.4-r0/recipe-sysroot- native/sbin:/root/build-swu-v2/tmp/work/=
-cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi /awsclient/1.4-r0/recipe-sysroot=
--native/bin:/root/sources/poky/bitbake/bin:/root/build-swu- v2/tmp/hosttool=
-s"; export HOME=3D"/root"; LANG=3DC git -c core.fsyncobjectfiles=3D0 clone =
---bare  --mirror "ssh://git@git.osb-connagtive.com:2224/iot/products/iot-de=
-vice-suite_client/aws- iot-client" /root/downloads//git2/git@git.example.co=
-m:2224/blah/blah/blah/blah --progress failed with exit code 128, no output
-ERROR: Bitbake Fetcher Error: FetchError('Unable to fetch URL from any sour=
-ce.',  'gitsm://git@git.example.com:2224/blah/blah/blah/blah;protocol=3Dssh=
-;branch=3Dmaster')
-DEBUG: Python function base_do_fetch finished
+I recently got my hands on with CM4 and now I want to build Yocto image wit=
+h u-boot as bootloader. I have few doubts before I start the build.
 
-But I am able to clone the repo using git clone.
+* Which machine to use in local.conf file? In the meta-raspberrypi there is=
+ no specific machine for CM4 https://github.com/agherzan/meta-raspberrypi/t=
+ree/master/conf/machine. Will the "raspberrypi4-64" and "raspberrypi4" also=
+ work for CM4? As per my understanding the Raspberry Pi 4 and CM4 are mostl=
+y the same except for the device tree and drivers. Which device tree will w=
+ork with RPi CM4? Do I need to generate them separately for CM4?
+* Since I have CM4 lite, there is no on board eMMC. I am using custom IO bo=
+ard and it has SD card slot. I can boot from SD card instead. Do I need to =
+set anything specific for CM4 to work in my image recipe or local.conf? Is =
+it same as booting RPi 4 from uSD card?
 
-SSH key is already added to the Gitlab. There is no config file in my ~/.ss=
-h. Do I need to create a config file? What should be the content of the con=
-fig file?
+My intention is to use RPi CM4 for software updates using RAUC.
 
-Can anyone please let me know how to resolve this?
+Can anyone please let me about these? This would help me to get started.
 
 Thanks in advance.
 
---MGFNrF3YjCbSuQqyWPkI
+Please let me know if any details are missing.
+
+--hjK3SAmbynSLhQm3vARF
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-I am trying to fetch a private gitlab repo within Yocto image recipe using =
-SSH protocol. In my image recipe I have passed <code>SRC_URI</code> as:<br =
-/><br />
-<pre><code>SRC_URI =3D " \
-        gitsm://git@git.example.com:2224/blah/blah/blah/blah;protocol=3Dssh=
-;branch=3Dmaster \
-"</code></pre>
-But this results in the error:<br /><br />
-<pre><code>ERROR: Fetcher failure: Fetch command export PSEUDO_DISABLED=3D1=
-; export PATH=3D"/root /build-swu-v2/tmp/sysroots-uninative/x86_64-linux/us=
-r/bin:/root/sources/poky/scripts: /root/build-swu-v2/tmp/work/cortexa7t2hf-=
-neon-vfpv4-poky-linux-gnueabi/awsclient/1.4- r0/recipe-sysroot-native/usr/b=
-in/arm-poky-linux-gnueabi:/root/build-swu-v2/tmp /work/cortexa7t2hf-neon-vf=
-pv4-poky-linux-gnueabi/awsclient/1.4-r0/recipe-sysroot/usr/bin /crossscript=
-s:/root/build-swu-v2/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi /a=
-wsclient/1.4-r0/recipe-sysroot-native/usr/sbin:/root/build-swu-v2/tmp/work/=
-cortexa7t2hf- neon-vfpv4-poky-linux-gnueabi/awsclient/1.4-r0/recipe-sysroot=
--native/usr/bin:/root/build- swu-v2/tmp/work/cortexa7t2hf-neon-vfpv4-poky-l=
-inux-gnueabi/awsclient/1.4-r0/recipe-sysroot- native/sbin:/root/build-swu-v=
-2/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi /awsclient/1.4-r0/rec=
-ipe-sysroot-native/bin:/root/sources/poky/bitbake/bin:/root/build-swu- v2/t=
-mp/hosttools"; export HOME=3D"/root"; LANG=3DC git -c core.fsyncobjectfiles=
-=3D0 clone --bare  --mirror "ssh://git@git.osb-connagtive.com:2224/iot/prod=
-ucts/iot-device-suite_client/aws- iot-client" /root/downloads//git2/git@git=
-.example.com:2224/blah/blah/blah/blah --progress failed with exit code 128,=
- no output
-ERROR: Bitbake Fetcher Error: FetchError('Unable to fetch URL from any sour=
-ce.',  'gitsm://git@git.example.com:2224/blah/blah/blah/blah;protocol=3Dssh=
-;branch=3Dmaster')
-DEBUG: Python function base_do_fetch finished</code></pre>
+Hello All,<br />
+<div class=3D"votecell post-layout--left">
+<div class=3D"js-voting-container d-flex jc-center fd-column ai-stretch gs4=
+ fc-black-200" data-post-id=3D"70850859">&nbsp;</div>
+</div>
+<p>Advice on working with Yocto and Raspberry Pi CM4 Lite would be helpful.=
+</p>
+I recently got my hands on with CM4 and now I want to build Yocto image wit=
+h u-boot as bootloader. I have few doubts before I start the build.<br /><b=
+r />
+<ol>
+<li>Which machine to use in local.conf file? In the meta-raspberrypi there =
+is no specific machine for CM4 <a title=3D"meta-raspberrypi" href=3D"https:=
+//github.com/agherzan/meta-raspberrypi/tree/master/conf/machine" target=3D"=
+_blank" rel=3D"noopener">https://github.com/agherzan/meta-raspberrypi/tree/=
+master/conf/machine</a>. Will the "raspberrypi4-64" and "raspberrypi4" also=
+ work for CM4? As per my understanding the Raspberry Pi 4 and CM4 are mostl=
+y the same except for the device tree and drivers. Which device tree will w=
+ork with RPi CM4? Do I need to generate them separately for CM4?</li>
+<li>Since I have CM4 lite, there is no on board eMMC. I am using custom IO =
+board and it has SD card slot. I can boot from SD card instead. Do I need t=
+o set anything specific for CM4 to work in my image recipe or local.conf? I=
+s it same as booting RPi 4 from uSD card?</li>
+</ol>
 <br />
-<p>But I am able to clone the repo using <code>git clone</code>.</p>
-<p>SSH key is already added to the Gitlab. There is no config file in my <c=
-ode>~/.ssh</code>. Do I need to create a config file? What should be the co=
-ntent of the config file?</p>
-<p>Can anyone please let me know how to resolve this?</p>
+<p>My intention is to use RPi CM4 for software updates using RAUC.</p>
+<p>Can anyone please let me about these? This would help me to get started.=
+</p>
 <p>Thanks in advance.</p>
+<p>Please let me know if any details are missing.</p>
+<br /><br /><br />
 
---MGFNrF3YjCbSuQqyWPkI--
+--hjK3SAmbynSLhQm3vARF--
 
