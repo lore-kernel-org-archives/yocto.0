@@ -1,90 +1,125 @@
-Return-Path: <hrsourabh011@gmail.com>
+Return-Path: <foss@0leil.net>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EEEA3C2BA4C
-	for <webhook@archiver.kernel.org>; Wed, 26 Jan 2022 07:19:58 +0000 (UTC)
-Subject: Building yocto image for RPi CM4 #raspberrypi
-To: yocto@lists.yoctoproject.org
-From: hrsourabh011@gmail.com
-X-Originating-Location: Sesslach, Bavaria, DE (217.24.55.250)
-X-Originating-Platform: Windows Firefox 91
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BB72DC2BA4C
+	for <webhook@archiver.kernel.org>; Wed, 26 Jan 2022 08:11:49 +0000 (UTC)
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net
+ [217.70.183.199])
+ by mx.groups.io with SMTP id smtpd.web11.10158.1643184708591771909
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 26 Jan 2022 00:11:49 -0800
+Authentication-Results: mx.groups.io;
+ dkim=missing;
+ spf=none, err=permanent DNS error (domain: 0leil.net, ip: 217.70.183.199,
+ mailfrom: foss@0leil.net)
+Received: (Authenticated sender: foss@0leil.net)
+	by mail.gandi.net (Postfix) with ESMTPSA id 2F1F3FF808;
+	Wed, 26 Jan 2022 08:11:45 +0000 (UTC)
+Date: Wed, 26 Jan 2022 09:11:42 +0100
+From: Quentin Schulz <foss@0leil.net>
+To: yocto@lists.yoctoproject.org,
+ Michael Opdenacker <michael.opdenacker@bootlin.com>
+Subject: 
+ =?US-ASCII?Q?Re=3A_=5Byocto=5D_=5BPATCH_yocto-autobuilder-helper=5D_run-d?=
+ =?US-ASCII?Q?ocs-build=3A_fix_checkout_of_releases=2Erst_from_master?=
+In-Reply-To: <20220125164546.846218-1-michael.opdenacker@bootlin.com>
+References: <20220125164546.846218-1-michael.opdenacker@bootlin.com>
+Message-ID: <1C000104-4B0D-49A8-B837-61D3A67ABD3D@0leil.net>
 MIME-Version: 1.0
-Date: Tue, 25 Jan 2022 23:19:58 -0800
-Message-ID: <QnMF.1643181598131429709.jlQx@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="hjK3SAmbynSLhQm3vARF"
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 26 Jan 2022 07:19:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55976
+ <yocto@lists.yoctoproject.org>; Wed, 26 Jan 2022 08:11:49 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55977
 
---hjK3SAmbynSLhQm3vARF
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Hi Michael,
 
-Hello All,
+On January 25, 2022 5:45:46 PM GMT+01:00, Michael Opdenacker <michael=2Eop=
+denacker@bootlin=2Ecom> wrote:
+>A wrong path was given given the working directory=2E
+>
+>Also revert the changes with "git reset --hard" to
+>have a clean state before further branch switches=2E
+>
 
-Advice on working with Yocto and Raspberry Pi CM4 Lite would be helpful.
+One change at a time please =E2=98=BA=EF=B8=8F
 
-I recently got my hands on with CM4 and now I want to build Yocto image wit=
-h u-boot as bootloader. I have few doubts before I start the build.
+>Signed-off-by: Michael Opdenacker <michael=2Eopdenacker@bootlin=2Ecom>
+>---
+> scripts/run-docs-build | 9 ++++++---
+> 1 file changed, 6 insertions(+), 3 deletions(-)
+>
+>diff --git a/scripts/run-docs-build b/scripts/run-docs-build
+>index 5d6d24a=2E=2Ec93b3e6 100755
+>--- a/scripts/run-docs-build
+>+++ b/scripts/run-docs-build
+>@@ -43,11 +43,12 @@ cp -r =2E/_build/final/* $outputdir/bitbake/next
+> # see the latest releases=2E
+> for branch in 1=2E46 1=2E48 1=2E50 1=2E52; do
+>     git checkout $branch
+>-    git checkout master doc/releases=2Erst
+>+    git checkout master releases=2Erst
+>     make clean
+>     make publish
+>     mkdir $outputdir/bitbake/$branch
+>     cp -r =2E/_build/final/* $outputdir/bitbake/$branch
+>+    git reset --hard
 
-* Which machine to use in local.conf file? In the meta-raspberrypi there is=
- no specific machine for CM4 https://github.com/agherzan/meta-raspberrypi/t=
-ree/master/conf/machine. Will the "raspberrypi4-64" and "raspberrypi4" also=
- work for CM4? As per my understanding the Raspberry Pi 4 and CM4 are mostl=
-y the same except for the device tree and drivers. Which device tree will w=
-ork with RPi CM4? Do I need to generate them separately for CM4?
-* Since I have CM4 lite, there is no on board eMMC. I am using custom IO bo=
-ard and it has SD card slot. I can boot from SD card instead. Do I need to =
-set anything specific for CM4 to work in my image recipe or local.conf? Is =
-it same as booting RPi 4 from uSD card?
+This should be done right after the git checkout=2E It's better to ensure =
+what you build is clean that try to ensure the next oneto build has a clean=
+ env=2E Especially since checkouts can dirty the git repo I think (I've had=
+ this issue multiple times when switching between kernel branches far enoug=
+h from one another)=2E
 
-My intention is to use RPi CM4 for software updates using RAUC.
+Also git reset --hard is not enough=2E I use git clean -ffdx instead usual=
+ly=2E Didn't have a problem with this one for a while now=2E
 
-Can anyone please let me about these? This would help me to get started.
+> done
+>=20
+> # only sync bitbake folder for now=2E We need bitbake to be published fi=
+rst
+>@@ -79,11 +80,12 @@ cp -r =2E/_build/final/* $outputdir/next
+> for branch in dunfell gatesgarth hardknott honister; do
+>     cd $ypdocs
+>     git checkout $branch
+>-    git checkout master documentation/releases=2Erst
+>+    git checkout master releases=2Erst
+>     make clean
+>     make publish
+>     mkdir $outputdir/$branch
+>     cp -r =2E/_build/final/* $outputdir/$branch
+>+    git reset --hard
 
-Thanks in advance.
+Ditto=2E
 
-Please let me know if any details are missing.
+> done
+>=20
+> # Yocto Project releases/tags
+>@@ -101,12 +103,13 @@ for tag in $(git tag --list 'yocto-*'); do
+>         if [ "$tag" =3D "yocto-3=2E3" ] || [ "$tag" =3D "yocto-3=2E4" ];=
+ then
+>             git am "${scriptdir}/${tag}/0001-conf-update-for-release=2Ep=
+atch"
+>         fi
+>-        git checkout master documentation/releases=2Erst
+>+        git checkout master releases=2Erst
+>         make clean
+>         make publish
+>         version=3D$(echo $tag | cut -c7-)
+>         mkdir $outputdir/$version
+>         cp -r =2E/_build/final/* $outputdir/$version
+>+        git reset --hard
 
---hjK3SAmbynSLhQm3vARF
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Ditto=2E
 
-Hello All,<br />
-<div class=3D"votecell post-layout--left">
-<div class=3D"js-voting-container d-flex jc-center fd-column ai-stretch gs4=
- fc-black-200" data-post-id=3D"70850859">&nbsp;</div>
-</div>
-<p>Advice on working with Yocto and Raspberry Pi CM4 Lite would be helpful.=
-</p>
-I recently got my hands on with CM4 and now I want to build Yocto image wit=
-h u-boot as bootloader. I have few doubts before I start the build.<br /><b=
-r />
-<ol>
-<li>Which machine to use in local.conf file? In the meta-raspberrypi there =
-is no specific machine for CM4 <a title=3D"meta-raspberrypi" href=3D"https:=
-//github.com/agherzan/meta-raspberrypi/tree/master/conf/machine" target=3D"=
-_blank" rel=3D"noopener">https://github.com/agherzan/meta-raspberrypi/tree/=
-master/conf/machine</a>. Will the "raspberrypi4-64" and "raspberrypi4" also=
- work for CM4? As per my understanding the Raspberry Pi 4 and CM4 are mostl=
-y the same except for the device tree and drivers. Which device tree will w=
-ork with RPi CM4? Do I need to generate them separately for CM4?</li>
-<li>Since I have CM4 lite, there is no on board eMMC. I am using custom IO =
-board and it has SD card slot. I can boot from SD card instead. Do I need t=
-o set anything specific for CM4 to work in my image recipe or local.conf? I=
-s it same as booting RPi 4 from uSD card?</li>
-</ol>
-<br />
-<p>My intention is to use RPi CM4 for software updates using RAUC.</p>
-<p>Can anyone please let me about these? This would help me to get started.=
-</p>
-<p>Thanks in advance.</p>
-<p>Please let me know if any details are missing.</p>
-<br /><br /><br />
+Cheers,
+Quentin
 
---hjK3SAmbynSLhQm3vARF--
+>     fi
+> done
+>=20
 
