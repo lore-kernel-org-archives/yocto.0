@@ -2,47 +2,54 @@ Return-Path: <bluelightning@bluelightning.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 14CE4C5AC75
-	for <webhook@archiver.kernel.org>; Wed, 26 Jan 2022 01:39:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 80ED2C5DF62
+	for <webhook@archiver.kernel.org>; Wed, 26 Jan 2022 01:51:24 +0000 (UTC)
 Received: from mail-61-r20.ipv4.per01.ds.network
  (mail-61-r20.ipv4.per01.ds.network [27.123.24.217])
- by mx.groups.io with SMTP id smtpd.web09.6844.1643161186789516096
+ by mx.groups.io with SMTP id smtpd.web09.6965.1643161882672586055
  for <yocto@lists.yoctoproject.org>;
- Tue, 25 Jan 2022 17:39:48 -0800
+ Tue, 25 Jan 2022 17:51:24 -0800
 Authentication-Results: mx.groups.io;
  dkim=fail reason="no key for verify" header.i=@softec.co.nz header.s=default
- header.b=OJzfXOKt;
+ header.b=FpZOvRO6;
  spf=none, err=permanent DNS error (domain: bluelightning.org,
  ip: 27.123.24.217, mailfrom: bluelightning@bluelightning.org)
 Received: from server-72-r70.ipv4.per01.ds.network (cp-fp06.syd02.ds.network
  [122.201.124.108])
 	by halon-out02.au.ds.network (Halon) with ESMTPS
-	id 6e831997-7e49-11ec-978f-f8bc1204ff90;
-	Wed, 26 Jan 2022 09:43:59 +0800 (AWST)
+	id 0ebad967-7e4b-11ec-978f-f8bc1204ff90;
+	Wed, 26 Jan 2022 09:55:37 +0800 (AWST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=softec.co.nz; s=default; h=Content-Type:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=MVIU3PTC5IuU59nxXbBO/sum7Xkh6s5qbtlhaYwydko=; b=OJzfXOKt6Z43rr/eAdjxFDk/Sc
-	jPrIwokbl3M2Vo6RJXpeRXkFeSgrrfVBAdc7iUCYrYLpV90TAOGntDQmUN2GxIKfHRItsWgodYpnD
-	55MQCTLb1iXgMUeOtwIYty/4ULC4kOYX0/RZ/0RoLNS9t9UzDojjXWw/rTwOHTjN3hLu7gzRM1tgF
-	6KlWbo0tOaN2eOWP+2KMoCSfYvudM0bwA9AOkeMlr5vC+CS8ZctfJtq1MxNfAylKDJFPlobCFrZGY
-	gM2bTseBF4MRbbdJsXiBwlt+7SeBI8rNn8lC3lEyNzsuA6rmCF6kiH8IvLt3QJ4V26mVCj8Va6uFN
-	6YimnOsg==;
-Received: from [151.210.143.188] (port=13396 helo=linc.localnet)
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=oYg3D/ntwYLpH9XnJ+5Gkx3AqBog51+NlfI2rgto/Wg=; b=FpZOvRO6/mqth3sJZ7qx+B4FcS
+	GUP3EbDg2iZqu7WZGP3RTMerF4p1YtpQEWdAtsTfcfUdbigKWWlFDYuqvyNRGVbLVW/gmfb6Xo1yg
+	8oTRD3uJCGrzcPs3Wze7vcHBpNbTOK3AvyrMB107UHoaVy+EGZiKGdkvPthx7P4tviaBy0CgL2Ats
+	ErQDVxQ1jb36q5qR1m+RPqJme8sN7bBBfxM2uU4hW2fKYcIEMDSUdfdzMSWbBgvZrs2JvMsLoD+XS
+	JZBL1HzC70OQyeJNgj3q1fYR7+Ppz+fabQ1VaTEP1XuTvklPwbvF73rJE+tvaMBa3N3hJeK0ubF/q
+	YHuJ9MlQ==;
+Received: from [151.210.143.188] (port=33426 helo=linc.localnet)
 	by cp-fp06.syd02.ds.network with esmtpsa  (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <bluelightning@bluelightning.org>)
-	id 1nCXHg-001OKa-Ir
-	for yocto@lists.yoctoproject.org; Wed, 26 Jan 2022 14:39:40 +1300
+	id 1nCXSw-001VcL-SH; Wed, 26 Jan 2022 14:51:18 +1300
 From: Paul Eggleton <bluelightning@bluelightning.org>
-To: yocto@lists.yoctoproject.org
-Subject: Additional hardening options
-Date: Wed, 26 Jan 2022 14:39:39 +1300
-Message-ID: <3150587.aeNJFYEL58@linc>
+To: Jon Mason <jdmason@kudzu.us>, yocto@lists.yoctoproject.org,
+ Patches and discussions about the oe-core layer
+ <openembedded-core@lists.openembedded.org>,
+ OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>
+Cc: Paul Barker <paul.barker@sancloud.com>
+Subject: Re: [yocto] Inclusive Language Proposal for YP/OE
+Date: Wed, 26 Jan 2022 14:51:18 +1300
+Message-ID: <7338313.EvYhyI6sBW@linc>
+In-Reply-To: <bac12863-a9d7-6fbe-e45b-09cace7dc7fb@sancloud.com>
+References: 
+ <CAPoiz9wL16OTzxNHdw_5-L72GOHkhhM0--WZF7An071cx6sr_A@mail.gmail.com>
+ <bac12863-a9d7-6fbe-e45b-09cace7dc7fb@sancloud.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -61,43 +68,26 @@ X-Source-Dir:
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 26 Jan 2022 01:39:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55972
+ <yocto@lists.yoctoproject.org>; Wed, 26 Jan 2022 01:51:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55973
 
-Hi folks
+On Tuesday, 25 January 2022 21:26:33 NZDT Paul Barker wrote:
+> The layer index may need some modification to handle different layers 
+> having different names for the in-development branch. We could implement 
+> the layer index changes first to support other layers which rename their 
+> master branch.
+> 
+> I'm going to bite the bullet with meta-linux-mainline and rename the 
+> master branch to "dev" this week to see what happens.
 
-I've been looking into a couple of compiler flags for hardening that I think we 
-might want to consider enabling by default in security-flags.inc:
+The layer index does already support this, it's just not exposed (at the time 
+I introduced it - some time ago - I thought it might encourage people to 
+deviate from the release branch names, but in hindsight that was probably not 
+worth worrying about.) So at the moment an admin can set an alternative branch 
+name. It would not be hard to expose it through the UI for layer maintainers 
+though.
 
-
-1) -fstack-clash-protection
-
-This option was introduced to gcc 8.x and provides protection against the 
-stack clash vulnerability:
-
-https://securingsoftware.blogspot.com/2017/12/stack-clash-vulnerability.html
-
-It has been enabled in some Linux distributions already (e.g. Ubuntu, Fedora).
-
-
-2) -z noexecstack (or alternative mitigations)
-
-gcc will enable an executable stack under a few different circumstances - see 
-here for details
-
-https://wiki.gentoo.org/wiki/Hardened/GNU_stack_quickstart
-
-I've written a check that we could add to insane.bbclass that warns/errors on 
-binaries with an executable stack. Does this seem reasonable to have?
-The other possibility is we add -Wl,-z,noexecstack to LDFLAGS and then see 
-what breaks, but unfortunately issues are likely only going to show up when 
-the program crashes at runtime, and also it will stop the aforementioned check 
-from working.
-
-
-Any opinions?
-
-Thanks
+Cheers,
 Paul
 
 
