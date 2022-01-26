@@ -1,141 +1,219 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <rudolf.streif@ibeeto.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B0A5C3526D
-	for <webhook@archiver.kernel.org>; Wed, 26 Jan 2022 16:51:33 +0000 (UTC)
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com
- [209.85.222.43])
- by mx.groups.io with SMTP id smtpd.web12.15046.1643215892693373860
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 39B33C63682
+	for <webhook@archiver.kernel.org>; Wed, 26 Jan 2022 17:21:29 +0000 (UTC)
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com
+ [209.85.215.169])
+ by mx.groups.io with SMTP id smtpd.web08.15702.1643217688236685687
  for <yocto@lists.yoctoproject.org>;
- Wed, 26 Jan 2022 08:51:32 -0800
+ Wed, 26 Jan 2022 09:21:28 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Vrs6JB84;
- spf=pass (domain: gmail.com, ip: 209.85.222.43,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ua1-f43.google.com with SMTP id f24so43837692uab.11
+ dkim=pass header.i=@ibeeto-com.20210112.gappssmtp.com header.s=20210112
+ header.b=swESCARp;
+ spf=neutral (domain: ibeeto.com, ip: 209.85.215.169,
+ mailfrom: rudolf.streif@ibeeto.com)
+Received: by mail-pg1-f169.google.com with SMTP id q75so33985pgq.5
         for <yocto@lists.yoctoproject.org>;
- Wed, 26 Jan 2022 08:51:32 -0800 (PST)
+ Wed, 26 Jan 2022 09:21:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=sVoGa6i5N/gBTDiEdGTuPnswI10ddwp3tamWY7bmmaU=;
-        b=Vrs6JB84GARUcPCLEjd9WUHZTJVgWfdtdrJDJA0tkBTt1u4ghCd0IdQdNU7JlTjxIj
-         tfLf3xf8ZgfVbmKl88lUMwAXQliD0mRsM7mjXyH6SRA0B/uK2CLvbSyyfuBL6Ha0JggW
-         i3cpFJW282kuhPVUIIrxfT4szxJ0qkGilRJT/Yg2WDP2qnAi4miqg27lUKAAG6OVh5C5
-         zLOltA9TFjOS25g056GJ4E6y1z3Omi3C3LRC24ps7PzvOEreqMIgEtq7n7YVtaXnGjxm
-         Z0bAWHe8ZKnDIgU2uwadsEYr7NL6rR3BjA3tcgYpJmbk+nCkD28QLRas/cmoJ6sxmLkP
-         TcpQ==
+        d=ibeeto-com.20210112.gappssmtp.com; s=20210112;
+        h=to:from:autocrypt:subject:message-id:date:user-agent:mime-version;
+        bh=m3r8iLek0tg2IYncLoQGTaCtnVJ2sPYUEnM/zFBhsH0=;
+        b=swESCARpwbGMudKta2YCF8/oBffNfzMzT88zk/nnku+toPBBD+aq9yRazG4IFfp0+L
+         K8f79MZ7HTC2cWZHIst/vt3Guh+r0/+DznFcC5wyH4Q6RjGAp87o/uktyV24CAhlNJ0b
+         /vni8SK+u48P2DkrRvW8xmvQUVYqHk28wO2SHDh9j8AWtd2gXFVWEyyKFc4xIpUeLkmg
+         ZeDkVicL9710G8lWOFiE2l0VROLed75AvTklEbE0sdccW3yRVSckLpc5Gg9LKYl7OLRR
+         US9qwsXvPUG7UL4WS7q8TRQeIU6S7WRsIqVHqFj0aW5WdT1tjQUuNr5UF/PweYqzYxFN
+         xC+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sVoGa6i5N/gBTDiEdGTuPnswI10ddwp3tamWY7bmmaU=;
-        b=SWDCcuDtysb2OvA+hOoyMT1aNkrb4rbRJveYUKvdBNzNWrG9XQ+jnDG/iPKFKPa3uu
-         4nTbYywIbpySjb4QCgeJ6+5NGi89gvqnBOM4y6DrslHTFCM3i4wRPTw7NnwvfEKCG4sG
-         82SxWUhSlGxHiQCDXdjVsd6KPECJlzAN2ofkFhueljxWNJ7Lqv/fY085el6+heOrBgI1
-         0UkalEWVI5prJUJ4HsbTrVG4V4fIFsr3MaEN/o1aX7mlu7tc4xOtv28qVSy4yd41Jjhz
-         Ni7z36e1BbNiHKhrIgDTUNnEG6JhMtT6Cxq/bO+Cdq1Qr2Rk8X8gOi4BPzFgPVUUHZgS
-         yLow==
-X-Gm-Message-State: AOAM532/+uu5Zp2QyIFlEmKJuVNl+yip18UR6EeKjUlRXri4vkuSJMWL
-	5RKeL5X6fgAGpGf75kzx/fc5CYkRljsepmm5whM=
+        h=x-gm-message-state:to:from:autocrypt:subject:message-id:date
+         :user-agent:mime-version;
+        bh=m3r8iLek0tg2IYncLoQGTaCtnVJ2sPYUEnM/zFBhsH0=;
+        b=ybAmcRr1YQjwX785FUeAGR6dUJ/LvczGxkd47WIbQY3mhmvCmaEs1gCJ9H5oK1YeOF
+         rXyELtMVxXpndO0CxjvVzLYQtEHJZ2skdtFZKK27KnqB12V2+5qsfHv2bvvkA1nuta2s
+         HbAxqKHZ5EnggubCIVly62M4LOq3LH4iFyuEtDAxu1XuCPPTo5CoCzBoJUTmrWjB5ykM
+         K8xY2Emae4+l4LSFnjEZerEFhgQ2K1e+q7aZfcPBadww+0WPOq//XDNgkA2z53i4Lbj6
+         r8Xybg5GgwRMaRI7OhVTmJM057YG78JiwnRSvqx+cANJ7ZhMglZyTaQCj9003Nb2HgNh
+         Ruzg==
+X-Gm-Message-State: AOAM531qHFmwiqNmIZ9x05e3PmC7DDefLVly55dOug5qFIifsvmi/R84
+	Ghn7khvQ25g+OU0PLEIvLPBLZMfdBlKqJg==
 X-Google-Smtp-Source: 
- ABdhPJwItIC9nwevG/w45XdLOoTE0MwtPObs8K7hKOrQKPvLnvBXN4h19fxiCQmTtXfBPT1/qdRPAfCfAWANwMkaUvo=
-X-Received: by 2002:a67:a401:: with SMTP id n1mr5821584vse.38.1643215891805;
- Wed, 26 Jan 2022 08:51:31 -0800 (PST)
+ ABdhPJxuG5vn1Y56WIA4hODGFYQHzXetULGEMGRbRE9+YdfyZYlU4mvDS7Mtl4EEjKkTJMbsDb2oNQ==
+X-Received: by 2002:a63:b00c:: with SMTP id h12mr19469878pgf.80.1643217686841;
+        Wed, 26 Jan 2022 09:21:26 -0800 (PST)
+Received: from ?IPv6:2600:8801:8d2a:a304:93dc:834e:6555:ccaa?
+ ([2600:8801:8d2a:a304:93dc:834e:6555:ccaa])
+        by smtp.gmail.com with ESMTPSA id
+ y128sm2879629pfb.75.2022.01.26.09.21.16
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jan 2022 09:21:18 -0800 (PST)
+To: Yocto <yocto@lists.yoctoproject.org>
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+Autocrypt: addr=rudolf.streif@ibeeto.com; keydata=
+ xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvD
+ Qpe+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ
+ /Qymy+7Cbh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969
+ cQD/S9LNndnK5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM
+ 3sPiHrF+Y2HTdK7j7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEB
+ AAHNKlJ1ZG9sZiBKIFN0cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgA
+ IQUCWFAUBAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf0
+ 3GsVMG6C5QOLaPx6rOgj5qexCH3rfYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBk
+ txioE384/51QTIfCmW8ZG5X0cMC5d38LFvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xl
+ lpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR84ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+w
+ Xl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x5LZhUhGYoqbYwNy9imoBkUAZkbbViNOtX
+ zaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjVLmLHvzsBNBFhQFAQBCADXoLKCuF48
+ 5eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTqk3fb9+Ao6C6IliC9ZRXyAVLD/
+ RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIFpPBpxHRrZnDdEd5IKsy+z
+ w6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJSHWMBh0OMKDeBik5wl
+ svtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mCBCZ+IKhBQR36v
+ tUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIAAkFAlhQFAQC
+ GwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LYUpLNj
+ s4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9MbyE
+ fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8Tz
+ Yf9m2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/Nlouvce
+ P41tsC5daxZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/AN
+ ROZj4g==
+Subject: linux-firmware_20211216
+Message-ID: <46c5cd6e-0285-9f19-49b5-6ed76cb61a98@ibeeto.com>
+Date: Wed, 26 Jan 2022 09:21:12 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-References: 
- <CAD_Sx13pi-4HoXvwJSbL851xC_W-Zoyh65qmz4u8+qTwBsSoSQ@mail.gmail.com>
-In-Reply-To: 
- <CAD_Sx13pi-4HoXvwJSbL851xC_W-Zoyh65qmz4u8+qTwBsSoSQ@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 26 Jan 2022 17:51:20 +0100
-Message-ID: 
- <CANNYZj-c3Xq9vLsQRrJqjNPJ0Z899a494PmgsN+fx5=cgruE0g@mail.gmail.com>
-Subject: Re: [yocto] build yocto 2.6 on Ubuntu 20.04
-To: Jacob Avraham <jacob.avraham@auto-talks.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000085379e05d67f0368"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="bWYhrrBrOlufDRHRokD3cWFq0DGnJLIG9"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 26 Jan 2022 16:51:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55981
+ <yocto@lists.yoctoproject.org>; Wed, 26 Jan 2022 17:21:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55982
 
---00000000000085379e05d67f0368
-Content-Type: text/plain; charset="UTF-8"
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--bWYhrrBrOlufDRHRokD3cWFq0DGnJLIG9
+Content-Type: multipart/mixed; boundary="HYX85mYPwPjSoAOCc6pGX94m4VLzu2Fu3";
+ protected-headers="v1"
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+To: Yocto <yocto@lists.yoctoproject.org>
+Message-ID: <46c5cd6e-0285-9f19-49b5-6ed76cb61a98@ibeeto.com>
+Subject: linux-firmware_20211216
 
-I think the best way out for you is to set up a container with a supported
-older distribution. Usually you need an older gcc version from the host
-machine, so the container will have that.
+--HYX85mYPwPjSoAOCc6pGX94m4VLzu2Fu3
+Content-Type: multipart/mixed;
+ boundary="------------5C3442308F729CCF31D35DB0"
+Content-Language: en-US
 
-Alex
-
-On Wed, 26 Jan 2022 at 17:43, Jacob Avraham <jacob.avraham@auto-talks.com>
-wrote:
-
-> Hi,
-> Has anyone tried to build yocto 2.6 on Ubuntu 20.04?
-> I know it's not supported, but it's a major task for me to upgrade to
-> yocto 3.x.
-> I tried it myself and it fails on building qemu-native.
-> I wonder if anyone worked around this.
->
-> Thanks,
-> Jacob
->
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#55980):
-> https://lists.yoctoproject.org/g/yocto/message/55980
-> Mute This Topic: https://lists.yoctoproject.org/mt/88700838/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
->
-
---00000000000085379e05d67f0368
-Content-Type: text/html; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------5C3442308F729CCF31D35DB0
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>I think the best way out for you is to set up a conta=
-iner with a supported older distribution. Usually you need an older gcc ver=
-sion from the host machine, so the container will have that.</div><div><br>=
-</div><div>Alex<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"l=
-tr" class=3D"gmail_attr">On Wed, 26 Jan 2022 at 17:43, Jacob Avraham &lt;<a=
- href=3D"mailto:jacob.avraham@auto-talks.com">jacob.avraham@auto-talks.com<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
-div dir=3D"ltr">Hi,<div>Has anyone tried to build yocto 2.6 on Ubuntu 20.04=
-?</div><div>I know it&#39;s not supported, but it&#39;s a major task for me=
- to upgrade=C2=A0to yocto 3.x.</div><div>I tried=C2=A0it myself and it fail=
-s on building qemu-native.</div><div>I wonder if anyone worked around this.=
-</div><div><br></div><div>Thanks,</div><div>Jacob<br clear=3D"all"><div><br=
-></div><div dir=3D"ltr"><div dir=3D"ltr"><p style=3D"font-family:Roboto,Rob=
-otoDraft,Helvetica,Arial,sans-serif;font-size:12.8px"><span style=3D"color:=
-rgb(17,85,204);font-size:10pt"></span></p></div></div></div></div>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#55980): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/55980" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/55980</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/88700838/1686=
-489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/88700838/1686489</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.k=
-anavin@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
+I got a question about the linux-firmware-bcm4373 package. The link
 
---00000000000085379e05d67f0368--
+/lib/firmware/brcm/brcmfmac4373-sdio.clm_blob ->=20
+=2E./cypress/cyfmac4373-sdio.clm_blob
+
+is packaged into linux-firmware and not into linux-firmware-bcm4373.
+
+It's essentially not included in
+
+FILES:${PN}-bcm4373 =3D=20
+"${nonarch_base_libdir}/firmware/brcm/brcmfmac4373-sdio.bin \
+ =C2=A0 ${nonarch_base_libdir}/firmware/brcm/brcmfmac4373.bin \
+ =C2=A0 ${nonarch_base_libdir}/firmware/cypress/cyfmac4373-sdio.bin \
+"
+
+which means it is automatically packaged as a "leftover" into=20
+linux-firmware.
+
+Is there a reason for that or is it simply an oversight?
+
+Thanks,
+Rudi
+
+--=20
+Rudolf J Streif
+CEO/CTO ibeeto
++1.855.442.3386 x700
+
+
+--------------5C3442308F729CCF31D35DB0
+Content-Type: application/pgp-keys;
+ name="OpenPGP_0x8D8CA82927339B75.asc"
+Content-Transfer-Encoding: quoted-printable
+Content-Description: OpenPGP public key
+Content-Disposition: attachment;
+ filename="OpenPGP_0x8D8CA82927339B75.asc"
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvDQ=
+pe+
+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ/Qymy=
++7C
+bh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969cQD/S9LNn=
+dnK
+5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM3sPiHrF+Y2HTd=
+K7j
+7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEBAAHNKlJ1ZG9sZiBKI=
+FN0
+cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgAIQUCWFAUBAIbAwULCQgHA=
+gYV
+CAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf03GsVMG6C5QOLaPx6rOgj5qexC=
+H3r
+fYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBktxioE384/51QTIfCmW8ZG5X0cMC5d=
+38L
+Fvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xllpeOfKQD3wn99w5dzXYhvajXCWwAjjpWr=
+R84
+ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+wXl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq=
+4x5
+LZhUhGYoqbYwNy9imoBkUAZkbbViNOtXzaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBh=
+jVL
+mLHvzsBNBFhQFAQBCADXoLKCuF485eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOm=
+Tqk
+3fb9+Ao6C6IliC9ZRXyAVLD/RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwR=
+IFp
+PBpxHRrZnDdEd5IKsy+zw6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDsp=
+JSH
+WMBh0OMKDeBik5wlsvtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/=
+mCB
+CZ+IKhBQR36vtUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIA=
+AkF
+AlhQFAQCGwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2=
+LYU
+pLNjs4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9M=
+byE
+fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8TzY=
+f9m
+2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/NlouvceP41ts=
+C5d
+axZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/ANROZj4g=3D=
+=3D
+=3DLHwf
+-----END PGP PUBLIC KEY BLOCK-----
+
+--------------5C3442308F729CCF31D35DB0--
+
+--HYX85mYPwPjSoAOCc6pGX94m4VLzu2Fu3--
+
+--bWYhrrBrOlufDRHRokD3cWFq0DGnJLIG9
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsB5BAABCAAjFiEEVg4uKeQrdCNuC2kVjYyoKSczm3UFAmHxgwgFAwAAAAAACgkQjYyoKSczm3UF
+GAf/fRjY4OCPhcPY+6oBY6cXeCGpz/PFeajx+pIAmLdtZ700ex2APby6C1vZfxk879ogwMjApY22
+At7g+dtfqyN27HlD7hlQCtg9uK8ng3e7YO01nEhiZDs9Z1d2N/eYyILD7WYwmle1ut/uhECdoyE6
+ddrL4b62sxdUDmxGRPwh747aCfJIsfoIf63gIf1oHyd+ljU5E+tukRYECoaOd3YLPu5r6ttAUZ93
+E/8PuAmnXTPKyoHr3JZ5R8VnrQOm6qcmA8CEhcXQyHFFvwR3OLI4UMeHT6BOaifdJgzfrgH+QOMV
+wvtH+1A/f5thMgtW5vApr0T6E+xDRYMia3Ld7CODMQ==
+=BfZR
+-----END PGP SIGNATURE-----
+
+--bWYhrrBrOlufDRHRokD3cWFq0DGnJLIG9--
 
