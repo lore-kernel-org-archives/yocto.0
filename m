@@ -1,114 +1,108 @@
-Return-Path: <mikko.rapeli@bmw.de>
+Return-Path: <pvanberlo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 88E86C2BA4C
-	for <webhook@archiver.kernel.org>; Wed, 26 Jan 2022 08:37:25 +0000 (UTC)
-Received: from esa9.hc324-48.eu.iphmx.com (esa9.hc324-48.eu.iphmx.com
- [207.54.69.27])
- by mx.groups.io with SMTP id smtpd.web11.10309.1643186229858083849
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A2AAC28CF5
+	for <webhook@archiver.kernel.org>; Wed, 26 Jan 2022 16:17:23 +0000 (UTC)
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com
+ [209.85.167.46])
+ by mx.groups.io with SMTP id smtpd.web08.14729.1643213841297229333
  for <yocto@lists.yoctoproject.org>;
- Wed, 26 Jan 2022 00:37:11 -0800
+ Wed, 26 Jan 2022 08:17:21 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@bmw.de header.s=mailing1
- header.b=e5yOdJFe;
- spf=pass (domain: bmw.de, ip: 207.54.69.27,
- mailfrom: prvs=0189a33c6=mikko.rapeli@bmw.de)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=oua0nRvt;
+ spf=pass (domain: gmail.com, ip: 209.85.167.46,
+ mailfrom: pvanberlo@gmail.com)
+Received: by mail-lf1-f46.google.com with SMTP id z19so27276994lfq.13
+        for <yocto@lists.yoctoproject.org>;
+ Wed, 26 Jan 2022 08:17:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
-  t=1643186229; x=1674722229;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=DqzCE9IImMW0w1KglhsBJ/NtQ6M9i1atR5AWqUST5Nw=;
-  b=e5yOdJFeasWPeDMcn2LMEMCCP2xcHDPeznnyPJkk75zqZo63i63Tn9xW
-   tb2u45yz7eE2PvzaLW86GwrwdLIpZDTshS1hksTAT5i89Z0OxXnrngP7E
-   so/OAj3OLpSTNQ2arDvhShs7AYLJKLlzV8spCaafoKXPqHNZzz2276K5B
-   4=;
-IronPort-SDR: 
- lSq4lmTFYvZa3r0051eFk8/rZuu9x9wLeOwKM7oHJCyeUuu6xGPAAk7juYf7FZUyCba/ruBqDt
- H5ZZi9bT5tHH214enEeu0lqNuVS2qkgO0a7Y78X+sJJcDj0aTE+jHRl8LTZmJcIwirHh4E8Kgx
- Jb2F5JMLD5A2JL/2UCqeC8NscWmFGAED50+ImTDV2ljdcf1bRFkZUBxsTRrnOiWjHFFJUsS9cO
- eXnysvU7GrKQN6DSNB+NWqJ59Mcgi6BYKgA1t3/j6f20Lz8hYfUpJJDT6wTGbRakeuOJ7e/4t8
- KPmod2qvB4NNILQAebxTc3D4
-Received: from esagw2.bmwgroup.com (HELO esagw2.muc) ([160.46.252.38]) by
- esa9.hc324-48.eu.iphmx.com with ESMTP/TLS; 26 Jan 2022 09:37:06 +0100
-Received: from esabb1.muc ([160.50.100.31])  by esagw2.muc with ESMTP/TLS;
- 26 Jan 2022 09:37:06 +0100
-Received: from smucm33m.bmwgroup.net (HELO smucm33m.europe.bmw.corp)
- ([160.46.167.69])
- by esabb1.muc with ESMTP/TLS; 26 Jan 2022 09:37:06 +0100
-Received: from smucm33l.europe.bmw.corp (160.46.167.68) by
- smucm33m.europe.bmw.corp
- (160.46.167.69) with Microsoft SMTP Server (TLS;
- Wed, 26 Jan 2022 09:37:06 +0100
-Received: from smucm33l.europe.bmw.corp ([160.46.167.68]) by
- smucm33l.europe.bmw.corp ([160.46.167.68]) with mapi id 15.00.1497.026; Wed,
- 26 Jan 2022 09:37:05 +0100
-From: <Mikko.Rapeli@bmw.de>
-To: <ross@burtonini.com>
-CC: <jdmason@kudzu.us>, <yocto@lists.yoctoproject.org>,
-	<openembedded-core@lists.openembedded.org>,
-	<openembedded-devel@lists.openembedded.org>
-Subject: Re: [oe] Inclusive Language Proposal for YP/OE
-Thread-Topic: [oe] Inclusive Language Proposal for YP/OE
-Thread-Index: AQHYET4FFBq/gdxaUUW1QUjJcQYS2qxz3ogAgAEOAgA=
-Date: Wed, 26 Jan 2022 08:37:05 +0000
-Message-ID: <YfEIMKst5Mfp8tPN@korppu>
-References: 
- <CAPoiz9wL16OTzxNHdw_5-L72GOHkhhM0--WZF7An071cx6sr_A@mail.gmail.com>
- <CAAnfSTu1eneGztK0Kmzcv5Qq89kodoCrgDWzF6JQ7eFStD6Uzg@mail.gmail.com>
-In-Reply-To: 
- <CAAnfSTu1eneGztK0Kmzcv5Qq89kodoCrgDWzF6JQ7eFStD6Uzg@mail.gmail.com>
-Accept-Language: en-US, de-DE
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <0BB41D08772EC74C8595E65B5CFA7023@bmwmail.corp>
-Content-Transfer-Encoding: quoted-printable
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=Akf0j/Zt45dTFuFR1m2761XuuYcC3ZFGlQ7Si0SUGkY=;
+        b=oua0nRvtDGRdFATdHOKKE71N5M7W/piAAxUsP+KuRPQfPbpMFS5igS6HbnE7VNDx0w
+         1t+0e2GLAtCs9IKR2fx2k+ewq13cqM0VaGDVXfOtemBNufw28bCut/PVNrnnpnf2I4Op
+         nx8h6pPlWJa/d+4IZ1/tgeASDCze03aPGKvW1Uo4XD2oGWdNbwcrA2IGt59vkmNsy/E4
+         gtxkrUyzd289GsdEcwZkW37y08C/oAXFCcgb5oIpqbEwECcqrf0Sdv5ucOBVbykYv3V8
+         /o9cx8BVENclEk+Ek0+x5E77sjs6At2kZQfcD0bKlKmhjgM7UUSkxFeY1G6gZh1waEzD
+         AA4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=Akf0j/Zt45dTFuFR1m2761XuuYcC3ZFGlQ7Si0SUGkY=;
+        b=Ad2zLcMD/WDaElGNdRS06D39jkvO09odeFqCT6BDhm0BMw8mURCqccrkEoVFWd00kz
+         Eed9WfsAZ3pff4kFm8mJgjLR0uyfd0g9c60UWLUOaJEYR/vScasRBmjwEykhTwjl7rr3
+         tO6rmajUbkmGqDpIVxUCj/uexe2YvaFWnxtxpxBfnGb3ZF0GNn0ifsRRP4el1tgire8Z
+         k0Br8AbB0pgMBH1z4k1HnLrlmmqZqybErZH5+5ObLowqrz2cE9A6K5hx6nAO5oZmiWZq
+         X1By1P6ioeZRGzxtsCtFZLFfPcKF1oLJf5CZYR/MD8J7P+idyNe9BRbOydE0HEgZ2op/
+         0NKQ==
+X-Gm-Message-State: AOAM532S8YTFpt+nXp4SOaK1rAzCs2+e7oKUT3uF+P4Q1Tex+zDx38qO
+	rKFOt0PXyGK6F3Vbtt5inudUPShkULQTFU8g2E5Sc1p94IdR0w==
+X-Google-Smtp-Source: 
+ ABdhPJyoDXTIUoAQK3yk9kDH4o+2t0jhubuqz9Q+qF41PcrVG8SXiYXu6kFemtTpo3X1Ya38nMWkLXlc0TxPhBT3PKs=
+X-Received: by 2002:a05:6512:ba0:: with SMTP id
+ b32mr11221208lfv.122.1643213839266;
+ Wed, 26 Jan 2022 08:17:19 -0800 (PST)
 MIME-Version: 1.0
+From: Paul van Berlo <pvanberlo@gmail.com>
+Date: Wed, 26 Jan 2022 17:17:08 +0100
+Message-ID: 
+ <CAJxFkmoN9caLE2QkWhniQf8pMWNGFEa=suHMWFqESUi=pvMCYQ@mail.gmail.com>
+Subject: Preferred provide base-utils issue
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000002df6e805d67e8974"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 26 Jan 2022 08:37:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55978
+ <yocto@lists.yoctoproject.org>; Wed, 26 Jan 2022 16:17:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55979
 
-Hi,
+--0000000000002df6e805d67e8974
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Jan 25, 2022 at 04:30:40PM +0000, Ross Burton wrote:
-> On Mon, 24 Jan 2022 at 16:18, Jon Mason <jdmason@kudzu.us> wrote:
-> > CVE_CHECK_PN_WHITELIST -> CVE_CHECK_SKIPRECIPE
-> > CVE_CHECK_WHITELIST -> CVE_CHECK_IGNORECVE
->=20
-> This is the only one that sticks out to me.  I think it needs another
-> _, SKIP_RECIPE and IGNORE_CVE.
+Hello,
 
-Please don't include CVE twice in the variable name, that's was annoying an=
-d just
-got used to the CVE_CHECK_WHITELIST one. CVE_CHECK_IGNORE would do.
+so I'm a bit at a loss. I admit, I've not yet been using Yocto for a long
+time. I'm trying to use base-utils as provided by
+packagegroup-core-base-utils to have a more full featured set of base utils
+instead of busybox. It all builds just fine, however, whatever I do (using
+dunfell), it ends up with a kernel panic during boot.
 
-Cheers,
+I added the following to local.conf on a clean clone of poky:
 
--Mikko
+INIT_MANAGER="systemd"
 
-> Other than that, +1.
->=20
-> Will we have a bit of logic to detect the obsolete names being set and
-> emit warnings/errors?
->=20
-> Ross
+IMAGE_FSTYPES="live"
 
->=20
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#95071): https://lists.openembedded.org/g/openembedded=
--devel/message/95071
-> Mute This Topic: https://lists.openembedded.org/mt/88650129/3616751
-> Group Owner: openembedded-devel+owner@lists.openembedded.org
-> Unsubscribe: https://lists.openembedded.org/g/openembedded-devel/unsub [m=
-ikko.rapeli@bmw.de]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->=20
+PREFERRED_PROVIDER_base-utils = "packagegroup-core-base-utils"
+VIRTUAL-RUNTIME_base-utils = "packagegroup-core-base-utils"
+VIRTUAL-RUNTIME_base-utils-hwclock = "util-linux-hwclock"
+VIRTUAL-RUNTIME_base-utils-syslog = ""
+
+Does anyone have any idea how to get this to work?
+
+Regards,
+
+Paul van Berlo
+
+--0000000000002df6e805d67e8974
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello,<div><br></div><div>so I&#39;m a bit at a loss. I ad=
+mit, I&#39;ve not yet been using Yocto for a long time. I&#39;m trying to u=
+se base-utils as provided by packagegroup-core-base-utils to have a more fu=
+ll featured set of base utils instead of busybox. It all builds just fine, =
+however, whatever I do (using dunfell), it ends up with a kernel panic duri=
+ng boot.</div><div><br></div><div>I added the following to local.conf on a =
+clean clone of poky:</div><div><br></div><div>INIT_MANAGER=3D&quot;systemd&=
+quot;<br><br>IMAGE_FSTYPES=3D&quot;live&quot;<br><br>PREFERRED_PROVIDER_bas=
+e-utils =3D &quot;packagegroup-core-base-utils&quot;<br>VIRTUAL-RUNTIME_bas=
+e-utils =3D &quot;packagegroup-core-base-utils&quot;<br>VIRTUAL-RUNTIME_bas=
+e-utils-hwclock =3D &quot;util-linux-hwclock&quot;<br>VIRTUAL-RUNTIME_base-=
+utils-syslog =3D &quot;&quot;<br></div><div><br></div><div>Does anyone have=
+ any idea how to get this to work?</div><div><br></div><div>Regards,</div><=
+div><br></div><div>Paul van Berlo</div></div>
+
+--0000000000002df6e805d67e8974--
 
