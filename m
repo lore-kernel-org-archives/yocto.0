@@ -1,125 +1,114 @@
-Return-Path: <foss@0leil.net>
+Return-Path: <mikko.rapeli@bmw.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BB72DC2BA4C
-	for <webhook@archiver.kernel.org>; Wed, 26 Jan 2022 08:11:49 +0000 (UTC)
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net
- [217.70.183.199])
- by mx.groups.io with SMTP id smtpd.web11.10158.1643184708591771909
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 88E86C2BA4C
+	for <webhook@archiver.kernel.org>; Wed, 26 Jan 2022 08:37:25 +0000 (UTC)
+Received: from esa9.hc324-48.eu.iphmx.com (esa9.hc324-48.eu.iphmx.com
+ [207.54.69.27])
+ by mx.groups.io with SMTP id smtpd.web11.10309.1643186229858083849
  for <yocto@lists.yoctoproject.org>;
- Wed, 26 Jan 2022 00:11:49 -0800
+ Wed, 26 Jan 2022 00:37:11 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=none, err=permanent DNS error (domain: 0leil.net, ip: 217.70.183.199,
- mailfrom: foss@0leil.net)
-Received: (Authenticated sender: foss@0leil.net)
-	by mail.gandi.net (Postfix) with ESMTPSA id 2F1F3FF808;
-	Wed, 26 Jan 2022 08:11:45 +0000 (UTC)
-Date: Wed, 26 Jan 2022 09:11:42 +0100
-From: Quentin Schulz <foss@0leil.net>
-To: yocto@lists.yoctoproject.org,
- Michael Opdenacker <michael.opdenacker@bootlin.com>
-Subject: 
- =?US-ASCII?Q?Re=3A_=5Byocto=5D_=5BPATCH_yocto-autobuilder-helper=5D_run-d?=
- =?US-ASCII?Q?ocs-build=3A_fix_checkout_of_releases=2Erst_from_master?=
-In-Reply-To: <20220125164546.846218-1-michael.opdenacker@bootlin.com>
-References: <20220125164546.846218-1-michael.opdenacker@bootlin.com>
-Message-ID: <1C000104-4B0D-49A8-B837-61D3A67ABD3D@0leil.net>
-MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
+ dkim=fail reason="signature has expired" header.i=@bmw.de header.s=mailing1
+ header.b=e5yOdJFe;
+ spf=pass (domain: bmw.de, ip: 207.54.69.27,
+ mailfrom: prvs=0189a33c6=mikko.rapeli@bmw.de)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
+  t=1643186229; x=1674722229;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=DqzCE9IImMW0w1KglhsBJ/NtQ6M9i1atR5AWqUST5Nw=;
+  b=e5yOdJFeasWPeDMcn2LMEMCCP2xcHDPeznnyPJkk75zqZo63i63Tn9xW
+   tb2u45yz7eE2PvzaLW86GwrwdLIpZDTshS1hksTAT5i89Z0OxXnrngP7E
+   so/OAj3OLpSTNQ2arDvhShs7AYLJKLlzV8spCaafoKXPqHNZzz2276K5B
+   4=;
+IronPort-SDR: 
+ lSq4lmTFYvZa3r0051eFk8/rZuu9x9wLeOwKM7oHJCyeUuu6xGPAAk7juYf7FZUyCba/ruBqDt
+ H5ZZi9bT5tHH214enEeu0lqNuVS2qkgO0a7Y78X+sJJcDj0aTE+jHRl8LTZmJcIwirHh4E8Kgx
+ Jb2F5JMLD5A2JL/2UCqeC8NscWmFGAED50+ImTDV2ljdcf1bRFkZUBxsTRrnOiWjHFFJUsS9cO
+ eXnysvU7GrKQN6DSNB+NWqJ59Mcgi6BYKgA1t3/j6f20Lz8hYfUpJJDT6wTGbRakeuOJ7e/4t8
+ KPmod2qvB4NNILQAebxTc3D4
+Received: from esagw2.bmwgroup.com (HELO esagw2.muc) ([160.46.252.38]) by
+ esa9.hc324-48.eu.iphmx.com with ESMTP/TLS; 26 Jan 2022 09:37:06 +0100
+Received: from esabb1.muc ([160.50.100.31])  by esagw2.muc with ESMTP/TLS;
+ 26 Jan 2022 09:37:06 +0100
+Received: from smucm33m.bmwgroup.net (HELO smucm33m.europe.bmw.corp)
+ ([160.46.167.69])
+ by esabb1.muc with ESMTP/TLS; 26 Jan 2022 09:37:06 +0100
+Received: from smucm33l.europe.bmw.corp (160.46.167.68) by
+ smucm33m.europe.bmw.corp
+ (160.46.167.69) with Microsoft SMTP Server (TLS;
+ Wed, 26 Jan 2022 09:37:06 +0100
+Received: from smucm33l.europe.bmw.corp ([160.46.167.68]) by
+ smucm33l.europe.bmw.corp ([160.46.167.68]) with mapi id 15.00.1497.026; Wed,
+ 26 Jan 2022 09:37:05 +0100
+From: <Mikko.Rapeli@bmw.de>
+To: <ross@burtonini.com>
+CC: <jdmason@kudzu.us>, <yocto@lists.yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>,
+	<openembedded-devel@lists.openembedded.org>
+Subject: Re: [oe] Inclusive Language Proposal for YP/OE
+Thread-Topic: [oe] Inclusive Language Proposal for YP/OE
+Thread-Index: AQHYET4FFBq/gdxaUUW1QUjJcQYS2qxz3ogAgAEOAgA=
+Date: Wed, 26 Jan 2022 08:37:05 +0000
+Message-ID: <YfEIMKst5Mfp8tPN@korppu>
+References: 
+ <CAPoiz9wL16OTzxNHdw_5-L72GOHkhhM0--WZF7An071cx6sr_A@mail.gmail.com>
+ <CAAnfSTu1eneGztK0Kmzcv5Qq89kodoCrgDWzF6JQ7eFStD6Uzg@mail.gmail.com>
+In-Reply-To: 
+ <CAAnfSTu1eneGztK0Kmzcv5Qq89kodoCrgDWzF6JQ7eFStD6Uzg@mail.gmail.com>
+Accept-Language: en-US, de-DE
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <0BB41D08772EC74C8595E65B5CFA7023@bmwmail.corp>
 Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 26 Jan 2022 08:11:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55977
+ <yocto@lists.yoctoproject.org>; Wed, 26 Jan 2022 08:37:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/55978
 
-Hi Michael,
+Hi,
 
-On January 25, 2022 5:45:46 PM GMT+01:00, Michael Opdenacker <michael=2Eop=
-denacker@bootlin=2Ecom> wrote:
->A wrong path was given given the working directory=2E
->
->Also revert the changes with "git reset --hard" to
->have a clean state before further branch switches=2E
->
-
-One change at a time please =E2=98=BA=EF=B8=8F
-
->Signed-off-by: Michael Opdenacker <michael=2Eopdenacker@bootlin=2Ecom>
->---
-> scripts/run-docs-build | 9 ++++++---
-> 1 file changed, 6 insertions(+), 3 deletions(-)
->
->diff --git a/scripts/run-docs-build b/scripts/run-docs-build
->index 5d6d24a=2E=2Ec93b3e6 100755
->--- a/scripts/run-docs-build
->+++ b/scripts/run-docs-build
->@@ -43,11 +43,12 @@ cp -r =2E/_build/final/* $outputdir/bitbake/next
-> # see the latest releases=2E
-> for branch in 1=2E46 1=2E48 1=2E50 1=2E52; do
->     git checkout $branch
->-    git checkout master doc/releases=2Erst
->+    git checkout master releases=2Erst
->     make clean
->     make publish
->     mkdir $outputdir/bitbake/$branch
->     cp -r =2E/_build/final/* $outputdir/bitbake/$branch
->+    git reset --hard
-
-This should be done right after the git checkout=2E It's better to ensure =
-what you build is clean that try to ensure the next oneto build has a clean=
- env=2E Especially since checkouts can dirty the git repo I think (I've had=
- this issue multiple times when switching between kernel branches far enoug=
-h from one another)=2E
-
-Also git reset --hard is not enough=2E I use git clean -ffdx instead usual=
-ly=2E Didn't have a problem with this one for a while now=2E
-
-> done
+On Tue, Jan 25, 2022 at 04:30:40PM +0000, Ross Burton wrote:
+> On Mon, 24 Jan 2022 at 16:18, Jon Mason <jdmason@kudzu.us> wrote:
+> > CVE_CHECK_PN_WHITELIST -> CVE_CHECK_SKIPRECIPE
+> > CVE_CHECK_WHITELIST -> CVE_CHECK_IGNORECVE
 >=20
-> # only sync bitbake folder for now=2E We need bitbake to be published fi=
-rst
->@@ -79,11 +80,12 @@ cp -r =2E/_build/final/* $outputdir/next
-> for branch in dunfell gatesgarth hardknott honister; do
->     cd $ypdocs
->     git checkout $branch
->-    git checkout master documentation/releases=2Erst
->+    git checkout master releases=2Erst
->     make clean
->     make publish
->     mkdir $outputdir/$branch
->     cp -r =2E/_build/final/* $outputdir/$branch
->+    git reset --hard
+> This is the only one that sticks out to me.  I think it needs another
+> _, SKIP_RECIPE and IGNORE_CVE.
 
-Ditto=2E
-
-> done
->=20
-> # Yocto Project releases/tags
->@@ -101,12 +103,13 @@ for tag in $(git tag --list 'yocto-*'); do
->         if [ "$tag" =3D "yocto-3=2E3" ] || [ "$tag" =3D "yocto-3=2E4" ];=
- then
->             git am "${scriptdir}/${tag}/0001-conf-update-for-release=2Ep=
-atch"
->         fi
->-        git checkout master documentation/releases=2Erst
->+        git checkout master releases=2Erst
->         make clean
->         make publish
->         version=3D$(echo $tag | cut -c7-)
->         mkdir $outputdir/$version
->         cp -r =2E/_build/final/* $outputdir/$version
->+        git reset --hard
-
-Ditto=2E
+Please don't include CVE twice in the variable name, that's was annoying an=
+d just
+got used to the CVE_CHECK_WHITELIST one. CVE_CHECK_IGNORE would do.
 
 Cheers,
-Quentin
 
->     fi
-> done
+-Mikko
+
+> Other than that, +1.
+>=20
+> Will we have a bit of logic to detect the obsolete names being set and
+> emit warnings/errors?
+>=20
+> Ross
+
+>=20
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#95071): https://lists.openembedded.org/g/openembedded=
+-devel/message/95071
+> Mute This Topic: https://lists.openembedded.org/mt/88650129/3616751
+> Group Owner: openembedded-devel+owner@lists.openembedded.org
+> Unsubscribe: https://lists.openembedded.org/g/openembedded-devel/unsub [m=
+ikko.rapeli@bmw.de]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 >=20
 
