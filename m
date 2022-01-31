@@ -1,148 +1,148 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <hrsourabh011@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CD5D8C433EF
-	for <webhook@archiver.kernel.org>; Mon, 31 Jan 2022 09:58:35 +0000 (UTC)
-Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com
- [209.85.217.52])
- by mx.groups.io with SMTP id smtpd.web11.30372.1643623114353429410
- for <yocto@lists.yoctoproject.org>;
- Mon, 31 Jan 2022 01:58:34 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=qnyy0Crk;
- spf=pass (domain: gmail.com, ip: 209.85.217.52,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vs1-f52.google.com with SMTP id g23so11074988vsf.7
-        for <yocto@lists.yoctoproject.org>;
- Mon, 31 Jan 2022 01:58:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DhgNbcM885jAbZ6MS8TfbXsd43yipBZtO3Tg7Ydm8+A=;
-        b=qnyy0CrkUq2coJsYfWV5ol+SKanohW1bCGE8V1Oq01r7L88ll6GoaYKvaR+EGsfoKa
-         jWABOa/MeHCtmP3/Y49yipcHQ+2HL4nUT/2tG4b5Wn20Da1ztcVzMWeJCuc0cm1AOJc5
-         4/y2qrpqVAIFigzqUHNHOcFKshuPF3kZw/0fSDOt4DI/2GVeKUHtz4KtmQUdqYAbbOb4
-         Q0fHInCEslD2AxFfiqBv9+Ml3ule6OHLa6EPiNeIH2BTnp/ww/NI1pOifdN+k6fatfWu
-         Z8dvIoSfUYz1yZaf18l0DJ5ewmIhP/3SC9eAnQbr+1pi+mAwDrh6eol3JR7584pNWQ/r
-         fbUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DhgNbcM885jAbZ6MS8TfbXsd43yipBZtO3Tg7Ydm8+A=;
-        b=rKv+P5ma55H/Nsek/6575eO2kCHOJZBna83N0BWZbqsPzkzaGnbTF603giNxKonxPA
-         q/jxpnHyeaT4oCGCPW+ToYo7/tuq7XqA0AkFkBeQsox3eDZex+9osmfr6JLg/dfzHnUd
-         hJapIQnmIqEE4qMrs8s7bGM7u0vC7SfURAxm3wPNCMMt4FbPBlz0+PbdKHMiXtzULC4g
-         URU7Rei3n4EPa/AJNM1CCKkdKxtIzA11jw4Z7hx1SpEzW4Xv/KvhA4/jEkh2TKD7j586
-         pdYngZyulhqMhGiIg4bWfETr2o1XOUbVJt9OH488E3ah48UfPkGPL1ZxVyM+nVHcZePc
-         bdGA==
-X-Gm-Message-State: AOAM533RU3L0gQi8po3BFMMCVpovlrFEedV41f04xgixbxKpUPYiIW2/
-	VcWtrmR0FU6EizFQhqE3rS+8OtEnfp39yGROqPY=
-X-Google-Smtp-Source: 
- ABdhPJzKi35LjRumn3nuDLElqqFbkqLwyGxcTBCE7v6bV3QAz/Cq58XD+hWm1Kl5xdlMK2XevWIAfMU7VkaQsHmkz6c=
-X-Received: by 2002:a05:6102:22d1:: with SMTP id
- a17mr6244236vsh.42.1643623113469;
- Mon, 31 Jan 2022 01:58:33 -0800 (PST)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B84CC433F5
+	for <webhook@archiver.kernel.org>; Mon, 31 Jan 2022 10:54:35 +0000 (UTC)
+Subject: Re: Fetch private gitlab repo using ssh with Yocto recipe #bitbake
+To: yocto@lists.yoctoproject.org
+From: "Sourabh Hegde" <hrsourabh011@gmail.com>
+X-Originating-Location: Sesslach, Bavaria, DE (217.24.55.250)
+X-Originating-Platform: Windows Firefox 91
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
+Date: Mon, 31 Jan 2022 02:54:30 -0800
 References: 
- <CANNYZj_dUpx8Yhh+GDR7v17N9=71x__LKw9ippy4Di+bSUe7iw@mail.gmail.com>
- <10591.1643588560451021723@lists.yoctoproject.org>
-In-Reply-To: <10591.1643588560451021723@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Mon, 31 Jan 2022 10:58:22 +0100
-Message-ID: 
- <CANNYZj8WwbdLu9w6Y+kbOLVPfHLYR5baQ+DXZm_ES+-pi9vKTQ@mail.gmail.com>
-Subject: Re: [yocto] How to prevent auto start of matchbox-terminal at boot?
-To: dbeal@cardinalpeak.com
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000d2b33c05d6ddd3ba"
+ <CAMKF1sp3rh9WFF6xinUcYocxui4d3qm4MshYWaK1xXW_y3jbVw@mail.gmail.com>
+In-Reply-To: 
+ <CAMKF1sp3rh9WFF6xinUcYocxui4d3qm4MshYWaK1xXW_y3jbVw@mail.gmail.com>
+Message-ID: <8028.1643626470338608561@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="m68qrMEpqr3Pr3Wgh6lA"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 31 Jan 2022 09:58:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56027
+ <yocto@lists.yoctoproject.org>; Mon, 31 Jan 2022 10:54:35 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56028
 
---000000000000d2b33c05d6ddd3ba
-Content-Type: text/plain; charset="UTF-8"
-
-The logs reveal that 'packagegroup-core-x11 packagegroup-core-x11-base
-packagegroup-core-x11-xserver' are all installed. x11-base pulls in
-recipes-graphics/mini-x-session/mini-x-session_0.1.bb which starts a
-minimal session with a terminal. You should either drop x11-base, or tweak
-mini-x-session script to do what you want.
-
-Alex
-
-On Mon, 31 Jan 2022 at 01:22, Dave Beal via lists.yoctoproject.org <dbeal=
-cardinalpeak.com@lists.yoctoproject.org> wrote:
-
-> Thanks, Alex.  The log file is attached.
->
-> By the way, I'd be happy with a solution that involves changing a file on
-> the target system after the Yocto build is complete.  The fix doesn't need
-> to be in the Yocto build.
->
-> = Dave
->
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#56025):
-> https://lists.yoctoproject.org/g/yocto/message/56025
-> Mute This Topic: https://lists.yoctoproject.org/mt/88794356/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
->
-
---000000000000d2b33c05d6ddd3ba
-Content-Type: text/html; charset="UTF-8"
+--m68qrMEpqr3Pr3Wgh6lA
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>The logs reveal that &#39;packagegroup-core-x11 packa=
-gegroup-core-x11-base packagegroup-core-x11-xserver&#39; are all installed.=
- x11-base pulls in recipes-graphics/mini-x-session/<a href=3D"http://mini-x=
--session_0.1.bb">mini-x-session_0.1.bb</a> which starts a minimal session w=
-ith a terminal. You should either drop x11-base, or tweak mini-x-session sc=
-ript to do what you want.</div><div><br></div><div>Alex<br></div></div><br>=
-<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, 31=
- Jan 2022 at 01:22, Dave Beal via <a href=3D"http://lists.yoctoproject.org"=
->lists.yoctoproject.org</a> &lt;dbeal=3D<a href=3D"mailto:cardinalpeak.com@=
-lists.yoctoproject.org">cardinalpeak.com@lists.yoctoproject.org</a>&gt; wro=
-te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
-0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Thanks, Alex=
-.=C2=A0 The log file is attached.
-<div>=C2=A0</div>
-<div>By the way, I&#39;d be happy with a solution that involves changing a =
-file on the target system after the Yocto build is complete.=C2=A0 The fix =
-doesn&#39;t need to be in the Yocto build.<font color=3D"#888888"><font col=
-or=3D"#888888"><br></font></font>
-<div>=C2=A0</div>
-<div>=3D Dave</div>
-<div>=C2=A0</div>
-</div>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#56025): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/56025" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/56025</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/88794356/1686=
-489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/88794356/1686489</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.k=
-anavin@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
+Hello @Nicolas @Erik @Khem,
 
---000000000000d2b33c05d6ddd3ba--
+Update from my side:
+
+After following some discussion from other posts, I added "config" file.
+
+~/.ssh/config:
+
+Host git.example.com
+HostName git.example.com
+User git
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/id_ed25519.pub
+# LogLevel DEBUG3
+
+Then I did "eval `ssh-agent -s`"
+
+Then doing "ssh-add ~/.ssh/id_ed25519.pub" results in:
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WARNING: UNPROTECTED PRIV=
+ATE KEY FILE!=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0644 for '/root/.ssh/id_ed25519.pub' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+
+Whereas the permissions are set as:
+
+ls -l -a ~/.ssh
+
+-rw-r--r-- 1 root root=C2=A0 157 Jan 31 10:48 config
+-rw------- 1 root root=C2=A0 464 Jan 20 15:26 id_ed25519
+-rw-r--r-- 1 root root=C2=A0 109 Jan 20 15:26 id_ed25519.pub
+-rw-r--r-- 1 root root=C2=A0 888 Jan 26 08:43 known_hosts
+
+"ssh-agent" is running
+
+ssh-agent
+SSH_AUTH_SOCK=3D/tmp/ssh-lcft54A4nriC/agent.2833; export SSH_AUTH_SOCK;
+SSH_AGENT_PID=3D2834; export SSH_AGENT_PID;
+echo Agent pid 2834;
+
+After doing these changes, when I try to "ssh -v git.example.com" to test t=
+he connection before running bitbake, I get
+
+OpenSSH_8.2p1 Ubuntu-4ubuntu0.4, OpenSSL 1.1.1f=C2=A0 31 Mar 2020
+debug1: Reading configuration data /root/.ssh/config
+debug1: /root/.ssh/config line 1: Applying options for git.example.com
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: /etc/ssh/ssh_config line 19: include /etc/ssh/ssh_config.d/*.conf m=
+atched no files
+debug1: /etc/ssh/ssh_config line 21: Applying options for *
+debug1: Connecting to git.example.com [116.203.241.xxx] port 22.
+debug1: connect to address 116.203.241.xxx port 22: Connection refused
+ssh: connect to host git.example.com port 22: Connection refused
+
+I don't understand what is the issue here.
+
+@Nicolas Can you please let me know where and how to run below commands? Do=
+ I need to run them every time before fetching from gitlab?
+-v $SSH_AUTH_SOCK:/ssh.socket \
+-e SSH_AUTH_SOCK=3D/ssh.socket \
+
+And also I already have "known_hosts" file with matching entries for key/ag=
+ent pair.
+
+Can you please let me know how to make this working?
+
+Your help will be much appreciated.
+
+Thanks in advance.
+
+--m68qrMEpqr3Pr3Wgh6lA
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hello @Nicolas @Erik @Khem,<br /><br />Update from my side:<br /><br />A=
+fter following some discussion from other posts, I added "config" file.<br =
+/><br />~/.ssh/config:<br /><br />Host git.example.com<br />HostName git.ex=
+ample.com<br />User git<br />PreferredAuthentications publickey<br />Identi=
+tyFile ~/.ssh/id_ed25519.pub<br /># LogLevel DEBUG3<br /><br />Then I did "=
+eval `ssh-agent -s`"<br /><br />Then doing "ssh-add ~/.ssh/id_ed25519.pub" =
+results in:<br /><br />@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=
+@@@@@@@<br />@&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WARNING: UNP=
+ROTECTED PRIVATE KEY FILE!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp; @<br />@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@<br=
+ />Permissions 0644 for '/root/.ssh/id_ed25519.pub' are too open.<br />It i=
+s required that your private key files are NOT accessible by others.<br />T=
+his private key will be ignored.<br /><br />Whereas the permissions are set=
+ as:<br /><br />ls -l -a ~/.ssh<br /><br />-rw-r--r-- 1 root root&nbsp; 157=
+ Jan 31 10:48 config<br />-rw------- 1 root root&nbsp; 464 Jan 20 15:26 id_=
+ed25519<br />-rw-r--r-- 1 root root&nbsp; 109 Jan 20 15:26 id_ed25519.pub<b=
+r />-rw-r--r-- 1 root root&nbsp; 888 Jan 26 08:43 known_hosts<br /><br />"s=
+sh-agent" is running<br /><br />ssh-agent<br />SSH_AUTH_SOCK=3D/tmp/ssh-lcf=
+t54A4nriC/agent.2833; export SSH_AUTH_SOCK;<br />SSH_AGENT_PID=3D2834; expo=
+rt SSH_AGENT_PID;<br />echo Agent pid 2834;<br /><br />After doing these ch=
+anges, when I try to "ssh -v git.example.com" to test the connection before=
+ running bitbake, I get<br /><br />OpenSSH_8.2p1 Ubuntu-4ubuntu0.4, OpenSSL=
+ 1.1.1f&nbsp; 31 Mar 2020<br />debug1: Reading configuration data /root/.ss=
+h/config<br />debug1: /root/.ssh/config line 1: Applying options for git.ex=
+ample.com<br />debug1: Reading configuration data /etc/ssh/ssh_config<br />=
+debug1: /etc/ssh/ssh_config line 19: include /etc/ssh/ssh_config.d/*.conf m=
+atched no files<br />debug1: /etc/ssh/ssh_config line 21: Applying options =
+for *<br />debug1: Connecting to git.example.com [116.203.241.xxx] port 22.=
+<br />debug1: connect to address 116.203.241.xxx port 22: Connection refuse=
+d<br />ssh: connect to host git.example.com port 22: Connection refused<br =
+/><br />I don't understand what is the issue here. <br /><br />@Nicolas Can=
+ you please let me know where and how to run below commands? Do I need to r=
+un them every time before fetching from gitlab?<br />&nbsp; -v $SSH_AUTH_SO=
+CK:/ssh.socket \<br />&nbsp; -e SSH_AUTH_SOCK=3D/ssh.socket \<br /><br />An=
+d also I already have "known_hosts" file with matching entries for key/agen=
+t pair.<br /><br />Can you please let me know how to make this working?<br =
+/><br />Your help will be much appreciated.<br /><br />Thanks in advance.<b=
+r /><br /></p>
+
+--m68qrMEpqr3Pr3Wgh6lA--
 
