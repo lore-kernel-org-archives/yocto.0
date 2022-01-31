@@ -1,148 +1,212 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <jay.shen.teoh@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DEB13C433F5
-	for <webhook@archiver.kernel.org>; Sun, 30 Jan 2022 21:12:55 +0000 (UTC)
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com
- [209.85.221.169])
- by mx.groups.io with SMTP id smtpd.web09.24146.1643577174685552105
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D507C433EF
+	for <webhook@archiver.kernel.org>; Mon, 31 Jan 2022 05:17:40 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by mx.groups.io with SMTP id smtpd.web12.28439.1643606254672136150
  for <yocto@lists.yoctoproject.org>;
- Sun, 30 Jan 2022 13:12:54 -0800
+ Sun, 30 Jan 2022 21:17:35 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=qfqUZyeg;
- spf=pass (domain: gmail.com, ip: 209.85.221.169,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vk1-f169.google.com with SMTP id v192so7130418vkv.4
-        for <yocto@lists.yoctoproject.org>;
- Sun, 30 Jan 2022 13:12:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tcK8MxIK5Qg3YXgOC9II8RW52Wsw0q3qMN8ltRlBGxM=;
-        b=qfqUZyegR9ZUWKTWiUjursF1kQJWIW/YjtL/0FoUgeDxcjKfgylSchEbhNVGoL83CA
-         kbOjATWbxdHjfJosNF4WK/p4WMReBRT+4vG5zI7i3bUCyftBp9uVVfIr4qkixonW+9ZN
-         cgZHL5MC7ICyrtkKNA8u0pZGwXfn6CRV4qkSebs3YL9GtGldRetNUSvuOs/5k//O/6yG
-         0LYAt/Vv9075cOQrYwyZb6YxgWztIYz2is+0GR9aeaIIMvjilF3C85B0FAwx3j6BZ7Al
-         xN8aUgP9x0m/Clvr3bjzX7fuYMS5xunrhvgupVMgdr3lyzlmDgGlfP0bNL2igg4w8F8A
-         CeCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tcK8MxIK5Qg3YXgOC9II8RW52Wsw0q3qMN8ltRlBGxM=;
-        b=dTYj1Lq2G6RMKghXY2I8VixsumHnvWzjesxrtwXuiFZ13aZ0m9BDcWgrAc4M3ZsvxT
-         HfDuBFpNlbVxvPQWSUPuvFf9KmuFwCYqVzL0qb/GUwhbWa2V+WBWXOtI2GbvXOJQWjhP
-         6JU8+uc50wqlZ1DMCPBkoSz3+VxtAwRNNKxnllAt1j3LWssPc+O8GomunmcoEIENPaqK
-         ie7GNBj4fxn5/29u8Wde9EC0oYDizqmvRtbQelKb9j1kNNjrFTfM6spKZPzGjlHIEyiP
-         PZnRUxRzhoQe7tu4ORPyINjlOgAkWNpnx73/cmBEHCOh0fbH04QNrRZ7DO01E1mqXp0X
-         Z8aQ==
-X-Gm-Message-State: AOAM533HpFOwnRd9FM8uRaCjPgMdp4Q9ckQF/k9+w9jp3d6DEUgKxb6Z
-	2D2y85pnOFesyBrODWRtUAdP5sWUsB1RzMuFM+k=
-X-Google-Smtp-Source: 
- ABdhPJxOzKG4Xt3ZeME06T4hnjRsDca1rgLGd/NpvlCBaQTt2RdyOgSoH7Qlxf61RCCBYDIZqO00l1ZRSIO08NAm9AE=
-X-Received: by 2002:a1f:3117:: with SMTP id x23mr7545793vkx.1.1643577173816;
- Sun, 30 Jan 2022 13:12:53 -0800 (PST)
-MIME-Version: 1.0
-References: 
- <CAHHBb0ePAqBWKP9eH_Ueo=TmNKti4RZOoaeLN6wvxTV67veVtA@mail.gmail.com>
-In-Reply-To: 
- <CAHHBb0ePAqBWKP9eH_Ueo=TmNKti4RZOoaeLN6wvxTV67veVtA@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Sun, 30 Jan 2022 22:12:42 +0100
+ dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel
+ header.b=LCvDoOB8;
+ spf=pass (domain: intel.com, ip: 134.134.136.31,
+ mailfrom: jay.shen.teoh@intel.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1643606254; x=1675142254;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   content-transfer-encoding:mime-version;
+  bh=BDgtFpGhoUlPqXckVvCnoUhl8mHBUxMsLTge40EN6l0=;
+  b=LCvDoOB8PBH5jCJsavNUTfbqS+OhM6YqXHYI7wY8QYg8yJBiXojtWNZu
+   i/gqCVRFj8NcjQANOI4O30rdlesmRzGZg/Zksaaqn9sDHySTOMjSPJnGL
+   ydCIJma6ZzvEMDtFVw4OZBfSCP7vIQ/gIdtB47c99BpFZCt02klRL5W5U
+   qRGklPzjOiyJ51S8P6iIMJo68LrwiltxitFrRoa+5JeRPhjwg4CG4fwJS
+   VirxsbNgAyoFfMhhlumaoFxEy2bzPwGio4tNTKSay9lyy8PSCP6lNlJ9L
+   +PmcJAuJCOvGBlIEBl+S+WZNaohBjc7H9RBvnp6Nx46Z7R+YvGRb1C4fC
+   A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10243"; a="308131909"
+X-IronPort-AV: E=Sophos;i="5.88,330,1635231600";
+   d="scan'208";a="308131909"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2022 21:17:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,330,1635231600";
+   d="scan'208";a="626264186"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+  by fmsmga002.fm.intel.com with ESMTP; 30 Jan 2022 21:17:33 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Sun, 30 Jan 2022 21:17:32 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20 via Frontend Transport; Sun, 30 Jan 2022 21:17:32 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.102)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.20; Sun, 30 Jan 2022 21:17:32 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=i8mHf72LkMs1lQpKNEUIjEOzsfSQA2UVwCUf0GuHeZeA6SqVU+ceMFDXAM+o+rSMPvJnxZ7HBr0p4I8pz0AOwbELBZ+AskPTOMy3aYLBshikEyrrlD3t77peqNyDww7Tk0U+c5F7Wltp/1WF79PF672G2a0J3KG3moRC7PYnxxL3qgbTUaoN6Ey+ZfdksaP+sMlCBstgUkrnENNU9JR1VXP1rr86s6yhHUjFuIVZC23Pzttg5GNCLL6ZXmQP4gQm6CKtK5pl4zmTBi0qAsFQZYtCeNQYvDjmhR3hpBW7SkKgSUh/HcxRnAvUcZ0Q60/4Dqab2Sqb6ZKZAvNtZS/lYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BDgtFpGhoUlPqXckVvCnoUhl8mHBUxMsLTge40EN6l0=;
+ b=GECG1hGaqEGh1sxxlzDTRZgaJwrxgUGQqULrAQKde+2fsbI9c40vB5UzDWfX2+d+sfh5A8FKsFpWXAZNMe0WdaXjXlCzj2XHmbYjyTBxDGTzUKOzydRZ/j38z9LnqVeoTaOlOoxQZqxwm1cr8t8KL8OSYhbpmQZi/ekRAkFKD2XAMXxp6IsQ2iZwjM3Z8HCAvgwRmzTTjAkZ7i7q6UYpif8DyPpW+AzBHA6Qjt5h55+TBhQZtS6hcERUr3lgd1ugj9msY4e52suIXQFgfM9jTusFM6e3WYRgFj5M9Kpz8QYljBfh9n/uMRdu/9r0XQa8eVn+5E+xvh2ShWQPQ0RyhQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Received: from DM5PR1101MB2348.namprd11.prod.outlook.com (2603:10b6:3:a8::16)
+ by DM6PR11MB2890.namprd11.prod.outlook.com (2603:10b6:5:63::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.15; Mon, 31 Jan
+ 2022 05:17:29 +0000
+Received: from DM5PR1101MB2348.namprd11.prod.outlook.com
+ ([fe80::3caa:2b5d:2d52:8643]) by DM5PR1101MB2348.namprd11.prod.outlook.com
+ ([fe80::3caa:2b5d:2d52:8643%4]) with mapi id 15.20.4930.021; Mon, 31 Jan 2022
+ 05:17:29 +0000
+From: "Teoh, Jay Shen" <jay.shen.teoh@intel.com>
+To: "qa-build-notification@lists.yoctoproject.org"
+	<qa-build-notification@lists.yoctoproject.org>,
+	"<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>, OE-core
+	<openembedded-core@lists.openembedded.org>
+Subject: RE: [qa-build-notification] QA notification for completed autobuilder
+ build (yocto-3.5_M2.rc6)
+Thread-Topic: [qa-build-notification] QA notification for completed
+ autobuilder build (yocto-3.5_M2.rc6)
+Thread-Index: AQHYEch2e6RecNA5vUiP2obGKCfqiqx8n2Mw
+Date: Mon, 31 Jan 2022 05:17:29 +0000
 Message-ID: 
- <CANNYZj_dUpx8Yhh+GDR7v17N9=71x__LKw9ippy4Di+bSUe7iw@mail.gmail.com>
-Subject: Re: [yocto] How to prevent auto start of matchbox-terminal at boot?
-To: dbeal@cardinalpeak.com
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000009b38a705d6d3218a"
+ <DM5PR1101MB2348D70922D36032E150FEB0BB259@DM5PR1101MB2348.namprd11.prod.outlook.com>
+References: 
+ <ba4c5ac88e9fb5f69bdfda0144f8f79fbd64aaf0.camel@linuxfoundation.org>
+In-Reply-To: 
+ <ba4c5ac88e9fb5f69bdfda0144f8f79fbd64aaf0.camel@linuxfoundation.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.6.200.16
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9c2f5a78-9adc-4ade-41bd-08d9e478fa4c
+x-ms-traffictypediagnostic: DM6PR11MB2890:EE_
+x-microsoft-antispam-prvs: 
+ <DM6PR11MB2890CEF34DD59E3DA5B9F938BB259@DM6PR11MB2890.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ LJ0U8d9vfcXGnU/xuJ+IX/24PHABRwU7kfNGuGS2CMKOcq/6ysNrom/ZwaV4UXhzOas4PeL6h/oN1pWKvMaiicb5t/ozPc+l5wzeWmtONE73mBPPZlqyyGWb14TBmPmAVpXdchof0sCyv3mfViPtmr+Cb89t07F8pmBMFYSFYc7wOyZ4ZoT3AbldVosoW/+i/2ufh2fDeAB5GUMTpN+hpjKvYyLzDtzUzgFmt7ZxITTz95ZVFgI5CfK9PRMIUb4IItZ1XeMzbeboLVIHUXbTH3DCqmVSja/u2WY/5yWXmO7uUnCisJdut8HTQ48lQWzprgqLLGMH3tD1QHOLp8Pp4EQ6RTv+feM8hMQmwjfZnOjr2wB1ZRZHl9jYwvpPphYQAPa52HLZ+9E2ZTcPzAYH5MxI/z2/bCKAHWBAFe0+KmwNubfRy7r/9N+vDXPeK8V9RrZtoIWVud6PdnPt/2ZlXrGbxLFGZMJqPk4Zm4ZW4+7uwb0KYLXOpjRm/fZ4koxuVpMpxmxUGQc1jO81ec1AbdIiGmvAvRVuYdUhi49pE0uMOmL5AoPl67UtgtA4oLPOaC75Yq4E4a/LkymGLhwxCyHNeNy5Pcwc9ArhQrb5iSpbvV/d00fjmHR5+VZTe0bexzgdLNNBipp/fvHXWizlQ6cDbm6M/SOEbG6pGvjlpQ3yjG7cUUDaWZjOpeG6Q/5sUBq7OwHS+9Sqda/cxZaukJ8GnuwhZafFDEVKLO+gRxWE0YMDgfBoqaFrg7y2Iy/rc4lJLDHlOZo8bImxuPHXbeApVDQc9g0V8nekp/F2ekc5bI2bqMQ1wq/sWIKDDnct+MQ/BjHPigi9BRVyBUSCz61Xs48ErdM5tfrl7GptB2I=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR1101MB2348.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(26005)(55016003)(186003)(82960400001)(122000001)(38100700002)(2906002)(15650500001)(5660300002)(66946007)(76116006)(64756008)(66446008)(66476007)(66556008)(110136005)(966005)(55236004)(53546011)(38070700005)(508600001)(9686003)(83380400001)(7696005)(6506007)(71200400001)(8676002)(86362001)(316002)(52536014)(8936002)(33656002)(491001)(20210929001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?Q3BoTHlJMWkzenJtOTlHVmwyLzBkelE1OGVQdEFoUXdwdkMzbUM5a3hYWkhm?=
+ =?utf-8?B?cCtDaEllLzZBaFJ2aldLWTBlYUZBanltdldqekhSY2VJSzF6ZmR2eDhBampT?=
+ =?utf-8?B?UUEwNEVFVEFaRzFXMm5GYW5FbkJGQ0ZzMHpSb1hLeWVCUExTQk1tQ1dTdUFR?=
+ =?utf-8?B?bHUxTHMzZVltOHNHV0w2MFk2NE4wOXV3dXZydjlZQ1V2ZGV0QlNnQnp6ZEdp?=
+ =?utf-8?B?ZU1Lc0VRdzViWGt2UXlVOU1LS0FlZUNSeU93c2p5K090SmluYUJBNDhURG9G?=
+ =?utf-8?B?TGNra0JCRkNvSTNsQTZmYjRHb2U5S0krOVRzWERJWnByVk1qSWl2L0FzbENB?=
+ =?utf-8?B?eEFKOFhIdVVSQWh2UEZaQ04wVjZDUUg5dWxwYWROTWRyYkcxZUNoN0hWTjJB?=
+ =?utf-8?B?bzJHV3JqTjFIVWxqeElIbzhtbTF6R1hjelJidXFYSTYyNFBiT0kwVWkzSFkw?=
+ =?utf-8?B?M21kVU9oYnRXWUFWdk1iaTVVRFZ6bDVHQW5BWW43MVVwWkpnS0tHL21jNnps?=
+ =?utf-8?B?K3FJdnRaRmJPU1ZDZXZESFRlMm9TWmp6YnZyT0RDWTVVZjZ5cGZhcDNPNERk?=
+ =?utf-8?B?UVRsc29lQXllWHpIZXB1azRrd1NySHJXU0dLeDM4aURhQWRwRDFJMDA1MUlu?=
+ =?utf-8?B?VGxUU3FGbU9hcjczTHNubXdCWHpwUHdtWnlGY0xFcXVLRWx0VDA1WHd6Y2M5?=
+ =?utf-8?B?K2Z0YVpmR1dNa3ZXU2pUT0gyTThRRU8xMEd5TktkMC9BZ0NsUVpISDFUSlRC?=
+ =?utf-8?B?QlZhTENxWTJ2ckoyajRTMkw0RVoyOXZPUkQ1M3FOck1TekcxWEc3UjdkTmQ2?=
+ =?utf-8?B?djBpYml4djgxWi84a05VK2MwNVdEbktjSldYeFdBVjVBa3FuL1pBTDFpMmpD?=
+ =?utf-8?B?MmVtVzB2YktDZEVMTXRJaGRDTkowS0lRUzR1ekFMZk8reFMwUnM4dmh6bDNE?=
+ =?utf-8?B?Tm9xTFZUOXBNY1FvNjJ1bU9zV3RuajNYNWNoOFMvODM1emlLZmowS3FZZlho?=
+ =?utf-8?B?SEVMUzdvNGpUekFCcnlSZDQ3Njhra2ZNMDFkcGtyQlptT2U0a295Z1N5MnJI?=
+ =?utf-8?B?UHI3TUxZc2xOTmlqaWVVcFRYc3A3YmFPcGx2NWhDajZyTFJoV1ZJVlhscmRm?=
+ =?utf-8?B?dnhwdXBicGI0NHVIeHR1cXVKTjZ6bERINGhBR0NUbGxaSjBObDNPc1YrcTJN?=
+ =?utf-8?B?d1VlUTk2RVVnV1NsYmJTeXFNWXgyUnFFZ1B1Z1VYZTYvR1NzSGQ3RVU3RDQ2?=
+ =?utf-8?B?K1Rvbkl4MFlRamlOTjdqK2FMN1Q4SGJFNXBubXNaa1JlQ0VHUVNEYS9QaGRy?=
+ =?utf-8?B?bUw3MGEvR3RRY2ZmRVlMZmQvSDlhYXNKYXNSZUdkSzhnSERXcDN5NTlWWXlo?=
+ =?utf-8?B?OUtlM0QzY0FOdTJEaWJoamlxU2d5N0QvK0VsN1hncXhiNWtEZXlnVERETXFz?=
+ =?utf-8?B?UUgrSVI0M0hKQndOQlRicktLd1hqVzZJZEFDcmE0WThnWmZrcFRkNldXdHZU?=
+ =?utf-8?B?NmZIak84UGhFK2piNldLU2E0R3RNQTJCNVg1Y2ZoamVQWDhZY1IvOFpYck5o?=
+ =?utf-8?B?UHMrb1IzZ3lDRFVOSDFxdHRnVm5uR2NOZ0w2ZTlvbmtSNTVGeGVHY1FJS09J?=
+ =?utf-8?B?YWZGREVheVQ5K1N5MUltMWVvMDhsREtySzlSS0tJTk1NVzFwTzRxWEdHY0pi?=
+ =?utf-8?B?VGlwV1VYdlRLQ0xjRFduNVZjOHd4K2hldmJPUGlrZk1IQ2x2WGdvb244SmVP?=
+ =?utf-8?B?Sko4UlJNWWRveEVVVkh4V0dETE1vVU9EV1VxVEROM2VUeXA5djlrQ2FIOUdR?=
+ =?utf-8?B?Tm5MdC81U2twbHczdGhTZGx2VzU3Mi9ES0tWWDljK29raFhDajJscldZQW1W?=
+ =?utf-8?B?RzBxZUtBZi9NT3QrRDlqOW1OeTJEVENoZVNtTzF4aDV5ME00YXhjNm4zTnlF?=
+ =?utf-8?B?U1BQdlJIYlJXVEJ0aWVuSFNGNE5iU2x2ZDhQQ1hTZ0hNSmx2alBTRnJSN2Qy?=
+ =?utf-8?B?UmtGWGo1NWNlQ1gwQUlvTWI1RGJvOGxaY05telBFa3BnMUtuSGZxcnZLL0l5?=
+ =?utf-8?B?dUdXS09nTVJxKzc0bERFNlhlNWhwOW5EQUo0S3RWeTdTYVR4ZEVya2JFNjlz?=
+ =?utf-8?B?SHA1ejhvWUdiZk8zL2YwQnYveW0xWkkvSFEvYUdXblpwQzNXaFNFcTRnTGVi?=
+ =?utf-8?B?OVE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: 
+ DM5PR1101MB2348.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 9c2f5a78-9adc-4ade-41bd-08d9e478fa4c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jan 2022 05:17:29.4114
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 
+ 3cE4f1ERie+6AENoQkET+VuS3XbktgHGp07x7ozhQFgR6o+MpVTvgKqCRze7avPwrWVCMLXFNCPSQrB7hH5v3w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2890
+X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 30 Jan 2022 21:12:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56024
+ <yocto@lists.yoctoproject.org>; Mon, 31 Jan 2022 05:17:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56026
 
---0000000000009b38a705d6d3218a
-Content-Type: text/plain; charset="UTF-8"
-
-Please share the log.do_rootfs for your image, otherwise it's difficult to
-say why the terminal ends up being there and gets autostarted.
-
-Alex
-
-On Sun, 30 Jan 2022 at 22:01, Dave Beal via lists.yoctoproject.org <dbeal=
-cardinalpeak.com@lists.yoctoproject.org> wrote:
-
-> Hello Yocto Community -
->
-> I am using Yocto to build a core-image-minimal image for Intel hardware.
-> When the system boots, it automatically starts a matchbox-terminal as
-> root.  This is a huge security hole for this embedded system product,
-> because anyone who plugs in a keyboard and monitor has access to this
-> terminal.  I've spent about two days trying to figure out how to start X
-> without this terminal appearing.  I assume there's a config file somewhere
-> indicating that this terminal should start automatically, but I haven't
-> been able to find it.  Any suggestions?  Thanks!
->
-> = Dave Beal
->    Cardinal Peak, LLC
->    Colorado, USA
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#56023):
-> https://lists.yoctoproject.org/g/yocto/message/56023
-> Mute This Topic: https://lists.yoctoproject.org/mt/88794356/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
->
-
---0000000000009b38a705d6d3218a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Please share the log.do_rootfs for your image, otherw=
-ise it&#39;s difficult to say why the terminal ends up being there and gets=
- autostarted.</div><div><br></div><div>Alex<br></div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, 30 Jan 2022 =
-at 22:01, Dave Beal via <a href=3D"http://lists.yoctoproject.org">lists.yoc=
-toproject.org</a> &lt;dbeal=3D<a href=3D"mailto:cardinalpeak.com@lists.yoct=
-oproject.org">cardinalpeak.com@lists.yoctoproject.org</a>&gt; wrote:<br></d=
-iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
-er-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hello=
- Yocto Community -<div><br></div><div>I am using Yocto to build a core-imag=
-e-minimal image for Intel hardware.=C2=A0 When the system boots, it automat=
-ically starts a matchbox-terminal as root.=C2=A0 This is a huge security ho=
-le for this embedded=C2=A0system product, because anyone who plugs=C2=A0in =
-a keyboard and monitor has access to this terminal.=C2=A0 I&#39;ve spent ab=
-out two days trying to figure out how to start X without this terminal appe=
-aring.=C2=A0 I assume there&#39;s a config file somewhere indicating that t=
-his terminal should start automatically, but I haven&#39;t been able to fin=
-d it.=C2=A0 Any suggestions?=C2=A0 Thanks!</div><div><br></div><div>=3D Dav=
-e Beal</div><div>=C2=A0 =C2=A0Cardinal Peak, LLC</div><div>=C2=A0 =C2=A0Col=
-orado, USA</div></div>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#56023): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/56023" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/56023</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/88794356/1686=
-489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/88794356/1686489</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.k=
-anavin@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
-
---0000000000009b38a705d6d3218a--
+SGkgYWxsLA0KDQpUaGlzIGlzIHRoZSBmdWxsIHJlcG9ydCBmb3IgeW9jdG8tMy41X00yLnJjNjog
+IA0KaHR0cHM6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9jZ2l0L2NnaXQuY2dpL3lvY3RvLXRlc3Ry
+ZXN1bHRzLWNvbnRyaWIvdHJlZS8/aD1pbnRlbC15b2N0by10ZXN0cmVzdWx0cw0KDQo9PT09PT09
+IFN1bW1hcnkgPT09PT09PT0NCk5vIGhpZ2ggbWlsZXN0b25lIGRlZmVjdHMuIA0KDQpuZXcgaXNz
+dWUgZm91bmQgDQoNCkJ1ZyAxNDcwOCAtIFszLjUgTTJdIEZhaWxlZCB0byBib290IHVwIG9uIE5G
+UyB3aXRoIHN5c3RlbWQgIA0KICAgDQo9PT09PT09IEJ1Z3MgPT09PT09PT0NCmh0dHBzOi8vYnVn
+emlsbGEueW9jdG9wcm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTQ3MDgNCg0KVGhhbmtzLA0K
+SmF5DQoNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBxYS1idWlsZC1u
+b3RpZmljYXRpb25AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyA8cWEtYnVpbGQtDQo+IG5vdGlmaWNh
+dGlvbkBsaXN0cy55b2N0b3Byb2plY3Qub3JnPiBPbiBCZWhhbGYgT2YgUmljaGFyZCBQdXJkaWUN
+Cj4gU2VudDogVHVlc2RheSwgMjUgSmFudWFyeSwgMjAyMiA0OjQ5IFBNDQo+IFRvOiA8eW9jdG9A
+bGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gPHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+DQo+
+IENjOiBxYS1idWlsZC1ub3RpZmljYXRpb24gPHFhLWJ1aWxkLW5vdGlmaWNhdGlvbkBsaXN0cy55
+b2N0b3Byb2plY3Qub3JnPg0KPiBTdWJqZWN0OiBbcWEtYnVpbGQtbm90aWZpY2F0aW9uXSBRQSBu
+b3RpZmljYXRpb24gZm9yIGNvbXBsZXRlZCBhdXRvYnVpbGRlcg0KPiBidWlsZCAoeW9jdG8tMy41
+X00yLnJjNikNCj4gDQo+IEEgYnVpbGQgZmxhZ2dlZCBmb3IgUUEgKHlvY3RvLTMuNV9NMi5yYzYp
+IHdhcyBjb21wbGV0ZWQgb24gdGhlIGF1dG9idWlsZGVyDQo+IGFuZCBpcyBhdmFpbGFibGUgYXQ6
+DQo+IA0KPiANCj4gICAgIGh0dHBzOi8vYXV0b2J1aWxkZXIueW9jdG8uaW8vcHViL3JlbGVhc2Vz
+L3lvY3RvLTMuNV9NMi5yYzYNCj4gDQo+IA0KPiBCdWlsZCBoYXNoIGluZm9ybWF0aW9uOg0KPiAN
+Cj4gYml0YmFrZTogMWYwNmYzMjZmYThiNDdlMmE0ZGNlNzU2ZDU3YTkzNjlhMjIyNTIwMQ0KPiBt
+ZXRhLWFnbDogN2E2NDRkNjM2MjM3NDU5YzU0MTI4YTcxZDA4M2NiNmY5ZTFiOGU2MA0KPiBtZXRh
+LWFybTogMjU0NDgyMjg0ZDQ1ODg1MzJiZDdiOWQ5ODAxOTNlM2U0MWFkYWE5OQ0KPiBtZXRhLWF3
+czogODg5M2UwY2Q0YzA5ODFlZWRhOTQxZWFhOWFkMmViOTM1OTY3MDUwMg0KPiBtZXRhLWdwbHYy
+OiBmMDRlNDM2OWJmOWRkMzM4NTE2NTI4MWI5ZmEyZWQxMDQzYjBlNDAwDQo+IG1ldGEtaW50ZWw6
+IDRmZjViMTliYTYzZWE2OWM0NzE5OGU2NDFhY2JjMTJlMzM2MzRjYWMNCj4gbWV0YS1taW5ndzog
+ZGRiZjE0YjIyNDIxNWY0N2E1ZjgwZmM4MTU0YWRlOGQzYmMzMThlOA0KPiBtZXRhLW9wZW5lbWJl
+ZGRlZDogYTU1OGQ1MWZlY2RhM2U2NmFjZTIxZDAyYjU3YWI2MWJmMTIyZmRjMQ0KPiBvZWNvcmU6
+IGExNzk0ODUzNTFhMDU2M2QxMmEyZmVmM2U0OTk3MTEyMjI1NWVkODANCj4gcG9reTogMjdmZjQy
+MDU0M2YwMTk1ZGFiMDI0Njk4ZDgwNGFjYTMzZjJhZTEzOQ0KPiANCj4gDQo+IA0KPiBUaGlzIGlz
+IGFuIGF1dG9tYXRlZCBtZXNzYWdlIGZyb20gdGhlIFlvY3RvIFByb2plY3QgQXV0b2J1aWxkZXIN
+Cj4gR2l0OiBnaXQ6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy95b2N0by1hdXRvYnVpbGRlcjINCj4g
+RW1haWw6IHJpY2hhcmQucHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmcNCj4gDQo+IA0KPiANCj4g
+DQo+IA0KPiAtPS09LT0tPS09LT0tPS09LT0tPS09LQ0KPiBMaW5rczogWW91IHJlY2VpdmUgYWxs
+IG1lc3NhZ2VzIHNlbnQgdG8gdGhpcyBncm91cC4NCj4gVmlldy9SZXBseSBPbmxpbmUgKCM4Nyk6
+IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9nL3FhLWJ1aWxkLQ0KPiBub3RpZmljYXRp
+b24vbWVzc2FnZS84Nw0KPiBNdXRlIFRoaXMgVG9waWM6IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9q
+ZWN0Lm9yZy9tdC84ODY2NzkxNi80ODk5NDYzDQo+IEdyb3VwIE93bmVyOiBxYS1idWlsZC1ub3Rp
+ZmljYXRpb24rb3duZXJAbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KPiBVbnN1YnNjcmliZTogaHR0
+cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2cvcWEtYnVpbGQtDQo+IG5vdGlmaWNhdGlvbi9s
+ZWF2ZS8xMDQwNjgwNS80ODk5NDYzLzcxNTM4OTk5NS94eXp6eQ0KPiBbamF5LnNoZW4udGVvaEBp
+bnRlbC5jb21dDQo+IC09LT0tPS09LT0tPS09LT0tPS09LT0tDQo+IA0KDQo=
 
