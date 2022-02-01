@@ -1,112 +1,74 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <robert.berger.yocto.user@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0441AC433FE
-	for <webhook@archiver.kernel.org>; Tue,  1 Feb 2022 08:08:05 +0000 (UTC)
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
- [209.85.221.50])
- by mx.groups.io with SMTP id smtpd.web08.45470.1643702883810984837
- for <yocto@lists.yoctoproject.org>;
- Tue, 01 Feb 2022 00:08:04 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=WQkgFP4C;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.50,
- mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f50.google.com with SMTP id v13so30207251wrv.10
-        for <yocto@lists.yoctoproject.org>;
- Tue, 01 Feb 2022 00:08:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=Zb1JoAsDwRwjG6O2s8/XYlhed6+N5W6GfHge4xQ2R40=;
-        b=WQkgFP4Cmiwz0bGHSiTYLiiXxFdIDWzFinFbpz6DSeC1luI2AxmAhxbAPB22JBro7z
-         S+tdGEYIvxAJy9JxLVzXPa7zggA+73Z5cF+APP1qfg3wkIU3VyuipyYBwuuSXIK3/SFC
-         /9dJAQnmUxddan3T0TDMNeTDEHI0nuZiBIxD0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=Zb1JoAsDwRwjG6O2s8/XYlhed6+N5W6GfHge4xQ2R40=;
-        b=dL9+mT0sxGm+mU6RJ/gbn/KpUHtzJwnrfA5KjmD2OAnnRKjMsLulA7xlpnaOwHIb0s
-         cnd5On270kt43akhCjEoLMM5WcTpG/F97DHEttANYJEhwf3Cd0A684iYIvnv9F/ucI2B
-         UwT+DQHR1t5tsxSfYd55YYu8TX6mn38BTGHM2WvejMZ6Fq+q9hWqI2E90DhEPuij+Kq+
-         hyScGtvplWmSO6VlCPKTS+4Sstk2qO9+S3iqwY68CIt4suiTV8uEZSQynjdkTZfWPWML
-         570I2VhufSKNwcs4w4WCGrZFg3Si+u1u3/pR3yxfB6EVXsjYV0gmyRVZUFk25OXqoUjx
-         d97w==
-X-Gm-Message-State: AOAM532pe9/2NmPm6ZwJyo6bD+RXbPKIrZDuWWuXAWO3hEJ9A3/Qs2Tt
-	TxVsM84oc9SRjby+mY4FDf3PjmtZ9ZpjtA==
-X-Google-Smtp-Source: 
- ABdhPJwIA/hgn/AwfE0rSpoVMk1wzc8ASZvP/TB6/DAqSMEw2GFQsG5Ni+Sw3rCK0cgDMld3xieSNw==
-X-Received: by 2002:a05:6000:15c4:: with SMTP id
- y4mr16755194wry.522.1643702881780;
-        Tue, 01 Feb 2022 00:08:01 -0800 (PST)
-Received: from ?IPv6:2001:8b0:aba:5f3c:687d:5e4e:cf88:f9f9?
- ([2001:8b0:aba:5f3c:687d:5e4e:cf88:f9f9])
-        by smtp.gmail.com with ESMTPSA id
- m187sm1321012wme.25.2022.02.01.00.08.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Feb 2022 00:08:01 -0800 (PST)
-Message-ID: 
- <f291b53c64f3ff2f8b98e26f1213db151a651f73.camel@linuxfoundation.org>
-Subject: Re: [yocto] Additional hardening options
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Paul Eggleton <bluelightning@bluelightning.org>,
-	yocto@lists.yoctoproject.org
-Date: Tue, 01 Feb 2022 08:08:00 +0000
-In-Reply-To: <3150587.aeNJFYEL58@linc>
-References: <3150587.aeNJFYEL58@linc>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4-1ubuntu2 
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 46595C433F5
+	for <webhook@archiver.kernel.org>; Tue,  1 Feb 2022 09:09:14 +0000 (UTC)
+Subject: Re: Additional hardening options
+To: yocto@lists.yoctoproject.org
+From: "Robert Berger" <robert.berger.yocto.user@gmail.com>
+X-Originating-Location: Athens, Attica, GR (85.75.26.181)
+X-Originating-Platform: Linux Chrome 97
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Date: Tue, 01 Feb 2022 01:09:13 -0800
+References: 
+ <f291b53c64f3ff2f8b98e26f1213db151a651f73.camel@linuxfoundation.org>
+In-Reply-To: 
+ <f291b53c64f3ff2f8b98e26f1213db151a651f73.camel@linuxfoundation.org>
+Message-ID: <10591.1643706553421712312@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="AjMD1Akhk5w8QZrdYQJ3"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 01 Feb 2022 08:08:05 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56039
+ <yocto@lists.yoctoproject.org>; Tue, 01 Feb 2022 09:09:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56040
 
-On Wed, 2022-01-26 at 14:39 +1300, Paul Eggleton wrote:
-> Hi folks
-> 
-> I've been looking into a couple of compiler flags for hardening that I think we 
-> might want to consider enabling by default in security-flags.inc:
-> 
-> 
-> 1) -fstack-clash-protection
-> 
-> This option was introduced to gcc 8.x and provides protection against the 
-> stack clash vulnerability:
-> 
-> https://securingsoftware.blogspot.com/2017/12/stack-clash-vulnerability.html
-> 
-> It has been enabled in some Linux distributions already (e.g. Ubuntu, Fedora).
-> 
-> 
-> 2) -z noexecstack (or alternative mitigations)
-> 
-> gcc will enable an executable stack under a few different circumstances - see 
-> here for details
-> 
-> https://wiki.gentoo.org/wiki/Hardened/GNU_stack_quickstart
-> 
-> I've written a check that we could add to insane.bbclass that warns/errors on 
-> binaries with an executable stack. Does this seem reasonable to have?
-> The other possibility is we add -Wl,-z,noexecstack to LDFLAGS and then see 
-> what breaks, but unfortunately issues are likely only going to show up when 
-> the program crashes at runtime, and also it will stop the aforementioned check 
-> from working.
-> 
-> 
-> Any opinions?
+--AjMD1Akhk5w8QZrdYQJ3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-These seem like reasonable things to do, are there any downsides to them?
+Hi,
 
-I'd be happy to test some patches, see if they do cause issues...
+This[1] is what I usually add as well to the security flags.
 
-Cheers,
+With respect to the "default" flags I had some fun with the SDK and=C2=A0-D=
+_FORTIFY_SOURCE=3D2 and=C2=A0-fstack-protector-strong.
 
-Richard
+I guess they do have some performance impact as well, but I did not do very=
+ thorough research.
 
+Also, I did not confirm it yet but suspect that some of those flags might b=
+e the reason for "debuginfod gdb: *** stack smashing detected ***: terminat=
+ed".[2]
+
+[1] https://gitlab.com/meta-layers/meta-resy/-/blob/master/conf/distro/incl=
+ude/more_security_flags.inc
+
+[2] https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14570
+
+Regards,
+
+Robert
+
+--AjMD1Akhk5w8QZrdYQJ3
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,<br /><br />This[1] is what I usually add as well to the security flags.=
+<br /><br />With respect to the "default" flags I had some fun with the SDK=
+ and&nbsp;-D_FORTIFY_SOURCE=3D2 and&nbsp;-fstack-protector-strong.<br /><br=
+ />I guess they do have some performance impact as well, but I did not do v=
+ery thorough research.<br /><br />Also, I did not confirm it yet but suspec=
+t that some of those flags might be the reason for "debuginfod gdb: *** sta=
+ck smashing detected ***: terminated".[2]<br /><br />[1]&nbsp;<a href=3D"ht=
+tps://gitlab.com/meta-layers/meta-resy/-/blob/master/conf/distro/include/mo=
+re_security_flags.inc" target=3D"_blank" rel=3D"noopener">https://gitlab.co=
+m/meta-layers/meta-resy/-/blob/master/conf/distro/include/more_security_fla=
+gs.inc</a><br /><br />[2]&nbsp;<a href=3D"https://bugzilla.yoctoproject.org=
+/show_bug.cgi?id=3D14570" target=3D"_blank" rel=3D"noopener">https://bugzil=
+la.yoctoproject.org/show_bug.cgi?id=3D14570</a><br /><br />Regards,<br /><b=
+r />Robert
+
+--AjMD1Akhk5w8QZrdYQJ3--
 
