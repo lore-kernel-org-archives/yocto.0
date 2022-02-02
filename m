@@ -1,315 +1,382 @@
-Return-Path: <steven.monsees@baesystems.com>
+Return-Path: <hrsourabh011@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E2470C4332F
-	for <webhook@archiver.kernel.org>; Wed,  2 Feb 2022 13:55:51 +0000 (UTC)
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com
- [149.32.232.65])
- by mx.groups.io with SMTP id smtpd.web10.64662.1643810150935286768
- for <yocto@lists.yoctoproject.org>;
- Wed, 02 Feb 2022 05:55:51 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=dN/A6c3K;
- spf=pass (domain: baesystems.com, ip: 149.32.232.65,
- mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1643810151; x=1801490151;
-  h=from:to:subject:date:mime-version;
-  bh=nlzGwPO6tMqSYjjZkVM0erF1C3H9W1fKMc1E27mX8gM=;
-  b=dN/A6c3KYh5wrxEoigdfz632du6p9oHZ60fCcs/yOMVKr5tajKD/9Va7
-   oz1oJAaM+bmPDHKskPgnXljUOvoZ7C0YSd9A5dimYdShwOuVIheX+fGKd
-   nGwCDgX1s2Pwd+vUWaBrvzaJrYA66tZPvzW2rBBiFkElhVDgtt9qDpX2N
-   0=;
-IronPort-SDR: 
- Odge6HfnbNmXS0sjbv2tRhWkalZ0QgYkAxR1JWCFa9uw+yB3824mMVQVMOuIcgbd824LS2F5X3
- 5u3LjcEhCLUg==
-IronPort-PHdr: =?us-ascii?q?A9a23=3ATwoDmRcipf0Cgp68CTtHJJixlGM+Ld7LVj580?=
- =?us-ascii?q?XLHo4xHfqnrxZn+JkuXvawr0AWTG9mCoKsZ0aKW6/mmBTZZp87Z8TgrS99lb?=
- =?us-ascii?q?1c9k8IYnggtUoauKHbQC7rUVRE8B9lIT1R//nu2YgB/Ecf6YEDO8DXptWZBU?=
- =?us-ascii?q?hrwOhBoKevrB4Xck9q41/yo+53Ufg5EmCexbal9IRmoswndrMYbjZZtJqosy?=
- =?us-ascii?q?hbFvGZDd+BKyW91P16ekAjw6tqq8JJ/7yhcvu8q+tJdX6n9Y6k2V6FTAi48M?=
- =?us-ascii?q?2Ay6s3rtB3DQhWK63ABTGgYkQdGDhbc4h3iUZj/riX1tuxm2CmHJsL2Vqw7W?=
- =?us-ascii?q?S6j76hwVhDljjoMOiMj/2HWjsxwi79boA6kqhdizYPYfJ2ZOfxjda7bYNgUR?=
- =?us-ascii?q?3dOXtxJWiJBHI2ycpcPAeQCM+ZZs4byqEADogGiCQmuHu7j1iNEimHw0KYn0?=
- =?us-ascii?q?+ohCwbG3Ak4Et4At3rUq9P1NLwMXu+r16nE1SjIYe5K2Tjj9ojHbBYhquySU?=
- =?us-ascii?q?Lltdcbex1QhGwbLgl6NroHlJC+V2foTs2eF6epsT+evi2khqwFqvDeg2Nwsh?=
- =?us-ascii?q?5LSiY0P1F/E7iV4wJ0pJdKmTU57esSoH4dXtyGfLoZ7RN4pTG50tigg0LIGp?=
- =?us-ascii?q?YK7czYQyJQh3xPRZfKKfpSJ7x/hVeudPyp0iWxmdb+/gxu//ketxvDyWMS03?=
- =?us-ascii?q?1hGsy5In9vMu30C1hHf99aKR/9+80qixDuDyg/d5+dZKk43jarWM4MtzqIqm?=
- =?us-ascii?q?pcRv0nPBCz7lUrsgKOLbkko5/Sk5/7ob7jpvJOROJV4hhz+P6koh8exG/43M?=
- =?us-ascii?q?hIUUGie4em80brj8lDnT7hSlf02l7XZsIjdJcQGuq61Gw9V3Zgn6xa4Fzqmz?=
- =?us-ascii?q?NsZkmMBLFJAYxKKi5TlN03SLPzlF/u/nk+snC1wyP/cILLhGZXMLmPfkLj/e?=
- =?us-ascii?q?LZ98FRQxxY0zdBa/55UC7cBL+zvWkLpqdDUEgU1Pg66zur9C9hw2ZkSVX+XD?=
- =?us-ascii?q?q+cKqzSsFuI5uw1I+mLYY8YoC39K+Q76P7wk3A5n0URfayu3ZsRc3C3AOppI?=
- =?us-ascii?q?16CbHX3mNgOD3wKvwolTOz2llKCVCVTa2yuUKI74zE3EJimApvbRoCxnLyB2?=
- =?us-ascii?q?z+2H51RZm9aFlCMFmzld4GFW/cXdCKSOdVtkzwDVbe9V48h0gmutBX9y7plM?=
- =?us-ascii?q?OXb5jEYuYjk1Nhv6O2A3S01oHZlCM+B1EmJTnpohSUZQDQq27hlpk5wwUvF1?=
- =?us-ascii?q?rJ3ybQMBNtY+/RhVgYhKYWa3utxF9fqQAXDc9yVDlG8TYP1Lys2S4d75tgIe?=
- =?us-ascii?q?EtwAJHqtQzOwSesS5Rd14GwRdZ8prnA0mb8IYB4zHDd2aQ6p1MvT9BeLnGrg?=
- =?us-ascii?q?7U5/A/WUd2a236FnrqnIPxPlBXG832OmDLmgQ=3D=3D?=
-IronPort-Data: =?us-ascii?q?A9a23=3AWjSR9KwJPRl9WDudjWB6t+cZxCrEfRIJ4+Muj?=
- =?us-ascii?q?C+fZmUNrF6WrkUHzGpMCm7XM6mINDfxKthxaNvn804O6pWGz4cwSgI5rFhgH?=
- =?us-ascii?q?ilAwSbn6XR1DatS0xt/paQvdWo/hyklQoSGfJBcokP0/E/3aOC79SAkjMlke?=
- =?us-ascii?q?5KlYAL6EnEpLeNbYHp54f5Ts7ZRbr9A2bBVMSvU0T/Bi5G31Gue5tJBGjl8B?=
- =?us-ascii?q?5RvCf9YlK+aVDsw5jTSbB3Q1bPUvyF94Jk3fcldI5ZkK7S4ENJWR86bpF241?=
- =?us-ascii?q?n/J9hEoEYL9yu6iNFARBLTbMBOfkWZbXrPkiR9HzsAw+v9jcqVHLxcLzWzhc?=
- =?us-ascii?q?9NZkb2hsbSrVQo3M6uKneMbSBRVCAl0NKBd6aTbLH2k98eUyiUqdlOwn6UyV?=
- =?us-ascii?q?x9oYtdwFuFfRDsmGeYjACEKZQyEr+a3266gDPhrjdgkNNPsPo4Upjdn1z6xM?=
- =?us-ascii?q?BqMafgvWI2TvZkHh3Fg2oYXdcsyrvExMVJHBCksqTUVUrvPNK8DoQ=3D=3D?=
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AW/poJK6hvrORMw56/wPXwNPXdLJyesId70?=
- =?us-ascii?q?hD6qkRc3xom6Oj+PxG8M5w6faWslcssRMb6LK90cC7KBu2yXcS2+Us1NyZMj?=
- =?us-ascii?q?UO1lHEEGgb1/qA/wHd?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2DoAwCVHvlh/wFUSQpagQkJgVGBIYI?=
- =?us-ascii?q?FgU6Sbp83gXwLAQEBAQEBAQEBCAFBBAEBiGcmNQgOAQIEAQEBEgEBBgEBAQE?=
- =?us-ascii?q?BBgQBgRuFaQyCNSKEH1ENARVrJgEEG4J9gg6wFoEzGgJlhGqFEwkBgTCBZoV?=
- =?us-ascii?q?Egn+GF0OPPwSTHxNMgh06nx2gUwcDg0adOoIRMBWWTgORNpZKIKERhRECBAI?=
- =?us-ascii?q?EBQIWgWMCghFwgzpQFwKcfoEsAgYLAQEDCYw8gRABAQ?=
-X-IPAS-Result: =?us-ascii?q?A2DoAwCVHvlh/wFUSQpagQkJgVGBIYIFgU6Sbp83gXwLA?=
- =?us-ascii?q?QEBAQEBAQEBCAFBBAEBiGcmNQgOAQIEAQEBEgEBBgEBAQEBBgQBgRuFaQyCN?=
- =?us-ascii?q?SKEH1ENARVrJgEEG4J9gg6wFoEzGgJlhGqFEwkBgTCBZoVEgn+GF0OPPwSTH?=
- =?us-ascii?q?xNMgh06nx2gUwcDg0adOoIRMBWWTgORNpZKIKERhRECBAIEBQIWgWMCghFwg?=
- =?us-ascii?q?zpQFwKcfoEsAgYLAQEDCYw8gRABAQ?=
-X-IronPort-AV: E=Sophos;i="5.88,333,1635206400";
-   d="scan'208,217";a="448436672"
-IronPort-SDR: 
- /hV+y/BIIGmvt0wPfSROu6wQSfQhrRZBm8rsI1J9z2lfalwWGMqZXLA9K8Bo2iU8cTgZjSqqje
- COcVDE8v4s8Nez4Ea2fBmPBFF5/+RZn+fs6n5TCNRGPPyPGtyl3W8QrCEE6Ga9dyw8i9qedrKY
- Xr27o+18eUX3yer/I+9j0cwAMTBBZiPArM8B5eMPU+DQAE6unRMFv/3FdOnRrSb2A04T3S2fBx
- HTGWGDmfPl+drueN+CtLNEckcb8ADRr20FEgCJ+ahrANx9tlaRmbj7gXzlb7tLktDbGS/dC0p6
- o0k=
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: IGC build issue with devtoolset-8 (GNU 8.3.1)
-Thread-Topic: IGC build issue with devtoolset-8 (GNU 8.3.1)
-Thread-Index: AdgYOsjKXEMoV7ikRZmPNXDgh0Cn0w==
-Date: Wed, 2 Feb 2022 13:54:48 +0000
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.4.15]
-Content-Type: multipart/alternative;
-	boundary="_000_06319bfd6f8f4fcd8b31c116219acdedbaesystemscom_"
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 57C92C433EF
+	for <webhook@archiver.kernel.org>; Wed,  2 Feb 2022 19:43:14 +0000 (UTC)
+Subject: Build error:undefined reference to `stime' on Yocto Warrior
+To: yocto@lists.yoctoproject.org
+From: "Sourabh Hegde" <hrsourabh011@gmail.com>
+X-Originating-Location: Sesslach, Bavaria, DE (217.24.55.250)
+X-Originating-Platform: Windows Firefox 91
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
+Date: Wed, 02 Feb 2022 11:43:14 -0800
+Message-ID: <PKpV.1643830994022623476.Am2t@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="VYUG7pM3zflZQ2iiZRoR"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 02 Feb 2022 13:55:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56044
-Message-Id: <20220202135551.E2470C4332F@smtp.lore.kernel.org>
+ <yocto@lists.yoctoproject.org>; Wed, 02 Feb 2022 19:43:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56045
 
---_000_06319bfd6f8f4fcd8b31c116219acdedbaesystemscom_
-Content-Type: text/plain; charset="us-ascii"
+--VYUG7pM3zflZQ2iiZRoR
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
+Hello All,
 
-I am building zeus with basic OpenCL support for centos 7.x, and using GNU =
-8.3.1 compiler and see the following Error when IGC is built, I see the sam=
-e error when building with GNU 5.3.1...
+When I execute the bitbake for my custom image recipe I hit the below issue=
+ related to "qemu-native/3.1.1.1-r0/qemu-3.1.1.1/linux-user/syscall.c:7404:=
+ undefined reference to `stime'".
 
-Is this a known issue, is a patch available ?
-Any ideas why I might be seeing this ?
+DEBUG: Executing shell function do_compile
+NOTE: make -j 8 LD=3Dld=C2=A0 AR=3Dar OBJCOPY=3Dobjcopy LDFLAGS=3D-L/root/b=
+uild-rauc/tmp-glibc/work/x86_64-linux/qemu-native/3.1.1.1-r0/recipe-sysroot=
+-native/usr/lib=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 -L/root/build-rauc/tmp-glibc/work/x86_64-linux/qemu-native/3.1.1.=
+1-r0/recipe-sysroot-native/lib=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 -Wl,--enable-new-dtags=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -Wl,-rpath-link,/root/build-rauc=
+/tmp-glibc/work/x86_64-linux/qemu-native/3.1.1.1-r0/recipe-sysroot-native/u=
+sr/lib=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ -Wl,-rpath-link,/root/build-rauc/tmp-glibc/work/x86_64-linux/qemu-native/3=
+.1.1.1-r0/recipe-sysroot-native/lib=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -Wl,-rpath,/root/build-rauc/tmp-glibc/work/x=
+86_64-linux/qemu-native/3.1.1.1-r0/recipe-sysroot-native/usr/lib=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -Wl,-rpath,/ro=
+ot/build-rauc/tmp-glibc/work/x86_64-linux/qemu-native/3.1.1.1-r0/recipe-sys=
+root-native/lib=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 -Wl,-O1 -fuse-ld=3Dbfd
+LINK=C2=A0=C2=A0=C2=A0 i386-linux-user/qemu-i386
+LINK=C2=A0=C2=A0=C2=A0 mipsel-linux-user/qemu-mipsel
+LINK=C2=A0=C2=A0=C2=A0 arm-linux-user/qemu-arm
+LINK=C2=A0=C2=A0=C2=A0 mips-linux-user/qemu-mips
+LINK=C2=A0=C2=A0=C2=A0 ppc-linux-user/qemu-ppc
+GEN=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/config-target.h
+LINK=C2=A0=C2=A0=C2=A0 sh4-linux-user/qemu-sh4
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/exec.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/tcg/tcg.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/tcg/tcg-op.o
+/root/build-rauc/tmp-glibc/hosttools/ld.bfd: linux-user/syscall.o: in funct=
+ion `do_syscall1':
+/root/build-rauc/tmp-glibc/work/x86_64-linux/qemu-native/3.1.1.1-r0/qemu-3.=
+1.1.1/linux-user/syscall.c:7404: undefined reference to `stime'
+collect2: error: ld returned 1 exit status
+make[1]: *** [Makefile:199: qemu-arm] Error 1
+make: *** [Makefile:483: subdir-arm-linux-user] Error 2
+make: *** Waiting for unfinished jobs....
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/tcg/tcg-op-vec.o
+/root/build-rauc/tmp-glibc/hosttools/ld.bfd: linux-user/syscall.o: in funct=
+ion `do_syscall1':
+/root/build-rauc/tmp-glibc/work/x86_64-linux/qemu-native/3.1.1.1-r0/qemu-3.=
+1.1.1/linux-user/syscall.c:7404: undefined reference to `stime'
+collect2: error: ld returned 1 exit status
+make[1]: *** [Makefile:199: qemu-i386] Error 1
+make: *** [Makefile:483: subdir-i386-linux-user] Error 2
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/tcg/tcg-op-gvec.o
+/root/build-rauc/tmp-glibc/hosttools/ld.bfd: linux-user/syscall.o: in funct=
+ion `do_syscall1':
+/root/build-rauc/tmp-glibc/work/x86_64-linux/qemu-native/3.1.1.1-r0/qemu-3.=
+1.1.1/linux-user/syscall.c:7404: undefined reference to `stime'
+collect2: error: ld returned 1 exit status
+make[1]: *** [Makefile:199: qemu-sh4] Error 1
+make: *** [Makefile:483: subdir-sh4-linux-user] Error 2
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/tcg/tcg-common.o
+/root/build-rauc/tmp-glibc/hosttools/ld.bfd: linux-user/syscall.o: in funct=
+ion `do_syscall1':
+/root/build-rauc/tmp-glibc/work/x86_64-linux/qemu-native/3.1.1.1-r0/qemu-3.=
+1.1.1/linux-user/syscall.c:7404: undefined reference to `stime'
+collect2: error: ld returned 1 exit status
+make[1]: *** [Makefile:199: qemu-ppc] Error 1
+make: *** [Makefile:483: subdir-ppc-linux-user] Error 2
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/tcg/optimize.o
+/root/build-rauc/tmp-glibc/hosttools/ld.bfd: linux-user/syscall.o: in funct=
+ion `do_syscall1':
+/root/build-rauc/tmp-glibc/work/x86_64-linux/qemu-native/3.1.1.1-r0/qemu-3.=
+1.1.1/linux-user/syscall.c:7404: undefined reference to `stime'
+collect2: error: ld returned 1 exit status
+make[1]: *** [Makefile:199: qemu-mipsel] Error 1
+make: *** [Makefile:483: subdir-mipsel-linux-user] Error 2
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/fpu/softfloat.o
+/root/build-rauc/tmp-glibc/hosttools/ld.bfd: linux-user/syscall.o: in funct=
+ion `do_syscall1':
+/root/build-rauc/tmp-glibc/work/x86_64-linux/qemu-native/3.1.1.1-r0/qemu-3.=
+1.1.1/linux-user/syscall.c:7404: undefined reference to `stime'
+collect2: error: ld returned 1 exit status
+make[1]: *** [Makefile:199: qemu-mips] Error 1
+make: *** [Makefile:483: subdir-mips-linux-user] Error 2
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/disas.o
+GEN=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/gdbstub-xml.c
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/gdbstub.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/thunk.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/accel/stubs/hax-stub.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/accel/stubs/hvf-stub.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/accel/stubs/whpx-stub.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/accel/stubs/kvm-stub.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/accel/tcg/tcg-runtime.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/accel/tcg/tcg-runtime-gv=
+ec.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/accel/tcg/cpu-exec.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/accel/tcg/cpu-exec-commo=
+n.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/accel/tcg/translate-all.=
+o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/accel/tcg/translator.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/accel/tcg/user-exec.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/accel/tcg/user-exec-stub=
+.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/linux-user/main.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/linux-user/syscall.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/linux-user/strace.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/linux-user/mmap.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/linux-user/signal.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/linux-user/elfload.o
+In file included from /usr/include/string.h:495,
+from /root/build-rauc/tmp-glibc/work/x86_64-linux/qemu-native/3.1.1.1-r0/qe=
+mu-3.1.1.1/include/qemu/osdep.h:84,
+from /root/build-rauc/tmp-glibc/work/x86_64-linux/qemu-native/3.1.1.1-r0/qe=
+mu-3.1.1.1/linux-user/elfload.c:2:
+In function =E2=80=98strncpy=E2=80=99,
+inlined from =E2=80=98fill_psinfo=E2=80=99 at /root/build-rauc/tmp-glibc/wo=
+rk/x86_64-linux/qemu-native/3.1.1.1-r0/qemu-3.1.1.1/linux-user/elfload.c:31=
+58:12,
+inlined from =E2=80=98fill_note_info=E2=80=99 at /root/build-rauc/tmp-glibc=
+/work/x86_64-linux/qemu-native/3.1.1.1-r0/qemu-3.1.1.1/linux-user/elfload.c=
+:3340:5,
+inlined from =E2=80=98elf_core_dump=E2=80=99 at /root/build-rauc/tmp-glibc/=
+work/x86_64-linux/qemu-native/3.1.1.1-r0/qemu-3.1.1.1/linux-user/elfload.c:=
+3489:9:
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h:106:10: warning: =E2=
+=80=98__builtin_strncpy=E2=80=99 specified bound 16 equals destination size=
+ [-Wstringop-truncation]
+106 |=C2=A0=C2=A0 return __builtin___strncpy_chk (__dest, __src, __len, __b=
+os (__dest));
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~~~~~~~~~~~~~~~~~~=
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/linux-user/linuxload.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/linux-user/uaccess.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/linux-user/uname.o
+CCAS=C2=A0=C2=A0=C2=A0 x86_64-linux-user/linux-user/safe-syscall.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/linux-user/x86_64/signal=
+.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/linux-user/x86_64/cpu_lo=
+op.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/linux-user/exit.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/linux-user/fd-trans.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/target/i386/helper.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/target/i386/cpu.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/target/i386/gdbstub.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/target/i386/xsave_helper=
+.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/target/i386/translate.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/target/i386/bpt_helper.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/target/i386/cc_helper.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/target/i386/excp_helper.=
+o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/target/i386/fpu_helper.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/target/i386/int_helper.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/target/i386/mem_helper.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/target/i386/misc_helper.=
+o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/target/i386/mpx_helper.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/target/i386/seg_helper.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/target/i386/smm_helper.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/target/i386/svm_helper.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/target/i386/sev-stub.o
+GEN=C2=A0=C2=A0=C2=A0=C2=A0 trace/generated-helpers.c
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/trace/control-target.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/gdbstub-xml.o
+CC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 x86_64-linux-user/trace/generated-helpers.=
+o
+LINK=C2=A0=C2=A0=C2=A0 x86_64-linux-user/qemu-x86_64
+ERROR: oe_runmake failed
+WARNING: exit code 1 from a shell command.
+ERROR: Function failed: do_compile (log file is located at /root/build-rauc=
+/tmp-glibc/work/x86_64-linux/qemu-native/3.1.1.1-r0/temp/log.do_compile.558=
+4)
 
-cpp.o -MF IGC/Compiler/CMakeFiles/Compiler.dir/CISACodeGen/DebugInfo.cpp.o.=
-d -o IGC/Compiler/CMakeFiles/Compiler.dir/CISACodeGen/DebugInfo.cpp.o -c /d=
-isk0/scratch/yocto_user/yocto/workspace_zeus/builds/sbcb-default/tmp/work/x=
-86_64-linux/intel-graphics-compiler-native/1.0.11-r0/git/IGC/Compiler/CISAC=
-odeGen/DebugInfo.cpp
-| In file included from /usr/include/sys/stat.h:106,
-|                  from /disk0/scratch/yocto_user/yocto/workspace_zeus/buil=
-ds/sbcb-default/tmp/work/x86_64-linux/intel-graphics-compiler-native/1.0.11=
--r0/git/IGC/../3d/common/iStdLib/File.h:47,
-|                  from /disk0/scratch/yocto_user/yocto/workspace_zeus/buil=
-ds/sbcb-default/tmp/work/x86_64-linux/intel-graphics-compiler-native/1.0.11=
--r0/git/IGC/Compiler/CISACodeGen/DebugInfo.hpp:42,
-|                  from /disk0/scratch/yocto_user/yocto/workspace_zeus/buil=
-ds/sbcb-default/tmp/work/x86_64-linux/intel-graphics-compiler-native/1.0.11=
--r0/git/IGC/Compiler/CISACodeGen/DebugInfo.cpp:26:
-| /usr/include/bits/stat.h:106:31: error: expected unqualified-id before '[=
-' token
-|      __syscall_slong_t __unused[3];
-|                                ^
-| /usr/include/bits/stat.h:164:31: error: expected unqualified-id before '[=
-' token
-|      __syscall_slong_t __unused[3];
-|
+I am using "Warrior" version due to limitation from other meta-layers. I ha=
+ve read that above issue is fixed in newer versions of Yocto. But how can i=
+ fix this in Warrior? Is there any workaround?
 
-I am using bitbake -k, and everything else builds correctly, and no other c=
-omponents references this...
+Can someone please help me resolve it?
 
-If I modify the header like so:
+Your help will be much appreciated.
 
-/usr/include/bits>diff stat.h stat.h_HOLD
-106c106,108
-<     __syscall_slong_t __unused[3];
----
->     __syscall_slong_t __unused1;
->     __syscall_slong_t __unused2;
->     __syscall_slong_t __unused3;
-164c166,168
-<     __syscall_slong_t __unused[3];
----
->     __syscall_slong_t __unused1;
->     __syscall_slong_t __unused2;
->     __syscall_slong_t __unused3;
-08:29 smonsees@yix465383 /usr/include/bits>
+Thanks in advance.
 
-IGC builds clean, and test show it appears to working correctly...
-
-I really shouldn't be modifying the header, and would like to know what the=
- real issue issue is...
-
-Thanks,
-Steve
-
---_000_06319bfd6f8f4fcd8b31c116219acdedbaesystemscom_
-Content-Type: text/html; charset="us-ascii"
+--VYUG7pM3zflZQ2iiZRoR
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am building zeus with basic OpenCL support for cen=
-tos 7.x, and using GNU 8.3.1 compiler and see the following Error when IGC =
-is built, I see the same error when building with GNU 5.3.1&#8230;<o:p></o:=
-p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Is this a known issue, is a patch available ?<o:p></=
-o:p></p>
-<p class=3D"MsoNormal">Any ideas why I might be seeing this ?<o:p></o:p></p=
->
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">cpp.o -MF IGC/Compiler/CMakeFiles/Compiler.dir/CISAC=
-odeGen/DebugInfo.cpp.o.d -o IGC/Compiler/CMakeFiles/Compiler.dir/CISACodeGe=
-n/DebugInfo.cpp.o -c /disk0/scratch/yocto_user/yocto/workspace_zeus/builds/=
-sbcb-default/tmp/work/x86_64-linux/intel-graphics-compiler-native/1.0.11-r0=
-/git/IGC/Compiler/CISACodeGen/DebugInfo.cpp<o:p></o:p></p>
-<p class=3D"MsoNormal">| In file included from /usr/include/sys/stat.h:106,=
-<o:p></o:p></p>
-<p class=3D"MsoNormal">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from /disk0/scratch/yoc=
-to_user/yocto/workspace_zeus/builds/sbcb-default/tmp/work/x86_64-linux/inte=
-l-graphics-compiler-native/1.0.11-r0/git/IGC/../3d/common/iStdLib/File.h:47=
-,<o:p></o:p></p>
-<p class=3D"MsoNormal">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from /disk0/scratch/yoc=
-to_user/yocto/workspace_zeus/builds/sbcb-default/tmp/work/x86_64-linux/inte=
-l-graphics-compiler-native/1.0.11-r0/git/IGC/Compiler/CISACodeGen/DebugInfo=
-.hpp:42,<o:p></o:p></p>
-<p class=3D"MsoNormal">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;from /disk0/scratch/yoc=
-to_user/yocto/workspace_zeus/builds/sbcb-default/tmp/work/x86_64-linux/inte=
-l-graphics-compiler-native/1.0.11-r0/git/IGC/Compiler/CISACodeGen/DebugInfo=
-.cpp:26:<o:p></o:p></p>
-<p class=3D"MsoNormal">| /usr/include/bits/stat.h:106:31: error: expected u=
-nqualified-id before &#8216;[&#8217; token<o:p></o:p></p>
-<p class=3D"MsoNormal">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; __syscall_slong_t __=
-unused[3];<o:p></o:p></p>
-<p class=3D"MsoNormal">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+Hello All,<br /><br />When I execute the bitbake for my custom image recipe=
+ I hit the below issue related to "qemu-native/3.1.1.1-r0/qemu-3.1.1.1/linu=
+x-user/syscall.c:7404: undefined reference to `stime'".<br /><br />DEBUG: E=
+xecuting shell function do_compile<br />NOTE: make -j 8 LD=3Dld&nbsp; AR=3D=
+ar OBJCOPY=3Dobjcopy LDFLAGS=3D-L/root/build-rauc/tmp-glibc/work/x86_64-lin=
+ux/qemu-native/3.1.1.1-r0/recipe-sysroot-native/usr/lib&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -L/root/build-rauc/tmp-gl=
+ibc/work/x86_64-linux/qemu-native/3.1.1.1-r0/recipe-sysroot-native/lib&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -Wl,--enab=
+le-new-dtags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
 sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^<o:p></o:p></=
-p>
-<p class=3D"MsoNormal">| /usr/include/bits/stat.h:164:31: error: expected u=
-nqualified-id before &#8216;[&#8217; token<o:p></o:p></p>
-<p class=3D"MsoNormal">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; __syscall_slong_t __=
-unused[3];<o:p></o:p></p>
-<p class=3D"MsoNormal">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am using bitbake &#8211;k, and everything else bui=
-lds correctly, and no other components references this&#8230;<o:p></o:p></p=
->
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">If I modify the header like so:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">/usr/include/bits&gt;diff stat.h stat.h_HOLD<o:p></o=
-:p></p>
-<p class=3D"MsoNormal">106c106,108<o:p></o:p></p>
-<p class=3D"MsoNormal">&lt;&nbsp;&nbsp;&nbsp;&nbsp; __syscall_slong_t __unu=
-sed[3];<o:p></o:p></p>
-<p class=3D"MsoNormal">---<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp;&nbsp;&nbsp;&nbsp; __syscall_slong_t __unu=
-sed1;<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp;&nbsp;&nbsp;&nbsp; __syscall_slong_t __unu=
-sed2;<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp;&nbsp;&nbsp;&nbsp; __syscall_slong_t __unu=
-sed3;<o:p></o:p></p>
-<p class=3D"MsoNormal">164c166,168<o:p></o:p></p>
-<p class=3D"MsoNormal">&lt;&nbsp;&nbsp;&nbsp;&nbsp; __syscall_slong_t __unu=
-sed[3];<o:p></o:p></p>
-<p class=3D"MsoNormal">---<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp;&nbsp;&nbsp;&nbsp; __syscall_slong_t __unu=
-sed1;<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp;&nbsp;&nbsp;&nbsp; __syscall_slong_t __unu=
-sed2;<o:p></o:p></p>
-<p class=3D"MsoNormal">&gt;&nbsp;&nbsp;&nbsp;&nbsp; __syscall_slong_t __unu=
-sed3;<o:p></o:p></p>
-<p class=3D"MsoNormal">08:29 smonsees@yix465383 /usr/include/bits&gt;<o:p><=
-/o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">IGC builds clean, and test show it appears to workin=
-g correctly&#8230;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I really shouldn&#8217;t be modifying the header, an=
-d would like to know what the real issue issue is&#8230;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Steve<o:p></o:p></p>
-</div>
-</body>
-</html>
+&nbsp; -Wl,-rpath-link,/root/build-rauc/tmp-glibc/work/x86_64-linux/qemu-na=
+tive/3.1.1.1-r0/recipe-sysroot-native/usr/lib&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -Wl,-rpath-link,/root/build-rauc/tm=
+p-glibc/work/x86_64-linux/qemu-native/3.1.1.1-r0/recipe-sysroot-native/lib&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -Wl,-r=
+path,/root/build-rauc/tmp-glibc/work/x86_64-linux/qemu-native/3.1.1.1-r0/re=
+cipe-sysroot-native/usr/lib&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; -Wl,-rpath,/root/build-rauc/tmp-glibc/work/x86_64-lin=
+ux/qemu-native/3.1.1.1-r0/recipe-sysroot-native/lib&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -Wl,-O1 -fuse-ld=3Dbfd<br />&=
+nbsp; LINK&nbsp;&nbsp;&nbsp; i386-linux-user/qemu-i386<br />&nbsp; LINK&nbs=
+p;&nbsp;&nbsp; mipsel-linux-user/qemu-mipsel<br />&nbsp; LINK&nbsp;&nbsp;&n=
+bsp; arm-linux-user/qemu-arm<br />&nbsp; LINK&nbsp;&nbsp;&nbsp; mips-linux-=
+user/qemu-mips<br />&nbsp; LINK&nbsp;&nbsp;&nbsp; ppc-linux-user/qemu-ppc<b=
+r />&nbsp; GEN&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/config-target.h<br=
+ />&nbsp; LINK&nbsp;&nbsp;&nbsp; sh4-linux-user/qemu-sh4<br />&nbsp; CC&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/exec.o<br />&nbsp; CC&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/tcg/tcg.o<br />&nbsp; CC&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; x86_64-linux-user/tcg/tcg-op.o<br />/root/build-rauc/tm=
+p-glibc/hosttools/ld.bfd: linux-user/syscall.o: in function `do_syscall1':<=
+br />/root/build-rauc/tmp-glibc/work/x86_64-linux/qemu-native/3.1.1.1-r0/qe=
+mu-3.1.1.1/linux-user/syscall.c:7404: undefined reference to `stime'<br />c=
+ollect2: error: ld returned 1 exit status<br />make[1]: *** [Makefile:199: =
+qemu-arm] Error 1<br />make: *** [Makefile:483: subdir-arm-linux-user] Erro=
+r 2<br />make: *** Waiting for unfinished jobs....<br />&nbsp; CC&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; x86_64-linux-user/tcg/tcg-op-vec.o<br />/root/build-ra=
+uc/tmp-glibc/hosttools/ld.bfd: linux-user/syscall.o: in function `do_syscal=
+l1':<br />/root/build-rauc/tmp-glibc/work/x86_64-linux/qemu-native/3.1.1.1-=
+r0/qemu-3.1.1.1/linux-user/syscall.c:7404: undefined reference to `stime'<b=
+r />collect2: error: ld returned 1 exit status<br />make[1]: *** [Makefile:=
+199: qemu-i386] Error 1<br />make: *** [Makefile:483: subdir-i386-linux-use=
+r] Error 2<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/t=
+cg/tcg-op-gvec.o<br />/root/build-rauc/tmp-glibc/hosttools/ld.bfd: linux-us=
+er/syscall.o: in function `do_syscall1':<br />/root/build-rauc/tmp-glibc/wo=
+rk/x86_64-linux/qemu-native/3.1.1.1-r0/qemu-3.1.1.1/linux-user/syscall.c:74=
+04: undefined reference to `stime'<br />collect2: error: ld returned 1 exit=
+ status<br />make[1]: *** [Makefile:199: qemu-sh4] Error 1<br />make: *** [=
+Makefile:483: subdir-sh4-linux-user] Error 2<br />&nbsp; CC&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; x86_64-linux-user/tcg/tcg-common.o<br />/root/build-rauc/tmp=
+-glibc/hosttools/ld.bfd: linux-user/syscall.o: in function `do_syscall1':<b=
+r />/root/build-rauc/tmp-glibc/work/x86_64-linux/qemu-native/3.1.1.1-r0/qem=
+u-3.1.1.1/linux-user/syscall.c:7404: undefined reference to `stime'<br />co=
+llect2: error: ld returned 1 exit status<br />make[1]: *** [Makefile:199: q=
+emu-ppc] Error 1<br />make: *** [Makefile:483: subdir-ppc-linux-user] Error=
+ 2<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/tcg/optim=
+ize.o<br />/root/build-rauc/tmp-glibc/hosttools/ld.bfd: linux-user/syscall.=
+o: in function `do_syscall1':<br />/root/build-rauc/tmp-glibc/work/x86_64-l=
+inux/qemu-native/3.1.1.1-r0/qemu-3.1.1.1/linux-user/syscall.c:7404: undefin=
+ed reference to `stime'<br />collect2: error: ld returned 1 exit status<br =
+/>make[1]: *** [Makefile:199: qemu-mipsel] Error 1<br />make: *** [Makefile=
+:483: subdir-mipsel-linux-user] Error 2<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp; x86_64-linux-user/fpu/softfloat.o<br />/root/build-rauc/tmp-glibc=
+/hosttools/ld.bfd: linux-user/syscall.o: in function `do_syscall1':<br />/r=
+oot/build-rauc/tmp-glibc/work/x86_64-linux/qemu-native/3.1.1.1-r0/qemu-3.1.=
+1.1/linux-user/syscall.c:7404: undefined reference to `stime'<br />collect2=
+: error: ld returned 1 exit status<br />make[1]: *** [Makefile:199: qemu-mi=
+ps] Error 1<br />make: *** [Makefile:483: subdir-mips-linux-user] Error 2<b=
+r />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/disas.o<br />=
+&nbsp; GEN&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/gdbstub-xml.c<br />&nb=
+sp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/gdbstub.o<br />&nbsp=
+; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/thunk.o<br />&nbsp; CC=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/accel/stubs/hax-stub.o<br =
+/>&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/accel/stubs/hvf=
+-stub.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/acce=
+l/stubs/whpx-stub.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-lin=
+ux-user/accel/stubs/kvm-stub.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ x86_64-linux-user/accel/tcg/tcg-runtime.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; x86_64-linux-user/accel/tcg/tcg-runtime-gvec.o<br />&nbsp; CC&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/accel/tcg/cpu-exec.o<br />&=
+nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/accel/tcg/cpu-exec=
+-common.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/ac=
+cel/tcg/translate-all.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64=
+-linux-user/accel/tcg/translator.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; x86_64-linux-user/accel/tcg/user-exec.o<br />&nbsp; CC&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; x86_64-linux-user/accel/tcg/user-exec-stub.o<br />&nbsp; CC&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/linux-user/main.o<br />&nbs=
+p; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/linux-user/syscall.o<=
+br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/linux-user/s=
+trace.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/linu=
+x-user/mmap.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-use=
+r/linux-user/signal.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-l=
+inux-user/linux-user/elfload.o<br />In file included from /usr/include/stri=
+ng.h:495,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from /root/build-rauc/tmp-glibc/work/x=
+86_64-linux/qemu-native/3.1.1.1-r0/qemu-3.1.1.1/include/qemu/osdep.h:84,<br=
+ />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; from /root/build-rauc/tmp-glibc/work/x86_64-linux/=
+qemu-native/3.1.1.1-r0/qemu-3.1.1.1/linux-user/elfload.c:2:<br />In functio=
+n &lsquo;strncpy&rsquo;,<br />&nbsp;&nbsp;&nbsp; inlined from &lsquo;fill_p=
+sinfo&rsquo; at /root/build-rauc/tmp-glibc/work/x86_64-linux/qemu-native/3.=
+1.1.1-r0/qemu-3.1.1.1/linux-user/elfload.c:3158:12,<br />&nbsp;&nbsp;&nbsp;=
+ inlined from &lsquo;fill_note_info&rsquo; at /root/build-rauc/tmp-glibc/wo=
+rk/x86_64-linux/qemu-native/3.1.1.1-r0/qemu-3.1.1.1/linux-user/elfload.c:33=
+40:5,<br />&nbsp;&nbsp;&nbsp; inlined from &lsquo;elf_core_dump&rsquo; at /=
+root/build-rauc/tmp-glibc/work/x86_64-linux/qemu-native/3.1.1.1-r0/qemu-3.1=
+.1.1/linux-user/elfload.c:3489:9:<br />/usr/include/x86_64-linux-gnu/bits/s=
+tring_fortified.h:106:10: warning: &lsquo;__builtin_strncpy&rsquo; specifie=
+d bound 16 equals destination size [-Wstringop-truncation]<br />&nbsp; 106 =
+|&nbsp;&nbsp; return __builtin___strncpy_chk (__dest, __src, __len, __bos (=
+__dest));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp; ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
+~~~~~~~~~~~~~~<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-us=
+er/linux-user/linuxload.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_=
+64-linux-user/linux-user/uaccess.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; x86_64-linux-user/linux-user/uname.o<br />&nbsp; CCAS&nbsp;&nbsp;&nbsp=
+; x86_64-linux-user/linux-user/safe-syscall.o<br />&nbsp; CC&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; x86_64-linux-user/linux-user/x86_64/signal.o<br />&nbsp; CC=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/linux-user/x86_64/cpu_loop=
+.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/linux-use=
+r/exit.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/lin=
+ux-user/fd-trans.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linu=
+x-user/target/i386/helper.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x8=
+6_64-linux-user/target/i386/cpu.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; x86_64-linux-user/target/i386/gdbstub.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; x86_64-linux-user/target/i386/xsave_helper.o<br />&nbsp; CC&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/target/i386/translate.o<br /=
+>&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/target/i386/bpt_=
+helper.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/tar=
+get/i386/cc_helper.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-li=
+nux-user/target/i386/excp_helper.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; x86_64-linux-user/target/i386/fpu_helper.o<br />&nbsp; CC&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp; x86_64-linux-user/target/i386/int_helper.o<br />&nbsp; CC=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/target/i386/mem_helper.o<b=
+r />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/target/i386/m=
+isc_helper.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user=
+/target/i386/mpx_helper.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_=
+64-linux-user/target/i386/seg_helper.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; x86_64-linux-user/target/i386/smm_helper.o<br />&nbsp; CC&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/target/i386/svm_helper.o<br />&nbsp=
+; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/target/i386/sev-stub.o=
+<br />&nbsp; GEN&nbsp;&nbsp;&nbsp;&nbsp; trace/generated-helpers.c<br />&nb=
+sp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/trace/control-target=
+.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/gdbstub-x=
+ml.o<br />&nbsp; CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x86_64-linux-user/trace/g=
+enerated-helpers.o<br />&nbsp; LINK&nbsp;&nbsp;&nbsp; x86_64-linux-user/qem=
+u-x86_64<br />ERROR: oe_runmake failed<br />WARNING: exit code 1 from a she=
+ll command.<br />ERROR: Function failed: do_compile (log file is located at=
+ /root/build-rauc/tmp-glibc/work/x86_64-linux/qemu-native/3.1.1.1-r0/temp/l=
+og.do_compile.5584)<br /><br /><br />I am using "Warrior" version due to li=
+mitation from other meta-layers. I have read that above issue is fixed in n=
+ewer versions of Yocto. But how can i fix this in Warrior? Is there any wor=
+karound?<br /><br />Can someone please help me resolve it?<br /><br />Your =
+help will be much appreciated.<br /><br />Thanks in advance.
 
---_000_06319bfd6f8f4fcd8b31c116219acdedbaesystemscom_--
+--VYUG7pM3zflZQ2iiZRoR--
 
