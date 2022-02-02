@@ -1,160 +1,147 @@
-Return-Path: <food.dedication@aleeas.com>
+Return-Path: <mhalstead@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BD166C433EF
-	for <webhook@archiver.kernel.org>; Wed,  2 Feb 2022 20:59:42 +0000 (UTC)
-Subject: Issues setting SELinux file contexts during build #selinux
-To: yocto@lists.yoctoproject.org
-From: "Ansh" <food.dedication@aleeas.com>
-X-Originating-Location: US (173.36.212.118)
-X-Originating-Platform: Mac Chrome 97
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7BE2FC433EF
+	for <webhook@archiver.kernel.org>; Wed,  2 Feb 2022 23:50:21 +0000 (UTC)
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com
+ [209.85.167.42])
+ by mx.groups.io with SMTP id smtpd.web08.2159.1643845820240982268
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 02 Feb 2022 15:50:20 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=esXih4RG;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.167.42,
+ mailfrom: mhalstead@linuxfoundation.org)
+Received: by mail-lf1-f42.google.com with SMTP id i34so2381860lfv.2
+        for <yocto@lists.yoctoproject.org>;
+ Wed, 02 Feb 2022 15:50:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zrCvF7n36pxUB4PLkA5+MkDNssv125q3q6/ZtmXiIBw=;
+        b=esXih4RGmbO32cgLbVQL+1Z/WfRxKGZPbxv2RL2pIGjCPNcXCi6+JkhwxrujNMq6Ju
+         1dX/Yb66wpM6UNJu42Txk31BixqokcKC1T0i2TEvvdvEBLDP5pv/SAI0AEd+jZAkn51E
+         RGJN/6RJGyIA/WiRuMowh6w0nn9spknycZ3Zk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zrCvF7n36pxUB4PLkA5+MkDNssv125q3q6/ZtmXiIBw=;
+        b=UAteZq9PGKRWxcGdNRxmYZoUEJ6G9JND5HMGZKTOuKYp0uv76SzI6sJemqX5Vkmcyz
+         LZ00y06BW39yxumEKOhG72BXQfsiVlvdXUoNCwlpu6L5aTHbuVzMeaVPcjRe9Wz3eVKe
+         fH7o0/MD6kp2gXoHar4FQumH0aPhPwpSXwi6qZYUsnKWBDadFQF0bTzDs3IsHmQcD2kP
+         CIgmcT/05Ny1LdpiDu/QHiDwC+oOrkivEqiq19xQ9K0NrAHxlk/Wsq6RlsvWAw8i8LS2
+         BbLg58hJ+wLhI948q+3GPvfllLHx8M2Y8dbxYZgUpSAV9SkzoATulO5TEttHAuIIOuq7
+         GLog==
+X-Gm-Message-State: AOAM530kSOqjC/Q3d4q46MalKicNDmIHSj1uFIKLKiDDvoayiAx1TodZ
+	IJa5AROuoUw8SGoeU6lCbqhfQFVVaAhBFY+qT3nwFQ==
+X-Google-Smtp-Source: 
+ ABdhPJza6vRIbn0tKasS7vIWfV/PqKTj8scLwe+WQ6nGPTq53MmTy4ULxZLmGFTZwzxq3MHasfKDutn+U/2HvuG6bek=
+X-Received: by 2002:a05:6512:1587:: with SMTP id
+ bp7mr24958496lfb.671.1643845818218;
+ Wed, 02 Feb 2022 15:50:18 -0800 (PST)
 MIME-Version: 1.0
-Date: Wed, 02 Feb 2022 12:59:41 -0800
-Message-ID: <2sGe.1643835581827185787.icAh@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="2hgGUzXiargS2CU4lKBO"
+References: <16CE27BD1FB20052.24088@lists.yoctoproject.org>
+ <CANNYZj9=Y6z6HLkXu2q9p=UCM3FzmptPBWDvb4Q9ycKn2WcwJg@mail.gmail.com>
+ <20220127200650.GX26229@denix.org>
+ <CANNYZj_mmE-m0eW9SMjmQxr203B8THminnME_Os37dTET_rV-Q@mail.gmail.com>
+In-Reply-To: 
+ <CANNYZj_mmE-m0eW9SMjmQxr203B8THminnME_Os37dTET_rV-Q@mail.gmail.com>
+From: Michael Halstead <mhalstead@linuxfoundation.org>
+Date: Wed, 2 Feb 2022 15:50:06 -0800
+Message-ID: 
+ <CADfgfob5GLcopY=yCo5DuXTDR4ZUXTYPjErDmtnKt5jq6WJ6xQ@mail.gmail.com>
+Subject: Re: [yocto] [meta-lts-mixins][dunfell/go PATCH 1/4] Initial commit:
+ add license, readme and layer config.
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>,
+	Richard Purdie <richard.purdie@linuxfoundation.org>,
+ Denys Dmytriyenko <denis@denix.org>
+Content-Type: multipart/alternative; boundary="0000000000000f913f05d711ae15"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 02 Feb 2022 20:59:42 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56048
+ <yocto@lists.yoctoproject.org>; Wed, 02 Feb 2022 23:50:21 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56049
 
---2hgGUzXiargS2CU4lKBO
-Content-Type: text/plain; charset="utf-8"
+--0000000000000f913f05d711ae15
+Content-Type: text/plain; charset="UTF-8"
+
+Thank you for the ping. These branches are ready for you.
+
+On Tue, Feb 1, 2022 at 6:23 AM Alexander Kanavin <alex.kanavin@gmail.com>
+wrote:
+
+> On Thu, 27 Jan 2022 at 21:06, Denys Dmytriyenko <denis@denix.org> wrote:
+>
+>> On Thu, Jan 27, 2022 at 06:07:06PM +0100, Alexander Kanavin wrote:
+>> > A question specifically to Denys, how can I actually get this into the
+>> > mixin repo, and have commit rights to the branch? We've tested this
+>> quite
+>> > well in private, and there are further enhancements coming up.
+>>
+>> Michael,
+>>
+>> Would it be possible to create 2 additional branches in the
+>> meta-lts-mixins
+>> repository at https://git.yoctoproject.org/meta-lts-mixins/ called
+>> "dunfell/go" and also "dunfell/docker" and give Alex push rights to them?
+>>
+>> Please let us know, thanks a lot!
+>>
+>
+> Ping, please :)
+>
+> Alex
+>
+
+
+-- 
+Michael Halstead
+Linux Foundation / Yocto Project
+Systems Operations Engineer
+
+--0000000000000f913f05d711ae15
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+<div dir=3D"ltr">Thank=C2=A0you for the ping. These branches are ready for =
+you.</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Tue, Feb 1, 2022 at 6:23 AM Alexander Kanavin &lt;<a href=3D"mailto:=
+alex.kanavin@gmail.com">alex.kanavin@gmail.com</a>&gt; wrote:<br></div><blo=
+ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
+:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, 27 Jan 2022 =
+at 21:06, Denys Dmytriyenko &lt;<a href=3D"mailto:denis@denix.org" target=
+=3D"_blank">denis@denix.org</a>&gt; wrote:<br></div><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex">On Thu, Jan 27, 2022 at 06:07:06PM +0100, Alexan=
+der Kanavin wrote:<br>
+&gt; A question specifically to Denys, how can I actually get this into the=
+<br>
+&gt; mixin repo, and have commit rights to the branch? We&#39;ve tested thi=
+s quite<br>
+&gt; well in private, and there are further enhancements coming up.<br>
+<br>
+Michael,<br>
+<br>
+Would it be possible to create 2 additional branches in the meta-lts-mixins=
+ <br>
+repository at <a href=3D"https://git.yoctoproject.org/meta-lts-mixins/" rel=
+=3D"noreferrer" target=3D"_blank">https://git.yoctoproject.org/meta-lts-mix=
+ins/</a> called <br>
+&quot;dunfell/go&quot; and also &quot;dunfell/docker&quot; and give Alex pu=
+sh rights to them?<br>
+<br>
+Please let us know, thanks a lot!<br></blockquote></div><div class=3D"gmail=
+_quote"><br></div><div class=3D"gmail_quote">Ping, please :)</div><div clas=
+s=3D"gmail_quote"><br></div><div class=3D"gmail_quote">Alex<br></div></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr">Michael Halstead<div>Linux Foun=
+dation / Yocto Project</div><div>Systems Operations Engineer</div></div></d=
+iv>
 
-I am currently working on enabling SELinux on an x86 system (Yocto version =
-2.4). I was able to successfully enable SELinux on the target but need to s=
-et SELinux file contexts during the build. I have inherited the=C2=A0selinu=
-x-image.bbclass in my image recipe and can confirm that it's executed durin=
-g the build. But, when I boot up the image on target all the files have the=
- wrong (or default) file contexts. For e.g. all files in /etc have system_u=
-:object_r:root_t:s0 labels. When I run restorecon, the files get the correc=
-t labels. I have managed to narrow it down to the following two issues:
-
-1. setfiles fails during the build but doesn't return any error or error ms=
-g causing the build to pass
-
-I looked into the pseudo database table xattr to check if the xattrs are se=
-t during the build and found the table empty. So I modified the selinux-ima=
-ge.bbclass and added a setfattr to set xattr for a single file in /etc befo=
-re it runs setfiles. After the build, I found one entry for the same file f=
-or which I was using the setfattr command in the xattr table of pseudo db a=
-nd was also able to get the xattr using getfattr in the modified selinux-im=
-age.bbclass. So that means setfattr was working as expected but not setfile=
-s. Next, I enabled some debug logs for pseudo and found the following that =
-points to setfiles failing after it tries to read=C2=A0security.restorecon_=
-last. Any pointer as to why it is trying to read security.restorecon_last x=
-attr (even though we are not using -d option for setfiles) and fails if it =
-doesn't find it?
-
-27286: wrapper called: getxattr
-27286: getxattr - signals blocked, obtaining lock
-27286: <nil> + build/tmp/work/x86_ctm-poky-linux-musl/custom-image/1.0-r0/r=
-ootfs =3D> <build/tmp/work/x86_ctm-poky-linux-musl/custom-image/1.0-r0/root=
-fs>
-27286: base_path: <nil></>build/tmp/work/x86_ctm-poky-linux-musl/custom-ima=
-ge/1.0-r0/rootfs
-27286: root_path [getxattr, 7008]: 'build/tmp/work/x86_ctm-poky-linux-musl/=
-custom-image/1.0-r0/rootfs' from 'build/tmp/work/x86_ctm-poky-linux-musl/cu=
-stom-image/1.0-r0/rootfs'
-27286: getxattr(build/tmp/work/x86_ctm-poky-linux-musl/custom-image/1.0-r0/=
-rootfs [fd -1], security.restorecon_last)
-27286: getxattr, name 'security.restorecon_last'
-27286: get-xattr security.restorecon_last -> build/tmp/work/x86_ctm-poky-li=
-nux-musl/custom-image/1.0-r0/rootfs (+buf) (040755): processing request [in=
-o 146615528]
-27286: sending request [ino 146615528]
-27286: sending a message: ino 146615528
-27286: msg type 3 (get-xattr), external path build/tmp/work/x86_ctm-poky-li=
-nux-musl/custom-image/1.0-r0/rootfs, mode 040755
-27286: wrote 184 bytes
-27286: sent!
-27286: got header, type 4, pathlen 0
-27286: got response type 4
-27286: (27286) fail
-2. xattrs set during the build are not present on the target
-
-As mentioned above, I modified to selinux-image.bbclass to set xattr for a =
-single file in /etc. This works during the build since I can see the corres=
-ponding entry in pseudo db and also can get the set xattr using getfattr in=
- the same selinux-image.bbclass. But when I boot up the image on target the=
- xattr is replaced by (I am guessing) the default SELinux label of system_u=
-:object_r:root_t:s0. I am using initramfs for packaging the root filesystem=
- and=C2=A0I found that cpio ignores xattrs and also initramfs doesn't suppo=
-rt xattrs. Does that mean I can't set the file contexts during the build be=
-cause I am using initramfs and cpio?
-
-Thanks,
-Ansh
-
---2hgGUzXiargS2CU4lKBO
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi all,<br /><br />I am currently working on enabling SELinux on an x86 sys=
-tem (Yocto version 2.4). I was able to successfully enable SELinux on the t=
-arget but need to set SELinux file contexts during the build. I have inheri=
-ted the&nbsp;selinux-image.bbclass in my image recipe and can confirm that =
-it's executed during the build. But, when I boot up the image on target all=
- the files have the wrong (or default) file contexts. For e.g. all files in=
- /etc have&nbsp;<em>system_u:object_r:root_t:s0</em> labels. When I run res=
-torecon, the files get the correct labels. I have managed to narrow it down=
- to the following two issues:<br /><br /><em>1. setfiles fails during the b=
-uild but doesn't return any error or error msg causing the build to pass</e=
-m><br /><br />I looked into the pseudo database table xattr to check if the=
- xattrs are set during the build and found the table empty. So I modified t=
-he selinux-image.bbclass and added a setfattr to set xattr for a single fil=
-e in /etc before it runs setfiles. After the build, I found one entry for t=
-he same file for which I was using the setfattr command in the xattr table =
-of pseudo db and was also able to get the xattr using getfattr in the modif=
-ied selinux-image.bbclass. So that means setfattr was working as expected b=
-ut not setfiles. Next, I enabled some debug logs for pseudo and found the f=
-ollowing that points to setfiles failing after it tries to read&nbsp;securi=
-ty.restorecon_last. Any pointer as to why it is trying to read security.res=
-torecon_last xattr (even though we are not using -d option for setfiles) an=
-d fails if it doesn't find it?<br /><br />
-<pre class=3D"code-java" style=3D"margin-bottom: 0px; padding: 0px; max-hei=
-ght: 30em; white-space: pre-wrap; overflow-wrap: normal; color: #172b4d; fo=
-nt-size: 12px; background-color: #f4f5f7;">27286: wrapper called: getxattr
-27286: getxattr - signals blocked, obtaining lock
-27286: &lt;nil&gt; + build/tmp/work/x86_ctm-poky-linux-musl/custom-image/1.=
-0-r0/rootfs =3D&gt; &lt;build/tmp/work/x86_ctm-poky-linux-musl/custom-image=
-/1.0-r0/rootfs&gt;<br />27286: base_path: &lt;nil&gt;&lt;/&gt;build/tmp/wor=
-k/x86_ctm-poky-linux-musl/custom-image/1.0-r0/rootfs<br />27286: root_path =
-[getxattr, 7008]: <span class=3D"code-quote" style=3D"color: #009100;">'bui=
-ld/tmp/work/x86_ctm-poky-linux-musl/custom-image/1.0-r0/rootfs'<span style=
-=3D"color: #172b4d;"> from </span><span class=3D"code-quote">'build/tmp/wor=
-k/x86_ctm-poky-linux-musl/custom-image/1.0-r0/rootfs'<br /></span></span>27=
-286: getxattr(build/tmp/work/x86_ctm-poky-linux-musl/custom-image/1.0-r0/ro=
-otfs [fd -1], security.restorecon_last)<br />27286: getxattr, name <span cl=
-ass=3D"code-quote" style=3D"color: #009100;">'security.restorecon_last'</sp=
-an>
-27286: get-xattr security.restorecon_last -&gt; build/tmp/work/x86_ctm-poky=
--linux-musl/custom-image/1.0-r0/rootfs (+buf) (040755): processing request =
-[ino 146615528]<br />27286: sending request [ino 146615528]
-27286: sending a message: ino 146615528
-27286: msg type 3 (get-xattr), external path build/tmp/work/x86_ctm-poky-li=
-nux-musl/custom-image/1.0-r0/rootfs, mode 040755<br />27286: wrote 184 byte=
-s
-27286: sent!
-27286: got header, type 4, pathlen 0
-27286: got response type 4
-27286: (27286) fail</pre>
-<br /><em>&nbsp;2. xattrs set during the build are not present on the targe=
-t</em><br /><br />As mentioned above, I modified to selinux-image.bbclass t=
-o set xattr for a single file in /etc. This works during the build since I =
-can see the corresponding entry in pseudo db and also can get the set xattr=
- using getfattr in the same selinux-image.bbclass. But when I boot up the i=
-mage on target the xattr is replaced by (I am guessing) the default SELinux=
- label of <em>system_u:object_r:root_t:s0. </em>I am using initramfs for pa=
-ckaging the root filesystem and&nbsp;I found that cpio ignores xattrs and a=
-lso initramfs doesn't support xattrs. Does that mean I can't set the file c=
-ontexts during the build because I am using initramfs and cpio?<br /><br />=
-Thanks,<br />Ansh<br />
-
---2hgGUzXiargS2CU4lKBO--
+--0000000000000f913f05d711ae15--
 
