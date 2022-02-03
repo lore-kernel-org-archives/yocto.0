@@ -1,289 +1,321 @@
-Return-Path: <f_l_k@t-online.de>
+Return-Path: <matthias.klein@optimeas.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A5165C4332F
-	for <webhook@archiver.kernel.org>; Thu,  3 Feb 2022 09:00:42 +0000 (UTC)
-Received: from mailout07.t-online.de (mailout07.t-online.de [194.25.134.83])
- by mx.groups.io with SMTP id smtpd.web12.6837.1643878841504899644
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 549AEC433F5
+	for <webhook@archiver.kernel.org>; Thu,  3 Feb 2022 09:14:16 +0000 (UTC)
+Received: from EUR02-HE1-obe.outbound.protection.outlook.com
+ (EUR02-HE1-obe.outbound.protection.outlook.com [40.107.1.88])
+ by mx.groups.io with SMTP id smtpd.web11.6959.1643879647947159245
  for <yocto@lists.yoctoproject.org>;
- Thu, 03 Feb 2022 01:00:42 -0800
+ Thu, 03 Feb 2022 01:14:09 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=none, err=SPF record not found (domain: t-online.de, ip: 194.25.134.83,
- mailfrom: f_l_k@t-online.de)
-Received: from fwd76.dcpf.telekom.de (fwd76.aul.t-online.de [10.223.144.102])
-	by mailout07.t-online.de (Postfix) with SMTP id 83E9E2CF7;
-	Thu,  3 Feb 2022 10:00:39 +0100 (CET)
-Received: from [192.168.178.83] ([84.163.40.152]) by fwd76.t-online.de
-	with (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384 encrypted)
-	esmtp id 1nFXyp-3qSQVM0; Thu, 3 Feb 2022 10:00:39 +0100
-Date: Thu, 03 Feb 2022 10:00:33 +0100
-From: f_l_k@t-online.de
-Subject: Re: [yocto] wget - The certificate has not yet been activated
-To: Matthias Klein <matthias.klein@optimeas.de>
-Cc: yocto@lists.yoctoproject.org
-Message-Id: <X01Q6R.S8ABK0BAEBQW2@t-online.de>
-In-Reply-To: 
-	<AM0PR10MB3107FA2B22E2F87535D4896C99289@AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM>
+ dkim=pass header.i=@optimeasgmbh.onmicrosoft.com
+ header.s=selector2-optimeasgmbh-onmicrosoft-com header.b=RIhE1Rce;
+ spf=pass (domain: optimeas.de, ip: 40.107.1.88,
+ mailfrom: matthias.klein@optimeas.de)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FTdrijT4MdWj6pF9iLzfv0LPmhn4iH4hqfHtd/29A/a0Kj4UvsN1di63u1f3Q4MqX3DHGpNmuhTzsbrgAViyOXqAzjRYg/WifGTA+JZin3AOVWNhmkHQiprowAZrqP4f7a8Rwnmwm0BRMAhM8K8BynL0g0ucyF5NdHunYH13Dq9KQG4axc1YkvkCJkgLbOkiLy9JuOXyu2I9eYU2RyLzH29hqT6kk6jEPiCbRzXdtyDNBtXDv6OjYhQYWYnXNPINili/0Q9T5kae9pQzctEK/eQRLIvWvuNaguwr65rgF/79xcDtHwCCTpWu87sKAsxWaVcDzrFjItwwGA4Btbj9cQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cuY7I+2t9wuwB55uu+dalHXyPn3gatyqqGd3zaNm1IU=;
+ b=gcGMVzRHLNG2i2V5YGhJfCiGpW4/hEPD3zMD7YosBuI/x+ZXfJCDMVNn7tlzZ/5lAgbdu6CBZ4wN3dtnHdqtnmoTaMyQ0BaYJWbCwUfLAGZ7w53ZjJUEjDl45ONPsxzsK5Dz82d8ABTqLroFPDFknAeFsI+mUzWW5XIgOoimYPmSVj8uJ3v0zCoDKyY0mH8wRT47R/YN2Ho7+aIClFw1A0LouKAE1O7A3Rs6hgzF+xmzl2rzWx/IF2F/0P2gv90uy+c5/yfCGveOrVoJkYaN2fpsfN61ktpzk0ar5tSIitHyjIeoYGHqKZLWg07PN8u/jK0oXhlTnmP0uh+1MXSM7w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=optimeasgmbh.onmicrosoft.com; s=selector2-optimeasgmbh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cuY7I+2t9wuwB55uu+dalHXyPn3gatyqqGd3zaNm1IU=;
+ b=RIhE1Rce9a5a2S/Y+In0fkT5F5RlVHmEz8QDlUltFQrunmqWdgC866FRw1aS+HVpcd/RDr7D+UN5NtArBMU51rbRJeAv8SxHSOrQ/3o8qjU3JMfxq7s76KOAN4bV98gssPsSaSHnM54FqAEQwRp6erq0KCiQINtgqmcPSZ2btN0=
+Received: from AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:128::16)
+ by AM6PR10MB2838.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:a2::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.17; Thu, 3 Feb
+ 2022 09:14:03 +0000
+Received: from AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::5469:dc0c:7012:d085]) by AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::5469:dc0c:7012:d085%4]) with mapi id 15.20.4951.012; Thu, 3 Feb 2022
+ 09:14:02 +0000
+From: Matthias Klein <matthias.klein@optimeas.de>
+To: "f_l_k@t-online.de" <f_l_k@t-online.de>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: AW: [yocto] wget - The certificate has not yet been activated
+Thread-Topic: [yocto] wget - The certificate has not yet been activated
+Thread-Index: AdgYxwNdHSJPIT2USkGyBs4Gv/iaGwAFXzWAAABgv3A=
+Date: Thu, 3 Feb 2022 09:14:02 +0000
+Message-ID: 
+ <AM0PR10MB31070F8A753D696AB838415F99289@AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM>
 References: 
-	<AM0PR10MB3107FA2B22E2F87535D4896C99289@AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM>
-X-Mailer: geary/40.0
+ <AM0PR10MB3107FA2B22E2F87535D4896C99289@AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM>
+ <X01Q6R.S8ABK0BAEBQW2@t-online.de>
+In-Reply-To: <X01Q6R.S8ABK0BAEBQW2@t-online.de>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=optimeas.de;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: db66d424-d041-443a-d44a-08d9e6f5856c
+x-ms-traffictypediagnostic: AM6PR10MB2838:EE_
+x-microsoft-antispam-prvs: 
+ <AM6PR10MB28382A43B9FE7D28EA35624D99289@AM6PR10MB2838.EURPRD10.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ q2eXBMLT+0+Vfa2cMJaLuX0FVtW/+RsZovvvVMa1LR9w6TxjjWVkLx8YjXLoIg1QtFCUDyENO23+DkvG7UhmO9cP43TY5qIhkdPC/nDvazEqpi8CiVSE9mVfaNX/xa1gp+Yq7ZocBGO7nZ91SWjcaWqgKDBuhvhxamLRs5d+DRekINB9Wrrra+elXUKHhZtS6Etd5jBltcBbKIUMsu9mO8QgtFJpNNr8NKusqe302Cv2cG3RCIgI8cQvo/j4WejFpe8nEVc8UEkiNLDjsRPTeZgBIJaUOASc/VFoXEgvdgIQx6yI4jTL6MNSZv89MGj4tkdCDUlBbc+Ll1QDZOnpLR6MO6dag8SSGDPoKLf4y3P+ECOyoGDaZRRpLAjK5xr5b7We7CpB45Ojl+8OkPXxXnSb3D1VVhRqc7jl4KG2iscxN16BBEcDC+rn7+auO3wcMeBtHQoYEQK+Ih49qiIPwuRI8oTXjOSTAH6BNAjdHueWTY6GuRPXIigm9pGzGht5TAanA/Ar74Zg5TTMkdys0q9GttjCxFrYuMsD+KEq7eRLUBihMsO50BgCqu+2aSUe7q8MTieOBQVyb0cV4mVu5hfj90VgECdntwq5EYkYsEf7DhUEcrRDM/A4L6z1HP98bVFMGhs9gToJ04wHaXRmcNm3JKj1Zle10xN5mxJq3QPSyY4+4GXWQKqO67Ru66ePur9ZT1uCikm16icKzh6cBQ==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(136003)(366004)(346002)(396003)(376002)(39830400003)(8936002)(38100700002)(33656002)(558084003)(38070700005)(76116006)(71200400001)(122000001)(508600001)(55016003)(66446008)(66556008)(86362001)(66476007)(64756008)(7696005)(9686003)(5660300002)(66946007)(4326008)(52536014)(6506007)(19627235002)(8676002)(316002)(2906002)(44832011)(186003)(6916009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?2B144XMkLw+y6GmYg2MjOHJdaRJ9XTiNrP0HPsLtXGVfM5Cl2ixCQsgHXl91?=
+ =?us-ascii?Q?ePlicYv2pz2fQwgpcJ7PCA1sG3ydHyKvWcrQJumPrzZnE6pmiT6fux4Mk4yx?=
+ =?us-ascii?Q?wRTBEYOCe41znaj+N/PxW8QzNQ8OkaY7QX9NwwKUF6oePtARyivZahqUWLl1?=
+ =?us-ascii?Q?9XNV+A/1jp7+YeR8CJKWAFS+PRJruyXJj/+7QGuUIbU5EZRkkPQkP2UuhtES?=
+ =?us-ascii?Q?MKJFVcJAyLhoqGOETCbPXGBOI446C/B60Vl9P1SYfcXnGzoryumOWVAppoua?=
+ =?us-ascii?Q?l8q2A8FFNKgu8VmSdtKgjIwjZ1YGosYXIAxYkegshRC7hxEM56/0MWYJrXx6?=
+ =?us-ascii?Q?lv1W3BI2zPj9M8J2/qmgMFGgKSxDgHrIKbg+tvRwgrTUImLe5wrMT9eq4SXN?=
+ =?us-ascii?Q?rop+oP2ym8Cm7O3VwSfWVYXmxe0pt7k1LA1lD07uJm6Lbxs5YvZwjmRu2x4S?=
+ =?us-ascii?Q?UIVMioXpKR0KdBs7kQ/FCf/07mPqrigK4sAzR3faJKbJY5Ri0G0W64ODIUjW?=
+ =?us-ascii?Q?tF6HQK/MrG7B653q4U2+Neb7uoAaHkgpYVFN25MC2R6DtPkyyMLXkj2Sim/f?=
+ =?us-ascii?Q?4OdgDVawp30khcbQ1jsfAXlvJf1b5ENZ1UuicueIpbAkmJRmwNsNfZqrVMhu?=
+ =?us-ascii?Q?VCnMRI4DMqwnirVCs5CrqDGKbAX9Nxopo26poYlxqNSF5cCn5jydkybLqKbP?=
+ =?us-ascii?Q?QyOdpDj85ctFb65fhD7H2e1OYhrNVf7m9lbBEz5c7qkrojllvzplBaLaBzLQ?=
+ =?us-ascii?Q?h6O0smnGiaDKJgYHPfbr3pbYhvVTLmLLwDzsMruu4dtiIbsgTIxgK4gyraCi?=
+ =?us-ascii?Q?CsUXe1W+Hz8EGM9CNQIkXNBaysQrLnSJjhvp2uz17ZETYeNHo0GKAEYDSPgQ?=
+ =?us-ascii?Q?uXJgHAbhy/p2nUqX7fmPtndfRQyww/a3D1Kvmf6Db0tWUx/sIeBB6t+O9VBK?=
+ =?us-ascii?Q?ovUbIc7mMkSO6hZmNHa2LxW/BazzBSHVS6LK8TRAe+Tl0QStC6FZEsbB2T93?=
+ =?us-ascii?Q?mX1qOfGdvKIsxjR71yXjYjASjIZYWAcd5GXSz/qxmZD/skxsg6re+bXziYn0?=
+ =?us-ascii?Q?69wPqNXOl4xsU6YYVR7Oc6KeHmEUINC8NNm4kTkX7B+mnPBjk+J1smKVZlVw?=
+ =?us-ascii?Q?830x4QjKunaEqVH1a1sAVIZLQfej0IIX9hX7cy8yLaE0iwx+x4wJO4KY+ev0?=
+ =?us-ascii?Q?fpjF03f/p/TghrDFrf3hHi6oGKsRoC9PKvb46SUQlR+l5WOIM8Hn5iPghxg9?=
+ =?us-ascii?Q?oMHfElTnaqgoHt/5aRuhXNMjozsX5AH4enXzLPmxAg0HF+CaQltzlFL5qisM?=
+ =?us-ascii?Q?lJ9mfo4D/Ot4a2f19DRsbYRwjaEZoqFl2OkvE4FeeUhYcEV2gSwGHB4M5Ka2?=
+ =?us-ascii?Q?Dap86g7FdcRRiujudHiEd9gBuqlXM0yacAmSWPGDEJSTdGour7LvaUSUA7a8?=
+ =?us-ascii?Q?0G5Q/A/tQLlp55d0rRlgLhIYzwXlY3e7UkagpyaRkzJb/nCa7KQL+sxN0tBB?=
+ =?us-ascii?Q?aaZetmEAIL/ty3ShFuvzzQLTo6VLX6XP4G31gh0LkHAmtkDlaaQCtGJB14uK?=
+ =?us-ascii?Q?6ekHftNK/q6I9hQenBUWt7rijBwYSv04uHV50mqaVl7x9SgiiYsb5J0OXB2Z?=
+ =?us-ascii?Q?CmgmAN1k71LbFwISs+pkjO9QLdpeUZIryy+z8VwuyJGlbsDpZxLh5huWqUxp?=
+ =?us-ascii?Q?GnJJa+FDQS9Hr11CK6P1XkOvzU2vAb814GhDTBDp97v7JZpONnhWUfwRbSvP?=
+ =?us-ascii?Q?8pxgYmH9GQ=3D=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_AM0PR10MB31070F8A753D696AB838415F99289AM0PR10MB3107EURP_"
 MIME-Version: 1.0
-Content-Type: multipart/alternative; boundary="=-RYrtOGBZijTZkDMrEiKm"
-X-TOI-EXPURGATEID: 150726::1643878839-0001619A-4BB28853/0/0 CLEAN NORMAL
-X-TOI-MSGID: 08ac0915-e2d7-4f0d-8378-29c2a67f8089
+X-OriginatorOrg: optimeas.de
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ db66d424-d041-443a-d44a-08d9e6f5856c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Feb 2022 09:14:02.9045
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 91b33c5b-e584-4ec0-893c-2a9180ad0602
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 
+ S/6v4vJJh5+opmfEviVTJ73ma8p53DCo6NWoF+NSSsogPcFimaup5SYLN1HzMiCMjQ47UfCixdZsEPoJv54gBVWupesFXEUn9ZGkPhuWCe8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR10MB2838
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 03 Feb 2022 09:00:42 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56051
+ <yocto@lists.yoctoproject.org>; Thu, 03 Feb 2022 09:14:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56052
 
---=-RYrtOGBZijTZkDMrEiKm
-Content-Type: text/plain; charset=us-ascii; format=flowed
+--_000_AM0PR10MB31070F8A753D696AB838415F99289AM0PR10MB3107EURP_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Matthias,
-
-check if busybox is built with this option
-
-CONFIG_FEATURE_WGET_OPENSSL=y
+Hi,
 
 
+  *   check if busybox is built with this option
 
-On Thu, Feb 3 2022 at 06:37:01 AM +0000, Matthias Klein 
-<matthias.klein@optimeas.de> wrote:
-> Hello,
-> 
-> I have with the current master branch in a IMX6 Yocto the problem 
-> that with wget no HTTPS downloads work:
-> 
-> # wget -4 <https://speed.hetzner.de/100MB.bin>
-> --2022-02-03 06:23:25--  <https://speed.hetzner.de/100MB.bin>
-> SSL_INIT
-> Resolving speed.hetzner.de... 88.198.248.254
-> Connecting to speed.hetzner.de|88.198.248.254|:443... connected.
-> The certificate has not yet been activated
-> 
-> I do not understand why the validation of the certificate does not 
-> work.
-> With curl it works. It is also not due to the time of the system.
-> I use my own kernel based on the mainline kernel 5.10.47 with 
-> PREEMPT_RT.
-> 
-> TARGET_SYS           = "arm-poky-linux-gnueabi"
-> TUNE_FEATURES        = "arm vfp cortexa9 neon thumb 
-> callconvention-hard"
-> TARGET_FPU           = "hard"
-> 
-> Can it be that something is missing in the kernel configuration?
-> Does anyone have any idea what the problem could be?
-> 
-> # wget --version
-> GNU Wget 1.21.2 built on linux-gnueabi.
-> 
-> -cares +digest -gpgme +https +ipv6 -iri +large-file -metalink +nls
-> +ntlm +opie -psl +ssl/gnutls
-> 
-> Wgetrc:
->     /etc/wgetrc (system)
-> Locale:
->     /usr/share/locale
-> Compile:
->     arm-poky-linux-gnueabi-gcc -mthumb -mfpu=neon -mfloat-abi=hard
->     -mcpu=cortex-a9 -fstack-protector-strong -O2 -D_FORTIFY_SOURCE=2
->     -Wformat -Wformat-security -Werror=format-security -DHAVE_CONFIG_H
->     -DSYSTEM_WGETRC="/etc/wgetrc" -DLOCALEDIR="/usr/share/locale" -I.
->     -I../../wget-1.21.2/src -I../lib -I../../wget-1.21.2/lib -DNDEBUG
->     -O2 -pipe -g -feliminate-unused-debug-types
-> Link:
->     arm-poky-linux-gnueabi-gcc -mthumb -mfpu=neon -mfloat-abi=hard
->     -mcpu=cortex-a9 -fstack-protector-strong -O2 -D_FORTIFY_SOURCE=2
->     -Wformat -Wformat-security -Werror=format-security -DNDEBUG -O2
->     -pipe -g -feliminate-unused-debug-types -Wl,-O1
->     -Wl,--hash-style=gnu -Wl,--as-needed -Wl,-z,relro,-z,now -lpcre
->     -lnettle -lgnutls -lz ftp-opie.o gnutls.o http-ntlm.o
->     ../lib/libgnu.a -lunistring
-> 
-> Copyright (C) 2015 Free Software Foundation, Inc.
-> License GPLv3+: GNU GPL version 3 or later
-> <http://www.gnu.org/licenses/gpl.html>.
-> This is free software: you are free to change and redistribute it.
-> There is NO WARRANTY, to the extent permitted by law.
-> 
-> Originally written by Hrvoje Niksic <mailto:hniksic@xemacs.org>.
-> Please send bug reports and questions to <mailto:bug-wget@gnu.org>.
-> 
-> A test with gnutls-cli seems to work though:
-> 
-> root@smartrail-8037:~# gnutls-cli -d 1 imap.gmail.com -p 993
-> Processed 127 CA certificate(s).
-> Resolving 'imap.gmail.com:993'...
-> Connecting to '2a00:1450:4013:c02::6d:993'...
-> - Certificate type: X.509
-> - Got a certificate list of 3 certificates.
-> - Certificate[0] info:
->  - subject `CN=imap.gmail.com', issuer `CN=GTS CA 1C3,O=Google Trust 
-> Services LLC,C=US', serial 0x65fa03b5a71a05070a000000012e04f6, 
-> EC/ECDSA key 256 bits, signed using RSA-SHA256, activated `2022-01-10 
-> 03:07:10 UTC', expires `2022-04-04 03:07:09 UTC', 
-> pin-sha256="ZrSVXSwpcGu6oCbquwHwx6H2FM7DjzANRxMjQUC/Ng8="
->         Public Key ID:
->                 sha1:ae10ac489504779956e7acfc17631471be3e20d6
->                 
-> sha256:66b4955d2c29706bbaa026eabb01f0c7a1f614cec38f300d4713234140bf360f
->         Public Key PIN:
->                 
-> pin-sha256:ZrSVXSwpcGu6oCbquwHwx6H2FM7DjzANRxMjQUC/Ng8=
-> 
-> - Certificate[1] info:
->  - subject `CN=GTS CA 1C3,O=Google Trust Services LLC,C=US', issuer 
-> `CN=GTS Root R1,O=Google Trust Services LLC,C=US', serial 
-> 0x0203bc53596b34c718f5015066, RSA key 2048 bits, signed using 
-> RSA-SHA256, activated `2020-08-13 00:00:42 UTC', expires `2027-09-30 
-> 00:00:42 UTC', 
-> pin-sha256="zCTnfLwLKbS9S2sbp+uFz4KZOocFvXxkV06Ce9O5M2w="
-> - Certificate[2] info:
->  - subject `CN=GTS Root R1,O=Google Trust Services LLC,C=US', issuer 
-> `CN=GlobalSign Root CA,OU=Root CA,O=GlobalSign nv-sa,C=BE', serial 
-> 0x77bd0d6cdb36f91aea210fc4f058d30d, RSA key 4096 bits, signed using 
-> RSA-SHA256, activated `2020-06-19 00:00:42 UTC', expires `2028-01-28 
-> 00:00:42 UTC', 
-> pin-sha256="hxqRlPTu1bMS/0DITB1SSu0vd4u/8l8TjPgfaAp63Gc="
-> - Status: The certificate is trusted.
-> - Description: 
-> (TLS1.3-X.509)-(ECDHE-X25519)-(ECDSA-SECP256R1-SHA256)-(AES-256-GCM)
-> - Session ID: 
-> FB:E7:27:9D:B0:8F:4C:2D:0C:5C:E9:17:0F:5C:9B:28:EE:3F:C0:38:0C:43:15:8D:9B:73:A7:AA:BD:AA:F9:87
-> - Options:
-> - Handshake was completed
-> 
-> - Simple Client Mode:
-> 
-> * OK Gimap ready for requests from 
-> 2a02:908:4c16:7960:20c:c6ff:fe81:e7fa k10mb249481499edf
-> 
-> Best regargds,
-> Matthias
-> 
-> 
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#56050): 
-> <https://lists.yoctoproject.org/g/yocto/message/56050>
-> Mute This Topic: <https://lists.yoctoproject.org/mt/88878285/3618223>
-> Group Owner: yocto+owner@lists.yoctoproject.org 
-> <mailto:yocto+owner@lists.yoctoproject.org>
-> Unsubscribe: <https://lists.yoctoproject.org/g/yocto/unsub> 
-> [f_l_k@t-online.de <mailto:f_l_k@t-online.de>]
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
+Thank you fort he tip, but I am using the real wget (not from busybox):
 
-
---=-RYrtOGBZijTZkDMrEiKm
-Content-Type: text/html; charset=us-ascii
-
-<div id="geary-body" dir="auto"><div>Hi Matthias,</div><div><br></div><div>check if busybox is built with this option</div><div><br></div><div><span style="color: rgb(114, 255, 114); font-family: monospace; font-size: 13.3333px; font-variant-ligatures: normal; orphans: 2; white-space: pre; widows: 2; background-color: rgb(24, 26, 27); text-decoration-thickness: initial;">CONFIG_FEATURE_WGET_OPENSSL=y</span></div><div><br></div><div><br></div></div><div id="geary-quote" dir="auto"><br>On Thu, Feb 3 2022 at 06:37:01 AM +0000, Matthias Klein &lt;matthias.klein@optimeas.de&gt; wrote:<br><blockquote type="cite"><div class="plaintext" style="white-space: break-spaces;">Hello,
-
-I have with the current master branch in a IMX6 Yocto the problem that with wget no HTTPS downloads work:
-
-# wget -4 <a href="https://speed.hetzner.de/100MB.bin">https://speed.hetzner.de/100MB.bin</a>
---2022-02-03 06:23:25--  <a href="https://speed.hetzner.de/100MB.bin">https://speed.hetzner.de/100MB.bin</a>
-SSL_INIT
-Resolving speed.hetzner.de... 88.198.248.254
-Connecting to speed.hetzner.de|88.198.248.254|:443... connected.
-The certificate has not yet been activated
-
-I do not understand why the validation of the certificate does not work.
-With curl it works. It is also not due to the time of the system.
-I use my own kernel based on the mainline kernel 5.10.47 with PREEMPT_RT.
-
-TARGET_SYS           = "arm-poky-linux-gnueabi"
-TUNE_FEATURES        = "arm vfp cortexa9 neon thumb callconvention-hard"
-TARGET_FPU           = "hard"
-
-Can it be that something is missing in the kernel configuration?
-Does anyone have any idea what the problem could be?
-
-# wget --version
+wget --version
 GNU Wget 1.21.2 built on linux-gnueabi.
 
 -cares +digest -gpgme +https +ipv6 -iri +large-file -metalink +nls
 +ntlm +opie -psl +ssl/gnutls
 
-Wgetrc:
-    /etc/wgetrc (system)
-Locale:
-    /usr/share/locale
-Compile:
-    arm-poky-linux-gnueabi-gcc -mthumb -mfpu=neon -mfloat-abi=hard
-    -mcpu=cortex-a9 -fstack-protector-strong -O2 -D_FORTIFY_SOURCE=2
-    -Wformat -Wformat-security -Werror=format-security -DHAVE_CONFIG_H
-    -DSYSTEM_WGETRC="/etc/wgetrc" -DLOCALEDIR="/usr/share/locale" -I.
-    -I../../wget-1.21.2/src -I../lib -I../../wget-1.21.2/lib -DNDEBUG
-    -O2 -pipe -g -feliminate-unused-debug-types
-Link:
-    arm-poky-linux-gnueabi-gcc -mthumb -mfpu=neon -mfloat-abi=hard
-    -mcpu=cortex-a9 -fstack-protector-strong -O2 -D_FORTIFY_SOURCE=2
-    -Wformat -Wformat-security -Werror=format-security -DNDEBUG -O2
-    -pipe -g -feliminate-unused-debug-types -Wl,-O1
-    -Wl,--hash-style=gnu -Wl,--as-needed -Wl,-z,relro,-z,now -lpcre
-    -lnettle -lgnutls -lz ftp-opie.o gnutls.o http-ntlm.o
-    ../lib/libgnu.a -lunistring
 
-Copyright (C) 2015 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later
-<a href="http://www.gnu.org/licenses/gpl.html">http://www.gnu.org/licenses/gpl.html</a>.
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
+Best regards,
+Matthias Klein
 
-Originally written by Hrvoje Niksic <a href="mailto:hniksic@xemacs.org">mailto:hniksic@xemacs.org</a>.
-Please send bug reports and questions to <a href="mailto:bug-wget@gnu.org">mailto:bug-wget@gnu.org</a>.
+--_000_AM0PR10MB31070F8A753D696AB838415F99289AM0PR10MB3107EURP_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-A test with gnutls-cli seems to work though:
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.E-MailFormatvorlage19
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1087386359;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-554774032 681333926 67567619 67567621 67567617 6756=
+7619 67567621 67567617 67567619 67567621;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0D8;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;
+	mso-fareast-font-family:Calibri;
+	mso-bidi-font-family:Calibri;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"DE" link=3D"blue" vlink=3D"purple" style=3D"word-wrap:break-w=
+ord">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">Hi,<o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
+p;</o:p></span></p>
+<ul style=3D"margin-top:0cm" type=3D"disc">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l0 level1 =
+lfo1">check if busybox is built with this option<o:p></o:p></li></ul>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
+p;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">Thank you=
+ fort he tip, but I am using the real wget (not from busybox):<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
+p;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">wget --ve=
+rsion<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">GNU Wget =
+1.21.2 built on linux-gnueabi.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
+p;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">-cares +d=
+igest -gpgme +https +ipv6 -iri +large-file -metalink +nls<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">+ntlm +op=
+ie -psl +ssl/gnutls<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
+p;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
+p;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:black;background:white">Best re=
+gards,</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:black;background:white">Matthia=
+s Klein</span>
+<o:p></o:p></p>
+</div>
+</body>
+</html>
 
-root@smartrail-8037:~# gnutls-cli -d 1 imap.gmail.com -p 993
-Processed 127 CA certificate(s).
-Resolving 'imap.gmail.com:993'...
-Connecting to '2a00:1450:4013:c02::6d:993'...
-- Certificate type: X.509
-- Got a certificate list of 3 certificates.
-- Certificate[0] info:
- - subject `CN=imap.gmail.com', issuer `CN=GTS CA 1C3,O=Google Trust Services LLC,C=US', serial 0x65fa03b5a71a05070a000000012e04f6, EC/ECDSA key 256 bits, signed using RSA-SHA256, activated `2022-01-10 03:07:10 UTC', expires `2022-04-04 03:07:09 UTC', pin-sha256="ZrSVXSwpcGu6oCbquwHwx6H2FM7DjzANRxMjQUC/Ng8="
-        Public Key ID:
-                sha1:ae10ac489504779956e7acfc17631471be3e20d6
-                sha256:66b4955d2c29706bbaa026eabb01f0c7a1f614cec38f300d4713234140bf360f
-        Public Key PIN:
-                pin-sha256:ZrSVXSwpcGu6oCbquwHwx6H2FM7DjzANRxMjQUC/Ng8=
-
-- Certificate[1] info:
- - subject `CN=GTS CA 1C3,O=Google Trust Services LLC,C=US', issuer `CN=GTS Root R1,O=Google Trust Services LLC,C=US', serial 0x0203bc53596b34c718f5015066, RSA key 2048 bits, signed using RSA-SHA256, activated `2020-08-13 00:00:42 UTC', expires `2027-09-30 00:00:42 UTC', pin-sha256="zCTnfLwLKbS9S2sbp+uFz4KZOocFvXxkV06Ce9O5M2w="
-- Certificate[2] info:
- - subject `CN=GTS Root R1,O=Google Trust Services LLC,C=US', issuer `CN=GlobalSign Root CA,OU=Root CA,O=GlobalSign nv-sa,C=BE', serial 0x77bd0d6cdb36f91aea210fc4f058d30d, RSA key 4096 bits, signed using RSA-SHA256, activated `2020-06-19 00:00:42 UTC', expires `2028-01-28 00:00:42 UTC', pin-sha256="hxqRlPTu1bMS/0DITB1SSu0vd4u/8l8TjPgfaAp63Gc="
-- Status: The certificate is trusted.
-- Description: (TLS1.3-X.509)-(ECDHE-X25519)-(ECDSA-SECP256R1-SHA256)-(AES-256-GCM)
-- Session ID: FB:E7:27:9D:B0:8F:4C:2D:0C:5C:E9:17:0F:5C:9B:28:EE:3F:C0:38:0C:43:15:8D:9B:73:A7:AA:BD:AA:F9:87
-- Options:
-- Handshake was completed
-
-- Simple Client Mode:
-
-* OK Gimap ready for requests from 2a02:908:4c16:7960:20c:c6ff:fe81:e7fa k10mb249481499edf
-
-Best regargds,
-Matthias
-
-
-</div><div class="plaintext" style="white-space: break-spaces;">
--=-=-=-=-=-=-=-=-=-=-=-
-Links: You receive all messages sent to this group.
-View/Reply Online (#56050): <a href="https://lists.yoctoproject.org/g/yocto/message/56050">https://lists.yoctoproject.org/g/yocto/message/56050</a>
-Mute This Topic: <a href="https://lists.yoctoproject.org/mt/88878285/3618223">https://lists.yoctoproject.org/mt/88878285/3618223</a>
-Group Owner: <a href="mailto:yocto+owner@lists.yoctoproject.org">yocto+owner@lists.yoctoproject.org</a>
-Unsubscribe: <a href="https://lists.yoctoproject.org/g/yocto/unsub">https://lists.yoctoproject.org/g/yocto/unsub</a> [<a href="mailto:f_l_k@t-online.de">f_l_k@t-online.de</a>]
--=-=-=-=-=-=-=-=-=-=-=-
-
-</div></blockquote></div>
---=-RYrtOGBZijTZkDMrEiKm--
-
+--_000_AM0PR10MB31070F8A753D696AB838415F99289AM0PR10MB3107EURP_--
 
