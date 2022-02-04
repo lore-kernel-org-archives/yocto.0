@@ -1,123 +1,125 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <enrico.scholz@sigma-chemnitz.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 65677C433F5
-	for <webhook@archiver.kernel.org>; Fri,  4 Feb 2022 19:12:37 +0000 (UTC)
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com
- [209.85.221.178])
- by mx.groups.io with SMTP id smtpd.web11.13539.1644001955891184275
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5FCB4C4332F
+	for <webhook@archiver.kernel.org>; Fri,  4 Feb 2022 20:09:05 +0000 (UTC)
+Received: from smtpout.cvg.de (smtpout.cvg.de [87.128.211.67])
+ by mx.groups.io with SMTP id smtpd.web10.14397.1644005340941160209
  for <yocto@lists.yoctoproject.org>;
- Fri, 04 Feb 2022 11:12:36 -0800
+ Fri, 04 Feb 2022 12:09:04 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=RvFYf2MR;
- spf=pass (domain: gmail.com, ip: 209.85.221.178,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vk1-f178.google.com with SMTP id l196so4275584vki.5
-        for <yocto@lists.yoctoproject.org>;
- Fri, 04 Feb 2022 11:12:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=sdfjcaoEFdagniSEzy3w7qcidYW6MKKQeZlDPIEobqI=;
-        b=RvFYf2MRPK8vOT461qmZJ5O7Qc5HPIfKMnNtoKYcQB/dzgEhRUEN51wRlZINXZK2S9
-         N5ZkJeAMOdDR2F09YCuLwOCdBQz/uvGXBBH9Au89LdWkG2LXuvZurZ/qGKEw2eOWzMq3
-         ecyJ0ffTF+fub/lzvbU6dPdAKdYBOqMlZt/db1AF9I/RGUfLuUe4P/FbMd/wXq5Xs01F
-         OM91bRJHY4y7r8ln5OCej5ACtGHuN7IrFU0wTX0rerR32WFkYJZRNE/uTK3wea7SDWas
-         3xxI8oOcrZQWP3QcD2FmMAaRexwcF+I5uwtaNlpyM/U0MZE+O/OM6VDiFi18xvuPTjVF
-         9Tfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sdfjcaoEFdagniSEzy3w7qcidYW6MKKQeZlDPIEobqI=;
-        b=GHdvBkXvGK/sksZ7zJE3sfCpZLfTc1+Ra9y7c+++AwDTqHAafDpShvx/tmFJxmvUup
-         7r8pWRQO4rLQI1CAqcTgS3Yxr01s/QTynfWoS/I4xDNknDUDVcZ6IaOiGovavGoxLqtB
-         rPUaxOjqLe+M93y02AZVSkFsGXe0vsBfRqIDTHc0Lu6aR47z6vXyF9RfPqogvR9lOI65
-         7M3xgj1pXM8Ru7T8v53W2MburWBmKh533pBQasfrGaI3XISCx2caRq00YmQtGuelr9hy
-         9CHQwH1tRwx54S8bP3w+xc+aDE0TLk1TcZOWM4QVeJHEZpdXeWiB04phHi/ksHWByXQQ
-         5FNg==
-X-Gm-Message-State: AOAM531yw6ZvWs1ZANQIYlNuRSeLQfB5eUQBWKHb2Qt9aSXR0uqptJAK
-	+f6Arka+MoJ3Xy3Yt/cbN5sm7KW4t/Ky/KYxH/U=
-X-Google-Smtp-Source: 
- ABdhPJwtaflkSPeCyliVSl2XG8Grbwkl+MunwMShhtC5f2bVWd2ggQqE1GxplZNp+j9SnHtm0KQROwQJ4eIZ6/NYQTQ=
-X-Received: by 2002:a05:6122:2190:: with SMTP id
- j16mr1729647vkd.21.1644001955006;
- Fri, 04 Feb 2022 11:12:35 -0800 (PST)
-MIME-Version: 1.0
+ dkim=pass header.i=@sigma-chemnitz.de header.s=v2012061000 header.b=WDTazGfT;
+ spf=pass (domain: sigma-chemnitz.de, ip: 87.128.211.67,
+ mailfrom: enrico.scholz@sigma-chemnitz.de)
+Received: from mail-mta-3.intern.sigma-chemnitz.de
+ (mail-mta-3.intern.sigma-chemnitz.de [192.168.12.71])
+	by mail-out-2.intern.sigma-chemnitz.de (8.16.1/8.16.1) with ESMTPS id
+ 214K8uV1115293
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK)
+	for <yocto@lists.yoctoproject.org>; Fri, 4 Feb 2022 21:08:56 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sigma-chemnitz.de;
+	s=v2012061000; t=1644005336;
+	bh=BpUrJkx3eD1gIgcDL4D7V1xRLEGjGPcFYO/2vgNej1M=; l=1248;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To;
+	b=WDTazGfT480XAS1Nr327r0n7CMnFlnC6Yf2JtxA2ABpt239ra+haWNCLQcC75WecY
+	 mVVgyzFXhw4zPaT9ROXO0i1cVZFjVdFqV/uSBxQiuuk1FHrqwwfz6ctW05rSW6iqmn
+	 5r4P71OtaohhsGXOBaKV5neUw9A/xH+duXp2F2Pc=
+Received: from reddoxx.intern.sigma-chemnitz.de (reddoxx.sigma.local
+ [192.168.16.32])
+	by mail-mta-3.intern.sigma-chemnitz.de (8.16.1/8.16.1) with ESMTP id
+ 214K8sAA352277
+	for <yocto@lists.yoctoproject.org> from enrico.scholz@sigma-chemnitz.de;
+ Fri, 4 Feb 2022 21:08:54 +0100
+Received: from mail-msa-2.intern.sigma-chemnitz.de ( [192.168.12.72]) by
+ reddoxx.intern.sigma-chemnitz.de
+	(Reddoxx engine) with SMTP id 2A881FAD28D; Fri, 4 Feb 2022 21:08:50 +0100
+Received: from ensc-virt.intern.sigma-chemnitz.de
+ (ensc-virt.intern.sigma-chemnitz.de [192.168.3.24])
+	by mail-msa-2.intern.sigma-chemnitz.de (8.16.1/8.16.1) with ESMTPS id
+ 214K8nn9113263
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO);
+	Fri, 4 Feb 2022 21:08:50 +0100
+Received: from ensc by ensc-virt.intern.sigma-chemnitz.de with local (Exim
+ 4.94.2)
+	(envelope-from <ensc@sigma-chemnitz.de>)
+	id 1nG4sz-0062Rj-Hm; Fri, 04 Feb 2022 21:08:49 +0100
+From: Enrico Scholz <enrico.scholz@sigma-chemnitz.de>
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: Bryan Evenson <bevenson@melinkcorp.com>, Jon Mason <jdmason@kudzu.us>,
+        Yocto-mailing-list <yocto@lists.yoctoproject.org>,
+        Patches and
+ discussions about the oe-core layer
+ <openembedded-core@lists.openembedded.org>,
+        OpenEmbedded Devel List
+ <openembedded-devel@lists.openembedded.org>
+Subject: Re: [oe] [OE-core] Inclusive Language Proposal for YP/OE
 References: 
  <CAPoiz9wL16OTzxNHdw_5-L72GOHkhhM0--WZF7An071cx6sr_A@mail.gmail.com>
- <lyiltukbsk.fsf@ensc-virt.intern.sigma-chemnitz.de>
- <CANNYZj9wOzJ-gp+HVP-915AQp9d-D_PN4GrgPqaC0ZLVvzbgqg@mail.gmail.com>
- <lyee4ik98t.fsf@ensc-virt.intern.sigma-chemnitz.de>
- <CH0PR20MB3948522D8A65FE1CED08EA37BB299@CH0PR20MB3948.namprd20.prod.outlook.com>
- <lya6f6jx36.fsf@ensc-virt.intern.sigma-chemnitz.de>
-In-Reply-To: <lya6f6jx36.fsf@ensc-virt.intern.sigma-chemnitz.de>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Fri, 4 Feb 2022 20:12:23 +0100
-Message-ID: 
+	<lyiltukbsk.fsf@ensc-virt.intern.sigma-chemnitz.de>
+	<CANNYZj9wOzJ-gp+HVP-915AQp9d-D_PN4GrgPqaC0ZLVvzbgqg@mail.gmail.com>
+	<lyee4ik98t.fsf@ensc-virt.intern.sigma-chemnitz.de>
+	<CH0PR20MB3948522D8A65FE1CED08EA37BB299@CH0PR20MB3948.namprd20.prod.outlook.com>
+	<lya6f6jx36.fsf@ensc-virt.intern.sigma-chemnitz.de>
+	<CANNYZj86eHSn=5gcryZeVBS-qqqKKiafq5XyDO=nup-QdcF7iw@mail.gmail.com>
+Date: Fri, 04 Feb 2022 21:08:49 +0100
+In-Reply-To: 
  <CANNYZj86eHSn=5gcryZeVBS-qqqKKiafq5XyDO=nup-QdcF7iw@mail.gmail.com>
-Subject: Re: [oe] [OE-core] Inclusive Language Proposal for YP/OE
-To: Enrico Scholz <enrico.scholz@sigma-chemnitz.de>
-Cc: Bryan Evenson <bevenson@melinkcorp.com>, Jon Mason <jdmason@kudzu.us>,
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>,
-	Patches and discussions about the oe-core layer
- <openembedded-core@lists.openembedded.org>,
-	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>
-Content-Type: multipart/alternative; boundary="00000000000089ccfd05d73608c0"
+	(Alexander Kanavin's message of "Fri, 4 Feb 2022 20:12:23 +0100")
+Message-ID: <lytudemm26.fsf@ensc-virt.intern.sigma-chemnitz.de>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.2 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain
+Sender: Enrico Scholz <enrico.scholz@sigma-chemnitz.de>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 04 Feb 2022 19:12:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56074
+ <yocto@lists.yoctoproject.org>; Fri, 04 Feb 2022 20:09:05 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56075
 
---00000000000089ccfd05d73608c0
-Content-Type: text/plain; charset="UTF-8"
+Alexander Kanavin <alex.kanavin@gmail.com> writes:
 
-On Fri, 4 Feb 2022 at 19:39, Enrico Scholz <enrico.scholz@sigma-chemnitz.de>
-wrote:
-
-> > Would CANCEL be clearer to you than HALT?
+>> > Would CANCEL be clearer to you than HALT?
+>>
+>> mmmh.... for me as a developer (and non-native english speaker), "cancel"
+>> means some ordered ending of an operation.
+>>
+>> But the condition above causes an emergency abort.
+>>
 >
-> mmmh.... for me as a developer (and non-native english speaker), "cancel"
-> means some ordered ending of an operation.
->
-> But the condition above causes an emergency abort.
->
+> Cancel is the same as abort: a request to immediately stop the operation
+> (or not even start it) without reaching the originally requested
+> outcome.
 
-Cancel is the same as abort: a request to immediately stop the operation
-(or not even start it) without reaching the originally requested outcome.
+https://english.stackexchange.com/questions/535153/what-is-the-difference-between-cancel-and-abort
 
-Halt implies the operation is not going to continue (Alan Turing was as
-English as it gets, just to remind you).
+| Cancel implies the action is rescinded before it implements...
+|
+| Abort is an emergency procedure to interrupt...
 
-I don't think any of this is remotely confusing.
 
-Alex
+> Halt implies the operation is not going to continue
 
---00000000000089ccfd05d73608c0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Really?
 
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Fri, 4 Feb 2022 at 19:39, Enrico Scholz &lt;<a href=3D"mailto:enr=
-ico.scholz@sigma-chemnitz.de" target=3D"_blank">enrico.scholz@sigma-chemnit=
-z.de</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
-ex">&gt; Would CANCEL be clearer to you than HALT?<br>
-<br>
-mmmh.... for me as a developer (and non-native english speaker), &quot;canc=
-el&quot;<br>
-means some ordered ending of an operation.<br>
-<br>
-But the condition above causes an emergency abort.<br></blockquote><div><br=
-></div><div>Cancel is the same as abort: a request to immediately stop the =
-operation (or not even start it) without reaching the originally requested =
-outcome. <br></div><div><br></div><div>Halt implies the operation is not go=
-ing to continue (Alan Turing was as English as it gets, just to remind you)=
-. <br></div><div><br></div><div>I don&#39;t think any of this is remotely c=
-onfusing.<br></div><div><br></div><div>Alex</div></div></div>
+https://translate.google.com/?sl=en&tl=de&text=halt&op=translate says
 
---00000000000089ccfd05d73608c0--
+| a suspension of movement or activity, typically a temporary one.
+
+Examples in
+
+      https://dictionary.cambridge.org/de/worterbuch/englisch/halt
+
+sound like there is a chance to continue after the "halt" (show the
+permit, resolve the pay dispute).
+
+
+When we want to continue this inclusion BS, then "halt" seems to be
+offending to some people because it can mean
+
+| ... having a physical disability.
+
+
+
+Enrico
 
