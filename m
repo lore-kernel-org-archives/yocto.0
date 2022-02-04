@@ -1,150 +1,117 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <enrico.scholz@sigma-chemnitz.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ADC54C433EF
-	for <webhook@archiver.kernel.org>; Fri,  4 Feb 2022 13:58:47 +0000 (UTC)
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com
- [209.85.222.51])
- by mx.groups.io with SMTP id smtpd.web10.9180.1643983126630169743
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 62C6DC433EF
+	for <webhook@archiver.kernel.org>; Fri,  4 Feb 2022 14:16:29 +0000 (UTC)
+Received: from smtpout.cvg.de (smtpout.cvg.de [87.128.211.67])
+ by mx.groups.io with SMTP id smtpd.web11.9435.1643984185172502498
  for <yocto@lists.yoctoproject.org>;
- Fri, 04 Feb 2022 05:58:46 -0800
+ Fri, 04 Feb 2022 06:16:27 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=beApCesF;
- spf=pass (domain: gmail.com, ip: 209.85.222.51,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ua1-f51.google.com with SMTP id 60so11019793uae.1
-        for <yocto@lists.yoctoproject.org>;
- Fri, 04 Feb 2022 05:58:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=I9khvmpK7OFeAR3nwiccLOM7kD/G215+b+bsOfzS2Vs=;
-        b=beApCesFBEDcO4LP+dzAo1MavW+LfoJ83p18fIyvZmiYSOLpGPbr7uKnbwlxvHtI64
-         tqYvx1jGOFFRG0sHwD/gj84pE/ZxHZEV0X5DosVWBi691FWBTUE28Y1lfNJGPb/5XAid
-         CJaJRwwNf8cGxzypYCTEm0OntzPBypeqobsXHrA2JPyBWeIRutNd5boTdZ+tS+AKVstB
-         hvPg869eCv2yVfPWVInae/p4Ppfwm97l2waWEJZI9WNOepIYJBbp2IrNqjB3UQ/VoTTA
-         JX42abHHRBbcUHVLMXSDs/t5uTkYeTyWlv36yJDdC3oisCIrLDTGIWZSG68lXt057tZ5
-         neaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=I9khvmpK7OFeAR3nwiccLOM7kD/G215+b+bsOfzS2Vs=;
-        b=8O8wJQw+EaFhqWFevhJgxHJvC9ZMRAakTKsma9gaKRXa/PC8ey+7abj+jLckX8th6Q
-         J9C5w8Upm+hDZGQoIx0ujwELNLQB0n/iF2jsGwg/k5uTULR018VgzmGFfyjewC8AQL7V
-         dT9Ea1DbdX3gkB+IEFoFM1hKfokHmDWTJMKzg4wrTFHSwYGTo5x93P+6n43oBdmgdph8
-         PNuqWBaxMG/HuOqbktuMiDcvKpkxqPe1kV+sVRUNSzOftw6kW2inMmG9xTd0kan439+i
-         Lz44aFct56aqLvE5sPx2qwTflJedZb+/EV1WW5ng0/lG3e6/gQ9OJy96BfDFLicVKDGJ
-         cT0A==
-X-Gm-Message-State: AOAM532BtDIsv5F3mcyKChxcs5WHVyuH0V9S/Iadv0xztvh2ptjFmkWR
-	VQOKt3iTmYnGmv5mKSkEx4eCtC/8YasnlVcUmuU=
-X-Google-Smtp-Source: 
- ABdhPJzNHBYwGKnsJj3gqxxzbo16iDKalKHmUbKCAbQTVXFoRSRKhetjV+LQ62p5nY7YTnVfIGoq8SCKeeubbviYRmI=
-X-Received: by 2002:a67:ce95:: with SMTP id c21mr911573vse.81.1643983125686;
- Fri, 04 Feb 2022 05:58:45 -0800 (PST)
-MIME-Version: 1.0
+ dkim=pass header.i=@sigma-chemnitz.de header.s=v2012061000 header.b=YtAPT+jO;
+ spf=pass (domain: sigma-chemnitz.de, ip: 87.128.211.67,
+ mailfrom: enrico.scholz@sigma-chemnitz.de)
+Received: from mail-mta-3.intern.sigma-chemnitz.de
+ (mail-mta-3.intern.sigma-chemnitz.de [192.168.12.71])
+	by mail-out-3.intern.sigma-chemnitz.de (8.16.1/8.16.1) with ESMTPS id
+ 214EGMdD116652
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK)
+	for <yocto@lists.yoctoproject.org>; Fri, 4 Feb 2022 15:16:22 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sigma-chemnitz.de;
+	s=v2012061000; t=1643984182;
+	bh=Fy90ePUx5awPrlFmrxFMuG0AVkccSPaMEIQg7P3UBsQ=; l=1537;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To;
+	b=YtAPT+jOs5v6urgFpAMEZ9Ks+UXjR2EhSwRL5QLzPlK4CVcHSuNJMekWe7+HaaOrz
+	 74W1FiNmOr30XCMsDaZojHAKi2CTp3zw2bBIuPLOmPgSvARdcz2ySsy78HQHIVfmbY
+	 CWx0LZmQU5YGGJQf3je5pJMBDD3sC97qsI5Ma8dU=
+Received: from reddoxx.intern.sigma-chemnitz.de (reddoxx.sigma.local
+ [192.168.16.32])
+	by mail-mta-3.intern.sigma-chemnitz.de (8.16.1/8.16.1) with ESMTP id
+ 214EGK5l347175
+	for <yocto@lists.yoctoproject.org> from enrico.scholz@sigma-chemnitz.de;
+ Fri, 4 Feb 2022 15:16:20 +0100
+Received: from mail-msa-2.intern.sigma-chemnitz.de ( [192.168.12.72]) by
+ reddoxx.intern.sigma-chemnitz.de
+	(Reddoxx engine) with SMTP id 267511B75FC; Fri, 4 Feb 2022 15:16:18 +0100
+Received: from ensc-virt.intern.sigma-chemnitz.de
+ (ensc-virt.intern.sigma-chemnitz.de [192.168.3.24])
+	by mail-msa-2.intern.sigma-chemnitz.de (8.16.1/8.16.1) with ESMTPS id
+ 214EGI6r110941
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO);
+	Fri, 4 Feb 2022 15:16:18 +0100
+Received: from ensc by ensc-virt.intern.sigma-chemnitz.de with local (Exim
+ 4.94.2)
+	(envelope-from <ensc@sigma-chemnitz.de>)
+	id 1nFzNq-00HHfN-6E; Fri, 04 Feb 2022 15:16:18 +0100
+From: Enrico Scholz <enrico.scholz@sigma-chemnitz.de>
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: Jon Mason <jdmason@kudzu.us>,
+        Yocto-mailing-list
+ <yocto@lists.yoctoproject.org>,
+        Patches and discussions about the oe-core
+ layer <openembedded-core@lists.openembedded.org>,
+        OpenEmbedded Devel List
+ <openembedded-devel@lists.openembedded.org>
+Subject: Re: [oe] [OE-core] Inclusive Language Proposal for YP/OE
 References: 
  <CAPoiz9wL16OTzxNHdw_5-L72GOHkhhM0--WZF7An071cx6sr_A@mail.gmail.com>
- <lyiltukbsk.fsf@ensc-virt.intern.sigma-chemnitz.de>
-In-Reply-To: <lyiltukbsk.fsf@ensc-virt.intern.sigma-chemnitz.de>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Fri, 4 Feb 2022 14:58:34 +0100
-Message-ID: 
+	<lyiltukbsk.fsf@ensc-virt.intern.sigma-chemnitz.de>
+	<CANNYZj9wOzJ-gp+HVP-915AQp9d-D_PN4GrgPqaC0ZLVvzbgqg@mail.gmail.com>
+Date: Fri, 04 Feb 2022 15:16:18 +0100
+In-Reply-To: 
  <CANNYZj9wOzJ-gp+HVP-915AQp9d-D_PN4GrgPqaC0ZLVvzbgqg@mail.gmail.com>
-Subject: Re: [oe] [OE-core] Inclusive Language Proposal for YP/OE
-To: Enrico Scholz <enrico.scholz@sigma-chemnitz.de>
-Cc: Jon Mason <jdmason@kudzu.us>,
- Yocto-mailing-list <yocto@lists.yoctoproject.org>,
-	Patches and discussions about the oe-core layer
- <openembedded-core@lists.openembedded.org>,
-	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>
-Content-Type: multipart/alternative; boundary="000000000000392c5f05d731a68a"
+	(Alexander Kanavin's message of "Fri, 4 Feb 2022 14:58:34 +0100")
+Message-ID: <lyee4ik98t.fsf@ensc-virt.intern.sigma-chemnitz.de>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.2 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain
+Sender: Enrico Scholz <enrico.scholz@sigma-chemnitz.de>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 04 Feb 2022 13:58:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56069
+ <yocto@lists.yoctoproject.org>; Fri, 04 Feb 2022 14:16:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56070
 
---000000000000392c5f05d731a68a
-Content-Type: text/plain; charset="UTF-8"
+Alexander Kanavin <alex.kanavin@gmail.com> writes:
 
-On Fri, 4 Feb 2022 at 14:21, Enrico Scholz via lists.openembedded.org
-<enrico.scholz=sigma-chemnitz.de@lists.openembedded.org> wrote:
-
-> "Jon Mason" <jdmason@kudzu.us> writes:
+>> > For BB_DISKMON_DIRS, the actions "ABORT, STOPTASKS and WARN" would
+>> > become "HALT, NO_NEW_TASKS and "WARN".
+>>
+>> I am not an native english speaker, but for "HALT" I will have to
+>> think twice whether it will pause the operation or abort it.  I would
+>> stay at "ABORT" because it makes much more clear what happens.
 >
-> > For BB_DISKMON_DIRS, the actions "ABORT, STOPTASKS and WARN" would
-> > become "HALT, NO_NEW_TASKS and "WARN".
+> I'm not taking a stand here, but just providing the context for where
+> the push for avoidance of 'abort' comes from:
+> https://inclusivenaming.org/word-lists/tier-1/
 >
-> I am not an native english speaker, but for "HALT" I will have to think
-> twice whether it will pause the operation or abort it.  I would stay at
-> "ABORT" because it makes much more clear what happens.
+> Keep in mind that for non-native english speakers none of these words
+> are emotionally charged; they're just terms.
+
+Yes; these are terms.  But it should be possible to understand the
+meaning of these terms without using a special "inclusivenaming"
+dictionary.  Else, we could just use "A", "B" and "C" for the actions
+above and explain these "terms" in some documentation later.
+
+
+>> > BB_HASHCONFIG_WHITELIST -> BB_HASHCONFIG_IGNORE_VARS
+>> > BB_SETSCENE_ENFORCE_WHITELIST -> BB_SETSCENE_ENFORCE_IGNORE_TASKS
+>> > BB_HASHBASE_WHITELIST -> BB_BASEHASH_IGNORE_VARS
+>> > MULTI_PROVIDER_WHITELIST -> BB_MULTI_PROVIDER_ALLOWED
+>>
+>> The new variable names sound like boolean flags, not like lists.
 >
+> I'd say the context should make it clear that they are lists
 
-I'm not taking a stand here, but just providing the context for where the
-push for avoidance of 'abort' comes from:
-https://inclusivenaming.org/word-lists/tier-1/
+It is bad when a context is required to understand the meaning of a
+variable.
 
-Keep in mind that for non-native english speakers none of these words are
-emotionally charged; they're just terms. Not so for native speakers.
+And where do you see a context when local.conf contains
+
+| BB_HASHCONFIG_IGNORE_VARS = "true"
 
 
-> > BB_HASHCONFIG_WHITELIST -> BB_HASHCONFIG_IGNORE_VARS
-> > BB_SETSCENE_ENFORCE_WHITELIST -> BB_SETSCENE_ENFORCE_IGNORE_TASKS
-> > BB_HASHBASE_WHITELIST -> BB_BASEHASH_IGNORE_VARS
-> > MULTI_PROVIDER_WHITELIST -> BB_MULTI_PROVIDER_ALLOWED
->
-> The new variable names sound like boolean flags, not like lists.
->
 
-I'd say the context should make it clear that they are lists (e.g. either
-the initialization, or usage via iteration).
-
-Alex
-
---000000000000392c5f05d731a68a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Fri, 4 Feb 2022 at 14:21, Enrico Scholz via <a href=3D"http://lis=
-ts.openembedded.org">lists.openembedded.org</a> &lt;enrico.scholz=3D<a href=
-=3D"mailto:sigma-chemnitz.de@lists.openembedded.org">sigma-chemnitz.de@list=
-s.openembedded.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex">&quot;Jon Mason&quot; &lt;<a href=3D"mailto:jdmason@kudzu=
-.us" target=3D"_blank">jdmason@kudzu.us</a>&gt; writes:<br>
-<br>
-&gt; For BB_DISKMON_DIRS, the actions &quot;ABORT, STOPTASKS and WARN&quot;=
- would<br>
-&gt; become &quot;HALT, NO_NEW_TASKS and &quot;WARN&quot;.<br>
-<br>
-I am not an native english speaker, but for &quot;HALT&quot; I will have to=
- think<br>
-twice whether it will pause the operation or abort it.=C2=A0 I would stay a=
-t<br>
-&quot;ABORT&quot; because it makes much more clear what happens.<br></block=
-quote><div><br></div><div>I&#39;m not taking a stand here, but just providi=
-ng the context for where the push for avoidance of &#39;abort&#39; comes fr=
-om:</div><div><a href=3D"https://inclusivenaming.org/word-lists/tier-1/">ht=
-tps://inclusivenaming.org/word-lists/tier-1/</a></div><div><br></div><div>K=
-eep in mind that for non-native english speakers none of these words are em=
-otionally charged; they&#39;re just terms. Not so for native speakers.<br><=
-/div><div></div><div>=C2=A0<br></div><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex">
-&gt; BB_HASHCONFIG_WHITELIST -&gt; BB_HASHCONFIG_IGNORE_VARS<br>
-&gt; BB_SETSCENE_ENFORCE_WHITELIST -&gt; BB_SETSCENE_ENFORCE_IGNORE_TASKS<b=
-r>
-&gt; BB_HASHBASE_WHITELIST -&gt; BB_BASEHASH_IGNORE_VARS<br>
-&gt; MULTI_PROVIDER_WHITELIST -&gt; BB_MULTI_PROVIDER_ALLOWED<br>
-<br>
-The new variable names sound like boolean flags, not like lists.<br></block=
-quote><div><br></div><div>I&#39;d say the context should make it clear that=
- they are lists (e.g. either the initialization, or usage via iteration).</=
-div><div><br></div><div>Alex<br></div><br></div></div>
-
---000000000000392c5f05d731a68a--
+Enrico
 
