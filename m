@@ -1,96 +1,106 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <jdmason@kudzu.us>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1CF55C433EF
-	for <webhook@archiver.kernel.org>; Thu,  3 Feb 2022 19:25:52 +0000 (UTC)
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com
- [209.85.160.181])
- by mx.groups.io with SMTP id smtpd.web09.2572.1643916351124702004
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5458FC4332F
+	for <webhook@archiver.kernel.org>; Fri,  4 Feb 2022 02:31:18 +0000 (UTC)
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com
+ [209.85.160.170])
+ by mx.groups.io with SMTP id smtpd.web11.4330.1643941877312302617
  for <yocto@lists.yoctoproject.org>;
- Thu, 03 Feb 2022 11:25:51 -0800
+ Thu, 03 Feb 2022 18:31:17 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=WvmjI5cS;
- spf=pass (domain: gmail.com, ip: 209.85.160.181,
- mailfrom: raj.khem@gmail.com)
-Received: by mail-qt1-f181.google.com with SMTP id h8so3722033qtk.13
+ dkim=pass header.i=@kudzu-us.20210112.gappssmtp.com header.s=20210112
+ header.b=aglW31J2;
+ spf=none, err=permanent DNS error (domain: kudzu.us, ip: 209.85.160.170,
+ mailfrom: jdmason@kudzu.us)
+Received: by mail-qt1-f170.google.com with SMTP id e16so4622918qtq.6
         for <yocto@lists.yoctoproject.org>;
- Thu, 03 Feb 2022 11:25:51 -0800 (PST)
+ Thu, 03 Feb 2022 18:31:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0V2me3G4kLhD54UwJeocEvcPjOmqZsmcRQOtmEx1H30=;
-        b=WvmjI5cSw6sCxZ0k9dE9TsdTLloKf7Und5BKMpYtQ3SkCldMUQ74WgNJrAhNtjEQdp
-         rCy5LPXGa9V9PUFT8jySfdrjNFZTBL12bywEb85C+IJi4wyUnWWw8GFTr2qMYVfsU1fz
-         pO8c7oA6Axkdw7bGQOOWteTD0qw7zxRJ26OLpLVkqcDFxklZKtNDmSyXoB9vg7YxUNoi
-         rffwWQoEGHk/5IeClfjoZjUDCs1tVAB+2V9Yh25UfWFUgqp90/cvkKDVvqafu8FwXeRp
-         F6qFJc/vITgyAqE+FnFxk3Uso6CyFwvTKljZxh8rXOrBo/Pn+SDtXZxlvWiRXS06vVT3
-         8M/A==
+        d=kudzu-us.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=zNoB18OOKovCHPCNE772E4SbEYe1hwvmGZ05K2QPrsk=;
+        b=aglW31J2MYExZbN6xkEigGGOKofxp6+XKEJPEbpwyfDunAGB3DOt8FXWRD+HH2yLZ8
+         fTlG//28w5nb//KN+Rtjn9zwnbuoPu/OVPm6NmsXQKi6diIUVv7PZyIQBgB+ul1JA/l1
+         6iE0avTTOBOtnhWpTKTSPNbXWuB5q7KeVgxwzwpq4G3PmZgb3uN8SyxkIWrbdQ3rg5Tt
+         ZOCNwMHXoGFDoQxlLweS4J8QOJQh3ZHpKAA/03Lqbhvka4zUj5YqmtOqGYmodgdXzK4T
+         Y6nqEKq1+vWtRlaGEObLuWu0lXnGS7n9JtJ7aX6X90vPrG9DesCTbrK0nKWaFVJfClMJ
+         mfyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0V2me3G4kLhD54UwJeocEvcPjOmqZsmcRQOtmEx1H30=;
-        b=fVvvRCpu6f8tKK9J3Bm4smkVTsGmRAc3fRULhp+mIgu+xPAla7ve8a1sUe91RTL836
-         lUwzxZh+1o3NTyC6AYN5T0anqW8QONuMdHqvpDzhVMHA/EhR3OzQY22USldXYrEUdW6b
-         PA1KLEhzkwyMP130NjKQ7s0kYO++YkYEsCUXEBURzH4RmFIofSoG2H6f3TUNwtmzkaru
-         w7olEJkLWhoxn1ri0DvajmtlD4vNSiL0J6CftS3xWyoiE+fN1XhT1HFeBHxolbpbytGf
-         cRsnPR+baiXTb7MLNdH0codP4ZQckn142E/xKMbq/dOf9pDSQWAVcxBZWxT0rv3nXZ+v
-         9O8Q==
-X-Gm-Message-State: AOAM530jwlQjAvXYZbUWWKxoG0ugbpYQl70NSC9f0962rVkG3C3YsPi5
-	Dcuomr9s0q55ERyoy0AcFRbfuRswc4ci15xpEJPIsmvtu9k=
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=zNoB18OOKovCHPCNE772E4SbEYe1hwvmGZ05K2QPrsk=;
+        b=3gyzU+djdDEVfhbvk0CeMhCXEfPPa8HFhqyXxjID1lGnD8bc5vC1ALa4dhpR/VVyqK
+         bhbLbNp5Vu16iCMGsmfNkU5DeZzC0RjWrQvAwzJb0n4Wz/MmUNLyP3UZZWvzKW7vALNG
+         NQa8O4EdcLXTJ8uGe+5LJ1/WB36/EaSzJuXRAl/a1mBPaqxoIvq8xXyr690KMTD8AmKG
+         h35nUXulhksWXvSglVqnSolDFjAcL2aSwhUnFs4ZhSQsjGQo6m3T1bkABbPdw/0m8ZvL
+         LPUD7gUdhLWuM86oDNADfodJeC9/tiVTY0gzDkPZnFHdIHTm5NT34O0KACA8cUrGiFHO
+         fkOQ==
+X-Gm-Message-State: AOAM531RjOldFWr0JZDiiRzAbTNKmgBZ4BgPkQH0PHJlEBZLJxgUunwz
+	GV0UiW/oUCfIjDR4CA4kbf/PYqi/kycmV+6gn/ePViN/oSb1QQ==
 X-Google-Smtp-Source: 
- ABdhPJwfE0x3cGrx4x/EjZ1ffw+YpD2mwcGjf94WtYJ9HfjliEnYTZdLWCTG+3y3yuJ/fJY8eTc7KaEmru9nHitOXMk=
-X-Received: by 2002:ac8:75c6:: with SMTP id z6mr27589621qtq.532.1643916350123;
- Thu, 03 Feb 2022 11:25:50 -0800 (PST)
+ ABdhPJzvb/lZ6h0nKOVIFQt3DHx4fVJ9uGWWcRHWcLfm2PpLYVTlXYkmkuUdcrBuzadjOe/dWNrx0eERWjG3juVrmzc=
+X-Received: by 2002:a05:622a:4f:: with SMTP id
+ y15mr687627qtw.661.1643941876319;
+ Thu, 03 Feb 2022 18:31:16 -0800 (PST)
 MIME-Version: 1.0
-References: <16D03C33527B22CF.12815@lists.yoctoproject.org>
- <AM0PR10MB3107D33BAF6FC963800A700E99289@AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM>
-In-Reply-To: 
- <AM0PR10MB3107D33BAF6FC963800A700E99289@AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 3 Feb 2022 11:25:24 -0800
+From: Jon Mason <jdmason@kudzu.us>
+Date: Thu, 3 Feb 2022 21:31:08 -0500
 Message-ID: 
- <CAMKF1sqC=VfzzWMORaFVabXBuR+bcLE+FJfPMpc6ZTfmuvS0bw@mail.gmail.com>
-Subject: Re: [yocto] wget - The certificate has not yet been activated (does
- also happen in qemuarm "virt" machine)
-To: Matthias Klein <matthias.klein@optimeas.de>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+ <CAPoiz9xdMynAdLjHMoG76kiny4CUbvj6n7DxHR6HYecuLxcVwg@mail.gmail.com>
+Subject: Inclusive Language Proposal for YP/OE folllow-up
+To: yocto@lists.yoctoproject.org,
+	Patches and discussions about the oe-core layer
+ <openembedded-core@lists.openembedded.org>,
+	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
+	openembedded-architecture <openembedded-architecture@lists.openembedded.org>,
+	bitbake-devel@lists.openembedded.org
 Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 03 Feb 2022 19:25:52 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56062
+ <yocto@lists.yoctoproject.org>; Fri, 04 Feb 2022 02:31:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56063
 
-On Thu, Feb 3, 2022 at 9:14 AM Matthias Klein
-<matthias.klein@optimeas.de> wrote:
->
-> Hello together,
->
-> I can "fix" the bug by switching from gnutls to openssl:
->
-> PACKAGECONFIG:remove = "gnutls"
-> PACKAGECONFIG:append = " openssl"
->
-> Can anyone explain this?
-> What exactly does the change to openssl mean?
+This is a follow up to the Inclusive Language email I sent out on
+January 24 (see
+https://lore.kernel.org/yocto/CAPoiz9wL16OTzxNHdw_5-L72GOHkhhM0--WZF7An071cx6sr_A@mail.gmail.com/).
+I'm adding a couple of additional mailing lists to this email that
+were not on the original distribution, in case there are developers
+for those areas which didn't see the original email.
 
-this means you are choosing openSSL to provide TLS protocol
-implementation instead of gnuTLS
+I really appreciate the positive feedback received on this.  I've
+updated the wiki with the suggested changes by Ross (acked by Randy)
+and Mikko, and extrapolated that to be the following list:
 
->
-> Many greetings,
-> Matthias
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#56061): https://lists.yoctoproject.org/g/yocto/message/56061
-> Mute This Topic: https://lists.yoctoproject.org/mt/88879516/1997914
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+CVE_CHECK_PN_WHITELIST ->
+CVE_CHECK_SKIPRECIPE ->
+CVE_CHECK_SKIP_RECIPE
+
+CVE_CHECK_WHITELIST ->
+CVE_CHECK_IGNORECVE ->
+CVE_CHECK_IGNORE
+
+INHERIT_BLACKLIST ->
+INHERIT_RECIPESKIP ->
+INHERIT_RECIPE_SKIP
+
+SDK_LOCAL_CONF_BLACKLIST ->
+ESDK_LOCALCONF_REMOVE ->
+ESDK_LOCAL_CONF_REMOVE
+
+If anyone wants to nack the changes above, please let me know (or
+modify https://wiki.yoctoproject.org/wiki/Inclusive_language).
+Similarly, I've added all of the proposed names to the "approved name"
+column.
+
+On the same wiki, I've changed the tables to now have a volunteer
+developer column (from the "Assigned Developer" name) to make it more
+clear that we need help in doing these tasks.  If there is anything
+you are interested in, please feel free to put your name down there
+and have at it.
+
+Thanks,
+Jon
 
