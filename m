@@ -1,140 +1,282 @@
-Return-Path: <matthias.klein@optimeas.de>
+Return-Path: <steven.monsees@baesystems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 11546C433F5
-	for <webhook@archiver.kernel.org>; Mon,  7 Feb 2022 10:57:56 +0000 (UTC)
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com
- (EUR05-VI1-obe.outbound.protection.outlook.com [40.107.21.60])
- by mx.groups.io with SMTP id smtpd.web12.20910.1644231474040558122
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C4ED4C433F5
+	for <webhook@archiver.kernel.org>; Mon,  7 Feb 2022 15:42:19 +0000 (UTC)
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com
+ [149.32.232.65])
+ by mx.groups.io with SMTP id smtpd.web12.436.1644248538713529831
  for <yocto@lists.yoctoproject.org>;
- Mon, 07 Feb 2022 02:57:55 -0800
+ Mon, 07 Feb 2022 07:42:19 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@optimeasgmbh.onmicrosoft.com
- header.s=selector2-optimeasgmbh-onmicrosoft-com header.b=WMGlMoI1;
- spf=pass (domain: optimeas.de, ip: 40.107.21.60,
- mailfrom: matthias.klein@optimeas.de)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K11zJbc6oG53fvLDnjRDGCuawgX6AcmXxSP9TSkIZqBtt51qCR7zsB2jsVRMip4oXfuiraaYaiTmXZcpW/zxlDtnR5cy9vVddKWq7HVfhB2HeYug+G4y0S8GcRFXjfwom7s3XjT86p/n8DbrYiBjA0Xvylop9etk/9mh7BwFAnHnDLild6f9o0ypgjQfVeUv1qjeYrBG5pddqSDbeV8yByGpvejp74ZDx4pkdaY4LuN2KkYbBl+MrbBKFf2LhX4qlyNzpw/SOPIDtkRNzWK27J1ixOcoP32zmupbs/eZ4ilHP1JFVDkksiuLcpOTqGhKf61hU/W3ebXqjdq03lmh1w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QIY0qQ2dQoWbTvLpiWVK/OMPGZS1mBkoUrQz9e3D4S8=;
- b=ONj0e28XMmb09ji+lZLWGf/+vaYtMSEIvoKnK1BPyHsAuDG5lg12LHzZ3DrbednOApIWflv1vcfe2IysVjVlNa4kQRROaVG4xn3wd0fzOdAXve0hdVQLjTN6EszcLf8CkPY/ZkzWIxjqFO+TGKDzvmCoon1wpJikNBt5jK8qtfzBL9TLtbHLMMu+xh22aKxuIihjttK0TJ/uT3VlEyceVmCHqNRxvyIR4hghGuk9GG7JJa1dhGuYoCu5oyzoZZ95MOb6S9kE06dhlgtJ7B2EYAs2seb4MudETPDeW1PsGsL8cqK0WxiUdfg/32tZuzYq+O+xH1tNotGORdRddUW70Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=optimeasgmbh.onmicrosoft.com; s=selector2-optimeasgmbh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QIY0qQ2dQoWbTvLpiWVK/OMPGZS1mBkoUrQz9e3D4S8=;
- b=WMGlMoI1aav3jrcOp1rPdoPFvfeLz+xIoNTciOhaOl2jjihVd4KhHJi/kwdFLyaQSPZJ5HO7rO2jJNbs/QmsweGhbNF5Ed7ilP/isP81pO6H584UvMsdPoXUa3DBIJSznBmSCYv5b06ugCwI3Wjfidli1CAqepF2QSlANSDvo+s=
-Received: from AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:128::16)
- by VI1PR10MB2575.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:803:e7::29) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.17; Mon, 7 Feb
- 2022 10:57:49 +0000
-Received: from AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::5469:dc0c:7012:d085]) by AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::5469:dc0c:7012:d085%4]) with mapi id 15.20.4951.018; Mon, 7 Feb 2022
- 10:57:49 +0000
-From: Matthias Klein <matthias.klein@optimeas.de>
-To: Jose Quaresma <quaresma.jose@gmail.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: AW: [yocto] gpsd autostart with systemd?
-Thread-Topic: [yocto] gpsd autostart with systemd?
-Thread-Index: Adgb+woY6Je/MtpVSBKK8R1AbewNfAAFPIuAAABXgnA=
-Date: Mon, 7 Feb 2022 10:57:49 +0000
-Message-ID: 
- <AM0PR10MB3107C37D2B119DA564BDC12B992C9@AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM>
-References: 
- <AM0PR10MB3107C0B665A754CEEF1D9C82992C9@AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM>
- <CANPvuRm9rP3SCKSSGeP+NyYYViWm6f6gH_gwavzV7_LacRd0dw@mail.gmail.com>
-In-Reply-To: 
- <CANPvuRm9rP3SCKSSGeP+NyYYViWm6f6gH_gwavzV7_LacRd0dw@mail.gmail.com>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
+ dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=fgoLSUQS;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.65,
+ mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1644248538; x=1801928538;
+  h=from:to:subject:date:mime-version;
+  bh=VMAw9eVHeQCohBwhB0An0rSNjNAq/pqC5naGJEuzmng=;
+  b=fgoLSUQS5ffPJ0oSVyPC4Gbb1Nkos0n+no1zp5590+JCEAYY9sf8TTxP
+   k9EjPpW0ZBw8yO8TBjSkz1dg861ZUUvt3I2lAbD7w3Ujed4Zz2E7lFFu8
+   iJhehYnQVFa0KQ7zHHoht0Nuwoc2Q7E66Rc11rnQ3KoV3EQuhD2TrxJj4
+   w=;
+IronPort-SDR: 
+ 6TCDXTCaWe8RfaNOgjBvS0Dfm6gr0/UGJ5GAUuOygphSVAcFeFa+Rac4e7CJ62kLQufQoWHPOB
+ f9Movw6+M1Aw==
+IronPort-PHdr: =?us-ascii?q?A9a23=3AnTqkqRSys7rew7+2f8BJ5NxuQNpsotuYAWYlg?=
+ =?us-ascii?q?6HPa5pwe6iut67vIFbYra00ygOTB8OHsrkd1rCe8/i5HzBauNDZ6DFKWacPf?=
+ =?us-ascii?q?idNsd8RkQ0kDZzNImzAB9muURYHGt9fXkRu5XCxPBsdMs//Y1rPvi/6tmZKS?=
+ =?us-ascii?q?V3wOgVvO+v6BJPZgdip2OCu4Z3TZBhDiCagbb9oIxi6sxvdutMZjId/Jao91?=
+ =?us-ascii?q?xvErmVVcOhS2W9kOEifkhni6sut5pJv7zhct/c8/MNcTKv2eLg1Q6ZFBzo8K?=
+ =?us-ascii?q?WA148PrtRjHTQSR43YXT3sbnBlVDQXb9R/2Rpj+vDf0uep7wymaINb5TasoV?=
+ =?us-ascii?q?jS47qdkUwHnhSEaPDMk6m7Xi8hwjKVGoBK9ohF03oDZbJ2JOPd4Y6jQe84RS?=
+ =?us-ascii?q?2hcUcZLTyFPAp2yYZYTD+QPPuhYrpXyqFQVoBSkGQWsBvnixiNUinPo26Axz?=
+ =?us-ascii?q?uQvERvB3AwlB98CvnParNLzNKcJT++60rLIwS3eZP1LxTfy9pbIfQ4nofqRQ?=
+ =?us-ascii?q?797bM7dxkcyGQ/AgFmbtIvoPyiJ1usTrWiU8exgWfiqi24grQFxuSagydk3i?=
+ =?us-ascii?q?oTSnY0a0E7L9T55wYYuOd23Vkt7YcW+HJRMsCGaMpJ7T8U/SG5npCg00KcJu?=
+ =?us-ascii?q?YKnfCcU0pQnwQbSZfKJfoWU4x/uVuecLSlliH97e7+yhxK//Eevx+HhWMe50?=
+ =?us-ascii?q?FlEojdBn9TOtn0A2B3e5tWZR/Z5/Uqs2iuC2x3c5OxCPEs6lrLbJoY8zrIsj?=
+ =?us-ascii?q?JYev0bOEjXrlEjygqKabEQp9+iw5+j6frnqvJCROoBuhgzxKKgih8yyDOIlO?=
+ =?us-ascii?q?QYURWeb4/6z1Lj78E38R7VFk+M5n7HCsJDfOcQbvqm5AxJJ0oo76xawETOm0?=
+ =?us-ascii?q?NMAkHkZNl1FeBSHj43yO1zKJP31Ceuzj0m2nDdt3f/KJKbuDY/TIXjYkLbhZ?=
+ =?us-ascii?q?qp95FBZyAoo19xQ+5VUCrQZLPLyXE/+qsDYAwckPwCo2erqBtdw2pkDVW+LD?=
+ =?us-ascii?q?KKVKqLfvF+Q6uIqOeaMZYsVuDjnK/gi4v7jlWQ5mUMDcqm3w5QXbmq0HvFhI?=
+ =?us-ascii?q?0WfenrjnMkOEXwRswUlVuPllkaCUD5IZ3auQa084yo7BJi6AofEQ4ChmKaB0?=
+ =?us-ascii?q?zujHp1KemBGDUiBEHfvd4qYR/cMbzmfIstgkjwfSbihUJUt1BGptADm17pnK?=
+ =?us-ascii?q?fLU+jcftZLhytd6+/HTmQs19TxuAMTOm12KGitlmWgUQBcy3btjugpszVyf1?=
+ =?us-ascii?q?rBihP5VHsAV4OlGGE9uJJnX0+tSD9HpRhmHb9CCVFG+WNKkDDotCNUrzIldT?=
+ =?us-ascii?q?Vx6HoDoqxfFxCenGPtdrKCGGpEyuomUn0XKZow1n23a2bcsiR8jRc1UOGC9r?=
+ =?us-ascii?q?qR2+hPCHJLEll7fnKGvI/dPlBXR/XuOmDLd9HpTVxR9BP2tYA=3D=3D?=
+IronPort-Data: =?us-ascii?q?A9a23=3AZcIJOq2JM7ccFjeBUfbD5flzkn2cJEfYwER7X?=
+ =?us-ascii?q?KvMYLTBsI5bp2NTnTNOUDuCaPmIZGP2c4xza9nlpEsC7JXVzNFrHlM43Hw8F?=
+ =?us-ascii?q?HgiRegppTi6wuUcB84ZRyH6ZBoPA/42N5+QfKjYcleG/k33auK59CElvU21b?=
+ =?us-ascii?q?uOU5NDsa3gZqTBMFX9JZSJLw4bVs6Yw6TSLK1rlVeDa/6UzDGSYNwtcaQr43?=
+ =?us-ascii?q?U4iRCRH55wesBtA1rA3iGsiUFX2zxH5B7pHTU29wueRf2VaIgK6b76rILCR4?=
+ =?us-ascii?q?GrZ+RI2W4L0yu+9dERMSLffJhmVlndTQO6phR0qSi4ai/59b6VaMBYMzWvU9?=
+ =?us-ascii?q?zxy4IwlWZiYUhskIKDK3uEaVQJVHjpWN6RL467cPXW6qoqYyEiun37En6k/U?=
+ =?us-ascii?q?hprZNBFkgpwKSQUnRACExgcaRufgMqywamnUa99gc8/K9HxO4ESsW0myivWZ?=
+ =?us-ascii?q?cvK67irr77ivIceh2h235EVW6iDD/f1oAFHNHzoCyCj8H9JYH7moNqVuw=3D?=
+ =?us-ascii?q?=3D?=
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3Ab0qqgatZIh1rFOu4a3D67I1G7skC5YMji2?=
+ =?us-ascii?q?hC6mlwRA09TyXGra2TdaUgvyMc1gx7ZJh5o6HnBEDyewKkyXcV2/hZAV7GZm?=
+ =?us-ascii?q?XbUQSTXeVfBOfZogEIeBeOvtK1t50QFJSWYeeYZTcVsS+Q2njaLz9U+qjjzE?=
+ =?us-ascii?q?nev5a9854Cd2FXQpAlyz08JheQE0VwSgUDL4E+DoCg6s1OoCflUWgLb+ygb0?=
+ =?us-ascii?q?N1FdTrlpnurtbLcBQGDxko5E2lljWz8oP3FBCew1M3Ty5P+7E/6mLI+jaJq5?=
+ =?us-ascii?q?lL8svLhiM05VWjoai+q+GRi+erw/b8yvT9Hw+cxTpAor4RGIFq8gpF4t1Ho2?=
+ =?us-ascii?q?xa6OUk6y1QRPibrUmhNV1d6CGdoTXIwXIg7WTvxkSfhmamqcvlRCgiA84Eno?=
+ =?us-ascii?q?5BdADFgnBQyO2U/Zg7rV5xjaAneC8oXR6NmeTgRlVvjA65sHAimekcgzhWVp?=
+ =?us-ascii?q?YfcqZYqcga8FlOGJkNESrm4MR/edMeev309bJTaxeXfnrZtm5gzJilWWkyBA?=
+ =?us-ascii?q?6PRgwHttaO2zZbkXhlxw8TxdAZnH0H6JUhIqM0kNjsI+BtjvVDX8UWZaVyCK?=
+ =?us-ascii?q?MIRta2EHXERVbWPGebMT3cZdI60rL22u7KCZkOlZ2Xka0zveoPcc76IS5lXE?=
+ =?us-ascii?q?YJCj3TNfE=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2C+CwCVHvlh/0HBJQpaHAEBATwBAQQ?=
+ =?us-ascii?q?EAQECAQEHAQEVCYFRAoEfggWBQgySbp83gXwLAQEBAQEBAQEBCAESAiEMBAE?=
+ =?us-ascii?q?BiGcmNAkOAQIEAQEBEgEBBgEBAQEBBgQBgRuFaQyCNSKEHx4BPwEVayYBBBu?=
+ =?us-ascii?q?CfYIOgReuf4EzGgJlgyABgUmFE4E6AYFlhUSCf4YXQ48dIgSTHxMBgUageaB?=
+ =?us-ascii?q?TBwODRosBlEowFZZOA5E2lkogpiICBAIEBQIWgWGCFXCDOQlIFwKcfnQCNgI?=
+ =?us-ascii?q?GCwEBAwmMPIEQAQE?=
+X-IPAS-Result: =?us-ascii?q?A2C+CwCVHvlh/0HBJQpaHAEBATwBAQQEAQECAQEHAQEVC?=
+ =?us-ascii?q?YFRAoEfggWBQgySbp83gXwLAQEBAQEBAQEBCAESAiEMBAEBiGcmNAkOAQIEA?=
+ =?us-ascii?q?QEBEgEBBgEBAQEBBgQBgRuFaQyCNSKEHx4BPwEVayYBBBuCfYIOgReuf4EzG?=
+ =?us-ascii?q?gJlgyABgUmFE4E6AYFlhUSCf4YXQ48dIgSTHxMBgUageaBTBwODRosBlEowF?=
+ =?us-ascii?q?ZZOA5E2lkogpiICBAIEBQIWgWGCFXCDOQlIFwKcfnQCNgIGCwEBAwmMPIEQA?=
+ =?us-ascii?q?QE?=
+X-IronPort-AV: E=Sophos;i="5.88,333,1635206400";
+   d="scan'208,217";a="449635155"
+IronPort-SDR: 
+ 4CmXq1ewbnA8y1dm3lOOlC0ylhiVwGEBbtLX9J8P21cZq76RwDqJwe6l3wxutz45MCMAIE8Q6P
+ XeJ9Fb6ubE1A==
+X-IronPort-AV: E=Sophos;i="5.88,350,1635206400";
+   d="scan'208,217";a="53431319"
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: patching files under  "dynamic-layers"
+Thread-Topic: patching files under  "dynamic-layers"
+Thread-Index: AdgcNuGuFwv51OZ9SCG7nAvljmkv1Q==
+Date: Mon, 7 Feb 2022 15:42:16 +0000
+Accept-Language: en-US
+Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=optimeas.de;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c72e11fd-90dd-41c0-ff8b-08d9ea28ae62
-x-ms-traffictypediagnostic: VI1PR10MB2575:EE_
-x-microsoft-antispam-prvs: 
- <VI1PR10MB2575BD3ACAE4F01F6C92170B992C9@VI1PR10MB2575.EURPRD10.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- roCmpgBE5pxyAnhSuQbsXeRNFAaGuidfklgLgyYQg/Wb77Q8GGPcdtcziYETWMPlXPRZQm/BLTZDZuzXz/MgrYwTQGwFR3UQ8ZxVxeLLhCDu8YJ1MDow6tlX9YrtR3jPQ4fcOGIirGxHVRS47AVhMfCnJFhgzSWmLmflscYx1KFrQb7uGYpAzbNiY2dI+13iUCEQb39D6sgqG1lfB7dx+jKtrHfkrFnFWr0g8mOeGryCM53iu6Nk+uNUKvyNwUqNrRk7Bj0EiqYgoIMZXgpV0lIi5X7sJ0oLX3tIFFrMYsyEGwCg6Y0PVQNBY78MA8GBh8kZ1+UvP3Q0cfq6ke+kXGUjn1KK7BL/XQiZVBOiZNEeN3/xPCA4n/P0r3AachQnqB3hr4LcPW5bcmCQIGPKaU16fvfjVn0sUAEyTinLPUwCL1elY/s0hV8Rtljx3yRI1yTrYzV8BoPaigUDowhzlHRCM3Reo9gSJKgDZwUcY/BmyS+ndP1lEtcspRv1Ew3Bz/tTNakiShE2jAVVMcRWULwc9SckjHzqYfRva+sV0TxAl4SDeWEC7eqAwGG6PmgkZ8PV6T1b7lIXVIJY71tUgN0zmVoUWd2cUQLL/ZO5GsVVv7clrs3/sTRGG+iRW6iQR05mD8rRidqgO0gEwSkuQxYqvLU2AKdmYm8eDVNe9S/lMCJIZuI6iRPjrhYZg7knSBsJPGAWJDPqHpl5kqVnXw==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(366004)(39830400003)(376002)(396003)(136003)(346002)(71200400001)(64756008)(4326008)(186003)(9686003)(7696005)(8936002)(8676002)(316002)(6916009)(6506007)(66556008)(76116006)(66446008)(66946007)(66476007)(558084003)(38070700005)(508600001)(38100700002)(2906002)(86362001)(5660300002)(44832011)(52536014)(55016003)(33656002)(122000001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?ZStyQktxSy8zdXVaNlI0Tnp6WGVPSVNyMmhONDdTVVd4QU9BWGxHSEtXZXhG?=
- =?utf-8?B?aEZaWE4rZHJ0c2NzbFdxVFpqdmJlWEdBY0dIOUVEU3pVOWtTaERJNUtoMFFD?=
- =?utf-8?B?dXdXT0E1QlVqL2Z4WHhIVitmMWtpR3VZRUpXbXUvcTJaN0p1YTJ2UXNQVDVi?=
- =?utf-8?B?Y1oxUDRQUVBQbnVqV3RVK0ZZdmtxVHRwVTFNdUQxaWx0akR0QStDdFZTWWla?=
- =?utf-8?B?RWJHYkd1VVl1Ym1PSnZhMkcyeGZCUjNRS2NpNTVBRTJnK0ZKZkplY0RublJW?=
- =?utf-8?B?QlhrY09xQXdJUFo1VzNvQWV6K0ErVU1BbTB0Q3pCL0N6UnRPWG9kTjdXQnVV?=
- =?utf-8?B?UUZDSXpWMVZ6bERoS1FTTGg4TjRtclFhbTdoZG1FekpLbWZkUDdlazdkL1ZO?=
- =?utf-8?B?YThRNWF1SVhpS3pjdTFUeTdaY21xcnBsYUhjMnljS29ZMFFTOEFsbnJFRnBT?=
- =?utf-8?B?QzdoWkdNR3Q4MlVJUU1SWmRsc0prSlJCVDhZdDNGdmU4QldKbjEvbEZZSDBK?=
- =?utf-8?B?bkNKd3ZoUk1rRUpsNk9kMmc5Y2pMUUhzOEkyRm9UOTZHQk16TC9NOU1QOUxE?=
- =?utf-8?B?ZEFkME9wdFh6aTVJQXNCUmJaWUJ0Y3dmYjBNVWltSkV3MW5kNmQ0RENTRnRR?=
- =?utf-8?B?Z3dTZXhnSGROMXE2YUEzYldMejZUd3lWNDdyeXllNzdyaVlvd1AveGZiemN4?=
- =?utf-8?B?ckQzZVkwRklTVmpoR1ZXQjJoLzRocGhCZ1BxemVCM094SmQyZmM1aXlCQ0Rx?=
- =?utf-8?B?VWFMNTdnYnl1bVd3Z1ozTG5JbzlFZGQyRmFFbmtGREZoS2ZqWjMrc0w0d1M0?=
- =?utf-8?B?YW1jRkx4NFRyR2pVSFc5em9DbjdCWDhKR2g1cGRTV21QbG1nTTJPNkpMUm9G?=
- =?utf-8?B?T25WMGdDbHZURjRaVWZJMnROV2ZWM3dEalJwZHRwU0Z1bEtDOTN2bjZDZ0p2?=
- =?utf-8?B?UCsxNXBxeEp6ak5vZmxBcWlYNEF3Y0Z2Rm0zbVZCbEpnRFpNU1hjVlJGTnJ4?=
- =?utf-8?B?NDIyUWQvZy9OaWExdXdxcmUyVXhKdWh0UFhrTWc0cllQd3Vuc1BiT052S25h?=
- =?utf-8?B?SmE0QVlHSEhGWWJ0TU1sUEVJM1kxUmpJUnFRbDdCSUphOUY1aXU0eUtackF4?=
- =?utf-8?B?RGp6NzBFalpFRDlTdFlIdDNIeVVtWDArVEFXM3A2MmlON2RNN0U2WWdaTjM3?=
- =?utf-8?B?TngyMmNuS0c3Z2hJbWZRZHJJTnF6eStEem41UGlDZ3NhdGRxdG9RaDFtdVJK?=
- =?utf-8?B?dWFtRm45T3E0L3dIcUxsWlVXY3grZlcrdldiWnE5TzhNSkE0Rm1qaVNGSTJ0?=
- =?utf-8?B?RS9kUlpFUUxXazhkTktGU1ZMTWZ4M3ltT0M5Z3FoTFVDQWg1VTBBQVcwZ3ZL?=
- =?utf-8?B?QWM2U0c4TnlkdUJzRk5CMEZkTFBDY2hwWUNFRm1ySUxsemZkdENJcXl4QVNY?=
- =?utf-8?B?ZFJ3d3grUEI2OWhzaDZZN1Zzc09lMDgwNENOUDZGSTJUMjZ1QkxvdzdBV2tO?=
- =?utf-8?B?a3A4Y3p1bDZwQkNYWkl5d0tXazVFdlFIUTJXOENrcjZZd25BcW0wcFUzSGNn?=
- =?utf-8?B?K09DcmxFbloyZm9XbzNlSXJXL0E1am1UdCtGRzFVRkZMak9QbStUN21RUlFK?=
- =?utf-8?B?bWZzWjlOMEVyK2hqcGVKRlVSMGtNT1JXT3JMSWE2eGUxUThWcnMwbmZaSjFS?=
- =?utf-8?B?djF5MHl5L2VyWWhvU0FydzJybzA3Z3FucC9DaTF6NlphS2VnZjhXZVE0UTZz?=
- =?utf-8?B?VEl1L2F2VExTRG9nemd6M1p2cE40STUrQmxVZHllSkJ0cXV3WTNvU2tnSnlj?=
- =?utf-8?B?cmgySjFzd0dsWHErVWV3TFU3dU9LOWZPVnRubndGeVBIZHBiYTJ2Yi96SDJm?=
- =?utf-8?B?VUZ1bjErQk5PYUV2OVYyMEMzSk9NNCtjNzhKOU93bnBSWXIvWXRrNjRINVlu?=
- =?utf-8?B?QXRjV1hFM3JKNzhFUUlaMjRrQ3JnalpIOGo3T1IwNXUrREEyMUlLQ3lIdmRn?=
- =?utf-8?B?aU9UejFyMnVpZTJNdVFzay9nYStJQXVWbDcyY3U3SERDUHJzNllwMVJOWFRk?=
- =?utf-8?B?ZHV2cWQrdk9aZnRodm9JZVZlNHg5ek1vbHRFWlovSXNRYVRJY0N5S3ZiamM2?=
- =?utf-8?B?RjRyZXlHNjhodEM2YU9SV1ZGSG9QWTkvQlgrVjJxVkpFZnB2U1JxYlR2c2lt?=
- =?utf-8?B?VWQrQlhrdm1tbmVlbTRQUUNRT3NxaWxoekdNZzEwUXcyWkdXZlNmaWd5LzJz?=
- =?utf-8?B?UjdXTkFLZ3crNEtHYmNyWWdjUENPU3pNdU5hbUdsSFZOanhOeEZXaHY2aWxi?=
- =?utf-8?B?TmV1ejQ3M21yME95YzhlVHlSZWo2QzF5Y2oreWErKzJMKzVNK0JQQT09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+x-originating-ip: [10.44.4.15]
+Content-Type: multipart/alternative;
+	boundary="_000_c407f47a42c24897ac694a21c8128059baesystemscom_"
 MIME-Version: 1.0
-X-OriginatorOrg: optimeas.de
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB3107.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- c72e11fd-90dd-41c0-ff8b-08d9ea28ae62
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Feb 2022 10:57:49.4013
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 91b33c5b-e584-4ec0-893c-2a9180ad0602
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- +2UZQ1cgZQ5XNBJzrN8gsthonE+w1MVDEmyMZEdTNdWg9kOCpfqjSnxAH0u5Un0zCGatpI1bpnoeqgYyCayvtCcXNsFoBy+dx0z/+msZJ4o=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR10MB2575
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 07 Feb 2022 10:57:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56094
+ <yocto@lists.yoctoproject.org>; Mon, 07 Feb 2022 15:42:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56095
+Message-Id: <20220207154219.C4ED4C433F5@smtp.lore.kernel.org>
 
-SGVsbG8gSm9zZSwNCg0KPiBZb3UgbmVlZCB0byBhZGQgdGhlIHN5c3RlbWQgc2VydmljZSwgdGhl
-IHNvY2tldCBzZXJ2aWNlIGlzIGFscmVhZHkgdGhlcmUuDQo+ICBTWVNURU1EX1NFUlZJQ0U6JHtQ
-Tn0gKz0gIiR7QlBOfS5zZXJ2aWNlIg0KDQpUaGFuayB5b3UgdmVyeSBtdWNoIGZvciB5b3VyIGhl
-bHAhDQoNCkJlc3QgcmVnYXJkcywNCk1hdHRoaWFzDQoNCg==
+--_000_c407f47a42c24897ac694a21c8128059baesystemscom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+
+I am building with zeus 3.0.4, Intel based...
+
+I trying to learn how to introduce a patch to files brought in by packages =
+under "dynamic -layers"... my bbappend appears not to be applying my test p=
+atch (even though no errors/warnings thrown)...
+
+This is the package I am trying to manipulate:
+
+/disk0/scratch/smonsees/yocto/workspace_3/meta-intel/dynamic-layers/clang-l=
+ayer/recipes-opencl/igc
+It contains:
+files  intel-graphics-compiler_1.0.11.bb
+
+This is my recipe to apply patch:
+
+/disk0/scratch/smonsees/yocto/workspace_3/meta-bae/meta-limws/meta-intel/dy=
+namic-layers/clang-layer/recipes-opencl/igc
+It contains:
+files  intel-graphics-compiler_1.0.11.bbappend
+
+files - contains the file I am attempting to patch (FILE_TO_PATCH.patch)
+intel-graphics-compiler_1.0.11.bbappend is setup like so, where
+
+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
+
+SRC_URI +=3D "\
+    file://FILE_TO_PATCH.patch \
+"
+
+I attempted to male use of BBFILES_DYNAMIC but even though I get no error, =
+patch is not applied.
+
+conf/layer.conf:
+BBFILES_DYNAMIC +=3D " \
+    clang-layer:$(LAYERDIR)/dynamic-layers/clang-layer/recipes-opencl/igc/*=
+.bbappend \
+"
+
+Can you explain to me the proper way to patch files under these circumstanc=
+es and where I went wrong ?
+
+Thanks,
+Steve
+
+
+--_000_c407f47a42c24897ac694a21c8128059baesystemscom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am building with zeus 3.0.4, Intel based&#8230;<o:=
+p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I trying to learn how to introduce a patch to files =
+brought in by packages under &#8220;dynamic &#8211;layers&#8221;&#8230; my =
+bbappend appears not to be applying my test patch (even though no errors/wa=
+rnings thrown)&#8230;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><b>This is the package I am trying to manipulate:<o:=
+p></o:p></b></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">/disk0/scratch/smonsees/yocto/workspace_3/meta-intel=
+/dynamic-layers/clang-layer/recipes-opencl/igc<o:p></o:p></p>
+<p class=3D"MsoNormal">It contains:<o:p></o:p></p>
+<p class=3D"MsoNormal">files&nbsp; intel-graphics-compiler_1.0.11.bb<o:p></=
+o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><b>This is my recipe to apply patch:<o:p></o:p></b><=
+/p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">/disk0/scratch/smonsees/yocto/workspace_3/meta-bae/m=
+eta-limws/meta-intel/dynamic-layers/clang-layer/recipes-opencl/igc<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">It contains:<o:p></o:p></p>
+<p class=3D"MsoNormal">files&nbsp; intel-graphics-compiler_1.0.11.bbappend<=
+o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">files - contains the file I am attempting to patch (=
+FILE_TO_PATCH.patch)<o:p></o:p></p>
+<p class=3D"MsoNormal">intel-graphics-compiler_1.0.11.bbappend is setup lik=
+e so, where
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/files:=
+&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">SRC_URI &#43;=3D &quot;\<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;file://FILE_TO_PATCH.patch \=
+<o:p></o:p></p>
+<p class=3D"MsoNormal">&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I attempted to male use of BBFILES_DYNAMIC but even =
+though I get no error, patch is not applied.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">conf/layer.conf:<o:p></o:p></p>
+<p class=3D"MsoNormal">BBFILES_DYNAMIC &#43;=3D &quot; \<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; clang-layer:$(LAYERDIR)/dynamic-l=
+ayers/clang-layer/recipes-opencl/igc/*.bbappend \<o:p></o:p></p>
+<p class=3D"MsoNormal">&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Can you explain to me the proper way to patch files =
+under these circumstances and where I went wrong ?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Steve <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_c407f47a42c24897ac694a21c8128059baesystemscom_--
 
