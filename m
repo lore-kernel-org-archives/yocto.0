@@ -1,378 +1,293 @@
-Return-Path: <randy.macleod@windriver.com>
+Return-Path: <steven.monsees@baesystems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 11B71C433EF
-	for <webhook@archiver.kernel.org>; Mon,  7 Feb 2022 19:19:12 +0000 (UTC)
-Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com
- [205.220.178.238])
- by mx.groups.io with SMTP id smtpd.web10.702.1644261551202611888
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EFDA5C433EF
+	for <webhook@archiver.kernel.org>; Mon,  7 Feb 2022 19:56:32 +0000 (UTC)
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com
+ [149.32.232.65])
+ by mx.groups.io with SMTP id smtpd.web11.1239.1644263791900160450
  for <yocto@lists.yoctoproject.org>;
- Mon, 07 Feb 2022 11:19:11 -0800
+ Mon, 07 Feb 2022 11:56:32 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@windriver.com
- header.s=pps06212021 header.b=EDLbCDAw;
- spf=permerror,
- err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}:
- invalid domain name (domain: windriver.com, ip: 205.220.178.238,
- mailfrom: prvs=90379e90fd=randy.macleod@windriver.com)
-Received: from pps.filterd (m0250812.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id
- 217IY58q000563;
-	Mon, 7 Feb 2022 19:19:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
- h=content-type :
- message-id : date : subject : to : references : from : in-reply-to :
- mime-version; s=PPS06212021;
- bh=reZLrhzSs+YBwP5k6Na20Pb7l0Q0XMx1wzgO0kbn+kQ=;
- b=EDLbCDAwlrfHO7SleNAuwI06AzUdNWWhjRd5ONr7OTvX2QgVBPj98aa9AO7tj+UzMnUw
- 8i7xShDmIMta3ArCe2qSfota8OPS+FN0UTJ7H2NNWno6fFDw8iI/Seaoq8wewIsu0Tgz
- 5basbzbuK3U3J0K2hmo5AhIxjA8KwUEfv0OEcC85GxXqG8o7sWo6FWIGMdBzklDMJpPL
- 0Np3S3arHEp08vGzVBnmggBN7vX0nrkxgiDhp3CjU54J/4KbW03c5rQjt/cu+PmrBP00
- 6Jte2v/lRBDxJsTiQ046w8j9h8IgbRyBBhtdO2/taBUXQG+ATzRX0jgpl+eyK4IiWr6Z /g==
-Received: from nam10-bn7-obe.outbound.protection.outlook.com
- (mail-bn7nam10lp2102.outbound.protection.outlook.com [104.47.70.102])
-	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3e34s187ry-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 07 Feb 2022 19:19:07 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=err94e/Y0a0C9iFCEP5VxZ1RJ/5MDpHTULs+Md9LdO1Any9IYKi3FdI4q7Fsix+scS6sql55CJbrpiCeJt5baN1SM7WEdrkGFVGno6h4jhB7wAkrrxVutOmBLKTG3rCCgdoYCOvpDWlGDZUyuUVitFmd0b+bnqjMXTXjsJGIJrKglM/mQ1yfZ1DqklfIQmagRrl1XRxNKr+UhQjUjx928BW5yp7ZNFBxrFQ62WX9CxO1FHuiUCskA4FXQJa6z51qmkXErcJJxeg9rzVlSRkreTaTlWdEXjWEgRm/Vb19HVcjR6j+F8Fagiiv/oyEJUS/47PCoqz1zT6x8g3iUJX1xQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=reZLrhzSs+YBwP5k6Na20Pb7l0Q0XMx1wzgO0kbn+kQ=;
- b=FiE64Woj8Rqo4oAsiA1XurKU8IXdD/Sfc/gxgmJrGKK/FI2jhrkcLHYNRWN99dDP2Rym5g1cJ5RJf2i0WGwICIcxhTr5Q/3IjfLODyGv0Z42h2k1J3Y0pwq08j8Ym2+sytxbVqArnI8ravgdLO4orJwER3TL0QTwkZoGKGny6mLv0S53RrFXtN5392cY23I0hncBFwAwIEMvP8FNxXF0r5Enh/Ew7/V5MfzdU4cAe7tZ72Ygz5hKYGxTYyC5o05V3mR4kMQRhJHIPjkErkBKj3jtB37/qp6cBJXToh9zDztJbaokbvd6JtfPBlNrJG2MJzPbNH1QDKqCN6hdO6dkeQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-Received: from DM6PR11MB3994.namprd11.prod.outlook.com (2603:10b6:5:193::19)
- by BN6PR11MB1970.namprd11.prod.outlook.com (2603:10b6:404:100::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.11; Mon, 7 Feb
- 2022 19:19:05 +0000
-Received: from DM6PR11MB3994.namprd11.prod.outlook.com
- ([fe80::f4ad:a867:7f2:8958]) by DM6PR11MB3994.namprd11.prod.outlook.com
- ([fe80::f4ad:a867:7f2:8958%6]) with mapi id 15.20.4951.019; Mon, 7 Feb 2022
- 19:19:05 +0000
+ dkim=fail reason="signature has expired" header.i=@baesystems.com
+ header.s=trusted01 header.b=IlbfZ6Ft;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.65,
+ mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1644263791; x=1801943791;
+  h=from:to:subject:date:in-reply-to:mime-version;
+  bh=w4xzVHaztquBi+nIp97toLo0XuL5ckcXXjNLL/N0/g4=;
+  b=IlbfZ6FtzpIpzIHKVKWvRt5zZ/ywpd3DTU+4YuFI51JZv0+zNKTrKWqu
+   oZO2e9aMxo87XLcgPmIKB7dHTuobEb2RAaOohRNbjWJyl/mqs5+qLRMt6
+   hpNqmv2wQpPy/Jovc47H+DtuoXvVGjEquqE0yDKoRqtdzZ3bpdJJuVRn9
+   o=;
+IronPort-SDR: 
+ mSdHGeZcmROcUEVTfhupLdDprf2hkr87iO/v7X8hfv3m/uhxkhjoXKAXaARcTfVvLGegCSUt70
+ 61jHALeoVJtw==
+IronPort-PHdr: =?us-ascii?q?A9a23=3AuQWR1BCEN5iLY1JhHaybUyQUYEQY04WdBeb1w?=
+ =?us-ascii?q?qQuh78GSKm/5ZOqZBWZua83ygOQFtyGsboE07OQ7/q5HzRYoN6oizMrSNR0T?=
+ =?us-ascii?q?RgLiMEbzUQLIfWuLgnFFsPsdDEwB89YVVVorDmROElRH9viNRWJ+iXhpTEdF?=
+ =?us-ascii?q?Q/iOgVrO+/7BpDdj9it1+C15pbffxhEiCCybL9sMhm6twrcutQZjYd/Kqs91?=
+ =?us-ascii?q?AbCrn9Ud+hL329lKkyfkwvm6sus4JJv9jlbtu48+cJHTaj0ZbkzQ6ZCDDQhP?=
+ =?us-ascii?q?WA15cnrugfGQACS+HYSUXgYnwRRDQTd4x70Qpn+si3htupgwyaaJtH5Tao1W?=
+ =?us-ascii?q?Tu58ahmTgLjhTodOD449GHXjdFwjL5erRm8qRFz35LYbYeIP/d4Y6jTf84VR?=
+ =?us-ascii?q?XBZU8hRSSJPH5+8YYUMAeoPP+lYrpXyqFQVoBSkGQWsBvnixiNUinL026Axz?=
+ =?us-ascii?q?uQvERvB3AwlB98CvnParNLzNKcJT++60rLIwS3eZP1LxTfy9pbIfQ4nofqRQ?=
+ =?us-ascii?q?797bM7dxkcyGQ/AgFmbtIvoPyiJ1usTrWiU8exgWfiqi24grQFxuSagydk3i?=
+ =?us-ascii?q?oTSnY0a0E7L9T55wYYuOd23Vkt7YcW+HJRMsCGaMpJ7T8U/SG5npCg00KcJu?=
+ =?us-ascii?q?YKnfCcU0pQnwQbSZfKDfoSV7BzvSOmfLDhliHxlZr+ymRW//Euhx+D+WcS50?=
+ =?us-ascii?q?lhEoyRbn9XSqH0D2Rje58qbRvVy/kqsxTmB2x3R5+xCPEs6m63bK5s7zb4xk?=
+ =?us-ascii?q?JoeqUTCHijql0Xqi6+Wbl8k+u+q6+v5frrmuoWQN4huigHxNKklh8+xAfwgP?=
+ =?us-ascii?q?wQTQ2SX4+ax2bP58UD6T7hGlOA6nrHEvJzGP8gWqaG0DxVa34o59hqyDzGr2?=
+ =?us-ascii?q?8kCk3YdNlJKYheHgpDsO1HJPf/3E++yg0+pkDd33/DGOaDhAonVInjDjrjhe?=
+ =?us-ascii?q?bF95lZAyAs8199f4ZdUCqoFLf7vRkP9qMHUAgUkMwyv2eroE89y2Z0FWWOPG?=
+ =?us-ascii?q?a+ZLL3dsVqT5u41P+aMY4oVtC78K/gj+fHukWc0lUIBcaWz35YaZmq0E/dpL?=
+ =?us-ascii?q?kmDfHbgmtIBHn0Lvgo6QuzqklqCUTtLanapQ6Iz+C87B5ygDYvZQ4Cth7qB3?=
+ =?us-ascii?q?DylEZJIfWBLEUuDHm32eIWfW/YMcz6SLdFkkjwfT7SuV4gh1RS2uA/g17VnN?=
+ =?us-ascii?q?vbU+jEftZ/71Nl14PHclQ019TFvC8Sd0nqNT31vnm8SRz4227xwoVB6yleby?=
+ =?us-ascii?q?6h4hP5YGsJP6PNVSAs6MoTcz+MpQ+z1D0jkedGSRVu9Bp2dHTwvQ9R56JdOX?=
+ =?us-ascii?q?n08UZ32lQzOwSesRboSkaeGCYcc+KvRxGnqO8t40DDN06x3yxFsU8xEKWqOg?=
+ =?us-ascii?q?q9k6xOVFonCj0KBjaGoeK8AminX+y3LmXuJt11feApxSrneG2EYbVfRtc7+5?=
+ =?us-ascii?q?E7JU/mpE7txYSVbzsvXYI5NbMbkgE4CDMz/NcrTZSqa0yeNPlfCjueXcIf0d?=
+ =?us-ascii?q?mNb2SLbE0UJiCgZ9HudJBMiCyK65WnZCWo9RhrUf0rw/Lwm+zuARUguwlTSB?=
+ =?us-ascii?q?3A=3D?=
+IronPort-Data: =?us-ascii?q?A9a23=3A9hkFG6k3IsAmFFHkXsFtvcHo5gyvJERdPkR7X?=
+ =?us-ascii?q?Q2eYbSJt1+Wr1GztxIbUD+HbK6DZGr9LYwjYYrl8xxTvcTcx4MxG1Y+qywzF?=
+ =?us-ascii?q?VtH+JHPbTi7wuccHM8wwvUuxyuL1u1GAjX7BJ1yHi+0SiuFaOC79yEmjfjQH?=
+ =?us-ascii?q?9IQNcadUsxPbV48IMseoU878wIJqtYAbemRW2thi/uryyHsEAPNNwpPD44hw?=
+ =?us-ascii?q?/nrRCWDHRjFkGhwUlQWPZintbJF/pUfJMp3yaqZdxMUTmTId9NWSdovzJnhl?=
+ =?us-ascii?q?o/Y1ws9A9WgieejKhVTBKPJewKHh2FHQLSvhwMErSs3uko5HKNELxgMzWXV2?=
+ =?us-ascii?q?YkZJNZl7PRcTS8yIqDSleJbVh5eCCxzJoVM8bLcMGOjvMmIiUbBdhMAxt0yU?=
+ =?us-ascii?q?BBpY9VAobwf7WZmsKZwxCo2RgGEjP6x6La6UfV3wNUkJ9XsJJkYuHxr0XfeF?=
+ =?us-ascii?q?/lOfHxpa80m/vcBhHFv3YYeQbCHD/f1oAFHNHzoCyCj8H9OYH7moNqVuw=3D?=
+ =?us-ascii?q?=3D?=
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3ArLK0Sa7sqAQ7KhhzewPXwNHXdLJyesId70?=
+ =?us-ascii?q?hD6qkXc203TiX4raCTdZsgviMc5Ax9ZJhCo7G90cu7L080nKQdibX5W43PYO?=
+ =?us-ascii?q?CMggSVxe9Zh7ff/w=3D=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2ArAwCVHvlh/wFUSQpagRKBUYEhggU?=
+ =?us-ascii?q?OgRsZDIQ9jjGCYgOGDZZFFIFoCwEBAQEBAQEBAQgBKgEKDAQBAYUFAheDSSY?=
+ =?us-ascii?q?0CQ4BAgQBAQESAQEGAQEBAQEGBAGBG4VoDYI1IoNrAQEBAQMBIgoeAT0CAQY?=
+ =?us-ascii?q?CDQQEAQEWFQICAiYKHQgBAQQBEgiCeAWCDoEXknWaXTV6gTEaAmWDIAGGXIE?=
+ =?us-ascii?q?6gWaFRAEBgn+ECIINQ4Q/PoJjBYEWCAoBEgFgglmCQyIEkUwUgT8TAXtBCoF?=
+ =?us-ascii?q?ckjKDHYlOoFMHA4NGiwGMcIdaMBWDcoFLilGGQAOLc4VDlkogoGwNBzeEawI?=
+ =?us-ascii?q?EAgQFAhaBYUlccHCDOQlIFwKXNIVKdAI2AgYBCgEBAwmMPIEQAQE?=
+X-IPAS-Result: =?us-ascii?q?A2ArAwCVHvlh/wFUSQpagRKBUYEhggUOgRsZDIQ9jjGCY?=
+ =?us-ascii?q?gOGDZZFFIFoCwEBAQEBAQEBAQgBKgEKDAQBAYUFAheDSSY0CQ4BAgQBAQESA?=
+ =?us-ascii?q?QEGAQEBAQEGBAGBG4VoDYI1IoNrAQEBAQMBIgoeAT0CAQYCDQQEAQEWFQICA?=
+ =?us-ascii?q?iYKHQgBAQQBEgiCeAWCDoEXknWaXTV6gTEaAmWDIAGGXIE6gWaFRAEBgn+EC?=
+ =?us-ascii?q?IINQ4Q/PoJjBYEWCAoBEgFgglmCQyIEkUwUgT8TAXtBCoFckjKDHYlOoFMHA?=
+ =?us-ascii?q?4NGiwGMcIdaMBWDcoFLilGGQAOLc4VDlkogoGwNBzeEawIEAgQFAhaBYUlcc?=
+ =?us-ascii?q?HCDOQlIFwKXNIVKdAI2AgYBCgEBAwmMPIEQAQE?=
+X-IronPort-AV: E=Sophos;i="5.88,333,1635206400";
+   d="scan'208,217";a="449760032"
+IronPort-SDR: 
+ B8rxK2YdYDnwsudsX3E0wz1Woydjuo90kRPc00Uf99etNcCpkclecuvk4pEk29z9x2XdapboB8
+ hIvSdwjjg6djyr8WHRWsEHPb5iMAowb3ZqwSzG8T03v5yp6KQU87/8TtVwW0LOXIik2MCnh9k0
+ PVqztJ7JQ5fRfv+r/u7pT0UhCBpvCGoqEHO2ViEHoV6PqGEm53XGbMWRt9C4YeLG1yWYAcaF7u
+ I5HgT4xHPRjeal/WbJ2hqVIvl0d7D5UFNNDSvDo9wZeoMzcn5ouD/HY3oBDXqx3m7reRy/iCL7
+ T5o=
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+To: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: RE: [yocto] patching files under "dynamic-layers"
+Thread-Topic: [yocto] patching files under "dynamic-layers"
+Thread-Index: AdgcNuGuFwv51OZ9SCG7nAvljmkv1QAJd1Og
+Date: Mon, 7 Feb 2022 19:56:28 +0000
+In-Reply-To: <MADEUP.16D18B55BB2D0E75.22346@lists.yoctoproject.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.44.4.15]
 Content-Type: multipart/alternative;
- boundary="------------ZAejDNTOrHztXryj2jK7K85j"
-Message-ID: <7e72696f-d58a-0e00-e8f4-6bf34459781f@windriver.com>
-Date: Mon, 7 Feb 2022 14:19:01 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [yocto] ERROR: could not relocate installing toolchain SDK
-Content-Language: en-CA
-To: Sundeep KOKKONDA <sundeep.kokkonda@gmail.com>,
-        yocto@lists.yoctoproject.org, "denis@denix.org" <denis@denix.org>
-References: <20200128165745.GL4735@denix.org>
- <25813.1643957559728018781@lists.yoctoproject.org>
-From: Randy MacLeod <randy.macleod@windriver.com>
-In-Reply-To: <25813.1643957559728018781@lists.yoctoproject.org>
-X-ClientProxiedBy: BYAPR08CA0043.namprd08.prod.outlook.com
- (2603:10b6:a03:117::20) To DM6PR11MB3994.namprd11.prod.outlook.com
- (2603:10b6:5:193::19)
+	boundary="_000_78ef6a8fd9f74aeb9579b2c030fffb84baesystemscom_"
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f6c5c1b4-a345-4bbd-b9a0-08d9ea6eb4f0
-X-MS-TrafficTypeDiagnostic: BN6PR11MB1970:EE_
-X-Microsoft-Antispam-PRVS: 
-	<BN6PR11MB197072E8E657AFF743137BDDF82C9@BN6PR11MB1970.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:219;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	h2YwM3trSJTEXUxb8lec/IdBBTNkazXOuovsupG7C5MAZnj1tl1abkj8Bc5o5OcqHuVRn/nWdrRCb1M2am+6tIFTSpj6z5ywyGZ2u/gnE46c6N4Kfs1N3DHjAt+8rJoUQ40H1UbP0ERknKffZ9JtLXXu5XQBl+ZbxfBt7k2UoO3NvMThvyJmvoasRtMt9ANLNLwKWfap61gotaB03aUk6d4A/r9xIASy8LS48lf6Ubq+APcdCSVIW2GswaX8oNMaSu4A29fSRlh5UnQ+726Pq75RcG3s9Q6WFpZ+kp7BoYL/rbFDCfe1a/y/eE2sftlTqIgk9nLzkemIRvVnT3iaZteMimSOmxUzOqNE6QKaQzivTOVHj2lW0TTBQJ1rQuvPDWqjc3hGioXIdyJcCuDnfzQJByQpjgOKy0EQEHJqSzB5PSpWAUBkRTDrSsmFmuilrg/4ztUiFO67Juh7JkJxzjxAAvL5q3M8xWJQkzzs6Y0T8i2zO1nWWFE3r3cAJt60YJT4+UEEXw5+LaKZ8nttYciDPxVfAkEyEA80oJJBwW0Qu2maqfU2SQclXemLunxdeKGcfc/K67hv8wBXOp2+NhESXTKhl9BLFSm5Wuwvt8dID+w5NUo3FzQzTRG8/4ZjhtKfSepdgA3/t0TXDLbD4cWu9uXZgz2BBwBGMvl0fJhlQ0OUMOh+SSCJ46iZrYof9AOtOTITHJciuYLPTZ8n7iH1PA89zh8sOXtbI4z+SLsp8kGbblzj0xxzGV7tgyh6LTy56/Ld8HkzMLh7tesBHCvLfkFgN+M7SMBGydysVRgGt1aLftQG0V3/8I4YAQqSmJXl7pxlqvgr2SSBlWNsyFnjBuTbo7WLmCe2gAfpwNMsPfrV3Lgy5QrnF8MECe2/27fuF8jMoOXa1FqDpltRrQ==
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3994.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(6512007)(6506007)(53546011)(6666004)(2616005)(33964004)(26005)(186003)(52116002)(508600001)(966005)(6486002)(86362001)(166002)(31696002)(8676002)(8936002)(38100700002)(38350700002)(83380400001)(316002)(2906002)(36756003)(5660300002)(31686004)(110136005)(66946007)(66476007)(66556008)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?ck1zVWtzci9zTlIwT0NsVGZ5czJ4SXQrTVJUU3dnV2krb1lva2tPakxHbTJI?=
- =?utf-8?B?d2tLMkc5NjdJTVI0NTBOVmRseklOdDVON0dXZUZKa0ZEellWUFgwZkJOK3di?=
- =?utf-8?B?RTUvSGM4UGdyWGhjc3dPc3A3RWtRWkFja05SSGZ4d0pRVjZ0YU1XaG5qS09a?=
- =?utf-8?B?aU5ScEhSMm1WVSsyQUpBZ1dmRmh0UEF2TXNOL2NZR0xyL3g3WEhQYUZoc0g4?=
- =?utf-8?B?ajJBWWxHTFZZcHpiV01URlh2Ukt2MWJxdFZZTHMvZzdsQXZXazQ1K0dBTERF?=
- =?utf-8?B?anFSZDlQRkxqYXdEZWhrUnJsQXd1a0FwUGpwM1M5NGxLRUtUY1RHRkRZbmF5?=
- =?utf-8?B?UVZrUDVxcng3QUN6R2IvanZZMWJvT2NYY2RUUGpINkpnVzVtY3JvbFc4cE9u?=
- =?utf-8?B?cjJEUGFmQUdyZTlEajhsWDRFTU4yM2dBRy9Nc2Y2VVN3SEg0MGpBZmNuUVN1?=
- =?utf-8?B?c1REMVoxSERuNEVtREkzRXFZREpZVndFTUN6NVk3bnI4UHVORFd2RTNqbHJv?=
- =?utf-8?B?SUYybThMdDBQbC9rM3BoYVI4N2tqSVpIWlhhWTVjb0VsbExSc1FrZit1N1Fo?=
- =?utf-8?B?RHJYanl6NDcrWHZxcng0cFdnOUlyVm15YjdFZVVoNVBRV3ljMytIbll1V1pI?=
- =?utf-8?B?QkRGZ0tvd0xPb1NxSmV6allOWVBHMStTdldYempGa3dJb0h1aWZPWXRiQ0Vl?=
- =?utf-8?B?UTBFMHRwOEpUMDQvc0FJek5FcFlSTVk5amxOVTBCZ1RtRVBrYlhBSjA2UnBS?=
- =?utf-8?B?U0NWVjh4M0o2ejBFS3lvUkRGZEl5Y0Rxd0pkc1libzNIZmVDbkMvVlFZdHoz?=
- =?utf-8?B?KzlIdUpMa21acXZlblZQbGZJQUlMSHRmS2JGTWZ4S0RIQWYwckIvWnpTenFk?=
- =?utf-8?B?dVhMVVIvdDUwbW12b203UDdsb2JZcFZCQkFwUnRXaDk3Q3ZtMHA2QVZRZHdq?=
- =?utf-8?B?ZWV0cjhCRVBHRzR5V3c5ekYySFNjR0lENUVSS094WHhhZE5rSy80RDZTWE5T?=
- =?utf-8?B?K1QxWWl6WGtWSU96Vno4VG55RXBJcnkvcnZMdlVTK0xEQmd0YzZUb1J3ZitF?=
- =?utf-8?B?eDBDanVVU3lSVnNuZHNWR0EwRWdGYXdUTklCTk02TWpUNWJ4a09oVTRJOFFD?=
- =?utf-8?B?UXU3MW9YYjJSd25JckhlTUhhdXVuWXpTSVlheVRkUXNRWGVWWllqclhqK3cy?=
- =?utf-8?B?Z2dpaXErWVlkS0lmbjAxRHZKc2xhcWFVeWgrTVQ5UGYzVThDdElKWlZDcTZB?=
- =?utf-8?B?Z2dEaUc2S0xlYVkwdUdSNERDZWxRUGgwVVJkNUROS001NEEraGd3MUozbDND?=
- =?utf-8?B?SXlxSGRjTWdUWjdwTCtFeXdDa3BORzVPVy9HZGhWbW1oZU1RNHp3dUcxOEM4?=
- =?utf-8?B?RVNpSW5JdTJ1cVlOeDgxcndFQ3lUUVlpWEd2TDhkdEcxRWpqMFk4VnI5dkc3?=
- =?utf-8?B?VDNobWVJRVJWaUxUUzRWbXZNR1R0ZGdtLy9lM1Ira3Z5TnBMa1hXQ1RtaURK?=
- =?utf-8?B?UllHTzFNWlZLQ2tsRXlHZ3JjYlZ0Q1BQWmgxa08wa2FERGtWcmJyeGRSRUpM?=
- =?utf-8?B?cGxVS1h1TTVmS3QwOWtBUFZrd2JtOHNCUVRramVIb29Sa3I3OCswVVlCdUQz?=
- =?utf-8?B?YmpxZkFENDFDcmh2RytJTHpjaE1qbzA3dXpteDdnOXBTSnExbmJvTkdYMVlM?=
- =?utf-8?B?M1FrS3QxeGU0VHBJbEpLaDNzV0hQYUVDdUQxZ1I4WmlMd1c1U1c0V1JGUzVz?=
- =?utf-8?B?eERFNlNLQUlSaFZGYXNVVDdaMEZpVENqRGZ6N1cwS0lhYlBMNGVyZE1VcVl1?=
- =?utf-8?B?SElHdG5WdGhXRGJZK2ljNzNIL29OWVNkeFA0ZEdSNTFXQUgzQ0RQRnBJdFFo?=
- =?utf-8?B?YXl1bjJTOHNjSzRiMEllRW9zZG1LR2wrRmJjOGtSQTM3cUY5QkJ1U0dOdHQr?=
- =?utf-8?B?bTJFSGRwQVRqZDZMb1E5RmdoeTBjTVZrdHcyb1Y3WFlObzJrWWFYYy92VmRx?=
- =?utf-8?B?bGpINDV0eGlHNXBOSmxZVnNORDlXK09wMDlBK0xTYnMvaUFsd2I2YXpJeklm?=
- =?utf-8?B?Mnova0tuY1BKclluQWdmVnJPTG5wSTh5Sk9DcGl1d1l6bzc1aTVPNEowZ0Rq?=
- =?utf-8?B?WVNiTE1DUDBiSzBNQ1NMT1ZtRkwzcUJHMEMydTZYTlJpZmN1QUxMSzVwdllO?=
- =?utf-8?B?MWExNmpCa2tBbFNZTHRJS0Y2K1RjQjV4Smh6ZTZsSHpuc011KzR2SWxIZHVB?=
- =?utf-8?Q?SMHDEOdFpMFtA5xGVs+qhZml3mfqT6QMUWSPMKY3XE=3D?=
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- f6c5c1b4-a345-4bbd-b9a0-08d9ea6eb4f0
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3994.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2022 19:19:05.4956
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- AdTVLJHlDBBOcxyn26yxxoseCDjB3b6FXh96Ur4ZWxfAbkGu7PDpwnUDKm7Z00EJvBnhaEs+kV+bZFqkVXJd6hUZFUkQ3gc22tTNweVZlFY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB1970
-X-Proofpoint-GUID: SirUGYZ1Lc-4DVike1POjqCIWaOdmgIo
-X-Proofpoint-ORIG-GUID: SirUGYZ1Lc-4DVike1POjqCIWaOdmgIo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-02-07_06,2022-02-07_02,2021-12-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0
- bulkscore=0 priorityscore=1501 clxscore=1011 suspectscore=0 mlxscore=0
- mlxlogscore=999 malwarescore=0 impostorscore=0 spamscore=0 phishscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2201110000 definitions=main-2202070116
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 07 Feb 2022 19:19:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56096
+ <yocto@lists.yoctoproject.org>; Mon, 07 Feb 2022 19:56:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56097
+Message-Id: <20220207195632.EFDA5C433EF@smtp.lore.kernel.org>
 
---------------ZAejDNTOrHztXryj2jK7K85j
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-MIME-Autoconverted: from 8bit to quoted-printable by
- mx0a-0064b401.pphosted.com id 217IY58q000563
+--_000_78ef6a8fd9f74aeb9579b2c030fffb84baesystemscom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+DQpOZXZlciBtaW5kIHdhcyBhYmxlIHRvIHdvcmsgdGhpcyBvdXTigKYNCg0KRnJvbTogeW9jdG9A
+bGlzdHMueW9jdG9wcm9qZWN0Lm9yZyA8eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gT24g
+QmVoYWxmIE9mIE1vbnNlZXMsIFN0ZXZlbiBDIChVUykgdmlhIGxpc3RzLnlvY3RvcHJvamVjdC5v
+cmcNClNlbnQ6IE1vbmRheSwgRmVicnVhcnkgNywgMjAyMiAxMDo0MiBBTQ0KVG86IHlvY3RvQGxp
+c3RzLnlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFt5b2N0b10gcGF0Y2hpbmcgZmlsZXMgdW5k
+ZXIgImR5bmFtaWMtbGF5ZXJzIg0KDQpFeHRlcm5hbCBFbWFpbCBBbGVydA0KDQpUaGlzIGVtYWls
+IGhhcyBiZWVuIHNlbnQgZnJvbSBhbiBhY2NvdW50IG91dHNpZGUgb2YgdGhlIEJBRSBTeXN0ZW1z
+IG5ldHdvcmsuDQpQbGVhc2UgdHJlYXQgdGhlIGVtYWlsIHdpdGggY2F1dGlvbiwgZXNwZWNpYWxs
+eSBpZiB5b3UgYXJlIHJlcXVlc3RlZCB0byBjbGljayBvbiBhIGxpbmssIGRlY3J5cHQvb3BlbiBh
+biBhdHRhY2htZW50LCBvciBlbmFibGUgbWFjcm9zLiAgRm9yIGZ1cnRoZXIgaW5mb3JtYXRpb24g
+b24gaG93IHRvIHNwb3QgcGhpc2hpbmcsIGFjY2VzcyDigJxDeWJlcnNlY3VyaXR5IE9uZVNwYWNl
+IFBhZ2XigJ0gYW5kIHJlcG9ydCBwaGlzaGluZyBieSBjbGlja2luZyB0aGUgYnV0dG9uIOKAnFJl
+cG9ydCBQaGlzaGluZ+KAnSBvbiB0aGUgT3V0bG9vayB0b29sYmFyLg0KDQoNCg0KSSBhbSBidWls
+ZGluZyB3aXRoIHpldXMgMy4wLjQsIEludGVsIGJhc2Vk4oCmDQoNCkkgdHJ5aW5nIHRvIGxlYXJu
+IGhvdyB0byBpbnRyb2R1Y2UgYSBwYXRjaCB0byBmaWxlcyBicm91Z2h0IGluIGJ5IHBhY2thZ2Vz
+IHVuZGVyIOKAnGR5bmFtaWMg4oCTbGF5ZXJz4oCd4oCmIG15IGJiYXBwZW5kIGFwcGVhcnMgbm90
+IHRvIGJlIGFwcGx5aW5nIG15IHRlc3QgcGF0Y2ggKGV2ZW4gdGhvdWdoIG5vIGVycm9ycy93YXJu
+aW5ncyB0aHJvd24p4oCmDQoNClRoaXMgaXMgdGhlIHBhY2thZ2UgSSBhbSB0cnlpbmcgdG8gbWFu
+aXB1bGF0ZToNCg0KL2Rpc2swL3NjcmF0Y2gvc21vbnNlZXMveW9jdG8vd29ya3NwYWNlXzMvbWV0
+YS1pbnRlbC9keW5hbWljLWxheWVycy9jbGFuZy1sYXllci9yZWNpcGVzLW9wZW5jbC9pZ2MNCkl0
+IGNvbnRhaW5zOg0KZmlsZXMgIGludGVsLWdyYXBoaWNzLWNvbXBpbGVyXzEuMC4xMS5iYg0KDQpU
+aGlzIGlzIG15IHJlY2lwZSB0byBhcHBseSBwYXRjaDoNCg0KL2Rpc2swL3NjcmF0Y2gvc21vbnNl
+ZXMveW9jdG8vd29ya3NwYWNlXzMvbWV0YS1iYWUvbWV0YS1saW13cy9tZXRhLWludGVsL2R5bmFt
+aWMtbGF5ZXJzL2NsYW5nLWxheWVyL3JlY2lwZXMtb3BlbmNsL2lnYw0KSXQgY29udGFpbnM6DQpm
+aWxlcyAgaW50ZWwtZ3JhcGhpY3MtY29tcGlsZXJfMS4wLjExLmJiYXBwZW5kDQoNCmZpbGVzIC0g
+Y29udGFpbnMgdGhlIGZpbGUgSSBhbSBhdHRlbXB0aW5nIHRvIHBhdGNoIChGSUxFX1RPX1BBVENI
+LnBhdGNoKQ0KaW50ZWwtZ3JhcGhpY3MtY29tcGlsZXJfMS4wLjExLmJiYXBwZW5kIGlzIHNldHVw
+IGxpa2Ugc28sIHdoZXJlDQoNCkZJTEVTRVhUUkFQQVRIU19wcmVwZW5kIDo9ICIke1RISVNESVJ9
+L2ZpbGVzOiINCg0KU1JDX1VSSSArPSAiXA0KICAgIGZpbGU6Ly9GSUxFX1RPX1BBVENILnBhdGNo
+IFwNCiINCg0KSSBhdHRlbXB0ZWQgdG8gbWFsZSB1c2Ugb2YgQkJGSUxFU19EWU5BTUlDIGJ1dCBl
+dmVuIHRob3VnaCBJIGdldCBubyBlcnJvciwgcGF0Y2ggaXMgbm90IGFwcGxpZWQuDQoNCmNvbmYv
+bGF5ZXIuY29uZjoNCkJCRklMRVNfRFlOQU1JQyArPSAiIFwNCiAgICBjbGFuZy1sYXllcjokKExB
+WUVSRElSKS9keW5hbWljLWxheWVycy9jbGFuZy1sYXllci9yZWNpcGVzLW9wZW5jbC9pZ2MvKi5i
+YmFwcGVuZCBcDQoiDQoNCkNhbiB5b3UgZXhwbGFpbiB0byBtZSB0aGUgcHJvcGVyIHdheSB0byBw
+YXRjaCBmaWxlcyB1bmRlciB0aGVzZSBjaXJjdW1zdGFuY2VzIGFuZCB3aGVyZSBJIHdlbnQgd3Jv
+bmcgPw0KDQpUaGFua3MsDQpTdGV2ZQ0KDQo=
 
-Add Denis since he may have missed Sundeep's email.
+--_000_78ef6a8fd9f74aeb9579b2c030fffb84baesystemscom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 2022-02-04 01:52, Sundeep KOKKONDA wrote:
-> Hello,
->
-> I am also facing the same issue with path size. Can you share the=20
-> workaround what you are using for this issue?
->
-> In the /scripts/relocate_sdk.py=20
-> <https://urldefense.com/v3/__http://relocate_sdk.py__;!!AjveYdw8EvQ!JDW=
-hGSHwH-D2E97f5wJ31g8y5hNRRKDdDRtOaybzIuFpIkRbteVvxi21IQA639Cv5fr3Aw$>/=20
-> the file name comparison is like below:
->
->     if (len(new_dl_path) >=3D p_filesz):
->     =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 print("ERRO=
-R: could not relocate %s, interp size =3D
->     %i and %i is needed." \
->     =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- % (elf_file_name, p_memsz, len(new_dl_path) + 1))
->     =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 break
->     =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 dl_path =3D new_dl_path +=
- b("\0") * (p_filesz -
->     len(new_dl_path))
->
-> And, to fix the issue I made changes like below.
->
->     if (len(new_dl_path) >=3D 4096):
->     print("ERROR: could not relocate %s, interp size =3D %i and %i is
->     needed." \
->     =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- % (elf_file_name, p_memsz, len(new_dl_path) + 1))
->     =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 break
->     =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 dl_path =3D new_dl_path +=
- b("\0") * (4096 -
->     len(new_dl_path))
->
-> and commented below code.
->
->     #if old_size !=3D os.path.getsize(e):
->     =C2=A0 =C2=A0 =C2=A0 =C2=A0 #print("New file size for %s is differe=
-nt. Looks like a
->     relocation error!", e)
->     =C2=A0 =C2=A0 =C2=A0 =C2=A0 #sys.exit(-1)
->
-> Do you have any clue regarding,
-> - Why the installation path is depending of elf headers i.e., Why=20
-> installation error when the /len(new_dl_path)/ is greater than /p_files=
-z/?
-> - Changing this comparison (len(new_dl_path) >=3D 4096) will impact the=
-=20
-> installed SDK?
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiTHVjaWRhIFNhbnMgVW5pY29kZSI7DQoJ
+cGFub3NlLTE6MiAxMSA2IDIgMyA1IDQgMiAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8N
+CnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsN
+CgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWls
+eToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21z
+by1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1
+bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1z
+dHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRl
+cmxpbmU7fQ0KcC5tc29ub3JtYWwwLCBsaS5tc29ub3JtYWwwLCBkaXYubXNvbm9ybWFsMA0KCXtt
+c28tc3R5bGUtbmFtZTptc29ub3JtYWw7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFy
+Z2luLXJpZ2h0OjBpbjsNCgltc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVm
+dDowaW47DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFu
+IixzZXJpZjt9DQpzcGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbDsN
+Cglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30N
+CnNwYW4uRW1haWxTdHlsZTIwDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZv
+bnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0No
+cERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBw
+dDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEu
+MGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2Vj
+dGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVm
+YXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48
+IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxv
+OmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwh
+W2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9IiMwNTYzQzEiIHZs
+aW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iY29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0Qi
+Pk5ldmVyIG1pbmQgd2FzIGFibGUgdG8gd29yayB0aGlzIG91dOKApjxvOnA+PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJjb2xvcjojMUY0OTdEIj48
+bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5v
+bmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBpbiAw
+aW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+RnJvbTo8L2I+IHlvY3RvQGxpc3RzLnlvY3Rv
+cHJvamVjdC5vcmcgJmx0O3lvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcmZ3Q7DQo8Yj5PbiBC
+ZWhhbGYgT2YgPC9iPk1vbnNlZXMsIFN0ZXZlbiBDIChVUykgdmlhIGxpc3RzLnlvY3RvcHJvamVj
+dC5vcmc8YnI+DQo8Yj5TZW50OjwvYj4gTW9uZGF5LCBGZWJydWFyeSA3LCAyMDIyIDEwOjQyIEFN
+PGJyPg0KPGI+VG86PC9iPiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U3Vi
+amVjdDo8L2I+IFt5b2N0b10gcGF0Y2hpbmcgZmlsZXMgdW5kZXIgJnF1b3Q7ZHluYW1pYy1sYXll
+cnMmcXVvdDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8dGFibGUgY2xhc3M9Ik1zb05vcm1h
+bFRhYmxlIiBib3JkZXI9IjEiIGNlbGxzcGFjaW5nPSIwIiBjZWxscGFkZGluZz0iMCIgd2lkdGg9
+Ijk3JSIgc3R5bGU9IndpZHRoOjk3LjAlO21hcmdpbi1sZWZ0OjUuNHB0O2JvcmRlci1jb2xsYXBz
+ZTpjb2xsYXBzZTtib3JkZXI6bm9uZSI+DQo8dGJvZHk+DQo8dHIgc3R5bGU9ImhlaWdodDoyMS4y
+cHQiPg0KPHRkIHdpZHRoPSI5NyUiIHZhbGlnbj0idG9wIiBzdHlsZT0id2lkdGg6OTcuMCU7Ym9y
+ZGVyOnNvbGlkIHJlZCAxLjBwdDtwYWRkaW5nOjBpbiA1LjRwdCAwaW4gNS40cHQ7aGVpZ2h0OjIx
+LjJwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0iY2VudGVyIiBzdHlsZT0ibWFyZ2lu
+LWJvdHRvbTo0LjBwdDt0ZXh0LWFsaWduOmNlbnRlcjtiYWNrZ3JvdW5kOndoaXRlIj4NCjxzdHJv
+bmc+PHU+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMy41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
+aWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOnJlZCI+RXh0ZXJuYWwgRW1haWwgQWxlcnQ8L3Nw
+YW4+PC91Pjwvc3Ryb25nPjxvOnA+PC9vOnA+PC9wPg0KPC90ZD4NCjwvdHI+DQo8dHIgc3R5bGU9
+ImhlaWdodDoyMS4ycHQiPg0KPHRkIHdpZHRoPSI2ODYiIHZhbGlnbj0idG9wIiBzdHlsZT0id2lk
+dGg6MTE1MC40cHQ7Ym9yZGVyOnNvbGlkIHJlZCAxLjBwdDtib3JkZXItdG9wOm5vbmU7cGFkZGlu
+ZzowaW4gNS40cHQgMGluIDUuNHB0O2hlaWdodDoyMS4ycHQiPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCIgYWxpZ249ImNlbnRlciIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDozLjBwdDttYXJnaW4t
+cmlnaHQ6MGluO21hcmdpbi1ib3R0b206NC4wcHQ7bWFyZ2luLWxlZnQ6MGluO3RleHQtYWxpZ246
+Y2VudGVyO2JhY2tncm91bmQ6d2hpdGUiPg0KPHN0cm9uZz48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6
+YmxhY2siPlRoaXMgZW1haWwgaGFzIGJlZW4gc2VudCBmcm9tIGFuIGFjY291bnQgb3V0c2lkZSBv
+ZiB0aGUgQkFFIFN5c3RlbXMgbmV0d29yay48bzpwPjwvbzpwPjwvc3Bhbj48L3N0cm9uZz48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0iY2VudGVyIiBzdHlsZT0ibWFyZ2luLWJvdHRv
+bTo0LjBwdDt0ZXh0LWFsaWduOmNlbnRlciI+DQo8c3BhbiBzdHlsZT0iZm9udC1zaXplOjcuNXB0
+Ij5QbGVhc2UgdHJlYXQgdGhlIGVtYWlsIHdpdGggY2F1dGlvbiwgZXNwZWNpYWxseSBpZiB5b3Ug
+YXJlIHJlcXVlc3RlZCB0byBjbGljayBvbiBhIGxpbmssIGRlY3J5cHQvb3BlbiBhbiBhdHRhY2ht
+ZW50LCBvciBlbmFibGUgbWFjcm9zLiZuYnNwOyBGb3IgZnVydGhlciBpbmZvcm1hdGlvbiBvbiBo
+b3cgdG8gc3BvdCBwaGlzaGluZywgYWNjZXNzIOKAnEN5YmVyc2VjdXJpdHkgT25lU3BhY2UgUGFn
+ZeKAnSBhbmQgcmVwb3J0DQogcGhpc2hpbmcgYnkgY2xpY2tpbmcgdGhlIGJ1dHRvbiDigJxSZXBv
+cnQgUGhpc2hpbmfigJ0gb24gdGhlIE91dGxvb2sgdG9vbGJhci48L3NwYW4+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZTo5LjBwdCI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPC90ZD4NCjwvdHI+DQo8
+L3Rib2R5Pg0KPC90YWJsZT4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTIuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RpbWVzIE5ldyBSb21hbiZxdW90OyxzZXJp
+ZiI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86
+cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGFtIGJ1aWxkaW5nIHdp
+dGggemV1cyAzLjAuNCwgSW50ZWwgYmFzZWTigKY8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSB0
+cnlpbmcgdG8gbGVhcm4gaG93IHRvIGludHJvZHVjZSBhIHBhdGNoIHRvIGZpbGVzIGJyb3VnaHQg
+aW4gYnkgcGFja2FnZXMgdW5kZXIg4oCcZHluYW1pYyDigJNsYXllcnPigJ3igKYgbXkgYmJhcHBl
+bmQgYXBwZWFycyBub3QgdG8gYmUgYXBwbHlpbmcgbXkgdGVzdCBwYXRjaCAoZXZlbiB0aG91Z2gg
+bm8gZXJyb3JzL3dhcm5pbmdzIHRocm93binigKY8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+
+VGhpcyBpcyB0aGUgcGFja2FnZSBJIGFtIHRyeWluZyB0byBtYW5pcHVsYXRlOjxvOnA+PC9vOnA+
+PC9iPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+L2Rpc2swL3NjcmF0Y2gvc21vbnNlZXMveW9jdG8vd29ya3NwYWNl
+XzMvbWV0YS1pbnRlbC9keW5hbWljLWxheWVycy9jbGFuZy1sYXllci9yZWNpcGVzLW9wZW5jbC9p
+Z2M8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkl0IGNvbnRhaW5zOjxvOnA+
+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+ZmlsZXMmbmJzcDsgaW50ZWwtZ3JhcGhp
+Y3MtY29tcGlsZXJfMS4wLjExLmJiPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPlRoaXMgaXMg
+bXkgcmVjaXBlIHRvIGFwcGx5IHBhdGNoOjxvOnA+PC9vOnA+PC9iPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+L2Rp
+c2swL3NjcmF0Y2gvc21vbnNlZXMveW9jdG8vd29ya3NwYWNlXzMvbWV0YS1iYWUvbWV0YS1saW13
+cy9tZXRhLWludGVsL2R5bmFtaWMtbGF5ZXJzL2NsYW5nLWxheWVyL3JlY2lwZXMtb3BlbmNsL2ln
+YzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SXQgY29udGFpbnM6PG86cD48
+L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5maWxlcyZuYnNwOyBpbnRlbC1ncmFwaGlj
+cy1jb21waWxlcl8xLjAuMTEuYmJhcHBlbmQ8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+ZmlsZXMg
+LSBjb250YWlucyB0aGUgZmlsZSBJIGFtIGF0dGVtcHRpbmcgdG8gcGF0Y2ggKEZJTEVfVE9fUEFU
+Q0gucGF0Y2gpPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5pbnRlbC1ncmFw
+aGljcy1jb21waWxlcl8xLjAuMTEuYmJhcHBlbmQgaXMgc2V0dXAgbGlrZSBzbywgd2hlcmUNCjxv
+OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5GSUxFU0VYVFJBUEFUSFNfcHJlcGVuZCA6PSAmcXVvdDsk
+e1RISVNESVJ9L2ZpbGVzOiZxdW90OzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5TUkNfVVJJICYj
+NDM7PSAmcXVvdDtcPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDs8YSBocmVmPSJmaWxlOi8vRklMRV9UT19QQVRDSC5wYXRjaCI+Zmls
+ZTovL0ZJTEVfVE9fUEFUQ0gucGF0Y2g8L2E+IFw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPiZxdW90OzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86
+cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGF0dGVtcHRlZCB0byBt
+YWxlIHVzZSBvZiBCQkZJTEVTX0RZTkFNSUMgYnV0IGV2ZW4gdGhvdWdoIEkgZ2V0IG5vIGVycm9y
+LCBwYXRjaCBpcyBub3QgYXBwbGllZC48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Y29uZi9sYXll
+ci5jb25mOjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+QkJGSUxFU19EWU5B
+TUlDICYjNDM7PSAmcXVvdDsgXDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+Jm5ic3A7Jm5ic3A7Jm5ic3A7IGNsYW5nLWxheWVyOiQoTEFZRVJESVIpL2R5bmFtaWMtbGF5ZXJz
+L2NsYW5nLWxheWVyL3JlY2lwZXMtb3BlbmNsL2lnYy8qLmJiYXBwZW5kIFw8bzpwPjwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZxdW90OzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5D
+YW4geW91IGV4cGxhaW4gdG8gbWUgdGhlIHByb3BlciB3YXkgdG8gcGF0Y2ggZmlsZXMgdW5kZXIg
+dGhlc2UgY2lyY3Vtc3RhbmNlcyBhbmQgd2hlcmUgSSB3ZW50IHdyb25nID88bzpwPjwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+VGhhbmtzLDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+U3RldmUgPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
+bzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-The 4096 comes from PATH_MAX:
-
-|linux/limits.h|.
-|#define PATH_MAX 4096 /* # chars in a path name including nul */|
-
-|but that does seem a tad on the long side. I'd prefer a more reasonable
-limit that we have actually tested, say PATH_MAX/4 (??) and a comment in =
-the
-commit log documenting the choice.|
-
-|Finally, we do have a test that extracts the sdk in:|
-
-|=C2=A0=C2=A0 meta/lib/oeqa/sdk/testsdk.py|
-
-|Can you review that code and use a long but fixed length path by
-default so that we catch regressions? The path is set in:
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sdk_dir =3D d.expand("${WORKD=
-IR}/testimage-sdk/")
-since len(${WORKDIR} may vary, I'd like to see code that corrects
-for that and results in a fix length of PATH_MAX/4 assuming that
-things work with such a long path.
-|
-
-|Denis? Does that make sense and what is your work-around?
-|
-
-|../Randy
-|
-
-||
-
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#56083):https://lists.yoctoproject.org/g/yocto/messa=
-ge/56083
-> Mute This Topic:https://lists.yoctoproject.org/mt/70213997/3616765
-> Group Owner:yocto+owner@lists.yoctoproject.org
-> Unsubscribe:https://lists.yoctoproject.org/g/yocto/unsub  [randy.macleo=
-d@windriver.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
-
---=20
-# Randy MacLeod
-# Wind River Linux
-
---------------ZAejDNTOrHztXryj2jK7K85j
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <div class="moz-cite-prefix"><br>
-    </div>
-    <div class="moz-cite-prefix">Add Denis since he may have missed
-      Sundeep's email.</div>
-    <div class="moz-cite-prefix"><br>
-    </div>
-    <div class="moz-cite-prefix">On 2022-02-04 01:52, Sundeep KOKKONDA
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:25813.1643957559728018781@lists.yoctoproject.org">
-      
-      Hello,<br>
-      <br>
-      I am also facing the same issue with path size. Can you share the
-      workaround what you are using for this issue?<br>
-      <br>
-      In the <em>scripts/<a href="https://urldefense.com/v3/__http://relocate_sdk.py__;!!AjveYdw8EvQ!JDWhGSHwH-D2E97f5wJ31g8y5hNRRKDdDRtOaybzIuFpIkRbteVvxi21IQA639Cv5fr3Aw$" moz-do-not-send="true">relocate_sdk.py</a></em> the file name
-      comparison is like below:<br>
-      <blockquote>
-        <div>if (len(new_dl_path) &gt;= p_filesz):</div>
-        <div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print(&quot;ERROR: could not relocate %s, interp
-          size = %i and %i is needed.&quot; \</div>
-        <div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; % (elf_file_name, p_memsz,
-          len(new_dl_path) + 1))</div>
-        <div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; break</div>
-        <div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dl_path = new_dl_path + b(&quot;\0&quot;) * (p_filesz -
-          len(new_dl_path))</div>
-      </blockquote>
-      And, to fix the issue I made changes like below.<br>
-      <blockquote>
-        <div>
-          <div style="line-height: 1.42857;">if (len(new_dl_path) &gt;=
-            4096):</div>
-          <div style="line-height: 1.42857;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            print(&quot;ERROR: could not relocate %s, interp size = %i and %i
-            is needed.&quot; \</div>
-          <div style="line-height: 1.42857;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; %
-            (elf_file_name, p_memsz, len(new_dl_path) + 1))</div>
-          <div style="line-height: 1.42857;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; break</div>
-          <div style="line-height: 1.42857;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dl_path =
-            new_dl_path + b(&quot;\0&quot;) * (4096 - len(new_dl_path))</div>
-        </div>
-      </blockquote>
-      and commented below code.<br>
-      <blockquote>
-        <div>#if old_size != os.path.getsize(e):</div>
-        <div>&nbsp; &nbsp; &nbsp; &nbsp; #print(&quot;New file size for %s is different. Looks
-          like a relocation error!&quot;, e)</div>
-        <div>&nbsp; &nbsp; &nbsp; &nbsp; #sys.exit(-1)</div>
-      </blockquote>
-      Do you have any clue regarding,<br>
-      - Why the installation path is depending of elf headers i.e., Why
-      installation error when the <em>len(new_dl_path)</em> is greater
-      than <em>p_filesz</em>?<br>
-      - Changing this comparison (len(new_dl_path) &gt;= 4096) will
-      impact the installed SDK?<br>
-    </blockquote>
-    <p>The 4096 comes from PATH_MAX:<br>
-    </p>
-    <p><code>linux/limits.h</code>.<br>
-      <code>#define PATH_MAX 4096 /* # chars in a path name including
-        nul */</code></p>
-    <p><code>but that does seem a tad on the long side. I'd prefer a
-        more reasonable <br>
-        limit that we have actually tested, say PATH_MAX/4 (??) and a
-        comment in the<br>
-        commit log documenting the choice.</code></p>
-    <p><code>Finally, we do have a test that extracts the sdk in:</code></p>
-    <p><code>&nbsp;&nbsp; meta/lib/oeqa/sdk/testsdk.py</code></p>
-    <p><code>Can you review that code and use a long but fixed length
-        path by <br>
-        default so that we catch regressions? The path is set in:<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sdk_dir = d.expand(&quot;${WORKDIR}/testimage-sdk/&quot;) <br>
-        since len(${WORKDIR} may vary, I'd like to see code that
-        corrects<br>
-        for that and results in a fix length of PATH_MAX/4 assuming that<br>
-        things work with such a long path.<br>
-      </code></p>
-    <p><code>Denis? Does that make sense and what is your work-around?<br>
-      </code></p>
-    <p><code>../Randy<br>
-      </code></p>
-    <pre class="lang-c s-code-block"><code class="hljs language-c"><span class="hljs-meta">
-</span></code></pre>
-    <blockquote type="cite" cite="mid:25813.1643957559728018781@lists.yoctoproject.org">
-      <div>&nbsp;</div>
-      <br>
-      <fieldset class="moz-mime-attachment-header"></fieldset>
-      <pre class="moz-quote-pre" wrap="">-=-=-=-=-=-=-=-=-=-=-=-
-Links: You receive all messages sent to this group.
-View/Reply Online (#56083): <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto/message/56083">https://lists.yoctoproject.org/g/yocto/message/56083</a>
-Mute This Topic: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/mt/70213997/3616765">https://lists.yoctoproject.org/mt/70213997/3616765</a>
-Group Owner: <a class="moz-txt-link-abbreviated" href="mailto:yocto+owner@lists.yoctoproject.org">yocto+owner@lists.yoctoproject.org</a>
-Unsubscribe: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto/unsub">https://lists.yoctoproject.org/g/yocto/unsub</a> [<a class="moz-txt-link-abbreviated" href="mailto:randy.macleod@windriver.com">randy.macleod@windriver.com</a>]
--=-=-=-=-=-=-=-=-=-=-=-
-
-</pre>
-    </blockquote>
-    <p><br>
-    </p>
-    <pre class="moz-signature" cols="72">-- 
-# Randy MacLeod
-# Wind River Linux</pre>
-  </body>
-</html>
-
---------------ZAejDNTOrHztXryj2jK7K85j--
+--_000_78ef6a8fd9f74aeb9579b2c030fffb84baesystemscom_--
 
