@@ -2,107 +2,139 @@ Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C082BC433F5
-	for <webhook@archiver.kernel.org>; Wed,  9 Feb 2022 17:49:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0815CC433EF
+	for <webhook@archiver.kernel.org>; Wed,  9 Feb 2022 17:54:45 +0000 (UTC)
 Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com
  [209.85.160.179])
- by mx.groups.io with SMTP id smtpd.web08.30181.1644428956327901269
+ by mx.groups.io with SMTP id smtpd.web12.30152.1644429284506247831
  for <yocto@lists.yoctoproject.org>;
- Wed, 09 Feb 2022 09:49:16 -0800
+ Wed, 09 Feb 2022 09:54:44 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=dE+23XkS;
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=fi4vOSdS;
  spf=pass (domain: gmail.com, ip: 209.85.160.179,
  mailfrom: raj.khem@gmail.com)
-Received: by mail-qt1-f179.google.com with SMTP id s1so2457946qtw.9
+Received: by mail-qt1-f179.google.com with SMTP id s1so2472498qtw.9
         for <yocto@lists.yoctoproject.org>;
- Wed, 09 Feb 2022 09:49:16 -0800 (PST)
+ Wed, 09 Feb 2022 09:54:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=1Nx6yx+rhYBAjhX7R3ZqLREm8pt5MIAQ0fSJ6b1RnZg=;
-        b=dE+23XkSVHl/AdRK3vvCFhLqKa/SKEJDGSvanCXJDepoqo34NspbBQQfKexTR0fVxw
-         g0AiUN06oQpxuUHkMR+xNbhbpoFVumZ3b+B6KctCl6w0VSij4QWRgxe5truJY4gmwl76
-         cTxo1YbE+TZaXYQ/LC2SerGZILupM4dcV4N+1Y3UVwawu8U2Jjy1KuXx/Td8CuzfodTg
-         pMj3tgb06m8tu38W5AvvicYCKOKzGslbok90BHReA7U3La+WIVGPk6KZvA7gE4JajsFx
-         MA+PtBCnH3O7/Hfdahaxcg4cQrmjef7jcKB6Q/MS+a/J7dziY0ZjXuqk27tTOz5HcEvm
-         PcyA==
+        bh=uB+J3pHP63mPlo9l6bwoRi8WAImueSVBpPwgnXjvWNI=;
+        b=fi4vOSdSZBrPBWhK6TCE967bW6SX9GSsr2J4Ci3uWo78zqxCsWWdtRHB6ujJfr0RQN
+         nMQYIAaSzrltOLmUbvzvvcmFCja6jOKcR3s5Qg9ZleN0uKOTZgkgqDktcR+ilOQj7Pqo
+         mK1Vss+asBaAHRA8N+/gh5YgnUaQGF6iHrRmhwTqK/niUoFNXcb46JRG2znSl11DbCb6
+         asGPc5CTjnM2AZF5udaTr1n4WCiCaG56IDJfKnUo6qBWyTHlO5hGLbLpETYH9Wb0DGM8
+         NsxO17bSAzMbtgBjblTejhu672GZMyHJGXQK68ljwkztKRlLbM+geVBl8irEWdIWrkIb
+         Cbaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=1Nx6yx+rhYBAjhX7R3ZqLREm8pt5MIAQ0fSJ6b1RnZg=;
-        b=RQ4nazA13SSWTm0Y6XpG0nutGEsPmSjkcKDfD7r0m0FUO0UcslD9cS5ZrzIsHDoMQu
-         hR+uPCl7av/VY39q6v1FRiRrBFnRILQxQGGDr0gq0c52MGBE8T5AAbjD42nYzPVWZ66W
-         0ulJo9LeKOYzACHJKmFTx3LGhMxYgOVzW0NqT4aMYgGd4u2DjJPx8a8e/x4Gwv8HK1CC
-         MGOZqXoxeZ8Qppv2fYq8Gwh5BK1U1yzbHdXBi2qkeQxM8rT5nyfKu6JcDQh0MxLBv8ce
-         VtZ7/PzeIIG0DTkqPvTnkpstCagaB/KQC9bEVkZ54B1BAveUZXLYjsmIiZ/7+JgWkkdf
-         ffBA==
-X-Gm-Message-State: AOAM5308GH5E6cTRmtLLDfcMaiQVbSjg6Vo9+R7be3H8oVEnVuidrr34
-	b5siCvXiPDnlmfwQMeo1H4KqVq1xntnGDW/cpbc=
+        bh=uB+J3pHP63mPlo9l6bwoRi8WAImueSVBpPwgnXjvWNI=;
+        b=cG35VAziIzU4AICwl3j9QKL4gMFm2s8KJChd0wSB2T9qooVK5qjE6KPbjCFeNSI+gc
+         KizeFdNqADwOTtLmQtlT+aSffT2GHq8xPYZOIJq3sr4VU/PaXvuR3ZIih2+O0B0BPXyr
+         JPIAtbuf860Wj4xUrBRvcL36h/pCG5uv7CgDIGVZVU8r1wvt2HhCbrIe2hc6s3wmDx1+
+         BPeZz4g2b4QOZhZIGeXPxjugdn21ilxo2GU2w3W8jX7Di8p7FeFWC2cVB/R29vd0g/hR
+         8vHVMcS+F67ODr1RPjMKJKxJZM3W7oCNwGeZ6EmIWTFoN7SFQzazwLgpG76LiQ03+nYk
+         SUpQ==
+X-Gm-Message-State: AOAM532qjWY/OEAchwVqn2O6Ec8iQKOjkwM7TTes+QIS2J9jhl3d9Jcc
+	HRqk8sOwFnPltMFA4Wgipe54BLepS53FjVuJcak=
 X-Google-Smtp-Source: 
- ABdhPJzBmZJw/cJwjzYsjzw7f8wSptTV9cKZZoZgz4LQV+1M8syMTRKbKqCse1QFs6jT7sK3MFFDI+zs+O7lPUJT33Q=
-X-Received: by 2002:ac8:75c6:: with SMTP id z6mr2162570qtq.532.1644428955242;
- Wed, 09 Feb 2022 09:49:15 -0800 (PST)
+ ABdhPJzhXJg25o4gs/qFyfa+oTJPvZlJY/4rxtPJ7qg7wuKRH1XRQIwNZxLpW1H61+yJbskwFDJ6FhbkX8NS/GXZPSU=
+X-Received: by 2002:a05:622a:1111:: with SMTP id
+ e17mr2168452qty.229.1644429283568;
+ Wed, 09 Feb 2022 09:54:43 -0800 (PST)
 MIME-Version: 1.0
-References: <Q8ra.1644418462082229338.hNo2@lists.yoctoproject.org>
-In-Reply-To: <Q8ra.1644418462082229338.hNo2@lists.yoctoproject.org>
+References: <90135b4d-6a37-f5d7-dbba-7d0ef47aa778@kernel.org>
+ <f0fe3b45abdc3f073d3efc53d4f12fd6dd9b8951.camel@linuxfoundation.org>
+ <CAOSpxdb2_Nfk=eadm-+o17Ec4R1qS-s5KKSYQQ61vY0K3GjuXg@mail.gmail.com>
+In-Reply-To: 
+ <CAOSpxdb2_Nfk=eadm-+o17Ec4R1qS-s5KKSYQQ61vY0K3GjuXg@mail.gmail.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 9 Feb 2022 09:48:49 -0800
+Date: Wed, 9 Feb 2022 09:54:17 -0800
 Message-ID: 
- <CAMKF1spZ9wOkNsj=AOF3oxfkNPrKi-cmmsJeb2UXpb-D+SLKPA@mail.gmail.com>
-Subject: Re: [yocto] Error: Transaction check error: while doing do_rootfs
- task
-To: Sourabh Hegde <hrsourabh011@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+ <CAMKF1sqOGdSkj2mZLfC+UXjjnbQ0GmWPCNqakh64w_m4r-fPKA@mail.gmail.com>
+Subject: Re: [yocto] Maintaining ABI Compatibility for LTS branch
+To: Steve Sakoman <steve@sakoman.com>
+Cc: Sinan Kaya <okaya@kernel.org>,
+	"<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>,
+	Paul Eggleton <bluelightning@bluelightning.org>,
+	Richard Purdie <richard.purdie@linuxfoundation.org>
 Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 09 Feb 2022 17:49:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56126
+ <yocto@lists.yoctoproject.org>; Wed, 09 Feb 2022 17:54:45 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56127
 
-I think core-image-swupdate.bb is adding sysvinit explicitly, please
-remove it from that.
+On Wed, Feb 9, 2022 at 8:37 AM Steve Sakoman <steve@sakoman.com> wrote:
+>
+> On Tue, Feb 8, 2022 at 1:07 PM Richard Purdie
+> <richard.purdie@linuxfoundation.org> wrote:
+> >
+> > Forwarding to the correct list address and cc the LTS maintainer.
+> >
+> > Cheers,
+> >
+> > Richard
+> >
+> >
+> >
+> > ---------- Forwarded message ----------
+> > From: Sinan Kaya <okaya@kernel.org>
+> > To: Richard Purdie <richard.purdie@linuxfoundation.org>, Paul Eggleton <bluelightning@bluelightning.org>, Yocto list discussion <yocto@yoctoproject.org>
+> > Cc:
+> > Bcc:
+> > Date: Sun, 6 Feb 2022 20:14:37 -0500
+> > Subject: Maintaining ABI Compatibility for LTS branch
+> > Hi Everyone,
+> >
+> > One of the limitations of Yocto LTS branch is that there is no
+> > guaranteed backwards compatibility. Therefore, any time we move a branch
+> > forward to move to latest dunfell release, we are taking a risk of
+> > breaking our customers.
+>
+> I'd be interested in hearing about any cases where we've broken things!
+>
+> In general I don't take version upgrades (other than bug fix/cve fix
+> only dot releases)
+>
+> > Yocto reserves the right to move a package version forward if a
+> > security fix cannot be applied properly as an example.
+>
+> These cases should be extremely rare, and the community/technical
+> steering committee is given an opportunity to review this before it
+> happens.
+>
+> I'm certainly open to suggestions on how we can do better.
+>
+> I'd love to see some tooling to do ABI checking!
 
-On Wed, Feb 9, 2022 at 6:54 AM Sourabh Hegde <hrsourabh011@gmail.com> wrote:
+I think its not that LTS itself but also upgrade from LTS to LTS or other
+newer versions, it wouuld be good to have this tool and prerhaps a list
+of API/ABI changes to help migration/upgrade to newer LTS releases.
+
 >
-> Hello All,
+> Steve
 >
-> While bitbaking an image recipe with systemd configured in "local.conf", I am facing an error while doing do_rootfs task.
+> > This promise is being held true on the kernel by running kernel API
+> > tests etc. and running test benches across different CI environments.
+> >
+> > I was curious about how everyone is approaching this problem.
+> > There was some attempt to bring ABI checking functionality in the past
+> > but this has never been merged.
+> >
+> > Is everyone rolling their own solution? or never moving forward?
+> >
+> > Sinan
+> >
 >
-> In the local.conf :
->
-> DISTRO_FEATURES_append = " systemd"
-> #DISTRO_FEATURES_BACKFILL_CONSIDERED += "sysvinit"
-> VIRTUAL-RUNTIME_init_manager = "systemd"
-> VIRTUAL-RUNTIME_initscripts = "systemd-compat-units"
->
-> Bitbake error:
-> .
-> .
-> Transaction check succeeded.
-> Running transaction test
-> Error: Transaction check error:
->   file /sbin/telinit conflicts between attempted installs of sysvinit-2.96-r0.cortexa7t2hf_neon_vfpv4 and systemd-1:244.5-r0.cortexa7t2hf_neon_vfpv4
->
-> I was not facing this error before without systemd.
->
-> Can anyone please let me know how to resolve this error and what does this error mean?
->
-> Your help will be much appreciated.
->
-> Thanks in advance
->
-> P.S: If I uncomment DISTRO_FEATURES_BACKFILL_CONSIDERED += "sysvinit" in local.conf I get below error:
->
-> ERROR: Nothing RPROVIDES 'sysvinit' (but [...]/core-image-swupdate.bb RDEPENDS on or otherwise requires it)
-> sysvinit was skipped: missing required distro feature 'sysvinit' (not in DISTRO_FEATURES)
 > -=-=-=-=-=-=-=-=-=-=-=-
 > Links: You receive all messages sent to this group.
 > You automatically follow any topics you start or reply to.
-> View/Reply Online (#56118): https://lists.yoctoproject.org/g/yocto/message/56118
-> Mute This Topic: https://lists.yoctoproject.org/mt/89022709/1997914
+> View/Reply Online (#56121): https://lists.yoctoproject.org/g/yocto/message/56121
+> Mute This Topic: https://lists.yoctoproject.org/mt/89009568/1997914
 > Group Owner: yocto+owner@lists.yoctoproject.org
 > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail.com]
 > -=-=-=-=-=-=-=-=-=-=-=-
