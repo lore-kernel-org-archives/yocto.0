@@ -1,109 +1,125 @@
-Return-Path: <rustyhowell@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A7E3CC433EF
-	for <webhook@archiver.kernel.org>; Thu, 10 Feb 2022 17:10:53 +0000 (UTC)
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com
- [209.85.214.177])
- by mx.groups.io with SMTP id smtpd.web10.13088.1644513052877234758
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0CE0DC433F5
+	for <webhook@archiver.kernel.org>; Thu, 10 Feb 2022 17:20:28 +0000 (UTC)
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com
+ [209.85.216.45])
+ by mx.groups.io with SMTP id smtpd.web10.13257.1644513627159076184
  for <yocto@lists.yoctoproject.org>;
- Thu, 10 Feb 2022 09:10:53 -0800
+ Thu, 10 Feb 2022 09:20:27 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=gHVqjJm3;
- spf=pass (domain: gmail.com, ip: 209.85.214.177,
- mailfrom: rustyhowell@gmail.com)
-Received: by mail-pl1-f177.google.com with SMTP id l9so764839plg.0
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=bS0FgZ83;
+ spf=pass (domain: gmail.com, ip: 209.85.216.45, mailfrom: raj.khem@gmail.com)
+Received: by mail-pj1-f45.google.com with SMTP id
+ q11-20020a17090a304b00b001b94d25eaecso1707172pjl.4
         for <yocto@lists.yoctoproject.org>;
- Thu, 10 Feb 2022 09:10:52 -0800 (PST)
+ Thu, 10 Feb 2022 09:20:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=/bLxK3z5nPw55X4uXXe82hOAsx0JbkQzOyPcpo9OTg8=;
-        b=gHVqjJm3xFvYDPd2kcjGM7rgz7ljhnkead3p6eCUdwT8HR5QINdOcLiyJj99zQyWQq
-         pOngTJyElJo0ioirO6UGPpwyCkf/vO+ealL6u6P8ztNbrRz0lczADM+g7OCECAK/R62c
-         pPTVg80rduvkCO1vS9UD2ioKd0x1hilLdwnzS5agNFINwtOLrQKYFBFV8e8Kr4dARhAP
-         xHlsM+1npEal3Ylcx8moHrT+jX/IlflyODjRl+WSKl6mNxdKDkJ8qzpbbn0bCP04Zefh
-         qB43aQjJ75RbDx6cw6emq9SCl9f0QTyTZFKRYzeIMi9mNWxDpsWOxZhTD50lICpvbJEA
-         HVRw==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:organization:in-reply-to:content-transfer-encoding;
+        bh=ooWQoAZqnq16q2t+j/R2H0OGTNFL9lyqK80pgPnFOZQ=;
+        b=bS0FgZ83ArElJWi+ps/MiuV6azgBpKgfVNd0gs07J8A6Nabs0n+9XLMhb+qnVzS86s
+         HtDUpwD+xPaYAgjEti1dEwyZ/S89it2EI2Nbft3ff3zcpMSnxHwtxGc69Rc2nEEYyqzd
+         8WtqMdYUl30fLg3+2PH5cIit6yRR8NXunyulUaCjhvSTBdgJf0E2LnKwZfydFtr6X8+w
+         LLF6IsFjt6cJycHKRycgTV18gk5PC1X8KQRg0+X9zfdIKvVyKSnFm/U67zSEc+/pABdA
+         KAqrvvj2xP1kHXFP4uLnT1ugYWF15sHRsk5x4FMPeA1n0Jm+Jnj4/fajq/mt58vnO1TQ
+         E09g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=/bLxK3z5nPw55X4uXXe82hOAsx0JbkQzOyPcpo9OTg8=;
-        b=bARrdLa/28o6y2LBWEwRP9E78Wf1cIMl0xhBOBlXDkOZJR6Og3wNbq8nEOECu1tpRJ
-         +4QKHkcSjDxkJYW3pL2y8pUkrA1d9wTy3y4MVZ9nCx1zsdwuo1M4cIzb8lhAe62M5bpP
-         nVC2pVPhxR9zX3GMzliht9m9s0uf375CJUtfhv2lGEaCtpVmDKT8DJcWVUWkp1h/HV6s
-         oTXpM55Yj3PiGQCLRaAUdjQhljJDQhBFEOevkCW+Or0cE/LarJaqLo+54HPnJKMo3RCX
-         Epujf/2dvAb2Luf6ZXNpvL3q6dAqzbdoyZMnjAt904cS6d+BUgMBwFSDPnkuRutL16Va
-         Xe0A==
-X-Gm-Message-State: AOAM530tTtJg2E66o+0DXEpJyal30SJN9E6b/4NxxBfPn79IWfEFy2rn
-	6f5nMuv9ElYWDyCwf4CX63zH3B1y0VghMxSgVdoAuEYbfJE=
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=ooWQoAZqnq16q2t+j/R2H0OGTNFL9lyqK80pgPnFOZQ=;
+        b=4n1OgKgq7B/4tNYwYtfFmxRLYnbVPqIXVrGQaz4+vKi2hx6E/AcP25+Rny2DkmIwVh
+         f0z1khAtDEuWbnA7/3XOWhaWIXWvDvP68cMRYAXRwpfwu9yhjj7GCxBs5TovvlZPBxMd
+         TOuV6TsIQYrjdf3UK9Ov0Cam2ElcqKj9T5fO52s7mpe4bPHEgqq/g6kOJ46s7RU1nMB9
+         dZeBGXgwcXav0KrgnGPhuitkmFoibIoPiUc6YKZr4f6kUem6v7zz5LyHX20aBtQAQCyO
+         169p228dW5EnK0BIf4mEffbzkjgyvskakIuUprRCHpGcFr9+V+zAtBUSFgfN8X73udr7
+         zmvQ==
+X-Gm-Message-State: AOAM532N8q5+HtlsxT9MXOGKMtNnu/JOebHzvc9YRY66gDGrA0Rp58Z4
+	FBajIthL724Yg0LCSYF4ezk=
 X-Google-Smtp-Source: 
- ABdhPJzTE296xpoX1R4dWCXjez4dw+uzcc9QBUzwfNPnAtM8OUPT8s7QelXLe6zTPl6Q+6mQtVIPim7YPONMkGLnpD0=
-X-Received: by 2002:a17:903:11c5:: with SMTP id
- q5mr8374313plh.136.1644513051929;
- Thu, 10 Feb 2022 09:10:51 -0800 (PST)
+ ABdhPJwVCp4q6KMmhzPiF/MsJwduU6vWwB+EFYiPzsKAWrnPRoGDOuFqaur2Cu2G1DDuU3fKFc4O+g==
+X-Received: by 2002:a17:902:d64f:: with SMTP id
+ y15mr8523707plh.145.1644513626545;
+        Thu, 10 Feb 2022 09:20:26 -0800 (PST)
+Received: from ?IPV6:2601:646:9200:a0f0:f417:a1fb:afd0:9225?
+ ([2601:646:9200:a0f0:f417:a1fb:afd0:9225])
+        by smtp.gmail.com with ESMTPSA id
+ b20sm5098385pfv.31.2022.02.10.09.20.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Feb 2022 09:20:26 -0800 (PST)
+Message-ID: <f2175531-20b5-947b-b5e4-37fac33bffb7@gmail.com>
+Date: Thu, 10 Feb 2022 09:20:23 -0800
 MIME-Version: 1.0
-From: Rusty Howell <rustyhowell@gmail.com>
-Date: Thu, 10 Feb 2022 10:10:36 -0700
-Message-ID: 
- <CAE+BM3n9tX0R4eoWgiD36skgAgy8pV8vY_7WtVLWcrs23fi83Q@mail.gmail.com>
-Subject: Support filenames with i18n chars
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000049ef5b05d7ad08ba"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.6.0
+Subject: Re: [yocto] #yocto #zeus Problem with moving from rocko to zeus
+Content-Language: en-US
+To: Dusan Radic <dusrad@gmail.com>, yocto@lists.yoctoproject.org
+References: 
+ <CAFe1xewJGwZXTH+qhKDsZN9ecofbgQJKZfyT-5iHv=QFbjE8-A@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+In-Reply-To: 
+ <CAFe1xewJGwZXTH+qhKDsZN9ecofbgQJKZfyT-5iHv=QFbjE8-A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 10 Feb 2022 17:10:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56150
+ <yocto@lists.yoctoproject.org>; Thu, 10 Feb 2022 17:20:28 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56151
 
---00000000000049ef5b05d7ad08ba
-Content-Type: text/plain; charset="UTF-8"
 
-Hello,
 
-I am trying to get filenames with utf-8 chars to appear correctly when
-doing the "ls" command. Currently, "ls" will output the filename but
-replace the international char with "?".  For example it will output
-"/tmp/h??llo"  rather than "/tmp/hallo"  (a with an umlaut).  If I set the
-LANG=en_US.utf-8, that seems to fix the issue. But I have other embedded
-devices (not built by Yocto)  that don't have LANG set that will output
-correctly.
+On 2/10/22 8:56 AM, Dusan Radic wrote:
+> Hello,
+> 
+> I am trying to upgrade my distro from rocko to zeus.
+> After I fixed all the initial parsing and build problems I have
+> reached a point where the linux-imx doesn't build. Maybe I am
+> underestimating the task in front of me, but I have already seen it
+> done.
+> 
+> The error looks like this:
+> 
+> | .../kernel-source/Makefile:947: recipe for target 'fs' failed
+> | make[2]: *** [fs] Error 2
+> | Makefile:146: recipe for target 'sub-make' failed
+> | make[1]: *** [sub-make] Error 2
+> | Makefile:24: recipe for target '__sub-make' failed
+> | make: *** [__sub-make] Error 2
+> | WARNING: exit code 1 from a shell command.
+> |
+> ERROR: Task (.../meta-mylayer/recipes-kernel/linux/linux-imx_4.1.15.bb:do_compile)
+> failed with exit code '1'
+> 
+> Is it possible that I am using the wrong linux-imx version? I have
+> tried a few but to no avail.
+> 
 
-I have tried the kernel config  CONFIG_NLS_DEFAULT="utf8", but that did not
-help.  I have also added numerous the glibc-locale packages to the image
-but that also doesn't seem to help.
+perhaps there is more specific compiler error in logs above that ?
 
-"locale -a"  outputs  "C POSIX en_US en_US.utf8 es_ES ... (etc etc)"
-"locale -m" outputs only  "UTF-8"
-"localedef -c -f UTF-8 -i en_US en_US.UTF-8" seems to succeed.
-"locale"  outputs "LANG=     LC_*="POSIX"   LC_ALL="
-
-Any help is appreciated.
-Rusty Howell
-
---00000000000049ef5b05d7ad08ba
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello,=C2=A0</div><div><br></div><div>I am trying to =
-get filenames with utf-8 chars to appear correctly when doing the &quot;ls&=
-quot; command. Currently, &quot;ls&quot; will output the filename but repla=
-ce the international char with &quot;?&quot;.=C2=A0 For example it will out=
-put &quot;/tmp/h??llo&quot;=C2=A0 rather than &quot;/tmp/hallo&quot;=C2=A0 =
-(a with an umlaut).=C2=A0 If I set the LANG=3Den_US.utf-8, that seems to fi=
-x the issue. But I have other embedded devices (not built by Yocto)=C2=A0 t=
-hat don&#39;t have LANG set that will output correctly.</div><div><br></div=
-><div>I have tried the kernel config=C2=A0 CONFIG_NLS_DEFAULT=3D&quot;utf8&=
-quot;, but that did not help.=C2=A0 I have also added numerous the glibc-lo=
-cale packages to the image but that also doesn&#39;t seem to help.</div><di=
-v><br></div><div>&quot;locale -a&quot;=C2=A0 outputs=C2=A0 &quot;C POSIX en=
-_US en_US.utf8 es_ES ... (etc etc)&quot;</div><div>&quot;locale -m&quot; ou=
-tputs only=C2=A0 &quot;UTF-8&quot;</div><div>&quot;localedef -c -f UTF-8 -i=
- en_US en_US.UTF-8&quot; seems to succeed.</div><div>&quot;locale&quot;=C2=
-=A0 outputs &quot;LANG=3D=C2=A0=C2=A0=C2=A0=C2=A0 LC_*=3D&quot;POSIX&quot;=
-=C2=A0=C2=A0 LC_ALL=3D&quot;</div><div><br></div><div>Any help is appreciat=
-ed.</div><div>Rusty Howell<br></div></div>
-
---00000000000049ef5b05d7ad08ba--
+> Thanks in advance.
+> 
+> Best regards,
+> Dule
+> 
+> 
+> 
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#56149): https://lists.yoctoproject.org/g/yocto/message/56149
+> Mute This Topic: https://lists.yoctoproject.org/mt/89050046/1997914
+> Mute #yocto:https://lists.yoctoproject.org/g/yocto/mutehashtag/yocto
+> Mute #zeus:https://lists.yoctoproject.org/g/yocto/mutehashtag/zeus
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+> 
 
