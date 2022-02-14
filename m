@@ -1,253 +1,188 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <anuj.mittal@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C9EE7C433EF
-	for <webhook@archiver.kernel.org>; Mon, 14 Feb 2022 04:44:51 +0000 (UTC)
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com
- [209.85.222.173])
- by mx.groups.io with SMTP id smtpd.web09.30413.1644813888879647929
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 06B13C433F5
+	for <webhook@archiver.kernel.org>; Mon, 14 Feb 2022 08:13:08 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by mx.groups.io with SMTP id smtpd.web11.31154.1644826385351859577
  for <yocto@lists.yoctoproject.org>;
- Sun, 13 Feb 2022 20:44:49 -0800
+ Mon, 14 Feb 2022 00:13:06 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=ELYSD/0w;
- spf=pass (domain: gmail.com, ip: 209.85.222.173,
- mailfrom: raj.khem@gmail.com)
-Received: by mail-qk1-f173.google.com with SMTP id bs32so13504015qkb.1
-        for <yocto@lists.yoctoproject.org>;
- Sun, 13 Feb 2022 20:44:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dykfb0gE8Ewu9SVTcWV1DuhbdYuhbJ+62SjcbprvM/M=;
-        b=ELYSD/0wpj0yPO0miGJZR3ExaR9eEs8HhF5MEVouKCylVmFU6yiVinac+I3+95NAa1
-         kP0CiHQhomxqkRda+z/6D1GJMV7rU6x1hdVcO7NyT17FTZc/mEfbQSCW/Xv5/1QzRrXl
-         UYoWTA44I24Pak/zSVgGecMulZ2mBoRT1Hg4Lv9Bq0bcliCNPi3lHl0UdxvGj23L0Do8
-         YJOUq0Y0PxBkcgm5HL3TLb6fkmbvZgCV+Abol3UKk8ssKoSP0jJ4hXtZWsIZRndENXMM
-         7ALKqDrlyULK6ZimEGl9lC4hiBfpU0x2n8YZ1SjKvZYv+siM+aFiLQE0y9Danx/ZxxZm
-         xRUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dykfb0gE8Ewu9SVTcWV1DuhbdYuhbJ+62SjcbprvM/M=;
-        b=vircfGJdz7T4/Tjj/NQdPZ1/3ApCDVtVHYV44OhlTuFAmo2rmxql76uHyiQ0PtZlrG
-         X6hPNpmP4wfct3QyVoqoxH1Za0G+WSPU37xYQR0ZsjPrC2sRy59c7HMigphhrtm1U2OD
-         Kwt94kuI4uoWelOd1VavNQdh5VHX1a1XwBcJSz/vnZT945/WuigPn6sS0oMqiPbGgxYR
-         QeQgmkKO++8I1cdz+mVekYfybCzs5C37ckHlWivAXjjwvi2/Raw9yT3BF2U94ZprVlxo
-         qnR+l9z7oz/OqMmM95m5Slx76HS7LkoC4pHrUROoW26MiKdDwn9BJ1SlaBLX55O6oqNC
-         78Ig==
-X-Gm-Message-State: AOAM5339unttcgduZj7xo1FvpEHlnqR6cxXsMqraZE8SOza6M9aMLsZW
-	SlzmMbOegmRTKZGKDcceWv8wxvjdgk+VPQNPY4s=
-X-Google-Smtp-Source: 
- ABdhPJwJ7D73gFj/gUT9Wu/rDY3eVBJFX0m0A6/NI3MSI0KPsBM7ODWzRibE2jnQaTPvxqRmvOL2LKW82KtEHN+1XJk=
-X-Received: by 2002:a05:620a:152b:: with SMTP id
- n11mr6077817qkk.463.1644813887711;
- Sun, 13 Feb 2022 20:44:47 -0800 (PST)
-MIME-Version: 1.0
-References: <20220212184300.2850465-1-raj.khem@gmail.com>
- <6fb100df73ce2889cd2ce0c37a6945725d12360f.camel@linuxfoundation.org>
+ dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel
+ header.b=kgUH6KgC;
+ spf=pass (domain: intel.com, ip: 192.55.52.88,
+ mailfrom: anuj.mittal@intel.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1644826385; x=1676362385;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=fRLxHzyREP+5sKl+5dqwMTs1DPwPZeGUSpbxDI9CTL4=;
+  b=kgUH6KgCWtEn967/Nd7Ek7t4z6GDyS+6/aAadeNFxxOS2ycffTsiycnW
+   JsZdFQIc3ygs8v4nMjZ2qhOHbaeicyQHwFyawl6uLjzEB4Xuh+fGLmqAA
+   uPYPAeJHkXkQJU8Gf/7Ky5YRT/FggTc23kuVTnErpxzkoXGrwZTn0N+mZ
+   Ytdwh64L4CyUxZbMWAiqqCiAWj4BriE8uSBCc5+7JH51pf02zkRYizDP0
+   JF1vLQ4RIoo3wmwCc/KHSRNdlDLQ9+HqMPTEqPGK97lYePjTz/D2EozXT
+   MjoqwpeS5QeZPi84B4dOg7owuhpwCJJeuDfHO6zwQml1btrZ2izLY4dD2
+   A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10257"; a="274609894"
+X-IronPort-AV: E=Sophos;i="5.88,367,1635231600";
+   d="scan'208";a="274609894"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2022 00:13:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,367,1635231600";
+   d="scan'208";a="587092950"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+  by fmsmga008.fm.intel.com with ESMTP; 14 Feb 2022 00:13:01 -0800
+Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Mon, 14 Feb 2022 00:13:00 -0800
+Received: from fmsmsx604.amr.corp.intel.com (10.18.126.84) by
+ fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Mon, 14 Feb 2022 00:13:00 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20 via Frontend Transport; Mon, 14 Feb 2022 00:13:00 -0800
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.40) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.20; Mon, 14 Feb 2022 00:12:59 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nHVRUCJRLClJTp2F8MavoBbgW5PjotxkkpvX5UNbjRdooBHtPJUdizJVla8A23cCSi4PHY26HveTjutTLfH7PnnoXBFaSpKQc4wHG7/wy3NHRrtIj3xqpWuAHE7aG1S8Xnl8ivWipapATVY2OXEdtxvK3TSBz5MW93nQhrx0ZH7K7m21FrxZRoGgsGZ8Gv/7oqfhcu1Nkv6NseqzL+aZyLXPHYximhhABik2nXLEKZGLXCBk9HdfO3EnKcvOLK0kcC3v6439+PV7EboKWtyE/sCoQ575QpkBImxgvN54lHp2zLl6HSAp/usxZ8wr6yM79fyvDx27jRcCTh1wa5ypdA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fRLxHzyREP+5sKl+5dqwMTs1DPwPZeGUSpbxDI9CTL4=;
+ b=S5uzrVzvDdZsnRMFzsC6xGUIimfwXV2G1NONaJTjhy6Weyx/MuOZPFDQca14+xeZss1s7WLwzUheFyX5AT5RZ65YABfTbwW3046ySXJgsOYKHa8/OJ7ar+TX1ICDu5xgIKAZPZtqSbK4kbHojuX/IvNZa+eiTJYg11Yg3IuOoQRdRkYQlNsotNIyXQSW4TnxdhEqgO+o5H0WF0fxd1WFkmPAJknFhSYyQ75z8fE7l/c4ainkaVd0pMBG5iS8HpOOV1oFSh6l1hrNogAJp9MACNGWqFbb5EyyjGnV+cXRRI+Z48Lwzb+z7fO1BSU93ZgNpxh5DunjJlL2vD6VIYVbnQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Received: from SJ0PR11MB4896.namprd11.prod.outlook.com (2603:10b6:a03:2dd::20)
+ by CY4PR11MB2055.namprd11.prod.outlook.com (2603:10b6:903:23::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.18; Mon, 14 Feb
+ 2022 08:12:58 +0000
+Received: from SJ0PR11MB4896.namprd11.prod.outlook.com
+ ([fe80::fcf8:25a:89f:2006]) by SJ0PR11MB4896.namprd11.prod.outlook.com
+ ([fe80::fcf8:25a:89f:2006%4]) with mapi id 15.20.4975.019; Mon, 14 Feb 2022
+ 08:12:58 +0000
+From: "Mittal, Anuj" <anuj.mittal@intel.com>
+To: "richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>,
+	"Khem_Raj@comcast.com" <Khem_Raj@comcast.com>, "tsc@lists.yoctoproject.org"
+	<tsc@lists.yoctoproject.org>, "qa-build-notification@lists.yoctoproject.org"
+	<qa-build-notification@lists.yoctoproject.org>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+CC: "scott.murray@konsulko.com" <scott.murray@konsulko.com>, "Teoh, Jay Shen"
+	<jay.shen.teoh@intel.com>, "dl9pf@gmx.de" <dl9pf@gmx.de>,
+	"mhalstead@linuxfoundation.org" <mhalstead@linuxfoundation.org>
+Subject: Re: [EXTERNAL] [tsc] 3.4.2 rc1 QA
+Thread-Topic: [EXTERNAL] [tsc] 3.4.2 rc1 QA
+Thread-Index: AQHYHmtXq8T14TJUoEKn2uNBdiA9NKyM+hUAgAAAn4CABb3MAA==
+Date: Mon, 14 Feb 2022 08:12:57 +0000
+Message-ID: <acfbd884b715598a89035f8ffb723b72b2742627.camel@intel.com>
+References: 
+ <8a5f2620473c2663bcf372c2967b25624ae29724.camel@linuxfoundation.org>
+	 <BY5PR11MB44511B9570CD729185664770BB2F9@BY5PR11MB4451.namprd11.prod.outlook.com>
+	 <153dd2864ff928eb9db681d6346a765594d70653.camel@linuxfoundation.org>
 In-Reply-To: 
- <6fb100df73ce2889cd2ce0c37a6945725d12360f.camel@linuxfoundation.org>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sun, 13 Feb 2022 20:44:21 -0800
-Message-ID: 
- <CAMKF1srSGtRxU-gvhE+_a0Qc0ovZ1dZqJMSyOnQMfhDbmF0r9A@mail.gmail.com>
-Subject: Re: [yocto] [meta-mingw] [PATCH 1/2] mingw-w64: Upgrade
- runtime/headers/winpthreads to 9.0.0
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>,
- Joshua Watt <jpewhacker@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+ <153dd2864ff928eb9db681d6346a765594d70653.camel@linuxfoundation.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.42.3 (3.42.3-1.fc35) 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 62c88e0e-4f6f-4b6c-67b6-08d9ef91cf85
+x-ms-traffictypediagnostic: CY4PR11MB2055:EE_
+x-microsoft-antispam-prvs: 
+ <CY4PR11MB20554CC3A7E5A76AF640AD32F8339@CY4PR11MB2055.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ 9YqVovQcX164fi1D6nsUKk0urBCtxiLAPTKL4pzdAWLPVhsg8CEFq4dfQh99c5+Iw9jqMApgRmqGzif6VxGo16gl3W+kuLMVuLkuv3wJzjUJjx9k7dVN+fjQp+u5Mpfz4tQ8OGr4z5OCfA6NBsnCkJmzIkoQbVhmGH2JlIQ0Jbc+ZEBHIzIw2Rs4Upmv1Tlv1pwguGTCyaIeOUUfmt6Bj0RK/ynmhAAuU5cUas62AHyY//JALFJT4JDZStBh0VykVWytcfBzf3Htz5UU7YVA+awEdi9vpSmvYK6qFRCXeeV3fB1vxXcsVJ6JHSfwGq+EK2PFEam5Gebn7RsedutPDNmXhPZIKFiKstohq6G6ngt8v83Hk0bOIHEufb4d8fJ+mwwVMGpwyIeQ/swILq8aZgFG9wZZ0iTZNZoDiggk9uOJLpHrLrgjnoe+MB4fwILyit5CPTq11c5nZN40kO1V1XIoBOYcK14l9MzPbK4HtFCYxrUuO6k2+tJkaFJCQD2MiT1OseJYanZJ3PJcyG6gqCbPUi7TlLz4sww02sIjfRdYgPNvcuh4GQMLoUGjowPSEjwOWQ11ls2+HIYWj9xQ6fJ/JCtgODAGd86IWKuOGoTFnFEhHScR/4wFwk+1RoOrc44dAa0jsrKoionez5V+jHVssPmQzJX1QdaKxMZ+GRD7GPzJDeeI3raDCt2xvPLb6HC0xFeDI3gPOh88frrmkg==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR11MB4896.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(508600001)(6486002)(54906003)(110136005)(316002)(2616005)(64756008)(71200400001)(66446008)(66476007)(91956017)(76116006)(66946007)(66556008)(122000001)(36756003)(4326008)(5660300002)(82960400001)(38100700002)(186003)(26005)(6506007)(6512007)(8936002)(38070700005)(4744005)(8676002)(86362001)(83380400001)(2906002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?dXZ3N0FmNS9yUmt0a0hOZy9VRm1US0ZJTnJmak1GVG5kaSt3YmM0YXJuYlhI?=
+ =?utf-8?B?VjIyeVdqWlppQlJwNHFOWnRqTmo2QVhLWnE1SVJCNXRDV3czWFNISVFGK2Mv?=
+ =?utf-8?B?NFd0MFRuVDIrLzVsN3dXeXRqdzJEUWl4aENST3dxSWNkTXdwa0RJM3VzeCtk?=
+ =?utf-8?B?M3c2OWVGbkxSeXFsMG4zY3BnOEI4RGkrZ082NkhOY28zSVhZaWMwSmFlSG0w?=
+ =?utf-8?B?ZHJJcTFZUUVXUmtoNG1adEp5c25pbGhiVFVQcDRnZzArY1pmUUJqRFFMQVBj?=
+ =?utf-8?B?dGFGcE9uS251TmMzb0t4SGk4MHpEbXkyYVNoblQ1U2NnNDZrK3F1UUVQK3J4?=
+ =?utf-8?B?K3JYeXZ1Q2NmYXBueDB2NmRWNE9rSDk2Yjk3RjM1eXZQdCtkSjNVUGR5dVkr?=
+ =?utf-8?B?b2VMS3EyaWdVaVZzeXdWNG4yZ1RnRVRxUGd0QUQ2U2xtMHUzL01MTUpWSjlO?=
+ =?utf-8?B?Zks1Y203cGhTbGVNT1NkMVl1NjQxYklrRzJzTFFZditRc2JFSUJmMU9SOUpB?=
+ =?utf-8?B?U1A4eVB0RW11VlFnSnI5di9TL1FWWGoycHByUjVveW92MVZOZ01xazMzZkRP?=
+ =?utf-8?B?aWNkdTNmTGMwTGt6dlNVbytPRVZvZ3owc0NmQjVEUFNaMjRJejkvWW82Mm54?=
+ =?utf-8?B?RlFMWGpPSStIalRGbzJLMVl0bTAycTg0MEFmdVBqQ3Ruc2lZZmJlbG91NWpD?=
+ =?utf-8?B?MHBuMUZ3RTRERUJwd0YxR2ppbXNiZTZkbEx5bnVURklPNGRNcVovWGVCSko2?=
+ =?utf-8?B?N2Q0TW92SGlVQWFuQU5ucGxtUGVrY0VkVFM1UjVEWSszSU9YaFBvVGZQcUcy?=
+ =?utf-8?B?RUkzdTlJSnBDcndGMzErNklwK0tvYUVSWUx0WEJOMkYzWFV6YXdxMjlPcHVW?=
+ =?utf-8?B?RTUyRkdVVDJ0L2hyM2JmQmtybkg3S2g1SzFqeTEzdk9ZUWUzS1NrT2lmMUNo?=
+ =?utf-8?B?MjMyazhCdWpPL3FYRW42eUpGc0ZJWk1nV0t2U2RvMHpyNHMvMFNkS1hXWjBS?=
+ =?utf-8?B?S2YvVitmYkNzQ0k4cWE2SG5NRHBJQ0xkYjZhcXFmR2ZiSzBVbkRZUlFjV2xG?=
+ =?utf-8?B?TFdzTDdsRG1lWTd3cFM2bGQ5YjV0d1EyQUdYL2U0dDBKcWJjY256THVOYW8v?=
+ =?utf-8?B?UXY2OEFoSXNPS1k4eEhjM1lneVJRSVJ2dDFpdk5yZnNJamJYLzdLakxNL0t4?=
+ =?utf-8?B?RkZwRExQOVJhNi9zQllQTTUxM05RcnhVanV0TzFmaXQ5NEV1UVdPVlA3NzhC?=
+ =?utf-8?B?RVZNUXVxaFpEendvZW4xWHJGQVU0WWVhendHa3ZteHN3U0FlNXZjcG5GOUo5?=
+ =?utf-8?B?eExGRkZPUVJ5em93VnlrUm9QTlNGMTI3QU9EMXUrZFBEbDBkT0huZHllMG8r?=
+ =?utf-8?B?a1d0bGRReWRQazFldHR1RVdmY2Vyc29XT2hlM1ViMi9BNExQalJOMS83YVZP?=
+ =?utf-8?B?YXhWOFFKTE85WGtTSnkrK1dOTkxUeEhEV1JOOWlRSkdjTnhjMzZ5VXQrb21k?=
+ =?utf-8?B?N2lTcjdJM1NrdEhDbEhNK0dHMldCRmplYW9DOEk1QVVOSm9yZm1YNVc0cFJq?=
+ =?utf-8?B?UTlLT01DUEcxK3VGZlBTMG9oSjVnMkV1dE5ZWWhBMjM1Wkl1UVdEMWo3SWhJ?=
+ =?utf-8?B?S0FJWXA3RzNIK1poUkZyUm1hVithZi9KdWphTkRic2p2QXhIMit1QkZiUm1P?=
+ =?utf-8?B?SHRvVVMvaFYxVHMwTm5NVG0wcHhnK3RMUitYMCtTK1FZTEQzS2FWdm5ZVmNp?=
+ =?utf-8?B?ZGNrWitWUUoyY0hDSWlsTnRBTFoxQUVnaEZuT3o3RzFEN0l1L29UWXdQVXNw?=
+ =?utf-8?B?Si96MEFaRk1NbE5oSUl4dG5FeGY2R0FCNW9mUkV0UXdIVnlSa1BsNWNUVDJC?=
+ =?utf-8?B?bk8wbGNhSXNsb1lJWUhVM21kQkFPa1cwQklHdmxCTmtPeXRUSUYyR0pvZ1VN?=
+ =?utf-8?B?VVQza0JBMFdyWU5OUmF3V0hiMG9HTmxVcGhQTXZXWDhFTWNjMUxkS1ZFMDdv?=
+ =?utf-8?B?UmVqbS9KMkxFekFqY1krdEN3cnFXdjYvUnp3MHh5elFtTkJSWnRRRFpYTFhJ?=
+ =?utf-8?B?VHB3MWRuaDFWOEpXaUtOblVKcStQMHVIdTgvZjVSOFhJTk1ZK3BCN3pkekp0?=
+ =?utf-8?B?Vms0Y2YwdHRKMkZ0VUlmQktpeVFveGh1TXZwVHhQZmVUMnd1RjFFdW10OWMw?=
+ =?utf-8?Q?lgs/46LLCmOfsgMY2YsGlfZef3Y/M+mXzB4KevBKJ76+?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <1FBD41E221841349B351D3BA90BEA12A@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4896.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 62c88e0e-4f6f-4b6c-67b6-08d9ef91cf85
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Feb 2022 08:12:57.9933
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 
+ tO74jVHcMkgHSkvU80unm7hb0wALhT4DYVWwLuI/BeJE7474gKAYKWiZOIGOEEgFJK9z5vq6mQjLWhdF1hLOLA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB2055
+X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 14 Feb 2022 04:44:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56180
+ <yocto@lists.yoctoproject.org>; Mon, 14 Feb 2022 08:13:08 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56181
 
-On Sun, Feb 13, 2022 at 6:26 AM Richard Purdie
-<richard.purdie@linuxfoundation.org> wrote:
->
-> On Sat, 2022-02-12 at 10:42 -0800, Khem Raj wrote:
-> > Drop upstreamed fixes for rdtsc [1] __udivmoddi4[2]
-> >
-> > [1] https://sourceforge.net/p/mingw-w64/mingw-w64/ci/6a0e9165008f731bccadfc41a59719cf7c8efc02/
-> > [2] https://sourceforge.net/p/mingw-w64/mingw-w64/ci/ab0fa5ad3c67d634fd7754d9473d1bb7051f9bf0/
-> >
-> > Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> > ---
-> >  ...rincs-Check-for-__builtin_ia32_rdtsc.patch | 33 ------------
-> >  .../0001-winpthreads-Add-__udivmoddi4.patch   | 52 -------------------
-> >  recipes-devtools/mingw-w64/mingw-w64.inc      |  4 +-
-> >  ...b => nativesdk-mingw-w64-headers_9.0.0.bb} |  0
-> >  ...b => nativesdk-mingw-w64-runtime_9.0.0.bb} |  2 -
-> >  ... nativesdk-mingw-w64-winpthreads_9.0.0.bb} |  2 -
-> >  6 files changed, 1 insertion(+), 92 deletions(-)
-> >  delete mode 100644 recipes-devtools/mingw-w64/files/0001-intrincs-Check-for-__builtin_ia32_rdtsc.patch
-> >  delete mode 100644 recipes-devtools/mingw-w64/files/0001-winpthreads-Add-__udivmoddi4.patch
-> >  rename recipes-devtools/mingw-w64/{nativesdk-mingw-w64-headers_8.0.0.bb => nativesdk-mingw-w64-headers_9.0.0.bb} (100%)
-> >  rename recipes-devtools/mingw-w64/{nativesdk-mingw-w64-runtime_8.0.0.bb => nativesdk-mingw-w64-runtime_9.0.0.bb} (88%)
-> >  rename recipes-devtools/mingw-w64/{nativesdk-mingw-w64-winpthreads_8.0.0.bb => nativesdk-mingw-w64-winpthreads_9.0.0.bb} (87%)
-> >
-> > diff --git a/recipes-devtools/mingw-w64/files/0001-intrincs-Check-for-__builtin_ia32_rdtsc.patch b/recipes-devtools/mingw-w64/files/0001-intrincs-Check-for-__builtin_ia32_rdtsc.patch
-> > deleted file mode 100644
-> > index ce4ba81..0000000
-> > --- a/recipes-devtools/mingw-w64/files/0001-intrincs-Check-for-__builtin_ia32_rdtsc.patch
-> > +++ /dev/null
-> > @@ -1,33 +0,0 @@
-> > -From 346de7591f58015d111f4d4f3b001382c04d5557 Mon Sep 17 00:00:00 2001
-> > -From: Khem Raj <raj.khem@gmail.com>
-> > -Date: Tue, 13 Apr 2021 18:44:25 -0700
-> > -Subject: [PATCH] intrincs: Check for __builtin_ia32_rdtsc
-> > -
-> > -on modern gcc ( >=4.6 ) __rdtsc function is implemented using
-> > -special builtin function called __builtin_ia32_rdtsc, its actually
-> > -a define in gcc, so __has_builtin check fails for __rdtsc even
-> > -though it is defined to imply __builtin_ia32_rdtsc(), therefore
-> > -check for existence of __builtin_ia32_rdtsc as well
-> > -
-> > -Upstream-Status: Pending
-> > -Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> > ----
-> > - mingw-w64-crt/intrincs/rdtsc.c | 2 +-
-> > - 1 file changed, 1 insertion(+), 1 deletion(-)
-> > -
-> > -diff --git a/mingw-w64-crt/intrincs/rdtsc.c b/mingw-w64-crt/intrincs/rdtsc.c
-> > -index bf9c03b..df04711 100644
-> > ---- a/mingw-w64-crt/intrincs/rdtsc.c
-> > -+++ b/mingw-w64-crt/intrincs/rdtsc.c
-> > -@@ -11,7 +11,7 @@
-> > -   #define __has_builtin(x) 0
-> > - #endif
-> > -
-> > --#if !__has_builtin(__rdtsc)
-> > -+#if !__has_builtin(__rdtsc) && !__has_builtin(__builtin_ia32_rdtsc)
-> > - unsigned __int64 __rdtsc(void)
-> > - {
-> > - #ifdef _WIN64
-> > ---
-> > -2.31.1
-> > -
-> > diff --git a/recipes-devtools/mingw-w64/files/0001-winpthreads-Add-__udivmoddi4.patch b/recipes-devtools/mingw-w64/files/0001-winpthreads-Add-__udivmoddi4.patch
-> > deleted file mode 100644
-> > index 3eb298e..0000000
-> > --- a/recipes-devtools/mingw-w64/files/0001-winpthreads-Add-__udivmoddi4.patch
-> > +++ /dev/null
-> > @@ -1,52 +0,0 @@
-> > -From 3b0af7327446ae179dc93b6a6ab1074251d348d0 Mon Sep 17 00:00:00 2001
-> > -From: Khem Raj <raj.khem@gmail.com>
-> > -Date: Fri, 30 Apr 2021 16:50:36 -0700
-> > -Subject: [PATCH] winpthreads: Add __udivmoddi4
-> > -
-> > -Newer GCC ( 11.1.0+ ) is generating calls to __udivmoddi4 on i686
-> > -architecture, therefore provide an implementation to avoid undefined
-> > -references
-> > -
-> > -Upstream-Status: Pending
-> > -Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> > ----
-> > - .../winpthreads/src/libgcc/dll_math.c            | 16 +++++++++++++++-
-> > - 1 file changed, 15 insertions(+), 1 deletion(-)
-> > -
-> > -diff --git a/mingw-w64-libraries/winpthreads/src/libgcc/dll_math.c b/mingw-w64-libraries/winpthreads/src/libgcc/dll_math.c
-> > -index aeec068..d170967 100644
-> > ---- a/mingw-w64-libraries/winpthreads/src/libgcc/dll_math.c
-> > -+++ b/mingw-w64-libraries/winpthreads/src/libgcc/dll_math.c
-> > -@@ -121,6 +121,7 @@ u_quad_t __udivdi3(u_quad_t a, u_quad_t b);
-> > - u_quad_t    __umoddi3(u_quad_t a, u_quad_t b);
-> > - int         __ucmpdi2(u_quad_t a, u_quad_t b);
-> > - quad_t      __divmoddi4(quad_t a, quad_t b, quad_t *rem);
-> > -+u_quad_t    __udivmoddi4(u_quad_t a, u_quad_t b, u_quad_t *rem);
-> > -
-> > - #endif /* !_LIBKERN_QUAD_H_ */
-> > -
-> > -@@ -573,7 +574,20 @@ __divmoddi4(a, b, rem)
-> > -     return (negq ? -uq : uq);
-> > - }
-> > -
-> > -+/*
-> > -+ * Divide two unsigned quads.
-> > -+ * This function is new in GCC 7.
-> > -+ */
-> > -+u_quad_t
-> > -+__udivmoddi4(a, b, rem)
-> > -+    u_quad_t a, b, *rem;
-> > -+{
-> > -+    u_quad_t q = __udivdi3(a, b);
-> > -+    if (rem)
-> > -+            *rem = a - b * q;
-> > -+    return q;
-> > -+}
-> > -+
-> > - #else
-> > - static int __attribute__((unused)) dummy;
-> > - #endif /*deined (_X86_) && !defined (__x86_64__)*/
-> > --
-> > ---
-> > -2.31.1
-> > -
-> > diff --git a/recipes-devtools/mingw-w64/mingw-w64.inc b/recipes-devtools/mingw-w64/mingw-w64.inc
-> > index d40d4a5..322fb79 100644
-> > --- a/recipes-devtools/mingw-w64/mingw-w64.inc
-> > +++ b/recipes-devtools/mingw-w64/mingw-w64.inc
-> > @@ -5,9 +5,7 @@ COMPATIBLE_HOST = ".*-mingw.*"
-> >
-> >  SRC_URI = "${SOURCEFORGE_MIRROR}/project/mingw-w64/mingw-w64/mingw-w64-release/mingw-w64-v${PV}.tar.bz2"
-> >
-> > -SRC_URI[sha256sum] = "44c740ea6ab3924bc3aa169bad11ad3c5766c5c8459e3126d44eabb8735a5762"
-> > +SRC_URI[sha256sum] = "1929b94b402f5ff4d7d37a9fe88daa9cc55515a6134805c104d1794ae22a4181"
-> >
-> >  UPSTREAM_CHECK_URI = "http://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/"
-> >  UPSTREAM_CHECK_REGEX = "mingw-w64-v(?P<pver>(\d+[\.\-_]*)+)\.tar"
-> > -
-> > -
-> > diff --git a/recipes-devtools/mingw-w64/nativesdk-mingw-w64-headers_8.0.0.bb b/recipes-devtools/mingw-w64/nativesdk-mingw-w64-headers_9.0.0.bb
-> > similarity index 100%
-> > rename from recipes-devtools/mingw-w64/nativesdk-mingw-w64-headers_8.0.0.bb
-> > rename to recipes-devtools/mingw-w64/nativesdk-mingw-w64-headers_9.0.0.bb
-> > diff --git a/recipes-devtools/mingw-w64/nativesdk-mingw-w64-runtime_8.0.0.bb b/recipes-devtools/mingw-w64/nativesdk-mingw-w64-runtime_9.0.0.bb
-> > similarity index 88%
-> > rename from recipes-devtools/mingw-w64/nativesdk-mingw-w64-runtime_8.0.0.bb
-> > rename to recipes-devtools/mingw-w64/nativesdk-mingw-w64-runtime_9.0.0.bb
-> > index 02132c1..e2ca6a5 100644
-> > --- a/recipes-devtools/mingw-w64/nativesdk-mingw-w64-runtime_8.0.0.bb
-> > +++ b/recipes-devtools/mingw-w64/nativesdk-mingw-w64-runtime_9.0.0.bb
-> > @@ -2,8 +2,6 @@ DESCRIPTION = "Runtime libraries from MinGW-w64 project"
-> >
-> >  require mingw-w64.inc
-> >
-> > -SRC_URI += "file://0001-intrincs-Check-for-__builtin_ia32_rdtsc.patch;striplevel=2"
-> > -
-> >  S = "${WORKDIR}/mingw-w64-v${PV}/mingw-w64-crt"
-> >  B = "${WORKDIR}/build-${TARGET_SYS}"
-> >
-> > diff --git a/recipes-devtools/mingw-w64/nativesdk-mingw-w64-winpthreads_8.0.0.bb b/recipes-devtools/mingw-w64/nativesdk-mingw-w64-winpthreads_9.0.0.bb
-> > similarity index 87%
-> > rename from recipes-devtools/mingw-w64/nativesdk-mingw-w64-winpthreads_8.0.0.bb
-> > rename to recipes-devtools/mingw-w64/nativesdk-mingw-w64-winpthreads_9.0.0.bb
-> > index 38092dc..fb7e54e 100644
-> > --- a/recipes-devtools/mingw-w64/nativesdk-mingw-w64-winpthreads_8.0.0.bb
-> > +++ b/recipes-devtools/mingw-w64/nativesdk-mingw-w64-winpthreads_9.0.0.bb
-> > @@ -2,8 +2,6 @@ DESCRIPTION = "Winpthreads runtime libraries from MinGW-w64 project"
-> >
-> >  require mingw-w64.inc
-> >
-> > -SRC_URI += "file://0001-winpthreads-Add-__udivmoddi4.patch;striplevel=3"
-> > -
-> >  S = "${WORKDIR}/mingw-w64-v${PV}/mingw-w64-libraries/winpthreads"
-> >  B = "${WORKDIR}/build-${TARGET_SYS}"
->
-> With these two patches and the binutils upgrade we see a new issue:
->
-> https://autobuilder.yoctoproject.org/typhoon/#/builders/89/builds/4733/steps/12/logs/stdio
->
-
-thanks, sent a fix for diffutils.
-
-> Cheers,
->
-> Richard
->
->
+T24gVGh1LCAyMDIyLTAyLTEwIGF0IDE2OjMyICswMDAwLCBSaWNoYXJkIFB1cmRpZSB3cm90ZToN
+Cj4gT24gVGh1LCAyMDIyLTAyLTEwIGF0IDE2OjMwICswMDAwLCBSYWosIEtoZW0gd3JvdGU6DQo+
+ID4gQ2FuIHdlIHRoZW4ga2VlcCBtZXRhLWFnbCBmb3IgTFRTIGFuZCBtYXN0ZXIgb25seSA/IGFz
+IGl0IHNlZW1zDQo+ID4gdGhhdOKAmXMgd2hhdCBpdA0KPiA+IGlzIGdvaW5nIHRvIHN1cHBvcnQN
+Cj4gDQo+IFllcywgSSBnb3QgYSByZXBseSBmcm9tIFNjb3R0L0phbi1TaW1vbiBzYXlpbmcgdG8g
+bm90IHRlc3QgdGhpcyBvbg0KPiBob25pc3Rlcg0KPiBnb2luZyBmb3J3YXJkIHNvIEknbGwgbWFr
+ZSB0aGF0IGNoYW5nZS4gVGhhdCBzaG91bGRuJ3QgdGhlcmVmb3JlDQo+IGJsb2NrIHRoaXMNCj4g
+Z29pbmcgaW50byBRQSwganVzdCBhIHF1ZXN0aW9uIG9mIHRoZSBzc3RhdGUgaXNzdWVzLg0KPiAN
+Cj4gSWYgd2UgZGlkIGJsb2NrIG9uIHRob3NlLCBJJ20gbm90IHN1cmUgd2hlbiB3ZSdkIGhhdmUg
+dGhlbSBmaXhlZCBieQ0KPiA6Lw0KDQpJIHRoaW5rIHdlIHNob3VsZCBub3QgYmxvY2sgdGhlIHJl
+bGVhc2UgYmVjYXVzZSBvZiB0aGlzIGlzc3VlLg0KDQpUaGFua3MsDQoNCkFudWoNCg0K
 
