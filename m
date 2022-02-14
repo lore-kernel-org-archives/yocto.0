@@ -1,96 +1,133 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <nodeax@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9D10DC433F5
-	for <webhook@archiver.kernel.org>; Mon, 14 Feb 2022 18:39:16 +0000 (UTC)
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
- [209.85.128.50])
- by mx.groups.io with SMTP id smtpd.web10.38300.1644863955850985856
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4226FC433F5
+	for <webhook@archiver.kernel.org>; Mon, 14 Feb 2022 19:11:32 +0000 (UTC)
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com
+ [209.85.219.54])
+ by mx.groups.io with SMTP id smtpd.web10.38798.1644865890902360403
  for <yocto@lists.yoctoproject.org>;
- Mon, 14 Feb 2022 10:39:16 -0800
+ Mon, 14 Feb 2022 11:11:31 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=fh9JEbqA;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.50,
- mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f50.google.com with SMTP id
- d14-20020a05600c34ce00b0037bf4d14dc7so2573wmq.3
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=h+4fTuUX;
+ spf=pass (domain: gmail.com, ip: 209.85.219.54, mailfrom: nodeax@gmail.com)
+Received: by mail-qv1-f54.google.com with SMTP id c14so15602613qvl.12
         for <yocto@lists.yoctoproject.org>;
- Mon, 14 Feb 2022 10:39:15 -0800 (PST)
+ Mon, 14 Feb 2022 11:11:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:cc:date:user-agent:mime-version
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=UaX6PN1xfqU3Y6e2JcSIucAthhPv25zE5kePKoum6Ls=;
-        b=fh9JEbqAWFJ6hXZ6bF2hq8APzIcOrqi+E7PQxc4I2fy/k2XvjUkP7JzGqhjNkGRjEA
-         azxINmMHmJ/bSf5+uaL78XGui4X0huI0X/cGy9TTDXFi1L/6Cz+1KQz7chUgmNSnF+7j
-         u+Tk5yk5tiVbnfCBAnimHpx9491HRdONzZMUY=
+        bh=5gzx8tnLIzUddRQ66gEJxOj8LPTTPuuGNL2I81mHqw8=;
+        b=h+4fTuUXWBEZdKMgvTVi9Jl1SmiBdTiT+mI2zX3bT416Tg2tE5EM23kpBbZWy92kzi
+         FhLmWj9ezeNNjoRr5POcidxuTTym2YoGXmBo3IA0prxXwAKR9aXWNsoPh+dIBizr9C8h
+         qSUcixxiCK6KUzK7BmqhYwNYrhXTkwA9vr+vh8lx44CAv5KyDTT6KJUwfl5/glCcyffl
+         1tgvkhjgVgfThk240ElvkVmH1PnTt0C6xghnOi3Rq6mDHEj+U7QYgyi2SGtF+47LAvTn
+         B5WLfPzrYa5Rasv80tHBXBryywwZ+FeMDkEmgY4fSSoHkXS7a77wbHDvepbQEhw/W6LR
+         /QLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=UaX6PN1xfqU3Y6e2JcSIucAthhPv25zE5kePKoum6Ls=;
-        b=a06m/LHJH6ld7nonNQDeQaPgKubjP5itGWAn4Vw5e3Hm8VqE0mJQqMu5dL73K8bdm4
-         3DbSgoniw5KT/OASQTZ+dIzkzoBxJSVpk8OpFAkuQ3YmlZhtIuskXwggoqyGYNFpBk2T
-         y6/A+yum/lMN0s0lAgNufvJBlWO267X64UfS2+OSehd5sttMWVRqsmjXe+fGZoV5DUkJ
-         cF/EP/Roo7W1BGRdz9G/pW+h9e7AmiYq5LfSxS7M/7nfaHXB6wDFy1sAvGsxq6wyMNkf
-         P82NG/4boX8pew04jEIdH+fjrUmNvWfPbNMgJwj4ojpScpIi/L2khjmtjz52NVCGi465
-         8/+A==
-X-Gm-Message-State: AOAM530fQKDV+BWJkv37KNyyiyoKbGt30kCjSGYHiNIyCNonX3jPKATQ
-	uXx6ULqWQFAbOGyGzVydF6LzWV8NjvOZCQ==
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5gzx8tnLIzUddRQ66gEJxOj8LPTTPuuGNL2I81mHqw8=;
+        b=qPW2A9X3S2RcUCfwVCawsuKZtPUgVXj0CT1UQwUiYdC6V8Dr/zyDvz8WL/wWdzxAP5
+         qHjMuuNOz3XHev6Fk4YP8ToObpikDh8xoFbAgIVGmJVpyJaIR7Jn3ZFIFAfnrENXO9PO
+         7et9u/GsCPPzGLuqtIvwlxpoNnoAJ/8ORRDB6sLO5lqrlxToVOYBUW8wfv6Coc7/xn0F
+         fC8NiCnw05/gdU+CJ+T0B7Gb8gNVI53Wl+sH6DJ2Wyz/apQAQAgJMGvFW/CAFhrJ8WT5
+         QQBKRxBL0HR7/4ttbfDlTnZi5I8qQUtCtrtyCrop6VPUTvNrUdYUSQv0FOU2zdx38KD8
+         fATA==
+X-Gm-Message-State: AOAM532u1chOdKJYf9jWK2mZb7LjqpZnKWacZbn0OJC93YBFU1qajKE4
+	7LPsrqnMV1PPwUQ9Ugi0QXSyz7tJTkVX4g==
 X-Google-Smtp-Source: 
- ABdhPJwY6UBzAXyH2gGWH0zf3KwvGBjMuzmFVoxbcirQ4A3pFabaIfeodquVYvBOvCMWqQNGrRg/1A==
-X-Received: by 2002:a05:600c:1151:: with SMTP id
- z17mr12059279wmz.169.1644863953817;
-        Mon, 14 Feb 2022 10:39:13 -0800 (PST)
-Received: from hex.config (5751ab90.skybroadband.com. [87.81.171.144])
+ ABdhPJyT0HsC5xByPq4iHA6sk2dRJOHlrCqEX7+rrPIk9U1zb3u4V3mUZv/qPuSWhsOhbcRrDudt7w==
+X-Received: by 2002:a05:6214:cab:: with SMTP id
+ s11mr100532qvs.86.1644865889627;
+        Mon, 14 Feb 2022 11:11:29 -0800 (PST)
+Received: from ax.fios-router.home
+ (pool-74-111-105-118.pitbpa.fios.verizon.net. [74.111.105.118])
         by smtp.gmail.com with ESMTPSA id
- c8sm15659656wmq.34.2022.02.14.10.39.12
+ j11sm18523754qtj.74.2022.02.14.11.11.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Feb 2022 10:39:13 -0800 (PST)
-Message-ID: 
- <36320b3e89d2e21fb911f956d8c2cd21dd2c62a5.camel@linuxfoundation.org>
-Subject: QA notification for completed autobuilder build (yocto-3.4.2.rc2)
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>
-Cc: qa-build-notification <qa-build-notification@lists.yoctoproject.org>
-Date: Mon, 14 Feb 2022 18:39:11 +0000
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4-1ubuntu2 
+        Mon, 14 Feb 2022 11:11:29 -0800 (PST)
+From: Akshay Bhat <nodeax@gmail.com>
+X-Google-Original-From: Akshay Bhat <akshay.bhat@timesys.com>
+To: yocto@lists.yoctoproject.org,
+	akuster808@gmail.com
+Cc: Akshay Bhat <akshay.bhat@timesys.com>
+Subject: [meta-security-compliance][PATCH] scap-security-guide: Fix
+ openembedded platform tests
+Date: Mon, 14 Feb 2022 14:08:38 -0500
+Message-Id: <20220214190838.2170306-1-akshay.bhat@timesys.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 14 Feb 2022 18:39:16 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56188
+ <yocto@lists.yoctoproject.org>; Mon, 14 Feb 2022 19:11:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56189
 
-A build flagged for QA (yocto-3.4.2.rc2) was completed on the autobuilder and is
-available at:
+Update the installed_OS_is_openembedded check to drop the quotes
+in the VERSION_ID string to match f451c68667cca of openembedded-core.
+Without this fix, all tests are reported as "notapplicable".
 
+Signed-off-by: Akshay Bhat <akshay.bhat@timesys.com>
+---
+ ...is_openembedded-Update-pattern-match.patch | 30 +++++++++++++++++++
+ .../scap-security-guide_git.bb                |  1 +
+ 2 files changed, 31 insertions(+)
+ create mode 100644 meta-security-compliance/recipes-openscap/scap-security-guide/files/0001-installed_OS_is_openembedded-Update-pattern-match.patch
 
-    https://autobuilder.yocto.io/pub/releases/yocto-3.4.2.rc2
-
-
-Build hash information: 
-
-bitbake: c039182c79e2ccc54fff5d7f4f266340014ca6e0
-meta-agl: 1a8abc70c4f2339200b612d96d81c4eec3ac0519
-meta-arm: 51b728a52bde7c613d5855afeac0fa6a31771bd2
-meta-aws: c92344938ab4d37de8bd8b799186dbbe3019a069
-meta-gplv2: f04e4369bf9dd3385165281b9fa2ed1043b0e400
-meta-intel: 5a30dcefa54040dd05099549a56156a83263554c
-meta-mingw: f5d761cbd5c957e4405c5d40b0c236d263c916a8
-meta-openembedded: c05ae80ba680887ac924c21536091be7a1173427
-oecore: 418a9c4c31615a9e3e011fc2b21fb7154bc6c93a
-poky: e0ab08bb6a32916b457d221021e7f402ffa36b1a
-
-
-
-This is an automated message from the Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder2
-Email: richard.purdie@linuxfoundation.org
-
-
+diff --git a/meta-security-compliance/recipes-openscap/scap-security-guide/files/0001-installed_OS_is_openembedded-Update-pattern-match.patch b/meta-security-compliance/recipes-openscap/scap-security-guide/files/0001-installed_OS_is_openembedded-Update-pattern-match.patch
+new file mode 100644
+index 0000000..61d9206
+--- /dev/null
++++ b/meta-security-compliance/recipes-openscap/scap-security-guide/files/0001-installed_OS_is_openembedded-Update-pattern-match.patch
+@@ -0,0 +1,30 @@
++From d943e41d64da6af89a6b8224110299ad88747497 Mon Sep 17 00:00:00 2001
++From: Akshay Bhat <akshay.bhat@timesys.com>
++Date: Mon, 14 Feb 2022 13:00:31 -0500
++Subject: [PATCH] installed_OS_is_openembedded: Update pattern match
++
++The VERSION_ID string is no longer quoted with f451c68667cca of
++openembedded-core. Update the pattern match check in
++installed_OS_is_openembedded to match the same.
++
++Signed-off-by: Akshay Bhat <akshay.bhat@timesys.com>
++---
++ shared/checks/oval/installed_OS_is_openembedded.xml | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/shared/checks/oval/installed_OS_is_openembedded.xml b/shared/checks/oval/installed_OS_is_openembedded.xml
++index 01df16b43..eaf9f2b10 100644
++--- a/shared/checks/oval/installed_OS_is_openembedded.xml
+++++ b/shared/checks/oval/installed_OS_is_openembedded.xml
++@@ -23,7 +23,7 @@
++   </ind:textfilecontent54_test>
++   <ind:textfilecontent54_object id="obj_openembedded" version="1" comment="Check OpenEmbedded version">
++     <ind:filepath>/etc/os-release</ind:filepath>
++-    <ind:pattern operation="pattern match">^VERSION_ID=\"nodistro\.[0-9].$</ind:pattern>
+++    <ind:pattern operation="pattern match">^VERSION_ID=nodistro\.[0-9]$</ind:pattern>
++     <ind:instance datatype="int">1</ind:instance>
++   </ind:textfilecontent54_object>
++ 
++-- 
++2.25.1
++
+diff --git a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_git.bb b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_git.bb
+index ddde5cc..f493ea8 100644
+--- a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_git.bb
++++ b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_git.bb
+@@ -9,6 +9,7 @@ SRC_URI = "git://github.com/akuster/scap-security-guide.git;branch=oe-0.1.44;;pr
+            file://0003-fix-remaining-getchildren-and-getiterator-functions.patch \
+            file://0001-Fix-platform-spec-file-check-tests-in-installed-OS-d.patch \
+            file://0002-Fix-missing-openembedded-from-ssg-constants.py.patch \
++           file://0001-installed_OS_is_openembedded-Update-pattern-match.patch \
+           "
+ PV = "0.1.44+git${SRCPV}"
+ 
+-- 
+2.25.1
 
 
