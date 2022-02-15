@@ -1,157 +1,193 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <gwilson@sakuraus.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5FDF6C433F5
-	for <webhook@archiver.kernel.org>; Tue, 15 Feb 2022 15:13:48 +0000 (UTC)
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com
- [209.85.208.47])
- by mx.groups.io with SMTP id smtpd.web10.10677.1644938026911729257
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9830EC433F5
+	for <webhook@archiver.kernel.org>; Tue, 15 Feb 2022 17:01:44 +0000 (UTC)
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (NAM02-BN1-obe.outbound.protection.outlook.com [40.107.212.136])
+ by mx.groups.io with SMTP id smtpd.web10.12193.1644944503269875264
  for <yocto@lists.yoctoproject.org>;
- Tue, 15 Feb 2022 07:13:47 -0800
+ Tue, 15 Feb 2022 09:01:43 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=bwv+FX3z;
- spf=pass (domain: gmail.com, ip: 209.85.208.47,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ed1-f47.google.com with SMTP id g7so16464852edb.5;
-        Tue, 15 Feb 2022 07:13:46 -0800 (PST)
+ dkim=pass header.i=@sakuraus0.onmicrosoft.com
+ header.s=selector1-sakuraus0-onmicrosoft-com header.b=VLlEB6kl;
+ spf=pass (domain: sakuraus.com, ip: 40.107.212.136,
+ mailfrom: gwilson@sakuraus.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BHJPSvaQyT6fE/IhIPJ+WG7Mk0gPC5Ysjs+G4damNP2HHTpqVhCo0RsTsQKs5UvLMSKKahkakRGqK5t8FjBYrXCZGchUTPMOQNNlhG2LgQqUlmCUY3jzWA9W4sPV3gUq0rZo4DKkwzXWz7S9V4Uids4CCPfli5rb0WXDPtc4TwpOSh+bGgqJ/PacCviqAKlPc2nY6+D5bdwlB+Quu/cSL+VZofdNPbj2YZXvOloe9er5f7UpF9PpwFcGMmk4pKmRGn6wLSberdvPO+oOLI4Qa4t6mffK34dgOrBAPYPsyavoYLqDQfYpmqWEJ9LYzeBwC5a9YkYERXe6VdV12hUuUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rIkA5zGaMcqwwZQnJdiPVNReipHb+yyV+W1/7rsjaF8=;
+ b=Ojyb3LvPOKhKd4o6Ya76KbfOZtY14nSSH2fAby0vM0sztMrnhaRwbFXwIdonnZnrFs5dWqjRIjNILNtRxGuKaEPAjWKEq0YHgngIm/sdQB6Xy1eEGFGLCuJoe+RIy/hBZ5N1WHb8apTxcl09ZhSFXTBZGhIjOJLONLLjXgMSSb8hGdo4CgakZiz3CBGIPRgppTcZeCFzF+6Lq1QV7bQZpIKlvdw7qO9Stg21NmFJnVYIDvnjgYceDJ8Jduy3Zrh5/3j8y2ZLLIFzeeHLmbFduK1emx3tYXsD6dodBcaKWqBHjkCNJjDcb7vDwiLrgvqPhBOqD9uUFlQItr08rS6xKA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=TDCD8z0T8+AwfbutZKVfMLloD6DtxaGx4aDeyFe2lzA=;
-        b=bwv+FX3zVVGCno4I2MjU9OOZGMiOpWFkrhXZ3O9Z7FWLEDM9MFiwXNXIB3jlZVmx4u
-         /Kj0gG6ZuMgSGyi0olEBiTY4ehNsVEp/hTngaZGYCfoLQ60WjOtUPaQpnAWDjeyxCyin
-         OS7atZ5bgdokCQz1dUm4tyKYv+XbYFV/slwfPsr8NAdhAsEpwjdNIQmFj+12wfxxZDc5
-         mGZV5wSF+9KZDj7al2CHZtkR0qGPqmFEx5P0zRzw4U2IoDtMB3HHPCglpLC62QYSRiD5
-         Q4i9w4t/I4AT+h8GCoze5ZdDPToWBdrHeaaOEZPUyAkrK3sTsDdj9vZZZ0wClrfjqYJP
-         Lykg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TDCD8z0T8+AwfbutZKVfMLloD6DtxaGx4aDeyFe2lzA=;
-        b=z8CK68Zf+mF7IARUxsJXfbPssP+xGusuZ8jKb74jnA/OHJpSitOR+ih+O3bFL4zyGH
-         iTE+DovVKTEdK4QUPwlGcnUoCyVnW9SoYzNwTNAOAxXHYxAfTXVTjLlO4jyIS+N9fkox
-         +7NVMxXd07LV6R88qYLNhb2dI+B9XzQ5S7RDRu2mlw7+VXzlkl0cyLuot0Nq1P0RM2IR
-         LDYDnt8D/z2e/DxOE3UOqf6yVElPE4EY5oegVQ4jl4ntSRtc4XPoJVMkdS3maee41A/F
-         bZ3xbP0j6HlDROLwn+XzIBX21cCeQrHx+42+FaklE8Jykh+L3XRcVDpZgyyqoTSJzAho
-         8YAA==
-X-Gm-Message-State: AOAM530ehdVA5ykkoVQDSP8y0fU6Vf5OWrMo4BrXhEBCRyri9+Cef1mE
-	dIAQj7oWBj7RQu2oD28TiVkSjCq8B0FpNloBaO8=
-X-Google-Smtp-Source: 
- ABdhPJx/NhvICCYcpaTBDheWWfjhR5WS0euFFWZi4/ai8dZliRf1sCdVFTSTKR+CQ9PVlZJ7g5wV0a6i6mQIVsoC1Go=
-X-Received: by 2002:a05:6402:42c1:: with SMTP id
- i1mr4469708edc.52.1644938025321;
- Tue, 15 Feb 2022 07:13:45 -0800 (PST)
-MIME-Version: 1.0
-References: 
- <CAOuPNLiMmKbm_KM-sxmSJciAE=ECcDOoxNBSdW5X6Z-Dt0DpgQ@mail.gmail.com>
- <CAOuPNLgBEA4m5Y6=LJTguGgaGDN7VT0xTX_KTOP09FWTKn8AVQ@mail.gmail.com>
-In-Reply-To: 
- <CAOuPNLgBEA4m5Y6=LJTguGgaGDN7VT0xTX_KTOP09FWTKn8AVQ@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Tue, 15 Feb 2022 16:13:33 +0100
+ d=sakuraus0.onmicrosoft.com; s=selector1-sakuraus0-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rIkA5zGaMcqwwZQnJdiPVNReipHb+yyV+W1/7rsjaF8=;
+ b=VLlEB6klSCEzCWau1HG0mVMH2gNaU8IOGgMCjAiKagtNhOdCflo9coqyAKrJHTIWQOGXEl3n0G0UZT1qYgG9yhS0Ig683Zr5Yoo6edbHK+RszW7u0BvYevUzFsrHAM5PVWqoiCagURq3wuuIafiyimoaU9mWpNGeQTgPn9Y4bTA=
+Received: from PH0PR15MB5055.namprd15.prod.outlook.com (2603:10b6:510:c2::23)
+ by SN7PR15MB4239.namprd15.prod.outlook.com (2603:10b6:806:101::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.19; Tue, 15 Feb
+ 2022 17:01:40 +0000
+Received: from PH0PR15MB5055.namprd15.prod.outlook.com
+ ([fe80::40d5:ec0b:3bc:b70e]) by PH0PR15MB5055.namprd15.prod.outlook.com
+ ([fe80::40d5:ec0b:3bc:b70e%4]) with mapi id 15.20.4975.019; Tue, 15 Feb 2022
+ 17:01:39 +0000
+From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Best laptop for compiling Yocto
+Thread-Topic: Best laptop for compiling Yocto
+Thread-Index: AdgijUkToJZ4n7ekSD2r8e6+uX2Wig==
+Date: Tue, 15 Feb 2022 17:01:39 +0000
 Message-ID: 
- <CANNYZj8BA6Dhe_UKjdDqiv-qwbz2cHqdFGDbrJMZD8hMEGGNGw@mail.gmail.com>
-Subject: Re: [linux-yocto] Controlling features enable/disable across recipe
- and meta layers ?
-To: Pintu Agarwal <pintu.ping@gmail.com>
-Cc: linux-yocto@lists.yoctoproject.org,
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+ <PH0PR15MB505518D9D5C9F71862514966CB349@PH0PR15MB5055.namprd15.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=sakuraus.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 6dc8d9cf-7581-45c3-759c-08d9f0a4d58d
+x-ms-traffictypediagnostic: SN7PR15MB4239:EE_
+x-microsoft-antispam-prvs: 
+ <SN7PR15MB42398D4D81BDCFA00063EF20CB349@SN7PR15MB4239.namprd15.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ X0UmdXy9nmpwntNkJLEBcmbgnkypxnMCuMJPnZBrcbfV4Q/PcGnjXhBw03VsdxkebTLNkYdOQNQKL/G0DQuXE4I5t2WicfRSYolx7GawLdBCbLhPpfZzaUIv1Ynl1Mnn1rI+31GQIB5mvGcIZJW5M9BaB9jeWn29Ql6QXW9Q/pY0WTw/I4MhnQwU77XL23KqLsmF4MveoilBh2c0A4/gSS/yrezvOWfVU0UL7LSLvhCaLzo45BLQjFKVdLUrAkJ12z8FUz9+kxMDm6S4Sz1EekcFYiFfBXy5zIlrj1VW9bMCZ2rmovbNbCU8MZIDbeNS2+qWCXm+tdznJ6uvpMHFEeYT1VAHe+gBUfC0DLBO93uOjldBmM08ut4goGoTzCCfeqSOLVkTXgk5wMVm0u9LLBNd99NjAwyZa6E27V2gkLIOQpYYtE0Q9nJ+Yj2X6cf7SUZj0SOnujZXt8gaBnSLghdwMdEpSWsEyDLyBqqiOuNnO3IPw2x7H+Nq/+5hmpKS+MTXx0mdzcNfmBXAuOXdqGyioBNE4PcKP8SE3ilD1zsw4gUj4RhH+3c/yZEgn16zxSp33Wk2pLumXcWJ4A+I8UfMMT5DI+P/beRIuSqGe3hTWOxNvf0y7QbqXoE4N19gwdZD6QeIUNykB6xFuJ1XP8z1pI3U6R6B8hm6hMSwQq6VWkeQKmJT3xlV3jUQ6BWv14ZzOP3SGlAu6fhkzem/PA==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR15MB5055.namprd15.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(6916009)(122000001)(33656002)(71200400001)(8936002)(7696005)(38100700002)(186003)(26005)(316002)(38070700005)(9326002)(5660300002)(558084003)(2906002)(6506007)(9686003)(66556008)(508600001)(52536014)(76116006)(83380400001)(66476007)(66446008)(64756008)(55016003)(8676002)(66946007)(86362001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?Xy0YLwxfLaiGCAwFgsbyC5UBSmjtcixxSD+jzlNnLct0bDZNea1jw2CLv7CW?=
+ =?us-ascii?Q?HTHHRr9ziPEvuYGgi41megL1a/ltOBgm0Mt1r7OA/a04pSWzalLkjTXHCUpL?=
+ =?us-ascii?Q?pgOrVHP5fZhJcRjFb2ExntOuLTSUtJDmN1nGakeHVXHsh+UgYuBegADv7h7W?=
+ =?us-ascii?Q?AJA6Mpml/alFJ2eiGSmKYwvES1h3bFdlSPhorhnO/DUF8L6kQYx/YKIW4gLG?=
+ =?us-ascii?Q?QWvTr5v2+CXhGzrzg6iPktFpgWq6+/aKlnwMqoWvuQUuqsXRxAASk/ctyUzw?=
+ =?us-ascii?Q?NT6IG/FRwcfBQ44+sUTuHRJiz3J4tlU64/F38LxXC+/YCHEt5tAYXmczHot7?=
+ =?us-ascii?Q?3A64EWyUoa48VwBS2ONgRk5tUr6ImTFspQLBvOHJi6WvEsOSJkefZOzmxlOV?=
+ =?us-ascii?Q?9TN52QZ++o1UbAP475fvKNaBq6MGDAvMUgRKzR65rfb3BNlIQw9NofgZ3Y22?=
+ =?us-ascii?Q?FRHuG+s9pfZTz4MbnkpMfSavoC8WSaFZjRalij9UTgc7EZrvmthi2MOTv41j?=
+ =?us-ascii?Q?UjFfSx0LYxnQO1GxNaha3gt6Cb4aAUSwmNRQRaO3VzwMrA4n19OPmbNjPZ/q?=
+ =?us-ascii?Q?mqU8N5CP5ho51xRTPISPj03ROvw9HJqMUlvE1WZAEqPqfehwMXkH7J4xV9Ad?=
+ =?us-ascii?Q?1Zvt3PRs0oUePQhHLlDkvgzinOg+dQEPcDfNSm4x1JQ7aS1hFy/pZeIvDvks?=
+ =?us-ascii?Q?MuYpJhe7fk4MSyGCKEI+q02xxztpATfpKNyB21ABDAlZ/yOyhEPdQLckK8FQ?=
+ =?us-ascii?Q?dVRm++Ee0GQBrcAsZY5wXsWpZ8q7uDpI+6AeMsPJO54BQqWiDcgdmdmym5Er?=
+ =?us-ascii?Q?w5hy8rmDVor4xxgazUWvQetlBmMgcJcZzdzLAGXuXdmUPknyyDb1of/sTBXY?=
+ =?us-ascii?Q?qqnokMUbjG9qSYFPgEjQYeZdbhLqK3bUfzzor9zp2L+7DdQ+6EynV8bXluFO?=
+ =?us-ascii?Q?QDA8KWGCahL0NGmtjsy2jDYUCZuTc/nuKNB6ivNLDMMVOk563TSxrYhYwbaz?=
+ =?us-ascii?Q?8md0MjWWlc6jywOCy+XxKsyC6joXS3+ftfOhzrNSpiTF/s4RGbVXVk2qkC+c?=
+ =?us-ascii?Q?uYKbYM3ZsrZaNIQxsBb2k+N9xm/ne8st/qJgAOEgJv3IR9IHIpxzsuU8qx3C?=
+ =?us-ascii?Q?FMWXHMD48bcURXHNLWdf4J68UGsCzSIcuX3IYZ8tEiIG3ZwL2Rqwuq1lV0Cw?=
+ =?us-ascii?Q?c8KCafpxLiklJOucmvI3ScNOZ/meHsIbH6jo9WVZSBt/TWmaLURKdbbaoHaM?=
+ =?us-ascii?Q?U27hZBoh8Itdc3Uhj+iBiU1Pr5wOtq6Uaupn50GhzPRDpCGt8EGyNqmep0qs?=
+ =?us-ascii?Q?0LQb1rjArpg/5zQVxNs8YWnbjHM/cRzzeXG30fKTnSlh/Jxqcp3fKEWy/WDh?=
+ =?us-ascii?Q?wGZbyVIPdYY8O4GkmpJ+wZ0Bp+YZmGs4pDxTvw1jY+4DRrUhswmAZK6j04Xu?=
+ =?us-ascii?Q?LJbRF61GRiii1BPJ+NONaVn4+vdnNhwHwrFe85F0kCvW08KFwBzqtYegJr0j?=
+ =?us-ascii?Q?iPmhVA7V87vXmqZ/KBadX7wUeu1apEH+kkFsXA5d3dHrxndq6OOT95l5oE8W?=
+ =?us-ascii?Q?pngQvT2opgELSfh/lN9Jkt8z0zxI+y+6DCG2kGzgyh2vbsenkhpyaU/582Id?=
+ =?us-ascii?Q?pA=3D=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_PH0PR15MB505518D9D5C9F71862514966CB349PH0PR15MB5055namp_"
+MIME-Version: 1.0
+X-OriginatorOrg: sakuraus.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR15MB5055.namprd15.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 6dc8d9cf-7581-45c3-759c-08d9f0a4d58d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Feb 2022 17:01:39.6194
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 37ffe720-0c78-4d79-baff-87ee7fde7c3d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 
+ 8nzgXgd/KfvFdQkhjss195ctb17gt5H8ipRIKzkF176ew2+7UqiORxqlidDKUMHoMtZcCrA+HZzYYlAQJ1RFeg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR15MB4239
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 15 Feb 2022 15:13:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56201
+ <yocto@lists.yoctoproject.org>; Tue, 15 Feb 2022 17:01:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56202
 
-You need to define several distributions (e.g. several
-conf/distro/something.conf files), then you can set DISTRO_FEATURES
-accordingly in each of them, and then on the recipe level
-PACKAGECONFIGs can be enabled subject to DISTRO_FEATURES. Note that
-each of those .conf files can include the same .inc, where the common
-parts go, and only differ in things that need to be different.
+--_000_PH0PR15MB505518D9D5C9F71862514966CB349PH0PR15MB5055namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Yocto does not provide a way to have different 'products' or 'builds'
-inside the same distro: you choose a distro, then you choose a target
-MACHINE (e.g. the hardware), then you choose the image to build.
+Hello All,
+I have a System 76 Serval laptop that I have been using when building Yocto=
+. It seems to be dying and they are on back order now, so not available for=
+ replacement. I was wondering what recommendations others would have for a =
+good laptop to use for building Yocto?
 
-Also, distro definitions do not belong in a BSP layer, they need to go
-to a separate distro layer. You can ask your colleagues at QC how this
-was cleaned up for a certain big german automotive customer and look
-at the resulting layer code.
+Regards,
+Greg
 
-Alex
+--_000_PH0PR15MB505518D9D5C9F71862514966CB349PH0PR15MB5055namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 15 Feb 2022 at 16:05, Pintu Agarwal <pintu.ping@gmail.com> wrote:
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> Hi,
->
-> I have many questions about Yocto features.
-> My main question is: In Yocto what is the best mechanism to define a
-> feature flag such that it can be accessed across many layers and
-> recipes ?
->
-> We are using Yocto thud and/or dunfell at this moment for 2 different products.
->
-> From the Yocto document also it is not very clear which one to use.
-> Also, we are confused when one to use when, like we have:
-> DISTRO Feature flag,
-> PACKAGECONFIG variable,
-> IMAGE Feature,
-> Global Macro (setVar, getVar), etc.
->
-> Example:
-> Currently, we have many different releases and many different products use it.
-> So, we have many distro features, many of them are common and many of
-> them we defined newly for our product.
-> But for our product we have only one component (say: auto-prod).
-> So, when this component is enabled the same release should be built
-> for our product including our feature set.
-> And when this component is disabled, all our features should be
-> disabled like mainline release.
->
-> So, we wanted to define only one DISTRO feature (auto-prod) and list
-> all our features under this distro.
-> Also we wanted to control all these from a single place, so that
-> enabling/disabling all the features in one shot would be easy and
-> portable.
-> We tried doing it using PACKAGECONFIG but it seems this option can be
-> used only at a recipe level and not visible across all layers.
->
-> We wanted to do something like this in: auto.conf
-> DISTRO_FEATURES = "auto-prod"
-> if defined (distro-features == auto-prod) ; then
->      PACKAGECONFIG_append-pn-<recipe1> = "f1 f2 ..."
->      PACKAGECONFIG_append-pn-<recipe2> = "f2 f3 ..."
->      PACKAGECONFIG_append-pn-<recipe3> = "f1 f3 f4..."
-> fi
->
-> So, if we comment DISTRO_FEATURES all the features listed above should
-> be automatically disabled.
->
-> Note, our feature flags are used across multiple recipes and layers.
-> Bootloader layer, Kernel, meta layer, recipe layer, python source, C
-> source, scripts, etc.
-> Like: edk2, meta-qti-bsp, meta-security, meta-qti-auto, auto-prod-folder, etc.
->
-> Is there a well defined way in Yocto to achieve such a modular design approach ?
->
-> If there are any such references please share.
->
-> Our reference distro is here:
-> https://source.codeaurora.org/quic/le/meta-qti-bsp/tree/conf/distro/auto.conf?h=yocto.lnx.3.0.c28
->
-> Thanks,
-> Pintu
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#10945): https://lists.yoctoproject.org/g/linux-yocto/message/10945
-> Mute This Topic: https://lists.yoctoproject.org/mt/89162429/1686489
-> Group Owner: linux-yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/linux-yocto/unsub [alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello All,<o:p></o:p></p>
+<p class=3D"MsoNormal">I have a System 76 Serval laptop that I have been us=
+ing when building Yocto. It seems to be dying and they are on back order no=
+w, so not available for replacement. I was wondering what recommendations o=
+thers would have for a good laptop
+ to use for building Yocto?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Greg<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_PH0PR15MB505518D9D5C9F71862514966CB349PH0PR15MB5055namp_--
 
