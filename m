@@ -1,90 +1,99 @@
-Return-Path: <challinan@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D2BBCC433EF
-	for <webhook@archiver.kernel.org>; Wed, 16 Feb 2022 15:07:38 +0000 (UTC)
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com
- [209.85.219.172])
- by mx.groups.io with SMTP id smtpd.web09.105.1645024057430098694
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CD9CDC433EF
+	for <webhook@archiver.kernel.org>; Wed, 16 Feb 2022 17:38:19 +0000 (UTC)
+Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com
+ [209.85.219.52])
+ by mx.groups.io with SMTP id smtpd.web11.2282.1645033098336363799
  for <yocto@lists.yoctoproject.org>;
- Wed, 16 Feb 2022 07:07:37 -0800
+ Wed, 16 Feb 2022 09:38:18 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=NFZsBHK2;
- spf=pass (domain: gmail.com, ip: 209.85.219.172,
- mailfrom: challinan@gmail.com)
-Received: by mail-yb1-f172.google.com with SMTP id v186so6727783ybg.1
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=CUpK7XGp;
+ spf=pass (domain: gmail.com, ip: 209.85.219.52, mailfrom: raj.khem@gmail.com)
+Received: by mail-qv1-f52.google.com with SMTP id fh9so3297846qvb.1
         for <yocto@lists.yoctoproject.org>;
- Wed, 16 Feb 2022 07:07:37 -0800 (PST)
+ Wed, 16 Feb 2022 09:38:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=bpMbrrOCvoUojfmwXwSvvyXJmeDfIriU29otZdRuvRw=;
-        b=NFZsBHK2NdXcK0QcjJPZzgWvPT0Zdxk1twp7YhwxgT4qUB2LpkSz14xAtXkweDTlBn
-         WiZEG98WFonw33/D236FW4X+nDEZ+AWox/pHGaG1PLUmBg1qy1oSDJev7E9pJq8EMmrq
-         Ls+C3n7MBYgnisYTaMlSppV5ri3Dj4PbThYhvfTJXlNlCVxECN7Ru4Z0Svwzv7YWgUsn
-         YRULo/xMo9xldUfB8f55/8fJKrJnKLkWDdJwQYMG2XhVjaSrvyX5DoY4n/wqseJ+oof+
-         FjFqLAATd1/f0ZigmYGVfVaAfP08oHgSvtj2OxvYDu9vuPnAA8+4n/LFI+Tq/V7+88UQ
-         2NWw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=7ooCQ+NbHkAapHnfjd/odv5zzGnE4eZLY8+sI2NX5zY=;
+        b=CUpK7XGpdqhC5rQ5x+3j77e7tIJrEuALScUKVm+XNmrp9H9hCEuYPrpeXh/YSYpzR6
+         WUWRS9fz8FvFHraTtawOgY98WH2qqOqNuNsS6vPkMiKc1h8n+23EEnAXoK++rXjUmdJL
+         yPxHwFbahz+1VJ2suYQA3TWJyplPoQbxtdstW4Fh8jJFp8q7DaTLqaS0Z/kexQZH+BvD
+         2zrjTbHpQokh6cK5QL444rciWDgdSaXwLUHVwNcuMibrIpB42c2vTzu2mUvU1xIMMk+n
+         qJi6FG7Bz3OHahIMex5dAandgkdexChq5WlNLkjsaxmxwukL+KCgyYmFNJ5TlX+ymKTf
+         nMAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=bpMbrrOCvoUojfmwXwSvvyXJmeDfIriU29otZdRuvRw=;
-        b=vMHOqBbq++gUs2GDvUPPwV2OEGepMVUMaGdZPSKxnyfqhG7wF35Zdu4g4ltJo4f9e7
-         WLmPfmCEfM1LzsxMDMq1CRAmVsU1ysltbt9gxWtcZe/Zrn/6uKKeRgZ+WcbR3MRXCb7l
-         NDkXdJg48kUgGoQmJ+F6QS453cVgGI1HzHhs2TMt4It72hNKqkk3vxbloMPzM+hE23kk
-         3ADIeWPRWiU3ixjfm018wOt/mofAFqzPwE7GhkRf3dGc30/qJsQykDTzuAK7hs43e7H0
-         RCRqXqjwMHLJY6+3LL4+QBE6l3jpIWuaHXjkmhhFkanMr7zaF0/lQjIwYa7fVA8EoHoY
-         bksQ==
-X-Gm-Message-State: AOAM533YOCJekgZrOnPd5l0wPDE7C2VRQyk4i43YsuUXtPxamePaeMDD
-	8AJAa/yDvJvJAmSx5G4LP9BycasfAS3FF+AG4BPYB9q2
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=7ooCQ+NbHkAapHnfjd/odv5zzGnE4eZLY8+sI2NX5zY=;
+        b=JA8SI4Bfbce0e4xmo29l66cyy034l73k9HeRgUMg+VCTZD+FVgFXKITa7hxoWGGqLU
+         eDd+pI1ZerJM3hopKiJK8Uk8AZae/dDzKOy5ivRS4eLkfSAxn4uPVQyB81vBlLIXShsY
+         O8Jm8jQGKMAddP3FiDVQ+yHg4fBKuIqR7/HK4sdp+1WxWP6SUJra4T4agF2vPQdcTeTG
+         eO2GQpt0nw/85jSJUTrEbyTZY6sgc8XV8hfrWUA2GiYXiezzU9hLcOgeriPa+y9Vj95r
+         ybNo6ZNACIPl83WlzgOg0Bq6tlqBDJUqpwTcZLtMKErAbN5cV05RoZNiZKjndbAbYBcQ
+         JXZA==
+X-Gm-Message-State: AOAM532DwHKKXUQ5K7WRiYMSG2rEIzCGt3hYVwOT/grkHUQLUGtRrLS4
+	e0/CzMrN+My82/6WpOd9r5tacEdcfTyHtWNUctg=
 X-Google-Smtp-Source: 
- ABdhPJwteYp9SmpSdltGH2BFs/qsmh1UqBDSJpZR7A2X/6yp1jUqIvMOcQYcN5hbB8NFpJZMBCwSHXoyHsOMBytsQyQ=
-X-Received: by 2002:a81:4ed2:0:b0:2d2:5bc5:250a with SMTP id
- c201-20020a814ed2000000b002d25bc5250amr2820419ywb.130.1645024056211; Wed, 16
- Feb 2022 07:07:36 -0800 (PST)
+ ABdhPJwK2AsTLGZffFRyR0TS9ju+cOctj94puqFH69Cro6B1obdL/tzgonFJVlWxJ4CsVyDqJ86bkk8ksmoNX+T/Xto=
+X-Received: by 2002:a05:622a:1046:b0:2dc:eb87:afd0 with SMTP id
+ f6-20020a05622a104600b002dceb87afd0mr2800798qte.229.1645033097352; Wed, 16
+ Feb 2022 09:38:17 -0800 (PST)
 MIME-Version: 1.0
-From: Chris Hallinan <challinan@gmail.com>
-Date: Wed, 16 Feb 2022 10:07:25 -0500
+References: 
+ <CAOar+7QdRygTkRkyizGa8AwZvW4+0ruTGpSk0aj3Eg6qKVN1Aw@mail.gmail.com>
+In-Reply-To: 
+ <CAOar+7QdRygTkRkyizGa8AwZvW4+0ruTGpSk0aj3Eg6qKVN1Aw@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 16 Feb 2022 09:37:51 -0800
 Message-ID: 
- <CAME0jBQoyY20a8z6kuP4WEfjBk1W88tLOUS=i1vYA_byaOEQ=w@mail.gmail.com>
-Subject: Interesting discussion on github relating to branch (re)naming
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000847b3605d82402e4"
+ <CAMKF1sqFC3LkZTVzCcMW78RwXGBrsqrkacmnf4H0jJAvnFpXMQ@mail.gmail.com>
+Subject: Re: [yocto] same build for multiple machine configurations
+To: Alexandru Ionita <alexandru.ionita@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 16 Feb 2022 15:07:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56209
+ <yocto@lists.yoctoproject.org>; Wed, 16 Feb 2022 17:38:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56210
 
---000000000000847b3605d82402e4
-Content-Type: text/plain; charset="UTF-8"
+On Wed, Feb 16, 2022 at 1:36 AM Alexandru Ionita
+<alexandru.ionita@gmail.com> wrote:
+>
+>
+> Hello all,
+>
+> I'm not sure if this is even possible at all. I'm using the meta-raspberr=
+y layer to build raspberry images. Whilst I'm able to build images by stric=
+tly selecting a raspberry pi machine configuration (MACHINE=3Draspberrypi3)=
+, I would like to know if it's possible to build an image that is compatibl=
+e with multiple raspberry pi machine configurations. For instance an image =
+that would work for both raspberrypi3 and raspberrypi4.
+>
 
-https://github.com/fsnotify/fsnotify/issues/426
+I think you can share maximum by using same tunes perhaps for pi3 and
+pi4 machines but we do not generate single images which will work
+across multiple SOCs.
 
-I discovered the issue while building something on Warrior.  Yeah, I know
-it's been fixed a couple weeks ago in Yocto, but it brings up a bigger
-point of discussion.
-
-Thought some of you might want to know if you haven't come across the issue
-yet.
-
-Cheers!
-
-Chris
-
---000000000000847b3605d82402e4
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><a href=3D"https://github.com/fsnotify/fsnotify/issues/426=
-" target=3D"_blank">https://github.com/fsnotify/fsnotify/issues/426</a><br>=
-<div><br></div><div>I discovered the issue while building something on Warr=
-ior.=C2=A0 Yeah, I know it&#39;s been fixed a couple weeks ago in Yocto, bu=
-t it brings up a bigger point of discussion.=C2=A0</div><div><br></div><div=
->Thought some of you might want to know if you haven&#39;t come across the =
-issue yet.</div><div><br></div><div>Cheers!</div><div><br></div><div>Chris<=
-/div></div>
-
---000000000000847b3605d82402e4--
+> Thanks.
+> Alex
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#56206): https://lists.yoctoproject.org/g/yocto/messag=
+e/56206
+> Mute This Topic: https://lists.yoctoproject.org/mt/89182058/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
+.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
