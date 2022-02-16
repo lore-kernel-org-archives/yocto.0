@@ -1,98 +1,90 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <alexandru.ionita@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B6117C433F5
-	for <webhook@archiver.kernel.org>; Wed, 16 Feb 2022 00:16:07 +0000 (UTC)
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
- [209.85.128.52])
- by mx.groups.io with SMTP id smtpd.web09.5438.1644970566364198094
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E60BC433F5
+	for <webhook@archiver.kernel.org>; Wed, 16 Feb 2022 09:36:48 +0000 (UTC)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com
+ [209.85.219.180])
+ by mx.groups.io with SMTP id smtpd.web10.9902.1645004197612292546
  for <yocto@lists.yoctoproject.org>;
- Tue, 15 Feb 2022 16:16:06 -0800
+ Wed, 16 Feb 2022 01:36:37 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=OfqlPbL8;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.52,
- mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f52.google.com with SMTP id n8so237028wms.3
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=EqVUDqv1;
+ spf=pass (domain: gmail.com, ip: 209.85.219.180,
+ mailfrom: alexandru.ionita@gmail.com)
+Received: by mail-yb1-f180.google.com with SMTP id bt13so4293059ybb.2
         for <yocto@lists.yoctoproject.org>;
- Tue, 15 Feb 2022 16:16:06 -0800 (PST)
+ Wed, 16 Feb 2022 01:36:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=NWQeslSQ7+nAc4GH9c8Qp8LJM45yFchs1zuqXUtNgsg=;
-        b=OfqlPbL8gUuBwTklXsI60g9WYphLjWPV1h9e8PeydZf/kRD7Xcg/dxY8vwjKQONse4
-         sjdMy1jZT32Ch4PehZ/YpUetOOFoTfc3ObOJDiw12jjaGt6vd3fpAyrH0I6acJKnhY4G
-         8a1Kk3hxrBfpLjN+OBaDDlMYfk2m1GxxoRmgw=
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=p03xIT15bo9X8ZdSXK3ccm/QaaHSLqzYjG489Y2njb4=;
+        b=EqVUDqv1161gBCS3wHC13qG+xpDYRtvOvhtppDZ2f1B1vq8VcUIJ0uuDUCmH2sgZhd
+         hIWaBQFxj0ZQOTrN3AoGeF6Eji6LDD/UeZjW02JdvFUqwvwGVZlJaUXQIrwrHsknri5j
+         v4y3AQyOY4yHp1C8OdgjA7w5UGyNv5c9uxHBhf2udfrzikfd8Pz+ofys3M6mAgw+0FaG
+         /xYlrA+jFxwXK+OvqXD8/ztkNMHNc3VN/t8goi5ersGy7DG3HGZ3Q//R4mg2nCdRQFMt
+         LXGS+KiIPKrvAd+ujiMbT4Q8Bc/S5fuotZmv4/taRkwZyVfxZIueyzfqDbs/TAoWodrJ
+         AK7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=NWQeslSQ7+nAc4GH9c8Qp8LJM45yFchs1zuqXUtNgsg=;
-        b=XbEfupWrWjuIEhwEBdAkaZY06HI31Ra8BOUim6dUg607M3k+lgE/9YClc2auGXFDNz
-         harJCJaw92qZFF2w2HFcAUnE3LRUL+oKr/pC0Hvhy5EQUI8b1PF+ZmHSu2bnQ472AS1b
-         SdAbMFBqVAL7SxSiESF2M7aue+i7m/eiz44F0OAtOJzzyqXn13and6EGCpwSYe5wLYfM
-         x+ORzNzewTzzzWi8ZrcNkl+7E7wYlwUHlv25CtdGdh1AmCXDbejVjUW9IpTg0tNETXm8
-         hz/mUxC/crqP0UF1VK26bbhFGrkTDqQaiop0hv2l/AwEapNM+/PZa9kxH0Vient+p7r8
-         7K7w==
-X-Gm-Message-State: AOAM532omQvZq0oyDb91m+4KzC8azp7fr6DNzvvNAyy9BLv/sU3QmIAg
-	XUdvFW3/rEscPEIR4dpNhyCX9Q==
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=p03xIT15bo9X8ZdSXK3ccm/QaaHSLqzYjG489Y2njb4=;
+        b=rU/XmSdK8nMPn5r+goLaGGo/AYabacXyexUSSRO4v2Lc23GSR2UlQFvwBQocf5+UkZ
+         aSzKuXqHkRFwthbM6tnyVqHKtep8qo54kHhNwz8UXkhSOWPt5dLIVjWztvQ646Dn2X0y
+         PcOy8HOBusBRNh9dJLm4alIJAxMX9qCB1lzyJprxv5uL5N7/bL+JB4brb+8k3cWWu79U
+         w/Nr+1YPeupCmO/nzgpGl5ajEMxpmfjM5FJVrzSpnDlpj6ENJNp1P3upRKQML5Einrdh
+         JZBnNunC5HgYzprQot/x58eXuqRf8OnEQyyXuKceuWg0hzxZJT2a7ZlTIKrbeuIf2o/2
+         6EAQ==
+X-Gm-Message-State: AOAM531ehjv9paauBqapbV2b1VratUmladND1F3NY9Hi1nL51ECb5VEB
+	mT6QThqhRvwatcL8KeC8ZJfEsFCVQ8sRziNLq/IoYx0VWwo=
 X-Google-Smtp-Source: 
- ABdhPJw/Ty9VMCL09YqfcJRIHqYYBFmaMERgKqkb66FJ+0k4cZZCQFOzl1S3GRPyTPvzOoDdHxaFAg==
-X-Received: by 2002:a05:600c:230d:b0:37d:5882:ec9b with SMTP id
- 13-20020a05600c230d00b0037d5882ec9bmr5032769wmo.162.1644970564772;
-        Tue, 15 Feb 2022 16:16:04 -0800 (PST)
-Received: from ?IPv6:2001:8b0:aba:5f3c:a680:61af:4a53:1ad3?
- ([2001:8b0:aba:5f3c:a680:61af:4a53:1ad3])
-        by smtp.gmail.com with ESMTPSA id
- o10sm24519431wrc.98.2022.02.15.16.16.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Feb 2022 16:16:04 -0800 (PST)
-Message-ID: 
- <59200a2598bcc9b75e291dc2ec8ad5495aab062f.camel@linuxfoundation.org>
-Subject: Re: [OE-core] [qa-build-notification] QA notification for completed
- autobuilder build (yocto-3.1.14.rc1)
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "Teoh, Jay Shen" <jay.shen.teoh@intel.com>,
-	"qa-build-notification@lists.yoctoproject.org"
-	 <qa-build-notification@lists.yoctoproject.org>,
-	"<yocto@lists.yoctoproject.org>"
-	 <yocto@lists.yoctoproject.org>, OE-core
-	 <openembedded-core@lists.openembedded.org>
-Cc: Lee Chee Yang <chee.yang.lee@intel.com>
-Date: Wed, 16 Feb 2022 00:16:02 +0000
-In-Reply-To: 
- <DM5PR1101MB2348F85826AE094369BE968BBB349@DM5PR1101MB2348.namprd11.prod.outlook.com>
-References: 
-	<fc898479cfa03b2df0987d9d31abad1800df1e8c.camel@linuxfoundation.org>
-	 <16D2510D596B0944.17987@lists.yoctoproject.org>
-	 <DM5PR1101MB2348F85826AE094369BE968BBB349@DM5PR1101MB2348.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4-1ubuntu2 
+ ABdhPJyuU/+muo2LNw3dvfxIPPCIBtHM6H/ssPnOxOWO0AjZaGM0gTMRI5FprSWqB6Kk4nT6YLNpBzvW8zkbJOCxwi0=
+X-Received: by 2002:a05:6902:91b:b0:61d:9406:48c0 with SMTP id
+ bu27-20020a056902091b00b0061d940648c0mr1435916ybb.122.1645004196322; Wed, 16
+ Feb 2022 01:36:36 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Alexandru Ionita <alexandru.ionita@gmail.com>
+Date: Wed, 16 Feb 2022 10:36:10 +0100
+Message-ID: 
+ <CAOar+7QdRygTkRkyizGa8AwZvW4+0ruTGpSk0aj3Eg6qKVN1Aw@mail.gmail.com>
+Subject: same build for multiple machine configurations
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000c6a0a205d81f62e9"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 16 Feb 2022 00:16:07 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56205
+ <yocto@lists.yoctoproject.org>; Wed, 16 Feb 2022 09:36:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56206
 
-On Tue, 2022-02-15 at 12:46 +0000, Teoh, Jay Shen wrote:
-> Hi All,
-> 
-> This is the full report for yocto-3.1.14.rc1:  
-> https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?h=intel-yocto-testresults
-> 
-> ======= Summary ========
-> No high milestone defects.
-> 
-> No new issue found.
+--000000000000c6a0a205d81f62e9
+Content-Type: text/plain; charset="UTF-8"
 
-Thanks for testing! The TSC did discuss this today and agreed it should be good
-to release.
+Hello all,
 
-Cheers,
+I'm not sure if this is even possible at all. I'm using the meta-raspberry
+layer to build raspberry images. Whilst I'm able to build images by
+strictly selecting a raspberry pi machine configuration
+(MACHINE=raspberrypi3), I would like to know if it's possible to build an
+image that is compatible with multiple raspberry pi machine configurations.
+For instance an image that would work for both raspberrypi3 and
+raspberrypi4.
 
-Richard
+Thanks.
+Alex
 
+--000000000000c6a0a205d81f62e9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><br></div><div>Hello all,</div><div><br></div><div>I&=
+#39;m not sure if this is even possible at all. I&#39;m using the meta-rasp=
+berry layer to build raspberry images. Whilst I&#39;m able to build images =
+by strictly selecting a raspberry pi machine configuration (MACHINE=3Draspb=
+errypi3), I would like to know if it&#39;s possible to build an image that =
+is compatible with multiple raspberry pi machine configurations. For instan=
+ce an image that would work for both raspberrypi3 and raspberrypi4.</div><d=
+iv><br></div><div>Thanks.</div><div>Alex<br></div></div>
+
+--000000000000c6a0a205d81f62e9--
 
