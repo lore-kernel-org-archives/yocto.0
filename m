@@ -1,151 +1,98 @@
-Return-Path: <schnitzeltony@gmail.com>
+Return-Path: <patrick@stwcx.xyz>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3B367C433EF
-	for <webhook@archiver.kernel.org>; Wed, 16 Feb 2022 17:46:14 +0000 (UTC)
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com
- [209.85.215.179])
- by mx.groups.io with SMTP id smtpd.web12.2343.1645033572925496905
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A4B4AC433F5
+	for <webhook@archiver.kernel.org>; Wed, 16 Feb 2022 21:46:12 +0000 (UTC)
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com
+ [64.147.123.21])
+ by mx.groups.io with SMTP id smtpd.web12.1773.1645047971030939862
  for <yocto@lists.yoctoproject.org>;
- Wed, 16 Feb 2022 09:46:13 -0800
+ Wed, 16 Feb 2022 13:46:11 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=mojareaH;
- spf=pass (domain: gmail.com, ip: 209.85.215.179,
- mailfrom: schnitzeltony@gmail.com)
-Received: by mail-pg1-f179.google.com with SMTP id 75so2776855pgb.4
-        for <yocto@lists.yoctoproject.org>;
- Wed, 16 Feb 2022 09:46:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=qrkuzmPMapGUVP+lJlSX6aycDQwj+SFOUMtaKWZV7nQ=;
-        b=mojareaH/VjwpXE/565wMeb1/+tQs5p49ahAAmDzjCbfQa98CIpkCQUohFGleyi2+p
-         ZScVICmX8JI6HnMBnj0fRRswq9LruNqbnyH5aS8OL7GAEr6iIKYt8HEAA6s50UuasDiN
-         XdijsdiiYEkLgXT0MWyJq7GoG34UZNYnX00nfPDxAX6XB1N81+MdZEFHRG3GyAZgSJ/m
-         qeBfF45vzkkV/zltNaq3gnleN55EGLAVnQklV03DMdT8l6YfjcHd8Pbqk2g3Rwa0XrLP
-         UHaA1vvxCfFlxKW9dm1gJVjBUiy5flp5brtF2yBqiGyY+6FkbGMX6EEVgIQ0vo8/KHND
-         KL5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=qrkuzmPMapGUVP+lJlSX6aycDQwj+SFOUMtaKWZV7nQ=;
-        b=dkHj3+JMSCwAh69nkYiQaTmwCPrjZlc4aQEzklq1TFvcIhFvzYypHxtS0Ppp7hDxy8
-         kxeTRIbRU7R1Q0+XfKiQXjKySH3dqOphwiRzq4GrKcaE8p6ola1oNCMGIxUY3aP6K9yV
-         9CsQGP16jxpwpSdKhngshVM0fpso50KR8tm3gWLEHAWlQHJOznAgZSeGsyEySPoE/EiG
-         cOULZ3lCJkNe1BQ18/QmoIiRc44wEpY7VimcuoycihiHBYr4f4Dk2amIvn7znfsAc3Ss
-         AE2WQ/HXCpumIc/L4G0vhgf7J4cbXOY0ijqvMeBADkkdSOdyldsZYu0KmxjKvNmRucrm
-         Pl5Q==
-X-Gm-Message-State: AOAM53004olUuf1wxPqM5RgZx+ZW2+DV5CClizNKCAuVmyqcOvM21qlV
-	NfRPWJuGKdmQ/nSbBP9Tb2GctFEPAPyz0M46tFc=
-X-Google-Smtp-Source: 
- ABdhPJxn8KbU4kWhYv9Weff2wrqwYNnBkaA5b6Gfx9PqQj8cQUwTE4iquqKygOeTtbNwZwuJCTX1WeDcZRGFq7yvngI=
-X-Received: by 2002:a05:6a00:893:b0:4de:8a29:c12a with SMTP id
- q19-20020a056a00089300b004de8a29c12amr80126pfj.2.1645033572212; Wed, 16 Feb
- 2022 09:46:12 -0800 (PST)
+ dkim=pass header.i=@stwcx.xyz header.s=fm1 header.b=H/b9iFvc;
+ spf=pass (domain: stwcx.xyz, ip: 64.147.123.21, mailfrom: patrick@stwcx.xyz)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailout.west.internal (Postfix) with ESMTP id 11BAE3201DFB;
+	Wed, 16 Feb 2022 16:46:09 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Wed, 16 Feb 2022 16:46:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=cc
+	:cc:content-transfer-encoding:date:date:from:from:in-reply-to
+	:message-id:mime-version:reply-to:sender:subject:subject:to:to;
+	 s=fm1; bh=K6j3+w5jzQpZhu55YPwKBRBqXbplfsFGugLKzMIFWPw=; b=H/b9i
+	FvcmVqy7EDIfeMGgCDZH6MPJsyDgt9SlmJrloyfBCowQIzr0Gkty78Sm2ElHbK42
+	3001Rfq5PV/AF24GzVT8nf8uMzKscBMFG2JgFMWDPAEs3ZdVZOHgtBq431qZivru
+	BDeocHpIBgbTMOcuw6V+tQMW1JROxkKeY/7bodlo53E6B4k6c1UrN25erhvBL0p7
+	jCQ+6G6DKGG7PJC+ejRlp10ipkzSca2Q6w+ZZs+haP3o7Z2RAKC3/tqNUu6Fs4/z
+	q2IvuoEMjTrsS1drxTlZHYieUSciBVohTGeX1HpZkpaoKskV1MtQoAlTQxvvQfAP
+	Hh+lpczvhVtsRr91Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+	:from:from:in-reply-to:message-id:mime-version:reply-to:sender
+	:subject:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender
+	:x-me-sender:x-sasl-enc; s=fm2; bh=K6j3+w5jzQpZhu55YPwKBRBqXbplf
+	sFGugLKzMIFWPw=; b=S4uZNJArBYl6oiBVZ2FIBBvYEe+0euKL7bDDTCDqDfHGX
+	BBdsxsq/pzlVG26BQwtGDOqpjv1fnDJusdCsIJpPnrSas4/IH3LM7k3VVyzRIlet
+	Pv1Rw2lMOTGqNZSoIlVwuXw5XB/en6Xu/Eg8W31VSTBGy5H+cJSVZH2Az6DKwNYD
+	4BnlazUHQa7NSk4Q6TSJ+wcTNeJe0e1K73pJss9Fq9gATW0ue9QLegxtEpf+MENR
+	BXYvNAFKq9HnNdXkGF6zp/jjutOmpmcB4bhKg/y2BkkXAsDkqL0pvrobaaKc66Z+
+	kcZS6y7mmAbcs6v6JvQQKO7ATJB3LZO9UUklo3WBA==
+X-ME-Sender: <xms:oXANYrPr2wZOS1tRw6JfhOB5JFZ7xGCDCNODa_iP6o6eTFJ40-xvDQ>
+    <xme:oXANYl9JYExkewNbrGU0_0H5VUX2oDQ9j0BS9YDjH6qTF_mmjG4n11yov9UvDMwt_
+    m361XSOU0uIUoQqLEs>
+X-ME-Received: 
+ <xmr:oXANYqTv3gMUR8xOzDH6S0Y2BsTVgMsx8Lm3BpA9PE8u_OazIYo9D1s2PtmMsLDjNw4ZesPPUwH5N2IOSZ-mLkm8Y7gFCtOa>
+X-ME-Proxy-Cause: 
+ gggruggvucftvghtrhhoucdtuddrgedvvddrjeeigdduheduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucgfrhhlucfvnfffucdljedtmdenucfjughrpefhvf
+    fufffkofgggfestdekredtredttdenucfhrhhomheprfgrthhrihgtkhcuhghilhhlihgr
+    mhhsuceophgrthhrihgtkhesshhtfigtgidrgiihiieqnecuggftrfgrthhtvghrnheptd
+    eludegheejteelheduudegkeehleetfeekiedtfefgleeifeelhefgveejhfffnecuvehl
+    uhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepphgrthhrihgtkh
+    esshhtfigtgidrgiihii
+X-ME-Proxy: <xmx:oXANYvvMTFmP692Ts8TbXMa5V9vyWMPKguR6BkSROG-8EBE8BmKFsQ>
+    <xmx:oXANYjeNhOML-SfbU4IwG5lJ-y8wn-x252Km4h3SR1MYkENO6h3nRg>
+    <xmx:oXANYr0m6ldBDKyJOZa3u3sR7ZNI2YGdz6GfjuhjkRM9H-fbDyxXKQ>
+    <xmx:oXANYjndlJ3JQWBmc1AwexRu_vHJSHGMLyKZlm_aRLdKvs4ey_HjSQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 16 Feb 2022 16:46:09 -0500 (EST)
+From: Patrick Williams <patrick@stwcx.xyz>
+To: yocto@lists.yoctoproject.org
+Cc: Patrick Williams <patrick@stwcx.xyz>
+Subject: [meta-security][PATCH] tpm2-pkcs11: fix RDEPENDS variable
+Date: Wed, 16 Feb 2022 15:46:04 -0600
+Message-Id: <20220216214604.2993433-1-patrick@stwcx.xyz>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <xiVX.1644583820851020529.t8hh@lists.yoctoproject.org>
-In-Reply-To: <xiVX.1644583820851020529.t8hh@lists.yoctoproject.org>
-From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@gmail.com>
-Date: Wed, 16 Feb 2022 18:46:00 +0100
-Message-ID: 
- <CALbNGRSA9HoTV7yaWVs6ypg2Kbzyja2r0yU_abrNGaM-R1K+HQ@mail.gmail.com>
-Subject: Re: [yocto] freecell-solver fetch issue
-To: sateesh m <sateesh0457@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 16 Feb 2022 17:46:14 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56211
+ <yocto@lists.yoctoproject.org>; Wed, 16 Feb 2022 21:46:12 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56212
 
-Hi,
+The RDEPENDS variable was misspelled and as a result was never fixed up
+with the `_${PN}` to `:${PN}` transition.  Fix both aspects.
 
-Isn't that [1]? I answered and got no response. Why cross-post?
+Signed-off-by: Patrick Williams <patrick@stwcx.xyz>
+---
+ meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.7.0.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-[1] https://github.com/schnitzeltony/meta-qt5-extra/issues/88
+diff --git a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.7.0.bb b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.7.0.bb
+index d70dbfa..177c3c3 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.7.0.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.7.0.bb
+@@ -52,5 +52,5 @@ FILES:${PN} += "\
+     ${datadir}/p11-kit/* \
+     "
+ 
+-RDEPNDS_${PN} = "tpm2-tools"
++RDEPENDS:${PN} = "tpm2-tools"
+ RDEPENDS:${PN}-tools += "${PYTHON_PN}-setuptools ${PYTHON_PN}-pyyaml ${PYTHON_PN}-cryptography ${PYTHON_PN}-pyasn1-modules"
+-- 
+2.34.1
 
-Cheers
-
-Andreas
-
-On Fri, Feb 11, 2022 at 1:50 PM sateesh m <sateesh0457@gmail.com> wrote:
->
-> Hi Team,
->
->               I am trying to install the Freecell-solver package. I am fa=
-cing a problem fetcher issue. Can anybody know how to fix this issue? pleas=
-e guide me.
->
-> WARNING: /home/integration-team/kde2/meta-qt5-extra/recipes-kde/packagegr=
-oups/kde-games.bb:do_build is tainted from a forced run                    =
-          | ETA:  0:00:00
-> Initialising tasks: 100% |###############################################=
-###########################################################################=
-##########| Time: 0:00:01
-> Sstate summary: Wanted 12 Found 0 Missed 12 Current 1387 (0% match, 99% c=
-omplete)
-> NOTE: Executing Tasks
-> WARNING: freecell-solver-5.24.0-r0 do_fetch: Failed to fetch URL http://f=
-c-solve.shlomifish.org/downloads/fc-solve/freecell-solver-5.24.0.tar.xz, at=
-tempting MIRRORS if available
-> ERROR: freecell-solver-5.24.0-r0 do_fetch: Fetcher failure: Fetch command=
- export PSEUDO_DISABLED=3D1; export DBUS_SESSION_BUS_ADDRESS=3D"unix:path=
-=3D/run/user/1001/bus"; export PATH=3D"/home/integration-team/kde2/build/tm=
-p-glibc/work/riscv64-oe-linux/freecell-solver/5.24.0-r0/recipe-sysroot-nati=
-ve/usr/bin/perl-native:/home/integration-team/kde2/build/tmp-glibc/work/ris=
-cv64-oe-linux/freecell-solver/5.24.0-r0/recipe-sysroot-native/usr/bin/pytho=
-n3-native:/home/integration-team/kde2/openembedded-core/scripts:/home/integ=
-ration-team/kde2/build/tmp-glibc/work/riscv64-oe-linux/freecell-solver/5.24=
-.0-r0/recipe-sysroot-native/usr/bin/riscv64-oe-linux:/home/integration-team=
-/kde2/build/tmp-glibc/work/riscv64-oe-linux/freecell-solver/5.24.0-r0/recip=
-e-sysroot/usr/bin/crossscripts:/home/integration-team/kde2/build/tmp-glibc/=
-work/riscv64-oe-linux/freecell-solver/5.24.0-r0/recipe-sysroot-native/usr/s=
-bin:/home/integration-team/kde2/build/tmp-glibc/work/riscv64-oe-linux/freec=
-ell-solver/5.24.0-r0/recipe-sysroot-native/usr/bin:/home/integration-team/k=
-de2/exaleap-build/tmp-glibc/work/riscv64-oe-linux/freecell-solver/5.24.0-r0=
-/recipe-sysroot-native/sbin:/home/integration-team/kde2/build/tmp-glibc/wor=
-k/riscv64-oe-linux/freecell-solver/5.24.0-r0/recipe-sysroot-native/bin:/hom=
-e/integration-team/kde2/bitbake/bin:/home/integration-team/kde2/build/tmp-g=
-libc/hosttools"; export HOME=3D"/home/integration-team"; /usr/bin/env wget =
--t 2 -T 30 --passive-ftp --no-check-certificate -P /home/integration-team/k=
-de2/build/downloads 'http://fc-solve.shlomifish.org/downloads/fc-solve/free=
-cell-solver-5.24.0.tar.xz' --progress=3Ddot -v failed with exit code 8, no =
-output
-> ERROR: freecell-solver-5.24.0-r0 do_fetch: Fetcher failure for URL: 'http=
-://fc-solve.shlomifish.org/downloads/fc-solve/freecell-solver-5.24.0.tar.xz=
-'. Unable to fetch URL from any source.
-> ERROR: Logfile of failure stored in: /home/integration-team/kde2/build/tm=
-p-glibc/work/riscv64-oe-linux/freecell-solver/5.24.0-r0/temp/log.do_fetch.2=
-2394
-> ERROR: Task (/home/integration-team/kde2/meta-qt5-extra/recipes-support/s=
-hlomif/freecell-solver.bb:do_fetch) failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 4421 tasks of which 4420 didn't need to be=
- rerun and 1 failed.
->
-> Summary: 1 task failed:
->   /home/integration-team/kde2/meta-qt5-extra/recipes-support/shlomif/free=
-cell-solver.bb:do_fetch
-> Summary: There were 2 WARNING messages shown.
-> Summary: There were 2 ERROR messages shown, returning a non-zero exit cod=
-e.
->
->
-> --
-> Regards,
-> Sateesh
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#56157): https://lists.yoctoproject.org/g/yocto/messag=
-e/56157
-> Mute This Topic: https://lists.yoctoproject.org/mt/89070237/3617609
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [schnitzeltony@=
-gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
 
