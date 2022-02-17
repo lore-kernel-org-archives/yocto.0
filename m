@@ -1,628 +1,229 @@
-Return-Path: <chee.yang.lee@intel.com>
+Return-Path: <jay.shen.teoh@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7E5E0C433EF
-	for <webhook@archiver.kernel.org>; Thu, 17 Feb 2022 14:13:07 +0000 (UTC)
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by mx.groups.io with SMTP id smtpd.web10.243.1645107185936805377
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 62034C433EF
+	for <webhook@archiver.kernel.org>; Thu, 17 Feb 2022 15:35:46 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by mx.groups.io with SMTP id smtpd.web11.1289.1645112145211168922
  for <yocto@lists.yoctoproject.org>;
- Thu, 17 Feb 2022 06:13:06 -0800
+ Thu, 17 Feb 2022 07:35:46 -0800
 Authentication-Results: mx.groups.io;
  dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel
- header.b=jE3RCkwI;
- spf=pass (domain: intel.com, ip: 134.134.136.126,
- mailfrom: chee.yang.lee@intel.com)
+ header.b=ns7egbuM;
+ spf=pass (domain: intel.com, ip: 134.134.136.24,
+ mailfrom: jay.shen.teoh@intel.com)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1645107186; x=1676643186;
-  h=from:to:subject:date:message-id:mime-version;
-  bh=QxyX9SfpihnrEoCu2FM+y5omuZRPloBkBM2ssF4ZPMU=;
-  b=jE3RCkwINTidQFPWKNbFAx3XVphzXeVrpvkoQdL2PAmOiydIsuwVaM4I
-   5dqg+XZTdJzeS7bmrU8GE9t08kiHZWKgu1oDSe7rclQj4gg4cpW0PjRKc
-   j//xAuYnc9fyVp2ynM5KWDGNjU7l9pzs05qt24Rp0/Gtb+0FFg69Ollhi
-   y3G1KU/Z/YRy9BbS4ZS6NVfmIui24Fg3wpG2ARnhGBzaEGH935xkZNTEB
-   DN5C3XNTOFK7izp0aWCdAkvk+Fho/7aRf/MU61YGKPBsAMll84ng0HdXn
-   L2zlU8ooM+s5nK5b7KkRipdRzVPD32slhGWEyauroB0ovj3ePVJi/vMu5
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="234410697"
+  t=1645112145; x=1676648145;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   content-transfer-encoding:mime-version;
+  bh=DIVx7lT3ZoZpgaU8G+3W29jHdaN/efgz81N5OLMjdBg=;
+  b=ns7egbuMPbZ8SSggRjlGwV/OIT/bAP3r5FUfu75F0FttN8kr/VHB0eym
+   aOy7tDLjyd+YFRWfnvqvtOAW1JHD2ba7UhZzwFzWx3v9h5wGEt4h+pSgv
+   ujxhLao9jhvytHwYIibmHZBeUlVr6i4uV/ksd8tNNtq2ldSZQUaklZIXM
+   Y3Y2emZrYZRQ50HV8wFOI7E/nPw28sCliiAi+IQUkBs6w4C/puJRWUctC
+   cIAZf6ojww9M5Lu1jc67VhUDLQkZSsPbtCMA3HSKA4NHV9+tEfmSF9bpK
+   Tbfn+QaYUEO/I/WUhkGltO/9TmB5IssIskvP5fG1JjAFmGG4YFDWnyrnw
+   w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="250634747"
 X-IronPort-AV: E=Sophos;i="5.88,376,1635231600";
-   d="scan'208,217";a="234410697"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2022 06:13:05 -0800
+   d="scan'208";a="250634747"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2022 07:35:44 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.88,376,1635231600";
-   d="scan'208,217";a="777249835"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
-  by fmsmga005.fm.intel.com with ESMTP; 17 Feb 2022 06:13:04 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
+   d="scan'208";a="637187374"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+  by orsmga004.jf.intel.com with ESMTP; 17 Feb 2022 07:35:44 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 17 Feb 2022 06:13:04 -0800
-Received: from fmsmsx604.amr.corp.intel.com (10.18.126.84) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2308.20; Thu, 17 Feb 2022 07:35:43 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 17 Feb 2022 06:13:03 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20 via Frontend Transport; Thu, 17 Feb 2022 06:13:03 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2308.20 via Frontend Transport; Thu, 17 Feb 2022 07:35:43 -0800
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.42) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.20; Thu, 17 Feb 2022 06:13:03 -0800
+ 15.1.2308.20; Thu, 17 Feb 2022 07:35:42 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nGTepNcx49apzK+fzTxXTT175o9/L/xh/aFWmkrFGwsV3NPtcc+8r5+DGV1KKS9KwIlEdVWglsZrCE5wXehjmhYhouq7RgOE9NGV6jid64Zl4sxQ3F+CY6WsfBC6nGUsjcpwtziUIATQtGDylzYydyCrkcE0o07gbAnucXRF+PH4TZHJiUNZQ6TbCDKOAPmy3mP/UEVx14dqSN5dVBeMI2waa59q3EN3hXDQDbdF0sQcC4j7RzGRuRsWgvoRm/5/y9euCiG6Ud/2ZMSWStb5X47XyAQuSjnyjpd7g4H7OEuhNfcHZi36WvHFT4jRDEL2KHr+gCUUEFAEx33wf7FNJA==
+ b=mYIhdK06Vp1RXq5tbwggyhqw8ewHQwQcPee1/MR13LJQCTGCUV1/8fsE28ahSV5QOOjfYHQ3rxJIXoHN7UjYJmA51wNsEG2pHQuF5v4b3Tj7G3bBHzCuXVnhI/pMiBCVWqA+mT6mf8TLhujfZ9ggK/wuUw+uaMPSPayptMfesGqPndXu0rBh/1R/63SIz7iKvfS2ZXIY880eDAvgcS122mRTfLtonh4ttS1jI7m48b/zfLv6M0+u9cY90cPFgjaffX+RoJt5ogPq4h4H7aOVAE0lgcRyspNsCMBb4kHgA7wx4p1Iw1ZXD9Vcas7S3lHISEh3vAfCLvg7gfhG42aWQg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FTpH9VtdHHqMlh6uSQLzFNO6NWgsL6Cyd0faZaIVou0=;
- b=Zo71WDec0zJX7BOvLqyqp7nRZ3sX/MIyNlJ4SagTXRI1qtNK+JbtFnpCOKwvvEnJyWV60giGFlaDWjW8uPK94wRS3tZnuz43oREgP2+HOoZ9ZRmqZwuI1IKI0Nb3tyqNQZHjFxPP7BoI+Rk37pbeVaftuOg9Vf37sPOF4AA4XAVglsDmW+/WeIGugSkeFnmekcyIzmyEUlaQ0kKcvqGwB6pAiOPK+GSDB8diIrps8uyYlR4wgDbaQaJdQRwnRwsTafZ/G8+a+NTaK408cQTt+rlufO4g+Mr6c5UGkStDi/3b1I9P8tn6/ZUMxLd+R5GtjTIbIBV5rioU/cjh2Hsxaw==
+ bh=DIVx7lT3ZoZpgaU8G+3W29jHdaN/efgz81N5OLMjdBg=;
+ b=la83idmU/wddJW6xJj+riP6oa19m63YjUfrOj5Rivh3QLfkk/djpU4LDckRI9jAXgdabJoqzLOHs93moQylostuirVPBLNN/KBr/BXIF86IoYXp8mk2gry7e1k443M1aXsjP4OUpyYtWgpyUtKvZrjorec+Ik6BqYl2+oKdO/pDI9NJmpI10RfnyIp5KRkSXEZAGH2xY182Ev4XwOZFPhtoapRhLlZ8WelvJYaO/4B374HrYzIZbsQZJXfGjepnsmCIRrOHoELHBMIzbLD1h0c3lRUr5BohJxS59H++W6er+QyfTUJxT4q/Ka0c22MmfzA2jz+WonUUP1DXRygpLdg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DM5PR1101MB2361.namprd11.prod.outlook.com (2603:10b6:3:a6::21)
- by BN6PR11MB1235.namprd11.prod.outlook.com (2603:10b6:404:3c::15) with
+Received: from DM5PR1101MB2348.namprd11.prod.outlook.com (2603:10b6:3:a8::16)
+ by SJ0PR11MB5582.namprd11.prod.outlook.com (2603:10b6:a03:3aa::9) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.14; Thu, 17 Feb
- 2022 14:12:56 +0000
-Received: from DM5PR1101MB2361.namprd11.prod.outlook.com
- ([fe80::9013:6908:23db:7a01]) by DM5PR1101MB2361.namprd11.prod.outlook.com
- ([fe80::9013:6908:23db:7a01%12]) with mapi id 15.20.4975.019; Thu, 17 Feb
- 2022 14:12:56 +0000
-From: "Lee, Chee Yang" <chee.yang.lee@intel.com>
-To: "yocto-announce@lists.yoctoproject.org"
-	<yocto-announce@lists.yoctoproject.org>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
-Subject: Yocto Project 3.1.14 (dunfell-23.0.14) is Released
-Thread-Topic: Yocto Project 3.1.14 (dunfell-23.0.14) is Released
-Thread-Index: AdgkAa08dyAYkP4pQ5SmXZeWJCvcqA==
-Date: Thu, 17 Feb 2022 14:12:56 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.16; Thu, 17 Feb
+ 2022 15:35:40 +0000
+Received: from DM5PR1101MB2348.namprd11.prod.outlook.com
+ ([fe80::3caa:2b5d:2d52:8643]) by DM5PR1101MB2348.namprd11.prod.outlook.com
+ ([fe80::3caa:2b5d:2d52:8643%4]) with mapi id 15.20.4975.019; Thu, 17 Feb 2022
+ 15:35:40 +0000
+From: "Teoh, Jay Shen" <jay.shen.teoh@intel.com>
+To: "qa-build-notification@lists.yoctoproject.org"
+	<qa-build-notification@lists.yoctoproject.org>,
+	"<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>, OE-core
+	<openembedded-core@lists.openembedded.org>
+Subject: RE: [qa-build-notification] QA notification for completed autobuilder
+ build (yocto-3.4.2.rc2)
+Thread-Topic: [qa-build-notification] QA notification for completed
+ autobuilder build (yocto-3.4.2.rc2)
+Thread-Index: AQHYIdIxgVJb038rrUysslIEu+1rWayT8gFggAPyJZA=
+Date: Thu, 17 Feb 2022 15:35:39 +0000
 Message-ID: 
- <DM5PR1101MB2361C2C2D6306E6244E91EFBB9369@DM5PR1101MB2361.namprd11.prod.outlook.com>
-Accept-Language: en-SG, en-US
+ <DM5PR1101MB23487AB571680D9ECE99D87CBB369@DM5PR1101MB2348.namprd11.prod.outlook.com>
+References: 
+ <36320b3e89d2e21fb911f956d8c2cd21dd2c62a5.camel@linuxfoundation.org>
+ <16D3D781EE482FA5.20212@lists.yoctoproject.org>
+In-Reply-To: <16D3D781EE482FA5.20212@lists.yoctoproject.org>
+Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
+dlp-version: 11.6.200.16
 dlp-product: dlpe-windows
 dlp-reaction: no-action
-dlp-version: 11.6.200.16
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 3bfdd0c8-0de1-4f25-9c9e-08d9f21f9865
-x-ms-traffictypediagnostic: BN6PR11MB1235:EE_
+x-ms-office365-filtering-correlation-id: 294f7324-5042-46bb-0f2c-08d9f22b2704
+x-ms-traffictypediagnostic: SJ0PR11MB5582:EE_
 x-microsoft-antispam-prvs: 
- <BN6PR11MB123556B411CC766AFAD2CF4CB9369@BN6PR11MB1235.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
+ <SJ0PR11MB55826406486BB4C1DC0E67C0BB369@SJ0PR11MB5582.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info: 
- bY3eroS5QhHFOiel0N+fn6ayQAYH4m4KlPqrTk7YipE7laxsd9Gj2tkg5A14pdLVuIhhyvQCis+B5RFCTPTH/VuMjSv104O1dQwVR70LbGEYJMSSbWdhFetJfczUpukZ8HFgI/QekrU3aDomSR8201HYxpb8Vh7Z0U8UQpHN4HSu3hOPRkRyphwZSmAZl36yikltwrwhKBWHy6tRLhozpvPekcd6x6FLgw2OtFip1i3eg08GYn+9FUeITE6Z5VpDZ9G0Febd1LU0zX/a848MeA7+9c9l25I4sKlNwO61RzowGCRtWhQfEwyPK4DEyRM/tkmqSqKcu6LjsJ961rsavTIDiRsrvSYI2oYxJ/jdveDZFqV2whqav8WdVnuqyZvoocVbdGX8S55xSEDsGnO/qhyg3DkRFM/cIUJn5WgO1UXsxGNt/MOnPmrIJKcV/3Kx4dZlnYR3mTbVIRaAtEkorvWfWApNDldPwSN9aEeNSQwNac2sq6fux5DgqtWv071Q3EXuSGqKUpAyzMbpL+zzzH6JdLFaW0l17IkOPy27Mdk1UJ0FYS1jiho013eUCPqpOhNlhPhgT980wXQ8cWDsKYT6N/iDlIvQ4fuahg42W91lJ94nV+13LEG/J2R6DSuVHuGy6yeUp4Ls88TRTJZnDhFyudqpK+7ZsdnnHWlb98MT9hHAnu19fIKP6LMc5kaHpVF5UnsQbycNm9zgsuBfU/haczrvZx+4KIsgAIgSwNOEkFZ6BDBWw/GEHyzyVWXPkmNM/hzIHt3xwvGUKwhlb9g2BZVooc3Mm6oeiA3bQLIU7oXLzcraPMD3OzpS4oYc+7UZjI6hKzXlr1mdiTgP7g==
+ doywi2PGp5QeLl/2ZJIXXjDT5Pq4qxqceUdQU7VriPwUjsX8cOMi6bdwrHjV5GAEK+er+qS2p+RsijyFfV8O5z/R93GJjmI5CytrcJ7nltRwm8fZM+/JE7wJfk+tUDLFAJPzMoDbVzs4W+jArjcR/s9sF+2737GUf0H4PLTBxbTC9VZdKQ9UNurUPRDqzeNWpGaoET6cZ7Z0KOKCfJMwDacQGmEjIfHhPy28J/rYLussKu8Hr7LyH6u6vwMtWG2QlikiQuqpbE6adVRWOB3+wkZgURus2AU0BkpxnswECdTrF6KrubFx4PMztAgztD+JCQ43BBf16A3eZbtBZ0tS6dkD3DI/mtftlVrNAZzd9cdvG1th+Ykhw3MZSGT1i53hTTLGjmHLVl0sz8JFHXUN5cgl/g1F8xTjo2yq7IZPv6xEr9x31yJUgajnxIJoLy5NZSRcLGXZZuQgOHiisJxmMYMhZc4J6yLzhT6i/HEY1c9/aI2/O988vBi2STTPsWnE/axiKewZ7ZAwOxH5Sn2lzNyqQXTA6c3ql2H9Ljxh2hmDp2RwVAKT07W4SuQ7pxP79v0Ri52RpAs4ulzBsgmhhEmoyrknX67DFISQJ2PXsQPV1xi8I8Btm6XdlJVW87jGvmz44nrYE/cwcec759Je7SMXEdhIHopf/R5Lh4O6nvpk8A2EXPNnGQsCS34nY+8vnIXfVr5lrBghuwHw73qX3tZFVZl4KY23Lx026QhdFYOXm30C15jkMitnsirAVh128/xXTL2GDORn5LcKtTHLVIITjC1fLEsxDjKb+/FtR0+2tREGpp7BlXP3R7JbPv5lq2zYHCrbOXfEuB75ouIUmacBBxvBvEQ1+sWDNIVPf1c=
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR1101MB2361.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(83380400001)(9326002)(8936002)(2906002)(52536014)(186003)(76116006)(5660300002)(82960400001)(26005)(64756008)(966005)(122000001)(7696005)(38070700005)(316002)(38100700002)(508600001)(66556008)(166002)(55016003)(86362001)(9686003)(8676002)(33656002)(55236004)(71200400001)(66476007)(6506007)(66446008)(110136005)(450100002)(66946007);DIR:OUT;SFP:1102;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR1101MB2348.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(82960400001)(7696005)(33656002)(71200400001)(110136005)(8936002)(38070700005)(38100700002)(8676002)(122000001)(64756008)(6506007)(55016003)(66476007)(66446008)(76116006)(66946007)(52536014)(86362001)(2906002)(966005)(9686003)(316002)(15650500001)(508600001)(26005)(186003)(5660300002)(53546011)(83380400001)(66556008)(55236004)(491001);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?Jp6177FdUzSXwo++R5o58wmHa/bsjfHXRLe+ExSajLenU/KQtuBfa07PLfMQ?=
- =?us-ascii?Q?zkDwL6CmFggeSdKiBT1KkXp2Nmt9JIOVrhYfMHyUtFEwYkDznQHROo7dAG1S?=
- =?us-ascii?Q?ZVcATOPPdsaHyn4pK1h5kavjQUB1+tsuDVKWZjP1GrfY0VZDu5MB5i99BE+p?=
- =?us-ascii?Q?trwjOaWxA2BSPA/xJvljVKK38sJIX9AMB7BxdeQo4Akf3a+KSsGCQ1xJb9f6?=
- =?us-ascii?Q?2q+ysC5Rr+yurSSjUkSft7DnJez6p7YEj9knNmQER8YRoiacsJFUU/t8ScsJ?=
- =?us-ascii?Q?0uDUKmdxnWu5VLsqAww/z1tT5g5dvOXPgz++Zrx11Jo2M3TuE8WuC856Ho69?=
- =?us-ascii?Q?zkZe/s2KS1kDWGv7rQ3rZrDq7gsrTTCMnt9A8YkwbTDNkIok2xxFFH1IVZvM?=
- =?us-ascii?Q?4K056kQJSC0Ya1VNbr93D65qZLXTlpMqZAQ9od1L1Pg2C+nL/SKhJXcDW4Pb?=
- =?us-ascii?Q?dQ2/c9TtK+ZYMHdpS5xEiDEOqPfWHVqgYXgwtG1WDwKK/dRC1RRZZQjPPiqA?=
- =?us-ascii?Q?8kUh7RLbPckCXP+i0Bd5841lf/noIafG6iFWKAGnTEuCYLl/C9vBLUCzgDRa?=
- =?us-ascii?Q?Jxe43wOncucyiY7pOq1FiUasYSn5tkkyZK6Zj7dPC6yJgdCK9Q63eUHwuDTc?=
- =?us-ascii?Q?YMhFgWDd21of0Pqqw407usDve8e1iUC+nhOWidIwdMQNXxS7VW7hrU0OfbR5?=
- =?us-ascii?Q?ln9JFk8Cq1AEa46c/Vi65cwz8f0dpRlSaP6WcXb8D5szXD+8unSM6dNaVndQ?=
- =?us-ascii?Q?3aGk2SpjsYsSGAg7dikfNQA/8ARHbM1cHQx1mX4zQSM2rbx2kwbFJ7191yl5?=
- =?us-ascii?Q?SwdBraGcUyj+69VEzAmxBRQs5CMUg8wYWpEpbwuM7fCLbZ4FjO44uSp+eDIi?=
- =?us-ascii?Q?38kaXRikUnrZ/N/MVgN2hIxa9jK6HpPpA8yWNjqbAdHTj6EIVb2+2JwM36Xr?=
- =?us-ascii?Q?iikYlTVu8X2urlkhqmfJ20VxKSv9XqmbL4+OTcCYPW4X+nP468vYZsgroQdX?=
- =?us-ascii?Q?3/zgmpL9+PAYvWXl0Dv4LN8RW2UrrxDTE+Qv3hIFo3IfKU8Vg+kj+Bg8LssG?=
- =?us-ascii?Q?clrTASqJ77qHzQ5KC6Wzo/YTlLc4Nul6wvcD+HNtnhoNAdQGvx+KCU8jOwkN?=
- =?us-ascii?Q?1fnqFVDF/ap9Axa3BRE/ymJwUjv8m8NU19dk2c2U8YQbPyubp2JWse9Cmh/g?=
- =?us-ascii?Q?PEtgfBu3j/hAMtn5uMRBqa5+08PItmcuIsODwRThZutUzqKrb1FngfxWawOC?=
- =?us-ascii?Q?Az7SkGIVq8Luf8RcteGKZykXWvgQJ3vyPtnunoHrJwtmdEhXnECrGS4ud2ze?=
- =?us-ascii?Q?6zz7X/vzcJpL9m3d3fk/NX7yn+pim+vR8KFJs89iuumMljGgZZgx5zYT2Rfq?=
- =?us-ascii?Q?XBVxe0EZXwRCEmRxStUOouqVan8YUd0u/tyB3Bpgi7pra9aGx7SoTl8ic0Ys?=
- =?us-ascii?Q?CpiyYM8oOfxXQ2y2lge+Thep5PKypqLQNsxSy/kV+SIH/Ra8IM1ziZsr9cik?=
- =?us-ascii?Q?h6jMAxlRuZBe3NuM46mKe2xeJcd331DN0CeyOOX2QHUIP0CtLO1y5i0UPxlw?=
- =?us-ascii?Q?LPAModlyxkgf5Q1kemT3wIwOx8vPBoUmZLjaZFeQdq0imOtdE5VenVkdz4Ll?=
- =?us-ascii?Q?N13AXNo4dzyW4zwu6r6Q2cE=3D?=
-Content-Type: multipart/alternative;
-	boundary="_000_DM5PR1101MB2361C2C2D6306E6244E91EFBB9369DM5PR1101MB2361_"
+ =?utf-8?B?dHhZcnJMUENvU3pWajRybUwrOFovUWtVdTVkWmJkOHA5amRoMUNqWUpjSG5o?=
+ =?utf-8?B?SXMzWm1iQ0NNeWxsTHJiOU1neDRmVVNjSjFxTnRBbGpobEh1MnpmeVFHYlUy?=
+ =?utf-8?B?ckpCMkpmVmxReTJaTDlLVFBjTWpoVjU1RnBvMDNKWDA1T3kyaDRWWDV4Qyt6?=
+ =?utf-8?B?dHhwWExuR3RDLzZoY3dFMnY5dDllc2lXYnZJandOZmJqVVAyV2RTMmNaVjFF?=
+ =?utf-8?B?cnhPVUh0S3M0NHpDMDEwVWZKWVVCWVlRaTRFdGVxb1Q5cEQ1ZFBocXZneGVE?=
+ =?utf-8?B?NlFURGFKa1IyTktUUFBCWjJST2lpS1B2RmJ5OTNKd0ttUm1oT3VwbFpZUjN0?=
+ =?utf-8?B?WC9aVVF5NDRXWndlcnVHM2pyZW9nVEw3MnBxdjRyQ2g1Ym5vZnhuTDU0SXd6?=
+ =?utf-8?B?RHdUUnVyZFpub0d5T3JuR1JlWFlmaElWZkNQT25xeHRrYlVlalBldUhZbU43?=
+ =?utf-8?B?V1Z3K1V4a2JldU1xNGw3b2JEV3kxYWVsaE90MlBidFlRUHhyWjZrbFhUWFNw?=
+ =?utf-8?B?MTN3SzNBa3Z1Rm4yaExhUnNwV1BjV24wTFdPQmJ6dUhTckx4NDlaNDFHaGNO?=
+ =?utf-8?B?NUhuZG51TFJFeUh5anFRNk5PZ3pxSTFXcDgrNUs1M0NBYUw1VFBscmxaa3Ex?=
+ =?utf-8?B?c3VPcFRleFl5VlhHUWZkZG1pdE54cTdrTVNPaG4xelY2TlJmQWN0aGVSSkVX?=
+ =?utf-8?B?VjlBRFZGdVFxRHIrK3BFMDZLWkVETmZHTE9BTDRXV0dWQ1EzdWp5b3U0TEVV?=
+ =?utf-8?B?YTNqeENnanc0UHdsckVISERLMHN4QXR5eTMxWnpCc1B1NmptWTlhNDBxcFRY?=
+ =?utf-8?B?TGJybHdMTS92NHNCUG9qbXo1UUZIUXRwNHlRbWRyRytxVGhtWW5Pb0M4c25W?=
+ =?utf-8?B?ZDNlRCs5RjN3b0gxY1NieWZFRDlrbEtzWUFjZHh3Z2JZenh0b1d4Zk82bnV1?=
+ =?utf-8?B?eVZ0Q2w3YnpwNWFReDBYcUtiTEhRUkFCbnhmVldMRmYvREU3QnlkRVl3NE1s?=
+ =?utf-8?B?RFBocmhYRUtoTnI4em9pTnRrMHdkemR4UlFRSE81U3gwWCtWMUZVTjNNeVpn?=
+ =?utf-8?B?OUovczJCQmw5WWdSdVhMQitSd2M2SHp4c1M0dFpSaXArZmFYOE1pWW95M2Yx?=
+ =?utf-8?B?cjRURStPdU9qM1p2cnZFYnF4QU5Cc2xSSFQ3SGhibTBmYTRKKzQyMHpvWjhD?=
+ =?utf-8?B?SDM4SFhMNEJzbktEbjNvWGNPbER4UWxUSDlQUWlpcjczZXNGclZzWGtSczhy?=
+ =?utf-8?B?aGxuWHRRV0JoTSt3Wkd6SzRqUUVIMkJyNWdxbjM5U0x3b1FxekMyT2dSeW91?=
+ =?utf-8?B?b3ZmMEVCdGF3V05wRWEvd3QxZXpQMlFFTG9YRmt2bGdjdm11OTU2NCtxWmFo?=
+ =?utf-8?B?MGdOUzVTSDVMckhVWFZlL0lvU09kTnIzcGRhc2NMZkZqVWNiRnloQzF4VFVj?=
+ =?utf-8?B?WGwvSTZXNmV1MDgyNHFtdkx6bUtRZ3hra3JDMzhDdGVXR2JBZ3IrWGRGTkN6?=
+ =?utf-8?B?bVZLdFA4NEQ3Y0ROYit0blBSZ3J6SlhSWUlPcVRpbzJUYnNCZE9IRlVhTFl0?=
+ =?utf-8?B?cjFLOHhKZ016eW1iN05uSHNxZFpxQytmNUtoRFB3Zm5EMzJ0T21rOHY4ZExp?=
+ =?utf-8?B?TTNWY2tsT1BlS3lZenRKd05IaTZUZ3QzTDFCRjUzRW9TWHRkblp0R0drK293?=
+ =?utf-8?B?R1ZDd3RGbXR3NVRJWFBFV05nTGsxYzJ1ZUF6UkRqYVh0MEwzMGk1RmVab1Ju?=
+ =?utf-8?B?cHBCZE9QUDVjMUp5TDduMXJqSFN4NzhFQlJYTWFEVnplb29yQ0p5dWpuYTVK?=
+ =?utf-8?B?U3MvVHEybU9OMlpCTGhTSHlZa0ZOUEF5OUZUdzFIQ2kwL1pIK2pURzAvZWg3?=
+ =?utf-8?B?UUNCaUtKRlE1ZnF4ZmhPcDM0dlU2elpRbDcxN2s4UUtvcUJYaktXam9nMmJV?=
+ =?utf-8?B?V2V0R0lkRG94YzFWdWFYbHNKNlI1NWNkcG9YTGtDYi9FaS9GRGw4SGhtd0tx?=
+ =?utf-8?B?U2xqcFFHc2F2ZjczSzUvVVhmbm5ISG5JNmxVZEM3WXJ1VFlHMDlYL2dQNDJi?=
+ =?utf-8?B?V0RpTitvclVVcGRXYStaUVJZL09CdmdGOXpOMFY5UUtMb0ZUMDJJMHo5dkov?=
+ =?utf-8?B?RWw3UC9nKzluZ2NhRU9mbXVic2hyUDBpRXIrZlNJL1AzNmpJUkZKYUtocFNB?=
+ =?utf-8?B?ckE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: 
- DM5PR1101MB2361.namprd11.prod.outlook.com
+ DM5PR1101MB2348.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 3bfdd0c8-0de1-4f25-9c9e-08d9f21f9865
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Feb 2022 14:12:56.3089
+ 294f7324-5042-46bb-0f2c-08d9f22b2704
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Feb 2022 15:35:40.1103
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
 X-MS-Exchange-CrossTenant-userprincipalname: 
- E4SnDmNqpedSBM57ByeDN7pdjZ+rp8XXCgoiuBKzYxp5eXj0mv6pVVJn9kNVkBlfkRWWM1uuGa8wblcJ6Vx97w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB1235
+ bcVO6HxSzNcQZ+T6FNefGTy00/qeYRbAhm/rXrBVrpDe40RtBW3JNksAEd9sdZaYzAsXvLym28muA2F3g7iNKw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5582
 X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 17 Feb 2022 14:13:07 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56213
+ <yocto@lists.yoctoproject.org>; Thu, 17 Feb 2022 15:35:46 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56214
 
---_000_DM5PR1101MB2361C2C2D6306E6244E91EFBB9369DM5PR1101MB2361_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Hi
-
-We are pleased to announce the Yocto Project 3.1.14 (dunfell-23.0.14) Relea=
-se is now available for download.
-
-http://downloads.yoctoproject.org/releases/yocto/yocto-3.1.14/poky-dunfell-=
-23.0.14.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-3.1.14/poky-dunfell-23.0.14.tar=
-.bz2
-
-A gpg signed version of these release notes is available at:
-
-http://downloads.yoctoproject.org/releases/yocto/yocto-3.1.14/RELEASENOTES
-
-Full Test Report:
-
-http://downloads.yoctoproject.org/releases/yocto/yocto-3.1.14/testreport.tx=
-t
-
-Thank you for everyone's contributions to this release.
-
-Chee Yang Lee chee.yang.lee@intel.com<mailto:chee.yang.lee@intel.com>
-Yocto Project Build and Release
-
-
-- --------------------------
-yocto-3.1.14 Release Notes
-- --------------------------
-
-
-- --------------------------
-Repositories/Downloads
-- --------------------------
-
-Repository Name: poky
-Repository Location: https://git.yoctoproject.org/git/poky
-Branch: dunfell
-Tag: yocto-3.1.14
-Git Revision: bba323389749ec3e306509f8fb12649f031be152
-Release Artefact: poky-dunfell-23.0.14
-sha: 3401d1b660f2284e6e974c4dd1a8a3d5b1d311f87d261c324a84f812a9ad9d9c
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-3.1.14/poky-dunfell-=
-23.0.14.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-3.1.14/poky-dunfell-23.0.14.tar=
-.bz2
-
-Repository Name: openembedded-core
-Repository Location: https://git.openembedded.org/openembedded-core
-Branch: dunfell
-Tag: yocto-3.1.14
-Git Revision: f3be01483b01c88f8c4ba24ca73ccf1bcc33665c
-Release Artefact: oecore-dunfell-23.0.14
-sha: 9584897dfdab65bd1d70254f25cc91fb6d04e92e4b77b088ed81603da6a57909
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-3.1.14/oecore-dunfel=
-l-23.0.14.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-3.1.14/oecore-dunfell-23.0.14.t=
-ar.bz2
-
-Repository Name: meta-mingw
-Repository Location: https://git.yoctoproject.org/git/meta-mingw
-Branch: dunfell
-Tag: yocto-3.1.14
-Git Revision: 524de686205b5d6736661d4532f5f98fee8589b7
-Release Artefact: meta-mingw-dunfell-23.0.14
-sha: dcd6e4a799b8f2727279eb640f077ca945a33ad61a2a9f076a72061874847e6d
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-3.1.14/meta-mingw-du=
-nfell-23.0.14.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-3.1.14/meta-mingw-dunfell-23.0.=
-14.tar.bz2
-
-Repository Name: meta-gplv2
-Repository Location: https://git.yoctoproject.org/git/meta-gplv2
-Branch: dunfell
-Tag: yocto-3.1.14
-Git Revision: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
-Release Artefact: meta-gplv2-dunfell-23.0.14
-sha: a102bad796e7bbd36881068e18aabf49ce66b41a252ae06101ff3d64d4ce6ec8
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-3.1.14/meta-gplv2-du=
-nfell-23.0.14.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-3.1.14/meta-gplv2-dunfell-23.0.=
-14.tar.bz2
-
-Repository Name: bitbake
-Repository Location: https://git.openembedded.org/bitbake
-Branch: dunfell
-Tag: yocto-3.1.14
-Git Revision: be6ecc160ac4a8d9715257b9b955363cecc081ea
-Release Artefact: bitbake-dunfell-23.0.14
-sha: 3f6a3bb828be8196e19b6a46461373cdced08792ac01488f25cdb31a0740e7f3
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-3.1.14/bitbake-dunfe=
-ll-23.0.14.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-3.1.14/bitbake-dunfell-23.0.14.=
-tar.bz2
-
-Repository Name: yocto-docs
-Repository Location: https://git.yoctoproject.org/git/yocto-docs
-Branch: dunfell
-Tag: yocto-3.1.14
-Git Revision: 9c5533b45bfd6a3d383e973a2c40e0f418afcbe9
-
-
-- ---------------
-Known Issues
-- ---------------
-N/A
-
-
-- ---------------
-Security Fixes
-- ---------------
-speex: fix CVE-2020-23903
-expat: fix CVE-2021-46143
-expat: fix CVE-2021-45960
-expat fix CVE-2022-22822 through CVE-2022-22827
-xserver-xorg: whitelist two CVEs
-xserver-xorg: update CVE_PRODUCT
-grub: fix CVE-2020-14372 and CVE-2020-27779
-dropbear: Fix CVE-2020-36254
-inetutils: fix CVE-2021-40491
-vim: fix CVE-2021-4069
-openssh: Whitelist CVE-2016-20012
-openssh: Fix CVE-2021-41617
-bluez: fix CVE-2021-0129
-
-
-- ---------------
-Fixes
-- ---------------
-build-appliance-image: Update to dunfell head revision
-poky.conf: Bump version for 3.1.14 release
-bitbake: hashserv: specify loop for asyncio in python < 3.6
-Revert "weston: Use systemd notify,"
-lttng-tools: Add missing DEPENDS on bison-native
-kernel: introduce python3-dtschema-wrapper
-linux-yocto/5.4: update to v5.4.172
-glibc: Add fix for data races in pthread_create and TLS access
-parselogs: add a couple systemd false positives
-expat: Update HOMEPAGE to current url
-wic: use shutil.which
-wic: misc: Do not find for executables in ASSUME_PROVIDED
-cve-check: add lockfile to task
-cve-update-db-native: use fetch task
-oeqa/selftest/cases/tinfoil.py: increase timeout 60->120s test_wait_event
-valgrind: skip flakey ptest (gdbserver_tests/hginfo)
-bitbake: tests/fetch: Drop gnu urls from wget connectivity test
-bitbake: utils: Update to use exec_module() instead of load_module()
-linux-yocto/5.4: update genericx86* machines to v5.4.158
-asciidoc: properly detect and compare Python versions >=3D 3.10
-lib/oe/reproducible: correctly set .git location when recursively looking f=
-or git repos
-scripts: Update to use exec_module() instead of load_module()
-selftest: skip virgl test on fedora 35
-scripts/buildhistory-diff: drop use of distutils
-weston: Backport patches to always activate the top-level surface
-oeqa/selftest/tinfoil: Update to use test command
-oeqa/selftest/bbtests: Use YP sources mirror instead of GNU
-openssl: Add reproducibility fix
-libpcre2: update SRC_URI
-linux-firmware: upgrade 20211027 -> 20211216
-bitbake: cooker/command: Add a dummy event for tinfoil testing
-ref-manual: fix patch documentation
-documentation: further updates for 3.1.13
-releases: update to include 3.1.13
-selftest: skip virgl test on fedora 34 entirely
-gstreamer1.0: fix failing ptest
-bootchart2: remove wait_boot logic
-
---_000_DM5PR1101MB2361C2C2D6306E6244E91EFBB9369DM5PR1101MB2361_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:DengXian;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@DengXian";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-MY" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
-break-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi<br>
-<br>
-<o:p></o:p></p>
-<p class=3D"MsoNormal">We are pleased to announce the Yocto Project 3.1.14 =
-(dunfell-23.0.14) Release is now available for download.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><a href=3D"http://downloads.yoctoproject.org/release=
-s/yocto/yocto-3.1.14/poky-dunfell-23.0.14.tar.bz2">http://downloads.yoctopr=
-oject.org/releases/yocto/yocto-3.1.14/poky-dunfell-23.0.14.tar.bz2</a><o:p>=
-</o:p></p>
-<p class=3D"MsoNormal"><a href=3D"http://mirrors.kernel.org/yocto/yocto/yoc=
-to-3.1.14/poky-dunfell-23.0.14.tar.bz2">http://mirrors.kernel.org/yocto/yoc=
-to/yocto-3.1.14/poky-dunfell-23.0.14.tar.bz2</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">A gpg signed version of these release notes is avail=
-able at:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><a href=3D"http://downloads.yoctoproject.org/release=
-s/yocto/yocto-3.1.14/RELEASENOTES">http://downloads.yoctoproject.org/releas=
-es/yocto/yocto-3.1.14/RELEASENOTES</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Full Test Report:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><a href=3D"http://downloads.yoctoproject.org/release=
-s/yocto/yocto-3.1.14/testreport.txt">http://downloads.yoctoproject.org/rele=
-ases/yocto/yocto-3.1.14/testreport.txt</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thank you for everyone's contributions to this relea=
-se.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Chee Yang Lee <a href=3D"mailto:chee.yang.lee@intel.=
-com">chee.yang.lee@intel.com</a><o:p></o:p></p>
-<p class=3D"MsoNormal">Yocto Project Build and Release<br>
-<br>
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">- --------------------------<o:p></o:p></p>
-<p class=3D"MsoNormal">yocto-3.1.14 Release Notes<o:p></o:p></p>
-<p class=3D"MsoNormal">- --------------------------<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">- --------------------------<o:p></o:p></p>
-<p class=3D"MsoNormal">Repositories/Downloads<o:p></o:p></p>
-<p class=3D"MsoNormal">- --------------------------<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Repository Name: poky<o:p></o:p></p>
-<p class=3D"MsoNormal">Repository Location: https://git.yoctoproject.org/gi=
-t/poky<o:p></o:p></p>
-<p class=3D"MsoNormal">Branch: dunfell<o:p></o:p></p>
-<p class=3D"MsoNormal">Tag: yocto-3.1.14<o:p></o:p></p>
-<p class=3D"MsoNormal">Git Revision: bba323389749ec3e306509f8fb12649f031be1=
-52<o:p></o:p></p>
-<p class=3D"MsoNormal">Release Artefact: poky-dunfell-23.0.14<o:p></o:p></p=
->
-<p class=3D"MsoNormal">sha: 3401d1b660f2284e6e974c4dd1a8a3d5b1d311f87d261c3=
-24a84f812a9ad9d9c<o:p></o:p></p>
-<p class=3D"MsoNormal">Download Locations:<o:p></o:p></p>
-<p class=3D"MsoNormal">http://downloads.yoctoproject.org/releases/yocto/yoc=
-to-3.1.14/poky-dunfell-23.0.14.tar.bz2<o:p></o:p></p>
-<p class=3D"MsoNormal">http://mirrors.kernel.org/yocto/yocto/yocto-3.1.14/p=
-oky-dunfell-23.0.14.tar.bz2<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Repository Name: openembedded-core<o:p></o:p></p>
-<p class=3D"MsoNormal">Repository Location: https://git.openembedded.org/op=
-enembedded-core<o:p></o:p></p>
-<p class=3D"MsoNormal">Branch: dunfell<o:p></o:p></p>
-<p class=3D"MsoNormal">Tag: yocto-3.1.14<o:p></o:p></p>
-<p class=3D"MsoNormal">Git Revision: f3be01483b01c88f8c4ba24ca73ccf1bcc3366=
-5c<o:p></o:p></p>
-<p class=3D"MsoNormal">Release Artefact: oecore-dunfell-23.0.14<o:p></o:p><=
-/p>
-<p class=3D"MsoNormal">sha: 9584897dfdab65bd1d70254f25cc91fb6d04e92e4b77b08=
-8ed81603da6a57909<o:p></o:p></p>
-<p class=3D"MsoNormal">Download Locations:<o:p></o:p></p>
-<p class=3D"MsoNormal">http://downloads.yoctoproject.org/releases/yocto/yoc=
-to-3.1.14/oecore-dunfell-23.0.14.tar.bz2<o:p></o:p></p>
-<p class=3D"MsoNormal">http://mirrors.kernel.org/yocto/yocto/yocto-3.1.14/o=
-ecore-dunfell-23.0.14.tar.bz2<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Repository Name: meta-mingw<o:p></o:p></p>
-<p class=3D"MsoNormal">Repository Location: https://git.yoctoproject.org/gi=
-t/meta-mingw<o:p></o:p></p>
-<p class=3D"MsoNormal">Branch: dunfell<o:p></o:p></p>
-<p class=3D"MsoNormal">Tag: yocto-3.1.14<o:p></o:p></p>
-<p class=3D"MsoNormal">Git Revision: 524de686205b5d6736661d4532f5f98fee8589=
-b7<o:p></o:p></p>
-<p class=3D"MsoNormal">Release Artefact: meta-mingw-dunfell-23.0.14<o:p></o=
-:p></p>
-<p class=3D"MsoNormal">sha: dcd6e4a799b8f2727279eb640f077ca945a33ad61a2a9f0=
-76a72061874847e6d<o:p></o:p></p>
-<p class=3D"MsoNormal">Download Locations:<o:p></o:p></p>
-<p class=3D"MsoNormal">http://downloads.yoctoproject.org/releases/yocto/yoc=
-to-3.1.14/meta-mingw-dunfell-23.0.14.tar.bz2<o:p></o:p></p>
-<p class=3D"MsoNormal">http://mirrors.kernel.org/yocto/yocto/yocto-3.1.14/m=
-eta-mingw-dunfell-23.0.14.tar.bz2<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Repository Name: meta-gplv2<o:p></o:p></p>
-<p class=3D"MsoNormal">Repository Location: https://git.yoctoproject.org/gi=
-t/meta-gplv2<o:p></o:p></p>
-<p class=3D"MsoNormal">Branch: dunfell<o:p></o:p></p>
-<p class=3D"MsoNormal">Tag: yocto-3.1.14<o:p></o:p></p>
-<p class=3D"MsoNormal">Git Revision: 60b251c25ba87e946a0ca4cdc8d17b1cb09292=
-ac<o:p></o:p></p>
-<p class=3D"MsoNormal">Release Artefact: meta-gplv2-dunfell-23.0.14<o:p></o=
-:p></p>
-<p class=3D"MsoNormal">sha: a102bad796e7bbd36881068e18aabf49ce66b41a252ae06=
-101ff3d64d4ce6ec8<o:p></o:p></p>
-<p class=3D"MsoNormal">Download Locations:<o:p></o:p></p>
-<p class=3D"MsoNormal">http://downloads.yoctoproject.org/releases/yocto/yoc=
-to-3.1.14/meta-gplv2-dunfell-23.0.14.tar.bz2<o:p></o:p></p>
-<p class=3D"MsoNormal">http://mirrors.kernel.org/yocto/yocto/yocto-3.1.14/m=
-eta-gplv2-dunfell-23.0.14.tar.bz2<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Repository Name: bitbake<o:p></o:p></p>
-<p class=3D"MsoNormal">Repository Location: https://git.openembedded.org/bi=
-tbake<o:p></o:p></p>
-<p class=3D"MsoNormal">Branch: dunfell<o:p></o:p></p>
-<p class=3D"MsoNormal">Tag: yocto-3.1.14<o:p></o:p></p>
-<p class=3D"MsoNormal">Git Revision: be6ecc160ac4a8d9715257b9b955363cecc081=
-ea<o:p></o:p></p>
-<p class=3D"MsoNormal">Release Artefact: bitbake-dunfell-23.0.14<o:p></o:p>=
-</p>
-<p class=3D"MsoNormal">sha: 3f6a3bb828be8196e19b6a46461373cdced08792ac01488=
-f25cdb31a0740e7f3<o:p></o:p></p>
-<p class=3D"MsoNormal">Download Locations:<o:p></o:p></p>
-<p class=3D"MsoNormal">http://downloads.yoctoproject.org/releases/yocto/yoc=
-to-3.1.14/bitbake-dunfell-23.0.14.tar.bz2<o:p></o:p></p>
-<p class=3D"MsoNormal">http://mirrors.kernel.org/yocto/yocto/yocto-3.1.14/b=
-itbake-dunfell-23.0.14.tar.bz2<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Repository Name: yocto-docs<o:p></o:p></p>
-<p class=3D"MsoNormal">Repository Location: https://git.yoctoproject.org/gi=
-t/yocto-docs<o:p></o:p></p>
-<p class=3D"MsoNormal">Branch: dunfell<o:p></o:p></p>
-<p class=3D"MsoNormal">Tag: yocto-3.1.14<o:p></o:p></p>
-<p class=3D"MsoNormal">Git Revision: 9c5533b45bfd6a3d383e973a2c40e0f418afcb=
-e9 <o:p>
-</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">- ---------------<o:p></o:p></p>
-<p class=3D"MsoNormal">Known Issues<o:p></o:p></p>
-<p class=3D"MsoNormal">- ---------------<o:p></o:p></p>
-<p class=3D"MsoNormal">N/A<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">- ---------------<o:p></o:p></p>
-<p class=3D"MsoNormal">Security Fixes<o:p></o:p></p>
-<p class=3D"MsoNormal">- ---------------<o:p></o:p></p>
-<p class=3D"MsoNormal">speex: fix CVE-2020-23903<o:p></o:p></p>
-<p class=3D"MsoNormal">expat: fix CVE-2021-46143<o:p></o:p></p>
-<p class=3D"MsoNormal">expat: fix CVE-2021-45960<o:p></o:p></p>
-<p class=3D"MsoNormal">expat fix CVE-2022-22822 through CVE-2022-22827<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal">xserver-xorg: whitelist two CVEs<o:p></o:p></p>
-<p class=3D"MsoNormal">xserver-xorg: update CVE_PRODUCT<o:p></o:p></p>
-<p class=3D"MsoNormal">grub: fix CVE-2020-14372 and CVE-2020-27779<o:p></o:=
-p></p>
-<p class=3D"MsoNormal">dropbear: Fix CVE-2020-36254<o:p></o:p></p>
-<p class=3D"MsoNormal">inetutils: fix CVE-2021-40491<o:p></o:p></p>
-<p class=3D"MsoNormal">vim: fix CVE-2021-4069<o:p></o:p></p>
-<p class=3D"MsoNormal">openssh: Whitelist CVE-2016-20012<o:p></o:p></p>
-<p class=3D"MsoNormal">openssh: Fix CVE-2021-41617<o:p></o:p></p>
-<p class=3D"MsoNormal">bluez: fix CVE-2021-0129<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">- ---------------<o:p></o:p></p>
-<p class=3D"MsoNormal">Fixes<o:p></o:p></p>
-<p class=3D"MsoNormal">- ---------------<o:p></o:p></p>
-<p class=3D"MsoNormal">build-appliance-image: Update to dunfell head revisi=
-on<o:p></o:p></p>
-<p class=3D"MsoNormal">poky.conf: Bump version for 3.1.14 release<o:p></o:p=
-></p>
-<p class=3D"MsoNormal">bitbake: hashserv: specify loop for asyncio in pytho=
-n &lt; 3.6<o:p></o:p></p>
-<p class=3D"MsoNormal">Revert &quot;weston: Use systemd notify,&quot;<o:p><=
-/o:p></p>
-<p class=3D"MsoNormal">lttng-tools: Add missing DEPENDS on bison-native<o:p=
-></o:p></p>
-<p class=3D"MsoNormal">kernel: introduce python3-dtschema-wrapper<o:p></o:p=
-></p>
-<p class=3D"MsoNormal">linux-yocto/5.4: update to v5.4.172<o:p></o:p></p>
-<p class=3D"MsoNormal">glibc: Add fix for data races in pthread_create and =
-TLS access<o:p></o:p></p>
-<p class=3D"MsoNormal">parselogs: add a couple systemd false positives<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal">expat: Update HOMEPAGE to current url<o:p></o:p></p>
-<p class=3D"MsoNormal">wic: use shutil.which<o:p></o:p></p>
-<p class=3D"MsoNormal">wic: misc: Do not find for executables in ASSUME_PRO=
-VIDED<o:p></o:p></p>
-<p class=3D"MsoNormal">cve-check: add lockfile to task<o:p></o:p></p>
-<p class=3D"MsoNormal">cve-update-db-native: use fetch task<o:p></o:p></p>
-<p class=3D"MsoNormal">oeqa/selftest/cases/tinfoil.py: increase timeout 60-=
-&gt;120s test_wait_event<o:p></o:p></p>
-<p class=3D"MsoNormal">valgrind: skip flakey ptest (gdbserver_tests/hginfo)=
-<o:p></o:p></p>
-<p class=3D"MsoNormal">bitbake: tests/fetch: Drop gnu urls from wget connec=
-tivity test<o:p></o:p></p>
-<p class=3D"MsoNormal">bitbake: utils: Update to use exec_module() instead =
-of load_module()<o:p></o:p></p>
-<p class=3D"MsoNormal">linux-yocto/5.4: update genericx86* machines to v5.4=
-.158<o:p></o:p></p>
-<p class=3D"MsoNormal">asciidoc: properly detect and compare Python version=
-s &gt;=3D 3.10<o:p></o:p></p>
-<p class=3D"MsoNormal">lib/oe/reproducible: correctly set .git location whe=
-n recursively looking for git repos<o:p></o:p></p>
-<p class=3D"MsoNormal">scripts: Update to use exec_module() instead of load=
-_module()<o:p></o:p></p>
-<p class=3D"MsoNormal">selftest: skip virgl test on fedora 35<o:p></o:p></p=
->
-<p class=3D"MsoNormal">scripts/buildhistory-diff: drop use of distutils<o:p=
-></o:p></p>
-<p class=3D"MsoNormal">weston: Backport patches to always activate the top-=
-level surface<o:p></o:p></p>
-<p class=3D"MsoNormal">oeqa/selftest/tinfoil: Update to use test command<o:=
-p></o:p></p>
-<p class=3D"MsoNormal">oeqa/selftest/bbtests: Use YP sources mirror instead=
- of GNU<o:p></o:p></p>
-<p class=3D"MsoNormal">openssl: Add reproducibility fix<o:p></o:p></p>
-<p class=3D"MsoNormal">libpcre2: update SRC_URI<o:p></o:p></p>
-<p class=3D"MsoNormal">linux-firmware: upgrade 20211027 -&gt; 20211216<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal">bitbake: cooker/command: Add a dummy event for tinfo=
-il testing<o:p></o:p></p>
-<p class=3D"MsoNormal">ref-manual: fix patch documentation<o:p></o:p></p>
-<p class=3D"MsoNormal">documentation: further updates for 3.1.13<o:p></o:p>=
-</p>
-<p class=3D"MsoNormal">releases: update to include 3.1.13<o:p></o:p></p>
-<p class=3D"MsoNormal">selftest: skip virgl test on fedora 34 entirely<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal">gstreamer1.0: fix failing ptest<o:p></o:p></p>
-<p class=3D"MsoNormal">bootchart2: remove wait_boot logic<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_DM5PR1101MB2361C2C2D6306E6244E91EFBB9369DM5PR1101MB2361_--
+SGkgQWxsLA0KDQpUaGlzIGlzIHRoZSBmdWxsIHJlcG9ydCBmb3IgeW9jdG8tMy40LjIucmMyOiAg
+DQpodHRwczovL2dpdC55b2N0b3Byb2plY3Qub3JnL2NnaXQvY2dpdC5jZ2kveW9jdG8tdGVzdHJl
+c3VsdHMtY29udHJpYi90cmVlLz9oPWludGVsLXlvY3RvLXRlc3RyZXN1bHRzDQoNCj09PT09PT0g
+U3VtbWFyeSA9PT09PT09PQ0KTm8gaGlnaCBtaWxlc3RvbmUgZGVmZWN0cy4NCg0KTm8gbmV3IGlz
+c3VlIGZvdW5kLg0KDQoNClRoYW5rcywNCkpheQ0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0t
+LS0tDQo+IEZyb206IHFhLWJ1aWxkLW5vdGlmaWNhdGlvbkBsaXN0cy55b2N0b3Byb2plY3Qub3Jn
+IDxxYS1idWlsZC0NCj4gbm90aWZpY2F0aW9uQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+IE9uIEJl
+aGFsZiBPZiBUZW9oLCBKYXkgU2hlbg0KPiBTZW50OiBUdWVzZGF5LCAxNSBGZWJydWFyeSwgMjAy
+MiAxMToyMSBBTQ0KPiBUbzogcWEtYnVpbGQtbm90aWZpY2F0aW9uQGxpc3RzLnlvY3RvcHJvamVj
+dC5vcmc7DQo+IDx5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPiA8eW9jdG9AbGlzdHMueW9j
+dG9wcm9qZWN0Lm9yZz47IE9FLWNvcmUNCj4gPG9wZW5lbWJlZGRlZC1jb3JlQGxpc3RzLm9wZW5l
+bWJlZGRlZC5vcmc+DQo+IFN1YmplY3Q6IFJlOiBbcWEtYnVpbGQtbm90aWZpY2F0aW9uXSBRQSBu
+b3RpZmljYXRpb24gZm9yIGNvbXBsZXRlZCBhdXRvYnVpbGRlcg0KPiBidWlsZCAoeW9jdG8tMy40
+LjIucmMyKQ0KPiANCj4gSGkgYWxsLA0KPiANCj4gSW50ZWwgYW5kIFdSIFlQIFFBIGlzIHBsYW5u
+aW5nIGZvciBRQSBleGVjdXRpb24gZm9yIFlQIGJ1aWxkIHlvY3RvLTMuNC4yLnJjMi4NCj4gV2Ug
+YXJlIHBsYW5uaW5nIHRvIGV4ZWN1dGUgZm9sbG93aW5nIHRlc3RzIGZvciB0aGlzIGN5Y2xlOg0K
+PiANCj4gT0VRQS1tYW51YWwgdGVzdHMgZm9yIGZvbGxvd2luZyBtb2R1bGU6DQo+IDEuIE9FLUNv
+cmUNCj4gMi4gQlNQLWh3DQo+IA0KPiBSdW50aW1lIGF1dG8gdGVzdCBmb3IgZm9sbG93aW5nIHBs
+YXRmb3JtczoNCj4gMS4gTWlubm93VHVyYm90IDMyLWJpdA0KPiAyLiBDb2ZmZWUgTGFrZQ0KPiAz
+LiBOVUMgNw0KPiA0LiBOVUMgNg0KPiA1LiBFZGdlcm91dGVyDQo+IDYuIEJlYWdsZWJvbmUNCj4g
+DQo+IEVUQSBmb3IgY29tcGxldGlvbiB0aGlzIEZyaWRheSwgRmViIDE4Lg0KPiANCj4gVGhhbmtz
+LA0KPiBKYXkNCj4gPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+IEZyb206IHFhLWJ1
+aWxkLW5vdGlmaWNhdGlvbkBsaXN0cy55b2N0b3Byb2plY3Qub3JnIDxxYS1idWlsZC0NCj4gPiBu
+b3RpZmljYXRpb25AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gT24gQmVoYWxmIE9mIFJpY2hhcmQg
+UHVyZGllDQo+ID4gU2VudDogVHVlc2RheSwgMTUgRmVicnVhcnksIDIwMjIgMjozOSBBTQ0KPiA+
+IFRvOiA8eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gPHlvY3RvQGxpc3RzLnlvY3RvcHJv
+amVjdC5vcmc+DQo+ID4gQ2M6IHFhLWJ1aWxkLW5vdGlmaWNhdGlvbg0KPiA+IDxxYS1idWlsZC1u
+b3RpZmljYXRpb25AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4NCj4gPiBTdWJqZWN0OiBbcWEtYnVp
+bGQtbm90aWZpY2F0aW9uXSBRQSBub3RpZmljYXRpb24gZm9yIGNvbXBsZXRlZA0KPiA+IGF1dG9i
+dWlsZGVyIGJ1aWxkICh5b2N0by0zLjQuMi5yYzIpDQo+ID4NCj4gPiBBIGJ1aWxkIGZsYWdnZWQg
+Zm9yIFFBICh5b2N0by0zLjQuMi5yYzIpIHdhcyBjb21wbGV0ZWQgb24gdGhlDQo+ID4gYXV0b2J1
+aWxkZXIgYW5kIGlzIGF2YWlsYWJsZSBhdDoNCj4gPg0KPiA+DQo+ID4gICAgIGh0dHBzOi8vYXV0
+b2J1aWxkZXIueW9jdG8uaW8vcHViL3JlbGVhc2VzL3lvY3RvLTMuNC4yLnJjMg0KPiA+DQo+ID4N
+Cj4gPiBCdWlsZCBoYXNoIGluZm9ybWF0aW9uOg0KPiA+DQo+ID4gYml0YmFrZTogYzAzOTE4MmM3
+OWUyY2NjNTRmZmY1ZDdmNGYyNjYzNDAwMTRjYTZlMA0KPiA+IG1ldGEtYWdsOiAxYThhYmM3MGM0
+ZjIzMzkyMDBiNjEyZDk2ZDgxYzRlZWMzYWMwNTE5DQo+ID4gbWV0YS1hcm06IDUxYjcyOGE1MmJk
+ZTdjNjEzZDU4NTVhZmVhYzBmYTZhMzE3NzFiZDINCj4gPiBtZXRhLWF3czogYzkyMzQ0OTM4YWI0
+ZDM3ZGU4YmQ4Yjc5OTE4NmRiYmUzMDE5YTA2OQ0KPiA+IG1ldGEtZ3BsdjI6IGYwNGU0MzY5YmY5
+ZGQzMzg1MTY1MjgxYjlmYTJlZDEwNDNiMGU0MDANCj4gPiBtZXRhLWludGVsOiA1YTMwZGNlZmE1
+NDA0MGRkMDUwOTk1NDlhNTYxNTZhODMyNjM1NTRjDQo+ID4gbWV0YS1taW5ndzogZjVkNzYxY2Jk
+NWM5NTdlNDQwNWM1ZDQwYjBjMjM2ZDI2M2M5MTZhOA0KPiA+IG1ldGEtb3BlbmVtYmVkZGVkOiBj
+MDVhZTgwYmE2ODA4ODdhYzkyNGMyMTUzNjA5MWJlN2ExMTczNDI3DQo+ID4gb2Vjb3JlOiA0MThh
+OWM0YzMxNjE1YTllM2UwMTFmYzJiMjFmYjcxNTRiYzZjOTNhDQo+ID4gcG9reTogZTBhYjA4YmI2
+YTMyOTE2YjQ1N2QyMjEwMjFlN2Y0MDJmZmEzNmIxYQ0KPiA+DQo+ID4NCj4gPg0KPiA+IFRoaXMg
+aXMgYW4gYXV0b21hdGVkIG1lc3NhZ2UgZnJvbSB0aGUgWW9jdG8gUHJvamVjdCBBdXRvYnVpbGRl
+cg0KPiA+IEdpdDogZ2l0Oi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcveW9jdG8tYXV0b2J1aWxkZXIy
+DQo+ID4gRW1haWw6IHJpY2hhcmQucHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmcNCj4gPg0KPiA+
+DQo+ID4NCj4gPg0KPiA+DQo+ID4NCj4gPg0KPiANCj4gDQo+IA0KPiAtPS09LT0tPS09LT0tPS09
+LT0tPS09LQ0KPiBMaW5rczogWW91IHJlY2VpdmUgYWxsIG1lc3NhZ2VzIHNlbnQgdG8gdGhpcyBn
+cm91cC4NCj4gVmlldy9SZXBseSBPbmxpbmUgKCM5OCk6IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9q
+ZWN0Lm9yZy9nL3FhLWJ1aWxkLQ0KPiBub3RpZmljYXRpb24vbWVzc2FnZS85OA0KPiBNdXRlIFRo
+aXMgVG9waWM6IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9tdC84OTE0MzUzNi80ODk5
+NDYzDQo+IEdyb3VwIE93bmVyOiBxYS1idWlsZC1ub3RpZmljYXRpb24rb3duZXJAbGlzdHMueW9j
+dG9wcm9qZWN0Lm9yZw0KPiBVbnN1YnNjcmliZTogaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qu
+b3JnL2cvcWEtYnVpbGQtDQo+IG5vdGlmaWNhdGlvbi9sZWF2ZS8xMDQwNjgwNS80ODk5NDYzLzcx
+NTM4OTk5NS94eXp6eQ0KPiBbamF5LnNoZW4udGVvaEBpbnRlbC5jb21dDQo+IC09LT0tPS09LT0t
+PS09LT0tPS09LT0tDQo+IA0KDQo=
 
