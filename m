@@ -1,105 +1,94 @@
-Return-Path: <jstephan@baylibre.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9E943C433F5
-	for <webhook@archiver.kernel.org>; Mon, 21 Feb 2022 17:24:18 +0000 (UTC)
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com
- [209.85.167.49])
- by mx.groups.io with SMTP id smtpd.web08.1638.1645464256557003514
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0162FC433FE
+	for <webhook@archiver.kernel.org>; Mon, 21 Feb 2022 21:14:58 +0000 (UTC)
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com
+ [209.85.215.177])
+ by mx.groups.io with SMTP id smtpd.web08.4626.1645478098142686673
  for <yocto@lists.yoctoproject.org>;
- Mon, 21 Feb 2022 09:24:17 -0800
+ Mon, 21 Feb 2022 13:14:58 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baylibre-com.20210112.gappssmtp.com header.s=20210112
- header.b=T0UIXIa/;
- spf=pass (domain: baylibre.com, ip: 209.85.167.49,
- mailfrom: jstephan@baylibre.com)
-Received: by mail-lf1-f49.google.com with SMTP id g39so19911993lfv.10
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=oMD7nhc0;
+ spf=pass (domain: gmail.com, ip: 209.85.215.177,
+ mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f177.google.com with SMTP id 27so10072115pgk.10
         for <yocto@lists.yoctoproject.org>;
- Mon, 21 Feb 2022 09:24:15 -0800 (PST)
+ Mon, 21 Feb 2022 13:14:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=4kf+i1cKC3FV+vAPYO1Dw74jx3aYuIyeQNu6Xm88pGg=;
-        b=T0UIXIa/wlFODIWbzgqTxTPsAEf+lPmf4lqScsoUuLH1P3vLJgOVKgaN0tbDBdk77J
-         NjqRAzEVdOxtdwN0GbRnwAqRA5t0Pqyr2Rk1OJM/GzUByjPo6NEJ6N1mzyv6Gucd34lH
-         AojPUhqKpiyd+oRNJ/xUzoHDIsyfd7kWXtjaT2yOWE8y+CjbjMEj5shkksTPmJrU4MZi
-         u4QG2HnpIoKKaFaWov9nBzfo2y8GFx2aS6aML3gmjUB+Dwp60uanfOyJxVCfKrrX+bwR
-         B4ZCPVg+5SNEFrPKbK0JfOWE8oLay43tgsMSTNleHa/ydnjWfHCvd9iQsItJFw2nC1oW
-         e3Kw==
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+         :content-transfer-encoding;
+        bh=Tz+Q+7W2igPyuCNfiiRoYqegyOs7aobkXx5NPfmP9bc=;
+        b=oMD7nhc01gcCUj3t8/pNZpYMaiDZ9NBrB56N7kcQtqXCT3mJITsdgoiRxHeASFUopH
+         l7KCtJ8qa1mbh6ei9QZJMqUxKXD/5ewIyOGkDFQB6cTalx3fAhwDxeUdjK2Ss7Zeh0xD
+         A/IwF50oNAuWwbfBoJnXnMFqNXIolvNky95oQMqCPu9Ji6MMMnoicVzLP874BxWClewJ
+         QrTb2pzBF0IAcFOIFdYuVC4Eznx7hZsBCjzPwf3R3txIMszQCJCd81eBoHYwa7sW+yK1
+         +PdRD5/QWUN6f10o1Whc2Nl1V9sR80akfZruHCPR09TErB90dHgkJqxvDbXFcQuDeJUX
+         32sQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=4kf+i1cKC3FV+vAPYO1Dw74jx3aYuIyeQNu6Xm88pGg=;
-        b=HovloiOdJwUxNzLLykkn6QH0v/VaFB3x1DSdmsLzu0yEkVSwq9F+zWpGZk+BHrstNN
-         PUtF6NsvOrY+7x3z4zRHB/m9OfQU7RLn5XC6l6H4nWaRhshSiBx4MA/RgnNbG0m+DGty
-         8pUyxOsxUwm4ffhbAePVCJfGbxF1e3ivTM7GcH/RRMGMq7kOGo5k/jLuz+7N0Yjyd3ss
-         o9pvjq+jktaqt4V+KQx8MkAXgT83menRNZYdkEmLqdlOSXQvqDuOTUJ6dqv7UCyRAsYL
-         o9wBxk6F++1UIGmHkWrdIHcYNawI1xVJPlThOkTSaJqxQHPgDiESs1YA+xN1VsIIkO+W
-         0VYA==
-X-Gm-Message-State: AOAM530xjlKQZh9LZutbMZcAMGgiBwM5Nt0ZX8X0/2jtvqy3tG9EN/BD
-	KbMETfLF0UHGJqWBCIcWYPjhkkk3x3IaHRm7ShQXtZTI2S7qUA==
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Tz+Q+7W2igPyuCNfiiRoYqegyOs7aobkXx5NPfmP9bc=;
+        b=0+EkKsxj6MLJB5l1kHjobE1EmZJa1OaaPw2LnoMzdQ/Z3Gp2p6IIvFV1xqQgWnDbsS
+         d31IdAHPNljDnFzBffPFUjgaT1Z7J1iqRd0EVJiMj1cXjOYOxp1TrOjqArYUQ/5I4hav
+         Z15iKABSI0TXWol+ufMPC28y7BwvwtW76NSCf4CylibDDxPvJMYhUWgI/k/C4zcY2/W9
+         Kw1j7Nwg7aYZqtwtBGY4G5ZG1Oupgw3MI3BrbWvYpjUTaLnFw+6XyzyDZEKnp03C9by0
+         EDlmFK9JqxIaNVJ/4K4mwaInX3DVKeC5tJIu/wnMNaE9y9NZ2d4uBRy43Ufm7ZDXO7Cn
+         PRWg==
+X-Gm-Message-State: AOAM531Qxcmo8It5o4NaVhagVGkI+7SuIjFX6sVmDvNCNVaI/bUKyQrG
+	/ITQauCxJnxCM9G188LhkanwDeP0CUM=
 X-Google-Smtp-Source: 
- ABdhPJy/AJlzrUBQShngRE8uZGW3ON3X1b9xqdaws1eH9HuVEBTsZRlBbcaBjjGIRzn3iu/uPaZBCYoOem44PElSt/s=
-X-Received: by 2002:a19:6a07:0:b0:443:ecf7:e4b4 with SMTP id
- u7-20020a196a07000000b00443ecf7e4b4mr4131282lfu.395.1645464254008; Mon, 21
- Feb 2022 09:24:14 -0800 (PST)
-MIME-Version: 1.0
-From: Julien Stephan <jstephan@baylibre.com>
-Date: Mon, 21 Feb 2022 18:22:52 +0100
-Message-ID: 
- <CAEHHSvaRvvhBEUDVZS=fY81+vdkqxPv7jFs2=bgAgvFKQNmzuQ@mail.gmail.com>
-Subject: extract several source tree with devtool
+ ABdhPJzjv8Fowa5yNtF936ifuQcIgQF/uB2f7GayVdXJ/pkVMAKgnh1bPFLui9ViI3ekFGzG66kfIA==
+X-Received: by 2002:a65:6751:0:b0:363:43a5:c7e3 with SMTP id
+ c17-20020a656751000000b0036343a5c7e3mr17338300pgu.46.1645478097567;
+        Mon, 21 Feb 2022 13:14:57 -0800 (PST)
+Received: from keaua.caveonetworks.com
+ ([2601:202:4180:a5c0:c5c2:4687:1c77:58fa])
+        by smtp.gmail.com with ESMTPSA id
+ a9sm18827862pgb.56.2022.02.21.13.14.57
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Feb 2022 13:14:57 -0800 (PST)
+From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000059e4e105d88a80c9"
+Subject: [meta-security][PATCH 2/3] chipsec: fix WARNING
+Date: Mon, 21 Feb 2022 13:14:54 -0800
+Message-Id: <20220221211455.1241096-2-akuster808@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220221211455.1241096-1-akuster808@gmail.com>
+References: <20220221211455.1241096-1-akuster808@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 21 Feb 2022 17:24:18 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56223
+ <yocto@lists.yoctoproject.org>; Mon, 21 Feb 2022 21:14:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56225
 
---00000000000059e4e105d88a80c9
-Content-Type: text/plain; charset="UTF-8"
+distutils3.bbclass is deprecated, please use setuptools3.bbclass instead
 
-Hi all,
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/chipsec/chipsec_git.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I am wondering if it is possible to extract both a git repo and a tarball
-using devtool modify?
-Example:
-I am trying to use devtool modify on tensorflow-lite recipe (
-https://git.yoctoproject.org/meta-tensorflow/tree/recipes-framework/tensorflow/tensorflow_2.6.1.bb).
-The `tensorflow.inc` file fetches the tensorflow repository using git, then
-`tensorflow_2.6.1.bb` fetches 2 tarballs. The tarballs are extracted inside
-WORKDIR then files are installed inside the do_install() function.  This is
-running correctly using `bitbake tensorflow`. When using `devtool modify
-tensorflow`, the tarballs are not extracted, then I get an error at the
-do_install stage: files from tarball don't exist.
+diff --git a/recipes-security/chipsec/chipsec_git.bb b/recipes-security/chipsec/chipsec_git.bb
+index e265a08..156be09 100644
+--- a/recipes-security/chipsec/chipsec_git.bb
++++ b/recipes-security/chipsec/chipsec_git.bb
+@@ -20,7 +20,7 @@ EXTRA_OEMAKE = "CC='${CC}' LDFLAGS='${LDFLAGS}' CFLAGS='${CFLAGS}'"
+ DEPENDS = "virtual/kernel nasm-native python3-setuptools-native"
+ RDEPENDS:${PN} += "python3 python3-modules"
+ 
+-inherit module distutils3
++inherit module setuptools3
+ 
+ do_compile:append() {
+ 	cd ${S}/drivers/linux
+-- 
+2.25.1
 
-This is a general question not related to tensorflow. Any suggestions on
-how to handle this? Either on the recipe side or on the devtool side?
-Best
-Julien
-
---00000000000059e4e105d88a80c9
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>I am wondering if it=
- is possible to extract both a git repo and a tarball using devtool modify?=
- <br></div><div>Example:</div><div>I am trying to use devtool modify on ten=
-sorflow-lite recipe (<a href=3D"https://git.yoctoproject.org/meta-tensorflo=
-w/tree/recipes-framework/tensorflow/tensorflow_2.6.1.bb">https://git.yoctop=
-roject.org/meta-tensorflow/tree/recipes-framework/tensorflow/tensorflow_2.6=
-.1.bb</a>). The `tensorflow.inc` file fetches the tensorflow repository usi=
-ng git, then `<a href=3D"http://tensorflow_2.6.1.bb">tensorflow_2.6.1.bb</a=
->` fetches 2 tarballs. The tarballs are extracted inside WORKDIR then files=
- are installed inside the do_install() function.=C2=A0 This is running corr=
-ectly using `bitbake tensorflow`. When using `devtool modify tensorflow`, t=
-he tarballs are not extracted, then I get an error at the do_install stage:=
- files from tarball don&#39;t exist.<br></div><div><br></div><div>This is a=
- general question not related to tensorflow. Any suggestions on how to hand=
-le this? Either on the recipe side or on the devtool side?<br></div><div>Be=
-st</div><div>Julien <br></div></div>
-
---00000000000059e4e105d88a80c9--
 
