@@ -1,112 +1,98 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 88048C433F5
-	for <webhook@archiver.kernel.org>; Tue, 22 Feb 2022 15:57:04 +0000 (UTC)
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com
- [209.85.218.54])
- by mx.groups.io with SMTP id smtpd.web08.14366.1645545423485538761
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5413FC433F5
+	for <webhook@archiver.kernel.org>; Tue, 22 Feb 2022 18:30:41 +0000 (UTC)
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com
+ [209.85.222.175])
+ by mx.groups.io with SMTP id smtpd.web11.1242.1645554640068311253
  for <yocto@lists.yoctoproject.org>;
- Tue, 22 Feb 2022 07:57:03 -0800
+ Tue, 22 Feb 2022 10:30:40 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20210112.gappssmtp.com header.s=20210112
- header.b=JsA6j7Wa;
- spf=softfail (domain: sakoman.com, ip: 209.85.218.54,
- mailfrom: steve@sakoman.com)
-Received: by mail-ej1-f54.google.com with SMTP id a23so44142696eju.3
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=Bv0TOAaG;
+ spf=pass (domain: gmail.com, ip: 209.85.222.175,
+ mailfrom: raj.khem@gmail.com)
+Received: by mail-qk1-f175.google.com with SMTP id j78so817626qke.2
         for <yocto@lists.yoctoproject.org>;
- Tue, 22 Feb 2022 07:57:03 -0800 (PST)
+ Tue, 22 Feb 2022 10:30:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20210112.gappssmtp.com; s=20210112;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7K9sh9GxhSW8m4n9Xpu5KuRGkHBA8cUpocV+BO7mIeg=;
-        b=JsA6j7WaszGNI+q7PdpmFAIqRSEzGCacGgJHbaEkX+rMl+SSaiCaGHAeiao4w4xKCm
-         Ar779NihaohZKJx0IQ1nHFE7IXhmkEDqcMJgDnhpswjC5MNFvw/utmxjeMqI9w7dS1b7
-         WO44qJNe49dlLxqkROK2pmWvWAl6iX9lO8IhLOpa5W+zF8fbJluW2LYTWoVaA7M0TAoJ
-         knOGc//rAjl8HmHWmpigQ8RjF1zBSJMax7rMJAYWVrqE3dVh67SWyYRNNs24ToJmeXgX
-         iD2nvjfFvDanPdFCTldjbpYl5SyAKtF6wUWGgcBeJYCpH7jVA8SnqO+0yqpidy3WMbF1
-         Yltg==
+         :cc:content-transfer-encoding;
+        bh=dlqcipyTpaK3qM/uW5HIgepkUOI57F3QMIrcGfE3Sxo=;
+        b=Bv0TOAaGsYINpRSykEnuh9FhrdlF8TmxkzSIgi61sN4AZ0pEQeyRASadfUSmPj5d2m
+         44BDFdFXUIlHn9N5Ao+K8jhzyTq0rbiLgWB954VqopqjxYxvIur7hXkpPGClQqMmxUdE
+         Y8YZ4dJ+W6z8tGzUukm/tOSry72J25JVtu55NOLtBagemsNrKye7uCN1aiFCfQzZkvCR
+         MMB8NHmpeyRQPc6yy9flSis7OoYFcHy9/73YvDlkBpQIIoFlc9nXDG0t2BMrgbW6UkJM
+         ZCyz4HgZB8hzU3FnGMf3kooLq4OYEVDuOGEH0yvz6UgHP55xL9OcOzhrp3Cn850UBK9q
+         YAqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7K9sh9GxhSW8m4n9Xpu5KuRGkHBA8cUpocV+BO7mIeg=;
-        b=FnSpyIP/qZrHIo8Vy+4pZN2P5p+H0ye/9gIzZMPp22BCrJmbWCrsXyBtt1aKgFtGhk
-         k7L/yEoRBuQJ2HYPjdQzrXTVz9p1A6v3GhftmUzQ203VkDB2/i0ps4BX/6V866eIcbWv
-         bZKleG/gH/2anwHeCFdwK03kR682shNCX9XIeDsjIV0MhuvBdZthmdL60P5ZXYfEnYlm
-         +/8g+BpGaaLYqaeWQgYzH1IXp/G4C4ZCZGSRgvKaLn84+a52yDnvs+t8og6r4nhhPGs1
-         XaSrlkSVEp4Yd+9oPEFXXDCZ1JQ0lVXM9mwuge6wpCoU6E+vReLdzH7p4HPKWOysNVq3
-         qUag==
-X-Gm-Message-State: AOAM532xZWcbFR6kKA8wn+M51aAcS/eJJKlPiNxxn92cWJIuVPHJ6/I8
-	O1Rb+Pa6TnPmW/N9WZG9XgKQcGeC0bqW+mssWO/SrQ==
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=dlqcipyTpaK3qM/uW5HIgepkUOI57F3QMIrcGfE3Sxo=;
+        b=XBuLdMKOZT7pVgp7GB7KV2uVk6rvy2YZeEO2sPrA9zRNhNsejDTFMqrNXmHYe4PDtH
+         M9ea0rOGWZBV9mvDj+1q1Y7RMQ2x+JEokt+3NSfMtTi602CvyZ+YCEzrUlNE1mNpdlbt
+         4iykvtMv43g/Egn2QQ1UZsNvGI3gT5agNd9ifTh2Z6N7/l4zO3KFRBllqmYIy5BAXO5d
+         cRfB1eXslt/oIWXmiB3usdw1cKEMMKL1Y/7QVHvRUcFhjrWdL4JayGO8vqxkTgpNXxGp
+         gcjkBgDdVvyHAs7p15Y3Paj/lOyxGzQhr+x63vlBdw+ZczVpPJDSYMEtwdUn5i5sDMkw
+         gKww==
+X-Gm-Message-State: AOAM531d3kFk43MLT2mtc+OPPwC87PsElCVCMhlwAf5qCiJg3Qq6qT67
+	8nhcmvYg3OHYwgNp3Sc0/Wp+YoZQAqCzloz0cdg=
 X-Google-Smtp-Source: 
- ABdhPJzeMzhfPBycH5kgQqhjDViGTCSMsr+DJasRUhJi9xLO40A24/SkODA2z4y5Xcg/cIYaGH1JfCHUPNM0w5o7jAs=
-X-Received: by 2002:a17:907:3347:b0:6ce:6bc4:d18a with SMTP id
- yr7-20020a170907334700b006ce6bc4d18amr19429390ejb.612.1645545421775; Tue, 22
- Feb 2022 07:57:01 -0800 (PST)
+ ABdhPJx6zr1bHMB9IIHg1uoqW2l6ibRLSzmMyRpDhGrxZfxDRoCQWacxkBClbMkqBicnvoJDFIpDUSDeBWp7ZyQT0zc=
+X-Received: by 2002:a05:620a:1593:b0:60a:b223:893a with SMTP id
+ d19-20020a05620a159300b0060ab223893amr16202951qkk.72.1645554639069; Tue, 22
+ Feb 2022 10:30:39 -0800 (PST)
 MIME-Version: 1.0
-References: <16D624D896D9F446.28081@lists.yoctoproject.org>
-In-Reply-To: <16D624D896D9F446.28081@lists.yoctoproject.org>
-From: Steve Sakoman <steve@sakoman.com>
-Date: Tue, 22 Feb 2022 05:56:50 -1000
+References: <rBFS.1645540791107768069.EfgM@lists.yoctoproject.org>
+In-Reply-To: <rBFS.1645540791107768069.EfgM@lists.yoctoproject.org>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 22 Feb 2022 10:30:13 -0800
 Message-ID: 
- <CAOSpxda=TY7iPFNe8U1rtxL601hjOYAwi2xFE4P60_taan+61w@mail.gmail.com>
-Subject: Re: [yocto] [yocto-autobuilder-helper][dunfell 0/3] Patch review
-To: steve@sakoman.com
-Cc: yocto@lists.yoctoproject.org
+ <CAMKF1sqBz=nPi_gPSoBmUdA9JoH8FJE0bUfq3J+cXCh4zh4AXQ@mail.gmail.com>
+Subject: Re: [yocto] #yocto #raspberrypi0-wifi #honister
+To: safouane maaloul <maaloulsafouane@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 22 Feb 2022 15:57:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56247
+ <yocto@lists.yoctoproject.org>; Tue, 22 Feb 2022 18:30:41 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56248
 
-On Tue, Feb 22, 2022 at 5:20 AM Steve Sakoman via
-lists.yoctoproject.org <steve=sakoman.com@lists.yoctoproject.org>
-wrote:
+On Tue, Feb 22, 2022 at 6:39 AM safouane maaloul
+<maaloulsafouane@gmail.com> wrote:
 >
-> I'm seeing intermittent timeout errors when starting an a-full build:
+> I do am building image on a raspberry pi zero w. After flashing the image=
+ on the raspberry, i don get anything on the screen. I am doing this the ho=
+nister branch. I had the gatesgarth branch and it was working perfectly. I =
+tried many thing but i can't get to work. i have literally the same code on=
+ a raspberry pi zero w 2 and it works perfectly. I am only changing the nam=
+e of the machine (raspberrypi0-wifi ) to get to work. Do you have an idea w=
+hy ? I have the sensation that it is booting because the green led is flash=
+ing but i don't have anything on the screen.
 
-Not so intermittent now, twice in a row:
+is it possible to hook up serial console and see if you see additional
+messages ?
+also try with master and see if you have same problem as honister or not
 
-https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/3268
-
->
-> https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/3267
->
-> This set of patches from master seems to fix the issue.
->
-> The following changes since commit fe26983bb39a6a51eea3c0fe87dbc6a016abd85d:
->
->   config.json: Add other repo defaults to fix check-layer-nightly for meta-aws (2022-01-07 15:32:16 +0000)
->
-> are available in the Git repository at:
->
->   git://git.yoctoproject.org/yocto-autobuilder-helper contrib/sakoman
->   http://git.yoctoproject.org/cgit.cgi/yocto-autobuilder-helper/log/?h=contrib/sakoman
->
-> Richard Purdie (3):
->   scripts/prepare-shared-repos: Use tmpfs for speed
->   prepare-shared-repos: Make it clear when rsync starts in logs
->   shared-repos: Use tar instead of rsync for speed
->
->  scripts/prepare-shared-repos | 5 +++--
->  scripts/send-qa-email        | 6 ++++--
->  scripts/shared-repo-unpack   | 9 ++++++---
->  3 files changed, 13 insertions(+), 7 deletions(-)
->
-> --
-> 2.25.1
->
->
-> -=-=-=-=-=-=-=-=-=-=-=-
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#56241): https://lists.yoctoproject.org/g/yocto/message/56241
-> Mute This Topic: https://lists.yoctoproject.org/mt/89318576/3620601
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#56240): https://lists.yoctoproject.org/g/yocto/messag=
+e/56240
+> Mute This Topic: https://lists.yoctoproject.org/mt/89317701/1997914
+> Mute #yocto:https://lists.yoctoproject.org/g/yocto/mutehashtag/yocto
+> Mute #raspberrypi0-wifi:https://lists.yoctoproject.org/g/yocto/mutehashta=
+g/raspberrypi0-wifi
+> Mute #honister:https://lists.yoctoproject.org/g/yocto/mutehashtag/honiste=
+r
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [steve@sakoman.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
+.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 >
 
