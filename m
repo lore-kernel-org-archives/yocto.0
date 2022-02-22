@@ -2,76 +2,76 @@ Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 14078C433EF
-	for <webhook@archiver.kernel.org>; Tue, 22 Feb 2022 15:44:33 +0000 (UTC)
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com
- [209.85.216.53])
- by mx.groups.io with SMTP id smtpd.web09.14336.1645544671571887033
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 651DEC433F5
+	for <webhook@archiver.kernel.org>; Tue, 22 Feb 2022 15:54:37 +0000 (UTC)
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com
+ [209.85.216.52])
+ by mx.groups.io with SMTP id smtpd.web10.14456.1645545276730605278
  for <yocto@lists.yoctoproject.org>;
- Tue, 22 Feb 2022 07:44:31 -0800
+ Tue, 22 Feb 2022 07:54:36 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=HLyQd8aE;
- spf=pass (domain: gmail.com, ip: 209.85.216.53,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=cgd2EYjD;
+ spf=pass (domain: gmail.com, ip: 209.85.216.52,
  mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-pj1-f53.google.com with SMTP id
- iq13-20020a17090afb4d00b001bc4437df2cso3046955pjb.2
+Received: by mail-pj1-f52.google.com with SMTP id
+ iq13-20020a17090afb4d00b001bc4437df2cso3079121pjb.2
         for <yocto@lists.yoctoproject.org>;
- Tue, 22 Feb 2022 07:44:31 -0800 (PST)
+ Tue, 22 Feb 2022 07:54:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:subject:date:message-id:mime-version:thread-index
          :content-language;
-        bh=lSfqg62x/d6rK4ZfBb9mc272leCEiwxa+NFxEZBQ/z4=;
-        b=HLyQd8aEMTHmVyYjH5SEYGbhTH+3U+6e/Hg4F0uIffy6INON4Hh8iQlliJKg4U22Be
-         tcacnlclmTv7N3uxcS19wEHPBC2TGpBQaMnD112oe/HNWiQvaPffd3qg7blLblec24dJ
-         zCzAvttozYBmqqLmMa7azNZNzB01014lq94/tBpN8GcgcXsRE0iOXFHQDXl4jD057jRn
-         qfpF13+Wlhi7mVHUocv/qo/1AnL9RiC5qmCSHiFcgGYtmNzC57+QQDww43suKIp6yMHc
-         Jke7dXmwC9u3l0ms4+rrCkG3uLp+KceGdE/EYdOqAxxdFPfmyOj24T230u3qgZ3rWxP0
-         Z7ag==
+        bh=cPj1bCYdjqVhxhV5irH0cFuHZTJrJsJTCSirGE0Gr1w=;
+        b=cgd2EYjDGTAVjg7bl+IhMrXxVWUY+nMbvB9iCY2L2QdhVeGBRkpZCCRWZCeRANyZ3y
+         98jo0Y5kGUfsTg+hGWleTeM414Xs7aGq9L//Ib73axO/wk4g/jeRjgJcfdycIFryJeH8
+         zn+eASYrRl1BvFUtANy+h63zB2SnB9OarBHSra8gec90SO0jygnUuijIDWptXY1guuwV
+         ofuU7jErSqfMugZqQTZ9Sy6xb5azX0BlEjlDHN3+o44yQMR2XJ8tJG0sUsW9JAMH1+5a
+         AAMdJQ5wMsMKBZXUsh5m57GyZvm9jA2Oy1E5Z0Uq750BsUo45WNuXT4mp9IVw6gYB5h8
+         EjwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :thread-index:content-language;
-        bh=lSfqg62x/d6rK4ZfBb9mc272leCEiwxa+NFxEZBQ/z4=;
-        b=LBDTACdtSMoKWKeBJfc0MGgQLWhetFxnsii0HCnf8RxHu4cVdBEooXMMAUW/FZ0wMD
-         ICdGEGhrmcB7DW4XMGJyqsMZ88kGL2St4XuqL8klYfoAxJMnnRxoSq4b6f1tSo/Df0fj
-         vrgjf/eRadA1xGAPlkS7R2uly3hNSeJyYCvec7xkzJNaS7kV4AbH2mCdqVvecxQ1Oxqh
-         mVgMXGNVXWczdw3qrzvfFFPFz+QolkHzDkKFBdLCP1hsoK990dJExHX85N3CBT4Eg849
-         a6n06HiytYNppd/4cAplWLjlvU4tc5EraBO9O9qs1Yxvt8ILgS4yHR6neY2CItm+C1mD
-         4tKA==
-X-Gm-Message-State: AOAM530IDwWUvINp6hEHMaRdrswOTFPFfg8PnDI4GWGLSMqI+2BQuAcF
-	xt2Tv32bkaHxiqKef7V8Ay4=
+        bh=cPj1bCYdjqVhxhV5irH0cFuHZTJrJsJTCSirGE0Gr1w=;
+        b=Bhhq4btKXhY1yVCiwIMFftH+YwXYtOh4DRADbMrHOADR+iauje0c9Vcsm6/S1lnkfp
+         8PA0pWfs7adlqsG9E054xgi9S8lZsnGrQWiCkcBOxDHG0TPGy5CAieg2mMZABNyzHlkZ
+         VM+kaeobCR3/eJSqzpCpFPxl8NDA+clJZijn5lH890wXFvFzXfVHG44ajp5mxH34ETE8
+         jqGg34CPxRFfERzzC2rWF466zf6mdd1kBg4hDrbLv9WAx4V4g7Li4j3N41yoqUg0+y44
+         HidS+LspW5/tvF/Wl89QQ9QWwDSr+iJBbxYCvbxmXPz9F5OGtEjQa+Xj4G6PA9WJLy1z
+         zQag==
+X-Gm-Message-State: AOAM5328Feb9ydAQ0id+nfXm6AYjJghv2EAT9A+VI0xv7HiYyhKtA+2a
+	/s/Zqv2a63f6CGGFsmywY3w=
 X-Google-Smtp-Source: 
- ABdhPJzdOh8bKP5+qyLUI+3u5EczMTk43SpMJO8x4/sw6O5IdM5tKmOLVj6sVHyAga8XO3LbsbaDUA==
-X-Received: by 2002:a17:90a:bf91:b0:1b9:bda3:10ff with SMTP id
- d17-20020a17090abf9100b001b9bda310ffmr4793029pjs.38.1645544670819;
-        Tue, 22 Feb 2022 07:44:30 -0800 (PST)
+ ABdhPJw1CD7ye7OI3cXCpNvpl7AAtC1bbwVEOM7jMmDfKrdr0edBeGOOmMonoWbFeKGRHRX6TMXs4g==
+X-Received: by 2002:a17:90b:3ec2:b0:1b9:f17d:4452 with SMTP id
+ rm2-20020a17090b3ec200b001b9f17d4452mr4715739pjb.71.1645545276093;
+        Tue, 22 Feb 2022 07:54:36 -0800 (PST)
 Received: from skjolley ([2600:1011:a101:a1c7:6db0:71b9:5b61:9404])
         by smtp.gmail.com with ESMTPSA id
- ls14sm3148087pjb.0.2022.02.22.07.44.30
+ s19sm17809591pfu.34.2022.02.22.07.54.35
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 22 Feb 2022 07:44:30 -0800 (PST)
+        Tue, 22 Feb 2022 07:54:35 -0800 (PST)
 From: <sjolley.yp.pm@gmail.com>
 To: <yocto@lists.yoctoproject.org>,
 	<openembedded-core@lists.openembedded.org>
 Subject: Yocto Project Status WW08`22
-Date: Tue, 22 Feb 2022 08:44:29 -0700
-Message-ID: <2f7701d82803$14b15ad0$3e141070$@gmail.com>
+Date: Tue, 22 Feb 2022 08:54:34 -0700
+Message-ID: <319f01d82804$7d7576e0$786064a0$@gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_2F78_01D827C8.6859AEC0"
+	boundary="----=_NextPart_000_31A0_01D827C9.D11A6F70"
 X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdgoAvvZAVv1gvO+Tbq7wR9dNFwBug==
+Thread-Index: AdgoBGteOpgo6lgOQ+mFsq9Gz9b9jg==
 Content-Language: en-us
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 22 Feb 2022 15:44:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56245
+ <yocto@lists.yoctoproject.org>; Tue, 22 Feb 2022 15:54:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56246
 
 This is a multipart message in MIME format.
 
-------=_NextPart_000_2F78_01D827C8.6859AEC0
+------=_NextPart_000_31A0_01D827C9.D11A6F70
 Content-Type: text/plain;
 	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -84,14 +84,14 @@ Next Deadline: 4th April. 2022 YP 3.5 M4 build
 
 Next Team Meetings:
 
-*	Bug Triage meeting Thursday Feb. 25th 7:30 am PDT (
+*	Bug Triage meeting Thursday Feb. 24th 7:30 am PDT (
 <https://zoom.us/j/454367603?pwd=ZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09>
 https://zoom.us/j/454367603?pwd=ZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09)
 *	Monthly Project Meeting Tuesday Mar. 1st at 8 am PDT (
 <https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09>
 https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09
 <https://zoom.us/j/990892712> )
-*	Weekly Engineering Sync Tuesday Feb. 23rd at 8 am PDT (
+*	Weekly Engineering Sync Tuesday Feb. 22nd at 8 am PDT (
 <https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09>
 https://zoom.us/j/990892712?pwd=cHU1MjhoM2x6ck81bkcrYjRrcmJsUT09
 <https://zoom.us/j/990892712> )
@@ -237,7 +237,7 @@ Yocto Project Program Manager
  
 
 
-------=_NextPart_000_2F78_01D827C8.6859AEC0
+------=_NextPart_000_31A0_01D827C9.D11A6F70
 Content-Type: text/html;
 	boundary="----=_NextPart_000_0AB6_01D82282.36FDDF90";
 	charset="us-ascii"
@@ -373,8 +373,8 @@ div.WordSection1
 	mso-ansi-font-size:10.0pt;
 	font-family:Wingdings;}
 @list l1
-	{mso-list-id:72318112;
-	mso-list-template-ids:-735154756;}
+	{mso-list-id:330916632;
+	mso-list-template-ids:-1721584356;}
 @list l1:level1
 	{mso-level-number-format:bullet;
 	mso-level-text:\F0B7;
@@ -449,8 +449,8 @@ div.WordSection1
 	mso-ansi-font-size:10.0pt;
 	font-family:Wingdings;}
 @list l2
-	{mso-list-id:212273042;
-	mso-list-template-ids:768521764;}
+	{mso-list-id:362561186;
+	mso-list-template-ids:667215896;}
 @list l2:level1
 	{mso-level-number-format:bullet;
 	mso-level-text:\F0B7;
@@ -525,8 +525,8 @@ div.WordSection1
 	mso-ansi-font-size:10.0pt;
 	font-family:Wingdings;}
 @list l3
-	{mso-list-id:385639694;
-	mso-list-template-ids:694193364;}
+	{mso-list-id:511260881;
+	mso-list-template-ids:-563697160;}
 @list l3:level1
 	{mso-level-number-format:bullet;
 	mso-level-text:\F0B7;
@@ -601,8 +601,8 @@ div.WordSection1
 	mso-ansi-font-size:10.0pt;
 	font-family:Wingdings;}
 @list l4
-	{mso-list-id:511260881;
-	mso-list-template-ids:-563697160;}
+	{mso-list-id:583491158;
+	mso-list-template-ids:-1846381556;}
 @list l4:level1
 	{mso-level-number-format:bullet;
 	mso-level-text:\F0B7;
@@ -677,8 +677,8 @@ div.WordSection1
 	mso-ansi-font-size:10.0pt;
 	font-family:Wingdings;}
 @list l5
-	{mso-list-id:583491158;
-	mso-list-template-ids:-1846381556;}
+	{mso-list-id:624847270;
+	mso-list-template-ids:-986391406;}
 @list l5:level1
 	{mso-level-number-format:bullet;
 	mso-level-text:\F0B7;
@@ -829,8 +829,8 @@ div.WordSection1
 	mso-ansi-font-size:10.0pt;
 	font-family:Wingdings;}
 @list l7
-	{mso-list-id:771625734;
-	mso-list-template-ids:-485220032;}
+	{mso-list-id:850416159;
+	mso-list-template-ids:1848536254;}
 @list l7:level1
 	{mso-level-number-format:bullet;
 	mso-level-text:\F0B7;
@@ -981,8 +981,8 @@ div.WordSection1
 	mso-ansi-font-size:10.0pt;
 	font-family:Wingdings;}
 @list l9
-	{mso-list-id:1555313288;
-	mso-list-template-ids:-1695667120;}
+	{mso-list-id:1154222252;
+	mso-list-template-ids:-1455766828;}
 @list l9:level1
 	{mso-level-number-format:bullet;
 	mso-level-text:\F0B7;
@@ -1057,8 +1057,8 @@ div.WordSection1
 	mso-ansi-font-size:10.0pt;
 	font-family:Wingdings;}
 @list l10
-	{mso-list-id:1864633005;
-	mso-list-template-ids:-1692351052;}
+	{mso-list-id:1228421046;
+	mso-list-template-ids:-551513636;}
 @list l10:level1
 	{mso-level-number-format:bullet;
 	mso-level-text:\F0B7;
@@ -1133,8 +1133,8 @@ div.WordSection1
 	mso-ansi-font-size:10.0pt;
 	font-family:Wingdings;}
 @list l11
-	{mso-list-id:2058237040;
-	mso-list-template-ids:-216792358;}
+	{mso-list-id:1555313288;
+	mso-list-template-ids:-1695667120;}
 @list l11:level1
 	{mso-level-number-format:bullet;
 	mso-level-text:\F0B7;
@@ -1228,15 +1228,15 @@ class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
 style=3D'font-family:"Arial",sans-serif;color:black'>Next Team =
 Meetings:</span><o:p></o:p></p><ul =
 style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l5 level1 =
 lfo7;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>Bug Triage meeting Thursday =
-Feb. 25th 7:30 am PDT (<a =
+Feb. 24th 7:30 am PDT (<a =
 href=3D"https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz0=
 9"><span =
 style=3D'color:#1155CC'>https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y=
 0bFd5aVpHVVZ6dz09</span></a>)<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l5 level1 =
 lfo7;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>Monthly Project Meeting Tuesday =
 Mar. 1st at 8 am PDT (<a =
@@ -1246,17 +1246,17 @@ style=3D'color:#1155CC'>https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck8=
 1bkcrYjRrcmJsUT09</span></a><a =
 href=3D"https://zoom.us/j/990892712"><span =
 style=3D'color:#1155CC'>)</span></a><o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l5 level1 =
 lfo7;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>Weekly Engineering Sync Tuesday =
-Feb. 23rd at 8 am PDT (<a =
+Feb. 22nd at 8 am PDT (<a =
 href=3D"https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT0=
 9"><span =
 style=3D'color:#1155CC'>https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck8=
 1bkcrYjRrcmJsUT09</span></a><a =
 href=3D"https://zoom.us/j/990892712"><span =
 style=3D'color:#1155CC'>)</span></a><o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l5 level1 =
 lfo7;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>Twitch -&nbsp; See =
 https://www.twitch.tv/theyoctojester<o:p></o:p></span></li></ul><p =
@@ -1264,36 +1264,36 @@ class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
 style=3D'font-family:"Arial",sans-serif;color:black'>Key =
 Status/Updates:</span><o:p></o:p></p><ul =
 style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
 lfo8;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>We are now at feature freeze =
 for 3.5, our next LTS release<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
 lfo8;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>YP 3.1.14 and YP 3.2.4 were =
 released<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
 lfo8;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>YP 3.3.5 is in =
 QA<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
 lfo8;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>After a last minute push, the =
 base set of inclusive language changes have merged. There is a =
 conversion script which can be run to convert layers. Not all changes =
 needed have been written yet but enough are present to allow the =
 conversion process to start.<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
 lfo8;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>There were also changes to =
 convert LICENSE fields to use SPDX identifiers and there is a second =
 conversion script for this that can be used.<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
 lfo8;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>We have updated the core layer =
 series name to kirkstone and other layers will now need to update to =
 confirm compatibility with kirkstone.<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
 lfo8;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>There is a patchset to update =
 python&#8217;s build processes to use the upstream preferred wheel =
@@ -1301,11 +1301,11 @@ approach which would aid support of python over the next few years. It =
 is late in the cycle for this kind of change but we will give this =
 series a few days of testing to make a decision and welcome user =
 feedback either way on these changes.<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
 lfo8;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>As such, the M3 release build =
 will likely not happen until early next week.<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
 lfo8;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>The autobuilder infrastructure =
 is planned to be offline 26-28th February for a data center move. Public =
@@ -1313,12 +1313,12 @@ services like the website, wiki and git servers will remain live but the =
 git backend (push.yoctoproject.org) will be offline, as will the =
 downloads and sstate services and the =
 autobuilder/NAS.<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
 lfo8;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>Capacity has been improved on =
 the sstate server which was causing intermittent timeout issues for =
 downloads.<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l7 level1 =
 lfo8;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>Intermittent issues continue to =
 be at record high levels and help is very much welcome in trying to =
@@ -1338,14 +1338,14 @@ class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
 style=3D'font-family:"Arial",sans-serif;color:black'>Ways to =
 contribute:</span><o:p></o:p></p><ul =
 style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l2 level1 =
 lfo9;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>There are bugs identified as =
 possible for newcomers to the project: <a =
 href=3D"https://wiki.yoctoproject.org/wiki/Newcomers"><span =
 style=3D'color:#1155CC'>https://wiki.yoctoproject.org/wiki/Newcomers</spa=
 n></a><o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l2 level1 =
 lfo9;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>There are bugs that are =
 currently unassigned for YP 3.5. See: <a =
@@ -1353,7 +1353,7 @@ href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2B_3.5_Unass=
 igned_Enhancements.2FBugs"><span =
 style=3D'color:#1155CC'>https://wiki.yoctoproject.org/wiki/Bug_Triage#Med=
 ium.2B_3.5_Unassigned_Enhancements.2FBugs</span></a><o:p></o:p></span></l=
-i><li style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 =
+i><li style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l2 =
 level1 lfo9;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>We&#8217;d welcome new =
 maintainers for recipes in OE-Core. Please see the list at: <a =
@@ -1364,7 +1364,7 @@ ta/conf/distro/include/maintainers.inc</span></a> and discuss with the =
 existing maintainer, or ask on the OE-Core mailing list. We will likely =
 move a chunk of these to &#8220;Unassigned&#8221; soon to help =
 facilitate this.<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l3 level1 =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l2 level1 =
 lfo9;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>Help us resolve CVE issues: <a =
 href=3D"https://docs.google.com/spreadsheets/d/e/2PACX-1vRgNISmH0Ditf0bRt=
@@ -1376,80 +1376,80 @@ class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
 style=3D'font-family:"Arial",sans-serif;color:black'>YP 3.5 Milestone =
 Dates:</span><o:p></o:p></p><ul =
 style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l2 level1 =
-lfo10;vertical-align:baseline'><span =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo10;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>YP 3.5 M3 build date =
 2022/02/21<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l2 level1 =
-lfo10;vertical-align:baseline'><span =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo10;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>YP 3.5 M3 Release date =
 2022/03/04<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l2 level1 =
-lfo10;vertical-align:baseline'><span =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo10;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>YP 3.5 M4 build date =
 2022/04/04<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l2 level1 =
-lfo10;vertical-align:baseline'><span =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
+level1 lfo10;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>YP 3.5 M4 Release date =
 2022/04/29<o:p></o:p></span></li></ul><p =
 class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
 style=3D'font-family:"Arial",sans-serif;color:black'>Upcoming dot =
 releases:</span><o:p></o:p></p><ul =
 style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
-level1 lfo11;vertical-align:baseline'><span =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+lfo11;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>YP 3.1.14&nbsp; is =
 released<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
-level1 lfo11;vertical-align:baseline'><span =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+lfo11;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>YP 3.4.2 is =
 released<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
-level1 lfo11;vertical-align:baseline'><span =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+lfo11;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>YP 3.3.5&nbsp; is in =
 QA<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
-level1 lfo11;vertical-align:baseline'><span =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+lfo11;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>YP 3.3.5 Release date =
 2022/02/25<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
-level1 lfo11;vertical-align:baseline'><span =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+lfo11;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>YP 3.1.15 build date =
 2022/03/14<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
-level1 lfo11;vertical-align:baseline'><span =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+lfo11;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>YP 3.1.15 Release date =
 2022/03/25<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
-level1 lfo11;vertical-align:baseline'><span =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+lfo11;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>YP 3.4.3 build date =
 2022/03/21<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
-level1 lfo11;vertical-align:baseline'><span =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+lfo11;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>YP 3.4.3 Release date =
 2022/04/01<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
-level1 lfo11;vertical-align:baseline'><span =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+lfo11;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>YP 3.3.6 build date =
 2022/03/28<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
-level1 lfo11;vertical-align:baseline'><span =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+lfo11;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>YP 3.3.6 Release date =
 2022/04/08<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
-level1 lfo11;vertical-align:baseline'><span =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+lfo11;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>YP 3.1.16 build date =
 2022/04/25<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l11 =
-level1 lfo11;vertical-align:baseline'><span =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l1 level1 =
+lfo11;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>YP 3.1.16 Release date =
 2022/05/06<o:p></o:p></span></li></ul><p =
 class=3DMsoNormal><o:p>&nbsp;</o:p></p><p style=3D'margin:0in'><span =
 style=3D'font-family:"Arial",sans-serif;color:black'>Tracking =
 Metrics:</span><o:p></o:p></p><ul =
 style=3D'margin-top:0in;padding-inline-start:48px' type=3Ddisc><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
-level1 lfo12;vertical-align:baseline'><span =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l9 level1 =
+lfo12;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>WDD 2652 (last week =
 2662)</span><span style=3D'font-family:Consolas'> (</span><span =
 style=3D'font-family:"Arial",sans-serif'><a =
@@ -1457,18 +1457,18 @@ href=3D"https://wiki.yoctoproject.org/charts/combo.html"><span =
 style=3D'color:#1155CC'>https://wiki.yoctoproject.org/charts/combo.html</=
 span></a></span><span style=3D'font-family:Consolas'>)</span><span =
 style=3D'font-family:"Arial",sans-serif'><o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
-level1 lfo12;vertical-align:baseline'><span =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l9 level1 =
+lfo12;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>OE-Core/Poky Patch =
 Metrics</span><span =
 style=3D'font-family:Consolas'><o:p></o:p></span></li><ul =
 style=3D'margin-top:0in;padding-inline-start:48px' type=3Dcircle><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
-level2 lfo12;vertical-align:baseline'><span =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l9 level2 =
+lfo12;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>Total patches found: 1202 (last =
 week 1208)<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l10 =
-level2 lfo12;vertical-align:baseline'><span =
+style=3D'color:black;margin-top:0in;margin-bottom:0in;mso-list:l9 level2 =
+lfo12;vertical-align:baseline'><span =
 style=3D'font-family:"Arial",sans-serif'>Patches in the Pending State: =
 334 (28%) [last week 334 (28%)]</span><span =
 style=3D'font-family:Consolas'><o:p></o:p></span></li></ul></ul><p =
@@ -1524,6 +1524,6 @@ href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
 ></u></span><span lang=3DFR =
 style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
 an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_000_2F78_01D827C8.6859AEC0--
+------=_NextPart_000_31A0_01D827C9.D11A6F70--
 
 
