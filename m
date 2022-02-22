@@ -1,116 +1,111 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <hrsourabh011@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9CFC0C433F5
-	for <webhook@archiver.kernel.org>; Tue, 22 Feb 2022 21:21:31 +0000 (UTC)
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
- [209.85.214.181])
- by mx.groups.io with SMTP id smtpd.web12.3570.1645564891176943825
- for <yocto@lists.yoctoproject.org>;
- Tue, 22 Feb 2022 13:21:31 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=DjMNwKfl;
- spf=pass (domain: gmail.com, ip: 209.85.214.181,
- mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f181.google.com with SMTP id 4so8188725pll.6
-        for <yocto@lists.yoctoproject.org>;
- Tue, 22 Feb 2022 13:21:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=hggwNwpvHJLftmkFEbVIeAxN6ygiDL+76P1NpARe++U=;
-        b=DjMNwKfl8YF8Y5C8FePcbx9M0etEAnsVEiXbhMCcm7Lio9FRmMd+1FWgnvVzytoeuZ
-         1cVfoLEuFEQpSHmh5SxRRdxBimSxU88n/YWlw/O+kXRnX8E7a2yyK9Sx7oYD1mjQVPD3
-         OgHstcjk5GFd8Cljd8IN/hmwWOTc8eSYEMtJYKmv62vXKDHVNrSCwfAL0iN8QZ1uxoXr
-         bVhM8oT6Xg1xxN8z9qdjkKxaYTFddjwkTgjPMEK7MpypsTVMK8j9hFn6xWHf9V9iYcBY
-         5HTkdE+EcGPg69roX2CuvFnI6LLyRthzZ37CyJVD/Frj6F7e2Dabb+8Ela8f15JvA4bh
-         O8rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=hggwNwpvHJLftmkFEbVIeAxN6ygiDL+76P1NpARe++U=;
-        b=oClugmwPU8QGKMoAkR5QjJFF2DF8ab0xV1MrTQgo+1Y8lULd3HxFgH+gVJNYKGTR7H
-         1bej2VYAatiBZlwH6Y4gg/LWlcNUuNQI6vCv1aJ/xkEs3Z2zR4uFzr+LbYpUGn7l47mS
-         NmfAPp7bQ9I5ESy6QuAdDl8IWil4Wjcb3lDcLvXrWQTPxAiGjrpzLzAR0cKIqGs20Ae7
-         hhClFyhk9MzkU22ALJIuba5AlvLk6vtpLNW8icoTNxy6yMlWDeu2Lio2Leh+kcdOBa18
-         ATKMnC9NZRSS001y7ZTYk4RmRIBT6wfq6kmMB02+Ik7A6m+S646/iB13RXN0FGHevAsZ
-         bc9A==
-X-Gm-Message-State: AOAM530TZZaELHGf0+ljfIow5nAG/x3kXqXx/lHZSvuEtd0vQ1tg2dfU
-	6YDeZUU1o1Xzv6mLR+EOqAWhZqIulZo=
-X-Google-Smtp-Source: 
- ABdhPJx/eH1AbjZhdjv2UZSQcuMxy4klpc1nFmiPxjz2RA6vMu5iPWImtZQyY+ciLpgg4R5soeWWdw==
-X-Received: by 2002:a17:902:b088:b0:14f:f7e5:bc2 with SMTP id
- p8-20020a170902b08800b0014ff7e50bc2mr321915plr.25.1645564890772;
-        Tue, 22 Feb 2022 13:21:30 -0800 (PST)
-Received: from ?IPV6:2601:202:4180:a5c0:59de:e569:6a3d:8d74?
- ([2601:202:4180:a5c0:59de:e569:6a3d:8d74])
-        by smtp.gmail.com with ESMTPSA id
- ck20sm465353pjb.27.2022.02.22.13.21.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Feb 2022 13:21:30 -0800 (PST)
-Message-ID: <cb990aee-d105-2889-2b0f-4f7dfd9148e7@gmail.com>
-Date: Tue, 22 Feb 2022 13:21:29 -0800
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 42DAFC433EF
+	for <webhook@archiver.kernel.org>; Tue, 22 Feb 2022 22:35:42 +0000 (UTC)
+Subject: Building Yocto images for RPi CM4
+To: yocto@lists.yoctoproject.org
+From: "Sourabh Hegde" <hrsourabh011@gmail.com>
+X-Originating-Location: Munich, Bavaria, DE (95.91.249.119)
+X-Originating-Platform: Windows Firefox 91
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [yocto] [meta-security][PATCH 2/2] recipes: Use new
- CVE_CHECK_IGNORE variable
-Content-Language: en-US
-To: Christian Eggers <ceggers@arri.de>, yocto@lists.yoctoproject.org
-References: <20220222074211.5902-1-ceggers@arri.de>
- <20220222074211.5902-2-ceggers@arri.de>
-From: akuster808 <akuster808@gmail.com>
-In-Reply-To: <20220222074211.5902-2-ceggers@arri.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Date: Tue, 22 Feb 2022 14:35:41 -0800
+Message-ID: <wIdm.1645569341501824443.TIUi@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="teuP9bQkcpD8YaHWqrsc"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 22 Feb 2022 21:21:31 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56252
+ <yocto@lists.yoctoproject.org>; Tue, 22 Feb 2022 22:35:42 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56253
 
+--teuP9bQkcpD8YaHWqrsc
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hello All,
 
-On 2/21/22 23:42, Christian Eggers wrote:
-> Signed-off-by: Christian Eggers <ceggers@arri.de>
-> ---
->   recipes-mac/smack/smack_1.3.1.bb | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/recipes-mac/smack/smack_1.3.1.bb b/recipes-mac/smack/smack_1.3.1.bb
-> index 79a8f5a0cde5..7a8ca7859d29 100644
-> --- a/recipes-mac/smack/smack_1.3.1.bb
-> +++ b/recipes-mac/smack/smack_1.3.1.bb
-> @@ -14,9 +14,9 @@ SRC_URI = " \
->   PV = "1.3.1"
->   
->   # CVE-2014-0363, CVE-2014-0364, CVE-2016-10027 is valnerble for other product.
-> -CVE_CHECK_WHITELIST += "CVE-2014-0363"
-> -CVE_CHECK_WHITELIST += "CVE-2014-0364"
-> -CVE_CHECK_WHITELIST += "CVE-2016-10027"
-> +CVE_CHECK_IGNORE += "CVE-2014-0363"
-> +CVE_CHECK_IGNORE += "CVE-2014-0364"
-> +CVE_CHECK_IGNORE += "CVE-2016-10027"
+I am building a basic image (core-image-base) for RPi CM4(Lite) on "Honiste=
+r" release with "uboot" as bootloader.
 
-A similar patch was submitted earlier in the day. Now in master.
+In my conf/local.conf file MACHINE =3D "raspberrypi4-64" and also I have se=
+t
 
-thanks,
-Armin
->   
->   inherit autotools update-rc.d pkgconfig ptest
->   inherit ${@bb.utils.contains('VIRTUAL-RUNTIME_init_manager','systemd','systemd','', d)}
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#56232): https://lists.yoctoproject.org/g/yocto/message/56232
-> Mute This Topic: https://lists.yoctoproject.org/mt/89312936/3616698
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [akuster808@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+RPI_USE_U_BOOT =3D "1"
+PREFERRED_PROVIDER_virtual/bootloader =3D "u-boot"
 
+Image builds successfully and I transferred the image to SD card and tried =
+to boot. I am using WKS_FILE =3D "sdimage-dual-raspberrypi.wks.in"
+
+sdimage-dual-raspberrypi.wks.in :
+
+part /boot --source bootimg-partition --ondisk mmcblk0 --fstype=3Dvfat --la=
+bel boot --active --align 4096 --size 100
+part / --source rootfs --ondisk mmcblk0 --fstype=3Dext4 --label rootfs_A --=
+align 4096
+part / --source rootfs --ondisk mmcblk0 --fstype=3Dext4 --label rootfs_B --=
+align 4096
+part /home --source rootfs --rootfs-dir=3D${IMAGE_ROOTFS}/home --ondisk mmc=
+blk0 --fstype=3Dext4 --label homefs --align 1024 --size 500 --fsoptions "x-=
+systemd.growfs"
+
+But unfortunately, i am not able to boot using this image and initially it =
+starts with
+.
+.
+Detecting USB Device.
+.
+.
+Hit any key to stop auto-boot..
+.
+.
+Starting kernel..
+
+But right after this screen turns off and after a second screen turns on wi=
+th "Loading progress bar" and as soon as it loads, a blank screen pops-up. =
+I am not sure whether system is booted properly or not. I am not able to in=
+teract with it. And no Linux user space is accessible
+
+Sadly, the custom carrier board I am using has no serial console, so I can =
+only use a RPi display to see the progress and messages.
+
+Can anyone please let me know what could be the issue here and how to resol=
+ve it?
+
+Your help will be much appreciated.
+
+thanks in advance..
+
+--teuP9bQkcpD8YaHWqrsc
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello All,<br /><br />I am building a basic image (core-image-base) for RPi=
+ CM4(Lite) on "Honister" release with "uboot" as bootloader.<br /><br />In =
+my conf/local.conf file MACHINE =3D "raspberrypi4-64" and also I have set<b=
+r /><br />RPI_USE_U_BOOT =3D "1"<br />PREFERRED_PROVIDER_virtual/bootloader=
+ =3D "u-boot"<br /><br />Image builds successfully and I transferred the im=
+age to SD card and tried to boot. I am using WKS_FILE =3D "sdimage-dual-ras=
+pberrypi.wks.in"<br /><br />sdimage-dual-raspberrypi.wks.in :<br /><br />pa=
+rt /boot --source bootimg-partition --ondisk mmcblk0 --fstype=3Dvfat --labe=
+l boot --active --align 4096 --size 100<br />part / --source rootfs --ondis=
+k mmcblk0 --fstype=3Dext4 --label rootfs_A --align 4096<br />part / --sourc=
+e rootfs --ondisk mmcblk0 --fstype=3Dext4 --label rootfs_B --align 4096<br =
+/>part /home --source rootfs --rootfs-dir=3D${IMAGE_ROOTFS}/home --ondisk m=
+mcblk0 --fstype=3Dext4 --label homefs --align 1024 --size 500 --fsoptions "=
+x-systemd.growfs"<br /><br />But unfortunately, i am not able to boot using=
+ this image and initially it starts with <br />.<br />.<br />Detecting USB =
+Device.<br />.<br />.<br />Hit any key to stop auto-boot..<br />.<br />.<br=
+ />Starting kernel..<br /><br />But right after this screen turns off and a=
+fter a second screen turns on with "Loading progress bar" and as soon as it=
+ loads, a blank screen pops-up. I am not sure whether system is booted prop=
+erly or not. I am not able to interact with it. And no Linux user space is =
+accessible<br /><br />Sadly, the custom carrier board I am using has no ser=
+ial console, so I can only use a RPi display to see the progress and messag=
+es.<br /><br />Can anyone please let me know what could be the issue here a=
+nd how to resolve it?<br /><br />Your help will be much appreciated.<br /><=
+br />thanks in advance..
+
+--teuP9bQkcpD8YaHWqrsc--
 
