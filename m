@@ -1,75 +1,90 @@
-Return-Path: <michael.opdenacker@bootlin.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 29821C433F5
-	for <webhook@archiver.kernel.org>; Wed, 23 Feb 2022 15:26:32 +0000 (UTC)
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net
- [217.70.183.194])
- by mx.groups.io with SMTP id smtpd.web08.8935.1645629990596061544
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EC8E7C433F5
+	for <webhook@archiver.kernel.org>; Wed, 23 Feb 2022 17:48:23 +0000 (UTC)
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com
+ [209.85.219.41])
+ by mx.groups.io with SMTP id smtpd.web10.11166.1645638502358992801
  for <yocto@lists.yoctoproject.org>;
- Wed, 23 Feb 2022 07:26:30 -0800
+ Wed, 23 Feb 2022 09:48:22 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bootlin.com header.s=gm1 header.b=ddb1kybB;
- spf=pass (domain: bootlin.com, ip: 217.70.183.194,
- mailfrom: michael.opdenacker@bootlin.com)
-Received: (Authenticated sender: michael.opdenacker@bootlin.com)
-	by mail.gandi.net (Postfix) with ESMTPSA id 6809E40009;
-	Wed, 23 Feb 2022 15:26:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1645629988;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=TWN11oYlXnYBrKZn/TJ8AR2N5/hSeyzArMR/3xKILw4=;
-	b=ddb1kybBjQeYIzjCKDq09GmS8k6j9rHieUUlqwu0OD8ZkeXUOc7Ekb5G6RwN2BedyXvfRL
-	BqZGLnS/MaE8AU44SnHpRIUwjLBmuJF3LncaGmzgcaDRmlzEw5aTNBVoujoGGVaLZ6si1c
-	FEucXltybP8BuvbZyjhi+rvcWmtA9yWh2/4MRETB1UaZkerzvNe1tLApSY4EjHL0EJi1pV
-	jlG5pOpqMZzMMwpQ6d1fOfVrvhxAqX88r37pTbRwWFx1RtBwMkcOq9f/sDOW0faTIxizux
-	b6tVfRyiuBqONw1rrbnVcFxEzJbmupQgWNnEbEiAWuHiqYshrA6gnp2+Rk9/tg==
-Message-ID: <753dc9cf-397d-6573-120f-f342f921c538@bootlin.com>
-Date: Wed, 23 Feb 2022 16:26:27 +0100
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=bGxbrrAi;
+ spf=pass (domain: gmail.com, ip: 209.85.219.41, mailfrom: raj.khem@gmail.com)
+Received: by mail-qv1-f41.google.com with SMTP id bu6so9635510qvb.10
+        for <yocto@lists.yoctoproject.org>;
+ Wed, 23 Feb 2022 09:48:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vRlwRpPzUEC/gOlL/vTD3OB4zTYH75JvKUgz+zq4AuQ=;
+        b=bGxbrrAiHOF9QlSAx3oQJaeksBIycKtxHxTNealzDwxCQgdqUEZkkPs+LVk9AMjkEy
+         rfQ5n6Lfl9uUAnn/vEarajgjpVNDgtySoMAPJp6VF8O/ZRwWyNY6Tn2jw/wteyzx7Tsd
+         xreJiH+fiPvBe4da6nTpGzrC67xL8hTR3TcXpnq7D1uHw5EAEP8qpqNcNsGDXT1oGaxp
+         /s4jyG8eVWkNRhdG6CH/gqDRsG2s3bzWRPhHhp8wD4lcryd8q4aeWAt76vLmWC1Fo3qb
+         6Q+4cmfCukouxbcwXvWy7PC3Kzm44DcWPaB/d+pGbFNOLkNzsGAz0vFgnMfOdMnfEywS
+         QSbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vRlwRpPzUEC/gOlL/vTD3OB4zTYH75JvKUgz+zq4AuQ=;
+        b=djEFeQ5e+QSdOXVBoF3ZHx2HgUOmqjGxhD0FHh3rEf6yHfttRXYZkWA1D/K4dIkjps
+         roEm32Q4+kjc6a+7wQ7C9ziY7iAr2fn+Kbzp/+St9laza/GyJPaoJN0AltGu2GWQdTs6
+         q9tv9JrXLx18o4iqVf29BNpJM3t3FBHxGAnrTDHeNNp16lIaZdZnBkE2chj/VFGCw6F+
+         pjSvZGxAGPP5WxL3422sTGa5DWPWk7ARO6fo2WC8ZJfv1rfWQfCBRDuEncMd6JXBfwRB
+         HNG3FA7TaQZJYAlD2pIt4znBkdI7vxM9ZYhLwtjTvi0yF6L7HNRDhDIsV1pfQ52AI/Ii
+         KhJg==
+X-Gm-Message-State: AOAM530OjYbWlA6FVLp5Mh/S1M48Kj0Jv4owjXHMxb2LUPJP7Vv2iqK/
+	y2vTkCU5oFyQyL2Lfls2TjOtbzn2QOHqYgSsU1hhjYvWAhI=
+X-Google-Smtp-Source: 
+ ABdhPJywIRZauRiu1i6BrMtI7/my0HosvXDyaVM42fyOp83LM3vrpRCFfo4WvkQ70Zf4RpQWf9xU9Ur2Quh6xowt6EQ=
+X-Received: by 2002:ad4:574a:0:b0:42b:ef56:c2a4 with SMTP id
+ q10-20020ad4574a000000b0042bef56c2a4mr762508qvx.16.1645638501375; Wed, 23 Feb
+ 2022 09:48:21 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Cc: Quentin Schulz <foss+yocto@0leil.net>
-Subject: Re: [yocto] [RFC] [PATCH yocto-autobuilder-helper] scripts:
- run-docs-build: make the script fail hard ASAP when there's an error
-Content-Language: en-US
-To: Quentin Schulz <quentin.schulz@theobroma-systems.com>,
- yocto@lists.yoctoproject.org
-References: <20220223113106.2781516-1-foss+yocto@0leil.net>
- <a5f7761a-6d02-6fb1-e998-2a5b6633ca1e@bootlin.com>
- <c56d5311-6fb6-7656-3f57-e2181ae8e93f@theobroma-systems.com>
-From: Michael Opdenacker <michael.opdenacker@bootlin.com>
-Organization: Bootlin
-In-Reply-To: <c56d5311-6fb6-7656-3f57-e2181ae8e93f@theobroma-systems.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: 
+ <CAMKF1srXi0A=weYdZLq2Bn=y=oZUBvkCiF8nTdJVmw8u2iBf=g@mail.gmail.com>
+ <8041.1645600061056533580@lists.yoctoproject.org>
+In-Reply-To: <8041.1645600061056533580@lists.yoctoproject.org>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 23 Feb 2022 09:47:55 -0800
+Message-ID: 
+ <CAMKF1spN+D-B+nQF7ZiaEM2Dd_Hc_=aEoVqp9fQM58o-ub1XFA@mail.gmail.com>
+Subject: Re: [yocto] Building Yocto images for RPi CM4
+To: Sourabh Hegde <hrsourabh011@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 23 Feb 2022 15:26:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56266
+ <yocto@lists.yoctoproject.org>; Wed, 23 Feb 2022 17:48:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56268
 
+On Tue, Feb 22, 2022 at 11:07 PM Sourabh Hegde <hrsourabh011@gmail.com> wrote:
+>
+> Hello Khem,
+>
+> I agree. But since there is no serial console support available on my IO carrier board, I can't see what it prints.
+>
+> Is there any other way to debug?
+>
 
-On 2/23/22 15:52, Quentin Schulz wrote:
->
->> Agreeing with the change.
->> How would we get the script output?
->>
->
-> https://autobuilder.yoctoproject.org/typhoon/#/builders/114
->
-> seems to be a good place to start with?
->
-Ah right, thanks. I won't forget it next time.
-Michael.
+if you have a screen connected maybe you can enable verbose options
+for kernel and bootloader and see if it prints stuff on
+console.
 
--- 
-Michael Opdenacker, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+> Kind Regards,
+> Sourabh
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#56258): https://lists.yoctoproject.org/g/yocto/message/56258
+> Unfollow This Topic: https://lists.yoctoproject.org/unft/89328890/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
