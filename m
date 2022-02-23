@@ -1,134 +1,75 @@
-Return-Path: <foss@0leil.net>
+Return-Path: <michael.opdenacker@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 322F9C433EF
-	for <webhook@archiver.kernel.org>; Wed, 23 Feb 2022 14:46:43 +0000 (UTC)
-Received: from relay10.mail.gandi.net (relay10.mail.gandi.net
- [217.70.178.230])
- by mx.groups.io with SMTP id smtpd.web09.8560.1645627602226392146
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 29821C433F5
+	for <webhook@archiver.kernel.org>; Wed, 23 Feb 2022 15:26:32 +0000 (UTC)
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net
+ [217.70.183.194])
+ by mx.groups.io with SMTP id smtpd.web08.8935.1645629990596061544
  for <yocto@lists.yoctoproject.org>;
- Wed, 23 Feb 2022 06:46:42 -0800
+ Wed, 23 Feb 2022 07:26:30 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=none, err=permanent DNS error (domain: 0leil.net, ip: 217.70.178.230,
- mailfrom: foss+yocto@0leil.net)
-Received: (Authenticated sender: foss@0leil.net)
-	by mail.gandi.net (Postfix) with ESMTPSA id C728A240004;
-	Wed, 23 Feb 2022 14:46:39 +0000 (UTC)
-From: Quentin Schulz <foss+yocto@0leil.net>
-To: yocto@lists.yoctoproject.org
-Cc: Quentin Schulz <quentin.schulz@theobroma-systems.com>,
-	Quentin Schulz <foss+yocto@0leil.net>
-Subject: [PATCH yocto-autobuilder-helper] scripts: run-docs-build: do not turn
- sphinx warnings into errors
-Date: Wed, 23 Feb 2022 15:46:28 +0100
-Message-Id: <20220223144628.2805706-1-foss+yocto@0leil.net>
-X-Mailer: git-send-email 2.35.1
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=ddb1kybB;
+ spf=pass (domain: bootlin.com, ip: 217.70.183.194,
+ mailfrom: michael.opdenacker@bootlin.com)
+Received: (Authenticated sender: michael.opdenacker@bootlin.com)
+	by mail.gandi.net (Postfix) with ESMTPSA id 6809E40009;
+	Wed, 23 Feb 2022 15:26:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1645629988;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=TWN11oYlXnYBrKZn/TJ8AR2N5/hSeyzArMR/3xKILw4=;
+	b=ddb1kybBjQeYIzjCKDq09GmS8k6j9rHieUUlqwu0OD8ZkeXUOc7Ekb5G6RwN2BedyXvfRL
+	BqZGLnS/MaE8AU44SnHpRIUwjLBmuJF3LncaGmzgcaDRmlzEw5aTNBVoujoGGVaLZ6si1c
+	FEucXltybP8BuvbZyjhi+rvcWmtA9yWh2/4MRETB1UaZkerzvNe1tLApSY4EjHL0EJi1pV
+	jlG5pOpqMZzMMwpQ6d1fOfVrvhxAqX88r37pTbRwWFx1RtBwMkcOq9f/sDOW0faTIxizux
+	b6tVfRyiuBqONw1rrbnVcFxEzJbmupQgWNnEbEiAWuHiqYshrA6gnp2+Rk9/tg==
+Message-ID: <753dc9cf-397d-6573-120f-f342f921c538@bootlin.com>
+Date: Wed, 23 Feb 2022 16:26:27 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Cc: Quentin Schulz <foss+yocto@0leil.net>
+Subject: Re: [yocto] [RFC] [PATCH yocto-autobuilder-helper] scripts:
+ run-docs-build: make the script fail hard ASAP when there's an error
+Content-Language: en-US
+To: Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+ yocto@lists.yoctoproject.org
+References: <20220223113106.2781516-1-foss+yocto@0leil.net>
+ <a5f7761a-6d02-6fb1-e998-2a5b6633ca1e@bootlin.com>
+ <c56d5311-6fb6-7656-3f57-e2181ae8e93f@theobroma-systems.com>
+From: Michael Opdenacker <michael.opdenacker@bootlin.com>
+Organization: Bootlin
+In-Reply-To: <c56d5311-6fb6-7656-3f57-e2181ae8e93f@theobroma-systems.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 23 Feb 2022 14:46:43 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56265
+ <yocto@lists.yoctoproject.org>; Wed, 23 Feb 2022 15:26:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56266
 
-From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
 
-Default flags for sphinx-build contain -W which turns warnings into
-errors. This is really helpful during debugging and could be used for
-continuous integration though we do not have such a thing separate from
-the continuous delivery in place currently. Nowadays, the docs files
-served at docs.yoctoproject.com are actually removed before being
-updated from the newly built docs. If the `html` target, a dependency of
-`publish` target is failing, the docs aren't copied over to the `final`
-temporary directory. Therefore it'll be missing in the rsync upload to
-docs.yoctoproject.org.
+On 2/23/22 15:52, Quentin Schulz wrote:
+>
+>> Agreeing with the change.
+>> How would we get the script output?
+>>
+>
+> https://autobuilder.yoctoproject.org/typhoon/#/builders/114
+>
+> seems to be a good place to start with?
+>
+Ah right, thanks. I won't forget it next time.
+Michael.
 
-Instead, let's disable the turning of warnings into errors so that the
-`html` make target can finish successfully and the `publish` make target
-to finish successfully too.
-
-Cc: Quentin Schulz <foss+yocto@0leil.net>
-Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
----
- scripts/run-docs-build | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
-
-diff --git a/scripts/run-docs-build b/scripts/run-docs-build
-index 3bc35b3..d9c4bc1 100755
---- a/scripts/run-docs-build
-+++ b/scripts/run-docs-build
-@@ -27,14 +27,14 @@ cd $bbdocs
- echo Building bitbake master branch
- git checkout master
- make clean
--make publish
-+SPHINXOPTS="-j auto" make publish
- mkdir $outputdir/bitbake
- cp -r ./_build/final/* $outputdir/bitbake
- 
- git checkout master-next
- echo Building bitbake master-next branch
- make clean
--make publish
-+SPHINXOPTS="-j auto" make publish
- mkdir $outputdir/bitbake/next
- cp -r ./_build/final/* $outputdir/bitbake/next
- 
-@@ -49,7 +49,7 @@ for branch in 1.46 1.48 1.50 1.52; do
-     git checkout $branch
-     git checkout master releases.rst
-     make clean
--    make publish
-+    SPHINXOPTS="-j auto" make publish
-     mkdir $outputdir/bitbake/$branch
-     cp -r ./_build/final/* $outputdir/bitbake/$branch
-     git reset --hard
-@@ -64,21 +64,21 @@ cd $ypdocs
- echo Building master branch
- git checkout master
- make clean
--make publish
-+SPHINXOPTS="-j auto" make publish
- cp -r ./_build/final/* $outputdir
- 
- cd $ypdocs
- echo Building transition branch
- git checkout transition
- make clean
--make publish
-+SPHINXOPTS="-j auto" make publish
- cp -r ./_build/final/* $outputdir/
- 
- cd $ypdocs
- echo Building master-next branch
- git checkout master-next
- make clean
--make publish
-+SPHINXOPTS="-j auto" make publish
- mkdir $outputdir/next
- cp -r ./_build/final/* $outputdir/next
- 
-@@ -90,7 +90,7 @@ for branch in dunfell gatesgarth hardknott honister; do
-     git checkout $branch
-     git checkout master releases.rst
-     make clean
--    make publish
-+    SPHINXOPTS="-j auto" make publish
-     mkdir $outputdir/$branch
-     cp -r ./_build/final/* $outputdir/$branch
-     git reset --hard
-@@ -115,7 +115,7 @@ for tag in $(git tag --list 'yocto-*'); do
-         fi
-         git checkout master releases.rst
-         make clean
--        make publish
-+        SPHINXOPTS="-j auto" make publish
-         version=$(echo $tag | cut -c7-)
-         mkdir $outputdir/$version
-         cp -r ./_build/final/* $outputdir/$version
 -- 
-2.35.1
+Michael Opdenacker, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
