@@ -1,80 +1,134 @@
-Return-Path: <stefan@datenfreihafen.org>
+Return-Path: <foss@0leil.net>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A1FDCC433F5
-	for <webhook@archiver.kernel.org>; Wed, 23 Feb 2022 14:31:56 +0000 (UTC)
-Received: from proxima.lasnet.de (proxima.lasnet.de [78.47.171.185])
- by mx.groups.io with SMTP id smtpd.web10.8247.1645626689020431186
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 322F9C433EF
+	for <webhook@archiver.kernel.org>; Wed, 23 Feb 2022 14:46:43 +0000 (UTC)
+Received: from relay10.mail.gandi.net (relay10.mail.gandi.net
+ [217.70.178.230])
+ by mx.groups.io with SMTP id smtpd.web09.8560.1645627602226392146
  for <yocto@lists.yoctoproject.org>;
- Wed, 23 Feb 2022 06:31:30 -0800
+ Wed, 23 Feb 2022 06:46:42 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing;
- spf=pass (domain: datenfreihafen.org, ip: 78.47.171.185,
- mailfrom: stefan@datenfreihafen.org)
-Received: from localhost.localdomain
- (p200300e9d719d8e0fbfc4c112b16b358.dip0.t-ipconnect.de
- [IPv6:2003:e9:d719:d8e0:fbfc:4c11:2b16:b358])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	(Authenticated sender: stefan@sostec.de)
-	by proxima.lasnet.de (Postfix) with ESMTPSA id DC01FC00B1;
-	Wed, 23 Feb 2022 15:31:25 +0100 (CET)
-From: Stefan Schmidt <stefan@datenfreihafen.org>
+ spf=none, err=permanent DNS error (domain: 0leil.net, ip: 217.70.178.230,
+ mailfrom: foss+yocto@0leil.net)
+Received: (Authenticated sender: foss@0leil.net)
+	by mail.gandi.net (Postfix) with ESMTPSA id C728A240004;
+	Wed, 23 Feb 2022 14:46:39 +0000 (UTC)
+From: Quentin Schulz <foss+yocto@0leil.net>
 To: yocto@lists.yoctoproject.org
-Cc: Stefan Schmidt <stefan@datenfreihafen.org>,
-	Stefan Schmidt <stefan.schmidt@huawei.com>
-Subject: [meta-zephyr][PATCH] zephyr-openthread-rcp: add recipe for OpenThread
- radio co-processor sample
-Date: Wed, 23 Feb 2022 15:30:45 +0100
-Message-Id: <20220223143045.227246-1-stefan@datenfreihafen.org>
+Cc: Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+	Quentin Schulz <foss+yocto@0leil.net>
+Subject: [PATCH yocto-autobuilder-helper] scripts: run-docs-build: do not turn
+ sphinx warnings into errors
+Date: Wed, 23 Feb 2022 15:46:28 +0100
+Message-Id: <20220223144628.2805706-1-foss+yocto@0leil.net>
 X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 23 Feb 2022 14:31:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56264
+ <yocto@lists.yoctoproject.org>; Wed, 23 Feb 2022 14:46:43 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56265
 
-From: Stefan Schmidt <stefan.schmidt@huawei.com>
+From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
 
-This builds the sample for the radio co-processor firmware with a specifi=
-c
-set of overlays to work over USB transport.
+Default flags for sphinx-build contain -W which turns warnings into
+errors. This is really helpful during debugging and could be used for
+continuous integration though we do not have such a thing separate from
+the continuous delivery in place currently. Nowadays, the docs files
+served at docs.yoctoproject.com are actually removed before being
+updated from the newly built docs. If the `html` target, a dependency of
+`publish` target is failing, the docs aren't copied over to the `final`
+temporary directory. Therefore it'll be missing in the rsync upload to
+docs.yoctoproject.org.
 
-Signed-off-by: Stefan Schmidt <stefan.schmidt@huawei.com>
+Instead, let's disable the turning of warnings into errors so that the
+`html` make target can finish successfully and the `publish` make target
+to finish successfully too.
+
+Cc: Quentin Schulz <foss+yocto@0leil.net>
+Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
 ---
- .../zephyr-kernel/zephyr-openthread-rcp.bb             | 10 ++++++++++
- 1 file changed, 10 insertions(+)
- create mode 100644 meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-=
-openthread-rcp.bb
+ scripts/run-docs-build | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-openthr=
-ead-rcp.bb b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-openthr=
-ead-rcp.bb
-new file mode 100644
-index 0000000..708e56a
---- /dev/null
-+++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-openthread-rcp=
-.bb
-@@ -0,0 +1,10 @@
-+include zephyr-sample.inc
-+
-+ZEPHYR_SRC_DIR =3D "${S}/samples/net/openthread/coprocessor"
-+
-+EXTRA_OECMAKE +=3D "-DCONF_FILE=3D"prj.conf overlay-rcp.conf overlay-usb=
--nrf-br.conf" -DDTC_OVERLAY_FILE=3D"usb.overlay""
-+
-+# The overlay config and OpenThread itself imposes some specific require=
-ments
-+# towards the boards (e.g. flash layout and ieee802154 radio) so we need=
- to
-+# limit to known working machines here.
-+COMPATIBLE_MACHINE =3D "(arduino-nano-33-ble)"
---=20
+diff --git a/scripts/run-docs-build b/scripts/run-docs-build
+index 3bc35b3..d9c4bc1 100755
+--- a/scripts/run-docs-build
++++ b/scripts/run-docs-build
+@@ -27,14 +27,14 @@ cd $bbdocs
+ echo Building bitbake master branch
+ git checkout master
+ make clean
+-make publish
++SPHINXOPTS="-j auto" make publish
+ mkdir $outputdir/bitbake
+ cp -r ./_build/final/* $outputdir/bitbake
+ 
+ git checkout master-next
+ echo Building bitbake master-next branch
+ make clean
+-make publish
++SPHINXOPTS="-j auto" make publish
+ mkdir $outputdir/bitbake/next
+ cp -r ./_build/final/* $outputdir/bitbake/next
+ 
+@@ -49,7 +49,7 @@ for branch in 1.46 1.48 1.50 1.52; do
+     git checkout $branch
+     git checkout master releases.rst
+     make clean
+-    make publish
++    SPHINXOPTS="-j auto" make publish
+     mkdir $outputdir/bitbake/$branch
+     cp -r ./_build/final/* $outputdir/bitbake/$branch
+     git reset --hard
+@@ -64,21 +64,21 @@ cd $ypdocs
+ echo Building master branch
+ git checkout master
+ make clean
+-make publish
++SPHINXOPTS="-j auto" make publish
+ cp -r ./_build/final/* $outputdir
+ 
+ cd $ypdocs
+ echo Building transition branch
+ git checkout transition
+ make clean
+-make publish
++SPHINXOPTS="-j auto" make publish
+ cp -r ./_build/final/* $outputdir/
+ 
+ cd $ypdocs
+ echo Building master-next branch
+ git checkout master-next
+ make clean
+-make publish
++SPHINXOPTS="-j auto" make publish
+ mkdir $outputdir/next
+ cp -r ./_build/final/* $outputdir/next
+ 
+@@ -90,7 +90,7 @@ for branch in dunfell gatesgarth hardknott honister; do
+     git checkout $branch
+     git checkout master releases.rst
+     make clean
+-    make publish
++    SPHINXOPTS="-j auto" make publish
+     mkdir $outputdir/$branch
+     cp -r ./_build/final/* $outputdir/$branch
+     git reset --hard
+@@ -115,7 +115,7 @@ for tag in $(git tag --list 'yocto-*'); do
+         fi
+         git checkout master releases.rst
+         make clean
+-        make publish
++        SPHINXOPTS="-j auto" make publish
+         version=$(echo $tag | cut -c7-)
+         mkdir $outputdir/$version
+         cp -r ./_build/final/* $outputdir/$version
+-- 
 2.35.1
 
 
