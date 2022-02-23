@@ -1,112 +1,353 @@
-Return-Path: <michael.opdenacker@bootlin.com>
+Return-Path: <anton.antonov@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9D9D4C433EF
-	for <webhook@archiver.kernel.org>; Wed, 23 Feb 2022 13:05:40 +0000 (UTC)
-Received: from relay10.mail.gandi.net (relay10.mail.gandi.net
- [217.70.178.230])
- by mx.groups.io with SMTP id smtpd.web08.7212.1645621539116605104
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 33DFDC433EF
+	for <webhook@archiver.kernel.org>; Wed, 23 Feb 2022 14:02:16 +0000 (UTC)
+Received: from cam-smtp0.cambridge.arm.com (cam-smtp0.cambridge.arm.com
+ [217.140.106.55])
+ by mx.groups.io with SMTP id smtpd.web10.7866.1645624934868472133
  for <yocto@lists.yoctoproject.org>;
- Wed, 23 Feb 2022 05:05:39 -0800
+ Wed, 23 Feb 2022 06:02:15 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bootlin.com header.s=gm1 header.b=njaiwur0;
- spf=pass (domain: bootlin.com, ip: 217.70.178.230,
- mailfrom: michael.opdenacker@bootlin.com)
-Received: (Authenticated sender: michael.opdenacker@bootlin.com)
-	by mail.gandi.net (Postfix) with ESMTPSA id F06E1240002;
-	Wed, 23 Feb 2022 13:05:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1645621537;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=MHO5SHns7oW+fP227vl0aXVt7JvwOEHpclfObOsC/FI=;
-	b=njaiwur0MsvQ6oQir6P6eQjPigGNly/pun76nX6J3xkQw4WudWmg9+GE4dPCsppwH74R7Z
-	GdeZwf2x50Gw2G/can0iNJiuksZqwPNqmQUUOphb8hY3TUvwsnCcX1yPDZl0cZJYv9e6HA
-	bP/uiWwiFQdPOmFiSdQQK6Rjx5umDqIsemyL2WUYkrDTOZaf3rVHWKajsjLnWp8ZvHIMmN
-	9H+y3EPtIa7lrEmu9+YrvSdE8YxCIEbGlP8fpZ3ErTfuCUgL3sCLt2UZ7sIXcgQXH94a9u
-	bEn7sQ49dCYnBf+GXnQm1pah78WAdvoBE8A8BfD226vHeslIboMlLamZ9jSeIQ==
-Message-ID: <a5f7761a-6d02-6fb1-e998-2a5b6633ca1e@bootlin.com>
-Date: Wed, 23 Feb 2022 14:05:34 +0100
+ dkim=missing;
+ spf=pass (domain: arm.com, ip: 217.140.106.55, mailfrom: anton.antonov@arm.com)
+Received: from atg-devlab-kelpie.cambridge.arm.com
+ (atg-devlab-kelpie.cambridge.arm.com [10.2.80.92])
+	by cam-smtp0.cambridge.arm.com (8.13.8/8.13.8) with ESMTP id 21NE2otA012216;
+	Wed, 23 Feb 2022 14:02:50 GMT
+From: Anton Antonov <Anton.Antonov@arm.com>
+To: yocto@lists.yoctoproject.org
+Cc: Anton.Antonov@arm.com
+Subject: [meta-security][PATCH] Upgrade parsec-tool to 0.5.1
+Date: Wed, 23 Feb 2022 14:02:05 +0000
+Message-Id: <20220223140205.1996403-1-Anton.Antonov@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Cc: Quentin Schulz <quentin.schulz@theobroma-systems.com>,
- Quentin Schulz <foss+yocto@0leil.net>
-Subject: Re: [yocto] [RFC] [PATCH yocto-autobuilder-helper] scripts:
- run-docs-build: make the script fail hard ASAP when there's an error
-Content-Language: en-US
-To: Quentin Schulz <foss@0leil.net>, yocto@lists.yoctoproject.org
-References: <20220223113106.2781516-1-foss+yocto@0leil.net>
-From: Michael Opdenacker <michael.opdenacker@bootlin.com>
-Organization: Bootlin
-In-Reply-To: <20220223113106.2781516-1-foss+yocto@0leil.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 23 Feb 2022 13:05:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56262
+ <yocto@lists.yoctoproject.org>; Wed, 23 Feb 2022 14:02:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56263
 
-Hi Quentin,
+Signed-off-by: Anton Antonov <Anton.Antonov@arm.com>
+---
+ meta-parsec/conf/layer.conf                   |   2 +-
+ ...sec-tool_0.4.0.bb => parsec-tool_0.5.1.bb} |   0
+ ...c-tool_0.4.0.inc => parsec-tool_0.5.1.inc} | 166 ++++++++----------
+ 3 files changed, 74 insertions(+), 94 deletions(-)
+ rename meta-parsec/recipes-parsec/parsec-tool/{parsec-tool_0.4.0.bb => parsec-tool_0.5.1.bb} (100%)
+ rename meta-parsec/recipes-parsec/parsec-tool/{parsec-tool_0.4.0.inc => parsec-tool_0.5.1.inc} (55%)
 
-On 2/23/22 12:31, Quentin Schulz wrote:
-> From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
->
-> There are some intermittent issues with the script not publishing all
-> versions. So let's go extreme and fail the script if any error happens:
->  - a command returns a non-zero code, even if piped,
->  - a variable is used uninitialized,
->
-> This also makes the script print each and every command being run so we
-> have a better idea where the script struggles.
->
-> Cc: Quentin Schulz <foss+yocto@0leil.net>
-> Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-> ---
->
-> RFC:
->  - I highly suspect this change to break the building script because
->  Sphinx probably throws errors at old doc builds,
->  - Also, with Sphinx updates, new warnings might arrise on
->  old/unmaintained branches, we probably want to use virtualenv with
->  specific Sphinx versions to make sure this is not an issue in the
->  future? (and allows to bump Sphinx (or other dependencies) requirement
->  for newer doc branches),
->
->  scripts/run-docs-build | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/scripts/run-docs-build b/scripts/run-docs-build
-> index 3bc35b3..b7b5773 100755
-> --- a/scripts/run-docs-build
-> +++ b/scripts/run-docs-build
-> @@ -2,6 +2,12 @@
->  # Called with $1 as the build directory
->  #             $2 as the path to yocto-docs
->  #             $3 as the path to bitbake
-> +
-> +set -e
-> +set -u
-> +set -o pipefail
-> +set -x
-> +
->  builddir=$1
->  ypdocs=$2/documentation/
->  bbdocs=$3/doc/
-
-Agreeing with the change.
-How would we get the script output?
-
-Thanks
-Michael.
-
+diff --git a/meta-parsec/conf/layer.conf b/meta-parsec/conf/layer.conf
+index 19900bb..544cc4e 100644
+--- a/meta-parsec/conf/layer.conf
++++ b/meta-parsec/conf/layer.conf
+@@ -10,5 +10,5 @@ BBFILE_PRIORITY_parsec-layer = "5"
+ 
+ LAYERSERIES_COMPAT_parsec-layer = "kirkstone"
+ 
+-LAYERDEPENDS_parsec-layer = "core clang-layer tpm-layer"
++LAYERDEPENDS_parsec-layer = "core clang-layer"
+ BBLAYERS_LAYERINDEX_NAME_parsec-layer = "meta-parsec"
+diff --git a/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.4.0.bb b/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.5.1.bb
+similarity index 100%
+rename from meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.4.0.bb
+rename to meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.5.1.bb
+diff --git a/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.4.0.inc b/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.5.1.inc
+similarity index 55%
+rename from meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.4.0.inc
+rename to meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.5.1.inc
+index e706112..567cc37 100644
+--- a/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.4.0.inc
++++ b/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.5.1.inc
+@@ -1,93 +1,83 @@
+ # This file is created from parsec-tool repository Cargo.lock using cargo-bitbake tool
+ 
+ SRC_URI += " \
+-    crate://crates.io/addr2line/0.15.2 \
+-    crate://crates.io/adler/1.0.2 \
+     crate://crates.io/aho-corasick/0.7.15 \
+     crate://crates.io/ansi_term/0.11.0 \
+     crate://crates.io/ansi_term/0.12.1 \
+-    crate://crates.io/anyhow/1.0.42 \
++    crate://crates.io/anyhow/1.0.44 \
+     crate://crates.io/arrayvec/0.5.2 \
+     crate://crates.io/atty/0.2.14 \
+     crate://crates.io/autocfg/1.0.1 \
+-    crate://crates.io/backtrace/0.3.59 \
+     crate://crates.io/base64/0.12.3 \
+     crate://crates.io/base64/0.13.0 \
+     crate://crates.io/bincode/1.3.3 \
+     crate://crates.io/bindgen/0.57.0 \
+-    crate://crates.io/bitflags/1.2.1 \
++    crate://crates.io/bitflags/1.3.2 \
+     crate://crates.io/bitvec/0.19.5 \
+     crate://crates.io/block-buffer/0.9.0 \
+-    crate://crates.io/boringssl-src/0.3.0+688fc5c \
+-    crate://crates.io/bumpalo/3.7.0 \
+-    crate://crates.io/bytes/0.5.6 \
+-    crate://crates.io/cc/1.0.69 \
++    crate://crates.io/bumpalo/3.7.1 \
++    crate://crates.io/bytes/1.1.0 \
++    crate://crates.io/cc/1.0.70 \
+     crate://crates.io/cexpr/0.4.0 \
+     crate://crates.io/cfg-if/1.0.0 \
+     crate://crates.io/chrono/0.4.19 \
+-    crate://crates.io/clang-sys/1.2.0 \
++    crate://crates.io/clang-sys/1.2.2 \
+     crate://crates.io/clap/2.33.3 \
+-    crate://crates.io/clap/3.0.0-beta.2 \
+-    crate://crates.io/clap_derive/3.0.0-beta.2 \
++    crate://crates.io/clap/3.0.0-beta.4 \
++    crate://crates.io/clap_derive/3.0.0-beta.4 \
+     crate://crates.io/cmake/0.1.45 \
+-    crate://crates.io/const-oid/0.6.0 \
+-    crate://crates.io/cpufeatures/0.1.5 \
++    crate://crates.io/const-oid/0.6.2 \
++    crate://crates.io/cpufeatures/0.2.1 \
+     crate://crates.io/data-encoding/2.3.2 \
+     crate://crates.io/der-oid-macro/0.4.0 \
+     crate://crates.io/der-parser/5.1.2 \
+-    crate://crates.io/der/0.4.0 \
++    crate://crates.io/der/0.4.5 \
+     crate://crates.io/derivative/2.2.0 \
+     crate://crates.io/digest/0.9.0 \
+     crate://crates.io/either/1.6.1 \
+     crate://crates.io/env_logger/0.8.4 \
+-    crate://crates.io/failure/0.1.8 \
+-    crate://crates.io/failure_derive/0.1.8 \
+     crate://crates.io/form_urlencoded/1.0.1 \
+     crate://crates.io/funty/1.1.0 \
+-    crate://crates.io/futures-channel/0.3.16 \
+-    crate://crates.io/futures-core/0.3.16 \
+-    crate://crates.io/futures-executor/0.3.16 \
+-    crate://crates.io/futures-io/0.3.16 \
+-    crate://crates.io/futures-macro/0.3.16 \
+-    crate://crates.io/futures-sink/0.3.16 \
+-    crate://crates.io/futures-task/0.3.16 \
+-    crate://crates.io/futures-util/0.3.16 \
+-    crate://crates.io/futures/0.3.16 \
++    crate://crates.io/futures-channel/0.3.17 \
++    crate://crates.io/futures-core/0.3.17 \
++    crate://crates.io/futures-executor/0.3.17 \
++    crate://crates.io/futures-io/0.3.17 \
++    crate://crates.io/futures-macro/0.3.17 \
++    crate://crates.io/futures-sink/0.3.17 \
++    crate://crates.io/futures-task/0.3.17 \
++    crate://crates.io/futures-util/0.3.17 \
++    crate://crates.io/futures/0.3.17 \
+     crate://crates.io/generic-array/0.14.4 \
+-    crate://crates.io/getrandom/0.2.3 \
+-    crate://crates.io/gimli/0.24.0 \
+     crate://crates.io/glob/0.3.0 \
+-    crate://crates.io/grpcio-compiler/0.7.0 \
+-    crate://crates.io/grpcio-sys/0.9.0+1.38.0 \
+-    crate://crates.io/grpcio/0.9.0 \
++    crate://crates.io/grpcio-sys/0.9.1+1.38.0 \
++    crate://crates.io/grpcio/0.9.1 \
+     crate://crates.io/hashbrown/0.11.2 \
+     crate://crates.io/heck/0.3.3 \
+     crate://crates.io/hermit-abi/0.1.19 \
+     crate://crates.io/humantime/2.1.0 \
+     crate://crates.io/idna/0.2.3 \
+     crate://crates.io/indexmap/1.7.0 \
+-    crate://crates.io/instant/0.1.10 \
+-    crate://crates.io/itertools/0.8.2 \
+-    crate://crates.io/itoa/0.4.7 \
+-    crate://crates.io/js-sys/0.3.52 \
++    crate://crates.io/instant/0.1.11 \
++    crate://crates.io/itertools/0.10.1 \
++    crate://crates.io/itoa/0.4.8 \
++    crate://crates.io/js-sys/0.3.55 \
+     crate://crates.io/jsonwebkey/0.3.2 \
+     crate://crates.io/jsonwebtoken/7.2.0 \
+     crate://crates.io/lazy_static/1.4.0 \
+     crate://crates.io/lazycell/1.3.0 \
+     crate://crates.io/lexical-core/0.7.6 \
+-    crate://crates.io/libc/0.2.102 \
++    crate://crates.io/libc/0.2.103 \
+     crate://crates.io/libloading/0.7.0 \
+     crate://crates.io/libz-sys/1.1.3 \
+-    crate://crates.io/lock_api/0.4.4 \
++    crate://crates.io/lock_api/0.4.5 \
+     crate://crates.io/log/0.4.14 \
+-    crate://crates.io/matches/0.1.8 \
++    crate://crates.io/matches/0.1.9 \
+     crate://crates.io/memchr/2.3.4 \
+-    crate://crates.io/miniz_oxide/0.4.4 \
+     crate://crates.io/nom/5.1.2 \
+     crate://crates.io/nom/6.2.1 \
+     crate://crates.io/num-bigint/0.2.6 \
+-    crate://crates.io/num-bigint/0.3.2 \
+-    crate://crates.io/num-bigint/0.4.0 \
++    crate://crates.io/num-bigint/0.3.3 \
++    crate://crates.io/num-bigint/0.4.2 \
+     crate://crates.io/num-complex/0.3.1 \
+     crate://crates.io/num-derive/0.3.3 \
+     crate://crates.io/num-integer/0.1.44 \
+@@ -95,94 +85,84 @@ SRC_URI += " \
+     crate://crates.io/num-rational/0.3.2 \
+     crate://crates.io/num-traits/0.2.14 \
+     crate://crates.io/num/0.3.1 \
+-    crate://crates.io/object/0.24.0 \
+     crate://crates.io/oid-registry/0.1.5 \
+     crate://crates.io/oid/0.2.1 \
+     crate://crates.io/once_cell/1.8.0 \
+     crate://crates.io/opaque-debug/0.3.0 \
+-    crate://crates.io/os_str_bytes/2.4.0 \
+-    crate://crates.io/parking_lot/0.11.1 \
+-    crate://crates.io/parking_lot_core/0.8.3 \
+-    crate://crates.io/parsec-client/0.13.0 \
+-    crate://crates.io/parsec-interface/0.25.0 \
++    crate://crates.io/os_str_bytes/3.1.0 \
++    crate://crates.io/parking_lot/0.11.2 \
++    crate://crates.io/parking_lot_core/0.8.5 \
++    crate://crates.io/parsec-client/0.14.0 \
++    crate://crates.io/parsec-interface/0.26.0 \
+     crate://crates.io/peeking_take_while/0.1.2 \
+     crate://crates.io/pem/0.8.3 \
++    crate://crates.io/pem/1.0.1 \
+     crate://crates.io/percent-encoding/2.1.0 \
+     crate://crates.io/picky-asn1-der/0.2.5 \
+     crate://crates.io/picky-asn1-x509/0.6.1 \
+     crate://crates.io/picky-asn1/0.3.3 \
+     crate://crates.io/pin-project-lite/0.2.7 \
+     crate://crates.io/pin-utils/0.1.0 \
+-    crate://crates.io/pkcs8/0.7.5 \
+-    crate://crates.io/pkg-config/0.3.19 \
+-    crate://crates.io/ppv-lite86/0.2.10 \
++    crate://crates.io/pkcs8/0.7.6 \
++    crate://crates.io/pkg-config/0.3.20 \
+     crate://crates.io/proc-macro-error-attr/1.0.4 \
+     crate://crates.io/proc-macro-error/1.0.4 \
+     crate://crates.io/proc-macro-hack/0.5.19 \
+     crate://crates.io/proc-macro-nested/0.1.7 \
+-    crate://crates.io/proc-macro2/1.0.28 \
+-    crate://crates.io/prost-derive/0.6.1 \
+-    crate://crates.io/prost/0.6.1 \
+-    crate://crates.io/protobuf-codegen/2.24.1 \
+-    crate://crates.io/protobuf/2.24.1 \
+-    crate://crates.io/protoc-grpcio/3.0.0 \
+-    crate://crates.io/protoc/2.24.1 \
+-    crate://crates.io/psa-crypto-sys/0.9.0 \
+-    crate://crates.io/psa-crypto/0.9.0 \
++    crate://crates.io/proc-macro2/1.0.29 \
++    crate://crates.io/prost-derive/0.8.0 \
++    crate://crates.io/prost/0.8.0 \
++    crate://crates.io/protobuf/2.25.1 \
++    crate://crates.io/psa-crypto-sys/0.9.2 \
++    crate://crates.io/psa-crypto/0.9.1 \
+     crate://crates.io/quote/1.0.9 \
+     crate://crates.io/radium/0.5.3 \
+-    crate://crates.io/rand/0.8.4 \
+-    crate://crates.io/rand_chacha/0.3.1 \
+-    crate://crates.io/rand_core/0.6.3 \
+-    crate://crates.io/rand_hc/0.3.1 \
+-    crate://crates.io/redox_syscall/0.2.9 \
++    crate://crates.io/rcgen/0.8.14 \
++    crate://crates.io/redox_syscall/0.2.10 \
+     crate://crates.io/regex-syntax/0.6.25 \
+     crate://crates.io/regex/1.4.6 \
+-    crate://crates.io/remove_dir_all/0.5.3 \
+     crate://crates.io/ring/0.16.20 \
+-    crate://crates.io/rustc-demangle/0.1.20 \
+     crate://crates.io/rustc-hash/1.1.0 \
+-    crate://crates.io/rusticata-macros/3.1.0 \
++    crate://crates.io/rusticata-macros/3.2.0 \
+     crate://crates.io/rustversion/1.0.5 \
+     crate://crates.io/ryu/1.0.5 \
+     crate://crates.io/same-file/1.0.6 \
+     crate://crates.io/scopeguard/1.1.0 \
+     crate://crates.io/secrecy/0.7.0 \
+-    crate://crates.io/serde/1.0.127 \
++    crate://crates.io/serde/1.0.130 \
+     crate://crates.io/serde_bytes/0.11.5 \
+-    crate://crates.io/serde_derive/1.0.127 \
+-    crate://crates.io/serde_json/1.0.66 \
+-    crate://crates.io/sha2/0.9.5 \
++    crate://crates.io/serde_derive/1.0.130 \
++    crate://crates.io/serde_json/1.0.68 \
++    crate://crates.io/sha2/0.9.9 \
+     crate://crates.io/shlex/0.1.1 \
+     crate://crates.io/simple_asn1/0.4.1 \
+     crate://crates.io/simple_asn1/0.5.4 \
+-    crate://crates.io/slab/0.4.3 \
++    crate://crates.io/slab/0.4.4 \
+     crate://crates.io/smallvec/1.6.1 \
+-    crate://crates.io/spiffe/0.1.1 \
++    crate://crates.io/spiffe/0.2.0 \
+     crate://crates.io/spin/0.5.2 \
+-    crate://crates.io/spki/0.4.0 \
++    crate://crates.io/spki/0.4.1 \
+     crate://crates.io/static_assertions/1.1.0 \
+     crate://crates.io/strsim/0.10.0 \
+     crate://crates.io/strsim/0.8.0 \
+-    crate://crates.io/structopt-derive/0.4.15 \
+-    crate://crates.io/structopt/0.3.22 \
+-    crate://crates.io/syn/1.0.74 \
++    crate://crates.io/structopt-derive/0.4.16 \
++    crate://crates.io/structopt/0.3.23 \
++    crate://crates.io/syn/1.0.77 \
+     crate://crates.io/synstructure/0.12.5 \
+     crate://crates.io/tap/1.0.1 \
+-    crate://crates.io/tempfile/3.2.0 \
+     crate://crates.io/termcolor/1.1.2 \
+     crate://crates.io/textwrap/0.11.0 \
+-    crate://crates.io/textwrap/0.12.1 \
+-    crate://crates.io/thiserror-impl/1.0.26 \
+-    crate://crates.io/thiserror/1.0.26 \
++    crate://crates.io/textwrap/0.14.2 \
++    crate://crates.io/thiserror-impl/1.0.29 \
++    crate://crates.io/thiserror/1.0.29 \
+     crate://crates.io/time/0.1.44 \
+-    crate://crates.io/tinyvec/1.3.1 \
++    crate://crates.io/tinyvec/1.5.0 \
+     crate://crates.io/tinyvec_macros/0.1.0 \
+-    crate://crates.io/typenum/1.13.0 \
+-    crate://crates.io/unicode-bidi/0.3.5 \
++    crate://crates.io/typenum/1.14.0 \
++    crate://crates.io/unicode-bidi/0.3.6 \
+     crate://crates.io/unicode-normalization/0.1.19 \
+     crate://crates.io/unicode-segmentation/1.8.0 \
+-    crate://crates.io/unicode-width/0.1.8 \
++    crate://crates.io/unicode-width/0.1.9 \
+     crate://crates.io/unicode-xid/0.2.2 \
+     crate://crates.io/untrusted/0.7.1 \
+     crate://crates.io/url/2.2.2 \
+@@ -193,13 +173,12 @@ SRC_URI += " \
+     crate://crates.io/version_check/0.9.3 \
+     crate://crates.io/walkdir/2.3.2 \
+     crate://crates.io/wasi/0.10.0+wasi-snapshot-preview1 \
+-    crate://crates.io/wasm-bindgen-backend/0.2.75 \
+-    crate://crates.io/wasm-bindgen-macro-support/0.2.75 \
+-    crate://crates.io/wasm-bindgen-macro/0.2.75 \
+-    crate://crates.io/wasm-bindgen-shared/0.2.75 \
+-    crate://crates.io/wasm-bindgen/0.2.75 \
+-    crate://crates.io/web-sys/0.3.52 \
+-    crate://crates.io/which/4.2.2 \
++    crate://crates.io/wasm-bindgen-backend/0.2.78 \
++    crate://crates.io/wasm-bindgen-macro-support/0.2.78 \
++    crate://crates.io/wasm-bindgen-macro/0.2.78 \
++    crate://crates.io/wasm-bindgen-shared/0.2.78 \
++    crate://crates.io/wasm-bindgen/0.2.78 \
++    crate://crates.io/web-sys/0.3.55 \
+     crate://crates.io/winapi-i686-pc-windows-gnu/0.4.0 \
+     crate://crates.io/winapi-util/0.1.5 \
+     crate://crates.io/winapi-x86_64-pc-windows-gnu/0.4.0 \
+@@ -207,8 +186,9 @@ SRC_URI += " \
+     crate://crates.io/wyz/0.2.0 \
+     crate://crates.io/x509-parser/0.9.2 \
+     crate://crates.io/yasna/0.3.2 \
++    crate://crates.io/yasna/0.4.0 \
+     crate://crates.io/zeroize/1.3.0 \
+-    crate://crates.io/zeroize_derive/1.1.0 \
++    crate://crates.io/zeroize_derive/1.2.0 \
+ "
+ 
+ LIC_FILES_CHKSUM = " \
 -- 
-Michael Opdenacker, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.25.1
 
 
