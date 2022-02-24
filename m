@@ -1,228 +1,228 @@
-Return-Path: <maaloulsafouane@gmail.com>
+Return-Path: <trevor.gamblin@windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 050B3C433EF
-	for <webhook@archiver.kernel.org>; Thu, 24 Feb 2022 14:18:00 +0000 (UTC)
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com
- [209.85.166.179])
- by mx.groups.io with SMTP id smtpd.web08.10790.1645712279342605152
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 56570C433F5
+	for <webhook@archiver.kernel.org>; Thu, 24 Feb 2022 16:39:30 +0000 (UTC)
+Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com
+ [205.220.178.238])
+ by mx.groups.io with SMTP id smtpd.web08.12886.1645720769566879333
  for <yocto@lists.yoctoproject.org>;
- Thu, 24 Feb 2022 06:17:59 -0800
+ Thu, 24 Feb 2022 08:39:29 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=ppWAj5Kv;
- spf=pass (domain: gmail.com, ip: 209.85.166.179,
- mailfrom: maaloulsafouane@gmail.com)
-Received: by mail-il1-f179.google.com with SMTP id j5so1820137ila.2
-        for <yocto@lists.yoctoproject.org>;
- Thu, 24 Feb 2022 06:17:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=Mjfz4kABuIICr8WkvB2GNrXjwVGCuW0xQn6JyJxhJsY=;
-        b=ppWAj5Kvxg3HrwSL9S4P8v281tsH7roOVk5Oynjh59IGV3RuCSUR2sbnZ6edDJdoW1
-         O8VwdiiOoMpkuNkr+xo7lizCyJzpwKYaH+L+qd0WH1ZuP3lwDTbLXD2kUO5fUmZACZrO
-         F5talyv0l52yStNE9EdTAcGQf1fWZUx0fH8L0QRFkDLX0rXOB0Wbh+jfJXluF1CwV490
-         UfIXKdfCA/gOq4BO9IdCv8DvNNOxTxsG9XEnF0xEJNU3Bi5udZj+Ov6ebni0MbDr9ii+
-         nPjffVN21H5ZdMCRro94COMZOO8457LBGf9EUx0AIAe1ifx55cS05Qn3iOkzReRgCp5i
-         BldQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=Mjfz4kABuIICr8WkvB2GNrXjwVGCuW0xQn6JyJxhJsY=;
-        b=P+smLYDoud3wGLVfACDMtlCKl9Ga8BNHKCeOxr8TypGhzc3haEGhvVsOuP2ZDTvj7P
-         IPFF4rED1SRFrZCKxxlBD6/cSuDfZoRigb+SEF6LVxaOSm74G8cYddO1+xpKPgSc5tIh
-         Il1fvS1+uxSD2Vam3Lxd4G4R/HkEHMlKGOtMUws6U2DWpOQ/giHN6gGomb679hywqWB4
-         mDtePOajD/UycorHvMNbKhCi0HZatLQbR5E8aZjXwNww4nIOPIWx142wWwPz0CecOdqb
-         nmQMgd5VjMTnJNhOtFssehg0tQ0CRggf3bSc1eTSgLTOIeV/KtFXoM28KsGlfZhQ5TFy
-         gLUg==
-X-Gm-Message-State: AOAM533QJliy8OI4Y+a7NKQR3yvhHbbY2YdGf4EmIKLY4daipTinJfpd
-	VmLjgJFWUeQnMPKDcZD3dEnb6cNME20YzFlq5PONb5EWB6A=
-X-Google-Smtp-Source: 
- ABdhPJxv0kmezEq3cxetDUjJzvptcbxvnfibrEhaf/z5OgVBAqhEz/FrRwSKM9d1RntJ9aNTDkj474ru5SHilb2XKs4=
-X-Received: by 2002:a05:6e02:1908:b0:2be:213f:6885 with SMTP id
- w8-20020a056e02190800b002be213f6885mr2592176ilu.36.1645712278180; Thu, 24 Feb
- 2022 06:17:58 -0800 (PST)
-MIME-Version: 1.0
-References: <rBFS.1645540791107768069.EfgM@lists.yoctoproject.org>
- <CAMKF1sqBz=nPi_gPSoBmUdA9JoH8FJE0bUfq3J+cXCh4zh4AXQ@mail.gmail.com>
- <CAEj=YVLRYuecUG-+tCR0AffFWH2=grR1uOEh1_1B3MipdkNz=g@mail.gmail.com>
-In-Reply-To: 
- <CAEj=YVLRYuecUG-+tCR0AffFWH2=grR1uOEh1_1B3MipdkNz=g@mail.gmail.com>
-From: safouane maaloul <maaloulsafouane@gmail.com>
-Date: Thu, 24 Feb 2022 15:17:48 +0100
-Message-ID: 
- <CAEj=YVL0iRXVSs8ZqBKkpwjzockbPscud4kRZTBnUGiHoR63zQ@mail.gmail.com>
-Subject: Re: [yocto] #yocto #raspberrypi0-wifi #honister
+ dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=o+mlYvnn;
+ spf=permerror,
+ err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}:
+ invalid domain name (domain: windriver.com, ip: 205.220.178.238,
+ mailfrom: prvs=90549808b5=trevor.gamblin@windriver.com)
+Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id
+ 21OCwLPj026924;
+	Thu, 24 Feb 2022 16:39:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+ h=content-type :
+ message-id : date : from : subject : to : cc : mime-version;
+ s=PPS06212021; bh=v+BBJnojhuW+/y7omOaYa6PdDd517rGfHO8yNymaqSw=;
+ b=o+mlYvnnmhjzTI1/cEYmytPnGUlibJglF1Izc05opSq/bojlKF4pGiUBXdTP6Dhdy1qB
+ DIMmLYS8EJMWgCjT44yy7Tee8nlIOi6O+rBRWBvB9acJllT0UFFpGEPQ0XWoTVuKUB4r
+ +W7P8lPbbVECqkd/Q6w9P7u9q3nL6PasgI0AGZjJx7y3Uv+m9xAjIlfW5akQP40jNWZa
+ 0eQhTdX78cLtt9zz8yVftF/IrN6t92eSne/UFch1RzkiiKWvwaFaoKpgZTQ2ZNv596nn
+ jiYeM6yIOhD4R/EPgZu5lCrpcbhNnzbTbwSgYjLEhEBb3l1SEuN9PRXxYQAIpZ+YxemO Og==
+Received: from nam11-co1-obe.outbound.protection.outlook.com
+ (mail-co1nam11lp2169.outbound.protection.outlook.com [104.47.56.169])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3edukjgv5k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 24 Feb 2022 16:39:14 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=O2L/s35i+Xp5+u/a813sniqzrZ5lxWAoDfURBS1kW+Rh+IV0meHegCXncPhOzqB1qj1KLX4fR3+e8A6tKr9Fc4jmf0HoH+ALucupeFK9H7E/ibHNdyCP+pUcf6sQAlH/9VgnlLicaHxjEjq7EBNjr+VRhjRNygZvXzQKK6ZUI9lEIyQbSIK/LGPuOuB1Fe1wLEiuzqNVv7W9BjXzYD5OfvHleXvZMn9yReo60X56KW3kfC9rjb++nKV3tDXKf2VlVyvR07iQuyMaYt8LeoZOsAf4IYFbF6rdNXrBo5nwIhbtjFzcuHN61jCz3t32HvrzqhEomIuQc//fAKu+8KbtXw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=v+BBJnojhuW+/y7omOaYa6PdDd517rGfHO8yNymaqSw=;
+ b=BpDAfnG9JAGaexDbEpBeLZuJhk4MiIZhZ9REIYYEPW2rPrEdp0/RrdMgMdjEeSbcCOlwNA7zg2pc8utUzaHS10ptjF6eTWN6S7EK92pe57SbIIQmcUHowBbGTXluqq4ZE+RhFZF4qzrWcp5XRtmHEp7bWZtSN0/TLvpMJcX+KoUIt/eOfJb43yi5dP350SsBHmJocfMgc/UIZ9IdJ4mlSyWGkr2MeDxq55r5e0WOtNO8JPZ0biM5qhXlRw6U6tIWI3AsNEn7K2rX++AcjP23xVpBPZePZLeVQ66DC3r/FKJdt+2ZjP5Hdf4oKyeM1YeAVqbxKePLL1+NPycOFlsBpg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Received: from BY5PR11MB3909.namprd11.prod.outlook.com (2603:10b6:a03:191::13)
+ by DM8PR11MB5719.namprd11.prod.outlook.com (2603:10b6:8:10::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5017.24; Thu, 24 Feb 2022 16:39:11 +0000
+Received: from BY5PR11MB3909.namprd11.prod.outlook.com
+ ([fe80::75bf:a544:9ea7:a236]) by BY5PR11MB3909.namprd11.prod.outlook.com
+ ([fe80::75bf:a544:9ea7:a236%3]) with mapi id 15.20.5017.022; Thu, 24 Feb 2022
+ 16:39:11 +0000
+Content-Type: multipart/alternative;
+ boundary="------------hnPtFfN5Ouu0DEIh5e4lP7Su"
+Message-ID: <d6530256-cb2c-157c-4a03-c7be0a5bb323@windriver.com>
+Date: Thu, 24 Feb 2022 11:39:07 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+From: Trevor Gamblin <trevor.gamblin@windriver.com>
+Subject: Minutes: Yocto Project Weekly Triage Meeting 2/24/2022
 To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000be5bef05d8c43fa6"
+Cc: Richard Purdie <richard.purdie@linuxfoundation.org>,
+        "Wold, Saul" <saul.wold@windriver.com>,
+        "jpewhacker@gmail.com" <jpewhacker@gmail.com>,
+ tim.orling@konsulko.com,
+        daiane.angolini@foundries.io,
+        Bruce Ashfield <bruce.ashfield@gmail.com>, pavel.zhukov@huawei.com,
+        "MacLeod, Randy" <Randy.MacLeod@windriver.com>,
+        "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>,
+        trevor.gamblin@windriver.com, Steve Sakoman <steve@sakoman.com>,
+        "akuster@mvista.com" <akuster@mvista.com>,
+        Ross Burton <ross@burtonini.com>
+Content-Language: en-US
+X-ClientProxiedBy: YQBPR0101CA0333.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:6b::26) To BY5PR11MB3909.namprd11.prod.outlook.com
+ (2603:10b6:a03:191::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: a123e7a6-0a07-467a-71de-08d9f7b42f88
+X-MS-TrafficTypeDiagnostic: DM8PR11MB5719:EE_
+X-Microsoft-Antispam-PRVS: 
+	<DM8PR11MB571945292FAEEFD85194D5389F3D9@DM8PR11MB5719.namprd11.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	t5Nw7i8dNYHDFsFSYA+MQEr/V3wcTndjcjraRy+rRilK1TYMqeT49KfsXznmUt2xIf5oNbljT5EttmGJUFzi0g9A6jdeTBwr4PHOs9tUaCVjbiLn7nopRev+GNHJiYlRKHzFBHQ8Cm33k1zHcBWFHpEUIePPNFwDEQBs+aMyuSzeo5PBM4Wu66oMT02SH+TYx6N09PyUc89gNjit9JQisQlKk6cAS6hKhMOKr8Y904LJ9fxxLD78p4rRdAlbdW0Iza5lP0E3nOyqXXV2PenShHdW2I9yai9p1W3mUd65dIsYbclzNgu7gzhLkn01wdOMlj697uK/Wga24TKnAhesgJ+taXPOnUO3LBMWydCHOuMPXvumwdGyB3TLcJMasMM04BKWiL28h+awHOdZQTsv58yerjjlip2xJDhHSrlnNlzjCeboWVrP+TT9WlMNnls7sVutuo9dpj0AvEjZwkZ2nCKuw7frDpBOuofKKwDUj7z1DCzlNZSdO/qK6TnybM9c+XMTXrvD3m9AJYB3l8d+zJN8SEZ2YpunEIEvqW1FClyfaM/uQvNpzOMz8eMkHlBdvlPS3QxEjeBS7qALokyqbM5ttpt0NZ0F+2I3erFI4+V/xTKoDGWaX417zKNruLcQ+5ejJ7JVfKB18lxe994Pfdiu3KFvb+kcBZ3vPJNEogmn2PF7oqvquSOEmnSupzF/Z5gORngmPHMPGhgdNxH9SRhNPgvyEywxTk9CSikP4xFF0w6zKp6TuaUhoHtN7XSkqJUaDxsD+epYoPU/UlLnxh+slH17vM2G2zenFyTuAz0AuYtd8sD7e7D1JUVT+0JW
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR11MB3909.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(31696002)(2906002)(6666004)(66556008)(38100700002)(508600001)(966005)(6486002)(8676002)(4326008)(86362001)(66946007)(166002)(66476007)(316002)(44832011)(8936002)(5660300002)(31686004)(36756003)(83380400001)(7416002)(2616005)(6916009)(186003)(54906003)(6512007)(33964004)(6506007)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?R241dDZaaFJFSE1zMDAwNFM5OFRwblQ3MEVPZmxvY05QaGgwYUx3a0tZN3Z3?=
+ =?utf-8?B?QlljMWZLalNLU0RoSjhlSWFIWlhRRGhIOGRhVDF3c202cXNwcWQ2L0krZWNY?=
+ =?utf-8?B?WmtLbzhVdE1aZDFnVklhWGRSNUN2c25DZnZiWklQTDRNYmZ6SUsydERYOU1t?=
+ =?utf-8?B?cXNxaytvc1ZRZkkvUkRiMVBIcG1rUWxqdms4ZEVkbzJwNk5UN01icWh6SjJY?=
+ =?utf-8?B?aVhwc2ppM05KeW1kejEveWpEd1R0SFNLYVhoeDE3ZnBNNFNwWkhoWGJiVkdM?=
+ =?utf-8?B?TmlWemVLUkFqWWNkT3dxSnltT1lPZ3NQTU1LdG9BWXhlM04wbWhycVRzdW96?=
+ =?utf-8?B?SjY5T0wwZFJwYlBCenJBZ1lyMThXb1pWNVVicTlkN3VnVDhZT0EwWmRhaWVp?=
+ =?utf-8?B?TjdYZDIreC9CbmtkaGliZzViN0JkYTY3bXowdU9NT05QZFk3blArYTFZQzNV?=
+ =?utf-8?B?dHZsb3orQzEycUZkcUZieENLWWNkSVdoYmltaDcrenE3OGV4MXg1OWpxN0xp?=
+ =?utf-8?B?bHc3UU0zdlpScFo3dkN1SUtUajRWdWVyTjEvSXVwamxQdDZ5a3FrMVNGNzJq?=
+ =?utf-8?B?VnlHTEtZWnhGTXpaRHZGb0JsVFVCVnkwVTdRUmtmWW80RE5nR1NFekpQYUdl?=
+ =?utf-8?B?a08rblRlTEN5Sk5RZzlEaVpJRW1ocllITnhDWkFXZzJEVStuUS9lQWJYOFJl?=
+ =?utf-8?B?ZlFMckNLWHg1dDZoeUlhTFU3OGx5V1U2VWZvai9qaFF5c0RzTHFNcVRFK3g5?=
+ =?utf-8?B?clNYKzFtbXFNdmJPN3B2MWNOc2F2Q3FhTFk5a2hpdk10RFpJRzlhRjJpVGNO?=
+ =?utf-8?B?VW5FVjVmOEJUWjBkMDJzU3FjdTZuQ2ozYkdZUlhLQWJPZzBVaW5zSWdOdDIz?=
+ =?utf-8?B?NDB4eVIxQ2krTGx6OFpUZzd0M2YwREhBUzQ0YlY2MzVMa25IQU5YZ0lYcDNL?=
+ =?utf-8?B?WnZ6VmZENE9GY3hSeVpVeDZaWHJmQUhHYVRmUTJQWS9qWFdvK2kwZFFKRmhz?=
+ =?utf-8?B?QStYeFNaZGQ0a1ovcXFObDdreEJuMEpZbTMwLzlyVzdFRXJHVWxLZEV6VlVF?=
+ =?utf-8?B?MmZKYzl1eC9TME5jMGpnWkZVRnlJZzlzK1FUOUFGdWUrOC9oNmExSnNHKyts?=
+ =?utf-8?B?dHF2Y3dxcXNpTlIySVVqVVh4NG0wNHJteFF3Y0NhSEtvcDNuSVVndnZPVzhp?=
+ =?utf-8?B?MmdERTdmT3ZrK2tzWTEzOFNBYWJ4WnRmbERNVTk4dnI3RWpxYzNkS3lPUlgz?=
+ =?utf-8?B?SmxMeWJJbTRqOHQybHN1WGprZ29LMmt1SUxZd2pzTmd3dmNvdUxURnc2ZmZF?=
+ =?utf-8?B?UzB2ekxkUElCZksxZlBZMEN2REdseDB1VmFzd1N3eHU1ZGw3b0hKWEF2YUtV?=
+ =?utf-8?B?ZTRhWDdZeFdlczJnL2lCSHBSTTdobW1KZHdmUWw3eXF1dkdtbjVxaDB5cCto?=
+ =?utf-8?B?a2tVbXp0Y0ZUYU5laExSSjhZZW9sZGNTd2tTd1FRSjBvT21lSnVUVTcxN2JJ?=
+ =?utf-8?B?Zkk4Q3gxUkJORE81Wmx1UEd2VzVqM0FORkJURXA1cW0zMGhCNGZrbU9oZENS?=
+ =?utf-8?B?TkEvdjBWNjdtQnZWYmdFZTN5ZWVnY2Z4MlZwdnpSQyszbjVseWt1QndOQWlT?=
+ =?utf-8?B?dmpUMTZsS0UyY1NoRjJNZmROVnZ2NWNnSkVxdzJ0R1dmWi9PY1UvaFhQYkxo?=
+ =?utf-8?B?cGUzdXRuYXpSM2szTTB6eUNWZ0UzYVlhNHVHMXpMYWRGQlpjUWdwakNWWTI0?=
+ =?utf-8?B?aGY0OEhEM3ZUalBvaGtmRElDWUx1VjRmbHIwa2laV3hrWk5nS3h4SmM3UlFW?=
+ =?utf-8?B?TGY5WTViVytFTEUvVkZZWkQ1UHBNbC9RMlRTTjJIZk1oZFF3TTFUbng1T2pQ?=
+ =?utf-8?B?N3ZubC83OG96VGJRNnJIREhra2h5aWFVSEFVQ0lCa1U5blMybmZaSDBlbC93?=
+ =?utf-8?B?RFN0TVduVDVMYVk3ZTc4SVdLd01relB5dGtVK3dlSzR4Y29POGZZbG05d1l5?=
+ =?utf-8?B?RnlKNm1ZdWxRUC9yVXYwc3lITk5ZZTlDbE95Qy80WVVZS3VKVjdUZ3FYYjRp?=
+ =?utf-8?B?YndDcGFJbE0zU0NNdUR5NlpGSmVjRDAybkx6bDFqd0JIZEZ0K1piNXNnWTBN?=
+ =?utf-8?B?Y2RJTWhFd0RTWGozOERGVkJrVjhsbWE2MWltQm00RmlFN2ErN0tWOUhSNFB0?=
+ =?utf-8?B?aDV0TENxRUVEa2RvWTdxNXo1c2VGdXFTUGkrWm5XUElpN2dWQ0VZWnY2Zm1w?=
+ =?utf-8?B?VUR6NmQyYi9iY09sS3AvWWR0T0dzQkE5U0Joa1IwTmM4Tkw0SURjRDdTM3Jv?=
+ =?utf-8?Q?qPs26/YaSEcrDYxw0+?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ a123e7a6-0a07-467a-71de-08d9f7b42f88
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3909.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2022 16:39:11.5624
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ sBjWy4/IpFtQevCnHDBOgISaEyI18ZS0+sHHzye1st+j0rZGzzURsEqPQecIsX3bzm2HetY7rcv39WKaDVsvEpTkgj8k84eM7rznWiaSF2A=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR11MB5719
+X-Proofpoint-GUID: 7_Qz5o9Om8c9oHls5nra10t1zSDqmIHj
+X-Proofpoint-ORIG-GUID: 7_Qz5o9Om8c9oHls5nra10t1zSDqmIHj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.64.514
+ definitions=2022-02-24_03,2022-02-24_01,2022-02-23_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0
+ phishscore=0 adultscore=0 bulkscore=0 clxscore=1015 impostorscore=0
+ mlxlogscore=756 spamscore=0 mlxscore=0 priorityscore=1501
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2201110000 definitions=main-2202240096
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 24 Feb 2022 14:18:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56277
+ <yocto@lists.yoctoproject.org>; Thu, 24 Feb 2022 16:39:30 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56278
 
---000000000000be5bef05d8c43fa6
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--------------hnPtFfN5Ouu0DEIh5e4lP7Su
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-So now after doing the last pull on meta -raspberrypi. The one to change
-the kernel version. I have a hdmi output but my boot process block at
-please wait : booting . Do you have an idea why it is doing that ?
+*Wiki: *https://wiki.yoctoproject.org/wiki/Bug_Triage
 
-Best regards,
+*Attendees: *Armin, Bruce, Daiane, Joshua, Pavel, Randy, Richard, Ross, 
+Saul, Stephen, Steve, Tim, Trevor
 
-Safouane.Maaloul
+*ARs: *
+**
 
-Le jeu. 24 f=C3=A9vr. 2022 =C3=A0 15:17, safouane maaloul <maaloulsafouane@=
-gmail.com>
-a =C3=A9crit :
+- Randy to write an email list to the Yocto mailing lists to encourage 
+users to check for existing bugs and add their input to those before 
+reporting new issues
 
-> So now after doing the last pull on meta -raspberrypi. The one to change
-> the kernel version. I have a hdmi output but my boot process block at
-> please wait : booting . Do you have an idea why it is doing that ?
->
-> Best regards,
->
-> Safouane.Maaloul
->
-> Le mar. 22 f=C3=A9vr. 2022 =C3=A0 19:30, Khem Raj <raj.khem@gmail.com> a =
-=C3=A9crit :
->
->> On Tue, Feb 22, 2022 at 6:39 AM safouane maaloul
->> <maaloulsafouane@gmail.com> wrote:
->> >
->> > I do am building image on a raspberry pi zero w. After flashing the
->> image on the raspberry, i don get anything on the screen. I am doing thi=
-s
->> the honister branch. I had the gatesgarth branch and it was working
->> perfectly. I tried many thing but i can't get to work. i have literally =
-the
->> same code on a raspberry pi zero w 2 and it works perfectly. I am only
->> changing the name of the machine (raspberrypi0-wifi ) to get to work. Do
->> you have an idea why ? I have the sensation that it is booting because t=
-he
->> green led is flashing but i don't have anything on the screen.
->>
->> is it possible to hook up serial console and see if you see additional
->> messages ?
->> also try with master and see if you have same problem as honister or not
->>
->> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->> > Links: You receive all messages sent to this group.
->> > You automatically follow any topics you start or reply to.
->> > View/Reply Online (#56240):
->> https://lists.yoctoproject.org/g/yocto/message/56240
->> > Mute This Topic: https://lists.yoctoproject.org/mt/89317701/1997914
->> > Mute #yocto:https://lists.yoctoproject.org/g/yocto/mutehashtag/yocto
->> > Mute #raspberrypi0-wifi:
->> https://lists.yoctoproject.org/g/yocto/mutehashtag/raspberrypi0-wifi
->> > Mute #honister:
->> https://lists.yoctoproject.org/g/yocto/mutehashtag/honister
->> > Group Owner: yocto+owner@lists.yoctoproject.org
->> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
->> raj.khem@gmail.com]
->> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->> >
->>
->
->
-> --
-> *SAFOUANE MAALOUL*
->
-> *maaloulsafouane@gmail.com <maaloulsafouane@gmail.com>*
->
->
+*Notes:*
 
---=20
-*SAFOUANE MAALOUL*
+- ~43% of AB workers have been switched to SSDs. Failure rate appears 
+lower, but still TBD
 
-*maaloulsafouane@gmail.com <maaloulsafouane@gmail.com>*
+*Medium+ 3.5 Unassigned Enhancements/Bugs: *78 (Last week 78)
 
---000000000000be5bef05d8c43fa6
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+*Medium+ 3.99 Unassigned Enhancements/Bugs: *39**(Last week 39)
 
-<div dir=3D"ltr">So now after doing the last pull on meta -raspberrypi. The=
- one to change the kernel version. I have a hdmi output but my boot process=
- block at please wait : booting . Do you have an idea why it is doing that =
-?=C2=A0<div><br></div><div>Best regards,</div><div><br></div><div>Safouane.=
-Maaloul</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
-"gmail_attr">Le=C2=A0jeu. 24 f=C3=A9vr. 2022 =C3=A0=C2=A015:17, safouane ma=
-aloul &lt;<a href=3D"mailto:maaloulsafouane@gmail.com">maaloulsafouane@gmai=
-l.com</a>&gt; a =C3=A9crit=C2=A0:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex"><div dir=3D"ltr">So now after doing the last pull on meta=
- -raspberrypi. The one to change the kernel version. I have a hdmi output b=
-ut my boot process block at please wait : booting . Do you have an idea why=
- it is doing that ?=C2=A0<div><br></div><div>Best regards,</div><div><br></=
-div><div>Safouane.Maaloul</div></div><br><div class=3D"gmail_quote"><div di=
-r=3D"ltr" class=3D"gmail_attr">Le=C2=A0mar. 22 f=C3=A9vr. 2022 =C3=A0=C2=A0=
-19:30, Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank"=
->raj.khem@gmail.com</a>&gt; a =C3=A9crit=C2=A0:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">On Tue, Feb 22, 2022 at 6:39 AM safouane m=
-aaloul<br>
-&lt;<a href=3D"mailto:maaloulsafouane@gmail.com" target=3D"_blank">maalouls=
-afouane@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; I do am building image on a raspberry pi zero w. After flashing the im=
-age on the raspberry, i don get anything on the screen. I am doing this the=
- honister branch. I had the gatesgarth branch and it was working perfectly.=
- I tried many thing but i can&#39;t get to work. i have literally the same =
-code on a raspberry pi zero w 2 and it works perfectly. I am only changing =
-the name of the machine (raspberrypi0-wifi ) to get to work. Do you have an=
- idea why ? I have the sensation that it is booting because the green led i=
-s flashing but i don&#39;t have anything on the screen.<br>
-<br>
-is it possible to hook up serial console and see if you see additional<br>
-messages ?<br>
-also try with master and see if you have same problem as honister or not<br=
->
-<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt; Links: You receive all messages sent to this group.<br>
-&gt; You automatically follow any topics you start or reply to.<br>
-&gt; View/Reply Online (#56240): <a href=3D"https://lists.yoctoproject.org/=
-g/yocto/message/56240" rel=3D"noreferrer" target=3D"_blank">https://lists.y=
-octoproject.org/g/yocto/message/56240</a><br>
-&gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/89317701=
-/1997914" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.o=
-rg/mt/89317701/1997914</a><br>
-&gt; Mute #yocto:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehash=
-tag/yocto" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.=
-org/g/yocto/mutehashtag/yocto</a><br>
-&gt; Mute #raspberrypi0-wifi:<a href=3D"https://lists.yoctoproject.org/g/yo=
-cto/mutehashtag/raspberrypi0-wifi" rel=3D"noreferrer" target=3D"_blank">htt=
-ps://lists.yoctoproject.org/g/yocto/mutehashtag/raspberrypi0-wifi</a><br>
-&gt; Mute #honister:<a href=3D"https://lists.yoctoproject.org/g/yocto/muteh=
-ashtag/honister" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctopr=
-oject.org/g/yocto/mutehashtag/honister</a><br>
-&gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" t=
-arget=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-&gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" =
-rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto=
-/unsub</a> [<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khe=
-m@gmail.com</a>]<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt;<br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
-><div dir=3D"ltr"><font color=3D"#000000"><span><b>SAFOUANE MAALOUL</b></sp=
-an></font><div><span><b><u style=3D"background-color:rgb(255,255,255)"><fon=
-t color=3D"#0b5394"><a href=3D"mailto:maaloulsafouane@gmail.com" target=3D"=
-_blank">maaloulsafouane@gmail.com</a></font></u><span style=3D"color:rgb(0,=
-0,0);background-color:rgb(255,255,255)"><br></span></b></span><div><span st=
-yle=3D"background-color:rgb(255,255,255)"><font color=3D"#000000"><b><br></=
-b></font></span></div></div></div></div>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr"><font color=3D"#000000"><span><=
-b>SAFOUANE MAALOUL</b></span></font><div><span><b><u style=3D"background-co=
-lor:rgb(255,255,255)"><font color=3D"#0b5394"><a href=3D"mailto:maaloulsafo=
-uane@gmail.com" target=3D"_blank">maaloulsafouane@gmail.com</a></font></u><=
-span style=3D"color:rgb(0,0,0);background-color:rgb(255,255,255)"><br></spa=
-n></b></span><div><span style=3D"background-color:rgb(255,255,255)"><font c=
-olor=3D"#000000"><b><br></b></font></span></div></div></div></div>
+*AB Bugs: *75 (Last week 73)
+--------------hnPtFfN5Ouu0DEIh5e4lP7Su
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---000000000000be5bef05d8c43fa6--
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <div class="moz-text-html" lang="x-unicode">
+      <p><b>Wiki: </b><a class="moz-txt-link-freetext" href="https://wiki.yoctoproject.org/wiki/Bug_Triage" moz-do-not-send="true">https://wiki.yoctoproject.org/wiki/Bug_Triage</a></p>
+      <p><b>Attendees: </b>Armin, Bruce, Daiane, Joshua, Pavel, Randy,
+        Richard, Ross, Saul, Stephen, Steve, Tim, Trevor<br>
+      </p>
+      <p><b>ARs: </b><br>
+        <b></b></p>
+      <p>- Randy to write an email list to the Yocto mailing lists to
+        encourage users to check for existing bugs and add their input
+        to those before reporting new issues<br>
+      </p>
+    </div>
+    <span class="moz-txt-link-freetext"></span>
+    <div class="moz-text-html" lang="x-unicode"><b>Notes:</b></div>
+    <p>- ~43% of AB workers have been switched to SSDs. Failure rate
+      appears lower, but still TBD</p>
+    <div class="moz-text-html" lang="x-unicode">
+      <p><b>Medium+ 3.5 Unassigned Enhancements/Bugs: </b>78 (Last week
+        78)<br>
+      </p>
+      <b>Medium+ 3.99 Unassigned Enhancements/Bugs: </b>39<b> </b>(Last
+      week 39)<br>
+    </div>
+    <div class="moz-text-html" lang="x-unicode"><br>
+    </div>
+    <div class="moz-text-html" lang="x-unicode"><b>AB Bugs: </b>75
+      (Last week 73)<br>
+    </div>
+  </body>
+</html>
+
+--------------hnPtFfN5Ouu0DEIh5e4lP7Su--
 
