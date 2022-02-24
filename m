@@ -1,77 +1,78 @@
-Return-Path: <nikhilvp29@gmail.com>
+Return-Path: <ksmanjunath681@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 84CD7C433F5
-	for <webhook@archiver.kernel.org>; Thu, 24 Feb 2022 06:06:20 +0000 (UTC)
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com
- [209.85.208.54])
- by mx.groups.io with SMTP id smtpd.web10.7078.1645682779291645465
- for <yocto@lists.yoctoproject.org>;
- Wed, 23 Feb 2022 22:06:19 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=ca/9jyjD;
- spf=pass (domain: gmail.com, ip: 209.85.208.54,
- mailfrom: nikhilvp29@gmail.com)
-Received: by mail-ed1-f54.google.com with SMTP id s24so1359920edr.5;
-        Wed, 23 Feb 2022 22:06:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=/yQm0SLD+WBgNwQm7tVrziavsNIByGHhK43RmuGpaFk=;
-        b=ca/9jyjDoahOK3WLWIc5SyPHkpsBC71xOov50XfPklm/vCsqIVL090ymadHpWfHTnO
-         ZXP2jfg+RkytRkwNmD2Uy3gjerbXdpWiFa0mtZg3hTMi9yzD9ugzpe+AnZV4af8snKNt
-         fOlnf3TANvF4QeniBXUUkmoCPuUCFLplFUnlQLTqsuXnMLgDMKUreyx1Q0T+bNsFWshc
-         hvBbbuoqfUvUhzc1aS7fq88xY7Ava6164+coIA5BVGWSAY2rQkq8wijelK4XeDwxtFXr
-         CB/SDir15SQF0ooRhuOLYFrcln4j7fw4kX08f98wosQwsC0Uu/wJGkqqBBEfwJ26sXCP
-         tXTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=/yQm0SLD+WBgNwQm7tVrziavsNIByGHhK43RmuGpaFk=;
-        b=EMWnAlMdkUemgHRzyxTqVI47fW4Z+xix5pWiE7NwnJ+jJMcIudbiQaeMX8I8wQVtK1
-         aKRMVl607OApwMcp0EMD0nMJMe4m5Ao3CZ2I1AOg9PrUp9li4zK9bAinT5S5erAydkad
-         RXMjRruqx3EsAnotQGsOSPiwZDRoE/cxW8TU5XAKz4+WZQx16rNAwtr0hColBdVwEFNK
-         3GwDZ7I8PbHQnggd3PJsr19h+oHiW4pwa5BZGz7UcW47TSr5aBno3ypYfKdYAbA49yYm
-         HiII8jtLY4aVv9roShFPUdjdpaaQRT7dJJp5gnUdcof/ihPEVjvYJj+czPOqtwoxj1Fr
-         cisQ==
-X-Gm-Message-State: AOAM533bXcnhAYu0zThyyC593F0X3UjgU8AfhvhxxFZO6IwAW7ZV8nTL
-	R5E2vnK7dkk108lD9/zwBbP4rNT3yKWFbnVWs5fTqBat
-X-Google-Smtp-Source: 
- ABdhPJxUYnyCxDJ7BcTwpI9LJ1YjZDHm3fEzDjXrZ1n020wixy7UgEITmiKt8w/QH6pT4XkOVq9J2VQ3AotdvbgpPyA=
-X-Received: by 2002:aa7:ce92:0:b0:40f:b89c:18fe with SMTP id
- y18-20020aa7ce92000000b0040fb89c18femr855433edv.67.1645682777440; Wed, 23 Feb
- 2022 22:06:17 -0800 (PST)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 921B9C433F5
+	for <webhook@archiver.kernel.org>; Thu, 24 Feb 2022 07:27:26 +0000 (UTC)
+Subject: Updating BBappend files in yocto #yocto #python #devtool
+To: yocto@lists.yoctoproject.org
+From: ksmanjunath681@gmail.com
+X-Originating-Location: Melbourne, Victoria, AU (155.190.53.4)
+X-Originating-Platform: Windows Chrome 98
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-From: NIKHIL PATIL <nikhilvp29@gmail.com>
-Date: Thu, 24 Feb 2022 11:36:06 +0530
-Message-ID: 
- <CAJw=dJ8-0r5ZM=LyGOAKvPdjUqntq8_zeG-NSOs-DQ1y1QiOvw@mail.gmail.com>
-Subject: Regarding mail notification diseable
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>,
- yocto+help@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000005cc64705d8bd6191"
+Date: Wed, 23 Feb 2022 23:27:13 -0800
+Message-ID: <cJh1.1645687633224936291.YkrY@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="hPaZqIxLR96A8CofdYwE"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 24 Feb 2022 06:06:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56272
+ <yocto@lists.yoctoproject.org>; Thu, 24 Feb 2022 07:27:26 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56273
 
---0000000000005cc64705d8bd6191
-Content-Type: text/plain; charset="UTF-8"
-
-hi ,
-    I dont want any mail notification from yocto forum , please disable it
-. i am not able to disable.
-    thanks .
-
---0000000000005cc64705d8bd6191
-Content-Type: text/html; charset="UTF-8"
+--hPaZqIxLR96A8CofdYwE
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">hi ,<div>=C2=A0 =C2=A0 I dont want any mail notification f=
-rom yocto forum , please disable it . i am not able to disable.</div><div>=
-=C2=A0 =C2=A0 thanks .</div></div>
+Hi Alexander,
+I looked into the various options provided by devtool upgrade/devtool finis=
+h.
+Unfortunately, it doesn't have the required options to update .bbappend fil=
+es.
 
---0000000000005cc64705d8bd6191--
+Below is a brief on my problem.
+
+devtool upgrade doesn't consider updating .bbappend files of the recipe if =
+they have overridden SRC related information.
+For example, I have a .bbappend file in my custom layer that has overridden=
+ SRC_URI, SRCBRANCH & SRCREV information for a recipe in poky.
+
+When I tried to update the recipe with latest SRCREV using below command:
+devtool upgrade -S <latest_commit_revision> <recipename>
+
+The devtool upgrade by default updates the original recipe (.bb) in poky bu=
+t not the .bbappend file in my custom layer.
+I briefly looked into the devtool upgrade sources to confirm this behavior =
+as well.
+
+Is this an expected behavior?
+There could be cases where the .bbappend files might override the SRC relat=
+ed information and we expect the devtool to upgrade the respective .bbappen=
+d file?
+
+Thanks.
+
+--hPaZqIxLR96A8CofdYwE
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><span lang=3D"EN-US" s=
+tyle=3D"mso-ansi-language: EN-US;">Hi Alexander,<br/>I looked into the vari=
+ous options provided by devtool upgrade/devtool finish.<br/>Unfortunately, =
+it doesn&#39;t have the required options to update .bbappend files.<br/><br=
+/>Below is a brief on my problem.<br/><br/>devtool upgrade doesn&#39;t cons=
+ider updating .bbappend files of the recipe if they have overridden SRC rel=
+ated information.<br/>For example, I have a .bbappend file in my custom lay=
+er that has overridden SRC_URI, SRCBRANCH &amp; SRCREV information for a re=
+cipe in poky.<br/><br/>When I tried to update the recipe with latest SRCREV=
+ using below command:<br/>devtool upgrade -S &lt;latest_commit_revision&gt;=
+ &lt;recipename&gt;<br/><br/>The devtool upgrade by default updates the ori=
+ginal recipe (.bb) in poky but not the .bbappend file in my custom layer.<b=
+r/>I briefly looked into the devtool upgrade sources to confirm this behavi=
+or as well.<br/><br/>Is this an expected behavior?<br/>There could be cases=
+ where the .bbappend files might override the SRC related information and w=
+e expect the devtool to upgrade the respective .bbappend file?<br/><br/>Tha=
+nks.</span></p>
+
+--hPaZqIxLR96A8CofdYwE--
 
