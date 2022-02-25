@@ -1,78 +1,100 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C4EDEC433EF
-	for <webhook@archiver.kernel.org>; Fri, 25 Feb 2022 16:36:10 +0000 (UTC)
-Received: from cpanel8.indieserve.net (cpanel8.indieserve.net [199.212.143.3])
- by mx.groups.io with SMTP id smtpd.web09.239.1645806969400569976
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D686C433F5
+	for <webhook@archiver.kernel.org>; Fri, 25 Feb 2022 18:10:00 +0000 (UTC)
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
+ [209.85.221.51])
+ by mx.groups.io with SMTP id smtpd.web10.537.1645812599127924333
  for <yocto@lists.yoctoproject.org>;
- Fri, 25 Feb 2022 08:36:09 -0800
+ Fri, 25 Feb 2022 10:09:59 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=pass (domain: crashcourse.ca, ip: 199.212.143.3, mailfrom: rpjday@crashcourse.ca)
-Received: from cpeac202e043973-cmac202e043970.sdns.net.rogers.com
- ([174.114.107.13]:59534 helo=fedora)
-	by cpanel8.indieserve.net with esmtpsa  (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1nNdZh-007dAD-Ur
-	for yocto@lists.yoctoproject.org; Fri, 25 Feb 2022 11:36:07 -0500
-Date: Fri, 25 Feb 2022 11:36:04 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-To: Yocto discussion list <yocto@lists.yoctoproject.org>
-Subject: looking to boot core-image-minimal on meta-riscv board
-Message-ID: <7bac38ca-d9fd-b019-8d47-4a1a4f2d6a8@crashcourse.ca>
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=DkVJXkJF;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.51,
+ mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f51.google.com with SMTP id n14so5684871wrq.7
+        for <yocto@lists.yoctoproject.org>;
+ Fri, 25 Feb 2022 10:09:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:user-agent:mime-version
+         :content-transfer-encoding;
+        bh=lmrpMdRR9b2qtNqsGd9M/tNT9wm8cwIbgXey8F8FCd8=;
+        b=DkVJXkJFhW5hnXwNeINNKQNlGCYDKeXd2XHqi7pqHawDO/kiobp2yrNGN1fI5ojufa
+         T2SzVeqaur2SlvjaYIX7sL4PpkhDS7TmU7LKFNVCoPTKM0H/Z0tMa/xhwtkHOhlNBmYW
+         vuXjl7F83+z9iRjowlhqXttYLcp+6BxRqOGGU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=lmrpMdRR9b2qtNqsGd9M/tNT9wm8cwIbgXey8F8FCd8=;
+        b=pBb6PpWTmudGrfInrQb/eGjf/Yl767LKfhW0HRnV8BStgPbpqp/qPkSBNAONGKAWIb
+         2aUO8qHA/jPgUCXTIvpU5eFUgo+97IFv7IMF60l7Rq+5WFh2FgYYJ8tV3UbUGbwsDKjZ
+         uoWe8d5T416nnhlnY+6by2qSvbPtVky+Ik67+Ty5f0xyrfoRg/wIjZu3cJzwVkIgyCyc
+         bXFVG8unNobTMvDnZ3vxenXJ7IllPN3zA7EYp1PP+tB9Ixk7zbaJIgVUfgVNVQ6YSd2T
+         fQQgDUCob0VpNeTAGjci17zFiHjeZVfkdZjhD8SnqZbRbgNBaMaHEgnLR4FRa/wAGT3d
+         nkNQ==
+X-Gm-Message-State: AOAM532zBtiqnYufEXHohX5MYg+ljrLj/vbo3thhf7bpvNMT88h2tXvg
+	kmWsBQTtpMvcUrbnNSWOWcV9K8r08URdqvwX
+X-Google-Smtp-Source: 
+ ABdhPJyJVnCS5QFoE6fB4k8thGWH25fFdiCiMQmA7vZZkttVOLOYMCRMpE0eVBOapp5bG5GJvJrcgg==
+X-Received: by 2002:a5d:58e9:0:b0:1ed:e2d6:71f3 with SMTP id
+ f9-20020a5d58e9000000b001ede2d671f3mr6878820wrd.24.1645812597322;
+        Fri, 25 Feb 2022 10:09:57 -0800 (PST)
+Received: from ?IPv6:2001:8b0:aba:5f3c:8c05:a731:3c1:5d08?
+ ([2001:8b0:aba:5f3c:8c05:a731:3c1:5d08])
+        by smtp.gmail.com with ESMTPSA id
+ z16-20020a7bc7d0000000b00381004c643asm6329755wmk.30.2022.02.25.10.09.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Feb 2022 10:09:56 -0800 (PST)
+Message-ID: 
+ <6234ac5289c4ca5846e6f80c13686f61ed340116.camel@linuxfoundation.org>
+Subject: QA change - reduced number of reproducibility builds tests?
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>
+Cc: Steve Sakoman <steve@sakoman.com>, "Mittal, Anuj"
+ <anuj.mittal@intel.com>,  Joshua Watt <JPEWhacker@gmail.com>
+Date: Fri, 25 Feb 2022 18:09:53 +0000
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4-1ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel8.indieserve.net
-X-AntiAbuse: Original Domain - lists.yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel8.indieserve.net: authenticated_id:
- rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel8.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 25 Feb 2022 16:36:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56283
+ <yocto@lists.yoctoproject.org>; Fri, 25 Feb 2022 18:10:00 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56284
+
+Hi All,
+
+As the project develops, some tests are valuable and some become less valuable
+over time.
+
+When we first started reproducible builds work, testing reproducibility heavily
+across multiple distros highlighted some unusual bugs and let us improve things.
+We therefore currently run a-full with the targets:
+
+reproducibile-centos
+reproducibile-debian
+reproducibile-fedora
+reproducibile-ubuntu
+
+I've noticed we pretty much always see the same set of failures with these
+targets now, i.e. if one fails, they all fail the same way.
+
+Those targets are heavy builds which don't reuse sstate for one of the build
+streams and hence load the autobuilder heavily.
+
+I'm thinking they've served their purpose and that a-full should go back to just
+the randomly selected reproduiclbe target.
+
+Does anyone feel we shouldn't do that?
+
+Cheers,
+
+Richard
 
 
-  a friend of mine is diving into trying to boot linux on a meta-riscv
-linux starter kit -- he's not using YP, and this is what he's
-targeting:
 
-  https://www.aliexpress.com/item/1005003751298305.html
-
-  since i've wanted to jump into meta-riscv for a while, i figured i'd
-play along and ordered something more substantial:
-
-  https://www.aliexpress.com/item/1005002796061251.html
-
-in any event, here's the story so far.
-
-  as a first pass, i just fired up YP and built for qemuriscv64 to
-establish a baseline, and that seems to work just fine, booting with
-"runqemu nographic." and that at least gives me a bunch of config info
-i can look at later.
-
-  as for my actual target board, i know that the meta-riscv layer
-defines support for two boards, neither of which is the one i will be
-getting, but while i'm waiting for it, i can at least start
-documenting all of the relevant settings and config values i'll want
-to try.
-
-  i know precious little about meta-riscv, so is there a sane way to
-prepare for the eventual arrival of my board? my plan is to get
-familiar with how the meta-riscv layer builds for the two supported
-boards, so i'll have a handle on what i'll need to configure.
-
-  any further advice would be most appreciated.
 
