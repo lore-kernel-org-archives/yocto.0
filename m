@@ -1,95 +1,78 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <rpjday@crashcourse.ca>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1767BC433FE
-	for <webhook@archiver.kernel.org>; Fri, 25 Feb 2022 15:48:24 +0000 (UTC)
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com
- [209.85.210.169])
- by mx.groups.io with SMTP id smtpd.web08.7775.1645804103250532454
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C4EDEC433EF
+	for <webhook@archiver.kernel.org>; Fri, 25 Feb 2022 16:36:10 +0000 (UTC)
+Received: from cpanel8.indieserve.net (cpanel8.indieserve.net [199.212.143.3])
+ by mx.groups.io with SMTP id smtpd.web09.239.1645806969400569976
  for <yocto@lists.yoctoproject.org>;
- Fri, 25 Feb 2022 07:48:23 -0800
+ Fri, 25 Feb 2022 08:36:09 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=aXE1T0HM;
- spf=pass (domain: gmail.com, ip: 209.85.210.169,
- mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f169.google.com with SMTP id y5so5027060pfe.4
-        for <yocto@lists.yoctoproject.org>;
- Fri, 25 Feb 2022 07:48:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=pYFPwa6AtL6kVSIV9UMq6YPl7XMzoxnq/tIF9qJgpRk=;
-        b=aXE1T0HMbSHoOAhacHPepLNVwo8f9aJrfpwHnxmAjg23vGWzw7PI0mlOqhV61VdTrV
-         Kr3JEzUzw9xDsj+jlShw1k6ccELM6VyKjNeOvp6Ga/8afN31tGjgKbJblYVe4nyRphER
-         LZvYxlgEYuziDxqBRVczf32KX1wU1TpEztCACuOULKQF1kgI5TU/Y/iZkcKrPa0R+6y3
-         RV9NQAAsJos/Ep5A4sByeQJphLQU/2I0AlJRXVsas7Ve336qTpFZZLL4ZflBsM3hxfcb
-         wvN44N4xzov4xcNH31tccNJhRgJriwCnSsMcoztuEp6dYv9d0lBA5lwWaNnePI/1Aj/I
-         Cr4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=pYFPwa6AtL6kVSIV9UMq6YPl7XMzoxnq/tIF9qJgpRk=;
-        b=Bbqfjz+mo4XZHj0H9Tc/eYZskszqDW4MvPoVA/c0M8jy+TgJE/9x4wvXxqR+PibOKx
-         RFV8ECoiFfBU01RWAZf5p52oz3gSdZafdXm+AIuAUxvosqdKWz9tdNZxecxHc1lBAO2I
-         gWUV25SXTjycJjJWs2tq4EGOUHqvtI2ieBDi6A44nkffbsF5Q6CEbuM2kAli40NtEou6
-         xd4JyWY2V5f7cVS1EhpErAAcr0gD9niLgkhr/MGn1wyiUc7jJ+fGIfwo8uSClX41kbXG
-         k/frWEaX3PwDaEH4fEiKw2BOlxBtow0D+i557N5uiixHnSkPAoDwttQ3a7I+GvQEvIcv
-         u3dQ==
-X-Gm-Message-State: AOAM532xei/kB4w+ez5hEltcJjN4X07tmPdfbIEHLfZLn5vl6Tw3BNze
-	b5HIDnbjKgyhNMO4Fh2Vum4XSG08kis=
-X-Google-Smtp-Source: 
- ABdhPJxrWNnBvuDBSAuZ4GVgSEFpuHKwym4NZQWfxJj6+vGNAvZqotEXGXUyexkFFBWidtLX/hSXcA==
-X-Received: by 2002:a62:1c47:0:b0:4f1:2735:3219 with SMTP id
- c68-20020a621c47000000b004f127353219mr8276955pfc.70.1645804102482;
-        Fri, 25 Feb 2022 07:48:22 -0800 (PST)
-Received: from keaua.caveonetworks.com
- ([2601:202:4180:a5c0:59da:4980:6faa:1736])
-        by smtp.gmail.com with ESMTPSA id
- a38-20020a056a001d2600b004f0f0f852a4sm3796074pfx.77.2022.02.25.07.48.21
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Feb 2022 07:48:22 -0800 (PST)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 2/2] packagegroup-security-tpm:  Fix QA Error
-Date: Fri, 25 Feb 2022 07:48:19 -0800
-Message-Id: <20220225154819.2005707-2-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220225154819.2005707-1-akuster808@gmail.com>
-References: <20220225154819.2005707-1-akuster808@gmail.com>
+ dkim=missing;
+ spf=pass (domain: crashcourse.ca, ip: 199.212.143.3, mailfrom: rpjday@crashcourse.ca)
+Received: from cpeac202e043973-cmac202e043970.sdns.net.rogers.com
+ ([174.114.107.13]:59534 helo=fedora)
+	by cpanel8.indieserve.net with esmtpsa  (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <rpjday@crashcourse.ca>)
+	id 1nNdZh-007dAD-Ur
+	for yocto@lists.yoctoproject.org; Fri, 25 Feb 2022 11:36:07 -0500
+Date: Fri, 25 Feb 2022 11:36:04 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+To: Yocto discussion list <yocto@lists.yoctoproject.org>
+Subject: looking to boot core-image-minimal on meta-riscv board
+Message-ID: <7bac38ca-d9fd-b019-8d47-4a1a4f2d6a8@crashcourse.ca>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel8.indieserve.net
+X-AntiAbuse: Original Domain - lists.yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Get-Message-Sender-Via: cpanel8.indieserve.net: authenticated_id:
+ rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: cpanel8.indieserve.net: rpjday@crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 25 Feb 2022 15:48:24 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56282
+ <yocto@lists.yoctoproject.org>; Fri, 25 Feb 2022 16:36:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56283
 
-ERROR: packagegroup-security-tpm-1.0-r0 do_package_write_rpm: An allarch packagegroup shouldn't depend on packages which are dynamically renamed (libtpm-dbg to libtpms-dbg)
-ERROR: packagegroup-security-tpm-1.0-r0 do_package_write_rpm: An allarch packagegroup shouldn't depend on packages which are dynamically renamed (libtpm to libtpms0)
-ERROR: packagegroup-security-tpm-1.0-r0 do_package_write_rpm: An allarch packagegroup shouldn't depend on packages which are dynamically renamed (libtpm-dev to libtpms-dev)
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm.bb | 1 -
- 1 file changed, 1 deletion(-)
+  a friend of mine is diving into trying to boot linux on a meta-riscv
+linux starter kit -- he's not using YP, and this is what he's
+targeting:
 
-diff --git a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm.bb b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm.bb
-index bfe6e3a..7ba5004 100644
---- a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm.bb
-+++ b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm.bb
-@@ -15,7 +15,6 @@ RDEPENDS:packagegroup-security-tpm = " \
-     tpm-quote-tools \
-     swtpm \
-     openssl-tpm-engine \
--    libtpm \
-     ${X86_TPM_MODULES} \
-     "
- 
--- 
-2.25.1
+  https://www.aliexpress.com/item/1005003751298305.html
 
+  since i've wanted to jump into meta-riscv for a while, i figured i'd
+play along and ordered something more substantial:
+
+  https://www.aliexpress.com/item/1005002796061251.html
+
+in any event, here's the story so far.
+
+  as a first pass, i just fired up YP and built for qemuriscv64 to
+establish a baseline, and that seems to work just fine, booting with
+"runqemu nographic." and that at least gives me a bunch of config info
+i can look at later.
+
+  as for my actual target board, i know that the meta-riscv layer
+defines support for two boards, neither of which is the one i will be
+getting, but while i'm waiting for it, i can at least start
+documenting all of the relevant settings and config values i'll want
+to try.
+
+  i know precious little about meta-riscv, so is there a sane way to
+prepare for the eventual arrival of my board? my plan is to get
+familiar with how the meta-riscv layer builds for the two supported
+boards, so i'll have a handle on what i'll need to configure.
+
+  any further advice would be most appreciated.
 
