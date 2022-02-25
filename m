@@ -1,81 +1,118 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C6CBCC433EF
-	for <webhook@archiver.kernel.org>; Fri, 25 Feb 2022 21:01:11 +0000 (UTC)
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com
- [209.85.217.49])
- by mx.groups.io with SMTP id smtpd.web12.2474.1645822871050011319
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 298E5C433EF
+	for <webhook@archiver.kernel.org>; Fri, 25 Feb 2022 21:07:20 +0000 (UTC)
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com
+ [209.85.222.174])
+ by mx.groups.io with SMTP id smtpd.web10.2572.1645823238836079171
  for <yocto@lists.yoctoproject.org>;
- Fri, 25 Feb 2022 13:01:11 -0800
+ Fri, 25 Feb 2022 13:07:19 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=njfeQFx6;
- spf=pass (domain: gmail.com, ip: 209.85.217.49,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vs1-f49.google.com with SMTP id t22so6814056vsa.4
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=F/kn2Mff;
+ spf=pass (domain: gmail.com, ip: 209.85.222.174,
+ mailfrom: raj.khem@gmail.com)
+Received: by mail-qk1-f174.google.com with SMTP id q4so5557731qki.11
         for <yocto@lists.yoctoproject.org>;
- Fri, 25 Feb 2022 13:01:10 -0800 (PST)
+ Fri, 25 Feb 2022 13:07:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=hMmaCS3z60VNyL1HD9qOEzXYivs/thFpQqEYcLlXW6I=;
-        b=njfeQFx6T/R58+l87bxwYImGPKgpYYXKAq9XNsfTWlgr6GJor3IOrJiQMiG7aYtGqe
-         oNP/dUXRbp8BJ6mI1S4MbeSdpsFggrzy0E6HbCEDNugNsjM9LgMoZvyXW5xCX1SzxH+0
-         CKrwZQcDSgDVNmpR3bPinXohP5kM0d0zW8EMKzbxwLtYZ4fQxmLYXuUk5Jx2skWr/VC1
-         np7jRNI197qwp46h9sH+4tpBQR2xIc3rn9dZTdPwPOUmKMWfhd2DtDVCCVPuLaZ5h1ca
-         mpv4U92NjBDcOX/YgnMS6MXct1u5BrLtu3trEHjV0GK3IdjM8p2FhkZrk/dUSPst41/i
-         e9DQ==
+        bh=DoMclE/86EQXV3sYYVzIRUFls4omzucPzyojFBGJz/A=;
+        b=F/kn2MffrT8uCDqSJdPvKcJaNXHT4WjS4R51Viren1+nG8d5gWwMqBuOy7zseS4F+e
+         Nt+40f3WbfOrGP2oISHABbaEnO6S+qZkbWEoyM88yUE7pS/L5xB4J0C1duLXXrPwmzy4
+         jG+SJcDYANH8yTTSJsoi0E+RSsdjFji1tleYc1eS5JKfKwKztnIsbV6wJUtX243ak+Nz
+         QN244vi6lJjWYuIKk4Xu1fREM1niZVL9KEONK0rNRIlvPvzcl4ppubITw6+uK/R4TxkD
+         epfuDnI0J1S8Wtfrn2VkseP/DS+WJ35hrjCdtcqlwW82btJBVo3JyhbuAqtmYGQG/IHK
+         B/lA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=hMmaCS3z60VNyL1HD9qOEzXYivs/thFpQqEYcLlXW6I=;
-        b=ucVTYA+0f5ORQnPxX/payE7Us9GGbMg7WZFDl/JZsjizB/kwkNajgKJuLULjQrI0En
-         Bc3xb8z8Xkh2dQDIItuCuxMnjaFNJJQQ0yvyzkEr1Peud3Q1wzlJ2iJKKoRqnGJgzRTV
-         jWRJhAsGcRVudu+DWvsVYNhOd+uKPvg0b5ux3XGwi4lFTtjChC6pduhTfo3aiShgJQtS
-         +jlqfDzJ7fUL1nMY4vhiGL9RZp7LmUR7aauultOISWcpQQj1PxpDdoYghahd4aleeO8Z
-         yqNeRf73tnwrZkEJHld3T5BZ+SqZxf4zRCFGfQP5lp+U1Kt+WQr0DUZnYNaZnxm8DfMP
-         b/Ng==
-X-Gm-Message-State: AOAM532kGD8WOWmPsfLPpetxTb0FqNV8juovgpPkFxJyJ7XxAhEkKBSe
-	clrglEwU1gtF3hLZpjiuYgEVra3DfjF92nrGckg=
+        bh=DoMclE/86EQXV3sYYVzIRUFls4omzucPzyojFBGJz/A=;
+        b=3/FLp7GzXI1iMZ27GvDk8Q8IW055lTeT4Kn9gR5OC7HsZY64ymjmGZQDnechSbNjhA
+         Xy0KWpS3K4QxfXEu7i3EMSX8aqURgiqq3CYoEk8iTdDosK1jJu0E0AIITABua6syHa9C
+         gEAjWO1VV0WlC5TooC39Edkrf+vfypsBsoU4y5sIVeNGWAQPQZ0Y3iI7UZh8ough6Yod
+         1FPClCwV5E9sNV/8R5DxVJwnOFgJeTe3DG04Atp+/QukO81hWyre9N8cinvdj3wpd1yD
+         Vg2xzC/P3TOPIv8HeVVeIN4kOQyC+nZ/1CkXZbWCVyzDQFnR8Fi7gkt1Z4zCCBzaZB2J
+         eqdw==
+X-Gm-Message-State: AOAM533gQXnj0TURWA46Ji5LvqoC/MzDH44xSx3C/zObDOz8hODjmIDm
+	svO13RtCRDt/Efs2ACg934DxVpGI84Nvr9YzPEs=
 X-Google-Smtp-Source: 
- ABdhPJzZvMNE4pLdxVzzyLgvx2UWmz/LMdFv273a6+OJslpmPFWZSCZNUB2w47knQKPAy1JYdyc3op8n3rAiSZz/vXM=
-X-Received: by 2002:a05:6102:cd0:b0:310:4636:78c5 with SMTP id
- g16-20020a0561020cd000b00310463678c5mr4142469vst.45.1645822870229; Fri, 25
- Feb 2022 13:01:10 -0800 (PST)
+ ABdhPJzHsmiEpUuQKWkDU/A6sS3G3jyJgv6y7Yhb4KhgyE9lOMlp4K8p+9iuk6fuVb5inoPGSmxyNJ1ukBrocwOme2Q=
+X-Received: by 2002:a05:620a:817:b0:648:d856:3fdc with SMTP id
+ s23-20020a05620a081700b00648d8563fdcmr5873409qks.180.1645823237905; Fri, 25
+ Feb 2022 13:07:17 -0800 (PST)
 MIME-Version: 1.0
 References: 
  <6234ac5289c4ca5846e6f80c13686f61ed340116.camel@linuxfoundation.org>
- <CAOSpxdaG1XDuKni+_=Cwi3cxTrXHA0M7vyrnyVsL5i7p5PhkiA@mail.gmail.com>
- <CAJdd5GbCXeZFURAAs+vn7Z5KqJdiDPXR42aR8PJPcJ-zfEW9AQ@mail.gmail.com>
- <8a471cd9aa5a2aee65a3dc7558e6d54360a4cbfd.camel@linuxfoundation.org>
 In-Reply-To: 
- <8a471cd9aa5a2aee65a3dc7558e6d54360a4cbfd.camel@linuxfoundation.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Fri, 25 Feb 2022 22:00:58 +0100
+ <6234ac5289c4ca5846e6f80c13686f61ed340116.camel@linuxfoundation.org>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 25 Feb 2022 13:06:51 -0800
 Message-ID: 
- <CANNYZj9GGo5pjfz1R+vpR1TFS==uyj4JmshpcUYg2+Gi23ahNA@mail.gmail.com>
+ <CAMKF1srxaKMgMj4NxDhq4a2GMA50ayObacv4b_gaeEQXnwYDXg@mail.gmail.com>
 Subject: Re: [yocto] QA change - reduced number of reproducibility builds
  tests?
 To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: Joshua Watt <jpewhacker@gmail.com>, Steve Sakoman <steve@sakoman.com>,
-	"<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>, "Mittal,
- Anuj" <anuj.mittal@intel.com>
+Cc: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>,
+ Steve Sakoman <steve@sakoman.com>,
+	"Mittal, Anuj" <anuj.mittal@intel.com>, Joshua Watt <JPEWhacker@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 25 Feb 2022 21:01:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56288
+ <yocto@lists.yoctoproject.org>; Fri, 25 Feb 2022 21:07:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56289
 
-On Fri, 25 Feb 2022 at 21:55, Richard Purdie
+On Fri, Feb 25, 2022 at 10:10 AM Richard Purdie
 <richard.purdie@linuxfoundation.org> wrote:
-> Yes, I'll leave the targets available, we'd just run them manually or re-enable
-> them but I'd take them off a-full for now.
+>
+> Hi All,
+>
+> As the project develops, some tests are valuable and some become less valuable
+> over time.
+>
+> When we first started reproducible builds work, testing reproducibility heavily
+> across multiple distros highlighted some unusual bugs and let us improve things.
+> We therefore currently run a-full with the targets:
+>
+> reproducibile-centos
+> reproducibile-debian
+> reproducibile-fedora
+> reproducibile-ubuntu
+>
+> I've noticed we pretty much always see the same set of failures with these
+> targets now, i.e. if one fails, they all fail the same way.
+>
+> Those targets are heavy builds which don't reuse sstate for one of the build
+> streams and hence load the autobuilder heavily.
+>
+> I'm thinking they've served their purpose and that a-full should go back to just
+> the randomly selected reproduiclbe target.
+>
+> Does anyone feel we shouldn't do that?
 
-With this change, what are the remaining differences between a-full and a-quick?
++1
 
-Alex
+
+>
+> Cheers,
+>
+> Richard
+>
+>
+>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#56284): https://lists.yoctoproject.org/g/yocto/message/56284
+> Mute This Topic: https://lists.yoctoproject.org/mt/89394327/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
