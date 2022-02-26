@@ -1,96 +1,102 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <rpjday@crashcourse.ca>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 67193C433F5
-	for <webhook@archiver.kernel.org>; Fri, 25 Feb 2022 21:50:59 +0000 (UTC)
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
- [209.85.221.46])
- by mx.groups.io with SMTP id smtpd.web09.99.1645825858324192137
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 031CCC433EF
+	for <webhook@archiver.kernel.org>; Sat, 26 Feb 2022 11:46:41 +0000 (UTC)
+Received: from cpanel8.indieserve.net (cpanel8.indieserve.net [199.212.143.3])
+ by mx.groups.io with SMTP id smtpd.web11.5086.1645875999288722352
  for <yocto@lists.yoctoproject.org>;
- Fri, 25 Feb 2022 13:50:58 -0800
+ Sat, 26 Feb 2022 03:46:40 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=hV+PYV0o;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.46,
- mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f46.google.com with SMTP id p9so6331376wra.12
-        for <yocto@lists.yoctoproject.org>;
- Fri, 25 Feb 2022 13:50:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=JdAdciXAU7Zx29MdXeg1d8QKhw3G3JGqMYxFhiEzxR0=;
-        b=hV+PYV0oGnJNKfXRTMOQlFz+hoAJ1KUkKMCQf2ZyBADftZLfVmUsGy6WwHOF5AEbhk
-         Z4dVuJeGf4KVLLB8cYEUzNwyQ3E4zJCvL9lwQ8M5KVpadRRtvdFdNx1DliYcPm2wgrWW
-         HPDLS8t1LWRAMo2tYkF8ucSH1vPD3DjDNciV0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=JdAdciXAU7Zx29MdXeg1d8QKhw3G3JGqMYxFhiEzxR0=;
-        b=RFTaHLEsnPOZOou775XrNIbMtRySyyaZb+m4ei14QW0eAafKAHGWMeTY9h2wYCgzOE
-         GQERTG2Gb27sMPesnIUPlIbMeMc/GkcUrEi3pOBsS6q1rr2gd/G7Z+C+MoqPI5Kz4Uhi
-         CrrjfpHaSwYINMD7wWNl18Vvnc/gXTRY6T4rfhlpiLtqts9v6MM17CY8F+fGVe9IK33f
-         rBrAFSx3Jo6nn2d/kQrYRP91W72JM0HoTaZVuwZBlA4OQlZwj5zxd1h5oFslGPieWat6
-         BdnHSUkWoR1cXgmahwImA5UU2mwFN/L8LDpSkmpToFsgJ4MVJXm+XWlAcotzaaAWPLoN
-         OAnQ==
-X-Gm-Message-State: AOAM532VI2wH5NIuSr0RYV3PQznD+82eIrH1NA5OU1B/oYGTQcnOlUdY
-	PoNw+Mw5TlzTRs2qofTRa1A+kQ==
-X-Google-Smtp-Source: 
- ABdhPJzbwMDrGVRyUztgxNqP1fGir5Sbe1+Yfs+xRgpKTNT+c8j+7mCSb5zdhAh2yT22+3+MEoAVlA==
-X-Received: by 2002:a5d:4d0e:0:b0:1ed:bbed:fbe4 with SMTP id
- z14-20020a5d4d0e000000b001edbbedfbe4mr7545569wrt.198.1645825856757;
-        Fri, 25 Feb 2022 13:50:56 -0800 (PST)
-Received: from hex.config (5751ab90.skybroadband.com. [87.81.171.144])
-        by smtp.gmail.com with ESMTPSA id
- u23-20020a7bcb17000000b0037bdfa1665asm8978370wmj.18.2022.02.25.13.50.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Feb 2022 13:50:55 -0800 (PST)
-Message-ID: 
- <bca2d6e1d8fb7bcb2bd76ffbd03891c95755a2c7.camel@linuxfoundation.org>
-Subject: Re: [yocto] QA change - reduced number of reproducibility builds
- tests?
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: Joshua Watt <jpewhacker@gmail.com>, Steve Sakoman <steve@sakoman.com>,
-	"<yocto@lists.yoctoproject.org>"
-	 <yocto@lists.yoctoproject.org>, "Mittal, Anuj" <anuj.mittal@intel.com>
-Date: Fri, 25 Feb 2022 21:50:53 +0000
+ dkim=missing;
+ spf=pass (domain: crashcourse.ca, ip: 199.212.143.3, mailfrom: rpjday@crashcourse.ca)
+Received: from cpeac202e043973-cmac202e043970.sdns.net.rogers.com
+ ([174.114.107.13]:59556 helo=fedora)
+	by cpanel8.indieserve.net with esmtpsa  (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <rpjday@crashcourse.ca>)
+	id 1nNvX6-005CsS-5t; Sat, 26 Feb 2022 06:46:37 -0500
+Date: Sat, 26 Feb 2022 06:46:33 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+To: Khem Raj <raj.khem@gmail.com>
+cc: Yocto discussion list <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] looking to boot core-image-minimal on meta-riscv board
 In-Reply-To: 
- <CANNYZj9GGo5pjfz1R+vpR1TFS==uyj4JmshpcUYg2+Gi23ahNA@mail.gmail.com>
-References: 
-	<6234ac5289c4ca5846e6f80c13686f61ed340116.camel@linuxfoundation.org>
-	 <CAOSpxdaG1XDuKni+_=Cwi3cxTrXHA0M7vyrnyVsL5i7p5PhkiA@mail.gmail.com>
-	 <CAJdd5GbCXeZFURAAs+vn7Z5KqJdiDPXR42aR8PJPcJ-zfEW9AQ@mail.gmail.com>
-	 <8a471cd9aa5a2aee65a3dc7558e6d54360a4cbfd.camel@linuxfoundation.org>
-	 <CANNYZj9GGo5pjfz1R+vpR1TFS==uyj4JmshpcUYg2+Gi23ahNA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4-1ubuntu2 
+ <CAMKF1sqs1GKQJtMhJcFx6iRmODtDOd5AWMQNOJ7sLkouz4XpKw@mail.gmail.com>
+Message-ID: <d4b6cb6c-77bf-52d-bdc5-6d3a9dfc2785@crashcourse.ca>
+References: <7bac38ca-d9fd-b019-8d47-4a1a4f2d6a8@crashcourse.ca>
+ <CAMKF1sqs1GKQJtMhJcFx6iRmODtDOd5AWMQNOJ7sLkouz4XpKw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=US-ASCII
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel8.indieserve.net
+X-AntiAbuse: Original Domain - lists.yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Get-Message-Sender-Via: cpanel8.indieserve.net: authenticated_id:
+ rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: cpanel8.indieserve.net: rpjday@crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 25 Feb 2022 21:50:59 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56291
+ <yocto@lists.yoctoproject.org>; Sat, 26 Feb 2022 11:46:41 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56292
 
-On Fri, 2022-02-25 at 22:00 +0100, Alexander Kanavin wrote:
-> On Fri, 25 Feb 2022 at 21:55, Richard Purdie
-> <richard.purdie@linuxfoundation.org> wrote:
-> > Yes, I'll leave the targets available, we'd just run them manually or re-enable
-> > them but I'd take them off a-full for now.
-> 
-> With this change, what are the remaining differences between a-full and a-quick?
+On Fri, 25 Feb 2022, Khem Raj wrote:
 
-There is quite a bit of difference. oe-selftest on multiple distros vs a single
-one. It triggers several more minor builds (e.g. edrouter-alt, qemux86-world-
-alt, ltp targets), runs full ptests rather than ptest-fast, some of the other
-layers  and has the toolchain testing too.
+> On Fri, Feb 25, 2022 at 8:36 AM Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+> >
+> >
+> >   a friend of mine is diving into trying to boot linux on a meta-riscv
+> > linux starter kit -- he's not using YP, and this is what he's
+> > targeting:
+> >
+> >   https://www.aliexpress.com/item/1005003751298305.html
+> >
+> >   since i've wanted to jump into meta-riscv for a while, i figured i'd
+> > play along and ordered something more substantial:
+> >
+> >   https://www.aliexpress.com/item/1005002796061251.html
+> >
+> > in any event, here's the story so far.
+> >
+> >   as a first pass, i just fired up YP and built for qemuriscv64 to
+> > establish a baseline, and that seems to work just fine, booting with
+> > "runqemu nographic." and that at least gives me a bunch of config info
+> > i can look at later.
+> >
+> >   as for my actual target board, i know that the meta-riscv layer
+> > defines support for two boards, neither of which is the one i will be
+> > getting, but while i'm waiting for it, i can at least start
+> > documenting all of the relevant settings and config values i'll want
+> > to try.
+> >
+> >   i know precious little about meta-riscv, so is there a sane way to
+> > prepare for the eventual arrival of my board? my plan is to get
+> > familiar with how the meta-riscv layer builds for the two supported
+> > boards, so i'll have a handle on what i'll need to configure.
+> >
+> >   any further advice would be most appreciated.
+>
+> We should add them to meta-riscv as reference BSPs. I have port of
+> unmatched locally and have been trying to get the needed changes
+> into meta-sifive which is still pending.
 
-Cheers,
+  so you have working BSPs for both of those? very cool. warning that
+i know effectively nothing about RISC-V but this is apparently my
+weekend project to dig into it. i don't see a meta-riscv-specific
+mailing list, so i assume if i want to start sending simple patches
+for meta-riscv, they would go here?
 
-Richard
+  already built and tested qemuriscv64, so i guess i'll work backwards
+from there and examine the configuration and construction of the
+components. opensbi, here we come ...
 
-
+rday
 
