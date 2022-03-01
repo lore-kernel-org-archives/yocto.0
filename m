@@ -2,110 +2,88 @@ Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A1F81C433F5
-	for <webhook@archiver.kernel.org>; Tue,  1 Mar 2022 11:10:38 +0000 (UTC)
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com
- [209.85.208.45])
- by mx.groups.io with SMTP id smtpd.web09.7012.1646133037400024089
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2324AC433EF
+	for <webhook@archiver.kernel.org>; Tue,  1 Mar 2022 11:19:41 +0000 (UTC)
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com
+ [209.85.218.44])
+ by mx.groups.io with SMTP id smtpd.web12.7001.1646133580207781751
  for <yocto@lists.yoctoproject.org>;
- Tue, 01 Mar 2022 03:10:37 -0800
+ Tue, 01 Mar 2022 03:19:40 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=T1AFYDBj;
- spf=pass (domain: gmail.com, ip: 209.85.208.45,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=CRosNvjT;
+ spf=pass (domain: gmail.com, ip: 209.85.218.44,
  mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ed1-f45.google.com with SMTP id h15so21499203edv.7
+Received: by mail-ej1-f44.google.com with SMTP id hw13so30732214ejc.9
         for <yocto@lists.yoctoproject.org>;
- Tue, 01 Mar 2022 03:10:37 -0800 (PST)
+ Tue, 01 Mar 2022 03:19:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=HK59sfJiOapljQTSg3M3FaPTK//4we8vdxYtATiMA2s=;
-        b=T1AFYDBjxXb5nDsG0K28c1f8jnnSuf5z6RbeQCZgEaedcSbIlflLbhzqk4LtE2sBKv
-         rHjfLrhHv87FMu437hhOScWyheFrMF9gtgGa/a70gcuFL6r5bP2hu9IYA6kzJYzzOKwm
-         kCBgI3oWfmSES4YkhC3THh+NaAyfUYYARVZovLs1NC1AL4/e8IbAYCHZjBe31KxCyCEV
-         eNvRrdWBPAilldyysyqlVfpS//HZToszo3OxINFXfJ9L4FysXioBJ3cxfqToRca4pZ8F
-         ZZ3nWAsXsKQcmIRClmbSwsDV/wyS8HOYo6919HoSU9DZCoMW3gdg+6Mw50bTfK7CZ/o3
-         cZrQ==
+        bh=/m31nowxcxbz2IkVEcpY4xqUh8sBF4n9pWW9ioS4sqY=;
+        b=CRosNvjTfnIwFM5icWc5rK7Ie2mCWDeDXFCMDzLv6aAOtU52zfzy/kICu0ZO78u10y
+         7i3zvzXvqkutn/AkPZ/5VVkkqFvwYsH6asdBlIKqfHIMdDSP4dTr28vpTyGBCr0kKRDG
+         coxoCf5cpgUMrI6he+kPtVsYp/RCucdJwr/8d5Vp6sGNnGemmQT9fgCMVqhfwdkuwSGz
+         6Upu5PunB5yAifEL4j3BZfKgGTaMcNeKB34FsXM6czxbnhJaqSro+SRHGtlW9thfNbvE
+         WaPIAro/g7W4+B3Mk72DJGuOyAmoN3EQQJeLTKQ/WcbT0D9Ckmxi6rur22+VVu7/hpyE
+         k7xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=HK59sfJiOapljQTSg3M3FaPTK//4we8vdxYtATiMA2s=;
-        b=kL0FnB048YhRUuBU7gtk2yOfZLAuKZnX5NImvrnq7h78ATYSyx+OBuNtrEr+iryh3/
-         oT47KACGUv7OjhO3v8H85BBvyuhJtmkaDKUq8HM5cmYWlPzIOgfAFBUEDrkrUm0spxGt
-         aqb0Ez/5jESvSEh3YY+C788T8Z2CmQ0WhphA9Mh3p0R0ckhvaXH4ZXqCSUnFwOXI6901
-         lEDmQcLbCleV828QgWdlgsuDTzQGh5uzEXlL4V/3ek4xfRvQEY1RejGzky4VpD9+8S56
-         tu5PSNbBx+cMFYWMHMDwHiLq9a7657ySkFKSpr6xbtDAJjnObDsHpXuDK+s6rUFqrbDq
-         uxkw==
-X-Gm-Message-State: AOAM531XZ7UwwHMZCyoPDphyeVmj5xg/rviH+KzaLt7npjrreCr0xEiX
-	Uf9Bj37InSp1DbbLQubs7IMcQ0wLhSc=
+        bh=/m31nowxcxbz2IkVEcpY4xqUh8sBF4n9pWW9ioS4sqY=;
+        b=3BAvIbvr1z7ZUPXHzPyUWRVx0/zGmFhQx4rlo0STvAEvmaOsQk8n9r53y36xnHLr2f
+         et/l2EcJeeR8lATdG/u0yQH4vQRFG5FpOD0yssiaDGh5kUKx99YET1vo9e0XtW1XYzHT
+         pzrWzZGaEXV0f8uFyDYuBRFIqD52vYRhfgPxvmFgA7eJkQXGA3VmM42hrN2+nbIsJbIG
+         diBFBTqkmXN85ojE0eSjSEkip5r3JBTEQD4/6Ig/D2cEReF6237gx2IIAvRMjBo8UlXx
+         dzY8THBA71hdlTjFNV1XGyBamMXL0FRSCyxedQRONorwaGjlJfcGgD2WV2U4l867k2Sv
+         TpUA==
+X-Gm-Message-State: AOAM530p7s6Bj41AB6jtUsVxC8GNPC6Jh7+ZYIsfapWR3BQXwgdJSFtf
+	TWQ4mcVB48jOeFem2L4Fi3iuOC580Hk=
 X-Google-Smtp-Source: 
- ABdhPJyi2lZCwBFcmNCUY9PVXQiB4p3E5Xxr4vLSwK7D2eVMtZLloRSHLdMfEHwO/rjPG47Nse2G/w==
-X-Received: by 2002:aa7:cc0a:0:b0:413:a674:7d33 with SMTP id
- q10-20020aa7cc0a000000b00413a6747d33mr11291876edt.369.1646133035791;
-        Tue, 01 Mar 2022 03:10:35 -0800 (PST)
-Received: from Zen2.lab.linutronix.de.
- (ip-109-090-143-203.um36.pools.vodafone-ip.de. [109.90.143.203])
+ ABdhPJzU6L2Nj9Smb/1wd7J+JBeklTcwnwoY+pQJjLhwMfvWZ5RI6Jf9C1d8Wmq4v+PdUy8VQ0e18g==
+X-Received: by 2002:a17:907:213b:b0:6cf:9c02:8964 with SMTP id
+ qo27-20020a170907213b00b006cf9c028964mr18415807ejb.432.1646133578496;
+        Tue, 01 Mar 2022 03:19:38 -0800 (PST)
+Received: from localhost.localdomain
+ ([2a02:2454:29b:3b00:d35d:e3cf:58b5:748b])
         by smtp.gmail.com with ESMTPSA id
- c21-20020aa7c995000000b00400506d388bsm7129846edt.48.2022.03.01.03.10.35
+ u4-20020aa7db84000000b004136c2c357csm6987601edt.70.2022.03.01.03.19.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Mar 2022 03:10:35 -0800 (PST)
+        Tue, 01 Mar 2022 03:19:38 -0800 (PST)
 From: Alexander Kanavin <alex.kanavin@gmail.com>
-X-Google-Original-From: Alexander Kanavin <alex@linutronix.de>
 To: yocto@lists.yoctoproject.org
-Cc: Alexander Kanavin <alex@linutronix.de>
-Subject: [auto-upgrade-helper][PATCH] error.py: initialize stdout/stderr to
- empty strings
-Date: Tue,  1 Mar 2022 12:10:22 +0100
-Message-Id: <20220301111022.2229998-1-alex@linutronix.de>
-X-Mailer: git-send-email 2.30.2
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>
+Subject: [PATCH yocto-autobuilder-helper] auh-config: correct LICENSE_FLAGS
+ variable
+Date: Tue,  1 Mar 2022 12:19:24 +0100
+Message-Id: <20220301111924.254586-1-alex.kanavin@gmail.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 01 Mar 2022 11:10:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56336
+ <yocto@lists.yoctoproject.org>; Tue, 01 Mar 2022 11:19:41 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56337
 
-This avoids guarding them against NoneType everywhere
-
-Signed-off-by: Alexander Kanavin <alex@linutronix.de>
+Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
 ---
- modules/errors.py        | 2 +-
- modules/utils/devtool.py | 5 +----
- 2 files changed, 2 insertions(+), 5 deletions(-)
+ scripts/auh-config/local.conf.append | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/modules/errors.py b/modules/errors.py
-index fa543f7..48e8b70 100644
---- a/modules/errors.py
-+++ b/modules/errors.py
-@@ -24,7 +24,7 @@
- #
+diff --git a/scripts/auh-config/local.conf.append b/scripts/auh-config/local.conf.append
+index 25c062b..52e507f 100644
+--- a/scripts/auh-config/local.conf.append
++++ b/scripts/auh-config/local.conf.append
+@@ -1,5 +1,5 @@
  
- class Error(Exception):
--    def __init__(self, message=None, stdout=None, stderr=None):
-+    def __init__(self, message=None, stdout="", stderr=""):
-         self.message = message
-         self.stdout = stdout
-         self.stderr = stderr
-diff --git a/modules/utils/devtool.py b/modules/utils/devtool.py
-index e4e028f..c26061f 100644
---- a/modules/utils/devtool.py
-+++ b/modules/utils/devtool.py
-@@ -19,10 +19,7 @@ class Devtool(object):
-             raise DevtoolError("The following devtool command failed: " + operation,
-                         e.stdout, e.stderr)
- 
--        if stderr is None:
--            return stdout
--        else:
--            return stdout + stderr
-+        return stdout + stderr
- 
-     def upgrade(self, recipe, version = None, revision = None):
-         cmd = " upgrade " + recipe
+ INHERIT += "buildhistory"
+-LICENSE_FLAGS_WHITELIST = "commercial"
++LICENSE_FLAGS_ACCEPTED = "commercial"
+ DISTRO_FEATURES:append:libc-glibc = ' systemd'
+ DISTRO_FEATURES:append = ' pam'
 -- 
-2.30.2
+2.35.1
 
 
