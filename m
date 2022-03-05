@@ -1,117 +1,100 @@
-Return-Path: <gary@missionsecure.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 733BEC433F5
-	for <webhook@archiver.kernel.org>; Fri,  4 Mar 2022 23:02:35 +0000 (UTC)
-Subject: Re: suricata: enable lua support
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 22CE7C433F5
+	for <webhook@archiver.kernel.org>; Sat,  5 Mar 2022 00:30:33 +0000 (UTC)
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
+ [209.85.210.173])
+ by mx.groups.io with SMTP id smtpd.web08.1346.1646440231853557249
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 04 Mar 2022 16:30:31 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=diL2xnMx;
+ spf=pass (domain: gmail.com, ip: 209.85.210.173,
+ mailfrom: akuster808@gmail.com)
+Received: by mail-pf1-f173.google.com with SMTP id s8so4872808pfk.12
+        for <yocto@lists.yoctoproject.org>;
+ Fri, 04 Mar 2022 16:30:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+         :content-transfer-encoding;
+        bh=5RK42bNP8dPSNDgeIhISYaq4LPw2JzeH2vfwGmFobok=;
+        b=diL2xnMxGdoxxiDz6UHPgeg7QZs1N9T3ooZCwSmMoytvPMgqXcuBP7oill8e8rYp1f
+         vqbAGsudJrrDa181/O3yheMIysXeBEvVZ+GZQX5HShXU2GUwOGR19LmzQ1j9TKKdj4EB
+         fzFpbAznWzXUkLu3Py267PvzYoIQB/E8tT9W8L8scXZC6eXzLZj432EnMwn/0NdD18Jf
+         CWqAb7YBYa73Chkg3yAfOUHiKu+vlrBEXYex7ybUm8VIYfCf9taQ1YFiyJCziChuAxgW
+         6OeLIVk6disY1gbsJN72HR8Auk51KsT9zPADt2x5m/SXSC4qaZEbzhgnKTwMBQ+P6f5n
+         T0Eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=5RK42bNP8dPSNDgeIhISYaq4LPw2JzeH2vfwGmFobok=;
+        b=cJv0jyWBHA/WcYPyYhtX+XJLf+II3OcWxdSJEEx+fvzTtpsxYM7pRzu8fQF0MfArw1
+         VoLtBTG4DZU0Q9HP3LK4BexjVNJodOJckWBFYRiSDZCmU+6A/1180zoqWoe8gfP7nJON
+         Gg84ArKRo7I96UK53CIvbcToCct4yTN1Cd5kvfdPnz8MZAm5ZgxADAYrK4CX4axkya9m
+         s3KwulsL5ReIeMEAg2IEsH+SW9vB1nyp5ZfZ4VutHzGcwKi77yDK7CWcxYe/hYypsvCm
+         hIXSOoIutusEeRFTqivuRByRaQJkqIfh7uoC3Rz0AC2f6dNiZRiQRp3810/yJQl/tr68
+         Gwsw==
+X-Gm-Message-State: AOAM532izOCns5aJqsg1e+c9e2uVuqXCC+X2p1XQX/A7dt5NcEUG5N4m
+	zGuYAeqFkfw6BDSypTuz9PAApZzG63w=
+X-Google-Smtp-Source: 
+ ABdhPJzeC2rizSUjb9uJTb6guy92zSSAwp1OJ6E4wsNifH23V6pd2/HhPDlbQC8TGb2EPS+VjYwYvA==
+X-Received: by 2002:a05:6a00:ad2:b0:4f1:2734:a3d9 with SMTP id
+ c18-20020a056a000ad200b004f12734a3d9mr1034510pfl.61.1646440231187;
+        Fri, 04 Mar 2022 16:30:31 -0800 (PST)
+Received: from keaua.caveonetworks.com
+ ([2601:202:4180:a5c0:4a57:ddb1:e4ac:8918])
+        by smtp.gmail.com with ESMTPSA id
+ z23-20020a056a001d9700b004f6d2974269sm286659pfw.113.2022.03.04.16.30.30
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Mar 2022 16:30:31 -0800 (PST)
+From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-From: "Gary Huband" <gary@missionsecure.com>
-X-Originating-Location: Charlottesville, Virginia, US (216.197.64.240)
-X-Originating-Platform: Linux Firefox 97
-User-Agent: GROUPS.IO Web Poster
+Subject: [meta-security][PATCH 2/2] libtpm: update to 0.9.2
+Date: Fri,  4 Mar 2022 16:30:29 -0800
+Message-Id: <20220305003029.3893656-2-akuster808@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220305003029.3893656-1-akuster808@gmail.com>
+References: <20220305003029.3893656-1-akuster808@gmail.com>
 MIME-Version: 1.0
-Date: Fri, 04 Mar 2022 15:02:34 -0800
-References: 
- <CAMKF1sqMQVeTO_FyyrUWRmV+JjLFH5mxNTvL+JxDgoBrck6V4w@mail.gmail.com>
-In-Reply-To: 
- <CAMKF1sqMQVeTO_FyyrUWRmV+JjLFH5mxNTvL+JxDgoBrck6V4w@mail.gmail.com>
-Message-ID: <13396.1646434954779482206@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="JL3tD8TKnIQ3IlRcUHpq"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 04 Mar 2022 23:02:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56371
+ <yocto@lists.yoctoproject.org>; Sat, 05 Mar 2022 00:30:33 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56373
 
---JL3tD8TKnIQ3IlRcUHpq
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+includes: CVE-2021-3623
 
-Adding DEPENDS +=3D "lua"=C2=A0 fixed that error.=C2=A0 I'm assuming that a=
-llows the configure to find lua.
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ .../recipes-tpm/libtpm/{libtpm_0.8.7.bb => libtpm_0.9.3.bb}   | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename meta-tpm/recipes-tpm/libtpm/{libtpm_0.8.7.bb => libtpm_0.9.3.bb} (84%)
 
-Now I'm getting a compile error
+diff --git a/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb b/meta-tpm/recipes-tpm/libtpm/libtpm_0.9.3.bb
+similarity index 84%
+rename from meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb
+rename to meta-tpm/recipes-tpm/libtpm/libtpm_0.9.3.bb
+index 8fe62cf..c03c44c 100644
+--- a/meta-tpm/recipes-tpm/libtpm/libtpm_0.8.7.bb
++++ b/meta-tpm/recipes-tpm/libtpm/libtpm_0.9.3.bb
+@@ -2,8 +2,8 @@ SUMMARY = "LIBPM - Software TPM Library"
+ LICENSE = "BSD-3-Clause"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=e73f0786a936da3814896df06ad225a9"
+ 
+-SRCREV = "f6dd8f55eab4910131ec6a6a570dcd7951bd10e4"
+-SRC_URI = "git://github.com/stefanberger/libtpms.git;branch=stable-0.8;protocol=https"
++SRCREV = "3f8fbc831b7bc3a6cc8422c432f577596b4cf3df"
++SRC_URI = "git://github.com/stefanberger/libtpms.git;branch=stable-0.9;protocol=https"
+ 
+ PE = "1"
+ 
+-- 
+2.25.1
 
-| /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/recipe-s=
-ysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-g=
-nueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld: util-lua-dns.o: in function `Dn=
-sGetTxid':
-| /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:80: un=
-defined reference to `rs_dns_lua_get_tx_id'
-| /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/recipe-s=
-ysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-g=
-nueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld: util-lua-dns.o: in function `Dn=
-sGetAnswerTable':
-| /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:125: u=
-ndefined reference to `rs_dns_lua_get_answer_table'
-| /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/recipe-s=
-ysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-g=
-nueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld: util-lua-dns.o: in function `Dn=
-sGetAuthorityTable':
-| /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:133: u=
-ndefined reference to `rs_dns_lua_get_authority_table'
-| /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/recipe-s=
-ysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-g=
-nueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld: util-lua-dns.o: in function `Dn=
-sGetQueryTable':
-| /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:117: u=
-ndefined reference to `rs_dns_lua_get_query_table'
-| /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/recipe-s=
-ysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-g=
-nueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld: util-lua-dns.o: in function `Dn=
-sGetDnsRrname':
-| /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:69: un=
-defined reference to `rs_dns_lua_get_rrname'
-| /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/recipe-s=
-ysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-g=
-nueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld: util-lua-dns.o: in function `Dn=
-sGetRcode':
-| /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:92: un=
-defined reference to `rs_dns_lua_get_rcode'
-| collect2: error: ld returned 1 exit status
-| Makefile:2118: recipe for target 'suricata' failed
-| make[2]: *** [suricata] Error 1
-
---JL3tD8TKnIQ3IlRcUHpq
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<p>Adding DEPENDS +=3D "lua"&nbsp; fixed that error.&nbsp; I'm assuming tha=
-t allows the configure to find lua.</p>
-<p>Now I'm getting a compile error</p>
-<p>| /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/recip=
-e-sysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linu=
-x-gnueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld: util-lua-dns.o: in function =
-`DnsGetTxid':<br />| /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/ut=
-il-lua-dns.c:80: undefined reference to `rs_dns_lua_get_tx_id'<br />| /tmp/=
-work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/recipe-sysroot-=
-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-gnueabi/=
-gcc/arm-poky-linux-gnueabi/9.2.0/ld: util-lua-dns.o: in function `DnsGetAns=
-werTable':<br />| /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-=
-lua-dns.c:125: undefined reference to `rs_dns_lua_get_answer_table'<br />| =
-/tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/recipe-sys=
-root-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-gnu=
-eabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld: util-lua-dns.o: in function `DnsG=
-etAuthorityTable':<br />| /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/s=
-rc/util-lua-dns.c:133: undefined reference to `rs_dns_lua_get_authority_tab=
-le'<br />| /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0=
-/recipe-sysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-pok=
-y-linux-gnueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld: util-lua-dns.o: in fun=
-ction `DnsGetQueryTable':<br />| /usr/src/debug/suricata/6.0.3-r0/suricata-=
-6.0.3/src/util-lua-dns.c:117: undefined reference to `rs_dns_lua_get_query_=
-table'<br />| /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3=
--r0/recipe-sysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-=
-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld: util-lua-dns.o: in =
-function `DnsGetDnsRrname':<br />| /usr/src/debug/suricata/6.0.3-r0/suricat=
-a-6.0.3/src/util-lua-dns.c:69: undefined reference to `rs_dns_lua_get_rrnam=
-e'<br />| /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/=
-recipe-sysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky=
--linux-gnueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld: util-lua-dns.o: in func=
-tion `DnsGetRcode':<br />| /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/=
-src/util-lua-dns.c:92: undefined reference to `rs_dns_lua_get_rcode'<br />|=
- collect2: error: ld returned 1 exit status<br />| Makefile:2118: recipe fo=
-r target 'suricata' failed<br />| make[2]: *** [suricata] Error 1</p>
-
---JL3tD8TKnIQ3IlRcUHpq--
 
