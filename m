@@ -1,353 +1,330 @@
-Return-Path: <gary@missionsecure.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 19116C433EF
-	for <webhook@archiver.kernel.org>; Sat,  5 Mar 2022 02:23:43 +0000 (UTC)
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (NAM10-BN7-obe.outbound.protection.outlook.com [40.107.92.63])
- by mx.groups.io with SMTP id smtpd.web09.2098.1646447022194587807
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1CC2EC433EF
+	for <webhook@archiver.kernel.org>; Sat,  5 Mar 2022 07:56:17 +0000 (UTC)
+Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com
+ [209.85.219.45])
+ by mx.groups.io with SMTP id smtpd.web10.3592.1646466976196139544
  for <yocto@lists.yoctoproject.org>;
- Fri, 04 Mar 2022 18:23:42 -0800
+ Fri, 04 Mar 2022 23:56:16 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@missionsecure.com header.s=selector2 header.b=CdVb3J0z;
- spf=pass (domain: missionsecure.com, ip: 40.107.92.63,
- mailfrom: gary@missionsecure.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jzUantijuG3geWIPm2gtzvXzBi1O/NB3tpKwp3bq6sz3lV53YE/vVsUu4IKLOxoh70SCDqgpm87iu2VYuzwlsaesI+M45vw0Lrzyt1jIhaPVIp5wL4lZNWPHeaEhL+IaN8Z+KrBHTImBxWKZ/rcN5vUkBUKHhoDHqSG+v9XDHr2DvWwjPlxZHCFN8OfIBN1tTylLBrF0KUFvpufx64C6IbCsR1f66uHp0EVWvyJLTeopJY6x0A++aHxB8zcsPymCnJPdl0KiKq/+MkPE1FMevl/cH206huWEbZ4Ma53BsK7aXUcAGVbGOV5Y1Ha9t4N2jW6fNEIG9t0FyXLTuOswcA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qfeQ8d0ywgk1IEBa7RXXSJ7usscbc3cGqJNE75fxVuA=;
- b=IL+L0JHbCW0LjBf7Jj1dyqgmu86hU/EUJZtJG42j5T0sZyKRVOjFXRk84Fi2f8j8eZ9k2yxDpiSbNaUimL9fJOL7I7ux/x+j5Q+g9+5EEncZWfG8cKMqof8/LSqYsKdiHlqswExOAetaGyhtLyOyhU8Hf2KVOrNnN64HIMD762lN4Sf0lViL929Ff5g5gxCld/DSBLOgCNUdXw1OzT1h9PgSqB8h114VwuPmzBcrAhfwHOmShRESPHPSUNTUwC4XpcLLzXFdWk7bkOTIGivGpaYObJHVRvWULCsOQQuYbd95ULppWj+1Vks4VgJYVNFFgFdYaHd9ro+trVNWyapnUA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=missionsecure.com; dmarc=pass action=none
- header.from=missionsecure.com; dkim=pass header.d=missionsecure.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=MissionSecure.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qfeQ8d0ywgk1IEBa7RXXSJ7usscbc3cGqJNE75fxVuA=;
- b=CdVb3J0z4cmLWlPk9E6oE654sc2vzzqBc91Gz4zaA68jLB4Gjqa7fPcZ35C6HeIbGcBMwWXBNyXtVEEyR47j1mhX3Qj/Fe2zzLfPLNC585i7ikXPm56Jgd0T/C7REEiPaJIqIRjUPZ9Sh932qzeOorpbEdNTU27NFAu3TwFm6qA=
-Received: from MN2PR17MB3903.namprd17.prod.outlook.com (2603:10b6:208:20f::14)
- by MW4PR17MB5642.namprd17.prod.outlook.com (2603:10b6:303:12d::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14; Sat, 5 Mar
- 2022 02:23:37 +0000
-Received: from MN2PR17MB3903.namprd17.prod.outlook.com
- ([fe80::91e0:e242:9425:f0ab]) by MN2PR17MB3903.namprd17.prod.outlook.com
- ([fe80::91e0:e242:9425:f0ab%5]) with mapi id 15.20.5038.017; Sat, 5 Mar 2022
- 02:23:37 +0000
-From: Gary Huband <Gary@MissionSecure.com>
-To: akuster808 <akuster808@gmail.com>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] suricata: enable lua support
-Thread-Topic: [yocto] suricata: enable lua support
-Thread-Index: AQHYL/yW408Hdrs0QUShaIM8sTH4AayvqVWAgAAujwCAAB6gAIAAGMAq
-Date: Sat, 5 Mar 2022 02:23:37 +0000
-Message-ID: 
- <MN2PR17MB39031594692FB5064E0F4225C3069@MN2PR17MB3903.namprd17.prod.outlook.com>
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=oy0ugXfb;
+ spf=pass (domain: gmail.com, ip: 209.85.219.45, mailfrom: raj.khem@gmail.com)
+Received: by mail-qv1-f45.google.com with SMTP id jr3so8356630qvb.11
+        for <yocto@lists.yoctoproject.org>;
+ Fri, 04 Mar 2022 23:56:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=i7hXTCp/iQRJzR/W5eKWsPH5TUaGU+PdE4Ke69Ukl/c=;
+        b=oy0ugXfbBrpqeX9s3ioSLpsV256g56ba0X2vecSa38e9G1Jg8oVLXEaF/wp04KfLBs
+         p5+SAuDDOMN4nkeWjxCUlIPhTfA7FfvPlglo1PM4pV16OxQT4NmIFi4FSHV6AwX34kTy
+         mVXRFy9YbJWigk+Vjg7Q0k4rZe8sgHIoE8e0evSZHRefBakFVl6EwbWLlFm5m66bPF6P
+         VqlgkhK388qS9iyu8F6qugYNs3VhdDV/xvcUF1heNJklHERQg/A5BnkZgui7fZ7lN+Qn
+         k1eTNIE8sJVtZVbqNdTRK+i6NROLrjpECYqrEdD1yarYWQjFmsI0FBAgGITdHAvhp01T
+         JKDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=i7hXTCp/iQRJzR/W5eKWsPH5TUaGU+PdE4Ke69Ukl/c=;
+        b=wMJ/B9Bmjk/U4iWmEYVZTm/+raAHZrUDCVCCVEbPAoE5D+I/l0SKV1+w7cdL9v88K9
+         cmVIO22iOxsj9S3jSCC868FLl0uI+CmPYAGrbURlcok3G+oF4uUG1XcmBO/8esckglkJ
+         lOBmXOKIbCHXWSeZ05Pixzf3QVe8nSQ8CZlgRVBH+flHkAZYvzzAc/MAY28W/GnUaPHT
+         HvYd0W6a8+SJN9hAjyYT5BYfDj9JXCeY4wVlV+w/m0zi3xz3oqoEPBrd7myvj7/q/qFl
+         Gq59DNO7Rw/sEP7PzbcWSMvt79xPcKRLtTOPR2KW5boxS8EAUeKstv6kNrB6/Vk4VPgz
+         u8/Q==
+X-Gm-Message-State: AOAM5316jsRWgrDRlomx4guZ/xT+aYPzwrIwHAidA2HDPIQY0JFLLwEZ
+	jAo6HYOizONwEsiRr1SqwYky4Wmwv2oOPstvUpo=
+X-Google-Smtp-Source: 
+ ABdhPJxPrMD2n3m2DjMxsf345YClFRgvXmIEVZYEFfXNJw2N9yxlDAb1laRLOop8lxpyfUQzNMpI0XO7Cq557+0Zm28=
+X-Received: by 2002:ad4:5ca7:0:b0:435:49f5:394b with SMTP id
+ q7-20020ad45ca7000000b0043549f5394bmr1875105qvh.36.1646466975225; Fri, 04 Mar
+ 2022 23:56:15 -0800 (PST)
+MIME-Version: 1.0
 References: 
  <CAMKF1sqMQVeTO_FyyrUWRmV+JjLFH5mxNTvL+JxDgoBrck6V4w@mail.gmail.com>
  <13396.1646434954779482206@lists.yoctoproject.org>
  <d32cf394-4580-4549-0b8c-dd05a61fb1a4@gmail.com>
-In-Reply-To: <d32cf394-4580-4549-0b8c-dd05a61fb1a4@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-suggested_attachment_session_id: 6c760bf6-1049-62b6-8f44-8425b65da040
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=MissionSecure.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b94aad4a-074b-4bf4-0e52-08d9fe4f27ea
-x-ms-traffictypediagnostic: MW4PR17MB5642:EE_
-x-microsoft-antispam-prvs: 
- <MW4PR17MB564293E3770F281C2A56999AC3069@MW4PR17MB5642.namprd17.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- PLcDUf1oCW8RilYrJZnRieesFwKwq6vb0j3rHY0srFRddHS5TGp2ynHfmVPSmS2mKX/MnPRoHMr8cytRZIQUWJiZnqZ2pg9+HnCpcGatwLfnVC6e7IR6ciDhHLqY4nRKo6BNCgrYA1SBKTK5pfidu40ClhClVVq9DxbeJQi2O1mbXKfcDeheT3wJj3aqlT5qnA6GGi6A+fYtbDcYj74hbt3XvaV2+G+Xh9v4XWqnbFvKOS8aORppEUps3SmMAEyzrb/a2J7Kh0sL7ZYXBo6HhTvNhYHMWszGmyzpafptFqlTK+yVy1ooGd8jWrAeRXQiMgWOih1IFpQKI+fC/32pvJMPgmy1oUSSZ9NBH/Cn5N9mlaBFemIvjEVpjrOh4lf9Yo5iiNXaBGyo/RRU2+9CtZ3lPdElW7rmpVLxDH0ghYDQWdH7z8tiwrFY1C2yt3CNPsEfb9yAyOzodJJZ6ieEpsMkktMcUwi8pU+Do3tL7QBe0StQuLofxKMNuuKUhyOE4LPKWopdwx8vOjCfxZvUPm/sIV4KL8O67TPN3O/QAYHdzi8R+tCCYMWnwyVuwt+r2gIVcYo8/v6t9hPtnBB9Ap4UWeNTCVg6QuI93rQ4Tr0ixteXQnSPEARHgiCQaXEOcFqQoHtmmK1QBuiBmOJ+22H2GVqzaqFm16PmtRw51zM54BGmAma2Pkt6V4Yk8UaY3ybbkB/rnyMP7Fswx8cv9LJEf/nB07yOtyV41qdhWbpMfFiv2Gz+/VnjvzPieuk6umwswMoQcRI6rFdDohzBe6kWfgWyR+qQ82nHGBb4oWU=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR17MB3903.namprd17.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(136003)(376002)(366004)(346002)(39830400003)(396003)(83380400001)(38100700002)(40140700001)(122000001)(9686003)(52536014)(966005)(66556008)(64756008)(8936002)(66476007)(8676002)(66446008)(66946007)(316002)(508600001)(71200400001)(45080400002)(19627405001)(5660300002)(2906002)(33656002)(76116006)(186003)(110136005)(53546011)(7696005)(6506007)(26005)(38070700005)(55016003)(86362001)(166002)(85282002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?Js8zm/PPL2EpKX/KeKJDZCaTPd1N7kXWW9ifetDj0cY3L0ENpPZR1OpfmWI3?=
- =?us-ascii?Q?rg94aXfpO2w2c13OKZNIYOtJR2gIXJPpMqgDvJaj8oFFMrfEoDe3ivvhcUHf?=
- =?us-ascii?Q?u7el62BXngMy8Q8KmrTbKOMw/O37OEJnTnAOYlWem0mXt9IS+ISmqwTBRPUp?=
- =?us-ascii?Q?+5UavXCVX84JAZV3etVsDnk3mbgN2fuTXZf43yJGIEiqa4VHq6PaqEJ5lV0C?=
- =?us-ascii?Q?+dc8BT4kN6oBVebHaiWAR7Q+rppnz0mGMovCtN8lB5BkCL6a+rXPqpAOZ/PM?=
- =?us-ascii?Q?1yRxNYgOj/jhnRoN8XGLjRCBEemzllHrai0vexTw6Ya46kjwA8VMCOEWh97t?=
- =?us-ascii?Q?ZYNyUbi+drojdJ2/imXZKswglf/zEiyKktntyw69mFWKMUFiQCUFiegiQojV?=
- =?us-ascii?Q?ugChkXPeqv166YATTL+aztScnXU7eEC/OwNZhlc+Wlh6ai6RCGNxxZcYj+P4?=
- =?us-ascii?Q?wJxNn3MQIQs25GQgUgU0xm+WVvbU31/PI5f6BSbVHnK6eiguR6X6JNUjG0pG?=
- =?us-ascii?Q?ISCXtYhbfoYrBbIsJalN2nT6Lsc+X9h1SHaLs0IR9I+mtc0cmPIVcWfNi7PA?=
- =?us-ascii?Q?9awKF++H2ndJRIrQ6OPp75Z2yU9XOa4zO0omW8B94Jf8pCTtD6ZxkiHwJY0y?=
- =?us-ascii?Q?27mx+mEWYZLBgLohEsgFDUkDstKJWHSgcXzVVed1y+vnweSvUAaye7B8eDWY?=
- =?us-ascii?Q?hae5GRzb8M/P0uguXMi3juWFoFlcpAYaYMxQ09mzQTjIIEzVuJAe+GxiZI02?=
- =?us-ascii?Q?OPEO8wKjJ6gMqBmCaTvbRwASlLxiD/UJRJ8rPfWd3oi9O9Spvod7s2YDVAbY?=
- =?us-ascii?Q?osPZLyrS6U8eLSYSfz0e718pxqaC01nXIFU8wuI+5hIQIMsT6pbB1E5REkSS?=
- =?us-ascii?Q?4cllJCJDMm+8oXLbLDiIb9WdC8kS7yWtMWG1B7ZSTHrgqNHQ3XSlTfw9L4wR?=
- =?us-ascii?Q?WgS4i7KYAo5Zb6Hs2n6Ai7kp3CTLqtCcpqvSDXin6nOGY7C7ptWGn2w5br6D?=
- =?us-ascii?Q?0mAonCtryyPm6B5zFW/zSvHs49pT/z91+t//U6B3MeGd+iV2+ytQhrFu5JRQ?=
- =?us-ascii?Q?PtEuqfs80wdtHMLhRl+T4k/0GJfm9+Lh8T+D/oCw2Vg4ksclFnPLvnhsoHsL?=
- =?us-ascii?Q?uPD8zcE1rQjDg3wRn1R59T6xu4WkdagkpBK/1DcfAe+OLOyfmnsjnvmLx+7Z?=
- =?us-ascii?Q?1yZDXBUrWu1QK8uL6cwqH3I3ldt2CBIR6Rnb/E9j8aLUyZIoLNhg+kohUwOs?=
- =?us-ascii?Q?QqKWYYpFo5+D8CtdWE3qEF1F9N6YMGHjeXu+BV0uju9Uo+bKPR6tGmN/sYsB?=
- =?us-ascii?Q?mprCYGSUOoZXatJ5mecqWj6SBYZbyxDqczzrYWdHH9+LmIRwcrvdmkxPILt6?=
- =?us-ascii?Q?FY9IjY4RNS6DpEB/yicYxQHT+2oL2u2YIJCf4DVVAyCXuwilfjmCWs0ASN+t?=
- =?us-ascii?Q?4TuK5rc5R6dNQNgB5X83/te3YXk0vecKhDKINP5gKbEGIP1bVPawJw5QMNUb?=
- =?us-ascii?Q?clrVIxZQ75d09AxPLc3RrqwnuFakd+VQlIYBanjkomTToZMfWW5ppBPKJeUM?=
- =?us-ascii?Q?037KlEMEQicD5Yze0B1XtJlrousZX7kiuYaUWwFlB/QSBkMVz7/FBbAFlN4S?=
- =?us-ascii?Q?hw=3D=3D?=
-Content-Type: multipart/alternative;
-	boundary="_000_MN2PR17MB39031594692FB5064E0F4225C3069MN2PR17MB3903namp_"
-MIME-Version: 1.0
-X-OriginatorOrg: MissionSecure.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR17MB3903.namprd17.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- b94aad4a-074b-4bf4-0e52-08d9fe4f27ea
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Mar 2022 02:23:37.3126
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: f0ca9611-f13f-4dc9-8e1b-119172b8ec5d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- D1fSmI94yDEnXDKMiaeOypc6hI0zdoUJKR3AmysqBvDQRaQh0r9Hjn2GMuJEQ7Kf5nR6t1s3NHC2oJdy9ScJeQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR17MB5642
+ <MN2PR17MB39031594692FB5064E0F4225C3069@MN2PR17MB3903.namprd17.prod.outlook.com>
+In-Reply-To: 
+ <MN2PR17MB39031594692FB5064E0F4225C3069@MN2PR17MB3903.namprd17.prod.outlook.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 4 Mar 2022 23:55:48 -0800
+Message-ID: 
+ <CAMKF1srBN=obfQnySFAbcPnunuOkfxaTPk8LsdjB8REyiqCNAA@mail.gmail.com>
+Subject: Re: [yocto] suricata: enable lua support
+To: gary@missionsecure.com
+Cc: akuster808 <akuster808@gmail.com>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000315a2605d973f7d0"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 05 Mar 2022 02:23:43 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56375
+ <yocto@lists.yoctoproject.org>; Sat, 05 Mar 2022 07:56:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56376
 
---_000_MN2PR17MB39031594692FB5064E0F4225C3069MN2PR17MB3903namp_
-Content-Type: text/plain; charset="us-ascii"
+--000000000000315a2605d973f7d0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-The Suricata install site also says to install
+On Fri, Mar 4, 2022 at 6:23 PM Gary Huband via lists.yoctoproject.org <gary=
+=3D
+missionsecure.com@lists.yoctoproject.org> wrote:
 
-liblua5.1-dev
-
-Does this mean that Suricata needs lua 5.1 (which is very old)?? For Zeus t=
-he lua recipe is 5.3.5.
-
-Do I need to create a recipe for lua 5.1?
-
-Gary
-________________________________
-From: akuster808 <akuster808@gmail.com>
-Sent: Friday, March 4, 2022 7:52 PM
-To: Gary Huband <Gary@MissionSecure.com>; yocto@lists.yoctoproject.org <yoc=
-to@lists.yoctoproject.org>
-Subject: Re: [yocto] suricata: enable lua support
-
-
-
-On 3/4/22 15:02, Gary Huband via lists.yoctoproject.org wrote:
+> The Suricata install site also says to install
 >
-> Adding DEPENDS +=3D "lua"  fixed that error.  I'm assuming that allows
-> the configure to find lua.
+> liblua5.1-dev
 >
-> Now I'm getting a compile error
+> Does this mean that Suricata needs lua 5.1 (which is very old)?? For Zeus
+> the lua recipe is 5.3.5.
+>
+> Do I need to create a recipe for lua 5.1?
 >
 
-I added this to the recipe and it appears the liblua it  is looking for
-does not exist.
+seems so, lua5.1 is not ABI compatible with newer Lua, so if an app needs
+this version then
+you will have to add it, perhaps see if you can just use internal version
+or something like that
 
-PACKAGECONFIG[lua] =3D "--enable-lua
---with-liblua-includes=3D${STAGING_INCDIR}
---with-liblua-libraries=3D=3D${STAGING_LIBDIR}, --disable-lua,lua, lua"
-
-Error:
-
-checking for luaL_openlibs in -llua5.1... no
-|
-|    ERROR!  liblua library not found, go get it
-|    from https://nam04.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%=
-2Flua.org%2Findex.html&amp;data=3D04%7C01%7Cgary%40missionsecure.com%7C7f98=
-15dcc0c142b6d92d08d9fe4262cb%7Cf0ca9611f13f4dc98e1b119172b8ec5d%7C0%7C1%7C6=
-37820383359878260%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luM=
-zIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=3DFdB7jyQwXX%2BVjjhLSDhK=
-NSt41GUOgdg%2FG3ajSKIElo0%3D&amp;reserved=3D0 or your distribution:
-|
-|    Ubuntu: apt-get install liblua5.1-dev
-
-
-It may be  the lua recipe.  I only see the static lib 'liblua.a'
-
--armin
-
+>
+> Gary
+> ------------------------------
+> *From:* akuster808 <akuster808@gmail.com>
+> *Sent:* Friday, March 4, 2022 7:52 PM
+> *To:* Gary Huband <Gary@MissionSecure.com>; yocto@lists.yoctoproject.org =
+<
+> yocto@lists.yoctoproject.org>
+> *Subject:* Re: [yocto] suricata: enable lua support
+>
+>
+>
+> On 3/4/22 15:02, Gary Huband via lists.yoctoproject.org wrote:
+> >
+> > Adding DEPENDS +=3D "lua"  fixed that error.  I'm assuming that allows
+> > the configure to find lua.
+> >
+> > Now I'm getting a compile error
+> >
+>
+> I added this to the recipe and it appears the liblua it  is looking for
+> does not exist.
+>
+> PACKAGECONFIG[lua] =3D "--enable-lua
+> --with-liblua-includes=3D${STAGING_INCDIR}
+> --with-liblua-libraries=3D=3D${STAGING_LIBDIR}, --disable-lua,lua, lua"
+>
+> Error:
+>
+> checking for luaL_openlibs in -llua5.1... no
 > |
+> |    ERROR!  liblua library not found, go get it
+> |    from
+> https://nam04.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Flua.or=
+g%2Findex.html&amp;data=3D04%7C01%7Cgary%40missionsecure.com%7C7f9815dcc0c1=
+42b6d92d08d9fe4262cb%7Cf0ca9611f13f4dc98e1b119172b8ec5d%7C0%7C1%7C637820383=
+359878260%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBT=
+iI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=3DFdB7jyQwXX%2BVjjhLSDhKNSt41GUO=
+gdg%2FG3ajSKIElo0%3D&amp;reserved=3D0
+> or your distribution:
+> |
+> |    Ubuntu: apt-get install liblua5.1-dev
+>
+>
+> It may be  the lua recipe.  I only see the static lib 'liblua.a'
+>
+> -armin
+>
+> > |
+> >
 > /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/recipe-s=
 ysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-g=
 nueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld:
-> util-lua-dns.o: in function `DnsGetTxid':
-> |
-> /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:80:
-> undefined reference to `rs_dns_lua_get_tx_id'
-> |
+>
+> > util-lua-dns.o: in function `DnsGetTxid':
+> > |
+> > /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:80:
+> > undefined reference to `rs_dns_lua_get_tx_id'
+> > |
+> >
 > /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/recipe-s=
 ysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-g=
 nueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld:
-> util-lua-dns.o: in function `DnsGetAnswerTable':
-> |
-> /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:125:
-> undefined reference to `rs_dns_lua_get_answer_table'
-> |
+>
+> > util-lua-dns.o: in function `DnsGetAnswerTable':
+> > |
+> > /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:125:
+> > undefined reference to `rs_dns_lua_get_answer_table'
+> > |
+> >
 > /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/recipe-s=
 ysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-g=
 nueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld:
-> util-lua-dns.o: in function `DnsGetAuthorityTable':
-> |
-> /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:133:
-> undefined reference to `rs_dns_lua_get_authority_table'
-> |
+>
+> > util-lua-dns.o: in function `DnsGetAuthorityTable':
+> > |
+> > /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:133:
+> > undefined reference to `rs_dns_lua_get_authority_table'
+> > |
+> >
 > /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/recipe-s=
 ysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-g=
 nueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld:
-> util-lua-dns.o: in function `DnsGetQueryTable':
-> |
-> /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:117:
-> undefined reference to `rs_dns_lua_get_query_table'
-> |
+>
+> > util-lua-dns.o: in function `DnsGetQueryTable':
+> > |
+> > /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:117:
+> > undefined reference to `rs_dns_lua_get_query_table'
+> > |
+> >
 > /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/recipe-s=
 ysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-g=
 nueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld:
-> util-lua-dns.o: in function `DnsGetDnsRrname':
-> |
-> /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:69:
-> undefined reference to `rs_dns_lua_get_rrname'
-> |
+>
+> > util-lua-dns.o: in function `DnsGetDnsRrname':
+> > |
+> > /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:69:
+> > undefined reference to `rs_dns_lua_get_rrname'
+> > |
+> >
 > /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/recipe-s=
 ysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-g=
 nueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld:
-> util-lua-dns.o: in function `DnsGetRcode':
-> |
-> /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:92:
-> undefined reference to `rs_dns_lua_get_rcode'
-> | collect2: error: ld returned 1 exit status
-> | Makefile:2118: recipe for target 'suricata' failed
-> | make[2]: *** [suricata] Error 1
+>
+> > util-lua-dns.o: in function `DnsGetRcode':
+> > |
+> > /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:92:
+> > undefined reference to `rs_dns_lua_get_rcode'
+> > | collect2: error: ld returned 1 exit status
+> > | Makefile:2118: recipe for target 'suricata' failed
+> > | make[2]: *** [suricata] Error 1
+> >
+> >
+> >
+> >
+>
+>
+> *Gary Huband*
+> *Sr. Software and Systems Engineer*
+>
+> Office: 434.284.8071 x720
+> Direct: 434.260.4995
+> Gary@MissionSecure.com
+>
+> *Follow Us!*
+> LinkedIn <https://www.linkedin.com/company/mission-secure-inc->  |  Blog
+> <https://www.missionsecure.com/blog?utm_source=3Demail-signature&utm_medi=
+um=3Demail&utm_campaign=3Dblog-email-sig>
+>   |  Website
+> <https://www.missionsecure.com/?utm_source=3Demail-signature&utm_medium=
+=3Demail&utm_campaign=3Dweb-email-sig>
+>
+> : : : : : : : : : : : : : : : : : : : : : : : : : : :
+>
+> [image: MSi]
+>
+> This email and any files transmitted with it are confidential and
+> proprietary and intended solely for the use of the individual or entity t=
+o
+> whom they are addressed. Any dissemination, distribution or copying of th=
+is
+> communication is strictly prohibited without our prior permission. If you
+> received this in error, please contact the sender and delete the material
+> from any computer.
 >
 >
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#56371): https://nam04.safelinks.protection.outlook.co=
-m/?url=3Dhttps%3A%2F%2Flists.yoctoproject.org%2Fg%2Fyocto%2Fmessage%2F56371=
-&amp;data=3D04%7C01%7Cgary%40missionsecure.com%7C7f9815dcc0c142b6d92d08d9fe=
-4262cb%7Cf0ca9611f13f4dc98e1b119172b8ec5d%7C0%7C1%7C637820383359878260%7CUn=
-known%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJ=
-XVCI6Mn0%3D%7C3000&amp;sdata=3Dvwc4qa0p9%2Bbxsfq9RFUYToQuWBvsmNvn0%2FX3%2BO=
-gjQPo%3D&amp;reserved=3D0
-> Mute This Topic: https://nam04.safelinks.protection.outlook.com/?url=3Dht=
-tps%3A%2F%2Flists.yoctoproject.org%2Fmt%2F89556445%2F3616698&amp;data=3D04%=
-7C01%7Cgary%40missionsecure.com%7C7f9815dcc0c142b6d92d08d9fe4262cb%7Cf0ca96=
-11f13f4dc98e1b119172b8ec5d%7C0%7C1%7C637820383359878260%7CUnknown%7CTWFpbGZ=
-sb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3=
-000&amp;sdata=3DrJV2GkSwgJ8OcGoS6W%2FjZ9wt3OBHAyFpasJ%2F0Elpt6k%3D&amp;rese=
-rved=3D0
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#56375):
+> https://lists.yoctoproject.org/g/yocto/message/56375
+> Unfollow This Topic: https://lists.yoctoproject.org/unft/89556445/1997914
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://nam04.safelinks.protection.outlook.com/?url=3Dhttps%=
-3A%2F%2Flists.yoctoproject.org%2Fg%2Fyocto%2Funsub&amp;data=3D04%7C01%7Cgar=
-y%40missionsecure.com%7C7f9815dcc0c142b6d92d08d9fe4262cb%7Cf0ca9611f13f4dc9=
-8e1b119172b8ec5d%7C0%7C1%7C637820383359878260%7CUnknown%7CTWFpbGZsb3d8eyJWI=
-joiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sd=
-ata=3D44krUye0EK6%2FjOMm3P%2BEgS%2BlbWEBa4AF%2BSMjXkSzYmk%3D&amp;reserved=
-=3D0 [akuster808@gmail.com]
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> raj.khem@gmail.com]
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 >
+>
 
-
-Gary Huband
-Sr. Software and Systems Engineer
-
-Office: 434.284.8071 x720
-Direct: 434.260.4995
-Gary@MissionSecure.com
-
-Follow Us!
-LinkedIn<https://www.linkedin.com/company/mission-secure-inc->  |  Blog<htt=
-ps://www.missionsecure.com/blog?utm_source=3Demail-signature&utm_medium=3De=
-mail&utm_campaign=3Dblog-email-sig>  |  Website<https://www.missionsecure.c=
-om/?utm_source=3Demail-signature&utm_medium=3Demail&utm_campaign=3Dweb-emai=
-l-sig>
-
-: : : : : : : : : : : : : : : : : : : : : : : : : : :
-
-[MSi]
-
-This email and any files transmitted with it are confidential and proprieta=
-ry and intended solely for the use of the individual or entity to whom they=
- are addressed. Any dissemination, distribution or copying of this communic=
-ation is strictly prohibited without our prior permission. If you received =
-this in error, please contact the sender and delete the material from any c=
-omputer.
-
-
---_000_MN2PR17MB39031594692FB5064E0F4225C3069MN2PR17MB3903namp_
-Content-Type: text/html; charset="us-ascii"
+--000000000000315a2605d973f7d0
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fon=
+t-family:monospace,monospace"><br></div></div><br><div class=3D"gmail_quote=
+"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Mar 4, 2022 at 6:23 PM Gary=
+ Huband via <a href=3D"http://lists.yoctoproject.org">lists.yoctoproject.or=
+g</a> &lt;gary=3D<a href=3D"mailto:missionsecure.com@lists.yoctoproject.org=
+">missionsecure.com@lists.yoctoproject.org</a>&gt; wrote:<br></div><blockqu=
+ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
+ solid rgb(204,204,204);padding-left:1ex">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
 The Suricata install site also says to install </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-<pre><span class=3D"n">liblua5</span><span class=3D"o">.</span><span class=
-=3D"mi">1</span><span class=3D"o">-</span><span class=3D"n">dev</span></pre=
->
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+<pre><span>liblua5</span><span>.</span><span>1</span><span>-</span><span>de=
+v</span></pre>
 Does this mean that Suricata needs lua 5.1 (which is very old)?? For Zeus t=
 he lua recipe is 5.3.5.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-Do I need to create a recipe for lua 5.1?</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+Do I need to create a recipe for lua 5.1?</div></div></blockquote><div><br>=
+</div><div class=3D"gmail_default" style=3D"font-family:monospace,monospace=
+">seems so, lua5.1 is not ABI compatible with newer Lua, so if an app needs=
+ this version then</div><div class=3D"gmail_default" style=3D"font-family:m=
+onospace,monospace">you will have to add it, perhaps see if you can just us=
+e internal version or something like that</div><blockquote class=3D"gmail_q=
+uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
+04);padding-left:1ex"><div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
 Gary<br>
 </div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> akuster808 &lt;akuste=
-r808@gmail.com&gt;<br>
+<div id=3D"gmail-m_-5629631484321457538appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"gmail-m_-5629631484321457538divRplyFwdMsg" dir=3D"ltr"><font fac=
+e=3D"Calibri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>Fro=
+m:</b> akuster808 &lt;<a href=3D"mailto:akuster808@gmail.com" target=3D"_bl=
+ank">akuster808@gmail.com</a>&gt;<br>
 <b>Sent:</b> Friday, March 4, 2022 7:52 PM<br>
-<b>To:</b> Gary Huband &lt;Gary@MissionSecure.com&gt;; yocto@lists.yoctopro=
-ject.org &lt;yocto@lists.yoctoproject.org&gt;<br>
+<b>To:</b> Gary Huband &lt;Gary@MissionSecure.com&gt;; <a href=3D"mailto:yo=
+cto@lists.yoctoproject.org" target=3D"_blank">yocto@lists.yoctoproject.org<=
+/a> &lt;<a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blank">y=
+octo@lists.yoctoproject.org</a>&gt;<br>
 <b>Subject:</b> Re: [yocto] suricata: enable lua support</font>
-<div>&nbsp;</div>
+<div>=C2=A0</div>
 </div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText"><br>
+<div><font size=3D"2"><span style=3D"font-size:11pt">
+<div><br>
 <br>
-On 3/4/22 15:02, Gary Huband via lists.yoctoproject.org wrote:<br>
+On 3/4/22 15:02, Gary Huband via <a href=3D"http://lists.yoctoproject.org" =
+target=3D"_blank">lists.yoctoproject.org</a> wrote:<br>
 &gt;<br>
-&gt; Adding DEPENDS +=3D &quot;lua&quot;&nbsp; fixed that error.&nbsp; I'm =
-assuming that allows <br>
+&gt; Adding DEPENDS +=3D &quot;lua&quot;=C2=A0 fixed that error.=C2=A0 I&#3=
+9;m assuming that allows <br>
 &gt; the configure to find lua.<br>
 &gt;<br>
-&gt; Now I'm getting a compile error<br>
+&gt; Now I&#39;m getting a compile error<br>
 &gt;<br>
 <br>
-I added this to the recipe and it appears the liblua it&nbsp; is looking fo=
+I added this to the recipe and it appears the liblua it=C2=A0 is looking fo=
 r <br>
 does not exist.<br>
 <br>
@@ -360,14 +337,14 @@ Error:<br>
 <br>
 checking for luaL_openlibs in -llua5.1... no<br>
 |<br>
-|&nbsp;&nbsp;&nbsp; ERROR!&nbsp; liblua library not found, go get it<br>
-|&nbsp;&nbsp;&nbsp; from <a href=3D"https://nam04.safelinks.protection.outl=
+|=C2=A0=C2=A0=C2=A0 ERROR!=C2=A0 liblua library not found, go get it<br>
+|=C2=A0=C2=A0=C2=A0 from <a href=3D"https://nam04.safelinks.protection.outl=
 ook.com/?url=3Dhttp%3A%2F%2Flua.org%2Findex.html&amp;amp;data=3D04%7C01%7Cg=
 ary%40missionsecure.com%7C7f9815dcc0c142b6d92d08d9fe4262cb%7Cf0ca9611f13f4d=
 c98e1b119172b8ec5d%7C0%7C1%7C637820383359878260%7CUnknown%7CTWFpbGZsb3d8eyJ=
 WIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;=
 amp;sdata=3DFdB7jyQwXX%2BVjjhLSDhKNSt41GUOgdg%2FG3ajSKIElo0%3D&amp;amp;rese=
-rved=3D0">
+rved=3D0" target=3D"_blank">
 https://nam04.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Flua.org%=
 2Findex.html&amp;amp;data=3D04%7C01%7Cgary%40missionsecure.com%7C7f9815dcc0=
 c142b6d92d08d9fe4262cb%7Cf0ca9611f13f4dc98e1b119172b8ec5d%7C0%7C1%7C6378203=
@@ -376,11 +353,11 @@ BTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;amp;sdata=3DFdB7jyQwXX%2BVjjhLSDhKNS=
 t41GUOgdg%2FG3ajSKIElo0%3D&amp;amp;reserved=3D0</a>
  or your distribution:<br>
 |<br>
-|&nbsp;&nbsp;&nbsp; Ubuntu: apt-get install liblua5.1-dev<br>
+|=C2=A0=C2=A0=C2=A0 Ubuntu: apt-get install liblua5.1-dev<br>
 <br>
 <br>
-It may be&nbsp; the lua recipe.&nbsp; I only see the static lib 'liblua.a'<=
-br>
+It may be=C2=A0 the lua recipe.=C2=A0 I only see the static lib &#39;liblua=
+.a&#39;<br>
 <br>
 -armin<br>
 <br>
@@ -389,162 +366,134 @@ br>
 e-sysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linu=
 x-gnueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld:
 <br>
-&gt; util-lua-dns.o: in function `DnsGetTxid':<br>
+&gt; util-lua-dns.o: in function `DnsGetTxid&#39;:<br>
 &gt; | <br>
 &gt; /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:80:=
  <br>
-&gt; undefined reference to `rs_dns_lua_get_tx_id'<br>
+&gt; undefined reference to `rs_dns_lua_get_tx_id&#39;<br>
 &gt; | <br>
 &gt; /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/recip=
 e-sysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linu=
 x-gnueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld:
 <br>
-&gt; util-lua-dns.o: in function `DnsGetAnswerTable':<br>
+&gt; util-lua-dns.o: in function `DnsGetAnswerTable&#39;:<br>
 &gt; | <br>
 &gt; /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:125=
 : <br>
-&gt; undefined reference to `rs_dns_lua_get_answer_table'<br>
+&gt; undefined reference to `rs_dns_lua_get_answer_table&#39;<br>
 &gt; | <br>
 &gt; /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/recip=
 e-sysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linu=
 x-gnueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld:
 <br>
-&gt; util-lua-dns.o: in function `DnsGetAuthorityTable':<br>
+&gt; util-lua-dns.o: in function `DnsGetAuthorityTable&#39;:<br>
 &gt; | <br>
 &gt; /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:133=
 : <br>
-&gt; undefined reference to `rs_dns_lua_get_authority_table'<br>
+&gt; undefined reference to `rs_dns_lua_get_authority_table&#39;<br>
 &gt; | <br>
 &gt; /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/recip=
 e-sysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linu=
 x-gnueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld:
 <br>
-&gt; util-lua-dns.o: in function `DnsGetQueryTable':<br>
+&gt; util-lua-dns.o: in function `DnsGetQueryTable&#39;:<br>
 &gt; | <br>
 &gt; /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:117=
 : <br>
-&gt; undefined reference to `rs_dns_lua_get_query_table'<br>
+&gt; undefined reference to `rs_dns_lua_get_query_table&#39;<br>
 &gt; | <br>
 &gt; /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/recip=
 e-sysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linu=
 x-gnueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld:
 <br>
-&gt; util-lua-dns.o: in function `DnsGetDnsRrname':<br>
+&gt; util-lua-dns.o: in function `DnsGetDnsRrname&#39;:<br>
 &gt; | <br>
 &gt; /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:69:=
  <br>
-&gt; undefined reference to `rs_dns_lua_get_rrname'<br>
+&gt; undefined reference to `rs_dns_lua_get_rrname&#39;<br>
 &gt; | <br>
 &gt; /tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/suricata/6.0.3-r0/recip=
 e-sysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linu=
 x-gnueabi/gcc/arm-poky-linux-gnueabi/9.2.0/ld:
 <br>
-&gt; util-lua-dns.o: in function `DnsGetRcode':<br>
+&gt; util-lua-dns.o: in function `DnsGetRcode&#39;:<br>
 &gt; | <br>
 &gt; /usr/src/debug/suricata/6.0.3-r0/suricata-6.0.3/src/util-lua-dns.c:92:=
  <br>
-&gt; undefined reference to `rs_dns_lua_get_rcode'<br>
+&gt; undefined reference to `rs_dns_lua_get_rcode&#39;<br>
 &gt; | collect2: error: ld returned 1 exit status<br>
-&gt; | Makefile:2118: recipe for target 'suricata' failed<br>
+&gt; | Makefile:2118: recipe for target &#39;suricata&#39; failed<br>
 &gt; | make[2]: *** [suricata] Error 1<br>
 &gt;<br>
 &gt;<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt; Links: You receive all messages sent to this group.<br>
-&gt; View/Reply Online (#56371): <a href=3D"https://nam04.safelinks.protect=
-ion.outlook.com/?url=3Dhttps%3A%2F%2Flists.yoctoproject.org%2Fg%2Fyocto%2Fm=
-essage%2F56371&amp;amp;data=3D04%7C01%7Cgary%40missionsecure.com%7C7f9815dc=
-c0c142b6d92d08d9fe4262cb%7Cf0ca9611f13f4dc98e1b119172b8ec5d%7C0%7C1%7C63782=
-0383359878260%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiL=
-CJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;amp;sdata=3Dvwc4qa0p9%2Bbxsfq9RFUY=
-ToQuWBvsmNvn0%2FX3%2BOgjQPo%3D&amp;amp;reserved=3D0">
-https://nam04.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.y=
-octoproject.org%2Fg%2Fyocto%2Fmessage%2F56371&amp;amp;data=3D04%7C01%7Cgary=
-%40missionsecure.com%7C7f9815dcc0c142b6d92d08d9fe4262cb%7Cf0ca9611f13f4dc98=
-e1b119172b8ec5d%7C0%7C1%7C637820383359878260%7CUnknown%7CTWFpbGZsb3d8eyJWIj=
-oiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;amp=
-;sdata=3Dvwc4qa0p9%2Bbxsfq9RFUYToQuWBvsmNvn0%2FX3%2BOgjQPo%3D&amp;amp;reser=
-ved=3D0</a><br>
-&gt; Mute This Topic: <a href=3D"https://nam04.safelinks.protection.outlook=
-.com/?url=3Dhttps%3A%2F%2Flists.yoctoproject.org%2Fmt%2F89556445%2F3616698&=
-amp;amp;data=3D04%7C01%7Cgary%40missionsecure.com%7C7f9815dcc0c142b6d92d08d=
-9fe4262cb%7Cf0ca9611f13f4dc98e1b119172b8ec5d%7C0%7C1%7C637820383359878260%7=
-CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwi=
-LCJXVCI6Mn0%3D%7C3000&amp;amp;sdata=3DrJV2GkSwgJ8OcGoS6W%2FjZ9wt3OBHAyFpasJ=
-%2F0Elpt6k%3D&amp;amp;reserved=3D0">
-https://nam04.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.y=
-octoproject.org%2Fmt%2F89556445%2F3616698&amp;amp;data=3D04%7C01%7Cgary%40m=
-issionsecure.com%7C7f9815dcc0c142b6d92d08d9fe4262cb%7Cf0ca9611f13f4dc98e1b1=
-19172b8ec5d%7C0%7C1%7C637820383359878260%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC=
-4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;amp;sda=
-ta=3DrJV2GkSwgJ8OcGoS6W%2FjZ9wt3OBHAyFpasJ%2F0Elpt6k%3D&amp;amp;reserved=3D=
-0</a><br>
-&gt; Group Owner: yocto+owner@lists.yoctoproject.org<br>
-&gt; Unsubscribe: <a href=3D"https://nam04.safelinks.protection.outlook.com=
-/?url=3Dhttps%3A%2F%2Flists.yoctoproject.org%2Fg%2Fyocto%2Funsub&amp;amp;da=
-ta=3D04%7C01%7Cgary%40missionsecure.com%7C7f9815dcc0c142b6d92d08d9fe4262cb%=
-7Cf0ca9611f13f4dc98e1b119172b8ec5d%7C0%7C1%7C637820383359878260%7CUnknown%7=
-CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn=
-0%3D%7C3000&amp;amp;sdata=3D44krUye0EK6%2FjOMm3P%2BEgS%2BlbWEBa4AF%2BSMjXkS=
-zYmk%3D&amp;amp;reserved=3D0">
-https://nam04.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.y=
-octoproject.org%2Fg%2Fyocto%2Funsub&amp;amp;data=3D04%7C01%7Cgary%40mission=
-secure.com%7C7f9815dcc0c142b6d92d08d9fe4262cb%7Cf0ca9611f13f4dc98e1b119172b=
-8ec5d%7C0%7C1%7C637820383359878260%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAw=
-MDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;amp;sdata=3D4=
-4krUye0EK6%2FjOMm3P%2BEgS%2BlbWEBa4AF%2BSMjXkSzYmk%3D&amp;amp;reserved=3D0<=
-/a>
- [akuster808@gmail.com]<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+&gt; <br>
 &gt;<br>
 <br>
 </div>
 </span></font></div>
 <br>
-<div style=3D"font-family: Arial; font-size: 12px; font-style: normal; text=
--transform: uppercase;">
+<div style=3D"font-family:Arial;font-size:12px;font-style:normal;text-trans=
+form:uppercase">
 <font color=3D"#595458"><b>Gary Huband</b></font></div>
-<div style=3D"font-family: Arial; font-size: 11px; font-style: normal;"><fo=
-nt color=3D"#595458"><i>Sr. Software and Systems Engineer</i><br>
+<div style=3D"font-family:Arial;font-size:11px;font-style:normal"><font col=
+or=3D"#595458"><i>Sr. Software and Systems Engineer</i><br>
 <br>
 Office: 434.284.8071 x720 <br>
 Direct: 434.260.4995 <br>
 Gary@MissionSecure.com<br>
 </font></div>
 <br>
-<div style=3D"font-family: Arial; font-size: 12px; font-style: normal;"><fo=
-nt color=3D"#595458"><b>Follow Us!</b>
+<div style=3D"font-family:Arial;font-size:12px;font-style:normal"><font col=
+or=3D"#595458"><b>Follow Us!</b>
 <br>
-<a href=3D"https://www.linkedin.com/company/mission-secure-inc-">LinkedIn</=
-a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href=3D"https://www.missionsecure.com/blog?ut=
-m_source=3Demail-signature&amp;utm_medium=3Demail&amp;utm_campaign=3Dblog-e=
-mail-sig">Blog</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href=3D"https://www.missionse=
-cure.com/?utm_source=3Demail-signature&amp;utm_medium=3Demail&amp;utm_campa=
-ign=3Dweb-email-sig">Website</a>
+<a href=3D"https://www.linkedin.com/company/mission-secure-inc-" target=3D"=
+_blank">LinkedIn</a>=C2=A0=C2=A0|=C2=A0=C2=A0<a href=3D"https://www.mission=
+secure.com/blog?utm_source=3Demail-signature&amp;utm_medium=3Demail&amp;utm=
+_campaign=3Dblog-email-sig" target=3D"_blank">Blog</a>=C2=A0=C2=A0|=C2=A0=
+=C2=A0<a href=3D"https://www.missionsecure.com/?utm_source=3Demail-signatur=
+e&amp;utm_medium=3Demail&amp;utm_campaign=3Dweb-email-sig" target=3D"_blank=
+">Website</a>
 </font></div>
 <br>
-<div style=3D"color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px;=
- font-style: normal; font-variant: normal; font-weight: normal; letter-spac=
-ing: normal; line-height: normal; orphans: auto; text-align: start; text-in=
-dent: 0px; text-transform: none; white-space: normal; widows: auto; word-sp=
-acing: 0px; -webkit-text-stroke-width: 0px;" class=3D"">
+<div style=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:12px;font-st=
+yle:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;lin=
+e-height:normal;text-align:start;text-indent:0px;text-transform:none;white-=
+space:normal;word-spacing:0px">
 : : : : : : : : : : : : : : : : : : : : : : : : : : : <br>
 </div>
 <br>
-<div><img height=3D"44" width=3D"115" alt=3D"MSi" src=3D"http://www.mission=
-secure.com/images/MSi_Logo_email.png"></div>
+<div><img height=3D"44" width=3D"115" alt=3D"MSi"></div>
 <br>
-<div style=3D"font-family: Arial; font-size: 11px; font-style: normal;"><fo=
-nt color=3D"#595458">This email and any files transmitted with it are confi=
-dential and proprietary and intended solely for the use of the individual o=
-r entity to whom they are addressed.
+<div style=3D"font-family:Arial;font-size:11px;font-style:normal"><font col=
+or=3D"#595458">This email and any files transmitted with it are confidentia=
+l and proprietary and intended solely for the use of the individual or enti=
+ty to whom they are addressed.
  Any dissemination, distribution or copying of this communication is strict=
 ly prohibited without our prior permission. If you received this in error, =
 please contact the sender and delete the material from any computer.</font>=
 </div>
 <br>
-</body>
-</html>
+</div>
 
---_000_MN2PR17MB39031594692FB5064E0F4225C3069MN2PR17MB3903namp_--
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+You automatically follow any topics you start or reply to.<br>
+View/Reply Online (#56375): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/56375" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/56375</a><br>
+Unfollow This Topic: <a href=3D"https://lists.yoctoproject.org/unft/8955644=
+5/1997914" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.=
+org/unft/89556445/1997914</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@g=
+mail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div></div>
+
+--000000000000315a2605d973f7d0--
 
