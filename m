@@ -1,88 +1,95 @@
-Return-Path: <neuberfran@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AE1EAC433F5
-	for <webhook@archiver.kernel.org>; Wed,  9 Mar 2022 16:04:23 +0000 (UTC)
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com
- [209.85.221.181])
- by mx.groups.io with SMTP id smtpd.web08.1940.1646841862513471325
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 15AFAC433F5
+	for <webhook@archiver.kernel.org>; Wed,  9 Mar 2022 17:18:13 +0000 (UTC)
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com
+ [209.85.160.171])
+ by mx.groups.io with SMTP id smtpd.web12.93.1646846292296583559
  for <yocto@lists.yoctoproject.org>;
- Wed, 09 Mar 2022 08:04:22 -0800
+ Wed, 09 Mar 2022 09:18:12 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=PXNVrXtq;
- spf=pass (domain: gmail.com, ip: 209.85.221.181,
- mailfrom: neuberfran@gmail.com)
-Received: by mail-vk1-f181.google.com with SMTP id s195so1515468vkb.10
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=esNnm3zK;
+ spf=pass (domain: gmail.com, ip: 209.85.160.171,
+ mailfrom: raj.khem@gmail.com)
+Received: by mail-qt1-f171.google.com with SMTP id s6so2456876qtc.4
         for <yocto@lists.yoctoproject.org>;
- Wed, 09 Mar 2022 08:04:22 -0800 (PST)
+ Wed, 09 Mar 2022 09:18:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=gMAlF/kdKln8QtFjysHhonkGcrwhDRTYcCUFyMynKn8=;
-        b=PXNVrXtq17nY6Opn50elhRRFJefvT80LtilF2iGCRClF5sAOUDvcgKMo/e/ZM/SLuE
-         vyBCm9QgsKRcnqJU2Jo/1lA2qXZIEKFEylO9V3k5v7lEEKGuTI2acOR4mBZgQrX+NCOC
-         NG5GAGCZ6OQT+vAGt8+dGzvljliuMdPS0VYgTWMmqwJCN8u/UU3hljd1sYpFRl96ZVkp
-         qfyWj8+fye9uswwVxVxFk15OCCxM8gxUgLg6kzxg8TVh5qwz/8kFG/2+KsikUihRjrWz
-         ZDMfsW9mJqbpoBmjON56NpXb12Ma7V3alsg5OrhcWU1Y73i1/j0zUPvmxxPfCDBXPaiG
-         8x5g==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=sWIGu3tHmz2WPmuY6wzK9jZk1J49MWYz9f6PKHMheGg=;
+        b=esNnm3zKLsdK9U5QvLVhcD7IJV1ikwbxRoZekhB4mf5D7VxUWHQx43KEg2BFnduK0P
+         gEznxFGVrkF6Kuc8jrGlavno5PIaH/Z+cmj6ivAyanvu2sX7Mt01G8i773tv22oRa+TE
+         eDbx7jIOWhzVkj09SuswtCcAE46A9+RDxpGpderaUd2DzqDuaA5uDS0lZ/YYcushfrqF
+         8L5yHPcE+tBIPuR4cDMVMEX6fj41i21x7X915Q5AoHeeHF50VOG9KZ/ufWUTzMiCeg2F
+         RM447mV8bAdM9AEZyB7usokb9RNr/8kWGYjVEW1D1cyoaI1snltDUO6KOKsTUrnWBWmm
+         OsaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=gMAlF/kdKln8QtFjysHhonkGcrwhDRTYcCUFyMynKn8=;
-        b=Quczp5/up7sgXKgU47oBi2mshaA5Wbwt9yn34qtbJ6bNGujskLREgHXBK2nRkzlmBG
-         v8p4DSTl5WJpxwerpTwWg+pI/C7yJLDLNnMy2Ax6aiYCmIBI19RB2feDLrLtdwehPAao
-         7RIgwrTc5uELFG+DlCBMGVoESpFLMle82j1cLEDNRaQ4yKi2obg86KOLSq6/M+Boum8O
-         oWztEAVPwj0rkt/uU3uc5FYBg0wBl5Cu4DINTeM13RV7SaByblP3e0DEu/5vDPZBoGuh
-         CvaD5Wu49i2N7AiYLXCJ+kUChECnjyFGkdthBV96wBufMfYmehYaHO9pDDrYPX6Ch9Pq
-         m6rw==
-X-Gm-Message-State: AOAM530vjAqizpQmgkLxQSTfRX1tyrMdnvXj2Z7MYaXZXSfGUdJj6jeK
-	LXfZfWwuQwwp5cdXsbDUDJe9g4bDrVP/be+RklWstPUnkqw=
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=sWIGu3tHmz2WPmuY6wzK9jZk1J49MWYz9f6PKHMheGg=;
+        b=xPWQrZ666iamrwq6G+TtuGkv1vSFImkbkIB5s0cBZ+PwuQyCTovqVY8dvEDgtxrd7L
+         eUIOCQ46mdfdqaZkRi37SBZ40dsuI35HJ+rB0XdvJSUiPtQiMCIvXng/6GmYaVimOju5
+         U2RI+NNGNclEBw29RrxEe771uRQJ1ru6TOzP5zeczAuUCCLQNuyMWj+QC7XXMeskb96J
+         /CG8EPXFX9oyU4UwNW7Kkrwsfr3JqdBPs7HNPblTvQzL8LIYMsndnyP6R6sxF/Lo8VnZ
+         romJHHfFC8+WAoceEww3c8geSDRnBKShO/dK7VEm0W4b8O0eTk64W86cjbDafyJF/EZO
+         dKsA==
+X-Gm-Message-State: AOAM533B27zLisjjwIoVLxWtO+EZnqfsnSZ90GtID362r4BZWrBFxW+d
+	vV8kufHnG5XZAZ1vtcy0ZdR2jdjEGQDCxE7+zIo=
 X-Google-Smtp-Source: 
- ABdhPJyJtWn2l0Bl5aIMQV3C9ttz6f6p9nUNlE+KZIpSZLcOCKE8t5Ijjs01utgpnBMTW3Q1h9POUaBEsG4Z5aO45Tg=
-X-Received: by 2002:ac5:cd88:0:b0:32c:5497:6995 with SMTP id
- i8-20020ac5cd88000000b0032c54976995mr203175vka.33.1646841861392; Wed, 09 Mar
- 2022 08:04:21 -0800 (PST)
+ ABdhPJzBqO9etToFKxDABsTs7zeiLxOwL7rQ8mhC821dmdUvfPxYld22FHzEEvh9Dx0ANcppRlkj82LQusks6cfWNos=
+X-Received: by 2002:ac8:574e:0:b0:2df:f40a:8b79 with SMTP id
+ 14-20020ac8574e000000b002dff40a8b79mr619346qtx.634.1646846291329; Wed, 09 Mar
+ 2022 09:18:11 -0800 (PST)
 MIME-Version: 1.0
-From: Neuber Sousa <neuberfran@gmail.com>
-Date: Wed, 9 Mar 2022 13:04:10 -0300
-Message-ID: 
+References: 
  <CABWL1P=zE2ytCjuyxG9em7WRzoPQt1ztcTHVm1MzN1hfQkbDTQ@mail.gmail.com>
-Subject: imx7d-pico with hardknott - I need help enabling remoteproc in device
- tree to show /linux/remoteproc.h file and modules in /sys/class/remoteproc
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000264e9d05d9cb408d"
+In-Reply-To: 
+ <CABWL1P=zE2ytCjuyxG9em7WRzoPQt1ztcTHVm1MzN1hfQkbDTQ@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 9 Mar 2022 09:17:45 -0800
+Message-ID: 
+ <CAMKF1spar4Vj85gEAB8NPyN5J4vKxknOBh6pDAxjB2E0JYtGWg@mail.gmail.com>
+Subject: Re: [yocto] imx7d-pico with hardknott - I need help enabling
+ remoteproc in device tree to show /linux/remoteproc.h file and modules in
+ /sys/class/remoteproc
+To: Neuber Sousa <neuberfran@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 09 Mar 2022 16:04:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56410
+ <yocto@lists.yoctoproject.org>; Wed, 09 Mar 2022 17:18:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56411
 
---000000000000264e9d05d9cb408d
-Content-Type: text/plain; charset="UTF-8"
+On Wed, Mar 9, 2022 at 8:04 AM Neuber Sousa <neuberfran@gmail.com> wrote:
+>
+> Hi,
+> I do this:$ mkdir tn-imx-yocto$ cd tn-imx-yocto$ repo init -u https://git=
+hub.com/TechNexion/tn-imx-yocto-manifest.git -b hardknott_5.10.y-stable -m =
+imx-5.10.72-2.2.0-2022Q1.xml$ repo sync -j8$ DISTRO=3Dfsl-imx-x11 MACHINE=
+=3Dpico-imx7 BASEBOARD=3Dpi source tn-setup-release.sh -b build-x11-pico-im=
+x7$ bitbake core-image-base
+>
+> I enable REMOTEPROC and RPMsg in kernel. I have imx_rpmgs_tty module. But=
+ I don't have remoteproc. Why?
 
-Hi,
-I do this:$ mkdir tn-imx-yocto$ cd tn-imx-yocto$ repo init -u
-https://github.com/TechNexion/tn-imx-yocto-manifest.git -b
-hardknott_5.10.y-stable -m imx-5.10.72-2.2.0-2022Q1.xml$ repo sync -j8$
-DISTRO=fsl-imx-x11 MACHINE=pico-imx7 BASEBOARD=pi source
-tn-setup-release.sh -b build-x11-pico-imx7$ bitbake core-image-base
-
-I enable REMOTEPROC and RPMsg in kernel. I have imx_rpmgs_tty module. But I
-don't have remoteproc. Why?
-
---000000000000264e9d05d9cb408d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<br>I do this:$ mkdir tn-imx-yocto$ cd tn-imx-yocto$ re=
-po init -u <a href=3D"https://github.com/TechNexion/tn-imx-yocto-manifest.g=
-it">https://github.com/TechNexion/tn-imx-yocto-manifest.git</a> -b hardknot=
-t_5.10.y-stable -m imx-5.10.72-2.2.0-2022Q1.xml$ repo sync -j8$ DISTRO=3Dfs=
-l-imx-x11 MACHINE=3Dpico-imx7 BASEBOARD=3Dpi source tn-setup-release.sh -b =
-build-x11-pico-imx7$ bitbake core-image-base<br><br>I enable REMOTEPROC and=
- RPMsg in kernel. I have imx_rpmgs_tty module. But I don&#39;t have remotep=
-roc. Why?=C2=A0<br></div>
-
---000000000000264e9d05d9cb408d--
+how did you enable it? every BSP has sometimes its own way of adding knobs.
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#56410): https://lists.yoctoproject.org/g/yocto/messag=
+e/56410
+> Mute This Topic: https://lists.yoctoproject.org/mt/89665280/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
+.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
