@@ -1,138 +1,96 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1856DC433F5
-	for <webhook@archiver.kernel.org>; Mon, 14 Mar 2022 20:13:19 +0000 (UTC)
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com
- [209.85.160.175])
- by mx.groups.io with SMTP id smtpd.web08.1630.1647288797643741335
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 60AB5C433F5
+	for <webhook@archiver.kernel.org>; Mon, 14 Mar 2022 22:27:29 +0000 (UTC)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
+ [209.85.221.49])
+ by mx.groups.io with SMTP id smtpd.web11.3010.1647296848227915046
  for <yocto@lists.yoctoproject.org>;
- Mon, 14 Mar 2022 13:13:17 -0700
+ Mon, 14 Mar 2022 15:27:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Ga6dNo2X;
- spf=pass (domain: gmail.com, ip: 209.85.160.175,
- mailfrom: raj.khem@gmail.com)
-Received: by mail-qt1-f175.google.com with SMTP id y15so4770652qta.13
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=e3+oug3q;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.49,
+ mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f49.google.com with SMTP id p9so26223958wra.12
         for <yocto@lists.yoctoproject.org>;
- Mon, 14 Mar 2022 13:13:17 -0700 (PDT)
+ Mon, 14 Mar 2022 15:27:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=ax4s/Nl5c6542Ty5Zn94oKvTAyN3lgycP9DIbtp6L9c=;
-        b=Ga6dNo2XHQ0X5rNg5cwugJJ/24NpeVXpx+MVPTvbKMFsUZFXRPVfaZFVN+LLxXKAGX
-         ScIVVcl8H56jUrGaGTLjezIF9asqvjNzZX68zJ/aWKVvbjN8K+BY1tSAB66xXEoKGV1m
-         1KCxI4jWawfbA0e0iXaVi5N6ANEG/gN+lOBAx19NmgzTpPDrJTEfnQB97LMamKfj2BJj
-         wM2Lup2m8Ycw5HOqpW2KHA9tedCIEJSoP3tOMAhTTV1YWMj1lYC0dpzKFAro3JUHKvq6
-         QPM85HjwZvATEedpFuT3TYyJ84dTZAjfaPmvHhMorCw7PatFXxFC83YPoP4ei5kbQwfS
-         9qqg==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:user-agent:mime-version
+         :content-transfer-encoding;
+        bh=CIygi9xFbaPj5NzbLTXY6Jld45OpSlxQ4Q9sKS0qeq4=;
+        b=e3+oug3qrkAhIS+mGBTcicbt5Xslt/J0KuFTGSJWCD0LyvetDRhbrBy8Aucla7HaAQ
+         5mfEfU6cSMMfhbK1BDqBAlbqjMSC2ANasN4hrK4fewDoJ+emO9hnyqxn2cuSrfcbQxd2
+         uPUw7vUzLoAbwek7mgELbFXoeTSFrxsuMX5Z0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=ax4s/Nl5c6542Ty5Zn94oKvTAyN3lgycP9DIbtp6L9c=;
-        b=6xSDuYBMOH74UGlZ1KlitghUy32xC+xO93RgRsaxKVPRDMUEGzsApf0+5Yne/DKhyr
-         on+rD6V11mISBIV9x1pWpD1zKRzy6gM6pSd4KhluTJZtTXuMlPoZaeTXiWU4XAU9BPxQ
-         7ZBJfcLIhH7s2Epo3Xs2M7qoNljd+1hWHUnYfZoSitI4t0GMBTkqD+q5AgqC3T6Y/U0J
-         GQdLiqzHip0hyPks3u0KN+h3uOpyAiyQ9JX2gfF5/TZ7ZpW6Q4jN4q7TaPOvXN+dljQp
-         4utreIbxtecJ8V/W68gRq+Bdd1JA1rtStC8avnp74R3BsGx20p6mJvcLH3Pr0QNbBaWV
-         DEpA==
-X-Gm-Message-State: AOAM532/vbTs9ulj2FF/ZuxChDRa2trZPcTUthGc1UiMpjKM/ZnlX4ZF
-	yU5kP8Ch1qTMcPQHYow0puroFnGwZDnro8yBxPU=
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=CIygi9xFbaPj5NzbLTXY6Jld45OpSlxQ4Q9sKS0qeq4=;
+        b=Uy2AYAbUgnjB6NqF7BzqOZfGRfAnq9HdDukK1q/OIbLkoox/1n3+oLxHQdwOYKKs7/
+         fEelPus/jCN9KHx0QoKzXt454Tv6TiHB3R9pClCPsAg2ir9dlkhOkGewXJg2FVkGI/LK
+         YK+dEwu2ECKKALuNSvQiNvOHeeVnmWjVbZrv4XnBToZBHuK4rByFMBYg2x5qQUz4A7qN
+         ouxX6vk91aMvx2kaeJauSsGcaO922ckWKKvodXUyvxhOjF0phY24RA1D0MRc5E/Nm3x/
+         3IlQq+ygJvinU9/3T3jHnt3ogpktQAh1OgswpkkaCkJQvAkDsci4aO859kPQBlJNWqwY
+         syEw==
+X-Gm-Message-State: AOAM531mOsTSefePucM3FyzQHcD4goB6Ml414p+4gIWmdmF8KmrbxYuo
+	RSekfKKoxJBVo6+9yh7JTdCqGTJiqYBMFZPT
 X-Google-Smtp-Source: 
- ABdhPJzlriVVOHbSpGuAZN5rtTjS1S5TYcFtvduqQTmu4JfDGCcz8M0djNIWkB+IM+a/ky0G3g2+iJA62tE0ISJB96s=
-X-Received: by 2002:ac8:5842:0:b0:2e1:aa10:e7cd with SMTP id
- h2-20020ac85842000000b002e1aa10e7cdmr19179815qth.330.1647288796649; Mon, 14
- Mar 2022 13:13:16 -0700 (PDT)
-MIME-Version: 1.0
-References: <MADEUP.16DC57946CC24778.3194@lists.yoctoproject.org>
-In-Reply-To: <MADEUP.16DC57946CC24778.3194@lists.yoctoproject.org>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 14 Mar 2022 13:12:50 -0700
+ ABdhPJw3HE3wznw796ZCKxVptCJQh8FNpSU3VS1NjBzx73ofnCgn+datvExPZVQ2GkSC/IRrWl0vAg==
+X-Received: by 2002:adf:eb86:0:b0:1e6:8c92:af6b with SMTP id
+ t6-20020adfeb86000000b001e68c92af6bmr17772537wrn.116.1647296846182;
+        Mon, 14 Mar 2022 15:27:26 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:9098:b3d5:8fee:ea58?
+ ([2001:8b0:aba:5f3c:9098:b3d5:8fee:ea58])
+        by smtp.gmail.com with ESMTPSA id
+ l126-20020a1c2584000000b00387d4f35651sm648770wml.10.2022.03.14.15.27.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Mar 2022 15:27:25 -0700 (PDT)
 Message-ID: 
- <CAMKF1spMMwNFeAcZK1oMvyG1FCkGqgKXANFs6062dAEUYkPeBA@mail.gmail.com>
-Subject: Re: [yocto] configuration fragments
-To: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+ <8b4cbc719143fafed13c8a3ba6704510d3fa4e4a.camel@linuxfoundation.org>
+Subject: QA notification for completed autobuilder build (yocto-3.1.15.rc1)
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>
+Cc: qa-build-notification <qa-build-notification@lists.yoctoproject.org>
+Date: Mon, 14 Mar 2022 22:27:23 +0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.40.4-1ubuntu2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 14 Mar 2022 20:13:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56430
+ <yocto@lists.yoctoproject.org>; Mon, 14 Mar 2022 22:27:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56431
 
-On Mon, Mar 14, 2022 at 12:57 PM Monsees, Steven C (US) via
-lists.yoctoproject.org
-<steven.monsees=3Dbaesystems.com@lists.yoctoproject.org> wrote:
->
->
->
-> Under my aarm64 platform ../recipes-core/images I have a file =E2=80=9Cai=
-ox-swdebugfs.inc=E2=80=9D
->
->
->
-> Which basically contains:
->
->
->
-> EXTRAPATHS_prepend :=3D "$(THISDIR}/files:"
->
-> LIC_FILES_CHKSUM =3D "file://${COMMON_LICENSE_DIR}/MIT;md5=3D0835ade698e0=
-bcf8506ecda2f7b4f302"
->
-> SRC_URI +=3D file://aiox-swdebugfs.cfg
->
->
->
-> I include this in my aiox-swdebugfs.bb like so: =E2=80=9Crequire aiox-swd=
-ebugfs.inc=E2=80=9D
->
->
->
-> It does not appear to apply my configuration fragments=E2=80=A6
->
-> (CONFIG_SCHED_TRACER, CONFIG_TRACER, etc. for additional perf support)
->
->
+A build flagged for QA (yocto-3.1.15.rc1) was completed on the autobuilder and
+is available at:
 
-these are some config files for doing what ? from what it looks like,
-this inc file is adding a kernel config fragment
-if so then it should be appended too kernel recipe so if
-aiox-swdebugfs.bb is kernel recipe then you are doing it
-right, but then you might have to look into this kernel recipe and
-ensure that it has enabled merging configs feature
-from kernel. Otherwise these cfgs wont be processed.
 
->
-> I have the exact same implementation working under my intel platform.
->
->
->
-> Can someone tell me what I might be doing wrong, or how I can get my conf=
-iguration fragments to be applied properly ?
->
-> Any ideas why it might work properly under one architecture and not on th=
-e other ?
->
->
->
-> Thanks,
->
-> Steve
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#56429): https://lists.yoctoproject.org/g/yocto/messag=
-e/56429
-> Mute This Topic: https://lists.yoctoproject.org/mt/89782695/1997914
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
-.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+    /srv/autobuilder/autobuilder.yocto.io/pub/releases/yocto-3.1.15.rc1
+
+
+Build hash information: 
+
+bitbake: d22cc1e587c650fd5f90cda32f5720f8a3105aac
+meta-agl: 9df7a40dd0b5e3ee1ed72e460dc99193eeb4bd6c
+meta-arm: d21ded082c27959c8d617fd18da60b236d2ec62b
+meta-aws: 9979cfa676105cb68cfadfdaeabf044d7c919319
+meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
+meta-intel: 8781f8352e67814db7a26708437fd0820524d3d8
+meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
+meta-openembedded: 0722ff6f021df91542b5efa1ff5b5f6269f66add
+oecore: 8906aa9ec0a80b0f8998fb793f4e9491b3179179
+poky: b41d4e46d30ed32e11d68466721a0f4056bad700
+
+
+
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+
 
