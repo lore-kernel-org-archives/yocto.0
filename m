@@ -1,113 +1,164 @@
-Return-Path: <andrei@gherzan.com>
+Return-Path: <ralph.siemsen@linaro.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CFEC5C433EF
-	for <webhook@archiver.kernel.org>; Mon, 14 Mar 2022 11:12:37 +0000 (UTC)
-Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com
- [64.147.123.25])
- by mx.groups.io with SMTP id smtpd.web11.25102.1647256356904983597
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 529ADC433EF
+	for <webhook@archiver.kernel.org>; Mon, 14 Mar 2022 19:44:28 +0000 (UTC)
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com
+ [209.85.160.171])
+ by mx.groups.io with SMTP id smtpd.web12.1192.1647287067629921172
  for <yocto@lists.yoctoproject.org>;
- Mon, 14 Mar 2022 04:12:37 -0700
+ Mon, 14 Mar 2022 12:44:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gherzan.com header.s=fm2 header.b=rk6sCa5u;
- spf=pass (domain: gherzan.com, ip: 64.147.123.25,
- mailfrom: andrei@gherzan.com)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-	by mailout.west.internal (Postfix) with ESMTP id A56493202069;
-	Mon, 14 Mar 2022 07:12:35 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Mon, 14 Mar 2022 07:12:35 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gherzan.com; h=
-	cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-	:message-id:mime-version:reply-to:sender:subject:subject:to:to;
-	 s=fm2; bh=1qe7yWw2I7a54GZUfZIG6rwjHH+22QcrS186c5aqk4I=; b=rk6sC
-	a5u31sw6D+ceWg4cX4S/uMiml48BVQ4HEVG86IZXz68kTCXNSxxxgW0dj/EDrwdI
-	frcqtQtEdG7N0bnETza/MgeVaQ/qJOMFLTGckZmmvVY2PUIXUffxBFy7fUQ5PQ0Y
-	W30ejrgKvX4ziOpjoL+pBgpq6o8LWm3ukWQ1zDmPS2DieKskWSGTIgNOw1BhgWzn
-	kOeTnxNryuH4JO0OS/PIUZeRw/8pliP012JpR+VOy/26ToTXg+1LMcOJCR4We0Db
-	zvbRHkAuDKk8rB4wQjuGG2LSuFxdgLVsFLgTkWkRXkJdAhvXFKykHUidmMXdjGqO
-	bmX1x6xMrdrlM2ZKQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-	:from:from:in-reply-to:message-id:mime-version:reply-to:sender
-	:subject:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm2; bh=1qe7yWw2I7a54GZUfZIG6rwjHH+22
-	QcrS186c5aqk4I=; b=WOvDrTbJPpB1OUSYWNGrhnb92OrBieZ/k3X72CZ3r6yFP
-	yiNfkF1E2EpVsZavectv+q+DIIuFUfjIedm7ZCvf6Ynn7e/QoV8gBWEiT6Kfophy
-	5r6tLjMNCtJyXkDVAn1K45in830K742WTtmgUfpZM1pUjR/S6y/+6ZCZn7ulcNzs
-	WaX5wcKFRvuhtv3IHy4NKJRn8xMs6bFE3WSwHE1FUz01ViwBNKU3QVNIEMLj8Cva
-	iq9tiDjaiyIz410mVziraG+Gb8u/UG/f9aUJEYjyYzA5BE6DQTYgaorAufx+wc5N
-	n4rCQXQl6i804w9dWelxEGlew4Q5n+SAnBMPF43gQ==
-X-ME-Sender: <xms:IyMvYrN4LYZK6DGpcVtJnZ7htFA4UYvXSwYXl6mbWAj7Vg5OHvirvw>
-    <xme:IyMvYl9Sx8Isr4p5zVBgcr9m9Gw5xpeHlbe_nGEVlH526f0CSg3YrZ2vfzOt-fk0A
-    O92ZOsbstGmr34dgd8>
-X-ME-Received: 
- <xmr:IyMvYqTE00u_wZLdh_zvSjqDuMJFtTd2O3sS0EzQ7hiJZfZ3VIYwkNUdOtOtj5EVjIQRNvdnstINUtgxrmi1lCnmCoG39QFbt6xAxM7mO18X3lC79A6EtyjC>
-X-ME-Proxy-Cause: 
- gggruggvucftvghtrhhoucdtuddrgedvvddruddvkedgvdegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgggfestdekredtre
-    dttdenucfhrhhomheptehnughrvghiucfihhgvrhiirghnuceorghnughrvghisehghhgv
-    rhiirghnrdgtohhmqeenucggtffrrghtthgvrhhnpeejkeetffevkeelhfevleduueekff
-    eihfejgfduhfeiteeuleeltdegkeefieffieenucffohhmrghinhepphihphhirdhorhhg
-    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghnug
-    hrvghisehghhgvrhiirghnrdgtohhm
-X-ME-Proxy: <xmx:IyMvYvt96U8KQLut6yfDbTo86dWi_TOB1RrWGA8x0SVX6j56Wn2vYQ>
-    <xmx:IyMvYjfqQdfRlmN39TclQCJHfmA1n1uRHh5SbkxA8H_h0qdh98hrVg>
-    <xmx:IyMvYr2_GP293xAsvnD_djwXJdc_F_31bN60-zAO6YurcgQ7M0-DOw>
-    <xmx:IyMvYrEt9ofM3TYupZS3tMyNwv2uncPPpKZl-XgdIgtKg8UtO95QXQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 14 Mar 2022 07:12:34 -0400 (EDT)
-From: Andrei Gherzan <andrei@gherzan.com>
+ dkim=pass header.i=@linaro.org header.s=google header.b=OfpaNtrn;
+ spf=pass (domain: linaro.org, ip: 209.85.160.171,
+ mailfrom: ralph.siemsen@linaro.org)
+Received: by mail-qt1-f171.google.com with SMTP id a14so14096978qtx.12
+        for <yocto@lists.yoctoproject.org>;
+ Mon, 14 Mar 2022 12:44:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DPdaE/q2dTlrKlZEW7F3IL74qGSXwRbJZQHAKj8bEUk=;
+        b=OfpaNtrn7JnZsSFczSetdKnCFj0IW6RVdd0IZlILFdMQWm5OtOi8SIrqks2xa1Hu8z
+         QEs33/7fPq4dbcUuHXHOGfnDpZ6EbLWp33JlsdEi4Vwk9Kmy609KPItoKV83Dqr2bhwG
+         6zXwskWuStD7s9ycgXAk194GZShWWeZgD3O3e/36rAwxOEBnj/BgnBJzj/F78eIsYLvo
+         AncP8pp1mXMTsN5DOFKbUbfeuX/v5z/zDrLHh3OAfmyl5v4tskXYAM3hs0qjDBcZvn2h
+         UPuDVxCfqELilVpI85/kIgQklJsJgozusnD9Q6oU3vSDdSvGxAv1XGZYnD5/Qypu5X51
+         Ce+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DPdaE/q2dTlrKlZEW7F3IL74qGSXwRbJZQHAKj8bEUk=;
+        b=tCgKcFjr9G2MV5b1Guzt9Sqm3NrQ7kmsi6/hiyoBn9H0eJv7oV2RBtAmzozAOTx8HP
+         tby+ypq6E59im/FmBzUUIcFW+Z0ep9zu6DohoY02ipGKtYtEmfwJWpy9TJeUwGLoby8n
+         UApSNxw9OdTB5OoN5XaM4gqMqs5yX5y9PxVNQGk9DBayMXwsVqjzTU1La86sJsto2R5M
+         Hnt8GY8ALB0vn58pX+JnBH5zXrNuwm5s3oAaBmtCxyzFEKYgNRNN2RLO40CS5XwitafY
+         xhMQHA+keUzT8kjnubw9moaqdHteA+jBpNaefQBAnxDidrqq9ly4sboMApHWt/Hoi41d
+         X8GA==
+X-Gm-Message-State: AOAM531QbzTKu9bjwUGchhvqLF4YxBQ/eRbIvY7ITeRqQTNXEoNBHXhU
+	zWQtXJemLd/DI2eRuJDi5CvQUNjN9w/Yrw==
+X-Google-Smtp-Source: 
+ ABdhPJyr8+oIIIPjJyQRvZwp8QodbZOTOAhbKbGhAE9NBMgRtT8bJ+b6yEqOlTrnyB/Bnx91b8oqUQ==
+X-Received: by 2002:ac8:59c7:0:b0:2e1:a0d1:fc7b with SMTP id
+ f7-20020ac859c7000000b002e1a0d1fc7bmr19941694qtf.320.1647287066659;
+        Mon, 14 Mar 2022 12:44:26 -0700 (PDT)
+Received: from maple.netwinder.org (rfs.netwinder.org. [206.248.184.2])
+        by smtp.gmail.com with ESMTPSA id
+ bm21-20020a05620a199500b0067d5e6c7bd8sm6495227qkb.56.2022.03.14.12.44.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Mar 2022 12:44:26 -0700 (PDT)
+From: Ralph Siemsen <ralph.siemsen@linaro.org>
 To: yocto@lists.yoctoproject.org
-Cc: andrei@gherzan.com,
-	Andrei Gherzan <andrei.gherzan@huawei.com>
-Subject: [meta-zephyr][PATCH 1/1] python3-pyelftools: Drop recipe in favour of
- oe-core
-Date: Mon, 14 Mar 2022 12:12:20 +0100
-Message-Id: <20220314111220.1725808-1-andrei@gherzan.com>
+Cc: Ralph Siemsen <ralph.siemsen@linaro.org>
+Subject: [meta-security][dunfell][PATCH] tpm2-tools: backport fix for
+ CVE-2021-3565
+Date: Mon, 14 Mar 2022 15:44:15 -0400
+Message-Id: <20220314194415.3515050-1-ralph.siemsen@linaro.org>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 14 Mar 2022 11:12:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56427
+ <yocto@lists.yoctoproject.org>; Mon, 14 Mar 2022 19:44:28 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56428
 
-From: Andrei Gherzan <andrei.gherzan@huawei.com>
+tpm2_import: fix fixed AES key CVE-2021-3565
 
-All the LAYERSERIES_COMPAT versions provide this recipe in oe-core.
-Also, west seems to only depend on 0,26 which is provided even in
-dunfell.
+Upstream commit (with offset adjusted)
+https://github.com/tpm2-software/tpm2-tools/commit/c069e4f179d5e6653a84fb236816c375dca82515
 
-Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
+Signed-off-by: Ralph Siemsen <ralph.siemsen@linaro.org>
 ---
- .../python/python3-pyelftools_0.27.bb              | 14 --------------
- 1 file changed, 14 deletions(-)
- delete mode 100644 meta-zephyr-core/recipes-devtools/python/python3-pyelftools_0.27.bb
+Discussion items:
 
-diff --git a/meta-zephyr-core/recipes-devtools/python/python3-pyelftools_0.27.bb b/meta-zephyr-core/recipes-devtools/python/python3-pyelftools_0.27.bb
-deleted file mode 100644
-index 1405fc5..0000000
---- a/meta-zephyr-core/recipes-devtools/python/python3-pyelftools_0.27.bb
-+++ /dev/null
-@@ -1,14 +0,0 @@
--# SPDX-FileCopyrightText: Huawei Inc.
--# SPDX-License-Identifier: Apache-2.0
--
--SUMMARY = "Python pyelftools"
--HOMEPAGE = "https://pypi.org/project/pyelftools"
--LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://LICENSE;md5=5ce2a2b07fca326bc7c146d10105ccfc"
--
--inherit pypi setuptools3
--
--PYPI_PACKAGE = "pyelftools"
--SRC_URI[md5sum] = "061d67c669a9b1f8d07f28c47fb6a65f"
--SRC_URI[sha256sum] = "cde854e662774c5457d688ca41615f6594187ba7067af101232df889a6b7a66b"
--BBCLASSEXTEND = "native nativesdk"
+1) Perhaps dunfell should update 4.1.1 -> 4.1.3  ?
+   There appear to be only two small fixes
+   https://github.com/tpm2-software/tpm2-tools/blob/4.1.X/CHANGELOG.md
+   https://github.com/tpm2-software/tpm2-tools/commits/4.1.X
+   We still need this backport regardless.
+
+2) hardknott and honister are on 5.0
+   According to CVE configuration data, this version is not affected.
+   But looking at the branch history suggests otherwise.
+   The patch applies cleanly on top of 5.0.
+   Should we backport? Or never mind as these branches are almost EOL?
+
+3) master/kirkstone is on 5.2 which includes the fix already,
+   no action needed for this one.
+
+ ...port-fix-fixed-AES-key-CVE-2021-3565.patch | 43 +++++++++++++++++++
+ .../tpm2-tools/tpm2-tools_4.1.1.bb            |  3 ++
+ 2 files changed, 46 insertions(+)
+ create mode 100644 meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/0001-tpm2_import-fix-fixed-AES-key-CVE-2021-3565.patch
+
+diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/0001-tpm2_import-fix-fixed-AES-key-CVE-2021-3565.patch b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/0001-tpm2_import-fix-fixed-AES-key-CVE-2021-3565.patch
+new file mode 100644
+index 0000000..4fceb2e
+--- /dev/null
++++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/0001-tpm2_import-fix-fixed-AES-key-CVE-2021-3565.patch
+@@ -0,0 +1,43 @@
++From 784be35c52a7083b9535bad2fcca416ff9cfd26b Mon Sep 17 00:00:00 2001
++From: William Roberts <william.c.roberts@intel.com>
++Date: Fri, 21 May 2021 12:22:31 -0500
++Subject: [PATCH] tpm2_import: fix fixed AES key CVE-2021-3565
++
++tpm2_import used a fixed AES key for the inner wrapper, which means that
++a MITM attack would be able to unwrap the imported key. Even the
++use of an encrypted session will not prevent this. The TPM only
++encrypts the first parameter which is the fixed symmetric key.
++
++To fix this, ensure the key size is 16 bytes or bigger and use
++OpenSSL to generate a secure random AES key.
++
++Fixes: #2738
++
++Signed-off-by: William Roberts <william.c.roberts@intel.com>
++---
++ tools/tpm2_import.c | 12 +++++++++++-
++ 1 file changed, 11 insertions(+), 1 deletion(-)
++
++diff --git a/tools/tpm2_import.c b/tools/tpm2_import.c
++index 6404cac..acd8ac8 100644
++--- a/tools/tpm2_import.c
+++++ b/tools/tpm2_import.c
++@@ -146,7 +146,17 @@ static tool_rc key_import(ESYS_CONTEXT *ectx, TPM2B_PUBLIC *parent_pub,
++     TPM2B_DATA enc_sensitive_key = {
++         .size = parent_pub->publicArea.parameters.rsaDetail.symmetric.keyBits.sym / 8
++     };
++-    memset(enc_sensitive_key.buffer, 0xFF, enc_sensitive_key.size);
+++
+++    if(enc_sensitive_key.size < 16) {
+++        LOG_ERR("Calculated wrapping keysize is less than 16 bytes, got: %u", enc_sensitive_key.size);
+++        return tool_rc_general_error;
+++    }
+++
+++    int ossl_rc = RAND_bytes(enc_sensitive_key.buffer, enc_sensitive_key.size);
+++    if (ossl_rc != 1) {
+++        LOG_ERR("RAND_bytes failed: %s", ERR_error_string(ERR_get_error(), NULL));
+++        return tool_rc_general_error;
+++    }
++ 
++     /*
++      * Calculate the object name.
+diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb
+index e90dcfe..f013fa1 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb
+@@ -6,7 +6,10 @@ SECTION = "tpm"
+ 
+ DEPENDS = "tpm2-abrmd tpm2-tss openssl curl autoconf-archive"
+ 
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
+ SRC_URI = "https://github.com/tpm2-software/${BPN}/releases/download/${PV}/${BPN}-${PV}.tar.gz"
++SRC_URI += "file://0001-tpm2_import-fix-fixed-AES-key-CVE-2021-3565.patch"
+ 
+ SRC_URI[md5sum] = "701ae9e8c8cbdd37d89c8ad774f55395"
+ SRC_URI[sha256sum] = "40b9263d8b949bd2bc03a3cd60fa242e27116727467f9bbdd0b5f2539a25a7b1"
 -- 
 2.25.1
 
