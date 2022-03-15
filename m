@@ -1,165 +1,327 @@
-Return-Path: <ralph.siemsen@linaro.org>
+Return-Path: <rudolf.streif@ibeeto.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B7DBC433F5
-	for <webhook@archiver.kernel.org>; Tue, 15 Mar 2022 16:08:37 +0000 (UTC)
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com
- [209.85.222.173])
- by mx.groups.io with SMTP id smtpd.web09.12997.1647360516000694857
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4BB23C433F5
+	for <webhook@archiver.kernel.org>; Tue, 15 Mar 2022 16:08:45 +0000 (UTC)
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com
+ [209.85.210.178])
+ by mx.groups.io with SMTP id smtpd.web11.13003.1647360523863681824
  for <yocto@lists.yoctoproject.org>;
- Tue, 15 Mar 2022 09:08:36 -0700
+ Tue, 15 Mar 2022 09:08:44 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=mgD7KRMm;
- spf=pass (domain: linaro.org, ip: 209.85.222.173,
- mailfrom: ralph.siemsen@linaro.org)
-Received: by mail-qk1-f173.google.com with SMTP id c7so15887800qka.7
+ dkim=pass header.i=@ibeeto-com.20210112.gappssmtp.com header.s=20210112
+ header.b=s5zd/3Mx;
+ spf=neutral (domain: ibeeto.com, ip: 209.85.210.178,
+ mailfrom: rudolf.streif@ibeeto.com)
+Received: by mail-pf1-f178.google.com with SMTP id g19so20445190pfc.9
         for <yocto@lists.yoctoproject.org>;
- Tue, 15 Mar 2022 09:08:35 -0700 (PDT)
+ Tue, 15 Mar 2022 09:08:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ifuF81Z/tqiftrJl0xLz0wPuHgg6GYIOo/qmuDgusf4=;
-        b=mgD7KRMmR8Le410Xgj8PjafDI5CyJyvQqtJpIDKHBNJQzOI0SaEUmwo5b09u64fpEX
-         GFqq1MqtgqcVcN3xoWNHh0k6mJcP2/7iWyO5L7hviKQhdqebggFmw+VxvurLdJUQ0osA
-         g4fG/C0idowm3dkp/MK2ze0JYpHqp4MAhbpCVdidT04pL0P2EbCBMGcgOVDENlET2CTu
-         LbSP8jtrO9uGvwMv3arceyymIOqWr9I2cBnb82/rmImhppCOJOscwcCE8J1PlJmBZZY0
-         OL8rAu8WfGiyFYOJ9LzFlJFSunYaqD5So0Ni54Ni/Ni9GuCsbkH/z26dzeUN3Rbdlz7/
-         R95g==
+        d=ibeeto-com.20210112.gappssmtp.com; s=20210112;
+        h=subject:to:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to;
+        bh=WMIkM/a2Icnq7RdzTQpB0+bVY6+jxZwp2UeKGLIHUyQ=;
+        b=s5zd/3MxLuGx5+6T67wFdJ4pxx1U1FtdcvcLMAae1dCf61sH5hqbbK4dZE1tq3g6hl
+         2Tc9JDVWrX5hWL/XMNYSrMtMEzr6uV1oE7b6FjamaqDwNeW1WOzs38ZIz71yotVgaH73
+         dWzTRZVgLXzF1usPWtaVNLGr8fV0DuPvtXjip74WM+ZhGxVrLQ9yvjKWVMcb1Vd+t3dH
+         nCR6yWB5p6KEMcSmR212mFoI2wfNvpVn2lEzUfkzCj0nCalLUcRoJTPaMfXBZK8kd+1m
+         xnx1Vlq+ZntEyieHt7gqX0XCYOwM4LvK0hNvvEivJSCB5fsVDV0A7GN9u6CSwP2+vRsO
+         kOOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ifuF81Z/tqiftrJl0xLz0wPuHgg6GYIOo/qmuDgusf4=;
-        b=i1DyQaZI6abWwcgMX4DCQYhRJAaaEKjCn8YEnei4iW+UCWN5Xvg2iSWywTv/Umxdbz
-         cibFdw98GxsULEM0eWaN1LTGbLf/gLGq/4RxxN4//lVTRzAm+e5fVlEhyt8rND0R0HVr
-         cv6Skr8PzC0VhIlLwBxLlgJnEJJM54L53Qvd20+LjUyv8PyQTwZozPbmrns6TZtTpXgv
-         MvRDrAJqSNSyQfFnx7wnL5qam2gtVjaW1c5z2cOBIdga1MpzA5PpKopBrZ6zKYSEc7OM
-         QjdZkkqdSKQkQYLXAZPDPr0EB4IPnTGBsVTT+qRRUHpw4cLOq96ziRvT1k5T+tSsw/cf
-         zxtg==
-X-Gm-Message-State: AOAM530jgNty1qDMUnN5LH9wSwUbpphEQJ3bacaLdP04mcbXp05E+tkN
-	LHu3o22tqs8rq4vU3tdeSteQAYZXWOOUCg==
+        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
+         :date:user-agent:mime-version:in-reply-to;
+        bh=WMIkM/a2Icnq7RdzTQpB0+bVY6+jxZwp2UeKGLIHUyQ=;
+        b=F5ZE2W+OmdSpU6Ymz1n8lIsN3HSuLa6YR8ZafiS2UC0Grl1mgy3EvJbNEZYQwexTMd
+         /JnUrHmCf8/LaSWasKNp4r7IC3gNAdNloU3c7yWT4ZsUECGzeqG3R/TfgNkFsiLzG0B7
+         DBXstub9Vth4RBExVH6fHMZ6pX8e7DMGoDq8eQuK7tPNIs5AjbHzKWGsqqZM2RVtqyEM
+         aj/IBPwyLTAh7nueItWlTYdWL2SNay3FyRu/KkcX7qSg0N4ou4HXfqRVKhAfWz7GJNPE
+         c3OK5VJuROGiDzyeAd3tUf0FNT/lJKtN5Sbgxqe5twOf9/YxBjXSbDsuo+RTDOqqjpFA
+         ceDA==
+X-Gm-Message-State: AOAM531Z9dFzouY0Ygd7QsI0cJIVRkUsTg0H6JK8h1l310w7Rd6hubBJ
+	yxpXExlcrNM0UdiNy2mNZtZa6vhhHBXZdrXj
 X-Google-Smtp-Source: 
- ABdhPJwZMWVZuyRpI7SrdGilpw6dTL43Ur1zUZujDbC6SXvqmOelfE5jwHXM92o/ZGR5er+yip1eVg==
-X-Received: by 2002:ae9:e405:0:b0:662:f88d:d47 with SMTP id
- q5-20020ae9e405000000b00662f88d0d47mr18030002qkc.292.1647360515091;
-        Tue, 15 Mar 2022 09:08:35 -0700 (PDT)
-Received: from maple.netwinder.org (rfs.netwinder.org. [206.248.184.2])
+ ABdhPJwRtH2irFpTWlYgncwgB927btGaivS8af9nRqm5Dg1DcHFtgsMTBFCMVtVLVuz6WmHdgMqTOA==
+X-Received: by 2002:a65:6a8e:0:b0:378:b62d:f397 with SMTP id
+ q14-20020a656a8e000000b00378b62df397mr25162314pgu.239.1647360522531;
+        Tue, 15 Mar 2022 09:08:42 -0700 (PDT)
+Received: from ?IPv6:2600:8801:8d2a:a304:93dc:834e:6555:ccaa?
+ ([2600:8801:8d2a:a304:93dc:834e:6555:ccaa])
         by smtp.gmail.com with ESMTPSA id
- g14-20020ae9e10e000000b0067b520a01afsm9396975qkm.108.2022.03.15.09.08.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Mar 2022 09:08:34 -0700 (PDT)
-From: Ralph Siemsen <ralph.siemsen@linaro.org>
-To: yocto@lists.yoctoproject.org
-Cc: Ralph Siemsen <ralph.siemsen@linaro.org>
-Subject: [meta-security][dunfell][PATCH v2] tpm2-tools: backport fix for
- CVE-2021-3565
-Date: Tue, 15 Mar 2022 12:08:27 -0400
-Message-Id: <20220315160827.2399909-1-ralph.siemsen@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220314194415.3515050-1-ralph.siemsen@linaro.org>
-References: <20220314194415.3515050-1-ralph.siemsen@linaro.org>
+ q18-20020a637512000000b003816cf04406sm2349136pgc.22.2022.03.15.09.08.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Mar 2022 09:08:41 -0700 (PDT)
+Subject: Re: [yocto] Query regarding yocto build
+To: Nupur Purohit <nupur100299@gmail.com>, info@yoctoproject.org,
+ yocto@lists.yoctoproject.org
+References: 
+ <CADKSc-hd-e=X83ot5KN=4tLQZqYVvGAnZBK-na6zRi=Fvb-tOw@mail.gmail.com>
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+Autocrypt: addr=rudolf.streif@ibeeto.com; keydata=
+ xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvD
+ Qpe+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ
+ /Qymy+7Cbh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969
+ cQD/S9LNndnK5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM
+ 3sPiHrF+Y2HTdK7j7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEB
+ AAHNKlJ1ZG9sZiBKIFN0cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgA
+ IQUCWFAUBAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf0
+ 3GsVMG6C5QOLaPx6rOgj5qexCH3rfYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBk
+ txioE384/51QTIfCmW8ZG5X0cMC5d38LFvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xl
+ lpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR84ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+w
+ Xl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x5LZhUhGYoqbYwNy9imoBkUAZkbbViNOtX
+ zaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjVLmLHvzsBNBFhQFAQBCADXoLKCuF48
+ 5eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTqk3fb9+Ao6C6IliC9ZRXyAVLD/
+ RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIFpPBpxHRrZnDdEd5IKsy+z
+ w6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJSHWMBh0OMKDeBik5wl
+ svtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mCBCZ+IKhBQR36v
+ tUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIAAkFAlhQFAQC
+ GwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LYUpLNj
+ s4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9MbyE
+ fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8Tz
+ Yf9m2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/Nlouvce
+ P41tsC5daxZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/AN
+ ROZj4g==
+Message-ID: <38204145-1c2b-5bbf-5cb8-51268b0a7778@ibeeto.com>
+Date: Tue, 15 Mar 2022 09:08:40 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: 
+ <CADKSc-hd-e=X83ot5KN=4tLQZqYVvGAnZBK-na6zRi=Fvb-tOw@mail.gmail.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="0naIYeapJfQ0g4I8yJ9E1Fv0tTeJpPKMf"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 15 Mar 2022 16:08:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56445
+ <yocto@lists.yoctoproject.org>; Tue, 15 Mar 2022 16:08:45 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56446
 
-tpm2_import used a fixed AES key for the inner wrapper, which means that
-a MITM attack would be able to unwrap the imported key. Even the
-use of an encrypted session will not prevent this. The TPM only
-encrypts the first parameter which is the fixed symmetric key.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--0naIYeapJfQ0g4I8yJ9E1Fv0tTeJpPKMf
+Content-Type: multipart/mixed; boundary="9zbVKCaJ0SKrDEFIgbcBx7OGfJsEQ22zg";
+ protected-headers="v1"
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+To: Nupur Purohit <nupur100299@gmail.com>, info@yoctoproject.org,
+ yocto@lists.yoctoproject.org
+Message-ID: <38204145-1c2b-5bbf-5cb8-51268b0a7778@ibeeto.com>
+Subject: Re: [yocto] Query regarding yocto build
+References: <CADKSc-hd-e=X83ot5KN=4tLQZqYVvGAnZBK-na6zRi=Fvb-tOw@mail.gmail.com>
+In-Reply-To: <CADKSc-hd-e=X83ot5KN=4tLQZqYVvGAnZBK-na6zRi=Fvb-tOw@mail.gmail.com>
 
-To fix this, ensure the key size is 16 bytes or bigger and use
-OpenSSL to generate a secure random AES key.
+--9zbVKCaJ0SKrDEFIgbcBx7OGfJsEQ22zg
+Content-Type: multipart/mixed;
+ boundary="------------8AAD95823B64CCBC603F888C"
+Content-Language: en-US
 
-Upstream commit (with offset adjusted)
-https://github.com/tpm2-software/tpm2-tools/commit/c069e4f179d5e6653a84fb236816c375dca82515
+This is a multi-part message in MIME format.
+--------------8AAD95823B64CCBC603F888C
+Content-Type: multipart/alternative;
+ boundary="------------6DBF339B53E8D539FF020BA7"
 
-Signed-off-by: Ralph Siemsen <ralph.siemsen@linaro.org>
----
-Changes in v2:
-- added OE metadata to patch file, hopefully correctly
-- separate patch to update v4.1.1 -> 4.1.3 will follow
 
- ...port-fix-fixed-AES-key-CVE-2021-3565.patch | 48 +++++++++++++++++++
- .../tpm2-tools/tpm2-tools_4.1.1.bb            |  3 ++
- 2 files changed, 51 insertions(+)
- create mode 100644 meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/0001-tpm2_import-fix-fixed-AES-key-CVE-2021-3565.patch
+--------------6DBF339B53E8D539FF020BA7
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/0001-tpm2_import-fix-fixed-AES-key-CVE-2021-3565.patch b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/0001-tpm2_import-fix-fixed-AES-key-CVE-2021-3565.patch
-new file mode 100644
-index 0000000..3832063
---- /dev/null
-+++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/0001-tpm2_import-fix-fixed-AES-key-CVE-2021-3565.patch
-@@ -0,0 +1,48 @@
-+From 784be35c52a7083b9535bad2fcca416ff9cfd26b Mon Sep 17 00:00:00 2001
-+From: William Roberts <william.c.roberts@intel.com>
-+Date: Fri, 21 May 2021 12:22:31 -0500
-+Subject: [PATCH] tpm2_import: fix fixed AES key CVE-2021-3565
-+
-+tpm2_import used a fixed AES key for the inner wrapper, which means that
-+a MITM attack would be able to unwrap the imported key. Even the
-+use of an encrypted session will not prevent this. The TPM only
-+encrypts the first parameter which is the fixed symmetric key.
-+
-+To fix this, ensure the key size is 16 bytes or bigger and use
-+OpenSSL to generate a secure random AES key.
-+
-+Fixes: #2738
-+
-+Signed-off-by: William Roberts <william.c.roberts@intel.com>
-+
-+Upstream-Status: Backport
-+https://github.com/tpm2-software/tpm2-tools/commit/c069e4f179d5e6653a84fb236816c375dca82515
-+CVE: CVE-2021-3565
-+Signed-off-by: Ralph Siemsen <ralph.siemsen@linaro.org>
-+---
-+ tools/tpm2_import.c | 12 +++++++++++-
-+ 1 file changed, 11 insertions(+), 1 deletion(-)
-+
-+diff --git a/tools/tpm2_import.c b/tools/tpm2_import.c
-+index 6404cac..acd8ac8 100644
-+--- a/tools/tpm2_import.c
-++++ b/tools/tpm2_import.c
-+@@ -146,7 +146,17 @@ static tool_rc key_import(ESYS_CONTEXT *ectx, TPM2B_PUBLIC *parent_pub,
-+     TPM2B_DATA enc_sensitive_key = {
-+         .size = parent_pub->publicArea.parameters.rsaDetail.symmetric.keyBits.sym / 8
-+     };
-+-    memset(enc_sensitive_key.buffer, 0xFF, enc_sensitive_key.size);
-++
-++    if(enc_sensitive_key.size < 16) {
-++        LOG_ERR("Calculated wrapping keysize is less than 16 bytes, got: %u", enc_sensitive_key.size);
-++        return tool_rc_general_error;
-++    }
-++
-++    int ossl_rc = RAND_bytes(enc_sensitive_key.buffer, enc_sensitive_key.size);
-++    if (ossl_rc != 1) {
-++        LOG_ERR("RAND_bytes failed: %s", ERR_error_string(ERR_get_error(), NULL));
-++        return tool_rc_general_error;
-++    }
-+ 
-+     /*
-+      * Calculate the object name.
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb
-index e90dcfe..f013fa1 100644
---- a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb
-@@ -6,7 +6,10 @@ SECTION = "tpm"
- 
- DEPENDS = "tpm2-abrmd tpm2-tss openssl curl autoconf-archive"
- 
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
- SRC_URI = "https://github.com/tpm2-software/${BPN}/releases/download/${PV}/${BPN}-${PV}.tar.gz"
-+SRC_URI += "file://0001-tpm2_import-fix-fixed-AES-key-CVE-2021-3565.patch"
- 
- SRC_URI[md5sum] = "701ae9e8c8cbdd37d89c8ad774f55395"
- SRC_URI[sha256sum] = "40b9263d8b949bd2bc03a3cd60fa242e27116727467f9bbdd0b5f2539a25a7b1"
--- 
-2.25.1
+Hello,
 
+Topposting since the problem is in the screenshot.
+
+The issue is the naming of the shared object. Linux convention is that a =
+
+shared object contains the version number e.g. log_wrapper.so.1 and=20
+log_wrapper.so is a link to that file.
+
+In you make file either change the install target or use=20
+-soname=3Dlog_wrapper.so.1 when invoking gcc to create the shared object.=
+
+
+:rjs
+
+On 3/15/22 12:52 AM, Nupur Purohit wrote:
+> Hi,
+>
+> Please find the below error snapshot.
+>
+> I am trying to integrate OMADM (Open mobile alliance device=20
+> management) on the top of yocto 3.4.2 (honister) poky. And facing the=20
+> following issue with bitbake log-wrapper ( one of the APIs I'm trying=20
+> to integrate).
+>
+> Please provide assistance to resolve the error.
+>
+> Thanks and regards,
+> Nupur
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#56439): https://lists.yoctoproject.org/g/yocto/mess=
+age/56439
+> Mute This Topic: https://lists.yoctoproject.org/mt/89793406/3617932
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [rudolf.strei=
+f@ibeeto.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+--=20
+Rudolf J Streif
+CEO/CTO ibeeto
++1.855.442.3386 x700
+
+
+--------------6DBF339B53E8D539FF020BA7
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <p>Hello,</p>
+    <p>Topposting since the problem is in the screenshot.</p>
+    <p>The issue is the naming of the shared object. Linux convention is
+      that a shared object contains the version number e.g.
+      log_wrapper.so.1 and log_wrapper.so is a link to that file.</p>
+    <p>In you make file either change the install target or use
+      -soname=3Dlog_wrapper.so.1 when invoking gcc to create the shared
+      object.</p>
+    <p>:rjs<br>
+    </p>
+    <div class=3D"moz-cite-prefix">On 3/15/22 12:52 AM, Nupur Purohit
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:CADKSc-hd-e=3DX83ot5KN=3D4tLQZqYVvGAnZBK-na6zRi=3DFvb-tOw@mai=
+l.gmail.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <div dir=3D"auto">Hi,
+        <div dir=3D"auto"><br>
+        </div>
+        <div dir=3D"auto">Please find the below error snapshot.</div>
+        <div dir=3D"auto"><br>
+        </div>
+        <div dir=3D"auto">I am trying to integrate OMADM (Open mobile
+          alliance device management) on the top of yocto 3.4.2
+          (honister) poky. And facing the following issue with bitbake
+          log-wrapper ( one of the APIs I'm trying to integrate).</div>
+        <div dir=3D"auto"><br>
+        </div>
+        <div dir=3D"auto">Please provide assistance to resolve the error.=
+</div>
+        <div dir=3D"auto"><br>
+        </div>
+        <div dir=3D"auto">Thanks and regards,</div>
+        <div dir=3D"auto">Nupur</div>
+      </div>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+Links: You receive all messages sent to this group.
+View/Reply Online (#56439): <a class=3D"moz-txt-link-freetext" href=3D"ht=
+tps://lists.yoctoproject.org/g/yocto/message/56439">https://lists.yoctopr=
+oject.org/g/yocto/message/56439</a>
+Mute This Topic: <a class=3D"moz-txt-link-freetext" href=3D"https://lists=
+=2Eyoctoproject.org/mt/89793406/3617932">https://lists.yoctoproject.org/m=
+t/89793406/3617932</a>
+Group Owner: <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:yocto+o=
+wner@lists.yoctoproject.org">yocto+owner@lists.yoctoproject.org</a>
+Unsubscribe: <a class=3D"moz-txt-link-freetext" href=3D"https://lists.yoc=
+toproject.org/g/yocto/unsub">https://lists.yoctoproject.org/g/yocto/unsub=
+</a> [<a class=3D"moz-txt-link-abbreviated" href=3D"mailto:rudolf.streif@=
+ibeeto.com">rudolf.streif@ibeeto.com</a>]
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+
+</pre>
+    </blockquote>
+    <pre class=3D"moz-signature" cols=3D"72">--=20
+Rudolf J Streif
+CEO/CTO ibeeto
++1.855.442.3386 x700</pre>
+  </body>
+</html>
+
+--------------6DBF339B53E8D539FF020BA7--
+
+--------------8AAD95823B64CCBC603F888C
+Content-Type: application/pgp-keys;
+ name="OpenPGP_0x8D8CA82927339B75.asc"
+Content-Transfer-Encoding: quoted-printable
+Content-Description: OpenPGP public key
+Content-Disposition: attachment;
+ filename="OpenPGP_0x8D8CA82927339B75.asc"
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvDQ=
+pe+
+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ/Qymy=
++7C
+bh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969cQD/S9LNn=
+dnK
+5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM3sPiHrF+Y2HTd=
+K7j
+7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEBAAHNKlJ1ZG9sZiBKI=
+FN0
+cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgAIQUCWFAUBAIbAwULCQgHA=
+gYV
+CAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf03GsVMG6C5QOLaPx6rOgj5qexC=
+H3r
+fYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBktxioE384/51QTIfCmW8ZG5X0cMC5d=
+38L
+Fvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xllpeOfKQD3wn99w5dzXYhvajXCWwAjjpWr=
+R84
+ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+wXl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq=
+4x5
+LZhUhGYoqbYwNy9imoBkUAZkbbViNOtXzaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBh=
+jVL
+mLHvzsBNBFhQFAQBCADXoLKCuF485eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOm=
+Tqk
+3fb9+Ao6C6IliC9ZRXyAVLD/RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwR=
+IFp
+PBpxHRrZnDdEd5IKsy+zw6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDsp=
+JSH
+WMBh0OMKDeBik5wlsvtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/=
+mCB
+CZ+IKhBQR36vtUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIA=
+AkF
+AlhQFAQCGwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2=
+LYU
+pLNjs4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9M=
+byE
+fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8TzY=
+f9m
+2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/NlouvceP41ts=
+C5d
+axZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/ANROZj4g=3D=
+=3D
+=3DLHwf
+-----END PGP PUBLIC KEY BLOCK-----
+
+--------------8AAD95823B64CCBC603F888C--
+
+--9zbVKCaJ0SKrDEFIgbcBx7OGfJsEQ22zg--
+
+--0naIYeapJfQ0g4I8yJ9E1Fv0tTeJpPKMf
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsB5BAABCAAjFiEEVg4uKeQrdCNuC2kVjYyoKSczm3UFAmIwuggFAwAAAAAACgkQjYyoKSczm3Vh
+5Af/UrdVpWGAjH9QsuVRLTDsL8st9F5tR3A4MOnbjzrR1z4+IAvCLVPltzxtixK/9lgVr0ypY3xZ
+mul+3Se84LWLvWwWbar3Qm1e9eg/E2CIQ+7xzfpl0mhu0y56Jvav9C0DFv/nuz4qsWlFihKubamL
+5nPnkPKJacw80v3RIkcTT+2dfgK45nEugVEHeFVYbRQ3LS8ry8sT3+FMpddFKf1em2WQV01Gazsp
+WNUTi7+lKVrQTuDgpcvBhYfTBZwFn26ocWumISwu91YiSoqqwKMMPcM2eCB4POSjcXNIVSVYeELL
+42mKJsYZkPuhGV7/768BVqLa/vSIWlLN0TjPmysWpw==
+=J+hp
+-----END PGP SIGNATURE-----
+
+--0naIYeapJfQ0g4I8yJ9E1Fv0tTeJpPKMf--
 
