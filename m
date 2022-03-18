@@ -1,546 +1,672 @@
-Return-Path: <heideggm@hotmail.com>
+Return-Path: <dwatkins@sierrawireless.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1358FC433EF
-	for <webhook@archiver.kernel.org>; Fri, 18 Mar 2022 19:26:06 +0000 (UTC)
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (NAM11-DM6-obe.outbound.protection.outlook.com [40.92.19.74])
- by mx.groups.io with SMTP id smtpd.web11.14150.1647631565300650998
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2407AC433F5
+	for <webhook@archiver.kernel.org>; Fri, 18 Mar 2022 19:28:45 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (NAM11-CO1-obe.outbound.protection.outlook.com [40.107.220.49])
+ by mx.groups.io with SMTP id smtpd.web11.14186.1647631724151780656
  for <yocto@lists.yoctoproject.org>;
- Fri, 18 Mar 2022 12:26:05 -0700
+ Fri, 18 Mar 2022 12:28:44 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@hotmail.com header.s=selector1 header.b=udQxgxZX;
- spf=pass (domain: hotmail.com, ip: 40.92.19.74,
- mailfrom: heideggm@hotmail.com)
+ dkim=pass header.i=@sierrawireless.com header.s=selector1 header.b=h+ONPBJt;
+ spf=pass (domain: sierrawireless.com, ip: 40.107.220.49,
+ mailfrom: dwatkins@sierrawireless.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LV1N2hcrYMCf+j1ID2JJG2ESbgAz+FSV0ALsfw4D22HOH2X/4ilYJvO0EmZ8WCLHzhHsVJrsKIn9QbnWcDTmO0HLTA2jqmwUU/n3rgiCBQNF2KprCAcYVvVpxKkuDbN7pnP8rtvYLPaPTysXw1o2yv/ydYDX3UNVet4/EQbDofnv0//1cgjlDJK2RDU/I7WG0eNX2H4tOqUylcIA2XNd+hgpuUOIWYN2ooVXO3ibV7gcqtDirTWcq1KsYkX2W9dFIgsdS0hWm9owIpS7u7zsEUkbp6GxmfOh+oFAnRq1/RFEwBKt1838KNKJU6DqFync+VwFJS1pJT2IYhkTYdI0xA==
+ b=RGPEpcwgZewHJDjNFm+wtFQb3hIBmAbaBXiSSQD1YaR0mcDY8rxNWfyg94yoEBjUawJ4eQmE1ZI0v6Iz7KALTOCuUsgjjHdZO9zY1aWTSE1Wx7wzZDPL+13qKnWVnLpKxas0ogsp9X2EkMXbd9VLepgQr1RD7lltWEP10CWB1P/CdufnACGbyAXKRD7E6WuD+Jgyv9PIpedChvX5+sJGQ9F1CrAnheBDBH7FxbbvD5qyLtGm1yvQjnpyTcMm7sdkCxU6V4wAqkciwW5o+bzs0Nl63UlTjDHxUZSXGYHu/2JI9XQBMoVmqoX14zOzjxkRfa6ZX8MbiPoJe1u0gPnONw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QtHfjUZbf1BtJSQYJEyARm+Ol2RRjIslIfpKSbpw5jw=;
- b=WpzdC8qwiOJPLu4nH7eDup3eEPCDN24m59H8I9J0X/+dfc3Gdf+HGYqOa5BMT6rNEI011SMa7JGwonYxgwefhaOlzvg1cQbhivjdaCtC5jYYWh+e9pS6wmqjjXlsAJI3jFopwST9BQB3D5LUSTOFazDtr1isORzuEGi7RVkEvKTpcD0nIf8tncOV6zyWwX1hA7WJipQrGGOdqBtX911euv8NgQDPy4YzckmqBU2V6sGYI38fsVlk7OW0EPWxoRQ65KEPlvnBbOW9AWs1YQ4aYSRTFCnuuK4PFWRKjtmjl0uBOtl8EIcqOrf/fZgDKwP1weyzodhVrnamD7Fw0gxYzw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ bh=8xyyfWY2hu8zBpSYEdjTYtcogo7+Ee5TtJRXdL1JFnA=;
+ b=dD1NJbcVLSCiWfmt2u2H1+J8LjlMcXFx4ZXBu5RCPHRYHnB+z+o8u5YeDQhrohSGOFt201rkaY3ynsnaPHDjo8q9OhPwSb5M8lj/lVroUncwLcoHyrcuyJu9XK+8KGYf2dGR+win0DfVtYIolDOLcMvBJgpuDLHnZ0voKzdvsQMcqTx54TzQugqITTJR1XSkXvP7XhqImL5ZvScRwwu/UbhnlYfQdkpn5SLrL8Z17pKz6fWIXz7DeM8JW0oYH9TnlQSHJ/UFwPk3Fhj+QIrkkMXuVjr0a7Hpwf5qvkNxRds+rtG/5W+tiiqmqiSKPTHqeM7sQKIikdVm+pfZ3NjwJA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=sierrawireless.com; dmarc=pass action=none
+ header.from=sierrawireless.com; dkim=pass header.d=sierrawireless.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sierrawireless.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QtHfjUZbf1BtJSQYJEyARm+Ol2RRjIslIfpKSbpw5jw=;
- b=udQxgxZXrSuu8x4xIwocTPNNlFSzpEk8OofV/3eUV8lqJQK8oZMDWIvzOy49C8hPdNAWixLza1agxZ1aHuSw/AW6Z2ht/d4KzLqfk4fFIcj+yhCkG6CCwHEcmmZ6R8/PZkdmXpOa5AXFGpKV5XIXZ0ieTx5J0tB/w+jTPNPgrTLXgLiW23wNzvFN/DbYrdGTMW3fTOngHtqvIc7h93pI8JYT2VcmxtqQZd91eAGbkgCr4rS+d90fWbwE59cIiqI0bq0VuF7DbwhaFKVt1rVinSzD7EaNjG4wA2p2NCCVYVtf6T/aforzVG+G4UO9KvZKFtVbUZ8GZm1IBXOjknY3Pg==
-Received: from DM8PR16MB4357.namprd16.prod.outlook.com (2603:10b6:8:30::8) by
- BYAPR16MB2629.namprd16.prod.outlook.com (2603:10b6:a03:90::28) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5081.17; Fri, 18 Mar 2022 19:26:02 +0000
-Received: from DM8PR16MB4357.namprd16.prod.outlook.com
- ([fe80::ece2:62d7:a186:7b83]) by DM8PR16MB4357.namprd16.prod.outlook.com
- ([fe80::ece2:62d7:a186:7b83%4]) with mapi id 15.20.5081.018; Fri, 18 Mar 2022
- 19:26:02 +0000
-From: Edgar Mobile <heideggm@hotmail.com>
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] runqemu - ERROR - Failed to run qemu:
- qemu-system-aarch64: Virtio VGA not available.
-Thread-Topic: [yocto] runqemu - ERROR - Failed to run qemu:
- qemu-system-aarch64: Virtio VGA not available.
-Thread-Index: 
- AQHYOSrnDihWuD59JE6B4gVYRW8F9azCGF2AgAE4Js6AABH+AIAAAdnkgAAM7oCAABqst4AADeCAgAABtxCAAewkog==
-Date: Fri, 18 Mar 2022 19:26:02 +0000
+ bh=8xyyfWY2hu8zBpSYEdjTYtcogo7+Ee5TtJRXdL1JFnA=;
+ b=h+ONPBJtxFPShmf+C46DCGehGUyKiDNMPyXzDCqzF7JyscxIvFsI1Xyt0w7biVj6FCv3z3Lq9/cH1RD6RE8x69AsOSsah1DUvmit3IvDqsLeWeUxI64oV/jUuvYN1/eZZ+FbLVMnSxCYYsy+x6TMBFn9ZU9YGMKLKcu9DfvQwx0=
+Received: from CO6PR02MB8740.namprd02.prod.outlook.com (2603:10b6:303:137::20)
+ by BYAPR02MB5989.namprd02.prod.outlook.com (2603:10b6:a03:121::26) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.17; Fri, 18 Mar
+ 2022 19:28:39 +0000
+Received: from CO6PR02MB8740.namprd02.prod.outlook.com
+ ([fe80::d476:8d6f:d74b:d2ad]) by CO6PR02MB8740.namprd02.prod.outlook.com
+ ([fe80::d476:8d6f:d74b:d2ad%5]) with mapi id 15.20.5081.014; Fri, 18 Mar 2022
+ 19:28:39 +0000
+From: Darcy Watkins <dwatkins@sierrawireless.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: meta-java: classpath recipe needs inherit from pkgconfig in kirkstone
+Thread-Topic: meta-java: classpath recipe needs inherit from pkgconfig in
+ kirkstone
+Thread-Index: AQHYOvUFSqr2uydZu02rIu30HpNFog==
+Date: Fri, 18 Mar 2022 19:28:39 +0000
 Message-ID: 
- <DM8PR16MB43571EA20E3A050872A0601EC7139@DM8PR16MB4357.namprd16.prod.outlook.com>
-References: 
- <DM8PR16MB43578CD48FE66AE37B2C3545C7119@DM8PR16MB4357.namprd16.prod.outlook.com>
- <CANNYZj_5Msuteo-xTAZ3UeynnHKC9hWyWL_gc3_zH+ubHq_PGg@mail.gmail.com>
- <DM8PR16MB4357DD3F1C9DEAB3058508B5C7129@DM8PR16MB4357.namprd16.prod.outlook.com>
- <CANNYZj9ousDr7Bci_6gFkXRFDvnr591vXyWeMmBLC=LWTWfKwg@mail.gmail.com>
- <DM8PR16MB4357E7702635621F70A968D4C7129@DM8PR16MB4357.namprd16.prod.outlook.com>
- <CANNYZj_VA0Ta_XiE9ionCSUhCZZ-sVmCSDQt3uQ62C+9vPA+oA@mail.gmail.com>
- <DM8PR16MB43579E0AB862CEFBE772AE42C7129@DM8PR16MB4357.namprd16.prod.outlook.com>
- <CANNYZj-Z5sGd7bUB0XuEVYL84BUTA-qsoYg9na1U1kV67nVSKQ@mail.gmail.com>
- <16DD2FD3E4D1257B.29979@lists.yoctoproject.org>
-In-Reply-To: <16DD2FD3E4D1257B.29979@lists.yoctoproject.org>
-Accept-Language: en-US
-Content-Language: en-US
+ <CO6PR02MB8740E3965F1CA9124D3AE84AB2139@CO6PR02MB8740.namprd02.prod.outlook.com>
+Accept-Language: en-CA, en-US
+Content-Language: en-CA
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [72s5ig+oTgDCJBgs1C2MHIW3x+c3U+zB]
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=sierrawireless.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: bae8dc1e-188a-4f7f-72d6-08da091523f3
-x-ms-traffictypediagnostic: BYAPR16MB2629:EE_
+x-ms-office365-filtering-correlation-id: 63935e0b-e0fe-44c3-561a-08da0915815b
+x-ms-traffictypediagnostic: BYAPR02MB5989:EE_
+x-microsoft-antispam-prvs: 
+ <BYAPR02MB5989FE6D038F4B7C0F763403B2139@BYAPR02MB5989.namprd02.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info: 
- 5VjoVqNXvqh8FpOFcAn2hCVTlXSGCBQ7IoqW54ZdxOa2kThkOlVih7lPagYRTPLUjETnkiZeS4Pyie+Fc3OBajIeEMD/9G8AlnhUZtKcTCk9vKRSPXkiF66AHZ7xO5KsOdFLne9LQ/kQuotHXC8EfnAagCtw9SrUMd1zMdVTURd1iLpc8FSOtjuRjsEvQWl31eSFKkZ7xebfyNS2bozF2MGH0pdm49a3ZBGQS1czM2Ae32CfTvgyt0V5G224r6iCy3HBLMfi3cD7rL/fGT83mnmyw4Sw/5AHbhX2qxHDV1cbWoF40IpMT4OfcjOvv675oHKvBrRWHA4RM3P+G6XdXvCJ/UP8WIV8FgfonhWfI3hD0AqjcQOlNFMjKFkkgdqgWpHkJY6SxBR3cQOqNrK3N6a1IjLhtkWUtL1Edlg1fu7+BSgFsq72VcOkZ0fmqxlk+RVHl0SeSSel2M5JkzHwmcIIyy0bEdOGBBjYim6kZTp7WM9bLCgLDpvx7Xc/y2kwxbi5EZ66DvplPTV0dSp9+5W3dOSrCNOkvDqOwp5A/XMVIXjKhu/VgftRO/uDzAtGtgCglzOCVk54ae7HpOoSoMmje/SQDpuZGLqzDsNaJ+mzHBRbPGoP3kYjdN4iLqwhFtqy7OhXA/5BF3+Xq4NUOX8Hzo0+v9279PggeklM7xc=
+ sWoO6xqNqMm9S1qQ2a3CWlFNAsdBeCop9Vq4jFWKz2VnXx7J3BzsQ1AiTfm32CvPx9e4Mz5sg31yR+mIcQELSvDiRbQtQbnHVXFO+E4+LhnGgJ6baSgUbxMULU+Svw/9O2sgPTPrm1QQrICAtTNsradNiA5uCfkD4c3alMsH7xdG6qnmLTVjm9/nFguBUQXaHkX/0M2CvHFDG/yl+FKYpxo/wUUtt3vQlAeVa5tKYFkQO4ma4ogHZt/CVjBAS6U+qrGI0ZapquOr20TnjTOsncy1K0ep4JEbzBfpgTKFXVdUxxUazOzfZjeI6V6NtIe432zA56eL2KODj5Ewt2qHjlFUTL06XuZdAsqO6dDY2irO1ZarcSYQojBClNOasxR2WBaeqmknHY2d01IMbQD6rOs4mOhaaPqLmLTIIz0IDG/GoJBdP8p2L3u9F/ePhe4jBRCVWnOAlKDAVigEJ9Cha3UC6E+5g1BEZS6ZwMb5BN3A+hRVl1YUm0szHkzrAqSallShLXfceUnGofmhh3wyn4tU2ee05qsLp6RPEP41fH8BhM8fGCQrdJfqryT6vefnx/SpbEsol2yzSLh3gPgvFItrEN859QEQDBZKzODNYRZMdOsTg5+Dqc0Z859+bOenr1RfWE5VY7/8CWJrPWrj8160hSgV+410CDPdUf3wQSIzUofBtz7UneQ8Dnb/BGNiz4sE5zvjop2jrGzRRrt9vdZO4bL8ugE9KY167QLS0RCh4EofiaSzE+AqrP3Nj0sHTnvSdGQGX0CZkSZVMuxhQSRaN76trfL4GiwstGYbO2xGfc4AwQkFXtofmFK7RoC1
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR02MB8740.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(86362001)(8676002)(5660300002)(38100700002)(40140700001)(166002)(38070700005)(66556008)(9686003)(66946007)(6916009)(76116006)(316002)(2906002)(19273905006)(64756008)(83380400001)(508600001)(66446008)(8936002)(7696005)(9326002)(186003)(71200400001)(52536014)(966005)(6506007)(55016003)(122000001)(33656002)(66476007)(563064011);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?dB6L7qDUQ6Wd8kxMZlqhj6BqXXVroMJWulswLXdEIRBKLPtgnjBSd/M8au?=
- =?iso-8859-1?Q?1/i5Jc+OzrmRohQV36ELRluIYGMasMSkN0VUYGh5ktXTG+kIZ/c7br3Zkg?=
- =?iso-8859-1?Q?g/fBj5YJcIOUbCjUcmqtvPsw6Oj9YfSKsDm9xorIu6X43L4BFjX4HI4gAE?=
- =?iso-8859-1?Q?IPDNM3ZrYrOtApzECmQQC5kZYr6Efbz5bTWUJvCnDPeBHth0XYMkKm15+a?=
- =?iso-8859-1?Q?ara2BHwiAd3qrKt/XE12l/6cekcex7DYA6dYrVAqajhsOWtZqHD6ThjVz1?=
- =?iso-8859-1?Q?9RqNp4v+WL4fd9mDjnFXC9Dy2yiNg+itc6yRpbssDNBBxbXHuwgkWqw25G?=
- =?iso-8859-1?Q?7UEZ6QGYzImJzArWYFhtfADI/3yHpLEPlQNrMap33Y6h2Uf65MRc+ik7Rx?=
- =?iso-8859-1?Q?CS6ZV1Rv5PVd0vmoPxWFoSN/KNl+fbq1jKH2kWtEk+kzYVf5vLpC6782Hl?=
- =?iso-8859-1?Q?KqP2UiZ/4002OMoIZm7ZNdk63k7l6cZpcgMLzMhRjEgd3cRhX5KSHyFebN?=
- =?iso-8859-1?Q?kGYB7okvEUYnNFCE7yXHQs3mYwkS5t4HZME0/Wrqdv1J/21e4Sz1yNZ6lW?=
- =?iso-8859-1?Q?ITewTskPBC4NcLr1wFCh3WrMWuIDpxY/4vlYmkQmXegxclnN6PCWvaHYu4?=
- =?iso-8859-1?Q?WprxCAKy592KOZjhTpkqFUKT4gz/qO1PxXsrcJ6GQGteDmrWqwTBC2gAmv?=
- =?iso-8859-1?Q?W0uycYC3AOLytbzjVmP+3iHVDUXORuN+zgJZFZ8NbeqjLF16iQZNAusFEZ?=
- =?iso-8859-1?Q?C+w5uHEbM4iK/z0ng9o0a/qWJ6Ea50VlglZm/8HnZrOEi3whktB87zUPOg?=
- =?iso-8859-1?Q?U3Ed6QAm6S1Rw6MhLoR2k+zOHg0zDgr3ubdgjcLvZtZGUugOcNqqOr5TTi?=
- =?iso-8859-1?Q?2xZMdaCzkT0tR9it5mhuUT7IzVZnePuQ7uiMrGbCnalPDStu1uWl+Kwggy?=
- =?iso-8859-1?Q?GN246r1Y2eJYlSK0IvD3i0I8b4EpMzR/KdyMvnnzlDwkO5/W67CrVbFp3K?=
- =?iso-8859-1?Q?gd+V/tdEyans/aOKJn88WTZc/F3kkAdmyvO8pT3GM1ucvJio3EmThyyynl?=
- =?iso-8859-1?Q?wOmlmYW8usGY0lvlgLC/OHXPnvpjBTvqjRxtJNT2qHsJztFWc4NthcZu4+?=
- =?iso-8859-1?Q?13qwSANoEth/VRv3ASOCLZilAeyrh7LLyB3+Xu/jav4WuOwAv+yVAyAN3a?=
- =?iso-8859-1?Q?sf6D4+G+Jz7V0w=3D=3D?=
+ =?Windows-1252?Q?jw5VbXFFcj9W5Wre1C/Rw7TIpV5BQI1YFatOBy7khZB0qWPQeCTHCloX?=
+ =?Windows-1252?Q?66zU1UTVl7WCBVlLslaTdYcV3CT/Y1UfCCMTPnKgNWyynpnFbR8HfpDq?=
+ =?Windows-1252?Q?oRK+NdfWhenkdaFRJ0LONWKBnYecw28pywK48mqBEvoAbeqSV0XZPiKz?=
+ =?Windows-1252?Q?4dLo/m9dlotAQ7PxKd58Ef4De9vcHq2BOjuoQdqwG7A14gY4vC0qzicu?=
+ =?Windows-1252?Q?HHLhJvMBsUv/nIx64CbHuQuWqtvItTLjyx4V0a4YFX0InXWS1+Z1lI3o?=
+ =?Windows-1252?Q?oLmzVxvcs/hu26Yrht5iQXR8+KEiaQ8wAO5DjRpb46fz5lqK65BSYzVS?=
+ =?Windows-1252?Q?O/6wUahnBvnwtIpoCHnQ1kM3xhL5qxf56UasrIlp+0v1KlErpajz8m9z?=
+ =?Windows-1252?Q?iSjzhwIzC3sewpG+cX705L1HmjXgbim7Ok5NKg0Gt5TpAutUN5nYknAL?=
+ =?Windows-1252?Q?agJbOv8wKspiqKP8OX/1WWNAtVG3k7T7tM6+ySRQ6+2WAZaNvIRGpMVw?=
+ =?Windows-1252?Q?jP0tbhEM1hdvatHKmgjFNmVMpU/zT7hp7O1MSYKLqVcYMUnKJeNQ75ZE?=
+ =?Windows-1252?Q?EJOwcCesKQHk4jtAnlv66Z1ngXFLB1/3Ss9+a2R+xknqB+Y6rzn51sL/?=
+ =?Windows-1252?Q?2H3qOJY+Ijl0TIAo/3nESs4mldPSC/r+Kic6w8+0n9VnFgtY/K/gNw8z?=
+ =?Windows-1252?Q?ouyGe44eRMf0NqAlq9QAEw6wFF6BKfWonTooSlgApw4C92xQm3sWRaUW?=
+ =?Windows-1252?Q?V2WpnY95kSiPE0kQ7Hqm1fOscZLNn7uQ8rIk+PEIeXNaKsamiOPF3jtU?=
+ =?Windows-1252?Q?taKtM6vC2Kr7knqE7iDzLW22tPsknCYDI67QoVm+apTEMucvY4HPqiyY?=
+ =?Windows-1252?Q?ZWvGl5+QyXedJtrPCc7BIsI9Arj2liV/lgvLpHABk65Kh2Tt+F8hnycm?=
+ =?Windows-1252?Q?wgM4qPqhCigxakLe/mMiOt6HgaW6nQKhOolxVeLeuACYNFz3fNHuViw4?=
+ =?Windows-1252?Q?iI1Wrv7KUNG1QHHhRO5hzW0IInHA0ikQGCANk/0Xs3G7rcV6W5kCCGPH?=
+ =?Windows-1252?Q?xHJLeUgpg+HgsJtnMU5CWxwGYAiVn7xH52p4sBetqUbU3bwoVsxCQ8Q0?=
+ =?Windows-1252?Q?OalCbtZq28XZJe84Udpk6OrO7Z9wq/fFV3F9sw/CzwZFEdbnPdRzfB7P?=
+ =?Windows-1252?Q?Spg35KAbudVob3WsQweTwCTrbc6/Dpp08gGOTyjUlWpAv6caZaWqXuue?=
+ =?Windows-1252?Q?QiHOEJtRi36OurhDg3IQfhB3VKbepo4CAdK3Fjr4VQ3mmS+0YBYLRTWP?=
+ =?Windows-1252?Q?9FF6tzCVL2Fyu+fJoqCx6R9cKLoJqysATPocSHr3vvnu19OruLfM4uQ9?=
+ =?Windows-1252?Q?6K4IUjTkOLgN1N1xj6SaxIyU53s1LLLqXGobS14S7vMInMO4mEx2AT0P?=
+ =?Windows-1252?Q?cxsoyDhERwYMtxc/AbE7WJqve/g/kMG3+pWl8hoicZ37pmHMAZEuvPRI?=
+ =?Windows-1252?Q?498JCSZrx7p1D1LftYYJ1oQ1RXDQ1Y7siQsyXRi2vJgkas8KI5K2RbWR?=
+ =?Windows-1252?Q?Wpehngrb8pFihgsdyng1aH2297/SAHN4GxHQm7Eikv7iItxPRq6N3ptW?=
+ =?Windows-1252?Q?jZN0yXKjVN3ZGxruFpcQkQMRC36cYCTCZWdUlqDsQ+nV+H4FqeZ2SVUF?=
+ =?Windows-1252?Q?ABAYBpWTVko=3D?=
 Content-Type: multipart/alternative;
-	boundary="_000_DM8PR16MB43571EA20E3A050872A0601EC7139DM8PR16MB4357namp_"
+	boundary="_000_CO6PR02MB8740E3965F1CA9124D3AE84AB2139CO6PR02MB8740namp_"
 MIME-Version: 1.0
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-5ce7b.templateTenant
+X-OriginatorOrg: sierrawireless.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR16MB4357.namprd16.prod.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
- 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR02MB8740.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- bae8dc1e-188a-4f7f-72d6-08da091523f3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Mar 2022 19:26:02.7998
+ 63935e0b-e0fe-44c3-561a-08da0915815b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Mar 2022 19:28:39.4931
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 
- 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR16MB2629
+X-MS-Exchange-CrossTenant-id: 08059a4c-2486-43dd-89e3-3a747e0dcbe8
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 
+ rQDfeRNWwdVbBsfluWTe+2HUdGch5QZ+rOOBua+HZOCQdvJX+hgRMRw1tijRXJWiUDRlkCAfF4L/ez8xugOFKZjJWOVDh3szRCOoPch7m+U=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB5989
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 18 Mar 2022 19:26:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56495
+ <yocto@lists.yoctoproject.org>; Fri, 18 Mar 2022 19:28:45 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56496
 
---_000_DM8PR16MB43571EA20E3A050872A0601EC7139DM8PR16MB4357namp_
-Content-Type: text/plain; charset="iso-8859-1"
+--_000_CO6PR02MB8740E3965F1CA9124D3AE84AB2139CO6PR02MB8740namp_
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
+Hi,
 
-Okay, I finally got it running. What I did:
-
-
-  *   Upgraded all my host packages from this ppa: https://launchpad.net/~s=
-avoury1/+archive/ubuntu/display
-  *   Built fresh Yocto 3.4, core-image-weston with virgl
-  *   Built 6.2 qemu separately and used that. Added -device virtio-gpu-gl-=
-pci
-
-Now I have a comfy Gles 3.2 context!
-
-Tx
-
-Display - various (Xenial & newer) : Rob Savoury<https://launchpad.net/~sav=
-oury1/+archive/ubuntu/display>
-Display PPA (drm 2.4.109, mesa 21.3.3, xserver 1.20.13) Xenial & newer. ***=
- Please always check https:/ /launchpad. net/~savoury1 first for general up=
-dates about this ...
-launchpad.net
+I am trying out a build that uses kirkstone branch for meta-java and master=
+ branch (as proxy for kirkstone) for everything else.
 
 
-________________________________
-From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> on behalf=
- of Edgar Mobile <heideggm@hotmail.com>
-Sent: Thursday, March 17, 2022 2:00 PM
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] runqemu - ERROR - Failed to run qemu: qemu-system-aarc=
-h64: Virtio VGA not available.
 
-Ah, that's an interesting information.
-The dmesg log gives the impression that virgl starts correctly and in the n=
-ormal shell the examples work flawlessly. The problems start once I tell we=
-ston to use the ivi-shell instead of the desktop shell.
+| configure: error: Library requirements (gtk+-2.0 >=3D 2.8 gthread-2.0 >=
+=3D 2.2 gdk-pixbuf-2.0) not met; consider adjusting the PKG_CONFIG_PATH env=
+ironment variable if your libraries are in a nonstandard prefix so pkg-conf=
+ig can find them.
 
-________________________________
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Sent: Thursday, March 17, 2022 1:51 PM
-To: Edgar Mobile <heideggm@hotmail.com>
-Cc: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] runqemu - ERROR - Failed to run qemu: qemu-system-aarc=
-h64: Virtio VGA not available.
+dwatkins@carmd-ed-n11377-docker-dwatkins_voyager1:64bit build $ ls tmp/work=
+/cortexa7hf-neon-poky-linux-gnueabi/gtk+3/
+3.24.31-r0
+dwatkins@carmd-ed-n11377-docker-dwatkins_voyager1:64bit build $ ls tmp/work=
+/cortexa7hf-neon-poky-linux-gnueabi/glib-2.0/
+1_2.70.4-r0
+dwatkins@carmd-ed-n11377-docker-dwatkins_voyager1:64bit build $ ls tmp/work=
+/cortexa7hf-neon-poky-linux-gnueabi/gdk-pixbuf/
+2.42.6-r0
+dwatkins@carmd-ed-n11377-docker-dwatkins_voyager1:64bit build $ ls tmp/work=
+/cortexa7hf-neon-poky-linux-gnueabi/gtk+
+2.24.33-r0
+dwatkins@carmd-ed-n11377-docker-dwatkins_voyager1:64bit build $ find tmp/wo=
+rk/cortexa7hf-neon-poky-linux-gnueabi/glib-2.0/1_2.70.4-r0/image/ | grep gt=
+hread
+tmp/work/cortexa7hf-neon-poky-linux-gnueabi/glib-2.0/1_2.70.4-r0/image/usr/=
+include/glib-2.0/gio/gthreadedsocketservice.h
+tmp/work/cortexa7hf-neon-poky-linux-gnueabi/glib-2.0/1_2.70.4-r0/image/usr/=
+include/glib-2.0/glib/gthreadpool.h
+tmp/work/cortexa7hf-neon-poky-linux-gnueabi/glib-2.0/1_2.70.4-r0/image/usr/=
+include/glib-2.0/glib/deprecated/gthread.h
+tmp/work/cortexa7hf-neon-poky-linux-gnueabi/glib-2.0/1_2.70.4-r0/image/usr/=
+include/glib-2.0/glib/gthread.h
+tmp/work/cortexa7hf-neon-poky-linux-gnueabi/glib-2.0/1_2.70.4-r0/image/usr/=
+lib/pkgconfig/gthread-2.0.pc
+tmp/work/cortexa7hf-neon-poky-linux-gnueabi/glib-2.0/1_2.70.4-r0/image/usr/=
+lib/libgthread-2.0.so
+tmp/work/cortexa7hf-neon-poky-linux-gnueabi/glib-2.0/1_2.70.4-r0/image/usr/=
+lib/libgthread-2.0.so.0
+tmp/work/cortexa7hf-neon-poky-linux-gnueabi/glib-2.0/1_2.70.4-r0/image/usr/=
+lib/libgthread-2.0.so.0.7000.4
 
-There is no hardware acceleration with bochs at all, if you want it,
-you need to make virtio/virgl driver work.
+All the prerequisites appear met.  Have some of the variables used to setup=
+ sysroots, etc. changed in kirkstone but not been updated in meta-java yet?
 
-Alex
 
-On Thu, 17 Mar 2022 at 14:02, Edgar Mobile <heideggm@hotmail.com> wrote:
->
-> Do you know if bochs driver is available and active for yocto 3.4 or 3.5?
->
-> ________________________________
-> From: Alexander Kanavin <alex.kanavin@gmail.com>
-> Sent: Thursday, March 17, 2022 11:26 AM
-> To: Edgar Mobile <heideggm@hotmail.com>
-> Cc: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>
-> Subject: Re: [yocto] runqemu - ERROR - Failed to run qemu: qemu-system-aa=
-rch64: Virtio VGA not available.
->
-> As I told you, we do not support or test this combination. Which means
-> that figuring out what the error messages mean and how to fix them is
-> on you - patches welcome.
->
-> Alex
->
-> On Thu, 17 Mar 2022 at 11:41, Edgar Mobile <heideggm@hotmail.com> wrote:
-> >
-> > I tried that first and it was horribly slow. That's why I try hardware =
-acceleration now.
-> >
-> > Do you _know_ it doesn't work? If yes, why?
-> >
-> > ________________________________
-> > From: Alexander Kanavin <alex.kanavin@gmail.com>
-> > Sent: Thursday, March 17, 2022 10:33 AM
-> > To: Edgar Mobile <heideggm@hotmail.com>
-> > Cc: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>
-> > Subject: Re: [yocto] runqemu - ERROR - Failed to run qemu: qemu-system-=
-aarch64: Virtio VGA not available.
-> >
-> > If you want an aarch guest on x86, then drop the gl option from
-> > runqemu. This will fall back to software rendering.
-> >
-> > Alex
-> >
-> > On Thu, 17 Mar 2022 at 10:33, Edgar Mobile <heideggm@hotmail.com> wrote=
-:
-> > >
-> > > Sorry, but I need an Aarch64 guest.
-> > >
-> > > Ok, using a newer qemu I now encounter the following problem:
-> > >
-> > > root@qemuarm64:/usr/bin# XDG_RUNTIME_DIR=3D/run/user/0 ./eglinfo
-> > > EGL client extensions string:
-> > >     EGL_EXT_client_extensions EGL_EXT_device_base
-> > >     EGL_EXT_device_enumeration EGL_EXT_device_query EGL_EXT_platform_=
-base
-> > >     EGL_KHR_client_get_all_proc_addresses EGL_KHR_debug
-> > >     EGL_EXT_platform_device EGL_EXT_platform_wayland
-> > >     EGL_KHR_platform_wayland EGL_EXT_platform_x11 EGL_KHR_platform_x1=
-1
-> > >     EGL_MESA_platform_xcb EGL_MESA_platform_gbm EGL_KHR_platform_gbm
-> > >     EGL_MESA_platform_surfaceless
-> > >
-> > > GBM platform:
-> > > pci id for fd 3: 1234:1111, driver (null)
-> > > MESA-LOADER: failed to open bochs-drm: /usr/lib/dri/bochs-drm_dri.so:=
- cannot open shared object file: No such file or directory (search paths /u=
-sr/lib/dri)
-> > > failed to load driver: bochs-drm
-> > > ...
-> > >
-> > >
-> > > What is this bochs-drm_dri.so and does Yocto / the Mesa in Yocto prov=
-ide it?
-> > >
-> > > ________________________________
-> > > From: Alexander Kanavin <alex.kanavin@gmail.com>
-> > > Sent: Wednesday, March 16, 2022 2:51 PM
-> > > To: Edgar Mobile <heideggm@hotmail.com>
-> > > Cc: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>
-> > > Subject: Re: [yocto] runqemu - ERROR - Failed to run qemu: qemu-syste=
-m-aarch64: Virtio VGA not available.
-> > >
-> > > This configuration is not tested. If you want accelerated gl, build
-> > > for the qemux86-64 target.
-> > >
-> > > Alex
-> > >
-> > > On Wed, 16 Mar 2022 at 12:46, Edgar Mobile <heideggm@hotmail.com> wro=
-te:
-> > > >
-> > > > Greetings,
-> > > >
-> > > > I tried to run an Aarch64 Yocto with qemu on amd 64 Host. For that =
-purpose, I built core-image-weston from Hardknott following the manual
-> > > >
-> > > > https://www.mail-archive.com/yocto@lists.yoctoproject.org/msg07306.=
-html
-> > > >
-> > > > I then try to run
-> > > >
-> > > > runqemu sdl gl
-> > > >
-> > > > But it always aborts with
-> > > >
-> > > > runqemu - ERROR - Failed to run qemu: qemu-system-aarch64: Virtio V=
-GA not available.
-> > > >
-> > > > What can I do?
-> > > >
-> > > > Regards
-> > > >
-> > > >
-> > > >
 
---_000_DM8PR16MB43571EA20E3A050872A0601EC7139DM8PR16MB4357namp_
-Content-Type: text/html; charset="iso-8859-1"
+ERROR: classpath-0.99-r3 do_configure: configure failed
+
+ERROR: classpath-0.99-r3 do_configure: ExecutionError('/home/dwatkins/works=
+pace/mgos/voyager1/build/tmp/work/cortexa7hf-neon-poky-linux-gnueabi/classp=
+ath/0.99-r3/temp/run.do_configure.29702', 1, None, None)
+
+ERROR: Logfile of failure stored in: /home/dwatkins/workspace/mgos/voyager1=
+/build/tmp/work/cortexa7hf-neon-poky-linux-gnueabi/classpath/0.99-r3/temp/l=
+og.do_configure.29702
+
+Log data follows:
+
+| DEBUG: Executing python function extend_recipe_sysroot
+
+| NOTE: Direct dependencies are ['/home/dwatkins/workspace/mgos/voyager1/up=
+stream/yocto/meta-java/recipes-core/ecj/ecj-bootstrap-native.bb:do_populate=
+_sysroot', 'virtual:native:/home/dwatkins/workspace/mgos/voyager1/upstream/=
+yocto/poky/meta/recipes-extended/zip/zip_3.0.bb:do_populate_sysroot', '/hom=
+e/dwatkins/workspace/mgos/voyager1/upstream/yocto/poky/meta/recipes-devtool=
+s/file/file_5.41.bb:do_populate_sysroot', '/home/dwatkins/workspace/mgos/vo=
+yager1/upstream/yocto/poky/meta/recipes-devtools/quilt/quilt-native_0.67.bb=
+:do_populate_sysroot', 'virtual:native:/home/dwatkins/workspace/mgos/voyage=
+r1/upstream/yocto/poky/meta/recipes-devtools/autoconf/autoconf_2.71.bb:do_p=
+opulate_sysroot',
+
+
+
+---snip!---
+
+
+
+| checking for remove... yes
+
+| checking for shmat... yes
+
+| checking for IceConnectionNumber in -lICE... yes
+
+| checking for XTestQueryExtension in -lXtst... yes
+
+| checking for pkg-config... no
+
+| *** The pkg-config script could not be found. Make sure it is
+
+| *** in your path, or set the PKG_CONFIG environment variable
+
+| *** to the full path to pkg-config.
+
+| *** Or see http://www.freedesktop.org/software/pkgconfig to get pkg-confi=
+g.
+
+| configure: error: Library requirements (gtk+-2.0 >=3D 2.8 gthread-2.0 >=
+=3D 2.2 gdk-pixbuf-2.0) not met; consider adjusting the PKG_CONFIG_PATH env=
+ironment variable if your libraries are in a nonstandard prefix so pkg-conf=
+ig can find them.
+
+| NOTE: The following config.log files may provide further information.
+
+| NOTE: /home/dwatkins/workspace/mgos/voyager1/build/tmp/work/cortexa7hf-ne=
+on-poky-linux-gnueabi/classpath/0.99-r3/build/config.log
+
+| ERROR: configure failed
+
+| WARNING: /home/dwatkins/workspace/mgos/voyager1/build/tmp/work/cortexa7hf=
+-neon-poky-linux-gnueabi/classpath/0.99-r3/temp/run.do_configure.29702:291 =
+exit 1 from 'exit 1'
+
+| WARNING: Backtrace (BB generated script):
+
+|      #1: bbfatal_log, /home/dwatkins/workspace/mgos/voyager1/build/tmp/wo=
+rk/cortexa7hf-neon-poky-linux-gnueabi/classpath/0.99-r3/temp/run.do_configu=
+re.29702, line 291
+
+|      #2: oe_runconf, /home/dwatkins/workspace/mgos/voyager1/build/tmp/wor=
+k/cortexa7hf-neon-poky-linux-gnueabi/classpath/0.99-r3/temp/run.do_configur=
+e.29702, line 267
+
+|      #3: autotools_do_configure, /home/dwatkins/workspace/mgos/voyager1/b=
+uild/tmp/work/cortexa7hf-neon-poky-linux-gnueabi/classpath/0.99-r3/temp/run=
+.do_configure.29702, line 237
+
+|      #4: do_configure, /home/dwatkins/workspace/mgos/voyager1/build/tmp/w=
+ork/cortexa7hf-neon-poky-linux-gnueabi/classpath/0.99-r3/temp/run.do_config=
+ure.29702, line 157
+
+|      #5: main, /home/dwatkins/workspace/mgos/voyager1/build/tmp/work/cort=
+exa7hf-neon-poky-linux-gnueabi/classpath/0.99-r3/temp/run.do_configure.2970=
+2, line 295
+
+ERROR: Task (/home/dwatkins/workspace/mgos/voyager1/upstream/yocto/meta-jav=
+a/recipes-core/classpath/classpath_0.99.bb:do_configure) failed with exit c=
+ode '1'
+
+NOTE: Tasks Summary: Attempted 2426 tasks of which 2418 didn't need to be r=
+erun and 1 failed.
+
+
+
+Summary: 1 task failed:
+
+  /home/dwatkins/workspace/mgos/voyager1/upstream/yocto/meta-java/recipes-c=
+ore/classpath/classpath_0.99.bb:do_configure
+
+Summary: There were 8 WARNING messages.
+
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+
+
+The following appears to fix it=85.
+
+dwatkins@carmd-ed-n11377-docker-dwatkins_voyager1:64bit meta-java $ git dif=
+f
+diff --git a/recipes-core/classpath/classpath.inc b/recipes-core/classpath/=
+classpath.inc
+index 42c5daf..5bf1cf6 100644
+--- a/recipes-core/classpath/classpath.inc
++++ b/recipes-core/classpath/classpath.inc
+@@ -7,7 +7,7 @@ LICENSE =3D "GPL-2.0 & SAX-PD"
+
+ PBN =3D "classpath"
+
+-inherit autotools java gettext
++inherit autotools java gettext pkgconfig
+
+ DEPENDS =3D "virtual/javac-native fastjar-native zip-native gmp antlr-nati=
+ve gtk+ gconf libxtst file"
+
+
+
+
+All I am doing is adding =91pkgconfig=92 to its inheritance list because th=
+e error message suggested =93consider adjusting the PKG_CONFIG_PATH environ=
+ment variable=94.
+
+
+Regards,
+
+Darcy
+
+Darcy Watkins ::  Senior Staff Engineer, Firmware
+
+SIERRA WIRELESS
+Direct  +1 604 233 7989   ::  Fax  +1 604 231 1109  ::  Main  +1 604 231 11=
+00
+13811 Wireless Way  :: Richmond, BC Canada V6V 3A4
+[M4]
+dwatkins@sierrawireless.com<mailto:dwatkins@sierrawireless.com> :: www.sier=
+rawireless.com<http://www.sierrawireless.com/>
+
+--_000_CO6PR02MB8740E3965F1CA9124D3AE84AB2139CO6PR02MB8740namp_
+Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
+<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
+hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
+fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40">
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Menlo;
+	panose-1:2 11 6 9 3 8 4 2 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+p.p1, li.p1, div.p1
+	{mso-style-name:p1;
+	margin:0cm;
+	font-size:8.5pt;
+	font-family:Menlo;
+	color:#CA3323;}
+p.p2, li.p2, div.p2
+	{mso-style-name:p2;
+	margin:0cm;
+	font-size:8.5pt;
+	font-family:Menlo;
+	color:black;}
+p.p3, li.p3, div.p3
+	{mso-style-name:p3;
+	margin:0cm;
+	font-size:8.5pt;
+	font-family:Menlo;
+	color:black;}
+span.s2
+	{mso-style-name:s2;
+	color:black;}
+span.apple-tab-span
+	{mso-style-name:apple-tab-span;}
+span.s1
+	{mso-style-name:s1;}
+span.apple-converted-space
+	{mso-style-name:apple-converted-space;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style>
 </head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div>Okay, I finally got it running. What I did:</div>
-<div><br>
-</div>
-<div>
-<ul>
-<li><span>Upgraded all my host packages from this ppa: <a href=3D"https://l=
-aunchpad.net/~savoury1/+archive/ubuntu/display" id=3D"LPlnk">
-https://launchpad.net/~savoury1/+archive/ubuntu/display</a></span></li><li>=
-<span>Built fresh Yocto 3.4, core-image-weston with virgl</span></li><li><s=
-pan>Built 6.2 qemu separately and used that. Added <span style=3D"color:rgb=
-(0, 0, 0);font-family:Calibri, Helvetica, sans-serif;font-weight:normal;orp=
-hans:auto;text-align:start;widows:auto;display:inline !important">
--device virtio-gpu-gl-pci</span></span></li></ul>
-<div>Now I have a comfy Gles 3.2 context!</div>
-<div><br>
-</div>
-<div>Tx<br>
-</div>
-<ul>
-<div class=3D"_Entity _EType_OWALinkPreview _EId_OWALinkPreview _EReadonly_=
-1">
-<div id=3D"LPBorder_GTaHR0cHM6Ly9sYXVuY2hwYWQubmV0L35zYXZvdXJ5MS8rYXJjaGl2Z=
-S91YnVudHUvZGlzcGxheQ.." class=3D"LPBorder440996" style=3D"width: 100%; mar=
-gin-top: 16px; margin-bottom: 16px; position: relative; max-width: 800px; m=
-in-width: 424px;">
-<table id=3D"LPContainer440996" role=3D"presentation" style=3D"padding: 12p=
-x 36px 12px 12px; width: 100%; border-width: 1px; border-style: solid; bord=
-er-color: rgb(200, 200, 200); border-radius: 2px;">
-<tbody>
-<tr style=3D"border-spacing: 0px;" valign=3D"top">
-<td style=3D"width: 100%;">
-<div id=3D"LPTitle440996" style=3D"font-size: 21px; font-weight: 300; margi=
-n-right: 8px; font-family: &quot;wf_segoe-ui_light&quot;, &quot;Segoe UI Li=
-ght&quot;, &quot;Segoe WP Light&quot;, &quot;Segoe UI&quot;, &quot;Segoe WP=
-&quot;, Tahoma, Arial, sans-serif; margin-bottom: 12px;">
-<a target=3D"_blank" id=3D"LPUrlAnchor440996" href=3D"https://launchpad.net=
-/~savoury1/+archive/ubuntu/display" style=3D"text-decoration: none; color: =
-var(--themePrimary);">Display - various (Xenial &amp; newer) : Rob Savoury<=
-/a></div>
-<div id=3D"LPDescription440996" style=3D"font-size: 14px; max-height: 100px=
-; color: rgb(102, 102, 102); font-family: &quot;wf_segoe-ui_normal&quot;, &=
-quot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, sans-serif; margi=
-n-bottom: 12px; margin-right: 8px; overflow: hidden;">
-Display PPA (drm 2.4.109, mesa 21.3.3, xserver 1.20.13) Xenial &amp; newer.=
- *** Please always check https:/ /launchpad. net/~savoury1 first for genera=
-l updates about this ...</div>
-<div id=3D"LPMetadata440996" style=3D"font-size: 14px; font-weight: 400; co=
-lor: rgb(166, 166, 166); font-family: &quot;wf_segoe-ui_normal&quot;, &quot=
-;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, sans-serif;">
-launchpad.net</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<br>
-</ul>
-</div>
-<div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-<br>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" face=
-=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> yocto@lists.yoctopr=
-oject.org &lt;yocto@lists.yoctoproject.org&gt; on behalf of Edgar Mobile &l=
-t;heideggm@hotmail.com&gt;<br>
-<b>Sent:</b> Thursday, March 17, 2022 2:00 PM<br>
-<b>To:</b> Alexander Kanavin &lt;alex.kanavin@gmail.com&gt;<br>
-<b>Cc:</b> yocto@lists.yoctoproject.org &lt;yocto@lists.yoctoproject.org&gt=
-;<br>
-<b>Subject:</b> Re: [yocto] runqemu - ERROR - Failed to run qemu: qemu-syst=
-em-aarch64: Virtio VGA not available.</font>
-<div>&nbsp;</div>
-</div>
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-Ah, that's an interesting information.</div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-The dmesg log gives the impression that virgl starts correctly and in the n=
-ormal shell the examples work flawlessly. The problems start once I tell we=
-ston to use the ivi-shell instead of the desktop shell.<br>
-</div>
-<div>
-<div id=3D"x_appendonsend"></div>
-<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
-or:rgb(0,0,0)">
-<br>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" face=
-=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> Alexander Kanavin &=
-lt;alex.kanavin@gmail.com&gt;<br>
-<b>Sent:</b> Thursday, March 17, 2022 1:51 PM<br>
-<b>To:</b> Edgar Mobile &lt;heideggm@hotmail.com&gt;<br>
-<b>Cc:</b> yocto@lists.yoctoproject.org &lt;yocto@lists.yoctoproject.org&gt=
-;<br>
-<b>Subject:</b> Re: [yocto] runqemu - ERROR - Failed to run qemu: qemu-syst=
-em-aarch64: Virtio VGA not available.</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"x_BodyFragment"><font size=3D"2"><span style=3D"font-size:11p=
-t">
-<div class=3D"x_PlainText">There is no hardware acceleration with bochs at =
-all, if you want it,<br>
-you need to make virtio/virgl driver work.<br>
-<br>
-Alex<br>
-<br>
-On Thu, 17 Mar 2022 at 14:02, Edgar Mobile &lt;heideggm@hotmail.com&gt; wro=
-te:<br>
-&gt;<br>
-&gt; Do you know if bochs driver is available and active for yocto 3.4 or 3=
-.5?<br>
-&gt;<br>
-&gt; ________________________________<br>
-&gt; From: Alexander Kanavin &lt;alex.kanavin@gmail.com&gt;<br>
-&gt; Sent: Thursday, March 17, 2022 11:26 AM<br>
-&gt; To: Edgar Mobile &lt;heideggm@hotmail.com&gt;<br>
-&gt; Cc: yocto@lists.yoctoproject.org &lt;yocto@lists.yoctoproject.org&gt;<=
-br>
-&gt; Subject: Re: [yocto] runqemu - ERROR - Failed to run qemu: qemu-system=
--aarch64: Virtio VGA not available.<br>
-&gt;<br>
-&gt; As I told you, we do not support or test this combination. Which means=
-<br>
-&gt; that figuring out what the error messages mean and how to fix them is<=
-br>
-&gt; on you - patches welcome.<br>
-&gt;<br>
-&gt; Alex<br>
-&gt;<br>
-&gt; On Thu, 17 Mar 2022 at 11:41, Edgar Mobile &lt;heideggm@hotmail.com&gt=
-; wrote:<br>
-&gt; &gt;<br>
-&gt; &gt; I tried that first and it was horribly slow. That's why I try har=
-dware acceleration now.<br>
-&gt; &gt;<br>
-&gt; &gt; Do you _know_ it doesn't work? If yes, why?<br>
-&gt; &gt;<br>
-&gt; &gt; ________________________________<br>
-&gt; &gt; From: Alexander Kanavin &lt;alex.kanavin@gmail.com&gt;<br>
-&gt; &gt; Sent: Thursday, March 17, 2022 10:33 AM<br>
-&gt; &gt; To: Edgar Mobile &lt;heideggm@hotmail.com&gt;<br>
-&gt; &gt; Cc: yocto@lists.yoctoproject.org &lt;yocto@lists.yoctoproject.org=
-&gt;<br>
-&gt; &gt; Subject: Re: [yocto] runqemu - ERROR - Failed to run qemu: qemu-s=
-ystem-aarch64: Virtio VGA not available.<br>
-&gt; &gt;<br>
-&gt; &gt; If you want an aarch guest on x86, then drop the gl option from<b=
-r>
-&gt; &gt; runqemu. This will fall back to software rendering.<br>
-&gt; &gt;<br>
-&gt; &gt; Alex<br>
-&gt; &gt;<br>
-&gt; &gt; On Thu, 17 Mar 2022 at 10:33, Edgar Mobile &lt;heideggm@hotmail.c=
-om&gt; wrote:<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Sorry, but I need an Aarch64 guest.<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Ok, using a newer qemu I now encounter the following problem=
-:<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; root@qemuarm64:/usr/bin# XDG_RUNTIME_DIR=3D/run/user/0 ./egl=
-info<br>
-&gt; &gt; &gt; EGL client extensions string:<br>
-&gt; &gt; &gt;&nbsp;&nbsp;&nbsp;&nbsp; EGL_EXT_client_extensions EGL_EXT_de=
-vice_base<br>
-&gt; &gt; &gt;&nbsp;&nbsp;&nbsp;&nbsp; EGL_EXT_device_enumeration EGL_EXT_d=
-evice_query EGL_EXT_platform_base<br>
-&gt; &gt; &gt;&nbsp;&nbsp;&nbsp;&nbsp; EGL_KHR_client_get_all_proc_addresse=
-s EGL_KHR_debug<br>
-&gt; &gt; &gt;&nbsp;&nbsp;&nbsp;&nbsp; EGL_EXT_platform_device EGL_EXT_plat=
-form_wayland<br>
-&gt; &gt; &gt;&nbsp;&nbsp;&nbsp;&nbsp; EGL_KHR_platform_wayland EGL_EXT_pla=
-tform_x11 EGL_KHR_platform_x11<br>
-&gt; &gt; &gt;&nbsp;&nbsp;&nbsp;&nbsp; EGL_MESA_platform_xcb EGL_MESA_platf=
-orm_gbm EGL_KHR_platform_gbm<br>
-&gt; &gt; &gt;&nbsp;&nbsp;&nbsp;&nbsp; EGL_MESA_platform_surfaceless<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; GBM platform:<br>
-&gt; &gt; &gt; pci id for fd 3: 1234:1111, driver (null)<br>
-&gt; &gt; &gt; MESA-LOADER: failed to open bochs-drm: /usr/lib/dri/bochs-dr=
-m_dri.so: cannot open shared object file: No such file or directory (search=
- paths /usr/lib/dri)<br>
-&gt; &gt; &gt; failed to load driver: bochs-drm<br>
-&gt; &gt; &gt; ...<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; What is this bochs-drm_dri.so and does Yocto / the Mesa in Y=
-octo provide it?<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; ________________________________<br>
-&gt; &gt; &gt; From: Alexander Kanavin &lt;alex.kanavin@gmail.com&gt;<br>
-&gt; &gt; &gt; Sent: Wednesday, March 16, 2022 2:51 PM<br>
-&gt; &gt; &gt; To: Edgar Mobile &lt;heideggm@hotmail.com&gt;<br>
-&gt; &gt; &gt; Cc: yocto@lists.yoctoproject.org &lt;yocto@lists.yoctoprojec=
-t.org&gt;<br>
-&gt; &gt; &gt; Subject: Re: [yocto] runqemu - ERROR - Failed to run qemu: q=
-emu-system-aarch64: Virtio VGA not available.<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; This configuration is not tested. If you want accelerated gl=
-, build<br>
-&gt; &gt; &gt; for the qemux86-64 target.<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Alex<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; On Wed, 16 Mar 2022 at 12:46, Edgar Mobile &lt;heideggm@hotm=
-ail.com&gt; wrote:<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; Greetings,<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; I tried to run an Aarch64 Yocto with qemu on amd 64 Hos=
-t. For that purpose, I built core-image-weston from Hardknott following the=
- manual<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; <a href=3D"https://www.mail-archive.com/yocto@lists.yoc=
-toproject.org/msg07306.html">
-https://www.mail-archive.com/yocto@lists.yoctoproject.org/msg07306.html</a>=
-<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; I then try to run<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; runqemu sdl gl<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; But it always aborts with<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; runqemu - ERROR - Failed to run qemu: qemu-system-aarch=
-64: Virtio VGA not available.<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; What can I do?<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; Regards<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; <br>
-&gt; &gt; &gt; &gt;<br>
-</div>
-</span></font></div>
-</div>
-</div>
+<body lang=3D"EN-CA" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am trying out a build that uses kirkstone branch f=
+or meta-java and master branch (as proxy for kirkstone) for everything else=
+.</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"p2"><span class=3D"s1">| configure: error: Library requirements=
+ (gtk+-2.0 &gt;=3D 2.8 gthread-2.0 &gt;=3D 2.2 gdk-pixbuf-2.0) not met; con=
+sider adjusting the PKG_CONFIG_PATH environment variable if your libraries =
+are in a nonstandard prefix so pkg-config can
+ find them.</span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">dwatkins@carmd-ed-n11377-docker-dwatkins_voyager1:</span><span st=
+yle=3D"font-size:8.5pt;font-family:Menlo;color:#AAAB25">64bit</span><span s=
+tyle=3D"font-size:8.5pt;font-family:Menlo;color:black">
+</span><span style=3D"font-size:8.5pt;font-family:Menlo;color:#38B9C7">buil=
+d</span><span style=3D"font-size:8.5pt;font-family:Menlo;color:black"> $ ls=
+ tmp/work/cortexa7hf-neon-poky-linux-gnueabi/gtk+3/<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">3.24.31-r0<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">dwatkins@carmd-ed-n11377-docker-dwatkins_voyager1:</span><span st=
+yle=3D"font-size:8.5pt;font-family:Menlo;color:#AAAB25">64bit</span><span s=
+tyle=3D"font-size:8.5pt;font-family:Menlo;color:black">
+</span><span style=3D"font-size:8.5pt;font-family:Menlo;color:#38B9C7">buil=
+d</span><span style=3D"font-size:8.5pt;font-family:Menlo;color:black"> $ ls=
+ tmp/work/cortexa7hf-neon-poky-linux-gnueabi/glib-2.0/<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">1_2.70.4-r0<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">dwatkins@carmd-ed-n11377-docker-dwatkins_voyager1:</span><span st=
+yle=3D"font-size:8.5pt;font-family:Menlo;color:#AAAB25">64bit</span><span s=
+tyle=3D"font-size:8.5pt;font-family:Menlo;color:black">
+</span><span style=3D"font-size:8.5pt;font-family:Menlo;color:#38B9C7">buil=
+d</span><span style=3D"font-size:8.5pt;font-family:Menlo;color:black"> $ ls=
+ tmp/work/cortexa7hf-neon-poky-linux-gnueabi/gdk-pixbuf/<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">2.42.6-r0<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">dwatkins@carmd-ed-n11377-docker-dwatkins_voyager1:</span><span st=
+yle=3D"font-size:8.5pt;font-family:Menlo;color:#AAAB25">64bit</span><span s=
+tyle=3D"font-size:8.5pt;font-family:Menlo;color:black">
+</span><span style=3D"font-size:8.5pt;font-family:Menlo;color:#38B9C7">buil=
+d</span><span style=3D"font-size:8.5pt;font-family:Menlo;color:black"> $ ls=
+ tmp/work/cortexa7hf-neon-poky-linux-gnueabi/gtk+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">2.24.33-r0<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">dwatkins@carmd-ed-n11377-docker-dwatkins_voyager1:</span><span st=
+yle=3D"font-size:8.5pt;font-family:Menlo;color:#AAAB25">64bit</span><span s=
+tyle=3D"font-size:8.5pt;font-family:Menlo;color:black">
+</span><span style=3D"font-size:8.5pt;font-family:Menlo;color:#38B9C7">buil=
+d</span><span style=3D"font-size:8.5pt;font-family:Menlo;color:black"> $ fi=
+nd tmp/work/cortexa7hf-neon-poky-linux-gnueabi/glib-2.0/1_2.70.4-r0/image/ =
+| grep gthread<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">tmp/work/cortexa7hf-neon-poky-linux-gnueabi/glib-2.0/1_2.70.4-r0/=
+image/usr/include/glib-2.0/gio/gthreadedsocketservice.h<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">tmp/work/cortexa7hf-neon-poky-linux-gnueabi/glib-2.0/1_2.70.4-r0/=
+image/usr/include/glib-2.0/glib/gthreadpool.h<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">tmp/work/cortexa7hf-neon-poky-linux-gnueabi/glib-2.0/1_2.70.4-r0/=
+image/usr/include/glib-2.0/glib/deprecated/gthread.h<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">tmp/work/cortexa7hf-neon-poky-linux-gnueabi/glib-2.0/1_2.70.4-r0/=
+image/usr/include/glib-2.0/glib/gthread.h<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">tmp/work/cortexa7hf-neon-poky-linux-gnueabi/glib-2.0/1_2.70.4-r0/=
+image/usr/lib/pkgconfig/gthread-2.0.pc<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">tmp/work/cortexa7hf-neon-poky-linux-gnueabi/glib-2.0/1_2.70.4-r0/=
+image/usr/lib/libgthread-2.0.so<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">tmp/work/cortexa7hf-neon-poky-linux-gnueabi/glib-2.0/1_2.70.4-r0/=
+image/usr/lib/libgthread-2.0.so.0<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">tmp/work/cortexa7hf-neon-poky-linux-gnueabi/glib-2.0/1_2.70.4-r0/=
+image/usr/lib/libgthread-2.0.so.0.7000.4<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">All the prerequisites appear met.&nbsp; Have some of=
+ the variables used to setup sysroots, etc. changed in kirkstone but not be=
+en updated in meta-java yet?</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"p1"><span class=3D"s1"><b>ERROR</b></span><span class=3D"s2">: =
+</span><span class=3D"s1">classpath-0.99-r3 do_configure: configure failed<=
+/span></p>
+<p class=3D"p1"><span class=3D"s1"><b>ERROR</b></span><span class=3D"s2">: =
+</span><span class=3D"s1">classpath-0.99-r3 do_configure: ExecutionError('/=
+home/dwatkins/workspace/mgos/voyager1/build/tmp/work/cortexa7hf-neon-poky-l=
+inux-gnueabi/classpath/0.99-r3/temp/run.do_configure.29702',
+ 1, None, None)</span></p>
+<p class=3D"p1"><span class=3D"s1"><b>ERROR</b></span><span class=3D"s2">: =
+</span><span class=3D"s1">Logfile of failure stored in: /home/dwatkins/work=
+space/mgos/voyager1/build/tmp/work/cortexa7hf-neon-poky-linux-gnueabi/class=
+path/0.99-r3/temp/log.do_configure.29702</span></p>
+<p class=3D"p2"><span class=3D"s1">Log data follows:</span></p>
+<p class=3D"p2"><span class=3D"s1">| DEBUG: Executing python function exten=
+d_recipe_sysroot</span></p>
+<p class=3D"p2"><span class=3D"s1">| NOTE: Direct dependencies are ['/home/=
+dwatkins/workspace/mgos/voyager1/upstream/yocto/meta-java/recipes-core/ecj/=
+ecj-bootstrap-native.bb:do_populate_sysroot', 'virtual:native:/home/dwatkin=
+s/workspace/mgos/voyager1/upstream/yocto/poky/meta/recipes-extended/zip/zip=
+_3.0.bb:do_populate_sysroot',
+ '/home/dwatkins/workspace/mgos/voyager1/upstream/yocto/poky/meta/recipes-d=
+evtools/file/file_5.41.bb:do_populate_sysroot', '/home/dwatkins/workspace/m=
+gos/voyager1/upstream/yocto/poky/meta/recipes-devtools/quilt/quilt-native_0=
+.67.bb:do_populate_sysroot', 'virtual:native:/home/dwatkins/workspace/mgos/=
+voyager1/upstream/yocto/poky/meta/recipes-devtools/autoconf/autoconf_2.71.b=
+b:do_populate_sysroot',
+<o:p></o:p></span></p>
+<p class=3D"p2"><span class=3D"s1"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"p2"><span class=3D"s1">---snip!---<o:p></o:p></span></p>
+<p class=3D"p2"><span class=3D"s1"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"p2"><span class=3D"s1">| checking for remove... yes</span></p>
+<p class=3D"p2"><span class=3D"s1">| checking for shmat... yes</span></p>
+<p class=3D"p2"><span class=3D"s1">| checking for IceConnectionNumber in -l=
+ICE... yes</span></p>
+<p class=3D"p2"><span class=3D"s1">| checking for XTestQueryExtension in -l=
+Xtst... yes</span></p>
+<p class=3D"p2"><span class=3D"s1">| checking for pkg-config... no</span></=
+p>
+<p class=3D"p2"><span class=3D"s1">| *** The pkg-config script could not be=
+ found. Make sure it is</span></p>
+<p class=3D"p2"><span class=3D"s1">| *** in your path, or set the PKG_CONFI=
+G environment variable</span></p>
+<p class=3D"p2"><span class=3D"s1">| *** to the full path to pkg-config.</s=
+pan></p>
+<p class=3D"p2"><span class=3D"s1">| *** Or see http://www.freedesktop.org/=
+software/pkgconfig to get pkg-config.</span></p>
+<p class=3D"p2"><span class=3D"s1">| configure: error: Library requirements=
+ (gtk+-2.0 &gt;=3D 2.8 gthread-2.0 &gt;=3D 2.2 gdk-pixbuf-2.0) not met; con=
+sider adjusting the PKG_CONFIG_PATH environment variable if your libraries =
+are in a nonstandard prefix so pkg-config can
+ find them.</span></p>
+<p class=3D"p2"><span class=3D"s1">| NOTE: The following config.log files m=
+ay provide further information.</span></p>
+<p class=3D"p2"><span class=3D"s1">| NOTE: /home/dwatkins/workspace/mgos/vo=
+yager1/build/tmp/work/cortexa7hf-neon-poky-linux-gnueabi/classpath/0.99-r3/=
+build/config.log</span></p>
+<p class=3D"p2"><span class=3D"s1">| ERROR: configure failed</span></p>
+<p class=3D"p2"><span class=3D"s1">| WARNING: /home/dwatkins/workspace/mgos=
+/voyager1/build/tmp/work/cortexa7hf-neon-poky-linux-gnueabi/classpath/0.99-=
+r3/temp/run.do_configure.29702:291 exit 1 from 'exit 1'</span></p>
+<p class=3D"p2"><span class=3D"s1">| WARNING: Backtrace (BB generated scrip=
+t):</span></p>
+<p class=3D"p2"><span class=3D"s1">| </span><span class=3D"apple-tab-span">=
+&nbsp;&nbsp;&nbsp;&nbsp; </span>
+<span class=3D"s1">#1: bbfatal_log, /home/dwatkins/workspace/mgos/voyager1/=
+build/tmp/work/cortexa7hf-neon-poky-linux-gnueabi/classpath/0.99-r3/temp/ru=
+n.do_configure.29702, line 291</span></p>
+<p class=3D"p2"><span class=3D"s1">| </span><span class=3D"apple-tab-span">=
+&nbsp;&nbsp;&nbsp;&nbsp; </span>
+<span class=3D"s1">#2: oe_runconf, /home/dwatkins/workspace/mgos/voyager1/b=
+uild/tmp/work/cortexa7hf-neon-poky-linux-gnueabi/classpath/0.99-r3/temp/run=
+.do_configure.29702, line 267</span></p>
+<p class=3D"p2"><span class=3D"s1">| </span><span class=3D"apple-tab-span">=
+&nbsp;&nbsp;&nbsp;&nbsp; </span>
+<span class=3D"s1">#3: autotools_do_configure, /home/dwatkins/workspace/mgo=
+s/voyager1/build/tmp/work/cortexa7hf-neon-poky-linux-gnueabi/classpath/0.99=
+-r3/temp/run.do_configure.29702, line 237</span></p>
+<p class=3D"p2"><span class=3D"s1">| </span><span class=3D"apple-tab-span">=
+&nbsp;&nbsp;&nbsp;&nbsp; </span>
+<span class=3D"s1">#4: do_configure, /home/dwatkins/workspace/mgos/voyager1=
+/build/tmp/work/cortexa7hf-neon-poky-linux-gnueabi/classpath/0.99-r3/temp/r=
+un.do_configure.29702, line 157</span></p>
+<p class=3D"p2"><span class=3D"s1">| </span><span class=3D"apple-tab-span">=
+&nbsp;&nbsp;&nbsp;&nbsp; </span>
+<span class=3D"s1">#5: main, /home/dwatkins/workspace/mgos/voyager1/build/t=
+mp/work/cortexa7hf-neon-poky-linux-gnueabi/classpath/0.99-r3/temp/run.do_co=
+nfigure.29702, line 295</span></p>
+<p class=3D"p1"><span class=3D"s1"><b>ERROR</b></span><span class=3D"s2">: =
+</span><span class=3D"s1">Task (/home/dwatkins/workspace/mgos/voyager1/upst=
+ream/yocto/meta-java/recipes-core/classpath/classpath_0.99.bb:do_configure)=
+ failed with exit code '1'</span></p>
+<p class=3D"p2"><span class=3D"s1"><b>NOTE</b>: Tasks Summary: Attempted 24=
+26 tasks of which 2418 didn't need to be rerun and 1 failed.</span></p>
+<p class=3D"p3"><o:p>&nbsp;</o:p></p>
+<p class=3D"p2"><span class=3D"s1">Summary: 1 task failed:</span></p>
+<p class=3D"p2"><span class=3D"apple-converted-space">&nbsp; </span><span c=
+lass=3D"s1">/home/dwatkins/workspace/mgos/voyager1/upstream/yocto/meta-java=
+/recipes-core/classpath/classpath_0.99.bb:do_configure</span></p>
+<p class=3D"p2"><span class=3D"s1">Summary: There were 8 WARNING messages.<=
+/span></p>
+<p class=3D"p2"><span class=3D"s1">Summary: There were 2 ERROR messages, re=
+turning a non-zero exit code.</span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The following appears to fix it=85.</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">dwatkins@carmd-ed-n11377-docker-dwatkins_voyager1:</span><span st=
+yle=3D"font-size:8.5pt;font-family:Menlo;color:#AAAB25">64bit</span><span s=
+tyle=3D"font-size:8.5pt;font-family:Menlo;color:black">
+</span><span style=3D"font-size:8.5pt;font-family:Menlo;color:#38B9C7">meta=
+-java</span><span style=3D"font-size:8.5pt;font-family:Menlo;color:black"> =
+$ git diff<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:Menlo;=
+color:black">diff --git a/recipes-core/classpath/classpath.inc b/recipes-co=
+re/classpath/classpath.inc</span></b><span style=3D"font-size:8.5pt;font-fa=
+mily:Menlo;color:black"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:Menlo;=
+color:black">index 42c5daf..5bf1cf6 100644</span></b><span style=3D"font-si=
+ze:8.5pt;font-family:Menlo;color:black"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:Menlo;=
+color:black">--- a/recipes-core/classpath/classpath.inc</span></b><span sty=
+le=3D"font-size:8.5pt;font-family:Menlo;color:black"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:Menlo;=
+color:black">+++ b/recipes-core/classpath/classpath.inc</span></b><span sty=
+le=3D"font-size:8.5pt;font-family:Menlo;color:black"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:#38B9C7">@@ -7,7 +7,7 @@</span><span style=3D"font-size:8.5pt;font-famil=
+y:Menlo;color:black"> LICENSE =3D &quot;GPL-2.0 &amp; SAX-PD&quot;<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">&nbsp;PBN =3D &quot;classpath&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:#CA3323">-inherit autotools java gettext<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:#39C026">+inherit autotools java gettext pkgconfig<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">&nbsp;DEPENDS =3D &quot;virtual/javac-native fastjar-native zip-n=
+ative gmp antlr-native gtk+ gconf libxtst file&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:Menlo;col=
+or:black">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">All I am doing is adding =91pkgconfig=92 to its inhe=
+ritance list because the error message suggested =93consider adjusting the =
+PKG_CONFIG_PATH environment variable=94.</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">&nbsp;</span></b><span lang=
+=3D"EN-US"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">Regards,</span></b><span lan=
+g=3D"EN-US"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">&nbsp;</span></b><span lang=
+=3D"EN-US"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">Darcy</span></b><span lang=
+=3D"EN-US"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">&nbsp;</span></b><span lang=
+=3D"EN-US"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">Darcy Watkins ::&nbsp;&nbsp;=
+Senior Staff Engineer, Firmware</span></b><span lang=3D"EN-US"><o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">&nbsp;</span></b><span lang=
+=3D"EN-US"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"color:red">SIERRA W=
+IRELESS</span></b><span lang=3D"EN-US" style=3D"color:red"><o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Direct&nbsp; +1 604 233 7989&nb=
+sp; &nbsp;::&nbsp;&nbsp;Fax&nbsp;&nbsp;+1 604 231 1109&nbsp; ::&nbsp;&nbsp;=
+Main&nbsp;&nbsp;+1 604 231 1100<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">13811 Wireless Way&nbsp; ::&nbs=
+p;Richmond, BC Canada V6V 3A4<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">[M4]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><a href=3D"mailto:dwatkins@sierrawireless.com"><span=
+ lang=3D"EN-US">dwatkins@sierrawireless.com</span></a><span lang=3D"EN-US">=
+&nbsp;::&nbsp;</span><a href=3D"http://www.sierrawireless.com/"><span lang=
+=3D"EN-US">www.sierrawireless.com</span></a>
+</p>
 </div>
 </body>
 </html>
 
---_000_DM8PR16MB43571EA20E3A050872A0601EC7139DM8PR16MB4357namp_--
+--_000_CO6PR02MB8740E3965F1CA9124D3AE84AB2139CO6PR02MB8740namp_--
 
