@@ -1,121 +1,82 @@
-Return-Path: <ManWag@FastMail.FM>
+Return-Path: <neuberfran@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8A9EAC433EF
-	for <webhook@archiver.kernel.org>; Sat, 19 Mar 2022 00:13:47 +0000 (UTC)
-Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com
- [64.147.123.25])
- by mx.groups.io with SMTP id smtpd.web10.2281.1647648826609825400
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AF8B6C433EF
+	for <webhook@archiver.kernel.org>; Sat, 19 Mar 2022 05:49:14 +0000 (UTC)
+Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com
+ [209.85.221.170])
+ by mx.groups.io with SMTP id smtpd.web11.4363.1647668953687318839
  for <yocto@lists.yoctoproject.org>;
- Fri, 18 Mar 2022 17:13:46 -0700
+ Fri, 18 Mar 2022 22:49:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@fastmail.fm header.s=fm3 header.b=FfP91t8s;
- spf=pass (domain: fastmail.fm, ip: 64.147.123.25,
- mailfrom: manwag@fastmail.fm)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-	by mailout.west.internal (Postfix) with ESMTP id 254243201D2D
-	for <yocto@lists.yoctoproject.org>; Fri, 18 Mar 2022 20:13:44 -0400 (EDT)
-Received: from imap41 ([10.202.2.91])
-  by compute2.internal (MEProxy); Fri, 18 Mar 2022 20:13:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fastmail.fm; h=
-	cc:content-type:date:date:from:from:in-reply-to:message-id
-	:mime-version:reply-to:sender:subject:subject:to:to; s=fm3; bh=j
-	LcKl8OYw4vxG2/Yj8V1P1hwby9OPoM8VXSdO+6dhnI=; b=FfP91t8se33FlICbo
-	FvATWPsAv9WmltY9o6J9kt7LLpqrD8/1P7Ye8OD8unZHQjIez8eTCOYiQ6CHC7JB
-	MR7yiCvwfeWl39uKUtWMtVhlWkI2WDnO1Ka6WHc5aI1Hw5Jv2SgAsJ7meyClAya8
-	OOozthTp5XANEnq8db9YIZ6HEvmVhySV0ruPgLtCBxlybkQIjgnP3j4ZKWqq6DCH
-	OBKXnx7Wfoc2cNdCNI86ZKB/t6ju0TYhv/+fh/1aHi7p0fFd3T1wu43UgPLNSObi
-	UayqTN+Z+Vk4aoJKfpjxQc0YK9nKNA5ACp40BTeOcbsi9JCY/XvaVTz8aTSF4kU7
-	tRHIw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:content-type:date:date:from:from
-	:in-reply-to:message-id:mime-version:reply-to:sender:subject
-	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-	:x-sasl-enc; s=fm3; bh=jLcKl8OYw4vxG2/Yj8V1P1hwby9OPoM8VXSdO+6dh
-	nI=; b=f8zj4OcTeP+tdGa0x+ZI2zuW4sOXWOhpw317drL7yrSxnG4WfZyHzIkOf
-	eMPnSC+YbURSJ2B7XKhi+V6qb2oFAxjL3NNrIdneP1f+GfHV28PO/TECg2AccHdf
-	9FHt0nHirRq9dHKiPW7g1xw4AlpuI3grLAnPWhF1P4Mo8VlXXsS8EvmDYaYgM3wX
-	WgosF76iwEJoEwLiscPQTUWVJmqn/wdskH4Q1V1QJ2ltTAJbJuMvaL/ojqKKV56b
-	+JH6D2LBgr4lip938lgJQaqfDDi6CWv0HkKJ1ht+bWEhmAGcQF+pgiBcWsCBqj5l
-	bSF6+eXZuwg736rzP3f4usG8Ohcag==
-X-ME-Sender: <xms:NyA1Yq7osxFQZ6SfJhFyxul4e91M8TyiKz1NO_F2rzuWq2hAJoR2TA>
-    <xme:NyA1Yj6CBNm2Sbu9j8mIqqXugXDFUzUSJUv1RYejyGpoPBZkDNwoHSIIQ5fGkBISt
-    LArbxBI5wqqoGbS>
-X-ME-Proxy-Cause: 
- gggruggvucftvghtrhhoucdtuddrgedvvddrudefjedgudejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefofgggkfffhffvufgtsehttdertd
-    erredtnecuhfhrohhmpedfofgrnhhuvghlucghrghgvghsrhgvihhthhgvrhdfuceoofgr
-    nhghrghgsefhrghsthforghilhdrhffoqeenucggtffrrghtthgvrhhnpeetkeeiffetie
-    fhffdvgeefudeviefhfedtueegffffieehjeehjeeifeefgeffteenucffohhmrghinhep
-    lhhinhhugidqkhhvmhdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmh
-    epmhgrihhlfhhrohhmpeforghnhggrgheshfgrshhtofgrihhlrdfhof
-X-ME-Proxy: <xmx:NyA1YpeAd0DfmSWHKR3QpfJtQbn9kARzw8Oz6QoP-g2ve4kejP4Dlg>
-    <xmx:NyA1YnLWgJIK-7rvP0dR6yCVtdzGCM-MyTeeRLOq8Y56CHOfEuEV-A>
-    <xmx:NyA1YuJ-4ep5QoefYBJLZRnAix7WIlbLyTntn7vcyHAv7QTbCdvzlg>
-    <xmx:NyA1YjV7K0UrjUBY-5DlQ_OLtk_d7GyfhtMQz88HNO6iJvnhoBLkkQ>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 7C7A63C00CF; Fri, 18 Mar 2022 20:13:43 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-4907-g25ce6f34a9-fm-20220311.001-g25ce6f34
-Mime-Version: 1.0
-Message-Id: <ecb915d5-3d42-40a7-bae9-268455e9fd5a@www.fastmail.com>
-Date: Sat, 19 Mar 2022 01:13:06 +0100
-From: "Manuel Wagesreither" <ManWag@FastMail.FM>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: qemu: Enable guest access to the internet
-Content-Type: text/plain
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=KXpr3KBV;
+ spf=pass (domain: gmail.com, ip: 209.85.221.170,
+ mailfrom: neuberfran@gmail.com)
+Received: by mail-vk1-f170.google.com with SMTP id m84so5458754vke.1
+        for <yocto@lists.yoctoproject.org>;
+ Fri, 18 Mar 2022 22:49:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=XF7289Gbw3/hVm0OYp9LdrqXJqMpNe8/ZBqJaNSjKqA=;
+        b=KXpr3KBVwV9xn72LLmOxgORV7WtXmLmYDo/qGgySjMlSxl+hgWRC0i4GKvwzaArDgl
+         ESkYBvQuU5C4WA43abTQ0/S95niSifeviI5W82dTiinK212Rk+AOCAFgkqlH86nApfGZ
+         NvdSnarmN02EL1EBKygSSfP7DpZAP4jlTzNRmazNIP8ARnDC0HrHRryj8HsRDuNSPb5J
+         SI1ozbBY6QCRPpcw58lOYegqBBdsBeQEXdhezUyHbzIxLDetAS1A0A5V0NWytSZJNZ6w
+         zG+eG75qUOO09vfjfBX+bhgVURDMI/pIL52cWox/SBBu9U4gpgEBA9A2rC18/8RoMXua
+         FmFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=XF7289Gbw3/hVm0OYp9LdrqXJqMpNe8/ZBqJaNSjKqA=;
+        b=nc2VQsRPbWxH+b/vMu8AlB63r1qpOs5XLLoI6uL9bpusvAnO6gCSuP1fWUuVrluHni
+         deuKLUXR+WLNF2FEBN0yfYQZPhiZsieSk0LlkD+JJZrvZm/+FI+gOe/UhtElL2fHykNb
+         iPCkCF5PSOcGDeP722/z/N6txY/rQBwnfpeS3XAcnyycQ7eTSzWwMdH54ViVpUTL39Qk
+         YzdkzhepNvewO6WJ62Lxcs5csCo2rQ/h53da2ySY+y6JD1cDIry27YXgbIiVxJM0oyRA
+         gc1QS+lInGqjCEEFAQKTO5raz2uXVHYSrpkYIe97MMT5xyQ30j9IpBp6wE60NHmJLKVj
+         wKfA==
+X-Gm-Message-State: AOAM532bZ5r47xnTGhmwwSkxMy67WhMhrHylsWxeOnzndBl1hGbIQ7Mj
+	zHC5FuRsgFmKh6KYi3cyA2QdlU4KZcBqC3KSVpWam+Tn
+X-Google-Smtp-Source: 
+ ABdhPJxPQWjxm3kLyaG8K/N/mH0iW8bE5d3IR9Spp1HugBFCAUGw6j+K6740ligzYIaDZn501WEClAEm7qFdbLhqjaY=
+X-Received: by 2002:a05:6122:2009:b0:33e:c562:6cf7 with SMTP id
+ l9-20020a056122200900b0033ec5626cf7mr1335639vkd.40.1647668952633; Fri, 18 Mar
+ 2022 22:49:12 -0700 (PDT)
+MIME-Version: 1.0
+From: Neuber Sousa <neuberfran@gmail.com>
+Date: Sat, 19 Mar 2022 02:49:01 -0300
+Message-ID: 
+ <CABWL1P=9TpjgYX24+T+S5Ew7bWghNTjnrP6Q_oFtYUp+Z3VjvQ@mail.gmail.com>
+Subject: Pls Help-me with this issue;
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000a1154d05da8bd217"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 19 Mar 2022 00:13:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56500
+ <yocto@lists.yoctoproject.org>; Sat, 19 Mar 2022 05:49:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56501
 
-Hi all,
+--000000000000a1154d05da8bd217
+Content-Type: text/plain; charset="UTF-8"
 
-I would like to configure my host to allow the yocto-built qemu guest access the internet. I'm running qemu with kvm virtualization and slirp, and according to [1] it should just work. I'd like to find out why it doesn't.
-
-[1] https://www.linux-kvm.org/page/Networking#User_Networking
-
-Here's the current situation:
-
-* The guest has ip 10.0.2.15 and can ping my host with `ping 10.0.2.2`.
-* The host has no ip 10.0.0.0/16.
-* The guest cannot ping my hosts only ipv4 interface (besides lo) `ping 192.168.178.24`.
-* The guest cannot ping devices in the same LAN as my host: `ping 192.168.178.101`.
-* The host has sysctl configured like so:
-
-    net.ipv4.conf.all.accept_source_route = 1
-    net.ipv4.conf.all.send_redirects = 1
-    net.ipv4.ip_forward = 1
-    net.ipv6.conf.all.accept_source_route = 1
-    net.ipv6.conf.all.forwarding = 1
-
-* The hosts routing table:
-
-    Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
-    0.0.0.0         192.168.178.1   0.0.0.0         UG    600    0        0 wlp3s0
-    169.254.0.0     0.0.0.0         255.255.0.0     U     1000   0        0 wlp3s0
-    192.168.178.0   0.0.0.0         255.255.255.0   U     600    0        0 wlp3s0
-
-* runqemu starts qemu with hostfwd=tcp::2222-:22. That is, qemu is instructed to on the host listen on port 2222 and forward packets to port 22 of the guest.
-* From the host I can ssh into the guest with `ssh root@localhost -p2222`.
-
-When the ssh connection is up, `netstat -tupen` on the host prints
-
-    Proto Recv-Q Send-Q Local Address           Foreign Address         State       User       Inode      PID/Program name
-    tcp        0      0 127.0.0.1:2222          127.0.0.1:37548         ESTABLISHED 1000       34788      2301/qemu-system-x8 
-    tcp        0      0 127.0.0.1:37548         127.0.0.1:2222          ESTABLISHED 1000       40091      2331/ssh
-
-`netstat -tuen` inside the guest prints
-
-    Proto Recv-Q Send-Q Local Address           Foreign Address         State       
-    tcp        0      0 ::ffff:10.0.2.15:22     ::ffff:10.0.2.2:37548   ESTABLISHED
+https://stackoverflow.com/questions/71073386/reading-file-would-overwrite-reserved-memory-failed-to-load-hello-world-bin
 
 
-Has anyone any ideas?
+How to use LMB?
 
-Thanks, regards,
-Manuel
+?
+
+--000000000000a1154d05da8bd217
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><a href=3D"https://stackoverflow.com/questions/71073386/r=
+eading-file-would-overwrite-reserved-memory-failed-to-load-hello-world-bin"=
+>https://stackoverflow.com/questions/71073386/reading-file-would-overwrite-=
+reserved-memory-failed-to-load-hello-world-bin</a><div dir=3D"auto"><br></d=
+iv><div dir=3D"auto"><br></div><div dir=3D"auto">How to use LMB?</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto">?</div></div>
+
+--000000000000a1154d05da8bd217--
 
