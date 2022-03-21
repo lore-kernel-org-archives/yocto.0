@@ -2,72 +2,97 @@ Return-Path: <michael.opdenacker@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A4234C433F5
-	for <webhook@archiver.kernel.org>; Mon, 21 Mar 2022 08:54:37 +0000 (UTC)
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net
- [217.70.183.196])
- by mx.groups.io with SMTP id smtpd.web11.27742.1647852876531088339
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 164CDC433F5
+	for <webhook@archiver.kernel.org>; Mon, 21 Mar 2022 09:04:27 +0000 (UTC)
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net
+ [217.70.183.197])
+ by mx.groups.io with SMTP id smtpd.web09.28416.1647853465733537112
  for <yocto@lists.yoctoproject.org>;
- Mon, 21 Mar 2022 01:54:37 -0700
+ Mon, 21 Mar 2022 02:04:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bootlin.com header.s=gm1 header.b=ml1zHcLb;
- spf=pass (domain: bootlin.com, ip: 217.70.183.196,
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=cGNXla5Q;
+ spf=pass (domain: bootlin.com, ip: 217.70.183.197,
  mailfrom: michael.opdenacker@bootlin.com)
 Received: (Authenticated sender: michael.opdenacker@bootlin.com)
-	by mail.gandi.net (Postfix) with ESMTPSA id A11C5E0012;
-	Mon, 21 Mar 2022 08:54:33 +0000 (UTC)
+	by mail.gandi.net (Postfix) with ESMTPSA id 4B7F11C0006;
+	Mon, 21 Mar 2022 09:04:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1647852874;
+	t=1647853463;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=P2OzcG7WhM9uLdBeRCT16XGnqfw9t4CNbC5k3CKlcSA=;
-	b=ml1zHcLbut55Va6LH7ZauWMqL5SnJ/LWNvCcitW5r9NZ5LPIyjsqiI4fSF7U0Pg5mpzyCy
-	QUBKy7LDgQApw7bNVKSY4uQnmnv6ST3tISr6M4M5Satb2nFeG7Eopzg/AYmo5BHidRthTn
-	lQEXtAiS4Ut01s6JR+NY8MW8GZRNH6zGPq/VVzGH7ZodCrCShbfHS1+fOecm9Zl+bbslzA
-	eYvlteWg84Vd9SUjcYRThBG7gcr4+rvMT7dgbri3s8DdyV5P+KM2dCNSg4Ls0AWi820+HU
-	yf7xozR417s75IMHY6khE+zWZMF+frmvM6F9PAgzwqkh607ocmunvUCYXoA77Q==
-Message-ID: <6a80f311-0fe0-78be-855c-10c09798b0f0@bootlin.com>
-Date: Mon, 21 Mar 2022 09:54:32 +0100
+	bh=iNqxBbh42Ro6vRL/s2pnmmp2WPWim+mAHd3PmNb/Xuw=;
+	b=cGNXla5QI0wCxC6HI28vuUr74oJVAuyrsW0MkY4VcdRevOlQMyu2r4aPu4U/405tqPTpH5
+	6IwiMMf8bP6BitUOSobizMpMcPGVHVTMiy1M1mnpL5ENe5nj3RxUpLVELWKjYkuTz7DoNj
+	eefiEfqnYQUX8kgEfAyEelQ56DA/CnQPPQqBu2aM8jvItGCFRmANjmIk5ENw5/KXL9JvW+
+	ujqZvUTrv53fd7IIofLNOnvHCDF5Hl81/FL1X3NgXXcj4QZfsuYnNU4fjVMlTtEygjneWg
+	3A12Yw7DPGEQU3YEiyhw2Rlo5q1lIdOaRPqTzhqxT6YvdVBGD+cQQS5Xheoxzw==
+Message-ID: <c41572b3-642a-ef97-10a2-a74187b06d92@bootlin.com>
+Date: Mon, 21 Mar 2022 10:04:20 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
 Cc: Quentin Schulz <quentin.schulz@theobroma-systems.com>,
  Quentin Schulz <foss+yocto@0leil.net>
-Subject: Re: [yocto] [PATCH yocto-autobuilder-helper 1/6] scripts:
- run-docs-build: factor out all bitbake branches building
+Subject: Re: [yocto] [PATCH yocto-autobuilder-helper 2/6] scripts:
+ run-docs-build: automatically build new Bitbake branches
 Content-Language: en-US
 To: Quentin Schulz <foss@0leil.net>, yocto@lists.yoctoproject.org
 References: <20220318163651.3016936-1-foss+yocto@0leil.net>
+ <20220318163651.3016936-2-foss+yocto@0leil.net>
 From: Michael Opdenacker <michael.opdenacker@bootlin.com>
 Organization: Bootlin
-In-Reply-To: <20220318163651.3016936-1-foss+yocto@0leil.net>
+In-Reply-To: <20220318163651.3016936-2-foss+yocto@0leil.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 21 Mar 2022 08:54:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56510
+ <yocto@lists.yoctoproject.org>; Mon, 21 Mar 2022 09:04:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56511
 
-Hi Quentin
 
 On 3/18/22 17:36, Quentin Schulz wrote:
 > From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
 >
-> master and master-next only differ from other branches by their output
-> directory name. Let's put everything in common and only have a check on
-> whether the branch is master or master-next and modify the output dir in
-> those cases.
+> Since commit 84ccba0f4aff91528f764523fe1205a354c889ed, docs of all later
+> releases can be built with Sphinx. Instead of manually updating this
+> list, let's have git return the list of remote branches which contains
+> this commit.
+>
+> 1.46 branch was initially released without Sphinx support but was later
+> patched, hence why it's explicitly listed.
 >
 > Cc: Quentin Schulz <foss+yocto@0leil.net>
 > Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+> ---
+>  scripts/run-docs-build | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+>
+> diff --git a/scripts/run-docs-build b/scripts/run-docs-build
+> index f7b5f97..d8d77c7 100755
+> --- a/scripts/run-docs-build
+> +++ b/scripts/run-docs-build
+> @@ -37,7 +37,12 @@ mkdir $outputdir/bitbake
+>  # https://lists.yoctoproject.org/g/docs/message/2193
+>  # We copy the releases.rst file from master so that all versions of the docs
+>  # see the latest releases.
+> -for branch in 1.46 1.48 1.50 1.52 master master-next; do
+> +first_sphinx_commit=84ccba0f4aff91528f764523fe1205a354c889ed
+> +for branch in 1.46 $(git branch --remote --contains "$first_sphinx_commit" --format '%(refname:lstrip=3)'); do
+> +    if [ "$branch" = "HEAD" ]; then
+> +        continue
+> +    fi
+> +
+>      echo Building bitbake $branch branch
+>      git checkout $branch
+>      git checkout master releases.rst
 
-Thanks for the useful patch!
 
+Very good idea! I learned a new git option today.
 Reviewed-by: Michael Opdenacker <michael.opdenacker@bootlin.com>
-Cheers
+Thanks!
 Michael.
 
 -- 
