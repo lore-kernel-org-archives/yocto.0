@@ -1,96 +1,78 @@
-Return-Path: <ManWag@FastMail.FM>
+Return-Path: <michael.opdenacker@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 31898C433EF
-	for <webhook@archiver.kernel.org>; Mon, 21 Mar 2022 06:03:16 +0000 (UTC)
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com
- [66.111.4.26])
- by mx.groups.io with SMTP id smtpd.web10.27083.1647842591344368962
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A4234C433F5
+	for <webhook@archiver.kernel.org>; Mon, 21 Mar 2022 08:54:37 +0000 (UTC)
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net
+ [217.70.183.196])
+ by mx.groups.io with SMTP id smtpd.web11.27742.1647852876531088339
  for <yocto@lists.yoctoproject.org>;
- Sun, 20 Mar 2022 23:03:11 -0700
+ Mon, 21 Mar 2022 01:54:37 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@fastmail.fm header.s=fm3 header.b=AUpLmDw0;
- spf=pass (domain: fastmail.fm, ip: 66.111.4.26, mailfrom: manwag@fastmail.fm)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-	by mailout.nyi.internal (Postfix) with ESMTP id A9B855C01A6;
-	Mon, 21 Mar 2022 02:03:10 -0400 (EDT)
-Received: from imap41 ([10.202.2.91])
-  by compute2.internal (MEProxy); Mon, 21 Mar 2022 02:03:10 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fastmail.fm; h=
-	cc:content-transfer-encoding:content-type:date:date:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:sender:subject:subject:to:to; s=fm3; bh=OEO2U7NzeSdsnN
-	rI/kvarzLYvRVm+YahkIf5a8CmCq4=; b=AUpLmDw0csGT6fJ61oAhb0gGhsL/eL
-	V7mQdMXHHMDa7/C0d3KOPzRZ9dz4WTtUVmEnBI/snLSBcg6awjGKolMRAxQiLn0Q
-	ZeblGJCXQEQ6P3+MLSHq7WIDYHRqUtEpyyqs+tRL3aN1K/LSoXMHEvPPqEGVvJ3R
-	GT/MsSitRXIW67RwYIYZLllaj+CejWrWxaaro8rWiDaZ2DFdZvufOjuKh7XiJcVQ
-	OUWHBTN3fAsUx67S4aGb0Ahkz8tj+7mye3aIldCFajYg2r/W9FsSsCmzyYndLHh0
-	/3rbe519e7VzNEPxDyUEXm5fPNXcuvycOhixid6UZAwVwoqYCLI0mtJQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:content-transfer-encoding:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:sender:subject:subject:to:to
-	:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm3; bh=OEO2U7NzeSdsnNrI/kvarzLYvRVm+YahkIf5a8CmCq4=; b=UJ8SMqMn
-	nyTCeIt+tXLAml7hQ/T9C9UcRwhXK/SRYkBONbAyW6M2TFYNSUexSvzzThcose5w
-	AShv5YvVyCjD/cgMD2WPQDP/WNvsDarMu29BB1vgPOEAOQ8SbL0LfrqOyxN2AGNl
-	zveI5glBD0x0LjJy2Eh0LdWYpSxXx4YZtJVMwUguCJX8Yr72lVs80lGMgme707hq
-	bcBvvqOmPYVCbkVt8p3OAU9GS9ka8ClyKXstKPZf4xr70/MDCoiX2thTYVKD/g+T
-	paVVYm0uISDFMWSJTTcamHQ/m8sbudfXu7uHx4qaPUW8RHYDEcq3n/D8/HrQ1JfX
-	ZGXDyR/MoVjsEw==
-X-ME-Sender: <xms:HhU4Yl9e2nHa4ANOxXSGzeeTTydXSjfn9zparTS46P7lUFa4G1NkCA>
-    <xme:HhU4YpukTVSr9GhFg5E1LxghCTE7z_MNgiXbU6Is8COA7KslnEk-SIJCOyb_avUjy
-    rWwlaPCBWS8w6VU>
-X-ME-Proxy-Cause: 
- gggruggvucftvghtrhhoucdtuddrgedvvddrudegvddgleduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefofgggkfgjfhffhffvufgtgfesth
-    hqredtreerjeenucfhrhhomhepfdforghnuhgvlhcuhggrghgvshhrvghithhhvghrfdcu
-    oeforghnhggrgheshfgrshhtofgrihhlrdfhofeqnecuggftrfgrthhtvghrnhepieeiff
-    fhhfevieekvdekveekteeggeeugfeihfeuheehleffteegjefhgfffuddvnecuffhomhgr
-    ihhnpehgihhthhhusgdrtghomhdprghrthhhuhhrqdgvmhgsvggurdgssgdphihouhhtuh
-    drsggvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhep
-    ofgrnhghrghgsefhrghsthforghilhdrhffo
-X-ME-Proxy: <xmx:HhU4YjCwNsfJ7vH7L--lJBukEeaX27cwKWcknysqQchpu3-RSf4d3A>
-    <xmx:HhU4YpeQt0VRZuP1AX-t26xrVuYHHFqdRVMExVfTNWzk7FqbFrZrFg>
-    <xmx:HhU4YqP-hxRlWQcHKEiNi7SuFr5q-1JyLPz-0NVKV12rBFsdMnUJ9g>
-    <xmx:HhU4YtavaZaXPvZKmiGIvHjjlL_dHD5kNGXHiwVio8lfCc5qj-rEHg>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 144F63C00CF; Mon, 21 Mar 2022 02:03:10 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-4907-g25ce6f34a9-fm-20220311.001-g25ce6f34
-Mime-Version: 1.0
-Message-Id: <c6ff5ff6-a11f-43fb-b85a-d6426c94212d@www.fastmail.com>
-In-Reply-To: <4392d158-e0cb-0776-93c3-62972ed28431@kaa.org.ua>
-References: <4392d158-e0cb-0776-93c3-62972ed28431@kaa.org.ua>
-Date: Mon, 21 Mar 2022 07:02:48 +0100
-From: "Manuel Wagesreither" <ManWag@FastMail.FM>
-To: "Oleh Kravchenko" <oleg@kaa.org.ua>, yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Multiconfig dependency
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=ml1zHcLb;
+ spf=pass (domain: bootlin.com, ip: 217.70.183.196,
+ mailfrom: michael.opdenacker@bootlin.com)
+Received: (Authenticated sender: michael.opdenacker@bootlin.com)
+	by mail.gandi.net (Postfix) with ESMTPSA id A11C5E0012;
+	Mon, 21 Mar 2022 08:54:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1647852874;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=P2OzcG7WhM9uLdBeRCT16XGnqfw9t4CNbC5k3CKlcSA=;
+	b=ml1zHcLbut55Va6LH7ZauWMqL5SnJ/LWNvCcitW5r9NZ5LPIyjsqiI4fSF7U0Pg5mpzyCy
+	QUBKy7LDgQApw7bNVKSY4uQnmnv6ST3tISr6M4M5Satb2nFeG7Eopzg/AYmo5BHidRthTn
+	lQEXtAiS4Ut01s6JR+NY8MW8GZRNH6zGPq/VVzGH7ZodCrCShbfHS1+fOecm9Zl+bbslzA
+	eYvlteWg84Vd9SUjcYRThBG7gcr4+rvMT7dgbri3s8DdyV5P+KM2dCNSg4Ls0AWi820+HU
+	yf7xozR417s75IMHY6khE+zWZMF+frmvM6F9PAgzwqkh607ocmunvUCYXoA77Q==
+Message-ID: <6a80f311-0fe0-78be-855c-10c09798b0f0@bootlin.com>
+Date: Mon, 21 Mar 2022 09:54:32 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Cc: Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+ Quentin Schulz <foss+yocto@0leil.net>
+Subject: Re: [yocto] [PATCH yocto-autobuilder-helper 1/6] scripts:
+ run-docs-build: factor out all bitbake branches building
+Content-Language: en-US
+To: Quentin Schulz <foss@0leil.net>, yocto@lists.yoctoproject.org
+References: <20220318163651.3016936-1-foss+yocto@0leil.net>
+From: Michael Opdenacker <michael.opdenacker@bootlin.com>
+Organization: Bootlin
+In-Reply-To: <20220318163651.3016936-1-foss+yocto@0leil.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 21 Mar 2022 06:03:16 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56509
+ <yocto@lists.yoctoproject.org>; Mon, 21 Mar 2022 08:54:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56510
 
-Hi Oleh,
+Hi Quentin
 
-Am Do, 17. M=C3=A4r 2022, um 21:29, schrieb Oleh Kravchenko:
->  do_install[mcdepends] =3D "mc:initramfs::core-image-minimal:do_image_=
-complete"
+On 3/18/22 17:36, Quentin Schulz wrote:
+> From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+>
+> master and master-next only differ from other branches by their output
+> directory name. Let's put everything in common and only have a check on
+> whether the branch is master or master-next and modify the output dir in
+> those cases.
+>
+> Cc: Quentin Schulz <foss+yocto@0leil.net>
+> Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
 
-I have zero practical experience with multiconfig, but isn't this missin=
-g one argument?
+Thanks for the useful patch!
 
-See here:
+Reviewed-by: Michael Opdenacker <michael.opdenacker@bootlin.com>
+Cheers
+Michael.
 
-https://github.com/JPEWdev/meta-multiconfig-demos/blob/main/recipes-misc=
-/arthur-embed/arthur-embed.bb#L21https://youtu.be/YvtlGjWrL-M?list=3DPLD=
-4M5FoHz-TwWYbaJwduH8ZYNYvva76QQ&t=3D5030
+-- 
+Michael Opdenacker, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
-Regards,
-Manuel
 
