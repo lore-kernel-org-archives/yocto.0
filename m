@@ -2,191 +2,277 @@ Return-Path: <asharma@mvista.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 82708C433EF
-	for <webhook@archiver.kernel.org>; Wed, 23 Mar 2022 19:42:11 +0000 (UTC)
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
- [209.85.214.179])
- by mx.groups.io with SMTP id smtpd.web11.1715.1648064530684729217
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F2AD6C433EF
+	for <webhook@archiver.kernel.org>; Wed, 23 Mar 2022 19:52:32 +0000 (UTC)
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com
+ [209.85.210.175])
+ by mx.groups.io with SMTP id smtpd.web11.1861.1648065152438582130
  for <yocto@lists.yoctoproject.org>;
- Wed, 23 Mar 2022 12:42:10 -0700
+ Wed, 23 Mar 2022 12:52:32 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista.com header.s=google header.b=fMgsKW+f;
- spf=pass (domain: mvista.com, ip: 209.85.214.179,
+ dkim=pass header.i=@mvista.com header.s=google header.b=Z5Iv1jwC;
+ spf=pass (domain: mvista.com, ip: 209.85.210.175,
  mailfrom: asharma@mvista.com)
-Received: by mail-pl1-f179.google.com with SMTP id e5so2550015pls.4
+Received: by mail-pf1-f175.google.com with SMTP id s11so2243303pfu.13
         for <yocto@lists.yoctoproject.org>;
- Wed, 23 Mar 2022 12:42:10 -0700 (PDT)
+ Wed, 23 Mar 2022 12:52:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=mvista.com; s=google;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=2XLUK8pJLgSHRlQI3pXpMQjr82Qo3gtvjFLSKyh/g4w=;
-        b=fMgsKW+fj+IALmcga4jxo2hKIx8ZDYuq+IbaTeJ/12uPWr2PpHxGQsum194g2LJGog
-         ExrNimFyurAp4CQHpVqWNiqhyA4RRwewjVq4lXrcMDIwd9rb8lmYWQ8mm5m5iYiNWEEq
-         mMFnwsXx/I2j6p7Rgz64A4FEfajLovr67QMzg=
+        bh=7SB7QR2ZtYmaKp7KNEzrNxj9no+TJaQTfBt8xMATLuc=;
+        b=Z5Iv1jwCN2V3uuwzSS3c3JY9P+IFIo0dsTwZxPS/pS30B6m2iCRBPxcuT7PGavhr2+
+         VgTbRNaoBNTX6UDoBnelFPwQCiFQtSLdVoiTsAZTtH9BYYoB4X5sjXi/N7rwKgOcEof3
+         hFvHUVeur/epwbNTgANgSrPJX55wNNBAZy1/0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=2XLUK8pJLgSHRlQI3pXpMQjr82Qo3gtvjFLSKyh/g4w=;
-        b=VK68QQ57QGDVrtPnyISWsmqtXqR9mxy6nDfY31LnVGPPOr+pg649WHyy2XWWR1mI5j
-         Cy5yZHpZhIpfyhbCsalBsam3B2vVpjaVLpm30Lkcqk4oTGgAoisgeJDVCG8oIwxo2ExC
-         A7SKod/zXoAj7RQdW//mYBFRidfj6nm5RkDOgBSxroEzzSxeb6daddJoZvW2o3HO95UK
-         ZrzTO8AEiXM8VcZT/SL1PkXtCgjakN2bNiYzSa081v3DnbCj/XyJbChOMCHgJMhUYA5S
-         uX1h2y0RyuiYoRsMaDCY3IYGDBGgdoKRb30q8ZdH3DeOny9dYJ+atWZ8d6CjHq6zQAqM
-         6wuA==
-X-Gm-Message-State: AOAM532ZG8QKgY1Mkv+F2MFtjIcam8KVoPDfBaPrHUofZzzT4PuFYn+Q
-	eT9caV72tWmLKgOeVdjkABZCy1mWP+Zbag==
+        bh=7SB7QR2ZtYmaKp7KNEzrNxj9no+TJaQTfBt8xMATLuc=;
+        b=EFV36qH2gKEUOnMAufiSDxbWUg7GfhBvECOIdO+MaY6rgJmOaN5l4zS7UArgUJExLz
+         X9WShoEkZIuh7Ec9I7DRolgv4t0Zyp50fHI9XF6kPblcII1pYkiPTJRZVM0A8NhRiaGj
+         RpUl08lsHCHl7FaqrQee0CkVFjtuPvKoU6qQzum9ZX1pQLD81htaHYAlQ2o3xh9s17YQ
+         5CaH4ioqwKWXnmQoml5WyszsF6s1QM1bnfIwkO5kT68fcXVsqC2ST1tkuME4ii1cvHhi
+         oaAR0xrB3fjYmNjEViWuue/V3lytCrWlEl27vgD/Eu7vp1xfy96rZAy7zgnk65QAEbva
+         Da9A==
+X-Gm-Message-State: AOAM533ZVkgJVFbdNWwBoAWHCSrLnvzxLA5lFDZEVpG43zRVV+UeRs1W
+	kRAB0AJHQYfIqIaC5MJAFRNCdoUDZklpjQ==
 X-Google-Smtp-Source: 
- ABdhPJzPSBuHP60gIna70Zmhnsko4cQzMUolHAw3NX6Q0yK0iYMG5ahqtl0wdExdcvbbFb16A0pzGQ==
-X-Received: by 2002:a17:902:ccce:b0:154:7a02:2a05 with SMTP id
- z14-20020a170902ccce00b001547a022a05mr1705404ple.42.1648064529822;
-        Wed, 23 Mar 2022 12:42:09 -0700 (PDT)
+ ABdhPJxM5J3t0VjUaSW3aH99pp61gj5RK+NkdDLcooRmS57y1h9jBa2ItHtL1V6oqOHwRGmzyMOpcg==
+X-Received: by 2002:a63:de43:0:b0:383:4a1c:d0aa with SMTP id
+ y3-20020a63de43000000b003834a1cd0aamr1181758pgi.464.1648065151171;
+        Wed, 23 Mar 2022 12:52:31 -0700 (PDT)
 Received: from asharma-Latitude-3400 ([223.190.84.201])
         by smtp.gmail.com with ESMTPSA id
- ca9-20020a17090af30900b001c658fd7b47sm455839pjb.36.2022.03.23.12.42.07
+ k10-20020a056a00168a00b004f7e2a550ccsm684435pfc.78.2022.03.23.12.52.28
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 23 Mar 2022 12:42:09 -0700 (PDT)
+        Wed, 23 Mar 2022 12:52:30 -0700 (PDT)
 Received: by asharma-Latitude-3400 (sSMTP sendmail emulation);
- Thu, 24 Mar 2022 01:12:01 +0530
+ Thu, 24 Mar 2022 01:22:22 +0530
 From: Ashish Sharma <asharma@mvista.com>
 To: yocto@lists.yoctoproject.org
 Cc: Ashish Sharma <asharma@mvista.com>
-Subject: [meta-security][PATCH] meta-security : Use SPDX style licensing
- format
-Date: Thu, 24 Mar 2022 01:11:56 +0530
-Message-Id: <20220323194156.12208-1-asharma@mvista.com>
+Subject: [meta-selinux][PATCH] meta-selinux: Use SPDX style licensing format
+Date: Thu, 24 Mar 2022 01:22:20 +0530
+Message-Id: <20220323195220.12610-1-asharma@mvista.com>
 X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 23 Mar 2022 19:42:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56537
+ <yocto@lists.yoctoproject.org>; Wed, 23 Mar 2022 19:52:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56538
 
-WARNING: selinux-sandbox-3.3-r0 do_package_qa: QA Issue: Recipe LICENSE includes obsolete licenses GPLv2+ [obsolete-license] \
-WARNING: selinux-gui-3.3-r0 do_package_qa: QA Issue: Recipe LICENSE includes obsolete licenses GPLv2+ [obsolete-license] \
-WARNING: semodule-utils-3.3-r0.1 do_package_qa: QA Issue: Recipe LICENSE includes obsolete licenses GPLv2+ [obsolete-license] \
-WARNING: selinux-dbus-3.3-r0 do_package_qa: QA Issue: Recipe LICENSE includes obsolete licenses GPLv2+ [obsolete-license] \
-WARNING: libwhisker2-perl-2.5-r0 do_package_qa: QA Issue: Recipe LICENSE includes obsolete licenses GPL-1.0+ [obsolete-license] \
-WARNING: lib-perl-0.63-r0 do_package_qa: QA Issue: Recipe LICENSE includes obsolete licenses GPL-1.0+ [obsolete-license] \
-WARNING: libhtp-0.5.39-r0 do_package_qa: QA Issue: Recipe LICENSE includes obsolete licenses GPLv2 [obsolete-license] \
+WARNING: checkpolicy-3.3-r0 do_package_qa: QA Issue: Recipe LICENSE includes obsolete licenses GPLv2+ [obsolete-license] \
+WARNING: setools-4.4.0-r0 do_package_qa: QA Issue: Recipe LICENSE includes obsolete licenses GPLv2 LGPLv2.1 [obsolete-license] \
+WARNING: policycoreutils-3.3-r0 do_package_qa: QA Issue: Recipe LICENSE includes obsolete licenses GPLv2+ [obsolete-license] \
+WARNING: refpolicy-standard-2.20210908+gitAUTOINC+23a8d103f3-r0.2 do_package_qa: QA Issue: Recipe LICENSE includes obsolete licenses GPLv2 [obsolete-license] \
+WARNING: selinux-python-3.3-r0 do_package_qa: QA Issue: Recipe LICENSE includes obsolete licenses GPLv2+ [obsolete-license] \
+WARNING: ecryptfs-utils-111-r0 do_package_qa: QA Issue: Recipe LICENSE includes obsolete licenses GPL-2.0 [obsolete-license] \
+WARNING: nikto-2.1.6-r0 do_package_qa: QA Issue: Recipe LICENSE includes obsolete licenses GPLv2 [obsolete-license] \
+WARNING: bastille-3.2.1-r0 do_package_qa: QA Issue: Recipe LICENSE includes obsolete licenses GPLv2 [obsolete-license] \
+WARNING: suricata-6.0.4-r0 do_package_qa: QA Issue: Recipe LICENSE includes obsolete licenses GPLv2 [obsolete-license] \
+WARNING: samhain-server-4.4.6-r0.7 do_package_qa: QA Issue: Recipe LICENSE includes obsolete licenses GPLv2 [obsolete-license] \
 ...
 
 Signed-off-by: Ashish Sharma <asharma@mvista.com>
 ---
- recipes-ids/samhain/samhain.inc                       | 2 +-
- recipes-ids/suricata/suricata.inc                     | 2 +-
- recipes-perl/perl/libwhisker2-perl_2.5.bb             | 2 +-
- recipes-scanners/clamav/clamav_0.104.0.bb             | 2 +-
- recipes-security/bastille/bastille_3.2.1.bb           | 2 +-
- recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb | 2 +-
- recipes-security/nikto/nikto_2.1.6.bb                 | 2 +-
- recipes-security/sssd/sssd_2.5.2.bb                   | 2 +-
- 8 files changed, 8 insertions(+), 8 deletions(-)
+ meta_selinux_license_changes.patch            | 89 +++++++++++++++++++
+ .../refpolicy/refpolicy_common.inc            |  2 +-
+ recipes-security/selinux/checkpolicy_3.3.bb   |  2 +-
+ .../selinux/policycoreutils_3.3.bb            |  2 +-
+ .../selinux/selinux-python_3.3.bb             |  2 +-
+ .../selinux/selinux-sandbox_3.3.bb            |  2 +-
+ .../selinux/semodule-utils_3.3.bb             |  2 +-
+ recipes-security/setools/setools_4.4.0.bb     |  2 +-
+ 8 files changed, 96 insertions(+), 7 deletions(-)
+ create mode 100644 meta_selinux_license_changes.patch
 
-diff --git a/recipes-ids/samhain/samhain.inc b/recipes-ids/samhain/samhain.inc
-index 077e118..d64cddb 100644
---- a/recipes-ids/samhain/samhain.inc
-+++ b/recipes-ids/samhain/samhain.inc
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Provides file integrity checking and log file monitoring/analysis"
- HOMEPAGE    = "http://www.la-samhna.de/samhain/"
--LICENSE     = "GPLv2"
-+LICENSE     = "GPL-2.0-or-later"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=8ca43cbc842c2336e835926c2166c28b"
- 
- PV = "4.4.6"
-diff --git a/recipes-ids/suricata/suricata.inc b/recipes-ids/suricata/suricata.inc
-index 5754617..906423c 100644
---- a/recipes-ids/suricata/suricata.inc
-+++ b/recipes-ids/suricata/suricata.inc
+diff --git a/meta_selinux_license_changes.patch b/meta_selinux_license_changes.patch
+new file mode 100644
+index 0000000..1ff461e
+--- /dev/null
++++ b/meta_selinux_license_changes.patch
+@@ -0,0 +1,89 @@
++diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc
++index dffc34a..96d0da1 100644
++--- a/recipes-security/refpolicy/refpolicy_common.inc
+++++ b/recipes-security/refpolicy/refpolicy_common.inc
++@@ -1,5 +1,5 @@
++ SECTION = "admin"
++-LICENSE = "GPLv2"
+++LICENSE = "GPL-2.0-only"
++ 
++ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=393a5ca445f6965873eca0259a17f833"
++ 
++diff --git a/recipes-security/selinux/checkpolicy_3.3.bb b/recipes-security/selinux/checkpolicy_3.3.bb
++index 99ac470..ad90cc2 100644
++--- a/recipes-security/selinux/checkpolicy_3.3.bb
+++++ b/recipes-security/selinux/checkpolicy_3.3.bb
++@@ -6,7 +6,7 @@ binary policy. checkpolicy uses the static libsepol since it deals \
++ with low level details of the policy that have not been \
++ encapsulated/abstracted by a proper shared library interface."
++ SECTION = "base"
++-LICENSE = "GPLv2+"
+++LICENSE = "GPL-2.0-or-later"
++ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=393a5ca445f6965873eca0259a17f833"
++ 
++ require selinux_common.inc
++diff --git a/recipes-security/selinux/policycoreutils_3.3.bb b/recipes-security/selinux/policycoreutils_3.3.bb
++index 04f8ef7..552d354 100644
++--- a/recipes-security/selinux/policycoreutils_3.3.bb
+++++ b/recipes-security/selinux/policycoreutils_3.3.bb
++@@ -5,7 +5,7 @@ load_policy to load policies, setfiles to label filesystems, newrole \
++ to switch roles, and run_init to run /etc/init.d scripts in the proper \
++ context."
++ SECTION = "base"
++-LICENSE = "GPLv2+"
+++LICENSE = "GPL-2.0-or-later"
++ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=393a5ca445f6965873eca0259a17f833"
++ 
++ require selinux_common.inc
++diff --git a/recipes-security/selinux/selinux-python_3.3.bb b/recipes-security/selinux/selinux-python_3.3.bb
++index d130900..1bf1f63 100644
++--- a/recipes-security/selinux/selinux-python_3.3.bb
+++++ b/recipes-security/selinux/selinux-python_3.3.bb
++@@ -3,7 +3,7 @@ DESCRIPTION = "\
++ This package contains Python modules sepolgen, sepolicy; And the \
++ SELinux utilities audit2allow, chcat, semanage ..."
++ SECTION = "base"
++-LICENSE = "GPLv2+"
+++LICENSE = "GPL-2.0-or-later"
++ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=393a5ca445f6965873eca0259a17f833"
++ 
++ require selinux_common.inc
++diff --git a/recipes-security/selinux/selinux-sandbox_3.3.bb b/recipes-security/selinux/selinux-sandbox_3.3.bb
++index a20982c..cc9baad 100644
++--- a/recipes-security/selinux/selinux-sandbox_3.3.bb
+++++ b/recipes-security/selinux/selinux-sandbox_3.3.bb
++@@ -4,7 +4,7 @@ Run application within a tightly confined SELinux domain. The default \
++ sandbox domain only allows applications the ability to read and write \
++ stdin, stdout and any other file descriptors handed to it."
++ SECTION = "base"
++-LICENSE = "GPLv2+"
+++LICENSE = "GPL-2.0-or-later"
++ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=393a5ca445f6965873eca0259a17f833"
++ 
++ require selinux_common.inc
++diff --git a/recipes-security/selinux/semodule-utils_3.3.bb b/recipes-security/selinux/semodule-utils_3.3.bb
++index a8bca0e..06e28f4 100644
++--- a/recipes-security/selinux/semodule-utils_3.3.bb
+++++ b/recipes-security/selinux/semodule-utils_3.3.bb
++@@ -3,7 +3,7 @@ DESCRIPTION = "\
++ The utilities to create, expand, link and show the dependencies between \
++ the SELinux policy module packages."
++ SECTION = "base"
++-LICENSE = "GPLv2+"
+++LICENSE = "GPL-2.0-or-later"
++ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=393a5ca445f6965873eca0259a17f833"
++ 
++ require selinux_common.inc
++diff --git a/recipes-security/setools/setools_4.4.0.bb b/recipes-security/setools/setools_4.4.0.bb
++index b78af36..f1557b1 100644
++--- a/recipes-security/setools/setools_4.4.0.bb
+++++ b/recipes-security/setools/setools_4.4.0.bb
++@@ -6,7 +6,7 @@ libraries designed to facilitate SELinux policy analysis. \
++ This meta-package depends upon the main packages necessary to run \
++ SETools."
++ SECTION = "base"
++-LICENSE = "GPLv2 & LGPLv2.1"
+++LICENSE = "GPL-2.0-only & LGPL-2.1-only"
++ 
++ S = "${WORKDIR}/git"
++ SRC_URI = "git://github.com/SELinuxProject/${BPN}.git;branch=4.4;protocol=https \
+diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc
+index dffc34a..96d0da1 100644
+--- a/recipes-security/refpolicy/refpolicy_common.inc
++++ b/recipes-security/refpolicy/refpolicy_common.inc
 @@ -1,5 +1,5 @@
- HOMEPAGE = "http://suricata-ids.org/"
- SECTION = "security Monitor/Admin"
+ SECTION = "admin"
 -LICENSE = "GPLv2"
 +LICENSE = "GPL-2.0-only"
  
- COMPATIBLE_HOST:powerpc = 'null'
-diff --git a/recipes-perl/perl/libwhisker2-perl_2.5.bb b/recipes-perl/perl/libwhisker2-perl_2.5.bb
-index 5889a05..42c0b42 100644
---- a/recipes-perl/perl/libwhisker2-perl_2.5.bb
-+++ b/recipes-perl/perl/libwhisker2-perl_2.5.bb
-@@ -1,7 +1,7 @@
- DESCRIPTION = "Libwhisker is a Perl module geared specificly for HTTP testing."
+ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=393a5ca445f6965873eca0259a17f833"
  
- SECTION = "libs"
--LICENSE = "Artistic-1.0 | GPL-1.0+"
-+LICENSE = "Artistic-1.0 | GPL-1.0-or-later"
- 
- LIC_FILES_CHKSUM = "file://LICENSE;md5=254b8e29606fce6d1c1a4c9e32354573"
- 
-diff --git a/recipes-scanners/clamav/clamav_0.104.0.bb b/recipes-scanners/clamav/clamav_0.104.0.bb
-index f0889de..491a82f 100644
---- a/recipes-scanners/clamav/clamav_0.104.0.bb
-+++ b/recipes-scanners/clamav/clamav_0.104.0.bb
-@@ -2,7 +2,7 @@ SUMMARY = "ClamAV anti-virus utility for Unix - command-line interface"
- DESCRIPTION = "ClamAV is an open source antivirus engine for detecting trojans, viruses, malware & other malicious threats."
- HOMEPAGE = "http://www.clamav.net/index.html"
- SECTION = "security"
--LICENSE = "LGPL-2.1"
-+LICENSE = "LGPL-2.1-only"
- 
- DEPENDS = "glibc llvm libtool db openssl zlib curl libxml2 bison pcre2 json-c libcheck"
-  
-diff --git a/recipes-security/bastille/bastille_3.2.1.bb b/recipes-security/bastille/bastille_3.2.1.bb
-index 2d82983..e7852d9 100644
---- a/recipes-security/bastille/bastille_3.2.1.bb
-+++ b/recipes-security/bastille/bastille_3.2.1.bb
-@@ -2,7 +2,7 @@
- #consult the README file for the meta-security layer for additional information.
- SUMMARY = "Linux hardening tool"
- DESCRIPTION = "Bastille Linux is a Hardening and Reporting/Auditing Program which enhances the security of a Linux box, by configuring daemons, system settings and firewalling."
--LICENSE = "GPLv2"
-+LICENSE = "GPL-2.0-only"
- LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=c93c0550bd3173f4504b2cbd8991e50b"
- # Bash is needed for set +o privileged (check busybox), might also need ncurses
- DEPENDS = "virtual/kernel"
-diff --git a/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb b/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
-index 9aefc32..5f8cf3c 100644
---- a/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
-+++ b/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
-@@ -6,7 +6,7 @@ DESCRIPTION = "eCryptfs is a stacked cryptographic filesystem \
- HOMEPAGE = "https://launchpad.net/ecryptfs"
+diff --git a/recipes-security/selinux/checkpolicy_3.3.bb b/recipes-security/selinux/checkpolicy_3.3.bb
+index 99ac470..ad90cc2 100644
+--- a/recipes-security/selinux/checkpolicy_3.3.bb
++++ b/recipes-security/selinux/checkpolicy_3.3.bb
+@@ -6,7 +6,7 @@ binary policy. checkpolicy uses the static libsepol since it deals \
+ with low level details of the policy that have not been \
+ encapsulated/abstracted by a proper shared library interface."
  SECTION = "base"
+-LICENSE = "GPLv2+"
++LICENSE = "GPL-2.0-or-later"
+ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=393a5ca445f6965873eca0259a17f833"
  
--LICENSE = "GPL-2.0"
-+LICENSE = "GPL-2.0-only"
- LIC_FILES_CHKSUM = "file://COPYING;md5=8ca43cbc842c2336e835926c2166c28b"
- 
- DEPENDS = "keyutils libgcrypt intltool-native glib-2.0-native"
-diff --git a/recipes-security/nikto/nikto_2.1.6.bb b/recipes-security/nikto/nikto_2.1.6.bb
-index 8542d69..8c21b30 100644
---- a/recipes-security/nikto/nikto_2.1.6.bb
-+++ b/recipes-security/nikto/nikto_2.1.6.bb
-@@ -3,7 +3,7 @@ DESCRIPTION = "Nikto is an Open Source web server scanner which performs compreh
- SECTION = "security"
- HOMEPAGE = "https://cirt.net/Nikto2"
- 
--LICENSE = "GPLv2"
-+LICENSE = "GPL-2.0-only"
- LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0-only;md5=801f80980d171dd6425610833a22dbe6"
- 
- SRCREV = "f1bbd1a8756c076c8fd4f4dd0bc34a8ef215ae79"
-diff --git a/recipes-security/sssd/sssd_2.5.2.bb b/recipes-security/sssd/sssd_2.5.2.bb
-index 8bc8787..9f1d627 100644
---- a/recipes-security/sssd/sssd_2.5.2.bb
-+++ b/recipes-security/sssd/sssd_2.5.2.bb
-@@ -2,7 +2,7 @@ SUMMARY = "system security services daemon"
- DESCRIPTION = "SSSD is a system security services daemon"
- HOMEPAGE = "https://pagure.io/SSSD/sssd/"
+ require selinux_common.inc
+diff --git a/recipes-security/selinux/policycoreutils_3.3.bb b/recipes-security/selinux/policycoreutils_3.3.bb
+index 04f8ef7..552d354 100644
+--- a/recipes-security/selinux/policycoreutils_3.3.bb
++++ b/recipes-security/selinux/policycoreutils_3.3.bb
+@@ -5,7 +5,7 @@ load_policy to load policies, setfiles to label filesystems, newrole \
+ to switch roles, and run_init to run /etc/init.d scripts in the proper \
+ context."
  SECTION = "base"
--LICENSE = "GPLv3+"
-+LICENSE = "GPL-3.0-or-later"
- LIC_FILES_CHKSUM = "file://COPYING;md5=d32239bcb673463ab874e80d47fae504"
+-LICENSE = "GPLv2+"
++LICENSE = "GPL-2.0-or-later"
+ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=393a5ca445f6965873eca0259a17f833"
  
- DEPENDS = "acl attr openldap cyrus-sasl libtdb ding-libs libpam c-ares krb5 autoconf-archive"
+ require selinux_common.inc
+diff --git a/recipes-security/selinux/selinux-python_3.3.bb b/recipes-security/selinux/selinux-python_3.3.bb
+index d130900..1bf1f63 100644
+--- a/recipes-security/selinux/selinux-python_3.3.bb
++++ b/recipes-security/selinux/selinux-python_3.3.bb
+@@ -3,7 +3,7 @@ DESCRIPTION = "\
+ This package contains Python modules sepolgen, sepolicy; And the \
+ SELinux utilities audit2allow, chcat, semanage ..."
+ SECTION = "base"
+-LICENSE = "GPLv2+"
++LICENSE = "GPL-2.0-or-later"
+ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=393a5ca445f6965873eca0259a17f833"
+ 
+ require selinux_common.inc
+diff --git a/recipes-security/selinux/selinux-sandbox_3.3.bb b/recipes-security/selinux/selinux-sandbox_3.3.bb
+index a20982c..cc9baad 100644
+--- a/recipes-security/selinux/selinux-sandbox_3.3.bb
++++ b/recipes-security/selinux/selinux-sandbox_3.3.bb
+@@ -4,7 +4,7 @@ Run application within a tightly confined SELinux domain. The default \
+ sandbox domain only allows applications the ability to read and write \
+ stdin, stdout and any other file descriptors handed to it."
+ SECTION = "base"
+-LICENSE = "GPLv2+"
++LICENSE = "GPL-2.0-or-later"
+ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=393a5ca445f6965873eca0259a17f833"
+ 
+ require selinux_common.inc
+diff --git a/recipes-security/selinux/semodule-utils_3.3.bb b/recipes-security/selinux/semodule-utils_3.3.bb
+index a8bca0e..06e28f4 100644
+--- a/recipes-security/selinux/semodule-utils_3.3.bb
++++ b/recipes-security/selinux/semodule-utils_3.3.bb
+@@ -3,7 +3,7 @@ DESCRIPTION = "\
+ The utilities to create, expand, link and show the dependencies between \
+ the SELinux policy module packages."
+ SECTION = "base"
+-LICENSE = "GPLv2+"
++LICENSE = "GPL-2.0-or-later"
+ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=393a5ca445f6965873eca0259a17f833"
+ 
+ require selinux_common.inc
+diff --git a/recipes-security/setools/setools_4.4.0.bb b/recipes-security/setools/setools_4.4.0.bb
+index b78af36..f1557b1 100644
+--- a/recipes-security/setools/setools_4.4.0.bb
++++ b/recipes-security/setools/setools_4.4.0.bb
+@@ -6,7 +6,7 @@ libraries designed to facilitate SELinux policy analysis. \
+ This meta-package depends upon the main packages necessary to run \
+ SETools."
+ SECTION = "base"
+-LICENSE = "GPLv2 & LGPLv2.1"
++LICENSE = "GPL-2.0-only & LGPL-2.1-only"
+ 
+ S = "${WORKDIR}/git"
+ SRC_URI = "git://github.com/SELinuxProject/${BPN}.git;branch=4.4;protocol=https \
 -- 
 2.33.0
 
