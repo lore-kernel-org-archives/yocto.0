@@ -1,208 +1,218 @@
-Return-Path: <jay.shen.teoh@intel.com>
+Return-Path: <ticotimo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6DBE4C433F5
-	for <webhook@archiver.kernel.org>; Fri, 25 Mar 2022 00:54:28 +0000 (UTC)
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by mx.groups.io with SMTP id smtpd.web11.496.1648169666869757225
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 49D8BC433F5
+	for <webhook@archiver.kernel.org>; Fri, 25 Mar 2022 01:13:55 +0000 (UTC)
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com
+ [209.85.215.177])
+ by mx.groups.io with SMTP id smtpd.web12.650.1648170834734606873
  for <yocto@lists.yoctoproject.org>;
- Thu, 24 Mar 2022 17:54:27 -0700
+ Thu, 24 Mar 2022 18:13:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel
- header.b=CI4MbdWX;
- spf=pass (domain: intel.com, ip: 192.55.52.43,
- mailfrom: jay.shen.teoh@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1648169666; x=1679705666;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=0HNEltuSfr2bzGnUM2wdSQbNvZW+12kasnvVYlKNQOg=;
-  b=CI4MbdWXkrdNpP+LmBaU1wpXqrzXhyhFYzKDWCvKgRUlG0I108mjiEg4
-   hvcmzPAipgOdEJYb78lZUlld3PQl2kc9uyuqrLAwOU2zcqvvkamF/MFIG
-   d61xZkIKFt3u5a8SAS/dXBChcLX4DxvIKly/f3hJ0b75/Eex7mVzgun4e
-   5u/2VU4j8EmTiGgjazn/UyTztlEP/zb/7ZV6O3JrZH3ATEwTiP5DW2eWg
-   6bvofUXxtnBG9MBNC/GzuvOhzwS3J6sCdDEjEix7fw1/CJ+a4YPF4iFYh
-   0sholR/AMtNdpbi4+m/zDqajZ81/zH7IX3KqSu23AflHhILE/sthBL2T3
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10296"; a="344962343"
-X-IronPort-AV: E=Sophos;i="5.90,208,1643702400";
-   d="scan'208";a="344962343"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2022 17:54:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,208,1643702400";
-   d="scan'208";a="561619483"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
-  by orsmga008.jf.intel.com with ESMTP; 24 Mar 2022 17:54:25 -0700
-Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Thu, 24 Mar 2022 17:54:25 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Thu, 24 Mar 2022 17:54:24 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Thu, 24 Mar 2022 17:54:24 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.44) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.21; Thu, 24 Mar 2022 17:54:20 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UJ8ILVPheqKMwWZC7bT85pLAPwG59lutIhG696S4VqWhd/W0MZZGDeSFYKmVWdht2IuYViLjnz6k78OenEQ4G+Uhi7z4A9+e/wCze2Flrv+/278821Lp6ZUsFSYgKHe+vSWwl3SlLVXuCuWN8RfSrMzyWG5hKhBtp8IEJ+b+XycaVb76RnocxwmzKvBiqQ+zez8GI0/Arh+LNcLNszbo6lgLN9jErXDehobtTNhOITTBjluZWA9JIBwV0e5sNg9hrdG72o8Gyy5sIcHh/0DE0M1ZdlI4OfRiPeicP9F6wh0nQUI/DeCVigL3LZD3Z09taw34WKY/hb5x+nHcrxB12g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0HNEltuSfr2bzGnUM2wdSQbNvZW+12kasnvVYlKNQOg=;
- b=eijYGgm+Agr5osvDLprJZAVbq0LjtSna13tTpndfSw41KeXOJDRB+7hxEnDTAzqp959NSm62kOrPJEoJrhDE5JGdQlHpbCe1HSIeUGl8uNu8DN/jMMgEYrjtTst5yhKSGNqF4c8hk+1tYyLWmD5LnK523GbYh4N1jlrM7aJX+jf2iA4vXH8tU2W9g/fIFBYHqa4UmZM/cUmmew0KUfIGXR/MeeM2koMLS7tJcc+OJhY4RZRvB5dDil/JZZQMbd7kCQoVYkX44AimqRVYCOIx3JD8QlHjAKO7QKUjS1LgHcu4TFKBKjKyEWLm6wRJiCZkpwtJ7Va1MlJIlkWNjRKhUg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM5PR1101MB2348.namprd11.prod.outlook.com (2603:10b6:3:a8::16)
- by SA0PR11MB4671.namprd11.prod.outlook.com (2603:10b6:806:9f::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.16; Fri, 25 Mar
- 2022 00:54:19 +0000
-Received: from DM5PR1101MB2348.namprd11.prod.outlook.com
- ([fe80::5de2:7c09:3341:9a45]) by DM5PR1101MB2348.namprd11.prod.outlook.com
- ([fe80::5de2:7c09:3341:9a45%9]) with mapi id 15.20.5081.022; Fri, 25 Mar 2022
- 00:54:19 +0000
-From: "Teoh, Jay Shen" <jay.shen.teoh@intel.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>,
-	"qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: RE: [yocto] [qa-build-notification] QA notification for completed
- autobuilder build (yocto-3.4.3.rc2)
-Thread-Topic: [yocto] [qa-build-notification] QA notification for completed
- autobuilder build (yocto-3.4.3.rc2)
-Thread-Index: AQHYP24HRJNj/fUE5UKN/vVsytj3OazPRcMA
-Date: Fri, 25 Mar 2022 00:54:19 +0000
-Message-ID: 
- <DM5PR1101MB23489E9669FFAF02D3068111BB1A9@DM5PR1101MB2348.namprd11.prod.outlook.com>
-References: 
- <0101017fb9c7ced5-43a54b46-8bc7-4123-b8f7-0b366a9ff1fd-000000@us-west-2.amazonses.com>
- <fc96c0b80078bcafc0a2191e57308ede28991227.camel@linuxfoundation.org>
-In-Reply-To: 
- <fc96c0b80078bcafc0a2191e57308ede28991227.camel@linuxfoundation.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.6.401.20
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7294baee-353e-4d78-52b9-08da0df9fe53
-x-ms-traffictypediagnostic: SA0PR11MB4671:EE_
-x-microsoft-antispam-prvs: 
- <SA0PR11MB4671B3E091E021797068702ABB1A9@SA0PR11MB4671.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- DGPy5UQnMzqfh/47nytjHAffuZJXp27yDJNhiWJx3v2wJp7zrtjJCrC94qBXiNHqcqhv0gRqEUHu9jO4DTb8qFEVefY7cisUDOmSbjbcpbfgQgMDXPLW2No33S6hLcac4chFQ31yLgSSOAuhjdacpmM79/cLvwmHTj/iQAuUmOfFHaOiW8myErV3SvsxTDm8IjKr9x1wCATnLOpnB2BDhoHDULOPYa+4VqAovy2FZywX75LnmWnwHZMSExHpgg/fqN2V6Vriln18Y6DJP66CBk+ARS2soASwBEbAPXyfTLl7vzVtpwAkYKa+TnlM6pUseqzg2YDe1DmqAB19ub1bKExq2Ag1P8o+d3Pv+wMczGjaWoN2uKujkXmQIjPpMjA/W/NsNyuhN+tzb62vSY+BZlt8R0T6Ye6VQI/M4sggGfjzC12UHroFMpNeHtAWg/Zrw+9I16mZCYB5Ac0si0nnn2jQYyuCOtVz8aoHtZ7uCcuUApT8vfOLz7OPhhJKOS6J4F5KnOLvQJ1mE9oUxYwsbM76nI3BogvfksznbES4nm0FM1LuDrpysbs/zS2w45qj2BdhvR2aMeyIzXCGlUhi9Qj4h0yrgua+BTTS0dzk5iYxIotrHsMHUe4vOutzMg3XkyC/eawHO2q2imMyQ2JyD6x0/NawnzxmLta8xO4wgcUd6beYdAcziuFJ1FwC02VvTCxLHAA/iDvoyr3LgKKcFgyuQrY0jo47veUBtIbhLvSElu2jD78gqionPHzm5PTbcOAAxQ0YdrDNI3Otr/TGT248HBDf+IJ5x5H2eZZbpmg=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR1101MB2348.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(9686003)(6506007)(122000001)(53546011)(7696005)(55016003)(8936002)(2906002)(5660300002)(186003)(33656002)(52536014)(26005)(15650500001)(66446008)(8676002)(83380400001)(38070700005)(966005)(64756008)(86362001)(508600001)(82960400001)(38100700002)(71200400001)(66476007)(66556008)(316002)(76116006)(110136005)(66946007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?aVpUdW1TemUwQkR5czM4TVpzRyt5SjNhK0xlSmdneTF1dDk0ZCsrYjNpaFNr?=
- =?utf-8?B?MWVCaUtJR0NCS01YaW5qcG11RzNXQTFmbTdaNTJ4czdzUDhGRDJyMjhzQjla?=
- =?utf-8?B?aGl3WnN4NDM0dlc0Zkhtc3RET1MrSUpUSXFzTUFWOXZxUjEvWkNYUDk3QjhI?=
- =?utf-8?B?S2dFRmR3OExvUTd1Unk4eHBsenB1SDhiN01Wbk5BYmYxcDVEaGhORHozbW5C?=
- =?utf-8?B?dkJTK1hpbE5mUkpRdEc1cjRoOFViN2VjWWdlZGxQRjFoSmYzelcwajRQRmt2?=
- =?utf-8?B?cXFGSHZERnN6am50NkZMMXJXaklwTGdxTVM3VmdlZHZ5QW5BMkE2b29DMUs2?=
- =?utf-8?B?Y0ExZmZXUmg0b1pSUzNLSk5qNElmOWxLRlp2NSsvNVllVWhXNTZMcWpuZzYv?=
- =?utf-8?B?bC8rcTJsQWxIajJVQ3UxN1FESE9EN21scjVkZUx3SUxiMjJtKzV5OFptQXpU?=
- =?utf-8?B?SXFldDNERHl4TkNxQU9velhJOGhJU0VZWDE2K0xOb1BZOW9Gd285S252OHhH?=
- =?utf-8?B?UUxweGpOUURiSXpwb3h0OXJ5QU1nRTdJbGVaRUZRdGN6OXBHd1ExenBBSllr?=
- =?utf-8?B?aGJGZHhta013NGtOa0pmWlN6RnNyOGswMnRmMTF5aTd6clBjblpMSEJVaHVt?=
- =?utf-8?B?ci92aVNCcERsd2tLWnZUV3dtbXd1RG44WDhuUkZheVN5K295Q3lTcXhTSGlM?=
- =?utf-8?B?cUpEWSs3dStxOENNNHlLbi9oSlJBNmhTYk1nSHlLc25Fc01QNTl0WjlKQ2RO?=
- =?utf-8?B?bmJzQWVXeDdxNGg5bjU2MnVuaXhyYk4zVHdwTHRibVp6aWVOejg3V2NuY1BO?=
- =?utf-8?B?blFUWXhSbVJ0V0RLdldsNm5Cb1VHek1xd2MwZzhOMVNKM2UwcFdwdEl4K1Fz?=
- =?utf-8?B?N0ZyeGgrZmtRRlNJb0hqQnBYSzBzQ3BOMFFtWEhGVytEZUpxdGgvaTF5dFh5?=
- =?utf-8?B?ZlhoWWp3THFqR29nbVVtUkhoQWNSRDNzcXNGNytnODZnTFNvN05DbUQ3NDM0?=
- =?utf-8?B?S29HcE5aaWR1UlRhS2FMV01iN3hVNGNrS2syZ2svUTNURGZxMFBua1pZbHpX?=
- =?utf-8?B?WEZXVnhqVUVQM0ZlRHA1cVV5MDlsUWtxSFk2MnJYOWJKRmk1RzJGTTdJVDEv?=
- =?utf-8?B?ZFhGUXdxbXpEWW82VzBDZHhHaFNGK1dsMS9SbEpLU0l1Yk1MbnpydGowZWFG?=
- =?utf-8?B?WmhIdEpOTnNrR0ZGSHp4SFVKZVc1aTN3dHBkNG9FRTFYS1Y4dDJ1TVFCZndO?=
- =?utf-8?B?eG9vbC9aTWxMaEljN3FySWJKZENmSlRaQmt4RUdOcGNmOUIzbXpJZU43a2NG?=
- =?utf-8?B?MDY3OGdQTWFQYWVIWlU3QTNzU2tFSUNoZS9IcEI0bFVyR0djVFF0dC9NcW9w?=
- =?utf-8?B?bVVRR1AyZWdFcW92bk1uaFlzRm52aTJ1NGN0QWZzUlBrT2Vpbkd6SnNKRzBX?=
- =?utf-8?B?ZlA2OWhwUHJiNXRsQXZham5mci9HZzZ6QzZ5S0V6MEc3RkdWU0FuQndWT3l1?=
- =?utf-8?B?bGhRQWljMU5JalRJTWhvZHZ3OWNsUEhUR2hVY2JXUW1sZHpCd0hTcm8wenhK?=
- =?utf-8?B?Ni9iR1g3dkJ1bVdxL2x0K0k5MGcvaFFOVGNtL3BxNUNKSmRTWG51Qy81aDhF?=
- =?utf-8?B?SkNjSVQwWTV4UnNsRy95OUF1MEp0b0VTZzZIVmdkMDRWZXNMby96Y1M0eEdD?=
- =?utf-8?B?R1ZOaXRUSzNTby9La21uOGdLN1R5aWVjbzdCVjd1ZENwRUpKRWRRL0NSYmU2?=
- =?utf-8?B?VEtlbTNOMEZQNUdWK0RsT084SzZ2ZlF3Q1FIcmY0TnZINFRZZmt4R1EyTHhI?=
- =?utf-8?B?NHBSb2VPcncrbkE5SXA5REdsdFpXejBxWlpjaGRlSU02SDZpRmtIQ21VZ1I5?=
- =?utf-8?B?TTc0SDRSR1E2WnhKclNxekdGRHd5cUFFUmZ0dldxQVZvbkQ1S20va2dGc254?=
- =?utf-8?B?Nm43VDJwUWNvRE9HcU1USERuMkVFQjlxMUMvaCsrdXZSVUFkZ3NCWDMweTYx?=
- =?utf-8?B?ZUVaSUdzRjh1b3FZMFNlRTNIQ1pvalVacFhLTmxLQkhBK3MwaERoV0RqTC9M?=
- =?utf-8?B?TWhmUGlhTjVlTXJqN0RkY3ZCVWt3K0lBVzF6VzRVYkJZQ2ZBdUdYbXdCVjFJ?=
- =?utf-8?B?TTl5UXllT1UxUUNobTA2dWNjcXdMMXQydGdNTnFOYWRZWmdibDBkMFo1MXFk?=
- =?utf-8?B?bzBXcVhRZHp0QlZleTFWM293cnQ1MTR2SDBNRXJvMlhwZHJwdG42NGVML08v?=
- =?utf-8?B?N1NyOWw0T3JrTGg4R1crSzd4bUlzSktYV2NUT1R0cmNJYXBmY0RIZDI5cGkv?=
- =?utf-8?B?K3R2L0RWUUt0WVNtbExsZUFVMG9DSXpBc1ZBRUQrWEU0WGhaU1ZjZz09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=W0+5Kr5d;
+ spf=pass (domain: gmail.com, ip: 209.85.215.177,
+ mailfrom: ticotimo@gmail.com)
+Received: by mail-pg1-f177.google.com with SMTP id k14so5243155pga.0
+        for <yocto@lists.yoctoproject.org>;
+ Thu, 24 Mar 2022 18:13:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nQshQ79iOcPJA1MENGiDlqpjuq8zYK1PVsttgSck5I0=;
+        b=W0+5Kr5dQygHwJLGRPi8ojuAnMosuKWeVvAQU9GOSZsvmEypSASCiTA6aAlUkpdjnO
+         4YJG3+vcK+2+sFdIO32iEGv7vFLYaBX092FpQgm9qr7Zc2N5pupxbHl/GP17s6QlU1wS
+         c6Z8rn8RfxI3Pv1ul2taVjD/W8Ry8eFGh2W6/kf0IdhuS5jhQTBN4+EvqxlVckMHPRN8
+         0ZZM1/fXWpdwESCbVif/dt5uHcsj31jj71NLi672TRKK5QGH4rOYRiZs7RPN1FQ/GnqR
+         3sF5QPdE5YAPLiDqAuLSNTp7bGbsbjzzmdkrc0zSVbB22TF3kOcl/cbBmj7zExwDXUrd
+         skhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nQshQ79iOcPJA1MENGiDlqpjuq8zYK1PVsttgSck5I0=;
+        b=g/V0vj0k8nIAvu/1IJ06Nn/R09t79UxDC2HnWd1JrLPBMzgdd4KylyM2UtfotJw30N
+         ckQPPZGEqUA/wgJF/At1TFFgsCJ1s70zdczZe1/DQV2xnMtDMWoQm74Cdmr/GoDdX/L/
+         0hPqA2kIzgRzTD8jtDQm1y+HAWDRFXzLYGM4MXAMuuXEgXA2jDSu1WGgcv4EEShSqo4K
+         hbqprC5M/f26lycPxwgHJfz/wqr3H/YdiykCWOVY/vafTyGvt4vMSchnO11bACJQwbc8
+         eI5qgYdZ+kkh9+FVtyFnAuoC2t3nPUXDWiFvrsG5eRhlNXwgUc2uVsw3SR8dFDsFtQqN
+         qm8Q==
+X-Gm-Message-State: AOAM531K8wlRZsxcuSAZh4B+THZQpJE1mzDf+wZD/6bJaCwv7seRJpCa
+	MNw/IuSO+Stk24rwoxrhxpwGM2ByGYl+cKju1fU=
+X-Google-Smtp-Source: 
+ ABdhPJz9cWP2ScpqPwJ4WiW7Kpyv8CRbyaeNXnpVPtDkGgiS5jEoweeR23Qsg52bC9Wzhvmj+02c3AqQ24CiaZ8Thjc=
+X-Received: by 2002:a65:5a06:0:b0:375:81c9:74b1 with SMTP id
+ y6-20020a655a06000000b0037581c974b1mr6091129pgs.122.1648170834058; Thu, 24
+ Mar 2022 18:13:54 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: 
- DM5PR1101MB2348.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 7294baee-353e-4d78-52b9-08da0df9fe53
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Mar 2022 00:54:19.0769
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- lni9fYqwzFXbGx8dSwpu9ZOkzU6IOKGjANQLkwFA6mudnHOO/Fi4tKPK4KymTSVEHINyuoSZ2Rq2b7kysy/Ltw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4671
-X-OriginatorOrg: intel.com
+References: <MADEUP.16DF5F8906D065B9.27042@lists.yoctoproject.org>
+ <a789cfc1a41ac9b17dc81efb7aab3b56716a64bb.camel@linuxfoundation.org>
+In-Reply-To: 
+ <a789cfc1a41ac9b17dc81efb7aab3b56716a64bb.camel@linuxfoundation.org>
+From: Tim Orling <ticotimo@gmail.com>
+Date: Thu, 24 Mar 2022 18:02:42 -0700
+Message-ID: 
+ <CANx9H-DwXcaNigE9JsR7NXRznmRXkdyiknQcMBcUYJYpj+Wy1Q@mail.gmail.com>
+Subject: Re: [yocto] CVE patch updates
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: steven.monsees@baesystems.com,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="00000000000017e1a205db00ad35"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 25 Mar 2022 00:54:28 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56557
+ <yocto@lists.yoctoproject.org>; Fri, 25 Mar 2022 01:13:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56558
 
-Tm90ZWQuIFdlIHdpbGwgc3RvcCB0aGUgUUEgZm9yIHJjMi4gDQoNClRoYW5rcywNCkpheSANCg0K
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiB5b2N0b0BsaXN0cy55b2N0b3By
-b2plY3Qub3JnIDx5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPiBPbiBCZWhhbGYNCj4gT2Yg
-UmljaGFyZCBQdXJkaWUNCj4gU2VudDogVGh1cnNkYXksIDI0IE1hcmNoLCAyMDIyIDY6NTggUE0N
-Cj4gVG86IHFhLWJ1aWxkLW5vdGlmaWNhdGlvbkBsaXN0cy55b2N0b3Byb2plY3Qub3JnOyB5b2N0
-b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnDQo+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIFtxYS1idWls
-ZC1ub3RpZmljYXRpb25dIFFBIG5vdGlmaWNhdGlvbiBmb3IgY29tcGxldGVkDQo+IGF1dG9idWls
-ZGVyIGJ1aWxkICh5b2N0by0zLjQuMy5yYzIpDQo+IA0KPiBPbiBUaHUsIDIwMjItMDMtMjQgYXQg
-MDI6MzUgKzAwMDAsIFBva3lidWlsZCBVc2VyIHdyb3RlOg0KPiA+IEEgYnVpbGQgZmxhZ2dlZCBm
-b3IgUUEgKHlvY3RvLTMuNC4zLnJjMikgd2FzIGNvbXBsZXRlZCBvbiB0aGUgYXV0b2J1aWxkZXIN
-Cj4gYW5kIGlzIGF2YWlsYWJsZSBhdDoNCj4gPg0KPiA+DQo+ID4gICAgIGh0dHBzOi8vYXV0b2J1
-aWxkZXIueW9jdG8uaW8vcHViL3JlbGVhc2VzL3lvY3RvLTMuNC4zLnJjMg0KPiA+DQo+ID4NCj4g
-PiBCdWlsZCBoYXNoIGluZm9ybWF0aW9uOg0KPiA+DQo+ID4gYml0YmFrZTogMWJjOWY4MDBmZmM5
-Yjc0MGNjMWRlMDEzMmVkMDRmMDdlYWRiMzQ3OQ0KPiA+IG1ldGEtYWdsOiBkZDhlMzRlZjUzODNk
-OTVkOTQxYTNhZmM5YTAzZDNmY2JiYTY5OWRkDQo+ID4gbWV0YS1hcm06IDMzYmJkYzY3ZjJlZDcx
-ODkzOTgyOTJmZjU4YTdmZWU0MmE4NWExNjYNCj4gPiBtZXRhLWF3czogYzkyMzQ0OTM4YWI0ZDM3
-ZGU4YmQ4Yjc5OTE4NmRiYmUzMDE5YTA2OQ0KPiA+IG1ldGEtZ3BsdjI6IGYwNGU0MzY5YmY5ZGQz
-Mzg1MTY1MjgxYjlmYTJlZDEwNDNiMGU0MDANCj4gPiBtZXRhLWludGVsOiBmYjllMDYzMzYxNGRi
-Zjk1NmRhMTg1ZDI5MTMzM2JjYzFiMTM3ZTVhDQo+ID4gbWV0YS1taW5ndzogZjVkNzYxY2JkNWM5
-NTdlNDQwNWM1ZDQwYjBjMjM2ZDI2M2M5MTZhOA0KPiA+IG1ldGEtb3BlbmVtYmVkZGVkOiAwNjFi
-N2ZjNzRmODg3NDU0MjUxMzA3ZWYxMTliODA4YTkwNjU0ZDNmDQo+ID4gb2Vjb3JlOiBhOTJhMTBk
-MWFjNWQwNTA2MTljZDZmNzFkYTVlNmZhODZiYjlhYjEzDQo+ID4gcG9reTogY2ExNjJiNTA2M2Fj
-ODc3ZWFjNDk4N2MxYjUzMTIxMDliNTE1N2EyYQ0KPiA+DQo+ID4NCj4gPg0KPiA+IFRoaXMgaXMg
-YW4gYXV0b21hdGVkIG1lc3NhZ2UgZnJvbSB0aGUgWW9jdG8gUHJvamVjdCBBdXRvYnVpbGRlcg0K
-PiA+IEdpdDogZ2l0Oi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcveW9jdG8tYXV0b2J1aWxkZXIyDQo+
-ID4gRW1haWw6IHJpY2hhcmQucHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmcNCj4gDQo+IENvdWxk
-IFFBIHBsZWFzZSBob2xkIG9mZiB0aGlzIGFzIEkgdGhpbmsgd2UncmUgZ29pbmcgdG8gZml4IGFu
-IGlzc3VlIHNlZW4gaW4gcmMxDQo+IGFuZCBidWlsZCBhbiByYzMuIFRoYW5rcyENCj4gDQo+IChh
-bmQgd2Ugbm93IGhhdmUgd29ya2luZyBhdXRvbWF0ZWQgbGlzdCBub3RpZmljYXRpb25zIGFnYWlu
-IHdoaWNoIGlzIGdyZWF0ISkNCj4gDQo+IENoZWVycywNCj4gDQo+IFJpY2hhcmQNCg0K
+--00000000000017e1a205db00ad35
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Mar 24, 2022 at 2:45 PM Richard Purdie <
+richard.purdie@linuxfoundation.org> wrote:
+
+> On Thu, 2022-03-24 at 16:56 +0000, Monsees, Steven C (US) via
+> lists.yoctoproject.org wrote:
+> >
+> > I am currently building in cve-check to see what is reported, and I was
+> curious
+> > if Yocto might provide any CVE based patch repositories ?
+> >
+> > Is there a yocto page somewhere that goes over this side of things ?,
+> > I did not see much in the mega-manual=E2=80=A6 I am running on zeus bas=
+ed
+> platforms (for
+> > both armarch64 and x86_64).
+> >
+>
+> You'll see output of cve-check on the yocto-security list for layers that
+> are
+> still in maintenance:
+>
+> https://lists.yoctoproject.org/g/yocto-security/messages
+>
+> although zeus is out of maintenance.
+>
+> We merge CVE fixes to the branches that are in maintenance.
+>
+> A graph showing the data over time:
+>
+>
+> https://docs.google.com/spreadsheets/d/e/2PACX-1vRgNISmH0Ditf0bRtSezeR2Xs=
+gKIiSFJKF6KJUHpnzocNGzvKZbuSDKfmV3n64BFXDRqElBSJnhHtG4/pubchart?oid=3D19933=
+75488&format=3Dinteractive
+>
+
+Steven, if you haven=E2=80=99t already, you should subscribe to
+https://lists.yoctoproject.org/g/yocto-security
+
+Emails are sent out, usually on Sunday. If you see a CVE that interests
+you=E2=80=A6 grab it and fix it.
+
+This is mostly a community effort. There is no special dedicated squad of
+security champions.
+
+
+> Cheers,
+>
+> Richard
+>
+>
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#56555):
+> https://lists.yoctoproject.org/g/yocto/message/56555
+> Mute This Topic: https://lists.yoctoproject.org/mt/90004034/924729
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> ticotimo@gmail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
+
+--00000000000017e1a205db00ad35
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Thu, Mar 24, 2022 at 2:45 PM Richard Purdie &lt;<a href=
+=3D"mailto:richard.purdie@linuxfoundation.org">richard.purdie@linuxfoundati=
+on.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;paddi=
+ng-left:1ex;border-left-color:rgb(204,204,204)">On Thu, 2022-03-24 at 16:56=
+ +0000, Monsees, Steven C (US) via<br>
+<a href=3D"http://lists.yoctoproject.org" rel=3D"noreferrer" target=3D"_bla=
+nk">lists.yoctoproject.org</a> wrote:<br>
+&gt; =C2=A0=C2=A0<br>
+&gt; I am currently building in cve-check to see what is reported, and I wa=
+s curious<br>
+&gt; if Yocto might provide any CVE based patch repositories ?<br>
+&gt; =C2=A0<br>
+&gt; Is there a yocto page somewhere that goes over this side of things ?,<=
+br>
+&gt; I did not see much in the mega-manual=E2=80=A6 I am running on zeus ba=
+sed platforms (for<br>
+&gt; both armarch64 and x86_64).<br>
+&gt; <br>
+<br>
+You&#39;ll see output of cve-check on the yocto-security list for layers th=
+at are<br>
+still in maintenance:<br>
+<br>
+<a href=3D"https://lists.yoctoproject.org/g/yocto-security/messages" rel=3D=
+"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto-secur=
+ity/messages</a><br>
+<br>
+although zeus is out of maintenance.<br>
+<br>
+We merge CVE fixes to the branches that are in maintenance.<br>
+<br>
+A graph showing the data over time:<br>
+<br>
+<a href=3D"https://docs.google.com/spreadsheets/d/e/2PACX-1vRgNISmH0Ditf0bR=
+tSezeR2XsgKIiSFJKF6KJUHpnzocNGzvKZbuSDKfmV3n64BFXDRqElBSJnhHtG4/pubchart?oi=
+d=3D1993375488&amp;format=3Dinteractive" rel=3D"noreferrer" target=3D"_blan=
+k">https://docs.google.com/spreadsheets/d/e/2PACX-1vRgNISmH0Ditf0bRtSezeR2X=
+sgKIiSFJKF6KJUHpnzocNGzvKZbuSDKfmV3n64BFXDRqElBSJnhHtG4/pubchart?oid=3D1993=
+375488&amp;format=3Dinteractive</a><br>
+</blockquote><div dir=3D"auto"><br></div><div dir=3D"auto">Steven, if you h=
+aven=E2=80=99t already, you should subscribe to=C2=A0<div><a href=3D"https:=
+//lists.yoctoproject.org/g/yocto-security">https://lists.yoctoproject.org/g=
+/yocto-security</a></div><div dir=3D"auto"><br></div><div dir=3D"auto">Emai=
+ls are sent out, usually on Sunday. If you see a CVE that interests you=E2=
+=80=A6 grab it and fix it.</div><div dir=3D"auto"><br></div><div dir=3D"aut=
+o">This is mostly a community effort. There is no special dedicated squad o=
+f security champions.</div><div dir=3D"auto"><br></div></div><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px=
+;border-left-style:solid;padding-left:1ex;border-left-color:rgb(204,204,204=
+)"><br>
+Cheers,<br>
+<br>
+Richard<br>
+<br>
+<br>
+<br>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#56555): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/56555" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/56555</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/90004034/9247=
+29" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt/=
+90004034/924729</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:ticotimo@gmail.com" target=3D"_blank">ticotimo@g=
+mail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div></div>
+
+--00000000000017e1a205db00ad35--
 
