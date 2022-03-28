@@ -2,8 +2,8 @@ Return-Path: <sateesh0457@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ABBD9C433EF
-	for <webhook@archiver.kernel.org>; Mon, 28 Mar 2022 06:17:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 04D30C433F5
+	for <webhook@archiver.kernel.org>; Mon, 28 Mar 2022 06:39:57 +0000 (UTC)
 Subject: firewalld isssue  #yocto
 To: yocto@lists.yoctoproject.org
 From: "sateesh m" <sateesh0457@gmail.com>
@@ -11,26 +11,26 @@ X-Originating-Location: Bengaluru, Karnataka, IN (122.166.120.168)
 X-Originating-Platform: Linux Chrome 95
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Sun, 27 Mar 2022 23:16:55 -0700
-Message-ID: <e4ds.1648448215305161214.Ct05@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="wP98GUcWdRi5qDXnwctH"
+Date: Sun, 27 Mar 2022 23:39:56 -0700
+Message-ID: <iTgi.1648449596640581316.TvLE@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="HTmDo2eGfxbVnwjg2q4x"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 28 Mar 2022 06:17:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56564
+ <yocto@lists.yoctoproject.org>; Mon, 28 Mar 2022 06:39:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56565
 
---wP98GUcWdRi5qDXnwctH
+--HTmDo2eGfxbVnwjg2q4x
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
 Hi Team,
 
-I have built a custom image core-image-base with nftables,firewalld,json pa=
-ckages support. I am using firewalld_0.9.3 sources depends nftables-python =
-is present. But I am getting error python-nftables. Can you please guide me=
- on what dependent I missed here? If suppose firewalld should work means, W=
-hat packages should=C2=A0 I install?
+I have built a custom image core-image-base on riscv target machine install=
+ed nftables,firewalld,JSON packages support. I am using firewalld_0.9.3 sou=
+rces depends nftables-python is present. But I am getting error python-nfta=
+bles. Can you please guide me on what dependent I missed here? If suppose f=
+irewalld should work means, What packages should=C2=A0 I install?
 
 But while running firewalld status is always failed mode.
 Using $firewall-cmd --reload=C2=A0 I am facing a=C2=A0 problem
@@ -475,18 +475,19 @@ e"}}, "op": "=3D=3D", "right": "nd-redirect"}}, {"accept": null}]}}}]}
 Regards,
 Sateesh
 
---wP98GUcWdRi5qDXnwctH
+--HTmDo2eGfxbVnwjg2q4x
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
 Hi Team,<br /><br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- I have built a custom image core-image-base with nftables,firewalld,json p=
-ackages support. I am using firewalld_0.9.3 sources depends nftables-python=
- is present. But I am getting error python-nftables. Can you please guide m=
-e on what dependent I missed here? If suppose firewalld should work means, =
-What packages should&nbsp; I install?&nbsp;&nbsp;<br /><br />But while runn=
-ing firewalld status is always failed mode.&nbsp;&nbsp;<br />Using $firewal=
-l-cmd --reload&nbsp; I am facing a&nbsp; problem<br /><br />
+ I have built a custom image core-image-base on riscv target machine instal=
+led nftables,firewalld,JSON packages support. I am using firewalld_0.9.3 so=
+urces depends nftables-python is present. But I am getting error python-nft=
+ables. Can you please guide me on what dependent I missed here? If suppose =
+firewalld should work means, What packages should&nbsp; I install?&nbsp;&nb=
+sp;<br /><br />But while running firewalld status is always failed mode.&nb=
+sp;&nbsp;<br />Using $firewall-cmd --reload&nbsp; I am facing a&nbsp; probl=
+em<br /><br />
 <div>Error: COMMAND_FAILED: 'python-nftables' failed: internal:0:0-0: Error=
 : Could not process rule: No such file or directory</div>
 <div>&nbsp;</div>
@@ -926,5 +927,5 @@ ht": "ipv6"}}, {"match": {"left": {"payload": {"protocol": "icmpv6", "field=
 ]}</div>
 &nbsp;<br /><br />-- <br />Regards,<br />Sateesh
 
---wP98GUcWdRi5qDXnwctH--
+--HTmDo2eGfxbVnwjg2q4x--
 
