@@ -1,166 +1,930 @@
-Return-Path: <Qi.Chen@windriver.com>
+Return-Path: <sateesh0457@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 63E1BC433EF
-	for <webhook@archiver.kernel.org>; Mon, 28 Mar 2022 02:25:40 +0000 (UTC)
-Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com
- [205.220.178.238])
- by mx.groups.io with SMTP id smtpd.web12.6447.1648434337212117058
- for <yocto@lists.yoctoproject.org>;
- Sun, 27 Mar 2022 19:25:40 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=akRRaP78;
- spf=permerror,
- err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}:
- invalid domain name (domain: windriver.com, ip: 205.220.178.238,
- mailfrom: prvs=0086464a82=qi.chen@windriver.com)
-Received: from pps.filterd (m0250812.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id
- 22S2PZsh004104
-	for <yocto@lists.yoctoproject.org>; Mon, 28 Mar 2022 02:25:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
- h=from : to :
- subject : date : message-id : content-transfer-encoding : content-type :
- mime-version; s=PPS06212021;
- bh=APlgxpMxZzNDMzDsCZC3wn/SWvapN6B8reobYoG6qiE=;
- b=akRRaP78baUeJZZrchmnFZn/5W9LzFlJHqQ5QOYr0bxch81lFVW6U3NVMrBjuUe8nJAW
- xR+RCSr9nP8uV29j3ISz3OirP7HFz39J6/sfkm8Osl2ltuM6VXDg6K4RADA4h78kzcng
- Zt6x7L+US4xrNAqZungyaDLmprBu1el5fwBvcXPHDpeMv74vQZXTZ0Kn4JF3g76Ba1Tj
- sEl2cr3JDpQ13hh/9DYllJ/7KaaLO2kxHbju/9YOSXreQ/zdDlMAyRQpOIiw57Z9Uxfg
- I4c26TK45riKqCIzd1ig/zeAjAO2bu/Ngiv0wFEy5CkwONxd8IYQfKpO2Wnud+XQfh7T RQ==
-Received: from nam04-mw2-obe.outbound.protection.outlook.com
- (mail-mw2nam08lp2168.outbound.protection.outlook.com [104.47.73.168])
-	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3f1st81577-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
-	for <yocto@lists.yoctoproject.org>; Mon, 28 Mar 2022 02:25:35 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SOKEzg/ndwSwz5WHgWx8P5SnS3FBpIgEHAdFKDIHrKiLbZOlTEi2gvqiJXImDC6HDfWTjkVnGFYXtHQIKBDTti5qbmdyk6T4YLSNlonXC6x2sdYN2c4AUMW0hdxZWV1PyhdgdwZw3qS5cX35B/AAEv91lG2DIqhq+LoGpB2Uddi8tPfatX1E7T3iUitjrjvQLiqdZgAnHAMg68y/XX89c1MNgUt2OIQBUD9wha0fmzAzvcRGGUU0jLIG7KunlYxJGnLljlnuTvw/ZjzmMpIf6oxonG+9yUKNTUSsxp8ivGCCCV3j3cCvRHmtom3ZVfKBjihZ6usnnQB9CvhBcSngyA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=APlgxpMxZzNDMzDsCZC3wn/SWvapN6B8reobYoG6qiE=;
- b=lcQnjkm9ZAOdww8/IAEaWd+B8BsrWqmCnHsQh+KG1FBiFmVxAiG44G5FeeOY9ina23zd94Mrv4efLsvflkqHIpostqaZBuDfiX+ZC3sEOydTVPvqUOjQXpWVA8by3jpuEDSacxXscjuJ7MAXqdVVK1MKAE84haletwu4UvBIRu9vP45OMTaEYEKG4KzWzzML+cIbbolvVOYEb2wmOUoNv9J3x9y2KsI70XUCHFUWaih7GErfIKyNgk/cwuphAKSy2p95TwspXQE4311sCamaqKN21OE6Zp2hhnrM74/+JZHMBOJn/VHVudpHbQw4ElBgbQNrZUj9MMI1Lny6jEEWzA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
-Received: from CO6PR11MB5602.namprd11.prod.outlook.com (2603:10b6:303:13a::5)
- by MN2PR11MB4413.namprd11.prod.outlook.com (2603:10b6:208:191::30) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.19; Mon, 28 Mar
- 2022 02:25:32 +0000
-Received: from CO6PR11MB5602.namprd11.prod.outlook.com
- ([fe80::f0d0:2344:b876:db97]) by CO6PR11MB5602.namprd11.prod.outlook.com
- ([fe80::f0d0:2344:b876:db97%7]) with mapi id 15.20.5102.022; Mon, 28 Mar 2022
- 02:25:32 +0000
-From: Chen Qi <Qi.Chen@windriver.com>
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ABBD9C433EF
+	for <webhook@archiver.kernel.org>; Mon, 28 Mar 2022 06:17:02 +0000 (UTC)
+Subject: firewalld isssue  #yocto
 To: yocto@lists.yoctoproject.org
-Subject: [yocto][meta-security][PATCH] openscap-daemon: inherit
- python_setuptools_build_meta
-Date: Sun, 27 Mar 2022 19:25:20 -0700
-Message-Id: <20220328022520.52018-1-Qi.Chen@windriver.com>
-X-Mailer: git-send-email 2.33.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BYAPR08CA0018.namprd08.prod.outlook.com
- (2603:10b6:a03:100::31) To CO6PR11MB5602.namprd11.prod.outlook.com
- (2603:10b6:303:13a::5)
+From: "sateesh m" <sateesh0457@gmail.com>
+X-Originating-Location: Bengaluru, Karnataka, IN (122.166.120.168)
+X-Originating-Platform: Linux Chrome 95
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ea693abc-7ed7-43d1-5f38-08da10623bca
-X-MS-TrafficTypeDiagnostic: MN2PR11MB4413:EE_
-X-Microsoft-Antispam-PRVS: 
-	<MN2PR11MB4413F618584C0B20A1B87151ED1D9@MN2PR11MB4413.namprd11.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	hNieP8RCztG4T1GdbBtSirYYNZF6w0CCi5uVwJSPyThLZ/lbkLHOIH4Mlxh2MjQqC1tjEU4iSiSR2TwgPcxQSKGku0jwDgztSaAgJPmdyI5+mEJPSqsI3POevhrE+URtNQmHA+r6XXmzbrl7HVDqy+Xk6kO6Xg8Rb9vTR3yg1x2KmOhmpdITvkdUEgaV+rHlTNTDt0FHoNmXKb3jJUQXtkpPQejLdphk8nRrqqPcnOOaLs/bKpxuuINaKeJd49yBjD5FhxforST1/Trg2QkjrAV16Jns/F1ae33lIMnUyYg1DgNRz/DhFg9Pa51DIASaCWiMwxjJRMZaeALERXax00ipzNhpqMItY+2V92Ox/9Xu30ndxgNY0g8+ekcKSHOwqwPM5j4I6cPvHhbm4b883OyDJlLld8WmMe7f56AggQ79u9ZL/X9jiJ5KqV7bKcZN8vG941g+JZn0oBT7UpSFYNfKVR1jKeEzJjLxA+K21Pkrz96m9wDp5OInvo4vhlFhrixZwjz/mAoW7AFkjpP9sMPbCc3tNbRFoxdKQPPadBff48LTPdGGxCzG4fSWVvUOkWADiNM/ZCUEoOYpKpjiPy30wEL6f+ulGm/4tztgUyglf9p70h5hxM/Yb571RK2YDqb3QUQXlSmVRffyg21TTUKXaJSCMszPUKPbUscVJVaNj7P2ODwhX7p5Bm8c3rIBZDpKPxj1Z9UeQEr/qTEYuA==
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR11MB5602.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(2906002)(186003)(6512007)(2616005)(52116002)(26005)(1076003)(66556008)(6506007)(66476007)(38100700002)(86362001)(66946007)(38350700002)(508600001)(316002)(6916009)(36756003)(5660300002)(6666004)(6486002)(8936002)(15650500001)(83380400001)(8676002)(4744005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?/rntV6wMqHXMv75BuCUqDN0OpJwc67v9zvFwgmpcBy+AOlEsWtJtiOf2UN1y?=
- =?us-ascii?Q?oto4QBg3V03GKvz3tNFcj2m4CUUJEIKLCY09swHfTkeWZ9o8qsL9mU65cSvf?=
- =?us-ascii?Q?RmQp1CeKrO9LLAOLQiKYE/MamzDwUqMRY3eJsylbFyZThJiBXvTfXrXgT8Ze?=
- =?us-ascii?Q?HLU37uL1z7AB8fzNz3EBjR2rFd2dGjEpbkIED9z+ZVjCvEA+Qa3+JAqBn8z3?=
- =?us-ascii?Q?EtfyLB6FXQbQRg3pieC5wM4wl30MzJjzYhzejFkot5foE5VxE/c2JJxnHE7E?=
- =?us-ascii?Q?ma4KGf5/bp1WXN9V/yAzhi3OZwK/FDe1mOp1pmrMofrDxOvExt12Pz8K0HL9?=
- =?us-ascii?Q?ZFD/3eqKpBamN4ATkI1HTzMS2pX4klRBAo/g/4TSnAzski+2K42ces/MZIDO?=
- =?us-ascii?Q?ocycFkVOTr53pRFga+Pc6QkyR9XCr7YkQ5ejvWIBEikHatiXCKAMO6P2cy3t?=
- =?us-ascii?Q?7UAjwpCg2xzDnAF62XC5YKIshOYTJ8PdJXaymtFAUEGVBEYctccRcRLRTb8Y?=
- =?us-ascii?Q?FxaOmwvy5KrE9W4Nmhe/x+ZVImRWZFrspFhbYSIcEeoyYGo7n6qz7HIPanAf?=
- =?us-ascii?Q?ad/uKIYgU7IB4lteidJYfx+390vkErTWoCWURLrahZfQO2HEL3+js096Cd9W?=
- =?us-ascii?Q?GYYQdtsSGImK4EBoD+crLRnPrJ5fO9/AlbV4CmfJl+blAxd7DHR+VkojdwBY?=
- =?us-ascii?Q?jnZFeJoJH2cjeDzjKpnDe+Y5Nr2ZGeUQU33A5OMcv7kw2jkCPq0OoWHdKccL?=
- =?us-ascii?Q?KaWXETdwBaG+QMX73e+eFlbzXr8uFW5ySH0YBPoO6D/lYO2Ujhi72ziI7AKy?=
- =?us-ascii?Q?E5UN8SiIxgAdCIDwJqxhtrKmCYDIZ8IwcyrV/OPshOGm3QHWyJYb4NH3veeQ?=
- =?us-ascii?Q?cUx+LcSJzlfz3fGFDb/WQ4VLGb8Yn6r2PnH5ofpFnKlqAOBV3LjD1VsWF+lW?=
- =?us-ascii?Q?k/E6tlxkRxNJCcSemoN+kmarG1r40qS7K6ZrSEu5krczDEMWmvd8DX5V7uB0?=
- =?us-ascii?Q?MOl8s0+y+FyGDtWaYScFRdC2TFciSbBPQr1iVvio5rmlO0GYa2H00udGzfU7?=
- =?us-ascii?Q?TbaYGviCBeEzVL76tOIyqonTiCK25MFvZqkJ5J3NJ4uVVz2zDmZhbJL4GUbr?=
- =?us-ascii?Q?8I2bWK3PFZbRZOkFgtTx3o9oM3oqMBL2cpS+8cgtR5txyrqd1yHjzbaSrnN/?=
- =?us-ascii?Q?rqWO8Xmkr5pd8T74XySSP2q//ko1kKzVHZpJIqAw8dugkZtUfvoKQss4C/lf?=
- =?us-ascii?Q?+CXMxFjSpSLq/xezC9Gm7ci0tuzkbBBzuv5OSgxQbBvvgg6fuBwY/zkk7j4w?=
- =?us-ascii?Q?i6CQHGO0w9CgqRE0TFzGHdhXH9NrudilrTsCNha6QNUglB7nZeoDnhMrIYRw?=
- =?us-ascii?Q?nwWUaDdwEogcWRHZrCenCQqze7XRmb4HkHl3i++QfsSNnMXkjC/kfckgZRbQ?=
- =?us-ascii?Q?YXCi9uZYCu292aj51ev2k8bfINhxREHHnkt+rbsBbCUELvwadN/WYpQX9qYf?=
- =?us-ascii?Q?FRRmWMtJ4np8GtMz9VJNT8FIwM2qNuzyYFfFBbORV5B7noApDpwjM1coee2G?=
- =?us-ascii?Q?Kgq1Gtjxb5S17X0KpOQVk1WmAsVidEAB7ogzUg0WmtBHTrBPZVmDA44dILjV?=
- =?us-ascii?Q?LTKLrM11282dOKo1hCuEM2Gzs4LDtUJ85et9irg9GHpo3QqBvPe5/CXvMXyv?=
- =?us-ascii?Q?Q8mAwBcAgJIHh1nUa66U/uzM5NuO81K6TA1FHsfDYkzvvdbT1halQVz9Vx6G?=
- =?us-ascii?Q?v0TzMKIKQt/igcGOEBCbUKee5C8TJEw=3D?=
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- ea693abc-7ed7-43d1-5f38-08da10623bca
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR11MB5602.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2022 02:25:32.4335
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- VZoG4VXbFalMLYG2E1jy1TXtdyGkddrjz6iWFb3fmvAjHjLepb6iguBHQDelT/+v5tVr1AcyoGyX+VS1rFLy6w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4413
-X-Proofpoint-GUID: 3II2PnILhrDwUgm4e7o9Cevl2WvQkQzD
-X-Proofpoint-ORIG-GUID: 3II2PnILhrDwUgm4e7o9Cevl2WvQkQzD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.850,Hydra:6.0.425,FMLib:17.11.64.514
- definitions=2022-03-27_09,2022-03-24_01,2022-02-23_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501
- impostorscore=0 adultscore=0 mlxlogscore=721 suspectscore=0 spamscore=0
- clxscore=1011 mlxscore=0 phishscore=0 lowpriorityscore=0 bulkscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2202240000 definitions=main-2203280011
+Date: Sun, 27 Mar 2022 23:16:55 -0700
+Message-ID: <e4ds.1648448215305161214.Ct05@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="wP98GUcWdRi5qDXnwctH"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 28 Mar 2022 02:25:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56563
+ <yocto@lists.yoctoproject.org>; Mon, 28 Mar 2022 06:17:02 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56564
 
-setuptools_build_meta has been renamed to python_setuptools_build_meta.
+--wP98GUcWdRi5qDXnwctH
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Chen Qi <Qi.Chen@windriver.com>
----
- .../recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb  | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi Team,
 
-diff --git a/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb b/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
-index cf6d531..9659323 100644
---- a/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
-+++ b/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
-@@ -13,7 +13,7 @@ SRC_URI = "git://github.com/OpenSCAP/openscap-daemon.git;branch=master;protocol=
-            file://0001-Renamed-module-and-variables-to-get-rid-of-async.patch \
-           "
- 
--inherit setuptools_build_meta
-+inherit python_setuptools_build_meta
- 
- S = "${WORKDIR}/git"
- 
--- 
-2.33.0
+I have built a custom image core-image-base with nftables,firewalld,json pa=
+ckages support. I am using firewalld_0.9.3 sources depends nftables-python =
+is present. But I am getting error python-nftables. Can you please guide me=
+ on what dependent I missed here? If suppose firewalld should work means, W=
+hat packages should=C2=A0 I install?
 
+But while running firewalld status is always failed mode.
+Using $firewall-cmd --reload=C2=A0 I am facing a=C2=A0 problem
+
+Error: COMMAND_FAILED: 'python-nftables' failed: internal:0:0-0: Error: Cou=
+ld not process rule: No such file or directory
+
+JSON blob:
+{"nftables": [{"metainfo": {"json_schema_version": 1}}, {"add": {"chain": {=
+"family": "inet", "table": "firewalld", "name": "raw_PREROUTING", "type": "=
+filter", "hook": "prerouting", "prio": -290}}}, {"add": {"chain": {"family"=
+: "inet", "table": "firewalld", "name": "mangle_PREROUTING", "type": "filte=
+r", "hook": "prerouting", "prio": -140}}}, {"add": {"chain": {"family": "in=
+et", "table": "firewalld", "name": "mangle_PREROUTING_POLICIES_pre"}}}, {"a=
+dd": {"rule": {"family": "inet", "table": "firewalld", "chain": "mangle_PRE=
+ROUTING", "expr": [{"jump": {"target": "mangle_PREROUTING_POLICIES_pre"}}]}=
+}}, {"add": {"chain": {"family": "inet", "table": "firewalld", "name": "man=
+gle_PREROUTING_ZONES"}}}, {"add": {"rule": {"family": "inet", "table": "fir=
+ewalld", "chain": "mangle_PREROUTING", "expr": [{"jump": {"target": "mangle=
+_PREROUTING_ZONES"}}]}}}, {"add": {"chain": {"family": "inet", "table": "fi=
+rewalld", "name": "mangle_PREROUTING_POLICIES_post"}}}, {"add": {"rule": {"=
+family": "inet", "table": "firewalld", "chain": "mangle_PREROUTING", "expr"=
+: [{"jump": {"target": "mangle_PREROUTING_POLICIES_post"}}]}}}, {"add": {"c=
+hain": {"family": "ip", "table": "firewalld", "name": "nat_PREROUTING", "ty=
+pe": "nat", "hook": "prerouting", "prio": -90}}}, {"add": {"chain": {"famil=
+y": "ip", "table": "firewalld", "name": "nat_PREROUTING_POLICIES_pre"}}}, {=
+"add": {"rule": {"family": "ip", "table": "firewalld", "chain": "nat_PREROU=
+TING", "expr": [{"jump": {"target": "nat_PREROUTING_POLICIES_pre"}}]}}}, {"=
+add": {"chain": {"family": "ip", "table": "firewalld", "name": "nat_PREROUT=
+ING_ZONES"}}}, {"add": {"rule": {"family": "ip", "table": "firewalld", "cha=
+in": "nat_PREROUTING", "expr": [{"jump": {"target": "nat_PREROUTING_ZONES"}=
+}]}}}, {"add": {"chain": {"family": "ip", "table": "firewalld", "name": "na=
+t_PREROUTING_POLICIES_post"}}}, {"add": {"rule": {"family": "ip", "table": =
+"firewalld", "chain": "nat_PREROUTING", "expr": [{"jump": {"target": "nat_P=
+REROUTING_POLICIES_post"}}]}}}, {"add": {"chain": {"family": "ip", "table":=
+ "firewalld", "name": "nat_POSTROUTING", "type": "nat", "hook": "postroutin=
+g", "prio": 110}}}, {"add": {"chain": {"family": "ip", "table": "firewalld"=
+, "name": "nat_POSTROUTING_POLICIES_pre"}}}, {"add": {"rule": {"family": "i=
+p", "table": "firewalld", "chain": "nat_POSTROUTING", "expr": [{"jump": {"t=
+arget": "nat_POSTROUTING_POLICIES_pre"}}]}}}, {"add": {"chain": {"family": =
+"ip", "table": "firewalld", "name": "nat_POSTROUTING_ZONES"}}}, {"add": {"r=
+ule": {"family": "ip", "table": "firewalld", "chain": "nat_POSTROUTING", "e=
+xpr": [{"jump": {"target": "nat_POSTROUTING_ZONES"}}]}}}, {"add": {"chain":=
+ {"family": "ip", "table": "firewalld", "name": "nat_POSTROUTING_POLICIES_p=
+ost"}}}, {"add": {"rule": {"family": "ip", "table": "firewalld", "chain": "=
+nat_POSTROUTING", "expr": [{"jump": {"target": "nat_POSTROUTING_POLICIES_po=
+st"}}]}}}, {"add": {"chain": {"family": "ip6", "table": "firewalld", "name"=
+: "nat_PREROUTING", "type": "nat", "hook": "prerouting", "prio": -90}}}, {"=
+add": {"chain": {"family": "ip6", "table": "firewalld", "name": "nat_PREROU=
+TING_POLICIES_pre"}}}, {"add": {"rule": {"family": "ip6", "table": "firewal=
+ld", "chain": "nat_PREROUTING", "expr": [{"jump": {"target": "nat_PREROUTIN=
+G_POLICIES_pre"}}]}}}, {"add": {"chain": {"family": "ip6", "table": "firewa=
+lld", "name": "nat_PREROUTING_ZONES"}}}, {"add": {"rule": {"family": "ip6",=
+ "table": "firewalld", "chain": "nat_PREROUTING", "expr": [{"jump": {"targe=
+t": "nat_PREROUTING_ZONES"}}]}}}, {"add": {"chain": {"family": "ip6", "tabl=
+e": "firewalld", "name": "nat_PREROUTING_POLICIES_post"}}}, {"add": {"rule"=
+: {"family": "ip6", "table": "firewalld", "chain": "nat_PREROUTING", "expr"=
+: [{"jump": {"target": "nat_PREROUTING_POLICIES_post"}}]}}}, {"add": {"chai=
+n": {"family": "ip6", "table": "firewalld", "name": "nat_POSTROUTING", "typ=
+e": "nat", "hook": "postrouting", "prio": 110}}}, {"add": {"chain": {"famil=
+y": "ip6", "table": "firewalld", "name": "nat_POSTROUTING_POLICIES_pre"}}},=
+ {"add": {"rule": {"family": "ip6", "table": "firewalld", "chain": "nat_POS=
+TROUTING", "expr": [{"jump": {"target": "nat_POSTROUTING_POLICIES_pre"}}]}}=
+}, {"add": {"chain": {"family": "ip6", "table": "firewalld", "name": "nat_P=
+OSTROUTING_ZONES"}}}, {"add": {"rule": {"family": "ip6", "table": "firewall=
+d", "chain": "nat_POSTROUTING", "expr": [{"jump": {"target": "nat_POSTROUTI=
+NG_ZONES"}}]}}}, {"add": {"chain": {"family": "ip6", "table": "firewalld", =
+"name": "nat_POSTROUTING_POLICIES_post"}}}, {"add": {"rule": {"family": "ip=
+6", "table": "firewalld", "chain": "nat_POSTROUTING", "expr": [{"jump": {"t=
+arget": "nat_POSTROUTING_POLICIES_post"}}]}}}, {"add": {"chain": {"family":=
+ "inet", "table": "firewalld", "name": "filter_INPUT", "type": "filter", "h=
+ook": "input", "prio": 10}}}, {"add": {"chain": {"family": "inet", "table":=
+ "firewalld", "name": "filter_FORWARD", "type": "filter", "hook": "forward"=
+, "prio": 10}}}, {"add": {"chain": {"family": "inet", "table": "firewalld",=
+ "name": "filter_OUTPUT", "type": "filter", "hook": "output", "prio": 10}}}=
+, {"add": {"rule": {"family": "inet", "table": "firewalld", "chain": "filte=
+r_INPUT", "expr": [{"match": {"left": {"ct": {"key": "state"}}, "op": "in",=
+ "right": {"set": ["established", "related"]}}}, {"accept": null}]}}}, {"ad=
+d": {"rule": {"family": "inet", "table": "firewalld", "chain": "filter_INPU=
+T", "expr": [{"match": {"left": {"ct": {"key": "status"}}, "op": "in", "rig=
+ht": "dnat"}}, {"accept": null}]}}}, {"add": {"rule": {"family": "inet", "t=
+able": "firewalld", "chain": "filter_INPUT", "expr": [{"match": {"left": {"=
+meta": {"key": "iifname"}}, "op": "=3D=3D", "right": "lo"}}, {"accept": nul=
+l}]}}}, {"add": {"chain": {"family": "inet", "table": "firewalld", "name": =
+"filter_INPUT_POLICIES_pre"}}}, {"add": {"rule": {"family": "inet", "table"=
+: "firewalld", "chain": "filter_INPUT", "expr": [{"jump": {"target": "filte=
+r_INPUT_POLICIES_pre"}}]}}}, {"add": {"chain": {"family": "inet", "table": =
+"firewalld", "name": "filter_INPUT_ZONES"}}}, {"add": {"rule": {"family": "=
+inet", "table": "firewalld", "chain": "filter_INPUT", "expr": [{"jump": {"t=
+arget": "filter_INPUT_ZONES"}}]}}}, {"add": {"chain": {"family": "inet", "t=
+able": "firewalld", "name": "filter_INPUT_POLICIES_post"}}}, {"add": {"rule=
+": {"family": "inet", "table": "firewalld", "chain": "filter_INPUT", "expr"=
+: [{"jump": {"target": "filter_INPUT_POLICIES_post"}}]}}}, {"add": {"rule":=
+ {"family": "inet", "table": "firewalld", "chain": "filter_INPUT", "expr": =
+[{"match": {"left": {"ct": {"key": "state"}}, "op": "in", "right": {"set": =
+["invalid"]}}}, {"drop": null}]}}}, {"add": {"rule": {"family": "inet", "ta=
+ble": "firewalld", "chain": "filter_INPUT", "expr": [{"reject": {"type": "i=
+cmpx", "expr": "admin-prohibited"}}]}}}, {"add": {"rule": {"family": "inet"=
+, "table": "firewalld", "chain": "filter_FORWARD", "expr": [{"match": {"lef=
+t": {"ct": {"key": "state"}}, "op": "in", "right": {"set": ["established", =
+"related"]}}}, {"accept": null}]}}}, {"add": {"rule": {"family": "inet", "t=
+able": "firewalld", "chain": "filter_FORWARD", "expr": [{"match": {"left": =
+{"ct": {"key": "status"}}, "op": "in", "right": "dnat"}}, {"accept": null}]=
+}}}, {"add": {"rule": {"family": "inet", "table": "firewalld", "chain": "fi=
+lter_FORWARD", "expr": [{"match": {"left": {"meta": {"key": "iifname"}}, "o=
+p": "=3D=3D", "right": "lo"}}, {"accept": null}]}}}, {"add": {"chain": {"fa=
+mily": "inet", "table": "firewalld", "name": "filter_FORWARD_POLICIES_pre"}=
+}}, {"add": {"rule": {"family": "inet", "table": "firewalld", "chain": "fil=
+ter_FORWARD", "expr": [{"jump": {"target": "filter_FORWARD_POLICIES_pre"}}]=
+}}}, {"add": {"chain": {"family": "inet", "table": "firewalld", "name": "fi=
+lter_FORWARD_IN_ZONES"}}}, {"add": {"rule": {"family": "inet", "table": "fi=
+rewalld", "chain": "filter_FORWARD", "expr": [{"jump": {"target": "filter_F=
+ORWARD_IN_ZONES"}}]}}}, {"add": {"chain": {"family": "inet", "table": "fire=
+walld", "name": "filter_FORWARD_OUT_ZONES"}}}, {"add": {"rule": {"family": =
+"inet", "table": "firewalld", "chain": "filter_FORWARD", "expr": [{"jump": =
+{"target": "filter_FORWARD_OUT_ZONES"}}]}}}, {"add": {"chain": {"family": "=
+inet", "table": "firewalld", "name": "filter_FORWARD_POLICIES_post"}}}, {"a=
+dd": {"rule": {"family": "inet", "table": "firewalld", "chain": "filter_FOR=
+WARD", "expr": [{"jump": {"target": "filter_FORWARD_POLICIES_post"}}]}}}, {=
+"add": {"rule": {"family": "inet", "table": "firewalld", "chain": "filter_F=
+ORWARD", "expr": [{"match": {"left": {"ct": {"key": "state"}}, "op": "in", =
+"right": {"set": ["invalid"]}}}, {"drop": null}]}}}, {"add": {"rule": {"fam=
+ily": "inet", "table": "firewalld", "chain": "filter_FORWARD", "expr": [{"r=
+eject": {"type": "icmpx", "expr": "admin-prohibited"}}]}}}, {"add": {"rule"=
+: {"family": "inet", "table": "firewalld", "chain": "filter_OUTPUT", "expr"=
+: [{"match": {"left": {"meta": {"key": "oifname"}}, "op": "=3D=3D", "right"=
+: "lo"}}, {"accept": null}]}}}, {"add": {"chain": {"family": "inet", "table=
+": "firewalld", "name": "filter_OUTPUT_POLICIES_pre"}}}, {"add": {"rule": {=
+"family": "inet", "table": "firewalld", "chain": "filter_OUTPUT", "expr": [=
+{"jump": {"target": "filter_OUTPUT_POLICIES_pre"}}]}}}, {"add": {"chain": {=
+"family": "inet", "table": "firewalld", "name": "filter_OUTPUT_POLICIES_pos=
+t"}}}, {"add": {"rule": {"family": "inet", "table": "firewalld", "chain": "=
+filter_OUTPUT", "expr": [{"jump": {"target": "filter_OUTPUT_POLICIES_post"}=
+}]}}}, {"insert": {"rule": {"family": "inet", "table": "firewalld", "chain"=
+: "raw_PREROUTING", "expr": [{"match": {"left": {"meta": {"key": "nfproto"}=
+}, "op": "=3D=3D", "right": "ipv6"}}, {"match": {"left": {"fib": {"flags": =
+["saddr", "iif"], "result": "oif"}}, "op": "=3D=3D", "right": false}}, {"dr=
+op": null}]}}}, {"insert": {"rule": {"family": "inet", "table": "firewalld"=
+, "chain": "raw_PREROUTING", "expr": [{"match": {"left": {"payload": {"prot=
+ocol": "icmpv6", "field": "type"}}, "op": "=3D=3D", "right": {"set": ["nd-r=
+outer-advert", "nd-neighbor-solicit"]}}}, {"accept": null}]}}}, {"add": {"r=
+ule": {"family": "inet", "table": "firewalld", "chain": "filter_OUTPUT", "i=
+ndex": 0, "expr": [{"match": {"left": {"payload": {"protocol": "ip6", "fiel=
+d": "daddr"}}, "op": "=3D=3D", "right": {"set": [{"prefix": {"addr": "::0.0=
+.0.0", "len": 96}}, {"prefix": {"addr": "::ffff:0.0.0.0", "len": 96}}, {"pr=
+efix": {"addr": "2002:0000::", "len": 24}}, {"prefix": {"addr": "2002:0a00:=
+:", "len": 24}}, {"prefix": {"addr": "2002:7f00::", "len": 24}}, {"prefix":=
+ {"addr": "2002:ac10::", "len": 28}}, {"prefix": {"addr": "2002:c0a8::", "l=
+en": 32}}, {"prefix": {"addr": "2002:a9fe::", "len": 32}}, {"prefix": {"add=
+r": "2002:e000::", "len": 19}}]}}}, {"reject": {"type": "icmpv6", "expr": "=
+addr-unreachable"}}]}}}, {"add": {"rule": {"family": "inet", "table": "fire=
+walld", "chain": "filter_FORWARD", "index": 2, "expr": [{"match": {"left": =
+{"payload": {"protocol": "ip6", "field": "daddr"}}, "op": "=3D=3D", "right"=
+: {"set": [{"prefix": {"addr": "::0.0.0.0", "len": 96}}, {"prefix": {"addr"=
+: "::ffff:0.0.0.0", "len": 96}}, {"prefix": {"addr": "2002:0000::", "len": =
+24}}, {"prefix": {"addr": "2002:0a00::", "len": 24}}, {"prefix": {"addr": "=
+2002:7f00::", "len": 24}}, {"prefix": {"addr": "2002:ac10::", "len": 28}}, =
+{"prefix": {"addr": "2002:c0a8::", "len": 32}}, {"prefix": {"addr": "2002:a=
+9fe::", "len": 32}}, {"prefix": {"addr": "2002:e000::", "len": 19}}]}}}, {"=
+reject": {"type": "icmpv6", "expr": "addr-unreachable"}}]}}}, {"add": {"cha=
+in": {"family": "inet", "table": "firewalld", "name": "filter_IN_public"}}}=
+, {"add": {"chain": {"family": "inet", "table": "firewalld", "name": "filte=
+r_IN_public_pre"}}}, {"add": {"chain": {"family": "inet", "table": "firewal=
+ld", "name": "filter_IN_public_log"}}}, {"add": {"chain": {"family": "inet"=
+, "table": "firewalld", "name": "filter_IN_public_deny"}}}, {"add": {"chain=
+": {"family": "inet", "table": "firewalld", "name": "filter_IN_public_allow=
+"}}}, {"add": {"chain": {"family": "inet", "table": "firewalld", "name": "f=
+ilter_IN_public_post"}}}, {"add": {"rule": {"family": "inet", "table": "fir=
+ewalld", "chain": "filter_IN_public", "expr": [{"jump": {"target": "filter_=
+IN_public_pre"}}]}}}, {"add": {"rule": {"family": "inet", "table": "firewal=
+ld", "chain": "filter_IN_public", "expr": [{"jump": {"target": "filter_IN_p=
+ublic_log"}}]}}}, {"add": {"rule": {"family": "inet", "table": "firewalld",=
+ "chain": "filter_IN_public", "expr": [{"jump": {"target": "filter_IN_publi=
+c_deny"}}]}}}, {"add": {"rule": {"family": "inet", "table": "firewalld", "c=
+hain": "filter_IN_public", "expr": [{"jump": {"target": "filter_IN_public_a=
+llow"}}]}}}, {"add": {"rule": {"family": "inet", "table": "firewalld", "cha=
+in": "filter_IN_public", "expr": [{"jump": {"target": "filter_IN_public_pos=
+t"}}]}}}, {"add": {"rule": {"family": "inet", "table": "firewalld", "chain"=
+: "filter_IN_public_allow", "expr": [{"match": {"left": {"payload": {"proto=
+col": "tcp", "field": "dport"}}, "op": "=3D=3D", "right": 22}}, {"match": {=
+"left": {"ct": {"key": "state"}}, "op": "in", "right": {"set": ["new", "unt=
+racked"]}}}, {"accept": null}]}}}, {"add": {"rule": {"family": "inet", "tab=
+le": "firewalld", "chain": "filter_IN_public_allow", "expr": [{"match": {"l=
+eft": {"payload": {"protocol": "ip6", "field": "daddr"}}, "op": "=3D=3D", "=
+right": {"prefix": {"addr": "fe80::", "len": 64}}}}, {"match": {"left": {"p=
+ayload": {"protocol": "udp", "field": "dport"}}, "op": "=3D=3D", "right": 5=
+46}}, {"match": {"left": {"ct": {"key": "state"}}, "op": "in", "right": {"s=
+et": ["new", "untracked"]}}}, {"accept": null}]}}}, {"add": {"chain": {"fam=
+ily": "inet", "table": "firewalld", "name": "filter_FWDO_public"}}}, {"add"=
+: {"chain": {"family": "inet", "table": "firewalld", "name": "filter_FWDO_p=
+ublic_pre"}}}, {"add": {"chain": {"family": "inet", "table": "firewalld", "=
+name": "filter_FWDO_public_log"}}}, {"add": {"chain": {"family": "inet", "t=
+able": "firewalld", "name": "filter_FWDO_public_deny"}}}, {"add": {"chain":=
+ {"family": "inet", "table": "firewalld", "name": "filter_FWDO_public_allow=
+"}}}, {"add": {"chain": {"family": "inet", "table": "firewalld", "name": "f=
+ilter_FWDO_public_post"}}}, {"add": {"rule": {"family": "inet", "table": "f=
+irewalld", "chain": "filter_FWDO_public", "expr": [{"jump": {"target": "fil=
+ter_FWDO_public_pre"}}]}}}, {"add": {"rule": {"family": "inet", "table": "f=
+irewalld", "chain": "filter_FWDO_public", "expr": [{"jump": {"target": "fil=
+ter_FWDO_public_log"}}]}}}, {"add": {"rule": {"family": "inet", "table": "f=
+irewalld", "chain": "filter_FWDO_public", "expr": [{"jump": {"target": "fil=
+ter_FWDO_public_deny"}}]}}}, {"add": {"rule": {"family": "inet", "table": "=
+firewalld", "chain": "filter_FWDO_public", "expr": [{"jump": {"target": "fi=
+lter_FWDO_public_allow"}}]}}}, {"add": {"rule": {"family": "inet", "table":=
+ "firewalld", "chain": "filter_FWDO_public", "expr": [{"jump": {"target": "=
+filter_FWDO_public_post"}}]}}}, {"add": {"chain": {"family": "ip", "table":=
+ "firewalld", "name": "nat_POST_public"}}}, {"add": {"chain": {"family": "i=
+p", "table": "firewalld", "name": "nat_POST_public_pre"}}}, {"add": {"chain=
+": {"family": "ip", "table": "firewalld", "name": "nat_POST_public_log"}}},=
+ {"add": {"chain": {"family": "ip", "table": "firewalld", "name": "nat_POST=
+_public_deny"}}}, {"add": {"chain": {"family": "ip", "table": "firewalld", =
+"name": "nat_POST_public_allow"}}}, {"add": {"chain": {"family": "ip", "tab=
+le": "firewalld", "name": "nat_POST_public_post"}}}, {"add": {"rule": {"fam=
+ily": "ip", "table": "firewalld", "chain": "nat_POST_public", "expr": [{"ju=
+mp": {"target": "nat_POST_public_pre"}}]}}}, {"add": {"rule": {"family": "i=
+p", "table": "firewalld", "chain": "nat_POST_public", "expr": [{"jump": {"t=
+arget": "nat_POST_public_log"}}]}}}, {"add": {"rule": {"family": "ip", "tab=
+le": "firewalld", "chain": "nat_POST_public", "expr": [{"jump": {"target": =
+"nat_POST_public_deny"}}]}}}, {"add": {"rule": {"family": "ip", "table": "f=
+irewalld", "chain": "nat_POST_public", "expr": [{"jump": {"target": "nat_PO=
+ST_public_allow"}}]}}}, {"add": {"rule": {"family": "ip", "table": "firewal=
+ld", "chain": "nat_POST_public", "expr": [{"jump": {"target": "nat_POST_pub=
+lic_post"}}]}}}, {"add": {"chain": {"family": "ip6", "table": "firewalld", =
+"name": "nat_POST_public"}}}, {"add": {"chain": {"family": "ip6", "table": =
+"firewalld", "name": "nat_POST_public_pre"}}}, {"add": {"chain": {"family":=
+ "ip6", "table": "firewalld", "name": "nat_POST_public_log"}}}, {"add": {"c=
+hain": {"family": "ip6", "table": "firewalld", "name": "nat_POST_public_den=
+y"}}}, {"add": {"chain": {"family": "ip6", "table": "firewalld", "name": "n=
+at_POST_public_allow"}}}, {"add": {"chain": {"family": "ip6", "table": "fir=
+ewalld", "name": "nat_POST_public_post"}}}, {"add": {"rule": {"family": "ip=
+6", "table": "firewalld", "chain": "nat_POST_public", "expr": [{"jump": {"t=
+arget": "nat_POST_public_pre"}}]}}}, {"add": {"rule": {"family": "ip6", "ta=
+ble": "firewalld", "chain": "nat_POST_public", "expr": [{"jump": {"target":=
+ "nat_POST_public_log"}}]}}}, {"add": {"rule": {"family": "ip6", "table": "=
+firewalld", "chain": "nat_POST_public", "expr": [{"jump": {"target": "nat_P=
+OST_public_deny"}}]}}}, {"add": {"rule": {"family": "ip6", "table": "firewa=
+lld", "chain": "nat_POST_public", "expr": [{"jump": {"target": "nat_POST_pu=
+blic_allow"}}]}}}, {"add": {"rule": {"family": "ip6", "table": "firewalld",=
+ "chain": "nat_POST_public", "expr": [{"jump": {"target": "nat_POST_public_=
+post"}}]}}}, {"add": {"chain": {"family": "inet", "table": "firewalld", "na=
+me": "filter_FWDI_public"}}}, {"add": {"chain": {"family": "inet", "table":=
+ "firewalld", "name": "filter_FWDI_public_pre"}}}, {"add": {"chain": {"fami=
+ly": "inet", "table": "firewalld", "name": "filter_FWDI_public_log"}}}, {"a=
+dd": {"chain": {"family": "inet", "table": "firewalld", "name": "filter_FWD=
+I_public_deny"}}}, {"add": {"chain": {"family": "inet", "table": "firewalld=
+", "name": "filter_FWDI_public_allow"}}}, {"add": {"chain": {"family": "ine=
+t", "table": "firewalld", "name": "filter_FWDI_public_post"}}}, {"add": {"r=
+ule": {"family": "inet", "table": "firewalld", "chain": "filter_FWDI_public=
+", "expr": [{"jump": {"target": "filter_FWDI_public_pre"}}]}}}, {"add": {"r=
+ule": {"family": "inet", "table": "firewalld", "chain": "filter_FWDI_public=
+", "expr": [{"jump": {"target": "filter_FWDI_public_log"}}]}}}, {"add": {"r=
+ule": {"family": "inet", "table": "firewalld", "chain": "filter_FWDI_public=
+", "expr": [{"jump": {"target": "filter_FWDI_public_deny"}}]}}}, {"add": {"=
+rule": {"family": "inet", "table": "firewalld", "chain": "filter_FWDI_publi=
+c", "expr": [{"jump": {"target": "filter_FWDI_public_allow"}}]}}}, {"add": =
+{"rule": {"family": "inet", "table": "firewalld", "chain": "filter_FWDI_pub=
+lic", "expr": [{"jump": {"target": "filter_FWDI_public_post"}}]}}}, {"add":=
+ {"chain": {"family": "ip", "table": "firewalld", "name": "nat_PRE_public"}=
+}}, {"add": {"chain": {"family": "ip", "table": "firewalld", "name": "nat_P=
+RE_public_pre"}}}, {"add": {"chain": {"family": "ip", "table": "firewalld",=
+ "name": "nat_PRE_public_log"}}}, {"add": {"chain": {"family": "ip", "table=
+": "firewalld", "name": "nat_PRE_public_deny"}}}, {"add": {"chain": {"famil=
+y": "ip", "table": "firewalld", "name": "nat_PRE_public_allow"}}}, {"add": =
+{"chain": {"family": "ip", "table": "firewalld", "name": "nat_PRE_public_po=
+st"}}}, {"add": {"rule": {"family": "ip", "table": "firewalld", "chain": "n=
+at_PRE_public", "expr": [{"jump": {"target": "nat_PRE_public_pre"}}]}}}, {"=
+add": {"rule": {"family": "ip", "table": "firewalld", "chain": "nat_PRE_pub=
+lic", "expr": [{"jump": {"target": "nat_PRE_public_log"}}]}}}, {"add": {"ru=
+le": {"family": "ip", "table": "firewalld", "chain": "nat_PRE_public", "exp=
+r": [{"jump": {"target": "nat_PRE_public_deny"}}]}}}, {"add": {"rule": {"fa=
+mily": "ip", "table": "firewalld", "chain": "nat_PRE_public", "expr": [{"ju=
+mp": {"target": "nat_PRE_public_allow"}}]}}}, {"add": {"rule": {"family": "=
+ip", "table": "firewalld", "chain": "nat_PRE_public", "expr": [{"jump": {"t=
+arget": "nat_PRE_public_post"}}]}}}, {"add": {"chain": {"family": "ip6", "t=
+able": "firewalld", "name": "nat_PRE_public"}}}, {"add": {"chain": {"family=
+": "ip6", "table": "firewalld", "name": "nat_PRE_public_pre"}}}, {"add": {"=
+chain": {"family": "ip6", "table": "firewalld", "name": "nat_PRE_public_log=
+"}}}, {"add": {"chain": {"family": "ip6", "table": "firewalld", "name": "na=
+t_PRE_public_deny"}}}, {"add": {"chain": {"family": "ip6", "table": "firewa=
+lld", "name": "nat_PRE_public_allow"}}}, {"add": {"chain": {"family": "ip6"=
+, "table": "firewalld", "name": "nat_PRE_public_post"}}}, {"add": {"rule": =
+{"family": "ip6", "table": "firewalld", "chain": "nat_PRE_public", "expr": =
+[{"jump": {"target": "nat_PRE_public_pre"}}]}}}, {"add": {"rule": {"family"=
+: "ip6", "table": "firewalld", "chain": "nat_PRE_public", "expr": [{"jump":=
+ {"target": "nat_PRE_public_log"}}]}}}, {"add": {"rule": {"family": "ip6", =
+"table": "firewalld", "chain": "nat_PRE_public", "expr": [{"jump": {"target=
+": "nat_PRE_public_deny"}}]}}}, {"add": {"rule": {"family": "ip6", "table":=
+ "firewalld", "chain": "nat_PRE_public", "expr": [{"jump": {"target": "nat_=
+PRE_public_allow"}}]}}}, {"add": {"rule": {"family": "ip6", "table": "firew=
+alld", "chain": "nat_PRE_public", "expr": [{"jump": {"target": "nat_PRE_pub=
+lic_post"}}]}}}, {"add": {"chain": {"family": "inet", "table": "firewalld",=
+ "name": "mangle_PRE_public"}}}, {"add": {"chain": {"family": "inet", "tabl=
+e": "firewalld", "name": "mangle_PRE_public_pre"}}}, {"add": {"chain": {"fa=
+mily": "inet", "table": "firewalld", "name": "mangle_PRE_public_log"}}}, {"=
+add": {"chain": {"family": "inet", "table": "firewalld", "name": "mangle_PR=
+E_public_deny"}}}, {"add": {"chain": {"family": "inet", "table": "firewalld=
+", "name": "mangle_PRE_public_allow"}}}, {"add": {"chain": {"family": "inet=
+", "table": "firewalld", "name": "mangle_PRE_public_post"}}}, {"add": {"rul=
+e": {"family": "inet", "table": "firewalld", "chain": "mangle_PRE_public", =
+"expr": [{"jump": {"target": "mangle_PRE_public_pre"}}]}}}, {"add": {"rule"=
+: {"family": "inet", "table": "firewalld", "chain": "mangle_PRE_public", "e=
+xpr": [{"jump": {"target": "mangle_PRE_public_log"}}]}}}, {"add": {"rule": =
+{"family": "inet", "table": "firewalld", "chain": "mangle_PRE_public", "exp=
+r": [{"jump": {"target": "mangle_PRE_public_deny"}}]}}}, {"add": {"rule": {=
+"family": "inet", "table": "firewalld", "chain": "mangle_PRE_public", "expr=
+": [{"jump": {"target": "mangle_PRE_public_allow"}}]}}}, {"add": {"rule": {=
+"family": "inet", "table": "firewalld", "chain": "mangle_PRE_public", "expr=
+": [{"jump": {"target": "mangle_PRE_public_post"}}]}}}, {"add": {"rule": {"=
+family": "inet", "table": "firewalld", "chain": "filter_IN_public", "index"=
+: 4, "expr": [{"match": {"left": {"meta": {"key": "l4proto"}}, "op": "=3D=
+=3D", "right": {"set": ["icmp", "icmpv6"]}}}, {"accept": null}]}}}, {"add":=
+ {"rule": {"family": "inet", "table": "firewalld", "chain": "filter_FWDI_pu=
+blic", "index": 4, "expr": [{"match": {"left": {"meta": {"key": "l4proto"}}=
+, "op": "=3D=3D", "right": {"set": ["icmp", "icmpv6"]}}}, {"accept": null}]=
+}}}, {"add": {"rule": {"family": "inet", "table": "firewalld", "chain": "fi=
+lter_INPUT_ZONES", "expr": [{"goto": {"target": "filter_IN_public"}}]}}}, {=
+"add": {"rule": {"family": "inet", "table": "firewalld", "chain": "filter_F=
+ORWARD_OUT_ZONES", "expr": [{"goto": {"target": "filter_FWDO_public"}}]}}},=
+ {"add": {"rule": {"family": "ip", "table": "firewalld", "chain": "nat_POST=
+ROUTING_ZONES", "expr": [{"goto": {"target": "nat_POST_public"}}]}}}, {"add=
+": {"rule": {"family": "ip6", "table": "firewalld", "chain": "nat_POSTROUTI=
+NG_ZONES", "expr": [{"goto": {"target": "nat_POST_public"}}]}}}, {"add": {"=
+rule": {"family": "inet", "table": "firewalld", "chain": "filter_FORWARD_IN=
+_ZONES", "expr": [{"goto": {"target": "filter_FWDI_public"}}]}}}, {"add": {=
+"rule": {"family": "ip", "table": "firewalld", "chain": "nat_PREROUTING_ZON=
+ES", "expr": [{"goto": {"target": "nat_PRE_public"}}]}}}, {"add": {"rule": =
+{"family": "ip6", "table": "firewalld", "chain": "nat_PREROUTING_ZONES", "e=
+xpr": [{"goto": {"target": "nat_PRE_public"}}]}}}, {"add": {"rule": {"famil=
+y": "inet", "table": "firewalld", "chain": "mangle_PREROUTING_ZONES", "expr=
+": [{"goto": {"target": "mangle_PRE_public"}}]}}}, {"add": {"chain": {"fami=
+ly": "inet", "table": "firewalld", "name": "filter_IN_policy_allow-host-ipv=
+6"}}}, {"add": {"chain": {"family": "inet", "table": "firewalld", "name": "=
+filter_IN_policy_allow-host-ipv6_pre"}}}, {"add": {"chain": {"family": "ine=
+t", "table": "firewalld", "name": "filter_IN_policy_allow-host-ipv6_log"}}}=
+, {"add": {"chain": {"family": "inet", "table": "firewalld", "name": "filte=
+r_IN_policy_allow-host-ipv6_deny"}}}, {"add": {"chain": {"family": "inet", =
+"table": "firewalld", "name": "filter_IN_policy_allow-host-ipv6_allow"}}}, =
+{"add": {"chain": {"family": "inet", "table": "firewalld", "name": "filter_=
+IN_policy_allow-host-ipv6_post"}}}, {"add": {"rule": {"family": "inet", "ta=
+ble": "firewalld", "chain": "filter_IN_policy_allow-host-ipv6", "expr": [{"=
+jump": {"target": "filter_IN_policy_allow-host-ipv6_pre"}}]}}}, {"add": {"r=
+ule": {"family": "inet", "table": "firewalld", "chain": "filter_IN_policy_a=
+llow-host-ipv6", "expr": [{"jump": {"target": "filter_IN_policy_allow-host-=
+ipv6_log"}}]}}}, {"add": {"rule": {"family": "inet", "table": "firewalld", =
+"chain": "filter_IN_policy_allow-host-ipv6", "expr": [{"jump": {"target": "=
+filter_IN_policy_allow-host-ipv6_deny"}}]}}}, {"add": {"rule": {"family": "=
+inet", "table": "firewalld", "chain": "filter_IN_policy_allow-host-ipv6", "=
+expr": [{"jump": {"target": "filter_IN_policy_allow-host-ipv6_allow"}}]}}},=
+ {"add": {"rule": {"family": "inet", "table": "firewalld", "chain": "filter=
+_IN_policy_allow-host-ipv6", "expr": [{"jump": {"target": "filter_IN_policy=
+_allow-host-ipv6_post"}}]}}}, {"add": {"chain": {"family": "ip", "table": "=
+firewalld", "name": "nat_PRE_policy_allow-host-ipv6"}}}, {"add": {"chain": =
+{"family": "ip", "table": "firewalld", "name": "nat_PRE_policy_allow-host-i=
+pv6_pre"}}}, {"add": {"chain": {"family": "ip", "table": "firewalld", "name=
+": "nat_PRE_policy_allow-host-ipv6_log"}}}, {"add": {"chain": {"family": "i=
+p", "table": "firewalld", "name": "nat_PRE_policy_allow-host-ipv6_deny"}}},=
+ {"add": {"chain": {"family": "ip", "table": "firewalld", "name": "nat_PRE_=
+policy_allow-host-ipv6_allow"}}}, {"add": {"chain": {"family": "ip", "table=
+": "firewalld", "name": "nat_PRE_policy_allow-host-ipv6_post"}}}, {"add": {=
+"rule": {"family": "ip", "table": "firewalld", "chain": "nat_PRE_policy_all=
+ow-host-ipv6", "expr": [{"jump": {"target": "nat_PRE_policy_allow-host-ipv6=
+_pre"}}]}}}, {"add": {"rule": {"family": "ip", "table": "firewalld", "chain=
+": "nat_PRE_policy_allow-host-ipv6", "expr": [{"jump": {"target": "nat_PRE_=
+policy_allow-host-ipv6_log"}}]}}}, {"add": {"rule": {"family": "ip", "table=
+": "firewalld", "chain": "nat_PRE_policy_allow-host-ipv6", "expr": [{"jump"=
+: {"target": "nat_PRE_policy_allow-host-ipv6_deny"}}]}}}, {"add": {"rule": =
+{"family": "ip", "table": "firewalld", "chain": "nat_PRE_policy_allow-host-=
+ipv6", "expr": [{"jump": {"target": "nat_PRE_policy_allow-host-ipv6_allow"}=
+}]}}}, {"add": {"rule": {"family": "ip", "table": "firewalld", "chain": "na=
+t_PRE_policy_allow-host-ipv6", "expr": [{"jump": {"target": "nat_PRE_policy=
+_allow-host-ipv6_post"}}]}}}, {"add": {"chain": {"family": "ip6", "table": =
+"firewalld", "name": "nat_PRE_policy_allow-host-ipv6"}}}, {"add": {"chain":=
+ {"family": "ip6", "table": "firewalld", "name": "nat_PRE_policy_allow-host=
+-ipv6_pre"}}}, {"add": {"chain": {"family": "ip6", "table": "firewalld", "n=
+ame": "nat_PRE_policy_allow-host-ipv6_log"}}}, {"add": {"chain": {"family":=
+ "ip6", "table": "firewalld", "name": "nat_PRE_policy_allow-host-ipv6_deny"=
+}}}, {"add": {"chain": {"family": "ip6", "table": "firewalld", "name": "nat=
+_PRE_policy_allow-host-ipv6_allow"}}}, {"add": {"chain": {"family": "ip6", =
+"table": "firewalld", "name": "nat_PRE_policy_allow-host-ipv6_post"}}}, {"a=
+dd": {"rule": {"family": "ip6", "table": "firewalld", "chain": "nat_PRE_pol=
+icy_allow-host-ipv6", "expr": [{"jump": {"target": "nat_PRE_policy_allow-ho=
+st-ipv6_pre"}}]}}}, {"add": {"rule": {"family": "ip6", "table": "firewalld"=
+, "chain": "nat_PRE_policy_allow-host-ipv6", "expr": [{"jump": {"target": "=
+nat_PRE_policy_allow-host-ipv6_log"}}]}}}, {"add": {"rule": {"family": "ip6=
+", "table": "firewalld", "chain": "nat_PRE_policy_allow-host-ipv6", "expr":=
+ [{"jump": {"target": "nat_PRE_policy_allow-host-ipv6_deny"}}]}}}, {"add": =
+{"rule": {"family": "ip6", "table": "firewalld", "chain": "nat_PRE_policy_a=
+llow-host-ipv6", "expr": [{"jump": {"target": "nat_PRE_policy_allow-host-ip=
+v6_allow"}}]}}}, {"add": {"rule": {"family": "ip6", "table": "firewalld", "=
+chain": "nat_PRE_policy_allow-host-ipv6", "expr": [{"jump": {"target": "nat=
+_PRE_policy_allow-host-ipv6_post"}}]}}}, {"add": {"chain": {"family": "inet=
+", "table": "firewalld", "name": "mangle_PRE_policy_allow-host-ipv6"}}}, {"=
+add": {"chain": {"family": "inet", "table": "firewalld", "name": "mangle_PR=
+E_policy_allow-host-ipv6_pre"}}}, {"add": {"chain": {"family": "inet", "tab=
+le": "firewalld", "name": "mangle_PRE_policy_allow-host-ipv6_log"}}}, {"add=
+": {"chain": {"family": "inet", "table": "firewalld", "name": "mangle_PRE_p=
+olicy_allow-host-ipv6_deny"}}}, {"add": {"chain": {"family": "inet", "table=
+": "firewalld", "name": "mangle_PRE_policy_allow-host-ipv6_allow"}}}, {"add=
+": {"chain": {"family": "inet", "table": "firewalld", "name": "mangle_PRE_p=
+olicy_allow-host-ipv6_post"}}}, {"add": {"rule": {"family": "inet", "table"=
+: "firewalld", "chain": "mangle_PRE_policy_allow-host-ipv6", "expr": [{"jum=
+p": {"target": "mangle_PRE_policy_allow-host-ipv6_pre"}}]}}}, {"add": {"rul=
+e": {"family": "inet", "table": "firewalld", "chain": "mangle_PRE_policy_al=
+low-host-ipv6", "expr": [{"jump": {"target": "mangle_PRE_policy_allow-host-=
+ipv6_log"}}]}}}, {"add": {"rule": {"family": "inet", "table": "firewalld", =
+"chain": "mangle_PRE_policy_allow-host-ipv6", "expr": [{"jump": {"target": =
+"mangle_PRE_policy_allow-host-ipv6_deny"}}]}}}, {"add": {"rule": {"family":=
+ "inet", "table": "firewalld", "chain": "mangle_PRE_policy_allow-host-ipv6"=
+, "expr": [{"jump": {"target": "mangle_PRE_policy_allow-host-ipv6_allow"}}]=
+}}}, {"add": {"rule": {"family": "inet", "table": "firewalld", "chain": "ma=
+ngle_PRE_policy_allow-host-ipv6", "expr": [{"jump": {"target": "mangle_PRE_=
+policy_allow-host-ipv6_post"}}]}}}, {"insert": {"rule": {"family": "inet", =
+"table": "firewalld", "chain": "filter_INPUT_POLICIES_pre", "expr": [{"jump=
+": {"target": "filter_IN_policy_allow-host-ipv6"}}]}}}, {"insert": {"rule":=
+ {"family": "ip", "table": "firewalld", "chain": "nat_PREROUTING_POLICIES_p=
+re", "expr": [{"jump": {"target": "nat_PRE_policy_allow-host-ipv6"}}]}}}, {=
+"insert": {"rule": {"family": "ip6", "table": "firewalld", "chain": "nat_PR=
+EROUTING_POLICIES_pre", "expr": [{"jump": {"target": "nat_PRE_policy_allow-=
+host-ipv6"}}]}}}, {"insert": {"rule": {"family": "inet", "table": "firewall=
+d", "chain": "mangle_PREROUTING_POLICIES_pre", "expr": [{"jump": {"target":=
+ "mangle_PRE_policy_allow-host-ipv6"}}]}}}, {"add": {"rule": {"family": "in=
+et", "table": "firewalld", "chain": "filter_IN_policy_allow-host-ipv6_allow=
+", "expr": [{"match": {"left": {"meta": {"key": "nfproto"}}, "op": "=3D=3D"=
+, "right": "ipv6"}}, {"match": {"left": {"payload": {"protocol": "icmpv6", =
+"field": "type"}}, "op": "=3D=3D", "right": "nd-neighbor-advert"}}, {"accep=
+t": null}]}}}, {"add": {"rule": {"family": "inet", "table": "firewalld", "c=
+hain": "filter_IN_policy_allow-host-ipv6_allow", "expr": [{"match": {"left"=
+: {"meta": {"key": "nfproto"}}, "op": "=3D=3D", "right": "ipv6"}}, {"match"=
+: {"left": {"payload": {"protocol": "icmpv6", "field": "type"}}, "op": "=3D=
+=3D", "right": "nd-neighbor-solicit"}}, {"accept": null}]}}}, {"add": {"rul=
+e": {"family": "inet", "table": "firewalld", "chain": "filter_IN_policy_all=
+ow-host-ipv6_allow", "expr": [{"match": {"left": {"meta": {"key": "nfproto"=
+}}, "op": "=3D=3D", "right": "ipv6"}}, {"match": {"left": {"payload": {"pro=
+tocol": "icmpv6", "field": "type"}}, "op": "=3D=3D", "right": "nd-router-ad=
+vert"}}, {"accept": null}]}}}, {"add": {"rule": {"family": "inet", "table":=
+ "firewalld", "chain": "filter_IN_policy_allow-host-ipv6_allow", "expr": [{=
+"match": {"left": {"meta": {"key": "nfproto"}}, "op": "=3D=3D", "right": "i=
+pv6"}}, {"match": {"left": {"payload": {"protocol": "icmpv6", "field": "typ=
+e"}}, "op": "=3D=3D", "right": "nd-redirect"}}, {"accept": null}]}}}]}
+
+--
+Regards,
+Sateesh
+
+--wP98GUcWdRi5qDXnwctH
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Team,<br /><br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ I have built a custom image core-image-base with nftables,firewalld,json p=
+ackages support. I am using firewalld_0.9.3 sources depends nftables-python=
+ is present. But I am getting error python-nftables. Can you please guide m=
+e on what dependent I missed here? If suppose firewalld should work means, =
+What packages should&nbsp; I install?&nbsp;&nbsp;<br /><br />But while runn=
+ing firewalld status is always failed mode.&nbsp;&nbsp;<br />Using $firewal=
+l-cmd --reload&nbsp; I am facing a&nbsp; problem<br /><br />
+<div>Error: COMMAND_FAILED: 'python-nftables' failed: internal:0:0-0: Error=
+: Could not process rule: No such file or directory</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>JSON blob:</div>
+<div>{"nftables": [{"metainfo": {"json_schema_version": 1}}, {"add": {"chai=
+n": {"family": "inet", "table": "firewalld", "name": "raw_PREROUTING", "typ=
+e": "filter", "hook": "prerouting", "prio": -290}}}, {"add": {"chain": {"fa=
+mily": "inet", "table": "firewalld", "name": "mangle_PREROUTING", "type": "=
+filter", "hook": "prerouting", "prio": -140}}}, {"add": {"chain": {"family"=
+: "inet", "table": "firewalld", "name": "mangle_PREROUTING_POLICIES_pre"}}}=
+, {"add": {"rule": {"family": "inet", "table": "firewalld", "chain": "mangl=
+e_PREROUTING", "expr": [{"jump": {"target": "mangle_PREROUTING_POLICIES_pre=
+"}}]}}}, {"add": {"chain": {"family": "inet", "table": "firewalld", "name":=
+ "mangle_PREROUTING_ZONES"}}}, {"add": {"rule": {"family": "inet", "table":=
+ "firewalld", "chain": "mangle_PREROUTING", "expr": [{"jump": {"target": "m=
+angle_PREROUTING_ZONES"}}]}}}, {"add": {"chain": {"family": "inet", "table"=
+: "firewalld", "name": "mangle_PREROUTING_POLICIES_post"}}}, {"add": {"rule=
+": {"family": "inet", "table": "firewalld", "chain": "mangle_PREROUTING", "=
+expr": [{"jump": {"target": "mangle_PREROUTING_POLICIES_post"}}]}}}, {"add"=
+: {"chain": {"family": "ip", "table": "firewalld", "name": "nat_PREROUTING"=
+, "type": "nat", "hook": "prerouting", "prio": -90}}}, {"add": {"chain": {"=
+family": "ip", "table": "firewalld", "name": "nat_PREROUTING_POLICIES_pre"}=
+}}, {"add": {"rule": {"family": "ip", "table": "firewalld", "chain": "nat_P=
+REROUTING", "expr": [{"jump": {"target": "nat_PREROUTING_POLICIES_pre"}}]}}=
+}, {"add": {"chain": {"family": "ip", "table": "firewalld", "name": "nat_PR=
+EROUTING_ZONES"}}}, {"add": {"rule": {"family": "ip", "table": "firewalld",=
+ "chain": "nat_PREROUTING", "expr": [{"jump": {"target": "nat_PREROUTING_ZO=
+NES"}}]}}}, {"add": {"chain": {"family": "ip", "table": "firewalld", "name"=
+: "nat_PREROUTING_POLICIES_post"}}}, {"add": {"rule": {"family": "ip", "tab=
+le": "firewalld", "chain": "nat_PREROUTING", "expr": [{"jump": {"target": "=
+nat_PREROUTING_POLICIES_post"}}]}}}, {"add": {"chain": {"family": "ip", "ta=
+ble": "firewalld", "name": "nat_POSTROUTING", "type": "nat", "hook": "postr=
+outing", "prio": 110}}}, {"add": {"chain": {"family": "ip", "table": "firew=
+alld", "name": "nat_POSTROUTING_POLICIES_pre"}}}, {"add": {"rule": {"family=
+": "ip", "table": "firewalld", "chain": "nat_POSTROUTING", "expr": [{"jump"=
+: {"target": "nat_POSTROUTING_POLICIES_pre"}}]}}}, {"add": {"chain": {"fami=
+ly": "ip", "table": "firewalld", "name": "nat_POSTROUTING_ZONES"}}}, {"add"=
+: {"rule": {"family": "ip", "table": "firewalld", "chain": "nat_POSTROUTING=
+", "expr": [{"jump": {"target": "nat_POSTROUTING_ZONES"}}]}}}, {"add": {"ch=
+ain": {"family": "ip", "table": "firewalld", "name": "nat_POSTROUTING_POLIC=
+IES_post"}}}, {"add": {"rule": {"family": "ip", "table": "firewalld", "chai=
+n": "nat_POSTROUTING", "expr": [{"jump": {"target": "nat_POSTROUTING_POLICI=
+ES_post"}}]}}}, {"add": {"chain": {"family": "ip6", "table": "firewalld", "=
+name": "nat_PREROUTING", "type": "nat", "hook": "prerouting", "prio": -90}}=
+}, {"add": {"chain": {"family": "ip6", "table": "firewalld", "name": "nat_P=
+REROUTING_POLICIES_pre"}}}, {"add": {"rule": {"family": "ip6", "table": "fi=
+rewalld", "chain": "nat_PREROUTING", "expr": [{"jump": {"target": "nat_PRER=
+OUTING_POLICIES_pre"}}]}}}, {"add": {"chain": {"family": "ip6", "table": "f=
+irewalld", "name": "nat_PREROUTING_ZONES"}}}, {"add": {"rule": {"family": "=
+ip6", "table": "firewalld", "chain": "nat_PREROUTING", "expr": [{"jump": {"=
+target": "nat_PREROUTING_ZONES"}}]}}}, {"add": {"chain": {"family": "ip6", =
+"table": "firewalld", "name": "nat_PREROUTING_POLICIES_post"}}}, {"add": {"=
+rule": {"family": "ip6", "table": "firewalld", "chain": "nat_PREROUTING", "=
+expr": [{"jump": {"target": "nat_PREROUTING_POLICIES_post"}}]}}}, {"add": {=
+"chain": {"family": "ip6", "table": "firewalld", "name": "nat_POSTROUTING",=
+ "type": "nat", "hook": "postrouting", "prio": 110}}}, {"add": {"chain": {"=
+family": "ip6", "table": "firewalld", "name": "nat_POSTROUTING_POLICIES_pre=
+"}}}, {"add": {"rule": {"family": "ip6", "table": "firewalld", "chain": "na=
+t_POSTROUTING", "expr": [{"jump": {"target": "nat_POSTROUTING_POLICIES_pre"=
+}}]}}}, {"add": {"chain": {"family": "ip6", "table": "firewalld", "name": "=
+nat_POSTROUTING_ZONES"}}}, {"add": {"rule": {"family": "ip6", "table": "fir=
+ewalld", "chain": "nat_POSTROUTING", "expr": [{"jump": {"target": "nat_POST=
+ROUTING_ZONES"}}]}}}, {"add": {"chain": {"family": "ip6", "table": "firewal=
+ld", "name": "nat_POSTROUTING_POLICIES_post"}}}, {"add": {"rule": {"family"=
+: "ip6", "table": "firewalld", "chain": "nat_POSTROUTING", "expr": [{"jump"=
+: {"target": "nat_POSTROUTING_POLICIES_post"}}]}}}, {"add": {"chain": {"fam=
+ily": "inet", "table": "firewalld", "name": "filter_INPUT", "type": "filter=
+", "hook": "input", "prio": 10}}}, {"add": {"chain": {"family": "inet", "ta=
+ble": "firewalld", "name": "filter_FORWARD", "type": "filter", "hook": "for=
+ward", "prio": 10}}}, {"add": {"chain": {"family": "inet", "table": "firewa=
+lld", "name": "filter_OUTPUT", "type": "filter", "hook": "output", "prio": =
+10}}}, {"add": {"rule": {"family": "inet", "table": "firewalld", "chain": "=
+filter_INPUT", "expr": [{"match": {"left": {"ct": {"key": "state"}}, "op": =
+"in", "right": {"set": ["established", "related"]}}}, {"accept": null}]}}},=
+ {"add": {"rule": {"family": "inet", "table": "firewalld", "chain": "filter=
+_INPUT", "expr": [{"match": {"left": {"ct": {"key": "status"}}, "op": "in",=
+ "right": "dnat"}}, {"accept": null}]}}}, {"add": {"rule": {"family": "inet=
+", "table": "firewalld", "chain": "filter_INPUT", "expr": [{"match": {"left=
+": {"meta": {"key": "iifname"}}, "op": "=3D=3D", "right": "lo"}}, {"accept"=
+: null}]}}}, {"add": {"chain": {"family": "inet", "table": "firewalld", "na=
+me": "filter_INPUT_POLICIES_pre"}}}, {"add": {"rule": {"family": "inet", "t=
+able": "firewalld", "chain": "filter_INPUT", "expr": [{"jump": {"target": "=
+filter_INPUT_POLICIES_pre"}}]}}}, {"add": {"chain": {"family": "inet", "tab=
+le": "firewalld", "name": "filter_INPUT_ZONES"}}}, {"add": {"rule": {"famil=
+y": "inet", "table": "firewalld", "chain": "filter_INPUT", "expr": [{"jump"=
+: {"target": "filter_INPUT_ZONES"}}]}}}, {"add": {"chain": {"family": "inet=
+", "table": "firewalld", "name": "filter_INPUT_POLICIES_post"}}}, {"add": {=
+"rule": {"family": "inet", "table": "firewalld", "chain": "filter_INPUT", "=
+expr": [{"jump": {"target": "filter_INPUT_POLICIES_post"}}]}}}, {"add": {"r=
+ule": {"family": "inet", "table": "firewalld", "chain": "filter_INPUT", "ex=
+pr": [{"match": {"left": {"ct": {"key": "state"}}, "op": "in", "right": {"s=
+et": ["invalid"]}}}, {"drop": null}]}}}, {"add": {"rule": {"family": "inet"=
+, "table": "firewalld", "chain": "filter_INPUT", "expr": [{"reject": {"type=
+": "icmpx", "expr": "admin-prohibited"}}]}}}, {"add": {"rule": {"family": "=
+inet", "table": "firewalld", "chain": "filter_FORWARD", "expr": [{"match": =
+{"left": {"ct": {"key": "state"}}, "op": "in", "right": {"set": ["establish=
+ed", "related"]}}}, {"accept": null}]}}}, {"add": {"rule": {"family": "inet=
+", "table": "firewalld", "chain": "filter_FORWARD", "expr": [{"match": {"le=
+ft": {"ct": {"key": "status"}}, "op": "in", "right": "dnat"}}, {"accept": n=
+ull}]}}}, {"add": {"rule": {"family": "inet", "table": "firewalld", "chain"=
+: "filter_FORWARD", "expr": [{"match": {"left": {"meta": {"key": "iifname"}=
+}, "op": "=3D=3D", "right": "lo"}}, {"accept": null}]}}}, {"add": {"chain":=
+ {"family": "inet", "table": "firewalld", "name": "filter_FORWARD_POLICIES_=
+pre"}}}, {"add": {"rule": {"family": "inet", "table": "firewalld", "chain":=
+ "filter_FORWARD", "expr": [{"jump": {"target": "filter_FORWARD_POLICIES_pr=
+e"}}]}}}, {"add": {"chain": {"family": "inet", "table": "firewalld", "name"=
+: "filter_FORWARD_IN_ZONES"}}}, {"add": {"rule": {"family": "inet", "table"=
+: "firewalld", "chain": "filter_FORWARD", "expr": [{"jump": {"target": "fil=
+ter_FORWARD_IN_ZONES"}}]}}}, {"add": {"chain": {"family": "inet", "table": =
+"firewalld", "name": "filter_FORWARD_OUT_ZONES"}}}, {"add": {"rule": {"fami=
+ly": "inet", "table": "firewalld", "chain": "filter_FORWARD", "expr": [{"ju=
+mp": {"target": "filter_FORWARD_OUT_ZONES"}}]}}}, {"add": {"chain": {"famil=
+y": "inet", "table": "firewalld", "name": "filter_FORWARD_POLICIES_post"}}}=
+, {"add": {"rule": {"family": "inet", "table": "firewalld", "chain": "filte=
+r_FORWARD", "expr": [{"jump": {"target": "filter_FORWARD_POLICIES_post"}}]}=
+}}, {"add": {"rule": {"family": "inet", "table": "firewalld", "chain": "fil=
+ter_FORWARD", "expr": [{"match": {"left": {"ct": {"key": "state"}}, "op": "=
+in", "right": {"set": ["invalid"]}}}, {"drop": null}]}}}, {"add": {"rule": =
+{"family": "inet", "table": "firewalld", "chain": "filter_FORWARD", "expr":=
+ [{"reject": {"type": "icmpx", "expr": "admin-prohibited"}}]}}}, {"add": {"=
+rule": {"family": "inet", "table": "firewalld", "chain": "filter_OUTPUT", "=
+expr": [{"match": {"left": {"meta": {"key": "oifname"}}, "op": "=3D=3D", "r=
+ight": "lo"}}, {"accept": null}]}}}, {"add": {"chain": {"family": "inet", "=
+table": "firewalld", "name": "filter_OUTPUT_POLICIES_pre"}}}, {"add": {"rul=
+e": {"family": "inet", "table": "firewalld", "chain": "filter_OUTPUT", "exp=
+r": [{"jump": {"target": "filter_OUTPUT_POLICIES_pre"}}]}}}, {"add": {"chai=
+n": {"family": "inet", "table": "firewalld", "name": "filter_OUTPUT_POLICIE=
+S_post"}}}, {"add": {"rule": {"family": "inet", "table": "firewalld", "chai=
+n": "filter_OUTPUT", "expr": [{"jump": {"target": "filter_OUTPUT_POLICIES_p=
+ost"}}]}}}, {"insert": {"rule": {"family": "inet", "table": "firewalld", "c=
+hain": "raw_PREROUTING", "expr": [{"match": {"left": {"meta": {"key": "nfpr=
+oto"}}, "op": "=3D=3D", "right": "ipv6"}}, {"match": {"left": {"fib": {"fla=
+gs": ["saddr", "iif"], "result": "oif"}}, "op": "=3D=3D", "right": false}},=
+ {"drop": null}]}}}, {"insert": {"rule": {"family": "inet", "table": "firew=
+alld", "chain": "raw_PREROUTING", "expr": [{"match": {"left": {"payload": {=
+"protocol": "icmpv6", "field": "type"}}, "op": "=3D=3D", "right": {"set": [=
+"nd-router-advert", "nd-neighbor-solicit"]}}}, {"accept": null}]}}}, {"add"=
+: {"rule": {"family": "inet", "table": "firewalld", "chain": "filter_OUTPUT=
+", "index": 0, "expr": [{"match": {"left": {"payload": {"protocol": "ip6", =
+"field": "daddr"}}, "op": "=3D=3D", "right": {"set": [{"prefix": {"addr": "=
+::0.0.0.0", "len": 96}}, {"prefix": {"addr": "::ffff:0.0.0.0", "len": 96}},=
+ {"prefix": {"addr": "2002:0000::", "len": 24}}, {"prefix": {"addr": "2002:=
+0a00::", "len": 24}}, {"prefix": {"addr": "2002:7f00::", "len": 24}}, {"pre=
+fix": {"addr": "2002:ac10::", "len": 28}}, {"prefix": {"addr": "2002:c0a8::=
+", "len": 32}}, {"prefix": {"addr": "2002:a9fe::", "len": 32}}, {"prefix": =
+{"addr": "2002:e000::", "len": 19}}]}}}, {"reject": {"type": "icmpv6", "exp=
+r": "addr-unreachable"}}]}}}, {"add": {"rule": {"family": "inet", "table": =
+"firewalld", "chain": "filter_FORWARD", "index": 2, "expr": [{"match": {"le=
+ft": {"payload": {"protocol": "ip6", "field": "daddr"}}, "op": "=3D=3D", "r=
+ight": {"set": [{"prefix": {"addr": "::0.0.0.0", "len": 96}}, {"prefix": {"=
+addr": "::ffff:0.0.0.0", "len": 96}}, {"prefix": {"addr": "2002:0000::", "l=
+en": 24}}, {"prefix": {"addr": "2002:0a00::", "len": 24}}, {"prefix": {"add=
+r": "2002:7f00::", "len": 24}}, {"prefix": {"addr": "2002:ac10::", "len": 2=
+8}}, {"prefix": {"addr": "2002:c0a8::", "len": 32}}, {"prefix": {"addr": "2=
+002:a9fe::", "len": 32}}, {"prefix": {"addr": "2002:e000::", "len": 19}}]}}=
+}, {"reject": {"type": "icmpv6", "expr": "addr-unreachable"}}]}}}, {"add": =
+{"chain": {"family": "inet", "table": "firewalld", "name": "filter_IN_publi=
+c"}}}, {"add": {"chain": {"family": "inet", "table": "firewalld", "name": "=
+filter_IN_public_pre"}}}, {"add": {"chain": {"family": "inet", "table": "fi=
+rewalld", "name": "filter_IN_public_log"}}}, {"add": {"chain": {"family": "=
+inet", "table": "firewalld", "name": "filter_IN_public_deny"}}}, {"add": {"=
+chain": {"family": "inet", "table": "firewalld", "name": "filter_IN_public_=
+allow"}}}, {"add": {"chain": {"family": "inet", "table": "firewalld", "name=
+": "filter_IN_public_post"}}}, {"add": {"rule": {"family": "inet", "table":=
+ "firewalld", "chain": "filter_IN_public", "expr": [{"jump": {"target": "fi=
+lter_IN_public_pre"}}]}}}, {"add": {"rule": {"family": "inet", "table": "fi=
+rewalld", "chain": "filter_IN_public", "expr": [{"jump": {"target": "filter=
+_IN_public_log"}}]}}}, {"add": {"rule": {"family": "inet", "table": "firewa=
+lld", "chain": "filter_IN_public", "expr": [{"jump": {"target": "filter_IN_=
+public_deny"}}]}}}, {"add": {"rule": {"family": "inet", "table": "firewalld=
+", "chain": "filter_IN_public", "expr": [{"jump": {"target": "filter_IN_pub=
+lic_allow"}}]}}}, {"add": {"rule": {"family": "inet", "table": "firewalld",=
+ "chain": "filter_IN_public", "expr": [{"jump": {"target": "filter_IN_publi=
+c_post"}}]}}}, {"add": {"rule": {"family": "inet", "table": "firewalld", "c=
+hain": "filter_IN_public_allow", "expr": [{"match": {"left": {"payload": {"=
+protocol": "tcp", "field": "dport"}}, "op": "=3D=3D", "right": 22}}, {"matc=
+h": {"left": {"ct": {"key": "state"}}, "op": "in", "right": {"set": ["new",=
+ "untracked"]}}}, {"accept": null}]}}}, {"add": {"rule": {"family": "inet",=
+ "table": "firewalld", "chain": "filter_IN_public_allow", "expr": [{"match"=
+: {"left": {"payload": {"protocol": "ip6", "field": "daddr"}}, "op": "=3D=
+=3D", "right": {"prefix": {"addr": "fe80::", "len": 64}}}}, {"match": {"lef=
+t": {"payload": {"protocol": "udp", "field": "dport"}}, "op": "=3D=3D", "ri=
+ght": 546}}, {"match": {"left": {"ct": {"key": "state"}}, "op": "in", "righ=
+t": {"set": ["new", "untracked"]}}}, {"accept": null}]}}}, {"add": {"chain"=
+: {"family": "inet", "table": "firewalld", "name": "filter_FWDO_public"}}},=
+ {"add": {"chain": {"family": "inet", "table": "firewalld", "name": "filter=
+_FWDO_public_pre"}}}, {"add": {"chain": {"family": "inet", "table": "firewa=
+lld", "name": "filter_FWDO_public_log"}}}, {"add": {"chain": {"family": "in=
+et", "table": "firewalld", "name": "filter_FWDO_public_deny"}}}, {"add": {"=
+chain": {"family": "inet", "table": "firewalld", "name": "filter_FWDO_publi=
+c_allow"}}}, {"add": {"chain": {"family": "inet", "table": "firewalld", "na=
+me": "filter_FWDO_public_post"}}}, {"add": {"rule": {"family": "inet", "tab=
+le": "firewalld", "chain": "filter_FWDO_public", "expr": [{"jump": {"target=
+": "filter_FWDO_public_pre"}}]}}}, {"add": {"rule": {"family": "inet", "tab=
+le": "firewalld", "chain": "filter_FWDO_public", "expr": [{"jump": {"target=
+": "filter_FWDO_public_log"}}]}}}, {"add": {"rule": {"family": "inet", "tab=
+le": "firewalld", "chain": "filter_FWDO_public", "expr": [{"jump": {"target=
+": "filter_FWDO_public_deny"}}]}}}, {"add": {"rule": {"family": "inet", "ta=
+ble": "firewalld", "chain": "filter_FWDO_public", "expr": [{"jump": {"targe=
+t": "filter_FWDO_public_allow"}}]}}}, {"add": {"rule": {"family": "inet", "=
+table": "firewalld", "chain": "filter_FWDO_public", "expr": [{"jump": {"tar=
+get": "filter_FWDO_public_post"}}]}}}, {"add": {"chain": {"family": "ip", "=
+table": "firewalld", "name": "nat_POST_public"}}}, {"add": {"chain": {"fami=
+ly": "ip", "table": "firewalld", "name": "nat_POST_public_pre"}}}, {"add": =
+{"chain": {"family": "ip", "table": "firewalld", "name": "nat_POST_public_l=
+og"}}}, {"add": {"chain": {"family": "ip", "table": "firewalld", "name": "n=
+at_POST_public_deny"}}}, {"add": {"chain": {"family": "ip", "table": "firew=
+alld", "name": "nat_POST_public_allow"}}}, {"add": {"chain": {"family": "ip=
+", "table": "firewalld", "name": "nat_POST_public_post"}}}, {"add": {"rule"=
+: {"family": "ip", "table": "firewalld", "chain": "nat_POST_public", "expr"=
+: [{"jump": {"target": "nat_POST_public_pre"}}]}}}, {"add": {"rule": {"fami=
+ly": "ip", "table": "firewalld", "chain": "nat_POST_public", "expr": [{"jum=
+p": {"target": "nat_POST_public_log"}}]}}}, {"add": {"rule": {"family": "ip=
+", "table": "firewalld", "chain": "nat_POST_public", "expr": [{"jump": {"ta=
+rget": "nat_POST_public_deny"}}]}}}, {"add": {"rule": {"family": "ip", "tab=
+le": "firewalld", "chain": "nat_POST_public", "expr": [{"jump": {"target": =
+"nat_POST_public_allow"}}]}}}, {"add": {"rule": {"family": "ip", "table": "=
+firewalld", "chain": "nat_POST_public", "expr": [{"jump": {"target": "nat_P=
+OST_public_post"}}]}}}, {"add": {"chain": {"family": "ip6", "table": "firew=
+alld", "name": "nat_POST_public"}}}, {"add": {"chain": {"family": "ip6", "t=
+able": "firewalld", "name": "nat_POST_public_pre"}}}, {"add": {"chain": {"f=
+amily": "ip6", "table": "firewalld", "name": "nat_POST_public_log"}}}, {"ad=
+d": {"chain": {"family": "ip6", "table": "firewalld", "name": "nat_POST_pub=
+lic_deny"}}}, {"add": {"chain": {"family": "ip6", "table": "firewalld", "na=
+me": "nat_POST_public_allow"}}}, {"add": {"chain": {"family": "ip6", "table=
+": "firewalld", "name": "nat_POST_public_post"}}}, {"add": {"rule": {"famil=
+y": "ip6", "table": "firewalld", "chain": "nat_POST_public", "expr": [{"jum=
+p": {"target": "nat_POST_public_pre"}}]}}}, {"add": {"rule": {"family": "ip=
+6", "table": "firewalld", "chain": "nat_POST_public", "expr": [{"jump": {"t=
+arget": "nat_POST_public_log"}}]}}}, {"add": {"rule": {"family": "ip6", "ta=
+ble": "firewalld", "chain": "nat_POST_public", "expr": [{"jump": {"target":=
+ "nat_POST_public_deny"}}]}}}, {"add": {"rule": {"family": "ip6", "table": =
+"firewalld", "chain": "nat_POST_public", "expr": [{"jump": {"target": "nat_=
+POST_public_allow"}}]}}}, {"add": {"rule": {"family": "ip6", "table": "fire=
+walld", "chain": "nat_POST_public", "expr": [{"jump": {"target": "nat_POST_=
+public_post"}}]}}}, {"add": {"chain": {"family": "inet", "table": "firewall=
+d", "name": "filter_FWDI_public"}}}, {"add": {"chain": {"family": "inet", "=
+table": "firewalld", "name": "filter_FWDI_public_pre"}}}, {"add": {"chain":=
+ {"family": "inet", "table": "firewalld", "name": "filter_FWDI_public_log"}=
+}}, {"add": {"chain": {"family": "inet", "table": "firewalld", "name": "fil=
+ter_FWDI_public_deny"}}}, {"add": {"chain": {"family": "inet", "table": "fi=
+rewalld", "name": "filter_FWDI_public_allow"}}}, {"add": {"chain": {"family=
+": "inet", "table": "firewalld", "name": "filter_FWDI_public_post"}}}, {"ad=
+d": {"rule": {"family": "inet", "table": "firewalld", "chain": "filter_FWDI=
+_public", "expr": [{"jump": {"target": "filter_FWDI_public_pre"}}]}}}, {"ad=
+d": {"rule": {"family": "inet", "table": "firewalld", "chain": "filter_FWDI=
+_public", "expr": [{"jump": {"target": "filter_FWDI_public_log"}}]}}}, {"ad=
+d": {"rule": {"family": "inet", "table": "firewalld", "chain": "filter_FWDI=
+_public", "expr": [{"jump": {"target": "filter_FWDI_public_deny"}}]}}}, {"a=
+dd": {"rule": {"family": "inet", "table": "firewalld", "chain": "filter_FWD=
+I_public", "expr": [{"jump": {"target": "filter_FWDI_public_allow"}}]}}}, {=
+"add": {"rule": {"family": "inet", "table": "firewalld", "chain": "filter_F=
+WDI_public", "expr": [{"jump": {"target": "filter_FWDI_public_post"}}]}}}, =
+{"add": {"chain": {"family": "ip", "table": "firewalld", "name": "nat_PRE_p=
+ublic"}}}, {"add": {"chain": {"family": "ip", "table": "firewalld", "name":=
+ "nat_PRE_public_pre"}}}, {"add": {"chain": {"family": "ip", "table": "fire=
+walld", "name": "nat_PRE_public_log"}}}, {"add": {"chain": {"family": "ip",=
+ "table": "firewalld", "name": "nat_PRE_public_deny"}}}, {"add": {"chain": =
+{"family": "ip", "table": "firewalld", "name": "nat_PRE_public_allow"}}}, {=
+"add": {"chain": {"family": "ip", "table": "firewalld", "name": "nat_PRE_pu=
+blic_post"}}}, {"add": {"rule": {"family": "ip", "table": "firewalld", "cha=
+in": "nat_PRE_public", "expr": [{"jump": {"target": "nat_PRE_public_pre"}}]=
+}}}, {"add": {"rule": {"family": "ip", "table": "firewalld", "chain": "nat_=
+PRE_public", "expr": [{"jump": {"target": "nat_PRE_public_log"}}]}}}, {"add=
+": {"rule": {"family": "ip", "table": "firewalld", "chain": "nat_PRE_public=
+", "expr": [{"jump": {"target": "nat_PRE_public_deny"}}]}}}, {"add": {"rule=
+": {"family": "ip", "table": "firewalld", "chain": "nat_PRE_public", "expr"=
+: [{"jump": {"target": "nat_PRE_public_allow"}}]}}}, {"add": {"rule": {"fam=
+ily": "ip", "table": "firewalld", "chain": "nat_PRE_public", "expr": [{"jum=
+p": {"target": "nat_PRE_public_post"}}]}}}, {"add": {"chain": {"family": "i=
+p6", "table": "firewalld", "name": "nat_PRE_public"}}}, {"add": {"chain": {=
+"family": "ip6", "table": "firewalld", "name": "nat_PRE_public_pre"}}}, {"a=
+dd": {"chain": {"family": "ip6", "table": "firewalld", "name": "nat_PRE_pub=
+lic_log"}}}, {"add": {"chain": {"family": "ip6", "table": "firewalld", "nam=
+e": "nat_PRE_public_deny"}}}, {"add": {"chain": {"family": "ip6", "table": =
+"firewalld", "name": "nat_PRE_public_allow"}}}, {"add": {"chain": {"family"=
+: "ip6", "table": "firewalld", "name": "nat_PRE_public_post"}}}, {"add": {"=
+rule": {"family": "ip6", "table": "firewalld", "chain": "nat_PRE_public", "=
+expr": [{"jump": {"target": "nat_PRE_public_pre"}}]}}}, {"add": {"rule": {"=
+family": "ip6", "table": "firewalld", "chain": "nat_PRE_public", "expr": [{=
+"jump": {"target": "nat_PRE_public_log"}}]}}}, {"add": {"rule": {"family": =
+"ip6", "table": "firewalld", "chain": "nat_PRE_public", "expr": [{"jump": {=
+"target": "nat_PRE_public_deny"}}]}}}, {"add": {"rule": {"family": "ip6", "=
+table": "firewalld", "chain": "nat_PRE_public", "expr": [{"jump": {"target"=
+: "nat_PRE_public_allow"}}]}}}, {"add": {"rule": {"family": "ip6", "table":=
+ "firewalld", "chain": "nat_PRE_public", "expr": [{"jump": {"target": "nat_=
+PRE_public_post"}}]}}}, {"add": {"chain": {"family": "inet", "table": "fire=
+walld", "name": "mangle_PRE_public"}}}, {"add": {"chain": {"family": "inet"=
+, "table": "firewalld", "name": "mangle_PRE_public_pre"}}}, {"add": {"chain=
+": {"family": "inet", "table": "firewalld", "name": "mangle_PRE_public_log"=
+}}}, {"add": {"chain": {"family": "inet", "table": "firewalld", "name": "ma=
+ngle_PRE_public_deny"}}}, {"add": {"chain": {"family": "inet", "table": "fi=
+rewalld", "name": "mangle_PRE_public_allow"}}}, {"add": {"chain": {"family"=
+: "inet", "table": "firewalld", "name": "mangle_PRE_public_post"}}}, {"add"=
+: {"rule": {"family": "inet", "table": "firewalld", "chain": "mangle_PRE_pu=
+blic", "expr": [{"jump": {"target": "mangle_PRE_public_pre"}}]}}}, {"add": =
+{"rule": {"family": "inet", "table": "firewalld", "chain": "mangle_PRE_publ=
+ic", "expr": [{"jump": {"target": "mangle_PRE_public_log"}}]}}}, {"add": {"=
+rule": {"family": "inet", "table": "firewalld", "chain": "mangle_PRE_public=
+", "expr": [{"jump": {"target": "mangle_PRE_public_deny"}}]}}}, {"add": {"r=
+ule": {"family": "inet", "table": "firewalld", "chain": "mangle_PRE_public"=
+, "expr": [{"jump": {"target": "mangle_PRE_public_allow"}}]}}}, {"add": {"r=
+ule": {"family": "inet", "table": "firewalld", "chain": "mangle_PRE_public"=
+, "expr": [{"jump": {"target": "mangle_PRE_public_post"}}]}}}, {"add": {"ru=
+le": {"family": "inet", "table": "firewalld", "chain": "filter_IN_public", =
+"index": 4, "expr": [{"match": {"left": {"meta": {"key": "l4proto"}}, "op":=
+ "=3D=3D", "right": {"set": ["icmp", "icmpv6"]}}}, {"accept": null}]}}}, {"=
+add": {"rule": {"family": "inet", "table": "firewalld", "chain": "filter_FW=
+DI_public", "index": 4, "expr": [{"match": {"left": {"meta": {"key": "l4pro=
+to"}}, "op": "=3D=3D", "right": {"set": ["icmp", "icmpv6"]}}}, {"accept": n=
+ull}]}}}, {"add": {"rule": {"family": "inet", "table": "firewalld", "chain"=
+: "filter_INPUT_ZONES", "expr": [{"goto": {"target": "filter_IN_public"}}]}=
+}}, {"add": {"rule": {"family": "inet", "table": "firewalld", "chain": "fil=
+ter_FORWARD_OUT_ZONES", "expr": [{"goto": {"target": "filter_FWDO_public"}}=
+]}}}, {"add": {"rule": {"family": "ip", "table": "firewalld", "chain": "nat=
+_POSTROUTING_ZONES", "expr": [{"goto": {"target": "nat_POST_public"}}]}}}, =
+{"add": {"rule": {"family": "ip6", "table": "firewalld", "chain": "nat_POST=
+ROUTING_ZONES", "expr": [{"goto": {"target": "nat_POST_public"}}]}}}, {"add=
+": {"rule": {"family": "inet", "table": "firewalld", "chain": "filter_FORWA=
+RD_IN_ZONES", "expr": [{"goto": {"target": "filter_FWDI_public"}}]}}}, {"ad=
+d": {"rule": {"family": "ip", "table": "firewalld", "chain": "nat_PREROUTIN=
+G_ZONES", "expr": [{"goto": {"target": "nat_PRE_public"}}]}}}, {"add": {"ru=
+le": {"family": "ip6", "table": "firewalld", "chain": "nat_PREROUTING_ZONES=
+", "expr": [{"goto": {"target": "nat_PRE_public"}}]}}}, {"add": {"rule": {"=
+family": "inet", "table": "firewalld", "chain": "mangle_PREROUTING_ZONES", =
+"expr": [{"goto": {"target": "mangle_PRE_public"}}]}}}, {"add": {"chain": {=
+"family": "inet", "table": "firewalld", "name": "filter_IN_policy_allow-hos=
+t-ipv6"}}}, {"add": {"chain": {"family": "inet", "table": "firewalld", "nam=
+e": "filter_IN_policy_allow-host-ipv6_pre"}}}, {"add": {"chain": {"family":=
+ "inet", "table": "firewalld", "name": "filter_IN_policy_allow-host-ipv6_lo=
+g"}}}, {"add": {"chain": {"family": "inet", "table": "firewalld", "name": "=
+filter_IN_policy_allow-host-ipv6_deny"}}}, {"add": {"chain": {"family": "in=
+et", "table": "firewalld", "name": "filter_IN_policy_allow-host-ipv6_allow"=
+}}}, {"add": {"chain": {"family": "inet", "table": "firewalld", "name": "fi=
+lter_IN_policy_allow-host-ipv6_post"}}}, {"add": {"rule": {"family": "inet"=
+, "table": "firewalld", "chain": "filter_IN_policy_allow-host-ipv6", "expr"=
+: [{"jump": {"target": "filter_IN_policy_allow-host-ipv6_pre"}}]}}}, {"add"=
+: {"rule": {"family": "inet", "table": "firewalld", "chain": "filter_IN_pol=
+icy_allow-host-ipv6", "expr": [{"jump": {"target": "filter_IN_policy_allow-=
+host-ipv6_log"}}]}}}, {"add": {"rule": {"family": "inet", "table": "firewal=
+ld", "chain": "filter_IN_policy_allow-host-ipv6", "expr": [{"jump": {"targe=
+t": "filter_IN_policy_allow-host-ipv6_deny"}}]}}}, {"add": {"rule": {"famil=
+y": "inet", "table": "firewalld", "chain": "filter_IN_policy_allow-host-ipv=
+6", "expr": [{"jump": {"target": "filter_IN_policy_allow-host-ipv6_allow"}}=
+]}}}, {"add": {"rule": {"family": "inet", "table": "firewalld", "chain": "f=
+ilter_IN_policy_allow-host-ipv6", "expr": [{"jump": {"target": "filter_IN_p=
+olicy_allow-host-ipv6_post"}}]}}}, {"add": {"chain": {"family": "ip", "tabl=
+e": "firewalld", "name": "nat_PRE_policy_allow-host-ipv6"}}}, {"add": {"cha=
+in": {"family": "ip", "table": "firewalld", "name": "nat_PRE_policy_allow-h=
+ost-ipv6_pre"}}}, {"add": {"chain": {"family": "ip", "table": "firewalld", =
+"name": "nat_PRE_policy_allow-host-ipv6_log"}}}, {"add": {"chain": {"family=
+": "ip", "table": "firewalld", "name": "nat_PRE_policy_allow-host-ipv6_deny=
+"}}}, {"add": {"chain": {"family": "ip", "table": "firewalld", "name": "nat=
+_PRE_policy_allow-host-ipv6_allow"}}}, {"add": {"chain": {"family": "ip", "=
+table": "firewalld", "name": "nat_PRE_policy_allow-host-ipv6_post"}}}, {"ad=
+d": {"rule": {"family": "ip", "table": "firewalld", "chain": "nat_PRE_polic=
+y_allow-host-ipv6", "expr": [{"jump": {"target": "nat_PRE_policy_allow-host=
+-ipv6_pre"}}]}}}, {"add": {"rule": {"family": "ip", "table": "firewalld", "=
+chain": "nat_PRE_policy_allow-host-ipv6", "expr": [{"jump": {"target": "nat=
+_PRE_policy_allow-host-ipv6_log"}}]}}}, {"add": {"rule": {"family": "ip", "=
+table": "firewalld", "chain": "nat_PRE_policy_allow-host-ipv6", "expr": [{"=
+jump": {"target": "nat_PRE_policy_allow-host-ipv6_deny"}}]}}}, {"add": {"ru=
+le": {"family": "ip", "table": "firewalld", "chain": "nat_PRE_policy_allow-=
+host-ipv6", "expr": [{"jump": {"target": "nat_PRE_policy_allow-host-ipv6_al=
+low"}}]}}}, {"add": {"rule": {"family": "ip", "table": "firewalld", "chain"=
+: "nat_PRE_policy_allow-host-ipv6", "expr": [{"jump": {"target": "nat_PRE_p=
+olicy_allow-host-ipv6_post"}}]}}}, {"add": {"chain": {"family": "ip6", "tab=
+le": "firewalld", "name": "nat_PRE_policy_allow-host-ipv6"}}}, {"add": {"ch=
+ain": {"family": "ip6", "table": "firewalld", "name": "nat_PRE_policy_allow=
+-host-ipv6_pre"}}}, {"add": {"chain": {"family": "ip6", "table": "firewalld=
+", "name": "nat_PRE_policy_allow-host-ipv6_log"}}}, {"add": {"chain": {"fam=
+ily": "ip6", "table": "firewalld", "name": "nat_PRE_policy_allow-host-ipv6_=
+deny"}}}, {"add": {"chain": {"family": "ip6", "table": "firewalld", "name":=
+ "nat_PRE_policy_allow-host-ipv6_allow"}}}, {"add": {"chain": {"family": "i=
+p6", "table": "firewalld", "name": "nat_PRE_policy_allow-host-ipv6_post"}}}=
+, {"add": {"rule": {"family": "ip6", "table": "firewalld", "chain": "nat_PR=
+E_policy_allow-host-ipv6", "expr": [{"jump": {"target": "nat_PRE_policy_all=
+ow-host-ipv6_pre"}}]}}}, {"add": {"rule": {"family": "ip6", "table": "firew=
+alld", "chain": "nat_PRE_policy_allow-host-ipv6", "expr": [{"jump": {"targe=
+t": "nat_PRE_policy_allow-host-ipv6_log"}}]}}}, {"add": {"rule": {"family":=
+ "ip6", "table": "firewalld", "chain": "nat_PRE_policy_allow-host-ipv6", "e=
+xpr": [{"jump": {"target": "nat_PRE_policy_allow-host-ipv6_deny"}}]}}}, {"a=
+dd": {"rule": {"family": "ip6", "table": "firewalld", "chain": "nat_PRE_pol=
+icy_allow-host-ipv6", "expr": [{"jump": {"target": "nat_PRE_policy_allow-ho=
+st-ipv6_allow"}}]}}}, {"add": {"rule": {"family": "ip6", "table": "firewall=
+d", "chain": "nat_PRE_policy_allow-host-ipv6", "expr": [{"jump": {"target":=
+ "nat_PRE_policy_allow-host-ipv6_post"}}]}}}, {"add": {"chain": {"family": =
+"inet", "table": "firewalld", "name": "mangle_PRE_policy_allow-host-ipv6"}}=
+}, {"add": {"chain": {"family": "inet", "table": "firewalld", "name": "mang=
+le_PRE_policy_allow-host-ipv6_pre"}}}, {"add": {"chain": {"family": "inet",=
+ "table": "firewalld", "name": "mangle_PRE_policy_allow-host-ipv6_log"}}}, =
+{"add": {"chain": {"family": "inet", "table": "firewalld", "name": "mangle_=
+PRE_policy_allow-host-ipv6_deny"}}}, {"add": {"chain": {"family": "inet", "=
+table": "firewalld", "name": "mangle_PRE_policy_allow-host-ipv6_allow"}}}, =
+{"add": {"chain": {"family": "inet", "table": "firewalld", "name": "mangle_=
+PRE_policy_allow-host-ipv6_post"}}}, {"add": {"rule": {"family": "inet", "t=
+able": "firewalld", "chain": "mangle_PRE_policy_allow-host-ipv6", "expr": [=
+{"jump": {"target": "mangle_PRE_policy_allow-host-ipv6_pre"}}]}}}, {"add": =
+{"rule": {"family": "inet", "table": "firewalld", "chain": "mangle_PRE_poli=
+cy_allow-host-ipv6", "expr": [{"jump": {"target": "mangle_PRE_policy_allow-=
+host-ipv6_log"}}]}}}, {"add": {"rule": {"family": "inet", "table": "firewal=
+ld", "chain": "mangle_PRE_policy_allow-host-ipv6", "expr": [{"jump": {"targ=
+et": "mangle_PRE_policy_allow-host-ipv6_deny"}}]}}}, {"add": {"rule": {"fam=
+ily": "inet", "table": "firewalld", "chain": "mangle_PRE_policy_allow-host-=
+ipv6", "expr": [{"jump": {"target": "mangle_PRE_policy_allow-host-ipv6_allo=
+w"}}]}}}, {"add": {"rule": {"family": "inet", "table": "firewalld", "chain"=
+: "mangle_PRE_policy_allow-host-ipv6", "expr": [{"jump": {"target": "mangle=
+_PRE_policy_allow-host-ipv6_post"}}]}}}, {"insert": {"rule": {"family": "in=
+et", "table": "firewalld", "chain": "filter_INPUT_POLICIES_pre", "expr": [{=
+"jump": {"target": "filter_IN_policy_allow-host-ipv6"}}]}}}, {"insert": {"r=
+ule": {"family": "ip", "table": "firewalld", "chain": "nat_PREROUTING_POLIC=
+IES_pre", "expr": [{"jump": {"target": "nat_PRE_policy_allow-host-ipv6"}}]}=
+}}, {"insert": {"rule": {"family": "ip6", "table": "firewalld", "chain": "n=
+at_PREROUTING_POLICIES_pre", "expr": [{"jump": {"target": "nat_PRE_policy_a=
+llow-host-ipv6"}}]}}}, {"insert": {"rule": {"family": "inet", "table": "fir=
+ewalld", "chain": "mangle_PREROUTING_POLICIES_pre", "expr": [{"jump": {"tar=
+get": "mangle_PRE_policy_allow-host-ipv6"}}]}}}, {"add": {"rule": {"family"=
+: "inet", "table": "firewalld", "chain": "filter_IN_policy_allow-host-ipv6_=
+allow", "expr": [{"match": {"left": {"meta": {"key": "nfproto"}}, "op": "=
+=3D=3D", "right": "ipv6"}}, {"match": {"left": {"payload": {"protocol": "ic=
+mpv6", "field": "type"}}, "op": "=3D=3D", "right": "nd-neighbor-advert"}}, =
+{"accept": null}]}}}, {"add": {"rule": {"family": "inet", "table": "firewal=
+ld", "chain": "filter_IN_policy_allow-host-ipv6_allow", "expr": [{"match": =
+{"left": {"meta": {"key": "nfproto"}}, "op": "=3D=3D", "right": "ipv6"}}, {=
+"match": {"left": {"payload": {"protocol": "icmpv6", "field": "type"}}, "op=
+": "=3D=3D", "right": "nd-neighbor-solicit"}}, {"accept": null}]}}}, {"add"=
+: {"rule": {"family": "inet", "table": "firewalld", "chain": "filter_IN_pol=
+icy_allow-host-ipv6_allow", "expr": [{"match": {"left": {"meta": {"key": "n=
+fproto"}}, "op": "=3D=3D", "right": "ipv6"}}, {"match": {"left": {"payload"=
+: {"protocol": "icmpv6", "field": "type"}}, "op": "=3D=3D", "right": "nd-ro=
+uter-advert"}}, {"accept": null}]}}}, {"add": {"rule": {"family": "inet", "=
+table": "firewalld", "chain": "filter_IN_policy_allow-host-ipv6_allow", "ex=
+pr": [{"match": {"left": {"meta": {"key": "nfproto"}}, "op": "=3D=3D", "rig=
+ht": "ipv6"}}, {"match": {"left": {"payload": {"protocol": "icmpv6", "field=
+": "type"}}, "op": "=3D=3D", "right": "nd-redirect"}}, {"accept": null}]}}}=
+]}</div>
+&nbsp;<br /><br />-- <br />Regards,<br />Sateesh
+
+--wP98GUcWdRi5qDXnwctH--
 
