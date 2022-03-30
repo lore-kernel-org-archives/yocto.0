@@ -1,114 +1,119 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <ross@burtonini.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BA0B0C433F5
-	for <webhook@archiver.kernel.org>; Wed, 30 Mar 2022 11:10:19 +0000 (UTC)
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com
- [209.85.221.45])
- by mx.groups.io with SMTP id smtpd.web11.5933.1648638618330401054
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 38230C433EF
+	for <webhook@archiver.kernel.org>; Wed, 30 Mar 2022 11:18:55 +0000 (UTC)
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
+ [209.85.128.41])
+ by mx.groups.io with SMTP id smtpd.web10.5864.1648639134141043859
  for <yocto@lists.yoctoproject.org>;
- Wed, 30 Mar 2022 04:10:18 -0700
+ Wed, 30 Mar 2022 04:18:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=AllI+aiQ;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.45,
- mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f45.google.com with SMTP id h4so28725593wrc.13
+ dkim=pass header.i=@burtonini-com.20210112.gappssmtp.com header.s=20210112
+ header.b=k/tty8Gm;
+ spf=pass (domain: burtonini.com, ip: 209.85.128.41,
+ mailfrom: ross@burtonini.com)
+Received: by mail-wm1-f41.google.com with SMTP id r64so12008505wmr.4
         for <yocto@lists.yoctoproject.org>;
- Wed, 30 Mar 2022 04:10:18 -0700 (PDT)
+ Wed, 30 Mar 2022 04:18:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=8HndvkxVtHhOsMyEKMebHTQU1N5ML6cYMgit3/vC/SA=;
-        b=AllI+aiQG1cBIhRPKYr5krWYGqyuUiKwJ5cO9xvfWiBLv7DpPcZKgu1UhW4Ow7oTZk
-         oDdx1S/ugTFB4R4eQaTW53ChNa1c20yv26YY887xCPmtJ13W0qH92bSJvPbug7c1UZhO
-         liZyqORroIDf4hiT0ORiv5FRsny7mUfpcZR1Y=
+        d=burtonini-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0S7xhXXB70EGmXAiSHDBRJn1c+E8n4ZbfBtRO/OaBJY=;
+        b=k/tty8GmAqgbvpSIvH5ihJvPvRuN6Znkc+m+sYAkVJMDwgBefiH25/E+OXLQL1AXXE
+         qYehGGf9psF9iDZ2ieBpaXj5Sy+lRFeMO04dd6VE/dmYRmByHCFQViwiuw8tVAMrQlhM
+         QMSd8zEZMpBC2nlROMfsEc0/KRD15JoW2ADa9xiPr6lwolsiMYSjAPxmsa7eYxfsgDfL
+         H4JLlLrwoAto+uYmwQJ3PAYSUfQlB/GaXhJhzHMFIUnYjillL6XrU/wb+M6w+GUthTmP
+         Ca9GaMPZ18oyh/gW3OvTW7I7Wuhywkk0WgX52o9UTjVoWU0fX7f3GJC2hMf/hVMmyPkt
+         Puxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=8HndvkxVtHhOsMyEKMebHTQU1N5ML6cYMgit3/vC/SA=;
-        b=mR9HG6F8/At7olhE3O8conqU9Mi3qjCyGejZt75XMGzPYMOlZWk1s0+gIsWeQxZA4R
-         ACAAfvELsYBvHbvrbpBCWi2N/yAn4WJYzM+FOfIKZMIVVgzSn1zKF0DQSFsjuUKgCzwo
-         kHjGZQ000FGfLznH5/5cyjzYE9iaXmi3fp7fURuM4FHfmY4BihIpnD0qVRP9CoB1sp9U
-         9PGjptEkqL3vlo8z1TGvyIglNxLHaImbnd8n0Vic0HHk+RVvI18Ap74fgbm9O88W3fVd
-         5yqtUelMPmd65UlksIPu7ErXqZwS83euFaadbNn725mNbwMVUsJg6rC8J4YsZ+lx2yU8
-         nSyA==
-X-Gm-Message-State: AOAM530Pg1M9Nt0EuIKmkV++3fAdXv1MgOvtsNyEoKnGbctPSYK+jMDq
-	HFLQ1sfxXfwGvim8mpCdKF/Y17rJxGWDpJf6
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0S7xhXXB70EGmXAiSHDBRJn1c+E8n4ZbfBtRO/OaBJY=;
+        b=VQKqICpxk6Rnd+RcFIPyQB0FcEsPqRV9vs3Wcaue1RG8m/slZBLRYqyTqFo095h/PG
+         Ios1idjyiBbJ26cAQqiVMNzs/DjRBHXwRlaAbILN30Csxy76E+f1yD9nUExDJ5J1EfFW
+         ULLf2WxLeRuYDcyKcpiRLTCmhCWvUuoEPYERdvvYypH3limKPHwCOY8Ut6v8hpQXXYbX
+         z6UGHMwNnl3eTxUlXg0wSGGQowc6gd09hcR5wYbtstkvrrVZ54YQOjTtQK2siNFqqmrF
+         R2QfgZv0UcYQjK2o3gDN7QrHEKLXA4mPJIe/7aUg+cOjp1/9hKSZXVH6+BAp2q+0V5Vf
+         R75g==
+X-Gm-Message-State: AOAM533wvOn7I6gDt6s4uZZPDG+znV4oQec/bFWmcpj+o3FZ5bgfJS78
+	a0qa1V1QyFBHKe1urxjXWWSoHDb2rcBJw1ehDQQ/JQ==
 X-Google-Smtp-Source: 
- ABdhPJz2jzVO85v/tJK1fG2OL0wfvO09F1nkxY0vZDq4n2l5Iy2dqlC7aFhHF6nFO4z1aS6ifR43SQ==
-X-Received: by 2002:a5d:5849:0:b0:205:85cb:baaf with SMTP id
- i9-20020a5d5849000000b0020585cbbaafmr35891862wrf.442.1648638616310;
-        Wed, 30 Mar 2022 04:10:16 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:367f:29cd:9517:5c4?
- ([2001:8b0:aba:5f3c:367f:29cd:9517:5c4])
-        by smtp.gmail.com with ESMTPSA id
- g17-20020a05600c4ed100b0038ca32d0f26sm5038286wmq.17.2022.03.30.04.10.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Mar 2022 04:10:15 -0700 (PDT)
-Message-ID: 
- <9bfd8e454ae64b4eab8baf1a35f144d2721ba187.camel@linuxfoundation.org>
-Subject: Re: [yocto] SCM usage in source urls and bandwidth
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>, Khem
- Raj <raj.khem@gmail.com>, Michael Halstead <mhalstead@linuxfoundation.org>
-Date: Wed, 30 Mar 2022 12:10:14 +0100
-In-Reply-To: <16E122970083F378.12707@lists.yoctoproject.org>
-References: <16E122970083F378.12707@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4-1ubuntu2 
+ ABdhPJwU7oANsIv+zVmvOMD1ak/6MQ54g/8jurSp56r5cLEsP+S2KhrMj9HMLgJi+8qowzZf1RkgKJbBgBAR0Qq2ZZk=
+X-Received: by 2002:a7b:c08b:0:b0:38c:ea9e:51c0 with SMTP id
+ r11-20020a7bc08b000000b0038cea9e51c0mr3886000wmh.87.1648639132168; Wed, 30
+ Mar 2022 04:18:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+References: <16E122970083F378.12707@lists.yoctoproject.org>
+ <9bfd8e454ae64b4eab8baf1a35f144d2721ba187.camel@linuxfoundation.org>
+In-Reply-To: 
+ <9bfd8e454ae64b4eab8baf1a35f144d2721ba187.camel@linuxfoundation.org>
+From: Ross Burton <ross@burtonini.com>
+Date: Wed, 30 Mar 2022 12:18:41 +0100
+Message-ID: 
+ <CAAnfSTvsKf6DBeWcYLXkdEfRmN9Aa23QD-qqC3zaj6==q24SmA@mail.gmail.com>
+Subject: Re: [yocto] SCM usage in source urls and bandwidth
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>,
+ Khem Raj <raj.khem@gmail.com>,
+	Michael Halstead <mhalstead@linuxfoundation.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 30 Mar 2022 11:10:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56594
+ <yocto@lists.yoctoproject.org>; Wed, 30 Mar 2022 11:18:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56595
 
-On Wed, 2022-03-30 at 11:42 +0100, Richard Purdie via lists.yoctoproject.org
-wrote:
-> What are our options? As far as I can see we could:
-> 
-> a) increase the pipe from downloads.yoctoproject.org but that does come at a
-> non-trivial cost to the project.
-> 
-> b) Seek help with hosting some of the larger mirror tarballs from people better
-> able to host them and have that as a first premirror?
-> 
-> c) Switch the binutils and glibc recipes to tarballs and patches. I know Khem
-> finds this less convenient and they keep moving back and forward but we keep
-> running into this issue and having to switch back from git.
-> 
-> d) To soften the blow of c) we could add devupstream support to the recipes? We
-> could script updating the recipe to add the patches?
-> 
-> e) We could drop the PREMIRRORS from poky. This would stop the SCM targets from
-> hitting our mirrors first. That does transfer load to the upstream project SCMs
-> though and I'm not sure that will be appreciated. I did sent that patch, I'm not
-> sure about it though.
+On Wed, 30 Mar 2022 at 12:10, Richard Purdie
+<richard.purdie@linuxfoundation.org> wrote:
+> f) Switch the problematic recipes to use shallow clones with something like:
+>
+> BB_GIT_SHALLOW:pn-binutils = "1"
+> BB_GIT_SHALLOW:pn-binutils-cross-${TARGET_ARCH} = "1"
+> BB_GIT_SHALLOW:pn-binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} = "1"
+> BB_GIT_SHALLOW:pn-binutils-cross-testsuite = "1"
+> BB_GIT_SHALLOW:pn-binutils-crosssdk-${SDK_SYS} = "1"
+> BB_GIT_SHALLOW:pn-glibc = "1"
+>
+> The challenge here is that in order to be effective, there needs to be a
+> PREMIRROR setup with the shallow tarballs on it. This means we couldn't do e)
+> above and have this have much effect unless we craft some very specific
+> PREMIRROR entries too.
 
-I meant to add:
+Even without premirrors this is a lot faster for glibc:
 
-f) Switch the problematic recipes to use shallow clones with something like:
+$ time git clone git://sourceware.org/git/glibc.git
+Cloning into 'glibc'...
+remote: Enumerating objects: 6956, done.
+remote: Counting objects: 100% (6956/6956), done.
+remote: Compressing objects: 100% (2938/2938), done.
+remote: Total 670093 (delta 5328), reused 4750 (delta 3932), pack-reused 663137
+Receiving objects: 100% (670093/670093), 205.19 MiB | 16.39 MiB/s, done.
+Resolving deltas: 100% (573265/573265), done.
+Updating files: 100% (19011/19011), done.
 
-BB_GIT_SHALLOW:pn-binutils = "1"
-BB_GIT_SHALLOW:pn-binutils-cross-${TARGET_ARCH} = "1"
-BB_GIT_SHALLOW:pn-binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} = "1"
-BB_GIT_SHALLOW:pn-binutils-cross-testsuite = "1"
-BB_GIT_SHALLOW:pn-binutils-crosssdk-${SDK_SYS} = "1"
-BB_GIT_SHALLOW:pn-glibc = "1"
+real 1m56.255s
 
-The challenge here is that in order to be effective, there needs to be a
-PREMIRROR setup with the shallow tarballs on it. This means we couldn't do e)
-above and have this have much effect unless we craft some very specific
-PREMIRROR entries too.
+$ time git clone git://sourceware.org/git/glibc.git --depth 1
+Cloning into 'glibc'...
+remote: Enumerating objects: 18809, done.
+remote: Counting objects: 100% (18809/18809), done.
+remote: Compressing objects: 100% (9704/9704), done.
+remote: Total 18809 (delta 8812), reused 12185 (delta 7968), pack-reused 0
+Receiving objects: 100% (18809/18809), 41.79 MiB | 11.96 MiB/s, done.
+Resolving deltas: 100% (8812/8812), done.
+Updating files: 100% (19011/19011), done.
 
-Cheers,
+real 0m8.701s
 
-Richard
+A full clone fetches 200MB and takes 2 minutes (a lot of that is
+actually resolving the deltas, not the fetch).  A shallow clone of the
+current HEAD fetches 40MB and is done in 8 seconds.
 
+Why would we need a premirror?
 
-
+Ross
 
