@@ -1,150 +1,191 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <ralph.siemsen@linaro.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3FD92C433F5
-	for <webhook@archiver.kernel.org>; Wed, 30 Mar 2022 17:24:24 +0000 (UTC)
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com
- [209.85.160.174])
- by mx.groups.io with SMTP id smtpd.web08.783.1648661063627880253
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 66B35C433F5
+	for <webhook@archiver.kernel.org>; Wed, 30 Mar 2022 19:50:04 +0000 (UTC)
+Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com
+ [209.85.221.173])
+ by mx.groups.io with SMTP id smtpd.web09.2940.1648669802988125815
  for <yocto@lists.yoctoproject.org>;
- Wed, 30 Mar 2022 10:24:23 -0700
+ Wed, 30 Mar 2022 12:50:03 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=NPL6o2bz;
- spf=pass (domain: gmail.com, ip: 209.85.160.174,
- mailfrom: raj.khem@gmail.com)
-Received: by mail-qt1-f174.google.com with SMTP id t7so18690716qta.10
+ dkim=pass header.i=@linaro.org header.s=google header.b=fQ6Lsv3c;
+ spf=pass (domain: linaro.org, ip: 209.85.221.173,
+ mailfrom: ralph.siemsen@linaro.org)
+Received: by mail-vk1-f173.google.com with SMTP id w189so12155953vke.10
         for <yocto@lists.yoctoproject.org>;
- Wed, 30 Mar 2022 10:24:23 -0700 (PDT)
+ Wed, 30 Mar 2022 12:50:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=A/1cJ01KXh7+VMIYCVyu7BSsrIACGnXd5c+3PE1uSp4=;
-        b=NPL6o2bze/sOUt+rCyKL9B+K0OPQ5Nw5mKko6dygZVGgoX85Y1xnuZL7mNd86GeZHj
-         NIVnZDAjP6SXsCkrpbYCo8aqfM+5J3EEyGnVInd32/LGpIFCsUTvLqbbzGP2mWqdBTwl
-         m2uAv2cmYfE49ycl0X4I+IsoGJzwhUwpcTKqJeLMnpebYf9wvKZPprbTReCRj9XsaoeI
-         ZZQENDIFvCn5EcU3WkjnTQhC+mzBSNJKboFKpB6YT5qbWRSuwD5OCpZKP5xnk+rA5Rci
-         UdwouSfZfHz4K1UUN/q1cSiM04yueAbqsc16VtBYo+2qTevPN/R9mkADUw6up8DBDivR
-         Ew3Q==
+        bh=6wbuA/88wbmad1gCK1oDzHGU/2DW6uMvYODIb9QNkT4=;
+        b=fQ6Lsv3cwctW5HrfuhIDel4Nwn3jIHMD066eqUw6Q/nHQ1CuXQtX3t2mcEyJDpM9gu
+         EkVMATBtGYZOfZuSmlhUaYkLdwmAEZzI+buS4EW+C+JzYahxKnUt5u/egpv6wohtGT+M
+         t/ysObCLUpv5MMXtHfTVxMa6cn/CixpqoeLGRsSiGnu6Y/t1T2LRoivhGy4FuJTbdzYK
+         r88uj96FumoFphoDz702MrQc2/WijZTrwrhZvUT2jQxNjhOwp0s3eVm7GEcv/4PJVxDS
+         CBGooLZ6CPr8SzCp8zSBSoqlqHN056TWQdnMiaRqMirqaHGNKQSXJOJwdbKCqRGoHjZ9
+         sCbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=A/1cJ01KXh7+VMIYCVyu7BSsrIACGnXd5c+3PE1uSp4=;
-        b=ZnwmejHRY1qIq7nY+8uMYj+CFOYwM9sBzwA9xbNNWk5963pvYbivFVo2q3cNh1uz5M
-         OOE/64GIo/Q12Pgv7hRu1T1+9h6d6zERz3jagM5ZP3Kf80kMKqsPBDqoVqes0DVlxbIJ
-         sYgcTAc6V0wXlTecCaWcJKkTtJ7CcTC+9i3WkgqqkUXt6IzOuMAud4en0RM2kItrAEpN
-         Rq+ZgBOgHm+HFSU+Xp7whgzFT91a+77wksq7dZV5vTjVpNP8mxQOz0NKt7XIcIFaQYfM
-         94qxt93hyYVjKl8WXPbMv5HsFCcnyi60/bTts1x/FNneX+YpNhuyH5DG77AES3eQo4tx
-         84Yw==
-X-Gm-Message-State: AOAM530/WGANA7ACiNktPZlmE5YElPn6Wgxt/f6FEtJGG8RBQ40dj/rK
-	BV5DRhH1PTKQms3spvXbNKv1GRGzkaIkigti22E06iq/
+        bh=6wbuA/88wbmad1gCK1oDzHGU/2DW6uMvYODIb9QNkT4=;
+        b=PI6DocNiBILR6sjY/HV1jn8GxJ81pNZ4KuTzmnssi7forz1V2fFmza+HOGpYy579S5
+         47fo+r00K0U38dXNDFrGl2hQQlzNyFRLnc6nnfW3IqjUniFKMrug7AaFA/SdDgzx/V3J
+         2rUJusmVG0ercBug9fwHUAZI3UIhTNBf6ts10iSPJOLZgFPTAfvAhFu3enTF+xwuTA55
+         zg6/vjNpJ0Hwlh6+gyhrbh38563owf8MLZ0fCyEfeo/ynrfoDrNsR/2hUl7UIQD1RCo8
+         lFyTmQxmogvRwKsmOdkRvW2eNbAMdMR3nmRtpvP+jRenrS2FtR6uf3fiV4t7wO5ceUnk
+         F78A==
+X-Gm-Message-State: AOAM53353GaaNf0i17z9tF6pRHfduIeIWfLkAz3wL7J1HXLhYsuTl4h2
+	LelKaiF5Yo1c/dg9iwYETOiXoUNJvFKF10+Bo/uvUA==
 X-Google-Smtp-Source: 
- ABdhPJw7dakRiQNxd3uq5Ox7CNz2W05OuxIiYYUUG9OrNkXdGbcVM9rT3JXvmHWN7U+tqgxoeZBerbj0SX6wpslwqdw=
-X-Received: by 2002:ac8:5842:0:b0:2e1:aa10:e7cd with SMTP id
- h2-20020ac85842000000b002e1aa10e7cdmr595513qth.330.1648661062521; Wed, 30 Mar
- 2022 10:24:22 -0700 (PDT)
+ ABdhPJztHOovsAfyhtyj/8Q31DpAgSE20TlrsUYMvR0GOvXUPPuTetQP043Wg8dMcTMmn1P7sxWKM0zc8lCPY4zyqME=
+X-Received: by 2002:a1f:a112:0:b0:33e:2073:642 with SMTP id
+ k18-20020a1fa112000000b0033e20730642mr529928vke.21.1648669801790; Wed, 30 Mar
+ 2022 12:50:01 -0700 (PDT)
 MIME-Version: 1.0
-References: <16E122970083F378.12707@lists.yoctoproject.org>
- <9bfd8e454ae64b4eab8baf1a35f144d2721ba187.camel@linuxfoundation.org>
- <CAAnfSTvsKf6DBeWcYLXkdEfRmN9Aa23QD-qqC3zaj6==q24SmA@mail.gmail.com>
- <688f29903f6c8321a3a235f3bf9b1bd66c20e823.camel@linuxfoundation.org>
-In-Reply-To: 
- <688f29903f6c8321a3a235f3bf9b1bd66c20e823.camel@linuxfoundation.org>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 30 Mar 2022 10:23:56 -0700
+References: <20220314194415.3515050-1-ralph.siemsen@linaro.org>
+ <16DC99A9652EAF9B.21789@lists.yoctoproject.org>
+In-Reply-To: <16DC99A9652EAF9B.21789@lists.yoctoproject.org>
+From: Ralph Siemsen <ralph.siemsen@linaro.org>
+Date: Wed, 30 Mar 2022 15:49:51 -0400
 Message-ID: 
- <CAMKF1sqcBOCL=v4hOLhNb=knt_w4yXxq5fps7B-_evH+pBAG5w@mail.gmail.com>
-Subject: Re: [yocto] SCM usage in source urls and bandwidth
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: Ross Burton <ross@burtonini.com>,
-	"<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>,
-	Michael Halstead <mhalstead@linuxfoundation.org>
+ <CANp-EDYpkhpGgN8Pp0GsZmeV_OWR_ewQqGCTPo5ctAYBNwnS7A@mail.gmail.com>
+Subject: Re: [yocto] [meta-security][dunfell][PATCH v2] tpm2-tools: backport
+ fix for CVE-2021-3565
+To: akuster808@gmail.com
+Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 30 Mar 2022 17:24:24 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56606
+ <yocto@lists.yoctoproject.org>; Wed, 30 Mar 2022 19:50:04 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56607
 
-On Wed, Mar 30, 2022 at 4:29 AM Richard Purdie
-<richard.purdie@linuxfoundation.org> wrote:
->
-> On Wed, 2022-03-30 at 12:18 +0100, Ross Burton wrote:
-> > On Wed, 30 Mar 2022 at 12:10, Richard Purdie
-> > <richard.purdie@linuxfoundation.org> wrote:
-> > > f) Switch the problematic recipes to use shallow clones with something like:
-> > >
-> > > BB_GIT_SHALLOW:pn-binutils = "1"
-> > > BB_GIT_SHALLOW:pn-binutils-cross-${TARGET_ARCH} = "1"
-> > > BB_GIT_SHALLOW:pn-binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} = "1"
-> > > BB_GIT_SHALLOW:pn-binutils-cross-testsuite = "1"
-> > > BB_GIT_SHALLOW:pn-binutils-crosssdk-${SDK_SYS} = "1"
-> > > BB_GIT_SHALLOW:pn-glibc = "1"
-> > >
-> > > The challenge here is that in order to be effective, there needs to be a
-> > > PREMIRROR setup with the shallow tarballs on it. This means we couldn't do e)
-> > > above and have this have much effect unless we craft some very specific
-> > > PREMIRROR entries too.
-> >
-> > Even without premirrors this is a lot faster for glibc:
-> >
-> > $ time git clone git://sourceware.org/git/glibc.git
-> > Cloning into 'glibc'...
-> > remote: Enumerating objects: 6956, done.
-> > remote: Counting objects: 100% (6956/6956), done.
-> > remote: Compressing objects: 100% (2938/2938), done.
-> > remote: Total 670093 (delta 5328), reused 4750 (delta 3932), pack-reused 663137
-> > Receiving objects: 100% (670093/670093), 205.19 MiB | 16.39 MiB/s, done.
-> > Resolving deltas: 100% (573265/573265), done.
-> > Updating files: 100% (19011/19011), done.
-> >
-> > real 1m56.255s
-> >
-> > $ time git clone git://sourceware.org/git/glibc.git --depth 1
-> > Cloning into 'glibc'...
-> > remote: Enumerating objects: 18809, done.
-> > remote: Counting objects: 100% (18809/18809), done.
-> > remote: Compressing objects: 100% (9704/9704), done.
-> > remote: Total 18809 (delta 8812), reused 12185 (delta 7968), pack-reused 0
-> > Receiving objects: 100% (18809/18809), 41.79 MiB | 11.96 MiB/s, done.
-> > Resolving deltas: 100% (8812/8812), done.
-> > Updating files: 100% (19011/19011), done.
-> >
-> > real 0m8.701s
-> >
-> > A full clone fetches 200MB and takes 2 minutes (a lot of that is
-> > actually resolving the deltas, not the fetch).  A shallow clone of the
-> > current HEAD fetches 40MB and is done in 8 seconds.
-> >
-> > Why would we need a premirror?
->
-> The code doesn't do "--depth=1".
->
-> https://git.yoctoproject.org/poky/commit/?id=27d56982c7ba05e86a100b0cca2411ee5ac7a85e
->
-> """
-> This implements support for shallow mirror tarballs, not shallow clones.
-> Supporting shallow clones directly is not really doable for us, as we'd need
-> to hardcode the depth between branch HEAD and the SRCREV, and that depth would
-> change as the branch is updated.
-> """
->
-> Put another way, you didn't specify a revision in your clone above and if you
-> try, it becomes rather tricky.
->
-> To make this work we therefore need a mirror with the shallow tarballs on it.
->
-> Just for info, the binutils mirror tarball is ~1.3GB, the shallow tarball is
-> 65MB.
+Hi Armin,
 
-right, I think shallow clone should be default IMO for all git fetcher tarballs
+I noticed that this patch, as well as the version bump to 4.1.3, have
+landed in the dunfell-next branch of meta-security.
 
+Curiously though, the dunfell branch contains quite a few more recent
+commits, which are not in dunfell-next.
+
+Just wondering if this is normal? Will the tpm2-tools patches appear
+in dunfell branch eventually?
+
+Thanks,
+Ralph
+
+
+
+
+On Tue, Mar 15, 2022 at 12:08 PM Ralph Siemsen via
+lists.yoctoproject.org
+<ralph.siemsen=linaro.org@lists.yoctoproject.org> wrote:
 >
-> Cheers,
+> tpm2_import used a fixed AES key for the inner wrapper, which means that
+> a MITM attack would be able to unwrap the imported key. Even the
+> use of an encrypted session will not prevent this. The TPM only
+> encrypts the first parameter which is the fixed symmetric key.
 >
-> Richard
+> To fix this, ensure the key size is 16 bytes or bigger and use
+> OpenSSL to generate a secure random AES key.
 >
+> Upstream commit (with offset adjusted)
+> https://github.com/tpm2-software/tpm2-tools/commit/c069e4f179d5e6653a84fb236816c375dca82515
+>
+> Signed-off-by: Ralph Siemsen <ralph.siemsen@linaro.org>
+> ---
+> Changes in v2:
+> - added OE metadata to patch file, hopefully correctly
+> - separate patch to update v4.1.1 -> 4.1.3 will follow
+>
+>  ...port-fix-fixed-AES-key-CVE-2021-3565.patch | 48 +++++++++++++++++++
+>  .../tpm2-tools/tpm2-tools_4.1.1.bb            |  3 ++
+>  2 files changed, 51 insertions(+)
+>  create mode 100644 meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/0001-tpm2_import-fix-fixed-AES-key-CVE-2021-3565.patch
+>
+> diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/0001-tpm2_import-fix-fixed-AES-key-CVE-2021-3565.patch b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/0001-tpm2_import-fix-fixed-AES-key-CVE-2021-3565.patch
+> new file mode 100644
+> index 0000000..3832063
+> --- /dev/null
+> +++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools/0001-tpm2_import-fix-fixed-AES-key-CVE-2021-3565.patch
+> @@ -0,0 +1,48 @@
+> +From 784be35c52a7083b9535bad2fcca416ff9cfd26b Mon Sep 17 00:00:00 2001
+> +From: William Roberts <william.c.roberts@intel.com>
+> +Date: Fri, 21 May 2021 12:22:31 -0500
+> +Subject: [PATCH] tpm2_import: fix fixed AES key CVE-2021-3565
+> +
+> +tpm2_import used a fixed AES key for the inner wrapper, which means that
+> +a MITM attack would be able to unwrap the imported key. Even the
+> +use of an encrypted session will not prevent this. The TPM only
+> +encrypts the first parameter which is the fixed symmetric key.
+> +
+> +To fix this, ensure the key size is 16 bytes or bigger and use
+> +OpenSSL to generate a secure random AES key.
+> +
+> +Fixes: #2738
+> +
+> +Signed-off-by: William Roberts <william.c.roberts@intel.com>
+> +
+> +Upstream-Status: Backport
+> +https://github.com/tpm2-software/tpm2-tools/commit/c069e4f179d5e6653a84fb236816c375dca82515
+> +CVE: CVE-2021-3565
+> +Signed-off-by: Ralph Siemsen <ralph.siemsen@linaro.org>
+> +---
+> + tools/tpm2_import.c | 12 +++++++++++-
+> + 1 file changed, 11 insertions(+), 1 deletion(-)
+> +
+> +diff --git a/tools/tpm2_import.c b/tools/tpm2_import.c
+> +index 6404cac..acd8ac8 100644
+> +--- a/tools/tpm2_import.c
+> ++++ b/tools/tpm2_import.c
+> +@@ -146,7 +146,17 @@ static tool_rc key_import(ESYS_CONTEXT *ectx, TPM2B_PUBLIC *parent_pub,
+> +     TPM2B_DATA enc_sensitive_key = {
+> +         .size = parent_pub->publicArea.parameters.rsaDetail.symmetric.keyBits.sym / 8
+> +     };
+> +-    memset(enc_sensitive_key.buffer, 0xFF, enc_sensitive_key.size);
+> ++
+> ++    if(enc_sensitive_key.size < 16) {
+> ++        LOG_ERR("Calculated wrapping keysize is less than 16 bytes, got: %u", enc_sensitive_key.size);
+> ++        return tool_rc_general_error;
+> ++    }
+> ++
+> ++    int ossl_rc = RAND_bytes(enc_sensitive_key.buffer, enc_sensitive_key.size);
+> ++    if (ossl_rc != 1) {
+> ++        LOG_ERR("RAND_bytes failed: %s", ERR_error_string(ERR_get_error(), NULL));
+> ++        return tool_rc_general_error;
+> ++    }
+> +
+> +     /*
+> +      * Calculate the object name.
+> diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb
+> index e90dcfe..f013fa1 100644
+> --- a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb
+> +++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb
+> @@ -6,7 +6,10 @@ SECTION = "tpm"
+>
+>  DEPENDS = "tpm2-abrmd tpm2-tss openssl curl autoconf-archive"
+>
+> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> +
+>  SRC_URI = "https://github.com/tpm2-software/${BPN}/releases/download/${PV}/${BPN}-${PV}.tar.gz"
+> +SRC_URI += "file://0001-tpm2_import-fix-fixed-AES-key-CVE-2021-3565.patch"
+>
+>  SRC_URI[md5sum] = "701ae9e8c8cbdd37d89c8ad774f55395"
+>  SRC_URI[sha256sum] = "40b9263d8b949bd2bc03a3cd60fa242e27116727467f9bbdd0b5f2539a25a7b1"
+> --
+> 2.25.1
+>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#56445): https://lists.yoctoproject.org/g/yocto/message/56445
+> Mute This Topic: https://lists.yoctoproject.org/mt/89801319/3616981
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [ralph.siemsen@linaro.org]
+> -=-=-=-=-=-=-=-=-=-=-=-
 >
 
