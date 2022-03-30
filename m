@@ -1,112 +1,100 @@
-Return-Path: <poornesh@elmeasure.com>
+Return-Path: <alexandre.belloni@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7BE7BC433F5
-	for <webhook@archiver.kernel.org>; Wed, 30 Mar 2022 11:51:05 +0000 (UTC)
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com
- [209.85.219.176])
- by mx.groups.io with SMTP id smtpd.web10.6103.1648641064044660155
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9BC20C433F5
+	for <webhook@archiver.kernel.org>; Wed, 30 Mar 2022 13:53:55 +0000 (UTC)
+Received: from relay10.mail.gandi.net (relay10.mail.gandi.net
+ [217.70.178.230])
+ by mx.groups.io with SMTP id smtpd.web12.7384.1648648434255098979
  for <yocto@lists.yoctoproject.org>;
- Wed, 30 Mar 2022 04:51:04 -0700
+ Wed, 30 Mar 2022 06:53:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@elmeasure.com header.s=google header.b=e9w2gTeS;
- spf=pass (domain: elmeasure.com, ip: 209.85.219.176,
- mailfrom: poornesh@elmeasure.com)
-Received: by mail-yb1-f176.google.com with SMTP id f23so5903979ybj.7
-        for <yocto@lists.yoctoproject.org>;
- Wed, 30 Mar 2022 04:51:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=elmeasure.com; s=google;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=NFu4vshAwAaa6O4C//TymF+iKWY/VF9F4ya7D2Y51AY=;
-        b=e9w2gTeSzYQSR229pVcFrKHjJiPQlUnEEAcIZkbVwwpJASv+/Mr+jJvTD3hoF6EWLL
-         hAMO3ZpAJRIK3PJrEu1/Ss1TMeI46qJ2esQxvIfSF/Jj9pYtSTK+6U86q3FZt2Yo8Xgv
-         fhI6/Lp3xbVMbOO6/H++KO8vAMVIP346iTwS8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=NFu4vshAwAaa6O4C//TymF+iKWY/VF9F4ya7D2Y51AY=;
-        b=NCZ/zFby8Hmeq4d6rMoPSCaDEPwA+A50pQhKdKeLfNuJWVzHpdzxz5JkHq4MJ4dltd
-         tL+d8YnIhhH275/iau8a3tWBMU/YvcJ4DgBqne5snBkWpzD+7ZRYLc6ucCcaWNgJEHbC
-         uu3HYpn8wVwOtszcjm8GdOCeSCLxyIhh9Ruu9cSxqepWcj3PRBhnIW/oID0Xemum0tBS
-         L1fB2EO3T2x76x3jdce2oHefufvK1HE1o28EEbnYamBN1kHb9tLbak256eFwv1Ba/MEi
-         P7YX5r9GoldwyLSM3pPX0cGaWLbcUj0eH1WVDAezCh1g3Q6kkpHi74SFOBlx3l+4Fvvg
-         zmng==
-X-Gm-Message-State: AOAM531gfaskVY7go9oS8cjnf4GjGjvyRvXtY/z1tZjBmRFiToxczvjl
-	/Wvgg7RjgUZQ0d111Po/B8uJClcj/whwTVjmh1rSL6MT5Trl7/CsPuSeIsJaEz0iCOeVahl27rf
-	iuFpT3pbkHv30vMuYIrAwuOIIhigQ0n2b7p8K2kQ=
-X-Google-Smtp-Source: 
- ABdhPJyr65ux4eGAVg8wVe8AchbYSU0BlOPl6qbvV/TmVOJyfkrti+8whrvznfSscvdRSR5QK8bv3p3BGmnlP6jbogw=
-X-Received: by 2002:a05:6902:4c3:b0:63c:fc6f:58aa with SMTP id
- v3-20020a05690204c300b0063cfc6f58aamr4774810ybs.396.1648641062985; Wed, 30
- Mar 2022 04:51:02 -0700 (PDT)
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=gcqvDBnU;
+ spf=pass (domain: bootlin.com, ip: 217.70.178.230,
+ mailfrom: alexandre.belloni@bootlin.com)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+	by mail.gandi.net (Postfix) with ESMTPSA id E8253240006;
+	Wed, 30 Mar 2022 13:53:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1648648432;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Sp1BJs56brTLlpQztiU1nBOkfWUIzsixfD8pbLsLVUQ=;
+	b=gcqvDBnU/H7uYwPDKP72b8aviCd0WguyuoCUV2E6SUwiLYRIdEsDUi9zyXDUgIt1+yyWyB
+	WRxHLyEROsPDddKB0tySl2YqunS0wlLFLc4uU9B56jnDrzGpGDvLifx0iltQW4+4qiLQ2e
+	upg3wjNcCSJkXeKZ3LipYh0/51kGthlYCpCpc+6S5EjKr0n+oiNCbqBaWKvRyT9jX4nnEG
+	Wi4YlY9+ujC3DTURrZ3rLyAnQiCSjAVocHilyF3lmgm3jVVzcEmFKCqQbNcxRg7esQmSbB
+	I5gGqbOJFW+P7Fabyp9MbsAOXZAYapVqfcrEngl4k0BeG+38goyk44vyI9RrJA==
+Date: Wed, 30 Mar 2022 15:53:51 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: "<yocto@lists.yoctoproject.org>" <yocto@lists.yoctoproject.org>,
+	Khem Raj <raj.khem@gmail.com>,
+	Michael Halstead <mhalstead@linuxfoundation.org>
+Subject: Re: [yocto] SCM usage in source urls and bandwidth
+Message-ID: <YkRg74lxBklzqIpn@piout.net>
+References: 
+ <8afc5cc5da4718e87e0c11b3a6ee8df1cca6a404.camel@linuxfoundation.org>
 MIME-Version: 1.0
-From: Poornesh G <poornesh@elmeasure.com>
-Date: Wed, 30 Mar 2022 17:20:52 +0530
-Message-ID: 
- <CANicU13WbNZrEax8DskvJ=9f8oMz2NT=XKf3+HVnZa8kVRxi8g@mail.gmail.com>
-Subject: Re : Fetching source from Private git repo
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000ec7cf605db6e287e"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: 
+ <8afc5cc5da4718e87e0c11b3a6ee8df1cca6a404.camel@linuxfoundation.org>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 30 Mar 2022 11:51:05 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56597
+ <yocto@lists.yoctoproject.org>; Wed, 30 Mar 2022 13:53:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56599
 
---000000000000ec7cf605db6e287e
-Content-Type: text/plain; charset="UTF-8"
+On 30/03/2022 11:42:46+0100, Richard Purdie wrote:
+> [list address fixed, sorry]
+> 
+> We've been having bandwidth trouble with downloads.yoctoproject.org so we did
+> some quick analysis to see what the issue is. Basically in speeding up the
+> server which was the rate limit, we hit the limits of the hosting pipe. I'd note
+> a few things:
+> 
+> a) it isn't the sstate mirroring, it is nearly all being used by downloads.
+> 
+> b) 25% of all our bandwidth is going on "git2_sourceware.org.git.binutils-
+> gdb.git.tar.gz" - i.e. downloading the source mirror binutils tarball
+> 
+> c) 15% is on git2_sourceware.org.git.glibc.git.tar.gz i.e. glibc
+> 
+> d) OE-Core has downloads.yoctoproject.org as a MIRROR
+> 
+> e) poky has it as a PREMIRROR
+> 
+> What are our options? As far as I can see we could:
+> 
+> a) increase the pipe from downloads.yoctoproject.org but that does come at a
+> non-trivial cost to the project.
+> 
+> b) Seek help with hosting some of the larger mirror tarballs from people better
+> able to host them and have that as a first premirror?
+> 
+> c) Switch the binutils and glibc recipes to tarballs and patches. I know Khem
+> finds this less convenient and they keep moving back and forward but we keep
+> running into this issue and having to switch back from git.
+> 
+> d) To soften the blow of c) we could add devupstream support to the recipes? We
+> could script updating the recipe to add the patches?
+> 
+> e) We could drop the PREMIRRORS from poky. This would stop the SCM targets from
+> hitting our mirrors first. That does transfer load to the upstream project SCMs
+> though and I'm not sure that will be appreciated. I did sent that patch, I'm not
+> sure about it though.
 
-Greetings !
+I would simply drop PREMIRRORS, this is actually a privacy concern for
+some of our customers that didn't realize they are leaking the names of
+their internal git repositories to downloads.yoctoproject.org.
 
-Can anyone help me with the procedure , how I can fetch the source from a
-private gitlab account .
-Thanks in advance !
+
 
 -- 
-
-
-
-
-
-
-
-
-IMPORTANT: The contents of this email and any attachments are 
-confidential. They are intended for the named recipient(s) only. If you 
-have received this email by mistake, please notify the sender immediately 
-and do not disclose the contents to anyone or make copies thereof.
-
-Please, 
-consider your environmental responsibility. Before printing this e-mail ask 
-yourself: "Do I need a hard copy?"
-
---000000000000ec7cf605db6e287e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Greetings !<div><br></div><div>Can anyone help me with the=
- procedure , how I can fetch the source from a private gitlab account .</di=
-v><div>Thanks in=C2=A0advance !</div></div>
-
-<br>
-<p style=3D"font-family:arial,sans-serif;font-size:12.8px;color:rgb(34,34,3=
-4);margin-bottom:12pt;background-color:rgb(255,255,255)"></p><p style=3D"fo=
-nt-family:arial,sans-serif;font-size:12.8px;color:rgb(34,34,34);margin-bott=
-om:12pt;background-color:rgb(255,255,255)"><br><img src=3D"https://elmeasur=
-e-email-signature.s3.ap-south-1.amazonaws.com/Elmeasureemil.jpeg"><br></p><=
-p style=3D"font-family:arial,sans-serif;font-size:12.8px;color:rgb(34,34,34=
-);margin-bottom:12pt;background-color:rgb(255,255,255)"><span style=3D"colo=
-r:rgb(89,89,89);font-family:Verdana,sans-serif;font-size:9pt">IMPORTANT: Th=
-e contents of this email and any attachments are confidential. They are int=
-ended for the named recipient(s) only. If you have received this email by m=
-istake, please notify the sender immediately and do not disclose the conten=
-ts to anyone or make copies thereof.</span></p><div style=3D"font-family:ar=
-ial,sans-serif;font-size:12.8px;color:rgb(34,34,34);background-color:rgb(25=
-5,255,255)"><p style=3D"margin-top:3pt"><span lang=3D"EN-GB" style=3D"font-=
-size:8pt;font-family:Tahoma,sans-serif;color:rgb(0,127,0)">Please, consider=
- your environmental responsibility. Before printing this e-mail ask yoursel=
-f: &quot;Do I need a hard copy?&quot;</span></p></div>
---000000000000ec7cf605db6e287e--
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
