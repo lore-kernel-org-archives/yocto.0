@@ -2,93 +2,103 @@ Return-Path: <steve@sakoman.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EEBF0C433EF
-	for <webhook@archiver.kernel.org>; Wed, 30 Mar 2022 16:33:04 +0000 (UTC)
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com
- [209.85.210.176])
- by mx.groups.io with SMTP id smtpd.web08.52.1648657983814546362
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C54B2C433EF
+	for <webhook@archiver.kernel.org>; Wed, 30 Mar 2022 16:33:07 +0000 (UTC)
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com
+ [209.85.210.177])
+ by mx.groups.io with SMTP id smtpd.web12.50.1648657987343528314
  for <yocto@lists.yoctoproject.org>;
- Wed, 30 Mar 2022 09:33:04 -0700
+ Wed, 30 Mar 2022 09:33:07 -0700
 Authentication-Results: mx.groups.io;
  dkim=pass header.i=@sakoman-com.20210112.gappssmtp.com header.s=20210112
- header.b=miPmqdK4;
- spf=softfail (domain: sakoman.com, ip: 209.85.210.176,
+ header.b=0oADe+sw;
+ spf=softfail (domain: sakoman.com, ip: 209.85.210.177,
  mailfrom: steve@sakoman.com)
-Received: by mail-pf1-f176.google.com with SMTP id f3so17979017pfe.2
+Received: by mail-pf1-f177.google.com with SMTP id b13so17334930pfv.0
         for <yocto@lists.yoctoproject.org>;
- Wed, 30 Mar 2022 09:33:03 -0700 (PDT)
+ Wed, 30 Mar 2022 09:33:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sakoman-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=ycYhtgv6/1Bf8W6J2GtAswShu/CsOm5OWfMTgblgK3w=;
-        b=miPmqdK4jEJswT+dO5gnZ6vVX46EMPdzbgZYR+q1APyS2Uyu4KqG4vnN1Y68kutWcS
-         EYAJeFscOFlTOut4pqN8opN9qz2ScpwDWE4LKZqQBoBfSguHyFQtroEQWIO8uJ/qHuaM
-         U8bx8/hY3Q6xlHZppMZwdfPbaxq3bPGG5K/UGF9nGk8JCIzVaJWDL6sAAOqAaIXYFQ8U
-         /rn/H6svBP0w7ze7FCM7tMAYZjPru18WtXiNoKn6d7YLZmWvwYfe4OdQNd4yJMivCI9/
-         dD7ya5dm2W5iHhQznCEPMgLfGdafOvybYq4YsxmqMmpEo78cb4Vd+tn+tLhpuoyOy8ha
-         Uq9Q==
+        bh=eR8lmS5oijOFCFrfgX6A6kfBhiY97RPH7hJ6LzcxkUk=;
+        b=0oADe+swFdTEjvTERoNIN0uFrvnt9MIxK6qvSuXibf4TkjlABLbVEC8MpmYhnxxgF/
+         VufbWYQgOvpXPW7cYszDFxs27xi8YSYAtVMH6vUbC4Mm5/wt4IAz/fpnUOvmNQykP+Xf
+         h02nTXTkpL7IX+DAC5DdGhWaig9n+LbinSj06GIdfzoi0K5LuVP0pouireMKvc0VckBv
+         t5C0/vVLZLOtiD1KTMXsQLmGa6e/LuJ2zi7o1IZyB88jU1LxJAbp2eALzF5zhug8iK9w
+         1uJ4W3X7lgoz/FlTIyKhc6rMtT1MUUFkQlGWmgavc5IEGwNBXhhiKg8564o0CFmAX23B
+         muxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ycYhtgv6/1Bf8W6J2GtAswShu/CsOm5OWfMTgblgK3w=;
-        b=N7tOBLcNa2t9pXW0ToS8WrPeHcjdv1+PiX5rDoNT+smNfahK2I1VQThRX9d5fWX5d9
-         jabxStZ0JAFhk6u9u8YvOt/u/kVvF+t+s15598sWG/+ANW52Bs3Kc9F2n/XF2s0SfjTj
-         8uipQ0KFbQKUO1rzp7OXQVkuQ+/tlG/mGz31dHrrJN8j9qjQMsNNq6Hyv5QC571jaNn0
-         pFca3jxbkGdkLzZqaf88xMqty9bHSXFN3/s4AOfJNAayEnSmLIEtihEWlevAWfcT1gyw
-         PkKoul/ppNDBor1fxPWQURKJaGv0HsrpUmDCyWJS3rgp1GcJJ1XAkzgCJHkWkXFoJbox
-         Nf2A==
-X-Gm-Message-State: AOAM532YlZHpeQbLlj1qLtDqNOQ6w8k+2g4TsyNR0J6KTIwDi4GgUB9F
-	aVtt1ORQrJsR7j5HOlqcl/iFco4MW3yXzx300EU=
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=eR8lmS5oijOFCFrfgX6A6kfBhiY97RPH7hJ6LzcxkUk=;
+        b=1seBuBn57XIYhMPcm0FPRjPdoASXYt7kHN1S04DzVicyXAZLzLgp6wAG/MY/IGsauA
+         hqRK0bsbLa1bRxccohaNGmfu9Uu017pwWg86oC+b0MZ5LVyvwPChwdE9zW+MKXf7x4VL
+         SHIplR1hOVPl13K4nJi8xyU9sNVyaHMqSGBoCT+cj3GU6Qadl+pEBodhB6WJP/zFUjzw
+         XKHjSY7fbS5kObXjvDo5GixBJhzHk0b1PC2VnqhcJc0fYWh/j1jwq3y7p5VK10LPmIWW
+         ks13vjG48yrnlvluRv17xgLWnRSC19wQTcwaFFS3+ZfDvV8Z5fEQ09GP5kzGPLWAXCKY
+         g0AQ==
+X-Gm-Message-State: AOAM532yAaLvQyhyHw32kH1cyA8Rw5v6Jm88HgsFyB0En0FxmBOR+0tA
+	B4er7KJLjEOvTi/D7UjRxq/OFjE0WnJPGKN/HW0=
 X-Google-Smtp-Source: 
- ABdhPJxDX+Sh2auSC5WEwB65mdSQjcCWgXybnf8xNEXuvDhQyntHUrrZoB9PZ3uqznkWK3duMH1W9A==
-X-Received: by 2002:a63:185c:0:b0:381:10:2843 with SMTP id
- 28-20020a63185c000000b0038100102843mr6812347pgy.433.1648657982768;
-        Wed, 30 Mar 2022 09:33:02 -0700 (PDT)
+ ABdhPJzU4tn+xniXETI/KJyfFqc6siivg9qgDCDX3KJqoCjvNNuX6+Y7f2LtDI/5FYhxnUa9oAMc2w==
+X-Received: by 2002:a65:4141:0:b0:382:2b0c:2bf with SMTP id
+ x1-20020a654141000000b003822b0c02bfmr6882443pgp.522.1648657986413;
+        Wed, 30 Mar 2022 09:33:06 -0700 (PDT)
 Received: from hexa.router0800d9.com (dhcp-72-253-6-214.hawaiiantel.net.
  [72.253.6.214])
         by smtp.gmail.com with ESMTPSA id
- oc10-20020a17090b1c0a00b001c7510ed0c8sm7382484pjb.49.2022.03.30.09.33.01
+ oc10-20020a17090b1c0a00b001c7510ed0c8sm7382484pjb.49.2022.03.30.09.33.05
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Mar 2022 09:33:01 -0700 (PDT)
+        Wed, 30 Mar 2022 09:33:05 -0700 (PDT)
 From: Steve Sakoman <steve@sakoman.com>
 To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper][dunfell 0/2] Patch review
-Date: Wed, 30 Mar 2022 06:32:51 -1000
-Message-Id: <cover.1648657669.git.steve@sakoman.com>
+Subject: [yocto-autobuilder-helper][dunfell 1/2] config.json: Switch to 3.4 M2
+ buildtools
+Date: Wed, 30 Mar 2022 06:32:52 -1000
+Message-Id: 
+ <518797c61cb69e87f7ba6da63f2fc0956175889d.1648657669.git.steve@sakoman.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <cover.1648657669.git.steve@sakoman.com>
+References: <cover.1648657669.git.steve@sakoman.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 30 Mar 2022 16:33:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56603
+ <yocto@lists.yoctoproject.org>; Wed, 30 Mar 2022 16:33:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56604
 
-This series updates to a more recent version of buildtools
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
 
-Tested over the past serveral weeks on autobuilder, most recently:
+This adds lz4c, zstd and pzstd for new tools requirements.
 
-https://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/3445
-
-The following changes since commit bdbc5f2e4eb45e29c8a957963c8431cdc86c12ce:
-
-  shared-repos: Use tar instead of rsync for speed (2022-02-22 15:26:49 +0000)
-
-are available in the Git repository at:
-
-  git://git.yoctoproject.org/yocto-autobuilder-helper contrib/sakoman
-  http://git.yoctoproject.org/cgit.cgi/yocto-autobuilder-helper/log/?h=contrib/sakoman
-
-Richard Purdie (2):
-  config.json: Switch to 3.4 M2 buildtools
-  config.json: Update to 3.4 buildtools tarball
-
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+(cherry picked from commit 502bcbbacfd6664d95bafd76fb0e1ee72027e4cb)
+Signed-off-by: Steve Sakoman <steve@sakoman.com>
+---
  config.json | 6 +++---
  1 file changed, 3 insertions(+), 3 deletions(-)
 
+diff --git a/config.json b/config.json
+index 348339f..d63963d 100644
+--- a/config.json
++++ b/config.json
+@@ -8,9 +8,9 @@
+     "BUILD_HISTORY_DIRECTPUSH" : ["poky:morty", "poky:pyro", "poky:rocko", "poky:sumo", "poky:thud", "poky:warrior", "poky:zeus", "poky:dunfell", "poky:master"],
+     "BUILD_HISTORY_FORKPUSH" : {"poky-contrib:ross/mut" : "poky:master", "poky:master-next" : "poky:master"},
+ 
+-    "BUILDTOOLS_URL_TEMPLOCAL" : "/srv/autobuilder/autobuilder.yoctoproject.org/pub/non-release/20200309-15/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.0+snapshot-20200309.sh",
+-    "BUILDTOOLS_URL_TEMPLOCAL2" : "http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-3.1_M3/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.0+snapshot-20200315.sh",
+-    "BUILDTOOLS_URL" : "/srv/autobuilder/autobuilder.yoctoproject.org/pub/non-release/20210214-8/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.2+snapshot-7d38cc8e749aedb8435ee71847e04b353cca541d.sh",
++    "BUILDTOOLS_URL_TEMPLOCAL" : "/srv/autobuilder/autobuilder.yoctoproject.org/pub/non-release/20210214-8/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.2+snapshot-7d38cc8e749aedb8435ee71847e04b353cca541d.sh",
++    "BUILDTOOLS_URL_TEMPLOCAL2" : "https://downloads.yoctoproject.org/releases/yocto/milestones/yocto-3.1_M3/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.0+snapshot-20200315.sh",
++    "BUILDTOOLS_URL" : "https://downloads.yoctoproject.org/releases/yocto/milestones/yocto-3.4_M2/buildtools/x86_64-buildtools-extended-nativesdk-standalone-3.3%2Bsnapshot-1ad79313a5c3e6a453fbeb44caac5c5bbad46d3c.sh",
+ 
+     "REPO_STASH_DIR" : "${BASE_HOMEDIR}/git/mirror",
+     "TRASH_DIR" : "${BASE_HOMEDIR}/git/trash",
 -- 
 2.25.1
 
