@@ -1,199 +1,109 @@
-Return-Path: <konstantin.kletschke@inside-m2m.de>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 864ABC433F5
-	for <webhook@archiver.kernel.org>; Fri,  1 Apr 2022 12:50:21 +0000 (UTC)
-Received: from mail.inside-m2m.de (mail.inside-m2m.de [188.68.57.244])
- by mx.groups.io with SMTP id smtpd.web11.10143.1648817418877888002
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8EECDC4332F
+	for <webhook@archiver.kernel.org>; Mon,  4 Apr 2022 14:43:47 +0000 (UTC)
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com
+ [209.85.210.179])
+ by mx.groups.io with SMTP id smtpd.web11.1425.1648832098921614582
  for <yocto@lists.yoctoproject.org>;
- Fri, 01 Apr 2022 05:50:20 -0700
+ Fri, 01 Apr 2022 09:54:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@inside-m2m.de
- header.s=default header.b=NiE5VrsQ;
- spf=pass (domain: inside-m2m.de, ip: 188.68.57.244,
- mailfrom: konstantin.kletschke@inside-m2m.de)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.inside-m2m.de (Postfix) with ESMTP id EEF3E40250
-	for <yocto@lists.yoctoproject.org>; Fri,  1 Apr 2022 14:50:15 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=inside-m2m.de;
-	s=default; t=1648817415;
-	bh=UbYNcODf/8FJqNjnNsmrq4QgTcoIYGWSy2+1Pm8HBUA=;
-	h=Date:From:To:Subject:From;
-	b=NiE5VrsQzTNnpYVWaJvlzn5XiuBjJ5Ode5pCdT/T2pYUX2ljLAxqHNtrNBJgVvUFP
-	 989G9A4MZ4aX6EWs1S66dfuFtULLTDADbpVULZlRp+A69s097Q09LacBSyeb2K3qBf
-	 OVE3EJA+SlWL+7EkSySwJhO8VgM8p6GYIk8nl2emHC66IwzTgemsiLD/hZKLwYBCZF
-	 eMssdGgdrx01Ut78vqGCGUw/KZ/v0U2Lnmri0Ow1zcQZMxj5sTGKe5JN9W8TTe5a1Q
-	 uloN/ZcQJLt36ucYWsZ6A4/wQvz2+yAJA/DuEqd3bOeJp1ZizptI3smK/pL3ulyGR9
-	 LMN3wLmhDupWg==
-X-Virus-Scanned: Debian amavisd-new at mail.inside-m2m.de
-Received: from mail.inside-m2m.de ([127.0.0.1])
-	by localhost (mail.inside-m2m.de [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 1edNNJPt4fVH for <yocto@lists.yoctoproject.org>;
-	Fri,  1 Apr 2022 14:50:15 +0200 (CEST)
-Received: from Hephaistos (pd95bb737.dip0.t-ipconnect.de [217.91.183.55])
-	(Authenticated sender: konstantin.kletschke@inside-m2m.de)
-	by mail.inside-m2m.de (Postfix) with ESMTPSA id 43C46400E8
-	for <yocto@lists.yoctoproject.org>; Fri,  1 Apr 2022 14:50:15 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=inside-m2m.de;
-	s=default; t=1648817415;
-	bh=UbYNcODf/8FJqNjnNsmrq4QgTcoIYGWSy2+1Pm8HBUA=;
-	h=Date:From:To:Subject:From;
-	b=NiE5VrsQzTNnpYVWaJvlzn5XiuBjJ5Ode5pCdT/T2pYUX2ljLAxqHNtrNBJgVvUFP
-	 989G9A4MZ4aX6EWs1S66dfuFtULLTDADbpVULZlRp+A69s097Q09LacBSyeb2K3qBf
-	 OVE3EJA+SlWL+7EkSySwJhO8VgM8p6GYIk8nl2emHC66IwzTgemsiLD/hZKLwYBCZF
-	 eMssdGgdrx01Ut78vqGCGUw/KZ/v0U2Lnmri0Ow1zcQZMxj5sTGKe5JN9W8TTe5a1Q
-	 uloN/ZcQJLt36ucYWsZ6A4/wQvz2+yAJA/DuEqd3bOeJp1ZizptI3smK/pL3ulyGR9
-	 LMN3wLmhDupWg==
-Date: Fri, 1 Apr 2022 14:50:13 +0200
-From: Konstantin Kletschke <konstantin.kletschke@inside-m2m.de>
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=IANv3bkz;
+ spf=pass (domain: gmail.com, ip: 209.85.210.179,
+ mailfrom: akuster808@gmail.com)
+Received: by mail-pf1-f179.google.com with SMTP id t2so3136445pfj.10
+        for <yocto@lists.yoctoproject.org>;
+ Fri, 01 Apr 2022 09:54:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yyiAgbbMlmHt722Lx/JNcg4my50CsnF4pBxbYHxWieM=;
+        b=IANv3bkzbB9Pwx8rTao72SZ/BO0l/VPe5Jj3tbBo5G92DZGcV8Zr/iw4t8qrz97njm
+         mQZX7pVoBbM3BcAByNJA29bpSMKY7wnX17n0kT9GO1YYt2FX5YMUHg3Vuf3Uwvq/4sZv
+         GFl/Sa7+8IcMVetiZ2++fxREplkQARyzsuHDPQEEIskL62dToibpiX1XK0ske1Vt42jv
+         EqQ86smAZC1LwLq1Ys1MMEavVVhUG7b9jLMd30uzUt1H4yXM1TtteP20/EqRclgNbGmw
+         wDMNgX1Z2CiNZUdN+I9MasrKsNjLKertVKvQCIz2ulFV3dc78sVAxr63aJRF2KnSTO3V
+         vy1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yyiAgbbMlmHt722Lx/JNcg4my50CsnF4pBxbYHxWieM=;
+        b=qRKo8C1M+d0osBmN0VBrKyRkIFcrPJleJenPKbKTk1aQyGsaGlMlZJeVjZKnPRIo30
+         4XjLCFo6UDEt5vBaC5F1ZAgjzKh6QxSfxVDuLY0UQ3ULyazz3Vbi48ppdGqqKHqFIMxH
+         oHuSEEzAQdOPMJr6o+XnBRWz00Mmw4bKq9rK3Uc3h9mfcvyKWXiVy7AhsZLnExz02JNP
+         evqcRGsl2FvO50F0EMgjB62JsVvMsnVNnbGVeQJTy2u77FB9a1Gy/K5QabJpp1YM3SI0
+         rldYEbIgIP/0qY8vGHR9CEfZPCcHjA+NC4mnKhuu+PX/W3zWmxRjdax3V6z6015Nks47
+         qUZw==
+X-Gm-Message-State: AOAM533hAJjh+gDSHIgcddyQMlVlltWi0LvdVS3XGaSuCNnWSC4iYDTU
+	IVtR6XisQXIeLRSnary/U2vji2vpAgc=
+X-Google-Smtp-Source: 
+ ABdhPJxqoeFeWLXAdCfsj+x+TUpi93s/CVgiXy/AYg5Elg2oG6Wwf80OHCpAZN516YXwS7VrLyjGtg==
+X-Received: by 2002:a63:778b:0:b0:398:1568:1c53 with SMTP id
+ s133-20020a63778b000000b0039815681c53mr15741225pgc.548.1648832097951;
+        Fri, 01 Apr 2022 09:54:57 -0700 (PDT)
+Received: from keaua.caveonetworks.com
+ ([2601:202:4180:a5c0:9292:de58:9f47:7035])
+        by smtp.gmail.com with ESMTPSA id
+ pj9-20020a17090b4f4900b001c744034e7csm14511562pjb.2.2022.04.01.09.54.56
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Apr 2022 09:54:57 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: installed and not shipped files. [installed-vs-shipped]
-Message-ID: <Ykb1BRU174mnFl0a@Hephaistos>
+Subject: [meta-security][PATCH] python3-fail2ban: fix compile issue on some
+ hosts
+Date: Fri,  1 Apr 2022 09:54:55 -0700
+Message-Id: <20220401165455.780859-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 01 Apr 2022 12:50:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56612
+ <yocto@lists.yoctoproject.org>; Mon, 04 Apr 2022 14:43:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56613
 
-I am currently trying to extend the meta-java framework with an
-openjdk-18 recipe.
-I encounter a problem with the [installed-vs-shipped] QA check which I
-can't cope with, I admit.
+Use python3-native to use 2to3
 
-The autotolls and crosscompile seems to work fine, the install is
-overridden with this:
+Fix build issue on some hosts with this error:
+ (result, consumed) = self._buffer_decode(data, self.errors, final)
+ | UnicodeDecodeError: 'utf-8' codec can't decode byte 0xd8 in position 152: invalid continuation byte
 
-do_install() {
-    rm -rf ${D}/${JAVA_HOME}
-    mkdir -p ${D}/${JAVA_HOME}
-    echo "THIS IS D: "${D} > ${D}/${JAVA_HOME}/THE_D
-    if [[ "${PN}" =3D openjre* ]]; then
-        # cp -rp ${B}/images/jre/* ${D}/${JAVA_HOME}
-        cp -rp ${B}/jdk/* ${D}${JAVA_HOME}
-    else
-        # cp -rp ${B}/images/jdk/* ${D}/${JAVA_HOME}
-        cp -rp ${B}/jdk/* ${D}${JAVA_HOME}
-    fi
-    chown -R root:root ${D}${JAVA_HOME}
-    #install -m644 ${WORKDIR}/jvm.cfg  ${D}${JAVA_HOME}/jre/lib/${JDK_ARC=
-H}/
-    find ${D}/${JAVA_HOME} -name "*.debuginfo" -exec rm {} \;
-}
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/fail2ban/python3-fail2ban_0.11.2.bb | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-To verify ${D} there is this "echo [...] THE_D" part in the install step
-to look, what's happening.
-
-After this stage I have the following file
-
-/home/konsti/yocto/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/open=
-jdk-18/18+37+gitAUTOINC+0f2113cee7-r0/image/usr/lib/jvm/openjdk-18/THE_D
-
-with contents
-
-THIS IS D: /home/konsti/yocto/build/tmp/work/cortexa8hf-neon-poky-linux-g=
-nueabi/openjdk-18/18+37+gitAUTOINC+0f2113cee7-r0/image
-
-What I suppose is ${D} looks like this:
-
-~/yocto/build =EF=87=93 =EF=84=A6 honister ?1 =E2=9D=AF ls -la /home/kons=
-ti/yocto/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/openjdk-18/18+=
-37+gitAUTOINC+0f2113cee7-r0/image                            =20
-total 12
-drwxr-xr-x  3 konsti konsti 4096 Apr  1 14:24 .
-drwxr-xr-x 17 konsti konsti 4096 Apr  1 14:24 ..
-drwxr-xr-x  3 konsti konsti 4096 Apr  1 14:24 usr
-
-${JAVA_HOME} expands to /usr/lib/jvm/openjdk-18:
-
-~/yocto/build =EF=87=93 =EF=84=A6 honister ?1 =E2=9D=AF ls -la /home/kons=
-ti/yocto/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/openjdk-18/18+=
-37+gitAUTOINC+0f2113cee7-r0/image/usr/lib/jvm/openjdk-18/
-total 36
-drwxr-xr-x  7 konsti konsti 4096 Apr  1 14:24 .
-drwxr-xr-x  3 konsti konsti 4096 Apr  1 14:24 ..
--rw-r--r--  3 konsti konsti  128 Apr  1 14:24 THE_D
-drwxr-xr-x  2 konsti konsti 4096 Apr  1 14:24 bin
-drwxr-xr-x  5 konsti konsti 4096 Apr  1 14:22 conf
-drwxr-xr-x  3 konsti konsti 4096 Apr  1 14:22 include
-drwxr-xr-x  5 konsti konsti 4096 Apr  1 14:24 lib
-drwxr-xr-x 69 konsti konsti 4096 Apr  1 14:23 modules
--rw-r--r--  3 konsti konsti  129 Apr  1 14:22 release
-
-So accordingly the recipe continues with extending the FILES to do
-packaging this way:
-
-FILES_${PN} +=3D "\
-    ${JAVA_HOME}/bin/[a-z]* \
-    ${JAVA_HOME}/lib/[a-z]* \
-    ${JAVA_HOME}/modules \
-    ${JAVA_HOME}/release \
-    ${JAVA_HOME}/conf \
-    ${JAVA_HOME}/include \
-    ${JAVA_HOME}/THE_D \
-"
-
-When I do "bitbake -e openjdk-18 |grep FILES_openjdk-18=3D" I get this:
-
-FILES_openjdk-18=3D"     /usr/lib/jvm/openjdk-18/bin/[a-z]*     /usr/lib/=
-jvm/openjdk-18/lib/[a-z]*     /usr/lib/jvm/openjdk-18/modules     /usr/li=
-b/jvm/openjdk-18/release     /usr/lib/jvm/openjdk-18/conf     /usr/lib/jv=
-m/openjdk-18/include     /usr/lib/jvm/openjdk-18/THE_D "
-
-When bitbake tries to package, I get this error:
-
-ERROR: openjdk-18-18+37+gitAUTOINC+0f2113cee7-r0 do_package: QA Issue: op=
-enjdk-18: Files/directories were installed but not shipped in any package=
-:
-  /usr/lib/jvm/openjdk-18/release
-  /usr/lib/jvm/openjdk-18/THE_D
-  /usr/lib/jvm/openjdk-18/conf
-  /usr/lib/jvm/openjdk-18/include
-  /usr/lib/jvm/openjdk-18/lib/libj2gss.so
-[...]
-  /usr/lib/jvm/openjdk-18/modules/jdk.internal.le/jdk/internal/org/jline/=
-keymap/BindingReader.class
-  /usr/lib/jvm/openjdk-18/modules/jdk.internal.le/jdk/internal/org/jline/=
-keymap/KeyMap.class
-Please set FILES such that these items are packaged. Alternatively if the=
-y are unneeded, avoid installing them or delete them within do_install.
-openjdk-18: 28751 installed and not shipped files. [installed-vs-shipped]
-ERROR: openjdk-18-18+37+gitAUTOINC+0f2113cee7-r0 do_package: Fatal QA err=
-ors found, failing task.
-ERROR: Logfile of failure stored in: /home/konsti/yocto/build/tmp/work/co=
-rtexa8hf-neon-poky-linux-gnueabi/openjdk-18/18+37+gitAUTOINC+0f2113cee7-r=
-0/temp/log.do_package.3424506
-ERROR: Task (/home/konsti/yocto/meta-insidem2m/recipes-core/openjdk/openj=
-dk-18_18+37.bb:do_package) failed with exit code '1'
-
-Well, I am pretty shure the FILES_${PN} refers relative to ${D}, where
-is my stupid misunderstanding?
-
-Side-Quest: In do install the destination is referred as
-${D}${JAVA_HOME}. Why does this not need to be ${D}/${JAVA_HOME}?
-
-Kind Regards
-Konstantin Kletschke
-
---=20
-INSIDE M2M GmbH
-Konstantin Kletschke
-Berenbosteler Stra=C3=9Fe 76 B
-30823 Garbsen
-
-Telefon: +49 (0) 5137 90950136
-Mobil: +49 (0) 151 15256238
-Fax: +49 (0) 5137 9095010
-
-konstantin.kletschke@inside-m2m.de
-http://www.inside-m2m.de=20
-
-Gesch=C3=A4ftsf=C3=BChrung: Michael Emmert, Ingo Haase, Dr. Fred K=C3=B6n=
-emann, Derek Uhlig
-HRB: 111204, AG Hannover
+diff --git a/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb b/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
+index 4118732..96e17b7 100644
+--- a/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
++++ b/recipes-security/fail2ban/python3-fail2ban_0.11.2.bb
+@@ -9,6 +9,8 @@ HOMEPAGE = "http://www.fail2ban.org"
+ LICENSE = "GPL-2.0-only"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=ecabc31e90311da843753ba772885d9f"
+ 
++DEPENDS = "python3-native"
++
+ SRCREV ="4fe4ac8dde6ba14841da598ec37f8c6911fe0f64"
+ SRC_URI = " git://github.com/fail2ban/fail2ban.git;branch=0.11;protocol=https \
+         file://initd \
+@@ -21,6 +23,11 @@ S = "${WORKDIR}/git"
+ 
+ do_compile () {
+     cd ${S}
++
++    #remove symlink to python3
++    # otherwise 2to3 is run against it
++    rm -f bin/fail2ban-python
++
+     ./fail2ban-2to3
+ }
+ 
+-- 
+2.25.1
 
 
