@@ -1,128 +1,137 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C9D24C47093
-	for <webhook@archiver.kernel.org>; Mon,  4 Apr 2022 18:46:42 +0000 (UTC)
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com
- [209.85.216.49])
- by mx.groups.io with SMTP id smtpd.web12.24075.1649000752591357367
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DC2D3C49EA4
+	for <webhook@archiver.kernel.org>; Mon,  4 Apr 2022 18:46:43 +0000 (UTC)
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com
+ [209.85.222.180])
+ by mx.groups.io with SMTP id smtpd.web08.5162.1648851004727996927
  for <yocto@lists.yoctoproject.org>;
- Sun, 03 Apr 2022 08:45:52 -0700
+ Fri, 01 Apr 2022 15:10:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=AyYYQVDK;
- spf=pass (domain: gmail.com, ip: 209.85.216.49,
- mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f49.google.com with SMTP id x14so3300715pjf.2
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=jjG+SgTX;
+ spf=pass (domain: gmail.com, ip: 209.85.222.180,
+ mailfrom: raj.khem@gmail.com)
+Received: by mail-qk1-f180.google.com with SMTP id r127so3208355qke.13
         for <yocto@lists.yoctoproject.org>;
- Sun, 03 Apr 2022 08:45:52 -0700 (PDT)
+ Fri, 01 Apr 2022 15:10:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/+TVv5xzNCOU3f0SFJLEJmfY+x0iypx4L6gFfNWXp7o=;
-        b=AyYYQVDKP8Geh1os40bUX0AVbhn+LUb5RqXCD4kqZcpekywVsDvC/Na8y2Y7ssH+ja
-         D8mRnH+d2uCjvVrefPeSKHL54aszbZwgl6+E0CCIkyJtntKVuBghhT/AA+w/6JZntOE8
-         OXMBTKZei3a5TheJ/Bwo9pRRDYN712GYxgAwpWzvkujbEaP4eTbW6RURDMZ3mXhEPaU5
-         RmWQ5YBxMJXcebpiXTx/FhgskvPJVOozKPEbetQnYQXXLMtmk71HNvQp61RxVaDFYeNS
-         mAsaRLigJ05SeABSU3fO9td2ssiCNEn37JM3yzI2ntotCkJGhG/TVfpMYpJAvsHIXTa/
-         YxjA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8k0Nrbs3Re2s10YdBnhK55nViyfqdB82u9d4WKgK8xI=;
+        b=jjG+SgTX38FdE7ugU7PbfsEujBkK9cz6IF0+UMu0Pf0M75dZmTMDrICQOybnTOYR77
+         /lrc/RM2WGjgf/cJ8DiAn3hmWXhOItVyB708vgBj1sQ5bF5xrt2NTzSfDzlBo86f6yIU
+         RPYqu5dmAp4cDd9SZjQFb/rTjgLTn2hSfrteryCK8qIN9hE0wJZIFfjJsM+U2g6H782h
+         FYAFC9l0/gT+J8ZDTaIUnlaC3KkFHVcWUQHbyI3TbNTDgxGoZ9v+BNuRJHcO3g/XMSDH
+         nky3W1TZK0DKR8VmwaVcrPu6/vHAvQA9fNYnbQqckQr/H0qQZASxbDYAg4jkCcuNG1Jz
+         PjXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/+TVv5xzNCOU3f0SFJLEJmfY+x0iypx4L6gFfNWXp7o=;
-        b=GS8QQRWlz9N8ROuX3uxUa20v51A7mzooTAgWe76xHyl/nPbIP+ZLTAoNoOXEKn6ugK
-         ehEjDO5ZMUPoKRRD4s0pB7k3rmd4z41p56FGyvkFLY/0h4E1wDLwEhVLky4cxDkDH/Hz
-         1+GFwEZffeWF6pvQKAwDileoxwAjsEFOcUnEl431GBSQL5j9+M0PMCOGhNevwCCMmVbK
-         NLAybX7qshhYwZbKAS0Ymoej5YvssxstVWR1o1Rpivpd6sYDP3NlMvoBxgv0sG4cy3E2
-         h0uJUhoRhc/mJb81kpA5Uc5HNhoWCqhzdLfeq/dOinIO1IF8A3x9PEJLCnSb8Qx9askr
-         +ySw==
-X-Gm-Message-State: AOAM532SQghUCT0SXGCGwA1CrHahj70Aaq+Da1JYUi0q0l91esbXpFxg
-	UFyceyjus90+SrTmeAkdAjM8UXvAFYs=
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8k0Nrbs3Re2s10YdBnhK55nViyfqdB82u9d4WKgK8xI=;
+        b=qTCDEyHUA8fowroVtsRy1/vL51hHgRSM8gGIt4pl9AmP/lrerrX5Mmi0dcMpMq8+5f
+         LhHwuuZOF8EI1bp4sb2rqIEOhKjpoEsr/0h50fkpQP1PGZ4qQLtVeb+8ZhdHfC3YWW+q
+         sybAzs7Iz0bWnIMbgLmU90vXVUEsj8IiVFP8aG6qYikiGTT6hws5YJRpxFMbIqOb1Nsd
+         Hp9Sk6cRREIs1H7GofNtpAR8mfN2SO97R5S6f3g/i73iTRXteGUvPtfnmaB+PYGNe03u
+         2eIxnq/Dg6UMzAl7brfMNPcBFUsW6dz5KIayAVu3rHLVON9oylfQdxQidkzzi0+sUXRU
+         hf1A==
+X-Gm-Message-State: AOAM533dkoHi61ytF7bPtHsEa5IxLkhIUUNW52GebeO2BvSvsc2mkytn
+	ND//ccTld/Cfh37nahIvTtep9ivKAZdTOA9eH7QhFwdoM+E=
 X-Google-Smtp-Source: 
- ABdhPJzArAo3XJvc/cKmbMnlsQnv5M4SmqojYF+/kJJoJaszJhPLdqX1x0L6H/qhdGNs18GYKW+j8Q==
-X-Received: by 2002:a17:902:dcd4:b0:156:a95c:ccd6 with SMTP id
- t20-20020a170902dcd400b00156a95cccd6mr864673pll.146.1649000751437;
-        Sun, 03 Apr 2022 08:45:51 -0700 (PDT)
-Received: from keaua.caveonetworks.com
- ([2601:202:4180:a5c0:d902:56b7:61b9:ac4])
-        by smtp.gmail.com with ESMTPSA id
- o4-20020a625a04000000b004fdf5419e41sm2240527pfb.36.2022.04.03.08.45.49
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 03 Apr 2022 08:45:50 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 1/2] lkrg-module: covert to git fetcher
-Date: Sun,  3 Apr 2022 08:45:47 -0700
-Message-Id: <20220403154548.46873-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
+ ABdhPJw9d1EuxvYRIHaUZvyDI57mYFkFPIdcDUCn3Jmze0RDClJ16ht9oYqdSnbZI86P3heJWiAvxTrSrSG7HVosU/Y=
+X-Received: by 2002:a05:620a:460e:b0:680:9d1c:2493 with SMTP id
+ br14-20020a05620a460e00b006809d1c2493mr7861399qkb.227.1648851003738; Fri, 01
+ Apr 2022 15:10:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <d53c8921e56ece2984cb97f78c4b038f@vivaldi.net>
+ <CAMKF1sqZHZRNvW0BY3MfVH+cKv3nRtjTRab_EXJwKGpANu_EZQ@mail.gmail.com>
+ <16E1E0852A508284.15950@lists.yoctoproject.org>
+ <b4f0f9c76768d68ad2f4b1822d11bca8@vivaldi.net>
+In-Reply-To: <b4f0f9c76768d68ad2f4b1822d11bca8@vivaldi.net>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 1 Apr 2022 15:09:37 -0700
+Message-ID: 
+ <CAMKF1sqsAEdLEtD6c_vnoNX1FXBZteiDuuMyEiFvMZ4i7n3AXQ@mail.gmail.com>
+Subject: Re: [yocto] Specified SDKMACHINE value is not valid
+To: jchludzinski <jchludzinski@vivaldi.net>
+Cc: Yocto <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 04 Apr 2022 18:46:42 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56650
+ <yocto@lists.yoctoproject.org>; Mon, 04 Apr 2022 18:46:43 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56618
 
-This allows to track tip easier.
-refresh patch
-Fix LICENSE to match SPDX format
+On Fri, Apr 1, 2022 at 2:02 PM jchludzinski <jchludzinski@vivaldi.net> wrote:
+>
+> But obviously commented out.
+>
+> On 2022-04-01 16:43, jchludzinski via lists.yoctoproject.org wrote:
+> > There's this:
+> > #SDKMACHINE ?= "i686"
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-kernel/lkrg/files/makefile_cleanup.patch |  6 +++---
- recipes-kernel/lkrg/lkrg-module_0.9.2.bb         | 10 +++++-----
- 2 files changed, 8 insertions(+), 8 deletions(-)
+OK it should be ok then. Can you describe your steps to setup the system?
+maybe there is some caveat
 
-diff --git a/recipes-kernel/lkrg/files/makefile_cleanup.patch b/recipes-kernel/lkrg/files/makefile_cleanup.patch
-index a4db2d9..799b1a6 100644
---- a/recipes-kernel/lkrg/files/makefile_cleanup.patch
-+++ b/recipes-kernel/lkrg/files/makefile_cleanup.patch
-@@ -4,10 +4,10 @@ This needs more work. Its my starting point.
- 
- Signed-off-by: Armin Kuster <akuster808@gmail.com>
- 
--Index: lkrg-0.9.2/Makefile
-+Index: git/Makefile
- ===================================================================
----- lkrg-0.9.2.orig/Makefile
--+++ lkrg-0.9.2/Makefile
-+--- git.orig/Makefile
-++++ git/Makefile
- @@ -4,28 +4,10 @@
-  # Author:
-  #  - Adam 'pi3' Zabrocki (http://pi3.com.pl)
-diff --git a/recipes-kernel/lkrg/lkrg-module_0.9.2.bb b/recipes-kernel/lkrg/lkrg-module_0.9.2.bb
-index e055fbe..85f7d44 100644
---- a/recipes-kernel/lkrg/lkrg-module_0.9.2.bb
-+++ b/recipes-kernel/lkrg/lkrg-module_0.9.2.bb
-@@ -3,18 +3,18 @@ DESCRIPTION="LKRG performs runtime integrity checking of the Linux \
- kernel and detection of security vulnerability exploits against the kernel."
- SECTION = "security"
- HOMEPAGE = "https://www.openwall.com/lkrg/"
--LICENSE = "GPLv2"
-+LICENSE = "GPL-2.0-only"
- 
- LIC_FILES_CHKSUM = "file://LICENSE;md5=5105ead24b08a32954f34cbaa7112432"
- 
- DEPENDS = "virtual/kernel elfutils"
- 
--SRC_URI = "https://download.openwall.net/pub/projects/lkrg/lkrg-${PV}.tar.gz \
--           file://makefile_cleanup.patch "
-+SRCREV = "43db5f19fca259feb1962f6db33382348cbc8320"
- 
--SRC_URI[sha256sum] = "c2b501c47089cce3ec3114cef6520b73aa3a098836183186b9bb5e097c99ac27"
-+SRC_URI = "git://github.com/lkrg-org/lkrg.git;protocol=https;branch=main \
-+           file://makefile_cleanup.patch "
- 
--S = "${WORKDIR}/lkrg-${PV}"
-+S = "${WORKDIR}/git"
- 
- inherit module kernel-module-split
- 
--- 
-2.25.1
-
+> >
+> > ---John
+> >
+> > On 2022-04-01 16:22, Khem Raj wrote:
+> >
+> >> On Fri, Apr 1, 2022 at 1:09 PM jchludzinski via
+> >> lists.yoctoproject.org
+> >> [1 [1]] <jchludzinski=vivaldi.net@lists.yoctoproject.org> wrote:
+> >>
+> >>> I'm trying an experiment building yocto/OE on a Raspberry Pi 4 to
+> >>> host on the same RP4. Admittedly, a not practical platform for
+> >>> this
+> >>> purpose but it should work.
+> >>>
+> >>> I'm trying to target the ARM ISA for the image using yocto-3.4.2.
+> >>> I've tried simply using the default setting and end up with:
+> >>>
+> >>> _ERROR:  OE-core's config sanity checker detected a potential
+> >>> misconfiguration._
+> >>> _    Either fix the cause of this error or at your own risk
+> >>> disable
+> >>> the checker (see sanity.conf)._
+> >>> _    Following is the list of potential problems / advisories:_
+> >>> _ _
+> >>> _    Specified SDKMACHINE value is not valid_
+> >>>
+> >>> I've tried editing ./conf/local.conf:
+> >>>
+> >>> MACHINE ?= "qemuarm64"
+> >>>
+> >>> #MACHINE ??= "qemux86-64"
+> >>
+> >> It's complaining about SDKMACHINE setting which is a separate
+> >> variable, can you check your local.conf if it's set to something
+> >>
+> >>> But this accomplishes nothing. Needless to say, I'm a yacto/OE
+> >>> newbie, so any suggestions would be greatly appreciated.
+> >>>
+> >>> ---John
+> >>
+> >> Links:
+> >> ------
+> >> [1] http://lists.yoctoproject.org
+> >
+> >
+> > Links:
+> > ------
+> > [1] http://lists.yoctoproject.org
+> >
+> > -=-=-=-=-=-=-=-=-=-=-=-
+> > Links: You receive all messages sent to this group.
+> > View/Reply Online (#56616):
+> > https://lists.yoctoproject.org/g/yocto/message/56616
+> > Mute This Topic: https://lists.yoctoproject.org/mt/90188098/5071304
+> > Group Owner: yocto+owner@lists.yoctoproject.org
+> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub
+> > [jchludzinski@vivaldi.net]
+> > -=-=-=-=-=-=-=-=-=-=-=-
 
