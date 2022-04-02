@@ -1,180 +1,179 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <foss@0leil.net>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C907C636C9
-	for <webhook@archiver.kernel.org>; Mon,  4 Apr 2022 18:46:45 +0000 (UTC)
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com
- [209.85.219.41])
- by mx.groups.io with SMTP id smtpd.web11.13429.1648916139187222504
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A597C4167D
+	for <webhook@archiver.kernel.org>; Mon,  4 Apr 2022 18:46:46 +0000 (UTC)
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net
+ [217.70.183.196])
+ by mx.groups.io with SMTP id smtpd.web10.10544.1648894410320385927
  for <yocto@lists.yoctoproject.org>;
- Sat, 02 Apr 2022 09:15:39 -0700
+ Sat, 02 Apr 2022 03:13:30 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=k+Gz9wVE;
- spf=pass (domain: gmail.com, ip: 209.85.219.41, mailfrom: raj.khem@gmail.com)
-Received: by mail-qv1-f41.google.com with SMTP id kl29so4288630qvb.2
-        for <yocto@lists.yoctoproject.org>;
- Sat, 02 Apr 2022 09:15:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7ZUHaqMm/llLG2mpX9PvcQhCf+eANfWtZ0urwSIcrpc=;
-        b=k+Gz9wVEk45UFAkhVvutvK/ZZ5AfH/Kwe+jV+i7mlKMJJQXWtldVGy1flWytWVxz1P
-         L2N+HMNhcUs2uoxKPyLTs1wesDJdH4rIMS2tpowvkrF3CwLCaMBCk9x3Av5qOlZ2hYW7
-         1OoH67NoLTJdNWoJbuOTlD2kIn/XZivHAlKkAN2/Q0e3f3/jAb5eIz39YGwdUn0gtsMf
-         v4LuxyZPlXAo4sS9hET/N8E/mxV1S0iSXNrTn5PwF5yiWrbSgjunMePwlh8Z7DRaE3L8
-         L5uUuF7AfGqvWeOsLFpK7AECViDQsA8J91kRLX2DElCsQN8jVEvzaw9T2CkfJ0nDAfeL
-         9ScA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7ZUHaqMm/llLG2mpX9PvcQhCf+eANfWtZ0urwSIcrpc=;
-        b=WX8D0IFPzn9TyCPXdDWoKzzw2VmOAFQbZQvmAfci0ekATXgWEaF/FCwOdkoKq4B6Q0
-         mg8rZieuVdXEpLAHGDrGPwBRQr1lhjzeJDQmU3EO2pxsCTF7D4DOmZ9/i9pJQ8g4lTbJ
-         qRcb18qq4/HvG8w2aRas1Z+5hUcBYn4sWla7eE8ylUVS889nI29PWt26HZGRFg+XcDnE
-         7g9rdE65FaOiALFW6F+s5hBS49KOBf0zBPZpjxU+/az3PqgrFl1GLkpWWsdW+LzlfFW4
-         eOZEHpbAZXkvkdUhEGsbXDzn/PSYYl5llzlwfoMkzO/8jlL5MX+1LUXBLsoKPrIaTu0A
-         HBPg==
-X-Gm-Message-State: AOAM533LbaNAvsdbQXQWsXXQ1icTMKR8IKrx/aMf/9MZLpk621tB4CTN
-	mur2EKlAR5AEbydWEDO0od1U7G1NAYJ6uR2aLRs=
-X-Google-Smtp-Source: 
- ABdhPJzK/AwI/+Tt7G3JZeO6LT+QNtGTugbNuM5ukKcfLIctH+gMxyRaqM1X+LQcOoCfS63e/qk1EFyuDuM+Cfot3/4=
-X-Received: by 2002:a05:6214:d8d:b0:441:84f3:24e8 with SMTP id
- e13-20020a0562140d8d00b0044184f324e8mr11938795qve.16.1648916138232; Sat, 02
- Apr 2022 09:15:38 -0700 (PDT)
+ dkim=missing;
+ spf=none, err=permanent DNS error (domain: 0leil.net, ip: 217.70.183.196,
+ mailfrom: foss@0leil.net)
+Received: (Authenticated sender: foss@0leil.net)
+	by mail.gandi.net (Postfix) with ESMTPSA id 3BC9DE0004;
+	Sat,  2 Apr 2022 10:13:27 +0000 (UTC)
+Date: Sat, 02 Apr 2022 12:13:26 +0200
+From: Quentin Schulz <foss@0leil.net>
+To: yocto@lists.yoctoproject.org,
+ Konstantin Kletschke <konstantin.kletschke@inside-m2m.de>
+Subject: Re: [yocto] installed and not shipped files. [installed-vs-shipped]
+In-Reply-To: <Ykb1BRU174mnFl0a@Hephaistos>
+References: <Ykb1BRU174mnFl0a@Hephaistos>
+Message-ID: <9EFA4EA1-8709-4BB3-A9CB-99BA85DAD75D@0leil.net>
 MIME-Version: 1.0
-References: <d53c8921e56ece2984cb97f78c4b038f@vivaldi.net>
- <CAMKF1sqZHZRNvW0BY3MfVH+cKv3nRtjTRab_EXJwKGpANu_EZQ@mail.gmail.com>
- <16E1E0852A508284.15950@lists.yoctoproject.org>
- <b4f0f9c76768d68ad2f4b1822d11bca8@vivaldi.net>
- <CAMKF1sqsAEdLEtD6c_vnoNX1FXBZteiDuuMyEiFvMZ4i7n3AXQ@mail.gmail.com>
- <9bb492b8e60e2ba16b978016203341a7@vivaldi.net>
-In-Reply-To: <9bb492b8e60e2ba16b978016203341a7@vivaldi.net>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sat, 2 Apr 2022 09:15:10 -0700
-Message-ID: 
- <CAMKF1sqa9K8XJ512VByqDkpPLtG7c7OkvoDsVLysVhukN2bFxA@mail.gmail.com>
-Subject: Re: [yocto] Specified SDKMACHINE value is not valid
-To: jchludzinski <jchludzinski@vivaldi.net>
-Cc: Yocto <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 04 Apr 2022 18:46:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56643
+ <yocto@lists.yoctoproject.org>; Mon, 04 Apr 2022 18:46:46 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56642
 
-On Sat, Apr 2, 2022 at 1:47 AM jchludzinski <jchludzinski@vivaldi.net> wrote:
->
-> $ git clone git://git.yoctoproject.org/poky.git
-> $ cd ./poky
-> $ git checkout yocto-3.4.2
-> $ cd ..
-> $ source ./poky/oe-init-build-env
-> $ cd ./build
-> $ time bitbake core-image-minimal
-> ...
-> ERROR:  OE-core's config sanity checker detected a potential misconfiguration.
->     Either fix the cause of this error or at your own risk disable the checker (see sanity.conf).
->     Following is the list of potential problems / advisories:
->
->     Specified SDKMACHINE value is not valid
->
->
-> Summary: There was 1 WARNING message shown.
-> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
->
-> ________________________________________________________
-> Executed in    3.92 secs    fish           external
->    usr time    1.07 secs    9.77 millis    1.06 secs
->    sys time    0.18 secs    2.96 millis    0.17 secs
->
->
->
-> On 2022-04-01 18:09, Khem Raj wrote:
->
-> On Fri, Apr 1, 2022 at 2:02 PM jchludzinski <jchludzinski@vivaldi.net> wrote:
->
->
-> But obviously commented out.
->
-> On 2022-04-01 16:43, jchludzinski via lists.yoctoproject.org wrote:
->
-> There's this:
-> #SDKMACHINE ?= "i686"
->
->
-> OK it should be ok then. Can you describe your steps to setup the system?
-> maybe there is some caveat
->
->
-> ---John
->
-> On 2022-04-01 16:22, Khem Raj wrote:
->
-> On Fri, Apr 1, 2022 at 1:09 PM jchludzinski via
-> lists.yoctoproject.org
-> [1 [1]] <jchludzinski=vivaldi.net@lists.yoctoproject.org> wrote:
->
-> I'm trying an experiment building yocto/OE on a Raspberry Pi 4 to
-> host on the same RP4. Admittedly, a not practical platform for
-> this
-> purpose but it should work.
->
-> I'm trying to target the ARM ISA for the image using yocto-3.4.2.
-> I've tried simply using the default setting and end up with:
->
-> _ERROR:  OE-core's config sanity checker detected a potential
-> misconfiguration._
-> _    Either fix the cause of this error or at your own risk
-> disable
-> the checker (see sanity.conf)._
-> _    Following is the list of potential problems / advisories:_
-> _ _
-> _    Specified SDKMACHINE value is not valid_
->
-> I've tried editing ./conf/local.conf:
->
-> MACHINE ?= "qemuarm64"
->
-> #MACHINE ??= "qemux86-64"
->
->
-> It's complaining about SDKMACHINE setting which is a separate
-> variable, can you check your local.conf if it's set to something
->
-> But this accomplishes nothing. Needless to say, I'm a yacto/OE
-> newbie, so any suggestions would be greatly appreciated.
+Hi Konstantin,
 
-are you on a x86_64 host? Secondly try to uncomment SDKMACHINE setting
-in local.conf
-and see if it helps. Also check if your default shell is bash or dash.
+On April 1, 2022 2:50:13 PM GMT+02:00, Konstantin Kletschke <konstantin=2E=
+kletschke@inside-m2m=2Ede> wrote:
+>I am currently trying to extend the meta-java framework with an
+>openjdk-18 recipe=2E
+>I encounter a problem with the [installed-vs-shipped] QA check which I
+>can't cope with, I admit=2E
+>
+>The autotolls and crosscompile seems to work fine, the install is
+>overridden with this:
+>
+>do_install() {
+>    rm -rf ${D}/${JAVA_HOME}
+>    mkdir -p ${D}/${JAVA_HOME}
+>    echo "THIS IS D: "${D} > ${D}/${JAVA_HOME}/THE_D
+>    if [[ "${PN}" =3D openjre* ]]; then
+>        # cp -rp ${B}/images/jre/* ${D}/${JAVA_HOME}
+>        cp -rp ${B}/jdk/* ${D}${JAVA_HOME}
+>    else
+>        # cp -rp ${B}/images/jdk/* ${D}/${JAVA_HOME}
+>        cp -rp ${B}/jdk/* ${D}${JAVA_HOME}
+>    fi
+>    chown -R root:root ${D}${JAVA_HOME}
+>    #install -m644 ${WORKDIR}/jvm=2Ecfg  ${D}${JAVA_HOME}/jre/lib/${JDK_A=
+RCH}/
+>    find ${D}/${JAVA_HOME} -name "*=2Edebuginfo" -exec rm {} \;
+>}
+>
+>To verify ${D} there is this "echo [=2E=2E=2E] THE_D" part in the install=
+ step
+>to look, what's happening=2E
+>
+>After this stage I have the following file
+>
+>/home/konsti/yocto/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/open=
+jdk-18/18+37+gitAUTOINC+0f2113cee7-r0/image/usr/lib/jvm/openjdk-18/THE_D
+>
+>with contents
+>
+>THIS IS D: /home/konsti/yocto/build/tmp/work/cortexa8hf-neon-poky-linux-g=
+nueabi/openjdk-18/18+37+gitAUTOINC+0f2113cee7-r0/image
+>
+>What I suppose is ${D} looks like this:
+>
+>~/yocto/build =EF=87=93 =EF=84=A6 honister ?1 =E2=9D=AF ls -la /home/kons=
+ti/yocto/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/openjdk-18/18+37=
++gitAUTOINC+0f2113cee7-r0/image                            =20
+>total 12
+>drwxr-xr-x  3 konsti konsti 4096 Apr  1 14:24 =2E
+>drwxr-xr-x 17 konsti konsti 4096 Apr  1 14:24 =2E=2E
+>drwxr-xr-x  3 konsti konsti 4096 Apr  1 14:24 usr
+>
+>${JAVA_HOME} expands to /usr/lib/jvm/openjdk-18:
+>
+>~/yocto/build =EF=87=93 =EF=84=A6 honister ?1 =E2=9D=AF ls -la /home/kons=
+ti/yocto/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/openjdk-18/18+37=
++gitAUTOINC+0f2113cee7-r0/image/usr/lib/jvm/openjdk-18/
+>total 36
+>drwxr-xr-x  7 konsti konsti 4096 Apr  1 14:24 =2E
+>drwxr-xr-x  3 konsti konsti 4096 Apr  1 14:24 =2E=2E
+>-rw-r--r--  3 konsti konsti  128 Apr  1 14:24 THE_D
+>drwxr-xr-x  2 konsti konsti 4096 Apr  1 14:24 bin
+>drwxr-xr-x  5 konsti konsti 4096 Apr  1 14:22 conf
+>drwxr-xr-x  3 konsti konsti 4096 Apr  1 14:22 include
+>drwxr-xr-x  5 konsti konsti 4096 Apr  1 14:24 lib
+>drwxr-xr-x 69 konsti konsti 4096 Apr  1 14:23 modules
+>-rw-r--r--  3 konsti konsti  129 Apr  1 14:22 release
+>
+>So accordingly the recipe continues with extending the FILES to do
+>packaging this way:
+>
+>FILES_${PN} +=3D "\
+>    ${JAVA_HOME}/bin/[a-z]* \
+>    ${JAVA_HOME}/lib/[a-z]* \
 
+FILES variables is compatible with glob from Python so that should work bu=
+t that's really the first time I see this, usually it's just the directory =
+or dir/*=2E Learned something new today :)
+
+>    ${JAVA_HOME}/modules \
+>    ${JAVA_HOME}/release \
+>    ${JAVA_HOME}/conf \
+>    ${JAVA_HOME}/include \
+>    ${JAVA_HOME}/THE_D \
+>"
 >
-> ---John
+>When I do "bitbake -e openjdk-18 |grep FILES_openjdk-18=3D" I get this:
 >
+
+Are you on honister (or master/soon kirkstone) release? If so, it's FILES:=
+${PN} and not FILES_${PN}=2E
+
+Try to avoid using hardcoded names instead of ${PN} because it breaks mult=
+ilib (probably not a problem for many, I can concede :) )=2E
+
+Make sure that openjdk-18 is actually a valid package name too by running =
+bitbake -e <recipe-name> | grep "^PACKAGES=3D"=2E
+
+>FILES_openjdk-18=3D"     /usr/lib/jvm/openjdk-18/bin/[a-z]*     /usr/lib/=
+jvm/openjdk-18/lib/[a-z]*     /usr/lib/jvm/openjdk-18/modules     /usr/lib/=
+jvm/openjdk-18/release     /usr/lib/jvm/openjdk-18/conf     /usr/lib/jvm/op=
+enjdk-18/include     /usr/lib/jvm/openjdk-18/THE_D "
 >
-> Links:
-> ------
-> [1] http://lists.yoctoproject.org
+>When bitbake tries to package, I get this error:
 >
+>ERROR: openjdk-18-18+37+gitAUTOINC+0f2113cee7-r0 do_package: QA Issue: op=
+enjdk-18: Files/directories were installed but not shipped in any package:
+>  /usr/lib/jvm/openjdk-18/release
+>  /usr/lib/jvm/openjdk-18/THE_D
+>  /usr/lib/jvm/openjdk-18/conf
+>  /usr/lib/jvm/openjdk-18/include
+>  /usr/lib/jvm/openjdk-18/lib/libj2gss=2Eso
+>[=2E=2E=2E]
+>  /usr/lib/jvm/openjdk-18/modules/jdk=2Einternal=2Ele/jdk/internal/org/jl=
+ine/keymap/BindingReader=2Eclass
+>  /usr/lib/jvm/openjdk-18/modules/jdk=2Einternal=2Ele/jdk/internal/org/jl=
+ine/keymap/KeyMap=2Eclass
+>Please set FILES such that these items are packaged=2E Alternatively if t=
+hey are unneeded, avoid installing them or delete them within do_install=2E
+>openjdk-18: 28751 installed and not shipped files=2E [installed-vs-shippe=
+d]
+>ERROR: openjdk-18-18+37+gitAUTOINC+0f2113cee7-r0 do_package: Fatal QA err=
+ors found, failing task=2E
+>ERROR: Logfile of failure stored in: /home/konsti/yocto/build/tmp/work/co=
+rtexa8hf-neon-poky-linux-gnueabi/openjdk-18/18+37+gitAUTOINC+0f2113cee7-r0/=
+temp/log=2Edo_package=2E3424506
+>ERROR: Task (/home/konsti/yocto/meta-insidem2m/recipes-core/openjdk/openj=
+dk-18_18+37=2Ebb:do_package) failed with exit code '1'
 >
+>Well, I am pretty shure the FILES_${PN} refers relative to ${D}, where
+>is my stupid misunderstanding?
 >
-> Links:
-> ------
-> [1] http://lists.yoctoproject.org
+>Side-Quest: In do install the destination is referred as
+>${D}${JAVA_HOME}=2E Why does this not need to be ${D}/${JAVA_HOME}?
 >
->
->
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#56618): https://lists.yoctoproject.org/g/yocto/message/56618
-> Mute This Topic: https://lists.yoctoproject.org/mt/90188098/5071304
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub
-> [jchludzinski@vivaldi.net]
-> -=-=-=-=-=-=-=-=-=-=-=-
+
+To quote yourself:
+>${JAVA_HOME} expands to /usr/lib/jvm/openjdk-18
+
+Cheers,
+Quentin
 
