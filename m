@@ -2,69 +2,77 @@ Return-Path: <mingli.yu@windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F00F6C63715
-	for <webhook@archiver.kernel.org>; Mon,  4 Apr 2022 18:46:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 05031C63716
+	for <webhook@archiver.kernel.org>; Mon,  4 Apr 2022 18:46:47 +0000 (UTC)
 Received: from mail1.wrs.com (mail1.wrs.com [147.11.3.146])
- by mx.groups.io with SMTP id smtpd.web08.7759.1648867152809411820
+ by mx.groups.io with SMTP id smtpd.web08.7873.1648867867075153537
  for <yocto@lists.yoctoproject.org>;
- Fri, 01 Apr 2022 19:39:12 -0700
+ Fri, 01 Apr 2022 19:51:07 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing;
  spf=permerror,
  err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid
  domain name (domain: windriver.com, ip: 147.11.3.146,
  mailfrom: mingli.yu@windriver.com)
+Received: from mail.windriver.com (mail.wrs.com [147.11.1.11])
+	by mail1.wrs.com (8.15.2/8.15.2) with ESMTPS id 2322p5Gc010360
+	(version=TLSv1.1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL)
+	for <yocto@lists.yoctoproject.org>; Fri, 1 Apr 2022 19:51:06 -0700
 Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.corp.ad.wrs.com
  [147.11.82.252])
-	by mail1.wrs.com (8.15.2/8.15.2) with ESMTPS id 2322dCQj008936
+	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id 2322p0hg023734
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <yocto@lists.yoctoproject.org>; Fri, 1 Apr 2022 19:39:12 -0700
-Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
+	for <yocto@lists.yoctoproject.org>; Fri, 1 Apr 2022 19:51:05 -0700 (PDT)
+Received: from ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) by
  ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 1 Apr 2022 19:39:11 -0700
+ 15.1.2242.12; Fri, 1 Apr 2022 19:51:00 -0700
+Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
+ ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Fri, 1 Apr 2022 19:51:00 -0700
 Received: from pek-lpg-core2.wrs.com (128.224.153.41) by
  ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
- 15.1.2242.12 via Frontend Transport; Fri, 1 Apr 2022 19:39:11 -0700
+ 15.1.2242.12 via Frontend Transport; Fri, 1 Apr 2022 19:50:59 -0700
 From: <mingli.yu@windriver.com>
 To: <yocto@lists.yoctoproject.org>
-Subject: [meta-cgl-common][PATCH 4/8] libtest-pod-perl: Update LICENSE
- variable
-Date: Sat, 2 Apr 2022 10:39:03 +0800
-Message-ID: <20220402023907.1765138-4-mingli.yu@windriver.com>
+Subject: [meta-selinux][PATCH 02/11] selinux-dbus: Update LICENSE variable
+Date: Sat, 2 Apr 2022 10:50:48 +0800
+Message-ID: <20220402025057.1774389-2-mingli.yu@windriver.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220402023907.1765138-1-mingli.yu@windriver.com>
-References: <20220402023907.1765138-1-mingli.yu@windriver.com>
+In-Reply-To: <20220402025057.1774389-1-mingli.yu@windriver.com>
+References: <20220402025057.1774389-1-mingli.yu@windriver.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 04 Apr 2022 18:46:46 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56624
+ <yocto@lists.yoctoproject.org>; Mon, 04 Apr 2022 18:46:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56631
 
 From: Mingli Yu <mingli.yu@windriver.com>
 
-Update LICENSE variable to use SPDX license identifiers.
+Update LICENSE variable to use SPDX license identifiers
 
 Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
 ---
- meta-cgl-common/recipes-perl/perl/libtest-pod-perl_1.52.bb | 2 +-
+ recipes-security/selinux/selinux-dbus_3.3.bb | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-cgl-common/recipes-perl/perl/libtest-pod-perl_1.52.bb b/meta-cgl-common/recipes-perl/perl/libtest-pod-perl_1.52.bb
-index c9f455a..968c628 100644
---- a/meta-cgl-common/recipes-perl/perl/libtest-pod-perl_1.52.bb
-+++ b/meta-cgl-common/recipes-perl/perl/libtest-pod-perl_1.52.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Test::Pod - check for POD errors in files"
- SECTION = "libs"
--LICENSE = "Artistic-1.0 | GPL-1.0+"
-+LICENSE = "Artistic-1.0 | GPL-1.0-or-later"
- LIC_FILES_CHKSUM = "file://README;beginline=26;md5=ea81140c3f3b2937c6490fc732471cd0"
- HOMEPAGE = "https://github.com/perl-pod/test-pod/"
- BBCLASSEXTEND = "native"
+diff --git a/recipes-security/selinux/selinux-dbus_3.3.bb b/recipes-security/selinux/selinux-dbus_3.3.bb
+index badf392..936baed 100644
+--- a/recipes-security/selinux/selinux-dbus_3.3.bb
++++ b/recipes-security/selinux/selinux-dbus_3.3.bb
+@@ -2,7 +2,7 @@ SUMMARY = "SELinux dbus service files"
+ DESCRIPTION = "\
+ Provide SELinux dbus service files and scripts."
+ SECTION = "base"
+-LICENSE = "GPLv2+"
++LICENSE = "GPL-2.0-or-later"
+ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=393a5ca445f6965873eca0259a17f833"
+ 
+ require selinux_common.inc
 -- 
 2.25.1
 
