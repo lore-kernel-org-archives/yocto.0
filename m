@@ -2,42 +2,42 @@ Return-Path: <mingli.yu@windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 99AECC636CF
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B1B43C636D5
 	for <webhook@archiver.kernel.org>; Mon,  4 Apr 2022 18:46:45 +0000 (UTC)
 Received: from mail1.wrs.com (mail1.wrs.com [147.11.3.146])
- by mx.groups.io with SMTP id smtpd.web11.7986.1648867869329222432
+ by mx.groups.io with SMTP id smtpd.web11.7877.1648867153890400389
  for <yocto@lists.yoctoproject.org>;
- Fri, 01 Apr 2022 19:51:09 -0700
+ Fri, 01 Apr 2022 19:39:14 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing;
  spf=permerror,
  err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid
  domain name (domain: windriver.com, ip: 147.11.3.146,
  mailfrom: mingli.yu@windriver.com)
+Received: from mail.windriver.com (mail.wrs.com [147.11.1.11])
+	by mail1.wrs.com (8.15.2/8.15.2) with ESMTPS id 2322dDD8008939
+	(version=TLSv1.1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL)
+	for <yocto@lists.yoctoproject.org>; Fri, 1 Apr 2022 19:39:13 -0700
 Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.corp.ad.wrs.com
  [147.11.82.252])
-	by mail1.wrs.com (8.15.2/8.15.2) with ESMTPS id 2322p9wV010384
+	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id 2322dCWr022557
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <yocto@lists.yoctoproject.org>; Fri, 1 Apr 2022 19:51:09 -0700
-Received: from ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) by
+	for <yocto@lists.yoctoproject.org>; Fri, 1 Apr 2022 19:39:13 -0700 (PDT)
+Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
  ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 1 Apr 2022 19:51:08 -0700
-Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
- ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Fri, 1 Apr 2022 19:51:08 -0700
+ 15.1.2242.12; Fri, 1 Apr 2022 19:39:12 -0700
 Received: from pek-lpg-core2.wrs.com (128.224.153.41) by
  ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
- 15.1.2242.12 via Frontend Transport; Fri, 1 Apr 2022 19:51:08 -0700
+ 15.1.2242.12 via Frontend Transport; Fri, 1 Apr 2022 19:39:12 -0700
 From: <mingli.yu@windriver.com>
 To: <yocto@lists.yoctoproject.org>
-Subject: [meta-selinux][PATCH 10/11] selinux-sandbox: Update LICENSE variable
-Date: Sat, 2 Apr 2022 10:50:56 +0800
-Message-ID: <20220402025057.1774389-10-mingli.yu@windriver.com>
+Subject: [meta-cgl-common][PATCH 5/8] pacemaker: Update LICENSE variable
+Date: Sat, 2 Apr 2022 10:39:04 +0800
+Message-ID: <20220402023907.1765138-5-mingli.yu@windriver.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220402025057.1774389-1-mingli.yu@windriver.com>
-References: <20220402025057.1774389-1-mingli.yu@windriver.com>
+In-Reply-To: <20220402023907.1765138-1-mingli.yu@windriver.com>
+References: <20220402023907.1765138-1-mingli.yu@windriver.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -45,7 +45,7 @@ List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Mon, 04 Apr 2022 18:46:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56638
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56625
 
 From: Mingli Yu <mingli.yu@windriver.com>
 
@@ -53,22 +53,22 @@ Update LICENSE variable to use SPDX license identifiers.
 
 Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
 ---
- recipes-security/selinux/selinux-sandbox_3.3.bb | 2 +-
+ meta-cgl-common/recipes-cgl/pacemaker/pacemaker_2.0.5.bb | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-security/selinux/selinux-sandbox_3.3.bb b/recipes-security/selinux/selinux-sandbox_3.3.bb
-index a20982c..cc9baad 100644
---- a/recipes-security/selinux/selinux-sandbox_3.3.bb
-+++ b/recipes-security/selinux/selinux-sandbox_3.3.bb
-@@ -4,7 +4,7 @@ Run application within a tightly confined SELinux domain. The default \
- sandbox domain only allows applications the ability to read and write \
- stdin, stdout and any other file descriptors handed to it."
- SECTION = "base"
--LICENSE = "GPLv2+"
-+LICENSE = "GPL-2.0-or-later"
- LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=393a5ca445f6965873eca0259a17f833"
+diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_2.0.5.bb b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_2.0.5.bb
+index 3bff2ba..ad8c641 100644
+--- a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_2.0.5.bb
++++ b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_2.0.5.bb
+@@ -8,7 +8,7 @@ when related resources fail and can be configured to periodically \
+ check resource health."
+ HOMEPAGE = "http://www.clusterlabs.org"
  
- require selinux_common.inc
+-LICENSE = "GPLv2+ & LGPLv2.1+"
++LICENSE = "GPL-2.0-or-later & LGPL-2.1-or-later"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=000212f361a81b100d9d0f0435040663"
+ 
+ DEPENDS = "corosync libxslt libxml2 gnutls resource-agents libqb python3-native"
 -- 
 2.25.1
 
