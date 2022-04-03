@@ -1,94 +1,114 @@
-Return-Path: <davidegarde2000@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0372EC38A02
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7B358C3A5A1
 	for <webhook@archiver.kernel.org>; Mon,  4 Apr 2022 18:46:42 +0000 (UTC)
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com
- [209.85.218.51])
- by mx.groups.io with SMTP id smtpd.web11.34690.1649077054397769183
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
+ [209.85.221.49])
+ by mx.groups.io with SMTP id smtpd.web10.21869.1648982648598262590
  for <yocto@lists.yoctoproject.org>;
- Mon, 04 Apr 2022 05:57:34 -0700
+ Sun, 03 Apr 2022 03:44:08 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=ZMHgnt3B;
- spf=pass (domain: gmail.com, ip: 209.85.218.51,
- mailfrom: davidegarde2000@gmail.com)
-Received: by mail-ej1-f51.google.com with SMTP id a6so8796651ejk.0
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=ZtAI7Luv;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.49,
+ mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f49.google.com with SMTP id c7so10464685wrd.0
         for <yocto@lists.yoctoproject.org>;
- Mon, 04 Apr 2022 05:57:34 -0700 (PDT)
+ Sun, 03 Apr 2022 03:44:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=vlRWWSpnKEjom0uxrsKP8boJ4oJrOAwKa9myHTGAyDg=;
-        b=ZMHgnt3BU+T4ZoUlbGboQ6NAJx55L3xix6FG3dzGK3sf4EqH4DmQZdjb3ZL+dKrtQM
-         DDRy7nlziN65zGH3MvGrjH38SNqzQCK0LVF3laIjwrMYcCrOxc0BZBxW+ptXmDTxiQud
-         DfQw88dClWez/ETywAPbZs/ssajS9CSu+DYzPMyMP1GGdAipOLl5g2aUWvwuEVGjGN0l
-         2QZP96CXaX8rr8vYuL4ibBa+O42z7kZM2P3JPX8edENRpggxoX9QUkY7e8lknnWw04g7
-         iTQYLXrGihqyphQ5HK61HKwNLhxC6jQ+6x/pn0c86RkEJMEqY6bKEnQh+hIAufq3ne0I
-         51XA==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=wlz68SU1wmyg6ZjeFKWMe7MhF4BLd1pYA1kYe2piLp4=;
+        b=ZtAI7Luv4PhcZEDXkKp2rR+Z6ejwC9kuLRz+wbmcYzpVyEBAXdDW+KYA/DwNAoXrDu
+         WNBe9MhOetX6naASz/Du1ldKc0YrkXAigljDthTp79AXAzMn3uC1GC/JyaT5X5uBrDvM
+         s2vgkz2OSoGODR7jnN8Yt6SHOxs+BmDx1+V+0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=vlRWWSpnKEjom0uxrsKP8boJ4oJrOAwKa9myHTGAyDg=;
-        b=PhTKVtkdzvMsdY1eNYLicx21DMwmDL+irr4DMkA6s1lRX1HFLuKFvnD8I39dO3qbmw
-         p/Clb2clu01JpgSG7oclmmBV4Jg2sx5+Gu9bsRnzyyLzofEpGonZo9YzHz69mEFLuha2
-         mXlVJPRXuxVjfevS2ugUNNtJj065/azffkHBeuLPEhudHvy442mRTPosbKU3R0jjUNVV
-         1DNvL9893IDYUwJWAZIrA6b87fYzQKYcghcwO1Z8eWQRZ+/LrBfV2Jes/CtP/e2v5Fba
-         tOqwc1MiuI6wXR2rMUKbyc0XJTlgXsAkrDf0tNSKI0J+pBsEyV/IFL07weyS2PMBk342
-         2O1A==
-X-Gm-Message-State: AOAM533YqK0nb/lkxYsxOu5UtnA7AXXHDBiKqx7zVFfkLIxrXfoA/le7
-	0TPsqGktsrgX95hoaYKRNqcbFd0x6cPlgA==
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=wlz68SU1wmyg6ZjeFKWMe7MhF4BLd1pYA1kYe2piLp4=;
+        b=L354otq3P+HRmNu9wQwb0WaDVTWxy7Jw++dryX3ClPyoilUpa4cXjBtk4W8kc4EW7q
+         PvcqGc/B8pUhgSCAta6JzxqNG9ihQMToAxB12co/kVKpgt7DzBaiyg4jNIaiW1tCf6WW
+         FgO0ytrLLD2FApzv3XDZ8hw1B3RvOvC5PmXvJdPNxnYVHycOcsObpSD8BtOe82NmPyF7
+         R9hqfKb80qrRuLLBuM00UMI2cieixZgGTz1w+tGMW/Oj5u/RTLQtcys7/W3VgP3O4gBm
+         Fy9EZZHBS2YuyeB+UpCVADdNIBCvrmVhBiv210xpUGIDfQsp2doQgJ9XhBscE4JI1HL3
+         SjKQ==
+X-Gm-Message-State: AOAM533mVvJlANIopskRzgtSvn7TFOivQB8XzC1YAx39+tL0IBS/4nHe
+	g4o4sVUzPPztbrZJ/FZmY0MIGw==
 X-Google-Smtp-Source: 
- ABdhPJy0xslpRPr/ZPyp/y03TG7aiM0h8cqfFZ6B53rXTdIueY0TpReE0BUX8q3yuzH+08JL5LyUuw==
-X-Received: by 2002:a17:906:c104:b0:6e4:a223:1af9 with SMTP id
- do4-20020a170906c10400b006e4a2231af9mr10237387ejc.441.1649077052267;
-        Mon, 04 Apr 2022 05:57:32 -0700 (PDT)
-Received: from tony3oo3-XPS-13-9370.home
- (host-82-60-178-52.retail.telecomitalia.it. [82.60.178.52])
+ ABdhPJzARAoMVFQXUPVan6zNTAwgAs6bJEyuAv2kty16MUlspJQ9j+Uk+kLqHg2mnaHfVhtB4t83Uw==
+X-Received: by 2002:a5d:5344:0:b0:206:bd8:28b2 with SMTP id
+ t4-20020a5d5344000000b002060bd828b2mr2432353wrv.189.1648982647129;
+        Sun, 03 Apr 2022 03:44:07 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:819:f853:3436:28c4?
+ ([2001:8b0:aba:5f3c:819:f853:3436:28c4])
         by smtp.gmail.com with ESMTPSA id
- a18-20020a1709063e9200b006e0527baa77sm4367272ejj.92.2022.04.04.05.57.31
+ i15-20020a5d584f000000b00204171ba528sm6389738wrf.109.2022.04.03.03.44.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Apr 2022 05:57:31 -0700 (PDT)
-From: Davide Gardenal <davidegarde2000@gmail.com>
-X-Google-Original-From: Davide Gardenal <davide.gardenal@huawei.com>
-To: yocto@lists.yoctoproject.org
-Cc: Davide Gardenal <davide.gardenal@huawei.com>
-Subject: [meta-security][PATCH] clamav: add COMPATIBLE_HOST to fix build error
-Date: Mon,  4 Apr 2022 14:57:27 +0200
-Message-Id: <20220404125727.43818-1-davide.gardenal@huawei.com>
-X-Mailer: git-send-email 2.32.0
+        Sun, 03 Apr 2022 03:44:06 -0700 (PDT)
+Message-ID: 
+ <3136cb5acad9fabe522ec58be472e2eea3fa0d88.camel@linuxfoundation.org>
+Subject: Re: [yocto] Fedora 36 / uninative GLIBCXX 3.4.30
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Federico Pellegrin <fede@evolware.org>, Yocto-mailing-list
+	 <yocto@lists.yoctoproject.org>
+Date: Sun, 03 Apr 2022 11:44:04 +0100
+In-Reply-To: 
+ <CAM6O0ZhqFZO4oq7NyGTHYHZ50Kp8F7aSqjeVRH7Ok1kKHzkPCQ@mail.gmail.com>
+References: 
+	<CAM6O0ZhqFZO4oq7NyGTHYHZ50Kp8F7aSqjeVRH7Ok1kKHzkPCQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4-1ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Mon, 04 Apr 2022 18:46:42 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56657
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56648
 
-Add COMPATIBLE_HOST to match what is found in glibc
-to avoid build error when using musl
+On Sun, 2022-04-03 at 09:12 +0200, Federico Pellegrin wrote:
+> I've been playing around building a Yocto imagine based on kirkstone/master on
+> the just released Fedora 36 beta test image. (just to give a few bits more
+> details: builds a MX8X image, works perfectly fine with Fedora 34 and 35 since
+> quite some time)
+> 
+> The first and most obvious thing I've found out is that it is based on a newer
+> version of glibcxx (3.4.30) when the very latest uninative available (as far
+> as I could see, apologies if I'm wrong) is on 3.4.29, so at some point this
+> will break the build (when pzstd is called).
+> 
+> Of course for the time being I just disabled uninative and the build is going
+> on (will report of course should I find something else). I'm not sure (still
+> checking this) if that should have happened automatically, but there was
+> actually no warning in that sense (maybe because is GLIBCXX and not GLIBC
+> itself?)
+> But the question is: should I try to contribute that tarball (I will search
+> for details, but if there is any good reference more than welcome!) or is it
+> something that is likely done by the core team?
+> 
+> Of course FC36 is still a test distro so there is no surprise it broke, but as
+> we are close to Kirkstone release and possibly other distros will get the same
+> upgrade, I guess it could be great if we may fix this before that deadline.
 
-Signed-off-by: Davide Gardenal <davide.gardenal@huawei.com>
----
- recipes-scanners/clamav/clamav_0.104.0.bb | 2 ++
- 1 file changed, 2 insertions(+)
+Thanks for reporting it. I think to generate the newer version we need gcc 12
+which is still in pre-release. We generate the uninative tarball using our own
+builds on the autobuilder so until we have gcc 12 recipes there, we can't
+generate that.
 
-diff --git a/recipes-scanners/clamav/clamav_0.104.0.bb b/recipes-scanners/clamav/clamav_0.104.0.bb
-index f0889de..ae2d292 100644
---- a/recipes-scanners/clamav/clamav_0.104.0.bb
-+++ b/recipes-scanners/clamav/clamav_0.104.0.bb
-@@ -6,6 +6,8 @@ LICENSE = "LGPL-2.1"
- 
- DEPENDS = "glibc llvm libtool db openssl zlib curl libxml2 bison pcre2 json-c libcheck"
-  
-+COMPATIBLE_HOST:libc-musl:class-target = "null"
-+
- LIC_FILES_CHKSUM = "file://COPYING.txt;beginline=2;endline=3;md5=f7029fbbc5898b273d5902896f7bbe17"
- 
- # July 27th
--- 
-2.32.0
+Once gcc 12 is out, we will release a new uninative (assuming we can update our
+recipes).
+
+I'd like to think the checks in uninative would have noticed the mismatch, we do
+have some code there to detect libc version but perhaps not the CXX pieces so
+I'd welcome help in adding something for that.
+
+Cheers,
+
+Richard
+
+
 
 
