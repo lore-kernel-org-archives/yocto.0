@@ -1,312 +1,153 @@
-Return-Path: <fede@evolware.org>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6DD97C4321E
-	for <webhook@archiver.kernel.org>; Mon,  4 Apr 2022 18:46:44 +0000 (UTC)
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com
- [209.85.167.41])
- by mx.groups.io with SMTP id smtpd.web09.30528.1649041105353617762
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0BEA9C43217
+	for <webhook@archiver.kernel.org>; Mon,  4 Apr 2022 18:46:45 +0000 (UTC)
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com
+ [209.85.208.174])
+ by mx.groups.io with SMTP id smtpd.web09.32521.1649061464486435299
  for <yocto@lists.yoctoproject.org>;
- Sun, 03 Apr 2022 19:58:25 -0700
+ Mon, 04 Apr 2022 01:37:44 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=pass (domain: gmail.com, ip: 209.85.167.41, mailfrom: fede.evol@gmail.com)
-Received: by mail-lf1-f41.google.com with SMTP id bu29so14840375lfb.0
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=S+XyVqji;
+ spf=pass (domain: gmail.com, ip: 209.85.208.174,
+ mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f174.google.com with SMTP id b43so11842639ljr.10
         for <yocto@lists.yoctoproject.org>;
- Sun, 03 Apr 2022 19:58:25 -0700 (PDT)
+ Mon, 04 Apr 2022 01:37:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+tl6pCwMej54+5nJEOlSoDDhp6ZcfbgQsAfIPKu+cTM=;
+        b=S+XyVqjikKF4k0MH7Bx0/eaXiFHUQ7RYJ63nYmBeMMKJwd6E4C4RCttlU12bNxzp48
+         SCP19fKbdsnpCw8IWT5lcRn7Gz6uPBgV90MWyna347NLqVqo4wher+m6SLqPRw/uEAJI
+         9yoZy8jFg4f9VCWHKGji4MdUV9hdwv+9J35vPAHF5g0ORO0qcs0pr9lpwJTsqercje5+
+         6LoITmyhD+OHijlVuHXofYApq5LwQ8HCbOGv4+RCqvXR9ECp/iUqYblQjPMjeC1CSD7S
+         XBV2PM35mmC2rDQ3grvBDep9tjzCL3hK1sU7jJ2rS1xbszNfWffkV9j0PscbyqVNf81L
+         nZhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=JgrZsU7xNcbHDFmuCqtrVtpAZ9lD2UaxUWxgcvQU6yI=;
-        b=3yFUWhLQQLAyhBF89oeKjGgES7ZpKnsiLoBL4UQnb9DMx3/k+Rk6LPI9VwjjiKv0yX
-         8Qiwr5iufayCt8yGYKZO71PLDw7yMjYOTwwsy5V8p/r8QYK1NplEqkmxZx8PaIDj0pxT
-         b8ZXg/Efc09neJUiOpKInTPXiFP1AUJcFITXoMe+2mN+hGC4+LBsWl0+VvEcu+ZSD7HY
-         bUsNHgi3J/1zMgB/mrd+9yTs306B3496/TqjxgmEGBvBRfegdYBo7zP9mpQA/n0xr6Fy
-         4aQLDlF427Rr/3o3p/+QkTgqovSMEmPtMHw/SDvKbtIQNTQTrqTM2bojC0Dtzrv7cvCb
-         XklQ==
-X-Gm-Message-State: AOAM531/Qotn6g5UMavV3Vji7CXKicsmWI63752QLj/z6t9ANTmvO7+O
-	iEcXw7kf9hr8H67C+1Nbs64SUvx40uR164BM4Zc=
+        bh=+tl6pCwMej54+5nJEOlSoDDhp6ZcfbgQsAfIPKu+cTM=;
+        b=5M9w98cuWmfh/V6zckdlbYlxk+cOPkzaRdB75GOdycdJxquhEBeTMBRCHIJ/EbfChS
+         wTeO1p0AHeqOAoocY1EKQ7g/qz3c8nnoFHtU8+/00q96KNAaHJSm4GoezMDb/+bPTrrg
+         e7sg8OHvpgvGO0kNAQgFknbl+cwv8mtvT1/2Yeaw7R9kyPFmYf1ki3+U6ffnxyG2TE//
+         hdQzYJMiwzCQS5V6xAv7RalPNe/KsQxbW+C/Na70HO4kU62ZvpgUKVQxqbkh0vJ3v4/B
+         uiy6PJjsdbya/mBNXN8nwQqo11bGQTZnQeRoCezsVerwVyajmhl4KFXRXOX+h9Zr2HCk
+         myvw==
+X-Gm-Message-State: AOAM531qGVEuOrvWMZYGrfAuNA4GMsCWL3KBMgQM2BNXnUh581xXno3O
+	Gr+y83NK4KBw105mp9nE9FomgKDkXI+QOtQ6Wyk=
 X-Google-Smtp-Source: 
- ABdhPJytQKbHBoFBGAMShbeDdupCkNa6+UARK8UYu0wkVvZG9uznC/Y9TGQH01EG7SAKtSdQxrkjWXFuZEMUXYibgPU=
-X-Received: by 2002:a19:7608:0:b0:44a:2428:3ec1 with SMTP id
- c8-20020a197608000000b0044a24283ec1mr21043039lff.355.1649041103373; Sun, 03
- Apr 2022 19:58:23 -0700 (PDT)
+ ABdhPJwEz5VBw/enjxHOTsDs9S2/RvFjVW/+47v2uhuNMR5ZLcZAaz2774FtDMnor3r/+rUTzD+l1Z78p0vt0EF9oM0=
+X-Received: by 2002:a2e:888a:0:b0:249:8e84:65b8 with SMTP id
+ k10-20020a2e888a000000b002498e8465b8mr20573957lji.56.1649061462266; Mon, 04
+ Apr 2022 01:37:42 -0700 (PDT)
 MIME-Version: 1.0
 References: 
- <CAM6O0ZhqFZO4oq7NyGTHYHZ50Kp8F7aSqjeVRH7Ok1kKHzkPCQ@mail.gmail.com>
- <3136cb5acad9fabe522ec58be472e2eea3fa0d88.camel@linuxfoundation.org>
- <CA+chaQc=SZ9zMRVkufKdnx6B7qo20pwfntDB15yyqiqV3iomNg@mail.gmail.com>
+ <CANPOWsdhxtqqc-m0rBJV2_+jYo2_XcCE6sWJO7=-cWHDNjUSQQ@mail.gmail.com>
 In-Reply-To: 
- <CA+chaQc=SZ9zMRVkufKdnx6B7qo20pwfntDB15yyqiqV3iomNg@mail.gmail.com>
-From: Federico Pellegrin <fede@evolware.org>
-Date: Mon, 4 Apr 2022 04:58:12 +0200
+ <CANPOWsdhxtqqc-m0rBJV2_+jYo2_XcCE6sWJO7=-cWHDNjUSQQ@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Mon, 4 Apr 2022 10:37:30 +0200
 Message-ID: 
- <CAM6O0Zh1JjcmVdgWc_He-KYA2eiS3ruaijgbX5AhtNY7Zn-Rxw@mail.gmail.com>
-Subject: Re: [yocto] Fedora 36 / uninative GLIBCXX 3.4.30
-To: Martin Jansa <martin.jansa@gmail.com>
-Cc: Richard Purdie <richard.purdie@linuxfoundation.org>,
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000002fc9d805dbcb4db1"
+ <CANNYZj9cssi4BOB0RytJo5GbOUaeNCNWgXjMnjDFPNWAO+zACA@mail.gmail.com>
+Subject: Re: [yocto] Building a core-image-weston with custom app using rust
+ and gtk3
+To: Artur Czajkowski <atch.cpp@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000abd7a105dbd00add"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Mon, 04 Apr 2022 18:46:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56653
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56655
 
---0000000000002fc9d805dbcb4db1
+--000000000000abd7a105dbd00add
 Content-Type: text/plain; charset="UTF-8"
 
-Hello,
-Thanks for the feedback!
+It helps if you show the error messages. Otherwise, the only thing we can
+say in response is 'yes, apparently'.
 
-Indeed the check is only on the "ldd --version" output which doesn't
-account for the libstdc++ and that explains it. As compared to Ubuntu
-22.04, Fedora 36 actually has also GCC 12.0.1 as default compiler.
+Alex
 
-As Martin mentions not sure if there is an easy portable way. He mentions
-objdump which is for sure effective but maybe complicated and I feel like
-relies on the filename being guessed (well should be known, the main link
-at least) and feels a bit overcomplicated (if we need to go that low level
-in case I'd suggest just to just use "strings" and grep there instead).
+On Sat, 2 Apr 2022 at 10:53, Artur Czajkowski <atch.cpp@gmail.com> wrote:
 
-Would relying just on the filename be too shaky? I can see here
-https://gcc.gnu.org/onlinedocs/libstdc++/manual/abi.html in point 3 of
-"History" that it would seem quite well defined. Actually I guess if we
-would just compare the system libstdc++.so.X.Y.Z (which we may be easily
-able to get it from the libstdc++.so link) to uninative one  maybe would be
-enough to determine it is newer? Hardcoding the path to libstdc++.so (as
-ie. /usr/lib64/libstdc++.so) is probably not nice (ie. for custom
-toolchains), so maybe we can ask g++ (-print-search-dirs, libraries
-section) and look in those?
-Then not sure if there are some distros/installs that do the insane-isy
-thing of just installing directly the .so stripping the versions from the
-name, hopefully not.
-
-I'm not sure using anything from g++ -dumpspecs would be viable if as
-Martin mentions you may have (ie. ubuntu-2204) a version with new stdc++
-but older g++.
-
-Cheers,
-Federico
-
-
-Il giorno dom 3 apr 2022 alle ore 16:52 Martin Jansa <martin.jansa@gmail.com>
-ha scritto:
-
-> FWIW: the same is happening now with ubuntu-22.04 where libstdc++6 package
-> is now built from gcc-12 sources (even when gcc itself still defaults to
-> gcc-11).
+> Hello,
+> I'm having real difficulties in compiling a Rust app that uses gtk3 (this
+> app successfully builds and runs on my host machine). I'm on the master
+> branch of poky, using rust 1.59.
+> Is this still untested and unstabilized feature, that is gtk-rs bindings
+> in yocto?
 >
-> I was trying to add the check in uninative.bbclass, but haven't found easy
-> portable way to detect the version from libstdc++.so.6 (other than parsing
-> objdump -x /full/path/to/libstdc++.so.6 output).
+> Thank you
 >
-> On Sun, Apr 3, 2022 at 12:44 PM Richard Purdie <
-> richard.purdie@linuxfoundation.org> wrote:
+> --
 >
->> On Sun, 2022-04-03 at 09:12 +0200, Federico Pellegrin wrote:
->> > I've been playing around building a Yocto imagine based on
->> kirkstone/master on
->> > the just released Fedora 36 beta test image. (just to give a few bits
->> more
->> > details: builds a MX8X image, works perfectly fine with Fedora 34 and
->> 35 since
->> > quite some time)
->> >
->> > The first and most obvious thing I've found out is that it is based on
->> a newer
->> > version of glibcxx (3.4.30) when the very latest uninative available
->> (as far
->> > as I could see, apologies if I'm wrong) is on 3.4.29, so at some point
->> this
->> > will break the build (when pzstd is called).
->> >
->> > Of course for the time being I just disabled uninative and the build is
->> going
->> > on (will report of course should I find something else). I'm not sure
->> (still
->> > checking this) if that should have happened automatically, but there was
->> > actually no warning in that sense (maybe because is GLIBCXX and not
->> GLIBC
->> > itself?)
->> > But the question is: should I try to contribute that tarball (I will
->> search
->> > for details, but if there is any good reference more than welcome!) or
->> is it
->> > something that is likely done by the core team?
->> >
->> > Of course FC36 is still a test distro so there is no surprise it broke,
->> but as
->> > we are close to Kirkstone release and possibly other distros will get
->> the same
->> > upgrade, I guess it could be great if we may fix this before that
->> deadline.
->>
->> Thanks for reporting it. I think to generate the newer version we need
->> gcc 12
->> which is still in pre-release. We generate the uninative tarball using
->> our own
->> builds on the autobuilder so until we have gcc 12 recipes there, we can't
->> generate that.
->>
->> Once gcc 12 is out, we will release a new uninative (assuming we can
->> update our
->> recipes).
->>
->> I'd like to think the checks in uninative would have noticed the
->> mismatch, we do
->> have some code there to detect libc version but perhaps not the CXX
->> pieces so
->> I'd welcome help in adding something for that.
->>
->> Cheers,
->>
->> Richard
->>
->>
->>
->>
->> -=-=-=-=-=-=-=-=-=-=-=-
->> Links: You receive all messages sent to this group.
->> View/Reply Online (#56648):
->> https://lists.yoctoproject.org/g/yocto/message/56648
->> Mute This Topic: https://lists.yoctoproject.org/mt/90215476/3617156
->> Group Owner: yocto+owner@lists.yoctoproject.org
->> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
->> Martin.Jansa@gmail.com]
->> -=-=-=-=-=-=-=-=-=-=-=-
->>
->>
+>
+> Best regards
+> *Artur Czajkowski*
+>
+> https://marketplace.visualstudio.com/items?itemName=GitAtomic.GitAtomic
+>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#56641):
+> https://lists.yoctoproject.org/g/yocto/message/56641
+> Mute This Topic: https://lists.yoctoproject.org/mt/90197556/1686489
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> alex.kanavin@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
+>
 
---0000000000002fc9d805dbcb4db1
+--000000000000abd7a105dbd00add
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><br></div><div>Hello,</div><div>Thanks for the feedba=
-ck!</div><div><br></div><div>Indeed the check is only on the &quot;ldd --ve=
-rsion&quot; output which doesn&#39;t account for the libstdc++ and that exp=
-lains it. As compared to Ubuntu 22.04, Fedora 36 actually has also GCC 12.0=
-.1 as default compiler.<br></div><div><br></div><div>As Martin mentions not=
- sure if there is an easy portable way. He mentions objdump which is for su=
-re effective but maybe complicated and I feel like relies on the filename b=
-eing guessed (well should be known, the main link at least) and feels a bit=
- overcomplicated (if we need to go that low level in case I&#39;d suggest j=
-ust to just use &quot;strings&quot; and grep there instead).<br></div><div>=
-<br></div><div>Would relying just on the filename be too shaky? I can see h=
-ere <a href=3D"https://gcc.gnu.org/onlinedocs/libstdc++/manual/abi.html" ta=
-rget=3D"_blank">https://gcc.gnu.org/onlinedocs/libstdc++/manual/abi.html</a=
-> in point 3 of &quot;History&quot; that it would seem quite well defined. =
-Actually I guess if we would just compare the system libstdc++.so.X.Y.Z (wh=
-ich we may be easily able to get it from the libstdc++.so link) to uninativ=
-e one=C2=A0 maybe would be enough to determine it is newer? Hardcoding the =
-path to libstdc++.so (as ie. /usr/lib64/libstdc++.so) is probably not nice =
-(ie. for custom toolchains), so maybe we can ask g++ (-print-search-dirs, l=
-ibraries section) and look in those?</div><div>Then not sure if there are s=
-ome distros/installs that do the insane-isy thing of just installing direct=
-ly the .so stripping the versions from the name, hopefully not.</div><div><=
-br></div><div>I&#39;m not sure using anything from g++ -dumpspecs would be =
-viable if as Martin mentions you may have (ie. ubuntu-2204) a version with =
-new stdc++ but older g++.</div><div><br></div>Cheers,<div>Federico<br></div=
-><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">Il giorno dom 3 apr 2022 alle ore 16:52 Martin Jansa &lt;<a=
- href=3D"mailto:martin.jansa@gmail.com" target=3D"_blank">martin.jansa@gmai=
-l.com</a>&gt; ha scritto:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div dir=3D"ltr">FWIW: the same is happening now with ubuntu-22.=
-04 where libstdc++6 package is now built from gcc-12 sources (even when gcc=
- itself still defaults to gcc-11).<div><br></div><div>I was trying to add t=
-he check in uninative.bbclass, but haven&#39;t found easy portable way to d=
-etect the version from libstdc++.so.6 (other than parsing objdump -x /full/=
-path/to/libstdc++.so.6 output).</div></div><br><div class=3D"gmail_quote"><=
-div dir=3D"ltr" class=3D"gmail_attr">On Sun, Apr 3, 2022 at 12:44 PM Richar=
-d Purdie &lt;<a href=3D"mailto:richard.purdie@linuxfoundation.org" target=
-=3D"_blank">richard.purdie@linuxfoundation.org</a>&gt; wrote:<br></div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex">On Sun, 2022-04-03 at 09:12 +=
-0200, Federico Pellegrin wrote:<br>
-&gt; I&#39;ve been playing around building a Yocto imagine based on kirksto=
-ne/master on<br>
-&gt; the just released Fedora 36 beta test image. (just to give a few bits =
-more<br>
-&gt; details: builds a MX8X image, works perfectly fine with Fedora 34 and =
-35 since<br>
-&gt; quite some time)<br>
-&gt; <br>
-&gt; The first and most obvious thing I&#39;ve found out is that it is base=
-d on a newer<br>
-&gt; version of glibcxx (3.4.30) when the very latest uninative available (=
-as far<br>
-&gt; as I could see, apologies if I&#39;m wrong) is on 3.4.29, so at some p=
-oint this<br>
-&gt; will break the build (when pzstd is called).<br>
-&gt; <br>
-&gt; Of course for the time being I just disabled uninative and the build i=
-s going<br>
-&gt; on (will report of course should I find something else). I&#39;m not s=
-ure (still<br>
-&gt; checking this) if that should have happened automatically, but there w=
-as<br>
-&gt; actually no warning in that sense (maybe because is GLIBCXX and not GL=
-IBC<br>
-&gt; itself?)<br>
-&gt; But the question is: should I try to contribute that tarball (I will s=
-earch<br>
-&gt; for details, but if there is any good reference more than welcome!) or=
- is it<br>
-&gt; something that is likely done by the core team?<br>
-&gt; <br>
-&gt; Of course FC36 is still a test distro so there is no surprise it broke=
-, but as<br>
-&gt; we are close to Kirkstone release and possibly other distros will get =
-the same<br>
-&gt; upgrade, I guess it could be great if we may fix this before that dead=
-line.<br>
-<br>
-Thanks for reporting it. I think to generate the newer version we need gcc =
-12<br>
-which is still in pre-release. We generate the uninative tarball using our =
-own<br>
-builds on the autobuilder so until we have gcc 12 recipes there, we can&#39=
-;t<br>
-generate that.<br>
-<br>
-Once gcc 12 is out, we will release a new uninative (assuming we can update=
- our<br>
-recipes).<br>
-<br>
-I&#39;d like to think the checks in uninative would have noticed the mismat=
-ch, we do<br>
-have some code there to detect libc version but perhaps not the CXX pieces =
-so<br>
-I&#39;d welcome help in adding something for that.<br>
-<br>
-Cheers,<br>
-<br>
-Richard<br>
-<br>
-<br>
-<br>
+<div dir=3D"ltr"><div>It helps if you show the error messages. Otherwise, t=
+he only thing we can say in response is &#39;yes, apparently&#39;.</div><di=
+v><br></div><div>Alex<br></div></div><br><div class=3D"gmail_quote"><div di=
+r=3D"ltr" class=3D"gmail_attr">On Sat, 2 Apr 2022 at 10:53, Artur Czajkowsk=
+i &lt;<a href=3D"mailto:atch.cpp@gmail.com">atch.cpp@gmail.com</a>&gt; wrot=
+e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"l=
+tr"><div>Hello,</div><div>I&#39;m having real difficulties in compiling a R=
+ust app that uses gtk3 (this app successfully builds and runs on my host ma=
+chine). I&#39;m on the master branch of poky, using rust 1.59. <br></div><d=
+iv>Is this still untested and unstabilized feature, that is gtk-rs bindings=
+ in yocto?</div><div><br></div><div>Thank you<br></div><div><br>-- <br><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><span><b></b></spa=
+n></div><div><img src=3D"https://drive.google.com/uc?id=3D1BLcgVZIEcdrZSYmP=
+vbKcRoYms-gri1ec&amp;export=3Ddownload" width=3D"96" height=3D"96"><br></di=
+v><div><br></div><div><span><b></b></span>Best regards<br><b>Artur Czajkows=
+ki</b></div><div><b><br></b></div><div><b></b></div><div><a href=3D"https:/=
+/marketplace.visualstudio.com/items?itemName=3DGitAtomic.GitAtomic" target=
+=3D"_blank">https://marketplace.visualstudio.com/items?itemName=3DGitAtomic=
+.GitAtomic</a><b><br></b></div><div><b><br></b></div></div></div></div></di=
+v></div></div>
 <br>
 -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
 Links: You receive all messages sent to this group.<br>
-View/Reply Online (#56648): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/56648" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/56648</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/90215476/3617=
-156" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/90215476/3617156</a><br>
+View/Reply Online (#56641): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/56641" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/56641</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/90197556/1686=
+489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
+/90197556/1686489</a><br>
 Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
 =3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
 Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
 =3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:Martin.Jansa@gmail.com" target=3D"_blank">Martin=
-.Jansa@gmail.com</a>]<br>
+sub</a> [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.k=
+anavin@gmail.com</a>]<br>
 -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
 <br>
 </blockquote></div>
-</blockquote></div>
 
---0000000000002fc9d805dbcb4db1--
+--000000000000abd7a105dbd00add--
 
