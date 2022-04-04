@@ -2,87 +2,92 @@ Return-Path: <davidegarde2000@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C85AFC47084
-	for <webhook@archiver.kernel.org>; Mon,  4 Apr 2022 18:46:41 +0000 (UTC)
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com
- [209.85.208.47])
- by mx.groups.io with SMTP id smtpd.web12.34974.1649078200509288836
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0372EC38A02
+	for <webhook@archiver.kernel.org>; Mon,  4 Apr 2022 18:46:42 +0000 (UTC)
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com
+ [209.85.218.51])
+ by mx.groups.io with SMTP id smtpd.web11.34690.1649077054397769183
  for <yocto@lists.yoctoproject.org>;
- Mon, 04 Apr 2022 06:16:40 -0700
+ Mon, 04 Apr 2022 05:57:34 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Up2v1qzo;
- spf=pass (domain: gmail.com, ip: 209.85.208.47,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=ZMHgnt3B;
+ spf=pass (domain: gmail.com, ip: 209.85.218.51,
  mailfrom: davidegarde2000@gmail.com)
-Received: by mail-ed1-f47.google.com with SMTP id c42so3603407edf.3
+Received: by mail-ej1-f51.google.com with SMTP id a6so8796651ejk.0
         for <yocto@lists.yoctoproject.org>;
- Mon, 04 Apr 2022 06:16:40 -0700 (PDT)
+ Mon, 04 Apr 2022 05:57:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=OGJLtg8OzG5+Y22hX6Ny5rtqAKhPAyK4lk9Ffy4GmZE=;
-        b=Up2v1qzoWUCjNc8CUdmU8Z0CgIWqaCOnlcoTgoa6tXJs2jhGlw6FeA10d6z6hnjxda
-         YcXFYuPbskqXPijQFPG5bOA7I1ojWX4v4v8Ox2Cqi99y1l2oV6xS69jmRLmunrZP22E5
-         nWjUnlnHIz765ZBrmlGaVweiYkJP6dNQjzDdoCwAz5W3libyb862H5QeCeET3eQ64NSo
-         GuGaXYAUclrZMcXwsm3DviT2Zg7Jai/hzw0zNEB939guEyKXHsz67wn9DsmkhSJeWVYz
-         lloT3NNgizsCtOsdZGwBoYsg9zUEx0uSqEAOmhktpAbyndbxjSkI4xs2MGynq9I7hIGl
-         ksCg==
+        bh=vlRWWSpnKEjom0uxrsKP8boJ4oJrOAwKa9myHTGAyDg=;
+        b=ZMHgnt3BU+T4ZoUlbGboQ6NAJx55L3xix6FG3dzGK3sf4EqH4DmQZdjb3ZL+dKrtQM
+         DDRy7nlziN65zGH3MvGrjH38SNqzQCK0LVF3laIjwrMYcCrOxc0BZBxW+ptXmDTxiQud
+         DfQw88dClWez/ETywAPbZs/ssajS9CSu+DYzPMyMP1GGdAipOLl5g2aUWvwuEVGjGN0l
+         2QZP96CXaX8rr8vYuL4ibBa+O42z7kZM2P3JPX8edENRpggxoX9QUkY7e8lknnWw04g7
+         iTQYLXrGihqyphQ5HK61HKwNLhxC6jQ+6x/pn0c86RkEJMEqY6bKEnQh+hIAufq3ne0I
+         51XA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=OGJLtg8OzG5+Y22hX6Ny5rtqAKhPAyK4lk9Ffy4GmZE=;
-        b=P73X4Ni748qap7g7G4gV2DJlQv3iVohXsSMDpJ6eT0GidH8h2USuRoex9pohekSyGH
-         eSVT1Ix/5fAqPuaXcUuk5RfXG918IWLg6cQhyeeK5F+zYW56o/GU3Drpy71J+xkICOQe
-         5JymMjnY3OZFry8EBo2L5QTnibSXngqztytyl0JmLw82UpmAfxYXWbTJgSaw7dO4qycG
-         i2a4JrDjtMlVSkLDI4BzXBi8MUwGSuvbiudHb4VnhE+CX8w3dxlkpSoshUMbPWeHnI/a
-         JZKXZ3v2FZgifj8b2BAbPKwMm8u+G8CmvUPz7/NMIOHeFkC/xJWzXDoSptn7PjkCVSal
-         /WDA==
-X-Gm-Message-State: AOAM531d/I450vcrR9pdIeAl7dwH9o+xPzCqYaXcIKZS2FO3j424iLQZ
-	wfM/negIDu4/JQghoKoDl//f8U8veR0QNI3h
+        bh=vlRWWSpnKEjom0uxrsKP8boJ4oJrOAwKa9myHTGAyDg=;
+        b=PhTKVtkdzvMsdY1eNYLicx21DMwmDL+irr4DMkA6s1lRX1HFLuKFvnD8I39dO3qbmw
+         p/Clb2clu01JpgSG7oclmmBV4Jg2sx5+Gu9bsRnzyyLzofEpGonZo9YzHz69mEFLuha2
+         mXlVJPRXuxVjfevS2ugUNNtJj065/azffkHBeuLPEhudHvy442mRTPosbKU3R0jjUNVV
+         1DNvL9893IDYUwJWAZIrA6b87fYzQKYcghcwO1Z8eWQRZ+/LrBfV2Jes/CtP/e2v5Fba
+         tOqwc1MiuI6wXR2rMUKbyc0XJTlgXsAkrDf0tNSKI0J+pBsEyV/IFL07weyS2PMBk342
+         2O1A==
+X-Gm-Message-State: AOAM533YqK0nb/lkxYsxOu5UtnA7AXXHDBiKqx7zVFfkLIxrXfoA/le7
+	0TPsqGktsrgX95hoaYKRNqcbFd0x6cPlgA==
 X-Google-Smtp-Source: 
- ABdhPJwekHdRVfZkkRKF4+RfobctI4xZoT2Ngy2y4HJF+pduMc0t4q+whQvd6Pi8UmZjiGW0oGnFoQ==
-X-Received: by 2002:aa7:d718:0:b0:41c:d766:7e74 with SMTP id
- t24-20020aa7d718000000b0041cd7667e74mr3395142edq.38.1649078198785;
-        Mon, 04 Apr 2022 06:16:38 -0700 (PDT)
+ ABdhPJy0xslpRPr/ZPyp/y03TG7aiM0h8cqfFZ6B53rXTdIueY0TpReE0BUX8q3yuzH+08JL5LyUuw==
+X-Received: by 2002:a17:906:c104:b0:6e4:a223:1af9 with SMTP id
+ do4-20020a170906c10400b006e4a2231af9mr10237387ejc.441.1649077052267;
+        Mon, 04 Apr 2022 05:57:32 -0700 (PDT)
 Received: from tony3oo3-XPS-13-9370.home
  (host-82-60-178-52.retail.telecomitalia.it. [82.60.178.52])
         by smtp.gmail.com with ESMTPSA id
- s10-20020a50daca000000b0041cc361b1c9sm2308645edj.68.2022.04.04.06.16.37
+ a18-20020a1709063e9200b006e0527baa77sm4367272ejj.92.2022.04.04.05.57.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Apr 2022 06:16:38 -0700 (PDT)
+        Mon, 04 Apr 2022 05:57:31 -0700 (PDT)
 From: Davide Gardenal <davidegarde2000@gmail.com>
 X-Google-Original-From: Davide Gardenal <davide.gardenal@huawei.com>
 To: yocto@lists.yoctoproject.org
 Cc: Davide Gardenal <davide.gardenal@huawei.com>
-Subject: [meta-zephyr][PATCH] zephyr-kernel-src: add whitespace to fix File
- not found during build
-Date: Mon,  4 Apr 2022 15:16:34 +0200
-Message-Id: <20220404131634.45521-1-davide.gardenal@huawei.com>
+Subject: [meta-security][PATCH] clamav: add COMPATIBLE_HOST to fix build error
+Date: Mon,  4 Apr 2022 14:57:27 +0200
+Message-Id: <20220404125727.43818-1-davide.gardenal@huawei.com>
 X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 04 Apr 2022 18:46:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56659
+ <yocto@lists.yoctoproject.org>; Mon, 04 Apr 2022 18:46:42 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56657
+
+Add COMPATIBLE_HOST to match what is found in glibc
+to avoid build error when using musl
 
 Signed-off-by: Davide Gardenal <davide.gardenal@huawei.com>
 ---
- .../recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.0.0.inc    | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ recipes-scanners/clamav/clamav_0.104.0.bb | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.0.0.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.0.0.inc
-index f4ea7d3..61a5076 100644
---- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.0.0.inc
-+++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.0.0.inc
-@@ -69,4 +69,4 @@ SRCREV_zscilib = "12bfe3f0a9fcbfe3edab7eabc9678b6c62875d34"
- ZEPHYR_BRANCH = "v3.0-branch"
- PV = "3.0.0+git${SRCPV}"
+diff --git a/recipes-scanners/clamav/clamav_0.104.0.bb b/recipes-scanners/clamav/clamav_0.104.0.bb
+index f0889de..ae2d292 100644
+--- a/recipes-scanners/clamav/clamav_0.104.0.bb
++++ b/recipes-scanners/clamav/clamav_0.104.0.bb
+@@ -6,6 +6,8 @@ LICENSE = "LGPL-2.1"
  
--SRC_URI += "file://0001-lvgl-add-support-for-lvgl-v8.2.0.patch"
-+SRC_URI += "file://0001-lvgl-add-support-for-lvgl-v8.2.0.patch "
+ DEPENDS = "glibc llvm libtool db openssl zlib curl libxml2 bison pcre2 json-c libcheck"
+  
++COMPATIBLE_HOST:libc-musl:class-target = "null"
++
+ LIC_FILES_CHKSUM = "file://COPYING.txt;beginline=2;endline=3;md5=f7029fbbc5898b273d5902896f7bbe17"
+ 
+ # July 27th
 -- 
 2.32.0
 
