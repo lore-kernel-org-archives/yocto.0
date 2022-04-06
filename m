@@ -1,75 +1,88 @@
-Return-Path: <pokybuild@yoctoproject.org>
+Return-Path: <mans.zigher@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 784D6C35295
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9B1CEC352A8
 	for <webhook@archiver.kernel.org>; Wed,  6 Apr 2022 16:33:19 +0000 (UTC)
-Received: from a27-23.smtp-out.us-west-2.amazonses.com
- (a27-23.smtp-out.us-west-2.amazonses.com [54.240.27.23])
- by mx.groups.io with SMTP id smtpd.web12.6023.1649232661718080859
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com
+ [209.85.215.172])
+ by mx.groups.io with SMTP id smtpd.web12.6282.1649235582004764164
  for <yocto@lists.yoctoproject.org>;
- Wed, 06 Apr 2022 01:11:01 -0700
+ Wed, 06 Apr 2022 01:59:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@yoctoproject.org
- header.s=rnkzp2s7ci3kogmesvov2nwn7wcc2dgx header.b=onPV9rqY;
- spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.23,
- mailfrom: 0101017ffded4843-210c9da1-5b3f-4ed6-bcbc-1f63610acf6e-000000@us-west-2.amazonses.com)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=rnkzp2s7ci3kogmesvov2nwn7wcc2dgx; d=yoctoproject.org;
-	t=1649232660; h=To:Cc:Subject:Message-Id:Date:From;
-	bh=0wKHwFEMn9ZPbi65IGwYb7UKN/GML6IytDsOw4JO3iY=;
-	b=onPV9rqYgdjWSgMt5xC35hqa6QWCQiYI0ckl+Eolr7nGjvB69pXi2EG4iPa2iqkZ
-	nky45ZJLN8iNHskF4aylL/L3325Zm6oBXoGUIwZWm2g6BMYdcCdIAb+hnZC3Xev7gJc
-	vSO3kR51dgZDJA2KCckXzQD5eLQdcxrG2VA8D4NU=
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx; d=amazonses.com; t=1649232660;
-	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
-	bh=0wKHwFEMn9ZPbi65IGwYb7UKN/GML6IytDsOw4JO3iY=;
-	b=cfclc8gv4snP/XjDc1QPfSfoWnI/xS5ljuAXpkKmRrcQm99KGmVfLd5xAbCnIEJ6
-	nOAawuPBsCf3aDrWGa17vLyB8kZi90w9a4not9jcrJ3Mj6ENp6ogwvbRulxLEjJJweh
-	8/74mVpZbC0Wi/qhbN7O9sR49WskGxUe3oFwixd0=
-To: yocto@lists.yoctoproject.org
-Cc: qa-build-notification@lists.yoctoproject.org
-Subject: QA notification for completed autobuilder build (yocto-4.0.rc1)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=VQZmLQB+;
+ spf=pass (domain: gmail.com, ip: 209.85.215.172,
+ mailfrom: mans.zigher@gmail.com)
+Received: by mail-pg1-f172.google.com with SMTP id z128so1691565pgz.2
+        for <yocto@lists.yoctoproject.org>;
+ Wed, 06 Apr 2022 01:59:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=yBWOqDsS+l50TFp8i5RCKRS8Ea0nPN9o7++e4iMdlts=;
+        b=VQZmLQB+cA0HNDcRkNqjgZvSwd3Z8bGmt/gIRoq/1DFdy93eHiUCeaVx01TtRBv4FR
+         p/ptipfMKN2qakNV9nl5tMWfMJnq6L/jUCSDo6AT1w31Tyv5AbwnE441FMN6veEYejEx
+         0FvmB7ZR0zpydhBT0mbvd2fVmhH1VDwkqkU41tFw5ZqqdrlbMRaeMxWDi3PBeNuBRdl7
+         TNkP8hFXB/rFhkY7cNB+zi3NG5JL2g4IHNNHVtAlJqP5m45gmfoL3pl/pdjsm4u6sHda
+         hYA4+PcEif84m54ST3n6dXLA0iTYwf0tPTqYz2MsHD2ejfAG52P+ltZF+7haS77zXjQ5
+         AWaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=yBWOqDsS+l50TFp8i5RCKRS8Ea0nPN9o7++e4iMdlts=;
+        b=6splCyB8NGF2E0q0FSYghwbLfQcMeLeDCj71916WwJC+IKENABSoFiWJPGUAmJJ0Qq
+         3cZO3VqtEm5N6U1Fc1SdSWZCrLJsmSQ0Ajm1up0hHXUlDVtL9LZgachKeEt/VHDMuQEJ
+         wKxLA97si0TYnQXTGLodOJA9Z3pU1+nKn1D+HkcFpVnz6yptK7bW3lmJ+0/9qc/dX/Qi
+         R/JbUABQ9HZ9DpFiG+hzUBY5A3fCQ488PREnlRmfN5OXWoxW9QgwJNOlBBEQpDIgWO4k
+         YOmjZCFOlndXzvhpNdtQtIGhEdkrwX8mEW7hZhrrsqcKgAI19wwhWUjKFZYc18TkIWDz
+         OAGA==
+X-Gm-Message-State: AOAM532PM5Q1x06o874MDL3df7OOzDvHxCrWuxHLbHU2f8c7C9er3O6m
+	dQim/DCfVn+myBwrdmm8ZkgRjUgrWyETvZ+dudzpjfUi0zA=
+X-Google-Smtp-Source: 
+ ABdhPJyGVcxUjkN1xShn5x2jgtrfZR4uOjld8U8hh0L5xM6CknKosPUH934KYyOh9cL3B0tYc0E8x2yNCulC2o16VRY=
+X-Received: by 2002:a65:6b91:0:b0:399:12d5:808 with SMTP id
+ d17-20020a656b91000000b0039912d50808mr6202717pgw.440.1649235581279; Wed, 06
+ Apr 2022 01:59:41 -0700 (PDT)
+MIME-Version: 1.0
+From: =?UTF-8?B?TcOlbnM=?= <mans.zigher@gmail.com>
+Date: Wed, 6 Apr 2022 10:59:30 +0200
 Message-ID: 
- <0101017ffded4843-210c9da1-5b3f-4ed6-bcbc-1f63610acf6e-000000@us-west-2.amazonses.com>
-Date: Wed, 6 Apr 2022 08:11:00 +0000
-From: Pokybuild User <pokybuild@yoctoproject.org>
-Feedback-ID: 
- 1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
-X-SES-Outgoing: 2022.04.06-54.240.27.23
+ <CAEhQi8=HC7K9XxcCx4e83=JKCG3q=tAb2=BZmfvSqpwt4EG97g@mail.gmail.com>
+Subject: [Question] How to handle GPLv3 packages?
+To: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Wed, 06 Apr 2022 16:33:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56671
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56672
 
+Hi,
 
-A build flagged for QA (yocto-4.0.rc1) was completed on the autobuilder and is available at:
+I cannot use GPLv3 packages in our image build. I am no legal expert
+but from what I can understand most companies will not be able to
+comply with this license without allowing the customer to compile and
+deploy a new version of any GPLv3 package to the target. I know it is
+possible to comply with this but we are using secure boot and have not
+the time and probably no interest in setting up a solution for
+allowing customers to be able to deploy GPLv3 packages on the target.
+We are trying to make use of INCOMPATIBLE_LICENSE but that results in
+several issues. We have made sure that we don't include GPLv3 in the
+image build using a manual process but would like to use
+INCOMPATIBLE_LICENSE to alert any developer about the issue. It seems
+like INCOMPATIBLE_LICENSE is a bit harsh since it will catch any
+packages even if it is only part of the SDK and also for native
+packages that are not part of the image build.
 
+I cannot be the only one with this problem so how are other companies
+solving this issue? Are they just not using the INCOMPATIBLE_LICENSE?
+Are you setting up a parallel process for checking for any
+incompatible licenses issues?
 
-    https://autobuilder.yocto.io/pub/releases/yocto-4.0.rc1
+A more specific issue is that there are so many packages with bash
+dependencies which are pulling in bash which is GPLv3 so how have you
+solved that? Currently we have done some pretty uggly hacks which I am
+not that happy with but we needed to keep it out of the image.
 
-
-Build hash information: 
-
-bitbake: 41eeb4f34fb2306303f7688ec5e0ae965a573aa4
-meta-agl: fa5152323ad2bd3d433aec72c4fec6614656f06d
-meta-arm: 5c83fa83649c522137c96d3c5aab49d660f8807f
-meta-aws: 214a5867b3b0d9ba54818aabb1711eadf4ba9eb3
-meta-gplv2: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
-meta-intel: 68e00896f2c669044f6ad8cbbc9958332254a4e4
-meta-mingw: a90614a6498c3345704e9611f2842eb933dc51c1
-meta-openembedded: 173352732d17b3d1fa469b6eea43a2a3c8a670d3
-oecore: 62851965fc180f33ed6feb62ff5ac14706e4732a
-poky: ed98f1a1ae7e4e2c8e089003a619ae9260a852ad
-
-
-
-This is an automated message from the Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder2
-Email: richard.purdie@linuxfoundation.org
-
-
- 
+Thanks
 
