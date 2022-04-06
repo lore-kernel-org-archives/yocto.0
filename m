@@ -1,88 +1,80 @@
-Return-Path: <mans.zigher@gmail.com>
+Return-Path: <ross@burtonini.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9B1CEC352A8
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A5973C352AA
 	for <webhook@archiver.kernel.org>; Wed,  6 Apr 2022 16:33:19 +0000 (UTC)
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com
- [209.85.215.172])
- by mx.groups.io with SMTP id smtpd.web12.6282.1649235582004764164
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
+ [209.85.221.52])
+ by mx.groups.io with SMTP id smtpd.web09.6427.1649236272308446224
  for <yocto@lists.yoctoproject.org>;
- Wed, 06 Apr 2022 01:59:42 -0700
+ Wed, 06 Apr 2022 02:11:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=VQZmLQB+;
- spf=pass (domain: gmail.com, ip: 209.85.215.172,
- mailfrom: mans.zigher@gmail.com)
-Received: by mail-pg1-f172.google.com with SMTP id z128so1691565pgz.2
+ dkim=pass header.i=@burtonini-com.20210112.gappssmtp.com header.s=20210112
+ header.b=BCTcg2YY;
+ spf=pass (domain: burtonini.com, ip: 209.85.221.52,
+ mailfrom: ross@burtonini.com)
+Received: by mail-wr1-f52.google.com with SMTP id d29so2171499wra.10
         for <yocto@lists.yoctoproject.org>;
- Wed, 06 Apr 2022 01:59:41 -0700 (PDT)
+ Wed, 06 Apr 2022 02:11:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=yBWOqDsS+l50TFp8i5RCKRS8Ea0nPN9o7++e4iMdlts=;
-        b=VQZmLQB+cA0HNDcRkNqjgZvSwd3Z8bGmt/gIRoq/1DFdy93eHiUCeaVx01TtRBv4FR
-         p/ptipfMKN2qakNV9nl5tMWfMJnq6L/jUCSDo6AT1w31Tyv5AbwnE441FMN6veEYejEx
-         0FvmB7ZR0zpydhBT0mbvd2fVmhH1VDwkqkU41tFw5ZqqdrlbMRaeMxWDi3PBeNuBRdl7
-         TNkP8hFXB/rFhkY7cNB+zi3NG5JL2g4IHNNHVtAlJqP5m45gmfoL3pl/pdjsm4u6sHda
-         hYA4+PcEif84m54ST3n6dXLA0iTYwf0tPTqYz2MsHD2ejfAG52P+ltZF+7haS77zXjQ5
-         AWaQ==
+        d=burtonini-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=OgK5Bnyi7rY/lQ2yhDNfogtMLSLL8vxvrNwIYUg336g=;
+        b=BCTcg2YYVjZEvYJfdwWdoxvBsPc08Jm2K3XNE260S3CHSNjTo26M06xjpzrTyymeqQ
+         r1s6lDkndl8CCQ7nZ3d6UNzQD14l41XePYsBBhJ5wd29q4rxOZKhEvIrqPls6H/+aXve
+         0vDCbZNAhqG5mKNvUXN5FXemmUDGta6Oql9Vm9WQ8idJ0bUre3+V0lkzIFnpkwUrjd/D
+         JwMEcEKZiQgnecsT/1S1YUcMv4gaTbbNUFMzg/3DiY8Wi1mY7qi9F31B79sg113DCaNz
+         aG0u9K7fU+NGqi7nZRGVU+zf9hitKc/7ZXBI/pffKinJP74s4Fyx0S4r+xh/xUt/9Hf9
+         Y71g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=yBWOqDsS+l50TFp8i5RCKRS8Ea0nPN9o7++e4iMdlts=;
-        b=6splCyB8NGF2E0q0FSYghwbLfQcMeLeDCj71916WwJC+IKENABSoFiWJPGUAmJJ0Qq
-         3cZO3VqtEm5N6U1Fc1SdSWZCrLJsmSQ0Ajm1up0hHXUlDVtL9LZgachKeEt/VHDMuQEJ
-         wKxLA97si0TYnQXTGLodOJA9Z3pU1+nKn1D+HkcFpVnz6yptK7bW3lmJ+0/9qc/dX/Qi
-         R/JbUABQ9HZ9DpFiG+hzUBY5A3fCQ488PREnlRmfN5OXWoxW9QgwJNOlBBEQpDIgWO4k
-         YOmjZCFOlndXzvhpNdtQtIGhEdkrwX8mEW7hZhrrsqcKgAI19wwhWUjKFZYc18TkIWDz
-         OAGA==
-X-Gm-Message-State: AOAM532PM5Q1x06o874MDL3df7OOzDvHxCrWuxHLbHU2f8c7C9er3O6m
-	dQim/DCfVn+myBwrdmm8ZkgRjUgrWyETvZ+dudzpjfUi0zA=
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=OgK5Bnyi7rY/lQ2yhDNfogtMLSLL8vxvrNwIYUg336g=;
+        b=ClFhDh3Pgd78qN7K+VYTFhd4qR6fKab2dPaRl815yvxBQbBU6hV4Aor2CffeHT0ekN
+         A7yOmlERgdGOw58bCMi/qn1tbnN9VU5z4kj49Nb+g63xB8ZxX5X9igV4S/3E/iKTzgj1
+         YTi2pfwC3xXI9yocQMoA4uxbMUPLcm/PldKP6YYJKDunuU9yCL1lVbkFZpuRUHiAofvt
+         iOgFWhjfOLHIU4QWzlqtlMZwfmMrKsH40yCAq0HTet8QxpRseT56ZrLpxQGD8+yuJqsL
+         dMSuXYM29nJYNtofTdrd/d7hLaky5tOXV0ZbW6L1M4rCFqTOAwlJQRgcWDm4hZpv5aOP
+         O7UA==
+X-Gm-Message-State: AOAM5302iTVuKCZkBu2h0SUN8WI/4EvNSOrXAhf6SDlpUvN78VasFbaE
+	lqYblCt74XEaDXNMU/ptK5G+p7vYznqpeZ6RZthJyQ==
 X-Google-Smtp-Source: 
- ABdhPJyGVcxUjkN1xShn5x2jgtrfZR4uOjld8U8hh0L5xM6CknKosPUH934KYyOh9cL3B0tYc0E8x2yNCulC2o16VRY=
-X-Received: by 2002:a65:6b91:0:b0:399:12d5:808 with SMTP id
- d17-20020a656b91000000b0039912d50808mr6202717pgw.440.1649235581279; Wed, 06
- Apr 2022 01:59:41 -0700 (PDT)
+ ABdhPJxeid+keYSsKy92tx+uP7VOKyaK+IOB3HXg4TbyjHtd26DdhLoof104Dkuy9LfrIlR0LRDr6fTJ0vcZ35Fb3Fg=
+X-Received: by 2002:a5d:6d0c:0:b0:204:d77:313a with SMTP id
+ e12-20020a5d6d0c000000b002040d77313amr6015043wrq.405.1649236270437; Wed, 06
+ Apr 2022 02:11:10 -0700 (PDT)
 MIME-Version: 1.0
-From: =?UTF-8?B?TcOlbnM=?= <mans.zigher@gmail.com>
-Date: Wed, 6 Apr 2022 10:59:30 +0200
-Message-ID: 
+References: 
  <CAEhQi8=HC7K9XxcCx4e83=JKCG3q=tAb2=BZmfvSqpwt4EG97g@mail.gmail.com>
-Subject: [Question] How to handle GPLv3 packages?
-To: yocto@lists.yoctoproject.org
+In-Reply-To: 
+ <CAEhQi8=HC7K9XxcCx4e83=JKCG3q=tAb2=BZmfvSqpwt4EG97g@mail.gmail.com>
+From: Ross Burton <ross@burtonini.com>
+Date: Wed, 6 Apr 2022 10:10:59 +0100
+Message-ID: 
+ <CAAnfSTvP+aHDxBSSSNVLejxhMPr9NJ4FuYLXDTmaPifBKmGL3w@mail.gmail.com>
+Subject: Re: [yocto] [Question] How to handle GPLv3 packages?
+To: Mans Zigher <mans.zigher@gmail.com>
+Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Wed, 06 Apr 2022 16:33:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56672
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56674
 
-Hi,
+On Wed, 6 Apr 2022 at 09:59, Mans Zigher <mans.zigher@gmail.com> wrote:
+> A more specific issue is that there are so many packages with bash
+> dependencies which are pulling in bash which is GPLv3 so how have you
+> solved that? Currently we have done some pretty uggly hacks which I am
+> not that happy with but we needed to keep it out of the image.
 
-I cannot use GPLv3 packages in our image build. I am no legal expert
-but from what I can understand most companies will not be able to
-comply with this license without allowing the customer to compile and
-deploy a new version of any GPLv3 package to the target. I know it is
-possible to comply with this but we are using secure boot and have not
-the time and probably no interest in setting up a solution for
-allowing customers to be able to deploy GPLv3 packages on the target.
-We are trying to make use of INCOMPATIBLE_LICENSE but that results in
-several issues. We have made sure that we don't include GPLv3 in the
-image build using a manual process but would like to use
-INCOMPATIBLE_LICENSE to alert any developer about the issue. It seems
-like INCOMPATIBLE_LICENSE is a bit harsh since it will catch any
-packages even if it is only part of the SDK and also for native
-packages that are not part of the image build.
+As you're not naming recipes it is hard to offer concrete advice, but
+I will note that a large percentage of the bash dependencies in
+oe-core are specific to the ptest packages. If you don't need those
+then you can turn off the ptest DISTRO_FEATURE.
 
-I cannot be the only one with this problem so how are other companies
-solving this issue? Are they just not using the INCOMPATIBLE_LICENSE?
-Are you setting up a parallel process for checking for any
-incompatible licenses issues?
-
-A more specific issue is that there are so many packages with bash
-dependencies which are pulling in bash which is GPLv3 so how have you
-solved that? Currently we have done some pretty uggly hacks which I am
-not that happy with but we needed to keep it out of the image.
-
-Thanks
+Ross
 
