@@ -1,107 +1,149 @@
-Return-Path: <mans.zigher@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C3033C4707A
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BA21CC3527D
 	for <webhook@archiver.kernel.org>; Fri,  8 Apr 2022 17:09:35 +0000 (UTC)
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com
- [209.85.215.172])
- by mx.groups.io with SMTP id smtpd.web10.3371.1649405913703214578
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com
+ [209.85.167.41])
+ by mx.groups.io with SMTP id smtpd.web10.3352.1649405765201719680
  for <yocto@lists.yoctoproject.org>;
- Fri, 08 Apr 2022 01:18:33 -0700
+ Fri, 08 Apr 2022 01:16:05 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=m1+E1ruR;
- spf=pass (domain: gmail.com, ip: 209.85.215.172,
- mailfrom: mans.zigher@gmail.com)
-Received: by mail-pg1-f172.google.com with SMTP id q142so7135659pgq.9
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=h7o6v65Z;
+ spf=pass (domain: gmail.com, ip: 209.85.167.41,
+ mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f41.google.com with SMTP id x17so4624654lfa.10
         for <yocto@lists.yoctoproject.org>;
- Fri, 08 Apr 2022 01:18:33 -0700 (PDT)
+ Fri, 08 Apr 2022 01:16:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6Zgh/I9lOHfleQsZj9QyQXq1cb+fVJ00ZekjAnVtsHI=;
-        b=m1+E1ruRy0pwQrWG3OiNZ79JLmhV47vnHjJKKOyi1+gT5jyOmatuvH1koHetNgI2Ji
-         uHt2ZVyHKg1EBD4WhIkTDZfv6L5R8v5t+0TcI64b7UflVY1fROaqlAwxidEKLq+Q2Ltc
-         4MwVPm7xzkrlJHm8UiyGkoYMTakTqXV9L6P55dmWhjrFLz43RgNZkovul83L0gJMZ1Eh
-         aIzVeJdxBVdIZVhBTwOODfiobOg9ItYiD0g/qg8VKm5vuOukIXVwoyL5LHeqxArA1C5G
-         QrBw5BNIKL+PncjnBQrzBJYwEYnfsRePjktCsVroy5g7sBYnuWwgAZZsIJWiLpaCzZ4M
-         oByw==
+         :cc:content-transfer-encoding;
+        bh=iUpLIE/9B+TebIqPgixWo75gQWpOwroEBsSrpLbZPO0=;
+        b=h7o6v65Zo3x52tbKy//WRbCk7OD54KuauSccv671s96eUy5o0Uxp9SXU/AmqDLXyNQ
+         k77ZhO9n5NNqVcaPFgA0ZRnpmQDtDRSKtkITbKknI69EuXxtyxnBdayDbxGqvaRURXRy
+         EdiqLNtnY+AyCESeeA1RX7kz/Yfzb0G3w6Wg++x+LRe8l+wzBw11yJkK33621zoTJIWP
+         nxodcIAJGh/HA5XnXingKQtt1vg19PqkstEixajR6RgZd0lK3DzoJB1ztoZcFwExE8AL
+         EyKDC803LansdjgivchlRSYK5Q3rsy1kYiwEeGKWfHRZZu0rH/LaMBYtNZ0KxVbex99/
+         pCTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6Zgh/I9lOHfleQsZj9QyQXq1cb+fVJ00ZekjAnVtsHI=;
-        b=BoeE1AucsqFc5yFTyo0+oEnqiAJZW2uB0tnJepIL5113w2NmMWs/fogZnWsSm7wscq
-         R7IV91Oy8NBxtVcGgDYEzOSsR5hZe4ePjbrnq8kueXHvKAAJGFVlC04YIcT70/QsjY86
-         RiQyDoc1OiFNw7CWUcW0cnnbd0YFRgVAhm6AQm5THuXuHwvjYFPVSSqzseyC2+f3cezc
-         Y99l8+APLajoEbgcvD3xY25TFzYSj2QcBfeT+DgZKsfHNrb6A9uf2C2hyDg1vLJhKflr
-         zOVPOjk7+3NLt+G9q8Dr3cpKQZWGJCGeBy5WdA7VjG12HpDYnid4GGXkGAXzLTPo5l9j
-         lpTA==
-X-Gm-Message-State: AOAM530FHLDHODRafktnmVGT5TaJBZn8FhOtUYWZ0oEfaPAFQ/EpcjDq
-	NfoIxAEmAcbQW1GxnChPHtO9/d06jB1aj9Pf5Yg=
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=iUpLIE/9B+TebIqPgixWo75gQWpOwroEBsSrpLbZPO0=;
+        b=W3V0cmcz5URMXJNzhsSr/dA1Us+Gwu1w+TkGuqqABl//vPSoqNv8dKjyp8TvpfMn8P
+         WW9i/edplre1kPR29wKcwHN5FILpZl3SuOiTIo8/tvPYjghRmYNvcEGeiy98cKQCDc08
+         El24B4TloxqUozhUKZzfKVi1BtByOF6t0AByW7MLDrWjifgQ82tOB675sedKc+zqxIM1
+         kWiaudPFTM/e2k0XHuu5FE9/wA2X4zrlc71m4/rDnsz79IdN5bPUe+6nZ5Wd3n+UZnVz
+         16VX0/+ScLauaDJ/HVM9CXlSyTjPNho0gDHJiK6pncsb4sP+hZNSlfkT2knk0O/G0ckb
+         +9LQ==
+X-Gm-Message-State: AOAM5323GQEJ+0tIbJxFA2+islPpHd3erjRFP8HM6C3LZ/IJsbrEwPMf
+	1zbpurz632nclQr3DBn/ddQI68N/CaZAmuKVWSI=
 X-Google-Smtp-Source: 
- ABdhPJwttiFdk/LLmsB69tnY1hWZ5xaWQG7NWEjCwcj6E13IlT/vIz4lhaxxHzIkfE/YN/9A8j8bmpEq7k9rV8XtUFA=
-X-Received: by 2002:a63:4f46:0:b0:382:56b2:f8 with SMTP id
- p6-20020a634f46000000b0038256b200f8mr14601970pgl.90.1649405913107;
- Fri, 08 Apr 2022 01:18:33 -0700 (PDT)
+ ABdhPJwE5iK3mAUIxK7bt06x6jTofm+jeSfQLo0MHHaj/e1hReIrc6q8w3xRkNgb/vx3HMrPjBrDb/2x7uyBlKiUWKg=
+X-Received: by 2002:a05:6512:b19:b0:44a:b7c4:3d94 with SMTP id
+ w25-20020a0565120b1900b0044ab7c43d94mr11787558lfu.358.1649405763179; Fri, 08
+ Apr 2022 01:16:03 -0700 (PDT)
 MIME-Version: 1.0
 References: 
  <CAEhQi8=HC7K9XxcCx4e83=JKCG3q=tAb2=BZmfvSqpwt4EG97g@mail.gmail.com>
- <CAAnfSTvP+aHDxBSSSNVLejxhMPr9NJ4FuYLXDTmaPifBKmGL3w@mail.gmail.com>
+ <CANNYZj_UvDZWC+hD1pjxzkOKK_sL4wB+mu3a8GiPZVwUnEO4iA@mail.gmail.com>
+ <CAEhQi8mHYXWi12epRd7anMqkVzjDk8yA2An6LFxzgN=6_BNMpw@mail.gmail.com>
 In-Reply-To: 
- <CAAnfSTvP+aHDxBSSSNVLejxhMPr9NJ4FuYLXDTmaPifBKmGL3w@mail.gmail.com>
-From: =?UTF-8?B?TcOlbnM=?= <mans.zigher@gmail.com>
-Date: Fri, 8 Apr 2022 10:18:22 +0200
+ <CAEhQi8mHYXWi12epRd7anMqkVzjDk8yA2An6LFxzgN=6_BNMpw@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Fri, 8 Apr 2022 10:15:51 +0200
 Message-ID: 
- <CAEhQi8=Fem0HnTbhK7evENES4qpcC2-pbRicW52YrvwHbegj_Q@mail.gmail.com>
+ <CANNYZj-uMyMwhy2rR=7d_qm4akrB6DzVC05hZkUPDGrTh3voVQ@mail.gmail.com>
 Subject: Re: [yocto] [Question] How to handle GPLv3 packages?
-To: Ross Burton <ross@burtonini.com>
-Cc: yocto@lists.yoctoproject.org
+To: =?UTF-8?B?TcOlbnM=?= <mans.zigher@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Fri, 08 Apr 2022 17:09:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56690
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56689
 
-Hi Ross,
+Hello Mans,
 
-We don't have a ptest set in DISTRO_FEATURE so if that is the only way
-to pull in ptest I would say that is the reason for us at least on why
-there are so many bash dependencies.
-One recipe that I am looking into right now is util-linux which does
-have package util-linux-bash-completion but even the package
-util-linux seems to depend on bash and bash-completion when
-checking the dependencies by running bitbake -g util-linux and bitbake
--g <image>. It is not clear why the package util-linux depends on bash
-and bash-completion. I have other recipes where it is also
-not obvious to me why they have a dependency to bash and
-bash-completion. One such recipe is a recipe that we have created and
-the only content in the package produced is a script and the script
-only has #!/bin/sh so not sure where this bash and bash-completion
-comes from it is not something we have added so maybe we have some
-underlying issue here that results in so many dependencies to
-bash and bash-completion. We have not set up this system ourselves,
-instead one of the HW suppliers starting with a Q ending with COMM
-which I must say I am not that impressed with has supplied the
-base that we are building on.
+please refer to the tests we have for the feature:
+https://git.yoctoproject.org/poky/tree/meta/lib/oeqa/selftest/cases/incompa=
+tible_lic.py?h=3Dmaster-next#n95
+(line 95 and below)
 
-Thanks for your help anyway.
+The key bit is:
+INCOMPATIBLE_LICENSE:pn-core-image-minimal =3D "GPL-3.0* LGPL-3.0*"
+e.g. apply the restriction only to core-image-minimal.
 
+Alex
 
-Den ons 6 apr. 2022 kl 11:11 skrev Ross Burton <ross@burtonini.com>:
+On Fri, 8 Apr 2022 at 08:06, M=C3=A5ns <mans.zigher@gmail.com> wrote:
 >
-> On Wed, 6 Apr 2022 at 09:59, Mans Zigher <mans.zigher@gmail.com> wrote:
-> > A more specific issue is that there are so many packages with bash
-> > dependencies which are pulling in bash which is GPLv3 so how have you
-> > solved that? Currently we have done some pretty uggly hacks which I am
-> > not that happy with but we needed to keep it out of the image.
+> Hi Alex,
 >
-> As you're not naming recipes it is hard to offer concrete advice, but
-> I will note that a large percentage of the bash dependencies in
-> oe-core are specific to the ptest packages. If you don't need those
-> then you can turn off the ptest DISTRO_FEATURE.
+> Could you maybe clarify what you mean with "setting
+> INCOMPATIBLE_LICENSE per image"? Do you mean that you have one
+> specific image that is used when you build an image for release to the
+> customer and then one image for development?
 >
-> Ross
+> Thanks
+>
+> Den ons 6 apr. 2022 kl 11:04 skrev Alexander Kanavin <alex.kanavin@gmail.=
+com>:
+> >
+> > I'd suggest you start by setting INCOMPATIBLE_LICENSE per image, e.g.
+> > enable gpl3 ban only in the images that ship to the customers and not
+> > across the entire build. Then carefully look at what pulls in bash
+> > into those images and why, and reconfigure those pieces to not do that
+> > (e.g. by reconfiguring the PACKAGECONFIGs), or rewrite the scripts in
+> > posix shell.
+> >
+> > Alex
+> >
+> > On Wed, 6 Apr 2022 at 10:59, Mans Zigher <mans.zigher@gmail.com> wrote:
+> > >
+> > > Hi,
+> > >
+> > > I cannot use GPLv3 packages in our image build. I am no legal expert
+> > > but from what I can understand most companies will not be able to
+> > > comply with this license without allowing the customer to compile and
+> > > deploy a new version of any GPLv3 package to the target. I know it is
+> > > possible to comply with this but we are using secure boot and have no=
+t
+> > > the time and probably no interest in setting up a solution for
+> > > allowing customers to be able to deploy GPLv3 packages on the target.
+> > > We are trying to make use of INCOMPATIBLE_LICENSE but that results in
+> > > several issues. We have made sure that we don't include GPLv3 in the
+> > > image build using a manual process but would like to use
+> > > INCOMPATIBLE_LICENSE to alert any developer about the issue. It seems
+> > > like INCOMPATIBLE_LICENSE is a bit harsh since it will catch any
+> > > packages even if it is only part of the SDK and also for native
+> > > packages that are not part of the image build.
+> > >
+> > > I cannot be the only one with this problem so how are other companies
+> > > solving this issue? Are they just not using the INCOMPATIBLE_LICENSE?
+> > > Are you setting up a parallel process for checking for any
+> > > incompatible licenses issues?
+> > >
+> > > A more specific issue is that there are so many packages with bash
+> > > dependencies which are pulling in bash which is GPLv3 so how have you
+> > > solved that? Currently we have done some pretty uggly hacks which I a=
+m
+> > > not that happy with but we needed to keep it out of the image.
+> > >
+> > > Thanks
+> > >
+> > > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> > > Links: You receive all messages sent to this group.
+> > > View/Reply Online (#56672): https://lists.yoctoproject.org/g/yocto/me=
+ssage/56672
+> > > Mute This Topic: https://lists.yoctoproject.org/mt/90285507/1686489
+> > > Group Owner: yocto+owner@lists.yoctoproject.org
+> > > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanav=
+in@gmail.com]
+> > > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> > >
 
