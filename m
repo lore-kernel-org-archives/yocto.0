@@ -1,127 +1,256 @@
-Return-Path: <ticotimo@gmail.com>
+Return-Path: <hrsourabh011@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F481C35294
-	for <webhook@archiver.kernel.org>; Mon, 11 Apr 2022 17:17:58 +0000 (UTC)
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com
- [209.85.216.44])
- by mx.groups.io with SMTP id smtpd.web11.20996.1649617739302211605
- for <yocto@lists.yoctoproject.org>;
- Sun, 10 Apr 2022 12:08:59 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=SjTI62wC;
- spf=pass (domain: gmail.com, ip: 209.85.216.44, mailfrom: ticotimo@gmail.com)
-Received: by mail-pj1-f44.google.com with SMTP id
- c12-20020a17090a020c00b001cba1ebb20cso147745pjc.0
-        for <yocto@lists.yoctoproject.org>;
- Sun, 10 Apr 2022 12:08:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=5qT0V+6/nwYHJhXXLeVmy019B5DCE+Nevux9/EpYhXg=;
-        b=SjTI62wCTAnZACVsaKcxIdA3+J4Kc0RpOoMWmZ5qr36Zdx5N9tM7veZzKQo6LunlBb
-         JlCviyIvjYN95ulw4MtrVnRxgvQH7QnqMTyEn2V6llHDdUV7oIsSO1cnjy3e0yE98rc8
-         q7tjnK0EVLI9zOnOTVqzVHbfqzmFoGduHkUk2QzaU6ux8d4wWbfo+nQ7+STwHI9Jfg/D
-         AeLnlSX15qVWCTkTNaMyGG5hUreytVamD/kUmjzheBPXtEQxvTtK1u0O7C3ysgN2P0/O
-         +CMSWOUDlwg0ww6KU5dJ3ejE+NBo1t7Fsnmo6uOlxl9cJj0Dk1Yv4VUmLJIhff33GsUM
-         D17Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=5qT0V+6/nwYHJhXXLeVmy019B5DCE+Nevux9/EpYhXg=;
-        b=GK6g6NvD3dA0MxP5YrqPy/atxIyAT26Eghx0oum1y7P+cAlnkN0C0+DpfgSb/aoG9G
-         AXNKm/8icyBA2VAMQ0qurHCPVVtA3MH6kamyQh+vbe55Iu4rK6PD6T/TTaitoz+rjYvI
-         I3+i5ciq0WdDFFufgXC5AnhzlkBwWbb/IyUS1njXsvJvC24pOi8vqAla3h/URADvlv7r
-         nBE2aFsowIA7AM0diNcjPrzTKqpmfI1198jtycYVYK8z8LAdZbD5hpEJ86gk0sRBewDS
-         5eVxo4rmlTXPFJCbaYhrEKMhnmK/isq0OvPMfhahsaM2wxBhCBzAs0V7QlNynZZrgNGx
-         2uIQ==
-X-Gm-Message-State: AOAM530dp3/oXc4A9GyT3X/ZdWIc+n0pGRFFOHe/794I6aqnDhyu+MLq
-	ohlfzT+85l7N7QzLilOg7lgc31J2PdU=
-X-Google-Smtp-Source: 
- ABdhPJyLJ3ZQutpwVS4NLZkt+DvamcBZWiJEgtYj944Skjh4VUD9uLBScM5dKgJipnSfLcXDaHLlyQ==
-X-Received: by 2002:a17:902:ec89:b0:156:c5db:356d with SMTP id
- x9-20020a170902ec8900b00156c5db356dmr28773983plg.74.1649617738505;
-        Sun, 10 Apr 2022 12:08:58 -0700 (PDT)
-Received: from nereus.hsd1.or.comcast.net
- ([2601:1c0:6000:1b20:48cd:8d9b:66c9:7179])
-        by smtp.gmail.com with ESMTPSA id
- f16-20020a056a00239000b004fa7103e13csm34001213pfc.41.2022.04.10.12.08.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Apr 2022 12:08:58 -0700 (PDT)
-From: Tim Orling <ticotimo@gmail.com>
-X-Google-Original-From: Tim Orling <tim.orling@konsulko.com>
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 29626C3A59D
+	for <webhook@archiver.kernel.org>; Mon, 11 Apr 2022 17:17:59 +0000 (UTC)
+Subject: System is booting to "emergency/rescue mode"
 To: yocto@lists.yoctoproject.org
-Cc: bluelightning@bluelightning.org
-Subject: [layerindex][PATCH 2/4] layerindex/models.py: add Inactive-Upstream
-Date: Sun, 10 Apr 2022 12:08:40 -0700
-Message-Id: 
- <8293eee252fafdd714aed399f4fcf6f538da46bd.1649617288.git.tim.orling@konsulko.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <cover.1649617288.git.tim.orling@konsulko.com>
-References: <cover.1649617288.git.tim.orling@konsulko.com>
+From: "Sourabh Hegde" <hrsourabh011@gmail.com>
+X-Originating-Location: Munich, Bavaria, DE (95.91.249.119)
+X-Originating-Platform: Windows Chrome 100
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Date: Fri, 08 Apr 2022 15:43:46 -0700
+Message-ID: <TfGa.1649457826573815420.0meH@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="Tq8Z6dZcSr43JsgS2bqg"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 11 Apr 2022 17:17:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56712
+ <yocto@lists.yoctoproject.org>; Mon, 11 Apr 2022 17:17:59 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56700
 
-Add the newish Inactive-Upstream upstream status.
+--Tq8Z6dZcSr43JsgS2bqg
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add 0046_alter_patch_status.py migration.
+Hello All,
 
-Signed-off-by: Tim Orling <tim.orling@konsulko.com>
+This may not be the issue with Yocto itself but rather related to properly =
+booting up Linux on Avenger96(STM32MP1) board. I am currently working on Av=
+enger96 with Yocto(Dunfell). Aim is to implement SWUpdate OTA update system=
+. For this I am using A/B strategy. Also I am using "systemd" instead of sy=
+sVinit. In my conf/local.conf I have set:
 
-layerindex/migrations: update patch status
+DISTRO_FEATURES_append =3D " systemd"
+DISTRO_FEATURES_BACKFILL_CONSIDERED +=3D "sysvinit"
+VIRTUAL-RUNTIME_init_manager =3D "systemd"
+VIRTUAL-RUNTIME_initscripts =3D "systemd-compat-units"
 
-Signed-off-by: Tim Orling <tim.orling@konsulko.com>
----
- .../migrations/0046_alter_patch_status.py      | 18 ++++++++++++++++++
- layerindex/models.py                           |  1 +
- 2 files changed, 19 insertions(+)
- create mode 100644 layerindex/migrations/0046_alter_patch_status.py
+My .wks file looks like:
 
-diff --git a/layerindex/migrations/0046_alter_patch_status.py b/layerindex/migrations/0046_alter_patch_status.py
-new file mode 100644
-index 0000000..74025c4
---- /dev/null
-+++ b/layerindex/migrations/0046_alter_patch_status.py
-@@ -0,0 +1,18 @@
-+# Generated by Django 3.2.12 on 2022-04-10 19:20
-+
-+from django.db import migrations, models
-+
-+
-+class Migration(migrations.Migration):
-+
-+    dependencies = [
-+        ('layerindex', '0045_layerbranch_classicrecipe'),
-+    ]
-+
-+    operations = [
-+        migrations.AlterField(
-+            model_name='patch',
-+            name='status',
-+            field=models.CharField(choices=[('U', 'Unknown'), ('A', 'Accepted'), ('P', 'Pending'), ('I', 'Inappropriate'), ('B', 'Backport'), ('S', 'Submitted'), ('D', 'Denied'), ('N', 'Inactive-Upstream')], default='U', max_length=1),
-+        ),
-+    ]
-diff --git a/layerindex/models.py b/layerindex/models.py
-index 329cc33..5ae60c3 100644
---- a/layerindex/models.py
-+++ b/layerindex/models.py
-@@ -561,6 +561,7 @@ class Patch(models.Model):
-         ('B', 'Backport'),
-         ('S', 'Submitted'),
-         ('D', 'Denied'),
-+        ('N', 'Inactive-Upstream'),
-         ]
-     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-     path = models.CharField(max_length=255)
--- 
-2.30.2
+part fsbl1 --source rawcopy --sourceparams=3D"file=3Du-boot-spl.stm32" --pa=
+rt-name "fsbl1" --ondisk mmcblk --align 1 --size 256k
+part fsbl2 --source rawcopy --sourceparams=3D"file=3Du-boot-spl.stm32" --pa=
+rt-name "fsbl2" --ondisk mmcblk --align 1 --size 256k
+part ssbl --source rawcopy --sourceparams=3D"file=3Du-boot.itb" --part-name=
+ "ssbl" --ondisk mmcblk --align 1 --size 2M
+part / --source rootfs --ondisk mmcblk0 --fstype=3Dext4 --label root_A --pa=
+rt-name "rootfs_A" --align 4096=C2=A0--use-uuid --active --size 3G
+part / --source rootfs --ondisk mmcblk0 --fstype=3Dext4 --label root_B --pa=
+rt-name "rootfs_B" --align 4096=C2=A0--use-uuid --size 3G
 
+bootloader --ptable gpt
+
+I am able to create the image and could copy it to SD card. But while booti=
+ng I am getting below issue/errors:
+
+[=C2=A0 OK=C2=A0 ] Started D-Bus System Message Bus.
+Starting Load/Save RF Kill Switch Status...
+*You are in rescue mode.* After logging in, type "journalctl -xb" to view
+system logs, "systemctl reboot" to reboot, "systemctl default" or "exit"
+to boot into default mode.
+Press Enter for maintenance
+(or press Control-D to continue):
+
+On pressing "Ctrl+D", I get :
+
+Reloading system manager configuration
+[ 1306.916497] systemd-fstab-generator[202]: Mount point fsbl1 is not a val=
+id path, ignoring.
+[ 1306.940236] systemd-fstab-generator[202]: Mount point fsbl2 is not a val=
+id path, ignoring.
+[ 1306.947455] systemd-fstab-generator[202]: Mount point ssbl is not a vali=
+d path, ignoring.
+Starting default target
+.
+.
+Then it asks for login and I could login as "root".
+
+I don't understand why it's going to emergency or resume mode. On googling =
+I found that it is usually related to /etc/fstab. Below is /etc/fstab/ cont=
+ent (copied from board):
+
+# stock fstab - you probably want to override this with a machine specific =
+one
+/dev/root=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 /=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 auto=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0defaults=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 1=C2=A0 1
+proc=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 /proc=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 proc=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0defaults=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 0=C2=A0 0
+devpts=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 /dev/pts=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0devpts=C2=A0 =C2=A0 mode=3D0620,ptmxmode=3D0666,gid=
+=3D5=C2=A0 =C2=A0 =C2=A0 0=C2=A0 0
+tmpfs=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 /run=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0tmpfs=C2=A0 =C2=A0 =C2=A0 mode=
+=3D0755,nodev,nosuid,strictatime 0=C2=A0 0
+tmpfs=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/var/volatile=
+=C2=A0 =C2=A0 tmpfs=C2=A0 =C2=A0 =C2=A0 defaults=C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 0=C2=A0 0
+
+# uncomment this if your device has a SD/MMC/Transflash slot
+#/dev/mmcblk0p1=C2=A0 =C2=A0 =C2=A0 =C2=A0/media/card=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 auto=C2=A0 =C2=A0 =C2=A0 =C2=A0defaults,sync,noauto=C2=A0 0=
+=C2=A0 0
+
+/dev/mmcblkp1=C2=A0 =C2=A0fsbl1=C2=A0 =C2=A0vfat=C2=A0 =C2=A0 defaults=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 0
+/dev/mmcblkp2=C2=A0 =C2=A0fsbl2=C2=A0 =C2=A0vfat=C2=A0 =C2=A0 defaults=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 0
+/dev/mmcblkp3=C2=A0 =C2=A0ssbl=C2=A0 =C2=A0 vfat=C2=A0 =C2=A0 defaults=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 0
+
+Also one more doubt: what happens when we do software updates from emergenc=
+y/rescue mode? In my case, I could install updates (using SWUpdate) but aft=
+er reboot system is again booting from old partition. But I could manually =
+switch to updated partition from u-boot env and verify that new image is in=
+stalled. So I am assuming this behavior is again related to some issue with=
+ u-boot(probably, newly set environment is wiped on next startup). And also=
+ I can do other stuffs like accessing fw_printenv/fw_setenv, set bootlimit =
+and change partition from u-boot env..
+
+I found that a "boot.scr" is being used and I have set below in the script.=
+ And "rootfspart" in u-boot header file as=C2=A0"rootfspart=3D4\0" \
+
+setenv bootargs "${bootargs} root=3D/dev/mmcblk0p${rootfspart} rdinit=3D/bi=
+n/kinit rw rootwait single"
+
+Can anyone please let me know what could be the potential issue here? Any a=
+dvice on which direction to look into would be helpful.
+
+Your help will be much appreciated.
+
+Thanks in advance.
+
+P.S: Please let me know if any info is missing. Also when I checked with "j=
+ournalctl -xb" after logging in I could only find "Alternate GPT is invalid=
+, using primary GPT." and "GPT: Use GNU Parted to correct GPT errors.". But=
+ may be I missed something here.
+
+Kind Regards,
+Sourabh
+
+--Tq8Z6dZcSr43JsgS2bqg
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello All,<br /><br />This may not be the issue with Yocto itself but rathe=
+r related to properly booting up Linux on Avenger96(STM32MP1) board. I am c=
+urrently working on Avenger96 with Yocto(Dunfell). Aim is to implement SWUp=
+date OTA update system. For this I am using A/B strategy. Also I am using "=
+systemd" instead of sysVinit. In my conf/local.conf I have set:<br /><br />
+<div>DISTRO_FEATURES_append =3D " systemd"</div>
+<div>DISTRO_FEATURES_BACKFILL_CONSIDERED +=3D "sysvinit"</div>
+<div>VIRTUAL-RUNTIME_init_manager =3D "systemd"</div>
+<div>VIRTUAL-RUNTIME_initscripts =3D "systemd-compat-units"<br /><br />My .=
+wks file looks like:<br /><br />
+<div>part fsbl1 --source rawcopy --sourceparams=3D"file=3Du-boot-spl.stm32"=
+ --part-name "fsbl1" --ondisk mmcblk --align 1 --size 256k</div>
+<div>part fsbl2 --source rawcopy --sourceparams=3D"file=3Du-boot-spl.stm32"=
+ --part-name "fsbl2" --ondisk mmcblk --align 1 --size 256k</div>
+<div>part ssbl --source rawcopy --sourceparams=3D"file=3Du-boot.itb" --part=
+-name "ssbl" --ondisk mmcblk --align 1 --size 2M</div>
+<div>part / --source rootfs --ondisk mmcblk0 --fstype=3Dext4 --label root_A=
+ --part-name "rootfs_A" --align 4096&nbsp;--use-uuid --active --size 3G</di=
+v>
+<div>part / --source rootfs --ondisk mmcblk0 --fstype=3Dext4 --label root_B=
+ --part-name "rootfs_B" --align 4096&nbsp;--use-uuid --size 3G</div>
+<div>&nbsp;</div>
+<div>bootloader --ptable gpt</div>
+<br />I am able to create the image and could copy it to SD card. But while=
+ booting I am getting below issue/errors:<br /><br />
+<div>[&nbsp; OK&nbsp; ] Started D-Bus System Message Bus.</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Starting Load/Save RF Kill Switch St=
+atus...</div>
+<div><strong>You are in rescue mode.</strong> After logging in, type "journ=
+alctl -xb" to view</div>
+<div>system logs, "systemctl reboot" to reboot, "systemctl default" or "exi=
+t"</div>
+<div>to boot into default mode.</div>
+<div>Press Enter for maintenance</div>
+<div>(or press Control-D to continue):<br /><br />On pressing "Ctrl+D", I g=
+et :<br /><br />
+<div>Reloading system manager configuration</div>
+<div>[ 1306.916497] systemd-fstab-generator[202]: Mount point fsbl1 is not =
+a valid path, ignoring.</div>
+<div>[ 1306.940236] systemd-fstab-generator[202]: Mount point fsbl2 is not =
+a valid path, ignoring.</div>
+<div>[ 1306.947455] systemd-fstab-generator[202]: Mount point ssbl is not a=
+ valid path, ignoring.</div>
+<div>Starting default target<br />.<br />.<br />Then it asks for login and =
+I could login as "root".<br /><br />I don't understand why it's going to em=
+ergency or resume mode. On googling I found that it is usually related to /=
+etc/fstab. Below is /etc/fstab/ content (copied from board):<br /><br />
+<div>
+<div># stock fstab - you probably want to override this with a machine spec=
+ific one</div>
+</div>
+<div>/dev/root&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /&nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; auto&nbsp; &nbsp; &nbsp=
+; &nbsp;defaults&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1&nbsp; 1<=
+/div>
+<div>proc&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /pr=
+oc&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; proc&nbsp; &nbsp; &nbsp;=
+ &nbsp;defaults&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0&nbsp; 0</=
+div>
+<div>devpts&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /dev/pts&nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp;devpts&nbsp; &nbsp; mode=3D0620,ptmxmode=3D0666,=
+gid=3D5&nbsp; &nbsp; &nbsp; 0&nbsp; 0</div>
+<div>tmpfs&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /run&nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;tmpfs&nbsp; &nbsp; &nbsp;=
+ mode=3D0755,nodev,nosuid,strictatime 0&nbsp; 0</div>
+<div>tmpfs&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;/var/volat=
+ile&nbsp; &nbsp; tmpfs&nbsp; &nbsp; &nbsp; defaults&nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; 0&nbsp; 0</div>
+<div>&nbsp;</div>
+<div># uncomment this if your device has a SD/MMC/Transflash slot</div>
+<div>#/dev/mmcblk0p1&nbsp; &nbsp; &nbsp; &nbsp;/media/card&nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; auto&nbsp; &nbsp; &nbsp; &nbsp;defaults,sync,noauto&nbsp;=
+ 0&nbsp; 0</div>
+<div>&nbsp;</div>
+<div>/dev/mmcblkp1&nbsp; &nbsp;fsbl1&nbsp; &nbsp;vfat&nbsp; &nbsp; defaults=
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0&nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; 0</div>
+<div>/dev/mmcblkp2&nbsp; &nbsp;fsbl2&nbsp; &nbsp;vfat&nbsp; &nbsp; defaults=
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0&nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; 0</div>
+<div>/dev/mmcblkp3&nbsp; &nbsp;ssbl&nbsp; &nbsp; vfat&nbsp; &nbsp; defaults=
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0&nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; 0</div>
+<br />Also one more doubt: what happens when we do software updates from em=
+ergency/rescue mode? In my case, I could install updates (using SWUpdate) b=
+ut after reboot system is again booting from old partition. But I could man=
+ually switch to updated partition from u-boot env and verify that new image=
+ is installed. So I am assuming this behavior is again related to some issu=
+e with u-boot(probably, newly set environment is wiped on next startup). An=
+d also I can do other stuffs like accessing fw_printenv/fw_setenv, set boot=
+limit and change partition from u-boot env..<br /><br />I found that a "boo=
+t.scr" is being used and I have set below in the script. And "rootfspart" i=
+n u-boot header file as&nbsp;"rootfspart=3D4\0" \<br /><br />setenv bootarg=
+s "${bootargs} root=3D/dev/mmcblk0p${rootfspart} rdinit=3D/bin/kinit rw roo=
+twait single"<br /><br />Can anyone please let me know what could be the po=
+tential issue here? Any advice on which direction to look into would be hel=
+pful.<br /><br />Your help will be much appreciated.<br /><br />Thanks in a=
+dvance.<br /><br />P.S: Please let me know if any info is missing. Also whe=
+n I checked with "journalctl -xb" after logging in I could only find "Alter=
+nate GPT is invalid, using primary GPT." and "GPT: Use GNU Parted to correc=
+t GPT errors.". But may be I missed something here.<br /><br /></div>
+</div>
+Kind Regards,<br />Sourabh</div>
+
+--Tq8Z6dZcSr43JsgS2bqg--
 
