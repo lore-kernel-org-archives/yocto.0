@@ -2,96 +2,96 @@ Return-Path: <ticotimo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 59E80C47082
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 59350C3527E
 	for <webhook@archiver.kernel.org>; Mon, 11 Apr 2022 17:17:58 +0000 (UTC)
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com
- [209.85.216.53])
- by mx.groups.io with SMTP id smtpd.web12.20904.1649617737183568927
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com
+ [209.85.216.41])
+ by mx.groups.io with SMTP id smtpd.web11.20993.1649617733789181700
  for <yocto@lists.yoctoproject.org>;
- Sun, 10 Apr 2022 12:08:57 -0700
+ Sun, 10 Apr 2022 12:08:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=O6/xtE2W;
- spf=pass (domain: gmail.com, ip: 209.85.216.53, mailfrom: ticotimo@gmail.com)
-Received: by mail-pj1-f53.google.com with SMTP id
- a16-20020a17090a6d9000b001c7d6c1bb13so14549328pjk.4
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=aGKC/bML;
+ spf=pass (domain: gmail.com, ip: 209.85.216.41, mailfrom: ticotimo@gmail.com)
+Received: by mail-pj1-f41.google.com with SMTP id 2so13212268pjw.2
         for <yocto@lists.yoctoproject.org>;
- Sun, 10 Apr 2022 12:08:57 -0700 (PDT)
+ Sun, 10 Apr 2022 12:08:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=wLPxoIcrs7D54p0xqvu6Be+unhoE3U/V6Tkv1+8fe/k=;
-        b=O6/xtE2Wb79wlFG4qokHiqOThg4zTGkoxx1tY0+/OgT7nwTQBOuYVQJVy5xuSBHkfN
-         XGn3DAwRzLuvaaxImjaoagQu7X/Qt4Od1JYXP26bZEr7BMWnuW0FO7jtzqODKsZBnb47
-         uMdItdZFq6NZuVM25aAlzEyd/ccmfIrtGcY1EIooQq+KJwNOx3lIzRce76Oq2JsxidCc
-         JwRHMcKTLMaVDIhMCqiobvnQkLkPNDWTHNC0eOfLCcuIZGNORYyCG4bdifTtKxlQATqg
-         hkfpoDUxUsEUYY2wDYuwu0RoG5AU01q6T++E0d6PGGz3ArjuP3/y+RmGXyTjOC78l9WZ
-         LHjw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zOuHq8U82z45l6oi2jh1bbRVCV+sx5729argcy2RiOQ=;
+        b=aGKC/bMLk0AVVN7okjwN8Ltf8mkZreO0NecUvCclw032hR8Pxs2vIhhgdpdFQ1g9U2
+         3e8W/FxDm5KUvlTVfI6GTPyiVSoWYUI2xZ1cMhdJKyYGm8QCS0dh0LI8FU1BHZ8w7J3L
+         Hnegt3SyXn5UjDh+yFJEx19rFBqoUvsAUnuPt2qTo0drDi/tUtBtb+Xif3WWRggawObx
+         NTh4Y5Q7yHmcvwGMMkX0ktSn+UiKHT3zuI8uakzVhAZJJSJEFNEvbmZm65UtW+3EbrXz
+         MIHIDG/7i2pG789ZNH63cNKh7SqSfz1q4T9F50+GoVShiPMPq6bMADTuzYdZQnsvTNO4
+         M+ZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=wLPxoIcrs7D54p0xqvu6Be+unhoE3U/V6Tkv1+8fe/k=;
-        b=q6AxNW6RnjGgVNcwvnMB80ySeSKzZZ8VZRWA35raIvK48S/BjpwmJn7vQeef5ZwBW6
-         j07TXfQwhf26PUlPqtOhWuk2PF3cW2zTeZYttlt+e5fnEWqKrWf6KmiLLBsmcTCEFsd0
-         S1rx5cW4eQUR2dBy42xXqrY1fZa3oMvF5PJYuC1GIZK29y0KQEQ2aXMKHSu7vBEOVh9g
-         54DygVAa53gq1ZbLtdSMNaenaYvLrDV9gCof2DCFSh2o8q1J57lWx+ZCZt0yOVCjDDih
-         Au/8mBcEXjPbYd5m96yVe6gBcKO8i2dQUGqiRIz4MBftpdaTHwb9oulKQe7hExSryWPc
-         ZngA==
-X-Gm-Message-State: AOAM533egGPe81K/qCYmMiZXCeei0mhUEaT8W2lZCQoyWYRXvFRBg1Gw
-	pcnAKduWhrvyZIee32gqSzYz8BYKXW8=
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zOuHq8U82z45l6oi2jh1bbRVCV+sx5729argcy2RiOQ=;
+        b=igq18ifNXDPCJfVMWLKed34akaIt91Xq5f/OhjtJ60wH6WFQUM8pUXwB6hVerCwpYD
+         a8oWqUluT9Z1WeDa1Jwbe5wNsX4ApLJc0M5PYA1xV0Z9myoEwRxNOA1BgS5/xPv6H6U6
+         pTf71uaBmyCdsx5xgD/KH1iHl8G4fRMI/g8QMZQxEGJ3MN6Ja0djb9pJW2l3sm+FzcEo
+         J0N1TnCT5Bl9YAmbzIEmWrX5oiT8LLKPDcnUGJqd/hNSYmL7q0oHarK6rvhgFboQBeZ8
+         9GLcPp+sE7ehIEl2YJc6p8FLVSJz2GLE55+/wRtjzw75IaHEy9W3cB+urGQpg/6wJ0JG
+         lqwA==
+X-Gm-Message-State: AOAM533g9Qes0iUKk2GO5bJA0gTNxPAECfgs+cPjPnWYvWqWrQq13Pa2
+	9HNOOYJpzeHCe4vWfwEhx6l6zI5un1Y=
 X-Google-Smtp-Source: 
- ABdhPJxjcVH8Z+IiheVX78yRo7nra2oXttBbnPn1DSpWDEreHyq9ZVkeXWZ7xjP5bhe2lge7ktsoRw==
-X-Received: by 2002:a17:903:246:b0:153:84fe:a9b0 with SMTP id
- j6-20020a170903024600b0015384fea9b0mr29172969plh.163.1649617736367;
-        Sun, 10 Apr 2022 12:08:56 -0700 (PDT)
+ ABdhPJw+fAEu8RD/LOyAVwAF2vBeGYnaDvmJn+4uLO+FlAcmG3K/cVWNvtnQvhGoK74ejiwMfXu6qg==
+X-Received: by 2002:a17:902:ce0a:b0:156:72e2:f191 with SMTP id
+ k10-20020a170902ce0a00b0015672e2f191mr28326000plg.76.1649617732809;
+        Sun, 10 Apr 2022 12:08:52 -0700 (PDT)
 Received: from nereus.hsd1.or.comcast.net
  ([2601:1c0:6000:1b20:48cd:8d9b:66c9:7179])
         by smtp.gmail.com with ESMTPSA id
- f16-20020a056a00239000b004fa7103e13csm34001213pfc.41.2022.04.10.12.08.55
+ f16-20020a056a00239000b004fa7103e13csm34001213pfc.41.2022.04.10.12.08.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Apr 2022 12:08:56 -0700 (PDT)
+        Sun, 10 Apr 2022 12:08:52 -0700 (PDT)
 From: Tim Orling <ticotimo@gmail.com>
 X-Google-Original-From: Tim Orling <tim.orling@konsulko.com>
 To: yocto@lists.yoctoproject.org
 Cc: bluelightning@bluelightning.org
-Subject: [layerindex][PATCH 1/4] layerindex/urls.py: fix about url pattern
-Date: Sun, 10 Apr 2022 12:08:39 -0700
-Message-Id: 
- <75f052d19dbefd4d54dc3331bf11acb01eba88ea.1649617288.git.tim.orling@konsulko.com>
+Subject: [layerindex][PATCH 0/4] Various fixes
+Date: Sun, 10 Apr 2022 12:08:38 -0700
+Message-Id: <cover.1649617288.git.tim.orling@konsulko.com>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <cover.1649617288.git.tim.orling@konsulko.com>
-References: <cover.1649617288.git.tim.orling@konsulko.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Mon, 11 Apr 2022 17:17:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56711
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56710
 
-The url pattern was not including the trailing /
+Various fixes to address errors and warnings when running update.py
 
-[YOCTO #14445]
+The following changes since commit 796d2455bb862ed4c71eadfa9fcf4c002752c2f3:
 
-Signed-off-by: Tim Orling <tim.orling@konsulko.com>
----
- layerindex/urls.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+  templates/*: staticfiles -> static (2022-01-13 23:36:22 -0800)
 
-diff --git a/layerindex/urls.py b/layerindex/urls.py
-index 45dbd3c..de15bb0 100644
---- a/layerindex/urls.py
-+++ b/layerindex/urls.py
-@@ -128,7 +128,7 @@ urlpatterns = [
-         EditProfileFormView.as_view(
-             template_name='layerindex/profile.html'),
-         name="profile"),
--    url(r'^about$',
-+    url(r'^about/$',
-         TemplateView.as_view(
-             template_name='layerindex/about.html'),
-         name="about"),
+are available in the Git repository at:
+
+  git://git.yoctoproject.org/layerindex-web timo/fixes
+  http://git.yoctoproject.org/cgit.cgi/layerindex-web/log/?h=timo/fixes
+
+Tim Orling (4):
+  layerindex/urls.py: fix about url pattern
+  layerindex/models.py: add Inactive-Upstream
+  recipe{desc,parse}.py: BB_ENV_PASSTHROUGH_ADDITIONS
+  layerindex/utils.py: ignore 'core' in BBFILES_COLLECTIONS
+
+ .../migrations/0046_alter_patch_status.py      | 18 ++++++++++++++++++
+ layerindex/models.py                           |  1 +
+ layerindex/recipedesc.py                       |  2 +-
+ layerindex/recipeparse.py                      |  2 +-
+ layerindex/urls.py                             |  2 +-
+ layerindex/utils.py                            |  7 ++++++-
+ 6 files changed, 28 insertions(+), 4 deletions(-)
+ create mode 100644 layerindex/migrations/0046_alter_patch_status.py
+
 -- 
 2.30.2
 
