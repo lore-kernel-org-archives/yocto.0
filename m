@@ -1,189 +1,149 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <petr.gotthard@advantech.cz>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7D5A3C38A2C
-	for <webhook@archiver.kernel.org>; Fri,  8 Apr 2022 17:09:36 +0000 (UTC)
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com
- [209.85.167.51])
- by mx.groups.io with SMTP id smtpd.web09.8583.1649437155200611248
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 01F97C4167D
+	for <webhook@archiver.kernel.org>; Mon, 11 Apr 2022 17:17:58 +0000 (UTC)
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com
+ (APC01-TYZ-obe.outbound.protection.outlook.com [40.107.117.66])
+ by mx.groups.io with SMTP id smtpd.web10.18111.1649604612330345951
  for <yocto@lists.yoctoproject.org>;
- Fri, 08 Apr 2022 09:59:15 -0700
+ Sun, 10 Apr 2022 08:30:23 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=ZAAmTdtn;
- spf=pass (domain: gmail.com, ip: 209.85.167.51,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f51.google.com with SMTP id k21so16127725lfe.4
-        for <yocto@lists.yoctoproject.org>;
- Fri, 08 Apr 2022 09:59:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=cR7nGSw5abf6gKbXbAb03rapfbiGeu0q13RTuXgkMnE=;
-        b=ZAAmTdtnvm+fE7eq1XT9i0ZWsnB1QACdEFIjOpA6s1OWBUj9Lf3itqCXR2M6laliz2
-         ZOlxQ+PpZrljd7IvIBKH1iwdnlzIErKfVzf7DDrl3Nfg2qDFvIEHZ/12BM80LymXQ5Jq
-         ph41P6uTHJVMXZYcphqnw9R5i72VSG7itEFzsEbolt+tCzV7zHonS7TWeTxoQqBImCvJ
-         GE1n3Sd47Rw3rozpTA0fDLAN09BRNX2X6rmR2eaSvPMLEh7Tfof2LyCLZUyNMRSadqqa
-         BhLCSX5/UGGbTZlnADiWEPOVnc9OUaqoZH531zVtgSj17yCcWfJZQjuhybAQFslyKnGG
-         QyYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=cR7nGSw5abf6gKbXbAb03rapfbiGeu0q13RTuXgkMnE=;
-        b=56g/rF0cJ2gO1TAPVKP/3h+FzyrwAhvGNx6esmEZ6aZiG2zf/AuFT0TpE81/PRFA/B
-         E+NVs8LS+jTMbH/X83XS9lRlET9E8R83sl/7/C6BCu8DAy6/e5wZxB+j7jxjf0C/p2+p
-         TjEpo5AH79qqsFvJPxGBeSUvq2QbVXkO7/eHlmWVaNULIJE1GgxML1Ie9VupEvbPlMmZ
-         fuok4tJwbDsJTorVvKgAVoKVneQdjpgz0ZrDpd72aq3rsP6aD78NctIOBhuJ9bq/A2Sw
-         Bkbqg4uwhEV043Rpugb7Drmo+Rk0pDNBZ0AuHbAd2cUgbZxcQIm3kujfJktNvt9KJI+I
-         nP4w==
-X-Gm-Message-State: AOAM532atRC2+WImmRNm4P/o2pX0lbdBlr7mPCWbfu7xKvr/RDCh0Woz
-	L5u9eIoUDnckDExXXX75tIGEFD1jOMJdxImgqH8=
-X-Google-Smtp-Source: 
- ABdhPJzQ5zwkNLvIN/OTrVdjemPMocq0A1X9AxzBzhCVfH6miatziJe7Xr+ovhls6SGAmhS+up7c+f0vAWnq7F8jYUk=
-X-Received: by 2002:a05:6512:31cb:b0:44a:1311:60e4 with SMTP id
- j11-20020a05651231cb00b0044a131160e4mr13370581lfe.521.1649437153257; Fri, 08
- Apr 2022 09:59:13 -0700 (PDT)
-MIME-Version: 1.0
-References: 
- <CAEhQi8=HC7K9XxcCx4e83=JKCG3q=tAb2=BZmfvSqpwt4EG97g@mail.gmail.com>
- <CANNYZj_UvDZWC+hD1pjxzkOKK_sL4wB+mu3a8GiPZVwUnEO4iA@mail.gmail.com>
- <CAEhQi8mHYXWi12epRd7anMqkVzjDk8yA2An6LFxzgN=6_BNMpw@mail.gmail.com>
- <CANNYZj-uMyMwhy2rR=7d_qm4akrB6DzVC05hZkUPDGrTh3voVQ@mail.gmail.com>
- <CAEhQi8n_YgYG-k60pxUCcPziiq4n2RqYcBi8+GePn55_YT5Fzg@mail.gmail.com>
-In-Reply-To: 
- <CAEhQi8n_YgYG-k60pxUCcPziiq4n2RqYcBi8+GePn55_YT5Fzg@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Fri, 8 Apr 2022 18:59:01 +0200
+ dkim=pass header.i=@advantech.cz header.s=selector1 header.b=cK1onWar;
+ spf=pass (domain: advantech.cz, ip: 40.107.117.66,
+ mailfrom: petr.gotthard@advantech.cz)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mVyrlttCBQ8vF7EvurbWYelVrrZkN1Dp33MOuyq5am51t1H73zkXjHkLLy4BKQrCiQ3MZYtPIBkfwNje8YO9aFJhf9tLEw1rt/APWnblTwFK6MSL5cUigB4oRi9/J1iNl2QaDo32i7UiI8DHmHbhDHBjIOaWdu41E4z+wcZSfsW9Im0dSlLG1mUlEMuWocrZDXuw3mobV9UHTliEx3ixxMWqZgRFEs7nrFn5Crp+h7W2IaSfLYkP0VOScKTKUJToZYEKKyF03Wkk4d2gZfIBptSVJbL0KrlEd3p3XwI/z8DXre14BQIvRcN7emzq+dJ/zX/Vqt8rg0safsVQH+86jQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QgnUitnUXxKVKhpfhRITjn6OePNDjGQBHOYRgd3WVQk=;
+ b=DsV5bY0GmUJGOdFtlMKMWh7yPsDJO0lcLhovV8QuIWHLgo+GBtAVZr8WcinIwJ+60VeJELutLooFNpTUjncYxN23YWdtObt71Uk8wFWRTSAMOTABSU2NBdN8Kbmy1YzWcW6aXAHGmCzwQ5sby3n5taqylR+N44Cv+I1j3DJ+hbVa+dTrPgREzA/U2oCK9lAupJZGfcNfmaaJ0pTvthan0Al9GhkrSX0DhwhOGmbBFLm2XXjo2f5gSnlttnGAIinxgpiGIviNwetREmy+ttgYvbTKB+5Y9AxttaW7JtMSpxvQgxZU0vxqUcEAsmqLJiGMv4b9mZyOQq+xVbEJC6yKmg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=advantech.cz; dmarc=pass action=none header.from=advantech.cz;
+ dkim=pass header.d=advantech.cz; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=advantech.cz;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QgnUitnUXxKVKhpfhRITjn6OePNDjGQBHOYRgd3WVQk=;
+ b=cK1onWarr3+xCsaEDgv5Qu2EUiNhFSrjEQwp5XhxdV56gr/dku3rU6m0znqHvJOYbTW+TtNvjA1og0Dnzofi/vZvPM6HWP6Rb5BFOJ86/t3CRnMUhmJyw4WpKPEvO+Y6mJRENwgO5Za8bM4NOdXoK3kbzmV3QGOWwC1nzlX970d51atXCS7UflPwnqIExg/y291E23hIjKE8evFkuiHJlP0YBEgHOyBJPlykPspx/1bKPSqnAsposc8Az8ZqNbQTA5/VtOGjaPuX9gPekXTObIJ1fNVSgdADChCiwmJYndnlrakDXVMXiyworobU3xuj3Qs7Hg9cDxZfaEP2/Kf5Lg==
+Received: from TY2PR02MB3678.apcprd02.prod.outlook.com (2603:1096:404:b7::12)
+ by SEYPR02MB5965.apcprd02.prod.outlook.com (2603:1096:101:84::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.29; Sun, 10 Apr
+ 2022 15:30:09 +0000
+Received: from TY2PR02MB3678.apcprd02.prod.outlook.com
+ ([fe80::b46d:269f:591f:7eff]) by TY2PR02MB3678.apcprd02.prod.outlook.com
+ ([fe80::b46d:269f:591f:7eff%6]) with mapi id 15.20.5144.029; Sun, 10 Apr 2022
+ 15:30:08 +0000
+From: Petr Gotthard <petr.gotthard@advantech.cz>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: [meta-security][PATCH 1/6] tpm2-tools: fix missing version number
+Thread-Topic: [meta-security][PATCH 1/6] tpm2-tools: fix missing version
+ number
+Thread-Index: AdhM7PqYnBlkdDehSdCCp3k6aPgjvQ==
+Date: Sun, 10 Apr 2022 15:30:08 +0000
 Message-ID: 
- <CANNYZj8B6EQugEEkdKvWnw1qxvRPUMAMBRj-26SakJt4EpjzbA@mail.gmail.com>
-Subject: Re: [yocto] [Question] How to handle GPLv3 packages?
-To: =?UTF-8?B?TcOlbnM=?= <mans.zigher@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ <TY2PR02MB367874688F7BC483F7E6E0E281EB9@TY2PR02MB3678.apcprd02.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: cs-CZ
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=advantech.cz;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 800da465-f780-44e7-eb9c-08da1b06ff15
+x-ms-traffictypediagnostic: SEYPR02MB5965:EE_
+x-microsoft-antispam-prvs: 
+ <SEYPR02MB596522F52F1F59759CFD6BDE81EB9@SEYPR02MB5965.apcprd02.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ LF8wJi1en3ZgiA2jKnBMpbjobuixxlbaBEvD+kpd9QlU37zmax3OfgfaxrlMKENfg50YhmsCzkJMkJ01URnPKLtLdAthG6QoO4vCIb/kBD1PhgurTux1m0J2ZaTf3bo9KmIL5v25Hc2Bkfx4SS6AQC1iT2spBZYtRZmdS+8JDD9zJQUeuS+ZU3S+RGpblab5D/q8Gr+fddNzDmUD0k7VjuL8xTOa+4BNqF1uEm23P+cujMapHWYHcr3EyMnaETAdg0iBl6TEDgB2XUFytwbyTM14iuIQTi+YVUoRstT/PAZ5m45eIuYafriHH17dakIuvTq+p4LrJvtZLyakLORtlMhuCclTD8oH+VBn8FPHMMsAnymwqa8C5AIT6i21bC2HSIfSY1zU4OM5eBkftt7JtFmbIWgHqfDN1kBbfqog9u8Ofab6hhCMsLeJO3fPkMirKSBx4mhs2JAyHUHvuL38/rpZUPve7DbCgsjVfT+e6q5tBL8wzTQnJGDuIfn9hvFFHjgp1Pp9x8ascXjKc1TOTG76HpK3LkIJQ4AmgRSpD+iSHZbkAJsjJIHECrvHIdOyFVN9xgIwgAVDsNBF3F/OUVtMPX8JnkaZ/q+82Q58kF1a7fUoxMpXf3xnwrLzeste6oAP/N+WHm/eThYxRObu6gGbI2O65+oBc2zomLAePQ4zcxvmSwYIURsofeJrDtE1pxxefS3AwNW+uzv+zOVsPO2gpUC8mLsGqc/aGZHI6V4YJGs95v2z/8RbxzDnn3URvI+OjQJOS2ypoZ9/n8D0GCY0A9er/ZO+iJMmN6xI4F0=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR02MB3678.apcprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(186003)(83380400001)(86362001)(26005)(52536014)(8936002)(9686003)(7696005)(6506007)(508600001)(2906002)(55016003)(5660300002)(8676002)(38070700005)(71200400001)(33656002)(66946007)(4744005)(66446008)(76116006)(122000001)(38100700002)(44832011)(316002)(66476007)(66556008)(64756008)(6916009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?MmVFb0dTUHZTRmJOb2VhVGd0R3NzcXYzeURhUVF5S1dkRHVRS0g4OVFVNXFP?=
+ =?utf-8?B?OVpmZU5lWWZUMXVsRGF4WmQ5ZDJybWgrbUZtaVNHQmwvNGg2d0doUmVmVjFI?=
+ =?utf-8?B?ZFdYNmVRN3RnTllUUEl1cG5yeHhHL2xwNUhmQWo0eUVZdStHZDZmWVhMK2dT?=
+ =?utf-8?B?TU1jL3JqQkU1UG5WK2ZNTjFoZEUzOXd1SS82Uk5qbzZtajBmZE8xU0FLTi81?=
+ =?utf-8?B?OVJtb3BBbUxYQ1Q5aURodk1CWU5oM2REUnBRQWZVRHptM2Z0ZWhHMmJCdjBh?=
+ =?utf-8?B?ZUNxL04zQ0IxRkMwdmpnaEtiZFVLeG5kY1dRK0pJNUdzQlJDMUluWU50UDNW?=
+ =?utf-8?B?Tzh4QlBFa3RRSnhuMGovcXhaZnUrUHk3WFVoV0N6U2IvMmJKTDNYbVZoZnJu?=
+ =?utf-8?B?bEkzdElhL2lMdXFCTURhcWg2MVNVUjVseWVTaG52NjBNSGUxZjIvbXgwSmwr?=
+ =?utf-8?B?ajJjRlhTNmExRWcvVy9PbmwyQUMvVHlWbjBZa0p4ekFlMVIvcDVtdlNpaitF?=
+ =?utf-8?B?K2V5dVJ4WWo3Smd6eTZvL0wrMjVGeE1yRDJIdFJtcEsvaHFnNFNXT2N1eWVY?=
+ =?utf-8?B?TkVyd2I4eU5Bejh0c2FER2QwOUlDUGczZWlPU29Bc2xNOGFWYnBCVVV2ZGdt?=
+ =?utf-8?B?MjgzaXJPbnB4UGtsQmk0V0pjbytOQ1M5TjV2enJKQWErUWJkUG5XeUxPRkhx?=
+ =?utf-8?B?WUg2cllybmF3ZklnSnF0TGhidGlxMWU5c0hhZVBSbVBPWHgxYmtrTlY3WkZz?=
+ =?utf-8?B?cEVQVCt0R0tqZnB0RVA4L2VtcjlGTEhxUlBhZ0svSXJHRVY2Qk1vOUplbjZG?=
+ =?utf-8?B?MGdBdlp5cHNZS1RyS1NpTEJVRXVuRzgyNjNGVUw3ODFwbXlMejNFYis5OWM1?=
+ =?utf-8?B?UFFuZUY3dUNyYjlrN2NWdEo4VFhDUUJyckk1SGJrSGFuVG5QL0QvR3p3SDFY?=
+ =?utf-8?B?Z1VMMGlrR0VwaTVNdzg3UEFYZk0wSWYwL0JaZkJpOXlFVEhtMFZ1TFd3Z2dZ?=
+ =?utf-8?B?OEp0Q09MSGVYZTl3eGdWSnF0VUJNVXZxalpvSmZ1K0p0alluNTJ1V1JsNDkv?=
+ =?utf-8?B?M2pETkovNUFEOVY0ZXc0TEFjL3hVcm1UMFBlTWNNN0xacFIzRWlpWHZsTVV4?=
+ =?utf-8?B?YjhaTUh6aDBhK01PM2xhVmhkUWtNOFRFSU9NV0h3L0Y0UlljYVlrcnJ6ZHNl?=
+ =?utf-8?B?ZDZVdjRpcG5rVVU5VDFxT2M5VGx1dkd6R09KRkFYdmhLZklsQWlISWQ4cEFN?=
+ =?utf-8?B?dGNpZ1pRTWJySkRWMlR3WXpkMmUxaXVDdElzREM4dFo5L004R1dYcHAvNzBD?=
+ =?utf-8?B?cDNKcVhVK01vUDFDQU4vcjEwUUxiUm5zMk9ZMG13R29MMGNCSTQyTysvYWJh?=
+ =?utf-8?B?dU84OGJlblVQNElxMEJxOG5GaGlmenJMYUQrdnE0TWl3cWkxcCtTQkFHT25C?=
+ =?utf-8?B?cXFvY0RNUlpJaGl3eHdldXlDNjJ2TXl5SW9Cc2tDR2tZMDN5eGs1WkI5LzlV?=
+ =?utf-8?B?T2wySjROQ2dNMk9IN283UERZWkNXSHllNnR6bzdwQ0JaRGkyalVnQ2xMTnd2?=
+ =?utf-8?B?K2twV0JTZEpOY2xtSXBOcEFHWDlJNkZBMUwzS2JTVjMvWFNsWUI4cFZ4ZjJp?=
+ =?utf-8?B?REthSTNSRlFHR2lxakN3QmtFNDZHU2hYOFZJd3JnL0Rwa3RJRTNTaGV5N3FF?=
+ =?utf-8?B?c3pnc1A5UjA3clR0cXE5akM0RTZCdU42YXRCRGtHT0t4cTU1YUxOLzhZaDRL?=
+ =?utf-8?B?Y2ZmcXovKzJiMWhaZ1g4OC9ScGR5U0dEbWdhSWw0c2wxdGYrWHdYOGVURmFU?=
+ =?utf-8?B?cE93OHRISVpzZ2dnTFhTekYyeWIvcWNlRnUyVVNybkxYMS9IY0tlMGpyeW1M?=
+ =?utf-8?B?VGwwRTJhdEkyKzNOY2ZTc0dTUDFGVVNtOXlwU1BpcXFnd1Y4bzJJQnVsdldq?=
+ =?utf-8?B?VmlLcVVSTkt1b0NlR0xGUGh2M2w4SFl4VmFSNnFkSFdaVTBzN0xmbW4rQnZN?=
+ =?utf-8?B?RXo2Y3JrMDFzNTcrclJTU1JlV1VoZjhTMjAyS1VTdlV1c2txRWxzR0g1M2ZX?=
+ =?utf-8?B?MUNCQXNyZEJNS2t5Q3FyKzVDKzJFM3hQZ1JpWUJlSXpzZmpvR1dyY1NBMEI0?=
+ =?utf-8?B?a2RoSjBzTnViOWlCWTY2bmVyWXl3VWRVZThjSkR1QkQ3N25jUXltT21jRzU1?=
+ =?utf-8?B?cmpFdTB1YUFFcXk2cXVYRTBQaDdSRE9nN3dVOHFTSVV3TFpjOFdqRWpaemVq?=
+ =?utf-8?B?Wlh6RDNWeW01U0RhdURQRW5KS3NwaW80WkhYQlQyWVpYeldZbUJ5bG5NNUZ4?=
+ =?utf-8?B?ZElubXVpM0lJeFcwTC9CRGxTaUFnQ3JIMDJDdllKcUgyYUU2T2lpdGpsSzNi?=
+ =?utf-8?Q?TAhmRLpdxLtdHUdU=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: advantech.cz
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY2PR02MB3678.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 800da465-f780-44e7-eb9c-08da1b06ff15
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Apr 2022 15:30:08.9258
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a77d40d9-dcba-4dda-b571-5f18e6da853f
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 
+ gOJA1cTkZ6f/T9Gmc7DSk9vU0kcU+mNHXg8lXU9noJyF4v7fMyse5QveWmhmCR38RUvfJz82j6qEVhdLHjuLP9K5uyxzCZiLm9Alenk/2jk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR02MB5965
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 08 Apr 2022 17:09:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56699
+ <yocto@lists.yoctoproject.org>; Mon, 11 Apr 2022 17:17:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56704
 
-Thud has been EOL for a long time. You can see when the support been
-added here (end of 2019 it seems):
-https://git.yoctoproject.org/poky/log/meta/lib/oeqa/selftest/cases/incompat=
-ible_lic.py?h=3Dmaster-next
-
-Alex
-
-On Fri, 8 Apr 2022 at 18:56, M=C3=A5ns <mans.zigher@gmail.com> wrote:
->
-> I am currently on Thud so I am missing the support from what I can
-> tell to set INCOMPATIBLE_LICENSE per image. I have tried to find the
-> commit that adds that support but am having some problems finding it.
-> Do you maybe know what I should look for to find the commit that adds
-> this support?
->
-> Thanks
->
-> Den fre 8 apr. 2022 kl 10:16 skrev Alexander Kanavin <alex.kanavin@gmail.=
-com>:
-> >
-> > Hello Mans,
-> >
-> > please refer to the tests we have for the feature:
-> > https://git.yoctoproject.org/poky/tree/meta/lib/oeqa/selftest/cases/inc=
-ompatible_lic.py?h=3Dmaster-next#n95
-> > (line 95 and below)
-> >
-> > The key bit is:
-> > INCOMPATIBLE_LICENSE:pn-core-image-minimal =3D "GPL-3.0* LGPL-3.0*"
-> > e.g. apply the restriction only to core-image-minimal.
-> >
-> > Alex
-> >
-> > On Fri, 8 Apr 2022 at 08:06, M=C3=A5ns <mans.zigher@gmail.com> wrote:
-> > >
-> > > Hi Alex,
-> > >
-> > > Could you maybe clarify what you mean with "setting
-> > > INCOMPATIBLE_LICENSE per image"? Do you mean that you have one
-> > > specific image that is used when you build an image for release to th=
-e
-> > > customer and then one image for development?
-> > >
-> > > Thanks
-> > >
-> > > Den ons 6 apr. 2022 kl 11:04 skrev Alexander Kanavin <alex.kanavin@gm=
-ail.com>:
-> > > >
-> > > > I'd suggest you start by setting INCOMPATIBLE_LICENSE per image, e.=
-g.
-> > > > enable gpl3 ban only in the images that ship to the customers and n=
-ot
-> > > > across the entire build. Then carefully look at what pulls in bash
-> > > > into those images and why, and reconfigure those pieces to not do t=
-hat
-> > > > (e.g. by reconfiguring the PACKAGECONFIGs), or rewrite the scripts =
-in
-> > > > posix shell.
-> > > >
-> > > > Alex
-> > > >
-> > > > On Wed, 6 Apr 2022 at 10:59, Mans Zigher <mans.zigher@gmail.com> wr=
-ote:
-> > > > >
-> > > > > Hi,
-> > > > >
-> > > > > I cannot use GPLv3 packages in our image build. I am no legal exp=
-ert
-> > > > > but from what I can understand most companies will not be able to
-> > > > > comply with this license without allowing the customer to compile=
- and
-> > > > > deploy a new version of any GPLv3 package to the target. I know i=
-t is
-> > > > > possible to comply with this but we are using secure boot and hav=
-e not
-> > > > > the time and probably no interest in setting up a solution for
-> > > > > allowing customers to be able to deploy GPLv3 packages on the tar=
-get.
-> > > > > We are trying to make use of INCOMPATIBLE_LICENSE but that result=
-s in
-> > > > > several issues. We have made sure that we don't include GPLv3 in =
-the
-> > > > > image build using a manual process but would like to use
-> > > > > INCOMPATIBLE_LICENSE to alert any developer about the issue. It s=
-eems
-> > > > > like INCOMPATIBLE_LICENSE is a bit harsh since it will catch any
-> > > > > packages even if it is only part of the SDK and also for native
-> > > > > packages that are not part of the image build.
-> > > > >
-> > > > > I cannot be the only one with this problem so how are other compa=
-nies
-> > > > > solving this issue? Are they just not using the INCOMPATIBLE_LICE=
-NSE?
-> > > > > Are you setting up a parallel process for checking for any
-> > > > > incompatible licenses issues?
-> > > > >
-> > > > > A more specific issue is that there are so many packages with bas=
-h
-> > > > > dependencies which are pulling in bash which is GPLv3 so how have=
- you
-> > > > > solved that? Currently we have done some pretty uggly hacks which=
- I am
-> > > > > not that happy with but we needed to keep it out of the image.
-> > > > >
-> > > > > Thanks
-> > > > >
-> > > > > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > > > > Links: You receive all messages sent to this group.
-> > > > > View/Reply Online (#56672): https://lists.yoctoproject.org/g/yoct=
-o/message/56672
-> > > > > Mute This Topic: https://lists.yoctoproject.org/mt/90285507/16864=
-89
-> > > > > Group Owner: yocto+owner@lists.yoctoproject.org
-> > > > > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.k=
-anavin@gmail.com]
-> > > > > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > > > >
+Q2FsbGluZyBhdXRvcmVjb25mIG91dHNpZGUgZ2l0IHJlcG8gY2F1c2VzIHRoZSB2ZXJzaW9uIG51
+bWJlciB0bw0KYmUgbnVsbC4gVGhpcyBwYXRjaCBtYWtlcyB0aGUgdmVyc2lvbiBudW1iZXIgZml4
+ZWQuDQoNClNpZ25lZC1vZmYtYnk6IFBldHIgR290dGhhcmQgPHBldHIuZ290dGhhcmRAYWR2YW50
+ZWNoLmN6Pg0KLS0tDQogbWV0YS10cG0vcmVjaXBlcy10cG0yL3RwbTItdG9vbHMvdHBtMi10b29s
+c181LjIuYmIgfCA1ICsrKysrDQogMSBmaWxlIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKQ0KDQpk
+aWZmIC0tZ2l0IGEvbWV0YS10cG0vcmVjaXBlcy10cG0yL3RwbTItdG9vbHMvdHBtMi10b29sc181
+LjIuYmIgYi9tZXRhLXRwbS9yZWNpcGVzLXRwbTIvdHBtMi10b29scy90cG0yLXRvb2xzXzUuMi5i
+Yg0KaW5kZXggNmU5NWEwZS4uZjkyNDAzOCAxMDA2NDQNCi0tLSBhL21ldGEtdHBtL3JlY2lwZXMt
+dHBtMi90cG0yLXRvb2xzL3RwbTItdG9vbHNfNS4yLmJiDQorKysgYi9tZXRhLXRwbS9yZWNpcGVz
+LXRwbTIvdHBtMi10b29scy90cG0yLXRvb2xzXzUuMi5iYg0KQEAgLTExLDMgKzExLDggQEAgU1JD
+X1VSSSA9ICJodHRwczovL2dpdGh1Yi5jb20vdHBtMi1zb2Z0d2FyZS8ke0JQTn0vcmVsZWFzZXMv
+ZG93bmxvYWQvJHtQVn0vJHtCUE4NCiBTUkNfVVJJW3NoYTI1NnN1bV0gPSAiYzBiNDAyZjZhN2Iz
+NDU2ZThlYjI0NDUyMTFlMmQ0MWM0NmM3ZTc2OWUwNWZlNGQ4OTA5ZmY2NDExOWY3YTYzMCINCiAN
+CiBpbmhlcml0IGF1dG90b29scyBwa2djb25maWcgYmFzaC1jb21wbGV0aW9uDQorDQorZG9fY29u
+ZmlndXJlOnByZXBlbmQoKSB7DQorICAgICMgZG8gbm90IGV4dHJhY3QgdGhlIHZlcnNpb24gbnVt
+YmVyIGZyb20gZ2l0DQorICAgIHNlZCAtaSAtZSAncy9tNF9lc3lzY21kX3MoXFtnaXQgZGVzY3Jp
+YmUgLS10YWdzIC0tYWx3YXlzIC0tZGlydHlcXSkvJHtQVn0vJyAke1N9L2NvbmZpZ3VyZS5hYw0K
+K30NCi0tIA0KMi4yNS4xDQoNCg==
 
