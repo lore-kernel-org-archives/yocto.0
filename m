@@ -1,294 +1,136 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <jpuhlman@mvista.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B5F06C388F3
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D31D8C38A04
 	for <webhook@archiver.kernel.org>; Tue, 12 Apr 2022 16:46:39 +0000 (UTC)
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com
- [209.85.215.178])
- by mx.groups.io with SMTP id smtpd.web08.4658.1649719995780109559
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
+ [209.85.214.179])
+ by mx.groups.io with SMTP id smtpd.web12.4790.1649721236804987348
  for <yocto@lists.yoctoproject.org>;
- Mon, 11 Apr 2022 16:33:15 -0700
+ Mon, 11 Apr 2022 16:53:57 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=R8GzGZMc;
- spf=pass (domain: gmail.com, ip: 209.85.215.178,
- mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-pg1-f178.google.com with SMTP id 66so15486381pga.12
+ dkim=pass header.i=@mvista.com header.s=google header.b=If1jF/F6;
+ spf=pass (domain: mvista.com, ip: 209.85.214.179,
+ mailfrom: jpuhlman@mvista.com)
+Received: by mail-pl1-f179.google.com with SMTP id j8so15213126pll.11
         for <yocto@lists.yoctoproject.org>;
- Mon, 11 Apr 2022 16:33:15 -0700 (PDT)
+ Mon, 11 Apr 2022 16:53:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version:thread-index
-         :content-language;
-        bh=ur2griOlQv9TDhK9qFL3aBOcYOnNjwkBTo1CIq976j8=;
-        b=R8GzGZMcAOVHnPE4++B6J/mpJTlUqhpzVU9z7x2tiB/xzNXF7XJBfzri2ZXZSuA4c9
-         tvCl7bGpvfWOQboBS/FTTj88nZkBHCRXUmYshqqpTX/Ivek1wWnC2qGwpnsRpU2nq9V+
-         yLrkq94PIFtizoE/kVqeS6kv1l3yxQAemPSXkDl45CByzja4hJwP2HH9Oa/9OnTJ18lJ
-         FzPfB1yL52K4OWLhYUhrdddXSf1sh4MfWjTFVUBwKclMEC0r0TImwXzgWuE0ow4Gaj8Y
-         RsTHAJaN/L2KE0Whvqk7VrCCUtyUwKoAfdw4Rq0PgGMQrDCq4APtp8EflaGYUbgdCRMA
-         eHTg==
+        d=mvista.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=21ne8/dRnrEH2C90hATuXA7N18mUcTiHE772d4lJLbg=;
+        b=If1jF/F6dQcffYr6efQzG3Wipm+PrsBeV9c4SOAbKHWv6s1tR3LncI2tl/PjSBagF+
+         qOIxyw4hU9AdLdylGyweMJQ6RkSU3OfpBDSXfLZknyee2VFFtRXfhsTeKTONjPqMqKMG
+         q6HngKaj1SvkLRBKXJtMZ8+QaeNn0HwJJE50s=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :thread-index:content-language;
-        bh=ur2griOlQv9TDhK9qFL3aBOcYOnNjwkBTo1CIq976j8=;
-        b=qfvORsOAVEAPTakPdSsZIs8GpCz5FJi4yoPikQi3wuVm9/8PdTross2/MWRs6gQkWa
-         1dOSVjnRDFaZjGVC0we6lFUP1BNYVVxj+qnqX8VGx8zaw53WZ40VvPaqmBRStk8b/BH3
-         8jk1D69+MAdmuywWWulxQxY0UY4Il+aWaVuXW2dgXS1XtralInUObJuYP2omwhRn1xOo
-         GZ9ZWQIxYhiNfgvnJRdMaETIRTbfZHOGdPSGl+lVEDNczWHq86vAE6H97+ro2k4jo+3j
-         1S8JL6Aj4BjRH1rPIXagn0t+xWXsi4t1c8xY63tsOSqCYi7HpXcWBZ3XTJs66iwY1t//
-         amUQ==
-X-Gm-Message-State: AOAM533dRmGAmZYXzbuOFcFLCEyT9HTXe5gBZEgxB5gaPjRj7nTohFbQ
-	krNCPegvK+P75hzMR01RZkI=
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=21ne8/dRnrEH2C90hATuXA7N18mUcTiHE772d4lJLbg=;
+        b=CDBAb7+yPZfvgPFUIG40PiQ8DWMo76Qf/qsL39xkwJZtutrTtcjPrCRxq8B5owM97W
+         haUrSuCDQSehZd5QbZQnxRe51f15zsowdvtjSeT4ykKBWezWhGxSrKhZbup0/Q9yzkRI
+         jGGKpOygvwjBlnrW+yxTWBGjZAdIJazLg1quxEimmyc22TTbS/1jCZPQPr2E1H332TcE
+         Ip/8rxWAWcfrEuujEmP2y3N+2yMqJ06zO1mZ3QJj9TgNOWRlD4EVYU44B0Qq8+TipgLk
+         fnkZAS7fSA71sGyWuts7pQDHjgRCZCK6oDc25wqhQD13lCoXP6DCZq7QZ3bx3lTAjRMm
+         AmOA==
+X-Gm-Message-State: AOAM5300zuYNwzKj0jRAXx86/OnTZ1c0+pfgCOWt/OoCvm1CtPTJhG8U
+	9yaov3d/g7Xt/sSwSDgwD+AxZ7Yr9t3HuA==
 X-Google-Smtp-Source: 
- ABdhPJyQ0rCQzxyJtxdTKUJosgpipyiISpNiCyImCddoEEAlWCrI3R/xSesLSCfFJY2BZW6aretoKw==
-X-Received: by 2002:a05:6a00:1304:b0:4e1:2338:f11e with SMTP id
- j4-20020a056a00130400b004e12338f11emr35237059pfu.24.1649719995045;
-        Mon, 11 Apr 2022 16:33:15 -0700 (PDT)
-Received: from skjolley ([2600:1011:a106:74:3971:1874:2802:a0d3])
+ ABdhPJxRDP+MK5miw7iHL6fW9WP2ACfnPz44j5DiqmV6sMohn4t76GIHd+1C+4MfrJ34O7u/P20JRQ==
+X-Received: by 2002:a17:903:1212:b0:156:3ddc:84bd with SMTP id
+ l18-20020a170903121200b001563ddc84bdmr34030097plh.70.1649721236039;
+        Mon, 11 Apr 2022 16:53:56 -0700 (PDT)
+Received: from red (99-14-97-149.lightspeed.frokca.sbcglobal.net.
+ [99.14.97.149])
         by smtp.gmail.com with ESMTPSA id
- w129-20020a628287000000b004fdc453b49asm36303898pfd.39.2022.04.11.16.33.13
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 11 Apr 2022 16:33:14 -0700 (PDT)
-From: <sjolley.yp.pm@gmail.com>
-To: <yocto@lists.yoctoproject.org>,
-	<openembedded-core@lists.openembedded.org>
-Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
-Date: Mon, 11 Apr 2022 16:33:13 -0700
-Message-ID: <140b01d84dfc$83e7bf10$8bb73d30$@gmail.com>
+ k6-20020a056a00134600b004faba67f9d4sm37305853pfu.197.2022.04.11.16.53.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Apr 2022 16:53:55 -0700 (PDT)
+Received: by red (sSMTP sendmail emulation); Mon, 11 Apr 2022 19:53:53 -0400
+From: "Jeremy A. Puhlman" <jpuhlman@mvista.com>
+To: yocto@lists.yoctoproject.org
+Cc: "Jeremy A. Puhlman" <jpuhlman@mvista.com>,
+	Kai Kang <kai.kang@windriver.com>,
+	Armin Kuster <akuster808@gmail.com>
+Subject: [meta-security][dunfell][PATCH 1/2] sssd: re-package to fix QA issues
+Date: Mon, 11 Apr 2022 19:53:49 -0400
+Message-Id: <20220411235350.3654780-1-jpuhlman@mvista.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_140C_01D84DC1.D788E710"
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQMZerPWXAg9KJOd1xiaV7vrd4ue+g==
-Content-Language: en-us
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Tue, 12 Apr 2022 16:46:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56730
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56734
 
-This is a multipart message in MIME format.
+Source: meta-security:honister
+MR: 113808
+Type: Defect Fix
+Disposition: Merged from honister
+ChangeID: be0e4f3c73eeb04d1c79d99d3377c89659abe420
+Description:
 
-------=_NextPart_000_140C_01D84DC1.D788E710
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+It packages all file in ${libdir} to package sssd, including the .so
+symlink files. Then it causes QA issues:
 
-All,
+| ERROR: QA Issue: sssd rdepends on dbus-dev [dev-deps]
+| ERROR: QA Issue: sssd rdepends on ding-libs-dev [dev-deps]
 
+So re-package sssd then the .so symlink files and .pc files are packaged
+to sssd-dev which should be.
+
+File ${libdir}/libsss_sudo.so is not a symlink file but packaged to
+sssd-dev too. Then causes another QA issue:
+
+| ERROR: sssd-2.5.2-r0 do_package_qa: QA Issue:
+    -dev package sssd-dev contains non-symlink .so '/usr/lib/libsss_sudo.so' [dev-elf]
+
+So create a new sub-package libsss-sudo to package file libsss_sudo.so
+and make sssd rdepends on it.
+
+JP: Update for version differences.
+
+Signed-off-by: Kai Kang <kai.kang@windriver.com>
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+(cherry picked from commit e81c15f851ca5396c78c8737967ee38db0ebe0cd)
+Signed-off-by: Jeremy A. Puhlman <jpuhlman@mvista.com>
+---
+ recipes-security/sssd/sssd_1.16.4.bb | 21 ++++++++++++++-------
+ 1 file changed, 14 insertions(+), 7 deletions(-)
+
+diff --git a/recipes-security/sssd/sssd_1.16.4.bb b/recipes-security/sssd/sssd_1.16.4.bb
+index 916f1ac..186c9e0 100644
+--- a/recipes-security/sssd/sssd_1.16.4.bb
++++ b/recipes-security/sssd/sssd_1.16.4.bb
+@@ -116,10 +116,17 @@ SYSTEMD_SERVICE_${PN} = " \
+ "
+ SYSTEMD_AUTO_ENABLE = "disable"
  
-
-The triage team is starting to try and collect up and classify bugs which a
-newcomer to the project would be able to work on in a way which means people
-can find them. They're being listed on the triage page under the appropriate
-heading:
-
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
-review:
-https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
-how to create a bugzilla account at:
-<https://bugzilla.yoctoproject.org/createaccount.cgi>
-https://bugzilla.yoctoproject.org/createaccount.cgi
-
-The idea is these bugs should be straight forward for a person to help work
-on who doesn't have deep experience with the project.  If anyone can help,
-please take ownership of the bug and send patches!  If anyone needs
-help/advice there are people on irc who can likely do so, or some of the
-more experienced contributors will likely be happy to help too.
-
- 
-
-Also, the triage team meets weekly and does its best to handle the bugs
-reported into the Bugzilla. The number of people attending that meeting has
-fallen, as have the number of people available to help fix bugs. One of the
-things we hear users report is they don't know how to help. We (the triage
-team) are therefore going to start reporting out the currently 410
-unassigned or newcomer bugs.
-
- 
-
-We're hoping people may be able to spare some time now and again to help out
-with these.  Bugs are split into two types, "true bugs" where things don't
-work as they should and "enhancements" which are features we'd want to add
-to the system.  There are also roughly four different "priority" classes
-right now,  "3.5, "3.6", "3.99" and "Future", the more pressing/urgent
-issues being in "3.5" and then "3.6".
-
- 
-
-Please review this link and if a bug is something you would be able to help
-with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
-like and I will assign it to you (please make sure you have a Bugzilla
-account).  The list is at:
-https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
-_Bugs
-
- 
-
-Thanks,
-
- 
-
-Stephen K. Jolley
-
-Yocto Project Program Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> 
-
- 
-
-
-------=_NextPart_000_140C_01D84DC1.D788E710
-Content-Type: text/html;
-	boundary="----=_NextPart_000_1132_01D8484A.8571FF10";
-	charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal =
-style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>The triage team is starting to try and =
-collect up and classify bugs which a newcomer to the project would be =
-able to work on in a way which means people can find them. They're being =
-listed on the triage page under the appropriate =
-heading:<o:p></o:p></p><p><a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
-s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
-please review: <a =
-href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
-bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
-bedded</a> and how to create a bugzilla account at: <a =
-href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
-style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
-/span></a><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>The idea is these bugs should be straight =
-forward for a person to help work on who doesn't have deep experience =
-with the project.&nbsp; If anyone can help, please take ownership of the =
-bug and send patches!&nbsp; If anyone needs help/advice there are people =
-on irc who can likely do so, or some of the more experienced =
-contributors will likely be happy to help too.<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
-meets weekly and does its best to handle the bugs reported into the =
-Bugzilla. The number of people attending that meeting has fallen, as =
-have the number of people available to help fix bugs. One of the things =
-we hear users report is they don't know how to help. We (the triage =
-team) are therefore going to start reporting out the currently 410 =
-unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>We're hoping people may be able to spare =
-some time now and again to help out with these.&nbsp; Bugs are split =
-into two types, &quot;true bugs&quot; where things don't work as they =
-should and &quot;enhancements&quot; which are features we'd want to add =
-to the system.&nbsp; There are also roughly four different =
-&quot;priority&quot; classes right now, &nbsp;&#8220;3.5, =
-&#8220;3.6&#8221;, &quot;3.99&quot; and &quot;Future&quot;, the more =
-pressing/urgent issues being in &quot;3.5&quot; and then =
-&#8220;3.6&#8221;.<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>Please review this link and if a bug is =
-something you would be able to help with either take ownership of the =
-bug, or send me (<a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
-e-mail with the bug number you would like and I will assign it to you =
-(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
-or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
-nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Program Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_000_140C_01D84DC1.D788E710--
+-FILES_${PN} += "${libdir} ${datadir} ${base_libdir}/security/pam_sss.so"
+-FILES_${PN}-dev = " ${includedir}/* ${libdir}/*la ${libdir}/*/*la"
+-
+-# The package contains symlinks that trip up insane
+-INSANE_SKIP_${PN} = "dev-so"
+-
+-RDEPENDS_${PN} = "bind dbus libldb libpam"
++PACKAGES =+ "libsss-sudo libsss-autofs"
++ALLOW_EMPTY_libsss-sudo = "1"
++ALLOW_EMPTY_libsss-autofs = "1"
++
++FILES_${PN}-dev += "${libdir}/sssd/modules/lib*.so"
++FILES_${PN} += "${base_libdir}/security/pam_sss*.so  \
++                ${datadir}/dbus-1/system-services/*.service \
++                ${libdir}/krb5/* \
++                ${libdir}/ldb/* \
++                "
++FILES_libsss-autofs = "${libdir}/sssd/modules/libsss_autofs.so"
++FILES_libsss-sudo = "${libdir}/libsss_sudo.so"
++
++RDEPENDS_${PN} = "bind dbus libldb libpam libsss-sudo libsss-autofs"
+-- 
+2.31.1
 
 
