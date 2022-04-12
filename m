@@ -1,272 +1,136 @@
-Return-Path: <mingli.yu@windriver.com>
+Return-Path: <joel.winarske@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DF357C38A06
-	for <webhook@archiver.kernel.org>; Tue, 12 Apr 2022 16:46:39 +0000 (UTC)
-Received: from mail1.wrs.com (mail1.wrs.com [147.11.3.146])
- by mx.groups.io with SMTP id smtpd.web09.5124.1649723897211242901
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D236C3A59D
+	for <webhook@archiver.kernel.org>; Tue, 12 Apr 2022 16:46:40 +0000 (UTC)
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com
+ [209.85.208.53])
+ by mx.groups.io with SMTP id smtpd.web11.6127.1649729937782111677
  for <yocto@lists.yoctoproject.org>;
- Mon, 11 Apr 2022 17:38:18 -0700
+ Mon, 11 Apr 2022 19:18:58 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=permerror,
- err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid
- domain name (domain: windriver.com, ip: 147.11.3.146,
- mailfrom: mingli.yu@windriver.com)
-Received: from mail.windriver.com (mail.wrs.com [147.11.1.11])
-	by mail1.wrs.com (8.15.2/8.15.2) with ESMTPS id 23C0cFRV011886
-	(version=TLSv1.1 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL)
-	for <yocto@lists.yoctoproject.org>; Mon, 11 Apr 2022 17:38:15 -0700
-Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.corp.ad.wrs.com
- [147.11.82.252])
-	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id 23C0c9eG003167
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <yocto@lists.yoctoproject.org>; Mon, 11 Apr 2022 17:38:15 -0700 (PDT)
-Received: from ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Mon, 11 Apr 2022 17:38:08 -0700
-Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
- ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Mon, 11 Apr 2022 17:38:09 -0700
-Received: from pek-lpg-core2.wrs.com (128.224.153.41) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
- 15.1.2242.12 via Frontend Transport; Mon, 11 Apr 2022 17:38:07 -0700
-From: <mingli.yu@windriver.com>
-To: <yocto@lists.yoctoproject.org>
-Subject: [meta-gplv2][PATCH] readline: add config file for pkgconfig
-Date: Tue, 12 Apr 2022 08:38:08 +0800
-Message-ID: <20220412003808.2858492-1-mingli.yu@windriver.com>
-X-Mailer: git-send-email 2.25.1
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=krKROVGx;
+ spf=pass (domain: gmail.com, ip: 209.85.208.53,
+ mailfrom: joel.winarske@gmail.com)
+Received: by mail-ed1-f53.google.com with SMTP id w18so20634161edi.13
+        for <yocto@lists.yoctoproject.org>;
+ Mon, 11 Apr 2022 19:18:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=Y81F6KGgYOMBnZtPsltteFZrSVzDB2Peepa3hjqd/vA=;
+        b=krKROVGxBBqZNEuF6S1xiLJstOIon1KvBZtknFOSVwapggLA/uM8DAbnAk2bMegSAy
+         HVZpCEhUkvdGdhd6J95UPrx+Q8PghOM3EuPJCxbQf4hUSeVL6J58VjMUSke8hfzgVvWo
+         9d7G40GGP4y7Duhs4ZrzhqP7tzM04S3NRSjsrA78l4njinJxHoL5A5U3Zq82yb5dHNwk
+         i9kA2t9P0rrDdnnwJN9XMUWzzoyv9KDbgnzLVOZkwoqYb3cMMBzhjnASBLdrS5NU4Sup
+         Hxt/NAePD8UEenls3D84yWXOJg9I0FC5b4a6gngyHAz0lM/00togifc03y29hEA9aSIr
+         qv/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=Y81F6KGgYOMBnZtPsltteFZrSVzDB2Peepa3hjqd/vA=;
+        b=LMbhBetY/kKsWgdaPvgcPPhwhZjo4IIN3d6h3u7Yol4J1sCssaVD0DybJ61rD+zTZL
+         2Wzspvdx4Nj+2Hd5P/m+B5icJW9cpa8nXjPzs3ckDUZCd92nMbisOoh8NOa8gloF83X+
+         zUmPfHwitCOi9Jj/hlhKF5ieZd4YqifYaATA45AzkjI/XlBCZ4JGmIrUql0EuAqXR+cl
+         iJEeJVoxDnxslhkWOOwJYZ4cxPkYK6aaO+gQaqm4J1om8ioQ735qOMAPB/ZNnF6P4J04
+         wn20apaeYnYeWS/QHYpQne+KkcnPMXV8ehT+9jOw1ude5bv8mHR1OX46n+l0Fj1Ya+iN
+         T9Cg==
+X-Gm-Message-State: AOAM530W9s5L3Dypg0ioqwrQdNyb/vuAiR7uw6h3ZbY82/XlyoFNg6xs
+	UuCyyTW7KI2bkkHluZ6bOp/LIOm8zwKC4o/xbguf2hZDy+sHeA==
+X-Google-Smtp-Source: 
+ ABdhPJxc7vYyTpqDWA+zSfxtamoazOwUewhBSwbip5FyisyzNdbB6QGbRr1dTHYIpByY5TKkFn/DKFgoZkspfzE7xQM=
+X-Received: by 2002:a05:6402:5146:b0:415:fd95:6afa with SMTP id
+ n6-20020a056402514600b00415fd956afamr36716912edd.200.1649729935784; Mon, 11
+ Apr 2022 19:18:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+From: Joel Winarske <joel.winarske@gmail.com>
+Date: Mon, 11 Apr 2022 19:18:44 -0700
+Message-ID: 
+ <CABKMkPJvygqaUs+e0RA4snPFrsKOQY-FD0BY2iRkQzBVoSXJsw@mail.gmail.com>
+Subject: NPM support on Dunfell
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000cc3d7305dc6bae4e"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 12 Apr 2022 16:46:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56736
+ <yocto@lists.yoctoproject.org>; Tue, 12 Apr 2022 16:46:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56737
 
-From: Mingli Yu <mingli.yu@windriver.com>
+--000000000000cc3d7305dc6bae4e
+Content-Type: text/plain; charset="UTF-8"
 
-After bind upgrade to 9.18.x, the below change introduced [1],
-all supported libraries have accompanying .pc files now.
-ba2376b9e0 Update and cleanup the readline library support
+I'm seeing some gaps and performance issues.
 
-Otherwise, there comes below error during do_configure.
- $ bitbake bind
- | configure: error: Package requirements (readline) were not met:
- |
- | No package 'readline' found
+Examples:
+1. Setting NPM_INSTALL_DEV = "1" I am rewarded with:
 
-So backport patches [2] to add support .pc file for readline to
-fix the above issue.
+169
+<https://github.com/meta-flutter/meta-flutter/runs/5982719348?check_suite_focus=true#step:10:169>npm
+ERR! Could not install from
+"../../__w/meta-flutter/rpi4-drm-dunfell-latest/raspberrypi4-64/tmp/work/aarch64-poky-linux/webthings-gateway/1.0.0+gitAUTOINC+4c600fc973-r0/git/node_modules/@babel/compat-data"
+as it does not contain a package.json file.
+170
+<https://github.com/meta-flutter/meta-flutter/runs/5982719348?check_suite_focus=true#step:10:170>
 
-[1] https://gitlab.isc.org/isc-projects/bind9/-/commit/ba2376b9e03b9bd214242c987609a658ef24ec41
-[2] https://git.savannah.gnu.org/cgit/readline.git/commit/?id=d49a9082c0e15bba8cd3d8cc0a994409cf823cac
+The upstream build uses equivalent to:
+    npm --user root --cache "${NPM_CACHE}" ci
+    ./node_modules/.bin/webpack
+    npm --cache "${NPM_CACHE}" prune --production
 
-Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
----
- .../0001-Makefile.in-add-readline.pc.in.patch | 135 ++++++++++++++++++
- .../readline/readline-5.2/readline.pc.in      |  12 ++
- recipes-core/readline/readline_5.2.bb         |   6 +-
- 3 files changed, 152 insertions(+), 1 deletion(-)
- create mode 100644 recipes-core/readline/readline-5.2/0001-Makefile.in-add-readline.pc.in.patch
- create mode 100644 recipes-core/readline/readline-5.2/readline.pc.in
+2. Running npm_do_configure is taking 48+ minutes.  Granted it's a large
+project, but basically the configure task is running uni-proc.
 
-diff --git a/recipes-core/readline/readline-5.2/0001-Makefile.in-add-readline.pc.in.patch b/recipes-core/readline/readline-5.2/0001-Makefile.in-add-readline.pc.in.patch
-new file mode 100644
-index 0000000..d9d36a0
---- /dev/null
-+++ b/recipes-core/readline/readline-5.2/0001-Makefile.in-add-readline.pc.in.patch
-@@ -0,0 +1,135 @@
-+From 20141946db72908e23c11d946937e945fb7e527d Mon Sep 17 00:00:00 2001
-+From: Chet Ramey <chet.ramey@case.edu>
-+Date: Mon, 11 Apr 2022 18:06:03 +0800
-+Subject: [PATCH] Makefile.in: add readline.pc.in
-+
-+Add config file for pkgconfig.
-+
-+Upstream-Status: Backport [https://git.savannah.gnu.org/cgit/readline.git/commit/?id=d49a9082c0e15bba8cd3d8cc0a994409cf823cac]
-+
-+Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
-+---
-+ MANIFEST     |  1 +
-+ Makefile.in  | 26 ++++++++++++++++++++------
-+ configure.in | 11 ++++++++++-
-+ 3 files changed, 31 insertions(+), 7 deletions(-)
-+
-+diff --git a/MANIFEST b/MANIFEST
-+index b288fb6..f5b583b 100644
-+--- a/MANIFEST
-++++ b/MANIFEST
-+@@ -19,6 +19,7 @@ config.h.in	f
-+ configure	f
-+ configure.in	f
-+ Makefile.in	f
-++readline.pc.in	f
-+ ansi_stdlib.h	f
-+ chardefs.h	f
-+ history.h	f
-+diff --git a/Makefile.in b/Makefile.in
-+index 87df428..e4233f7 100644
-+--- a/Makefile.in
-++++ b/Makefile.in
-+@@ -57,6 +57,7 @@ mandir = @mandir@
-+ includedir = @includedir@
-+ datadir = @datadir@
-+ localedir = $(datadir)/locale
-++pkgconfigdir = ${libdir}/pkgconfig
-+ 
-+ infodir = @infodir@
-+ 
-+@@ -133,7 +134,7 @@ DOCUMENTATION = $(DOCSOURCE) $(DOCOBJECT) $(DOCSUPPORT)
-+ 
-+ CREATED_MAKEFILES = Makefile doc/Makefile examples/Makefile shlib/Makefile
-+ CREATED_CONFIGURE = config.status config.h config.cache config.log \
-+-		    stamp-config stamp-h
-++		    stamp-config stamp-h readline.pc
-+ CREATED_TAGS = TAGS tags
-+ 
-+ INSTALLED_HEADERS = readline.h chardefs.h keymaps.h history.h tilde.h \
-+@@ -217,9 +218,18 @@ uninstall-headers:
-+ 
-+ maybe-uninstall-headers: uninstall-headers
-+ 
-++install-pc: installdirs
-++	-$(INSTALL_DATA) $(BUILD_DIR)/readline.pc $(DESTDIR)$(pkgconfigdir)/readline.pc
-++
-++uninstall-pc:
-++	-test -n "$(pkgconfigdir)" && cd $(DESTDIR)$(pkgconfigdir) && \
-++		${RM} readline.pc
-++
-++maybe-uninstall-pc: uninstall-pc
-++
-+ install:	$(INSTALL_TARGETS)
-+ 
-+-install-static: installdirs $(STATIC_LIBS) install-headers install-doc
-++install-static: installdirs $(STATIC_LIBS) install-headers install-doc install-pc
-+ 	-$(MV) $(DESTDIR)$(libdir)/libreadline.a $(DESTDIR)$(libdir)/libreadline.old
-+ 	$(INSTALL_DATA) libreadline.a $(DESTDIR)$(libdir)/libreadline.a
-+ 	-test -n "$(RANLIB)" && $(RANLIB) $(DESTDIR)$(libdir)/libreadline.a
-+@@ -230,17 +240,18 @@ install-static: installdirs $(STATIC_LIBS) install-headers install-doc
-+ installdirs: $(srcdir)/support/mkinstalldirs
-+ 	-$(SHELL) $(srcdir)/support/mkinstalldirs $(DESTDIR)$(includedir) \
-+ 		$(DESTDIR)$(includedir)/readline $(DESTDIR)$(libdir) \
-+-		$(DESTDIR)$(infodir) $(DESTDIR)$(man3dir)
-++		$(DESTDIR)$(infodir) $(DESTDIR)$(man3dir) \
-++		$(DESTDIR)$(pkgconfigdir)
-+ 
-+-uninstall: uninstall-headers uninstall-doc
-++uninstall: uninstall-headers uninstall-doc uninstall-pc
-+ 	-test -n "$(DESTDIR)$(libdir)" && cd $(DESTDIR)$(libdir) && \
-+ 		${RM} libreadline.a libreadline.old libhistory.a libhistory.old $(SHARED_LIBS)
-+ 	-( cd shlib; ${MAKE} ${MFLAGS} DESTDIR=${DESTDIR} uninstall )
-+ 
-+-install-shared: installdirs install-headers shared install-doc
-++install-shared: installdirs install-headers shared install-doc install-pc
-+ 	-( cd shlib ; ${MAKE} ${MFLAGS} DESTDIR=${DESTDIR} install )
-+ 	
-+-uninstall-shared: maybe-uninstall-headers
-++uninstall-shared: maybe-uninstall-headers maybe-uninstall-pc
-+ 	-( cd shlib; ${MAKE} ${MFLAGS} DESTDIR=${DESTDIR} uninstall )
-+ 
-+ install-doc:	installdirs
-+@@ -281,6 +292,9 @@ distclean maintainer-clean: clean
-+ 	$(RM) $(CREATED_CONFIGURE)
-+ 	$(RM) $(CREATED_TAGS)
-+ 
-++readline.pc:	config.status $(srcdir)/readline.pc.in
-++	$(SHELL) config.status
-++
-+ info dvi:
-+ 	-( cd doc && $(MAKE) $(MFLAGS) $@ )
-+ 
-+diff --git a/configure.in b/configure.in
-+index 9d1f3fb..1186fc3 100644
-+--- a/configure.in
-++++ b/configure.in
-+@@ -191,6 +191,14 @@ if test "$TERMCAP_LIB" = "./lib/termcap/libtermcap.a"; then
-+ 	fi
-+ fi
-+ 
-++case "$TERMCAP_LIB" in
-++-ltinfo)  TERMCAP_PKG_CONFIG_LIB=tinfo ;;
-++-lcurses) TERMCAP_PKG_CONFIG_LIB=ncurses ;;
-++-lncurses) TERMCAP_PKG_CONFIG_LIB=ncurses ;;
-++-ltermcap) TERMCAP_PKG_CONFIG_LIB=termcap ;;
-++*) TERMCAP_PKG_CONFIG_LIB=termcap ;;
-++esac
-++
-+ BASH_CHECK_MULTIBYTE
-+ 
-+ case "$host_cpu" in
-+@@ -288,8 +296,9 @@ AC_SUBST(host_os)
-+ AC_SUBST(LIBVERSION)
-+ 
-+ AC_SUBST(TERMCAP_LIB)
-++AC_SUBST(TERMCAP_PKG_CONFIG_LIB)
-+ 
-+-AC_OUTPUT([Makefile doc/Makefile examples/Makefile shlib/Makefile],
-++AC_OUTPUT([Makefile doc/Makefile examples/Makefile shlib/Makefile readline.pc],
-+ [
-+ # Makefile uses this timestamp file to record whether config.h is up to date.
-+ echo > stamp-h
-+-- 
-+2.25.1
-+
-diff --git a/recipes-core/readline/readline-5.2/readline.pc.in b/recipes-core/readline/readline-5.2/readline.pc.in
-new file mode 100644
-index 0000000..ff79d71
---- /dev/null
-+++ b/recipes-core/readline/readline-5.2/readline.pc.in
-@@ -0,0 +1,12 @@
-+prefix=@prefix@
-+exec_prefix=@exec_prefix@
-+libdir=@libdir@
-+includedir=@includedir@
-+
-+Name: Readline
-+Description: Gnu Readline library for command line editing
-+URL: http://tiswww.cwru.edu/php/chet/readline/rltop.html
-+Version: @LIBVERSION@
-+Requires.private: @TERMCAP_PKG_CONFIG_LIB@
-+Libs: -L${libdir} -lreadline
-+Cflags: -I${includedir}
-diff --git a/recipes-core/readline/readline_5.2.bb b/recipes-core/readline/readline_5.2.bb
-index d42ce8b..5ce1d3f 100644
---- a/recipes-core/readline/readline_5.2.bb
-+++ b/recipes-core/readline/readline_5.2.bb
-@@ -29,7 +29,9 @@ SRC_URI = "${GNU_MIRROR}/readline/${BPN}-${PV}.tar.gz;name=archive \
-            ${GNU_MIRROR}/readline/readline-5.2-patches/readline52-014;name=patch14;apply=yes;striplevel=0 \
-            file://configure-fix.patch \
-            file://config-dirent-symbols.patch \
--           file://fix-redundant-rpath.patch"
-+           file://fix-redundant-rpath.patch \
-+           file://0001-Makefile.in-add-readline.pc.in.patch \
-+           file://readline.pc.in"
- 
- SRC_URI[archive.md5sum] = "e39331f32ad14009b9ff49cc10c5e751"
- SRC_URI[archive.sha256sum] = "12e88d96aee2cd1192500356f0535540db499282ca7f76339fb4228c31249f45"
-@@ -66,6 +68,7 @@ SRC_URI[patch14.sha256sum] = "6f1a68320d01522ca1ea5a737124ecc8739f3dcbfea2dee21e
- inherit autotools
- 
- EXTRA_AUTORECONF += "--exclude=autoheader"
-+EXTRA_OECONF += "bash_cv_termcap_lib=ncurses"
- 
- LEAD_SONAME = "libreadline.so"
- 
-@@ -73,6 +76,7 @@ do_configure:prepend () {
- 	if [ ! -e ${S}/acinclude.m4 ]; then
- 		cat ${S}/aclocal.m4 > ${S}/acinclude.m4
- 	fi
-+	cp -r ${WORKDIR}/readline.pc.in ${S}
- }
- 
- do_install:append () {
--- 
-2.25.1
+Who is the POC supporting NPM on Dunfell?
 
+Thanks,
+Joel
+
+--000000000000cc3d7305dc6bae4e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>I&#39;m seeing some gaps and performance issues.<br><=
+/div><div><br></div><div>Examples:</div><div>1. Setting NPM_INSTALL_DEV =3D=
+ &quot;1&quot; I am rewarded with:</div><div><br></div><div><div style=3D"c=
+olor:rgb(0,0,0);box-sizing:border-box"><div class=3D"gmail-js-check-step-li=
+ne gmail-CheckStep-line gmail-d-flex gmail-log-line-plain" style=3D"box-siz=
+ing:border-box;line-height:20px;display:flex"><a class=3D"gmail-CheckStep-l=
+ine-number gmail-d-inline-block gmail-text-mono gmail-text-normal gmail-fle=
+x-shrink-0" href=3D"https://github.com/meta-flutter/meta-flutter/runs/59827=
+19348?check_suite_focus=3Dtrue#step:10:169" style=3D"box-sizing:border-box;=
+text-decoration:none;width:48px;overflow:hidden;text-align:right;text-overf=
+low:ellipsis;white-space:nowrap;font-family:ui-monospace,SFMono-Regular,&qu=
+ot;SF Mono&quot;,Menlo,Consolas,&quot;Liberation Mono&quot;,monospace;displ=
+ay:inline-block">169</a><span class=3D"gmail-CheckStep-line-content gmail-d=
+-inline-block gmail-flex-auto gmail-ml-3 gmail-js-check-line-content" style=
+=3D"box-sizing:border-box;overflow-x:auto;white-space:pre-wrap;margin-left:=
+16px;display:inline-block"><span class=3D"gmail-" style=3D"box-sizing:borde=
+r-box">npm ERR! Could not install from &quot;../../__w/meta-flutter/rpi4-dr=
+m-dunfell-latest/raspberrypi4-64/tmp/work/aarch64-poky-linux/webthings-gate=
+way/1.0.0+gitAUTOINC+4c600fc973-r0/git/node_modules/@babel/compat-data&quot=
+; as it does not contain a package.json file.
+</span></span></div></div><div style=3D"color:rgb(0,0,0);box-sizing:border-=
+box"><div class=3D"gmail-js-check-step-line gmail-CheckStep-line gmail-d-fl=
+ex gmail-log-line-undefined" style=3D"box-sizing:border-box;line-height:20p=
+x;font-family:ui-monospace,SFMono-Regular,&quot;SF Mono&quot;,Menlo,Consola=
+s,&quot;Liberation Mono&quot;,monospace;font-size:12px;display:flex"><a cla=
+ss=3D"gmail-CheckStep-line-number gmail-d-inline-block gmail-text-mono gmai=
+l-text-normal gmail-flex-shrink-0" href=3D"https://github.com/meta-flutter/=
+meta-flutter/runs/5982719348?check_suite_focus=3Dtrue#step:10:170" style=3D=
+"box-sizing:border-box;text-decoration:none;width:48px;overflow:hidden;text=
+-align:right;text-overflow:ellipsis;white-space:nowrap;display:inline-block=
+">170</a></div><br class=3D"gmail-Apple-interchange-newline"></div><div sty=
+le=3D"color:rgb(0,0,0);box-sizing:border-box">The upstream build uses equiv=
+alent to:</div><div style=3D"color:rgb(0,0,0);box-sizing:border-box">=C2=A0=
+ =C2=A0 npm --user root --cache &quot;${NPM_CACHE}&quot; ci<br>=C2=A0 =C2=
+=A0 ./node_modules/.bin/webpack<br>=C2=A0 =C2=A0 npm --cache &quot;${NPM_CA=
+CHE}&quot; prune --production<br></div><div style=3D"color:rgb(0,0,0);box-s=
+izing:border-box"><br></div>2. Running npm_do_configure is taking 48+ minut=
+es.=C2=A0 Granted it&#39;s a large project, but basically the configure tas=
+k is running uni-proc.</div><div><br></div><div>Who is the POC supporting N=
+PM on Dunfell?<br></div><div><br></div><div>Thanks,</div><div>Joel</div></d=
+iv>
+
+--000000000000cc3d7305dc6bae4e--
 
