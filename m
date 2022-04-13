@@ -1,260 +1,328 @@
-Return-Path: <tomasz.zyjewski@3mdeb.com>
+Return-Path: <Rohithraj.Bhaskara@ril.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B7C84C3527E
-	for <webhook@archiver.kernel.org>; Wed, 13 Apr 2022 15:48:06 +0000 (UTC)
-Subject: Re: Yocto kernel building
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 740ECC3A589
+	for <webhook@archiver.kernel.org>; Wed, 13 Apr 2022 15:48:07 +0000 (UTC)
+Subject: Yocto Kernel building 
 To: yocto@lists.yoctoproject.org
-From: "tomzy" <tomasz.zyjewski@3mdeb.com>
-X-Originating-Location: Warsaw, Mazovia, PL (84.10.27.202)
-X-Originating-Platform: Linux Firefox 99
+From: Rohithraj.Bhaskara@ril.com
+X-Originating-Location: Bengaluru, Karnataka, IN (157.50.5.212)
+X-Originating-Platform: Windows Chrome 92
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Wed, 13 Apr 2022 00:02:21 -0700
-References: 
- <BM1PR01MB3203E5DA71E89151F873898E94EC9@BM1PR01MB3203.INDPRD01.PROD.OUTLOOK.COM>
-In-Reply-To: 
- <BM1PR01MB3203E5DA71E89151F873898E94EC9@BM1PR01MB3203.INDPRD01.PROD.OUTLOOK.COM>
-Message-ID: <25756.1649833341596207594@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="PbRBfdaHLgKxeGS2LNvT"
+Date: Wed, 13 Apr 2022 02:38:54 -0700
+Message-ID: <6bRo.1649842734627600476.zBxh@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="cEGncHthVY8tY5SJvNLa"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 13 Apr 2022 15:48:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56761
+ <yocto@lists.yoctoproject.org>; Wed, 13 Apr 2022 15:48:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56762
 
---PbRBfdaHLgKxeGS2LNvT
+--cEGncHthVY8tY5SJvNLa
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
->=20
-> Hi,
->=20
+Hello,
 
-Hi
+I was trying to build a kernel for layerscape ls1046ardb setup.
+I referred the=C2=A0meta-freescale/recipes-kernel/linux/linux-qoriq_5.4.bb =
+file from dunfell branch.
 
->=20
->=20
->=20
->=20
->=20
->=20
->=20
-> The default Linux kernel is built by using *bitbake fsl-image-networking.=
-*
-> Here, the kernel is built from *meta-freescale/recipes-kernel/linux/linux=
--qoriq_5.4.bb*
-> path and source code is fetching from *"git://source.codeaurora.org/exter=
-nal/qoriq/qoriq-components/linux;nobranch=3D1"*
-> .
->=20
->=20
->=20
->=20
->=20
->=20
->=20
-> So I want to use another version of the kernel that should be fetch from =
-*"
-> https://source.codeaurora.org/quic/femto5G/fsm/external/qoriq-components/=
-linux_4.19-rt/"
-> (
-> https://source.codeaurora.org/quic/femto5G/fsm/external/qoriq-components/=
-linux_4.19-rt/%22
-> )* and the SRC_REV=3D " *74700acb31e369495da22b4bbfd9e3f4315fc74a* "
->=20
->=20
->=20
+Build configuration:
+Yocto branch : dunfell
+Required kernel source : https://source.codeaurora.org/quic/femto5G/fsm/ext=
+ernal/qoriq-components/linux_4.19-rt/commit/?h=3DAPSS.FSM.6.6-00194-FSM1005=
+6.0&id=3D74700acb31e369495da22b4bbfd9e3f4315fc74a
+SRC_rev : 74700acb31e369495da22b4bbfd9e3f4315fc74a ( https://source.codeaur=
+ora.org/quic/femto5G/fsm/external/qoriq-components/linux_4.19-rt/commit/?h=
+=3DAPSS.FSM.6.6-00194-FSM10056.0&id=3D74700acb31e369495da22b4bbfd9e3f4315fc=
+74a )
+SRC branch: APSS.FSM.6.6
 
-When you want to use another version of the kernel it is better to create n=
-ew recipe (.bb file). You
-could use existing linux-qoriq_5.10 [1] recipe as example, just change the =
-SRC_URI, SRCREV and
-LINUX_VERSION.
+Here I have created separate layer and added my files under *<my_layer_name=
+>/recipe-kernel/linux/linux-qoriq-rt_4.19.bb* path
 
-Than in distro or machine config you would need to set PREFERRED_VERSION_li=
-nux-qoriq to 4.19
-or whatever the version is.
+i nherit kernel qoriq_build_64bit_kernel siteinfo
+inherit fsl-kernel-localversion
 
->=20
->=20
->=20
->=20
->=20
->=20
->=20
->=20
->=20
->=20
->=20
-> For that purpose, I have created a .bbappend file and changed the SRC_URI
-> as well as SRC_REV.
->=20
->=20
->=20
-> While building bitbake is causing errors,
->=20
->=20
->=20
-> *ERROR: An uncaught exception occurred in runqueue################ | ETA:
-> 0:00:01*
-> *Traceback (most recent call last):*
-> *File
-> "/home/rancore/rohit/yocto_mmwave/yocto-sdk/sources/poky/bitbake/lib/bb/r=
-unqueue.py",
-> line 1187, in
-> RunQueueData.prepare_task_hash(tid=3D'/home/rancore/rohit/yocto_mmwave/yo=
-cto-sdk/sources/meta-freescale/recipes-kernel/linux/linux-qoriq_5.4.bb:do_f=
-etch'):*
->=20
-> *def prepare_task_hash(self, tid):*
-> *> bb.parse.siggen.prep_taskhash(tid, self.runtaskentries[tid].depends,
-> self.dataCaches[mc_from_tid(tid)])*
-> *self.runtaskentries[tid].hash =3D bb.parse.siggen.get_taskhash(tid,
-> self.runtaskentries[tid].depends, self.dataCaches[mc_from_tid(tid)])*
-> *File
-> "/home/rancore/rohit/yocto_mmwave/yocto-sdk/sources/poky/meta/lib/oe/ssta=
-tesig.py",
-> line 146, in
-> SignatureGeneratorOEEquivHash.prep_taskhash(tid=3D'/home/rancore/rohit/yo=
-cto_mmwave/yocto-sdk/sources/meta-freescale/recipes-kernel/linux/linux-qori=
-q_5.4.bb:do_fetch',
-> deps=3Dset(), dataCache=3D<bb.cache.CacheData object at 0x7ff029b3a0b8>):=
-*
-> *def prep_taskhash(self, tid, deps, dataCache):*
-> *> super().prep_taskhash(tid, deps, dataCache)*
-> *if hasattr(self, "extramethod"):*
-> *File
-> "/home/rancore/rohit/yocto_mmwave/yocto-sdk/sources/poky/bitbake/lib/bb/s=
-iggen.py",
-> line 248, in
-> SignatureGeneratorOEEquivHash.prep_taskhash(tid=3D'/home/rancore/rohit/yo=
-cto_mmwave/yocto-sdk/sources/meta-freescale/recipes-kernel/linux/linux-qori=
-q_5.4.bb:do_fetch',
-> deps=3Dset(), dataCache=3D<bb.cache.CacheData object at 0x7ff029b3a0b8>):=
-*
-> *else:*
-> *> checksums =3D
-> bb.fetch2.get_file_checksums(dataCache.file_checksums[fn][task],
-> recipename, self.localdirsexclude)*
-> *for (f,cs) in checksums:*
->=20
->=20
->=20
-> Can you please help me to resolve the issues?
->=20
-> Thank you
->=20
+SUMMARY =3D "Linux Kernel for NXP QorIQ platforms"
+SECTION =3D "kernel"
+LICENSE =3D "GPLv2"
+LIC_FILES_CHKSUM =3D "file://COPYING;md5=3Dbbea815ee2795b2f4230826c0c6b8814=
+"
 
-Regards,
+SRC_URI =3D "https://source.codeaurora.org/quic/femto5G/fsm/external/qoriq-=
+components/linux_4.19-rt;branch=3DAPSS.FSM.6.6 \
+"
+SRCREV =3D "74700acb31e369495da22b4bbfd9e3f4315fc74a"
 
-Tomasz =C5=BByjewski
-Embedded Systems Engineer
-GPG: 5C495EA3EBEECA59
-https://3mdeb.com | @3mdeb_com
+SRC_URI[sha256sum] =3D "ddb8e5defcdaec9ce8cbe39d157f58a369decf7c1028cddaa61=
+86343b7f09c2b"
+
+S =3D "${WORKDIR}/git"
+
+DEPENDS_append =3D " libgcc"
+# not put Images into /boot of rootfs, install kernel-image if needed
+RDEPENDS_${KERNEL_PACKAGE_NAME}-base =3D ""
+
+KERNEL_CC_append =3D " ${TOOLCHAIN_OPTIONS}"
+KERNEL_LD_append =3D " ${TOOLCHAIN_OPTIONS}"
+KERNEL_EXTRA_ARGS +=3D "LOADADDR=3D${UBOOT_ENTRYPOINT}"
+
+ZIMAGE_BASE_NAME =3D "zImage-${PKGE}-${PKGV}-${PKGR}-${MACHINE}-${DATETIME}=
+"
+ZIMAGE_BASE_NAME[vardepsexclude] =3D "DATETIME"
+
+SCMVERSION ?=3D "y"
+LOCALVERSION =3D ""
+
+FILES_${KERNEL_PACKAGE_NAME}-image +=3D "/boot/zImage*"
+COMPATIBLE_MACHINE =3D "(qoriq)"
+
+When I try to build the kernel I am encountered with below errors,
 
 >=20
+> ERROR: linux-qoriq-rt-4.19-r0 do_populate_lic: QA Issue: linux-qoriq-rt:
+> LIC_FILES_CHKSUM points to an invalid file:
+> /home/rancore/rohit/git_pull/rgbbbuildscripts/build/rjio/fw_main_dev_odsc=
+3_ibtb_sku2_board/build/poky/build/tmp/work/odsc3_ibtb_sku2_board-poky-linu=
+x/linux-qoriq-rt/4.19-r0/git/COPYING
+> [license-checksum]
+> ERROR: linux-qoriq-rt-4.19-r0 do_populate_lic: Fatal QA errors found,
+> failing task.
+> ERROR: Logfile of failure stored in:
+> /home/rancore/rohit/git_pull/rgbbbuildscripts/build/rjio/fw_main_dev_odsc=
+3_ibtb_sku2_board/build/poky/build/tmp/work/odsc3_ibtb_sku2_board-poky-linu=
+x/linux-qoriq-rt/4.19-r0/temp/log.do_populate_lic.44895
 >=20
->
+> ERROR: Task
+> (/home/rancore/rohit/git_pull/rgbbbuildscripts/build/rjio/fw_main_dev_ods=
+c3_ibtb_sku2_board/build/poky/build/../meta-rjio_bsp/recipes-kernel/linux/l=
+inux-qoriq-rt_4.19.bb:do_populate_lic)
+> failed with exit code '1'
+> ERROR: linux-qoriq-rt-4.19-r0 do_preconfigure: Execution of
+> '/home/rancore/rohit/git_pull/rgbbbuildscripts/build/rjio/fw_main_dev_ods=
+c3_ibtb_sku2_board/build/poky/build/tmp/work/odsc3_ibtb_sku2_board-poky-lin=
+ux/linux-qoriq-rt/4.19-r0/temp/run.do_preconfigure.44894'
+> failed with exit code 1:
+> /home/rancore/rohit/git_pull/rgbbbuildscripts/build/rjio/fw_main_dev_odsc=
+3_ibtb_sku2_board/build/poky/build/tmp/work/odsc3_ibtb_sku2_board-poky-linu=
+x/linux-qoriq-rt/4.19-r0/temp/run.do_preconfigure.44894:
+> line 120:
+> /home/rancore/rohit/git_pull/rgbbbuildscripts/build/rjio/fw_main_dev_odsc=
+3_ibtb_sku2_board/build/poky/build/tmp/work/odsc3_ibtb_sku2_board-poky-linu=
+x/linux-qoriq-rt/4.19-r0/defconfig:
+> No such file or directory
+> WARNING:
+> /home/rancore/rohit/git_pull/rgbbbuildscripts/build/rjio/fw_main_dev_odsc=
+3_ibtb_sku2_board/build/poky/build/tmp/work/odsc3_ibtb_sku2_board-poky-linu=
+x/linux-qoriq-rt/4.19-r0/temp/run.do_preconfigure.44894:1
+> exit 1 from 'sed -e "${CONF_SED_SCRIPT}" <
+> '/home/rancore/rohit/git_pull/rgbbbuildscripts/build/rjio/fw_main_dev_ods=
+c3_ibtb_sku2_board/build/poky/build/tmp/work/odsc3_ibtb_sku2_board-poky-lin=
+ux/linux-qoriq-rt/4.19-r0/defconfig'
+> >>
+> '/home/rancore/rohit/git_pull/rgbbbuildscripts/build/rjio/fw_main_dev_ods=
+c3_ibtb_sku2_board/build/poky/build/tmp/work/odsc3_ibtb_sku2_board-poky-lin=
+ux/linux-qoriq-rt/4.19-r0/build/.config''
+>=20
+>=20
 
---PbRBfdaHLgKxeGS2LNvT
+Can anyone please guide me to build the kernel successfully?
+
+Thank you
+
+--cEGncHthVY8tY5SJvNLa
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
+Hello,<br /><br />I was trying to build a kernel for layerscape ls1046ardb =
+setup.<br />I referred the&nbsp;meta-freescale/recipes-kernel/linux/linux-q=
+oriq_5.4.bb file from dunfell branch.<br /><br />Build configuration:<br />
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric:=
+ inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-siz=
+e: 12pt; line-height: inherit; font-family: Calibri, Arial, Helvetica, sans=
+-serif; vertical-align: baseline; color: black;"><em>Yocto branch</em>: dun=
+fell<br /><em>Required kernel source</em>:&nbsp;<a id=3D"LPlnk430261" style=
+=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; =
+font-variant-east-asian: inherit; font-stretch: inherit; line-height: inher=
+it; vertical-align: baseline; background-color: #ffffff;" href=3D"https://s=
+ource.codeaurora.org/quic/femto5G/fsm/external/qoriq-components/linux_4.19-=
+rt/commit/?h=3DAPSS.FSM.6.6-00194-FSM10056.0&amp;id=3D74700acb31e369495da22=
+b4bbfd9e3f4315fc74a" target=3D"_blank" rel=3D"noopener noreferrer" data-aut=
+h=3D"NotApplicable" data-linkindex=3D"0">https://source.codeaurora.org/quic=
+/femto5G/fsm/external/qoriq-components/linux_4.19-rt/commit/?h=3DAPSS.FSM.6=
+.6-00194-FSM10056.0&amp;id=3D74700acb31e369495da22b4bbfd9e3f4315fc74a</a><b=
+r />
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric:=
+ inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-siz=
+e: 12pt; line-height: inherit; vertical-align: baseline;"><em>SRC_rev :&nbs=
+p;</em><a style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; v=
+ertical-align: baseline; background-color: white !important;" href=3D"https=
+://source.codeaurora.org/quic/femto5G/fsm/external/qoriq-components/linux_4=
+.19-rt/commit/?h=3DAPSS.FSM.6.6-00194-FSM10056.0&amp;id=3D74700acb31e369495=
+da22b4bbfd9e3f4315fc74a" target=3D"_blank" rel=3D"noopener noreferrer" data=
+-auth=3D"NotApplicable" data-linkindex=3D"1">74700acb31e369495da22b4bbfd9e3=
+f4315fc74a</a><br /><em>SRC branch:</em>&nbsp;APSS.FSM.6.6<br /><br />Here =
+I have created separate layer and added my files under&nbsp;<strong><em>&lt=
+;my_layer_name&gt;/recipe-kernel/linux/linux-qoriq-rt_4.19.bb</em></strong>=
+&nbsp;path&nbsp;<br /><br /></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric:=
+ inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-siz=
+e: 12pt; line-height: inherit; vertical-align: baseline;">
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric:=
+ inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-siz=
+e: 12pt; line-height: inherit; vertical-align: baseline;"><span style=3D"ma=
+rgin: 0px; padding: 0px; border: 0px; font: inherit; vertical-align: baseli=
+ne; color: inherit;">&nbsp;</span></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric:=
+ inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-siz=
+e: 12pt; line-height: inherit; vertical-align: baseline;"><span style=3D"ma=
+rgin: 0px; padding: 0px; border: 0px; font: inherit; vertical-align: baseli=
+ne; color: inherit;"><span style=3D"margin: 0px; padding: 0px; border: 0px;=
+ font: inherit; vertical-align: baseline; color: inherit;">i<em>nherit kern=
+el qoriq_build_64bit_kernel siteinfo</em></span></span>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>inherit fsl-kernel-localversion</e=
+m></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>&nbsp;</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>SUMMARY =3D "Linux Kernel for NXP =
+QorIQ platforms"</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>SECTION =3D "kernel"</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>LICENSE =3D "GPLv2"</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>LIC_FILES_CHKSUM =3D "file://COPYI=
+NG;md5=3Dbbea815ee2795b2f4230826c0c6b8814"</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>&nbsp;</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>SRC_URI =3D "https://source.codeau=
+rora.org/quic/femto5G/fsm/external/qoriq-components/linux_4.19-rt;branch=3D=
+APSS.FSM.6.6 \</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>"</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>SRCREV =3D "74700acb31e369495da22b=
+4bbfd9e3f4315fc74a"</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>&nbsp;</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>SRC_URI[sha256sum] =3D "ddb8e5defc=
+daec9ce8cbe39d157f58a369decf7c1028cddaa6186343b7f09c2b"</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>&nbsp;</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>S =3D "${WORKDIR}/git"</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>&nbsp;</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>DEPENDS_append =3D " libgcc"</em><=
+/div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em># not put Images into /boot of roo=
+tfs, install kernel-image if needed</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>RDEPENDS_${KERNEL_PACKAGE_NAME}-ba=
+se =3D ""</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>&nbsp;</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>KERNEL_CC_append =3D " ${TOOLCHAIN=
+_OPTIONS}"</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>KERNEL_LD_append =3D " ${TOOLCHAIN=
+_OPTIONS}"</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>KERNEL_EXTRA_ARGS +=3D "LOADADDR=
+=3D${UBOOT_ENTRYPOINT}"</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>&nbsp;</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>ZIMAGE_BASE_NAME =3D "zImage-${PKG=
+E}-${PKGV}-${PKGR}-${MACHINE}-${DATETIME}"</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>ZIMAGE_BASE_NAME[vardepsexclude] =
+=3D "DATETIME"</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>&nbsp;</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>SCMVERSION ?=3D "y"</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>LOCALVERSION =3D ""</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>&nbsp;</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; vertic=
+al-align: baseline; color: inherit;"><em>FILES_${KERNEL_PACKAGE_NAME}-image=
+ +=3D "/boot/zImage*"</em></div>
+<span style=3D"margin: 0px; padding: 0px; border: 0px; font: inherit; verti=
+cal-align: baseline; color: inherit;"><em>COMPATIBLE_MACHINE =3D "(qoriq)"<=
+/em></span></div>
+<br /><br /></div>
+When I try to build the kernel I am encountered with below errors,<br />
 <blockquote>
-<div class=3D"elementToProof" style=3D"font-family: Calibri, Arial, Helveti=
-ca, sans-serif; font-size: 12pt; color: #000000;">Hi,</div>
-</blockquote>
-Hi<br />
-<blockquote>
-<div class=3D"elementToProof" style=3D"font-family: Calibri, Arial, Helveti=
-ca, sans-serif; font-size: 12pt; color: #000000;"><br /><br /></div>
-<div class=3D"elementToProof" style=3D"font-family: Calibri, Arial, Helveti=
-ca, sans-serif; font-size: 12pt; color: #000000;">&nbsp;</div>
-<div class=3D"elementToProof" style=3D"font-family: Calibri, Arial, Helveti=
-ca, sans-serif; font-size: 12pt; color: #000000;">
-<p style=3D"color: #333f48; font-family: Arial, sans-serif; font-weight: 30=
-0; text-align: left; background-color: #ffffff;">The default Linux kernel i=
-s built by using&nbsp;<em><strong>bitbake fsl-image-networking.<span>&nbsp;=
-</span></strong></em>Here, the kernel is built from&nbsp;<em><strong>meta-f=
-reescale/recipes-kernel/linux/linux-qoriq_5.4.bb</strong></em><span>&nbsp;<=
-/span>path and source code is fetching from<span>&nbsp;</span><em><strong>"=
-git://source.codeaurora.org/external/qoriq/qoriq-components/linux;nobranch=
-=3D1"</strong></em>.</p>
-<p style=3D"color: #333f48; font-family: Arial, sans-serif; font-weight: 30=
-0; text-align: left; background-color: #ffffff;">&nbsp;</p>
-<p style=3D"color: #333f48; font-family: Arial, sans-serif; font-weight: 30=
-0; text-align: left; background-color: #ffffff;">So I want to use another v=
-ersion of the kernel that should be fetch from<span>&nbsp;</span><em><stron=
-g>"<a href=3D"https://source.codeaurora.org/quic/femto5G/fsm/external/qoriq=
--components/linux_4.19-rt/%22" target=3D"_blank" rel=3D"nofollow noopener">=
-https://source.codeaurora.org/quic/femto5G/fsm/external/qoriq-components/li=
-nux_4.19-rt/"</a></strong></em>&nbsp;and the SRC_REV=3D "<em><strong>74700a=
-cb31e369495da22b4bbfd9e3f4315fc74a</strong></em>"</p>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric:=
+ inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-siz=
+e: 12pt; line-height: inherit; vertical-align: baseline;"><em>ERROR: linux-=
+qoriq-rt-4.19-r0 do_populate_lic: QA Issue: linux-qoriq-rt: LIC_FILES_CHKSU=
+M points to an invalid file: /home/rancore/rohit/git_pull/rgbbbuildscripts/=
+build/rjio/fw_main_dev_odsc3_ibtb_sku2_board/build/poky/build/tmp/work/odsc=
+3_ibtb_sku2_board-poky-linux/linux-qoriq-rt/4.19-r0/git/COPYING [license-ch=
+ecksum]</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric:=
+ inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-siz=
+e: 12pt; line-height: inherit; vertical-align: baseline;"><em>ERROR: linux-=
+qoriq-rt-4.19-r0 do_populate_lic: Fatal QA errors found, failing task.</em>=
 </div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric:=
+ inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-siz=
+e: 12pt; line-height: inherit; vertical-align: baseline;"><em>ERROR: Logfil=
+e of failure stored in: /home/rancore/rohit/git_pull/rgbbbuildscripts/build=
+/rjio/fw_main_dev_odsc3_ibtb_sku2_board/build/poky/build/tmp/work/odsc3_ibt=
+b_sku2_board-poky-linux/linux-qoriq-rt/4.19-r0/temp/log.do_populate_lic.448=
+95</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric:=
+ inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-siz=
+e: 12pt; line-height: inherit; vertical-align: baseline;"><em>ERROR: Task (=
+/home/rancore/rohit/git_pull/rgbbbuildscripts/build/rjio/fw_main_dev_odsc3_=
+ibtb_sku2_board/build/poky/build/../meta-rjio_bsp/recipes-kernel/linux/linu=
+x-qoriq-rt_4.19.bb:do_populate_lic) failed with exit code '1'</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric:=
+ inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-siz=
+e: 12pt; line-height: inherit; vertical-align: baseline;"><em>ERROR: linux-=
+qoriq-rt-4.19-r0 do_preconfigure: Execution of '/home/rancore/rohit/git_pul=
+l/rgbbbuildscripts/build/rjio/fw_main_dev_odsc3_ibtb_sku2_board/build/poky/=
+build/tmp/work/odsc3_ibtb_sku2_board-poky-linux/linux-qoriq-rt/4.19-r0/temp=
+/run.do_preconfigure.44894' failed with exit code 1:</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric:=
+ inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-siz=
+e: 12pt; line-height: inherit; vertical-align: baseline;"><em>/home/rancore=
+/rohit/git_pull/rgbbbuildscripts/build/rjio/fw_main_dev_odsc3_ibtb_sku2_boa=
+rd/build/poky/build/tmp/work/odsc3_ibtb_sku2_board-poky-linux/linux-qoriq-r=
+t/4.19-r0/temp/run.do_preconfigure.44894: line 120: /home/rancore/rohit/git=
+_pull/rgbbbuildscripts/build/rjio/fw_main_dev_odsc3_ibtb_sku2_board/build/p=
+oky/build/tmp/work/odsc3_ibtb_sku2_board-poky-linux/linux-qoriq-rt/4.19-r0/=
+defconfig: No such file or directory</em></div>
+<div style=3D"margin: 0px; padding: 0px; border: 0px; font-variant-numeric:=
+ inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-siz=
+e: 12pt; line-height: inherit; vertical-align: baseline;"><em>WARNING: /hom=
+e/rancore/rohit/git_pull/rgbbbuildscripts/build/rjio/fw_main_dev_odsc3_ibtb=
+_sku2_board/build/poky/build/tmp/work/odsc3_ibtb_sku2_board-poky-linux/linu=
+x-qoriq-rt/4.19-r0/temp/run.do_preconfigure.44894:1 exit 1 from 'sed -e "${=
+CONF_SED_SCRIPT}" &lt; '/home/rancore/rohit/git_pull/rgbbbuildscripts/build=
+/rjio/fw_main_dev_odsc3_ibtb_sku2_board/build/poky/build/tmp/work/odsc3_ibt=
+b_sku2_board-poky-linux/linux-qoriq-rt/4.19-r0/defconfig' &gt;&gt; '/home/r=
+ancore/rohit/git_pull/rgbbbuildscripts/build/rjio/fw_main_dev_odsc3_ibtb_sk=
+u2_board/build/poky/build/tmp/work/odsc3_ibtb_sku2_board-poky-linux/linux-q=
+oriq-rt/4.19-r0/build/.config''</em></div>
 </blockquote>
-<p>When you want to use another version of the kernel it is better to creat=
-e new recipe (.bb file). You<br />could use existing linux-qoriq_5.10 [1] r=
-ecipe as example, just change the SRC_URI, SRCREV and<br />LINUX_VERSION.<b=
-r /><br />Than in distro or machine config you would need to set <code><spa=
-n class=3D"n">PREFERRED_VERSION_linux-qoriq</span><span class=3D"n"></span>=
-</code> to 4.19<br />or whatever the version is.</p>
-<blockquote>
-<div class=3D"elementToProof" style=3D"font-family: Calibri, Arial, Helveti=
-ca, sans-serif; font-size: 12pt; color: #000000;">
-<p style=3D"color: #333f48; font-family: Arial, sans-serif; font-weight: 30=
-0; text-align: left; background-color: #ffffff;">&nbsp;</p>
-<p style=3D"color: #333f48; font-family: Arial, sans-serif; font-weight: 30=
-0; text-align: left; background-color: #ffffff;">&nbsp;</p>
-<p style=3D"color: #333f48; font-family: Arial, sans-serif; font-weight: 30=
-0; text-align: left; background-color: #ffffff;">For that purpose, I have c=
-reated a .bbappend file and changed the SRC_URI as well as SRC_REV.</p>
-<p style=3D"color: #333f48; font-family: Arial, sans-serif; font-weight: 30=
-0; text-align: left; background-color: #ffffff;">While building bitbake is =
-causing errors,</p>
-<p style=3D"color: #333f48; font-family: Arial, sans-serif; font-weight: 30=
-0; text-align: left; background-color: #ffffff;"><strong><em>ERROR: An unca=
-ught exception occurred in runqueue################ | ETA: 0:00:01</em></st=
-rong><br /><strong><em>Traceback (most recent call last):</em></strong><br =
-/><strong><em>File "/home/rancore/rohit/yocto_mmwave/yocto-sdk/sources/poky=
-/bitbake/lib/bb/runqueue.py", line 1187, in RunQueueData.prepare_task_hash(=
-tid=3D'/home/rancore/rohit/yocto_mmwave/yocto-sdk/sources/meta-freescale/re=
-cipes-kernel/linux/linux-qoriq_5.4.bb:do_fetch'):</em></strong><br /><stron=
-g><em>def prepare_task_hash(self, tid):</em></strong><br /><strong><em>&gt;=
- bb.parse.siggen.prep_taskhash(tid, self.runtaskentries[tid].depends, self.=
-dataCaches[mc_from_tid(tid)])</em></strong><br /><strong><em>self.runtasken=
-tries[tid].hash =3D bb.parse.siggen.get_taskhash(tid, self.runtaskentries[t=
-id].depends, self.dataCaches[mc_from_tid(tid)])</em></strong><br /><strong>=
-<em>File "/home/rancore/rohit/yocto_mmwave/yocto-sdk/sources/poky/meta/lib/=
-oe/sstatesig.py", line 146, in SignatureGeneratorOEEquivHash.prep_taskhash(=
-tid=3D'/home/rancore/rohit/yocto_mmwave/yocto-sdk/sources/meta-freescale/re=
-cipes-kernel/linux/linux-qoriq_5.4.bb:do_fetch', deps=3Dset(), dataCache=3D=
-&lt;bb.cache.CacheData object at 0x7ff029b3a0b8&gt;):</em></strong><br /><s=
-trong><em>def prep_taskhash(self, tid, deps, dataCache):</em></strong><br /=
-><strong><em>&gt; super().prep_taskhash(tid, deps, dataCache)</em></strong>=
-<br /><strong><em>if hasattr(self, "extramethod"):</em></strong><br /><stro=
-ng><em>File "/home/rancore/rohit/yocto_mmwave/yocto-sdk/sources/poky/bitbak=
-e/lib/bb/siggen.py", line 248, in SignatureGeneratorOEEquivHash.prep_taskha=
-sh(tid=3D'/home/rancore/rohit/yocto_mmwave/yocto-sdk/sources/meta-freescale=
-/recipes-kernel/linux/linux-qoriq_5.4.bb:do_fetch', deps=3Dset(), dataCache=
-=3D&lt;bb.cache.CacheData object at 0x7ff029b3a0b8&gt;):</em></strong><br /=
-><strong><em>else:</em></strong><br /><strong><em>&gt; checksums =3D bb.fet=
-ch2.get_file_checksums(dataCache.file_checksums[fn][task], recipename, self=
-.localdirsexclude)</em></strong><br /><strong><em>for (f,cs) in checksums:<=
-/em></strong></p>
-<p style=3D"color: #333f48; font-family: Arial, sans-serif; font-weight: 30=
-0; text-align: left; background-color: #ffffff;">Can you please help me to =
-resolve the issues?</p>
-Thank you</div>
-</blockquote>
-<p>Regards,</p>
-<p>Tomasz =C5=BByjewski<br />Embedded Systems Engineer<br />GPG: 5C495EA3EB=
-EECA59<br />https://3mdeb.com | @3mdeb_com</p>
-<blockquote>
-<div class=3D"elementToProof" style=3D"font-family: Calibri, Arial, Helveti=
-ca, sans-serif; font-size: 12pt; color: #000000;">&nbsp;</div>
-</blockquote>
+Can anyone please guide me to build the kernel successfully?<br /><br />Tha=
+nk you</div>
 
---PbRBfdaHLgKxeGS2LNvT--
+--cEGncHthVY8tY5SJvNLa--
 
