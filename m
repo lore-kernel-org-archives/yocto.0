@@ -1,213 +1,260 @@
-Return-Path: <jay.shen.teoh@intel.com>
+Return-Path: <tomasz.zyjewski@3mdeb.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A77BEC46467
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B7C84C3527E
 	for <webhook@archiver.kernel.org>; Wed, 13 Apr 2022 15:48:06 +0000 (UTC)
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by mx.groups.io with SMTP id smtpd.web10.3491.1649833187640144396
- for <yocto@lists.yoctoproject.org>;
- Tue, 12 Apr 2022 23:59:47 -0700
-Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel
- header.b=P21gwLgO;
- spf=pass (domain: intel.com, ip: 192.55.52.43,
- mailfrom: jay.shen.teoh@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1649833187; x=1681369187;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=fFUUxKwOZB3dGho23QYImVHRUlOuok087Kyr+QP8xvs=;
-  b=P21gwLgOReGBehMw/o4JY0k3uG1c999ghXk5zvaXv4ow5L3gwYvuuSIG
-   fOzm9+wtF7KpHE6LxSxYADVQMGLF86JgqhgkNtfhkJ29JKP6z4alle/F8
-   72C72jLuLZ1GVvKL0GeswqEgWHPkKnJCffjoHpsEK5r1wNDFdQUPQTLDd
-   p73dAAoeFgwmBZCfvpHRfzfrSGuQeSKNQ8dIzjPJ3uQXNtlMDe4MQoXo2
-   Ga90SvA1tzOVDR/XaILNROa+ZSulCmLo07MH+5X0iDDZSdipKAyo8yXpu
-   iCY5xebiUhnoE7zuL9dPZNp4IAHshrD4mo1Wc0jxqsNwYXFqbXu+Ge+uC
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10315"; a="349028497"
-X-IronPort-AV: E=Sophos;i="5.90,256,1643702400";
-   d="scan'208";a="349028497"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2022 23:59:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,256,1643702400";
-   d="scan'208";a="611770321"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
-  by fmsmga008.fm.intel.com with ESMTP; 12 Apr 2022 23:59:42 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Tue, 12 Apr 2022 23:59:41 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Tue, 12 Apr 2022 23:59:41 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Tue, 12 Apr 2022 23:59:41 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.171)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Tue, 12 Apr 2022 23:59:40 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YEgoBH2XEEdLvZsrPSxDT6QHmBl1+nqIVqUA+iExTi5tOQ2NqwlRjd/I7EUkp67pHww2FU1kz5YhafbDTWOf6WljY3fL5nDbnjVriaeR/+za3tOAU45AAuLJa7pfzl9A9HaihEG9CEs8zhQhED6LV8XdPXIjmygOFhgEkVKIp+SPHFI8WH52qJPlaRyaO5+Tqx7GOVIkryiZoReSiZ6QxrlC23W5wycudkJ5YAUc92e5hwaRpYmFck4tZqmJK4O+Zex+ugBI0CHhfoUa20v3YHd6BWW/IpteNWBYzj/bDrKrY+lFXyOj2rJvDDRP1AOYk0bRgqT7iAomgcQlG5x1Fg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fFUUxKwOZB3dGho23QYImVHRUlOuok087Kyr+QP8xvs=;
- b=lODJYZOOaHB+E13SyH4EHM6pObDAWoDSmercocGGAl9lKZ0RkCkVl/WcIlF9C6K6I+W5/G6NHCfvtCe9LMDQRnyamW7QoG5W4g29fMTkxFI6XN8LqO6druNlqT8wWkWUJHp0y0Dv/tvAQMosDCzgde1ErGyLThOcV5OPAmcTarTd9EEo+ETJ5rfzbNvCeZ98ELjeh9X2xLYsq9Zb0f1VeE1vnNrp64/le2snrl8AWehOUaW8J9rgsGdBEJMkxN3QOLrsYmmPxucggLfKDcQT/Kgtv3CHFeTlwMEz3I7NvaJofIBdT6JeRDdQ6tW39sOgXvWWIFz0Pxik9QY8EJO/zQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM5PR1101MB2348.namprd11.prod.outlook.com (2603:10b6:3:a8::16)
- by DM5PR11MB1579.namprd11.prod.outlook.com (2603:10b6:4:f::14) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5144.29; Wed, 13 Apr 2022 06:59:35 +0000
-Received: from DM5PR1101MB2348.namprd11.prod.outlook.com
- ([fe80::657c:6a6e:4f6e:8efc]) by DM5PR1101MB2348.namprd11.prod.outlook.com
- ([fe80::657c:6a6e:4f6e:8efc%5]) with mapi id 15.20.5144.029; Wed, 13 Apr 2022
- 06:59:35 +0000
-From: "Teoh, Jay Shen" <jay.shen.teoh@intel.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>, Pokybuild User
-	<pokybuild@yoctoproject.org>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>, OE-core
-	<openembedded-core@lists.openembedded.org>
-CC: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>
-Subject: RE: [OE-core] [yocto] QA notification for completed autobuilder build
- (yocto-4.0.rc1)
-Thread-Topic: [OE-core] [yocto] QA notification for completed autobuilder
- build (yocto-4.0.rc1)
-Thread-Index: AQHYSY3kljykFFYuAEOfzCEZffNzI6zsfv/AgAAKLYCAAKg1UA==
-Date: Wed, 13 Apr 2022 06:59:34 +0000
-Message-ID: 
- <DM5PR1101MB2348B383BD9E7C091E054DD3BBEC9@DM5PR1101MB2348.namprd11.prod.outlook.com>
-References: 
- <0101017ffded4843-210c9da1-5b3f-4ed6-bcbc-1f63610acf6e-000000@us-west-2.amazonses.com>
-	 <DM5PR1101MB234872284B26AF1D53F311F0BBED9@DM5PR1101MB2348.namprd11.prod.outlook.com>
- <732ad1690ed9616981f1ab5821d38fe192911f1b.camel@linuxfoundation.org>
-In-Reply-To: 
- <732ad1690ed9616981f1ab5821d38fe192911f1b.camel@linuxfoundation.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.6.401.20
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 27570926-e94a-40c8-b672-08da1d1b2b10
-x-ms-traffictypediagnostic: DM5PR11MB1579:EE_
-x-microsoft-antispam-prvs: 
- <DM5PR11MB157986B1F41009EC89C3BDE5BBEC9@DM5PR11MB1579.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- YOpvgsWWlXH0l39AUiuHMD5rLb3nHR0D+icY9mmmd1zmCb6X7LtJu6QqdhaZQF4xF69e0qmdwjiZ4dRiKfWdctcB2/RiakcTqAin/rGU3meedkAH+4/HrfaLsNEB7pvM4X0IbIz1XlMAlmcAtpCgP36CMHPpeZ/AQsrIwCQfrE1N3874+EGgUIeZZg2NGUm1k+3XZZCEDQ1c3CLSdGxl2PRh0itKlh2+vy5biUJ53jZwe2gZNUL7NRg5FhRwYK7ZgBUrd8+MGXNN+POzn/zxDPkwKEDhzB9ls03juFlRLNtoBtJAWo6SxSzru9hLAwHclYK8Si93/VjNkqZz8GJsBeho/b+y1UFstUBj5e5Z647F/FS/L/OX3kjFFmtj7UrJe1excTJv/K4D47aaPEtt+apt899R6f6OQ2HPoaGdrs8N18iVJZP7i+7topIqiUWKnowV4PZn/YsLg43cdIcgLCaGwg5TyIqOW+FK5itCnUnp+cLBJ1bCpdl1d3M1sP7iIeWHPdEFBCxFG9yvsXRzqKjycXMxtgXeqoDQJiYQC/83l0nVdgHk6Zu4km7vJTcjdO8NZMYYrIF/XIjdM1bFize294mIhWOOt73f78GMnm1MHed6kp2BXGR9A7x6l5W8czKwLeMkV0xScIko+UqBYnuPW9TT4mxAZJ2PMWtRKu+xny+4vb/LaBBQdzt2gDs9LOfchGBA0dpODqcvrPv+KqOJkIDg9paPSz885JmaWZ+I3qxzuMO6D7YPnmA2HNUli4Z0Fx40tK9V7TTGw99bB/8QokbWhORB7KPWwRugFFk=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR1101MB2348.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(66556008)(66446008)(8676002)(64756008)(66476007)(82960400001)(5660300002)(38100700002)(8936002)(55016003)(52536014)(186003)(66946007)(76116006)(83380400001)(4326008)(9686003)(26005)(15650500001)(122000001)(33656002)(38070700005)(2906002)(6506007)(7696005)(110136005)(53546011)(71200400001)(966005)(508600001)(86362001)(316002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?dlRuczM3R2lvT0I1bGFhU3ljQjF4Wngra0t6cEpWNkZpVEtnREQxbXBHVUJL?=
- =?utf-8?B?VW52cnRPcmVZNmllZCtnb3d5akFpSDZaRXZmM3BtZ1FLKzZMa0dMVzJjUUtm?=
- =?utf-8?B?L2FQaWwrWlZVcGMySFVwSlZMWHJjbnBKRk5GZEgzaWxJVXNnQ3JQeW5NTTA4?=
- =?utf-8?B?c3k0VnNaZmE4dU1VUmwzQ2FzbXpsU0NINmkyL1c1a1k3T1d6WWJ5alViMVpk?=
- =?utf-8?B?cTlRYVRiYjhFTSsyTys3L2hWbnExVXF3ZmZFdVM4NmdVK2VDMk5mSkUweEJ0?=
- =?utf-8?B?U0R6RTFqZ25PYTU2OFlkckg5aDU0RE10ODNkMDJsTEFkSDU4R2N3dlJzbm9S?=
- =?utf-8?B?MWFCeHFWL054WEowNG4vSU5zdDJ5MnY0QWpObCtXRU5odGJuZEJkR3hLdXpR?=
- =?utf-8?B?Z2szTzZSWDFvVjZpMUIzYnF0NkFVTVg4b2RPaUl4SkM4WTJoTGVBeTBjS2oz?=
- =?utf-8?B?ZkEzdFZqSmRsVlJObWI4U2FrNFo5eFlENnpyaHBlYjc3aElIQ2E4eW9Xd3gv?=
- =?utf-8?B?QkZCRFdMNGwxVTJYaiszY3Z3RjdDTzB6UHZwMzZZdGpJSTJoWkVxVXFCSkdK?=
- =?utf-8?B?T1laUTNKMkRkSDZZU1drWmphclNveXN4Q21WQTd2dFFwd2pvWE9IeGxDdXIr?=
- =?utf-8?B?aHUvd2EzTzJnWUJaREZmekI4YnNiODVhMHF5QlFrM3JoT0pmb1BqVTFqN1RE?=
- =?utf-8?B?Qm5DbGdzSEo4a0J5djZVZi9lSUltYUlrcjBIbDNESDJNclJIbXhUM2syR2dz?=
- =?utf-8?B?VktxUFRyUHVLN3VyVTEwU293VHBMQWVRaDZKZmpPb2VsNjNxYzFKelhnMnNm?=
- =?utf-8?B?QnBNYmNUOS9ySnFNUnJBblhZWWUxb1lRWm5iUG9BZ2JBbG1WUWdQZDV5d1Jk?=
- =?utf-8?B?U2Q1ZUs5bTBUckZZNlBnVExvNGs3OVY0QXVRd043WEU2Z1JGRDZjSk5tZXBM?=
- =?utf-8?B?Yy9ZcE9tNjN2NjFGRGpWVW1VM3ovSExObWJPa2htSC9MWGkybThPb05UdThO?=
- =?utf-8?B?RWFkQmpIK1UwdDdBUy9kM1djdWZ3ZmNOTVFmQSthYmpGRXFtMWRKRnZPNDkr?=
- =?utf-8?B?S3FsRmRLckxtSEpGb052d3FNNnZYTnlDOHREUUVZeXZ1NDNqL21ldVdiWmRa?=
- =?utf-8?B?M0Q0UkpXb21xeWpMWndhelJka1RoRlpyV1dxZ1NOa2VoNE5zZFZ6ZW5TNGxq?=
- =?utf-8?B?MHg1dU5TME5CZmJwdXpVbzFkYTM3S240VldSdFZ1ekxqY1ZRNGFseWo4VSt5?=
- =?utf-8?B?dmVpcElJK3p5RlA2WG1FQksrNjZaY2s5K3MyN3pZZ2M0Vm8vWHo0VnI1SkIw?=
- =?utf-8?B?aDBYTjRWZUI2aXBPcEpDSjd0NzRUUjVFUExneGhzalg5aHUzTk4ycisvY1pU?=
- =?utf-8?B?dmRaWkw2ZDJIeTVuSHFMTXp4OTRrak8wb2szZ0Y0SzVLTWlhQW03TVU5NnpR?=
- =?utf-8?B?N1VjUEZ0R2plc1FVYWo0YVdvWlc3eWc3R1JYLzE2OUtRUGtlSmJ2VTA5bGFJ?=
- =?utf-8?B?UFUxaU5mbmRGZ3orY2hudlE2WTFwQTRYZ3R5RTlvRElLOGZFVnUwYU9wdnhy?=
- =?utf-8?B?QUV5alYvU0NTaGViVGRyNGwwY2EzL2I3c3VsWkhnK1BjTEpWVUFiMkY1QzZT?=
- =?utf-8?B?TFFBMXNXM3lkNW5LaVdnTDBPOFcwbStJV0JtL3c4YXNYdFlxZlRCV0xOWm0w?=
- =?utf-8?B?Qkdpc2pzMGFsZjhhUlVOY1ZYeHIzUEozcEgyQVpTanBtMURvdGdsMk1HSlRD?=
- =?utf-8?B?YVdGajRDd3BwUXRxMGZMTkFuL0tSbmlSVnVGWmFVakhuNzVOMTROVEg5OWUv?=
- =?utf-8?B?ZGZiSjUxS081SGgzWm1KcVBieURva0hWVENLL0RaOTNtYytxUklrdStQV0lL?=
- =?utf-8?B?V1l2cWdzWENDdjlrL3lFdjlmVWowUi9IQXkxckhoMnJ4RTIrbU1NMzN0YWVZ?=
- =?utf-8?B?R2JIYnFId2psWEhJVnBSdDlSZFFpY2xLYjdFeXlOb0ZpQU12UTNSWmNMaHdC?=
- =?utf-8?B?R0pmYnpGMXg3N3QyUHFMc09sU1cvc2F6Smw2QkxJS281V0lFYUhacXNVMFFa?=
- =?utf-8?B?NUJ0Qm41cU9jc2UrdnVRSGdXNUtLQTR2d1ovWkh6cVFNUkN3YTQxUjNrK1BT?=
- =?utf-8?B?dnN6SDJjbmlaNU9lZ3JLMzdrcU13MzE3R3ZvSHEzWll5SURnT09tNmJxOHp2?=
- =?utf-8?B?R1RpY3hhUm9BYW1Vc3ZUci9zL1JnRmpIeWtMR1RBY2RyY0srM3o2SHpYYWtR?=
- =?utf-8?B?ZjhSS1NCZ2MzV0hyQm9xblQzTDNxMXJBQVQvL1N3T2xWOXpSNk5HanhHclJt?=
- =?utf-8?B?dW5ZR3l6TzJOcS9aUGt5TmdGbGNtODJhODJYNHFNTnRGZHJBVWhtdz09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Subject: Re: Yocto kernel building
+To: yocto@lists.yoctoproject.org
+From: "tomzy" <tomasz.zyjewski@3mdeb.com>
+X-Originating-Location: Warsaw, Mazovia, PL (84.10.27.202)
+X-Originating-Platform: Linux Firefox 99
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: 
- DM5PR1101MB2348.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 27570926-e94a-40c8-b672-08da1d1b2b10
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Apr 2022 06:59:34.8934
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- 7fpmjBS+QYyaVLp1f0Xi72jhLQW4csooWAL2J9I5ETSDAW0gSDLZPMh/nJf6ehBJpHyAMcslPgRQ1L2SSYsVMw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB1579
-X-OriginatorOrg: intel.com
+Date: Wed, 13 Apr 2022 00:02:21 -0700
+References: 
+ <BM1PR01MB3203E5DA71E89151F873898E94EC9@BM1PR01MB3203.INDPRD01.PROD.OUTLOOK.COM>
+In-Reply-To: 
+ <BM1PR01MB3203E5DA71E89151F873898E94EC9@BM1PR01MB3203.INDPRD01.PROD.OUTLOOK.COM>
+Message-ID: <25756.1649833341596207594@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="PbRBfdaHLgKxeGS2LNvT"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Wed, 13 Apr 2022 15:48:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56760
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56761
 
-SGkgUmljaGFyZCwNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBvcGVu
-ZW1iZWRkZWQtY29yZUBsaXN0cy5vcGVuZW1iZWRkZWQub3JnIDxvcGVuZW1iZWRkZWQtDQo+IGNv
-cmVAbGlzdHMub3BlbmVtYmVkZGVkLm9yZz4gT24gQmVoYWxmIE9mIFJpY2hhcmQgUHVyZGllDQo+
-IFNlbnQ6IFdlZG5lc2RheSwgMTMgQXByaWwsIDIwMjIgMTI6NTYgQU0NCj4gVG86IFRlb2gsIEph
-eSBTaGVuIDxqYXkuc2hlbi50ZW9oQGludGVsLmNvbT47IFBva3lidWlsZCBVc2VyDQo+IDxwb2t5
-YnVpbGRAeW9jdG9wcm9qZWN0Lm9yZz47IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc7IE9F
-LWNvcmUNCj4gPG9wZW5lbWJlZGRlZC1jb3JlQGxpc3RzLm9wZW5lbWJlZGRlZC5vcmc+DQo+IENj
-OiBxYS1idWlsZC1ub3RpZmljYXRpb25AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KPiBTdWJqZWN0
-OiBSZTogW09FLWNvcmVdIFt5b2N0b10gUUEgbm90aWZpY2F0aW9uIGZvciBjb21wbGV0ZWQgYXV0
-b2J1aWxkZXINCj4gYnVpbGQgKHlvY3RvLTQuMC5yYzEpDQo+IA0KPiBPbiBUdWUsIDIwMjItMDQt
-MTIgYXQgMTY6MjAgKzAwMDAsIFRlb2gsIEpheSBTaGVuIHdyb3RlOg0KPiA+IEhpIGFsbCwNCj4g
-Pg0KPiA+IFRoaXMgaXMgdGhlIGZ1bGwgcmVwb3J0IGZvciB5b2N0by00LjAucmMxOg0KPiA+IGh0
-dHBzOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvY2dpdC9jZ2l0LmNnaS95b2N0by10ZXN0cmVzdWx0
-cy1jb250cmliL3QNCj4gPiByZWUvP2g9aW50ZWwteW9jdG8tdGVzdHJlc3VsdHMNCj4gPg0KPiA+
-ID09PT09PT0gU3VtbWFyeSA9PT09PT09PQ0KPiA+IE5vIGhpZ2ggbWlsZXN0b25lIGRlZmVjdHMu
-DQo+ID4NCj4gPiBuZXcgaXNzdWUgZm91bmQNCj4gPg0KPiA+IEJ1ZyAxNDc3OSAtIFs0LjByYzFd
-IEVkZ2Vyb3V0ZXIgY2FuIG5vdCBib290IHVwIEJ1ZyAxNDc4MiAtIFtRQQ0KPiA+IDQuMC5yYzFd
-IC0gSWNvbnMgbm90IGxvYWRlZCBwcm9wZXJseSBCdWcgMTQ3ODMgLSBbUUEgNC4wLnJjMV0gLQ0K
-PiA+IEFibm9ybWFsIHJlc3BvbnNpdmUgdGltZSBmb3IgRmlsZSBNYW5hZ2VyIFBDTWFuRk0gYXBw
-bGljYXRpb24NCj4gPg0KPiA+ID09PT09PT0gQnVncyA9PT09PT09PQ0KPiA+IGh0dHBzOi8vYnVn
-emlsbGEueW9jdG9wcm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTQ3NzkNCj4gPiBodHRwczov
-L2J1Z3ppbGxhLnlvY3RvcHJvamVjdC5vcmcvc2hvd19idWcuY2dpP2lkPTE0NzgyDQo+ID4gaHR0
-cHM6Ly9idWd6aWxsYS55b2N0b3Byb2plY3Qub3JnL3Nob3dfYnVnLmNnaT9pZD0xNDc4Mw0KPiAN
-Cj4gVGhhbmtzIQ0KPiANCj4gMTQ3NzkgbWVhbnMgd2UnbGwgbmVlZCBhbiByYzIuIERvIHlvdSBo
-YXZlIGFueSBpbmZvcm1hdGlvbiBvbiB3aGV0aGVyDQo+IDE0NzgyLzE0NzgzIGFsc28gb2NjdXIg
-aW4gcWVtdSBpbWFnZXMgb3IgYXJlIHRoZXkganVzdCBvbiB0aGUgbnVjIGhhcmR3YXJlPw0KWWVz
-LCBpdCB3YXMgb2JzZXJ2ZWQgb24gcWVtdSBpbWFnZXMgYXMgd2VsbC4NCj4gRG8geW91IGtub3cg
-aWYgYW55b25lIGlzIGxvb2tpbmcgaW50byB0aGVtIG9yIGhhcyBhbnkgbGVhZHMgb24gdGhlIGNh
-dXNlIG9mDQo+IHRoZW0/IA0KTm8sIEkgZG9uJ3Qga25vdy4gDQo+SSBwcmVzdW1lIHRob3NlIHRo
-aW5ncyB3ZXJlIHRlc3RlZCBpbiBNMyBzbyBzb21ldGhpbmcgcmVncmVzc2VkDQo+IHNvbWV3aGVy
-ZSByZWNlbnRseT8NClllcy4gVGhpbmdzIGFyZSB3b3JraW5nIGluIE0zIGFuZCB0ZXN0ZWQuIFNv
-IGl0IHNob3VsZCBiZSBhIHJlZ3Jlc3Npb24gYmV0d2VlbiBNMyBhbmQgTTQuDQo+IA0KPiBDaGVl
-cnMsDQo+IA0KPiBSaWNoYXJkDQoNClRoYW5rcywNCkpheQ0K
+--PbRBfdaHLgKxeGS2LNvT
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+>=20
+> Hi,
+>=20
+
+Hi
+
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+> The default Linux kernel is built by using *bitbake fsl-image-networking.=
+*
+> Here, the kernel is built from *meta-freescale/recipes-kernel/linux/linux=
+-qoriq_5.4.bb*
+> path and source code is fetching from *"git://source.codeaurora.org/exter=
+nal/qoriq/qoriq-components/linux;nobranch=3D1"*
+> .
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+> So I want to use another version of the kernel that should be fetch from =
+*"
+> https://source.codeaurora.org/quic/femto5G/fsm/external/qoriq-components/=
+linux_4.19-rt/"
+> (
+> https://source.codeaurora.org/quic/femto5G/fsm/external/qoriq-components/=
+linux_4.19-rt/%22
+> )* and the SRC_REV=3D " *74700acb31e369495da22b4bbfd9e3f4315fc74a* "
+>=20
+>=20
+>=20
+
+When you want to use another version of the kernel it is better to create n=
+ew recipe (.bb file). You
+could use existing linux-qoriq_5.10 [1] recipe as example, just change the =
+SRC_URI, SRCREV and
+LINUX_VERSION.
+
+Than in distro or machine config you would need to set PREFERRED_VERSION_li=
+nux-qoriq to 4.19
+or whatever the version is.
+
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+> For that purpose, I have created a .bbappend file and changed the SRC_URI
+> as well as SRC_REV.
+>=20
+>=20
+>=20
+> While building bitbake is causing errors,
+>=20
+>=20
+>=20
+> *ERROR: An uncaught exception occurred in runqueue################ | ETA:
+> 0:00:01*
+> *Traceback (most recent call last):*
+> *File
+> "/home/rancore/rohit/yocto_mmwave/yocto-sdk/sources/poky/bitbake/lib/bb/r=
+unqueue.py",
+> line 1187, in
+> RunQueueData.prepare_task_hash(tid=3D'/home/rancore/rohit/yocto_mmwave/yo=
+cto-sdk/sources/meta-freescale/recipes-kernel/linux/linux-qoriq_5.4.bb:do_f=
+etch'):*
+>=20
+> *def prepare_task_hash(self, tid):*
+> *> bb.parse.siggen.prep_taskhash(tid, self.runtaskentries[tid].depends,
+> self.dataCaches[mc_from_tid(tid)])*
+> *self.runtaskentries[tid].hash =3D bb.parse.siggen.get_taskhash(tid,
+> self.runtaskentries[tid].depends, self.dataCaches[mc_from_tid(tid)])*
+> *File
+> "/home/rancore/rohit/yocto_mmwave/yocto-sdk/sources/poky/meta/lib/oe/ssta=
+tesig.py",
+> line 146, in
+> SignatureGeneratorOEEquivHash.prep_taskhash(tid=3D'/home/rancore/rohit/yo=
+cto_mmwave/yocto-sdk/sources/meta-freescale/recipes-kernel/linux/linux-qori=
+q_5.4.bb:do_fetch',
+> deps=3Dset(), dataCache=3D<bb.cache.CacheData object at 0x7ff029b3a0b8>):=
+*
+> *def prep_taskhash(self, tid, deps, dataCache):*
+> *> super().prep_taskhash(tid, deps, dataCache)*
+> *if hasattr(self, "extramethod"):*
+> *File
+> "/home/rancore/rohit/yocto_mmwave/yocto-sdk/sources/poky/bitbake/lib/bb/s=
+iggen.py",
+> line 248, in
+> SignatureGeneratorOEEquivHash.prep_taskhash(tid=3D'/home/rancore/rohit/yo=
+cto_mmwave/yocto-sdk/sources/meta-freescale/recipes-kernel/linux/linux-qori=
+q_5.4.bb:do_fetch',
+> deps=3Dset(), dataCache=3D<bb.cache.CacheData object at 0x7ff029b3a0b8>):=
+*
+> *else:*
+> *> checksums =3D
+> bb.fetch2.get_file_checksums(dataCache.file_checksums[fn][task],
+> recipename, self.localdirsexclude)*
+> *for (f,cs) in checksums:*
+>=20
+>=20
+>=20
+> Can you please help me to resolve the issues?
+>=20
+> Thank you
+>=20
+
+Regards,
+
+Tomasz =C5=BByjewski
+Embedded Systems Engineer
+GPG: 5C495EA3EBEECA59
+https://3mdeb.com | @3mdeb_com
+
+>=20
+>=20
+>
+
+--PbRBfdaHLgKxeGS2LNvT
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<blockquote>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Arial, Helveti=
+ca, sans-serif; font-size: 12pt; color: #000000;">Hi,</div>
+</blockquote>
+Hi<br />
+<blockquote>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Arial, Helveti=
+ca, sans-serif; font-size: 12pt; color: #000000;"><br /><br /></div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Arial, Helveti=
+ca, sans-serif; font-size: 12pt; color: #000000;">&nbsp;</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Arial, Helveti=
+ca, sans-serif; font-size: 12pt; color: #000000;">
+<p style=3D"color: #333f48; font-family: Arial, sans-serif; font-weight: 30=
+0; text-align: left; background-color: #ffffff;">The default Linux kernel i=
+s built by using&nbsp;<em><strong>bitbake fsl-image-networking.<span>&nbsp;=
+</span></strong></em>Here, the kernel is built from&nbsp;<em><strong>meta-f=
+reescale/recipes-kernel/linux/linux-qoriq_5.4.bb</strong></em><span>&nbsp;<=
+/span>path and source code is fetching from<span>&nbsp;</span><em><strong>"=
+git://source.codeaurora.org/external/qoriq/qoriq-components/linux;nobranch=
+=3D1"</strong></em>.</p>
+<p style=3D"color: #333f48; font-family: Arial, sans-serif; font-weight: 30=
+0; text-align: left; background-color: #ffffff;">&nbsp;</p>
+<p style=3D"color: #333f48; font-family: Arial, sans-serif; font-weight: 30=
+0; text-align: left; background-color: #ffffff;">So I want to use another v=
+ersion of the kernel that should be fetch from<span>&nbsp;</span><em><stron=
+g>"<a href=3D"https://source.codeaurora.org/quic/femto5G/fsm/external/qoriq=
+-components/linux_4.19-rt/%22" target=3D"_blank" rel=3D"nofollow noopener">=
+https://source.codeaurora.org/quic/femto5G/fsm/external/qoriq-components/li=
+nux_4.19-rt/"</a></strong></em>&nbsp;and the SRC_REV=3D "<em><strong>74700a=
+cb31e369495da22b4bbfd9e3f4315fc74a</strong></em>"</p>
+</div>
+</blockquote>
+<p>When you want to use another version of the kernel it is better to creat=
+e new recipe (.bb file). You<br />could use existing linux-qoriq_5.10 [1] r=
+ecipe as example, just change the SRC_URI, SRCREV and<br />LINUX_VERSION.<b=
+r /><br />Than in distro or machine config you would need to set <code><spa=
+n class=3D"n">PREFERRED_VERSION_linux-qoriq</span><span class=3D"n"></span>=
+</code> to 4.19<br />or whatever the version is.</p>
+<blockquote>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Arial, Helveti=
+ca, sans-serif; font-size: 12pt; color: #000000;">
+<p style=3D"color: #333f48; font-family: Arial, sans-serif; font-weight: 30=
+0; text-align: left; background-color: #ffffff;">&nbsp;</p>
+<p style=3D"color: #333f48; font-family: Arial, sans-serif; font-weight: 30=
+0; text-align: left; background-color: #ffffff;">&nbsp;</p>
+<p style=3D"color: #333f48; font-family: Arial, sans-serif; font-weight: 30=
+0; text-align: left; background-color: #ffffff;">For that purpose, I have c=
+reated a .bbappend file and changed the SRC_URI as well as SRC_REV.</p>
+<p style=3D"color: #333f48; font-family: Arial, sans-serif; font-weight: 30=
+0; text-align: left; background-color: #ffffff;">While building bitbake is =
+causing errors,</p>
+<p style=3D"color: #333f48; font-family: Arial, sans-serif; font-weight: 30=
+0; text-align: left; background-color: #ffffff;"><strong><em>ERROR: An unca=
+ught exception occurred in runqueue################ | ETA: 0:00:01</em></st=
+rong><br /><strong><em>Traceback (most recent call last):</em></strong><br =
+/><strong><em>File "/home/rancore/rohit/yocto_mmwave/yocto-sdk/sources/poky=
+/bitbake/lib/bb/runqueue.py", line 1187, in RunQueueData.prepare_task_hash(=
+tid=3D'/home/rancore/rohit/yocto_mmwave/yocto-sdk/sources/meta-freescale/re=
+cipes-kernel/linux/linux-qoriq_5.4.bb:do_fetch'):</em></strong><br /><stron=
+g><em>def prepare_task_hash(self, tid):</em></strong><br /><strong><em>&gt;=
+ bb.parse.siggen.prep_taskhash(tid, self.runtaskentries[tid].depends, self.=
+dataCaches[mc_from_tid(tid)])</em></strong><br /><strong><em>self.runtasken=
+tries[tid].hash =3D bb.parse.siggen.get_taskhash(tid, self.runtaskentries[t=
+id].depends, self.dataCaches[mc_from_tid(tid)])</em></strong><br /><strong>=
+<em>File "/home/rancore/rohit/yocto_mmwave/yocto-sdk/sources/poky/meta/lib/=
+oe/sstatesig.py", line 146, in SignatureGeneratorOEEquivHash.prep_taskhash(=
+tid=3D'/home/rancore/rohit/yocto_mmwave/yocto-sdk/sources/meta-freescale/re=
+cipes-kernel/linux/linux-qoriq_5.4.bb:do_fetch', deps=3Dset(), dataCache=3D=
+&lt;bb.cache.CacheData object at 0x7ff029b3a0b8&gt;):</em></strong><br /><s=
+trong><em>def prep_taskhash(self, tid, deps, dataCache):</em></strong><br /=
+><strong><em>&gt; super().prep_taskhash(tid, deps, dataCache)</em></strong>=
+<br /><strong><em>if hasattr(self, "extramethod"):</em></strong><br /><stro=
+ng><em>File "/home/rancore/rohit/yocto_mmwave/yocto-sdk/sources/poky/bitbak=
+e/lib/bb/siggen.py", line 248, in SignatureGeneratorOEEquivHash.prep_taskha=
+sh(tid=3D'/home/rancore/rohit/yocto_mmwave/yocto-sdk/sources/meta-freescale=
+/recipes-kernel/linux/linux-qoriq_5.4.bb:do_fetch', deps=3Dset(), dataCache=
+=3D&lt;bb.cache.CacheData object at 0x7ff029b3a0b8&gt;):</em></strong><br /=
+><strong><em>else:</em></strong><br /><strong><em>&gt; checksums =3D bb.fet=
+ch2.get_file_checksums(dataCache.file_checksums[fn][task], recipename, self=
+.localdirsexclude)</em></strong><br /><strong><em>for (f,cs) in checksums:<=
+/em></strong></p>
+<p style=3D"color: #333f48; font-family: Arial, sans-serif; font-weight: 30=
+0; text-align: left; background-color: #ffffff;">Can you please help me to =
+resolve the issues?</p>
+Thank you</div>
+</blockquote>
+<p>Regards,</p>
+<p>Tomasz =C5=BByjewski<br />Embedded Systems Engineer<br />GPG: 5C495EA3EB=
+EECA59<br />https://3mdeb.com | @3mdeb_com</p>
+<blockquote>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Arial, Helveti=
+ca, sans-serif; font-size: 12pt; color: #000000;">&nbsp;</div>
+</blockquote>
+
+--PbRBfdaHLgKxeGS2LNvT--
 
