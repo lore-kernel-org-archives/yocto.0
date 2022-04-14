@@ -1,86 +1,94 @@
-Return-Path: <joe.slater@windriver.com>
+Return-Path: <davidegarde2000@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B1961C38A05
-	for <webhook@archiver.kernel.org>; Thu, 14 Apr 2022 16:03:53 +0000 (UTC)
-Received: from mail1.wrs.com (mail1.wrs.com [147.11.3.146])
- by mx.groups.io with SMTP id smtpd.web12.3884.1649883567268136272
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1EC82C63706
+	for <webhook@archiver.kernel.org>; Thu, 14 Apr 2022 16:03:57 +0000 (UTC)
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com
+ [209.85.208.42])
+ by mx.groups.io with SMTP id smtpd.web11.11047.1649939865289456987
  for <yocto@lists.yoctoproject.org>;
- Wed, 13 Apr 2022 13:59:27 -0700
+ Thu, 14 Apr 2022 05:37:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=permerror,
- err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid
- domain name (domain: windriver.com, ip: 147.11.3.146,
- mailfrom: joe.slater@windriver.com)
-Received: from ala-exchng01.corp.ad.wrs.com (ala-exchng01.corp.ad.wrs.com
- [147.11.82.252])
-	by mail1.wrs.com (8.15.2/8.15.2) with ESMTPS id 23DKxLm6011122
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <yocto@lists.yoctoproject.org>; Wed, 13 Apr 2022 13:59:21 -0700
-Received: from ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 13 Apr 2022 13:59:21 -0700
-Received: from ala-exchng01.corp.ad.wrs.com (147.11.82.252) by
- ALA-EXCHNG02.corp.ad.wrs.com (147.11.82.254) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Wed, 13 Apr 2022 13:59:20 -0700
-Received: from ala-lpggp5.wrs.com (147.11.105.121) by
- ala-exchng01.corp.ad.wrs.com (147.11.82.252) with Microsoft SMTP Server id
- 15.1.2242.12 via Frontend Transport; Wed, 13 Apr 2022 13:59:20 -0700
-From: Joe Slater <joe.slater@windriver.com>
-To: <yocto@lists.yoctoproject.org>
-CC: <joe.slater@windriver.com>, <randy.macleod@windriver.com>
-Subject: [meta-cgl][PATCH 1/1] LICENSE: update to standard SPDX names
-Date: Wed, 13 Apr 2022 13:59:20 -0700
-Message-ID: <20220413205920.35055-1-joe.slater@windriver.com>
-X-Mailer: git-send-email 2.35.1
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=Ji4fjokx;
+ spf=pass (domain: gmail.com, ip: 209.85.208.42,
+ mailfrom: davidegarde2000@gmail.com)
+Received: by mail-ed1-f42.google.com with SMTP id c6so6149131edn.8
+        for <yocto@lists.yoctoproject.org>;
+ Thu, 14 Apr 2022 05:37:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qqXiOZvO9YGtE9uU4JNazpaoOTBEnT1QXJcmzeepxrw=;
+        b=Ji4fjokxCclVjcqNQmv0QQgSW9kzr4+hQN+Qc3K+YAxD4mAd9a+/67qQYhUPujxGdW
+         icU/T8gTdo31ZbkVeGg+CJxpMJbqFSifkhlxvefwZoTPzcOiakW0YGmuMSgi67Sktitx
+         1UazyZeyYTXS2AxZdDVro0jO0pRD7bDkepkUQ/4cc3s5LXln1EZpMwteRUmTi+Lfdk5l
+         PY92m136gsTrZcdPgaMWMstAWUxWEFbaiIINIUYbucprjx4VaNC2G1CI3DCIOZRB8vQi
+         kLqwagBpzK4JktyYzy1kuuxtwULHKKo2xeVOYxVxe5nfKQZRoNh7D3MNQ7FYwJlP69Ng
+         LkUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qqXiOZvO9YGtE9uU4JNazpaoOTBEnT1QXJcmzeepxrw=;
+        b=klqi6MbxqVLp8wRoMqsWBEMxa2EbJ6N8XbXXVAjb8H1xyLs5AYq7R7tw0ZXKDswdE1
+         dl5nX4XlY6xYjzGO8HvEVeJhrd1z/dd0ZyWRDKsW4Kz7dJd6c7SQzAZJvpOnagfY6rEU
+         bBiZyNz32jO5cmK8+tVcQxgLTkRoO28YyU3Yav7yFCY808dZ1GM1M5JaATquAmIWXS+a
+         jXkmnzzFFwHCNsFOVoaeAIIT5Bb/zcFAvKwMa7ENUUf0kL8mrzIp6prgT5SbE42xeGaf
+         eC1/eGSQZRHQBLZjYosnZn4ny53ubOJYrkOXAo6gkUpNhHTTPXY7EHLxFRv8DFhD0cW5
+         pDcA==
+X-Gm-Message-State: AOAM531wUqFdScKzgRe3h5ydJKp3fHojB5lJbCB5V9bZwIIWvJvbeCCA
+	L992FnhJ1rcM5PfzELE+h9W4KIrqW1k=
+X-Google-Smtp-Source: 
+ ABdhPJwYyYPW5ebJgG2h9zxTd3/b+0u5E+/emWeF8UwcHsNDftn4ES6Ao2jsAZ5jmd3OqmRbpROpPA==
+X-Received: by 2002:a05:6402:524c:b0:419:4d8c:e959 with SMTP id
+ t12-20020a056402524c00b004194d8ce959mr2778998edd.398.1649939863318;
+        Thu, 14 Apr 2022 05:37:43 -0700 (PDT)
+Received: from tony3oo3-XPS-13-9370.home
+ (host-87-5-19-5.retail.telecomitalia.it. [87.5.19.5])
+        by smtp.gmail.com with ESMTPSA id
+ f5-20020a17090624c500b006cee6661b6esm603843ejb.10.2022.04.14.05.37.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Apr 2022 05:37:42 -0700 (PDT)
+From: Davide Gardenal <davidegarde2000@gmail.com>
+X-Google-Original-From: Davide Gardenal <davide.gardenal@huawei.com>
+To: yocto@lists.yoctoproject.org
+Cc: Davide Gardenal <davide.gardenal@huawei.com>
+Subject: [meta-raspberrypi][PATCH] bluez-firmware-rpidistro: add compatibility
+ to oe-core/create-spdx
+Date: Thu, 14 Apr 2022 14:36:56 +0200
+Message-Id: <20220414123656.474960-1-davide.gardenal@huawei.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 14 Apr 2022 16:03:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56768
+ <yocto@lists.yoctoproject.org>; Thu, 14 Apr 2022 16:03:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56769
 
-Use convert-spdx-licenses.py to change LICENSE in two recipes.
+Add do_create_spdx dependency to fix error when LICENCE is not found
 
-Signed-off-by: Joe Slater <joe.slater@windriver.com>
+Signed-off-by: Davide Gardenal <davide.gardenal@huawei.com>
 ---
- meta-cgl-common/recipes-cgl/cluster/cluster_3.2.0.bb     | 2 +-
- meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.6.bb | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ .../bluez-firmware-rpidistro/bluez-firmware-rpidistro_git.bb    | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-cgl-common/recipes-cgl/cluster/cluster_3.2.0.bb b/meta-cgl-common/recipes-cgl/cluster/cluster_3.2.0.bb
-index edaeb8b..a6076cc 100644
---- a/meta-cgl-common/recipes-cgl/cluster/cluster_3.2.0.bb
-+++ b/meta-cgl-common/recipes-cgl/cluster/cluster_3.2.0.bb
-@@ -10,7 +10,7 @@ SRC_URI = "https://releases.pagure.org/linux-cluster/cluster/${BP}.tar.xz \
- SRC_URI[md5sum] = "300d83dbbc525c3da21c2e961271c84b"
- SRC_URI[sha256sum] = "4d340338c2376d369cb223469fa1a3356cce9ab5b2a0a0a33256ade2dbbe02d1"
+diff --git a/recipes-kernel/bluez-firmware-rpidistro/bluez-firmware-rpidistro_git.bb b/recipes-kernel/bluez-firmware-rpidistro/bluez-firmware-rpidistro_git.bb
+index 2e3d1cc..b26e80e 100644
+--- a/recipes-kernel/bluez-firmware-rpidistro/bluez-firmware-rpidistro_git.bb
++++ b/recipes-kernel/bluez-firmware-rpidistro/bluez-firmware-rpidistro_git.bb
+@@ -39,7 +39,7 @@ do_extract_lic() {
+ }
+ # Must be before both do_install and do_populate_lic.  Putting it before
+ # their common ancestor works; other approaches do not.
+-addtask extract_lic after do_unpack before do_patch
++addtask extract_lic after do_unpack before do_patch do_create_spdx
  
--LICENSE = "GPL-2.0 & LGPL-2.0"
-+LICENSE = "GPL-2.0-only & LGPL-2.0-only"
- LIC_FILES_CHKSUM = "file://doc/README.licence;md5=ee8ae43af5ea09f12ca7f7a649764cb0"
- 
- PR = "r1"
-diff --git a/meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.6.bb b/meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.6.bb
-index b5dfad0..7b9e875 100644
---- a/meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.6.bb
-+++ b/meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.6.bb
-@@ -22,7 +22,7 @@ It implements the following kinds of heartbeats: \
- "
- HOMEPAGE = "http://linux-ha.org/"
- SECTION = "System Environment/Daemons"
--LICENSE = "GPLv2 & LGPLv2+"
-+LICENSE = "GPL-2.0-only & LGPL-2.0-or-later"
- LIC_FILES_CHKSUM = " \
-     file://doc/COPYING;md5=c93c0550bd3173f4504b2cbd8991e50b \
-     file://doc/COPYING.LGPL;md5=d8045f3b8f929c1cb29a1e3fd737b499 \
+ do_compile() {
+     :
 -- 
-2.35.1
+2.32.0
 
 
