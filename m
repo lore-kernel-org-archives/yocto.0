@@ -1,295 +1,174 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <joel.winarske@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3E7FFC433EF
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 69507C4167B
 	for <webhook@archiver.kernel.org>; Tue, 19 Apr 2022 02:46:34 +0000 (UTC)
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com
- [209.85.222.173])
- by mx.groups.io with SMTP id smtpd.web09.813.1650311152753664485
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
+ [209.85.208.41])
+ by mx.groups.io with SMTP id smtpd.web08.1932.1650316896042054021
  for <yocto@lists.yoctoproject.org>;
- Mon, 18 Apr 2022 12:45:53 -0700
+ Mon, 18 Apr 2022 14:21:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=FJGyNbvv;
- spf=pass (domain: gmail.com, ip: 209.85.222.173,
- mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-qk1-f173.google.com with SMTP id s70so5194869qke.8
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=dcnit6Ga;
+ spf=pass (domain: gmail.com, ip: 209.85.208.41,
+ mailfrom: joel.winarske@gmail.com)
+Received: by mail-ed1-f41.google.com with SMTP id c64so18848810edf.11
         for <yocto@lists.yoctoproject.org>;
- Mon, 18 Apr 2022 12:45:52 -0700 (PDT)
+ Mon, 18 Apr 2022 14:21:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version:thread-index
-         :content-language;
-        bh=65I5k8zJWTEeURM2ScyyZuz7rjJgh4BwaBANAjxLhmM=;
-        b=FJGyNbvv2zCZOIEopVy+WQb6HD/KfYldQI1njrHZGxgy00wxHR/ZuqmXT6AtMqEL1Y
-         nkOqs2b3g0iuAvFYi96ilIqVGQ1E7L3gue1jj10nzrvJ1XPxY0mP1ozUYIyuhZsV+5Cv
-         Ik0lFrICBmCq8SN1ZvoxERUjc8v2f6qlKK5/snuo+jljXhybEKVa8WiNbeOToDXuwQac
-         I3lvzTw8Kd8fDaA0qXwqh777YbrKlPJpybmyH7d3RfjZDHjdK87r2mwOganEWceR5JI3
-         bWKF1t3mbtoMSmPXmtk//cCOQeLkq2oRgKwONYkZ0ftg0ALChmsbFc+apbbUdZZ5GW6K
-         xnTg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=3MI5ljguUrhW5O7zS1jgfRcBzLGh01JaDnAabkk7wg8=;
+        b=dcnit6GaYh2yodRWNlWQhqPUZnt0IrQLnSDD79iwyrFDWSLpepE/uo0yw9jpIG60ZD
+         JnUvJmweE4gjI1LMO1T50V3SGv2sjMFBMrBOPL6ak96Ga3nrfP2p1zdk/JO6Y5SG7gaw
+         EUA1BCSs/g8eH5OYkjgoktAab0YEZBhnMnfjRo5lLengYuLtGiS+v5zZR/kpzDJoPrRI
+         7xjUUGel2i728G6eHFmJwD+DTOpx2qS9tKa+kMwBSh3zfN3ZyqkRIdYl4nNqCK4syFSa
+         1DXKZU8eJKMF01paY42T3VH23oDb0OK2ozhtyDbkxQiKMdp+2pOO8sPtdOpXWJGaXlTI
+         curg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :thread-index:content-language;
-        bh=65I5k8zJWTEeURM2ScyyZuz7rjJgh4BwaBANAjxLhmM=;
-        b=A4LD+ENGh4NSm6ZGMdpGfKwi+8bUJ2TSVqxVjiC7CllxwdhWQB28u6VBEYFRxDERvA
-         vdjGRi1LxxVrkIWiEzwSCTfiNk//49o4JkSysNvESyKM5W3VVL/3vRcIdtzrKDi0A67A
-         muvSTHw4Tj/+GxK0RFzXoHM4i3Iuko9VDcIrsrW5SaHYQh3sWM1YLcgsEWHKkXNZAffO
-         EgG9Qd1m+Sv4bqOdG1FVsgzrTE9xc19oTDRJRXk7PE24wgKLqfMN/gr4Azl5gBm4IqHS
-         AAvpt/liCLaQ/4XqYfsItRPi/yeL5Vs40p5F0EXmCQlE7L+kzK/pV9JF8AaqyDpBwPng
-         Wggg==
-X-Gm-Message-State: AOAM530iLiqcKX6Ariraj7yZIhfgY29kf66PKt1pgDmr6HckJDTV39Jk
-	xPVAP5Zc/Y/6Ev5lImpVz2o=
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=3MI5ljguUrhW5O7zS1jgfRcBzLGh01JaDnAabkk7wg8=;
+        b=aHZgxPsycVuWT8kU2eS3Ct5kFnLXWsvBj/R+PBpd+fhNwab5pxzLYH7HS1uDQR1wM5
+         UujyUS1Q2EQgFXS7VV6/2pa5R6MjFivbwCixR2mQXYz+gIiViHaKugzGlU+/igcrhJ9u
+         eKeZ6h36buzouLEPtK3kM1/33RFRfp0F9zN8klwkwJunm64oH/6RujTIIXsopetRt0yY
+         u1cPCOfdR6eW70qEl/Ru1uFmfH/zbMH9R69ewCiXx31lqyt5OSwdhYC7laqWYalWEVJ7
+         GMKtwijf7Q7c0noE52KJDlmwLHXeaY64jJNVruo9MKJ5COpInbYEHal8Q1ZP5B9tXAA3
+         Gq7Q==
+X-Gm-Message-State: AOAM531TOoXf1g+GA0AYaEd4KzGz40D7+ZHllniOCvldfydHOGHsM6fI
+	xfWe9Iv0SdzLmA49VVHt/7sQjB2qMHZCxVo5gsfergBtm6Gx9g==
 X-Google-Smtp-Source: 
- ABdhPJwxB5GqyV/mX6XFwJ5m+TIdCROde02/dn6C3+omRnhRdCH+EPohsdX1buglvVQ3GCYPsU+Hew==
-X-Received: by 2002:a05:620a:2490:b0:69c:1c6c:beb5 with SMTP id
- i16-20020a05620a249000b0069c1c6cbeb5mr7437924qkn.737.1650311151759;
-        Mon, 18 Apr 2022 12:45:51 -0700 (PDT)
-Received: from skjolley ([72.2.239.73])
-        by smtp.gmail.com with ESMTPSA id
- v17-20020ac85791000000b002f1ec31ed68sm6347576qta.91.2022.04.18.12.45.46
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 18 Apr 2022 12:45:51 -0700 (PDT)
-From: <sjolley.yp.pm@gmail.com>
-To: <yocto@lists.yoctoproject.org>,
-	<openembedded-core@lists.openembedded.org>
-Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
-Date: Mon, 18 Apr 2022 12:45:43 -0700
-Message-ID: <068801d8535c$e9156620$bb403260$@gmail.com>
+ ABdhPJyo3x9BwfJkEXxUP/0b2j04pCnzOISxHpyGjl4KPXVLyQSXSzNN1zPIpY+Lvi3Pkv0h3mjWbrhccUbQwraLF6w=
+X-Received: by 2002:aa7:c04e:0:b0:400:4daf:bab1 with SMTP id
+ k14-20020aa7c04e000000b004004dafbab1mr13795086edo.101.1650316894072; Mon, 18
+ Apr 2022 14:21:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0689_01D85322.3CB8FF20"
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQJxhNExFrNI6Mprh3eAWo3ZXmPM+Q==
-Content-Language: en-us
+References: 
+ <CABKMkPJvygqaUs+e0RA4snPFrsKOQY-FD0BY2iRkQzBVoSXJsw@mail.gmail.com>
+In-Reply-To: 
+ <CABKMkPJvygqaUs+e0RA4snPFrsKOQY-FD0BY2iRkQzBVoSXJsw@mail.gmail.com>
+From: Joel Winarske <joel.winarske@gmail.com>
+Date: Mon, 18 Apr 2022 14:21:23 -0700
+Message-ID: 
+ <CABKMkP+z2PCE7-PzofSS9b38LggFFpo_oCu73V-EEQwHM-Tc0Q@mail.gmail.com>
+Subject: Re: NPM support on Dunfell
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000003cf20705dcf45805"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Tue, 19 Apr 2022 02:46:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56800
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56804
 
-This is a multipart message in MIME format.
+--0000000000003cf20705dcf45805
+Content-Type: text/plain; charset="UTF-8"
 
-------=_NextPart_000_0689_01D85322.3CB8FF20
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+The takeaways using inherit npm:
 
-All,
+1. Does not support 'scoped packages'
 
- 
+2. fetching is not multi-threaded.  A NPM based recipe will run uni-proc
+with a considerable amount of overhead; each package is pulled and cached
+independently.  Whereas "npm install" or "npm ci" runs multi-threaded.
 
-The triage team is starting to try and collect up and classify bugs which a
-newcomer to the project would be able to work on in a way which means people
-can find them. They're being listed on the triage page under the appropriate
-heading:
+For my use case I used base.bbclass, and implemented it all manually.  The
+downside with this approach is there is no long term support via DL_DIR.
 
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
-review:
-https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
-how to create a bugzilla account at:
-<https://bugzilla.yoctoproject.org/createaccount.cgi>
-https://bugzilla.yoctoproject.org/createaccount.cgi
+A reference for others that might hit this:
+https://github.com/meta-webthings/meta-webthings/blob/dunfell/recipes/webthings-gateway/webthings-gateway_git.bb
 
-The idea is these bugs should be straight forward for a person to help work
-on who doesn't have deep experience with the project.  If anyone can help,
-please take ownership of the bug and send patches!  If anyone needs
-help/advice there are people on irc who can likely do so, or some of the
-more experienced contributors will likely be happy to help too.
-
- 
-
-Also, the triage team meets weekly and does its best to handle the bugs
-reported into the Bugzilla. The number of people attending that meeting has
-fallen, as have the number of people available to help fix bugs. One of the
-things we hear users report is they don't know how to help. We (the triage
-team) are therefore going to start reporting out the currently 409
-unassigned or newcomer bugs.
-
- 
-
-We're hoping people may be able to spare some time now and again to help out
-with these.  Bugs are split into two types, "true bugs" where things don't
-work as they should and "enhancements" which are features we'd want to add
-to the system.  There are also roughly four different "priority" classes
-right now,  "3.5, "3.6", "3.99" and "Future", the more pressing/urgent
-issues being in "3.5" and then "3.6".
-
- 
-
-Please review this link and if a bug is something you would be able to help
-with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
-like and I will assign it to you (please make sure you have a Bugzilla
-account).  The list is at:
-https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
-_Bugs
-
- 
-
-Thanks,
-
- 
-
-Stephen K. Jolley
-
-Yocto Project Program Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> 
-
- 
+Cheers,
+Joel
 
 
-------=_NextPart_000_0689_01D85322.3CB8FF20
-Content-Type: text/html;
-	boundary="----=_NextPart_000_140C_01D84DC1.D788E710";
-	charset="us-ascii"
+On Mon, Apr 11, 2022 at 7:18 PM Joel Winarske <joel.winarske@gmail.com>
+wrote:
+
+> I'm seeing some gaps and performance issues.
+>
+> Examples:
+> 1. Setting NPM_INSTALL_DEV = "1" I am rewarded with:
+>
+> 169
+> <https://github.com/meta-flutter/meta-flutter/runs/5982719348?check_suite_focus=true#step:10:169>npm
+> ERR! Could not install from
+> "../../__w/meta-flutter/rpi4-drm-dunfell-latest/raspberrypi4-64/tmp/work/aarch64-poky-linux/webthings-gateway/1.0.0+gitAUTOINC+4c600fc973-r0/git/node_modules/@babel/compat-data"
+> as it does not contain a package.json file.
+> 170
+> <https://github.com/meta-flutter/meta-flutter/runs/5982719348?check_suite_focus=true#step:10:170>
+>
+> The upstream build uses equivalent to:
+>     npm --user root --cache "${NPM_CACHE}" ci
+>     ./node_modules/.bin/webpack
+>     npm --cache "${NPM_CACHE}" prune --production
+>
+> 2. Running npm_do_configure is taking 48+ minutes.  Granted it's a large
+> project, but basically the configure task is running uni-proc.
+>
+> Who is the POC supporting NPM on Dunfell?
+>
+> Thanks,
+> Joel
+>
+
+--0000000000003cf20705dcf45805
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal =
-style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>The triage team is starting to try and =
-collect up and classify bugs which a newcomer to the project would be =
-able to work on in a way which means people can find them. They're being =
-listed on the triage page under the appropriate =
-heading:<o:p></o:p></p><p><a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
-s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
-please review: <a =
-href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
-bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
-bedded</a> and how to create a bugzilla account at: <a =
-href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
-style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
-/span></a><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>The idea is these bugs should be straight =
-forward for a person to help work on who doesn't have deep experience =
-with the project.&nbsp; If anyone can help, please take ownership of the =
-bug and send patches!&nbsp; If anyone needs help/advice there are people =
-on irc who can likely do so, or some of the more experienced =
-contributors will likely be happy to help too.<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
-meets weekly and does its best to handle the bugs reported into the =
-Bugzilla. The number of people attending that meeting has fallen, as =
-have the number of people available to help fix bugs. One of the things =
-we hear users report is they don't know how to help. We (the triage =
-team) are therefore going to start reporting out the currently 409 =
-unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>We're hoping people may be able to spare =
-some time now and again to help out with these.&nbsp; Bugs are split =
-into two types, &quot;true bugs&quot; where things don't work as they =
-should and &quot;enhancements&quot; which are features we'd want to add =
-to the system.&nbsp; There are also roughly four different =
-&quot;priority&quot; classes right now, &nbsp;&#8220;3.5, =
-&#8220;3.6&#8221;, &quot;3.99&quot; and &quot;Future&quot;, the more =
-pressing/urgent issues being in &quot;3.5&quot; and then =
-&#8220;3.6&#8221;.<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>Please review this link and if a bug is =
-something you would be able to help with either take ownership of the =
-bug, or send me (<a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
-e-mail with the bug number you would like and I will assign it to you =
-(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
-or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
-nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Program Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_000_0689_01D85322.3CB8FF20--
+<div dir=3D"ltr">The takeaways=C2=A0using inherit npm:<div><br></div><div>1=
+. Does not support &#39;scoped packages&#39;<br><br>2. fetching is not mult=
+i-threaded.=C2=A0 A NPM based recipe will run uni-proc with a considerable =
+amount of overhead; each package is pulled and cached independently.=C2=A0 =
+Whereas &quot;npm install&quot; or &quot;npm ci&quot; runs multi-threaded.<=
+br></div><div><br></div><div>For my use case I used base.bbclass, and imple=
+mented it all manually.=C2=A0 The downside with this approach is there is n=
+o long term support via DL_DIR.</div><div><br></div><div>A reference for ot=
+hers that might hit this:</div><div><a href=3D"https://github.com/meta-webt=
+hings/meta-webthings/blob/dunfell/recipes/webthings-gateway/webthings-gatew=
+ay_git.bb">https://github.com/meta-webthings/meta-webthings/blob/dunfell/re=
+cipes/webthings-gateway/webthings-gateway_git.bb</a><br></div><div><br></di=
+v><div>Cheers,</div><div>Joel</div><div><br></div></div><br><div class=3D"g=
+mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Apr 11, 2022 at 7=
+:18 PM Joel Winarske &lt;<a href=3D"mailto:joel.winarske@gmail.com">joel.wi=
+narske@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:s=
+olid;border-left-color:rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">=
+<div>I&#39;m seeing some gaps and performance issues.<br></div><div><br></d=
+iv><div>Examples:</div><div>1. Setting NPM_INSTALL_DEV =3D &quot;1&quot; I =
+am rewarded with:</div><div><br></div><div><div style=3D"color:rgb(0,0,0);b=
+ox-sizing:border-box"><div style=3D"box-sizing:border-box;line-height:20px;=
+display:flex"><a href=3D"https://github.com/meta-flutter/meta-flutter/runs/=
+5982719348?check_suite_focus=3Dtrue#step:10:169" style=3D"box-sizing:border=
+-box;text-decoration:none;width:48px;overflow:hidden;text-align:right;text-=
+overflow:ellipsis;white-space:nowrap;font-family:ui-monospace,SFMono-Regula=
+r,&quot;SF Mono&quot;,Menlo,Consolas,&quot;Liberation Mono&quot;,monospace;=
+display:inline-block" target=3D"_blank">169</a><span style=3D"box-sizing:bo=
+rder-box;overflow-x:auto;white-space:pre-wrap;margin-left:16px;display:inli=
+ne-block"><span style=3D"box-sizing:border-box">npm ERR! Could not install =
+from &quot;../../__w/meta-flutter/rpi4-drm-dunfell-latest/raspberrypi4-64/t=
+mp/work/aarch64-poky-linux/webthings-gateway/1.0.0+gitAUTOINC+4c600fc973-r0=
+/git/node_modules/@babel/compat-data&quot; as it does not contain a package=
+.json file.
+</span></span></div></div><div style=3D"color:rgb(0,0,0);box-sizing:border-=
+box"><div style=3D"box-sizing:border-box;line-height:20px;font-family:ui-mo=
+nospace,SFMono-Regular,&quot;SF Mono&quot;,Menlo,Consolas,&quot;Liberation =
+Mono&quot;,monospace;font-size:12px;display:flex"><a href=3D"https://github=
+.com/meta-flutter/meta-flutter/runs/5982719348?check_suite_focus=3Dtrue#ste=
+p:10:170" style=3D"box-sizing:border-box;text-decoration:none;width:48px;ov=
+erflow:hidden;text-align:right;text-overflow:ellipsis;white-space:nowrap;di=
+splay:inline-block" target=3D"_blank">170</a></div><br></div><div style=3D"=
+color:rgb(0,0,0);box-sizing:border-box">The upstream build uses equivalent =
+to:</div><div style=3D"color:rgb(0,0,0);box-sizing:border-box">=C2=A0 =C2=
+=A0 npm --user root --cache &quot;${NPM_CACHE}&quot; ci<br>=C2=A0 =C2=A0 ./=
+node_modules/.bin/webpack<br>=C2=A0 =C2=A0 npm --cache &quot;${NPM_CACHE}&q=
+uot; prune --production<br></div><div style=3D"color:rgb(0,0,0);box-sizing:=
+border-box"><br></div>2. Running npm_do_configure is taking 48+ minutes.=C2=
+=A0 Granted it&#39;s a large project, but basically the configure task is r=
+unning uni-proc.</div><div><br></div><div>Who is the POC supporting NPM on =
+Dunfell?<br></div><div><br></div><div>Thanks,</div><div>Joel</div></div>
+</blockquote></div>
 
+--0000000000003cf20705dcf45805--
 
