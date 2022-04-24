@@ -2,64 +2,64 @@ Return-Path: <ticotimo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 86C2EC47090
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 88879C38A2E
 	for <webhook@archiver.kernel.org>; Mon, 25 Apr 2022 19:26:12 +0000 (UTC)
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com
- [209.85.215.170])
- by mx.groups.io with SMTP id smtpd.web12.22228.1650834629809431040
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
+ [209.85.214.180])
+ by mx.groups.io with SMTP id smtpd.web08.22216.1650834631939676943
  for <yocto@lists.yoctoproject.org>;
- Sun, 24 Apr 2022 14:10:29 -0700
+ Sun, 24 Apr 2022 14:10:32 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=KYdIAoiC;
- spf=pass (domain: gmail.com, ip: 209.85.215.170,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=PuodR2oq;
+ spf=pass (domain: gmail.com, ip: 209.85.214.180,
  mailfrom: ticotimo@gmail.com)
-Received: by mail-pg1-f170.google.com with SMTP id t13so11796156pgn.8
+Received: by mail-pl1-f180.google.com with SMTP id s14so22785197plk.8
         for <yocto@lists.yoctoproject.org>;
- Sun, 24 Apr 2022 14:10:29 -0700 (PDT)
+ Sun, 24 Apr 2022 14:10:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=o08ul0sABJubEZnOSoTR+9rG0j5+HPWfUoJJE/nKYqQ=;
-        b=KYdIAoiCfIwkJKuKNZKEfe6fDkPQwyTrSlVaelb8B2unJ3+Ao+1Z1XC2Jcbu+NGux6
-         Y912pc2lYvUu3g1DbLHyK3Wwq96k7o89AK0Ndpu1ArJDZeAbsPwTfn5UGoa5EI9kdR3X
-         L7FOiBA3FROHsmT2GaBi6zlqOysMLbrXWbomkpGExozjQC718GQ0tJ2ePA1bGy/0jX+Z
-         wey8jm67E10B1qJgdRqYZFY2XOQ7g2fBukioiyL+pBwEFONSyxdx8r3Hy6/8jq5KdccX
-         aklsZZfJhM+FKcRtbMSIzRsXzw7qBLndoFioY1VIztosx/7aWnkRYwZgGQiOlaEeU9I3
-         jh9Q==
+        bh=E3WIsWgpnJtLSLpwutrydgRBmv89LqGfnky4QJVcPNs=;
+        b=PuodR2oq7x3gSyCjfxnvNfUVaTCszD0jSjDBTOdPGBRHHAPTdESCG0+SZPDC/2jOBa
+         m3/vjJNu5ls1xuscaf6bXbZJlKAMwQf/JomijZlDdxi6keUq4f/MblUxNgZKndaJI8V3
+         JQ7Vg5bzIRg3Ke/4Is2o/h1w5H54OTX/hsZuu2Pt35CunJQNfVceZ54ak91dL3nTimk/
+         fQZGJpkNUSUbZUgyyqKSMkFRE7IABMx+uHjqEIKb5epqkdsD5omeHVhXgSWvk3MIWRYg
+         BhRdP6s9O4HG8lXx7gLFYAM1C9lUMnlxjN68Be0UKegW7hdM6C+ZHwRm2C4mLUp/sdSg
+         3ZVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=o08ul0sABJubEZnOSoTR+9rG0j5+HPWfUoJJE/nKYqQ=;
-        b=wtvEnAz9FmdoNEilIRoSdmB57QI8mIl82m+8zb8plXEFfwmbv5O/1K9XM+T4Nv60kA
-         1JKAM0NW7HTFJy1EnHHjwUgxMBAqE4L3f1667mJ5rlFbkNMg7J9+CuqhqmDS8LhwgjQ6
-         yGrIkIabHh98x5XofYSS4ss5L5dkEJRNFjifxgdp+zU2JLh9oVmIwgjmIagux+hkDsxG
-         jMlQj/cZkeoAhvuhEBRVD8V7jXnNvRjlYnaXl+strTYSxS2DepfHQOYFlHArUwsMaIg8
-         JIeCoXPE5YS3c9P8FhgSYgGyDsXZOMHNiWlpHu79KQF0PVL6qHQtxlpAuXpAg907midT
-         MOTg==
-X-Gm-Message-State: AOAM533X7YiAScyM3ZElvJ6KohVQdm6P6f+syP3ppsNIDBSNN5MMJ8pN
-	+deERxj9UEN03t6CP86Ak9FRuSVT428=
+        bh=E3WIsWgpnJtLSLpwutrydgRBmv89LqGfnky4QJVcPNs=;
+        b=N51LPlyqj1NllX71FRrEFDQ3qTdXAgDSFkAQQ+Kb5ps5vmkf1LqcpsZb9tVDdXyzGr
+         8ok0ao6tDPjV9yFNFEAf1Mx3hYvKL7bwERRLLE98dly9aIUjhJ8SFewOErOBcuhbeZn5
+         nQJGKdqKkYITjZZduN6Xo0Nd4Ux5sF8xiXEZmRy+o6DbkG1DL063lWf7843d8ZicdTw+
+         mEVpAsXYyzms/0NoydG8gaKJUGlCjXmuyUUy0X5J5CIVeITsV84mSmQclr3mJT6yZNu3
+         2WTA+xVA5NbYMWmMjyBewewV7f/KGCE6GMVrBJdKkPJyxROukY8Weyx46ftnKx7j96O7
+         V/Fw==
+X-Gm-Message-State: AOAM531eO+ytSxyp4D9Gjub5mektI+lsaJzpHjLNXDNe5t81AoGs7jS9
+	4udi1djwx53zVSEqcgXP9dcPdZNnpGk=
 X-Google-Smtp-Source: 
- ABdhPJwdqJCWPisG36vsnTMd1QVAlUjaiX4cC4/92nItWOpedbf40pmSPPknWx2ZwErWf2pxq6JIlQ==
-X-Received: by 2002:a65:6c10:0:b0:380:437a:c154 with SMTP id
- y16-20020a656c10000000b00380437ac154mr12511220pgu.549.1650834628922;
-        Sun, 24 Apr 2022 14:10:28 -0700 (PDT)
+ ABdhPJxZehpfxcqnuEYd5CpIn1uIxeSmI/EyEzq41emOykbD45l2ML+bTTjYdUCvkfcqWhZk+dZ1Bg==
+X-Received: by 2002:a17:90b:110a:b0:1d2:bde4:e277 with SMTP id
+ gi10-20020a17090b110a00b001d2bde4e277mr16896402pjb.188.1650834631016;
+        Sun, 24 Apr 2022 14:10:31 -0700 (PDT)
 Received: from chiron.hsd1.or.comcast.net
  ([2601:1c0:6000:1b20:7392:b24f:9023:5aa7])
         by smtp.gmail.com with ESMTPSA id
- y30-20020a056a001c9e00b004fa9246adcbsm9019250pfw.144.2022.04.24.14.10.28
+ y30-20020a056a001c9e00b004fa9246adcbsm9019250pfw.144.2022.04.24.14.10.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Apr 2022 14:10:28 -0700 (PDT)
+        Sun, 24 Apr 2022 14:10:30 -0700 (PDT)
 From: Tim Orling <ticotimo@gmail.com>
 X-Google-Original-From: Tim Orling <tim.orling@konsulko.com>
 To: yocto@lists.yoctoproject.org
 Cc: bluelightning@bluelightning.org
-Subject: [layerindex-web][PATCH 1/3] layerindex/utils.py: add
- is_commit_ancestor check
-Date: Sun, 24 Apr 2022 14:10:07 -0700
+Subject: [layerindex-web][PATCH v2 2/3] recipe{desc,parse}.py:
+ BB_ENV_PASSTHROUGH_ADDITIONS
+Date: Sun, 24 Apr 2022 14:10:08 -0700
 Message-Id: 
- <ed3445fe8eb0ff5eef7d0c1fb07e27d0ef80d4f6.1650833930.git.tim.orling@konsulko.com>
+ <aa7b50654d41013bff49e2f6c7cef409f5d62092.1650833930.git.tim.orling@konsulko.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <cover.1650833930.git.tim.orling@konsulko.com>
 References: <cover.1650833930.git.tim.orling@konsulko.com>
@@ -69,53 +69,75 @@ List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Mon, 25 Apr 2022 19:26:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56856
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56857
 
-Add a helper function to check if a given SHA1 hash is an ancestor in
-the currently checkout out branch, using:
+ERROR: Variable BB_ENV_EXTRAWHITE has been renamed to BB_ENV_PASSTHROUGH_ADDITIONS
+ERROR: Variable BB_ENV_EXTRAWHITE from the shell environment has been renamed to BB_ENV_PASSTHROUGH_ADDITIONS
+ERROR: Exiting to allow enviroment variables to be corrected
 
-git merge-branch --is-ancestor <commit> HEAD
+Replace BB_ENV_EXTRAWHITE with new variable BB_ENV_PASSTHROUGH_ADDITIONS
 
-NOTE: This will not match commits which have been cherry-picked.
+In order to be backward compatible with older branches, we must first check
+for the presence of the bitbake commit which implemented the variable name
+change, using layerindex.utils.is_commit_ancestor().
 
 Signed-off-by: Tim Orling <tim.orling@konsulko.com>
 ---
- layerindex/utils.py | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+Changes in v2:
+  * Use new is_commit_ancestor check to check for the specific bitbake
+    commit that introduced the variable renaming. This provides for backward
+    compatibility in older branches (before bitbake 2.0).
 
-diff --git a/layerindex/utils.py b/layerindex/utils.py
-index 32be16d..46e109e 100644
---- a/layerindex/utils.py
-+++ b/layerindex/utils.py
-@@ -229,6 +229,28 @@ def explode_dep_versions2(bitbakepath, deps):
-     import bb.utils
-     return bb.utils.explode_dep_versions2(deps)
+ layerindex/recipedesc.py  | 8 +++++++-
+ layerindex/recipeparse.py | 7 ++++++-
+ 2 files changed, 13 insertions(+), 2 deletions(-)
+
+diff --git a/layerindex/recipedesc.py b/layerindex/recipedesc.py
+index ee7f2fe..a844186 100644
+--- a/layerindex/recipedesc.py
++++ b/layerindex/recipedesc.py
+@@ -39,6 +39,7 @@ def main():
+     from layerindex.models import LayerItem, Recipe
+     from django.db import transaction
+     import settings
++    from layerindex.utils import is_commit_ancestor
  
-+def is_commit_ancestor(repodir, commit, logger):
-+    """
-+    Check if the given SHA1 hash is an ancestor in the currently checked out branch.
-+    NOTE: This will not match commits which have been cherry-picked.
-+    """
-+    try:
-+        # check if commit is a sha1 hash
-+        if re.match('[0-9a-f]{40}', commit):
-+            # check if the commit is an ancestor
-+            contained = runcmd(['git', 'merge-base', '--is-ancestor', '%s' % commit, 'HEAD'], repodir, logger=logger)
-+            return True
-+        else:
-+            raise Exception('is_commit_ancestor: "commit" must be a SHA1 hash')
-+    except CalledProcessError as e:
-+            if e.returncode == 1:
-+                # commit is not an ancestor
-+                return False
-+            else:
-+                raise e
-+    except Exception as esc:
-+        logger.warn(esc)
-+
- def checkout_repo(repodir, commit, logger, force=False):
-     """
-     Check out a revision in a repository, ensuring that untracked/uncommitted
+     setup_environ(settings)
+ 
+@@ -62,8 +63,13 @@ def main():
+             print("Unable to find bitbake by searching BITBAKEDIR, specified path '%s' or its parent, or PATH" % basepath)
+             sys.exit(1)
+ 
++    # Commit "bitbake: Rename environment filtering variables"
++    bb_var_rename_commit = "87104b6a167188921da157c7dba45938849fb22a"
+     # Skip sanity checks
+-    os.environ['BB_ENV_EXTRAWHITE'] = 'DISABLE_SANITY_CHECKS'
++    if is_commit_ancestor(bitbakepath, bb_var_rename_commit, logger=logger):
++        os.environ['BB_ENV_PASSTHROUGH_ADDITIONS'] = 'DISABLE_SANITY_CHECKS'
++    else:
++        os.environ['BB_ENV_EXTRAWHITE'] = 'DISABLE_SANITY_CHECKS'
+     os.environ['DISABLE_SANITY_CHECKS'] = '1'
+ 
+     sys.path.extend([bitbakepath + '/lib'])
+diff --git a/layerindex/recipeparse.py b/layerindex/recipeparse.py
+index c918677..6202745 100644
+--- a/layerindex/recipeparse.py
++++ b/layerindex/recipeparse.py
+@@ -35,8 +35,13 @@ def init_parser(settings, branch, bitbakepath, enable_tracking=False, nocheckout
+             bitbake_ref = 'origin/%s' % branch.bitbake_branch
+         utils.checkout_repo(bitbakepath, bitbake_ref, logger=logger)
+ 
++    # Commit "bitbake: Rename environment filtering variables"
++    bb_var_rename_commit = "87104b6a167188921da157c7dba45938849fb22a"
+     # Skip sanity checks
+-    os.environ['BB_ENV_EXTRAWHITE'] = 'DISABLE_SANITY_CHECKS'
++    if utils.is_commit_ancestor(bitbakepath, bb_var_rename_commit, logger=logger):
++        os.environ['BB_ENV_PASSTHROUGH_ADDITIONS'] = 'DISABLE_SANITY_CHECKS'
++    else:
++        os.environ['BB_ENV_EXTRAWHITE'] = 'DISABLE_SANITY_CHECKS'
+     os.environ['DISABLE_SANITY_CHECKS'] = '1'
+ 
+     fetchdir = settings.LAYER_FETCH_DIR
 -- 
 2.32.0
 
