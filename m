@@ -2,102 +2,120 @@ Return-Path: <ticotimo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 86BFCC4708D
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 86C2EC47090
 	for <webhook@archiver.kernel.org>; Mon, 25 Apr 2022 19:26:12 +0000 (UTC)
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com
- [209.85.210.182])
- by mx.groups.io with SMTP id smtpd.web10.22116.1650834624076805812
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com
+ [209.85.215.170])
+ by mx.groups.io with SMTP id smtpd.web12.22228.1650834629809431040
  for <yocto@lists.yoctoproject.org>;
- Sun, 24 Apr 2022 14:10:24 -0700
+ Sun, 24 Apr 2022 14:10:29 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Kx3/BVSd;
- spf=pass (domain: gmail.com, ip: 209.85.210.182,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=KYdIAoiC;
+ spf=pass (domain: gmail.com, ip: 209.85.215.170,
  mailfrom: ticotimo@gmail.com)
-Received: by mail-pf1-f182.google.com with SMTP id z16so13103565pfh.3
+Received: by mail-pg1-f170.google.com with SMTP id t13so11796156pgn.8
         for <yocto@lists.yoctoproject.org>;
- Sun, 24 Apr 2022 14:10:24 -0700 (PDT)
+ Sun, 24 Apr 2022 14:10:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=6dI3d+18ESV0/+23M+WjokcqfHWABHD43kEfVgDOSxQ=;
-        b=Kx3/BVSdlhRT4fii8odC5avxkscauki1QVmzdztIkrsCj5IE9V91AO+43g5Fs5Nuye
-         m3xm8Hsxg9FHwPbIvZy8pclHFsgGua5uRfoS41oy/Udldf6G5R8S1TDhDWv1xAz0Bx/Q
-         I70Ojez+nEGCUBl9VWCw8ep8S2fx4auSaC7v7oST81zGk/YIhxnrFDNk0R17gjAqTpv8
-         42414VgSVnpaw/LMXRmdaXCc0DtO6XbPJHXl+/t1BN0Fr9gzcxDiI9qFdi0FDZvAAUYM
-         NcYsFW2heosI80vm80s/zdOgWvsXgHBkkJHlObZdft81YxFEMGLUWd31r5lSGsfMDNVU
-         m+hg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=o08ul0sABJubEZnOSoTR+9rG0j5+HPWfUoJJE/nKYqQ=;
+        b=KYdIAoiCfIwkJKuKNZKEfe6fDkPQwyTrSlVaelb8B2unJ3+Ao+1Z1XC2Jcbu+NGux6
+         Y912pc2lYvUu3g1DbLHyK3Wwq96k7o89AK0Ndpu1ArJDZeAbsPwTfn5UGoa5EI9kdR3X
+         L7FOiBA3FROHsmT2GaBi6zlqOysMLbrXWbomkpGExozjQC718GQ0tJ2ePA1bGy/0jX+Z
+         wey8jm67E10B1qJgdRqYZFY2XOQ7g2fBukioiyL+pBwEFONSyxdx8r3Hy6/8jq5KdccX
+         aklsZZfJhM+FKcRtbMSIzRsXzw7qBLndoFioY1VIztosx/7aWnkRYwZgGQiOlaEeU9I3
+         jh9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=6dI3d+18ESV0/+23M+WjokcqfHWABHD43kEfVgDOSxQ=;
-        b=PsWruSog9inNlydVj13QCcNUtG1aC8T94qqvFQWmH9wBItvf+3GTmO0V1Aa3cPU9A7
-         CK074cEgR/1w2LUDd3nlo9ccfnn+3Mkz4NL9g/QLV3YNPu+qtvKrS1ipX8AvB//FH3iU
-         +1YN8ygDssEWV/o+d89SdzK4ovRxaE+4YJXWJWe+dHIrD9+UsE5BoLN6s526uzZGTSyR
-         eoxmqsMu24DSO8Uo1+ryA1HCzUpnyc4nMdDyOGtlyHlLMKhT23cG92I4Swgj0xHCj78a
-         rIjrcbySi8xcWhzMdkHBH6zbXSXcA8n8QltxVIYM3e8ZHjXVpvdpB/s4fFzEPym30dhr
-         Iq3g==
-X-Gm-Message-State: AOAM532BV6AjHyJ4nJPAkAb2xvJ2WepLI+4KQHZ+0rfGfJXFnmz9UFYw
-	8jTm3elQRHAKEKfaBO2mfuqDidc9F/I=
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=o08ul0sABJubEZnOSoTR+9rG0j5+HPWfUoJJE/nKYqQ=;
+        b=wtvEnAz9FmdoNEilIRoSdmB57QI8mIl82m+8zb8plXEFfwmbv5O/1K9XM+T4Nv60kA
+         1JKAM0NW7HTFJy1EnHHjwUgxMBAqE4L3f1667mJ5rlFbkNMg7J9+CuqhqmDS8LhwgjQ6
+         yGrIkIabHh98x5XofYSS4ss5L5dkEJRNFjifxgdp+zU2JLh9oVmIwgjmIagux+hkDsxG
+         jMlQj/cZkeoAhvuhEBRVD8V7jXnNvRjlYnaXl+strTYSxS2DepfHQOYFlHArUwsMaIg8
+         JIeCoXPE5YS3c9P8FhgSYgGyDsXZOMHNiWlpHu79KQF0PVL6qHQtxlpAuXpAg907midT
+         MOTg==
+X-Gm-Message-State: AOAM533X7YiAScyM3ZElvJ6KohVQdm6P6f+syP3ppsNIDBSNN5MMJ8pN
+	+deERxj9UEN03t6CP86Ak9FRuSVT428=
 X-Google-Smtp-Source: 
- ABdhPJzeTI8ijZLRQK5TWFMkZ4wzTTQL9Pqb2jZTgPfDL1PlACV/Lz7qB9YBCjz8gGabNRlkEXkBzQ==
-X-Received: by 2002:a62:a504:0:b0:50a:ceee:5f4 with SMTP id
- v4-20020a62a504000000b0050aceee05f4mr15723297pfm.13.1650834623087;
-        Sun, 24 Apr 2022 14:10:23 -0700 (PDT)
+ ABdhPJwdqJCWPisG36vsnTMd1QVAlUjaiX4cC4/92nItWOpedbf40pmSPPknWx2ZwErWf2pxq6JIlQ==
+X-Received: by 2002:a65:6c10:0:b0:380:437a:c154 with SMTP id
+ y16-20020a656c10000000b00380437ac154mr12511220pgu.549.1650834628922;
+        Sun, 24 Apr 2022 14:10:28 -0700 (PDT)
 Received: from chiron.hsd1.or.comcast.net
  ([2601:1c0:6000:1b20:7392:b24f:9023:5aa7])
         by smtp.gmail.com with ESMTPSA id
- y30-20020a056a001c9e00b004fa9246adcbsm9019250pfw.144.2022.04.24.14.10.22
+ y30-20020a056a001c9e00b004fa9246adcbsm9019250pfw.144.2022.04.24.14.10.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Apr 2022 14:10:22 -0700 (PDT)
+        Sun, 24 Apr 2022 14:10:28 -0700 (PDT)
 From: Tim Orling <ticotimo@gmail.com>
 X-Google-Original-From: Tim Orling <tim.orling@konsulko.com>
 To: yocto@lists.yoctoproject.org
 Cc: bluelightning@bluelightning.org
-Subject: [layerindex-web][PATCH 0/3] Fixes for updates
-Date: Sun, 24 Apr 2022 14:10:06 -0700
-Message-Id: <cover.1650833930.git.tim.orling@konsulko.com>
+Subject: [layerindex-web][PATCH 1/3] layerindex/utils.py: add
+ is_commit_ancestor check
+Date: Sun, 24 Apr 2022 14:10:07 -0700
+Message-Id: 
+ <ed3445fe8eb0ff5eef7d0c1fb07e27d0ef80d4f6.1650833930.git.tim.orling@konsulko.com>
 X-Mailer: git-send-email 2.32.0
+In-Reply-To: <cover.1650833930.git.tim.orling@konsulko.com>
+References: <cover.1650833930.git.tim.orling@konsulko.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Mon, 25 Apr 2022 19:26:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56855
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56856
 
-This series includes fixes to allow update.py to run on 'master', by
-providing a check for the BB_ENV_PASSTHROUGHS_ADDITIONS variable
-renaming in bitbake 2.0+.
+Add a helper function to check if a given SHA1 hash is an ancestor in
+the currently checkout out branch, using:
 
-To do so, an 'is_commit_ancestor' check is added to allow for checking
-if a particular commit hash is present in a checked out repo (e.g.
-bitbake).
+git merge-branch --is-ancestor <commit> HEAD
 
-Also included is an improvement on the prior patch to ignore 'core' in
-BBFILES_COLLECTIONS (logging a debug message rather than a warning for
-the case where 'core' is ignored).
+NOTE: This will not match commits which have been cherry-picked.
 
-The following changes since commit 4dd7f0ee8f31df927c3862677dc59636988d8dfd:
+Signed-off-by: Tim Orling <tim.orling@konsulko.com>
+---
+ layerindex/utils.py | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-  layerindex/models.py: add Inactive-Upstream (2022-04-18 12:56:51 -0700)
-
-are available in the Git repository at:
-
-  git://git.yoctoproject.org/layerindex-web timo/fixes2
-  http://git.yoctoproject.org/cgit.cgi/layerindex-web/log/?h=timo/fixes2
-
-Tim Orling (3):
-  layerindex/utils.py: add is_commit_ancestor check
-  recipe{desc,parse}.py: BB_ENV_PASSTHROUGH_ADDITIONS
-  layerindex/utils.py: ignore 'core' in BBFILES_COLLECTIONS
-
- layerindex/recipedesc.py  |  8 +++++++-
- layerindex/recipeparse.py |  7 ++++++-
- layerindex/utils.py       | 29 ++++++++++++++++++++++++++++-
- 3 files changed, 41 insertions(+), 3 deletions(-)
-
+diff --git a/layerindex/utils.py b/layerindex/utils.py
+index 32be16d..46e109e 100644
+--- a/layerindex/utils.py
++++ b/layerindex/utils.py
+@@ -229,6 +229,28 @@ def explode_dep_versions2(bitbakepath, deps):
+     import bb.utils
+     return bb.utils.explode_dep_versions2(deps)
+ 
++def is_commit_ancestor(repodir, commit, logger):
++    """
++    Check if the given SHA1 hash is an ancestor in the currently checked out branch.
++    NOTE: This will not match commits which have been cherry-picked.
++    """
++    try:
++        # check if commit is a sha1 hash
++        if re.match('[0-9a-f]{40}', commit):
++            # check if the commit is an ancestor
++            contained = runcmd(['git', 'merge-base', '--is-ancestor', '%s' % commit, 'HEAD'], repodir, logger=logger)
++            return True
++        else:
++            raise Exception('is_commit_ancestor: "commit" must be a SHA1 hash')
++    except CalledProcessError as e:
++            if e.returncode == 1:
++                # commit is not an ancestor
++                return False
++            else:
++                raise e
++    except Exception as esc:
++        logger.warn(esc)
++
+ def checkout_repo(repodir, commit, logger, force=False):
+     """
+     Check out a revision in a repository, ensuring that untracked/uncommitted
 -- 
 2.32.0
 
