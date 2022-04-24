@@ -2,64 +2,64 @@ Return-Path: <ticotimo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 88879C38A2E
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 96992C3A589
 	for <webhook@archiver.kernel.org>; Mon, 25 Apr 2022 19:26:12 +0000 (UTC)
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
- [209.85.214.180])
- by mx.groups.io with SMTP id smtpd.web08.22216.1650834631939676943
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com
+ [209.85.215.182])
+ by mx.groups.io with SMTP id smtpd.web09.22418.1650834633958483503
  for <yocto@lists.yoctoproject.org>;
- Sun, 24 Apr 2022 14:10:32 -0700
+ Sun, 24 Apr 2022 14:10:34 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=PuodR2oq;
- spf=pass (domain: gmail.com, ip: 209.85.214.180,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=CJe8c9sr;
+ spf=pass (domain: gmail.com, ip: 209.85.215.182,
  mailfrom: ticotimo@gmail.com)
-Received: by mail-pl1-f180.google.com with SMTP id s14so22785197plk.8
+Received: by mail-pg1-f182.google.com with SMTP id t13so11796245pgn.8
         for <yocto@lists.yoctoproject.org>;
- Sun, 24 Apr 2022 14:10:31 -0700 (PDT)
+ Sun, 24 Apr 2022 14:10:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=E3WIsWgpnJtLSLpwutrydgRBmv89LqGfnky4QJVcPNs=;
-        b=PuodR2oq7x3gSyCjfxnvNfUVaTCszD0jSjDBTOdPGBRHHAPTdESCG0+SZPDC/2jOBa
-         m3/vjJNu5ls1xuscaf6bXbZJlKAMwQf/JomijZlDdxi6keUq4f/MblUxNgZKndaJI8V3
-         JQ7Vg5bzIRg3Ke/4Is2o/h1w5H54OTX/hsZuu2Pt35CunJQNfVceZ54ak91dL3nTimk/
-         fQZGJpkNUSUbZUgyyqKSMkFRE7IABMx+uHjqEIKb5epqkdsD5omeHVhXgSWvk3MIWRYg
-         BhRdP6s9O4HG8lXx7gLFYAM1C9lUMnlxjN68Be0UKegW7hdM6C+ZHwRm2C4mLUp/sdSg
-         3ZVg==
+        bh=ZbwkSJUrCllzXWN9HauNQrTsBTii6BE3nhLc3vINlKk=;
+        b=CJe8c9sr7CrffAbA6Or7TbQhI6zhKrSqKTrmTCSpMcSci4RLTUq7tqrXX2z8faqzJw
+         jgQrRcegjn+Nn8rHcibT0FZHaLBdd3P869dW/SGr9CMemSAuUk9Ew6ThWnUOCBesVPKE
+         QXVlSM3itZdT8tG6EVuAYKQqQhJLOZEzsWgtBoR98TAcJ8dFqppPVyPvqzhYT3c8h/HW
+         DWfVbfQdXl674y6NqAoAEhob2roBmu714VDKAknWw9ZnVVublST+bK3XfTKMTe1mJP9B
+         +mXX4YPoYLx50rcCNbBcemB2JHYfWHFWMCubB11yn17ZL65kUhDAiPU3mysWuZDDBnpO
+         b00w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=E3WIsWgpnJtLSLpwutrydgRBmv89LqGfnky4QJVcPNs=;
-        b=N51LPlyqj1NllX71FRrEFDQ3qTdXAgDSFkAQQ+Kb5ps5vmkf1LqcpsZb9tVDdXyzGr
-         8ok0ao6tDPjV9yFNFEAf1Mx3hYvKL7bwERRLLE98dly9aIUjhJ8SFewOErOBcuhbeZn5
-         nQJGKdqKkYITjZZduN6Xo0Nd4Ux5sF8xiXEZmRy+o6DbkG1DL063lWf7843d8ZicdTw+
-         mEVpAsXYyzms/0NoydG8gaKJUGlCjXmuyUUy0X5J5CIVeITsV84mSmQclr3mJT6yZNu3
-         2WTA+xVA5NbYMWmMjyBewewV7f/KGCE6GMVrBJdKkPJyxROukY8Weyx46ftnKx7j96O7
-         V/Fw==
-X-Gm-Message-State: AOAM531eO+ytSxyp4D9Gjub5mektI+lsaJzpHjLNXDNe5t81AoGs7jS9
-	4udi1djwx53zVSEqcgXP9dcPdZNnpGk=
+        bh=ZbwkSJUrCllzXWN9HauNQrTsBTii6BE3nhLc3vINlKk=;
+        b=sNo+dIZWK2Tf6MFHVNBrqWg5JpoCavMN8Fs5PlrxZz1eMpm6wLv/2X8FfvQagpYS/V
+         7IwG6csSrjuMk8N4Vje3Zm1P+Gm/S634D1dW6xqumwoPmSwfuC0hVw8/b3ePgz0j9IxD
+         8lsrru9SFHM+w0DffStEc/QBVAA6Fj2ARfBr6S0l41LcxpCCpns3T1b4rzcfugKq8nHY
+         ASCZIpE8FiHwMUEOz9gJf+Xwhwfb0t84H5VhhgUlURSbS58U6fvXufledW8fTH8LrD6X
+         6wKG+bvRUf0BWAqhfWxXcrwvhNUZt1J7MYlnCIuKJikruV1q4Io8uVjYcSWmwzlAJ9YX
+         1jCg==
+X-Gm-Message-State: AOAM533HNcm6c1ZIg21TdArAv2S1yl0cH2R6Ftv1EHuSxuTqKaMoW8K3
+	wIr4xwBK/Wnph1JZeMNJEdiU9rgy648=
 X-Google-Smtp-Source: 
- ABdhPJxZehpfxcqnuEYd5CpIn1uIxeSmI/EyEzq41emOykbD45l2ML+bTTjYdUCvkfcqWhZk+dZ1Bg==
-X-Received: by 2002:a17:90b:110a:b0:1d2:bde4:e277 with SMTP id
- gi10-20020a17090b110a00b001d2bde4e277mr16896402pjb.188.1650834631016;
-        Sun, 24 Apr 2022 14:10:31 -0700 (PDT)
+ ABdhPJzQvgi9lcnbQ8Yk0wTR6tu7X2oRFftyxLjkBj03xxEHhHzBrOCr6DXi53PIroh3e0nJg7ipbg==
+X-Received: by 2002:a63:6809:0:b0:3aa:93f5:c6f3 with SMTP id
+ d9-20020a636809000000b003aa93f5c6f3mr12566946pgc.342.1650834633085;
+        Sun, 24 Apr 2022 14:10:33 -0700 (PDT)
 Received: from chiron.hsd1.or.comcast.net
  ([2601:1c0:6000:1b20:7392:b24f:9023:5aa7])
         by smtp.gmail.com with ESMTPSA id
- y30-20020a056a001c9e00b004fa9246adcbsm9019250pfw.144.2022.04.24.14.10.30
+ y30-20020a056a001c9e00b004fa9246adcbsm9019250pfw.144.2022.04.24.14.10.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Apr 2022 14:10:30 -0700 (PDT)
+        Sun, 24 Apr 2022 14:10:32 -0700 (PDT)
 From: Tim Orling <ticotimo@gmail.com>
 X-Google-Original-From: Tim Orling <tim.orling@konsulko.com>
 To: yocto@lists.yoctoproject.org
 Cc: bluelightning@bluelightning.org
-Subject: [layerindex-web][PATCH v2 2/3] recipe{desc,parse}.py:
- BB_ENV_PASSTHROUGH_ADDITIONS
-Date: Sun, 24 Apr 2022 14:10:08 -0700
+Subject: [layerindex-web][PATCH v2 3/3] layerindex/utils.py: ignore 'core' in
+ BBFILES_COLLECTIONS
+Date: Sun, 24 Apr 2022 14:10:09 -0700
 Message-Id: 
- <aa7b50654d41013bff49e2f6c7cef409f5d62092.1650833930.git.tim.orling@konsulko.com>
+ <5682b26bdd4fb7d99e21b57e52cd92396b90e63f.1650833930.git.tim.orling@konsulko.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <cover.1650833930.git.tim.orling@konsulko.com>
 References: <cover.1650833930.git.tim.orling@konsulko.com>
@@ -69,75 +69,42 @@ List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Mon, 25 Apr 2022 19:26:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56857
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56858
 
-ERROR: Variable BB_ENV_EXTRAWHITE has been renamed to BB_ENV_PASSTHROUGH_ADDITIONS
-ERROR: Variable BB_ENV_EXTRAWHITE from the shell environment has been renamed to BB_ENV_PASSTHROUGH_ADDITIONS
-ERROR: Exiting to allow enviroment variables to be corrected
+Many layers append BBFILE_COLLECTIONS and therefore have 'core <layer>'
 
-Replace BB_ENV_EXTRAWHITE with new variable BB_ENV_PASSTHROUGH_ADDITIONS
+During update.py, this means we are likely not handling the collection we
+expect:
 
-In order to be backward compatible with older branches, we must first check
-for the presence of the bitbake commit which implemented the variable name
-change, using layerindex.utils.is_commit_ancestor().
+WARNING: /opt/workdir/git___git_openembedded_org_meta-openembedded/meta-oe: multiple collections found, handling first one (core) only
+BBFILE_COLLECTIONS = "core"
 
 Signed-off-by: Tim Orling <tim.orling@konsulko.com>
 ---
 Changes in v2:
-  * Use new is_commit_ancestor check to check for the specific bitbake
-    commit that introduced the variable renaming. This provides for backward
-    compatibility in older branches (before bitbake 2.0).
+  * Use logger.debug instead of warning for the case where 'core' is ignored
 
- layerindex/recipedesc.py  | 8 +++++++-
- layerindex/recipeparse.py | 7 ++++++-
- 2 files changed, 13 insertions(+), 2 deletions(-)
+ layerindex/utils.py | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/layerindex/recipedesc.py b/layerindex/recipedesc.py
-index ee7f2fe..a844186 100644
---- a/layerindex/recipedesc.py
-+++ b/layerindex/recipedesc.py
-@@ -39,6 +39,7 @@ def main():
-     from layerindex.models import LayerItem, Recipe
-     from django.db import transaction
-     import settings
-+    from layerindex.utils import is_commit_ancestor
- 
-     setup_environ(settings)
- 
-@@ -62,8 +63,13 @@ def main():
-             print("Unable to find bitbake by searching BITBAKEDIR, specified path '%s' or its parent, or PATH" % basepath)
-             sys.exit(1)
- 
-+    # Commit "bitbake: Rename environment filtering variables"
-+    bb_var_rename_commit = "87104b6a167188921da157c7dba45938849fb22a"
-     # Skip sanity checks
--    os.environ['BB_ENV_EXTRAWHITE'] = 'DISABLE_SANITY_CHECKS'
-+    if is_commit_ancestor(bitbakepath, bb_var_rename_commit, logger=logger):
-+        os.environ['BB_ENV_PASSTHROUGH_ADDITIONS'] = 'DISABLE_SANITY_CHECKS'
-+    else:
-+        os.environ['BB_ENV_EXTRAWHITE'] = 'DISABLE_SANITY_CHECKS'
-     os.environ['DISABLE_SANITY_CHECKS'] = '1'
- 
-     sys.path.extend([bitbakepath + '/lib'])
-diff --git a/layerindex/recipeparse.py b/layerindex/recipeparse.py
-index c918677..6202745 100644
---- a/layerindex/recipeparse.py
-+++ b/layerindex/recipeparse.py
-@@ -35,8 +35,13 @@ def init_parser(settings, branch, bitbakepath, enable_tracking=False, nocheckout
-             bitbake_ref = 'origin/%s' % branch.bitbake_branch
-         utils.checkout_repo(bitbakepath, bitbake_ref, logger=logger)
- 
-+    # Commit "bitbake: Rename environment filtering variables"
-+    bb_var_rename_commit = "87104b6a167188921da157c7dba45938849fb22a"
-     # Skip sanity checks
--    os.environ['BB_ENV_EXTRAWHITE'] = 'DISABLE_SANITY_CHECKS'
-+    if utils.is_commit_ancestor(bitbakepath, bb_var_rename_commit, logger=logger):
-+        os.environ['BB_ENV_PASSTHROUGH_ADDITIONS'] = 'DISABLE_SANITY_CHECKS'
-+    else:
-+        os.environ['BB_ENV_EXTRAWHITE'] = 'DISABLE_SANITY_CHECKS'
-     os.environ['DISABLE_SANITY_CHECKS'] = '1'
- 
-     fetchdir = settings.LAYER_FETCH_DIR
+diff --git a/layerindex/utils.py b/layerindex/utils.py
+index 46e109e..414bbe5 100644
+--- a/layerindex/utils.py
++++ b/layerindex/utils.py
+@@ -44,7 +44,12 @@ def get_layer_var(config_data, var, logger):
+         collection = collection_list[0]
+         layerdir = config_data.getVar('LAYERDIR', True)
+         if len(collection_list) > 1:
+-            logger.warn('%s: multiple collections found, handling first one (%s) only' % (layerdir, collection))
++            if collection_list[0] == 'core':
++                # Many layers append BBFILE_COLLECTIONS and therefore have 'core <layer>'
++                collection = collection_list[1]
++                logger.debug('%s: multiple collections found, ignoring the first one (\'core\') and handling (%s) only' % (layerdir, collection))
++            else:
++                logger.warn('%s: multiple collections found, handling first one (%s) only' % (layerdir, collection))
+         if var == 'BBFILE_COLLECTIONS':
+             return collection
+     value = config_data.getVar('%s_%s' % (var, collection), True)
 -- 
 2.32.0
 
