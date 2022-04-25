@@ -2,35 +2,35 @@ Return-Path: <Vasyl.Vavrychuk@opensynergy.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 56DDBC49EA4
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 63A42C54EC4
 	for <webhook@archiver.kernel.org>; Mon, 25 Apr 2022 19:26:13 +0000 (UTC)
 Received: from repost01.tmes.trendmicro.eu (repost01.tmes.trendmicro.eu
- [18.185.115.8])
- by mx.groups.io with SMTP id smtpd.web09.26982.1650873626045359599
+ [18.185.115.31])
+ by mx.groups.io with SMTP id smtpd.web09.26983.1650873626369858797
  for <yocto@lists.yoctoproject.org>;
  Mon, 25 Apr 2022 01:00:27 -0700
 Authentication-Results: mx.groups.io;
  dkim=fail reason="body hash did not verify" header.i=@opensynergy.com
- header.s=tm-dkim-20210503141657 header.b=z1QfLzin;
- spf=pass (domain: opensynergy.com, ip: 18.185.115.8,
+ header.s=tm-dkim-20210503141657 header.b=fFWgbkPj;
+ spf=pass (domain: opensynergy.com, ip: 18.185.115.31,
  mailfrom: vasyl.vavrychuk@opensynergy.com)
-Received: from 104.47.12.56_.trendmicro.com (unknown [172.21.180.2])
-	by repost01.tmes.trendmicro.eu (Postfix) with SMTP id 3A20210001756
-	for <yocto@lists.yoctoproject.org>; Mon, 25 Apr 2022 08:00:24 +0000 (UTC)
-X-TM-MAIL-RECEIVED-TIME: 1650873623.699000
-X-TM-MAIL-UUID: 96cca8a8-38e4-49ac-96ff-a981754ee4e0
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (unknown
- [104.47.12.56])
+Received: from 104.47.14.58_.trendmicro.com (unknown [172.21.163.172])
+	by repost01.tmes.trendmicro.eu (Postfix) with SMTP id 0814010000BDE
+	for <yocto@lists.yoctoproject.org>; Mon, 25 Apr 2022 08:00:25 +0000 (UTC)
+X-TM-MAIL-RECEIVED-TIME: 1650873624.339000
+X-TM-MAIL-UUID: 5319408f-23f1-4bd2-be07-c9eb8d7cc9e1
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (unknown
+ [104.47.14.58])
 	by repre01.tmes.trendmicro.eu (Trend Micro Email Security) with ESMTPS id
- AABF1100010B0
-	for <yocto@lists.yoctoproject.org>; Mon, 25 Apr 2022 08:00:23 +0000 (UTC)
+ 52ECE100010B0
+	for <yocto@lists.yoctoproject.org>; Mon, 25 Apr 2022 08:00:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YVoKV7p569WIyocwVSFmtrdeAO7WSGv9BNvSf9fvs0DWDplabwaWqYQQvfahPDjUIcqzc5ZZwdniT95VVYrvcFH38PZ5w+wgO7AlpcN0B0giFBtpMHK+DKuUTMnCxpifzUwpGpaGusxc7D3W+FtuwOPR42WosmQa56Dx7USfs2ea4TijtR1cr6K4gyxxos5lPd5LpRekzN+mmdxTIANCS6ZsvM+1F6ShPxtrGghG9J3w83C3ZZ+O1PoFaD30CLjgocABxhblWRQ6AbWSQHHJ1Wg4pHJO4NBLy305Xzg1ESJY648xjF0Yf/jtMrWsagYeKR0R8M5Y6H14QVKZy0ClkQ==
+ b=SVpldZvBQb6Q7p2xiXvua7GrEIK8XqNV7SBc10r9Cg4dx3qYgiWiK7X773gbpn6fMhejyAg1qpJ3AfWgFfWycTwTw0be9a20BI9Qnk3hg7oRRS0Q4Q/9BBvBH41sVaepq+Zw0DmJ0U4tlIY55+0yvZggCR0zvnKDrwT/Ov3PWD5b4ep+rC8e4N4D3jpzbWJEFP/atEzzq9rndMhwDbHJ5+YTJciOiaaKCnBltkjK0L/8UWhUhbhyN4I/eqGYrrH/lAwTlXW6A1hLH1GM5WFv39hui6fOizchwpwJugYp7f7xa16zxsp/gAawzobMYL8Ch1gs8GDxbRgGHGumE0ZDrg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3tRcmY/na5QFlqqRFunqrjnnidur0xfdCfZdfZfz94E=;
- b=FhnAp84WnVndy1LwWqg9L4W9xUo6tWe+MSExOPNRtReb7CfzjDiBj9alz7JiQscjLjfHs4FIBRBuyzOgNmCEeJNNv2wbQeVRGM+rMdv5zb3lEnh8uLP0PaK/J/mU02Mmn1USveLDhNo2p3tvuHb0itHZCgjy95j2a9kwJuCztvlsY4m0Zqe5JeVrhTLrKajH/cb7W5l+X9rMfr9PgM42Cb9wQ7Vw7IWj3XuCCUc49mJFTFcESHgYrq6YrIQ9vV7x19yWMuVcw76iU11x9xhlSXWuM+/ihNPwFvQbnfhwyfQwA4xhF5yuX2o8x4Wr6Ab9E2rb9yxeEJBq5MnwqfpyYw==
+ bh=lUS1w6ev0HMfCB8lWjBi64Y4X3B1rkQyWYj62s98HHc=;
+ b=WNjeXkZQHRk5Upox/ROti/bcnn9LDbK7VYqYTm05FLe/bVQ3ivimBVKoDcFHEhAsdC89Roy72/WnrArmbiJlvbcxXsolYTjMv2LztDk0meLmmIy37IVtGdhoXh1APTM4laJKx+zZLAru5EHurmBuETJjaHky88lHxC21Wh0zGxRIm1TQCHdJ7D/t3QBuJJplIZ8SFgQvK64FeIWWXYyIA9g1whYCl7Ek4dybbKYJT2QPJ2aMssma3UumeHwQItpstMxM5HF9f0n0kfcLOd7Fhb/+SfgYtuK67tucnFcLPozYOuqQoS1IVBwv6/xByrn0E2Vu6F/5G6N43njpJJAJPQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  217.66.60.4) smtp.rcpttodomain=lists.yoctoproject.org
  smtp.mailfrom=opensynergy.com; dmarc=pass (p=none sp=none pct=100)
@@ -45,9 +45,9 @@ Received-SPF: Pass (protection.outlook.com: domain of opensynergy.com
 From: Vasyl Vavrychuk <vasyl.vavrychuk@opensynergy.com>
 To: yocto@lists.yoctoproject.org
 Cc: Vasyl Vavrychuk <vasyl.vavrychuk@opensynergy.com>
-Subject: [psplash][RFC PATCH 06/14] Extract draw rect/image from psplash-fb
-Date: Mon, 25 Apr 2022 10:59:46 +0300
-Message-Id: <20220425075954.10427-7-vasyl.vavrychuk@opensynergy.com>
+Subject: [psplash][RFC PATCH 07/14] Extract draw font from psplash-fb
+Date: Mon, 25 Apr 2022 10:59:47 +0300
+Message-Id: <20220425075954.10427-8-vasyl.vavrychuk@opensynergy.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220425075954.10427-1-vasyl.vavrychuk@opensynergy.com>
 References: <20220425075954.10427-1-vasyl.vavrychuk@opensynergy.com>
@@ -55,352 +55,401 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
 Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 53428d5a-bb44-4070-1f28-08da2691a531
-X-MS-TrafficTypeDiagnostic: DBAPR04MB7415:EE_
+X-MS-Office365-Filtering-Correlation-Id: d4538494-0a24-4304-1d32-08da2691a559
+X-MS-TrafficTypeDiagnostic: AM0PR04MB6898:EE_
 X-Microsoft-Antispam-PRVS: 
-	<DBAPR04MB74150A920B7F4FB39D745C26ECF89@DBAPR04MB7415.eurprd04.prod.outlook.com>
+	<AM0PR04MB689874987B8DB25BCFF445BCECF89@AM0PR04MB6898.eurprd04.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	ZKqp38FQmL5pWmU6nFDXUxdJmvJqcIUiMgA6tUQt9OfO3fZBalWQUbCcYSkwFotLitiW2w/z2T0R71l7LAQy1RyQfXaGW311bfBnxuNktSnavKW0qufGuUfJCAniKIy12WniEkjMwGr6NmP0mLQQbfKWmLNnIgKIrTwgzuUds5k8eDpVdBpNvb2idIv4dlthrPWMq42bJIaYYh3IO+zHGvZDsAWI/Oxbyb0u8OSN5M/58hsM9eo+ZiGs6FfiZhdWtZVHdKafA7NggKenGNe6Z5U9mYPYVUSC1pjUat3MoWwa1xoxRDqybvGiq4Ff31npkvwY87i6pngG0DdF71YSMsKi76oXzo8ZwfaNnF3ccSHsokcYOafZamZMZT6MJVfoXBnKYT43r77SBhD0inCnC/NUf0yfcuOeEHx7b0Q2x0SJ94MS+kZSfKf0R5qH2C/WqlXRA7gV+TE5+PtV6rBmAfGwQ06DrpLQDeenOWYtshWwHS+PGHJuqvZ/KaudMMr0PN8v6IJvCjVG+D6l2gaOHM/i8F4/HBZk7VEZR2o4UqZRbnBWQlhW0p5qEG8Nb3D0FjCGK8Mm1IqV+PzmY4vbY6Cm4yhT8rcpEQ+s0gJgyz1mLvvOXSgUHIrrKyc2R4iwnAuno3Pcus3AS6Yqc+9De7fpiWmrS5oPzYQgVJR5CSc=
+	ENFS7y2dUWYZ8EF0pZ5HqRHlEU+Hv766jsJeVRjfagk6ONLRTtlapDXrgwSB0WF7/ZBFBM057kZFXJB4onT49skCHuPghZ0YcHvWBoPSM/zBvmyi0bI1IjNd8Uu17flq4VqlFgVxnklMjtBhq8v0uHODJaorXvJ/+jAhZleI3lBljUoZYRTqwuKCR5RNLhSiYEs8IoHJ8hIgNg2eh80oKSYTU0dmu3ZM+S8+LmA+h+I4HTpPoUI7EkHgAfQN3J5MsK5VB49vksJ/2DRUPoMEmdG/59Cx90pWcSUaeXb2OoWypckiM4rrjLHlk3p+65o7N/D34JrKzI/MeIM225Jj0pGBrUnJ6xBriZC1t/MUsj1XaxLdPqg6w/zFCvuRW2LNsLZdk+6sj9tQ3gab3NDgjnr5UIX7sfHnACec4b458sz9Un2QIONDB58qxO+qLW5/pbJJMiQ32IfnK795K14bo/iNfEMSIgiufi/63n8+6BptPV1B+FErXvfEEvAkJk8TQy5k6H4BWRI19SBY1G3kU9ThkdsVfIXXgJ8s5ZflI3Bt14Hw5vKtOum+2t6XMwMP+EpPH7natqCKw2Ild0dBQrjbSZKx881ASrBPF6OvdYuj2vc0VVpyXLUZI/PdXPsWAiDZMSERqfi/3AJwcQVVfvTA5PeFqYYMst3CNYHPwJ61KVzG7BVEt2Fax5uNjI0q
 X-Forefront-Antispam-Report: 
-	CIP:217.66.60.4;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SR-MAIL-03.open-synergy.com;PTR:mx1.opensynergy.com;CAT:NONE;SFS:(13230001)(396003)(136003)(346002)(376002)(39830400003)(46966006)(36840700001)(107886003)(1076003)(40480700001)(186003)(2906002)(5660300002)(86362001)(26005)(70206006)(4326008)(8676002)(70586007)(2616005)(8936002)(508600001)(82310400005)(42186006)(83380400001)(6916009)(336012)(81166007)(36756003)(36860700001)(44832011)(316002)(47076005);DIR:OUT;SFP:1102;
+	CIP:217.66.60.4;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SR-MAIL-03.open-synergy.com;PTR:mx1.opensynergy.com;CAT:NONE;SFS:(13230001)(396003)(39830400003)(376002)(136003)(346002)(46966006)(36840700001)(4326008)(2906002)(40480700001)(8676002)(5660300002)(508600001)(107886003)(2616005)(336012)(186003)(83380400001)(47076005)(1076003)(86362001)(8936002)(82310400005)(26005)(36860700001)(70206006)(70586007)(6916009)(81166007)(316002)(42186006)(44832011)(36756003);DIR:OUT;SFP:1102;
 X-OriginatorOrg: opensynergy.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2022 08:00:20.9138
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2022 08:00:21.1759
  (UTC)
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 53428d5a-bb44-4070-1f28-08da2691a531
+ d4538494-0a24-4304-1d32-08da2691a559
 X-MS-Exchange-CrossTenant-Id: 800fae25-9b1b-4edc-993d-c939c4e84a64
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
  TenantId=800fae25-9b1b-4edc-993d-c939c4e84a64;Ip=[217.66.60.4];Helo=[SR-MAIL-03.open-synergy.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	VI1EUR05FT039.eop-eur05.prod.protection.outlook.com
+	VI1EUR05FT024.eop-eur05.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7415
-X-TM-AS-ERS: 104.47.12.56-0.0.0.0
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6898
+X-TM-AS-ERS: 104.47.14.58-0.0.0.0
 X-TMASE-Version: StarCloud-1.3-8.8.1001-26854.006
-X-TMASE-Result: 10--0.645700-4.000000
-X-TMASE-MatchedRID: tgaipGrys3i1UOlz1sLXchF4zyLyne+ATJDl9FKHbrlAglB4aYxV4jhn
-	UdH7vK7s76cfT8R97tpUdifX/ssRD8iuP7JEgBPGSHCU59h5KrEpA2ExuipmWq25ZjP2hWgvO4d
-	dIrW9yRVtGpev2mVwX69odUR5cJBxVZwLM6NBHzSfNCkqvupbSEpO/ORUaZ3FmyiLZetSf8m2Ie
-	O/ulJw0ft6/2HgfIgDVymkLM+r7VQ7AFczfjr/7OdSQRkaJTbL0izjYg8nXOv7NIDR7nyBmhZpU
-	GdMmLK9z0ilKrutyKM=
-X-TMASE-XGENCLOUD: 4ad741bb-177b-4d59-8a7e-68d156ad5150-0-0-200-0
-X-TM-Deliver-Signature: 5F680C76AC0F4443A8C73B64BEB58772
+X-TMASE-Result: 10--3.091300-4.000000
+X-TMASE-MatchedRID: +rFemiuRQom1UOlz1sLXchF4zyLyne+ATJDl9FKHbrmqA3rusLu26qnM
+	w2roCh9qhPscUcu6CfxpsU1us5N/4flhKX4Mv8JUSs47mbT7SASISKNNH1lESd9RjZujPiSk9zD
+	JVgZmvsjY4Fl6uZXggNXoG9vFAKs3uWAlzT4Obx4K3Ma88LL+buOaAxDXuHnr3MX35z3GRpvT3f
+	37uQB4Lugc6mX1lwNHkRoxEQkO3VF1H8bw68oiD23U7j2vVURrxEHRux+uk8h+ICquNi0WJLiXd
+	lupaFev7x5lC7m4+c6vVKGGaqVeCrbVKBuwEg48ftwZ3X11IV0=
+X-TMASE-XGENCLOUD: 67a876ae-a5a8-4848-bdfe-57d2c7615526-0-0-200-0
+X-TM-Deliver-Signature: A9437BBFD0E33C8551D71E9B85FEA3A9
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=opensynergy.com;
 	s=TM-DKIM-20210503141657; t=1650873624;
-	bh=UpKZ4cUegiIJo6y7GnBEvWVT+0hqd84auIRFV+/Q8OM=; l=8033;
+	bh=BoQ8wBylaPtF0d0c9QQvQzno/tOg6fEq78qhEdFLQx8=; l=7919;
 	h=From:To:Date;
-	b=z1QfLzin7xz2pad7XjcT4EFODFV53Ab8SrLP3OAEHR6Ai68XUB5MFuAk8AV66DQE6
-	 fTyDkqaSPWxl556HVexlkR3lZsM8tf5Nrh6dFOuJCLKm6K0cVGGPE7pdWqhH/h4eH7
-	 MKshptH7dVrfnmC7wFdem1ouFErU0Twgqr186GPMGrCD5Ld+ETMeiMW3GAoESjciXM
-	 ArKl2zqTY6VV1rHiOCm6keTPThhSL+u3Ult3KskrMq4optpkuGAbN9+z+qZFajmF9s
-	 /BMDedB3lRJX5yWdaZwDMe81HSO7pW6gNWmmIvbc8QB9+xkNG14hUGadVWz9fCunSd
-	 3qeuf3BcWjuRw==
+	b=fFWgbkPjv3YfWthh/xovH27KN1c+GFaGs5HZMsxFrALnS9MiBU+DJ7qF78tUSXBug
+	 RoYMpdO3XDqIBBhk8WKof+mkem22eKyZffJxKSaK60IxX+oTrVRmDbMVUwxDdRcu1H
+	 zuGOG/4abeNRFgMQzkQ+OVhAdtgTG21sTZ28KGYIzxrnHd5ltVdfR6rJ8kLkJjeeap
+	 ho/0ynxMABz5AE0OIfxQ0iZYo6Cog8iynslP9sc8hmArnfvyn/cycKWKLnJ3hiaFUB
+	 ZjnnE+dYBP9oGt0sZgixnEWIRc2gqU7k/5qEtIZas/fJHN44KqxFlBJaYKWhcilZWV
+	 z8Z2CZcN/eHXQ==
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Mon, 25 Apr 2022 19:26:13 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56863
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56864
 
 Signed-off-by: Vasyl Vavrychuk <vasyl.vavrychuk@opensynergy.com>
 ---
- psplash-draw.c | 70 ++++++++++++++++++++++++++++++++++++++++++++++++++
- psplash-draw.h | 20 +++++++++++++++
- psplash-fb.c   | 70 --------------------------------------------------
- psplash-fb.h   | 20 ---------------
- psplash.c      | 16 ++++++------
- 5 files changed, 98 insertions(+), 98 deletions(-)
+ psplash-draw.c | 109 ++++++++++++++++++++++++++++++++++++++++++++++++-
+ psplash-draw.h |  25 ++++++++----
+ psplash-fb.c   | 108 ------------------------------------------------
+ psplash-fb.h   |  16 --------
+ psplash.c      |   4 +-
+ 5 files changed, 125 insertions(+), 137 deletions(-)
 
 diff --git a/psplash-draw.c b/psplash-draw.c
-index 570cfce..6887e22 100644
+index 6887e22..aa9887a 100644
 --- a/psplash-draw.c
 +++ b/psplash-draw.c
-@@ -118,3 +118,73 @@ psplash_plot_pixel(PSplashCanvas *canvas,
-       }
-   }
+@@ -11,8 +11,7 @@
+=20
+ #define OFFSET(canvas, x, y) (((y) * (canvas)->stride) + ((x) * ((canvas=
+)->bpp >> 3)))
+=20
+-/* TODO: change to 'static inline' as psplash_fb_plot_pixel was before *=
+/
+-void
++static inline void
+ psplash_plot_pixel(PSplashCanvas *canvas,
+ 		   int            x,
+ 		   int            y,
+@@ -188,3 +187,109 @@ psplash_draw_image(PSplashCanvas *canvas,
+ 	}
+     }
  }
 +
-+void
-+psplash_draw_rect(PSplashCanvas *canvas,
-+		  int            x,
-+		  int            y,
-+		  int            width,
-+		  int            height,
-+		  uint8          red,
-+		  uint8          green,
-+		  uint8          blue)
-+{
-+  int dx, dy;
++/* Font rendering code based on BOGL by Ben Pfaff */
 +
-+  for (dy=3D0; dy < height; dy++)
-+    for (dx=3D0; dx < width; dx++)
-+	psplash_plot_pixel(canvas, x+dx, y+dy, red, green, blue);
++static int
++psplash_font_glyph (const PSplashFont *font, wchar_t wc, u_int32_t **bit=
+map)
++{
++  int mask =3D font->index_mask;
++  int i;
++
++  for (;;)
++    {
++      for (i =3D font->offset[wc & mask]; font->index[i]; i +=3D 2)
++	{
++	  if ((wchar_t)(font->index[i] & ~mask) =3D=3D (wc & ~mask))
++	    {
++	      if (bitmap !=3D NULL)
++		*bitmap =3D &font->content[font->index[i+1]];
++	      return font->index[i] & mask;
++	    }
++	}
++    }
++  return 0;
 +}
 +
 +void
-+psplash_draw_image(PSplashCanvas *canvas,
-+		   int            x,
-+		   int            y,
-+		   int            img_width,
-+		   int            img_height,
-+		   int            img_bytes_per_pixel,
-+		   int            img_rowstride,
-+		   uint8         *rle_data)
++psplash_text_size(int                *width,
++		  int                *height,
++		  const PSplashFont  *font,
++		  const char         *text)
 +{
-+  uint8       *p =3D rle_data;
-+  int          dx =3D 0, dy =3D 0,  total_len;
-+  unsigned int len;
++  char   *c =3D (char*)text;
++  wchar_t wc;
++  int     k, n, w, h, mw;
 +
-+  total_len =3D img_rowstride * img_height;
++  n =3D strlen (text);
++  mw =3D h =3D w =3D 0;
 +
-+  /* FIXME: Optimise, check for over runs ... */
-+  while ((p - rle_data) < total_len)
++  mbtowc (0, 0, 0);
++  for (; (k =3D mbtowc (&wc, c, n)) > 0; c +=3D k, n -=3D k)
 +    {
-+      len =3D *(p++);
-+
-+      if (len & 128)
++      if (*c =3D=3D '\n')
 +	{
-+	  len -=3D 128;
-+
-+	  if (len =3D=3D 0) break;
-+
-+	  do
-+	    {
-+	      if ((img_bytes_per_pixel < 4 || *(p+3)) && dx < img_width)
-+	        psplash_plot_pixel(canvas, x+dx, y+dy, *(p), *(p+1), *(p+2));
-+	      if (++dx * img_bytes_per_pixel >=3D img_rowstride) { dx=3D0; dy++=
-; }
-+	    }
-+	  while (--len);
-+
-+	  p +=3D img_bytes_per_pixel;
++	  if (w > mw)
++	    mw =3D w;
++	  w =3D 0;
++	  h +=3D font->height;
++	  continue;
 +	}
-+      else
++
++      w +=3D psplash_font_glyph (font, wc, NULL);
++    }
++
++  *width  =3D (w > mw) ? w : mw;
++  *height =3D (h =3D=3D 0) ? font->height : h;
++}
++
++void
++psplash_draw_text(PSplashCanvas     *canvas,
++		  int                x,
++		  int                y,
++		  uint8              red,
++		  uint8              green,
++		  uint8              blue,
++		  const PSplashFont *font,
++		  const char        *text)
++{
++  int     h, w, k, n, cx, cy, dx, dy;
++  char   *c =3D (char*)text;
++  wchar_t wc;
++
++  n =3D strlen (text);
++  h =3D font->height;
++  dx =3D dy =3D 0;
++
++  mbtowc (0, 0, 0);
++  for (; (k =3D mbtowc (&wc, c, n)) > 0; c +=3D k, n -=3D k)
++    {
++      u_int32_t *glyph =3D NULL;
++
++      if (*c =3D=3D '\n')
 +	{
-+	  if (len =3D=3D 0) break;
-+
-+	  do
-+	    {
-+	      if ((img_bytes_per_pixel < 4 || *(p+3)) && dx < img_width)
-+	        psplash_plot_pixel(canvas, x+dx, y+dy, *(p), *(p+1), *(p+2));
-+	      if (++dx * img_bytes_per_pixel >=3D img_rowstride) { dx=3D0; dy++=
-; }
-+	      p +=3D img_bytes_per_pixel;
-+	    }
-+	  while (--len && (p - rle_data) < total_len);
++	  dy +=3D h;
++	  dx  =3D 0;
++	  continue;
 +	}
++
++      w =3D psplash_font_glyph (font, wc, &glyph);
++
++      if (glyph =3D=3D NULL)
++	continue;
++
++      for (cy =3D 0; cy < h; cy++)
++	{
++	  u_int32_t g =3D *glyph++;
++
++	  for (cx =3D 0; cx < w; cx++)
++	    {
++	      if (g & 0x80000000)
++		psplash_plot_pixel(canvas, x+dx+cx, y+dy+cy, red, green, blue);
++	      g <<=3D 1;
++	    }
++	}
++
++      dx +=3D w;
 +    }
 +}
 diff --git a/psplash-draw.h b/psplash-draw.h
-index ab2d4d2..f8361da 100644
+index f8361da..44546b0 100644
 --- a/psplash-draw.h
 +++ b/psplash-draw.h
-@@ -48,4 +48,24 @@ psplash_plot_pixel(PSplashCanvas *canvas,
- 		   uint8          green,
- 		   uint8          blue);
+@@ -39,15 +39,6 @@ typedef struct PSplashCanvas
+ }
+ PSplashCanvas;
+=20
+-/* TODO: Remove after rest of drawing functions migrated to psplash-draw=
+.c */
+-void
+-psplash_plot_pixel(PSplashCanvas *canvas,
+-		   int            x,
+-		   int            y,
+-		   uint8          red,
+-		   uint8          green,
+-		   uint8          blue);
+-
+ void
+ psplash_draw_rect(PSplashCanvas *canvas,
+ 		  int            x,
+@@ -68,4 +59,20 @@ psplash_draw_image(PSplashCanvas *canvas,
+ 		   int            img_rowstride,
+ 		   uint8         *rle_data);
 =20
 +void
-+psplash_draw_rect(PSplashCanvas *canvas,
-+		  int            x,
-+		  int            y,
-+		  int            width,
-+		  int            height,
-+		  uint8          red,
-+		  uint8          green,
-+		  uint8          blue);
++psplash_text_size(int                *width,
++		  int                *height,
++		  const PSplashFont  *font,
++		  const char         *text);
 +
 +void
-+psplash_draw_image(PSplashCanvas *canvas,
-+		   int            x,
-+		   int            y,
-+		   int            img_width,
-+		   int            img_height,
-+		   int            img_bytes_per_pixel,
-+		   int            img_rowstride,
-+		   uint8         *rle_data);
++psplash_draw_text(PSplashCanvas     *canvas,
++		  int                x,
++		  int                y,
++		  uint8              red,
++		  uint8              green,
++		  uint8              blue,
++		  const PSplashFont *font,
++		  const char        *text);
 +
  #endif
 diff --git a/psplash-fb.c b/psplash-fb.c
-index a7029c5..07839d5 100644
+index 07839d5..dd50a5a 100644
 --- a/psplash-fb.c
 +++ b/psplash-fb.c
-@@ -339,76 +339,6 @@ psplash_fb_new (int angle, int fbdev_id)
+@@ -338,111 +338,3 @@ psplash_fb_new (int angle, int fbdev_id)
+=20
    return NULL;
  }
-=20
--void
--psplash_fb_draw_rect (PSplashFB    *fb,
--		      int          x,
--		      int          y,
--		      int          width,
--		      int          height,
--		      uint8        red,
--		      uint8        green,
--		      uint8        blue)
--{
--  int dx, dy;
 -
--  for (dy=3D0; dy < height; dy++)
--    for (dx=3D0; dx < width; dx++)
--	psplash_plot_pixel(&fb->canvas, x+dx, y+dy, red, green, blue);
+-/* Font rendering code based on BOGL by Ben Pfaff */
+-
+-static int
+-psplash_font_glyph (const PSplashFont *font, wchar_t wc, u_int32_t **bit=
+map)
+-{
+-  int mask =3D font->index_mask;
+-  int i;
+-
+-  for (;;)
+-    {
+-      for (i =3D font->offset[wc & mask]; font->index[i]; i +=3D 2)
+-	{
+-	  if ((wchar_t)(font->index[i] & ~mask) =3D=3D (wc & ~mask))
+-	    {
+-	      if (bitmap !=3D NULL)
+-		*bitmap =3D &font->content[font->index[i+1]];
+-	      return font->index[i] & mask;
+-	    }
+-	}
+-    }
+-  return 0;
 -}
 -
 -void
--psplash_fb_draw_image (PSplashFB    *fb,
--		       int          x,
--		       int          y,
--		       int          img_width,
--		       int          img_height,
--		       int          img_bytes_per_pixel,
--		       int          img_rowstride,
--		       uint8       *rle_data)
+-psplash_fb_text_size (int                *width,
+-		      int                *height,
+-		      const PSplashFont  *font,
+-		      const char         *text)
 -{
--  uint8       *p =3D rle_data;
--  int          dx =3D 0, dy =3D 0,  total_len;
--  unsigned int len;
+-  char   *c =3D (char*)text;
+-  wchar_t wc;
+-  int     k, n, w, h, mw;
 -
--  total_len =3D img_rowstride * img_height;
+-  n =3D strlen (text);
+-  mw =3D h =3D w =3D 0;
 -
--  /* FIXME: Optimise, check for over runs ... */
--  while ((p - rle_data) < total_len)
+-  mbtowc (0, 0, 0);
+-  for (; (k =3D mbtowc (&wc, c, n)) > 0; c +=3D k, n -=3D k)
 -    {
--      len =3D *(p++);
--
--      if (len & 128)
+-      if (*c =3D=3D '\n')
 -	{
--	  len -=3D 128;
--
--	  if (len =3D=3D 0) break;
--
--	  do
--	    {
--	      if ((img_bytes_per_pixel < 4 || *(p+3)) && dx < img_width)
--	        psplash_plot_pixel(&fb->canvas, x+dx, y+dy, *(p), *(p+1), *(p+2=
-));
--	      if (++dx * img_bytes_per_pixel >=3D img_rowstride) { dx=3D0; dy++=
-; }
--	    }
--	  while (--len);
--
--	  p +=3D img_bytes_per_pixel;
+-	  if (w > mw)
+-	    mw =3D w;
+-	  w =3D 0;
+-	  h +=3D font->height;
+-	  continue;
 -	}
--      else
+-
+-      w +=3D psplash_font_glyph (font, wc, NULL);
+-    }
+-
+-  *width  =3D (w > mw) ? w : mw;
+-  *height =3D (h =3D=3D 0) ? font->height : h;
+-}
+-
+-void
+-psplash_fb_draw_text (PSplashFB         *fb,
+-		      int                x,
+-		      int                y,
+-		      uint8              red,
+-		      uint8              green,
+-		      uint8              blue,
+-		      const PSplashFont *font,
+-		      const char        *text)
+-{
+-  int     h, w, k, n, cx, cy, dx, dy;
+-  char   *c =3D (char*)text;
+-  wchar_t wc;
+-
+-  n =3D strlen (text);
+-  h =3D font->height;
+-  dx =3D dy =3D 0;
+-
+-  mbtowc (0, 0, 0);
+-  for (; (k =3D mbtowc (&wc, c, n)) > 0; c +=3D k, n -=3D k)
+-    {
+-      u_int32_t *glyph =3D NULL;
+-
+-      if (*c =3D=3D '\n')
 -	{
--	  if (len =3D=3D 0) break;
--
--	  do
--	    {
--	      if ((img_bytes_per_pixel < 4 || *(p+3)) && dx < img_width)
--	        psplash_plot_pixel(&fb->canvas, x+dx, y+dy, *(p), *(p+1), *(p+2=
-));
--	      if (++dx * img_bytes_per_pixel >=3D img_rowstride) { dx=3D0; dy++=
-; }
--	      p +=3D img_bytes_per_pixel;
--	    }
--	  while (--len && (p - rle_data) < total_len);
+-	  dy +=3D h;
+-	  dx  =3D 0;
+-	  continue;
 -	}
+-
+-      w =3D psplash_font_glyph (font, wc, &glyph);
+-
+-      if (glyph =3D=3D NULL)
+-	continue;
+-
+-      for (cy =3D 0; cy < h; cy++)
+-	{
+-	  u_int32_t g =3D *glyph++;
+-
+-	  for (cx =3D 0; cx < w; cx++)
+-	    {
+-	      if (g & 0x80000000)
+-		psplash_plot_pixel(&fb->canvas, x+dx+cx, y+dy+cy,
+-				       red, green, blue);
+-	      g <<=3D 1;
+-	    }
+-	}
+-
+-      dx +=3D w;
 -    }
 -}
 -
- /* Font rendering code based on BOGL by Ben Pfaff */
-=20
- static int
 diff --git a/psplash-fb.h b/psplash-fb.h
-index eb02c62..1eecb47 100644
+index 1eecb47..1b16bd5 100644
 --- a/psplash-fb.h
 +++ b/psplash-fb.h
-@@ -40,26 +40,6 @@ psplash_fb_destroy (PSplashFB *fb);
+@@ -40,22 +40,6 @@ psplash_fb_destroy (PSplashFB *fb);
  PSplashFB*
  psplash_fb_new (int angle, int fbdev_id);
 =20
 -void
--psplash_fb_draw_rect (PSplashFB    *fb,
--		      int          x,
--		      int          y,
--		      int          width,
--		      int          height,
--		      uint8        red,
--		      uint8        green,
--		      uint8        blue);
+-psplash_fb_text_size (int                *width,
+-		      int                *height,
+-		      const PSplashFont  *font,
+-		      const char         *text);
 -
 -void
--psplash_fb_draw_image (PSplashFB    *fb,
--		       int          x,
--		       int          y,
--		       int          img_width,
--		       int          img_height,
--		       int          img_bytes_pre_pixel,
--		       int          img_rowstride,
--		       uint8       *rle_data);
+-psplash_fb_draw_text (PSplashFB         *fb,
+-		      int                x,
+-		      int                y,
+-		      uint8              red,
+-		      uint8              green,
+-		      uint8              blue,
+-		      const PSplashFont *font,
+-		      const char        *text);
 -
  void
- psplash_fb_text_size (int                *width,
- 		      int                *height,
+ psplash_fb_flip(PSplashFB *fb, int sync);
+=20
 diff --git a/psplash.c b/psplash.c
-index f23f03d..2aeb583 100644
+index 2aeb583..1a5e543 100644
 --- a/psplash.c
 +++ b/psplash.c
-@@ -47,7 +47,7 @@ psplash_draw_msg (PSplashFB *fb, const char *msg)
+@@ -41,7 +41,7 @@ psplash_draw_msg (PSplashFB *fb, const char *msg)
+ {
+   int w, h;
 =20
-   /* Clear */
+-  psplash_fb_text_size (&w, &h, &FONT_DEF, msg);
++  psplash_text_size(&w, &h, &FONT_DEF, msg);
 =20
--  psplash_fb_draw_rect (fb,
-+  psplash_draw_rect(&fb->canvas,
- 			0,
+   DBG("displaying '%s' %ix%i\n", msg, w, h);
+=20
+@@ -54,7 +54,7 @@ psplash_draw_msg (PSplashFB *fb, const char *msg)
+ 			h,
+ 			PSPLASH_BACKGROUND_COLOR);
+=20
+-  psplash_fb_draw_text (fb,
++  psplash_draw_text(&fb->canvas,
+ 			(fb->canvas.width-w)/2,
  			SPLIT_LINE_POS(fb) - h,
- 			fb->canvas.width,
-@@ -77,19 +77,19 @@ psplash_draw_progress (PSplashFB *fb, int value)
-   if (value > 0)
-     {
-       barwidth =3D (CLAMP(value,0,100) * width) / 100;
--      psplash_fb_draw_rect (fb, x + barwidth, y,
-+      psplash_draw_rect(&fb->canvas, x + barwidth, y,
-     			width - barwidth, height,
- 			PSPLASH_BAR_BACKGROUND_COLOR);
--      psplash_fb_draw_rect (fb, x, y, barwidth,
-+      psplash_draw_rect(&fb->canvas, x, y, barwidth,
- 			    height, PSPLASH_BAR_COLOR);
-     }
-   else
-     {
-       barwidth =3D (CLAMP(-value,0,100) * width) / 100;
--      psplash_fb_draw_rect (fb, x, y,
-+      psplash_draw_rect(&fb->canvas, x, y,
-     			width - barwidth, height,
- 			PSPLASH_BAR_BACKGROUND_COLOR);
--      psplash_fb_draw_rect (fb, x + width - barwidth,
-+      psplash_draw_rect(&fb->canvas, x + width - barwidth,
- 			    y, barwidth, height,
- 			    PSPLASH_BAR_COLOR);
-     }
-@@ -301,11 +301,11 @@ main (int argc, char** argv)
- #endif
-=20
-   /* Clear the background with #ecece1 */
--  psplash_fb_draw_rect (fb, 0, 0, fb->canvas.width, fb->canvas.height,
-+  psplash_draw_rect(&fb->canvas, 0, 0, fb->canvas.width, fb->canvas.heig=
-ht,
-                         PSPLASH_BACKGROUND_COLOR);
-=20
-   /* Draw the Poky logo  */
--  psplash_fb_draw_image (fb,
-+  psplash_draw_image(&fb->canvas,
- 			 (fb->canvas.width  - POKY_IMG_WIDTH)/2,
- #if PSPLASH_IMG_FULLSCREEN
- 			 (fb->canvas.height - POKY_IMG_HEIGHT)/2,
-@@ -321,7 +321,7 @@ main (int argc, char** argv)
-=20
- #ifdef PSPLASH_SHOW_PROGRESS_BAR
-   /* Draw progress bar border */
--  psplash_fb_draw_image (fb,
-+  psplash_draw_image(&fb->canvas,
- 			 (fb->canvas.width  - BAR_IMG_WIDTH)/2,
- 			 SPLIT_LINE_POS(fb),
- 			 BAR_IMG_WIDTH,
+ 			PSPLASH_TEXT_COLOR,
 --=20
 2.30.2
 
