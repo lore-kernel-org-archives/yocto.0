@@ -2,35 +2,35 @@ Return-Path: <Vasyl.Vavrychuk@opensynergy.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 63915C49ED8
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 68429C54EC5
 	for <webhook@archiver.kernel.org>; Mon, 25 Apr 2022 19:26:13 +0000 (UTC)
-Received: from repostorp.tmes.trendmicro.eu (repostorp.tmes.trendmicro.eu
- [18.185.115.139])
- by mx.groups.io with SMTP id smtpd.web12.26780.1650873627813712402
+Received: from repost01.tmes.trendmicro.eu (repost01.tmes.trendmicro.eu
+ [18.185.115.6])
+ by mx.groups.io with SMTP id smtpd.web09.26984.1650873627127755678
  for <yocto@lists.yoctoproject.org>;
- Mon, 25 Apr 2022 01:00:28 -0700
+ Mon, 25 Apr 2022 01:00:27 -0700
 Authentication-Results: mx.groups.io;
  dkim=fail reason="body hash did not verify" header.i=@opensynergy.com
- header.s=tm-dkim-20210503141657 header.b=FXVxwGey;
- spf=pass (domain: opensynergy.com, ip: 18.185.115.139,
+ header.s=tm-dkim-20210503141657 header.b=iyB13wSh;
+ spf=pass (domain: opensynergy.com, ip: 18.185.115.6,
  mailfrom: vasyl.vavrychuk@opensynergy.com)
-Received: from 104.47.17.104_.trendmicro.com (unknown [172.21.180.2])
-	by repostorp.tmes.trendmicro.eu (Postfix) with SMTP id BEECC10000304
-	for <yocto@lists.yoctoproject.org>; Mon, 25 Apr 2022 08:00:24 +0000 (UTC)
-X-TM-MAIL-RECEIVED-TIME: 1650873623.699000
-X-TM-MAIL-UUID: cf09b989-2061-46f1-b097-019d70cb3191
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (unknown
- [104.47.17.104])
+Received: from 104.47.17.174_.trendmicro.com (unknown [172.21.180.2])
+	by repost01.tmes.trendmicro.eu (Postfix) with SMTP id AD966100022E1
+	for <yocto@lists.yoctoproject.org>; Mon, 25 Apr 2022 08:00:25 +0000 (UTC)
+X-TM-MAIL-RECEIVED-TIME: 1650873625.073000
+X-TM-MAIL-UUID: cc68405b-88d9-4915-b0a6-cbd770e69ee9
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (unknown
+ [104.47.17.174])
 	by repre01.tmes.trendmicro.eu (Trend Micro Email Security) with ESMTPS id
- AAD8F100010B4
-	for <yocto@lists.yoctoproject.org>; Mon, 25 Apr 2022 08:00:23 +0000 (UTC)
+ 11F5C10002D3E
+	for <yocto@lists.yoctoproject.org>; Mon, 25 Apr 2022 08:00:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CxCzfTJstBycfClmW1q0+5dTkbl9AH4nwGtTengT3ViV32ijtVOpu+Rs3Ar09OxKBiQHjJx+RR964akfU81h0A5uuCKN8IgMWRCfQLLdjiA04A7DChnQDE5qmjl89wyrOso5d3PZA9ZUmfsF6EUZnoCPlOT2rq5OZ0ie8YRCyOezgBnicBiFMlWIY3NyVIu0PhQNy0ZEOaLsVgZ4U3s3pwbTH4b4G6zLihr3xgiFjq/02kQl5RxRUnvunE+XABA+mvQRG9D2m5dd12t8ALcLp78yuZ6cMAzEo3svXPlnT+XOb0nDlIFOwFVkuovd5Cez/QNvKDERUhDE3MTgHp1FHQ==
+ b=MZpIc5ygoLRBMi4w3rQWboBGr8MTXMhWRW8MrBY9Njdl7nmENZldtpMywNpRcK+MWfoLzR35nWlkcPuYYueU1F3DyNTwbxg2w+kg0xiAfCryaF56xBej0to/9/M6+PaRC2MS1CMNALgbWVx3n9yELhmq7PN8x5d/LnCo80RnM6OQcV5ER2qjV45hqWBNRJune9/9rBd9i8TNVW5HYLrKyHrLLqSxoTlu41TxEJn069r8UIbeachWGebE9P6K+Q+kY1RPVVsylR7c9GsPDjN9wV5jCjvf8K4HzHb2XQ+7KWl9AtMZ3R83tIFp/vHht6IyOZVKvnkkQGVkFnQRldMg2A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=07T6mAIQuK7KAOKIFjw1qwvvJ51W9GWI2xpI1hlnj6g=;
- b=KsG632fYJyDwOpF6bQNPaXlbz1OP/JYmBGONxNwgd4GuzodgVDbPP6HZplt5XKL7JcFc/b9Z2eoTL55pP849sLBPxB5vQjE3aZvUu0x04+OmfzleZgfSMZg7w65IdZhp5EVNcy2n/XcttcyKf9wMNOgr4XoA64yOYND/dMBDMy7Lfq+OR/qL4dL214VWKh4UdXqzrXOxOYNG24nx6fOyf9iIHLclWPfmTWGwEHaSVl6iNqyrApOwTgA/99HLIPMiHjhRIM4tuyo17D7kcRKe/mrZ+atkyT6p1d+kQ3rQKXTiBxFB7sJh2ZjKFSA8odEjlAN0cERz6w18aeY/cD9oJA==
+ bh=0fJ3ira3RimZtXr6e2Ti9sIIkmIMvarpqBTMt746Tnw=;
+ b=e6tok5DuconW1Eslw1X1LHHW1+XJRBXN6dIAmU0voWr1IVuE9snhXXG9JvQT4ina929CE26lRXT6pYgVVD4oRgLI6MhcEWDaNEPhVWfahoXgpyWFtAC1lfGME4CdVv0mDOf7HiKDjraTIfWYRftUM++i13mwNSnRAfCPTOY8GIrh4lqRmvnVEmY2Uzh+/Axt3XKUCkNPJJKI62nMdBdPnaV0JcDfbmiriXuQ8pTojv7YbTqJxpZ1iP2dotig+nG1y42hdGYmiEPpel2enhGJhOw8W/NThklptqTtoQbgQJfXSb+kO3OpffDgq/G2ULQlzAvRmaaZXpIB+ZvB6KXyDg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  217.66.60.4) smtp.rcpttodomain=lists.yoctoproject.org
  smtp.mailfrom=opensynergy.com; dmarc=pass (p=none sp=none pct=100)
@@ -45,10 +45,9 @@ Received-SPF: Pass (protection.outlook.com: domain of opensynergy.com
 From: Vasyl Vavrychuk <vasyl.vavrychuk@opensynergy.com>
 To: yocto@lists.yoctoproject.org
 Cc: Vasyl Vavrychuk <vasyl.vavrychuk@opensynergy.com>
-Subject: [psplash][RFC PATCH 08/14] psplash.c: Make
- psplash_draw_{msg,progress} independent of FB
-Date: Mon, 25 Apr 2022 10:59:48 +0300
-Message-Id: <20220425075954.10427-9-vasyl.vavrychuk@opensynergy.com>
+Subject: [psplash][RFC PATCH 12/14] Reverse modeset_list
+Date: Mon, 25 Apr 2022 10:59:52 +0300
+Message-Id: <20220425075954.10427-13-vasyl.vavrychuk@opensynergy.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220425075954.10427-1-vasyl.vavrychuk@opensynergy.com>
 References: <20220425075954.10427-1-vasyl.vavrychuk@opensynergy.com>
@@ -56,236 +55,93 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
 Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 30847632-0cbc-4199-ca7d-08da2691a569
-X-MS-TrafficTypeDiagnostic: DB7PR04MB4395:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2ae5129b-f70d-40a0-1d31-08da2691a631
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8775:EE_
 X-Microsoft-Antispam-PRVS: 
-	<DB7PR04MB43959E7E4F6A696741AAB91DECF89@DB7PR04MB4395.eurprd04.prod.outlook.com>
+	<DU2PR04MB87757D4A1CACC7C0081403DDECF89@DU2PR04MB8775.eurprd04.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	g0VG+vUTrbo6+7nGlWKbXLv+rHnfLRnC21rITgZxKqqlltljM0/BXFne0Il1mN4mXTDpygOVPt3j2KGXLzsiBFtg+HHuTon5/QQecuPQI0F19fpFkwGWKMxMYCLPF2CZaG4rn9g74O3zrR7eWhaHb8Y1G0o+ote0GBWJV/8c3gq+5cv/8gT0u8jRomwOWBo9hZ/O/lYivf+qVIzbO2lsOjLNceUVQbTWLvzlJD2hl8FFQqQtwCtDLF7jWIQwqy4Q7OQxYM5EBLBrK5JFTGSYe5nFe8XYWg4HCP56ZvJFZkmKno12tXGf1Td1kxPzZZkr4aaQ+FB9LbFjTnOwgdrvDC3qv5iOhjXawm0gljtmpUDLyb1j076klaS+ML7VmuzKHVlpr7tVatvkFTjclP5MZmV0ibDuw/b7NOYznPFdYTIbn62rfXgiGINlYDldrwIcnYS8b6n1V0o8oMMcjoTqrQ6s8l4awSENaaz5BoyJ6AxVZFr5yigJq0DafceAfCXYbdA8ovVr10aGEVt/ZhuYRgzLm9c090YbRw082jEf37ZYe4jmCwGBkq0AOrLIsM7Die4uW9FnRspfEEdy/ctwoYgKbM4yZn/h5zA8Le3KOueIRhbNox9ccQRgT8hG671SSxlgPxwXY/yOjW1XNBtHl0yDMzdVhD+z2eMKAGkRN463uq4j12FQxJfRNrPn/H3Z
+	GLU2x5BqbrSvnNieJyqvhVN5HyvqGl5tjuLKodldn8ui2Fqg7uXi1Q74sAzXznjpXTobf48lbfsCR8I4yeU2W0U4CVjzTKbVM94+VqLXEkuknEIk7/UH1nI27uT2z1dRkFyjE9vCRdjQPCzGjAFJtavdLLx/5j1VTHY6X14RG+dF06R/L0x+pyZI3AEcCbhJfUBczsQNBPixWUF/aNO2S8l8WHIQCvx4ys3HfyKkFSYMft4VExVDmM9biVn+1BR2dzbtoxzsPypZt+oe3d/mc1wUwwilT6balOWnO5AjBhOmLQurpGuGgjnHdeW6c5fOM91cUH2OWxEdcJiaPcZ0s3szr8plpWE9uchPjGBkzu+jYjE+Ca+WFIG8NOUMIHdiDvSDHAAgYdPdWD8i/GIPwD9PGQ9t21NGHr+KcNloKlRR3dRSwd/WwAVb6PLtoi6Z9uU/UuMCdVpIcWmFsKGBLymxgSJ6E2eKh0Og8ckafUfy6pS9RX4ZRjAy6N5c2vpeTsaHKiQFxz0M5Zczw78aXvGsg/HXRS6QLsDpko+knjgX8Paj3OPAFi4mktsCLw9qXEhGfFKmKxoJ0URfJsaGssPGY69/SvvkGXtMPkPFPTo1zgEXkePXruaTAGE72GTkc2SzPZr15McBqp0oxjNRjQhPeTypgZb/aFINfNv1AOcJBrzl54veqnwJY+j6t6Vl
 X-Forefront-Antispam-Report: 
-	CIP:217.66.60.4;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SR-MAIL-03.open-synergy.com;PTR:mx1.opensynergy.com;CAT:NONE;SFS:(13230001)(376002)(346002)(396003)(39830400003)(136003)(36840700001)(46966006)(2906002)(81166007)(36756003)(82310400005)(5660300002)(40480700001)(70586007)(42186006)(6916009)(70206006)(316002)(508600001)(8676002)(26005)(36860700001)(86362001)(83380400001)(8936002)(44832011)(4326008)(186003)(336012)(47076005)(2616005)(1076003)(107886003);DIR:OUT;SFP:1102;
+	CIP:217.66.60.4;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SR-MAIL-03.open-synergy.com;PTR:mx1.opensynergy.com;CAT:NONE;SFS:(13230001)(376002)(136003)(346002)(396003)(39830400003)(46966006)(36840700001)(42186006)(82310400005)(186003)(6916009)(47076005)(83380400001)(40480700001)(336012)(8676002)(36756003)(36860700001)(316002)(81166007)(4326008)(70206006)(5660300002)(70586007)(107886003)(2616005)(26005)(8936002)(508600001)(1076003)(4744005)(86362001)(44832011)(2906002);DIR:OUT;SFP:1102;
 X-OriginatorOrg: opensynergy.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2022 08:00:21.2852
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2022 08:00:22.5915
  (UTC)
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 30847632-0cbc-4199-ca7d-08da2691a569
+ 2ae5129b-f70d-40a0-1d31-08da2691a631
 X-MS-Exchange-CrossTenant-Id: 800fae25-9b1b-4edc-993d-c939c4e84a64
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
  TenantId=800fae25-9b1b-4edc-993d-c939c4e84a64;Ip=[217.66.60.4];Helo=[SR-MAIL-03.open-synergy.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	AM6EUR05FT031.eop-eur05.prod.protection.outlook.com
+	AM6EUR05FT059.eop-eur05.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4395
-X-TM-AS-ERS: 104.47.17.104-0.0.0.0
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8775
+X-TM-AS-ERS: 104.47.17.174-0.0.0.0
 X-TMASE-Version: StarCloud-1.3-8.8.1001-26854.006
-X-TMASE-Result: 11-5.242400-4.000000
-X-TMASE-MatchedRID: fG9GIPJoGIEv+0FNnM7lDQPZZctd3P4B1jd10P+8LE9dKWx22BOmiWL0
-	6liIG52auUxcEq68iwMVQaIxyJ2Ho/VACeiFsAcySs47mbT7SAT1q+x7zkhJWtxDe8KhkxJB1w6
-	ADg6BQG+igA0wY1tPCCYSZkru5yf1+4GoV6huZip+yskgwrfsC30tCKdnhB58FMkUvzgg/cWfop
-	0ytGwvXiq2rl3dzGQ1uzMYY7Xys2op1jeTZflVcthtQn0jOeJ+YsLtk+EV7nbefSnsJ/n5IA==
-X-TMASE-XGENCLOUD: 414fc9a4-160f-4eef-b731-2739e3b8dec5-0-0-200-0
-X-TM-Deliver-Signature: 6609B2C84E511462625395F2A2FDBE33
+X-TMASE-Result: 10--0.029000-4.000000
+X-TMASE-MatchedRID: 8qzDc62TWy8dh0bHKS/78q7i5EFUmYlswTlc9CcHMZerwqxtE531VICu
+	qghmtWfXpCZmRBaJ+pgv/zJQ0aiPJvvlwQ3r+q9MEVuC0eNRYvK0aicQ5bmD5umdrzaSKL9co8W
+	MkQWv6iXjCeE5v4lH5MIJ+4gwXrEtIAcCikR3vq9Q7u8u2aInpnwG9xzBAxOt1cJ8itq6ieAWDx
+	j4ju31axv552Yh5Qzk
+X-TMASE-XGENCLOUD: e5184981-13e8-498e-a331-6ac041344fe6-0-0-200-0
+X-TM-Deliver-Signature: 51E2C9B46A956B407FBFAE41D64403ED
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=opensynergy.com;
-	s=TM-DKIM-20210503141657; t=1650873624;
-	bh=/tE1/yq50GddQvOmFZRV7GVrkIc0b/F7caC/KEjg5EM=; l=5653;
+	s=TM-DKIM-20210503141657; t=1650873625;
+	bh=Tx0OjK3zkLmy/uzPIAmN4bfi0nso0c4fTi880kxFxmE=; l=1035;
 	h=From:To:Date;
-	b=FXVxwGey6oq86VQX5yMemZOSfgemh2NYPxAeW8Dqmjm2C8pGl8v2t1iz4PsMm5URs
-	 /KWxdhsnOB6crFfhrpCP/m38WKZfWmecMGFlHWjaQbPCpQruQh9vRaMAfLSJIBdvRZ
-	 7Tyd51tHfxRhF6sdz6CBQ5Crzifz2Lm8KW9H1pcHozwGrGcWcgyQygUibrdYAtW6G6
-	 ZC1P7Nb/kBcZIikmlmj2IdZuGe3sAfMxgSaooIDboYQqty7zmLnDy7jLHeeUdiM9lQ
-	 Klw4okuHMunSF9cM7b1r0KRAMVep4+O8RONxeWSLa1CAKK8IC5zH+kHJMe4XJjVTD4
-	 KGNoAGbchBOHg==
+	b=iyB13wShqLm59YH4rIemX1oQlczhVO9oJ4Uv6YESmkp5QE5GRB4Xxx+0JEARrbIPF
+	 W3E910+0QdiVc3txVeKYAfxFvFnLkUyc3DsaowBuNGtriq4yFrnibdZZrcauMt2Qux
+	 jyiXan3LPp03fqrFW5ZnMEIjeNavhif0559BxUAI9udVw5I3ahaQFCf0WqXlM+CBoo
+	 swcP1zEbPqRa22yZHComHG/R5H0fu3OB7GV+8uS1JdhSSg9Py5mu4jt25uYdCadzHt
+	 3VR3r11SLiyI1cfirigNV+KH/R8BXhPSFiq9V+pvrOFZKRgdZK5Jv4F1Zy8ob60Dwv
+	 Qk3Njwjkcwl0A==
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Mon, 25 Apr 2022 19:26:13 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56866
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56865
+
+Now, it has the same order as connectors in drmModeGetResources. As
+result splash screen will be drawn on the first connector.
 
 Signed-off-by: Vasyl Vavrychuk <vasyl.vavrychuk@opensynergy.com>
 ---
- psplash.c | 64 ++++++++++++++++++++++++++++---------------------------
- 1 file changed, 33 insertions(+), 31 deletions(-)
+ psplash-drm.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
-diff --git a/psplash.c b/psplash.c
-index 1a5e543..c234d46 100644
---- a/psplash.c
-+++ b/psplash.c
-@@ -21,11 +21,11 @@
- #endif
- #include FONT_HEADER
+diff --git a/psplash-drm.c b/psplash-drm.c
+index 30850ed..2468cf1 100644
+--- a/psplash-drm.c
++++ b/psplash-drm.c
+@@ -185,7 +185,7 @@ static int modeset_prepare(int fd)
+ 	drmModeRes *res;
+ 	drmModeConnector *conn;
+ 	int i;
+-	struct modeset_dev *dev;
++	struct modeset_dev *dev, *last_dev =3D NULL;
+ 	int ret;
 =20
--#define SPLIT_LINE_POS(fb)                                  \
--	(  (fb)->canvas.height                              \
--	 - ((  PSPLASH_IMG_SPLIT_DENOMINATOR                \
--	     - PSPLASH_IMG_SPLIT_NUMERATOR)                 \
--	    * (fb)->canvas.height / PSPLASH_IMG_SPLIT_DENOMINATOR) \
-+#define SPLIT_LINE_POS(canvas)                                  \
-+	(  (canvas)->height                                     \
-+	 - ((  PSPLASH_IMG_SPLIT_DENOMINATOR                    \
-+	     - PSPLASH_IMG_SPLIT_NUMERATOR)                     \
-+	    * (canvas)->height / PSPLASH_IMG_SPLIT_DENOMINATOR) \
- 	)
+ 	/* retrieve resources */
+@@ -226,8 +226,13 @@ static int modeset_prepare(int fd)
 =20
- void
-@@ -37,7 +37,7 @@ psplash_exit (int UNUSED(signum))
- }
+ 		/* free connector data and link device into global list */
+ 		drmModeFreeConnector(conn);
+-		dev->next =3D modeset_list;
+-		modeset_list =3D dev;
++		if (last_dev =3D=3D NULL) {
++			modeset_list =3D dev;
++			last_dev =3D dev;
++		} else {
++			last_dev->next =3D dev;
++			last_dev =3D dev;
++		}
+ 	}
 =20
- void
--psplash_draw_msg (PSplashFB *fb, const char *msg)
-+psplash_draw_msg(PSplashCanvas *canvas, const char *msg)
- {
-   int w, h;
-=20
-@@ -47,16 +47,16 @@ psplash_draw_msg (PSplashFB *fb, const char *msg)
-=20
-   /* Clear */
-=20
--  psplash_draw_rect(&fb->canvas,
-+  psplash_draw_rect(canvas,
- 			0,
--			SPLIT_LINE_POS(fb) - h,
--			fb->canvas.width,
-+			SPLIT_LINE_POS(canvas) - h,
-+			canvas->width,
- 			h,
- 			PSPLASH_BACKGROUND_COLOR);
-=20
--  psplash_draw_text(&fb->canvas,
--			(fb->canvas.width-w)/2,
--			SPLIT_LINE_POS(fb) - h,
-+  psplash_draw_text(canvas,
-+			(canvas->width-w)/2,
-+			SPLIT_LINE_POS(canvas) - h,
- 			PSPLASH_TEXT_COLOR,
- 			&FONT_DEF,
- 			msg);
-@@ -64,32 +64,32 @@ psplash_draw_msg (PSplashFB *fb, const char *msg)
-=20
- #ifdef PSPLASH_SHOW_PROGRESS_BAR
- void
--psplash_draw_progress (PSplashFB *fb, int value)
-+psplash_draw_progress(PSplashCanvas *canvas, int value)
- {
-   int x, y, width, height, barwidth;
-=20
-   /* 4 pix border */
--  x      =3D ((fb->canvas.width  - BAR_IMG_WIDTH)/2) + 4 ;
--  y      =3D SPLIT_LINE_POS(fb) + 4;
-+  x      =3D ((canvas->width  - BAR_IMG_WIDTH)/2) + 4 ;
-+  y      =3D SPLIT_LINE_POS(canvas) + 4;
-   width  =3D BAR_IMG_WIDTH - 8;
-   height =3D BAR_IMG_HEIGHT - 8;
-=20
-   if (value > 0)
-     {
-       barwidth =3D (CLAMP(value,0,100) * width) / 100;
--      psplash_draw_rect(&fb->canvas, x + barwidth, y,
-+      psplash_draw_rect(canvas, x + barwidth, y,
-     			width - barwidth, height,
- 			PSPLASH_BAR_BACKGROUND_COLOR);
--      psplash_draw_rect(&fb->canvas, x, y, barwidth,
-+      psplash_draw_rect(canvas, x, y, barwidth,
- 			    height, PSPLASH_BAR_COLOR);
-     }
-   else
-     {
-       barwidth =3D (CLAMP(-value,0,100) * width) / 100;
--      psplash_draw_rect(&fb->canvas, x, y,
-+      psplash_draw_rect(canvas, x, y,
-     			width - barwidth, height,
- 			PSPLASH_BAR_BACKGROUND_COLOR);
--      psplash_draw_rect(&fb->canvas, x + width - barwidth,
-+      psplash_draw_rect(canvas, x + width - barwidth,
- 			    y, barwidth, height,
- 			    PSPLASH_BAR_COLOR);
-     }
-@@ -116,7 +116,7 @@ parse_command (PSplashFB *fb, char *string)
-       char *arg =3D strtok(NULL, "\0");
-=20
-       if (arg)
--        psplash_draw_msg (fb, arg);
-+        psplash_draw_msg(&fb->canvas, arg);
-     }
-  #ifdef PSPLASH_SHOW_PROGRESS_BAR
-   else  if (!strcmp(command,"PROGRESS"))
-@@ -124,7 +124,7 @@ parse_command (PSplashFB *fb, char *string)
-       char *arg =3D strtok(NULL, "\0");
-=20
-       if (arg)
--        psplash_draw_progress (fb, atoi(arg));
-+        psplash_draw_progress(&fb->canvas, atoi(arg));
-     }
- #endif
-   else if (!strcmp(command,"QUIT"))
-@@ -226,6 +226,7 @@ main (int argc, char** argv)
-   char      *rundir;
-   int        pipe_fd, i =3D 0, angle =3D 0, fbdev_id =3D 0, ret =3D 0;
-   PSplashFB *fb;
-+  PSplashCanvas *canvas;
-   bool       disable_console_switch =3D FALSE;
-=20
-   signal(SIGHUP, psplash_exit);
-@@ -295,22 +296,23 @@ main (int argc, char** argv)
- 	  ret =3D -1;
- 	  goto fb_fail;
-     }
-+  canvas =3D &fb->canvas;
-=20
- #ifdef HAVE_SYSTEMD
-   sd_notify(0, "READY=3D1");
- #endif
-=20
-   /* Clear the background with #ecece1 */
--  psplash_draw_rect(&fb->canvas, 0, 0, fb->canvas.width, fb->canvas.heig=
-ht,
-+  psplash_draw_rect(canvas, 0, 0, canvas->width, canvas->height,
-                         PSPLASH_BACKGROUND_COLOR);
-=20
-   /* Draw the Poky logo  */
--  psplash_draw_image(&fb->canvas,
--			 (fb->canvas.width  - POKY_IMG_WIDTH)/2,
-+  psplash_draw_image(canvas,
-+			 (canvas->width  - POKY_IMG_WIDTH)/2,
- #if PSPLASH_IMG_FULLSCREEN
--			 (fb->canvas.height - POKY_IMG_HEIGHT)/2,
-+			 (canvas->height - POKY_IMG_HEIGHT)/2,
- #else
--			 (fb->canvas.height * PSPLASH_IMG_SPLIT_NUMERATOR
-+			 (canvas->height * PSPLASH_IMG_SPLIT_NUMERATOR
- 			  / PSPLASH_IMG_SPLIT_DENOMINATOR - POKY_IMG_HEIGHT)/2,
- #endif
- 			 POKY_IMG_WIDTH,
-@@ -321,20 +323,20 @@ main (int argc, char** argv)
-=20
- #ifdef PSPLASH_SHOW_PROGRESS_BAR
-   /* Draw progress bar border */
--  psplash_draw_image(&fb->canvas,
--			 (fb->canvas.width  - BAR_IMG_WIDTH)/2,
--			 SPLIT_LINE_POS(fb),
-+  psplash_draw_image(canvas,
-+			 (canvas->width  - BAR_IMG_WIDTH)/2,
-+			 SPLIT_LINE_POS(canvas),
- 			 BAR_IMG_WIDTH,
- 			 BAR_IMG_HEIGHT,
- 			 BAR_IMG_BYTES_PER_PIXEL,
- 			 BAR_IMG_ROWSTRIDE,
- 			 BAR_IMG_RLE_PIXEL_DATA);
-=20
--  psplash_draw_progress (fb, 0);
-+  psplash_draw_progress(canvas, 0);
- #endif
-=20
- #ifdef PSPLASH_STARTUP_MSG
--  psplash_draw_msg (fb, PSPLASH_STARTUP_MSG);
-+  psplash_draw_msg(canvas, PSPLASH_STARTUP_MSG);
- #endif
-=20
-   /* Scene set so let's flip the buffers. */
+ 	/* free resources again */
 --=20
 2.30.2
 
