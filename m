@@ -1,78 +1,71 @@
-Return-Path: <stefan@datenfreihafen.org>
+Return-Path: <abongwabonalais@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F468C636F5
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C145C636FD
 	for <webhook@archiver.kernel.org>; Mon, 25 Apr 2022 19:26:14 +0000 (UTC)
-Received: from proxima.lasnet.de (proxima.lasnet.de [78.47.171.185])
- by mx.groups.io with SMTP id smtpd.web09.28490.1650887410061353095
- for <yocto@lists.yoctoproject.org>;
- Mon, 25 Apr 2022 04:50:11 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=pass (domain: datenfreihafen.org, ip: 78.47.171.185,
- mailfrom: stefan@datenfreihafen.org)
-Received: from localhost.localdomain.datenfreihafen.local
- (p200300e9d7262b5c71cabf60f76586ad.dip0.t-ipconnect.de
- [IPv6:2003:e9:d726:2b5c:71ca:bf60:f765:86ad])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	(Authenticated sender: stefan@sostec.de)
-	by proxima.lasnet.de (Postfix) with ESMTPSA id B08B5C0A13;
-	Mon, 25 Apr 2022 13:50:06 +0200 (CEST)
-From: Stefan Schmidt <stefan@datenfreihafen.org>
+Subject: Re: [PATCH yocto-autobuilder-helper v8] Add a banner on the old
+ documentation docs.
 To: yocto@lists.yoctoproject.org
-Cc: Stefan Schmidt <stefan@datenfreihafen.org>,
-	Stefan Schmidt <stefan.schmidt@huawei.com>
-Subject: [meta-zephyr][PATCH] zephyr-openthread-rcp: Enable Thread 1.2
- capabilities in RCP build
-Date: Mon, 25 Apr 2022 13:49:52 +0200
-Message-Id: <20220425114952.15809-1-stefan@datenfreihafen.org>
-X-Mailer: git-send-email 2.35.1
+From: "Abongwa Amahnui Bonalais" <abongwabonalais@gmail.com>
+X-Originating-Location: CM (154.72.153.147)
+X-Originating-Platform: Linux Chrome 100
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Date: Mon, 25 Apr 2022 06:57:43 -0700
+References: <f301f1da-7826-684c-d3b6-8e1e1f639877@theobroma-systems.com>
+In-Reply-To: <f301f1da-7826-684c-d3b6-8e1e1f639877@theobroma-systems.com>
+Message-ID: <19297.1650895063079370918@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="zg2VbVDQ0X4y5NNZdz7g"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Mon, 25 Apr 2022 19:26:14 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56879
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56881
 
-From: Stefan Schmidt <stefan.schmidt@huawei.com>
+--zg2VbVDQ0X4y5NNZdz7g
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-When running an up-to-date userspace component, like otbr-agent or
-ot-daemon, with Thread 1.2 enabled we need a firmware matching this
-capabilities.
+>=20
+> Hardcoding numbers like this isn=E2=80=99t a great idea. If the intention=
+ is to
+> add the warning on all versions earlier than 3.2, then the regex approach
+> that is commented out would be better. It most likely didn=E2=80=99t work=
+ as regex
+> matching isn=E2=80=99t like shell/windows matching: pattern =3D r=E2=80=
+=9D^3\.1.*" A good
+> solution would be to use packaging.version.parse, but that=E2=80=99s not =
+a
+> built-in module so would need to be added to the build. That can wait, th=
+e
+> regex solution should be good.
+>=20
 
-Signed-off-by: Stefan Schmidt <stefan.schmidt@huawei.com>
----
- .../recipes-kernel/zephyr-kernel/zephyr-openthread-rcp.bb       | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi Ross, I tried out the regex solution but I did not work and I also notic=
+ed that the 3.1.x doc versions on the documentation website already contain=
+s the banner
+I thought from 3.1.2 above were not outdate to, I am a little bit confused =
+about which version is the latest.
 
-diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-openthr=
-ead-rcp.bb b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-openthr=
-ead-rcp.bb
-index 708e56a..6d3f860 100644
---- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-openthread-rcp=
-.bb
-+++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-openthread-rcp=
-.bb
-@@ -2,7 +2,7 @@ include zephyr-sample.inc
-=20
- ZEPHYR_SRC_DIR =3D "${S}/samples/net/openthread/coprocessor"
-=20
--EXTRA_OECMAKE +=3D "-DCONF_FILE=3D"prj.conf overlay-rcp.conf overlay-usb=
--nrf-br.conf" -DDTC_OVERLAY_FILE=3D"usb.overlay""
-+EXTRA_OECMAKE +=3D "-DCONF_FILE=3D"prj.conf overlay-rcp.conf overlay-usb=
--nrf-br.conf" -DDTC_OVERLAY_FILE=3D"usb.overlay" -DCONFIG_OPENTHREAD_THRE=
-AD_VERSION_1_2=3Dy"
-=20
- # The overlay config and OpenThread itself imposes some specific require=
-ments
- # towards the boards (e.g. flash layout and ieee802154 radio) so we need=
- to
---=20
-2.35.1
+--zg2VbVDQ0X4y5NNZdz7g
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+<blockquote><span style=3D"white-space: pre-wrap;">Hardcoding numbers like =
+this isn&rsquo;t a great idea. If the intention is to add the warning on al=
+l versions earlier than 3.2, then the regex approach that is commented out =
+would be better. It most likely didn&rsquo;t work as regex matching isn&rsq=
+uo;t like shell/windows matching:</span><span style=3D"white-space: pre-wra=
+p;">pattern =3D r&rdquo;^3\.1.*"</span><span style=3D"white-space: pre-wrap=
+;">A good solution would be to use packaging.version.parse, but that&rsquo;=
+s not a built-in module so would need to be added to the build. That can wa=
+it, the regex solution should be good.<br /></span></blockquote>
+<span style=3D"white-space: pre-wrap;">Hi Ross, I tried out the regex solut=
+ion but I did not work and I also noticed that the 3.1.x doc versions on th=
+e documentation website already contains the banner<br />I thought from 3.1=
+.2 above were not outdate to, I am a little bit confused about which versio=
+n is the latest.</span>
+
+--zg2VbVDQ0X4y5NNZdz7g--
 
