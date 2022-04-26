@@ -2,68 +2,69 @@ Return-Path: <abongwabonalais@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5212AC433EF
-	for <webhook@archiver.kernel.org>; Tue, 26 Apr 2022 11:52:37 +0000 (UTC)
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
- [209.85.208.41])
- by mx.groups.io with SMTP id smtpd.web10.5169.1650973948254544596
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 45FACC433EF
+	for <webhook@archiver.kernel.org>; Tue, 26 Apr 2022 11:55:37 +0000 (UTC)
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com
+ [209.85.208.42])
+ by mx.groups.io with SMTP id smtpd.web10.5204.1650974135466805517
  for <yocto@lists.yoctoproject.org>;
- Tue, 26 Apr 2022 04:52:28 -0700
+ Tue, 26 Apr 2022 04:55:35 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=WA9x4tbc;
- spf=pass (domain: gmail.com, ip: 209.85.208.41,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=dPoVL9WF;
+ spf=pass (domain: gmail.com, ip: 209.85.208.42,
  mailfrom: abongwabonalais@gmail.com)
-Received: by mail-ed1-f41.google.com with SMTP id p18so16836189edr.7
+Received: by mail-ed1-f42.google.com with SMTP id z99so22009820ede.5
         for <yocto@lists.yoctoproject.org>;
- Tue, 26 Apr 2022 04:52:28 -0700 (PDT)
+ Tue, 26 Apr 2022 04:55:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
         bh=O21qX/njoBWrNwdKPdkw6XtzBVHU689ewVtHlDyxu3A=;
-        b=WA9x4tbc9KNN3L4oKg/QGq1iIHiH98oEzVPu2CRRYzweyp6v346YHHKZUyK1T/7RQd
-         2Xudi8euHlbOWOKlU+aJUqjyShDpeeQuZ7KMxzDML4VjslX9yDvbboj1y0eejD3AETJI
-         78BKS3f2CA/Oc5DOpCt3Eue0HL42Btfv74UnYzd/5IB3DNrwMy/g25g9yuMLRmdGgfGd
-         l7nSE8AZfJFNpyJBgZMJs0m49r/ghbJtsdnFRqFtCxpwUZli8zvvilDO0TaRkFGyl8kR
-         QqiQTZ0hFHLaDUcwewR618xOPs23XSpmotJ5iGt//1AbdU1GAIlfV5DeJ1EHnyjdRaOX
-         ML5Q==
+        b=dPoVL9WFUrCJ0wBLspEcgpX4re59HgUV3fhTMg4SQ3/uSftXDgHRHkSxpjuH9Ai4ub
+         okRATbTGurd8E0wEb0xvbIc7TBDFzSVemk3RLtgt9WCMVZnaUSizG9dmJaqjHZvbhwmW
+         amzPudYfpuVJiQmxwkkN7neAuKmExtNIU6bAuLRHuBNYNCkjA75moEc6JFanRwK+ny1C
+         o3C7c1eavutkE8yuL6teSh6zg4LGbLu8CaW8uEMqZk6msrRYS1goZL2ZGeSQfsk1AY32
+         cuzWoOsM0j9eMYOavtPeMYGxgBJsz2uWYiOdxLh1RL8Uvc1WGbgnbLKsG6sJdr4f9CB1
+         uOlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
         bh=O21qX/njoBWrNwdKPdkw6XtzBVHU689ewVtHlDyxu3A=;
-        b=6B9wsmEpUEWL5tA0ifYEHhtLdq2FKjK6shXr4fPCc/CxqK9vNb01MGM8oESr8R9bY4
-         +M+EUhRFE5i5OpLta6RkeXutiZ+y1IjMUEejkczPPAelF2HCP7GRXKjWKV2/wrjR+bYD
-         HM7omllxXsAqNlciLcxCIZjzVxt73rxGv0hGNXyNg4IPaIWnj2XCkJTz5dxTRpDsbXjZ
-         NCrSNxB1jUag6wnLMmr9GJAYIIEYi7UaTyQqVmf2EWl2rGtEWYfmLt9cqfex05ORN8Nx
-         ZRW8ZRPco00ImrGPFFxKE8y6U2AUcEIqh2IBhnDeTTalaUgRPEWzfQnYUzUhq7AMU3Wt
-         +TeQ==
-X-Gm-Message-State: AOAM531AUL/UipPw+rCbajmh5ccick8TmOF7X8Mtjp3XgL8ko6Rgc6ed
-	Zon1uH+aFk0ROJ/VL6ftT6a1OSEpPotWkA==
+        b=S2aQGWOzBbUXbs62Sl0h+YQSLIhHToDB6UTQqzoLYtH05NZj/gG4fkCW7/8u+UQEQz
+         RKZSlwWxgawdzgv1iLwNzSxxhVNBoDKTbTH04ioWx42VAzvD8amIOR4D2cygvjEUG7k7
+         cF3YvHmHM+PgMss8v6tDHQLIp2Fp66yWtn2eR/BcE8qkaWCxvEbtbLG6Q/ZKaPl07DlC
+         Rw2j7LOU6ecdCc+QUphuLrURJVu4llJ7UKaR1HU/c5Z0uhcBndTBHdiT88o94hFa1QmP
+         kd9Azuz7oAu4BklLeNra1PmehnAxvU1SkUOVUCDsuXWCQZ3RrL8fF1MnM55h8V2CJheA
+         7I0w==
+X-Gm-Message-State: AOAM532hz4ENo0yNbibOfB894bduPLR6GdI4yvBsHXi/n9NXkZtRGstv
+	MZL0/XwMI/r2SWjb1jLYswBNYfnnsgmsOw==
 X-Google-Smtp-Source: 
- ABdhPJzRetqLIwamliyAZ+b4vkwVYAZoGMzZuCLRis+xGmqx2vWLQxFaMXENpTWh61+3AJnQvSGH/w==
-X-Received: by 2002:a05:6402:401e:b0:425:f639:b261 with SMTP id
- d30-20020a056402401e00b00425f639b261mr5492828eda.275.1650973946428;
-        Tue, 26 Apr 2022 04:52:26 -0700 (PDT)
+ ABdhPJx5Oj7lmC17w/z+K3LSrwc1AkMbDRiuD8Y5OxsI0+BHHimBrL4vqSJ2Qve+Xpmr/SRw6V3bnw==
+X-Received: by 2002:a05:6402:3496:b0:425:ece9:1a99 with SMTP id
+ v22-20020a056402349600b00425ece91a99mr9228532edc.319.1650974133671;
+        Tue, 26 Apr 2022 04:55:33 -0700 (PDT)
 Received: from localhost.localdomain ([154.72.153.148])
         by smtp.gmail.com with ESMTPSA id
- p27-20020a50cd9b000000b00425d5219372sm4497061edi.50.2022.04.26.04.52.23
+ c6-20020a50f606000000b00425adbac753sm6145840edn.21.2022.04.26.04.55.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Apr 2022 04:52:25 -0700 (PDT)
+        Tue, 26 Apr 2022 04:55:33 -0700 (PDT)
 From: Abongwa Bonalais Amahnui <abongwabonalais@gmail.com>
 To: yocto@lists.yoctoproject.org
 Cc: Abongwa Bonalais Amahnui <abongwabonalais@gmail.com>
-Subject: [PATCH v9] Add a banner on the old documentation docs.
-Date: Tue, 26 Apr 2022 12:51:54 +0100
-Message-Id: <20220426115153.9950-1-abongwabonalais@gmail.com>
+Subject: [PATCH yocto-autobuilder-helper v10] Add a banner on the old
+ documentation docs.
+Date: Tue, 26 Apr 2022 12:55:12 +0100
+Message-Id: <20220426115512.10093-1-abongwabonalais@gmail.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 26 Apr 2022 11:52:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56894
+ <yocto@lists.yoctoproject.org>; Tue, 26 Apr 2022 11:55:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56895
 
 Signed-off-by: Abongwa Bonalais Amahnui <abongwabonalais@gmail.com>
 ---
