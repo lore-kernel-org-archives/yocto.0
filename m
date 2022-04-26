@@ -1,75 +1,86 @@
-Return-Path: <pokybuild@yoctoproject.org>
+Return-Path: <jupiter.hce@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F9D2C433F5
-	for <webhook@archiver.kernel.org>; Tue, 26 Apr 2022 10:56:55 +0000 (UTC)
-Received: from a27-45.smtp-out.us-west-2.amazonses.com
- (a27-45.smtp-out.us-west-2.amazonses.com [54.240.27.45])
- by mx.groups.io with SMTP id smtpd.web12.4635.1650970608906787577
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ACE68C433EF
+	for <webhook@archiver.kernel.org>; Tue, 26 Apr 2022 10:59:15 +0000 (UTC)
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com
+ [209.85.167.176])
+ by mx.groups.io with SMTP id smtpd.web10.4716.1650970752455932668
  for <yocto@lists.yoctoproject.org>;
- Tue, 26 Apr 2022 03:56:49 -0700
+ Tue, 26 Apr 2022 03:59:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@yoctoproject.org
- header.s=rnkzp2s7ci3kogmesvov2nwn7wcc2dgx header.b=hfBpGXVe;
- spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.45,
- mailfrom: 0101018065844051-3f135aa2-6cb1-485c-aa27-2c921567884b-000000@us-west-2.amazonses.com)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=rnkzp2s7ci3kogmesvov2nwn7wcc2dgx; d=yoctoproject.org;
-	t=1650970608; h=To:Cc:Subject:Message-Id:Date:From;
-	bh=SFNx3YGW6mpyaD+q1k67CAVrhrGlkIpysdkUNch9m+M=;
-	b=hfBpGXVebsnrx36IxfIp1zytrxK6fmxmu2q8C1TriJedMfoXJEjUuHii0Jb6Jnzr
-	xVYrl5fybrseNiT62FfMmG3ez6YBE4OdGL13T2gNT74e1pfRprpsmOEAcQhfasG0qEX
-	DJ11D4B3UarMT4dC7x29TYeVrxMbLDgQa2Gx281Y=
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx; d=amazonses.com; t=1650970608;
-	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
-	bh=SFNx3YGW6mpyaD+q1k67CAVrhrGlkIpysdkUNch9m+M=;
-	b=PZI41m6ODZusWCcxgFAHHGLSRPWeA4orxyKqQ4/M5ofb2rszDfBQS5CAnY4WbjGQ
-	KTFOInYFS8S6AaDvqwq7wYF21heiRyPYCu+gfyGl/um4+fyYn7mb1UfznneFFMyoKpZ
-	yMD2ZhsKW/nFkIBIba2DeRK2usNFNNRkqrhEUe44=
-To: yocto@lists.yoctoproject.org
-Cc: qa-build-notification@lists.yoctoproject.org
-Subject: QA notification for completed autobuilder build (yocto-3.1.16.rc1)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=IhwHMXO1;
+ spf=pass (domain: gmail.com, ip: 209.85.167.176,
+ mailfrom: jupiter.hce@gmail.com)
+Received: by mail-oi1-f176.google.com with SMTP id z2so20232187oic.6
+        for <yocto@lists.yoctoproject.org>;
+ Tue, 26 Apr 2022 03:59:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=DxNxgzQtiQXvMczcMqibAmb0foEGbegQghjPSdKcVfk=;
+        b=IhwHMXO1l8zKdgGB1ojBI99s8D9CEFEE1rVNU3RO0mhW80R5R1F99FHKKOwAE43cuR
+         Y9zO0vmry2Y+d+BH7TvHC52JC3Jtl/xh1XSjztevQ+ulnOkWeSDfuA9+2AxRlYSYxeLU
+         JkQ5re+kiCbQV7Cgg2yoOiBSaK2aqs/MRRDAY5s/zyPZgJlbxfb8ysTlP82q6toEzGSu
+         YCMdHL6Cwq/kyU2hc4dtX0AwHGCetuTBWwrfl/q19NPyW85fbWQgdwuFM/XFvB9503pD
+         Kagcu+BWZ7htPIPcQAr/S5rLylF06a4wCmyovW2nMfGrHRy7/hH4S8otCiOUxJ0Ie1io
+         5FIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=DxNxgzQtiQXvMczcMqibAmb0foEGbegQghjPSdKcVfk=;
+        b=W7MyL/foFv/f0rlwWxudKptlcI+zNpOGBcAzosHLD5plggZvDdg54HemPgwFh+oxdR
+         tDwh2WPOmCiABbNLAQipFUUQSrRlqdu4u2TTjoi97oHChb9Gd6tXCkhU1LCMHkFWCcTW
+         ClGaxbn9mf8nUZ4kjq4oYWrqs11Mb8uWs3MG23TQnMQ6n8uaYgZSi2XdXNvUWzy5XSYP
+         PczqpWULXiwX5/Sbt87BqpmWx7vMUKONZS5kBmSTLAwtqrBh4Rt2dcQqlJYqqs+dlFrU
+         Zsov4GzLrmoRhfasDSEHC0VumIFrIGlP8OpVnUzE3XPQESD9p3gsf9iJirt4y0Xqb0/5
+         BAhg==
+X-Gm-Message-State: AOAM5324WathGJaWvCDIlU93QYbaZZLEmShGj5vJwhN/kJXk/e9uT85c
+	6CnTEhUZTIQGCrDq3d8AgMhuC25ytcwmPk+sgUVp1mtUQFM=
+X-Google-Smtp-Source: 
+ ABdhPJzzZ86ZHABmfEYFkTs8/T9IDi1q2WX8Ni67YL52KvjTTN2bcNMhDjyLan6ju2Rkp10+ud9pGXjl93xizlsQqBE=
+X-Received: by 2002:a05:6808:124c:b0:2f9:c7cf:146 with SMTP id
+ o12-20020a056808124c00b002f9c7cf0146mr14256641oiv.54.1650970751351; Tue, 26
+ Apr 2022 03:59:11 -0700 (PDT)
+MIME-Version: 1.0
+From: Jupiter <jupiter.hce@gmail.com>
+Date: Tue, 26 Apr 2022 20:58:35 +1000
 Message-ID: 
- <0101018065844051-3f135aa2-6cb1-485c-aa27-2c921567884b-000000@us-west-2.amazonses.com>
-Date: Tue, 26 Apr 2022 10:56:48 +0000
-From: Pokybuild User <pokybuild@yoctoproject.org>
-Feedback-ID: 
- 1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
-X-SES-Outgoing: 2022.04.26-54.240.27.45
+ <CAA=hcWSv7=gctvWYXSaJTqi=y=G9Zr8Jr01+5vVUcGSsPJM9vA@mail.gmail.com>
+Subject: How to force build system to use a working kernel defconfig?
+To: yocto <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 26 Apr 2022 10:56:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56892
+ <yocto@lists.yoctoproject.org>; Tue, 26 Apr 2022 10:59:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56893
 
+Hi,
 
-A build flagged for QA (yocto-3.1.16.rc1) was completed on the autobuilder and is available at:
+I followed Yocto document 2.3.3 Changing the Configuration to set up a
+complete working Linux kernel defconfig in my kernel bbappend, I
+copied the defconfig to build/.config:
+do_compile:prepend () {
+    install -m 0644 ${WORKDIR}/defconfig ${WORKDIR}/build/.config
+}
 
+I hope the build system can just use the defconfig in build/.config,
+but that did not work, the build system still ran Restart config... to
+compare the defconfig and to generate and overwrite build/.config. How
+can I suppress the build system not to run the "Restart config"
+process, just to run the compile process using the build/.config I
+copied to build/.config?
 
-    https://autobuilder.yocto.io/pub/releases/yocto-3.1.16.rc1
+I tried to add KCONFIG_MODE = "alldefconfig" in my kernel bbappend,
+but it did not work either.
 
+Appreciate your advice.
 
-Build hash information: 
+Thank you very much.
 
-bitbake: 0784db7dd0fef6f0621ad8d74372f44e87fef950
-meta-agl: ca53308f8803fb50709b3f17bb1f9e476366bb62
-meta-arm: 5c09684863be8e803e3e987a5ce4940721c3f39a
-meta-aws: 9979cfa676105cb68cfadfdaeabf044d7c919319
-meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
-meta-intel: affda10724e5e3c7948200e888a91ffdb5d32a11
-meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
-meta-openembedded: fdd1dfe6b4b2412cc536c26450ce126c960d8107
-oecore: 8e81d38048c953d0823abf04d5b2506cd988f0bb
-poky: f14992950eb90dc168eb82823ab69538f668f8bc
+Kind regards,
 
-
-
-This is an automated message from the Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder2
-Email: richard.purdie@linuxfoundation.org
-
-
- 
+JH
 
