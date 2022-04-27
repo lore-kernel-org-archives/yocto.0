@@ -1,377 +1,215 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <Heinz.Wrobel@nxp.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EE6C6C433F5
-	for <webhook@archiver.kernel.org>; Wed, 27 Apr 2022 11:56:49 +0000 (UTC)
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com
- [209.85.219.170])
- by mx.groups.io with SMTP id smtpd.web11.7227.1651060608622774509
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 19630C433F5
+	for <webhook@archiver.kernel.org>; Wed, 27 Apr 2022 12:14:20 +0000 (UTC)
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com
+ (EUR04-DB3-obe.outbound.protection.outlook.com [40.107.6.73])
+ by mx.groups.io with SMTP id smtpd.web08.7463.1651061655360351471
  for <yocto@lists.yoctoproject.org>;
- Wed, 27 Apr 2022 04:56:48 -0700
+ Wed, 27 Apr 2022 05:14:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=iS+5rOas;
- spf=pass (domain: linaro.org, ip: 209.85.219.170,
- mailfrom: nicolas.dechesne@linaro.org)
-Received: by mail-yb1-f170.google.com with SMTP id i38so2848598ybj.13
-        for <yocto@lists.yoctoproject.org>;
- Wed, 27 Apr 2022 04:56:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=73Zb3quinPpZTXV8XXrbohzDO0VA4kdaeVJYzA5UCvE=;
-        b=iS+5rOas7bWG2JYrBS6OS6pP1rWZCOp6kFoVhckVWCfKofk84Puu09y+FSY7WULYrM
-         X1QO43kwwDvrJdeCYn+3QOowWMQ4sFODSMOZQFXfj88x/VTI+RzHy1wxkLIv94r2seFi
-         QVNB49zFSHCJPwUpmPvSQaFBp/G1nO4Ux5/yyjcMxg/VJeeYXsKP/zF3szoPeeN+sOg2
-         j1ptW9KvBQ/jYQ9pDe9cribosbw8xEmsVQs3oaMu6c6ZuQ04q8i917ZVSV2FWtnQNZSy
-         GWWaOl9Jfu8lPm+GOKiCd4tpGe0qBHlwGkT4/Lt613uVXMfTflQjSCzEuPi3RCuJ47ch
-         hNAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=73Zb3quinPpZTXV8XXrbohzDO0VA4kdaeVJYzA5UCvE=;
-        b=O1NMzp10KbiVsoqO6jMbeH9xpBN3r+O+RwShxAvUtCNV1xa20ay7IBpA9Fln8pSfdc
-         +C8ORs8/cZRmTODmv8eBPOsGbzSFRudX7kpjaT98eFd5Jmrhg5Q5tYwSmd7UDucvOYaf
-         a/w4w7Jftet0refe4iImWLwkfuMdpO163FbmdT/Xi8JPoCFLJH/fSYtpy75lO4aF0eKt
-         IK8Z/7TukgOvvbjnTka0bupE2NtvflrbvA99SSGPYk+vGPHGb/HwWbGsxcMXFDrjiRRH
-         Z1VjEoo5t1RDI1iPp/5CKzuXAmYDZf3nchpRjtaiqNBmbUfpqOuyTWHnfR/jvTX+64KZ
-         9AHw==
-X-Gm-Message-State: AOAM533IhzW84Wy6N7QxrkBaLbXwd4RcbScgUH9Y/SUi9AxflaJDxHGs
-	BUupGKhbAWri0pHfQxXTJ1a9a0MWGUukihgdDCTyEQ==
-X-Google-Smtp-Source: 
- ABdhPJzubi+zpEKd/GrS96ueATVdoat0Vud/IybtJLNaIQJ96CY+pLZeqtzZNZDmjx1UrBq0E+vRo74KbAGvbyqGVLk=
-X-Received: by 2002:a25:d3cf:0:b0:645:d937:747b with SMTP id
- e198-20020a25d3cf000000b00645d937747bmr21564305ybf.383.1651060607695; Wed, 27
- Apr 2022 04:56:47 -0700 (PDT)
-MIME-Version: 1.0
-References: 
- <DM5PR1101MB236176E376BD554365050E72B9FA9@DM5PR1101MB2361.namprd11.prod.outlook.com>
- <90b05148-5215-584e-0080-24cd411b2ba8@sancloud.com>
- <CANPvuR=Sp+tuOAmFRzw207e_1+jNzOyR1AST9J=jh7_KgsOS2Q@mail.gmail.com>
- <9790963d-0e8d-c713-cc97-ab6f8ca4fef3@bootlin.com>
- <CAP71Wjw=OL8e=EqgPaLfPbQisTeFuVE2FkXq7+M9nWKckK4Y_Q@mail.gmail.com>
- <CAP71WjwG2PCT=ceuZpBmeF-Xzn9yVQi1PG2+d6+wRjouoAZ0Aw@mail.gmail.com>
-In-Reply-To: 
- <CAP71WjwG2PCT=ceuZpBmeF-Xzn9yVQi1PG2+d6+wRjouoAZ0Aw@mail.gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Wed, 27 Apr 2022 13:56:36 +0200
+ dkim=pass header.i=@nxp.com header.s=selector2 header.b=imxibVnY;
+ spf=pass (domain: nxp.com, ip: 40.107.6.73, mailfrom: heinz.wrobel@nxp.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Qkj14SZYfAoAPayZbWKKmLStcLRBHO1tWliRGCjhu7Hd7o59A3/vQ9EHPIOS7m1ktHtprsF9PPXVSgtI/kbh2mvQX86Ze4UxSihWdBPsqRnEGVdAhGZEFNNM4i9WyUlyWeTv2byT+LEY7DhdqGxFEj+4luPIlTsIVPWc20AaPIdiYVZh0bIC8qN/ORf/Rm6dfSkcdfk2fpKQKXDHJsE9xUMG7K05E7GdN7NnyHNTjD7VNl/7Iny2ONKk0gbjdmtOTdY1c35NnqAMd9mjGMDUx6/UPyBSO+ywHVhuuODrakJ5mvDXKgBTPV3b4MmAiLY2R8Hlu8/rZ7AKSo8g/El3GQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gJojKX69y6P7qRXNfrIWCg+vfxrFziw4S3uw0IEciy8=;
+ b=bJqqc9YyDb5QwxtqNq6cWU4B41gOAC5vymt7zKaTYuI3rNhsH/AqfxAHsWKN5D7nLIXRWC/idwYlHWSwhHfXXLxAlxx3CDjtOBAqme52pSCY7N2vpWwqTvvcnB0vqpJsb7xa0k/XM95QPnoKabD1QfT4V8NR1dUZxXMSRWBfRs9ldn0e57fOYjBIbvDkvDZ22WcaB2M1ArTcWIBPEnj47beQvHaon6+UzE4CQEDQvEnru1cMD1QKYRXqgB+G224EfYC3iRCPhKQJ1rBAOAl/xHpx8xZ4w6azViOh2OEN4EPh2iKeDL3jkt5t1dqkwHDX6A+AvqYtZHp5u7zI4yjBHA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gJojKX69y6P7qRXNfrIWCg+vfxrFziw4S3uw0IEciy8=;
+ b=imxibVnY7gi1Snxxz63we4TebqVcMUsbuI5l2itnyc3jXDujzMw45f7VVlpPolWAlhgA1ExzUm4saRkanGcuPW3299DyL0sBkQE7Zn2bYpIg99EL5y7z+EEDU6JuWsQEMYpEGA2mjRUWgRa3bvBdTQOgFdvWCQNyhNHJYIFnrLs=
+Received: from AM0PR04MB4388.eurprd04.prod.outlook.com (2603:10a6:208:72::18)
+ by AM0PR04MB6996.eurprd04.prod.outlook.com (2603:10a6:208:18b::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.21; Wed, 27 Apr
+ 2022 12:14:10 +0000
+Received: from AM0PR04MB4388.eurprd04.prod.outlook.com
+ ([fe80::f0ef:5e88:46bb:8796]) by AM0PR04MB4388.eurprd04.prod.outlook.com
+ ([fe80::f0ef:5e88:46bb:8796%7]) with mapi id 15.20.5206.013; Wed, 27 Apr 2022
+ 12:14:10 +0000
+From: Heinz Wrobel <heinz.wrobel@nxp.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Is inheriting a bbclass multiple times well defined?
+Thread-Topic: Is inheriting a bbclass multiple times well defined?
+Thread-Index: AdhaMAU74lpyLBoMTxWc6BV4VjtX8w==
+Date: Wed, 27 Apr 2022 12:14:10 +0000
 Message-ID: 
- <CAP71WjzkiGLiJk7PPz0jkd1gfo9Ru36+zHxk6xRUp1Hch-Zi8g@mail.gmail.com>
-Subject: Re: [docs] [yocto] [ANNOUNCEMENT] Yocto Project 4.0 is Released
-To: michael.opdenacker@bootlin.com
-Cc: Jose Quaresma <quaresma.jose@gmail.com>,
- Paul Barker <paul.barker@sancloud.com>,
-	"Lee, Chee Yang" <chee.yang.lee@intel.com>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	YP docs mailing list <docs@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000006507705dda181cc"
+ <AM0PR04MB4388C3754F2527799CC4B68C8CFA9@AM0PR04MB4388.eurprd04.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b9eb69c2-b573-4c99-a21e-08da28476fa5
+x-ms-traffictypediagnostic: AM0PR04MB6996:EE_
+x-microsoft-antispam-prvs: 
+ <AM0PR04MB69964E714A241AFA110137888CFA9@AM0PR04MB6996.eurprd04.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ Irf4pKS5kh5sZ/ccsBU5ak7p8MNgmS2BgpxNBz6Mt2MvZG8dy7RMhObYdzzc/7gRkLNtz8QN9wy3x+QX4Ow8FTf+6zRQxVYHRHlvlUD/pnK/ytixwFq9XLbXWvMqnt0wWVG7krsSwC5ozL5iGoqZiyHSuZkQLEXYVrRFfMnu1KOwednvfZkXlAP6T6/MD82Mfg/0lSQDgeh1tQqH5HqnBsgCg/N7LCqEjKI9TCvxsaR7qX85tIAZOysu5sEsVGwRtNP6sQ43fo9xwpfh8pnCEMJpulEtc1+DM9i5b9olJo3w0LDrNpBkgbfEhL6k9KgWHHS/uu1/2cirZgbtp5c31ahSda6X4t2JSNTj4eAEAU0+Kf0QNAixL6vD238GIw2Hrzzkhx4MR4UKwFmw0YiVYXVnhnRkGTATPQEdhpZnUzW5yD8Bh5540AZRkSs0yrhFz8viJe4RO8156eU/zmTYMa3XZv1eqprnOIWJ5hYTZSVFw96ZhD/F7ZIZa3kvHJO20HV6pAUjt8aC/rJ2nNa96SAPD6Hn/47SdWUKocQKsLHEFF9FbkX0i/X5ur49yugdPtughD9qusnSFe9wcRiN1UeKKcbs3OzNijMHTlSonzTJcN+1/jUIYBMGXjFJSGxoso5TVc2LkTHXy/X4h21TURkbzehVzSLIf/UmI5OmoLXAeQnCSHLPTNbZGp3VWAgJVVOTLUyXk0I8jeZ4Yp1w6A==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB4388.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(2906002)(64756008)(508600001)(71200400001)(4744005)(66556008)(76116006)(66476007)(33656002)(66946007)(122000001)(8936002)(9326002)(52536014)(44832011)(6916009)(9686003)(7696005)(316002)(6506007)(26005)(5660300002)(66446008)(86362001)(55016003)(8676002)(38100700002)(38070700005)(186003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?wccadQGaAzG0tTi9a/1i2OFUF2PqFS43IasR8cJSmdYw+szEKI3J8QOq/9ZV?=
+ =?us-ascii?Q?3ubMQsTI/ad1ARZjaDG8PJy+YKZsH7H6zAD4T1aPyvoyRAw/7XIG77HJV8sY?=
+ =?us-ascii?Q?Cu/Gf42UXG8Gjuxdxg2LHjeMmd9V7HQ2bl1m/eZEcOOZqAVx7yCHlqrbwPN4?=
+ =?us-ascii?Q?+ye6CuCFyZAFWuWithozg5K5kaVyRZb3R6Rxa8UBryPBhSRQz8G3FnHOa30t?=
+ =?us-ascii?Q?3uQJddQ2WvcSp5g1vGanit4Le2xIL7hGwRWNvFvsjh1jj1vLfVx1UF6gC9oA?=
+ =?us-ascii?Q?6deUGopR3s4e1cXZoZaeAOOhA+VtN/y8DmODGbEVcQgkW4wRshwcwI2NNaR6?=
+ =?us-ascii?Q?rv/LRmIDdUCZ1IzTpvCK6JtBmDpLFO1FBKwOY/9Pg4kSOblFW0aRbrVKWat7?=
+ =?us-ascii?Q?HxvOaNmM7r1p257ZYmwWx3WbFR2S1Ihlx/eiIO4GtNK2TUF6BQfKjYNoX3NK?=
+ =?us-ascii?Q?FxowPmC+ZnzL1+5h25AxsLRSWvSycK/uV5bV5rMfSntzvqQzlsYC1Jspb1WJ?=
+ =?us-ascii?Q?EMBklsy8jdmjc1wWhXanIPgLRy2T9UoXYBC/1GgRAvyqZplP84waeap4GnVj?=
+ =?us-ascii?Q?xR+Ve9zHWqXokD5nPqSj3PTt+vxJhrOqa9fHW5XgaVYwBFQ4Da3GUs7QgVt6?=
+ =?us-ascii?Q?yBpqA8CKObqNJgi+724JxIyKxnV549E52VnQtNWvkvX7Xth5cmxkr1p6wURg?=
+ =?us-ascii?Q?1thByVKTAppYRCc3j7+KufCo9uXYBFg8yCGEjwGOQDWeAaIMkSF9OI3oEuqc?=
+ =?us-ascii?Q?0oB5A8CBzqm6jYPexmzJk/50mDVt+pEKuiv2zQ6apc9QBFeoM4eGMp0ISpe8?=
+ =?us-ascii?Q?r6nxYnZ4Msz38yPL+MITxVcmAegI7TP8Kk6nJaHDWhmljHXwV5i/vhZDU20r?=
+ =?us-ascii?Q?o8kBQHJAXR/aF9fmbg1Hls5PyilSup9TtQI890Y6zGou3Fw9qs6/EGzCTL8N?=
+ =?us-ascii?Q?qfZTf93pCPC3I6YuHrkGNV+M4OjHIF2j71YxJ82MARPn6LEvb5At27zCAURP?=
+ =?us-ascii?Q?Z2iQ9SthkbJ604QDKGDwaKyurO0HxqmlzAtSM4zxkfqZV5Z08QSvkS0tuP0B?=
+ =?us-ascii?Q?/vRWtz7A4Qw6u7cT9/kIdAnFwwtyExoR7+j9gvT5dNk+mwcdaXdPnKAWkiZC?=
+ =?us-ascii?Q?xtUD+eY7gyNz8EI3Ux3L6vUujMgie7eH6spdzYbQAInPRW6mFelOVLAMCuru?=
+ =?us-ascii?Q?lX0zahD8cFjRMysnggWmPNj1zJ3Moqh1k+1//ruX/htAQAxIkIX3bH/CjJK7?=
+ =?us-ascii?Q?1BEkQ2SKYueh6N2NBerJom1BUDFMHNPvWH5DdauTxkUrv0brZLC6+dtx58md?=
+ =?us-ascii?Q?b7/EqY097TXdnANqJagTQD8hJsdWgeNj2pnZZT4LkUuGCrlUAQRrIFcqL/cC?=
+ =?us-ascii?Q?5F5dvqbu5ANSA7pLiuYvAVYH6Lxin5ys9swVpRuMQdr/iLwH+89q8wegGdcP?=
+ =?us-ascii?Q?GzNrR9ycGyOVema9LDJHgM7WQmr72fDewoMIg7mUw/KbnGzFjmgvvjiBDMfd?=
+ =?us-ascii?Q?1LomFst/Nn25XRaDvQKRVh5188n5TUAQvuPzDaUXkpmsOFUk8mzDDCluUrcS?=
+ =?us-ascii?Q?t7xkg40eq5PQPGW3bNYztwotWipm2fvAJPUBOGUSzA5dMBz3/GGB0WOIWmZB?=
+ =?us-ascii?Q?u7khm2v2apJLqBVeBYEtK2+ay/Tt51MepiJFB8V2gabHc8HI1wqCG5AMaVIe?=
+ =?us-ascii?Q?nPNpdQTVBQUgNSEj/Y36NC/UGJuC7+4JKJ2l0/T0KmNIOF+vs2v1lA1InJVc?=
+ =?us-ascii?Q?nHsBNcpwQQ=3D=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_AM0PR04MB4388C3754F2527799CC4B68C8CFA9AM0PR04MB4388eurp_"
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB4388.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ b9eb69c2-b573-4c99-a21e-08da28476fa5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Apr 2022 12:14:10.6949
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 
+ 9ww/zvdZ03JXlCUGDGy6CAO3Ow/Qf/9cPTo5Iq3kT+b4Yyuwf3Xehspmy6oQqglL9AUiT8AQ64kpCSwdaUgR9w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6996
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 27 Apr 2022 11:56:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56913
+ <yocto@lists.yoctoproject.org>; Wed, 27 Apr 2022 12:14:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56914
 
---00000000000006507705dda181cc
-Content-Type: text/plain; charset="UTF-8"
-
-On Wed, Apr 27, 2022 at 1:27 PM Nicolas Dechesne <
-nicolas.dechesne@linaro.org> wrote:
-
->
->
-> On Wed, Apr 27, 2022 at 1:17 PM Nicolas Dechesne <
-> nicolas.dechesne@linaro.org> wrote:
->
->>
->>
->> On Wed, Apr 27, 2022 at 10:59 AM Michael Opdenacker via
->> lists.yoctoproject.org <michael.opdenacker=
->> bootlin.com@lists.yoctoproject.org> wrote:
->>
->>>
->>> On 4/27/22 10:18, Jose Quaresma wrote:
->>> >
->>> >
->>> > In the HTML page it is fine, the &YOCTO_DOC_VERSION is 4.0
->>> >
->>> https://docs.yoctoproject.org/4.0/migration-guides/migration-4.0.html#release-notes-for-4-0-kirkstone
->>> >
->>> > In the dev version the &YOCTO_DOC_VERSION is not replaced by dev
->>> >
->>> https://docs.yoctoproject.org/dev/migration-guides/migration-4.0.html#release-notes-for-4-0-kirkstone
->>>
->>>
->>> That's *very weird* because the substitution happened in
->>> https://docs.yoctoproject.org/dev/brief-yoctoprojectqs/index.html but
->>> not in
->>>
->>> https://docs.yoctoproject.org/dev/migration-guides/migration-4.0.html#release-notes-for-4-0-kirkstone
->>> (same version).
->>>
->>> When I build the docs locally things look fine. Any ideas what could
->>> cause this?
->>>
->>
->> I can reproduce the issue when building locally. I am using Sphinx==4.4.0
->>
->
-> oh... It's because the file release-notes-4.0.rst is included with a
-> ..include statement. The variable mapping is done with a custom Sphinx
-> extension (yocto-vars.py) which is triggered for the 'source-read' event.
-> So perhaps this event is not triggered when using an include statement..
-> let me check more on that..
->
-
-yes, that seems correct. I don't think we should continue to use the
-include directive here. Since you try to make one section (for 3.4 and 4.0)
-with the migration and the release notes, I think something along these
-lines would work, maybe there is simpler..
-
-
-diff --git a/documentation/migration-guides/index.rst
-b/documentation/migration-guides/index.rst
-index 20c6ab9d4..4597506d0 100644
---- a/documentation/migration-guides/index.rst
-+++ b/documentation/migration-guides/index.rst
-@@ -12,8 +12,8 @@ to move to one release of the Yocto Project from the
-previous one.
- .. toctree::
-
-    migration-general
--   migration-4.0
--   migration-3.4
-+   release-4.0
-+   release-3.4
-    migration-3.3
-    migration-3.2
-    migration-3.1
-diff --git a/documentation/migration-guides/migration-3.4.rst
-b/documentation/migration-guides/migration-3.4.rst
-index c22ea814d..d57c955eb 100644
---- a/documentation/migration-guides/migration-3.4.rst
-+++ b/documentation/migration-guides/migration-3.4.rst
-@@ -1,6 +1,3 @@
--Release 3.4 (honister)
--======================
--
- Migration notes for 3.4 (honister)
- ----------------------------------
-
-@@ -274,6 +271,3 @@ Miscellaneous
-   examples in :term:`EXTRA_USERS_PARAMS`.
-
-
--.. include:: release-notes-3.4.rst
--.. include:: release-notes-3.4.1.rst
--.. include:: release-notes-3.4.2.rst
-diff --git a/documentation/migration-guides/migration-4.0.rst
-b/documentation/migration-guides/migration-4.0.rst
-index d737b9d43..a8e6b4c33 100644
---- a/documentation/migration-guides/migration-4.0.rst
-+++ b/documentation/migration-guides/migration-4.0.rst
-@@ -265,5 +265,3 @@ Miscellaneous changes
-   when parsing recipes. Any code depending on the previous behaviour will
-no longer
-   work - change any such code to explicitly use appropriate path variables
-instead.
-
--
--.. include:: release-notes-4.0.rst
-diff --git a/documentation/migration-guides/release-3.4.rst
-b/documentation/migration-guides/release-3.4.rst
-new file mode 100644
-index 000000000..81476c4ad
---- /dev/null
-+++ b/documentation/migration-guides/release-3.4.rst
-@@ -0,0 +1,10 @@
-+Release 3.4 (honister)
-+======================
-+
-+.. toctree::
-+
-+   migration-3.4
-+   release-notes-3.4
-+   release-notes-3.4.1
-+   release-notes-3.4.2
-+
-diff --git a/documentation/migration-guides/release-4.0.rst
-b/documentation/migration-guides/release-4.0.rst
-new file mode 100644
-index 000000000..7062f9d24
---- /dev/null
-+++ b/documentation/migration-guides/release-4.0.rst
-@@ -0,0 +1,7 @@
-+Release 4.0 (kirkstone)
-+=======================
-+
-+.. toctree::
-+
-+   migration-4.0
-+   release-notes-4.0
-
-
->
->>
->>>
->>> Michael.
->>>
->>> --
->>> Michael Opdenacker, Bootlin
->>> Embedded Linux and Kernel engineering
->>> https://bootlin.com
->>>
->>>
->>> -=-=-=-=-=-=-=-=-=-=-=-
->>> Links: You receive all messages sent to this group.
->>> View/Reply Online (#2876):
->>> https://lists.yoctoproject.org/g/docs/message/2876
->>> Mute This Topic: https://lists.yoctoproject.org/mt/90726109/1279857
->>> Group Owner: docs+owner@lists.yoctoproject.org
->>> Unsubscribe: https://lists.yoctoproject.org/g/docs/unsub [
->>> nicolas.dechesne@linaro.org]
->>> -=-=-=-=-=-=-=-=-=-=-=-
->>>
->>>
-
---00000000000006507705dda181cc
-Content-Type: text/html; charset="UTF-8"
+--_000_AM0PR04MB4388C3754F2527799CC4B68C8CFA9AM0PR04MB4388eurp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Wed, Apr 27, 2022 at 1:27 PM Nicol=
-as Dechesne &lt;<a href=3D"mailto:nicolas.dechesne@linaro.org">nicolas.dech=
-esne@linaro.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
-ding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Apr 27, 2022=
- at 1:17 PM Nicolas Dechesne &lt;<a href=3D"mailto:nicolas.dechesne@linaro.=
-org" target=3D"_blank">nicolas.dechesne@linaro.org</a>&gt; wrote:<br></div>=
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=
-=3D"ltr"><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
-"gmail_attr">On Wed, Apr 27, 2022 at 10:59 AM Michael Opdenacker via <a hre=
-f=3D"http://lists.yoctoproject.org" target=3D"_blank">lists.yoctoproject.or=
-g</a> &lt;michael.opdenacker=3D<a href=3D"mailto:bootlin.com@lists.yoctopro=
-ject.org" target=3D"_blank">bootlin.com@lists.yoctoproject.org</a>&gt; wrot=
-e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><br>
-On 4/27/22 10:18, Jose Quaresma wrote:<br>
-&gt;<br>
-&gt; =C2=A0<br>
-&gt; In the HTML page it is fine, the &amp;YOCTO_DOC_VERSION is 4.0<br>
-&gt; <a href=3D"https://docs.yoctoproject.org/4.0/migration-guides/migratio=
-n-4.0.html#release-notes-for-4-0-kirkstone" rel=3D"noreferrer" target=3D"_b=
-lank">https://docs.yoctoproject.org/4.0/migration-guides/migration-4.0.html=
-#release-notes-for-4-0-kirkstone</a><br>
-&gt;<br>
-&gt; In the dev version the &amp;YOCTO_DOC_VERSION is not replaced by dev<b=
-r>
-&gt; <a href=3D"https://docs.yoctoproject.org/dev/migration-guides/migratio=
-n-4.0.html#release-notes-for-4-0-kirkstone" rel=3D"noreferrer" target=3D"_b=
-lank">https://docs.yoctoproject.org/dev/migration-guides/migration-4.0.html=
-#release-notes-for-4-0-kirkstone</a><br>
-<br>
-<br>
-That&#39;s *very weird* because the substitution happened in<br>
-<a href=3D"https://docs.yoctoproject.org/dev/brief-yoctoprojectqs/index.htm=
-l" rel=3D"noreferrer" target=3D"_blank">https://docs.yoctoproject.org/dev/b=
-rief-yoctoprojectqs/index.html</a> but<br>
-not in<br>
-<a href=3D"https://docs.yoctoproject.org/dev/migration-guides/migration-4.0=
-.html#release-notes-for-4-0-kirkstone" rel=3D"noreferrer" target=3D"_blank"=
->https://docs.yoctoproject.org/dev/migration-guides/migration-4.0.html#rele=
-ase-notes-for-4-0-kirkstone</a><br>
-(same version).<br>
-<br>
-When I build the docs locally things look fine. Any ideas what could<br>
-cause this?<br></blockquote><div><br></div><div>I can reproduce the issue w=
-hen building locally. I am using Sphinx=3D=3D4.4.0</div></div></div></block=
-quote><div><br></div><div>oh... It&#39;s because the file release-notes-4.0=
-.rst is included with a ..include statement. The variable mapping is done w=
-ith a custom Sphinx extension (yocto-vars.py) which is triggered for the &#=
-39;source-read&#39; event. So perhaps this event is not triggered when usin=
-g an include statement.. let me check more on that..=C2=A0=C2=A0</div></div=
-></div></blockquote><div><br></div><div>yes, that seems correct. I don&#39;=
-t think we should continue to use the include directive here. Since you try=
- to make one section (for 3.4 and 4.0) with the migration and the release n=
-otes, I think something along these lines would work, maybe there is simple=
-r..=C2=A0</div><div><br></div><div><br></div><div>diff --git a/documentatio=
-n/migration-guides/index.rst b/documentation/migration-guides/index.rst<br>=
-index 20c6ab9d4..4597506d0 100644<br>--- a/documentation/migration-guides/i=
-ndex.rst<br>+++ b/documentation/migration-guides/index.rst<br>@@ -12,8 +12,=
-8 @@ to move to one release of the Yocto Project from the previous one.<br>=
-=C2=A0.. toctree::<br>=C2=A0<br>=C2=A0 =C2=A0 migration-general<br>- =C2=A0=
- migration-4.0<br>- =C2=A0 migration-3.4<br>+ =C2=A0 release-4.0<br>+ =C2=
-=A0 release-3.4<br>=C2=A0 =C2=A0 migration-3.3<br>=C2=A0 =C2=A0 migration-3=
-.2<br>=C2=A0 =C2=A0 migration-3.1<br>diff --git a/documentation/migration-g=
-uides/migration-3.4.rst b/documentation/migration-guides/migration-3.4.rst<=
-br>index c22ea814d..d57c955eb 100644<br>--- a/documentation/migration-guide=
-s/migration-3.4.rst<br>+++ b/documentation/migration-guides/migration-3.4.r=
-st<br>@@ -1,6 +1,3 @@<br>-Release 3.4 (honister)<br>-=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>-<br>=C2=A0Migration notes=
- for 3.4 (honister)<br>=C2=A0----------------------------------<br>=C2=A0<b=
-r>@@ -274,6 +271,3 @@ Miscellaneous<br>=C2=A0 =C2=A0examples in :term:`EXTR=
-A_USERS_PARAMS`.<br>=C2=A0<br>=C2=A0<br>-.. include:: release-notes-3.4.rst=
-<br>-.. include:: release-notes-3.4.1.rst<br>-.. include:: release-notes-3.=
-4.2.rst<br>diff --git a/documentation/migration-guides/migration-4.0.rst b/=
-documentation/migration-guides/migration-4.0.rst<br>index d737b9d43..a8e6b4=
-c33 100644<br>--- a/documentation/migration-guides/migration-4.0.rst<br>+++=
- b/documentation/migration-guides/migration-4.0.rst<br>@@ -265,5 +265,3 @@ =
-Miscellaneous changes<br>=C2=A0 =C2=A0when parsing recipes. Any code depend=
-ing on the previous behaviour will no longer<br>=C2=A0 =C2=A0work - change =
-any such code to explicitly use appropriate path variables instead.<br>=C2=
-=A0<br>-<br>-.. include:: release-notes-4.0.rst<br>diff --git a/documentati=
-on/migration-guides/release-3.4.rst b/documentation/migration-guides/releas=
-e-3.4.rst<br>new file mode 100644<br>index 000000000..81476c4ad<br>--- /dev=
-/null<br>+++ b/documentation/migration-guides/release-3.4.rst<br>@@ -0,0 +1=
-,10 @@<br>+Release 3.4 (honister)<br>+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>+<br>+.. toctree::<br>+<br>+ =C2=A0 migra=
-tion-3.4<br>+ =C2=A0 release-notes-3.4<br>+ =C2=A0 release-notes-3.4.1<br>+=
- =C2=A0 release-notes-3.4.2<br>+<br>diff --git a/documentation/migration-gu=
-ides/release-4.0.rst b/documentation/migration-guides/release-4.0.rst<br>ne=
-w file mode 100644<br>index 000000000..7062f9d24<br>--- /dev/null<br>+++ b/=
-documentation/migration-guides/release-4.0.rst<br>@@ -0,0 +1,7 @@<br>+Relea=
-se 4.0 (kirkstone)<br>+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D<br>+<br>+.. toctree::<br>+<br>+ =C2=A0 migration-4.0<br>=
-+ =C2=A0 release-notes-4.0<br></div><div>=C2=A0</div><blockquote class=3D"g=
-mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_quote"><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=
-=3D"gmail_quote"><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
-<br>
-Michael.<br>
-<br>
--- <br>
-Michael Opdenacker, Bootlin<br>
-Embedded Linux and Kernel engineering<br>
-<a href=3D"https://bootlin.com" rel=3D"noreferrer" target=3D"_blank">https:=
-//bootlin.com</a><br>
-<br>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#2876): <a href=3D"https://lists.yoctoproject.org/g/docs=
-/message/2876" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproj=
-ect.org/g/docs/message/2876</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/90726109/1279=
-857" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/90726109/1279857</a><br>
-Group Owner: <a href=3D"mailto:docs%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">docs+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/docs/unsub" rel=3D=
-"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/docs/unsub<=
-/a> [<a href=3D"mailto:nicolas.dechesne@linaro.org" target=3D"_blank">nicol=
-as.dechesne@linaro.org</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div></div>
-</blockquote></div></div>
-</blockquote></div></div>
+Hi,
 
---00000000000006507705dda181cc--
+If I "inherit" a bbclass multiple times in a recipe, is the result well def=
+ined or is that undefined behavior for bitbake? I couldn't find docs that s=
+tate anything about that and the bitbake sources are less then obvious to m=
+e.
+I'd rather not go empirical if a clear definition of the behavior exists.
+
+Assuming it is well defined, is it harmful to do that, or benign? If ok, wi=
+ll, e.g., the first inheritance for a class take hold and the others be ign=
+ored?
+
+An example for that situation would be an image recipe that is built from t=
+wo includes that each do the same inheritance for different reasons, leadin=
+g possibly to repeated inheritance of classes in one recipe.
+
+Thanks,
+
+Heinz
+
+--_000_AM0PR04MB4388C3754F2527799CC4B68C8CFA9AM0PR04MB4388eurp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">If I &#8220;inherit&#8221; a bbclass multiple times =
+in a recipe, is the result well defined or is that undefined behavior for b=
+itbake? I couldn&#8217;t find docs that state anything about that and the b=
+itbake sources are less then obvious to me.<o:p></o:p></p>
+<p class=3D"MsoNormal">I&#8217;d rather not go empirical if a clear definit=
+ion of the behavior exists.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Assuming it is well defined, is it harmful to do tha=
+t, or benign? If ok, will, e.g., the first inheritance for a class take hol=
+d and the others be ignored?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">An example for that situation would be an image reci=
+pe that is built from two includes that each do the same inheritance for di=
+fferent reasons, leading possibly to repeated inheritance of classes in one=
+ recipe.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Heinz<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_AM0PR04MB4388C3754F2527799CC4B68C8CFA9AM0PR04MB4388eurp_--
 
