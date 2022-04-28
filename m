@@ -1,304 +1,226 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <Vasyl.Vavrychuk@opensynergy.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DA0E6C433F5
-	for <webhook@archiver.kernel.org>; Thu, 28 Apr 2022 13:54:07 +0000 (UTC)
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com
- [209.85.215.170])
- by mx.groups.io with SMTP id smtpd.web09.10635.1651154045947602267
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DA740C433EF
+	for <webhook@archiver.kernel.org>; Thu, 28 Apr 2022 13:54:37 +0000 (UTC)
+Received: from repost01.tmes.trendmicro.eu (repost01.tmes.trendmicro.eu
+ [18.185.115.31])
+ by mx.groups.io with SMTP id smtpd.web11.10595.1651154067570967201
  for <yocto@lists.yoctoproject.org>;
- Thu, 28 Apr 2022 06:54:06 -0700
+ Thu, 28 Apr 2022 06:54:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20210112.gappssmtp.com header.s=20210112
- header.b=CRXyzWIL;
- spf=softfail (domain: sakoman.com, ip: 209.85.215.170,
- mailfrom: steve@sakoman.com)
-Received: by mail-pg1-f170.google.com with SMTP id r83so4052555pgr.2
-        for <yocto@lists.yoctoproject.org>;
- Thu, 28 Apr 2022 06:54:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=yJMemLSMsaJMrh5xsPp/cCjJLZiFP3hNLUTbmlZlQ80=;
-        b=CRXyzWIL8dHSeadKirAoxT2KuQ2qdAjOfghD9V9oqyM5VyB00IaJAQKty5+2LwKoyN
-         flRyaQVnuHWQQ7IU6/nk2ohKi11pz3OGCGrqsjqrb4ZcnlcGSIbdMKW3s/+GIYY3Jmd2
-         qdGAEfUaXtAO/92JL9za+CCWWkm1apy/NTiPcZi+0+yix4iYXXink1Hmq4R1/MfzbYbg
-         99WyOiOHAploqQDoA3wuZb4orvw5mEhReZhMBpnLGD2TkGg8kTMUS4OV6uDrGEYYfQyb
-         nEAuqDDNa9Cmbjx1gQ4pyEeEEvGtAsx9M6jHVW9biqsz7W66nzGuspzsjdzmba36duWw
-         rdmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=yJMemLSMsaJMrh5xsPp/cCjJLZiFP3hNLUTbmlZlQ80=;
-        b=J5k5lrpkDND20Ts1iprEV3oBWN5GZlCPMiDC9IKUN3lJp3E0JzgBSF/n6mBW003pOL
-         VTqof4D0nFIeZl1XxsAHeFfTZ59v5r+lpZhVt1w3wx3NvWA09ChB37lz1t3HNvCitN5d
-         dMWI7NhhsJ6xbCTqg202m6fgeKgDhgbNTQ9gTRsE/hA1dWNuF8mk1DpzcYTCTjWK5jH+
-         Vc+E/lc9CN4b7cQsHtYCpCELgpopa+Wgz2vDbC5bCJD2m11/HVcxXURxZyVG7SCTYa6i
-         IBeMMGAu2qm0WjfwoRBiT427ygS6gk7jNNrczBGt077g0bCtJ1l8ihih6wyAGhzNk2x4
-         DlFg==
-X-Gm-Message-State: AOAM530tUZXZzatJeEj9ZWtisDNnZhDDgPhHXCFzWO+1M5s/I/Ud3hXb
-	LnkdfK/TSWaQUzca2mEwCXXg/jqHkJUsDwtxWKk=
-X-Google-Smtp-Source: 
- ABdhPJyocpZJWOvkE9Z4/kuKlHHcKMsTbECftbGdZipQA2BQqE64+UISIfu2IELE6FOxQXhaWF9qmA==
-X-Received: by 2002:a63:6b87:0:b0:3aa:e0eb:d157 with SMTP id
- g129-20020a636b87000000b003aae0ebd157mr23982449pgc.23.1651154044670;
-        Thu, 28 Apr 2022 06:54:04 -0700 (PDT)
-Received: from hexa.router0800d9.com (dhcp-72-253-6-214.hawaiiantel.net.
- [72.253.6.214])
-        by smtp.gmail.com with ESMTPSA id
- m1-20020a17090ade0100b001cb3feaddfcsm5256615pjv.2.2022.04.28.06.54.03
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Apr 2022 06:54:03 -0700 (PDT)
-From: Steve Sakoman <steve@sakoman.com>
-To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper][dunfell 2/2] oe-build-perf-report-email:
- Drop phantomjs email generation support
-Date: Thu, 28 Apr 2022 03:53:20 -1000
-Message-Id: 
- <f4ab4d3f29becd65a92b3f938aaa53ca8163fdec.1651153719.git.steve@sakoman.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1651153719.git.steve@sakoman.com>
-References: <cover.1651153719.git.steve@sakoman.com>
+ dkim=pass header.i=@opensynergy.com header.s=tm-dkim-20210503141657
+ header.b=vA5T5Yq3;
+ spf=pass (domain: opensynergy.com, ip: 18.185.115.31,
+ mailfrom: vasyl.vavrychuk@opensynergy.com)
+Received: from 104.47.14.52_.trendmicro.com (unknown [172.21.194.146])
+	by repost01.tmes.trendmicro.eu (Postfix) with SMTP id CB1D610000B83;
+	Thu, 28 Apr 2022 13:54:25 +0000 (UTC)
+X-TM-MAIL-RECEIVED-TIME: 1651154063.696000
+X-TM-MAIL-UUID: 7ab9a1ff-33d2-4614-a15a-df224401b0f5
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (unknown
+ [104.47.14.52])
+	by repre01.tmes.trendmicro.eu (Trend Micro Email Security) with ESMTPS id
+ AA31010000847;
+	Thu, 28 Apr 2022 13:54:23 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=L5E8mtKQgS4TTKJ7QE/BIGg8WffJ/AtfLtEZbS8QP2aSoSSIVUtvkw6SxY+zEUfIupEGOJs72EAppg8I5Tow9zrkHx/PkLao07GSanenWOzKdMJSoPlhzn/Z0VYSHa5BvUI0lSwAUFWzoHp8YgSv/vq2o2kX0qxDwVDOhZKS4a1jYIrkQ8WyBJSiM8C7Qsp9RQzMREr2SxM4Vz0r13seoS7xOz7J2AkFfCgZyhDQMqmykcFer3RerhacABwrnzxZ4pPL4PaATODDJRqusHkWiXiZuuxnscRJO5v7E/zGmSZnj7Vi1adHqxqcX/Ej94bTGl4LtVhxkIfGl98pJiQQlw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=e32pXUwIc/Zl2l/zISgPm65ujjS0yNC5dzQt8YA/joA=;
+ b=HIF/jRZkznW/CatYiiLTA93FYvFejyTsqbKMZRQpk9ADjUMX7e06PmAOoZa/uIluISZcz8zf99lT9ydpffRiwi5CE2kBA0oZICI6uiNAlKnAF2uMcua4FtXiiURXLt+g62LP+Ti4Gx2NXrgZdJtkBHZASxhzWDu7mo91eBxEzK/tdLVAw9QqRAiPzIkzcjt5Maon70qbxUe6L8LykPRTj9+sAETX5V458GfQp5ktO9ArAAZiem+0VMUs7ULVw2zKOYcDv0FjlV8gIkhFRK90Hmebhf8d7HAATJzpZAZ+ObVDQZgw9PjLOfA0z7IC2fQ9hUdEGDFapxRYFkmEJ2mriA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=opensynergy.com; dmarc=pass action=none
+ header.from=opensynergy.com; dkim=pass header.d=opensynergy.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=opensynergy.com;
+Message-ID: <121dd34a-5ae0-ed83-4079-8029c9f903f9@opensynergy.com>
+Date: Thu, 28 Apr 2022 16:54:19 +0300
+Subject: Re: [yocto] [psplash][RFC PATCH 00/14] Implement DRM backend
+Content-Language: uk
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+References: <20220425075954.10427-1-vasyl.vavrychuk@opensynergy.com>
+ <CANNYZj8bwSKiBR6=K+EdcbVtEA41v6BTMAP66e1tZQ+A-eec_w@mail.gmail.com>
+From: Vasyl Vavrychuk <vasyl.vavrychuk@opensynergy.com>
+In-Reply-To: 
+ <CANNYZj8bwSKiBR6=K+EdcbVtEA41v6BTMAP66e1tZQ+A-eec_w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM0PR03CA0047.eurprd03.prod.outlook.com (2603:10a6:208::24)
+ To PAXPR04MB9106.eurprd04.prod.outlook.com (2603:10a6:102:227::8)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 132f9107-a8b5-422e-33c2-08da291e9920
+X-MS-TrafficTypeDiagnostic: VI1PR04MB4111:EE_
+X-Microsoft-Antispam-PRVS: 
+	<VI1PR04MB4111DF2B05F40BC8BBF5294DECFD9@VI1PR04MB4111.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	pH3owLetayZLvyYaTcbvZVYd/QJmzQ+hy4YRZIL+pcCyt6uJ71iFRxOUDW8HIlbwzy8yJM4xyt6WE6Zbau/SPJ/g+d95DFzdSzUJwy4P6PMGIuj5bjr/l9iT2kN4+V8vVvWPvaGAUR8MEOfjQFKXCg1G1zO5s/SJRCqKVlH3CUcwVX3e/wldFxvfsvXJhhB5ksNY0wUhOU6vEVydzde2lx5dbmIBenSt56yUhma+Sk/cOEv9Ab7JVWLqmdJN+Lz3AQkDL1Mvsl33p7sEOb/JSE9p2r305wbd6hrr397AqW388J8AfRX+nIyDGWRR4foBOaegN3sOVluDY5jKhSGfnRz5Iy0o7iTp8rCcKtAohlhHli4FAvdy6GgWsoxbSCbwKVzSqhky0y/z2oj0Ye4XSB4Gc+xFUrFXPrwOzchUmIl17NIhSwnNCJkCAf1OsbjnHVhpHqqlQDcyEfJpGvrPQjqXxr3FAKHObhG/n0Jli5/qEg00bSny6QxoZ6Xn+i9TbqZekDCvVTfW6haMXOczt7jKtyeb7QAVbvvrvxioCiGo6siVx7CDsylBKgKPqIImwDjuXlFdOI+0uPkXPsfJSDEJv0L1GxpK6TqcbW/C/MF944ofHjhBsYRBulq0OXGaFM5dt2d5L0NPe80377hNenxUDHZZRxEfA98qLFbPjZI5gKeWlxcpIi7/hpxa8Q9DoHfGZGk2yscSzfjbKPU4mqxBRg9dLOhA/QhGASHMv10=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9106.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(31696002)(966005)(508600001)(2616005)(86362001)(26005)(38100700002)(66556008)(186003)(66476007)(316002)(42186006)(2906002)(44832011)(36756003)(5660300002)(66946007)(8936002)(31686004)(83380400001)(4326008)(6916009)(8676002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?K2xPeVFFM1ZjWHNYb1pwc1ZFZlhIOGF3R3BocndyWWo2UGJ3QTFFY293ZnNN?=
+ =?utf-8?B?dGxmZ09rdEg5cnI0Vm9MM2x5bmVBYmVOVWtHcERYbFNCcEdEWFByaURuZ3NI?=
+ =?utf-8?B?blVDUktaOEUvcHFBYzNoZlE3TkVsT0lIdmRGZVp0WlZYVndCb2g0a09xZ3RE?=
+ =?utf-8?B?U21UL2VjMXd2RDYxb2pla2J5QWVISE0wbGhMQVUvRFIxb0ZXYzNldTZNWWZE?=
+ =?utf-8?B?alpPaUVCWnpUTFFvMjlCNTQ0VHExN0pNdy94ZU5BZ3EvaHB0cFV6Q1NtOFM0?=
+ =?utf-8?B?Qng3K2ViVHo5anlrMGpoSkRTVjdwRTM2NnZmdGV3dlp2K3pHSDhqSUJMVkFJ?=
+ =?utf-8?B?SlIxa2U2UkhBU1hDcEFvSlp5QVpWUHNzakdsUG9kSnpoV3lPd3FNaHMvempX?=
+ =?utf-8?B?YlphdVZoM1JSSEd6Q3JMME1HYzlyVTR5TWhXTG9odWdiSWtQRzY0dVNCeWx3?=
+ =?utf-8?B?RGhXVFFxWXZqeXQyeCtuczNPc0k1VXVlVE95RTJEaHplam5Eb25LSHJ4NnNh?=
+ =?utf-8?B?QVA1VXYxbDI5YzRCTWJBYWtYYnM4VEtvd2VjalpWUkh3NUZCK25BSUd3VnE0?=
+ =?utf-8?B?Z2krZmtocUN3RGtudkVZQjdxa2Zjc1BRaHJyeThMdWRnM2xqbTZWcXd2cHB1?=
+ =?utf-8?B?NUkwckgvQlNiZTZ6clY3M2dTYUw0RnFDUlZCWDl1T2ZnU1VHdTFzdVIySHJr?=
+ =?utf-8?B?T2twSWJBYUZYODg5Y1J4SHdiZ2dia1FENk02SFhwaGNOQXBVNHNXQVdlOG15?=
+ =?utf-8?B?WXFQQXh6V0NCTTk2UGVQOTZrT00yMVBYcTM1dXRwWEVsaXpsMEs5TmhVOWFn?=
+ =?utf-8?B?OWdiUFVWQzg2aURJUUY5KzF2cHZPU0NSZWJVcCsxeTVUQVY4YnIwWHVUaWJS?=
+ =?utf-8?B?WDVIQmErN2k3aGlEMWtlN1JWNjBLc1UzZlZTV3JrZEQ5akpPTHhZMStFODFs?=
+ =?utf-8?B?N1BFS0Q4Zk5udFQ3OXU2enpzckhTZC84WWJHSlJwbzlYWk5nM0tGbXArK0g0?=
+ =?utf-8?B?ejlGczFhUGJpU1Vvd09oWTBURVNadUpaREgwa0ZSTnQ2Zk43ZmNwVEVtZ2Fh?=
+ =?utf-8?B?enZjT3RpREdNUERYYlJuYm1UM3JnTzl1K1Zpc0tSdUlrNlFGeU95REhGNmlJ?=
+ =?utf-8?B?TzF5MnJ1S1NiWS9hem53bmpqZzBVNDVRR0RpTDRLR3lpUVpwZUJHWm5BaTFM?=
+ =?utf-8?B?a2xKUUhQQTVkZ3hwVUEvTnZ2dDBVNlB2NU4vZDAwWFhra0VaVVY1Uktva2pI?=
+ =?utf-8?B?S083K2UrdjAzeHY3TkdsUGxsTCtuZTRLeUFOS1I3dGc2aFlXbTV2Rk9DSllZ?=
+ =?utf-8?B?cHQ0c0RFYUZIMUtXQjlkYTFiMTlUeGVDcUJvR2xpUVhaYk1jK0luaHJRZ2VH?=
+ =?utf-8?B?cUsrVjdhMmZhMU40Y2tRUmx3UEYwcUdJaWFXRXBZTUJpOUpHWWE0VHNyY09l?=
+ =?utf-8?B?NnJqWjdCbURLTmkzNis0aENZcmZIbGs3Wktyd0todHY5ZWp5NDVRM0FUMmda?=
+ =?utf-8?B?R0ViRlYzRmdkZDR3Nzl0Y0krTlZXOEluUnM5R20rSEQwOEpKdXlYM01aQktO?=
+ =?utf-8?B?QlpoRFVvajhFOEY0V1pCRWtZeFVacTRkb2tHbEJTSHRGQXY2eE15QmFnRCtM?=
+ =?utf-8?B?dUozMXcvWEE3eVIvVVJTT09VVW1YVWYwSGtrVThhemtYQnBJWGVRMHo0UDU0?=
+ =?utf-8?B?QWVSTTg4WnBRcVBLeEJrTTBtYU1RVC9LaUNOd3p1WVIrWWZndUFIYk9waXpx?=
+ =?utf-8?B?bVhIUzNDRmRSUkYrWmtGZXBvK3dVZzRIN3FBMlZCSHcxVG93VC9ieldpNkU3?=
+ =?utf-8?B?Q3FLclFTdnJsWXRodVZHQi93Q2hIMDd0N21yaUJCQlZsVE1yQW12ZWNGSity?=
+ =?utf-8?B?bUFnVURFOUZ0bStTeHBtMVMrRHNKMzM1Ulp5ZGh5cERtd2Vvc1lPYjFwTXBT?=
+ =?utf-8?B?WnVJRFRtLzBTbkZ5ZlloK3NFZ212UWdXbk1lazdJcHpuNXNJc0lkdmFMODVG?=
+ =?utf-8?B?aXYzQ0ZuVnF2ZWk2My9udy9Ob3E4a29UUjRSVGFEUDF3OUpqZ0dqZnJhd2tW?=
+ =?utf-8?B?dzVtcUtFSjFDR0daYjFtZkJNdHBYa1JHU3JNa2dUTDIrTE5EMFdnSlZpZXlq?=
+ =?utf-8?B?VU45WmV0Tlp2WHkwK0dVeGxvMnlVU0xEZlI5U2FtSDlFMWE2bTFBY0NJRm50?=
+ =?utf-8?B?MzNjUC9KbWNJNklPWUVVRFRlY0NPMVB6Q0QzTEY4eW84QVhTc0FaWHpXTGly?=
+ =?utf-8?B?WDFjNVNiVElJSW1QZndkbFlsR215K0o4SWRPYXp2SW12MzMrOXpxQVh2eGJr?=
+ =?utf-8?B?czRBbmhZelVhcFpsVEl1NGZKS3hVYVN1bzltQ2hNT3hWWjQwQ2REdz09?=
+X-OriginatorOrg: opensynergy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 132f9107-a8b5-422e-33c2-08da291e9920
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9106.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2022 13:54:22.3784
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 800fae25-9b1b-4edc-993d-c939c4e84a64
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ T/tW0cOBTVqCiuKHBF1mcVzJ5ujQQOXAGMd8Hdi2yChGrJ2JMEvup9IYbhScywR77oM2avdQ8Va3T31WHUu+Ew==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4111
+X-TM-AS-ERS: 104.47.14.52-0.0.0.0
+X-TMASE-Version: StarCloud-1.3-8.8.1001-26860.007
+X-TMASE-Result: 10--14.217400-4.000000
+X-TMASE-MatchedRID: 6otD/cJAac1iHm449d3ilu0/o+/4D7DzC/ExpXrHizwSdCEp3KAaL6Yn
+	mMLJRh+JvQoCNlyGHQLSKuuqNb2DukerW12mrTm5/sUSFaCjTLxX3+fkhmeDZIve+SO5kmfJA3D
+	T3VehETpxbj10dctZfalmOnkFtyia0OVyXblM7jPfqVBdB7I8UYaJp9G8IFZp5DJ1FS+XdBMHhy
+	xV8LY4NIm7OUi1ZweVmU/J5maPYnfMraXB2+s23RIRh9wkXSlFMC4zO7d4kaNO2MZoFipNWzNV+
+	wj8Pzk/1eKt+ktDRM+8HO1hAUuG+1rOnzqOHaLKfXVm6YO5Gnt9LQinZ4QefL6qvLNjDYTwsuf7
+	RWbvUtyrusVRy4an8SAHAopEd76vXUtALDchDdS+t5rgDx2gHWmZatUAOG/SdvrKchq2tnrStqo
+	vaXpltg==
+X-TMASE-XGENCLOUD: 493b4d44-19fe-491b-8c2e-b083a0f8c484-0-0-200-0
+X-TM-Deliver-Signature: 8FF61D9FCC37AF19E12147DB68D450B0
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=opensynergy.com;
+	s=TM-DKIM-20210503141657; t=1651154065;
+	bh=7CxOM4RHUmqsMqu72WGjLjPL+h5KOJX8J033Z9c7i0U=; l=2645;
+	h=Date:To:From;
+	b=vA5T5Yq3QrHUihk2Aa0KPfhX/CoZiSGA112yCSevoKhkTj+hw2+g+2KyQfcl2g8kf
+	 USGPg4l39468g9px3IHB1arRLEgjFPwWUFl8y49wO8dHol/8CgvUbNRO0T6rF2Fuw2
+	 oJp+0jewGR2Ia7BpRjyDYy1HtLqnpOd753wUfUPBOo4//FITXnUPFGd9kV3e98h+P/
+	 fd+1mSfghq5FkBg5sYBbN6FSaFaDRM4nnJCytGdGGXgb7xcQhpPRXXTgK36ozaKgGT
+	 5jD69ymc5CHNX8cwf07TGvy22G7pdssqVWZd6SMw1s1M8TILYuroF1whKQ60gqVto7
+	 4cJZ/q13TqSvQ==
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 28 Apr 2022 13:54:07 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56942
+ <yocto@lists.yoctoproject.org>; Thu, 28 Apr 2022 13:54:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56943
 
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
+Hi, Alex,
 
-This approach didn't work reliably so switch to text based emails
-pointing at the website version with graphs and data.
+Thanks for feedback.
 
-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-(cherry picked from commit c0a7cac39acba54e106fa74143c5de7c5eeefab8)
-Signed-off-by: Steve Sakoman <steve@sakoman.com>
----
- scripts/oe-build-perf-report-email.py | 158 +-------------------------
- 1 file changed, 6 insertions(+), 152 deletions(-)
+> can you explain how this was tested?
 
-diff --git a/scripts/oe-build-perf-report-email.py b/scripts/oe-build-perf-report-email.py
-index f4476f5..6d16892 100755
---- a/scripts/oe-build-perf-report-email.py
-+++ b/scripts/oe-build-perf-report-email.py
-@@ -25,8 +25,6 @@ import socket
- import subprocess
- import sys
- import tempfile
--from email.mime.image import MIMEImage
--from email.mime.multipart import MIMEMultipart
- from email.mime.text import MIMEText
- 
- 
-@@ -42,22 +40,6 @@ if not os.path.isfile(SCRAPE_JS):
-     sys.exit(1)
- 
- 
--class ReportError(Exception):
--    """Local errors"""
--    pass
--
--
--def check_utils():
--    """Check that all needed utils are installed in the system"""
--    missing = []
--    for cmd in ('phantomjs', 'optipng'):
--        if not shutil.which(cmd):
--            missing.append(cmd)
--    if missing:
--        log.error("The following tools are missing: %s", ' '.join(missing))
--        sys.exit(1)
--
--
- def parse_args(argv):
-     """Parse command line arguments"""
-     description = """Email build perf test report"""
-@@ -82,137 +64,20 @@ def parse_args(argv):
-                              "the email parts")
-     parser.add_argument('--text',
-                         help="Plain text message")
--    parser.add_argument('--html',
--                        help="HTML peport generated by oe-build-perf-report")
-     parser.add_argument('--phantomjs-args', action='append',
-                         help="Extra command line arguments passed to PhantomJS")
- 
-     args = parser.parse_args(argv)
- 
--    if not args.html and not args.text:
--        parser.error("Please specify --html and/or --text")
-+    if not args.text:
-+        parser.error("Please specify --text")
- 
-     return args
- 
- 
--def decode_png(infile, outfile):
--    """Parse/decode/optimize png data from a html element"""
--    with open(infile) as f:
--        raw_data = f.read()
--
--    # Grab raw base64 data
--    b64_data = re.sub('^.*href="data:image/png;base64,', '', raw_data, 1)
--    b64_data = re.sub('">.+$', '', b64_data, 1)
--
--    # Replace file with proper decoded png
--    with open(outfile, 'wb') as f:
--        f.write(base64.b64decode(b64_data))
--
--    subprocess.check_output(['optipng', outfile], stderr=subprocess.STDOUT)
--
--
--def mangle_html_report(infile, outfile, pngs):
--    """Mangle html file into a email compatible format"""
--    paste = True
--    png_dir = os.path.dirname(outfile)
--    with open(infile) as f_in:
--        with open(outfile, 'w') as f_out:
--            for line in f_in.readlines():
--                stripped = line.strip()
--                # Strip out scripts
--                if stripped == '<!--START-OF-SCRIPTS-->':
--                    paste = False
--                elif stripped == '<!--END-OF-SCRIPTS-->':
--                    paste = True
--                elif paste:
--                    if re.match('^.+href="data:image/png;base64', stripped):
--                        # Strip out encoded pngs (as they're huge in size)
--                        continue
--                    elif 'www.gstatic.com' in stripped:
--                        # HACK: drop references to external static pages
--                        continue
--
--                    # Replace charts with <img> elements
--                    match = re.match('<div id="(?P<id>\w+)"', stripped)
--                    if match and match.group('id') in pngs:
--                        f_out.write('<img src="cid:{}"\n'.format(match.group('id')))
--                    else:
--                        f_out.write(line)
--
--
--def scrape_html_report(report, outdir, phantomjs_extra_args=None):
--    """Scrape html report into a format sendable by email"""
--    tmpdir = tempfile.mkdtemp(dir='.')
--    log.debug("Using tmpdir %s for phantomjs output", tmpdir)
--
--    if not os.path.isdir(outdir):
--        os.mkdir(outdir)
--    if os.path.splitext(report)[1] not in ('.html', '.htm'):
--        raise ReportError("Invalid file extension for report, needs to be "
--                          "'.html' or '.htm'")
--
--    try:
--        log.info("Scraping HTML report with PhangomJS")
--        extra_args = phantomjs_extra_args if phantomjs_extra_args else []
--        subprocess.check_output(['phantomjs', '--debug=true'] + extra_args +
--                                [SCRAPE_JS, report, tmpdir],
--                                stderr=subprocess.STDOUT)
--
--        pngs = []
--        images = []
--        for fname in os.listdir(tmpdir):
--            base, ext = os.path.splitext(fname)
--            if ext == '.png':
--                log.debug("Decoding %s", fname)
--                decode_png(os.path.join(tmpdir, fname),
--                           os.path.join(outdir, fname))
--                pngs.append(base)
--                images.append(fname)
--            elif ext in ('.html', '.htm'):
--                report_file = fname
--            else:
--                log.warning("Unknown file extension: '%s'", ext)
--                #shutil.move(os.path.join(tmpdir, fname), outdir)
--
--        log.debug("Mangling html report file %s", report_file)
--        mangle_html_report(os.path.join(tmpdir, report_file),
--                           os.path.join(outdir, report_file), pngs)
--        return (os.path.join(outdir, report_file),
--                [os.path.join(outdir, i) for i in images])
--    finally:
--        shutil.rmtree(tmpdir)
--
--def send_email(text_fn, html_fn, image_fns, subject, recipients, copy=[],
--               blind_copy=[]):
--    """Send email"""
--    # Generate email message
--    text_msg = html_msg = None
--    if text_fn:
--        with open(text_fn) as f:
--            text_msg = MIMEText("Yocto build performance test report.\n" +
--                                f.read(), 'plain')
--    if html_fn:
--        html_msg = msg = MIMEMultipart('related')
--        with open(html_fn) as f:
--            html_msg.attach(MIMEText(f.read(), 'html'))
--        for img_fn in image_fns:
--            # Expect that content id is same as the filename
--            cid = os.path.splitext(os.path.basename(img_fn))[0]
--            with open(img_fn, 'rb') as f:
--                image_msg = MIMEImage(f.read())
--            image_msg['Content-ID'] = '<{}>'.format(cid)
--            html_msg.attach(image_msg)
--
--    if text_msg and html_msg:
--        msg = MIMEMultipart('alternative')
--        msg.attach(text_msg)
--        msg.attach(html_msg)
--    elif text_msg:
--        msg = text_msg
--    elif html_msg:
--        msg = html_msg
--    else:
--        raise ReportError("Neither plain text nor html body specified")
-+def send_email(text_fn, subject, recipients, copy=[], blind_copy=[]):
-+    with open(text_fn) as f:
-+        msg = MIMEText("Yocto build performance test report.\n" + f.read(), 'plain')
- 
-     pw_data = pwd.getpwuid(os.getuid())
-     full_name = pw_data.pw_gecos.split(',')[0]
-@@ -239,8 +104,6 @@ def main(argv=None):
-     if args.debug:
-         log.setLevel(logging.DEBUG)
- 
--    check_utils()
--
-     if args.outdir:
-         outdir = args.outdir
-         if not os.path.exists(outdir):
-@@ -250,25 +113,16 @@ def main(argv=None):
- 
-     try:
-         log.debug("Storing email parts in %s", outdir)
--        html_report = images = None
--        if args.html:
--            html_report, images = scrape_html_report(args.html, outdir,
--                                                     args.phantomjs_args)
--
-         if args.to:
-             log.info("Sending email to %s", ', '.join(args.to))
-             if args.cc:
-                 log.info("Copying to %s", ', '.join(args.cc))
-             if args.bcc:
-                 log.info("Blind copying to %s", ', '.join(args.bcc))
--            send_email(args.text, html_report, images, args.subject,
--                       args.to, args.cc, args.bcc)
-+            send_email(args.text, args.subject, args.to, args.cc, args.bcc)
-     except subprocess.CalledProcessError as err:
-         log.error("%s, with output:\n%s", str(err), err.output.decode())
-         return 1
--    except ReportError as err:
--        log.error(err)
--        return 1
-     finally:
-         if not args.outdir:
-             log.debug("Wiping %s", outdir)
--- 
-2.25.1
+In "Implement drm backend" commit I added "--drm" switch to use DRM/KMS 
+instead of FB in psplash. I use this switch to test by changes, I run 
+them without this switch to check that FB keeps working too.
 
+Before weston starts I do
+
+    echo QUIT > /run/psplash_fifo
+
+to stop psplash.
+
+I did not tried personally but it should work under QEMU too.
+
+> Is it possible to automate with qemu targets?
+
+Depends if QEMU/yocto test automation support screenshots. 
+Unfortunately, I don't have expirience with it.
+
+> Alex
+> 
+> On Mon, 25 Apr 2022 at 10:00, Vasyl Vavrychuk
+> <Vasyl.Vavrychuk@opensynergy.com> wrote:
+>>
+>> It is needed in case display does not support FB.
+>>
+>> The missing part is drawing splash screen over all connected displays. I think
+>> there should be loop somewhere for this, but I am not sure which level is the
+>> best to put it.
+>>
+>> https://github.com/r1mikey/psplash-drm/blob/drm/implement-drm/psplash-draw.c has
+>> psplash_draw_initial(_one), psplash_draw_msg(_one) and
+>> psplash_draw_progress(_one) implementing loop over scanouts. I am think about
+>> doing the same.
+>>
+>> Vasyl Vavrychuk (14):
+>>    Trim trailing spaces
+>>    Fix 'unused-result' warnings
+>>    Remove unused save_termios
+>>    Remove 'psplash-fb.h' from 'psplash.h'
+>>    Extract plot pixel from psplash-fb
+>>    Extract draw rect/image from psplash-fb
+>>    Extract draw font from psplash-fb
+>>    psplash.c: Make psplash_draw_{msg,progress} independent of FB
+>>    Rework flip as function pointer
+>>    Import drm-howto modeset.c as psplash-drm.c
+>>    Implement drm backend
+>>    Reverse modeset_list
+>>    psplash-drm.c: Allocate resources only for the first connector
+>>    psplash-drm.c: Implement double buffering
+>>
+>>   Makefile.am       |  15 +-
+>>   configure.ac      |   9 +
+>>   psplash-console.c |  34 +-
+>>   psplash-console.h |   8 +-
+>>   psplash-draw.c    | 295 +++++++++++++++++
+>>   psplash-draw.h    |  81 +++++
+>>   psplash-drm.c     | 787 ++++++++++++++++++++++++++++++++++++++++++++++
+>>   psplash-drm.h     |  17 +
+>>   psplash-fb.c      | 371 +++-------------------
+>>   psplash-fb.h      |  74 +----
+>>   psplash-systemd.c |  36 ++-
+>>   psplash-write.c   |  37 ++-
+>>   psplash.c         | 186 ++++++-----
+>>   psplash.h         |   7 +-
+>>   14 files changed, 1446 insertions(+), 511 deletions(-)
+>>   create mode 100644 psplash-draw.c
+>>   create mode 100644 psplash-draw.h
+>>   create mode 100644 psplash-drm.c
+>>   create mode 100644 psplash-drm.h
+>>
+>> --
+>> 2.30.2
 
