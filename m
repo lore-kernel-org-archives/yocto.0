@@ -1,132 +1,107 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <mikko.rapeli@bmw.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AF8ABC433EF
-	for <webhook@archiver.kernel.org>; Thu, 28 Apr 2022 11:44:46 +0000 (UTC)
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com
- [209.85.128.175])
- by mx.groups.io with SMTP id smtpd.web09.8827.1651146279354464398
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BD4F3C433EF
+	for <webhook@archiver.kernel.org>; Thu, 28 Apr 2022 11:52:16 +0000 (UTC)
+Received: from esa12.hc324-48.eu.iphmx.com (esa12.hc324-48.eu.iphmx.com
+ [207.54.72.34])
+ by mx.groups.io with SMTP id smtpd.web08.8979.1651146731894127215
  for <yocto@lists.yoctoproject.org>;
- Thu, 28 Apr 2022 04:44:39 -0700
+ Thu, 28 Apr 2022 04:52:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=cpAqZN/t;
- spf=pass (domain: gmail.com, ip: 209.85.128.175,
- mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-yw1-f175.google.com with SMTP id
- 00721157ae682-2f7c424c66cso50010027b3.1
-        for <yocto@lists.yoctoproject.org>;
- Thu, 28 Apr 2022 04:44:39 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@bmw.de header.s=mailing1
+ header.b=BD9jOUiO;
+ spf=pass (domain: bmw.de, ip: 207.54.72.34,
+ mailfrom: prvs=110bfcb55=mikko.rapeli@bmw.de)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tEhojiAn1sYgtSQnQao3W4PPYmAiVsYOYIvz/3YbhdY=;
-        b=cpAqZN/tYasLSv0P5mJ5h4lD/09FMp2gyPofEXCpHb6LK7vUI3GcJijp/csU6Ntur/
-         3P0DdN0HIwrJbvqiFgoBe4dCrdJdmk2mOQRyVge+8EnrwteiWvt7aEZa7RxHeHSaHz/B
-         yRt8d+DIcHc/STu4OoCOPt2dX0cSsJn2fsdkHhuRhA3RNbmm8QWPWngt3U2XODJJGZoC
-         5JFyrFb+9fZdA+VNx8eRW2Gomgew7UBo8e8eKLtVR8AzUVEbTHcPcflnsnLUXrDVkyLF
-         D7q2rpKjBA8Yeo6MNQQO0u8B5c/MAuZ/wGtYccn6+rv5C3X/2VArLdkOj2cqNuexCeOF
-         CA2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tEhojiAn1sYgtSQnQao3W4PPYmAiVsYOYIvz/3YbhdY=;
-        b=aIUSZM1ITvFYjnKtW7RrZ3z4vmqRhyjBYVAGwNmYk6ZzIapns8N2B9FUDQBwwlv3CM
-         kiyw8POLz5hdsRtJBaoi9WxFD6v1KTfGX3X2ICa3NNqnNASg59lexbKOW+Dw36GODL7z
-         0+SivTXsVD/dR+CZtUP3eGWoGnKQb/fosbt+rhSE5mRppQLViaPNlJUjXj0GrEg7tmFU
-         hYk8OhDE2t9qNda8yHyEl1mzpGKBt0CXdYI4NzxlFjsfpeC4bryg1IuT8oPcmrgWcmBF
-         nuF5E8yOE125feTkDgVqluU1Dj8ahH0TynbsLMqU7sP82uYE8g+bAaHf4Dz3ERQ5+TNB
-         /mRA==
-X-Gm-Message-State: AOAM533jKJnTC1l7pv1jW4U7sDDVm5LA9XQuJhsarZKxwHblGQeqy832
-	oLMv1+CQ6udoYg9NrrVrPWWCTAD391xVvhkWmJs=
-X-Google-Smtp-Source: 
- ABdhPJwkZBCAAGSmpgUq89h/LMCGc8kuEsuHXHTT0931h8RDXHBO93Gxh45ysYfdd72uhhndT2qeJ6NDjvZwXBAXCoQ=
-X-Received: by 2002:a0d:df08:0:b0:2f7:d206:1f75 with SMTP id
- i8-20020a0ddf08000000b002f7d2061f75mr23250719ywe.182.1651146278476; Thu, 28
- Apr 2022 04:44:38 -0700 (PDT)
-MIME-Version: 1.0
+  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
+  t=1651146731; x=1682682731;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=NROPlgAk5VP94l+6d0zLLKquFLsy13nZQWL0YbyPaAY=;
+  b=BD9jOUiOmDppXVc1x5Kynm7un3gaEwcwmA46RDehsVNdJ+4tg09AXURr
+   R6wy+2kph5H2x80jaSSSr9qnX5H4/j3Hmjtzg8vqCHuyOl+kY2aqBH0Y2
+   1msBODo2jbhb36HL9RZG6fhhURHlKzH/EuBEP87vHMroqiuUbBhdGJ9OO
+   g=;
+Received: from esagw2.bmwgroup.com (HELO esagw2.muc) ([160.46.252.38]) by
+ esa12.hc324-48.eu.iphmx.com with ESMTP/TLS; 28 Apr 2022 13:52:08 +0200
+Received: from esabb3.muc ([160.50.100.30])  by esagw2.muc with ESMTP/TLS;
+ 28 Apr 2022 13:52:09 +0200
+Received: from smucm15k.bmwgroup.net (HELO smucm15k.europe.bmw.corp)
+ ([160.48.96.67])
+ by esabb3.muc with ESMTP/TLS; 28 Apr 2022 13:52:09 +0200
+Received: from SMUCMP08A.europe.bmw.corp (10.30.13.67) by
+ smucm15k.europe.bmw.corp
+ (160.48.96.67) with Microsoft SMTP Server (TLS;
+ Thu, 28 Apr 2022 13:52:08 +0200
+Received: from SMUCMP08E.europe.bmw.corp (2a03:1e80:a15:58f::1:24) by
+ SMUCMP08A.europe.bmw.corp (2a03:1e80:a15:58f::212c) with Microsoft SMTP
+ Server (version=TLS; Thu, 28 Apr 2022 13:52:08 +0200
+Received: from SMUCMP08E.europe.bmw.corp ([10.30.13.71]) by
+ SMUCMP08E.europe.bmw.corp ([10.30.13.71]) with mapi id 15.02.0922.027; Thu,
+ 28 Apr 2022 13:52:08 +0200
+From: <Mikko.Rapeli@bmw.de>
+To: <ayoub.zaki@googlemail.com>
+CC: <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Custom DISTRO_VERSION with git describe
+Thread-Topic: [yocto] Custom DISTRO_VERSION with git describe
+Thread-Index: AQHYWu/NHOIM5fB3nEOeoB4y+UIMXa0FCv6AgAAC0ICAAAIeAIAAAaqAgAADyIA=
+Date: Thu, 28 Apr 2022 11:52:08 +0000
+Message-ID: <Ymp/526iIco9iMuV@korppu>
 References: 
- <CAA=hcWSv7=gctvWYXSaJTqi=y=G9Zr8Jr01+5vVUcGSsPJM9vA@mail.gmail.com>
- <CADkTA4McF0vDHBX+gtFnFXLHF5+eyfFZCjPs4DP2B5C0zcSsVw@mail.gmail.com>
- <CAA=hcWTrEkw+xPDFzKqNMM264aOoqiJXvyU9209m5xhEBEts+A@mail.gmail.com>
+ <CA+-BmJZxufzfqd=VR6MH+ZB3osYwpSyHvW=SvNNpag3gs+Wz8w@mail.gmail.com>
+ <Ymp3MwKCqW2DbWe2@korppu>
+ <CA+-BmJYsMtjHw=bUUJ2-DF4N-Jvun_9uYh9k=a_DrUoBoSAdiQ@mail.gmail.com>
+ <Ymp7VsxfuQeCSgKx@korppu>
+ <CA+-BmJY1jCPuv=iUnvKghVZ48MosAEfbn5Nx5DopW6H8BmvjXg@mail.gmail.com>
 In-Reply-To: 
- <CAA=hcWTrEkw+xPDFzKqNMM264aOoqiJXvyU9209m5xhEBEts+A@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Thu, 28 Apr 2022 07:44:26 -0400
-Message-ID: 
- <CADkTA4M7_+X06P3ahtt4edRiMTUNXS7-dVKTkRknAD2MtNtSOA@mail.gmail.com>
-Subject: Re: [yocto] How to force build system to use a working kernel
- defconfig?
-To: Jupiter <jupiter.hce@gmail.com>
-Cc: yocto <yocto@lists.yoctoproject.org>,
-	openembeded-devel <Openembedded-devel@lists.openembedded.org>
-Content-Type: text/plain; charset="UTF-8"
+ <CA+-BmJY1jCPuv=iUnvKghVZ48MosAEfbn5Nx5DopW6H8BmvjXg@mail.gmail.com>
+Accept-Language: en-US, de-DE
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <5082FDEF4511DF46886A5357892FB803@bmwmail.corp>
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 28 Apr 2022 11:44:46 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56936
+ <yocto@lists.yoctoproject.org>; Thu, 28 Apr 2022 11:52:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56937
 
-On Thu, Apr 28, 2022 at 5:39 AM Jupiter <jupiter.hce@gmail.com> wrote:
->
-> Hi Bruce,
->
-> Thanks for your response.
->
-> > You can't suppress the kernel's config step, it is always going to
-> > run. You can't just copy over .config and have the kernel build.
->
-> If the OE build kernel config step can be disabled to compile kernel
-> using customer defconfig, that will make users life much easier to
-> disable unwanted kernel drivers and features.
+Hi,
 
-This has nothing to do with OE, that's what the kernel would do
-no matter how you build it.
+On Thu, Apr 28, 2022 at 01:38:35PM +0200, Ayoub Zaki wrote:
+> I'm also suing dunfell branch, I did a small modification in
+> my_distro_version.bbclass:
+>=20
+> def my_distro_version(d):
+> >     import subprocess
+> >     project_path =3D d.getVar('MY_LAYER_BASE', True)
+> >     cmd =3D "git describe --tags"
+> >     proc =3D subprocess.Popen(cmd, stdout=3Dsubprocess.PIPE, shell=3DTr=
+ue,
+> > cwd=3Dproject_path)
+> >     out, err =3D  proc.communicate()
+> >     return out.decode("utf-8").rstrip()
+> > MY_DISTRO_VERSION :=3D "${@my_distro_version(d)}"
+>=20
+>=20
+>=20
+> Then in meta-mylayer/conf/distro/my_distro.conf I used:
+>=20
+> > INHERIT +=3D "my_distro_version"
+> > DISTRO_VERSION :=3D "${MY_DISTRO_VERSION}"
+>=20
+>=20
+> It seems to be working now :-)
 
->
-> The customer defconfig can be certainly generated from bitbake -c
-> menuconfig, but honestly, the kernel configure selection is not easier
-> to understand, we have to use defconfig to disable unwanted the
-> configures and tested it, inadvertently disable some configures could
-> cause kernel panic regardless if the OE build system config step is
-> running or not.
->
+Good! Just a hint that you might want to set SDK_VERSION to the same.
 
-There's a reason why kernel-yocto (and other frameworks) provide
-things like configuration fragments, kernel types, etc, This is a well
-explored topic. Check out my (and others) presentations about this
-throughout the years of yocto summits, etc. They can all be found
-online in various formats.
+Cheers,
 
-> I have searched the internet, it is not just me, there are many others
-> who requested to run customer defconfig without OE build kernel config
-> step.
-
-It can already do that, just as I described in my previous response.
-The defconfig is copied in, and then the kernel *will* run its configuration
-process over it, not OE's, the kernel.
-
->
-> Are you a contributor in the OE dev team? Are there any reasons why
-> the OE dev team won't consider this feature?
-
-See above,
-
-Bruce
-
->
-> Thank you very much.
->
-> Kind regards,
->
-> jupiter
-
-
-
--- 
-- Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end
-- "Use the force Harry" - Gandalf, Star Trek II
+-Mikko=
 
