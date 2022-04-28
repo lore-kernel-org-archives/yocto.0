@@ -1,211 +1,132 @@
-Return-Path: <ayoub.zaki@googlemail.com>
+Return-Path: <bruce.ashfield@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A5B95C433EF
-	for <webhook@archiver.kernel.org>; Thu, 28 Apr 2022 11:38:56 +0000 (UTC)
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com
- [209.85.222.171])
- by mx.groups.io with SMTP id smtpd.web11.8835.1651145926798541713
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AF8ABC433EF
+	for <webhook@archiver.kernel.org>; Thu, 28 Apr 2022 11:44:46 +0000 (UTC)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com
+ [209.85.128.175])
+ by mx.groups.io with SMTP id smtpd.web09.8827.1651146279354464398
  for <yocto@lists.yoctoproject.org>;
- Thu, 28 Apr 2022 04:38:47 -0700
+ Thu, 28 Apr 2022 04:44:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@googlemail.com header.s=20210112 header.b=mC1Z5xBn;
- spf=pass (domain: googlemail.com, ip: 209.85.222.171,
- mailfrom: ayoub.zaki@googlemail.com)
-Received: by mail-qk1-f171.google.com with SMTP id f186so3329227qke.8
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=cpAqZN/t;
+ spf=pass (domain: gmail.com, ip: 209.85.128.175,
+ mailfrom: bruce.ashfield@gmail.com)
+Received: by mail-yw1-f175.google.com with SMTP id
+ 00721157ae682-2f7c424c66cso50010027b3.1
         for <yocto@lists.yoctoproject.org>;
- Thu, 28 Apr 2022 04:38:46 -0700 (PDT)
+ Thu, 28 Apr 2022 04:44:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=2W+q5FFc1SqnVseLu6QhtBhEY9Z73u4UU+8zuCwdl78=;
-        b=mC1Z5xBnS1uANkFgR8PwKXKXLHVjT5yxvd45kVzkWRwSkbozVBS0xsgKDs7QpTM20p
-         r2JPgf9+Q7YJg6V6uwxYXKbtkolBPIc8JH6trDIEHnnxWVMu0ryWiV0ypOluptJvv8s7
-         eWxOdWpMRq/EAyeBwmsGJxQPGWLgNXBeXLwj1c6Rx65Fj9fqexu015NExR8jtfhze+C5
-         D5tZ8ujOmNGTHpWMzS86T/TIcwOmcL5KdX2qha0OMcrhP9ZBaUGywGrG4540DDqCTfFg
-         U14XbFhvmZwLsbRzm4o5WG4sutZlUKGjxM8Os2QTxrc/DBuNzW/vQqKMXerPv5Sxbmnl
-         vnmw==
+        bh=tEhojiAn1sYgtSQnQao3W4PPYmAiVsYOYIvz/3YbhdY=;
+        b=cpAqZN/tYasLSv0P5mJ5h4lD/09FMp2gyPofEXCpHb6LK7vUI3GcJijp/csU6Ntur/
+         3P0DdN0HIwrJbvqiFgoBe4dCrdJdmk2mOQRyVge+8EnrwteiWvt7aEZa7RxHeHSaHz/B
+         yRt8d+DIcHc/STu4OoCOPt2dX0cSsJn2fsdkHhuRhA3RNbmm8QWPWngt3U2XODJJGZoC
+         5JFyrFb+9fZdA+VNx8eRW2Gomgew7UBo8e8eKLtVR8AzUVEbTHcPcflnsnLUXrDVkyLF
+         D7q2rpKjBA8Yeo6MNQQO0u8B5c/MAuZ/wGtYccn6+rv5C3X/2VArLdkOj2cqNuexCeOF
+         CA2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=2W+q5FFc1SqnVseLu6QhtBhEY9Z73u4UU+8zuCwdl78=;
-        b=FS3lkJfOHHXLBQ7+d9lNAx7RFmOFWfWWeS+bz1LCtCLa/ci0oIuaQkistjF9qREhny
-         f2gTcspRBaz9DrA3crq8H/hY6aL6gH92JQL+5lEARRiQfweg//Kb/qp/15UeNLNqEQME
-         y5MDR8+6aAE+lH655CEzlrk7/sWh4heQQ8xeuqxhEb+Uvtp28q8qRuKKoDTsnfK7r0Ud
-         jaGZo90jej8D6Jw4p7o8uaQUSobTWAEe4P71OEi/o6BqtWyD7M69tkkg6e4eXB5LSZ59
-         6yqbHkres+2g6iixs/Vpe3nB9ZCDdjpgi/4Jd2J5pJTU0C1bXJ6F2BM7SdCQic3smHeP
-         i/HQ==
-X-Gm-Message-State: AOAM5304HO4rrskCT2uazJc+FhAiP+lqCYm2HnGv+GDfIagyG9HCjwrQ
-	+7+lY5UTtFUKreFh0GgEAO8vH0UHxJpyhMrGgeg=
+        bh=tEhojiAn1sYgtSQnQao3W4PPYmAiVsYOYIvz/3YbhdY=;
+        b=aIUSZM1ITvFYjnKtW7RrZ3z4vmqRhyjBYVAGwNmYk6ZzIapns8N2B9FUDQBwwlv3CM
+         kiyw8POLz5hdsRtJBaoi9WxFD6v1KTfGX3X2ICa3NNqnNASg59lexbKOW+Dw36GODL7z
+         0+SivTXsVD/dR+CZtUP3eGWoGnKQb/fosbt+rhSE5mRppQLViaPNlJUjXj0GrEg7tmFU
+         hYk8OhDE2t9qNda8yHyEl1mzpGKBt0CXdYI4NzxlFjsfpeC4bryg1IuT8oPcmrgWcmBF
+         nuF5E8yOE125feTkDgVqluU1Dj8ahH0TynbsLMqU7sP82uYE8g+bAaHf4Dz3ERQ5+TNB
+         /mRA==
+X-Gm-Message-State: AOAM533jKJnTC1l7pv1jW4U7sDDVm5LA9XQuJhsarZKxwHblGQeqy832
+	oLMv1+CQ6udoYg9NrrVrPWWCTAD391xVvhkWmJs=
 X-Google-Smtp-Source: 
- ABdhPJzwU+2/QNgAqMKZvguq4bMVSBeYmfPFBgIYlNjOVr+3Azx1sSS5LZtEvDjb2r0tfYxK7PZvk6vtECv8+rG2Tn8=
-X-Received: by 2002:a37:de13:0:b0:699:fc0a:d12f with SMTP id
- h19-20020a37de13000000b00699fc0ad12fmr19380664qkj.35.1651145925763; Thu, 28
- Apr 2022 04:38:45 -0700 (PDT)
+ ABdhPJwkZBCAAGSmpgUq89h/LMCGc8kuEsuHXHTT0931h8RDXHBO93Gxh45ysYfdd72uhhndT2qeJ6NDjvZwXBAXCoQ=
+X-Received: by 2002:a0d:df08:0:b0:2f7:d206:1f75 with SMTP id
+ i8-20020a0ddf08000000b002f7d2061f75mr23250719ywe.182.1651146278476; Thu, 28
+ Apr 2022 04:44:38 -0700 (PDT)
 MIME-Version: 1.0
 References: 
- <CA+-BmJZxufzfqd=VR6MH+ZB3osYwpSyHvW=SvNNpag3gs+Wz8w@mail.gmail.com>
- <Ymp3MwKCqW2DbWe2@korppu>
- <CA+-BmJYsMtjHw=bUUJ2-DF4N-Jvun_9uYh9k=a_DrUoBoSAdiQ@mail.gmail.com>
- <Ymp7VsxfuQeCSgKx@korppu>
-In-Reply-To: <Ymp7VsxfuQeCSgKx@korppu>
-From: Ayoub Zaki <ayoub.zaki@googlemail.com>
-Date: Thu, 28 Apr 2022 13:38:35 +0200
+ <CAA=hcWSv7=gctvWYXSaJTqi=y=G9Zr8Jr01+5vVUcGSsPJM9vA@mail.gmail.com>
+ <CADkTA4McF0vDHBX+gtFnFXLHF5+eyfFZCjPs4DP2B5C0zcSsVw@mail.gmail.com>
+ <CAA=hcWTrEkw+xPDFzKqNMM264aOoqiJXvyU9209m5xhEBEts+A@mail.gmail.com>
+In-Reply-To: 
+ <CAA=hcWTrEkw+xPDFzKqNMM264aOoqiJXvyU9209m5xhEBEts+A@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+Date: Thu, 28 Apr 2022 07:44:26 -0400
 Message-ID: 
- <CA+-BmJY1jCPuv=iUnvKghVZ48MosAEfbn5Nx5DopW6H8BmvjXg@mail.gmail.com>
-Subject: Re: [yocto] Custom DISTRO_VERSION with git describe
-To: Mikko.Rapeli@bmw.de
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000060a6d705ddb55e19"
+ <CADkTA4M7_+X06P3ahtt4edRiMTUNXS7-dVKTkRknAD2MtNtSOA@mail.gmail.com>
+Subject: Re: [yocto] How to force build system to use a working kernel
+ defconfig?
+To: Jupiter <jupiter.hce@gmail.com>
+Cc: yocto <yocto@lists.yoctoproject.org>,
+	openembeded-devel <Openembedded-devel@lists.openembedded.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 28 Apr 2022 11:38:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56935
+ <yocto@lists.yoctoproject.org>; Thu, 28 Apr 2022 11:44:46 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56936
 
---00000000000060a6d705ddb55e19
-Content-Type: text/plain; charset="UTF-8"
-
-I'm also suing dunfell branch, I did a small modification in
-my_distro_version.bbclass:
-
-def my_distro_version(d):
->     import subprocess
->     project_path = d.getVar('MY_LAYER_BASE', True)
->     cmd = "git describe --tags"
->     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True,
-> cwd=project_path)
->     out, err =  proc.communicate()
->     return out.decode("utf-8").rstrip()
-> MY_DISTRO_VERSION := "${@my_distro_version(d)}"
-
-
-
-Then in meta-mylayer/conf/distro/my_distro.conf I used:
-
-> INHERIT += "my_distro_version"
-> DISTRO_VERSION := "${MY_DISTRO_VERSION}"
-
-
-It seems to be working now :-)
-
-
-Thank you for the support :-)
-
-
-cheers,
-
-
-On Thu, Apr 28, 2022 at 1:32 PM <Mikko.Rapeli@bmw.de> wrote:
-
-> On Thu, Apr 28, 2022 at 01:25:03PM +0200, Ayoub Zaki wrote:
-> > Hi,
-> >
-> > thanks for the quick reply I tried your suggestion but I get:
-> >
-> > ERROR: Unable to parse Var <DISTRO_VERSION[:=]>
-> > Traceback (most recent call last):
-> >   File "Var <DISTRO_VERSION[:=]>", line 1, in <module>
-> > bb.data_smart.ExpansionError: Failure expanding variable
-> > DISTRO_VERSION[:=], expression was ${@my_distro_version(d)} which
-> triggered
-> > exception NameError: name 'my_distro_version' is not defined
+On Thu, Apr 28, 2022 at 5:39 AM Jupiter <jupiter.hce@gmail.com> wrote:
 >
-> Did you include the bbclass?
+> Hi Bruce,
 >
-> > I think in this case the INHERIT doesn't work !
+> Thanks for your response.
 >
-> Well I have in distro config:
+> > You can't suppress the kernel's config step, it is always going to
+> > run. You can't just copy over .config and have the kernel build.
 >
-> require classes/distroversion.bbclass
->
-> which has a single python function
->
-> def get_distro_version(d, dirty=True, abbrev=None):
->
-> which basically calls "git describe --always --dirty --abbrev=8",
-> the last one was added when git versions started behaving differently
-> and breaking reproducibility.
->
-> And then distro config also has:
->
-> DISTRO_VERSION := "${@get_distro_version(d)}"
->
-> This works for me up to yocto 3.1 dunfell at least.
->
-> Cheers,
->
-> -Mikko
+> If the OE build kernel config step can be disabled to compile kernel
+> using customer defconfig, that will make users life much easier to
+> disable unwanted kernel drivers and features.
 
---00000000000060a6d705ddb55e19
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This has nothing to do with OE, that's what the kernel would do
+no matter how you build it.
 
-<div dir=3D"ltr"><div>I&#39;m also suing dunfell branch, I did a small modi=
-fication in my_distro_version.bbclass:<br><br><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
-4);padding-left:1ex">def my_distro_version(d):<br>=C2=A0 =C2=A0 import subp=
-rocess<br>=C2=A0 =C2=A0 project_path =3D d.getVar(&#39;MY_LAYER_BASE&#39;, =
-True)<br> =C2=A0 =C2=A0 cmd =3D &quot;git describe --tags&quot;<br>=C2=A0 =
-=C2=A0 proc =3D subprocess.Popen(cmd, stdout=3Dsubprocess.PIPE, shell=3DTru=
-e, cwd=3Dproject_path)<br>=C2=A0 =C2=A0 out, err =3D =C2=A0proc.communicate=
-()<br>=C2=A0 =C2=A0 return out.decode(&quot;utf-8&quot;).rstrip()<br>MY_DIS=
-TRO_VERSION :=3D &quot;${@my_distro_version(d)}&quot;</blockquote><br><br>T=
-hen in meta-mylayer/conf/distro/my_distro.conf I used:<br><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">INHERIT +=3D &quot;my_distro_version&quot;=
-<br>DISTRO_VERSION :=3D &quot;${MY_DISTRO_VERSION}&quot;</blockquote><div><=
-br></div><div>It seems to be working now :-)</div><div><br></div><div><br><=
-/div><div>Thank you for the support :-)</div><div><br></div><div><br></div>=
-<div>cheers,=C2=A0</div></div><div><br></div></div><br><div class=3D"gmail_=
-quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Apr 28, 2022 at 1:32 P=
-M &lt;<a href=3D"mailto:Mikko.Rapeli@bmw.de">Mikko.Rapeli@bmw.de</a>&gt; wr=
-ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On Thu, Apr=
- 28, 2022 at 01:25:03PM +0200, Ayoub Zaki wrote:<br>
-&gt; Hi,<br>
-&gt; <br>
-&gt; thanks for the quick reply I tried your suggestion but I get:<br>
-&gt; <br>
-&gt; ERROR: Unable to parse Var &lt;DISTRO_VERSION[:=3D]&gt;<br>
-&gt; Traceback (most recent call last):<br>
-&gt;=C2=A0 =C2=A0File &quot;Var &lt;DISTRO_VERSION[:=3D]&gt;&quot;, line 1,=
- in &lt;module&gt;<br>
-&gt; bb.data_smart.ExpansionError: Failure expanding variable<br>
-&gt; DISTRO_VERSION[:=3D], expression was ${@my_distro_version(d)} which tr=
-iggered<br>
-&gt; exception NameError: name &#39;my_distro_version&#39; is not defined<b=
-r>
-<br>
-Did you include the bbclass?<br>
-<br>
-&gt; I think in this case the INHERIT doesn&#39;t work !<br>
-<br>
-Well I have in distro config:<br>
-<br>
-require classes/distroversion.bbclass<br>
-<br>
-which has a single python function<br>
-<br>
-def get_distro_version(d, dirty=3DTrue, abbrev=3DNone):<br>
-<br>
-which basically calls &quot;git describe --always --dirty --abbrev=3D8&quot=
-;,<br>
-the last one was added when git versions started behaving differently<br>
-and breaking reproducibility.<br>
-<br>
-And then distro config also has:<br>
-<br>
-DISTRO_VERSION :=3D &quot;${@get_distro_version(d)}&quot;<br>
-<br>
-This works for me up to yocto 3.1 dunfell at least.<br>
-<br>
-Cheers,<br>
-<br>
--Mikko</blockquote></div>
+>
+> The customer defconfig can be certainly generated from bitbake -c
+> menuconfig, but honestly, the kernel configure selection is not easier
+> to understand, we have to use defconfig to disable unwanted the
+> configures and tested it, inadvertently disable some configures could
+> cause kernel panic regardless if the OE build system config step is
+> running or not.
+>
 
---00000000000060a6d705ddb55e19--
+There's a reason why kernel-yocto (and other frameworks) provide
+things like configuration fragments, kernel types, etc, This is a well
+explored topic. Check out my (and others) presentations about this
+throughout the years of yocto summits, etc. They can all be found
+online in various formats.
+
+> I have searched the internet, it is not just me, there are many others
+> who requested to run customer defconfig without OE build kernel config
+> step.
+
+It can already do that, just as I described in my previous response.
+The defconfig is copied in, and then the kernel *will* run its configuration
+process over it, not OE's, the kernel.
+
+>
+> Are you a contributor in the OE dev team? Are there any reasons why
+> the OE dev team won't consider this feature?
+
+See above,
+
+Bruce
+
+>
+> Thank you very much.
+>
+> Kind regards,
+>
+> jupiter
+
+
+
+-- 
+- Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end
+- "Use the force Harry" - Gandalf, Star Trek II
 
