@@ -1,95 +1,102 @@
-Return-Path: <leon@sidebranch.com>
+Return-Path: <ashutosh.naik@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 81E5CC433EF
-	for <webhook@archiver.kernel.org>; Fri, 29 Apr 2022 13:26:18 +0000 (UTC)
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com
- [209.85.222.174])
- by mx.groups.io with SMTP id smtpd.web11.9887.1651238766922795584
- for <yocto@lists.yoctoproject.org>;
- Fri, 29 Apr 2022 06:26:08 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sidebranch-com.20210112.gappssmtp.com header.s=20210112
- header.b=nk0WgIMl;
- spf=softfail (domain: sidebranch.com, ip: 209.85.222.174,
- mailfrom: leon@sidebranch.com)
-Received: by mail-qk1-f174.google.com with SMTP id j9so5862417qkg.1
-        for <yocto@lists.yoctoproject.org>;
- Fri, 29 Apr 2022 06:26:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sidebranch-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=olKzeVpQXAzzVbeR4O8m7YWdrS/kWhJVuABrRJqNBaw=;
-        b=nk0WgIMluQjrB3HbbG8cOhXdmiRW4bxUWiYtyOo4JmDJLfebR6lpHeX+jK+k+ng2QC
-         3ft0z2HGebqQZs/E5UN8yiaQLBqdsUAmoeHCOlMI/l3FvqwQd0pVSDoEP6BaTZsJ3Hep
-         yvtgTbrJtRsFbkjJwXABFwSdWITNUAicR6Biw2hmd2+nfbgUUipbGHxh6nd/fvCZS0dB
-         nS7p2Myptqe1Cx2HYWw1t59k9NnAfLF2rWmWUtwT0wtGjGzn6iUzhCwotQ8o4mbIPz09
-         kAiMGrQOof4m42dqdrlk872D5YSm4q/ag1IQ+wUinxAaNYMqOpxNLVcLhq+RBFkTtnzg
-         zkrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=olKzeVpQXAzzVbeR4O8m7YWdrS/kWhJVuABrRJqNBaw=;
-        b=S85r3Gq0xCuCP7BsVgImh0cscxfIZifa7zqQkMtOvD0bTO35bbBgNSoSS099X+PdIe
-         tpgP0xNriX6wce3wYNOheN1NsM8YTHjJU78a9gLMvedCFN10u7tP1sl+uOCuIkRWf5f8
-         4gmfOqn0xBD3wtvEh9bGp2iLR3hV244bpSOHFd9uxlFNnLpFFEUY4WB3bGM2vpv6dDHg
-         aXftbTZh89AM3X5ZS4uLD/lgE4T3CGsFBafdtyOtJy5Lf45R0GBmFKFdy0LmB50wtqav
-         ZYuNSMzOT1wMbGxbCARQEJ7CTMmdzEdl/dniXtAE7ZrJmEj3oJ9kWYCSiis95UmJoWfL
-         8T5g==
-X-Gm-Message-State: AOAM53147+eJi+YdYGhb2pKX1wvPx4hBwxlewVfD02CRxQ6SokOvKcpV
-	YodavCXV9K26e5JzO78wQua/AU4tm4cXK4Rb5Us23A==
-X-Google-Smtp-Source: 
- ABdhPJxLX610/hUMwmu73V1ZN1aysozPxR+rIYzjnPmR0vIUgsBxMlrVMs2EfnyPJqZf2PUWPvk/0UR3fAbuddlHBA4=
-X-Received: by 2002:a05:620a:2943:b0:69e:80ba:4a18 with SMTP id
- n3-20020a05620a294300b0069e80ba4a18mr22077907qkp.301.1651238764995; Fri, 29
- Apr 2022 06:26:04 -0700 (PDT)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B7840C433F5
+	for <webhook@archiver.kernel.org>; Fri, 29 Apr 2022 13:48:18 +0000 (UTC)
+Subject: Yocto cyrillic characters  support  #yocto
+To: yocto@lists.yoctoproject.org
+From: "Ashutosh Naik" <ashutosh.naik@gmail.com>
+X-Originating-Location: Pune, Maharashtra, IN (152.57.195.18)
+X-Originating-Platform: Linux Chrome 100
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: 
- <CAPk1OjHyko81NFi0FtGruE5Z8TvUiwsdyT9aOyKRSv5886Guvg@mail.gmail.com>
- <CAGbd71RtL5SCpSDhj0nD7D5CB8MjBbjTK90tPo4AeUyeikkPYA@mail.gmail.com>
-In-Reply-To: 
- <CAGbd71RtL5SCpSDhj0nD7D5CB8MjBbjTK90tPo4AeUyeikkPYA@mail.gmail.com>
-From: Leon Woestenberg <leon@sidebranch.com>
-Date: Fri, 29 Apr 2022 15:25:54 +0200
-Message-ID: 
- <CAMjhiJhb0tAUeQsVnuVkFdtALN0VTy-BHCWcVrD=BeuOmeLA0g@mail.gmail.com>
-Subject: Re: [yocto] OS-less SDK
-To: Laurent Gauthier <laurent.gauthier@soccasys.com>
-Cc: Alessio Igor Bogani <alessio.bogani@elettra.eu>,
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Date: Fri, 29 Apr 2022 06:48:08 -0700
+Message-ID: <r3Gt.1651240088695680202.RPCQ@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="brc2SGHUz2T2mJ8gGaVh"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 29 Apr 2022 13:26:18 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56960
+ <yocto@lists.yoctoproject.org>; Fri, 29 Apr 2022 13:48:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56961
 
-Hello Alessio,
+--brc2SGHUz2T2mJ8gGaVh
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-> On Fri, 29 Apr 2022, 13:52 Alessio Igor Bogani, <alessio.bogani@elettra.eu> wrote:
->> Is there a way to generate an SDK which contains the toolchain for
->> bare-metal systems (i.e. MCU without operating system)?
+I am having trouble creating files with cyrillic characters on a yocto gene=
+rated image.
 
-Good question. I know Xilinx has put effort to support their MCUs with Yocto.
+For eg. If I try to create a file like :
+# touch=C2=A0 1=D0=A7=D0=B5=D1=80=D0=BD=D0=B0=D1=8F
 
-However, define what you mean by SDK? Which libraries or programming
-languages are you thinking of beyond the C library for example?
+I do get:
 
-On Fri, Apr 29, 2022 at 1:58 PM Laurent Gauthier
-<laurent.gauthier@soccasys.com> wrote:
-> Have you had a look at crosstool-ng?
->
-crosstool-ng is mostly the toolchain, I would not consider this an SDK
-beyond that.
+# ls
+1??????
 
-This might help:
+I have verified that my locale has utf8 support:
 
-https://elinux.org/images/e/e6/ELC-Yocto-Crosstool-ng.pdf
+# locale
+LANG=3Den_GB.utf8
+LC_CTYPE=3D"en_GB.utf8"
+LC_NUMERIC=3D"en_GB.utf8"
+LC_TIME=3D"en_GB.utf8"
+LC_COLLATE=3D"en_GB.utf8"
+LC_MONETARY=3D"en_GB.utf8"
+LC_MESSAGES=3D"en_GB.utf8"
+LC_PAPER=3D"en_GB.utf8"
+LC_NAME=3D"en_GB.utf8"
+LC_ADDRESS=3D"en_GB.utf8"
+LC_TELEPHONE=3D"en_GB.utf8"
+LC_MEASUREMENT=3D"en_GB.utf8"
+LC_IDENTIFICATION=3D"en_GB.utf8"
+LC_ALL=3Den_GB.utf8
 
-Regards,
+What could I be missing and how can I create files with cyrillic characters=
+?
 
-Leon.
+Regards
+Ash
+
+--brc2SGHUz2T2mJ8gGaVh
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>I am having trouble creating files with cyrillic characters on a yocto=
+ generated image.</div>
+<div>&nbsp;</div>
+<div>For eg. If I try to create a file like :</div>
+<div># touch&nbsp; 1=D0=A7=D0=B5=D1=80=D0=BD=D0=B0=D1=8F</div>
+<div>&nbsp;</div>
+<div>I do get:</div>
+<div>&nbsp;</div>
+<div># ls</div>
+<div>1??????</div>
+<div>&nbsp;</div>
+<div>I have verified that my locale has utf8 support:</div>
+<div>&nbsp;</div>
+<div># locale</div>
+<div>LANG=3Den_GB.utf8</div>
+<div>LC_CTYPE=3D"en_GB.utf8"</div>
+<div>LC_NUMERIC=3D"en_GB.utf8"</div>
+<div>LC_TIME=3D"en_GB.utf8"</div>
+<div>LC_COLLATE=3D"en_GB.utf8"</div>
+<div>LC_MONETARY=3D"en_GB.utf8"</div>
+<div>LC_MESSAGES=3D"en_GB.utf8"</div>
+<div>LC_PAPER=3D"en_GB.utf8"</div>
+<div>LC_NAME=3D"en_GB.utf8"</div>
+<div>LC_ADDRESS=3D"en_GB.utf8"</div>
+<div>LC_TELEPHONE=3D"en_GB.utf8"</div>
+<div>LC_MEASUREMENT=3D"en_GB.utf8"</div>
+<div>LC_IDENTIFICATION=3D"en_GB.utf8"</div>
+<div>LC_ALL=3Den_GB.utf8</div>
+<div>&nbsp;</div>
+<div>What could I be missing and how can I create files with cyrillic chara=
+cters?</div>
+<div>&nbsp;</div>
+<div>Regards</div>
+<div>Ash</div>
+
+--brc2SGHUz2T2mJ8gGaVh--
 
