@@ -1,124 +1,99 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4631DC433FE
-	for <webhook@archiver.kernel.org>; Fri, 29 Apr 2022 12:49:58 +0000 (UTC)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com
- [209.85.219.175])
- by mx.groups.io with SMTP id smtpd.web10.9671.1651236590701361400
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 49148C433FE
+	for <webhook@archiver.kernel.org>; Fri, 29 Apr 2022 12:56:58 +0000 (UTC)
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com
+ [209.85.221.42])
+ by mx.groups.io with SMTP id smtpd.web10.9748.1651237016903305539
  for <yocto@lists.yoctoproject.org>;
- Fri, 29 Apr 2022 05:49:50 -0700
+ Fri, 29 Apr 2022 05:56:57 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=dqIu1oa6;
- spf=pass (domain: gmail.com, ip: 209.85.219.175,
- mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-yb1-f175.google.com with SMTP id j2so14359626ybu.0
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=fnFEap5I;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.42,
+ mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f42.google.com with SMTP id u3so10700492wrg.3
         for <yocto@lists.yoctoproject.org>;
- Fri, 29 Apr 2022 05:49:50 -0700 (PDT)
+ Fri, 29 Apr 2022 05:56:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SOt918Q5tLC9yfoSYSXVbzNfpXlEw2rjue1kgN8yipE=;
-        b=dqIu1oa6ZSuIU4QMMKXrb2DaGWuOMpeiWkk6w5pofaS7Hl10xsRUUDR4gw1yRQyByW
-         uZEAvGU7W8SFxz+DO8UVCm6TQP0wqNI2mtrWqn2+y/cJtZZT+C+OrzuGyp36UJoYbFUG
-         nf6JS8mZ/Doin3wXKDnGkT5xmwURnuqhQzMMHYGPZMDqxx9/XHRaqjwAA7NKCYc0wzWQ
-         3gzFNxVxWUVB8K1kQFrV/wwcJ8QZjvTEdmmQMFgpjWDJOXWaeN+BbV98318VK2179crF
-         OIkgl3zrXd4N6tRGQUm6BjZqyre955vJv5hUGQZ7j3oFY1MKrHYPkN3OlTD68+8VziD0
-         KX5Q==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=LLWWEDlOgYZpN9+xby0ImN5jscWq1aFSUUgrotmQ0rI=;
+        b=fnFEap5IFq0aGiyR2vHfc9KxKSqY5ad/ORou+GSyRGHrYnZOju80BGnhTPDIFlUzln
+         AErn9VH/fXMnzqHGVtLI8aHajc4zsSUIh1xvIf3224Fz9BrkHgeK8tUiqsN4x3+mc2pT
+         E5o9Hc0W0Ikardo1jAIYUF658vSa4YH93e+S8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SOt918Q5tLC9yfoSYSXVbzNfpXlEw2rjue1kgN8yipE=;
-        b=vc/icXXa6xzOXqUcoSfeYZ/ZqLN9aaR16vKjJGw7gNGUgQE8lIrDHwIynDkDvKtuB1
-         SADVbVNDlL8Gwt/IwkWKCUUuYfyCzbv3+5TFZDdD7+yqGdD+1TCfCTLLw5UNMCm+WD+G
-         v3JtBhUT6NbYfNuuza40V+pS79QuPAwT/wcYABrQy2BMbWzdIYqnTj+VlmW/nQx0FQxm
-         WUPK06vT/wfDe6bPdY4qTttIYck5DA1TGXRcBOk/DamlfXckyGyZ3nnf22vgUE17ljMH
-         bovADFNrcvcFhiueyZdjqedXVh4bsSKtVFMzl3X2HRm3wJIc6i0CVVbqKu27eVb0mOLT
-         IHpw==
-X-Gm-Message-State: AOAM530WZdCGB32BT12lko2/UY/jXGcKkhOGQvPBaNeQZ6UR6L6k0oy7
-	NNR/Q9TXIHlbT6KUQreg6K9YYsDSWrB4/eOokkjdCxYesFo=
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=LLWWEDlOgYZpN9+xby0ImN5jscWq1aFSUUgrotmQ0rI=;
+        b=oZDkou0W5OtiMsTBqWdj4VF3Lh/nYZSYUPK7CVJhBxSTYRspe8eUbqYNOS5IJBjFZJ
+         TyIylthnum6UXtSMsqf5cRkh+moko8hJ7KBTNeIk83seJFFEp58RDri11fadMu2ktEPf
+         ICD6Y/rq+t7okUFW13Kavn7mwTr/bYKJZkbaP7auiPEaRt6FyUm92s9KNlIJ1+woWFVG
+         z0hWLoaBgVic2cTQ0BpEoA+/i3NYXDyEt11b3gNJ8/8csu+dh5yVJMxSLGiPlMIbjZpc
+         i1atD/h9mwXMNa+hov1kvprP6Ho9IT4W7TdEBdbCFzLsvoSymlglP6mBWxbmfFZ4W0kT
+         A6Xg==
+X-Gm-Message-State: AOAM530Y/gWZBttuZLHyidey2My1VKTUIYjvkudWgQ7KPIy301kvPzGf
+	Ag9Cwf5RUIasXGdIlUvZzemS4A8sJiuPLg==
 X-Google-Smtp-Source: 
- ABdhPJwPx0C2cKkni4CpRv6qiXbk8rp7QdDdJQofTrfG7ohLgRMVaFW5RqZibQIApncfIWagxpNBXzHzw3YUOrfxsaU=
-X-Received: by 2002:a25:40c9:0:b0:645:71c9:b3a1 with SMTP id
- n192-20020a2540c9000000b0064571c9b3a1mr35344337yba.557.1651236589610; Fri, 29
- Apr 2022 05:49:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220429121411.2287536-1-ross.burton@arm.com>
-In-Reply-To: <20220429121411.2287536-1-ross.burton@arm.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Fri, 29 Apr 2022 08:49:38 -0400
+ ABdhPJwMdCbjAE3e6TWeDGQAnmqukHD4wIrzy+h1vj8ou30S9xUPhUa5h4qN8Ozzt85+Imtvv7/CEg==
+X-Received: by 2002:a05:6000:1ac9:b0:20a:f62e:8ff7 with SMTP id
+ i9-20020a0560001ac900b0020af62e8ff7mr6950838wry.424.1651237015480;
+        Fri, 29 Apr 2022 05:56:55 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:480b:fc7a:f316:cb3a?
+ ([2001:8b0:aba:5f3c:480b:fc7a:f316:cb3a])
+        by smtp.gmail.com with ESMTPSA id
+ n1-20020a1ca401000000b0039419509eb8sm2599575wme.47.2022.04.29.05.56.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Apr 2022 05:56:54 -0700 (PDT)
 Message-ID: 
- <CADkTA4MFr22fjLAfG5CMgyogkXb_cycueuCVYAJ57=BAh3k-2Q@mail.gmail.com>
-Subject: Re: [yocto] [PATCH yocto-autobuilder2 v2] config.py: add
- meta-virtualization to a-full
-To: Ross Burton <ross.burton@arm.com>
-Cc: yocto <yocto@lists.yoctoproject.org>, nd <nd@arm.com>
+ <06250637d4cdd75a322e53dbe4a983c2488a2e3d.camel@linuxfoundation.org>
+Subject: Re: [OE-core] [yocto] [qa-build-notification] QA notification for
+ completed autobuilder build (yocto-3.1.16.rc1)
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "Teoh, Jay Shen" <jay.shen.teoh@intel.com>,
+	"qa-build-notification@lists.yoctoproject.org"
+	 <qa-build-notification@lists.yoctoproject.org>,
+	"yocto@lists.yoctoproject.org"
+	 <yocto@lists.yoctoproject.org>, OE-core
+	 <openembedded-core@lists.openembedded.org>
+Date: Fri, 29 Apr 2022 13:56:54 +0100
+In-Reply-To: 
+ <DM5PR1101MB2348A19B6BC4935A96FE48A4BBFC9@DM5PR1101MB2348.namprd11.prod.outlook.com>
+References: 
+	<0101018065844051-3f135aa2-6cb1-485c-aa27-2c921567884b-000000@us-west-2.amazonses.com>
+	 <3c965c4de0252fed6b817deec761713addc6fb5d.camel@linuxfoundation.org>
+	 <DM5PR1101MB2348A19B6BC4935A96FE48A4BBFC9@DM5PR1101MB2348.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4-1ubuntu2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 29 Apr 2022 12:49:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56957
+ <yocto@lists.yoctoproject.org>; Fri, 29 Apr 2022 12:56:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56958
 
-On Fri, Apr 29, 2022 at 8:14 AM Ross Burton <ross.burton@arm.com> wrote:
->
-> The meta-virtualization builder is reliable and useful now, so add it to
-> a-full.
+On Fri, 2022-04-29 at 05:32 +0000, Teoh, Jay Shen wrote:
+> Hi All,
+> 
+> This is the full report for yocto-3.1.16.rc1:  
+> https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?h=intel-yocto-testresults
+> 
+> ======= Summary ========
+> No high milestone defects.
+> 
+> No new issue found.
 
-Acked-by: Bruce Ashfield <bruce.ashfield@gmail.com>
+Thanks!
 
-The meta-virtualization "team" will do my best to respond to breakages
-in a timely manner :)
+The TSC did discuss the perf issue earlier in the week and were good to release
+if there were no other issues found, we should therefore be good to release.
 
-Bruce
+Cheers,
 
->
-> Signed-off-by: Ross Burton <ross.burton@arm.com>
-> ---
->  config.py | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/config.py b/config.py
-> index 17ccd21..c1c8c7e 100644
-> --- a/config.py
-> +++ b/config.py
-> @@ -10,7 +10,7 @@ buildertorepos = {
->      "a-quick": ["poky", "meta-intel", "oecore", "bitbake",
->                  "meta-mingw", "meta-gplv2"],
->      "a-full": ["poky", "meta-intel", "oecore", "bitbake",
-> -                "meta-mingw", "meta-gplv2", "meta-arm", "meta-aws", "meta-agl", "meta-openembedded"],
-> +                "meta-mingw", "meta-gplv2", "meta-arm", "meta-aws", "meta-agl", "meta-openembedded", "meta-virtualization"],
->      "non-gpl3": ["poky", "meta-gplv2"],
->      "meta-mingw": ["poky", "meta-mingw"],
->      "qa-extras": ["poky", "meta-mingw"],
-> @@ -88,7 +88,7 @@ trigger_builders_wait_full = trigger_builders_wait_shared + [
->      "qemumips-alt", "edgerouter-alt", "qemuppc-alt", "qemux86-world-alt",
->      "oe-selftest-ubuntu", "oe-selftest-debian", "oe-selftest-fedora", "oe-selftest-centos",
->      "qemux86-64-ptest", "qemux86-64-ltp", "qemuarm64-ptest", "qemuarm64-ltp",
-> -    "meta-intel", "meta-arm", "meta-aws", "meta-agl-core"
-> +    "meta-intel", "meta-arm", "meta-aws", "meta-agl-core", "meta-virt"
->  ]
->
->  trigger_builders_wait_quick_releases = {
-> --
-> 2.25.1
->
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#56955): https://lists.yoctoproject.org/g/yocto/message/56955
-> Mute This Topic: https://lists.yoctoproject.org/mt/90774395/1050810
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [bruce.ashfield@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+Richard
 
-
--- 
-- Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end
-- "Use the force Harry" - Gandalf, Star Trek II
 
