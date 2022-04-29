@@ -1,77 +1,75 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <alessio.bogani@elettra.eu>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F2A02C433FE
-	for <webhook@archiver.kernel.org>; Fri, 29 Apr 2022 09:58:56 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by mx.groups.io with SMTP id smtpd.web09.8247.1651226331978592400
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DBEBFC433EF
+	for <webhook@archiver.kernel.org>; Fri, 29 Apr 2022 11:52:47 +0000 (UTC)
+Received: from bacon.elettra.eu (bacon.elettra.eu [140.105.206.12])
+ by mx.groups.io with SMTP id smtpd.web08.8998.1651233166165729494
  for <yocto@lists.yoctoproject.org>;
- Fri, 29 Apr 2022 02:58:52 -0700
+ Fri, 29 Apr 2022 04:52:46 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing;
- spf=pass (domain: arm.com, ip: 217.140.110.172, mailfrom: ross.burton@arm.com)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 56C331063;
-	Fri, 29 Apr 2022 02:58:51 -0700 (PDT)
-Received: from oss-tx204.lab.cambridge.arm.com
- (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DA0303F73B;
-	Fri, 29 Apr 2022 02:58:50 -0700 (PDT)
-From: Ross Burton <ross.burton@arm.com>
-To: yocto@lists.yoctoproject.org
-Cc: nd@arm.com
-Subject: [PATCH yocto-autobuilder2] config.py: add meta-virtualization to
- a-full
-Date: Fri, 29 Apr 2022 10:58:48 +0100
-Message-Id: <20220429095848.775599-1-ross.burton@arm.com>
-X-Mailer: git-send-email 2.25.1
+ spf=pass (domain: elettra.eu, ip: 140.105.206.12, mailfrom: alessio.bogani@elettra.eu)
+X-Envelope-From: <alessio.bogani@elettra.eu>
+Received: from zmp.elettra.eu (zmp.elettra.trieste.it [140.105.206.204])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by bacon.elettra.eu (Postfix) with ESMTPS id 94B4341D69
+	for <yocto@lists.yoctoproject.org>; Fri, 29 Apr 2022 13:52:36 +0200 (CEST)
+Received: from zmp.elettra.eu (localhost [127.0.0.1])
+	by zmp.elettra.eu (Postfix) with ESMTPS id 860D214308BA
+	for <yocto@lists.yoctoproject.org>; Fri, 29 Apr 2022 13:52:36 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by zmp.elettra.eu (Postfix) with ESMTP id 70B5A14308BC
+	for <yocto@lists.yoctoproject.org>; Fri, 29 Apr 2022 13:52:36 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at zmp.elettra.eu
+Received: from zmp.elettra.eu ([127.0.0.1])
+	by localhost (zmp.elettra.eu [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id xyZEQXQCeorY for <yocto@lists.yoctoproject.org>;
+	Fri, 29 Apr 2022 13:52:36 +0200 (CEST)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com
+ [209.85.219.181])
+	by zmp.elettra.eu (Postfix) with ESMTPSA id 5501C14308BA
+	for <yocto@lists.yoctoproject.org>; Fri, 29 Apr 2022 13:52:36 +0200 (CEST)
+Received: by mail-yb1-f181.google.com with SMTP id w17so14002001ybh.9
+        for <yocto@lists.yoctoproject.org>;
+ Fri, 29 Apr 2022 04:52:36 -0700 (PDT)
+X-Gm-Message-State: AOAM530IKFOl7owLSCFMY+iBidGQyjREMppk2AABQiTK/DmqwxbtzLw2
+	0QbxVYp6t9NAMYditlxHYb3v7cMCoA0GvB1AuB4=
+X-Google-Smtp-Source: 
+ ABdhPJxsgAahJ94MAc8aAividVGpc2nF105DLwoNHjlgE3771gZGVvG47HE+cm1n1YmjPbp6xCQhBuACKj+j/6tehd8=
+X-Received: by 2002:a05:6902:154d:b0:649:3455:e3e1 with SMTP id
+ r13-20020a056902154d00b006493455e3e1mr1137371ybu.635.1651233154960; Fri, 29
+ Apr 2022 04:52:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+From: Alessio Igor Bogani <alessio.bogani@elettra.eu>
+Date: Fri, 29 Apr 2022 13:51:59 +0200
+X-Gmail-Original-Message-ID: 
+ <CAPk1OjHyko81NFi0FtGruE5Z8TvUiwsdyT9aOyKRSv5886Guvg@mail.gmail.com>
+Message-ID: 
+ <CAPk1OjHyko81NFi0FtGruE5Z8TvUiwsdyT9aOyKRSv5886Guvg@mail.gmail.com>
+Subject: OS-less SDK
+To: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
+X-elettra-Libra-ESVA-Information: Please contact elettra for more information
+X-elettra-Libra-ESVA-ID: 94B4341D69.A8DDA
+X-elettra-Libra-ESVA: No virus found
+X-elettra-Libra-ESVA-From: alessio.bogani@elettra.eu
+X-elettra-Libra-ESVA-Watermark: 1651837959.45908@8ESVCmwpz9WkZvZ9IVkslw
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 29 Apr 2022 09:58:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56952
+ <yocto@lists.yoctoproject.org>; Fri, 29 Apr 2022 11:52:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56953
 
-The meta-virtualization builder is reliable and useful now, so add it to
-a-full.
+Dear Yocto developers,
 
-Signed-off-by: Ross Burton <ross.burton@arm.com>
----
- config.py | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Is there a way to generate an SDK which contains the toolchain for
+bare-metal systems (i.e. MCU without operating system)?
 
-diff --git a/config.py b/config.py
-index 17ccd21..bec61b1 100644
---- a/config.py
-+++ b/config.py
-@@ -10,7 +10,7 @@ buildertorepos =3D {
-     "a-quick": ["poky", "meta-intel", "oecore", "bitbake",
-                 "meta-mingw", "meta-gplv2"],
-     "a-full": ["poky", "meta-intel", "oecore", "bitbake",
--                "meta-mingw", "meta-gplv2", "meta-arm", "meta-aws", "met=
-a-agl", "meta-openembedded"],
-+                "meta-mingw", "meta-gplv2", "meta-arm", "meta-aws", "met=
-a-agl", "meta-openembedded", "meta-virtualization"],
-     "non-gpl3": ["poky", "meta-gplv2"],
-     "meta-mingw": ["poky", "meta-mingw"],
-     "qa-extras": ["poky", "meta-mingw"],
-@@ -88,7 +88,7 @@ trigger_builders_wait_full =3D trigger_builders_wait_sh=
-ared + [
-     "qemumips-alt", "edgerouter-alt", "qemuppc-alt", "qemux86-world-alt"=
-,
-     "oe-selftest-ubuntu", "oe-selftest-debian", "oe-selftest-fedora", "o=
-e-selftest-centos",
-     "qemux86-64-ptest", "qemux86-64-ltp", "qemuarm64-ptest", "qemuarm64-=
-ltp",=20
--    "meta-intel", "meta-arm", "meta-aws", "meta-agl-core"
-+    "meta-intel", "meta-arm", "meta-aws", "meta-agl-core", "meta-virtual=
-ization"
- ]
-=20
- trigger_builders_wait_quick_releases =3D {
---=20
-2.25.1
+Thanks in advance!
 
+Ciao,
+Alessio
 
