@@ -1,215 +1,213 @@
-Return-Path: <jay.shen.teoh@intel.com>
+Return-Path: <joel.winarske@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F15A1C433FE
-	for <webhook@archiver.kernel.org>; Fri, 29 Apr 2022 05:32:54 +0000 (UTC)
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by mx.groups.io with SMTP id smtpd.web08.6719.1651210371118587787
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5A29CC433F5
+	for <webhook@archiver.kernel.org>; Fri, 29 Apr 2022 06:27:25 +0000 (UTC)
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
+ [209.85.208.41])
+ by mx.groups.io with SMTP id smtpd.web12.7002.1651213640686628342
  for <yocto@lists.yoctoproject.org>;
- Thu, 28 Apr 2022 22:32:51 -0700
+ Thu, 28 Apr 2022 23:27:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel
- header.b=nGBmXWlN;
- spf=pass (domain: intel.com, ip: 192.55.52.120,
- mailfrom: jay.shen.teoh@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1651210371; x=1682746371;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=hnbTK8uPq6B52y/0aIK85NjUivaO6YNjudRjK4ftZXM=;
-  b=nGBmXWlNwfgNQMmnseN1c3klCYU+MVgKLuy3+7c2XofM19AWJR9hrXwP
-   FOYeZ3Hf59KY5BROEJKrNp9/T0QR5TQ/xZ0XWdl9Kv0jWFE7ygqtXT6u/
-   cqe7KA7/biygbPkxg5Z+0MNBj1GYvLZDcy3YCyHiwaBdfpdY7gcQemPbr
-   4UI/WRbghOXqfynfR8T3a4ErZBZ+gIVeYCPqq9ZzXXMN8VoLrWSb/8ite
-   0nbKbqN3I2LE2tjXkuYOByrGwM0zdBMwnYc/dNSI8c8t+rKavwldZ4mev
-   zBOZ6btfOWP+hjEa8BvQBmxjsZcBknPljSOKGSq6ARW24QUZhOqOPIBRz
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10331"; a="265386396"
-X-IronPort-AV: E=Sophos;i="5.91,297,1647327600";
-   d="scan'208";a="265386396"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2022 22:32:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,297,1647327600";
-   d="scan'208";a="514665592"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
-  by orsmga003.jf.intel.com with ESMTP; 28 Apr 2022 22:32:47 -0700
-Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
- ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Thu, 28 Apr 2022 22:32:47 -0700
-Received: from orsmsx605.amr.corp.intel.com (10.22.229.18) by
- ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Thu, 28 Apr 2022 22:32:46 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Thu, 28 Apr 2022 22:32:46 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.173)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Thu, 28 Apr 2022 22:32:46 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SisH2jUohIRP4NocnYUNhY1lf9sCum5jajlQ9K8XuhETVxbJcIujo0HaNqpl/vbRY8ks6TsdaZpvWu/g6JN/Z/za3Vbuhc1z2GnRNBnrwxr5cZyzBErLr4ARWg5oSVORDv8Jz2nBKJBajvJVaz862CofKFulgAwAI4zc/Z8fS6NoMKfbi17oiDmE174u6c8p9uscXdr2HzJj/zf9Z4q4CF1jS+oRc9ixwnTwa78tYSTEsHzRro49ZurZIJzxV68oGnWjQf6CkpmuQn0Muvw50zx4VPF6pm8EfMWVN1K5koPJ28I8xjbw8wlKpJrjmt2SbHLads3/VmF+Ch6DJfWIvg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hnbTK8uPq6B52y/0aIK85NjUivaO6YNjudRjK4ftZXM=;
- b=BU/A9SvPMl+T9SjsAXvSMzXheF0X895OhhGvYlPPfqvoDBmYZa2BVyRl6pwjx9eZvsi6Uk+5FeJGKdbmTjVPfgXkJe/BAZ8fWdPC9+T+ruWF4Q1apYN44hfMyAA7BH0Xaravo1MYyMMUkammZ31A0eq8Vx1NWr1G5uTVhgIy5qfRj/oJ9uvixv2RYDt1t5y5Ww3m3K1euwPsgtCHuVCDsseueAUAy8YgcdtD0ed7euNKPPpeI73sWo99NmU57DgVmo3QeZhqc/cmXepvVICrBeOeiPh1ysK3jPjldbogNE/Emqf0CZ5jzHoMMdQiC2naaFYODHrswPsYPIryuSBISA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM5PR1101MB2348.namprd11.prod.outlook.com (2603:10b6:3:a8::16)
- by PH0PR11MB5045.namprd11.prod.outlook.com (2603:10b6:510:3f::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.13; Fri, 29 Apr
- 2022 05:32:44 +0000
-Received: from DM5PR1101MB2348.namprd11.prod.outlook.com
- ([fe80::657c:6a6e:4f6e:8efc]) by DM5PR1101MB2348.namprd11.prod.outlook.com
- ([fe80::657c:6a6e:4f6e:8efc%5]) with mapi id 15.20.5186.026; Fri, 29 Apr 2022
- 05:32:44 +0000
-From: "Teoh, Jay Shen" <jay.shen.teoh@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>, OE-core
-	<openembedded-core@lists.openembedded.org>
-Subject: RE: [yocto] [qa-build-notification] QA notification for completed
- autobuilder build (yocto-3.1.16.rc1)
-Thread-Topic: [yocto] [qa-build-notification] QA notification for completed
- autobuilder build (yocto-3.1.16.rc1)
-Thread-Index: AQHYWVxaj3E3gP/+AkWVx8rHFaIFJq0CGLsAgARJfoA=
-Date: Fri, 29 Apr 2022 05:32:44 +0000
-Message-ID: 
- <DM5PR1101MB2348A19B6BC4935A96FE48A4BBFC9@DM5PR1101MB2348.namprd11.prod.outlook.com>
-References: 
- <0101018065844051-3f135aa2-6cb1-485c-aa27-2c921567884b-000000@us-west-2.amazonses.com>
- <3c965c4de0252fed6b817deec761713addc6fb5d.camel@linuxfoundation.org>
-In-Reply-To: 
- <3c965c4de0252fed6b817deec761713addc6fb5d.camel@linuxfoundation.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.6.401.20
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 52fbd40a-660c-4096-7918-08da29a1b027
-x-ms-traffictypediagnostic: PH0PR11MB5045:EE_
-x-microsoft-antispam-prvs: 
- <PH0PR11MB5045996C4EF46A674DB75791BBFC9@PH0PR11MB5045.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- BDtRUGYILpEOeyRgvgKY3EBcAjBYHgYNJ2zhnbzJanwEXH24FpPdN1fVtZEXbgo9HJIE57+xKWzGSDzaCCrM7SuxBtE7TYET0tZ+8wE/qVuxtTGtYZqijK9bu6x/C/N/KNSYxNn6tiK4PJ/4jZ2WdEsr2lIEQERGxS9zAOj7erpmayn9lzVDDRoJKqv1QvXjvF3m8k3AgTVTxOno2p+WMruezzD+5xjibtdmwr0dhDFIKYHA0wrSnW7yKh/fz/0ThjOKw7lsKqNn3kfNlqSuDXG3D2EWUaRA6oShUSOeGBXS3bmTCJK3AyosLQv+SP2CoQE59DJ8jj8AKMFXfY9klDTFKABH+BZySA3Y4GKevdVkTSMk5cCMTx3urgjY2rwrvOFbu1udu/2d8Y6X+6ADCf8pkdDuYGKh79BI7TWVozloZMuhRGnbMAomgLsv/ybmJOyvObcj+iSpO2gy/eLB/Unds9/JyjqjxSWJSzx184wv8u1USWPFcguY2BWwF1MHeLN+laN9qKm8oqH1M4klPsB19nMNc6buMuAm0a8z3yWFb4ogjx3qK1jsH2muGLRtIZM5cPdWQYYJ7riStno1HlFHpc2fIAHcHbeZReVmbbrKYjkEtT6+BxZU/J3EF+ZNzalMkeff9SIkq6hOoQRnQ54niYDmvogoJkNWRSbOZNEuzRMwxkn2iyWdKm2wsYvzvm4uiYxc3IXPt5wY05En3hVDFOwx4pxRnHdd+BEjTVvuRyRfK+Jl0eK0bZFn/698grRhRzlc5tLHxWGaTtYYS0UYkkYogaNiTY6x2Y8hhkiFEcV3qBVPg2gVVTIDjur3Ba5G0nKOlFWRDIjaCJtTjQ==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR1101MB2348.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(186003)(7696005)(66556008)(66946007)(5660300002)(33656002)(2906002)(316002)(66476007)(76116006)(55016003)(52536014)(8676002)(66446008)(64756008)(83380400001)(15650500001)(110136005)(8936002)(71200400001)(86362001)(966005)(508600001)(38100700002)(38070700005)(82960400001)(9686003)(55236004)(26005)(53546011)(122000001)(6506007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?THFTaC8zVmlVZW1sakZmL1dDanhaUEtFQ2swcTNGRHZKdXpTYjZqYzVHWjhu?=
- =?utf-8?B?MjM3QXJ4WmpGWHVEVFh0b1pQUDZxZFpKUUxqYmxSN1NBUzM3NnQ5MFc5L2lE?=
- =?utf-8?B?VWxLdUlJb1RlZDcyVjU3a3JqNUp5aEhzdU1INi9tQ0hPZkRtam9lWmwybnJ0?=
- =?utf-8?B?YVB2RUhYVWFPOU5yWlRiNXVwa1Z2dUlUaGNkelBraEp1REsydHFLM3o2QkpO?=
- =?utf-8?B?OFl6aERTbmc0cTArenlJamxsN01TUS9jRkpVSnJ1cUZCSDJaWlpzZzVNeEJ5?=
- =?utf-8?B?U0plQ1JsOFp1dHJQUFMyMGtxSU9RQTRBb0FYYmc0eDJxOWtoV1d0azZaK0s4?=
- =?utf-8?B?UldUYmMzS0tOZGszck92QVRuYUI4cjdUeU5ZcXVydTExQVMxSjgxSnFZMEI0?=
- =?utf-8?B?UGREQ2xFRDQ2Sndmc2dNMGJEeWRBWEhVRElVZCttakxoZSsxUTNybGxPT0dY?=
- =?utf-8?B?QTZXUzJhekozTXhoeFpleVYyYitDd1FXaXJyV0RLZnhSMGNyVFF2REh4alZL?=
- =?utf-8?B?cktMMmUvNEl4b0ZFdFBYOFNjWUphcGo1d1NHZkZxeEVnUTdZT1MrVVA3ZHVE?=
- =?utf-8?B?dWEwTGs3UXNLS2JDWE9FMUU5TG1ITWRYMWZha09BYWhpRUUvQ2xQTXpCTzdQ?=
- =?utf-8?B?aVViSXFsVEdHMWQ5Q2h0R3N1QUlzM29NdWRyNXFLdVQ1dFJxWHZrK1RvdmF2?=
- =?utf-8?B?TCtJV2FEMWJyT1c1T1lkRTVmT0Z5TTdBZ09SeWVMSFFwamJucmFXNGJqL25x?=
- =?utf-8?B?d3NWZDJqWTRyV2Roemd4c3ZHMDFkUHBaaHRmQTNBYWwyTnNEMlVZUWVqNnJo?=
- =?utf-8?B?aU9DNkQ1aHpFd21LVDkyVjFvZWtNSWl2eWJ5UlE4TGhJWk5MeE1hcnFPRUpL?=
- =?utf-8?B?TisyaldHTzV3UHJKb0dxYnJQZEZta25sSXcyUUFBWFRlQnIwT2VzMU5GVzBu?=
- =?utf-8?B?MFowRzFKaGtQRTAxLzRFZ3lUcTZpbW5WNm56S2hEd3dEQ2U1UVJSQUJoZVA4?=
- =?utf-8?B?bkZMdmloYjN5S3RTUzNSZGhtc0tic0IwOXFpeGw4MTJzMWsyZUVvZTUwTzR5?=
- =?utf-8?B?d1NnZTE2WlFkc0dKZHJ1WlZnc0JZSnFSZHVqS2NTaUk2RUFwQlJZODJkYUlM?=
- =?utf-8?B?TlRiZGVIS2ZpSVJ2aDZEQWRPZFo0VldTSzBoaGNFaTRRMjZNZ2xubnJjVGpm?=
- =?utf-8?B?aHh6QnpnMmEzbHpLQ2FKU1RRMTdQQzJZcC9rR0NKbk5KdEthd05jcTRPWFZB?=
- =?utf-8?B?cEtpalZCSGZJNHQ1aXp4clJtSjlOM0hxc2g4dVR0TUFoanh1d21BR2dIUEtr?=
- =?utf-8?B?dTR3YkozSUIxRkVmYmRiQ3BIL01pK0V4M05zTVFvTGUwdmhHaGIzRDVqTEtN?=
- =?utf-8?B?R2xIMVd3a2pFd1MvemxaUWEzRHBpNnJ1SUgwbG5iS2g2KzZ4N3NGT1I2dDhB?=
- =?utf-8?B?SGNqekRWUXd3bjZteVc3aFRlYkMxeldIVlRYMDNudWVlRkJqc2hIUHczNk9l?=
- =?utf-8?B?bUVvNFVDbjFja1pvNm13Z3VYYStLNDFlK0YrekJsc0kvSHhwUm02YXpRUjd2?=
- =?utf-8?B?ZytkNHU4NzZ2Tlo4clVJWVFWK1lTVHJOWCsvSDNvRDBvVndMWGRsZVdyR0xS?=
- =?utf-8?B?L0FsNzZqaEtVaXVoTGNvUFUrNnQwcmF1cXdYZEREVjNreCtUb2F1RzdJZGI0?=
- =?utf-8?B?bGhtTGJXRzFISFpUNVdIQ050UHNiUzRlbVlwNWtYazZDSUFPZytuSWhCcHY1?=
- =?utf-8?B?cEF6TUpMU2tMVTN2SHhDMmljbjFGVzJ3Y2dROFp3MEFmQVB6cUkyRHlTeThK?=
- =?utf-8?B?c2grYmVFSGo2Qjk3dEE1ZVJZZ1FTUXdNQ3RwcVMxdUVVK2ZkK0tyTkJtaFhK?=
- =?utf-8?B?aVVDRUNlOGh6R0N1ZWQ4R2grZWFPR1dJTmREYnEyRE0zV0VzQksrZHpudVBo?=
- =?utf-8?B?SlFIVmN2Rm9QeWlQaTNnb0RoS3FlUmdFd3lMZjI0ZVVOYVB5M3ppRUpQdW44?=
- =?utf-8?B?d0c4QTVnTC94ajcvR3k2NG1CK2YyTnFQQ21nOVJtejhnV0s2TVArMS9pdWh3?=
- =?utf-8?B?TVQzRkkwUElPbEtwdkl3RWpvNGc0MEYrN3FWZGhIYXc3bzlta2tmZlBsSU1I?=
- =?utf-8?B?UGg0NW5rOG5VSmhkK2tiY0lxUmo3VGJvZHRtVHBldzdHSUtkZUg0K1huN2x1?=
- =?utf-8?B?TUpoRVlUbFUxZVZReDRvM0dWWFAvWmpLM1RpNXA4SkxYSjZzNlJnOUFxQi9Z?=
- =?utf-8?B?bytMMzN4WDRudW5rZjRWZmRuak1naUczNm1FSndYWWdIa0FLMlRhMjlFYTRX?=
- =?utf-8?B?S1FQeDRiVHAwNHIvUU9zY1ZLRFE2dHJOVzR4KzlvQklyc3FlMXNwQT09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=JP790G+v;
+ spf=pass (domain: gmail.com, ip: 209.85.208.41,
+ mailfrom: joel.winarske@gmail.com)
+Received: by mail-ed1-f41.google.com with SMTP id z19so7894666edx.9
+        for <yocto@lists.yoctoproject.org>;
+ Thu, 28 Apr 2022 23:27:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=J4FGkxpOJFuaXRDs6AC7cnbu2WlDmO8cS/Zjwi6TEGA=;
+        b=JP790G+vz192//D8/Vv4bYptKv6pq5xMXdUaZHm3fL60VfsaBQ9C7y+r3p3YwJYpmn
+         6oMrJm8fJsB4amjWdjtUOeXz8edmBEAxGORBvmCK6Y7VqhdlnzzZ5AVKbVVrxKvI4p16
+         jB0RCr49JTS6fGW5AEIdPgKMplB3j/+jjEQPYiwx/mTHivzrT8JK/vgWS89besAoQip/
+         CJdYGaCtPgGczhSrCrLdlLJxqWoFtsAjKPe+MCdBugFF1Ah23V3QDzwvjDI2bvBro8vm
+         9V8M/H3IfO22ip0z4RfIDcBTHqqc16HoiD3YoZ2s6qtORvfN+Zb9njB/RVIjhM1nsvkH
+         z3dQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=J4FGkxpOJFuaXRDs6AC7cnbu2WlDmO8cS/Zjwi6TEGA=;
+        b=H9m5DH9sbtqbqBGJ3cKmvuJ7CJ7zqBsVRUS1kE+F59TtKnWkXoLI2qBvaxp/kw5aRe
+         RagQ1laz4cO7j+eITkbYDzQcy0OLEhGdrfxCa/pWxlCpxMtdgZxnB0B+V46cZ86Xrl0h
+         DQYiMe8UouMAdzPiHRaQVNv97rbSSeeeciba/OQN4c+MOxIV3w03Y9QkSTUKI2+0Wjc3
+         dTohuebVVtASLsAQn/ra5jDYMYsakySv1Vf8oXj4EXLRdQqqh3ABX65ODK3wCanB5l1f
+         KTu+ylP3kFrYevOFi5+XoMDB0N9os91fG4sSEMgiVvpArxqtJ3uwU4g+6ntiSkCcZCZ0
+         K07w==
+X-Gm-Message-State: AOAM530wiV/pZznW362hybQjYHE/jrJUrWuCIXgowOwsQQs4kxAPQ8o5
+	T4EbuKECyxMY3fWJJ4/huy0glYM0l5nPhLiAo04=
+X-Google-Smtp-Source: 
+ ABdhPJyb2ZLt89HCNR4br3W+nP5qXHxq0ccaB44c9SdwqJCQcif0DuPHWc9JNTcG43pRtAHy9SNrZgDF+qllU7K2LXQ=
+X-Received: by 2002:aa7:d5c5:0:b0:425:b144:ab84 with SMTP id
+ d5-20020aa7d5c5000000b00425b144ab84mr39756790eds.200.1651213639100; Thu, 28
+ Apr 2022 23:27:19 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: 
- DM5PR1101MB2348.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 52fbd40a-660c-4096-7918-08da29a1b027
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Apr 2022 05:32:44.8040
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- LFSaKPJ1PQR1T4VEG5W0SubLhN+vE/oEYL1pcNPjK5MSixEVZdXd/tCVi3BKSzyhutKgiZKYD87/2fuBouzFtA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5045
-X-OriginatorOrg: intel.com
+References: 
+ <DM8PR16MB4357BA2349F9D42C1786A5E8C7FD9@DM8PR16MB4357.namprd16.prod.outlook.com>
+In-Reply-To: 
+ <DM8PR16MB4357BA2349F9D42C1786A5E8C7FD9@DM8PR16MB4357.namprd16.prod.outlook.com>
+From: Joel Winarske <joel.winarske@gmail.com>
+Date: Thu, 28 Apr 2022 23:27:06 -0700
+Message-ID: 
+ <CABKMkPLwm1e_S+pdqw4j_J-oVokVWphdXiMAkiaME3MZvnyg3Q@mail.gmail.com>
+Subject: Re: [yocto] Adding systemd to yocto
+To: Edgar Mobile <heideggm@hotmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000682ccc05ddc5228e"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 29 Apr 2022 05:32:54 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56949
+ <yocto@lists.yoctoproject.org>; Fri, 29 Apr 2022 06:27:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56950
 
-SGkgQWxsLA0KDQpUaGlzIGlzIHRoZSBmdWxsIHJlcG9ydCBmb3IgeW9jdG8tMy4xLjE2LnJjMTog
-IA0KaHR0cHM6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9jZ2l0L2NnaXQuY2dpL3lvY3RvLXRlc3Ry
-ZXN1bHRzLWNvbnRyaWIvdHJlZS8/aD1pbnRlbC15b2N0by10ZXN0cmVzdWx0cw0KDQo9PT09PT09
-IFN1bW1hcnkgPT09PT09PT0NCk5vIGhpZ2ggbWlsZXN0b25lIGRlZmVjdHMuDQoNCk5vIG5ldyBp
-c3N1ZSBmb3VuZC4NCg0KVGhhbmtzLA0KSmF5DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0t
-LS0NCj4gRnJvbTogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyA8eW9jdG9AbGlzdHMueW9j
-dG9wcm9qZWN0Lm9yZz4gT24gQmVoYWxmDQo+IE9mIFJpY2hhcmQgUHVyZGllDQo+IFNlbnQ6IFR1
-ZXNkYXksIDI2IEFwcmlsLCAyMDIyIDg6MDQgUE0NCj4gVG86IHFhLWJ1aWxkLW5vdGlmaWNhdGlv
-bkBsaXN0cy55b2N0b3Byb2plY3Qub3JnOyB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnDQo+
-IENjOiBZb2N0byBUU0MgPHRzY0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPjsgU3RldmUgU2Frb21h
-bg0KPiA8c3RldmVAc2Frb21hbi5jb20+DQo+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIFtxYS1idWls
-ZC1ub3RpZmljYXRpb25dIFFBIG5vdGlmaWNhdGlvbiBmb3IgY29tcGxldGVkDQo+IGF1dG9idWls
-ZGVyIGJ1aWxkICh5b2N0by0zLjEuMTYucmMxKQ0KPiANCj4gT24gVHVlLCAyMDIyLTA0LTI2IGF0
-IDEwOjU2ICswMDAwLCBQb2t5YnVpbGQgVXNlciB3cm90ZToNCj4gPiBBIGJ1aWxkIGZsYWdnZWQg
-Zm9yIFFBICh5b2N0by0zLjEuMTYucmMxKSB3YXMgY29tcGxldGVkIG9uIHRoZSBhdXRvYnVpbGRl
-cg0KPiBhbmQgaXMgYXZhaWxhYmxlIGF0Og0KPiA+DQo+ID4NCj4gPiAgICAgaHR0cHM6Ly9hdXRv
-YnVpbGRlci55b2N0by5pby9wdWIvcmVsZWFzZXMveW9jdG8tMy4xLjE2LnJjMQ0KPiA+DQo+ID4N
-Cj4gPiBCdWlsZCBoYXNoIGluZm9ybWF0aW9uOg0KPiA+DQo+ID4gYml0YmFrZTogMDc4NGRiN2Rk
-MGZlZjZmMDYyMWFkOGQ3NDM3MmY0NGU4N2ZlZjk1MA0KPiA+IG1ldGEtYWdsOiBjYTUzMzA4Zjg4
-MDNmYjUwNzA5YjNmMTdiYjFmOWU0NzYzNjZiYjYyDQo+ID4gbWV0YS1hcm06IDVjMDk2ODQ4NjNi
-ZThlODAzZTNlOTg3YTVjZTQ5NDA3MjFjM2YzOWENCj4gPiBtZXRhLWF3czogOTk3OWNmYTY3NjEw
-NWNiNjhjZmFkZmRhZWFiZjA0NGQ3YzkxOTMxOQ0KPiA+IG1ldGEtZ3BsdjI6IDYwYjI1MWMyNWJh
-ODdlOTQ2YTBjYTRjZGM4ZDE3YjFjYjA5MjkyYWMNCj4gPiBtZXRhLWludGVsOiBhZmZkYTEwNzI0
-ZTVlM2M3OTQ4MjAwZTg4OGE5MWZmZGI1ZDMyYTExDQo+ID4gbWV0YS1taW5ndzogNTI0ZGU2ODYy
-MDViNWQ2NzM2NjYxZDQ1MzJmNWY5OGZlZTg1ODliNw0KPiA+IG1ldGEtb3BlbmVtYmVkZGVkOiBm
-ZGQxZGZlNmI0YjI0MTJjYzUzNmMyNjQ1MGNlMTI2Yzk2MGQ4MTA3DQo+ID4gb2Vjb3JlOiA4ZTgx
-ZDM4MDQ4Yzk1M2QwODIzYWJmMDRkNWIyNTA2Y2Q5ODhmMGJiDQo+ID4gcG9reTogZjE0OTkyOTUw
-ZWI5MGRjMTY4ZWI4MjgyM2FiNjk1MzhmNjY4ZjhiYw0KPiANCj4gVGhlcmUgd2FzIG9uZSBmYWls
-dXJlIGluIHRoaXMgYnVpbGQgb24gYSBuZXcgcGVyZm9ybWFuY2Ugd29ya2VyLiBXZSd2ZSBqdXN0
-DQo+IHN3aXRjaGVkIG92ZXIgdG8gdGhlIG5ldyBwZXJmb3JtYW5jZSB3b3JrZXJzIHNvIHdlIGNh
-biBkZWNvbW1pc3Npb24gdGhlDQo+IG90aGVycyBhbmQgYXBwbHkgdGhlIGRhdGEgY2VudHJlIHBv
-d2VyIGJ1ZGdldCB0byBvdGhlciB0aGluZ3MuIEkgZG9uJ3QgdGhpbmsNCj4gdGhhdCBzaG91bGQg
-YmxvY2sgcmVsZWFzZS4NCj4gDQo+IEknbGwgd29yayB3aXRoIFN0ZXZlIHRvIGdldCB0aGUgY2hh
-bmdlcyB3ZSBuZWVkIHNvcnRlZCBzbyB0aGlzIGRvZXNuJ3QgaGFwcGVuDQo+IGluIGZ1dHVyZSwg
-dGhlIGlzc3VlcyBhcmUgdG8gZG8gd2l0aCB0aGUgaHRtbCBlbWFpbCByZXBvcnQgZ2VuZXJhdGlv
-biB3aGljaA0KPiB3ZSBubyBsb25nZXIgdXNlLg0KPiANCj4gQ2hlZXJzLA0KPiANCj4gUmljaGFy
-ZA0KDQo=
+--000000000000682ccc05ddc5228e
+Content-Type: text/plain; charset="UTF-8"
+
+Line 30-36 include changes to convert a sysvinit image to systemd.
+https://github.com/jwinarske/manifests/blob/honister/conf/rpi64_config#L30
+
+
+
+On Thu, Apr 28, 2022, 10:19 AM Edgar Mobile <heideggm@hotmail.com> wrote:
+
+> Greetings,
+>
+> I tried to add systemd to weston-image-core by adding the following lines
+> in local.conf:
+>
+> DISTRO_FEATURES:append = " systemd" VIRTUAL-RUNTIME_init_manager =
+> "systemd"
+>
+> And indeed, bitbake seems to use them in somve way:
+>
+> DISTRO_FEATURES="acl alsa argp bluetooth debuginfod ext2 ipv4 ipv6
+> largefile pcmcia usbgadget usbhost wifi xattr nfs zeroconf pci 3g nfc x11
+> vfat seccomp largefile opengl ptest multiarch wayland vulkan systemd\"
+> VIRTUAL-RUNTIME_init_manager = \"systemd pulseaudio sysvinit
+> gobject-introspection-data ldconfig"
+> POKY_DEFAULT_DISTRO_FEATURES="largefile opengl ptest multiarch wayland
+> vulkan"
+>
+> However, if I start the system in qemu none of  the expected systemd
+> binaries like systemd, systemd-journal etc. is present. Did I miss
+> something?
+>
+> Regards
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#56947):
+> https://lists.yoctoproject.org/g/yocto/message/56947
+> Mute This Topic: https://lists.yoctoproject.org/mt/90758452/2167248
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> joel.winarske@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
+>
+
+--000000000000682ccc05ddc5228e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><div>Line 30-36 include changes to convert a sysvinit ima=
+ge to systemd.</div><div dir=3D"auto"><a href=3D"https://github.com/jwinars=
+ke/manifests/blob/honister/conf/rpi64_config#L30">https://github.com/jwinar=
+ske/manifests/blob/honister/conf/rpi64_config#L30</a><br><div dir=3D"auto">=
+<br></div><br><br><div class=3D"gmail_quote" dir=3D"auto"><div dir=3D"ltr" =
+class=3D"gmail_attr">On Thu, Apr 28, 2022, 10:19 AM Edgar Mobile &lt;<a hre=
+f=3D"mailto:heideggm@hotmail.com">heideggm@hotmail.com</a>&gt; wrote:<br></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-lef=
+t:1px #ccc solid;padding-left:1ex">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+Greetings,</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+I tried to add systemd to weston-image-core by adding the following lines i=
+n local.conf:</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<span style=3D"font-weight:normal;display:inline!important">DISTRO_FEATURES=
+:append =3D &quot; systemd&quot; VIRTUAL-RUNTIME_init_manager =3D &quot;sys=
+temd&quot;<span>=C2=A0</span></span></div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+And indeed, bitbake seems to use them in somve way:</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<span style=3D"font-weight:normal;display:inline!important">DISTRO_FEATURES=
+=3D&quot;acl alsa argp bluetooth debuginfod ext2 ipv4 ipv6 largefile pcmcia=
+ usbgadget usbhost wifi xattr nfs zeroconf pci 3g nfc x11 vfat seccomp larg=
+efile opengl ptest
+ multiarch wayland vulkan systemd\&quot; VIRTUAL-RUNTIME_init_manager =3D \=
+&quot;systemd pulseaudio sysvinit gobject-introspection-data ldconfig&quot;=
+</span><br style=3D"font-weight:normal">
+<span style=3D"font-weight:normal;display:inline!important">POKY_DEFAULT_DI=
+STRO_FEATURES=3D&quot;largefile opengl ptest multiarch wayland vulkan&quot;=
+</span></div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+However, if I start the system in qemu none of=C2=A0 the expected systemd b=
+inaries like systemd, systemd-journal etc. is present. Did I miss something=
+?</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+Regards<br>
+</div>
+</div>
+
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#56947): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/56947" rel=3D"noreferrer noreferrer" target=3D"_blank">https://l=
+ists.yoctoproject.org/g/yocto/message/56947</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/90758452/2167=
+248" rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctopro=
+ject.org/mt/90758452/2167248</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank" rel=3D"noreferrer">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctoproject.org=
+/g/yocto/unsub</a> [<a href=3D"mailto:joel.winarske@gmail.com" target=3D"_b=
+lank" rel=3D"noreferrer">joel.winarske@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div></div></div>
+
+--000000000000682ccc05ddc5228e--
 
