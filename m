@@ -1,215 +1,85 @@
-Return-Path: <quaresma.jose@gmail.com>
+Return-Path: <scott.murray@konsulko.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 08664C433F5
-	for <webhook@archiver.kernel.org>; Mon,  2 May 2022 09:25:08 +0000 (UTC)
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com
- [209.85.167.43])
- by mx.groups.io with SMTP id smtpd.web08.8475.1651483504520313100
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D1406C433EF
+	for <webhook@archiver.kernel.org>; Mon,  2 May 2022 14:32:29 +0000 (UTC)
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com
+ [209.85.166.41])
+ by mx.groups.io with SMTP id smtpd.web09.11328.1651501945109278442
  for <yocto@lists.yoctoproject.org>;
- Mon, 02 May 2022 02:25:04 -0700
+ Mon, 02 May 2022 07:32:25 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Da4Wp0WP;
- spf=pass (domain: gmail.com, ip: 209.85.167.43,
- mailfrom: quaresma.jose@gmail.com)
-Received: by mail-lf1-f43.google.com with SMTP id w19so24235622lfu.11
+ dkim=pass header.i=@konsulko.com header.s=google header.b=ByfXSQ1L;
+ spf=pass (domain: konsulko.com, ip: 209.85.166.41,
+ mailfrom: scott.murray@konsulko.com)
+Received: by mail-io1-f41.google.com with SMTP id c125so16142306iof.9
         for <yocto@lists.yoctoproject.org>;
- Mon, 02 May 2022 02:25:04 -0700 (PDT)
+ Mon, 02 May 2022 07:32:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SxtgwQ69VUKrSTrvRBb5RY/3KtBNnImZyC+nmW5wlBE=;
-        b=Da4Wp0WPOxQRy5pWDNpLIRBBUUSvMfiZljksCmocBTfcspZoECdp6nPQZkMxeYhi55
-         uVZcSy88gPvhoKykmNegXeVCMwo7ay1H3JsRqV0THe8eOl8hTTPgx26pWao8qsQuyWP7
-         Yb4fhl3tgbbaf+Q0X6kZ4a9Is90DFnEb9qaFJQSPQCUY6niBWsL7R2/tvJIqWL730KYZ
-         uAOaMZIXpyK7DvU90fcGwKW1E72ih16Zq0hOcOZ3KakXnSRPalG/3M2xVc+OyR4Y/DXz
-         43qS/NTV+6D9qK5EKe/TDnIDM17yMio9B2nc/x+Bq+kGdazwQNIxe/4ofcbFBGIfRlKg
-         bH3g==
+        d=konsulko.com; s=google;
+        h=date:from:to:cc:subject:in-reply-to:message-id:references
+         :mime-version;
+        bh=kgywc5re1lt/FilrPzXiQlefoYxtC++r4UFPZEjs1lQ=;
+        b=ByfXSQ1L494DxG0DpLpEKNUbi12Mgk6Xca1CpKlwzWpGeqXmYkM4t4ljSZV0cn5ec1
+         VsIGWVefyN3+cBpZJ6fwXdXlVAgcMJTb/Z2V8ANmgS+XLJ6j2MrU5WCeMNsLXk+zMrmA
+         e4ST16VDLwogdQdsr5EgElFQRVMxRZNJE1Huo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SxtgwQ69VUKrSTrvRBb5RY/3KtBNnImZyC+nmW5wlBE=;
-        b=JRB/8JTVo7aaAjUg/9KYSV0Ym7VMFPSPXVe7ytpCEXodsnm03GCa9R1EXdEbb/zMw4
-         yz3oxxQqDtO310+Sl2KWfaZm8MkWYj6jrEYPFVEr3/QG71lWFXvDaz0QSzVf8smvJhhd
-         nCN3z3n5o/eXdSfz0Z066r9Djdpf6XfWITAIfbgyJ8pwSG0px7y+HONMVvsYe+3pNUBE
-         hD6qzr8lD+gMV+2lRntgocjl3bImrGhDa+a28DfX/w3i8Cmd+MuEF4xa9I5w2VSv+Ny+
-         KlC1FwSKb1l27+Vbi6XWUYx4Tje4nRcdhtLFc8KxeCfaFK2BfmOpNkPVezCnOe/3EnBo
-         TkwA==
-X-Gm-Message-State: AOAM533G6BaWzDYe4EzoVBlqKq/Zan6u8RWtsQMBqYwfxXeskrEJDxjc
-	XtuAfu2LS321nNs2AsrqYx5eVcbW8AGrldqqkXE=
+        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+         :references:mime-version;
+        bh=kgywc5re1lt/FilrPzXiQlefoYxtC++r4UFPZEjs1lQ=;
+        b=jZbg/JvM2Xi78r5p8WcHlDEvUr4KwyiVcAEQYKMlVeXf/ZWRtk3855gp60TAtgv2XB
+         wuNFIF0I6kAyy9ai8TqyebhQwtIN/63khx4i0XI9S8LDsrtgoge1bWNA/Pb4N1xpSHtf
+         ILGi1xOufbs7yHyl+oCfJ9s8RQ22Yz7vvCG/hJZpi3TlUCjVst3XXT3UJ5zsZpccV3Nv
+         UIrpQ03kE3+wd3rJjWlrdX3GYCIh006XFfuoP3NtolT2uW+wVnJj+JRGUVzl9OX47x2j
+         DPcCAuG9xOojQFYMdlRgEzw7fZY1LlekzmHwzvdZmlF1djGz8xKxvc5RVhwacVoONnF4
+         hgsw==
+X-Gm-Message-State: AOAM532Qpq9BmWLMv7PZjR9dlGd9aSClLsvFVlmSJlPsjF6QOtpGXDt1
+	eKhj8hv/yMGMdGUYKrdgZobu5w==
 X-Google-Smtp-Source: 
- ABdhPJyJp5ZWCqaDuhES3drOLvO1LpLtJVIzpobWoPIhKRyNvagK2KAUJCbB/Ed7LW4PkEHSbCiGeLgTtvHVqNOoOe0=
-X-Received: by 2002:a05:6512:10d4:b0:473:9eb4:6a43 with SMTP id
- k20-20020a05651210d400b004739eb46a43mr2479106lfg.324.1651483502693; Mon, 02
- May 2022 02:25:02 -0700 (PDT)
-MIME-Version: 1.0
+ ABdhPJzO5NK5Lh/w4RKuyYVYPTWAWu2LdCEzCUhxjkIngYbhEl1mIPg/w6/GCel6mcH6cxXsEkG0Xw==
+X-Received: by 2002:a05:6638:3291:b0:32a:8493:fad1 with SMTP id
+ f17-20020a056638329100b0032a8493fad1mr4678873jav.19.1651501944039;
+        Mon, 02 May 2022 07:32:24 -0700 (PDT)
+Received: from godzilla (192-0-174-222.cpe.teksavvy.com. [192.0.174.222])
+        by smtp.gmail.com with ESMTPSA id
+ z3-20020a05663822a300b0032b3a7817dfsm3091742jas.163.2022.05.02.07.32.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 May 2022 07:32:23 -0700 (PDT)
+Date: Mon, 2 May 2022 10:32:22 -0400 (EDT)
+From: Scott Murray <scott.murray@konsulko.com>
+To: Edgar Mobile <heideggm@hotmail.com>
+cc: Joel Winarske <joel.winarske@gmail.com>,
+    Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Adding systemd to yocto
+In-Reply-To: 
+ <DM8PR16MB43575294B7F770E74634A9D1C7C19@DM8PR16MB4357.namprd16.prod.outlook.com>
+Message-ID: <ff0fbda-7955-d0f1-4dc7-a78f34359768@spiteful.org>
 References: 
- <CAPk1OjHyko81NFi0FtGruE5Z8TvUiwsdyT9aOyKRSv5886Guvg@mail.gmail.com>
- <7f7b75a8-356d-886b-429c-45460a804d0e@gmail.com>
-In-Reply-To: <7f7b75a8-356d-886b-429c-45460a804d0e@gmail.com>
-From: Jose Quaresma <quaresma.jose@gmail.com>
-Date: Mon, 2 May 2022 10:24:50 +0100
-Message-ID: 
- <CANPvuRm-rbWw-rKst+ipyK9ce3qT3PVqMxAdgpEhW05Yr_KEGQ@mail.gmail.com>
-Subject: Re: [yocto] OS-less SDK
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Alessio Igor Bogani <alessio.bogani@elettra.eu>,
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="00000000000087d0e005de03f72a"
+ <DM8PR16MB4357BA2349F9D42C1786A5E8C7FD9@DM8PR16MB4357.namprd16.prod.outlook.com>
+ <CABKMkPLwm1e_S+pdqw4j_J-oVokVWphdXiMAkiaME3MZvnyg3Q@mail.gmail.com>
+ <5c7ccb89-5af6-78f8-f6b5-416d8e83369@spiteful.org>
+ <DM8PR16MB4357D696EB8115CD320E035BC7C19@DM8PR16MB4357.namprd16.prod.outlook.com>
+ <DM8PR16MB43575294B7F770E74634A9D1C7C19@DM8PR16MB4357.namprd16.prod.outlook.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 02 May 2022 09:25:08 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56969
+ <yocto@lists.yoctoproject.org>; Mon, 02 May 2022 14:32:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56970
 
---00000000000087d0e005de03f72a
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Mon, 2 May 2022, Edgar Mobile wrote:
 
-Hi Alessio,
+> Ok, correction: I complains about pam missing.
 
-meta-arm have some binary baremetal toolchains for arm and aarch64 at:
-https://git.yoctoproject.org/meta-arm/tree/meta-arm-toolchain/recipes-devto=
-ols/external-arm-toolchain
+My apologies, I'd forgotten that wrinkle as we'd been sidestepping it for
+a while in AGL with some custom Weston startup.  There are a few recipes
+in the Weston stuff that explicitly mark pam as a required feature when
+using systemd, so you'll also need to have:
 
-Jose
+DISTRO_FEATURES:append = " pam"
 
-Khem Raj <raj.khem@gmail.com> escreveu no dia sexta, 29/04/2022 =C3=A0(s) 1=
-6:53:
-
->
->
-> On 4/29/22 4:51 AM, Alessio Igor Bogani wrote:
-> > Dear Yocto developers,
-> >
-> > Is there a way to generate an SDK which contains the toolchain for
-> > bare-metal systems (i.e. MCU without operating system)?
-> >
->
-> its possible to build baremetal toolchains, e.g. look at meta-riscv
-> baremetal machines e.g.
->
->
->
-> https://github.com/riscv/meta-riscv/blob/master/conf/machine/baremetal-ri=
-scv32.conf
->
->
-> you can do
->
-> MACHINE=3Dbaremetal-riscv32 bitbake meta-toolchain
->
-> Which will give you a toolchain, but if you want more like what we can
-> do with MCU OSes like freertos and zephyr take a look at
->
-> meta-zephyr (https://git.yoctoproject.org/meta-zephyr/) and
-> meta-freertos (https://github.com/aehs29/meta-freertos)
->
-> > Thanks in advance!
-> >
-> > Ciao,
-> > Alessio
-> >
-> >
-> >
-> >
-> >
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#56964):
-> https://lists.yoctoproject.org/g/yocto/message/56964
-> Mute This Topic: https://lists.yoctoproject.org/mt/90774037/5052612
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> quaresma.jose@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
-
---=20
-Best regards,
-
-Jos=C3=A9 Quaresma
-
---00000000000087d0e005de03f72a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">Hi Alessio,<div dir=3D"auto"><br style=3D=
-"color:rgb(0,0,0)"></div></div><div>meta-arm have some binary baremetal too=
-lchains for arm and aarch64 at:</div><div dir=3D"ltr"><a href=3D"https://gi=
-t.yoctoproject.org/meta-arm/tree/meta-arm-toolchain/recipes-devtools/extern=
-al-arm-toolchain">https://git.yoctoproject.org/meta-arm/tree/meta-arm-toolc=
-hain/recipes-devtools/external-arm-toolchain</a><br></div><div><br></div>Jo=
-se<div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
->Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com">raj.khem@gmail.com</a>&=
-gt; escreveu no dia sexta, 29/04/2022 =C3=A0(s) 16:53:<br></div><blockquote=
- class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
-lid rgb(204,204,204);padding-left:1ex"><br>
-<br>
-On 4/29/22 4:51 AM, Alessio Igor Bogani wrote:<br>
-&gt; Dear Yocto developers,<br>
-&gt; <br>
-&gt; Is there a way to generate an SDK which contains the toolchain for<br>
-&gt; bare-metal systems (i.e. MCU without operating system)?<br>
-&gt; <br>
-<br>
-its possible to build baremetal toolchains, e.g. look at meta-riscv <br>
-baremetal machines e.g.<br>
-<br>
-<br>
-<a href=3D"https://github.com/riscv/meta-riscv/blob/master/conf/machine/bar=
-emetal-riscv32.conf" rel=3D"noreferrer" target=3D"_blank">https://github.co=
-m/riscv/meta-riscv/blob/master/conf/machine/baremetal-riscv32.conf</a><br>
-<br>
-<br>
-you can do<br>
-<br>
-MACHINE=3Dbaremetal-riscv32 bitbake meta-toolchain<br>
-<br>
-Which will give you a toolchain, but if you want more like what we can <br>
-do with MCU OSes like freertos and zephyr take a look at<br>
-<br>
-meta-zephyr (<a href=3D"https://git.yoctoproject.org/meta-zephyr/" rel=3D"n=
-oreferrer" target=3D"_blank">https://git.yoctoproject.org/meta-zephyr/</a>)=
- and <br>
-meta-freertos (<a href=3D"https://github.com/aehs29/meta-freertos" rel=3D"n=
-oreferrer" target=3D"_blank">https://github.com/aehs29/meta-freertos</a>)<b=
-r>
-<br>
-&gt; Thanks in advance!<br>
-&gt; <br>
-&gt; Ciao,<br>
-&gt; Alessio<br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#56964): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/56964" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/56964</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/90774037/5052=
-612" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/90774037/5052612</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:quaresma.jose@gmail.com" target=3D"_blank">quare=
-sma.jose@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr">Best regards,<div><br>Jos=C3=A9=
- Quaresma</div></div></div></div></div>
-
---00000000000087d0e005de03f72a--
+Scott
 
