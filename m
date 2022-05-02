@@ -1,85 +1,73 @@
-Return-Path: <scott.murray@konsulko.com>
+Return-Path: <okaya@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D1406C433EF
-	for <webhook@archiver.kernel.org>; Mon,  2 May 2022 14:32:29 +0000 (UTC)
-Received: from mail-io1-f41.google.com (mail-io1-f41.google.com
- [209.85.166.41])
- by mx.groups.io with SMTP id smtpd.web09.11328.1651501945109278442
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A4F95C433EF
+	for <webhook@archiver.kernel.org>; Mon,  2 May 2022 21:44:58 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by mx.groups.io with SMTP id smtpd.web12.3497.1651527898118580924
  for <yocto@lists.yoctoproject.org>;
- Mon, 02 May 2022 07:32:25 -0700
+ Mon, 02 May 2022 14:44:58 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=ByfXSQ1L;
- spf=pass (domain: konsulko.com, ip: 209.85.166.41,
- mailfrom: scott.murray@konsulko.com)
-Received: by mail-io1-f41.google.com with SMTP id c125so16142306iof.9
-        for <yocto@lists.yoctoproject.org>;
- Mon, 02 May 2022 07:32:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :mime-version;
-        bh=kgywc5re1lt/FilrPzXiQlefoYxtC++r4UFPZEjs1lQ=;
-        b=ByfXSQ1L494DxG0DpLpEKNUbi12Mgk6Xca1CpKlwzWpGeqXmYkM4t4ljSZV0cn5ec1
-         VsIGWVefyN3+cBpZJ6fwXdXlVAgcMJTb/Z2V8ANmgS+XLJ6j2MrU5WCeMNsLXk+zMrmA
-         e4ST16VDLwogdQdsr5EgElFQRVMxRZNJE1Huo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:mime-version;
-        bh=kgywc5re1lt/FilrPzXiQlefoYxtC++r4UFPZEjs1lQ=;
-        b=jZbg/JvM2Xi78r5p8WcHlDEvUr4KwyiVcAEQYKMlVeXf/ZWRtk3855gp60TAtgv2XB
-         wuNFIF0I6kAyy9ai8TqyebhQwtIN/63khx4i0XI9S8LDsrtgoge1bWNA/Pb4N1xpSHtf
-         ILGi1xOufbs7yHyl+oCfJ9s8RQ22Yz7vvCG/hJZpi3TlUCjVst3XXT3UJ5zsZpccV3Nv
-         UIrpQ03kE3+wd3rJjWlrdX3GYCIh006XFfuoP3NtolT2uW+wVnJj+JRGUVzl9OX47x2j
-         DPcCAuG9xOojQFYMdlRgEzw7fZY1LlekzmHwzvdZmlF1djGz8xKxvc5RVhwacVoONnF4
-         hgsw==
-X-Gm-Message-State: AOAM532Qpq9BmWLMv7PZjR9dlGd9aSClLsvFVlmSJlPsjF6QOtpGXDt1
-	eKhj8hv/yMGMdGUYKrdgZobu5w==
-X-Google-Smtp-Source: 
- ABdhPJzO5NK5Lh/w4RKuyYVYPTWAWu2LdCEzCUhxjkIngYbhEl1mIPg/w6/GCel6mcH6cxXsEkG0Xw==
-X-Received: by 2002:a05:6638:3291:b0:32a:8493:fad1 with SMTP id
- f17-20020a056638329100b0032a8493fad1mr4678873jav.19.1651501944039;
-        Mon, 02 May 2022 07:32:24 -0700 (PDT)
-Received: from godzilla (192-0-174-222.cpe.teksavvy.com. [192.0.174.222])
-        by smtp.gmail.com with ESMTPSA id
- z3-20020a05663822a300b0032b3a7817dfsm3091742jas.163.2022.05.02.07.32.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 May 2022 07:32:23 -0700 (PDT)
-Date: Mon, 2 May 2022 10:32:22 -0400 (EDT)
-From: Scott Murray <scott.murray@konsulko.com>
-To: Edgar Mobile <heideggm@hotmail.com>
-cc: Joel Winarske <joel.winarske@gmail.com>,
-    Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Adding systemd to yocto
-In-Reply-To: 
- <DM8PR16MB43575294B7F770E74634A9D1C7C19@DM8PR16MB4357.namprd16.prod.outlook.com>
-Message-ID: <ff0fbda-7955-d0f1-4dc7-a78f34359768@spiteful.org>
-References: 
- <DM8PR16MB4357BA2349F9D42C1786A5E8C7FD9@DM8PR16MB4357.namprd16.prod.outlook.com>
- <CABKMkPLwm1e_S+pdqw4j_J-oVokVWphdXiMAkiaME3MZvnyg3Q@mail.gmail.com>
- <5c7ccb89-5af6-78f8-f6b5-416d8e83369@spiteful.org>
- <DM8PR16MB4357D696EB8115CD320E035BC7C19@DM8PR16MB4357.namprd16.prod.outlook.com>
- <DM8PR16MB43575294B7F770E74634A9D1C7C19@DM8PR16MB4357.namprd16.prod.outlook.com>
+ dkim=pass header.i=@kernel.org header.s=k20201202 header.b=i+t3Vq9t;
+ spf=pass (domain: kernel.org, ip: 139.178.84.217, mailfrom: okaya@kernel.org)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 1537C60FE4;
+	Mon,  2 May 2022 21:44:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C8FDC385A4;
+	Mon,  2 May 2022 21:44:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1651527896;
+	bh=GeqrattbDWPVdkcccXnFHqebGgRwTI/o9O19fVteAfE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=i+t3Vq9tAJyu54Tv3+6zVsew6XHEBtOuX8Gxygq5pUfwuhz9+YQTjbM1dblegAyw6
+	 /S5yUpPELxto0fDTvxc4Lr5FO1QGuTaqtT/kmxFmmL2bEXDi1E19OGPbPf62BpdCnx
+	 irQwZE53Yc0k7yFrIGh/n36C8AgUZFXmd4fThfdK8Jgcatk/DaTpbJ83JP+Is7z2VX
+	 iUq85OwKXQ8malQfE5fs5kuo7S2u36KKuxC1XRYBqp0vKl/jUusjnPN48qSliocjdw
+	 LCDcWc3ixWD5FEc29SlUUR7yBU2PAbmAZW0wqWDTuWQcyn0/VhzI6IaHOMIP/KgO+u
+	 OB4wA4caLTigA==
+Message-ID: <184135f1-502d-8105-9269-dcbb67ec98e3@kernel.org>
+Date: Mon, 2 May 2022 17:44:54 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: Maintaining ABI Compatibility for LTS branch
+Content-Language: en-US
+To: Richard Purdie <richard.purdie@linuxfoundation.org>,
+ Paul Eggleton <bluelightning@bluelightning.org>, yocto@lists.yoctoproject.org
+Cc: Steve Sakoman <steve@sakoman.com>
+References: <90135b4d-6a37-f5d7-dbba-7d0ef47aa778@kernel.org>
+ <7c96d7c727b9f7c4e18995d22501059e35c20942.camel@linuxfoundation.org>
+ <058e253b-b2b8-230b-2af5-c3cb4e93b743@kernel.org>
+ <1077615858f490216857759e0440dd4f618fd798.camel@linuxfoundation.org>
+ <7e00bad7-2244-42b5-cd06-b15ef4ca055b@kernel.org>
+ <f1e7b4732ea04ed7f591a2ea38198ca282bf38f0.camel@linuxfoundation.org>
+From: Sinan Kaya <okaya@kernel.org>
+In-Reply-To: 
+ <f1e7b4732ea04ed7f591a2ea38198ca282bf38f0.camel@linuxfoundation.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 02 May 2022 14:32:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56970
+ <yocto@lists.yoctoproject.org>; Mon, 02 May 2022 21:44:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56971
 
-On Mon, 2 May 2022, Edgar Mobile wrote:
+On 2/9/2022 4:38 PM, Richard Purdie wrote:
+> This probably does need a discussion on the architecture list and we need some
+> discussion and decisions about where/what buildhistory could/should do. Adding
+> this to buildhistory is all well and good but we don't have a meaningful
+> integration/monitoring of existing buildhistory issues in our
+> autobuilder/workflow today even before adding new things.
 
-> Ok, correction: I complains about pam missing.
+I was hoping for free cycles. I didn't get one. This will be an intern
+project.
 
-My apologies, I'd forgotten that wrinkle as we'd been sidestepping it for
-a while in AGL with some custom Weston startup.  There are a few recipes
-in the Weston stuff that explicitly mark pam as a required feature when
-using systemd, so you'll also need to have:
+The way I'm thinking is to have the ABI compat XML be part of the state
+cache tgz file and come up with a CVE check kind of hook maybe called
+"ABI check" that will start flagging problems.
 
-DISTRO_FEATURES:append = " pam"
-
-Scott
+Would this be a better architecture?
 
