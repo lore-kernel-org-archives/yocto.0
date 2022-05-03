@@ -1,333 +1,304 @@
-Return-Path: <quentin.schulz@theobroma-systems.com>
+Return-Path: <heideggm@hotmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DA2FFC433EF
-	for <webhook@archiver.kernel.org>; Tue,  3 May 2022 09:51:23 +0000 (UTC)
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com
- (EUR05-DB8-obe.outbound.protection.outlook.com [40.107.20.65])
- by mx.groups.io with SMTP id smtpd.web11.9081.1651571474771638306
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 61032C433EF
+	for <webhook@archiver.kernel.org>; Tue,  3 May 2022 10:57:54 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (NAM10-MW2-obe.outbound.protection.outlook.com [40.92.42.88])
+ by mx.groups.io with SMTP id smtpd.web11.9551.1651575463938325072
  for <yocto@lists.yoctoproject.org>;
- Tue, 03 May 2022 02:51:17 -0700
+ Tue, 03 May 2022 03:57:44 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@cherrycloud.onmicrosoft.com
- header.s=selector2-cherrycloud-onmicrosoft-com header.b=s7cUsluA;
- spf=pass (domain: theobroma-systems.com, ip: 40.107.20.65,
- mailfrom: quentin.schulz@theobroma-systems.com)
+ dkim=pass header.i=@hotmail.com header.s=selector1 header.b=WurTaXVG;
+ spf=pass (domain: hotmail.com, ip: 40.92.42.88,
+ mailfrom: heideggm@hotmail.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LjNp176ShKjJbejn7iESNh+ekyoDgWZn/lxe5nn5VUpEbVwmE4n98RCEjNWeIHwPc1vLB8a6DArCzoKrrrNwXXMXbsHQrlNv7tc1Y4t10+iPz4bUSlCAMIfT9xS1Wp0rGYwKWR9xFhPbq2PTa5F+kHir+E7X+8Pa5jiMDiwPj4jyISPDTJvsl8YGm3H5qy89d4eTuhe4T/pJ5xk8qGPL/8Zf4/Xs74XgIV83Dnovn0C+Nf47YFYzZLBE0OA8r6eIJUP1jaxYj/PzEQCexU6oxBaJY1l2oBP5tMy8woDl0dk1HFBdaPMEj9dtqXsbHfv9net0ML7WSv4yhr8ULNW4uQ==
+ b=XaXLbNY8/jFqCOPqAsjEkxJl76yJweRYGVdiBWbMgbPAhJMaFMXB3Zu81HvsL6lLTgYHonVXJg8v7sRJMMpBI7llu4Qo5YGhptExRrOfS8yBgXw1iuvSNqbtCGedZNnD8X7PfG4iUtQhPkSn6H1i56rGy3TO2JWfA3sFf+ZPhY5fuTGRLJJKWuJHxzFsgMqqlHyvkzVqH07a/tKbOJAMPSVQap0/OkzOrNJceQLAPSvnCk45vSb/mH/X/LAZHG/8EzVI+OiDJYOuSqx2r7/8F5n9XIcmwkXbB8436mbTHvpx1wHeUJG2pbBStyD581Hid1xiR0MxZTJ+OK3iBjzKAw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7BrJeGZxaexNvh/6vssYXOn3lN+y39esHa/5XfvuGM0=;
- b=OoBjgcI+JbFClqUZ8/EyBr0pzaV8719ZraHf3sLBpidzXYRCgvBgrtKNoePPPVT6hXVK2zGxQg8rnaFpkax68smxr+732+8VaC0XlkOQujXDQaNanucZ8W9V6tvRWfdCJ3XbvJwqWQgJkpxuQBjho4bbUKOXZgmyAR0AYrsD8w7cU0Gv4RCpB6jaRb/z7npqqv5XTwt/WrJdL+MhC3mDmWs5WojtqUn8mTDGs2KDdHpEash+kQZmUNiCiAfVgMI43Bh9CNx5KFDIo8fTDGuCVeumUGpXfelMuIktiwbWiW6M3pkdrpJY/y25eRJvp37u47uzWBOZguCzV/B+8ORLyA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
- header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cherrycloud.onmicrosoft.com; s=selector2-cherrycloud-onmicrosoft-com;
+ bh=yUBRsrWcJyqG0eb2Lnr/AZX4gtZSgaaVWgAzKmT5nBo=;
+ b=a0FtxgnkAoTfUhJVSRxSBEvf9+BW9jDdYSqsdtUWS39wbnaOMx4DN5lSgHYdmcV2d9RQeKRno3wOkrnefkoxNWm1sFFHL84lmi7ctFBEoeHVZBfkXfkoe/xTh+3mBAu9c5Rzxa14wBbEzgvmsMseqLcYClI+ojbMjj+K7hWpZis2Jniz4lTLNziASYL2Y0xKUmZZJLdYlEFlkETwXMI11ITzZsLAyDtDspSwqFui+DdKJta7Ne+5aTl5hRZzQSmJbW63BJih28PHYfVUCzFDam04uPnsVCnpPnZbL/+ALOWe1kb4HdfO+pn6PHxviT6PAXqbG4V80IUFbByvLUlicw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7BrJeGZxaexNvh/6vssYXOn3lN+y39esHa/5XfvuGM0=;
- b=s7cUsluAPYuPydfzWrHs9YSQLeZGpC7iqyH5uXhuxDxkeqmiCgg9W8PpFez6JkaZqhgDPMaLEFnFWymygwkBpwNcxUrZCvoHlxtW+9XiZf+tIG6pAFtZFjHIO8eEIfGUEb51LjG7O7irOZQsXB72kqztAp+Rv5hyUOkh5J5I+rA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
-Received: from PA4PR04MB9367.eurprd04.prod.outlook.com (2603:10a6:102:2aa::7)
- by HE1PR0402MB3481.eurprd04.prod.outlook.com (2603:10a6:7:83::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.24; Tue, 3 May
- 2022 09:51:10 +0000
-Received: from PA4PR04MB9367.eurprd04.prod.outlook.com
- ([fe80::28d3:b4fa:2319:83fb]) by PA4PR04MB9367.eurprd04.prod.outlook.com
- ([fe80::28d3:b4fa:2319:83fb%5]) with mapi id 15.20.5206.024; Tue, 3 May 2022
- 09:51:10 +0000
-Message-ID: <962ff376-9257-bb1b-8aa8-b220feba0934@theobroma-systems.com>
-Date: Tue, 3 May 2022 11:51:08 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [yocto] [PATCH yocto-autobuilder-helper v12] Add a banner on the
- old documentation docs.
+ bh=yUBRsrWcJyqG0eb2Lnr/AZX4gtZSgaaVWgAzKmT5nBo=;
+ b=WurTaXVGoX3P9TBVf2e/HFsEESzdeiE0VbMkJu5uBK8E2/aJrt6BumNBEXCOskC9Th7eFbdQf2gwosLa4xkg7SHMfN+Us20apIAMJRcEtAHYRoRvsKhN2z8vCPAaxs3CZjWaJtKrsQetOfi9m/lSG9yS5P9reDweiUgtI8ZH6nsRrOCzBOrWIaat9YpyFSrjaUeYiRevzS2t296Pt7f3aC/CqCJcWbD4vhXwzBBbheqOj4B8fO5v+6XgYcyEmSV6gctxdp42M6pfcKIjCkcvhRHFRGyrs4in5g1mKwN+VsOX2/gE3Eq/92gF1qVIkezxDLFwS5nNi2oXs5e5JF/7kA==
+Received: from DM8PR16MB4357.namprd16.prod.outlook.com (2603:10b6:8:30::8) by
+ SJ0PR16MB4190.namprd16.prod.outlook.com (2603:10b6:a03:32c::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5206.24; Tue, 3 May 2022 10:57:41 +0000
+Received: from DM8PR16MB4357.namprd16.prod.outlook.com
+ ([fe80::2981:ab14:9377:80d8]) by DM8PR16MB4357.namprd16.prod.outlook.com
+ ([fe80::2981:ab14:9377:80d8%5]) with mapi id 15.20.5206.024; Tue, 3 May 2022
+ 10:57:41 +0000
+From: Edgar Mobile <heideggm@hotmail.com>
+To: Scott Murray <scott.murray@konsulko.com>
+CC: Joel Winarske <joel.winarske@gmail.com>, Yocto-mailing-list
+	<yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Adding systemd to yocto
+Thread-Topic: [yocto] Adding systemd to yocto
+Thread-Index: 
+ AQHYWyPJTFS1N8NLPke707Qwq/uIma0GbgMAgACRQgCABDuUg4AAAwX/gABuuACAAVZONQ==
+Date: Tue, 3 May 2022 10:57:41 +0000
+Message-ID: 
+ <DM8PR16MB435760E81DEDC46DA1B570B9C7C09@DM8PR16MB4357.namprd16.prod.outlook.com>
+References: 
+ <DM8PR16MB4357BA2349F9D42C1786A5E8C7FD9@DM8PR16MB4357.namprd16.prod.outlook.com>
+ <CABKMkPLwm1e_S+pdqw4j_J-oVokVWphdXiMAkiaME3MZvnyg3Q@mail.gmail.com>
+ <5c7ccb89-5af6-78f8-f6b5-416d8e83369@spiteful.org>
+ <DM8PR16MB4357D696EB8115CD320E035BC7C19@DM8PR16MB4357.namprd16.prod.outlook.com>
+ <DM8PR16MB43575294B7F770E74634A9D1C7C19@DM8PR16MB4357.namprd16.prod.outlook.com>
+ <ff0fbda-7955-d0f1-4dc7-a78f34359768@spiteful.org>
+In-Reply-To: <ff0fbda-7955-d0f1-4dc7-a78f34359768@spiteful.org>
+Accept-Language: en-US
 Content-Language: en-US
-To: Abongwa Amahnui Bonalais <abongwabonalais@gmail.com>,
- yocto@lists.yoctoproject.org
-References: <20220427172718.45635-1-abongwabonalais@gmail.com>
-From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-In-Reply-To: <20220427172718.45635-1-abongwabonalais@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AS9PR0301CA0018.eurprd03.prod.outlook.com
- (2603:10a6:20b:468::20) To PA4PR04MB9367.eurprd04.prod.outlook.com
- (2603:10a6:102:2aa::7)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [Tr+ikYcq++HH8W3w9vyo+bTUMw/5XvFw]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 3343ae1c-ec3d-4c23-82ce-08da2cf3bead
+x-ms-traffictypediagnostic: SJ0PR16MB4190:EE_
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ 58+cAY4jDULxGyrBhr4pmI+E/4xMU75BV5ulI+XoWjmdMz3HMhH3TVvuO0+a7CRHMVnOJSbEDrgLrmuLCCnt3k3LydD7ePMvWoZmrpzWdiZOhepXCVfh5F+T8Iwwr6AjAAmBc5xgi5jbFxTnRSg17WfxmjsmH/d/Q/UliPeAA16ylP+5k5tJi6ZsIBynSe28AmkZA0Mg8yNX0nUIh+yaXc+HwBlBvoLYJ9VAIcmdorjtAAnXFfWOWfZWdMQMPRQt6fHYuCHjKcQHD3QHSikLSUR6WfaBtXCM9HTFWsf4ayhAmAAKSsZ/gTbRbxdoksIPY2nBnej5a/jtN4rvZktCgAYemHnp1ci8teQcTL55CEQlnfHiQzo82LqMJWLFhQ8nosFuP7r6euEKN2CPdOawkeC2GKkjBXcmQ6JXs4Egy+eog9LjLWOMUmY5ntp3lD7AVlM1rQtFinfNjAQIOLD07TfNX+D2nm6qKWHQ8tiXoiZxiA67ThUZ6XtlwK2PvIzxNc4jgn4MwEhBC+ocI1rSfB79FcW7lfWFDjdqVa/6wXKFH78ImWstqsFDpmQfmz+9QGAvlB1i78HOMj0v58FqMA==
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?hmMQxtZoyufcUifyFN1yOi5t82nSFVQkZskNB9SRmWdS9glUx0u2CKDkTn?=
+ =?iso-8859-1?Q?Q6j6Y342UZvw4akz/pa/3VzI3O3v1ju1Wcwd+1/tbAhcHYri3CrzpnBu7P?=
+ =?iso-8859-1?Q?va2VVTkSjKgdt1Y2XJdOCOenHZqxsHVYp92TNrq5s/7yNXi2tEAVVtRJaR?=
+ =?iso-8859-1?Q?kd+J/ql3KOIXaPdE0lXbAU8LbWCNfk/43RJB1woqyMCtnja63lVcyaYBQx?=
+ =?iso-8859-1?Q?IGLDdcji2LTBbXf1tLDP8mO5ESh32S/3pgywwLGA8bLm7ABOeeOFd6bi3p?=
+ =?iso-8859-1?Q?M2VeWXAqXGFrAYu+QIHHRItgOn24yFNG6Yc/GRk36iRyyD1SN7wK2Ktaz4?=
+ =?iso-8859-1?Q?KKWn+WVYhBOVW1I9P841mqg4UXV2kbWKmBt2HAozhEy+pfgjMRLFKr6xGH?=
+ =?iso-8859-1?Q?GVbYGkibzbO1+OOwojAkS3Li//oUjkSf99MtdOxCDNjyJKJas6ZOsCoM7L?=
+ =?iso-8859-1?Q?K6D1Wyunx3zEDGW3FjJ7scBo1AnOOL2v75Z17aDRCU6VHu82rzYCKQRF5i?=
+ =?iso-8859-1?Q?nwV6a8igBgobp+DrdFAc8G1JBB/+UCKREnaI6mZyeg9kH86CXG7LuY0OWU?=
+ =?iso-8859-1?Q?8xJ7A6mA6JCpdXH+WdcPj72XdYb0rW48FDBtia6N/rUI8eJ6njYscCRo+J?=
+ =?iso-8859-1?Q?1DLuFI//F3/9WD2Is2wxlGTef2uPzDXcG/CDIuzBKYzdx0Lz50MkO/sfx4?=
+ =?iso-8859-1?Q?2EPyAtfm+K70MLTeSwawM++hhxiL4trQIl+b3hKgeiAxmq0LUbmi3oxyaP?=
+ =?iso-8859-1?Q?/6vHRh7fcZlG9WegZETcHu6SgvJFHjnleTbO9+hAIkEr/gvdvesO49PFwY?=
+ =?iso-8859-1?Q?FOb5rfR86NC+5iLvi8McKmw/+r0uAEYrZruK0vOc6OKtMBD9tX+wm8pY/y?=
+ =?iso-8859-1?Q?9heLjoTlVhhnPJGmaXcHK+4vODPz5UYpMghfyf4jP6seEIuGhVLc6BZjD3?=
+ =?iso-8859-1?Q?Gy+e0vXoC0UQFihIeoOtKu8wHF5j4A+CwmjqBqorAPYy7tW3hxFTP0Wlk2?=
+ =?iso-8859-1?Q?V1BIcZFG19NHVxlQ8uMe5bjbSYYZl0yN01kWIZyXjzpI6hy7KUrxtVlKff?=
+ =?iso-8859-1?Q?u3VclRuoWHm2CvSpitM9ShvS1mOeYxJODS8sV1VvfbfaUpUQAiWHbcrVHw?=
+ =?iso-8859-1?Q?K4lKoERJKrRcVrOKKe5sUjDq78OT3Z74nxx3ZmPDrCSIPzzFPxv2APT6J9?=
+ =?iso-8859-1?Q?ZjpJ+Ov2bKge/SyGkmIrd97Kr+hpJF4O/JGTuQz8ehDnpmWiFtG0KercmK?=
+ =?iso-8859-1?Q?AB1TwwJrvJ8Bwdyl5n2ac+7f7WyabHYVRn3WXmP91HF5cWszYk36sT0BPJ?=
+ =?iso-8859-1?Q?2mS0EywwYeENG+aostn9MNmCGnGqZheH8L48yU/cmcss9u6ehSD1ukqNV+?=
+ =?iso-8859-1?Q?Bo4Gf2KXw+WbYg5Po4HQ7k5RD0qEEdbyQIU5T+oe5tQ5mw4UJuP6B4/T+E?=
+ =?iso-8859-1?Q?Drj45yzPnXV4QkyqWL9VQx7eTEr0ogL8vh1VRQ=3D=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_DM8PR16MB435760E81DEDC46DA1B570B9C7C09DM8PR16MB4357namp_"
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a77ca3b0-38f5-45b0-7c25-08da2cea73c2
-X-MS-TrafficTypeDiagnostic: HE1PR0402MB3481:EE_
-X-Microsoft-Antispam-PRVS: 
-	<HE1PR0402MB3481B3E597F5AB6F28AF5816C2C09@HE1PR0402MB3481.eurprd04.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	Yhj8DZ+Czb9SWeuV+4kJ2JZsBtXCZAXWxbELSPlJ8B+vfSkI2i+tWs0pkCdZGSVw4ETm1kZQVMKYZTJCeppWqOcE7NlgYjDq7qlCYlmaWNt9pzp5YEPU+kxTVc/zdRqRG5VRLuX5w/z6P2CTgPB9MCYl0r9RJUaLtzbONPwhZhy4o4gH+ND6bdXhPGlbqkTmXLteTIkkMRsWBJajHWILbc4Go46NZ7EuqffZx42blvGj/ccSWzjovQKTYk6hT96pKIodkBJtLEbSoe/dBT0HTBYYzUx6FKq7MhWr9NmOuECLxMv1ugkVtU/19ULz6sQYuZh8Xg0oAwetGRkxwv/0vS+YVc5FZVV9t3Lm7fWPBx0vRsVTV18vjTaK/Uvz8KxLqis0OT0RyEBi5mCXAg1Z8IfjJJzFhoOEqLJXFx4MppNFd01znK6nI8wFqIRZIR0NLZ6qP3Ab8cjE7OUL/FrMFrjIriSUP0fQEhJvYSD2GAJ54lnrws4oCHGH45n9pUpmCO859T7MloTRkdwGEkjiPaazAo8kpPj6bnGnEBCVfCFyJd7TLwBe5OmjJvfJe5z7K2YzzyQdAJU/OTgdZmsVBFlGtFi4FSeBcHbBjuvw1iynK5vLbMSWFyb+Xem7Vo5GkGQK2MR5uha7eBBMf2Ne+JUCCgEjXvDpkEZg3OHALBfC2ngTswELpSr3xWJlZVlrpMAO/tSDRAjqUaHh3ZBbWjyjRYWRktKSbzD9xxKE5OKtU8hCeK6TabaQSlr0P0s/LPWEegJuYbyQz5aOFWwUZ6bgUaHBEAGpViH2WnkIt89CmzzWgfomhYbGb1QXGcnJAFgvMP8pLCDC6d+AsT3tIjohiI7mCbN05y+WLImhvHA=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9367.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(2616005)(166002)(6506007)(38100700002)(86362001)(508600001)(31696002)(2906002)(6486002)(83380400001)(26005)(8936002)(31686004)(8676002)(316002)(966005)(36756003)(66556008)(66946007)(66476007)(186003)(44832011)(6512007)(5660300002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?U0x5bXhheDhGU3FsM1RUUkxZSXVLdE5MS3VhajgzSjZ1N0VCZmg3VnNqVVIw?=
- =?utf-8?B?MEV0VVZKVHJ4MjAzclNzVloyUHdreUFnNEx6emMwNy9WYitWeTBmMmx1MlBB?=
- =?utf-8?B?V05oMHdqNnNDanFvYW5JUVNpcnBOQjVUTEpvV09QcGg3enk5N3hISUQ0YUFu?=
- =?utf-8?B?YnBqNmZxUzRGRnd2cWk0amc3VmV4disvSnVycCswYjlRbm9iNDZhUmJSS084?=
- =?utf-8?B?bzR1UFVONmxjYWs4Rk52VExLUXFWMVlENVBhalZZc0NTeGM2Q3QwZEd4ZHVF?=
- =?utf-8?B?U0x0MCt0VEVtSDRzc1FFRHg0REhuYkJOSzNFdXN6QkJIRzRvTjhZbVpIc2Jj?=
- =?utf-8?B?T0lRSDJCbmI1Y2lOM1NJcHFIUjlmUDVuRnREYjVwU2tqUEJBUXR1cjVhdHNj?=
- =?utf-8?B?WWlaUWNHN3VBckZhUjMrVy84amxrTFhyTmxqNVBoaUkvS000RkJ3TGk0dDhP?=
- =?utf-8?B?Unc1Tk9hSHVhTUlCYUkzT2ZETmN5ei9zbzliWVFoNm5ONGFqU3hMSVd4NS9S?=
- =?utf-8?B?QjVBWVRLZ1JrL3JleDd2bDNGUjMyQkRLeDhNWnNsdmtiL3JMTndZU3RoZEkv?=
- =?utf-8?B?MkplY0ZpOEpXdUdIeDVtcmZFc3pqRjI3VkUzMlhXamE3MTZwYTdxODdvVWlk?=
- =?utf-8?B?c01jcGQyL3VxbGRPdUlGbndTVmo5aGI4WU8yaGdmeHJRU1dQSk1lRzZNaTRL?=
- =?utf-8?B?OHJoODZYN2YzVEpzOVpvNmRka29NbElpUXBWKzhBT2ZmdkVvejYvWFRHS3FB?=
- =?utf-8?B?dWl1MWVoZC9TUjl1U0xPWlBmUDJBRTd1MmI2NjVmR2VNSkN5cnMwZ3R2bWds?=
- =?utf-8?B?WWRSclRFOWowVnc5YmUrM0p1QmFueXg0S2JDUUNDUUk3UEVoUHpubUFIN1Fu?=
- =?utf-8?B?OTlUZXkrYWVMNlRLM2MvNEdzQ1pPdk1VdHA5NlRnU1AwVWY2eDJZN0tYcUtI?=
- =?utf-8?B?cHdsVWVSdUdsK3FOSEJKbVRPVm5kK2FmbjVVaDY4SngvZTdjTXRIQkR3V04w?=
- =?utf-8?B?eUozYk5YY0F1ekNmRUZCMkdXell0MzVObFZNd0xhWXc1OE00VjczQkhibTBS?=
- =?utf-8?B?S0JKcUNLdVR5bGRORkZ4NGg5ZzFmaDhIZzlBOGphVnl6dlJFYnNldEttM25w?=
- =?utf-8?B?SE1tVFZwOG9WaU1KZkF5UGx5dzZtOEwyWjV3d3U5VUNlbk1kb25VcU93ZS8v?=
- =?utf-8?B?MFRiNS82LzlBOG1SeU00eEw0WVBPdUViTTRvRWprREI2WUJsaFU2Z0FDS21i?=
- =?utf-8?B?a2xlZUdsUEJMZm55c1c0djZ5SmI1eHNrNE1EOC81OTkvZ0NpQXU1dUNnQi9h?=
- =?utf-8?B?RUI2T1NJbVB5R3JWbzJGeWJTd0IxV2lreVF5dFd5T1VyWEV4M1JqYndlczVk?=
- =?utf-8?B?SncyM3AxeVhydlhGdE9VaWIyRFc2M0ZET2NDZWYxSXdIN0tJRk56Wkkzakxo?=
- =?utf-8?B?MEplanBsaHMzWHV6SzFWZFo1UXdUb1JLZGJqM21LSElYV0tRc25jZHEzVmda?=
- =?utf-8?B?ckU3WnBvWmw0YTZhZThhSHMyTkhrM3A4clZ3NlM5VWVxM0NzRFptaHhpak50?=
- =?utf-8?B?cmFScVF5UmpFTURMZEFFa0pYbUJUSGhEbzJVRFF6MWhERkJpNll5SjBrSzBR?=
- =?utf-8?B?RjFMdE5PQVYzaGxsK0M0RExNYVNtd0NsMVBkUFd5cTdIWmt2Z2YrSmlWUm5F?=
- =?utf-8?B?ekVyNDhtL1BvL0Fla2pPek1LTGV0UVRaVG9yUytQOGpjSlcvVjIvNTc1azU5?=
- =?utf-8?B?a0V0ZjNLcEF3QVQ1K25RL3dPMGtoSlMzMm5IWU5BbEc0VGtBNm52aDBPV3RW?=
- =?utf-8?B?Y0puOG01eXZXa1I4UDJleitMV1UzOXhtSlBxQlFpdXBOVCtKdUFQTm0rZGRM?=
- =?utf-8?B?R0RNVzFFR1V4Z0hOWHNHcEgrRktkUHdwKzh1MzhHZ2xwZk9UdDhmN0RaWHhp?=
- =?utf-8?B?VVdZQ1djYm43Sk1ySjdyM1d0L1Z2TEJOVDQ3MmRGYVhCd3RrT1BoQkhsa3ds?=
- =?utf-8?B?MVJ3a2p6R095VTFKa255ODZTZUUvdi9DbHJYTW5BSDRFLzRVcW9MQlY4d2Zi?=
- =?utf-8?B?WW4ybDE3YS81aUtqSlRiN2J3QmhtbnZ1cmg1NlNFR3VFanRUQWxldlV2bEpS?=
- =?utf-8?B?dUM5aTVwaFBvRFpjUWdEVWxYQUVKL0FNYzhVYll2RFhtNmN6dnRndEZ2aXFG?=
- =?utf-8?B?cW9scGNlZDE3dWw4aVQyRWFCOUdYTmRGUDdtNjdGUWNQcFFoOVV3dkVNRnlq?=
- =?utf-8?B?NTlOcFhXM1JnWVJwYVA2L05XeFNqWUdHaTdTdlNaYTZPeXhWajJ4VnZ6K1Bv?=
- =?utf-8?B?UFlYbHhmNmVzcGxaa3NMbWNFMlhaWFQyYjVDaXovZVdOT0N2NG1leUd6eVFC?=
- =?utf-8?Q?Aqm7l/zfR4JrZvbZdpj2g+AssClb0YWjW5iet?=
-X-OriginatorOrg: theobroma-systems.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- a77ca3b0-38f5-45b0-7c25-08da2cea73c2
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9367.eurprd04.prod.outlook.com
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-5ce7b.templateTenant
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 May 2022 09:51:10.3691
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR16MB4357.namprd16.prod.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
+ 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 3343ae1c-ec3d-4c23-82ce-08da2cf3bead
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 May 2022 10:57:41.3751
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- kZ+NM9B//1RESmux1WGWWLjhDlgZknHyzF5Hed9p/YiYv+ikzei4CsVZmVu6HPZNF22MAlFGohkzERpoqKlejFb6OcCgoSrDqd5Icm6sGe2ZQ5Q/Pcqodl2Voy9BnzTI
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0402MB3481
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 
+ 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR16MB4190
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 03 May 2022 09:51:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56974
+ <yocto@lists.yoctoproject.org>; Tue, 03 May 2022 10:57:54 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56975
 
-Hi Amahnui,
+--_000_DM8PR16MB435760E81DEDC46DA1B570B9C7C09DM8PR16MB4357namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 4/27/22 19:27, Abongwa Amahnui Bonalais wrote:> Signed-off-by: 
-Abongwa Bonalais Amahnui <abongwabonalais@gmail.com>> ---
+Apparently, this is not enough:
+
+bitbake core-image-weston
+/usr/lib/python3.6/importlib/_bootstrap.py:219: ImportWarning: can't resolv=
+e package from __spec__ or __package__, falling back on __name__ and __path=
+__
+  return f(*args, **kwds)
+Loading cache: 100% |############################################| Time: 0:=
+00:00
+Loaded 1472 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+ERROR: Nothing RPROVIDES 'pam' (but /media/user/SSD1TB/yoctoqemu/poky/meta/=
+recipes-graphics/images/core-image-weston.bb RDEPENDS on or otherwise requi=
+res it)
+NOTE: Runtime target 'pam' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['pam']
+ERROR: Required build target 'core-image-weston' has no buildable providers=
+.
+Missing or unbuildable dependency chain was: ['core-image-weston', 'pam']
+
+These are my current additions to local.conf:
+
+INIT_MANAGER=3D"systemd"
+CORE_IMAGE_EXTRA_INSTALL +=3D " mesa-demos gdb"
+IMAGE_INSTALL:append +=3D " pam"
+DISTRO_FEATURES:append =3D " systemd wayland pam x11" VIRTUAL-RUNTIME_init_=
+manager =3D "systemd"
+DISTRO_FEATURES_BACKFILL_CONSIDERED =3D "sysvinit"VIRTUAL-RUNTIME_initscrip=
+ts =3D ""
+IMAGE_ROOTFS_EXTRA_SPACE =3D "38048576"
 
 
-Adding a comment in the commit log to explain why this patch is needed 
-and what it does would be great.
+________________________________
+From: Scott Murray <scott.murray@konsulko.com>
+Sent: Monday, May 2, 2022 2:32 PM
+To: Edgar Mobile <heideggm@hotmail.com>
+Cc: Joel Winarske <joel.winarske@gmail.com>; Yocto-mailing-list <yocto@list=
+s.yoctoproject.org>
+Subject: Re: [yocto] Adding systemd to yocto
 
->   scripts/docs_fix_all_html_css.py | 111 +++++++++++++++++++++++++++++++
->   scripts/run-docs-build           |   2 +
->   2 files changed, 113 insertions(+)
->   create mode 100644 scripts/docs_fix_all_html_css.py
-> 
-> diff --git a/scripts/docs_fix_all_html_css.py b/scripts/docs_fix_all_html_css.py
-> new file mode 100644
-> index 0000000..db99054
-> --- /dev/null
-> +++ b/scripts/docs_fix_all_html_css.py
-> @@ -0,0 +1,111 @@
-> +#!/usr/bin/env python3
-> +#
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +#
-> +#Signed-off-by: Abongwa Bonalais Amahnui <abongwabonalais@gmail.com>
-> +#
-> +#
-> +# function to append to the content of a html file below the body tag
-> +#
+On Mon, 2 May 2022, Edgar Mobile wrote:
 
-Please add a comment as to what this script is supposed to to. You're 
-discussing the implementation here more than the finality. We need to 
-know when opening the file and reading the comment what this 
-should/would be used for.
+> Ok, correction: I complains about pam missing.
 
-> +#
-> +
-> +import os
-> +
-> +
-> +
-> +html_content_dunfell = '''
-> +<div id="outdated-warning">This document is outdated, you should select the <a href="https://urldefense.proofpoint.com/v2/url?u=https-3A__docs.yoctoproject.org_&amp;d=DwMDAg&amp;c=_sEr5x9kUWhuk4_nFwjJtA&amp;r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&amp;m=aRH3jUhIOsO6ovQMKiTHiW-F3Xwnx9HWg6yTF99QSvNBJXbkOkdzSNhwGt6I4zHl&amp;s=QnWAweVmLt12aTlVPVFZsjAeYelStsO_8RsqIskX0Sk&amp;e=">latest release version</a> in this series.</div>
-> +<div xml:lang="en" class="body" lang="en">
-> +'''
+My apologies, I'd forgotten that wrinkle as we'd been sidestepping it for
+a while in AGL with some custom Weston startup.  There are a few recipes
+in the Weston stuff that explicitly mark pam as a required feature when
+using systemd, so you'll also need to have:
 
-I would nitpick here and say we should probably point to 
-https://docs.yoctoproject.org/dunfell in the href. But that can be 
-fixed/discussed later.
+DISTRO_FEATURES:append =3D " pam"
 
-> +html_content = '''
-> +<div id="outdated-warning">This version of the project is now considered obsolete, please select and use a <a href="https://urldefense.proofpoint.com/v2/url?u=https-3A__docs.yoctoproject.org&amp;d=DwMDAg&amp;c=_sEr5x9kUWhuk4_nFwjJtA&amp;r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&amp;m=aRH3jUhIOsO6ovQMKiTHiW-F3Xwnx9HWg6yTF99QSvNBJXbkOkdzSNhwGt6I4zHl&amp;s=XxAPqWFTh9XMmtK4eywrsIFkuOGfwEs8acOxvNGck2g&amp;e=">more recent version</a>.</div>
-> +<div xml:lang="en" class="body" lang="en">
-> +'''
-> +
-> +# <div xml:lang="en" class="body" lang="en"> and </div> are added to the html files to wrap all the content below the body tag in a div tag whose class is known so it can be controlled in the css file
+Scott
 
-You are explaining what you are doing, which we can usually understand 
-by reading the code, instead of explaining why you're doing it which is 
-something we cannot guess. Why was it not possible to just insert the 
-banner in the body tag as a div before any other element/tag?
+--_000_DM8PR16MB435760E81DEDC46DA1B570B9C7C09DM8PR16MB4357namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-> +last_div = '''
-> +</div>
-> +
-> +'''
-> +
-> +css_replacement_content = '''
-> +
-> +  font-family: Verdana, Sans, sans-serif;
-> +
-> +  /*min-width: 640px;*/
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<div style=3D"font-family:Helvetica;font-size:12px;font-weight:normal;orpha=
+ns:auto;widows:auto">
+Apparently, this is not enough:</div>
+<div style=3D"font-family:Helvetica;font-size:12px;font-weight:normal;orpha=
+ns:auto;widows:auto">
+<br>
+</div>
+<div style=3D"font-family:Helvetica;font-size:12px;font-weight:normal;orpha=
+ns:auto;widows:auto">
+<div><span style=3D"font-family:Calibri, Helvetica, sans-serif;font-size:16=
+px">bitbake core-image-weston</span><br style=3D"font-family:Calibri, Helve=
+tica, sans-serif;font-size:16px">
+<span style=3D"font-family:Calibri, Helvetica, sans-serif;font-size:16px">/=
+usr/lib/python3.6/importlib/_bootstrap.py:219: ImportWarning: can't resolve=
+ package from __spec__ or __package__, falling back on __name__ and __path_=
+_</span><br style=3D"font-family:Calibri, Helvetica, sans-serif;font-size:1=
+6px">
+<span style=3D"font-family:Calibri, Helvetica, sans-serif;font-size:16px">&=
+nbsp; return f(*args, **kwds)</span><br style=3D"font-family:Calibri, Helve=
+tica, sans-serif;font-size:16px">
+<span style=3D"font-family:Calibri, Helvetica, sans-serif;font-size:16px">L=
+oading cache: 100% |############################################| Time: 0:0=
+0:00</span><br style=3D"font-family:Calibri, Helvetica, sans-serif;font-siz=
+e:16px">
+<span style=3D"font-family:Calibri, Helvetica, sans-serif;font-size:16px">L=
+oaded 1472 entries from dependency cache.</span><br style=3D"font-family:Ca=
+libri, Helvetica, sans-serif;font-size:16px">
+<span style=3D"font-family:Calibri, Helvetica, sans-serif;font-size:16px">N=
+OTE: Resolving any missing task queue dependencies</span><br style=3D"font-=
+family:Calibri, Helvetica, sans-serif;font-size:16px">
+<span style=3D"font-family:Calibri, Helvetica, sans-serif;font-size:16px">E=
+RROR: Nothing RPROVIDES 'pam' (but /media/user/SSD1TB/yoctoqemu/poky/meta/r=
+ecipes-graphics/images/core-image-weston.bb RDEPENDS on or otherwise requir=
+es it)</span><br style=3D"font-family:Calibri, Helvetica, sans-serif;font-s=
+ize:16px">
+<span style=3D"font-family:Calibri, Helvetica, sans-serif;font-size:16px">N=
+OTE: Runtime target 'pam' is unbuildable, removing...</span><br style=3D"fo=
+nt-family:Calibri, Helvetica, sans-serif;font-size:16px">
+<span style=3D"font-family:Calibri, Helvetica, sans-serif;font-size:16px">M=
+issing or unbuildable dependency chain was: ['pam']</span><br style=3D"font=
+-family:Calibri, Helvetica, sans-serif;font-size:16px">
+<span style=3D"font-family:Calibri, Helvetica, sans-serif;font-size:16px">E=
+RROR: Required build target 'core-image-weston' has no buildable providers.=
+</span><br style=3D"font-family:Calibri, Helvetica, sans-serif;font-size:16=
+px">
+<span style=3D"font-family:Calibri, Helvetica, sans-serif;font-size:16px">M=
+issing or unbuildable dependency chain was: ['core-image-weston', 'pam']</s=
+pan></div>
+<span style=3D"font-family:Calibri, Helvetica, sans-serif;font-size:16px">
+<div><br>
+</div>
+<div>These are my current additions to local.conf:</div>
+<div><br>
+</div>
+INIT_MANAGER=3D&quot;systemd&quot;</span><br style=3D"font-family:Calibri, =
+Helvetica, sans-serif;font-size:16px">
+<span style=3D"font-family:Calibri, Helvetica, sans-serif;font-size:16px">C=
+ORE_IMAGE_EXTRA_INSTALL +=3D &quot; mesa-demos gdb&quot;</span><br style=3D=
+"font-family:Calibri, Helvetica, sans-serif;font-size:16px">
+<span style=3D"font-family:Calibri, Helvetica, sans-serif;font-size:16px">I=
+MAGE_INSTALL:append +=3D &quot; pam&quot;</span><br style=3D"font-family:Ca=
+libri, Helvetica, sans-serif;font-size:16px">
+<span style=3D"font-family:Calibri, Helvetica, sans-serif;font-size:16px">D=
+ISTRO_FEATURES:append =3D &quot; systemd wayland pam x11&quot; VIRTUAL-RUNT=
+IME_init_manager =3D &quot;systemd&quot;&nbsp;</span><br style=3D"font-fami=
+ly:Calibri, Helvetica, sans-serif;font-size:16px">
+<span style=3D"font-family:Calibri, Helvetica, sans-serif;font-size:16px">D=
+ISTRO_FEATURES_BACKFILL_CONSIDERED =3D &quot;sysvinit&quot;VIRTUAL-RUNTIME_=
+initscripts =3D &quot;&quot;</span><br style=3D"font-family:Calibri, Helvet=
+ica, sans-serif;font-size:16px">
+<span style=3D"font-family:Calibri, Helvetica, sans-serif;font-size:16px">I=
+MAGE_ROOTFS_EXTRA_SPACE =3D &quot;38048576&quot;</span></div>
+<br>
+</div>
+<div>
+<div id=3D"appendonsend"></div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+<br>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" face=
+=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> Scott Murray &lt;sc=
+ott.murray@konsulko.com&gt;<br>
+<b>Sent:</b> Monday, May 2, 2022 2:32 PM<br>
+<b>To:</b> Edgar Mobile &lt;heideggm@hotmail.com&gt;<br>
+<b>Cc:</b> Joel Winarske &lt;joel.winarske@gmail.com&gt;; Yocto-mailing-lis=
+t &lt;yocto@lists.yoctoproject.org&gt;<br>
+<b>Subject:</b> Re: [yocto] Adding systemd to yocto</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt"=
+>
+<div class=3D"PlainText">On Mon, 2 May 2022, Edgar Mobile wrote:<br>
+<br>
+&gt; Ok, correction: I complains about pam missing.<br>
+<br>
+My apologies, I'd forgotten that wrinkle as we'd been sidestepping it for<b=
+r>
+a while in AGL with some custom Weston startup.&nbsp; There are a few recip=
+es<br>
+in the Weston stuff that explicitly mark pam as a required feature when<br>
+using systemd, so you'll also need to have:<br>
+<br>
+DISTRO_FEATURES:append =3D &quot; pam&quot;<br>
+<br>
+Scott<br>
+</div>
+</span></font></div>
+</div>
+</body>
+</html>
 
-You can remove this commented part as it does not provide any context or 
-help.
-
-> +  width: 100%;
-> +  margin:  0;
-> +  padding: 0;
-> +  color: #333;
-> +  overflow-x: hidden;
-> +  }
-> +
-> + /*added books too*/
-
-Not sure what I am supposed to understand with this comment?
-
-> +.body{
-> +margin:  0 auto;
-> +min-width: 640px;
-> +padding: 0 5em 5em 5em;
-> +}
-> +/* added the id below to make the banner show and be fixed*/
-> +#outdated-warning{
-> +text-align: center;
-> +background-color: rgb(255, 186, 186);
-> +color: rgb(106, 14, 14);
-> +padding: 0.5em 0;
-> +width: 100%;
-> +position: fixed;
-> +top: 0;
-> +
-> +
-> +'''
-> +    # pattern = '^3.1*'
-> +    # exclude = re.search(pattern, dir)
-
-Useless comments, please remove.
-
-> +def loop_through_html_directories(dir):
-> +    exclude = []
-> +    for root, dirs, filenames in os.walk(dir):
-> +         # exclude banner for 3.1.x upward as it is an LTS release and is still supported
-> +        exclude = [ name for name in os.listdir(dir) if name.startswith('3.1') ]
-> +        for d in dirs:
-> +            if d in exclude:
-> +                dirs.remove(d)
-> +        for filename in filenames:
-> +            if filename.endswith('.html'):
-> +                with open(os.path.join(root, filename), 'r', encoding="ISO-8859-1") as f:
-> +                    current_content = f.read()
-> +                with open(os.path.join(root, filename), 'w') as f:
-> +                    f.write(current_content.replace('<body>', '<body>' + html_content))
-> +                    f.write(current_content.replace('</body>', last_div + '</body>'))
-> +            if filename.endswith('.css'):
-> +                with open(os.path.join(root, filename), 'r', encoding="ISO-8859-1") as f:
-> +                    css_content = f.read()
-> +                with open(os.path.join(root, filename), 'w') as f:
-> +                    f.write(css_content.replace(css_content[css_content.find('body {'):css_content.find('}'[0])], 'body {' + css_replacement_content ))
-> +    print(exclude)
-> +loop_through_html_directories('.')
-> +
-
-The function name is not really helpful, you're explaining the 
-implementation more than the outcome of it. I should call this function 
-if I want to add a banner for olds docs. I could suggest 
-add_banner_old_docs as a function name instead, though other people 
-could probably come up with something more meaningful.
-
-> +
-> +
-> +
-> +def dunfell_tags(dir):
-> +    dunfell_banners = []
-> +    for root, dirs, filenames in os.walk(dir):
-> +        dunfell_banners = [ name for name in os.listdir(dir) if not name.startswith('3.1') ]
-> +        for d in dirs:
-> +            if d in dunfell_banners:
-> +                dirs.remove(d)
-> +
-> +        for filename in filenames:
-> +            if filename.endswith('.html'):
-> +                with open(os.path.join(root, filename), 'r', encoding="ISO-8859-1") as f:
-> +                    current_content = f.read()
-> +                with open(os.path.join(root, filename), 'w') as f:
-> +                    f.write(current_content.replace('<body>', '<body>' + html_content_dunfell))
-> +                    f.write(current_content.replace('</body>', last_div + '</body>'))
-> +            if filename.endswith('.css'):
-> +                with open(os.path.join(root, filename), 'r', encoding="ISO-8859-1") as f:
-> +                    css_content = f.read()
-> +                with open(os.path.join(root, filename), 'w') as f:
-> +                    f.write(css_content.replace(css_content[css_content.find('body {'):css_content.find('}'[0])], 'body {' + css_replacement_content ))
-> +    print(dunfell_banners)
-
-This is all extremely complex just for using a different variable 
-depending on the name of the directory.
-
-+def add_banner_old_docs(dir):
-+    exclude = []
-+    for root, dirs, filenames in os.walk(dir):
-+        if root.startswith('./3.1'):
-+            html_replacement = html_content_dunfell
-+        else:
-+            html_replacement = html_content
-+
-+        for filename in filenames:
-+            if filename.endswith('.html'):
-+                with open(os.path.join(root, filename), 'r', 
-encoding="ISO-8859-1") as f:
-+                    current_content = f.read()
-+                with open(os.path.join(root, filename), 'w') as f:
-+                    f.write(current_content.replace('<body>', '<body>' 
-+ html_replacement))
-+                    f.write(current_content.replace('</body>', last_div 
-+ '</body>'))
-+            if filename.endswith('.css'):
-+                with open(os.path.join(root, filename), 'r', 
-encoding="ISO-8859-1") as f:
-+                    css_content = f.read()
-+                with open(os.path.join(root, filename), 'w') as f:
-+ 
-f.write(css_content.replace(css_content[css_content.find('body 
-{'):css_content.find('}'[0])], 'body {' + css_replacement_content ))
-+    print(exclude)
-+add_banner_old_docs('.')
-
-Cheers,
-Quentin
+--_000_DM8PR16MB435760E81DEDC46DA1B570B9C7C09DM8PR16MB4357namp_--
 
