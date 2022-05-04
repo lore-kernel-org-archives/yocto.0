@@ -1,76 +1,103 @@
-Return-Path: <pokybuild@yoctoproject.org>
+Return-Path: <jupiter.hce@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A7D0EC433F5
-	for <webhook@archiver.kernel.org>; Wed,  4 May 2022 02:32:13 +0000 (UTC)
-Received: from a27-23.smtp-out.us-west-2.amazonses.com
- (a27-23.smtp-out.us-west-2.amazonses.com [54.240.27.23])
- by mx.groups.io with SMTP id smtpd.web12.2107.1651631528631962124
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AEAB6C433F5
+	for <webhook@archiver.kernel.org>; Wed,  4 May 2022 04:55:54 +0000 (UTC)
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
+ [209.85.221.50])
+ by mx.groups.io with SMTP id smtpd.web09.2934.1651640147723462045
  for <yocto@lists.yoctoproject.org>;
- Tue, 03 May 2022 19:32:08 -0700
+ Tue, 03 May 2022 21:55:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@yoctoproject.org
- header.s=rnkzp2s7ci3kogmesvov2nwn7wcc2dgx header.b=MDdjdh++;
- spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.23,
- mailfrom: 010101808ce91651-962b6832-98c0-412d-b766-0b6f9cfbf3e0-000000@us-west-2.amazonses.com)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=rnkzp2s7ci3kogmesvov2nwn7wcc2dgx; d=yoctoproject.org;
-	t=1651631527; h=To:Cc:Subject:Message-Id:Date:From;
-	bh=UgJrzjj/BJZDvgT8Wm/D189cXHI0Nv5pT07cvBW7pCo=;
-	b=MDdjdh++lnpFLUotnf/jhoZM30CzwK83XD53CPKtO8F2ifA240wH2lPttp/g+Irm
-	Sd4Sd5qUEGXL9hmbvofVj5iocoZYpeVZu3UCXBs2BS7yibVwXJGenM9g/8/6BONPl/u
-	MdPiYkjmNNVpbYD1ADH0uKI4J8vcJA8WX8qqW3DQ=
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx; d=amazonses.com; t=1651631527;
-	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
-	bh=UgJrzjj/BJZDvgT8Wm/D189cXHI0Nv5pT07cvBW7pCo=;
-	b=b2WU//Fe45gfDLYK1lWfWy1hnO1OYItksLKmJRTOzwgwrKrw68osQLahgnr8f1g1
-	vrkiNLcB60TMy6NxpfM8mFUoI+6nyKzD52DfeaRgE4GHap9fbVKPVIT/z78eTm5NzJ2
-	d4zLU446etORmhlGY+JnmUqFx+GEp47cXuwjQ6C8=
-To: yocto@lists.yoctoproject.org
-Cc: qa-build-notification@lists.yoctoproject.org
-Subject: QA notification for completed autobuilder build (yocto-3.4.4.rc1)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=hlks3B2j;
+ spf=pass (domain: gmail.com, ip: 209.85.221.50,
+ mailfrom: jupiter.hce@gmail.com)
+Received: by mail-wr1-f50.google.com with SMTP id v12so387352wrv.10
+        for <yocto@lists.yoctoproject.org>;
+ Tue, 03 May 2022 21:55:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to:cc
+         :content-transfer-encoding;
+        bh=vbJxd73+5ox+x7z9xTiuh2gav3gA2Xc0/1J24dfSSFU=;
+        b=hlks3B2jGl/nN3Wom0QuvVkuyM0Em90le0wI/i4VxlVCGJgUs52EQqsKnrUTMp9Ohi
+         //JQvl1HOV1XAg7iwB5OHmWg4a5NKVC8ngTfETgM7Ca89FLyJpmPKb/YyAKbuIyIOk9e
+         kMrADuOlEwLind6j2ivzrHNquLQIBlpaNji41CjqAh2tFcghiDZ7f8p7tnjiP1GhwuZs
+         V2KoOlTso2WjVG7RklZk7bcosYPcurWjtl+IhNKlm3BQTf9rePZGjGgWSLjR8bH/wEJb
+         2lLWa428V5NjWS06EKmK2UQxkO7uULcm2YfnZbxbStoDIP16/sdxa8KINhdtdp+GQe/F
+         bx8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc
+         :content-transfer-encoding;
+        bh=vbJxd73+5ox+x7z9xTiuh2gav3gA2Xc0/1J24dfSSFU=;
+        b=K8ATF9RQdHZhibGvKHPPtq5v1E1BrBLxOAjU8Ew9QC0qBGtuqpK0No2dFqU1+hWyjE
+         8FdAWReLhVjDGAc5F71IuVaNSTcg1uXbhOTeSH173IIecXbVRrK3keD52UTavEnbefNU
+         nMJQgo+R+3oy1PwRfKVwIPqaFY+v+DNSkEndDQBxLfV4m6suzu1GaR85owUd7vqPheXk
+         BgYvGiTZ9b1n1vjZ8kyyJ6sDk/zuWUMOpYPylpryVfGS2ZFbK8/X6jP7V28BG9T3Vzpk
+         rVI/3eZ5R6H6wBf+ZZb+dga9Cebeoge20oxFg621fa4IYCcTOR714rJI3zscpDfw6D4t
+         56pw==
+X-Gm-Message-State: AOAM532U7yD8VfG3QcmVm3noziJ3A5E8v/4FCMP6xuzsVNObCeGxZvk/
+	NcpFytsG7R/f1wLHjIF+cavGNRGr7PEzfOtK/uxG27Dc
+X-Google-Smtp-Source: 
+ ABdhPJwDlEYt2ZlPsDlEyapZs/whfUjtSxll12B7cHP3vUiT9otuaazi0k52Wh6Jm+TucoV6TMJ0JTVofDyQZBTdUSs=
+X-Received: by 2002:a5d:4e08:0:b0:20a:f065:7024 with SMTP id
+ p8-20020a5d4e08000000b0020af0657024mr14711600wrt.598.1651640145078; Tue, 03
+ May 2022 21:55:45 -0700 (PDT)
+MIME-Version: 1.0
+From: Jupiter <jupiter.hce@gmail.com>
+Date: Wed, 4 May 2022 14:55:07 +1000
 Message-ID: 
- <010101808ce91651-962b6832-98c0-412d-b766-0b6f9cfbf3e0-000000@us-west-2.amazonses.com>
-Date: Wed, 4 May 2022 02:32:07 +0000
-From: Pokybuild User <pokybuild@yoctoproject.org>
-Feedback-ID: 
- 1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
-X-SES-Outgoing: 2022.05.04-54.240.27.23
+ <CAA=hcWRLJHs+P-uzrEa+JGrqp-PBeKv8fHwRCmKPzioXUV=n-w@mail.gmail.com>
+Subject: Failed to build kirkstone branch
+To: yocto <yocto@lists.yoctoproject.org>
+Cc: openembeded-devel <Openembedded-devel@lists.openembedded.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 04 May 2022 02:32:13 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56988
+ <yocto@lists.yoctoproject.org>; Wed, 04 May 2022 04:55:54 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56989
 
+I was able to build u-boot-imx-2021.04-r0 in honister branch, but
+could not build it in kirkstone branch, here is the error message:
 
-A build flagged for QA (yocto-3.4.4.rc1) was completed on the autobuilder and is available at:
+ERROR: u-boot-imx-2021.04-r0 do_fetch: Fetcher failure: Fetch command
+export PSEUDO_DISABLED=3D1; export
+DBUS_SESSION_BUS_ADDRESS=3D"unix:path=3D/run/user/1000/bus"; export
+PATH=3D"/build/KirkstoneRam/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-b=
+oot-imx/2021.04-r0/recipe-sysroot-native/usr/bin/python3-native:/build/Kirk=
+stoneRam/oe-core/scripts:/build/KirkstoneRam/build/tmp-glibc/work/solar-oe-=
+linux-gnueabi/u-boot-imx/2021.04-r0/recipe-sysroot-native/usr/bin/arm-oe-li=
+nux-gnueabi:/build/KirkstoneRam/build/tmp-glibc/work/solar-oe-linux-gnueabi=
+/u-boot-imx/2021.04-r0/recipe-sysroot/usr/bin/crossscripts:/build/Kirkstone=
+Ram/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2021.04-r0/recip=
+e-sysroot-native/usr/sbin:/build/KirkstoneRam/build/tmp-glibc/work/solar-oe=
+-linux-gnueabi/u-boot-imx/2021.04-r0/recipe-sysroot-native/usr/bin:/build/K=
+irkstoneRam/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2021.04-=
+r0/recipe-sysroot-native/sbin:/build/KirkstoneRam/build/tmp-glibc/work/sola=
+r-oe-linux-gnueabi/u-boot-imx/2021.04-r0/recipe-sysroot-native/bin:/build/K=
+irkstoneRam/bitbake/bin:/build/KirkstoneRam/build/tmp-glibc/hosttools";
+export HOME=3D"/home/jupiter"; LANG=3DC git -c core.fsyncobjectfiles=3D0 -c
+gc.autoDetach=3Dfalse clone --bare --mirror
+https://source.codeaurora.org/external/imx/uboot-imx.git
+/build/KirkstoneRam/build/downloads/git2/source.codeaurora.org.external.imx=
+.uboot-imx.git
+--progress failed with exit code 128, no output
+ERROR: u-boot-imx-2021.04-r0 do_fetch: Bitbake Fetcher Error:
+FetchError('Unable to fetch URL from any source.',
+'git://source.codeaurora.org/external/imx/uboot-imx.git;protocol=3Dhttps;br=
+anch=3Dlf_v2021.04')
 
+But I was able to run the same command manually git -c
+core.fsyncobjectfiles=3D0 -c gc.autoDetach=3Dfalse clone --bare --mirror
+https://source.codeaurora.org/external/imx/uboot-imx.git.
 
-    https://autobuilder.yocto.io/pub/releases/yocto-3.4.4.rc1
+What could I be missing?
 
+Thank you very much.
 
-Build hash information: 
-
-bitbake: c2d8f9b2137bd4a98eb0f51519493131773e7517
-meta-agl: 8543843eeb47fa9b45786d3e09bf497fcd5f95e0
-meta-arm: 2623e69db362b357db45c343e6d504909552c2d5
-meta-aws: c92344938ab4d37de8bd8b799186dbbe3019a069
-meta-gplv2: f04e4369bf9dd3385165281b9fa2ed1043b0e400
-meta-intel: daf5c125a744d45d8fa395b576147edd5a714f5c
-meta-mingw: f5d761cbd5c957e4405c5d40b0c236d263c916a8
-meta-openembedded: 9a0caf5b09e14a28a54c3f8524d97530aeb8152c
-meta-virtualization: bd7511c53b921c9ce4ba2fdb42778ca194ebc3e8
-oecore: 1a6f5e27249afb6fb4d47c523b62b5dd2482a69d
-poky: 780eeec8851950ee6ac07a2a398ba937206bd2e4
-
-
-
-This is an automated message from the Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder2
-Email: richard.purdie@linuxfoundation.org
-
-
- 
+jupiter
 
