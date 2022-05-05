@@ -1,88 +1,91 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8E124C433F5
-	for <webhook@archiver.kernel.org>; Thu,  5 May 2022 05:55:14 +0000 (UTC)
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
- [209.85.208.44])
- by mx.groups.io with SMTP id smtpd.web12.7637.1651730109188276508
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BF098C433EF
+	for <webhook@archiver.kernel.org>; Thu,  5 May 2022 06:32:24 +0000 (UTC)
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com
+ [209.85.221.41])
+ by mx.groups.io with SMTP id smtpd.web11.7793.1651732334844494589
  for <yocto@lists.yoctoproject.org>;
- Wed, 04 May 2022 22:55:09 -0700
+ Wed, 04 May 2022 23:32:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=dDstDZGy;
- spf=pass (domain: gmail.com, ip: 209.85.208.44,
- mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-ed1-f44.google.com with SMTP id ba17so3991250edb.5
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=B7ElLL4L;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.41,
+ mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f41.google.com with SMTP id u3so4718892wrg.3
         for <yocto@lists.yoctoproject.org>;
- Wed, 04 May 2022 22:55:08 -0700 (PDT)
+ Wed, 04 May 2022 23:32:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=f2wOmSiXEYciuS26x6lZoM1Rnpee+SgSx37hC/ysqc4=;
-        b=dDstDZGypgL82KLQKTtjSqplqGYms0diOtFrWnVjoYoUJSUGrcZuDUVF4vuo9EtRYq
-         BUcUqMFBy6C/o0oaEx2VJrrzXfZOfbWVz29o0vlYQry9viEB5CNFuAJP/UxK8FapMRvp
-         y7ZAqDr1UiVRYGaAVDarsqhIzm0UudOE/8aqqsQBVuaSndRxadVW9oW+UMcFA/S//QB/
-         1RpIT66yy2ZdMXJkjeCQWvYAiDmncTCtPpPXc+AS6qy10t1j591w/G7pvrouvAsEVAT6
-         QjQhKEL3Ptl0orq+89D2BS9Yy5HSzzaGZXEC6tt8bzl7f2ArtuumhkKas+vmEReeFTQp
-         F/rw==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=BzTrILJNyDV7Qd6GOwojMEmcsomdYIjuiOYAnqAuiKs=;
+        b=B7ElLL4LpMVVad7og8hKUTrhSjV9z+Rt9D0eEn6gAAzdXRSDw/fr9z6F0BYmmHvD3t
+         XMFZn86lckI4nIleUbQbj83LEcX72vWxpFpPYtjXkWS+9LnVNWNgyLLXmzXuttp984c2
+         CdUAznl5efc5xJNRqj2tYwU/OBOLBPKbOGc0A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=f2wOmSiXEYciuS26x6lZoM1Rnpee+SgSx37hC/ysqc4=;
-        b=ZCkac+YLii2egEiy4n8/PBVQAkdl4C9jIZPE9W8/+59000ZJvFj05d4J999/lT9HG1
-         9fBDLV3wRFe75wI3SyUTOo4BHvJHEi2FG8z6bIiEauNiSfINFvX+MtcqGrnwr0woo4r9
-         pfS85rx0NaCYdqDf2FIRhoAjTElhahxRBr0l3dtrF8JrMjoqHOkWSNBbSOQl86t/99uk
-         mjnTj+HhM//FMg+IfVI3kFz5apwG+xagc6DztXsIJVqQEI+TL6/i2rtx8vUZQXZZSTrN
-         4a2eDTqCBW+zGj7Zhn+/wbJ89WJ0fkpUjkw0484Wf5YIEoEXSQP3p0xE7kapSdVMj2UO
-         AhCQ==
-X-Gm-Message-State: AOAM531R22cHerWsOEl0TnDVsb/AtY0PBcCV0wUJ+0zjZ/43+UHNTQ0o
-	IVBBKgpjNlSdb25wJv1qbSc5HbsDp5qtk8dPVLM=
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=BzTrILJNyDV7Qd6GOwojMEmcsomdYIjuiOYAnqAuiKs=;
+        b=gpDcg7BlgxB4WYVxCAQ8wylVBEG0YDlYt7Le+e7HpdvqCjwzpCojbz6mBBWrak7pB+
+         22KGZc3BQP0AnOosXP7bM/u5bTpsF7RTaFNl8m0zQ9RUxTUeTz35zpVm3xZkN1JQ/BI2
+         +1UCiFW6mXvM8169yxiPVlwqb0qJd12pdr63xr9ZRgccjZ23xlbDzX+GsdihTxEwdPcD
+         86cGVr4lj4KR/v1P8a40EIe9hZLX1cNSN0cUS+92jpHeYcr9XnPpJn/BkWZ1iibAte/2
+         7jOHV2fpJVbOW83HuKlyGESnNtw+giImq1k0rs50tkcMV1Le5yTzlfwEgevw6kr9k9NQ
+         z5Bg==
+X-Gm-Message-State: AOAM532eYOGBJGY1+fLTsibw64uf3Gt4gwbwpWTwtK+NdhQ8tyT57NMt
+	mUM8GKiDvmIynPlMcfkpVb0How==
 X-Google-Smtp-Source: 
- ABdhPJzNkJYbRWFMtAwWkOvk0X6gMPZqK1fCdnCg9ofl+sJaqs5FYYGm+YQTlHOpHbIwXmLriLAmYRPOy7fpvHddMNE=
-X-Received: by 2002:a05:6402:27c9:b0:427:ba7f:6288 with SMTP id
- c9-20020a05640227c900b00427ba7f6288mr21783125ede.416.1651730107502; Wed, 04
- May 2022 22:55:07 -0700 (PDT)
-MIME-Version: 1.0
-References: <9d3557790b185eab39f60301c57f7a9d@vivaldi.net>
-In-Reply-To: <9d3557790b185eab39f60301c57f7a9d@vivaldi.net>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Thu, 5 May 2022 07:54:55 +0200
+ ABdhPJyZPEx85mnoM4STtYbmb12+bYzfYX89mvtGA9vOpa3TSTaNyMBPqNcZD3P3so1rlcSJbaKHtQ==
+X-Received: by 2002:a5d:6e8b:0:b0:207:861e:36cd with SMTP id
+ k11-20020a5d6e8b000000b00207861e36cdmr19180900wrz.563.1651732333235;
+        Wed, 04 May 2022 23:32:13 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:89fd:1fdc:c26b:652b?
+ ([2001:8b0:aba:5f3c:89fd:1fdc:c26b:652b])
+        by smtp.gmail.com with ESMTPSA id
+ l13-20020a1c790d000000b0039457b94069sm625093wme.42.2022.05.04.23.32.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 May 2022 23:32:12 -0700 (PDT)
 Message-ID: 
- <CAGAf8LwAdtJAyoBTtX40s4iyCcuuA4xrYw9VRTU9VYNk0Yh+hQ@mail.gmail.com>
-Subject: Re: [yocto] OE Linux & board-support-package
-To: jchludzinski <jchludzinski@vivaldi.net>
-Cc: Yocto <yocto@lists.yoctoproject.org>
+ <acfd02399848ca4b98bd2b9e59fda74f754138bb.camel@linuxfoundation.org>
+Subject: Re: [qa-build-notification] QA notification for completed
+ autobuilder build (yocto-3.4.4.rc1)
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: qa-build-notification@lists.yoctoproject.org,
+	"yocto@lists.yoctoproject.org"
+	 <yocto@lists.yoctoproject.org>
+Cc: Yocto TSC <tsc@lists.yoctoproject.org>, "Mittal, Anuj"
+	 <anuj.mittal@intel.com>, "Elberger, Richard" <elberger@amazon.com>
+Date: Thu, 05 May 2022 07:32:09 +0100
+In-Reply-To: 
+ <BN6PR1101MB2339141C648E8A8C987D5BD5BBC29@BN6PR1101MB2339.namprd11.prod.outlook.com>
+References: 
+	<010101808ce91651-962b6832-98c0-412d-b766-0b6f9cfbf3e0-000000@us-west-2.amazonses.com>
+	 <6cf4b0c243c9fbb0ca7a7088acd22d8a5c23232f.camel@linuxfoundation.org>
+	 <BN6PR1101MB2339141C648E8A8C987D5BD5BBC29@BN6PR1101MB2339.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4-1ubuntu2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 05 May 2022 05:55:14 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56997
+ <yocto@lists.yoctoproject.org>; Thu, 05 May 2022 06:32:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56998
 
-Hello J,
+On Thu, 2022-05-05 at 01:15 +0000, Teoh, Jay Shen wrote:
+> Hi TSC,
+> 
+> Intel and WR are good for QA execution.  
+> Shall we proceed?
 
-Please, could you be more specific?
+Yes please, the TSC is concerned but doesn't believe there is much we can do
+about these issues and that they shouldn't affect the release quality.
 
-Thank you,
-Zee
-_______
+Cheers,
 
+Richard
 
-On Thu, May 5, 2022 at 5:42 AM jchludzinski via lists.yoctoproject.org
-<jchludzinski=vivaldi.net@lists.yoctoproject.org> wrote:
->
-> OE Linux uses device tree files (*.dts and *.dtsi files), so is there
-> any need for a board-support-package?
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#56996): https://lists.yoctoproject.org/g/yocto/message/56996
-> Mute This Topic: https://lists.yoctoproject.org/mt/90904726/3618681
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [zoran.stojsavljevic@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
 
