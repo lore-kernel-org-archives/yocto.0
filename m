@@ -1,62 +1,88 @@
-Return-Path: <jchludzinski@vivaldi.net>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C2B5AC433EF
-	for <webhook@archiver.kernel.org>; Thu,  5 May 2022 03:42:42 +0000 (UTC)
-Received: from smtp.vivaldi.net (smtp.vivaldi.net [31.209.137.12])
- by mx.groups.io with SMTP id smtpd.web08.6832.1651722155987735755
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8E124C433F5
+	for <webhook@archiver.kernel.org>; Thu,  5 May 2022 05:55:14 +0000 (UTC)
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
+ [209.85.208.44])
+ by mx.groups.io with SMTP id smtpd.web12.7637.1651730109188276508
  for <yocto@lists.yoctoproject.org>;
- Wed, 04 May 2022 20:42:36 -0700
+ Wed, 04 May 2022 22:55:09 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@vivaldi.net header.s=default header.b=lW79McQC;
- spf=pass (domain: vivaldi.net, ip: 31.209.137.12,
- mailfrom: jchludzinski@vivaldi.net)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp.vivaldi.net (Postfix) with ESMTP id 4BBC4BD0C4
-	for <yocto@lists.yoctoproject.org>; Thu,  5 May 2022 03:42:33 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.vivaldi.net 4BBC4BD0C4
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net;
-	s=default; t=1651722153;
-	bh=KLeV4X90EVpPuQ8oIjVIMrMvG4Z3l06U5rop1eWAwAs=;
-	h=Date:From:To:Subject:From;
-	b=lW79McQCleBvLSBCuNUx9w7uYWUvyjolACyuSM8ZAIZmjvu4KPQqFLumxg/WPko7y
-	 UyWymSoY6CK1qg+yitvzyMnh3F6iiU/dnkpSYgxcK+oL/OCT1j0TeqtVZNh7XRfwnp
-	 BxLZeo9V1bMDzeXpsB5x/4Qrq21JcpjKRZIzf/dg79t2hlXEMX2b/fyYQNgI2RZEUD
-	 goJ4ehlNlip7KIJDa5lxl6HAwUext1RvE/9lnw4bbDLn64gutLDD4Yvvopj+PzbVYP
-	 wQAwKn6dfxfIFARAxE0sF3KTn1Wdtuyn4JEjP/pixcQmYzQS6X9mEw+0o8QCfp+R6l
-	 uvoqnlkgVTIvA==
-X-Virus-Scanned: Debian amavisd-new at smtp.vivaldi.net
-Received: from smtp.vivaldi.net ([127.0.0.1])
-	by localhost (mxo.viv.dc01 [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 60dUCFyEQNms for <yocto@lists.yoctoproject.org>;
-	Thu,  5 May 2022 03:42:31 +0000 (UTC)
-Date: Wed, 04 May 2022 23:42:31 -0400
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.vivaldi.net 4A893BD0B7
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net;
-	s=default; t=1651722151;
-	bh=KLeV4X90EVpPuQ8oIjVIMrMvG4Z3l06U5rop1eWAwAs=;
-	h=Date:From:To:Subject:From;
-	b=BoMAGI2oacj1WYdUhjaQbiSoj8VedLcqCmfCskiE8i/cQ8t99rINcl74I8sKwCaqq
-	 RNQwp/pPAvAyiLF5pd2y3XGKINgL0hRBFDuW3D8ZBI5QmQnmFffRYOBSZvovbIOxFV
-	 N08zdBPJKxDREGZENyC4ffTzsn35DBKkqDJ/E641AJAV4iMbyBALh23WVKLNtGLmF+
-	 MPcGZp6sKnuP/L0JzQ1Hxdu4bMSoZYRdcwt38ecnoKZMnOz76PkiGHZ//gnkQvRwrA
-	 6EhisCxyg11ocBVHk/7kBE9zi/KCxooMyEvBhRWsOFRIhZwA4uB+rkdOYeRStVEukQ
-	 461kYS1UQtxIg==
-From: jchludzinski <jchludzinski@vivaldi.net>
-To: Yocto <yocto@lists.yoctoproject.org>
-Subject: OE Linux & board-support-package
-Message-ID: <9d3557790b185eab39f60301c57f7a9d@vivaldi.net>
-X-Sender: jchludzinski@vivaldi.net
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=dDstDZGy;
+ spf=pass (domain: gmail.com, ip: 209.85.208.44,
+ mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-ed1-f44.google.com with SMTP id ba17so3991250edb.5
+        for <yocto@lists.yoctoproject.org>;
+ Wed, 04 May 2022 22:55:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=f2wOmSiXEYciuS26x6lZoM1Rnpee+SgSx37hC/ysqc4=;
+        b=dDstDZGypgL82KLQKTtjSqplqGYms0diOtFrWnVjoYoUJSUGrcZuDUVF4vuo9EtRYq
+         BUcUqMFBy6C/o0oaEx2VJrrzXfZOfbWVz29o0vlYQry9viEB5CNFuAJP/UxK8FapMRvp
+         y7ZAqDr1UiVRYGaAVDarsqhIzm0UudOE/8aqqsQBVuaSndRxadVW9oW+UMcFA/S//QB/
+         1RpIT66yy2ZdMXJkjeCQWvYAiDmncTCtPpPXc+AS6qy10t1j591w/G7pvrouvAsEVAT6
+         QjQhKEL3Ptl0orq+89D2BS9Yy5HSzzaGZXEC6tt8bzl7f2ArtuumhkKas+vmEReeFTQp
+         F/rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=f2wOmSiXEYciuS26x6lZoM1Rnpee+SgSx37hC/ysqc4=;
+        b=ZCkac+YLii2egEiy4n8/PBVQAkdl4C9jIZPE9W8/+59000ZJvFj05d4J999/lT9HG1
+         9fBDLV3wRFe75wI3SyUTOo4BHvJHEi2FG8z6bIiEauNiSfINFvX+MtcqGrnwr0woo4r9
+         pfS85rx0NaCYdqDf2FIRhoAjTElhahxRBr0l3dtrF8JrMjoqHOkWSNBbSOQl86t/99uk
+         mjnTj+HhM//FMg+IfVI3kFz5apwG+xagc6DztXsIJVqQEI+TL6/i2rtx8vUZQXZZSTrN
+         4a2eDTqCBW+zGj7Zhn+/wbJ89WJ0fkpUjkw0484Wf5YIEoEXSQP3p0xE7kapSdVMj2UO
+         AhCQ==
+X-Gm-Message-State: AOAM531R22cHerWsOEl0TnDVsb/AtY0PBcCV0wUJ+0zjZ/43+UHNTQ0o
+	IVBBKgpjNlSdb25wJv1qbSc5HbsDp5qtk8dPVLM=
+X-Google-Smtp-Source: 
+ ABdhPJzNkJYbRWFMtAwWkOvk0X6gMPZqK1fCdnCg9ofl+sJaqs5FYYGm+YQTlHOpHbIwXmLriLAmYRPOy7fpvHddMNE=
+X-Received: by 2002:a05:6402:27c9:b0:427:ba7f:6288 with SMTP id
+ c9-20020a05640227c900b00427ba7f6288mr21783125ede.416.1651730107502; Wed, 04
+ May 2022 22:55:07 -0700 (PDT)
+MIME-Version: 1.0
+References: <9d3557790b185eab39f60301c57f7a9d@vivaldi.net>
+In-Reply-To: <9d3557790b185eab39f60301c57f7a9d@vivaldi.net>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Thu, 5 May 2022 07:54:55 +0200
+Message-ID: 
+ <CAGAf8LwAdtJAyoBTtX40s4iyCcuuA4xrYw9VRTU9VYNk0Yh+hQ@mail.gmail.com>
+Subject: Re: [yocto] OE Linux & board-support-package
+To: jchludzinski <jchludzinski@vivaldi.net>
+Cc: Yocto <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 05 May 2022 03:42:42 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56996
+ <yocto@lists.yoctoproject.org>; Thu, 05 May 2022 05:55:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56997
 
-OE Linux uses device tree files (*.dts and *.dtsi files), so is there 
-any need for a board-support-package?
+Hello J,
+
+Please, could you be more specific?
+
+Thank you,
+Zee
+_______
+
+
+On Thu, May 5, 2022 at 5:42 AM jchludzinski via lists.yoctoproject.org
+<jchludzinski=vivaldi.net@lists.yoctoproject.org> wrote:
+>
+> OE Linux uses device tree files (*.dts and *.dtsi files), so is there
+> any need for a board-support-package?
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#56996): https://lists.yoctoproject.org/g/yocto/message/56996
+> Mute This Topic: https://lists.yoctoproject.org/mt/90904726/3618681
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [zoran.stojsavljevic@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
