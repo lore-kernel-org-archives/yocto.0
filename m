@@ -1,91 +1,100 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <jchludzinski@vivaldi.net>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BF098C433EF
-	for <webhook@archiver.kernel.org>; Thu,  5 May 2022 06:32:24 +0000 (UTC)
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com
- [209.85.221.41])
- by mx.groups.io with SMTP id smtpd.web11.7793.1651732334844494589
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B9842C433EF
+	for <webhook@archiver.kernel.org>; Thu,  5 May 2022 06:39:54 +0000 (UTC)
+Received: from smtp.vivaldi.net (smtp.vivaldi.net [31.209.137.12])
+ by mx.groups.io with SMTP id smtpd.web11.7838.1651732791103583694
  for <yocto@lists.yoctoproject.org>;
- Wed, 04 May 2022 23:32:15 -0700
+ Wed, 04 May 2022 23:39:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=B7ElLL4L;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.41,
- mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f41.google.com with SMTP id u3so4718892wrg.3
-        for <yocto@lists.yoctoproject.org>;
- Wed, 04 May 2022 23:32:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=BzTrILJNyDV7Qd6GOwojMEmcsomdYIjuiOYAnqAuiKs=;
-        b=B7ElLL4LpMVVad7og8hKUTrhSjV9z+Rt9D0eEn6gAAzdXRSDw/fr9z6F0BYmmHvD3t
-         XMFZn86lckI4nIleUbQbj83LEcX72vWxpFpPYtjXkWS+9LnVNWNgyLLXmzXuttp984c2
-         CdUAznl5efc5xJNRqj2tYwU/OBOLBPKbOGc0A=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=BzTrILJNyDV7Qd6GOwojMEmcsomdYIjuiOYAnqAuiKs=;
-        b=gpDcg7BlgxB4WYVxCAQ8wylVBEG0YDlYt7Le+e7HpdvqCjwzpCojbz6mBBWrak7pB+
-         22KGZc3BQP0AnOosXP7bM/u5bTpsF7RTaFNl8m0zQ9RUxTUeTz35zpVm3xZkN1JQ/BI2
-         +1UCiFW6mXvM8169yxiPVlwqb0qJd12pdr63xr9ZRgccjZ23xlbDzX+GsdihTxEwdPcD
-         86cGVr4lj4KR/v1P8a40EIe9hZLX1cNSN0cUS+92jpHeYcr9XnPpJn/BkWZ1iibAte/2
-         7jOHV2fpJVbOW83HuKlyGESnNtw+giImq1k0rs50tkcMV1Le5yTzlfwEgevw6kr9k9NQ
-         z5Bg==
-X-Gm-Message-State: AOAM532eYOGBJGY1+fLTsibw64uf3Gt4gwbwpWTwtK+NdhQ8tyT57NMt
-	mUM8GKiDvmIynPlMcfkpVb0How==
-X-Google-Smtp-Source: 
- ABdhPJyZPEx85mnoM4STtYbmb12+bYzfYX89mvtGA9vOpa3TSTaNyMBPqNcZD3P3so1rlcSJbaKHtQ==
-X-Received: by 2002:a5d:6e8b:0:b0:207:861e:36cd with SMTP id
- k11-20020a5d6e8b000000b00207861e36cdmr19180900wrz.563.1651732333235;
-        Wed, 04 May 2022 23:32:13 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:89fd:1fdc:c26b:652b?
- ([2001:8b0:aba:5f3c:89fd:1fdc:c26b:652b])
-        by smtp.gmail.com with ESMTPSA id
- l13-20020a1c790d000000b0039457b94069sm625093wme.42.2022.05.04.23.32.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 May 2022 23:32:12 -0700 (PDT)
-Message-ID: 
- <acfd02399848ca4b98bd2b9e59fda74f754138bb.camel@linuxfoundation.org>
-Subject: Re: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-3.4.4.rc1)
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: qa-build-notification@lists.yoctoproject.org,
-	"yocto@lists.yoctoproject.org"
-	 <yocto@lists.yoctoproject.org>
-Cc: Yocto TSC <tsc@lists.yoctoproject.org>, "Mittal, Anuj"
-	 <anuj.mittal@intel.com>, "Elberger, Richard" <elberger@amazon.com>
-Date: Thu, 05 May 2022 07:32:09 +0100
+ dkim=pass header.i=@vivaldi.net header.s=default header.b=E1wLIDCb;
+ spf=pass (domain: vivaldi.net, ip: 31.209.137.12,
+ mailfrom: jchludzinski@vivaldi.net)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp.vivaldi.net (Postfix) with ESMTP id EE39ABD068;
+	Thu,  5 May 2022 06:39:48 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.vivaldi.net EE39ABD068
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net;
+	s=default; t=1651732788;
+	bh=dIsB+xl7AW1vHeI00OaEECU+hkKj4fe29FAq/1E0PSk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=E1wLIDCb9Mo349n/nH7OWDYMls+sk4JVGOE3z753KCCnBqdXLlZA/Y0Lu0/RtsmXd
+	 4AL64Pag+qUMjsFa5/R6Cub0MUJ5FVAD+Lt9BH+WG0fU4k3vzAj8JQ8hrIkBqTQBfO
+	 TdMJ9z2UVa+7VMPlr3DecILePVMkSh9bxNswDJLXT2ACfvMZ6sMAfRF2TYyADK1cYq
+	 f6z8rb4XDXtq4BYvdpYdmyfhShvR7nybq0xJiApIdahrAwjlFpoj2CMW9RPU/JW5H2
+	 M2+83vrPK/Qp3H8604NCbGgbZLPbm4A5ImmqT7vRXAt8z5WmFgBvrFI2mOorsQFBEM
+	 a2aHe3H3JwL2Q==
+X-Virus-Scanned: Debian amavisd-new at smtp.vivaldi.net
+Received: from smtp.vivaldi.net ([127.0.0.1])
+	by localhost (mxo.viv.dc01 [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id s6PZYv6jPzAa; Thu,  5 May 2022 06:39:45 +0000 (UTC)
+Date: Thu, 05 May 2022 02:39:44 -0400
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.vivaldi.net 2EB66BD027
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net;
+	s=default; t=1651732785;
+	bh=dIsB+xl7AW1vHeI00OaEECU+hkKj4fe29FAq/1E0PSk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=C802pKdNSthlHmjzWnJAjn0VTghXkKgZFxlSjdW23KjrQBW+giJ77y8UZ1fldBMb0
+	 2jQ8UeiKVhQKzpY409u9NGORLG0jz2A+4D5WOG95S66bQdBtJYaVBLLdoLVd6gi/Qx
+	 rZb1NGBhUNeqJeY8kLK9WiBoEbgHeLp5N0j+lIWtZWQQlJAL1hf3Npq+3RpIiyGkyH
+	 q6iZ99bThFzNq7fKysiqfIztxuYt/vFx7IdOOvBZtXbjywgit4wBC1xfyrhiB4IggU
+	 7AQWnxBoRQLlPY87SWyBRo19XDNCKwQsRk57cR0GukA+DCASGbb90bLB1asArGaipg
+	 6kDIslqEDRBVQ==
+From: jchludzinski <jchludzinski@vivaldi.net>
+To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Cc: Yocto <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] OE Linux & board-support-package
 In-Reply-To: 
- <BN6PR1101MB2339141C648E8A8C987D5BD5BBC29@BN6PR1101MB2339.namprd11.prod.outlook.com>
-References: 
-	<010101808ce91651-962b6832-98c0-412d-b766-0b6f9cfbf3e0-000000@us-west-2.amazonses.com>
-	 <6cf4b0c243c9fbb0ca7a7088acd22d8a5c23232f.camel@linuxfoundation.org>
-	 <BN6PR1101MB2339141C648E8A8C987D5BD5BBC29@BN6PR1101MB2339.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4-1ubuntu2 
-MIME-Version: 1.0
+ <CAGAf8LwAdtJAyoBTtX40s4iyCcuuA4xrYw9VRTU9VYNk0Yh+hQ@mail.gmail.com>
+References: <9d3557790b185eab39f60301c57f7a9d@vivaldi.net>
+ <CAGAf8LwAdtJAyoBTtX40s4iyCcuuA4xrYw9VRTU9VYNk0Yh+hQ@mail.gmail.com>
+Message-ID: <7b2fce371a4d490f7691a803823c7c6f@vivaldi.net>
+X-Sender: jchludzinski@vivaldi.net
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 05 May 2022 06:32:24 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56998
+ <yocto@lists.yoctoproject.org>; Thu, 05 May 2022 06:39:54 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/56999
 
-On Thu, 2022-05-05 at 01:15 +0000, Teoh, Jay Shen wrote:
-> Hi TSC,
+A board-support-package (BSP) is software that provides a layer of 
+abstraction from the physical board specifics for the host embedded OS 
+(e.g., VXworks).
+
+I believe the device tree files (*.dts, *dtsi) in OE Linux provide the 
+same function. It allows to OE kernel code to be independent of device 
+specifics.
+
+
+
+On 2022-05-05 01:54, Zoran Stojsavljevic wrote:
+> Hello J,
 > 
-> Intel and WR are good for QA execution.  
-> Shall we proceed?
-
-Yes please, the TSC is concerned but doesn't believe there is much we can do
-about these issues and that they shouldn't affect the release quality.
-
-Cheers,
-
-Richard
-
+> Please, could you be more specific?
+> 
+> Thank you,
+> Zee
+> _______
+> 
+> 
+> On Thu, May 5, 2022 at 5:42 AM jchludzinski via lists.yoctoproject.org
+> <jchludzinski=vivaldi.net@lists.yoctoproject.org> wrote:
+>> 
+>> OE Linux uses device tree files (*.dts and *.dtsi files), so is there
+>> any need for a board-support-package?
+>> 
+>> -=-=-=-=-=-=-=-=-=-=-=-
+>> Links: You receive all messages sent to this group.
+>> View/Reply Online (#56996): 
+>> https://lists.yoctoproject.org/g/yocto/message/56996
+>> Mute This Topic: https://lists.yoctoproject.org/mt/90904726/3618681
+>> Group Owner: yocto+owner@lists.yoctoproject.org
+>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub 
+>> [zoran.stojsavljevic@gmail.com]
+>> -=-=-=-=-=-=-=-=-=-=-=-
+>> 
 
