@@ -2,62 +2,62 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B577BC433FE
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B7809C433EF
 	for <webhook@archiver.kernel.org>; Fri,  6 May 2022 14:32:48 +0000 (UTC)
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com
- [209.85.214.172])
- by mx.groups.io with SMTP id smtpd.web11.10107.1651847561937203016
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com
+ [209.85.216.49])
+ by mx.groups.io with SMTP id smtpd.web09.10231.1651847559510214500
  for <yocto@lists.yoctoproject.org>;
- Fri, 06 May 2022 07:32:42 -0700
+ Fri, 06 May 2022 07:32:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=I5mAN3lJ;
- spf=pass (domain: gmail.com, ip: 209.85.214.172,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=jfMm3fdJ;
+ spf=pass (domain: gmail.com, ip: 209.85.216.49,
  mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f172.google.com with SMTP id x18so7614736plg.6
+Received: by mail-pj1-f49.google.com with SMTP id
+ j8-20020a17090a060800b001cd4fb60dccso7034941pjj.2
         for <yocto@lists.yoctoproject.org>;
- Fri, 06 May 2022 07:32:41 -0700 (PDT)
+ Fri, 06 May 2022 07:32:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=nkakjLGb1YUtn0g7O5XI4xP2XMC4jaBF24fO2OXll6A=;
-        b=I5mAN3lJJwfRMNPg9dKvJUmfzv/kf405CSVe7k5A0X50ywO0t1IO4Zl6njIGevYgUF
-         /aw7LAiMZbvOSGCgx1h5cUu82WGPF+CFL94wjm1ognVgKjeXy34cr2VscxmFc76EvncB
-         n/VUBfrUnp+UMhJV838NdkxDHs2p/8phwXBvnuKUNvSRKtNs+ni7ZoKAIKUGxpa/Vy/Z
-         eG8+M6t1nxJhMm5soxZT47XYx2I1KIvLkOBJxEdp7WFdy3EdgPcdZeHjdIq6yGAtYR4r
-         laZ0/75wvQv28qGP3TIh0azC0TKDl890mzu1U1JZwuWSzhcjvAahIpEivL5FjxOEmVpk
-         +J7w==
+        bh=856etXSCf/sps7SS4yj3OGX2UitH+rA3Ov1LuPzGEEg=;
+        b=jfMm3fdJbAz9kwa7mtZr9YDZ+lUchAx8ZJWR0XZu7k2Bco6YayZr5ghqzbobZTqi0t
+         UtsgYDCKtsRnUAUWhDym7YCAKBAvJvr+9Fs/fcvDPZrmMuEFOyKZRAxitIxSeYATdrij
+         84g0yQ8Nvju+GBXrwhmAUegWCitdWEf5kdp0XZoNYwvxmFL0eVWR5uHVI8N4AqWpDNJt
+         7UKoM6SrS+54ELzklX7YrjbxRefdPxxRLQ1vfw2yKxPnfFmkL9zuNMUOujIP/GymGI92
+         honHnasGi2HyhwJ3jisy2QPp969p+6LzZDGxbNfZOTzdA2RE4YII5XMdacims0BiUCf4
+         7YuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=nkakjLGb1YUtn0g7O5XI4xP2XMC4jaBF24fO2OXll6A=;
-        b=NlOI7LtKYVVZW6D4rDBIbmAqSYA2tK2xHYwBBpa43oCoXEJwKE283eAziEWBa2KM+E
-         Ox69qPcH/o3mrZNmpbcj2gsOG3uSHCuWEi1kspHoTHoh65CfJbbzu6tQywIms4GnmNNb
-         9r7vd9ippocvTkmsGE+PwSSFUNudQNHazFeUPxXmEfPO/+Io6IIkzzZn6ZNcCvk+SE4p
-         IHBU6DS3/3tvGEhLQ8YvlBhcdmOycVSbQ1Bi5el/rvMP/X8cns4YPfMJg34J2Xim7k9y
-         HDiPIMF5kqWW2LDIng/QwV+APWzA50TtKBjRBvZRyATMFNCNfeylKT9sY2WOsJ5uskDX
-         D5yA==
-X-Gm-Message-State: AOAM530f1va8yM2sGsMyKqijdN5h62vBXq8l87acKf+BTUxVNVIB02Ls
-	i03TvIqbdc/TVrYNb2nciElpQbYrSoO9Xw==
+        bh=856etXSCf/sps7SS4yj3OGX2UitH+rA3Ov1LuPzGEEg=;
+        b=l3igERieIiydkvyjIWuHXonS3Iji5FDcpGGMfjxuJcUtD1mbUn3hi6QYzYFda7XifN
+         wCdYqPsb8DYS8s3E5fqMv0Z+d2HtyqC71EJ7KovbfWt7LF4FwpksDFbHmBCmx76kSP21
+         jA8DvfuOs1M8GHBYS9h8v9EcpBJ2OaC3jfDKL8oQRcj/RZzTPzUUhXl4PRvi67toF3zA
+         JN8cAFmENmJC7meDX3wjPctdi2BcH2Gqh5lYKCryKww+/AeHDOo80PdqOl6RbEfYzJ0I
+         Q962tjjVwFeyM7xgZnvZFkpbP4DNhGNNOIBltgBYIfeFgVNSty7kax7yZ73AbM0nTpLU
+         kzAg==
+X-Gm-Message-State: AOAM530C2V5PB3ydpmVzKid7z7RjX11zVsK76+m2ago80iSsrdp83Mar
+	tP1d4XgxTNGmoQrEoeBhUsqpE+ooy6qXAA==
 X-Google-Smtp-Source: 
- ABdhPJyQ4Q7uKmpC2kCzJgq/tC+mUOoE74QlOhyqoqVYtuqfNUnVpoTe0T/lUWJNDF2Rpm4IT6PXdw==
-X-Received: by 2002:a17:902:ce8d:b0:15e:a95d:b4b0 with SMTP id
- f13-20020a170902ce8d00b0015ea95db4b0mr4098338plg.153.1651847561179;
-        Fri, 06 May 2022 07:32:41 -0700 (PDT)
+ ABdhPJxXkiawXeY1iOo9wKNyYdeOVtofb3yzZ7Csj06et5AW4mNyYDawXWI7biNGDjHjr+4DcHQuhQ==
+X-Received: by 2002:a17:902:8501:b0:15c:ea4b:1398 with SMTP id
+ bj1-20020a170902850100b0015cea4b1398mr3987553plb.109.1651847558704;
+        Fri, 06 May 2022 07:32:38 -0700 (PDT)
 Received: from keaua.caveonetworks.com
  ([2601:202:4180:a5c0:c35c:fb08:9ca2:8f49])
         by smtp.gmail.com with ESMTPSA id
- 196-20020a6300cd000000b003c14af5060dsm3385322pga.37.2022.05.06.07.32.40
+ 196-20020a6300cd000000b003c14af5060dsm3385322pga.37.2022.05.06.07.32.37
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 May 2022 07:32:40 -0700 (PDT)
+        Fri, 06 May 2022 07:32:38 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 8/9] packagegroup-core-security.bb: fix
- suricata inclusion
-Date: Fri,  6 May 2022 07:32:28 -0700
-Message-Id: <20220506143229.2141000-8-akuster808@gmail.com>
+Subject: [meta-security][PATCH 6/9] arpwatch: add postfix to pkg config
+Date: Fri,  6 May 2022 07:32:26 -0700
+Message-Id: <20220506143229.2141000-6-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220506143229.2141000-1-akuster808@gmail.com>
 References: <20220506143229.2141000-1-akuster808@gmail.com>
@@ -67,26 +67,45 @@ List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Fri, 06 May 2022 14:32:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57019
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57017
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-core/packagegroup/packagegroup-core-security.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ recipes-scanners/arpwatch/arpwatch_3.1.bb | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/recipes-core/packagegroup/packagegroup-core-security.bb b/recipes-core/packagegroup/packagegroup-core-security.bb
-index 87c5b7a..9010054 100644
---- a/recipes-core/packagegroup/packagegroup-core-security.bb
-+++ b/recipes-core/packagegroup/packagegroup-core-security.bb
-@@ -56,7 +56,7 @@ RDEPENDS:packagegroup-security-audit = " \
- SUMMARY:packagegroup-security-ids = "Security Intrusion Detection systems"
- RDEPENDS:packagegroup-security-ids = " \
-     samhain-standalone \
--    ${@bb.utils.contains("BBLAYERS", "meta-rust", "suricata","", d)} \
-+    suricata \
-     ossec-hids \
-     aide \
-     "
+diff --git a/recipes-scanners/arpwatch/arpwatch_3.1.bb b/recipes-scanners/arpwatch/arpwatch_3.1.bb
+index c152b8c..c8d31cf 100644
+--- a/recipes-scanners/arpwatch/arpwatch_3.1.bb
++++ b/recipes-scanners/arpwatch/arpwatch_3.1.bb
+@@ -3,7 +3,7 @@ LICENSE = "BSD-4-Clause"
+ HOME_PAGE = "http://ee.lbl.gov/"
+ LIC_FILES_CHKSUM = "file://configure;md5=74ca964ed34fda7b46c6fe3e50bded9d"
+ 
+-DEPENDS += "libpcap postfix"
++DEPENDS += "libpcap"
+ 
+ SRC_URI = "https://ee.lbl.gov/downloads/arpwatch/${BP}.tar.gz \
+            file://arpwatch.conf \
+@@ -21,7 +21,11 @@ ARPWATCH_GID ?= "arpwatch"
+ APRWATCH_FROM ?= "root "
+ ARPWATH_REPLY ?= "${ARPWATCH_UID}"
+ 
+-EXTRA_OECONF = " --srcdir=${S} --with-watcher=email=${APRWATCH_FROM} --with-watchee=email=${ARPWATH_REPLY}"
++PACKAGECONFIG ??= ""
++
++PACKACONFIG[email] = "-with-watcher=email=${APRWATCH_FROM} --with-watchee=email=${ARPWATH_REPLY}, , postfix, postfix postfix-cfg"
++
++EXTRA_OECONF:append = " --srcdir=${S}"
+ 
+ CONFIGUREOPTS = " --build=${BUILD_SYS} \
+           --host=${HOST_SYS} \
+@@ -76,4 +80,4 @@ CONFFILE_FILES = "${sysconfdir}/${PN}.conf"
+ FILES:${PN} = "${bindir} ${sbindir} ${prefix}/etc/rc.d \
+                ${sysconfdir} /var/lib/arpwatch"
+ 
+-RDEPENDS:${PN} = "libpcap postfix postfix-cfg"
++RDEPENDS:${PN} = "libpcap"
 -- 
 2.25.1
 
