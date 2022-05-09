@@ -1,198 +1,483 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <bruce.ashfield@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8BE7FC433F5
-	for <webhook@archiver.kernel.org>; Mon,  9 May 2022 11:56:04 +0000 (UTC)
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com
- (EUR05-AM6-obe.outbound.protection.outlook.com [40.107.22.72])
- by mx.groups.io with SMTP id smtpd.web12.30978.1652097353387512675
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 26A4AC433F5
+	for <webhook@archiver.kernel.org>; Mon,  9 May 2022 13:23:15 +0000 (UTC)
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com
+ [209.85.160.182])
+ by mx.groups.io with SMTP id smtpd.web09.31890.1652102581164108546
  for <yocto@lists.yoctoproject.org>;
- Mon, 09 May 2022 04:55:54 -0700
+ Mon, 09 May 2022 06:23:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@armh.onmicrosoft.com
- header.s=selector2-armh-onmicrosoft-com header.b=LSMgZXuN;
- spf=pass (domain: arm.com, ip: 40.107.22.72, mailfrom: ross.burton@arm.com)
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=pass;
- b=RpmjZl8g9/PC1j1RYuJlxlprbeGrnJEDq4YMJBqZNxpZABbQ98CCWfr8aNuZCx1c/is1hayAq3YESpBoFJenlvHJUQxodW87PMzBgzFdU1IPPu3tyJZUVHe59c/TcieGRuza93bWyl6yycHqoOdxgpGLGiBoQo4k2oBcagLYcY9Nh/7kamKr+PPyMWjZlu2acYjN2JUfU0ykHhTkptqBWDskMtd1O3jELUAxg5Ya3ljZTfTzK+wzzzjYV8sN20o2EeOJRdVYzYVrAltFAuYr/t3CbC7GLE7oyaIdVApKiIWwQjbpQaO90IJ0FZRPmVdIYRKwd/nc9I2d3knZpBF7tw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lNtrgu0Q0xsopmdU7SA1cdZQAd9OBhD3UwtZmeY+q40=;
- b=TlFRPFBy3UGrgdZkgSEb9umIpE+4yHpHJ2EnXVfmk1T5oSuXW+O+/5zhAc5ogKSEk8ZHz8Dodt3CzMLzp2UdTWTEsthKkn+azykuUP2TGzYVOLpzHaw4C7LI89c27QDrKBYiPNRajPDvQuXPd85JgcyqL0esomSgQCEKPSoppY1z5EoGVpbpyRvMyqM0YDidcQjoapA5R7oKj2qD8+i49yR+g8I4mTSzrKueKFpQdBf0nuMbPy2XZ0vkIUM9AsuiPhnNMJkHSRMDkYr0zJLcVTCOJCtMcOGP5ZFpIY90hh5TE1yIROLUyZhpE5dsxRjQGt8RLPBU/AS1ugR1pcttcQ==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 63.35.35.123) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=arm.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=arm.com;
- dkim=pass (signature was verified) header.d=armh.onmicrosoft.com; arc=pass (0
- oda=1 ltdi=1 spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
- dmarc=[1,1,header.from=arm.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
- s=selector2-armh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lNtrgu0Q0xsopmdU7SA1cdZQAd9OBhD3UwtZmeY+q40=;
- b=LSMgZXuNCc/i1Xeq4QTO/pDYXWHm/2JGZEcAJlEsetTCBHxSDPYehjqAoMBCj0crycNY4xOm5cuyjdQ68YbBv9fohzxKDmQIzZLEiFgkT+8cAWJgMdknpgrnD2MNRdIMnsQvqUGx5p0lqqHFp5en+2V03zN9Thg7n4HmyleQHDI=
-Received: from AM7PR02CA0012.eurprd02.prod.outlook.com (2603:10a6:20b:100::22)
- by AM6PR08MB3992.eurprd08.prod.outlook.com (2603:10a6:20b:a4::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.25; Mon, 9 May
- 2022 11:55:49 +0000
-Received: from VE1EUR03FT006.eop-EUR03.prod.protection.outlook.com
- (2603:10a6:20b:100:cafe::d1) by AM7PR02CA0012.outlook.office365.com
- (2603:10a6:20b:100::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.23 via Frontend
- Transport; Mon, 9 May 2022 11:55:49 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 63.35.35.123)
- smtp.mailfrom=arm.com; dkim=pass (signature was verified)
- header.d=armh.onmicrosoft.com;dmarc=pass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
- client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
-Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
- VE1EUR03FT006.mail.protection.outlook.com (10.152.18.116) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5227.15 via Frontend Transport; Mon, 9 May 2022 11:55:48 +0000
-Received: ("Tessian outbound 62985e3c34b6:v118");
- Mon, 09 May 2022 11:55:48 +0000
-X-CheckRecipientChecked: true
-X-CR-MTA-CID: 342d9cf0f373306d
-X-CR-MTA-TID: 64aa7808
-Received: from f5f41990f240.1
-	by 64aa7808-outbound-1.mta.getcheckrecipient.com id
- BD6FA3B3-BC17-4219-8A02-ED536ADCA33D.1;
-	Mon, 09 May 2022 11:55:42 +0000
-Received: from EUR03-AM5-obe.outbound.protection.outlook.com
-    by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id
- f5f41990f240.1
-    (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
-    Mon, 09 May 2022 11:55:42 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cEN9tkYIHZ2yNFYwqKzWBsgkCWQO+3kQhvLbA1o6CX+ou4HWXWYIuWzEcbvXd/+VeMxszxESnenEQgInVlqEc89afSOAa/ul4kfCYRxAss13mROxAhFSgn7lHbjjq8wJjs6n+/a+MrqRlX4K3Epzc1vVKKHWQdhuNDq3NgxQJPeKEtdS7uvE097syrzkwGYMQwTrIp7nYm5L3u5FdZaaW3vjZ1B2tdju2D+Ad+Kj8HYJGRcTz2aHQgaNtjIGVCWYIXiJeZAkwiDUm1gaToh/+f8R8NinzXUWEqWQVtNogO3N+o2BgvCz8uLVYhQO0ZZvr/JMqWtAJO9AI+JB2CDQag==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lNtrgu0Q0xsopmdU7SA1cdZQAd9OBhD3UwtZmeY+q40=;
- b=M9DnzVEhSqYCyR1g3n3TIWdnhDKjHkX9BQxrOeTbgV9qMm9CYi1Ab4ZxmKNb3Qxq89o/ciT3ArMww4uM5Axr3SgIf2A5hGtzNBJ+ytLisTXfhFDPDZC8Dhq59msws1ff5+rueyWEuN6DyrrD9M41bG0cm7wT+X9jPHWdSuS9oy2Y3s88+pwXv9qrTWO09FKO5aV9Mv1xqaqOaBKE5vyGXTuEJg/0W/JefLmHJ45imaM1RwKbClXX7lRmRoqjy0Ln0iLOlFNk6trnrxQYqNaOiwaNqymE6LYNfZ0oT+Fe2sj7ZSMDCyUHbNKE2JgthUpN/iv53rSNcayT9BF3iNrLnA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
- s=selector2-armh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lNtrgu0Q0xsopmdU7SA1cdZQAd9OBhD3UwtZmeY+q40=;
- b=LSMgZXuNCc/i1Xeq4QTO/pDYXWHm/2JGZEcAJlEsetTCBHxSDPYehjqAoMBCj0crycNY4xOm5cuyjdQ68YbBv9fohzxKDmQIzZLEiFgkT+8cAWJgMdknpgrnD2MNRdIMnsQvqUGx5p0lqqHFp5en+2V03zN9Thg7n4HmyleQHDI=
-Received: from PA4PR08MB7411.eurprd08.prod.outlook.com (2603:10a6:102:2a3::12)
- by VE1PR08MB5839.eurprd08.prod.outlook.com (2603:10a6:800:1a0::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.21; Mon, 9 May
- 2022 11:55:39 +0000
-Received: from PA4PR08MB7411.eurprd08.prod.outlook.com
- ([fe80::6c2b:5021:db9a:bf6d]) by PA4PR08MB7411.eurprd08.prod.outlook.com
- ([fe80::6c2b:5021:db9a:bf6d%7]) with mapi id 15.20.5227.023; Mon, 9 May 2022
- 11:55:39 +0000
-From: Ross Burton <Ross.Burton@arm.com>
-To: "steven.monsees@baesystems.com" <steven.monsees@baesystems.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] enabling symbols for debug in clinfo
-Thread-Topic: [yocto] enabling symbols for debug in clinfo
-Thread-Index: AdhjkoL47clQSZawRfWEU5kzbcuRPwACS/sA
-Date: Mon, 9 May 2022 11:55:39 +0000
-Message-ID: <C43FA290-46CE-41F9-84ED-BF78D35BA152@arm.com>
-References: <MADEUP.16ED6A72C4624DE7.14253@lists.yoctoproject.org>
-In-Reply-To: <MADEUP.16ED6A72C4624DE7.14253@lists.yoctoproject.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: Apple Mail (2.3693.60.0.1.1)
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=arm.com;
-X-MS-Office365-Filtering-Correlation-Id: 203152ee-733d-4740-6434-08da31b2dbc1
-x-ms-traffictypediagnostic: 
-	VE1PR08MB5839:EE_|VE1EUR03FT006:EE_|AM6PR08MB3992:EE_
-X-Microsoft-Antispam-PRVS: 
-	<AM6PR08MB399232B6B976ACB81CC19CE8E8C69@AM6PR08MB3992.eurprd08.prod.outlook.com>
-x-checkrecipientrouted: true
-nodisclaimer: true
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: 
- UaIXyw27yiOCiT9vrFesLh6o0bALdFYkg+AYKyIFf37TlzC4IkBDITozeKcw1nSfThAhOkMWImhbxExG+b5GXpy8vfqxDDUKa3bsabhT8vCeGuUHkRWN9ZeM5qMbFfPrhHep0L7djJR3XNE36heVRHRtECBBcIQGxfPZXz4BSshUcJmEeoiiq5xbMKtTqad9VbDKYkID7dxjl36M0ekHMoiOhco2JeEiSffn/s33Y2BjOnPdBglryhNtMTpfmqF5CsWlKWwZ/B+cCFQp0EwG9csVTJVZIwj7b0qQkuy0iHmh8f4DrBka1PwyfxReqAooTMquDSKMinpzpzSLRv3+uwXFbd5ziKht+Fs7eC2nZ49ISXDjAUrk8IFNg7tec/nO7jrgb2gRlStcqLC/O+1KAD9yXedA4S3CeroxF3B+KMPb6wsjp/4lAb8gRqn4fBDE+2/GRqPcR+qmh76UMKcEZqqdsCQSIN8hAjyHzJ3Xl61yZjCFEa7FB+DMBg91dg2ITm6gLWh4ojHfjpOJ/lA3/OPQLvGMdsfFTZVB8ptbwdRg06xXn/6RFbGwwK8amZiUtND1Y6n7HvyGVYczt9H35HXlycXANePNQGQCUYiDCIzsXgagbAgJ4eDj4tRYTOaAaXbyPTkLNd9IaAYGooJqCMWGVFpsE5VM3ljn754s2dFY7fU6BzzHAF6AHP0DMKPZGeuH3PB9EeOWB7gHyNYfG4xt97v6zQpdRh1DR/paQ5hlo52imes9fNkohifFh9F70jXXv5zd+K8XGshcs6uJvVvaWIeO4J9k33eOX6ofp9CSfhORHM6IKpOXnFqfMMc4WA+4lA0VUWboyHf4vpOhCHTdaykcxKmkYuzmLx3mXAU=
-X-Forefront-Antispam-Report-Untrusted: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR08MB7411.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(2906002)(966005)(86362001)(6506007)(8936002)(6486002)(33656002)(53546011)(71200400001)(5660300002)(508600001)(83380400001)(26005)(38100700002)(6512007)(2616005)(38070700005)(122000001)(186003)(66556008)(66946007)(76116006)(91956017)(316002)(66476007)(64756008)(66446008)(6916009)(4326008)(8676002)(36756003)(45980500001);DIR:OUT;SFP:1101;
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <B8B5F07C234CDC4C99DFCB5D9CB88CD8@eurprd08.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=MaL/A6bs;
+ spf=pass (domain: gmail.com, ip: 209.85.160.182,
+ mailfrom: bruce.ashfield@gmail.com)
+Received: by mail-qt1-f182.google.com with SMTP id t16so10917339qtr.9
+        for <yocto@lists.yoctoproject.org>;
+ Mon, 09 May 2022 06:23:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MtENBY4IEN1TbYgsnkTwoDi7MODZf7sNJ96hqPVj0X8=;
+        b=MaL/A6bslT3W23plBRNcOAxjNgIcTkeyXkNSXvxKpC/zWmbHxW85nH9SfEwaZkNvlD
+         ilMFFZmWF/4RFNKBKgL1tdNggOFj1HFCaYaMbEXxM8iwicz3flt6F67CO3ECeIiHUjKk
+         ZFUWDdUhSUy/LMrq8mhITE4YttvCozsnmarhsBRaEjQSI99u6lLQNpeHUPEvI8BLUPYe
+         vrp0ipOlz965PyyJWI/4sF3EXzkbQlTwbjoO0dQuvtCdyc27og85tMcB/5TBCda6/CH+
+         pBm86A4gwHrZxaczZD73lYNj1CKYTVT4VU/ZU9logkJJqhBB9TAlpnkkZP8vmnuFBs/C
+         ZD6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MtENBY4IEN1TbYgsnkTwoDi7MODZf7sNJ96hqPVj0X8=;
+        b=PGh4D8O52BlqPSoalRotPQyK/mLlufANrJZeDNweYm8wHku4SVbyiJv0pfsi6F87aV
+         ZiiakExH5xpBymaxXFr5zleSZSAQ755tlpJS3eHy/jBD5CiZdBPcsoLmViRHmj3GmxSr
+         jzXMbycREqIIERXG6U34ZLXblPGNSRiECYYYDTDGNvWgb4Kv6PfFP4o4pzN9gfIwRzUX
+         xHtf0R/Xu8BQfbvu2O+3+jqrvUrYo03tj2oBqMoaE1mixLPua6RfOt1MOBBIMMlw4aUV
+         GRp3jWmi6brf7t3Fkd1axZvi8PPzVU0H1/CkV0v5Rw+QCRHU7ZOYVHTRBz7wi7F706vy
+         XNIA==
+X-Gm-Message-State: AOAM532YU+WU3R2z6i97tm4JUsdDJX//RH4rAo1yfKM1OhBgSxHg8zZe
+	XL90yCeV3I58d1tm4xmXNZj9xVtv3DFaig==
+X-Google-Smtp-Source: 
+ ABdhPJwl6+a6jEJLpuCON7Cjxg9sNeZ5YHLtH+rvqENs8LdXxB/SuiEyoRe0kem++JECKVtREvBqJA==
+X-Received: by 2002:a05:622a:118b:b0:2f3:b7ee:ca41 with SMTP id
+ m11-20020a05622a118b00b002f3b7eeca41mr14936373qtk.618.1652102579923;
+        Mon, 09 May 2022 06:22:59 -0700 (PDT)
+Received: from build.lan ([173.34.88.218])
+        by smtp.gmail.com with ESMTPSA id
+ bq10-20020a05620a468a00b0069fc13ce1f1sm6807099qkb.34.2022.05.09.06.22.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 May 2022 06:22:59 -0700 (PDT)
+From: bruce.ashfield@gmail.com
+To: richard.purdie@linuxfoundation.org
+Cc: yocto@lists.yoctoproject.org
+Subject: [PATCH] yocto-bsps: update to v5.10.113
+Date: Mon,  9 May 2022 09:22:57 -0400
+Message-Id: <20220509132257.43873-1-bruce.ashfield@gmail.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR08MB5839
-Original-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=arm.com;
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
- VE1EUR03FT006.eop-EUR03.prod.protection.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 
-	bf7fc85b-8bdf-4461-5634-08da31b2d629
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	WLs+zMmNCF10NPqT4JVSZ6iwvIJ0HRspPTUrxvxSjO0M795twtiDX1R40azuGaWfo+HgxyBuKnf2b+FdUcDjISAo1RDecvtEWneS8hlUcgzX5o4bDR15883JPjRKzMJhyWnJkQPGpS1uMDSawnR7mHihjXEJ0XT7/MbhDKQW49pbS5BV1X2XZazDkxbDOA5ClKh3+y+Gf8Q0whSyDsO3Kfbbs95bpNSfWA2/lTeaXs7cXa7B/C0rwqF65QxUKrLyWmewJIfP8Xf81+2ORSoZaZN6zfn0BBk8ObfWgpPp5yzegjnDUNJJ1Gk4EasDwIg1Ryox4dFaffOCD+ih/ARaBa2zUcVaqt9l4aodL/CqbYc7FcEzZF1k5MDegCHZOQr4AyTsgmaBYAKb6UGzIycJPIIkg4pnfGUNCou8Ay8T5cTU7ESORieTiYL9jIwb1VXgmqt+Ni04Nam36qDDzC3/sL+NqyCQgh1Bl9GgZiGaxVqPfE7HRIoXF4d9kDKRkCxvwsJ9ozpnCqEhwms4JBzVExfJRFRv9p99gdDGfUKo8J7VHzkpIsxMsse6TuaJdkl+4G0n/PLW3vc8rC+xkIp2YQ1dl4BH4k3dNAvPgftYyUis9jlqI9bOe4rnx6Qo0QAo4oiikgX9gaCMFCsbiGC3172Xr730o8ZMYxMX6N4NtegsgGWXC2XtCEi2OE29TugieeqyRFTAqFTC4+ToXATfuBTrxLNTtUSh5OotDfI+ahD/mkvMEXV4Y05I3m/ZQL4J3vvIUJHNWH7eHmDaUaFio4SAknNTww+jUCwHZWqUlJY=
-X-Forefront-Antispam-Report: 
-	CIP:63.35.35.123;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:64aa7808-outbound-1.mta.getcheckrecipient.com;PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(40460700003)(47076005)(86362001)(356005)(26005)(70206006)(36860700001)(6512007)(70586007)(336012)(316002)(36756003)(2616005)(82310400005)(81166007)(6486002)(83380400001)(6506007)(6862004)(8676002)(4326008)(2906002)(5660300002)(33656002)(8936002)(508600001)(966005)(186003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2022 11:55:48.6233
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 203152ee-733d-4740-6434-08da31b2dbc1
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
- TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[63.35.35.123];Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	VE1EUR03FT006.eop-EUR03.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR08MB3992
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 09 May 2022 11:56:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57028
+ <yocto@lists.yoctoproject.org>; Mon, 09 May 2022 13:23:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57029
 
-VW5sZXNzIGNsaW5mbyBpcyBkb2luZyBzb21ldGhpbmcgd3JvbmcsIGl0IHdpbGwgYmUgYnVpbHQg
-d2l0aCAtZyBhbnl3YXkuICBZb3XigJlsbCBqdXN0IG5lZWQgdG8gaW5zdGFsbCBjbGluZm8tZGJn
-IHRvIGdldCB0aGUgc3ltYm9scywgYXMgdGhleeKAmWxsIGJlIHNwbGl0IG91dCBpbnRvIGEgc2Vw
-YXJhdGUgcGFja2FnZSBkdXJpbmcgcGFja2FnaW5nLg0KDQpSb3NzDQoNCj4gT24gOSBNYXkgMjAy
-MiwgYXQgMTE6NTQsIE1vbnNlZXMsIFN0ZXZlbiBDIChVUykgdmlhIGxpc3RzLnlvY3RvcHJvamVj
-dC5vcmcgPHN0ZXZlbi5tb25zZWVzPWJhZXN5c3RlbXMuY29tQGxpc3RzLnlvY3RvcHJvamVjdC5v
-cmc+IHdyb3RlOg0KPg0KPg0KPiBIZWxsbzoNCj4NCj4gSeKAmWQgbGlrZSB0byBidWlsZCBjbGlu
-Zm8gdy8g4oCcLWfigJ0gb3B0aW9uIHRvIGRvIHNvbWUgZGVidWdnaW5nIHdpdGggR0RC4oCmDQo+
-DQo+IEkgYW0gbG9va2luZyBhdDogbWV0YS1vcGVuZW1iZWRkZWQvbWV0YS1vZS9yZWNpcGVzLXN1
-cHBvcnQvb3BlbmNsL2NsaW5mb18yLjIuMTguMDQuMDYuYmINCj4NCj4gSSBjcmVhdGVkIGEg4oCc
-YmJhcGVuZOKAnSBmaWxlIHRvIG1vZGlmeSB0aGUgYnVpbGQgcmVjaXBlcyDigJxNYWtlZmlsZS5h
-beKAnSBmaWxlIHByaW9yIHRvIGJ1aWxkLCB0byBpbnRyb2R1Y2Ug4oCYLWfigJkgZm9yIENGTEFH
-UyAmIENQUEZMQUdTLCBpLmUuIGF0IHRvcCBvZiBNYWtlZmlsZS5hbSBhZGRlZDoNCj4NCj4gICAg
-ICAgICAgICAgICAgIEFNX0NGTEFHUyAtIC1nDQo+ICAgICAgICAgICAgICAgICBBTV9DUFBGTEFH
-UyA9IC1nDQo+DQo+IEkgY2hlY2tlZCB0aGUgYnVpbGQgdHJlZSBhbmQgc2VlIG15IG1vZGlmaWVk
-IOKAnE1ha2VmaWxlLmFt4oCdIHVwZGF0ZWQgYXMgZXhwZWN0ZWQsIHRoZSB1cGRhdGUgb2NjdXJz
-IGF0IHRoZSBlbmQgb2YgdGhlIGluc3RhbGwgcHJvY2VzcywgdXNpbmcgZG9faW5zdGFsbF9hcHBl
-bmTigKYgc28gdGhlIGJ1aWxkIHNob3VsZCBoYXZlIHVzZWQgbXkgbW9kaWZpZWQgZmlsZeKApiBi
-dXQgSSBkbyBub3QgaGF2ZSBzeW1ib2xzIGZvciB0aGUgY2xpbmZvIHBhY2thZ2Ugd2hlbiBJIGdv
-IHRvIHVzZSBHREIuDQo+DQo+IElzIHRoZXJlIGEgc2ltcGxlIHdheSB0byBlbmFibGUgZGVidWcg
-c3ltYm9scyBmb3IgdGhpcyBwYWNrYWdlID8NCj4NCj4gRGlkIEkgbW9kaWZ5IHRoZSB3cm9uZyBj
-b25maWd1cmF0aW9uIGZpbGU/LCBTaG91bGQgSSBiZSBtb2RpZnlpbmcgY29uZmlndXJlID8NCj4N
-Cj4gSSBhbSBuZXcgdG8gYXV0by1idWlsZCBjb25maWd1cmF0aW9uc+KApg0KPiBDb3VsZCBzb21l
-b25lIHRlbGwgbWUgdGhlIGVhc2llc3Qgd2F5IHRvIGFkZCDigJwtZ+KAnSB0byB0aGUgY2xpbmZv
-IHN0YW5kYXJkIGJ1aWxkID8NCj4NCj4gVGhhbmtzLA0KPiBTdGV2ZQ0KPg0KPiAtPS09LT0tPS09
-LT0tPS09LT0tPS09LQ0KPiBMaW5rczogWW91IHJlY2VpdmUgYWxsIG1lc3NhZ2VzIHNlbnQgdG8g
-dGhpcyBncm91cC4NCj4gVmlldy9SZXBseSBPbmxpbmUgKCM1NzAyNik6IGh0dHBzOi8vbGlzdHMu
-eW9jdG9wcm9qZWN0Lm9yZy9nL3lvY3RvL21lc3NhZ2UvNTcwMjYNCj4gTXV0ZSBUaGlzIFRvcGlj
-OiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbXQvOTA5ODYzNTcvNjg3NTg4OA0KPiBH
-cm91cCBPd25lcjogeW9jdG8rb3duZXJAbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KPiBVbnN1YnNj
-cmliZTogaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2cveW9jdG8vdW5zdWIgW3Jvc3Mu
-YnVydG9uQGFybS5jb21dDQo+IC09LT0tPS09LT0tPS09LT0tPS09LT0tDQoNCklNUE9SVEFOVCBO
-T1RJQ0U6IFRoZSBjb250ZW50cyBvZiB0aGlzIGVtYWlsIGFuZCBhbnkgYXR0YWNobWVudHMgYXJl
-IGNvbmZpZGVudGlhbCBhbmQgbWF5IGFsc28gYmUgcHJpdmlsZWdlZC4gSWYgeW91IGFyZSBub3Qg
-dGhlIGludGVuZGVkIHJlY2lwaWVudCwgcGxlYXNlIG5vdGlmeSB0aGUgc2VuZGVyIGltbWVkaWF0
-ZWx5IGFuZCBkbyBub3QgZGlzY2xvc2UgdGhlIGNvbnRlbnRzIHRvIGFueSBvdGhlciBwZXJzb24s
-IHVzZSBpdCBmb3IgYW55IHB1cnBvc2UsIG9yIHN0b3JlIG9yIGNvcHkgdGhlIGluZm9ybWF0aW9u
-IGluIGFueSBtZWRpdW0uIFRoYW5rIHlvdS4NCg==
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+
+Updating linux-yocto/5.10 to the latest korg -stable release that comprises
+the following commits:
+
+    54af9dd2b958 Linux 5.10.113
+    7992fdb045fb Revert "net: micrel: fix KS8851_MLL Kconfig"
+    8bedbc8f7f35 block/compat_ioctl: fix range check in BLKGETSIZE
+    fea24b07edfc staging: ion: Prevent incorrect reference counting behavour
+    dccee748af17 spi: atmel-quadspi: Fix the buswidth adjustment between spi-mem and controller
+    572761645b88 jbd2: fix a potential race while discarding reserved buffers after an abort
+    50aac4427360 can: isotp: stop timeout monitoring when no first frame was sent
+    e1e96e372721 ext4: force overhead calculation if the s_overhead_cluster makes no sense
+    4789149b9ea2 ext4: fix overhead calculation to account for the reserved gdt blocks
+    0c54b093766b ext4, doc: fix incorrect h_reserved size
+    22c450d39f89 ext4: limit length to bitmap_maxbytes - blocksize in punch_hole
+    75ac724684b7 ext4: fix use-after-free in ext4_search_dir
+    a46b3d849864 ext4: fix symlink file size not match to file content
+    f6038d43b25b ext4: fix fallocate to use file_modified to update permissions consistently
+    19590bbc691d perf report: Set PERF_SAMPLE_DATA_SRC bit for Arm SPE event
+    e012f9d1af54 powerpc/perf: Fix power9 event alternatives
+    0a2cef65b329 drm/vc4: Use pm_runtime_resume_and_get to fix pm_runtime_get_sync() usage
+    f8f8b3124b89 KVM: PPC: Fix TCE handling for VFIO
+    405d98427416 drm/panel/raspberrypi-touchscreen: Initialise the bridge in prepare
+    231381f52116 drm/panel/raspberrypi-touchscreen: Avoid NULL deref if not initialised
+    51d9cbbb0f5a perf/core: Fix perf_mmap fail when CONFIG_PERF_USE_VMALLOC enabled
+    88fcfd6ee6c5 sched/pelt: Fix attach_entity_load_avg() corner case
+    c55327bc3712 arm_pmu: Validate single/group leader events
+    5580b974a84b ARC: entry: fix syscall_trace_exit argument
+    7082650eb826 e1000e: Fix possible overflow in LTR decoding
+    43a2a3734aa3 ASoC: soc-dapm: fix two incorrect uses of list iterator
+    54e6180c8c2d gpio: Request interrupts after IRQ is initialized
+    0837ff17d052 openvswitch: fix OOB access in reserve_sfa_size()
+    19f6dcb1f0f0 xtensa: fix a7 clobbering in coprocessor context load/store
+    f399ab11dd6c xtensa: patch_text: Fixup last cpu should be master
+    ba2716da2336 net: atlantic: invert deep par in pm functions, preventing null derefs
+    358a3846f6a9 dma: at_xdmac: fix a missing check on list iterator
+    cf23a960c5c6 ata: pata_marvell: Check the 'bmdma_addr' beforing reading
+    9ca66d791439 mm/mmu_notifier.c: fix race in mmu_interval_notifier_remove()
+    ed5d4efb4df1 oom_kill.c: futex: delay the OOM reaper to allow time for proper futex cleanup
+    6b932920b96f mm, hugetlb: allow for "high" userspace addresses
+    50cbc583fa83 EDAC/synopsys: Read the error count from the correct register
+    7ec6e06ee405 nvme-pci: disable namespace identifiers for Qemu controllers
+    316bd86c2261 nvme: add a quirk to disable namespace identifiers
+    76101c8e0c31 stat: fix inconsistency between struct stat and struct compat_stat
+    bf28bba30410 scsi: qedi: Fix failed disconnect handling
+    a284cca3d81a net: macb: Restart tx only if queue pointer is lagging
+    9581e07b549b drm/msm/mdp5: check the return of kzalloc()
+    8d71edabb0ab dpaa_eth: Fix missing of_node_put in dpaa_get_ts_info()
+    b3afe5a7fd75 brcmfmac: sdio: Fix undefined behavior due to shift overflowing the constant
+    202748f44148 mt76: Fix undefined behavior due to shift overflowing the constant
+    0de9c104d04a net: atlantic: Avoid out-of-bounds indexing
+    5bef9fc38ffa cifs: Check the IOCB_DIRECT flag, not O_DIRECT
+    e129c55153c8 vxlan: fix error return code in vxlan_fdb_append
+    8e7ea1136475 arm64: dts: imx: Fix imx8*-var-som touchscreen property sizes
+    cd227ac03f2a ALSA: usb-audio: Fix undefined behavior due to shift overflowing the constant
+    490815f0b50e platform/x86: samsung-laptop: Fix an unsigned comparison which can never be negative
+    cb17b56a9b4d reset: tegra-bpmp: Restore Handle errors in BPMP response
+    d513ea9b7ef8 ARM: vexpress/spc: Avoid negative array index when !SMP
+    052e4a661f90 arm64: mm: fix p?d_leaf()
+    18ff7a2efa4e arm64/mm: Remove [PUD|PMD]_TABLE_BIT from [pud|pmd]_bad()
+    3bf8ca350170 selftests: mlxsw: vxlan_flooding: Prevent flooding of unwanted packets
+    520aab8b723c dmaengine: idxd: add RO check for wq max_transfer_size write
+    9a3c026dc3a5 dmaengine: idxd: add RO check for wq max_batch_size write
+    f593f49fcd17 net: stmmac: Use readl_poll_timeout_atomic() in atomic state
+    3d55b195747c netlink: reset network and mac headers in netlink_dump()
+    49516e6ed914 ipv6: make ip6_rt_gc_expire an atomic_t
+    078d839f11ac l3mdev: l3mdev_master_upper_ifindex_by_index_rcu should be using netdev_master_upper_dev_get_rcu
+    0ac8f83d8f64 net/sched: cls_u32: fix possible leak in u32_init_knode()
+    93366275be72 ip6_gre: Fix skb_under_panic in __gre6_xmit()
+    200f96ebb389 ip6_gre: Avoid updating tunnel->tun_hlen in __gre6_xmit()
+    8fb76adb89f0 net/packet: fix packet_sock xmit return value checking
+    a499cb5f3ef9 net/smc: Fix sock leak when release after smc_shutdown()
+    60592f16a456 rxrpc: Restore removed timer deletion
+    fc7116a79a86 igc: Fix BUG: scheduling while atomic
+    46b0e4f998ce igc: Fix infinite loop in release_swfw_sync
+    c075c3ea0317 esp: limit skb_page_frag_refill use to a single page
+    3f7914dbeacd spi: spi-mtk-nor: initialize spi controller after resume
+    f714abf28f81 dmaengine: mediatek:Fix PM usage reference leak of mtk_uart_apdma_alloc_chan_resources
+    9bc949a181ba dmaengine: imx-sdma: Fix error checking in sdma_event_remap
+    12aa8021c7a7 ASoC: codecs: wcd934x: do not switch off SIDO Buck when codec is in use
+    b6f474cd3097 ASoC: msm8916-wcd-digital: Check failure for devm_snd_soc_register_component
+    608fc58858bf ASoC: atmel: Remove system clock tree configuration for at91sam9g20ek
+    d29c78d3f9c5 dm: fix mempool NULL pointer race when completing IO
+    cf9b19546494 ALSA: hda/realtek: Add quirk for Clevo NP70PNP
+    8ce3820fc9d4 ALSA: usb-audio: Clear MIDI port active flag after draining
+    43ce33a68e2b net/sched: cls_u32: fix netns refcount changes in u32_change()
+    04dd45d9776e gfs2: assign rgrp glock before compute_bitstructs
+    378061c9b886 perf tools: Fix segfault accessing sample_id xyarray
+    5e8446e3820c tracing: Dump stacktrace trigger to the corresponding instance
+    69848f9488bc mm: page_alloc: fix building error on -Werror=array-compare
+    08ad7a770efa etherdevice: Adjust ether_addr* prototypes to silence -Wstringop-overead
+    1052f9bce629 Linux 5.10.112
+    5c62d3bf1410 ax25: Fix UAF bugs in ax25 timers
+    f934fa478dd1 ax25: Fix NULL pointer dereferences in ax25 timers
+    145ea8d213e8 ax25: fix NPD bug in ax25_disconnect
+    a4942c6fea87 ax25: fix UAF bug in ax25_send_control()
+    b20a5ab0f5fb ax25: Fix refcount leaks caused by ax25_cb_del()
+    57cc15f5fd55 ax25: fix UAF bugs of net_device caused by rebinding operation
+    5ddae8d06441 ax25: fix reference count leaks of ax25_dev
+    5ea00fc60676 ax25: add refcount in ax25_dev to avoid UAF bugs
+    361288633bfa scsi: iscsi: Fix unbound endpoint error handling
+    129db30599bc scsi: iscsi: Fix endpoint reuse regression
+    26f827e095ab dma-direct: avoid redundant memory sync for swiotlb
+    9a5a4d23e24d timers: Fix warning condition in __run_timers()
+    84837f43e56f i2c: pasemi: Wait for write xfers to finish
+    89496d80bf84 smp: Fix offline cpu check in flush_smp_call_function_queue()
+    cd02b2687d66 dm integrity: fix memory corruption when tag_size is less than digest size
+    0a312ec66a03 ARM: davinci: da850-evm: Avoid NULL pointer dereference
+    0806f1930562 tick/nohz: Use WARN_ON_ONCE() to prevent console saturation
+    0275c75955d1 genirq/affinity: Consider that CPUs on nodes can be unbalanced
+    1fcfe37d170a drm/amdgpu: Enable gfxoff quirk on MacBook Pro
+    68ae52efa132 drm/amd/display: don't ignore alpha property on pre-multiplied mode
+    a263712ba8c9 ipv6: fix panic when forwarding a pkt with no in6 dev
+    659214603bf2 nl80211: correctly check NL80211_ATTR_REG_ALPHA2 size
+    912797e54c99 ALSA: pcm: Test for "silence" field in struct "pcm_format_data"
+    48d070ca5e7e ALSA: hda/realtek: add quirk for Lenovo Thinkpad X12 speakers
+    163e16247130 ALSA: hda/realtek: Add quirk for Clevo PD50PNT
+    5e4dd1799883 btrfs: mark resumed async balance as writing
+    1d2eda18f6ff btrfs: fix root ref counts in error handling in btrfs_get_root_ref
+    9b7ec35253c9 ath9k: Fix usage of driver-private space in tx_info
+    0f65cedae500 ath9k: Properly clear TX status area before reporting to mac80211
+    cc21ae932656 gcc-plugins: latent_entropy: use /dev/urandom
+    c089ffc846c8 memory: renesas-rpc-if: fix platform-device leak in error path
+    342454231ee5 KVM: x86/mmu: Resolve nx_huge_pages when kvm.ko is loaded
+    06c348fde545 mm: kmemleak: take a full lowmem check in kmemleak_*_phys()
+    20ed94f8181a mm: fix unexpected zeroed page mapping with zram swap
+    192e507ef894 mm, page_alloc: fix build_zonerefs_node()
+    000b3921b4d5 perf/imx_ddr: Fix undefined behavior due to shift overflowing the constant
+    ca24c5e8f0ac drivers: net: slip: fix NPD bug in sl_tx_timeout()
+    e8cf1e4d953d scsi: megaraid_sas: Target with invalid LUN ID is deleted during scan
+    5b7ce74b6bc8 scsi: mvsas: Add PCI ID of RocketRaid 2640
+    4b44cd584057 drm/amd/display: Fix allocate_mst_payload assert on resume
+    34ea097fb63d drm/amd/display: Revert FEC check in validation
+    fa5ee7c4232c myri10ge: fix an incorrect free for skb in myri10ge_sw_tso
+    d90df6da50c5 net: usb: aqc111: Fix out-of-bounds accesses in RX fixup
+    9c12fcf1d864 net: axienet: setup mdio unconditionally
+    b643807a735e tlb: hugetlb: Add more sizes to tlb_remove_huge_tlb_entry
+    98973d2bdd4a arm64: alternatives: mark patch_alternative() as `noinstr`
+    2462faffbfa5 regulator: wm8994: Add an off-on delay for WM8994 variant
+    aa8cdedaf760 gpu: ipu-v3: Fix dev_dbg frequency output
+    150fe861c57c ata: libata-core: Disable READ LOG DMA EXT for Samsung 840 EVOs
+    1ff5359afa5e net: micrel: fix KS8851_MLL Kconfig
+    d3478709edf2 scsi: ibmvscsis: Increase INITIAL_SRP_LIMIT to 1024
+    b9a110fa755b scsi: lpfc: Fix queue failures when recovering from PCI parity error
+    aec36b98a1bb scsi: target: tcmu: Fix possible page UAF
+    43666798059c Drivers: hv: vmbus: Prevent load re-ordering when reading ring buffer
+    1d7a5aae884c drm/amdkfd: Check for potential null return of kmalloc_array()
+    e5afacc826a8 drm/amdgpu/vcn: improve vcn dpg stop procedure
+    d2e0931e6d84 drm/amdkfd: Fix Incorrect VMIDs passed to HWS
+    7fc0610ad818 drm/amd/display: Update VTEM Infopacket definition
+    6906e05cf3ad drm/amd/display: FEC check in timing validation
+    756c61c1680f drm/amd/display: fix audio format not updated after edid updated
+    76e086ce7b2d btrfs: do not warn for free space inode in cow_file_range
+    217190dc66ef btrfs: fix fallocate to use file_modified to update permissions consistently
+    9b5d1b3413d7 drm/amd: Add USBC connector ID
+    6f9c06501d28 net: bcmgenet: Revert "Use stronger register read/writes to assure ordering"
+    504c15f07f54 dm mpath: only use ktime_get_ns() in historical selector
+    4e166a41180b cifs: potential buffer overflow in handling symlinks
+    67677050cecb nfc: nci: add flush_workqueue to prevent uaf
+    bfba9722cf2e perf tools: Fix misleading add event PMU debug message
+    280f721edc54 testing/selftests/mqueue: Fix mq_perf_tests to free the allocated cpu set
+    eb8873b324d9 sctp: Initialize daddr on peeled off socket
+    45226fac4d31 scsi: iscsi: Fix conn cleanup and stop race during iscsid restart
+    73805795c99f scsi: iscsi: Fix offload conn cleanup when iscsid restarts
+    699bd835c36e scsi: iscsi: Move iscsi_ep_disconnect()
+    46f37a34a53d scsi: iscsi: Fix in-kernel conn failure handling
+    812573896711 scsi: iscsi: Rel ref after iscsi_lookup_endpoint()
+    22608545b834 scsi: iscsi: Use system_unbound_wq for destroy_work
+    4029a1e992fc scsi: iscsi: Force immediate failure during shutdown
+    17d14456f626 scsi: iscsi: Stop queueing during ep_disconnect
+    da9cf24aa739 scsi: pm80xx: Enable upper inbound, outbound queues
+    e08d26971237 scsi: pm80xx: Mask and unmask upper interrupt vectors 32-63
+    35b91e49bc80 net/smc: Fix NULL pointer dereference in smc_pnet_find_ib()
+    98a7f6c4ada4 drm/msm/dsi: Use connector directly in msm_dsi_manager_connector_init()
+    5f78ad93837c drm/msm: Fix range size vs end confusion
+    5513f9a0b068 cfg80211: hold bss_lock while updating nontrans_list
+    a44938950e5e net/sched: taprio: Check if socket flags are valid
+    08d5e3e95453 net: ethernet: stmmac: fix altr_tse_pcs function when using a fixed-link
+    2ad9d890d850 net: dsa: felix: suppress -EPROBE_DEFER errors
+    f2cc341fcc42 net/sched: fix initialization order when updating chain 0 head
+    7a7cf8414841 mlxsw: i2c: Fix initialization error flow
+    43e58e119a2b net: mdio: Alphabetically sort header inclusion
+    9709c8b5cdc8 gpiolib: acpi: use correct format characters
+    d67c900f1947 veth: Ensure eth header is in skb's linear part
+    845f44ce3d9f net/sched: flower: fix parsing of ethertype following VLAN header
+    85ee17ca21cf SUNRPC: Fix the svc_deferred_event trace class
+    af12dd71235c media: rockchip/rga: do proper error checking in probe
+    563712971202 firmware: arm_scmi: Fix sorting of retrieved clock rates
+    16c628b0c6fa memory: atmel-ebi: Fix missing of_node_put in atmel_ebi_probe
+    cb66641f8106 drm/msm: Add missing put_task_struct() in debugfs path
+    921fdc45a084 btrfs: remove unused variable in btrfs_{start,write}_dirty_block_groups()
+    5d131318bb87 ACPI: processor idle: Check for architectural support for LPI
+    503934df3108 cpuidle: PSCI: Move the `has_lpi` check to the beginning of the function
+    cfa98ffc42f1 hamradio: remove needs_free_netdev to avoid UAF
+    80a4df14643f hamradio: defer 6pack kfree after unregister_netdev
+    f0c31f192f38 drm/amdkfd: Use drm_priv to pass VM from KFD to amdgpu
+    6c8e5cb264df Linux 5.10.111
+    d36febbcd537 powerpc: Fix virt_addr_valid() for 64-bit Book3E & 32-bit
+    5c672073bcca mm/sparsemem: fix 'mem_section' will never be NULL gcc 12 warning
+    5973f7507a73 irqchip/gic, gic-v3: Prevent GSI to SGI translations
+    000e09462f85 Drivers: hv: vmbus: Replace smp_store_mb() with virt_store_mb()
+    e1f540b752cb arm64: module: remove (NOLOAD) from linker script
+    919823bd6738 selftests: cgroup: Test open-time cgroup namespace usage for migration checks
+    637eca44b8f7 selftests: cgroup: Test open-time credential usage for migration checks
+    9dd39d2c6572 selftests: cgroup: Make cg_create() use 0755 for permission instead of 0644
+    e74da71e6614 selftests/cgroup: Fix build on older distros
+    4665722d36ad cgroup: Use open-time credentials for process migraton perm checks
+    f089471d1b75 mm: don't skip swap entry even if zap_details specified
+    58823a9b097c ubsan: remove CONFIG_UBSAN_OBJECT_SIZE
+    03b39bbbec8b dmaengine: Revert "dmaengine: shdma: Fix runtime PM imbalance on error"
+    40e00885a61f tools build: Use $(shell ) instead of `` to get embedded libperl's ccopts
+    75c8558d410f tools build: Filter out options and warnings not supported by clang
+    6374faf49e89 perf python: Fix probing for some clang command line options
+    79abc219bafd perf build: Don't use -ffat-lto-objects in the python feature test when building with clang-13
+    82e43950143c drm/amdkfd: Create file descriptor after client is added to smi_clients list
+    326b408e7ec7 drm/nouveau/pmu: Add missing callbacks for Tegra devices
+    786ae8de3a5e drm/amdgpu/smu10: fix SoC/fclk units in auto mode
+    ff24114bb08d irqchip/gic-v3: Fix GICR_CTLR.RWP polling
+    451214b266e9 perf: qcom_l2_pmu: fix an incorrect NULL check on list iterator
+    fc629224aa62 ata: sata_dwc_460ex: Fix crash due to OOB write
+    7e88a50704b0 gpio: Restrict usage of GPIO chip irq members before initialization
+    5f54364ff6cf RDMA/hfi1: Fix use-after-free bug for mm struct
+    8bb41682911f arm64: patch_text: Fixup last cpu should be master
+    a044bca8ef31 btrfs: prevent subvol with swapfile from being deleted
+    82ae73ac963c btrfs: fix qgroup reserve overflow the qgroup limit
+    fc4bdaed4d4e x86/speculation: Restore speculation related MSRs during S3 resume
+    8c9e26c890ba x86/pm: Save the MSR validity status at context setup
+    2827328e646d io_uring: fix race between timeout flush and removal
+    f7e183b0a713 mm/mempolicy: fix mpol_new leak in shared_policy_replace
+    7d659cb1763f mmmremap.c: avoid pointless invalidate_range_start/end on mremap(old_size=0)
+    6adc01a7aa37 lz4: fix LZ4_decompress_safe_partial read out of bound
+    8b6f04b4c9d9 mmc: renesas_sdhi: don't overwrite TAP settings when HS400 tuning is complete
+    029b4170737f mmc: mmci: stm32: correctly check all elements of sg list
+    41a519c05bee Revert "mmc: sdhci-xenon: fix annoying 1.8V regulator warning"
+    9de98470db6e arm64: Add part number for Arm Cortex-A78AE
+    4604b5738d5b perf session: Remap buf if there is no space for event
+    362ced37690d perf tools: Fix perf's libperf_print callback
+    65210fac639e perf: arm-spe: Fix perf report --mem-mode
+    bd905fed87ce iommu/omap: Fix regression in probe for NULL pointer dereference
+    b3c00be2ff8b SUNRPC: svc_tcp_sendmsg() should handle errors from xdr_alloc_bvec()
+    9a45e08636bb SUNRPC: Handle low memory situations in call_status()
+    132cbe2f182a SUNRPC: Handle ENOMEM in call_transmit_status()
+    aed30a205406 io_uring: don't touch scm_fp_list after queueing skb
+    594205b49367 drbd: Fix five use after free bugs in get_initial_state
+    970a6bb72912 bpf: Support dual-stack sockets in bpf_tcp_check_syncookie
+    6c17f4ef3c4f spi: bcm-qspi: fix MSPI only access with bcm_qspi_exec_mem_op()
+    8928239e5e2e qede: confirm skb is allocated before using
+    b7893388bb88 net: phy: mscc-miim: reject clause 45 register accesses
+    08ff0e74fab5 rxrpc: fix a race in rxrpc_exit_net()
+    5ae05b5eb587 net: openvswitch: fix leak of nested actions
+    42ab401d22de net: openvswitch: don't send internal clone attribute to the userspace.
+    e54ea8fc51ca ice: synchronize_rcu() when terminating rings
+    e3dd1202ab2e ipv6: Fix stats accounting in ip6_pkt_drop
+    ffce126c952e ice: Do not skip not enabled queues in ice_vc_dis_qs_msg
+    b003fc4913ea ice: Set txq_teid to ICE_INVAL_TEID on ring creation
+    ebd1e3458dbf dpaa2-ptp: Fix refcount leak in dpaa2_ptp_probe
+    43c2d7890eca IB/rdmavt: add lock to call to rvt_error_qp to prevent a race condition
+    3a57babfb6e9 RDMA/mlx5: Don't remove cache MRs when a delay is needed
+    d8992b393f97 sfc: Do not free an empty page_ring
+    0ac74169ebc3 bnxt_en: reserve space inside receive page for skb_shared_info
+    f8b0ef0a5889 drm/imx: Fix memory leak in imx_pd_connector_get_modes
+    25bc9fd4c8d1 drm/imx: imx-ldb: Check for null pointer after calling kmemdup
+    02ab4abe5bbf net: stmmac: Fix unset max_speed difference between DT and non-DT platforms
+    63ea57478aaa net: ipv4: fix route with nexthop object delete warning
+    4be6ed03107b ice: Clear default forwarding VSI during VSI release
+    589154d0f189 net/tls: fix slab-out-of-bounds bug in decrypt_internal
+    c5f77b595379 scsi: zorro7xx: Fix a resource leak in zorro7xx_remove_one()
+    45b9932b4daa NFSv4: fix open failure with O_ACCMODE flag
+    c688705a3978 Revert "NFSv4: Handle the special Linux file open access mode"
+    cf580d2e3884 Drivers: hv: vmbus: Fix potential crash on module unload
+    0c122eb3a109 drm/amdgpu: fix off by one in amdgpu_gfx_kiq_acquire()
+    84e5dfc05f37 Revert "hv: utils: add PTP_1588_CLOCK to Kconfig to fix build"
+    3c3fbfa6dddb mm: fix race between MADV_FREE reclaim and blkdev direct IO read
+    1753a49e266d parisc: Fix patch code locking and flushing
+    f7c35220305f parisc: Fix CPU affinity for Lasi, WAX and Dino chips
+    c74e2f6ecc51 NFS: Avoid writeback threads getting stuck in mempool_alloc()
+    34681aeddcfc NFS: nfsiod should not block forever in mempool_alloc()
+    7a506fabcfe1 SUNRPC: Fix socket waits for write buffer space
+    b9c5ac0a15f2 jfs: prevent NULL deref in diFree
+    c69b442125bf virtio_console: eliminate anonymous module_init & module_exit
+    3309b3221711 serial: samsung_tty: do not unlock port->lock for uart_write_wakeup()
+    9cb90f9ad597 x86/Kconfig: Do not allow CONFIG_X86_X32_ABI=y with llvm-objcopy
+    b3882e78aa0a NFS: swap-out must always use STABLE writes.
+    d4170a28217a NFS: swap IO handling is slightly different for O_DIRECT IO
+    4b6f122bdfdc SUNRPC: remove scheduling boost for "SWAPPER" tasks.
+    f4fc47e71e32 SUNRPC/xprt: async tasks mustn't block waiting for memory
+    f9244d31e05a SUNRPC/call_alloc: async tasks mustn't block waiting for memory
+    e2b2542f7452 clk: Enforce that disjoints limits are invalid
+    1e9b5538cf16 clk: ti: Preserve node in ti_dt_clocks_register()
+    a2a0e04f6478 xen: delay xen_hvm_init_time_ops() if kdump is boot on vcpu>=32
+    4a2544ce244b NFSv4: Protect the state recovery thread against direct reclaim
+    9b9feec97c1f NFSv4.2: fix reference count leaks in _nfs42_proc_copy_notify()
+    2e16895d06e6 w1: w1_therm: fixes w1_seq for ds28ea00 sensors
+    93498c6e775a staging: wfx: fix an error handling in wfx_init_common()
+    8f1d24f85ffd phy: amlogic: meson8b-usb2: Use dev_err_probe()
+    aa0b72967853 staging: vchiq_core: handle NULL result of find_service_by_handle
+    be4ecca95819 clk: si5341: fix reported clk_rate when output divider is 2
+    c9cf6baabf78 minix: fix bug when opening a file with O_DIRECT
+    8d9efd4434e3 init/main.c: return 1 from handled __setup() functions
+    f44297861296 ceph: fix memory leak in ceph_readdir when note_last_dentry returns error
+    d745512d54fd netlabel: fix out-of-bounds memory accesses
+    2cc803804ec9 Bluetooth: Fix use after free in hci_send_acl
+    789621df1963 MIPS: ingenic: correct unit node address
+    61e25021e67a xtensa: fix DTC warning unit_address_format
+    f6b9550f5367 usb: dwc3: omap: fix "unbalanced disables for smps10_out1" on omap5evm
+    a4dd3e9e5ae8 net: sfp: add 2500base-X quirk for Lantech SFP module
+    278b652f0ad9 net: limit altnames to 64k total
+    423e7107f61f net: account alternate interface name memory
+    74c4d5025551 can: isotp: set default value for N_As to 50 micro seconds
+    1d7effe5fff9 scsi: libfc: Fix use after free in fc_exch_abts_resp()
+    02222bf4f0a2 powerpc/secvar: fix refcount leak in format_show()
+    fd416c3f5a4c MIPS: fix fortify panic when copying asm exception handlers
+    7c657c0694ff PCI: endpoint: Fix misused goto label
+    79cfc0052f39 bnxt_en: Eliminate unintended link toggle during FW reset
+    9567d54e70ff Bluetooth: use memset avoid memory leaks
+    f9b183f1332a Bluetooth: Fix not checking for valid hdev on bt_dev_{info,warn,err,dbg}
+    647b35aaf454 tuntap: add sanity checks about msg_controllen in sendmsg
+    797b4ea9515e macvtap: advertise link netns via netlink
+    142ae7d4f215 mips: ralink: fix a refcount leak in ill_acc_of_setup()
+    f2565cb40e9b net/smc: correct settings of RMB window update limit
+    224903cc60d0 scsi: hisi_sas: Free irq vectors in order for v3 HW
+    f49ffaa85d2c scsi: aha152x: Fix aha152x_setup() __setup handler return value
+    91ee8a14efb6 mt76: mt7615: Fix assigning negative values to unsigned variable
+    d83574666bac scsi: pm8001: Fix memory leak in pm8001_chip_fw_flash_update_req()
+    a0bb65eadbf9 scsi: pm8001: Fix tag leaks on error
+    2051044d7901 scsi: pm8001: Fix task leak in pm8001_send_abort_all()
+    3bd9a28798ca scsi: pm8001: Fix pm8001_mpi_task_abort_resp()
+    ef969095c442 scsi: pm8001: Fix pm80xx_pci_mem_copy() interface
+    fe4b6d5a0dd7 drm/amdkfd: make CRAT table missing message informational only
+    2f2f017ea873 dm: requeue IO if mapping table not yet available
+    71c8df33fd77 dm ioctl: prevent potential spectre v1 gadget
+    f655b724b440 ipv4: Invalidate neighbour for broadcast address upon address addition
+    bae03957e8ca iwlwifi: mvm: Correctly set fragmented EBS
+    9538563d31a2 power: supply: axp288-charger: Set Vhold to 4.4V
+    c66cc0404367 PCI: pciehp: Add Qualcomm quirk for Command Completed erratum
+    b1b27b0e8d48 tcp: Don't acquire inet_listen_hashbucket::lock with disabled BH.
+    b02a1a65023f PCI: endpoint: Fix alignment fault error in copy tests
+    4820847e8bc2 usb: ehci: add pci device support for Aspeed platforms
+    0b9cf0b59925 iommu/arm-smmu-v3: fix event handling soft lockup
+    e07e420a0056 PCI: aardvark: Fix support for MSI interrupts
+    6694b8643bde drm/amdgpu: Fix recursive locking warning
+    ea21eaea7f5f powerpc: Set crashkernel offset to mid of RMA region
+    fb5ac62fbe16 ipv6: make mc_forwarding atomic
+    5baf92a2c46c libbpf: Fix build issue with llvm-readelf
+    26a1e4739e44 cfg80211: don't add non transmitted BSS to 6GHz scanned channels
+    9a56e2b271bc mt76: dma: initialize skip_unmap in mt76_dma_rx_fill
+    b42b6d0ec358 power: supply: axp20x_battery: properly report current when discharging
+    de9505936c47 scsi: bfa: Replace snprintf() with sysfs_emit()
+    ed7db959203e scsi: mvsas: Replace snprintf() with sysfs_emit()
+    995f51788868 bpf: Make dst_port field in struct bpf_sock 16-bit wide
+    339bd0b55ecd ath11k: mhi: use mhi_sync_power_up()
+    c6a815f5abdf ath11k: fix kernel panic during unload/load ath11k modules
+    e4d2d7201356 powerpc: dts: t104xrdb: fix phy type for FMAN 4/5
+    02e2ee861984 ptp: replace snprintf with sysfs_emit
+    9ea17b9f1dd0 usb: gadget: tegra-xudc: Fix control endpoint's definitions
+    07971b818e18 usb: gadget: tegra-xudc: Do not program SPARAM
+    927beb05aaa4 drm/amd/amdgpu/amdgpu_cs: fix refcount leak of a dma_fence obj
+    85313d9bc7bd drm/amd/display: Add signal type check when verify stream backends same
+    9d7d83d0399e ath5k: fix OOB in ath5k_eeprom_read_pcal_info_5111
+    850c4351e895 drm: Add orientation quirk for GPD Win Max
+    a24479c5e9f4 KVM: x86/emulator: Emulate RDPID only if it is enabled in guest
+    66b0fa6b2218 KVM: x86/svm: Clear reserved bits written to PerfEvtSeln MSRs
+    2e52a294700b rtc: wm8350: Handle error for wm8350_register_irq
+    0777fe98a44c gfs2: gfs2_setattr_size error path fix
+    f349d7f9ee6d gfs2: Fix gfs2_release for non-writers regression
+    3f53715fd55c gfs2: Check for active reservation in gfs2_release
+    2dc49f58a29c ubifs: Rectify space amount budget for mkdir/tmpfile operations
+
+Signed-off-by: Bruce Ashfield <bruce.ashfield@gmail.com>
+---
+
+Richard,
+
+This contains the -stable fix (which arrived in 5.10.111) for gcc12 and
+the memone warning.
+
+Bruce
+
+ .../linux/linux-yocto_5.10.bbappend              | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.10.bbappend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.10.bbappend
+index 4f4ec0f210..94192afffe 100644
+--- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.10.bbappend
++++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.10.bbappend
+@@ -7,17 +7,17 @@ KMACHINE:genericx86 ?= "common-pc"
+ KMACHINE:genericx86-64 ?= "common-pc-64"
+ KMACHINE:beaglebone-yocto ?= "beaglebone"
+ 
+-SRCREV_machine:genericx86 ?= "c0b313d988a16b25c1ee730bfe7393c462ee8a5c"
+-SRCREV_machine:genericx86-64 ?= "c0b313d988a16b25c1ee730bfe7393c462ee8a5c"
+-SRCREV_machine:edgerouter ?= "4ab94e777d8b41ee1ee4c279259e9733bc8049b1"
+-SRCREV_machine:beaglebone-yocto ?= "941cc9c3849f96f7eaf109b1e35e05ba366aca56"
++SRCREV_machine:genericx86 ?= "a8b4c628f382412e5e7df5750f2be711df95fa06"
++SRCREV_machine:genericx86-64 ?= "a8b4c628f382412e5e7df5750f2be711df95fa06"
++SRCREV_machine:edgerouter ?= "43577894d2295a92fce760dc403b97527fb55835"
++SRCREV_machine:beaglebone-yocto ?= "8038166b729c192d06f1eb37ab6868a5769f8bc5"
+ 
+ COMPATIBLE_MACHINE:genericx86 = "genericx86"
+ COMPATIBLE_MACHINE:genericx86-64 = "genericx86-64"
+ COMPATIBLE_MACHINE:edgerouter = "edgerouter"
+ COMPATIBLE_MACHINE:beaglebone-yocto = "beaglebone-yocto"
+ 
+-LINUX_VERSION:genericx86 = "5.10.99"
+-LINUX_VERSION:genericx86-64 = "5.10.99"
+-LINUX_VERSION:edgerouter = "5.10.63"
+-LINUX_VERSION:beaglebone-yocto = "5.10.63"
++LINUX_VERSION:genericx86 = "5.10.113"
++LINUX_VERSION:genericx86-64 = "5.10.113"
++LINUX_VERSION:edgerouter = "5.10.113"
++LINUX_VERSION:beaglebone-yocto = "5.10.113"
+-- 
+2.19.1
+
 
