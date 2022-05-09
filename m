@@ -1,88 +1,79 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <jupiter.hce@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 564F0C433FE
-	for <webhook@archiver.kernel.org>; Sat,  7 May 2022 06:13:14 +0000 (UTC)
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com
- [209.85.218.50])
- by mx.groups.io with SMTP id smtpd.web09.7345.1651903984893061621
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A6314C433F5
+	for <webhook@archiver.kernel.org>; Mon,  9 May 2022 04:59:31 +0000 (UTC)
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com
+ [209.85.160.52])
+ by mx.groups.io with SMTP id smtpd.web09.28396.1652072367570250098
  for <yocto@lists.yoctoproject.org>;
- Fri, 06 May 2022 23:13:05 -0700
+ Sun, 08 May 2022 21:59:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Y7ZryGSD;
- spf=pass (domain: gmail.com, ip: 209.85.218.50,
- mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-ej1-f50.google.com with SMTP id z2so16352063ejj.3
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=EFS4g6i3;
+ spf=pass (domain: gmail.com, ip: 209.85.160.52,
+ mailfrom: jupiter.hce@gmail.com)
+Received: by mail-oa1-f52.google.com with SMTP id
+ 586e51a60fabf-deb9295679so13476192fac.6
         for <yocto@lists.yoctoproject.org>;
- Fri, 06 May 2022 23:13:04 -0700 (PDT)
+ Sun, 08 May 2022 21:59:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=14KaCz3QtqN6ZWl7CdiWXhrH/UJwdMeFBODOzl/qqDk=;
-        b=Y7ZryGSDKV1jxK18YSQnzco9jJ1ObAePzSZ00Aq45NKNl8fwxawFsQqH9THrYy9yI4
-         E50fjOdRbwxHeU0fyAFCOLW6mLtQPU7K4Q4q7u2dyvYer5tDRF4kjg6aSkn9JQEYo00V
-         NhlDAbvRLDrlzNsPJuA+Zo61Jj0PbrZ82g4JLWXNM9M06mSKMGwjAjsgjLEtLa0kfjWK
-         WXGYHWgxawF0JGyep1DdiNkQLnj797FO7tGXiffzcOGMXDvF/wr76gaP2q6nt8DbEyDk
-         j0tPRXnCYF3DYv5bI+LIPFyp83s5ARZK9OBZ4IfKLI7oc3EBXV00RZh6lkiA1vs4N3Pc
-         p4JA==
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=bqiraUU8Q84EqWePziYorWNkwcqu7B2vKJbRxrV9yZw=;
+        b=EFS4g6i3+vSuitR5rmoRZgrjRwKnRocqgbBfjVPXYajau4rh+LvjQJ24FUz6DDHI/E
+         hEsTD5ZfNRq1aQR6joJ2Qv2NDVPsRfG4x2ITFt8N1QsX5bUihu3891zFUPebaGEFh7nm
+         wySu4Ufpz2MJghYQPb0oS/dRPIM6OyIHEPxQQH4qIE9EwPY/D5gC4BmvZJTOYPr7PDhk
+         7c0BU9nWRy8JxCD4SImDpoR6WitxCxIoDh12ip99p9SqpGuS/1Jhc3v0SrbQj625yTT2
+         LmBu9MYcKG7Rl3hPNd99C75RTsbcqvvjb2wwF5exhbQEqRXF1LoC20afUGG8ssmpmqkX
+         X4Dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=14KaCz3QtqN6ZWl7CdiWXhrH/UJwdMeFBODOzl/qqDk=;
-        b=NnnI0V8Yj9MXRQEOpvZwn9SZiQwUcbbDNpL9TtT/8ZjomRmnsbEJAYvYOF/jXs63s2
-         p5UQtIzPS+BEFu70m3uVB0hAEgsRn3EjGmFEdoEmXGeECRRPhOK3tOKWXpM0e1Wivzgp
-         HR8kl6kRIZ5Ob6Mjrmq7BozBUBJLz4WpoDrm2f9ogFZBe7eKBIU5qCwT9nmNjIWoohE2
-         YYWUsHgfOY3/yoCDTe3Qm+Pccb4XySXxrdAuBx4j6xJ+FUtLPsrg0M111UFVF/yhwJav
-         ZfIwssa6gJYKMCttAHT/UpY/NCpSNwsQaVGrI7Q/bMkm+GmP1XaO7xEjcFz2CF1wYRzd
-         eRlQ==
-X-Gm-Message-State: AOAM5338bwjwhot63FKd7Pwo0hjx5C+VUiQBSViZ0cGthAZXYJfRBpwR
-	LX7yEnE4JFThixJXHnpuX2N+j0FWK78vv4xMdf8=
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=bqiraUU8Q84EqWePziYorWNkwcqu7B2vKJbRxrV9yZw=;
+        b=I6ZEJxfK1Vm8gD5spWQIlHEZvGqSm6JmP8O6ow4//TYvCwUkd5w+uM3dfFA79JkVcS
+         hEz+3FYSi2SX3Uh/oVpnCeNVwAxwQDl0TTDuorcgKKNXoWSfgVeYUS5m0fpN+DTxLWUY
+         jItweP5FVlCefjWO96FKCEiQOdDuIYEAevCWaOMLkQdzxK65+/QUZXptZMLE2MJD0Lk7
+         3wyQ7EMgnz6PUjUEcEFyP1pLcvO1sjGsRBQAY0bJiSbokJ22BHyta7dElsPUxNZoHdEF
+         HIj9J2eAfA+ttEpc+ufcLLxYLOyYfj/VrJI+KD7s8yc3NI6vtmniK11S0RATi7T1gsYg
+         UJTQ==
+X-Gm-Message-State: AOAM533w7/2D2Ymrb7F0po5tbGcgYpnhbUzxWugf5H6DmElmbmQtZtEG
+	3xuAhiseH8b3Py7ADotzZOqZyNrujijFgRn2JVngKdWn
 X-Google-Smtp-Source: 
- ABdhPJy3BlKMUYiCOhF5cnxCNySMazGbcMx9Xro/uNMlhub4fZE+Yg47x6Fds56qGRX/sa8DwNcjQsk/a/CBrDBmvMY=
-X-Received: by 2002:a17:907:60cf:b0:6f4:4240:849 with SMTP id
- hv15-20020a17090760cf00b006f442400849mr6256930ejc.566.1651903983319; Fri, 06
- May 2022 23:13:03 -0700 (PDT)
+ ABdhPJzLI9ZEyVJrRV6TFpMq4bFf33DtmIUfRX0wbjXH3foreKHKSEldTZrkZlZMaG2kQuZYv20WhDnIybA8oB+VBZc=
+X-Received: by 2002:a05:6870:e747:b0:ed:e343:4906 with SMTP id
+ t7-20020a056870e74700b000ede3434906mr9660080oak.78.1652072366719; Sun, 08 May
+ 2022 21:59:26 -0700 (PDT)
 MIME-Version: 1.0
-References: <9d3557790b185eab39f60301c57f7a9d@vivaldi.net>
-In-Reply-To: <9d3557790b185eab39f60301c57f7a9d@vivaldi.net>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Sat, 7 May 2022 08:12:51 +0200
+From: Jupiter <jupiter.hce@gmail.com>
+Date: Mon, 9 May 2022 14:58:50 +1000
 Message-ID: 
- <CAGAf8Ly=4BY+H0DCbJ=fA9Hpr_xJNOoJa4spKwKA60BLQ-uwWw@mail.gmail.com>
-Subject: Re: [yocto] OE Linux & board-support-package
-To: jchludzinski <jchludzinski@vivaldi.net>
-Cc: Yocto <yocto@lists.yoctoproject.org>
+ <CAA=hcWQLqjqmkNkAZR_uBCRTnkX9nGwoLP+vorji_GdcBVjGBw@mail.gmail.com>
+Subject: do_package error in kirkstone branch
+To: yocto <yocto@lists.yoctoproject.org>
+Cc: oe-core <openembedded-core@lists.openembedded.org>
 Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 07 May 2022 06:13:14 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57021
+ <yocto@lists.yoctoproject.org>; Mon, 09 May 2022 04:59:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57022
 
-This is very interesting... How do some people, or system IT
-"designers", or System guys, perceive the term: "Board Support
-Package"???
+Hello,
 
-Funny, isn't it? Or, at least, pejorative!?
+I am puzzled by the following final do_package errors for dbus,
+glib-2.0-dev etc in the kirkstone branch, that error messages were
+never seen in honister and other branches. dbus glib etc are from
+oe-core, could oe-core insiders advise what those error messages are
+about and how to fix it?
 
-Zee
-_______
+ERROR:  packagegroup-solar-1.0-r0 do_package_write_ipk: An allarch
+packagegroup shouldn't depend on packages which are dynamically
+renamed (dbus to dbus-1)
 
-On Thu, May 5, 2022 at 5:42 AM jchludzinski via lists.yoctoproject.org
-<jchludzinski=vivaldi.net@lists.yoctoproject.org> wrote:
->
-> OE Linux uses device tree files (*.dts and *.dtsi files), so is there
-> any need for a board-support-package?
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#56996): https://lists.yoctoproject.org/g/yocto/message/56996
-> Mute This Topic: https://lists.yoctoproject.org/mt/90904726/3618681
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [zoran.stojsavljevic@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+Thank you very much.
+
+Kind regards,
+
+jupiter
 
