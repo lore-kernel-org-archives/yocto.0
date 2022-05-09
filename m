@@ -1,293 +1,169 @@
-Return-Path: <steven.monsees@baesystems.com>
+Return-Path: <quentin.schulz@theobroma-systems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 536A6C433F5
-	for <webhook@archiver.kernel.org>; Mon,  9 May 2022 10:54:44 +0000 (UTC)
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com
- [149.32.232.65])
- by mx.groups.io with SMTP id smtpd.web11.30457.1652093678811847858
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 50EB8C433EF
+	for <webhook@archiver.kernel.org>; Mon,  9 May 2022 11:04:24 +0000 (UTC)
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com
+ (EUR05-VI1-obe.outbound.protection.outlook.com [40.107.21.50])
+ by mx.groups.io with SMTP id smtpd.web09.30544.1652094253837011819
  for <yocto@lists.yoctoproject.org>;
- Mon, 09 May 2022 03:54:39 -0700
+ Mon, 09 May 2022 04:04:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@baesystems.com
- header.s=trusted01 header.b=Jab+grVk;
- spf=pass (domain: baesystems.com, ip: 149.32.232.65,
- mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1652093678; x=1809773678;
-  h=from:to:subject:date:mime-version;
-  bh=mbIBbNbDh/KLoxRwNbQcgPFmDTX3k7uxYLVx7/nAqoA=;
-  b=Jab+grVkc0sZD1MSMUYjcLk6UjaPR9UL5Y9FlTBtz363byPEcoImuHRB
-   AWo7ehwCSfJcpCAkiLrfqMskJ5gTo3+s1Vs2kZCM7x57iZF2IqE338dST
-   l28baoQm+g0X+hPKb9EX1chqqGxkmj0O1IRdti1ydZLpwm3l4NFhFsQv0
-   U=;
-IronPort-SDR: 
- M9W9AwA2FJ43z5LtMUElkgTIsRRvpU5Q0YeMWQhFI20zpDSg3V5YdCOMS/iiCKpOtMsCQlHOXA
- w+OQNeKMsVmw==
-IronPort-PHdr: =?us-ascii?q?A9a23=3AR8zUEBP9P5bRqZ51x/0l6nZ+ChdPi9zP1u491?=
- =?us-ascii?q?JMrhvp0f7i5+Ny6ZQqDv64r1w6CBt+Tq6odzbaM6ea4AS1IyK3CmUhKSIZLW?=
- =?us-ascii?q?R4BhJdetC0bK+nBN3fGKuX3ZTcxBsVIWQwt1Xi6NU9IBJS2PAWK8TW94jEIB?=
- =?us-ascii?q?xrwKxd+KPjrFY7OlcS30P2594HObwlSizexf71/IA+4oAjVucUbj5VuIbs1x?=
- =?us-ascii?q?hfVv3dEYetbyX12KV6Jgxrw+sK894N//ipNvP4s69ROWrjgcaQiSrxYAjUmM?=
- =?us-ascii?q?2Qr68DuqBLOUwiB6GYCX2sPihZHDBTL4x/8Xpfqryv1rfF91zWAPc33Vr87R?=
- =?us-ascii?q?zKv5Lp2RRDyiScHMzk58HzLisF1kalWrg6tqwB5zoXJZoyeKfhwcb7Hfd4CR?=
- =?us-ascii?q?WRPQNtfVzBPDI2/bosAE+UOMP1CoIXhpVsDtweyCRWyCO7p1zRGhmX23ao/0?=
- =?us-ascii?q?+k5Hw3I2wsgH9QVsHvKstr1L78eWv2owqnU0zrDce1Z2THg44XWbxstpf+DU?=
- =?us-ascii?q?691fcbf1EIiEBjFjkmOpoz7ITyV0P4Bs22c7+pmTuKglXAoqxpqrze03Mgjl?=
- =?us-ascii?q?JLJh4IOylDY6yp5xZ01KcekR058ZN6pCZ1dvDyVOIVqWM0tWX1ouDokxb0cv?=
- =?us-ascii?q?562ZCYExZo7yhPeafGKcpaE7g/9WeuSITp1gH1odb2iixi88UWuxfDwW8223?=
- =?us-ascii?q?VtKoSdIk8TAu24J2hHQ6cWKV+Zx8Ein1D2S1A7T8vlJLV0omabBJZMswKQ8m?=
- =?us-ascii?q?ocXvEnNBCP7mUT7gLeLekk44OSl5Ovqbq/pq5OGKoN5igfzObk0lMOlG+Q3K?=
- =?us-ascii?q?A0OUnCe+eS7ybLs41X0QK5Pjv0qiqnZt43aJdgDqq65HQBV1oEj5g65Dzem1?=
- =?us-ascii?q?tQXh3wHLElGdR+Hk4TlJ0zCLOr+DfilmVijiy1kyO7dPrzhGZXNMmbMkLL6f?=
- =?us-ascii?q?bpn90Fczw8zwche55JSFL4BPOr+VlLtuNDCABI0MRa4z/vjBdhzzI8TWGOCD?=
- =?us-ascii?q?recMKzIsF+I4uwvI/OLZI8QoDv9MOQl6ODwjXAnn18RZ6yp3ZwRaHCjAPtpP?=
- =?us-ascii?q?V6ZbGH3jdgbD2gKpQo/TPf2iFKcVD5TfGy+UL475jE+EI6mC5zMSZi3gLOdx?=
- =?us-ascii?q?Ce7AoFWZmdeB1yRCXvobZmLW+8QaCKOJc9sijwFVb+9RI890hGjrwv6y7t8L?=
- =?us-ascii?q?urI4S0Ur5Li1N9p6O3PkhEy7SZ0D8Of026TU250gnkERzgs3KBw8gRBzQLJw?=
- =?us-ascii?q?K9zn/twEd1I++gPQwAxKZnE1et4BtvuHAXbcZ3BHEehScmhKTUwVc4qhc4Ja?=
- =?us-ascii?q?Fp6A8+ljB3Iw2ytGbBDxJKRA5lhuIfb2WP8Kt05g03a2bcsiRENCotyDizsz?=
- =?us-ascii?q?vpk6wXNCoiPlkKfjKunbowW1SPW5XyfwG+V+kpfVVgjAu3+QXkDax6O/pzC7?=
- =?us-ascii?q?UTYQur2YYk=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2CBDQCi8Xhi/0LBJQpagQkJgUaBIYF?=
- =?us-ascii?q?/AoFUF4dCqmaBfAsBAQEBAQEBAQEIATMPBAEBikImNAkOAQIEAQEBEgEBBgE?=
- =?us-ascii?q?BAQEBBwQBgRuFaAEMgjUihB8eAT8BFWsfBwEEG4J2ggyuAYEzGgJlgwMeAYF?=
- =?us-ascii?q?LhREJAYEygWaEMlhKgwaEHYINQ498BJY8gUcycJJcjT6gfQcDg0mJeIEglFg?=
- =?us-ascii?q?uFYN1gU+RLwORXZZiIIIqnxmFEgIEAgQFAhaBYYIVcIM4CUgXAo47FoFojEZ?=
- =?us-ascii?q?1AgEBNwIGCwEBAwmQXYESAQE?=
-X-IPAS-Result: =?us-ascii?q?A2CBDQCi8Xhi/0LBJQpagQkJgUaBIYF/AoFUF4dCqmaBf?=
- =?us-ascii?q?AsBAQEBAQEBAQEIATMPBAEBikImNAkOAQIEAQEBEgEBBgEBAQEBBwQBgRuFa?=
- =?us-ascii?q?AEMgjUihB8eAT8BFWsfBwEEG4J2ggyuAYEzGgJlgwMeAYFLhREJAYEygWaEM?=
- =?us-ascii?q?lhKgwaEHYINQ498BJY8gUcycJJcjT6gfQcDg0mJeIEglFguFYN1gU+RLwORX?=
- =?us-ascii?q?ZZiIIIqnxmFEgIEAgQFAhaBYYIVcIM4CUgXAo47FoFojEZ1AgEBNwIGCwEBA?=
- =?us-ascii?q?wmQXYESAQE?=
-X-IronPort-AV: E=Sophos;i="5.91,211,1647302400";
-   d="scan'208,217";a="472979954"
-IronPort-SDR: 
- 7hQN3PY3YVLLsujhG5ki/pP+Jhl4uRqoNx4/zX4QXV00AN+QM2C5mnc3bI/AWiT5sZxjhJ1OKe
- cBmU/INkgqiuKRdacyKo7MesC6A5a5mLOaO9QawqMGOFDxqHERQtOOIYMnPxd4hY3/GDnGb1Et
- dmHlz7eD2QipUztjEn/KDZX/EU5ocON6gQCsAlOSArLSNP5q44kalU6NFZncTPZM//Xao13SQp
- dxpBT4PQt6dS3w0K6F4gpRgJw53yg2l7NlylSU5Ibptny4MyCMptYwDvPrGQGpztVyh6UBrql+
- h10=
-IronPort-Data: =?us-ascii?q?A9a23=3A1OKIIK7vp11ANfUDYDLOfwxRtPLFchMFZxGqf?=
- =?us-ascii?q?qrLsTDasY5as4F+vjZMXj2OPvqNYGCmeYslaN+2pktVvZeBmtdnSgU/rS0yQ?=
- =?us-ascii?q?iMRo6IpJ/zAdR6oYHn6wu4v7a5fAk53huDodKjYdVeB4Eb0WlTdhSMkj/vQG?=
- =?us-ascii?q?+KtULes1h1ZHmeIdg9w0HqPpMZp2uaEsfDha++8kYuaT//3YTdJ6BYoWo4g0?=
- =?us-ascii?q?J9vnTs01BjEVJL0iXRlDRxDlAe2e3D4l/vzL4npR5fzatE88uJX248vZVxkl?=
- =?us-ascii?q?1418SvBCvv9+lr6WmIubpvpbVXW1ysQVK+mjhxEpWoo1aEnMPwfYAFRhinhc?=
- =?us-ascii?q?9JZkY0L7sP2EFlwePSQwYzxUDEBe816FbZa9aHKJz66tsqIwkDdW3Hlzu5/F?=
- =?us-ascii?q?107OJZe8eFyaY1L3adCcmxQNU3Z3Ypax5r+EIGAnP8LPc7gIIQ3vnB70SqfH?=
- =?us-ascii?q?PEtXZfbWaLI6NREmjAqiahz8Vz2DyYCQTVrYBHbM0AXZwZRB5U6kOOuhT/ld?=
- =?us-ascii?q?DpErFSWrOwx7nS78eC465C1WPK9RzBAbZw9cp6km1/7?=
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3A0sbjG6pUPd+dsEFHHMH30rgaV5rzeYIsim?=
- =?us-ascii?q?QD101hICG9vPb4qyncpoVh6faUskd2ZJhEo7rtBEDuewK4yXbqibNhR4tKMD?=
- =?us-ascii?q?OIhILsFvAA0WKA+UyGJ8SdzJ846U4IScEXY7DN5BpB7foSizPIcerIteP3iJ?=
- =?us-ascii?q?xA692x858ZJjsaFp2JpmxCe3qm+25NNXZ77OICZeOh2vY=3D?=
-X-IronPort-AV: E=Sophos;i="5.91,211,1647302400";
-   d="scan'208,217";a="322453522"
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: enabling symbols for debug in clinfo
-Thread-Topic: enabling symbols for debug in clinfo
-Thread-Index: AdhjkoL47clQSZawRfWEU5kzbcuRPw==
-Date: Mon, 9 May 2022 10:54:34 +0000
-Accept-Language: en-US
+ dkim=pass header.i=@cherrycloud.onmicrosoft.com
+ header.s=selector2-cherrycloud-onmicrosoft-com header.b=KSIvFZE1;
+ spf=pass (domain: theobroma-systems.com, ip: 40.107.21.50,
+ mailfrom: quentin.schulz@theobroma-systems.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WZz7HMpciP0sf+Hw2pmwg6fQK41DJdIzmCnHEpwXKHLkw/haBlec943THnZ52rPwvVBOxvtSBmVcbj4cyD0PEpGEIMlTGnYuBtU0qQ0A/VxewcHOTJPyccsE1ETYVozFq1d1oaon9buOe3QrcttZwmgyWWvCx6AbuFZrKPFMswU4sg1swqsiCnm7oOZfOPxjXHhxjLBC3JJLEhDRxmWlEL4fc1xcmdT8B7mxoWzuSrH9aGIjbBcbI7maqwJvIkSzYmsWFnNRH0+dWSkXzrT8WpGtV76wDKZrVnpJP5FbXjDMO/j+8Qa581hwAl3EaKxQfYQ2rgGdeWuOl+qrOQVuhQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HD5kUelz1eOQikYUfLlQ0B+ocWFn3X3XBGtm12cDLbk=;
+ b=hpML2GPZzBHseHO/c8tBx6xqfK1thneCqXiWL4TN1OQuNhPScSOGOP+mSdJLN+bkzwET/5OzfkpR3GdS6FSIpsvRVz2CWG2BoWgsaZhkUOjPN1zFbTi5XJd4pXPNsMU8axBXwxm2U651vTWms5oK7DUTQsr0yjvNVvBdUrvMZkzv193mVCpN8AQLz7+80zilPhsfNC7yzX9M+w4X0ogTNjSA6pA+YAmV+BQR+LrJeEwg6UIr921szffLclMNUA/3be91UyM3g6smKQVxuv7sJjN1tjg+f3fr495IWeBx0ptdyzImohQXhtW6KQIq9eNvtaeEKXtp3j9DOFUETxe+cw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
+ header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=cherrycloud.onmicrosoft.com; s=selector2-cherrycloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HD5kUelz1eOQikYUfLlQ0B+ocWFn3X3XBGtm12cDLbk=;
+ b=KSIvFZE1vGdlerJI+uDkXgpMDgaWMkdpK6AyATIAmXUx76vko7o09Osw0x9YAgTGYOIaKrnOHM0S7yLSJ5CcNu0M/H5skjn1sFMbwKRdWrU+VLQf6/pIT345F9KUx7yjeCaPw5kqHCn/Na5qPo2sWk0d22KRXy5skvyDA1cGg6c=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
+Received: from PA4PR04MB9367.eurprd04.prod.outlook.com (2603:10a6:102:2aa::7)
+ by AS8PR04MB8516.eurprd04.prod.outlook.com (2603:10a6:20b:343::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.23; Mon, 9 May
+ 2022 11:04:10 +0000
+Received: from PA4PR04MB9367.eurprd04.prod.outlook.com
+ ([fe80::e443:c646:c299:5512]) by PA4PR04MB9367.eurprd04.prod.outlook.com
+ ([fe80::e443:c646:c299:5512%7]) with mapi id 15.20.5227.023; Mon, 9 May 2022
+ 11:04:10 +0000
+Message-ID: <e7a390b0-6c3b-ed86-8568-f694bd8b4a26@theobroma-systems.com>
+Date: Mon, 9 May 2022 13:04:09 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [yocto] enabling symbols for debug in clinfo
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.4.15]
-Content-Type: multipart/alternative;
-	boundary="_000_090fffc408ae4a0a8a14e23ef323882fbaesystemscom_"
+To: steven.monsees@baesystems.com,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <MADEUP.16ED6A72C4624DE7.14253@lists.yoctoproject.org>
+From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+In-Reply-To: <MADEUP.16ED6A72C4624DE7.14253@lists.yoctoproject.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM6PR04CA0063.eurprd04.prod.outlook.com
+ (2603:10a6:20b:f0::40) To PA4PR04MB9367.eurprd04.prod.outlook.com
+ (2603:10a6:102:2aa::7)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 04bef9fb-f37b-48f7-7988-08da31aba4d2
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8516:EE_
+X-Microsoft-Antispam-PRVS: 
+	<AS8PR04MB8516A04FEB2CA423DB4FFBA6C2C69@AS8PR04MB8516.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	STSFHQIVG/QfKESwteQm/b3Px+1J2Dta3p6gHCXB/UR+7QHRd+CQnnVcmW4luCurNKcKsvxnYiFixHeJDbY+4P+NiHVR8u0Q7XPhBYSqnt6HSKF30L2x5XdgMmWC8dAnFG3kEETecethElNd0ODP7SJkcsezTE+mvSA2hU1nY23zHxL618CGDPDGQJ7Y+JZ6b9iw/Xu1RaIKzy/nsLEUgGs4G/UKWkkfhyoutszKn87eG6yxGMfxzoBPL7v86AxBe4iLe8ZpcAyNB9dhX3wMN7YiTYFtlc7BQODrF5XWq2lB/GP5+rTAfWDEclVv948JZcc5aUxIbjl64CLybMh2M7SUGH65q8KqOyrJT2sLzR9TPUOU8tXlS8b4vt495jwEK3OoKR1EqHfiYYSwQEhtLgKtgQ1cSsP6Fpql78zeTq3uXzirfnti4ojKqU33sRI/WJAtrs317oPIdGGYc/6cewa/pURdLmS9KHNQeEkNYY7bg2p/nXQJHONo9b2NC1sEKZ7Btjurm4fJZvKfr5hptnDZZolcObU5U65701cdEWjvXJcxOYqCZUfnNWyj7DJtcD5BQPF4K5/QFwr/ZFH13vhQvrWEoAcj5ear7X6kH++IslHM4aAvshiMMmc2YK6+2BsJmTmCvvpiEqQUjbeOE45jnhvKdKRMSE6hG5KZYd4cWbpx1rPJQk2d4cuTpWjFt79Jcns3mGtBZ6pGJVSX53f+9TdvGHAqbOHyroOpRS6RQw+qwwYll2OSkqvXAWkhymGVL4opUkFsitE7XP6aJ8W9sj/BFQOtA4M0oTFshUXRhbTX3B/t/9VTdxnZj26n
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9367.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(2616005)(66556008)(66946007)(66476007)(8676002)(508600001)(83380400001)(186003)(6486002)(6512007)(966005)(26005)(86362001)(316002)(6916009)(6506007)(53546011)(31696002)(8936002)(31686004)(2906002)(44832011)(36756003)(5660300002)(38100700002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?SUdGRjZGK29aWmpTWEFqdUZjZjBOSVJ4Vld0dDU0T0RPZ3RGN0k2dFpOakph?=
+ =?utf-8?B?bk1qUFp3eUVONm01MWdIdmR6QTlkWlJobHNnbEZnenVZR1FGcVl2UnFXS085?=
+ =?utf-8?B?TGpUM1p6U2RKNy9wRDZYVy9kKzl6dHd6KzJ3bTdnc1JWc3BIbmZDVHpRb0Rz?=
+ =?utf-8?B?Um01ZEpXd1ZoMXo2V2dTTjZBeUZxZU1xWnlpaGVQUmVIbi84QVpWbDQ4MGlC?=
+ =?utf-8?B?eHRodEQ4WnJzWlZack1qSHBwZHhNWmJkZU1uRVc4VHR3NnhSdVExUk8xU2FX?=
+ =?utf-8?B?Ry90dm05UHNGZjVvdFdWVDYrZzExcklSNThOS21vTTMrSGRmNDFlZytsR0I1?=
+ =?utf-8?B?M1NSM3lvN2RXVTlpZEo4NDM5ZWp6S2J4ejlmVEZDMEdaVVgxUHlPQXBWUTNK?=
+ =?utf-8?B?SGsvZjFrNWd5bFpxRk5SZE92VW1VWEtxaWtucmFmaUgxcnc2WE5DZGJjdzha?=
+ =?utf-8?B?NkRNVUplcTExRng2R2VLU25PWTBBSWh2aDBRUERNQ1Q3cGFUUzk0V0Z0bjg4?=
+ =?utf-8?B?NXkyVmd4MFg2aUh2eVFyUzU1eDRVT2ZLR0l4TnJJdE9rRklpeTdSMytyU2ZS?=
+ =?utf-8?B?TmRnUFZpNlRGZWo4WWQ1ZmFuck9EQlM2VVZCSzlEcFlOWWhlcmxTUVdOQW1a?=
+ =?utf-8?B?VEZJN250REZaRk9Cb1J4TE5mYThFNTZxWEpMVHplMzhuU0pyYUEreUFnY1Y1?=
+ =?utf-8?B?UEx2eWxhS201OWV4R0NGVkdwOGhkVVZGTUNDSytEbkpPZ3JMZVhtRnVjWU9E?=
+ =?utf-8?B?eGY1cUdMUy9hVUN0NlcrbVRxWFdZL0J6T2t3b3VWQ0M4NERXSXY5dysxU2VD?=
+ =?utf-8?B?TDJtUEVReVQvY09yME91VnFZaWNiS05hZ1dYb0RreGVFQUpZZis1cnI1WUpX?=
+ =?utf-8?B?U2p3SDN6bklVekszMisrRTlPWmgxcS9WdE1pMnAvTnNZT2hBZlFCTk5EQnRh?=
+ =?utf-8?B?TWp2SDJ0YU11T1M0T3B4bVNUK0ZCbTg2ZzB1MHBObzdORmRFdmFOeEVmQVhE?=
+ =?utf-8?B?ZnlhaUFLNExuMldHa3ArR3dNNmxDeGl0UVRuNnVXZnZZZk5FQlVDNkV1VFpz?=
+ =?utf-8?B?VWs5cGg4UkIrQnFQMlRxNUZMaHo2dExaNTVycVp2S0doVWcrb1FFWWpuSkFU?=
+ =?utf-8?B?YnM1V0dtWmp2bjBlaHdQd2hHQmxtOE8vbURFcVBzTnkyNnlZS1YvbjBEMzE4?=
+ =?utf-8?B?VTNpWVVWWVJqck1OZFdSdHhUTjZWN21oSXBPSHh3Qzh0bnF6eGc2ZDZPcGth?=
+ =?utf-8?B?OVFHK25LYUVsb2Q4Qm83ZjF1bVMySkdRekJFdUxJQWcyMHFTemdIczFvTEx2?=
+ =?utf-8?B?NHV4cWhEbWo3K3c0NWc1SXJxM3hhQkxzOE5XVFFHNVQ4WUZUTlpjSU5xTFo2?=
+ =?utf-8?B?VC9FSmc3blo1WFM5WHV4Y3h5eTJ3VVc1cXFnWGtRbk8veDlJTWdBSi9jelE4?=
+ =?utf-8?B?cGJsYW5IN3RQYVlpT1BFd3p2QTFwTURobzFOYnU2a0FqTjdCeTFORHBkaFBj?=
+ =?utf-8?B?VXRyUVZ2T0VjbmxSZkVMT1MvRmVIZUU1QldNbmtUVzNVZXpXVmNhMTViUG1p?=
+ =?utf-8?B?RU9VOVhMN1c2dldrN0JRNUdkRG9NK2pWNmFOTUtwQytWZ2ZVc2ZmOVNkc1p1?=
+ =?utf-8?B?MGFhQTVRenRPRVpLd2ZET1NlcTA0TGJzNUpIdFFTdnk1VGtUV0xqNjdxUkpL?=
+ =?utf-8?B?VlFwdlF2UWtjNVZvTDFWMjF4b3FHZ3ZmQ2o1Q3lYaG9wZ3B1ZmVMVEJGOVZF?=
+ =?utf-8?B?YXdzUzI4L0crYVZWc0ZJdENlRm13S3J1TVNPZ3ZpWnBkdzh6c09iN3NlcEp2?=
+ =?utf-8?B?MXRKQThoaWJibnpnN0R0Ny94WUlZRThuZHVyS2dCbUZVbjYrWm1lWjZZTjh2?=
+ =?utf-8?B?SkVKWHNOdUZWTW5NNGhiVXZzMkNIMm1PTVlSa0tLRlJtUG1uR0hkUmdnUGo5?=
+ =?utf-8?B?SlU0dE5DMUdxalFRQVBCL0JTQ1VuTEExbDR0bFRkTUVLTlNPRVdrbFFDcUxC?=
+ =?utf-8?B?MitOeVB6TzVqVUpTdUxRVWc5MzJqVldvaXFReVYvYXNPQm1CUXdKVW9tbHIv?=
+ =?utf-8?B?Q2RlbGR3L2J5SEFXeXJWNzBHSWZtZkprbk1MdU1Pb3kzbEdoZnN0YzVsc0tN?=
+ =?utf-8?B?MDA4aVgwQzR6V3BjU1FackdwMmJGRDRFZjRCaXgvblk5WVM1SStMOEZNajlu?=
+ =?utf-8?B?cnY1YTJhZUgvTkZsZUlPY1cyd1hDTU5ZM2gvb0RHa0RtOHpCdjhoN243WE9Y?=
+ =?utf-8?B?VXdvUkt5NzRmalNIdkFPMUpSSUJiekV1SVN5YktOMlNscU4wMXBuQkMrZisx?=
+ =?utf-8?B?WmpEZEdrK3JNVzNrUWJ0TGhCQWJoUm4vY1RyZWtFRW1YYXJIVmw1SUZVQzVH?=
+ =?utf-8?Q?9UfRph489Ba3kHVt30KhQhsPPDrcxVbYuJzq5?=
+X-OriginatorOrg: theobroma-systems.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 04bef9fb-f37b-48f7-7988-08da31aba4d2
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9367.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2022 11:04:10.1709
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ 4a6XSKVH23Qk2THasxPZmeZTfpoZphOsk4ug4GX14HxHK7aAJBSsm44ARRtUOcQUKmvVQ6ZPyL5FUAnxSDVMnnFmRLZ3GThQLkGQ31UH20QuXW/772a1Xj1o1BP+3ovP
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8516
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 09 May 2022 10:54:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57026
-Message-Id: <20220509105444.536A6C433F5@smtp.lore.kernel.org>
+ <yocto@lists.yoctoproject.org>; Mon, 09 May 2022 11:04:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57027
 
---_000_090fffc408ae4a0a8a14e23ef323882fbaesystemscom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Hi Steve,
 
+On 5/9/22 12:54, Monsees, Steven C (US) via lists.yoctoproject.org wrote:
+> 
+> Hello:
+> 
+> I'd like to build clinfo w/ "-g" option to do some debugging with GDB...
+> 
+> I am looking at: meta-openembedded/meta-oe/recipes-support/opencl/clinfo_2.2.18.04.06.bb
+> 
+> I created a "bbapend" file to modify the build recipes "Makefile.am" file prior to build, to introduce '-g' for CFLAGS & CPPFLAGS, i.e. at top of Makefile.am added:
+> 
+>                  AM_CFLAGS - -g
+>                  AM_CPPFLAGS = -g
+> 
+> I checked the build tree and see my modified "Makefile.am" updated as expected, the update occurs at the end of the install process, using do_install_append... so the build should have used my modified file... but I do not have symbols for the clinfo package when I go to use GDB.
+> 
 
-Hello:
+The install task runs after the software has been built. It is therefore 
+expected your changes aren't actually taken into account.
 
-I'd like to build clinfo w/ "-g" option to do some debugging with GDB...
+c.f. https://docs.yoctoproject.org/ref-manual/tasks.html#do-install, I 
+guess it is not THAT obvious that it happens after compilation. Maybe a 
+patch to the documentation would help clear things out.
 
-I am looking at: meta-openembedded/meta-oe/recipes-support/opencl/clinfo_2.=
-2.18.04.06.bb
+You shouldn't need to modify the makefile and just add "-g" to 
+TARGET_CFLAGS/ TARGET_CXXFLAGS or CFLAGS/CXXFLAGS in your recipe.
 
-I created a "bbapend" file to modify the build recipes "Makefile.am" file p=
-rior to build, to introduce '-g' for CFLAGS & CPPFLAGS, i.e. at top of Make=
-file.am added:
+Also, I have never used it but we do have support for debuginfod which 
+should make it easier to debug remotely without installing the binary 
+with debug symbols, c.f. 
+https://docs.yoctoproject.org/dev-manual/common-tasks.html#debugging-with-the-gnu-project-debugger-gdb-remotely
 
-                AM_CFLAGS - -g
-                AM_CPPFLAGS =3D -g
-
-I checked the build tree and see my modified "Makefile.am" updated as expec=
-ted, the update occurs at the end of the install process, using do_install_=
-append... so the build should have used my modified file... but I do not ha=
-ve symbols for the clinfo package when I go to use GDB.
-
-Is there a simple way to enable debug symbols for this package ?
-
-Did I modify the wrong configuration file?, Should I be modifying configure=
- ?
-
-I am new to auto-build configurations...
-Could someone tell me the easiest way to add "-g" to the clinfo standard bu=
-ild ?
-
-Thanks,
-Steve
-
---_000_090fffc408ae4a0a8a14e23ef323882fbaesystemscom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%">Hello:<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%">I&#8217;d like to buil=
-d
-</span><span style=3D"color:#1F4E79;mso-style-textfill-fill-color:#1F4E79;m=
-so-style-textfill-fill-alpha:100.0%">clinfo w/ &#8220;-g&#8221; option to d=
-o some debugging with GDB&#8230;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%">I am looking at: meta-=
-openembedded/meta-oe/recipes-support/opencl/clinfo_2.2.18.04.06.bb<o:p></o:=
-p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%">I created a &#8220;bba=
-pend&#8221; file to modify the build recipes &#8220;Makefile.am&#8221; file=
- prior to build, to introduce &#8216;-g&#8217; for CFLAGS &amp; CPPFLAGS, i=
-.e.
- at top of Makefile.am added:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%">&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AM_CFL=
-AGS - -g<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%">&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AM_CPP=
-FLAGS =3D -g<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%">I checked the build tr=
-ee and see my modified &#8220;Makefile.am&#8221; updated as expected, the u=
-pdate occurs at the end of the install process,
- using do_install_append&#8230; so the build should have used my modified f=
-ile&#8230; but I do not have symbols for the clinfo package when I go to us=
-e GDB.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%">Is there a simple way =
-to enable debug symbols for this package ?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%">Did I modify the wrong=
- configuration file?, Should I be modifying configure ?<o:p></o:p></span></=
-p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%">I am new to auto-build=
- configurations&#8230;
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%">Could someone tell me =
-the easiest way to add &#8220;-g&#8221; to the clinfo standard build ?<o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%">Thanks,<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F4E79;mso-style-textfill-fill=
--color:#1F4E79;mso-style-textfill-fill-alpha:100.0%">Steve<o:p></o:p></span=
-></p>
-</div>
-</body>
-</html>
-
---_000_090fffc408ae4a0a8a14e23ef323882fbaesystemscom_--
+Cheers,
+Quentin
 
