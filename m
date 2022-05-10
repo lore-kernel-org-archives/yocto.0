@@ -1,219 +1,293 @@
-Return-Path: <jay.shen.teoh@intel.com>
+Return-Path: <Heinz.Wrobel@nxp.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CB1F1C433F5
-	for <webhook@archiver.kernel.org>; Tue, 10 May 2022 04:14:00 +0000 (UTC)
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by mx.groups.io with SMTP id smtpd.web09.5718.1652156039906960127
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BCFDFC433EF
+	for <webhook@archiver.kernel.org>; Tue, 10 May 2022 10:58:53 +0000 (UTC)
+Received: from EUR02-HE1-obe.outbound.protection.outlook.com
+ (EUR02-HE1-obe.outbound.protection.outlook.com [40.107.1.82])
+ by mx.groups.io with SMTP id smtpd.web11.8304.1652180329744387206
  for <yocto@lists.yoctoproject.org>;
- Mon, 09 May 2022 21:14:00 -0700
+ Tue, 10 May 2022 03:58:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel
- header.b=nSWpxw+2;
- spf=pass (domain: intel.com, ip: 192.55.52.115,
- mailfrom: jay.shen.teoh@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1652156040; x=1683692040;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=L5Y5qziyPm0r7Ls2IVR9INd3oX+zm16dHEsm2cbOuHs=;
-  b=nSWpxw+2zY52ZxtPKuEvI3xWXLKEimugLCYJzw2ZWOyHMCwpb6xLaIC1
-   wp2c0NlzV7l0OdEOMJCeMIrVtZzM0IOHDRgb1Inuvm8R5oZUVdEFcxaZw
-   kkj5e6Zt3AkqaIRB2sQBZDN93pjaso7r7D/t8odBVq/9EMzhAqySYke3A
-   71PPRZrmdAuG89NT7VRV36/Xgm97Rmh4MQ6l2+AFAQzGJdOxvhmdwf9dy
-   xk/lrIbMRYD0GJWz+LErGntNat6T8NB4R1bAXL0OdXkb93LOuwZdQMGWe
-   0ThoP580xk33kh0ARKmxGt0Frxpx4Af10xP6CL1GmSPvPnDaQK8bQ8/I4
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="269391246"
-X-IronPort-AV: E=Sophos;i="5.91,213,1647327600";
-   d="scan'208";a="269391246"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2022 21:13:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,213,1647327600";
-   d="scan'208";a="593258818"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
-  by orsmga008.jf.intel.com with ESMTP; 09 May 2022 21:13:58 -0700
-Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Mon, 9 May 2022 21:13:58 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Mon, 9 May 2022 21:13:58 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.173)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Mon, 9 May 2022 21:13:57 -0700
+ dkim=pass header.i=@nxp.com header.s=selector2 header.b=eRrJJu7c;
+ spf=pass (domain: nxp.com, ip: 40.107.1.82, mailfrom: heinz.wrobel@nxp.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=euu6bmkIcd/+OgZVNPRkP0CQTaB3UGdYiQpQhUUyRrtAOhJktunkXJCjNSigsh9L8zTbFrL2oJm1UeA77ECG1+/0ZG3LOkKrb1TkpjNlYekuxU0Ig7vn3orTBc/qiEDSIIr4kJJEa2PRJeAm75dlnQ7U/zdWBJvCcgYKGeHNWpSC3gaoCYPuHuAa5Beq6o3AtL3dXqLaLY/PZ4qZ2MAgXD5nPyajZIHq3wEX+c815bF3sS29CyWwy6egsndSWdnF5jCxvEpM2SZDV8cAdQ/Mm7ulferKpmGBclwLOWnq5+NdkQ+VO/vxhbjISedlPqjb+PnJ7LE4D6oy6Uy/JI2YsQ==
+ b=XxNaPon7D++eT3eE/UU1h8joMtG+H0P+poctNybooz/vpgwrkV6ZeBT1W+GnMT5bbnU1/6F9ro0tGE6FsJWNIjldCuv63W0GJm72u/ulFG6EglqqrXOmbX9/QMH1SZ4z0cdBXMw17DoHfvuzDwON0XXfQAqNLEgt6thRzk7vQ0TP7cKv7h7JMGCcGPk0i2oiKjbtxbxX0W6ZC+aNDj/3v4Lky3RlCzYqcXijXySrN+4JTebF6qV4zaYBnDILG1LQaf20yHxWkXnTP2bv9aTYWVXacw9+2gPKxWRPvnEk+ohHQtaxheER32cewgHtBzfNpo7iWd1F8Ssm0A6N0uRI/w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=N7vqc6zJ9o9J3cEiCg4ILhsSmNlsmsefHjMzMOEK4sA=;
- b=S5aB9hOoENNADZ4b4ESPDIkKMnXki1YM+2bdvZLtmY7s6fPdt9141w1/SkpxiypiETHm5Wu2aAfjUM8KuwG8mrkv6dqcDyYjsH5twVnQa8g8Wcyw2rAmUjVsmwyUnqlYxbWp746DUgHrOV2uGur4p3lRnDVWK/AD8o9SnEv8e7qboe9+cWjr/d4LIAZFWt+o62Lu9uSefrbAaQZT3Ybfr0yaVJvM7EXo0zn3kBY+KSrHnHO2KUozBG0MqPoSlbc9mK8RmkSebSPlpt1hY8dBEzZ828XOjsEGs4q2Ik1FX3E8r/E5KZiP94On8w07uf8zLmNsWCVjDy7g4Qmo/1saGg==
+ bh=XEZx/NGra5vMCGlXXS0eiQA/07q34wtb+Zn8shRuXZE=;
+ b=ms2MQGUdjghvUGE+n1iauC+of2KEThlsjwo7h/c7+NkD/jxQhKI2ZoVm6RmwfPzJN41jroStBXfjY83rSHdDmmaUgtLMknnPrG3IPfr09kEPg5zh/g9lNZN0sG6BzHQeg646qCBkr482+AiwlUZR0Gv5UKo2lOI9rBbJs0iJhr2eIJ8om6/q9vCZrDCEr24mCMMjkQwgw5PrayTcr5AWWVD4E/TonoBkLhCLBRccBhvIxOlJGTB+J7eWhinoLLNqfixXmsFN1R5FEOaOboF3PfDO05JxKrM3RaApLLAxc8TgIlynJB2kNN8JVNkQ+yxCtN27Lwxpb2vZCN1UiFXF2Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM5PR1101MB2348.namprd11.prod.outlook.com (2603:10b6:3:a8::16)
- by BL1PR11MB5352.namprd11.prod.outlook.com (2603:10b6:208:311::6) with
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XEZx/NGra5vMCGlXXS0eiQA/07q34wtb+Zn8shRuXZE=;
+ b=eRrJJu7cTY7kfSTuqR/VEYJ1qznJRMQP5uj0SFNiskXbdlV4IW+XrghntC4yhn3/Z3EkmbcegHFTL+eCzfsFyCYBqxdPNDKeFL/81oKeQLLIMXgnzSHwaHUghqb6OXBL7zaurUigfav7jb+P5kzfJgUOBCoKUhIEHu9goXP2dbw=
+Received: from AM0PR04MB4388.eurprd04.prod.outlook.com (2603:10a6:208:72::18)
+ by VE1PR04MB7407.eurprd04.prod.outlook.com (2603:10a6:800:1ab::5) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.20; Tue, 10 May
- 2022 04:13:56 +0000
-Received: from DM5PR1101MB2348.namprd11.prod.outlook.com
- ([fe80::c8d8:e76d:b1a5:f26d]) by DM5PR1101MB2348.namprd11.prod.outlook.com
- ([fe80::c8d8:e76d:b1a5:f26d%11]) with mapi id 15.20.5227.023; Tue, 10 May
- 2022 04:13:56 +0000
-From: "Teoh, Jay Shen" <jay.shen.teoh@intel.com>
-To: Pokybuild User <pokybuild@yoctoproject.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>, OE-core
-	<openembedded-core@lists.openembedded.org>
-CC: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>
-Subject: RE: [yocto] QA notification for completed autobuilder build
- (yocto-3.4.4.rc1)
-Thread-Topic: [yocto] QA notification for completed autobuilder build
- (yocto-3.4.4.rc1)
-Thread-Index: AQHYX18zt7Y0tlm8VEuJFd6fXX7uGK0XiceA
-Date: Tue, 10 May 2022 04:13:56 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.23; Tue, 10 May
+ 2022 10:58:45 +0000
+Received: from AM0PR04MB4388.eurprd04.prod.outlook.com
+ ([fe80::f0ef:5e88:46bb:8796]) by AM0PR04MB4388.eurprd04.prod.outlook.com
+ ([fe80::f0ef:5e88:46bb:8796%7]) with mapi id 15.20.5227.023; Tue, 10 May 2022
+ 10:58:45 +0000
+From: Heinz Wrobel <heinz.wrobel@nxp.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Dependency clarification for image classes with bitbake?
+Thread-Topic: Dependency clarification for image classes with bitbake?
+Thread-Index: AdhkVA/jCETJ1n6ZRdStDiWYbtvwVA==
+Date: Tue, 10 May 2022 10:58:45 +0000
 Message-ID: 
- <DM5PR1101MB234831B19074FF796016A2EFBBC99@DM5PR1101MB2348.namprd11.prod.outlook.com>
-References: 
- <010101808ce91651-962b6832-98c0-412d-b766-0b6f9cfbf3e0-000000@us-west-2.amazonses.com>
-In-Reply-To: 
- <010101808ce91651-962b6832-98c0-412d-b766-0b6f9cfbf3e0-000000@us-west-2.amazonses.com>
+ <AM0PR04MB438876390F7731CE9DC1BC4C8CC99@AM0PR04MB4388.eurprd04.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-dlp-version: 11.6.401.20
-dlp-product: dlpe-windows
-dlp-reaction: no-action
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
+ header.d=none;dmarc=none action=none header.from=nxp.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 2726028b-0aad-48d6-69e1-08da323b8060
-x-ms-traffictypediagnostic: BL1PR11MB5352:EE_
+x-ms-office365-filtering-correlation-id: 0fed4754-b444-407e-fc13-08da32740deb
+x-ms-traffictypediagnostic: VE1PR04MB7407:EE_
 x-microsoft-antispam-prvs: 
- <BL1PR11MB5352168D663DB7D3F65ABDE5BBC99@BL1PR11MB5352.namprd11.prod.outlook.com>
+ <VE1PR04MB7407B345FD4DBFB93C7415858CC99@VE1PR04MB7407.eurprd04.prod.outlook.com>
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info: 
- uNqseUHkJ0F7hrxQU2mHSGXLswlOJJhtykBQ+RR0wc2ev0AABer+OJFBt6V6GYETiYDxJ4i9Z0mdBMB3UeJ52BvC6wz5ZcGi+1EHMa2KjMWMvWfAdbwF0Ooee4k4s05inSbODvHt6RTUaHM0OVOIQqzwVDm6rFj+r6hMD2O2UPLgipE+bwIOd/bTUC3reMz2ChpjLAKsNAjOLmocSbQf/MhUMtxUQtLr9CtzJ4NS/GI7Pmak7uZzZpQC6bSAyYF0tHNGbx22At1hyTodwkaKLN/C+RrgTYemmwBu5d9SvEoZuvy8dkF/N3vN6pJ2EHIdUUtk5zftQ8cdvzCeQR1zrM9N2ZBaYzFSAsKlkKykRYB2JRtjwPNTlbe8By8ruZ8jcU9aFFs29CDt2Ixig7EmCMEPFp2tNQab5XSMiyyKWtmZoMHyVVl1coDqzLECOadcELd9TVK+yIbziiwquetpQsnThoQOLUm3w7BeGFaFZ9cNCWvFhrKglVOzjwvVbB5K0WGriqPx+Ijrs39BzHY7qHJsLDl3f+yYqj9hAfYHeLGexn4qbVRp2HhRgxz5rfJXuD8Hztm/nFoiK1XKVrHiyR31rEZvZ2Nta5MI7Jq5CpIFzk/Sx2MsZGrPjHFdktFwEy3WlPiW8OOfPZcJRuCPaAhn8swxAp84OF3um30hguyG5HoN/loBE74ZozscUaCwO3dHn0u5znCmJUxbawOqx2cMXDS71KRoZqaEE7cX3BnxyRme7aGwEtCDv/Mru2evCH40ORRRqy6yWO+8+/eG99RdHLOSNQIYX2Ym299r/ad57H3deL71stqPnkIC6vzX0tIIESewV0oE9PkSpO+ZHA==
+ nfMJT+b3EkZqlNclsvAPhTJXM/MwU1I3JAMqd+qPwPOVG0mAh4Ao863DuLJfFg9awxkiMcyuX8gfYhdSCRw+01zNdjQaoHB3U4JyswbJ03jPRPoDKp3sKfJ5UM9s61cOy/IEc0Ed4cqSXC35z5TQKBM7wuCGqmkTrz+nv4f5Z/BRVjkMSGh533dlcNC8HMsFjEl2omMvY4d9E9f8zSIkoIB6DviAsTP2Je1BMbNVx2OLbVfXGx6VTPwroGSNHU8GXLaSZtgZsbrUYgr+xxNgqnLr/aU+ueDCUj9OXZ7YF8dQrSC05qimwvz7ZYJWysT05kBer29WjhKdBTMJIgsodJvLx13Vtze7r68mZSYbUpLFFxuQvp6kgeJqELPjpAXzn69TVUWGYN6SfTVtTp/Ob1U7DH3yDDbHOHXG+ahNiWfIHFGMWa4S2apHRtcar/ZL+ujh0bsxeRBCcpuIGNc4NLTz3XjikaZAzCI9i3hJvUm73KEEGZeVVUB7AL2xwovnZCMN0gkJSIjohAGkT1qn3FV1CQc5y4dhC7fNU9Bwf1H45MEORCtetMPQq9O7ZviHMi3ol6Ndv5TjrH01mQ961XrdMq6kB+rLxoMDOENeHOxwE4R6j4JJQ9Nh6NrpjNBgQOfHKntQZ30s3buVryuZPmbZ7msymEq1HN06iRqzx1L7c47/jCrstSqfLqgzYaz2Oq10ww8IN1KNqJAkvYtatQ==
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR1101MB2348.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(71200400001)(66446008)(64756008)(6506007)(2906002)(76116006)(9686003)(8676002)(7696005)(4326008)(5660300002)(33656002)(86362001)(66556008)(66476007)(53546011)(55236004)(26005)(66946007)(966005)(508600001)(52536014)(55016003)(15650500001)(38100700002)(38070700005)(122000001)(110136005)(316002)(82960400001)(186003)(83380400001)(8936002);DIR:OUT;SFP:1102;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB4388.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(38070700005)(7696005)(6506007)(5660300002)(26005)(6916009)(9686003)(38100700002)(9326002)(8936002)(2906002)(186003)(44832011)(83380400001)(508600001)(33656002)(55016003)(52536014)(71200400001)(76116006)(86362001)(316002)(64756008)(66446008)(66476007)(66556008)(66946007)(122000001)(8676002);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?fb9XxN9Gf5hWRTeLZx85zuCK2JE5uZvy5PWWuzOyrieJO2fXWFfL5hRHMINb?=
- =?us-ascii?Q?XHweF/jAcP7N9poe3Ua2Wy3BkG9IVOvDaOM4u4LXyeFlFT/0vD+CQV27Zgri?=
- =?us-ascii?Q?MMsIYhQiSaJp/CG2oIR6FpNdGotN3oz2FbUNxUhnte8QrPR63TTd0Bz39cRO?=
- =?us-ascii?Q?yb0YDxwwOwixFuAtJ1AvJgzd9OIOFcoSrrisLPuGY32ZlEOgtChnRoJNdJlM?=
- =?us-ascii?Q?3SMiNl43j6FMmQVobXrlzDRWAUsSLUY8LIG/2TcImurCcXTtrF/g1viOZ+Ke?=
- =?us-ascii?Q?bzE/PUoW+ekThsbQLSh1DMwEkh9iwjH5YFZgtgYwQtOzurUfbKZmK+yOTHXv?=
- =?us-ascii?Q?YMA2NuwxuVpsY+MPnKHYs8pAd/4WzDL60G0vPfGChz8K+SaS9EUQhPnixfiM?=
- =?us-ascii?Q?Ut/tKEmsPnpeLpK53rxdvgwP0Km2lX1w0sV7ZaAM2u7UDtY6LuAkWZI/4CZs?=
- =?us-ascii?Q?2kLn85UVLWoD2D6j6pDyiv79BJmXXcdQ/DLp9OKmc2xmsS0piYL12Kko47ph?=
- =?us-ascii?Q?krDuV0im8xZNS/NZTh69gSwQjZhsz8Rr+QfCsG8zqF8M6Ex12wHRCZxa4+o4?=
- =?us-ascii?Q?ckn6i8sF2XtxE9LW3l5n3h48WupSP0ksKgkCbKakyp03D46kFsom+9E2+DNx?=
- =?us-ascii?Q?4ZMf0u70LIq5xq3tPhdgvxNEzvMqos9F50f1OxWv3PSMfEcK6JBTgufEVOan?=
- =?us-ascii?Q?ZaRXc6nEI9kNGhndX1BwCBGK+m/gcHfZb7GEqcGsrYjBtK6wThr57nN2Fpdz?=
- =?us-ascii?Q?c1p6qBsqpLexWFqdcqQN+npR1ku0IQgN6F5E+5XLhuG5U8CYOpD8sB40HE7D?=
- =?us-ascii?Q?rrOR9p3ybc5szmZao22nXT100dI2nwq6FIV6PLHVb5UP+kQYQXTUrJOIP4xA?=
- =?us-ascii?Q?GU9y2hrUkGf2tyEs/UHkKLZ/X/bHw06wrHFuff91c+OkMIVy6ssAvCWydiPo?=
- =?us-ascii?Q?/yJ15wMz5uh82KW8hWqI5UW4CDEpg5JfB8N6tFuCMA7CtW2XxKIxIUKQx9PL?=
- =?us-ascii?Q?Fi2OTdlcjG3RGiGLYkT4r3jlQZZhs/zGn4zOBHFSLKCkB2smLg+jR3F6xLMu?=
- =?us-ascii?Q?G2ffIiJonDGXoNivaxQ7zw4D7I5nff6sYZVeZjUArSdiOhH/oMb6TXRCVJnE?=
- =?us-ascii?Q?XiE6iQb0aDXaKzGHo2PsoMOI6WTxLk0ZN+ng3D0bbEOSHRCYbS65FQ6lSEFt?=
- =?us-ascii?Q?Qe2G98wFBUCu23X79sIzNor9qWcxGDe17o/SPkgO4r8ihg6dZDCquQG6wcU+?=
- =?us-ascii?Q?B9c7wZKkYbQ04XKJJv/O0/DhRdPGO03TKtzAfHSL4Ljc+h+3WqFF6fXXEkkm?=
- =?us-ascii?Q?DMzwbiHrytjYDgBjdBL7pt0vorNyfrG2LUrQ39rNkRpz2h6UaEvN6MowEJws?=
- =?us-ascii?Q?2mBTGmnUBIMRCtnbhQf6F561eMtBqiYkQU1ZnCHHGIpx1kBhERO9rLSmpo/N?=
- =?us-ascii?Q?/mvgxdC/2wdwsLilurlwHrU1747J9HTADw4LoYLaOD0u5JjQNoNXZUUVTxFD?=
- =?us-ascii?Q?JBNaJHh8EOb0+GTyhZR/zkIzyxfk7mbp9qV1qqMG7csWZe72hb58eVzZYEsG?=
- =?us-ascii?Q?AowgqJ6LXbmOhGOTTgJPaYas6DohMi1QxrVNEKr9sF2Gl8G3D1gskZqxr/mX?=
- =?us-ascii?Q?K3KUGOUpnA7mCNLhxNbSNirn25zMtRlzbANaO1RsSJH5n6eeKQM6HOlYiEUN?=
- =?us-ascii?Q?NDvt8T3Hr5TeUsVplDag+zRTRcv8UGkXiXar4cEpLiD8+udbIRVMZpyn1J5r?=
- =?us-ascii?Q?XmP7xiQuhQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ =?us-ascii?Q?dvdZO6DW24M2cZgv7cmehaQ6nWgAN0m7Emnua88p3hmphp01wD+IGjYGAxMo?=
+ =?us-ascii?Q?opK5fuvNaL0zYbfqiBqw2vuF0q8TyZXw2jvnogW0/b/FrdC+l7ddo8ehMti2?=
+ =?us-ascii?Q?Sq4Lmmn8Gjwwlk4asg7Y/Hrn4SByO13AnNPZo/jnl5eUX+ay/0pE9IjLIVwY?=
+ =?us-ascii?Q?WR4iKI3mG8viC1YkkUlQlE5+HdwAeGG1+JVEXyGPL/73i0scA/8jwOFZIOEc?=
+ =?us-ascii?Q?pvxL5X6AUMFT5/ocoZjPm2hXtld5x/dPqFuLlGYQDzmS/8qqr444IgqTVbQq?=
+ =?us-ascii?Q?9yChu751MBGpflGvuAJ4coD7P6gVoOl3LK65IfxuOyEd6J4lVA9AhARozOgT?=
+ =?us-ascii?Q?Wtm7+/2LKVhtuoDmJ/vpONCDukUl1ELptUNunaVmTPPBQ2gWXsp/oeplME9O?=
+ =?us-ascii?Q?Gl6fHVkTQQP+NICmTXKBVfHceLOLotT0jvmB5si6AvqQTEdyR6qivKgDTfl7?=
+ =?us-ascii?Q?S/iDs62yxMFVO8F0ew36/bC7h5GOEcBKab6oKOkmV7I/vR9zjw9Ll+OPULmZ?=
+ =?us-ascii?Q?Olagc6CSlzGtpzA5N9oBXYi+5SDdn6pFWjlwDP/mdN1fEFkpptHl6c+cMTEz?=
+ =?us-ascii?Q?BPVelzwU88PH1/22MVXBFxfBG0LDZKnC1dpgjjDlMm/UgfIFUE3l2HTNVGPl?=
+ =?us-ascii?Q?HISLo7BIC7na3iYns0T+FXMIVt8YHY5JTGUK8w6b0AuR+aXnhIqIZrl4Cn4H?=
+ =?us-ascii?Q?Cskvdx/wn76Icigdf/qEhEAB5rQMbD1HIIKZNNvAeOAB3Lxb2+S+N/2LPh/j?=
+ =?us-ascii?Q?NihNqmQVwSjK57WV64j9x3Zy4qoN7Q1yFRbEG85jMLpx5pgvbd7Fh4To5mQR?=
+ =?us-ascii?Q?qKJNsamzTao26/HNJ3nxILe/yJSEn1XmszkX/8JObDh3Bpv9fdMvy4l8uUL7?=
+ =?us-ascii?Q?cnAOQvDRWvvEX7VM7lb2veccei+B2vNDC4wHdy56t4RDvsdNLpyPwfULaysU?=
+ =?us-ascii?Q?vNOwGKoFT0oTaN9qoa0DV9pMKphXEhuw41lDamRE+uKkapYhI+Y3W5lIm7H/?=
+ =?us-ascii?Q?7R03/yQgPygcptUMIyb3bfcQvXLwSQgLhhkAXnYu/bekiMozCswFH5aqRXNb?=
+ =?us-ascii?Q?4+cM+la9McHx9SiBnU0uqJ/8jZ85ZuiMumCuYo9Z74aNXnsEV3uOEpEKyquS?=
+ =?us-ascii?Q?AYSfvZgseaueG1IklGTVjr9ifFH6gpy4cCqCVwmu7P3+NTfKC4VB+Q2FSdF1?=
+ =?us-ascii?Q?9H+6NjCyUMrg00pBHlbjursKNpCbj252/9ZJZTUu5WuTI79i2hDl5vxYM0qF?=
+ =?us-ascii?Q?Twqnd+U4FytBfrAbI7nTut87nHNGM3h1x+mpGoT5xMmnA+W+NWD+o4xK0oz3?=
+ =?us-ascii?Q?HnGI0ddJhz/VlBSFM3m+nIIzxa/+fQ4hrgB7idnNtfKW/0xxBFRCV0I3kYTB?=
+ =?us-ascii?Q?pZCSxP7HnvLGt/aW/2EIJwnI8g61MJtc3s4wKmjY9zQ0wBnhMWNEmX7SDT9n?=
+ =?us-ascii?Q?LhHELw6UyKrUS05hkq7sk0rFr4MwuZBIpBlL/WVPdiZPGQbUTKDymgKtXw5T?=
+ =?us-ascii?Q?3cu+MEa77UYvFug23dNzOtEZF025a0614MvLO27KxAtmbq1PmXc0ESg+fo1e?=
+ =?us-ascii?Q?sLE49cTedEeSU7+8QCtCMZQ+bplZ14WBr1Kg/4WFz6UGyLw3aG1fXClWUE68?=
+ =?us-ascii?Q?OfZclxkRuYRZeflvVRVxe2Ubw3Cdk0a5vU8xnwGL8IUmw+V7tsfk3zQ+sYdC?=
+ =?us-ascii?Q?35z13rheW6DfOobSkvbW5vClksqDE9xXl7Um+c2pXkI2cbJom66g8/6Lg2Gi?=
+ =?us-ascii?Q?zaxCLUC1jg=3D=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_AM0PR04MB438876390F7731CE9DC1BC4C8CC99AM0PR04MB4388eurp_"
 MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: 
- DM5PR1101MB2348.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB4388.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 2726028b-0aad-48d6-69e1-08da323b8060
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 May 2022 04:13:56.4139
+ 0fed4754-b444-407e-fc13-08da32740deb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 May 2022 10:58:45.7354
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
 X-MS-Exchange-CrossTenant-userprincipalname: 
- AuxGs7zMMySJb/qDV8VCPt5xqJbiIFOk2WM+zHswxFnFMC2P5weN47Y7Csq7XLVzhJ2aMcsSQPlUWtn2gzRQrQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5352
-X-OriginatorOrg: intel.com
+ n4YHiQn4my3JJH1BYorUzYkE9aXdNtDaKqFYQmTgTIuU0/JNYIZbT3OBYIXXusFax90LviLbzzW4dnWU8QaiLA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7407
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 10 May 2022 04:14:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57046
+ <yocto@lists.yoctoproject.org>; Tue, 10 May 2022 10:58:53 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57047
 
-Hi Everyone,
+--_000_AM0PR04MB438876390F7731CE9DC1BC4C8CC99AM0PR04MB4388eurp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-This is the full report for yocto-3.4.4.rc1: =20
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
-h=3Dintel-yocto-testresults
+Hi,
 
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects.
+I have some issues in sorting out dependency management for a custom image_=
+types_*sdcard.bbclass and need some help/advice because the docs didn't sol=
+ve my problems.
 
-No new issue found.
+As opposed to "normal" images where do_rootfs depends on the packages and d=
+o_image on do_rootfs and the image types on do_image, here we have extra do=
+_image_sdcard[depends] for stuff outside the rootfs.
+My do_image_sdcard[depends] currently references do_populate_sysroot and do=
+_deploy of some other recipes and I have a empirical/paranoia recrdeptask o=
+n do_packagedata to mimic image.bbclass.
+
+It appears now that bitbake only runs my do_image_sdcard task if the task h=
+asn't been run yet, no matter the state of the dependencies. It doesn't see=
+m to matter for do_image_sdcard if some do_image_sdcard[depends] dependency=
+ for that task is actually missing or newer.
+If I, e.g., cleansstate such a dependency and then bitbake my image again, =
+the dependency is rebuilt, but the image isn't rebuilt because it already h=
+ad been built before. A dependency build trigger downstream in the chain is=
+ not an execution trigger upstream.
+
+So now I have an image that is outdated, because a necessary dependency is =
+more recent.
+This seems to be explained by the statement in the bitbake manual "Currentl=
+y, invalid timestamps are only considered on a per recipe file basis.", i.e=
+., if recipe A depends on B, A is not rebuilt if A already exists, even if =
+B is more recent than A.
+
+For this simple case, I can fix it by cleansstate'ing the image and rebuild=
+ing it (or would it be enough to just clean the image?!).
+
+But what concerns me now are more complex recipe dependencies. If I have A-=
+>B-><many>->Z and rebuild Z without knowing that A needs Z then a later "bi=
+tbake A" would do nothing. A and the interim dependencies are then outdated=
+ because bitbake wouldn't execute on, e.g., C or B or A.
+So unless I know the dependency chain manually I would always have to clean=
+all because I can never be sure that my image is outdated somewhere just be=
+cause I rebuilt some recipe somewhere? That wouldn't be efficient at all an=
+d kill most of the sstate usefulness.
+Alternatively I would always have to "-f -c image_sdcard", which also doesn=
+'t exactly seem like a good approach because then the datestamps for the un=
+derlying images wouldn't match anymore and the rootfs can't be found?
+
+It appears to me that I am missing something because this all just seems ri=
+sky and so fundamental?
+
+The obvious question is of course: Is there a reasonable way to ensure my i=
+mage gets recreated by executing my do_image_sdcard if any dependency has a=
+ more recent timestamp than the current image?
 
 Thanks,
-Jay
 
-> -----Original Message-----
-> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Beha=
-lf
-> Of Pokybuild User
-> Sent: Wednesday, 4 May, 2022 10:32 AM
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [yocto] QA notification for completed autobuilder build (yocto-
-> 3.4.4.rc1)
->=20
->=20
-> A build flagged for QA (yocto-3.4.4.rc1) was completed on the autobuilder
-> and is available at:
->=20
->=20
->     https://autobuilder.yocto.io/pub/releases/yocto-3.4.4.rc1
->=20
->=20
-> Build hash information:
->=20
-> bitbake: c2d8f9b2137bd4a98eb0f51519493131773e7517
-> meta-agl: 8543843eeb47fa9b45786d3e09bf497fcd5f95e0
-> meta-arm: 2623e69db362b357db45c343e6d504909552c2d5
-> meta-aws: c92344938ab4d37de8bd8b799186dbbe3019a069
-> meta-gplv2: f04e4369bf9dd3385165281b9fa2ed1043b0e400
-> meta-intel: daf5c125a744d45d8fa395b576147edd5a714f5c
-> meta-mingw: f5d761cbd5c957e4405c5d40b0c236d263c916a8
-> meta-openembedded: 9a0caf5b09e14a28a54c3f8524d97530aeb8152c
-> meta-virtualization: bd7511c53b921c9ce4ba2fdb42778ca194ebc3e8
-> oecore: 1a6f5e27249afb6fb4d47c523b62b5dd2482a69d
-> poky: 780eeec8851950ee6ac07a2a398ba937206bd2e4
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
+Heinz
+
+--_000_AM0PR04MB438876390F7731CE9DC1BC4C8CC99AM0PR04MB4388eurp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I have some issues in sorting out dependency managem=
+ent for a custom image_types_*sdcard.bbclass and need some help/advice beca=
+use the docs didn&#8217;t solve my problems.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">As opposed to &#8220;normal&#8221; images where do_r=
+ootfs depends on the packages and do_image on do_rootfs and the image types=
+ on do_image, here we have extra do_image_sdcard[depends] for stuff outside=
+ the rootfs.<o:p></o:p></p>
+<p class=3D"MsoNormal">My do_image_sdcard[depends] currently references do_=
+populate_sysroot and do_deploy of some other recipes and I have a empirical=
+/paranoia recrdeptask on do_packagedata to mimic image.bbclass.<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">It appears now that bitbake only runs my do_image_sd=
+card task if the task hasn&#8217;t been run yet, no matter the state of the=
+ dependencies. It doesn&#8217;t seem to matter for do_image_sdcard if some =
+do_image_sdcard[depends] dependency for that task
+ is actually missing or newer.<o:p></o:p></p>
+<p class=3D"MsoNormal">If I, e.g., cleansstate such a dependency and then b=
+itbake my image again, the dependency is rebuilt, but the image isn&#8217;t=
+ rebuilt because it already had been built before. A dependency build trigg=
+er downstream in the chain is not an execution
+ trigger upstream.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">So now I have an image that is outdated, because a n=
+ecessary dependency is more recent.<o:p></o:p></p>
+<p class=3D"MsoNormal">This seems to be explained by the statement in the b=
+itbake manual &#8220;Currently, invalid timestamps are only considered on a=
+ per recipe file basis.&#8221;, i.e., if recipe A depends on B, A is not re=
+built if A already exists, even if B is more recent
+ than A.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">For this simple case, I can fix it by cleansstate&#8=
+217;ing the image and rebuilding it (or would it be enough to just clean th=
+e image?!).<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">But what concerns me now are more complex recipe dep=
+endencies. If I have A-&gt;B-&gt;&lt;many&gt;-&gt;Z and rebuild Z without k=
+nowing that A needs Z then a later &#8220;bitbake A&#8221; would do nothing=
+. A and the interim dependencies are then outdated because bitbake
+ wouldn&#8217;t execute on, e.g., C or B or A.<o:p></o:p></p>
+<p class=3D"MsoNormal">So unless I know the dependency chain manually I wou=
+ld always have to cleanall because I can never be sure that my image is out=
+dated somewhere just because I rebuilt some recipe somewhere? That wouldn&#=
+8217;t be efficient at all and kill most
+ of the sstate usefulness.<o:p></o:p></p>
+<p class=3D"MsoNormal">Alternatively I would always have to &#8220;-f -c im=
+age_sdcard&#8221;, which also doesn&#8217;t exactly seem like a good approa=
+ch because then the datestamps for the underlying images wouldn&#8217;t mat=
+ch anymore and the rootfs can&#8217;t be found?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">It appears to me that I am missing something because=
+ this all just seems risky and so fundamental?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The obvious question is of course: Is there a reason=
+able way to ensure my image gets recreated by executing my do_image_sdcard =
+if any dependency has a more recent timestamp than the current image?<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Heinz<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_AM0PR04MB438876390F7731CE9DC1BC4C8CC99AM0PR04MB4388eurp_--
 
