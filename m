@@ -1,238 +1,241 @@
-Return-Path: <fknorr@neuroloop.de>
+Return-Path: <alex.kiernan@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 68587C433EF
-	for <webhook@archiver.kernel.org>; Thu, 12 May 2022 13:24:04 +0000 (UTC)
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com
- (EUR05-DB8-obe.outbound.protection.outlook.com [40.107.20.115])
- by mx.groups.io with SMTP id smtpd.web09.3982.1652361839826337938
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5368BC433EF
+	for <webhook@archiver.kernel.org>; Thu, 12 May 2022 13:28:34 +0000 (UTC)
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
+ [209.85.208.44])
+ by mx.groups.io with SMTP id smtpd.web12.4157.1652362107301237787
  for <yocto@lists.yoctoproject.org>;
- Thu, 12 May 2022 06:24:00 -0700
+ Thu, 12 May 2022 06:28:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@neuroloop.onmicrosoft.com
- header.s=selector2-neuroloop-onmicrosoft-com header.b=S1dmyH/z;
- spf=pass (domain: neuroloop.de, ip: 40.107.20.115,
- mailfrom: fknorr@neuroloop.de)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Y/6kjxYMMHMnUxkXHEEYPqpb7AJ18zcGORSqEcsSrdpMsdNIJ24Eu+LISROAPvi4zlYmHyttMKLFPNIDgzA3ATzOPsQREIzRsrujuFkBjSH561AHGxQDB2AqrzjCqYkjcJDh0o7MhJZ5bdMApkw7aaQD4+7IYB9yRqjEt0KLhUU3Vul6CkH5gK6NY9Lgu9Pz9H3rB2EyLieTPt8CL+DPKrUpkaD31BSFAwOLOX/cYhmA9MwBkjGgVT6Rv6J0y0DaBO68SrNUZw8JVe9iw8ySnj9Z6fsfbgjdkY3OKuBmdJdPquUhdRpIlpdcvw9E4ifw5D7ubKgHc6WuT0sUzoCULQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SZTTkwz/rhUDQ/8u75NdYA4/qwjrp/IQ4p4RXbSY2gI=;
- b=KOOwQzXZCBaGMkpdqqDTC4rzQC87413KdMvF3vk8czFzDf2z1YtMIYc5CLSqkGJgVcXL1dH/LfQxzk61IF+hCnj6XPELoE/W410SJLj5GOITdbBtnJ3EW933Hyn8WSsgDWZ5M8KJkYJpQgUmrl9Bh7Icl4mWSkYr1PkgJU4g20C/UtKa9PnN08TJCiWXE8sEJIZFODiol9z6mahrBSbzh2RRWkr9WLv+0xsHY09YD8Wlm3oPfBNdSPi/wqshAfB5E/0GVQzFIoxF7UMbzPputKn1VvJ4j4F8ldn5oHFCU9TWENIk5OIOUqutGPSAxRqfpRMrHZwvZkTqXqPDr638NQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 213.164.76.146) smtp.rcpttodomain=gmail.com smtp.mailfrom=neuroloop.de;
- dmarc=bestguesspass action=none header.from=neuroloop.de; dkim=none (message
- not signed); arc=none
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=MEksafsh;
+ spf=pass (domain: gmail.com, ip: 209.85.208.44,
+ mailfrom: alex.kiernan@gmail.com)
+Received: by mail-ed1-f44.google.com with SMTP id be20so6185614edb.12
+        for <yocto@lists.yoctoproject.org>;
+ Thu, 12 May 2022 06:28:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=neuroloop.onmicrosoft.com; s=selector2-neuroloop-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SZTTkwz/rhUDQ/8u75NdYA4/qwjrp/IQ4p4RXbSY2gI=;
- b=S1dmyH/za72NEQnSnoiyOQDh7bKOo91gy13bJx1yvmWlfFK4CbV2+AKKiogp3nmGroX9sFJ8xHKOee6jQlB+bxWwmb3S7ahdHKQv9D+yDQbuhbYBWfItK1Skd9MwldZuROm/L+/QlQxs6HA4w5knYdjCe0RI9MUPFUGGJ2MnwvQ=
-Received: from SV0P279CA0017.NORP279.PROD.OUTLOOK.COM (2603:10a6:f10:11::22)
- by VI1PR04MB4736.eurprd04.prod.outlook.com (2603:10a6:803:5d::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.14; Thu, 12 May
- 2022 13:23:56 +0000
-Received: from HE1EUR02FT073.eop-EUR02.prod.protection.outlook.com
- (2603:10a6:f10:11:cafe::92) by SV0P279CA0017.outlook.office365.com
- (2603:10a6:f10:11::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.13 via Frontend
- Transport; Thu, 12 May 2022 13:23:55 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 213.164.76.146)
- smtp.mailfrom=neuroloop.de; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=neuroloop.de;
-Received-SPF: Pass (protection.outlook.com: domain of neuroloop.de designates
- 213.164.76.146 as permitted sender) receiver=protection.outlook.com;
- client-ip=213.164.76.146; helo=mail.neuroloop.de;
-Received: from mail.neuroloop.de (213.164.76.146) by
- HE1EUR02FT073.mail.protection.outlook.com (10.152.10.242) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5250.13 via Frontend Transport; Thu, 12 May 2022 13:23:55 +0000
-Received: from srvexc1.neuroloop.local (10.136.17.20) by
- srvexc1.neuroloop.local (10.136.17.20) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Thu, 12 May 2022 15:23:54 +0200
-Received: from srvexc1.neuroloop.local ([fe80::10ec:631:7447:2833]) by
- srvexc1.neuroloop.local ([fe80::10ec:631:7447:2833%10]) with mapi id
- 15.02.0986.014; Thu, 12 May 2022 15:23:54 +0200
-From: Felix Knorr <FKnorr@neuroloop.de>
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Problems with recipe for our Rust-Software
-Thread-Topic: [yocto] Problems with recipe for our Rust-Software
-Thread-Index: AQHYZgGLsWOXeMJMDEikgnq0DMWt7a0bFzKAgAACUQA=
-Date: Thu, 12 May 2022 13:23:54 +0000
-Message-ID: <6f446d69-fe51-f6d9-435d-24f92d635522@neuroloop.de>
-References: <e1f7dbc8-c091-5891-2d1e-d1fb22ada352@neuroloop.de>
- <CANNYZj_Nm_vk84CtdoCZL9x2ynu8+8FB-sRsM6o6wVsNXcX0Ww@mail.gmail.com>
-In-Reply-To: 
- <CANNYZj_Nm_vk84CtdoCZL9x2ynu8+8FB-sRsM6o6wVsNXcX0Ww@mail.gmail.com>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [213.164.93.30]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <1AB74E0F55D0D3448E7D214D019DCAEA@neuroloop.local>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=iOV1KYnPZ7rRq2tkvoHVXovIf0lB0R7RqXHUV2yYuLQ=;
+        b=MEksafshbeYKSqDmJPYUExpt6IqEn6V0LlSoLJBymE/Ec/Ya2gJ+jL47dphqBnydXr
+         evXLiQxDw+oV6+p/0bGqKLlrImA0DGP4LPppIR+2U1HwoXtZ9uZOdjUZX4PC8z0ZUptw
+         A84z7NR+uIPTIm9XSCAWACLBtZc9QDCuHeqjAmoBMHGAabPuKcj0qWGMy1AxlNsd11RL
+         TCBLd+r6M429Swi4gxDcL4Xy430ks+a6pYeg5kSQbLwxA9yefaxYgw1GK4DmR0IxpZiX
+         xO7oenqQMHnDsjRG63wU0DvG+QJAcwFRovwM6WNU4NpDwyDzFleGb2u7qegX4SXEl1i2
+         nDMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=iOV1KYnPZ7rRq2tkvoHVXovIf0lB0R7RqXHUV2yYuLQ=;
+        b=cE4NkPXJoYlOD3nBXTmWt71g6mY+q+0qTmNqIKQt6w6QlnryXEAho68VJK/9dE7dlY
+         ZhCEMXxC9DQ/PZ+lEKud1PO/RovAtIy4EijfmxGZky8qEmPxAi0AM16AnA2Wy9SH1G5g
+         GwqP1L2ZmpXF1fS0z4Ahm22bKp/+4WGDpQYOIjQZSjajofIHivy3BTJ7vsAEpm9sa/Os
+         I5c+g0r3sFVSa3EQiFuzYXn3pRRpTKOkqrYmDRQXj4xuIsEONDakywkGTXb9FSS5yzT3
+         1K0uqI92EHmwSL+L7cHNAhxqI1Uxtc23Ygary8K3iA0KVSXX0yZJWvFaooPnMSaG6mr3
+         2v1Q==
+X-Gm-Message-State: AOAM532RSM7MZq6rlMSR2fcTbkX9WI1P4QSRQZtVxXVdzFGIIyRWjTqa
+	0rXbDTrHIFYiIeGW75M9IiHFaWnGH1UOgr+xtfo=
+X-Google-Smtp-Source: 
+ ABdhPJxiEmQbrPWUP7HX0HI2dC0Ge0PWW2rGSkZfQigxx8nglpzLMbVPX4/8paTMk0JlAO7nqE+r17h0cNdip/lSnCw=
+X-Received: by 2002:aa7:d708:0:b0:427:b5ee:b8f2 with SMTP id
+ t8-20020aa7d708000000b00427b5eeb8f2mr35559729edq.404.1652362105712; Thu, 12
+ May 2022 06:28:25 -0700 (PDT)
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f046003c-5fab-49f5-5d59-08da341aaa34
-X-MS-TrafficTypeDiagnostic: VI1PR04MB4736:EE_
-X-Microsoft-Antispam-PRVS: 
-	<VI1PR04MB473697AEA106A276E6D3007AA6CB9@VI1PR04MB4736.eurprd04.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	R4TKl5QHF9CyrTjIVWDscu6LdSHPdXeZWu7PAQsvNr1/BpEM3CRS1LVaFXTkNi/ifgxxijDcuCdhVAANFraiR1UDxzyAmGZ5qEDz0zq6xK58IBI53sQ7siclpTOZc0X9enqT+IWQnsOoyAnJrxlhPzoMTqerElvn6FteIOHKU9HKarr9ZYUhEQmYBpdwx3ZncTZWojg0moKqNxQ1RbhJL7JDhSb28CerrqyI5iWudrJFigxYh4Y9kVyD9VNJ8AHEb0Z7d1OxwwN5bHDbLiEmhwhRYihLbjPRlVJnz2TkG3ny1LlfmCuremfnTEWZn9WvORZDavjnTUYckgxZ1xQ37Je4i/9iQANrSqWMeI+DgMQjFXnJWq9B746TS1dMVu3Jqw7Txl8yxKqdZQeOZDWS3TBlnnTORp1r4VHpATnVyRnaW0lQ0NNsu21G+fhBEIMMGFKHj8WRiY6Zyc+Gdz0DpGx+wZoQQzWZ3fAAK/qa6oVZqNvnSVH+z2GdiC4ogBJsVlF1q/safOelN0c/b+RR3WGgIcJi1Ax/uLg349tQAqafMF0LThLmQCRaY1iCf9lHkw1KPZwfU4K2EjEoLqt5PNqAEFyW2hBDpDK+/pN7CBF+cI8zs5ettC9RHs1jZKNhz7m4Hylly3v6Z5ZwFi0DpqDzH0LFdjM7gw5TPAPf4evFaLqpxR16CKAwxVleg6hWhZ8ojMjcb36Hw6ZjJH5bWWBvyuW21/lnE62uclvaDkrd68aR0ouIH4GgSxHhzPTpPa2U9syAR7oTOTiDEmE/H2SVz104mBiS3lNldlroC/U=
-X-Forefront-Antispam-Report: 
-	CIP:213.164.76.146;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.neuroloop.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230001)(39830400003)(396003)(346002)(376002)(136003)(36840700001)(46966006)(508600001)(36860700001)(83380400001)(2906002)(5660300002)(966005)(8936002)(31696002)(186003)(40480700001)(86362001)(36756003)(81166007)(26005)(6916009)(31686004)(2616005)(356005)(316002)(53546011)(8676002)(70206006)(4326008)(70586007)(336012)(66574015)(47076005)(82310400005)(36900700001);DIR:OUT;SFP:1102;
-X-OriginatorOrg: neuroloop.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2022 13:23:55.5074
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- f046003c-5fab-49f5-5d59-08da341aaa34
-X-MS-Exchange-CrossTenant-Id: 7ccfa2e6-da67-443f-b0dd-3ff5292e0ffa
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
- TenantId=7ccfa2e6-da67-443f-b0dd-3ff5292e0ffa;Ip=[213.164.76.146];Helo=[mail.neuroloop.de]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	HE1EUR02FT073.eop-EUR02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4736
+References: <e1f7dbc8-c091-5891-2d1e-d1fb22ada352@neuroloop.de>
+In-Reply-To: <e1f7dbc8-c091-5891-2d1e-d1fb22ada352@neuroloop.de>
+From: Alex Kiernan <alex.kiernan@gmail.com>
+Date: Thu, 12 May 2022 14:28:13 +0100
+Message-ID: 
+ <CAO5Uq5TnUuDo1uC40qjOkGrVWfjDG98XbxchQ86wpVAXCch_eg@mail.gmail.com>
+Subject: Re: [yocto] Problems with recipe for our Rust-Software
+To: Felix Knorr <fknorr@neuroloop.de>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 12 May 2022 13:24:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57075
+ <yocto@lists.yoctoproject.org>; Thu, 12 May 2022 13:28:34 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57076
 
-T2ggSSBzZWUsIHRoYW5rcyBmb3IgdGhlIGluZm8uDQoNCk9uIDEyLjA1LjIyIDE1OjE1LCBBbGV4
-YW5kZXIgS2FuYXZpbiB3cm90ZToNCj4gQWNjZXNzaW5nIHRoZSBuZXR3b3JrIGlzIG5vdCBhbGxv
-d2VkIGZyb20gZG9fY29tcGlsZSwgb3IgYW55IG90aGVyDQo+IHRhc2sgZm9yIHRoYXQgbWF0dGVy
-LiBZb3UgbmVlZCB0byBwcm92aWRlIGV2ZXJ5IG5lZWRlZCBpdGVtIGluIFNSQ19VUkkNCj4gYW5k
-IHJlbHkgb24gc3RhbmRhcmQgZmV0Y2hlcnMgdG8gZm9ybSBhIGNvbXBsZXRlIHNvdXJjZSB0cmVl
-Lg0KPg0KPiBBbGV4DQo+DQo+IE9uIFRodSwgMTIgTWF5IDIwMjIgYXQgMTU6MDksIEZlbGl4IEtu
-b3JyIDxma25vcnJAbmV1cm9sb29wLmRlPiB3cm90ZToNCj4+IEhleSwNCj4+DQo+PiBJJ20gc3Ry
-dWdnbGluZyB3aXRoIGEgcmVjaXBlIHRvIGJ1aWxkIG91ciBydXN0IHByb2plY3QuDQo+Pg0KPj4g
-SSBjYW5ub3QgdXNlIGNhcmdvLWJpdGJha2UgYmVjYXVzZSB3ZSB1c2UgdGhlIDIwMjEgZWRpdGlv
-bi4gQWxzbyB0aGUgcHJvamVjdCBpcyBxdWl0ZSBjb21wbGV4LiBXZSBoYXZlIG9uZSByZXBvc2l0
-b3J5IHdpdGggNCBkaWZmZXJlbnQgY3JhdGVzLCBzb21lIG9mIHRoZW0gYXJlIGxpbmtpbmcgYyBj
-b2RlLiBJJ20gdHJ5aW5nIHRvIGNyZWF0ZSBhIHJlY2lwZSBieSBoYW5kLg0KPj4NCj4+IFdoZW4g
-SSBydW4gYml0YmFrZSBmb3IgdGhlIHJlY2lwZSwgaXQgd2lsbCBlcnJvciBvdXQgd2l0aCB0aGUg
-Zm9sbG93aW5nIGVycm9yIG1lc3NhZ2U6DQo+Pg0KPj4gRVJST1I6IHNlcnZlLTEuMC4wLXIwIGRv
-X2NvbXBpbGU6IEV4ZWN1dGlvbkVycm9yKCcvaG9tZS9mZWxpeC9naXQvcG9reS9idWlsZC90bXAv
-d29yay9jb3JlMi02NC1wb2t5LWxpbnV4L3NlcnZlLzEuMC4wLXIwL3RlbXAvcnVuLmRvX2NvbXBp
-bGUuNDAwOTIzJywgMTAxLCBOb25lLCBOb25lKQ0KPj4gRVJST1I6IExvZ2ZpbGUgb2YgZmFpbHVy
-ZSBzdG9yZWQgaW46IC9ob21lL2ZlbGl4L2dpdC9wb2t5L2J1aWxkL3RtcC93b3JrL2NvcmUyLTY0
-LXBva3ktbGludXgvc2VydmUvMS4wLjAtcjAvdGVtcC9sb2cuZG9fY29tcGlsZS40MDA5MjMNCj4+
-IExvZyBkYXRhIGZvbGxvd3M6DQo+PiB8IERFQlVHOiBFeGVjdXRpbmcgc2hlbGwgZnVuY3Rpb24g
-ZG9fY29tcGlsZQ0KPj4gfCAgICAgVXBkYXRpbmcgY3JhdGVzLmlvIGluZGV4DQo+PiB8IHdhcm5p
-bmc6IHNwdXJpb3VzIG5ldHdvcmsgZXJyb3IgKDIgdHJpZXMgcmVtYWluaW5nKTogZmFpbGVkIHRv
-IHJlc29sdmUgYWRkcmVzcyBmb3IgZ2l0aHViLmNvbTogTmFtZSBvciBzZXJ2aWNlIG5vdCBrbm93
-bjsgY2xhc3M9TmV0ICgxMikNCj4+IHwgd2FybmluZzogc3B1cmlvdXMgbmV0d29yayBlcnJvciAo
-MSB0cmllcyByZW1haW5pbmcpOiBmYWlsZWQgdG8gcmVzb2x2ZSBhZGRyZXNzIGZvciBnaXRodWIu
-Y29tOiBOYW1lIG9yIHNlcnZpY2Ugbm90IGtub3duOyBjbGFzcz1OZXQgKDEyKQ0KPj4gfCBlcnJv
-cjogZmFpbGVkIHRvIGdldCBgYW55aG93YCBhcyBhIGRlcGVuZGVuY3kgb2YgcGFja2FnZSBgbmxw
-cm9nIHYwLjEuMCAoL2hvbWUvZmVsaXgvZ2l0L3Bva3kvYnVpbGQvdG1wL3dvcmsvY29yZTItNjQt
-cG9reS1saW51eC9zZXJ2ZS8xLjAuMC1yMC90bXAvYmFyb2xvb3AvcHJvZ3JhbW1lci1ydXN0L25s
-cHJvZylgDQo+PiB8DQo+PiB8IENhdXNlZCBieToNCj4+IHwgICBmYWlsZWQgdG8gZmV0Y2ggYGh0
-dHBzOi8vZ2l0aHViLmNvbS9ydXN0LWxhbmcvY3JhdGVzLmlvLWluZGV4YA0KPj4gfA0KPj4gfCBD
-YXVzZWQgYnk6DQo+PiB8ICAgbmV0d29yayBmYWlsdXJlIHNlZW1zIHRvIGhhdmUgaGFwcGVuZWQN
-Cj4+IHwgICBpZiBhIHByb3h5IG9yIHNpbWlsYXIgaXMgbmVjZXNzYXJ5IGBuZXQuZ2l0LWZldGNo
-LXdpdGgtY2xpYCBtYXkgaGVscCBoZXJlDQo+PiB8ICAgaHR0cHM6Ly9kb2MucnVzdC1sYW5nLm9y
-Zy9jYXJnby9yZWZlcmVuY2UvY29uZmlnLmh0bWwjbmV0Z2l0LWZldGNoLXdpdGgtY2xpDQo+PiB8
-DQo+PiB8IENhdXNlZCBieToNCj4+IHwgICBmYWlsZWQgdG8gcmVzb2x2ZSBhZGRyZXNzIGZvciBn
-aXRodWIuY29tOiBOYW1lIG9yIHNlcnZpY2Ugbm90IGtub3duOyBjbGFzcz1OZXQgKDEyKQ0KPj4g
-fCBXQVJOSU5HOiBleGl0IGNvZGUgMTAxIGZyb20gYSBzaGVsbCBjb21tYW5kLg0KPj4gRVJST1I6
-IFRhc2sgKC9ob21lL2ZlbGl4L2dpdC9iYXJvbG9vcC9wcm9ncmFtbWVyLXRhYmxldC9sYXllcnMv
-bWV0YS1tYWluL3JlY2lwZXMtY29yZS9wcm9ncmFtbWVyL3NlcnZlXzEuMC4wLmJiOmRvX2NvbXBp
-bGUpIGZhaWxlZCB3aXRoIGV4aXQgY29kZSAnMScNCj4+DQo+PiBIb3dldmVyLCBpZiBJIHJ1biB0
-aGUgZGV2c2hlbGwgZm9yIHRoZSByZWNpcGUgYW5kIHJ1biBjYXJnbywgaXQgd2lsbCBhdCBsZWFz
-dCBiZSBhYmxlIHRvIGRvIHRoZSBmZXRjaGluZy4gKEl0IHdpbGwgY3VycmVudGx5IGZhaWwgaW4g
-dGhlIGxpbmtlciBzdGVwLCBidXQgSSBhc3N1bWUgdGhhdHMgYmVjYXVzZSBJIGhhdmVuJ3QgZXhl
-Y3V0ZWQgb2VfY2FyZ29fZml4X2VudikNCj4+DQo+PiBpZiBJIGRvbid0IHJlbW92ZSB0aGUgaHR0
-cC5tdWx0aXBsZXhpbmc9ZmFsc2UgZnJvbSB0aGUgY2FyZ28gY29uZmlnLCBpdCB3aWxsIGp1c3Qg
-aGFuZyBmb3JldmVyIGluIHRoZSBkZXZzaGVsbCAoYnV0IG5vdCBlcnJvciBvdXQpLg0KPj4NCj4+
-IElmIEkgc2V0IGV4cG9ydCBDQVJHT19ORVRfR0lUX0ZFVENIX1dJVEhfQ0xJPXRydWUgdGhlIGVy
-cm9yIGlzIHNsaWdodGx5IGRpZmZlcmVudCwgYnV0IHRoZSBnaXQgY2FsbCB0aGF0IGlzIHRoZW4g
-ZGlzcGxheWVkIGFsc28gd29ya3MgaW4gdGhlIGRldnNoZWxsLiBBbHNvIHVzaW5nIGEgY3JhdGU6
-Ly8tZmV0Y2hlciBkb2Vzbid0IHdvcmssIHdoaWNoIGlzIHdoeSBJIGFkZGVkIHRoZSBDQVJHT19E
-SVNBQkxFX0JJVEJBS0VfVkVORE9SSU5HID0gIjEiIEkndmUgYmVlbiBmaWdodGluZyB0aGlzIGZv
-ciBob3VycyBhbmQgY2FuJ3QgY29tZSB1cCB3aXRoIGFueXRoaW5nLiBJIGhvcGUgeW91IGNhbiBo
-ZWxwIG1lLg0KPj4NCj4+IFBTOiBJJ20gdXNpbmcga2lya3N0b25lLCBhbmQgSSdtIG5vdCBoYXZp
-bmcgYW55IHVybCBzZWN0aW9ucyBpbiBteSAuZ2l0Y29uZmlnDQo+Pg0KPj4gVGhpcyBpcyB0aGUg
-cmVjaXBlOg0KPj4NCj4+IGNhcmdvDQo+Pg0KPj4gU1VNTUFSWSA9ICJDb3B5IHByZWJ1aWxkIHBy
-b2dyYW1tZXIgc2VydmUgaW50byB0aGUgaW1hZ2UiDQo+PiBMSUNFTlNFID0gIkNMT1NFRCINCj4+
-IExJQ19GSUxFU19DSEtTVU0gPSAiIg0KPj4NCj4+IFNSQ19VUkk9IlwNCj4+ICAgICAgZmlsZTov
-LyR7YmxfcGF0aH0vcHJvZ3JhbW1lci11aS9kaXN0IFwNCj4+ICAgICAgZmlsZTovLyR7Y29uZmln
-X3BhdGh9L2ZpbGVzL3Nlc3Npb24gXA0KPj4gICAgICBmaWxlOi8vL3RtcC9iYXJvbG9vcCBcDQo+
-PiAiDQo+PiAjICAgY3JhdGU6Ly9jcmF0ZXMuaW8vdG9raW8vMSBcDQo+PiAjICAgY3JhdGU6Ly9j
-cmF0ZXMuaW8vd2FyLzAuMyBcDQo+PiAjICAgY3JhdGU6Ly9jcmF0ZXMuaW8vYnl0ZS8xIFwNCj4+
-ICMgICBjcmF0ZTovL2NyYXRlcy5pby9sb2cvMC40LjggXA0KPj4gIyAgIGNyYXRlOi8vY3JhdGVz
-LmlvL3NlcmRlX2pzb24vMS4wLjc1IFwNCj4+ICMgICBjcmF0ZTovL2NyYXRlcy5pby9zZXJkZS8x
-LjAuMTMzIFwNCj4+ICMgICBjcmF0ZTovL2NyYXRlcy5pby9kb2NvcHQvMS4xLjAgXA0KPj4gIyAg
-IGNyYXRlOi8vY3JhdGVzLmlvL2NvbG9yZWQvMS45LjMgXA0KPj4gIyAgIGNyYXRlOi8vY3JhdGVz
-LmlvL2Nocm9uby8wLjQuMTEgXA0KPj4gIyAgIGNyYXRlOi8vY3JhdGVzLmlvL2JhdHRlcnkvMC43
-LjcgXA0KPj4gIyAgIGNyYXRlOi8vY3JhdGVzLmlvL3V1aWQvMC44LjIgXA0KPj4gIyAgIGNyYXRl
-Oi8vY3JhdGVzLmlvL3RoaXNlcnJvci8xLjAgXA0KPj4gIyAgIGNyYXRlOi8vY3JhdGVzLmlvL2Fu
-eWhvdy8xIFwNCj4+ICMgICBjcmF0ZTovL2NyYXRlcy5pby9jbGFwLzMuMCBcDQo+PiAjICAgY3Jh
-dGU6Ly9jcmF0ZXMuaW8vZnV0dXJlcy8wLjMgXA0KPj4gIyAgIGNyYXRlOi8vY3JhdGVzLmlvL3dy
-eS8wLjYuMQ0KPj4gUyA9ICIke1dPUktESVJ9Ig0KPj4NCj4+IFJERVBFTkRTOiR7UE59ID0gIlwN
-Cj4+ICAgICAgZXVkZXYgXA0KPj4gICAgICBkYnVzIFwNCj4+ICINCj4+DQo+PiBERVBFTkRTID0g
-IlwNCj4+ICAgICAgZXVkZXYgXA0KPj4gICAgICBkYnVzIFwNCj4+ICINCj4+DQo+PiAjIElOU0FO
-RV9TS0lQOiR7UE59ICs9ICJmaWxlLXJkZXBzIg0KPj4NCj4+IEZJTEVTOiR7UE59ID0gIlwNCj4+
-ICAgICAgL2hvbWUvbmV1cm8vc2VydmUgXA0KPj4gICAgICAvaG9tZS9uZXVyby9kaXN0LyoqIFwN
-Cj4+ICAgICAgJHtzeXNjb25mZGlyfS9taW5pX3gvc2Vzc2lvbiBcDQo+PiAiDQo+Pg0KPj4gQ0FS
-R09fRElTQUJMRV9CSVRCQUtFX1ZFTkRPUklORyA9ICIxIg0KPj4NCj4+IGRvX2NvbXBpbGUoKSB7
-DQo+PiAgICAgIG9lX2NhcmdvX2ZpeF9lbnYNCj4+DQo+PiAgICAgIHNlZCAtaSAnL211bHRpcGxl
-eGluZyA9IGZhbHNlL2QnICRDQVJHT19IT01FL2NvbmZpZw0KPj4gICAgICBzZWQgLWkgJy9cW2h0
-dHBcXS9kJyAkQ0FSR09fSE9NRS9jb25maWcNCj4+ICAgICAgc2VkIC1pICcvY2FpbmZvL2QnICRD
-QVJHT19IT01FL2NvbmZpZw0KPj4NCj4+ICAgICAgZXhwb3J0IFJVU1RGTEFHUz0iJHtSVVNURkxB
-R1N9Ig0KPj4gICAgICBleHBvcnQgUlVTVF9UQVJHRVRfUEFUSD0iJHtSVVNUX1RBUkdFVF9QQVRI
-fSINCj4+DQo+PiAgICAgIGV4cG9ydCBDQVJHT19ORVRfR0lUX0ZFVENIX1dJVEhfQ0xJPXRydWUN
-Cj4+ICAgICAgY2QgJHtTfS90bXAvYmFyb2xvb3AvcHJvZ3JhbW1lci1ydXN0Lw0KPj4gICAgICBj
-YXJnbyBidWlsZCAtLXJlbGVhc2UgLS1iaW4gc2VydmUNCj4+IH0NCj4+DQo+PiBkb19pbnN0YWxs
-KCkgew0KPj4gICAgICAjIHRoaXMgaXNuX3QgcmVhY2hlZCBhbnl3YXkNCj4+ICMgLi4uDQo+PiB9
-DQo+Pg0KPj4gLS0NCj4+IE1pdCBmcmV1bmRsaWNoZW4gR3LDvMOfZW4gbmV1cm9sb29wIEdtYkgN
-Cj4+IGkuQS4gRmVsaXggS25vcnINCj4+IFNlbmlvciBTb2Z0d2FyZSBEZXZlbG9wZXINCj4+IC0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo+PiBuZXVyb2xvb3AgR21iSA0K
-Pj4gRW5nZXNzZXJzdHIuIDQsIDc5MTA4IEZyZWlidXJnLCBHZXJtYW55DQo+Pg0KPj4gQW10c2dl
-cmljaHQgRnJlaWJ1cmcgSFJCIDcxMzkzNQ0KPj4NCj4+IEdlc2Now6RmdHNmw7xocmVyOiBEci4g
-TWljaGFlbCBMYXVrLCBEci4gRGVubmlzIFBsYWNodGENCj4+DQo+Pg0KPj4NCj4+IFRoZSBpbmZv
-cm1hdGlvbiBjb250YWluZWQgaW4gdGhpcyBjb21tdW5pY2F0aW9uIGlzIGNvbmZpZGVudGlhbCwg
-bWF5IGJlIGF0dG9ybmV5LWNsaWVudCBwcml2aWxlZ2VkLCBtYXkgY29uc3RpdHV0ZSBpbnNpZGUg
-aW5mb3JtYXRpb24sIGFuZCBpcyBpbnRlbmRlZCBvbmx5IGZvciB0aGUgdXNlIG9mIHRoZSBhZGRy
-ZXNzZWUuIEl0IGlzIHRoZSBwcm9wZXJ0eSBvZiB0aGUgY29tcGFueSBvZiB0aGUgc2VuZGVyIG9m
-IHRoaXMgZS1tYWlsLiBVbmF1dGhvcml6ZWQgdXNlLCBkaXNjbG9zdXJlLCBvciBjb3B5aW5nIG9m
-IHRoaXMgY29tbXVuaWNhdGlvbiBvciBhbnkgcGFydCB0aGVyZW9mIGlzIHN0cmljdGx5IHByb2hp
-Yml0ZWQgYW5kIG1heSBiZSB1bmxhd2Z1bC4gSWYgeW91IGhhdmUgcmVjZWl2ZWQgdGhpcyBjb21t
-dW5pY2F0aW9uIGluIGVycm9yLCBwbGVhc2Ugbm90aWZ5IHVzIGltbWVkaWF0ZWx5IGJ5IHJldHVy
-biBlLW1haWwgYW5kIGRlc3Ryb3kgdGhpcyBjb21tdW5pY2F0aW9uIGFuZCBhbGwgY29waWVzIHRo
-ZXJlb2YsIGluY2x1ZGluZyBhbGwgYXR0YWNobWVudHMuDQo+Pg0KPj4NCj4+IC09LT0tPS09LT0t
-PS09LT0tPS09LT0tDQo+PiBMaW5rczogWW91IHJlY2VpdmUgYWxsIG1lc3NhZ2VzIHNlbnQgdG8g
-dGhpcyBncm91cC4NCj4+IFZpZXcvUmVwbHkgT25saW5lICgjNTcwNzIpOiBodHRwczovL2xpc3Rz
-LnlvY3RvcHJvamVjdC5vcmcvZy95b2N0by9tZXNzYWdlLzU3MDcyDQo+PiBNdXRlIFRoaXMgVG9w
-aWM6IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9tdC85MTA1NzQ2OC8xNjg2NDg5DQo+
-PiBHcm91cCBPd25lcjogeW9jdG8rb3duZXJAbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KPj4gVW5z
-dWJzY3JpYmU6IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9nL3lvY3RvL3Vuc3ViIFth
-bGV4LmthbmF2aW5AZ21haWwuY29tXQ0KPj4gLT0tPS09LT0tPS09LT0tPS09LT0tPS0NCj4+DQoN
-Ci0tIA0KTWl0IGZyZXVuZGxpY2hlbiBHcsO8w59lbiBuZXVyb2xvb3AgR21iSA0KaS5BLiBGZWxp
-eCBLbm9ycg0KU2VuaW9yIFNvZnR3YXJlIERldmVsb3Blcg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0NCm5ldXJvbG9vcCBHbWJIDQpFbmdlc3NlcnN0ci4gNCwgNzkxMDgg
-RnJlaWJ1cmcsIEdlcm1hbnkNCg0KQW10c2dlcmljaHQgRnJlaWJ1cmcgSFJCIDcxMzkzNQ0KDQpH
-ZXNjaMOkZnRzZsO8aHJlcjogRHIuIE1pY2hhZWwgTGF1aywgRHIuIERlbm5pcyBQbGFjaHRhDQoN
-CiAgDQoNClRoZSBpbmZvcm1hdGlvbiBjb250YWluZWQgaW4gdGhpcyBjb21tdW5pY2F0aW9uIGlz
-IGNvbmZpZGVudGlhbCwgbWF5IGJlIGF0dG9ybmV5LWNsaWVudCBwcml2aWxlZ2VkLCBtYXkgY29u
-c3RpdHV0ZSBpbnNpZGUgaW5mb3JtYXRpb24sIGFuZCBpcyBpbnRlbmRlZCBvbmx5IGZvciB0aGUg
-dXNlIG9mIHRoZSBhZGRyZXNzZWUuIEl0IGlzIHRoZSBwcm9wZXJ0eSBvZiB0aGUgY29tcGFueSBv
-ZiB0aGUgc2VuZGVyIG9mIHRoaXMgZS1tYWlsLiBVbmF1dGhvcml6ZWQgdXNlLCBkaXNjbG9zdXJl
-LCBvciBjb3B5aW5nIG9mIHRoaXMgY29tbXVuaWNhdGlvbiBvciBhbnkgcGFydCB0aGVyZW9mIGlz
-IHN0cmljdGx5IHByb2hpYml0ZWQgYW5kIG1heSBiZSB1bmxhd2Z1bC4gSWYgeW91IGhhdmUgcmVj
-ZWl2ZWQgdGhpcyBjb21tdW5pY2F0aW9uIGluIGVycm9yLCBwbGVhc2Ugbm90aWZ5IHVzIGltbWVk
-aWF0ZWx5IGJ5IHJldHVybiBlLW1haWwgYW5kIGRlc3Ryb3kgdGhpcyBjb21tdW5pY2F0aW9uIGFu
-ZCBhbGwgY29waWVzIHRoZXJlb2YsIGluY2x1ZGluZyBhbGwgYXR0YWNobWVudHMuDQoNCg==
+On Thu, May 12, 2022 at 2:09 PM Felix Knorr <fknorr@neuroloop.de> wrote:
+>
+> Hey,
+>
+> I'm struggling with a recipe to build our rust project.
+>
+> I cannot use cargo-bitbake because we use the 2021 edition. Also the proj=
+ect is quite complex. We have one repository with 4 different crates, some =
+of them are linking c code. I'm trying to create a recipe by hand.
+>
+
+The HEAD of cargo-bitbake works fine for 2021 for us.
+
+> When I run bitbake for the recipe, it will error out with the following e=
+rror message:
+>
+> ERROR: serve-1.0.0-r0 do_compile: ExecutionError('/home/felix/git/poky/bu=
+ild/tmp/work/core2-64-poky-linux/serve/1.0.0-r0/temp/run.do_compile.400923'=
+, 101, None, None)
+> ERROR: Logfile of failure stored in: /home/felix/git/poky/build/tmp/work/=
+core2-64-poky-linux/serve/1.0.0-r0/temp/log.do_compile.400923
+> Log data follows:
+> | DEBUG: Executing shell function do_compile
+> |     Updating crates.io index
+> | warning: spurious network error (2 tries remaining): failed to resolve =
+address for github.com: Name or service not known; class=3DNet (12)
+> | warning: spurious network error (1 tries remaining): failed to resolve =
+address for github.com: Name or service not known; class=3DNet (12)
+> | error: failed to get `anyhow` as a dependency of package `nlprog v0.1.0=
+ (/home/felix/git/poky/build/tmp/work/core2-64-poky-linux/serve/1.0.0-r0/tm=
+p/baroloop/programmer-rust/nlprog)`
+> |
+> | Caused by:
+> |   failed to fetch `https://github.com/rust-lang/crates.io-index`
+> |
+> | Caused by:
+> |   network failure seems to have happened
+> |   if a proxy or similar is necessary `net.git-fetch-with-cli` may help =
+here
+> |   https://doc.rust-lang.org/cargo/reference/config.html#netgit-fetch-wi=
+th-cli
+> |
+> | Caused by:
+> |   failed to resolve address for github.com: Name or service not known; =
+class=3DNet (12)
+> | WARNING: exit code 101 from a shell command.
+> ERROR: Task (/home/felix/git/baroloop/programmer-tablet/layers/meta-main/=
+recipes-core/programmer/serve_1.0.0.bb:do_compile) failed with exit code '1=
+'
+>
+> However, if I run the devshell for the recipe and run cargo, it will at l=
+east be able to do the fetching. (It will currently fail in the linker step=
+, but I assume thats because I haven't executed oe_cargo_fix_env)
+>
+> if I don't remove the http.multiplexing=3Dfalse from the cargo config, it=
+ will just hang forever in the devshell (but not error out).
+>
+> If I set export CARGO_NET_GIT_FETCH_WITH_CLI=3Dtrue the error is slightly=
+ different, but the git call that is then displayed also works in the devsh=
+ell. Also using a crate://-fetcher doesn't work, which is why I added the C=
+ARGO_DISABLE_BITBAKE_VENDORING =3D "1" I've been fighting this for hours an=
+d can't come up with anything. I hope you can help me.
+>
+> PS: I'm using kirkstone, and I'm not having any url sections in my .gitco=
+nfig
+>
+> This is the recipe:
+>
+> cargo
+>
+> SUMMARY =3D "Copy prebuild programmer serve into the image"
+> LICENSE =3D "CLOSED"
+> LIC_FILES_CHKSUM =3D ""
+>
+> SRC_URI=3D"\
+>     file://${bl_path}/programmer-ui/dist \
+>     file://${config_path}/files/session \
+>     file:///tmp/baroloop \
+> "
+> #   crate://crates.io/tokio/1 \
+> #   crate://crates.io/war/0.3 \
+> #   crate://crates.io/byte/1 \
+> #   crate://crates.io/log/0.4.8 \
+> #   crate://crates.io/serde_json/1.0.75 \
+> #   crate://crates.io/serde/1.0.133 \
+> #   crate://crates.io/docopt/1.1.0 \
+> #   crate://crates.io/colored/1.9.3 \
+> #   crate://crates.io/chrono/0.4.11 \
+> #   crate://crates.io/battery/0.7.7 \
+> #   crate://crates.io/uuid/0.8.2 \
+> #   crate://crates.io/thiserror/1.0 \
+> #   crate://crates.io/anyhow/1 \
+> #   crate://crates.io/clap/3.0 \
+> #   crate://crates.io/futures/0.3 \
+> #   crate://crates.io/wry/0.6.1
+> S =3D "${WORKDIR}"
+>
+> RDEPENDS:${PN} =3D "\
+>     eudev \
+>     dbus \
+> "
+>
+> DEPENDS =3D "\
+>     eudev \
+>     dbus \
+> "
+>
+> # INSANE_SKIP:${PN} +=3D "file-rdeps"
+>
+> FILES:${PN} =3D "\
+>     /home/neuro/serve \
+>     /home/neuro/dist/** \
+>     ${sysconfdir}/mini_x/session \
+> "
+>
+> CARGO_DISABLE_BITBAKE_VENDORING =3D "1"
+>
+> do_compile() {
+>     oe_cargo_fix_env
+>
+>     sed -i '/multiplexing =3D false/d' $CARGO_HOME/config
+>     sed -i '/\[http\]/d' $CARGO_HOME/config
+>     sed -i '/cainfo/d' $CARGO_HOME/config
+>
+>     export RUSTFLAGS=3D"${RUSTFLAGS}"
+>     export RUST_TARGET_PATH=3D"${RUST_TARGET_PATH}"
+>
+>     export CARGO_NET_GIT_FETCH_WITH_CLI=3Dtrue
+>     cd ${S}/tmp/baroloop/programmer-rust/
+>     cargo build --release --bin serve
+> }
+>
+> do_install() {
+>     # this isn_t reached anyway
+> # ...
+> }
+>
+> --
+> Mit freundlichen Gr=C3=BC=C3=9Fen neuroloop GmbH
+> i.A. Felix Knorr
+> Senior Software Developer
+> --------------------------------------
+> neuroloop GmbH
+> Engesserstr. 4, 79108 Freiburg, Germany
+>
+> Amtsgericht Freiburg HRB 713935
+>
+> Gesch=C3=A4ftsf=C3=BChrer: Dr. Michael Lauk, Dr. Dennis Plachta
+>
+>
+>
+> The information contained in this communication is confidential, may be a=
+ttorney-client privileged, may constitute inside information, and is intend=
+ed only for the use of the addressee. It is the property of the company of =
+the sender of this e-mail. Unauthorized use, disclosure, or copying of this=
+ communication or any part thereof is strictly prohibited and may be unlawf=
+ul. If you have received this communication in error, please notify us imme=
+diately by return e-mail and destroy this communication and all copies ther=
+eof, including all attachments.
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#57072): https://lists.yoctoproject.org/g/yocto/messag=
+e/57072
+> Mute This Topic: https://lists.yoctoproject.org/mt/91057468/3618097
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kiernan@g=
+mail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+
+
+--=20
+Alex Kiernan
 
