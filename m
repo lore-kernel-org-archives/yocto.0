@@ -2,28 +2,28 @@ Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C5E81C43219
-	for <webhook@archiver.kernel.org>; Fri, 13 May 2022 11:25:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C5288C433EF
+	for <webhook@archiver.kernel.org>; Fri, 13 May 2022 11:25:10 +0000 (UTC)
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by mx.groups.io with SMTP id smtpd.web10.7019.1652441098500405934
+ by mx.groups.io with SMTP id smtpd.web12.7085.1652441100412881226
  for <yocto@lists.yoctoproject.org>;
- Fri, 13 May 2022 04:24:58 -0700
+ Fri, 13 May 2022 04:25:00 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing;
  spf=pass (domain: arm.com, ip: 217.140.110.172, mailfrom: ross.burton@arm.com)
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3D5F01650;
-	Fri, 13 May 2022 04:24:58 -0700 (PDT)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 14695165C;
+	Fri, 13 May 2022 04:25:00 -0700 (PDT)
 Received: from oss-tx204.lab.cambridge.arm.com
  (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 99ACB3F5A1;
-	Fri, 13 May 2022 04:24:57 -0700 (PDT)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5C2413F5A1;
+	Fri, 13 May 2022 04:24:59 -0700 (PDT)
 From: Ross Burton <ross.burton@arm.com>
 To: yocto@lists.yoctoproject.org
 Cc: elizabeth.flanagan@huawei.com
-Subject: [meta-zephyr][PATCH 08/10] python3-pygithub: remove, unused
-Date: Fri, 13 May 2022 12:24:46 +0100
-Message-Id: <20220513112448.2257180-8-ross.burton@arm.com>
+Subject: [meta-zephyr][PATCH 10/10] python3-pyocd: remove, unused
+Date: Fri, 13 May 2022 12:24:48 +0100
+Message-Id: <20220513112448.2257180-10-ross.burton@arm.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220513112448.2257180-1-ross.burton@arm.com>
 References: <20220513112448.2257180-1-ross.burton@arm.com>
@@ -32,40 +32,40 @@ Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 13 May 2022 11:25:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57100
+ <yocto@lists.yoctoproject.org>; Fri, 13 May 2022 11:25:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57102
 
 This recipe was added to meta-zephyr in de73bdba but nothing uses it.
 
 Signed-off-by: Ross Burton <ross.burton@arm.com>
 ---
- .../python/python3-pygithub_1.55.bb                | 14 --------------
+ .../python/python3-pyocd_0.32.0.bb                 | 14 --------------
  1 file changed, 14 deletions(-)
- delete mode 100644 meta-zephyr-core/recipes-devtools/python/python3-pygi=
-thub_1.55.bb
+ delete mode 100644 meta-zephyr-core/recipes-devtools/python/python3-pyoc=
+d_0.32.0.bb
 
-diff --git a/meta-zephyr-core/recipes-devtools/python/python3-pygithub_1.=
-55.bb b/meta-zephyr-core/recipes-devtools/python/python3-pygithub_1.55.bb
+diff --git a/meta-zephyr-core/recipes-devtools/python/python3-pyocd_0.32.=
+0.bb b/meta-zephyr-core/recipes-devtools/python/python3-pyocd_0.32.0.bb
 deleted file mode 100644
-index 268d2b7..0000000
---- a/meta-zephyr-core/recipes-devtools/python/python3-pygithub_1.55.bb
+index bbdae6a..0000000
+--- a/meta-zephyr-core/recipes-devtools/python/python3-pyocd_0.32.0.bb
 +++ /dev/null
 @@ -1,14 +0,0 @@
 -# SPDX-FileCopyrightText: Huawei Inc.
 -# SPDX-License-Identifier: Apache-2.0
 -
--SUMMARY =3D "Python PyGithub"
--HOMEPAGE =3D "https://pypi.org/project/PyGithub"
+-SUMMARY =3D "Python pyocd"
+-HOMEPAGE =3D "https://pypi.org/project/pyocd"
 -LICENSE =3D "MIT"
--LIC_FILES_CHKSUM =3D "file://MANIFEST.in;md5=3Dc5e8b6057f82b73046c24a308=
-09903bd"
+-LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D421492e27872cb498685e9d7649f6=
+3a2"
 -
 -inherit pypi setuptools3
 -
--PYPI_PACKAGE =3D "PyGithub"
--SRC_URI[md5sum] =3D "03e5883a8d4358b0786a0db84ad56a22"
--SRC_URI[sha256sum] =3D "1bbfff9372047ff3f21d5cd8e07720f3dbfdaf6462fcaed9=
-d815f528f1ba7283"
+-PYPI_PACKAGE =3D "pyocd"
+-SRC_URI[md5sum] =3D "25153f563a629bb2be7560e2dc23c0a8"
+-SRC_URI[sha256sum] =3D "d5aa498130f251373ac50724be73dc2f8cf60b03c9547bdd=
+f3c140fa6555ead1"
 -BBCLASSEXTEND =3D "native nativesdk"
 --=20
 2.25.1
