@@ -1,379 +1,68 @@
-Return-Path: <rustyhowell@gmail.com>
+Return-Path: <daniel.karlsson@actia.se>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6E5C8C433EF
-	for <webhook@archiver.kernel.org>; Wed, 18 May 2022 06:34:14 +0000 (UTC)
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com
- [209.85.215.169])
- by mx.groups.io with SMTP id smtpd.web08.1782.1652855653198665154
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7D95FC433EF
+	for <webhook@archiver.kernel.org>; Wed, 18 May 2022 10:14:55 +0000 (UTC)
+Received: from mail.actia.se (mail.actia.se [212.181.117.226])
+ by mx.groups.io with SMTP id smtpd.web09.3225.1652868886206320018
  for <yocto@lists.yoctoproject.org>;
- Tue, 17 May 2022 23:34:13 -0700
+ Wed, 18 May 2022 03:14:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=f4bIDtYD;
- spf=pass (domain: gmail.com, ip: 209.85.215.169,
- mailfrom: rustyhowell@gmail.com)
-Received: by mail-pg1-f169.google.com with SMTP id 137so1294908pgb.5
-        for <yocto@lists.yoctoproject.org>;
- Tue, 17 May 2022 23:34:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=KuPmwUGgDX2NsRLpjllJOVZu8kr6Pqqkra4FsaHGN2A=;
-        b=f4bIDtYDPVf4l+bGyHIoOXYorgs8OXp/GhoDCSDv5/MHxn6VeY2HGPJj5upm/SihiA
-         I+sPM/Fpk9USo2BGEC49Z4LtfcuHm22uO+M7zlcyIHEYip1dapmTKkuU7ZajsBnOD3az
-         pADp2zBvyl2m6Xx0okdGk6Wudz/2RV8lAWXJ5XJeGiAwzMLU3ADrfjT3YDPIrTITm6lz
-         9PH18kZzLhlPdYcYRWmZxOZMaXmadWW/2zUrqecjHFQPoTC7790N0tcNKpEhJrA5IG3h
-         YwnsEcpksM/V3Sxat5+W1LeLSbc7PyMBNuUQaTkapfUBF92FWsO5D0NDrN6SQunwks62
-         1wKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=KuPmwUGgDX2NsRLpjllJOVZu8kr6Pqqkra4FsaHGN2A=;
-        b=8JvyIbfwAcXqMjiAxJ+3iZ/sKkJFcZ8MBr5W7+LP+ijZc9ob8YOeVtcPjAMavyxZ3p
-         mCvReBRQhRQK8eYuHE3K3Hr8RJS580lS5oqzq3mGbk3lX3xw/3b6U7AU8gGLOH4AULzW
-         0kRFqEe0TDAc3KNkOfDxRgbgjFND5vcFX1ZVWsz9Y/zUqY9Il4ZByPsYjYDwxNtNXVaV
-         Nt0FtaHSkr9pquNJmEQvptHps9wfaFqlG+Zpz3XbTKptlFw5lLF4pOGMw8fjM2/pP2EG
-         rdkjzJ8VGpjYiCSjBzN3YpOHO9mGu7k+UBAxeCdnQMcKvFNUQ4VmYvq6tf+NELgOJcUL
-         ePyg==
-X-Gm-Message-State: AOAM532X3/XkbW0FYcr5r/S41bo/6NJRJ06Xh0JkTpEurnkVBbw0CweL
-	vFYggi+nreI50Qep1JX2jTW399YaCLwzTEvexlqxxbk+YcA=
-X-Google-Smtp-Source: 
- ABdhPJwysHtOEK8AZJDnwfeIe57Mwk0vfxukzoq23FMn8F8bBHsW7J7ZQkkiNFG8ocHcj/sXfReHSVrDtQwEF4rgZG0=
-X-Received: by 2002:a65:63d9:0:b0:374:6b38:c6b3 with SMTP id
- n25-20020a6563d9000000b003746b38c6b3mr22864439pgv.195.1652855652127; Tue, 17
- May 2022 23:34:12 -0700 (PDT)
+ dkim=missing;
+ spf=pass (domain: actia.se, ip: 212.181.117.226, mailfrom: daniel.karlsson@actia.se)
+Received: from daniel-VirtualBox.actianordic.se (10.12.12.67) by
+ S035ANL.actianordic.se (10.12.31.116) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28; Wed, 18 May 2022 12:14:42 +0200
+From: Daniel Karlsson <daniel.karlsson@actia.se>
+To: <yocto@lists.yoctoproject.org>
+CC: Daniel Karlsson <daniel.karlsson@actia.se>
+Subject: [dunfell][PATCH] openssl: update from 1.1.1n to 1.1.1o
+Date: Wed, 18 May 2022 12:14:29 +0200
+Message-ID: <20220518101429.339410-1-daniel.karlsson@actia.se>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-From: Rusty Howell <rustyhowell@gmail.com>
-Date: Wed, 18 May 2022 00:33:56 -0600
-Message-ID: 
- <CAE+BM3nh-uhHet1qanDPeFSyHh=sLsF2q472RgZaDtdF3Hb8xw@mail.gmail.com>
-Subject: u-boot compile error with Kconfig
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000000296e805df4372ed"
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-Originating-IP: [10.12.12.67]
+X-EsetResult: clean, is OK
+X-EsetId: 37303A293105C852607667
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 18 May 2022 06:34:14 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57126
+ <yocto@lists.yoctoproject.org>; Wed, 18 May 2022 10:14:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57127
 
---0000000000000296e805df4372ed
-Content-Type: text/plain; charset="UTF-8"
+This update fixes CVE-2022-1292.
 
-I am getting an error on only one of our many build machines when building
-u-boot. This particular machine is the only one running Ubuntu 20.04.4 LTS.
-We have several other build nodes running Ubuntu 20.04.3 that can run our
-Yocto build without any issue.  Are there any known issues with 20.04.4 and
-Hardknott?  I haven't seen anything relevant in the Yocto mailing lists.
+Signed-off-by: Daniel Karlsson <daniel.karlsson@actia.se>
+---
+ .../openssl/{openssl_1.1.1n.bb =3D> openssl_1.1.1o.bb}            | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ rename meta/recipes-connectivity/openssl/{openssl_1.1.1n.bb =3D> openssl_1=
+.1.1o.bb} (98%)
 
-uname -a: Linux yocto-build-5 5.4.0-109-generic #123-Ubuntu SMP Fri Apr 8
-09:10:54 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+diff --git a/meta/recipes-connectivity/openssl/openssl_1.1.1n.bb b/meta/rec=
+ipes-connectivity/openssl/openssl_1.1.1o.bb
+similarity index 98%
+rename from meta/recipes-connectivity/openssl/openssl_1.1.1n.bb
+rename to meta/recipes-connectivity/openssl/openssl_1.1.1o.bb
+index 8538bd5a18..c9cfc759c9 100644
+--- a/meta/recipes-connectivity/openssl/openssl_1.1.1n.bb
++++ b/meta/recipes-connectivity/openssl/openssl_1.1.1o.bb
+@@ -24,7 +24,7 @@ SRC_URI_append_class-nativesdk =3D " \
+            file://environment.d-openssl.sh \
+            "
+=20
+-SRC_URI[sha256sum] =3D "40dceb51a4f6a5275bde0e6bf20ef4b91bfc32ed57c0552e2e=
+8e15463372b17a"
++SRC_URI[sha256sum] =3D "9384a2b0570dd80358841464677115df785edb941c71211f75=
+076d72fe6b438f"
+=20
+ inherit lib_package multilib_header multilib_script ptest
+ MULTILIB_SCRIPTS =3D "${PN}-bin:${bindir}/c_rehash"
+--=20
+2.25.1
 
-Here is the error.  Any suggestions are appreciated.
-
-|  GEN     ./Makefile
-
-
-| rm -f .tmp_quiet_recordmcount
-
-
-| make -f
-/home/builder/corex/yocto/build.imx8mq-core/tmp/work/imx8mq_core-control4-linux/u-boot-c4-imx/2021.04+gitAUTOINC+6b12e08291-r0/git/scripts/Makefile.build
-obj=scripts
-| if [ -f
-/home/builder/corex/yocto/build.imx8mq-core/tmp/work/imx8mq_core-control4-linux/u-boot-c4-imx/2021.04+gitAUTOINC+6b12e08291-r0/git/.config
--o -d /home/builder/corex/yocto/build.imx8mq-core/tmp/
-work/imx8mq_core-control4-linux/u-boot-c4-imx/2021.04+gitAUTOINC+6b12e08291-r0/git/include/config
-]; then \
-
-|       echo >&2 "
- /home/builder/corex/yocto/build.imx8mq-core/tmp/work/imx8mq_core-control4-linux/u-boot-c4-imx/2021.04+gitAUTOINC+6b12e08291-r0/git
-is not clean, please run 'make mrproper'"; \
-|       echo >&2 "  in the
-'/home/builder/corex/yocto/build.imx8mq-core/tmp/work/imx8mq_core-control4-linux/u-boot-c4-imx/2021.04+gitAUTOINC+6b12e08291-r0/git'
-directory.";\
-|       /bin/false; \
-
-
-| fi;
-
-
-| make -f
-/home/builder/corex/yocto/build.imx8mq-core/tmp/work/imx8mq_core-control4-linux/u-boot-c4-imx/2021.04+gitAUTOINC+6b12e08291-r0/git/scripts/Makefile.build
-obj=scripts/dtc
-| ===================== WARNING ======================
-
-
-| This board uses CONFIG_SPL_FIT_GENERATOR. Please migrate
-
-
-| to binman instead, to avoid the proliferation of
-
-
-| arch-specific scripts with no tests.
-
-
-| ====================================================
-
-
-| ===================== WARNING ======================
-
-                                                    | This board does not
-use CONFIG_WDT (Driver Model
-
-
-| for DM watchdog). Please update the board to use
-
-
-| CONFIG_WDT before the v2019.10 release. Failure to
-
-
-| update by the deadline may result in board removal.
-
-
-| See doc/driver-model/migration.rst for more info.
-
-
-| ====================================================
-
-
-|
-/home/builder/corex/yocto/build.imx8mq-core/tmp/work/imx8mq_core-control4-linux/u-boot-c4-imx/2021.04+gitAUTOINC+6b12e08291-r0/git/scripts/check-config.sh
-u-boot.cfg /home/builder/corex/yocto/build.i
-mx8mq-core/tmp/work/imx8mq_core-control4-linux/u-boot-c4-imx/2021.04+gitAUTOINC+6b12e08291-r0/git/scripts/config_whitelist.txt
-/home/builder/corex/yocto/build.imx8mq-core/tmp/work/imx8mq_core-control4-li
-nux/u-boot-c4-imx/2021.04+gitAUTOINC+6b12e08291-r0/git
-
-
-| Error: You must add new CONFIG options using Kconfig
-
-
-| The following new ad-hoc CONFIG options were detected:
-
-
-| CONFIG_CREATE_ARCH_SYMLINK
-
-
-|
-
-
-| Please add these via Kconfig instead. Find a suitable Kconfig
-
-
-| file and add a 'config' or 'menuconfig' option.
-
-
-| make[1]: ***
-[/home/builder/corex/yocto/build.imx8mq-core/tmp/work/imx8mq_core-control4-linux/u-boot-c4-imx/2021.04+gitAUTOINC+6b12e08291-r0/git/Makefile:1072:
-.binman_stamp] Error 1
-| make[1]: *** Deleting file '.binman_stamp'
-
-
-| make[1]: Leaving directory
-'/home/builder/corex/yocto/build.imx8mq-core/tmp/work/imx8mq_core-control4-linux/u-boot-c4-imx/2021.04+gitAUTOINC+6b12e08291-r0/build/imx8mq-core_config'
-
-| make: *** [Makefile:167: sub-make] Error 2
-
-                                                    | make: Leaving
-directory
-'/home/builder/corex/yocto/build.imx8mq-core/tmp/work/imx8mq_core-control4-linux/u-boot-c4-imx/2021.04+gitAUTOINC+6b12e08291-r0/git'
-                                            | ERROR: oe_runmake failed
-
-
-
-Thanks in advance.
-
---0000000000000296e805df4372ed
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: base64
-
-PGRpdiBkaXI9Imx0ciI+PGRpdj5JIGFtIGdldHRpbmcgYW4gZXJyb3Igb24gb25seSBvbmUgb2Yg
-b3VyIG1hbnkgYnVpbGQgbWFjaGluZXMgd2hlbiBidWlsZGluZyB1LWJvb3QuIFRoaXMgcGFydGlj
-dWxhciBtYWNoaW5lIGlzIHRoZSBvbmx5IG9uZSBydW5uaW5nIFVidW50dSAyMC4wNC40IExUUy4g
-V2UgaGF2ZSBzZXZlcmFsIG90aGVyIGJ1aWxkIG5vZGVzIHJ1bm5pbmcgVWJ1bnR1IDIwLjA0LjMg
-dGhhdCBjYW4gcnVuIG91ciBZb2N0byBidWlsZCB3aXRob3V0IGFueSBpc3N1ZS7CoCBBcmUgdGhl
-cmUgYW55IGtub3duIGlzc3VlcyB3aXRoIDIwLjA0LjQgYW5kIEhhcmRrbm90dD/CoCBJIGhhdmVu
-JiMzOTt0IHNlZW4gYW55dGhpbmcgcmVsZXZhbnQgaW4gdGhlIFlvY3RvIG1haWxpbmcgbGlzdHMu
-PGJyPjxkaXY+PGJyPjwvZGl2PjxkaXY+dW5hbWUgLWE6IExpbnV4IHlvY3RvLWJ1aWxkLTUgNS40
-LjAtMTA5LWdlbmVyaWMgIzEyMy1VYnVudHUgU01QIEZyaSBBcHIgOCAwOToxMDo1NCBVVEMgMjAy
-MiB4ODZfNjQgeDg2XzY0IHg4Nl82NCBHTlUvTGludXg8L2Rpdj48ZGl2Pjxicj48L2Rpdj48L2Rp
-dj48ZGl2PkhlcmUgaXMgdGhlIGVycm9yLsKgIEFueSBzdWdnZXN0aW9ucyBhcmUgYXBwcmVjaWF0
-ZWQuPGJyPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+fMKgIEdFTiDCoCDCoCAuL01ha2VmaWxl
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj58IHJtIC1mIC50
-bXBfcXVpZXRfcmVjb3JkbWNvdW50IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgPGJyPnwg
-bWFrZSAtZiAvaG9tZS9idWlsZGVyL2NvcmV4L3lvY3RvL2J1aWxkLmlteDhtcS1jb3JlL3RtcC93
-b3JrL2lteDhtcV9jb3JlLWNvbnRyb2w0LWxpbnV4L3UtYm9vdC1jNC1pbXgvMjAyMS4wNCtnaXRB
-VVRPSU5DKzZiMTJlMDgyOTEtcjAvZ2l0L3NjcmlwdHMvTWFrZWZpbGUuYnVpbGQgb2JqPXNjcmlw
-dHMgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+fCBpZiBbIC1m
-IC9ob21lL2J1aWxkZXIvY29yZXgveW9jdG8vYnVpbGQuaW14OG1xLWNvcmUvdG1wL3dvcmsvaW14
-OG1xX2NvcmUtY29udHJvbDQtbGludXgvdS1ib290LWM0LWlteC8yMDIxLjA0K2dpdEFVVE9JTkMr
-NmIxMmUwODI5MS1yMC9naXQvLmNvbmZpZyAtbyAtZCAvaG9tZS9idWlsZGVyL2NvcmV4L3lvY3Rv
-L2J1aWxkLmlteDhtcS1jb3JlL3RtcC88YnI+d29yay9pbXg4bXFfY29yZS1jb250cm9sNC1saW51
-eC91LWJvb3QtYzQtaW14LzIwMjEuMDQrZ2l0QVVUT0lOQys2YjEyZTA4MjkxLXIwL2dpdC9pbmNs
-dWRlL2NvbmZpZyBdOyB0aGVuIFwgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+fCDC
-oCDCoCDCoCBlY2hvICZndDsmYW1wOzIgJnF1b3Q7IMKgL2hvbWUvYnVpbGRlci9jb3JleC95b2N0
-by9idWlsZC5pbXg4bXEtY29yZS90bXAvd29yay9pbXg4bXFfY29yZS1jb250cm9sNC1saW51eC91
-LWJvb3QtYzQtaW14LzIwMjEuMDQrZ2l0QVVUT0lOQys2YjEyZTA4MjkxLXIwL2dpdCBpcyBub3Qg
-Y2xlYW4sIHBsZWFzZSBydW4gJiMzOTttYWtlIG1ycHJvcGVyJiMzOTsmcXVvdDs7IFwgwqAgwqAg
-wqAgwqA8YnI+fCDCoCDCoCDCoCBlY2hvICZndDsmYW1wOzIgJnF1b3Q7IMKgaW4gdGhlICYjMzk7
-L2hvbWUvYnVpbGRlci9jb3JleC95b2N0by9idWlsZC5pbXg4bXEtY29yZS90bXAvd29yay9pbXg4
-bXFfY29yZS1jb250cm9sNC1saW51eC91LWJvb3QtYzQtaW14LzIwMjEuMDQrZ2l0QVVUT0lOQys2
-YjEyZTA4MjkxLXIwL2dpdCYjMzk7IGRpcmVjdG9yeS4mcXVvdDs7XCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoDxicj58IMKgIMKgIMKgIC9iaW4vZmFsc2U7IFwg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+fCBmaTsgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqA8YnI+fCBtYWtlIC1mIC9ob21lL2J1aWxkZXIvY29yZXgveW9jdG8vYnVpbGQuaW14
-OG1xLWNvcmUvdG1wL3dvcmsvaW14OG1xX2NvcmUtY29udHJvbDQtbGludXgvdS1ib290LWM0LWlt
-eC8yMDIxLjA0K2dpdEFVVE9JTkMrNmIxMmUwODI5MS1yMC9naXQvc2NyaXB0cy9NYWtlZmlsZS5i
-dWlsZCBvYmo9c2NyaXB0cy9kdGMgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8
-YnI+fCA9PT09PT09PT09PT09PT09PT09PT0gV0FSTklORyA9PT09PT09PT09PT09PT09PT09PT09
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj58
-IFRoaXMgYm9hcmQgdXNlcyBDT05GSUdfU1BMX0ZJVF9HRU5FUkFUT1IuIFBsZWFzZSBtaWdyYXRl
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj58IHRvIGJp
-bm1hbiBpbnN0ZWFkLCB0byBhdm9pZCB0aGUgcHJvbGlmZXJhdGlvbiBvZiDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+fCBhcmNoLXNw
-ZWNpZmljIHNjcmlwdHMgd2l0aCBubyB0ZXN0cy4gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgPGJyPnwgPT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+fCA9PT09PT09
-PT09PT09PT09PT09PT0gV0FSTklORyA9PT09PT09PT09PT09PT09PT09PT09IMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIHwgVGhpcyBib2FyZCBkb2Vz
-IG5vdCB1c2UgQ09ORklHX1dEVCAoRHJpdmVyIE1vZGVsIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj58IGZvciBETSB3YXRjaGRvZyku
-IFBsZWFzZSB1cGRhdGUgdGhlIGJvYXJkIHRvIHVzZSDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+fCBDT05GSUdfV0RUIGJlZm9yZSB0
-aGUgdjIwMTkuMTAgcmVsZWFzZS4gRmFpbHVyZSB0byDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+fCB1cGRhdGUgYnkgdGhlIGRlYWRsaW5l
-IG1heSByZXN1bHQgaW4gYm9hcmQgcmVtb3ZhbC4gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+fCBTZWUgZG9jL2RyaXZlci1tb2RlbC9taWdy
-YXRpb24ucnN0IGZvciBtb3JlIGluZm8uIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgPGJyPnwgPT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PSDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+fCDCoCAvaG9tZS9idWlsZGVyL2NvcmV4L3lvY3RvL2J1
-aWxkLmlteDhtcS1jb3JlL3RtcC93b3JrL2lteDhtcV9jb3JlLWNvbnRyb2w0LWxpbnV4L3UtYm9v
-dC1jNC1pbXgvMjAyMS4wNCtnaXRBVVRPSU5DKzZiMTJlMDgyOTEtcjAvZ2l0L3NjcmlwdHMvY2hl
-Y2stY29uZmlnLnNoIHUtYm9vdC5jZmcgL2hvbWUvYnVpbGRlci9jb3JleC95b2N0by9idWlsZC5p
-PGJyPm14OG1xLWNvcmUvdG1wL3dvcmsvaW14OG1xX2NvcmUtY29udHJvbDQtbGludXgvdS1ib290
-LWM0LWlteC8yMDIxLjA0K2dpdEFVVE9JTkMrNmIxMmUwODI5MS1yMC9naXQvc2NyaXB0cy9jb25m
-aWdfd2hpdGVsaXN0LnR4dCAvaG9tZS9idWlsZGVyL2NvcmV4L3lvY3RvL2J1aWxkLmlteDhtcS1j
-b3JlL3RtcC93b3JrL2lteDhtcV9jb3JlLWNvbnRyb2w0LWxpPGJyPm51eC91LWJvb3QtYzQtaW14
-LzIwMjEuMDQrZ2l0QVVUT0lOQys2YjEyZTA4MjkxLXIwL2dpdCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+fCBFcnJvcjogWW91IG11c3QgYWRk
-IG5ldyBDT05GSUcgb3B0aW9ucyB1c2luZyBLY29uZmlnIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDxicj58IFRoZSBmb2xsb3dpbmcgbmV3IGFkLWhv
-YyBDT05GSUcgb3B0aW9ucyB3ZXJlIGRldGVjdGVkOiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+fCBDT05GSUdfQ1JFQVRFX0FSQ0hfU1lNTElOSyDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+fCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoDxi
-cj58IFBsZWFzZSBhZGQgdGhlc2UgdmlhIEtjb25maWcgaW5zdGVhZC4gRmluZCBhIHN1aXRhYmxl
-IEtjb25maWcgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8YnI+fCBmaWxl
-IGFuZCBhZGQgYSAmIzM5O2NvbmZpZyYjMzk7IG9yICYjMzk7bWVudWNvbmZpZyYjMzk7IG9wdGlv
-bi4gwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqA8YnI+fCBtYWtlWzFdOiAqKiogWy9ob21lL2J1aWxkZXIvY29yZXgveW9jdG8vYnVpbGQu
-aW14OG1xLWNvcmUvdG1wL3dvcmsvaW14OG1xX2NvcmUtY29udHJvbDQtbGludXgvdS1ib290LWM0
-LWlteC8yMDIxLjA0K2dpdEFVVE9JTkMrNmIxMmUwODI5MS1yMC9naXQvTWFrZWZpbGU6MTA3Mjog
-LmJpbm1hbl9zdGFtcF0gRXJyb3IgMSDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8YnI+fCBt
-YWtlWzFdOiAqKiogRGVsZXRpbmcgZmlsZSAmIzM5Oy5iaW5tYW5fc3RhbXAmIzM5OyDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCA8YnI+fCBtYWtlWzFdOiBMZWF2aW5nIGRpcmVjdG9yeSAmIzM5Oy9ob21lL2J1aWxkZXIvY29y
-ZXgveW9jdG8vYnVpbGQuaW14OG1xLWNvcmUvdG1wL3dvcmsvaW14OG1xX2NvcmUtY29udHJvbDQt
-bGludXgvdS1ib290LWM0LWlteC8yMDIxLjA0K2dpdEFVVE9JTkMrNmIxMmUwODI5MS1yMC9idWls
-ZC9pbXg4bXEtY29yZV9jb25maWcmIzM5OyDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCA8
-YnI+fCBtYWtlOiAqKiogW01ha2VmaWxlOjE2Nzogc3ViLW1ha2VdIEVycm9yIDIgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-fCBtYWtlOiBMZWF2aW5nIGRpcmVjdG9yeSAmIzM5Oy9ob21lL2J1aWxkZXIvY29yZXgveW9jdG8v
-YnVpbGQuaW14OG1xLWNvcmUvdG1wL3dvcmsvaW14OG1xX2NvcmUtY29udHJvbDQtbGludXgvdS1i
-b290LWM0LWlteC8yMDIxLjA0K2dpdEFVVE9JTkMrNmIxMmUwODI5MS1yMC9naXQmIzM5OyDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCB8IEVSUk9SOiBvZV9ydW5tYWtlIGZhaWxlZCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCA8YnI+PC9kaXY+PGRpdj5UaGFua3MgaW4gYWR2YW5jZS48L2Rpdj48ZGl2Pjxi
-cj48L2Rpdj48ZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjwvZGl2PjwvZGl2Pg0K
---0000000000000296e805df4372ed--
 
