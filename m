@@ -1,308 +1,170 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <alexander.duda@vector.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9B779C433F5
-	for <webhook@archiver.kernel.org>; Wed, 18 May 2022 19:08:42 +0000 (UTC)
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com
- [209.85.215.173])
- by mx.groups.io with SMTP id smtpd.web10.627.1652900916489534191
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 04836C433EF
+	for <webhook@archiver.kernel.org>; Wed, 18 May 2022 20:34:53 +0000 (UTC)
+Received: from de-smtp-delivery-103.mimecast.com
+ (de-smtp-delivery-103.mimecast.com [194.104.109.103])
+ by mx.groups.io with SMTP id smtpd.web09.1730.1652906085382679492
  for <yocto@lists.yoctoproject.org>;
- Wed, 18 May 2022 12:08:36 -0700
+ Wed, 18 May 2022 13:34:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=ItVu4l+J;
- spf=pass (domain: gmail.com, ip: 209.85.215.173,
- mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f173.google.com with SMTP id r71so3026601pgr.0
-        for <yocto@lists.yoctoproject.org>;
- Wed, 18 May 2022 12:08:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=tG/3wkl1lJbmi5mTUNRueBsGHCND9JNDHKIPhJxVprM=;
-        b=ItVu4l+JkCNXqGaYfCSGLGCPysrIix0SfATzwtFbXyHll+V0UC0gtfbjeSpmqMeilt
-         KhuFZa4zzJ43n+gU+2UTIOQNuKtyiYgFqN3Z4XNiVURELDsYZo2JvrqoCW6IsxuFwp8v
-         BRpRCszb0S29eSPg3T+VT8L6/cGG9I8zhS6rsjURqhPSCim37UhhObiqZKGIxkRvmjvW
-         6VFqXcFMEPLtCd1xq9qcjW7odroFEjTaDC742Dj8rvKPn70xY9dfAPEYymi5oM0ZXIzX
-         sGRQHtrP8AztXyxrHUbYf486KFXHwiRurh3tDJb7BtI2ekrNKrruqNfK3FFsdh6roBZ3
-         OAaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=tG/3wkl1lJbmi5mTUNRueBsGHCND9JNDHKIPhJxVprM=;
-        b=Gw3Qc1fFsRwVydNzdcZJk11F+Lf+CSXJDnwd51mz1GWD5er8IaYsU0f4gGxJK+S2Fc
-         0m9e8ONe4KHG7VOAStLg/GxZUl8I5byiYVDD8+cJjG5ot3ZFf9nSFnWyx6C9bNL8Fxgy
-         +g3GNbwwXzPFifTmTlUYPCWmcLtFZObea2CG1S2cgOc78Ooo7eXcs1fysoc91sC+wx9Z
-         1Eai9sbitRmg/btxEIVULv4ezgPiisY7alujcZ1fSj9H9nRcJl94I6CNWmk4+QI2gefg
-         VvX4rngKxWaUt/syziK5Y/2b7FBsiSeEUD7Jbm517aAdNCwOYcDDChC0jUmILxByCFRZ
-         oDXw==
-X-Gm-Message-State: AOAM530H1Pc6/mPPLJsDm2CarbafMiBdau/ATbMolmYPZdTqX7IfsvrJ
-	DPUo+fA70xPLO/u8Z6Yxa0CXvOLROQmKOA==
-X-Google-Smtp-Source: 
- ABdhPJxR7AhBmLNwgdiLg4dxslInYxk7dwCTcSTpUmccWT2ODLYpcUaFYFibY4xZB+liokLCy+eW/A==
-X-Received: by 2002:a63:2cc3:0:b0:3db:5e24:67fa with SMTP id
- s186-20020a632cc3000000b003db5e2467famr767932pgs.46.1652900915251;
-        Wed, 18 May 2022 12:08:35 -0700 (PDT)
-Received: from keaua.hsd1.ca.comcast.net
- ([2601:202:4180:a5c0:fee:4904:d15c:6dba])
-        by smtp.gmail.com with ESMTPSA id
- s23-20020a170902989700b0015e8d4eb1fbsm2072162plp.69.2022.05.18.12.08.33
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 May 2022 12:08:34 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] ima-evm-utils: Update to 1.4
-Date: Wed, 18 May 2022 12:08:32 -0700
-Message-Id: <20220518190832.2662730-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
+ dkim=pass header.i=@vector.com header.s=mimecast20200527 header.b=IGb5dT3V;
+ spf=pass (domain: vector.com, ip: 194.104.109.103,
+ mailfrom: alexander.duda@vector.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vector.com;
+	s=mimecast20200527; t=1652906083;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=N5n06nxpZD2C1TP9wR5SdnJeWYQgqhWSgrEWbUx0owY=;
+	b=IGb5dT3VtlmTnmyYdvG7mP3vMChKK5hvyMQjmg4OSsuIq5O3qqZ4l7gl/6o9KZ6w2YI5pt
+	KaVzqPjasMFYGuW2nm2IJxhZ2EC0PJcESDTUI6dCAKRWzccQJTpYvQzcYlqPhVaCqr7nj/
+	uBMY/IauIBikJL4jxNRB8E6nc1AuPtM=
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com
+ (mail-he1eur04lp2058.outbound.protection.outlook.com [104.47.13.58]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ de-mta-35-RlHz9zefMby-9g6DhtPOJA-1; Wed, 18 May 2022 22:34:42 +0200
+Received: from AM0PR01MB4370.eurprd01.prod.exchangelabs.com
+ (2603:10a6:208:6b::21) by DB8PR01MB6296.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:15f::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.18; Wed, 18 May
+ 2022 20:34:40 +0000
+Received: from AM0PR01MB4370.eurprd01.prod.exchangelabs.com
+ ([fe80::b823:ec88:c856:a6ca]) by AM0PR01MB4370.eurprd01.prod.exchangelabs.com
+ ([fe80::b823:ec88:c856:a6ca%5]) with mapi id 15.20.5250.019; Wed, 18 May 2022
+ 20:34:40 +0000
+From: "Duda, Alexander" <Alexander.Duda@vector.com>
+To: "Mittal, Anuj" <anuj.mittal@intel.com>, "yocto@lists.yoctoproject.org"
+	<yocto@lists.yoctoproject.org>
+Subject: RE: [yocto] ERROR: cp: cannot stat 'Module.symvers': No such file or
+ directory
+Thread-Topic: [yocto] ERROR: cp: cannot stat 'Module.symvers': No such file or
+ directory
+Thread-Index: AdhqrT7pyjlUBcS3RGu69vaHY6uXXAAD/RqAAADcQDA=
+Date: Wed, 18 May 2022 20:34:21 +0000
+Deferred-Delivery: Wed, 18 May 2022 20:33:28 +0000
+Message-ID: 
+ <AM0PR01MB437036217133CFDF3A22FC8BFAD19@AM0PR01MB4370.eurprd01.prod.exchangelabs.com>
+References: 
+ <AM0PR01MB4370CFEECE972B01700BC592FAD19@AM0PR01MB4370.eurprd01.prod.exchangelabs.com>
+ <d5a3de03a3610ef1627762776da572cf7bc61dcc.camel@intel.com>
+In-Reply-To: <d5a3de03a3610ef1627762776da572cf7bc61dcc.camel@intel.com>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d66209b8-10e6-4a4c-70ce-08da390dd52c
+x-ms-traffictypediagnostic: DB8PR01MB6296:EE_
+x-microsoft-antispam-prvs: 
+ <DB8PR01MB6296CE1B9731EAB002C341C2FAD19@DB8PR01MB6296.eurprd01.prod.exchangelabs.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0
+x-microsoft-antispam-message-info: 
+ lJuQXVcC+tUPePIfypOZx+ak9CmGhOKImPws1xMi2IFpOp9AYumx4neT6txIYCWY+1DZGHYvlZ9GIx2TSz7VSTt5loIq7caW5rnFhkIg5X/gOZwVpGQs+0PT+P6GYT5mRET8HhFhw8MJ0D3bygf648glvc9TpU+kPTOW96BbcSLnXhgOHK5uA7a6GNbcGCvzv/QC9hAdt+BP1vY3CoBrKO1IJFd08684SVsUrKJo7szppKkBvNIyI4nVO1hHUeF8QUuDvzbc6cr9li5qkUC0PAHQgDU5U83uVWl+Exgh9j4WRYQmIsiGjYGOfNwS5fZfivdQ2uIexZAqVCPymHo8ICTtkLnqEVOcJuI1Qh/nAYqStYUFEsqnIfEfZVtVl33wQd5STAZInzhvkvPLe6cqqJi5IXIZNm16hkIn52Yi13J7RmuYv5NsbYxM9aLU3apune9sIvODJ1LCSv+Xwgly3BFz1JA92NuExwOX3PY0VZHyEpMI0qkqbuRi9yBUGRAy1E91WDfT8F+NDpkD4jzADbba5OXvioBOE2Wo3Pef/9uMgCGZFRR55ImqjqoJL2JdAC3oVA3HB2gHuBwUxouus0Ccr1vZg4mmphmUdnx2q4ipQNh0/3CXVpUxWg5m0atUOBFWjokSFjPJ2bqDesbqD0TnYCU3bRxwrppBhjFATTEe5HgJX321cJ2UNg2V4pJWkx652QzAmkIWF0RLSfKBGOHbc4rr6J0CjPx3JEk1238Ru2nPwrcu6b7DxS3XRAfnwX9tlzj0yGrg1z39JDnCxPi47FFRX+wOKkO4GE5OEwM=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR01MB4370.eurprd01.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(83380400001)(9686003)(110136005)(71200400001)(2906002)(508600001)(966005)(6666004)(316002)(33656002)(38100700002)(52536014)(76116006)(86362001)(6506007)(122000001)(55016003)(186003)(66476007)(66556008)(66946007)(66446008)(64756008)(8676002)(26005)(38070700005)(53546011)(7696005)(5660300002)(8936002);DIR:OUT;SFP:1101
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?UnZWeklWb2JZZi9BRE5Vbnl6Zm5UMG9ob0c1aStraEJvamk4QXFiUWxiV0xU?=
+ =?utf-8?B?UUdZZEI2SzRLdFAwTmNNU0dNTVIyanV6OTZiZ1lvc05aWnFuQk1jeEYvL2NG?=
+ =?utf-8?B?RnNnbnd4YWo5WTJTZGVVR3oySEJCTmFYYktsZ2hLaFJuMy83TEpJelVkN1BK?=
+ =?utf-8?B?bDcxa1NTQ2ZONW5ENHUrUnZqZmZMOXpvOWh5b0djdG5lbGJHZm02eG53U1Vh?=
+ =?utf-8?B?cTUva2VRU3ptOGJBdkZqL2FqbVZaTGZyQkhQU2Rsb2hmTzZicXV0VXVtVzBt?=
+ =?utf-8?B?aWs4U0Y1cWVWaWEzdklKSE1rZndTTEVHNW5yamI2YTJtYUVuSGQ3eDBxc2l6?=
+ =?utf-8?B?YVB1b2JtOFVzOFhpWG14a1ByM1pwaXVuNHFBbkh5U3BvRS9jZUJ4bEFpYllw?=
+ =?utf-8?B?TlgxeTc2dGhXL1Ywb05KMCtkcFNFRGZhT1BYelNIRWFvc1dkYS9KMTd2OFBn?=
+ =?utf-8?B?WnZYUXpMNGFCSmkrWnNPWjRQUWZlbS9QSTVVa01jQkxXS1BkVmwxam9Db1p0?=
+ =?utf-8?B?Mm13N0tYdk5XVVIrbldzOWs2elhWMG4xOVJwcHhwd1hzTU9NTFA2RmhMVUVx?=
+ =?utf-8?B?dmV1SlV1WlQycnhQNmZMS3VYdXd2WEp5K01JZjlnVWRyRG1RMWJXWDdTeklB?=
+ =?utf-8?B?eHVxbVg0Um44c0FHaGJoZVhnM2RvZGVmSWxpczRMbllzQTVNRnJJNW4xUGM0?=
+ =?utf-8?B?QTNjbmtza0xqd1J2ZDVCOVkzQUtSY2MxbjVJYzhwMUpubHFhbmVrbzdiM2di?=
+ =?utf-8?B?TG1ERUV1WGc4cG04b0RmT0ZTOHV1dWY0NjhOV1cwcE42L2lPaFI4YnFRL3hW?=
+ =?utf-8?B?QXYwM3lpYnJ4U3ExVW44QkdqbXZsK2R3ZEp2UWxUUzhzRUdnY3lZdEh0S1l5?=
+ =?utf-8?B?eS9zampQVzAzWVUwZ2haMHVxVDJ5eXFlRzBhNkFsb3AyazdQVVdXdlMrTGMz?=
+ =?utf-8?B?OXNtYW9rcmtVSVAyR0FQOGNjTzJPMmYzalhCbjU1TVpCbVNndHRpRzdTaS9P?=
+ =?utf-8?B?eFloNnpQQVBiamJ2T2pMWlprbXNab0tGZ1ZybnA2dUp2YmlwdXhVVThvMWZn?=
+ =?utf-8?B?d25jVEM1K2pnZmlxZjliZ2wvQ25iRFVyNjVya3ZHMVkydXJCMDcxaFZOS2Ft?=
+ =?utf-8?B?SVlMZlc0RFNMOU05YTBrWWRFZS9tNy8vUmxqc21HWS8wa3h1RzE2ZFQ5L1dR?=
+ =?utf-8?B?b2RxQWVtVmIrT1N6R0o1MGd5L1lreHdRbnhFVGxaMEN1Zi9EZUc4ZjlWWllr?=
+ =?utf-8?B?bDVSdU1ES2N5OVNtWGJWOWorRVhlbU1IUU1PM0dvRDdTdS8ySWRETEFoVEhH?=
+ =?utf-8?B?K2FYekFQaE5RNnFwbGFTQ25WOERwOW1qOS9iZ2xBT2JnQ1N3dFlmTG85OHRt?=
+ =?utf-8?B?UVFWbnJVYjlFOWdsMFNINk1mUjRlTy9INUtYMCt2YlN1UE9JcmxSakhCaWs0?=
+ =?utf-8?B?RWEzTVBnZERTR3huT21WYUlXekZld002UnJ1OUlYb1pCMFZkVGZ6clh6c3cz?=
+ =?utf-8?B?bTJvK1pLZ0pUOU9zaVFua2NKdDd3MHZqbXNETFg2WXF6K3JFeXgwWXk2Z05E?=
+ =?utf-8?B?ODNtQUg4QVEyWjVtQjVZZDZwK2R5MTBkMlYydmlOTGp3VU8wUFhkYyt1R1dX?=
+ =?utf-8?B?VU5UTWMzTVBuTWppRzJSVWY1cUI4V3N0V2FtcUlpQmdwR3Y4SDV0K1pWSjEx?=
+ =?utf-8?B?WDNOVkp5a2Y4U1BQci9PRUFYYlU5bTlzZmVXSS80b1BHc25CVmZaNWwwdzdW?=
+ =?utf-8?B?YXlKTytxUm9jWnp2MC9SeHRwTUIybzVCNGhjVmhMZWxvZWgwRGo5Mno4Z3pR?=
+ =?utf-8?B?UWxiRDhhcTVtN0RWVUNHUnFUZ25SWVZXUEtBSzBzVS8zTTBTaUhaZ0RxTUt5?=
+ =?utf-8?B?dXQzUkxZbU5XN0Z5Z0lKSWNpcWVBQnpTT0d2c0JqREg1aVl3RFhINy85T1I5?=
+ =?utf-8?B?V2tVRUlQdEpaT0I5VlQ5NW84a1BoWUdvUEgzUEJ4NEdObytPK2xzOTZlaTBS?=
+ =?utf-8?B?ZDlEOW8vUkloc3lYR1o2bnI5YkhUYmRjSjlIQkpLME1aTTBWdmRrR3FkQUkr?=
+ =?utf-8?B?cDhWQ014U1RBRVhwS0QxL3ltSStuSnJraFp0elN1ZzhXOVVFM1Y5MEZ0TWl5?=
+ =?utf-8?B?ZlFDODlaVDl2V3VwOURvSW1ubGVGQ013dkIxQ2pvUEVqSTF2b0FoMWlmalo2?=
+ =?utf-8?B?TFIrSkM5SzYzUXJaMzJsaGZCaXRNZkNSNDRBQ21kR3RaSmZRYU1Ud2l0VVJ4?=
+ =?utf-8?B?NUdmRTZvc1NqOWVEU2w3cU5ocUtxbC81Y3U0ZXE0OXJKRWI3Ym5HMHFuZFRo?=
+ =?utf-8?B?ckJwRHRIMzFuVi8wckFtUUxsZ0ppZUhIK2J6cENCV2dEQXBmWUNMVEJ5dnJO?=
+ =?utf-8?Q?MtbfVJeEsyu1UQo4=3D?=
+x-mc-unique: RlHz9zefMby-9g6DhtPOJA-1
+x-originatororg: vector.com
+x-ms-exchange-crosstenant-authas: Internal
+x-ms-exchange-crosstenant-authsource: 
+ AM0PR01MB4370.eurprd01.prod.exchangelabs.com
+x-ms-exchange-crosstenant-network-message-id: 
+ d66209b8-10e6-4a4c-70ce-08da390dd52c
+x-ms-exchange-crosstenant-originalarrivaltime: 18 May 2022 20:34:39.9539 (UTC)
+x-ms-exchange-crosstenant-fromentityheader: Hosted
+x-ms-exchange-crosstenant-id: c844b2b9-7a68-473f-b386-e2e1b968279d
+x-ms-exchange-crosstenant-mailboxtype: HOSTED
+x-ms-exchange-crosstenant-userprincipalname: 
+ 7jNG55WhE7rvwJlQ3cQKOkH4Y4ZT6K3LASP5kcL1x6YA/WIWVEFEYKf8HL2QvyK/TyHlrR96KoJaPzO2FGm4C4SIKvMHQzJmhB2XB6fOK0g=
+x-ms-exchange-transport-crosstenantheadersstamped: DB8PR01MB6296
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Authentication-Results: relay.mimecast.com;
+	auth=pass smtp.auth=CDE3A201 smtp.mailfrom=alexander.duda@vector.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: vector.com
+Content-Language: de-DE
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 18 May 2022 19:08:42 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57131
+ <yocto@lists.yoctoproject.org>; Wed, 18 May 2022 20:34:53 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57132
 
-Switch from git to https in SRC_URI
-Drop patches not upstreamed.
-
-Passes OEQA:
-RESULTS - ima.IMACheck.test_ima_enabled: PASSED (1.05s)
-RESULTS - ima.IMACheck.test_ima_hash: PASSED (6.13s)
-RESULTS - ima.IMACheck.test_ima_overwrite: PASSED (131.31s)
-RESULTS - ima.IMACheck.test_ima_signature: PASSED (69.03s)
-
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- ...nd-line-apply-operation-to-all-paths.patch | 68 -------------------
- .../ima-evm-utils/disable-doc-creation.patch  | 50 --------------
- ...t-depend-on-xattr.h-with-IMA-defines.patch | 47 -------------
- ...-evm-utils_git.bb => ima-evm-utils_1.4.bb} | 18 +----
- 4 files changed, 2 insertions(+), 181 deletions(-)
- delete mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/command-line-apply-operation-to-all-paths.patch
- delete mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/disable-doc-creation.patch
- delete mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/evmctl.c-do-not-depend-on-xattr.h-with-IMA-defines.patch
- rename meta-integrity/recipes-security/ima-evm-utils/{ima-evm-utils_git.bb => ima-evm-utils_1.4.bb} (52%)
-
-diff --git a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/command-line-apply-operation-to-all-paths.patch b/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/command-line-apply-operation-to-all-paths.patch
-deleted file mode 100644
-index 35c3162..0000000
---- a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/command-line-apply-operation-to-all-paths.patch
-+++ /dev/null
-@@ -1,68 +0,0 @@
--From 5834216fb3aa4e5e59ee13e871c70db1b4e13f02 Mon Sep 17 00:00:00 2001
--From: Patrick Ohly <patrick.ohly@intel.com>
--Date: Fri, 30 Sep 2016 10:22:16 +0200
--Subject: [PATCH] command line: apply operation to all paths
--
--Previously, invocations like "evmctl ima_hash foo bar" silently
--ignored all parameters after the first path name ("foo" in this
--example).
--
--Now evmctl iterates over all specified paths. It aborts with an
--error as soon as the selected operation fails for a path.
--
--Supporting more than one parameter is useful in combination with
--"find" and "xargs" because it is noticably faster than invoking
--evmutil separately for each file, in particular when run under pseudo
--(a fakeroot environment used by the OpenEmbedded build system).
--
--This complements the recursive mode and can be used when more control
--over file selection is needed.
--
--Signed-off-by: Patrick Ohly <patrick.ohly@intel.com>
-----
-- src/evmctl.c | 21 ++++++++++++---------
-- 1 file changed, 12 insertions(+), 9 deletions(-)
--
--diff --git a/src/evmctl.c b/src/evmctl.c
--index 23cf54c..2072034 100644
----- a/src/evmctl.c
--+++ b/src/evmctl.c
--@@ -626,7 +626,7 @@ static int get_file_type(const char *path, const char *search_type)
-- static int do_cmd(struct command *cmd, find_cb_t func)
-- {
-- 	char *path = g_argv[optind++];
---	int err, dts = REG_MASK; /* only regular files by default */
--+	int err = 0, dts = REG_MASK; /* only regular files by default */
-- 
-- 	if (!path) {
-- 		log_err("Parameters missing\n");
--@@ -634,15 +634,18 @@ static int do_cmd(struct command *cmd, find_cb_t func)
-- 		return -1;
-- 	}
-- 
---	if (recursive) {
---		if (search_type) {
---			dts = get_file_type(path, search_type);
---			if (dts < 0)
---				return dts;
--+	while (path && !err) {
--+		if (recursive) {
--+			if (search_type) {
--+				dts = get_file_type(path, search_type);
--+				if (dts < 0)
--+					return dts;
--+			}
--+			err = find(path, dts, func);
--+		} else {
--+			err = func(path);
-- 		}
---		err = find(path, dts, func);
---	} else {
---		err = func(path);
--+		path = g_argv[optind++];
-- 	}
-- 
-- 	return err;
---- 
--2.1.4
--
-diff --git a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/disable-doc-creation.patch b/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/disable-doc-creation.patch
-deleted file mode 100644
-index 75076f5..0000000
---- a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/disable-doc-creation.patch
-+++ /dev/null
-@@ -1,50 +0,0 @@
--From 321a602098d11ee712ebd01f51033b5fd369eae9 Mon Sep 17 00:00:00 2001
--From: Patrick Ohly <patrick.ohly@intel.com>
--Date: Wed, 13 May 2015 03:41:02 -0700
--Subject: [PATCH] Makefile.am: disable man page creation
--
--Depends on asciidoc, which is not available.
--
--Upstream-Status: Inappropriate [embedded specific]
--
--Signed-off-by: Patrick Ohly <patrick.ohly@intel.com>
-----
-- Makefile.am | 19 ++++++++++++++++++-
-- 1 file changed, 18 insertions(+), 1 deletion(-)
--
--diff --git a/Makefile.am b/Makefile.am
--index 06ebf59..4ddd52c 100644
----- a/Makefile.am
--+++ b/Makefile.am
--@@ -1,5 +1,5 @@
-- SUBDIRS = src
---dist_man_MANS = evmctl.1
--+# dist_man_MANS = evmctl.1
-- 
-- doc_DATA =  examples/ima-genkey-self.sh examples/ima-genkey.sh examples/ima-gen-local-ca.sh
-- EXTRA_DIST = autogen.sh $(doc_DATA)
--@@ -39,4 +39,21 @@ rmman:
-- 
-- doc: evmctl.1.html rmman evmctl.1
-- 
--+# requires asciidoc, xslproc, docbook-xsl
--+# FIXME Disabled until docbook-xsl is unavaliable on tizen.org
--+#MANPAGE_DOCBOOK_XSL = /usr/share/xml/docbook/stylesheet/docbook-xsl/manpages/docbook.xsl
--+#
--+#evmctl.1.html: README
--+#	@asciidoc -o $@ $<
--+#
--+#evmctl.1:
--+#	asciidoc -d manpage -b docbook -o evmctl.1.xsl README
--+#	xsltproc --nonet -o $@ $(MANPAGE_DOCBOOK_XSL) evmctl.1.xsl
--+#	rm -f evmctl.1.xsl
--+#
--+#rmman:
--+#	rm -f evmctl.1
--+#
--+#doc: evmctl.1.html rmman evmctl.1
--+
-- .PHONY: $(tarname)
---- 
--1.8.4.5
--
-diff --git a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/evmctl.c-do-not-depend-on-xattr.h-with-IMA-defines.patch b/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/evmctl.c-do-not-depend-on-xattr.h-with-IMA-defines.patch
-deleted file mode 100644
-index ffa65df..0000000
---- a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/evmctl.c-do-not-depend-on-xattr.h-with-IMA-defines.patch
-+++ /dev/null
-@@ -1,47 +0,0 @@
--From 2dec9199f8a8a2c84b25a3d3e7e2f41b71e07834 Mon Sep 17 00:00:00 2001
--From: Patrick Ohly <patrick.ohly@intel.com>
--Date: Wed, 17 Jun 2015 14:28:18 +0200
--Subject: [PATCH 20/20] evmctl.c: do not depend on xattr.h with IMA defines
--
--Compilation on older Linux distros (like Ubuntu 12.04) fails
--because linux/xattr.h does not yet have the IMA defines. Compiling
--there makes sense when only the tools are needed, for example when
--signing an image in cross-compile mode.
--
--To support this, add fallbacks for the two defines which are needed.
--Their value is part of the Linux ABI and thus fixed.
--
--Upstream-status: Submitted [linux-ima-devel@lists.sourceforge.net]
--
--Signed-off-by: Patrick Ohly <patrick.ohly@intel.com>
--
-----
-- src/evmctl.c | 12 ++++++++++++
-- 1 file changed, 12 insertions(+)
--
--diff --git a/src/evmctl.c b/src/evmctl.c
--index c54efbb..23cf54c 100644
----- a/src/evmctl.c
--+++ b/src/evmctl.c
--@@ -57,6 +57,18 @@
-- #include <termios.h>
-- #include <assert.h>
-- 
--+/*
--+ * linux/xattr.h might be old to have this. Allow compilation on older
--+ * Linux distros (like Ubuntu 12.04) by falling back to our own
--+ * definition.
--+ */
--+#ifndef XATTR_IMA_SUFFIX
--+# define XATTR_IMA_SUFFIX "ima"
--+#endif
--+#ifndef XATTR_NAME_IMA
--+# define XATTR_NAME_IMA XATTR_SECURITY_PREFIX XATTR_IMA_SUFFIX
--+#endif
--+
-- #include <openssl/sha.h>
-- #include <openssl/pem.h>
-- #include <openssl/hmac.h>
---- 
--2.1.4
--
-diff --git a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_git.bb b/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_1.4.bb
-similarity index 52%
-rename from meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_git.bb
-rename to meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_1.4.bb
-index fc7a2d6..4f1d1a3 100644
---- a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_git.bb
-+++ b/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_1.4.bb
-@@ -6,22 +6,8 @@ DEPENDS += "openssl attr keyutils"
- 
- DEPENDS:class-native += "openssl-native keyutils-native"
- 
--PV = "1.2.1+git${SRCPV}"
--SRCREV = "3eab1f93b634249c1720f65fcb495b1996f0256e"
--SRC_URI = "git://git.code.sf.net/p/linux-ima/ima-evm-utils;branch=ima-evm-utils-1.2.y"
--
--# Documentation depends on asciidoc, which we do not have, so
--# do not build documentation.
--SRC_URI += "file://disable-doc-creation.patch"
--
--# Workaround for upstream incompatibility with older Linux distros.
--# Relevant for us when compiling ima-evm-utils-native.
--SRC_URI += "file://evmctl.c-do-not-depend-on-xattr.h-with-IMA-defines.patch"
--
--# Required for xargs with more than one path as argument (better for performance).
--SRC_URI += "file://command-line-apply-operation-to-all-paths.patch"
--
--S = "${WORKDIR}/git"
-+SRC_URI = "https://sourceforge.net/projects/linux-ima/files/${BPN}/${BP}.tar.gz"
-+SRC_URI[sha256sum] = "fcf85b31d6292051b3679e5f17ffa7f89b6898957aad0f59aa4e9878884b27d1"
- 
- inherit pkgconfig autotools features_check
- 
--- 
-2.25.1
+VGhhbmtzIGEgbG90LCB0aGlzIHNvbHZlZCBteSBwcm9ibGVtLg0KSSBkaWRuJ3QgaGF2ZSB0aGlz
+IGNoYW5nZQ0KDQpHcmVldGluZ3MNCg0KQWxleA0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0t
+LQ0KRnJvbTogTWl0dGFsLCBBbnVqIDxhbnVqLm1pdHRhbEBpbnRlbC5jb20+DQpTZW50OiBXZWRu
+ZXNkYXksIE1heSAxOCwgMjAyMiAzOjQzIFBNDQpUbzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0
+Lm9yZzsgRHVkYSwgQWxleGFuZGVyIDxBbGV4YW5kZXIuRHVkYUB2ZWN0b3IuY29tPg0KU3ViamVj
+dDogUmU6IFt5b2N0b10gRVJST1I6IGNwOiBjYW5ub3Qgc3RhdCAnTW9kdWxlLnN5bXZlcnMnOiBO
+byBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5DQoNCk9uIFdlZCwgMjAyMi0wNS0xOCBhdCAxMTo1MCAr
+MDAwMCwgRHVkYSwgQWxleGFuZGVyIHdyb3RlOg0KPiBIZWxsbyB5b2N0byB1c2VycywNCj4NCj4g
+SSBrZWVwIGdldHRpbmcgdGhlIGZvbGxvd2luZyBlcnJvciwNCj4gRG9lcyBzb21lb25lIGhhdmUg
+YSBoaW50IHdoZXJlIEkgY2FuIGxvb2sgdG8gc29sdmUgdGhpcyBpc3N1ZT8NCj4NCj4gRVJST1I6
+IGxpbnV4LWZzbGMtNS4xNS1yMCBkb19zaGFyZWRfd29ya2RpcjogRXhlY3V0aW9uIG9mDQo+ICcv
+emV1cy9idWlsZC90bXAvd29yay8gLXBva3ktbGludXgvbGludXgtZnNsYy81LjE1LQ0KPiByMC90
+ZW1wL3J1bi5kb19zaGFyZWRfd29ya2Rpci41ODkxOScgZmFpbGVkIHdpdGggZXhpdCBjb2RlIDE6
+DQo+IGNwOiBjYW5ub3Qgc3RhdCAnTW9kdWxlLnN5bXZlcnMnOiBObyBzdWNoIGZpbGUgb3IgZGly
+ZWN0b3J5DQo+IFdBUk5JTkc6IGV4aXQgY29kZSAxIGZyb20gYSBzaGVsbCBjb21tYW5kLg0KPg0K
+PiBFUlJPUjogTG9nZmlsZSBvZiBmYWlsdXJlIHN0b3JlZCBpbjogL3pldXMvYnVpbGQvdG1wL3dv
+cmsvIC1wb2t5LQ0KPiBsaW51eC9saW51eC1mc2xjLzUuMTUtcjAvdGVtcC9sb2cuZG9fc2hhcmVk
+X3dvcmtkaXIuNTg5MTkNCj4gTG9nIGRhdGEgZm9sbG93czoNCj4gfCBERUJVRzogRXhlY3V0aW5n
+IHNoZWxsIGZ1bmN0aW9uIGRvX3NoYXJlZF93b3JrZGlyDQo+IHwgY3A6IGNhbm5vdCBzdGF0ICdN
+b2R1bGUuc3ltdmVycyc6IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkNCj4gfCBXQVJOSU5HOiBl
+eGl0IGNvZGUgMSBmcm9tIGEgc2hlbGwgY29tbWFuZC4NCj4gfCBFUlJPUjogRXhlY3V0aW9uIG9m
+ICcvemV1cy9idWlsZC90bXAvd29yay8gLXBva3ktbGludXgvbGludXgtDQo+IGZzbGMvNS4xNS1y
+MC90ZW1wL3J1bi5kb19zaGFyZWRfd29ya2Rpci41ODkxOScgZmFpbGVkIHdpdGggZXhpdCBjb2Rl
+DQo+IDE6DQo+IHwgY3A6IGNhbm5vdCBzdGF0ICdNb2R1bGUuc3ltdmVycyc6IE5vIHN1Y2ggZmls
+ZSBvciBkaXJlY3RvcnkNCj4gfCBXQVJOSU5HOiBleGl0IGNvZGUgMSBmcm9tIGEgc2hlbGwgY29t
+bWFuZC4NCj4NCg0KRG8geW91IGhhdmUgdGhpcyBjaGFuZ2U6DQoNCmh0dHBzOi8vZ2l0LnlvY3Rv
+cHJvamVjdC5vcmcvcG9reS9jb21taXQvP2g9emV1cyZpZD0wNTA0M2EyNmNjMjk3ZWQ5ODM0MDU1
+Njc4YWM2OTllMjBlMmYxNmQ1DQoNClRoYW5rcywNCg0KQW51ag0K
 
 
