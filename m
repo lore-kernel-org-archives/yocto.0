@@ -2,94 +2,111 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1044EC433EF
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 12A35C433FE
 	for <webhook@archiver.kernel.org>; Wed, 18 May 2022 20:48:13 +0000 (UTC)
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com
- [209.85.216.44])
- by mx.groups.io with SMTP id smtpd.web10.1797.1652906887317586861
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com
+ [209.85.214.170])
+ by mx.groups.io with SMTP id smtpd.web12.1859.1652906889867050482
  for <yocto@lists.yoctoproject.org>;
- Wed, 18 May 2022 13:48:07 -0700
+ Wed, 18 May 2022 13:48:09 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=O+boIQHE;
- spf=pass (domain: gmail.com, ip: 209.85.216.44,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=AdQEr9qK;
+ spf=pass (domain: gmail.com, ip: 209.85.214.170,
  mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f44.google.com with SMTP id
- l7-20020a17090aaa8700b001dd1a5b9965so3234479pjq.2
+Received: by mail-pl1-f170.google.com with SMTP id s14so2884127plk.8
         for <yocto@lists.yoctoproject.org>;
- Wed, 18 May 2022 13:48:07 -0700 (PDT)
+ Wed, 18 May 2022 13:48:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=RPx3vkEtCkgKIp2NonpZO2SU7Jfi0B+Uf3bHWPXsKBc=;
-        b=O+boIQHENaJHln/qxPEZSkwHoOcDNlU7efi7Ynz5aHTbWkxYwYkix5/Y/sP8Y52Bgk
-         CyOo4vwSgiAENXkUYkuVC5u2QeLURH2sjX/6e8lRTMsnFUiWu8CV1KFTHeIgUjqgD6me
-         O5JuSjIH6JV+hhgHY3CcPiVgBhh8/pspzreV1OfVrGnXdFziPpt77rtqgHLpj6ximnf7
-         HfgA1fUkzk5gGE/ok+iHx/8HN1X/2fZUsKBRlcpplLXJqY9540MiByMpboosgbuP8EGf
-         lnW9TOFsq4gbTDrbudm8wzHk4oSgHYclr3nksslndnRdi2rbeAhNH5cLhMAeNGJXDh4x
-         c1yg==
+        bh=GDr3VBQr7h9+12dfTjFw3m1y1pzHf+Fs/Cq4+CBTEzg=;
+        b=AdQEr9qK1Nnnlr/XRDEABdh2rp4xiNW0z+ahaN8bnTr3p3PoKJSGM3ovqG2W7rXTYK
+         e+oPUWQMMSDqRRU2YR7fKSwCE3Ou/sEIpxaNQelbolWsQCTwtDghPGxkEHFql3ycou9M
+         cyHmS0quTl9bWeghJo1NhAHeTSwjvMGAuYAboJ+cMBxw8SiRszXKYaMhD4Xw4OU0k6dO
+         nrJyOerEV9KyM1PgOlYLuXFXoI0M1VhmFcpCboLSE0QIa7ugSvpdk2SwhyCNZF3Q0jTd
+         2CMaIt57iHwuiJx6LShIyJzEvrE3WN5gzARtMeEwQL2M1N5qu7rCDQ78/BQhkrgg1R/S
+         XmKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=RPx3vkEtCkgKIp2NonpZO2SU7Jfi0B+Uf3bHWPXsKBc=;
-        b=LNhRGlOpr07DjlNXNoZ/MY3QmNfwJ862/2IMTxvRkFelx4cfYjvISAaGJmrTYFMljJ
-         AAg2nboKKBqrcyhgAlp+OiQesX1V9SvrT3Mr7u86sIT4v8DuGkTvDcYpMLSAhikZ+jhY
-         hjd5YhbjBvwENfHcWfadhS2FJIKz1M51Gq6zu/qsuLqsSmRkv5U9lj31Vn4+wgfKMHqb
-         tf5futoMey5A/AgZN4so7QXG3VenGoNoJa6y258yupOZhXnlqnjanL9rLgMxBJFFMXl2
-         q0HOEZkyt5QxD6mO4XGFAoIhf/YGCc3PEbPaNJq9U0PCIkMKKRfkgqBGuNHnZlCq0l0l
-         LSug==
-X-Gm-Message-State: AOAM531dc7Jd59NcuZzDVmoGAzD6Bxz4FrNZKkWRVVRfG6CcRkxnqZEx
-	Zx8/o0cdQ33pO63XzXOLsaGshMN7FdFHOA==
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=GDr3VBQr7h9+12dfTjFw3m1y1pzHf+Fs/Cq4+CBTEzg=;
+        b=Zn+99zqRJitEOpF0TFnxTUpfR6caMvEZ15hEmhSjz7pjJfQmAGfkVc6RzNNOqvUDeF
+         hbmXHp5DP5v+NFB0EZxhxfbNQguKq4E0lPxBYRnDGcFa6Do936uTtgZKFKofr1kEJkZB
+         HZiUb9s9DwFgROUl5LUgymikDoxfasM4ZRt6EU1+6zFyAYSAotGqoH8iaKKKN5dcJFOk
+         v+lSHjNhH93SVNk+SoVoJjPz94VojPRUR14TqSi6C0mMG3SBH1vZo7EKRdRoKoFD0SJp
+         4WXkmaZKgqzQb+Y/VUCizfcrflQY56SixGvRMS0Ct2bCWy0EsEGT3kGA19mVXY7dRVqp
+         flKA==
+X-Gm-Message-State: AOAM530iybWRPNXsgYTe7ZNY/T6o7q5Hx/I6UBD5RLEvf4BFs12fugdf
+	4xiWwfe5Gqfacv6LnTuTDv5PoQDOKTebdg==
 X-Google-Smtp-Source: 
- ABdhPJzPjCf6FvBBKapHyIfT2WiNsLNMYq0IjtEQ6AopPQ5oHQDGY9Cl78imXq2YDqH4Mr5F4OZ87A==
-X-Received: by 2002:a17:902:e94e:b0:154:3a4:c5e8 with SMTP id
- b14-20020a170902e94e00b0015403a4c5e8mr1462832pll.19.1652906886299;
-        Wed, 18 May 2022 13:48:06 -0700 (PDT)
+ ABdhPJxyHbYwJt68J0DQbVKzEb68qndMFrAF43kYSc++Ul+KLqGnCcin5lRy1Y2KBTYaUjImMb7qXA==
+X-Received: by 2002:a17:902:d88a:b0:156:1609:1e62 with SMTP id
+ b10-20020a170902d88a00b0015616091e62mr1352858plz.143.1652906889072;
+        Wed, 18 May 2022 13:48:09 -0700 (PDT)
 Received: from keaua.hsd1.ca.comcast.net
  ([2601:202:4180:a5c0:fee:4904:d15c:6dba])
         by smtp.gmail.com with ESMTPSA id
- p62-20020a62d041000000b0050dc762814dsm2415565pfg.39.2022.05.18.13.48.05
+ p62-20020a62d041000000b0050dc762814dsm2415565pfg.39.2022.05.18.13.48.07
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 May 2022 13:48:05 -0700 (PDT)
+        Wed, 18 May 2022 13:48:08 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 1/3] aide: Update 01.17.4
-Date: Wed, 18 May 2022 13:48:02 -0700
-Message-Id: <20220518204804.2840071-1-akuster808@gmail.com>
+Subject: [meta-security][PATCH 3/3] suricata: update to 5.0.5
+Date: Wed, 18 May 2022 13:48:04 -0700
+Message-Id: <20220518204804.2840071-3-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220518204804.2840071-1-akuster808@gmail.com>
+References: <20220518204804.2840071-1-akuster808@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Wed, 18 May 2022 20:48:13 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57133
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57135
 
-Precalculate buffer size in base64 functions (CVE-2021-45417)
-
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+libhtp rolls with it
 ---
- recipes-ids/aide/{aide_0.17.3.bb => aide_0.17.4.bb} | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
- rename recipes-ids/aide/{aide_0.17.3.bb => aide_0.17.4.bb} (94%)
+ recipes-ids/suricata/{libhtp_0.5.39.bb => libhtp_0.5.40.bb}   | 2 +-
+ recipes-ids/suricata/{suricata_6.0.4.bb => suricata_6.0.5.bb} | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+ rename recipes-ids/suricata/{libhtp_0.5.39.bb => libhtp_0.5.40.bb} (91%)
+ rename recipes-ids/suricata/{suricata_6.0.4.bb => suricata_6.0.5.bb} (98%)
 
-diff --git a/recipes-ids/aide/aide_0.17.3.bb b/recipes-ids/aide/aide_0.17.4.bb
-similarity index 94%
-rename from recipes-ids/aide/aide_0.17.3.bb
-rename to recipes-ids/aide/aide_0.17.4.bb
-index fcab504..6bc2bfe 100644
---- a/recipes-ids/aide/aide_0.17.3.bb
-+++ b/recipes-ids/aide/aide_0.17.4.bb
-@@ -8,7 +8,7 @@ DEPENDS = "bison-native libpcre"
- SRC_URI = "https://github.com/aide/aide/releases/download/v${PV}/${BPN}-${PV}.tar.gz \
-            file://aide.conf"
+diff --git a/recipes-ids/suricata/libhtp_0.5.39.bb b/recipes-ids/suricata/libhtp_0.5.40.bb
+similarity index 91%
+rename from recipes-ids/suricata/libhtp_0.5.39.bb
+rename to recipes-ids/suricata/libhtp_0.5.40.bb
+index 80c9014..08e285e 100644
+--- a/recipes-ids/suricata/libhtp_0.5.39.bb
++++ b/recipes-ids/suricata/libhtp_0.5.40.bb
+@@ -5,7 +5,7 @@ require suricata.inc
+ LIC_FILES_CHKSUM = "file://LICENSE;beginline=1;endline=2;md5=596ab7963a1a0e5198e5a1c4aa621843"
  
--SRC_URI[sha256sum] = "a2eb1883cafaad056fbe43ee1e8ae09fd36caa30a0bc8edfea5d47bd67c464f8"
-+SRC_URI[sha256sum] = "c81505246f3ffc2e76036d43a77212ae82895b5881d9b9e25c1361b1a9b7a846"
+ SRC_URI = "git://github.com/OISF/libhtp.git;protocol=https;branch=0.5.x"
+-SRCREV = "6b70803c45894da7a591b2305498335e6df4f9a3"
++SRCREV = "1733478f7fd09e936fea2e024f1d228d40741df2"
  
- inherit autotools pkgconfig
+ DEPENDS = "zlib"
+ 
+diff --git a/recipes-ids/suricata/suricata_6.0.4.bb b/recipes-ids/suricata/suricata_6.0.5.bb
+similarity index 98%
+rename from recipes-ids/suricata/suricata_6.0.4.bb
+rename to recipes-ids/suricata/suricata_6.0.5.bb
+index 968da21..913e64e 100644
+--- a/recipes-ids/suricata/suricata_6.0.4.bb
++++ b/recipes-ids/suricata/suricata_6.0.5.bb
+@@ -5,7 +5,7 @@ require suricata.inc
+ LIC_FILES_CHKSUM = "file://LICENSE;beginline=1;endline=2;md5=c70d8d3310941dcdfcd1e02800a1f548"
+ 
+ SRC_URI = "http://www.openinfosecfoundation.org/download/suricata-${PV}.tar.gz"
+-SRC_URI[sha256sum] = "a8f197e33d1678689ebbf7bc1abe84934c465d22c504c47c2c7e9b74aa042d0d"
++SRC_URI[sha256sum] = "0d4197047c84ba070dfc6b1d9f9ee92f52a71403bfac0e29b2554bb21fe00754"
+ 
+ DEPENDS = "lz4 libhtp"
  
 -- 
 2.25.1
