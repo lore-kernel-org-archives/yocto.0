@@ -1,221 +1,154 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 90658C433EF
-	for <webhook@archiver.kernel.org>; Thu, 19 May 2022 19:57:37 +0000 (UTC)
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com
- [209.85.208.52])
- by mx.groups.io with SMTP id smtpd.web12.382.1652990251424197694
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 44ED1C433F5
+	for <webhook@archiver.kernel.org>; Thu, 19 May 2022 22:35:38 +0000 (UTC)
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com
+ [209.85.215.172])
+ by mx.groups.io with SMTP id smtpd.web10.2067.1652999737701644320
  for <yocto@lists.yoctoproject.org>;
- Thu, 19 May 2022 12:57:31 -0700
+ Thu, 19 May 2022 15:35:37 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=Y3K/wfL6;
- spf=pass (domain: linaro.org, ip: 209.85.208.52,
- mailfrom: nicolas.dechesne@linaro.org)
-Received: by mail-ed1-f52.google.com with SMTP id g12so8289657edq.4
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=HPLwL2gW;
+ spf=pass (domain: gmail.com, ip: 209.85.215.172,
+ mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f172.google.com with SMTP id q76so6223703pgq.10
         for <yocto@lists.yoctoproject.org>;
- Thu, 19 May 2022 12:57:31 -0700 (PDT)
+ Thu, 19 May 2022 15:35:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=M/26b5RaydP/tdxYmb7girEC8vyBAbsfqSr0l94VLD8=;
-        b=Y3K/wfL6OeQc6SOV3REQFMdG/qAwvOvcPs/DTZIJ+1bTrr+gQvIwhqEquNZI3yEGnq
-         8tSxpxe1/LQ7+Hlp3kxxjQVXE+JmhG+Mgs4XUsSEd4FB6YVUzW2KT4hgYH+ZZEdorsDw
-         Lt9mhGTipNbODyG7ZZKcDTIqdhQ6QooA286XltMuSbybyGrmvMUHfhlrfZGMMIkDEk7M
-         pbDpzk34Tj7dxfqUeNyO2gEV4KsYDuLEmcoWAJtnUv43LJ4+2LbRdzps5OJSOSxxGDeA
-         24IFSo04CkmVWGQCtZsl/lZRD+SKfwK8FhFKRi9qaeMFnhca/BgBWXvRH3xNT0Ct0Zj6
-         aB2w==
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+         :content-transfer-encoding;
+        bh=ac0LKZUgJrBTwofmoyy+5SwKYji1Tc/4tXHpohXKGYs=;
+        b=HPLwL2gWdSftZ+H1zgSI5rCRmvLrm8StF6bmlFYyZ+yZkX5h87dtAd2zYGmLLQ/TBn
+         BPdfIwLLWL3ACnSMJpAdClS3wN5Z/h3qevMO3GbDD/iO1ZFghAdICgmBCEvNMnf/eE1P
+         xbOCVRaBovyitWFP0p1nBJSOM2qU2KWV1LyAh0f7s8Ksgy+8W8JTMF4qCBqqWvKx3fXb
+         zTWWTSuNzX1OLTybWiFnDTpH6ODczQ3BJgaiIqbelJruZ+/Hoz6jNc6AsRHJE9nc8eJf
+         ppul+DkUFQSZDsJ6SVbM8GPcocYtUfWGhjLKs9lZOGypdsJmVE/Ugg+R71wLNz0SMvxl
+         l7qQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=M/26b5RaydP/tdxYmb7girEC8vyBAbsfqSr0l94VLD8=;
-        b=weRT6wdHMkG+poLz8nSistwlMMuG7Z4E58y285CpUfRba/0H2Tj0Rcm26Wcpb2uPeG
-         dmWp6zeLH6YYQkJ557kNQCNLXVFcp9pgtc1/dEmxmTVRIVDFIiklPw8C3i/Ugj6Siv+S
-         tXma3kPps6nl4y0A+lEBGP3FmXcf6t2Oa+hWvt2nQpMVQYlaiN/ko4tjH3TsYM5mEHb0
-         oy0H4EztnpIc3++wiDOdsLPoDnFsPtPeL4o1ZhfhFRO4RxIBgc4nRq5NMDA1w5B+exwX
-         2dbVQm2eFD4vWZSwrOKJD4YlEdOQJDLHgPZ1ytaAlEt/59Q25yfD3QLrAA52M0isIO2F
-         g+EA==
-X-Gm-Message-State: AOAM5304dku00IQKbhqGRPacuMuPuOe7600YgzX9bpSbGqRxLIEypD8y
-	GbtfyT6GiB6kU+63FnZ+m6/+Exxm3mQSaIW6FR0jCw==
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=ac0LKZUgJrBTwofmoyy+5SwKYji1Tc/4tXHpohXKGYs=;
+        b=RZ228NscKdtvATxgr496osBjnl/cNQ+r4Y8NUbGgQb0UiMDXj2hDeOQzA+fE8ofFDX
+         mO02m0FS6jnsDUBaN2LMIgLkYUf0IpUH6sVfQZQ+uhWmqVGDavO+5R6Wb6RNMG7pBUVN
+         nyk6xgSejKlQOGBYsC+mFIV5ozGa2E2uWENX/wzTOLBpD1tdSHGI4UgdDKiiB7N/8/NH
+         DL6eMIGaWSkvbCrKvHGn9O2G7cQJa7ZwefT4BjMVX7sUUg9qwDJkg7QQTLFyg/PKK5VU
+         emH7hqvYo6xsrtTGdj64paxVfEcqiomeDC4fYUFtdCDk2FEBsNHjCdXmAtKpBdEJsIAk
+         j4GA==
+X-Gm-Message-State: AOAM530DXRV4UDNtJm/09ife0naFusRgdZaSJZsqpgBse0lP4bQp7rrj
+	3E7ruoSI+ih/INJUyIXVaRpRROSNItSOXw==
 X-Google-Smtp-Source: 
- ABdhPJzAKXTDM2ekf0jQxggAWGMuaFjelNV6L94Bz3lM7zIoNAtG9tGYSG/glQQ72q8lMdoT9rCBlgcyfzANV1XrlC8=
-X-Received: by 2002:a05:6402:3301:b0:42a:ee56:310b with SMTP id
- e1-20020a056402330100b0042aee56310bmr7171607eda.69.1652990249742; Thu, 19 May
- 2022 12:57:29 -0700 (PDT)
+ ABdhPJypNsfzHEBzm/oRGVIXJp2lkcoBgy1Z+gHR9VfvSvHuI194OFBivLirUfxWxvHxMn3CsKJn0Q==
+X-Received: by 2002:a65:5b0e:0:b0:3f5:d7c2:b3b3 with SMTP id
+ y14-20020a655b0e000000b003f5d7c2b3b3mr5807017pgq.256.1652999736805;
+        Thu, 19 May 2022 15:35:36 -0700 (PDT)
+Received: from keaua.hsd1.ca.comcast.net
+ ([2601:202:4180:a5c0:eff7:a795:a3a0:cee8])
+        by smtp.gmail.com with ESMTPSA id
+ y17-20020aa78f31000000b005107a4d5096sm203277pfr.30.2022.05.19.15.35.35
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 May 2022 15:35:36 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH 3/3] oeqa/cases/tpm2: fix and enhance test
+ suite
+Date: Thu, 19 May 2022 15:35:31 -0700
+Message-Id: <20220519223531.3851892-3-akuster808@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220519223531.3851892-1-akuster808@gmail.com>
+References: <20220519223531.3851892-1-akuster808@gmail.com>
 MIME-Version: 1.0
-References: <20220519153045.Horde.57XFl8OYL9JwVcKGidyDPhs@crashcourse.ca>
-In-Reply-To: <20220519153045.Horde.57XFl8OYL9JwVcKGidyDPhs@crashcourse.ca>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Thu, 19 May 2022 21:57:18 +0200
-Message-ID: 
- <CAP71WjyVwYWUcHig1yshunggwba1ngksFimHCnsjrL+0yx=FNA@mail.gmail.com>
-Subject: Re: [yocto] what's the situation with yocto support for qualcomm
- qcs{410,610} eval boards?
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000a746dc05df62c8b6"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 19 May 2022 19:57:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57140
+ <yocto@lists.yoctoproject.org>; Thu, 19 May 2022 22:35:38 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57143
 
---000000000000a746dc05df62c8b6
-Content-Type: text/plain; charset="UTF-8"
+local.conf
+TEST_SUITES = "ssh ping tpm2"
+IMAGE_INSTALL:append = " swtpm tpm2-pkcs11"
 
-hey,
+RESULTS:
+RESULTS - ping.PingTest.test_ping: PASSED (0.05s)
+RESULTS - ssh.SSHTest.test_ssh: PASSED (2.19s)
+RESULTS - tpm2.Tpm2Test.test_tpm2_pcrread: PASSED (1.06s)
+RESULTS - tpm2.Tpm2Test.test_tpm2_pkcs11: PASSED (1.17s)
+RESULTS - tpm2.Tpm2Test.test_tpm2_swtpm_reset: PASSED (0.59s)
+RESULTS - tpm2.Tpm2Test.test_tpm2_swtpm_socket: PASSED (307.72s)
 
-On Thu, May 19, 2022 at 9:31 PM Robert P. J. Day <rpjday@crashcourse.ca>
-wrote:
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ meta-tpm/lib/oeqa/runtime/cases/tpm2.py | 41 +++++++++++++++++--------
+ 1 file changed, 29 insertions(+), 12 deletions(-)
 
->
->    colleague just asked if i had any useful advice (spoiler: no) on how
-> easy it would be to build a yocto-based image for *some* qcs410-based
-> eval board. i'm familiar with meta-qcom, and machine definitions for
-> dragonboards, but this is clearly(?) different, and i see nothing in
-> the meta-qcom layer for this.
->
+diff --git a/meta-tpm/lib/oeqa/runtime/cases/tpm2.py b/meta-tpm/lib/oeqa/runtime/cases/tpm2.py
+index c6f9d92..c2c95e7 100644
+--- a/meta-tpm/lib/oeqa/runtime/cases/tpm2.py
++++ b/meta-tpm/lib/oeqa/runtime/cases/tpm2.py
+@@ -16,28 +16,45 @@ class Tpm2Test(OERuntimeTestCase):
+         if expected_endlines:
+             self.fail('Missing expected line endings:\n  %s' % '\n  '.join(expected_endlines))
+ 
+-    @OEHasPackage(['tpm2-tss'])
+-    @OEHasPackage(['tpm2-abrmd'])
+     @OEHasPackage(['tpm2-tools'])
+-    @OEHasPackage(['ibmswtpm2'])
++    @OEHasPackage(['tpm2-abrmd'])
++    @OEHasPackage(['swtpm'])
+     @OETestDepends(['ssh.SSHTest.test_ssh'])
+-    def test_tpm2_sim(self):
++    def test_tpm2_swtpm_socket(self):
+         cmds = [
+-                'tpm_server &',
+-                'tpm2-abrmd --allow-root --tcti=mssim &'
++                'mkdir /tmp/myvtpm',
++                'swtpm socket --tpmstate dir=/tmp/myvtpm --tpm2 --ctrl type=tcp,port=2322 --server type=tcp,port=2321 --flags not-need-init &',
++                'export TPM2TOOLS_TCTI="swtpm:port=2321"',
++                'tpm2_startup -c'
+                ]
+ 
+         for cmd in cmds:
+             status, output = self.target.run(cmd)
+             self.assertEqual(status, 0, msg='\n'.join([cmd, output]))
+ 
+-    @OETestDepends(['tpm2.Tpm2Test.test_tpm2_sim'])
+-    def test_tpm2(self):
+-         (status, output) = self.target.run('tpm2_pcrlist')
++    @OETestDepends(['tpm2.Tpm2Test.test_tpm2_swtpm_socket'])
++    def test_tpm2_pcrread(self):
++         (status, output) = self.target.run('tpm2_pcrread')
+          expected_endlines = []
+-         expected_endlines.append('sha1 :')
+-         expected_endlines.append('  0  : 0000000000000000000000000000000000000003')
+-         expected_endlines.append('  1  : 0000000000000000000000000000000000000000')
++         expected_endlines.append('  sha1:')
++         expected_endlines.append('    0 : 0x0000000000000000000000000000000000000000')
++         expected_endlines.append('    1 : 0x0000000000000000000000000000000000000000')
++         expected_endlines.append('  sha256:')
++         expected_endlines.append('    0 : 0x0000000000000000000000000000000000000000000000000000000000000000')
++         expected_endlines.append('    1 : 0x0000000000000000000000000000000000000000000000000000000000000000')
++
+ 
+          self.check_endlines(output, expected_endlines)
+ 
++
++    @OEHasPackage(['p11-kit'])
++    @OEHasPackage(['tpm2-pkcs11'])
++    @OETestDepends(['tpm2.Tpm2Test.test_tpm2_swtpm_socket'])
++    def test_tpm2_pkcs11(self):
++         (status, output) = self.target.run('p11-kit list-modules -v')
++         self.assertEqual(status, 0, msg="Modules missing: %s" % output)
++
++    @OETestDepends(['tpm2.Tpm2Test.test_tpm2_pkcs11'])
++    def test_tpm2_swtpm_reset(self):
++         (status, output) = self.target.run('swtpm_ioctl -i --tcp :2322')
++         self.assertEqual(status, 0, msg="swtpm reset failed: %s" % output)
+-- 
+2.25.1
 
-the underlying chipset , e.g. the Qualcomm QCS410 (or 610) is not supported
-upstream. So a 'regular' OE + meta-qcom is not going to be straightforward.
-meta-qcom typically supports 'machines' and soc which have enough upstream
-support (mostly the one we, at Linaro, work with).
-
-
->
->    what i see is that qualcomm supplies a linux sdk, and i quote from
-> https://linuxgizmos.com/module-and-dev-kit-run-linux-on-qcs610-camera-soc/
-> :
->
-> "A Linux SDK is built on Yocto Thud with Linux kernel 4.1.4. The SDK
-> integrates Qualcomm optimizations, GStreamer wth RTSP streaming support,
-> and AI support for TensorFlow Lite and Qualcomm SNPE. Android 10 support
-> is coming later."
->
->    the more i read in the last half hour, the more it seems that one
-> needs to bury oneself in qualcomm SDK, and repo-based checkouts from
-> codeaurora and so on. is this the way to go? or have i missed something?
->
-
-Yes, you are correct. that is a description of the QCOM/vendor 'SDK'. It's
-typically built from one version of Yocto + the vendor kernel (they
-recycled the Android kernel used in similar devices) + some open source
-user space (sometimes inherited from Android) + some non open source user
-space, distributed as binary blobs.
-
-
->    colleague has some freedom in choice of qcs410-based eval board, if
-> that makes things easier.
->
-
-I would be happy to merge new machines in meta-qcom, assuming their BSP is
-a 'vanilla' BSP which does not require any of the user space components
-from the vendor SDK.. Depending on the use cases needed it might be very
-feasible to have enough upstream support for this board.. we (at linaro)
-provide such services too..
-
-
-
-> rday
->
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#57139):
-> https://lists.yoctoproject.org/g/yocto/message/57139
-> Mute This Topic: https://lists.yoctoproject.org/mt/91216262/1279857
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> nicolas.dechesne@linaro.org]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
->
-
---000000000000a746dc05df62c8b6
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">hey,</div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 19, 2022 at 9:31 PM Rober=
-t P. J. Day &lt;<a href=3D"mailto:rpjday@crashcourse.ca">rpjday@crashcourse=
-.ca</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
-x"><br>
-=C2=A0 =C2=A0colleague just asked if i had any useful advice (spoiler: no) =
-on how<br>
-easy it would be to build a yocto-based image for *some* qcs410-based<br>
-eval board. i&#39;m familiar with meta-qcom, and machine definitions for<br=
->
-dragonboards, but this is clearly(?) different, and i see nothing in<br>
-the meta-qcom layer for this.<br></blockquote><div><br></div><div>the under=
-lying chipset , e.g. the Qualcomm QCS410 (or 610) is not supported upstream=
-. So a &#39;regular&#39; OE=C2=A0+ meta-qcom is not going to be straightfor=
-ward. meta-qcom typically supports &#39;machines&#39; and soc which have en=
-ough upstream support (mostly the one we, at Linaro, work with).=C2=A0</div=
-><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
- 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-<br>
-=C2=A0 =C2=A0what i see is that qualcomm supplies a linux sdk, and i quote =
-from<br>
-<a href=3D"https://linuxgizmos.com/module-and-dev-kit-run-linux-on-qcs610-c=
-amera-soc/" rel=3D"noreferrer" target=3D"_blank">https://linuxgizmos.com/mo=
-dule-and-dev-kit-run-linux-on-qcs610-camera-soc/</a>:<br>
-<br>
-&quot;A Linux SDK is built on Yocto Thud with Linux kernel 4.1.4. The SDK<b=
-r>
-integrates Qualcomm optimizations, GStreamer wth RTSP streaming support,<br=
->
-and AI support for TensorFlow Lite and Qualcomm SNPE. Android 10 support<br=
->
-is coming later.&quot;<br>
-<br>
-=C2=A0 =C2=A0the more i read in the last half hour, the more it seems that =
-one<br>
-needs to bury oneself in qualcomm SDK, and repo-based checkouts from<br>
-codeaurora and so on. is this the way to go? or have i missed something?<br=
-></blockquote><div><br></div><div>Yes, you are correct. that is a descripti=
-on of the QCOM/vendor &#39;SDK&#39;. It&#39;s typically built from one vers=
-ion of Yocto=C2=A0+ the vendor kernel (they recycled the Android kernel use=
-d in similar devices)=C2=A0+ some open source user space (sometimes inherit=
-ed from Android)=C2=A0+ some non open source user space, distributed as bin=
-ary blobs.=C2=A0</div><div><br></div><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex">
-<br>
-=C2=A0 =C2=A0colleague has some freedom in choice of qcs410-based eval boar=
-d, if<br>
-that makes things easier.<br></blockquote><div><br></div><div>I would be ha=
-ppy to merge new machines in meta-qcom, assuming their BSP is a &#39;vanill=
-a&#39; BSP which does not require any of the user space components from the=
- vendor SDK.. Depending on the use cases needed it might be very feasible t=
-o have enough upstream support for this board.. we (at linaro) provide such=
- services too..=C2=A0</div><div>=C2=A0</div><div><br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex">
-<br>
-rday<br>
-<br>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#57139): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/57139" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/57139</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/91216262/1279=
-857" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/91216262/1279857</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:nicolas.dechesne@linaro.org" target=3D"_blank">n=
-icolas.dechesne@linaro.org</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div></div>
-
---000000000000a746dc05df62c8b6--
 
