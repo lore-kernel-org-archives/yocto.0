@@ -1,118 +1,96 @@
-Return-Path: <anton.antonov@arm.com>
+Return-Path: <jpuhlman@mvista.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C0896C433EF
-	for <webhook@archiver.kernel.org>; Fri, 20 May 2022 13:41:52 +0000 (UTC)
-Received: from cam-smtp0.cambridge.arm.com (cam-smtp0.cambridge.arm.com
- [217.140.106.49])
- by mx.groups.io with SMTP id smtpd.web10.8920.1653054103842382338
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 33ADBC433EF
+	for <webhook@archiver.kernel.org>; Fri, 20 May 2022 18:30:19 +0000 (UTC)
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com
+ [209.85.215.179])
+ by mx.groups.io with SMTP id smtpd.web10.953.1653071413928261949
  for <yocto@lists.yoctoproject.org>;
- Fri, 20 May 2022 06:41:44 -0700
+ Fri, 20 May 2022 11:30:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=pass (domain: arm.com, ip: 217.140.106.49, mailfrom: anton.antonov@arm.com)
-Received: from atg-devlab-kelpie.cambridge.arm.com
- (atg-devlab-kelpie.cambridge.arm.com [10.2.80.92])
-	by cam-smtp0.cambridge.arm.com (8.13.8/8.13.8) with ESMTP id 24KDh4jb022581;
-	Fri, 20 May 2022 14:43:04 +0100
-From: Anton Antonov <Anton.Antonov@arm.com>
+ dkim=pass header.i=@mvista.com header.s=google header.b=LHWwiWQQ;
+ spf=pass (domain: mvista.com, ip: 209.85.215.179,
+ mailfrom: jpuhlman@mvista.com)
+Received: by mail-pg1-f179.google.com with SMTP id h9so229772pgl.4
+        for <yocto@lists.yoctoproject.org>;
+ Fri, 20 May 2022 11:30:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mvista.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DCByqNeKQbUiGPK1i6HZY1d0VH0dLt+KYNAGd+OAsMM=;
+        b=LHWwiWQQnjhpgvrA07hDhkjYIO3u38njQFeUXtkis25QfgQeaQmAJZhogSfjzBBye+
+         3cYjahEjruyjciFVONCKKxe1EqNbVP/FvN0o/WjBmViT8fqGCJva6KgVRns5hxi7i9e7
+         rgNuHjnb8NsoBqXKw/5CmOd0xnsmlvqpKjop4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DCByqNeKQbUiGPK1i6HZY1d0VH0dLt+KYNAGd+OAsMM=;
+        b=Rz1RGhbCwG8oFStQw8n3214R7lmr3zOMHWQ5scLGd/k8wubg/EKhr7/yUA3NDRS12k
+         lK/FRBqC9GtJ9vhCkSot2oBzAfMKF38Xag01ti6wxikGw10THqN4H54yLFsOM5NXXE7C
+         Y43JM43WH5di9jkhnSkdpM9ilhlIcvnDtbaYWbGlGqGmLxgBi5rSb9W7UtddoCkmaYQJ
+         nO9dsyLVQofQhsr1pTO73pDgUr+qOq22xNICes4eD8TnAm47BvQ9CecYPsWzsKgWURdz
+         aPGvOdDj15IMK0XKGIzb9SjneyPSfRcQT4rQ8Gt0tpt7lFPkt4hYYOvP25iWn0AHFEq9
+         /3og==
+X-Gm-Message-State: AOAM532AYtdvCIIflTMbZjqWLPzkT1rX3bTsTCs3wuadP8xOXfeVDwii
+	/glK6LPz/1JsTn6SVaGzAJEyzdHKZUVKMA==
+X-Google-Smtp-Source: 
+ ABdhPJy7R5xP0j2kIy8rvrMeBjgOVG69JPxDggVEv8kJIHLAqVlBPkOH0F3v4VUmr5rsfTqK+llzrg==
+X-Received: by 2002:a63:4086:0:b0:3f6:22f9:b9c9 with SMTP id
+ n128-20020a634086000000b003f622f9b9c9mr9413253pga.398.1653071412634;
+        Fri, 20 May 2022 11:30:12 -0700 (PDT)
+Received: from red (99-14-97-149.lightspeed.frokca.sbcglobal.net.
+ [99.14.97.149])
+        by smtp.gmail.com with ESMTPSA id
+ b24-20020a056a0002d800b0050dc76281besm2093506pft.152.2022.05.20.11.30.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 May 2022 11:30:11 -0700 (PDT)
+Received: by red (sSMTP sendmail emulation); Fri, 20 May 2022 14:30:09 -0400
+From: "Jeremy A. Puhlman" <jpuhlman@mvista.com>
 To: yocto@lists.yoctoproject.org
-Cc: Anton.Antonov@arm.com
-Subject: [meta-security][PATCH] Parsec-service: Update installation procedure
-Date: Fri, 20 May 2022 14:41:32 +0100
-Message-Id: <20220520134132.3950011-1-Anton.Antonov@arm.com>
-X-Mailer: git-send-email 2.25.1
+Cc: "Jeremy A. Puhlman" <jpuhlman@mvista.com>
+Subject: [meta-security][PATCH] lib-perl: prefix man pages to avoid
+ conflicting with base perl
+Date: Fri, 20 May 2022 14:30:07 -0400
+Message-Id: <20220520183007.2574658-1-jpuhlman@mvista.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 20 May 2022 13:41:52 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57146
+ <yocto@lists.yoctoproject.org>; Fri, 20 May 2022 18:30:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57147
 
-Signed-off-by: Anton Antonov <Anton.Antonov@arm.com>
+The following occurs when pkgs-docs added to image features.
+
+Error: Transaction test error:
+  file /usr/share/man/man3/lib.3 conflicts between attempted installs of lib-perl-doc-0.63-r0.corei7_64 and perl-doc-5.34.1-r0.corei7_64
+
+Signed-off-by: Jeremy A. Puhlman <jpuhlman@mvista.com>
 ---
- .../parsec-service/files/parsec-tmpfiles.conf    |  1 +
- .../parsec-service/parsec-service_1.0.0.bb       | 16 +++++++++-------
- 2 files changed, 10 insertions(+), 7 deletions(-)
+ recipes-perl/perl/lib-perl_0.63.bb | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/meta-parsec/recipes-parsec/parsec-service/files/parsec-tmpfiles.conf b/meta-parsec/recipes-parsec/parsec-service/files/parsec-tmpfiles.conf
-index fe576a2..954bfa3 100644
---- a/meta-parsec/recipes-parsec/parsec-service/files/parsec-tmpfiles.conf
-+++ b/meta-parsec/recipes-parsec/parsec-service/files/parsec-tmpfiles.conf
-@@ -1,2 +1,3 @@
- #Type   Path            Mode    User    Group   Age     Argument
- d       /run/parsec     755     parsec  parsec  -       -
-+d       /var/lib/parsec 700     parsec  parsec  -       -
-diff --git a/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.0.0.bb b/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.0.0.bb
-index d1d6c07..ad7e560 100644
---- a/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.0.0.bb
-+++ b/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.0.0.bb
-@@ -15,8 +15,8 @@ PACKAGECONFIG ??= "PKCS11 MBED-CRYPTO"
- have_TPM = "${@bb.utils.contains('DISTRO_FEATURES', 'tpm2', 'TPM', '', d)}"
- PACKAGECONFIG:append = " ${@bb.utils.contains('BBFILE_COLLECTIONS', 'tpm-layer', '${have_TPM}', '', d)}"
- 
--PACKAGECONFIG[ALL] = "all-providers cryptoki/generate-bindings tss-esapi/generate-bindings,,tpm2-tss libts,libts"
--PACKAGECONFIG[TPM] = "tpm-provider tss-esapi/generate-bindings,,tpm2-tss"
-+PACKAGECONFIG[ALL] = "all-providers cryptoki/generate-bindings tss-esapi/generate-bindings,,tpm2-tss libts,tpm2-tss libtss2-tcti-device libts"
-+PACKAGECONFIG[TPM] = "tpm-provider tss-esapi/generate-bindings,,tpm2-tss,tpm2-tss libtss2-tcti-device"
- PACKAGECONFIG[PKCS11] = "pkcs11-provider cryptoki/generate-bindings,"
- PACKAGECONFIG[MBED-CRYPTO] = "mbed-crypto-provider,"
- PACKAGECONFIG[CRYPTOAUTHLIB] = "cryptoauthlib-provider,"
-@@ -25,6 +25,9 @@ PACKAGECONFIG[TS] = "trusted-service-provider,,libts,libts"
- PARSEC_FEATURES = "${@d.getVar('PACKAGECONFIG_CONFARGS',True).strip().replace(' ', ',')}"
- CARGO_BUILD_FLAGS += " --features ${PARSEC_FEATURES}"
- 
-+export BINDGEN_EXTRA_CLANG_ARGS
-+BINDGEN_EXTRA_CLANG_ARGS = "--sysroot=${WORKDIR}/recipe-sysroot -I${WORKDIR}/recipe-sysroot/usr/include"
-+
- inherit systemd
- SYSTEMD_SERVICE:${PN} = "parsec.service"
- 
-@@ -35,7 +38,7 @@ INITSCRIPT_NAME = "parsec"
- # The file should also be included into SRC_URI then
- PARSEC_CONFIG ?= "${S}/config.toml"
- 
--do_install:append () {
-+do_install () {
-     # Binaries
-     install -d -m 700 -o parsec -g parsec "${D}${libexecdir}/parsec"
-     install -m 700 -o parsec -g parsec "${WORKDIR}/build/target/${CARGO_TARGET_SUBDIR}/parsec" ${D}${libexecdir}/parsec/parsec
-@@ -44,9 +47,6 @@ do_install:append () {
-     install -d -m 700 -o parsec -g parsec "${D}${sysconfdir}/parsec"
-     install -m 400 -o parsec -g parsec "${PARSEC_CONFIG}" ${D}${sysconfdir}/parsec/config.toml
- 
--    # Data dir
--    install -d -m 700 -o parsec -g parsec "${D}${localstatedir}/lib/parsec"
--
-     if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
-         install -d ${D}${systemd_unitdir}/system
-         install -m 644 ${S}/systemd-daemon/parsec.service ${D}${systemd_unitdir}/system
-@@ -58,6 +58,8 @@ do_install:append () {
-     if ${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', 'true', 'false', d)}; then
-         install -d ${D}${sysconfdir}/init.d
-         install -m 755 ${WORKDIR}/parsec_init ${D}${sysconfdir}/init.d/parsec
-+        # Data dir
-+        install -d -m 700 -o parsec -g parsec "${D}${localstatedir}/lib/parsec"
-     fi
+diff --git a/recipes-perl/perl/lib-perl_0.63.bb b/recipes-perl/perl/lib-perl_0.63.bb
+index 4c964d5..25d0890 100644
+--- a/recipes-perl/perl/lib-perl_0.63.bb
++++ b/recipes-perl/perl/lib-perl_0.63.bb
+@@ -26,3 +26,10 @@ do_compile() {
+ 	export LIBC="$(find ${STAGING_DIR_TARGET}/${base_libdir}/ -name 'libc-*.so')"
+ 	cpan_do_compile
  }
- 
-@@ -65,12 +67,12 @@ inherit useradd
- USERADD_PACKAGES = "${PN}"
- USERADD_PARAM:${PN} = "-r -g parsec -s /bin/false -d ${localstatedir}/lib/parsec parsec"
- GROUPADD_PARAM:${PN} = "-r parsec"
-+GROUPMEMS_PARAM:${PN} = "${@bb.utils.contains('PACKAGECONFIG_CONFARGS', 'tpm-provider', '-a parsec -g tss', '', d)}"
- 
- FILES:${PN} += " \
-     ${sysconfdir}/parsec/config.toml \
-     ${libexecdir}/parsec/parsec \
-     ${systemd_unitdir}/system/parsec.service \
--    ${localstatedir}/lib/parsec \
-     ${libdir}/tmpfiles.d/parsec-tmpfiles.conf \
-     ${sysconfdir}/init.d/parsec \
- "
++
++do_install:append() {
++   # Man pages here conflict wtih the main perl documentation
++   for page in ${D}${mandir}/man*/*; do
++        mv $page $(dirname $page)/${BPN}-$(basename $page)
++    done
++}
 -- 
-2.25.1
+2.35.3
 
 
