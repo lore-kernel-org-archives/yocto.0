@@ -1,96 +1,92 @@
-Return-Path: <jpuhlman@mvista.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3A996C433FE
-	for <webhook@archiver.kernel.org>; Fri, 20 May 2022 18:32:39 +0000 (UTC)
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com
- [209.85.210.176])
- by mx.groups.io with SMTP id smtpd.web10.983.1653071549143034737
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4A066C433EF
+	for <webhook@archiver.kernel.org>; Sat, 21 May 2022 08:00:39 +0000 (UTC)
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
+ [209.85.221.52])
+ by mx.groups.io with SMTP id smtpd.web10.3543.1653120034400712487
  for <yocto@lists.yoctoproject.org>;
- Fri, 20 May 2022 11:32:29 -0700
+ Sat, 21 May 2022 01:00:34 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista.com header.s=google header.b=LqjcIrJP;
- spf=pass (domain: mvista.com, ip: 209.85.210.176,
- mailfrom: jpuhlman@mvista.com)
-Received: by mail-pf1-f176.google.com with SMTP id h13so2153382pfq.5
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=NUNLn2P9;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.52,
+ mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f52.google.com with SMTP id m20so2986766wrb.13
         for <yocto@lists.yoctoproject.org>;
- Fri, 20 May 2022 11:32:29 -0700 (PDT)
+ Sat, 21 May 2022 01:00:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=DCByqNeKQbUiGPK1i6HZY1d0VH0dLt+KYNAGd+OAsMM=;
-        b=LqjcIrJP9f13SQJI7x8dzrP63gqXF262dBnVhENGtBrcz2pnXrNtUWRK33DkHP4jZp
-         cV2EFmNO8hAn9QRQ69a+nFVfi11Qz/OAg6HNKaKdThdomKv3Jco8PX6cWmHt1dUoBAHX
-         +rgGIx8+hkpJUFYLPbcByX1y38y3Uz31h800A=
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:date:in-reply-to:references
+         :content-transfer-encoding:user-agent:mime-version;
+        bh=wbIDU7cazG18iJ8jkaVrZNhKYRhN99CNLR7vqDBdPnU=;
+        b=NUNLn2P98z/9Hb+SqzIRlCbge4Bd5Pq4rrUjqbMRVj+teYw2yD1G2guBwtsm+j/w9P
+         hm3eAxUouxTj9HWhj4637j1flY6VYe4MpDVP6IT1yCSO739ittoq4aqx+eAadqql4bVf
+         EmKlEP7Abrtil8xkSWaa0iRNz1yUtEEBo1Oho=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=DCByqNeKQbUiGPK1i6HZY1d0VH0dLt+KYNAGd+OAsMM=;
-        b=J+gQYVhRSnxB11KDzLYB19VHup6/xuZrahAhph+oj+tMeK0Ut4EaOXxYyd/aws/DMa
-         lsGY8TzAPJx+05u5VxhHtkzr41CxTGKQ2oYC2vgtjqO7C9eSxDtv7xarnVu15CW0waNj
-         sAPnh/CYn28h8ZS+VXYdGd74lME4jlIc5JoZRzV7dnKjcaKRi5Ej3eEYaDWtRHnAEUnj
-         1TppIRDHT7YPbiVCI5LTpc2zxNy+CpDZTVs5+qL9NWctnvWqazfgMRSeGc6nSYrEGun9
-         gq+8fH93l5qMn8vaqZwg63vOl+pzgEVc12+/ji01hBQ3OHbP3iC8i6YQC0HBUABCMamt
-         H63w==
-X-Gm-Message-State: AOAM530U2Y46kMB9DUe9CkMn4Kkb/9LWVgPQg+9gDuR2aHYpD8sISNRI
-	7YTa6iODXJjc7pnDhvEXhopZLTQV4EFF/A==
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:content-transfer-encoding:user-agent:mime-version;
+        bh=wbIDU7cazG18iJ8jkaVrZNhKYRhN99CNLR7vqDBdPnU=;
+        b=d8WxAmRM0ab1FGOFILLqcalsKqZcPSqnwKHdjDkBsNb20/v/sEnaNiGU4oHquPs2vt
+         Pml8LgNPG+2yUEcLMr5y9CgA+pgl0IqJL60zCDOohwQxabG7xauxFsDOSVWUym+4OeZl
+         dh9a+Q81Hn/m2D19P1330csA/yZEMiAlOw7Xmz+mWIChzBC5ZtAVX4AYLGxeD+6daBZE
+         5GEOH1nnz/bm2mLhiVEIk3/y7FWkg3WK2dw+SZDuVjO4zPeG3y+M2qdrYlez0TDiUrAp
+         qwrA1TnYzeD/xp/vAJHB59YH2+xhlCP2YdS1aKEO93qeQdLR8CiSlqJMTC+m33yYItNn
+         GK0Q==
+X-Gm-Message-State: AOAM530PrD6ySUXABwACO5VxvUXTf3uzThMKqBrdm/jJ2PGEtxWjXF2k
+	qaXYmeoqFsb/jtWMYVmXhiK9iQ==
 X-Google-Smtp-Source: 
- ABdhPJxgucxi3SgCTTihG5st0b3WXjpYwyB9nmCqZ7nFEG8lo0r5nuTd/qRtMBQbwYBz9xBuwTn9zA==
-X-Received: by 2002:a63:5:0:b0:3c6:dcb2:428 with SMTP id
- 5-20020a630005000000b003c6dcb20428mr9544474pga.73.1653071548301;
-        Fri, 20 May 2022 11:32:28 -0700 (PDT)
-Received: from red (99-14-97-149.lightspeed.frokca.sbcglobal.net.
- [99.14.97.149])
+ ABdhPJzPa+WqJEc6SXRUtZEda/Tfyk1arja5NBaUHQVrbpvpsF8En+qJBy3X6zUCnjVTcOnVrG0AtA==
+X-Received: by 2002:a5d:6c6e:0:b0:20f:c39b:c416 with SMTP id
+ r14-20020a5d6c6e000000b0020fc39bc416mr3271331wrz.463.1653120032889;
+        Sat, 21 May 2022 01:00:32 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:d812:46de:9e00:ca1c?
+ ([2001:8b0:aba:5f3c:d812:46de:9e00:ca1c])
         by smtp.gmail.com with ESMTPSA id
- e16-20020a17090301d000b0015e8da1f9e8sm79868plh.77.2022.05.20.11.32.26
+ o9-20020adf8b89000000b0020d0351dbb6sm4560555wra.80.2022.05.21.01.00.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 May 2022 11:32:27 -0700 (PDT)
-Received: by red (sSMTP sendmail emulation); Fri, 20 May 2022 14:32:25 -0400
-From: "Jeremy A. Puhlman" <jpuhlman@mvista.com>
-To: yocto@lists.yoctoproject.org
-Cc: "Jeremy A. Puhlman" <jpuhlman@mvista.com>
-Subject: [meta-security][kirkstone][PATCH] lib-perl: prefix man pages to avoid
- conflicting with base perl
-Date: Fri, 20 May 2022 14:32:24 -0400
-Message-Id: <20220520183224.2579404-1-jpuhlman@mvista.com>
-X-Mailer: git-send-email 2.35.3
+        Sat, 21 May 2022 01:00:32 -0700 (PDT)
+Message-ID: 
+ <30bc646fe9b5bce07c051da98aa4a706899f80ee.camel@linuxfoundation.org>
+Subject: Re: [yocto] [psplash][PATCH] Improve warnings from probing for
+ double buffering
+From: richard.purdie@linuxfoundation.org
+To: Zach Welch <zach.welch@timesys.com>, yocto@lists.yoctoproject.org
+Date: Sat, 21 May 2022 09:00:31 +0100
+In-Reply-To: <20211020205154.18972-1-zach.welch@timesys.com>
+References: <20211020205154.18972-1-zach.welch@timesys.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.0-1ubuntu1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 20 May 2022 18:32:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57148
+ <yocto@lists.yoctoproject.org>; Sat, 21 May 2022 08:00:39 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57149
 
-The following occurs when pkgs-docs added to image features.
+On Wed, 2021-10-20 at 13:51 -0700, Zach Welch wrote:
+> Adds missing newline characters in output, while clarifying that these
+> messages are warnings that may be safely ignored.
+>=20
+> Signed-off-by: Zachary T Welch <zach.welch@timesys.com>
+> ---
+>  psplash-fb.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 
-Error: Transaction test error:
-  file /usr/share/man/man3/lib.3 conflicts between attempted installs of lib-perl-doc-0.63-r0.corei7_64 and perl-doc-5.34.1-r0.corei7_64
+This patch had some discussion at the summit and OEDVM.
 
-Signed-off-by: Jeremy A. Puhlman <jpuhlman@mvista.com>
----
- recipes-perl/perl/lib-perl_0.63.bb | 7 +++++++
- 1 file changed, 7 insertions(+)
+For the record, it did actually get merged a day after it was sent!
 
-diff --git a/recipes-perl/perl/lib-perl_0.63.bb b/recipes-perl/perl/lib-perl_0.63.bb
-index 4c964d5..25d0890 100644
---- a/recipes-perl/perl/lib-perl_0.63.bb
-+++ b/recipes-perl/perl/lib-perl_0.63.bb
-@@ -26,3 +26,10 @@ do_compile() {
- 	export LIBC="$(find ${STAGING_DIR_TARGET}/${base_libdir}/ -name 'libc-*.so')"
- 	cpan_do_compile
- }
-+
-+do_install:append() {
-+   # Man pages here conflict wtih the main perl documentation
-+   for page in ${D}${mandir}/man*/*; do
-+        mv $page $(dirname $page)/${BPN}-$(basename $page)
-+    done
-+}
--- 
-2.35.3
+https://git.yoctoproject.org/psplash/commit/?id=3Dfdbd111d6bab2fbbae62a0411=
+23fc6b644aa97aa
+
+Cheers,
+
+Richard
+
+
 
 
