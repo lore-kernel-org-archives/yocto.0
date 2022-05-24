@@ -1,180 +1,558 @@
-Return-Path: <chee.yang.lee@intel.com>
+Return-Path: <yi.zhao@windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A5C2AC433F5
-	for <webhook@archiver.kernel.org>; Tue, 24 May 2022 15:08:17 +0000 (UTC)
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by mx.groups.io with SMTP id smtpd.web08.10627.1653404895239326037
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1876CC433EF
+	for <webhook@archiver.kernel.org>; Tue, 24 May 2022 15:53:18 +0000 (UTC)
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com
+ [205.220.166.238])
+ by mx.groups.io with SMTP id smtpd.web10.11123.1653407595144086548
  for <yocto@lists.yoctoproject.org>;
- Tue, 24 May 2022 08:08:15 -0700
+ Tue, 24 May 2022 08:53:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel
- header.b=azZUkiX9;
- spf=pass (domain: intel.com, ip: 192.55.52.115,
- mailfrom: chee.yang.lee@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1653404895; x=1684940895;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=LOSrZs84EjBfO/l/uI1NP5vXfIaXjohLPh3R0BN7YT4=;
-  b=azZUkiX9PAO6+McwPOTau/Jw2zoQqo6loWZSuZTSUuMKJJmWdy9fcTnl
-   g8DRGZzHF9vzp1H6TOoo2Txqa1XyuyySrznu9TwXbMe2uu2U3VZq1ijTH
-   TDz3Np3GkPmkYvnfKStftm4jSsdLVDvqIz/XkdSY08itxntSB6NxrDFE/
-   3fT/ImYuUCIbUgq1mEoICTErfdiUEMXltiGhHhBn1k/shCmKe/Zbm7A+Q
-   cG+rFy7DcfW7tKy5z2xAyvTAXQkQfitaJMpljCNN0llTiIb1KsXkeHOZq
-   37/CnTks5elIj0tAmgG3dV5nYu6Gojb+ILk6XqB6mUeV4vAngKIhqtxR0
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10357"; a="273669771"
-X-IronPort-AV: E=Sophos;i="5.91,248,1647327600";
-   d="scan'208";a="273669771"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2022 08:08:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,248,1647327600";
-   d="scan'208";a="901076543"
-Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
-  by fmsmga005.fm.intel.com with ESMTP; 24 May 2022 08:08:14 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Tue, 24 May 2022 08:08:14 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Tue, 24 May 2022 08:08:14 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.170)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Tue, 24 May 2022 08:08:14 -0700
+ dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=cvNTR5bL;
+ spf=permerror,
+ err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}:
+ invalid domain name (domain: windriver.com, ip: 205.220.166.238,
+ mailfrom: prvs=214377301e=yi.zhao@windriver.com)
+Received: from pps.filterd (m0250809.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id
+ 24ODqCBI011672;
+	Tue, 24 May 2022 08:53:14 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+ h=from : to :
+ subject : date : message-id : content-transfer-encoding : content-type :
+ mime-version; s=PPS06212021;
+ bh=C91JxVMXexH5byHBXD+e5+EG9MareBoJa62dAyVZkSk=;
+ b=cvNTR5bLy9on1G0tfaC93VMAEUuuqCXBQ7i5D8QFC/tjJ+k7wqdYEnyr2nOWo04d2wPA
+ 2h9z2H0tbR4Hn9iXqp7SfDiOisn9dfUeld2KY/UyMUZljuhbCs7ZKHY5p4Bq97cFUNil
+ r7q5ow0cvjQQl8IUp02AOENDn1WB9PInQTA7gQO/vpGX4xeQ2IU0w9S6D6qbzY3bI/q5
+ BWmS9OhGg5SyYQWDfyrO1+zgFIHFOyTArotX6bu/BQrV/uK4rPpdW8qmiv0jo5ukCxbO
+ FSIl9v7gaV7ou5k84MsQq/G3R3LwDK+GUeafyGTaOD509q5djm6PE1vr8PHOxsTmbu8x Ug==
+Received: from nam11-bn8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11lp2171.outbound.protection.outlook.com [104.47.58.171])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3g6ykht6ty-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 24 May 2022 08:53:13 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=af35PzSiYgVts5HV93KyxVkie1ut4SHexEMq60ZHguW2bLAyelbFz7jnNca7kdFwliZXJFie7QOitNBPTh66P8P5kI6sG3N6orNGwSXIKOORWDZLBowP0ky5yy/A1nikUXLhM2PftWTMvQTV+H7jhF2X25YyIMX1Dd6m3oxKu/vHmSEjA+tKe9SfsqG/HItw4TqJU9fFlrsx9omNgqtDG61OBCoZcaxLYlC33+vmVIh0PzgVbWTorx1YphKNbY26dy3TNQikVATnly1X7nTmPTMArdsWDXC/tD7+353wSp3HS3KI7lH09BuAlut7OKRgwX5kOpW0y3m4qJH3VpwgXw==
+ b=BVeNPA9+LjS4cRoDYHMvVPpd2wFKmiu75UuymR0tVzn7/toUezXsRXKHGI55SN3yzbTIAUml3+29lJmciU1iAVWja7x9/tQjGkPntQ5x8RdZdJvQ7m0IZIgyoS5htatYvJ7Vd2+KSbsCRq6/ByY0/F34Hy6sCf6cl9sHIJlJP8uCKgrRtVyq/pFSLdb89Cfopzfb4Utu+ZBnPmDK5m5f77rv8bZgZKwWRYFOxUdSp8sj/ynsWCdfoirqQPoOdLTpzxfPYXYXBybVsMNnPs6RiDnGMZ7WPK2NHCiJUg7LPAxxYOevEHLV/8Ou2Qj0cIMimuu/GDZYJPsh+9SR7IJsTw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LOSrZs84EjBfO/l/uI1NP5vXfIaXjohLPh3R0BN7YT4=;
- b=l+XP39+6iY5cSgwWtNQ9cRFZI8lfuMJhpwio8H2YrtJ8dAY4gvp6aN6/VGwiepyYacioSbGSeY90YOnjbIyZTaLzLjjUtGT3GDOSQW8Jy37Kuro/VghhALbzFtOqCRtQxidj5CzkNC2OZ2hLTo7VZOldpkf74I0XN5R+eo19GFGzfmC7CVVtW/N0F5QVF7BdxeaX2KvC3UuEO/5piyxX534F43Tl25v9MneDXIIZnlNXkat+SBVUHczf8HFj7RGze19TSD5JIe2Zy8j2zsMfzNExHoWxVQvO7uKwH4iyudeF06xDkghxtrRy+aPfrNbttmaxVO3u0Gv2j8j0HzKo1g==
+ bh=C91JxVMXexH5byHBXD+e5+EG9MareBoJa62dAyVZkSk=;
+ b=dZLzVM8vjYwFHeMfYiAnHGmQLPlc1jL6+aGvAeWPYrBlABpb43s9q+abgioU4vK66EaQ5A+WlMvP/F4OM4UOmtJntcZ9FlkrL6acdGO0FHv7F6+zR1FYBAEU8F6m/HaAOrw5Sqeo8rV41a6Z5DO43RQxeM6vOuu0yHVekskB9JMEfzvSnNmxrVocI0ohednjZsvlJjRRsv4IAo9zkz18AgrdvmCMdaW8Ox9NuynZ+FxprPYwt/0twsmy1NQYQdGtSD4Nku0AJHrefc5B5YZNTXLpJZUMnWO5kTThSc9RJH12awYWXvJNFocDXaFq9hT2EXf/C6x+9QyB5P4UvIymTg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM5PR1101MB2361.namprd11.prod.outlook.com (2603:10b6:3:a6::21)
- by BN6PR11MB1442.namprd11.prod.outlook.com (2603:10b6:405:9::9) with
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Received: from CO1PR11MB4867.namprd11.prod.outlook.com (2603:10b6:303:9a::13)
+ by CH2PR11MB4309.namprd11.prod.outlook.com (2603:10b6:610:44::15) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.13; Tue, 24 May
- 2022 15:08:12 +0000
-Received: from DM5PR1101MB2361.namprd11.prod.outlook.com
- ([fe80::747e:4603:d43b:ab20]) by DM5PR1101MB2361.namprd11.prod.outlook.com
- ([fe80::747e:4603:d43b:ab20%7]) with mapi id 15.20.5273.021; Tue, 24 May 2022
- 15:08:12 +0000
-From: "Lee, Chee Yang" <chee.yang.lee@intel.com>
-To: "michael.opdenacker@bootlin.com" <michael.opdenacker@bootlin.com>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: RE: [yocto] [ANNOUNCEMENT] Yocto Project 4.0.1 is Released
-Thread-Topic: [yocto] [ANNOUNCEMENT] Yocto Project 4.0.1 is Released
-Thread-Index: AdhvFm5PKBkzT4NTRO+mfeQ8P5Xz2QATuGSAAAQDTAA=
-Date: Tue, 24 May 2022 15:08:12 +0000
-Message-ID: 
- <DM5PR1101MB2361303DE1CD0A72067814F6B9D79@DM5PR1101MB2361.namprd11.prod.outlook.com>
-References: 
- <DM5PR1101MB23618956A9330B4B3DF1771AB9D79@DM5PR1101MB2361.namprd11.prod.outlook.com>
- <8c062e04-a9ed-e8a8-fbbf-aee22f29d3c6@bootlin.com>
-In-Reply-To: <8c062e04-a9ed-e8a8-fbbf-aee22f29d3c6@bootlin.com>
-Accept-Language: en-SG, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.500.17
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 61722152-bce1-48d0-69ee-08da3d97388e
-x-ms-traffictypediagnostic: BN6PR11MB1442:EE_
-x-microsoft-antispam-prvs: 
- <BN6PR11MB1442302C71B326C496E62DFCB9D79@BN6PR11MB1442.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- 0VPxVm7bPhTyErqYEWWEmfQ9Y4goP9x6CP0bRDHJJdHWy1vr8mNFK+5wPbmgBLyGpK16JftdJCG5Hmdo/Ldh47GAiKX3iZIqebm3dinpWDeZkhrXAapj/qw0Cbj4CX6l+mOjQryz8B+6Gp1R4o8jzCl1T472ydvlDsXzEdmJ+fkoiomD+v7oaN8GkT6X0DZwP2JoMjCDrWGLo8f2pkq9Fv3XJiObZHB/5zKVtF2VodtFSoJmf/LbNJIIWpL+YRAnyTwB0bDAeKNtGZbLBnltSlk94xesAYLL9lcdXEWONlScfhQG74ZeZJHgg8wZpwCR6lslxqh2mzP+knYIS5XlmxaxNMWC5bpG9zi5IiBe8diN1q+As3ad/7VszunyLP/DI5Y/fkvfb07iZkFsQPtD6sPgUU6XsEsBNyVi8GqZA6bxvAAPMKfimQlC2HcmJdaHgxTVxQgd8J11AdGIR/dxI3HSV39RK+9URmSkoL51Aamiut83hPd4CI8SUy8cBb3LbWJcEF9PgT2QObEIPLF295T/NlkeL7dEXrx1Yq9kG06XGIdLEhRlWh3p5iuRsqf2xrAW/VQHLSbLiQq3HlFd4/NCU+XSgNk+v6OB80C+F/+PVvWeFTRbMGpC49UyVUDNpyj5yv3OANUiRKqtQ8kvDPfaybQxUFdNVN5ovTWhmDdHgjU2++I28/qqtuxMNyOp5hT1WBP6oeD1oMChQGAHoI1nG3CyzGgC+e1P44em2Yyhm5oeSq2n0WgcaPjE3AjMTP+KGA5E6nHnR8TTnCshfg==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR1101MB2361.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(76116006)(8676002)(52536014)(71200400001)(66556008)(66476007)(64756008)(66946007)(66446008)(316002)(86362001)(38070700005)(110136005)(82960400001)(2906002)(122000001)(38100700002)(55016003)(5660300002)(7696005)(6506007)(4744005)(186003)(9686003)(966005)(8936002)(508600001)(33656002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 2
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?Z28vdlJPc1Z1aUVPZ0hqUnJPbFZGNnZJMWt2ZFB0d2dVWmFINlFpNXloUGF6?=
- =?utf-8?B?QTh2eWNPVTJESW1tb3ZPR0JIWWtkSm1jekpRR3ByWUhxV0FkQXFUM1h0RTVD?=
- =?utf-8?B?VW14NVBIL25jMzFRd3hOc0FxVWxyeFUremREUEFYcm5mcFNMdnRBQVJ0Q1ZC?=
- =?utf-8?B?Z2cyRWE4d2NQc3l4OVdhd0RhZVdDUjRnWC9LZjVLcEozK3Y1NDJ3KzJsTjN5?=
- =?utf-8?B?Y2lZSGl5cm11NmUyRXF2UE5RYnp0ZlArZzFYYlFtT3Jrc0p2YmxTWEp4TkNw?=
- =?utf-8?B?VndmMXcwVXN6aGtVeWRXQnlqN3h5WndsR20zbVYvNkNzQngrSkxKemlVaERE?=
- =?utf-8?B?bXYxVTlFd1kyYnpUTHEzOTJGWUpGZVA0NUYvelVGbzB4T0hNR284UUt6Y2Vu?=
- =?utf-8?B?QSswVVp0NFRsZm1pdzBYRjBQS2x3MzE4bFU2SzNzbHdXMVBRdzhNZnVHNGxZ?=
- =?utf-8?B?OTkzbGgvWm8welo5bUpyd1paQ1ZZUllNY2lueDh2Q0VlMC9WNTByb3dkNGF3?=
- =?utf-8?B?enh0N3dPWStUVXZXMEJJN2p2NmJtaWtaRmRNWXJteU9ia0VGSHFWelJMdGNk?=
- =?utf-8?B?NnlTWGR5MEJCRjVPSTJVRlNLZFRsdkVPUDVod0RQYU1oRU1hdUtOZlpyY1A5?=
- =?utf-8?B?TkJsK3AxVUdpTmFhREx1UXY4OCt0eFZ1OEE1bVNBb3VNWGl5QjVCWXZsVk5r?=
- =?utf-8?B?N2hZV1Jscy9QUGwvelFodk1FTU5vY1pIMWZmRml6ZTZMRDc3WExjUy9Nd1h5?=
- =?utf-8?B?MnNlNzBCMFlnRjZYR0ZiTURxYk5OL1VaK0VXdjdiWG5xazhyNXV5eXF0aVRF?=
- =?utf-8?B?SEN5TU5SRkpGTkptdFhJQ0RpdG40d3dsUXBZOXI0emdsMk9PUXBKVmswTzdm?=
- =?utf-8?B?ZlZud2VmQ3d6a2NyZUhVb2M1dUp2bk5LcWYyT2JjakdJV09qc3VIKzM2ZnB3?=
- =?utf-8?B?Z3RabE5QRGdpNEdwa2gxS3NVenk4S2x6dlQ3ZGRZaEhDVVRnRTNNT1kzNlYw?=
- =?utf-8?B?dHhBSTgzTitMYzhTai90bnRsWGJYM0JXTU5KaWc2ZitHWWxXRUFGNHZyUjRv?=
- =?utf-8?B?RndsSFZydVA1RU04b2lTS0J2b3Y1ZlQzRkYwZm9LWkx6aU1DK0F3YVNKL3Jr?=
- =?utf-8?B?NVo3Nkg3RHp2L2hQdGVXdlpZeUttc25vcktYQjk1QWR1R1RGQVNXV0M2OGRt?=
- =?utf-8?B?d3RWbG1yUVZNV2ZZekZ0RWVsams4eXhrNkhFeVBOdXhzb1dodjJnMGttUXZO?=
- =?utf-8?B?VTdXdE4xSU1NSEQxbXNIWlhpc3VKQXNUellpR2VOMkpRREdkZEwzcXRSOUpJ?=
- =?utf-8?B?M0c4cnJsNVZyWktHbUljcjBvM3p5M2dUSUUyNzg1TnNkdThHNHBGTER1aGNo?=
- =?utf-8?B?eGc4UzYxbGFIaXVFVmYwOE5UbHBib29iVW1nNUdBY2pmKzlJam82bEkxeHZN?=
- =?utf-8?B?dy9vazBZQU5sZkFxb1V1Tkhwak5pKzEwS1JsZEVjK2RhdFBoYjBhQW5XNGxZ?=
- =?utf-8?B?ZlIwL0x5UjRDV0dMNk5lZmhyM2FUY3NrUjlJQTNzS2JEVVI0WCtFS3lQaDJL?=
- =?utf-8?B?N2hISjRVNFBsMS9QZEErZ2FZSVJncmQxRE1ncUZhNUhVZ3hNVWZBbDdvL2hN?=
- =?utf-8?B?V2E4c3BZak1jVHBKdEhrR2RwUG9USWNJbTc2cWkvWW4vVXI1TmVPZXMwaGpX?=
- =?utf-8?B?QUkxSUY1V2x5b2kyVkVENldSekRIM09LL2I1QjNWYm5sdEYvNkt0VUc4Nmp2?=
- =?utf-8?B?S1JyK3MyUVQ2OE9RZU9pUmkwcWtrRWtKVjkzUWpidXZyK1JBbWxkNUsyaHdC?=
- =?utf-8?B?aGZuK0tCcHQwUzhsekMyVzJhdm9JcGlKemVTWjNSVy9KZURDdG56MzdBeGlB?=
- =?utf-8?B?MTFRWmNIN0JXeTZadUFtSWw3czcwWDJTN0EvWHZnY3BVQ0dXbU5LaTVnblVU?=
- =?utf-8?B?aEtRb3lmV1F0YWk0Y0VKM0JuWDBvaE5uMkNQSTRPR3A0cStYZCtTNUpVUlZT?=
- =?utf-8?B?Nk0vMkxiM2t3ZUhSUUVXV28vTXNBRHBidllDRUFlcXFkWGluTjFyY0NsRmlN?=
- =?utf-8?B?eWFMb0Y4V1BrQ3NacFdhVVpraUNRQy9JbmNEaFY3RjJOVS8vczBqeTBKbFhk?=
- =?utf-8?B?KzRUU0pjY1JlS0Fuc2ZUN1BDV0MxdTZ5QVUrSko4eTlvVXdOVnNpbjBSVUd2?=
- =?utf-8?B?RzFtaTVmSlRmb2ZhamRVemh0Y3c5NTRkYUdxby9xQWI1ZkRJQysvWXZwTmJI?=
- =?utf-8?B?eUV1S1cwNzBPTkJ2Mm51UXNoaU54VlMxeFZJWE85amMzTWpmdUhKQ3BMSFJs?=
- =?utf-8?B?Nm9KdlFtYjBCUVRDb0F5UDdrTzFMcEcvTzBhZGNqNklTQjNkTWtuVFpoaUM0?=
- =?utf-8?Q?8VUUJm/fY0FLPkdKhZX/5ehGbe+JIFoCtXYXb8xfAGHSf?=
-x-ms-exchange-antispam-messagedata-1: Wgzo/Hri2zQFgw==
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ 2022 15:53:10 +0000
+Received: from CO1PR11MB4867.namprd11.prod.outlook.com
+ ([fe80::887b:8092:7a51:e202]) by CO1PR11MB4867.namprd11.prod.outlook.com
+ ([fe80::887b:8092:7a51:e202%7]) with mapi id 15.20.5273.023; Tue, 24 May 2022
+ 15:53:10 +0000
+From: Yi Zhao <yi.zhao@windriver.com>
+To: yocto@lists.yoctoproject.org, joe_macdonald@mentor.com, joe@deserted.net
+Subject: [meta-selinux][master][kirkstone][PATCH 1/2] refpolicy: backport
+ patches to fix policy issues for systemd 250
+Date: Tue, 24 May 2022 23:52:53 +0800
+Message-Id: <20220524155254.2161000-1-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SL2P216CA0011.KORP216.PROD.OUTLOOK.COM
+ (2603:1096:100:18::21) To CO1PR11MB4867.namprd11.prod.outlook.com
+ (2603:10b6:303:9a::13)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: 
- DM5PR1101MB2361.namprd11.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 51ce2521-8a21-4d27-a411-08da3d9d8045
+X-MS-TrafficTypeDiagnostic: CH2PR11MB4309:EE_
+X-Microsoft-Antispam-PRVS: 
+	<CH2PR11MB430940EB8A6488B5526F52AFF9D79@CH2PR11MB4309.namprd11.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	4qJR40aC30OXrtggppvCzJ+14ZggVUvh9S96BiaSBj/P7hrz9SgyKtg1JZsFoeRKF06gJQNSRJg79Jzp2wrGtPkZmryH3+Rm1sQ0xygKeMJHMsvmks/7cWwnsuJUCGv30TYgDA9M8BtL/5E+Uxx0lJkRNF6jqlpDWi0YJHkY48WDe2JA0ef6KCIwlWs07tdmgTCZJ5OWjou6x3umvoPBWNy3LfDq3+ylFLs42XzmNRjtAzpPFu4LTapk0D0HVNAeeIwnCZpfHh14lo3UxGL6aFrykXbyIvQadmBu3XxW0UvrqLW2pJ9aLZAXTjplCKdd8Kv5duXG/3FQooTGyiBL3cxc11IFRgXSgqOdTdnEWHmSbco6ERKKbT9TRRKWx8vJPnVmNquTq+vQWdn/hdTDdkHF+QSYMfRMjjVjd5YgHq42Ku+4iOQkH95RE4SqO/DH3EOgsmNGTpXZ33chHn7AOq2H6yhEBBQReRGAE5aEnRyAxuWpohWDvVYoO+OKtYrv7KButFvIVYuCUFY5xmDLwgsF3A3Z7kP83CeNnIpb6rDdpuqDDRnpJ6ZalAOj296tL7gJEbGMHwN6qdWmygMJTt3FKeohNp+pYmQa/JgdCZUnWxLmyJ/r9qbOHVped4XAhgavm/E23xa10GIWJAjkk1E22GR3yf75hYCixI072dhaZhm2ULN5su2uuDLqJv6ThEYSfOxIVJZbnsibMGAuOTdt0TDZwfIaKPYBYAnr20bdYcbSjVyRs2xUQc90C8peavvEbWs94nvUV1HHuGwkPvz5HAI7WoqnAP1km//BqyJpeaCR1tNp2kyzBXAmEcedglgFa+6zFRLt2KjP+bKHtQ==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4867.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(44832011)(316002)(52116002)(30864003)(26005)(6512007)(2616005)(6506007)(86362001)(38350700002)(38100700002)(2906002)(66556008)(8676002)(66946007)(66476007)(6486002)(8936002)(508600001)(6666004)(5660300002)(83380400001)(36756003)(186003)(1076003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?us-ascii?Q?iPg5OOzGg+iACqzjh5E6iEGu2C6VLVUnTxibUCogUtVumrBQNoFfdezN1Fvy?=
+ =?us-ascii?Q?hf2wqrERpbKBvOzjLroDmlWns98U7avNpjpynBlblhwyqv653RV0E1kDVgqN?=
+ =?us-ascii?Q?HjAHbBSkcTcGbYnbciQaea6m3kdXAp83p03S7tUs/4GOaGOa9t/WgoWbkKdG?=
+ =?us-ascii?Q?OFtKCZb8F/oR0gc439GvM01ejiPgFt0WNoSU6qcGH5O9BXc1DjXpIsagGtDR?=
+ =?us-ascii?Q?CU9POjfQLYlIsukPxbOs+14V2BJd31ckgmZzicywnN5tjZTUALhX4qPnZUwY?=
+ =?us-ascii?Q?eQ5DSFRzDYH57dg+jrCNxCRDJ0jmrMVR29jeCmlqWVqhg6OmQ8lXMctMALVw?=
+ =?us-ascii?Q?Q2lv4fuOYNSJkmUSxbIaqqTdsVVCeyyqquYKvZ5ktCKBF2ZGgoRZZhpwM//q?=
+ =?us-ascii?Q?YIKECxvRNwVXEqX8xUhsgbI3YqfZibk2ac2WPZbdp50+qVIuYq3RsX3v072D?=
+ =?us-ascii?Q?5sHGLrytrKY5xIP1IODUr3FZcC04C1phHHcPCYwf98wJnlga0GPWejbt9ZwC?=
+ =?us-ascii?Q?1TVlisDCE446ylVWivAhbXcc4XsnF/GSsgDLLYVt6q3LwQ4XPv7tJvl7RKwD?=
+ =?us-ascii?Q?qRwLBdd3tgOGUuldOQs4OVnYnX2q2cX/7TrAMD/jzR/qbuERL/rBGD6ZestD?=
+ =?us-ascii?Q?nnfl2UJ0RaRq0rF2/HKMdPV5Y7cdpRvdyvHloh+xatf9QKaSnTB57PWYVSIM?=
+ =?us-ascii?Q?XAaSHKAygfectlQa4ON/cyRHm1IW4v3B2n6nmR5Lj8uWB9/jwMncD0McSOPr?=
+ =?us-ascii?Q?/ILdUH4EhuzDoyDysFrJxyZPcvk1Vs4ns0vtYxChMjahjyoHjmIcBP4XmoZC?=
+ =?us-ascii?Q?EiThwEeTM+FrcrMR+a4lxLDKc35AQUzT4exzjqCbR+0yOTI1DqAOGYCFihYP?=
+ =?us-ascii?Q?Q12tiCWlifb5jz+cavrrMBG5AD+mEpnPmCx0VKOkJr1EFNNtTsyZ9QGOKW0N?=
+ =?us-ascii?Q?gUWaZMR+43SJjTu7cdhPfc01zTxZR4buqDftCu9RqKjhNpZMnbAVNQ3UR9U2?=
+ =?us-ascii?Q?7+qYWGzU8RMJrAe91FnBh2y23q9y4oviE8Tsr2oNd7hprVKYb8EM0uYPZC25?=
+ =?us-ascii?Q?e6NSjt9QHumHP0HXMCpPSWM4p2B/drdcCTy1Av1uls7WbKwy3lV/nyPuRGty?=
+ =?us-ascii?Q?xikS3DAi8328A+ftPW3oDejB7d9XCm1XYpU7pN22NMShBiJlwMtzYpb4PjnH?=
+ =?us-ascii?Q?eq31YAJ0SsTCOjhAiK3zb1bnM2X4JUnNN4qsEjfTmjw+iEFqVs60F3fATIgf?=
+ =?us-ascii?Q?EQXwvPoLxTdNSD0fTQC3S2MUYDXbXiaLe26PWrG2ZOY6ZwhPcszvydhfK/kV?=
+ =?us-ascii?Q?bQmHUcrvmLDPC9MonmXUYJhnh3PKNZBzmNyC2KFVVOh8E+Z9XhAsomDcIM35?=
+ =?us-ascii?Q?qseyMCvrUAv74B30NuCfa7vXaej6DWGfeewe8sh60uUslg8irrqpRH7AaNrQ?=
+ =?us-ascii?Q?Y7XGR2f9aC28w1A5nXei55Dnoc/Maajz3EcmUtH2TBxGHHb+f6OHNDXnlq/a?=
+ =?us-ascii?Q?nuCikaho2VDGSiTD5P3kG2HL9wtA3OVBhlmxFphHuV3EcD9n9JlHoqC7Hbi2?=
+ =?us-ascii?Q?Pd6aKcqyTc7TNT0DOmI/A7MVt460kP18ZGwKCEdfVB+tJxWfCSlDig45wXsY?=
+ =?us-ascii?Q?sND3UK0e7Cxc/2tT3ieHfQ+B2vVjhbT/0K1a5FejoqsvApVg47xhuJDkXhm6?=
+ =?us-ascii?Q?DaXrKmXWQfnQrn4K86MNxvakIRKm9ebYOj3F7wISZ+7AczjyNKrpR25hjSBj?=
+ =?us-ascii?Q?kMBxMQ38wQ=3D=3D?=
+X-OriginatorOrg: windriver.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 61722152-bce1-48d0-69ee-08da3d97388e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 May 2022 15:08:12.4403
+ 51ce2521-8a21-4d27-a411-08da3d9d8045
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4867.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 May 2022 15:53:10.0366
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- DAbL3UpxpRrtmGgMyCKaFjtbmXeKKPHnjk+2a4/Wy9bvveBN4C4wBVifRWwrbA01xALNI9KlCiI3sKPKyvw1xw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB1442
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ JGqWFReQiZIa49EIw+wBD8Kyk3lYE96pUp7ibU3NIkeYguQQlDu++ZgIMufhXoUIXATXB6HrC8dYsc+FhCW4Yw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR11MB4309
+X-Proofpoint-GUID: -caFtN5HlZb5MGv2oS29nN3ZT1qqeEbQ
+X-Proofpoint-ORIG-GUID: -caFtN5HlZb5MGv2oS29nN3ZT1qqeEbQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.874,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-05-24_08,2022-05-23_01,2022-02-23_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 malwarescore=0
+ priorityscore=1501 adultscore=0 lowpriorityscore=0 spamscore=0 bulkscore=0
+ mlxscore=0 suspectscore=0 impostorscore=0 mlxlogscore=999 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2202240000
+ definitions=main-2205240082
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 24 May 2022 15:08:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57178
+ <yocto@lists.yoctoproject.org>; Tue, 24 May 2022 15:53:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57179
 
-PiBOb3cgdGhhdCB3ZSBhbHNvIGhhdmUgcmVsZWFzZSBub3RlcyBpbiB0aGUgZG9jdW1lbnRhdGlv
-biAoc2VlDQo+IGh0dHBzOi8vZG9jcy55b2N0b3Byb2plY3Qub3JnL21pZ3JhdGlvbi1ndWlkZXMv
-cmVsZWFzZS1ub3Rlcy0zLjQuMi5odG1sDQo+IGZvciBleGFtcGxlLCBhbmQgdGhlIHNvdXJjZSBj
-b2RlIG9uDQo+IGh0dHBzOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcveW9jdG8tZG9jcy90cmVlL2Rv
-Y3VtZW50YXRpb24vbWlncmF0aW9uLQ0KPiBndWlkZXMvcmVsZWFzZS1ub3Rlcy0zLjQuMi5yc3Qp
-LA0KPiB3aGF0IGFib3V0IG1vZGlmeWluZyB0aGUgc2NyaXB0cyB0byBnZW5lcmF0ZSBzdWNoIG5v
-dGVzIGRpcmVjdGx5IGluIFNwaGlueA0KPiBzeW50YXgsIGFuZCByaWdodCBiZWZvcmUgYSBuZXcg
-cmVsZWFzZSBpcyBtYWRlLCBhZGQgdGhlbSB0byB0aGUNCj4gZG9jdW1lbnRhdGlvbiBkaXJlY3Rv
-cnk/DQpUaGlzIGlzIGluIG15IHRvIGRvIGxpc3QuICANCg0KQ2hlZSBZYW5nICANCg==
+Backport the following patches to fix systemd-resolved and
+systemd-netowrkd policy issues:
+  systemd-systemd-resolved-is-linked-to-libselinux.patch
+  sysnetwork-systemd-allow-DNS-resolution-over-io.syst.patch
+  term-init-allow-systemd-to-watch-and-watch-reads-on-.patch
+  systemd-add-file-transition-for-systemd-networkd-run.patch
+  systemd-add-missing-file-context-for-run-systemd-net.patch
+  systemd-add-file-contexts-for-systemd-network-genera.patch
+  systemd-udev-allow-udev-to-read-systemd-networkd-run.patch
+
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+---
+ ...emd-resolved-is-linked-to-libselinux.patch | 33 +++++++
+ ...md-allow-DNS-resolution-over-io.syst.patch | 63 +++++++++++++
+ ...systemd-to-watch-and-watch-reads-on-.patch | 94 +++++++++++++++++++
+ ...-transition-for-systemd-networkd-run.patch | 32 +++++++
+ ...ing-file-context-for-run-systemd-net.patch | 29 ++++++
+ ...-contexts-for-systemd-network-genera.patch | 38 ++++++++
+ ...ow-udev-to-read-systemd-networkd-run.patch | 34 +++++++
+ .../refpolicy/refpolicy_common.inc            |  7 ++
+ 8 files changed, 330 insertions(+)
+ create mode 100644 recipes-security/refpolicy/refpolicy/0062-systemd-systemd-resolved-is-linked-to-libselinux.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0063-sysnetwork-systemd-allow-DNS-resolution-over-io.syst.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0064-term-init-allow-systemd-to-watch-and-watch-reads-on-.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0065-systemd-add-file-transition-for-systemd-networkd-run.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0066-systemd-add-missing-file-context-for-run-systemd-net.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0067-systemd-add-file-contexts-for-systemd-network-genera.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy/0068-systemd-udev-allow-udev-to-read-systemd-networkd-run.patch
+
+diff --git a/recipes-security/refpolicy/refpolicy/0062-systemd-systemd-resolved-is-linked-to-libselinux.patch b/recipes-security/refpolicy/refpolicy/0062-systemd-systemd-resolved-is-linked-to-libselinux.patch
+new file mode 100644
+index 0000000..e0db7d3
+--- /dev/null
++++ b/recipes-security/refpolicy/refpolicy/0062-systemd-systemd-resolved-is-linked-to-libselinux.patch
+@@ -0,0 +1,33 @@
++From 52a4222397f5d3b28ca15a45bb2ace209a4afc3e Mon Sep 17 00:00:00 2001
++From: Kenton Groombridge <me@concord.sh>
++Date: Thu, 31 Mar 2022 13:09:10 -0400
++Subject: [PATCH] systemd: systemd-resolved is linked to libselinux
++
++systemd-resolved as of systemd 250 fails to start with this error:
++
++Failed to initialize SELinux labeling handle: No such file or directory
++
++Upstream-Status: Backport
++[https://github.com/SELinuxProject/refpolicy/commit/3a22db2410de479e5baa88f3f668a7a4ac198950]
++
++Signed-off-by: Kenton Groombridge <me@concord.sh>
++Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
++---
++ policy/modules/system/systemd.te | 1 +
++ 1 file changed, 1 insertion(+)
++
++diff --git a/policy/modules/system/systemd.te b/policy/modules/system/systemd.te
++index 8cea6baa1..beb301cc6 100644
++--- a/policy/modules/system/systemd.te
+++++ b/policy/modules/system/systemd.te
++@@ -1261,6 +1261,7 @@ fs_getattr_cgroup(systemd_resolved_t)
++ 
++ init_dgram_send(systemd_resolved_t)
++ 
+++seutil_libselinux_linked(systemd_resolved_t)
++ seutil_read_file_contexts(systemd_resolved_t)
++ 
++ systemd_log_parse_environment(systemd_resolved_t)
++-- 
++2.25.1
++
+diff --git a/recipes-security/refpolicy/refpolicy/0063-sysnetwork-systemd-allow-DNS-resolution-over-io.syst.patch b/recipes-security/refpolicy/refpolicy/0063-sysnetwork-systemd-allow-DNS-resolution-over-io.syst.patch
+new file mode 100644
+index 0000000..63da7cd
+--- /dev/null
++++ b/recipes-security/refpolicy/refpolicy/0063-sysnetwork-systemd-allow-DNS-resolution-over-io.syst.patch
+@@ -0,0 +1,63 @@
++From 1ba0911e157c64ea15636c5707f38f1bdc9a46c8 Mon Sep 17 00:00:00 2001
++From: Kenton Groombridge <me@concord.sh>
++Date: Wed, 27 Apr 2022 01:09:52 -0400
++Subject: [PATCH] sysnetwork, systemd: allow DNS resolution over
++ io.systemd.Resolve
++
++Upstream-Status: Backport
++[https://github.com/SELinuxProject/refpolicy/commit/1a0acc9c0d8c7c49ad4ca2cabd44bc66450f45e0]
++
++Signed-off-by: Kenton Groombridge <me@concord.sh>
++Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
++---
++ policy/modules/system/sysnetwork.if |  1 +
++ policy/modules/system/systemd.if    | 21 +++++++++++++++++++++
++ 2 files changed, 22 insertions(+)
++
++diff --git a/policy/modules/system/sysnetwork.if b/policy/modules/system/sysnetwork.if
++index 8664a67c8..140d48508 100644
++--- a/policy/modules/system/sysnetwork.if
+++++ b/policy/modules/system/sysnetwork.if
++@@ -844,6 +844,7 @@ interface(`sysnet_dns_name_resolve',`
++ 	ifdef(`init_systemd',`
++ 		optional_policy(`
++ 			systemd_dbus_chat_resolved($1)
+++			systemd_stream_connect_resolved($1)
++ 		')
++ 		# This seems needed when the mymachines NSS module is used
++ 		optional_policy(`
++diff --git a/policy/modules/system/systemd.if b/policy/modules/system/systemd.if
++index 5f2038f22..9143fb4c0 100644
++--- a/policy/modules/system/systemd.if
+++++ b/policy/modules/system/systemd.if
++@@ -1835,6 +1835,27 @@ interface(`systemd_tmpfilesd_managed',`
++ 	')
++ ')
++ 
+++#######################################
+++## <summary>
+++##	Connect to systemd resolved over
+++##	/run/systemd/resolve/io.systemd.Resolve .
+++## </summary>
+++## <param name="domain">
+++##	<summary>
+++##	Domain allowed access.
+++##	</summary>
+++## </param>
+++#
+++interface(`systemd_stream_connect_resolved',`
+++	gen_require(`
+++		type systemd_resolved_t;
+++		type systemd_resolved_runtime_t;
+++	')
+++
+++	files_search_runtime($1)
+++	stream_connect_pattern($1, systemd_resolved_runtime_t, systemd_resolved_runtime_t, systemd_resolved_t)
+++')
+++
++ ########################################
++ ## <summary>
++ ##   Send and receive messages from
++-- 
++2.25.1
++
+diff --git a/recipes-security/refpolicy/refpolicy/0064-term-init-allow-systemd-to-watch-and-watch-reads-on-.patch b/recipes-security/refpolicy/refpolicy/0064-term-init-allow-systemd-to-watch-and-watch-reads-on-.patch
+new file mode 100644
+index 0000000..88f070d
+--- /dev/null
++++ b/recipes-security/refpolicy/refpolicy/0064-term-init-allow-systemd-to-watch-and-watch-reads-on-.patch
+@@ -0,0 +1,94 @@
++From 50670946f04257cc2110facbc61884e2cf0d8327 Mon Sep 17 00:00:00 2001
++From: Kenton Groombridge <me@concord.sh>
++Date: Fri, 6 May 2022 21:16:29 -0400
++Subject: [PATCH] term, init: allow systemd to watch and watch reads on
++ unallocated ttys
++
++As of systemd 250, systemd needs to be able to add a watch on and watch
++reads on unallocated ttys in order to start getty.
++
++systemd[55548]: getty@tty1.service: Failed to set up standard input: Permission denied
++systemd[55548]: getty@tty1.service: Failed at step STDIN spawning /sbin/agetty: Permission denied
++
++time->Fri May  6 21:17:58 2022
++type=PROCTITLE msg=audit(1651886278.452:1770): proctitle="(agetty)"
++type=PATH msg=audit(1651886278.452:1770): item=0 name="/dev/tty1" inode=18 dev=00:05 mode=020620 ouid=0 ogid=5 rdev=04:01 obj=system_u:object_r:tty_device_t:s0 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
++type=CWD msg=audit(1651886278.452:1770): cwd="/"
++type=SYSCALL msg=audit(1651886278.452:1770): arch=c000003e syscall=254 success=no exit=-13 a0=3 a1=60ba5c21e020 a2=18 a3=23 items=1 ppid=1 pid=55551 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="(agetty)" exe="/lib/systemd/systemd" subj=system_u:system_r:init_t:s0 key=(null)
++type=AVC msg=audit(1651886278.452:1770): avc:  denied  { watch watch_reads } for  pid=55551 comm="(agetty)" path="/dev/tty1" dev="devtmpfs" ino=18 scontext=system_u:system_r:init_t:s0 tcontext=system_u:object_r:tty_device_t:s0 tclass=chr_file permissive=0
++
++Upstream-Status: Backport
++[https://github.com/SELinuxProject/refpolicy/commit/308ab9f69a4623f5dace8da151e70c6316f055a8]
++
++Signed-off-by: Kenton Groombridge <me@concord.sh>
++Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
++---
++ policy/modules/kernel/terminal.if | 38 +++++++++++++++++++++++++++++++
++ policy/modules/system/init.te     |  2 ++
++ 2 files changed, 40 insertions(+)
++
++diff --git a/policy/modules/kernel/terminal.if b/policy/modules/kernel/terminal.if
++index e8c0735eb..6e9f654ac 100644
++--- a/policy/modules/kernel/terminal.if
+++++ b/policy/modules/kernel/terminal.if
++@@ -1287,6 +1287,44 @@ interface(`term_dontaudit_use_unallocated_ttys',`
++ 	dontaudit $1 tty_device_t:chr_file rw_chr_file_perms;
++ ')
++ 
+++########################################
+++## <summary>
+++##	Watch unallocated ttys.
+++## </summary>
+++## <param name="domain">
+++##	<summary>
+++##	Domain allowed access.
+++##	</summary>
+++## </param>
+++#
+++interface(`term_watch_unallocated_ttys',`
+++	gen_require(`
+++		type tty_device_t;
+++	')
+++
+++	dev_list_all_dev_nodes($1)
+++	allow $1 tty_device_t:chr_file watch;
+++')
+++
+++########################################
+++## <summary>
+++##	Watch reads on unallocated ttys.
+++## </summary>
+++## <param name="domain">
+++##	<summary>
+++##	Domain allowed access.
+++##	</summary>
+++## </param>
+++#
+++interface(`term_watch_reads_unallocated_ttys',`
+++	gen_require(`
+++		type tty_device_t;
+++	')
+++
+++	dev_list_all_dev_nodes($1)
+++	allow $1 tty_device_t:chr_file watch_reads;
+++')
+++
++ ########################################
++ ## <summary>
++ ##	Get the attributes of all tty device nodes.
++diff --git a/policy/modules/system/init.te b/policy/modules/system/init.te
++index 5a19f0e43..24cef0924 100644
++--- a/policy/modules/system/init.te
+++++ b/policy/modules/system/init.te
++@@ -518,6 +518,8 @@ ifdef(`init_systemd',`
++ 	term_create_devpts_dirs(init_t)
++ 	term_create_ptmx(init_t)
++ 	term_create_controlling_term(init_t)
+++	term_watch_unallocated_ttys(init_t)
+++	term_watch_reads_unallocated_ttys(init_t)
++ 
++ 	# udevd is a "systemd kobject uevent socket activated daemon"
++ 	udev_create_kobject_uevent_sockets(init_t)
++-- 
++2.25.1
++
+diff --git a/recipes-security/refpolicy/refpolicy/0065-systemd-add-file-transition-for-systemd-networkd-run.patch b/recipes-security/refpolicy/refpolicy/0065-systemd-add-file-transition-for-systemd-networkd-run.patch
+new file mode 100644
+index 0000000..1029490
+--- /dev/null
++++ b/recipes-security/refpolicy/refpolicy/0065-systemd-add-file-transition-for-systemd-networkd-run.patch
+@@ -0,0 +1,32 @@
++From 6f8a8ecd8bafd6e8a3515b53db2a2982a02ff254 Mon Sep 17 00:00:00 2001
++From: Kenton Groombridge <me@concord.sh>
++Date: Thu, 31 Mar 2022 13:22:37 -0400
++Subject: [PATCH] systemd: add file transition for systemd-networkd runtime
++
++systemd-networkd creates the /run/systemd/network directory which should
++be labeled appropriately.
++
++Upstream-Status: Backport
++[https://github.com/SELinuxProject/refpolicy/commit/663b62f27cb12c22f056eba9326cf3f7f78d8a9e]
++
++Signed-off-by: Kenton Groombridge <me@concord.sh>
++Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
++---
++ policy/modules/system/systemd.te | 1 +
++ 1 file changed, 1 insertion(+)
++
++diff --git a/policy/modules/system/systemd.te b/policy/modules/system/systemd.te
++index beb301cc6..654c6a42a 100644
++--- a/policy/modules/system/systemd.te
+++++ b/policy/modules/system/systemd.te
++@@ -917,6 +917,7 @@ auth_use_nsswitch(systemd_networkd_t)
++ 
++ init_dgram_send(systemd_networkd_t)
++ init_read_state(systemd_networkd_t)
+++init_runtime_filetrans(systemd_networkd_t, systemd_networkd_runtime_t, dir)
++ 
++ logging_send_syslog_msg(systemd_networkd_t)
++ 
++-- 
++2.25.1
++
+diff --git a/recipes-security/refpolicy/refpolicy/0066-systemd-add-missing-file-context-for-run-systemd-net.patch b/recipes-security/refpolicy/refpolicy/0066-systemd-add-missing-file-context-for-run-systemd-net.patch
+new file mode 100644
+index 0000000..f84eb4a
+--- /dev/null
++++ b/recipes-security/refpolicy/refpolicy/0066-systemd-add-missing-file-context-for-run-systemd-net.patch
+@@ -0,0 +1,29 @@
++From 2e3f371b59bee343c42e4c69495df0f3719b6e24 Mon Sep 17 00:00:00 2001
++From: Kenton Groombridge <me@concord.sh>
++Date: Sat, 2 Apr 2022 15:44:01 -0400
++Subject: [PATCH] systemd: add missing file context for /run/systemd/network
++
++Upstream-Status: Backport
++[https://github.com/SELinuxProject/refpolicy/commit/f2fe1ae15485da7b6269b7d0d7dbed9a834f1876]
++
++Signed-off-by: Kenton Groombridge <me@concord.sh>
++Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
++---
++ policy/modules/system/systemd.fc | 1 +
++ 1 file changed, 1 insertion(+)
++
++diff --git a/policy/modules/system/systemd.fc b/policy/modules/system/systemd.fc
++index 34db8c034..d21914227 100644
++--- a/policy/modules/system/systemd.fc
+++++ b/policy/modules/system/systemd.fc
++@@ -85,6 +85,7 @@ HOME_DIR/\.local/share/systemd(/.*)?		gen_context(system_u:object_r:systemd_data
++ 
++ /run/systemd/ask-password(/.*)?	gen_context(system_u:object_r:systemd_passwd_runtime_t,s0)
++ /run/systemd/ask-password-block(/.*)?	gen_context(system_u:object_r:systemd_passwd_runtime_t,s0)
+++/run/systemd/network(/.*)?  gen_context(system_u:object_r:systemd_networkd_runtime_t,s0)
++ /run/systemd/resolve(/.*)?  gen_context(system_u:object_r:systemd_resolved_runtime_t,s0)
++ /run/systemd/seats(/.*)?	gen_context(system_u:object_r:systemd_sessions_runtime_t,s0)
++ /run/systemd/sessions(/.*)?	gen_context(system_u:object_r:systemd_sessions_runtime_t,s0)
++-- 
++2.25.1
++
+diff --git a/recipes-security/refpolicy/refpolicy/0067-systemd-add-file-contexts-for-systemd-network-genera.patch b/recipes-security/refpolicy/refpolicy/0067-systemd-add-file-contexts-for-systemd-network-genera.patch
+new file mode 100644
+index 0000000..0aaf096
+--- /dev/null
++++ b/recipes-security/refpolicy/refpolicy/0067-systemd-add-file-contexts-for-systemd-network-genera.patch
+@@ -0,0 +1,38 @@
++From 143d339b2e6611c56cd0210279757ebee9632731 Mon Sep 17 00:00:00 2001
++From: Kenton Groombridge <me@concord.sh>
++Date: Thu, 19 May 2022 11:42:51 -0400
++Subject: [PATCH] systemd: add file contexts for systemd-network-generator
++
++Upstream-Status: Backport
++[https://github.com/SELinuxProject/refpolicy/commit/73adba0a39b7409bc4bbfa0e962108c2b1e5f2a5]
++
++Thanks-To: Zhao Yi
++Signed-off-by: Kenton Groombridge <me@concord.sh>
++Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
++---
++ policy/modules/system/systemd.fc | 2 ++
++ 1 file changed, 2 insertions(+)
++
++diff --git a/policy/modules/system/systemd.fc b/policy/modules/system/systemd.fc
++index d21914227..1a35bd65c 100644
++--- a/policy/modules/system/systemd.fc
+++++ b/policy/modules/system/systemd.fc
++@@ -35,6 +35,7 @@
++ /usr/lib/systemd/systemd-machined	--	gen_context(system_u:object_r:systemd_machined_exec_t,s0)
++ /usr/lib/systemd/systemd-modules-load	--	gen_context(system_u:object_r:systemd_modules_load_exec_t,s0)
++ /usr/lib/systemd/systemd-networkd	--	gen_context(system_u:object_r:systemd_networkd_exec_t,s0)
+++/usr/lib/systemd/systemd-network-generator	--	gen_context(system_u:object_r:systemd_networkd_exec_t,s0)
++ /usr/lib/systemd/systemd-pstore		--	gen_context(system_u:object_r:systemd_pstore_exec_t,s0)
++ /usr/lib/systemd/systemd-resolved	--	gen_context(system_u:object_r:systemd_resolved_exec_t,s0)
++ /usr/lib/systemd/systemd-rfkill		--	gen_context(system_u:object_r:systemd_rfkill_exec_t,s0)
++@@ -60,6 +61,7 @@ HOME_DIR/\.local/share/systemd(/.*)?		gen_context(system_u:object_r:systemd_data
++ /usr/lib/systemd/system/systemd-backlight.*	--	gen_context(system_u:object_r:systemd_backlight_unit_t,s0)
++ /usr/lib/systemd/system/systemd-binfmt.*	--	gen_context(system_u:object_r:systemd_binfmt_unit_t,s0)
++ /usr/lib/systemd/system/systemd-networkd.*		gen_context(system_u:object_r:systemd_networkd_unit_t,s0)
+++/usr/lib/systemd/system/systemd-network-generator.*		gen_context(system_u:object_r:systemd_networkd_unit_t,s0)
++ /usr/lib/systemd/system/systemd-rfkill.*	--	gen_context(system_u:object_r:systemd_rfkill_unit_t,s0)
++ /usr/lib/systemd/system/systemd-socket-proxyd\.service	--	gen_context(system_u:object_r:systemd_socket_proxyd_unit_file_t,s0)
++ 
++-- 
++2.25.1
++
+diff --git a/recipes-security/refpolicy/refpolicy/0068-systemd-udev-allow-udev-to-read-systemd-networkd-run.patch b/recipes-security/refpolicy/refpolicy/0068-systemd-udev-allow-udev-to-read-systemd-networkd-run.patch
+new file mode 100644
+index 0000000..259863c
+--- /dev/null
++++ b/recipes-security/refpolicy/refpolicy/0068-systemd-udev-allow-udev-to-read-systemd-networkd-run.patch
+@@ -0,0 +1,34 @@
++From 6508bc8a3440525384fcfcd8ad55a4cd5c79b912 Mon Sep 17 00:00:00 2001
++From: Kenton Groombridge <me@concord.sh>
++Date: Thu, 19 May 2022 11:43:44 -0400
++Subject: [PATCH] systemd, udev: allow udev to read systemd-networkd runtime
++
++udev searches for .link files and applies custom udev rules to devices
++as they come up.
++
++Upstream-Status: Backport
++[https://github.com/SELinuxProject/refpolicy/commit/998ef975f38c70d57e7220b88ae5e62c88ebb770]
++
++Thanks-To: Zhao Yi
++Signed-off-by: Kenton Groombridge <me@concord.sh>
++Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
++---
++ policy/modules/system/udev.te | 2 ++
++ 1 file changed, 2 insertions(+)
++
++diff --git a/policy/modules/system/udev.te b/policy/modules/system/udev.te
++index 4c5a690fb..8e243c0f2 100644
++--- a/policy/modules/system/udev.te
+++++ b/policy/modules/system/udev.te
++@@ -270,6 +270,8 @@ ifdef(`init_systemd',`
++ 	systemd_read_hwdb(udev_t)
++ 	systemd_read_logind_sessions_files(udev_t)
++ 	systemd_read_logind_runtime_files(udev_t)
+++	# udev searches for .link files and applies custom udev rules
+++	systemd_read_networkd_runtime(udev_t)
++ 
++ 	optional_policy(`
++ 		init_dbus_chat(udev_t)
++-- 
++2.25.1
++
+diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc
+index 96d0da1..1d5a5c0 100644
+--- a/recipes-security/refpolicy/refpolicy_common.inc
++++ b/recipes-security/refpolicy/refpolicy_common.inc
+@@ -77,6 +77,13 @@ SRC_URI += " \
+         file://0059-policy-modules-system-setrans-allow-setrans_t-use-fd.patch \
+         file://0060-policy-modules-system-systemd-make-_systemd_t-MLS-tr.patch \
+         file://0061-policy-modules-system-logging-make-syslogd_runtime_t.patch \
++        file://0062-systemd-systemd-resolved-is-linked-to-libselinux.patch \
++        file://0063-sysnetwork-systemd-allow-DNS-resolution-over-io.syst.patch \
++        file://0064-term-init-allow-systemd-to-watch-and-watch-reads-on-.patch \
++        file://0065-systemd-add-file-transition-for-systemd-networkd-run.patch \
++        file://0066-systemd-add-missing-file-context-for-run-systemd-net.patch \
++        file://0067-systemd-add-file-contexts-for-systemd-network-genera.patch \
++        file://0068-systemd-udev-allow-udev-to-read-systemd-networkd-run.patch \
+         "
+ 
+ S = "${WORKDIR}/refpolicy"
+-- 
+2.25.1
+
 
