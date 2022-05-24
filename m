@@ -1,98 +1,327 @@
-Return-Path: <ticotimo@gmail.com>
+Return-Path: <anton.antonov@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 936A2C433F5
-	for <webhook@archiver.kernel.org>; Tue, 24 May 2022 17:51:48 +0000 (UTC)
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com
- [209.85.210.179])
- by mx.groups.io with SMTP id smtpd.web12.12776.1653414707253291581
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9DE89C433F5
+	for <webhook@archiver.kernel.org>; Tue, 24 May 2022 18:05:58 +0000 (UTC)
+Received: from cam-smtp0.cambridge.arm.com (cam-smtp0.cambridge.arm.com
+ [217.140.106.53])
+ by mx.groups.io with SMTP id smtpd.web10.12773.1653415548016134752
  for <yocto@lists.yoctoproject.org>;
- Tue, 24 May 2022 10:51:47 -0700
+ Tue, 24 May 2022 11:05:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=FgNbZaGw;
- spf=pass (domain: gmail.com, ip: 209.85.210.179,
- mailfrom: ticotimo@gmail.com)
-Received: by mail-pf1-f179.google.com with SMTP id h13so10798155pfq.5
-        for <yocto@lists.yoctoproject.org>;
- Tue, 24 May 2022 10:51:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=m6KYjriY7meCQEj0m299HUbA70VJ7ih+2T5HRVpAm6k=;
-        b=FgNbZaGwNHe66FsOLYBKX4P6sLlQiGRrSTy9Nm7gRx13mqITD01eLF0OPgtwYVfPvv
-         sLKMZfa7Cl+c3pHAvXgiQOzUdEXBNftNMFz1wBHIGeeCLa1pKeL3/Htm0GGf07U3G4/F
-         KPfsKGQ+XZ06fuZJPB2YI0tNRnQIbqbhWku2/mNM/+9jQWkXr9YOD4l1B71d8N332BHz
-         s+g3+GqHqWbxojSFyiOvQbKKncNigwi0HiIxi+6RJaGVdn+Fde6Adx0bUStonoFs06UQ
-         yZwabPWX7ycmXVxBhu4m4e9mrMK1PPS50yrQkaXosTMttVKAWzmUCYyLS7VoSJJBxkwg
-         8X5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=m6KYjriY7meCQEj0m299HUbA70VJ7ih+2T5HRVpAm6k=;
-        b=ApySAEkPecF57z0cfGp1RAWH8qNek0DFGIKFF26b8ZW/JMJsQFX8bJW4qISCbxZjVM
-         UuP/pLxTae0MaZkPBbF+ImVRfRutwnztV+GT3vh5dp88J21d4F6HEDSFEGb9txZC99CV
-         VYKyKvRkSqLkGyhNawLHeyGrpn0TuhmlugLbaBeZRyfNlnXXksuqQ3U0Nj3xmfz11Sy/
-         vwfMALe1eOYXl9CT7CiymzQQ4GLdFbClJk8HEUonFIzb77LVPFCPpNIx2O7VwH2Eu8Qa
-         uDebTd0wCVqtTto8KOjbvy0UZAo69JUZzZ2uD1DwziiAL5Wva9NIyXAZ2oVzEEkm8ozr
-         Kfvg==
-X-Gm-Message-State: AOAM531q0LqXjBortOC30l7BGMzxk1jBPci9puTY7vch0gcooua1Gcju
-	4ibF/m09sEiZh0K+PK7+QIDHbcCVMtGGx2ZL8Fo=
-X-Google-Smtp-Source: 
- ABdhPJyAxER18mHyxXwMd+YL/HGRH7UsbWzimHV3lnGHIZ3VPa8iq9TVXgD5usRPdniM3sv80YOXkfPDkABZWpCC2wU=
-X-Received: by 2002:a63:343:0:b0:3f6:52e5:edbe with SMTP id
- 64-20020a630343000000b003f652e5edbemr22486713pgd.272.1653414706580; Tue, 24
- May 2022 10:51:46 -0700 (PDT)
+ dkim=missing;
+ spf=pass (domain: arm.com, ip: 217.140.106.53, mailfrom: anton.antonov@arm.com)
+Received: from atg-devlab-kelpie.cambridge.arm.com
+ (atg-devlab-kelpie.cambridge.arm.com [10.2.80.92])
+	by cam-smtp0.cambridge.arm.com (8.13.8/8.13.8) with ESMTP id 24OI7Avx013291;
+	Tue, 24 May 2022 19:07:10 +0100
+From: Anton Antonov <Anton.Antonov@arm.com>
+To: yocto@lists.yoctoproject.org
+Cc: Anton.Antonov@arm.com
+Subject: [meta-security][PATCH] meta-parsec: Update Parsec runtime tests
+Date: Tue, 24 May 2022 19:05:41 +0100
+Message-Id: <20220524180541.726620-1-Anton.Antonov@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-From: Tim Orling <ticotimo@gmail.com>
-Date: Tue, 24 May 2022 10:51:35 -0700
-Message-ID: 
- <CANx9H-AbvivDSi_6oDWRuMpd5+NjwJAFUfrE6f1iLM2s+mzu8g@mail.gmail.com>
-Subject: OpenEmbedded Happy Hour May 25 5pm/1700 UTC
-To: openembedded-core <openembedded-core@lists.openembedded.org>,
-	"openembedded-devel@lists.openembedded.org"
- <Openembedded-devel@lists.openembedded.org>,
-	openembedded-members@lists.openembedded.org,
-	"Yocto (yocto@lists.yoctoproject.org)" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000004091b105dfc59c6e"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 24 May 2022 17:51:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57181
+ <yocto@lists.yoctoproject.org>; Tue, 24 May 2022 18:05:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57182
 
---0000000000004091b105dfc59c6e
-Content-Type: text/plain; charset="UTF-8"
+Signed-off-by: Anton Antonov <Anton.Antonov@arm.com>
+---
+ meta-parsec/README.md                         |  65 +++++++++
+ meta-parsec/lib/oeqa/runtime/cases/parsec.py  | 135 ++++++++++++++++--
+ .../images/security-parsec-image.bb           |   5 +-
+ .../packagegroup-security-parsec.bb           |   1 -
+ meta-tpm/classes/sanity-meta-tpm.bbclass      |   4 +-
+ 5 files changed, 191 insertions(+), 19 deletions(-)
 
-All,
+diff --git a/meta-parsec/README.md b/meta-parsec/README.md
+index 97026ea..f720cd2 100644
+--- a/meta-parsec/README.md
++++ b/meta-parsec/README.md
+@@ -88,6 +88,71 @@ https://github.com/meta-rust/cargo-bitbake
+ 2. Run cargo-bitbake inside the repository. It will produce a BB file.
+ 3. Create a new include file with SRC_URI and LIC_FILES_CHKSUM from the BB file.
+ 
++Automated Parsec testing with runqemu
++=====================================
++
++ The Yocto build system has the ability to run a series of automated tests for qemu images.
++All the tests are actually commands run on the target system over ssh.
++
++ Meta-parsec includes automated unittests which run end to end Parsec tests.
++The tests are run against:
++- all providers pre-configured in the Parsec config file included in the image.
++- PKCS11 and TPM providers with software backends if softhsm and
++  swtpm packages included in the image.
++
++Meta-parsec also contains a recipe for `security-parsec-image` image with Parsec,
++softhsm and swtpm included.
++
++ Please notice that the account you use to run bitbake should have access to `/dev/kvm`.
++You might need to change permissions or add the account into `kvm` unix group.
++
++1. Testing Parsec with your own image where `parsec-service` and `parsec-tool` are already included.
++
++- Add into your `local.conf`:
++```
++INHERIT += "testimage"
++TEST_SUITES = "ping ssh parsec"
++```
++- Build your image
++```bash
++bitbake <your-image>
++```
++- Run tests
++```bash
++bitbake <your-image> -c testimage
++```
++
++2. Testing Parsec with pre-defined `security-parsec-image` image.
++
++- Add into your `local.conf`:
++```
++DISTRO_FEATURES += " tpm2"
++INHERIT += "testimage"
++TEST_SUITES = "ping ssh parsec"
++```
++- Build security-parsec-image image
++```bash
++bitbake security-parsec-image
++```
++- Run tests
++```bash
++bitbake security-parsec-image -c testimage
++```
++
++Output of a successfull tests run should look similar to:
++```
++RESULTS:
++RESULTS - ping.PingTest.test_ping: PASSED (0.05s)
++RESULTS - ssh.SSHTest.test_ssh: PASSED (0.25s)
++RESULTS - parsec.ParsecTest.test_all_providers: PASSED (1.84s)
++RESULTS - parsec.ParsecTest.test_pkcs11_provider: PASSED (2.91s)
++RESULTS - parsec.ParsecTest.test_tpm_provider: PASSED (3.33s)
++SUMMARY:
++security-parsec-image () - Ran 5 tests in 8.386s
++security-parsec-image - OK - All required tests passed (successes=5, skipped=0, failures=0, errors=0)
++```
++
++
+ Manual testing with runqemu
+ ===========================
+ 
+diff --git a/meta-parsec/lib/oeqa/runtime/cases/parsec.py b/meta-parsec/lib/oeqa/runtime/cases/parsec.py
+index 547f74c..d3d3f2e 100644
+--- a/meta-parsec/lib/oeqa/runtime/cases/parsec.py
++++ b/meta-parsec/lib/oeqa/runtime/cases/parsec.py
+@@ -1,33 +1,138 @@
+ # Copyright (C) 2022 Armin Kuster <akuster808@gmail.com>
++# Copyright (C) 2022 Anton Antonov <Anton.Antonov@arm.com>
+ #
+ import re
++from tempfile import mkstemp
+ 
+ from oeqa.runtime.case import OERuntimeTestCase
+ from oeqa.core.decorator.depends import OETestDepends
+ from oeqa.runtime.decorator.package import OEHasPackage
++from oeqa.core.decorator.data import skipIfNotFeature
+ 
+ class ParsecTest(OERuntimeTestCase):
++    @classmethod
++    def setUpClass(cls):
++        cls.toml_file = '/etc/parsec/config.toml'
++
++    def setUp(self):
++        super(ParsecTest, self).setUp()
++        if 'systemd' in self.tc.td['DISTRO_FEATURES']:
++            self.parsec_status='systemctl status -l parsec'
++            self.parsec_reload='systemctl restart parsec'
++        else:
++            self.parsec_status='pgrep -l parsec'
++            self.parsec_reload='/etc/init.d/parsec reload'
++
++    def copy_subconfig(self, cfg, provider):
++        """ Copy a provider configuration to target and append it to Parsec config """
++
++        tmp_fd, tmp_path = mkstemp()
++        with os.fdopen(tmp_fd, 'w') as f:
++            f.write('\n'.join(cfg))
++
++        (status, output) = self.target.copyTo(tmp_path, "%s-%s" % (self.toml_file, provider))
++        self.assertEqual(status, 0, msg='File could not be copied.\n%s' % output)
++        status, output = self.target.run('cat %s-%s >>%s' % (self.toml_file, provider, self.toml_file))
++        os.remove(tmp_path)
++
++    def check_parsec_providers(self, provider=None, prov_id=None):
++        """ Get Parsec providers list and check for one if defined """
++
++        status, output = self.target.run(self.parsec_status)
++        self.assertEqual(status, 0, msg='Parsec service is not running.\n%s' % output)
++
++        status, output = self.target.run('parsec-tool list-providers')
++        self.assertEqual(status, 0, msg='Cannot get a list of Parsec providers.\n%s' % output)
++        if provider and prov_id:
++            self.assertIn("ID: 0x0%d (%s provider)" % (prov_id, provider),
++                          output, msg='%s provider is not configured.' % provider)
++
++    def run_cli_tests(self, prov_id=None):
++        """ Run Parsec CLI end-to-end tests against one or all providers """
++
++        status, output = self.target.run('parsec-cli-tests.sh %s' % ("-%d" % prov_id if prov_id else ""))
++        self.assertEqual(status, 0, msg='Parsec CLI tests failed.\n %s' % output)
++
+     @OEHasPackage(['parsec-service'])
+     @OETestDepends(['ssh.SSHTest.test_ssh'])
+-    def test_parsec_service(self):
+-        toml_file = '/etc/parsec/config.tom'
+-        status, output = self.target.run('echo library_path = "/usr/lib/softhsm/libsofthsm2.so" >> %s' %(toml_file))
+-        status, output = self.target.run('echo slot_number = 0 >> %s' %(toml_file))
+-        status, output = self.target.run('echo user_pin = "123456" >> %s' %(toml_file))
++    def test_all_providers(self):
++        """ Test Parsec service with all pre-defined providers """
++
++        self.check_parsec_providers()
++        self.run_cli_tests()
++
++    def configure_tpm_provider(self):
++        """ Create Parsec TPM provider configuration """
++
++        cfg = [
++                '',
++                '[[provider]]',
++                'name = "tpm-provider"',
++                'provider_type = "Tpm"',
++                'key_info_manager = "sqlite-manager"',
++                'tcti = "swtpm:port=2321"',
++                'owner_hierarchy_auth = ""',
++              ]
++        self.copy_subconfig(cfg, "TPM")
++
+         cmds = [
+-                '/etc/init.d/parsec stop',
+-                'sleep 5',
+-                'softhsm2-util --init-token --slot 0 --label "Parsec Service" --pin 123456 --so-pin 123456',
+-                'for d in /var/lib/softhsm/tokens/*; do chown -R parsec $d; done', 
+                 'mkdir /tmp/myvtpm',
+-                'swtpm socket --tpmstate dir=/tmp/myvtpm --tpm2 --ctrl type=tcp,port=2322 --server type=tcp,port=2321 --flags not-need-init &',
+-                'export TPM2TOOLS_TCTI="swtpm:port=2321"',
+-                'tpm2_startup -c',
+-                'sleep 2',
+-                '/etc/init.d/parsec start',
+-                'parsec-cli-tests.sh'
++                'swtpm socket -d --tpmstate dir=/tmp/myvtpm --tpm2 --ctrl type=tcp,port=2322 --server type=tcp,port=2321 --flags not-need-init',
++                'tpm2_startup -c -T "swtpm:port=2321"',
++                self.parsec_reload,
+                ]
+ 
+         for cmd in cmds:
+             status, output = self.target.run(cmd)
+             self.assertEqual(status, 0, msg='\n'.join([cmd, output]))
++
++    @OEHasPackage(['parsec-service'])
++    @OEHasPackage(['swtpm'])
++    @skipIfNotFeature('tpm2','Test parsec_tpm_provider requires tpm2 to be in DISTRO_FEATURES')
++    @OETestDepends(['ssh.SSHTest.test_ssh', 'parsec.ParsecTest.test_all_providers'])
++    def test_tpm_provider(self):
++        """ Configure and test Parsec TPM provider with swtpm as a backend """
++
++        prov_id = 3
++        self.configure_tpm_provider()
++        self.check_parsec_providers("TPM", prov_id)
++        self.run_cli_tests(prov_id)
++
++    def configure_pkcs11_provider(self):
++        """ Create Parsec PKCS11 provider configuration """
++
++        status, output = self.target.run('softhsm2-util --init-token --free --label "Parsec Service" --pin 123456 --so-pin 123456')
++        self.assertEqual(status, 0, msg='Failed to init PKCS11 token.\n%s' % output)
++
++        slot = re.search('The token has been initialized and is reassigned to slot (\d*)', output)
++        if slot is None:
++            self.fail('Failed to get PKCS11 slot serial number.\n%s' % output)
++        self.assertNotEqual(slot.group(1), None, msg='Failed to get PKCS11 slot serial number.\n%s' % output)
++
++        cfg = [
++                '',
++                '[[provider]]',
++                'name = "pkcs11-provider"',
++                'provider_type = "Pkcs11"',
++                'key_info_manager = "sqlite-manager"',
++                'library_path = "/usr/lib/softhsm/libsofthsm2.so"',
++                'slot_number = %s' % slot.group(1),
++                'user_pin = "123456"',
++                'allow_export = true',
++              ]
++        self.copy_subconfig(cfg, "PKCS11")
++
++        status, output = self.target.run('for d in /var/lib/softhsm/tokens/*; do chown -R parsec $d; done')
++        status, output = self.target.run(self.parsec_reload)
++        self.assertEqual(status, 0, msg='Failed to reload Parsec.\n%s' % output)
++
++    @OEHasPackage(['parsec-service'])
++    @OEHasPackage(['softhsm'])
++    @OETestDepends(['ssh.SSHTest.test_ssh', 'parsec.ParsecTest.test_all_providers'])
++    def test_pkcs11_provider(self):
++        """ Configure and test Parsec PKCS11 provider with softhsm as a backend """
++
++        prov_id = 2
++        self.configure_pkcs11_provider()
++        self.check_parsec_providers("PKCS #11", prov_id)
++        self.run_cli_tests(prov_id)
+diff --git a/meta-parsec/recipes-core/images/security-parsec-image.bb b/meta-parsec/recipes-core/images/security-parsec-image.bb
+index 2ddc543..7add74b 100644
+--- a/meta-parsec/recipes-core/images/security-parsec-image.bb
++++ b/meta-parsec/recipes-core/images/security-parsec-image.bb
+@@ -1,4 +1,4 @@
+-DESCRIPTION = "A small image for building meta-parsec packages"
++DESCRIPTION = "A small image for testing Parsec service with MbedCrypto, TPM and PKCS11 providers"
+ 
+ inherit core-image
+ 
+@@ -10,7 +10,8 @@ IMAGE_INSTALL = "\
+     packagegroup-security-tpm2 \
+     packagegroup-security-parsec \
+     swtpm \
+-    os-release" 
++    softhsm \
++    os-release"
+ 
+ export IMAGE_BASENAME = "security-parsec-image"
+ 
+diff --git a/meta-parsec/recipes-core/packagegroups/packagegroup-security-parsec.bb b/meta-parsec/recipes-core/packagegroups/packagegroup-security-parsec.bb
+index b6c4f59..0af9c3d 100644
+--- a/meta-parsec/recipes-core/packagegroups/packagegroup-security-parsec.bb
++++ b/meta-parsec/recipes-core/packagegroups/packagegroup-security-parsec.bb
+@@ -11,7 +11,6 @@ PACKAGES = "\
+ 
+ SUMMARY:packagegroup-security-parsec = "Security Parsec"
+ RDEPENDS:packagegroup-security-parsec = "\
+-    softhsm \
+     parsec-tool \
+     parsec-service \
+     "
+diff --git a/meta-tpm/classes/sanity-meta-tpm.bbclass b/meta-tpm/classes/sanity-meta-tpm.bbclass
+index 2f8b52d..1ab03c8 100644
+--- a/meta-tpm/classes/sanity-meta-tpm.bbclass
++++ b/meta-tpm/classes/sanity-meta-tpm.bbclass
+@@ -2,7 +2,9 @@ addhandler tpm_machinecheck
+ tpm_machinecheck[eventmask] = "bb.event.SanityCheck"
+ python tpm_machinecheck() {
+     skip_check = e.data.getVar('SKIP_META_TPM_SANITY_CHECK') == "1"
+-    if 'tpm' not in e.data.getVar('DISTRO_FEATURES').split() and not skip_check:
++    if 'tpm' not in e.data.getVar('DISTRO_FEATURES').split() and \
++       'tpm2' not in e.data.getVar('DISTRO_FEATURES').split() and \
++       not skip_check:
+         bb.warn("You have included the meta-tpm layer, but \
+ 'tpm or tpm2' has not been enabled in your DISTRO_FEATURES. Some bbappend files \
+ and preferred version setting may not take effect. See the meta-tpm README \
+-- 
+2.25.1
 
-You are cordially invited to the next OpenEmbedded Happy Hour on May 25
-for Europe/Americas time zones @ 1700/5pm UTC (1pm ET / 10am PT).
-
-https://www.openembedded.org/wiki/Calendar
-https://www.openembedded.org/wiki/Happy_Hours
-https://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenEmbedded+Happy+Hour+May+25&iso=20220525T17&p1=1440
-
-Regards,
-Tim "moto-timo" Orling
-
---0000000000004091b105dfc59c6e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">All,<div><br></div><div>You are cordially invited to the n=
-ext OpenEmbedded Happy Hour on May 25</div><div>for Europe/Americas time zo=
-nes=C2=A0@ 1700/5pm UTC (1pm ET / 10am PT).</div><div><br></div><div><a hre=
-f=3D"https://www.openembedded.org/wiki/Calendar" rel=3D"noreferrer" target=
-=3D"_blank">https://www.openembedded.org/wiki/Calendar</a><br></div><div><a=
- href=3D"https://www.openembedded.org/wiki/Happy_Hours" rel=3D"noreferrer" =
-target=3D"_blank">https://www.openembedded.org/wiki/Happy_Hours</a><br></di=
-v><div><a href=3D"https://www.timeanddate.com/worldclock/fixedtime.html?msg=
-=3DOpenEmbedded+Happy+Hour+May+25&amp;iso=3D20220525T17&amp;p1=3D1440">http=
-s://www.timeanddate.com/worldclock/fixedtime.html?msg=3DOpenEmbedded+Happy+=
-Hour+May+25&amp;iso=3D20220525T17&amp;p1=3D1440</a><br></div><div><br></div=
-><div>Regards,</div><div>Tim &quot;moto-timo&quot; Orling</div><div><br></d=
-iv></div>
-
---0000000000004091b105dfc59c6e--
 
