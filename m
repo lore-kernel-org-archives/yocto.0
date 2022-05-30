@@ -2,139 +2,106 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 00585C433F5
-	for <webhook@archiver.kernel.org>; Mon, 30 May 2022 14:55:11 +0000 (UTC)
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com
- [209.85.216.49])
- by mx.groups.io with SMTP id smtpd.web11.37679.1653922501194268746
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2203AC433EF
+	for <webhook@archiver.kernel.org>; Mon, 30 May 2022 22:04:13 +0000 (UTC)
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com
+ [209.85.210.171])
+ by mx.groups.io with SMTP id smtpd.web08.42235.1653948252186136397
  for <yocto@lists.yoctoproject.org>;
- Mon, 30 May 2022 07:55:01 -0700
+ Mon, 30 May 2022 15:04:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=pVI8RXFQ;
- spf=pass (domain: gmail.com, ip: 209.85.216.49,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=q04T5gtm;
+ spf=pass (domain: gmail.com, ip: 209.85.210.171,
  mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f49.google.com with SMTP id
- v11-20020a17090a4ecb00b001e2c5b837ccso4876779pjl.3
+Received: by mail-pf1-f171.google.com with SMTP id p8so11525550pfh.8
         for <yocto@lists.yoctoproject.org>;
- Mon, 30 May 2022 07:55:01 -0700 (PDT)
+ Mon, 30 May 2022 15:04:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+        h=from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=SiHekeI5hZk6dbvdj1qmtcOWqCUYk0zqcI/P50WEkIg=;
-        b=pVI8RXFQWOK1tDh4YEvEY1ULqpr5uhnd5VesSNAo/Tiqb29wn2dpQKKNSEFcQsugkW
-         Qyu9TMHhjFE/lIuVavT+Exw8YLWuHL5Emon6fPcxqCsp4Kv0VDrHPRI/iTagqAPObaOo
-         ovhM2rB/uGYlNW9KDaINsjbJiLgoKjLgzcE2VbGeJKzge2EvH/3TLDcMr3j0yAQtRGGS
-         VI+DYcppz8UUAMftiakY8o1xYMzv6jVAZy9WjOkeW8o5pzhAn/fGcmo3O4DKNrjqavz1
-         GnSOPY1cFit7a9ZqqndlVnVkK0c79fidBNxgZEmlDEEPx+vHnLCiKM5ueeGuGCuXHquC
-         beHg==
+        bh=WVM4LaOJ2+mDGrgxznigelkaEByDgtv8rEF2PtiYlD0=;
+        b=q04T5gtmHO9uVq1VPyMsYThhPYkfW+EyEreJ0PQVT3A3VuQJU/Aj+5a3zQY/VTb264
+         kpmh7KLfOqyiG2fifGttHr6iERALmt4iO2ckivyduli+j33koWEOe0DKNeD5avkNutv7
+         UHkcn+iZtIBTLrdPSQywL4e2wIcVb9eRduiYiHBWJiX3+crGIA2Egv7EZu6g4MuQ5Tdc
+         fJJ4o/f68KcgfJ4QbDa2gJWfsEF+xoVPBV4/3TYPAEYXCwKHmUU7R0HUpQsnWYbPQaeI
+         4ari8PD25vLLZnw6uM1OVE6S4vlUZMXS5maDAr11owK0cgCFkuZkuoPEL0BOMX732Yir
+         l+lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=SiHekeI5hZk6dbvdj1qmtcOWqCUYk0zqcI/P50WEkIg=;
-        b=aRqnxYWzLxaOyLjT09NCVf4NWlb3aMHumgYcLk4MHrN00e46iRRZcrUeT9uD2iBrUU
-         1ZWxnRCr6yffvy+wvcxbtMT645t8aWtxqm1wgWFwZuhef51w2TM+ZAyDzh4bUrfAvEyg
-         XMOBPdatu/RhFsNVoFWyLI/iZdUXEL6H6Jh8WdPsHw001W6vjWu0b7vo5dXDAkAS5GMw
-         ojKs71CLwrnitu3X2dVD19ii16b+49KMHe8fyROJZxW2HZA+19ZTTOsiJMSblCVZ5Stp
-         G3BZU2a3Ik3joGiG7HlOmhB4TFEJ8b8FkXyZCCtYtuSNjsc+TqvTCLA1ffnRtwQpQyZA
-         975A==
-X-Gm-Message-State: AOAM5315FhrVW9hfS5LxZtwP4ecq6cBlhbGBLpUWttyl045yKmhN0+KE
-	A10aqCG+y0AwjonrijjKm5+8J7aOCUE=
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WVM4LaOJ2+mDGrgxznigelkaEByDgtv8rEF2PtiYlD0=;
+        b=ym18D46MC0nNoN3yFbPzGlI9FlvCY8RbP0nj8tR3svbUH1TxxcYp7IVoPetVLkeKut
+         1L8yy9JnrSz5b4EySmYRvaZyGBC0Rp+fSaQhpAq+DfFnwUb4yx1dpU6ujhDZIxf4+Av7
+         ta09LDhwgNoNseoj2EFl2AAlJQL2AIhYbk1TzaB1JP+BkeKujKWwBgc3Vl/iXGGM9p7j
+         IkS5bDWlvxhgGOLvab9F81ahYSxhCq6A+Anv2kEgxr5CK34aKP1jfwC1EgaPKpqJIQQB
+         keqkLviEjjMhlooAKasIh1K2TbzPGQPMB+HfOl4TWg6phV1M4HvsVbt4ikw3JiXiT8ye
+         eksg==
+X-Gm-Message-State: AOAM531kojitgnQ9MOibzCmmqKs8kKqWtx0mRa0cA4XIjZmVSnaT/eJW
+	ThqUQMppEqE2y0J4/e00HqAsFlNHMow=
 X-Google-Smtp-Source: 
- ABdhPJxmUyNiMbY3tIr/GaIzTYgxOaGMAXG5BYTLkm4x4/K/nyLNRGelxJWlIkda9OUloiupvBDvjA==
-X-Received: by 2002:a17:902:db07:b0:163:5374:6732 with SMTP id
- m7-20020a170902db0700b0016353746732mr19844709plx.15.1653922500401;
-        Mon, 30 May 2022 07:55:00 -0700 (PDT)
+ ABdhPJy+76q3WWRpCv6LhgSwtlRiIladipYbFo7jrq06kXnmg1sZSXdy7PIQQfIjpQEr50xTSzfLAg==
+X-Received: by 2002:a05:6a02:11c:b0:3f9:e159:5fa5 with SMTP id
+ bg28-20020a056a02011c00b003f9e1595fa5mr41002289pgb.245.1653948251194;
+        Mon, 30 May 2022 15:04:11 -0700 (PDT)
 Received: from keaua.hsd1.ca.comcast.net
  (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
         by smtp.gmail.com with ESMTPSA id
- q13-20020a170902b10d00b00163c9ad14efsm3480339plr.143.2022.05.30.07.54.59
+ x22-20020a170902b41600b001635a8f9dfdsm9679198plr.26.2022.05.30.15.04.09
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 May 2022 07:54:59 -0700 (PDT)
+        Mon, 30 May 2022 15:04:10 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-tpm][PATCH 5/5] oeqa/tpm2: fix and cleanup tests
-Date: Mon, 30 May 2022 07:52:52 -0700
-Message-Id: <20220530145252.4059103-5-akuster808@gmail.com>
+Subject: [meta-security][PATCH 1/3] tpm2-pkcs11: we really need the symlinks
+Date: Mon, 30 May 2022 15:02:06 -0700
+Message-Id: <20220530220208.477287-1-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220530145252.4059103-1-akuster808@gmail.com>
-References: <20220530145252.4059103-1-akuster808@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 30 May 2022 14:55:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57223
+ <yocto@lists.yoctoproject.org>; Mon, 30 May 2022 22:04:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57224
+
+MASK dev-so
+Drop un-needed install append steps.
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- meta-tpm/lib/oeqa/runtime/cases/tpm2.py | 25 ++++++++++++++++---------
- 1 file changed, 16 insertions(+), 9 deletions(-)
+ .../recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.8.0.bb     | 11 ++---------
+ 1 file changed, 2 insertions(+), 9 deletions(-)
 
-diff --git a/meta-tpm/lib/oeqa/runtime/cases/tpm2.py b/meta-tpm/lib/oeqa/runtime/cases/tpm2.py
-index c2c95e7..e64d19d 100644
---- a/meta-tpm/lib/oeqa/runtime/cases/tpm2.py
-+++ b/meta-tpm/lib/oeqa/runtime/cases/tpm2.py
-@@ -1,11 +1,19 @@
--# Copyright (C) 2019 Armin Kuster <akuster808@gmail.com>
-+# Copyright (C) 2019 - 2022 Armin Kuster <akuster808@gmail.com>
- #
- from oeqa.runtime.case import OERuntimeTestCase
- from oeqa.core.decorator.depends import OETestDepends
- from oeqa.runtime.decorator.package import OEHasPackage
+diff --git a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.8.0.bb b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.8.0.bb
+index e8812d0..dd0a0b5 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.8.0.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.8.0.bb
+@@ -25,15 +25,6 @@ do_compile:append() {
+ }
+ 
+ do_install:append() {
+-    install -d ${D}${libdir}/pkcs11
+-    install -d ${D}${datadir}/p11-kit
 -
-+from oeqa.core.decorator.data import skipIfNotFeature
+-    # remove symlinks
+-    rm -f ${D}${libdir}/pkcs11/libtpm2_pkcs11.so
+-
+-    #install lib
+-    install -m 755 ${B}/src/.libs/libtpm2_pkcs11.so ${D}${libdir}/pkcs11/libtpm2_pkcs11.so
+-
+     cd ${S}/tools
+     export PYTHONPATH="${D}${PYTHON_SITEPACKAGES_DIR}"
+     ${PYTHON_PN} setup.py install --root="${D}" --prefix="${prefix}" --install-lib="${PYTHON_SITEPACKAGES_DIR}" --optimize=1 --skip-build
+@@ -53,5 +44,7 @@ FILES:${PN} += "\
+     ${datadir}/p11-kit/* \
+     "
  
- class Tpm2Test(OERuntimeTestCase):
-+    @classmethod
-+    def setUpClass(cls):
-+        cls.tc.target.run('mkdir /tmp/myvtpm2')
++INSANE_SKIP:${PN}   += "dev-so"
 +
-+    @classmethod
-+    def tearDownClass(cls):
-+        cls.tc.target.run('rm -fr /tmp/myvtpm2')
-+
-     def check_endlines(self, results,  expected_endlines): 
-         for line in results.splitlines():
-             for el in expected_endlines:
-@@ -19,20 +27,19 @@ class Tpm2Test(OERuntimeTestCase):
-     @OEHasPackage(['tpm2-tools'])
-     @OEHasPackage(['tpm2-abrmd'])
-     @OEHasPackage(['swtpm'])
-+    @skipIfNotFeature('tpm2','Test tpm2_startup requires tpm2 to be in DISTRO_FEATURES')
-     @OETestDepends(['ssh.SSHTest.test_ssh'])
--    def test_tpm2_swtpm_socket(self):
-+    def test_tpm2_startup(self):
-         cmds = [
--                'mkdir /tmp/myvtpm',
--                'swtpm socket --tpmstate dir=/tmp/myvtpm --tpm2 --ctrl type=tcp,port=2322 --server type=tcp,port=2321 --flags not-need-init &',
--                'export TPM2TOOLS_TCTI="swtpm:port=2321"',
--                'tpm2_startup -c'
-+                'swtpm socket -d --tpmstate dir=/tmp/myvtpm2 --tpm2 --ctrl type=tcp,port=2322 --server type=tcp,port=2321 --flags not-need-init',
-+                'tpm2_startup -c -T "swtpm:port=2321"',
-                ]
- 
-         for cmd in cmds:
-             status, output = self.target.run(cmd)
-             self.assertEqual(status, 0, msg='\n'.join([cmd, output]))
- 
--    @OETestDepends(['tpm2.Tpm2Test.test_tpm2_swtpm_socket'])
-+    @OETestDepends(['tpm2.Tpm2Test.test_tpm2_startup'])
-     def test_tpm2_pcrread(self):
-          (status, output) = self.target.run('tpm2_pcrread')
-          expected_endlines = []
-@@ -49,7 +56,7 @@ class Tpm2Test(OERuntimeTestCase):
- 
-     @OEHasPackage(['p11-kit'])
-     @OEHasPackage(['tpm2-pkcs11'])
--    @OETestDepends(['tpm2.Tpm2Test.test_tpm2_swtpm_socket'])
-+    @OETestDepends(['tpm2.Tpm2Test.test_tpm2_pcrread'])
-     def test_tpm2_pkcs11(self):
-          (status, output) = self.target.run('p11-kit list-modules -v')
-          self.assertEqual(status, 0, msg="Modules missing: %s" % output)
+ RDEPENDS:${PN} = "p11-kit tpm2-tools "
+ RDEPENDS:${PN}-tools = "${PYTHON_PN}-pyyaml ${PYTHON_PN}-cryptography ${PYTHON_PN}-pyasn1-modules"
 -- 
 2.25.1
 
