@@ -1,161 +1,140 @@
-Return-Path: <Martin.Jansa@gmail.com>
+Return-Path: <naveen.kumar.saini@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 56363C433EF
-	for <webhook@archiver.kernel.org>; Sun, 29 May 2022 02:34:30 +0000 (UTC)
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com
- [209.85.208.43])
- by mx.groups.io with SMTP id smtpd.web11.21485.1653791668241226630
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8D9C2C433EF
+	for <webhook@archiver.kernel.org>; Mon, 30 May 2022 06:32:58 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by mx.groups.io with SMTP id smtpd.web11.33602.1653892367526833210
  for <yocto@lists.yoctoproject.org>;
- Sat, 28 May 2022 19:34:28 -0700
+ Sun, 29 May 2022 23:32:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=eln1jyHC;
- spf=pass (domain: gmail.com, ip: 209.85.208.43,
- mailfrom: martin.jansa@gmail.com)
-Received: by mail-ed1-f43.google.com with SMTP id n28so798512edb.9
-        for <yocto@lists.yoctoproject.org>;
- Sat, 28 May 2022 19:34:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=kHqfFEsqcDR1EKqhY2vOXcYOv/BbfVssVUmUm4YEl6Y=;
-        b=eln1jyHCTL1n2ziLhUjAobjlnWoIATb/jNAzlM9FWAEAoV0H7Gpgumh74H34ofmvky
-         fEyZUfR2iQuBxMdos+CX6YtVZx5q40my5fS52Z5D/v7utysz3e0jciWmWqwLCiuN7RaF
-         7DZRx7hCqVk4cWO67qE0CRvdYgcLL0CVPDGyz4a0EkkxwdhG5h1QnHHXSqy1Oc3fKS8J
-         MfcSQYxGrWSBjCFY227Vl88555EGEXvUhDn/bC5VxHtu2RDQQMeMG467uyR1Ht/LFLMv
-         xL0QxzQNuoERuD+3KzX8xiG3/blOZ2/InRY6AWXQAUs9IOZyCIZZmJ5ZL1goe78hvBfk
-         HS3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=kHqfFEsqcDR1EKqhY2vOXcYOv/BbfVssVUmUm4YEl6Y=;
-        b=yhWqYQWDoGsibyXZLCoIUMqtH8DDsSQHiGi9XeYLDRYzAD0PRW0TaKBzqNLWARgUTW
-         ZZJjphX7KNETuH8Yf0isf0qENnLmvnU1YF6y6MNWK3VUKqwhldIM0fqwsh+u4MD2LZtE
-         FWRtpnMq9nppextQhFAOpjONhGJ8esFmwUQlv3Ns9ygkROOLp2+nOpOW1JXjIVttj9Oj
-         jn9shz9hQ6HunKFe3/mRUi1WM38Lz6fn8axNCvGnEGotWsuywdlOp8Z1tj+5uLFl+AlR
-         9TdgJPQN+JuJ2PXKoQq15gNW36Izq+Q28WUXidXzlto4TwxkYRj6100xnJR0sFMnJFlk
-         l5MQ==
-X-Gm-Message-State: AOAM533kLAIAbeyIZ25Ze1W1m6eHWhU3lRR+pA/zyxT49Oh4znZX+gsN
-	EE41olmRnsjeSbYvvtUxjJs=
-X-Google-Smtp-Source: 
- ABdhPJx9271e9Q8HrJfQ5x5/pRfWzfEFd8jYsfpTVMRcz1gajXmJHH+5iTmJuSBuveSyArXGNM50zw==
-X-Received: by 2002:a05:6402:b09:b0:42d:bd80:11ac with SMTP id
- bm9-20020a0564020b0900b0042dbd8011acmr4247212edb.244.1653791666720;
-        Sat, 28 May 2022 19:34:26 -0700 (PDT)
-Received: from localhost ([109.238.218.228])
-        by smtp.gmail.com with ESMTPSA id
- k19-20020a50ce53000000b0042dc8dd59c7sm857201edj.51.2022.05.28.19.34.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 May 2022 19:34:26 -0700 (PDT)
-From: Martin Jansa <martin.jansa@gmail.com>
-X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
-To: openembedded-core@lists.openembedded.org
-Cc: yocto@lists.yoctoproject.org,
-	Martin Jansa <Martin.Jansa@gmail.com>
-Subject: [PATCH] patch.py: make sure that patches/series file exists before
- quilt pop
-Date: Sun, 29 May 2022 04:34:05 +0200
-Message-Id: <20220529023405.1559372-1-Martin.Jansa@gmail.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <16F2A60FF83FD211.22671@lists.openembedded.org>
-References: <16F2A60FF83FD211.22671@lists.openembedded.org>
+ dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel
+ header.b=fCgVfkJJ;
+ spf=pass (domain: intel.com, ip: 134.134.136.31,
+ mailfrom: naveen.kumar.saini@intel.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1653892367; x=1685428367;
+  h=from:to:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=MuF42w5gafAJydigA3DXj2wJTvjDBMgh0ViDNpWmvaU=;
+  b=fCgVfkJJcEhyR45pWsFhYZezvaIUCdmlhf+tu1eNWIpfpIDjieZXWKHj
+   Xx5MucSejols1eOjWldWORJbaMn2A/jp160aNtKuPqW7l6UNz+uXqU/Hg
+   stkbAMWjUlfdzidpk/+G3xU8n64FinscaqKZXMUsSzMhRyf1STY3Y0a2X
+   hnIQUToJrEtnRGSyP83Ya400VwFVbxcoJ2FDJL1Ln/TXFqbQJfmoXchAY
+   uE494rN9OluYoDb4LubXx+tAkw+kr1vQdNbyQIAg1WFVO4eDkiKsGM75t
+   5kBB7k4HlhZdHBXaNhIXCs4YXTW5hCBzOpfG4p8utmmd6RlSgPT9LT0uj
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10362"; a="335558563"
+X-IronPort-AV: E=Sophos;i="5.91,262,1647327600";
+   d="scan'208";a="335558563"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2022 23:32:46 -0700
+X-IronPort-AV: E=Sophos;i="5.91,262,1647327600";
+   d="scan'208";a="605027992"
+Received: from saininav-desk1.png.intel.com ([10.158.87.77])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2022 23:32:42 -0700
+From: Naveen Saini <naveen.kumar.saini@intel.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-zephyr][PATCH] zephyr-kernel/2.7: update to release tag Zephyr
+ v2.7.2
+Date: Mon, 30 May 2022 14:51:06 +0800
+Message-Id: <20220530065106.931843-1-naveen.kumar.saini@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 29 May 2022 02:34:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57208
+ <yocto@lists.yoctoproject.org>; Mon, 30 May 2022 06:32:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57209
 
-* Since quilt upgrade to 0.67 some recipes sometimes fail in do_patch with
-  errors like:
+6dd320f791 release: update v2.7.2 release notes
+ecac165d36 logging: shell: fix shell stats null pointer dereference
+132d90d1bc tests/bluetooth/tester: Refactor Read UUID callback
+58356313ac coredump: adjust mem_region find in gdbstub
+99cfd3e4d7 Bluetooth: Controller: Fix per adv scheduling issue
+780588bd33 edac: ibecc: Add support for EHL SKU13, SKU14, SKU15
+38de9b0156 release: Zephyr 2.7.2
+3a21dff459 doc: release: Update release notes with CVE
+b98ec9e0db x86: Initialise FPU regs during thread creation for eager FPU sharing
+8f2d164674 release: Bump release to 2.7.2-rc1
+6b61b219ea doc: Add link to J-Link virtual MSD disable for SMP
+8822f85ef9 board: arm64: fvp_baser_aemv8r_smp: Increase CONFIG_MAX_THREAD_BYTES
+0bc81c82ab board: arm64: fvp_baser_aemv8r: Update the version requirement
+32c49d04b0 cmake: armfvp: Add FVP min version check
+02c32316fc arm64: Fix booting issue with FVP V8R >= 11.16.16
+9bf571808d net/tcp: Use highest priority for TCP internal work queue
+4eec9d95ef test/net: Make sure the tls server socket is accepting before connect
+32a593396d tests/net: Put the context down and not only the tcp part in tcp2 test
+066dcd6119 tests/net: Switch k_msleep to k_yield for tcp packet scheduling
+ffcc1d3c92 tests/net: TLS test requires more RX PKT and buffers
+2d49a4c8b9 net/context: Close TCP connection properly
+9d229e0bb5 net/tcp: Stop TCP state machine breaking when sending locally
+74c00d0b4e boards: bl654_usb: Fix non-mcuboot builds not limiting size
+2a09d5e53f drivers: virt_ivshmem: Allow multiple instances of ivShMem devices.
+ad4e9934de samples: subsys: mgmt: smp_svr: Fix dupicate fs mgmt registration
+f133449cf5 boards: arm: stm32l562e_dk and nucleo_l552ze_q add openocd support
+33318bfb45 doc: css: update code documentation directives style
+3497031e3e doc: update requirements
+57a1be33ff boards: nucleo_wb55rg: Add stm32cubeprogrammer runner
+652eb37b4d scripts/pylib/twister: Add sn option to stm32cubeprogrgammer runner
+9e4edaec21 tests/bluetooth/tester: Add support for auto connection establishment
+9b18f4a730 net: gptp: Fix type mismatch calculation error in gptp_mi
+3f958347c2 test: pm: device: Fix build options
+041653662b pm: Remove unused fields in pm_device
+6da71d7c2f ARC: nSIM: fix missing core numbers for mdb-hw runner args
+52a68bec73 net: tcp: Verify accept callback before use
+6324e997e1 net: sockets: Fix userspace accept() verification
+e9eed0015f subsys/mgmt/hawkbit: update http response handling
+a3e7047ad5 wifi: esp_at: claim net_context in rx
+50a24d6782 net: sockets: Retry net_context_sendmsg if EAGAIN is reported
+9c3be1212f tests/bluetooth/tester: Enable security validation for GATT subsciption
+e2c96814ce Bluetooth: Host: Validate security on GATT subscription
+3c64ed4e77 drivers: spi_nrfx_spi: Fix compilation error
+e78a6ab2cd spi: nrfx_spi*: only run uninit if configured
+6bbf1e7e7a Bluetooth: controller: Add missing NULL assign to df_cfg in ll_adv_set
+063dbecb23 arch/x86: Fix MSI MAP destination
+a807fff085 arch/x86: Add a CPUID function to get initial APIC ID
+b4b474cb4b arch/x86: Have a dedicated place for CPUID related functions
+175ae83c78 tests/bluetooth/tester: Allocate L2CAP channel only when needed
+22ab715ad8 test/bluetooth/tester: Don't clear auth requirements on L2CAP server
+.....
 
-  ERROR: Applying patch 'GPLv2.patch' on target directory '/OE/build/oe-core/tmp-glibc/work/qemux86_64-oe-linux/keymaps/1.0-r31'
-  CmdError('quilt --quiltrc /OE/build/oe-core/tmp-glibc/work/qemux86_64-oe-linux/keymaps/1.0-r31/recipe-sysroot-native/etc/quiltrc push', 0, 'stdout:
-  stderr: File series fully applied, ends at patch GPLv2.patch
-  ')
-
-* It affects only recipes with S = "${WORKDIR}", which wipe only
-  ${S}/patches, because in other cases whole ${S} is wiped when
-  do_unpack is re-executed.
-
-* It was originally added in:
-  https://git.openembedded.org/openembedded-core/commit/?id=5fe5e6a15f26f23f0c5b863fafad7a0d382a55e2
-
-  since then it was extended to wipe whole ${S} when ${S} != ${WORKDIR} in:
-  https://git.openembedded.org/openembedded-core/commit/?id=5fe5e6a15f26f23f0c5b863fafad7a0d382a55e2
-  https://git.openembedded.org/openembedded-core/commit/?id=eccae514b71394ffaed8fc45dea7942152a334a1
-
-  this is now causing issues to quilt-0.67 because it checks that
-  ${S}/patches/series exists during 'quilt pop -a -f' which we call
-  from QuiltTree.Clean to undo patches possibly already applied
-  in ${S} in previous do_patch execution.
-
-* There are couple recipes affected by this e.g. keymaps (.patch already
-  removed in oe-core), makedevs (.patch removal sent to ML yesterday
-  https://lists.openembedded.org/g/openembedded-core/message/166172),
-  devmem2
-  (https://lists.openembedded.org/g/openembedded-devel/message/97270), but
-  there are other recipes with S = "${WORKDIR}" where you can trigger this
-  e.g. by having a .patch file in DISTRO layer .bbappend (e.g. tzdata with
-  webOS
-  https://github.com/webosose/meta-webosose/blob/06e5298d9f5c47679b679081d9930f8d1c776142/meta-webos/recipes-extended/tzdata/tzdata.bbappend#L10)
-
-  This do_patch issue is caused by:
-  https://git.savannah.nongnu.org/cgit/quilt.git/commit/?id=8b39a960afcf45cd4f5804ae62b6b0656bdb191d
-  introduced in kirkstone with:
-  https://git.openembedded.org/openembedded-core/commit/?h=kirkstone&id=fa71afcee9ab42198c619333b77a15bd2ae02b20
-
-  The shortest sequence to reproduce this is just
-  bitbake keymaps -c patch
-  bitbake keymaps -c unpack -f
-  bitbake keymaps -c patch
-  with
-  https://git.openembedded.org/openembedded-core/commit/?id=17d981005a0c0c97702ad88602b7181b69bcc9eb
-  reverted.
-
-  And the change in quilt behavior is causing QuiltTree.Clean (quilt pop -a -f) in:
-  https://git.openembedded.org/openembedded-core/tree/meta/lib/oe/patch.py?id=17d981005a0c0c97702ad88602b7181b69bcc9eb#n601
-
-  to silently fail with "No series file found" before undoing the
-  patches in ${S} and then quilt push failing, because all the
-  patches are _still_ applied in ${S}.
-
-  Removing ".pc" doesn't help, because we really
-  need quilt's help to undo the patches (in this case to delete COPYING
-  file from WORKDIR before applying the .patch which tries to add it
-  again), because do_unpack cannot just wipe S and start over (because S
-  == WORKDIR) - nor selectively removing the files listed in SRC_URI,
-  because COPYING file isn't listed there.
-
-  Using skip_series_check in 'quilt pop' (partially reverting the change
-  from upstream) does fix this as well and it's simple one line patch
-  (just adding skip_series_check=1 in pop.in), but might be difficult
-  to upstream, because it's this strange OE specific behavior that we
-  remove 'patches' directory and then still need quilt pop to work.
-
-Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
+Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
 ---
- meta/lib/oe/patch.py | 2 ++
- 1 file changed, 2 insertions(+)
+ ...ephyr-kernel-src-2.7.1.inc => zephyr-kernel-src-2.7.2.inc} | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename meta-zephyr-core/recipes-kernel/zephyr-kernel/{zephyr-kernel-src-2.7.1.inc => zephyr-kernel-src-2.7.2.inc} (97%)
 
-diff --git a/meta/lib/oe/patch.py b/meta/lib/oe/patch.py
-index 9034fcae03..95b915a6ab 100644
---- a/meta/lib/oe/patch.py
-+++ b/meta/lib/oe/patch.py
-@@ -598,6 +598,8 @@ class QuiltTree(PatchSet):
+diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.1.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.2.inc
+similarity index 97%
+rename from meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.1.inc
+rename to meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.2.inc
+index a2c100c..7a4da21 100644
+--- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.1.inc
++++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.2.inc
+@@ -14,7 +14,7 @@ SRC_URI += " \
+ #      echo SRCREV_$x = \"$rev\"'
+ #
  
-     def Clean(self):
-         try:
-+            # make sure that patches/series file exists before quilt pop to keep quilt-0.67 happy
-+            open(os.path.join(self.dir, "patches","series"), 'a').close()
-             self._runcmd(["pop", "-a", "-f"])
-             oe.path.remove(os.path.join(self.dir, "patches","series"))
-         except Exception:
+-SRCREV_default = "e4da3e528088a34a9989f5a50e7ed3149d57de92"
++SRCREV_default = "6dd320f791c4da49190b30f9134f776d85bc5836"
+ SRCREV_canopennode = "f167efe85c8c7de886f1bc47f9173cfb8a346bb5"
+ SRCREV_civetweb = "094aeb41bb93e9199d24d665ee43e9e05d6d7b1c"
+ SRCREV_cmsis = "b0612c97c1401feeb4160add6462c3627fe90fc7"
+@@ -60,6 +60,6 @@ SRCREV_TraceRecorder = "36c577727642457b0db7274298a4b96558374832"
+ SRCREV_tfm = "c74be3890c9d975976fde1b1a3b2f5742bec34c0"
+ 
+ ZEPHYR_BRANCH = "v2.7-branch"
+-PV = "2.7.1+git${SRCPV}"
++PV = "2.7.2+git${SRCPV}"
+ 
+ SRC_URI:append = " file://dtc.patch"
 -- 
-2.35.1
+2.25.1
 
 
