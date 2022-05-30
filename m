@@ -2,89 +2,88 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0E72CC4332F
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 066D6C433F5
 	for <webhook@archiver.kernel.org>; Mon, 30 May 2022 14:55:01 +0000 (UTC)
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com
- [209.85.214.176])
- by mx.groups.io with SMTP id smtpd.web11.37676.1653922497461806482
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com
+ [209.85.216.41])
+ by mx.groups.io with SMTP id smtpd.web10.37556.1653922495951524477
  for <yocto@lists.yoctoproject.org>;
- Mon, 30 May 2022 07:54:57 -0700
+ Mon, 30 May 2022 07:54:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=iey1iZcB;
- spf=pass (domain: gmail.com, ip: 209.85.214.176,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=Qd5w0r4r;
+ spf=pass (domain: gmail.com, ip: 209.85.216.41,
  mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f176.google.com with SMTP id f18so10557390plg.0
+Received: by mail-pj1-f41.google.com with SMTP id
+ v5-20020a17090a7c0500b001df84fa82f8so10934345pjf.5
         for <yocto@lists.yoctoproject.org>;
- Mon, 30 May 2022 07:54:57 -0700 (PDT)
+ Mon, 30 May 2022 07:54:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+        h=from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=u/SeS5iZc/gJRvCc8uoyByA4LLdvHc9Yu0KcSDQnvUw=;
-        b=iey1iZcB2dSsjdQznL/34pa75MlVEuBn0fxmS+RJAuhA1Kf2UfZBx1EbczWF0sB9lb
-         N/ZUyZVeZqX6YDw3dMRs8ufTgQMPakJXKn26pwY/ajQO+Ys331OQWlARRMiRR25bTtSE
-         w4fnEotXYbGAyl7OoxPf+x4S46WcXz7+GqTTluODc4MY2A1EjOxXg0ORFhZRRFFJaX8T
-         aNngnVxPQznSgWvlK7KVG9roPulBWVeWoB+HZ/A96JP9EXQoioVTAT06whQyy989fHSQ
-         iZIVUgkAe7rfPvUTYMwXuxW6ayxMLDpRHE+4nmpDUnh9BeNUqahP7BNs/DWGStqFmvQW
-         KSfg==
+        bh=YSOizuEiBI+3vPiP80AwQkzg2u07HZHx/hIJ6s8kdzQ=;
+        b=Qd5w0r4r819ArOtlN+L2NqYN3y5PuB5MrBjNk3eSKSIaNsPBaFWKaexeifu9Y5zeTZ
+         ThlrYoRWrH8kqO8BecGJrXPiThUelAONo5mtFGWCwdBGJZk3ElrRc9wkCzooltriuJWt
+         9SxE39ha4RecLYq5OSnKwcrVAGSOSdyFmxncxO5hc2KrakKxNsil004Rc9MsgP5icKpB
+         hjGo1wTPGFGoUiNlMe3hkqMRi/tbenlQahXqbFjuAPfui2VwvM7NvyUtmK/ArrbSq0xy
+         ouBw0dbCoLzdj17Jw2YeihWpI9HePL7NZeK3/feBoTvDIpCA3SMSvnjVtl8Da1esZPdG
+         2qqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=u/SeS5iZc/gJRvCc8uoyByA4LLdvHc9Yu0KcSDQnvUw=;
-        b=1m3nY3PapsCy9/24A8kOvhxPjtmvBdH5ssQXSouUdgyzh6qnAtCTfO3JYILUKhDUC9
-         0BneC11HyORj5FqHtKkPk1i00sp7VzEk+355SKvtL7GJd+kXGabXmFlY1ofnw/wUGVvW
-         NOPdfK/TJYPWI5bTn7f1tk7jz81H5yOPfR5rPzhsKlkgYvqejYOyrV7FtBmOHqEkeREf
-         sX8JW+CfnwZe37SLYFalquux9/aKD7p4v8nKoNXtDwGR9L/Mzgd4eWJHNPzwczyQwSaz
-         Qhwt/yo5bK/yQQx3ByjDhfNzvyfgLUAbNg5wfxZoChqlfHDhq31wVT4lF7xb+ZcPK8pK
-         R2gQ==
-X-Gm-Message-State: AOAM5339qwVQCj6MU+Vi41K/+dsq1/cwkx5nerEDZYr094+GrQ34KdeX
-	GiRi6ZQXRSlyVLm5D06BXL0uvPrWLns=
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YSOizuEiBI+3vPiP80AwQkzg2u07HZHx/hIJ6s8kdzQ=;
+        b=EykxqAsbCFZRQrzfo40oZDsaH6LnTIYrGWJKkjbNnkqk9YX5aT+Z7yOMsNN1CmFHwb
+         dDSnl54HtlFf0kd767TVN7LnDQXcICzEcQJE1+EtcKZ9lSUMKmefpV68xwF7rglhd4Ri
+         W/BxIPivfn3pSoIQE4w1YegwnmTb7XBdlAyotQZQTjeowHfqEacsUlghh7z/cqehUK3E
+         KcgphsFNFglIOU6OPOH92+BTbg1C+bo7wcCjVsMr9kp/5plmVc9IkEqoxIv9RNaX34EQ
+         eKcLlr+2aMjlSQVad1Nye3hQsZcwlnkTxduVKC2Y9j/krEnVUTbqvq9RL0yY07/PP+Cy
+         MUqQ==
+X-Gm-Message-State: AOAM5322zCBZagtr5kzB/iFvlMAHMrHx5Pc5exjMjqforK1IUXjR1jiW
+	69nK9agF1ZtPfhgOB0SUX6JUTYPYcLg=
 X-Google-Smtp-Source: 
- ABdhPJxFp1wIqKTi9Y2K9W+LmskgNFkSWQqrlhup9xbVR9mlIIedGCv85HP6AG1Zv+XABe4lra8+Qw==
-X-Received: by 2002:a17:902:a70d:b0:15e:da68:b1b1 with SMTP id
- w13-20020a170902a70d00b0015eda68b1b1mr56938619plq.53.1653922496507;
-        Mon, 30 May 2022 07:54:56 -0700 (PDT)
+ ABdhPJyRlH9Kp+5OXSTLQGP+PJpvJwcWG8d3VREl2iQbovsIbB0NaFbDOU/wASDU68lm9U9Z7yfQyw==
+X-Received: by 2002:a17:90a:ab8d:b0:1e0:a082:b2c7 with SMTP id
+ n13-20020a17090aab8d00b001e0a082b2c7mr23237726pjq.17.1653922495046;
+        Mon, 30 May 2022 07:54:55 -0700 (PDT)
 Received: from keaua.hsd1.ca.comcast.net
  (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
         by smtp.gmail.com with ESMTPSA id
- q13-20020a170902b10d00b00163c9ad14efsm3480339plr.143.2022.05.30.07.54.55
+ q13-20020a170902b10d00b00163c9ad14efsm3480339plr.143.2022.05.30.07.54.54
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 May 2022 07:54:55 -0700 (PDT)
+        Mon, 30 May 2022 07:54:54 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-tpm][PATCH 2/5] security-tpm2-image: add swtpm
-Date: Mon, 30 May 2022 07:52:49 -0700
-Message-Id: <20220530145252.4059103-2-akuster808@gmail.com>
+Subject: [meta-tpm][PATCH 1/5] swtpm: enable seccomp if DISTRO is enabled
+Date: Mon, 30 May 2022 07:52:48 -0700
+Message-Id: <20220530145252.4059103-1-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220530145252.4059103-1-akuster808@gmail.com>
-References: <20220530145252.4059103-1-akuster808@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Mon, 30 May 2022 14:55:01 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57220
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57219
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- meta-tpm/recipes-core/images/security-tpm2-image.bb | 1 +
+ meta-tpm/recipes-tpm/swtpm/swtpm_0.7.1.bb | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/meta-tpm/recipes-core/images/security-tpm2-image.bb b/meta-tpm/recipes-core/images/security-tpm2-image.bb
-index 7e047d1..941a661 100644
---- a/meta-tpm/recipes-core/images/security-tpm2-image.bb
-+++ b/meta-tpm/recipes-core/images/security-tpm2-image.bb
-@@ -7,6 +7,7 @@ IMAGE_INSTALL = "\
-     packagegroup-core-boot \
-     packagegroup-security-tpm2 \
-     os-release \
-+    swtpm \
- "
+diff --git a/meta-tpm/recipes-tpm/swtpm/swtpm_0.7.1.bb b/meta-tpm/recipes-tpm/swtpm/swtpm_0.7.1.bb
+index 85e4c5d..db6ceee 100644
+--- a/meta-tpm/recipes-tpm/swtpm/swtpm_0.7.1.bb
++++ b/meta-tpm/recipes-tpm/swtpm/swtpm_0.7.1.bb
+@@ -22,6 +22,7 @@ TSS_GROUP="tss"
  
- IMAGE_LINGUAS ?= " "
+ PACKAGECONFIG ?= "openssl"
+ PACKAGECONFIG += "${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'selinux', '', d)}"
++PACKAGECONFIG += "${@bb.utils.contains('DISTRO_FEATURES', 'seccomp', 'seccomp', '', d)}"
+ PACKAGECONFIG += "${@bb.utils.contains('BBFILE_COLLECTIONS', 'filesystems-layer', 'cuse', '', d)}"
+ PACKAGECONFIG[openssl] = "--with-openssl, --without-openssl, openssl"
+ # expect, bash, tpm2-pkcs11-tools (tpm2_ptool), tpmtool and certtool is
 -- 
 2.25.1
 
