@@ -2,106 +2,88 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2203AC433EF
-	for <webhook@archiver.kernel.org>; Mon, 30 May 2022 22:04:13 +0000 (UTC)
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com
- [209.85.210.171])
- by mx.groups.io with SMTP id smtpd.web08.42235.1653948252186136397
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 062B7C433EF
+	for <webhook@archiver.kernel.org>; Mon, 30 May 2022 22:04:23 +0000 (UTC)
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com
+ [209.85.216.52])
+ by mx.groups.io with SMTP id smtpd.web09.42255.1653948253458037235
  for <yocto@lists.yoctoproject.org>;
- Mon, 30 May 2022 15:04:12 -0700
+ Mon, 30 May 2022 15:04:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=q04T5gtm;
- spf=pass (domain: gmail.com, ip: 209.85.210.171,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=j595cDrU;
+ spf=pass (domain: gmail.com, ip: 209.85.216.52,
  mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f171.google.com with SMTP id p8so11525550pfh.8
+Received: by mail-pj1-f52.google.com with SMTP id
+ n13-20020a17090a394d00b001e30a60f82dso483328pjf.5
         for <yocto@lists.yoctoproject.org>;
- Mon, 30 May 2022 15:04:12 -0700 (PDT)
+ Mon, 30 May 2022 15:04:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=WVM4LaOJ2+mDGrgxznigelkaEByDgtv8rEF2PtiYlD0=;
-        b=q04T5gtmHO9uVq1VPyMsYThhPYkfW+EyEreJ0PQVT3A3VuQJU/Aj+5a3zQY/VTb264
-         kpmh7KLfOqyiG2fifGttHr6iERALmt4iO2ckivyduli+j33koWEOe0DKNeD5avkNutv7
-         UHkcn+iZtIBTLrdPSQywL4e2wIcVb9eRduiYiHBWJiX3+crGIA2Egv7EZu6g4MuQ5Tdc
-         fJJ4o/f68KcgfJ4QbDa2gJWfsEF+xoVPBV4/3TYPAEYXCwKHmUU7R0HUpQsnWYbPQaeI
-         4ari8PD25vLLZnw6uM1OVE6S4vlUZMXS5maDAr11owK0cgCFkuZkuoPEL0BOMX732Yir
-         l+lw==
+        bh=eEX3EZh1lljG51isSBpnDrq+N5jET1ymwffFMttx++8=;
+        b=j595cDrUjIx1JrqZyvbYSCJ9J212v+Px8uwiiffSILbpPEN20Oz/MFMW/MsPQlpem/
+         ZWmGzgvBH9xCJ1EeaZqzW0Qv1LSWIHG3NLBXWhhCMJ5Bv0f61NoDCJb6bYeOUnXHBsnG
+         tS8dq2x8vDkkPx4XDvLEvJJx4ewupb6WWVL88gAuqjrmpNykdieoPwepln6KQYdQ3M+k
+         Yai1GjG125noSg4feJINJXzjuH58wYb/ANmuH7whH9RTf3yFBpHtgygwNJIWkOP6FPLZ
+         hHKDolbxCxiqNHxAXsUR/mLEHKEqjT0e++Id780CsGHA+kmbIStvPbrIh6kBry4TmGxR
+         Nn9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=WVM4LaOJ2+mDGrgxznigelkaEByDgtv8rEF2PtiYlD0=;
-        b=ym18D46MC0nNoN3yFbPzGlI9FlvCY8RbP0nj8tR3svbUH1TxxcYp7IVoPetVLkeKut
-         1L8yy9JnrSz5b4EySmYRvaZyGBC0Rp+fSaQhpAq+DfFnwUb4yx1dpU6ujhDZIxf4+Av7
-         ta09LDhwgNoNseoj2EFl2AAlJQL2AIhYbk1TzaB1JP+BkeKujKWwBgc3Vl/iXGGM9p7j
-         IkS5bDWlvxhgGOLvab9F81ahYSxhCq6A+Anv2kEgxr5CK34aKP1jfwC1EgaPKpqJIQQB
-         keqkLviEjjMhlooAKasIh1K2TbzPGQPMB+HfOl4TWg6phV1M4HvsVbt4ikw3JiXiT8ye
-         eksg==
-X-Gm-Message-State: AOAM531kojitgnQ9MOibzCmmqKs8kKqWtx0mRa0cA4XIjZmVSnaT/eJW
-	ThqUQMppEqE2y0J4/e00HqAsFlNHMow=
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=eEX3EZh1lljG51isSBpnDrq+N5jET1ymwffFMttx++8=;
+        b=HxwTimbMkUCTwZCG3lqMiD8IEWM0TiUwien2wrzGeW5/3I8Ep/T7jyw2SvV1eVhwy+
+         bmbarMCAd1KaE41dG4zHG2YJntDTByqzwwcMWT0I7Xf5xN1lC2hU7wnGmczw7v3epcCS
+         hgP5Xfy/mv/CUzWzYm/j4ATWsM3gyOkTBQ/6tA6sHMpsF5BgWMHI+ME7lMHk1x8iL5si
+         vWPolHqwVD3aJjpJD6Ucba5J/qGUh7NI0hNOJPAvZpTkjK8k9zRTN/DtZ9atk2I2RWXa
+         Os+0ZCKPbFy824+SHusUz5V5ZKXe90OMtKCemAglytLPt2r6iAt5YOH4eKUjuHjj6NKH
+         ZeVA==
+X-Gm-Message-State: AOAM53013naDDSZXmla1KV7/8V/LsrEAL9q/Es28SGvqlTk7IoCrGx+w
+	DOx654U9mNssuJ6tJhvzev3ANFVBqyc=
 X-Google-Smtp-Source: 
- ABdhPJy+76q3WWRpCv6LhgSwtlRiIladipYbFo7jrq06kXnmg1sZSXdy7PIQQfIjpQEr50xTSzfLAg==
-X-Received: by 2002:a05:6a02:11c:b0:3f9:e159:5fa5 with SMTP id
- bg28-20020a056a02011c00b003f9e1595fa5mr41002289pgb.245.1653948251194;
-        Mon, 30 May 2022 15:04:11 -0700 (PDT)
+ ABdhPJyhp18B58tamtV+WclybBealEztAFcDNkHH4DlDgBLsG4L/LtlAqWnmJ8XANPGD8I6zDRihSA==
+X-Received: by 2002:a17:90a:9505:b0:1df:2162:2bb5 with SMTP id
+ t5-20020a17090a950500b001df21622bb5mr25191907pjo.73.1653948252489;
+        Mon, 30 May 2022 15:04:12 -0700 (PDT)
 Received: from keaua.hsd1.ca.comcast.net
  (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
         by smtp.gmail.com with ESMTPSA id
- x22-20020a170902b41600b001635a8f9dfdsm9679198plr.26.2022.05.30.15.04.09
+ x22-20020a170902b41600b001635a8f9dfdsm9679198plr.26.2022.05.30.15.04.11
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 May 2022 15:04:10 -0700 (PDT)
+        Mon, 30 May 2022 15:04:11 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 1/3] tpm2-pkcs11: we really need the symlinks
-Date: Mon, 30 May 2022 15:02:06 -0700
-Message-Id: <20220530220208.477287-1-akuster808@gmail.com>
+Subject: [meta-security][PATCH 2/3] smack-test: switch to python3
+Date: Mon, 30 May 2022 15:02:07 -0700
+Message-Id: <20220530220208.477287-2-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220530220208.477287-1-akuster808@gmail.com>
+References: <20220530220208.477287-1-akuster808@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 30 May 2022 22:04:13 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57224
-
-MASK dev-so
-Drop un-needed install append steps.
+ <yocto@lists.yoctoproject.org>; Mon, 30 May 2022 22:04:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57225
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.8.0.bb     | 11 ++---------
- 1 file changed, 2 insertions(+), 9 deletions(-)
+ recipes-mac/smack/smack-test_1.0.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.8.0.bb b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.8.0.bb
-index e8812d0..dd0a0b5 100644
---- a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.8.0.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_1.8.0.bb
-@@ -25,15 +25,6 @@ do_compile:append() {
+diff --git a/recipes-mac/smack/smack-test_1.0.bb b/recipes-mac/smack/smack-test_1.0.bb
+index d7824ae..3ab57c6 100644
+--- a/recipes-mac/smack/smack-test_1.0.bb
++++ b/recipes-mac/smack/smack-test_1.0.bb
+@@ -22,4 +22,4 @@ do_install() {
+     install -m 0755 *.sh ${D}${sbindir}
  }
  
- do_install:append() {
--    install -d ${D}${libdir}/pkcs11
--    install -d ${D}${datadir}/p11-kit
--
--    # remove symlinks
--    rm -f ${D}${libdir}/pkcs11/libtpm2_pkcs11.so
--
--    #install lib
--    install -m 755 ${B}/src/.libs/libtpm2_pkcs11.so ${D}${libdir}/pkcs11/libtpm2_pkcs11.so
--
-     cd ${S}/tools
-     export PYTHONPATH="${D}${PYTHON_SITEPACKAGES_DIR}"
-     ${PYTHON_PN} setup.py install --root="${D}" --prefix="${prefix}" --install-lib="${PYTHON_SITEPACKAGES_DIR}" --optimize=1 --skip-build
-@@ -53,5 +44,7 @@ FILES:${PN} += "\
-     ${datadir}/p11-kit/* \
-     "
- 
-+INSANE_SKIP:${PN}   += "dev-so"
-+
- RDEPENDS:${PN} = "p11-kit tpm2-tools "
- RDEPENDS:${PN}-tools = "${PYTHON_PN}-pyyaml ${PYTHON_PN}-cryptography ${PYTHON_PN}-pyasn1-modules"
+-RDEPENDS:${PN} = "smack python mmap-smack-test tcp-smack-test udp-smack-test"
++RDEPENDS:${PN} = "smack python3-core mmap-smack-test tcp-smack-test udp-smack-test"
 -- 
 2.25.1
 
