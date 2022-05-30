@@ -1,269 +1,294 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 047C9C433F5
-	for <webhook@archiver.kernel.org>; Mon, 30 May 2022 22:04:23 +0000 (UTC)
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com
- [209.85.215.175])
- by mx.groups.io with SMTP id smtpd.web11.42281.1653948254843978353
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 70907C433FE
+	for <webhook@archiver.kernel.org>; Mon, 30 May 2022 23:00:33 +0000 (UTC)
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com
+ [209.85.210.170])
+ by mx.groups.io with SMTP id smtpd.web08.42852.1653951628143956935
  for <yocto@lists.yoctoproject.org>;
- Mon, 30 May 2022 15:04:14 -0700
+ Mon, 30 May 2022 16:00:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=ZFJsWEf+;
- spf=pass (domain: gmail.com, ip: 209.85.215.175,
- mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f175.google.com with SMTP id x12so11102590pgj.7
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=T3r2IODk;
+ spf=pass (domain: gmail.com, ip: 209.85.210.170,
+ mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pf1-f170.google.com with SMTP id 187so58793pfu.9
         for <yocto@lists.yoctoproject.org>;
- Mon, 30 May 2022 15:04:14 -0700 (PDT)
+ Mon, 30 May 2022 16:00:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=MH4HJwgskjdLoOcWGbiyb47FjdkDRTN1e7lWAhCSOL0=;
-        b=ZFJsWEf+/ALdZkpQ7CdPU7HnXevvDb/s3/smsbcrxIr1Mlwjv7pPltD63YOMf1CByE
-         mXPIpFO2IXZF/sli60JyWjwYWCtnjxVaN07dpzrGYhthC7c3PK6aRdVzIdMHjAQ1eTBh
-         rDduCYRNh2fnDVv3c95JT3HqLRE/fmBZsy1LTz+y5ADo2TgnfNus2sQcVn7VcUHyzo/3
-         p5++2URyB/PJeoEBYOOsHratuFsdeJ228SBzpgwsqGqf0zdXDiL+IUj7F2vxbCYe6fpe
-         QklibkNmBY2ZndYFcTprJGCPlU2o+OuA0OQ+TUEPRQI09IG0OUbqoV0OjVuP61BDtkvz
-         wpmA==
+        h=from:to:subject:date:message-id:mime-version:thread-index
+         :content-language;
+        bh=0We5R2zeuiKIjnrNcqivAc8CFr1fwvaC/2Ibt7Dw6Ao=;
+        b=T3r2IODkwShhnuT3mHxd03p3OtTqb0t7MpyH691xWh4h+SngydWk84CCyNvrO1Vhes
+         cCR3YbqoQ/5UpXX0bwNqEWNYG9pcnWhdOySa2xnmWIzN2GFBxfeXiuEVo51AQ8H4wthX
+         7ej+h/F4HeBzjdwchtEV1r/gtTNcNY2kEHD8ejqEfj/UW5MzazwSyfXv4G9paxedVLnF
+         SkbketaWtpoeZZ+3g3Jhml0j3i8hBjQCQleIzyj0LLtPFIoCRt5R5bcsAj4t6Zp1GTIq
+         cNWOZK5Ohn9JHrejYMMpyEAeSfpSBkJkeuEvQFpEfs2eAsf3V58IcSX2ZkUrlF3etRyv
+         PgeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=MH4HJwgskjdLoOcWGbiyb47FjdkDRTN1e7lWAhCSOL0=;
-        b=SBKp/SwAWbdMY73AC1JoZ/9BBQ13xklhocZyfFfip8j1jsGtTvvx1uTerQrpKnRppF
-         DWwcksBmHAzZBWKgUyyOUX6ptfNxMlnTST7o2jM5V5qr0/wmeE0ogNt2DarNhvuSv5pL
-         Nyia9C8qttny0zmBoyJzmPjhKMI4jxWIcDWpbHwENyCk4WeuzZ4OBNOUvRqBAptOFqK+
-         RjgUU8Tj+bgkTPzKonsoH55U9c/h6ofUxWc96vDYVK+WaCZPLOWE41AK5c5GBtKxPwKg
-         IhMztn0X3X38NmlLcW+B58BwtCqjzLjQ8ta4uFOcdiSVVkLwhM4GeD65CI5VkLkObAO7
-         e/WA==
-X-Gm-Message-State: AOAM533o7iqZAkQmJ9XPGeuXnoEfL4ysyFzy/1A78LvxbXhVAn828NXo
-	2mn56nbOiF/KExBQA8sYhUsHZUg/3/A=
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :thread-index:content-language;
+        bh=0We5R2zeuiKIjnrNcqivAc8CFr1fwvaC/2Ibt7Dw6Ao=;
+        b=UCC3wJD17Oq1rCC23NDhIUMg9BB8dPeElPTvpHAM+DRDslaaxYjFeINV83mTgdbDDq
+         TG/pAKxSpG9q+R64w8pd3sc/0w9RRLIAIllGBMxMFvg3Dgkn1OC9yn0n+08onPMiH+z6
+         8/KXKlpRkfEMCdKVvKhTioSnioGdXycMGMVyUSfspHiepvg5jEBqP0qbFHsMIYT092+4
+         Xvy3lueq6wyWL0y9TGe82K0pvFJ6ymhmDszT4etZ3ACfnV1RC4xbC50rqrRDEiVeGDa+
+         LFJE839cBzN0MQidHZU+VGxcBtBqroe7BoscXfutwEMDmGWhhsvCdneHxohwzkCtXMzS
+         jN2w==
+X-Gm-Message-State: AOAM533grGxCY0V3e3rZ+nmkBGHKkAs8flGVOkRN26q6J607wNRKiGhA
+	iBIFabnelxX5swlovxE6NpA=
 X-Google-Smtp-Source: 
- ABdhPJzwyzOUPQjXEO7ccXNXmdm/gVwpk1vxRvm8r3Og8XYi+3WvuW/3dNQ4yF9vilMppGgMplrFSA==
-X-Received: by 2002:a63:2107:0:b0:3fb:ac79:50ed with SMTP id
- h7-20020a632107000000b003fbac7950edmr15393577pgh.105.1653948253983;
-        Mon, 30 May 2022 15:04:13 -0700 (PDT)
-Received: from keaua.hsd1.ca.comcast.net
- (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
+ ABdhPJzuHxMGsk5PPiIo0Nq2b/fZWl7BGPOypKgN564OTYVGEz6EjX4w8RMw03U7eAoeX7rjlN4Zmg==
+X-Received: by 2002:a05:6a00:1a50:b0:51b:5a69:81ff with SMTP id
+ h16-20020a056a001a5000b0051b5a6981ffmr4891052pfv.78.1653951627567;
+        Mon, 30 May 2022 16:00:27 -0700 (PDT)
+Received: from skjolley ([2600:1011:a110:ffbf:dd43:a08b:b55f:8253])
         by smtp.gmail.com with ESMTPSA id
- x22-20020a170902b41600b001635a8f9dfdsm9679198plr.26.2022.05.30.15.04.12
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 May 2022 15:04:13 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 3/3] oeqa/smack: consolidate classes
-Date: Mon, 30 May 2022 15:02:08 -0700
-Message-Id: <20220530220208.477287-3-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220530220208.477287-1-akuster808@gmail.com>
-References: <20220530220208.477287-1-akuster808@gmail.com>
+ f7-20020a170902ab8700b0015e8d4eb272sm9624106plr.188.2022.05.30.16.00.26
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 30 May 2022 16:00:27 -0700 (PDT)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@lists.yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 30 May 2022 16:00:26 -0700
+Message-ID: <03ac01d87479$0d79f1b0$286dd510$@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_03AD_01D8743E.611D63A0"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJHA48yYyFhLjQSsQtgJMStktUShQ==
+Content-Language: en-us
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 30 May 2022 22:04:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57226
+ <yocto@lists.yoctoproject.org>; Mon, 30 May 2022 23:00:33 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57227
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- lib/oeqa/runtime/cases/smack.py | 39 ---------------------------------
- 1 file changed, 39 deletions(-)
+This is a multipart message in MIME format.
 
-diff --git a/lib/oeqa/runtime/cases/smack.py b/lib/oeqa/runtime/cases/smack.py
-index 35e87ef..b8255c7 100644
---- a/lib/oeqa/runtime/cases/smack.py
-+++ b/lib/oeqa/runtime/cases/smack.py
-@@ -29,8 +29,6 @@ class SmackBasicTest(OERuntimeTestCase):
-         status,output = self.target.run("cat /proc/self/attr/current")
-         self.current_label = output.strip()
+------=_NextPart_000_03AD_01D8743E.611D63A0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+All,
+
  
--class SmackAccessLabel(SmackBasicTest):
--
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_add_access_label(self):
-         ''' Test if chsmack can correctly set a SMACK label '''
-@@ -54,8 +52,6 @@ class SmackAccessLabel(SmackBasicTest):
-                 "%s %s" %(LABEL,label_retrieved))
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+<https://bugzilla.yoctoproject.org/createaccount.cgi>
+https://bugzilla.yoctoproject.org/createaccount.cgi
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
  
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 423
+unassigned or newcomer bugs.
+
  
--class SmackExecLabel(SmackBasicTest):
--
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_add_exec_label(self):
-         '''Test if chsmack can correctly set a SMACK Exec label'''
-@@ -79,8 +75,6 @@ class SmackExecLabel(SmackBasicTest):
-                 "%s %s" %(LABEL,label_retrieved))
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now,  "4.1", "4.2", "4.99" and "Future", the more pressing/urgent
+issues being in "4.1" and then "4.2".
+
  
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
  
--class SmackMmapLabel(SmackBasicTest):
--
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_add_mmap_label(self):
-         '''Test if chsmack can correctly set a SMACK mmap label'''
-@@ -104,8 +98,6 @@ class SmackMmapLabel(SmackBasicTest):
-                 "%s %s" %(LABEL,label_retrieved))
+
+Thanks,
+
  
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
  
--class SmackTransmutable(SmackBasicTest):
--
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_add_transmutable(self):
-         '''Test if chsmack can correctly set a SMACK transmutable mode'''
-@@ -128,8 +120,6 @@ class SmackTransmutable(SmackBasicTest):
-                 "%s %s" %(LABEL,label_retrieved))
- 
- 
--class SmackChangeSelfLabelPrivilege(SmackBasicTest):
--
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_privileged_change_self_label(self):
-         '''Test if privileged process (with CAP_MAC_ADMIN privilege)
-@@ -145,8 +135,6 @@ class SmackChangeSelfLabelPrivilege(SmackBasicTest):
-         self.assertIn("PRIVILEGED", output,
-                     "Privilege process did not change label.Output: %s" %output)
- 
--class SmackChangeSelfLabelUnprivilege(SmackBasicTest):
--
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_unprivileged_change_self_label(self):
-         '''Test if unprivileged process (without CAP_MAC_ADMIN privilege)
-@@ -163,8 +151,6 @@ class SmackChangeSelfLabelUnprivilege(SmackBasicTest):
-             "Unprivileged process should not be able to change its label")
- 
- 
--class SmackChangeFileLabelPrivilege(SmackBasicTest):
--
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_unprivileged_change_file_label(self):
-         '''Test if unprivileged process cannot change file labels'''
-@@ -183,8 +169,6 @@ class SmackChangeFileLabelPrivilege(SmackBasicTest):
-         self.target.run("rm %s" % filename)
-         self.assertEqual( status, 0, "Unprivileged process changed label for %s" %filename)
- 
--class SmackLoadRule(SmackBasicTest):
--
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_load_smack_rule(self):
-         '''Test if new smack access rules can be loaded'''
-@@ -211,8 +195,6 @@ class SmackLoadRule(SmackBasicTest):
-         self.target.run('echo -n "%s" > %s/load' %(clean, self.smack_path))
- 
- 
--class SmackOnlycap(SmackBasicTest):
--
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_smack_onlycap(self):
-         '''Test if smack onlycap label can be set
-@@ -223,7 +205,6 @@ class SmackOnlycap(SmackBasicTest):
-         status, output = self.target.run("sh /usr/sbin/test_smack_onlycap.sh")
-         self.assertEqual(status, 0, output)
- 
--class SmackNetlabel(SmackBasicTest):
- 
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_smack_netlabel(self):
-@@ -246,7 +227,6 @@ class SmackNetlabel(SmackBasicTest):
-             test_label, output,
-             "Did not find expected label in output: %s" %output)
- 
--class SmackCipso(SmackBasicTest):
- 
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_smack_cipso(self):
-@@ -287,7 +267,6 @@ class SmackCipso(SmackBasicTest):
-         self.assertEqual(status, 0, "Cipso rule C was not set")
-         self.assertIn("/17,33", output, "Rule C was not set correctly")
- 
--class SmackDirect(SmackBasicTest):
- 
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_smack_direct(self):
-@@ -308,8 +287,6 @@ class SmackDirect(SmackBasicTest):
-             "Smack direct label does not match.")
- 
- 
--class SmackAmbient(SmackBasicTest):
--
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_smack_ambient(self):
-         test_ambient = "test_ambient"
-@@ -330,8 +307,6 @@ class SmackAmbient(SmackBasicTest):
-             "Ambient label does not match")
- 
- 
--class SmackloadBinary(SmackBasicTest):
--
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_smackload(self):
-         '''Test if smackload command works'''
-@@ -345,8 +320,6 @@ class SmackloadBinary(SmackBasicTest):
-         self.assertEqual(status, 0, "Smackload rule was loaded correctly")
- 
- 
--class SmackcipsoBinary(SmackBasicTest):
--
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_smackcipso(self):
-         '''Test if smackcipso command works'''
-@@ -362,8 +335,6 @@ class SmackcipsoBinary(SmackBasicTest):
-         self.assertIn( "2/2", output, "Rule was not set correctly. Got: %s" %output)
- 
- 
--class SmackEnforceFileAccess(SmackBasicTest):
--
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_smack_enforce_file_access(self):
-         '''Test if smack file access is enforced (rwx)
-@@ -375,8 +346,6 @@ class SmackEnforceFileAccess(SmackBasicTest):
-         self.assertEqual(status, 0, output)
- 
- 
--class SmackEnforceMmap(SmackBasicTest):
--
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_smack_mmap_enforced(self):
-         '''Test if smack mmap access is enforced'''
-@@ -449,8 +418,6 @@ class SmackEnforceMmap(SmackBasicTest):
-             "Output: %s" %output)
- 
- 
--class SmackEnforceTransmutable(SmackBasicTest):
--
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_smack_transmute_dir(self):
-         '''Test if smack transmute attribute works
-@@ -473,8 +440,6 @@ class SmackEnforceTransmutable(SmackBasicTest):
-             "Did not get expected label. Output: %s" % output)
- 
- 
--class SmackTcpSockets(SmackBasicTest):
--
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_smack_tcp_sockets(self):
-         '''Test if smack is enforced on tcp sockets
-@@ -485,8 +450,6 @@ class SmackTcpSockets(SmackBasicTest):
-         self.assertEqual(status, 0, output)
- 
- 
--class SmackUdpSockets(SmackBasicTest):
--
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_smack_udp_sockets(self):
-         '''Test if smack is enforced on udp sockets
-@@ -497,8 +460,6 @@ class SmackUdpSockets(SmackBasicTest):
-         self.assertEqual(status, 0, output)
- 
- 
--class SmackFileLabels(SmackBasicTest):
--
-     @OETestDepends(['smack.SmackBasicTest.test_smack_basic'])
-     def test_smack_labels(self):
-         '''Check for correct Smack labels.'''
--- 
-2.25.1
+
+
+------=_NextPart_000_03AD_01D8743E.611D63A0
+Content-Type: text/html;
+	boundary="----=_NextPart_000_02BB_01D86F42.EFA67D60";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The triage team is starting to try and =
+collect up and classify bugs which a newcomer to the project would be =
+able to work on in a way which means people can find them. They're being =
+listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a> and how to create a bugzilla account at: <a =
+href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
+style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
+/span></a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 423 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &nbsp;&#8220;4.1&#8221;, =
+&#8220;4.2&#8221;, &quot;4.99&quot; and &quot;Future&quot;, the more =
+pressing/urgent issues being in &quot;4.1&quot; and then =
+&#8220;4.2&#8221;.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Please review this link and if a bug is =
+something you would be able to help with either take ownership of the =
+bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_000_03AD_01D8743E.611D63A0--
 
 
