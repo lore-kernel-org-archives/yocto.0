@@ -1,178 +1,278 @@
-Return-Path: <scott.threet@konecranes.com>
+Return-Path: <fknorr@neuroloop.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8DFE0C43334
-	for <webhook@archiver.kernel.org>; Thu,  2 Jun 2022 12:53:00 +0000 (UTC)
-Subject: tc commands in yocto
-To: yocto@lists.yoctoproject.org
-From: scott.threet@konecranes.com
-X-Originating-Location: =?utf-8?b?SGFydmlhbGEsIEthbnRhLUjDpG1lLCBGSSAoNjIu?=
- =?utf-8?b?NjEuOTcuMTEp?=
-X-Originating-Platform: Windows Firefox 98
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 86B2EC433EF
+	for <webhook@archiver.kernel.org>; Thu,  2 Jun 2022 13:03:40 +0000 (UTC)
+Received: from EUR02-VE1-obe.outbound.protection.outlook.com
+ (EUR02-VE1-obe.outbound.protection.outlook.com [40.107.2.138])
+ by mx.groups.io with SMTP id smtpd.web08.6230.1654175019089478083
+ for <yocto@lists.yoctoproject.org>;
+ Thu, 02 Jun 2022 06:03:39 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@neuroloop.onmicrosoft.com
+ header.s=selector2-neuroloop-onmicrosoft-com header.b=BM32dtHo;
+ spf=pass (domain: neuroloop.de, ip: 40.107.2.138,
+ mailfrom: fknorr@neuroloop.de)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JEtpK/qlM3FcelApsO1rptpU1SGsbL9FRkGwu0dNRaxbSPF3A0CfRYv6cslFgjmh3p1g/n8rvUt5278evPo2dwb78O9IVARZuARvcRXhFBcgtgUTif49oZ4OBFjTNTj4DTZx2UgVNrjfT+wP+MeBZrx1zLxpAzDZrXinpTdnkQ+PWU9Gbt6ecVxwV5Ma4U2AeNDlRgns17/zI+NfSI3mMLGpOFqoAYoauh1f/buKApg4ovl09z7BrPYxFXiRW972o+rPPfR7QAst3cNtobcX1l5hcDpIYnrLVT/pSiuE9pTr7iIvusgUpYbKGpLqqnO8Ue/VGf/eQ823Zk8+aoc79Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=96uuE+B1d5P1PDfMeCjFxS5ZwwEt0A/dZjhuRyug9rw=;
+ b=F55h2nWwh1yrmZmfFcgKe+2zT3scw2hBD49mPN/ygVDC5QLVhMKzQIwmbmPP5c/1yZuxXt/FrJG7Gi0Jj+K8Uz9ZIR6jb2/vbLf9bde3jQGqQ9CM+zHKay3SYSb9rt/aw6HRdCbXEr1n71bLzaQhkyA8rOhBz/oS3N7o2uIM0jHHjA/mUIGOY+CKHX5QQrpVZZBQUSRHDwZu84GV563j9L5H2h+teKCaBwmtiVzUq0pLtrjwknUnRMGxbPUt+oqbQOkq4lE+yfkFltPAMNRwbrik4tVd+nn4Ur1gj3nBIX/LslUygieR+R4XV0/oh5zKSYF4SxFdDoBlSn/7x2R5CA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 213.164.76.146) smtp.rcpttodomain=lists.yoctoproject.org
+ smtp.mailfrom=neuroloop.de; dmarc=bestguesspass action=none
+ header.from=neuroloop.de; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=neuroloop.onmicrosoft.com; s=selector2-neuroloop-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=96uuE+B1d5P1PDfMeCjFxS5ZwwEt0A/dZjhuRyug9rw=;
+ b=BM32dtHocuQHbCc8Az3/h+CF7G+UQh8k3rTlfkHBknRBjxzNnOJSCQXVC7zR/qUakNZlcFsElzjynhczQCPkJUg2xYgsuTwZvApqEfgSoxFW6u3XuXyuTIcCPDosA3Ke6w/4RIrdiF0CT0m+5BPjhVmy5+hxI3YoEI2Bay2WVt8=
+Received: from SV0P279CA0049.NORP279.PROD.OUTLOOK.COM (2603:10a6:f10:13::18)
+ by DB8PR04MB6923.eurprd04.prod.outlook.com (2603:10a6:10:114::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.13; Thu, 2 Jun
+ 2022 13:03:34 +0000
+Received: from HE1EUR02FT046.eop-EUR02.prod.protection.outlook.com
+ (2603:10a6:f10:13:cafe::7d) by SV0P279CA0049.outlook.office365.com
+ (2603:10a6:f10:13::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.12 via Frontend
+ Transport; Thu, 2 Jun 2022 13:03:34 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 213.164.76.146)
+ smtp.mailfrom=neuroloop.de; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=neuroloop.de;
+Received-SPF: Pass (protection.outlook.com: domain of neuroloop.de designates
+ 213.164.76.146 as permitted sender) receiver=protection.outlook.com;
+ client-ip=213.164.76.146; helo=mail.neuroloop.de; pr=C
+Received: from mail.neuroloop.de (213.164.76.146) by
+ HE1EUR02FT046.mail.protection.outlook.com (10.152.11.249) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5314.12 via Frontend Transport; Thu, 2 Jun 2022 13:03:33 +0000
+Received: from srvexc1.neuroloop.local (10.136.17.20) by
+ srvexc1.neuroloop.local (10.136.17.20) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 2 Jun 2022 15:03:33 +0200
+Received: from srvexc1.neuroloop.local ([fe80::10ec:631:7447:2833]) by
+ srvexc1.neuroloop.local ([fe80::10ec:631:7447:2833%10]) with mapi id
+ 15.02.0986.014; Thu, 2 Jun 2022 15:03:33 +0200
+From: Felix Knorr <FKnorr@neuroloop.de>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Touchscreen not working
+Thread-Topic: Touchscreen not working
+Thread-Index: AQHYdoEpLU7+vvUx3kC9zxtmcYavNg==
+Date: Thu, 2 Jun 2022 13:03:32 +0000
+Message-ID: <6c44e32c-f680-826f-29bc-14ead47c3b9e@neuroloop.de>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [213.164.93.30]
+Content-Type: multipart/alternative;
+	boundary="_000_6c44e32cf680826f29bc14ead47c3b9eneuroloopde_"
 MIME-Version: 1.0
-Date: Thu, 02 Jun 2022 05:52:58 -0700
-Message-ID: <ZLvj.1654174378520969482.IEN9@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="XrJ6tvoa9rA9wQ9TO5yT"
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 4995f6e7-c56b-4599-1a4c-08da44984c99
+X-MS-TrafficTypeDiagnostic: DB8PR04MB6923:EE_
+X-Microsoft-Antispam-PRVS: 
+	<DB8PR04MB69230A0E33135F716BA02F05A6DE9@DB8PR04MB6923.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	d5TBD98U3A2JNl88qqfUfD9y5aY8e9O09GHV5F7V6c7fm5G7rrotO89zghBfvPrCaqjEDALB1mg2dSMY8lW1HvyUkatQ7P/Orqqm2qil5T5wRZ8VNZsuW2GLWn9W6XoGrkAPPDPpXCCgy4MY2mFU+PSsz9Sv2cdAU7Y2+nZgQwjY3nGs5EO8Rpfwvrp1pdNIYOhWsziHXn5tV0SppH3xI1ROCK3XohkvepOCsQeuLbwJXtngVzez0zJskaybJ08BKgD3wHPWD5EcA2FTNjqnZqSMWOOpxJbf0IvwnUDzUmszRi6AL5yWZ3CLEV0/qEYFiGGtl34djjua3iyuPo/WWYoJF2UMlUxRDDBExpsZ8qnDh7ktWcfgsA73ZS1S5kUNJ26cOqIyye5LImMurgzzl3GcC1h3tGI/E0uqD0VwkzXjgFgG9pP6c3ZoykAJC9jQjxFr+h2K1InsN6Gnlt3nbMYBPwpjC5wM4pViLp0kh/Cyq7S4SU43Y/xwNU3gZ6HvHnoapZAsqIInovejEiW79imew5Inpk78vE3ii6cj8k8gZ7mqX9Ckr1dqYX325lOUs80FfYLeeSGCtLOvaLxpz1+Y+O3zPnjPLh+J9lBiaOwKTuQX/tLkqBNVx+xykw8NQDUcX7gjpwJtAK32F6ejzDGhBXAfMZBlNRASuTg+qBbGyFljzolQGnXZNwP9jgPSsanCyCs7iCoDNOWfxaJ/TAfCWDYFCnBEXyesS0uoV6eANy2ODGvB/wtXbq3iF5eiCDt9fE6bMKpyOzySpY0G7jG22IUHnKk55pmma6AUoyU=
+X-Forefront-Antispam-Report: 
+	CIP:213.164.76.146;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.neuroloop.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230001)(396003)(376002)(346002)(39840400004)(136003)(36840700001)(46966006)(966005)(508600001)(82310400005)(26005)(6916009)(70206006)(316002)(5660300002)(7116003)(70586007)(33964004)(86362001)(36756003)(8936002)(31686004)(41300700001)(2616005)(2906002)(8676002)(81166007)(166002)(3480700007)(186003)(47076005)(66574015)(40480700001)(356005)(36860700001)(336012)(83380400001)(31696002)(36900700001);DIR:OUT;SFP:1102;
+X-OriginatorOrg: neuroloop.de
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2022 13:03:33.6541
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 4995f6e7-c56b-4599-1a4c-08da44984c99
+X-MS-Exchange-CrossTenant-Id: 7ccfa2e6-da67-443f-b0dd-3ff5292e0ffa
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
+ TenantId=7ccfa2e6-da67-443f-b0dd-3ff5292e0ffa;Ip=[213.164.76.146];Helo=[mail.neuroloop.de]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	HE1EUR02FT046.eop-EUR02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6923
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 02 Jun 2022 12:53:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57245
+ <yocto@lists.yoctoproject.org>; Thu, 02 Jun 2022 13:03:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57246
 
---XrJ6tvoa9rA9wQ9TO5yT
+--_000_6c44e32cf680826f29bc14ead47c3b9eneuroloopde_
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 
-I am trying to run tc commands, specifically tc qdisc add dev ppp0 root net=
-em delay 2000ms to add network latency so I can check that things at least =
-won't break when network connection is poor
+SGV5LA0KDQpJJ20gdHJ5aW5nIG1ha2UgYW4gaW1hZ2UgdGhhdCB3aWxsIGp1c3QgYm9vdHVwLCBz
+dGFydCBhbiBYIHNlcnZlciAob3IgbWF5YmUgcG90ZW50aWFsbHkgd2F5bGFuZCBsYXRlciksIGFu
+ZCBvdXIgcHJvZ3JhbSwgd2hpY2ggaXMgYmFzaWNhbGx5IGEgd2Vic2VydmVyIGFuZCBhIGd0ayB3
+ZWJ2aWV3LiBUaGlzIGFsbCB3b3Jrcy4gQnV0IHRoZSBwcm9ibGVtIGlzLCB0aGF0IHRoaXMgc2hv
+dWxkIHJ1biBvbiBhIE1TIFN1cmZhY2UgR28gMiwgYW5kIHRoZSB0b3VjaCBzY3JlZW4gaXNuJ3Qg
+d29ya2luZy4gV2hlbiBJIGJvb3QgYW4gVWJ1bnR1IGluc3RhbGxlciBpbWFnZSwgdGhlIHRvdWNo
+c2NyZWVuIGlzIHdvcmtpbmcgaW4gdGhlIGluc3RhbGxlciwgaXQgZG9lc24ndCBldmVuIHJlcXVp
+cmUgdGhlIHN1cmZhY2Ugc3BlY2lmaWMgcGF0Y2hlcy4NCg0KSSBhZGRlZCBhYm91dCBldmVyeSB0
+b3VjaHNjcmVlbiBkcml2ZXIgaW4gdGhlIGtlcm5lbCwgYW5kIGV4cGVyaW1lbnRlZCBhIGxvdCB3
+aXRoIG90aGVyIGtlcm5lbCBvcHRpb25zLCBidXQgbm90aGluZyBzZWVtcyB0byB3b3JrLiBJIGFs
+c28gaW5zdGFsbGVkIGxpYmV2ZGV2LiBXaGF0IGFtIEkgbWlzc2luZz8NCg0KVGhpcyBpcyBteSBj
+dXJyZW50IGtlcm5lbCBjb25maWd1cmF0aW9uIGZyYWdtZW50Og0KDQojIGFsbCB0aGUgdG91Y2hz
+Y3JlZW4gZHJpdmVycw0KQ09ORklHX0lOUFVUX1RPVUNIU0NSRUVOPXkNCkNPTkZJR19UT1VDSFND
+UkVFTl9BRDc4Nzk9bQ0KQ09ORklHX1RPVUNIU0NSRUVOX0FUTUVMX01YVD1tDQpDT05GSUdfVE9V
+Q0hTQ1JFRU5fQlUyMTAxMz1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fQlUyMTAyOT1tDQpDT05GSUdf
+VE9VQ0hTQ1JFRU5fQ0hJUE9ORV9JQ044NTA1PW0NCkNPTkZJR19UT1VDSFNDUkVFTl9DWThDVE1B
+MTQwPW0NCkNPTkZJR19UT1VDSFNDUkVFTl9DWVRUU1BfQ09SRT1tDQpDT05GSUdfVE9VQ0hTQ1JF
+RU5fQ1lUVFNQNF9DT1JFPW0NCkNPTkZJR19UT1VDSFNDUkVFTl9EWU5BUFJPPW0NCkNPTkZJR19U
+T1VDSFNDUkVFTl9IQU1QU0hJUkU9bQ0KQ09ORklHX1RPVUNIU0NSRUVOX0VFVEk9bQ0KQ09ORklH
+X1RPVUNIU0NSRUVOX0VHQUxBWF9TRVJJQUw9bQ0KQ09ORklHX1RPVUNIU0NSRUVOX0VYQzMwMDA9
+bQ0KQ09ORklHX1RPVUNIU0NSRUVOX0ZVSklUU1U9bQ0KQ09ORklHX1RPVUNIU0NSRUVOX0hJREVF
+UD1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fSFlDT05fSFk0NlhYPW0NCkNPTkZJR19UT1VDSFNDUkVF
+Tl9JTEkyMTBYPW0NCkNPTkZJR19UT1VDSFNDUkVFTl9JTElURUs9bQ0KQ09ORklHX1RPVUNIU0NS
+RUVOX1M2U1k3NjE9bQ0KQ09ORklHX1RPVUNIU0NSRUVOX0dVTlpFPW0NCkNPTkZJR19UT1VDSFND
+UkVFTl9FS1RGMjEyNz1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fRUxBTj1tDQpDT05GSUdfVE9VQ0hT
+Q1JFRU5fRUxPPW0NCkNPTkZJR19UT1VDSFNDUkVFTl9XQUNPTV9XODAwMT1tDQpDT05GSUdfVE9V
+Q0hTQ1JFRU5fV0FDT01fSTJDPW0NCkNPTkZJR19UT1VDSFNDUkVFTl9NQVgxMTgwMT1tDQpDT05G
+SUdfVE9VQ0hTQ1JFRU5fTUNTNTAwMD1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fTU1TMTE0PW0NCkNP
+TkZJR19UT1VDSFNDUkVFTl9NRUxGQVNfTUlQND1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fTVRPVUNI
+PW0NCkNPTkZJR19UT1VDSFNDUkVFTl9JTkVYSU89bQ0KQ09ORklHX1RPVUNIU0NSRUVOX01LNzEy
+PW0NCkNPTkZJR19UT1VDSFNDUkVFTl9QRU5NT1VOVD1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fRURU
+X0ZUNVgwNj1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fVE9VQ0hSSUdIVD1tDQpDT05GSUdfVE9VQ0hT
+Q1JFRU5fVE9VQ0hXSU49bQ0KQ09ORklHX1RPVUNIU0NSRUVOX1BJWENJUj1tDQpDT05GSUdfVE9V
+Q0hTQ1JFRU5fV0RUODdYWF9JMkM9bQ0KQ09ORklHX1RPVUNIU0NSRUVOX1VTQl9DT01QT1NJVEU9
+bQ0KQ09ORklHX1RPVUNIU0NSRUVOX1RPVUNISVQyMTM9bQ0KQ09ORklHX1RPVUNIU0NSRUVOX1RT
+Q19TRVJJTz1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fVFNDMjAwND1tDQpDT05GSUdfVE9VQ0hTQ1JF
+RU5fVFNDMjAwNz1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fU0lMRUFEPW0NCkNPTkZJR19UT1VDSFND
+UkVFTl9TVDEyMzI9bQ0KQ09ORklHX1RPVUNIU0NSRUVOX1NUTUZUUz1tDQpDT05GSUdfVE9VQ0hT
+Q1JFRU5fU1g4NjU0PW0NCkNPTkZJR19UT1VDSFNDUkVFTl9UUFM2NTA3WD1tDQpDT05GSUdfVE9V
+Q0hTQ1JFRU5fWkVUNjIyMz1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fUk9ITV9CVTIxMDIzPW0NCkNP
+TkZJR19UT1VDSFNDUkVFTl9JUVM1WFg9bQ0KQ09ORklHX1RPVUNIU0NSRUVOX1pJTklUSVg9bQ0K
+DQojIE90aGVyIGNvbmZpZyB2YXJzIHRoYXQgaGF2ZSB0b3VjaCBpbiB0aGVtDQpDT05GSUdfSElE
+X0FDQ1VUT1VDSD15DQpDT05GSUdfSElEX01VTFRJVE9VQ0g9eQ0KDQoNCiMgU3R1ZmYgZnJvbSB0
+aGlzIHRocmVhZDogaHR0cHM6Ly9jb21tdW5pdHkubnhwLmNvbS90NS9pLU1YLVByb2Nlc3NvcnMv
+WW9jdG8taS1NeC02LUhvdy10by1zdXBwb3J0LXRvdWNoLW9uLXRvdWNoc2NyZWVuLW1vbml0b3Iv
+bS1wLzY0Mjk1Ng0KQ09ORklHX0lOUFVUPXkNCkNPTkZJR19JTlBVVF9QT0xMREVWPXkNCkNPTkZJ
+R19ISUQ9eQ0KQ09ORklHX0hJRF9HRU5FUklDPXkNCkNPTkZJR19VU0JfSElEPXkNCg0KQ09ORklH
+X0lOUFVUX01PVVNFREVWPXkNCkNPTkZJR19JTlBVVF9NT1VTRURFVl9TQ1JFRU5fWD0xOTIwDQpD
+T05GSUdfSU5QVVRfTU9VU0VERVZfU0NSRUVOX1k9MTI4MA0KQ09ORklHX0lOUFVUX0VWREVWPXkN
+CkNPTkZJR19UT1VDSFNDUkVFTl9FR0FMQVg9bQ0KQ09ORklHX1RPVUNIU0NSRUVOX1VTQl9FQVNZ
+VE9VQ0g9eQ0KDQpDT05GSUdfSElEX0JBVFRFUllfU1RSRU5HVEg9eQ0KQ09ORklHX0hJRFJBVz15
+DQpDT05GSUdfVUhJRD15DQoNCkNPTkZJR19VU0JfT0hDSV9MSVRUTEVfRU5ESUFOPXkNCkNPTkZJ
+R19VU0JfU1VQUE9SVD15DQpDT05GSUdfVVNCX0NPTU1PTj15DQpDT05GSUdfVVNCX0FSQ0hfSEFT
+X0hDRD15DQpDT05GSUdfVVNCPXkNCg0KDQoNCkknbSB1c2luZyBLaXJrc3RvbmUgYW5kIHRoZSBJ
+bnRlbC1CU1AsIGtlcm5lbHZlcnNpb24gaXMgNS4xNS4NCg0KSSdtIGFsc28gZ2V0dGluZyB0aGlz
+IHdhcm5pbmcgZHVyaW5nIGJha2luZzoNCg0KV0FSTklORzogbGludXgtaW50ZWwtNS4xNS4zMStn
+aXRBVVRPSU5DK2VhOTQ4YTA5ODNfZjE3MmUxODA2Yy1yMCBkb19rZXJuZWxfY29uZmlnY2hlY2s6
+IFtrZXJuZWwgY29uZmlnXTogVGhpcyBCU1AgY29udGFpbnMgZnJhZ21lbnRzIHdpdGggd2Fybmlu
+Z3M6DQoNCg0KW0lORk9dOiB0aGUgZm9sbG93aW5nIHN5bWJvbHMgd2VyZSBub3QgZm91bmQgaW4g
+dGhlIGFjdGl2ZSBjb25maWd1cmF0aW9uOg0KICAgICAtIENPTkZJR19JTlBVVF9QT0xMREVWDQoN
+Cg0KDQoNCi0tDQpNaXQgZnJldW5kbGljaGVuIEdyw7zDn2VuIG5ldXJvbG9vcCBHbWJIDQoNCmku
+QS4gRmVsaXggS25vcnINCg0KU2VuaW9yIFNvZnR3YXJlIERldmVsb3Blcg0KDQotLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KDQpuZXVyb2xvb3AgR21iSA0KDQpFbmdlc3Nl
+cnN0ci4gNCwgNzkxMDggRnJlaWJ1cmcsIEdlcm1hbnkNCg0KDQoNCkFtdHNnZXJpY2h0IEZyZWli
+dXJnIEhSQiA3MTM5MzUNCg0KDQoNCkdlc2Now6RmdHNmw7xocmVyOiBEci4gTWljaGFlbCBMYXVr
+LCBEci4gRGVubmlzIFBsYWNodGENCg0KDQoNCg0KDQoNCg0KVGhlIGluZm9ybWF0aW9uIGNvbnRh
+aW5lZCBpbiB0aGlzIGNvbW11bmljYXRpb24gaXMgY29uZmlkZW50aWFsLCBtYXkgYmUgYXR0b3Ju
+ZXktY2xpZW50IHByaXZpbGVnZWQsIG1heSBjb25zdGl0dXRlIGluc2lkZSBpbmZvcm1hdGlvbiwg
+YW5kIGlzIGludGVuZGVkIG9ubHkgZm9yIHRoZSB1c2Ugb2YgdGhlIGFkZHJlc3NlZS4gSXQgaXMg
+dGhlIHByb3BlcnR5IG9mIHRoZSBjb21wYW55IG9mIHRoZSBzZW5kZXIgb2YgdGhpcyBlLW1haWwu
+IFVuYXV0aG9yaXplZCB1c2UsIGRpc2Nsb3N1cmUsIG9yIGNvcHlpbmcgb2YgdGhpcyBjb21tdW5p
+Y2F0aW9uIG9yIGFueSBwYXJ0IHRoZXJlb2YgaXMgc3RyaWN0bHkgcHJvaGliaXRlZCBhbmQgbWF5
+IGJlIHVubGF3ZnVsLiBJZiB5b3UgaGF2ZSByZWNlaXZlZCB0aGlzIGNvbW11bmljYXRpb24gaW4g
+ZXJyb3IsIHBsZWFzZSBub3RpZnkgdXMgaW1tZWRpYXRlbHkgYnkgcmV0dXJuIGUtbWFpbCBhbmQg
+ZGVzdHJveSB0aGlzIGNvbW11bmljYXRpb24gYW5kIGFsbCBjb3BpZXMgdGhlcmVvZiwgaW5jbHVk
+aW5nIGFsbCBhdHRhY2htZW50cy4NCg==
 
-whenever I run that command I get:
-
-*RTNETLINK answers: Operation not supported*
-
-I have the following in my kernel defconfig (tried several combinations wit=
-h parts of them, these options are taken from 3 sources who all say to enab=
-le different config options for tc for some reason):
-
->=20
-> CONFIG_NET_SCHED =3Dy
-> CONFIG_NET_SCH_CBQ =3Dy
-> CONFIG_NET_SCH_HTB =3Dy
-> CONFIG_NET_SCH_CSZ =3Dy
-> CONFIG_NET_SCH_PRIO =3Dy
-> CONFIG_NET_SCH_RED =3Dy
-> CONFIG_NET_SCH_SFQ =3Dy
-> CONFIG_NET_SCH_TEQL =3Dy
-> CONFIG_NET_SCH_TBF =3Dy
-> CONFIG_NET_SCH_GRED =3Dy
-> CONFIG_NET_SCH_DSMARK =3Dy
-> CONFIG_NET_SCH_INGRESS =3Dy
-> CONFIG_NET_QOS =3Dy
-> CONFIG_NET_ESTIMATOR =3Dy
-> CONFIG_NET_CLS =3Dy
-> CONFIG_NET_CLS_TCINDEX =3Dy
-> CONFIG_NET_CLS_ROUTE4 =3Dy
-> CONFIG_NET_CLS_ROUTE =3Dy
-> CONFIG_NET_CLS_FW =3Dy
-> CONFIG_NET_CLS_U32 =3Dy
-> CONFIG_NET_CLS_RSVP =3Dy
-> CONFIG_NET_CLS_RSVP6 =3Dy
-> CONFIG_NET_CLS_POLICE =3Dy
-> CONFIG_NET_SCH_HFSC =3Dy
-> CONFIG_NET_SCH_ATM =3Dy
-> CONFIG_NET_SCH_MULTIQ =3Dy
-> CONFIG_NET_SCH_NETEM =3Dy
-> CONFIG_IP_ADVANCED_ROUTER =3Dy
-> CONFIG_IP_MULTIPLE_TABLES =3Dy
-> CONFIG_NETFILTER_NETLINK =3Dy
-> CONFIG_NETFILTER_NETLINK_QUEUE =3Dy
-> CONFIG_NETFILTER_NETLINK_LOG =3Dy
-> CONFIG_NF_CT_NETLINK =3Dy
-> CONFIG_NETFILTER_XT_TARGET_MARK =3Dy
-> CONFIG_SCSI_NETLINK =3Dy
->=20
->=20
->=20
->=20
->=20
-
-thanks for any help
-
---XrJ6tvoa9rA9wQ9TO5yT
+--_000_6c44e32cf680826f29bc14ead47c3b9eneuroloopde_
 Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-ID: <B36275BF95D46F4D946E6F9059599163@neuroloop.local>
+Content-Transfer-Encoding: base64
 
-<p>I am trying to run tc commands, specifically <em>tc qdisc add dev ppp0 r=
-oot netem delay 2000ms</em> to add network latency so I can check that thin=
-gs at least won't break when network connection is poor</p>
-<p>whenever I run that command I get:</p>
-<p><strong>RTNETLINK answers: Operation not supported</strong></p>
-<p>&nbsp;</p>
-<p>I have the following in my kernel defconfig (tried several combinations =
-with parts of them, these options are taken from 3 sources who all say to e=
-nable different config options for tc for some reason):</p>
-<blockquote>
-<div style=3D"color: #d4d4d4; background-color: #1e1e1e; font-family: Conso=
-las, 'Courier New', monospace; font-weight: normal; font-size: 14px; line-h=
-eight: 19px; white-space: pre;">
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_SCHED</span><span style=3D"=
-color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_SCH_CBQ</span><span style=
-=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_SCH_HTB</span><span style=
-=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_SCH_CSZ</span><span style=
-=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_SCH_PRIO</span><span style=
-=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_SCH_RED</span><span style=
-=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_SCH_SFQ</span><span style=
-=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_SCH_TEQL</span><span style=
-=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_SCH_TBF</span><span style=
-=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_SCH_GRED</span><span style=
-=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_SCH_DSMARK</span><span styl=
-e=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_SCH_INGRESS</span><span sty=
-le=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_QOS</span><span style=3D"co=
-lor: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_ESTIMATOR</span><span style=
-=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_CLS</span><span style=3D"co=
-lor: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_CLS_TCINDEX</span><span sty=
-le=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_CLS_ROUTE4</span><span styl=
-e=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_CLS_ROUTE</span><span style=
-=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_CLS_FW</span><span style=3D=
-"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_CLS_U32</span><span style=
-=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_CLS_RSVP</span><span style=
-=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_CLS_RSVP6</span><span style=
-=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_CLS_POLICE</span><span styl=
-e=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_SCH_HFSC</span><span style=
-=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_SCH_ATM</span><span style=
-=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_SCH_MULTIQ</span><span styl=
-e=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NET_SCH_NETEM</span><span style=
-=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_IP_ADVANCED_ROUTER</span><span =
-style=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_IP_MULTIPLE_TABLES</span><span =
-style=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NETFILTER_NETLINK</span><span s=
-tyle=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NETFILTER_NETLINK_QUEUE</span><=
-span style=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NETFILTER_NETLINK_LOG</span><sp=
-an style=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NF_CT_NETLINK</span><span style=
-=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_NETFILTER_XT_TARGET_MARK</span>=
-<span style=3D"color: #d4d4d4;">=3Dy</span></div>
-<div><span style=3D"color: #9cdcfe;">CONFIG_SCSI_NETLINK</span><span style=
-=3D"color: #d4d4d4;">=3Dy</span></div>
-</div>
-<p>&nbsp;</p>
-</blockquote>
-<p>&nbsp;</p>
-<p>thanks for any help</p>
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPHA+SGV5LDwvcD4N
+CjxwPkknbSB0cnlpbmcgbWFrZSBhbiBpbWFnZSB0aGF0IHdpbGwganVzdCBib290dXAsIHN0YXJ0
+IGFuIFggc2VydmVyIChvciBtYXliZSBwb3RlbnRpYWxseSB3YXlsYW5kIGxhdGVyKSwgYW5kIG91
+ciBwcm9ncmFtLCB3aGljaCBpcyBiYXNpY2FsbHkgYSB3ZWJzZXJ2ZXIgYW5kIGEgZ3RrIHdlYnZp
+ZXcuIFRoaXMgYWxsIHdvcmtzLiBCdXQgdGhlIHByb2JsZW0gaXMsIHRoYXQgdGhpcyBzaG91bGQg
+cnVuIG9uIGEgTVMgU3VyZmFjZSBHbyAyLCBhbmQNCiB0aGUgdG91Y2ggc2NyZWVuIGlzbid0IHdv
+cmtpbmcuIFdoZW4gSSBib290IGFuIFVidW50dSBpbnN0YWxsZXIgaW1hZ2UsIHRoZSB0b3VjaHNj
+cmVlbiBpcyB3b3JraW5nIGluIHRoZSBpbnN0YWxsZXIsIGl0IGRvZXNuJ3QgZXZlbiByZXF1aXJl
+IHRoZSBzdXJmYWNlIHNwZWNpZmljIHBhdGNoZXMuPC9wPg0KPHA+SSBhZGRlZCBhYm91dCBldmVy
+eSB0b3VjaHNjcmVlbiBkcml2ZXIgaW4gdGhlIGtlcm5lbCwgYW5kIGV4cGVyaW1lbnRlZCBhIGxv
+dCB3aXRoIG90aGVyIGtlcm5lbCBvcHRpb25zLCBidXQgbm90aGluZyBzZWVtcyB0byB3b3JrLiBJ
+IGFsc28gaW5zdGFsbGVkIGxpYmV2ZGV2LiBXaGF0IGFtIEkgbWlzc2luZz88L3A+DQo8cD5UaGlz
+IGlzIG15IGN1cnJlbnQga2VybmVsIGNvbmZpZ3VyYXRpb24gZnJhZ21lbnQ6PC9wPg0KPHByZSBj
+bGFzcz0ibW96LXNpZ25hdHVyZSIgY29scz0iNzIiPiMgYWxsIHRoZSB0b3VjaHNjcmVlbiBkcml2
+ZXJzDQpDT05GSUdfSU5QVVRfVE9VQ0hTQ1JFRU49eQ0KQ09ORklHX1RPVUNIU0NSRUVOX0FENzg3
+OT1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fQVRNRUxfTVhUPW0NCkNPTkZJR19UT1VDSFNDUkVFTl9C
+VTIxMDEzPW0NCkNPTkZJR19UT1VDSFNDUkVFTl9CVTIxMDI5PW0NCkNPTkZJR19UT1VDSFNDUkVF
+Tl9DSElQT05FX0lDTjg1MDU9bQ0KQ09ORklHX1RPVUNIU0NSRUVOX0NZOENUTUExNDA9bQ0KQ09O
+RklHX1RPVUNIU0NSRUVOX0NZVFRTUF9DT1JFPW0NCkNPTkZJR19UT1VDSFNDUkVFTl9DWVRUU1A0
+X0NPUkU9bQ0KQ09ORklHX1RPVUNIU0NSRUVOX0RZTkFQUk89bQ0KQ09ORklHX1RPVUNIU0NSRUVO
+X0hBTVBTSElSRT1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fRUVUST1tDQpDT05GSUdfVE9VQ0hTQ1JF
+RU5fRUdBTEFYX1NFUklBTD1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fRVhDMzAwMD1tDQpDT05GSUdf
+VE9VQ0hTQ1JFRU5fRlVKSVRTVT1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fSElERUVQPW0NCkNPTkZJ
+R19UT1VDSFNDUkVFTl9IWUNPTl9IWTQ2WFg9bQ0KQ09ORklHX1RPVUNIU0NSRUVOX0lMSTIxMFg9
+bQ0KQ09ORklHX1RPVUNIU0NSRUVOX0lMSVRFSz1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fUzZTWTc2
+MT1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fR1VOWkU9bQ0KQ09ORklHX1RPVUNIU0NSRUVOX0VLVEYy
+MTI3PW0NCkNPTkZJR19UT1VDSFNDUkVFTl9FTEFOPW0NCkNPTkZJR19UT1VDSFNDUkVFTl9FTE89
+bQ0KQ09ORklHX1RPVUNIU0NSRUVOX1dBQ09NX1c4MDAxPW0NCkNPTkZJR19UT1VDSFNDUkVFTl9X
+QUNPTV9JMkM9bQ0KQ09ORklHX1RPVUNIU0NSRUVOX01BWDExODAxPW0NCkNPTkZJR19UT1VDSFND
+UkVFTl9NQ1M1MDAwPW0NCkNPTkZJR19UT1VDSFNDUkVFTl9NTVMxMTQ9bQ0KQ09ORklHX1RPVUNI
+U0NSRUVOX01FTEZBU19NSVA0PW0NCkNPTkZJR19UT1VDSFNDUkVFTl9NVE9VQ0g9bQ0KQ09ORklH
+X1RPVUNIU0NSRUVOX0lORVhJTz1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fTUs3MTI9bQ0KQ09ORklH
+X1RPVUNIU0NSRUVOX1BFTk1PVU5UPW0NCkNPTkZJR19UT1VDSFNDUkVFTl9FRFRfRlQ1WDA2PW0N
+CkNPTkZJR19UT1VDSFNDUkVFTl9UT1VDSFJJR0hUPW0NCkNPTkZJR19UT1VDSFNDUkVFTl9UT1VD
+SFdJTj1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fUElYQ0lSPW0NCkNPTkZJR19UT1VDSFNDUkVFTl9X
+RFQ4N1hYX0kyQz1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fVVNCX0NPTVBPU0lURT1tDQpDT05GSUdf
+VE9VQ0hTQ1JFRU5fVE9VQ0hJVDIxMz1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fVFNDX1NFUklPPW0N
+CkNPTkZJR19UT1VDSFNDUkVFTl9UU0MyMDA0PW0NCkNPTkZJR19UT1VDSFNDUkVFTl9UU0MyMDA3
+PW0NCkNPTkZJR19UT1VDSFNDUkVFTl9TSUxFQUQ9bQ0KQ09ORklHX1RPVUNIU0NSRUVOX1NUMTIz
+Mj1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fU1RNRlRTPW0NCkNPTkZJR19UT1VDSFNDUkVFTl9TWDg2
+NTQ9bQ0KQ09ORklHX1RPVUNIU0NSRUVOX1RQUzY1MDdYPW0NCkNPTkZJR19UT1VDSFNDUkVFTl9a
+RVQ2MjIzPW0NCkNPTkZJR19UT1VDSFNDUkVFTl9ST0hNX0JVMjEwMjM9bQ0KQ09ORklHX1RPVUNI
+U0NSRUVOX0lRUzVYWD1tDQpDT05GSUdfVE9VQ0hTQ1JFRU5fWklOSVRJWD1tDQoNCiMgT3RoZXIg
+Y29uZmlnIHZhcnMgdGhhdCBoYXZlIHRvdWNoIGluIHRoZW0NCkNPTkZJR19ISURfQUNDVVRPVUNI
+PXkNCkNPTkZJR19ISURfTVVMVElUT1VDSD15DQoNCg0KIyBTdHVmZiBmcm9tIHRoaXMgdGhyZWFk
+OiA8YSBjbGFzcz0ibW96LXR4dC1saW5rLWZyZWV0ZXh0IiBocmVmPSJodHRwczovL2NvbW11bml0
+eS5ueHAuY29tL3Q1L2ktTVgtUHJvY2Vzc29ycy9Zb2N0by1pLU14LTYtSG93LXRvLXN1cHBvcnQt
+dG91Y2gtb24tdG91Y2hzY3JlZW4tbW9uaXRvci9tLXAvNjQyOTU2Ij5odHRwczovL2NvbW11bml0
+eS5ueHAuY29tL3Q1L2ktTVgtUHJvY2Vzc29ycy9Zb2N0by1pLU14LTYtSG93LXRvLXN1cHBvcnQt
+dG91Y2gtb24tdG91Y2hzY3JlZW4tbW9uaXRvci9tLXAvNjQyOTU2PC9hPg0KQ09ORklHX0lOUFVU
+PXkNCkNPTkZJR19JTlBVVF9QT0xMREVWPXkNCkNPTkZJR19ISUQ9eQ0KQ09ORklHX0hJRF9HRU5F
+UklDPXkNCkNPTkZJR19VU0JfSElEPXkNCg0KQ09ORklHX0lOUFVUX01PVVNFREVWPXkNCkNPTkZJ
+R19JTlBVVF9NT1VTRURFVl9TQ1JFRU5fWD0xOTIwDQpDT05GSUdfSU5QVVRfTU9VU0VERVZfU0NS
+RUVOX1k9MTI4MA0KQ09ORklHX0lOUFVUX0VWREVWPXkNCkNPTkZJR19UT1VDSFNDUkVFTl9FR0FM
+QVg9bQ0KQ09ORklHX1RPVUNIU0NSRUVOX1VTQl9FQVNZVE9VQ0g9eQ0KDQpDT05GSUdfSElEX0JB
+VFRFUllfU1RSRU5HVEg9eQ0KQ09ORklHX0hJRFJBVz15DQpDT05GSUdfVUhJRD15DQoNCkNPTkZJ
+R19VU0JfT0hDSV9MSVRUTEVfRU5ESUFOPXkNCkNPTkZJR19VU0JfU1VQUE9SVD15DQpDT05GSUdf
+VVNCX0NPTU1PTj15DQpDT05GSUdfVVNCX0FSQ0hfSEFTX0hDRD15DQpDT05GSUdfVVNCPXkNCg0K
+PC9wcmU+DQo8cD5JJ20gdXNpbmcgS2lya3N0b25lIGFuZCB0aGUgSW50ZWwtQlNQLCBrZXJuZWx2
+ZXJzaW9uIGlzIDUuMTUuPC9wPg0KPHA+SSdtIGFsc28gZ2V0dGluZyB0aGlzIHdhcm5pbmcgZHVy
+aW5nIGJha2luZzo8L3A+DQo8cHJlPldBUk5JTkc6IGxpbnV4LWludGVsLTUuMTUuMzEmIzQzO2dp
+dEFVVE9JTkMmIzQzO2VhOTQ4YTA5ODNfZjE3MmUxODA2Yy1yMCBkb19rZXJuZWxfY29uZmlnY2hl
+Y2s6IFtrZXJuZWwgY29uZmlnXTogVGhpcyBCU1AgY29udGFpbnMgZnJhZ21lbnRzIHdpdGggd2Fy
+bmluZ3M6DQoNCg0KW0lORk9dOiB0aGUgZm9sbG93aW5nIHN5bWJvbHMgd2VyZSBub3QgZm91bmQg
+aW4gdGhlIGFjdGl2ZSBjb25maWd1cmF0aW9uOg0KICAgICAtIENPTkZJR19JTlBVVF9QT0xMREVW
+DQoNCjwvcHJlPg0KPHByZSBjbGFzcz0ibW96LXNpZ25hdHVyZSIgY29scz0iNzIiPg0KLS0gDQpN
+aXQgZnJldW5kbGljaGVuIEdyw7zDn2VuIG5ldXJvbG9vcCBHbWJIDQoNCmkuQS4gRmVsaXggS25v
+cnINCg0KU2VuaW9yIFNvZnR3YXJlIERldmVsb3Blcg0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLQ0KDQpuZXVyb2xvb3AgR21iSA0KDQpFbmdlc3NlcnN0ci4gNCwgNzkx
+MDggRnJlaWJ1cmcsIEdlcm1hbnkNCg0KIA0KDQpBbXRzZ2VyaWNodCBGcmVpYnVyZyBIUkIgNzEz
+OTM1DQoNCiANCg0KR2VzY2jDpGZ0c2bDvGhyZXI6IERyLiBNaWNoYWVsIExhdWssIERyLiBEZW5u
+aXMgUGxhY2h0YQ0KDQogDQoNCiANCg0KIA0KDQpUaGUgaW5mb3JtYXRpb24gY29udGFpbmVkIGlu
+IHRoaXMgY29tbXVuaWNhdGlvbiBpcyBjb25maWRlbnRpYWwsIG1heSBiZSBhdHRvcm5leS1jbGll
+bnQgcHJpdmlsZWdlZCwgbWF5IGNvbnN0aXR1dGUgaW5zaWRlIGluZm9ybWF0aW9uLCBhbmQgaXMg
+aW50ZW5kZWQgb25seSBmb3IgdGhlIHVzZSBvZiB0aGUgYWRkcmVzc2VlLiBJdCBpcyB0aGUgcHJv
+cGVydHkgb2YgdGhlIGNvbXBhbnkgb2YgdGhlIHNlbmRlciBvZiB0aGlzIGUtbWFpbC4gVW5hdXRo
+b3JpemVkIHVzZSwgZGlzY2xvc3VyZSwgb3IgY29weWluZyBvZiB0aGlzIGNvbW11bmljYXRpb24g
+b3IgYW55IHBhcnQgdGhlcmVvZiBpcyBzdHJpY3RseSBwcm9oaWJpdGVkIGFuZCBtYXkgYmUgdW5s
+YXdmdWwuIElmIHlvdSBoYXZlIHJlY2VpdmVkIHRoaXMgY29tbXVuaWNhdGlvbiBpbiBlcnJvciwg
+cGxlYXNlIG5vdGlmeSB1cyBpbW1lZGlhdGVseSBieSByZXR1cm4gZS1tYWlsIGFuZCBkZXN0cm95
+IHRoaXMgY29tbXVuaWNhdGlvbiBhbmQgYWxsIGNvcGllcyB0aGVyZW9mLCBpbmNsdWRpbmcgYWxs
+IGF0dGFjaG1lbnRzLjwvcHJlPg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
---XrJ6tvoa9rA9wQ9TO5yT--
+--_000_6c44e32cf680826f29bc14ead47c3b9eneuroloopde_--
 
