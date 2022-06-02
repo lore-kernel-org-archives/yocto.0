@@ -2,108 +2,168 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ABE5CCCA47A
-	for <webhook@archiver.kernel.org>; Thu,  2 Jun 2022 15:45:53 +0000 (UTC)
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com
- [209.85.216.48])
- by mx.groups.io with SMTP id smtpd.web12.683.1654184747617583651
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BBEC3CCA47B
+	for <webhook@archiver.kernel.org>; Thu,  2 Jun 2022 15:57:13 +0000 (UTC)
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
+ [209.85.214.180])
+ by mx.groups.io with SMTP id smtpd.web09.846.1654185425231238055
  for <yocto@lists.yoctoproject.org>;
- Thu, 02 Jun 2022 08:45:47 -0700
+ Thu, 02 Jun 2022 08:57:05 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=jX7JjH22;
- spf=pass (domain: gmail.com, ip: 209.85.216.48,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=q7hj24fl;
+ spf=pass (domain: gmail.com, ip: 209.85.214.180,
  mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f48.google.com with SMTP id
- n13-20020a17090a394d00b001e30a60f82dso9752219pjf.5
+Received: by mail-pl1-f180.google.com with SMTP id i1so4858983plg.7
         for <yocto@lists.yoctoproject.org>;
- Thu, 02 Jun 2022 08:45:47 -0700 (PDT)
+ Thu, 02 Jun 2022 08:57:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=LpWb7I5Yzp6U6yuf6SvYMLlvqlShr2QgUVUa2bLa100=;
-        b=jX7JjH22SKWthNK7fdlkCO0bVbooIinlGA1lPryFLo6705BfH8Bjr2kxuJopK7EYf+
-         bFV+6dPw3+JLX7RBdRdTq4+KHy1p5GOH4SpQvYnrgLXHYlAfcY8FSsfhXd4daUWvHwIT
-         0YjVjfsstL3uTEvxxkuGg7QO0HZxeTvhYA8WA2S2MkPz8fzEShTgDDEw/skXGnlUdCdM
-         5ue3AUt1NON7w3D4vYVxwydb7zEtv8VJYCDZmzcQwNITGskm61yjzCC3fDg7rdmtn0yn
-         CmlAMPP8X/D7R3zz6OyFEznMVdbIT2MMFYPFPJxwhEozNIKSYuWpdtRwVsc0c6HviVVg
-         JHXw==
+        bh=Tp6F3SIlwo506C/kK9mFfz7ADrd8W51rgBrAKIsV6Gg=;
+        b=q7hj24fl98PxqSrqjwIdFDqFszmw9Y+buwxhjiWOy/f0HDHHgcEgl69qQj9nmwWpY0
+         ACDhwPoyp6t3R0c8jwK149NzhaEnUqUdXKL60H28plJybW1i+dzyPLG4DEn95ouDeWaQ
+         r9xA6jjArDzKvOGM070ZuyjSERVlgBuQyG7541bqx4dIAcIt1L7Opim06AXDvdrjyNzR
+         Uzq+jsuUZ1HWsQ2kVcGhnMd/8255VVkKyKVm4pcgiI1fWHMYHuPwHj02QbeQCZ3IN5OA
+         WZ2pcNtwlp7T/8drA4KWFg72EvN4U7aKaDYveAWeySFjT82bhfJODAumfRNKDiI+W0jy
+         f+Xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=LpWb7I5Yzp6U6yuf6SvYMLlvqlShr2QgUVUa2bLa100=;
-        b=2MiQ/N0931WkdTpFf2eAHQUR+OSBLxLyIB2GIhdZ2pfPtSkLXiJR6oZwBxUFP8c2af
-         s50JG4GLnjzFNRCt5LLA1bX4O3WZRAvicsWoBt48KBlUaIGrIzcF0tuyQo3uZyjPFdZe
-         lxObNqJQvuJYKiuDrXWfCE7vFddn8ATAx+1qBi3aNGOpgWYSiGUaF2eDx8ztRd/sB1g7
-         xSgDZSO8sc5RRRsF+v/VUy6eNsq2Go7867C1R2XJdRRyArU+2B8ctlgVK5efI3CrkY6u
-         aD/AGonHmYB1o0GPlHaVKFfte2jUMEr9G354pa5yTdzNz1IyueboVsZqMnlL2i17pOai
-         y3oQ==
-X-Gm-Message-State: AOAM533Z+Z90KGCk7GIqLiMQnmnvNSByzYL993lW4f4bxU3l0d08nFjq
-	Ynh5zf4kLFxRuR2YaLONFIHDSSqypNo=
+        bh=Tp6F3SIlwo506C/kK9mFfz7ADrd8W51rgBrAKIsV6Gg=;
+        b=PXt1iOMXk+EljqWWfLYfPoWE4gN7/tYdL93WgdtlX0mW4zv1vFkYd5a+O8iXu//hNg
+         iWADNbv0LvRnarzoCku2gbpu73MFRGOQEmShSHP8mGAeQbI7cCH87hVZHJvdCkPEdeHP
+         1JPowjkupRxESSsYhELptShl8LhaYPiTljxdzHVYXaBmaoeWhNoahBdjz0qeilOOImvP
+         tapzDlwWoJ3CJ3oy51d8NXxPinW0ng4yGh5Ojn7LUfoRei91UK6iTlOuxpEk1u9KnULn
+         CbPTC+CQu+KYtp81m0rmL/15Q+Ijbjxkt0vS0jd+7cHOWXFdUUe16uNDTJJQYvHjrIPM
+         Qgog==
+X-Gm-Message-State: AOAM532ETxl+KjvYd1SOEHSFaeZusWPurYqnJE7GTCNxMKthIXmc1yc3
+	2WT606SUoXJYsMCSGGfa7KlIv1qLyf4=
 X-Google-Smtp-Source: 
- ABdhPJzVgiZoYxJN4mjTSHCa5SXtcvLMVDu5OsJml/0Mauze/A8oa1efwGnfWup5I6dd80T1jOgCyQ==
-X-Received: by 2002:a17:903:240b:b0:14b:1100:aebc with SMTP id
- e11-20020a170903240b00b0014b1100aebcmr5640182plo.133.1654184746522;
-        Thu, 02 Jun 2022 08:45:46 -0700 (PDT)
+ ABdhPJwD3nLUNRVuAevZGxSCK7ARM82vz2oI4UTjncC30cFhZwUfB+YnCBhOLUmRByhrpytqLLiQhw==
+X-Received: by 2002:a17:90b:3c6:b0:1e2:e9fc:4e79 with SMTP id
+ go6-20020a17090b03c600b001e2e9fc4e79mr25675972pjb.192.1654185424190;
+        Thu, 02 Jun 2022 08:57:04 -0700 (PDT)
 Received: from keaua.caveonetworks.com
  ([2601:202:4180:a5c0:e8e8:b71d:2c05:ffc8])
         by smtp.gmail.com with ESMTPSA id
- jh22-20020a170903329600b0015e8d4eb25bsm3705154plb.165.2022.06.02.08.45.45
+ c14-20020a170902c2ce00b0015e8d4eb207sm3707996pla.81.2022.06.02.08.57.03
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jun 2022 08:45:45 -0700 (PDT)
+        Thu, 02 Jun 2022 08:57:03 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 1/3] checksec: update 2.6.0
-Date: Thu,  2 Jun 2022 08:45:42 -0700
-Message-Id: <20220602154544.245869-1-akuster808@gmail.com>
+Subject: [meta-security][PATCH 1/2] layer.conf: Post release codename changes
+Date: Thu,  2 Jun 2022 08:57:01 -0700
+Message-Id: <20220602155702.260918-1-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 02 Jun 2022 15:45:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57248
-
-LIC_FILES_CHKSUM changed do to yr update
-
-add native support
+ <yocto@lists.yoctoproject.org>; Thu, 02 Jun 2022 15:57:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57251
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../checksec/{checksec_2.4.0.bb => checksec_2.6.0.bb}     | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
- rename recipes-scanners/checksec/{checksec_2.4.0.bb => checksec_2.6.0.bb} (64%)
+ conf/layer.conf                          | 2 +-
+ meta-hardening/conf/layer.conf           | 2 +-
+ meta-integrity/conf/layer.conf           | 2 +-
+ meta-parsec/conf/layer.conf              | 2 +-
+ meta-security-compliance/conf/layer.conf | 2 +-
+ meta-security-isafw/conf/layer.conf      | 2 +-
+ meta-tpm/conf/layer.conf                 | 2 +-
+ 7 files changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/recipes-scanners/checksec/checksec_2.4.0.bb b/recipes-scanners/checksec/checksec_2.6.0.bb
-similarity index 64%
-rename from recipes-scanners/checksec/checksec_2.4.0.bb
-rename to recipes-scanners/checksec/checksec_2.6.0.bb
-index 9a6e44a..f4a014e 100644
---- a/recipes-scanners/checksec/checksec_2.4.0.bb
-+++ b/recipes-scanners/checksec/checksec_2.6.0.bb
-@@ -4,10 +4,10 @@ SECTION = "security"
- LICENSE = "BSD-3-Clause"
- HOMEPAGE="https://github.com/slimm609/checksec.sh"
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 7d57f9c..fa7d79e 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -9,7 +9,7 @@ BBFILE_COLLECTIONS += "security"
+ BBFILE_PATTERN_security = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_security = "8"
  
--LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=8d90285f711cf1f378e2c024457066d8"
-+LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=879b2147c754bc040c29e9c3b84da836"
+-LAYERSERIES_COMPAT_security = "kirkstone"
++LAYERSERIES_COMPAT_security = "kirkstone langdale"
  
--SRCREV = "c3754e45e04f9104db93b2048afd094427102d48"
--SRC_URI = "git://github.com/slimm609/checksec.sh;branch=master;protocol=https"
-+SRCREV = "2753ebb89fcdc96433ae8a4c4e5a49214a845be2"
-+SRC_URI = "git://github.com/slimm609/checksec.sh;branch=main;protocol=https"
+ LAYERDEPENDS_security = "core openembedded-layer"
  
- S = "${WORKDIR}/git"
+diff --git a/meta-hardening/conf/layer.conf b/meta-hardening/conf/layer.conf
+index bc33d97..5983161 100644
+--- a/meta-hardening/conf/layer.conf
++++ b/meta-hardening/conf/layer.conf
+@@ -8,6 +8,6 @@ BBFILE_COLLECTIONS += "harden-layer"
+ BBFILE_PATTERN_harden-layer = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_harden-layer = "10"
  
-@@ -17,3 +17,5 @@ do_install() {
- }
+-LAYERSERIES_COMPAT_harden-layer = "kirkstone"
++LAYERSERIES_COMPAT_harden-layer = "kirkstone langdale"
  
- RDEPENDS:${PN} = "bash openssl-bin binutils"
-+
-+BBCLASSEXTEND = "native"
+ LAYERDEPENDS_harden-layer = "core openembedded-layer"
+diff --git a/meta-integrity/conf/layer.conf b/meta-integrity/conf/layer.conf
+index 3d58be4..1fcf33c 100644
+--- a/meta-integrity/conf/layer.conf
++++ b/meta-integrity/conf/layer.conf
+@@ -20,7 +20,7 @@ INTEGRITY_BASE := '${LAYERDIR}'
+ # interactive shell is enough.
+ OE_TERMINAL_EXPORTS += "INTEGRITY_BASE"
+ 
+-LAYERSERIES_COMPAT_integrity = "kirkstone"
++LAYERSERIES_COMPAT_integrity = "kirkstone langdale"
+ # ima-evm-utils depends on keyutils from meta-oe
+ LAYERDEPENDS_integrity = "core openembedded-layer"
+ 
+diff --git a/meta-parsec/conf/layer.conf b/meta-parsec/conf/layer.conf
+index 544cc4e..a748d77 100644
+--- a/meta-parsec/conf/layer.conf
++++ b/meta-parsec/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "parsec-layer"
+ BBFILE_PATTERN_parsec-layer = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_parsec-layer = "5"
+ 
+-LAYERSERIES_COMPAT_parsec-layer = "kirkstone"
++LAYERSERIES_COMPAT_parsec-layer = "kirkstone langdale"
+ 
+ LAYERDEPENDS_parsec-layer = "core clang-layer"
+ BBLAYERS_LAYERINDEX_NAME_parsec-layer = "meta-parsec"
+diff --git a/meta-security-compliance/conf/layer.conf b/meta-security-compliance/conf/layer.conf
+index 7c07625..ec57541 100644
+--- a/meta-security-compliance/conf/layer.conf
++++ b/meta-security-compliance/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "scanners-layer"
+ BBFILE_PATTERN_scanners-layer = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_scanners-layer = "10"
+ 
+-LAYERSERIES_COMPAT_scanners-layer = "kirkstone"
++LAYERSERIES_COMPAT_scanners-layer = "kirkstone langdale"
+ 
+ LAYERDEPENDS_scanners-layer = "core openembedded-layer meta-python"
+ 
+diff --git a/meta-security-isafw/conf/layer.conf b/meta-security-isafw/conf/layer.conf
+index e8cdc1b..724742d 100644
+--- a/meta-security-isafw/conf/layer.conf
++++ b/meta-security-isafw/conf/layer.conf
+@@ -14,4 +14,4 @@ LAYERVERSION_security-isafw = "1"
+ 
+ LAYERDEPENDS_security-isafw = "core"
+ 
+-LAYERSERIES_COMPAT_security-isafw = "kirkstone"
++LAYERSERIES_COMPAT_security-isafw = "kirkstone langdale"
+diff --git a/meta-tpm/conf/layer.conf b/meta-tpm/conf/layer.conf
+index 52e3ee0..1fd2e4c 100644
+--- a/meta-tpm/conf/layer.conf
++++ b/meta-tpm/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "tpm-layer"
+ BBFILE_PATTERN_tpm-layer = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_tpm-layer = "10"
+ 
+-LAYERSERIES_COMPAT_tpm-layer = "kirkstone"
++LAYERSERIES_COMPAT_tpm-layer = "kirkstone langdale"
+ 
+ LAYERDEPENDS_tpm-layer = " \
+     core \
 -- 
 2.25.1
 
