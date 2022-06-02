@@ -2,92 +2,108 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A6638C433EF
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ABE5CCCA47A
 	for <webhook@archiver.kernel.org>; Thu,  2 Jun 2022 15:45:53 +0000 (UTC)
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com
- [209.85.214.169])
- by mx.groups.io with SMTP id smtpd.web12.684.1654184748499949240
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com
+ [209.85.216.48])
+ by mx.groups.io with SMTP id smtpd.web12.683.1654184747617583651
  for <yocto@lists.yoctoproject.org>;
- Thu, 02 Jun 2022 08:45:48 -0700
+ Thu, 02 Jun 2022 08:45:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=TNKe7HH/;
- spf=pass (domain: gmail.com, ip: 209.85.214.169,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=jX7JjH22;
+ spf=pass (domain: gmail.com, ip: 209.85.216.48,
  mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f169.google.com with SMTP id i1so4835232plg.7
+Received: by mail-pj1-f48.google.com with SMTP id
+ n13-20020a17090a394d00b001e30a60f82dso9752219pjf.5
         for <yocto@lists.yoctoproject.org>;
- Thu, 02 Jun 2022 08:45:48 -0700 (PDT)
+ Thu, 02 Jun 2022 08:45:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+        h=from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=dnt+4wpJuJhjQDoUu0+KvNGt3ycFBPlNdbR8kSN6llc=;
-        b=TNKe7HH/tYOJPs+el6NoGWqTwvDwSjblIXAQFI0i2TfxV73Hge8spKQduJYx6AgLmx
-         Nc3wWYEJ/xoV6nrocWiM7wTnPi05+TpayaUkVVvbuu8WzIV63MufJhl/sJrGs8EqF+xd
-         6YaFn3h419PxoaLWwSNPecJkIYieg557JgK09jGTBKmEZ9sXaaesii6N36/hLIRs2baq
-         xUbxzSLd4yq8vsDhiQcsbVHxTtwKmnRZJZY8dRLgFBqfWxGYKZJQuHBdDv9p8oHsh+UC
-         VY2cO9wC7xspEFi3r1ukrpA8B15gLmzG6aDrJT6/DcaW/rR+L8/6U8S/8W/zap+mKy/M
-         UrMg==
+        bh=LpWb7I5Yzp6U6yuf6SvYMLlvqlShr2QgUVUa2bLa100=;
+        b=jX7JjH22SKWthNK7fdlkCO0bVbooIinlGA1lPryFLo6705BfH8Bjr2kxuJopK7EYf+
+         bFV+6dPw3+JLX7RBdRdTq4+KHy1p5GOH4SpQvYnrgLXHYlAfcY8FSsfhXd4daUWvHwIT
+         0YjVjfsstL3uTEvxxkuGg7QO0HZxeTvhYA8WA2S2MkPz8fzEShTgDDEw/skXGnlUdCdM
+         5ue3AUt1NON7w3D4vYVxwydb7zEtv8VJYCDZmzcQwNITGskm61yjzCC3fDg7rdmtn0yn
+         CmlAMPP8X/D7R3zz6OyFEznMVdbIT2MMFYPFPJxwhEozNIKSYuWpdtRwVsc0c6HviVVg
+         JHXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=dnt+4wpJuJhjQDoUu0+KvNGt3ycFBPlNdbR8kSN6llc=;
-        b=qSPfdFHKenfS1u4gaNYQFg7eCLdabZ3k+2LGgIG8KIqOpmNa39usNFM4nB7MlFP3Mo
-         MOpqhChI3EUfOulVbhh/WnYN6NDTnhEZVvXrFCgaZNYM3eNJJ73QQkPLA4Jtq5Cq7/7c
-         NXiZ+/04ylFRC/ztr62VgAxQ5gQgr1CMm9D4DLHTk7Evf991qUORqcJB6+czSeq6fzXg
-         ryz42cVbBC49vlqAbUg9A5OhkDYfKChla7kqqr+g4ChygxChm9RQavcOfPdbfWzmX3Jw
-         wg2twJ2k4AyurzuTOswv6QLDGtPySpX05xeNDeD0SkQb0jX+qcjzERtK2asayzMH2G7u
-         66Cg==
-X-Gm-Message-State: AOAM533+QHRu/4KI/Pv7PqRV4aiPnUBGq5Atn4frBuopfGo+FICSqi89
-	oIgmRTKi0l8LTkgdyhG/BXCtcjkKrR4=
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LpWb7I5Yzp6U6yuf6SvYMLlvqlShr2QgUVUa2bLa100=;
+        b=2MiQ/N0931WkdTpFf2eAHQUR+OSBLxLyIB2GIhdZ2pfPtSkLXiJR6oZwBxUFP8c2af
+         s50JG4GLnjzFNRCt5LLA1bX4O3WZRAvicsWoBt48KBlUaIGrIzcF0tuyQo3uZyjPFdZe
+         lxObNqJQvuJYKiuDrXWfCE7vFddn8ATAx+1qBi3aNGOpgWYSiGUaF2eDx8ztRd/sB1g7
+         xSgDZSO8sc5RRRsF+v/VUy6eNsq2Go7867C1R2XJdRRyArU+2B8ctlgVK5efI3CrkY6u
+         aD/AGonHmYB1o0GPlHaVKFfte2jUMEr9G354pa5yTdzNz1IyueboVsZqMnlL2i17pOai
+         y3oQ==
+X-Gm-Message-State: AOAM533Z+Z90KGCk7GIqLiMQnmnvNSByzYL993lW4f4bxU3l0d08nFjq
+	Ynh5zf4kLFxRuR2YaLONFIHDSSqypNo=
 X-Google-Smtp-Source: 
- ABdhPJzdrD/xfPaRT1KP4A/Onn6ISpxFVRE+Uzf6D3VtTpp1p1fvoiOY00tXqNlFxUd05sNKhSzUTQ==
-X-Received: by 2002:a17:902:db12:b0:160:df9e:99fa with SMTP id
- m18-20020a170902db1200b00160df9e99famr5414180plx.108.1654184747708;
-        Thu, 02 Jun 2022 08:45:47 -0700 (PDT)
+ ABdhPJzVgiZoYxJN4mjTSHCa5SXtcvLMVDu5OsJml/0Mauze/A8oa1efwGnfWup5I6dd80T1jOgCyQ==
+X-Received: by 2002:a17:903:240b:b0:14b:1100:aebc with SMTP id
+ e11-20020a170903240b00b0014b1100aebcmr5640182plo.133.1654184746522;
+        Thu, 02 Jun 2022 08:45:46 -0700 (PDT)
 Received: from keaua.caveonetworks.com
  ([2601:202:4180:a5c0:e8e8:b71d:2c05:ffc8])
         by smtp.gmail.com with ESMTPSA id
- jh22-20020a170903329600b0015e8d4eb25bsm3705154plb.165.2022.06.02.08.45.46
+ jh22-20020a170903329600b0015e8d4eb25bsm3705154plb.165.2022.06.02.08.45.45
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jun 2022 08:45:47 -0700 (PDT)
+        Thu, 02 Jun 2022 08:45:45 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 2/3] chkrootkit: update SRC_URI
-Date: Thu,  2 Jun 2022 08:45:43 -0700
-Message-Id: <20220602154544.245869-2-akuster808@gmail.com>
+Subject: [meta-security][PATCH 1/3] checksec: update 2.6.0
+Date: Thu,  2 Jun 2022 08:45:42 -0700
+Message-Id: <20220602154544.245869-1-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220602154544.245869-1-akuster808@gmail.com>
-References: <20220602154544.245869-1-akuster808@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Thu, 02 Jun 2022 15:45:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57249
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57248
 
-0.55 no longer hosted from main source. Use Ubuntu archive
+LIC_FILES_CHKSUM changed do to yr update
+
+add native support
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-scanners/rootkits/chkrootkit_0.55.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../checksec/{checksec_2.4.0.bb => checksec_2.6.0.bb}     | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+ rename recipes-scanners/checksec/{checksec_2.4.0.bb => checksec_2.6.0.bb} (64%)
 
-diff --git a/recipes-scanners/rootkits/chkrootkit_0.55.bb b/recipes-scanners/rootkits/chkrootkit_0.55.bb
-index 20015a1..4293aec 100644
---- a/recipes-scanners/rootkits/chkrootkit_0.55.bb
-+++ b/recipes-scanners/rootkits/chkrootkit_0.55.bb
-@@ -5,7 +5,7 @@ SECTION = "security"
- LICENSE = "BSD-2-Clause"
- LIC_FILES_CHKSUM = "file://COPYRIGHT;md5=fdbe53788f7081c63387d8087273f5ff"
+diff --git a/recipes-scanners/checksec/checksec_2.4.0.bb b/recipes-scanners/checksec/checksec_2.6.0.bb
+similarity index 64%
+rename from recipes-scanners/checksec/checksec_2.4.0.bb
+rename to recipes-scanners/checksec/checksec_2.6.0.bb
+index 9a6e44a..f4a014e 100644
+--- a/recipes-scanners/checksec/checksec_2.4.0.bb
++++ b/recipes-scanners/checksec/checksec_2.6.0.bb
+@@ -4,10 +4,10 @@ SECTION = "security"
+ LICENSE = "BSD-3-Clause"
+ HOMEPAGE="https://github.com/slimm609/checksec.sh"
  
--SRC_URI = "ftp://ftp.pangeia.com.br/pub/seg/pac/${BPN}.tar.gz"
-+SRC_URI = "http://archive.ubuntu.com/ubuntu/pool/universe/c/${BPN}/${BPN}_${PV}.orig.tar.gz"
- SRC_URI[sha256sum] = "a81c0286ec449313f953701202a00e81b204fc2cf43e278585a11c12a5e0258b"
+-LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=8d90285f711cf1f378e2c024457066d8"
++LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=879b2147c754bc040c29e9c3b84da836"
  
- inherit autotools-brokensep
+-SRCREV = "c3754e45e04f9104db93b2048afd094427102d48"
+-SRC_URI = "git://github.com/slimm609/checksec.sh;branch=master;protocol=https"
++SRCREV = "2753ebb89fcdc96433ae8a4c4e5a49214a845be2"
++SRC_URI = "git://github.com/slimm609/checksec.sh;branch=main;protocol=https"
+ 
+ S = "${WORKDIR}/git"
+ 
+@@ -17,3 +17,5 @@ do_install() {
+ }
+ 
+ RDEPENDS:${PN} = "bash openssl-bin binutils"
++
++BBCLASSEXTEND = "native"
 -- 
 2.25.1
 
