@@ -1,95 +1,105 @@
-Return-Path: <ptsneves@gmail.com>
+Return-Path: <fede@evolware.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5ED62C43334
-	for <webhook@archiver.kernel.org>; Fri,  3 Jun 2022 16:35:44 +0000 (UTC)
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com
- [209.85.167.51])
- by mx.groups.io with SMTP id smtpd.web12.515.1654274142658808782
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 82C3BC43334
+	for <webhook@archiver.kernel.org>; Sat,  4 Jun 2022 06:31:48 +0000 (UTC)
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com
+ [209.85.218.43])
+ by mx.groups.io with SMTP id smtpd.web09.7632.1654324298735191139
  for <yocto@lists.yoctoproject.org>;
- Fri, 03 Jun 2022 09:35:43 -0700
+ Fri, 03 Jun 2022 23:31:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=BAHOTU0G;
- spf=pass (domain: gmail.com, ip: 209.85.167.51, mailfrom: ptsneves@gmail.com)
-Received: by mail-lf1-f51.google.com with SMTP id a17so6502155lfs.11
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=NEDeKg0I;
+ spf=pass (domain: gmail.com, ip: 209.85.218.43,
+ mailfrom: fede.evol@gmail.com)
+Received: by mail-ej1-f43.google.com with SMTP id kq6so6611447ejb.11
         for <yocto@lists.yoctoproject.org>;
- Fri, 03 Jun 2022 09:35:42 -0700 (PDT)
+ Fri, 03 Jun 2022 23:31:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=sUG3mppAvG8beaNaSLDmGjT2cRjV7qPr1lShzv/uiUQ=;
-        b=BAHOTU0G/NcWQsL9nVZTG5ufR2GNPd3bHO69R/yaTtVgNolBfNYQ6A/v/swFsAC+zq
-         /hgfLmY3gFqrRnVjVfGTwVRVdpLSRJ1r7lkKasck3N7vSSfZg46STc8Gh9WZhc1LsUp+
-         U3Iz7cW1ZChNhgxfpdzWYq3xR3rvcMeg9+E/MtH8U5CmC14DwV2u06GnzCSWx1nlTlGF
-         tAZc2jnDvyrPHGJsAKf9jK2l2NXDQZ4TSpAdyn7US33v+46AGcDsci5THuEs4fjGq0uf
-         /6SBM5ox9SAXUvMEzcnPTZfmE0WU5xQ2S0V7WrX3Cb0Cc3J/fXyGeKb/YYnawZNvQA6O
-         qoFQ==
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qgyXg9bUHzZavFVJAihcxhu8J9QB04K9gSusObc6JIM=;
+        b=NEDeKg0IkNxc7qApIa3LeJmyvMOceaY5LxpFdPeMvolsIJUmcrBXHCRN6uQrguqd/I
+         0FGrjTeXaY8z+kIgU+gz1Z3HRm82CSm3YCFwv+3NP6+5Xy+jZ2srWNa4exIIiVBda0Kh
+         4ApcR2G8nan7UIqQpVtWDCTYdZdWmQJ5D17swmcMrUw1bq7sGuEGEG6023r5x6PMIzNn
+         q9nyDV0gWNRe4RMd692J2nael4wfd4M+ZGy9CEToBr0+6MJqotjkTWmw6/UlhP58a/0A
+         Q9NZEfYOPP+XbB7qMBiQSHyCOS6ZNzRGuRQrE6P3hNA1MlR5peOnvrGBk1qa9WMqhveC
+         zTow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=sUG3mppAvG8beaNaSLDmGjT2cRjV7qPr1lShzv/uiUQ=;
-        b=Ua2CM9hmt4xRtiu/ySbJp5umjFjNfrFyxP7i28S2EHuDB/l2Sz8BDadPiBF2hPUszs
-         5LLWke9FDfQJ2fphPZ499uy7JSHlwvEe+T/1+pB1stNhAWDUogM+6TCKe52iu2RAWgYM
-         mKJMhgWBCG4YvEFzje9JkHGDWGNA+Xo/0QCAUI0DntV+byHmFFN2lCouadUr7CvFBso1
-         7bR5MhsWo3PLgxZDRWi96S2Juw59L9UuvkgWY8Kzg/SFU/gjbJrMtDJ3ZIZx98ndXSZt
-         6tNNbkHSYA95CYROyO1jjrW/AjJRl0HDT01VIzpx+2ig9vhZWt1y1D4lZ8Fcpv+8EtMs
-         8rkg==
-X-Gm-Message-State: AOAM531q0/+JG967ufeUsO0BZSAHsvW2N/FOaN25V4GuGPatRzm7ubKo
-	zoDaz1Ei9n2nnNcssEMHGY2SZCe0EQ==
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=qgyXg9bUHzZavFVJAihcxhu8J9QB04K9gSusObc6JIM=;
+        b=E3CUqks277t2BeTVx5+AgltgYrgHXDaSWk4Ihp7/pF8hQxUhUY2UlRKfaJNCfEE1Cr
+         58VIJFqzELS4KKgjSaDPp6MvFmfRgywfHqUIQf4sNtIiTcrVCURWjgR/lhvvDB8VTXUx
+         zxpiPEdk71ZOnSCOgItALV5hwuZvNhFMjJOtP9uLxD7KOQZL9TclrKHiQWfT57ZzCOcm
+         221BwHvQaOE1EkTGmDFINfZx+yYbxNtdllwntSxKeiSwIVB4e+XkWsEbx/VgE91fs0zY
+         FqoyOL6pauMqx21BHsXKWjbDjyMwL1/nNntC0vPuTuaCQ3Ci9+CpkAlHkewX3FidsV2S
+         vjkg==
+X-Gm-Message-State: AOAM5311V6h5nRzM6Xg1a8pXcPTVYPRhPrfXOGABDr+RxCaCUC8XybeE
+	PzwL+AYr1pXNyyC3OFk4S/bTyceS5IcnVg==
 X-Google-Smtp-Source: 
- ABdhPJwarTr7bkqpy668FRXmu6oEdxOudreXO1IKLimSzOFGvogAN1783+hzF45WF7om2NxCSZ6GmQ==
-X-Received: by 2002:a05:6512:38a8:b0:479:742:8689 with SMTP id
- o8-20020a05651238a800b0047907428689mr7366347lft.476.1654274141050;
-        Fri, 03 Jun 2022 09:35:41 -0700 (PDT)
-Received: from localhost.localdomain (85-128-83-172.static.ip.netia.com.pl.
- [85.128.83.172])
+ ABdhPJxoTacBZKd3FlUFr1HI/RvN4oFSvjehJmIlZk+7eUU86EPcY7dxI5rIqAZtN5SYcfZROlzDXA==
+X-Received: by 2002:a17:906:4785:b0:6fe:f8ac:2494 with SMTP id
+ cw5-20020a170906478500b006fef8ac2494mr11616194ejc.199.1654324297191;
+        Fri, 03 Jun 2022 23:31:37 -0700 (PDT)
+Received: from interzone.fritz.box ([2a02:2455:e62:5a00:cd58:9e10:e01f:52a7])
         by smtp.gmail.com with ESMTPSA id
- g2-20020a19e042000000b0047255d211e8sm1642040lfj.279.2022.06.03.09.35.40
+ si28-20020a170906cedc00b006f3ef214e0csm3641435ejb.114.2022.06.03.23.31.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jun 2022 09:35:40 -0700 (PDT)
-From: Paulo Neves <ptsneves@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: Paulo Neves <ptsneves@gmail.com>
-Subject: [PATCH 2/2] manuals: SYSTEMD_SERVICE overrides depend on
- SYSTEMD_PACKAGES
-Date: Fri,  3 Jun 2022 18:35:21 +0200
-Message-Id: <20220603163521.146659-2-ptsneves@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220603163521.146659-1-ptsneves@gmail.com>
-References: <20220603163521.146659-1-ptsneves@gmail.com>
+        Fri, 03 Jun 2022 23:31:36 -0700 (PDT)
+Sender: Federico Pellegrin <fede.evol@gmail.com>
+From: Federico Pellegrin <fede@evolware.org>
+To: yocto@lists.yoctoproject.org,
+	akuster808@gmail.com
+Cc: Federico Pellegrin <fede@evolware.org>
+Subject: [meta-security][PATCH] Remove outdated meta-rust dependency text in
+ README
+Date: Sat,  4 Jun 2022 08:31:24 +0200
+Message-Id: <20220604063124.279064-1-fede@evolware.org>
+X-Mailer: git-send-email 2.34.3
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 03 Jun 2022 16:35:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57257
+ <yocto@lists.yoctoproject.org>; Sat, 04 Jun 2022 06:31:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57258
 
-Add detail that package overrides are only available if
-specified in SYSTEMD_PACKAGES.
+Since ~16 months the base of meta-rust was merged into meta-oe,
+down to honister as far as I can see, and therefore the indications
+to use meta-rust are really not needed and may just create extra
+work and possibly problems to users.
 ---
- documentation/ref-manual/variables.rst | 4 ++++
- 1 file changed, 4 insertions(+)
+ README | 12 ------------
+ 1 file changed, 12 deletions(-)
 
-diff --git a/documentation/ref-manual/variables.rst b/documentation/ref-manual/variables.rst
-index ed52c3508..6e2919474 100644
---- a/documentation/ref-manual/variables.rst
-+++ b/documentation/ref-manual/variables.rst
-@@ -7664,6 +7664,10 @@ system and gives an overview of their function and contents.
+diff --git a/README b/README
+index 081669f..a9b3600 100644
+--- a/README
++++ b/README
+@@ -62,18 +62,6 @@ other layers needed. e.g.:
+     /path/to/meta-openembedded/meta-networking \
+     /path/to/layer/meta-security "
  
-          SYSTEMD_SERVICE:${PN} = "connman.service"
+-Optional Rust dependancy
+-======================================
+-If you want to use the latest Suricata that needs rust, you will need to clone
+-
+-  URI: https://github.com/meta-rust/meta-rust.git
+-  branch: master
+-
+-  BBLAYERS += "/path/to/layer/meta-rust"
+-
+-This will activate the dynamic-layer mechanism and pull in the newer suricata
+-
+-
  
-+      The package overrides that can be specified are directly related to the value of
-+      term: SYSTEMD_PACKAGES. Overrides not included in term: SYSTEMD_PACKAGES
-+      will be silently ignored.
-+
-    :term:`SYSVINIT_ENABLED_GETTYS`
-       When using
-       :ref:`SysVinit <dev-manual/common-tasks:enabling system services>`,
+ Maintenance
+ ======================================
 -- 
-2.25.1
+2.34.3
 
 
