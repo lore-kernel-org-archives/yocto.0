@@ -1,143 +1,207 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <fede@evolware.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 921E2C433EF
-	for <webhook@archiver.kernel.org>; Sat,  4 Jun 2022 23:00:23 +0000 (UTC)
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com
- [209.85.216.48])
- by mx.groups.io with SMTP id smtpd.web11.15320.1654383613743910631
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A920BC43334
+	for <webhook@archiver.kernel.org>; Sun,  5 Jun 2022 03:02:04 +0000 (UTC)
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com
+ [209.85.208.181])
+ by mx.groups.io with SMTP id smtpd.web10.17036.1654398118881184703
  for <yocto@lists.yoctoproject.org>;
- Sat, 04 Jun 2022 16:00:13 -0700
+ Sat, 04 Jun 2022 20:01:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=MPhCsnd8;
- spf=pass (domain: gmail.com, ip: 209.85.216.48,
- mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f48.google.com with SMTP id
- v3-20020a17090a0c8300b001e862664a08so1032783pja.5
+ dkim=missing;
+ spf=pass (domain: gmail.com, ip: 209.85.208.181, mailfrom: fede.evol@gmail.com)
+Received: by mail-lj1-f181.google.com with SMTP id a23so12379972ljd.9
         for <yocto@lists.yoctoproject.org>;
- Sat, 04 Jun 2022 16:00:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=8Ich8zTW9KSDHJFYymsl4yrz6MNVqFqQIIFNUS2i5b4=;
-        b=MPhCsnd8IHeW1z04pxzQkQeE2q5no/udkzLuQDW8fcbiGsjJ/IRnk/XT5t7qR5zi1t
-         84heKObfPxk9rJasrPORUSGXvPeT5klFb2S2Uyvo94H2n2Ks20MGGO4TWHfNtaCR6TVq
-         TMj8moL95ROYdnIoe0yGeIfKUje0zO+EPcpAxibjHihDlWiCQGldTGCdURnNP7Wl4X1+
-         HTxrksNlEm840qOr9SuKJz/P9S/EnFB2KS4/b9KUFkt3N+zzrB1t40YHuJ8qoB6foPX6
-         Yachn7Lqty6FABj+H6mxOkIU7TyQAfo6LKd2oY4HAIUpqkmmTjqrpJxnECd0adpmhISw
-         Fr8g==
+ Sat, 04 Jun 2022 20:01:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=8Ich8zTW9KSDHJFYymsl4yrz6MNVqFqQIIFNUS2i5b4=;
-        b=a1Lgf7pjcoDFJLxK2mPthBhiozGjCL/l378V1G6Hzdb+557SX+jWhQ6kjYhcZbmVzU
-         VQhdokwx6Mxnsb/goW7SeZRvhg4gGGzpqTXo/g5H40LebiIC0oLeSILv7Vx8w6aPw094
-         4ZqXw3oyx0n4FA3FyWYK3aLG5OIUU8kZWnm9ya2fYwK+47TmSJ6YToukR276gRrj0igD
-         Fphv16KIqIDorR7pCnlGXVY0L6U7x6w88tcEc9GhPDuXBiGdB5EiIy+vRtA+pZ1LSSzE
-         lTjTDb83g9FJkigpmVJITvG/FnDacnMrHJzt/31rolgxK+xIhq3kr3pKYlvttWX1BopF
-         GTjg==
-X-Gm-Message-State: AOAM531aArr1hCtyiCLK17rlZv4A0iWO4DwCRMNaijBzEzknng094U40
-	7mdIbBzVZLaYICWDyDI/TnNEN5ZwzPY=
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=X1UwfMB0Fje1dZ7DNOFDgWrBRXhLwqNt+3qbEq/1pnU=;
+        b=beoz57U45BKvW+wfuDak/lYTpfVcMGvbi0sV//cHelmZiUjNmR7lBadZyRc8V4Dfzz
+         qrQ3lwx3Tm+uLpezn3dnOBhC0TQJWISnOOkM5aeXmKS2SOx0CdwFHyDqPL520uw5yhPE
+         bBzVSqs3aPSxfOafJHkYHBb4xuuAi3M8vtobnujOTeYlUGttUl+hzfufdSZf87Je7Cvi
+         isNlBBETdQjCHHSw5geleb/31pEgBaG7ssodloA97d32ybOU4LA7uFGT7Jo81bwH6bgx
+         sB4Db9pLw8Qw+i+BSuHORdqh2uGUrcv3LY1AuFsTfEj76+YF7C4xZUmuoeW8OUm+SMin
+         tdMw==
+X-Gm-Message-State: AOAM5314J1GV34K7rCpW6BedhVW/ZFxDbgeXGRzT9s+Ut0657tpTRNQa
+	3NEr4umxFJNLncd2zyVbqkXVNh3c2SqqIKctUVk=
 X-Google-Smtp-Source: 
- ABdhPJz9noTa3vl3kFf4cMm9EVDB9y5gz8XzqTSpJJ+GPPcDuhHHodf6mrPbsVr+mB9e3Lqhy6AG2w==
-X-Received: by 2002:a17:90a:e642:b0:1e3:524e:4cb with SMTP id
- ep2-20020a17090ae64200b001e3524e04cbmr18130731pjb.114.1654383612920;
-        Sat, 04 Jun 2022 16:00:12 -0700 (PDT)
-Received: from keaua.caveonetworks.com (c-67-181-203-136.hsd1.ca.comcast.net.
- [67.181.203.136])
-        by smtp.gmail.com with ESMTPSA id
- b127-20020a62cf85000000b0051b9c02e4a3sm8032725pfg.178.2022.06.04.16.00.11
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Jun 2022 16:00:12 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][v2][PATCH] arpwatch: update to 3.3
-Date: Sat,  4 Jun 2022 15:58:10 -0700
-Message-Id: <20220604225810.3950465-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
+ ABdhPJxyibQOsuBWcbxEXDySQVZungxoWQyXtE6p53i7AURSQBTJ7POAP+zfkqobtvkuFXVgytCPryCPhv60GD6zEow=
+X-Received: by 2002:a2e:9695:0:b0:255:6eb1:469c with SMTP id
+ q21-20020a2e9695000000b002556eb1469cmr10600122lji.188.1654398116875; Sat, 04
+ Jun 2022 20:01:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220604063124.279064-1-fede@evolware.org>
+ <82071fd5-8019-e983-6121-b3381a0c700d@gmail.com>
+In-Reply-To: <82071fd5-8019-e983-6121-b3381a0c700d@gmail.com>
+From: Federico Pellegrin <fede@evolware.org>
+Date: Sun, 5 Jun 2022 05:01:45 +0200
+Message-ID: 
+ <CAM6O0ZiUR2A2cT3qH+H-F14y_Tb2+1R7mxKLGx0cHDnwiQveXg@mail.gmail.com>
+Subject: Re: [meta-security][PATCH] Remove outdated meta-rust dependency text
+ in README
+To: akuster808 <akuster808@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="00000000000012d35705e0aa9486"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 04 Jun 2022 23:00:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57267
+ <yocto@lists.yoctoproject.org>; Sun, 05 Jun 2022 03:02:04 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57268
 
-not compatible with musl
+--00000000000012d35705e0aa9486
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+Hi Armin,
+Sorry if it was unclear or if I misunderstood something.
 
----
-[v2]
-Fix type
----
- .../arpwatch/{arpwatch_3.1.bb => arpwatch_3.3.bb}        | 9 +++++----
- recipes-scanners/arpwatch/files/host_contam_fix.patch    | 8 ++++----
- 2 files changed, 9 insertions(+), 8 deletions(-)
- rename recipes-scanners/arpwatch/{arpwatch_3.1.bb => arpwatch_3.3.bb} (90%)
+As far as I could see and tried as I had to build it yesterday, I can now
+build suricata without adding meta-rust as the rust support (compilers etc)
+is now already in oe-core, ie:
+https://git.openembedded.org/openembedded-core/tree/meta/recipes-devtools/rust
+and
+https://git.openembedded.org/openembedded-core/tree/meta/recipes-devtools/cargo
+Some relevant discussion: https://github.com/meta-rust/meta-rust/pull/364
 
-diff --git a/recipes-scanners/arpwatch/arpwatch_3.1.bb b/recipes-scanners/arpwatch/arpwatch_3.3.bb
-similarity index 90%
-rename from recipes-scanners/arpwatch/arpwatch_3.1.bb
-rename to recipes-scanners/arpwatch/arpwatch_3.3.bb
-index 3d8c5ae..4b4d476 100644
---- a/recipes-scanners/arpwatch/arpwatch_3.1.bb
-+++ b/recipes-scanners/arpwatch/arpwatch_3.3.bb
-@@ -1,7 +1,7 @@
- SUMARRY = "The ethernet monitor program; for keeping track of ethernet/ip address pairings"
- LICENSE = "BSD-4-Clause"
- HOME_PAGE = "http://ee.lbl.gov/"
--LIC_FILES_CHKSUM = "file://configure;md5=74ca964ed34fda7b46c6fe3e50bded9d"
-+LIC_FILES_CHKSUM = "file://configure;md5=0f6cca2f69f384a14e2f5803210ca92e"
- 
- DEPENDS += "libpcap"
- 
-@@ -9,10 +9,10 @@ SRC_URI = "https://ee.lbl.gov/downloads/arpwatch/${BP}.tar.gz \
-            file://arpwatch.conf \
-            file://arpwatch.default \
-            file://arpwatch_init  \
--           file://postfix_workaround.patch \
--           file://host_contam_fix.patch "
-+           file://host_contam_fix.patch \
-+           "
- 
--SRC_URI[sha256sum] = "ee1d15d9a07952c0c017908b9dbfd5ac988fed0058c3cc4fa6c13e0be36f3a9f"
-+SRC_URI[sha256sum] = "d47fa8b291fc37a25a2d0f3e1b64f451dc0be82d714a10ffa6ef8b0b9e33e166"
- 
- inherit  autotools-brokensep update-rc.d useradd
- 
-@@ -82,5 +82,6 @@ FILES:${PN} = "${bindir} ${sbindir} ${prefix}/etc/rc.d \
- 
- COMPATIBLE_HOST:riscv32 = "null"
- COMPATIBLE_HOST:riscv64 = "null"
-+COMPATIBLE_HOST:libc-musl = "null"
- 
- RDEPENDS:${PN} = "libpcap"
-diff --git a/recipes-scanners/arpwatch/files/host_contam_fix.patch b/recipes-scanners/arpwatch/files/host_contam_fix.patch
-index 7d7ffac..2e27aa4 100644
---- a/recipes-scanners/arpwatch/files/host_contam_fix.patch
-+++ b/recipes-scanners/arpwatch/files/host_contam_fix.patch
-@@ -4,11 +4,11 @@ Upstream-Status: Inappropriate [embedded specific]
- 
- Signed-off-by: Armin Kuster <akuster808@gmail.com>
- 
--Index: arpwatch-3.0/configure
-+Index: arpwatch-3.3/configure
- ===================================================================
----- arpwatch-3.0.orig/configure
--+++ arpwatch-3.0/configure
--@@ -4349,8 +4349,8 @@ fi
-+--- arpwatch-3.3.orig/configure
-++++ arpwatch-3.3/configure
-+@@ -4353,8 +4353,8 @@ fi
-  	    CC=cc
-  	    export CC
-      fi
--- 
-2.25.1
+The note in README may still just apply to versions < honister I believe
+(ie. dunfell is the only not EOL-ed). For more recent versions it may just
+potentially create confusion IMO.
 
+Cheers,
+Federico
+
+Il giorno dom 5 giu 2022 alle ore 00:58 akuster808 <akuster808@gmail.com>
+ha scritto:
+
+>
+>
+> On 6/3/22 23:31, Federico Pellegrin wrote:
+> > Since ~16 months the base of meta-rust was merged into meta-oe,
+> > down to honister as far as I can see, and therefore the indications
+> > to use meta-rust are really not needed and may just create extra
+> > work and possibly problems to users.
+> > ---
+> >   README | 12 ------------
+> >   1 file changed, 12 deletions(-)
+> >
+> > diff --git a/README b/README
+> > index 081669f..a9b3600 100644
+> > --- a/README
+> > +++ b/README
+> > @@ -62,18 +62,6 @@ other layers needed. e.g.:
+> >       /path/to/meta-openembedded/meta-networking \
+> >       /path/to/layer/meta-security "
+>
+> thanks for the patch.
+>
+> did I miss some rust changes in
+>
+> https://git.yoctoproject.org/meta-security/commit/?h=master-next&id=edf8b109e77f6d3f2740e09bdc89f0aaf2885dc4
+> ?
+>
+> - armin
+> >
+> > -Optional Rust dependancy
+> > -======================================
+> > -If you want to use the latest Suricata that needs rust, you will need
+> to clone
+> > -
+> > -  URI: https://github.com/meta-rust/meta-rust.git
+> > -  branch: master
+> > -
+> > -  BBLAYERS += "/path/to/layer/meta-rust"
+> > -
+> > -This will activate the dynamic-layer mechanism and pull in the newer
+> suricata
+> > -
+> > -
+> >
+> >   Maintenance
+> >   ======================================
+>
+>
+
+--00000000000012d35705e0aa9486
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><br></div><div>Hi Armin,</div><div>Sorry if it was un=
+clear or if I misunderstood something.</div><div><br></div><div>As far as I=
+ could see and tried as I had to build it yesterday, I can now build surica=
+ta without adding meta-rust as the rust support (compilers etc) is now alre=
+ady in oe-core, ie:=C2=A0 <a href=3D"https://git.openembedded.org/openembed=
+ded-core/tree/meta/recipes-devtools/rust">https://git.openembedded.org/open=
+embedded-core/tree/meta/recipes-devtools/rust</a> and <a href=3D"https://gi=
+t.openembedded.org/openembedded-core/tree/meta/recipes-devtools/cargo">http=
+s://git.openembedded.org/openembedded-core/tree/meta/recipes-devtools/cargo=
+</a></div><div>Some relevant discussion: <a href=3D"https://github.com/meta=
+-rust/meta-rust/pull/364">https://github.com/meta-rust/meta-rust/pull/364</=
+a></div><div><br></div><div>The note in README may still just apply to vers=
+ions &lt; honister I believe (ie. dunfell is the only not EOL-ed). For more=
+ recent versions it may just potentially create confusion IMO.<br></div><di=
+v><br></div><div>Cheers,</div><div>Federico<br></div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Il giorno dom 5 giu =
+2022 alle ore 00:58 akuster808 &lt;<a href=3D"mailto:akuster808@gmail.com">=
+akuster808@gmail.com</a>&gt; ha scritto:<br></div><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex"><br>
+<br>
+On 6/3/22 23:31, Federico Pellegrin wrote:<br>
+&gt; Since ~16 months the base of meta-rust was merged into meta-oe,<br>
+&gt; down to honister as far as I can see, and therefore the indications<br=
+>
+&gt; to use meta-rust are really not needed and may just create extra<br>
+&gt; work and possibly problems to users.<br>
+&gt; ---<br>
+&gt;=C2=A0 =C2=A0README | 12 ------------<br>
+&gt;=C2=A0 =C2=A01 file changed, 12 deletions(-)<br>
+&gt;<br>
+&gt; diff --git a/README b/README<br>
+&gt; index 081669f..a9b3600 100644<br>
+&gt; --- a/README<br>
+&gt; +++ b/README<br>
+&gt; @@ -62,18 +62,6 @@ other layers needed. e.g.:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0/path/to/meta-openembedded/meta-networking \=
+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0/path/to/layer/meta-security &quot;<br>
+<br>
+thanks for the patch.<br>
+<br>
+did I miss some rust changes in <br>
+<a href=3D"https://git.yoctoproject.org/meta-security/commit/?h=3Dmaster-ne=
+xt&amp;id=3Dedf8b109e77f6d3f2740e09bdc89f0aaf2885dc4" rel=3D"noreferrer" ta=
+rget=3D"_blank">https://git.yoctoproject.org/meta-security/commit/?h=3Dmast=
+er-next&amp;id=3Dedf8b109e77f6d3f2740e09bdc89f0aaf2885dc4</a> <br>
+?<br>
+<br>
+- armin<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; -Optional Rust dependancy<br>
+&gt; -=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+&gt; -If you want to use the latest Suricata that needs rust, you will need=
+ to clone<br>
+&gt; -<br>
+&gt; -=C2=A0 URI: <a href=3D"https://github.com/meta-rust/meta-rust.git" re=
+l=3D"noreferrer" target=3D"_blank">https://github.com/meta-rust/meta-rust.g=
+it</a><br>
+&gt; -=C2=A0 branch: master<br>
+&gt; -<br>
+&gt; -=C2=A0 BBLAYERS +=3D &quot;/path/to/layer/meta-rust&quot;<br>
+&gt; -<br>
+&gt; -This will activate the dynamic-layer mechanism and pull in the newer =
+suricata<br>
+&gt; -<br>
+&gt; -<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0Maintenance<br>
+&gt;=C2=A0 =C2=A0=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+<br>
+</blockquote></div>
+
+--00000000000012d35705e0aa9486--
 
