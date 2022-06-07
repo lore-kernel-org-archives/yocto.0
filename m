@@ -1,93 +1,102 @@
-Return-Path: <evinoth1206@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 66DF2C43334
-	for <webhook@archiver.kernel.org>; Tue,  7 Jun 2022 09:47:50 +0000 (UTC)
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
- [209.85.218.52])
- by mx.groups.io with SMTP id smtpd.web09.10491.1654595263807990994
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6E41FC433EF
+	for <webhook@archiver.kernel.org>; Tue,  7 Jun 2022 10:21:20 +0000 (UTC)
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com
+ [209.85.167.50])
+ by mx.groups.io with SMTP id smtpd.web09.10734.1654597270843675222
  for <yocto@lists.yoctoproject.org>;
- Tue, 07 Jun 2022 02:47:44 -0700
+ Tue, 07 Jun 2022 03:21:11 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=lqYxjh0t;
- spf=pass (domain: gmail.com, ip: 209.85.218.52,
- mailfrom: evinoth1206@gmail.com)
-Received: by mail-ej1-f52.google.com with SMTP id q1so34059422ejz.9
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=dbgvvNFN;
+ spf=pass (domain: gmail.com, ip: 209.85.167.50,
+ mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f50.google.com with SMTP id s6so27518960lfo.13
         for <yocto@lists.yoctoproject.org>;
- Tue, 07 Jun 2022 02:47:43 -0700 (PDT)
+ Tue, 07 Jun 2022 03:21:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=qsqigSWEvMIy+CLmd9ftNGh4rgMCfMVAVKdW/qppk9w=;
-        b=lqYxjh0tuqWesVoQVjQ7RWCrsliZpoFqIMv2lnb7EwyOIVFJpSLkFodj7jlXR5Usrv
-         LXhgQvcCwpxTqNvmcs5xIwXLmvOL9BYFKnlX1tTK9XBLwF8qfB5DAdhiCAM5hlkLcuOf
-         hjNYSP4PxbJxxuoy2SFojzerOchmVF1Q9tx1IhoVMlSuFixBeOxBsazlTLGQwlqCFbGl
-         IWqRI+u7fUQRFZutSOZ8v+48hD+sT2EfiHR3ac70nq8nQw4qAljYnP2fS+bhiC9R0HP9
-         2YQXvgM4xzx12x7Hn0yorH0EeaWhaVVcAj7BZlpGxgkOk0YZy/xWDaKJHvFpDnW6Ls48
-         vhHw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=5fywvU0P1oVWDqNp8Vqvegv59tg2E10V+JksRWx19Dw=;
+        b=dbgvvNFN3Yt2L8rF13A/NyDuXsDmCG9MfQuDIxt9r3aK8uXafn5ApvOEBkSZ3/9giD
+         WNTJ3cJTBn5E0eTLsKt+YaXgTQbyF7vZefksdxROcAhvhlrE4jCRXun3L1GpN00srVGV
+         ZK3/ChMkMdpQZ1FbXep4lGa0Zqhxg7NtQ98ICdCbw8aWKVcqktacW5bVnJChFmJ1h0a9
+         +KUFP97pCmFbzaNOXD0xPj9fpmxID8+2ZIrQuc12v/b6QbCacKPvlmvF22pIAHKRYFJd
+         vvSZ0FL3E+r+ENktAskwXMqF4XBlgqqf1XfswvWsNPs1uXqeU1BMW1JJ0iPge0n0iG2r
+         IGIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=qsqigSWEvMIy+CLmd9ftNGh4rgMCfMVAVKdW/qppk9w=;
-        b=JGdbPfSzq53o2El7lAHq/DM6oFeU59BRvKEN25eTSsUqDAtq5p/XnBaJsx96ejvEcC
-         y6cpi7rGen/B6R3VnTbrTHGVaXvrHeytisRjRvDUPgupYAIQj5Z8CGXBOvAgtN0eW478
-         S1WXkDbz0AYAbbgJiAde6l/tp7vJQM7gRz+QjXh7vbOpAwhmAv8ATe8l3o/hTbgbqQOD
-         J1j2lidZn/He91nKf4up04E/7+UYup3ofsqvPTsg6IDnvZ4VOMrBzsbUKoqShtKD1nl7
-         4xD7hNxjm6oq4JiFXqMjs8LvCYOYiHiu0HFgreyyjJCRtBlKXcNM4OplM5ifG0rmrIep
-         O2Sw==
-X-Gm-Message-State: AOAM532ErpwMWveimu6YlBbwiyISo5K11nUBHqydkchIBzp8Pq21p+N4
-	HRrnS4BZAJYEgk2QddtkjUkiaUh6GNHCTxlE072gGvMwtFI=
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=5fywvU0P1oVWDqNp8Vqvegv59tg2E10V+JksRWx19Dw=;
+        b=c1DyC0sxcGYjPymiLC2EqMr0vazEPPGOWAoZeUAoBdoft+jQF1yQ6msOaF9gZ1XGhg
+         JA496UqbTGAfu3Ni+lxfDqiuf0gFP87288PPOcA6F5pH01MgenaBqke5vf5mP42JpOpQ
+         hXDweaGcJYzkcIcobbgLwUR9UyjomKYtLl+e7bqKVJBSAY8hijoT8SRQxvHsE2lhGlls
+         MNkIw87evmv9BCTyoxzcwwRQk/1Fgy/4Ll/w1zejdH/GjPSLCgRR1QqqsEIljGrpMim0
+         fKSbJS9Rhdlgg3a+6ZP09Q3FW3B9zH8cv3kQRfSq5/H7ljkiXKOXGhYfDLROTcuOwMI4
+         fDqA==
+X-Gm-Message-State: AOAM5332HoS8VsM2Qxm4iQ3HknXW6e2GPS7cmBK7Ijxp1wUKeue1WBWz
+	+/09BV9V++GAHuaWC9NSlNWx4EfuHUF/agsbujA=
 X-Google-Smtp-Source: 
- ABdhPJwhKYth8xFfRGdzpzQu3nq0hmbBa0TdZBZQ+aKZxq0EqhN9qqIYOlKCvg/ei3qIsf5vEew6KjY8nls5n+90AzM=
-X-Received: by 2002:a17:907:2d8a:b0:6f5:df90:45c4 with SMTP id
- gt10-20020a1709072d8a00b006f5df9045c4mr25094750ejc.662.1654595261813; Tue, 07
- Jun 2022 02:47:41 -0700 (PDT)
+ ABdhPJzJ3MolqrD87jrS7U2c4bJUxkEe4oW+huaqkwgCdiJeJKkHf3nys9unPYCGLQMWAcUq5iKX8EtGB88AZBr+x1Y=
+X-Received: by 2002:a05:6512:1511:b0:479:fc:afa2 with SMTP id
+ bq17-20020a056512151100b0047900fcafa2mr20848231lfb.665.1654597268739; Tue, 07
+ Jun 2022 03:21:08 -0700 (PDT)
 MIME-Version: 1.0
-From: Vinothkumar Eswaran <evinoth1206@gmail.com>
-Date: Tue, 7 Jun 2022 11:47:31 +0200
-Message-ID: 
+References: 
  <CAJst-kEqrNhR832waWSMDNGkTFORLgEPX5y2VRS7g1Bn=T3evA@mail.gmail.com>
-Subject: How to remove the python3 from Yocto SDK
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000d3d59c05e0d87a0d"
+In-Reply-To: 
+ <CAJst-kEqrNhR832waWSMDNGkTFORLgEPX5y2VRS7g1Bn=T3evA@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Tue, 7 Jun 2022 12:20:57 +0200
+Message-ID: 
+ <CANNYZj_kJrXDCG7xnVVRhHvNpTFCkPFyayNBBVAga7zrhKuXKQ@mail.gmail.com>
+Subject: Re: [yocto] How to remove the python3 from Yocto SDK
+To: Vinothkumar Eswaran <evinoth1206@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 07 Jun 2022 09:47:50 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57283
+ <yocto@lists.yoctoproject.org>; Tue, 07 Jun 2022 10:21:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57284
 
---000000000000d3d59c05e0d87a0d
-Content-Type: text/plain; charset="UTF-8"
+It would help if you explain what the problems are. Generally things
+are tested together with the python provided from yocto, so if you use
+tooling from the host, you might run into other problems.
 
-Hello,
+Alex
 
-May I know how to remove python3 from the host and target sdk package ?
-
-TOOLCHAIN_HOST_TASK_remove = " nativesdk-python3-core", seems not to work.
-
-The image is built on top of core-image. Python3 is not installed to image.
-We deliver SDK to other teams and they are complaining that python3 in sdk
-is causing problems after sourcing the sdk. They want to use host python3
-instead of the one delivered from Yocto SDK. Could you help ?
-
-Thanks & regards,
-Vinothkumar
-
---000000000000d3d59c05e0d87a0d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=
-=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
-v dir=3D"ltr">Hello,<br><br>May I know how to remove python3 from the host =
-and target sdk package ?<br><br>TOOLCHAIN_HOST_TASK_remove =3D &quot; nativ=
-esdk-python3-core&quot;, seems not to work. <br><br>The image is built on t=
-op of core-image. Python3 is not installed to image. We deliver SDK to othe=
-r teams and they are complaining that python3 in sdk is causing problems af=
-ter sourcing the sdk. They want to use host python3 instead of the one deli=
-vered from Yocto SDK. Could you help ?<br><br>Thanks &amp; regards,<br>Vino=
-thkumar<br></div></div></div></div></div></div>
-
---000000000000d3d59c05e0d87a0d--
+On Tue, 7 Jun 2022 at 11:47, Vinothkumar Eswaran <evinoth1206@gmail.com> wr=
+ote:
+>
+> Hello,
+>
+> May I know how to remove python3 from the host and target sdk package ?
+>
+> TOOLCHAIN_HOST_TASK_remove =3D " nativesdk-python3-core", seems not to wo=
+rk.
+>
+> The image is built on top of core-image. Python3 is not installed to imag=
+e. We deliver SDK to other teams and they are complaining that python3 in s=
+dk is causing problems after sourcing the sdk. They want to use host python=
+3 instead of the one delivered from Yocto SDK. Could you help ?
+>
+> Thanks & regards,
+> Vinothkumar
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#57283): https://lists.yoctoproject.org/g/yocto/messag=
+e/57283
+> Mute This Topic: https://lists.yoctoproject.org/mt/91597064/1686489
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@g=
+mail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
