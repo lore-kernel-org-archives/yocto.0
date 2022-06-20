@@ -2,96 +2,90 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 95922C433EF
-	for <webhook@archiver.kernel.org>; Mon, 20 Jun 2022 04:23:10 +0000 (UTC)
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com
- [209.85.214.175])
- by mx.groups.io with SMTP id smtpd.web10.26244.1655698987064324513
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BFFABC433EF
+	for <webhook@archiver.kernel.org>; Mon, 20 Jun 2022 05:15:20 +0000 (UTC)
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com
+ [209.85.216.50])
+ by mx.groups.io with SMTP id smtpd.web10.26525.1655702117445143701
  for <yocto@lists.yoctoproject.org>;
- Sun, 19 Jun 2022 21:23:07 -0700
+ Sun, 19 Jun 2022 22:15:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=jDp+QEsg;
- spf=pass (domain: gmail.com, ip: 209.85.214.175,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=VMcsJo6/;
+ spf=pass (domain: gmail.com, ip: 209.85.216.50,
  mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f175.google.com with SMTP id i15so8662946plr.1
+Received: by mail-pj1-f50.google.com with SMTP id
+ g10-20020a17090a708a00b001ea8aadd42bso9224343pjk.0
         for <yocto@lists.yoctoproject.org>;
- Sun, 19 Jun 2022 21:23:07 -0700 (PDT)
+ Sun, 19 Jun 2022 22:15:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=VRk8CEC4CELDONqGz2JeqQeFASNy5p6zqaqB59Ks42M=;
-        b=jDp+QEsgh2DPzpAQFxYcBHzIvuS1MlhLRixdpLyALjnI1itqBizeg6o5CM5ELds1hq
-         GEiOIoAcQ3CCb7SORcoX9Y/i9NHcJxaIxo6pnV5qw+Y8qWwOi2TwQ2VRqJUEqYIZxebq
-         WWHOlV9LTIpE0OwjNf89JNW7KTmKX/W4MlF3oX5fJv1Wh+ZuvOkQC0ZhUdrplIbupnBe
-         bSJRwqxdTX51vw9qTu1W0h1dDArnN5WpmpSoDLDj0LZC5SxVn8XI+j3JNUS+bEUqgakX
-         oB9GhSGlg8C1hYq0j417Yubgm/+gXi4GcEUDjwq0hkX94w1e6UiSRW/irMmn0QK9rdxh
-         zZ5Q==
+        bh=JndsXkh+WzjGUIuoVwMkwMoOpCak4gweS5YLFn+o+Is=;
+        b=VMcsJo6/XwWiysSslh94fKysEc1iKjI5wDP0cmJue4yOrBfBjTKEyZFNMqW75Qv1Ls
+         I6wKt4BiXrTT+fjx40EULNmrjCrlekzsYZupRhBe7NWeHUhCMj9hnQuVqwsi/knynt5V
+         /gsgb+YrzNY/Q91OlaFQSglQppCKLl8ru84HUIsiDzykZYd7XeR5zYh2rMld6oq+iqup
+         +p/9Vei4Q8R2NJlseOt1R4kyAZiZ3a+SzhKU8JjAzCahvWs6UeMUOeGN56OvSH9biKdJ
+         qXM0kFb5/S1OLBPB4m5DSR8/s4IqZOHftxF37ajh1zVPTDAAFIuP18XejHP19YfYVYhy
+         MCcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=VRk8CEC4CELDONqGz2JeqQeFASNy5p6zqaqB59Ks42M=;
-        b=7yNBWuTz7Qgwhhzr54Al9G39xnEwDVOvm16XGiSYph5waqH0F3h4YlHvBoKJK/IPnf
-         Go1VrchPpIGMykF2NWDiEvF+/B5go7uZTRQyNM5/tJbLnLuI5BTW94zCe3Cm5MT1ipHe
-         rfpTcjw78c37l6BOUQ+ba03AH7Jj8839465k3nMsv28dA+WsvPlncLzWTWw189tF0l2G
-         i/OyOJZWWCSc0BV8X8yhxdnfaAhDUbYaYptUblXRDzHQh8XuJZ2FxoX9Nk3qLQgAbUIg
-         Hxe4obKT9o4ZJuVM1cbripreDuDXyyQtGk56CKtIKhVoBKKeZxbahMP+5fWgymV2Hlg9
-         3J4g==
-X-Gm-Message-State: AJIora/4THjuA1cuQmEpsrWC+UjXirMMBZvloIWsLmg4t8maMm7Ax3V6
-	mxs6UdkVbzAjpMa0Y1mYPLnDHFkzlt0=
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=JndsXkh+WzjGUIuoVwMkwMoOpCak4gweS5YLFn+o+Is=;
+        b=pclc8jzcrAlcdsjFKEjTZFLIHp5wJshOK3ZaGx+HoThJlyG9wfohnsBx/p+W2fxc/5
+         IHuHK9D+tnJvLMmqFxMKwikSL5p4XW2h39rlOUGeMb22aK3iVBRljII+1hoo0J2rBt0Z
+         HH8b6dr5pOi8E6yDa38094G+IrAU5wsbwXm7/887LDvcLnV9VeljKvo1+Jb7wlcHS4l6
+         +yYqubVN9Vc1ARV1ujFvxKF+poRq9v0Y1KLQKLbBUgNYvUKmNMfXXxJNvWax+2ySFoUZ
+         yXqxoP0ipyhAjZvBnbZsUiNIyy2I/GXfjQfIM0UfjpqGE3DS+jXUALuhlfi00zW1gtPs
+         jYaA==
+X-Gm-Message-State: AJIora/lYUD78MZp1+DEz+6yv/rt0TZD46aWSGSN8gO6W+C7RY0z/W1H
+	6J8Dq+w67vGYENQdqeEEC/E42XkRgKE=
 X-Google-Smtp-Source: 
- AGRyM1seRBNQVp5tIB2P2gfGCFwu+yPIpq7ApiGnVkzegBPnZ4qjk38quPRSlEJXPFs98a8nS4+RJA==
-X-Received: by 2002:a17:902:6b45:b0:168:d421:f7a8 with SMTP id
- g5-20020a1709026b4500b00168d421f7a8mr22133568plt.36.1655698986023;
-        Sun, 19 Jun 2022 21:23:06 -0700 (PDT)
+ AGRyM1vHCkd+TfCeVrZOmK7FlYNx5d0+memNx6ajkuX1OqW/eoiwMPlGlBevThpeAU/pWMrY4M13fw==
+X-Received: by 2002:a17:903:186:b0:167:62b0:a556 with SMTP id
+ z6-20020a170903018600b0016762b0a556mr22118144plg.122.1655702116622;
+        Sun, 19 Jun 2022 22:15:16 -0700 (PDT)
 Received: from keaua.hsd1.ca.comcast.net
  (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
         by smtp.gmail.com with ESMTPSA id
- ix6-20020a170902f80600b001615f64aaabsm7464773plb.244.2022.06.19.21.23.04
+ bd44-20020a056a0027ac00b00525113281dasm3543232pfb.201.2022.06.19.22.15.15
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Jun 2022 21:23:05 -0700 (PDT)
+        Sun, 19 Jun 2022 22:15:15 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] ccs-tools: update to 1.8.9
-Date: Sun, 19 Jun 2022 21:21:03 -0700
-Message-Id: <20220620042103.1000026-1-akuster808@gmail.com>
+Subject: [meta-security-compliance][PATCH 2/2] README: update email address
+Date: Sun, 19 Jun 2022 22:13:12 -0700
+Message-Id: <20220620051312.1040071-2-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220620051312.1040071-1-akuster808@gmail.com>
+References: <20220620051312.1040071-1-akuster808@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 20 Jun 2022 04:23:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57359
+ <yocto@lists.yoctoproject.org>; Mon, 20 Jun 2022 05:15:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57361
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../ccs-tools/{ccs-tools_1.8.4.bb => ccs-tools_1.8.9.bb}     | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
- rename recipes-mac/ccs-tools/{ccs-tools_1.8.4.bb => ccs-tools_1.8.9.bb} (88%)
+ meta-security-compliance/README | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-mac/ccs-tools/ccs-tools_1.8.4.bb b/recipes-mac/ccs-tools/ccs-tools_1.8.9.bb
-similarity index 88%
-rename from recipes-mac/ccs-tools/ccs-tools_1.8.4.bb
-rename to recipes-mac/ccs-tools/ccs-tools_1.8.9.bb
-index 8d148bb..ff800ce 100644
---- a/recipes-mac/ccs-tools/ccs-tools_1.8.4.bb
-+++ b/recipes-mac/ccs-tools/ccs-tools_1.8.9.bb
-@@ -7,11 +7,10 @@ LIC_FILES_CHKSUM = "file://COPYING.ccs;md5=751419260aa954499f7abaabaa882bbe"
+diff --git a/meta-security-compliance/README b/meta-security-compliance/README
+index 320f856..3311d05 100644
+--- a/meta-security-compliance/README
++++ b/meta-security-compliance/README
+@@ -28,7 +28,7 @@ Maintenance
+ Send pull requests, patches, comments or questions to yocto@yoctoproject.org
  
- DEPENDS = "ncurses"
+ When sending single patches, please using something like:
+-'git send-email -1 --to yocto@yoctoproject.org --subject-prefix=meta-security-compliance][PATCH'
++'git send-email -1 --to yocto@lists.yoctoproject.org  --subject-prefix=meta-security-compliance][PATCH'
  
--DS = "20150505"
-+DS = "20210910"
- SRC_URI = "http://osdn.dl.sourceforge.jp/tomoyo/49693/${BPN}-${PV}-${DS}.tar.gz"
- 
--SRC_URI[md5sum] = "eeee8eb96a7680bfa9c8f6de55502c44"
--SRC_URI[sha256sum] = "c358b80a2ea77a9dda79dc2a056dae3acaf3a72fcb8481cfb1cd1f16746324b4"
-+SRC_URI[sha256sum] = "7900126cf2dd8706c42c2c1ef7a37fd8b50f1505abd7d9c3d653dc390fb4d620"
- 
- S = "${WORKDIR}/${BPN}"
+ Layer Maintainer: Armin Kuster <akuster808@gmail.com>
  
 -- 
 2.25.1
