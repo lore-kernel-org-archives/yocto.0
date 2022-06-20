@@ -2,95 +2,120 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C0CC4C43334
-	for <webhook@archiver.kernel.org>; Mon, 20 Jun 2022 05:15:20 +0000 (UTC)
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
- [209.85.214.173])
- by mx.groups.io with SMTP id smtpd.web12.26611.1655702116013995754
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D6A93C43334
+	for <webhook@archiver.kernel.org>; Mon, 20 Jun 2022 05:39:20 +0000 (UTC)
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com
+ [209.85.214.175])
+ by mx.groups.io with SMTP id smtpd.web11.16534.1655703553091098643
  for <yocto@lists.yoctoproject.org>;
- Sun, 19 Jun 2022 22:15:16 -0700
+ Sun, 19 Jun 2022 22:39:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=EBwuaFsS;
- spf=pass (domain: gmail.com, ip: 209.85.214.173,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=m7K7bpDU;
+ spf=pass (domain: gmail.com, ip: 209.85.214.175,
  mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f173.google.com with SMTP id d5so8721223plo.12
+Received: by mail-pl1-f175.google.com with SMTP id m14so8781616plg.5
         for <yocto@lists.yoctoproject.org>;
- Sun, 19 Jun 2022 22:15:15 -0700 (PDT)
+ Sun, 19 Jun 2022 22:39:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Et/0SBdDlN83fIlHI/0brm+Csct7WGNsbXE9mr7GWrA=;
-        b=EBwuaFsSyYvU6qFIWwJycXIce+eJXQZ7UMLEq6ZSmZBC9FczpV/lQE1fZhd8HVIfgw
-         k/iZ44RK5aqv4jbetw9aswRalKzZmBaKTXGUeHJSGXfHoKN3Rq9LkEbNjNpai6hFEB5D
-         RUrhutbD4CHhHvQiGhjPNhjEJ3hFu9n8g1CQc4PqsIf96fmWZODWaHo146LrtjQjDbbi
-         K1tyALIqAjfGNMl8vLUfBjIXYe1yL22AtYTsymxcYHLAgiEVrcIiwCyZFT0DGtBMPLQG
-         9LLykMHGNRcTZhtANw2Qq+nSYAxyllFVik8KUQs6SecnfqCxEEHmfwaAwLc1wG8isBpX
-         mMPg==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=4U5CO8ECMALZLkXyBK4oTAOQQh1j8X1S6rCfJ3VlFOk=;
+        b=m7K7bpDUd4Im9MYWVnAoWXUCFvzmLns1pHxc4mbTxK5xkjP16loY9eRoEREchCGRM1
+         UtcE9VBxWc8TI8PPR37Fydz5D90jSXPYoy8ICo1dbMx9FwEMVomPguH02+/DqI/7LcP8
+         oYZriyLHUowbYOVuNyPYVfgjQMI11btEIQe+ijktRqgYWb7k/k8bNX4LT2CHrd4VFo7O
+         Sw1PGpQl8RXPAc9oKsAYKa+sXIFPnAlI0OO73qrkcTkggJ5P8SriUYq43oGsmrKG4aJz
+         dmuHtnYNg+0JqCu4AW8nGkbmI68PGVrLvijFBtq1bGVraik9i5MJiA1CXv4ClwmdEaUH
+         cx3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Et/0SBdDlN83fIlHI/0brm+Csct7WGNsbXE9mr7GWrA=;
-        b=QBsDoz1/pYw4X0+RT89GDh1TZ0j7wzIIP21WI3UpGcw/aqxZ6YOIprlHxSAP3oglF1
-         dJN8fFLQE8egUYCZGi4wfQdjJzaK/hdF8pZPttRkpr9ZD9lMN3SqsaIdJnC5YHGURfGF
-         EzLuD1vSmW0LV3M4SRoRYcw4PkL1brGCBQEZ5IJl05CdLaJXD4f/Kz0dwLkmcTOFcM10
-         eGmngHbGrE6TSJ8lcqmd6NXi6/3fp6Etqc7gn8Si8KYu2HvtDcq0llF5V9tByA9S6hCN
-         avz4l7/D5vsfxdjyuERmAJzH+SNFmMO27eKxFHwrey/sG1se0kbzEnRY5rH0Cq2S+hg3
-         5vJA==
-X-Gm-Message-State: AJIora+QkcfkLT2Zm/Wq7ZH8ZTsHDfdz5BMYrZbd+/K0dq5DB/1yLJv4
-	tiiE8SrVlqgEiGCZXa699lqcXxJKKbY=
+        bh=4U5CO8ECMALZLkXyBK4oTAOQQh1j8X1S6rCfJ3VlFOk=;
+        b=F+/cjSoQeg1dkJsHMSz4BcRpNUCsDnKPcS/1wqZnwTP0RKGhgRvn78OlFKvFvUZgQF
+         0zaLFrTiaCfJScUpj/y+PLCwtlIN70Gksmp7zwV/U8hXPVABrHJr9BHfTp7djRRAbzHD
+         WFkmDFKIosfCnNkxlNZ2FEF581vwX9ROUvwdagMig6YbakDOxBFC9EhicJhxlfGm9BzE
+         4uG9C22CmkG6gZwQ7wcsDE01K1FlBpzTLZKj3AzBaIQ+V7aWmo4jvyvXBqpn4sMPzhQm
+         tZnJumtc7Pc/MFwRjVioev5kTOouZHhlC4S8J1h30Mx4QFL/lSe5AV/POLpVKPWErsRp
+         QATw==
+X-Gm-Message-State: AJIora8zLd4xo2I6ukYWKWkxif99rvKQluQp3tKcYitIC1XSMTBeLl4h
+	bR2m0TCtXDGF4wV/3GC+BuW84XCM4yA=
 X-Google-Smtp-Source: 
- AGRyM1tqGTTnT+4LF0VsNw0sxAy+leg+SsjtHJEPbVuJI1iqqnEucZa9QVBnTX3kS8flZgYOIUoCRw==
-X-Received: by 2002:a17:903:2291:b0:167:59ad:52e8 with SMTP id
- b17-20020a170903229100b0016759ad52e8mr22373866plh.121.1655702115026;
-        Sun, 19 Jun 2022 22:15:15 -0700 (PDT)
-Received: from keaua.hsd1.ca.comcast.net
- (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
+ AGRyM1vm7Yvib72eXRnItt0+dw+3Zkk4624MwhljoIreee//oFF+dT9ldZyTl73G3JP7c3X6F+UMtQ==
+X-Received: by 2002:a17:90a:d158:b0:1ec:8298:40dc with SMTP id
+ t24-20020a17090ad15800b001ec829840dcmr14375673pjw.51.1655703551925;
+        Sun, 19 Jun 2022 22:39:11 -0700 (PDT)
+Received: from [192.168.18.39] (c-67-181-203-136.hsd1.ca.comcast.net.
+ [67.181.203.136])
         by smtp.gmail.com with ESMTPSA id
- bd44-20020a056a0027ac00b00525113281dasm3543232pfb.201.2022.06.19.22.15.13
+ i65-20020a626d44000000b0051853e6617fsm7970635pfc.89.2022.06.19.22.39.10
         for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Jun 2022 22:15:14 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security-compliance][PATCH 1/2] lynis: update to 3.0.8
-Date: Sun, 19 Jun 2022 22:13:11 -0700
-Message-Id: <20220620051312.1040071-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 19 Jun 2022 22:39:11 -0700 (PDT)
+Message-ID: <0d8aba1b-595d-c681-84fe-197cb5b440c9@gmail.com>
+Date: Sun, 19 Jun 2022 22:36:59 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [yocto] [meta-security][PATCH 3/3] oeqa: shut done swtpm before
+ and after testing
+Content-Language: en-US
+To: yocto@lists.yoctoproject.org
+References: <20220620033504.994851-1-akuster808@gmail.com>
+ <16FA36F348A4E548.32537@lists.yoctoproject.org>
+From: akuster808 <akuster808@gmail.com>
+In-Reply-To: <16FA36F348A4E548.32537@lists.yoctoproject.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 20 Jun 2022 05:15:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57360
+ <yocto@lists.yoctoproject.org>; Mon, 20 Jun 2022 05:39:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57362
 
-See changelog for details: https://cisofy.com/changelog/lynis/#308
+fyi:
+I started to archive some of the test runs at:
+https://github.com/akuster/meta-security-testresults
+Not sure if I am doing this correctly but is at least a snapshot.
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- .../recipes-auditors/lynis/{lynis_3.0.0.bb => lynis_3.0.8.bb}   | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
- rename meta-security-compliance/recipes-auditors/lynis/{lynis_3.0.0.bb => lynis_3.0.8.bb} (93%)
+-armin
 
-diff --git a/meta-security-compliance/recipes-auditors/lynis/lynis_3.0.0.bb b/meta-security-compliance/recipes-auditors/lynis/lynis_3.0.8.bb
-similarity index 93%
-rename from meta-security-compliance/recipes-auditors/lynis/lynis_3.0.0.bb
-rename to meta-security-compliance/recipes-auditors/lynis/lynis_3.0.8.bb
-index f665e29..d38c17a 100644
---- a/meta-security-compliance/recipes-auditors/lynis/lynis_3.0.0.bb
-+++ b/meta-security-compliance/recipes-auditors/lynis/lynis_3.0.8.bb
-@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=3edd6782854304fd11da4975ab9799c1"
- 
- SRC_URI = "https://cisofy.com/files/${BPN}-${PV}.tar.gz"
- 
--SRC_URI[sha256sum] = "3cc165f9007ba41de6d0b693a1167dbaf0179085f9506dcba64b4b8e37e1bda2"
-+SRC_URI[sha256sum] = "98373a4cc9d0471ab9bebb249e442fcf94b6bf6d4e9c6fc0b22bca1506646c63"
- 
- S = "${WORKDIR}/${BPN}"
- 
--- 
-2.25.1
+On 6/19/22 20:35, Armin Kuster via lists.yoctoproject.org wrote:
+> fixes:
+> swtpm: Could not open TCP socket: Address already in use
+>
+> Signed-off-by: Armin Kuster <akuster808@gmail.com>
+> ---
+>   meta-parsec/lib/oeqa/runtime/cases/parsec.py | 5 +++++
+>   1 file changed, 5 insertions(+)
+>
+> diff --git a/meta-parsec/lib/oeqa/runtime/cases/parsec.py b/meta-parsec/lib/oeqa/runtime/cases/parsec.py
+> index d3d3f2e..11e5572 100644
+> --- a/meta-parsec/lib/oeqa/runtime/cases/parsec.py
+> +++ b/meta-parsec/lib/oeqa/runtime/cases/parsec.py
+> @@ -12,8 +12,13 @@ from oeqa.core.decorator.data import skipIfNotFeature
+>   class ParsecTest(OERuntimeTestCase):
+>       @classmethod
+>       def setUpClass(cls):
+> +        cls.tc.target.run('swtpm_ioctl -s --tcp :2322')
+>           cls.toml_file = '/etc/parsec/config.toml'
+>   
+> +    @classmethod
+> +    def tearDownClass(cls):
+> +        cls.tc.target.run('swtpm_ioctl -s --tcp :2322')
+> +
+>       def setUp(self):
+>           super(ParsecTest, self).setUp()
+>           if 'systemd' in self.tc.td['DISTRO_FEATURES']:
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#57358): https://lists.yoctoproject.org/g/yocto/message/57358
+> Mute This Topic: https://lists.yoctoproject.org/mt/91870539/3616698
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [akuster808@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
 
