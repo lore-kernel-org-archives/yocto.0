@@ -2,123 +2,90 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DCE49C433EF
-	for <webhook@archiver.kernel.org>; Wed, 22 Jun 2022 13:51:32 +0000 (UTC)
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
- [209.85.214.179])
- by mx.groups.io with SMTP id smtpd.web11.7476.1655905889965888786
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BDC79C433EF
+	for <webhook@archiver.kernel.org>; Wed, 22 Jun 2022 13:51:42 +0000 (UTC)
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com
+ [209.85.210.176])
+ by mx.groups.io with SMTP id smtpd.web08.7442.1655905890952864268
  for <yocto@lists.yoctoproject.org>;
- Wed, 22 Jun 2022 06:51:30 -0700
+ Wed, 22 Jun 2022 06:51:31 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=IYvyOX/p;
- spf=pass (domain: gmail.com, ip: 209.85.214.179,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=Ny+vyQ3r;
+ spf=pass (domain: gmail.com, ip: 209.85.210.176,
  mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f179.google.com with SMTP id g8so15462772plt.8
+Received: by mail-pf1-f176.google.com with SMTP id s37so16163529pfg.11
         for <yocto@lists.yoctoproject.org>;
- Wed, 22 Jun 2022 06:51:29 -0700 (PDT)
+ Wed, 22 Jun 2022 06:51:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=rKYZUEMJ46a6qKC7AEiW5JZE9pw5sNDDwX21HaaO3Rw=;
-        b=IYvyOX/pUILh06n6tqnbrzbS1MHv0vFrguJKupUEs/bQ9LbC4V6hM2cNekB7GhZvxz
-         DpZ/N1zZoXhox/zYnttNyHw6T+I9rAIvwOgcs8gHtY1E8Dl6lGLCEkWeeySq6mXRxjAw
-         oq7mR2fNXFSRzoSAaJOWCBWFAT15LfF527f5YhJiWc4f1XmIMHKQR4G66rb//+SR7urt
-         WdyNeuLcODem/ivq5mIvAkXlnor3acUaS8YZSaYnB3oui31mbQZy4ld/X+uuYgoslzS7
-         L/lF7+e6x8U5MCu42tZ/SramVSqgMsoQH8WTLuibkqszQLDMnv6wkPlKl9keMsBEFHj4
-         w5+Q==
+        bh=MLNuJFQ6NwlJcyuEEvvD1GH+s/5raa2J5vm7IKutxlU=;
+        b=Ny+vyQ3rCtZ86ZDqBTL+zQijwK2d8CZ+uoT+xB/OS4HYKztk6ihx71CvN65cQnd8YS
+         J3+lAB9x/2+sYrzUIF/YFMs5SUj+D35xYEYXHy2sb1qiiu7shljZIx9d4cVSf5kezncN
+         t9Guw3u0GTL136y8HU5F40LGXfZBk9YFJLvKpzDL9wzt2zPJJkT2J+r6DTG3GyywEuDr
+         DrkcWLVAANOmrPqbJuhaIfZrfp4HAfERlXjdMjaycEm6lWzNQ9dZ/+TsqZw1vt0jH4RP
+         fJHMSjRQ6pE7LH4BR6Dyyn9OK2iWmYMU4G+mSBLNJjE656igd0bRvMkGHhTutj/aXybV
+         tomA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=rKYZUEMJ46a6qKC7AEiW5JZE9pw5sNDDwX21HaaO3Rw=;
-        b=YJ+M0wgUaN+7BZBtSU/IdcDQcM+74+PwH/RRj7lnbnEpDBiCmT5ZDvl/7fj1Ay3WAJ
-         eqcCBr9b7aGBNUeNf1JVQOLLBqpf+XeOcBOtdAieJXCmbdnfEYUW7aKHsEQyX/MQnXnE
-         V0OJf8xKc6Lc+ehFwvaJExQh3MwxSXcB8We4Jg9fKtaOYVFGK1//jvB2D4QLFz7qE3gE
-         w4cmD2bRt3OFQPpN1hmkY/2+f0SDhhbAODD24iNyqPBz4ATER07ubL8Eu4YNaVGD7Ymx
-         EyrqYTMFOkdNkOGcFvgKgpgPxxLpd+xQ+DgLg1I2II3ibZNn9iOstZt7XZwt2KKxzE6u
-         ilMA==
-X-Gm-Message-State: AJIora8h/bgwz645SOgMjni/ZJPNkB5kZAh5rjf5HXbAAiOUn6t5dDWT
-	ceHJXtZ7WYxDWtr3YtRUy4kzltuAoQ0=
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=MLNuJFQ6NwlJcyuEEvvD1GH+s/5raa2J5vm7IKutxlU=;
+        b=MAy9Pbo4qLbkvL5qEFMBcejQUfGsIDq9Kz6EbLfrTaJ/31+3QhfC7tzwlFXp7yzNtU
+         V3G3DdeaZVGMIW8kAULlxPGqrgGrCU5TP1wtPajt6J3ys3bXdgFdYnLhWdHwX0cslUgW
+         wfpCRf5N3tH03wHMwWGc0VH79i9bZyXUKitX9f7x8/a9oUHoaAl03GDZVg5GVVV5Eah4
+         TKUkiVaEE2rZMVnLuFzM094FJ6mQgJNokLjHpSN+WL4EvB/9acJr70SAzO/Enmvn7IQ5
+         Iu2HhniKIQN93qmlGem+tfQZfxfitFET5kTOBXqtIVCT9YyTf0TXT0t90yEdYT1FHpDf
+         KuNg==
+X-Gm-Message-State: AJIora8fBVqJBRZz74zcdd/S3QvGfKSO1T/gKnmNtpND035h0oX3Lh8j
+	OFYMV/zog/6kfO/FNZtNbodNKax686Q=
 X-Google-Smtp-Source: 
- AGRyM1sEn+8iia2GSRNl7v03qP/nxpu+3E17HPh4CWyUoPKVKOyZcG200fuz/OcKocTTAe/SGgMwVQ==
-X-Received: by 2002:a17:90b:4f45:b0:1ec:d185:1cbd with SMTP id
- pj5-20020a17090b4f4500b001ecd1851cbdmr3901869pjb.168.1655905888912;
-        Wed, 22 Jun 2022 06:51:28 -0700 (PDT)
+ AGRyM1uLWYcmLECyruj7BObqX2iArWkQlUmNzdRs2ZD9B4l86w6EWpUQQJsF9U7RfYUwDH7JiG71SQ==
+X-Received: by 2002:a62:6411:0:b0:50a:81df:bfa6 with SMTP id
+ y17-20020a626411000000b0050a81dfbfa6mr36028911pfb.26.1655905889999;
+        Wed, 22 Jun 2022 06:51:29 -0700 (PDT)
 Received: from keaua.hsd1.ca.comcast.net
  ([2601:202:4180:a5c0:1f14:600d:1ff8:5cb6])
         by smtp.gmail.com with ESMTPSA id
- e63-20020a621e42000000b0050dc762818csm13638203pfe.102.2022.06.22.06.51.27
+ e63-20020a621e42000000b0050dc762818csm13638203pfe.102.2022.06.22.06.51.29
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jun 2022 06:51:28 -0700 (PDT)
+        Wed, 22 Jun 2022 06:51:29 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 1/2] chipsec: update to 1.8.5
-Date: Wed, 22 Jun 2022 06:51:26 -0700
-Message-Id: <20220622135127.19789-1-akuster808@gmail.com>
+Subject: [meta-security][PATCH 2/2] security-build-image: add lkrg-module to
+ build image
+Date: Wed, 22 Jun 2022 06:51:27 -0700
+Message-Id: <20220622135127.19789-2-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220622135127.19789-1-akuster808@gmail.com>
+References: <20220622135127.19789-1-akuster808@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 22 Jun 2022 13:51:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57372
-
-minor recipe cleanup
+ <yocto@lists.yoctoproject.org>; Wed, 22 Jun 2022 13:51:42 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57373
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../{chipsec_git.bb => chipsec_1.8.5.bb}      | 21 +++++++++----------
- 1 file changed, 10 insertions(+), 11 deletions(-)
- rename recipes-security/chipsec/{chipsec_git.bb => chipsec_1.8.5.bb} (71%)
+ recipes-core/images/security-build-image.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/recipes-security/chipsec/chipsec_git.bb b/recipes-security/chipsec/chipsec_1.8.5.bb
-similarity index 71%
-rename from recipes-security/chipsec/chipsec_git.bb
-rename to recipes-security/chipsec/chipsec_1.8.5.bb
-index d6c3ff2..48dfe45 100644
---- a/recipes-security/chipsec/chipsec_git.bb
-+++ b/recipes-security/chipsec/chipsec_1.8.5.bb
-@@ -7,21 +7,17 @@ DESCRIPTION = "CHIPSEC is a framework for analyzing the security \
- LICENSE = "GPL-2.0-only"
- LIC_FILES_CHKSUM = "file://COPYING;md5=bc2d1f9b427be5fb63f6af9da56f7c5d"
+diff --git a/recipes-core/images/security-build-image.bb b/recipes-core/images/security-build-image.bb
+index a8757f9..411cd20 100644
+--- a/recipes-core/images/security-build-image.bb
++++ b/recipes-core/images/security-build-image.bb
+@@ -3,6 +3,7 @@ DESCRIPTION = "A small image for building meta-security packages"
+ IMAGE_FEATURES += "ssh-server-openssh"
  
--SRC_URI = "git://github.com/chipsec/chipsec.git;branch=master;protocol=https \
--          "
-+DEPENDS = "virtual/kernel nasm-native"
- 
--SRCREV = "b2a61684826dc8b9f622a844a40efea579cd7e7d"
--
--COMPATIBLE_HOST = "(i.86|x86_64).*-linux"
-+SRC_URI = "git://github.com/chipsec/chipsec.git;branch=main;protocol=https"
-+SRCREV = "07a532aac9f6c3d94b8895cf89336b6a2e60c0d9"
- 
- S = "${WORKDIR}/git"
--EXTRA_OEMAKE = "CC='${CC}' LDFLAGS='${LDFLAGS}' CFLAGS='${CFLAGS}'"
--
--DEPENDS = "virtual/kernel nasm-native python3-setuptools-native"
--RDEPENDS:${PN} += "python3 python3-modules"
- 
- inherit module setuptools3
- 
-+EXTRA_OEMAKE = "CC='${CC}' LDFLAGS='${LDFLAGS}' CFLAGS='${CFLAGS}'"
-+
- do_compile:append() {
- 	cd ${S}/drivers/linux
- 	oe_runmake  KSRC=${STAGING_KERNEL_BUILDDIR}
-@@ -31,5 +27,8 @@ do_install:append() {
- 	install -m 0644 ${S}/drivers/linux/chipsec.ko ${D}${PYTHON_SITEPACKAGES_DIR}/chipsec/helper/linux
- }
- 
--FILES:${PN} += "${exec_prefix} \
--"
-+COMPATIBLE_HOST = "(i.86|x86_64).*-linux"
-+
-+FILES:${PN} += "${exec_prefix}"
-+
-+RDEPENDS:${PN} = "python3 python3-modules"
+ IMAGE_INSTALL = "\
++    ${@bb.utils.contains("DISTRO_FEATURES", "lkrg", "lkrg-module", "",d)} \
+     packagegroup-base \
+     packagegroup-core-boot \
+     packagegroup-core-security \
 -- 
 2.25.1
 
