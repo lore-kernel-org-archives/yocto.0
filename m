@@ -1,87 +1,91 @@
-Return-Path: <aurumnitrogen@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 382F0C43334
-	for <webhook@archiver.kernel.org>; Thu, 23 Jun 2022 14:39:29 +0000 (UTC)
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com
- [209.85.210.177])
- by mx.groups.io with SMTP id smtpd.web08.8194.1655995161336517046
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 47F05C43334
+	for <webhook@archiver.kernel.org>; Thu, 23 Jun 2022 14:45:19 +0000 (UTC)
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com
+ [209.85.167.54])
+ by mx.groups.io with SMTP id smtpd.web12.8274.1655995516142694986
  for <yocto@lists.yoctoproject.org>;
- Thu, 23 Jun 2022 07:39:21 -0700
+ Thu, 23 Jun 2022 07:45:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=o9yhnz+f;
- spf=pass (domain: gmail.com, ip: 209.85.210.177,
- mailfrom: aurumnitrogen@gmail.com)
-Received: by mail-pf1-f177.google.com with SMTP id u37so19297110pfg.3
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=A2hUamD0;
+ spf=pass (domain: gmail.com, ip: 209.85.167.54,
+ mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f54.google.com with SMTP id j21so20676407lfe.1
         for <yocto@lists.yoctoproject.org>;
- Thu, 23 Jun 2022 07:39:21 -0700 (PDT)
+ Thu, 23 Jun 2022 07:45:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=JYrClb3uk5RkpkBNECMrtn5aBRe498lqDt8npYw9Tfo=;
-        b=o9yhnz+fCrYCij8j3lkXLtlVcYDYEL6JK0kcS9JFo1eK8KJ5PceHBfHo6EfWSOzi+w
-         Lz3yRkZAH9sDbid8p7I3Mze8tMtO9A+Id1NtyAt9O45lq+L/eXzypWjAyATcTbwb7Qms
-         fUYWTolvL1pfsXW8JUu/Dm5EjW5uDDoRWkRX2/TLkKmZmq8m3746C7drFzo/oaq7tZ3v
-         S0mLVYfocIhHYUnulxX2KcfbjF/Boge9dHh0J2+5bcs8QSejdL9iG8KyO9vrLu9Nr/en
-         NH41MnCzmfgBGc05osuAGsvRrVowi7SUo7PIo9Lbsve++3IkCRk/7jPqGti4lmZNBxlT
-         8HuQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Qsycpi1yTLYmLmTP8QgskVzx+OAVU1zG2FO69rkcvBs=;
+        b=A2hUamD0SStjysv3L3Yv7S4F2qZ5wFTNj3u2UgwExer8euN01Rbh9n2RXZ2El5f/UY
+         HrM3SID8VhIQrRQaH9ZkaP3DMUHL0UIoqcfOSiln2JQ7IveamVq/Ov31sNVyE8zrl5o5
+         ETusZw/mPgVXQsdVdKhB/UYWWVgKIofS7XcfUUe4u4XcQ4ShjpuALeJk/Z+/eXMPdi4f
+         S02fDENMIUdpZLrXUIdH4uTyw5Voy9t3pqXDZ617ns1ntGMNMZXaxPVD6ubRxuEhFW/9
+         FWqPrpjhfWb3TcqbKvUkiGCtzV5j+s5geTx446NsdbUlSpWqaLiZlc1CdN7xLQXpbH4O
+         Jikw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=JYrClb3uk5RkpkBNECMrtn5aBRe498lqDt8npYw9Tfo=;
-        b=xO+V1OtcsIs9jtzx8BopcbKi2Ajf/Z/jU1KL2lPpFFxHIdV7bYzDTccj0FqXg5N6UU
-         +xD4uxirCgrQUuWy7B2uqFl5820B3nAlWvFBbigy2qFeSva7mW1Snb1Dz1xVgawWaYjD
-         77LpKWfg+lIi2qZV9XCKMtF4DmUAsWrG0H0UouXnE2GaWIAX2W0K7yDewwTObXyab+tv
-         ucsmvZydEt0kgo4CRIvqSz2tnKeEdXIEhRmX6cBFGfgzFn1ePxsR/m334L6/8okLlzDJ
-         +kExujG2ck7+lvU4XbBtscfTNnnGknqaJFDNgMEjisEwwHHtC2A082SlKYT1nvBoeQcJ
-         tc9w==
-X-Gm-Message-State: AJIora+/adbIFxBefUpKxDPgzOdJCb2K/y3AAJvBCooCcAtPmdXSWFDF
-	shE0GYOfzltQ7y8VwismZA2AcNILJGfdCNLHkDNMiMWm
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Qsycpi1yTLYmLmTP8QgskVzx+OAVU1zG2FO69rkcvBs=;
+        b=hEKIpFsH+Xr0QWF5j4Wlk9dx98FZwBTRUPkObZCV7x6x8Plyf5HfxR5/cKnSMBvHsZ
+         WX1yHmQK8/g+nmYeaKM0lZswVJSqMK+vDeIKxC3IFGH0Bs9cYicppHCv/chg7MWQ+MBH
+         edFD8Tfdg/iOpTFG7DIp2hAhyTZL7yylUSvydNkHxEE1eKt8i1jmBWtWW/UGlLqpNjyV
+         0I/wNmNuI4Y2grDTVzyYePCKG7AdzzBgekF0xhUxXFYmaIaNWeBgsfEInZYEOfb/wEAG
+         2wHn3N4ZOXv6dqpNxZ0/DOOvWeWCWE3KMZgMMVGV7rjSPa3qCMVeeKe64STwz/pgrlkZ
+         sfag==
+X-Gm-Message-State: AJIora80fntRT92em6sCnbfH5UivkgNTsMr5dTcv1e841leBdRVubyWX
+	C7Uyfc9U0cdbwmj3Ig99DbNTDM6ef3UMI0a0WCE=
 X-Google-Smtp-Source: 
- AGRyM1u8WfeHTHqzAWd9DX2M7i0Mz+Sxl0QX30gFyyGG0MJFSLSSlTufNyc8JmBE6S1tKTmvNDljcv/VV1TU1vf83Kg=
-X-Received: by 2002:aa7:8f30:0:b0:525:3ad6:fb67 with SMTP id
- y16-20020aa78f30000000b005253ad6fb67mr12828951pfr.78.1655995160698; Thu, 23
- Jun 2022 07:39:20 -0700 (PDT)
+ AGRyM1tnaBHMP+7RKF9Ma+YzGAXNCKQ/i+WUaBO2PZ5g9smcZZMrsoR3jcUXI0eXEsr50tOQMsHDzouO+6AFdewHUYQ=
+X-Received: by 2002:a05:6512:acc:b0:47f:769e:6aef with SMTP id
+ n12-20020a0565120acc00b0047f769e6aefmr5733646lfu.26.1655995514008; Thu, 23
+ Jun 2022 07:45:14 -0700 (PDT)
 MIME-Version: 1.0
-From: Aurum Nitrogen <aurumnitrogen@gmail.com>
-Date: Fri, 24 Jun 2022 01:40:53 +0300
-Message-ID: 
+References: 
  <CAH0OAGRgTDTeW58mNx=UuDEdbVC=LuJ_=mCs0ZiOL3GwjMNzew@mail.gmail.com>
-Subject: source-less python
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000004da50d05e21e6b4e"
+In-Reply-To: 
+ <CAH0OAGRgTDTeW58mNx=UuDEdbVC=LuJ_=mCs0ZiOL3GwjMNzew@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Thu, 23 Jun 2022 16:45:03 +0200
+Message-ID: 
+ <CANNYZj9Oby1THK5pJwz2JuWRsRwf2OMbi3PhwX=PPYBXkjn1RA@mail.gmail.com>
+Subject: Re: [yocto] source-less python
+To: Aurum Nitrogen <aurumnitrogen@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 23 Jun 2022 14:39:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57383
+ <yocto@lists.yoctoproject.org>; Thu, 23 Jun 2022 14:45:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57384
 
---0000000000004da50d05e21e6b4e
-Content-Type: text/plain; charset="UTF-8"
+I don't remember any such discussion. If you want this to happen, you
+are welcome to develop the feature.
 
-Hi,
-I was wondering if there has been talk about support for source-less python
-on an image. Installing py and pyc files doubles the size of python on the
-rootfs. I can imagine this being implemented as an image feature.
-I know that in buildroot it is supported.
-Was this discussed and decided against? Is this an open issue?
+Alex
 
-Thanks,
-John
-
---0000000000004da50d05e21e6b4e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"rtl"><div dir=3D"ltr">Hi,</div><div dir=3D"ltr">I was wondering=
- if there has been talk about support for source-less python on an image. I=
-nstalling py and pyc files doubles the size of python on the rootfs. I can =
-imagine this being implemented as an image feature.</div><div dir=3D"ltr">I=
- know that in buildroot it is supported.</div><div dir=3D"ltr">Was this dis=
-cussed and decided against? Is this an open issue?<br></div><div dir=3D"ltr=
-"><br></div><div dir=3D"ltr">Thanks,</div><div dir=3D"ltr">John</div><div d=
-ir=3D"ltr"><br></div></div>
-
---0000000000004da50d05e21e6b4e--
+On Thu, 23 Jun 2022 at 16:39, Aurum Nitrogen <aurumnitrogen@gmail.com> wrote:
+>
+> Hi,
+> I was wondering if there has been talk about support for source-less python on an image. Installing py and pyc files doubles the size of python on the rootfs. I can imagine this being implemented as an image feature.
+> I know that in buildroot it is supported.
+> Was this discussed and decided against? Is this an open issue?
+>
+> Thanks,
+> John
+>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#57383): https://lists.yoctoproject.org/g/yocto/message/57383
+> Mute This Topic: https://lists.yoctoproject.org/mt/91944424/1686489
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
