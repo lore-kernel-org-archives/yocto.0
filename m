@@ -1,97 +1,90 @@
-Return-Path: <coding305@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6A59FC433EF
-	for <webhook@archiver.kernel.org>; Sat, 25 Jun 2022 12:35:04 +0000 (UTC)
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com
- [209.85.208.181])
- by mx.groups.io with SMTP id smtpd.web11.18955.1656160501296717012
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A3CD8C43334
+	for <webhook@archiver.kernel.org>; Sat, 25 Jun 2022 20:17:56 +0000 (UTC)
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
+ [209.85.221.52])
+ by mx.groups.io with SMTP id smtpd.web09.23624.1656188273922047967
  for <yocto@lists.yoctoproject.org>;
- Sat, 25 Jun 2022 05:35:01 -0700
+ Sat, 25 Jun 2022 13:17:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=EueCZCJ6;
- spf=pass (domain: gmail.com, ip: 209.85.208.181,
- mailfrom: coding305@gmail.com)
-Received: by mail-lj1-f181.google.com with SMTP id a11so5725437ljb.5
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=U0W8g6Vo;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.52,
+ mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f52.google.com with SMTP id r20so7617104wra.1
         for <yocto@lists.yoctoproject.org>;
- Sat, 25 Jun 2022 05:35:01 -0700 (PDT)
+ Sat, 25 Jun 2022 13:17:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=NEB/POwrRRWK7+JKwngtFS/1gcQ5niqhYigop7QSUPo=;
-        b=EueCZCJ66Nr27wS3E2fy/hjZKCh2Hh/kBYgAAAvvzHms6rD1mTeYR9Eyow/KQJPB3G
-         JXikH6TpUkwV/mEaUEYvOnFnLBt/K25oQ4dMNe148WMWVE8Aj2P7GeitPbdFep4jWflY
-         fNXrPkxU6L10aXwoetKaKt0RBuhtPeNjUuzc9XQkgSgtwaItaILnwho7lN8783CbYSef
-         7NxYJb/5JNlHo3ZCdVV78Zmb/wxpfzKT4tUXmAFIMzodiupjYdL8Cfg7KjykvmRhfwkI
-         oX7WXJhlgqjRUiJ3wznTPg9Q0bSC+1KVksjeb9vGehYnNitP5SEV3+Gx7kH6LRAb592j
-         IVRA==
+        d=linuxfoundation.org; s=google;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=L2kRugYWAw1ivoRjCxc3NHiFHjjFfpOBXtmoI3Nwxww=;
+        b=U0W8g6Vo8G+XuyjTmufoby9Tun5sPaC0v9fWgI6PC44/n2V1Nr39RQii+Ccxz3mpUa
+         lQmHOTYOf79+roFdXgMASSE2/Ar3COQaCJJh5THXeG499H2RtwQxFa10idV9mRhFeaKl
+         TpvRrvAFqPxhtijDvLEVX20gD0TDNGLbjGKEI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=NEB/POwrRRWK7+JKwngtFS/1gcQ5niqhYigop7QSUPo=;
-        b=nQ2DdmohpdW0kBH7EwcWZBqAPxjmC7Vk+7ayXbsQD38vZVfpFSYhjYbf/PRbfnUteV
-         ySQYmPlN4vjNL+N85nkW6KVzcab/0qADdvxOApcJPDmLe2NrIfLCXKChWK+8F2SxQd5q
-         nugB9eGJN18FY2usGLFfTEcohmgR85THYM/aUW7Opt+UVryG27j6SRDYQ75FcleeTPlA
-         6rtg2gDWMznQwKDmQ2QnvjMCqf9M6VAB9pO0cxqpn3nRuz/i/IRfjgkz+hVG4oP/zVI+
-         2cQQ9uYAAUZbluQkn0UAiAfqbz+nEPJxrsHvtQpc3umkd1+rtqt+5Xs9+4cvLmaw+ADn
-         e26w==
-X-Gm-Message-State: AJIora/s+nP5OjTql+1dDDaWTcHzigU4XS8bbhvjgPCCSJw12fGhQNh1
-	RDnL9oy6cE2MxpEob3ld0FmCAH7nWMhiz6AQOiVNJYpz
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=L2kRugYWAw1ivoRjCxc3NHiFHjjFfpOBXtmoI3Nwxww=;
+        b=nykjENlye0j4kqXti/JL7OHWlI7f99zoHKhFlcsDo+JC/YAEQ/h/d+gcGm/mVYaTYu
+         yuyh4dlvxQ1OKSxTuKxnWmD5Yfa6IGoJdpjX3tgrSwDl7DTDLhGYkJHZ1jUOmcY6Cv/H
+         VT23VfFebG6TNORZVQaEezNtkC9cNM7y2e2mVUpft81xNCHp600Aj7XjNYod9ghpMlNk
+         BX+9+T+Rtdym2JaFpRYbS2fDjCMRMHOKZJ5iotK1K+Ixd9LIjCzjFdibd/y21tub9mwq
+         NorSz1wliFx9vWaHG+JQxJzJYLX/L0pcP/TBa3W2qD0rSKYYEwtWD7hQstzIjlER3a4U
+         SnGQ==
+X-Gm-Message-State: AJIora+/f6nZt4I05yx+hV+dCCIkTKFsU/6YzLTgOJfE4MQXunB5yJ4R
+	AEQRItPc+xTmOyigbf6oqCnxX9cfbA0Bgw==
 X-Google-Smtp-Source: 
- AGRyM1uX3nOt5xoKRNZOKjjp2oUQfoEH86SPdITuARH8zYUYBrLnQCf1/cO4OCUjsRTpV+/l/rx95Pm1oBdLeSTnN6I=
-X-Received: by 2002:a2e:5058:0:b0:25a:7f07:a71d with SMTP id
- v24-20020a2e5058000000b0025a7f07a71dmr1885762ljd.171.1656160499207; Sat, 25
- Jun 2022 05:34:59 -0700 (PDT)
-MIME-Version: 1.0
-References: 
- <CACaVmhfGW52b_OhGPS=nQ9ea5_9Y6ztdsnmLHMw1eRBAFHBO_A@mail.gmail.com>
-In-Reply-To: 
- <CACaVmhfGW52b_OhGPS=nQ9ea5_9Y6ztdsnmLHMw1eRBAFHBO_A@mail.gmail.com>
-From: =?UTF-8?B?6buD546J54+N?= <coding305@gmail.com>
-Date: Sat, 25 Jun 2022 20:36:37 +0800
-Message-ID: 
- <CACaVmheL0i4Bhr-zyqPxDM+HT2+HGKtUzhdeRBatW3gQUYbQ9w@mail.gmail.com>
-Subject: Fwd: how to setup host environment for yocto
+ AGRyM1t0mbcSednF7KLASktJ9hlxd+WyUX1QdJV5+NsSp7LLmxPkksHc6g8r0kGosc1BYjPKHQcgzg==
+X-Received: by 2002:a5d:528e:0:b0:21b:b85b:5873 with SMTP id
+ c14-20020a5d528e000000b0021bb85b5873mr5116244wrv.191.1656188271993;
+        Sat, 25 Jun 2022 13:17:51 -0700 (PDT)
+Received: from max.int.rpsys.net ([2001:8b0:aba:5f3c:2873:558:fe47:ee6f])
+        by smtp.gmail.com with ESMTPSA id
+ w9-20020a5d6089000000b0020e5b4ebaecsm5998621wrt.4.2022.06.25.13.17.51
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 25 Jun 2022 13:17:51 -0700 (PDT)
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
 To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000003f157a05e244eaa5"
+Subject: [yocto-autobuilder-helper] [PATCH] config.json: Enable memres bitbake
+Date: Sat, 25 Jun 2022 21:17:50 +0100
+Message-Id: <20220625201750.319839-1-richard.purdie@linuxfoundation.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 25 Jun 2022 12:35:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57387
+ <yocto@lists.yoctoproject.org>; Sat, 25 Jun 2022 20:17:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57388
 
---0000000000003f157a05e244eaa5
-Content-Type: text/plain; charset="UTF-8"
+We could do with wider exposure of testing of this so enable on the
+autobuilder by default.
 
-Hi,
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+---
+ config.json | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-I'm new to yocto, I wonder the recommended way to setup an environment for
-yocto using vagrant or docker to isolate from the host, since I've
-encounter many different error about python version or something like that.
-Some layers providede by vendor uses a tool called repo
-<https://source.android.com/setup/develop#repo> for version control, I
-always cannot install on my machine, following the steps form that page
-doesn't help either.
+diff --git a/config.json b/config.json
+index d01319f..de32fb1 100644
+--- a/config.json
++++ b/config.json
+@@ -66,7 +66,8 @@
+             "BB_LOG_HOST_STAT_ON_INTERVAL = '1'",
+             "BB_LOG_HOST_STAT_CMDS_INTERVAL = 'oe-time-dd-test.sh -c 100 -t 15'",
+             "BB_LOG_HOST_STAT_ON_FAILURE = '1'",
+-            "BB_LOG_HOST_STAT_CMDS_FAILURE = 'oe-time-dd-test.sh -l'"
++            "BB_LOG_HOST_STAT_CMDS_FAILURE = 'oe-time-dd-test.sh -l'",
++            "BB_SERVER_TIMEOUT = '60'"
+         ]
+     },
+     "templates" : {
+-- 
+2.34.1
 
-Thanks,
-CD
-
---0000000000003f157a05e244eaa5
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_quote"><br><div dir=3D"ltr">Hi,<div><b=
-r></div><div>I&#39;m new to yocto, I wonder the recommended=C2=A0way to set=
-up an environment for yocto using=C2=A0vagrant or docker to isolate from th=
-e host, since I&#39;ve encounter many different error about python version =
-or something like that. Some layers providede by vendor uses a tool called =
-<a href=3D"https://source.android.com/setup/develop#repo" target=3D"_blank"=
->repo</a>=C2=A0for version control, I always cannot install on my machine, =
-following the steps form that page doesn&#39;t help either.=C2=A0<br><br></=
-div><div>Thanks,</div><div>CD</div></div>
-</div></div>
-
---0000000000003f157a05e244eaa5--
 
