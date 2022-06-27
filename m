@@ -1,113 +1,98 @@
-Return-Path: <tomasz.zyjewski@3mdeb.com>
+Return-Path: <quaresma.jose@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 534A1C433EF
-	for <webhook@archiver.kernel.org>; Mon, 27 Jun 2022 06:13:26 +0000 (UTC)
-Subject: Re: how to setup host environment for yocto
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2728EC433EF
+	for <webhook@archiver.kernel.org>; Mon, 27 Jun 2022 11:57:38 +0000 (UTC)
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
+ [209.85.128.54])
+ by mx.groups.io with SMTP id smtpd.web08.41417.1656331052656141740
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 27 Jun 2022 04:57:33 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=OoPG2WCJ;
+ spf=pass (domain: gmail.com, ip: 209.85.128.54,
+ mailfrom: quaresma.jose@gmail.com)
+Received: by mail-wm1-f54.google.com with SMTP id
+ i67-20020a1c3b46000000b003a03567d5e9so5718029wma.1
+        for <yocto@lists.yoctoproject.org>;
+ Mon, 27 Jun 2022 04:57:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MDws0yXkqOBXpTAYhUF5aY7c+7YEx+DdPAXP9b7Kg1E=;
+        b=OoPG2WCJ96TeTbazx3AosQ7uGO4uIIm2/uyP7+XcRDvHLNMzoNYBpxPSR0zMQ08j9E
+         hEIz3gk2psMPbczDHplsOUTaKslcNDXNvLZSCxztMnpzM/rsb4xGIK4342R0QzpwrzKm
+         jWXAFZZflldiBdmyjayclwHgP5uU0g6mtjDRY0RfJTCF7jG8NJ61hRhlKZHaVKy5J7x/
+         zK+ct+foPbtboqyGp1SR47zm6iWfKP3rz8iXIopSV56H3wLvDXQh/KOM40cM1ivPvPOM
+         WCe8/1sE2sUe1AvFBlI46CDwhIvkcm0TxU3kJRzfj8a06INUEvlq/ZfaJcE8DImmQwga
+         UDFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MDws0yXkqOBXpTAYhUF5aY7c+7YEx+DdPAXP9b7Kg1E=;
+        b=w9riXyEgnamTjV+kzYfAyFFZpSOg+OK8E6DxI0/M5qNxSzE9otLtA0ekEMEZlALGgz
+         7ujHnDTRW2H8Exz4q5pNfcQvknShMcgGcDpLGx7+DsvKipJPtazqpoddH7Wmbr1f1xFm
+         Cmm9PpSkAHgre5U2CxeAM7vBxguS6opjnWiqonnIF+64CVFuwaL0XAsefm3Ld9S5EmJH
+         q93T9AHoDJ/pdCKISTE/Zn76WIAJmxUu7v4irO6Khe8o9wswcelm/fT7yf1k5sQnwacg
+         v57wW8SraqkQWhwAgJNysSZ0SoABY+SPP42j73Zw4mdD/i1pHZTCkIexSs4jGWsV5Cbf
+         l8GQ==
+X-Gm-Message-State: AJIora9kyqTMyD7NZvjlc1HoFgK8+Ov53eJ1+9CzMICCQOCEL1dO4y9z
+	UTyMvxPpb1CVdEoPIAWqU3/yKQgHU5w=
+X-Google-Smtp-Source: 
+ AGRyM1t4y8g4a7fYmPEz+FVy2tcVSymj2qRGL+oRFZnxH1qfhcnxOAXEIzDTz9/DIOvavm+lOp8FiQ==
+X-Received: by 2002:a1c:7903:0:b0:3a0:3936:b71f with SMTP id
+ l3-20020a1c7903000000b003a03936b71fmr20462504wme.168.1656331050789;
+        Mon, 27 Jun 2022 04:57:30 -0700 (PDT)
+Received: from fio.lan (176.57.115.89.rev.vodafone.pt. [89.115.57.176])
+        by smtp.gmail.com with ESMTPSA id
+ t18-20020a05600c199200b003a032c88877sm18250395wmq.15.2022.06.27.04.57.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Jun 2022 04:57:30 -0700 (PDT)
+From: Jose Quaresma <quaresma.jose@gmail.com>
+X-Google-Original-From: Jose Quaresma <jose.quaresma@foundries.io>
 To: yocto@lists.yoctoproject.org
-From: "tomzy" <tomasz.zyjewski@3mdeb.com>
-X-Originating-Location: Warsaw, Mazovia, PL (84.10.27.202)
-X-Originating-Platform: Linux Firefox 101
-User-Agent: GROUPS.IO Web Poster
+Cc: Jose Quaresma <jose.quaresma@foundries.io>
+Subject: [meta-security][PATCH] meta-integrity: kernel-modsign: prevents
+ splitting out debug
+Date: Mon, 27 Jun 2022 12:57:21 +0100
+Message-Id: <20220627115721.21816-1-jose.quaresma@foundries.io>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Date: Sun, 26 Jun 2022 23:13:19 -0700
-References: 
- <CACaVmheL0i4Bhr-zyqPxDM+HT2+HGKtUzhdeRBatW3gQUYbQ9w@mail.gmail.com>
-In-Reply-To: 
- <CACaVmheL0i4Bhr-zyqPxDM+HT2+HGKtUzhdeRBatW3gQUYbQ9w@mail.gmail.com>
-Message-ID: <24889.1656310399777124978@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="7Hg3l1xtTDzYKu9S0umU"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 27 Jun 2022 06:13:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57389
+ <yocto@lists.yoctoproject.org>; Mon, 27 Jun 2022 11:57:38 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57390
 
---7Hg3l1xtTDzYKu9S0umU
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Starting with [1] kernel modulus symbols is being slipped in OE-core
+and this breaks the kernel module sign, so disable it.
 
->=20
-> Hi,
+[1] https://git.openembedded.org/openembedded-core/commit/?id=e09a8fa931fe617afc05bd5e00dca5dd3fe386e8
 
-Hi
+Signed-off-by: Jose Quaresma <jose.quaresma@foundries.io>
+---
+ meta-integrity/classes/kernel-modsign.bbclass | 2 ++
+ 1 file changed, 2 insertions(+)
 
->=20
-> I'm new to yocto, I wonder the recommended=C2=A0way to setup an environme=
-nt for
-> yocto using=C2=A0vagrant or docker to isolate from the host, since I've
-> encounter many different error about python version or something like
-> that. Some layers providede by vendor uses a tool called repo (
-> https://source.android.com/setup/develop#repo ) for version control, I
-> always cannot install on my machine, following the steps form that page
-> doesn't help either.
->=20
+diff --git a/meta-integrity/classes/kernel-modsign.bbclass b/meta-integrity/classes/kernel-modsign.bbclass
+index 093c358..d3aa7fb 100644
+--- a/meta-integrity/classes/kernel-modsign.bbclass
++++ b/meta-integrity/classes/kernel-modsign.bbclass
+@@ -13,7 +13,9 @@ MODSIGN_PRIVKEY ?= "${MODSIGN_KEY_DIR}/privkey_modsign.pem"
+ MODSIGN_X509 ?= "${MODSIGN_KEY_DIR}/x509_modsign.crt"
+ 
+ # If this class is enabled, disable stripping signatures from modules
++# as well disable the debug symbols split
+ INHIBIT_PACKAGE_STRIP = "1"
++INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
+ 
+ kernel_do_configure:prepend() {
+     if [ -f "${MODSIGN_PRIVKEY}" -a -f "${MODSIGN_X509}" ]; then
+-- 
+2.36.1
 
-I recommend taking a look at the kas project.[1] It allows you to manage Yo=
-cto layers in your project in a very easy
-and pleasant way. You can also take a look at the Yocto Summit presentation=
- [2] which talks about various ways of
-managing Yocto layers. Good luck with learning the Yocto Project.
-[1] https://github.com/siemens/kas ( https://github.com/siemens/kas, ) ; ht=
-tps://kas.readthedocs.io/en/latest/userguide.html?highlight=3Dkas-container=
-#usage
-[2] https://www.youtube.com/watch?v=3DPLl8jwZOpS0&list=3DPLD4M5FoHz-TwZkOR-=
-GoWjq5XlLpZIFt5-&index=3D12
-
->=20
-> Thanks,
-> CD
->=20
-
-Regards
-Tomasz =C5=BByjewski
-Embedded Systems Engineer
-GPG: 5C495EA3EBEECA59
-https://3mdeb.com | @3mdeb_com
-
---7Hg3l1xtTDzYKu9S0umU
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<blockquote>Hi,</blockquote>
-Hi<br />
-<blockquote>
-<div>I'm new to yocto, I wonder the recommended&nbsp;way to setup an enviro=
-nment for yocto using&nbsp;vagrant or docker to isolate from the host, sinc=
-e I've encounter many different error about python version or something lik=
-e that. Some layers providede by vendor uses a tool called <a href=3D"https=
-://source.android.com/setup/develop#repo" target=3D"_blank" rel=3D"nofollow=
- noopener">repo</a>&nbsp;for version control, I always cannot install on my=
- machine, following the steps form that page doesn't help either.&nbsp;</di=
-v>
-</blockquote>
-<p><span class=3D"VIiyi" lang=3D"en"><span class=3D"JLqJ4b ChMk0b" data-lan=
-guage-for-alternatives=3D"en" data-language-to-translate-into=3D"pl" data-p=
-hrase-index=3D"0" data-number-of-phrases=3D"2"><span class=3D"Q4iAWc">I rec=
-ommend taking a look at the kas project.[1]</span></span> <span class=3D"JL=
-qJ4b ChMk0b" data-language-for-alternatives=3D"en" data-language-to-transla=
-te-into=3D"pl" data-phrase-index=3D"1" data-number-of-phrases=3D"2"><span c=
-lass=3D"Q4iAWc">It allows you to manage Yocto layers in your project in a v=
-ery easy<br /></span></span></span><span class=3D"VIiyi" lang=3D"en"><span =
-class=3D"JLqJ4b ChMk0b" data-language-for-alternatives=3D"en" data-language=
--to-translate-into=3D"pl" data-phrase-index=3D"1" data-number-of-phrases=3D=
-"2"><span class=3D"Q4iAWc">and pleasant way. You can also take a look at th=
-e Yocto Summit presentation [2] which talks about various ways of<br />mana=
-ging Yocto layers. Good luck with learning the Yocto Project.<br />[1] <a h=
-ref=3D"https://github.com/siemens/kas," target=3D"_blank" rel=3D"noopener">=
-https://github.com/siemens/kas</a>; <a href=3D"https://kas.readthedocs.io/e=
-n/latest/userguide.html?highlight=3Dkas-container#usage" target=3D"_blank" =
-rel=3D"noopener">https://kas.readthedocs.io/en/latest/userguide.html?highli=
-ght=3Dkas-container#usage</a><br />[2] https://www.youtube.com/watch?v=3DPL=
-l8jwZOpS0&amp;list=3DPLD4M5FoHz-TwZkOR-GoWjq5XlLpZIFt5-&amp;index=3D12<br /=
-></span></span></span></p>
-<blockquote>
-<div>Thanks,</div>
-<div>CD</div>
-</blockquote>
-<p>Regards<br />Tomasz =C5=BByjewski<br />Embedded Systems Engineer<br />GP=
-G: 5C495EA3EBEECA59<br />https://3mdeb.com | @3mdeb_com</p>
-
---7Hg3l1xtTDzYKu9S0umU--
 
