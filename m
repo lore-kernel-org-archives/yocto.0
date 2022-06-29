@@ -1,812 +1,249 @@
-Return-Path: <douglas.cooper1@gmail.com>
+Return-Path: <arasilinux1086@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E7D36C433EF
-	for <webhook@archiver.kernel.org>; Tue, 28 Jun 2022 21:23:49 +0000 (UTC)
-Subject: Re: LInker Errors: Cannot find crti.o/crtbeginS.o. No such file or
- directory. #honister #make #yocto
-To: yocto@lists.yoctoproject.org
-From: douglas.cooper1@gmail.com
-X-Originating-Location: Melbourne Beach, Florida, US (97.104.72.220)
-X-Originating-Platform: Windows Chrome 103
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C91F4C43334
+	for <webhook@archiver.kernel.org>; Wed, 29 Jun 2022 04:24:11 +0000 (UTC)
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com
+ [209.85.218.46])
+ by mx.groups.io with SMTP id smtpd.web11.7572.1656476647854847258
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 28 Jun 2022 21:24:08 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=mMFZ2Snp;
+ spf=pass (domain: gmail.com, ip: 209.85.218.46,
+ mailfrom: arasilinux1086@gmail.com)
+Received: by mail-ej1-f46.google.com with SMTP id fi2so29989971ejb.9
+        for <yocto@lists.yoctoproject.org>;
+ Tue, 28 Jun 2022 21:24:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4u5ea6PAGpqsvgLnXwqsUTtPAbON7TWgQrqZEMUdWQ4=;
+        b=mMFZ2SnpiWJrNrodJ03Hhu810+YtN2tbPsMAmyOwuk7YZfyFfi18ORD/AwVtFyzuUn
+         T6ALB7b0ENvY6qCawW5KNVc73zT1lxHsur2oZFGumnRg9pPbyV0m556BAOffUExoqoZl
+         a/0yVp4/9mSqDcZdfMs7lHGZXlGEgPJzxq3wl3kkfbYgv+7k/uQN0eG0WOLMCOC2Whd8
+         dRuUOnIt5UheP+BrACqITsYpkAzHjYnYxPiBBW22E8RM+j1EJG9KPa8fhA1n97aH9EIY
+         3MGEdMexw/KfodF4zBDFyL9B3buCumeivPhRCZq718kq0d8z1+wOaYgKjGvF96gXEh73
+         5+ew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4u5ea6PAGpqsvgLnXwqsUTtPAbON7TWgQrqZEMUdWQ4=;
+        b=MXcb3LZ/oRaTxXWzg4XFblMGH1zWnvJHywnk9wYCFbS6tyEmpsQ7+D8M/vbCcvqnwb
+         8N2PPnpLO5u4+HBMa9pMcp10e4W3H87ynL1igohKGLtz7WtWGs7eQ1OI9ZdFCLcBjsK1
+         qMNUwCCkOTJJsFpLxwbyKUZ8oLeGqKFXAiejgDI8zAYc9WT3ViWxEIKZdWX9q+8VOCeW
+         Kzq6eN0YJ499H1plGoIxuva/FeeYl6J4lGvdGn7iRWfahzyxBKa0xXtU2VnCfbzg6e6U
+         SC2jfAMkoESyVJapLfLLGe/NAhrS5B0M2jC3SeqnrC5lP2gaMuGlDAdZsG35suOQfrVk
+         14+w==
+X-Gm-Message-State: AJIora/BWD0wToSpWt6AjsJA6PK4end4Di40bwdRyHafpy0HmzCxFnQn
+	mfHeYEXP2oNZ68sM6JBXSGOcPlextNX/2SHbcSg=
+X-Google-Smtp-Source: 
+ AGRyM1uIGQCqEUchopJIUAxqVM6M8chI8kZZYCjY2ZCDQux2Z7Vlt7PxdVBe0fHpZWZvqDA348Deszq9X2NtO6S9dkE=
+X-Received: by 2002:a17:907:6e89:b0:726:e16a:c851 with SMTP id
+ sh9-20020a1709076e8900b00726e16ac851mr1302563ejc.507.1656476646150; Tue, 28
+ Jun 2022 21:24:06 -0700 (PDT)
 MIME-Version: 1.0
-Date: Tue, 28 Jun 2022 14:23:44 -0700
 References: 
- <CAMKF1sqGwua2WeveC4DGnr6k9=Fov0UR0pG3nsDpVp+-kSdmnw@mail.gmail.com>
+ <AM9PR10MB4403B8BF23EC7571D7F2E5C7ACB89@AM9PR10MB4403.EURPRD10.PROD.OUTLOOK.COM>
+ <CAFf=Mr2Sjxi9e1oLBo9Q97hS3R_0KAk1vGx63af4bp6UBQ6BMA@mail.gmail.com>
+ <CANNYZj927L02QUQX51x=EjcTWr2YZ9=5Sb+-zk6r50zfiN_9MA@mail.gmail.com>
 In-Reply-To: 
- <CAMKF1sqGwua2WeveC4DGnr6k9=Fov0UR0pG3nsDpVp+-kSdmnw@mail.gmail.com>
-Message-ID: <2459.1656451424544620515@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="JF6g9aalO8EF54YVDaoN"
+ <CANNYZj927L02QUQX51x=EjcTWr2YZ9=5Sb+-zk6r50zfiN_9MA@mail.gmail.com>
+From: Senthamilarasi mathiyan <arasilinux1086@gmail.com>
+Date: Wed, 29 Jun 2022 09:53:53 +0530
+Message-ID: 
+ <CAFf=Mr35PW0TgL+fKj9+vB2WLjXtq8JezwQGSoLEb0jB_vJS4w@mail.gmail.com>
+Subject: Re: [yocto] yocto support
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="00000000000012957105e28e868f"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 28 Jun 2022 21:23:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57412
+ <yocto@lists.yoctoproject.org>; Wed, 29 Jun 2022 04:24:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57413
 
---JF6g9aalO8EF54YVDaoN
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+--00000000000012957105e28e868f
+Content-Type: text/plain; charset="UTF-8"
 
-#!/bin/sh
+Hi Alexander,
 
-__BITBAKE_LAST_LINE=3D0
+This is not my private change,so i cannot create my own layer. Without
+creating layer and .bbappend file should implement.
 
-# Emit a useful diagnostic if something fails:
-bb_sh_exit_handler() {
-ret=3D$?
-if [ "$ret" !=3D 0 ]; then
-echo "WARNING: exit code $ret from a shell command."
-fi
-exit $ret
-}
+Can anyone please support?
 
-bb_bash_exit_handler() {
-ret=3D$?
-{ set +x; } > /dev/null
-trap "" DEBUG
-if [ "$ret" !=3D 0 ]; then
-echo "WARNING: ${BASH_SOURCE[0]}:${__BITBAKE_LAST_LINE} exit $ret from '$1'=
-"
+Regards
+Senthamilarasi. M
 
-echo "WARNING: Backtrace (BB generated script): "
-for i in $(seq 1 $((${#FUNCNAME[@]} - 1))); do
-if [ "$i" -eq 1 ]; then
-echo -e " #$((i)): ${FUNCNAME[$i]}, ${BASH_SOURCE[$((i-1))]}, line ${__BITB=
-AKE_LAST_LINE}"
-else
-echo -e " #$((i)): ${FUNCNAME[$i]}, ${BASH_SOURCE[$((i-1))]}, line ${BASH_L=
-INENO[$((i-1))]}"
-fi
-done
-fi
-exit $ret
-}
 
-bb_bash_debug_handler() {
-local line=3D${BASH_LINENO[0]}
-# For some reason the DEBUG trap trips with lineno=3D1 when scripts exit; i=
-gnore it
-if [ "$line" -eq 1 ]; then
-return
-fi
+On Tue, 28 Jun, 2022, 6:04 pm Alexander Kanavin, <alex.kanavin@gmail.com>
+wrote:
 
-# Track the line number of commands as they execute. This is so we can have=
- access to the failing line number
-# in the EXIT trap. See http://gnu-bash.2382.n7.nabble.com/trap-echo-quot-t=
-rap-exit-on-LINENO-quot-EXIT-gt-wrong-linenumber-td3666.html
-if [ "${FUNCNAME[1]}" !=3D "bb_bash_exit_handler" ]; then
-__BITBAKE_LAST_LINE=3D$line
-fi
-}
-
-case $BASH_VERSION in
-"") trap 'bb_sh_exit_handler' 0
-set -e
-;;
-*)=C2=A0 trap 'bb_bash_exit_handler "$BASH_COMMAND"' 0
-trap '{ bb_bash_debug_handler; } 2>/dev/null' DEBUG
-set -e
-shopt -s extdebug
-;;
-esac
-export AR=3D"aarch64-linaro-linux-gcc-ar"
-export AS=3D"aarch64-linaro-linux-as "
-export BUILD_AR=3D"ar"
-export BUILD_AS=3D"as "
-export BUILD_CC=3D"gcc "
-export BUILD_CCLD=3D"gcc "
-export BUILD_CFLAGS=3D"-isystem/home/vagrant/oe_qcom_honister/build-cdil/tm=
-p-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-=
-native/usr/include -O2 -pipe"
-export BUILD_CPP=3D"gcc=C2=A0 -E"
-export BUILD_CPPFLAGS=3D"-isystem/home/vagrant/oe_qcom_honister/build-cdil/=
-tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroo=
-t-native/usr/include"
-export BUILD_CXX=3D"g++ "
-export BUILD_CXXFLAGS=3D"-isystem/home/vagrant/oe_qcom_honister/build-cdil/=
-tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroo=
-t-native/usr/include -O2 -pipe"
-export BUILD_FC=3D"gfortran "
-export BUILD_LD=3D"ld "
-export BUILD_LDFLAGS=3D"-L/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdi=
-l-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-nativ=
-e/usr/lib=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0-L/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdi=
-l-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-nativ=
-e/lib=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0-Wl,--enable-new-dtags=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0-Wl,-rpath-link,=
-/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-lin=
-aro-linux/opal/3.18-beta9-r0/recipe-sysroot-native/usr/lib=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0-W=
-l,-rpath-link,/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work=
-/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-native/lib=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0-Wl,-rpath,/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-gli=
-bc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-native/usr=
-/lib=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0-Wl,-rpath,/home/vagrant/oe_qcom_honister/build-cdil/tm=
-p-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-=
-native/lib=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0-Wl,-O1"
-export BUILD_NM=3D"nm"
-export BUILD_RANLIB=3D"ranlib"
-export BUILD_STRIP=3D"strip"
-export CC=3D"aarch64-linaro-linux-gcc=C2=A0 -mcpu=3Dcortex-a53 -march=3Darm=
-v8-a+crc --sysroot=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-gli=
-bc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot"
-export CCLD=3D"aarch64-linaro-linux-gcc=C2=A0 -mcpu=3Dcortex-a53 -march=3Da=
-rmv8-a+crc --sysroot=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-g=
-libc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot"
-export CC_FOR_BUILD=3D"gcc "
-export CFLAGS=3D"-D__ARMEL__=C2=A0 =C2=A0 =C2=A0-I/home/vagrant/oe_qcom_hon=
-ister/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9=
--r0/recipe-sysroot/usr/include/c++/10.3.1=C2=A0 =C2=A0 =C2=A0-I/home/vagran=
-t/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/op=
-al/3.18-beta9-r0/recipe-sysroot/usr/include/c++/10.3.1/aarch64-linaro-linux=
-=C2=A0 =C2=A0 =C2=A0-I/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-gl=
-ibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/usr/inclu=
-de=C2=A0 -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=3D/=
-home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-lina=
-ro-linux/opal/3.18-beta9-r0=3D/usr/src/debug/opal/3.18-beta9-r0=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 -fdebug-=
-prefix-map=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/=
-cortexa53-linaro-linux/opal/3.18-beta9-r0=3D/usr/src/debug/opal/3.18-beta9-=
-r0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 -fdebug-prefix-map=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil=
--glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot=3D=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 -=
-fdebug-prefix-map=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glib=
-c/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-native=3D "
-export CFLAGS_FOR_BUILD=3D"-isystem/home/vagrant/oe_qcom_honister/build-cdi=
-l/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysr=
-oot-native/usr/include -O2 -pipe"
-export CONFIG_SITE=3D"/home/vagrant/oe_qcom_honister/build-cdil/conf/../../=
-layers/openembedded-core/meta/site/endian-little /home/vagrant/oe_qcom_honi=
-ster/build-cdil/conf/../../layers/openembedded-core/meta/site/arm-common /h=
-ome/vagrant/oe_qcom_honister/build-cdil/conf/../../layers/openembedded-core=
-/meta/site/arm-64 /home/vagrant/oe_qcom_honister/build-cdil/conf/../../laye=
-rs/openembedded-core/meta/site/common-linux /home/vagrant/oe_qcom_honister/=
-build-cdil/conf/../../layers/openembedded-core/meta/site/common-glibc /home=
-/vagrant/oe_qcom_honister/build-cdil/conf/../../layers/openembedded-core/me=
-ta/site/common"
-export CPP=3D"aarch64-linaro-linux-gcc -E --sysroot=3D/home/vagrant/oe_qcom=
-_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-b=
-eta9-r0/recipe-sysroot=C2=A0 -mcpu=3Dcortex-a53 -march=3Darmv8-a+crc"
-export CPPFLAGS=3D"-D__ARMEL__=C2=A0 =C2=A0 =C2=A0-I/home/vagrant/oe_qcom_h=
-onister/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-bet=
-a9-r0/recipe-sysroot/usr/include/c++/10.3.1=C2=A0 =C2=A0 =C2=A0-I/home/vagr=
-ant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/=
-opal/3.18-beta9-r0/recipe-sysroot/usr/include/c++/10.3.1/aarch64-linaro-lin=
-ux=C2=A0 =C2=A0 =C2=A0-I/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-=
-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/usr/inc=
-lude "
-export CPPFLAGS_FOR_BUILD=3D"-isystem/home/vagrant/oe_qcom_honister/build-c=
-dil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sy=
-sroot-native/usr/include"
-export CPP_FOR_BUILD=3D"gcc=C2=A0 -E"
-export CXX=3D"aarch64-linaro-linux-g++=C2=A0 -mcpu=3Dcortex-a53 -march=3Dar=
-mv8-a+crc --sysroot=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-gl=
-ibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot"
-export CXXFLAGS=3D"-D__ARMEL__=C2=A0 =C2=A0 =C2=A0-I/home/vagrant/oe_qcom_h=
-onister/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-bet=
-a9-r0/recipe-sysroot/usr/include/c++/10.3.1=C2=A0 =C2=A0 =C2=A0-I/home/vagr=
-ant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/=
-opal/3.18-beta9-r0/recipe-sysroot/usr/include/c++/10.3.1/aarch64-linaro-lin=
-ux=C2=A0 =C2=A0 =C2=A0-I/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-=
-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/usr/inc=
-lude=C2=A0 -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=
-=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-=
-linaro-linux/opal/3.18-beta9-r0=3D/usr/src/debug/opal/3.18-beta9-r0=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 -fdeb=
-ug-prefix-map=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/wo=
-rk/cortexa53-linaro-linux/opal/3.18-beta9-r0=3D/usr/src/debug/opal/3.18-bet=
-a9-r0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 -fdebug-prefix-map=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-c=
-dil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot=3D=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 -fdebug-prefix-map=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil=
--glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-native=
-=3D=C2=A0 -fvisibility-inlines-hidden"
-export CXXFLAGS_FOR_BUILD=3D"-isystem/home/vagrant/oe_qcom_honister/build-c=
-dil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sy=
-sroot-native/usr/include -O2 -pipe"
-export CXX_FOR_BUILD=3D"g++ "
-unset DISTRO
-export FC=3D"aarch64-linaro-linux-gfortran=C2=A0 -mcpu=3Dcortex-a53 -march=
-=3Darmv8-a+crc --sysroot=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-cd=
-il-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot"
-export GIT_CEILING_DIRECTORIES=3D"/home/vagrant/oe_qcom_honister/build-cdil=
-/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0"
-export GIT_CONFIG_PARAMETERS=3D"'safe.directory=3D*'"
-export HOME=3D"/home/vagrant"
-export LC_ALL=3D"en_US.UTF-8"
-export LD=3D"aarch64-linaro-linux-ld --sysroot=3D/home/vagrant/oe_qcom_honi=
-ster/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-=
-r0/recipe-sysroot "
-export LDFLAGS=3D"=C2=A0 =C2=A0 -L/home/vagrant/oe_qcom_honister/build-cdil=
-/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysro=
-ot/lib=C2=A0 =C2=A0 =C2=A0-L/home/vagrant/oe_qcom_honister/build-cdil/tmp-c=
-dil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/usr=
-/lib=C2=A0 =C2=A0 =C2=A0-L/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdi=
-l-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/usr/l=
-ib/aarch64-linaro-linux/10.3.1 "
-export LDFLAGS_FOR_BUILD=3D"-L/home/vagrant/oe_qcom_honister/build-cdil/tmp=
--cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-n=
-ative/usr/lib=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0-L/home/vagrant/oe_qcom_honister/build-cdil/tmp=
--cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-n=
-ative/lib=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0-Wl,--enable-new-dtags=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0-Wl,-rpath-li=
-nk,/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-=
-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-native/usr/lib=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0-Wl,-rpath-link,/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc=
-/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-native/lib=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0-Wl,-rpath,/home/vagrant/oe_qcom_honister/build-cdil/tmp-c=
-dil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-nat=
-ive/usr/lib=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0-Wl,-rpath,/home/vagrant/oe_qcom_honister/build-=
-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-s=
-ysroot-native/lib=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0-Wl,-O1"
-export LD_FOR_BUILD=3D"ld "
-export LOGNAME=3D"vagrant"
-unset MACHINE
-export MAKE=3D"make"
-export NM=3D"aarch64-linaro-linux-gcc-nm"
-export OBJCOPY=3D"aarch64-linaro-linux-objcopy"
-export OBJDUMP=3D"aarch64-linaro-linux-objdump"
-export OMP_NUM_THREADS=3D"8"
-export OPALDIR=3D"/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/=
-work/cortexa53-linaro-linux/opal/3.18-beta9-r0/git"
-export PATH=3D"/home/vagrant/oe_qcom_honister/layers/openembedded-core/scri=
-pts:/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53=
--linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-native/usr/bin/aarch64-lina=
-ro-linux:/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cort=
-exa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/usr/bin/crossscripts:/=
-home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-lina=
-ro-linux/opal/3.18-beta9-r0/recipe-sysroot-native/usr/sbin:/home/vagrant/oe=
-_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3=
-.18-beta9-r0/recipe-sysroot-native/usr/bin:/home/vagrant/oe_qcom_honister/b=
-uild-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/rec=
-ipe-sysroot-native/sbin:/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-=
-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-native/=
-bin:/home/vagrant/oe_qcom_honister/bitbake/bin:/home/vagrant/oe_qcom_honist=
-er/build-cdil/tmp-cdil-glibc/hosttools"
-export PKG_CONFIG_DIR=3D"/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil=
--glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/usr/li=
-b/pkgconfig"
-export PKG_CONFIG_DISABLE_UNINSTALLED=3D"yes"
-export PKG_CONFIG_LIBDIR=3D"/home/vagrant/oe_qcom_honister/build-cdil/tmp-c=
-dil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/usr=
-/lib/pkgconfig"
-export PKG_CONFIG_PATH=3D"/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdi=
-l-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/usr/l=
-ib/pkgconfig:/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/=
-cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/usr/share/pkgconfi=
-g"
-export PKG_CONFIG_SYSROOT_DIR=3D"/home/vagrant/oe_qcom_honister/build-cdil/=
-tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroo=
-t"
-export PKG_CONFIG_SYSTEM_INCLUDE_PATH=3D"/usr/include"
-export PKG_CONFIG_SYSTEM_LIBRARY_PATH=3D"/lib:/usr/lib"
-export PSEUDO_DISABLED=3D"1"
-export PSEUDO_UNLOAD=3D"1"
-export PTLIBDIR=3D"/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc=
-/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/usr/src/ptli=
-b"
-export RANLIB=3D"aarch64-linaro-linux-gcc-ranlib"
-export READELF=3D"aarch64-linaro-linux-readelf"
-unset SHELL
-export STRINGS=3D"aarch64-linaro-linux-strings"
-export STRIP=3D"aarch64-linaro-linux-strip"
-unset TARGET_ARCH
-export TZ=3D"UTC"
-export USER=3D"vagrant"
-export base_bindir=3D"/bin"
-export base_libdir=3D"/lib"
-export base_prefix=3D""
-export base_sbindir=3D"/sbin"
-export bindir=3D"/usr/bin"
-export datadir=3D"/usr/share"
-export docdir=3D"/usr/share/doc"
-export exec_prefix=3D"/usr"
-export includedir=3D"/usr/include"
-export infodir=3D"/usr/share/info"
-export libdir=3D"/usr/lib"
-export libexecdir=3D"/usr/libexec"
-export localstatedir=3D"/var"
-export lt_cv_sys_lib_dlsearch_path_spec=3D"/usr/lib /lib"
-export mandir=3D"/usr/share/man"
-export nonarch_base_libdir=3D"/lib"
-export nonarch_libdir=3D"/usr/lib"
-export oldincludedir=3D"/usr/include"
-export prefix=3D"/usr"
-export sbindir=3D"/usr/sbin"
-export servicedir=3D"/srv"
-export sharedstatedir=3D"/com"
-export sysconfdir=3D"/etc"
-export systemd_system_unitdir=3D"/lib/systemd/system"
-export systemd_unitdir=3D"/lib/systemd"
-export systemd_user_unitdir=3D"/usr/lib/systemd/user"
-
-# line: 1, file: autogenerated
-do_compile() {
-# make clean
-# export LIBRARY_PATH=3D"/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil=
--glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/usr/li=
-b:/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-l=
-inaro-linux/opal/3.18-beta9-r0/recipe-sysroot/usr/lib/aarch64-linaro-linux/=
-10.3.1"
-autotools_do_compile
-}
-
-# line: 238, file: /home/vagrant/oe_qcom_honister/build-cdil/conf/../../lay=
-ers/openembedded-core/meta/classes/autotools.bbclass
-autotools_do_compile() {
-oe_runmake
-}
-
-# line: 64, file: /home/vagrant/oe_qcom_honister/build-cdil/conf/../../laye=
-rs/openembedded-core/meta/classes/base.bbclass
-oe_runmake() {
-oe_runmake_call "$@" || die "oe_runmake failed"
-}
-
-# line: 55, file: /home/vagrant/oe_qcom_honister/build-cdil/conf/../../laye=
-rs/openembedded-core/meta/classes/base.bbclass
-die() {
-bbfatal_log "$*"
-}
-
-# line: 59, file: /home/vagrant/oe_qcom_honister/build-cdil/conf/../../laye=
-rs/openembedded-core/meta/classes/base.bbclass
-oe_runmake_call() {
-bbnote make -j 8=C2=A0 "$@"
-make -j 8=C2=A0 "$@"
-}
-
-# line: 66, file: /home/vagrant/oe_qcom_honister/build-cdil/conf/../../laye=
-rs/openembedded-core/meta/classes/logging.bbclass
-bbfatal_log() {
-if [ -p /home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/corte=
-xa53-linaro-linux/opal/3.18-beta9-r0/temp/fifo.2668267 ] ; then
-printf "%b\0" "bbfatal_log $*" > /home/vagrant/oe_qcom_honister/build-cdil/=
-tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/temp/fifo.266=
-8267
-else
-echo "ERROR: $*"
-fi
-exit 1
-}
-
-# line: 21, file: /home/vagrant/oe_qcom_honister/build-cdil/conf/../../laye=
-rs/openembedded-core/meta/classes/logging.bbclass
-bbnote() {
-if [ -p /home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/corte=
-xa53-linaro-linux/opal/3.18-beta9-r0/temp/fifo.2668267 ] ; then
-printf "%b\0" "bbnote $*" > /home/vagrant/oe_qcom_honister/build-cdil/tmp-c=
-dil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/temp/fifo.2668267
-else
-echo "NOTE: $*"
-fi
-}
-
-cd '/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53=
--linaro-linux/opal/3.18-beta9-r0/git'
-do_compile
-
-# cleanup
-ret=3D$?
-trap '' 0
-exit $ret
-
---JF6g9aalO8EF54YVDaoN
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>#!/bin/sh</div>
-<div>&nbsp;</div>
-<div>__BITBAKE_LAST_LINE=3D0</div>
-<div>&nbsp;</div>
-<div># Emit a useful diagnostic if something fails:</div>
-<div>bb_sh_exit_handler() {</div>
-<div>&nbsp; &nbsp; ret=3D$?</div>
-<div>&nbsp; &nbsp; if [ "$ret" !=3D 0 ]; then</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; echo "WARNING: exit code $ret from a shell=
- command."</div>
-<div>&nbsp; &nbsp; fi</div>
-<div>&nbsp; &nbsp; exit $ret</div>
-<div>}</div>
-<div>&nbsp;</div>
-<div>bb_bash_exit_handler() {</div>
-<div>&nbsp; &nbsp; ret=3D$?</div>
-<div>&nbsp; &nbsp; { set +x; } &gt; /dev/null</div>
-<div>&nbsp; &nbsp; trap "" DEBUG</div>
-<div>&nbsp; &nbsp; if [ "$ret" !=3D 0 ]; then</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; echo "WARNING: ${BASH_SOURCE[0]}:${__BITBA=
-KE_LAST_LINE} exit $ret from '$1'"</div>
-<div>&nbsp;</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; echo "WARNING: Backtrace (BB generated scr=
-ipt): "</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; for i in $(seq 1 $((${#FUNCNAME[@]} - 1)))=
-; do</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if [ "$i" -eq 1 ]; then</div=
+> If the change is private to you, then you can make a simple layer and
+> make all the needed modifications there. Is this not possible?
 >
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; echo -e "<span=
- style=3D"white-space: pre;"> </span>#$((i)): ${FUNCNAME[$i]}, ${BASH_SOURC=
-E[$((i-1))]}, line ${__BITBAKE_LAST_LINE}"</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; echo -e "<span=
- style=3D"white-space: pre;"> </span>#$((i)): ${FUNCNAME[$i]}, ${BASH_SOURC=
-E[$((i-1))]}, line ${BASH_LINENO[$((i-1))]}"</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fi</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; done</div>
-<div>&nbsp; &nbsp; fi</div>
-<div>&nbsp; &nbsp; exit $ret</div>
-<div>}</div>
-<div>&nbsp;</div>
-<div>bb_bash_debug_handler() {</div>
-<div>&nbsp; &nbsp; local line=3D${BASH_LINENO[0]}</div>
-<div>&nbsp; &nbsp; # For some reason the DEBUG trap trips with lineno=3D1 w=
-hen scripts exit; ignore it</div>
-<div>&nbsp; &nbsp; if [ "$line" -eq 1 ]; then</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; return</div>
-<div>&nbsp; &nbsp; fi</div>
-<div>&nbsp;</div>
-<div>&nbsp; &nbsp; # Track the line number of commands as they execute. Thi=
-s is so we can have access to the failing line number</div>
-<div>&nbsp; &nbsp; # in the EXIT trap. See http://gnu-bash.2382.n7.nabble.c=
-om/trap-echo-quot-trap-exit-on-LINENO-quot-EXIT-gt-wrong-linenumber-td3666.=
-html</div>
-<div>&nbsp; &nbsp; if [ "${FUNCNAME[1]}" !=3D "bb_bash_exit_handler" ]; the=
-n</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; __BITBAKE_LAST_LINE=3D$line</div>
-<div>&nbsp; &nbsp; fi</div>
-<div>}</div>
-<div>&nbsp;</div>
-<div>case $BASH_VERSION in</div>
-<div>"") trap 'bb_sh_exit_handler' 0</div>
-<div>&nbsp; &nbsp; set -e</div>
-<div>&nbsp; &nbsp; ;;</div>
-<div>*)&nbsp; trap 'bb_bash_exit_handler "$BASH_COMMAND"' 0</div>
-<div>&nbsp; &nbsp; trap '{ bb_bash_debug_handler; } 2&gt;/dev/null' DEBUG</=
-div>
-<div>&nbsp; &nbsp; set -e</div>
-<div>&nbsp; &nbsp; shopt -s extdebug</div>
-<div>&nbsp; &nbsp; ;;</div>
-<div>esac</div>
-<div>export AR=3D"aarch64-linaro-linux-gcc-ar"</div>
-<div>export AS=3D"aarch64-linaro-linux-as "</div>
-<div>export BUILD_AR=3D"ar"</div>
-<div>export BUILD_AS=3D"as "</div>
-<div>export BUILD_CC=3D"gcc "</div>
-<div>export BUILD_CCLD=3D"gcc "</div>
-<div>export BUILD_CFLAGS=3D"-isystem/home/vagrant/oe_qcom_honister/build-cd=
-il/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sys=
-root-native/usr/include -O2 -pipe"</div>
-<div>export BUILD_CPP=3D"gcc&nbsp; -E"</div>
-<div>export BUILD_CPPFLAGS=3D"-isystem/home/vagrant/oe_qcom_honister/build-=
-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-s=
-ysroot-native/usr/include"</div>
-<div>export BUILD_CXX=3D"g++ "</div>
-<div>export BUILD_CXXFLAGS=3D"-isystem/home/vagrant/oe_qcom_honister/build-=
-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-s=
-ysroot-native/usr/include -O2 -pipe"</div>
-<div>export BUILD_FC=3D"gfortran "</div>
-<div>export BUILD_LD=3D"ld "</div>
-<div>export BUILD_LDFLAGS=3D"-L/home/vagrant/oe_qcom_honister/build-cdil/tm=
-p-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-=
-native/usr/lib&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp;-L/home/vagrant/oe_qcom_honister/build-cdil/tm=
-p-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-=
-native/lib&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp;-Wl,--enable-new-dtags&nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;-Wl,-rpath-li=
-nk,/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-=
-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-native/usr/lib&nbsp; &nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-;-Wl,-rpath-link,/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/w=
-ork/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-native/lib&nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp;-Wl,-rpath,/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-gl=
-ibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-native/us=
-r/lib&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp; &nbsp;-Wl,-rpath,/home/vagrant/oe_qcom_honister/build-cdil/tm=
-p-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-=
-native/lib&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp;-Wl,-O1"</div>
-<div>export BUILD_NM=3D"nm"</div>
-<div>export BUILD_RANLIB=3D"ranlib"</div>
-<div>export BUILD_STRIP=3D"strip"</div>
-<div>export CC=3D"aarch64-linaro-linux-gcc&nbsp; -mcpu=3Dcortex-a53 -march=
-=3Darmv8-a+crc --sysroot=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-cd=
-il-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot"</di=
-v>
-<div>export CCLD=3D"aarch64-linaro-linux-gcc&nbsp; -mcpu=3Dcortex-a53 -marc=
-h=3Darmv8-a+crc --sysroot=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-c=
-dil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot"</d=
-iv>
-<div>export CC_FOR_BUILD=3D"gcc "</div>
-<div>export CFLAGS=3D"-D__ARMEL__&nbsp; &nbsp; &nbsp;-I/home/vagrant/oe_qco=
-m_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-=
-beta9-r0/recipe-sysroot/usr/include/c++/10.3.1&nbsp; &nbsp; &nbsp;-I/home/v=
-agrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-lin=
-ux/opal/3.18-beta9-r0/recipe-sysroot/usr/include/c++/10.3.1/aarch64-linaro-=
-linux&nbsp; &nbsp; &nbsp;-I/home/vagrant/oe_qcom_honister/build-cdil/tmp-cd=
-il-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/usr/=
-include&nbsp; -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-ma=
-p=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53=
--linaro-linux/opal/3.18-beta9-r0=3D/usr/src/debug/opal/3.18-beta9-r0&nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -fdeb=
-ug-prefix-map=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/wo=
-rk/cortexa53-linaro-linux/opal/3.18-beta9-r0=3D/usr/src/debug/opal/3.18-bet=
-a9-r0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; -fdebug-prefix-map=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-c=
-dil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot=3D&=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- -fdebug-prefix-map=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-gl=
-ibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-native=3D=
- "</div>
-<div>export CFLAGS_FOR_BUILD=3D"-isystem/home/vagrant/oe_qcom_honister/buil=
-d-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe=
--sysroot-native/usr/include -O2 -pipe"</div>
-<div>export CONFIG_SITE=3D"/home/vagrant/oe_qcom_honister/build-cdil/conf/.=
-./../layers/openembedded-core/meta/site/endian-little /home/vagrant/oe_qcom=
-_honister/build-cdil/conf/../../layers/openembedded-core/meta/site/arm-comm=
-on /home/vagrant/oe_qcom_honister/build-cdil/conf/../../layers/openembedded=
--core/meta/site/arm-64 /home/vagrant/oe_qcom_honister/build-cdil/conf/../..=
-/layers/openembedded-core/meta/site/common-linux /home/vagrant/oe_qcom_honi=
-ster/build-cdil/conf/../../layers/openembedded-core/meta/site/common-glibc =
-/home/vagrant/oe_qcom_honister/build-cdil/conf/../../layers/openembedded-co=
-re/meta/site/common"</div>
-<div>export CPP=3D"aarch64-linaro-linux-gcc -E --sysroot=3D/home/vagrant/oe=
-_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3=
-.18-beta9-r0/recipe-sysroot&nbsp; -mcpu=3Dcortex-a53 -march=3Darmv8-a+crc"<=
-/div>
-<div>export CPPFLAGS=3D"-D__ARMEL__&nbsp; &nbsp; &nbsp;-I/home/vagrant/oe_q=
-com_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.1=
-8-beta9-r0/recipe-sysroot/usr/include/c++/10.3.1&nbsp; &nbsp; &nbsp;-I/home=
-/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-l=
-inux/opal/3.18-beta9-r0/recipe-sysroot/usr/include/c++/10.3.1/aarch64-linar=
-o-linux&nbsp; &nbsp; &nbsp;-I/home/vagrant/oe_qcom_honister/build-cdil/tmp-=
-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/us=
-r/include "</div>
-<div>export CPPFLAGS_FOR_BUILD=3D"-isystem/home/vagrant/oe_qcom_honister/bu=
-ild-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/reci=
-pe-sysroot-native/usr/include"</div>
-<div>export CPP_FOR_BUILD=3D"gcc&nbsp; -E"</div>
-<div>export CXX=3D"aarch64-linaro-linux-g++&nbsp; -mcpu=3Dcortex-a53 -march=
-=3Darmv8-a+crc --sysroot=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-cd=
-il-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot"</di=
-v>
-<div>export CXXFLAGS=3D"-D__ARMEL__&nbsp; &nbsp; &nbsp;-I/home/vagrant/oe_q=
-com_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.1=
-8-beta9-r0/recipe-sysroot/usr/include/c++/10.3.1&nbsp; &nbsp; &nbsp;-I/home=
-/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-l=
-inux/opal/3.18-beta9-r0/recipe-sysroot/usr/include/c++/10.3.1/aarch64-linar=
-o-linux&nbsp; &nbsp; &nbsp;-I/home/vagrant/oe_qcom_honister/build-cdil/tmp-=
-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/us=
-r/include&nbsp; -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-=
-map=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa=
-53-linaro-linux/opal/3.18-beta9-r0=3D/usr/src/debug/opal/3.18-beta9-r0&nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -fd=
-ebug-prefix-map=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/=
-work/cortexa53-linaro-linux/opal/3.18-beta9-r0=3D/usr/src/debug/opal/3.18-b=
-eta9-r0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; -fdebug-prefix-map=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp=
--cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot=
-=3D&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; -fdebug-prefix-map=3D/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdi=
-l-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-nativ=
-e=3D&nbsp; -fvisibility-inlines-hidden"</div>
-<div>export CXXFLAGS_FOR_BUILD=3D"-isystem/home/vagrant/oe_qcom_honister/bu=
-ild-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/reci=
-pe-sysroot-native/usr/include -O2 -pipe"</div>
-<div>export CXX_FOR_BUILD=3D"g++ "</div>
-<div>unset DISTRO</div>
-<div>export FC=3D"aarch64-linaro-linux-gfortran&nbsp; -mcpu=3Dcortex-a53 -m=
-arch=3Darmv8-a+crc --sysroot=3D/home/vagrant/oe_qcom_honister/build-cdil/tm=
-p-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot"=
-</div>
-<div>export GIT_CEILING_DIRECTORIES=3D"/home/vagrant/oe_qcom_honister/build=
--cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0"</div>
-<div>export GIT_CONFIG_PARAMETERS=3D"'safe.directory=3D*'"</div>
-<div>export HOME=3D"/home/vagrant"</div>
-<div>export LC_ALL=3D"en_US.UTF-8"</div>
-<div>export LD=3D"aarch64-linaro-linux-ld --sysroot=3D/home/vagrant/oe_qcom=
-_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-b=
-eta9-r0/recipe-sysroot "</div>
-<div>export LDFLAGS=3D"&nbsp; &nbsp; -L/home/vagrant/oe_qcom_honister/build=
--cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-=
-sysroot/lib&nbsp; &nbsp; &nbsp;-L/home/vagrant/oe_qcom_honister/build-cdil/=
-tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroo=
-t/usr/lib&nbsp; &nbsp; &nbsp;-L/home/vagrant/oe_qcom_honister/build-cdil/tm=
-p-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/=
-usr/lib/aarch64-linaro-linux/10.3.1 "</div>
-<div>export LDFLAGS_FOR_BUILD=3D"-L/home/vagrant/oe_qcom_honister/build-cdi=
-l/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysr=
-oot-native/usr/lib&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp;-L/home/vagrant/oe_qcom_honister/build-cdi=
-l/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysr=
-oot-native/lib&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp;-Wl,--enable-new-dtags&nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;-Wl,-rpat=
-h-link,/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortex=
-a53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-native/usr/lib&nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp;-Wl,-rpath-link,/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-gli=
-bc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-native/lib=
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp;-Wl,-rpath,/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdi=
-l-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-nativ=
-e/usr/lib&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp;-Wl,-rpath,/home/vagrant/oe_qcom_honister/build-cdi=
-l/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysr=
-oot-native/lib&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp;-Wl,-O1"</div>
-<div>export LD_FOR_BUILD=3D"ld "</div>
-<div>export LOGNAME=3D"vagrant"</div>
-<div>unset MACHINE</div>
-<div>export MAKE=3D"make"</div>
-<div>export NM=3D"aarch64-linaro-linux-gcc-nm"</div>
-<div>export OBJCOPY=3D"aarch64-linaro-linux-objcopy"</div>
-<div>export OBJDUMP=3D"aarch64-linaro-linux-objdump"</div>
-<div>export OMP_NUM_THREADS=3D"8"</div>
-<div>export OPALDIR=3D"/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-g=
-libc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/git"</div>
-<div>export PATH=3D"/home/vagrant/oe_qcom_honister/layers/openembedded-core=
-/scripts:/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cort=
-exa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-native/usr/bin/aarch64=
--linaro-linux:/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work=
-/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/usr/bin/crossscri=
-pts:/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53=
--linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-native/usr/sbin:/home/vagra=
-nt/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/o=
-pal/3.18-beta9-r0/recipe-sysroot-native/usr/bin:/home/vagrant/oe_qcom_honis=
-ter/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r=
-0/recipe-sysroot-native/sbin:/home/vagrant/oe_qcom_honister/build-cdil/tmp-=
-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot-na=
-tive/bin:/home/vagrant/oe_qcom_honister/bitbake/bin:/home/vagrant/oe_qcom_h=
-onister/build-cdil/tmp-cdil-glibc/hosttools"</div>
-<div>export PKG_CONFIG_DIR=3D"/home/vagrant/oe_qcom_honister/build-cdil/tmp=
--cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/u=
-sr/lib/pkgconfig"</div>
-<div>export PKG_CONFIG_DISABLE_UNINSTALLED=3D"yes"</div>
-<div>export PKG_CONFIG_LIBDIR=3D"/home/vagrant/oe_qcom_honister/build-cdil/=
-tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroo=
-t/usr/lib/pkgconfig"</div>
-<div>export PKG_CONFIG_PATH=3D"/home/vagrant/oe_qcom_honister/build-cdil/tm=
-p-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/=
-usr/lib/pkgconfig:/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/=
-work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/usr/share/pkg=
-config"</div>
-<div>export PKG_CONFIG_SYSROOT_DIR=3D"/home/vagrant/oe_qcom_honister/build-=
-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-s=
-ysroot"</div>
-<div>export PKG_CONFIG_SYSTEM_INCLUDE_PATH=3D"/usr/include"</div>
-<div>export PKG_CONFIG_SYSTEM_LIBRARY_PATH=3D"/lib:/usr/lib"</div>
-<div>export PSEUDO_DISABLED=3D"1"</div>
-<div>export PSEUDO_UNLOAD=3D"1"</div>
-<div>export PTLIBDIR=3D"/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-=
-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/usr/src=
-/ptlib"</div>
-<div>export RANLIB=3D"aarch64-linaro-linux-gcc-ranlib"</div>
-<div>export READELF=3D"aarch64-linaro-linux-readelf"</div>
-<div>unset SHELL</div>
-<div>export STRINGS=3D"aarch64-linaro-linux-strings"</div>
-<div>export STRIP=3D"aarch64-linaro-linux-strip"</div>
-<div>unset TARGET_ARCH</div>
-<div>export TZ=3D"UTC"</div>
-<div>export USER=3D"vagrant"</div>
-<div>export base_bindir=3D"/bin"</div>
-<div>export base_libdir=3D"/lib"</div>
-<div>export base_prefix=3D""</div>
-<div>export base_sbindir=3D"/sbin"</div>
-<div>export bindir=3D"/usr/bin"</div>
-<div>export datadir=3D"/usr/share"</div>
-<div>export docdir=3D"/usr/share/doc"</div>
-<div>export exec_prefix=3D"/usr"</div>
-<div>export includedir=3D"/usr/include"</div>
-<div>export infodir=3D"/usr/share/info"</div>
-<div>export libdir=3D"/usr/lib"</div>
-<div>export libexecdir=3D"/usr/libexec"</div>
-<div>export localstatedir=3D"/var"</div>
-<div>export lt_cv_sys_lib_dlsearch_path_spec=3D"/usr/lib /lib"</div>
-<div>export mandir=3D"/usr/share/man"</div>
-<div>export nonarch_base_libdir=3D"/lib"</div>
-<div>export nonarch_libdir=3D"/usr/lib"</div>
-<div>export oldincludedir=3D"/usr/include"</div>
-<div>export prefix=3D"/usr"</div>
-<div>export sbindir=3D"/usr/sbin"</div>
-<div>export servicedir=3D"/srv"</div>
-<div>export sharedstatedir=3D"/com"</div>
-<div>export sysconfdir=3D"/etc"</div>
-<div>export systemd_system_unitdir=3D"/lib/systemd/system"</div>
-<div>export systemd_unitdir=3D"/lib/systemd"</div>
-<div>export systemd_user_unitdir=3D"/usr/lib/systemd/user"</div>
-<div>&nbsp;</div>
-<div># line: 1, file: autogenerated</div>
-<div>do_compile() {</div>
-<div>&nbsp; &nbsp; # make clean</div>
-<div>&nbsp; &nbsp; # export LIBRARY_PATH=3D"/home/vagrant/oe_qcom_honister/=
-build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/re=
-cipe-sysroot/usr/lib:/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-gli=
-bc/work/cortexa53-linaro-linux/opal/3.18-beta9-r0/recipe-sysroot/usr/lib/aa=
-rch64-linaro-linux/10.3.1"</div>
-<div>&nbsp; &nbsp; autotools_do_compile</div>
-<div>}</div>
-<div>&nbsp;</div>
-<div># line: 238, file: /home/vagrant/oe_qcom_honister/build-cdil/conf/../.=
-./layers/openembedded-core/meta/classes/autotools.bbclass</div>
-<div>autotools_do_compile() {</div>
-<div><span style=3D"white-space: pre;"> </span>oe_runmake</div>
-<div>}</div>
-<div>&nbsp;</div>
-<div># line: 64, file: /home/vagrant/oe_qcom_honister/build-cdil/conf/../..=
-/layers/openembedded-core/meta/classes/base.bbclass</div>
-<div>oe_runmake() {</div>
-<div><span style=3D"white-space: pre;"> </span>oe_runmake_call "$@" || die =
-"oe_runmake failed"</div>
-<div>}</div>
-<div>&nbsp;</div>
-<div># line: 55, file: /home/vagrant/oe_qcom_honister/build-cdil/conf/../..=
-/layers/openembedded-core/meta/classes/base.bbclass</div>
-<div>die() {</div>
-<div><span style=3D"white-space: pre;"> </span>bbfatal_log "$*"</div>
-<div>}</div>
-<div>&nbsp;</div>
-<div># line: 59, file: /home/vagrant/oe_qcom_honister/build-cdil/conf/../..=
-/layers/openembedded-core/meta/classes/base.bbclass</div>
-<div>oe_runmake_call() {</div>
-<div><span style=3D"white-space: pre;"> </span>bbnote make -j 8&nbsp; "$@"<=
-/div>
-<div><span style=3D"white-space: pre;"> </span>make -j 8&nbsp; "$@"</div>
-<div>}</div>
-<div>&nbsp;</div>
-<div># line: 66, file: /home/vagrant/oe_qcom_honister/build-cdil/conf/../..=
-/layers/openembedded-core/meta/classes/logging.bbclass</div>
-<div>bbfatal_log() {</div>
-<div><span style=3D"white-space: pre;"> </span>if [ -p /home/vagrant/oe_qco=
-m_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-=
-beta9-r0/temp/fifo.2668267 ] ; then</div>
-<div><span style=3D"white-space: pre;"> </span>printf "%b\0" "bbfatal_log $=
-*" &gt; /home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/corte=
-xa53-linaro-linux/opal/3.18-beta9-r0/temp/fifo.2668267</div>
-<div><span style=3D"white-space: pre;"> </span>else</div>
-<div><span style=3D"white-space: pre;"> </span>echo "ERROR: $*"</div>
-<div><span style=3D"white-space: pre;"> </span>fi</div>
-<div><span style=3D"white-space: pre;"> </span>exit 1</div>
-<div>}</div>
-<div>&nbsp;</div>
-<div># line: 21, file: /home/vagrant/oe_qcom_honister/build-cdil/conf/../..=
-/layers/openembedded-core/meta/classes/logging.bbclass</div>
-<div>bbnote() {</div>
-<div><span style=3D"white-space: pre;"> </span>if [ -p /home/vagrant/oe_qco=
-m_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-linaro-linux/opal/3.18-=
-beta9-r0/temp/fifo.2668267 ] ; then</div>
-<div><span style=3D"white-space: pre;"> </span>printf "%b\0" "bbnote $*" &g=
-t; /home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cortexa53-=
-linaro-linux/opal/3.18-beta9-r0/temp/fifo.2668267</div>
-<div><span style=3D"white-space: pre;"> </span>else</div>
-<div><span style=3D"white-space: pre;"> </span>echo "NOTE: $*"</div>
-<div><span style=3D"white-space: pre;"> </span>fi</div>
-<div>}</div>
-<div>&nbsp;</div>
-<div>cd '/home/vagrant/oe_qcom_honister/build-cdil/tmp-cdil-glibc/work/cort=
-exa53-linaro-linux/opal/3.18-beta9-r0/git'</div>
-<div>do_compile</div>
-<div>&nbsp;</div>
-<div># cleanup</div>
-<div>ret=3D$?</div>
-<div>trap '' 0</div>
-<div>exit $ret</div>
-<div>&nbsp;</div>
+> Alex
+>
+> On Tue, 28 Jun 2022 at 13:51, Senthamilarasi mathiyan
+> <arasilinux1086@gmail.com> wrote:
+> >
+> > Dear All
+> >
+> > Good Morning!
+> >
+> > In my project, I am trying to create one custom image recipe in my yocto
+> build system.
+> >
+> >  The reason of creating custom image is  -> having few specific
+> configurations for kernel and some specific driver Makefile changes to
+> enable coverage.
+> >
+> >  I cannot go with .bbappend file, because we are maintaining a
+> recipes-append folder in our meta-layer which is common for all the
+> production build image recipes.
+> >
+> >  My change is very specific it should not come as part of normal build
+> images because it will affect the production build.
+> >
+> >  My use case:
+> >
+> > 1. I have one .cfg file for kernel - which has kernel specific
+> configurations.
+> >
+> > 2. I have Makefile changes for driver file.
+> >
+> >  I should bring the above changes to kernel and  driver Makefile during
+> build time without using .bbappend file.
+> >
+> >  I want to create a custom image recipe with the specific changes.
+> >
+> >  For example : custom_image.bb =( This recipes should have
+> core_image_minimal.bb + my specific changes)
+> >
+> >  When i build bitbake custom_image.bb,  it should  build  with
+> core_image_minimal.bb + my specific changes .
+> >
+> > Other images recipes also should not affect by this changes.
+> >
+> > My humble request. Can anyone please support how to proceed?
+> >
+> > Kindly share your suggestions.
+> >
+> >  Regards
+> >
+> > Senthamilarasi. M
+> >
+> >
+> > -=-=-=-=-=-=-=-=-=-=-=-
+> > Links: You receive all messages sent to this group.
+> > View/Reply Online (#57401):
+> https://lists.yoctoproject.org/g/yocto/message/57401
+> > Mute This Topic: https://lists.yoctoproject.org/mt/92041991/1686489
+> > Group Owner: yocto+owner@lists.yoctoproject.org
+> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> alex.kanavin@gmail.com]
+> > -=-=-=-=-=-=-=-=-=-=-=-
+> >
+>
 
---JF6g9aalO8EF54YVDaoN--
+--00000000000012957105e28e868f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><div>Hi=C2=A0Alexander,=C2=A0<div dir=3D"auto"><br></div>=
+<div dir=3D"auto">This is not my private change,so i cannot create my own l=
+ayer. Without creating layer and .bbappend file should implement.</div><div=
+ dir=3D"auto"><br></div><div dir=3D"auto">Can anyone please support?=C2=A0<=
+/div><div dir=3D"auto"><br></div><div dir=3D"auto">Regards</div><div dir=3D=
+"auto">Senthamilarasi. M</div><br><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Tue, 28 Jun, 2022, 6:04 pm Alexander Kanav=
+in, &lt;<a href=3D"mailto:alex.kanavin@gmail.com">alex.kanavin@gmail.com</a=
+>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
+ 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">If the change is priva=
+te to you, then you can make a simple layer and<br>
+make all the needed modifications there. Is this not possible?<br>
+<br>
+Alex<br>
+<br>
+On Tue, 28 Jun 2022 at 13:51, Senthamilarasi mathiyan<br>
+&lt;<a href=3D"mailto:arasilinux1086@gmail.com" target=3D"_blank" rel=3D"no=
+referrer">arasilinux1086@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Dear All<br>
+&gt;<br>
+&gt; Good Morning!<br>
+&gt;<br>
+&gt; In my project, I am trying to create one custom image recipe in my yoc=
+to build system.<br>
+&gt;<br>
+&gt;=C2=A0 The reason of creating custom image is=C2=A0 -&gt; having few sp=
+ecific configurations for kernel and some specific driver Makefile changes =
+to enable coverage.<br>
+&gt;<br>
+&gt;=C2=A0 I cannot go with .bbappend file, because we are maintaining a re=
+cipes-append folder in our meta-layer which is common for all the productio=
+n build image recipes.<br>
+&gt;<br>
+&gt;=C2=A0 My change is very specific it should not come as part of normal =
+build images because it will affect the production build.<br>
+&gt;<br>
+&gt;=C2=A0 My use case:<br>
+&gt;<br>
+&gt; 1. I have one .cfg file for kernel - which has kernel specific configu=
+rations.<br>
+&gt;<br>
+&gt; 2. I have Makefile changes for driver file.<br>
+&gt;<br>
+&gt;=C2=A0 I should bring the above changes to kernel and=C2=A0 driver Make=
+file during build time without using .bbappend file.<br>
+&gt;<br>
+&gt;=C2=A0 I want to create a custom image recipe with the specific changes=
+.<br>
+&gt;<br>
+&gt;=C2=A0 For example : <a href=3D"http://custom_image.bb" rel=3D"noreferr=
+er noreferrer" target=3D"_blank">custom_image.bb</a> =3D( This recipes shou=
+ld have <a href=3D"http://core_image_minimal.bb" rel=3D"noreferrer noreferr=
+er" target=3D"_blank">core_image_minimal.bb</a> + my specific changes)<br>
+&gt;<br>
+&gt;=C2=A0 When i build bitbake <a href=3D"http://custom_image.bb" rel=3D"n=
+oreferrer noreferrer" target=3D"_blank">custom_image.bb</a>,=C2=A0 it shoul=
+d=C2=A0 build=C2=A0 with <a href=3D"http://core_image_minimal.bb" rel=3D"no=
+referrer noreferrer" target=3D"_blank">core_image_minimal.bb</a> + my speci=
+fic changes .<br>
+&gt;<br>
+&gt; Other images recipes also should not affect by this changes.<br>
+&gt;<br>
+&gt; My humble request. Can anyone please support how to proceed?<br>
+&gt;<br>
+&gt; Kindly share your suggestions.<br>
+&gt;<br>
+&gt;=C2=A0 Regards<br>
+&gt;<br>
+&gt; Senthamilarasi. M<br>
+&gt;<br>
+&gt;<br>
+&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+&gt; Links: You receive all messages sent to this group.<br>
+&gt; View/Reply Online (#57401): <a href=3D"https://lists.yoctoproject.org/=
+g/yocto/message/57401" rel=3D"noreferrer noreferrer" target=3D"_blank">http=
+s://lists.yoctoproject.org/g/yocto/message/57401</a><br>
+&gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/92041991=
+/1686489" rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoc=
+toproject.org/mt/92041991/1686489</a><br>
+&gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" t=
+arget=3D"_blank" rel=3D"noreferrer">yocto+owner@lists.yoctoproject.org</a><=
+br>
+&gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" =
+rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctoproject.=
+org/g/yocto/unsub</a> [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"=
+_blank" rel=3D"noreferrer">alex.kanavin@gmail.com</a>]<br>
+&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+&gt;<br>
+</blockquote></div></div></div>
+
+--00000000000012957105e28e868f--
 
