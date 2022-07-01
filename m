@@ -1,167 +1,181 @@
-Return-Path: <rybczynska@gmail.com>
+Return-Path: <JPEWhacker@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 84A68C433EF
-	for <webhook@archiver.kernel.org>; Fri,  1 Jul 2022 07:14:06 +0000 (UTC)
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com
- [209.85.167.52])
- by mx.groups.io with SMTP id smtpd.web11.35119.1656659645198499082
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 74C0EC43334
+	for <webhook@archiver.kernel.org>; Fri,  1 Jul 2022 14:01:28 +0000 (UTC)
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com
+ [209.85.218.44])
+ by mx.groups.io with SMTP id smtpd.web10.38782.1656684080601556485
  for <yocto@lists.yoctoproject.org>;
- Fri, 01 Jul 2022 00:14:05 -0700
+ Fri, 01 Jul 2022 07:01:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=X9shEIUO;
- spf=pass (domain: gmail.com, ip: 209.85.167.52,
- mailfrom: rybczynska@gmail.com)
-Received: by mail-lf1-f52.google.com with SMTP id y16so2286697lfb.9
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=g1zRfkb2;
+ spf=pass (domain: gmail.com, ip: 209.85.218.44,
+ mailfrom: jpewhacker@gmail.com)
+Received: by mail-ej1-f44.google.com with SMTP id o25so4288540ejm.3
         for <yocto@lists.yoctoproject.org>;
- Fri, 01 Jul 2022 00:14:04 -0700 (PDT)
+ Fri, 01 Jul 2022 07:01:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=wCHnKTA0Z1GULtoCvuCHJS187TbGh/hRELlJJml96Eg=;
-        b=X9shEIUOeXDCVtoGkdNtgip71bgqJ7xEsMYg+lkZZdS/LgtPQpFgzlyWvx/jzvnacw
-         G2ycCdLzH83noWIn69qIZ248bkgeA0weEn+SWL+r4X+gbWINB8hGYkpIYCA2vb6ZI/hW
-         rGhbBI+zuYpZdbS77ZBfnx3qkDo2x7mZ3ALrjDUQqamPD2qqMEda4Gg4laGMZr+wjlDg
-         me5lmImsSEDwx111RVfN+KEHxijNTQBmPC3NpWRsTFvxQXRnoneqOlI2cPq95SlhOYKP
-         PWzjpvzk/Q8nn+twAiYLtv6bvizJ6rY9d7d7/MGIxeL6Nl0b0uURK56bEY+s87XIel3W
-         /+UA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zgx1vGHaLak3ESgHO3TD+aqC8QgOi1S8AAPHPspDMqA=;
+        b=g1zRfkb2MFGRijfJwBN8abJp6McDvak4ShiMZE4gvHsxf4kHmTQ6KhO4suHZCleYeq
+         VTnGE4aixfMbltqkE+FkgB2Kb5huRf0P7U4EULHao8WmxXMOjsnMB6YAvCnEdrza9AzM
+         jIq0jmhktcgYx7rt2bK+tEKJCNUzjA8gaEbTzfv3/HviDOrq5MyDLKjeGugDX0Z2sjF8
+         SFJI2p8m8GsL9MPeFVa1H9ZUNDxrt2ENY9hgy6v3bG5ORrkoivZDCvOfV2m83Zjq37uH
+         wc31hXert2nuj4zaRYeHbKQ2ePM/hYAmJiVZzVZxlZ32dwg2QI3ftVdQY726M4tdyx27
+         WLJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=wCHnKTA0Z1GULtoCvuCHJS187TbGh/hRELlJJml96Eg=;
-        b=5YT6bzKqiKdaaBy2b6cxl1nHMbXMllnHeL77Zm/D1MXPmsRGuWJszTcJYFvhF2qTB8
-         8aBNPSOEuB8qWqkjwVpfiIKwiErptjitOTeMTWYWBWnetYKEO9iUV8+f3lM/AtxAPV9Q
-         SqUHN6llmyzvO334haPQoATcHVO4R5yVwzytnyY7+Pf+EMqkskFxf2vLlGPmrFqEtyEp
-         i2mqwkyL1JeFCkdePrW+dlx5eJG3iAaO4d6m5O0FgkE3MRM4DnRR/mlxip7pFkAL8boy
-         7pQtNG+7EdKSX2gGeuzit9V6l1jJeIZ0KPFvYZREbniCfiI0P6L/UOBAH4PBvuoGaGs9
-         odjA==
-X-Gm-Message-State: AJIora9MQa3lqq4PPV/Pi4uJAatHrFhnbOPebgYPpAKg0+WYRS5a03fQ
-	tCXTfRd3CEMwGgy90pTUY8osd6QSnbZIQPsLi/Q=
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zgx1vGHaLak3ESgHO3TD+aqC8QgOi1S8AAPHPspDMqA=;
+        b=t5g1ddpD3pjQDcnkuwHUMD8N4MhNTyVb++O4eqqJuLc3cZVzbG0Gf5apeSqt9l2R3D
+         A+8qSB1NNP00gK0CG1hTPMG+QAWDVe7L6F8l0onMAk3oFtAzyUzrYhkfcTqrrx0Zjbdl
+         5TddpS20/C4CJjXI5lEt1XMTNjJvFT8kXgDUix/EemZI+Nvgzh3oOCzMS8za/NbDmcuj
+         QqB8/JJzj2Z4SnrXV8NvoqJpWcp3U6Z8mHRhO8A+YzFujwvd5pRWubyhYQDRs2J8emIt
+         j6vCN5JORsK2OIxI8NWBMQc401gcalr8z1DQ2xsN3Bt1dxBB0hiW6btE579iI1wJ4xSw
+         9vuQ==
+X-Gm-Message-State: AJIora8EIAP2GQmBJa/qtpTu7DWWJf2wVYBDIc2t8dHeMuzFmtxZHQde
+	hbSxIzZ38ipDF6xtDfY0gQwuQCWZ3R+VshYQh8I=
 X-Google-Smtp-Source: 
- AGRyM1vXkpEatubiOUj8a2lIvlHM6LT67SScW/i+8wUF9HOfwfWlufgfSaBJnnFoA5DqgaCwhrSvp+tPqD/rt4K+IWs=
-X-Received: by 2002:a05:6512:23a5:b0:481:d0e:ab00 with SMTP id
- c37-20020a05651223a500b004810d0eab00mr8474470lfv.89.1656659643258; Fri, 01
- Jul 2022 00:14:03 -0700 (PDT)
+ AGRyM1v9ocOna4rtSic+vWAbIodOjm8o80FI5vw9teogHiOOecMESNp8jF0StDJRq9C+oZ7G0/n4Hnjq4muF0IENKRI=
+X-Received: by 2002:a17:906:db:b0:718:d986:d3d7 with SMTP id
+ 27-20020a17090600db00b00718d986d3d7mr14411489eji.532.1656684079062; Fri, 01
+ Jul 2022 07:01:19 -0700 (PDT)
 MIME-Version: 1.0
-From: Marta Rybczynska <rybczynska@gmail.com>
-Date: Fri, 1 Jul 2022 09:13:51 +0200
-Message-ID: 
+References: 
  <CAApg2=TduEu4Btijhyj89-Qyaz9V29u-j1PMS6rQa8dhgd=puw@mail.gmail.com>
-Subject: [meta-zephyr] meets create-spdx
-To: Joshua Watt <JPEWhacker@gmail.com>,
-	OE-core <openembedded-core@lists.openembedded.org>,
+In-Reply-To: 
+ <CAApg2=TduEu4Btijhyj89-Qyaz9V29u-j1PMS6rQa8dhgd=puw@mail.gmail.com>
+From: Joshua Watt <jpewhacker@gmail.com>
+Date: Fri, 1 Jul 2022 09:01:07 -0500
+Message-ID: 
+ <CAJdd5GYe-KZL4N0ihN6e0hqAW=-GkMOiZ6D-49YvaOi2rfkjkQ@mail.gmail.com>
+Subject: Re: [meta-zephyr] meets create-spdx
+To: Marta Rybczynska <rybczynska@gmail.com>
+Cc: OE-core <openembedded-core@lists.openembedded.org>,
  yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 01 Jul 2022 07:14:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57434
+ <yocto@lists.yoctoproject.org>; Fri, 01 Jul 2022 14:01:28 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57435
 
-Hello all,
-We're trying to use create-spdx.bbclass with meta-zephyr. However,
-this is failing with errors like the one at the bottom of the message.
-While digging deeper, it is hard to reproduce reliably (but happens at
-different recipes and frequently enough to have it at every build).
-The workaround that works is to add:
-do_create_spdx[nostamp] = "1"
-which isn't great.
+On Fri, Jul 1, 2022 at 2:14 AM Marta Rybczynska <rybczynska@gmail.com> wrote:
+>
+> Hello all,
+> We're trying to use create-spdx.bbclass with meta-zephyr. However,
+> this is failing with errors like the one at the bottom of the message.
+> While digging deeper, it is hard to reproduce reliably (but happens at
+> different recipes and frequently enough to have it at every build).
+> The workaround that works is to add:
+> do_create_spdx[nostamp] = "1"
+> which isn't great.
+>
+> Has anyone tried create-spdx.bbclass with meta-zephyr? Any insight?
+>
+> Kind regards,
+> Marta
+>
+> And an example error message:
+>
+> ERROR: python3-native-3.10.4-r0 do_create_spdx: Error executing a
+> python function in exec_func_python() autogenerated:
+> The stack trace of python calls that resulted in this exception/failure was:
+> File: 'exec_func_python() autogenerated', lineno: 2, function: <module>
+> 0001:
+> *** 0002:do_create_spdx(d)
+> 0003:
+> File: '/tmp/workspace.yd5o77EYlf/oe-core/meta/classes/create-spdx.bbclass',
+> lineno: 516, function: do_create_spdx
+> 0512:
+> 0513: if archive is not None:
+> 0514: recipe.packageFileName = str(recipe_archive.name)
+> 0515:
+> *** 0516: dep_recipes = collect_dep_recipes(d, doc, recipe)
+> 0517:
+> 0518: doc_sha1 = oe.sbom.write_doc(d, doc, "recipes")
+> 0519: dep_recipes.append(oe.sbom.DepRecipe(doc, doc_sha1, recipe))
+> 0520:
+> File: '/tmp/workspace.yd5o77EYlf/oe-core/meta/classes/create-spdx.bbclass',
+> lineno: 345, function: collect_dep_recipes
+> 0341: ))
+> 0342: for dep_pn in deps:
+> 0343: dep_recipe_path = deploy_dir_spdx / "recipes" /
+> ("recipe-%s.spdx.json" % dep_pn)
+> 0344:
+> *** 0345: spdx_dep_doc, spdx_dep_sha1 = oe.sbom.read_doc(dep_recipe_path)
+> 0346:
+> 0347: for pkg in spdx_dep_doc.packages:
+> 0348: if pkg.name == dep_pn:
+> 0349: spdx_dep_recipe = pkg
+> File: '/tmp/workspace.yd5o77EYlf/oe-core/meta/lib/oe/sbom.py', lineno:
+> 67, function: read_doc
+> 0063: else:
+> 0064: with fn.open("rb") as f:
+> 0065: yield f
+> 0066:
+> *** 0067: with get_file() as f:
+> 0068: sha1 = hashlib.sha1()
+> 0069: while True:
+> 0070: chunk = f.read(4096)
+> 0071: if not chunk:
+> File: '/usr/lib/python3.8/contextlib.py', lineno: 113, function: __enter__
+> 0109: # do not keep args and kwds alive unnecessarily
+> 0110: # they are only needed for recreation, which is not possible anymore
+> 0111: del self.args, self.kwds, self.func
+> 0112: try:
+> *** 0113: return next(self.gen)
+> 0114: except StopIteration:
+> 0115: raise RuntimeError("generator didn't yield") from None
+> 0116:
+> 0117: def __exit__(self, type, value, traceback):
+> File: '/tmp/workspace.yd5o77EYlf/oe-core/meta/lib/oe/sbom.py', lineno:
+> 64, function: get_file
+> 0060: def get_file():
+> 0061: if isinstance(fn, io.IOBase):
+> 0062: yield fn
+> 0063: else:
+> *** 0064: with fn.open("rb") as f:
+> 0065: yield f
+> 0066:
+> 0067: with get_file() as f:
+> 0068: sha1 = hashlib.sha1()
+> File: '/usr/lib/python3.8/pathlib.py', lineno: 1222, function: open
+> 1218: the built-in open() function does.
+> 1219: """
+> 1220: if self._closed:
+> 1221: self._raise_closed()
+> *** 1222: return io.open(self, mode, buffering, encoding, errors, newline,
+> 1223: opener=self._opener)
+> 1224:
+> 1225: def read_bytes(self):
+> 1226: """
+> File: '/usr/lib/python3.8/pathlib.py', lineno: 1078, function: _opener
+> 1074: raise ValueError("I/O operation on closed path")
+> 1075:
+> 1076: def _opener(self, name, flags, mode=0o666):
+> 1077: # A stub for the opener argument to built-in open()
+> *** 1078: return self._accessor.open(self, flags, mode)
+> 1079:
+> 1080: def _raw_open(self, flags, mode=0o777):
+> 1081: """
+> 1082: Open the file pointed by this path and return a file descriptor,
+> Exception: FileNotFoundError: [Errno 2] No such file or directory:
+> '/tmp/workspace.yd5o77EYlf/build/tmp-newlib/deploy/spdx/qemu-cortex-m3/recipes/recipe-gnu-config-native.spdx.json'
 
-Has anyone tried create-spdx.bbclass with meta-zephyr? Any insight?
+This appears to be the actual error: python3:do_create_spdx can't find
+the recipe-gnu-config-native.spdx.json. I'm not sure why that would be
+the case though; do_create_spdx for gnu-config-native should always
+run before do_create_spdx for python3 since it's a deptask
 
-Kind regards,
-Marta
-
-And an example error message:
-
-ERROR: python3-native-3.10.4-r0 do_create_spdx: Error executing a
-python function in exec_func_python() autogenerated:
-The stack trace of python calls that resulted in this exception/failure was:
-File: 'exec_func_python() autogenerated', lineno: 2, function: <module>
-0001:
-*** 0002:do_create_spdx(d)
-0003:
-File: '/tmp/workspace.yd5o77EYlf/oe-core/meta/classes/create-spdx.bbclass',
-lineno: 516, function: do_create_spdx
-0512:
-0513: if archive is not None:
-0514: recipe.packageFileName = str(recipe_archive.name)
-0515:
-*** 0516: dep_recipes = collect_dep_recipes(d, doc, recipe)
-0517:
-0518: doc_sha1 = oe.sbom.write_doc(d, doc, "recipes")
-0519: dep_recipes.append(oe.sbom.DepRecipe(doc, doc_sha1, recipe))
-0520:
-File: '/tmp/workspace.yd5o77EYlf/oe-core/meta/classes/create-spdx.bbclass',
-lineno: 345, function: collect_dep_recipes
-0341: ))
-0342: for dep_pn in deps:
-0343: dep_recipe_path = deploy_dir_spdx / "recipes" /
-("recipe-%s.spdx.json" % dep_pn)
-0344:
-*** 0345: spdx_dep_doc, spdx_dep_sha1 = oe.sbom.read_doc(dep_recipe_path)
-0346:
-0347: for pkg in spdx_dep_doc.packages:
-0348: if pkg.name == dep_pn:
-0349: spdx_dep_recipe = pkg
-File: '/tmp/workspace.yd5o77EYlf/oe-core/meta/lib/oe/sbom.py', lineno:
-67, function: read_doc
-0063: else:
-0064: with fn.open("rb") as f:
-0065: yield f
-0066:
-*** 0067: with get_file() as f:
-0068: sha1 = hashlib.sha1()
-0069: while True:
-0070: chunk = f.read(4096)
-0071: if not chunk:
-File: '/usr/lib/python3.8/contextlib.py', lineno: 113, function: __enter__
-0109: # do not keep args and kwds alive unnecessarily
-0110: # they are only needed for recreation, which is not possible anymore
-0111: del self.args, self.kwds, self.func
-0112: try:
-*** 0113: return next(self.gen)
-0114: except StopIteration:
-0115: raise RuntimeError("generator didn't yield") from None
-0116:
-0117: def __exit__(self, type, value, traceback):
-File: '/tmp/workspace.yd5o77EYlf/oe-core/meta/lib/oe/sbom.py', lineno:
-64, function: get_file
-0060: def get_file():
-0061: if isinstance(fn, io.IOBase):
-0062: yield fn
-0063: else:
-*** 0064: with fn.open("rb") as f:
-0065: yield f
-0066:
-0067: with get_file() as f:
-0068: sha1 = hashlib.sha1()
-File: '/usr/lib/python3.8/pathlib.py', lineno: 1222, function: open
-1218: the built-in open() function does.
-1219: """
-1220: if self._closed:
-1221: self._raise_closed()
-*** 1222: return io.open(self, mode, buffering, encoding, errors, newline,
-1223: opener=self._opener)
-1224:
-1225: def read_bytes(self):
-1226: """
-File: '/usr/lib/python3.8/pathlib.py', lineno: 1078, function: _opener
-1074: raise ValueError("I/O operation on closed path")
-1075:
-1076: def _opener(self, name, flags, mode=0o666):
-1077: # A stub for the opener argument to built-in open()
-*** 1078: return self._accessor.open(self, flags, mode)
-1079:
-1080: def _raw_open(self, flags, mode=0o777):
-1081: """
-1082: Open the file pointed by this path and return a file descriptor,
-Exception: FileNotFoundError: [Errno 2] No such file or directory:
-'/tmp/workspace.yd5o77EYlf/build/tmp-newlib/deploy/spdx/qemu-cortex-m3/recipes/recipe-gnu-config-native.spdx.json'
-ERROR: Logfile of failure stored in:
-/tmp/workspace.yd5o77EYlf/build/tmp-newlib/work/x86_64-linux/python3-native/3.10.4-r0/temp/log.do_create_spdx.12842
-NOTE: recipe python3-native-3.10.4-r0: task do_create_spdx: Failed
-ERROR: Task (virtual:native:/tmp/workspace.yd5o77EYlf/oe-core/meta/recipes-devtools/python/python3_3.10.4.bb:do_create_spdx)
-failed with exit code '1'
+> ERROR: Logfile of failure stored in:
+> /tmp/workspace.yd5o77EYlf/build/tmp-newlib/work/x86_64-linux/python3-native/3.10.4-r0/temp/log.do_create_spdx.12842
+> NOTE: recipe python3-native-3.10.4-r0: task do_create_spdx: Failed
+> ERROR: Task (virtual:native:/tmp/workspace.yd5o77EYlf/oe-core/meta/recipes-devtools/python/python3_3.10.4.bb:do_create_spdx)
+> failed with exit code '1'
 
