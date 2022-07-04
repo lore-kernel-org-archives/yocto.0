@@ -1,141 +1,295 @@
-Return-Path: <mauro@faresoftware.it>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 014EAC43334
-	for <webhook@archiver.kernel.org>; Mon,  4 Jul 2022 19:26:03 +0000 (UTC)
-Received: from posta.faresoftware.it (posta.faresoftware.it [93.38.119.136])
- by mx.groups.io with SMTP id smtpd.web12.76061.1656962757718114871
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5DD80C433EF
+	for <webhook@archiver.kernel.org>; Mon,  4 Jul 2022 20:51:33 +0000 (UTC)
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com
+ [209.85.216.47])
+ by mx.groups.io with SMTP id smtpd.web09.77415.1656967886066202274
  for <yocto@lists.yoctoproject.org>;
- Mon, 04 Jul 2022 12:25:58 -0700
+ Mon, 04 Jul 2022 13:51:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@faresoftware.it
- header.s=20210817 header.b=yAc8A1Kv;
- spf=pass (domain: faresoftware.it, ip: 93.38.119.136,
- mailfrom: mauro@faresoftware.it)
-Message-ID: <136855e3-ed29-c3a2-3450-72ddaae4d187@faresoftware.it>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=faresoftware.it;
-	s=20210817; t=1656962754;
-	bh=YZB0d5oQWv11GfxWrdHo+jiKHAV6ZQ5zcKiuWragMLs=;
-	h=Date:Subject:To:References:From:In-Reply-To;
-	b=yAc8A1Kva4kDv1c/KrV/wURf0aXxcjp5Utj2EoOhwWMnAoEKn3pcFJcbWCUPTK4OJ
-	 1/2s0+Z0FAtov1cg9FUz6RbgxDqFhOOnt5oqoW4TJ/AsrXgfCGJ6LFkABYMd9b+ua0
-	 RsDjPTPCNe+tUZKIh1zup++bTePgTWzwVzAiys5Q=
-Date: Mon, 4 Jul 2022 21:25:54 +0200
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=e5aT2tXx;
+ spf=pass (domain: gmail.com, ip: 209.85.216.47,
+ mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pj1-f47.google.com with SMTP id
+ o3-20020a17090a744300b001ef8f7f3dddso2140135pjk.3
+        for <yocto@lists.yoctoproject.org>;
+ Mon, 04 Jul 2022 13:51:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:mime-version:thread-index
+         :content-language;
+        bh=hv/CVrboXf1oUCEc/yacRyzNqAxHXamwci4GG3JhrJ0=;
+        b=e5aT2tXxMYjMpJtzwyBjEaz2Sy4GkVF1ZZQH1TcNS14mZAC17rssPJ6EipIDJzWt42
+         Pt3NECsXAmNbi40Go+U/21YjcCuOJhTf2N15/tLKF262YlpwhWGHMIV2wOf0EReBMMjd
+         p1bz8Q20fRTWDk3BVEug8VuRrbEOJUsl7L3ePD/hBLI+hX1WWv3u6h6yDdej/FUbKeXD
+         1e6/UUIB4wS7oAOeLMCtADI5k/783KSgay3czq/6O5J31pa92hpdtUrCVFiBJRnlflh2
+         7WfQJ1SnjNPgd0lkgDl6v938MYFQvcCmOh3op6DAhdaLCMWSVeg6sRKAP3ahtPhJuMyB
+         Qd0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :thread-index:content-language;
+        bh=hv/CVrboXf1oUCEc/yacRyzNqAxHXamwci4GG3JhrJ0=;
+        b=zvV4MLJvsaQMPHB+90QswcEMrWJf1lK/Z3JtoI22yj1T5Ppwz3zBVkdRl970F6vKdU
+         /Z8gB6DWy7HTohdPw5iCB+ruMZalciHZSMMUCF+dYarCUaKn9PGZ5ihj3NPLuB+1lBrb
+         jV9C9mkQCEGZOXYQ1gugGRrG6/O5+5/ifGW6xtnZ7EUTboOgj92pYZzK/QB2jDVFxvwZ
+         0akUHBIieHIZuRIDHWYDzj5d915TuvA3IulIyLoXGcIQ2qcx73zJuH4l11MctdJrYkzX
+         d+haN30MjBannwLMrCH88zyz/r93DPea6VirUO1Fvl2sgHixE2UomhMlkrO6muMFr9gg
+         JXRA==
+X-Gm-Message-State: AJIora92dldYvXiS/NEvJf0scIynOyAMHDYMV0Eeu5HidtFm3SkZjGcc
+	0gjGooNrMhyImLfJJEBsebk=
+X-Google-Smtp-Source: 
+ AGRyM1tOZnfzbE1CZaq7VXouhYCYMk+he3y+Og1OPapvOCUEB7BpMCUeHPWHoWOwAzusbXy03kRQrg==
+X-Received: by 2002:a17:902:c944:b0:16a:3ed0:e60c with SMTP id
+ i4-20020a170902c94400b0016a3ed0e60cmr38474518pla.51.1656967885248;
+        Mon, 04 Jul 2022 13:51:25 -0700 (PDT)
+Received: from skjolley ([2600:1011:a116:b24a:293c:e2d4:1418:7020])
+        by smtp.gmail.com with ESMTPSA id
+ h17-20020a170902f7d100b0016be6a554b5sm2267293plw.233.2022.07.04.13.51.24
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 04 Jul 2022 13:51:24 -0700 (PDT)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@lists.yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 4 Jul 2022 13:51:24 -0700
+Message-ID: <006101d88fe7$d36bbbe0$7a4333a0$@gmail.com>
 MIME-Version: 1.0
-Subject: Re: [yocto] dunfell do_image_wic error
-Content-Language: en-US
-To: yocto@lists.yoctoproject.org
-References: <16FEB66AD9D1EECC.2437@lists.yoctoproject.org>
-From: Mauro Ziliani <mauro@faresoftware.it>
-In-Reply-To: <16FEB66AD9D1EECC.2437@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-Synology-Spam-Status: score=1.342, required 5, __NOT_A_PERSON 0,
- __BODY_URI_ONLY 0, FROM_HAS_DN 0, TO_MATCH_ENVRCPT_ALL 0, MIME_GOOD -0.1,
- TO_DN_NONE 0, __THREADED 0, RCPT_COUNT_ONE 0, SCC_BODY_URI_ONLY 1.443,
- RCVD_COUNT_ZERO 0, FROM_EQ_ENVFROM 0, MIME_TRACE 0, __NOT_SPOOFED 0,
- MID_RHS_MATCH_FROM 0, NO_RECEIVED -0.001
-X-Synology-Spam-Flag: no
-X-Synology-Virus-Status: no
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0062_01D88FAD.270CE3E0"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQHhiDAOS1+k5SzI//gwE2gFMUvIkA==
+Content-Language: en-us
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 04 Jul 2022 19:26:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57442
+ <yocto@lists.yoctoproject.org>; Mon, 04 Jul 2022 20:51:33 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57443
 
-Sorry for missing information
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0062_01D88FAD.270CE3E0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+All,
+
+ 
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+<https://bugzilla.yoctoproject.org/createaccount.cgi>
+https://bugzilla.yoctoproject.org/createaccount.cgi
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 409
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now,  "4.1", "4.2", "4.99" and "Future", the more pressing/urgent
+issues being in "4.1" and then "4.2".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
 
 
-I get this error when I do
+------=_NextPart_000_0062_01D88FAD.270CE3E0
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0880_01D88A3D.0411E770";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The triage team is starting to try and =
+collect up and classify bugs which a newcomer to the project would be =
+able to work on in a way which means people can find them. They're being =
+listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a> and how to create a bugzilla account at: <a =
+href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
+style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
+/span></a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 409 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &nbsp;&#8220;4.1&#8221;, =
+&#8220;4.2&#8221;, &quot;4.99&quot; and &quot;Future&quot;, the more =
+pressing/urgent issues being in &quot;4.1&quot; and then =
+&#8220;4.2&#8221;.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Please review this link and if a bug is =
+something you would be able to help with either take ownership of the =
+bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_000_0062_01D88FAD.270CE3E0--
 
-bitbake core-image-minimal
-
-
-MZ
-
-On 04/07/22 21:17, Mauro Ziliani wrote:
-> Hi all.
->
-> I update dunfell to last version.
->
->
-> But now I get a python exception error on do_image_wic task
->
->
->
-> | Traceback (most recent call last):
-> |=C2=A0=C2=A0 File "/home/yocto/sources/poky/scripts/lib/wic/filemap.py=
-", line=20
-> 457, in get_mapped_ranges
-> |=C2=A0=C2=A0=C2=A0=C2=A0 first_prev, last_prev =3D next(iterator)
-> | StopIteration
-> |
-> | The above exception was the direct cause of the following exception:
-> |
-> | Traceback (most recent call last):
-> |=C2=A0=C2=A0 File "/home/yocto/sources/poky/scripts/wic", line 542, in=
- <module>
-> |=C2=A0=C2=A0=C2=A0=C2=A0 sys.exit(main(sys.argv[1:]))
-> |=C2=A0=C2=A0 File "/home/yocto/sources/poky/scripts/wic", line 537, in=
- main
-> |=C2=A0=C2=A0=C2=A0=C2=A0 return hlp.invoke_subcommand(args, parser, hl=
-p.wic_help_usage,=20
-> subcommands)
-> |=C2=A0=C2=A0 File "/home/yocto/sources/poky/scripts/lib/wic/help.py", =
-line 83,=20
-> in invoke_subcommand
-> |=C2=A0=C2=A0=C2=A0=C2=A0 subcmd[0](args, usage)
-> |=C2=A0=C2=A0 File "/home/yocto/sources/poky/scripts/wic", line 219, in=
-=20
-> wic_create_subcommand
-> |=C2=A0=C2=A0=C2=A0=C2=A0 engine.wic_create(wks_file, rootfs_dir, booti=
-mg_dir, kernel_dir,
-> |=C2=A0=C2=A0 File "/home/yocto/sources/poky/scripts/lib/wic/engine.py"=
-, line=20
-> 190, in wic_create
-> |=C2=A0=C2=A0=C2=A0=C2=A0 plugin.do_create()
-> |=C2=A0=C2=A0 File=20
-> "/home/yocto/sources/poky/scripts/lib/wic/plugins/imager/direct.py",=20
-> line 96, in do_create
-> |=C2=A0=C2=A0=C2=A0=C2=A0 self.create()
-> |=C2=A0=C2=A0 File=20
-> "/home/yocto/sources/poky/scripts/lib/wic/plugins/imager/direct.py",=20
-> line 180, in create
-> |=C2=A0=C2=A0=C2=A0=C2=A0 self._image.prepare(self)
-> |=C2=A0=C2=A0 File=20
-> "/home/yocto/sources/poky/scripts/lib/wic/plugins/imager/direct.py",=20
-> line 354, in prepare
-> |=C2=A0=C2=A0=C2=A0=C2=A0 part.prepare(imager, imager.workdir, imager.o=
-e_builddir,
-> |=C2=A0=C2=A0 File "/home/yocto/sources/poky/scripts/lib/wic/partition.=
-py", line=20
-> 182, in prepare
-> |=C2=A0=C2=A0=C2=A0=C2=A0 plugin.do_prepare_partition(self, srcparams_d=
-ict, creator,
-> |=C2=A0=C2=A0 File=20
-> "/home/yocto/sources/poky/scripts/lib/wic/plugins/source/rawcopy.py",=20
-> line 68, in do_prepare_partition
-> |=C2=A0=C2=A0=C2=A0=C2=A0 sparse_copy(src, dst)
-> |=C2=A0=C2=A0 File "/home/yocto/sources/poky/scripts/lib/wic/filemap.py=
-", line=20
-> 539, in sparse_copy
-> |=C2=A0=C2=A0=C2=A0=C2=A0 for first, last in fmap.get_mapped_ranges(0, =
-fmap.blocks_cnt):
-> | RuntimeError: generator raised StopIteration
->
-> MZ
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#57441): https://lists.yoctoproject.org/g/yocto/mess=
-age/57441
-> Mute This Topic: https://lists.yoctoproject.org/mt/92171800/3617482
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [mauro@fareso=
-ftware.it]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
 
