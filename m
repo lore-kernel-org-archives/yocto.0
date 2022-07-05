@@ -1,60 +1,135 @@
-Return-Path: <alexandre.belloni@bootlin.com>
+Return-Path: <quentin.schulz@theobroma-systems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D08FCC433EF
-	for <webhook@archiver.kernel.org>; Tue,  5 Jul 2022 08:05:46 +0000 (UTC)
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net
- [217.70.183.193])
- by mx.groups.io with SMTP id smtpd.web09.82132.1657008337936990252
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DCA2AC43334
+	for <webhook@archiver.kernel.org>; Tue,  5 Jul 2022 08:47:36 +0000 (UTC)
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com
+ (EUR05-VI1-obe.outbound.protection.outlook.com [40.107.21.69])
+ by mx.groups.io with SMTP id smtpd.web09.82374.1657010843956496564
  for <yocto@lists.yoctoproject.org>;
- Tue, 05 Jul 2022 01:05:39 -0700
+ Tue, 05 Jul 2022 01:47:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bootlin.com header.s=gm1 header.b=Q5M0nLR8;
- spf=pass (domain: bootlin.com, ip: 217.70.183.193,
- mailfrom: alexandre.belloni@bootlin.com)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-	by mail.gandi.net (Postfix) with ESMTPSA id 2712B24001B;
-	Tue,  5 Jul 2022 08:05:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1657008336;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kQeQeRXRstf3BWIioT3VqboMFSQqIye1j+ZWVKhj+vE=;
-	b=Q5M0nLR8s/Boj8zI4SJ5CSGnrPPptlh94hg3O3wKDyPyDcKDGQp7gTFcCq26kh+DPSArj3
-	Hll0RZ49sqloY6cX2u5NYrfRXmQU1Pp2gBcSzF63HzkL8OY4ybIJ/XOevBr3RrxWkuje06
-	mjZxfjEswaWB2jRTmaRCNsro+aV37kr/JwUaoKEO2FUdzCDeZeHJjb59+IOW6XL6cCQYyY
-	x0tLamThyxMRUQXoHLDnE5e+xp0+hU8q2cpI0pgSFINuo5uaOvEXexNQXfQCy4n6UBDjsK
-	+xGPwcQene1l1p/zoazvphZJvxSQmqaRSOFcQR7c4zDPqOgxr6P9TebeEJgxWA==
-Date: Tue, 5 Jul 2022 10:05:34 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: johannes.schilling@methodpark.de
-Cc: yocto@lists.yoctoproject.org
+ dkim=pass header.i=@cherrycloud.onmicrosoft.com
+ header.s=selector2-cherrycloud-onmicrosoft-com header.b=P8u5BCgN;
+ spf=pass (domain: theobroma-systems.com, ip: 40.107.21.69,
+ mailfrom: quentin.schulz@theobroma-systems.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YnTGDdx5ARmyMhVIfJhdulcXv0mpdNzyDv2xUNQoBFdGnDQPJOoebhyrEXWOlpdo6s23vcWPn3nxNQ1QSd15w0VnSqYO9XkyUDaSKvogPNUJXE3jHBfk19FwWen0puY7VlLxUQ6PFRDC4QbVUsGimlgWR3TNa6y9Ql2rCxsghiZ39nvYPGK7VHV0gMaWh5vkhsqCQlfAAQND3V2Q3NIiTtboochjgDUkhqmQvMBsKpZRCd/Svv7R7gcO0q8KxFzTOuIeabWhCi/ykUqiuDDylH9+3Rj9VX2uk0lKsv0T0LIx+2KqA5H/GA5N7zpwwRfbRF0wVlboYUQw1NfUODAWdw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XdWM7MHt1KAB2dveayXbxjn7ZhNYN4om2kfnmm1sjZo=;
+ b=oaWcFxoMyJzj+WsbnQmU+xJ5fgWJ46QgB1kzNT5AOI+Pxv3/BZsMbEWU0z5WRq1lFAIevjrDXmf3Gud+rKSRoVzDVGK3mdWz+OIXCq081BS2FttQkFgeM1beajUQv4gGeZsoS1LCgmrcyUIbxuuMhY+yQjKJeZVNaBtgOjCbryzBO/yBcI+llrXfFvljv0kMfxMLaltnXdxHZ35O3jot0ZavnsqrpgTGN1tpxvLTfUFq4zoJnW7gz4i3LsM66OwXaQeL4H+rUlNb3IyBMDpKcbF1jBnFYqWLgy9gZ8NwzqvRXqhhYyIslTr5mUM6GUlzQabWdg+LFuEsqvV/KZRhaA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
+ header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=cherrycloud.onmicrosoft.com; s=selector2-cherrycloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XdWM7MHt1KAB2dveayXbxjn7ZhNYN4om2kfnmm1sjZo=;
+ b=P8u5BCgNvzH7NmQuX4/Hvg+fL2oFTW7F5ACwK+XsuY6Tf3Rvw6YY0vbJNrJMKiitGWKu0BHmFK9wlr/QCyLg0fWdjd4hbcqlSW4nFI4HcX2l1x4kVZw1r5r/COhNeQ2Csleb5X/jlGpCCqo0kw2E4gIuXZbI7C3ecmre5xNO1wY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
+Received: from PA4PR04MB9367.eurprd04.prod.outlook.com (2603:10a6:102:2aa::7)
+ by PAXPR04MB8144.eurprd04.prod.outlook.com (2603:10a6:102:1cc::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.21; Tue, 5 Jul
+ 2022 08:47:20 +0000
+Received: from PA4PR04MB9367.eurprd04.prod.outlook.com
+ ([fe80::cc58:11a8:839f:895f]) by PA4PR04MB9367.eurprd04.prod.outlook.com
+ ([fe80::cc58:11a8:839f:895f%7]) with mapi id 15.20.5395.017; Tue, 5 Jul 2022
+ 08:47:20 +0000
+Message-ID: <1de0d9a5-726f-78e5-41b5-cc2338553765@theobroma-systems.com>
+Date: Tue, 5 Jul 2022 10:47:18 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
 Subject: Re: [yocto] [PATCH 1/2] image-without-static-linkage: add class
-Message-ID: <YsPwzobbNQZ7MWYo@mail.local>
+Content-Language: en-US
+To: johannes.schilling@methodpark.de, yocto@lists.yoctoproject.org
 References: <20220704162504.1488894-1-johannes.schilling@methodpark.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
 In-Reply-To: <20220704162504.1488894-1-johannes.schilling@methodpark.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AS8P251CA0010.EURP251.PROD.OUTLOOK.COM
+ (2603:10a6:20b:2f2::8) To PA4PR04MB9367.eurprd04.prod.outlook.com
+ (2603:10a6:102:2aa::7)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8ef34467-3877-482a-b937-08da5e62f8cd
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8144:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	/AQm1+OWnanTqrjNlktRgYq0YiNjcUi+d918zPU7erSyi2BZa61+Mka0by2apl1U3dJW1TjJgZ8FXgwYlvP3TlrPsdml4naHafyw5+TCmdad74FDR6rtm1SkiE6zVMeefGvfXO9e31sF7AGOSvLPYrA2APDvW+j2Iag93WO8Xq0nGa5YAL5GQaCimAKyg2hJsvTP9Y3RWukt5Rgy54Ih+2HgkwJH9un4toVm8AISTyB1g5WCAFj99IVJb0nxCXY5f7skK0lz7cAhVap+hxkmYiIcfMN0ityu0UpQOelifSjwdJTvoqPaVqf5RQzfiSd/oBSphQ1RP6wm723z+JteUvP9zABk9FVjG4HlQDmfctWAkpclu4ai1vx+M0g95Ia+DtJ6nX84heutzh2/bkxwcOFKEzw2tGg1ao+6Wi40dhMu/V7L3CTHiH1MbKpdxuYL3uA3ZicLnJk1ORkkgbHFp0Jv3zphLiJSbROjm+3PytxddpthFmkN77uk1K66GYEAg3dysdWBATduXG/SNPW6D53m5tLO8TS+Ft8G5jzkgPndLO9ELZ5rVPl0CIkc5IKo1WOb7UZ1U6clhDIsl2LyUTlmQqCs2kiGgco1VU7MuPQmINe7hAhiFsvfWftS64EgNU9t/jl9lOsO6SJyBpIznHQBD7REXipvKdfSyHgFBOymWKgHmPr0AV7Jiuaoj/lZykBsKMcRcahaKFTLRKn5MJbp43ELcITgKyFqQoqCuIL+qMaA5WewVOHd7DINunyITPs+E5I9WHr63yC9bqtDbqsaGTuoCOypzbQALUgeyhsTSUYE1yuSapy52kTYpbEeIH1yM+4MjiDU0ySJv6ttggWOdm+TvFbJYeUcAyLfX6s=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9367.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(346002)(376002)(396003)(136003)(39850400004)(366004)(30864003)(44832011)(478600001)(966005)(5660300002)(8936002)(6486002)(53546011)(6506007)(31696002)(86362001)(26005)(6512007)(41300700001)(2906002)(38100700002)(2616005)(186003)(83380400001)(66946007)(66556008)(66476007)(31686004)(36756003)(316002)(8676002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?N0RmZjUxU0ZuTXdCNE9LMHQ3cVlVTWlxRndQSUt4SlBQeDcyemowUWtmbTVJ?=
+ =?utf-8?B?SUhMTGJkZkIzOHNHUUZBSkpGVElhSE1IOWJYMXRtcGpPM1J6WW5PSy9xLzdK?=
+ =?utf-8?B?M2QvVi9oY0R5d0dhWXhUNmRVV0dLRTBwUGp6Rk5TQVRMdFNpNVg1Z0paRFRy?=
+ =?utf-8?B?bVBpcWNQYXIxd1VESXppZnFWeFl6L1o4QXVIMy9wZE1UTmdFVm5oRGVNQzNs?=
+ =?utf-8?B?VTZRU25rc2E0L2VnWFdEVHpwZWdDWGQyS0o2clFFQnV3SnYxajJLMzhJUWxr?=
+ =?utf-8?B?bUczRXRjRER0TGVFWWlQeFI1TE81c3VVM1haLzRwTjlQL0pnd3FxMWI5YWVO?=
+ =?utf-8?B?cjFmVTYvYlhha21zOVF1cWNxOFUrNUNqbUgrNzlBa2pnQklPVzZXTEQxYkVw?=
+ =?utf-8?B?Ynpsa0xrSi9VKzVoTm1xUHpsZis0N05xbkFwZHdHbHpkNVBIakozc3IrNW5R?=
+ =?utf-8?B?bDByT29LNEpRVUNjWVlSc0FCakJLZzJUSEhsSjg3aDQ0dGVWaVdWY3hCMXk5?=
+ =?utf-8?B?TmdRZFVYVk5Qc3dMaW13dCsveGFYOUE1cHNvRXY3TGZnQUh0K25pL3JMZVhV?=
+ =?utf-8?B?VFhmdS9PUXF1dUcxYmEvb29VdkVOUGFjVWt5ZFp1THcwU0p1Z2YzSGNzbVMv?=
+ =?utf-8?B?RGxmZVpSd0NDeWRtYURVTklUdjJQTHB2N01Ya1RXaU9MaGV3aUxSM1RncEVj?=
+ =?utf-8?B?MGpwaXExMFZDUGNQcmNGdXY5d3R1dDNVbGpRTWlxN3Axa0hUV1hNWS9xeEFZ?=
+ =?utf-8?B?OTg5d1c0TzJ6M08wRTVJb0tQYXJWZ2NEcWlLYWRMbmc4OUlWdG50MGxIdkxW?=
+ =?utf-8?B?dlBsbUJNTTdRUnliYUpWa3pMdTh1NEVENlRTUlBEdjhXa3U2d1UreFVtbkgw?=
+ =?utf-8?B?WHZUN0ltZXF6Yi85eVR2T0plUzlCbkR2OTRUZHdja2VmbFdVNUd4THVzM0o0?=
+ =?utf-8?B?OHRtVFJCK3FDamhCSFpGU1RvbnNocERseGxBN29neSsxZmF1SFdTeDg5NFhi?=
+ =?utf-8?B?c1BUa0lrQkd0cGRrUkVaU1VsZ1JDN1g5eHVEalpISGYvN2tSelh2YnJyU2xM?=
+ =?utf-8?B?TTgyVWhaVDRnKzZUM0FDbVpjWUpic28zUkkyRUhMSDQzaUhpUUYraXo1dWFt?=
+ =?utf-8?B?cytCVlJseGVpVGtSd0lZbTlRSCs3Ylk1azVlblJMT0JmUDBYdGlIZ1B4TC8y?=
+ =?utf-8?B?aURkczZlRXZ4cGI1NkpaRndUWU5mdWk2NGkyNCtwUlptK1ZZN0VUUjJ3Nng0?=
+ =?utf-8?B?QkRrM05DdkRpak1IbkZpMk5UOVpGcTcway9XQXdCWStMMnV4dDZnSTVGUzJi?=
+ =?utf-8?B?ZnJXYWdwbWcvSkMvVVlUdnRYTXZlN2xmelRaamtRWVpQbjZTNEFEcUFyMmlz?=
+ =?utf-8?B?UThTNHZIalpBNHRBbmdrM3ZhQ2lyVm1QRXpIQ01xQVRnSVV5R0ZqU2QrUVF6?=
+ =?utf-8?B?dzN3YmdiSVhqSkFDSUpBVDBUYzMrWXJKa2lKNFdjdWRNV2ZqVlRjVUNKbm1k?=
+ =?utf-8?B?cjNIS1F6RXg5b0ZrTER6cWxkSDN5cGtGbUFLakR2RTZaWnVoY1UzV2hVUnAv?=
+ =?utf-8?B?d2Y4bUR5MXZxTm1FTTU2L2pkZnhLSkdjTHRGa2JJbmhLVVcvWlBjNmthY2xu?=
+ =?utf-8?B?YzBKUzhFMEZCakpDNG5uSzUrNHhBZXJ4QmtEUUFORXVRWWNpMW9TeGduKzhn?=
+ =?utf-8?B?c3JoWjZrRnM3U1QzME5Yb0x4UEwxbkYxdERQQmQ3bW1mRGtCNGRJekdIVG5I?=
+ =?utf-8?B?dWdKdHI0d3p5b3cvWmE2UFdQeU1uQkJUZ3pVS0ozSDhHVlk1aUowRjVXb2VG?=
+ =?utf-8?B?UlRnOVozMkZZWXp0TFQ1UmxVWlRQbElPcTloL2hSbmxUZzM5OC9wZVhsNEJp?=
+ =?utf-8?B?T2lXWURycm5GNk1hM3JwRTdvS2ZHTUlCalRSR2l6SGFvaHRCeDdUQXJoM1Y0?=
+ =?utf-8?B?NlNSS0thOExWdmNBZllva1BsTC9Pc1Q5cnNhWnVmcEhWdys1SDNESWtwaDFV?=
+ =?utf-8?B?b1dTWXdyQ3c4VzJjMUlza0g5ai9BSnJFSnhxeVZteE43ZS9pbHIzUUU0MHB6?=
+ =?utf-8?B?djZ5T3JZSGk2cE9BNm1PYkVqNkQreXFFNkQvc3RGcmRVUnMrVHVhWk0xVGhF?=
+ =?utf-8?B?T05haDVBU3FMT3h0cFdkVTJGd3RXOGJKdHRLa3h0WExEUUZOd082Z0F6alRQ?=
+ =?utf-8?Q?rs0y/PeV5HyeumxOclCzkPU=3D?=
+X-OriginatorOrg: theobroma-systems.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 8ef34467-3877-482a-b937-08da5e62f8cd
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9367.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jul 2022 08:47:20.1634
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ kpV3/hl2kqqai0n3HOe9/Bh1jiEmtRgMlOwH5Epqcjc2qdX5eemXyyfvV7Ff5OEQC6EIj2XRVZNSR2S5jpocp+HXTCpP8d6CtWTjNkCB/VboTmVjp9r3ksDux4b0B6xI
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8144
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 05 Jul 2022 08:05:46 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57448
+ <yocto@lists.yoctoproject.org>; Tue, 05 Jul 2022 08:47:36 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57449
 
-Hello,
+Hi Johannes,
 
-Both patches are missing your SoB, please add those. Also, It would be
-great if you could add a From: as this makes it easier to get your patch
-from the list. This should do the trick:
+Thanks for the patch.
 
-git config --global sendemail.from email@provider
-
-Thanks!
-
-On 04/07/2022 18:25:03+0200, Johannes Schilling via lists.yoctoproject.org wrote:
+On 7/4/22 18:25, Johannes Schilling via lists.yoctoproject.org wrote:
 > This class provides a new image QA check that tries to detect static
 > linkage of a set of well-known libraries, leveraging the detectors from
 > cve-bin-tool[0].
@@ -63,17 +138,17 @@ On 04/07/2022 18:25:03+0200, Johannes Schilling via lists.yoctoproject.org wrote
 > comment of the class, and inherit image-without-static-linkage in your
 > image recipe.
 > 
-> [0] https://github.com/intel/cve-bin-tool/tree/main/cve_bin_tool/checkers
+> [0] https://urldefense.proofpoint.com/v2/url?u=https-3A__github.com_intel_cve-2Dbin-2Dtool_tree_main_cve-5Fbin-5Ftool_checkers&d=DwIFAg&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Hh9S5cawTgVqdeYOsBqc8rVaNr9ZaBpIWiDZ_AmMvLe1nDPvairY_aW0wkexnXFC&s=9KPe08w-rv38bJzJx3MOSvKRgtdKbTkKVUTuKQhTIZk&e=
 > ---
->  classes/image-without-static-linkage.bbclass  |  65 +++++++++
->  .../python/python3-packaging_%.bbappend       |   1 +
->  .../cve-bin-tool/cve-bin-tool-native.bb       |  34 +++++
->  .../files/cve-bin-tool-static-linkage-checker | 126 ++++++++++++++++++
->  4 files changed, 226 insertions(+)
->  create mode 100644 classes/image-without-static-linkage.bbclass
->  create mode 100644 recipes-devtools/python/python3-packaging_%.bbappend
->  create mode 100644 recipes-security/cve-bin-tool/cve-bin-tool-native.bb
->  create mode 100644 recipes-security/cve-bin-tool/files/cve-bin-tool-static-linkage-checker
+>   classes/image-without-static-linkage.bbclass  |  65 +++++++++
+>   .../python/python3-packaging_%.bbappend       |   1 +
+>   .../cve-bin-tool/cve-bin-tool-native.bb       |  34 +++++
+>   .../files/cve-bin-tool-static-linkage-checker | 126 ++++++++++++++++++
+>   4 files changed, 226 insertions(+)
+>   create mode 100644 classes/image-without-static-linkage.bbclass
+>   create mode 100644 recipes-devtools/python/python3-packaging_%.bbappend
+>   create mode 100644 recipes-security/cve-bin-tool/cve-bin-tool-native.bb
+>   create mode 100644 recipes-security/cve-bin-tool/files/cve-bin-tool-static-linkage-checker
 > 
 > diff --git a/classes/image-without-static-linkage.bbclass b/classes/image-without-static-linkage.bbclass
 > new file mode 100644
@@ -92,7 +167,7 @@ On 04/07/2022 18:25:03+0200, Johannes Schilling via lists.yoctoproject.org wrote
 > +# modules = [
 > +#   # list of checker module names of cve-bin-tool checkers lib to
 > +#   # enable, i.e. file names in the cve_bin_tool/checkers subfolder.
-> +#   # https://github.com/intel/cve-bin-tool/tree/main/cve_bin_tool/checkers
+> +#   # https://urldefense.proofpoint.com/v2/url?u=https-3A__github.com_intel_cve-2Dbin-2Dtool_tree_main_cve-5Fbin-5Ftool_checkers&d=DwIFAg&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Hh9S5cawTgVqdeYOsBqc8rVaNr9ZaBpIWiDZ_AmMvLe1nDPvairY_aW0wkexnXFC&s=9KPe08w-rv38bJzJx3MOSvKRgtdKbTkKVUTuKQhTIZk&e=
 > +#   "librsvg",
 > +#   "zlib",
 > +# ]
@@ -145,14 +220,18 @@ On 04/07/2022 18:25:03+0200, Johannes Schilling via lists.yoctoproject.org wrote
 > +            msg += "\n{}: {}".format(violator, violations)
 > +
 > +        raise ImageQAFailed(msg, image_check_static_linkage)
-> +}
-> diff --git a/recipes-devtools/python/python3-packaging_%.bbappend b/recipes-devtools/python/python3-packaging_%.bbappend
+> +} > diff --git a/recipes-devtools/python/python3-packaging_%.bbappend 
+b/recipes-devtools/python/python3-packaging_%.bbappend
 > new file mode 100644
 > index 0000000..d6f5869
 > --- /dev/null
 > +++ b/recipes-devtools/python/python3-packaging_%.bbappend
 > @@ -0,0 +1 @@
 > +BBCLASSEXTEND += "native"
+
+I would say to put this change directly in python3-packaging recipe, no 
+need for a bbappend.
+
 > diff --git a/recipes-security/cve-bin-tool/cve-bin-tool-native.bb b/recipes-security/cve-bin-tool/cve-bin-tool-native.bb
 > new file mode 100644
 > index 0000000..3efbdf7
@@ -160,7 +239,7 @@ On 04/07/2022 18:25:03+0200, Johannes Schilling via lists.yoctoproject.org wrote
 > +++ b/recipes-security/cve-bin-tool/cve-bin-tool-native.bb
 > @@ -0,0 +1,34 @@
 > +SUMMARY = "Scanner for statically linked library copies"
-> +HOMEPAGE = "https://github.com/intel/cve-bin-tool"
+> +HOMEPAGE = "https://urldefense.proofpoint.com/v2/url?u=https-3A__github.com_intel_cve-2Dbin-2Dtool&d=DwIFAg&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Hh9S5cawTgVqdeYOsBqc8rVaNr9ZaBpIWiDZ_AmMvLe1nDPvairY_aW0wkexnXFC&s=EeXrVAokCJc_mQJv65wsyoKKTcNPVZNUJoMzfnfECxg&e= "
 > +
 > +LICENSE = "GPL-3.0"
 > +LIC_FILES_CHKSUM = "file://LICENSE.md;md5=97a733ff40c50b4bfc74471e1f6ca88b"
@@ -169,7 +248,7 @@ On 04/07/2022 18:25:03+0200, Johannes Schilling via lists.yoctoproject.org wrote
 > +
 > +
 > +SRC_URI = "\
-> +    https://github.com/intel/cve-bin-tool/archive/refs/tags/v${VERSION}.tar.gz \
+> +    https://urldefense.proofpoint.com/v2/url?u=https-3A__github.com_intel_cve-2Dbin-2Dtool_archive_refs_tags_v-24-257BVERSION-257D.tar.gz&d=DwIFAg&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Hh9S5cawTgVqdeYOsBqc8rVaNr9ZaBpIWiDZ_AmMvLe1nDPvairY_aW0wkexnXFC&s=Zsl7OBDrfnYUlSJUhoyVM9PfYwURRjvVRUVBqfi3hFM&e=  \
 > +    file://cve-bin-tool-static-linkage-checker \
 > +"
 > +
@@ -181,7 +260,15 @@ On 04/07/2022 18:25:03+0200, Johannes Schilling via lists.yoctoproject.org wrote
 > +S = "${WORKDIR}/cve-bin-tool-3.1"
 > +inherit setuptools3
 > +
+
+
+I guess you could have all inherit in the same line (and also, pretty 
+sure native class should be inherited last).
+
 > +RDEPENDS_${PN} = "\
+
+RDEPENDS:${PN}
+
 > +  python3-rich-native \
 > +  python3-packaging-native \
 > +"
@@ -191,9 +278,12 @@ On 04/07/2022 18:25:03+0200, Johannes Schilling via lists.yoctoproject.org wrote
 > +}
 > +FILES-${PN}:append = "${bindir}/cve-bin-tool-static-linkage-checker"
 > +
+
+FILES:${PN}:append (also why append and not a simple += ?)
+
 > +do_configure[noexec] = "1"
-> +do_compile[noexec] = "1"
-> diff --git a/recipes-security/cve-bin-tool/files/cve-bin-tool-static-linkage-checker b/recipes-security/cve-bin-tool/files/cve-bin-tool-static-linkage-checker
+> +do_compile[noexec] = "1" > diff --git 
+a/recipes-security/cve-bin-tool/files/cve-bin-tool-static-linkage-checker b/recipes-security/cve-bin-tool/files/cve-bin-tool-static-linkage-checker
 > new file mode 100644
 > index 0000000..7da1b3b
 > --- /dev/null
@@ -201,6 +291,9 @@ On 04/07/2022 18:25:03+0200, Johannes Schilling via lists.yoctoproject.org wrote
 > @@ -0,0 +1,126 @@
 > +#!/usr/bin/env python3
 > +
+
+We at least need SPDX license tag here.
+
 > +from importlib import import_module
 > +from pathlib import Path
 > +
@@ -209,6 +302,18 @@ On 04/07/2022 18:25:03+0200, Johannes Schilling via lists.yoctoproject.org wrote
 > +import subprocess
 > +import toml
 > +
+
+This isn't a core module (yet?) as far as I could tell, so you're 
+missing a DEPENDS/RDEPENDS on the python recipe/package that provides 
+this python module.
+
+On a side note, I'm not entirely sure we would like to maintain a 
+wrapper script specific to OE/Yocto in here. Is there any chance of 
+seeing this or some variant upstreamed to cve-bin-tool git repo instead?
+
+Cheers,
+Quentin
+
 > +
 > +def parse_args():
 > +    """
@@ -325,23 +430,15 @@ On 04/07/2022 18:25:03+0200, Johannes Schilling via lists.yoctoproject.org wrote
 > +    import sys
 > +
 > +    sys.exit(main())
-> -- 
-> 2.36.1
 > 
-
+> 
 > 
 > -=-=-=-=-=-=-=-=-=-=-=-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#57439): https://lists.yoctoproject.org/g/yocto/message/57439
-> Mute This Topic: https://lists.yoctoproject.org/mt/92168377/3617179
+> View/Reply Online (#57439): https://urldefense.proofpoint.com/v2/url?u=https-3A__lists.yoctoproject.org_g_yocto_message_57439&d=DwIFaQ&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Hh9S5cawTgVqdeYOsBqc8rVaNr9ZaBpIWiDZ_AmMvLe1nDPvairY_aW0wkexnXFC&s=fhF-Bp16IzErWKiC5cHDhco8Vr6qeAQvnku916eVePQ&e=
+> Mute This Topic: https://urldefense.proofpoint.com/v2/url?u=https-3A__lists.yoctoproject.org_mt_92168377_6293953&d=DwIFaQ&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Hh9S5cawTgVqdeYOsBqc8rVaNr9ZaBpIWiDZ_AmMvLe1nDPvairY_aW0wkexnXFC&s=PmhHmonOJoabS8hMDLxEC0Dmc-Qur5hup9eDZ1aVToY&e=
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alexandre.belloni@bootlin.com]
+> Unsubscribe: https://urldefense.proofpoint.com/v2/url?u=https-3A__lists.yoctoproject.org_g_yocto_unsub&d=DwIFaQ&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Hh9S5cawTgVqdeYOsBqc8rVaNr9ZaBpIWiDZ_AmMvLe1nDPvairY_aW0wkexnXFC&s=Humk2R0kxOZoVS6ajsOcTkv5OvG_MVwKpuC2PE_NXuM&e=  [quentin.schulz@theobroma-systems.com]
 > -=-=-=-=-=-=-=-=-=-=-=-
 > 
-
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
