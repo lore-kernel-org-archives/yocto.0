@@ -1,228 +1,347 @@
-Return-Path: <jay.shen.teoh@intel.com>
+Return-Path: <alexandre.belloni@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 95CC0CCA47B
-	for <webhook@archiver.kernel.org>; Tue,  5 Jul 2022 04:33:45 +0000 (UTC)
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by mx.groups.io with SMTP id smtpd.web08.80697.1656995619634247411
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D08FCC433EF
+	for <webhook@archiver.kernel.org>; Tue,  5 Jul 2022 08:05:46 +0000 (UTC)
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net
+ [217.70.183.193])
+ by mx.groups.io with SMTP id smtpd.web09.82132.1657008337936990252
  for <yocto@lists.yoctoproject.org>;
- Mon, 04 Jul 2022 21:33:40 -0700
+ Tue, 05 Jul 2022 01:05:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel
- header.b=hXDDCFW3;
- spf=pass (domain: intel.com, ip: 192.55.52.136,
- mailfrom: jay.shen.teoh@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1656995619; x=1688531619;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=937X/Oi36RvkWbzIdEl6lWwWQ18tXZKpwjLT5x7yTaQ=;
-  b=hXDDCFW3tMJGijbFjwzIBKAoJ6DD6oSXSshru550aTPEZ1kRsB9U5snC
-   LsnILWY+oXqv65quW1D+sgpfVLew61JdOaK3e4qFHgj7FFtk+jCWRs0kg
-   YtuR3APDwXu/iFawSqT1sXJkCvxPoWysG68fq6xHMh2it6ryc7/IaZyZU
-   FsCOf2m0B8gJAJX2wUWs39xj6ytZ0EvYuwXpJGWjdVpjRJPhVnhDaNXzN
-   q5n+s0ctXayndnMzrBixBFyY9qKp8x0bGg2qIldDDalRFYRagbY2sVHIs
-   DRJCbBXBnrA2Tqe2kb3aiApk23FBkMOZNz10siGPvnpS2r2mT/QUQs5/A
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10398"; a="263039685"
-X-IronPort-AV: E=Sophos;i="5.92,245,1650956400";
-   d="scan'208";a="263039685"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2022 21:33:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,245,1650956400";
-   d="scan'208";a="567445710"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
-  by orsmga006.jf.intel.com with ESMTP; 04 Jul 2022 21:33:38 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27; Mon, 4 Jul 2022 21:33:38 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.27 via Frontend Transport; Mon, 4 Jul 2022 21:33:38 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.44) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Mon, 4 Jul 2022 21:33:38 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gnnO5Sm8E/OAlDunwRL+kHll6ledLZkXog+v2HM0xw6dGK70BIUt22GO60eUe8lTlvRfh3n1ZFjG7KD/Phow88FvPbJ8W4Zb9lXQitO7yKNK+PotLRa3ZGC7O3EOofCgUKwkH7PaTiRauAMLJlpncRWdcvt51VqjxvkcoXjudaKINFk3WUZBs5c2N71b3DQ9JiACimoldzUBiDgv8ewQNlhR0Jxx8k9lgTleXRn6lljgRVPJkpWSvnAaWzEiDdCMDdMguYaTWF1YK0nv8tF8Mves5wZO6fhNWADnX97zdFjnJC4DSH2GQJA04mvJK/slBzBLQbanHIWMzh4DGJoh3g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0wzDEabDQf+SMlX57mXWgx0nitI4qm30vrw2knAy3Ps=;
- b=A1pg3n6jna38CseGlaTsB+W2Nr4FpznqO5vTBvbCXUiXcUiG04lzjWn91WVecuLJlAFmSkJNWcFrHF4MKyVWoyyvZzZekyq64cr6DHDE9D6H6ODzJm654hegRfXPkhEipfGH3cKIGOG8dDMldPGXg6FnY4gHvDLcKewceySej2Gadjt385SJP2ofBjE9Lew39qcvStDSWzq2GCMa/MEGLhT2HjbU8yYjXsHxoaoiT6QLeWd5tKft5/uuinrw/8GPCcB/3WOybwgckTUNzTKsLog9ma9fyLp9GLygjDCXM//uCTeWrNIoiTQI71jhQDKAtUmf8z4KN91/cnS1Rg8THA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM5PR1101MB2348.namprd11.prod.outlook.com (2603:10b6:3:a8::16)
- by BN7PR11MB2785.namprd11.prod.outlook.com (2603:10b6:406:ac::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.14; Tue, 5 Jul
- 2022 04:33:37 +0000
-Received: from DM5PR1101MB2348.namprd11.prod.outlook.com
- ([fe80::4d41:d985:2a5f:16ed]) by DM5PR1101MB2348.namprd11.prod.outlook.com
- ([fe80::4d41:d985:2a5f:16ed%5]) with mapi id 15.20.5395.021; Tue, 5 Jul 2022
- 04:33:36 +0000
-From: "Teoh, Jay Shen" <jay.shen.teoh@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>, OE-core
-	<openembedded-core@lists.openembedded.org>
-Subject: RE: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-4.0.2.rc1)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-4.0.2.rc1)
-Thread-Index: AQHYi64QWbA0Q4Xgk0+ukfJFDj2FoK1vOS4A
-Date: Tue, 5 Jul 2022 04:33:36 +0000
-Message-ID: 
- <DM5PR1101MB2348C8E6F154B3F5B4D5042BBB819@DM5PR1101MB2348.namprd11.prod.outlook.com>
-References: 
- <01010181af49cc59-7fa1b027-722d-4360-9ca4-4894f160087e-000000@us-west-2.amazonses.com>
-In-Reply-To: 
- <01010181af49cc59-7fa1b027-722d-4360-9ca4-4894f160087e-000000@us-west-2.amazonses.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.6.500.17
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 83101fd9-07af-4a30-8ff6-08da5e3f8719
-x-ms-traffictypediagnostic: BN7PR11MB2785:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- P04X3SDiuVU8qCLEn/CIZqQBShAOy6qdKGwy77+cNp7aWwt7w/QrUr31X9quBf7TgDiC6vmFZY9MDnzfM63BI/4VSFgfo2adubN52Q/A5ObugUDF15YDeiVRS0hAayqHgFMi/HJCqagg1Otm9D/EQg/kXFDVOEZgMVdxNE0w23Ngt9f0y3by8LlH8Ltinxd4ONt0fbnus+Xm7wL3HXCYpjPR+aR36rJ9G1nkbg+LoKhdkceU4w+GmwC70MuXOBZedz8R5mlg67m4IXOo1xitpqbKbwRRenS8gkeywkzIeZ2l44qZNNqUz7FAW7emoY7nXb/NTYSPxlrfww6vL/C6rcuaSRuRU2jmoUqtsOsCgb+Xnh0foubNmAF63VTOlaL1Yiem6DUkTtjWSO3aIfs5I0AkkQb6kxe1IeOW5Gmw0CV36KOo3t73KGQexpIJz7KuIsR4FTlNml6YXl+afgoQ9mFFer3Pupn07XF1Q8Rq0o7+49TC+EuEuxSE6QjP76x0IPU8WLkzcQ8pfYsQdjKIvnMCvE20LBObo1RJweiz2G9k/zXjBF3R8TyQoJklDEvIBwnE1PSISRW98V64PM99l1SFe8kH7bB52yAZdDGWebMIPRBWL0sNb0/m8FfzAYfL3JdUH1mQhvBPQcVlNeDVoH/bM9EMjSKzcZ5sPG87os/8AbgLAaFkswx7P6MnqQ3DDzsNEmabYhpJoaUabvKk0JCJ+WVRPlDtEv8FF/gBDz/s7uH3QgrgOVV5uAFPzklX64dVQLcyyWmui7uLFjROFJiv20AMapkflSNJpcSeZTp4lkm2ZYi7KEiKNuvIOsKXIQeAdqffG9MquvWgfXkhvkHsJ7auzLliyaumKZYaAyuEen3OidmjCcOzGfFEnsxP
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR1101MB2348.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(366004)(376002)(39860400002)(346002)(136003)(396003)(966005)(38070700005)(66556008)(66946007)(66446008)(41300700001)(110136005)(52536014)(71200400001)(478600001)(82960400001)(86362001)(76116006)(8676002)(122000001)(316002)(66476007)(64756008)(186003)(5660300002)(53546011)(15650500001)(6506007)(83380400001)(26005)(38100700002)(9686003)(8936002)(55016003)(33656002)(55236004)(7696005)(2906002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?GW/hJ3077YHRyxIYM6GvroFadTD1uocY31WLUO8mnv0T12VZ2Ycx1Idj4GIG?=
- =?us-ascii?Q?riTJ1NiJo9l0yl9wk3LMDUj6cfovsTxkwZ03zFbcdArKChFtmOIIOEnFOwBg?=
- =?us-ascii?Q?fjkOiLgSED/5Z9TmBLZD6prscpL0Nby7ivNYJhZ8NxkM3XHgnlLnJsa0XnoT?=
- =?us-ascii?Q?BEYWzVlTLpn5m/Cd9imY2ZMfZwGKG/jIvPEpb6uSQbKGegGmoKF0ZaR2d0gd?=
- =?us-ascii?Q?bGz42dJz41/+o1Q/RNtOFcR3gBCiFva1GUhvgMZNq2W2zYhimhg8l0sF8cet?=
- =?us-ascii?Q?QX/HHokSmXCTNuhr46SDlwT6TiNFUtLU558vZtNYo/jaxB2LO5qQ1wB7vP1H?=
- =?us-ascii?Q?3+CXfD6P/NitWEGTOAC/AosllwqBjytgHX63W6Qa6jt31gs1byFKtjSaX0BM?=
- =?us-ascii?Q?DMPjEzRwnd7j2Al364kwd6EuUfZusWT7b/YxqcJFFmcbyxVSEv0aFVZNNXbo?=
- =?us-ascii?Q?quqmDRAycImaoAYd3TA6OsQvWWapef8r7kpKMsXHSbRBm+i+U6D4tZuLq8Hj?=
- =?us-ascii?Q?Zq3QfOStcIUlXB6Cv30uB5vJifGNRK/eBF6KrkzU8DK6HoRCO1idwM2V7vxV?=
- =?us-ascii?Q?WApOrqWaT5fUNT6Pps6oQxiXERxSdMqDJR/Fry3f7jzW6/BXnAO4SiRR5PKY?=
- =?us-ascii?Q?UtPwJx7H/C0x1qrbwE02R/70lUisTJv3/koYcywpN0Sxl91gVampYqL8GVKv?=
- =?us-ascii?Q?7NyMzLLQLFfxQUI72L2BdH8mVtfGCE1/G2gAOh/sQW0F7WmrJ0lIsQjmOX5L?=
- =?us-ascii?Q?yj+Nyc/mN0O4bF+nNHYgUcyuTUyDXv8yLS2IpH25UqlhLQq4Il1IRFuPCue4?=
- =?us-ascii?Q?PC+Ppr3bMg5evLrrC53FF4oV8Pi2MfFvpUA2ZMHnN93nCJFx3Ry1IWn+6e9x?=
- =?us-ascii?Q?SGR/a2XvUNi5dVaHDhZnrcbDD7mLlnP2ALN9rsC9wZzCGsGytxwpkkWqmyMw?=
- =?us-ascii?Q?PGHHXLBfTooJIMiTu2xuC+shW0MJuQoQSKnXu7OiVYZcVZbKc9KliF+aBCHc?=
- =?us-ascii?Q?XhCsElxb/OtEcrIQcjpWFgu/eTQYYz1K9XTBaJDH4HcI6mFvmvcOFmdFnf0B?=
- =?us-ascii?Q?8IPCsri2qIxQkqJ77Uu8YBndJ8OYXhfwcJmHo5IBFbFcvTusL1RcoxGSkalF?=
- =?us-ascii?Q?CkaQxjkO5zoSbFBp3dTTb5bU+X0MkyLRz5Z1oYVnkBaX0s8KDEMYwuBAsfJQ?=
- =?us-ascii?Q?N7eqCFhOUQJHLZBgTjfCX9MomrB7rU9xlTYTvFMsf2eit9A2Dqc5MJj0mZAb?=
- =?us-ascii?Q?tPhWnNyHkV3nV1epezIF+EGbcI5NxjCZmbsSk5s/BNZV9I4MAW9XQFHf89qu?=
- =?us-ascii?Q?Tiwqs9Kw+FVchXjdZWaZWpE4I7u+GZp1H9Pn6N1Veng5913FAtDHow4npJ78?=
- =?us-ascii?Q?7Ljjc9QKryX0rTidZtmFEYpWWy0FyASLUCjMGGXjKfVUTpqk2u5ZBAhdoY6u?=
- =?us-ascii?Q?0Xs10FwVTogcMyVojxXbWAh543a/CZ2f3T4V7Iq0eNHSq7TWxgL1LwU4/Pqn?=
- =?us-ascii?Q?YAZ6fwfk9GEKVRHFKAgcFkX7dldfwf4gqpLM8tVV6fWqIwpj60J+/l/gKXRQ?=
- =?us-ascii?Q?5xPQty23CgPn0cOBJYYkgw9WW3UGp56OUYyKjqYC?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=Q5M0nLR8;
+ spf=pass (domain: bootlin.com, ip: 217.70.183.193,
+ mailfrom: alexandre.belloni@bootlin.com)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+	by mail.gandi.net (Postfix) with ESMTPSA id 2712B24001B;
+	Tue,  5 Jul 2022 08:05:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1657008336;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=kQeQeRXRstf3BWIioT3VqboMFSQqIye1j+ZWVKhj+vE=;
+	b=Q5M0nLR8s/Boj8zI4SJ5CSGnrPPptlh94hg3O3wKDyPyDcKDGQp7gTFcCq26kh+DPSArj3
+	Hll0RZ49sqloY6cX2u5NYrfRXmQU1Pp2gBcSzF63HzkL8OY4ybIJ/XOevBr3RrxWkuje06
+	mjZxfjEswaWB2jRTmaRCNsro+aV37kr/JwUaoKEO2FUdzCDeZeHJjb59+IOW6XL6cCQYyY
+	x0tLamThyxMRUQXoHLDnE5e+xp0+hU8q2cpI0pgSFINuo5uaOvEXexNQXfQCy4n6UBDjsK
+	+xGPwcQene1l1p/zoazvphZJvxSQmqaRSOFcQR7c4zDPqOgxr6P9TebeEJgxWA==
+Date: Tue, 5 Jul 2022 10:05:34 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: johannes.schilling@methodpark.de
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] [PATCH 1/2] image-without-static-linkage: add class
+Message-ID: <YsPwzobbNQZ7MWYo@mail.local>
+References: <20220704162504.1488894-1-johannes.schilling@methodpark.de>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: 
- DM5PR1101MB2348.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 83101fd9-07af-4a30-8ff6-08da5e3f8719
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jul 2022 04:33:36.8271
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- bBb2ufjc2QicBSdYZKycAwIx0DVBqqkwzxu5Or1By+5t9LbMv5gRFRKBtj44IqMTZyDtEZIMWNppmY3kUEbJcQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR11MB2785
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220704162504.1488894-1-johannes.schilling@methodpark.de>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 05 Jul 2022 04:33:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57447
+ <yocto@lists.yoctoproject.org>; Tue, 05 Jul 2022 08:05:46 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57448
 
-Hi All,
+Hello,
 
-QA for yocto-4.0.2.rc1 is completed. This is the full report for this relea=
-se: =20
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
-h=3Dintel-yocto-testresults
+Both patches are missing your SoB, please add those. Also, It would be
+great if you could add a From: as this makes it easier to get your patch
+from the list. This should do the trick:
 
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects.
+git config --global sendemail.from email@provider
 
-No new issue found.=20
+Thanks!
 
-Thanks,
-Jay
+On 04/07/2022 18:25:03+0200, Johannes Schilling via lists.yoctoproject.org wrote:
+> This class provides a new image QA check that tries to detect static
+> linkage of a set of well-known libraries, leveraging the detectors from
+> cve-bin-tool[0].
+> 
+> To use in your project, provide a config file as described in the header
+> comment of the class, and inherit image-without-static-linkage in your
+> image recipe.
+> 
+> [0] https://github.com/intel/cve-bin-tool/tree/main/cve_bin_tool/checkers
+> ---
+>  classes/image-without-static-linkage.bbclass  |  65 +++++++++
+>  .../python/python3-packaging_%.bbappend       |   1 +
+>  .../cve-bin-tool/cve-bin-tool-native.bb       |  34 +++++
+>  .../files/cve-bin-tool-static-linkage-checker | 126 ++++++++++++++++++
+>  4 files changed, 226 insertions(+)
+>  create mode 100644 classes/image-without-static-linkage.bbclass
+>  create mode 100644 recipes-devtools/python/python3-packaging_%.bbappend
+>  create mode 100644 recipes-security/cve-bin-tool/cve-bin-tool-native.bb
+>  create mode 100644 recipes-security/cve-bin-tool/files/cve-bin-tool-static-linkage-checker
+> 
+> diff --git a/classes/image-without-static-linkage.bbclass b/classes/image-without-static-linkage.bbclass
+> new file mode 100644
+> index 0000000..c6f2013
+> --- /dev/null
+> +++ b/classes/image-without-static-linkage.bbclass
+> @@ -0,0 +1,65 @@
+> +# Provide a QA check for statically linked copies of libraries.
+> +#
+> +# You need to provide a config file in TOML format and point the
+> +# variable `STATIC_LINKAGE_CHECK_CONFIG_FILE` to it.
+> +#
+> +# The file format is as follows
+> +# ```
+> +# [checkers]
+> +# modules = [
+> +#   # list of checker module names of cve-bin-tool checkers lib to
+> +#   # enable, i.e. file names in the cve_bin_tool/checkers subfolder.
+> +#   # https://github.com/intel/cve-bin-tool/tree/main/cve_bin_tool/checkers
+> +#   "librsvg",
+> +#   "zlib",
+> +# ]
+> +#
+> +# [exceptions]
+> +# ignore_dirs = [
+> +#   # list of directories, everything under these is completely ignored
+> +#   "/var/lib/opkg",
+> +# ]
+> +#
+> +# [exceptions.ignore_checks]
+> +#   # for each binary path, a list of checkers from the global list to
+> +#   # ignore for this binary (allowlist)
+> +#   "/bin/ary/name" = [ "zlib" ],
+> +# ```
+> +
+> +IMAGE_QA_COMMANDS += "image_check_static_linkage"
+> +
+> +DEPENDS += "cve-bin-tool-native"
+> +
+> +inherit python3native
+> +
+> +
+> +STATIC_LINKAGE_CUSTOM_ERROR_MESSAGE ??= ""
+> +
+> +python image_check_static_linkage() {
+> +    import json
+> +    from pathlib import Path
+> +    import subprocess
+> +
+> +    from oe.utils import ImageQAFailed
+> +
+> +    check_result = subprocess.check_output(["cve-bin-tool-static-linkage-checker",
+> +        "--config", d.getVar("STATIC_LINKAGE_CHECK_CONFIG_FILE"),
+> +        d.getVar("IMAGE_ROOTFS"),
+> +    ])
+> +    check_result = json.loads(check_result)
+> +
+> +    deploy_dir = Path(d.getVar("DEPLOYDIR"))
+> +    deploy_dir.mkdir(parents=True, exist_ok=True)
+> +    image_basename = d.getVar("IMAGE_BASENAME")
+> +    stats_filename = "static_linkage_stats-" + image_basename + ".json"
+> +    with open(deploy_dir / stats_filename, "w") as stats_out:
+> +        json.dump(check_result, stats_out)
+> +
+> +    binaries_with_violations = {k: v for k, v in check_result.items() if v}
+> +    if binaries_with_violations:
+> +        msg = "Static linkage check: found {} violations".format(len(binaries_with_violations))
+> +        for violator, violations in binaries_with_violations.items():
+> +            msg += "\n{}: {}".format(violator, violations)
+> +
+> +        raise ImageQAFailed(msg, image_check_static_linkage)
+> +}
+> diff --git a/recipes-devtools/python/python3-packaging_%.bbappend b/recipes-devtools/python/python3-packaging_%.bbappend
+> new file mode 100644
+> index 0000000..d6f5869
+> --- /dev/null
+> +++ b/recipes-devtools/python/python3-packaging_%.bbappend
+> @@ -0,0 +1 @@
+> +BBCLASSEXTEND += "native"
+> diff --git a/recipes-security/cve-bin-tool/cve-bin-tool-native.bb b/recipes-security/cve-bin-tool/cve-bin-tool-native.bb
+> new file mode 100644
+> index 0000000..3efbdf7
+> --- /dev/null
+> +++ b/recipes-security/cve-bin-tool/cve-bin-tool-native.bb
+> @@ -0,0 +1,34 @@
+> +SUMMARY = "Scanner for statically linked library copies"
+> +HOMEPAGE = "https://github.com/intel/cve-bin-tool"
+> +
+> +LICENSE = "GPL-3.0"
+> +LIC_FILES_CHKSUM = "file://LICENSE.md;md5=97a733ff40c50b4bfc74471e1f6ca88b"
+> +
+> +VERSION = "3.1"
+> +
+> +
+> +SRC_URI = "\
+> +    https://github.com/intel/cve-bin-tool/archive/refs/tags/v${VERSION}.tar.gz \
+> +    file://cve-bin-tool-static-linkage-checker \
+> +"
+> +
+> +SRC_URI[md5sum] = "af6958f8be7f7ce0d2b5ddffa34a1aee"
+> +SRC_URI[sha256sum] = "c4faaa401a2605a0d3f3c947deaf01cb56b4da927bfc29b5e959cde243bf5daf"
+> +
+> +inherit python3native native
+> +
+> +S = "${WORKDIR}/cve-bin-tool-3.1"
+> +inherit setuptools3
+> +
+> +RDEPENDS_${PN} = "\
+> +  python3-rich-native \
+> +  python3-packaging-native \
+> +"
+> +
+> +do_install:append() {
+> +  install -m 0755 "${WORKDIR}/cve-bin-tool-static-linkage-checker" "${D}${bindir}"
+> +}
+> +FILES-${PN}:append = "${bindir}/cve-bin-tool-static-linkage-checker"
+> +
+> +do_configure[noexec] = "1"
+> +do_compile[noexec] = "1"
+> diff --git a/recipes-security/cve-bin-tool/files/cve-bin-tool-static-linkage-checker b/recipes-security/cve-bin-tool/files/cve-bin-tool-static-linkage-checker
+> new file mode 100644
+> index 0000000..7da1b3b
+> --- /dev/null
+> +++ b/recipes-security/cve-bin-tool/files/cve-bin-tool-static-linkage-checker
+> @@ -0,0 +1,126 @@
+> +#!/usr/bin/env python3
+> +
+> +from importlib import import_module
+> +from pathlib import Path
+> +
+> +import argparse
+> +import json
+> +import subprocess
+> +import toml
+> +
+> +
+> +def parse_args():
+> +    """
+> +    Parse command line arguments.
+> +    """
+> +    parser = argparse.ArgumentParser(
+> +        prog=sys.argv[0],
+> +        description="Checker for staticly linked copies of libraries",
+> +    )
+> +
+> +    parser.add_argument(
+> +        "directory",
+> +        help="Path to the directory to scan",
+> +    )
+> +
+> +    parser.add_argument(
+> +        "--config",
+> +        help="Path to the config file",
+> +        required=True,
+> +    )
+> +
+> +    return parser.parse_args()
+> +
+> +
+> +def list_input_files(rootdir):
+> +    """
+> +    Iterate over the input rootfs and find any file that is an executable ELF file, yielding their
+> +    names for the next step to iterate over.
+> +    """
+> +    import sys
+> +    with subprocess.Popen(
+> +        ["find", rootdir, "-type", "f", "-executable", "-printf", "/%P\\n"],
+> +        stdout=subprocess.PIPE,
+> +    ) as find:
+> +        for line in find.stdout:
+> +            executable_filename = line.decode().strip()
+> +            file_out = subprocess.check_output(["file", rootdir + executable_filename]).decode()
+> +            if "ELF " not in file_out:
+> +                continue
+> +
+> +            yield executable_filename
+> +
+> +
+> +# PurePath.is_relative_to was only added in python 3.9
+> +def _path_is_relative_to(subdir, base):
+> +    try:
+> +        subdir.relative_to(base)
+> +        return True
+> +    except ValueError:
+> +        return False
+> +
+> +
+> +def check_file(root_dir, filename, checkers, exceptions):
+> +    """
+> +    Check an executable file for traces of static linkage using all the checkers specified and
+> +    applying all exceptions specified.
+> +    """
+> +    full_filepath = root_dir + filename
+> +    strings_out = subprocess.check_output(["strings", full_filepath]).decode()
+> +
+> +    filepath = Path(filename)
+> +    if any(
+> +        _path_is_relative_to(Path(ex), filepath) for ex in exceptions["ignore_dirs"]
+> +    ):
+> +        return []
+> +
+> +    found_lib_versions = []
+> +    for checker_name, checker in checkers.items():
+> +        if filename in exceptions["ignore_checks"]:
+> +            if checker_name in exceptions["ignore_checks"][filename]:
+> +                continue
+> +
+> +        vi = checker().get_version(strings_out, filename)
+> +        if vi and vi["is_or_contains"] == "contains" and vi["version"] != "UNKNOWN":
+> +            found_lib_versions.append({checker_name: vi["version"]})
+> +
+> +    return found_lib_versions
+> +
+> +
+> +def _load_checker_class(mod_name):
+> +    """
+> +    Load a checker class given the module name.
+> +
+> +    The class and module name can be generated from each other (the setup.py file for cve-bin-tool
+> +    does the same), e.g. module `libjpeg_turbo` contains checker class `LibjpegTurboChecker`.
+> +    """
+> +    class_name = "".join(mod_name.replace("_", " ").title().split()) + "Checker"
+> +
+> +    mod = import_module(f"cve_bin_tool.checkers.{mod_name}")
+> +    return getattr(mod, class_name)
+> +
+> +
+> +def main():
+> +    """
+> +    Main entry point.
+> +    """
+> +    args = parse_args()
+> +    config = toml.load(args.config)
+> +
+> +    all_checkers = {
+> +        modname: _load_checker_class(modname)
+> +        for modname in config["checkers"]["modules"]
+> +    }
+> +
+> +    violations = {
+> +        f: check_file(args.directory, f, all_checkers, config["exceptions"])
+> +        for f in list_input_files(args.directory)
+> +    }
+> +
+> +    print(json.dumps(violations))
+> +
+> +
+> +if __name__ == "__main__":
+> +    import sys
+> +
+> +    sys.exit(main())
+> -- 
+> 2.36.1
+> 
 
-> -----Original Message-----
-> From: qa-build-notification@lists.yoctoproject.org <qa-build-
-> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
-> Sent: Wednesday, 29 June, 2022 7:48 PM
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [qa-build-notification] QA notification for completed autobuilde=
-r
-> build (yocto-4.0.2.rc1)
->=20
->=20
-> A build flagged for QA (yocto-4.0.2.rc1) was completed on the autobuilder
-> and is available at:
->=20
->=20
->     https://autobuilder.yocto.io/pub/releases/yocto-4.0.2.rc1
->=20
->=20
-> Build hash information:
->=20
-> bitbake: b8fd6f5d9959d27176ea016c249cf6d35ac8ba03
-> meta-agl: c4cc627f4d65da8c3b0860c791d9b9687ba8f5d6
-> meta-arm: af928569b421431347c84f5941cee7aaa9f0ac74
-> meta-aws: 8b8eec4bde3b1ff00783503bd77b3a5fb7d904ec
-> meta-gplv2: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
-> meta-intel: ef3aa3064b9bbfa19f600eafb1e7d3473f62af74
-> meta-mingw: a90614a6498c3345704e9611f2842eb933dc51c1
-> meta-openembedded: fcc7d7eae82be4c180f2e8fa3db90a8ab3be07b7
-> meta-virtualization: 320f44c6e9af463a85b58e0d87ca70273c6b87f6
-> oecore: eea52e0c3d24c79464f4afdbc3c397e1cb982231
-> poky: a5ea426b1da472fc8549459fff3c1b8c6e02f4b5
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
->=20
->=20
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> 
+> -=-=-=-=-=-=-=-=-=-=-=-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#159): https://lists.yoctoproject.org/g/qa-build-
-> notification/message/159
-> Mute This Topic: https://lists.yoctoproject.org/mt/92063018/4899463
-> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-
-> notification/leave/10406805/4899463/715389995/xyzzy
-> [jay.shen.teoh@intel.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->=20
+> View/Reply Online (#57439): https://lists.yoctoproject.org/g/yocto/message/57439
+> Mute This Topic: https://lists.yoctoproject.org/mt/92168377/3617179
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alexandre.belloni@bootlin.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+> 
 
+
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
