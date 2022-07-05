@@ -2,25 +2,25 @@ Return-Path: <quentin.schulz@theobroma-systems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DCA2AC43334
-	for <webhook@archiver.kernel.org>; Tue,  5 Jul 2022 08:47:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A6743C43334
+	for <webhook@archiver.kernel.org>; Tue,  5 Jul 2022 11:21:27 +0000 (UTC)
 Received: from EUR05-VI1-obe.outbound.protection.outlook.com
- (EUR05-VI1-obe.outbound.protection.outlook.com [40.107.21.69])
- by mx.groups.io with SMTP id smtpd.web09.82374.1657010843956496564
+ (EUR05-VI1-obe.outbound.protection.outlook.com [40.107.21.52])
+ by mx.groups.io with SMTP id smtpd.web12.82911.1657020079710229110
  for <yocto@lists.yoctoproject.org>;
- Tue, 05 Jul 2022 01:47:24 -0700
+ Tue, 05 Jul 2022 04:21:20 -0700
 Authentication-Results: mx.groups.io;
  dkim=pass header.i=@cherrycloud.onmicrosoft.com
- header.s=selector2-cherrycloud-onmicrosoft-com header.b=P8u5BCgN;
- spf=pass (domain: theobroma-systems.com, ip: 40.107.21.69,
+ header.s=selector2-cherrycloud-onmicrosoft-com header.b=TP+s0NoQ;
+ spf=pass (domain: theobroma-systems.com, ip: 40.107.21.52,
  mailfrom: quentin.schulz@theobroma-systems.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YnTGDdx5ARmyMhVIfJhdulcXv0mpdNzyDv2xUNQoBFdGnDQPJOoebhyrEXWOlpdo6s23vcWPn3nxNQ1QSd15w0VnSqYO9XkyUDaSKvogPNUJXE3jHBfk19FwWen0puY7VlLxUQ6PFRDC4QbVUsGimlgWR3TNa6y9Ql2rCxsghiZ39nvYPGK7VHV0gMaWh5vkhsqCQlfAAQND3V2Q3NIiTtboochjgDUkhqmQvMBsKpZRCd/Svv7R7gcO0q8KxFzTOuIeabWhCi/ykUqiuDDylH9+3Rj9VX2uk0lKsv0T0LIx+2KqA5H/GA5N7zpwwRfbRF0wVlboYUQw1NfUODAWdw==
+ b=ZL8mfU9njXk1G9796cZL20OsyCs9X18S5pEmguP/1XwesKA4KsUs2YI6tBMoweSTDlRTI9KOWnP3n1vfAIcXsH8tK59kgFNxdmqx4L+7Ji8VwLWdlyUTnis7ThYBALg4v+zLGl5UpUdLrHv9vIppVv9aR7JOfh2qpcImt6FVc32hOMVaDvEEn+VX7yUwXpjZLlwU9kDptQIU1EmdAXpKidUu8fP9lk5imaBfrOaIFj2P1qJ606sv42UcI5mn8VIG73a4t4SPeSnBkxtRzRwTvAcwyE8r1GQSA4e+Rg3xf7UscrTE1+mHbAi2xCxi/ArWYCkeuNIxq4EegLMB66/zCw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XdWM7MHt1KAB2dveayXbxjn7ZhNYN4om2kfnmm1sjZo=;
- b=oaWcFxoMyJzj+WsbnQmU+xJ5fgWJ46QgB1kzNT5AOI+Pxv3/BZsMbEWU0z5WRq1lFAIevjrDXmf3Gud+rKSRoVzDVGK3mdWz+OIXCq081BS2FttQkFgeM1beajUQv4gGeZsoS1LCgmrcyUIbxuuMhY+yQjKJeZVNaBtgOjCbryzBO/yBcI+llrXfFvljv0kMfxMLaltnXdxHZ35O3jot0ZavnsqrpgTGN1tpxvLTfUFq4zoJnW7gz4i3LsM66OwXaQeL4H+rUlNb3IyBMDpKcbF1jBnFYqWLgy9gZ8NwzqvRXqhhYyIslTr5mUM6GUlzQabWdg+LFuEsqvV/KZRhaA==
+ bh=t6aXUDPEyQP6T0tVrVLMfUqa7VCr0jOwLKlxcjKs8g4=;
+ b=juhdBxEti9wbaWbINSoV3GymMHbHbv6JcdjxW6miXWQSFnFVEoNgW6X4WPAYV5ZH60WwjBQwAu3sMMPNEZNprtdM/tR0p4tMzpXUVH0VSJ0Bkxx2YeCL7pVeRg8D5nXT7PIfoG14LjkOdGtEtIAiTmGjDooxB3fNY7kRUkzFnauU1tuOEkdcKvWdP+FU8KjiMSACywnO1ttW8i2UNLnK6F5Abc5JEl0otQQR8IfbWMDUeNkJ7rYTmHDPdJ3IPvBsxBctdoyy07wy7DqZV3XGbZCnaLU3o1ZAgRaR4tYc+1LyNgKl3zcA5kIC+tToSYvV7o2tNEIG+hQLMwKt5IxRQQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
  header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
@@ -28,417 +28,205 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=cherrycloud.onmicrosoft.com; s=selector2-cherrycloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XdWM7MHt1KAB2dveayXbxjn7ZhNYN4om2kfnmm1sjZo=;
- b=P8u5BCgNvzH7NmQuX4/Hvg+fL2oFTW7F5ACwK+XsuY6Tf3Rvw6YY0vbJNrJMKiitGWKu0BHmFK9wlr/QCyLg0fWdjd4hbcqlSW4nFI4HcX2l1x4kVZw1r5r/COhNeQ2Csleb5X/jlGpCCqo0kw2E4gIuXZbI7C3ecmre5xNO1wY=
+ bh=t6aXUDPEyQP6T0tVrVLMfUqa7VCr0jOwLKlxcjKs8g4=;
+ b=TP+s0NoQfaLl1kQgVx9mjh+M0JbDJ1fFhiAaGMUKzYkgWBRvw1SBG3+be5rMwzkbFQk3wpbveiktx9/MILArMpn55C5cZWatCiyiSDoOcRLjeJL3if7l1+FBGD6pMVU9pjmvDXj/jmE0n8bL+ujhTA5YF3rolztSfDJKtAafsfI=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
 Received: from PA4PR04MB9367.eurprd04.prod.outlook.com (2603:10a6:102:2aa::7)
- by PAXPR04MB8144.eurprd04.prod.outlook.com (2603:10a6:102:1cc::13) with
+ by AM6PR04MB6229.eurprd04.prod.outlook.com (2603:10a6:20b:73::11) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.21; Tue, 5 Jul
- 2022 08:47:20 +0000
+ 2022 11:21:15 +0000
 Received: from PA4PR04MB9367.eurprd04.prod.outlook.com
  ([fe80::cc58:11a8:839f:895f]) by PA4PR04MB9367.eurprd04.prod.outlook.com
  ([fe80::cc58:11a8:839f:895f%7]) with mapi id 15.20.5395.017; Tue, 5 Jul 2022
- 08:47:20 +0000
-Message-ID: <1de0d9a5-726f-78e5-41b5-cc2338553765@theobroma-systems.com>
-Date: Tue, 5 Jul 2022 10:47:18 +0200
+ 11:21:14 +0000
+Message-ID: <0a485f9c-115d-7dad-74b7-f048b4daf4cc@theobroma-systems.com>
+Date: Tue, 5 Jul 2022 13:21:13 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [yocto] [PATCH 1/2] image-without-static-linkage: add class
+Subject: Re: [yocto] [PATCH yocto-autobuilder-helper] run-docs-build: allow
+ build warnings again
 Content-Language: en-US
-To: johannes.schilling@methodpark.de, yocto@lists.yoctoproject.org
-References: <20220704162504.1488894-1-johannes.schilling@methodpark.de>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>,
+ michael.opdenacker@bootlin.com, yocto@lists.yoctoproject.org
+References: <20220622153201.2734009-1-michael.opdenacker@bootlin.com>
+ <4828a5c0-59c1-ef5e-385f-1b563d3577ee@theobroma-systems.com>
+ <c8b5d42614eb1dc29c203c82abe96733b42fcf83.camel@linuxfoundation.org>
 From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-In-Reply-To: <20220704162504.1488894-1-johannes.schilling@methodpark.de>
+In-Reply-To: 
+ <c8b5d42614eb1dc29c203c82abe96733b42fcf83.camel@linuxfoundation.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AS8P251CA0010.EURP251.PROD.OUTLOOK.COM
- (2603:10a6:20b:2f2::8) To PA4PR04MB9367.eurprd04.prod.outlook.com
+X-ClientProxiedBy: FR0P281CA0106.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:a8::7) To PA4PR04MB9367.eurprd04.prod.outlook.com
  (2603:10a6:102:2aa::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8ef34467-3877-482a-b937-08da5e62f8cd
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8144:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5f67af47-d5f3-452d-9c25-08da5e78791d
+X-MS-TrafficTypeDiagnostic: AM6PR04MB6229:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	/AQm1+OWnanTqrjNlktRgYq0YiNjcUi+d918zPU7erSyi2BZa61+Mka0by2apl1U3dJW1TjJgZ8FXgwYlvP3TlrPsdml4naHafyw5+TCmdad74FDR6rtm1SkiE6zVMeefGvfXO9e31sF7AGOSvLPYrA2APDvW+j2Iag93WO8Xq0nGa5YAL5GQaCimAKyg2hJsvTP9Y3RWukt5Rgy54Ih+2HgkwJH9un4toVm8AISTyB1g5WCAFj99IVJb0nxCXY5f7skK0lz7cAhVap+hxkmYiIcfMN0ityu0UpQOelifSjwdJTvoqPaVqf5RQzfiSd/oBSphQ1RP6wm723z+JteUvP9zABk9FVjG4HlQDmfctWAkpclu4ai1vx+M0g95Ia+DtJ6nX84heutzh2/bkxwcOFKEzw2tGg1ao+6Wi40dhMu/V7L3CTHiH1MbKpdxuYL3uA3ZicLnJk1ORkkgbHFp0Jv3zphLiJSbROjm+3PytxddpthFmkN77uk1K66GYEAg3dysdWBATduXG/SNPW6D53m5tLO8TS+Ft8G5jzkgPndLO9ELZ5rVPl0CIkc5IKo1WOb7UZ1U6clhDIsl2LyUTlmQqCs2kiGgco1VU7MuPQmINe7hAhiFsvfWftS64EgNU9t/jl9lOsO6SJyBpIznHQBD7REXipvKdfSyHgFBOymWKgHmPr0AV7Jiuaoj/lZykBsKMcRcahaKFTLRKn5MJbp43ELcITgKyFqQoqCuIL+qMaA5WewVOHd7DINunyITPs+E5I9WHr63yC9bqtDbqsaGTuoCOypzbQALUgeyhsTSUYE1yuSapy52kTYpbEeIH1yM+4MjiDU0ySJv6ttggWOdm+TvFbJYeUcAyLfX6s=
+	LLG4mdtSYxbdMzgGChvrcIyr4sB3u2JUJ+Ils6X3uiJTCxQkhlR/RZ50VKmTJqm9yg8JKgmijgaC4qx/5lACiLgJkFnRtjNSo+qBpfoONXWFur1ErT2PkAv3UugdvUHFIFQXi7qnZhAaAlyhWMQWYuZt48uim7io7WWURYbxr5IW7GcT50t2ARbigOz+qnNbByRu2AfMyCDBtNISfGAIawf6rmtP3ugX3Wc1KOZmp4EwRiYB3w12skIqUFNwpm889SPPLywJgCJ7hTeabZTJ0ck5O9lgDzwcmtSm10Gbp7okeRSm1Gkdph2ja4Fm91xHsZjwHeqKc9j/pH4tCUcIjYCmob+rQI2UoNvPt7HUcwqNj7hoZuXUV/pC0O8EmGGYCTRQKmqaTXF2Ug9LyZBA12W/72mFoj5fA65teqZ6ErSUjuxqMsfJADeMe/6IOdJDaC6cYxzAmIYbnHY971/PJu3eIZ+evfNBSvk0dCV/ou51zF5Xsysz7a80XbEDKV9SXtFlA7XJaTm9dbTHaN/DlhS2vQXoEQO4viYFjDX3gJgA68s8UgvNECFcy0+hpgbhrLqjy9BbRtHYeNWeq9qt4nAHHrswevuVIDPZDPeEjjPAndd4+s5u7DFrnwYB8nI/aPZYY49fXXH6UEtU8EcHQmB7Doz4cW6G/O/qBmZSRtIhLlcy0YbkNT/r1BcPgyEfAcFMMSiYWMqKx/klboziBqN9qH+aLYRJauiGVvsWw2o3FLCxw3lJL6Oj3v3LyTWXyiYDhP6IH50vCZA2OIFA92nl7NtPMZW9SzMYhflZVD2Pat0V+seLyeszNm30+fjGVbv4WWlVyQYecvRhX5BEBfaSLAKQW/GF5hgdF2hyntVKCnETDzaqS8Z3OvSQBRwG
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9367.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(346002)(376002)(396003)(136003)(39850400004)(366004)(30864003)(44832011)(478600001)(966005)(5660300002)(8936002)(6486002)(53546011)(6506007)(31696002)(86362001)(26005)(6512007)(41300700001)(2906002)(38100700002)(2616005)(186003)(83380400001)(66946007)(66556008)(66476007)(31686004)(36756003)(316002)(8676002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9367.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(376002)(346002)(136003)(396003)(39850400004)(366004)(966005)(6486002)(6512007)(478600001)(6506007)(41300700001)(26005)(53546011)(38100700002)(2616005)(186003)(83380400001)(8676002)(44832011)(66476007)(66556008)(66946007)(2906002)(31686004)(8936002)(5660300002)(31696002)(316002)(36756003)(86362001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?N0RmZjUxU0ZuTXdCNE9LMHQ3cVlVTWlxRndQSUt4SlBQeDcyemowUWtmbTVJ?=
- =?utf-8?B?SUhMTGJkZkIzOHNHUUZBSkpGVElhSE1IOWJYMXRtcGpPM1J6WW5PSy9xLzdK?=
- =?utf-8?B?M2QvVi9oY0R5d0dhWXhUNmRVV0dLRTBwUGp6Rk5TQVRMdFNpNVg1Z0paRFRy?=
- =?utf-8?B?bVBpcWNQYXIxd1VESXppZnFWeFl6L1o4QXVIMy9wZE1UTmdFVm5oRGVNQzNs?=
- =?utf-8?B?VTZRU25rc2E0L2VnWFdEVHpwZWdDWGQyS0o2clFFQnV3SnYxajJLMzhJUWxr?=
- =?utf-8?B?bUczRXRjRER0TGVFWWlQeFI1TE81c3VVM1haLzRwTjlQL0pnd3FxMWI5YWVO?=
- =?utf-8?B?cjFmVTYvYlhha21zOVF1cWNxOFUrNUNqbUgrNzlBa2pnQklPVzZXTEQxYkVw?=
- =?utf-8?B?Ynpsa0xrSi9VKzVoTm1xUHpsZis0N05xbkFwZHdHbHpkNVBIakozc3IrNW5R?=
- =?utf-8?B?bDByT29LNEpRVUNjWVlSc0FCakJLZzJUSEhsSjg3aDQ0dGVWaVdWY3hCMXk5?=
- =?utf-8?B?TmdRZFVYVk5Qc3dMaW13dCsveGFYOUE1cHNvRXY3TGZnQUh0K25pL3JMZVhV?=
- =?utf-8?B?VFhmdS9PUXF1dUcxYmEvb29VdkVOUGFjVWt5ZFp1THcwU0p1Z2YzSGNzbVMv?=
- =?utf-8?B?RGxmZVpSd0NDeWRtYURVTklUdjJQTHB2N01Ya1RXaU9MaGV3aUxSM1RncEVj?=
- =?utf-8?B?MGpwaXExMFZDUGNQcmNGdXY5d3R1dDNVbGpRTWlxN3Axa0hUV1hNWS9xeEFZ?=
- =?utf-8?B?OTg5d1c0TzJ6M08wRTVJb0tQYXJWZ2NEcWlLYWRMbmc4OUlWdG50MGxIdkxW?=
- =?utf-8?B?dlBsbUJNTTdRUnliYUpWa3pMdTh1NEVENlRTUlBEdjhXa3U2d1UreFVtbkgw?=
- =?utf-8?B?WHZUN0ltZXF6Yi85eVR2T0plUzlCbkR2OTRUZHdja2VmbFdVNUd4THVzM0o0?=
- =?utf-8?B?OHRtVFJCK3FDamhCSFpGU1RvbnNocERseGxBN29neSsxZmF1SFdTeDg5NFhi?=
- =?utf-8?B?c1BUa0lrQkd0cGRrUkVaU1VsZ1JDN1g5eHVEalpISGYvN2tSelh2YnJyU2xM?=
- =?utf-8?B?TTgyVWhaVDRnKzZUM0FDbVpjWUpic28zUkkyRUhMSDQzaUhpUUYraXo1dWFt?=
- =?utf-8?B?cytCVlJseGVpVGtSd0lZbTlRSCs3Ylk1azVlblJMT0JmUDBYdGlIZ1B4TC8y?=
- =?utf-8?B?aURkczZlRXZ4cGI1NkpaRndUWU5mdWk2NGkyNCtwUlptK1ZZN0VUUjJ3Nng0?=
- =?utf-8?B?QkRrM05DdkRpak1IbkZpMk5UOVpGcTcway9XQXdCWStMMnV4dDZnSTVGUzJi?=
- =?utf-8?B?ZnJXYWdwbWcvSkMvVVlUdnRYTXZlN2xmelRaamtRWVpQbjZTNEFEcUFyMmlz?=
- =?utf-8?B?UThTNHZIalpBNHRBbmdrM3ZhQ2lyVm1QRXpIQ01xQVRnSVV5R0ZqU2QrUVF6?=
- =?utf-8?B?dzN3YmdiSVhqSkFDSUpBVDBUYzMrWXJKa2lKNFdjdWRNV2ZqVlRjVUNKbm1k?=
- =?utf-8?B?cjNIS1F6RXg5b0ZrTER6cWxkSDN5cGtGbUFLakR2RTZaWnVoY1UzV2hVUnAv?=
- =?utf-8?B?d2Y4bUR5MXZxTm1FTTU2L2pkZnhLSkdjTHRGa2JJbmhLVVcvWlBjNmthY2xu?=
- =?utf-8?B?YzBKUzhFMEZCakpDNG5uSzUrNHhBZXJ4QmtEUUFORXVRWWNpMW9TeGduKzhn?=
- =?utf-8?B?c3JoWjZrRnM3U1QzME5Yb0x4UEwxbkYxdERQQmQ3bW1mRGtCNGRJekdIVG5I?=
- =?utf-8?B?dWdKdHI0d3p5b3cvWmE2UFdQeU1uQkJUZ3pVS0ozSDhHVlk1aUowRjVXb2VG?=
- =?utf-8?B?UlRnOVozMkZZWXp0TFQ1UmxVWlRQbElPcTloL2hSbmxUZzM5OC9wZVhsNEJp?=
- =?utf-8?B?T2lXWURycm5GNk1hM3JwRTdvS2ZHTUlCalRSR2l6SGFvaHRCeDdUQXJoM1Y0?=
- =?utf-8?B?NlNSS0thOExWdmNBZllva1BsTC9Pc1Q5cnNhWnVmcEhWdys1SDNESWtwaDFV?=
- =?utf-8?B?b1dTWXdyQ3c4VzJjMUlza0g5ai9BSnJFSnhxeVZteE43ZS9pbHIzUUU0MHB6?=
- =?utf-8?B?djZ5T3JZSGk2cE9BNm1PYkVqNkQreXFFNkQvc3RGcmRVUnMrVHVhWk0xVGhF?=
- =?utf-8?B?T05haDVBU3FMT3h0cFdkVTJGd3RXOGJKdHRLa3h0WExEUUZOd082Z0F6alRQ?=
- =?utf-8?Q?rs0y/PeV5HyeumxOclCzkPU=3D?=
+	=?utf-8?B?V0R3SkE0aVBVb21qWVVjRWN3c0cvRllWakxTaTQwcjAvbWc2MmZJSVdPM1VZ?=
+ =?utf-8?B?MTdOU3o4bFF0V2t4TzV0elRZeVc5S1pJQkpDeHN4QlpIam5BK1BOME4zWkd2?=
+ =?utf-8?B?R2ZBcWx1c1lLdVVyYUJBTmk1VzEzVEJ2Vm5Ta0ZTNkliaXpZcVgwSElJbXVB?=
+ =?utf-8?B?YS91eFBhUWJQOFFVMUpXNFkrbndCcHltME1jcWxHOWdnMVpCM3VrQmpDbDVj?=
+ =?utf-8?B?ckxwVWFka3RGRTZmMjQ0dmdtTEd1VjFSeHYyaUI4cTFkNFI2b0FRZkxwQ215?=
+ =?utf-8?B?Z3hMSStTMnA5cEJhTEJHaHFoUXpuYzUzUW96dFlIRG5tRDVXa3BTM255dUJL?=
+ =?utf-8?B?aHovVVZFTm5XbGJGYUlsdW1ZODh6SWhsa0pvZXhmUkgxT1B3Q1hUSlliYzRX?=
+ =?utf-8?B?NlBLUEE2a296UHpINWt6dFlsdGpnSGpyK1paZmhOSDdwUGNQeHV0c3lLTmMx?=
+ =?utf-8?B?b09HOUNZcGFZUVNPSk5vWjdmdWU2OVhNR3ZXYThPY0dkWVYrZ2ZvcWhXYzJP?=
+ =?utf-8?B?dU5LU0x3QXNqQWpseXhJSVBZZ2Q5bWtneGFkNWw5aC9XTUdWVm1ydGFPYmIw?=
+ =?utf-8?B?dE93eGJpYm5ZbHZvdjRFUTl2MGc5YUVjQno2cHQrODM4MWZZcXZiMEtVL3NU?=
+ =?utf-8?B?Tmw3TXl0RUovNi9qMnFWbG5zbFA4UythNWRNbmF6TkYzbFg5OEhkdFhUOS9y?=
+ =?utf-8?B?Q3lCUUpTSVNwRWs5MXhTNnUzTDBMbHA4V2VLaCs5T2xNTmFVamc3ODJWY0Zw?=
+ =?utf-8?B?UDVwcHNCbHpicHpPeHJVT0ZMV0Y0K1BBbS8rT05scHh2YzNLQTZaZ2tVc0NI?=
+ =?utf-8?B?cUxkU29JRCs4RlcvWm45TENWM3RqdE5Ma1M1b1RjdklSOXdKWFZwL3pxZVVp?=
+ =?utf-8?B?WXFLeDlORGMzWm9jUUZ5SG05NnlZNm4zeC9TdmtlWld1bkJKeVlaaUtZTWhl?=
+ =?utf-8?B?UGVrRURMQlZmcWtXL29pSlF4TWwwaFVUbTNtaHllZFlpOGRuNnRjYktteTJx?=
+ =?utf-8?B?NDEwWTg2VTBiUUk1a1V1U2FvdEd6RWQ1Z3dTZHYzWHBCTEY1WHllZVoxR2x3?=
+ =?utf-8?B?cCtMNitpSTVrSVRDRzhFTEQ5d1IweXZMOE12K0JseUVublFoKzNVUzJha1dO?=
+ =?utf-8?B?MTFUNUUzWHlWRUJSY3QrWEVKREt0dnVRMitGbC9ja0ZrOHFJdUdvSkFvM2Qy?=
+ =?utf-8?B?TjFlb2o0SXFmVlFiWFVzcW8yRHNtNHdNREsvQVZ1Sy9mNnBERHU3eUlScWhn?=
+ =?utf-8?B?UEE5Q3BGSzJ1ZVRBY0NXQUhab3YvN2JTTWRIRGZkSGxMa0Z4bUtvUExkUGlQ?=
+ =?utf-8?B?L2QrZkIvSld1YVNmNXNHeXpsdXhVMFRzT1EwbG9Xa2FxcW4xdGxxekI1QStE?=
+ =?utf-8?B?cXFKOFpiUE1sL2EwVnVubkliMjZ5R05yU1VXVmphNWd6dmFDNU9nV1d5V2pL?=
+ =?utf-8?B?UitRT2laakJ6QVRldFJubmcrTkoxR3Z2TENFTUdrUkZxbEJnQmo5ZGRQV1VL?=
+ =?utf-8?B?MW5rbFB5ZE13VnZBa2NzRTZwZnYvNlNiQVFyUWVJQkI5Y0xMZW5pczN6QXBx?=
+ =?utf-8?B?Q2pPQ3Q3VVlXNkhGUTdEbm9sUncwNnJVOU5vSW10U1JiNWZ3OGFWOFpkc1Na?=
+ =?utf-8?B?R01MZDRtaGR3NEhndmRqMDliUFUzU29tVGQrbCtUZkxwTHJXekNlNVBvV1BB?=
+ =?utf-8?B?VUI1bXFaeEEwT29QTlZzdzFKRk0yb3krN04vYVF2QWczYVVGSXQwelp5eDI3?=
+ =?utf-8?B?Y0ticWRjMitUWGlXOThwU01LZDR1T3VsQ1lqc05hN0YzTGV2dGxNWGhNbDln?=
+ =?utf-8?B?TXd2cEtYaW56Rk1tNkw4QzFCYjR0b1VXc3o0blZCVm9yamhLSGczWWZVMHBz?=
+ =?utf-8?B?L1VNdmhVVHBWQ2xucWlxZnhHSTI3WHVwSlNmWmxvR0xVU0d6QkJ0cWtEbFZu?=
+ =?utf-8?B?dm9mVm0vczNFTHQ5eGFWUnc4QWp2b0dlSDNJQXJrOXdZQjlUcFJXa1BDUXpi?=
+ =?utf-8?B?Y0tZS3lyL2QrU1RSVGc5dzdHbGVXT2VEaUlxUWtLbVhiYS9DYzZPbWJjQ2t2?=
+ =?utf-8?B?czkzc0JObURCK1hkSmtkdk9saTZYTjlRY1V2WC8rNUJIOUtic05hMTFtOTVn?=
+ =?utf-8?B?LzI2R285ZlYrUExUQ0hNdjFxdTJYa243V3BqZlBvSWtMY3RrSnc3TmxkMVZ6?=
+ =?utf-8?Q?Y9MT2nlrBZASU+DgKnYiX7I=3D?=
 X-OriginatorOrg: theobroma-systems.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 8ef34467-3877-482a-b937-08da5e62f8cd
+ 5f67af47-d5f3-452d-9c25-08da5e78791d
 X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9367.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jul 2022 08:47:20.1634
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jul 2022 11:21:14.8510
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
 X-MS-Exchange-CrossTenant-UserPrincipalName: 
- kpV3/hl2kqqai0n3HOe9/Bh1jiEmtRgMlOwH5Epqcjc2qdX5eemXyyfvV7Ff5OEQC6EIj2XRVZNSR2S5jpocp+HXTCpP8d6CtWTjNkCB/VboTmVjp9r3ksDux4b0B6xI
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8144
+ 5FP7K6wg45vIq9FYn4K4cN4tzRvrF5lUhb/29+UhIuOMBvumm+H4q7TwG3+8vSrApYdZFuzt3X9CHn+nFAZXV3baFnPa7qpVmbaqsJTnUWc/usTMsawmcU2ogOGqJf9Q
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB6229
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 05 Jul 2022 08:47:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57449
+ <yocto@lists.yoctoproject.org>; Tue, 05 Jul 2022 11:21:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57450
 
-Hi Johannes,
+Hi Richard, Michael,
 
-Thanks for the patch.
-
-On 7/4/22 18:25, Johannes Schilling via lists.yoctoproject.org wrote:
-> This class provides a new image QA check that tries to detect static
-> linkage of a set of well-known libraries, leveraging the detectors from
-> cve-bin-tool[0].
+On 7/4/22 16:23, Richard Purdie wrote:
+> On Mon, 2022-07-04 at 15:24 +0200, Quentin Schulz wrote:
+>> Hi Michael,
+>>
+>> On 6/22/22 17:32, Michael Opdenacker via lists.yoctoproject.org wrote:
+>>> From: Michael Opdenacker <michael.opdenacker@bootlin.com>
+>>>
+>>> This allows to switch to a more recent of Sphinx
+>>> which will generate warnings with old versions of docs.
+>>>
+>>> This way, it's not immediately necessary to patch
+>>> all such versions.
+>>>
+>>> This commit reverts
+>>> https://urldefense.proofpoint.com/v2/url?u=https-3A__git.yoctoproject.org_yocto-2Dautobuilder-2Dhelper_commit_-3Fid-3D8273124feb9da2ffe93fcee7c4529d5597e1684a&d=DwIDAg&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=je4C362aUVxZ2rdozdrQVTgzhi9iRYrxNfYtH5LHkXdlsay9SEphJ_ekBm4830_n&s=9u5-2R_NLEQy5w0pFgklKIUQnAvVLuHX1ASaeEBBJJ4&e=
+>>> which originally reverted
+>>> https://urldefense.proofpoint.com/v2/url?u=https-3A__git.yoctoproject.org_yocto-2Dautobuilder-2Dhelper_commit_-3Fid-3D931d409b255a85f2217ca093d8391a678ce00ddb&d=DwIDAg&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=je4C362aUVxZ2rdozdrQVTgzhi9iRYrxNfYtH5LHkXdlsay9SEphJ_ekBm4830_n&s=bTED2gTptfT6bSvLayy3fEpQJyUdbo5gLlt7ZGKkD1c&e=
+>>>
+>>> Signed-off-by: Michael Opdenacker <michael.opdenacker@bootlin.com>
+>>> ---
+>>>    scripts/run-docs-build | 4 ++--
+>>>    1 file changed, 2 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/scripts/run-docs-build b/scripts/run-docs-build
+>>> index 648a29d..0f74520 100755
+>>> --- a/scripts/run-docs-build
+>>> +++ b/scripts/run-docs-build
+>>> @@ -63,7 +63,7 @@ for branch in 1.46 $(git branch --remote --contains "$first_sphinx_commit" --for
+>>>        git checkout $branch
+>>>        git checkout master releases.rst
+>>>        make clean
+>>> -    make publish
+>>> +    SPHINXOPTS="-j auto" make publish
+>>>    
+>>>        if [ "$branch" = "master-next" ]; then
+>>>            branch="next"
+>>> @@ -136,7 +136,7 @@ for branch in dunfell $(git branch --remote --contains "$first_sphinx_commit" --
+>>>        fi
+>>>    
+>>>        make clean
+>>> -    make publish
+>>> +    SPHINXOPTS="-j auto" make publish
+>>>    
+>>
+>> What about doing this for all branches except master? To have at least
+>> some checks and not completely disable the warnings.
+>>
+>> I'm a bit afraid we'll just not care about warnings anymore since they
+>> won't fail the autobuilder anymore. I also understand it's not really
+>> sustainable to leave them on for old docs since they won't be maintained
+>> at one point in time but we still very mnuch would like to be able to
+>> build them.
+>>
+>> Not sure what's the best solution here right now unfortunately :/
 > 
-> To use in your project, provide a config file as described in the header
-> comment of the class, and inherit image-without-static-linkage in your
-> image recipe.
+> Enabling them for master could be a compromise, I'd take such a patch
+> (Michael is away for a while).
 > 
-> [0] https://urldefense.proofpoint.com/v2/url?u=https-3A__github.com_intel_cve-2Dbin-2Dtool_tree_main_cve-5Fbin-5Ftool_checkers&d=DwIFAg&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Hh9S5cawTgVqdeYOsBqc8rVaNr9ZaBpIWiDZ_AmMvLe1nDPvairY_aW0wkexnXFC&s=9KPe08w-rv38bJzJx3MOSvKRgtdKbTkKVUTuKQhTIZk&e=
-> ---
->   classes/image-without-static-linkage.bbclass  |  65 +++++++++
->   .../python/python3-packaging_%.bbappend       |   1 +
->   .../cve-bin-tool/cve-bin-tool-native.bb       |  34 +++++
->   .../files/cve-bin-tool-static-linkage-checker | 126 ++++++++++++++++++
->   4 files changed, 226 insertions(+)
->   create mode 100644 classes/image-without-static-linkage.bbclass
->   create mode 100644 recipes-devtools/python/python3-packaging_%.bbappend
->   create mode 100644 recipes-security/cve-bin-tool/cve-bin-tool-native.bb
->   create mode 100644 recipes-security/cve-bin-tool/files/cve-bin-tool-static-linkage-checker
-> 
-> diff --git a/classes/image-without-static-linkage.bbclass b/classes/image-without-static-linkage.bbclass
-> new file mode 100644
-> index 0000000..c6f2013
-> --- /dev/null
-> +++ b/classes/image-without-static-linkage.bbclass
-> @@ -0,0 +1,65 @@
-> +# Provide a QA check for statically linked copies of libraries.
-> +#
-> +# You need to provide a config file in TOML format and point the
-> +# variable `STATIC_LINKAGE_CHECK_CONFIG_FILE` to it.
-> +#
-> +# The file format is as follows
-> +# ```
-> +# [checkers]
-> +# modules = [
-> +#   # list of checker module names of cve-bin-tool checkers lib to
-> +#   # enable, i.e. file names in the cve_bin_tool/checkers subfolder.
-> +#   # https://urldefense.proofpoint.com/v2/url?u=https-3A__github.com_intel_cve-2Dbin-2Dtool_tree_main_cve-5Fbin-5Ftool_checkers&d=DwIFAg&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Hh9S5cawTgVqdeYOsBqc8rVaNr9ZaBpIWiDZ_AmMvLe1nDPvairY_aW0wkexnXFC&s=9KPe08w-rv38bJzJx3MOSvKRgtdKbTkKVUTuKQhTIZk&e=
-> +#   "librsvg",
-> +#   "zlib",
-> +# ]
-> +#
-> +# [exceptions]
-> +# ignore_dirs = [
-> +#   # list of directories, everything under these is completely ignored
-> +#   "/var/lib/opkg",
-> +# ]
-> +#
-> +# [exceptions.ignore_checks]
-> +#   # for each binary path, a list of checkers from the global list to
-> +#   # ignore for this binary (allowlist)
-> +#   "/bin/ary/name" = [ "zlib" ],
-> +# ```
-> +
-> +IMAGE_QA_COMMANDS += "image_check_static_linkage"
-> +
-> +DEPENDS += "cve-bin-tool-native"
-> +
-> +inherit python3native
-> +
-> +
-> +STATIC_LINKAGE_CUSTOM_ERROR_MESSAGE ??= ""
-> +
-> +python image_check_static_linkage() {
-> +    import json
-> +    from pathlib import Path
-> +    import subprocess
-> +
-> +    from oe.utils import ImageQAFailed
-> +
-> +    check_result = subprocess.check_output(["cve-bin-tool-static-linkage-checker",
-> +        "--config", d.getVar("STATIC_LINKAGE_CHECK_CONFIG_FILE"),
-> +        d.getVar("IMAGE_ROOTFS"),
-> +    ])
-> +    check_result = json.loads(check_result)
-> +
-> +    deploy_dir = Path(d.getVar("DEPLOYDIR"))
-> +    deploy_dir.mkdir(parents=True, exist_ok=True)
-> +    image_basename = d.getVar("IMAGE_BASENAME")
-> +    stats_filename = "static_linkage_stats-" + image_basename + ".json"
-> +    with open(deploy_dir / stats_filename, "w") as stats_out:
-> +        json.dump(check_result, stats_out)
-> +
-> +    binaries_with_violations = {k: v for k, v in check_result.items() if v}
-> +    if binaries_with_violations:
-> +        msg = "Static linkage check: found {} violations".format(len(binaries_with_violations))
-> +        for violator, violations in binaries_with_violations.items():
-> +            msg += "\n{}: {}".format(violator, violations)
-> +
-> +        raise ImageQAFailed(msg, image_check_static_linkage)
-> +} > diff --git a/recipes-devtools/python/python3-packaging_%.bbappend 
-b/recipes-devtools/python/python3-packaging_%.bbappend
-> new file mode 100644
-> index 0000000..d6f5869
-> --- /dev/null
-> +++ b/recipes-devtools/python/python3-packaging_%.bbappend
-> @@ -0,0 +1 @@
-> +BBCLASSEXTEND += "native"
 
-I would say to put this change directly in python3-packaging recipe, no 
-need for a bbappend.
+Some warnings are actually valid. Such is the case for the one that 
+warranted 
+https://git.yoctoproject.org/yocto-docs/commit/?id=9a797dedf6708da3e7ce789c5c8735e5d891cde4. 
+The issue is that we build the docs from old versions with the same 
+version of sphinx. Therefore, this patch fixes the issue in master but 
+should also be backported to all other impacted versions, even the 
+unmaintained ones. See 
+https://docs.yoctoproject.org/dunfell/dev-manual/dev-manual-common-tasks.html#recipe-syntax, 
+instead of a link we now have a path between quotes.
 
-> diff --git a/recipes-security/cve-bin-tool/cve-bin-tool-native.bb b/recipes-security/cve-bin-tool/cve-bin-tool-native.bb
-> new file mode 100644
-> index 0000000..3efbdf7
-> --- /dev/null
-> +++ b/recipes-security/cve-bin-tool/cve-bin-tool-native.bb
-> @@ -0,0 +1,34 @@
-> +SUMMARY = "Scanner for statically linked library copies"
-> +HOMEPAGE = "https://urldefense.proofpoint.com/v2/url?u=https-3A__github.com_intel_cve-2Dbin-2Dtool&d=DwIFAg&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Hh9S5cawTgVqdeYOsBqc8rVaNr9ZaBpIWiDZ_AmMvLe1nDPvairY_aW0wkexnXFC&s=EeXrVAokCJc_mQJv65wsyoKKTcNPVZNUJoMzfnfECxg&e= "
-> +
-> +LICENSE = "GPL-3.0"
-> +LIC_FILES_CHKSUM = "file://LICENSE.md;md5=97a733ff40c50b4bfc74471e1f6ca88b"
-> +
-> +VERSION = "3.1"
-> +
-> +
-> +SRC_URI = "\
-> +    https://urldefense.proofpoint.com/v2/url?u=https-3A__github.com_intel_cve-2Dbin-2Dtool_archive_refs_tags_v-24-257BVERSION-257D.tar.gz&d=DwIFAg&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Hh9S5cawTgVqdeYOsBqc8rVaNr9ZaBpIWiDZ_AmMvLe1nDPvairY_aW0wkexnXFC&s=Zsl7OBDrfnYUlSJUhoyVM9PfYwURRjvVRUVBqfi3hFM&e=  \
-> +    file://cve-bin-tool-static-linkage-checker \
-> +"
-> +
-> +SRC_URI[md5sum] = "af6958f8be7f7ce0d2b5ddffa34a1aee"
-> +SRC_URI[sha256sum] = "c4faaa401a2605a0d3f3c947deaf01cb56b4da927bfc29b5e959cde243bf5daf"
-> +
-> +inherit python3native native
-> +
-> +S = "${WORKDIR}/cve-bin-tool-3.1"
-> +inherit setuptools3
-> +
+There are two ways to fix that one warning:
+  - add intersphinx_disabled_reftypes=[] in conf.py manually from the 
+run-docs-build script, c.f. 
+https://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html#confval-intersphinx_disabled_reftypes
+  - patch all (tagged and branch) releases from 3.2 to current master in 
+scripts/docs-build-patches,
 
+I prefer the second option because it feels less hacky, but that means 
+MANY times the same file added to docs-build-patches directory.
 
-I guess you could have all inherit in the same line (and also, pretty 
-sure native class should be inherited last).
+The same could be done for the patch I just sent for yocto-docs to use 
+the %s substitution characters for the cve extlinks to fix a warning. We 
+could just apply this patch to affected releases (kirkstone-4.0.1 tag + 
+kirkstone branch). I could technically request a backport to yocto-docs 
+kirkstone branch, the only thing I don't like is bumping the min version 
+requirement for sphinx for a release that was already released, but if 
+that's okay with you, we could avoid having to add patches in the 
+autobuilder for every new tagged release of kirkstone.
 
-> +RDEPENDS_${PN} = "\
-
-RDEPENDS:${PN}
-
-> +  python3-rich-native \
-> +  python3-packaging-native \
-> +"
-> +
-> +do_install:append() {
-> +  install -m 0755 "${WORKDIR}/cve-bin-tool-static-linkage-checker" "${D}${bindir}"
-> +}
-> +FILES-${PN}:append = "${bindir}/cve-bin-tool-static-linkage-checker"
-> +
-
-FILES:${PN}:append (also why append and not a simple += ?)
-
-> +do_configure[noexec] = "1"
-> +do_compile[noexec] = "1" > diff --git 
-a/recipes-security/cve-bin-tool/files/cve-bin-tool-static-linkage-checker b/recipes-security/cve-bin-tool/files/cve-bin-tool-static-linkage-checker
-> new file mode 100644
-> index 0000000..7da1b3b
-> --- /dev/null
-> +++ b/recipes-security/cve-bin-tool/files/cve-bin-tool-static-linkage-checker
-> @@ -0,0 +1,126 @@
-> +#!/usr/bin/env python3
-> +
-
-We at least need SPDX license tag here.
-
-> +from importlib import import_module
-> +from pathlib import Path
-> +
-> +import argparse
-> +import json
-> +import subprocess
-> +import toml
-> +
-
-This isn't a core module (yet?) as far as I could tell, so you're 
-missing a DEPENDS/RDEPENDS on the python recipe/package that provides 
-this python module.
-
-On a side note, I'm not entirely sure we would like to maintain a 
-wrapper script specific to OE/Yocto in here. Is there any chance of 
-seeing this or some variant upstreamed to cve-bin-tool git repo instead?
+I'm honestly not sure there's a lot of benefit in disabling the warnings 
+for now, or enabling them only for select releases. I understand that 
+this increases the maintenance burden on unmaintained branches every 
+time we update the sphinx binary in the docs buildtools. However, we 
+missed this new broken link for almost a month now, which shows we don't 
+look at successful docs build logs from the autobuilder.
 
 Cheers,
 Quentin
-
-> +
-> +def parse_args():
-> +    """
-> +    Parse command line arguments.
-> +    """
-> +    parser = argparse.ArgumentParser(
-> +        prog=sys.argv[0],
-> +        description="Checker for staticly linked copies of libraries",
-> +    )
-> +
-> +    parser.add_argument(
-> +        "directory",
-> +        help="Path to the directory to scan",
-> +    )
-> +
-> +    parser.add_argument(
-> +        "--config",
-> +        help="Path to the config file",
-> +        required=True,
-> +    )
-> +
-> +    return parser.parse_args()
-> +
-> +
-> +def list_input_files(rootdir):
-> +    """
-> +    Iterate over the input rootfs and find any file that is an executable ELF file, yielding their
-> +    names for the next step to iterate over.
-> +    """
-> +    import sys
-> +    with subprocess.Popen(
-> +        ["find", rootdir, "-type", "f", "-executable", "-printf", "/%P\\n"],
-> +        stdout=subprocess.PIPE,
-> +    ) as find:
-> +        for line in find.stdout:
-> +            executable_filename = line.decode().strip()
-> +            file_out = subprocess.check_output(["file", rootdir + executable_filename]).decode()
-> +            if "ELF " not in file_out:
-> +                continue
-> +
-> +            yield executable_filename
-> +
-> +
-> +# PurePath.is_relative_to was only added in python 3.9
-> +def _path_is_relative_to(subdir, base):
-> +    try:
-> +        subdir.relative_to(base)
-> +        return True
-> +    except ValueError:
-> +        return False
-> +
-> +
-> +def check_file(root_dir, filename, checkers, exceptions):
-> +    """
-> +    Check an executable file for traces of static linkage using all the checkers specified and
-> +    applying all exceptions specified.
-> +    """
-> +    full_filepath = root_dir + filename
-> +    strings_out = subprocess.check_output(["strings", full_filepath]).decode()
-> +
-> +    filepath = Path(filename)
-> +    if any(
-> +        _path_is_relative_to(Path(ex), filepath) for ex in exceptions["ignore_dirs"]
-> +    ):
-> +        return []
-> +
-> +    found_lib_versions = []
-> +    for checker_name, checker in checkers.items():
-> +        if filename in exceptions["ignore_checks"]:
-> +            if checker_name in exceptions["ignore_checks"][filename]:
-> +                continue
-> +
-> +        vi = checker().get_version(strings_out, filename)
-> +        if vi and vi["is_or_contains"] == "contains" and vi["version"] != "UNKNOWN":
-> +            found_lib_versions.append({checker_name: vi["version"]})
-> +
-> +    return found_lib_versions
-> +
-> +
-> +def _load_checker_class(mod_name):
-> +    """
-> +    Load a checker class given the module name.
-> +
-> +    The class and module name can be generated from each other (the setup.py file for cve-bin-tool
-> +    does the same), e.g. module `libjpeg_turbo` contains checker class `LibjpegTurboChecker`.
-> +    """
-> +    class_name = "".join(mod_name.replace("_", " ").title().split()) + "Checker"
-> +
-> +    mod = import_module(f"cve_bin_tool.checkers.{mod_name}")
-> +    return getattr(mod, class_name)
-> +
-> +
-> +def main():
-> +    """
-> +    Main entry point.
-> +    """
-> +    args = parse_args()
-> +    config = toml.load(args.config)
-> +
-> +    all_checkers = {
-> +        modname: _load_checker_class(modname)
-> +        for modname in config["checkers"]["modules"]
-> +    }
-> +
-> +    violations = {
-> +        f: check_file(args.directory, f, all_checkers, config["exceptions"])
-> +        for f in list_input_files(args.directory)
-> +    }
-> +
-> +    print(json.dumps(violations))
-> +
-> +
-> +if __name__ == "__main__":
-> +    import sys
-> +
-> +    sys.exit(main())
-> 
-> 
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#57439): https://urldefense.proofpoint.com/v2/url?u=https-3A__lists.yoctoproject.org_g_yocto_message_57439&d=DwIFaQ&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Hh9S5cawTgVqdeYOsBqc8rVaNr9ZaBpIWiDZ_AmMvLe1nDPvairY_aW0wkexnXFC&s=fhF-Bp16IzErWKiC5cHDhco8Vr6qeAQvnku916eVePQ&e=
-> Mute This Topic: https://urldefense.proofpoint.com/v2/url?u=https-3A__lists.yoctoproject.org_mt_92168377_6293953&d=DwIFaQ&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Hh9S5cawTgVqdeYOsBqc8rVaNr9ZaBpIWiDZ_AmMvLe1nDPvairY_aW0wkexnXFC&s=PmhHmonOJoabS8hMDLxEC0Dmc-Qur5hup9eDZ1aVToY&e=
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://urldefense.proofpoint.com/v2/url?u=https-3A__lists.yoctoproject.org_g_yocto_unsub&d=DwIFaQ&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Hh9S5cawTgVqdeYOsBqc8rVaNr9ZaBpIWiDZ_AmMvLe1nDPvairY_aW0wkexnXFC&s=Humk2R0kxOZoVS6ajsOcTkv5OvG_MVwKpuC2PE_NXuM&e=  [quentin.schulz@theobroma-systems.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
 
