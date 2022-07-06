@@ -1,306 +1,89 @@
-Return-Path: <ksmanjunath681@gmail.com>
+Return-Path: <rybczynska@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 95D6EC433EF
-	for <webhook@archiver.kernel.org>; Wed,  6 Jul 2022 06:58:41 +0000 (UTC)
-Subject: using Devtool upgrade with --no-patch subcommand #yocto #devtool
-To: yocto@lists.yoctoproject.org
-From: ksmanjunath681@gmail.com
-X-Originating-Location: Melbourne, Victoria, AU (155.190.53.4)
-X-Originating-Platform: Windows Chrome 103
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7D09FC43334
+	for <webhook@archiver.kernel.org>; Wed,  6 Jul 2022 09:18:22 +0000 (UTC)
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com
+ [209.85.208.171])
+ by mx.groups.io with SMTP id smtpd.web09.4146.1657099092162438876
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 06 Jul 2022 02:18:12 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=jyjfqYzB;
+ spf=pass (domain: gmail.com, ip: 209.85.208.171,
+ mailfrom: rybczynska@gmail.com)
+Received: by mail-lj1-f171.google.com with SMTP id c15so17720668ljr.0
+        for <yocto@lists.yoctoproject.org>;
+ Wed, 06 Jul 2022 02:18:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=1/t80P0l7v3oEeiLWxct5aOcs39OFFZgUN89vHLKsNQ=;
+        b=jyjfqYzBXiERdgpK2cwpK9NyEAk4j7UCxhgazvUGBKU5FkhjgdtYcHMI5G2FV81JJ4
+         W98aCNfZV00Y8niI3gq/iYxeg/KvBXaFmXR0YlIA2+/YNgXNaDRxzI47mtAX30drPr1h
+         u2zTznwf0XzrdVnwal2UZOubENwBifW1JErs74w0bE95e6qCl8zwVBNC9GHmPTIQrauG
+         u05IL7jTqKXplGRoJfkjZOEm2TAk7Ieack4ZpCiO59eHFtHaDVJMhUB74khpNL+8Lucb
+         tjKq3uWP2TRAIJ7KTS7VERU9NDDfAupg8+cLMpd5zq3GTcT9/9ps+X7K8MXS5LoCk+pf
+         64Wg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=1/t80P0l7v3oEeiLWxct5aOcs39OFFZgUN89vHLKsNQ=;
+        b=DOGJIeP6OptUtRhJFm7nM8M7+kyzGsYyFPQxeqLdTZYbu8/eOuc+DgAaat/SZG8QCU
+         i6h/n666MQ25WZgQf7N9srZHb2BSpIyTnTN60WjKFkpl8CfPx1ykeg3wCOBQlDIzqFUp
+         aqzbd/JFfwPj8bnggCSG4q0V34K8hL9QMWQ9tW1bUNqzq7fDcrAEh4N3qG2SXIblR19i
+         euuZsIPTfny/r/FEEgtVOrojgSLKDwY0RwpAbkK57IA625hqqMzNzNxZqu6eDr9voWIM
+         0tizn8fdSRI/XHhFD7j0uQGwnoC0j4qJrFa9sYaavQkX84djn5dv3eSkh6+2tv4S1TE8
+         mEkw==
+X-Gm-Message-State: AJIora96QWIuV7hxwXEEIpG9RJW8k/tl9gBQD+2wRHhgFd/x8yCYEBay
+	s34/+yC8Uv/Gb/4H+kpjsRjgs6H2ziNn0VOKCS4=
+X-Google-Smtp-Source: 
+ AGRyM1u/5gx5Yf99pk8sCPBYEw5/RN9X91Ph8REaJxJBFQWI7LvRrvoXtltooskOtQ9jVcLz3MWHxRn22JiE3ygtcqA=
+X-Received: by 2002:a2e:889a:0:b0:25a:ca71:823e with SMTP id
+ k26-20020a2e889a000000b0025aca71823emr21889186lji.11.1657099089936; Wed, 06
+ Jul 2022 02:18:09 -0700 (PDT)
 MIME-Version: 1.0
-Date: Tue, 05 Jul 2022 23:58:32 -0700
-Message-ID: <WrZq.1657090712005968952.2ul8@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="OCFFKVxUVTDqJ1jOgc9W"
+References: <DRD0.1657024299174009146.HGxi@lists.yoctoproject.org>
+In-Reply-To: <DRD0.1657024299174009146.HGxi@lists.yoctoproject.org>
+From: Marta Rybczynska <rybczynska@gmail.com>
+Date: Wed, 6 Jul 2022 11:17:58 +0200
+Message-ID: 
+ <CAApg2=Sb=ujr7vs1YWkcq4MLj1BQ9TnQcv+uouQUtoQVBxxqOg@mail.gmail.com>
+Subject: Re: [yocto] cve check report package version mismatch #yocto
+To: gauravsuman007@gmail.com
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 06 Jul 2022 06:58:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57459
+ <yocto@lists.yoctoproject.org>; Wed, 06 Jul 2022 09:18:22 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57460
 
---OCFFKVxUVTDqJ1jOgc9W
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
->=20
-> Hi i am currently understanding devtool work flow with --no-patch command=
-,
-> i was able to use with recipes having only src_uri to repo url only, wher=
-e
-> has other recipes with
-> SRC_URI appended with patch pointing to local location this is giving me
-> error , :
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/scripts/devtool",
-> line 334, in <module>
-> ret =3D main()
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/scripts/devtool",
-> line 321, in main
-> ret =3D args.func(args, config, basepath, workspace)
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/scripts/lib/devtool/upgrade.py",
-> line 552, in upgrade
-> tinfoil, rd)
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/scripts/lib/devtool/upgrade.py",
-> line 258, in _extract_new_source
-> patches =3D oe.recipeutils.get_recipe_patches(crd)
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/meta/lib/oe/recipeutils.py",
-> line 501, in get_recipe_patches
-> patches =3D oe.patch.src_patches(d, expand=3DFalse)
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/meta/lib/oe/patch.py",
-> line 814, in src_patches
-> local =3D patch_path(url, fetch, workdir, expand)
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/meta/lib/oe/patch.py",
-> line 788, in patch_path
-> local =3D fetch.localpath(url)
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/bitbake/lib/bb/fetch2/__init__.py",
-> line 1615, in localpath
-> self.ud[url].setup_localpath(self.d)
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/bitbake/lib/bb/fetch2/__init__.py",
-> line 1311, in setup_localpath
-> self.localpath =3D self.method.localpath(self, d)
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/bitbake/lib/bb/fetch2/local.py",
-> line 44, in localpath
-> return self.localpaths(urldata, d)[-1]
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/bitbake/lib/bb/fetch2/local.py",
-> line 55, in localpaths
-> filespath =3D d.getVar('FILESPATH')
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/bitbake/lib/bb/data_smart.py",
-> line 606, in getVar
-> return self.getVarFlag(var, "_content", expand, noweakdefault, parsing)
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/bitbake/lib/bb/data_smart.py",
-> line 804, in getVarFlag
-> parser =3D self.expandWithRefs(value, cachename)
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/bitbake/lib/bb/data_smart.py",
-> line 426, in expandWithRefs
-> raise ExpansionError(varname, s, exc).with_traceback(tb) from exc
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/bitbake/lib/bb/data_smart.py",
-> line 413, in expandWithRefs
-> s =3D __expand_python_regexp__.sub(varparse.python_sub, s)
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/bitbake/lib/bb/data_smart.py",
-> line 114, in python_sub
-> return connector.expandPythonRef(self.varname, code, self.d)
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/bitbake/lib/bb/tinfoil.py",
-> line 70, in expandPythonRef
-> ret =3D self.tinfoil.run_command('dataStoreConnectorExpandPythonRef', ds,
-> varname, expr)
->=20
-> raise TinfoilCommandFailed(result[1])
-> bb.data_smart.ExpansionError: Failure expanding variable FILESPATH,
-> expression was
-> ${@base_set_filespath(["/home/manju/Manjunath/AUH/pipeline/iteration_5/AU=
-H_test/update_auh_flow/hgv-oss-yocto-meta-manju-tools/recipes-core/manju-ut=
-ility/manju-utility-${PV}",
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-meta-s-manju-tools/recipes-core/manju-utility/manju-utility",
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-meta-s-tools/recipes-core/manju-utility/files"],
-> d)} which triggered exception TinfoilCommandFailed: Traceback (most recen=
-t
-> call last):
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/bitbake/lib/bb/command.py",
-> line 74, in runCommand
-> result =3D command_method(self, commandline)
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/bitbake/lib/bb/command.py",
-> line 496, in dataStoreConnectorExpandPythonRef
-> return varparse.python_sub(expr)
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/bitbake/lib/bb/data_smart.py",
-> line 120, in python_sub
-> codeobj =3D compile(code.strip(), varname, "eval")
-> File "Var <FILESPATH>", line 1
-> base_set_filespath(["/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_t=
-est/update_auh_flow/hgv-oss-yocto-meta-manju-tools/recipes-core/manju-utili=
-ty/manju-utility-${PV
->=20
-> ^
-> SyntaxError: EOL while scanning string literal
-> File
-> "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/update_auh_flow/=
-hgv-oss-yocto-poky/bitbake/lib/bb/tinfoil.py",
-> line 466, in run_command
->=20
->=20
-
-is there anything i am missing here .
-
->=20
->=20
+On Tue, Jul 5, 2022 at 2:31 PM <gauravsuman007@gmail.com> wrote:
 >
-
---OCFFKVxUVTDqJ1jOgc9W
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<blockquote>
-<div>
-<div>Hi i am currently understanding devtool work flow with --no-patch comm=
-and, i was able to use with recipes having only src_uri to repo url only, w=
-here has other recipes with&nbsp;</div>
-<div>SRC_URI appended with patch pointing to local location this is giving =
-me error , :</div>
-<div>&nbsp;File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/up=
-date_auh_flow/hgv-oss-yocto-poky/scripts/devtool", line 334, in &lt;module&=
-gt;</div>
-<div>&nbsp; &nbsp; ret =3D main()</div>
-<div>&nbsp; File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/u=
-pdate_auh_flow/hgv-oss-yocto-poky/scripts/devtool", line 321, in main</div>
-<div>&nbsp; &nbsp; ret =3D args.func(args, config, basepath, workspace)</di=
-v>
-<div>&nbsp; File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/u=
-pdate_auh_flow/hgv-oss-yocto-poky/scripts/lib/devtool/upgrade.py", line 552=
-, in upgrade</div>
-<div>&nbsp; &nbsp; tinfoil, rd)</div>
-<div>&nbsp; File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/u=
-pdate_auh_flow/hgv-oss-yocto-poky/scripts/lib/devtool/upgrade.py", line 258=
-, in _extract_new_source</div>
-<div>&nbsp; &nbsp; patches =3D oe.recipeutils.get_recipe_patches(crd)</div>
-<div>&nbsp; File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/u=
-pdate_auh_flow/hgv-oss-yocto-poky/meta/lib/oe/recipeutils.py", line 501, in=
- get_recipe_patches</div>
-<div>&nbsp; &nbsp; patches =3D oe.patch.src_patches(d, expand=3DFalse)</div=
+> I used the cve check class by including it in the local.conf and then ran=
+ the bitbake build process for my image. I got a log of all the detected CV=
+Es in the packages used in the build. However, on closer inspection, I noti=
+ced that the packages used in the build are already higher version than whe=
+n the CVE was patched. Here is an example:
 >
-<div>&nbsp; File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/u=
-pdate_auh_flow/hgv-oss-yocto-poky/meta/lib/oe/patch.py", line 814, in src_p=
-atches</div>
-<div>&nbsp; &nbsp; local =3D patch_path(url, fetch, workdir, expand)</div>
-<div>&nbsp; File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/u=
-pdate_auh_flow/hgv-oss-yocto-poky/meta/lib/oe/patch.py", line 788, in patch=
-_path</div>
-<div>&nbsp; &nbsp; local =3D fetch.localpath(url)</div>
-<div>&nbsp; File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/u=
-pdate_auh_flow/hgv-oss-yocto-poky/bitbake/lib/bb/fetch2/__init__.py", line =
-1615, in localpath</div>
-<div>&nbsp; &nbsp; self.ud[url].setup_localpath(self.d)</div>
-<div>&nbsp; File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/u=
-pdate_auh_flow/hgv-oss-yocto-poky/bitbake/lib/bb/fetch2/__init__.py", line =
-1311, in setup_localpath</div>
-<div>&nbsp; &nbsp; self.localpath =3D self.method.localpath(self, d)</div>
-<div>&nbsp; File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/u=
-pdate_auh_flow/hgv-oss-yocto-poky/bitbake/lib/bb/fetch2/local.py", line 44,=
- in localpath</div>
-<div>&nbsp; &nbsp; return self.localpaths(urldata, d)[-1]</div>
-<div>&nbsp; File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/u=
-pdate_auh_flow/hgv-oss-yocto-poky/bitbake/lib/bb/fetch2/local.py", line 55,=
- in localpaths</div>
-<div>&nbsp; &nbsp; filespath =3D d.getVar('FILESPATH')</div>
-<div>&nbsp; File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/u=
-pdate_auh_flow/hgv-oss-yocto-poky/bitbake/lib/bb/data_smart.py", line 606, =
-in getVar</div>
-<div>&nbsp; &nbsp; return self.getVarFlag(var, "_content", expand, noweakde=
-fault, parsing)</div>
-<div>&nbsp; File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/u=
-pdate_auh_flow/hgv-oss-yocto-poky/bitbake/lib/bb/data_smart.py", line 804, =
-in getVarFlag</div>
-<div>&nbsp; &nbsp; parser =3D self.expandWithRefs(value, cachename)</div>
-<div>&nbsp; File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/u=
-pdate_auh_flow/hgv-oss-yocto-poky/bitbake/lib/bb/data_smart.py", line 426, =
-in expandWithRefs</div>
-<div>&nbsp; &nbsp; raise ExpansionError(varname, s, exc).with_traceback(tb)=
- from exc</div>
-<div>&nbsp; File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/u=
-pdate_auh_flow/hgv-oss-yocto-poky/bitbake/lib/bb/data_smart.py", line 413, =
-in expandWithRefs</div>
-<div>&nbsp; &nbsp; s =3D __expand_python_regexp__.sub(varparse.python_sub, =
-s)</div>
-<div>&nbsp; File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/u=
-pdate_auh_flow/hgv-oss-yocto-poky/bitbake/lib/bb/data_smart.py", line 114, =
-in python_sub</div>
-<div>&nbsp; &nbsp; return connector.expandPythonRef(self.varname, code, sel=
-f.d)</div>
-<div>&nbsp; File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/u=
-pdate_auh_flow/hgv-oss-yocto-poky/bitbake/lib/bb/tinfoil.py", line 70, in e=
-xpandPythonRef</div>
-<div>&nbsp; &nbsp; ret =3D self.tinfoil.run_command('dataStoreConnectorExpa=
-ndPythonRef', ds, varname, expr)</div>
-<div>&nbsp;</div>
-<div>&nbsp; &nbsp; raise TinfoilCommandFailed(result[1])</div>
-<div>bb.data_smart.ExpansionError: Failure expanding variable FILESPATH, ex=
-pression was ${@base_set_filespath(["/home/manju/Manjunath/AUH/pipeline/ite=
-ration_5/AUH_test/update_auh_flow/hgv-oss-yocto-meta-manju-tools/recipes-co=
-re/manju-utility/manju-utility-${PV}", "/home/manju/Manjunath/AUH/pipeline/=
-iteration_5/AUH_test/update_auh_flow/hgv-oss-yocto-meta-s-manju-tools/recip=
-es-core/manju-utility/manju-utility", "/home/manju/Manjunath/AUH/pipeline/i=
-teration_5/AUH_test/update_auh_flow/hgv-oss-yocto-meta-s-tools/recipes-core=
-/manju-utility/files"], d)} which triggered exception TinfoilCommandFailed:=
- Traceback (most recent call last):</div>
-<div>&nbsp; File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/u=
-pdate_auh_flow/hgv-oss-yocto-poky/bitbake/lib/bb/command.py", line 74, in r=
-unCommand</div>
-<div>&nbsp; &nbsp; result =3D command_method(self, commandline)</div>
-<div>&nbsp; File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/u=
-pdate_auh_flow/hgv-oss-yocto-poky/bitbake/lib/bb/command.py", line 496, in =
-dataStoreConnectorExpandPythonRef</div>
-<div>&nbsp; &nbsp; return varparse.python_sub(expr)</div>
-<div>&nbsp; File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/u=
-pdate_auh_flow/hgv-oss-yocto-poky/bitbake/lib/bb/data_smart.py", line 120, =
-in python_sub</div>
-<div>&nbsp; &nbsp; codeobj =3D compile(code.strip(), varname, "eval")</div>
-<div>&nbsp; File "Var &lt;FILESPATH&gt;", line 1</div>
-<div>&nbsp; &nbsp; base_set_filespath(["/home/manju/Manjunath/AUH/pipeline/=
-iteration_5/AUH_test/update_auh_flow/hgv-oss-yocto-meta-manju-tools/recipes=
--core/manju-utility/manju-utility-${PV</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ^</div>
-<div>SyntaxError: EOL while scanning string literal</div>
-<div>&nbsp; File "/home/manju/Manjunath/AUH/pipeline/iteration_5/AUH_test/u=
-pdate_auh_flow/hgv-oss-yocto-poky/bitbake/lib/bb/tinfoil.py", line 466, in =
-run_command</div>
-<div>&nbsp;</div>
-</div>
-</blockquote>
-<br />is there anything i am missing here .<br />
-<blockquote>
-<div>
-<div>&nbsp;</div>
-</div>
-</blockquote>
+> LAYER: meta
+> PACKAGE NAME: libksba
+> PACKAGE VERSION: 1.6.0
+> CVE: CVE-2016-4355
+> CVE STATUS: Patched
 
---OCFFKVxUVTDqJ1jOgc9W--
+Hello Gaurav,
+The CVE STATUS "Patched" means that there was an issue in the past,
+but it is either fixed or otherwise mitigated. Open issues are marked
+as "Unpatched". If you'd like to see only Unpatched issues in the
+report, please use CVE_CHECK_REPORT_PATCHED =3D "0" in your local.conf
+or other place you have your OE configuration from.
+
+Kind regards,
+Marta
 
