@@ -1,196 +1,311 @@
-Return-Path: <quentin.schulz@theobroma-systems.com>
+Return-Path: <agn@trackman.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D832CC433EF
-	for <webhook@archiver.kernel.org>; Tue,  5 Jul 2022 15:56:29 +0000 (UTC)
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com
- (EUR04-DB3-obe.outbound.protection.outlook.com [40.107.6.78])
- by mx.groups.io with SMTP id smtpd.web09.86246.1657036578124325988
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 92590CCA473
+	for <webhook@archiver.kernel.org>; Wed,  6 Jul 2022 06:50:41 +0000 (UTC)
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com
+ (EUR05-VI1-obe.outbound.protection.outlook.com [40.107.21.107])
+ by mx.groups.io with SMTP id smtpd.web12.3254.1657090231796352257
  for <yocto@lists.yoctoproject.org>;
- Tue, 05 Jul 2022 08:56:20 -0700
+ Tue, 05 Jul 2022 23:50:32 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@cherrycloud.onmicrosoft.com
- header.s=selector2-cherrycloud-onmicrosoft-com header.b=pNsfq6XO;
- spf=pass (domain: theobroma-systems.com, ip: 40.107.6.78,
- mailfrom: quentin.schulz@theobroma-systems.com)
+ dkim=pass header.i=@trackman.com header.s=selector1 header.b=XnW6TZJ2;
+ spf=permerror,
+ err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded
+ (domain: trackman.com, ip: 40.107.21.107, mailfrom: agn@trackman.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=N9+0S+EeWgw/hlZJkzdHIYNjfzH0zp0li3zRU9Sis7ejE9/4vDYU/R+/7eQa0Bcz88OoE/z4kHxiFBvni6pxJu6GDgypWvvgGJbSw5oYazYDLWd7GR4XydCeyWaYus0mhoNAwEenjdmTdAw0pqTOIjVQV/UdDCQmtOJCVSZd120Yf6c1CC0SJbNbg/nau6XVzg2dJVfD6dH6D/a5iufdogrmn6FV7VfqJCIic+bnadMRfcFumuTLbRIlrRjSV2nKLCmx4S2UjWnGlKunGKrbJTB93eacT406DSkUoSL0MZB7a4G21D+5bUI1IIUMjbQ5wfosQsaByLBV/2xIOjanrA==
+ b=JgJ2YfLzGukRUBU+27Vi0wnobVRCvZSvrMBADR0sNZ0NzUBhzlMhunfPQ4QUNYiJjepV6O6qWD/S8cB7eF0VcV/0M/3RC3M5KGeIxAFo4LX/oUoZDxJEtNm+BKU0/gwuAtt5dcvTZnDOFtyXxcD/DRg79Mn9PRdtbUszzOyHF46xJSaamjnUn7KdeuB854N+pGIs6dOOrpLoqvqHoFQ2DrQrPOOE689J4VsQhBhrZOLLFW4DsK/234/fRatnpi+8gFe5f0gnGUgd8NtDUZM+jPy0hJrwtmHs0He7FOzTGXImbdIknDDe+4AjavHxtEOmFw1N8lOr2sspV8NLZMQypg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1P95QGFcBBtCAtPOROALbp5ONTCNe3Xw42MpimJWjoA=;
- b=JITJQAQAcjwJPmjtuvbbGOoLYQsXS7mzjW/ouRQNF797iMDz/O5X/dkS86V+8WM7c0is6iEpVghJHtg6KLJlZXLtR6USKwR8j0F7jbSg99ZYvk5DUV6Una7Qj0oBgpGHskL8j6+TMgPoyJ8OgqxjtvhUsrYMABBWbv8OC4MVkGGg7OZerkQl/tPhIfRiYLnVPGMOStvKho86C5uqeoFzMoprgTxNMZjwoTq9lsPQhcSrOwcMIobzJO9kYV6CQBESYlZ/LHDOHdEzTocK9RccjQkUY50PK+81FW4yS8Mpc8H9dAcm0S7YnVN867Owk4LR/lhLdo0Hv8JgdJwUUpXcCg==
+ bh=1HXxETsleNAKNgyusSo3YQ9RxzpxNqUFWW70M9pm87U=;
+ b=nx9dNIOmGboJH7W5UM4oqHLlAjmX8YnpTJu6m1c4ETjPgrM1Vo0GLOZutukMI9rsKoaLQzb6krO5sn8ss7OhXpOfLzDbjUD4NBS1kKRvnMimwYYJtBkYQrAzOXWENfpa5Gciy6H1aovFPJ22jTIg13TyPx+fdphx1b8vfPl5ljy1v2MejCKCpUWK15J/GZdbwjqBrGyenzYiBflLwkNarPV/KQi5QCiWjo9Yqe/f3bg9lGNMp9zRkekue/eapCjiglXB1dBJO4a6rD32RyjY1OEjDJRrta4m/8Yac9ydVNNB+JjKTGFB0bmwKNIfxlF65M/UqbJxUNj43PYPX06X6g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
- header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cherrycloud.onmicrosoft.com; s=selector2-cherrycloud-onmicrosoft-com;
+ smtp.mailfrom=trackman.com; dmarc=pass action=none header.from=trackman.com;
+ dkim=pass header.d=trackman.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=trackman.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1P95QGFcBBtCAtPOROALbp5ONTCNe3Xw42MpimJWjoA=;
- b=pNsfq6XO6+/pwOU1wspFzx9ICyuPxmlorP5pvK2at6D4HFXC40jbW86WR7xeR2BvQR1NV7mbBUBGq2jz5eyvudz6zHmm6monKo6p6zxYxoe+lfbbfUykNQ3HfIOprQOzH9fh2chaRys99cooNLOctBemI+xlVrpklMgHmTN5LTw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
-Received: from PA4PR04MB9367.eurprd04.prod.outlook.com (2603:10a6:102:2aa::7)
- by DB6PR04MB3077.eurprd04.prod.outlook.com (2603:10a6:6:8::16) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5395.21; Tue, 5 Jul 2022 15:56:15 +0000
-Received: from PA4PR04MB9367.eurprd04.prod.outlook.com
- ([fe80::cc58:11a8:839f:895f]) by PA4PR04MB9367.eurprd04.prod.outlook.com
- ([fe80::cc58:11a8:839f:895f%7]) with mapi id 15.20.5395.017; Tue, 5 Jul 2022
- 15:56:15 +0000
-Message-ID: <33e56e11-0e57-1e48-6f68-529a2d618980@theobroma-systems.com>
-Date: Tue, 5 Jul 2022 17:56:13 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [yocto] Unable to fetch repository from GitLab. Checksum mismatch
-Content-Language: en-US
-To: rashmipisal@yahoo.com, yocto@lists.yoctoproject.org
-References: <umVt.1657036286562889638.nKpX@lists.yoctoproject.org>
-From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-In-Reply-To: <umVt.1657036286562889638.nKpX@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AS9PR04CA0096.eurprd04.prod.outlook.com
- (2603:10a6:20b:50e::26) To PA4PR04MB9367.eurprd04.prod.outlook.com
- (2603:10a6:102:2aa::7)
+ bh=1HXxETsleNAKNgyusSo3YQ9RxzpxNqUFWW70M9pm87U=;
+ b=XnW6TZJ2SpiPobGhvPF0qjyg8IsS+jpj+hqkccpkTzMIQ0eAS2JWRYaqxNTVfM5swFpTE6IMVsQezNBEvEtkbQfxfJd6iLnnglUBoTgp0gL54wdmwLpR2ZuzrXTJVzrMJxeL2uBp/2QUUEzBnhMOLTZhs6OlSdEJj61fn6PVrek=
+Received: from VI1PR07MB4464.eurprd07.prod.outlook.com (2603:10a6:803:73::18)
+ by AM9PR07MB7154.eurprd07.prod.outlook.com (2603:10a6:20b:2cd::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.6; Wed, 6 Jul
+ 2022 06:50:28 +0000
+Received: from VI1PR07MB4464.eurprd07.prod.outlook.com
+ ([fe80::dc5a:193f:e704:e46a]) by VI1PR07MB4464.eurprd07.prod.outlook.com
+ ([fe80::dc5a:193f:e704:e46a%7]) with mapi id 15.20.5417.016; Wed, 6 Jul 2022
+ 06:50:28 +0000
+From: Anders Gnistrup <agn@trackman.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Recommended boot method for system using rauc, intel and efi.
+Thread-Topic: Recommended boot method for system using rauc, intel and efi.
+Thread-Index: AQHYkPglFwh21AxJfEKb+qLcT8CN2g==
+Date: Wed, 6 Jul 2022 06:50:28 +0000
+Message-ID: 
+ <VI1PR07MB4464F6A235514CAA187613DFD0809@VI1PR07MB4464.eurprd07.prod.outlook.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=trackman.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 6d9869c9-4d19-44a5-fd69-08da5f1bcfec
+x-ms-traffictypediagnostic: AM9PR07MB7154:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ xgMfYMtJYNk2Ic89ddEoH5pBxJiUL5s1VHh2HJFP3vGGIIdWeYh/Byz9WhzUfbrUj5HqK6teb3fYcrkElfZwsASrZ6JVjxG0hNJ2/imBUBlbBn4C8E/MDNYBhsPBwOGDjmoKCGf0QOkGIfqTxsBOXLPwQrhpngqPN+E+cm9cRPtSOwLFflKMoGNazLhBaaC7y2foy1QwTEFmhic7Wot7Y6o8VY8Jj8cbQ4yOg6B4ZSxP0zkyd4AwDAUyAk39jd7t4G6hLZcP1gMd58BfOpjaVXWiz5LCeQb8P0umTXhoWOYretjXl5OJqnZrMoPw2T2ds2YmV7Sy0MBuvyunkH48DlwNOSjTt2zNIo/gtgc9Vw11me6QM+qfIdvPDY98wGEJNJlLeF1EoJ98kbklV0/30TRntNtKUORGEIrFyuePQ5zxZuku8WmM7+aRQciCeen5CyS568r4nsBG8CN7ndgJhEu1xEAoevf5ZclfUuIZg6jBI730z2ClLMSCrEiYExBqk/tYWKY3nTALXwyb6aiWYxcwnZOtZkmT/nFtLpjtbh7tq+aSDtkosd/OV/oiwqIfWCDXa8oqUX31ps5dN/vUaSc3yaZYV7V2OLqqKguX+Z6QCbfm1v//JGCeCxltCo2GSWbiYOpnydy1a9JYeXeYIvUFJ7lQt+tfoG0ADd8/sY6FsNuZlWfjXnAVPBGhC73uGmo7bu0C9zOcf9cL4NrKgCjKZWtTaOsRYnOVUU7zpQOo6qOzQ6N/I1V4WI48zT3AphmCYousYMoEAiCknf+DdqMzprnTNJ5a8tMTlhBJhKgx97XuK8sCaLbQL7CPW6/plybRzzZDOiBCp10Wkx3jCnHCfDs3q7P3lToHflXLctiJ4pESkbjebhX5SG5VXHTs
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR07MB4464.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39850400004)(366004)(136003)(396003)(376002)(346002)(186003)(55016003)(38070700005)(38100700002)(122000001)(316002)(19627405001)(6916009)(91956017)(8676002)(64756008)(66446008)(71200400001)(66946007)(76116006)(66556008)(66476007)(5660300002)(8936002)(33656002)(7696005)(86362001)(6506007)(9686003)(966005)(478600001)(52536014)(26005)(166002)(41300700001)(2906002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?SPVS+uZ2v6Kt8a/n9OmQ5UHXRAfE3DmArdPdK64pksctZzQ0JVRVBk1+MH?=
+ =?iso-8859-1?Q?seOjPlJdFDk7UTDoS1lf4V4gnZFmhc/BsKgL7pt0gGRDbWPHRXLZq81sKU?=
+ =?iso-8859-1?Q?yY+iB0i77H1VGvpwBpQDAX9RcXqk2NNyi5kLMZw4+g6QEKn573M3pOML1/?=
+ =?iso-8859-1?Q?dTv+VUslNGgQoba89F/VbjdXFyuI8+urAWE+e5BiHSs+3VvbblNMGtQ+cN?=
+ =?iso-8859-1?Q?64mXJrsM006cg1YGUyt38HtcRXi/BkfLCUgn0wh8xCZ+FFW3e5ZbXuDUnl?=
+ =?iso-8859-1?Q?vLqL+O48UYOPVNOiPOTV5e5oxNSWZsZUIt+pADq3D4Rufgy4+7tgxh7BNN?=
+ =?iso-8859-1?Q?AHFXCXN7aqgxgxfDBAt0psaR4r3Y0Hg0OJwljp3/DZ/x3wYbQGlwsWhsNX?=
+ =?iso-8859-1?Q?rMbE6OOSdpUxsTqFeeMZUFjVnwjaZmcIahq24tf70ZPtnJpl6Cy0CttLFw?=
+ =?iso-8859-1?Q?n44qndhllj+QLcNe+xD//VyLqAAayiP9Xodmu1i1HRYpEHftV5sdINygc2?=
+ =?iso-8859-1?Q?4jpEjl7uK0F8Gvu0qv0XlRBMI4CnHRkl/HpYaXgcyhrHi+gkNvOs8JOrpF?=
+ =?iso-8859-1?Q?gyj8tgZnYRc852sEFKG3yaTZVqeIKDgE24wIhQA9+0aYKQ36lqdnfaGJra?=
+ =?iso-8859-1?Q?1WeKPOe5gO87f+mMXlBqEDk7Orw7+tlBebD2R9FO3/eULvJcf6oisbdIuI?=
+ =?iso-8859-1?Q?nO9t1oMGIxHIlz8XfBLHolljFqTHuYIVvJCPSQCNv1MnZeeLXElw+m5Lpi?=
+ =?iso-8859-1?Q?Vhy1W/xd0tUmn9NiXZNplXTEBUYnMYjSS2oNUQ6lVKNipT6a6ZKGtSlu+G?=
+ =?iso-8859-1?Q?XODRu6RZeLh3hOTa1wT5RYIcg1T++mxRQSxI2rMMbgNIBiVuPfJy27oQZt?=
+ =?iso-8859-1?Q?bf1eez8pignmtFB/+oZJl4N/oacH575FYJrOxW8hF57b1CjN9ySIhj63BG?=
+ =?iso-8859-1?Q?+Fb6IE727sqcPGAd4hlFYkfm2V+anEVVwr20EIXU20URh6F+HDyi7AgBcS?=
+ =?iso-8859-1?Q?SvvMf0GAd9elihbig086olUxQQ0cvDpISIJdOU1ZLrIb1wtTsfzf8DiJao?=
+ =?iso-8859-1?Q?N/PDu1Jv+pf1qGk0mOFzYwJ+Zm5Q8VRNf/OqL3EnWE9I3OMqWyEv1t7d9a?=
+ =?iso-8859-1?Q?BeshnahAP9c9Pt5Uuf+ef9+14UlOhCfbYReZl09SXEJwGNBxgCGgrNa7Oy?=
+ =?iso-8859-1?Q?ohp7gyl7dhpeqNwSJ2FPbLS1LyLV6IfZqmlfPEbWURelMUl/jX/jpPzPwj?=
+ =?iso-8859-1?Q?2bpb1t6MGkyrgxxptq0+LirGQyJNp5sZkhoHCJ+F3crDZj901Bq66dBjij?=
+ =?iso-8859-1?Q?jbqQqkmkAka6yWc1s0haCw62GnsvexqL22xXk4uKrpKpIjdeml1z4PghVg?=
+ =?iso-8859-1?Q?XtOb0JOFzIP98EQe5bzd06xGI3X1Di0JR4MRsEZxjyEZgAfGp0chlp+sFd?=
+ =?iso-8859-1?Q?1bA/KrUk4fwJSDXr+O9Ep75A+w2FiZLa8l89ZQeldVEd4adNxT7bAI5Sep?=
+ =?iso-8859-1?Q?eti61NdNOVXFp5a7lU/n41aZToq20+PIjtk/LvrFP4fLd8oofGeXXI7HnN?=
+ =?iso-8859-1?Q?7E8kbvpGyKLMhbb14TdUAUu0xVZ+dC3IEhw5Lak/PPj53NpeqnvzeAEnEt?=
+ =?iso-8859-1?Q?/uia4KLUyYOhE=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_VI1PR07MB4464F6A235514CAA187613DFD0809VI1PR07MB4464eurp_"
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6aab6c87-1b3a-4c1c-f5ae-08da5e9ee3ec
-X-MS-TrafficTypeDiagnostic: DB6PR04MB3077:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	Hxk6TmvoVNEVfEaT1eFP2IhCDfsCygSxqNnYbka9N90mD7eJMuCCaiBpmcLAT9MQea5ACW7zWEznx1kBmAe7F7MMGhjIhBmQstmzn9HF3U72BmO7CFmANVKdRzHTdMrVLTd+SkSW4upzSZ7clfIA41hLkJKR+XlAfkiVKWfliK3V5I98NsFyLnynCuq+qzdG4VFZZz6hBa+yNA7OFOEkrqENwOwJO03xwDDCXfxOVEK6HH6rWIe2QsfxLL+TKAPdxTQNULnNBZ7KxHC9zIHLngTR6fh7VrqXkGcQMg3mryHJ6ndmLwhkI6mvlQAbvq3JxmUrGUxdX1cWCnROtHfdm4vCbe/hokVGX76kE3Qi2qx2KN5/4cuwWsu/8dxQjXgxdnTbNnyEtdRJVe+QsQe+5XSPKBllqAlm/DfC0gUPDSTLtxYKYSGwR++HFcF1ESVeDmR4wyWhXXXEYOnXtUsaqvvuf08z2CFYkdypv0PtYHO+LN1Xgb+0UgvvXG6EcebGQT32z+T79isb1gG8FeL0/Ci0UEermAlHWQ4nLx1GVEumsnbEBnYQNJsuuIdQ5PDq6Ud2fzRpD71Qx6Bb1o8RTHm4DFHP0AZ/HsfQ4PXoqIvtfIxGJ0zyTaI9Spn9L62EpwR56j+rXlfwmULZSJP2x7egwD7V/WzPwP0ivze546xl6F3WYtrxMXd6jhgNbG6wiOIFUg3+bY59qcsXUjJmqu3Jm27+mAG5JPZyWo6ICbksDdRIfQzhH9oVJNw7YcFLYzkzP4qHk/jKU24p5TXc0CWm5328CC8NF/bjzNn4Td50OcxbbVcNdKZQUbpSu/Rl3KlJVvW/qBsPFZkFlnS25DOYXl7Kyjab0dMp1rBHEUk=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9367.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(396003)(39840400004)(366004)(136003)(346002)(376002)(31696002)(8676002)(66476007)(66556008)(66946007)(53546011)(41300700001)(86362001)(6506007)(2906002)(478600001)(83380400001)(5660300002)(8936002)(26005)(44832011)(966005)(6486002)(6512007)(2616005)(186003)(316002)(38100700002)(31686004)(36756003)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?b2lkMmRBeExudjNYblMwUWZoSjRCMWVCRDZTdFhMZU1jZ0dvVlFBRTdKMSt1?=
- =?utf-8?B?ODIrd1RrSVVHejd6R2h2MGlEMlRIV1E5NW1WTWJWQ2Z2KzNZR25oTk9KRjIw?=
- =?utf-8?B?N2VXTENidDBmNVVGYS93amhaMVJtaDFYWGxVVzUxcGkzc0FJSGVqZ2tIelB5?=
- =?utf-8?B?R3A1aGRTb01CRGs4QTA4d2RFYXZod3J5MDhYaEt0UUdWU3REUzk3VlI2ZmtL?=
- =?utf-8?B?bGZxdGdiR3FNZmUzZ2g4eWNQTXlUd1l3VmZndzZvMllGMUNnOU9mWkVYTEJ2?=
- =?utf-8?B?UUlETVVUMS9GK2IxMElnZkIvUk40TUhaY3Y1bHNvM1dydm96OHBSeFYwVDJ6?=
- =?utf-8?B?dWZqUW5oaTJnNFA5K09rUTdkN1QyNUtlTjB0eGtpL2xYUkY4RzBvU0dYSTFp?=
- =?utf-8?B?Zi9tdkd5bFQyL25vN1ZLS2VveC9GQXBZbFdUa1dDNkNCaGtXQ1BQV09laWIw?=
- =?utf-8?B?dTd4UXBqU1kxYWF4SFJRb1NKK0V3a1U1TWhPM0FLVVZCSi9jTUJsckJrYStL?=
- =?utf-8?B?STkwSis2Ym9BYzhkWUhYVnJ5R1hUWGFuVmttOFBZUlVyL1NEaUJ0TmMrU1hh?=
- =?utf-8?B?UithbWE5SWdqN3R3QmU0NjBaUjRCTUpsSTVadHJkMkJuRlJOck5CZUlIYkNi?=
- =?utf-8?B?cXF1VjNjQXd2UU93bFVoNnkzS1pxWGx3ZWR1by9oWThBZUhTZGtucEN5UW9q?=
- =?utf-8?B?RmhQZW5uT2sxd3dkSUNOckpOSDR2TzNVODNxaGpOS0laaktLYmdrbjB4NlJ2?=
- =?utf-8?B?aU1UR29KdmVHTlBMQWtKTEpZRk53bkNnblhwYThlTkw5cEdzbzBhMmEwZWUx?=
- =?utf-8?B?bXBCNG42bG11VWtXSGRaVmhodFBlM3lHdkljRnpGWFljbDd0NGd2SmhOSnk1?=
- =?utf-8?B?WFg3VXJydFdyQnptREhOeXpNNW9DdEFSejBKdnJRcUI0TVZXYU9ZcTByUGZD?=
- =?utf-8?B?Zk9iK3J3WFowaFNPSUd4Uk9aQXBRc0ZtaHBKVTFsZkgySEJRb1RJZUJXWDhM?=
- =?utf-8?B?a3FwLzFSZ2E5WWFybzZBM3Z4M1RtZkIzRmtrc1g0OW5JdjFob2VEVEdpdXh3?=
- =?utf-8?B?eWU5d1BMeTFJYUJ3K3VKSDNwSXpzRy9mN2IxMkxZcElzWVNCVVZYWStXRnhm?=
- =?utf-8?B?TEQwVHVWeTJPbUQ1U1orSi9oU1dydExEMHpwdDJWanROM2hPYjJwaTZ3QlRC?=
- =?utf-8?B?VkJFanRCdGZzMlBFZDFsUDRpbG9vWmVSbjhaRkE0NWx4SW5CZktGZXV0ZjNn?=
- =?utf-8?B?bG1FQndqOE9ZVU56dVZmbHlJUURaaHV2bFpGWmVjdnhpY1h1d2daTlAvNGxx?=
- =?utf-8?B?aEg1RGd2bURxNEdSOUZ6N1ZhQWNpeFBMTkY5dEtMWXkrUThNK2ZSQm8wOGc4?=
- =?utf-8?B?Sml6ZjVTZjA2RHBVa05sVk9DMWFnLzJmZFpVS0x5RXdwOFZiUE5wMU84ZXd6?=
- =?utf-8?B?OEZ4YzllT0VZMnVwOXdKWWlHY1c3M2FlRUJSMGw5NlEreWNRcTRFakJXcGJZ?=
- =?utf-8?B?QkJjOGtKVTZaRTJIaG1MYzM5RWpScHpseTFnZ0FPOE1HcjNuZ0hWOHlkT1Vy?=
- =?utf-8?B?cUxYNk1vQ2g0dTN6ZzAvNkc1QlNqT083ekJ3UzN2RVNONFlEdXVTUzRITVND?=
- =?utf-8?B?VkhOeVZKWCsybk43b1J0QnFEVGZLbkJTSXcrSUk0L3ZFbVUrRDVORU8xQ0ho?=
- =?utf-8?B?UFNkR0k3L2llUTZydUxkcHE2ZjJzMVllWDBKaE1qV0VvbnBSNWxEY2ZHUWJP?=
- =?utf-8?B?TExFNHl0N1d0RERDRHJxeUNVT1IvLytOZE4xTVJ2dDZYdlNjdVZaVCsyMUtl?=
- =?utf-8?B?bmtHTVluNjhqUkFLYTVvSDk0Vk1ySUYyd0VIS3prLzMwNU0wb1AyLzZKRVd1?=
- =?utf-8?B?K0U2eVVHbzFBMGR4NzBUOWlFUnlxTVVpOC9XN25TSDg4WXlaaVlERWZGUlkr?=
- =?utf-8?B?Um1ZVGZsZUFCYUFRRzdiYjd1WlZZaDQvUisyaW9jVndHRGlwZlVlb0oybFpz?=
- =?utf-8?B?bmFGZmtYMC9wNSt3S3ZjN0JtTWRCQlRRM1d6aGFoa1NSMXRPRnp5Z0FnMHEv?=
- =?utf-8?B?cmNuSFB1SE40a1VYM3VXQWtBSnptdkJPSWdybytaTnY4MEJ3d2RVSWdqWE9U?=
- =?utf-8?B?dHlnQlhJNnduZStHYk11L3NaelBWYmRPMCtnREhyTWdsRkNyVWFrVG1uM1Mv?=
- =?utf-8?Q?aUYj0SkkbMblDwmvZOslzNk=3D?=
-X-OriginatorOrg: theobroma-systems.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 6aab6c87-1b3a-4c1c-f5ae-08da5e9ee3ec
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9367.eurprd04.prod.outlook.com
+X-OriginatorOrg: trackman.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jul 2022 15:56:14.9866
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR07MB4464.eurprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 6d9869c9-4d19-44a5-fd69-08da5f1bcfec
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jul 2022 06:50:28.3048
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- /RGs0sTgSYXOH/haHgmDfk3+/68z7kUdySsOTldn2mIdhJJCSEnjGWWDlQQWe1Cf1/Z87N327gm7i6XMHzQtIczXI0PA4wf1nHd4626kZgV2ca5+b1kW0UQASMdGC5he
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR04MB3077
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eb272a1e-e767-4041-9363-f8736579f898
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 
+ tggZtBva1HSQn1wm6ZLlQZRX8qxN6umcRysR7S++l9ZtlwZZYSi/pn96vegkdvRSLyQ1H2Gi0BnmFHx85D/2HA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR07MB7154
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 05 Jul 2022 15:56:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57457
+ <yocto@lists.yoctoproject.org>; Wed, 06 Jul 2022 06:50:41 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57458
 
-Hi Rashmi,
+--_000_VI1PR07MB4464F6A235514CAA187613DFD0809VI1PR07MB4464eurp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-You only need to add ;protocol=https to your SRC_URI which starts with 
-git://.
+Hi all
 
-git:// in SRC_URI is NOT the protocol used to download the sources, it 
-is the way Bitbake knows which fetcher to use (in that case, the git 
-fetcher). If you replace it with http, it's going to be the HTTP 
-fetcher, which uses curl. It is not what you want to use for git repos.
+I am building a yocto BSP for an Intel system. The system is using rauc for=
+ updating and contains three sections, rescue, A and B, where A/B is the ac=
+tual SW running. Since the system is Intel based a decision how to organise=
+ the partitions layout is needed. Currently I am making a skeleton for the =
+BSP.
 
-c.f. 
-https://docs.yoctoproject.org/bitbake/bitbake-user-manual/bitbake-user-manual-fetching.html#git-fetcher-git
+This is the current layout
 
-Hope this helps,
-Cheers,
-Quentin
+  *   boot
+  *   rescue
+  *   A
+  *   B
 
-On 7/5/22 17:51, rashmi pisal via lists.yoctoproject.org wrote:
-> Hello,
-> 
-> I am building a software image and it fails when fetching a repository form GitLab. https://urldefense.proofpoint.com/v2/url?u=https-3A__github.com_ajstarks_openvg&d=DwIFaQ&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Uy8eY6eBlqV_AsuEY-zJDusZsvsTvDx2FOD4Nhn0s-1R6JDqU0aLQCXt1Sje117Y&s=kJKsWKz_K582lp2OiBXmm-8OF2OXSN90rZSBapaIU84&e=
-> 
-> Initially I was using git:// protocol to fetch the files but due to the GItLab ended support of git:// I am using https:// protocol. I am getting following error. Any help is appreciated. Thank you.
-> 
-> ==================================================================
-> NOTE: Running task 2097 of 5013 (/var/lib/jenkins/workspace/yocto-rebound/meta-openembedded/meta-oe/recipes-graphics/gphoto2/libgphoto2_2.5.8.bb:do_patch)
-> NOTE: recipe libgphoto2-2.5.8-r0: task do_patch: Started
-> NOTE: recipe libgphoto2-2.5.8-r0: task do_patch: Succeeded
-> NOTE: Running task 2098 of 5013 (/var/lib/jenkins/workspace/yocto-rebound/meta-openembedded/meta-oe/recipes-support/glog/glog_0.3.4.bb:do_patch)
-> NOTE: recipe glog-0.3.4-r0: task do_patch: Started
-> NOTE: recipe glog-0.3.4-r0: task do_patch: Succeeded
-> NOTE: Running task 2099 of 5013 (/var/lib/jenkins/workspace/yocto-rebound/meta/recipes-devtools/perl/perl_5.24.1.bb:do_packagedata)
-> NOTE: recipe perl-5.24.1-r0: task do_packagedata: Started
-> NOTE: recipe perl-5.24.1-r0: task do_packagedata: Succeeded
-> NOTE: Running task 2100 of 5013 (/var/lib/jenkins/workspace/yocto-rebound/meta-rebound/recipes-bsp/openvg/openvg.bb:do_fetch)
-> NOTE: recipe openvg-1.0-r0: task do_fetch: Started
-> WARNING: openvg-1.0-r0 do_fetch: Checksum mismatch for local file /var/lib/jenkins/workspace/yocto-rebound/build/downloads/openvg
-> Cleaning and trying again.
-> WARNING: openvg-1.0-r0 do_fetch: Renaming /var/lib/jenkins/workspace/yocto-rebound/build/downloads/openvg to /var/lib/jenkins/workspace/yocto-rebound/build/downloads/openvg_bad-checksum_ddfeecef70433040e18ee9e68481e7f3
-> WARNING: openvg-1.0-r0 do_fetch: Checksum failure encountered with download of https://urldefense.proofpoint.com/v2/url?u=https-3A__github.com_ajstarks_openvg&d=DwIFaQ&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Uy8eY6eBlqV_AsuEY-zJDusZsvsTvDx2FOD4Nhn0s-1R6JDqU0aLQCXt1Sje117Y&s=kJKsWKz_K582lp2OiBXmm-8OF2OXSN90rZSBapaIU84&e=  - will attempt other sources if available
-> ERROR: openvg-1.0-r0 do_fetch: Fetcher failure for URL: 'https://urldefense.proofpoint.com/v2/url?u=https-3A__github.com_ajstarks_openvg&d=DwIFaQ&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Uy8eY6eBlqV_AsuEY-zJDusZsvsTvDx2FOD4Nhn0s-1R6JDqU0aLQCXt1Sje117Y&s=kJKsWKz_K582lp2OiBXmm-8OF2OXSN90rZSBapaIU84&e= '. Checksum mismatch!
-> File: '/var/lib/jenkins/workspace/yocto-rebound/build/downloads/openvg' has md5 checksum ddfeecef70433040e18ee9e68481e7f3 when a8b34f242afbf3cac74fc7d34a496b24 was expected
-> If this change is expected (e.g. you have upgraded to a new version without updating the checksums) then you can use these lines within the recipe:
-> SRC_URI[md5sum] = "ddfeecef70433040e18ee9e68481e7f3"
-> SRC_URI[sha256sum] = "7c67772c69b23d5b4cd298c7ddbf02938c3d11de04747c3243435e1463169669"
-> Otherwise you should retry the download and/or check with upstream to determine if the file has become corrupted or otherwise unexpectedly modified.
-> 
-> ERROR: openvg-1.0-r0 do_fetch: Fetcher failure for URL: 'https://urldefense.proofpoint.com/v2/url?u=https-3A__github.com_ajstarks_openvg&d=DwIFaQ&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Uy8eY6eBlqV_AsuEY-zJDusZsvsTvDx2FOD4Nhn0s-1R6JDqU0aLQCXt1Sje117Y&s=kJKsWKz_K582lp2OiBXmm-8OF2OXSN90rZSBapaIU84&e= '. Unable to fetch URL from any source.
-> ERROR: openvg-1.0-r0 do_fetch: Function failed: base_do_fetch
-> ERROR: Logfile of failure stored in: /var/lib/jenkins/workspace/yocto-rebound/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/openvg/1.0-r0/temp/log.do_fetch.30930
-> NOTE: recipe openvg-1.0-r0: task do_fetch: Failed
-> ERROR: Task (/var/lib/jenkins/workspace/yocto-rebound/meta-rebound/recipes-bsp/openvg/openvg.bb:do_fetch) failed with exit code '1'
-> NOTE: Running task 2101 of 5013 (/var/lib/jenkins/workspace/yocto-rebound/meta-gplv2/recipes-extended/gawk/gawk_3.1.5.bb:do_prepare_recipe_sysroot)
-> NOTE: recipe gawk-3.1.5-r2: task do_prepare_recipe_sysroot: Started
-> NOTE: recipe gawk-3.1.5-r2: task do_prepare_recipe_sysroot: Succeeded
-> NOTE: recipe opencv-3.3+gitAUTOINC+87c27a074d_2a9d1b22ed_a62e20676a_34e4206aef_fccf7cd6a4-r0: task do_fetch: Succeeded
-> NOTE: Tasks Summary: Attempted 2101 tasks of which 0 didn't need to be rerun and 1 failed.
-> ====================================================================================
-> 
-> 
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#57456): https://urldefense.proofpoint.com/v2/url?u=https-3A__lists.yoctoproject.org_g_yocto_message_57456&d=DwIFaQ&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Uy8eY6eBlqV_AsuEY-zJDusZsvsTvDx2FOD4Nhn0s-1R6JDqU0aLQCXt1Sje117Y&s=aiy2liQy8V0E54f0u0J9akaQ-NaVMPXg8DU7h-wYdME&e=
-> Mute This Topic: https://urldefense.proofpoint.com/v2/url?u=https-3A__lists.yoctoproject.org_mt_92187673_6293953&d=DwIFaQ&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Uy8eY6eBlqV_AsuEY-zJDusZsvsTvDx2FOD4Nhn0s-1R6JDqU0aLQCXt1Sje117Y&s=ss4rCycim4dMwzxGO8iJtHaJO4Xp48AcfJR1y8wCLes&e=
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://urldefense.proofpoint.com/v2/url?u=https-3A__lists.yoctoproject.org_g_yocto_unsub&d=DwIFaQ&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=Uy8eY6eBlqV_AsuEY-zJDusZsvsTvDx2FOD4Nhn0s-1R6JDqU0aLQCXt1Sje117Y&s=8zuU9VVW0HPYB502lx6SL7lcHAkKaLbUSgkqz_we0tM&e=  [quentin.schulz@theobroma-systems.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
+In arm systems boot selection is handling via scripting/rauc/uboot in boot =
+section. But in intel there are at least three options.
+1) Legacy boot
+This will create the layout above, but it will depend on legacy bios boot. =
+This will require writing the MBR and pointing to the boot where grub scrip=
+ting handles the rauc stuff. It seems like a bad solution to add MBR is the=
+ loop.
+
+2) EFI entry always points to boot partition.
+grub + scripting in the boot partition will do a similar operation like in =
+the arm system. This solution gives quite a lot of flexibility, but will de=
+pend on SW.
+
+3) pure EFI+efibootmgr. This will eliminate the boot partition and grub scr=
+ipting but since EFI file format must be VFAT (EFI standard) the rescue, A =
+and B partition needs a split. That is:
+
+  *   Boot rescue
+  *   rescue
+  *   Boot A
+  *   A
+  *   Boot B
+  *   B
+
+rescue/factury default needs to write the boot entries to EFI-nvram. During=
+ runtime efibootmgr+rauc selects the next boot, rescue, A or B.
+The grub scripting is replaced by efibootmgr and EFI entries in NVRAM.
+
+And now my questions
+Q1
+My yocto builder is using the wks plugin to define the partition layout, ht=
+tps://docs.yoctoproject.org/singleindex.html#command-bootloader.
+When setting the bootloader command it seems that the --configfile argument=
+ shall be used since there is no info in the EFI-nvram. WKS seems to work O=
+K without the --configfile argument when building an installer image. Build=
+ing a fixed disk containing an installer rescue image seems to be a bit too=
+ much for the logic.
+
+Q2
+I can't decide between 2 or 3 and I need some guidelines/idea.
+2 is SW based while 3 is using the EFI system. Basically, the grub scriptin=
+g is partly replacing the EFI system but will introduce a more complex part=
+itions layout, a more complex rauc bundle and a more complex installation/r=
+escue. The rescue partition shall be able to reset the system to factory de=
+fault i.e. either reset entries in EFI-nvram or reset grub environment. Cur=
+rently I am most up for grub scripting, solution 2, since all info is on th=
+e sata disk and not a combination of EFI-nvram and sata disk. Further it se=
+ems that the yocto support for efibootmgr, EFI-nvram and rauc is a bit blee=
+ding edge.
+
+Regards
+Anders Gnistrup
+
+
+--_000_VI1PR07MB4464F6A235514CAA187613DFD0809VI1PR07MB4464eurp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Hi all</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+I am building a yocto BSP for an Intel system. The system is using rauc for=
+ updating and contains three sections, rescue, A and B, where A/B is the ac=
+tual SW running. Since the system is Intel based a decision how to organise=
+ the partitions layout is needed.
+ Currently I am making a skeleton for the BSP.<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+This is the current layout</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+<ul>
+<li><span>boot</span></li><li>rescue</li><li>A</li><li>B</li></ul>
+<div>In arm systems boot selection is handling via scripting/rauc/uboot in =
+boot section. But in intel there are at least three options.</div>
+<div>
+<div><span>1)&nbsp;Legacy boot</span></div>
+<div><span>This will create the layout above, but it will depend on legacy =
+bios boot. This will require writing the MBR and pointing to the boot where=
+ grub scripting handles the rauc stuff. It seems like a bad solution to add=
+ MBR is the loop.<br>
+</span></div>
+<div><span><br>
+</span></div>
+<div><span>2) EFI entry always points to boot partition.<br>
+</span></div>
+<div><span>grub + scripting in the boot partition will do a similar operati=
+on like in the arm system. This solution gives quite a lot of flexibility, =
+but will depend on SW.<br>
+</span></div>
+<div><span><br>
+</span></div>
+<div><span>3) pure EFI+efibootmgr. This will eliminate the boot partition a=
+nd grub scripting but since EFI file format must be VFAT (EFI standard) the=
+ rescue, A and B partition needs a split. That is:</span></div>
+<div><span>
+<ul>
+<li>Boot rescue</li><li>rescue<br>
+</li><li>Boot A<br>
+</li><li>A</li><li>Boot B<br>
+</li><li>B</li></ul>
+rescue/factury default needs to write the boot entries to EFI-nvram. During=
+ runtime efibootmgr+rauc selects the next boot, rescue, A or B.</span></div=
+>
+<div><span>The grub scripting is replaced by efibootmgr and EFI entries in =
+NVRAM.<br>
+</span></div>
+<div><span><br>
+</span></div>
+<div><span>And now my questions</span></div>
+<div><span><span><span>Q1<br>
+</span></span></span></div>
+<div><span>
+<div><span>My yocto builder is using the wks plugin to define the partition=
+ layout,
+<a href=3D"https://docs.yoctoproject.org/singleindex.html#command-bootloade=
+r">https://docs.yoctoproject.org/singleindex.html#command-bootloader</a>.<b=
+r>
+</span></div>
+<div><span>When setting the bootloader command it seems that the <span>--co=
+nfigfile argument</span> shall be used since there is no info in the EFI-nv=
+ram. WKS seems to work OK without the
+<span><span><span>--configfile</span></span></span> argument when building =
+an installer image. Building a fixed disk containing an installer rescue im=
+age seems to be a bit too much for the logic.<br>
+</span></div>
+</span></div>
+<div><span><span><span><br>
+</span></span></span></div>
+<div><span>Q2<br>
+</span></div>
+<div><span>I can't decide between 2 or 3 and I need some guidelines/idea.</=
+span></div>
+<div><span>2 is SW based while 3 is using the EFI system. Basically, the gr=
+ub scripting is partly replacing the EFI system but will introduce a more c=
+omplex partitions layout, a more complex rauc bundle and a more complex ins=
+tallation/rescue. T<span>he rescue
+ partition shall be able to reset the system to factory default i.e. either=
+ reset entries in EFI-nvram or reset grub environment.</span> Currently I a=
+m most up for grub scripting, solution 2, since all info is on the sata dis=
+k and not a combination of EFI-nvram
+ and sata disk. Further it seems that the yocto support for efibootmgr, EFI=
+-nvram and rauc is a bit bleeding edge.<br>
+</span></div>
+<br>
+Regards</div>
+<div>Anders Gnistrup<br>
+</div>
+<div><br>
+</div>
+</div>
+</body>
+</html>
+
+--_000_VI1PR07MB4464F6A235514CAA187613DFD0809VI1PR07MB4464eurp_--
 
