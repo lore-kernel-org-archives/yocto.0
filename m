@@ -1,247 +1,380 @@
-Return-Path: <mike.looijmans@topic.nl>
+Return-Path: <khoidinhtrinh@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1DE4EC43334
-	for <webhook@archiver.kernel.org>; Tue, 12 Jul 2022 15:05:40 +0000 (UTC)
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com
- (EUR05-VI1-obe.outbound.protection.outlook.com [40.107.21.42])
- by mx.groups.io with SMTP id smtpd.web09.10430.1657638330906480662
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 94453C43334
+	for <webhook@archiver.kernel.org>; Tue, 12 Jul 2022 16:15:20 +0000 (UTC)
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com
+ [209.85.167.174])
+ by mx.groups.io with SMTP id smtpd.web10.11196.1657642518676299207
  for <yocto@lists.yoctoproject.org>;
- Tue, 12 Jul 2022 08:05:33 -0700
+ Tue, 12 Jul 2022 09:15:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@topic.nl header.s=selector2 header.b=X54ObR5w;
- spf=pass (domain: topicproducts.com, ip: 40.107.21.42,
- mailfrom: mike.looijmans@topicproducts.com)
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=fail;
- b=U9g/Q/hyxfOm39UeqoKvufac7mL/Ykx2GF1IC50WUDn22vnJ4hGkZr+v4MWgV89m2FEWA6cVvk15Nq4Fw0Y9g8fEPomy8ENmCaPdUdE301mQbzd4mhhS8XwlAl1tPk6jsPT3XNO8SrM+DdwmidQABCbvdsVtfFRB9SQUesJhXXJaArNF1G3D7Viz1z/ZWZ8vdfoGjMRxfeAHrvwObesce6r7KSlxjxrYnB0aSTk1cPTLz+kSMQCjYMy/8sre+aAt/G6f5jLHDdqq92EdgDqR3IJtyzpXZ/MPD3eoK1GFmYjHFykLE57Eyd2hS57XIPinyCvHwILYR9U0TchhmYjaHA==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GZPLYLRII0kskFfnuwWqUmsQ/zndc0c4Xi1wOSOaywA=;
- b=eKNSvoyP91YqQaHr6EabGDl7o42gf8+LEoO9H9KgRsGSpK7LHuOhI3HykU9vmgETVxhsV9D3B8wagUIpyYB7Go8unRewZ9/8s1KTLYaQfdy0vNkMFkqkCC/DocQ6Rffka4aCLShhKwJCeQWqME12e477FI36nP+CRetd150IN0X/YaGXP+i1t+vBKG19VYOSQmeUCNbIDvi7l2PeEnyjHvtLkPdyqEYasrzYjnY4ZFNHKTdnDt0tJPdpka3DUD/S7DIN+k5aSC4S0eTqwQbYo/sQKEMWKFSE+yV9yA6eOVYIDpTpB2HnB73ubmC9Tg0q/exTsbgBFGRjGSOfhRZDhA==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 13.93.42.39) smtp.rcpttodomain=lists.yoctoproject.org
- smtp.mailfrom=topicproducts.com; dmarc=none action=none header.from=topic.nl;
- dkim=none (message not signed); arc=fail (47)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=topic.nl; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GZPLYLRII0kskFfnuwWqUmsQ/zndc0c4Xi1wOSOaywA=;
- b=X54ObR5wkg9iwhEcMfeBS4LlRQXWAv5oEVIfXtPNIxdxXeq4rrWt0nRRq3Lfkzbb9M5g8PkqRaobvnU0YfDTZGoFJ1MfkPAK7IHB3c3MzSni3f5Uj/PdNMg8b2lhak6J6Xw3aH6Fh/5Qz0IzAseMS6r7LWw9QHvtLmkthS79Tw1SKfMYKhrBTOFvykPTNMNfhKauu+DvCrXv3SwN4SMGy2tXwSz+xjS5mbZhO26dZ4nVyVvYQA9DT+db4h2Yhn1MqhDIQea3kmcoFd+Ap45NFOs6/uaYTQKCnib/wpbYJ5o5vZYCHOf5Xs0RoWpOqn1gFzlGKgnfRVskDe9rC5TAFg==
-Received: from DB6PR0202CA0006.eurprd02.prod.outlook.com (2603:10a6:4:29::16)
- by VE1PR04MB6768.eurprd04.prod.outlook.com (2603:10a6:803:129::26) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.26; Tue, 12 Jul
- 2022 15:05:27 +0000
-Received: from DB5EUR01FT079.eop-EUR01.prod.protection.outlook.com
- (2603:10a6:4:29:cafe::85) by DB6PR0202CA0006.outlook.office365.com
- (2603:10a6:4:29::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.26 via Frontend
- Transport; Tue, 12 Jul 2022 15:05:27 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 13.93.42.39)
- smtp.mailfrom=topicproducts.com; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=topic.nl;
-Received-SPF: Pass (protection.outlook.com: domain of topicproducts.com
- designates 13.93.42.39 as permitted sender) receiver=protection.outlook.com;
- client-ip=13.93.42.39; helo=westeu12-emailsignatures-cloud.codetwo.com; pr=C
-Received: from westeu12-emailsignatures-cloud.codetwo.com (13.93.42.39) by
- DB5EUR01FT079.mail.protection.outlook.com (10.152.5.67) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5417.16 via Frontend Transport; Tue, 12 Jul 2022 15:05:26 +0000
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (104.47.14.54) by
- westeu12-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12)
- via SMTP; Tue, 12 Jul 2022 15:05:25 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AdBUmz9pfXdiU72N6NHM5T47ciqMjyhutoLD8un13xV6UQL4HlXKFiMKdXsactsRrGtVo0r6RiOLAlsm4azZhjqlLZZ66m7rRX7p37pWr4lWcWMjKaqJj8rpCezCs0tkjOz62nSMUprzt7WFPepgDwOnRr8+1C/AN6D6HzpITtVMKwywzQD7sae7YrBFdVpn/0Zc8FqQo/XYJan4v3lbw473yWZOpSejjWx4oSijfXt4TMYw/xjJ2/b6f5Ol1IT5Zip0hAtnDCa6bIEyafzvKwNmxd8oxReC9PYRaHqEXaVWYroD0al3Ent4e9EDsKWdVLv3ZRh5eZLLLtYTawG5Hg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=r/o647Re9JhDgexAGIBwljWgc7tzkAgjj8p31PmVmTs=;
- b=dJCStPIBHAFbiRKNfdzCOlqkloARvws33ti+C/PpWE/RxYD/KnLkf0B/+RE8E+VzHOj1ZMEHCXoDOPd0F3Qnwv7qZd7ahPjXFZUPm+bmYosytAxJSmvw9HK+TI/mHifUa5ha3jhajdDsgj07YDx6Pz75IaH5SV1f4Pa1QIuFXMur7IFoW1Bs+4erGULlYK4tNExCluU7pgpyF4xj+Rlj0+xI047xNHcMRF/X6q+B3HyuurrIlqsTYNZ9/II2tfpTrirRFy68QgswvNjBI0KiGYp+cpOBHnHX8WJESZAQWhN3oDRMxk6Yu/efsIjm9lTnfpAdtYpyP7hWEPAHBYECLQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=topicproducts.com; dmarc=pass action=none header.from=topic.nl;
- dkim=pass header.d=topic.nl; arc=none
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=topic.nl;
-Received: from AM6PR04MB6520.eurprd04.prod.outlook.com (2603:10a6:20b:f7::16)
- by AS8PR04MB7781.eurprd04.prod.outlook.com (2603:10a6:20b:2a6::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.26; Tue, 12 Jul
- 2022 15:05:23 +0000
-Received: from AM6PR04MB6520.eurprd04.prod.outlook.com
- ([fe80::815a:873e:5143:acdc]) by AM6PR04MB6520.eurprd04.prod.outlook.com
- ([fe80::815a:873e:5143:acdc%5]) with mapi id 15.20.5417.025; Tue, 12 Jul 2022
- 15:05:23 +0000
-Message-ID: <8f0726b6-c7ed-83a1-6069-41bf8370b3bb@topic.nl>
-Date: Tue, 12 Jul 2022 17:05:22 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [yocto] Switching between multiple DISTROs without
- "contamination"
-Content-Language: en-US
-To: yocto@lists.yoctoproject.org
-References: <6b3d2b0146aeaf2c25e0440e7dd6aa0c17cb4a36.camel@delisys.ch>
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=p4hneTBS;
+ spf=pass (domain: gmail.com, ip: 209.85.167.174,
+ mailfrom: khoidinhtrinh@gmail.com)
+Received: by mail-oi1-f174.google.com with SMTP id t189so10999568oie.8
+        for <yocto@lists.yoctoproject.org>;
+ Tue, 12 Jul 2022 09:15:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fJvrUpIiykOAUVh7pPIwo+BRuPoml1FunrYjgdUCa94=;
+        b=p4hneTBSScs+4J0yte0oX4d1c3VCnXW2qkJ92b8ahr5egdsrSN3ZKYR1m0JNNO/UHi
+         yRx0btoUyUcjv2LEUfI1LTV5B6YcErwHThitsbUQGbBHlUmuMDmufKlw9PnSIWUUVghv
+         xcvO26HVVKEop2wy+Pk1sRL8gHvmgcaygmEGm+POB7fUh6OXvG+ntHfiIlx1G31jX2rZ
+         Sn9C6jutim3/o4te5ErQIo6sAeU2Fy92bszNtrHjaxQyKuQbWamD1DngFFZtIZLP92b/
+         jTrakhYsP08E0yXRLNZHWPDqKg5mk35nABZS8Wsmy7UyWPxteFvHBP9iKzsFwrlOmZSC
+         uy6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fJvrUpIiykOAUVh7pPIwo+BRuPoml1FunrYjgdUCa94=;
+        b=Z8wGS/LX5EjQrw4GOq14rgdkb790PdpClPMVZT72ZM/LWlKwlrckHYPvDD35B5N0DJ
+         jGFX4x1Ft/HVeDNJJu8r8Wekida1Oat52qw0YqKCA2iWOJBcQNeUUi7v+2rid7U5U+/7
+         9p3eTo0ZxUJuAbFdkZclVqADKRFO9SdkQ1Y6KkFwunmfEx1GbcElwJPiUDbkyAe/gfX3
+         i3mZN2pIKjD/gtBHEz24/LKRq+tPMd+ImqZexnpcpv6P4UxsM5qqI6mBagPnYJs7lvhq
+         PdMuFcPQ2ZOyfpqRIR4gxnOBQRQYUpJqh82GFpnf/n070A/NfyyctkBJfcmLux2YrHhl
+         qx6g==
+X-Gm-Message-State: AJIora/xkzURv3809ujhTFJu8u+R6PD+EUhVxV2j2I1LG4soLxWG9JaT
+	/8FDVSVeWGB6hGvdw7Tvcp1HlMpyr8vZl3cvXR8=
+X-Google-Smtp-Source: 
+ AGRyM1sBlkBywacPrgTyxB2rQJJ5f9h5/Ttk4mtTYonfYSOgxdTgIecfqqp6yCha3hIzk5K9wXlBT2kKu5IewgxCVDU=
+X-Received: by 2002:a05:6808:1b8d:b0:32f:7995:b32b with SMTP id
+ cj13-20020a0568081b8d00b0032f7995b32bmr2312714oib.219.1657642517435; Tue, 12
+ Jul 2022 09:15:17 -0700 (PDT)
+MIME-Version: 1.0
+References: 
  <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.0579b8aa-d2a5-42d7-9e61-2548c06e61ef@emailsignatures365.codetwo.com>
  <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.0d2bd5fa-15cc-4b27-b94e-83614f9e5b38.2d9bc8b4-92c7-47b2-b9e8-ac8d32e87ee0@emailsignatures365.codetwo.com>
-From: Mike Looijmans <mike.looijmans@topic.nl>
-Organization: Topic
-In-Reply-To: <6b3d2b0146aeaf2c25e0440e7dd6aa0c17cb4a36.camel@delisys.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: AM9P193CA0025.EURP193.PROD.OUTLOOK.COM
- (2603:10a6:20b:21e::30) To AM6PR04MB6520.eurprd04.prod.outlook.com
- (2603:10a6:20b:f7::16)
-MIME-Version: 1.0
-X-MS-Office365-Filtering-Correlation-Id: 1d823d57-64d4-4331-a6ec-08da6417f416
-X-MS-TrafficTypeDiagnostic: 
-	AS8PR04MB7781:EE_|DB5EUR01FT079:EE_|VE1PR04MB6768:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: 
- /p0vAvTwdbcBIohdbEb8Vjjw4o3bqAY8jvEuxSOQ/AiUePN7srMxPiKB4tCu1jsEhPlogqF1ZCcRg8YK4Z8JzgPjA2QQhIzDjBnFalPLAfWvey3tGAumqZqoDBvSJKtUF80wMHOdx17F9tIl4IyFIlU99k+pCQOzZFqZyhyl2hnrxzXHyb/jjUayEBQ5xJnMY2mRMZM82cwIWWLj03aLOoLFQUOdO/2nIOrA9P3hVRhxnkGUcVFGEYmyUuLW/HLzN9cwAg3q5QMcuzQSCuiMMHi5K2bi4qOdA2BkvUp2pIpBOLZruBEuzL4usIcKXkHMjRmKjyDz9HnOOnw67AYuHKQnkLkxgpS3bXZTXoUSQb6v0wDraDWesTRyWjZobJuv1AAFsBMTuclxKfO4L+6XwfzPl31mfDRHOVa/6ZLsGgZifOq0t5N+z0sNJM75bxsuP2Q9EytOhzC0ER46yRKrsbO1JcoD2Aa2FTlwOKRhCDWRgghbgVLPVA77WFcN73vVyQ8uETHeWxj80QTe7+vkH2I4SQ0t2UE9pnqTR1vr82cM+gezE9GbGtmWB63l5LX7kPhPBWaQ2UTkj7zKkRFxDeZCsDY0XhEQOyHucgbCBcBDaqDIvKaaykPNDEbUThbqJA2l8DIgRaGIA6pdKMZ9dbWKA833PSy1owc9Ac6dQdPFyWWvQm89Ra7OV+FHxvxrDIYdRwKiiKsrIIvYgV/ai468AYQIHyzAR3+d2IvcRvcXJ8U4QH1eTWd9XySwsBaemjuTDcM+xnM/RGZQWfJ0HJVkl+tAvIRHu1jA/0e+C9tXXVQhWJATSvUqC2O86DgEgL9eM4x98x30+V8uiQtebUcBXPeLG0yAXHNbom8bndAKoujLAkk7kamJKZYQCW93u5Rz5oA8pYNjT03q9kh2vw==
-X-Forefront-Antispam-Report-Untrusted: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6520.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39840400004)(396003)(366004)(136003)(376002)(346002)(8676002)(31686004)(6916009)(66946007)(38100700002)(45080400002)(44832011)(316002)(5660300002)(83380400001)(36756003)(478600001)(66476007)(8936002)(966005)(66556008)(6486002)(42882007)(53546011)(36916002)(6512007)(6506007)(41300700001)(26005)(83170400001)(31696002)(52116002)(2616005)(186003)(38350700002)(2906002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7781
-X-CodeTwo-MessageID: 
- 58bc06dd-82d2-4d6e-9faf-91d78486da29.20220712150525@westeu12-emailsignatures-cloud.codetwo.com
-X-CodeTwoProcessed: true
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
- DB5EUR01FT079.eop-EUR01.prod.protection.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 
-	5f516723-b1bb-4a86-824c-08da6417f1c8
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	2d1KwO9KTfnZy+ckfwYh8TDy3SynQmxcSJ9Q4C2+A/diw6lt0ttEc6diH2yDrDUbzixEGnN4FpmvQ11Ti5TKFwYHgXsJ3ZoB7DdJptHDiLfbFtHU5A5MrYlI2VWkGc1jIU4+OaEdlliGwYciWGff+iHnb+MVNJNx4bkitZQrbkEUGhtk8pOEq9/gQdnAks70u1eet79vIXFUAKO45G0TdffsRgQxpVLaw2xHvBBT1aaxZ1OGlyk+TG0Y2JB5dTABsz5Xhy0rw+6jKk/y8iJq6dahBQq4cuKDJsglXFNeXRMM0/fY29mp2PhyvCrQKbUitP7I+FlywGr97aOPqGp4zSwP3kQMPsH4SmkHQ79BYBqMr0D3JkYNumNdM7Nj3zJAMEjEwLMQ35q3wgQYyqCosgpHGNrMlSgegdem1mnmQVmXv2N1BROtkluij3F19AeGEqsa8cf8KX3Bnbqid0i8nCc56oSm6z2GfUv5doQa4lskMchPcAvNRSZLiUfzo+GcqdB9k34wafVNPNOhso46txtKSFhBkHS3VObhTVFYwCo+SPE8B6X+jc/UsJ8r4RoQlHFbi8s2E/FaZ1MHX8Zh1d3nHQt/y1YB3NrCssFWM8fEpkPju09lvXACuWY4lcW1+nFj3Qt2vjfqlX+ruzSnDntsSSrzfCL7xbzu5P8MM3vH43sx1zAbQ6oQ0qRDYaZT5pszmj4e++mOdG3dhpYX8aJQeN83LubFcbwVV1dT9GMUdZseAhBX3hiifCFXIJtuByaF9DMr2f01MF2czKTW4rM3gg6kNIXFRn5pPsOXRDHTsIJRUUqR31wFD2zs0pXgh61UfUNiaJnzk+xmWN+G6g==
-X-Forefront-Antispam-Report: 
-	CIP:13.93.42.39;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu12-emailsignatures-cloud.codetwo.com;PTR:westeu12-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230016)(4636009)(39840400004)(136003)(346002)(396003)(376002)(46966006)(36840700001)(31696002)(186003)(83170400001)(36756003)(47076005)(42882007)(7596003)(336012)(83380400001)(40480700001)(70586007)(478600001)(82310400005)(70206006)(2616005)(356005)(7636003)(41300700001)(966005)(8676002)(36916002)(2906002)(6486002)(6512007)(45080400002)(6916009)(36860700001)(44832011)(26005)(53546011)(5660300002)(8936002)(31686004)(15974865002)(316002)(6506007)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: topic.nl
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2022 15:05:26.8042
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 1d823d57-64d4-4331-a6ec-08da6417f416
-X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
- TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[13.93.42.39];Helo=[westeu12-emailsignatures-cloud.codetwo.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	DB5EUR01FT079.eop-EUR01.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6768
+ <6b3d2b0146aeaf2c25e0440e7dd6aa0c17cb4a36.camel@delisys.ch>
+ <8f0726b6-c7ed-83a1-6069-41bf8370b3bb@topic.nl>
+In-Reply-To: <8f0726b6-c7ed-83a1-6069-41bf8370b3bb@topic.nl>
+From: Khoi Dinh Trinh <khoidinhtrinh@gmail.com>
+Date: Tue, 12 Jul 2022 09:15:06 -0700
+Message-ID: 
+ <CAMLPRYczkk+ceHD8Mnf=BMv2GJrEF_75mwLek37rccwPKZvYZQ@mail.gmail.com>
+Subject: Re: [yocto] Switching between multiple DISTROs without
+ "contamination"
+To: Mike Looijmans <mike.looijmans@topic.nl>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000006a99c905e39df9ca"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 12 Jul 2022 15:05:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57515
+ <yocto@lists.yoctoproject.org>; Tue, 12 Jul 2022 16:15:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57516
 
-Quick answer: Don't build multiple distros in one build directory.
+--0000000000006a99c905e39df9ca
+Content-Type: text/plain; charset="UTF-8"
 
-You might get away with setting TMPDIR =3D "tmp-${DISTRO}" to give each=20
-its own.
+Thank you Nicolas for asking this question since I will probably run into
+this issue soon if not for this email thread. The answers so far have been
+very helpful but I just want to clarify a bit more on why doesn't the
+package get rebuilt? From my understanding, Yocto should rerun a task when
+the signature of the task changes and since do_install has an override on
+mydistro-dev, shouldn't the content and thus the signature of do_install
+change when switching distro and so Yocto should rerun it? I have a lot of
+tasks with override not just on DISTRO but other things like MACHINE or
+custom variables so I want to understand the rebuild mechanism as best I
+can.
 
-But I'd rather advice to set up two separate builds and just point the=20
-downloads and sstate-cache to the same location. It'll be faster than=20
-the TMPDIR option.
+Best,
+Khoi Trinh
 
-Or figure out how to put the difference in the IMAGE only. Then you can=20
-just build both images (in parallel, woot), which is faster, more=20
-convenient and saves on diskspace.
+On Tue, Jul 12, 2022 at 8:05 AM Mike Looijmans <mike.looijmans@topic.nl>
+wrote:
 
-What I often do is have my-application.bb generate a=20
-my-application-utils package that only gets installed in the "dev" image=20
-but not in the production one, which only installs "my-application".
-
-You could also create a "my-application-dev.bb" recipe that includes=20
-my-application.bb and just changes what it needs to be different.
-
-
-
-
-Met vriendelijke groet / kind regards,=0A=
-=0A=
-Mike Looijmans=0A=
-System Expert=0A=
-=0A=
-=0A=
-TOPIC Embedded Products B.V.=0A=
-Materiaalweg 4, 5681 RJ Best=0A=
-The Netherlands=0A=
-=0A=
-T: +31 (0) 499 33 69 69=0A=
-E: mike.looijmans@topicproducts.com=0A=
-W: www.topic.nl=0A=
-=0A=
-Please consider the environment before printing this e-mail=0A=
-On 12-07-2022 15:37, Nicolas Jeker via lists.yoctoproject.org wrote:
-> Hi all,
+> Quick answer: Don't build multiple distros in one build directory.
 >
-> I'm currently using an additional layer and image to differentiate
-> between a release and development build (enabling NFS, SSH, root login,
-> etc.). To create a development build, I manually add the layer to
-> bblayers.conf. This works quite well, but feels a bit clumsy to
-> integrate into a CI/CD pipeline.
+> You might get away with setting TMPDIR = "tmp-${DISTRO}" to give each
+> its own.
 >
-> Per these past discussions here [1][2], I'm now trying to migrate to
-> multiple DISTROs, something like "mydistro" and "mydistro-dev".
+> But I'd rather advice to set up two separate builds and just point the
+> downloads and sstate-cache to the same location. It'll be faster than
+> the TMPDIR option.
 >
-> While migrating some of the changes, I discovered that I run into
-> caching(?) issues. I have a recipe for an internal application and want
-> to include additional systemd service files in the development image.
+> Or figure out how to put the difference in the IMAGE only. Then you can
+> just build both images (in parallel, woot), which is faster, more
+> convenient and saves on diskspace.
 >
-> What I did was this:
+> What I often do is have my-application.bb generate a
+> my-application-utils package that only gets installed in the "dev" image
+> but not in the production one, which only installs "my-application".
 >
-> Added "application-dbg.service" to recipes-internal/application/files
->
-> Adapted application.bb recipe:
->
-> SRC_URI:append:mydistro-dev =3D " file://application-dbg.service"
->
-> do_install {
->      # ...snip...
->      # systemd service
->      install -d ${D}${systemd_system_unitdir}
->      install -m 0644 ${WORKDIR}/application.service
-> ${D}${systemd_system_unitdir}
-> }
->
-> do_install:append:mydistro-dev() {
->      # debug systemd services
->      install -d ${D}${systemd_system_unitdir}
->      install -m 0644 ${WORKDIR}/application-dbg.service
-> ${D}${systemd_system_unitdir}
-> }
+> You could also create a "my-application-dev.bb" recipe that includes
+> my-application.bb and just changes what it needs to be different.
 >
 >
-> When I run "DISTRO=3Dmydistro-dev bitbake application" followed by
-> "DISTRO=3Dmydistro bitbake application", the debug service file is still
-> present in the package. This seems to be caused by the "image"
-> directory in the recipe WORKDIR not being cleaned between subsequent
-> do_install runs. Is this expected behaviour? What's the best solution?
 >
-> Kind regards,
-> Nicolas
 >
-> [1]:
-> https://lore.kernel.org/yocto/CAH9dsRiArf_9GgQS4hCg5=3DJ_Jk6cd3eiGaOiQd78=
-8+iSLTuU+g@mail.gmail.com/
-> [2]:
-> https://lore.kernel.org/yocto/VI1PR0602MB3549F83AC93A53785DE48677D3FD9@VI=
-1PR0602MB3549.eurprd06.prod.outlook.com/
+> Met vriendelijke groet / kind regards,
 >
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Mike Looijmans
+> System Expert
+>
+>
+> TOPIC Embedded Products B.V.
+> Materiaalweg 4, 5681 RJ Best
+> The Netherlands
+>
+> T: +31 (0) 499 33 69 69
+> E: mike.looijmans@topicproducts.com
+> W: www.topic.nl
+>
+> Please consider the environment before printing this e-mail
+> On 12-07-2022 15:37, Nicolas Jeker via lists.yoctoproject.org wrote:
+> > Hi all,
+> >
+> > I'm currently using an additional layer and image to differentiate
+> > between a release and development build (enabling NFS, SSH, root login,
+> > etc.). To create a development build, I manually add the layer to
+> > bblayers.conf. This works quite well, but feels a bit clumsy to
+> > integrate into a CI/CD pipeline.
+> >
+> > Per these past discussions here [1][2], I'm now trying to migrate to
+> > multiple DISTROs, something like "mydistro" and "mydistro-dev".
+> >
+> > While migrating some of the changes, I discovered that I run into
+> > caching(?) issues. I have a recipe for an internal application and want
+> > to include additional systemd service files in the development image.
+> >
+> > What I did was this:
+> >
+> > Added "application-dbg.service" to recipes-internal/application/files
+> >
+> > Adapted application.bb recipe:
+> >
+> > SRC_URI:append:mydistro-dev = " file://application-dbg.service"
+> >
+> > do_install {
+> >      # ...snip...
+> >      # systemd service
+> >      install -d ${D}${systemd_system_unitdir}
+> >      install -m 0644 ${WORKDIR}/application.service
+> > ${D}${systemd_system_unitdir}
+> > }
+> >
+> > do_install:append:mydistro-dev() {
+> >      # debug systemd services
+> >      install -d ${D}${systemd_system_unitdir}
+> >      install -m 0644 ${WORKDIR}/application-dbg.service
+> > ${D}${systemd_system_unitdir}
+> > }
+> >
+> >
+> > When I run "DISTRO=mydistro-dev bitbake application" followed by
+> > "DISTRO=mydistro bitbake application", the debug service file is still
+> > present in the package. This seems to be caused by the "image"
+> > directory in the recipe WORKDIR not being cleaned between subsequent
+> > do_install runs. Is this expected behaviour? What's the best solution?
+> >
+> > Kind regards,
+> > Nicolas
+> >
+> > [1]:
+> >
+> https://lore.kernel.org/yocto/CAH9dsRiArf_9GgQS4hCg5=J_Jk6cd3eiGaOiQd788+iSLTuU+g@mail.gmail.com/
+> > [2]:
+> >
+> https://lore.kernel.org/yocto/VI1PR0602MB3549F83AC93A53785DE48677D3FD9@VI1PR0602MB3549.eurprd06.prod.outlook.com/
+> >
+> >
+> >
+>
+> --
+> Mike Looijmans
+>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#57508): https://lists.yoctoproject.org/g/yocto/messag=
-e/57508
-> Mute This Topic: https://lists.yoctoproject.org/mt/92332946/3618446
+> View/Reply Online (#57515):
+> https://lists.yoctoproject.org/g/yocto/message/57515
+> Mute This Topic: https://lists.yoctoproject.org/mt/92332946/6433300
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [mike.looijmans=
-@topic.nl]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> khoidinhtrinh@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 >
 
---=20
-Mike Looijmans
+-- 
+Best,
+Khoi Trinh
 
+--0000000000006a99c905e39df9ca
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Thank you Nicolas for asking this question since I wi=
+ll probably run into this issue soon if not for this email thread. The answ=
+ers so far have been very helpful but I just want to clarify a bit more on =
+why doesn&#39;t the package get rebuilt? From my understanding, Yocto shoul=
+d rerun a task when the signature of the task changes and since do_install =
+has an override on mydistro-dev, shouldn&#39;t the content and thus the sig=
+nature of do_install change when switching distro and so Yocto should rerun=
+ it? I have a lot of tasks with override not just on DISTRO but other thing=
+s like MACHINE or custom variables so I want to understand the rebuild mech=
+anism as best I can.<br></div><div><br></div><div>Best,</div><div>Khoi Trin=
+h<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
+mail_attr">On Tue, Jul 12, 2022 at 8:05 AM Mike Looijmans &lt;<a href=3D"ma=
+ilto:mike.looijmans@topic.nl">mike.looijmans@topic.nl</a>&gt; wrote:<br></d=
+iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
+er-left:1px solid rgb(204,204,204);padding-left:1ex">Quick answer: Don&#39;=
+t build multiple distros in one build directory.<br>
+<br>
+You might get away with setting TMPDIR =3D &quot;tmp-${DISTRO}&quot; to giv=
+e each <br>
+its own.<br>
+<br>
+But I&#39;d rather advice to set up two separate builds and just point the =
+<br>
+downloads and sstate-cache to the same location. It&#39;ll be faster than <=
+br>
+the TMPDIR option.<br>
+<br>
+Or figure out how to put the difference in the IMAGE only. Then you can <br=
+>
+just build both images (in parallel, woot), which is faster, more <br>
+convenient and saves on diskspace.<br>
+<br>
+What I often do is have <a href=3D"http://my-application.bb" rel=3D"norefer=
+rer" target=3D"_blank">my-application.bb</a> generate a <br>
+my-application-utils package that only gets installed in the &quot;dev&quot=
+; image <br>
+but not in the production one, which only installs &quot;my-application&quo=
+t;.<br>
+<br>
+You could also create a &quot;<a href=3D"http://my-application-dev.bb" rel=
+=3D"noreferrer" target=3D"_blank">my-application-dev.bb</a>&quot; recipe th=
+at includes <br>
+<a href=3D"http://my-application.bb" rel=3D"noreferrer" target=3D"_blank">m=
+y-application.bb</a> and just changes what it needs to be different.<br>
+<br>
+<br>
+<br>
+<br>
+Met vriendelijke groet / kind regards,<br>
+<br>
+Mike Looijmans<br>
+System Expert<br>
+<br>
+<br>
+TOPIC Embedded Products B.V.<br>
+Materiaalweg 4, 5681 RJ Best<br>
+The Netherlands<br>
+<br>
+T: +31 (0) 499 33 69 69<br>
+E: <a href=3D"mailto:mike.looijmans@topicproducts.com" target=3D"_blank">mi=
+ke.looijmans@topicproducts.com</a><br>
+W: <a href=3D"http://www.topic.nl" rel=3D"noreferrer" target=3D"_blank">www=
+.topic.nl</a><br>
+<br>
+Please consider the environment before printing this e-mail<br>
+On 12-07-2022 15:37, Nicolas Jeker via <a href=3D"http://lists.yoctoproject=
+.org" rel=3D"noreferrer" target=3D"_blank">lists.yoctoproject.org</a> wrote=
+:<br>
+&gt; Hi all,<br>
+&gt;<br>
+&gt; I&#39;m currently using an additional layer and image to differentiate=
+<br>
+&gt; between a release and development build (enabling NFS, SSH, root login=
+,<br>
+&gt; etc.). To create a development build, I manually add the layer to<br>
+&gt; bblayers.conf. This works quite well, but feels a bit clumsy to<br>
+&gt; integrate into a CI/CD pipeline.<br>
+&gt;<br>
+&gt; Per these past discussions here [1][2], I&#39;m now trying to migrate =
+to<br>
+&gt; multiple DISTROs, something like &quot;mydistro&quot; and &quot;mydist=
+ro-dev&quot;.<br>
+&gt;<br>
+&gt; While migrating some of the changes, I discovered that I run into<br>
+&gt; caching(?) issues. I have a recipe for an internal application and wan=
+t<br>
+&gt; to include additional systemd service files in the development image.<=
+br>
+&gt;<br>
+&gt; What I did was this:<br>
+&gt;<br>
+&gt; Added &quot;application-dbg.service&quot; to recipes-internal/applicat=
+ion/files<br>
+&gt;<br>
+&gt; Adapted <a href=3D"http://application.bb" rel=3D"noreferrer" target=3D=
+"_blank">application.bb</a> recipe:<br>
+&gt;<br>
+&gt; SRC_URI:append:mydistro-dev =3D &quot; file://application-dbg.service&=
+quot;<br>
+&gt;<br>
+&gt; do_install {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # ...snip...<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # systemd service<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 install -d ${D}${systemd_system_unitdir}<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 install -m 0644 ${WORKDIR}/application.service<br>
+&gt; ${D}${systemd_system_unitdir}<br>
+&gt; }<br>
+&gt;<br>
+&gt; do_install:append:mydistro-dev() {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # debug systemd services<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 install -d ${D}${systemd_system_unitdir}<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 install -m 0644 ${WORKDIR}/application-dbg.service=
+<br>
+&gt; ${D}${systemd_system_unitdir}<br>
+&gt; }<br>
+&gt;<br>
+&gt;<br>
+&gt; When I run &quot;DISTRO=3Dmydistro-dev bitbake application&quot; follo=
+wed by<br>
+&gt; &quot;DISTRO=3Dmydistro bitbake application&quot;, the debug service f=
+ile is still<br>
+&gt; present in the package. This seems to be caused by the &quot;image&quo=
+t;<br>
+&gt; directory in the recipe WORKDIR not being cleaned between subsequent<b=
+r>
+&gt; do_install runs. Is this expected behaviour? What&#39;s the best solut=
+ion?<br>
+&gt;<br>
+&gt; Kind regards,<br>
+&gt; Nicolas<br>
+&gt;<br>
+&gt; [1]:<br>
+&gt; <a href=3D"https://lore.kernel.org/yocto/CAH9dsRiArf_9GgQS4hCg5=3DJ_Jk=
+6cd3eiGaOiQd788+iSLTuU+g@mail.gmail.com/" rel=3D"noreferrer" target=3D"_bla=
+nk">https://lore.kernel.org/yocto/CAH9dsRiArf_9GgQS4hCg5=3DJ_Jk6cd3eiGaOiQd=
+788+iSLTuU+g@mail.gmail.com/</a><br>
+&gt; [2]:<br>
+&gt; <a href=3D"https://lore.kernel.org/yocto/VI1PR0602MB3549F83AC93A53785D=
+E48677D3FD9@VI1PR0602MB3549.eurprd06.prod.outlook.com/" rel=3D"noreferrer" =
+target=3D"_blank">https://lore.kernel.org/yocto/VI1PR0602MB3549F83AC93A5378=
+5DE48677D3FD9@VI1PR0602MB3549.eurprd06.prod.outlook.com/</a><br>
+&gt;<br>
+&gt; <br>
+&gt;<br>
+<br>
+-- <br>
+Mike Looijmans<br>
+<br>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#57515): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/57515" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/57515</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/92332946/6433=
+300" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
+/92332946/6433300</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:khoidinhtrinh@gmail.com" target=3D"_blank">khoid=
+inhtrinh@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"g=
+mail_signature"><div dir=3D"ltr">Best,<div>Khoi Trinh</div></div></div>
+
+--0000000000006a99c905e39df9ca--
 
