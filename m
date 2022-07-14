@@ -1,152 +1,269 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <arasilinux1086@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E9A59C433EF
-	for <webhook@archiver.kernel.org>; Wed, 13 Jul 2022 18:36:33 +0000 (UTC)
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com
- [209.85.216.50])
- by mx.groups.io with SMTP id smtpd.web08.772.1657737393094111503
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 71300C43334
+	for <webhook@archiver.kernel.org>; Thu, 14 Jul 2022 04:43:19 +0000 (UTC)
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com
+ [209.85.218.54])
+ by mx.groups.io with SMTP id smtpd.web12.4089.1657773789728810743
  for <yocto@lists.yoctoproject.org>;
- Wed, 13 Jul 2022 11:36:33 -0700
+ Wed, 13 Jul 2022 21:43:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=MyJ6O+R4;
- spf=pass (domain: gmail.com, ip: 209.85.216.50,
- mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-pj1-f50.google.com with SMTP id
- o31-20020a17090a0a2200b001ef7bd037bbso5085185pjo.0
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=V5ujoFef;
+ spf=pass (domain: gmail.com, ip: 209.85.218.54,
+ mailfrom: arasilinux1086@gmail.com)
+Received: by mail-ej1-f54.google.com with SMTP id b11so1253108eju.10
         for <yocto@lists.yoctoproject.org>;
- Wed, 13 Jul 2022 11:36:33 -0700 (PDT)
+ Wed, 13 Jul 2022 21:43:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=+MaiLYRNj5ju21fvkJx4VExZVjqCSaFxZIv2EFVkJnU=;
-        b=MyJ6O+R43lUhIf17tqxIqCIRjxmhldHTNUAaY7/8Z3msuaArWKPhAxxDDinyuLVgJ+
-         I7rlOayxBuM6oqy0NS+949fybbl5eLUfJB2Xlduw9TZbHi//Vcz6TuFqjXb+IPAbHHBf
-         WoAZ6QvCOkOSlz1jOz+UKI97BimM+e/dQ3oZHXXlmtTk3vwELOZz4C35oUmXEay1bdhh
-         O1OK5+MB979W3dKs8NxlzrxWAe7YUpb7/MWj3OxSOeHCzBP523xzJVFINQd+hff7TkQt
-         ZC3h37sbAie6JNhYLZtOhI0Y8On91L9WjdYMKpWT0Y/hUtvc/Gm0oBrNbaQfJVjREXZe
-         zSww==
+         :cc;
+        bh=gvPiVs/xhYlzgSaDD7W5HSO9YXXAurQ1Ot16ue5bIXw=;
+        b=V5ujoFefavotKLmg/jqPb3b+Dh5YJnRfeluHMNDN5PlxPS5tEtG1nOAXScJZmPWOgl
+         EXiT0Ma5H2GkRfONzAKHJFpXU/le4Rbc8MmL2I669d8/X5PvMxHcQvc8n2OtkxzmL2AI
+         5wwYCeb1PxWP+0S4yht7VO5WkSGgDnzCeqomF/P5hKBqYa8gSDBYmkHRxmQvzTsbGX3s
+         mBFFBt/PPtdtciAogERl71nGz2dlicGuBVpEA9Jfua0dP0ifDUIGeCo7HIHtasbxhjaS
+         ETyqiK2koxQD66VDicy/KwTln1uIu2WfoCdwdsspGaNzj1ty2rE87pAdUbLt1DcETht9
+         +8og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=+MaiLYRNj5ju21fvkJx4VExZVjqCSaFxZIv2EFVkJnU=;
-        b=sK4CcukfR7mjwnhpZLO8+Bloz5KphwgnPYiTeTazlJgJiauLNKpaHLVpxswgfjzEim
-         s1qcx1S6lVFwn9lh8WatYmwJ3NAiUINeGSkNTCTFaU6NrTQqfwsLKme14dbuvDeM6Zfv
-         PR1uflH/SveCL7H71MLjnTYHTnGnX4pS90oBS8m8AiYZiFM9/CAcCSKUsOSxSsmh1Oda
-         0Rui0wxUaaOqyIOSIkXNPTyT2pDjV/RtwIAanT4HLYkpxyGAiZ74+Swh3YfrJTf+pKv2
-         2f4oBd6q5C8tpu//NFFLGoE+sirxqB5mIrm/749DcEWDg3UeM7UkWNMRGsAyACwniuJN
-         c3LA==
-X-Gm-Message-State: AJIora+d1YlqV+7tiLF/v3HJ/mrrOCnmLinOyS6jq2FJZrj6mR5Pvsdh
-	d6IQkQbKM6XfNWxCA16syWTvORnbyncswOZSREU=
+         :message-id:subject:to:cc;
+        bh=gvPiVs/xhYlzgSaDD7W5HSO9YXXAurQ1Ot16ue5bIXw=;
+        b=JpykISepjIDneTrczbiUaLV3OZxcd9+dlVnJixxRRLqtast9+zdk4v7IAiMFY6vhjl
+         u4MUxBWUhCOVAuDzPR9XXNxM28s7uN7KFSwWeIt7aa0X7vDWsLgvWBNwi/ZMNkjF9h1h
+         ynpNQFGLuD1usoTB5HqNHU2kM1YZbuteWMRd+qCzwDhnqyZtTdnZrDcwUUAmaAjTqZJ5
+         m4sPA+59eWjmHFSl5yelLPTYslctl/4+ghV1Skjm5xnlqWVJ7TUGBr7NZc5MpuTkr/bV
+         chLMVwUzScMDm0vzZcHN4+zdwB8OVzaP/EO6zeNFT1KTuFk1294MH5EViB4S/i0PUV7D
+         vPTw==
+X-Gm-Message-State: AJIora+5FQ962hn6uWdc0DksTZSEEF/9aX86lclvKRx7rrp6usTjgPmd
+	/SdXjObdLmaBWJrDYzeZorBkqCd4hWiFfFCQaek=
 X-Google-Smtp-Source: 
- AGRyM1sBIEDscAE/D5snIyKhIA51K0nFK/85JQL9kFp49KF+jeygJ9NUiqLwyV/716D0VDUAr0J1kqdiB+S33Y0hdHA=
-X-Received: by 2002:a17:902:b186:b0:16b:d762:6d81 with SMTP id
- s6-20020a170902b18600b0016bd7626d81mr4365436plr.88.1657737392380; Wed, 13 Jul
- 2022 11:36:32 -0700 (PDT)
+ AGRyM1vvlEO9qW+BFI6/grDf1MIewSN4djx/JuHWu/8OkqYiam5Kl/2JmNgkZ34i0z6p8jOqGAiUtF0jjEfBmK876AI=
+X-Received: by 2002:a17:907:a40f:b0:72b:64ee:5b2f with SMTP id
+ sg15-20020a170907a40f00b0072b64ee5b2fmr7197142ejc.268.1657773787711; Wed, 13
+ Jul 2022 21:43:07 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220712144030.32305-1-bruce.ashfield@gmail.com>
- <20220712144030.32305-2-bruce.ashfield@gmail.com>
- <57dd4dcd5002a34b0593078452878626d942fcb6.camel@linuxfoundation.org>
- <1701455333AD8E75.13030@lists.yoctoproject.org>
-In-Reply-To: <1701455333AD8E75.13030@lists.yoctoproject.org>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Wed, 13 Jul 2022 14:36:20 -0400
+References: 
+ <AM9PR10MB4403B8BF23EC7571D7F2E5C7ACB89@AM9PR10MB4403.EURPRD10.PROD.OUTLOOK.COM>
+ <CAFf=Mr2Sjxi9e1oLBo9Q97hS3R_0KAk1vGx63af4bp6UBQ6BMA@mail.gmail.com>
+ <YrwISJ1PCeqQzu6I@mail.local>
+In-Reply-To: <YrwISJ1PCeqQzu6I@mail.local>
+From: Senthamilarasi mathiyan <arasilinux1086@gmail.com>
+Date: Thu, 14 Jul 2022 10:12:52 +0530
 Message-ID: 
- <CADkTA4PKG12uULttBKysYh6jy4HzgeSNB685uE8cKYwdumFLdw@mail.gmail.com>
-Subject: Re: [yocto] [PATCH] yocto-bsps: update to v5.15.52 and buildpaths
- fixes
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-Cc: Richard Purdie <richard.purdie@linuxfoundation.org>,
-	yocto <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ <CAFf=Mr3Xa_taxkj5Uvrvctdp19LGEMtW7fU=_PDvO7YdVpCUYQ@mail.gmail.com>
+Subject: Re: [yocto] yocto support
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000bc0cab05e3bc89a0"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 13 Jul 2022 18:36:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57529
+ <yocto@lists.yoctoproject.org>; Thu, 14 Jul 2022 04:43:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57530
 
-On Tue, Jul 12, 2022 at 11:19 PM Bruce Ashfield via
-lists.yoctoproject.org
-<bruce.ashfield=3Dgmail.com@lists.yoctoproject.org> wrote:
->
-> On Tue, Jul 12, 2022 at 6:45 PM Richard Purdie
-> <richard.purdie@linuxfoundation.org> wrote:
-> >
-> > On Tue, 2022-07-12 at 10:40 -0400, bruce.ashfield@gmail.com wrote:
-> > > From: Bruce Ashfield <bruce.ashfield@gmail.com>
-> > >
-> > > Updating linux-yocto/5.15 to the latest korg -stable release that com=
-prises
-> > > the following commits:
-> >
-> > Thanks, this test build showed two warnings. I have no idea why this
-> > only showed up now:
-> >
-> > beaglebone:
-> > WARNING: linux-yocto-5.15.52+gitAUTOINC+f122fe59e7_3ec00e9ee0-r0 do_pac=
-kage_qa: QA Issue: File /usr/src/debug/linux-yocto/5.15.52+gitAUTOINC+f122f=
-e59e7_3ec00e9ee0-r0/linux-beaglebone_yocto-standard-build/arch/arm/include/=
-generated/asm/mach-types.h in package linux-yocto-src contains reference to=
- TMPDIR
-> >
-> > beaglebond-alt:
-> > WARNING: linux-yocto-5.10.128+gitAUTOINC+2f79722c50_aab4d34364-r0 do_pa=
-ckage_qa: QA Issue: File /usr/src/debug/linux-yocto/5.10.128+gitAUTOINC+2f7=
-9722c50_aab4d34364-r0/linux-beaglebone_yocto-standard-build/arch/arm/includ=
-e/generated/asm/mach-types.h in package linux-yocto-src contains reference =
-to TMPDIR
-> >
->
-> Yet another generation script referencing itself .. they seem to like
-> doing that.
->
-> I don't get the warning, but I do have the file with the reference in
-> it here, so I'll send a SRCREV bump with a fix Wednesday.
+--000000000000bc0cab05e3bc89a0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-As you can see, patches are on the list. This one was an awk fix.
+Hi Alexandre,
 
-So now we have: shell, python, perl and awk to fix the full path
-issues ... what's the next scripting language to hack ?
+I am not pushing any changes to open source kernel. I want to enable few
+driver module in the kernel. That configuration want to have in file/
+folder.
 
-Bruce
+My changes.
+Kern
 
->
-> Bruce
->
-> > So at least it is down to one error in 5.10 and 5.15 for the same
-> > platform!
+On Wed, 29 Jun, 2022, 1:37 pm Alexandre Belloni, <
+alexandre.belloni@bootlin.com> wrote:
+
+> On 28/06/2022 17:21:22+0530, Senthamilarasi mathiyan wrote:
+> > Dear All
 > >
-> > I think we're mostly winning and nearly there :)
+> > Good Morning!
 > >
-> > Cheers,
+> > In my project, I am trying to create one custom image recipe in my yoct=
+o
+> > build system.
 > >
-> > Richard
+> >  The reason of creating custom image is  -> having few specific
+> > configurations for kernel and some specific driver Makefile changes to
+> > enable coverage.
+> >
+> >  I cannot go with .bbappend file, because we are maintaining a
+> > recipes-append folder in our meta-layer which is common for all the
+> > production build image recipes.
+> >
+> >  My change is very specific it should not come as part of normal build
+> > images because it will affect the production build.
+> >
+> >  My use case:
+> >
+> > 1. I have one .cfg file for kernel - which has kernel specific
+> > configurations.
+> >
+> > 2. I have Makefile changes for driver file.
+> >
+> >  I should bring the above changes to kernel and  driver Makefile during
+> > build time without using .bbappend file.
+> >
+> >  I want to create a custom image recipe with the specific changes.
+> >
+> >  For example : custom_image.bb =3D( This recipes should have
+> > core_image_minimal.bb + my specific changes)
+> >
+> >  When i build bitbake custom_image.bb,  it should  build  with
+> > core_image_minimal.bb + my specific changes .
+> >
+> > Other images recipes also should not affect by this changes.
+> >
+> > My humble request. Can anyone please support how to proceed?
+> >
 >
+> You can't, a recipe can't affect any other recipe. When building
+> custom_image.bb, it is too late to introduce any kernel change.
+>
+> > Kindly share your suggestions.
+> >
+> >  *Regards*
+> >
+> > *Senthamilarasi. M*
+> >
+> > =E2=80=8B
+>
+> >
+> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> > Links: You receive all messages sent to this group.
+> > View/Reply Online (#57401):
+> https://lists.yoctoproject.org/g/yocto/message/57401
+> > Mute This Topic: https://lists.yoctoproject.org/mt/92041991/3617179
+> > Group Owner: yocto+owner@lists.yoctoproject.org
+> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> alexandre.belloni@bootlin.com]
+> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> >
 >
 >
 > --
-> - Thou shalt not follow the NULL pointer, for chaos and madness await
-> thee at its end
-> - "Use the force Harry" - Gandalf, Star Trek II
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#57519): https://lists.yoctoproject.org/g/yocto/messag=
-e/57519
-> Mute This Topic: https://lists.yoctoproject.org/mt/92334276/1050810
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [bruce.ashfield=
-@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Alexandre Belloni, co-owner and COO, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
 >
 
+--000000000000bc0cab05e3bc89a0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---=20
-- Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end
-- "Use the force Harry" - Gandalf, Star Trek II
+<div dir=3D"ltr"><div dir=3D"auto">Hi Alexandre,=C2=A0<div dir=3D"auto"><br=
+></div><div dir=3D"auto">I am not pushing any changes to open source kernel=
+. I want to enable few driver module in the kernel. That configuration want=
+ to have in file/ folder.=C2=A0</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">My changes.=C2=A0</div><div dir=3D"auto">Kern</div></div></div><b=
+r><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, =
+29 Jun, 2022, 1:37 pm Alexandre Belloni, &lt;<a href=3D"mailto:alexandre.be=
+lloni@bootlin.com" target=3D"_blank">alexandre.belloni@bootlin.com</a>&gt; =
+wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On 28/06/=
+2022 17:21:22+0530, Senthamilarasi mathiyan wrote:<br>
+&gt; Dear All<br>
+&gt; <br>
+&gt; Good Morning!<br>
+&gt; <br>
+&gt; In my project, I am trying to create one custom image recipe in my yoc=
+to<br>
+&gt; build system.<br>
+&gt; <br>
+&gt;=C2=A0 The reason of creating custom image is=C2=A0 -&gt; having few sp=
+ecific<br>
+&gt; configurations for kernel and some specific driver Makefile changes to=
+<br>
+&gt; enable coverage.<br>
+&gt; <br>
+&gt;=C2=A0 I cannot go with .bbappend file, because we are maintaining a<br=
+>
+&gt; recipes-append folder in our meta-layer which is common for all the<br=
+>
+&gt; production build image recipes.<br>
+&gt; <br>
+&gt;=C2=A0 My change is very specific it should not come as part of normal =
+build<br>
+&gt; images because it will affect the production build.<br>
+&gt; <br>
+&gt;=C2=A0 My use case:<br>
+&gt; <br>
+&gt; 1. I have one .cfg file for kernel - which has kernel specific<br>
+&gt; configurations.<br>
+&gt; <br>
+&gt; 2. I have Makefile changes for driver file.<br>
+&gt; <br>
+&gt;=C2=A0 I should bring the above changes to kernel and=C2=A0 driver Make=
+file during<br>
+&gt; build time without using .bbappend file.<br>
+&gt; <br>
+&gt;=C2=A0 I want to create a custom image recipe with the specific changes=
+.<br>
+&gt; <br>
+&gt;=C2=A0 For example : <a href=3D"http://custom_image.bb" rel=3D"noreferr=
+er noreferrer" target=3D"_blank">custom_image.bb</a> =3D( This recipes shou=
+ld have<br>
+&gt; <a href=3D"http://core_image_minimal.bb" rel=3D"noreferrer noreferrer"=
+ target=3D"_blank">core_image_minimal.bb</a> + my specific changes)<br>
+&gt; <br>
+&gt;=C2=A0 When i build bitbake <a href=3D"http://custom_image.bb" rel=3D"n=
+oreferrer noreferrer" target=3D"_blank">custom_image.bb</a>,=C2=A0 it shoul=
+d=C2=A0 build=C2=A0 with<br>
+&gt; <a href=3D"http://core_image_minimal.bb" rel=3D"noreferrer noreferrer"=
+ target=3D"_blank">core_image_minimal.bb</a> + my specific changes .<br>
+&gt; <br>
+&gt; Other images recipes also should not affect by this changes.<br>
+&gt; <br>
+&gt; My humble request. Can anyone please support how to proceed?<br>
+&gt; <br>
+<br>
+You can&#39;t, a recipe can&#39;t affect any other recipe. When building<br=
+>
+<a href=3D"http://custom_image.bb" rel=3D"noreferrer noreferrer" target=3D"=
+_blank">custom_image.bb</a>, it is too late to introduce any kernel change.=
+<br>
+<br>
+&gt; Kindly share your suggestions.<br>
+&gt; <br>
+&gt;=C2=A0 *Regards*<br>
+&gt; <br>
+&gt; *Senthamilarasi. M*<br>
+&gt; <br>
+&gt; =E2=80=8B<br>
+<br>
+&gt; <br>
+&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+&gt; Links: You receive all messages sent to this group.<br>
+&gt; View/Reply Online (#57401): <a href=3D"https://lists.yoctoproject.org/=
+g/yocto/message/57401" rel=3D"noreferrer noreferrer" target=3D"_blank">http=
+s://lists.yoctoproject.org/g/yocto/message/57401</a><br>
+&gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/92041991=
+/3617179" rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoc=
+toproject.org/mt/92041991/3617179</a><br>
+&gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" r=
+el=3D"noreferrer" target=3D"_blank">yocto+owner@lists.yoctoproject.org</a><=
+br>
+&gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" =
+rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctoproject.=
+org/g/yocto/unsub</a> [<a href=3D"mailto:alexandre.belloni@bootlin.com" rel=
+=3D"noreferrer" target=3D"_blank">alexandre.belloni@bootlin.com</a>]<br>
+&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+&gt; <br>
+<br>
+<br>
+-- <br>
+Alexandre Belloni, co-owner and COO, Bootlin<br>
+Embedded Linux and Kernel engineering<br>
+<a href=3D"https://bootlin.com" rel=3D"noreferrer noreferrer" target=3D"_bl=
+ank">https://bootlin.com</a><br>
+</blockquote></div>
+
+--000000000000bc0cab05e3bc89a0--
 
