@@ -1,323 +1,147 @@
-Return-Path: <chrisyocto2022@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7FA7EC433EF
-	for <webhook@archiver.kernel.org>; Thu, 14 Jul 2022 08:01:10 +0000 (UTC)
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com
- [209.85.218.43])
- by mx.groups.io with SMTP id smtpd.web09.5095.1657785668658736112
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 69935C433EF
+	for <webhook@archiver.kernel.org>; Thu, 14 Jul 2022 13:49:02 +0000 (UTC)
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
+ [209.85.128.54])
+ by mx.groups.io with SMTP id smtpd.web10.7717.1657806540512620234
  for <yocto@lists.yoctoproject.org>;
- Thu, 14 Jul 2022 01:01:09 -0700
+ Thu, 14 Jul 2022 06:49:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=ORYZP5US;
- spf=pass (domain: gmail.com, ip: 209.85.218.43,
- mailfrom: chrisyocto2022@gmail.com)
-Received: by mail-ej1-f43.google.com with SMTP id z23so1951426eju.8
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Iza/cfBP;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.54,
+ mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f54.google.com with SMTP id
+ r127-20020a1c4485000000b003a2fb7c1274so2655726wma.1
         for <yocto@lists.yoctoproject.org>;
- Thu, 14 Jul 2022 01:01:08 -0700 (PDT)
+ Thu, 14 Jul 2022 06:49:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UyLUvu08cTm01clHXdmVHEZZ/C7D5MnIkoskSoKHVfs=;
-        b=ORYZP5USnF9+Y61hlhHRPTwihmRgHWKC9WcjJTmbgYqvvxRm3JFM57pry99nAOwf5F
-         JdCXcpUatqNyaM0KHC9ROUBezTsJwomi+Xdt3reroiJVuUuuzGZCfYl4otzyn6KFK0T2
-         H7z5S0p1OAj+7bS075SUlMmlpFVHuQZviI5Phyl4MXRDfSHV4Wy/lhoCVDTiLOJgLYlr
-         OSEyrqfdN/5JwSicFtb8PCV9Go0/Fu5fFOQ76lVyxxzFpIDCE6sMiUqbXxaNjy/f68Lp
-         nwjH26Cd7Yk59EU6bpC3BokrcKN3XM8LlDzZy/Ayqiz7ycibL0gAe1EgJMAPaYjH8lEw
-         2fzg==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :content-transfer-encoding:user-agent:mime-version;
+        bh=e1h9+lcTmahTnkIEvsA87LI94BTcj8q6XaH/TROM9WU=;
+        b=Iza/cfBPQKHIVVeuKNJ8kh6Vk/d21tmwX34lSWMtM1LCmu0T1ISHDCvqPmpl7Oj/5x
+         tcJlsJHkllIbyaXra1BvVxxlfH9iGYV29qs/BIuImJ9tP9GPLHU1ENx6xYVxMLKYElug
+         3shORN/AwBE5JxoUti7dEcs32ydXrss5gDRrI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UyLUvu08cTm01clHXdmVHEZZ/C7D5MnIkoskSoKHVfs=;
-        b=DEIf9WBZyLRIMX5pH0AgCOW/y3kP8ulfhE5E+PPrioJFaZ3nZZzx7CMsrIU882nDVs
-         hq2oUFR4HWo42UdV44g5nbU6/8Vzy62TceqwlS9kD6QRridiwtWOVnaC6diu8kdYxbMh
-         JHISo9uoQP00z5MNVyOfSBRtsRw8nUDKzgQAZH9xebGWEuXp1ry2C1uKRDDgKCsXXdeU
-         fcpVbBk5smdnpIXewshFgfd/Ys7LOnoYKJIFzpeZvVCsMnkOs6fhIQMLaWwD3xMoQtxo
-         fungc4WYt3vVnR6mD0mh70PJNYv9PkaGNkMjVwGiCHpLvzBt9dIDWxNRqKS1zG7BijDm
-         c8Kw==
-X-Gm-Message-State: AJIora/3kqWqA4G1CWRuoKwFWHXMLuB9kOb2U2jUuq4jMAUr7n+T0h9u
-	a0H+2D7rkYMzhU9gGNwoqTLzs2o8HGd9Vz+CKbo=
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:content-transfer-encoding:user-agent:mime-version;
+        bh=e1h9+lcTmahTnkIEvsA87LI94BTcj8q6XaH/TROM9WU=;
+        b=QN9tg11F/RKDL4Q/amustTowekb7B7/Sf5cIS+Z8p+d7vhLdECj98Et66w3NTsXXHp
+         lJ7FG1azuTQrREneb3riGjc2YhTt5SBp5d85EmtI1yvd5jZnJf3iFQ3pfHjbt//H7om5
+         whOCdh33umF6tE9pXz5E0qz/yncSmzQ0SqEr+F4f0IxEcKTybFqVa90k5FxIjE9Bvbqc
+         VjJpnlMehEIjZSBXM40UDLg37uM5EVGtC6B+avO5DOx5IJQ3FiGUMwAaY9sokLO2cjKj
+         8v/+Kd+/nffMA05GQCodpfcGxH98OK6GJbmBgPRTEq6f76XYlf+/nXSUrExM1sF5XPcw
+         FTkg==
+X-Gm-Message-State: AJIora9rFbbnObwHQexuXZ3l9WD+tJjmq1cbEkv7HdcEOd5YGQsgY7c7
+	vMzGUP/R3wxc4F7ckNJuM10QYg==
 X-Google-Smtp-Source: 
- AGRyM1vzdsTaGalG6pGMdQ4NCBWZX+l8a6UbmrjwIPmZ+8G218ZVVDsLNXJO/mI83+9P29rGnYM4O3XvMsjOMRQ7C7o=
-X-Received: by 2002:a17:906:8a71:b0:72b:11d6:29fc with SMTP id
- hy17-20020a1709068a7100b0072b11d629fcmr7295998ejc.494.1657785667020; Thu, 14
- Jul 2022 01:01:07 -0700 (PDT)
-MIME-Version: 1.0
-References: 
- <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.d4e0f9cc-dbbb-4d14-b16c-2dc08b801a12@emailsignatures365.codetwo.com>
- <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.0d2bd5fa-15cc-4b27-b94e-83614f9e5b38.3359cbda-a296-4bc1-b4e3-f88cc17b6bf8@emailsignatures365.codetwo.com>
- <CAKBdzwuDB5E8=TPVCPY-ULyNRnA-BfGe3F-3a_j07N2OrJq3Bg@mail.gmail.com>
- <8defe485-c6b8-cb20-dda3-5b6b44938632@topic.nl>
-In-Reply-To: <8defe485-c6b8-cb20-dda3-5b6b44938632@topic.nl>
-From: chris yocto <chrisyocto2022@gmail.com>
-Date: Thu, 14 Jul 2022 10:00:56 +0200
+ AGRyM1ugc5J4MkP4/nFIp2oySJhvWtyAPclk2rIYipFPQjUMdHDDECIyww/7gBeCaHdmSrnQFokOmg==
+X-Received: by 2002:a05:600c:3492:b0:3a1:70dd:9a14 with SMTP id
+ a18-20020a05600c349200b003a170dd9a14mr8967660wmq.177.1657806538717;
+        Thu, 14 Jul 2022 06:48:58 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:c037:3be3:5ea0:9a64?
+ ([2001:8b0:aba:5f3c:c037:3be3:5ea0:9a64])
+        by smtp.gmail.com with ESMTPSA id
+ p18-20020a5d68d2000000b0021d87798237sm1466807wrw.20.2022.07.14.06.48.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Jul 2022 06:48:58 -0700 (PDT)
 Message-ID: 
- <CAKBdzwsWPq5djp0OstaagqadX=UpXtXvAvzRS4gOErcWhTXjjQ@mail.gmail.com>
-Subject: Re: [yocto] Customizing SERIAL_CONSOLES
-To: Mike Looijmans <mike.looijmans@topic.nl>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000cbe95305e3bf4dc4"
+ <1becc5ca1ed7336d07eb5b5beb0d01715bb71443.camel@linuxfoundation.org>
+Subject: Re: [yocto] [PATCH] yocto-bsps: update to v5.15.52 and buildpaths
+ fixes
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Bruce Ashfield <bruce.ashfield@gmail.com>
+Cc: yocto <yocto@lists.yoctoproject.org>
+Date: Thu, 14 Jul 2022 14:48:56 +0100
+In-Reply-To: 
+ <CADkTA4PKG12uULttBKysYh6jy4HzgeSNB685uE8cKYwdumFLdw@mail.gmail.com>
+References: <20220712144030.32305-1-bruce.ashfield@gmail.com>
+	 <20220712144030.32305-2-bruce.ashfield@gmail.com>
+	 <57dd4dcd5002a34b0593078452878626d942fcb6.camel@linuxfoundation.org>
+	 <1701455333AD8E75.13030@lists.yoctoproject.org>
+	 <CADkTA4PKG12uULttBKysYh6jy4HzgeSNB685uE8cKYwdumFLdw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.1-0ubuntu1 
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 14 Jul 2022 08:01:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57534
+ <yocto@lists.yoctoproject.org>; Thu, 14 Jul 2022 13:49:02 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57535
 
---000000000000cbe95305e3bf4dc4
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Wed, 2022-07-13 at 14:36 -0400, Bruce Ashfield wrote:
+> On Tue, Jul 12, 2022 at 11:19 PM Bruce Ashfield via
+> lists.yoctoproject.org
+> <bruce.ashfield=3Dgmail.com@lists.yoctoproject.org> wrote:
+> >=20
+> > On Tue, Jul 12, 2022 at 6:45 PM Richard Purdie
+> > <richard.purdie@linuxfoundation.org> wrote:
+> > >=20
+> > > On Tue, 2022-07-12 at 10:40 -0400, bruce.ashfield@gmail.com wrote:
+> > > > From: Bruce Ashfield <bruce.ashfield@gmail.com>
+> > > >=20
+> > > > Updating linux-yocto/5.15 to the latest korg -stable release that c=
+omprises
+> > > > the following commits:
+> > >=20
+> > > Thanks, this test build showed two warnings. I have no idea why this
+> > > only showed up now:
+> > >=20
+> > > beaglebone:
+> > > WARNING: linux-yocto-5.15.52+gitAUTOINC+f122fe59e7_3ec00e9ee0-r0 do_p=
+ackage_qa: QA Issue: File /usr/src/debug/linux-yocto/5.15.52+gitAUTOINC+f12=
+2fe59e7_3ec00e9ee0-r0/linux-beaglebone_yocto-standard-build/arch/arm/includ=
+e/generated/asm/mach-types.h in package linux-yocto-src contains reference =
+to TMPDIR
+> > >=20
+> > > beaglebond-alt:
+> > > WARNING: linux-yocto-5.10.128+gitAUTOINC+2f79722c50_aab4d34364-r0 do_=
+package_qa: QA Issue: File /usr/src/debug/linux-yocto/5.10.128+gitAUTOINC+2=
+f79722c50_aab4d34364-r0/linux-beaglebone_yocto-standard-build/arch/arm/incl=
+ude/generated/asm/mach-types.h in package linux-yocto-src contains referenc=
+e to TMPDIR
+> > >=20
+> >=20
+> > Yet another generation script referencing itself .. they seem to like
+> > doing that.
+> >=20
+> > I don't get the warning, but I do have the file with the reference in
+> > it here, so I'll send a SRCREV bump with a fix Wednesday.
+>=20
+> As you can see, patches are on the list. This one was an awk fix.
+>=20
+> So now we have: shell, python, perl and awk to fix the full path
+> issues ... what's the next scripting language to hack ?
 
-I did run bitbake with the -e option and it shows that it does process my
-machine extra config, but it's overriden by the conf of the BSP.  As a test
-I also added it to my layer.conf but this is also being overriden. I
-already set my layer too the highest priority.
-How can I fix this?
+Thanks!
 
+I did work out why this has seemed like a game of whack-a-mole. When
+the AB summarises warnings, it prints the first line. The actual log
+has more lines to it which I wasn't seeing until I looked at the full
+log. In the case of beaglebone, this now says:
 
+WARNING: linux-yocto-5.15.52+gitAUTOINC+f122fe59e7_d91bb88e58-r0 do_package=
+_qa: QA Issue: File /usr/src/debug/linux-yocto/5.15.52+gitAUTOINC+f122fe59e=
+7_d91bb88e58-r0/linux-beaglebone_yocto-standard-build/drivers/video/logo/lo=
+go_linux_clut224.c in package linux-yocto-src contains reference to TMPDIR
+File /usr/src/debug/linux-yocto/5.15.52+gitAUTOINC+f122fe59e7_d91bb88e58-r0=
+/linux-beaglebone_yocto-standard-build/drivers/video/logo/logo_linux_mono.c=
+ in package linux-yocto-src contains reference to TMPDIR
+File /usr/src/debug/linux-yocto/5.15.52+gitAUTOINC+f122fe59e7_d91bb88e58-r0=
+/linux-beaglebone_yocto-standard-build/drivers/video/logo/logo_linux_vga16.=
+c in package linux-yocto-src contains reference to TMPDIR [buildpaths]
 
+so three left and they look related. Which language do you hope for
+this time?! :)
 
+[I really appreciate the help on this. I'm hoping we're close now]
 
+Cheers,
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*SERIAL_CONSOLE=3D""## $SERIAL_CONSOLES [7 operations]#   set
-/home/chris/yocto/karo4/sources/meta-certhon/conf/layer.conf:14#
-"115200;ttymxc1"#   set
-/home/chris/yocto/karo4/sources/meta-certhon/conf/machine/qs8m-mq00-extra.c=
-onf:1#
-    "115200;ttymxc1"#   set
-/home/chris/yocto/karo4/sources/meta-freescale/conf/machine/include/imx-bas=
-e.inc:470#
-    "115200;ttymxc0"#   set
-/home/chris/yocto/karo4/sources/meta-karo-nxp/conf/machine/include/tx8m-bas=
-e.inc:32#
-    "115200;ttymxc2"#   set
-/home/chris/yocto/karo4/sources/poky/meta/conf/documentation.conf:379#
-[doc] "Defines the serial consoles (TTYs) to enable using getty."#   set
-/home/chris/yocto/karo4/sources/poky/meta/conf/bitbake.conf:856#
-[_defaultval] "${@d.getVar('SERIAL_CONSOLE').replace(' ', ';')}"#
-override[mxs]:set
-/home/chris/yocto/karo4/sources/meta-freescale/conf/machine/include/imx-bas=
-e.inc:471#
-    "115200;ttyAMA0"# pre-expansion value:#
-"115200;ttymxc2"SERIAL_CONSOLES=3D"115200;ttymxc2"*
-
-Op di 12 jul. 2022 om 16:44 schreef Mike Looijmans <mike.looijmans@topic.nl
->:
-
-> I'd suggest adding some "bogus" things to your machine-extra.conf,
-> because I don't think the file will actually be used (or even parsed)
-> anywhere.
->
-> You can override SERIAL_CONSOLES in your DISTRO config, as that takes
-> precedence over the machine config. In local.conf it won't work because
-> the MACHINE config is included after it.
->
-> Another approach is to grep on which recipes use it (half a dozen) and
-> then create a bbappend for each. That's the approach I've used recently.
->
->
->
->
-> Met vriendelijke groet / kind regards,
->
-> Mike Looijmans
-> System Expert
->
->
-> TOPIC Embedded Products B.V.
-> Materiaalweg 4, 5681 RJ Best
-> The Netherlands
->
-> T: +31 (0) 499 33 69 69
-> E: mike.looijmans@topicproducts.com
-> W: www.topic.nl
->
-> Please consider the environment before printing this e-mail
-> On 12-07-2022 13:41, chris yocto via lists.yoctoproject.org wrote:
-> >
-> > Hi,
-> >
-> > I=E2=80=99m trying to customize the SERIAL_CONSOLES variable. In anothe=
-r
-> > thread I read this can be done by adding a machine-extra.conf file too
-> > my custom layer. So I added =E2=80=9C SERIAL_CONSOLES =3D "115200;ttymx=
-c0" =E2=80=9D to
-> > my machine-extra.conf, but when I  bitbake my custom image, no changes
-> > are found.
-> >
-> > In the conf file from the bsp for the board I=E2=80=99m using I found
-> > =E2=80=9CSERIAL_CONSOLES =3D "115200;ttymxc2", when I change this to
-> > SERIAL_CONSOLES ?=3D "115200;ttymxc2" my changes are being applied.
-> >
-> > This off course is not ideal since I then still don=E2=80=99t have all =
-changes
-> > in my own layer.
-> >
-> > Is there a way I can solve this?
-> >
-> > Kind regards,
-> >
-> > Chris
-> >
-> >
-> >
-> >
->
-> --
-> Mike Looijmans
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#57513):
-> https://lists.yoctoproject.org/g/yocto/message/57513
-> Mute This Topic: https://lists.yoctoproject.org/mt/92330831/7032333
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> chrisyocto2022@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
-
---000000000000cbe95305e3bf4dc4
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>I did run bitbake with the -e option and it shows tha=
-t it does process my machine extra config, but it&#39;s overriden by the co=
-nf of the BSP.=C2=A0 As a test I also added it to my layer.conf but this is=
- also being overriden. I already set my layer too the highest priority.</di=
-v><div>How can I fix this?</div><div><br></div><i>SERIAL_CONSOLE=3D&quot;&q=
-uot;<br>#<br># $SERIAL_CONSOLES [7 operations]<br># =C2=A0 set /home/chris/=
-yocto/karo4/sources/meta-certhon/conf/layer.conf:14<br># =C2=A0 =C2=A0 &quo=
-t;115200;ttymxc1&quot;<br># =C2=A0 set /home/chris/yocto/karo4/sources/meta=
--certhon/conf/machine/qs8m-mq00-extra.conf:1<br># =C2=A0 =C2=A0 &quot;11520=
-0;ttymxc1&quot;<br># =C2=A0 set /home/chris/yocto/karo4/sources/meta-freesc=
-ale/conf/machine/include/imx-base.inc:470<br># =C2=A0 =C2=A0 &quot;115200;t=
-tymxc0&quot;<br># =C2=A0 set /home/chris/yocto/karo4/sources/meta-karo-nxp/=
-conf/machine/include/tx8m-base.inc:32<br># =C2=A0 =C2=A0 &quot;115200;ttymx=
-c2&quot;<br># =C2=A0 set /home/chris/yocto/karo4/sources/poky/meta/conf/doc=
-umentation.conf:379<br># =C2=A0 =C2=A0 [doc] &quot;Defines the serial conso=
-les (TTYs) to enable using getty.&quot;<br># =C2=A0 set /home/chris/yocto/k=
-aro4/sources/poky/meta/conf/bitbake.conf:856<br># =C2=A0 =C2=A0 [_defaultva=
-l] &quot;${@d.getVar(&#39;SERIAL_CONSOLE&#39;).replace(&#39; &#39;, &#39;;&=
-#39;)}&quot;<br># =C2=A0 override[mxs]:set /home/chris/yocto/karo4/sources/=
-meta-freescale/conf/machine/include/imx-base.inc:471<br># =C2=A0 =C2=A0 &qu=
-ot;115200;ttyAMA0&quot;<br># pre-expansion value:<br># =C2=A0 &quot;115200;=
-ttymxc2&quot;<br>SERIAL_CONSOLES=3D&quot;115200;ttymxc2&quot;</i><br></div>=
-<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Op di =
-12 jul. 2022 om 16:44 schreef Mike Looijmans &lt;<a href=3D"mailto:mike.loo=
-ijmans@topic.nl">mike.looijmans@topic.nl</a>&gt;:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex">I&#39;d suggest adding some &quot;bogus&q=
-uot; things to your machine-extra.conf, <br>
-because I don&#39;t think the file will actually be used (or even parsed) <=
-br>
-anywhere.<br>
-<br>
-You can override SERIAL_CONSOLES in your DISTRO config, as that takes <br>
-precedence over the machine config. In local.conf it won&#39;t work because=
- <br>
-the MACHINE config is included after it.<br>
-<br>
-Another approach is to grep on which recipes use it (half a dozen) and <br>
-then create a bbappend for each. That&#39;s the approach I&#39;ve used rece=
-ntly.<br>
-<br>
-<br>
-<br>
-<br>
-Met vriendelijke groet / kind regards,<br>
-<br>
-Mike Looijmans<br>
-System Expert<br>
-<br>
-<br>
-TOPIC Embedded Products B.V.<br>
-Materiaalweg 4, 5681 RJ Best<br>
-The Netherlands<br>
-<br>
-T: +31 (0) 499 33 69 69<br>
-E: <a href=3D"mailto:mike.looijmans@topicproducts.com" target=3D"_blank">mi=
-ke.looijmans@topicproducts.com</a><br>
-W: <a href=3D"http://www.topic.nl" rel=3D"noreferrer" target=3D"_blank">www=
-.topic.nl</a><br>
-<br>
-Please consider the environment before printing this e-mail<br>
-On 12-07-2022 13:41, chris yocto via <a href=3D"http://lists.yoctoproject.o=
-rg" rel=3D"noreferrer" target=3D"_blank">lists.yoctoproject.org</a> wrote:<=
-br>
-&gt;<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; I=E2=80=99m trying to customize the SERIAL_CONSOLES variable. In anoth=
-er <br>
-&gt; thread I read this can be done by adding a machine-extra.conf file too=
- <br>
-&gt; my custom layer. So I added =E2=80=9C SERIAL_CONSOLES =3D &quot;115200=
-;ttymxc0&quot; =E2=80=9D to <br>
-&gt; my machine-extra.conf, but when I =C2=A0bitbake my custom image, no ch=
-anges <br>
-&gt; are found.<br>
-&gt;<br>
-&gt; In the conf file from the bsp for the board I=E2=80=99m using I found =
-<br>
-&gt; =E2=80=9CSERIAL_CONSOLES =3D &quot;115200;ttymxc2&quot;, when I change=
- this to <br>
-&gt; SERIAL_CONSOLES ?=3D &quot;115200;ttymxc2&quot; my changes are being a=
-pplied.<br>
-&gt;<br>
-&gt; This off course is not ideal since I then still don=E2=80=99t have all=
- changes <br>
-&gt; in my own layer.<br>
-&gt;<br>
-&gt; Is there a way I can solve this?<br>
-&gt;<br>
-&gt; Kind regards,<br>
-&gt;<br>
-&gt; Chris<br>
-&gt;<br>
-&gt;<br>
-&gt; <br>
-&gt;<br>
-<br>
--- <br>
-Mike Looijmans<br>
-<br>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#57513): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/57513" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/57513</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/92330831/7032=
-333" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/92330831/7032333</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:chrisyocto2022@gmail.com" target=3D"_blank">chri=
-syocto2022@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
-
---000000000000cbe95305e3bf4dc4--
+Richard
 
