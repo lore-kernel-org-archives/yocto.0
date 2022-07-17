@@ -1,426 +1,174 @@
-Return-Path: <nikitagupta2509@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0E3D1C43334
-	for <webhook@archiver.kernel.org>; Sun, 17 Jul 2022 08:24:44 +0000 (UTC)
-Subject: Error while testing "core-image-minimal" through "bitbake
- core-image-minimal -c testimage -v" #bitbake #dunfell  #distro #yocto #qemu
- #linux #qemu #warning #toolchain
-To: yocto@lists.yoctoproject.org
-From: "Nikita Gupta" <nikitagupta2509@gmail.com>
-X-Originating-Location: Pune, Maharashtra, IN (183.87.32.226)
-X-Originating-Platform: Linux Chrome 102
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5CA26C433EF
+	for <webhook@archiver.kernel.org>; Sun, 17 Jul 2022 09:21:04 +0000 (UTC)
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com
+ [209.85.167.48])
+ by mx.groups.io with SMTP id smtpd.web09.14108.1658049657998382220
+ for <yocto@lists.yoctoproject.org>;
+ Sun, 17 Jul 2022 02:20:58 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=WqlhStwA;
+ spf=pass (domain: gmail.com, ip: 209.85.167.48,
+ mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f48.google.com with SMTP id n18so14767272lfq.1
+        for <yocto@lists.yoctoproject.org>;
+ Sun, 17 Jul 2022 02:20:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=7fjBFDFlrdVOMYu4KNziEXT4WRdKMkbBE0MUMBikKTQ=;
+        b=WqlhStwASL6beIivwGL0AC91yEkVVSXSQcPFmKrkNMxLDCJgGHa9zxEDPkEkeQDxxU
+         OV2Q+H34OVlyrI8AV8niYmV35LSePEfoqe4iLRhUd574VkMHld1qwRI3WAkwTVZWuY4H
+         +0sO/QtDdPFPFwVSygeAO0WzXi47Ps+lTToxL1uuJi20p1QfrAvCfBIFMHZ2jM+qqexL
+         N9KwBpfm0aIS4fSFLrJHPbEXMpQUjkJ/4+hPTVuxsSHZ86RYDccWWWIYK9iC1zWtTttw
+         5MvwAv74hh2/QmsiGlcF7jT1CVTtocovEfhKagMqE5ZRlA7CcAh6uYMCIqDC5u9LBOec
+         2goQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7fjBFDFlrdVOMYu4KNziEXT4WRdKMkbBE0MUMBikKTQ=;
+        b=VUwqKOUBijcH9OCXyJ0mEzMPOCQVs4ZKLQ8KEWONduVQZ2B6NVzu3eKw1iL3R3kul7
+         Ly6XD2ff/jARoKuZ84dgVQXmON93oHkO9vIFdeT6VuOsI51N86bpT2FHSNav6nIajYaO
+         HUZQ6loNsR+fQ6gMNJExcoPl3aMH+oP5NEyUdA+V1z+VZCBWtOcVIQL0UPFPVDLBSznQ
+         7/PrTZZkCUrPO+eII2O4RVNmSIYcun9plUYPEKZdDsKfD7SXmzXqVYQ71SDMZM85gaiA
+         CnrQtmBX+bJSBuiDhkIxile7dEFukz5kXQmFt8fltwCOjNSGMa1yEXUQryG+zNy45bXD
+         ccQA==
+X-Gm-Message-State: AJIora9kXiapCA/6BOmWF/d7Pyv198pWynlLPKAAZqOZGJeKV0zhZkex
+	urzD8jogNeo90h0oorm1zyG1N0kvqC/Wu88F8q8=
+X-Google-Smtp-Source: 
+ AGRyM1tKoDbJ47gljCbNBz6QY4C6iXUU982apVfwU2wKhUPlOLrnMuZXUoOyxss/hyr3QNpg+ynDw0K9wWiafGDhjpw=
+X-Received: by 2002:a05:6512:3409:b0:489:c549:4693 with SMTP id
+ i9-20020a056512340900b00489c5494693mr11782309lfr.26.1658049655894; Sun, 17
+ Jul 2022 02:20:55 -0700 (PDT)
 MIME-Version: 1.0
-Date: Sun, 17 Jul 2022 01:24:40 -0700
-Message-ID: <sWf9.1658046280641285331.QPnI@lists.yoctoproject.org>
-Content-Type: multipart/mixed; boundary="tUTcruSSqVBTa0wBzRyI"
+References: <sWf9.1658046280641285331.QPnI@lists.yoctoproject.org>
+In-Reply-To: <sWf9.1658046280641285331.QPnI@lists.yoctoproject.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Sun, 17 Jul 2022 11:20:44 +0200
+Message-ID: 
+ <CANNYZj_BTahuKvgFJUNfcbgycBziShS1EMwSzPZQBYB_pJK99g@mail.gmail.com>
+Subject: Re: [yocto] Error while testing "core-image-minimal" through "bitbake
+ core-image-minimal -c testimage -v" #bitbake #dunfell #distro #yocto #qemu
+ #linux #qemu #warning #toolchain
+To: Nikita Gupta <nikitagupta2509@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 17 Jul 2022 08:24:43 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57556
+ <yocto@lists.yoctoproject.org>; Sun, 17 Jul 2022 09:21:04 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57557
 
---tUTcruSSqVBTa0wBzRyI
-Content-Type: multipart/alternative; boundary="IRTsG0yguulw9BI6QV1g"
+The key message is:
 
---IRTsG0yguulw9BI6QV1g
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello All,
-I was testing my core-image-minimal with test-suit and getting error like "=
-need terminal to enter password and set-up tap interface" i am getting few =
-error so i am not able to test my image .
-I have run following command in=C2=A0 order to test my image
-
-*bitbake rpm busybox curl run-postinsts*
-*bitbake package-index*
-*bitbake core-image-minimal -c testimage -v
-
-* I am getting following error after running last comand . I am also attach=
-ing log file here(see attached file )
-
-ERROR: runqemu exited with code 1
-ERROR: Output from runqemu:
-runqemu - INFO - Continuing with the following parameters:
-KERNEL: [/home/nikita/yoctoproject/poky/build/tmp/deploy/images/qemux86-64/=
-bzImage--5.4.190+gitAUTOINC+6a12bea731_d9d6c6e0d0-r0-qemux86-64-20220501184=
-705.bin]
-MACHINE: [qemux86-64]
-FSTYPE: [ext4]
-ROOTFS: [/home/nikita/yoctoproject/poky/build/tmp/deploy/images/qemux86-64/=
-core-image-minimal-qemux86-64.ext4]
-CONFFILE: [/home/nikita/yoctoproject/poky/build/tmp/deploy/images/qemux86-6=
-4/core-image-minimal-qemux86-64.qemuboot.conf]
-
-runqemu - INFO - Setting up tap interface under sudo
-sudo: a terminal is required to read the password; either use the -S option=
- to read from standard input or configure an askpass helper
-sudo: a password is required
-runqemu - ERROR - Setting up tap device failed:
-Command '('sudo', '/home/nikita/yoctoproject/poky/scripts/runqemu-ifup', '1=
-000', '1000', '/home/nikita/yoctoproject/poky/build/tmp/work/x86_64-linux/q=
-emu-helper-native/1.0-r1/recipe-sysroot-native/usr/bin')' returned non-zero=
- exit status 1.
+Command '('sudo',
+'/home/nikita/yoctoproject/poky/scripts/runqemu-ifup', '1000', '1000',
+'/home/nikita/yoctoproject/poky/build/tmp/work/x86_64-linux/qemu-helper-native/1.0-r1/recipe-sysroot-native/usr/bin')'
+returned non-zero exit status 1.
 Run runqemu-gen-tapdevs to manually create one.
-runqemu - INFO - Cleaning up
-=1B[?7h
-DEBUG: Sending SIGTERM to runqemu
-Output from runqemu:
 
-WARNING: Qemu ended unexpectedly, dump data from host is in /home/nikita/yo=
-ctoproject/poky/build/tmp/log/runtime-hostdump/202207171341_qemu
-DEBUG: Sending SIGTERM to runqemu
-DEBUG: Sending SIGTERM to runqemu
-ERROR: Error executing a python function in exec_func_python() autogenerate=
-d:
+So you need to run the first command to create a single tap interface
+manually (and you need to know the root password). Or
+runqemu-gen-tapdevs will generate several.
 
-The stack trace of python calls that resulted in this exception/failure was=
-:
-File: 'exec_func_python() autogenerated', lineno: 2, function: <module>
-0001:
-*** 0002:do_testimage(d)
-0003:
-File: '/home/nikita/yoctoproject/poky/meta/classes/testimage.bbclass', line=
-no: 129, function: do_testimage
-0125:=C2=A0 =C2=A0 netstat -an
-0126:}
-0127:
-0128:python do_testimage() {
-*** 0129:=C2=A0 =C2=A0 testimage_main(d)
-0130:}
-0131:
-0132:addtask testimage
-0133:do_testimage[nostamp] =3D "1"
-File: '/home/nikita/yoctoproject/poky/meta/classes/testimage.bbclass', line=
-no: 374, function: testimage_main
-0370:=C2=A0 =C2=A0 orig_sigterm_handler =3D signal.signal(signal.SIGTERM, s=
-igterm_exception)
-0371:=C2=A0 =C2=A0 try:
-0372:=C2=A0 =C2=A0 =C2=A0 =C2=A0 # We need to check if runqemu ends unexpec=
-tedly
-0373:=C2=A0 =C2=A0 =C2=A0 =C2=A0 # or if the worker send us a SIGTERM
-*** 0374:=C2=A0 =C2=A0 =C2=A0 =C2=A0 tc.target.start(params=3Dd.getVar("TES=
-T_QEMUPARAMS"), runqemuparams=3Dd.getVar("TEST_RUNQEMUPARAMS"))
-0375:=C2=A0 =C2=A0 =C2=A0 =C2=A0 import threading
-0376:=C2=A0 =C2=A0 =C2=A0 =C2=A0 try:
-0377:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 threading.Timer(int(d.getVar=
-("TEST_OVERALL_TIMEOUT")), handle_test_timeout, (int(d.getVar("TEST_OVERALL=
-_TIMEOUT")),)).start()
-0378:=C2=A0 =C2=A0 =C2=A0 =C2=A0 except ValueError:
-File: '/home/nikita/yoctoproject/poky/meta/lib/oeqa/core/target/qemu.py', l=
-ineno: 67, function: start
-0063:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if self.runner.server_ip:
-0064:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.server_ip=
- =3D self.runner.server_ip
-0065:=C2=A0 =C2=A0 =C2=A0 =C2=A0 else:
-0066:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.stop()
-*** 0067:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 raise RuntimeError("FAIL=
-ED to start qemu - check the task log and the boot log")
-0068:
-0069:=C2=A0 =C2=A0 def stop(self):
-0070:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.runner.stop()
-Exception: RuntimeError: FAILED to start qemu - check the task log and the =
-boot log
+Alex
 
-DEBUG: Python function do_testimage finished
-
-*If anyone can help then please do your help will be appreciated . Thanks i=
-n advance*
-
---IRTsG0yguulw9BI6QV1g
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello All,<br />I was testing my core-image-minimal with test-suit and gett=
-ing error like "need terminal to enter password and set-up tap interface" i=
- am getting few error so i am not able to test my image .&nbsp;<br />I have=
- run following command in&nbsp; order to test my image<br /><br /><strong>b=
-itbake rpm busybox curl run-postinsts</strong><br /><strong>bitbake package=
--index</strong><br /><strong>bitbake core-image-minimal -c testimage -v<br =
-/><br /></strong>I am getting following error after running last comand . I=
- am also attaching log file here(see attached file )<br /><br />
-<div>ERROR: runqemu exited with code 1</div>
-<div>ERROR: Output from runqemu:</div>
-<div>runqemu - INFO - Continuing with the following parameters:</div>
-<div>KERNEL: [/home/nikita/yoctoproject/poky/build/tmp/deploy/images/qemux8=
-6-64/bzImage--5.4.190+gitAUTOINC+6a12bea731_d9d6c6e0d0-r0-qemux86-64-202205=
-01184705.bin]</div>
-<div>MACHINE: [qemux86-64]</div>
-<div>FSTYPE: [ext4]</div>
-<div>ROOTFS: [/home/nikita/yoctoproject/poky/build/tmp/deploy/images/qemux8=
-6-64/core-image-minimal-qemux86-64.ext4]</div>
-<div>CONFFILE: [/home/nikita/yoctoproject/poky/build/tmp/deploy/images/qemu=
-x86-64/core-image-minimal-qemux86-64.qemuboot.conf]</div>
-<div>&nbsp;</div>
-<div>runqemu - INFO - Setting up tap interface under sudo</div>
-<div>sudo: a terminal is required to read the password; either use the -S o=
-ption to read from standard input or configure an askpass helper</div>
-<div>sudo: a password is required</div>
-<div>runqemu - ERROR - Setting up tap device failed:</div>
-<div>Command '('sudo', '/home/nikita/yoctoproject/poky/scripts/runqemu-ifup=
-', '1000', '1000', '/home/nikita/yoctoproject/poky/build/tmp/work/x86_64-li=
-nux/qemu-helper-native/1.0-r1/recipe-sysroot-native/usr/bin')' returned non=
--zero exit status 1.</div>
-<div>Run runqemu-gen-tapdevs to manually create one.<br />
-<div>runqemu - INFO - Cleaning up</div>
-<div>=1B[?7h</div>
-<div>DEBUG: Sending SIGTERM to runqemu</div>
-<div>Output from runqemu:</div>
-<div>&nbsp;</div>
-<div>WARNING: Qemu ended unexpectedly, dump data from host is in /home/niki=
-ta/yoctoproject/poky/build/tmp/log/runtime-hostdump/202207171341_qemu</div>
-<div>DEBUG: Sending SIGTERM to runqemu</div>
-<div>DEBUG: Sending SIGTERM to runqemu</div>
-<div>ERROR: Error executing a python function in exec_func_python() autogen=
-erated:</div>
-<div>&nbsp;</div>
-<div>The stack trace of python calls that resulted in this exception/failur=
-e was:</div>
-<div>File: 'exec_func_python() autogenerated', lineno: 2, function: &lt;mod=
-ule&gt;</div>
-<div>&nbsp; &nbsp; &nbsp;0001:</div>
-<div>&nbsp;*** 0002:do_testimage(d)</div>
-<div>&nbsp; &nbsp; &nbsp;0003:</div>
-<div>File: '/home/nikita/yoctoproject/poky/meta/classes/testimage.bbclass',=
- lineno: 129, function: do_testimage</div>
-<div>&nbsp; &nbsp; &nbsp;0125:&nbsp; &nbsp; netstat -an</div>
-<div>&nbsp; &nbsp; &nbsp;0126:}</div>
-<div>&nbsp; &nbsp; &nbsp;0127:</div>
-<div>&nbsp; &nbsp; &nbsp;0128:python do_testimage() {</div>
-<div>&nbsp;*** 0129:&nbsp; &nbsp; testimage_main(d)<br />
-<div>&nbsp; &nbsp; &nbsp;0130:}</div>
-<div>&nbsp; &nbsp; &nbsp;0131:</div>
-<div>&nbsp; &nbsp; &nbsp;0132:addtask testimage</div>
-<div>&nbsp; &nbsp; &nbsp;0133:do_testimage[nostamp] =3D "1"</div>
-<div>File: '/home/nikita/yoctoproject/poky/meta/classes/testimage.bbclass',=
- lineno: 374, function: testimage_main</div>
-<div>&nbsp; &nbsp; &nbsp;0370:&nbsp; &nbsp; orig_sigterm_handler =3D signal=
-.signal(signal.SIGTERM, sigterm_exception)</div>
-<div>&nbsp; &nbsp; &nbsp;0371:&nbsp; &nbsp; try:</div>
-<div>&nbsp; &nbsp; &nbsp;0372:&nbsp; &nbsp; &nbsp; &nbsp; # We need to chec=
-k if runqemu ends unexpectedly</div>
-<div>&nbsp; &nbsp; &nbsp;0373:&nbsp; &nbsp; &nbsp; &nbsp; # or if the worke=
-r send us a SIGTERM</div>
-<div>&nbsp;*** 0374:&nbsp; &nbsp; &nbsp; &nbsp; tc.target.start(params=3Dd.=
-getVar("TEST_QEMUPARAMS"), runqemuparams=3Dd.getVar("TEST_RUNQEMUPARAMS"))<=
-/div>
-<div>&nbsp; &nbsp; &nbsp;0375:&nbsp; &nbsp; &nbsp; &nbsp; import threading<=
-/div>
-<div>&nbsp; &nbsp; &nbsp;0376:&nbsp; &nbsp; &nbsp; &nbsp; try:</div>
-<div>&nbsp; &nbsp; &nbsp;0377:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; thr=
-eading.Timer(int(d.getVar("TEST_OVERALL_TIMEOUT")), handle_test_timeout, (i=
-nt(d.getVar("TEST_OVERALL_TIMEOUT")),)).start()</div>
-<div>&nbsp; &nbsp; &nbsp;0378:&nbsp; &nbsp; &nbsp; &nbsp; except ValueError=
-:</div>
-<div>File: '/home/nikita/yoctoproject/poky/meta/lib/oeqa/core/target/qemu.p=
-y', lineno: 67, function: start</div>
-<div>&nbsp; &nbsp; &nbsp;0063:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if =
-self.runner.server_ip:</div>
-<div>&nbsp; &nbsp; &nbsp;0064:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; self.server_ip =3D self.runner.server_ip</div>
-<div>&nbsp; &nbsp; &nbsp;0065:&nbsp; &nbsp; &nbsp; &nbsp; else:</div>
-<div>&nbsp; &nbsp; &nbsp;0066:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sel=
-f.stop()</div>
-<div>&nbsp;*** 0067:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; raise Runtime=
-Error("FAILED to start qemu - check the task log and the boot log")</div>
-<div>&nbsp; &nbsp; &nbsp;0068:</div>
-<div>&nbsp; &nbsp; &nbsp;0069:&nbsp; &nbsp; def stop(self):</div>
-<div>&nbsp; &nbsp; &nbsp;0070:&nbsp; &nbsp; &nbsp; &nbsp; self.runner.stop(=
-)</div>
-<div>Exception: RuntimeError: FAILED to start qemu - check the task log and=
- the boot log</div>
-<div>&nbsp;</div>
-<div>DEBUG: Python function do_testimage finished<br /><br /><strong>If any=
-one can help then please do your help will be appreciated . Thanks in advan=
-ce&nbsp;</strong></div>
-</div>
-</div>
-
---IRTsG0yguulw9BI6QV1g--
-
---tUTcruSSqVBTa0wBzRyI
-Content-Type: application/octet-stream; name="log.do_testimage.2510"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="log.do_testimage.2510"
-
-REVCVUc6IEV4ZWN1dGluZyBweXRob24gZnVuY3Rpb24gZXh0ZW5kX3JlY2lwZV9zeXNyb290Ck5P
-VEU6IERpcmVjdCBkZXBlbmRlbmNpZXMgYXJlIFsndmlydHVhbDpuYXRpdmU6L2hvbWUvbmlraXRh
-L3lvY3RvcHJvamVjdC9wb2t5L21ldGEvcmVjaXBlcy1kZXZ0b29scy9jcmVhdGVyZXBvLWMvY3Jl
-YXRlcmVwby1jXzAuMTUuNy5iYjpkb19wb3B1bGF0ZV9zeXNyb290JywgJ3ZpcnR1YWw6bmF0aXZl
-Oi9ob21lL25pa2l0YS95b2N0b3Byb2plY3QvcG9reS9tZXRhL3JlY2lwZXMtZXh0ZW5kZWQvY3Bp
-by9jcGlvXzIuMTMuYmI6ZG9fcG9wdWxhdGVfc3lzcm9vdCcsICd2aXJ0dWFsOm5hdGl2ZTovaG9t
-ZS9uaWtpdGEveW9jdG9wcm9qZWN0L3Bva3kvbWV0YS9yZWNpcGVzLWRldnRvb2xzL2RuZi9kbmZf
-NC4yLjIuYmI6ZG9fcG9wdWxhdGVfc3lzcm9vdCcsICcvaG9tZS9uaWtpdGEveW9jdG9wcm9qZWN0
-L3Bva3kvbWV0YS9yZWNpcGVzLWRldnRvb2xzL3FlbXUvcWVtdS1uYXRpdmVfNC4yLjAuYmI6ZG9f
-cG9wdWxhdGVfc3lzcm9vdCcsICcvaG9tZS9uaWtpdGEveW9jdG9wcm9qZWN0L3Bva3kvbWV0YS9y
-ZWNpcGVzLWRldnRvb2xzL3FlbXUvcWVtdS1zeXN0ZW0tbmF0aXZlXzQuMi4wLmJiOmRvX3BvcHVs
-YXRlX3N5c3Jvb3QnLCAnL2hvbWUvbmlraXRhL3lvY3RvcHJvamVjdC9wb2t5L21ldGEvcmVjaXBl
-cy1kZXZ0b29scy9xZW11L3FlbXUtaGVscGVyLW5hdGl2ZV8xLjAuYmI6ZG9fcG9wdWxhdGVfc3lz
-cm9vdCddCk5PVEU6IEluc3RhbGxlZCBpbnRvIHN5c3Jvb3Q6IFtdCk5PVEU6IFNraXBwaW5nIGFz
-IGFscmVhZHkgZXhpc3RzIGluIHN5c3Jvb3Q6IFsnY3JlYXRlcmVwby1jLW5hdGl2ZScsICdjcGlv
-LW5hdGl2ZScsICdkbmYtbmF0aXZlJywgJ3FlbXUtbmF0aXZlJywgJ3FlbXUtc3lzdGVtLW5hdGl2
-ZScsICdxZW11LWhlbHBlci1uYXRpdmUnLCAnZmlsZS1uYXRpdmUnLCAneHotbmF0aXZlJywgJ2ds
-aWItMi4wLW5hdGl2ZScsICdycG0tbmF0aXZlJywgJ2NtYWtlLW5hdGl2ZScsICdvcGVuc3NsLW5h
-dGl2ZScsICdweXRob24zLW5hdGl2ZScsICdjdXJsLW5hdGl2ZScsICdsaWJ4bWwyLW5hdGl2ZScs
-ICdxdWlsdC1uYXRpdmUnLCAnemxpYi1uYXRpdmUnLCAnZXhwYXQtbmF0aXZlJywgJ3BrZ2NvbmZp
-Zy1uYXRpdmUnLCAnc3FsaXRlMy1uYXRpdmUnLCAnbmluamEtbmF0aXZlJywgJ2dudS1jb25maWct
-bmF0aXZlJywgJ2xpYnRvb2wtbmF0aXZlJywgJ2dldHRleHQtbWluaW1hbC1uYXRpdmUnLCAnYXV0
-b2NvbmYtbmF0aXZlJywgJ3RleGluZm8tZHVtbXktbmF0aXZlJywgJ2F1dG9tYWtlLW5hdGl2ZScs
-ICdsaWJkbmYtbmF0aXZlJywgJ2xpYnJlcG8tbmF0aXZlJywgJ3B5dGhvbjMtaW5pcGFyc2UtbmF0
-aXZlJywgJ2xpYmNvbXBzLW5hdGl2ZScsICdsaWJzZGwyLW5hdGl2ZScsICdhbHNhLWxpYi1uYXRp
-dmUnLCAnZHRjLW5hdGl2ZScsICdwaXhtYW4tbmF0aXZlJywgJ2J6aXAyLW5hdGl2ZScsICdsaWJm
-ZmktbmF0aXZlJywgJ2xpYnBjcmUtbmF0aXZlJywgJ21lc29uLW5hdGl2ZScsICdnZXR0ZXh0LW5h
-dGl2ZScsICdndGstZG9jLW5hdGl2ZScsICd1dGlsLWxpbnV4LW5hdGl2ZScsICdwZXJsLW5hdGl2
-ZScsICdkYnVzLW5hdGl2ZScsICdkYi1uYXRpdmUnLCAncG9wdC1uYXRpdmUnLCAnZWxmdXRpbHMt
-bmF0aXZlJywgJ2xpYmFyY2hpdmUtbmF0aXZlJywgJ25jdXJzZXMtbmF0aXZlJywgJ2dkYm0tbmF0
-aXZlJywgJ3JlYWRsaW5lLW5hdGl2ZScsICdsaWJ0aXJwYy1uYXRpdmUnLCAnbGlibnNsMi1uYXRp
-dmUnLCAncmUyYy1uYXRpdmUnLCAnbTQtbmF0aXZlJywgJ2pzb24tYy1uYXRpdmUnLCAnc3dpZy1u
-YXRpdmUnLCAnbGlibW9kdWxlbWQtdjEtbmF0aXZlJywgJ2xpYmNoZWNrLW5hdGl2ZScsICdnb2Jq
-ZWN0LWludHJvc3BlY3Rpb24tbmF0aXZlJywgJ2xpYnNvbHYtbmF0aXZlJywgJ2F0dHItbmF0aXZl
-JywgJ2dwZ21lLW5hdGl2ZScsICdweXRob24zLXNpeC1uYXRpdmUnLCAnbGlieDExLW5hdGl2ZScs
-ICdsaWJ4ZXh0LW5hdGl2ZScsICdsaWJ4cmVuZGVyLW5hdGl2ZScsICdsaWJ4cmFuZHItbmF0aXZl
-JywgJ2ZsZXgtbmF0aXZlJywgJ3B5dGhvbjMtc2V0dXB0b29scy1uYXRpdmUnLCAnbGlicGNyZTIt
-bmF0aXZlJywgJ2xpYmNhcC1uZy1uYXRpdmUnLCAnZTJmc3Byb2dzLW5hdGl2ZScsICdsem8tbmF0
-aXZlJywgJ2xpYnlhbWwtbmF0aXZlJywgJ2xpYmFzc3Vhbi1uYXRpdmUnLCAnbGliZ3BnLWVycm9y
-LW5hdGl2ZScsICd4b3JncHJvdG8tbmF0aXZlJywgJ3V0aWwtbWFjcm9zLW5hdGl2ZScsICdsaWJ4
-Y2ItbmF0aXZlJywgJ3h0cmFucy1uYXRpdmUnLCAndW56aXAtbmF0aXZlJywgJ2xpYnhkbWNwLW5h
-dGl2ZScsICdsaWJ4YXUtbmF0aXZlJywgJ2xpYnB0aHJlYWQtc3R1YnMtbmF0aXZlJywgJ3hjYi1w
-cm90by1uYXRpdmUnXQpERUJVRzogUHl0aG9uIGZ1bmN0aW9uIGV4dGVuZF9yZWNpcGVfc3lzcm9v
-dCBmaW5pc2hlZApERUJVRzogRXhlY3V0aW5nIHB5dGhvbiBmdW5jdGlvbiBkb190ZXN0aW1hZ2UK
-Tk9URTogRXhlY3V0aW5nICcvaG9tZS9uaWtpdGEveW9jdG9wcm9qZWN0L3Bva3kvYnVpbGQvdG1w
-L3dvcmsvcWVtdXg4Nl82NC1wb2t5LWxpbnV4L2NvcmUtaW1hZ2UtbWluaW1hbC8xLjAtcjAvcmVj
-aXBlLXN5c3Jvb3QtbmF0aXZlL3Vzci9iaW4vY3JlYXRlcmVwb19jIC0tdXBkYXRlIC1xIC9ob21l
-L25pa2l0YS95b2N0b3Byb2plY3QvcG9reS9idWlsZC90bXAvd29yay9xZW11eDg2XzY0LXBva3kt
-bGludXgvY29yZS1pbWFnZS1taW5pbWFsLzEuMC1yMC9vZS10ZXN0aW1hZ2UtcmVwby9ub2FyY2gn
-IC4uLgpOT1RFOiBFeGVjdXRpbmcgJy9ob21lL25pa2l0YS95b2N0b3Byb2plY3QvcG9reS9idWls
-ZC90bXAvd29yay9xZW11eDg2XzY0LXBva3ktbGludXgvY29yZS1pbWFnZS1taW5pbWFsLzEuMC1y
-MC9yZWNpcGUtc3lzcm9vdC1uYXRpdmUvdXNyL2Jpbi9jcmVhdGVyZXBvX2MgLS11cGRhdGUgLXEg
-L2hvbWUvbmlraXRhL3lvY3RvcHJvamVjdC9wb2t5L2J1aWxkL3RtcC93b3JrL3FlbXV4ODZfNjQt
-cG9reS1saW51eC9jb3JlLWltYWdlLW1pbmltYWwvMS4wLXIwL29lLXRlc3RpbWFnZS1yZXBvL2Nv
-cmUyXzY0JyAuLi4KTk9URTogRXhlY3V0aW5nICcvaG9tZS9uaWtpdGEveW9jdG9wcm9qZWN0L3Bv
-a3kvYnVpbGQvdG1wL3dvcmsvcWVtdXg4Nl82NC1wb2t5LWxpbnV4L2NvcmUtaW1hZ2UtbWluaW1h
-bC8xLjAtcjAvcmVjaXBlLXN5c3Jvb3QtbmF0aXZlL3Vzci9iaW4vY3JlYXRlcmVwb19jIC0tdXBk
-YXRlIC1xIC9ob21lL25pa2l0YS95b2N0b3Byb2plY3QvcG9reS9idWlsZC90bXAvd29yay9xZW11
-eDg2XzY0LXBva3ktbGludXgvY29yZS1pbWFnZS1taW5pbWFsLzEuMC1yMC9vZS10ZXN0aW1hZ2Ut
-cmVwby9xZW11eDg2XzY0JyAuLi4KREVCVUc6IHRlc3Qgc3VpdGVzOgoJdGVzdF9hcHRfaW5zdGFs
-bF9mcm9tX3JlcG8gKGFwdC5BcHRSZXBvVGVzdCkKCXRlc3RfcGluZyAocGluZy5QaW5nVGVzdCkK
-CXRlc3Rfc3NoIChzc2guU1NIVGVzdCkKCXRlc3RfY3BpbyAoYnVpbGRjcGlvLkJ1aWxkQ3Bpb1Rl
-c3QpCgl0ZXN0X2dhbGN1bGF0b3IgKGJ1aWxkZ2FsY3VsYXRvci5HYWxjdWxhdG9yVGVzdCkKCXRl
-c3RfbHppcCAoYnVpbGRsemlwLkJ1aWxkTHppcFRlc3QpCgl0ZXN0X2Nvbm5tYW5kX2hlbHAgKGNv
-bm5tYW4uQ29ubm1hblRlc3QpCgl0ZXN0X2Nvbm5tYW5kX3J1bm5pbmcgKGNvbm5tYW4uQ29ubm1h
-blRlc3QpCgl0ZXN0X2RhdGUgKGRhdGUuRGF0ZVRlc3QpCgl0ZXN0X2RmIChkZi5EZlRlc3QpCgl0
-ZXN0X2RuZl9oZWxwIChkbmYuRG5mQmFzaWNUZXN0KQoJdGVzdF9kbmZfaGlzdG9yeSAoZG5mLkRu
-ZkJhc2ljVGVzdCkKCXRlc3RfZG5mX2luZm8gKGRuZi5EbmZCYXNpY1Rlc3QpCgl0ZXN0X2RuZl9z
-ZWFyY2ggKGRuZi5EbmZCYXNpY1Rlc3QpCgl0ZXN0X2RuZl92ZXJzaW9uIChkbmYuRG5mQmFzaWNU
-ZXN0KQoJdGVzdF9kbmZfbWFrZWNhY2hlIChkbmYuRG5mUmVwb1Rlc3QpCgl0ZXN0X2RuZl9leGNs
-dWRlIChkbmYuRG5mUmVwb1Rlc3QpCgl0ZXN0X2RuZl9pbnN0YWxsIChkbmYuRG5mUmVwb1Rlc3Qp
-Cgl0ZXN0X2RuZl9pbnN0YWxsX2RlcGVuZGVuY3kgKGRuZi5EbmZSZXBvVGVzdCkKCXRlc3RfZG5m
-X2luc3RhbGxfZnJvbV9kaXNrIChkbmYuRG5mUmVwb1Rlc3QpCgl0ZXN0X2RuZl9pbnN0YWxsX2Zy
-b21faHR0cCAoZG5mLkRuZlJlcG9UZXN0KQoJdGVzdF9kbmZfaW5zdGFsbHJvb3QgKGRuZi5EbmZS
-ZXBvVGVzdCkKCXRlc3RfZG5mX2luc3RhbGxyb290X3Vzcm1lcmdlIChkbmYuRG5mUmVwb1Rlc3Qp
-Cgl0ZXN0X2RuZl9yZWluc3RhbGwgKGRuZi5EbmZSZXBvVGVzdCkKCXRlc3RfZG5mX3JlcG9pbmZv
-IChkbmYuRG5mUmVwb1Rlc3QpCgl0ZXN0X2djY19jb21waWxlIChnY2MuR2NjQ29tcGlsZVRlc3Qp
-Cgl0ZXN0X2dwcDJfY29tcGlsZSAoZ2NjLkdjY0NvbXBpbGVUZXN0KQoJdGVzdF9ncHBfY29tcGls
-ZSAoZ2NjLkdjY0NvbXBpbGVUZXN0KQoJdGVzdF9tYWtlIChnY2MuR2NjQ29tcGlsZVRlc3QpCgl0
-ZXN0X3B5dGhvbiAoZ2kuR09iamVjdEludHJvc3BlY3Rpb25UZXN0KQoJdGVzdF9rZXJuZWxfbW9k
-dWxlIChrZXJuZWxtb2R1bGUuS2VybmVsTW9kdWxlVGVzdCkKCXRlc3RfbGRkIChsZGQuTGRkVGVz
-dCkKCXRlc3RfbG9ncm90YXRlX3d0bXAgKGxvZ3JvdGF0ZS5Mb2dyb3RhdGVUZXN0KQoJdGVzdF9s
-b2dyb3RhdGVfbmV3bG9nIChsb2dyb3RhdGUuTG9ncm90YXRlVGVzdCkKCXRlc3Rfc3lzbG9nX3J1
-bm5pbmcgKG9lX3N5c2xvZy5TeXNsb2dUZXN0KQoJdGVzdF9zeXNsb2dfbG9nZ2VyIChvZV9zeXNs
-b2cuU3lzbG9nVGVzdENvbmZpZykKCXRlc3Rfc3lzbG9nX3Jlc3RhcnQgKG9lX3N5c2xvZy5TeXNs
-b2dUZXN0Q29uZmlnKQoJdGVzdF9zeXNsb2dfc3RhcnR1cF9jb25maWcgKG9lX3N5c2xvZy5TeXNs
-b2dUZXN0Q29uZmlnKQoJdGVzdF9vcGtnX2luc3RhbGxfZnJvbV9yZXBvIChvcGtnLk9wa2dSZXBv
-VGVzdCkKCXRlc3RfcGFtIChwYW0uUGFtQmFzaWNUZXN0KQoJdGVzdF9wYXJzZWxvZ3MgKHBhcnNl
-bG9ncy5QYXJzZUxvZ3NUZXN0KQoJdGVzdF9wZXJsX3dvcmtzIChwZXJsLlBlcmxUZXN0KQoJdGVz
-dF9wdGVzdHJ1bm5lcl9leHBlY3RmYWlsIChwdGVzdC5QdGVzdFJ1bm5lclRlc3QpCgl0ZXN0X3B0
-ZXN0cnVubmVyX2V4cGVjdHN1Y2Nlc3MgKHB0ZXN0LlB0ZXN0UnVubmVyVGVzdCkKCXRlc3RfcHl0
-aG9uMyAocHl0aG9uLlB5dGhvblRlc3QpCgl0ZXN0X3JwbV9oZWxwIChycG0uUnBtQmFzaWNUZXN0
-KQoJdGVzdF9ycG1fcXVlcnkgKHJwbS5ScG1CYXNpY1Rlc3QpCgl0ZXN0X3JwbV9xdWVyeV9ub25y
-b290IChycG0uUnBtQmFzaWNUZXN0KQoJdGVzdF9ycG1faW5zdGFsbCAocnBtLlJwbUluc3RhbGxS
-ZW1vdmVUZXN0KQoJdGVzdF9ycG1fcmVtb3ZlIChycG0uUnBtSW5zdGFsbFJlbW92ZVRlc3QpCgl0
-ZXN0X2NoZWNrX3JwbV9pbnN0YWxsX3JlbW92YWxfbG9nX2ZpbGVfc2l6ZSAocnBtLlJwbUluc3Rh
-bGxSZW1vdmVUZXN0KQoJdGVzdF9zY3BfZmlsZSAoc2NwLlNjcFRlc3QpCgl0ZXN0X3N0YXAgKHN0
-YXAuU3RhcFRlc3QpCgl0ZXN0X3N5c3RlbWRfYmFzaWMgKHN5c3RlbWQuU3lzdGVtZEJhc2ljVGVz
-dHMpCgl0ZXN0X3N5c3RlbWRfZmFpbGVkIChzeXN0ZW1kLlN5c3RlbWRCYXNpY1Rlc3RzKQoJdGVz
-dF9zeXN0ZW1kX2xpc3QgKHN5c3RlbWQuU3lzdGVtZEJhc2ljVGVzdHMpCgl0ZXN0X3N5c3RlbWRf
-Ym9vdF90aW1lIChzeXN0ZW1kLlN5c3RlbWRKb3VybmFsVGVzdHMpCgl0ZXN0X3N5c3RlbWRfam91
-cm5hbCAoc3lzdGVtZC5TeXN0ZW1kSm91cm5hbFRlc3RzKQoJdGVzdF9zeXN0ZW1kX3N0YXR1cyAo
-c3lzdGVtZC5TeXN0ZW1kU2VydmljZVRlc3RzKQoJdGVzdF9zeXN0ZW1kX2Rpc2FibGVfZW5hYmxl
-IChzeXN0ZW1kLlN5c3RlbWRTZXJ2aWNlVGVzdHMpCgl0ZXN0X3N5c3RlbWRfZGlzYWJsZV9lbmFi
-bGVfcm8gKHN5c3RlbWQuU3lzdGVtZFNlcnZpY2VUZXN0cykKCXRlc3Rfc3lzdGVtZF9zdG9wX3N0
-YXJ0IChzeXN0ZW1kLlN5c3RlbWRTZXJ2aWNlVGVzdHMpCgl0ZXN0X3dlc3Rvbl9ydW5uaW5nICh3
-ZXN0b24uV2VzdG9uVGVzdCkKCXRlc3RfeG9yZ19ydW5uaW5nICh4b3JnLlhvcmdUZXN0KQpERUJV
-RzogTm90IHVzaW5nIGt2bSBmb3IgcnVucWVtdQpERUJVRzogQ3JlYXRlZCBsaXN0ZW5pbmcgc29j
-a2V0IGZvciBxZW11IHNlcmlhbCBjb25zb2xlIG9uOiAxMjcuMC4wLjE6NTYxMzUKREVCVUc6IENy
-ZWF0ZWQgbGlzdGVuaW5nIHNvY2tldCBmb3IgcWVtdSBzZXJpYWwgY29uc29sZSBvbjogMTI3LjAu
-MC4xOjUzMTA3CkRFQlVHOiBsYXVuY2hjbWQ9cnVucWVtdSBzbmFwc2hvdCAgcWVtdXg4Ni02NCAv
-aG9tZS9uaWtpdGEveW9jdG9wcm9qZWN0L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9pbWFnZXMvcWVt
-dXg4Ni02NC9jb3JlLWltYWdlLW1pbmltYWwtcWVtdXg4Ni02NC5leHQ0IHRjcHNlcmlhbD01NjEz
-NTo1MzEwNyBib290cGFyYW1zPSJjb25zb2xlPXR0eTEgY29uc29sZT10dHlTMCwxMTUyMDBuOCBw
-cmludGsudGltZT0xIiBxZW11cGFyYW1zPSItcGlkZmlsZSAvaG9tZS9uaWtpdGEveW9jdG9wcm9q
-ZWN0L3Bva3kvYnVpbGQvcGlkZmlsZV8yNTEwIgpERUJVRzogcnVucWVtdSBzdGFydGVkLCBwaWQg
-aXMgMjU4OQpERUJVRzogd2FpdGluZyBhdCBtb3N0IDEyMCBzZWNvbmRzIGZvciBxZW11IHBpZCAo
-MDcvMTcvMjIgMTM6NDE6MDQpCkVSUk9SOiBydW5xZW11IGV4aXRlZCB3aXRoIGNvZGUgMQpFUlJP
-UjogT3V0cHV0IGZyb20gcnVucWVtdToKcnVucWVtdSAtIElORk8gLSBDb250aW51aW5nIHdpdGgg
-dGhlIGZvbGxvd2luZyBwYXJhbWV0ZXJzOgpLRVJORUw6IFsvaG9tZS9uaWtpdGEveW9jdG9wcm9q
-ZWN0L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9pbWFnZXMvcWVtdXg4Ni02NC9iekltYWdlLS01LjQu
-MTkwK2dpdEFVVE9JTkMrNmExMmJlYTczMV9kOWQ2YzZlMGQwLXIwLXFlbXV4ODYtNjQtMjAyMjA1
-MDExODQ3MDUuYmluXQpNQUNISU5FOiBbcWVtdXg4Ni02NF0KRlNUWVBFOiBbZXh0NF0KUk9PVEZT
-OiBbL2hvbWUvbmlraXRhL3lvY3RvcHJvamVjdC9wb2t5L2J1aWxkL3RtcC9kZXBsb3kvaW1hZ2Vz
-L3FlbXV4ODYtNjQvY29yZS1pbWFnZS1taW5pbWFsLXFlbXV4ODYtNjQuZXh0NF0KQ09ORkZJTEU6
-IFsvaG9tZS9uaWtpdGEveW9jdG9wcm9qZWN0L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9pbWFnZXMv
-cWVtdXg4Ni02NC9jb3JlLWltYWdlLW1pbmltYWwtcWVtdXg4Ni02NC5xZW11Ym9vdC5jb25mXQoK
-cnVucWVtdSAtIElORk8gLSBTZXR0aW5nIHVwIHRhcCBpbnRlcmZhY2UgdW5kZXIgc3VkbwpzdWRv
-OiBhIHRlcm1pbmFsIGlzIHJlcXVpcmVkIHRvIHJlYWQgdGhlIHBhc3N3b3JkOyBlaXRoZXIgdXNl
-IHRoZSAtUyBvcHRpb24gdG8gcmVhZCBmcm9tIHN0YW5kYXJkIGlucHV0IG9yIGNvbmZpZ3VyZSBh
-biBhc2twYXNzIGhlbHBlcgpzdWRvOiBhIHBhc3N3b3JkIGlzIHJlcXVpcmVkCnJ1bnFlbXUgLSBF
-UlJPUiAtIFNldHRpbmcgdXAgdGFwIGRldmljZSBmYWlsZWQ6CkNvbW1hbmQgJygnc3VkbycsICcv
-aG9tZS9uaWtpdGEveW9jdG9wcm9qZWN0L3Bva3kvc2NyaXB0cy9ydW5xZW11LWlmdXAnLCAnMTAw
-MCcsICcxMDAwJywgJy9ob21lL25pa2l0YS95b2N0b3Byb2plY3QvcG9reS9idWlsZC90bXAvd29y
-ay94ODZfNjQtbGludXgvcWVtdS1oZWxwZXItbmF0aXZlLzEuMC1yMS9yZWNpcGUtc3lzcm9vdC1u
-YXRpdmUvdXNyL2JpbicpJyByZXR1cm5lZCBub24temVybyBleGl0IHN0YXR1cyAxLgpSdW4gcnVu
-cWVtdS1nZW4tdGFwZGV2cyB0byBtYW51YWxseSBjcmVhdGUgb25lLgpydW5xZW11IC0gSU5GTyAt
-IENsZWFuaW5nIHVwChtbPzdoCkRFQlVHOiBTZW5kaW5nIFNJR1RFUk0gdG8gcnVucWVtdQpPdXRw
-dXQgZnJvbSBydW5xZW11OgoKV0FSTklORzogUWVtdSBlbmRlZCB1bmV4cGVjdGVkbHksIGR1bXAg
-ZGF0YSBmcm9tIGhvc3QgaXMgaW4gL2hvbWUvbmlraXRhL3lvY3RvcHJvamVjdC9wb2t5L2J1aWxk
-L3RtcC9sb2cvcnVudGltZS1ob3N0ZHVtcC8yMDIyMDcxNzEzNDFfcWVtdQpERUJVRzogU2VuZGlu
-ZyBTSUdURVJNIHRvIHJ1bnFlbXUKREVCVUc6IFNlbmRpbmcgU0lHVEVSTSB0byBydW5xZW11CkVS
-Uk9SOiBFcnJvciBleGVjdXRpbmcgYSBweXRob24gZnVuY3Rpb24gaW4gZXhlY19mdW5jX3B5dGhv
-bigpIGF1dG9nZW5lcmF0ZWQ6CgpUaGUgc3RhY2sgdHJhY2Ugb2YgcHl0aG9uIGNhbGxzIHRoYXQg
-cmVzdWx0ZWQgaW4gdGhpcyBleGNlcHRpb24vZmFpbHVyZSB3YXM6CkZpbGU6ICdleGVjX2Z1bmNf
-cHl0aG9uKCkgYXV0b2dlbmVyYXRlZCcsIGxpbmVubzogMiwgZnVuY3Rpb246IDxtb2R1bGU+CiAg
-ICAgMDAwMToKICoqKiAwMDAyOmRvX3Rlc3RpbWFnZShkKQogICAgIDAwMDM6CkZpbGU6ICcvaG9t
-ZS9uaWtpdGEveW9jdG9wcm9qZWN0L3Bva3kvbWV0YS9jbGFzc2VzL3Rlc3RpbWFnZS5iYmNsYXNz
-JywgbGluZW5vOiAxMjksIGZ1bmN0aW9uOiBkb190ZXN0aW1hZ2UKICAgICAwMTI1OiAgICBuZXRz
-dGF0IC1hbgogICAgIDAxMjY6fQogICAgIDAxMjc6CiAgICAgMDEyODpweXRob24gZG9fdGVzdGlt
-YWdlKCkgewogKioqIDAxMjk6ICAgIHRlc3RpbWFnZV9tYWluKGQpCiAgICAgMDEzMDp9CiAgICAg
-MDEzMToKICAgICAwMTMyOmFkZHRhc2sgdGVzdGltYWdlCiAgICAgMDEzMzpkb190ZXN0aW1hZ2Vb
-bm9zdGFtcF0gPSAiMSIKRmlsZTogJy9ob21lL25pa2l0YS95b2N0b3Byb2plY3QvcG9reS9tZXRh
-L2NsYXNzZXMvdGVzdGltYWdlLmJiY2xhc3MnLCBsaW5lbm86IDM3NCwgZnVuY3Rpb246IHRlc3Rp
-bWFnZV9tYWluCiAgICAgMDM3MDogICAgb3JpZ19zaWd0ZXJtX2hhbmRsZXIgPSBzaWduYWwuc2ln
-bmFsKHNpZ25hbC5TSUdURVJNLCBzaWd0ZXJtX2V4Y2VwdGlvbikKICAgICAwMzcxOiAgICB0cnk6
-CiAgICAgMDM3MjogICAgICAgICMgV2UgbmVlZCB0byBjaGVjayBpZiBydW5xZW11IGVuZHMgdW5l
-eHBlY3RlZGx5CiAgICAgMDM3MzogICAgICAgICMgb3IgaWYgdGhlIHdvcmtlciBzZW5kIHVzIGEg
-U0lHVEVSTQogKioqIDAzNzQ6ICAgICAgICB0Yy50YXJnZXQuc3RhcnQocGFyYW1zPWQuZ2V0VmFy
-KCJURVNUX1FFTVVQQVJBTVMiKSwgcnVucWVtdXBhcmFtcz1kLmdldFZhcigiVEVTVF9SVU5RRU1V
-UEFSQU1TIikpCiAgICAgMDM3NTogICAgICAgIGltcG9ydCB0aHJlYWRpbmcKICAgICAwMzc2OiAg
-ICAgICAgdHJ5OgogICAgIDAzNzc6ICAgICAgICAgICAgdGhyZWFkaW5nLlRpbWVyKGludChkLmdl
-dFZhcigiVEVTVF9PVkVSQUxMX1RJTUVPVVQiKSksIGhhbmRsZV90ZXN0X3RpbWVvdXQsIChpbnQo
-ZC5nZXRWYXIoIlRFU1RfT1ZFUkFMTF9USU1FT1VUIikpLCkpLnN0YXJ0KCkKICAgICAwMzc4OiAg
-ICAgICAgZXhjZXB0IFZhbHVlRXJyb3I6CkZpbGU6ICcvaG9tZS9uaWtpdGEveW9jdG9wcm9qZWN0
-L3Bva3kvbWV0YS9saWIvb2VxYS9jb3JlL3RhcmdldC9xZW11LnB5JywgbGluZW5vOiA2NywgZnVu
-Y3Rpb246IHN0YXJ0CiAgICAgMDA2MzogICAgICAgICAgICBpZiBzZWxmLnJ1bm5lci5zZXJ2ZXJf
-aXA6CiAgICAgMDA2NDogICAgICAgICAgICAgICAgc2VsZi5zZXJ2ZXJfaXAgPSBzZWxmLnJ1bm5l
-ci5zZXJ2ZXJfaXAKICAgICAwMDY1OiAgICAgICAgZWxzZToKICAgICAwMDY2OiAgICAgICAgICAg
-IHNlbGYuc3RvcCgpCiAqKiogMDA2NzogICAgICAgICAgICByYWlzZSBSdW50aW1lRXJyb3IoIkZB
-SUxFRCB0byBzdGFydCBxZW11IC0gY2hlY2sgdGhlIHRhc2sgbG9nIGFuZCB0aGUgYm9vdCBsb2ci
-KQogICAgIDAwNjg6CiAgICAgMDA2OTogICAgZGVmIHN0b3Aoc2VsZik6CiAgICAgMDA3MDogICAg
-ICAgIHNlbGYucnVubmVyLnN0b3AoKQpFeGNlcHRpb246IFJ1bnRpbWVFcnJvcjogRkFJTEVEIHRv
-IHN0YXJ0IHFlbXUgLSBjaGVjayB0aGUgdGFzayBsb2cgYW5kIHRoZSBib290IGxvZwoKREVCVUc6
-IFB5dGhvbiBmdW5jdGlvbiBkb190ZXN0aW1hZ2UgZmluaXNoZWQK
-
---tUTcruSSqVBTa0wBzRyI--
+On Sun, 17 Jul 2022 at 10:24, Nikita Gupta <nikitagupta2509@gmail.com> wrote:
+>
+> Hello All,
+> I was testing my core-image-minimal with test-suit and getting error like "need terminal to enter password and set-up tap interface" i am getting few error so i am not able to test my image .
+> I have run following command in  order to test my image
+>
+> bitbake rpm busybox curl run-postinsts
+> bitbake package-index
+> bitbake core-image-minimal -c testimage -v
+>
+> I am getting following error after running last comand . I am also attaching log file here(see attached file )
+>
+> ERROR: runqemu exited with code 1
+> ERROR: Output from runqemu:
+> runqemu - INFO - Continuing with the following parameters:
+> KERNEL: [/home/nikita/yoctoproject/poky/build/tmp/deploy/images/qemux86-64/bzImage--5.4.190+gitAUTOINC+6a12bea731_d9d6c6e0d0-r0-qemux86-64-20220501184705.bin]
+> MACHINE: [qemux86-64]
+> FSTYPE: [ext4]
+> ROOTFS: [/home/nikita/yoctoproject/poky/build/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64.ext4]
+> CONFFILE: [/home/nikita/yoctoproject/poky/build/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64.qemuboot.conf]
+>
+> runqemu - INFO - Setting up tap interface under sudo
+> sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
+> sudo: a password is required
+> runqemu - ERROR - Setting up tap device failed:
+> Command '('sudo', '/home/nikita/yoctoproject/poky/scripts/runqemu-ifup', '1000', '1000', '/home/nikita/yoctoproject/poky/build/tmp/work/x86_64-linux/qemu-helper-native/1.0-r1/recipe-sysroot-native/usr/bin')' returned non-zero exit status 1.
+> Run runqemu-gen-tapdevs to manually create one.
+> runqemu - INFO - Cleaning up
+> [?7h
+> DEBUG: Sending SIGTERM to runqemu
+> Output from runqemu:
+>
+> WARNING: Qemu ended unexpectedly, dump data from host is in /home/nikita/yoctoproject/poky/build/tmp/log/runtime-hostdump/202207171341_qemu
+> DEBUG: Sending SIGTERM to runqemu
+> DEBUG: Sending SIGTERM to runqemu
+> ERROR: Error executing a python function in exec_func_python() autogenerated:
+>
+> The stack trace of python calls that resulted in this exception/failure was:
+> File: 'exec_func_python() autogenerated', lineno: 2, function: <module>
+>      0001:
+>  *** 0002:do_testimage(d)
+>      0003:
+> File: '/home/nikita/yoctoproject/poky/meta/classes/testimage.bbclass', lineno: 129, function: do_testimage
+>      0125:    netstat -an
+>      0126:}
+>      0127:
+>      0128:python do_testimage() {
+>  *** 0129:    testimage_main(d)
+>      0130:}
+>      0131:
+>      0132:addtask testimage
+>      0133:do_testimage[nostamp] = "1"
+> File: '/home/nikita/yoctoproject/poky/meta/classes/testimage.bbclass', lineno: 374, function: testimage_main
+>      0370:    orig_sigterm_handler = signal.signal(signal.SIGTERM, sigterm_exception)
+>      0371:    try:
+>      0372:        # We need to check if runqemu ends unexpectedly
+>      0373:        # or if the worker send us a SIGTERM
+>  *** 0374:        tc.target.start(params=d.getVar("TEST_QEMUPARAMS"), runqemuparams=d.getVar("TEST_RUNQEMUPARAMS"))
+>      0375:        import threading
+>      0376:        try:
+>      0377:            threading.Timer(int(d.getVar("TEST_OVERALL_TIMEOUT")), handle_test_timeout, (int(d.getVar("TEST_OVERALL_TIMEOUT")),)).start()
+>      0378:        except ValueError:
+> File: '/home/nikita/yoctoproject/poky/meta/lib/oeqa/core/target/qemu.py', lineno: 67, function: start
+>      0063:            if self.runner.server_ip:
+>      0064:                self.server_ip = self.runner.server_ip
+>      0065:        else:
+>      0066:            self.stop()
+>  *** 0067:            raise RuntimeError("FAILED to start qemu - check the task log and the boot log")
+>      0068:
+>      0069:    def stop(self):
+>      0070:        self.runner.stop()
+> Exception: RuntimeError: FAILED to start qemu - check the task log and the boot log
+>
+> DEBUG: Python function do_testimage finished
+>
+> If anyone can help then please do your help will be appreciated . Thanks in advance
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#57556): https://lists.yoctoproject.org/g/yocto/message/57556
+> Mute This Topic: https://lists.yoctoproject.org/mt/92435401/1686489
+> Mute #linux:https://lists.yoctoproject.org/g/yocto/mutehashtag/linux
+> Mute #warning:https://lists.yoctoproject.org/g/yocto/mutehashtag/warning
+> Mute #toolchain:https://lists.yoctoproject.org/g/yocto/mutehashtag/toolchain
+> Mute #bitbake:https://lists.yoctoproject.org/g/yocto/mutehashtag/bitbake
+> Mute #dunfell:https://lists.yoctoproject.org/g/yocto/mutehashtag/dunfell
+> Mute #distro:https://lists.yoctoproject.org/g/yocto/mutehashtag/distro
+> Mute #yocto:https://lists.yoctoproject.org/g/yocto/mutehashtag/yocto
+> Mute #qemu:https://lists.yoctoproject.org/g/yocto/mutehashtag/qemu
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
