@@ -1,174 +1,97 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <davidegarde2000@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5CA26C433EF
-	for <webhook@archiver.kernel.org>; Sun, 17 Jul 2022 09:21:04 +0000 (UTC)
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com
- [209.85.167.48])
- by mx.groups.io with SMTP id smtpd.web09.14108.1658049657998382220
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C31D4C43334
+	for <webhook@archiver.kernel.org>; Mon, 18 Jul 2022 11:28:31 +0000 (UTC)
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com
+ [209.85.208.46])
+ by mx.groups.io with SMTP id smtpd.web09.25959.1658143710179704131
  for <yocto@lists.yoctoproject.org>;
- Sun, 17 Jul 2022 02:20:58 -0700
+ Mon, 18 Jul 2022 04:28:30 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=WqlhStwA;
- spf=pass (domain: gmail.com, ip: 209.85.167.48,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f48.google.com with SMTP id n18so14767272lfq.1
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=biftT/cR;
+ spf=pass (domain: gmail.com, ip: 209.85.208.46,
+ mailfrom: davidegarde2000@gmail.com)
+Received: by mail-ed1-f46.google.com with SMTP id y4so14813609edc.4
         for <yocto@lists.yoctoproject.org>;
- Sun, 17 Jul 2022 02:20:57 -0700 (PDT)
+ Mon, 18 Jul 2022 04:28:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7fjBFDFlrdVOMYu4KNziEXT4WRdKMkbBE0MUMBikKTQ=;
-        b=WqlhStwASL6beIivwGL0AC91yEkVVSXSQcPFmKrkNMxLDCJgGHa9zxEDPkEkeQDxxU
-         OV2Q+H34OVlyrI8AV8niYmV35LSePEfoqe4iLRhUd574VkMHld1qwRI3WAkwTVZWuY4H
-         +0sO/QtDdPFPFwVSygeAO0WzXi47Ps+lTToxL1uuJi20p1QfrAvCfBIFMHZ2jM+qqexL
-         N9KwBpfm0aIS4fSFLrJHPbEXMpQUjkJ/4+hPTVuxsSHZ86RYDccWWWIYK9iC1zWtTttw
-         5MvwAv74hh2/QmsiGlcF7jT1CVTtocovEfhKagMqE5ZRlA7CcAh6uYMCIqDC5u9LBOec
-         2goQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=oIzYKOflj8BL1lhKkeZpezse7m5cBq+8NqjmVsDaNf4=;
+        b=biftT/cRH490O5MSHEulEJSF956+tSG1d6p17vbWldUIHvEttGbkA1YDCr1bqPnbpk
+         5H7rmNTcTps1P5LebWZNx9sO+3UQl6ChzmyIk3I3zRR1C1jS76+8oOFAjUKHVm6govrg
+         BdJ2kdIyEJSRuoR2TQu7o3FaZ0uHLX8saFR+hIyoB+9hBLdDQkMuT4aBNGti8oyB4v4G
+         ngzTogoAxp0iXem9WwumGgI6qtHmuvG/s8rkwXGAwkpmKZey8rj+hQXYxoW/+rus8+Am
+         7K/vy9Y6EwnC+8hlm2g2RoQn5pN87KlLq0tWhTXJ4KXJF6SgLx7hkfMUHGat2VVYihnQ
+         za8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7fjBFDFlrdVOMYu4KNziEXT4WRdKMkbBE0MUMBikKTQ=;
-        b=VUwqKOUBijcH9OCXyJ0mEzMPOCQVs4ZKLQ8KEWONduVQZ2B6NVzu3eKw1iL3R3kul7
-         Ly6XD2ff/jARoKuZ84dgVQXmON93oHkO9vIFdeT6VuOsI51N86bpT2FHSNav6nIajYaO
-         HUZQ6loNsR+fQ6gMNJExcoPl3aMH+oP5NEyUdA+V1z+VZCBWtOcVIQL0UPFPVDLBSznQ
-         7/PrTZZkCUrPO+eII2O4RVNmSIYcun9plUYPEKZdDsKfD7SXmzXqVYQ71SDMZM85gaiA
-         CnrQtmBX+bJSBuiDhkIxile7dEFukz5kXQmFt8fltwCOjNSGMa1yEXUQryG+zNy45bXD
-         ccQA==
-X-Gm-Message-State: AJIora9kXiapCA/6BOmWF/d7Pyv198pWynlLPKAAZqOZGJeKV0zhZkex
-	urzD8jogNeo90h0oorm1zyG1N0kvqC/Wu88F8q8=
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=oIzYKOflj8BL1lhKkeZpezse7m5cBq+8NqjmVsDaNf4=;
+        b=ISbS0fxEj2Be14axzKDIqxWjK8A7II3MOk4LNA1pDJ0pt5ccbUexGjfug1DKKDQA5c
+         yaW7CWDuEGDkL/A2FFRPyX1oiIgeYVNmjeC28YSNH/LwLkTL5G5gSGtsjQK/GZOCOM8g
+         OeF5ANka1j950HuHMSsMG4kuW0ZmV02xdXcJFXZPTaSWw/Bkil1nyf0CGfId8NwoaXox
+         jbKoJny+mVlAKB0LSp53dLrGzANBZ1lz4b9r1JHjdx68JS+LD5pE0ZEMcux/1i9ejrYR
+         fhGB7UL9eKc7piMhvm415v+X8R8h7kt/EIuQSem7Q7ZsZw5pJqmeqEQpRkmBz0+XcVGk
+         O05w==
+X-Gm-Message-State: AJIora9vYVDz1qjWuXtkNtR2VbUZ0fF1tOB4Xi7EiVsQmP7Qnj4IeClT
+	WsEaDdG0xBW6HtR6riYQivyjZ8JXg28=
 X-Google-Smtp-Source: 
- AGRyM1tKoDbJ47gljCbNBz6QY4C6iXUU982apVfwU2wKhUPlOLrnMuZXUoOyxss/hyr3QNpg+ynDw0K9wWiafGDhjpw=
-X-Received: by 2002:a05:6512:3409:b0:489:c549:4693 with SMTP id
- i9-20020a056512340900b00489c5494693mr11782309lfr.26.1658049655894; Sun, 17
- Jul 2022 02:20:55 -0700 (PDT)
+ AGRyM1taObNgHBBmFPkYNlQTZ4XtchZeyvzYHhZF523JlU4FLrccApMlNj2l4jJGrX69P04c1tnrSw==
+X-Received: by 2002:a05:6402:1909:b0:43a:64bb:9f27 with SMTP id
+ e9-20020a056402190900b0043a64bb9f27mr36840604edz.24.1658143708171;
+        Mon, 18 Jul 2022 04:28:28 -0700 (PDT)
+Received: from tony3oo3-XPS-13-9370.home
+ (host-87-5-19-208.retail.telecomitalia.it. [87.5.19.208])
+        by smtp.gmail.com with ESMTPSA id
+ ew11-20020a056402538b00b0043b4d43ebaasm5546681edb.58.2022.07.18.04.28.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Jul 2022 04:28:27 -0700 (PDT)
+From: Davide Gardenal <davidegarde2000@gmail.com>
+X-Google-Original-From: Davide Gardenal <davide.gardenal@huawei.com>
+To: yocto@lists.yoctoproject.org
+Cc: Davide Gardenal <davide.gardenal@huawei.com>
+Subject: [meta-security][kirkstone][PATCH] sssd: ignore CVE-2018-16838
+Date: Mon, 18 Jul 2022 13:28:23 +0200
+Message-Id: <20220718112823.306477-1-davide.gardenal@huawei.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <sWf9.1658046280641285331.QPnI@lists.yoctoproject.org>
-In-Reply-To: <sWf9.1658046280641285331.QPnI@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Sun, 17 Jul 2022 11:20:44 +0200
-Message-ID: 
- <CANNYZj_BTahuKvgFJUNfcbgycBziShS1EMwSzPZQBYB_pJK99g@mail.gmail.com>
-Subject: Re: [yocto] Error while testing "core-image-minimal" through "bitbake
- core-image-minimal -c testimage -v" #bitbake #dunfell #distro #yocto #qemu
- #linux #qemu #warning #toolchain
-To: Nikita Gupta <nikitagupta2509@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 17 Jul 2022 09:21:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57557
+ <yocto@lists.yoctoproject.org>; Mon, 18 Jul 2022 11:28:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57558
 
-The key message is:
+CVE-2018-16838 is patched in our version of sssd but it doesn't have
+a vulnerable version range in the NVD database,
+that's why it needs to be ignored.
 
-Command '('sudo',
-'/home/nikita/yoctoproject/poky/scripts/runqemu-ifup', '1000', '1000',
-'/home/nikita/yoctoproject/poky/build/tmp/work/x86_64-linux/qemu-helper-native/1.0-r1/recipe-sysroot-native/usr/bin')'
-returned non-zero exit status 1.
-Run runqemu-gen-tapdevs to manually create one.
+Signed-off-by: Davide Gardenal <davide.gardenal@huawei.com>
+---
+ recipes-security/sssd/sssd_2.5.2.bb | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-So you need to run the first command to create a single tap interface
-manually (and you need to know the root password). Or
-runqemu-gen-tapdevs will generate several.
+diff --git a/recipes-security/sssd/sssd_2.5.2.bb b/recipes-security/sssd/sssd_2.5.2.bb
+index 9f1d627..4c75e0a 100644
+--- a/recipes-security/sssd/sssd_2.5.2.bb
++++ b/recipes-security/sssd/sssd_2.5.2.bb
+@@ -28,6 +28,10 @@ SRC_URI = "https://github.com/SSSD/sssd/releases/download/${PV}/sssd-${PV}.tar.g
+ 
+ SRC_URI[sha256sum] = "5e21b3c7b4a2f1063d0fbdd3216d29886b6eaba153b44fb5961698367f399a0f"
+ 
++CVE_CHECK_IGNORE += "\
++    CVE-2018-16838 \
++"
++
+ inherit autotools pkgconfig gettext python3-dir features_check systemd
+ 
+ REQUIRED_DISTRO_FEATURES = "pam"
+-- 
+2.34.1
 
-Alex
-
-On Sun, 17 Jul 2022 at 10:24, Nikita Gupta <nikitagupta2509@gmail.com> wrote:
->
-> Hello All,
-> I was testing my core-image-minimal with test-suit and getting error like "need terminal to enter password and set-up tap interface" i am getting few error so i am not able to test my image .
-> I have run following command in  order to test my image
->
-> bitbake rpm busybox curl run-postinsts
-> bitbake package-index
-> bitbake core-image-minimal -c testimage -v
->
-> I am getting following error after running last comand . I am also attaching log file here(see attached file )
->
-> ERROR: runqemu exited with code 1
-> ERROR: Output from runqemu:
-> runqemu - INFO - Continuing with the following parameters:
-> KERNEL: [/home/nikita/yoctoproject/poky/build/tmp/deploy/images/qemux86-64/bzImage--5.4.190+gitAUTOINC+6a12bea731_d9d6c6e0d0-r0-qemux86-64-20220501184705.bin]
-> MACHINE: [qemux86-64]
-> FSTYPE: [ext4]
-> ROOTFS: [/home/nikita/yoctoproject/poky/build/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64.ext4]
-> CONFFILE: [/home/nikita/yoctoproject/poky/build/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64.qemuboot.conf]
->
-> runqemu - INFO - Setting up tap interface under sudo
-> sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
-> sudo: a password is required
-> runqemu - ERROR - Setting up tap device failed:
-> Command '('sudo', '/home/nikita/yoctoproject/poky/scripts/runqemu-ifup', '1000', '1000', '/home/nikita/yoctoproject/poky/build/tmp/work/x86_64-linux/qemu-helper-native/1.0-r1/recipe-sysroot-native/usr/bin')' returned non-zero exit status 1.
-> Run runqemu-gen-tapdevs to manually create one.
-> runqemu - INFO - Cleaning up
-> [?7h
-> DEBUG: Sending SIGTERM to runqemu
-> Output from runqemu:
->
-> WARNING: Qemu ended unexpectedly, dump data from host is in /home/nikita/yoctoproject/poky/build/tmp/log/runtime-hostdump/202207171341_qemu
-> DEBUG: Sending SIGTERM to runqemu
-> DEBUG: Sending SIGTERM to runqemu
-> ERROR: Error executing a python function in exec_func_python() autogenerated:
->
-> The stack trace of python calls that resulted in this exception/failure was:
-> File: 'exec_func_python() autogenerated', lineno: 2, function: <module>
->      0001:
->  *** 0002:do_testimage(d)
->      0003:
-> File: '/home/nikita/yoctoproject/poky/meta/classes/testimage.bbclass', lineno: 129, function: do_testimage
->      0125:    netstat -an
->      0126:}
->      0127:
->      0128:python do_testimage() {
->  *** 0129:    testimage_main(d)
->      0130:}
->      0131:
->      0132:addtask testimage
->      0133:do_testimage[nostamp] = "1"
-> File: '/home/nikita/yoctoproject/poky/meta/classes/testimage.bbclass', lineno: 374, function: testimage_main
->      0370:    orig_sigterm_handler = signal.signal(signal.SIGTERM, sigterm_exception)
->      0371:    try:
->      0372:        # We need to check if runqemu ends unexpectedly
->      0373:        # or if the worker send us a SIGTERM
->  *** 0374:        tc.target.start(params=d.getVar("TEST_QEMUPARAMS"), runqemuparams=d.getVar("TEST_RUNQEMUPARAMS"))
->      0375:        import threading
->      0376:        try:
->      0377:            threading.Timer(int(d.getVar("TEST_OVERALL_TIMEOUT")), handle_test_timeout, (int(d.getVar("TEST_OVERALL_TIMEOUT")),)).start()
->      0378:        except ValueError:
-> File: '/home/nikita/yoctoproject/poky/meta/lib/oeqa/core/target/qemu.py', lineno: 67, function: start
->      0063:            if self.runner.server_ip:
->      0064:                self.server_ip = self.runner.server_ip
->      0065:        else:
->      0066:            self.stop()
->  *** 0067:            raise RuntimeError("FAILED to start qemu - check the task log and the boot log")
->      0068:
->      0069:    def stop(self):
->      0070:        self.runner.stop()
-> Exception: RuntimeError: FAILED to start qemu - check the task log and the boot log
->
-> DEBUG: Python function do_testimage finished
->
-> If anyone can help then please do your help will be appreciated . Thanks in advance
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#57556): https://lists.yoctoproject.org/g/yocto/message/57556
-> Mute This Topic: https://lists.yoctoproject.org/mt/92435401/1686489
-> Mute #linux:https://lists.yoctoproject.org/g/yocto/mutehashtag/linux
-> Mute #warning:https://lists.yoctoproject.org/g/yocto/mutehashtag/warning
-> Mute #toolchain:https://lists.yoctoproject.org/g/yocto/mutehashtag/toolchain
-> Mute #bitbake:https://lists.yoctoproject.org/g/yocto/mutehashtag/bitbake
-> Mute #dunfell:https://lists.yoctoproject.org/g/yocto/mutehashtag/dunfell
-> Mute #distro:https://lists.yoctoproject.org/g/yocto/mutehashtag/distro
-> Mute #yocto:https://lists.yoctoproject.org/g/yocto/mutehashtag/yocto
-> Mute #qemu:https://lists.yoctoproject.org/g/yocto/mutehashtag/qemu
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
 
