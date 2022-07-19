@@ -1,264 +1,62 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <foss@0leil.net>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 46C81C433EF
-	for <webhook@archiver.kernel.org>; Mon, 18 Jul 2022 20:08:14 +0000 (UTC)
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com
- [209.85.208.51])
- by mx.groups.io with SMTP id smtpd.web11.32190.1658174889382384794
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B78DCC43334
+	for <webhook@archiver.kernel.org>; Tue, 19 Jul 2022 08:12:37 +0000 (UTC)
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net
+ [217.70.183.194])
+ by mx.groups.io with SMTP id smtpd.web12.38160.1658218354995267339
  for <yocto@lists.yoctoproject.org>;
- Mon, 18 Jul 2022 13:08:09 -0700
+ Tue, 19 Jul 2022 01:12:35 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=DlQcB3BF;
- spf=pass (domain: gmail.com, ip: 209.85.208.51,
- mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-ed1-f51.google.com with SMTP id z22so3865757edd.6
-        for <yocto@lists.yoctoproject.org>;
- Mon, 18 Jul 2022 13:08:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:mime-version:thread-index
-         :content-language;
-        bh=0S9l4duaNAi9SZ/6TwvJWjAh3tgiZ1w0ZhlHKCHSaIU=;
-        b=DlQcB3BF03dEuvmvBnUK7rkt0m7AUGwJUjuB/oBUaMpuNkkxNBrfNU2sgsOnWV+4jK
-         LtSWpX9nG21RaTyx/nViaLPO++ua+7IiC1sYdu9diBS7mc6kilEFADVT4sB+Reshw28h
-         0bihMwbrdySCLJgB87r7tSOglYtOnF9GimgvXa2S6DZ5jXgK9ZUsKg01gPouCOkBuFc4
-         f225g6cN4VArBH0zR0pLJqlgxLpq3NpS2IQip4C2NI9M9Pi86AXudT0n4nKRNEjy0PsG
-         I1mGQwhp3elO+vrcmJctENss8Lt4EA1lXslmL3LbE/k8gxlYiccvVBFNrPo92zo6rE0A
-         z02Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :thread-index:content-language;
-        bh=0S9l4duaNAi9SZ/6TwvJWjAh3tgiZ1w0ZhlHKCHSaIU=;
-        b=4/n7AXeiENBCDeq6o0xWrpDkgqxPNEtO+Cv115Wz3EcbgY25LD54xh7w8GnfFhAUWr
-         YhgW4biWk5sVjMl1g7eOs3d2uLqD7yPxmKePEPJLfCpdQTImH0VXRR/vOcnhyVzJnkVz
-         Wynef5lIcVAUTb8Jxbnb+mtj15eFAYTtiAACUc6nphR6A5jDZq0Ymymnjfvcdpo/9enQ
-         eqmEslbpQxJNbGFf0Ift3ny9tEplfZtlbk3l2w0+d6Jz98f5AfuoRTvKJmTr6Q9JqCSf
-         7zLy4agwh5iC5YpSgYdN3vzfBxUn7U6gvo2vrbbgbQB3Lg2Ipyg8D+ToqmEUSwa5W0vJ
-         eiYg==
-X-Gm-Message-State: AJIora+rKMvOcIw5qlpjzSfxhBdzpmjl8G3Fh1U2iMIuwfXEUCBbF2jh
-	D3MRTZsgWn7iJKwpyHjwpxPBJLrx8my/tg==
-X-Google-Smtp-Source: 
- AGRyM1vrVbvyVqptY8bYeVBOdZkujJt/YeaAvtDKj7HmFj82GNdpYkyl/+eYbPA6zO7HUyAe2iNJww==
-X-Received: by 2002:aa7:c650:0:b0:43a:2c9a:fd1f with SMTP id
- z16-20020aa7c650000000b0043a2c9afd1fmr39205793edr.318.1658174887728;
-        Mon, 18 Jul 2022 13:08:07 -0700 (PDT)
-Received: from skjolley ([212.39.176.11])
-        by smtp.gmail.com with ESMTPSA id
- g3-20020a170906538300b00726c0e60940sm5821169ejo.100.2022.07.18.13.07.58
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 18 Jul 2022 13:08:04 -0700 (PDT)
-From: <sjolley.yp.pm@gmail.com>
-To: <yocto@lists.yoctoproject.org>
-Subject: Enhancements/Bugs closed WW29!
-Date: Mon, 18 Jul 2022 13:07:53 -0700
-Message-ID: <10b501d89ae2$17ae60a0$470b21e0$@gmail.com>
+ dkim=missing;
+ spf=none, err=permanent DNS error (domain: 0leil.net, ip: 217.70.183.194,
+ mailfrom: foss+yocto@0leil.net)
+Received: (Authenticated sender: foss@0leil.net)
+	by mail.gandi.net (Postfix) with ESMTPSA id 3594140004;
+	Tue, 19 Jul 2022 08:12:33 +0000 (UTC)
+From: Quentin Schulz <foss+yocto@0leil.net>
+To: docs@lists.yoctoproject.org,
+	yocto@lists.yoctoproject.org
+Cc: Quentin Schulz <foss+yocto@0leil.net>
+Subject: [PATCH yocto-autobuilder-helper 2/2] scripts/run-docs-build: do not
+ checkout releases.rst from master anymore
+Date: Tue, 19 Jul 2022 10:12:14 +0200
+Message-Id: <20220719081214.1924835-3-foss+yocto@0leil.net>
+X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220719081214.1924835-1-foss+yocto@0leil.net>
+References: <20220719081214.1924835-1-foss+yocto@0leil.net>
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_10B6_01D89AA7.6B546AA0"
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: Adia4flC0C+p1cZxT0y9pcZnWCIqwA==
-Content-Language: en-us
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 18 Jul 2022 20:08:14 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57564
+ <yocto@lists.yoctoproject.org>; Tue, 19 Jul 2022 08:12:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57567
 
-This is a multipart message in MIME format.
+Master branch of the yocto-docs now autogenerates the releases.rst file
+and the file therefore does not exist anymore.
 
-------=_NextPart_000_10B6_01D89AA7.6B546AA0
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Signed-off-by: Quentin Schulz <foss+yocto@0leil.net>
+---
+ scripts/run-docs-build | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-All,
-
-The below were the owners of enhancements or bugs closed during the last
-week!
-
-
-Who
-
-Count
-
-
-randy.macleod@windriver.com
-
-4
-
-
-ross.burton@arm.com
-
-1
-
-
-Grand Total
-
-5
-
-Thanks,
-
+diff --git a/scripts/run-docs-build b/scripts/run-docs-build
+index 6a71d54..c6b3965 100755
+--- a/scripts/run-docs-build
++++ b/scripts/run-docs-build
+@@ -122,7 +122,7 @@ for branch in dunfell $(git branch --remote --contains "$first_sphinx_commit" --
+         git am "${scriptdir}/docs-build-patches/${branch}/"000*
+     fi
  
-
-Stephen K. Jolley
-
-Yocto Project Program Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> 
-
- 
-
-
-------=_NextPart_000_10B6_01D89AA7.6B546AA0
-Content-Type: text/html;
-	boundary="----=_NextPart_000_007A_01D89539.23B9C000";
-	charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal><span =
-style=3D'color:black'>All,<br><br>The below were the owners of =
-enhancements or bugs closed during the last =
-week!<o:p></o:p></span></p><table class=3DMsoNormalTable border=3D0 =
-cellspacing=3D0 cellpadding=3D0 width=3D293 =
-style=3D'width:220.0pt;margin-left:-.15pt;border-collapse:collapse'><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>Who<o:p></o:p></span></b></p></td><td width=3D43 =
-nowrap valign=3Dbottom style=3D'width:32.0pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Count<o:p></o:p></span></b></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>4<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>ross.burton@arm.com<o:p></o:p></span></p></td><td =
-width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Grand Total<o:p></o:p></span></b></p></td><td =
-width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext =
-1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal align=3Dright style=3D'text-align:right'><b><span =
-style=3D'color:black'>5<o:p></o:p></span></b></p></td></tr></table><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>T</span>hanks,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Program Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_000_10B6_01D89AA7.6B546AA0--
+-    git checkout origin/master releases.rst sphinx-static/switchers.js.in set_versions.py
++    git checkout origin/master sphinx-static/switchers.js.in set_versions.py
+     if [ -e poky.yaml ]; then
+         cp poky.yaml poky.yaml.in
+         case $branch in
+-- 
+2.36.1
 
 
