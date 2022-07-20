@@ -1,235 +1,178 @@
-Return-Path: <jay.shen.teoh@intel.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 19A4ACCA486
-	for <webhook@archiver.kernel.org>; Wed, 20 Jul 2022 02:20:43 +0000 (UTC)
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by mx.groups.io with SMTP id smtpd.web08.49043.1658283639594901668
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 24938C433EF
+	for <webhook@archiver.kernel.org>; Wed, 20 Jul 2022 02:23:23 +0000 (UTC)
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com
+ [209.85.222.171])
+ by mx.groups.io with SMTP id smtpd.web12.49238.1658283799827659277
  for <yocto@lists.yoctoproject.org>;
- Tue, 19 Jul 2022 19:20:39 -0700
+ Tue, 19 Jul 2022 19:23:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel
- header.b=gFcNYA9G;
- spf=pass (domain: intel.com, ip: 192.55.52.115,
- mailfrom: jay.shen.teoh@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1658283639; x=1689819639;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=gH/nW+bKbJ2g7cbA9vHUmkjlZ7CpL/naWuRCilQUtIk=;
-  b=gFcNYA9Ggvg1W/iNS2JL7SWqkcOorFp5CoMdq+aQyFxiHjHlSR0kSz0h
-   jlO5eo3NlwlTBdvdqB8reXZcy/ez+weBox3ikGlXz8MxVbc2Byy4xnKO4
-   vddTFYEt7kW1uFE145SNfDwZJ6blGZ1cqnybvTrBDyre/qU70ZFLnFb6+
-   oWqmdrsRoftyX/emNAiKDJiKBrZ8r1z08erzSyaslUZgfE2Z1tiWNxirE
-   eO6tOiMuokTyYKXa34T/Qhcgy77+1ytQ8PE1WUI7k3mikT07WxdPAWMqk
-   hGNXJwF+XnEQoocWQbPj+pySLNlR2DGLZ+JZLDq0rag2FYq1BNBYCu2sv
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10413"; a="286669272"
-X-IronPort-AV: E=Sophos;i="5.92,285,1650956400";
-   d="scan'208";a="286669272"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2022 19:20:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,285,1650956400";
-   d="scan'208";a="625458192"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
-  by orsmga008.jf.intel.com with ESMTP; 19 Jul 2022 19:20:38 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Tue, 19 Jul 2022 19:20:38 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28 via Frontend Transport; Tue, 19 Jul 2022 19:20:38 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.105)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.27; Tue, 19 Jul 2022 19:20:38 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=f1dAWIdb8XTJHfn1j3lmDCFimkRcYPds4ADlPrZEG+Vdq2KNhad0mocAK/rTP9NUpXvY+LU6ZH0VzTcUQ6g2THp0YE9CiV4SCSiDj5d1nBqr+3WIum+VOJoo6ZFIq/WeVz1GUThiXbL30JLzQenpKMrkDCI83/FjZWbYvSak0zCSrBmB7+jBFD4Vm8YTJAzOoWMsCkXPDxlan6l+8AdxB55GmPvqFF4OPhtYnk4es9Vq77E4PFXHzbnZOw/ctBEoxsBH9ZMia3PuxJFYNoVUdLSo9o0XKrMD7Mu4ven5PSyupj+7uIqrVTDkLyJPRbS4e7jWHxS20CP9dzoWw4P5jw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1SS+zjhep2yZcmWdE430rksO4shN9BEK3R+1Rj6YpJU=;
- b=LbiTPOsVXIMtPCImo1jjn26wugJWbUR71dtyPvb8HonoBmiANQ8NYb+iRgSRSZbw/G9WBB8iOPL7CJwMJCGKPpJjTwYMrCs4YhnjLksc1+skDmVISntNu/4ulyvtHqGCl0kvbZeaUBLYBPp+nRo02rqH6T8d0EnmeEiw/rfwvIN/wNgNtvrUjfW+rYga2SB26KLZbcR5801PDGquZMvBiIskUBETPkEdZiCdFAZLbXKwZW6R8kliWHy/NScHedcAKvjSmUTeDubs9ji1wZaV/1tGIy8ZQZqPnBf7xDbjMe+lCqu/VMjW1Vr8mq/rrJ6W7eXIVlah/tE9ljUuDOw31Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM5PR1101MB2348.namprd11.prod.outlook.com (2603:10b6:3:a8::16)
- by MWHPR1101MB2078.namprd11.prod.outlook.com (2603:10b6:301:4e::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.15; Wed, 20 Jul
- 2022 02:20:36 +0000
-Received: from DM5PR1101MB2348.namprd11.prod.outlook.com
- ([fe80::4d41:d985:2a5f:16ed]) by DM5PR1101MB2348.namprd11.prod.outlook.com
- ([fe80::4d41:d985:2a5f:16ed%5]) with mapi id 15.20.5438.023; Wed, 20 Jul 2022
- 02:20:36 +0000
-From: "Teoh, Jay Shen" <jay.shen.teoh@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: RE: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-4.1_M2.rc1)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-4.1_M2.rc1)
-Thread-Index: AQHYm6UN4GgPfMhK5UO2M/zdEEJnyK2GhvQA
-Date: Wed, 20 Jul 2022 02:20:36 +0000
-Message-ID: 
- <DM5PR1101MB23483549134C0E5026DF9947BB8E9@DM5PR1101MB2348.namprd11.prod.outlook.com>
-References: 
- <0101018217ea3768-11ff38ae-a6a9-44fa-a01f-495f642b5a1c-000000@us-west-2.amazonses.com>
-In-Reply-To: 
- <0101018217ea3768-11ff38ae-a6a9-44fa-a01f-495f642b5a1c-000000@us-west-2.amazonses.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.6.500.17
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 01921f43-2c53-4f35-a386-08da69f66e5e
-x-ms-traffictypediagnostic: MWHPR1101MB2078:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- wWGrVAaop0qna6ug7c/C22fD3cgeu3GDI3Rim89AT6GwXvuoAz3dn+dIn9/++EI93k3SUXsD3UpS57h5FZwyRmSE2XUShqpsXv9finQKxKPzNkfgmHBREUQl0TnEneWKR/jLLrOeNGw1JV1b5Q2kb4hMJ3eu6avtl5HDQd4mqpd0qWTihPn7PVKqCHNbfCNeSv2YxZCmu3zo3wwh1qoqP7T/NMR7WirKbDoHdDrKfUUFwG3F0RXu6RV7mzBjyM7DDmysKtuyJem6mxBdiBbOpr8Qi94hfsrzbJL6ITQP+ds0idAwAq5UQYpuU/ib/2NfFZPS5X/50OemU2gjEV+G8/pig2iyaDdB+65ksP644Z0tqp7w1wWHsTwv3/XXquCoNZ17ApCBGJuWoG7KerP3OmLFr3oEnGLfvs/0LgeI40Gu5te+VRRU7ISqA/pqBmTq/iQJ0b5cJu5YiHfjv7ALJc1oKQfpksZir21JrCnu+Bg8XmLVhkF73RKzzD+WFraJKuIWJgIoQoZcSb6ahB8XCnlM8wWi6RVHzCC02s9hghq82sJnKltt50vsO1xWm0+W2VQDL2HXJk8Dtit/k75NVLwmqt2/FJ7pgw210V43GTC9DEt6us32o+HWjKBd1YYXL1W/tcnTgUbtnO99tcaAhSFM7pVcbHeldKbBDy/RvFUAVIwhrpruTwmblty8t4AVFuyqPeJMnbzysuI02ng7SxIPgs/8kxxCHkxYe0RMxA0dRaE2H5+nDsFrUuhzPVTN5GFTJLo/rhF8vwtefyFB96FvW6L74HifPhbqwqPNvCJGQ+bZzdjtfV4SJXzUQe5XGzUeJ3Syj+0ajW3+XG9c+j34JJr3Kr1CVqlLu3epH6AzkpyOmacn3ZEmZvOlFjxE
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR1101MB2348.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(136003)(366004)(396003)(376002)(346002)(39860400002)(52536014)(5660300002)(76116006)(66556008)(66446008)(66476007)(8936002)(9686003)(66946007)(55016003)(15650500001)(2906002)(8676002)(86362001)(83380400001)(82960400001)(478600001)(64756008)(122000001)(38070700005)(38100700002)(41300700001)(33656002)(110136005)(966005)(71200400001)(316002)(6506007)(7696005)(55236004)(53546011)(26005)(186003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?MPOJMIR5qOk+rcQa/Xraa11TI8SYI+nNivM6VlBGuqaKL1X5OwnLAwSvaLZx?=
- =?us-ascii?Q?vQiFSAvHRniWG/aSmNHv5Qvq3YsaxSDSvTUGmaiQ27amju4f0NV3MzEnsv1p?=
- =?us-ascii?Q?sM7aCLnr5WkAVQ/8Vs3RuFcfndrDPDxVoS7EaFmM+jxp56p+JffP4YLPHHfS?=
- =?us-ascii?Q?YLpz5/xnoBpAO9Jt8WEJi6sQqjfOKW3BnhFgp+w2sriOQBYsmv0TuqjrJxiN?=
- =?us-ascii?Q?JwLL7xvDczzxWfkk9CjlSK/yePXovq2uTn6iStgenY/llyCcI7R8XkPh+TmN?=
- =?us-ascii?Q?FTH3dHEt4fbGTHrkJPpTouhxFWycu7MuFkUDkCof/erUllJ9XCixMBQ92nUW?=
- =?us-ascii?Q?Gwnmxu7pWtF0EEPkqsMHXaHKpzc/SMPfpMLnc3+33OIsBWELAvX8bzgWqGKJ?=
- =?us-ascii?Q?gsOEBbTCFea1HMbHuldfviUoI4T9IB/sRmkxuSDeeCntSz8RXxhBXz5w+aXM?=
- =?us-ascii?Q?jOnTLp+Tm8Ac/3kh4aMVR0yF16zx/HocCSpJgFmpGsr41ac/+lW16B/RXIaQ?=
- =?us-ascii?Q?jQg6oV7k7zq0VCR05fsQofAUSMLUd/GfWeZx29BF0QzeUQTJclVkhUbEuUZt?=
- =?us-ascii?Q?eDkAttlKNMHb8lIoyGmZwip+JG/A2zUSezXqmRpwOdJmdak1LW5YbyhEM/EE?=
- =?us-ascii?Q?FMjt2UhI/HyRpx70TU4Kq581ByAzzLvVl1l+Lk73ul8JbaKxsDko7o0g+flp?=
- =?us-ascii?Q?MMeg9hWr1iP0VcVOpp99V06Wtual4B42lV+rwwFdGpa7E5XseLW+BTwIET8l?=
- =?us-ascii?Q?MYA6kS7I+E3mNWoDdTpK3E43nfYsA9qNKachUZNeYYYnOXkQTucMsIOWaXH4?=
- =?us-ascii?Q?rUhSF/PSZjjgVJdfBjrwkEYgvP/hQ13CTSSz8GYzwTOxuJHYwCk8Joc82WOy?=
- =?us-ascii?Q?wl6af/7uCusqdVTNwr44ZUUFT9CwrwTOaBnZNBneSju1RMTwzVOTuhnmRudJ?=
- =?us-ascii?Q?q4wlVffnQEdJB15YPc7fbRdSiyaQ7M9hHjkbRSz4K9OuyV2Eq6XQj9aYvIBN?=
- =?us-ascii?Q?38XNlY+uYXZEhyz+wD1yQJCZTkQrbI8DWQz13fIxaCD/0GuXcrlRhQXvCdXa?=
- =?us-ascii?Q?BaC1lfSFVNWTZfTEH5dMq9n3Q2Tv81+/yEqsREu19Ix7SHv7xyrnAgp02JQQ?=
- =?us-ascii?Q?MiVRngc2ZGvIi89ShqiLRA3gDcomyAet6CnVq2VyU9C6KXYkYA5TzbYD9ODc?=
- =?us-ascii?Q?uTi2s4DpCSHINrdKA8PUCnB9kjvgIeXv1MFeB3gFC7PIYc5isEExDEvsGHYX?=
- =?us-ascii?Q?wGbH5KxRJ8x6aAtDi/XYg7oIpBE6hINiqoPd98uzAaYqOZW3IHwRBuFNTIt5?=
- =?us-ascii?Q?xEfoBxlMnBVXa9l8sNg4nSz11YfNEkwjIsXFWEkzkYu1HRV3fK7uCR51Xql/?=
- =?us-ascii?Q?MdmFRB9TPCVvkW9kp4waz7+rqlPbJqXuXRncsyhUQ2tQBM0gV2Fij0x8dA71?=
- =?us-ascii?Q?Nf6K2s8NOhOYpQuLfClPIXRJJTswgaNgAv8dfRMYG6joq/vALM44SUBWbwC/?=
- =?us-ascii?Q?Gt9/NP3E2RtqWzPfs8JYqcvZpJ1DI8fr457bdzkFmvaFQ6chj3c3hTP95Fo1?=
- =?us-ascii?Q?4qabrO4cSFxG1xFpTM60cE5umIkGexZhK6xP2lhW?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=onqV1syq;
+ spf=pass (domain: gmail.com, ip: 209.85.222.171,
+ mailfrom: raj.khem@gmail.com)
+Received: by mail-qk1-f171.google.com with SMTP id o21so12719676qkm.10
+        for <yocto@lists.yoctoproject.org>;
+ Tue, 19 Jul 2022 19:23:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=GknidZG0SC5yW3wxnQFOSlatBLxEgVmMI14If0Ukb2U=;
+        b=onqV1syqhAWeTpgLpcYM5jMBr3uRZcYPDu/A//dsJq93vcCr8oAprsI03VjU4bNX+S
+         4gJu0oHPl+4azN6de2CjMPVUrJJyJnFLe1swZSDwggELBT7J4NhRlEBNUYDVmXC0/VBw
+         SfRmPCyOOugfDLFa6Y1I+8E87dKoD+K+KmLtgL8gLbDaVhl7aXn3A98eiz4AFdHeUMr1
+         ZHcw7pV7OCqB6QYWCeIl8oiHlPIjj4VtHjcdHmPYSvuukhUmIlDN7i6+u8EWWoEVvcHL
+         Masm+Pf5sPnx3mxNTjY1W2IQ/BaOpqxusyFwSddaN+v3cEcbuX+Hf0YsFFFQOJTu/2CT
+         pXMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=GknidZG0SC5yW3wxnQFOSlatBLxEgVmMI14If0Ukb2U=;
+        b=JfamRsVu3JeRRh1rP224LFCjcd47yyKtgyewiTCblEL3sRd38CN19KILB6+/EyjQkq
+         lJe4tur7Fm3cp4WtZK5cfhYQ/eJK+sOpEzbZMI43AthxStjx/YYNAueRI0SexNRa8GI9
+         WL0OtCNaMePOdOiOpRTQ2kEGMjO90UkeL7Dou7D0UpAKzZpo7lFfD4er5JkRJC0IKUvy
+         mcQCyqIBeSG/VbFhju7h4mFfAqunM5ISR/ktQfo6XO2VHvpgmF90g0Sn5XoqIrM8+CeH
+         Iw60F9iGRrPn3+IFdFQ3uyxBHkmlDDy6TZ7nX0CDLbc4TJ7chKdUy3UaDs62XiCuoBCn
+         ae2w==
+X-Gm-Message-State: AJIora/nGuqN+3hmyay88P7JEWVQfxStvLGRVW7OC/UfQMO/MyX2VyuA
+	wphsWOWzHX01PSOhF930c1Pha2Sb/3k47m/fRiA=
+X-Google-Smtp-Source: 
+ AGRyM1sTjRdeSI+h3UN5Hm9QpWGggIS3doKTESAvGYD3Xc7Kux2kCX9+RFbt+sWWk6S6RERBCMkh3CYfQlbvYQ3EZeQ=
+X-Received: by 2002:a05:620a:2449:b0:6b5:f01e:d6cb with SMTP id
+ h9-20020a05620a244900b006b5f01ed6cbmr7679549qkn.463.1658283798771; Tue, 19
+ Jul 2022 19:23:18 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: 
- DM5PR1101MB2348.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 01921f43-2c53-4f35-a386-08da69f66e5e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jul 2022 02:20:36.0445
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- 12v0ysNX2Kn4Y1P/C9rbQKAAEUfFjEqzQU/5+9gi7rBPR/e5VrizuyOia941aE9Ff9YDcmTDCiZx/Ta/uadyig==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1101MB2078
-X-OriginatorOrg: intel.com
+References: 
+ <CANNYZj_BTahuKvgFJUNfcbgycBziShS1EMwSzPZQBYB_pJK99g@mail.gmail.com>
+ <11765.1658255411754201332@lists.yoctoproject.org>
+In-Reply-To: <11765.1658255411754201332@lists.yoctoproject.org>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 19 Jul 2022 22:22:52 -0400
+Message-ID: 
+ <CAMKF1sqUdF28mr_FnSyU=otZQR0UagKrue6HX=nAe5JS8n8eKQ@mail.gmail.com>
+Subject: Re: [yocto] Error while testing "core-image-minimal" through "bitbake
+ core-image-minimal -c testimage -v" #linux #warning #toolchain #dunfell
+To: Nikita Gupta <nikitagupta2509@gmail.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 20 Jul 2022 02:20:43 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57579
+ <yocto@lists.yoctoproject.org>; Wed, 20 Jul 2022 02:23:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57580
 
-Hello everyone,
+maybe you should reboot the host machine, sometimes system updates
+without rebooting the machine can also result in such errors.
 
-Intel and WR YP QA is planning for QA execution for YP build yocto-4.1_M2.r=
-c1. We are planning to execute following tests for this cycle:
-
-OEQA-manual tests for following module:
-1. OE-Core
-2. BSP-hw
-
-Runtime auto test for following platforms:
-1. MinnowTurbot 32-bit
-2. NUC 7
-3. NUC 6
-4. Edgerouter
-5. Beaglebone
-
-ETA for completion next Monday, July 25.
-
-Thanks,
-Jay
-
-> -----Original Message-----
-> From: qa-build-notification@lists.yoctoproject.org <qa-build-
-> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
-> Sent: Wednesday, 20 July, 2022 3:23 AM
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [qa-build-notification] QA notification for completed autobuilde=
-r
-> build (yocto-4.1_M2.rc1)
->=20
->=20
-> A build flagged for QA (yocto-4.1_M2.rc1) was completed on the autobuilde=
-r
-> and is available at:
->=20
->=20
->     https://autobuilder.yocto.io/pub/releases/yocto-4.1_M2.rc1
->=20
->=20
-> Build hash information:
->=20
-> bitbake: b171aa45fb8518dcfbba315b303a4fe9bf2180c6
-> meta-agl: b5044156fc318a4881e766513871611a560170be
-> meta-arm: 6481a473d84f84530e0c48d56acdc185919869b6
-> meta-aws: 2f5075673489ee2d3fc318f6626d45145f65d5ea
-> meta-gplv2: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
-> meta-intel: de5851890f9a268621515193d2ad84f8359fbe24
-> meta-mingw: 205e9d942bc8ea1643a8d27b79e773625d173c00
-> meta-openembedded: 0c2e416567351d55ae45e67513be6f20aa754d4b
-> meta-virtualization: 7ec4b4746d9d76062a868ea77818a150ddd53c54
-> oecore: b4f1b78aef77198f26a8ef9e105fa690cc12e836
-> poky: 899979696f68ff4414cebf7782b37d7bae27144b
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
->=20
->=20
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+On Tue, Jul 19, 2022 at 2:30 PM Nikita Gupta <nikitagupta2509@gmail.com> wrote:
+>
+> Hello Alexander,
+>
+> Thanks for your precious time .
+>
+> I applied you suggestion and it worked and i setup tap interface with following command:
+>
+> sudo /home/nikita/yoctoproject/poky/scripts/runqemu-gen-tapdevs 1000 1000 4 tmp/sysroots-components/x86_64/qemu-helper-native/usr/bin
+> but after that i am getting some warning like fail to start qemu and after that i am getting errors which is due to failure in starting qemu:
+>
+> WARNING: core-image-minimal-1.0-r0 do_testimage: Last 25 lines of text:
+> [    2.372775] Key type asymmetric registered
+> [    2.375200] Asymmetric key parser 'x509' registered
+> [    2.389021] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 251)
+> [    2.389290] io scheduler mq-deadline registered
+> [    2.389459] io scheduler kyber registered
+> [    2.389570] input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input0
+> [    2.405464] ACPI: Power Button [PWRF]
+> [    2.659671] PCI Interrupt Link [LNKC] enabled at IRQ 10
+> [    3.142802] PCI Interrupt Link [LNKA] enabled at IRQ 10
+> [    3.146178] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+> [    3.187185] 00:05: ttyS0 at I/O 0x3f8 (irq = 4, base_baud = 115200) is a 16550A
+> [    3.229110] 00:06: ttyS1 at I/O 0x2f8 (irq = 3, base_baud = 115200) is a 16550A
+> [    3.250602] Linux agpgart interface v0.103
+> [    3.258767] crng init done
+> [    3.262616] bochs-drm 0000:00:02.0: remove_conflicting_pci_framebuffers: bar 0: 0xfd000000 -> 0xfdffffff
+> [    3.266483] bochs-drm 0000:00:02.0: remove_conflicting_pci_framebuffers: bar 2: 0xfebd0000 -> 0xfebd0fff
+> [    3.267730] bochs-drm 0000:00:02.0: vgaarb: deactivate vga console
+> [    3.270600] Console: switching to colour dummy device 80x25
+> [    3.274496] [drm] Found bochs VGA, ID 0xb0c0.
+> [    3.275895] [drm] Framebuffer size 16384 kB @ 0xfd000000, mmio @ 0xfebd0000.
+> [    3.279874] [TTM] Zone  kernel: Available graphics memory: 116092 KiB
+> [    3.299694] [TTM] Initializing pool allocator
+> [    3.299943] [TTM] Initializing DMA pool allocator
+> [    3.300480] [drm] Found EDID data blob.
+> [    3.312971] [drm] Initialized bochs-drm 1.0.0 20130925 for 0000:00:02.0 on minor 0
+> WARNING: core-image-minimal-1.0-r0 do_testimage: Check full boot log: /home/nikita/yoctoproject/poky/build/tmp/work/qemux86_64-poky-linux/core-image-minimal/1.0-r0/testimage/qemu_boot_log.20220719154118
+> WARNING: core-image-minimal-1.0-r0 do_testimage: Qemu ended unexpectedly, dump data from host is in /home/nikita/yoctoproject/poky/build/tmp/log/runtime-hostdump/202207192111_qemu
+> WARNING: core-image-minimal-1.0-r0 do_testimage: qemu-system ended unexpectedly
+> Output from runqemu:
+> runqemu - ERROR - Failed to run qemu: X Error:  BadValue
+>   Request Major code 130 (MIT-SHM)
+>   Request Minor code 3 ()
+>   Value 0x3bc
+>   Error Serial #2663
+>   Current Serial #2664
+>
+> runqemu - INFO - Cleaning up
+>
+> ERROR: core-image-minimal-1.0-r0 do_testimage: Error executing a python function in exec_func_python() autogenerated:
+>
+> The stack trace of python calls that resulted in this exception/failure was:
+> File: 'exec_func_python() autogenerated', lineno: 2, function: <module>
+>      0001:
+>  *** 0002:do_testimage(d)
+>      0003:
+> File: '/home/nikita/yoctoproject/poky/meta/classes/testimage.bbclass', lineno: 129, function: do_testimage
+>      0125:    netstat -an
+>      0126:}
+>      0127:
+>      0128:python do_testimage() {
+>  *** 0129:    testimage_main(d)
+>      0130:}
+>      0131:
+>      0132:addtask testimage
+>      0133:do_testimage[nostamp] = "1"
+> File: '/home/nikita/yoctoproject/poky/meta/classes/testimage.bbclass', lineno: 374, function: testimage_main
+>      0370:    orig_sigterm_handler = signal.signal(signal.SIGTERM, sigterm_exception)
+>      0371:    try:
+>      0372:        # We need to check if runqemu ends unexpectedly
+>      0373:        # or if the worker send us a SIGTERM
+>  *** 0374:        tc.target.start(params=d.getVar("TEST_QEMUPARAMS"), runqemuparams=d.getVar("TEST_RUNQEMUPARAMS"))
+>      0375:        import threading
+>      0376:        try:
+>      0377:            threading.Timer(int(d.getVar("TEST_OVERALL_TIMEOUT")), handle_test_timeout, (int(d.getVar("TEST_OVERALL_TIMEOUT")),)).start()
+>      0378:        except ValueError:
+> File: '/home/nikita/yoctoproject/poky/meta/lib/oeqa/core/target/qemu.py', lineno: 67, function: start
+>      0063:            if self.runner.server_ip:
+>      0064:                self.server_ip = self.runner.server_ip
+>      0065:        else:
+>      0066:            self.stop()
+>  *** 0067:            raise RuntimeError("FAILED to start qemu - check the task log and the boot log")
+>      0068:
+>      0069:    def stop(self):
+>      0070:        self.runner.stop()
+> Exception: RuntimeError: FAILED to start qemu - check the task log and the boot log
+>
+> ERROR: Logfile of failure stored in: /home/nikita/yoctoproject/poky/build/tmp/work/qemux86_64-poky-linux/core-image-minimal/1.0-r0/temp/log.do_testimage.7780
+> ERROR: Task (/home/nikita/yoctoproject/poky/meta/recipes-core/images/core-image-minimal.bb:do_testimage) failed with exit code '1'
+>
+>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#164): https://lists.yoctoproject.org/g/qa-build-
-> notification/message/164
-> Mute This Topic: https://lists.yoctoproject.org/mt/92490173/4899463
-> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-
-> notification/leave/10406805/4899463/715389995/xyzzy
-> [jay.shen.teoh@intel.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->=20
-
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#57573): https://lists.yoctoproject.org/g/yocto/message/57573
+> Mute This Topic: https://lists.yoctoproject.org/mt/92435401/1997914
+> Mute #linux:https://lists.yoctoproject.org/g/yocto/mutehashtag/linux
+> Mute #warning:https://lists.yoctoproject.org/g/yocto/mutehashtag/warning
+> Mute #toolchain:https://lists.yoctoproject.org/g/yocto/mutehashtag/toolchain
+> Mute #bitbake:https://lists.yoctoproject.org/g/yocto/mutehashtag/bitbake
+> Mute #dunfell:https://lists.yoctoproject.org/g/yocto/mutehashtag/dunfell
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
