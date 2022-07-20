@@ -1,86 +1,457 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <michael.opdenacker@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ACF6DC43334
-	for <webhook@archiver.kernel.org>; Wed, 20 Jul 2022 09:28:25 +0000 (UTC)
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com
- [209.85.208.181])
- by mx.groups.io with SMTP id smtpd.web12.51809.1658309303240379972
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BED11CCA480
+	for <webhook@archiver.kernel.org>; Wed, 20 Jul 2022 09:37:35 +0000 (UTC)
+Received: from relay10.mail.gandi.net (relay10.mail.gandi.net
+ [217.70.178.230])
+ by mx.groups.io with SMTP id smtpd.web09.51702.1658309852548537543
  for <yocto@lists.yoctoproject.org>;
- Wed, 20 Jul 2022 02:28:23 -0700
+ Wed, 20 Jul 2022 02:37:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=RTZXR4tr;
- spf=pass (domain: gmail.com, ip: 209.85.208.181,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f181.google.com with SMTP id 19so20472391ljz.4
-        for <yocto@lists.yoctoproject.org>;
- Wed, 20 Jul 2022 02:28:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ZNmxSusRlSvz1u+Z9klggU4bhzZu0U2uBmAXgyZna5I=;
-        b=RTZXR4tr5r3fliUSuHrDmF1Nvqoq3AQEfssDX0pae4VnlpUeIXb4a9DaYuw7SVUdL5
-         4nC6dWyC/zPOcuMDOowgdmeWNvNuuA3M3hvKsdb5ZBnoKC5syRzyNdNiVjxhuS9L77li
-         4FLgWvkNPiDPKztgysI/Wg1633SfZzTRg5BwUCNITdmP+Or9zkGwS6+wfa/NuL3NoACA
-         TXWNUcjTvVHTCakI19QqWd6WlhRhRcBiuTBKJ9pi2Tx0FsE3kgXq1rLI3Z4SHntb49T6
-         agA0Wa+8Z+jEqA7z+M+oAt7YDb1tHuXyKkYp/4ER+heVozRe1cNgY27EERVVsWnLFvyd
-         mxmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ZNmxSusRlSvz1u+Z9klggU4bhzZu0U2uBmAXgyZna5I=;
-        b=UmhHJEkAtKDI1o/m5pp/+6KBmt5jgZXGjl7Tpmzwd3kc7fkZPjahCGCGd6RVBv6N1v
-         3lMYalQTDXroC25Dpvwb4GZT4MZnRo7jdRmn8G+ixAViymHuSn+TXtqj36BC14vfS57i
-         kVvvqmARmuxuNaSMlk2YJc81/zieoCnoBuAo9Fgyvq7+0foHYSyiHbDnN6z2rZDSEKYW
-         xR/t1Q1KbrfseF7GyCbTRtNAZRdpg250vfo58lEmaADxHIkZJA0xo27MvhFQB6CZ3QT+
-         taPKjaw/SDPHcjaujNCUNXlLfbhNn4BKzizJlKUdcve0ZP0+0KV7X/YjHdYzkqbis/Q+
-         dKTw==
-X-Gm-Message-State: AJIora8NR2aGD8ji3rHRAtf2JHuRmtgDmp2g+3xn6+Pp6Kn9X4czV+pP
-	1bU6m5C0VLc3+lYGuIqRThhUkgq+4upQElehH3Q=
-X-Google-Smtp-Source: 
- AGRyM1uijzmMywkVmpEN0/mapJPmdilocg26YNDvHCARQ1fpvxGSWpQ1dTx3OmC0NzelP/VFfePHcRu1mB5Op4Lgd3c=
-X-Received: by 2002:a2e:b6d2:0:b0:25d:6849:f7f9 with SMTP id
- m18-20020a2eb6d2000000b0025d6849f7f9mr17068258ljo.41.1658309301620; Wed, 20
- Jul 2022 02:28:21 -0700 (PDT)
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=JsZaCxW7;
+ spf=pass (domain: bootlin.com, ip: 217.70.178.230,
+ mailfrom: michael.opdenacker@bootlin.com)
+Received: (Authenticated sender: michael.opdenacker@bootlin.com)
+	by mail.gandi.net (Postfix) with ESMTPSA id 1BAE124000F;
+	Wed, 20 Jul 2022 09:37:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1658309850;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=FZ98RsGTbui2oAujxb5NHdAlyGjc3yMsKx0LZ9gJo7Q=;
+	b=JsZaCxW78htty31+1RiShS5/+HYgOQr6MoLYh2RUA2I5lrsr/iosm/Ev4u5tdxW1I5pNsK
+	yj2d9MYL2t/Cd+1NqqbA+xrMhCV4GG/dJ02OSXHwZBWi5+d7nirnZcr9/Oiu/URMzz/Nfd
+	I9zLekwPFYYzO5u05cZXvC/WysvxST+PW4Tu3CQFLstA2C76amVfnaalviNivEu3B72saP
+	ckOHLL6g8LjPz3e4nEGm/XHvSL1fCxKpRicZLDn0saVMkzTFJzGUhLum9iFO4VdmnKBK8x
+	mW2r57wbCfFtr1CELl48Y+kcoi/YQizM9c5lIrSZRTEq9RuY6G1eNsvuRWqFog==
+From: michael.opdenacker@bootlin.com
+To: docs@lists.yoctoproject.org
+Cc: yocto@lists.yoctoproject.org,
+	Michael Opdenacker <michael.opdenacker@bootlin.com>,
+	Quentin Schulz <foss@0leil.net>,
+	Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Subject: [PATCH v2] auto-generate releases.rst
+Date: Wed, 20 Jul 2022 11:37:11 +0200
+Message-Id: <20220720093711.545239-1-michael.opdenacker@bootlin.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <1703304D2499C7AB.16528@lists.yoctoproject.org>
+References: <1703304D2499C7AB.16528@lists.yoctoproject.org>
 MIME-Version: 1.0
-References: <20220720084442.2940187-1-alex@linutronix.de>
- <17037D268C38CE83.21682@lists.openembedded.org>
- <CANNYZj9KKfqK8fH6HB3mLP8Vhi=U-VCMOus1uAq9kUQ7+6D74A@mail.gmail.com>
- <ee397d3552782e6fd969a497e55396ff474fee92.camel@linuxfoundation.org>
-In-Reply-To: 
- <ee397d3552782e6fd969a497e55396ff474fee92.camel@linuxfoundation.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 20 Jul 2022 11:28:10 +0200
-Message-ID: 
- <CANNYZj8EVF79=r4agVTa_5rfqtsU_mdBu2bD8eLv9TbD8U3fHw@mail.gmail.com>
-Subject: Re: [Openembedded-architecture] Let's drop x86-x32 (was Re: [OE-core]
- [PATCH 05/51] rpm: update 4.17.0 -> 4.17.1)
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: OE-core <openembedded-core@lists.openembedded.org>,
-	openembedded-architecture <openembedded-architecture@lists.openembedded.org>,
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 20 Jul 2022 09:28:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57587
+ <yocto@lists.yoctoproject.org>; Wed, 20 Jul 2022 09:37:35 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57588
 
-On Wed, 20 Jul 2022 at 11:23, Richard Purdie
-<richard.purdie@linuxfoundation.org> wrote:
-> That amounts to dropping x32 support because as soon as we remove these
-> tests, it will bitrot.
->
-> There is still some value in the project being able to support
-> different architectures and different type sizes so I do still lean
-> towards keeping this alive at a minimal level.
+From: Michael Opdenacker <michael.opdenacker@bootlin.com>
 
-But then why not replace x32 with riscv32, which as well has 32 bit
-pointers but 64 bit integers and thus trips over the same type size
-issues?
+From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
 
-Alex
+In order to maintain one less file, let's auto-generate the releases.rst
+file which contains a link for each release ever released.
+
+This gets auto-generated by checking the tags available in this git repo
+and adding a link for each that exists.
+
+A few tags are notoriously missing from this git repo and they are
+manually listed then, until the tags are pushed for the appropriate
+commit.
+
+Cc: Quentin Schulz <foss@0leil.net>
+Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Reviewed-by: Michael Opdenacker <michael.opdenacker@bootlin.com>
+
+---
+
+Changes in V2:
+ * set_versions.py: update description
+ * set_versions.py: add Quentin Schulz to the list of authors
+ * set_versions.py: remove trailing whitespace in generated
+   section header (harmless but flagged by vim)
+---
+ documentation/.gitignore      |   1 +
+ documentation/releases.rst    | 251 ----------------------------------
+ documentation/set_versions.py |  77 +++++++++++
+ 3 files changed, 78 insertions(+), 251 deletions(-)
+ delete mode 100644 documentation/releases.rst
+
+diff --git a/documentation/.gitignore b/documentation/.gitignore
+index 096b97ec28..4e077d03fb 100644
+--- a/documentation/.gitignore
++++ b/documentation/.gitignore
+@@ -2,6 +2,7 @@ _build/
+ Pipfile.lock
+ poky.yaml
+ sphinx-static/switchers.js
++releases.rst
+ .vscode/
+ */svg/*.png
+ */svg/*.pdf
+diff --git a/documentation/releases.rst b/documentation/releases.rst
+deleted file mode 100644
+index b2b4486158..0000000000
+--- a/documentation/releases.rst
++++ /dev/null
+@@ -1,251 +0,0 @@
+-.. SPDX-License-Identifier: CC-BY-SA-2.0-UK
+-
+-..
+-   NOTE FOR RELEASE MAINTAINERS:
+-   This file only needs updating in the development release ("master" branch)
+-   When documentation for stable releases is built,
+-   the latest version from "master" is used
+-   by https://git.yoctoproject.org/yocto-autobuilder-helper/tree/scripts/run-docs-build
+-
+-===========================
+- Supported Release Manuals
+-===========================
+-
+-******************************
+-Release Series 4.0 (kirkstone)
+-******************************
+-
+-- :yocto_docs:`4.0 Documentation </4.0>`
+-- :yocto_docs:`4.0.1 Documentation </4.0.1>`
+-- :yocto_docs:`4.0.2 Documentation </4.0.2>`
+-
+-****************************
+-Release Series 3.1 (dunfell)
+-****************************
+-
+-- :yocto_docs:`3.1 Documentation </3.1>`
+-- :yocto_docs:`3.1.1 Documentation </3.1.1>`
+-- :yocto_docs:`3.1.2 Documentation </3.1.2>`
+-- :yocto_docs:`3.1.3 Documentation </3.1.3>`
+-- :yocto_docs:`3.1.4 Documentation </3.1.4>`
+-- :yocto_docs:`3.1.5 Documentation </3.1.5>`
+-- :yocto_docs:`3.1.6 Documentation </3.1.6>`
+-- :yocto_docs:`3.1.7 Documentation </3.1.7>`
+-- :yocto_docs:`3.1.8 Documentation </3.1.8>`
+-- :yocto_docs:`3.1.9 Documentation </3.1.9>`
+-- :yocto_docs:`3.1.10 Documentation </3.1.10>`
+-- :yocto_docs:`3.1.11 Documentation </3.1.11>`
+-- :yocto_docs:`3.1.12 Documentation </3.1.12>`
+-- :yocto_docs:`3.1.13 Documentation </3.1.13>`
+-- :yocto_docs:`3.1.14 Documentation </3.1.14>`
+-- :yocto_docs:`3.1.15 Documentation </3.1.15>`
+-- :yocto_docs:`3.1.16 Documentation </3.1.16>`
+-- :yocto_docs:`3.1.17 Documentation </3.1.17>`
+-
+-==========================
+- Outdated Release Manuals
+-==========================
+-
+-******************************
+-Release Series 3.4 (honister)
+-******************************
+-
+-- :yocto_docs:`3.4 Documentation </3.4>`
+-- :yocto_docs:`3.4.1 Documentation </3.4.1>`
+-- :yocto_docs:`3.4.2 Documentation </3.4.2>`
+-- :yocto_docs:`3.4.3 Documentation </3.4.3>`
+-- :yocto_docs:`3.4.4 Documentation </3.4.4>`
+-
+-******************************
+-Release Series 3.3 (hardknott)
+-******************************
+-
+-- :yocto_docs:`3.3 Documentation </3.3>`
+-- :yocto_docs:`3.3.1 Documentation </3.3.1>`
+-- :yocto_docs:`3.3.2 Documentation </3.3.2>`
+-- :yocto_docs:`3.3.3 Documentation </3.3.3>`
+-- :yocto_docs:`3.3.4 Documentation </3.3.4>`
+-- :yocto_docs:`3.3.5 Documentation </3.3.5>`
+-- :yocto_docs:`3.3.6 Documentation </3.3.6>`
+-
+-*******************************
+-Release Series 3.2 (gatesgarth)
+-*******************************
+-
+-- :yocto_docs:`3.2 Documentation </3.2>`
+-- :yocto_docs:`3.2.1 Documentation </3.2.1>`
+-- :yocto_docs:`3.2.2 Documentation </3.2.2>`
+-- :yocto_docs:`3.2.3 Documentation </3.2.3>`
+-- :yocto_docs:`3.2.4 Documentation </3.2.4>`
+-
+-*************************
+-Release Series 3.0 (zeus)
+-*************************
+-
+-- :yocto_docs:`3.0 Documentation </3.0>`
+-- :yocto_docs:`3.0.1 Documentation </3.0.1>`
+-- :yocto_docs:`3.0.2 Documentation </3.0.2>`
+-- :yocto_docs:`3.0.3 Documentation </3.0.3>`
+-- :yocto_docs:`3.0.4 Documentation </3.0.4>`
+-
+-****************************
+-Release Series 2.7 (warrior)
+-****************************
+-
+-- :yocto_docs:`2.7 Documentation </2.7>`
+-- :yocto_docs:`2.7.1 Documentation </2.7.1>`
+-- :yocto_docs:`2.7.2 Documentation </2.7.2>`
+-- :yocto_docs:`2.7.3 Documentation </2.7.3>`
+-- :yocto_docs:`2.7.4 Documentation </2.7.4>`
+-
+-*************************
+-Release Series 2.6 (thud)
+-*************************
+-
+-- :yocto_docs:`2.6 Documentation </2.6>`
+-- :yocto_docs:`2.6.1 Documentation </2.6.1>`
+-- :yocto_docs:`2.6.2 Documentation </2.6.2>`
+-- :yocto_docs:`2.6.3 Documentation </2.6.3>`
+-- :yocto_docs:`2.6.4 Documentation </2.6.4>`
+-
+-*************************
+-Release Series 2.5 (sumo)
+-*************************
+-
+-- :yocto_docs:`2.5 Documentation </2.5>`
+-- :yocto_docs:`2.5.1 Documentation </2.5.1>`
+-- :yocto_docs:`2.5.2 Documentation </2.5.2>`
+-- :yocto_docs:`2.5.3 Documentation </2.5.3>`
+-
+-**************************
+-Release Series 2.4 (rocko)
+-**************************
+-
+-- :yocto_docs:`2.4 Documentation </2.4>`
+-- :yocto_docs:`2.4.1 Documentation </2.4.1>`
+-- :yocto_docs:`2.4.2 Documentation </2.4.2>`
+-- :yocto_docs:`2.4.3 Documentation </2.4.3>`
+-- :yocto_docs:`2.4.4 Documentation </2.4.4>`
+-
+-*************************
+-Release Series 2.3 (pyro)
+-*************************
+-
+-- :yocto_docs:`2.3 Documentation </2.3>`
+-- :yocto_docs:`2.3.1 Documentation </2.3.1>`
+-- :yocto_docs:`2.3.2 Documentation </2.3.2>`
+-- :yocto_docs:`2.3.3 Documentation </2.3.3>`
+-- :yocto_docs:`2.3.4 Documentation </2.3.4>`
+-
+-**************************
+-Release Series 2.2 (morty)
+-**************************
+-
+-- :yocto_docs:`2.2 Documentation </2.2>`
+-- :yocto_docs:`2.2.1 Documentation </2.2.1>`
+-- :yocto_docs:`2.2.2 Documentation </2.2.2>`
+-- :yocto_docs:`2.2.3 Documentation </2.2.3>`
+-
+-****************************
+-Release Series 2.1 (krogoth)
+-****************************
+-
+-- :yocto_docs:`2.1 Documentation </2.1>`
+-- :yocto_docs:`2.1.1 Documentation </2.1.1>`
+-- :yocto_docs:`2.1.2 Documentation </2.1.2>`
+-- :yocto_docs:`2.1.3 Documentation </2.1.3>`
+-
+-***************************
+-Release Series 2.0 (jethro)
+-***************************
+-
+-- :yocto_docs:`1.9 Documentation </1.9>`
+-- :yocto_docs:`2.0 Documentation </2.0>`
+-- :yocto_docs:`2.0.1 Documentation </2.0.1>`
+-- :yocto_docs:`2.0.2 Documentation </2.0.2>`
+-- :yocto_docs:`2.0.3 Documentation </2.0.3>`
+-
+-*************************
+-Release Series 1.8 (fido)
+-*************************
+-
+-- :yocto_docs:`1.8 Documentation </1.8>`
+-- :yocto_docs:`1.8.1 Documentation </1.8.1>`
+-- :yocto_docs:`1.8.2 Documentation </1.8.2>`
+-
+-**************************
+-Release Series 1.7 (dizzy)
+-**************************
+-
+-- :yocto_docs:`1.7 Documentation </1.7>`
+-- :yocto_docs:`1.7.1 Documentation </1.7.1>`
+-- :yocto_docs:`1.7.2 Documentation </1.7.2>`
+-- :yocto_docs:`1.7.3 Documentation </1.7.3>`
+-
+-**************************
+-Release Series 1.6 (daisy)
+-**************************
+-
+-- :yocto_docs:`1.6 Documentation </1.6>`
+-- :yocto_docs:`1.6.1 Documentation </1.6.1>`
+-- :yocto_docs:`1.6.2 Documentation </1.6.2>`
+-- :yocto_docs:`1.6.3 Documentation </1.6.3>`
+-
+-*************************
+-Release Series 1.5 (dora)
+-*************************
+-
+-- :yocto_docs:`1.5 Documentation </1.5>`
+-- :yocto_docs:`1.5.1 Documentation </1.5.1>`
+-- :yocto_docs:`1.5.2 Documentation </1.5.2>`
+-- :yocto_docs:`1.5.3 Documentation </1.5.3>`
+-- :yocto_docs:`1.5.4 Documentation </1.5.4>`
+-
+-**************************
+-Release Series 1.4 (dylan)
+-**************************
+-
+-- :yocto_docs:`1.4 Documentation </1.4>`
+-- :yocto_docs:`1.4.1 Documentation </1.4.1>`
+-- :yocto_docs:`1.4.2 Documentation </1.4.2>`
+-- :yocto_docs:`1.4.3 Documentation </1.4.3>`
+-- :yocto_docs:`1.4.4 Documentation </1.4.4>`
+-- :yocto_docs:`1.4.5 Documentation </1.4.5>`
+-
+-**************************
+-Release Series 1.3 (danny)
+-**************************
+-
+-- :yocto_docs:`1.3 Documentation </1.3>`
+-- :yocto_docs:`1.3.1 Documentation </1.3.1>`
+-- :yocto_docs:`1.3.2 Documentation </1.3.2>`
+-
+-***************************
+-Release Series 1.2 (denzil)
+-***************************
+-
+-- :yocto_docs:`1.2 Documentation </1.2>`
+-- :yocto_docs:`1.2.1 Documentation </1.2.1>`
+-- :yocto_docs:`1.2.2 Documentation </1.2.2>`
+-
+-***************************
+-Release Series 1.1 (edison)
+-***************************
+-
+-- :yocto_docs:`1.1 Documentation </1.1>`
+-- :yocto_docs:`1.1.1 Documentation </1.1.1>`
+-- :yocto_docs:`1.1.2 Documentation </1.1.2>`
+-
+-****************************
+-Release Series 1.0 (bernard)
+-****************************
+-
+-- :yocto_docs:`1.0 Documentation </1.0>`
+-- :yocto_docs:`1.0.1 Documentation </1.0.1>`
+-- :yocto_docs:`1.0.2 Documentation </1.0.2>`
+-
+-****************************
+-Release Series 0.9 (laverne)
+-****************************
+-
+-- :yocto_docs:`0.9 Documentation </0.9>`
+diff --git a/documentation/set_versions.py b/documentation/set_versions.py
+index a7ceb3455a..ddf70851cb 100755
+--- a/documentation/set_versions.py
++++ b/documentation/set_versions.py
+@@ -1,9 +1,11 @@
+ #!/usr/bin/env python3
+ #
+ # Add version information to poky.yaml based upon current git branch/tags
++# Also generate the list of available manuals (releases.rst file)
+ #
+ # Copyright Linux Foundation
+ # Author: Richard Purdie <richard.purdie@linuxfoundation.org>
++# Author: Quentin Schulz <foss@0leil.net>
+ #
+ # SPDX-License-Identifier: MIT
+ #
+@@ -14,6 +16,7 @@ import collections
+ import sys
+ import os
+ import itertools
++import re
+ 
+ ourversion = None
+ if len(sys.argv) == 2:
+@@ -231,3 +234,77 @@ with open("sphinx-static/switchers.js.in", "r") as r, open("sphinx-static/switch
+ 
+ print("switchers.js generated from switchers.js.in")
+ 
++# generate releases.rst
++
++# list missing tags in yocto-docs
++missing_tags = [
++        'yocto-0.9',
++        'yocto-1.0', 'yocto-1.0.1',
++        'yocto-1.1', 'yocto-1.1.1',
++        'yocto-1.2',
++        'yocto-1.4.4', 'yocto-1.4.5',
++        'yocto-1.5', 'yocto-1.5.2', 'yocto-1.5.3', 'yocto-1.5.4',
++        'yocto-1.6', 'yocto-1.6.1', 'yocto-1.6.2',
++        'yocto-1.7', 'yocto-1.7.1',
++        'yocto-1.9',
++        'yocto-2.5.3',
++        'yocto-3.1', 'yocto-3.1.1', 'yocto-3.1.2', 'yocto-3.1.3',
++        ]
++
++semver = re.compile(r'yocto-(\d+)\.(\d+)(?:\.)?(\d*)')
++
++# git is able to properly order semver versions but not python
++# instead of adding a dependency on semver module, let's convert the version
++# into a decimal number, e.g. 11.23.1 will be 112301 and 1.5 will be 010500 so
++# it can be used as a key for the sorting algorithm.
++# This can be removed once all the old tags are re-created.
++def tag_to_semver_like(v):
++    v_semver = semver.search(v)
++    v_maj, v_min, v_patch = v_semver.groups('0')
++    return int("{:0>2}{:0>2}{:0>2}".format(v_maj, v_min, v_patch), 10)
++
++yocto_tags = subprocess.run(["git", "tag", "--list", "--sort=version:refname", "yocto-*"], capture_output=True, text=True).stdout
++yocto_tags = sorted(yocto_tags.split() + missing_tags, key=tag_to_semver_like)
++tags = [tag[6:] for tag in yocto_tags]
++
++with open('releases.rst', 'w') as f:
++    f.write('===========================\n')
++    f.write(' Supported Release Manuals\n')
++    f.write('===========================\n')
++    f.write('\n')
++
++    for activerelease in activereleases:
++        title = "Release Series %s (%s)" % (release_series[activerelease], activerelease)
++        f.write('*' * len(title) + '\n')
++        f.write(title + '\n')
++        f.write('*' * len(title) + '\n')
++        f.write('\n')
++
++        for tag in tags:
++            if tag == release_series[activerelease] or tag.startswith('%s.' % release_series[activerelease]):
++                f.write('- :yocto_docs:`%s Documentation </%s>`\n' % (tag, tag))
++        f.write('\n')
++
++    f.write('==========================\n')
++    f.write(' Outdated Release Manuals\n')
++    f.write('==========================\n')
++    f.write('\n')
++
++    for series in release_series:
++        if series == devbranch or series in activereleases:
++            continue
++
++        if series == "jethro-pre":
++            continue
++
++        title = "Release Series %s (%s)" % (release_series[series], series)
++        f.write('*' * len(title) + '\n')
++        f.write(title + '\n')
++        f.write('*' * len(title) + '\n')
++        f.write('\n')
++        if series == "jethro":
++            f.write('- :yocto_docs:`1.9 Documentation </1.9>`\n')
++        for tag in tags:
++            if tag == release_series[series] or tag.startswith('%s.' % release_series[series]):
++                f.write('- :yocto_docs:`%s Documentation </%s>`\n' % (tag, tag))
++        f.write('\n')
+-- 
+2.34.1
+
 
