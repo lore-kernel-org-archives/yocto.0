@@ -2,49 +2,49 @@ Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CF5C2C433EF
-	for <webhook@archiver.kernel.org>; Wed, 20 Jul 2022 09:58:55 +0000 (UTC)
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com
- [209.85.208.177])
- by mx.groups.io with SMTP id smtpd.web08.52027.1658311129882382956
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D9262C433EF
+	for <webhook@archiver.kernel.org>; Wed, 20 Jul 2022 10:07:15 +0000 (UTC)
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com
+ [209.85.167.44])
+ by mx.groups.io with SMTP id smtpd.web09.51894.1658311632678525278
  for <yocto@lists.yoctoproject.org>;
- Wed, 20 Jul 2022 02:58:50 -0700
+ Wed, 20 Jul 2022 03:07:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=GuCZtFf3;
- spf=pass (domain: gmail.com, ip: 209.85.208.177,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=D2LIZ/8f;
+ spf=pass (domain: gmail.com, ip: 209.85.167.44,
  mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f177.google.com with SMTP id k19so2414824lji.10
+Received: by mail-lf1-f44.google.com with SMTP id u13so29423465lfn.5
         for <yocto@lists.yoctoproject.org>;
- Wed, 20 Jul 2022 02:58:49 -0700 (PDT)
+ Wed, 20 Jul 2022 03:07:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=f/7ujSQqYl/X/bnhOoq3q/4kBtn2PoaQm8BLwgjgxmU=;
-        b=GuCZtFf3z1vlqO9Gpc1er2WF5MrfEzRZZEnrioJdhlsbPkin0bd8UKS9Mdn6+QvR1H
-         /SjuDTYMuSl0JL1sqYJEiZzCs1VAgvG7BVWmLaZBA6mmrCFZAWhB3EsFJ3NP7JcOQbpz
-         VQ8SZmjai3fx229Qn2g/tV3ZspwVzHpUP6OyX7g+xNTAa10CjSyDgwhvHA+23DiDr2qt
-         zeqz7XbeZ2BgrTfE0MBEFs9WdUnsEvkLh38+hLo/lfCG1qZGeV4bNVoIDCL8Of+CNsUf
-         hFf+Uqiw2z1TkdZOk1hetSxjchbpfzlAMuJ9z0ExEDZjwJZBnOrU7yPl4rr4XC8qMIxb
-         r9Kg==
+         :cc;
+        bh=pucQyJV935U3AQvkBaC3CQuk7eoi02EU4sBmYl54VKw=;
+        b=D2LIZ/8fmZKEguZmsXMtE1aAwyXxtUCDtgl4f9/XWrCmLkf0t6wilaL7oTTPTmtz1Y
+         WfiflkhlKrj/r6NTXjeVef6Fhp2zR9EKxoFdo+TGa7ohsaPXqpcNBiLzFF/9CI1dYJCf
+         oBaHJByljNEes6oMxLn4eal8jSthc5sWtobwQOlljR4j9eDT2VZsG/tGWmCufbUDULIS
+         xq1EM7xT12jstmrXT44yQV2uzVGVBAGJLQrAsWi7Y2dQ7tsI/KHqDao8IwvKYiiNZVdF
+         Z/4CgUEsp3OQgyjJA4RQzqCoz0VvXu0yOC6/IW3Y6bHfE0EX2Xnzub7T82s7jKFCFijd
+         LvTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=f/7ujSQqYl/X/bnhOoq3q/4kBtn2PoaQm8BLwgjgxmU=;
-        b=2h5zK8gebdXx4Bqb4KZxxaIBbPe2MV/lx2CacvIW7Th/1hM6Jk6Cp0IyJ4QZDTjM86
-         kuCta0dmnudmSui3GIlPAflHYuhWHy3TpZuVtCGE1mKTZ2F3WDCkCeWlvuZ4Kl8t2LhK
-         ZfAxsCrl9/ooPx6BtQjVudj6iJa63dK2UiCo1M6vYthlMQWIyYngxKBzEh9+2PnZkvpP
-         eup3h2tryXSQFcCDBNrWPdeQ0Q3fiH/a0nlx1DZwr/1T4PJAI5kWQGkTMwVRdJf1WlhV
-         XxZKmOZOoVC1jd3IO7uSYaWUMUUzHofd9HrfJo2eAkhe6xH7ZMA22diKjtkSFl5g0mgP
-         sOiQ==
-X-Gm-Message-State: AJIora/VOIaBJzl90fiXANpw5lkqIuhYjiCbOjSSivr7oMyPuZ6QgT3M
-	eh/OIwKz+yoXJdpVD1TqZ4UbZEFbT3In0etOgtI=
+         :message-id:subject:to:cc;
+        bh=pucQyJV935U3AQvkBaC3CQuk7eoi02EU4sBmYl54VKw=;
+        b=hz95PVzKl/RCsAxsKWIwj7Wx3Jb0cRtcd3hnP6j9j+DTeB1nepIXIt1nwnM3BaOl+G
+         oh7TsPov/Vu18a/Igyc26kAcS+UZmZaJ75EBndAqp21tu5W5iZQWCLlq3eN7uVSQ5cvM
+         PDvTsGhuYKXNjAMoKIQE0bnu8WX9jNXUr8C1MIZelwQN5zcfwMwy7QwEOPD8BG2TXEPP
+         LElBXBmLiaBs0IIU1CQQD+49KQFsW6FO84PZtL87bo32mzMeMuUgQ/cBM69xAaNCHWdW
+         2rGHQr4QSOXEBy1YRbrw/0kicbOLN7vzggWLmO4N5lHO2ailGzRf9nPcJZq+rcBnChDW
+         zLqg==
+X-Gm-Message-State: AJIora/fVy1X6YdV84M92WuPi/vckzcbl4kIu9aEd7AwkVqrGYAanIUg
+	gsdMET6YYf3m4NxcFF6l3jY+LHCAgYiwA6oUXlg=
 X-Google-Smtp-Source: 
- AGRyM1t20E2ofe6DqwfXfzJALQnV9IbuWPyftVglysLWMRAVFUI1qZwGJuqaPqE+iVlA/JSjzdD9fgv7ItA4wet996s=
-X-Received: by 2002:a2e:a4a5:0:b0:25d:980f:8ba7 with SMTP id
- g5-20020a2ea4a5000000b0025d980f8ba7mr14773584ljm.513.1658311127976; Wed, 20
- Jul 2022 02:58:47 -0700 (PDT)
+ AGRyM1vEJy2yFp1/F2h+CE4GaI+2r91vgm4FUJj6qrFYEI2umfOMhwCX4WRbt3VsS/Eb2HEHyZ8v0AZMznV93SlQsuQ=
+X-Received: by 2002:a05:6512:3409:b0:489:c549:4693 with SMTP id
+ i9-20020a056512340900b00489c5494693mr18705389lfr.26.1658311630715; Wed, 20
+ Jul 2022 03:07:10 -0700 (PDT)
 MIME-Version: 1.0
 References: <20220720084442.2940187-1-alex@linutronix.de>
  <17037D268C38CE83.21682@lists.openembedded.org>
@@ -52,35 +52,39 @@ References: <20220720084442.2940187-1-alex@linutronix.de>
  <ee397d3552782e6fd969a497e55396ff474fee92.camel@linuxfoundation.org>
  <CANNYZj8EVF79=r4agVTa_5rfqtsU_mdBu2bD8eLv9TbD8U3fHw@mail.gmail.com>
  <0A7591F9-3D0D-49E2-A067-67485A8B3B0D@arm.com>
-In-Reply-To: <0A7591F9-3D0D-49E2-A067-67485A8B3B0D@arm.com>
+ <CAF6bG8cvrkhXbRLYaJh5Lmi+Z=0txpJfiGJLY1Ryn8qt66oOzg@mail.gmail.com>
+In-Reply-To: 
+ <CAF6bG8cvrkhXbRLYaJh5Lmi+Z=0txpJfiGJLY1Ryn8qt66oOzg@mail.gmail.com>
 From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 20 Jul 2022 11:58:36 +0200
+Date: Wed, 20 Jul 2022 12:06:59 +0200
 Message-ID: 
- <CANNYZj_kuU9GQMYwQyPjvqv47PYq=o8LXNbHzAVWdOwN7DFeNQ@mail.gmail.com>
+ <CANNYZj8Q5cmiiQUFAx5e=26tnfum3h_Mmd+kUXnSxVS3_wGS7g@mail.gmail.com>
 Subject: Re: [Openembedded-architecture] Let's drop x86-x32 (was Re: [OE-core]
  [PATCH 05/51] rpm: update 4.17.0 -> 4.17.1)
-To: Ross Burton <Ross.Burton@arm.com>, Anuj Mittal <anuj.mittal@intel.com>
-Cc: Richard Purdie <richard.purdie@linuxfoundation.org>,
+To: Marko Lindqvist <cazfi74@gmail.com>
+Cc: Ross Burton <ross.burton@arm.com>,
+	Richard Purdie <richard.purdie@linuxfoundation.org>,
 	OE-core <openembedded-core@lists.openembedded.org>,
 	openembedded-architecture <openembedded-architecture@lists.openembedded.org>,
 	Yocto-mailing-list <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 20 Jul 2022 09:58:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57590
+ <yocto@lists.yoctoproject.org>; Wed, 20 Jul 2022 10:07:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57591
 
-On Wed, 20 Jul 2022 at 11:50, Ross Burton <Ross.Burton@arm.com> wrote:
-> Also, Intel should get to have an opinion on this.  If they actually care=
- about x32 then they can help fix the issues, if they don=E2=80=99t then we=
- can easily switch to a platform that has support.
+On Wed, 20 Jul 2022 at 12:00, Marko Lindqvist <cazfi74@gmail.com> wrote:
+>  How much difference is there between x32 and riscv32 in upstreams? As
+> they would trip on the same issues, one would assume that if the issue
+> is fixed for one, it gets fixed for the other too.
+>  But might be that relevant upstreams need to have much of the code
+> duplicated (fixing one copy does not fix the other)
 
-Ok, let's ask Intel, specifically Anuj :-)
-
-Anuj, does Intel still care about x32, and would anyone notice if
-yocto drops x32 support from master branch?
+The fixing is often wrapped in target-specific conditionals, and so
+fixing one does not address the other, until the conditional is
+expanded with additional or statements, or checks are done from first
+principles (e.g. actual type sizes).
 
 Alex
 
