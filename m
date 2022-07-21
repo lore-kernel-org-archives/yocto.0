@@ -1,103 +1,120 @@
-Return-Path: <jebr@google.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2163EC433EF
-	for <webhook@archiver.kernel.org>; Thu, 21 Jul 2022 22:39:12 +0000 (UTC)
-Received: from mail-yb1-f201.google.com (mail-yb1-f201.google.com
- [209.85.219.201])
- by mx.groups.io with SMTP id smtpd.web08.1605.1658443145530139103
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2D24DC433EF
+	for <webhook@archiver.kernel.org>; Thu, 21 Jul 2022 22:46:22 +0000 (UTC)
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com
+ [209.85.222.175])
+ by mx.groups.io with SMTP id smtpd.web12.1753.1658443577712258783
  for <yocto@lists.yoctoproject.org>;
- Thu, 21 Jul 2022 15:39:05 -0700
+ Thu, 21 Jul 2022 15:46:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@google.com header.s=20210112 header.b=KmPcc6tj;
- spf=pass (domain: flex--jebr.bounces.google.com, ip: 209.85.219.201,
- mailfrom:
- 3inxzygqkbbcgbyodlldib.zljvlzqlifpqp.vlzqlmolgbzq.lod@flex--jebr.bounces.google.com)
-Received: by mail-yb1-f201.google.com with SMTP id
- a8-20020a25a188000000b0066839c45fe8so2291699ybi.17
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=VuqnfYG3;
+ spf=pass (domain: gmail.com, ip: 209.85.222.175,
+ mailfrom: raj.khem@gmail.com)
+Received: by mail-qk1-f175.google.com with SMTP id o21so2466758qkm.10
         for <yocto@lists.yoctoproject.org>;
- Thu, 21 Jul 2022 15:39:05 -0700 (PDT)
+ Thu, 21 Jul 2022 15:46:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:message-id:mime-version:subject:from:to:cc;
-        bh=RbFDt7W+kDYmjMrcOE8/KW1E3uhd+OSWhmBMFyurh1U=;
-        b=KmPcc6tj4LELIhe8NdV/TdSLVWjFFImi0J0b4z89RbvV3ekrGjMKRF8PUYtrtvUIuF
-         zCaEhPl14mvTHsd9nuIlHxgnj/FsnPiI0OVZ8L6mq6AZIYV01HTg6OuDX9FY+FUUKpub
-         fSxBV7p9sW3yyce/Xq1cHuXiok3DhKiOGpmLqNRug7r/Aan8mQ2ApgIZB/eDRS3aspM2
-         Tnb6K39KCHp1yldNRywp4cpMIgbeLPjouUQ2EgAGtFQ6TtX0V12k4uHjCNHCgfJfLn/G
-         mCzZVHo7OnRRJT4mB3aNNQFETosBJAqTc+v+6TozJxrj+yS1K+7Z1L0qnsjlthxbEysX
-         D9pQ==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9ATXBWQgrzuL9Z3/SAIie7kluVqoDF0o6VHKujGNm00=;
+        b=VuqnfYG3B56mJ2Fjtrg99JlER/G36shShYyec5HF6lFulIybT3emr5/f4JXXGHp+AH
+         eZh7yngn4aCUPmBnYWr2IM2hGTnWBtHQPOfEUOwwFjs6ANicN3XdLgW2OVQXDlF7ITzr
+         gNttWB+Rbp0xfJrxw6r1g+FeYTInVCkYMqgDBL8NcUwcO/y+cgJ5tFlzkE7XzBq1cPZt
+         eBYYLXmS2SJlqo+GqTn6ORpoox4wSx2Olllhb7eeuejQWveBCpT7P2mLSCzciXukOmav
+         a74/4BQDxqRQBoH5jlKzfWaTfLP+WFLWDAscrtNwtiPSl11drYJBcyRp2N6U5KzKtZHn
+         MfvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
-        bh=RbFDt7W+kDYmjMrcOE8/KW1E3uhd+OSWhmBMFyurh1U=;
-        b=7/xvWNOCg950ieJDhxL6RSG6tzCr+oosgnXl+eyJ+hp9mEfe/dQEbjj6FNjvpno8zK
-         RDZtpps5RbJE5zeznGCM/DNyDFUjZa1G1muCV/26VLFR3rjlNfBF7FezhYYP1srDWM6b
-         Wxywb3lCV13W7NlMFgTkP/1pQDNTCJXlekfyWoSbQ35uHpzHDBcuZy7YRv+8+60huPsw
-         Auvmnf4vsPsxL3Td63BCU+nDwFYFWJlREsDFuX9XGlsT9qvkQZ/NSM81Firh7SNiQQms
-         d3jjn4khFVhOojP1w69YZnDlTMj3Pptfr/m+ED1Smj0E0Hfsy0vo3RXs+hxSaA4dXGI9
-         /cCw==
-X-Gm-Message-State: AJIora/R+r5SgtBgOLRI+ovgdMowwCLLWvjY4ZXs1qHyWXjnBD/SuHOy
-	f9/vzNeFcG7kiK3Ph3tSYIQKDgFR+pJjpM2+p6TS+oHMGLCq5CMZNm+mclObfeBitaNGIy6HAyU
-	CjE/dqSi2+zS/y108eNsyj7U307szrdNGK9hZIzrqkqdbf9ZQZC9eEVfwXkcur3L+
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9ATXBWQgrzuL9Z3/SAIie7kluVqoDF0o6VHKujGNm00=;
+        b=qWbRAcbNQzsfAmRDQRLdYUozHq/81+xC8la/htDDJNRZpFeKxQdlVDjltZ9G/ChUpc
+         w3AAdG5B1YKpUQJkOmtxF3AGU5HTmJArisHxYt0bhyelPT5iIMry+WV9EdiiSMtb4ZU3
+         OhhfynNGVZu99gKvCoyXf001c8VtbBpewVEC6ugM8GHZ4y+T/BgdRnHXQx0ivyMoZu6x
+         dd2h86tzC9p6Xfk8axsKKP1eut6Q8osUur3VWUrXPog5FWEkwVN6Mq+wwRr93hJ/joWH
+         w4DNc3vI0EHX4vSa+Et8okb5hvSpqFLkh5AgTiMLP6GZ/9VJkx/XfxWdqZ2vdiZcaVkj
+         nrmg==
+X-Gm-Message-State: AJIora9b3JyJhYi8x5Dpp9h7ltZ3VVw0XgodXR1SDfSBstUzBMhTz0Tg
+	QY/1Q89XZo1XrdC8A1tCFxhHozNiP0CktRcWiAg=
 X-Google-Smtp-Source: 
- AGRyM1s6gaDIbxG0+subQsL9HwwLz5TTCYt5iXfVOyNoTvbwIIEZl/XJSXuGawphvztbx6aLq/EcEV4P
-X-Received: from jebr.svl.corp.google.com
- ([2620:15c:2c5:13:fcbb:752c:c901:94a9])
- (user=jebr job=sendgmr) by 2002:a0d:d70e:0:b0:31e:7cec:933e with SMTP id
- z14-20020a0dd70e000000b0031e7cec933emr713374ywd.406.1658443144737; Thu, 21
- Jul 2022 15:39:04 -0700 (PDT)
-Date: Thu, 21 Jul 2022 15:38:54 -0700
-Message-Id: <20220721223854.2093685-1-jebr@google.com>
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.37.1.359.gd136c6c3e2-goog
-Subject: [meta-security][PATCH] meta-security: Add recipe for libhoth
-From: jebr@google.com
-To: yocto@lists.yoctoproject.org
-Cc: John Edward Broadbent <jebr@google.com>
+ AGRyM1tTLJiY1Tuk2X55XrM+vnwXYqnOHFPlVRaj4Ftyahzq4QdY0JGH35ja49SZRvK4xE8zRZuXy8qaUxLkoeZuwq0=
+X-Received: by 2002:a05:620a:17a3:b0:6b5:fc1e:40e1 with SMTP id
+ ay35-20020a05620a17a300b006b5fc1e40e1mr559730qkb.227.1658443576758; Thu, 21
+ Jul 2022 15:46:16 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220721223854.2093685-1-jebr@google.com>
+In-Reply-To: <20220721223854.2093685-1-jebr@google.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 21 Jul 2022 18:45:50 -0400
+Message-ID: 
+ <CAMKF1so+Mk7=a1-Mj+UmXv=HqqMtqh6wmKUr4axE6DGkm1fJ+g@mail.gmail.com>
+Subject: Re: [yocto] [meta-security][PATCH] meta-security: Add recipe for
+ libhoth
+To: jebr@google.com
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 21 Jul 2022 22:39:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57610
+ <yocto@lists.yoctoproject.org>; Thu, 21 Jul 2022 22:46:22 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57611
 
-From: John Edward Broadbent <jebr@google.com>
+On Thu, Jul 21, 2022 at 6:39 PM jebr via lists.yoctoproject.org
+<jebr=google.com@lists.yoctoproject.org> wrote:
+>
+> From: John Edward Broadbent <jebr@google.com>
+>
+> Libhoth is usb protocol implementation which is required for hoth class
+> devices
+>
+> Signed-off-by: John Edward Broadbent <jebr@google.com>
+> ---
+>  meta-tpm/recipes-tpm/hoth/libhoth_git.bb | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>  create mode 100644 meta-tpm/recipes-tpm/hoth/libhoth_git.bb
+>
+> diff --git a/meta-tpm/recipes-tpm/hoth/libhoth_git.bb b/meta-tpm/recipes-tpm/hoth/libhoth_git.bb
+> new file mode 100644
+> index 0000000..59f52ad
+> --- /dev/null
+> +++ b/meta-tpm/recipes-tpm/hoth/libhoth_git.bb
+> @@ -0,0 +1,17 @@
+> +SUMMARY = "Google Hoth USB library"
+> +DESCRIPTION = "Libraries and example programs for interacting with a \
+> +               hoth-class root of trust."
+> +HOME_PAGE = https://github.com/google/libhoth
+> +
+> +LICENSE = "Apache-2.0"
+> +LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
+> +
+> +SRC_URI = "git://github.com/google/libhoth;protocol=https;branch=main"
+> +SRCREV = "b31307b7bf525efda0164e461fb1e0a5c302d306"
+> +
+> +DEPENDS += "libusb1"
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +inherit pkgconfig meson
 
-Libhoth is usb protocol implementation which is required for hoth class
-devices
+Dont we want to package the examples too ? perhaps in a ${PN}-examples
+or something ?
 
-Signed-off-by: John Edward Broadbent <jebr@google.com>
----
- meta-tpm/recipes-tpm/hoth/libhoth_git.bb | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
- create mode 100644 meta-tpm/recipes-tpm/hoth/libhoth_git.bb
-
-diff --git a/meta-tpm/recipes-tpm/hoth/libhoth_git.bb b/meta-tpm/recipes-tpm/hoth/libhoth_git.bb
-new file mode 100644
-index 0000000..59f52ad
---- /dev/null
-+++ b/meta-tpm/recipes-tpm/hoth/libhoth_git.bb
-@@ -0,0 +1,17 @@
-+SUMMARY = "Google Hoth USB library"
-+DESCRIPTION = "Libraries and example programs for interacting with a \
-+               hoth-class root of trust."
-+HOME_PAGE = https://github.com/google/libhoth
-+
-+LICENSE = "Apache-2.0"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
-+
-+SRC_URI = "git://github.com/google/libhoth;protocol=https;branch=main"
-+SRCREV = "b31307b7bf525efda0164e461fb1e0a5c302d306"
-+
-+DEPENDS += "libusb1"
-+
-+S = "${WORKDIR}/git"
-+
-+inherit pkgconfig meson
-+
--- 
-2.37.1.359.gd136c6c3e2-goog
-
+> +
+> --
+> 2.37.1.359.gd136c6c3e2-goog
+>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#57610): https://lists.yoctoproject.org/g/yocto/message/57610
+> Mute This Topic: https://lists.yoctoproject.org/mt/92537492/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
