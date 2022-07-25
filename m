@@ -1,179 +1,99 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <me.ramprakash@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 325E1C43334
-	for <webhook@archiver.kernel.org>; Mon, 25 Jul 2022 18:12:39 +0000 (UTC)
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com
- [209.85.160.169])
- by mx.groups.io with SMTP id smtpd.web11.31636.1658772756820335499
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DEBB3C43334
+	for <webhook@archiver.kernel.org>; Mon, 25 Jul 2022 19:44:38 +0000 (UTC)
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com
+ [209.85.216.45])
+ by mx.groups.io with SMTP id smtpd.web11.335.1658778273855577745
  for <yocto@lists.yoctoproject.org>;
- Mon, 25 Jul 2022 11:12:37 -0700
+ Mon, 25 Jul 2022 12:44:34 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=FwuqmZlU;
- spf=pass (domain: gmail.com, ip: 209.85.160.169,
- mailfrom: raj.khem@gmail.com)
-Received: by mail-qt1-f169.google.com with SMTP id a9so8847846qtw.10
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=FO1UuHj6;
+ spf=pass (domain: gmail.com, ip: 209.85.216.45,
+ mailfrom: me.ramprakash@gmail.com)
+Received: by mail-pj1-f45.google.com with SMTP id
+ g5-20020a17090a290500b001f2ea602563so464495pjd.4
         for <yocto@lists.yoctoproject.org>;
- Mon, 25 Jul 2022 11:12:36 -0700 (PDT)
+ Mon, 25 Jul 2022 12:44:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=1T0Ns35PJF7Nt/EW3mOUpqFjDq2ZEBXKfLKU4FGzcN4=;
-        b=FwuqmZlUiN5uPyyHvyLcsXo0KQxcVcdepsM/T8aPIYuuQJLl85+vFqcc06EAA+2MnZ
-         0qGfQPcKgsEKih+P6TptNCNxTHPao+NIR5RjEMVucC5I1ZrCJqjgbXPmUFmA1uC0O5bn
-         mVeasI6JmAmwWeK30uAYyd4Kdnks6CkO4ZkTGl1eHcdeG6Is7ZXsmbpVbUQdP+wt3ON0
-         DGS5cesg5iw/noHuxk2QrT6nkKCa7G1EtRLQ8hLph3oK/Pc7N8Be3+YZnNENKgVDsNC7
-         hVn4TtApjZWVn+wESWMB47MUOMGIekV9dB+wZhfTcWsCeXIJH8XGAWA+S0z4lVkPpV/4
-         IA2A==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=aYRgCWp3bs6e8bEHZm/TezakGF7xbATXsNSZbm3tFRw=;
+        b=FO1UuHj63mxsZUk2f5FJztCpogOthDvvh0CfKf0KDr4XppLyGtHq0ZtpWsiNfEU8m0
+         DyrKAUrX8q9qYkMjNR/1IxDX/bDsgESGuwe5rF/IC3jTgQMyVfuINuQa+/CGgru9kbkq
+         3T7ZjtmS/O/udzWJTSqjmRU4wtpUSHIrp2IE6CP7QgCegpHuOQfNSFxWySkIjFmQKU4o
+         Sl6ezLhOFz/NXszs2nTyzwMScaLtxKEPDC0sPWT1Q8OfQtdTRqfZ2IWh0BePEXdbWpUS
+         SK92W5NJ4nk8puxkWmtF18BWy3LTu7/1bsTy0BuTJ53Im3y8arwlZFJ4C5rdMbIbnyqd
+         lqaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=1T0Ns35PJF7Nt/EW3mOUpqFjDq2ZEBXKfLKU4FGzcN4=;
-        b=a9XxKbp07D6Yn94ff7ur9yqmRc3xQCl8Nec5YaAZsHfoOmSchri527AVARXV9nE1Iw
-         vcBPZuSpuyhkXQQ7d/xWrOjQtprePKG/SYVwLcBFQViyWTIYq+YyQmZq8nAw7w2PIVK3
-         QWm9L59Q67V9BzzVGn2H5n5gHmO4BQuvY74jCrlsXjpfjFGwxCmBWyDFRYnRBABAUaMY
-         sys8HSZVZUjbFI9dn+93Y4Z+Ex6wEuvoCtFvk5C14LbnXjWXtxHogURfzWjeSHWWAsaD
-         aLjpGxO+bExp0S+7ghzM96tiHVkBPA7wGC3NGp1l9tUnBqqQny8v26DRrFAZwzNzfqUf
-         xlRA==
-X-Gm-Message-State: AJIora+VVzuatHXF9su7qHWY80Al7pbtJbsErfss/t0SkaUDbhoCKfBP
-	UIgVHwVMTqnGiinQZ2+eMe1R/aQjTk5mPQatsjE=
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=aYRgCWp3bs6e8bEHZm/TezakGF7xbATXsNSZbm3tFRw=;
+        b=RfDUcqFt4ewX+xHKbejVCR5Bk48mNDB0I4ygHPwM8pG3cLd408J8tRR6Z6v5Y1ut6i
+         lDG2ylgFSSPTUr9adseYkRexqFFMB3Z60IeX+HhLuGoOAMBLxmjvS8YdwZbrepFlqN/7
+         DNZBTxK0MjO4Z+HuVV50C3/J+6rIGaVQtpmVLph1ObbJoo6CKmHr9nMDKHgV4sHi13sw
+         SDpfRfTsGcCek8+64evC7B6+O2Tb3szQQedHRdvS3W6zTmz4TE9Uyhn/37wa+AZq7JMb
+         DPO8F7cK8l+/eZcuXElDZ60Txbpm4J8Os+pKdq56+f+ahWxR61PDdjar55QkCGwyuuWo
+         FUXQ==
+X-Gm-Message-State: AJIora/DW96cmaggEuKBzmMQME5oOYSTmZxuTYbMKw/VgOgCyNyr4PfK
+	AmhQb1mYPgDU/2xq1eio3CE3Efs/ZQ6HaeO0jmaLtbvs/4UKyw==
 X-Google-Smtp-Source: 
- AGRyM1vPVogNE1+vkLt2mbhQ4oj1ThS9GuDRfAMTfboPKeWTaMxwRPg5kX9aN4Ax2ebJ5BTD5EtF86oOSHvZTptOPnA=
-X-Received: by 2002:ac8:5e4f:0:b0:31e:d96f:a4e7 with SMTP id
- i15-20020ac85e4f000000b0031ed96fa4e7mr11370521qtx.634.1658772755786; Mon, 25
- Jul 2022 11:12:35 -0700 (PDT)
+ AGRyM1uHEVL4w9ZFW+iqW5emGSHF5+LwT/YRUJzuVmD66TCczthOqSnbnIo5H2cCpgCmJMeL5p3aqucYODHm3QLPP5o=
+X-Received: by 2002:a17:90a:4809:b0:1f0:59d7:7ee2 with SMTP id
+ a9-20020a17090a480900b001f059d77ee2mr15960475pjh.240.1658778272774; Mon, 25
+ Jul 2022 12:44:32 -0700 (PDT)
 MIME-Version: 1.0
-References: 
- <PH0PR15MB5055F60DA7F873193E3AD877CB909@PH0PR15MB5055.namprd15.prod.outlook.com>
- <CAMKF1srE40FXoPynBsUxtaOjj+BdJHu4SoNQXNMDFmFwjYvt0g@mail.gmail.com>
- <17047D93444A051F.4676@lists.yoctoproject.org>
- <PH0PR15MB50555CCB2A384E1B8D2A668ECB959@PH0PR15MB5055.namprd15.prod.outlook.com>
-In-Reply-To: 
- <PH0PR15MB50555CCB2A384E1B8D2A668ECB959@PH0PR15MB5055.namprd15.prod.outlook.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 25 Jul 2022 14:12:09 -0400
+From: ram prakash <me.ramprakash@gmail.com>
+Date: Mon, 25 Jul 2022 12:44:21 -0700
 Message-ID: 
- <CAMKF1spj_o6Kw+7RMREvzZCuictydaVkutn0NuCEVJfbo7nRhQ@mail.gmail.com>
-Subject: Re: [yocto] Adding and using user in more than one recipe
-To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ <CACGj75_sBbiUzSOPaT-VJAajGs0mw=Rdr5c9P6M-2Hpy5ARsjQ@mail.gmail.com>
+Subject: Issue with the setting up internal repo for packages
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000b5c39405e4a6690a"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 25 Jul 2022 18:12:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57636
+ <yocto@lists.yoctoproject.org>; Mon, 25 Jul 2022 19:44:38 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57637
 
-On Mon, Jul 25, 2022 at 2:08 PM Greg Wilson-Lindberg
-<GWilson@sakuraus.com> wrote:
->
-> Hello Khem,
-> I've added in the useradd line in my image recipe:
->
-> EXTRA_USERS_PARAMS =3D "\
->     useradd -d /home/${SAKURA_USER} -r -s /bin/bash -U ${SAKURA_USER}; \
->     usermod -p '${SAKURA_PASS}' ${SAKURA_USER}; \
->     usermod -a -G sudo,dialout,video,input,audio,disk,shutdown,datetime $=
-{SAKURA_USER}; \
->     "
->
-> But I am still getting errors in the two recipes that I try to use the ne=
-w user. How do I tell them that I need to inherit the added user, do I add =
-a DEPEND or RDEPEND on the top level image recipe? Is there some other way?
->
-> I saw a previous thread somewhere that suggested making a separate recipe=
- to create the user in and then making the recipes that use that user DEPEN=
-D on the creation recipe.
->
+--000000000000b5c39405e4a6690a
+Content-Type: text/plain; charset="UTF-8"
 
-if you need it in a recipe then perhaps that maybe a good approach.
+Hi All,
 
-> Regards,
-> Greg
-> ________________________________
-> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> on beha=
-lf of Greg Wilson-Lindberg <gwilson@sakuraus.com>
-> Sent: Saturday, July 23, 2022 8:03 AM
-> To: Khem Raj <raj.khem@gmail.com>
-> Cc: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>
-> Subject: Re: [yocto] Adding and using user in more than one recipe
->
-> Hi Khem,
-> That's originally what I had, but for some reason I hadn't put in the use=
-radd line. I'm assuming that then because this is at the beginning of the i=
-mage generation, I can then use the new user in any other recipe. Is there =
-anything that I need to do to inherit the new user, or is it just there?
->
-> Thanks,
-> Greg
->
-> > -----Original Message-----
-> > From: Khem Raj <raj.khem@gmail.com>
-> > Sent: Friday, July 22, 2022 17:38
-> > To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-> > Cc: yocto@lists.yoctoproject.org
-> > Subject: Re: [yocto] Adding and using user in more than one recipe
-> >
-> > On Fri, Jul 22, 2022 at 5:23 PM Greg Wilson-Lindberg
-> > <gwilson@sakuraus.com> wrote:
-> > >
-> > > Hello list,
-> > >
-> > > I=E2=80=99m trying to understand how the extrauser and adduser packag=
-es are used
-> > and interact in kirkstone.
-> > >
-> > >
-> > >
-> > > I need to add a user and I would like to also use this user in anothe=
-r recipe.
-> > This had been working in our previous builds using version of Yocto up =
-to
-> > hardnot. We are in the process of updating to kirkstone and the user st=
-uff
-> > has now broken and I am not making any sense out of the documentation.
-> > >
-> > >
-> > >
-> > > How do I create a user in one recipe and then use that user in anothe=
-r
-> > recipe? Can I even do that, or do I need to create the user in more tha=
-n one
-> > recipe with a hard coded UID, GID?
-> > >
-> > >
-> >
-> > you can do it in image recipe
-> >
-> > inherit extrausers
-> >
-> > IMAGE_FEATURES:remove =3D "debug-tweaks"
-> >
-> > EXTRA_USERS_PARAMS +=3D "\
-> >     useradd scribbledeedoo; \
-> >     usermod -p '$(openssl passwd -6 diddleDoo5)' scribbledeedoo; \
-> >     usermod -a -G adm scribbledeedoo; \
-> >     usermod -a -G video scribbledeedoo; \
-> >     usermod -a -G audio scribbledeedoo; \
-> >     usermod -a -G systemd-journal scribbledeedoo; \ "
-> >
-> > HTH
-> >
-> > -Khem
-> >
-> >
-> > >
-> > > Regards,
-> > >
-> > > Greg Wilson-LIndberg
-> > >
-> > >
-> > >
-> > >
-> > >
-> > >
+I'm trying to get my yocto build system to get the necessary packages for
+building from an internal artifactory repository instead of fetching from
+online every time.
+
+I have set up the SOURCE_MIRROR_URL="https://<artifactory>;  and got my
+credentials setup under ~/.netrc. But when I run the `bitbake -c fetch foo`
+for any packages I'm not able to fetch the packages from the artifactory.
+The fetcher fails to parse the credentials and pass it to the artifactory
+location.
+
+Can someone help me with how to parse the netrc file of any yocto build
+system?
+
+Thanks and regards.
+Ramprakash
+
+--000000000000b5c39405e4a6690a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi All,<div><br></div><div>I&#39;m trying to get my yocto =
+build system to=C2=A0get the necessary packages for building from an intern=
+al artifactory repository instead of fetching from online every time.=C2=A0=
+</div><div><br></div><div>I have set up the SOURCE_MIRROR_URL=3D&quot;https=
+://&lt;artifactory&gt;;=C2=A0 and got my credentials setup under ~/.netrc. =
+But when I run the `bitbake -c fetch foo` for any packages I&#39;m not able=
+ to fetch the packages from the artifactory. The fetcher fails to parse the=
+ credentials and pass it to the artifactory location.=C2=A0</div><div><br><=
+/div><div>Can someone help me with how to parse the netrc file of any yocto=
+ build system?</div><div><br></div><div>Thanks=C2=A0and regards.</div><div>=
+Ramprakash</div></div>
+
+--000000000000b5c39405e4a6690a--
 
