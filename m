@@ -1,234 +1,282 @@
-Return-Path: <jay.shen.teoh@intel.com>
+Return-Path: <brgl@bgdev.pl>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A2341C433EF
-	for <webhook@archiver.kernel.org>; Mon, 25 Jul 2022 09:32:16 +0000 (UTC)
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by mx.groups.io with SMTP id smtpd.web08.26177.1658741526653736556
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 85DAAC43334
+	for <webhook@archiver.kernel.org>; Mon, 25 Jul 2022 15:47:58 +0000 (UTC)
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com
+ [209.85.221.41])
+ by mx.groups.io with SMTP id smtpd.web11.29726.1658764072183222544
  for <yocto@lists.yoctoproject.org>;
- Mon, 25 Jul 2022 02:32:07 -0700
+ Mon, 25 Jul 2022 08:47:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel
- header.b=DAJ5TYJW;
- spf=pass (domain: intel.com, ip: 192.55.52.93,
- mailfrom: jay.shen.teoh@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1658741526; x=1690277526;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=T2ewIQUgmhuZGBgjbuQJssg5ajP5F5Ka2Mokabo4p5Q=;
-  b=DAJ5TYJW7OGLXOmSlxaLjRrfDxPjyGNkwK8GmFvsCAjgDngsUYX3a/Uh
-   Ju3sOkXACPfAFtr3qaul5y4fy4cHpDWV7HWlqkIhLJ7cDlbSWiefbWzIh
-   qiYFxu7VpNVFlLCO/OSB6bRQOajpXvIWCaMiimpRPNcdJxRzIHyxAhRiw
-   1hDRu3gLBFg7QKWKY+7iMLuOIIjzXAfxnnf9HC57byjoGY4sJkYKLB/2h
-   8kKIlHR4a5joNRHD+7uhdjeW/TdAHpeBqVxNzta9sa9x/ifDczIZahEpa
-   CKvXTrzp3uSfrEwdmX/E91QGEIyriRrw9dX2Tk36DUIi61wtRRYSD/mo9
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10418"; a="285205060"
-X-IronPort-AV: E=Sophos;i="5.93,192,1654585200";
-   d="scan'208";a="285205060"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2022 02:32:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,192,1654585200";
-   d="scan'208";a="574981308"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
-  by orsmga006.jf.intel.com with ESMTP; 25 Jul 2022 02:32:05 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Mon, 25 Jul 2022 02:32:05 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28 via Frontend Transport; Mon, 25 Jul 2022 02:32:05 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.28; Mon, 25 Jul 2022 02:32:04 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jhmfhfJ5yVRn88T/qxHVG1H+0REu77fT067JZcRKwEUkl12uRRdjcEI5axsz+PIIHlz36wwgzbEeqwVo2wu25EpkhQFehRF0OaWEqC0vI9EOPDerhzwxGJqqg+XR+LyM3cUNSl34XHZItBeMQbW7PUR8H2Z9XbnHP8ARy4Yp07VFfE3wfYvZQsHMtKqBTl5RkDKFQAL7v7TwqlqdinlGWad05gNG4HGBNraQoY3DEwKGVxo6jDuXeXFqDCBCetOKK9K6i0aYUar6hHDpxUERl2FTdRSzK+wk5rGW5x8Bv35tG/SE7QsbcwNAKp+xIV5Rw2hrt+TR/1h9e2qyNsSZ+Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Hiu2PVsHfWn8DtlmdAd4XlhaJAgjU3stYoF8XzWFF5M=;
- b=kB1eokoNhiiyU28WjUtaxM2F84MiIdG4HhtoNIQN9jkgorfzuJd2nxrWL7IPJrMVBgTet/L5qKjk977ObZVMluBfBeO9mT5dAo3RGPsFNSGDPTmD9VXRCA9oWlMzmpQanuQK4zNEdTeZUYKt/T9YDb6gLhIoQ1mdRchj21NOI4bMV+sI3Jv3Wi0MXHOZ+DC2kAaTY6tnnnjV9X9hDSRRXm9yusNYUoM2Fmj84J3BQsLFjlr1hCFRcVAOKdW9qziWCdz2O7zfY6oy1bZ0lSjpsMK/+wctQQTgibVHyHRcw+U468YhhzqOeMO2QExhaxEUSdNBKO2ee4EELDAMe++AFg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM5PR1101MB2348.namprd11.prod.outlook.com (2603:10b6:3:a8::16)
- by CO1PR11MB4819.namprd11.prod.outlook.com (2603:10b6:303:91::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.20; Mon, 25 Jul
- 2022 09:32:03 +0000
-Received: from DM5PR1101MB2348.namprd11.prod.outlook.com
- ([fe80::4d41:d985:2a5f:16ed]) by DM5PR1101MB2348.namprd11.prod.outlook.com
- ([fe80::4d41:d985:2a5f:16ed%5]) with mapi id 15.20.5458.024; Mon, 25 Jul 2022
- 09:32:03 +0000
-From: "Teoh, Jay Shen" <jay.shen.teoh@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: RE: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-4.1_M2.rc1)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-4.1_M2.rc1)
-Thread-Index: AQHYm6UN4GgPfMhK5UO2M/zdEEJnyK2O2wAQ
-Date: Mon, 25 Jul 2022 09:32:02 +0000
-Message-ID: 
- <DM5PR1101MB2348800F1CD86C38EAEF804BBB959@DM5PR1101MB2348.namprd11.prod.outlook.com>
-References: 
- <0101018217ea3768-11ff38ae-a6a9-44fa-a01f-495f642b5a1c-000000@us-west-2.amazonses.com>
-In-Reply-To: 
- <0101018217ea3768-11ff38ae-a6a9-44fa-a01f-495f642b5a1c-000000@us-west-2.amazonses.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.6.500.17
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f6722dd9-8a92-468e-fcf3-08da6e20883e
-x-ms-traffictypediagnostic: CO1PR11MB4819:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- L9SkqlcgW57UBztTQiO6aZyKyeaYWqiP3yf05lukD/dH+SemiQf/sHCIuNcHxXkn9zr9sMDuNX76r9+0xZMnmZYSE6tNXnuDwW9Y3zHhtoeiG/SBhLiUzFr0dlwW17TOIpaOo7V1iVulcSyvd0e2kEBCkmLmEgOrL3H+eEYkoo5m/+SLLRX9XKMxLRidedRQYMIxlpceG+yAwClymirBwKOsE7hOO2KeSEKwwiio6b0wrtrRRMnb/vGMAY1nCZOywu1vOxRg+I3UjOBnM9mljLUYRWmvZnWCt/YqTkWZWCDPWu+3Wrhc7vCtspaqXO91BiQU46xZzIvJaS4yYywx9aS/cCf5+ZtKj2H67eiOrGAh+qh0JedO4dafKBa+rO0bkX07uG1PjKxG2N9Id6Nsuyr/lz+sxY5tEHsMMOeqjO4N7SECELC/ISk6QcMiQFmwATR89twkhGVeMcHs+2xsx5tcoYHhmoCXM3gF/2wXE46Ta1q9XiV/z0edJ/xrJs9BVSSdCa+D6ypGHCkudUl6k0ZHutHZbcuu6XDNZf48lYtaNT8sRB1INJLaG5E5yeUYa2rdcHbuPyzDBXhItvKoU8Q7Hwgn2IW1r/a1DsRmROpG8OCbgmZEIGSwB4AuvKYAk9X/MXENOjCD2wCJZvs3Tg3uP1tJUJBlWIOizaiTPQyBzo4MMYWqbrUEd7fk/6npKu3lOt2UnNbQAST63OcXgcfD000aQu9UfxTye5PqGeVTgVzqC+/RDdeD8JdOJKDr2IO9iAfccLk6062HyROCVsTRlG8NO1LhJSN/BOfq6qhC4ZW0Idj7DQ4GVxCdRMvFtEadP8lx1hSTGa+F9xe1HiUC9Q0etG8DgCoWpd8WdiNSes2/rG2lysQovUI3M4jZ
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR1101MB2348.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(366004)(39860400002)(376002)(136003)(396003)(346002)(76116006)(15650500001)(82960400001)(8936002)(38070700005)(52536014)(122000001)(5660300002)(64756008)(66446008)(66476007)(66946007)(38100700002)(66556008)(33656002)(83380400001)(316002)(41300700001)(966005)(8676002)(55016003)(2906002)(7696005)(110136005)(6506007)(53546011)(71200400001)(55236004)(26005)(478600001)(186003)(86362001)(9686003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?OwSP8K75zGS99O66lKAJTIUOOb6cApgGIdPzg8al4NomuOsWIhze0K5Gr5SR?=
- =?us-ascii?Q?bQFrLB0gTX+coQboSEfmh70Qi6vlakAfQKbOTcTmQ6PA3GNsZbM2JzxZP1ZT?=
- =?us-ascii?Q?7pJ8pTBmVRsKjeNs2To6d/EVh2Bt+UCbTgRcTDXh42Tb2L9xxuMhh0lZCMGB?=
- =?us-ascii?Q?cKh26+VxM8a5WA4BQ97Ytw9V5dYCdJ2uVN/60dBOO1dTXf8xkDEN0qXNP0bO?=
- =?us-ascii?Q?wB0rvrfXQvp3QOmroiXp3rRETWKH8VIYvG635ccnkB4h1THBHEatBnlpdmCD?=
- =?us-ascii?Q?NdStHtzy9qwbQtNYu6U6XrX7/8gdGbdytQbg6Snn3BxP+lyRWq8owZFNalac?=
- =?us-ascii?Q?tWdXgHSZidjA3hl3pkOFU1ipxQVItTXTBTJ1YuOx3GTl4l9K9c7PqeWFr+Al?=
- =?us-ascii?Q?EdmLUWDNYIQ9gL8cNKsT8pPlrwmGf2XEicYxiAXoEC3QrOlIBK4NlvlKPc8v?=
- =?us-ascii?Q?sIACVGuY5F6gJJasW6LKJ4ylpmpYVDj+RQO0NbnwKOPb9F2NhV5khhYi1cz7?=
- =?us-ascii?Q?PzbLT3BlBdZ/YFhXTHL99yip9tok4+/1G2Diq3xRuUUZdX+57KGWYYESRByT?=
- =?us-ascii?Q?H01e9ViZISMoDte2E3KY6yn39fHiGwGhOg7nVGVNaUsSn+3Ks5o+2x5gSwoJ?=
- =?us-ascii?Q?4WHbfr0guQHxGkIUzmMF9pUAFbH/LYz/Mf9ZAkfuWVzuxl5Dd8e+ckj5/PDU?=
- =?us-ascii?Q?a+c3XQWv6Wc4yiqd7Z+Ih9LS5EoOxTvrFPCbzahLYudAFUp6lagMnL6sozso?=
- =?us-ascii?Q?e78GWQ6q/+sLMu3i3W0/dubDCNYGNTfstiMKkJZCOrwMWutKtvVEHDMEQu5s?=
- =?us-ascii?Q?fyEhTwzxzQBgcj0qemVDMaWFN8ynrXS03515epQXxklZXZ48A8cPIYC1Byzt?=
- =?us-ascii?Q?u4OeXwaVONG4KWyYeWFY/9IViDvh9SeFwVx0pP4w9Wb0nSjBLIzTbr7z8RJm?=
- =?us-ascii?Q?WWysCM4GSE1viGaWq6ylKvdzJKAaqYft2DIVn5vXz9BCvNRY7NRiRnw6J29q?=
- =?us-ascii?Q?drhSE5PXd22Hqu+zaoivh9bpDlt2cj89QM/Kmm8ytJZLco8CRMLTVYq3ngQG?=
- =?us-ascii?Q?OkRAdaXo3SoQuPmi0IKdXc9zr8pjoiVyVUaaNBYr+g/bzieVDPjZJGfQE/qa?=
- =?us-ascii?Q?sDRxa/VPX5c4Phfvc2dsEHiM2kwHUoxnc7qOxuJIKZfvvuxFAsOeF7KwFlML?=
- =?us-ascii?Q?tluA11QCqWNKQPTOqORjQdrkQ6ZUoTwhr5++ogRlg45eXoBpjWVZ4PQbm6Hq?=
- =?us-ascii?Q?m28p2TvHZJqPNvhXaNLHl7zzxECIY+mDUDaTey6zJd8Em9PZA0M09R8hoTXN?=
- =?us-ascii?Q?8iu0CaQ1d22ZiUiNjLqX4kkSmOpG0VwVFzMvZEy1N+dqbaIMjdgvvoCRxpmR?=
- =?us-ascii?Q?mQyB+reMWhRyKEoP34nge+k7AAOtbQXFce7g96KxX/Qy2P4eenL5s1GQ/paM?=
- =?us-ascii?Q?G6cGaQGC5dSoiHiJIF3FhxoPLM4F0Y92Ou7lEz7WL1tE+nmjrZCT7v9HWv/p?=
- =?us-ascii?Q?e4xClYuxMxt0qtvradb4YO0teL4XZm+R4NOH8VFT4zSLlBxEQrDJJr3hKu8n?=
- =?us-ascii?Q?agJpN8z0JXOVq89nlzYd2yNDbW4crkiGFItJsPfO?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@bgdev-pl.20210112.gappssmtp.com header.s=20210112
+ header.b=LtirZCFp;
+ spf=none, err=SPF record not found (domain: bgdev.pl, ip: 209.85.221.41,
+ mailfrom: brgl@bgdev.pl)
+Received: by mail-wr1-f41.google.com with SMTP id d8so16499172wrp.6
+        for <yocto@lists.yoctoproject.org>;
+ Mon, 25 Jul 2022 08:47:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lJpIbiLUeat1pdQKk0koEXXi38o8zmwlO2CilwhC2Q8=;
+        b=LtirZCFp++wtuxmvROS2I7Ntt0n9SVGGYvSy3h4+wA4STaxL+OkKYzn77Vf0RZPiry
+         SZqJagqNPYzF7LLXE4Nwf21k0+2gM/xx+MUoL3S5XCzw22vlk7xBUU/SS0n3YQZKKB1E
+         A4lHyTOyo2d16KD7z2VCuAjkm+noTTUGVBQE3JxlkzkH6UTadC/nyxqbVEHVQ7aKs3Ml
+         f7OkDv00Jj5XODGbkF+7z0lcXMr3kXXl8z8rQPjoXWaETfMeE0UPhxlgcEmlspwX0SQf
+         AgH9ii6xq1RH9xCjZPVG/Lxf+fR9/PJK5IXBqKRgll5OwBtqtBKkDc8NJUMpnqiHzRrJ
+         BWPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lJpIbiLUeat1pdQKk0koEXXi38o8zmwlO2CilwhC2Q8=;
+        b=B3/Oid6fNb+5r9yeEs5TF4FaQ0rcViIj+kOOZp08Rj9b0TAe2cmLfSP8kJyDtGH2aa
+         Pi02s2dFUIW8OCn8Xyu197UGkiJXsOyGan7BzMUsTBUyxSN2bqhg55OtusrZUxgrKbMO
+         4LpP1gwjfVn0oQvkFkKGDzkRIWO8Z6pfL8XcK1AfxG93vE5tLhy2qLHYBzMQ+vsH4F0b
+         wzP2EMkOhWQr5RCDiqUVMpxKT0xkryV2GWw83dccWkjV78CXyfV8vo2eiqxzKLnRH5UF
+         JDxxVO0KWNhcS1CCu2Q3QzTZpXm1ZLoqf657U12WPRbkzwben28S9qEGZvg3VL0Mlr+s
+         fQBQ==
+X-Gm-Message-State: AJIora9W/jlTsENC6bJXwl4ll7qx3nDidZbH3KeT7v4Biy+BvIjGUOiv
+	+XEku7BmpxVWKR1DXVqHr5wB3w==
+X-Google-Smtp-Source: 
+ AGRyM1uGTjbk2uiFKSFWPX1kVOHM77F1u/PV6h1lW3V6vEctsEehWT8j9Qnj4poQh7RG0jcXaT659A==
+X-Received: by 2002:a5d:59a9:0:b0:21e:5e6a:6a8e with SMTP id
+ p9-20020a5d59a9000000b0021e5e6a6a8emr8695495wrr.190.1658764070299;
+        Mon, 25 Jul 2022 08:47:50 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:cebf:f7ea:8e58:3944])
+        by smtp.gmail.com with ESMTPSA id
+ p12-20020a05600c358c00b0039c96b97359sm15853533wmq.37.2022.07.25.08.47.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Jul 2022 08:47:49 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Naveen Saini <naveen.kumar.saini@intel.com>
+Cc: =?UTF-8?q?Eil=C3=ADs=20N=C3=AD=20Fhlannag=C3=A1in?=
+ <elizabeth.flanagan@huawei.com>,
+	yocto@lists.yoctoproject.org,
+	openembedded-devel@lists.openembedded.org,
+	Bartosz Golaszewski <bartosz.golaszewski@huawei.com>
+Subject: [PATCH] zephyr-kernel-src: bump the v3 version to v3.1.0
+Date: Mon, 25 Jul 2022 17:47:44 +0200
+Message-Id: <20220725154744.97466-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: 
- DM5PR1101MB2348.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- f6722dd9-8a92-468e-fcf3-08da6e20883e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jul 2022 09:32:02.9715
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- lbaIlUqYJxFckZuFLEwmoht2G+zRtXMR2/+eM62vNZSUHxwMCIKkelrVZfnmz48Ahx76nfLDyXX+pFGqmrau6g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4819
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 25 Jul 2022 09:32:16 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57632
+ <yocto@lists.yoctoproject.org>; Mon, 25 Jul 2022 15:47:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57633
 
-Hello everyone,
+From: Bartosz Golaszewski <bartosz.golaszewski@huawei.com>
 
-This is the full report for yocto-4.1_M2.rc1: =20
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
-h=3Dintel-yocto-testresults
+This upgrades the 3.x series to using v3.1.0.
 
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects.
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@huawei.com>
+---
+ .../zephyr-kernel/zephyr-kernel-src-2.7.2.inc |  6 +-
+ .../zephyr-kernel/zephyr-kernel-src-3.0.0.inc | 70 ------------------
+ .../zephyr-kernel/zephyr-kernel-src-3.1.0.inc | 72 +++++++++++++++++++
+ .../zephyr-kernel/zephyr-kernel-src.inc       |  4 +-
+ 4 files changed, 78 insertions(+), 74 deletions(-)
+ delete mode 100644 meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.0.0.inc
+ create mode 100644 meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.1.0.inc
 
-new issue found=20
-
-Bug 14865 - systemd-fstab-generator[11101]: Failed to create unit file /run=
-/systemd/generator/-.mount, as it already exists.
-
-=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14865
-
-Regards,
-Jay
-
-> -----Original Message-----
-> From: qa-build-notification@lists.yoctoproject.org <qa-build-
-> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
-> Sent: Wednesday, 20 July, 2022 3:23 AM
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [qa-build-notification] QA notification for completed autobuilde=
-r
-> build (yocto-4.1_M2.rc1)
->=20
->=20
-> A build flagged for QA (yocto-4.1_M2.rc1) was completed on the autobuilde=
-r
-> and is available at:
->=20
->=20
->     https://autobuilder.yocto.io/pub/releases/yocto-4.1_M2.rc1
->=20
->=20
-> Build hash information:
->=20
-> bitbake: b171aa45fb8518dcfbba315b303a4fe9bf2180c6
-> meta-agl: b5044156fc318a4881e766513871611a560170be
-> meta-arm: 6481a473d84f84530e0c48d56acdc185919869b6
-> meta-aws: 2f5075673489ee2d3fc318f6626d45145f65d5ea
-> meta-gplv2: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
-> meta-intel: de5851890f9a268621515193d2ad84f8359fbe24
-> meta-mingw: 205e9d942bc8ea1643a8d27b79e773625d173c00
-> meta-openembedded: 0c2e416567351d55ae45e67513be6f20aa754d4b
-> meta-virtualization: 7ec4b4746d9d76062a868ea77818a150ddd53c54
-> oecore: b4f1b78aef77198f26a8ef9e105fa690cc12e836
-> poky: 899979696f68ff4414cebf7782b37d7bae27144b
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
->=20
->=20
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#164): https://lists.yoctoproject.org/g/qa-build-
-> notification/message/164
-> Mute This Topic: https://lists.yoctoproject.org/mt/92490173/4899463
-> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-
-> notification/leave/10406805/4899463/715389995/xyzzy
-> [jay.shen.teoh@intel.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->=20
+diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.2.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.2.inc
+index 7a4da21..204e770 100644
+--- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.2.inc
++++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.2.inc
+@@ -62,4 +62,8 @@ SRCREV_tfm = "c74be3890c9d975976fde1b1a3b2f5742bec34c0"
+ ZEPHYR_BRANCH = "v2.7-branch"
+ PV = "2.7.2+git${SRCPV}"
+ 
+-SRC_URI:append = " file://dtc.patch"
++SRC_URI:append = " \
++    file://dtc.patch \
++    file://0001-x86-fix-efi-binary-generation-issue-in-cross-compila.patch \
++    git://github.com/zephyrproject-rtos/hal_cypress.git;protocol=https;nobranch=1;destsuffix=git/modules/hal/cypress;name=cypress \
++"
+diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.0.0.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.0.0.inc
+deleted file mode 100644
+index 64594a0..0000000
+--- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.0.0.inc
++++ /dev/null
+@@ -1,70 +0,0 @@
+-SRCREV_FORMAT = "default_cmsis"
+-
+-#
+-# Generated with:
+-#
+-# #!/usr/bin/python3
+-#
+-# import yaml
+-# import sys
+-#
+-# if __name__ == "__main__":
+-#     with open(sys.argv[1], "r") as fd:
+-#         data = yaml.safe_load(fd)
+-#
+-#         for project in data["manifest"]["projects"]:
+-#             print("SRCREV_{} = \"{}\"".format(project["name"], project["revision"]))
+-#
+-
+-SRCREV_default = "4f8d78ceeb436e82f528511998515f6fc137c6cd"
+-SRCREV_canopennode = "1052dae561497bef901f931ef75e117c9224aecd"
+-SRCREV_civetweb = "094aeb41bb93e9199d24d665ee43e9e05d6d7b1c"
+-SRCREV_cmsis = "b0612c97c1401feeb4160add6462c3627fe90fc7"
+-SRCREV_edtt = "1fc2e6f7d2a01a01074456f2ef2ccf1f3df7fac1"
+-SRCREV_fatfs = "09a9d913c61dccbb8ff92d8943b452c614ac5292"
+-SRCREV_fff = "6ce5ba26486e93d5b7696a3e23f0585932c14b16"
+-SRCREV_altera = "23c1c1dd7a0c1cc9a399509d1819375847c95b97"
+-SRCREV_atmel = "9f78f520f6cbb997e5b44fe8ab17dd5bf2448095"
+-SRCREV_cypress = "81a059f21435bc7e315bccd720da5a9b615bbb50"
+-SRCREV_espressif = "bcd7565ffa390d5774dc2fbe71a002faa9a7d082"
+-SRCREV_gigadevice = "242a7f4be7a3136606c7a65169775f7ef85ad444"
+-SRCREV_infineon = "f1fa8241f8786198ba41155413243de36ed878a5"
+-SRCREV_microchip = "870d05e6a64ea9548da6b907058b03c8c9420826"
+-SRCREV_nordic = "a42b016d7c7610489f5f8c79773fedc05ba352ee"
+-SRCREV_nuvoton = "b4d31f33238713a568e23618845702fadd67386f"
+-SRCREV_nxp = "9629f15fd80169cc9669e3fbb1260467c3aeb175"
+-SRCREV_openisa = "40d049f69c50b58ea20473bee14cf93f518bf262"
+-SRCREV_quicklogic = "b3a66fe6d04d87fd1533a5c8de51d0599fcd08d0"
+-SRCREV_rpi_pico = "191f5ba46fda49523cdaaef27583d1c875ba2c36"
+-SRCREV_silabs = "be39d4eebeddac6e18e9c0c3ba1b31ad1e82eaed"
+-SRCREV_st = "575de9d461aa6f430cf62c58a053675377e700f3"
+-SRCREV_stm32 = "300109f80730cb2477bfcc706a6602b9870336b3"
+-SRCREV_telink = "ffcfd6282aa213f1dc0848dbca6279b098f6b143"
+-SRCREV_ti = "1992a4c536554c4f409c36896eda6abdc414d277"
+-SRCREV_xtensa = "0e577021bb66e644afd067cd9f7c71ab11b62b3d"
+-SRCREV_libmetal = "f237c9d420a51cc43bc37d744e41191ad613f348"
+-SRCREV_littlefs = "33509ed9c3d369cdb9d909cd40c5eea8f64a902c"
+-SRCREV_loramac-node = "12019623bbad9eb54fe51066847a7cbd4b4eac57"
+-SRCREV_lvgl = "783c1f78c8e39751fe89d0883c8bce7336f55e94"
+-SRCREV_lz4 = "8e303c264fc21c2116dc612658003a22e933124d"
+-SRCREV_mbedtls = "3e3e58a92de76069730c63e0d524f40fea948a61"
+-SRCREV_mcuboot = "89936c338e46f43cb177a8b928cd80b90f3ace8f"
+-SRCREV_mipi-sys-t = "d9da086b11cda494d85f4d8a9829f505c2d5e380"
+-SRCREV_nanopb = "d148bd26718e4c10414f07a7eb1bd24c62e56c5d"
+-SRCREV_net-tools = "f49bd1354616fae4093bf36e5eaee43c51a55127"
+-SRCREV_nrf_hw_models = "b8cea37dbdc8fc58cc14b4e19fa850877a9da520"
+-SRCREV_open-amp = "cfd050ff38a9d028dc211690b2ec35971128e45e"
+-SRCREV_openthread = "b7aa7686d3f4e326bd25abc234b209159977c26d"
+-SRCREV_segger = "3a52ab222133193802d3c3b4d21730b9b1f1d2f6"
+-SRCREV_sof = "500d77e0ac84ac2c969e0d4b2142cca192e893bc"
+-SRCREV_tflite-micro = "9156d050927012da87079064db59d07f03b8baf6"
+-SRCREV_tinycbor = "40daca97b478989884bffb5226e9ab73ca54b8c4"
+-SRCREV_tinycrypt = "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
+-SRCREV_TraceRecorderSource = "e8ca3b6a83d19b2fc4738a0d9607190436e5e452"
+-SRCREV_trusted-firmware-m = "5d32c3e64b3d589548e881eeeeb37d84944c90af"
+-SRCREV_tf-m-tests = "52814181f0fde6d1422fac204d42cde30c62e40e"
+-SRCREV_psa-arch-tests = "0aab24602cbef30f6422e7ef1066a8473073e586"
+-SRCREV_zscilib = "12bfe3f0a9fcbfe3edab7eabc9678b6c62875d34"
+-
+-ZEPHYR_BRANCH = "v3.0-branch"
+-PV = "3.0.0+git${SRCPV}"
+diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.1.0.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.1.0.inc
+new file mode 100644
+index 0000000..c3e4e57
+--- /dev/null
++++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.1.0.inc
+@@ -0,0 +1,72 @@
++SRCREV_FORMAT = "default_cmsis"
++
++#
++# Generated with:
++#
++# #!/usr/bin/python3
++#
++# import yaml
++# import sys
++#
++# if __name__ == "__main__":
++#     with open(sys.argv[1], "r") as fd:
++#         data = yaml.safe_load(fd)
++#
++#         for project in data["manifest"]["projects"]:
++#             print("SRCREV_{} = \"{}\"".format(project["name"], project["revision"]))
++#
++
++SRCREV_default = "2ddd73feafd3316af2c547c34d6969bea637d5c6"
++SRCREV_canopennode = "53d3415c14d60f8f4bfca54bfbc5d5a667d7e724"
++SRCREV_chre = "0edfe2c2ec656afb910cfab8ed59a5ffd59b87c8"
++SRCREV_civetweb = "094aeb41bb93e9199d24d665ee43e9e05d6d7b1c"
++SRCREV_cmsis = "5f86244bad4ad5a590e084f0e72ba7a1416c2edf"
++SRCREV_edtt = "1ea61a390d2bfcf3b2ecdba8f8b0b98dfdffbd11"
++SRCREV_fatfs = "a30531af3a95a9a3ea7d771ea8a578ebfed45514"
++SRCREV_fff = "6ce5ba26486e93d5b7696a3e23f0585932c14b16"
++SRCREV_altera = "0d225ddd314379b32355a00fb669eacf911e750d"
++SRCREV_atmel = "78c5567c05b6b434dd7d98f49156319df4217bac"
++SRCREV_espressif = "df85671c5d0405c0747c2939c8dfe808b7e4cf38"
++SRCREV_gigadevice = "63a72ca90b7e0d7257211ddc5c79e8c0b940371b"
++SRCREV_infineon = "4af06965f57ba1e7d170e6a97d24c33785543a8c"
++SRCREV_microchip = "5d079f1683a00b801373bbbbf5d181d4e33b30d5"
++SRCREV_nordic = "a85bb3676d61d1ae202088e0d3fec556056b2c9e"
++SRCREV_nuvoton = "b4d31f33238713a568e23618845702fadd67386f"
++SRCREV_nxp = "2302a1e94f5bc00ce59db4e249b688ad2e959f58"
++SRCREV_openisa = "40d049f69c50b58ea20473bee14cf93f518bf262"
++SRCREV_quicklogic = "b3a66fe6d04d87fd1533a5c8de51d0599fcd08d0"
++SRCREV_rpi_pico = "191f5ba46fda49523cdaaef27583d1c875ba2c36"
++SRCREV_silabs = "be39d4eebeddac6e18e9c0c3ba1b31ad1e82eaed"
++SRCREV_st = "52a522ca4a8a9ec1e9bb5bb514e1ab6f102863fe"
++SRCREV_stm32 = "51b373cd3455b8c2b9babbf6ff41918116a442ac"
++SRCREV_telink = "ffcfd6282aa213f1dc0848dbca6279b098f6b143"
++SRCREV_ti = "905a5d4134899630071f9383aadaaf266e8f8cd2"
++SRCREV_xtensa = "0e577021bb66e644afd067cd9f7c71ab11b62b3d"
++SRCREV_libmetal = "850a3c3fd5bc655987021dc9106d8e8cd0f7e061"
++SRCREV_liblc3codec = "3951cf1b71ff3be086c9b9b595e473e12301337c"
++SRCREV_littlefs = "652f2c5646e79b881e6f3099686ad3b7af9e216c"
++SRCREV_loramac-node = "12019623bbad9eb54fe51066847a7cbd4b4eac57"
++SRCREV_lvgl = "df717ac87a9fd80246cc8df24554475e59bda21f"
++SRCREV_lz4 = "8e303c264fc21c2116dc612658003a22e933124d"
++SRCREV_mbedtls = "7fed49c9b9f983ad6416986661ef637459723bcb"
++SRCREV_mcuboot = "e58ea98aec6e5539c5f872a98059e461d0155bbb"
++SRCREV_mipi-sys-t = "a5163c1800a5243f8b05d84c942da008df4cb666"
++SRCREV_nanopb = "d148bd26718e4c10414f07a7eb1bd24c62e56c5d"
++SRCREV_net-tools = "f49bd1354616fae4093bf36e5eaee43c51a55127"
++SRCREV_nrf_hw_models = "b8cea37dbdc8fc58cc14b4e19fa850877a9da520"
++SRCREV_open-amp = "8d53544871e1f300c478224faca6be8384ab0d04"
++SRCREV_openthread = "e2a765599aa0379d0f72f0149a9cbafec070c12d"
++SRCREV_segger = "3a52ab222133193802d3c3b4d21730b9b1f1d2f6"
++SRCREV_sof = "2efc3ea41c0074c6dab5f376fafaa26f52c25c75"
++SRCREV_tflite-micro = "9156d050927012da87079064db59d07f03b8baf6"
++SRCREV_tinycbor = "9e1f34bc08123aaad7666d3652aaa839e8178b3b"
++SRCREV_tinycrypt = "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
++SRCREV_TraceRecorderSource = "e8ca3b6a83d19b2fc4738a0d9607190436e5e452"
++SRCREV_trusted-firmware-m = "7c53a6e76130a85303f83b15d868a92fdcd5f5be"
++SRCREV_tf-m-tests = "c99a86b295c4887520da9d8402566d7f225c974e"
++SRCREV_psa-arch-tests = "a81f9da287569f169d60026916952641b233faa8"
++SRCREV_zcbor = "882c489a7d9fdfff31d27666914a78a9eb6976d7"
++SRCREV_zscilib = "fc979a8dcb74169c69b02835927bff8f070d6325"
++
++ZEPHYR_BRANCH = "v3.1-branch"
++PV = "3.1.0+git${SRCPV}"
+diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+index bf9ceaf..0769017 100644
+--- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
++++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+@@ -19,7 +19,6 @@ SRC_URI = "\
+     git://github.com/zephyrproject-rtos/fatfs.git;protocol=https;nobranch=1;destsuffix=git/modules/fs/fatfs;name=fatfs \
+     git://github.com/zephyrproject-rtos/hal_altera.git;protocol=https;nobranch=1;destsuffix=git/modules/hal/altera;name=altera \
+     git://github.com/zephyrproject-rtos/hal_atmel.git;protocol=https;nobranch=1;destsuffix=git/modules/hal/atmel;name=atmel \
+-    git://github.com/zephyrproject-rtos/hal_cypress.git;protocol=https;nobranch=1;destsuffix=git/modules/hal/cypress;name=cypress \
+     git://github.com/zephyrproject-rtos/hal_espressif.git;protocol=https;nobranch=1;destsuffix=git/modules/hal/espressif;name=espressif \
+     git://github.com/zephyrproject-rtos/hal_infineon.git;protocol=https;nobranch=1;destsuffix=git/modules/hal/infineon;name=infineon \
+     git://github.com/zephyrproject-rtos/hal_microchip.git;protocol=https;nobranch=1;destsuffix=git/modules/hal/microchip;name=microchip \
+@@ -53,10 +52,9 @@ SRC_URI = "\
+     git://github.com/zephyrproject-rtos/lz4.git;protocol=https;nobranch=1;destsuffix=git/modules/lib/lz4;name=lz4 \
+     git://github.com/zephyrproject-rtos/tflite-micro.git;protocol=https;nobranch=1;destsuffix=git/modules/lib/tflite-micro;name=tflite-micro \
+     file://0001-cmake-add-yocto-toolchain.patch \
+-    file://0001-x86-fix-efi-binary-generation-issue-in-cross-compila.patch \
+ "
+ S = "${WORKDIR}/git"
+ 
+ # Default to a stable version
+-PREFERRED_VERSION_zephyr-kernel ??= "3.0.0"
++PREFERRED_VERSION_zephyr-kernel ??= "3.1.0"
+ include zephyr-kernel-src-${PREFERRED_VERSION_zephyr-kernel}.inc
+-- 
+2.34.1
 
 
