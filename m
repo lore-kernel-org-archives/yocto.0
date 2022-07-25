@@ -1,99 +1,76 @@
-Return-Path: <me.ramprakash@gmail.com>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DEBB3C43334
-	for <webhook@archiver.kernel.org>; Mon, 25 Jul 2022 19:44:38 +0000 (UTC)
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com
- [209.85.216.45])
- by mx.groups.io with SMTP id smtpd.web11.335.1658778273855577745
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 74B27C43334
+	for <webhook@archiver.kernel.org>; Mon, 25 Jul 2022 21:46:49 +0000 (UTC)
+Received: from a27-31.smtp-out.us-west-2.amazonses.com
+ (a27-31.smtp-out.us-west-2.amazonses.com [54.240.27.31])
+ by mx.groups.io with SMTP id smtpd.web09.1832.1658785601197377279
  for <yocto@lists.yoctoproject.org>;
- Mon, 25 Jul 2022 12:44:34 -0700
+ Mon, 25 Jul 2022 14:46:41 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=FO1UuHj6;
- spf=pass (domain: gmail.com, ip: 209.85.216.45,
- mailfrom: me.ramprakash@gmail.com)
-Received: by mail-pj1-f45.google.com with SMTP id
- g5-20020a17090a290500b001f2ea602563so464495pjd.4
-        for <yocto@lists.yoctoproject.org>;
- Mon, 25 Jul 2022 12:44:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=aYRgCWp3bs6e8bEHZm/TezakGF7xbATXsNSZbm3tFRw=;
-        b=FO1UuHj63mxsZUk2f5FJztCpogOthDvvh0CfKf0KDr4XppLyGtHq0ZtpWsiNfEU8m0
-         DyrKAUrX8q9qYkMjNR/1IxDX/bDsgESGuwe5rF/IC3jTgQMyVfuINuQa+/CGgru9kbkq
-         3T7ZjtmS/O/udzWJTSqjmRU4wtpUSHIrp2IE6CP7QgCegpHuOQfNSFxWySkIjFmQKU4o
-         Sl6ezLhOFz/NXszs2nTyzwMScaLtxKEPDC0sPWT1Q8OfQtdTRqfZ2IWh0BePEXdbWpUS
-         SK92W5NJ4nk8puxkWmtF18BWy3LTu7/1bsTy0BuTJ53Im3y8arwlZFJ4C5rdMbIbnyqd
-         lqaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=aYRgCWp3bs6e8bEHZm/TezakGF7xbATXsNSZbm3tFRw=;
-        b=RfDUcqFt4ewX+xHKbejVCR5Bk48mNDB0I4ygHPwM8pG3cLd408J8tRR6Z6v5Y1ut6i
-         lDG2ylgFSSPTUr9adseYkRexqFFMB3Z60IeX+HhLuGoOAMBLxmjvS8YdwZbrepFlqN/7
-         DNZBTxK0MjO4Z+HuVV50C3/J+6rIGaVQtpmVLph1ObbJoo6CKmHr9nMDKHgV4sHi13sw
-         SDpfRfTsGcCek8+64evC7B6+O2Tb3szQQedHRdvS3W6zTmz4TE9Uyhn/37wa+AZq7JMb
-         DPO8F7cK8l+/eZcuXElDZ60Txbpm4J8Os+pKdq56+f+ahWxR61PDdjar55QkCGwyuuWo
-         FUXQ==
-X-Gm-Message-State: AJIora/DW96cmaggEuKBzmMQME5oOYSTmZxuTYbMKw/VgOgCyNyr4PfK
-	AmhQb1mYPgDU/2xq1eio3CE3Efs/ZQ6HaeO0jmaLtbvs/4UKyw==
-X-Google-Smtp-Source: 
- AGRyM1uHEVL4w9ZFW+iqW5emGSHF5+LwT/YRUJzuVmD66TCczthOqSnbnIo5H2cCpgCmJMeL5p3aqucYODHm3QLPP5o=
-X-Received: by 2002:a17:90a:4809:b0:1f0:59d7:7ee2 with SMTP id
- a9-20020a17090a480900b001f059d77ee2mr15960475pjh.240.1658778272774; Mon, 25
- Jul 2022 12:44:32 -0700 (PDT)
-MIME-Version: 1.0
-From: ram prakash <me.ramprakash@gmail.com>
-Date: Mon, 25 Jul 2022 12:44:21 -0700
-Message-ID: 
- <CACGj75_sBbiUzSOPaT-VJAajGs0mw=Rdr5c9P6M-2Hpy5ARsjQ@mail.gmail.com>
-Subject: Issue with the setting up internal repo for packages
+ dkim=pass header.i=@yoctoproject.org
+ header.s=j46ser6a2yusdzubpv7m7ewqgesde2ie header.b=OX6S2Uic;
+ spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.31,
+ mailfrom: 0101018237539254-f6b986ca-1380-43de-bd08-061d94334983-000000@us-west-2.amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=j46ser6a2yusdzubpv7m7ewqgesde2ie; d=yoctoproject.org;
+	t=1658785600; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=msSCvVuUIka5eUaYL6zAvTLmkDx9OGcxqgaHLrTLIgY=;
+	b=OX6S2UicFAa455SK+/5BwayVJWcFC5h/5NfRiW3caExLEx0d9peR5nSowProa4GB
+	V2J+e3N0Ve7fbHDOqvPE7KLXDwZYVEeW1ZHVGirsku23h1SR3o3o+g7Uaef7OY+W5WS
+	i1CVGxGrHy9HDQ1qV0zJfRYdU+hpCpTJ3jd/epSM=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx; d=amazonses.com; t=1658785600;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=msSCvVuUIka5eUaYL6zAvTLmkDx9OGcxqgaHLrTLIgY=;
+	b=TynVkkczanw58MU9sAzs8KY9FNp+ImWD1FzupHN5qFnKfZpLy9lDcjwJDyXED8Y3
+	QZ2jB0MuEYw6CQP4yHeRRjemmO68rs8wFC3VavONKIszYQ8sCCJrXRChA70hhSB1QbT
+	lHQ1Bo995WQXXnJe8sKO7/L02XGBf1Urniv3CXL8=
 To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000b5c39405e4a6690a"
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-3.1.18.rc1)
+Message-ID: 
+ <0101018237539254-f6b986ca-1380-43de-bd08-061d94334983-000000@us-west-2.amazonses.com>
+Date: Mon, 25 Jul 2022 21:46:40 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: 
+ 1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2022.07.25-54.240.27.31
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 25 Jul 2022 19:44:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57637
+ <yocto@lists.yoctoproject.org>; Mon, 25 Jul 2022 21:46:49 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57638
 
---000000000000b5c39405e4a6690a
-Content-Type: text/plain; charset="UTF-8"
 
-Hi All,
+A build flagged for QA (yocto-3.1.18.rc1) was completed on the autobuilder and is available at:
 
-I'm trying to get my yocto build system to get the necessary packages for
-building from an internal artifactory repository instead of fetching from
-online every time.
 
-I have set up the SOURCE_MIRROR_URL="https://<artifactory>;  and got my
-credentials setup under ~/.netrc. But when I run the `bitbake -c fetch foo`
-for any packages I'm not able to fetch the packages from the artifactory.
-The fetcher fails to parse the credentials and pass it to the artifactory
-location.
+    https://autobuilder.yocto.io/pub/releases/yocto-3.1.18.rc1
 
-Can someone help me with how to parse the netrc file of any yocto build
-system?
 
-Thanks and regards.
-Ramprakash
+Build hash information: 
 
---000000000000b5c39405e4a6690a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+bitbake: 7fc4cffebf5dcc1d050416c0b7f7d58c765c1d69
+meta-agl: 6c9fa75459cf86576c47411fc239e0d7896d483c
+meta-arm: 5c09684863be8e803e3e987a5ce4940721c3f39a
+meta-aws: dd742bafa5eff33ac930e97dde851f41cbde85e8
+meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
+meta-intel: 1c1a8f769ef93d96ae488f40abbcd11946403169
+meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
+meta-openembedded: 52cee67833d1975a5bd52e4556c4cd312425a017
+meta-virtualization: a63a54df3170fed387f810f23cdc2f483ad587df
+oecore: 3f40d5f095ceb099b604750db96058df00fcd49e
+poky: d695bd0d3dc66f2111a25c6922f617be2d991071
 
-<div dir=3D"ltr">Hi All,<div><br></div><div>I&#39;m trying to get my yocto =
-build system to=C2=A0get the necessary packages for building from an intern=
-al artifactory repository instead of fetching from online every time.=C2=A0=
-</div><div><br></div><div>I have set up the SOURCE_MIRROR_URL=3D&quot;https=
-://&lt;artifactory&gt;;=C2=A0 and got my credentials setup under ~/.netrc. =
-But when I run the `bitbake -c fetch foo` for any packages I&#39;m not able=
- to fetch the packages from the artifactory. The fetcher fails to parse the=
- credentials and pass it to the artifactory location.=C2=A0</div><div><br><=
-/div><div>Can someone help me with how to parse the netrc file of any yocto=
- build system?</div><div><br></div><div>Thanks=C2=A0and regards.</div><div>=
-Ramprakash</div></div>
 
---000000000000b5c39405e4a6690a--
+
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+ 
 
