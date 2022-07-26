@@ -1,659 +1,378 @@
-Return-Path: <ncaidin@linuxfoundation.org>
+Return-Path: <jdmason@kudzu.us>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A503EC43334
-	for <webhook@archiver.kernel.org>; Tue, 26 Jul 2022 13:17:43 +0000 (UTC)
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com
- [209.85.219.173])
- by mx.groups.io with SMTP id smtpd.web11.6372.1658841460790296930
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0D6DAC00140
+	for <webhook@archiver.kernel.org>; Tue, 26 Jul 2022 14:45:24 +0000 (UTC)
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com
+ [209.85.160.170])
+ by mx.groups.io with SMTP id smtpd.web12.7548.1658846719689434560
  for <yocto@lists.yoctoproject.org>;
- Tue, 26 Jul 2022 06:17:41 -0700
+ Tue, 26 Jul 2022 07:45:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=RvmtDE+W;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.219.173,
- mailfrom: ncaidin@linuxfoundation.org)
-Received: by mail-yb1-f173.google.com with SMTP id 7so25325599ybw.0
+ dkim=pass header.i=@kudzu-us.20210112.gappssmtp.com header.s=20210112
+ header.b=mWLa28qt;
+ spf=none, err=permanent DNS error (domain: kudzu.us, ip: 209.85.160.170,
+ mailfrom: jdmason@kudzu.us)
+Received: by mail-qt1-f170.google.com with SMTP id l14so10566095qtv.4
         for <yocto@lists.yoctoproject.org>;
- Tue, 26 Jul 2022 06:17:40 -0700 (PDT)
+ Tue, 26 Jul 2022 07:45:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=ur08Bdg4OfhrnZY/M+3/c0j7Qd/5oZiktYb1PAL4f00=;
-        b=RvmtDE+WUVc/vFK11cjG3mkCCONpsTpoQPbmq+px17DxiQdMVA/vw7M1Va66Zpp7Ck
-         TUypl/hdOrXDwLGaKAgNWgdqcl+3M+4mAL2uIDDs5Fj9sfzFBj8SZuM8MgOKV7cb2DaI
-         Xsgfr9+fZwbxDx7j2JiMxPyzFhUgyMVy+shBQ=
+        d=kudzu-us.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=5GQGAj/KtGsunI6Y6Wox/gujOCMLoKzXie9yDIM8DGI=;
+        b=mWLa28qtXmV5Mpv/CcDn54+mkMN5chKZTweW9Nut75zkQEiZoDIfI+kQCrrrNWcRNY
+         BeS3q1R94aEOZUXV287wC6bjHkiOIHrPu0tVPB5cWQ3k/7jNNtpyVOwf3puGOvuwpGKs
+         PMapCt1DvrOpZiUOEBHDvW4YVR+bE6D6044NU3y3TkgiY1TvR3MPnbW4ASvDcsgxGDot
+         k+OeM7OXU6xNFIURupgliz3pxksTDaMqz63IEvcB/O0evwrIdk7rmlI6bjRRa4t/dAZ4
+         HbZlss8Lv6EbkcOfP4qCdcg09HOWVCjW8ebiFGRjf7GDiWIbsGRRn21sbnOVqqLnfNDF
+         Lzew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=ur08Bdg4OfhrnZY/M+3/c0j7Qd/5oZiktYb1PAL4f00=;
-        b=kJCtlz8U5/eESItKB3iwMvvkteSOEkrL3KvFW6ers2M+yq+1l9stbTB5n6bUjavOuI
-         1s02rnQp2PERBtcKijd6cdjeN+b+GUWZD8UxqUrM8lBTJya1VUO2Cx+RcwHPB84kKDYc
-         jv3gRcOywOuV5znLBQkZTkmpA0GAwMu6WERugSUCf80THDUXcmzZbw1iqM8K2LCJjNGn
-         FoMIlD+rcVeRv9WlcTYMbKAxv6SeiAP+UqjK9nGzE//HrbWcIFFyB+pMAWzVRTJ5U5kV
-         NoUna3zoDQyMXa323wpeVooKV1yd7gGN/AwSfoxMKqq1G+rVhZlfKTneSe6UPhpW7XIr
-         ljrw==
-X-Gm-Message-State: AJIora8wjSqYLzRZI9YFI4SxL7PXN/4Z7ovuXVXSY89DSuqgtqlxgK/B
-	omO12Jj7UCEHe3y83NjV7l2aeYMAzX4G/2KoWDSv9J/paY1Siw==
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=5GQGAj/KtGsunI6Y6Wox/gujOCMLoKzXie9yDIM8DGI=;
+        b=kCKckLmkzuqNlL0B+3ADaNcV89tBSYBVbLZhxglyqdgw1VVs7iswJG/FDGKvCTaAjo
+         Q31HCZc55+/oJzEVoWTROEwy17PK7IK+QNf/S9KbPvA5eGDdSs/8zkNnHvPC4vGiD8Rx
+         Dsyu/D/AuFvmUW3/i/zFEVf1mAyANXwR7A3GViItHHpkZspMUh0nvY6g8/ZukIQX6yLs
+         NE8ZVYazSOplVeZPODHVE9yrOzbfa5bcrFFZRlsNEYJSC9eUcc3Ah5ePjc685Nn3J430
+         jk9x8ctgLqYwpNFU+0B6b3xSnnY4SBaB6DaAqjTwqCc5DlFcN2RivZe+T6ZUsshr4eH9
+         OysQ==
+X-Gm-Message-State: AJIora8B89pH7qhR7UQiOTJymdtTpTsHbaHGwK/ffZi9fl/f6NXhRG2s
+	VdZt2K35T3UVRf2yVQa61I1vSA==
 X-Google-Smtp-Source: 
- AGRyM1s5EBZpGwJ18qhgMr1JeHH/hyvmSqUbLk/Rbp76CZgSE5ukRzxdA3sxpv/kUcxSBFl3QA0+AdyvzgMn3GorS6Q=
-X-Received: by 2002:a25:780e:0:b0:671:3386:8129 with SMTP id
- t14-20020a25780e000000b0067133868129mr7770187ybc.404.1658841459696; Tue, 26
- Jul 2022 06:17:39 -0700 (PDT)
+ AGRyM1so4m4aKf4QqOpZlXrde+XoQeemkxdI0dkFIDu7gweYzYqso58IobRuy7wzJe8dLnPIsll/hg==
+X-Received: by 2002:a05:622a:1909:b0:31e:d1b1:5e1d with SMTP id
+ w9-20020a05622a190900b0031ed1b15e1dmr14522188qtc.144.1658846718602;
+        Tue, 26 Jul 2022 07:45:18 -0700 (PDT)
+Received: from kudzu.us ([2605:a601:a608:5600::59])
+        by smtp.gmail.com with ESMTPSA id
+ h4-20020a05620a400400b006b5652edb93sm12155862qko.48.2022.07.26.07.45.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Jul 2022 07:45:17 -0700 (PDT)
+Date: Tue, 26 Jul 2022 10:45:16 -0400
+From: Jon Mason <jdmason@kudzu.us>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Naveen Saini <naveen.kumar.saini@intel.com>,
+	=?iso-8859-1?Q?Eil=EDs_N=ED_Fhlannag=E1in?= <elizabeth.flanagan@huawei.com>,
+	yocto@lists.yoctoproject.org,
+	openembedded-devel@lists.openembedded.org,
+	Bartosz Golaszewski <bartosz.golaszewski@huawei.com>
+Subject: Re: [meta-zephyr][PATCH v2] zephyr-kernel-src: bump the v3 version
+ to v3.1.0
+Message-ID: <Yt/9/P0knXvXR00S@kudzu.us>
+References: <20220726124510.74315-1-brgl@bgdev.pl>
 MIME-Version: 1.0
-From: Neal Caidin <ncaidin@linuxfoundation.org>
-Date: Tue, 26 Jul 2022 09:17:21 -0400
-Message-ID: 
- <CAODMxsLe2atbETFV_kZAtON5JAcaPgCS-jRrgb_gg0sF-pZtGQ@mail.gmail.com>
-Subject: Yocto Project Status 26 July 2022 (WW30)
-To: yocto@lists.yoctoproject.org, openembedded-core@lists.openembedded.org
-Content-Type: multipart/alternative; boundary="000000000000f1bd9e05e4b51f12"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220726124510.74315-1-brgl@bgdev.pl>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 26 Jul 2022 13:17:43 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57642
-
---000000000000f1bd9e05e4b51f12
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Current Dev Position: YP 4.1 M3
-
-Next Deadline: 22nd August 2022 YP 4.1 M3 Build
-
-Next Team Meetings:
-
-   -
-
-   Bug Triage meeting Thursday July 28th 7:30 am PDT (
-   https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09)
-   -
-
-   Weekly Project Engineering Sync Tuesday July 26th  at 8 am PDT (
-   https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT09)
-   <https://zoom.us/j/990892712>
-   -
-
-   Twitch -  See https://www.twitch.tv/theyoctojester
-
-
-Key Status/Updates:
-
-   -
-
-   YP 4.1 M2 is due to be released with one known issue
-   -
-
-   YP 3.1.18 is entering QA
-   -
-
-   There were further issues with debug file mapping discovered in master.
-   Unfortunately to fix this we=E2=80=99d need to move away from the relati=
-ve path
-   calls to configure in autotools and this causes a ton of new buildpath
-   warnings. There doesn=E2=80=99t seem much interest in fixing these kinds=
- of issues
-   and to move things forward help would be needed here.
-   -
-
-   There is a patch to rework the rust toolchain support into something
-   which has tests and working cross build support. Whilst this actually
-   builds and tests on the autobuilder properly (an improvement on the
-   existing code), help would be needed in chasing down the remaining
-   failures/warnings and any regressions from the patch.
-   -
-
-   We are managing to stay roughly on track with upstream updates and CVE
-   fixing.
-   -
-
-   Help is very much welcome in trying to resolve our autobuilder
-   intermittent issues. You can see the list of failures we=E2=80=99re cont=
-inuing to
-   see by searching for the =E2=80=9CAB-INT=E2=80=9D tag in bugzilla:
-   https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=3DAB-INT
-
-
-Ways to contribute:
-
-   -
-
-   There are bugs identified as possible for newcomers to the project:
-   https://wiki.yoctoproject.org/wiki/Newcomers
-   -
-
-   There are bugs that are currently unassigned for YP 4.1. See:
-   https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2B_4.1_Unassigned_E=
-nhancements.2FBugs
-   -
-
-   We=E2=80=99d welcome new maintainers for recipes in OE-Core. Please see =
-the list
-   at:
-   http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/conf/distro/include/=
-maintainers.inc
-   and discuss with the existing maintainer, or ask on the OE-Core mailing
-   list. We will likely move a chunk of these to =E2=80=9CUnassigned=E2=80=
-=9D soon to help
-   facilitate this.
-   -
-
-   Help us resolve CVE issues: CVE metrics
-   <https://docs.google.com/spreadsheets/d/e/2PACX-1vRgNISmH0Ditf0bRtSezeR2=
-XsgKIiSFJKF6KJUHpnzocNGzvKZbuSDKfmV3n64BFXDRqElBSJnhHtG4/pubchart?oid=3D199=
-3375488&format=3Dinteractive>
-
-
-
-YP 4.1 Milestone Dates:
-
-   -
-
-   YP 4.1 M3 build date 2022/08/22
-   -
-
-   YP 4.1 M3 Release date 2022/09/02
-   -
-
-   YP 4.1 M4 build date 2022/10/03
-   -
-
-   YP 4.1 M4 Release date 2022/10/28
-
-
-Upcoming dot releases:
-
-   -
-
-   YP 3.1.18 build date 2022/07/27
-   -
-
-   YP 3.1.18 Release date 2022/08/05
-   -
-
-   YP 4.0.3 build date 2022/08/08
-   -
-
-   YP 4.0.3 Release date 2022/08/19
-   -
-
-   YP 3.1.19 build date 2022/08/29
-   -
-
-   YP 3.1.19 Release date 2022/09/09
-   -
-
-   YP 4.0.4 build date 2022/09/19
-   -
-
-   YP 4.0.4 Release date 2022/09/30
-   -
-
-   YP 3.1.20 build date 2022/10/10
-   -
-
-   YP 3.1.20 Release date 2022/10/21
-   -
-
-   YP 4.0.5 build date 2022/10/31
-   -
-
-   YP 4.0.5 Release date 2022/11/11
-
-
-Tracking Metrics:
-
-   -
-
-   WDD 2399 (last week 2414) (
-   https://wiki.yoctoproject.org/charts/combo.html)
-   -
-
-   OE-Core/Poky Patch Metrics
-   -
-
-      Total patches found: 1155 (last week 1155)
-      -
-
-      Patches in the Pending State: 326 (28%) [last week 327 (28%)]
-      -
-
-   https://autobuilder.yocto.io/pub/non-release/patchmetrics/
-
-
-The Yocto Project=E2=80=99s technical governance is through its Technical S=
-teering
-Committee, more information is available at:
-
-https://wiki.yoctoproject.org/wiki/TSC
-
-The Status reports are now stored on the wiki at:
-https://wiki.yoctoproject.org/wiki/Weekly_Status
-
-[If anyone has suggestions for other information you=E2=80=99d like to see =
-on this
-weekly status update, let us know!]
-
-
-*Neal Caidin*
-Program Manager, Program Management & Operations
-The Linux Foundation
-+1 (919) 238-9104 (w/h)
-+1 (919) 949-1861 (m)
-ncaidin@linuxfoundation.org
-
---000000000000f1bd9e05e4b51f12
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><span id=3D"gmail-docs-internal-guid-7f1bfbcd-7fff-f9d0-df=
-60-7be6fa88d90c"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;ma=
-rgin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(=
-0,0,0);background-color:transparent;font-variant-numeric:normal;font-varian=
-t-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">Current D=
-ev Position: YP 4.1 M3</span></p><p dir=3D"ltr" style=3D"line-height:1.38;m=
-argin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:=
-Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:no=
-rmal;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre=
--wrap">Next Deadline: 22nd August 2022 YP 4.1 M3 Build</span></p><br><p dir=
-=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span =
-style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color=
-:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;ver=
-tical-align:baseline;white-space:pre-wrap">Next Team Meetings:</span></p><u=
-l style=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-=
-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);backgroun=
-d-color:transparent;font-variant-numeric:normal;font-variant-east-asian:nor=
-mal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-h=
-eight:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span st=
-yle=3D"font-size:11pt;background-color:transparent;font-variant-numeric:nor=
-mal;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre-=
-wrap">Bug Triage meeting Thursday July 28th 7:30 am PDT (</span><a href=3D"=
-https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09" style=
-=3D"text-decoration-line:none"><span style=3D"font-size:11pt;background-col=
-or:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;t=
-ext-decoration-line:underline;vertical-align:baseline;white-space:pre-wrap"=
->https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09</span><=
-/a><span style=3D"font-size:11pt;background-color:transparent;font-variant-=
-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;white=
--space:pre-wrap">)</span></p></li><li dir=3D"ltr" style=3D"list-style-type:=
-disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:tra=
-nsparent;font-variant-numeric:normal;font-variant-east-asian:normal;vertica=
-l-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;=
-margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font=
--size:11pt;background-color:transparent;font-variant-numeric:normal;font-va=
-riant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">Weekl=
-y Project Engineering Sync Tuesday July 26th=C2=A0 at 8 am PDT (</span><a h=
-ref=3D"https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT09" =
-style=3D"text-decoration-line:none"><span style=3D"font-size:11pt;backgroun=
-d-color:transparent;font-variant-numeric:normal;font-variant-east-asian:nor=
-mal;text-decoration-line:underline;vertical-align:baseline;white-space:pre-=
-wrap">https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT09</s=
-pan></a><a href=3D"https://zoom.us/j/990892712" style=3D"text-decoration-li=
-ne:none"><span style=3D"font-size:11pt;background-color:transparent;font-va=
-riant-numeric:normal;font-variant-east-asian:normal;text-decoration-line:un=
-derline;vertical-align:baseline;white-space:pre-wrap">)</span></a></p></li>=
-<li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Ar=
-ial;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:norm=
-al;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre">=
-<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" =
-role=3D"presentation"><span style=3D"font-size:11pt;background-color:transp=
-arent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-a=
-lign:baseline;white-space:pre-wrap">Twitch -=C2=A0 See </span><a href=3D"ht=
-tps://www.twitch.tv/theyoctojester" style=3D"text-decoration-line:none"><sp=
-an style=3D"font-size:11pt;background-color:transparent;font-variant-numeri=
-c:normal;font-variant-east-asian:normal;text-decoration-line:underline;vert=
-ical-align:baseline;white-space:pre-wrap">https://www.twitch.tv/theyoctojes=
-ter</span></a></p></li></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;ma=
-rgin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:A=
-rial;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:nor=
-mal;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre-=
-wrap">Key Status/Updates:</span></p><ul style=3D"margin-top:0px;margin-bott=
-om:0px"><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-f=
-amily:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-nume=
-ric:normal;font-variant-east-asian:normal;vertical-align:baseline;white-spa=
-ce:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bott=
-om:0pt" role=3D"presentation"><span style=3D"font-size:11pt;background-colo=
-r:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;ve=
-rtical-align:baseline;white-space:pre-wrap">YP 4.1 M2 is due to be released=
- with one known issue</span></p></li><li dir=3D"ltr" style=3D"list-style-ty=
-pe:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:=
-transparent;font-variant-numeric:normal;font-variant-east-asian:normal;vert=
-ical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.=
-38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"f=
-ont-size:11pt;background-color:transparent;font-variant-numeric:normal;font=
--variant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">YP=
- 3.1.18 is entering QA</span></p></li><li dir=3D"ltr" style=3D"list-style-t=
-ype:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color=
-:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;ver=
-tical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1=
-.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"=
-font-size:11pt;background-color:transparent;font-variant-numeric:normal;fon=
-t-variant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">T=
-here were further issues with debug file mapping discovered in master. Unfo=
-rtunately to fix this we=E2=80=99d need to move away from the relative path=
- calls to configure in autotools and this causes a ton of new buildpath war=
-nings. There doesn=E2=80=99t seem much interest in fixing these kinds of is=
-sues and to move things forward help would be needed here.</span></p></li><=
-li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Ari=
-al;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:norma=
-l;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre"><=
-p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" r=
-ole=3D"presentation"><span style=3D"font-size:11pt;background-color:transpa=
-rent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-al=
-ign:baseline;white-space:pre-wrap">There is a patch to rework the rust tool=
-chain support into something which has tests and working cross build suppor=
-t. Whilst this actually builds and tests on the autobuilder properly (an im=
-provement on the existing code), help would be needed in chasing down the r=
-emaining failures/warnings and any regressions from the patch.</span></p></=
-li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family=
-:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:n=
-ormal;font-variant-east-asian:normal;vertical-align:baseline;white-space:pr=
-e"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0p=
-t" role=3D"presentation"><span style=3D"font-size:11pt;background-color:tra=
-nsparent;font-variant-numeric:normal;font-variant-east-asian:normal;vertica=
-l-align:baseline;white-space:pre-wrap">We are managing to stay roughly on t=
-rack with upstream updates and CVE fixing.</span></p></li><li dir=3D"ltr" s=
-tyle=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0=
-,0);background-color:transparent;font-variant-numeric:normal;font-variant-e=
-ast-asian:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" st=
-yle=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentat=
-ion"><span style=3D"font-size:11pt;background-color:transparent;font-varian=
-t-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;whi=
-te-space:pre-wrap">Help is very much welcome in trying to resolve our autob=
-uilder intermittent issues. You can see the list of failures we=E2=80=99re =
-continuing to see by searching for the =E2=80=9CAB-INT=E2=80=9D tag in bugz=
-illa: </span><a href=3D"https://bugzilla.yoctoproject.org/buglist.cgi?quick=
-search=3DAB-INT" style=3D"text-decoration-line:none"><span style=3D"font-si=
-ze:11pt;background-color:transparent;font-variant-numeric:normal;font-varia=
-nt-east-asian:normal;text-decoration-line:underline;vertical-align:baseline=
-;white-space:pre-wrap">https://bugzilla.yoctoproject.org/buglist.cgi?quicks=
-earch=3DAB-INT</span></a></p></li></ul><br><p dir=3D"ltr" style=3D"line-hei=
-ght:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;fo=
-nt-family:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-=
-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;white=
--space:pre-wrap">Ways to contribute:</span></p><ul style=3D"margin-top:0px;=
-margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:=
-11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-v=
-ariant-numeric:normal;font-variant-east-asian:normal;vertical-align:baselin=
-e;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;=
-margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;back=
-ground-color:transparent;font-variant-numeric:normal;font-variant-east-asia=
-n:normal;vertical-align:baseline;white-space:pre-wrap">There are bugs ident=
-ified as possible for newcomers to the project: </span><a href=3D"https://w=
-iki.yoctoproject.org/wiki/Newcomers" style=3D"text-decoration-line:none"><s=
-pan style=3D"font-size:11pt;background-color:transparent;font-variant-numer=
-ic:normal;font-variant-east-asian:normal;text-decoration-line:underline;ver=
-tical-align:baseline;white-space:pre-wrap">https://wiki.yoctoproject.org/wi=
-ki/Newcomers</span></a></p></li><li dir=3D"ltr" style=3D"list-style-type:di=
-sc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:trans=
-parent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-=
-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;ma=
-rgin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-s=
-ize:11pt;background-color:transparent;font-variant-numeric:normal;font-vari=
-ant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">There a=
-re bugs that are currently unassigned for YP 4.1. See: </span><a href=3D"ht=
-tps://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2B_4.1_Unassigned_Enhanc=
-ements.2FBugs" style=3D"text-decoration-line:none"><span style=3D"font-size=
-:11pt;background-color:transparent;font-variant-numeric:normal;font-variant=
--east-asian:normal;text-decoration-line:underline;vertical-align:baseline;w=
-hite-space:pre-wrap">https://wiki.yoctoproject.org/wiki/Bug_Triage#Medium.2=
-B_4.1_Unassigned_Enhancements.2FBugs</span></a></p></li><li dir=3D"ltr" sty=
-le=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0=
-);background-color:transparent;font-variant-numeric:normal;font-variant-eas=
-t-asian:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" styl=
-e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentatio=
-n"><span style=3D"font-size:11pt;background-color:transparent;font-variant-=
-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;white=
--space:pre-wrap">We=E2=80=99d welcome new maintainers for recipes in OE-Cor=
-e. Please see the list at: </span><a href=3D"http://git.yoctoproject.org/cg=
-it.cgi/poky/tree/meta/conf/distro/include/maintainers.inc" style=3D"text-de=
-coration-line:none"><span style=3D"font-size:11pt;background-color:transpar=
-ent;font-variant-numeric:normal;font-variant-east-asian:normal;text-decorat=
-ion-line:underline;vertical-align:baseline;white-space:pre-wrap">http://git=
-.yoctoproject.org/cgit.cgi/poky/tree/meta/conf/distro/include/maintainers.i=
-nc</span></a><span style=3D"font-size:11pt;background-color:transparent;fon=
-t-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:base=
-line;white-space:pre-wrap"> and discuss with the existing maintainer, or as=
-k on the OE-Core mailing list. We will likely move a chunk of these to =E2=
-=80=9CUnassigned=E2=80=9D soon to help facilitate this.</span></p></li><li =
-dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;=
-color:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;f=
-ont-variant-east-asian:normal;vertical-align:baseline;white-space:pre"><p d=
-ir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=
-=3D"presentation"><span style=3D"font-size:11pt;background-color:transparen=
-t;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-align=
-:baseline;white-space:pre-wrap">Help us resolve CVE issues: </span><a href=
-=3D"https://docs.google.com/spreadsheets/d/e/2PACX-1vRgNISmH0Ditf0bRtSezeR2=
-XsgKIiSFJKF6KJUHpnzocNGzvKZbuSDKfmV3n64BFXDRqElBSJnhHtG4/pubchart?oid=3D199=
-3375488&amp;format=3Dinteractive" style=3D"text-decoration-line:none"><span=
- style=3D"font-size:11pt;background-color:transparent;font-variant-numeric:=
-normal;font-variant-east-asian:normal;text-decoration-line:underline;vertic=
-al-align:baseline;white-space:pre-wrap">CVE metrics</span></a><span style=
-=3D"font-size:11pt;background-color:transparent;font-variant-numeric:normal=
-;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre-wra=
-p">=C2=A0</span></p></li></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;=
-margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family=
-:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:n=
-ormal;font-variant-east-asian:normal;vertical-align:baseline;white-space:pr=
-e-wrap">YP 4.1 Milestone Dates:</span></p><ul style=3D"margin-top:0px;margi=
-n-bottom:0px"><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;=
-font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-varian=
-t-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;whi=
-te-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margi=
-n-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;backgroun=
-d-color:transparent;font-variant-numeric:normal;font-variant-east-asian:nor=
-mal;vertical-align:baseline;white-space:pre-wrap">YP 4.1 M3 build date 2022=
-/08/22</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-si=
-ze:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;fon=
-t-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:base=
-line;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0=
-pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;b=
-ackground-color:transparent;font-variant-numeric:normal;font-variant-east-a=
-sian:normal;vertical-align:baseline;white-space:pre-wrap">YP 4.1 M3 Release=
- date 2022/09/02</span></p></li><li dir=3D"ltr" style=3D"list-style-type:di=
-sc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:trans=
-parent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-=
-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;ma=
-rgin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-s=
-ize:11pt;background-color:transparent;font-variant-numeric:normal;font-vari=
-ant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">YP 4.1 =
-M4 build date 2022/10/03</span></p></li><li dir=3D"ltr" style=3D"list-style=
--type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-col=
-or:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;v=
-ertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height=
-:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=
-=3D"font-size:11pt;background-color:transparent;font-variant-numeric:normal=
-;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre-wra=
-p">YP 4.1 M4 Release date 2022/10/28</span></p></li></ul><br><p dir=3D"ltr"=
- style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D=
-"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transpa=
-rent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-al=
-ign:baseline;white-space:pre-wrap">Upcoming dot releases:</span></p><ul sty=
-le=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style=
--type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-col=
-or:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;v=
-ertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height=
-:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=
-=3D"font-size:11pt;background-color:transparent;font-variant-numeric:normal=
-;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre-wra=
-p">YP 3.1.18 build date 2022/07/27</span></p></li><li dir=3D"ltr" style=3D"=
-list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);back=
-ground-color:transparent;font-variant-numeric:normal;font-variant-east-asia=
-n:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"l=
-ine-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><sp=
-an style=3D"font-size:11pt;background-color:transparent;font-variant-numeri=
-c:normal;font-variant-east-asian:normal;vertical-align:baseline;white-space=
-:pre-wrap">YP 3.1.18 Release date 2022/08/05</span></p></li><li dir=3D"ltr"=
- style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0=
-,0,0);background-color:transparent;font-variant-numeric:normal;font-variant=
--east-asian:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" =
-style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"present=
-ation"><span style=3D"font-size:11pt;background-color:transparent;font-vari=
-ant-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;w=
-hite-space:pre-wrap">YP 4.0.3 build date 2022/08/08</span></p></li><li dir=
-=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;col=
-or:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;font=
--variant-east-asian:normal;vertical-align:baseline;white-space:pre"><p dir=
-=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=
-=3D"presentation"><span style=3D"font-size:11pt;background-color:transparen=
-t;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-align=
-:baseline;white-space:pre-wrap">YP 4.0.3 Release date 2022/08/19</span></p>=
-</li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-fami=
-ly:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numeric=
-:normal;font-variant-east-asian:normal;vertical-align:baseline;white-space:=
-pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:=
-0pt" role=3D"presentation"><span style=3D"font-size:11pt;background-color:t=
-ransparent;font-variant-numeric:normal;font-variant-east-asian:normal;verti=
-cal-align:baseline;white-space:pre-wrap">YP 3.1.19 build date 2022/08/29</s=
-pan></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;f=
-ont-family:Arial;color:rgb(0,0,0);background-color:transparent;font-variant=
--numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;whit=
-e-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin=
--bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;background=
--color:transparent;font-variant-numeric:normal;font-variant-east-asian:norm=
-al;vertical-align:baseline;white-space:pre-wrap">YP 3.1.19 Release date 202=
-2/09/09</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-s=
-ize:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;fo=
-nt-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:bas=
-eline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:=
-0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;=
-background-color:transparent;font-variant-numeric:normal;font-variant-east-=
-asian:normal;vertical-align:baseline;white-space:pre-wrap">YP 4.0.4 build d=
-ate 2022/09/19</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc=
-;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transpa=
-rent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-al=
-ign:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;marg=
-in-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-siz=
-e:11pt;background-color:transparent;font-variant-numeric:normal;font-varian=
-t-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">YP 4.0.4 =
-Release date 2022/09/30</span></p></li><li dir=3D"ltr" style=3D"list-style-=
-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-colo=
-r:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;ve=
-rtical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:=
-1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D=
-"font-size:11pt;background-color:transparent;font-variant-numeric:normal;fo=
-nt-variant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">=
-YP 3.1.20 build date 2022/10/10</span></p></li><li dir=3D"ltr" style=3D"lis=
-t-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);backgro=
-und-color:transparent;font-variant-numeric:normal;font-variant-east-asian:n=
-ormal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line=
--height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span =
-style=3D"font-size:11pt;background-color:transparent;font-variant-numeric:n=
-ormal;font-variant-east-asian:normal;vertical-align:baseline;white-space:pr=
-e-wrap">YP 3.1.20 Release date 2022/10/21</span></p></li><li dir=3D"ltr" st=
-yle=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,=
-0);background-color:transparent;font-variant-numeric:normal;font-variant-ea=
-st-asian:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" sty=
-le=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentati=
-on"><span style=3D"font-size:11pt;background-color:transparent;font-variant=
--numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;whit=
-e-space:pre-wrap">YP 4.0.5 build date 2022/10/31</span></p></li><li dir=3D"=
-ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:r=
-gb(0,0,0);background-color:transparent;font-variant-numeric:normal;font-var=
-iant-east-asian:normal;vertical-align:baseline;white-space:pre"><p dir=3D"l=
-tr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pre=
-sentation"><span style=3D"font-size:11pt;background-color:transparent;font-=
-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:baseli=
-ne;white-space:pre-wrap">YP 4.0.5 Release date 2022/11/11</span></p></li></=
-ul><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-botto=
-m:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);bac=
-kground-color:transparent;font-variant-numeric:normal;font-variant-east-asi=
-an:normal;vertical-align:baseline;white-space:pre-wrap">Tracking Metrics:</=
-span></p><ul style=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" sty=
-le=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0=
-);background-color:transparent;font-variant-numeric:normal;font-variant-eas=
-t-asian:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" styl=
-e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentatio=
-n"><span style=3D"font-size:11pt;background-color:transparent;font-variant-=
-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;white=
--space:pre-wrap">WDD 2399 (last week 2414)</span><span style=3D"font-size:1=
-1pt;font-family:Consolas,sans-serif;background-color:transparent;font-varia=
-nt-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;wh=
-ite-space:pre-wrap"> (</span><a href=3D"https://wiki.yoctoproject.org/chart=
-s/combo.html" style=3D"text-decoration-line:none"><span style=3D"font-size:=
-11pt;background-color:transparent;font-variant-numeric:normal;font-variant-=
-east-asian:normal;text-decoration-line:underline;vertical-align:baseline;wh=
-ite-space:pre-wrap">https://wiki.yoctoproject.org/charts/combo.html</span><=
-/a><span style=3D"font-size:11pt;font-family:Consolas,sans-serif;background=
--color:transparent;font-variant-numeric:normal;font-variant-east-asian:norm=
-al;vertical-align:baseline;white-space:pre-wrap">)</span></p></li><li dir=
-=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Consolas,=
-sans-serif;color:rgb(0,0,0);background-color:transparent;font-variant-numer=
-ic:normal;font-variant-east-asian:normal;vertical-align:baseline;white-spac=
-e:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-botto=
-m:0pt" role=3D"presentation"><span style=3D"font-size:11pt;font-family:Aria=
-l;background-color:transparent;font-variant-numeric:normal;font-variant-eas=
-t-asian:normal;vertical-align:baseline;white-space:pre-wrap">OE-Core/Poky P=
-atch Metrics</span></p></li><ul style=3D"margin-top:0px;margin-bottom:0px">=
-<li dir=3D"ltr" style=3D"list-style-type:circle;font-size:11pt;font-family:=
-Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:no=
-rmal;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre=
-"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt=
-" role=3D"presentation"><span style=3D"font-size:11pt;background-color:tran=
-sparent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical=
--align:baseline;white-space:pre-wrap">Total patches found: 1155 (last week =
-1155)</span></p></li><li dir=3D"ltr" style=3D"list-style-type:circle;font-s=
-ize:11pt;font-family:Consolas,sans-serif;color:rgb(0,0,0);background-color:=
-transparent;font-variant-numeric:normal;font-variant-east-asian:normal;vert=
-ical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.=
-38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"f=
-ont-size:11pt;font-family:Arial;background-color:transparent;font-variant-n=
-umeric:normal;font-variant-east-asian:normal;vertical-align:baseline;white-=
-space:pre-wrap">Patches in the Pending State: 326 (28%) [last week 327 (28%=
-)]</span></p></li></ul><li dir=3D"ltr" style=3D"list-style-type:disc;font-s=
-ize:11pt;font-family:Consolas,sans-serif;color:rgb(0,0,0);background-color:=
-transparent;font-variant-numeric:normal;font-variant-east-asian:normal;vert=
-ical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.=
-38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><a href=3D"https=
-://autobuilder.yocto.io/pub/non-release/patchmetrics/" style=3D"text-decora=
-tion-line:none"><span style=3D"font-size:11pt;font-family:Arial;background-=
-color:transparent;font-variant-numeric:normal;font-variant-east-asian:norma=
-l;text-decoration-line:underline;vertical-align:baseline;white-space:pre-wr=
-ap">https://autobuilder.yocto.io/pub/non-release/patchmetrics/</span></a></=
-p></li></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;mar=
-gin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0=
-,0,0);background-color:transparent;font-variant-numeric:normal;font-variant=
--east-asian:normal;vertical-align:baseline;white-space:pre-wrap">The Yocto =
-Project=E2=80=99s technical governance is through its Technical Steering Co=
-mmittee, more information is available at:</span></p><p dir=3D"ltr" style=
-=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><a href=3D"https://w=
-iki.yoctoproject.org/wiki/TSC" style=3D"text-decoration-line:none"><span st=
-yle=3D"font-size:11pt;font-family:Arial;background-color:transparent;font-v=
-ariant-numeric:normal;font-variant-east-asian:normal;text-decoration-line:u=
-nderline;vertical-align:baseline;white-space:pre-wrap">https://wiki.yoctopr=
-oject.org/wiki/TSC</span></a></p><br><p dir=3D"ltr" style=3D"line-height:1.=
-38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-fam=
-ily:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numeri=
-c:normal;font-variant-east-asian:normal;vertical-align:baseline;white-space=
-:pre-wrap">The Status reports are now stored on the wiki at: </span><a href=
-=3D"https://wiki.yoctoproject.org/wiki/Weekly_Status" style=3D"text-decorat=
-ion-line:none"><span style=3D"font-size:11pt;font-family:Arial;background-c=
-olor:transparent;font-variant-numeric:normal;font-variant-east-asian:normal=
-;text-decoration-line:underline;vertical-align:baseline;white-space:pre-wra=
-p">https://wiki.yoctoproject.org/wiki/Weekly_Status</span></a></p><br><p di=
-r=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span=
- style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-colo=
-r:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;ve=
-rtical-align:baseline;white-space:pre-wrap">[If anyone has suggestions for =
-other information you=E2=80=99d like to see on this weekly status update, l=
-et us know!]</span></p></span><br class=3D"gmail-Apple-interchange-newline"=
-><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_si=
-gnature"><div dir=3D"ltr"><div><div dir=3D"ltr"><span><font color=3D"#88888=
-8"><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D=
-"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><b style=3D"color:=
-rgb(136,136,136)"><font color=3D"#666666"><font color=3D"#888888"><br></fon=
-t></font></b></div><div dir=3D"ltr"><b style=3D"color:rgb(136,136,136)"><fo=
-nt color=3D"#666666"><font color=3D"#888888">Neal Caidin</font></font></b><=
-br><div style=3D"color:rgb(136,136,136)"><span style=3D"border-collapse:col=
-lapse"><div><font color=3D"#666666"><font>Program Manager, Program Manageme=
-nt &amp; Operations</font></font></div><div><font color=3D"#666666"><font>T=
-he Linux Foundation</font></font></div><div><font color=3D"#666666">+1 (919=
-) 238-9104 (w/h)<br>+1 (919) 949-1861 (m)</font></div><div><font color=3D"#=
-666666"><a href=3D"mailto:ncaidin@linuxfoundation.org" target=3D"_blank">nc=
-aidin@linuxfoundation.org</a></font></div><div><br></div><div><br></div></s=
-pan></div></div></div></div></div></div></div></div></div></div></font></sp=
-an></div></div></div></div></div></div>
-
---000000000000f1bd9e05e4b51f12--
+ <yocto@lists.yoctoproject.org>; Tue, 26 Jul 2022 14:45:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57643
+
+On Tue, Jul 26, 2022 at 02:45:10PM +0200, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@huawei.com>
+> 
+> This upgrades the 3.x series to using v3.1.0.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@huawei.com>
+> ---
+> - add a rebased version of the toolchain patch for v3.1
+
+intel-x86-64 machine isn't happy
+It looks like it's not able to find stdint.h
+
+https://gitlab.com/jonmason00/meta-zephyr/-/jobs/2771910955
+
+
+>  ... 0001-2.7-cmake-add-yocto-toolchain.patch} |  0
+>  .../0001-3.1-cmake-add-yocto-toolchain.patch  | 63 +++++++++++++++
+>  .../zephyr-kernel/zephyr-kernel-src-2.7.2.inc |  7 +-
+>  .../zephyr-kernel/zephyr-kernel-src-3.0.0.inc | 70 -----------------
+>  .../zephyr-kernel/zephyr-kernel-src-3.1.0.inc | 76 +++++++++++++++++++
+>  .../zephyr-kernel/zephyr-kernel-src.inc       |  5 +-
+>  6 files changed, 146 insertions(+), 75 deletions(-)
+>  rename meta-zephyr-core/recipes-kernel/zephyr-kernel/files/{0001-cmake-add-yocto-toolchain.patch => 0001-2.7-cmake-add-yocto-toolchain.patch} (100%)
+>  create mode 100644 meta-zephyr-core/recipes-kernel/zephyr-kernel/files/0001-3.1-cmake-add-yocto-toolchain.patch
+>  delete mode 100644 meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.0.0.inc
+>  create mode 100644 meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.1.0.inc
+> 
+> diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/files/0001-cmake-add-yocto-toolchain.patch b/meta-zephyr-core/recipes-kernel/zephyr-kernel/files/0001-2.7-cmake-add-yocto-toolchain.patch
+> similarity index 100%
+> rename from meta-zephyr-core/recipes-kernel/zephyr-kernel/files/0001-cmake-add-yocto-toolchain.patch
+> rename to meta-zephyr-core/recipes-kernel/zephyr-kernel/files/0001-2.7-cmake-add-yocto-toolchain.patch
+> diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/files/0001-3.1-cmake-add-yocto-toolchain.patch b/meta-zephyr-core/recipes-kernel/zephyr-kernel/files/0001-3.1-cmake-add-yocto-toolchain.patch
+> new file mode 100644
+> index 0000000..a16eabf
+> --- /dev/null
+> +++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/files/0001-3.1-cmake-add-yocto-toolchain.patch
+> @@ -0,0 +1,63 @@
+> +From 39f1dd116d00b6c2135c4ccd216341dcd2f2917e Mon Sep 17 00:00:00 2001
+> +From: Naveen Saini <naveen.kumar.saini@intel.com>
+> +Date: Tue, 26 Jul 2022 14:12:18 +0200
+> +Subject: [PATCH] cmake: add yocto toolchain
+> +
+> +Upstream status: inappropriate [OE specific]
+> +
+> +Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
+> +---
+> + cmake/compiler/gcc/target.cmake     |  7 -------
+> + cmake/toolchain/yocto/generic.cmake | 13 +++++++++++++
+> + cmake/toolchain/yocto/target.cmake  |  1 +
+> + 3 files changed, 14 insertions(+), 7 deletions(-)
+> + create mode 100644 cmake/toolchain/yocto/generic.cmake
+> + create mode 100644 cmake/toolchain/yocto/target.cmake
+> +
+> +diff --git a/cmake/compiler/gcc/target.cmake b/cmake/compiler/gcc/target.cmake
+> +index 014447e67e..b510f47d59 100644
+> +--- a/cmake/compiler/gcc/target.cmake
+> ++++ b/cmake/compiler/gcc/target.cmake
+> +@@ -94,13 +94,6 @@ execute_process(
+> +   OUTPUT_STRIP_TRAILING_WHITESPACE
+> +   )
+> + 
+> +-assert_exists(LIBGCC_FILE_NAME)
+> +-
+> +-get_filename_component(LIBGCC_DIR ${LIBGCC_FILE_NAME} DIRECTORY)
+> +-
+> +-assert_exists(LIBGCC_DIR)
+> +-
+> +-LIST(APPEND LIB_INCLUDE_DIR "-L\"${LIBGCC_DIR}\"")
+> + LIST(APPEND TOOLCHAIN_LIBS gcc)
+> + 
+> + # For CMake to be able to test if a compiler flag is supported by the
+> +diff --git a/cmake/toolchain/yocto/generic.cmake b/cmake/toolchain/yocto/generic.cmake
+> +new file mode 100644
+> +index 0000000000..45e5777e2a
+> +--- /dev/null
+> ++++ b/cmake/toolchain/yocto/generic.cmake
+> +@@ -0,0 +1,13 @@
+> ++set(COMPILER gcc)
+> ++set(LINKER ld)
+> ++set(BINTOOLS gnu)
+> ++
+> ++set(ZEPHYR_SYSROOT ${ZEPHYR_SYSROOT})
+> ++set(SYSROOT_DIR ${ZEPHYR_SYSROOT})
+> ++set(LIBC_LIBRARY_DIR "\"${SYSROOT_DIR}\"/")
+> ++set(LIBC_INCLUDE_DIR ${SYSROOT_DIR}/include)
+> ++LIST(APPEND TOOLCHAIN_LIBS gcc)
+> ++
+> ++LIST(APPEND LIB_INCLUDE_DIR "-L\"${STAGING_LIBDIR}\"")
+> ++
+> ++set(TOOLCHAIN_LIBS gcc)
+> +diff --git a/cmake/toolchain/yocto/target.cmake b/cmake/toolchain/yocto/target.cmake
+> +new file mode 100644
+> +index 0000000000..9881313609
+> +--- /dev/null
+> ++++ b/cmake/toolchain/yocto/target.cmake
+> +@@ -0,0 +1 @@
+> ++# SPDX-License-Identifier: Apache-2.0
+> +-- 
+> +2.34.1
+> +
+> diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.2.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.2.inc
+> index 7a4da21..537a565 100644
+> --- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.2.inc
+> +++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.2.inc
+> @@ -62,4 +62,9 @@ SRCREV_tfm = "c74be3890c9d975976fde1b1a3b2f5742bec34c0"
+>  ZEPHYR_BRANCH = "v2.7-branch"
+>  PV = "2.7.2+git${SRCPV}"
+>  
+> -SRC_URI:append = " file://dtc.patch"
+> +SRC_URI:append = " \
+> +    file://dtc.patch \
+> +    file://0001-x86-fix-efi-binary-generation-issue-in-cross-compila.patch \
+> +    file://0001-2.7-cmake-add-yocto-toolchain.patch \
+> +    git://github.com/zephyrproject-rtos/hal_cypress.git;protocol=https;nobranch=1;destsuffix=git/modules/hal/cypress;name=cypress \
+> +"
+> diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.0.0.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.0.0.inc
+> deleted file mode 100644
+> index 64594a0..0000000
+> --- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.0.0.inc
+> +++ /dev/null
+> @@ -1,70 +0,0 @@
+> -SRCREV_FORMAT = "default_cmsis"
+> -
+> -#
+> -# Generated with:
+> -#
+> -# #!/usr/bin/python3
+> -#
+> -# import yaml
+> -# import sys
+> -#
+> -# if __name__ == "__main__":
+> -#     with open(sys.argv[1], "r") as fd:
+> -#         data = yaml.safe_load(fd)
+> -#
+> -#         for project in data["manifest"]["projects"]:
+> -#             print("SRCREV_{} = \"{}\"".format(project["name"], project["revision"]))
+> -#
+> -
+> -SRCREV_default = "4f8d78ceeb436e82f528511998515f6fc137c6cd"
+> -SRCREV_canopennode = "1052dae561497bef901f931ef75e117c9224aecd"
+> -SRCREV_civetweb = "094aeb41bb93e9199d24d665ee43e9e05d6d7b1c"
+> -SRCREV_cmsis = "b0612c97c1401feeb4160add6462c3627fe90fc7"
+> -SRCREV_edtt = "1fc2e6f7d2a01a01074456f2ef2ccf1f3df7fac1"
+> -SRCREV_fatfs = "09a9d913c61dccbb8ff92d8943b452c614ac5292"
+> -SRCREV_fff = "6ce5ba26486e93d5b7696a3e23f0585932c14b16"
+> -SRCREV_altera = "23c1c1dd7a0c1cc9a399509d1819375847c95b97"
+> -SRCREV_atmel = "9f78f520f6cbb997e5b44fe8ab17dd5bf2448095"
+> -SRCREV_cypress = "81a059f21435bc7e315bccd720da5a9b615bbb50"
+> -SRCREV_espressif = "bcd7565ffa390d5774dc2fbe71a002faa9a7d082"
+> -SRCREV_gigadevice = "242a7f4be7a3136606c7a65169775f7ef85ad444"
+> -SRCREV_infineon = "f1fa8241f8786198ba41155413243de36ed878a5"
+> -SRCREV_microchip = "870d05e6a64ea9548da6b907058b03c8c9420826"
+> -SRCREV_nordic = "a42b016d7c7610489f5f8c79773fedc05ba352ee"
+> -SRCREV_nuvoton = "b4d31f33238713a568e23618845702fadd67386f"
+> -SRCREV_nxp = "9629f15fd80169cc9669e3fbb1260467c3aeb175"
+> -SRCREV_openisa = "40d049f69c50b58ea20473bee14cf93f518bf262"
+> -SRCREV_quicklogic = "b3a66fe6d04d87fd1533a5c8de51d0599fcd08d0"
+> -SRCREV_rpi_pico = "191f5ba46fda49523cdaaef27583d1c875ba2c36"
+> -SRCREV_silabs = "be39d4eebeddac6e18e9c0c3ba1b31ad1e82eaed"
+> -SRCREV_st = "575de9d461aa6f430cf62c58a053675377e700f3"
+> -SRCREV_stm32 = "300109f80730cb2477bfcc706a6602b9870336b3"
+> -SRCREV_telink = "ffcfd6282aa213f1dc0848dbca6279b098f6b143"
+> -SRCREV_ti = "1992a4c536554c4f409c36896eda6abdc414d277"
+> -SRCREV_xtensa = "0e577021bb66e644afd067cd9f7c71ab11b62b3d"
+> -SRCREV_libmetal = "f237c9d420a51cc43bc37d744e41191ad613f348"
+> -SRCREV_littlefs = "33509ed9c3d369cdb9d909cd40c5eea8f64a902c"
+> -SRCREV_loramac-node = "12019623bbad9eb54fe51066847a7cbd4b4eac57"
+> -SRCREV_lvgl = "783c1f78c8e39751fe89d0883c8bce7336f55e94"
+> -SRCREV_lz4 = "8e303c264fc21c2116dc612658003a22e933124d"
+> -SRCREV_mbedtls = "3e3e58a92de76069730c63e0d524f40fea948a61"
+> -SRCREV_mcuboot = "89936c338e46f43cb177a8b928cd80b90f3ace8f"
+> -SRCREV_mipi-sys-t = "d9da086b11cda494d85f4d8a9829f505c2d5e380"
+> -SRCREV_nanopb = "d148bd26718e4c10414f07a7eb1bd24c62e56c5d"
+> -SRCREV_net-tools = "f49bd1354616fae4093bf36e5eaee43c51a55127"
+> -SRCREV_nrf_hw_models = "b8cea37dbdc8fc58cc14b4e19fa850877a9da520"
+> -SRCREV_open-amp = "cfd050ff38a9d028dc211690b2ec35971128e45e"
+> -SRCREV_openthread = "b7aa7686d3f4e326bd25abc234b209159977c26d"
+> -SRCREV_segger = "3a52ab222133193802d3c3b4d21730b9b1f1d2f6"
+> -SRCREV_sof = "500d77e0ac84ac2c969e0d4b2142cca192e893bc"
+> -SRCREV_tflite-micro = "9156d050927012da87079064db59d07f03b8baf6"
+> -SRCREV_tinycbor = "40daca97b478989884bffb5226e9ab73ca54b8c4"
+> -SRCREV_tinycrypt = "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
+> -SRCREV_TraceRecorderSource = "e8ca3b6a83d19b2fc4738a0d9607190436e5e452"
+> -SRCREV_trusted-firmware-m = "5d32c3e64b3d589548e881eeeeb37d84944c90af"
+> -SRCREV_tf-m-tests = "52814181f0fde6d1422fac204d42cde30c62e40e"
+> -SRCREV_psa-arch-tests = "0aab24602cbef30f6422e7ef1066a8473073e586"
+> -SRCREV_zscilib = "12bfe3f0a9fcbfe3edab7eabc9678b6c62875d34"
+> -
+> -ZEPHYR_BRANCH = "v3.0-branch"
+> -PV = "3.0.0+git${SRCPV}"
+> diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.1.0.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.1.0.inc
+> new file mode 100644
+> index 0000000..f38d7f9
+> --- /dev/null
+> +++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.1.0.inc
+> @@ -0,0 +1,76 @@
+> +SRCREV_FORMAT = "default_cmsis"
+> +
+> +#
+> +# Generated with:
+> +#
+> +# #!/usr/bin/python3
+> +#
+> +# import yaml
+> +# import sys
+> +#
+> +# if __name__ == "__main__":
+> +#     with open(sys.argv[1], "r") as fd:
+> +#         data = yaml.safe_load(fd)
+> +#
+> +#         for project in data["manifest"]["projects"]:
+> +#             print("SRCREV_{} = \"{}\"".format(project["name"], project["revision"]))
+> +#
+> +
+> +SRCREV_default = "2ddd73feafd3316af2c547c34d6969bea637d5c6"
+> +SRCREV_canopennode = "53d3415c14d60f8f4bfca54bfbc5d5a667d7e724"
+> +SRCREV_chre = "0edfe2c2ec656afb910cfab8ed59a5ffd59b87c8"
+> +SRCREV_civetweb = "094aeb41bb93e9199d24d665ee43e9e05d6d7b1c"
+> +SRCREV_cmsis = "5f86244bad4ad5a590e084f0e72ba7a1416c2edf"
+> +SRCREV_edtt = "1ea61a390d2bfcf3b2ecdba8f8b0b98dfdffbd11"
+> +SRCREV_fatfs = "a30531af3a95a9a3ea7d771ea8a578ebfed45514"
+> +SRCREV_fff = "6ce5ba26486e93d5b7696a3e23f0585932c14b16"
+> +SRCREV_altera = "0d225ddd314379b32355a00fb669eacf911e750d"
+> +SRCREV_atmel = "78c5567c05b6b434dd7d98f49156319df4217bac"
+> +SRCREV_espressif = "df85671c5d0405c0747c2939c8dfe808b7e4cf38"
+> +SRCREV_gigadevice = "63a72ca90b7e0d7257211ddc5c79e8c0b940371b"
+> +SRCREV_infineon = "4af06965f57ba1e7d170e6a97d24c33785543a8c"
+> +SRCREV_microchip = "5d079f1683a00b801373bbbbf5d181d4e33b30d5"
+> +SRCREV_nordic = "a85bb3676d61d1ae202088e0d3fec556056b2c9e"
+> +SRCREV_nuvoton = "b4d31f33238713a568e23618845702fadd67386f"
+> +SRCREV_nxp = "2302a1e94f5bc00ce59db4e249b688ad2e959f58"
+> +SRCREV_openisa = "40d049f69c50b58ea20473bee14cf93f518bf262"
+> +SRCREV_quicklogic = "b3a66fe6d04d87fd1533a5c8de51d0599fcd08d0"
+> +SRCREV_rpi_pico = "191f5ba46fda49523cdaaef27583d1c875ba2c36"
+> +SRCREV_silabs = "be39d4eebeddac6e18e9c0c3ba1b31ad1e82eaed"
+> +SRCREV_st = "52a522ca4a8a9ec1e9bb5bb514e1ab6f102863fe"
+> +SRCREV_stm32 = "51b373cd3455b8c2b9babbf6ff41918116a442ac"
+> +SRCREV_telink = "ffcfd6282aa213f1dc0848dbca6279b098f6b143"
+> +SRCREV_ti = "905a5d4134899630071f9383aadaaf266e8f8cd2"
+> +SRCREV_xtensa = "0e577021bb66e644afd067cd9f7c71ab11b62b3d"
+> +SRCREV_libmetal = "850a3c3fd5bc655987021dc9106d8e8cd0f7e061"
+> +SRCREV_liblc3codec = "3951cf1b71ff3be086c9b9b595e473e12301337c"
+> +SRCREV_littlefs = "652f2c5646e79b881e6f3099686ad3b7af9e216c"
+> +SRCREV_loramac-node = "12019623bbad9eb54fe51066847a7cbd4b4eac57"
+> +SRCREV_lvgl = "df717ac87a9fd80246cc8df24554475e59bda21f"
+> +SRCREV_lz4 = "8e303c264fc21c2116dc612658003a22e933124d"
+> +SRCREV_mbedtls = "7fed49c9b9f983ad6416986661ef637459723bcb"
+> +SRCREV_mcuboot = "e58ea98aec6e5539c5f872a98059e461d0155bbb"
+> +SRCREV_mipi-sys-t = "a5163c1800a5243f8b05d84c942da008df4cb666"
+> +SRCREV_nanopb = "d148bd26718e4c10414f07a7eb1bd24c62e56c5d"
+> +SRCREV_net-tools = "f49bd1354616fae4093bf36e5eaee43c51a55127"
+> +SRCREV_nrf_hw_models = "b8cea37dbdc8fc58cc14b4e19fa850877a9da520"
+> +SRCREV_open-amp = "8d53544871e1f300c478224faca6be8384ab0d04"
+> +SRCREV_openthread = "e2a765599aa0379d0f72f0149a9cbafec070c12d"
+> +SRCREV_segger = "3a52ab222133193802d3c3b4d21730b9b1f1d2f6"
+> +SRCREV_sof = "2efc3ea41c0074c6dab5f376fafaa26f52c25c75"
+> +SRCREV_tflite-micro = "9156d050927012da87079064db59d07f03b8baf6"
+> +SRCREV_tinycbor = "9e1f34bc08123aaad7666d3652aaa839e8178b3b"
+> +SRCREV_tinycrypt = "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
+> +SRCREV_TraceRecorderSource = "e8ca3b6a83d19b2fc4738a0d9607190436e5e452"
+> +SRCREV_trusted-firmware-m = "7c53a6e76130a85303f83b15d868a92fdcd5f5be"
+> +SRCREV_tf-m-tests = "c99a86b295c4887520da9d8402566d7f225c974e"
+> +SRCREV_psa-arch-tests = "a81f9da287569f169d60026916952641b233faa8"
+> +SRCREV_zcbor = "882c489a7d9fdfff31d27666914a78a9eb6976d7"
+> +SRCREV_zscilib = "fc979a8dcb74169c69b02835927bff8f070d6325"
+> +
+> +ZEPHYR_BRANCH = "v3.1-branch"
+> +PV = "3.1.0+git${SRCPV}"
+> +
+> +SRC_URI += " \
+> +    file://0001-3.1-cmake-add-yocto-toolchain.patch \
+> +"
+> diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+> index bf9ceaf..e9b35c9 100644
+> --- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+> +++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
+> @@ -19,7 +19,6 @@ SRC_URI = "\
+>      git://github.com/zephyrproject-rtos/fatfs.git;protocol=https;nobranch=1;destsuffix=git/modules/fs/fatfs;name=fatfs \
+>      git://github.com/zephyrproject-rtos/hal_altera.git;protocol=https;nobranch=1;destsuffix=git/modules/hal/altera;name=altera \
+>      git://github.com/zephyrproject-rtos/hal_atmel.git;protocol=https;nobranch=1;destsuffix=git/modules/hal/atmel;name=atmel \
+> -    git://github.com/zephyrproject-rtos/hal_cypress.git;protocol=https;nobranch=1;destsuffix=git/modules/hal/cypress;name=cypress \
+>      git://github.com/zephyrproject-rtos/hal_espressif.git;protocol=https;nobranch=1;destsuffix=git/modules/hal/espressif;name=espressif \
+>      git://github.com/zephyrproject-rtos/hal_infineon.git;protocol=https;nobranch=1;destsuffix=git/modules/hal/infineon;name=infineon \
+>      git://github.com/zephyrproject-rtos/hal_microchip.git;protocol=https;nobranch=1;destsuffix=git/modules/hal/microchip;name=microchip \
+> @@ -52,11 +51,9 @@ SRC_URI = "\
+>      git://github.com/zephyrproject-rtos/hal_telink.git;protocol=https;nobranch=1;destsuffix=git/modules/hal/telink;name=telink \
+>      git://github.com/zephyrproject-rtos/lz4.git;protocol=https;nobranch=1;destsuffix=git/modules/lib/lz4;name=lz4 \
+>      git://github.com/zephyrproject-rtos/tflite-micro.git;protocol=https;nobranch=1;destsuffix=git/modules/lib/tflite-micro;name=tflite-micro \
+> -    file://0001-cmake-add-yocto-toolchain.patch \
+> -    file://0001-x86-fix-efi-binary-generation-issue-in-cross-compila.patch \
+>  "
+>  S = "${WORKDIR}/git"
+>  
+>  # Default to a stable version
+> -PREFERRED_VERSION_zephyr-kernel ??= "3.0.0"
+> +PREFERRED_VERSION_zephyr-kernel ??= "3.1.0"
+>  include zephyr-kernel-src-${PREFERRED_VERSION_zephyr-kernel}.inc
+> -- 
+> 2.34.1
+> 
+> 
 
