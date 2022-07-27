@@ -2,54 +2,55 @@ Return-Path: <gwilson@sakuraus.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B10A5C04A68
-	for <webhook@archiver.kernel.org>; Wed, 27 Jul 2022 16:53:41 +0000 (UTC)
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (NAM11-CO1-obe.outbound.protection.outlook.com [40.107.220.98])
- by mx.groups.io with SMTP id smtpd.web08.22397.1658940819789595911
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D9D0DC04A68
+	for <webhook@archiver.kernel.org>; Wed, 27 Jul 2022 17:24:21 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (NAM10-DM6-obe.outbound.protection.outlook.com [40.107.93.103])
+ by mx.groups.io with SMTP id smtpd.web12.22494.1658942656175944010
  for <yocto@lists.yoctoproject.org>;
- Wed, 27 Jul 2022 09:53:40 -0700
+ Wed, 27 Jul 2022 10:24:16 -0700
 Authentication-Results: mx.groups.io;
  dkim=pass header.i=@sakuraus0.onmicrosoft.com
- header.s=selector1-sakuraus0-onmicrosoft-com header.b=aZagKkW4;
- spf=pass (domain: sakuraus.com, ip: 40.107.220.98,
+ header.s=selector1-sakuraus0-onmicrosoft-com header.b=aMHoFNC9;
+ spf=pass (domain: sakuraus.com, ip: 40.107.93.103,
  mailfrom: gwilson@sakuraus.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WKujB0X/i+Gnyx9d7ICjpoWzWEx6WtvNbfUyRAWH3G77pV8LtWtbeQmCaWY0FhyiiIjbsse8LtsvHs+CPpPcaDpLNykOxynsxdxLatZHOF9qII1h+LyySJljdUNyY1JuZCl3SgMIdZ/+nvNMO9wCJwiO3lI9CwXHOEM2mN7/7NpQrM32S1+Z0yvp5d7pOFK6JSPwhYjgWSWbHWXDReThU3V1bsFh5xjZMkrvgVvwOxLnSv4htOM0pxXsGvv3X1V/1mYAR58V3dZPTiT66zdfjpuEq8XYnsmIhtL0yJ84M1FOEYBnbK7UvBFdsKg8TtwDTeu3XphKjT94dBMYEAjzZw==
+ b=Ax0SW1vf3LWg6HEneOmwpV6tbgfkstvP/PmTECU93UI4Av4/hAhLczKKwji7N1dmoJ1WkheVtP396/8ia3thebJWP6c6xsBcjsyI+Hlk0Zlv3yLMdHdu0Fm6NAidxunQuSRcISYYN3H9N+dASDCbcAW8OXril/yY4+q6Que/vdyHqC+FMWjsRcLsaErIAgXgqagaUEd31Rwu8sVOngsXjGG51FWVX+UreseAEpvEwXq2QzBs7S/wChEgK62tPndwD3Xgt/5rr519qlnC54NFC2ZKORtQHsFDhxM0ZppiFZJJABL/9qUKTCzvEcbQx00M1V5YJOSCEf8dwb+hAFdseA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/qxy8KDddpaiaziZIstg8poKS6aSp2t3WJyyQNrxds4=;
- b=kYmk2D601x9B2Vf9gCtjoMOZqKMOnAtABbfhC8kS2xRp2fMSqJn7skgu4RLvBJqaI06uNlbtwJFKkb8JRP0/Hb5vLgc62usXZ3A+OKjYpDaIW2WiNSPeSigMikyk7/PJJfflFoMqiyuh5X3xrkdiU932tnDpmO4HM0k9/mj9UeUcFdK+f2duAzpntqYsEZrzXtaB/oMsJ6fzS2up1naTesUUV3sFT9xwFja71hrwg7nQlJdp9SHANmGJ8h3hCbQIs+p/ie4vulWG5bFEBs6p0mV88yYPfXtlhhlxG212MO9AiytcgbPUri13SjOWz94NPiQXGHG8iXi77gqB4td0Kw==
+ bh=VdckI5i2DKL0HkPQCv8W7CaNwLIR+OP52LNWqs996XA=;
+ b=QJCE2Wlg8yS344xh1xsQRddukp5pIolNoaVr751yVcO4eVYxuOTDAcsO4pyS8CIxxW93kl9tdvuPAY74qh0JUyU0BXbqDBuzguMr/9ZQknl4ArUeVxQXCA1AHi5tC0jZwhsYgUZVthdBeblxOhsfV8edYwRM4tjH2D5HIj3OUDx0b5gXKajT4MUQB3WUsNPD1MmnvgziBrKuJ74BXdTHyxyxtngVMqDcyoLK33gOpfEAAXoYRwVpaK6QKcVNMXiFaUYV8EfdCfCagglj7TR0f0JI2rnkRDjaNYretOsXt9PXNrU69jL2tHdAUIIIolWqJdRYxKFQxhpFIoUZ3s/2DQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=sakuraus.com; dmarc=pass action=none header.from=sakuraus.com;
  dkim=pass header.d=sakuraus.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=sakuraus0.onmicrosoft.com; s=selector1-sakuraus0-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/qxy8KDddpaiaziZIstg8poKS6aSp2t3WJyyQNrxds4=;
- b=aZagKkW4oBGExoam2ywSz/FSXX903y/9RjHx1y/h4wP/9tDxyjhkAsH/dUSmWtwzo0IeWZQW8zLSEaae+sIN3l9UX7aEgB/oY7843ty6tPACDeDF3Kj3t5rDyoYMa4XqnSw/oTqIbcpOafinK7CpqhhN+DjPLsgtbvjkmM1Q+4M=
+ bh=VdckI5i2DKL0HkPQCv8W7CaNwLIR+OP52LNWqs996XA=;
+ b=aMHoFNC96o2DLEIjVoJPu42O0hlWeCS8al8pJWaa63Sazdzkit0rCCw0emJ2yN3frT73i5nXSgGLJWpK0MlQq2cON1IiiuT17j/b4A3DuhwygAjcUYL1GqNzcK8hmoh7yv9H2yFugucn1aHRmg1872PcdS4/EJAlhIfJcuxC8MY=
 Received: from PH0PR15MB5055.namprd15.prod.outlook.com (2603:10b6:510:c2::23)
- by PH0PR15MB5056.namprd15.prod.outlook.com (2603:10b6:510:c6::10) with
+ by MW3PR15MB4010.namprd15.prod.outlook.com (2603:10b6:303:48::17) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.25; Wed, 27 Jul
- 2022 16:53:36 +0000
+ 2022 17:24:12 +0000
 Received: from PH0PR15MB5055.namprd15.prod.outlook.com
  ([fe80::2090:cc5c:676f:79be]) by PH0PR15MB5055.namprd15.prod.outlook.com
  ([fe80::2090:cc5c:676f:79be%6]) with mapi id 15.20.5458.025; Wed, 27 Jul 2022
- 16:53:36 +0000
+ 17:24:12 +0000
 From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
 To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
 Subject: RE: Getting error for allarch dynamically renamed package
 Thread-Topic: Getting error for allarch dynamically renamed package
-Thread-Index: AQHYoS+vnKQc5gG+wUW9brnuOB6qqa2Sb56g
-Date: Wed, 27 Jul 2022 16:53:36 +0000
+Thread-Index: AQHYoS+vnKQc5gG+wUW9brnuOB6qqa2Sb56ggAAIuoA=
+Date: Wed, 27 Jul 2022 17:24:12 +0000
 Message-ID: 
- <PH0PR15MB5055A68BB57B1F94BA441B2ACB979@PH0PR15MB5055.namprd15.prod.outlook.com>
+ <PH0PR15MB5055EF7B8EA8AFCEC50971D2CB979@PH0PR15MB5055.namprd15.prod.outlook.com>
 References: 
  <PH0PR15MB5055B2211917B31D298918B1CB949@PH0PR15MB5055.namprd15.prod.outlook.com>
+ <PH0PR15MB5055A68BB57B1F94BA441B2ACB979@PH0PR15MB5055.namprd15.prod.outlook.com>
 In-Reply-To: 
- <PH0PR15MB5055B2211917B31D298918B1CB949@PH0PR15MB5055.namprd15.prod.outlook.com>
+ <PH0PR15MB5055A68BB57B1F94BA441B2ACB979@PH0PR15MB5055.namprd15.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -58,69 +59,78 @@ msip_labels:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=sakuraus.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d4bdaf2f-0de7-4393-4d45-08da6ff08c57
-x-ms-traffictypediagnostic: PH0PR15MB5056:EE_
+x-ms-office365-filtering-correlation-id: aaed0a15-8a36-43d2-9f14-08da6ff4d2c3
+x-ms-traffictypediagnostic: MW3PR15MB4010:EE_
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info: 
- OpOTwW34/V42vBBqxpfRWrnkEU4wL8LFdB9ZmUviELWo0Y4eSPDeJoLnWzDZg9Qg9PpLC04PYQYRa8sFxPZ2q0TgCs6i3aOt6qLK5SeGI+t8SvBobT1oIhu+ttA1PtNMwCt+sxEZc57MsP38iHe+jUNfIrZtNBUHlJmxmEKgE6uO6XXxRu37t5M9ZkEADG+nO9YImzD8oMNktZ76MbJhDAPNkdVWs2n3ff5L8jDNcwTo+3f0eDCQ1hHaD9eU2iyaA9uDOYLu+bagrFbLphv7qZAlXjDAudEIKb1tf/hsoy9UWIHNa9SlLvND+pWF6xuJjwnZFSLU/O/fWnajZWTCrnXpvU8OMrRnEq/xr5va68W5Ke83/545UFEiysNy4v0IVd1n8L0PyXpq/DUW97foHKeGTciqLjDKzVRfOdU2fU4nplI4iczANXZUGfImhymkjfF9xIYa30K6MDISdzGGsetpoBmIVYRiYcOG7u3mhArZ0jG9Cjx8t6Uzye0EpXH7tW/9yzxRSeeVPhzcALhYClyBHPQy2qkCbPtOdmUWYo1Myy4YedsWDslXF4BnBtAWa/GnUu5y7G8H8D0tSDmFa/4ApvvJ6wUpan251WRBrHh+Pzw9pHneyuMVRkPvB/MBwsZ/ASAZZgBs9uQVC12X2DqYzMCJ/OS66tSI7Nmjm+Axy7OzSznhfbkLbTFVgNeUhanXxwLT3/Hae8Q90H13wLD63S/hzqYs17N3kJirJ0aJcnD+0k1bkBZsj68p0Wsxl/EyVkxVpfNt0nLA8PkMCQ0qUPoa+vGYvLgsCoJg6vcY9+4eJi9x8FOMQAyB995WtvxaQhQcXs/2BQRJR7fq0A==
+ Nnt5UVrQyu8Tr7Qf3InTcww5pX7u+QsLwrTlSkXJtw9Ud6Nki1n5OoIfDzG0igF07NzglYUrxlw1OdStp9ev/yF1m/AwDoqhOJOfgo/n6G8eolDeX6zMQeR6Chee77SczamAZYCjQkfYioXVlZDYcO6uzsEJa0mhko6DoZoeKJpn3blCD5prBz4sGFhEB9AfPr6DwBdCmg/UIO8ENjOSjKZXsvcBDm5DZ5NHitpDTrLI58+eFqPs9dmPriuHIn/bts3WCnV0Dd0oWV7u1krqOCJQWppKPWDDz9OlT0fqLw+5koVCUqSuA1vG9OnYSdNFdJxPQQOVl59rYVcvYLPTHZwa2wXzWq1+kFOQI7P2BzRW0wKOBF+9n5SdzHFQC7odbFsBZWlBD+QvYQALt+Epr8yrohbf6J+Fs73kWjOUG0faR4Hpv/KAGFK25sG1qefqUEWh/e0C1vLX1ntnMsf6moIq+C521UtNkFUUOJoSgFbCmyy/ttBXcnk41HAlrQkCE+fvp7w5qxQarDZjs37AIZ71Woe+a6EIkcTWmiEBvf6NNfeb9RXoDQszvCHTQTN86pUaGmFzZW4djDH2Je2Ltsfs9ugde3gt6w0/BcnMdLF9xsZAyTjzAK8ZTu9DCjhYIZPAm5gdyrvZHQsMOmmN1IDCPWn9bht62Whwp0x9hJNDYdz4Z8UaK9wbS1zaFBl34gPy9ZH37H/5eheezw0/UFw4HcOfm4lUYeYRapxseFI2Fo42M1qQd70mZpCXIdi57X80RBoIvluNgVWK157tw1gtpeXDZZsIELb+oTH3+8DbPRF2nA2JWN9qn5C+PdMajStEBs7zuyC8GyDqH8414g==
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR15MB5055.namprd15.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(136003)(39840400004)(396003)(366004)(376002)(346002)(26005)(64756008)(8676002)(76116006)(66946007)(66556008)(66446008)(6916009)(5660300002)(166002)(33656002)(38070700005)(8936002)(122000001)(55016003)(52536014)(38100700002)(66476007)(478600001)(71200400001)(9686003)(53546011)(186003)(2906002)(7696005)(86362001)(6506007)(41300700001)(316002)(83380400001);DIR:OUT;SFP:1102;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR15MB5055.namprd15.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(366004)(39840400004)(136003)(376002)(396003)(346002)(2940100002)(5660300002)(316002)(55016003)(122000001)(38070700005)(83380400001)(6916009)(86362001)(38100700002)(8676002)(71200400001)(66556008)(66446008)(186003)(66476007)(76116006)(66946007)(64756008)(33656002)(52536014)(166002)(8936002)(478600001)(41300700001)(2906002)(7696005)(9686003)(26005)(53546011)(6506007);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?KuhTqrQbo3cEdE/Of7Dpq1LrUNdSVih58Pg3koq1bqEmfQKAKkTL0JRDRJ+v?=
- =?us-ascii?Q?SKid953CgSdo/iy+JaTi8Hdb5MTK0kHNbjA85jIgTD0jtGwKHH4/6FDZJove?=
- =?us-ascii?Q?/UYnD4n5qGTErYFwQL03GW2EZzZIXse8aIqhT3GktPM9eG20qOwcGG7JNij0?=
- =?us-ascii?Q?86iqfn1e71sTfpZpAvYfQjQIU4H90GJ6EY+13qFZTi0to/wo7OpF/HU7/0Qq?=
- =?us-ascii?Q?6BJSTp+mCkqt5mN/VP8kLw8/4ml3dlefeaF+HUgU+tGIG93HA7dvljB33qxQ?=
- =?us-ascii?Q?lDme9/dzLE2VM+pEY7waBkAS8MnmrwMWZc+N+LrUxYypZSnkAMRkOOHaSOwL?=
- =?us-ascii?Q?tWKQ3J7AJeL38tdjL885Bi4JQrdYdKF54DXQkcVs2TqgWIp0SAwi9tFvpHPK?=
- =?us-ascii?Q?1DaRBiIsiZpASO5rnIxT2F/OoX7lAfcUgMjc8WV7M5RFumQHV5HAhSvs5rwH?=
- =?us-ascii?Q?W0Mwt5QHKq9I40nbEioehpPw0XG0C3+RcK+LkhCZkfOQKWpsmLPY73YSMoK4?=
- =?us-ascii?Q?iXNT96d3TwU+pI+7tGVRgTL9PaHv5yb4gyfhI4AFplZ6vV+ihTS2OgykQOfw?=
- =?us-ascii?Q?SvBbCtkraLm/c7Cg92Ir25k10B8QyDpoPn9+PRa+EVT50JZR4OVluffSr/Tl?=
- =?us-ascii?Q?8XTJSUrQ+jUmANoTtOxYwfsVzeSygeb7TmUh5O1np1SJVazOQFkwo+QzPU2w?=
- =?us-ascii?Q?B8NbXUnXbINyXut3yoaqUeNGznD6FpbitpPaPbgr8GWD/+Oy+q5ZiA4Nm3bY?=
- =?us-ascii?Q?Ufq9Xx8z7hd3JCnqvGhoPMTspuYUyvXINlPVhfnTzeL2R+pZxszzbhHLJiIa?=
- =?us-ascii?Q?XugNlYT8YfkiaANjqC9LFrAU0S3eh/B4iPUJGAaXRS0gIxUVKZIanp9rtjse?=
- =?us-ascii?Q?9bG5I+4uieRsi/FRZAo9RZwNaN0UnbceQezDqPUEgIYd0megmBBC0QMKiaGf?=
- =?us-ascii?Q?hURubB4dp4PmCZwsStRh1hpJf31CIkNqrp6Y5ns9uQze/b1BNdq9YZXBpAY2?=
- =?us-ascii?Q?jhasgxAfOS+f0jZGv25NhGwYHxWOejaDmuzXGgeonf4rPVfscPujS0PJYdNo?=
- =?us-ascii?Q?/gKYRRMfl6wTyX8plLFeG0mj4dJgpyww0zBDdSOAORtI8+yQJsKOb6KebnHA?=
- =?us-ascii?Q?n3HtY1AzR3Uh35VbJVcB+lZxNwiD5MmcI0ciSjucwoWAzH0Z0QdV46ZjTjZ9?=
- =?us-ascii?Q?aAhwIbbc0aK6LtIea5B96vqi/VKv4L7BMXQocKO3MJ5fDJATcnWG3jHButra?=
- =?us-ascii?Q?P75hl0oesTt+GiYfTpCIx9bGGbdQ6Z5FHPTZVzN8CT8dw3XrjtOSkoDoqnij?=
- =?us-ascii?Q?z7yPYDi04Fyn7i72xVZeCvjFoh6BSg4pCGx4ULAe+C4jU6g+1jIFRX1rGf/z?=
- =?us-ascii?Q?pD6bAi+nYCPdoAloWIiTK5NGtRCRsbKBKpHs+TpjASMcmP9X7Z3op/DhVOFj?=
- =?us-ascii?Q?h1pnoLI8RjHN4TUkB7goGmetEfwocAMntVTcnWe0C0Lk6aUe1lKdqROijbeN?=
- =?us-ascii?Q?jz3Vm0nbZbzC1MgG1iRXuW7QUiOzF/nRK7T0zHVplgmhtdQ/vpAlDR5Fk1Ve?=
- =?us-ascii?Q?V/3msI3kM6KJSAK0bzFcaJcNHnhE1a0sXi/ZEeKI?=
+ =?us-ascii?Q?AMhZGTKk1ktbjJtj/Fxy4MBEngh1IG5BwIvZs4kzEIa5NpH7k6t1euHESZ71?=
+ =?us-ascii?Q?oPbhVZxrUm9GiCLA991hNsz2rELG1JhN/fuvoWDGVmYhqnazPctheX1G0chA?=
+ =?us-ascii?Q?Ao7R0VDFDdGHivWHDHX5e/Nnm3FQ3rplAXlhgMurwoIwDp8pnMu1h14ml2h5?=
+ =?us-ascii?Q?mivQ1C5UreDo8KpWWi7yT7t4aR0wmFiP4pfFgH6vbDJM17WcOp+F9cvbwVaS?=
+ =?us-ascii?Q?OA6ijggyXUd+G80uhymBo67pYo7ER+ROTbA95dyDL2B5qid3RO/ifcb+d43F?=
+ =?us-ascii?Q?V/N6rYFVuNQQiYqBiyBiF1YWX67f2R91jgdLheC8kpdVLUoHoPbvfSNad1aT?=
+ =?us-ascii?Q?VOhDTGzesAIURiBw9POfB91nrKE0DJhEHt8aDHPsqWSbvswdntBvZoJ1swQM?=
+ =?us-ascii?Q?vR5ty2oULnqFIUUIdXJTU8oJIm+uCDn1d2yRTeuyJU4VSS0qNzh/GlcZKZRo?=
+ =?us-ascii?Q?X1KKEo+C/w8tUEu/QaA4clUUrnytxb2dm1UWuqW/xl4iRjrnHX7NkD70sFCn?=
+ =?us-ascii?Q?aiXanS4Yij3kWjpROIeZG162yN9HbDKtR3RB2rZezWzwXqp+1PeAzJZHtgEN?=
+ =?us-ascii?Q?5J95i0XsTLUs788AniOErCkZngAEIiSrp+kq/71ZxktothT/RSEn874SycG6?=
+ =?us-ascii?Q?DI6VH3XgTdTYeWYUXsKuREyyycdD4S1o0sBSniI9yda6j/4RxdGQkJwGZSxG?=
+ =?us-ascii?Q?Ue3Vxllq6Puww0gPam99oncnIyreRHLAUo36v1MIf7fthpV4I5TYuzxd0Rmn?=
+ =?us-ascii?Q?LaDLeExnX1Gd9Z5cHYfxWcQAriZiqzS9WRtLAjuR+0fYjCBgcp0premu5r9q?=
+ =?us-ascii?Q?WJYFAGJXGxZiZBHJ3hBj8r3+BkJy+4ptZ4XGz3rANkz2pDaAQNqHAH56lb2Z?=
+ =?us-ascii?Q?av9QAYHhmNyKYYHnkcQf6p1zMEHoey0SwJhHp36yNaw8TWGiOCd6pAbogucM?=
+ =?us-ascii?Q?G5IrvdID2Dft4XAcEzXEeLdvuYep1aVcc7faWvaKPYgqadwwmz+tmA4cx0Rc?=
+ =?us-ascii?Q?onHhh0fFtYncrh1ByWg+FByJMTz/3Wfu7HytW8MFT7FXPq1OUEx/1AK5/kmL?=
+ =?us-ascii?Q?8RYT8iL11s8xpA6CV7uQBWc+44XHv2EOTpMgNMkmQ7+OfIdIlP7Y2Dpm1sYe?=
+ =?us-ascii?Q?GOBn+uZ3yWb4o3LkaYMjA/pDunrzSOpoCaopnHUhUdWBGYbpJbF2DX7HtYl/?=
+ =?us-ascii?Q?SyyM6xXYIJtDo36JjRS8G83tEv/qf03KxVOpTFvHYYhWm+ZXtZ7LswTaIdAz?=
+ =?us-ascii?Q?D0zs16xhMav14Og2YDz7b7e6BtyzqysDQL0/OfOw8F2ZdVy4MioIEsVa/KIi?=
+ =?us-ascii?Q?V7Af9wdYOQiNJ5+2ELUZP8jtyF/Fhi7GCVjCda2FN57/RUBAUtFqyxaKw9S7?=
+ =?us-ascii?Q?wm7nwfMDQ+E7a4r52nGFfuM1l0tHGU8X2QZ1MK5WRyoqZhf8ZW+TJhDY+a4g?=
+ =?us-ascii?Q?Y2bAHXajjlpwHPwHdMdDvPttNmhksvseGSC74xLsqjM2fGyTK1zoNkurR1LQ?=
+ =?us-ascii?Q?uZxbLrHiky01EZwOXo75j5qm5VfgSoF/rhQ2b/B8rPNwNmlZzsQVpFcimjsi?=
+ =?us-ascii?Q?9iRQFD6lE4WgOI/DFi3x1FE3HPFYNK6NlnUBrRh7?=
 Content-Type: multipart/alternative;
-	boundary="_000_PH0PR15MB5055A68BB57B1F94BA441B2ACB979PH0PR15MB5055namp_"
+	boundary="_000_PH0PR15MB5055EF7B8EA8AFCEC50971D2CB979PH0PR15MB5055namp_"
 MIME-Version: 1.0
 X-OriginatorOrg: sakuraus.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: PH0PR15MB5055.namprd15.prod.outlook.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- d4bdaf2f-0de7-4393-4d45-08da6ff08c57
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jul 2022 16:53:36.3399
+ aaed0a15-8a36-43d2-9f14-08da6ff4d2c3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jul 2022 17:24:12.4773
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 37ffe720-0c78-4d79-baff-87ee7fde7c3d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
 X-MS-Exchange-CrossTenant-userprincipalname: 
- iy3d6pka3qUCr9g14QJy3oG1fjHwr5pIGgfDwnZU78s95wI9Z+KiJfDZOVz8XlIza6Z1+GEY5asXG1S7dzgTzw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR15MB5056
+ 9WlYqE8MpdFsbuu89b8+6GCWKz5zfKmTfm4DEUvG+qTyZhH3UbUN6rJGj93ScSQtnMgXQE2vfH+Rbm+VcY00Xg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR15MB4010
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 27 Jul 2022 16:53:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57656
+ <yocto@lists.yoctoproject.org>; Wed, 27 Jul 2022 17:24:21 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57657
 
---_000_PH0PR15MB5055A68BB57B1F94BA441B2ACB979PH0PR15MB5055namp_
+--_000_PH0PR15MB5055EF7B8EA8AFCEC50971D2CB979PH0PR15MB5055namp_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+It keeps getting weirder and weirder, I ran -c cleansstate and rebuilt the =
+sdk and I didn't get an error. I then added something else into the sdk bui=
+ld and now I get the 'dynamically renamed' error for zint.
+
+From: Greg Wilson-Lindberg
+Sent: Wednesday, July 27, 2022 9:54 AM
+To: yocto@lists.yoctoproject.org
+Subject: RE: Getting error for allarch dynamically renamed package
 
 Hello list,
 I changed the license on the recipe below to 'GPL-3.0-or-later' and the pro=
@@ -133,9 +143,10 @@ y changing the license should change that behavior.
 Regards,
 Greg
 
-From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+From: Greg Wilson-Lindberg <GWilson@sakuraus.com<mailto:GWilson@sakuraus.co=
+m>>
 Sent: Tuesday, July 26, 2022 1:45 PM
-To: yocto@lists.yoctoproject.org
+To: yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org>
 Subject: Getting error for allarch dynamically renamed package
 
 Hello list,
@@ -260,7 +271,7 @@ Regards,
 Greg
 
 
---_000_PH0PR15MB5055A68BB57B1F94BA441B2ACB979PH0PR15MB5055namp_
+--_000_PH0PR15MB5055EF7B8EA8AFCEC50971D2CB979PH0PR15MB5055namp_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -326,6 +337,24 @@ div.WordSection1
 <body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
 break-word">
 <div class=3D"WordSection1">
+<p class=3D"MsoNormal">It keeps getting weirder and weirder, I ran -c clean=
+sstate and rebuilt the sdk and I didn&#8217;t get an error. I then added so=
+mething else into the sdk build and now I get the &#8216;dynamically rename=
+d&#8217; error for zint.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b>From:</b> Greg Wilson-Lindberg <br>
+<b>Sent:</b> Wednesday, July 27, 2022 9:54 AM<br>
+<b>To:</b> yocto@lists.yoctoproject.org<br>
+<b>Subject:</b> RE: Getting error for allarch dynamically renamed package<o=
+:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Hello list,<o:p></o:p></p>
 <p class=3D"MsoNormal">I changed the license on the recipe below to &#8216;=
 GPL-3.0-or-later&#8217; and the problem went away.<o:p></o:p></p>
@@ -343,10 +372,12 @@ t behavior.<o:p></o:p></p>
 <div>
 <div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
 0in 0in">
-<p class=3D"MsoNormal"><b>From:</b> Greg Wilson-Lindberg &lt;GWilson@sakura=
-us.com&gt; <br>
+<p class=3D"MsoNormal"><b>From:</b> Greg Wilson-Lindberg &lt;<a href=3D"mai=
+lto:GWilson@sakuraus.com">GWilson@sakuraus.com</a>&gt;
+<br>
 <b>Sent:</b> Tuesday, July 26, 2022 1:45 PM<br>
-<b>To:</b> yocto@lists.yoctoproject.org<br>
+<b>To:</b> <a href=3D"mailto:yocto@lists.yoctoproject.org">yocto@lists.yoct=
+oproject.org</a><br>
 <b>Subject:</b> Getting error for allarch dynamically renamed package<o:p><=
 /o:p></p>
 </div>
@@ -534,8 +565,9 @@ bsp;</o:p></span></p>
 </div>
 </div>
 </div>
+</div>
 </body>
 </html>
 
---_000_PH0PR15MB5055A68BB57B1F94BA441B2ACB979PH0PR15MB5055namp_--
+--_000_PH0PR15MB5055EF7B8EA8AFCEC50971D2CB979PH0PR15MB5055namp_--
 
