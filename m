@@ -2,73 +2,80 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 87000C00140
-	for <webhook@archiver.kernel.org>; Sun, 31 Jul 2022 18:03:32 +0000 (UTC)
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com
- [209.85.215.172])
- by mx.groups.io with SMTP id smtpd.web09.15845.1659290608798109605
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9323CC00140
+	for <webhook@archiver.kernel.org>; Sun, 31 Jul 2022 18:08:22 +0000 (UTC)
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com
+ [209.85.216.48])
+ by mx.groups.io with SMTP id smtpd.web08.15705.1659290899343698193
  for <yocto@lists.yoctoproject.org>;
- Sun, 31 Jul 2022 11:03:28 -0700
+ Sun, 31 Jul 2022 11:08:19 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=PRlsZtsO;
- spf=pass (domain: gmail.com, ip: 209.85.215.172,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=Lt7VvxHZ;
+ spf=pass (domain: gmail.com, ip: 209.85.216.48,
  mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f172.google.com with SMTP id h132so7825296pgc.10
+Received: by mail-pj1-f48.google.com with SMTP id
+ d65-20020a17090a6f4700b001f303a97b14so9767235pjk.1
         for <yocto@lists.yoctoproject.org>;
- Sun, 31 Jul 2022 11:03:28 -0700 (PDT)
+ Sun, 31 Jul 2022 11:08:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=e+63DzPUe1VUPEaYLElCSRF+huUHzF029pt92gg3KYU=;
-        b=PRlsZtsOXjs7+AYSbS2TGCXO6YaqHiFA5VbjceJx4xGXo7xen7ogsPeq55NaRzrnU9
-         aGRx6e4QEUislidz5NS2+vNf8mdRd1lvn7QHMXYg0yu4N1KjHF4c93R6I/zhtFZOBrEz
-         0dhofTKSB7vr5umbV3VMhLlSv3zq0ZwCENQCxkQvOfwZ+bGL4xY0unEpvOCv/9mZkbon
-         vzrlw4rfFJpOo2zoEA+qy2D4YJpPDXITxRc3CKFpEq5y4Up6hbndsrgAvIxnycM8Pioo
-         EufnrllUMrebOTTDGSMFofs/o3c9R18/p3EB0UdWkFiFgDWM1AeiByrxoedLRLYyjk6G
-         n4Aw==
+        bh=Qz3uzicMkFFAXRur4TTUAHl9y9QwpbrpfGeR0mSVxng=;
+        b=Lt7VvxHZuAkUwRHtqTz/Ur19lLajqvckpmG7ZPoTHWNG/t/95XDHVpb6p9yPVTLPoJ
+         k+FZb6mtlgS+7smxI0PGjOxtR5lrqLl8e91gk0Ntny5HzWI1O0IHbvO/bnXYFXAqOpao
+         sDdZnlvLaSvE8GgbmB5Gb/+xeT6g64RdOYomdUnh39xC8ZO4LEC/nIh2iegBqWoc75w/
+         Ly/xa00G3/9mmh74IsexHR+4liOhr0cyadpKYzjsYMdIpSYghKxc8Fh1x+W3x1OuzsHe
+         iAa6lud20rCuZi3kl9rzmnjKGAyq1SL9MPvPBWpiEu3ITiBULHeKuqMV9/0CcWMAvSX0
+         PmRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=e+63DzPUe1VUPEaYLElCSRF+huUHzF029pt92gg3KYU=;
-        b=swMHDovGfzWW+BOwyYWd2JO3N8zEvPOLrbHe3fWq8lKuxXWPorlIAPZMRi+eeB5cKf
-         5RI4/EOQFB0Si1rbP/Ew/q7K/R3WWX9Gv8KadwqiS5Y+PGWzMK4gxIigE6SVTjx5FDox
-         mLKU16x8CyhE+DBCKQpkxTf24boeGsVamPXUMLoLc24boZssHG+1R0k0DxcbRPekny5o
-         uJkzFH4Js46sQK3AnhSxWhUFtPIHcgOM0UEwL04PkYKRtMjqXw1G5J7NoDL/WvIsC1YG
-         MHmy2WypSkKNJsiacVkLmI539SWyNP9ka3/9DUaZuq96bgi5yMdbQPPUTE7TsxqM6y6q
-         CfYA==
-X-Gm-Message-State: AJIora88QjNGXQbFM/nfR/o1GnmodS79+aMl7Fu3WkGUfFIgoll4Pwv1
-	ONg+gLH2FNYHJ44mNR6TKNGD7UiCMwQ=
+        bh=Qz3uzicMkFFAXRur4TTUAHl9y9QwpbrpfGeR0mSVxng=;
+        b=u3QG3WzwSxXubH+eW3E2Q5yOxcltlO5Y7njK8a8NHbQDXCcWDhqLAqdjPUzM0zN/Qs
+         jVmzgqYYyIU8b7oZWlaAFufVV/rv6DLGgaX5qiOpTFbljgspGJn3HXwDVwRmniaN+qd4
+         GIDEFqEmQ/D/QrsUq4BMU9nH6jYBpw/hZwz6E/wK0/jpeA3/pw52xecuGC/32Qc/7v+c
+         ybCa42/2Tfx31wgyu/fv5D4f2hYdhdUKkQmrVVM9GFmpH6B2y4vNk3DBWSYaBKuO8YnD
+         tUbYi+fo1xLg2QyLH8boOMRGU0EgZa4Pd0FUToRwgqmkQJkHUPed2D4erIzSLb8sqDOp
+         OFCA==
+X-Gm-Message-State: ACgBeo3kOiX6ut8wKU9mABpeLnDIQ8qY5XTtMz8w0jAVBQQYKC519i0H
+	jXiyDfbianpN9/C4qN3M+A8BrvHoOz0=
 X-Google-Smtp-Source: 
- AGRyM1t0w+5ylIyuAXJfBMPqb84n2QakpxYwpGqhH3klhGas4h/yojrcK39PR5qEz8LS63yQKCipaA==
-X-Received: by 2002:a05:6a00:1589:b0:52a:eb00:71d8 with SMTP id
- u9-20020a056a00158900b0052aeb0071d8mr12546954pfk.38.1659290607432;
-        Sun, 31 Jul 2022 11:03:27 -0700 (PDT)
+ AA6agR5DQojW0xV8N9GV/WV6nj9QEsY54kbRyHyShYSqbXf8o1ycZrnLRnucwCoDlgRkvkXfx4v+zg==
+X-Received: by 2002:a17:90a:d158:b0:1ec:8298:40dc with SMTP id
+ t24-20020a17090ad15800b001ec829840dcmr15221647pjw.51.1659290898222;
+        Sun, 31 Jul 2022 11:08:18 -0700 (PDT)
 Received: from keaua.hsd1.ca.comcast.net
  (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
         by smtp.gmail.com with ESMTPSA id
- x11-20020a170902b40b00b0016cf714d029sm7605920plr.288.2022.07.31.11.03.26
+ p2-20020a170902a40200b0016a0bf0ce32sm7748325plq.70.2022.07.31.11.08.17
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 31 Jul 2022 11:03:26 -0700 (PDT)
+        Sun, 31 Jul 2022 11:08:17 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] lkrg: update to 0.9.4
-Date: Sun, 31 Jul 2022 11:01:25 -0700
-Message-Id: <20220731180125.2321527-1-akuster808@gmail.com>
+Subject: [meta-security][v2][PATCH] lkrg: update to 0.9.4
+Date: Sun, 31 Jul 2022 11:06:15 -0700
+Message-Id: <20220731180615.2321713-1-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 31 Jul 2022 18:03:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57708
+ <yocto@lists.yoctoproject.org>; Sun, 31 Jul 2022 18:08:22 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57709
 
 drop Makefile fixup patch. Use sed instead
 
+LIC_FILES_CHKSUM update do to yr update
+
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
+
+---
+V2]
+Add LIC_FILES_CHKSUM change reason
 ---
  .../lkrg/files/makefile_cleanup.patch         | 53 -------------------
  ...g-module_0.9.3.bb => lkrg-module_0.9.4.bb} | 16 +++---
