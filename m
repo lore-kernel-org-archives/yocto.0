@@ -1,148 +1,295 @@
-Return-Path: <kergoth@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AA942C00144
-	for <webhook@archiver.kernel.org>; Mon,  1 Aug 2022 17:49:05 +0000 (UTC)
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com
- [209.85.208.47])
- by mx.groups.io with SMTP id smtpd.web11.521.1659376140159019017
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A4E48C19F2C
+	for <webhook@archiver.kernel.org>; Mon,  1 Aug 2022 21:34:26 +0000 (UTC)
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com
+ [209.85.219.42])
+ by mx.groups.io with SMTP id smtpd.web10.3207.1659389665131699666
  for <yocto@lists.yoctoproject.org>;
- Mon, 01 Aug 2022 10:49:00 -0700
+ Mon, 01 Aug 2022 14:34:25 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=ll6X+Av7;
- spf=pass (domain: gmail.com, ip: 209.85.208.47, mailfrom: kergoth@gmail.com)
-Received: by mail-ed1-f47.google.com with SMTP id a89so14735444edf.5
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=jBUjam5x;
+ spf=pass (domain: gmail.com, ip: 209.85.219.42,
+ mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-qv1-f42.google.com with SMTP id ct13so5750450qvb.9
         for <yocto@lists.yoctoproject.org>;
- Mon, 01 Aug 2022 10:48:59 -0700 (PDT)
+ Mon, 01 Aug 2022 14:34:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ncXVYE+N+6SS4+iZ8NZ+8VcBqDPWx3qOqXhXXI6Vlf8=;
-        b=ll6X+Av7gPCPfHQWbYa6Zj2/1S4iRCc1GfLJ+LiPauLAQ9qL98Ft8Y3BBrBopQGnyI
-         Vo/xjnM5CP40M1f3MmH1jRVnfPLBW7TTTYaLkVw4T2mB5VpvgcU/pY0J2pajS1dGtsq/
-         1KICsOetaOveB+v5mHxpgrCydc3jVu7hI/WysWTC8z/sTO5++TCrlIrOUxxDYrsMKnnu
-         B3/ysWTwJO8x6YV+uHWhw+h7iG4DA+dvA09FBFvuJMsIt4l6+iYq7D7bDNMr1Z/c4Vuu
-         GD8i0DV+bC1t2+RBqMTr9dwhNFLRGYGDUkzTSKIwzHDKl6sFGpQyX5Nmi6TqxaFvlucY
-         Obig==
+        h=from:to:subject:date:message-id:mime-version:thread-index
+         :content-language;
+        bh=+UDbNatjqZPxB/sjY39Of/NpGgFudJXagrvmBryN4AE=;
+        b=jBUjam5xljl40Xg0LeDLaitRQNtikBr5yQQDtnX2/0YgvCRqg4Nftd8iJR8BhqG+lG
+         pH1mulHxAruFUPk+BUeCFCZhKqL5uHIVU7UUS2n9iBCUGR/Fn8b6t06oxDO4eRDzl4xb
+         1sD0PjP1WJoggRBOk7dW0SG7LP9jxTwHbGK8E0WKaEAgUMGP0V0XrbHE+kiV54yRvTr5
+         3g/xOAUhukttWjaqntqLoWyhSetfWnG57Cwsr9Eh23zLKzf15U48dADBnHCS4WAKpJ9/
+         ZAiWcxh/9tnn1plixux6M7a/IQM+naEliqBDrhW/3jSWkT13G5Y2WSDhpSgRHBXDRZmu
+         TxLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ncXVYE+N+6SS4+iZ8NZ+8VcBqDPWx3qOqXhXXI6Vlf8=;
-        b=sylIvKv3kU54xQe9CtN6JJbDwAxY2KlLKuQlUab6MWwLLb6Abkvpg7YjQ79/NVGM0q
-         q2W/0h0fFYq49PfXFln2VlpBFa2ATXiSSET1Ux5SF0VHIX5pM7YMWqckdSFgg1GoPwOn
-         GWnCNWaeg0v+LXXXiYCBf9Hdz79ZHNMKebA8NqrUf2F7hZBfNTattpS++wClJI3/EOa/
-         vETo4+rH2JZaxA2EmRVdVmdJu2cb2tlV0L7XgZuSvnIJuiewzOTKt7Le4Ac5t+Z6OQj2
-         yqmbU488grdTNlfafttSvresTdbyTTRIomM8LZLzOpXHU0s3VD1E6lPxLTFvmc2/ZHxB
-         KMeA==
-X-Gm-Message-State: AJIora+MY52GwZoEg+upctPmIWH80TqtDmx0A509ilaiIS9krLo2L9Cl
-	Nv6rtvM/NklhNTd+leJV+yjJcFKL5ibwHpHNtqw=
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :thread-index:content-language;
+        bh=+UDbNatjqZPxB/sjY39Of/NpGgFudJXagrvmBryN4AE=;
+        b=KciTdJY1QdBMSO9M2OTWCgoXpNAch8IMl7u96pMCQugzNJi3JiepsdLv7tTjw94tMe
+         vdlvO3FgazjF1KQc3pIBYbhlsl/wM0fQDyj1d+J8QLxg4DRtAFs/ntwM5d6xwwxyethN
+         Nj3wbZJbnXYGoUNU0uPgcVICql3lklXxLAuRBH9ivt5LAY9cVzKgrMYNldriijZt6ik2
+         uIrT79C2Ee+FDUUOeCmxLAXVdEB3PZ2Pm3Zthf5L+2/WKQTQTs9LO2Q/3qc3LbfXJP8c
+         TPRPDaJ5WLlF/kLN6foQ6453Ceu/DPNYP3SiKJrYtN/7ZdorAeWkL0iMQDjoyIJ1AnHh
+         GScA==
+X-Gm-Message-State: ACgBeo2E9E/FItwJm4D4ZISsdDns4ZuM584+ZHWgDUYof/0VwyJSXN14
+	1U6PESR/7YoGTx3t5J0nx4s=
 X-Google-Smtp-Source: 
- AGRyM1tlhUnw9rhpWimuGeaAhw3mbrnVaV6pwq+aXelMwWfpRCz7Nvr/9DmwwDWdyJVS4iPztE78bFBtSkWom6QqH5w=
-X-Received: by 2002:a05:6402:1389:b0:43a:ceea:93fd with SMTP id
- b9-20020a056402138900b0043aceea93fdmr17140967edv.64.1659376138528; Mon, 01
- Aug 2022 10:48:58 -0700 (PDT)
+ AA6agR7NWxE2wez31VZRVHvrRgPR9bAYKHlMd2RMxwQWqEjVWNcjI75i0n6K+4zEKQG452NpaYm3+Q==
+X-Received: by 2002:a05:6214:4005:b0:474:3c94:cdc2 with SMTP id
+ kd5-20020a056214400500b004743c94cdc2mr15589740qvb.17.1659389664065;
+        Mon, 01 Aug 2022 14:34:24 -0700 (PDT)
+Received: from skjolley ([72.2.239.73])
+        by smtp.gmail.com with ESMTPSA id
+ r138-20020a37a890000000b006a6d74f8fc9sm8629616qke.127.2022.08.01.14.34.19
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 01 Aug 2022 14:34:23 -0700 (PDT)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@lists.yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 1 Aug 2022 14:34:13 -0700
+Message-ID: <0da901d8a5ee$771d5480$6557fd80$@gmail.com>
 MIME-Version: 1.0
-References: <S6lZ.1659375911932763970.goC0@lists.yoctoproject.org>
-In-Reply-To: <S6lZ.1659375911932763970.goC0@lists.yoctoproject.org>
-From: Christopher Larson <kergoth@gmail.com>
-Date: Mon, 1 Aug 2022 10:48:47 -0700
-Message-ID: 
- <CABcZANkUPhmFHS88cNs=22oSSTwqMa8Xe4AU9ChMrg72DLd=PA@mail.gmail.com>
-Subject: Re: [yocto] Confused as to why runtime variables (RDEPENDS,
- RPROVIDES, etc) require package name overrides
-To: brownij6@wwu.edu
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000492d9305e5319ddd"
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0DAA_01D8A5B3.CABF66E0"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGrEW3cSfGUQlX0P1e/vkg858R/5Q==
+Content-Language: en-us
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 01 Aug 2022 17:49:05 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57721
+ <yocto@lists.yoctoproject.org>; Mon, 01 Aug 2022 21:34:26 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57722
 
---000000000000492d9305e5319ddd
-Content-Type: text/plain; charset="UTF-8"
+This is a multipart message in MIME format.
 
-It doesn't have anything to do with parsing. A single bitbake recipe will
-write multiple binary packages by splitting up its files, so each binary
-package it writes has its own metadata.
+------=_NextPart_000_0DAA_01D8A5B3.CABF66E0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-On Mon, Aug 1, 2022 at 10:45 AM <brownij6@wwu.edu> wrote:
+All,
 
-> Essentially I don't understand why variables like RDEPENDS require a
-> package name conditional override such as "RDEPENDS_${PN}" while other
-> variables, including DEPENDS, do not require this. Isn't putting the
-> package name as a conditional after the variable pointless, since bitbake
-> only parses the variables from the recipe it is currently building? I feel
-> like my confusion may stem from some fundamental misunderstanding of the
-> way the build system works.
->
-> Thanks for your help,
-> James
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#57720):
-> https://lists.yoctoproject.org/g/yocto/message/57720
-> Mute This Topic: https://lists.yoctoproject.org/mt/92754027/3617123
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> kergoth@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
->
+ 
 
--- 
-Christopher Larson
-chris_larson@mentor.com, chris.larson@siemens.com, kergoth@gmail.com
-Principal Software Engineer, Embedded Linux Solutions, Siemens Digital
-Industries Software
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
 
---000000000000492d9305e5319ddd
-Content-Type: text/html; charset="UTF-8"
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+<https://bugzilla.yoctoproject.org/createaccount.cgi>
+https://bugzilla.yoctoproject.org/createaccount.cgi
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 410
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now,  "4.1", "4.2", "4.99" and "Future", the more pressing/urgent
+issues being in "4.1" and then "4.2".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_0DAA_01D8A5B3.CABF66E0
+Content-Type: text/html;
+	boundary="----=_NextPart_000_10A2_01D89AA6.96861D50";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">It doesn&#39;t have anything to do with parsing. A single =
-bitbake recipe will write multiple binary packages by splitting up its file=
-s, so each binary package it writes has its own metadata.</div><br><div cla=
-ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Aug 1, 202=
-2 at 10:45 AM &lt;<a href=3D"mailto:brownij6@wwu.edu">brownij6@wwu.edu</a>&=
-gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><span=
- style=3D"color:rgb(35,38,41);font-family:-apple-system,BlinkMacSystemFont,=
-&quot;Segoe UI Adjusted&quot;,&quot;Segoe UI&quot;,&quot;Liberation Sans&qu=
-ot;,sans-serif"><span style=3D"font-size:15px">Essentially I don&#39;t unde=
-rstand why variables like RDEPENDS require a package name conditional overr=
-ide such as &quot;RDEPENDS_${PN}&quot; while other variables, including DEP=
-ENDS, do not require this. Isn&#39;t putting the package name as a conditio=
-nal after the variable pointless, since bitbake only parses the variables f=
-rom the recipe=C2=A0it is currently building? I feel like my confusion may =
-stem from some fundamental misunderstanding of the way the build system wor=
-ks.<br><br></span></span>Thanks for your help,<br>James
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#57720): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/57720" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/57720</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/92754027/3617=
-123" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/92754027/3617123</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:kergoth@gmail.com" target=3D"_blank">kergoth@gma=
-il.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><font color=3D=
-"#333333">Christopher Larson<br><a>chris_larson@mentor.com</a>,=C2=A0<a>chr=
-is.larson@siemens.com</a>,=C2=A0<a>kergoth@gmail.com</a><br>Principal Softw=
-are Engineer,=C2=A0Embedded Linux Solutions,=C2=A0Siemens Digital Industrie=
-s Software</font><br></div></div></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The triage team is starting to try and =
+collect up and classify bugs which a newcomer to the project would be =
+able to work on in a way which means people can find them. They're being =
+listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a> and how to create a bugzilla account at: <a =
+href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
+style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
+/span></a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 410 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &nbsp;&#8220;4.1&#8221;, =
+&#8220;4.2&#8221;, &quot;4.99&quot; and &quot;Future&quot;, the more =
+pressing/urgent issues being in &quot;4.1&quot; and then =
+&#8220;4.2&#8221;.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Please review this link and if a bug is =
+something you would be able to help with either take ownership of the =
+bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_000_0DAA_01D8A5B3.CABF66E0--
 
---000000000000492d9305e5319ddd--
 
