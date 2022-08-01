@@ -1,503 +1,154 @@
-Return-Path: <maik.vermeulen@lightyear.one>
+Return-Path: <quentin.schulz@theobroma-systems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 513CBC00144
-	for <webhook@archiver.kernel.org>; Mon,  1 Aug 2022 15:35:39 +0000 (UTC)
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com
- [209.85.218.49])
- by mx.groups.io with SMTP id smtpd.web08.26360.1659368136210003602
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5456EC00144
+	for <webhook@archiver.kernel.org>; Mon,  1 Aug 2022 15:46:09 +0000 (UTC)
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com
+ (EUR05-AM6-obe.outbound.protection.outlook.com [40.107.22.51])
+ by mx.groups.io with SMTP id smtpd.web10.26432.1659368758539946991
  for <yocto@lists.yoctoproject.org>;
- Mon, 01 Aug 2022 08:35:36 -0700
+ Mon, 01 Aug 2022 08:45:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@lightyear.one header.s=google header.b=ktpwKNK0;
- spf=pass (domain: lightyear.one, ip: 209.85.218.49,
- mailfrom: maik.vermeulen@lightyear.one)
-Received: by mail-ej1-f49.google.com with SMTP id i14so2318759ejg.6
-        for <yocto@lists.yoctoproject.org>;
- Mon, 01 Aug 2022 08:35:35 -0700 (PDT)
+ dkim=pass header.i=@cherrycloud.onmicrosoft.com
+ header.s=selector2-cherrycloud-onmicrosoft-com header.b=BZUVf9bO;
+ spf=pass (domain: theobroma-systems.com, ip: 40.107.22.51,
+ mailfrom: quentin.schulz@theobroma-systems.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eWZpxBLafMrONz6CiBt5XQrWMCbAvsKPgm3bpR1aqp7fvA3yIe1Pc2qzpFfIy1u3npKjgcOJe9EiLcFZHQROB64cGRByhDdXQQDAWejdUH7mDsuP3W8bIDFGC8MEwu37A8mS6pO7zY6QQwolqMWTuQP8IP9Foyqc3KQEGUeyfwzqEdVQVhrI4sy29HR5o00+StcwociceggbFeQgf2DAlybnliycIhzQtfm/xjIFgzpK4zl4A+6E8os+HxsxN7vRCSJeKPbDgymUqRYM4pZHARrSCMm5kuKC7AXZDkcr3fdQi42/KJDLf8QFEq0RSWtXurPj4DpX4GmGVwIx7eb04w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=06AHif3mhvAFnvQZIQa5+H13RY9pCiU+1KJOeUgvbUA=;
+ b=S4qNPSW26OMRQLXIoN24RS6Ko7hnNwx55Ep82lX6La6c63XtB/0fWt6T7zu8K53ng7l/jBT+L4HeV1y2sDNHhnKPUgmuZhscKQQ1bi2+IJK2gWkOka7uK4+1GQJw1sNFNxJFt8fX8SMaMtZZoFkUuSJikkE6ULi5WQZivtIr/EvJuCSY88mN/mqdfkFxwN/Lk1blT55VRm4krewgdwKGVQiIKZhlbHVv9Q4WeHu8++3NhWnA2pqC6Hy7dOtRjGEY0HN9iZK8xf4ZmQnoy3ec7gNS5vVClMN6HK/N4xmphxuNFVDAGgyCpeyPpbkqqVK9CUnhP+SwY/91zhlqFbDigg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
+ header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
+ arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=lightyear.one; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=/psX4fiuUrfEex4M8vVw6g/rceX9obVsV5JIuzkoNBg=;
-        b=ktpwKNK0gGXU0m/rianOkHWmhWyvb5OoeYL1Rph1oJyxwLyx9bNyCbW32+rDi8WgYV
-         icp2BUAKoAAwcqAzRwDag2RC2omppvbpOwNwgyM5sMNGSakeB3c3cBj+6m/3SSeEky7u
-         mlwE5sH/v2Z9vnD/SSRqFql6uaRiISZ4SsVJmPF3l5WvfNSqdFA9ozUmlZ7xnFs1GtGh
-         y5GrJxHpJdWpiXphCEWZjZnEqWhCB38ipS9DscuRjzAvMyDKkYoLfXYRVH02F4XMYptl
-         6DieGXUfmvxPhD82KTilIBeHPJtSNq/xL6LwfwGtzj16UyD5BSzhb+fOhtF/jQLggy+K
-         wd6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=/psX4fiuUrfEex4M8vVw6g/rceX9obVsV5JIuzkoNBg=;
-        b=i7h7qbzWxqtA89e14R2mWpDfx8yPrEAmAkGYQxZfdniJ83B8cclWnHVZkQUNQ+LdVD
-         FtnDpjBlm5f6qqjYaIRumyXtLdhy8u4l5/rRK28PLmk1hI6HaXFJQshqP8cZDHhVMux2
-         rN8FWj46aA7B3+swAcNDOC5swtjn01cau0KwZKsr1Yo+8bgzukqNVP2bazH9HVDQ59Ke
-         Z1tn0tQBxYBHoYnDsoFRlFPfJN1vvcjTBvTKOrJi959zOKvik2qh4VCBIwbl9pqMqhWH
-         N5cCC+6VS9UTUraNxkETeENnu+qKLHvoinUnKObXOaid4G14hnTpZsgJNjQlAB9HOg8E
-         ppwg==
-X-Gm-Message-State: AJIora9yF1ufNvB/h2sYsBb/bJbrIZ4HqfBacb80QcElnSqE53xxGC9a
-	l8hBMEJfQvHJT+Zm/mqqCAxHJKsPN+KSm/ctakECMF5hD5SpAA6YQ4KKhvMm4ISy1scbVBOZJ9n
-	DLN1zrj0XpeaNEHWxc15FSzLshDEBjfH/qA==
-X-Google-Smtp-Source: 
- AGRyM1t0X0gCck0KZ/Bx8/pP5qV3cT2GmRin2EMG15lQ3Wx46W3ivyCBDcvXGSw00JegvUpcoddYYF6+7/H2GiIfGNM=
-X-Received: by 2002:a17:907:2808:b0:72b:57c2:5e1e with SMTP id
- eb8-20020a170907280800b0072b57c25e1emr12697387ejc.577.1659368134508; Mon, 01
- Aug 2022 08:35:34 -0700 (PDT)
-MIME-Version: 1.0
+ d=cherrycloud.onmicrosoft.com; s=selector2-cherrycloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=06AHif3mhvAFnvQZIQa5+H13RY9pCiU+1KJOeUgvbUA=;
+ b=BZUVf9bOX9Lp/GYa+CvU34YJUlPclZzIIwT5ODv+fHH24XAppXw1peBIRdL9S/TE6mL8X2sH/Qpcq5UH6Ek4eNwm0XxZg0P8kKycl+ihOVhtkbEKMYhx5aEB4De4NnasRI2FQ/wHMd/8Bsq/VWFpikDgixdFYMlWX97zS6nwRtY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
+Received: from PA4PR04MB9367.eurprd04.prod.outlook.com (2603:10a6:102:2aa::7)
+ by VI1PR04MB5309.eurprd04.prod.outlook.com (2603:10a6:803:59::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.12; Mon, 1 Aug
+ 2022 15:45:52 +0000
+Received: from PA4PR04MB9367.eurprd04.prod.outlook.com
+ ([fe80::5c3:766e:66e9:8c4]) by PA4PR04MB9367.eurprd04.prod.outlook.com
+ ([fe80::5c3:766e:66e9:8c4%9]) with mapi id 15.20.5482.014; Mon, 1 Aug 2022
+ 15:45:52 +0000
+Message-ID: <57821bfc-c40c-2b4c-252b-290f52d79d54@theobroma-systems.com>
+Date: Mon, 1 Aug 2022 17:45:50 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [yocto] nftables_0.7 not working
+Content-Language: en-US
+To: Maik Vermeulen <maik.vermeulen@lightyear.one>
+Cc: yocto@lists.yoctoproject.org
 References: 
  <CAKO9uzqsbZso--U487egNqGJ7qzFpTxG-jLP-Xcrpi+w0y-TZA@mail.gmail.com>
  <CAKO9uzoJoHreC1L7zr1mkZYF7xcGKKPnQfX1bQcCKyp2n_pDNA@mail.gmail.com>
  <8c7f4c6e-16c2-f8ff-ce5b-7906351ec615@theobroma-systems.com>
-In-Reply-To: <8c7f4c6e-16c2-f8ff-ce5b-7906351ec615@theobroma-systems.com>
-From: Maik Vermeulen <maik.vermeulen@lightyear.one>
-Date: Mon, 1 Aug 2022 17:34:58 +0200
-Message-ID: 
  <CAKO9uzp3t+G=QUypwOoBnN4yptvQ0o+QZwL8wmqgHiAJ3jHRrw@mail.gmail.com>
-Subject: Re: [yocto] nftables_0.7 not working
-To: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000036036205e52fc065"
+From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+In-Reply-To: 
+ <CAKO9uzp3t+G=QUypwOoBnN4yptvQ0o+QZwL8wmqgHiAJ3jHRrw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AS9PR06CA0577.eurprd06.prod.outlook.com
+ (2603:10a6:20b:486::17) To PA4PR04MB9367.eurprd04.prod.outlook.com
+ (2603:10a6:102:2aa::7)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 454a1400-493a-48cc-b80c-08da73d4e9ec
+X-MS-TrafficTypeDiagnostic: VI1PR04MB5309:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	0kCaFGdcGxkzy+6WC5cFUNk3ZWCzubXq8kGjzBWf9Y/H+O8EsvVjD2OkiLj9BLb/G3Nxze1TOX8JQQoZ93RJf+URwWGTGcga4tn4IxcBCjHfdSJoq0MZrKvEXLi8zEFy5aflQNM4WrRiQbE6Xitvv5GZtUZh6xQH1wc6waOV1W1S0WnSv1j5y4Y0TK828rlRD+RAIDT+mwgHeS5GJAimIXRNXsdVM3GNhPlOnB4zs+cKPIjqhWxz+ocqQenGkqQty4lFuF9JdAHyrYkbL2N+h0dHZMfV62j+PFj+EE9BuVu5heHgHnAwRgavS7Qj3Byz1RXL274g5wyVVZsy6VmmbHKr37O/cqYI3FsWeySfE+7FgRy9vLJA3avraF9+hzajQacFE8wqVOd5E3QBMI+9nnaslh9coN9JP4sDlQS3+BHyOz86VbRlPOFl/eZhtOd9/BDnXAVddqT5ZzstYK0W8VXc/6YqAisohp/Uveo2HKM5xM7CtsSd+dzuh932nCVBSg/l4thtSsgySYdiZq5wriV2oZo/rqDWjNpNSLiM6FtoFudqJb6MmjmVkq77gAOv467emDVRM5FccOiNPeHAbSBIGUzQku+WYpx5NmM81DmrcfeuXjKq+OBnXKGS/r6nLxtLXIfscQuo6uKZAh7KbdxOvknT+XtDFOZnY6DSFH0TZLKFgADCUsXYtlbzzOciJROZ0oxi/+b218OvPdNa4aNX1upjbPPmZg/kPeCAAXHklCGcWMPk4MMRvdn0o21GFT7j/ZujQ7anl/fNcb6UekxPwsz4WmkrkL9i0Z7DL9S8wECUB5Bj/3rFFhGtsLOWrTKYDu4uuSpqP1jibKoSEg==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9367.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(376002)(346002)(136003)(396003)(39850400004)(366004)(66946007)(86362001)(31696002)(5660300002)(38100700002)(8676002)(6512007)(8936002)(4326008)(6486002)(478600001)(66476007)(66556008)(316002)(6916009)(186003)(2616005)(4744005)(31686004)(2906002)(44832011)(6506007)(26005)(36756003)(41300700001)(53546011)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?MHpPWnE5NTE5a2NoTWR2L1RldzBIQnJMOUd6czNpVGJYL2hwcXh1ei9CNzNI?=
+ =?utf-8?B?SW5sVFk2cGVJYTRaWFBBZENpdGx1aytRaTlBNTlsY1owUEpHTDFLOWpIOFNG?=
+ =?utf-8?B?bnYzMjJQTFYxUjNsRjhEc1ltTW5JYU9Hd0hCVDZMbXFkN3poS3JJUmErOUEw?=
+ =?utf-8?B?ZGV6NXppaVRMaVdQY09aekpvc0lUcFphdlVWUVRHaWJQa1BqQWNvNlY0MEg0?=
+ =?utf-8?B?NXR6aHJrdmM0ZlhrQmwzYzJpc1lURy9lbks0ZmdKMkZQeXc2bjZ0Y0JiMlps?=
+ =?utf-8?B?SmNuK1lDUkpFT1I0dS9rYlcraisxMDRYQWpvby93WERmeVpremdxN21kSDll?=
+ =?utf-8?B?ZnU3dmdYSzZsUE9LcmtFWmpHY1duYnB5MnJSYmZkU2hNMHJQYlQ1d3NKa1lv?=
+ =?utf-8?B?VXBCTXdiZTBzTnlaZ1ZXMnR4ajczaFhESXdKVC9pYTAvNVVmTVFGWUxLYnJP?=
+ =?utf-8?B?WkpGbmRvOWk3RHpMcjVxdVFTejRVQkpwTlBGeERhS0MzQWw3OW5XbnV6d1VF?=
+ =?utf-8?B?ZXlFMlYxMXZlSGs5VkxoU3gyVjR3MmllUFlsbjRaQXU5eXlFVHF1Sk10ZTdP?=
+ =?utf-8?B?cGJZeEoxakRtQXJ6ZlFHekZDQzdkMU9DVEdQeFBKYnpCRkxMUzJsYmpnT05E?=
+ =?utf-8?B?endMK3BCZFlYS1YzelphRCt6T09EQVFMKzREV2c3U1FkS3gxWlNXWUlzL1V5?=
+ =?utf-8?B?RUFwSzN4NXhvTzlVOFBybEYvVTJKN1NsMGxzNFhicllWNkhrRGhhM1B6SlJr?=
+ =?utf-8?B?SlV2eSt1bDlWTi9OSktCQ3U4QTRDRzQrL21tLzBFUmlwWnZ0V21GMlBnekd5?=
+ =?utf-8?B?dEV6QjdOUVlSVkxWdFpSN3EvOFJ0TzFKS0hVQVZ4QVBZVWdzS3diQzQ3cjgy?=
+ =?utf-8?B?Tks5QXRnOURLWFFpUHFicTUwN2N3TkY4VzFZdG1CMHZJNFhJSG1MK3hnbHNu?=
+ =?utf-8?B?dnRlK1BRZFRTbFo2WUdyNExPNmtEdzB6WFdlYWlReHZOanBkV20zb0plTzA1?=
+ =?utf-8?B?Tm5DOXVaZlRKRmh5OGJmaG5KTFYyMGlHeTBzbzRZaS9pNzBpRnpraG4yWmtW?=
+ =?utf-8?B?R014ZGZjZUJGOU1VdlhhbU1zak91YUlzL3VWZ2xhL2hCQmVWSCttSVpCYzZO?=
+ =?utf-8?B?eGhMR21BUkhhcVZvWmNFdzNXbDMwaXJlb3RNOTFrQ0lNNHYvaUQvR2g0bVhI?=
+ =?utf-8?B?T1k1aFFtM3lHQjZDWFhaWTIzQVZQV0FIQm9VRkQ0R1QzNUJzVk4vLzRPYU5W?=
+ =?utf-8?B?S0dhYnl1T0RuUFU0cFh5cTFxdVhSM3N4MXUxYmQzL0hMcmRyMGc4RmRveEdH?=
+ =?utf-8?B?aVNIZDlWTWhwZ0QyS3ZZNGVXdlNpQitFNHRtQ2FWZDdXMVptLzk3bzdQRnls?=
+ =?utf-8?B?ZmxEaG9EOFIyZ0VlOWtWaFJlVDA4WnJWNkpUd00vNVhUQ01jMWVNaDNHUGNY?=
+ =?utf-8?B?RzA0YThBUTZwaWFkSlVUMG1waWdVaXptMnZZbkluQ05YSDExTzJkbExZRGZy?=
+ =?utf-8?B?bGsxWkw1VHFWUlBEVW1qYkV1NDR3OEE3S1lUYVl1aG0yREtsUlNCOFZYUG1o?=
+ =?utf-8?B?aFIzOTN2SndZUU9sVDV4L2V0a0xsUy9UYTJVTlNIN1JOSmtsUCtjZnZubEoz?=
+ =?utf-8?B?Q0RVUE9iZWFxbk1yWGZMMDA3b2Z4NnIwOFBUYlNya09Od1lWejUyZGo5Tmw1?=
+ =?utf-8?B?QlBBSkdCVUdrVWJjblVnSGVyeVRtKy80Z0xzYnIwWThOVlZKOE9KSENxaXh2?=
+ =?utf-8?B?azBBMGZMK2I4UDBRdy92M3UzRjl5VGxaR00yWTYybU90RmZmdlBpOHN6MUVU?=
+ =?utf-8?B?dUV6YUJpR2VHeGZJQzdsZkNnQ3hweFNBcTJhc1J3N3NSSlEzaSs1RmJubGJF?=
+ =?utf-8?B?VEZDUk9yN0pVckhLVFA5d0t6c0x4UnRkMHBBanZlOGhZMng2Q2xBVzJWa293?=
+ =?utf-8?B?WFFWZVBRM2tGazk3Wi9qai9KL3NHaEM5QkJpSTNEY0I0SkVVRVhzc1JWWWF3?=
+ =?utf-8?B?dFR1UzhQcHgxQXUvd1dZOEFnYmwvSUtDQmNla2QrZklRNDZBUlVxSVFUeENG?=
+ =?utf-8?B?cW5RMVR3SFRjbk9OTGY2a2tzbHR2TGF6NWNxeHk3dDBFSzFiQXVFYnFaVnUv?=
+ =?utf-8?B?blEvUnl3Sk1hVThvdVpjdVE3akZ2YUxIMzZMQ1RaUEdpVCtFeXNCYmR1U05C?=
+ =?utf-8?Q?8UiLB95kwiFnPq2hppIj+v8=3D?=
+X-OriginatorOrg: theobroma-systems.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 454a1400-493a-48cc-b80c-08da73d4e9ec
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9367.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Aug 2022 15:45:52.2305
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ SZRz1lfMRdqdR0Lri3y7v4V7PBoGT0omnJBn+PHAsvLWpDkrY93Ez4Qu/+sNAQ8mjo3h6dQHMm5jcpXIFycA89+8JgiEDGd7nfpyXxhJ2i6EYqPyfYo6Mhji3Eyxxro1
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5309
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 01 Aug 2022 15:35:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57716
+ <yocto@lists.yoctoproject.org>; Mon, 01 Aug 2022 15:46:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57717
 
---00000000000036036205e52fc065
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Hi Maik,
 
-Hi Quentin,
+On 8/1/22 17:34, Maik Vermeulen wrote:
+> Hi Quentin,
+> 
+> Thank you for your response!
+> 
+> I added kernel-modules to the IMAGE_INSTALL_append, but it seems that the
+> modules are still not being loaded.
+> Is that the correct way?
+> 
+> Also I see that CONFIG_NF_TABLES is not set (with ~# zcat /proc/config.gz |
+> grep CONFIG_NF_ | grep TABLE)
+> Is that expected?
+> 
 
-Thank you for your response!
+No, you would indeed need to enable those in your kernel config.
 
-I added kernel-modules to the IMAGE_INSTALL_append, but it seems that the
-modules are still not being loaded.
-Is that the correct way?
-
-Also I see that CONFIG_NF_TABLES is not set (with ~# zcat /proc/config.gz |
-grep CONFIG_NF_ | grep TABLE)
-Is that expected?
-
-Kind regards,
-
-Maik Vermeulen
-
-Embedded Software Engineer =E2=80=94 Lightyear <https://www.lightyear.one/>
-+31 6 16 82 73 79 <+31616827379>
-
-
-On Mon, Aug 1, 2022 at 3:51 PM Quentin Schulz <
-quentin.schulz@theobroma-systems.com> wrote:
-
-> Hi Maik,
->
-> On 8/1/22 14:41, Maik Vermeulen wrote:
-> > Hi,
-> >
-> > I added the following to our image recipe:
-> > IMAGE_INSTALL_append =3D " nftables"
-> >
-> > When running that image, nftables seems to be included, but we get the
-> > following error:
-> > ~# nft
-> > ../../nftables-0.7/src/netlink.c:59: Unable to initialize Netlink socke=
-t:
-> > Protocol not supported
-> >
-> > Furthermore, it's not showing in lsmod, and also not in modprobe
-> > --showconfigs.
-> >
-> > This is the active kernel config:
-> > root@agent336:~# zcat /proc/config.gz | grep
-> "CONFIG_NF_\|CONFIG_NETFILTER_"
-> > CONFIG_NETFILTER_ADVANCED=3Dy
-> > CONFIG_NETFILTER_INGRESS=3Dy
-> > # CONFIG_NETFILTER_NETLINK_ACCT is not set
-> > # CONFIG_NETFILTER_NETLINK_QUEUE is not set
-> > # CONFIG_NETFILTER_NETLINK_LOG is not set
-> > CONFIG_NF_CONNTRACK=3Dm
-> > CONFIG_NF_LOG_COMMON=3Dm
-> > # CONFIG_NF_LOG_NETDEV is not set
-> > # CONFIG_NF_CONNTRACK_MARK is not set
-> > CONFIG_NF_CONNTRACK_PROCFS=3Dy
-> > CONFIG_NF_CONNTRACK_EVENTS=3Dy
-> > # CONFIG_NF_CONNTRACK_TIMEOUT is not set
-> > # CONFIG_NF_CONNTRACK_TIMESTAMP is not set
-> > CONFIG_NF_CT_PROTO_DCCP=3Dy
-> > CONFIG_NF_CT_PROTO_SCTP=3Dy
-> > CONFIG_NF_CT_PROTO_UDPLITE=3Dy
-> > # CONFIG_NF_CONNTRACK_AMANDA is not set
-> > # CONFIG_NF_CONNTRACK_FTP is not set
-> > # CONFIG_NF_CONNTRACK_H323 is not set
-> > # CONFIG_NF_CONNTRACK_IRC is not set
-> > # CONFIG_NF_CONNTRACK_NETBIOS_NS is not set
-> > # CONFIG_NF_CONNTRACK_SNMP is not set
-> > # CONFIG_NF_CONNTRACK_PPTP is not set
-> > # CONFIG_NF_CONNTRACK_SANE is not set
-> > # CONFIG_NF_CONNTRACK_SIP is not set
-> > # CONFIG_NF_CONNTRACK_TFTP is not set
-> > # CONFIG_NF_CT_NETLINK is not set
-> > # CONFIG_NF_CT_NETLINK_TIMEOUT is not set
-> > CONFIG_NF_NAT=3Dm
-> > CONFIG_NF_NAT_NEEDED=3Dy
-> > CONFIG_NF_NAT_PROTO_DCCP=3Dy
-> > CONFIG_NF_NAT_PROTO_UDPLITE=3Dy
-> > CONFIG_NF_NAT_PROTO_SCTP=3Dy
-> > # CONFIG_NF_NAT_AMANDA is not set
-> > # CONFIG_NF_NAT_FTP is not set
-> > # CONFIG_NF_NAT_IRC is not set
-> > # CONFIG_NF_NAT_SIP is not set
-> > # CONFIG_NF_NAT_TFTP is not set
-> > # CONFIG_NF_NAT_REDIRECT is not set
-> > # CONFIG_NF_TABLES is not set
-> > CONFIG_NETFILTER_XTABLES=3Dm
-> > # CONFIG_NETFILTER_XT_MARK is not set
-> > # CONFIG_NETFILTER_XT_CONNMARK is not set
-> > # CONFIG_NETFILTER_XT_TARGET_AUDIT is not set
-> > CONFIG_NETFILTER_XT_TARGET_CHECKSUM=3Dm
-> > # CONFIG_NETFILTER_XT_TARGET_CLASSIFY is not set
-> > # CONFIG_NETFILTER_XT_TARGET_CONNMARK is not set
-> > # CONFIG_NETFILTER_XT_TARGET_DSCP is not set
-> > # CONFIG_NETFILTER_XT_TARGET_HL is not set
-> > # CONFIG_NETFILTER_XT_TARGET_HMARK is not set
-> > # CONFIG_NETFILTER_XT_TARGET_IDLETIMER is not set
-> > # CONFIG_NETFILTER_XT_TARGET_LED is not set
-> > CONFIG_NETFILTER_XT_TARGET_LOG=3Dm
-> > # CONFIG_NETFILTER_XT_TARGET_MARK is not set
-> > CONFIG_NETFILTER_XT_NAT=3Dm
-> > # CONFIG_NETFILTER_XT_TARGET_NETMAP is not set
-> > # CONFIG_NETFILTER_XT_TARGET_NFLOG is not set
-> > # CONFIG_NETFILTER_XT_TARGET_NFQUEUE is not set
-> > # CONFIG_NETFILTER_XT_TARGET_RATEEST is not set
-> > # CONFIG_NETFILTER_XT_TARGET_REDIRECT is not set
-> > # CONFIG_NETFILTER_XT_TARGET_TEE is not set
-> > # CONFIG_NETFILTER_XT_TARGET_TPROXY is not set
-> > # CONFIG_NETFILTER_XT_TARGET_TCPMSS is not set
-> > # CONFIG_NETFILTER_XT_TARGET_TCPOPTSTRIP is not set
-> > CONFIG_NETFILTER_XT_MATCH_ADDRTYPE=3Dm
-> > # CONFIG_NETFILTER_XT_MATCH_BPF is not set
-> > # CONFIG_NETFILTER_XT_MATCH_CGROUP is not set
-> > # CONFIG_NETFILTER_XT_MATCH_CLUSTER is not set
-> > # CONFIG_NETFILTER_XT_MATCH_COMMENT is not set
-> > # CONFIG_NETFILTER_XT_MATCH_CONNBYTES is not set
-> > # CONFIG_NETFILTER_XT_MATCH_CONNLABEL is not set
-> > # CONFIG_NETFILTER_XT_MATCH_CONNLIMIT is not set
-> > # CONFIG_NETFILTER_XT_MATCH_CONNMARK is not set
-> > CONFIG_NETFILTER_XT_MATCH_CONNTRACK=3Dm
-> > # CONFIG_NETFILTER_XT_MATCH_CPU is not set
-> > # CONFIG_NETFILTER_XT_MATCH_DCCP is not set
-> > # CONFIG_NETFILTER_XT_MATCH_DEVGROUP is not set
-> > # CONFIG_NETFILTER_XT_MATCH_DSCP is not set
-> > # CONFIG_NETFILTER_XT_MATCH_ECN is not set
-> > # CONFIG_NETFILTER_XT_MATCH_ESP is not set
-> > # CONFIG_NETFILTER_XT_MATCH_HASHLIMIT is not set
-> > # CONFIG_NETFILTER_XT_MATCH_HELPER is not set
-> > # CONFIG_NETFILTER_XT_MATCH_HL is not set
-> > # CONFIG_NETFILTER_XT_MATCH_IPCOMP is not set
-> > # CONFIG_NETFILTER_XT_MATCH_IPRANGE is not set
-> > # CONFIG_NETFILTER_XT_MATCH_L2TP is not set
-> > # CONFIG_NETFILTER_XT_MATCH_LENGTH is not set
-> > # CONFIG_NETFILTER_XT_MATCH_LIMIT is not set
-> > # CONFIG_NETFILTER_XT_MATCH_MAC is not set
-> > # CONFIG_NETFILTER_XT_MATCH_MARK is not set
-> > # CONFIG_NETFILTER_XT_MATCH_MULTIPORT is not set
-> > # CONFIG_NETFILTER_XT_MATCH_NFACCT is not set
-> > # CONFIG_NETFILTER_XT_MATCH_OWNER is not set
-> > # CONFIG_NETFILTER_XT_MATCH_POLICY is not set
-> > # CONFIG_NETFILTER_XT_MATCH_PHYSDEV is not set
-> > # CONFIG_NETFILTER_XT_MATCH_PKTTYPE is not set
-> > # CONFIG_NETFILTER_XT_MATCH_QUOTA is not set
-> > # CONFIG_NETFILTER_XT_MATCH_RATEEST is not set
-> > # CONFIG_NETFILTER_XT_MATCH_REALM is not set
-> > # CONFIG_NETFILTER_XT_MATCH_RECENT is not set
-> > # CONFIG_NETFILTER_XT_MATCH_SCTP is not set
-> > # CONFIG_NETFILTER_XT_MATCH_STATE is not set
-> > # CONFIG_NETFILTER_XT_MATCH_STATISTIC is not set
-> > # CONFIG_NETFILTER_XT_MATCH_STRING is not set
-> > # CONFIG_NETFILTER_XT_MATCH_TCPMSS is not set
-> > # CONFIG_NETFILTER_XT_MATCH_TIME is not set
-> > # CONFIG_NETFILTER_XT_MATCH_U32 is not set
-> > CONFIG_NF_DEFRAG_IPV4=3Dm
-> > CONFIG_NF_CONNTRACK_IPV4=3Dm
-> > # CONFIG_NF_SOCKET_IPV4 is not set
-> > # CONFIG_NF_DUP_IPV4 is not set
-> > # CONFIG_NF_LOG_ARP is not set
-> > CONFIG_NF_LOG_IPV4=3Dm
-> > CONFIG_NF_REJECT_IPV4=3Dm
-> > CONFIG_NF_NAT_IPV4=3Dm
-> > CONFIG_NF_NAT_MASQUERADE_IPV4=3Dm
-> > # CONFIG_NF_NAT_PPTP is not set
-> > # CONFIG_NF_NAT_H323 is not set
-> > CONFIG_NF_DEFRAG_IPV6=3Dm
-> > CONFIG_NF_CONNTRACK_IPV6=3Dm
-> > # CONFIG_NF_SOCKET_IPV6 is not set
-> > # CONFIG_NF_DUP_IPV6 is not set
-> > CONFIG_NF_REJECT_IPV6=3Dm
-> > CONFIG_NF_LOG_IPV6=3Dm
-> > CONFIG_NF_NAT_IPV6=3Dm
-> > CONFIG_NF_NAT_MASQUERADE_IPV6=3Dm
-> >
-> > What am I missing? Should I enable it some other way instead of using
-> > IMAGE_INSTALL_append? Do I need to enable more?
-> >
->
-> It seems you built many netfilter features/drivers as modules and not
-> built-in in the kernel. When that is the case, you need to add the
-> modules to your image because Yocto does not do it for you. Yocto splits
-> each module in its own package. As a simple try, you can add the
-> kernel-modules package to your image, it is a package that pulls all
-> kernel module packages all at once. At least you'll know if there's
-> another issue before pinpointing the exact kernel module package names
-> you will want in your image (kernel-modules can be pretty big if you
-> don't have a "clean" defconfig with many unnecessary drivers built as
-> modules).
->
-> Cheers,
-> Quentin
->
-
---=20
-=20
-<https://lightyear.one/careers?utm_source=3Dsignature&utm_campaign=3Dspotli=
-ghtroles&utm_medium=3Demail#vacancies>
-
---=20
-
-
-Automotive Campus 70 =E2=80=945708 JZ Helmond, the Netherlands
-www.lightyear.one=20
-<https://lightyear.one/>
- <https://www.linkedin.com/company/lightyear.one/>
-
-This email may contain information which is privileged and/or=20
-confidential. If you received this e-mail in error, please notify us=20
-immediately by e-mail and delete the email without copying or disclosing=20
-its contents to any other person. Lightyear is a trade name of Atlas=20
-Technologies B.V. and is registered at the Dutch Chamber of Commerce under=
-=20
-number 67264298.=C2=A0
-
---00000000000036036205e52fc065
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Quentin,<div><br></div><div>Thank you for your response=
-!</div><div><br></div><div>I added=C2=A0kernel-modules to the IMAGE_INSTALL=
-_append, but it seems that the modules are still not being loaded.</div><di=
-v>Is that the correct way?</div><div><br></div><div>Also I see that CONFIG_=
-NF_TABLES is not set (with ~# zcat /proc/config.gz | grep CONFIG_NF_ | grep=
- TABLE)</div><div>Is that expected?</div><div><br></div><div>Kind regards,<=
-br clear=3D"all"><div><div dir=3D"ltr" class=3D"gmail_signature" data-smart=
-mail=3D"gmail_signature"><div dir=3D"ltr"><br><div><span style=3D"color:rgb=
-(29,29,27);font-family:Helvetica,Arial,sans-serif;font-size:16px">Maik Verm=
-eulen</span></div><br><div><span style=3D"color:rgb(29,29,27);font-family:H=
-elvetica,Arial,sans-serif;font-size:13px">Embedded Software Engineer=E2=80=
-=82=E2=80=94=E2=80=82<a href=3D"https://www.lightyear.one/" rel=3D"noopener=
- noreferrer" style=3D"color:rgb(51,206,224)" target=3D"_blank">Lightyear</a=
-></span></div><div><span style=3D"color:rgb(29,29,27);font-family:Helvetica=
-,Arial,sans-serif;font-size:13px"><a href=3D"tel:+31616827379" rel=3D"noope=
-ner" style=3D"color:rgb(29,29,27)" target=3D"_blank">+31 6 16 82 73 79</a><=
-/span></div></div></div></div><br></div></div><br><div class=3D"gmail_quote=
-"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Aug 1, 2022 at 3:51 PM Quen=
-tin Schulz &lt;<a href=3D"mailto:quentin.schulz@theobroma-systems.com">quen=
-tin.schulz@theobroma-systems.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">Hi Maik,<br>
-<br>
-On 8/1/22 14:41, Maik Vermeulen wrote:<br>
-&gt; Hi,<br>
-&gt; <br>
-&gt; I added the following to our image recipe:<br>
-&gt; IMAGE_INSTALL_append =3D &quot; nftables&quot;<br>
-&gt; <br>
-&gt; When running that image, nftables seems to be included, but we get the=
-<br>
-&gt; following error:<br>
-&gt; ~# nft<br>
-&gt; ../../nftables-0.7/src/netlink.c:59: Unable to initialize Netlink sock=
-et:<br>
-&gt; Protocol not supported<br>
-&gt; <br>
-&gt; Furthermore, it&#39;s not showing in lsmod, and also not in modprobe<b=
-r>
-&gt; --showconfigs.<br>
-&gt; <br>
-&gt; This is the active kernel config:<br>
-&gt; root@agent336:~# zcat /proc/config.gz | grep &quot;CONFIG_NF_\|CONFIG_=
-NETFILTER_&quot;<br>
-&gt; CONFIG_NETFILTER_ADVANCED=3Dy<br>
-&gt; CONFIG_NETFILTER_INGRESS=3Dy<br>
-&gt; # CONFIG_NETFILTER_NETLINK_ACCT is not set<br>
-&gt; # CONFIG_NETFILTER_NETLINK_QUEUE is not set<br>
-&gt; # CONFIG_NETFILTER_NETLINK_LOG is not set<br>
-&gt; CONFIG_NF_CONNTRACK=3Dm<br>
-&gt; CONFIG_NF_LOG_COMMON=3Dm<br>
-&gt; # CONFIG_NF_LOG_NETDEV is not set<br>
-&gt; # CONFIG_NF_CONNTRACK_MARK is not set<br>
-&gt; CONFIG_NF_CONNTRACK_PROCFS=3Dy<br>
-&gt; CONFIG_NF_CONNTRACK_EVENTS=3Dy<br>
-&gt; # CONFIG_NF_CONNTRACK_TIMEOUT is not set<br>
-&gt; # CONFIG_NF_CONNTRACK_TIMESTAMP is not set<br>
-&gt; CONFIG_NF_CT_PROTO_DCCP=3Dy<br>
-&gt; CONFIG_NF_CT_PROTO_SCTP=3Dy<br>
-&gt; CONFIG_NF_CT_PROTO_UDPLITE=3Dy<br>
-&gt; # CONFIG_NF_CONNTRACK_AMANDA is not set<br>
-&gt; # CONFIG_NF_CONNTRACK_FTP is not set<br>
-&gt; # CONFIG_NF_CONNTRACK_H323 is not set<br>
-&gt; # CONFIG_NF_CONNTRACK_IRC is not set<br>
-&gt; # CONFIG_NF_CONNTRACK_NETBIOS_NS is not set<br>
-&gt; # CONFIG_NF_CONNTRACK_SNMP is not set<br>
-&gt; # CONFIG_NF_CONNTRACK_PPTP is not set<br>
-&gt; # CONFIG_NF_CONNTRACK_SANE is not set<br>
-&gt; # CONFIG_NF_CONNTRACK_SIP is not set<br>
-&gt; # CONFIG_NF_CONNTRACK_TFTP is not set<br>
-&gt; # CONFIG_NF_CT_NETLINK is not set<br>
-&gt; # CONFIG_NF_CT_NETLINK_TIMEOUT is not set<br>
-&gt; CONFIG_NF_NAT=3Dm<br>
-&gt; CONFIG_NF_NAT_NEEDED=3Dy<br>
-&gt; CONFIG_NF_NAT_PROTO_DCCP=3Dy<br>
-&gt; CONFIG_NF_NAT_PROTO_UDPLITE=3Dy<br>
-&gt; CONFIG_NF_NAT_PROTO_SCTP=3Dy<br>
-&gt; # CONFIG_NF_NAT_AMANDA is not set<br>
-&gt; # CONFIG_NF_NAT_FTP is not set<br>
-&gt; # CONFIG_NF_NAT_IRC is not set<br>
-&gt; # CONFIG_NF_NAT_SIP is not set<br>
-&gt; # CONFIG_NF_NAT_TFTP is not set<br>
-&gt; # CONFIG_NF_NAT_REDIRECT is not set<br>
-&gt; # CONFIG_NF_TABLES is not set<br>
-&gt; CONFIG_NETFILTER_XTABLES=3Dm<br>
-&gt; # CONFIG_NETFILTER_XT_MARK is not set<br>
-&gt; # CONFIG_NETFILTER_XT_CONNMARK is not set<br>
-&gt; # CONFIG_NETFILTER_XT_TARGET_AUDIT is not set<br>
-&gt; CONFIG_NETFILTER_XT_TARGET_CHECKSUM=3Dm<br>
-&gt; # CONFIG_NETFILTER_XT_TARGET_CLASSIFY is not set<br>
-&gt; # CONFIG_NETFILTER_XT_TARGET_CONNMARK is not set<br>
-&gt; # CONFIG_NETFILTER_XT_TARGET_DSCP is not set<br>
-&gt; # CONFIG_NETFILTER_XT_TARGET_HL is not set<br>
-&gt; # CONFIG_NETFILTER_XT_TARGET_HMARK is not set<br>
-&gt; # CONFIG_NETFILTER_XT_TARGET_IDLETIMER is not set<br>
-&gt; # CONFIG_NETFILTER_XT_TARGET_LED is not set<br>
-&gt; CONFIG_NETFILTER_XT_TARGET_LOG=3Dm<br>
-&gt; # CONFIG_NETFILTER_XT_TARGET_MARK is not set<br>
-&gt; CONFIG_NETFILTER_XT_NAT=3Dm<br>
-&gt; # CONFIG_NETFILTER_XT_TARGET_NETMAP is not set<br>
-&gt; # CONFIG_NETFILTER_XT_TARGET_NFLOG is not set<br>
-&gt; # CONFIG_NETFILTER_XT_TARGET_NFQUEUE is not set<br>
-&gt; # CONFIG_NETFILTER_XT_TARGET_RATEEST is not set<br>
-&gt; # CONFIG_NETFILTER_XT_TARGET_REDIRECT is not set<br>
-&gt; # CONFIG_NETFILTER_XT_TARGET_TEE is not set<br>
-&gt; # CONFIG_NETFILTER_XT_TARGET_TPROXY is not set<br>
-&gt; # CONFIG_NETFILTER_XT_TARGET_TCPMSS is not set<br>
-&gt; # CONFIG_NETFILTER_XT_TARGET_TCPOPTSTRIP is not set<br>
-&gt; CONFIG_NETFILTER_XT_MATCH_ADDRTYPE=3Dm<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_BPF is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_CGROUP is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_CLUSTER is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_COMMENT is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_CONNBYTES is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_CONNLABEL is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_CONNLIMIT is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_CONNMARK is not set<br>
-&gt; CONFIG_NETFILTER_XT_MATCH_CONNTRACK=3Dm<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_CPU is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_DCCP is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_DEVGROUP is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_DSCP is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_ECN is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_ESP is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_HASHLIMIT is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_HELPER is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_HL is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_IPCOMP is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_IPRANGE is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_L2TP is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_LENGTH is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_LIMIT is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_MAC is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_MARK is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_MULTIPORT is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_NFACCT is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_OWNER is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_POLICY is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_PHYSDEV is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_PKTTYPE is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_QUOTA is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_RATEEST is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_REALM is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_RECENT is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_SCTP is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_STATE is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_STATISTIC is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_STRING is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_TCPMSS is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_TIME is not set<br>
-&gt; # CONFIG_NETFILTER_XT_MATCH_U32 is not set<br>
-&gt; CONFIG_NF_DEFRAG_IPV4=3Dm<br>
-&gt; CONFIG_NF_CONNTRACK_IPV4=3Dm<br>
-&gt; # CONFIG_NF_SOCKET_IPV4 is not set<br>
-&gt; # CONFIG_NF_DUP_IPV4 is not set<br>
-&gt; # CONFIG_NF_LOG_ARP is not set<br>
-&gt; CONFIG_NF_LOG_IPV4=3Dm<br>
-&gt; CONFIG_NF_REJECT_IPV4=3Dm<br>
-&gt; CONFIG_NF_NAT_IPV4=3Dm<br>
-&gt; CONFIG_NF_NAT_MASQUERADE_IPV4=3Dm<br>
-&gt; # CONFIG_NF_NAT_PPTP is not set<br>
-&gt; # CONFIG_NF_NAT_H323 is not set<br>
-&gt; CONFIG_NF_DEFRAG_IPV6=3Dm<br>
-&gt; CONFIG_NF_CONNTRACK_IPV6=3Dm<br>
-&gt; # CONFIG_NF_SOCKET_IPV6 is not set<br>
-&gt; # CONFIG_NF_DUP_IPV6 is not set<br>
-&gt; CONFIG_NF_REJECT_IPV6=3Dm<br>
-&gt; CONFIG_NF_LOG_IPV6=3Dm<br>
-&gt; CONFIG_NF_NAT_IPV6=3Dm<br>
-&gt; CONFIG_NF_NAT_MASQUERADE_IPV6=3Dm<br>
-&gt; <br>
-&gt; What am I missing? Should I enable it some other way instead of using<=
-br>
-&gt; IMAGE_INSTALL_append? Do I need to enable more?<br>
-&gt; <br>
-<br>
-It seems you built many netfilter features/drivers as modules and not <br>
-built-in in the kernel. When that is the case, you need to add the <br>
-modules to your image because Yocto does not do it for you. Yocto splits <b=
-r>
-each module in its own package. As a simple try, you can add the <br>
-kernel-modules package to your image, it is a package that pulls all <br>
-kernel module packages all at once. At least you&#39;ll know if there&#39;s=
- <br>
-another issue before pinpointing the exact kernel module package names <br>
-you will want in your image (kernel-modules can be pretty big if you <br>
-don&#39;t have a &quot;clean&quot; defconfig with many unnecessary drivers =
-built as <br>
-modules).<br>
-<br>
-Cheers,<br>
-Quentin<br>
-</blockquote></div>
-
-<br>
-<a href=3D"https://lightyear.one/careers?utm_source=3Dsignature&amp;utm_cam=
-paign=3Dspotlightroles&amp;utm_medium=3Demail#vacancies" target=3D"_blank">=
-<img src=3D"https://f.hubspotusercontent40.net/hubfs/2629990/lightyear_recr=
-uitment_banner.gif" alt=3D"https://lightyear.one/careers?utm_source=3Dsigna=
-ture&amp;utm_campaign=3Dspotlightroles&amp;utm_medium=3Demail#vacancies"></=
-a><br><div><br></div>
-<br>
-<br><br><div style=3D"text-align:center"><font size=3D"2">Automotive Campus=
- 70 =E2=80=945708 JZ Helmond, the Netherlands</font></div><div style=3D"tex=
-t-align:center"><a href=3D"https://lightyear.one/" target=3D"_blank"><font =
-size=3D"2">www.lightyear.one</font></a><a href=3D"https://www.linkedin.com/=
-company/lightyear.one/" target=3D"_blank"><br></a></div><br><div style=3D"t=
-ext-align:center"><span style=3D"color:rgb(128,128,128);font-size:x-small">=
-This email may contain information which is privileged and/or confidential.=
- If you received this e-mail in error, please notify us immediately by e-ma=
-il and delete the email without copying or disclosing its contents to any o=
-ther person. Lightyear is a trade name of Atlas Technologies B.V. and is re=
-gistered at the Dutch Chamber of Commerce under number 67264298.=C2=A0</spa=
-n></div>
---00000000000036036205e52fc065--
+Cheers,
+Quentin
 
