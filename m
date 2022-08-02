@@ -1,289 +1,252 @@
-Return-Path: <steven.monsees@baesystems.com>
+Return-Path: <martin.leduc@luminator.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 108C4C00140
-	for <webhook@archiver.kernel.org>; Tue,  2 Aug 2022 15:18:03 +0000 (UTC)
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com
- [149.32.232.65])
- by mx.groups.io with SMTP id smtpd.web12.7467.1659453482080255692
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1A6C6C00140
+	for <webhook@archiver.kernel.org>; Tue,  2 Aug 2022 15:22:23 +0000 (UTC)
+Received: from mx1.luminator.com (mx1.luminator.com [178.15.153.4])
+ by mx.groups.io with SMTP id smtpd.web09.7492.1659453732443787496
  for <yocto@lists.yoctoproject.org>;
- Tue, 02 Aug 2022 08:18:02 -0700
+ Tue, 02 Aug 2022 08:22:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=ITCFalph;
- spf=pass (domain: baesystems.com, ip: 149.32.232.65,
- mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1659453482; x=1817133482;
-  h=from:to:subject:date:mime-version;
-  bh=F7Ft2I1OrtR5fQwwYgn77DrpHYe7+QHZi75bgXvb9qo=;
-  b=ITCFalphXLVz501I6nYFK89NemMT4BzyAX3pTHH7kaq6f2/XZ1DMgwre
-   yBgBkGw8QVkjcqBEh8wwnrjqWsAEkoFp3+6YArYmkHHjPCMFN0Y3lq6rW
-   7Co288+DNVkdmaWBftDi2kLA+6a1JEMUi0UAKkOVaUydVejSQQdmAbJ2x
-   4=;
-IronPort-SDR: 
- V3maelutg1WtkGPyMJguFTijm2B8iV2558uKe7ERfPR/rQmhKMe7EFTWOI1Wezlm33iZ90iat9
- ocQRMWx6pCPw==
-X-IPAS-Result: =?us-ascii?q?A2DvAwAIP+li/0LBJQpaHgEBCxIMQAmBOwuBIYICAoFwk?=
- =?us-ascii?q?mCCYpx8gXwLAQEBAQEBAQEBCAFCBAEBiX8mNQgOAQIEAQEBAQMCAwEBAQEFA?=
- =?us-ascii?q?QEGAQEBAQEBBgQBgRuFLzoMgjUihB9eARVrJgEEG4J2gg6BDKkrgTMaAmWEb?=
- =?us-ascii?q?4USgT2BZoV/gwsPhjFDj3wEl2AHNgNFHkIDCw5ECAkXEhAQAgQRGgsGAxY/C?=
- =?us-ascii?q?QIEDgNACA0DEQQDDxgJEggQBAYDMQwlCwMFDwwBBgMGBQMBAxsDFAMFJAcDH?=
- =?us-ascii?q?A8jDQ0EHx0DAwUlAwICGwcCAgMCBhUGAgJOOQgECAQrJA8FAgcvBQQvAh4EB?=
- =?us-ascii?q?QYRCAIWAgYEBAQEFgIQCAIIJxcHEzMZAQVZEAkhHCgQBQYTAyBvBUUPKDM1P?=
- =?us-ascii?q?CsfGwqBEiorFQMEBAMCBhUDAyICEC4xAxUGKRMSLQkqdQkCAyJtAwMEKi4DC?=
- =?us-ascii?q?R8CARwHCSaaAT4TMR2CVZIOjXGECZ0WBwODUaAJLhWXAgORYpZ9IKIYhHQCB?=
- =?us-ascii?q?AIEBQIWgWIBghNwgzlQFwKcf4EwAgYLAQEDCY10gRIBAQ?=
-IronPort-PHdr: A9a23:vmmhkBMhO80EwQobu5ol6nafDRdPi9zP1u491JMrhvp0f7i5+Ny6Z
- QqDv64r1gWUFtWGo9t/yMPu+5j6XmIB5ZvT+FsjS7drEyE/tMMNggY7C9SEA0CoZNTjbig9A
- dgQHAQ9pyLzPkdaAtvxaEPPqXOu8zESBg//NQ1oLejpB4Lelcu62/689pHJfQlEmjqwbbxxI
- Ri2sA7cqtQYjYx+J6gr1xDHuGFIe+NYxWNpIVKcgRPx7dqu8ZBg7ipdpesv+9ZPXqvmcas4S
- 6dYDCk9PGAu+MLrrxjDQhCR6XYaT24bjwBHAwnB7BH9Q5fxri73vfdz1SWGIcH7S60/VDK/5
- KlpVRDokj8KOT4n/m/Klsx+gqFVoBO9qBNw2IPbep2ZNPhkc6/BYd8WW2xMVdtRWSxbBYO8a
- pMCA+QGM+ZfqYn9vEUBogWlBQW0Gejh1yNIiWHo3aIk1eQqDB/L1xEkE90ArXrYqdv5P7oVX
- OCu0KnH0yvDYO1Q2Tvn7YjIdRYhoeqSUr1uasrc0lIgGBnbgVWLqY3lJC+V2foIs2iA9eZvS
- eWvi2s+pgx3vzOgydsihJPTiYIJ1lDL6z95wIAtKNO2RkN2fd+pHZlRui2EKod7XMAvTmFst
- Ss1xbAKpJC1cSgFxpg6wxPSafyKfoeJ7x7+SuucJTR1iXF4db6iiBi/91WrxO7kVsSszVpGs
- jBJn9fOu3wXyhDe7saKRuF880qgwTqDyhzf5vtLLE07j6bWJIQtzqMwm5cVrE/NBDX5mF/sg
- 6+Tbkgk/++o5Pn5bbj+vZ+cMpN0ihn5MqQzhsyzGeQ4PRYKX2ic4em80r3j/UvjT7VPlf07k
- anUvIzGKcgGvKK5BRVa3pw45BmlETimy9QZnWIbLF1bfRKHlJLlNE3JIPD9Ffu/glKsnyl3x
- /3eI7HtHo/BI3bBnbv7YLpw70BRxBAywN1e/55UD6sOIPP3Wk//rtzYCRo5PhSvw+b7Ftp9y
- J0RWWSVDq+cN6PSt0SI6fwxLOmXf4IaoyzyJOY+5//uln85hUESfayy3ZcNdH+4GfFmL12fY
- XX3mtgBC3sFvhIiTOz2j12PSSNfa26oX60g/jE7FJ6mDYDbS4Gth7yOwDu7HppNa2BCC1CMC
- mvod56eV/YMbyKdPtNhkjscVbi7TI8h1w+huxPmy7Z9KerU4CIY5trf040/9urYiRYa8T1vE
- 9/bwmaGU2ZshGQKSjQqmqdlrgY1nkaE2rR/q/hZDsBIoeJOWRs9LYTbzeFxF5b1QA2XLfmTT
- 1PzCPChByo8Q8l1i+QSblhwHZ2JxlD+5GvgS+sOi7GVCZpy96XaxHX8PO53wnvdxbI9glw9B
- MBIMDv11eZE6wHPCtuRwA2inKGwePFEtBM=
-IronPort-Data: A9a23:vm2lR6prW3NzvxUjxoB8V+dlz11eBmKNZxIvgKrLsJaIsI4StFCzt
- garIBmEOa3fY2v2Ld90YYu0/UhV7MeDmtRmSVc4+X1gQn4Q9+PIVI+TRqvS04N+DSFhoGZPt
- Zh2hgzodZhsJpPkjk72dOWn8RGQ7InQLlbGILes1htZGEk1E0/NtTo5w7Rj2t4w24Dia++wk
- YqaT/P3aQfNNwFcbzp8B5Kr8HuDa9yr5Vv0FnRnDRx6lAe2e0s9VfrzFontR5fMebS4K8bhL
- wr1IBBVyUuCl/slIovNfr8W6STmSJaKVeSFoiI+t6RPHnGuqwRqupvXOsbwZm981RKP2PlQ1
- +lz77vsVyYwP6zDscY0Bkww/yFWZcWq+ZfBIX62tNfDkhWeKj3qyrNkBUwtLJYE9+NsR2pJ8
- JT0KhhUNlbY2KTvken9FLcEascLdaEHOKsEpnx+wDefCPEgWp3OWI3A7NJDzSwsi8VVW/3ZY
- qL1bBIxNkyRP0UQUrsRILElo9i2n0C4SD5njE+Kva0X6kLSyTUkhdABN/KQILRmX/59j0GTu
- mXu+2XiHgpcJduU1T2d6HWui+TT2yThV+ov+KaQr6Ys2wLVnz1ITkNIPbemncSEZoeFc4o3A
- yQpFuAG8cDeKGTDogHBYiCF
-IronPort-HdrOrdr: A9a23:4kFasKrbpuftD7gjpGAzNgEaV5o2eYIsimQD101hICG9E/bo8v
- xG+c5x6faaslgssR0b9uxoW5PwI080i6QU3WB5B97LMWXbUQCTTb2Kg7GSoAEIHReVytJg
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-AV: E=Sophos;i="5.93,211,1654560000";
-   d="scan'208,217";a="6209407"
-IronPort-SDR: 
- D+Ay53EN82nr/ei7Ggt0VT8iXJCutFgjIiZMYFw7Vby06DBcWrlP9TDti2a1at7bday0I05u5D
- vM8lCeRfICJOYtU3DUPyhXq9iODetars1lhPUNuZbt18L5zF3i398KHZCPWcWyh1dV3NLfhXCp
- 6e/jvOTwns1i2/5yQchd8cqdT97TQmW15x7kvoENxRnTJ0n7YnEwqahJVu9CtyBLprurZC7/cF
- vKjKACmBqOOcnIZuX/op0ifL8nPgMFwm4+rnT7oVbibRs3H6Pt7XgBGPxJJERwOyvzMpsZSw1s
- SLQ=
-X-IronPort-AV: E=Sophos;i="5.93,211,1654560000";
-   d="scan'208,217";a="336891474"
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: poky-dunfell-23.0.17
-Thread-Topic: poky-dunfell-23.0.17
-Thread-Index: AdimgiMeKGp2RxcZRhGYkFDCTjm4rA==
-Date: Tue, 2 Aug 2022 15:16:59 +0000
-Accept-Language: en-US
-Content-Language: en-US
+ dkim=pass header.i=@luminator.com header.s=luminator header.b=OM/yC/5d;
+ spf=pass (domain: luminator.com, ip: 178.15.153.4,
+ mailfrom: prvs=021327e5a9=martin.leduc@luminator.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=luminator.com; s=luminator; h=MIME-Version:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=NTdGUA+3Y60ECr+a4K6S6Ho3hM86ck2jreXrpJmkG14=; b=OM/yC/5dkPrncAUON8ZW2rYauf
+	0Lc/hnXBwBc4VC3haAqEJoxZbYV2aBJCm7GadPrBZbWRwE5huV9J1E9wLmgdRLRSRmdcrwMVKZ0/j
+	rvX/F2lWtl4PWmuj/IvyWzJLFHs4JCvqSRtAGUJcGyG2ckIfQ6jj1rQV6541uzK9zwb6Gwn7OJcCw
+	UvghiSTqxJ36QG4eF1SBqVHaO381g5I6IqCq+HcRKJUanEB98+Z/013hdXjYOv8ez3T6BFLJ1tXyl
+	u/d4Q3QjztfHO3DUhkZ3bhJUFr9rZl0cFswwV2Rn6WkVhnkKGBEYCNybD6eFxyc1zQFSLAQzISGJX
+	tWcX+Tgw==;
+X-SASI-Hits: BODY_SIZE_6000_6999 0.000000, BODY_SIZE_7000_LESS 0.000000,
+	CTE_BASE64 0.000000, HTML_00_01 0.050000, HTML_00_10 0.050000,
+	IN_REP_TO 0.000000, LEGITIMATE_SIGNS 0.000000, MSG_THREAD 0.000000,
+	MULTIPLE_REAL_RCPTS 0.000000, NO_CTA_URI_FOUND 0.000000,
+	NO_FUR_HEADER 0.000000, NO_URI_HTTPS 0.000000, OUTBOUND 0.000000,
+	OUTBOUND_SOPHOS 0.000000, REFERENCES 0.000000, SUPERLONG_LINE 0.050000,
+	__ANY_URI 0.000000, __ARCAUTH_DKIM_PASSED 0.000000,
+	__ARCAUTH_DMARC_PASSED 0.000000, __ARCAUTH_PASSED 0.000000,
+	__ARC_SEAL_MICROSOFT 0.000000, __ARC_SIGNATURE_MICROSOFT 0.000000,
+	__ATTACHMENT_PHRASE 0.000000, __BODY_NO_MAILTO 0.000000,
+	__BOUNCE_CHALLENGE_SUBJ 0.000000, __BOUNCE_NDR_SUBJ_EXEMPT 0.000000,
+	__BULK_NEGATE 0.000000, __BUSINESS_SIGNATURE 0.000000, __CC_NAME 0.000000,
+	__CP_MEDIA_BODY 0.000000, __CT 0.000000, __CTE 0.000000,
+	__CT_TEXT_PLAIN 0.000000, __DQ_NEG_DOMAIN 0.000000, __DQ_NEG_HEUR 0.000000,
+	__DQ_NEG_IP 0.000000, __FORWARDED_MSG 0.000000,
+	__FRAUD_BODY_WEBMAIL 0.000000, __FRAUD_MONEY_CURRENCY 0.000000,
+	__FRAUD_MONEY_CURRENCY_DOLLAR 0.000000,
+	__FRAUD_MONEY_CURRENCY_POUND 0.000000, __FRAUD_WEBMAIL 0.000000,
+	__FUR_RDNS_SOPHOS 0.000000, __HAS_CC_HDR 0.000000, __HAS_FROM 0.000000,
+	__HAS_MSGID 0.000000, __HAS_REFERENCES 0.000000, __HAS_X_FF_ASR 0.000000,
+	__HAS_X_FF_ASR_CAT 0.000000, __HAS_X_FF_ASR_SFV 0.000000,
+	__HIGHBITS 0.000000, __IN_REP_TO 0.000000, __MAIL_CHAIN 0.000000,
+	__MIME_TEXT_ONLY 0.000000, __MIME_TEXT_P 0.000000, __MIME_TEXT_P1 0.000000,
+	__MIME_VERSION 0.000000, __NO_HTML_TAG_RAW 0.000000,
+	__OUTBOUND_SOPHOS_FUR 0.000000, __OUTBOUND_SOPHOS_FUR_IP 0.000000,
+	__OUTBOUND_SOPHOS_FUR_RDNS 0.000000, __PHISH_PHRASE10_D 0.000000,
+	__PHISH_PHRASE_NL4 0.000000, __REFERENCES 0.000000, __SANE_MSGID 0.000000,
+	__SUBJ_ALPHA_NEGATE 0.000000, __SUBJ_REPLY 0.000000, __TO_GMAIL 0.000000,
+	__TO_MALFORMED_2 0.000000, __TO_NAME 0.000000,
+	__TO_NAME_DIFF_FROM_ACC 0.000000, __TO_REAL_NAMES 0.000000,
+	__URI_MAILTO 0.000000, __URI_NO_WWW 0.000000, __URI_NS 0.000000,
+	__X_FF_ASR_SCL_NSP 0.000000, __X_FF_ASR_SFV_NSPM 0.000000
+X-SASI-Probability: 8%
+X-SASI-RCODE: 200
+X-SASI-Version: Antispam-Engine: 4.1.4, AntispamData: 2022.8.2.143620
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aVpNWdGoHQ3oZvoSeDeru73zS0SHOZvA7IgBLyBFEz3fru/5hdBs8TD8MqrIFU65eDeGBqApJswQq8YDdeG6mwpNhfRoSzeMiO++2/2VAYyk2qPYGwMzagB/BdQOX5MSSJCLPFK3Q0s8hc8GPdoBGlQacrs0O8W3deezb8eJTJoeX2HP/iSu53uOUiomghixDde0hFCkNtAxhuv3RH9NVVsB+SgzpPgX3AIHfTBKF2TIPCsevADuAG7MUb7t1I+g+cgtGXzH3TLZzDCmm8T2/KVKphY2kX3qrqCSGZskyIDrAWoeF1hgZqj35DnCNx8QW1tURmray+axxOUL3vkEag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NTdGUA+3Y60ECr+a4K6S6Ho3hM86ck2jreXrpJmkG14=;
+ b=TnLhmzHc1zFvvZ0aMk/H6fCYVJ22oQ4hjTdKotcj6zB6ThnvAni8ilLtUIBHdQUUIM0bmosMZrRNIU7HFXAWoHX6UdKhNN6XwMB9d0qow/wQZNGYxXw2PTrTHN86Kb32RHYKxZoc7sRJIy2cxMVkFq5irm+T8wXX7ahjRrV1fDwBB2wSWVKwkThDDUpTwIAv1MFxoxgP1xXJePuzNdQrobPPZYLOOWsytGK74MdmRz2IuFiHsF3E2G7/cd1ZNtli8nakTePFg/YK7eq6Rc9cNpzagmjiLzypSzDeBKDUH6Rx0lIREacEH5WV/fUj6Dugoc+wikO8tUaEd1puRAfe1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=luminator.com; dmarc=pass action=none
+ header.from=luminator.com; dkim=pass header.d=luminator.com; arc=none
+From: Martin Leduc <martin.leduc@luminator.com>
+To: Joshua Watt <jpewhacker@gmail.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: RE: [EXTERNAL] Re: [yocto] BBClass function and symbolic link
+ (symlink) ... I throw in the towel #python #bitbake #kirkstone
+Thread-Topic: [EXTERNAL] Re: [yocto] BBClass function and symbolic link
+ (symlink) ... I throw in the towel #python #bitbake #kirkstone
+Thread-Index: AQHYpns4nBOhJXVNIkK7pt2Ze3UVO62bs/2wgAAC9gCAAAK6sA==
+Date: Tue, 2 Aug 2022 15:22:03 +0000
+Message-ID: 
+ <PA4P189MB1183444E03D4AA1940C2BEAE969D9@PA4P189MB1183.EURP189.PROD.OUTLOOK.COM>
+References: <oqsz.1659447842876164805.WW8H@lists.yoctoproject.org>
+ <CAJdd5Gbbh3gSuKtxAAHm-tc0er_EA93QCq+yyiHQ2YMWHC6cfg@mail.gmail.com>
+ <17078CF9F8D6FA72.19085@lists.yoctoproject.org>
+ <PA4P189MB118378328707E20AE31CF9D2969D9@PA4P189MB1183.EURP189.PROD.OUTLOOK.COM>
+ <CAJdd5GYJ+ob4PLbUXkOM3J2jZS=3X0azBAK7TMoYKfXEcWgZOQ@mail.gmail.com>
+In-Reply-To: 
+ <CAJdd5GYJ+ob4PLbUXkOM3J2jZS=3X0azBAK7TMoYKfXEcWgZOQ@mail.gmail.com>
+Accept-Language: fr-CA, en-US
+Content-Language: fr-FR
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.4.15]
-Content-Type: multipart/alternative;
-	boundary="_000_b091cf3f04ec4bdb97f24755a3bf4ee4baesystemscom_"
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=luminator.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 0df114f0-8b20-4bd2-b6a5-08da749ac0bc
+x-ms-traffictypediagnostic: DB6P18901MB0040:EE_
+x-onpremisesmanualforward: true
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ cV7PzU4DHJ7ZJgd8lIRaiY5lXXrUuXUs0/U8Wsz61FiYq/2Svl6WE77QT4xR+O8GtnLXmXJauRulImPTcDPbbpqCHEEbMzlsby0Jyt2Pkjcb/1hx80qCdz+fZuTjzlCeAcSLmVhrh82Ud7j3p2U7HuBXANv6xFlSWfpxCqn08qdCBv9HK2qXr0UpvKYFfSN8BKOPyqt+TvXIA50FduiPOnpO+rWR1a3ni8REc8/sDgKoJv6r2f2XVBKnk3r2bhvDcDcCPla0bvXQJ38vJUmEGpq59owT4UVjEu6kAixN1ohGgdECINYKc1WmvOj4dwg2J0iiFPGpq4T5v5TdbfNcsJLwxgpPh8JX0WYtbkIaTEWmk/NCWc0+iCjD5cVnBwcMH6lvLopofJewIm4BDsL3pSJmdSsTQW8flOOQlYEFqo4HWNxMUugVDimBbzG8Ll2BVwV1kSVhUFgL0Lj78JflkcxC3GyBwBvQ9MBKRpoxXRoYQdNFVNZxvUSqhPdF0T0cENTSnDfeJgYxuJCbzQ2E3DHmw6aKrvljIVQkFxUc1QXEM89ml5RyCxYTVliZhqmvxRM9Ok1COr2xnF8q67XxpHLU9QBxJzWmVmU+PIsWmo7d8YjsySGlXaFQuGONTdroUFAm+tda9sCoIfFHwKiu8/Ww7i7buko37TfIHP3PzilJ5VaQVIEykrg9UjsEY34H+wd0QUhHhMeVHnNYVlR5uywSFQP0OtvPeLNRPsWheTAqoyM84FpY/Y7Q5ufUgEpIjDlIvwLNuq4hzODJjaaA4dHmwPW74RBVcjdpZgXAL+0Y/xdqhddbIgW9hErxrQaw
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4P189MB1183.EURP189.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(366004)(396003)(376002)(39850400004)(136003)(6916009)(6506007)(7696005)(44832011)(33656002)(38100700002)(8936002)(26005)(9686003)(76116006)(66946007)(86362001)(55016003)(186003)(64756008)(66446008)(8676002)(66556008)(66476007)(316002)(66574015)(38070700005)(4326008)(52536014)(71200400001)(83380400001)(2906002)(41300700001)(5660300002)(40140700001)(122000001)(53546011)(478600001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?aTNnWENWd3U5UmNkMVIwNG5xdVBJMGk5UUZFdVE0WVhWZzRBRXdhcG5vZGpR?=
+ =?utf-8?B?MEtRT3pvQ3JuWXl6eFJGbmo1UXBtZUxzVTE4S01uZEI0Ni9YQy9qSXpzOUky?=
+ =?utf-8?B?VFBqRHV1Z1h6UVdtTnk3NHNwZDVzbXJOcFptaWd3dVVZZzFPdzJKT2Y4VDJu?=
+ =?utf-8?B?ZDFkdHJiRTJUbUF2aEV0cWJXZDRKbG9Ba2FJdm11dDB0c25weVZTRmw3QnhR?=
+ =?utf-8?B?M1labDltOENLYzJhZjA5UEhWYzdMK3BLenNGd3lGUWR3c3ltUVR6UlZQM3R3?=
+ =?utf-8?B?L3U0RUthR3d3eTc4R0dFSUpzTEtJYUJzS2JsMEh3VnNSdnZxZjZ3c1h1Q1lY?=
+ =?utf-8?B?Qnprb0I5ZUkxUnN4WE8vR2JpTnpySnMvQ0lwN0dySFBDUXV0MkxDSnFORXdu?=
+ =?utf-8?B?NUxTYUJBS0pESkQ5RlVMa2NrRUlIT2J2QTlBelBzTTg4YnM1N3d6d283Si9Y?=
+ =?utf-8?B?TGgzcHZoWUw4dDN6S3ZLcVlSbk96REVabEFOVkM3VVJrVURNN0g0eXFNS2s2?=
+ =?utf-8?B?VmJkTzdqTHVRR3Q1YktKb1hSSW9NU0MyUjBVU0pyV1h2aDQ5RWFMTHMxYkdJ?=
+ =?utf-8?B?MThGVVRuVVNnc3ZLV2ZYNnJHVTdvdWZVdUptVFBCcDFxV0xTeHo5cnF5K3RL?=
+ =?utf-8?B?andLcjI4aVJkQk5XMGVKOTJNY2R4ak9GZERmaTZDdXdYVFlZcUV1d1MxZnlI?=
+ =?utf-8?B?MXNEOHBZdm1CNllGUWlhbFhmdmc5NmxlbU5tc0dINDYwOU5Wc3ZCR2Yyalpa?=
+ =?utf-8?B?d0VybUNJbmFCeGJGU0tGV3dleDhZcm1KSzNDQ1FWYUY0THVvZk1lcFdlQkl6?=
+ =?utf-8?B?NkNLL3lrd2ZnL203N2UyUWdPN3IyeTZwMGpnaHM4WGpOVC8yQ3RMOWJXbTFx?=
+ =?utf-8?B?LytzRGpkaWdxUXlVL0hQVEUyUXAzNXd6U3d0SDk4WGp4ejRZc0hCcDRqYkhY?=
+ =?utf-8?B?VTMvTlNLMlZoT0FQVVpPKzlkdnYrZUNzZy9teEQ4OVdCc1BHN0Y3SU9FcjFF?=
+ =?utf-8?B?SU12N2t3MVlQcUdsaVdyeVJHZXp5bk1rdVVzUGtKeS9JaDVDUytIc0JZeWtP?=
+ =?utf-8?B?cS9Kb0Vid1pwZ3hXRFhlNDVpL0lHUEJ0ZE9TSFJxK3pxaE1QTEdjREFGNkpu?=
+ =?utf-8?B?SzNIZFBwY1NtVmM4TmR2SElpSGRaNjdEV1lWams3WWhoVnpKNC9FU2VyYk1N?=
+ =?utf-8?B?T283Z01GSGpxRnQ0SWRSMS9PZ1RSeUhSRHl4aFR5T1FsTnZCWmtNSldUNHg0?=
+ =?utf-8?B?QmlEZGVyOVVnRVo5U2Q2bUVZaHdxSWV6bk1QNGNzTEU1N2RvUWZpek5MbUV1?=
+ =?utf-8?B?UW04WStuOFUrMkkwOExuUEZnMlp3RTJjbFh6Sk5QQWVwVFh0U1IrdVBEb3Y2?=
+ =?utf-8?B?Wk1tcXgzWmtnL2V6MEUyM1lZZmtlTE1mNTVvV3RTc2hyQUh6a2Ztem9TZ3Ja?=
+ =?utf-8?B?cXg5UWV1VS8vZmUzZTZRdUlQM2ZSSVgwc290QlBCVG45WVhJekxFakMzVElp?=
+ =?utf-8?B?ZVNKdEszUjFVUWQxeHRLZURjSW1yNkw2b2pOTENmRFpkQzllNTlYSGcxMU1O?=
+ =?utf-8?B?T2VzVWRzSit2cERhalEyR3RvV2JZQ3ZURm52aGtYT3R0b3dseXpyTkRYbGlr?=
+ =?utf-8?B?bTFqV0NocGRnVXg3UStNekhxcUlvOEtBemNPSE5uNkg4WjJkVzVxNUFVRURk?=
+ =?utf-8?B?N3dhSlh2aENzaWwvVmFSakJGaGx6eTlBU1lEVU92emVKM1VKRmtzWGw1bmQ4?=
+ =?utf-8?B?SkJWRkhOSjNvWklrWEgzWGttR3hiRy8wN05qejdRS3J5K3IxVy8wUndoSWo1?=
+ =?utf-8?B?RFNCWkVyMVNoNTM2SEtjcDJuOXhNbGpLNDZUTUFmaGZZZzYvV0dwQ2FEZnVX?=
+ =?utf-8?B?Nkc0OElHV3hOc2ExU2xaUktvMEo5MVJJOXRTaDN6ZW1jMXJqY25VSTBXU2dP?=
+ =?utf-8?B?cDBsYitic3dpRDFqc2k4ZVRSOG5pblQvRmZwbEI4d0JRazZaNmRiYlZLaWs1?=
+ =?utf-8?B?MnB2bzQ3QnlSNEIva3FBcGZuODBKYlFQUktVOUw5czA4OEhrcEZSNmpnTGw2?=
+ =?utf-8?B?NkIzMVNCQmdHUVU3Z283cE1maGNsRkdKdU5yNTRURlA5Qyt2bjgwU2tFVzhY?=
+ =?utf-8?B?aXByMnVzRUF1K2E4cStyYTU2SFk1Mm9FcGc4Umc5SDdtcTJMclNRdVJMMFhU?=
+ =?utf-8?B?d1E9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PA4P189MB1183.EURP189.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 0df114f0-8b20-4bd2-b6a5-08da749ac0bc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Aug 2022 15:22:03.3412
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 41cde0b0-5383-4af5-89ba-5c7361af3a57
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 
+ p0WeV0WZ20irpm/NVP9gXIOSVOtpGfjCHNyfoqt7a46Cwo35o8C5piDxWzE6/JI42UuD/UGodREGD9Wh2PcQNGKPTD0/XUfrHPUlfffdpOU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6P18901MB0040
+X-C2ProcessedOrg: 0aa505bc-c280-44a3-bf0b-cfdbed55e239
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 02 Aug 2022 15:18:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57737
-Message-Id: <20220802151803.108C4C00140@smtp.lore.kernel.org>
+ <yocto@lists.yoctoproject.org>; Tue, 02 Aug 2022 15:22:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57738
 
---_000_b091cf3f04ec4bdb97f24755a3bf4ee4baesystemscom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-
-I wanted to do a simple test with dunfell, my system meets all the minimum =
-requirements based on documentation, and I am running under centos7...
-
-I downloaded poky-dunfell-23.0.17, built both "core-image-minimal" and "cor=
-e-image-sato" with not build issues, but when I go to run "runqemu qemux86-=
-64" I am getting the following error for both builds, can you explain why a=
-nd how to to correct for this ?
-
-11:07 smonsees@yix490093 /disk0/scratch/smonsees/yocto/yocto-dunfell/poky-d=
-unfell-23.0.17/mdunfell>runqemu qemux86-64
-runqemu - INFO - Running MACHINE=3Dqemux86-64 bitbake -e ...
-runqemu - INFO - Continuing with the following parameters:
-KERNEL: [/disk0/scratch/smonsees/yocto/yocto-dunfell/poky-dunfell-23.0.17/m=
-dunfell/tmp/deploy/images/qemux86-64/bzImage--5.4.192+gitAUTOINC+3fecb08507=
-_85f0668fea-r0-qemux86-64-20220802141232.bin]
-MACHINE: [qemux86-64]
-FSTYPE: [ext4]
-ROOTFS: [/disk0/scratch/smonsees/yocto/yocto-dunfell/poky-dunfell-23.0.17/m=
-dunfell/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64-20220802=
-141232.rootfs.ext4]
-CONFFILE: [/disk0/scratch/smonsees/yocto/yocto-dunfell/poky-dunfell-23.0.17=
-/mdunfell/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64-202208=
-02141232.qemuboot.conf]
-
-runqemu - INFO - Setting up tap interface under sudo
-runqemu - INFO - Network configuration: ip=3D192.168.7.2::192.168.7.1:255.2=
-55.255.0
-runqemu - INFO - Running /disk0/scratch/smonsees/yocto/yocto-dunfell/poky-d=
-unfell-23.0.17/mdunfell/tmp/work/x86_64-linux/qemu-helper-native/1.0-r1/rec=
-ipe-sysroot-native/usr/bin/qemu-system-x86_64 -device virtio-net-pci,netdev=
-=3Dnet0,mac=3D52:54:00:12:34:02 -netdev tap,id=3Dnet0,ifname=3Dtap0,script=
-=3Dno,downscript=3Dno -drive file=3D/disk0/scratch/smonsees/yocto/yocto-dun=
-fell/poky-dunfell-23.0.17/mdunfell/tmp/deploy/images/qemux86-64/core-image-=
-minimal-qemux86-64-20220802141232.rootfs.ext4,if=3Dvirtio,format=3Draw -sho=
-w-cursor -usb -device usb-tablet -object rng-random,filename=3D/dev/urandom=
-,id=3Drng0 -device virtio-rng-pci,rng=3Drng0   -cpu core2duo -m 256 -serial=
- mon:vc -serial null -kernel /disk0/scratch/smonsees/yocto/yocto-dunfell/po=
-ky-dunfell-23.0.17/mdunfell/tmp/deploy/images/qemux86-64/bzImage--5.4.192+g=
-itAUTOINC+3fecb08507_85f0668fea-r0-qemux86-64-20220802141232.bin -append 'r=
-oot=3D/dev/vda rw  mem=3D256M ip=3D192.168.7.2::192.168.7.1:255.255.255.0 o=
-profile.timer=3D1 '
-
-runqemu - ERROR - Failed to run qemu: X Error:  BadRequest
-  Request Major code 130 (MIT-SHM)
-  Request Minor code 1 ()
-  Error Serial #124
-  Current Serial #125
-
-runqemu - INFO - Cleaning up
-Set 'tap0' nonpersistent
-11:07 smonsees@yix490093 /disk0/scratch/smonsees/yocto/yocto-dunfell/poky-d=
-unfell-23.0.17/mdunfell>
-
-Thanks,
-Steve
-
---_000_b091cf3f04ec4bdb97f24755a3bf4ee4baesystemscom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I wanted to do a simple test with dunfell, my system=
- meets all the minimum requirements based on documentation, and I am runnin=
-g under centos7&#8230;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I downloaded poky-dunfell-23.0.17, built both &#8220=
-;core-image-minimal&#8221; and &#8220;core-image-sato&#8221; with not build=
- issues, but when I go to run &#8220;runqemu qemux86-64&#8221; I am getting=
- the following error for both builds, can you explain why and how to to
- correct for this ?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">11:07 smonsees@yix490093 /disk0/scratch/smonsees/yoc=
-to/yocto-dunfell/poky-dunfell-23.0.17/mdunfell&gt;runqemu qemux86-64<o:p></=
-o:p></p>
-<p class=3D"MsoNormal">runqemu - INFO - Running MACHINE=3Dqemux86-64 bitbak=
-e -e ...<o:p></o:p></p>
-<p class=3D"MsoNormal">runqemu - INFO - Continuing with the following param=
-eters:<o:p></o:p></p>
-<p class=3D"MsoNormal">KERNEL: [/disk0/scratch/smonsees/yocto/yocto-dunfell=
-/poky-dunfell-23.0.17/mdunfell/tmp/deploy/images/qemux86-64/bzImage--5.4.19=
-2&#43;gitAUTOINC&#43;3fecb08507_85f0668fea-r0-qemux86-64-20220802141232.bin=
-]<o:p></o:p></p>
-<p class=3D"MsoNormal">MACHINE: [qemux86-64]<o:p></o:p></p>
-<p class=3D"MsoNormal">FSTYPE: [ext4]<o:p></o:p></p>
-<p class=3D"MsoNormal">ROOTFS: [/disk0/scratch/smonsees/yocto/yocto-dunfell=
-/poky-dunfell-23.0.17/mdunfell/tmp/deploy/images/qemux86-64/core-image-mini=
-mal-qemux86-64-20220802141232.rootfs.ext4]<o:p></o:p></p>
-<p class=3D"MsoNormal">CONFFILE: [/disk0/scratch/smonsees/yocto/yocto-dunfe=
-ll/poky-dunfell-23.0.17/mdunfell/tmp/deploy/images/qemux86-64/core-image-mi=
-nimal-qemux86-64-20220802141232.qemuboot.conf]<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">runqemu - INFO - Setting up tap interface under sudo=
-<o:p></o:p></p>
-<p class=3D"MsoNormal">runqemu - INFO - Network configuration: ip=3D192.168=
-.7.2::192.168.7.1:255.255.255.0<o:p></o:p></p>
-<p class=3D"MsoNormal">runqemu - INFO - Running /disk0/scratch/smonsees/yoc=
-to/yocto-dunfell/poky-dunfell-23.0.17/mdunfell/tmp/work/x86_64-linux/qemu-h=
-elper-native/1.0-r1/recipe-sysroot-native/usr/bin/qemu-system-x86_64 -devic=
-e virtio-net-pci,netdev=3Dnet0,mac=3D52:54:00:12:34:02
- -netdev tap,id=3Dnet0,ifname=3Dtap0,script=3Dno,downscript=3Dno -drive fil=
-e=3D/disk0/scratch/smonsees/yocto/yocto-dunfell/poky-dunfell-23.0.17/mdunfe=
-ll/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64-2022080214123=
-2.rootfs.ext4,if=3Dvirtio,format=3Draw -show-cursor
- -usb -device usb-tablet -object rng-random,filename=3D/dev/urandom,id=3Drn=
-g0 -device virtio-rng-pci,rng=3Drng0&nbsp;&nbsp; -cpu core2duo -m 256 -seri=
-al mon:vc -serial null -kernel /disk0/scratch/smonsees/yocto/yocto-dunfell/=
-poky-dunfell-23.0.17/mdunfell/tmp/deploy/images/qemux86-64/bzImage--5.4.192=
-&#43;gitAUTOINC&#43;3fecb08507_85f0668fea-r0-qemux86-64-20220802141232.bin
- -append 'root=3D/dev/vda rw&nbsp; mem=3D256M ip=3D192.168.7.2::192.168.7.1=
-:255.255.255.0 oprofile.timer=3D1 '<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">runqemu - ERROR - Failed to run qemu: X Error:&nbsp;=
- BadRequest<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; Request Major code 130 (MIT-SHM)<o:p></o:p></=
-p>
-<p class=3D"MsoNormal">&nbsp; Request Minor code 1 ()<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; Error Serial #124<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; Current Serial #125<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">runqemu - INFO - Cleaning up<o:p></o:p></p>
-<p class=3D"MsoNormal">Set 'tap0' nonpersistent<o:p></o:p></p>
-<p class=3D"MsoNormal">11:07 smonsees@yix490093 /disk0/scratch/smonsees/yoc=
-to/yocto-dunfell/poky-dunfell-23.0.17/mdunfell&gt;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Steve<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_b091cf3f04ec4bdb97f24755a3bf4ee4baesystemscom_--
+UHJvYmFibHksIEkgZG9uJ3QgcmVhbGx5IGtub3cgYnV0IHdoZW4gSSBjb21tZW50IHRoZSAibG4g
+LXMiIGxpbmUsIHVzaW5nIGEgIywgdGhlIGNvbXBpbGF0aW9uIHdvcmtzLiAgT25seSB0aGUgImxu
+IC1zIiBsaW5lcw0KDQotLS0tLU1lc3NhZ2UgZCdvcmlnaW5lLS0tLS0NCkRlwqA6IEpvc2h1YSBX
+YXR0IDxqcGV3aGFja2VyQGdtYWlsLmNvbT4gDQpFbnZvecOpwqA6IDIgYW/Du3QgMjAyMiAxMTox
+MA0Kw4DCoDogTWFydGluIExlZHVjIDxtYXJ0aW4ubGVkdWNAbHVtaW5hdG9yLmNvbT4NCkNjwqA6
+IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNCk9iamV0wqA6IFtFWFRFUk5BTF0gUmU6IFt5
+b2N0b10gQkJDbGFzcyBmdW5jdGlvbiBhbmQgc3ltYm9saWMgbGluayAoc3ltbGluaykgLi4uIEkg
+dGhyb3cgaW4gdGhlIHRvd2VsICNweXRob24gI2JpdGJha2UgI2tpcmtzdG9uZQ0KDQpDQVVUSU9O
+OiBUaGlzIGVtYWlsIG9yaWdpbmF0ZWQgZnJvbSBvdXRzaWRlIG9mIEx1bWluYXRvciBUZWNobm9s
+b2d5IEdyb3VwLiBEbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1bmxlc3Mg
+eW91IHJlY29nbml6ZSB0aGUgc2VuZGVyIGFuZCBrbm93IHRoZSBjb250ZW50IGlzIHNhZmUuDQoN
+Ck9uIFR1ZSwgQXVnIDIsIDIwMjIgYXQgMTA6MDIgQU0gTWFydGluIExlZHVjIDxtYXJ0aW4ubGVk
+dWNAbHVtaW5hdG9yLmNvbT4gd3JvdGU6DQo+DQo+IEhpIEpvc2h1YSwNCj4NCj4gSSd2ZSBmb3Vu
+ZGVkIGEgc2Vjb25kIGZ1bmN0aW9uLCBpbiB0aGUgc2FtZSBjbGFzcywgdXNpbmcgbG4gLXMNCj4N
+Cj4gc2V0X2xvZ19mb2xkZXIgKCkgew0KPiAgICAgYmJwbGFpbiAiU2V0IHZhciBsb2cgZm9sZGVy
+IEJFR0lOIg0KPiAgICAgcm0gLVJmICR7SU1BR0VfUk9PVEZTfS92YXIvbG9nDQo+ICAgICBsbiAt
+cyAvbW50L2dlbmVyYWxfZGF0YS9sb2cvICR7SU1BR0VfUk9PVEZTfS92YXIvbG9nDQo+ICAgICBi
+YnBsYWluICJTZXQgdmFyIGxvZyBmb2xkZXIgRU5EIg0KPiB9DQo+DQo+IFRoZSBsb2dzIHNob3cg
+IlNldCB2YXIgbG9nIGZvbGRlciBCRUdJTiIgYW5kICJTZXQgdmFyIGxvZyBmb2xkZXIgRU5EIiBh
+bmQgbm8gaXNzdWVzIC4uLi4NCg0KWW91ciBzZXQgdmVyc2lvbiBmdW5jdGlvbiBsb29rcyBsaWtl
+IGl0J3MgcnVubmluZyBmcm9tIHRoZSBsb2dzLCBzbyBkb24ndCB0aGluayB5b3VyIGZ1bmN0aW9u
+IGlzIGRpcmVjdGx5IGNhdXNpbmcgYSBwcm9ibGVtLiBNeSBndWVzcyBpcyBzb21ldGhpbmcgZWxz
+ZSBsYXRlciBpcyBjcmFzaGluZyBvciBzb21ldGhpbmcgZWxzZSB1bnJlbGF0ZWQ/DQoNCj4NCj4g
+V2hhdCB0aGUgaGVsbCBJJ20gZG9pbmcgd3JvbmcuLi4uDQo+DQo+DQo+IE1hcnRpbiBMZWR1Yw0K
+PiBUIDogKDQxOCkgODU2LTY4OTYNCj4gbWFydGluLmxlZHVjQGx1bWluYXRvci5jb20NCj4NCj4N
+Cj4gLS0tLS1NZXNzYWdlIGQnb3JpZ2luZS0tLS0tDQo+IERlIDogeW9jdG9AbGlzdHMueW9jdG9w
+cm9qZWN0Lm9yZyA8eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gRGUgbGEgDQo+IHBhcnQg
+ZGUgTWFydGluIExlZHVjIHZpYSBsaXN0cy55b2N0b3Byb2plY3Qub3JnIEVudm95w6kgOiAyIGFv
+w7t0IDIwMjIgDQo+IDEwOjIwIMOAIDogSm9zaHVhIFdhdHQgPGpwZXdoYWNrZXJAZ21haWwuY29t
+PiBDYyA6IA0KPiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIE9iamV0IDogUmU6IFt5b2N0
+b10gQkJDbGFzcyBmdW5jdGlvbiBhbmQgDQo+IHN5bWJvbGljIGxpbmsgKHN5bWxpbmspIC4uLiBJ
+IHRocm93IGluIHRoZSB0b3dlbCAjcHl0aG9uICNiaXRiYWtlIA0KPiAja2lya3N0b25lDQo+DQo+
+IEhpIEpvc2h1YSwNCj4NCj4gVGhhbmsgeW91IGZvciB5b3VyIHF1aWNrIHJlcGx5Lg0KPg0KPiBQ
+bGVhc2Ugc2VlIHRoZSBjcmFzaCBsb2cgaW4gdGhlIGF0dGFjaG1lbnQuDQo+DQo+ICJBbHNvLCBJ
+J20gbm90IHF1aXRlIGNsZWFyIHdoYXQgeW91IG1lYW4gYnkgIndvcmtzIGxpa2UgYSBjaGFybSB3
+aXRoIFdhcnJpb3IiOyBpdCBzb3VuZHMgbGlrZSBzb21ldGhpbmcgc3RpbGwgaXNuJ3Qgd29ya2lu
+ZyBpbiBXYXJyaW9yIHRoYXQgeW91IG5lZWQsIG9yIGp1c3QgaW4gS2lya3N0b25lPyINCj4gVGhp
+cyBiYmNsYXNzIGlzIGltcG9ydGVkIGZyb20gYSBwcmV2aW91cyBidWlsZCBtYWtlIHVzaW5nIHRo
+ZSBZb2N0byBXYXJyaW9yIHZlcnNpb24gYW5kIHRoZSBidWlsZCByZXBvcnQgbm8gZmFpbHVyZSB1
+c2luZyAibG4gLXMiIGRpcmVjdGx5LCB3ZWxsIGl0IGNvbXBpbGUuDQo+DQo+IEJSLA0KPg0KPiAt
+LS0tLU1lc3NhZ2UgZCdvcmlnaW5lLS0tLS0NCj4gRGUgOiBKb3NodWEgV2F0dCA8anBld2hhY2tl
+ckBnbWFpbC5jb20+IEVudm95w6kgOiAyIGFvw7t0IDIwMjIgMDk6NTcgw4AgOiANCj4gTWFydGlu
+IExlZHVjIDxtYXJ0aW4ubGVkdWNAbHVtaW5hdG9yLmNvbT4gQ2MgOiANCj4geW9jdG9AbGlzdHMu
+eW9jdG9wcm9qZWN0Lm9yZyBPYmpldCA6IFtFWFRFUk5BTF0gUmU6IFt5b2N0b10gQkJDbGFzcyAN
+Cj4gZnVuY3Rpb24gYW5kIHN5bWJvbGljIGxpbmsgKHN5bWxpbmspIC4uLiBJIHRocm93IGluIHRo
+ZSB0b3dlbCAjcHl0aG9uIA0KPiAjYml0YmFrZSAja2lya3N0b25lDQo+DQo+IENBVVRJT046IFRo
+aXMgZW1haWwgb3JpZ2luYXRlZCBmcm9tIG91dHNpZGUgb2YgTHVtaW5hdG9yIFRlY2hub2xvZ3kg
+R3JvdXAuIERvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVubGVzcyB5b3Ug
+cmVjb2duaXplIHRoZSBzZW5kZXIgYW5kIGtub3cgdGhlIGNvbnRlbnQgaXMgc2FmZS4NCj4NCj4g
+T24gVHVlLCBBdWcgMiwgMjAyMiBhdCA4OjQ0IEFNIE1hcnRpbiBMZWR1YyB2aWEgbGlzdHMueW9j
+dG9wcm9qZWN0Lm9yZyA8bWFydGluLmxlZHVjPWx1bWluYXRvci5jb21AbGlzdHMueW9jdG9wcm9q
+ZWN0Lm9yZz4gd3JvdGU6DQo+ID4NCj4gPiBIaSB0ZWFtLA0KPiA+DQo+ID4gV2VsbCwgSSB0aHJv
+dyBpbiB0aGUgdG93ZWwuICBCdXQgaXQncyBsb29rcyBsaWtlIHNvIHNpbXBsZSAuLi4uIGZvciBt
+ZSDwn6Sj8J+koy4NCj4gPg0KPiA+IEkndmUgYSBmdW5jdGlvbiB0byByZXBsYWNlIHRoZSB2ZXJz
+aW9uIGZpbGUgaW4gL2V0Yy92ZXJzaW9uLiAgVGhpcyBmdW5jdGlvbiBpcyBpbnRlZ3JhdGVkIGlu
+dG8gbXkgbXliYXNlLWltYWdlLmJiY2xhc3MsIGRlZmluZWQgaW4gbXkgbGF5ZXIgYW5kIEkgYWRk
+LCBpbiBteSBjb3JlLWltYWdlLW1pbmltYWwuYmJhcHBlbmQgcmVjaXBlIGluaGVyaXQgbXliYXNl
+LWltYWdlLmJiY2xhc3MuDQo+ID4NCj4gPiBJbiBteSBiYmNsYXNzLCBJIGNhbGwgbXkgZnVuY3Rp
+b24gdXNpbmcNCj4gPg0KPiA+IFJPT1RGU19QT1NUUFJPQ0VTU19DT01NQU5EICs9ICIgXA0KPiA+
+ICAgICBzZXRfdmVyc2lvbl9maWxlIDsgXA0KPiA+ICINCj4gPg0KPiA+IE15IGZ1bmN0aW9uIGlz
+IHdyaXR0ZW4gbGlrZSB0aGlzDQo+ID4gc2V0X3ZlcnNpb25fZmlsZSgpIHsNCj4gPiAgICAgYmJw
+bGFpbiAic2V0X3ZlcnNpb25fZmlsZSBCRUdJTiINCj4gPiAgICAgbWtkaXIgLXAgJHtJTUFHRV9S
+T09URlN9L2V0Yy90bXAvDQo+ID4gICAgIGVjaG8gJHtQVn0gPiAke0lNQUdFX1JPT1RGU30vZXRj
+L3RtcC92ZXJzaW9uDQo+ID4gICAgIGNobW9kIDY0NCAke0lNQUdFX1JPT1RGU30vZXRjL3RtcC92
+ZXJzaW9uDQo+ID4gICAgIHJtICR7SU1BR0VfUk9PVEZTfS9ldGMvdmVyc2lvbg0KPiA+ICAgICBs
+biAtc2YgL2V0Yy90bXAvdmVyc2lvbiAiJHtJTUFHRV9ST09URlN9L2V0Yy92ZXJzaW9uIg0KPiA+
+IH0NCj4gPiBOb3RlOiAvZXRjL3RtcCBpcyBqdXN0IGZvciB0aGUgcHVycG9zZSBvZiB0aGlzIHRl
+c3QNCj4gPg0KPiA+IEkgbWVhbiwgSSBkb24ndCB0cnkgdG8gZG8gYW55dGhpbmcgb3V0c3RhbmRp
+bmcgYnV0IHRoZSBsbiAtc2YgbGluZSBtYWtlcyBteSBjb21waWxhdGlvbiBjcmFzaCBCVVQuLi4u
+IGl0IHdvcmtzIGxpa2UgYSBjaGFybSB3aXRoIFdhcnJpb3IgYnV0IEtpcmtzdG9uZSByZWplY3Rz
+ICJsbiAtc2YiIGNvbW1hbmQuDQo+DQo+IENhbiB5b3UgcHJvdmlkZSBhIGxpdHRsZSBtb3JlIGRl
+dGFpbCBhYm91dCBob3cgaXQgY3Jhc2hlcz8gQWxzbywgSSdtIG5vdCBxdWl0ZSBjbGVhciB3aGF0
+IHlvdSBtZWFuIGJ5ICJ3b3JrcyBsaWtlIGEgY2hhcm0gd2l0aCBXYXJyaW9yIjsgaXQgc291bmRz
+IGxpa2Ugc29tZXRoaW5nIHN0aWxsIGlzbid0IHdvcmtpbmcgaW4gV2FycmlvciB0aGF0IHlvdSBu
+ZWVkLCBvciBqdXN0IGluIEtpcmtzdG9uZT8NCj4NCj4gPg0KPiA+IEknbSBkZWZpbml0ZWx5IG5v
+dCB0aGUgb25seSBvbmUgd2hvIGFkZHMgc3ltbGlua3MgdG8gdGhlIHJlY2lwZXMNCj4gPg0KPiA+
+IEkndmUgYWxzbyB0cmllZDoNCj4gPg0KPiA+IGxucg0KPiA+IGluaGVyaXQgcmVsYXRpdmVfc3lt
+bGlua3MgKGRvbid0IGhhdmUgYW55IGltcGFjdCBidXQgSSd2ZSBnaXZlbiBpdCBhIA0KPiA+IHRy
+eSksIGZyb20gdGhlIHBva3kgZm9sZGVyIEkndmUgdHJpZWQgZ3JlcCAtciAibG4iIC4vKiB8IGdy
+ZXAgDQo+ID4gYmJjbGFzcyAodG8gdmFsaWRhdGUgdGhlIHN5bnRheCkgUmVhZCBtYW55IHBvc3Rz
+IG9uIHRoaXMgdG9waWMNCj4gPg0KPiA+DQo+ID4gSSdtIHVuYWJsZSB0byBmaW5kIHdoZXJlIGlz
+IG15IGlzc3VlLg0KPiA+DQo+ID4gQW55IGlkZWFzIGFyZSB3ZWxjb21lLCBldmVuIGlmIGl0IHdv
+cmtzIGxpa2UgYSBjaGFybSBvbiBXYXJyaW9yIGJ1dCBub3QgaW4gS2lya3N0b25lLg0KPiA+DQo+
+ID4gQlIsDQo+ID4gTWFydGluDQo+ID4NCj4gPg0K
 
