@@ -1,232 +1,193 @@
-Return-Path: <martin.leduc@luminator.com>
+Return-Path: <JPEWhacker@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EB1D8C00140
-	for <webhook@archiver.kernel.org>; Tue,  2 Aug 2022 15:03:02 +0000 (UTC)
-Received: from mx1.luminator.com (mx1.luminator.com [178.15.153.4])
- by mx.groups.io with SMTP id smtpd.web11.7360.1659452580851429975
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EF9DAC00140
+	for <webhook@archiver.kernel.org>; Tue,  2 Aug 2022 15:10:32 +0000 (UTC)
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com
+ [209.85.208.42])
+ by mx.groups.io with SMTP id smtpd.web08.7361.1659453023050242737
  for <yocto@lists.yoctoproject.org>;
- Tue, 02 Aug 2022 08:03:01 -0700
+ Tue, 02 Aug 2022 08:10:23 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@luminator.com header.s=luminator header.b=YMDARCUi;
- spf=pass (domain: luminator.com, ip: 178.15.153.4,
- mailfrom: prvs=021327e5a9=martin.leduc@luminator.com)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=luminator.com; s=luminator; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=sGwQEoLvamYEsoHeV+NqP4RufKSE8Ui9EQyCSI1FXTo=; b=YMDARCUit9vw4HGXjtdBGc4f2Q
-	iBjyFn7yFbQIHi19NQi0IkH9YaqqUqekKsHJGkXWrrjaQ18ISXQghCoEflO79GPLFfO5PjOPb14oj
-	sf6T6b7RGqNbMObngAoN+8kiYTPmI8T7hEayO0jklmdSFw06pXrUeRa3VbaNl6Bj8sOlmrRxldCuz
-	KodnmnWCL2wEc5BFoFoXhPSegYb6uEA+oVpZ3PraECkfV0inr/v1XlTP/RcCID4hUmxXKAvtAKOPR
-	wvBs+huht9WfCF9QA5Q/e+UIEEtm0tBXfx5TaRJi6i40S+jN31OaDfJa5DvKVapMOr50pBL+g1SnB
-	6xEKJaXg==;
-X-SASI-Hits: BODY_SIZE_4000_4999 0.000000, BODY_SIZE_5000_LESS 0.000000,
-	BODY_SIZE_7000_LESS 0.000000, CTE_BASE64 0.000000, HTML_00_01 0.050000,
-	HTML_00_10 0.050000, IN_REP_TO 0.000000, LEGITIMATE_SIGNS 0.000000,
-	MSG_THREAD 0.000000, MULTIPLE_REAL_RCPTS 0.000000, NO_CTA_URI_FOUND 0.000000,
-	NO_FUR_HEADER 0.000000, NO_URI_HTTPS 0.000000, OUTBOUND 0.000000,
-	OUTBOUND_SOPHOS 0.000000, REFERENCES 0.000000, SUPERLONG_LINE 0.050000,
-	__ANY_URI 0.000000, __ARCAUTH_DKIM_PASSED 0.000000,
-	__ARCAUTH_DMARC_PASSED 0.000000, __ARCAUTH_PASSED 0.000000,
-	__ARC_SEAL_MICROSOFT 0.000000, __ARC_SIGNATURE_MICROSOFT 0.000000,
-	__ATTACHMENT_PHRASE 0.000000, __BODY_NO_MAILTO 0.000000,
-	__BOUNCE_CHALLENGE_SUBJ 0.000000, __BOUNCE_NDR_SUBJ_EXEMPT 0.000000,
-	__BULK_NEGATE 0.000000, __BUSINESS_SIGNATURE 0.000000, __CC_NAME 0.000000,
-	__CP_MEDIA_BODY 0.000000, __CT 0.000000, __CTE 0.000000,
-	__CT_TEXT_PLAIN 0.000000, __DQ_NEG_DOMAIN 0.000000, __DQ_NEG_HEUR 0.000000,
-	__DQ_NEG_IP 0.000000, __FORWARDED_MSG 0.000000,
-	__FRAUD_BODY_WEBMAIL 0.000000, __FRAUD_MONEY_CURRENCY 0.000000,
-	__FRAUD_MONEY_CURRENCY_DOLLAR 0.000000,
-	__FRAUD_MONEY_CURRENCY_POUND 0.000000, __FRAUD_WEBMAIL 0.000000,
-	__FROM_DOMAIN_IN_ANY_TO1 0.000000, __FROM_DOMAIN_IN_RCPT 0.000000,
-	__FUR_RDNS_SOPHOS 0.000000, __HAS_CC_HDR 0.000000, __HAS_FROM 0.000000,
-	__HAS_MSGID 0.000000, __HAS_REFERENCES 0.000000, __HAS_X_FF_ASR 0.000000,
-	__HAS_X_FF_ASR_CAT 0.000000, __HAS_X_FF_ASR_SFV 0.000000,
-	__HIGHBITS 0.000000, __IN_REP_TO 0.000000, __MAIL_CHAIN 0.000000,
-	__MIME_TEXT_ONLY 0.000000, __MIME_TEXT_P 0.000000, __MIME_TEXT_P1 0.000000,
-	__MIME_VERSION 0.000000, __MULTIPLE_RCPTS_TO_X2 0.000000,
-	__NO_HTML_TAG_RAW 0.000000, __OUTBOUND_SOPHOS_FUR 0.000000,
-	__OUTBOUND_SOPHOS_FUR_IP 0.000000, __OUTBOUND_SOPHOS_FUR_RDNS 0.000000,
-	__PHISH_PHRASE10_D 0.000000, __PHISH_PHRASE_NL4 0.000000,
-	__REFERENCES 0.000000, __SANE_MSGID 0.000000, __SUBJ_ALPHA_NEGATE 0.000000,
-	__SUBJ_REPLY 0.000000, __TO_GMAIL 0.000000, __TO_MALFORMED_2 0.000000,
-	__TO_NAME 0.000000, __TO_NAME_DIFF_FROM_ACC 0.000000,
-	__TO_REAL_NAMES 0.000000, __URI_MAILTO 0.000000, __URI_NO_WWW 0.000000,
-	__URI_NS 0.000000, __X_FF_ASR_SCL_NSP 0.000000, __X_FF_ASR_SFV_NSPM 0.000000
-X-SASI-Probability: 8%
-X-SASI-RCODE: 200
-X-SASI-Version: Antispam-Engine: 4.1.4, AntispamData: 2022.8.2.141517
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JPNOjkW2MDezyYXJTi09KRz5JoXnXwUip40+tIH0IsMVst2SmLW1wmhV3jV+b3lv9EpAZ829TGTjHyBpaDneXM/YdFA4upcUhxFz2AfAKD9LoBhuiJlTcYZzGgQDxduUC5BFSsBfcfJGtvkgdyHE8ZhFe8/QEi1NsKcAvGHaQ5judINNDwlcnIZ+9Zr1vUV8nt9i8LAEdCO1TdC64qTIEd8qfU1FOACeDz+sAQtTlCc2pKgs1mPfnK4gDWKWliEQDUZJLgYZBLVLfxcdm2JMumKJp2L9BMUVMve07dVB1Oshz2Et8ua6V/EkuxNmPLXND1S7cjB01bPRlw/9bl7Ikw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sGwQEoLvamYEsoHeV+NqP4RufKSE8Ui9EQyCSI1FXTo=;
- b=Nbezst5Lm9ixZJh9OnetGyStie0BauFIZHZRu1j+tGUuu0ipu2J8kP8QCAYxKVOVd7sgxtGUkOAEriIWSP+FtL1YUASAYAeuZybaOeStsIYY4XQ3SqmjLv9D+W4mhPU1nOkMNDY/70ILY2Dte2Ypc0xgHblcBCcMHGRgeAxdhIEvfRw67c6O/N9WpBRqjlAAjFrTt+vWnQuTWRDOXvGkF2szoRLefJZZVHOlGR5Z3ZomrOERfdnmZmrMqffsIUVXJJpNlayW/DJMlppgcHhSX+heSHcH8RSRPH+7UYj8l7QWSnJoQ+0t3CVQlO42+2TXK+u/32dHCXyq7AqfWGdXWA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=luminator.com; dmarc=pass action=none
- header.from=luminator.com; dkim=pass header.d=luminator.com; arc=none
-From: Martin Leduc <martin.leduc@luminator.com>
-To: Martin Leduc <martin.leduc@luminator.com>, Joshua Watt
-	<jpewhacker@gmail.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: RE: [yocto] BBClass function and symbolic link (symlink) ... I throw
- in the towel #python #bitbake #kirkstone
-Thread-Topic: [yocto] BBClass function and symbolic link (symlink) ... I throw
- in the towel #python #bitbake #kirkstone
-Thread-Index: AQHYpns4nBOhJXVNIkK7pt2Ze3UVO62bs/2w
-Date: Tue, 2 Aug 2022 15:02:51 +0000
-Message-ID: 
- <PA4P189MB118378328707E20AE31CF9D2969D9@PA4P189MB1183.EURP189.PROD.OUTLOOK.COM>
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=SjogF1pe;
+ spf=pass (domain: gmail.com, ip: 209.85.208.42,
+ mailfrom: jpewhacker@gmail.com)
+Received: by mail-ed1-f42.google.com with SMTP id o22so2555107edc.10
+        for <yocto@lists.yoctoproject.org>;
+ Tue, 02 Aug 2022 08:10:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=+aACMZh9ZR76qz7gmB8SiLxT8WoEhm7ccBWJKqfxqu0=;
+        b=SjogF1peAgPsvMzXYJDfd8zPvEIPcp4TjQsadu6Ud0bxqIqBXq1ven2pqi8Wtb/ReX
+         zQGVQJDqaXlGXqtZ7c9C1L7ecl2/YdGrvpkBKFV+3e1jCoX3wH7dMpEt92+wpp6KBVSI
+         JGuczPhZ3MzkRohWZL3Rl6i8CkeSL4oisCsfA3w6qLTSAUEGaib9s2giVHNvW67WO5g+
+         eKIK6d3+KWwjJu8hHzc7d1xNJwr3Q/CQR9eyW1F6NEHK94/FQ3Ky3I8HMVZTGSfxOjT6
+         uSriP/jsJTQdDtdgpqv+c8jNjN1swzwIvOruG0tDFzwrSTgLimwpwHsY5C4dV5su4k2u
+         ++5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=+aACMZh9ZR76qz7gmB8SiLxT8WoEhm7ccBWJKqfxqu0=;
+        b=oisD22mpRT2UlSKYutoNMBBXUkPjHdl6ZzvB9oO24xH2yRCT45wo6SaCth+sJHC+r3
+         +PDoHy0c6iMwaWbAkGzocPUOHp668RYTtMY+RyZ11fBeCiZ+wz/mvtzv2FpRSN4Yj8+N
+         oAPqMIoyzObo6Bp8hlo28YBAQxoFLnwaWUAGQak0uGvYJDCCAFwjmu1pqqEKQhWomcMJ
+         GK29+YUvq1IBv0yi2yNHJQnW9GVpfjmmQaSnDtGnSxcfa5ZD/WroVKgQKZh2D3dhDyUr
+         wouDyWyArnfMWzh7gLAbwReClPJvJSNTXpc/4ybdyYjgFNO9fSHQJPBrFvOr9Fn3WIjG
+         mUPA==
+X-Gm-Message-State: AJIora8h+C8ojMRnQ6SY3cuk1nvYoHWfqc/W7aLJKER6/9c/jPuEWZ7u
+	JHonZKdh0lHY4/e46289TcwGJbeXyVXCF7r1In0=
+X-Google-Smtp-Source: 
+ AGRyM1uxBwOaDZuU+APo+lKfSfYlRrrMXmZ2xhVpAS+B9HqvNqyA9zhhAUDRQGnHGOiOkuc5KAf8TYMWUuRnrzq7Zgk=
+X-Received: by 2002:a05:6402:11cb:b0:43c:c7a3:ff86 with SMTP id
+ j11-20020a05640211cb00b0043cc7a3ff86mr21514045edw.383.1659453021441; Tue, 02
+ Aug 2022 08:10:21 -0700 (PDT)
+MIME-Version: 1.0
 References: <oqsz.1659447842876164805.WW8H@lists.yoctoproject.org>
  <CAJdd5Gbbh3gSuKtxAAHm-tc0er_EA93QCq+yyiHQ2YMWHC6cfg@mail.gmail.com>
  <17078CF9F8D6FA72.19085@lists.yoctoproject.org>
-In-Reply-To: <17078CF9F8D6FA72.19085@lists.yoctoproject.org>
-Accept-Language: fr-CA, en-US
-Content-Language: fr-FR
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=luminator.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 75f84cd1-ffa4-4da8-8c10-08da74981229
-x-ms-traffictypediagnostic: VI1P18901MB0656:EE_
-x-onpremisesmanualforward: true
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- LL0esXwNWxH0vIl/GzsqP84vm0MBXKZa7rEnZ9eF03HwQ6B3VICnVI3bJSr1Srah68XXCKfscJbvbIE6MOeDExQZ8BhkqyI7tFs4hpXVTtcMrRhyLPDdQzVClSj7KS+gYRhtYHNr6aPNoJEEbiM3Z1AeIyAJyKePcp2WeVzuzy+uJ4/PeMPy9jlACMp32tNIm6t2ZE/Jav8uaztjvtJ3sns8ZcoCWSnzJ0MQu4uGooGVJxLCRYPm2CbZH49hmpXpXzWHsCbE4MM0QgF3o8ilcw4yYYBnYWGmv1EfiS6hcqILrF5XVeyBayDd9UCwRwesWFoYPrgZu1hZWqRlxaQUTTiKio16Oe+c05VQilWM+dznYK93lvO7ktNIcr4HxSP2+RvvA8piHHUklbUlVFup+tbxlVeSC1m2sakLTpo1lFIVd3AUZLljudZWA0wwl04GE6zOpppR1XhhsxN9CTrHJW/gnDCPliTfRlTf+jbF0mLZCAa9zDWdv6P34zgd6ym0yxIlhiPFoXl6Q3F5bPvBDnOlsUODNiFVNDPVSg7/77iipKcsbTr7vrYatGVKzPGdpgy2r2AOT5hsoL5JYYgP5Wa2UlN1SgXBzF/Aul9rutO80+NBelE4XmDkafkVS19kzzCHshaHo4fZH8Lk1a4naCGqlX3I3GqqyjiQsK8PqFg4ZI58KdWWNfKABmF6osskxFxg/1//SHXvzh/JdsH8z7fNJYP06g9IVS024MK/Sptu8Gig97rBrV2Xb7iJnjRAQUuHKY0lWweS3EsiKn3WEUO5cTOMnn+AX7Fs9PJyPMA1pD5gaCWh7yIxGWcZl6pJ
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4P189MB1183.EURP189.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39850400004)(366004)(376002)(136003)(346002)(396003)(5660300002)(7696005)(53546011)(6506007)(52536014)(41300700001)(8936002)(38070700005)(110136005)(55016003)(316002)(38100700002)(122000001)(86362001)(66946007)(64756008)(76116006)(66556008)(66476007)(66446008)(4326008)(71200400001)(8676002)(2906002)(186003)(66574015)(478600001)(83380400001)(44832011)(33656002)(26005)(9686003)(40140700001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?R0tmRGExWktwTEsrUHpUbVphUVcwNVkzZFY2THFPNWlnVWFQNENCdXRVektL?=
- =?utf-8?B?VDVtdlVqTTUya2kwSmE1TmFYVXJNeFZnY3lEREdsa1ZvMzBHRVhWakFHaWg0?=
- =?utf-8?B?WmZtRFd1WnRqSkVWYUp5K1BwZkdnSDdRdURUT3cxSTQ3VUFtLy84MTN5Z21I?=
- =?utf-8?B?NVlYOHc2OXB3SExBelg1SzZwU0pyMjhPWVdFUmwxdVJQM21OaHAwOEhoSXdw?=
- =?utf-8?B?K213Z1d6OFp6dmxPL3JTL0hDZ1JmenNGUUJWdlJ1VHVqVWlHL1h1emJxVnVt?=
- =?utf-8?B?M1ZMZU9ZdEVYdGRnWmdZU3dnajJNL1U1bm93b25IWjVGdHJ2dkpmWWsxTVVu?=
- =?utf-8?B?WGR2UkRQdlRPM3RIUEt6a3JTS3pZZzNUYVZsNXFWL0RCMEtMVDhaREFjbUNk?=
- =?utf-8?B?aysxRTFBQ0NVRUMzTVJ5L3o4ZWdmSGdFL3paTHJ1ZFFLc0x1UUQ5K2JFUlNR?=
- =?utf-8?B?Z1VJK2U5d0tpOHZHNlZJbzU1TmFpK3dicWhsSXlhajdnTGl2YXNTRHFlUWxU?=
- =?utf-8?B?eFc1R3NBQzMxVjVwUnhXWFQ3dCtKdSt2ZU5aSHdNK241STRjV1ZsR3Q1UHFU?=
- =?utf-8?B?TGN1eiswd0pKdmgvVTdjN2MxT3hwNHJSbmRJSkExdk81U1RoaXJYcWpVUHlL?=
- =?utf-8?B?dnp5MThvLzNXMlMyRDJUMEkyZVYwaWZxbkV1ZHRPNFVWUUhNekZ4K1hxcTBq?=
- =?utf-8?B?ak02WXVidEpsT2wxQXRsNVhyL2N6Vi9aaHlTRUc1U0VMMVZuWlgrdU82Z3o3?=
- =?utf-8?B?cTV6Q2MxNEpNR0JnZktKYVJETDBZamtCR1FuK0FlNDRRRXBGTkpOR2ZBUWtU?=
- =?utf-8?B?RXc4azFyNGNqMXdJZDFxSmo5c2NlbWs4SFcxWWZuUHBqWVM0eGdrVXdzbjln?=
- =?utf-8?B?ckhMb3ZHbENzdlgwSDdiRks2bitXWEExUDVuOFB4SUhsd25KekNSbUJlWlNR?=
- =?utf-8?B?Mm0xUlVQb3Jtc1JSMEExb2NLYTQrT3JFKzNmWGhad3BXd0U1cHExZWJiait6?=
- =?utf-8?B?dEJJazlrV2JWRk5uL3EwdUJNczBkQyt0SkdPUXk4RGRLZEJPbW5SRWZxV0ZW?=
- =?utf-8?B?R3NFdVZNUm1LL2dOellTM1pIWklZVnBpZnNtaXFmQXI2SnJJaE1Pc3FyM3pV?=
- =?utf-8?B?QmNzcGhhR2Jkbmo2Sk8vRXpJRWF4aEJud29SSzVLT0xXWkNSKzJjNk96dldJ?=
- =?utf-8?B?blluMjBPRlVMNEp1eTFqRlNpZ0dwVTNXZmdXdnoyMWdHQi9RL1J3b0NQcTl4?=
- =?utf-8?B?ZXdiSnUyd1h0dnBvYS9ydDJLU1l3QlltaXBDSjljc0RmaDV6cXJ5WHh0SnNH?=
- =?utf-8?B?dGFwcUQ2TXhrTGFWVGhPWVlDN2JURXBwTXgxaU9YTk9GUWpxblVidmduSXBO?=
- =?utf-8?B?dW13Wm1kdS9BM0lwbkZHRi93RGg1V2tlSFdnNlZobmVjV0VmVmw4WVJaVDc3?=
- =?utf-8?B?RGVKbHpaN0dDdG5VQUFtVmpLd0R6N2orTDZJS3pJSGthUzlOa2VjQmFVU2hr?=
- =?utf-8?B?UkZLbXN5WTBPbUQwT21BZ1h6L2w2TmlyUHk5b3JIbktlcHpmVnJDNlh0RHRW?=
- =?utf-8?B?V3RWU0lwSjRrQitPak10VHZpcXBiMkxVcjZwYkFERlA2d0hhNTdVc1c2ekJ0?=
- =?utf-8?B?Q2NDK3l6U2FxVDRCdkhOa0NabDJkTkJqSHhad3E1NG43amlVVlkyYzN4Y3dE?=
- =?utf-8?B?MTVYTDdQTE1VVXdKQUROSzVzUTlObmFZaW4wSGhCa2FvZW50OFdjWHduaDhr?=
- =?utf-8?B?eG93Vmh1RG9NOVMxRlNOQUdLeDNrbWhlbldGS1RtN1gwQnMzUlRGMUt5aHFS?=
- =?utf-8?B?ZUtUOEZnK09TUnJuNVhETU05aVVKMC9EYzB5SXBNUVUxUmxTYlhhSmNIRUNp?=
- =?utf-8?B?UFMvK0tnYWpvTGFBc1pNUG9KNWNPdDJjRGVrb2o2LzJNOHhJeW5pZjJZWFdV?=
- =?utf-8?B?QkRVa2xUVDk3SjhJcXRkczNLMzV3L293U3B3SlViYWVNMkpGanlWMkNCUW42?=
- =?utf-8?B?bXhMRE5OVE5aZk84c0xpTlRkK1RxeXlpdWcvSmhxRXI5dHcxWXJZTFNKVi9G?=
- =?utf-8?B?bVkvYVBoWlk2NTZDZ0owSmxGSEdPRzArVE8yN1VUUHp0WWpvTnNOdHZ3Zitx?=
- =?utf-8?B?TS9wVVgrU3plWkFxZktzMFpiUTMveXRJWjJxY0VHb1lhTEdRRXZxTHJFWktq?=
- =?utf-8?B?dGc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PA4P189MB1183.EURP189.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 75f84cd1-ffa4-4da8-8c10-08da74981229
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Aug 2022 15:02:51.4754
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 41cde0b0-5383-4af5-89ba-5c7361af3a57
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- QAzHE+1MTucSfhpqwtFLbcjcY0+hXruehybM9ONCNVKtkUSj69sUKAFWdNRQ/DbbWeK8uX/PB/Qupo6BwI+x8Q8+MuT9nDmum4QKAcAOohI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1P18901MB0656
-X-C2ProcessedOrg: 0aa505bc-c280-44a3-bf0b-cfdbed55e239
+ <PA4P189MB118378328707E20AE31CF9D2969D9@PA4P189MB1183.EURP189.PROD.OUTLOOK.COM>
+In-Reply-To: 
+ <PA4P189MB118378328707E20AE31CF9D2969D9@PA4P189MB1183.EURP189.PROD.OUTLOOK.COM>
+From: Joshua Watt <jpewhacker@gmail.com>
+Date: Tue, 2 Aug 2022 10:10:10 -0500
+Message-ID: 
+ <CAJdd5GYJ+ob4PLbUXkOM3J2jZS=3X0azBAK7TMoYKfXEcWgZOQ@mail.gmail.com>
+Subject: Re: [yocto] BBClass function and symbolic link (symlink) ... I throw
+ in the towel #python #bitbake #kirkstone
+To: Martin Leduc <martin.leduc@luminator.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 02 Aug 2022 15:03:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57735
+ <yocto@lists.yoctoproject.org>; Tue, 02 Aug 2022 15:10:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57736
 
-SGkgSm9zaHVhLA0KDQpJJ3ZlIGZvdW5kZWQgYSBzZWNvbmQgZnVuY3Rpb24sIGluIHRoZSBzYW1l
-IGNsYXNzLCB1c2luZyBsbiAtcw0KDQpzZXRfbG9nX2ZvbGRlciAoKSB7DQogICAgYmJwbGFpbiAi
-U2V0IHZhciBsb2cgZm9sZGVyIEJFR0lOIg0KICAgIHJtIC1SZiAke0lNQUdFX1JPT1RGU30vdmFy
-L2xvZw0KICAgIGxuIC1zIC9tbnQvZ2VuZXJhbF9kYXRhL2xvZy8gJHtJTUFHRV9ST09URlN9L3Zh
-ci9sb2cNCiAgICBiYnBsYWluICJTZXQgdmFyIGxvZyBmb2xkZXIgRU5EIg0KfQ0KDQpUaGUgbG9n
-cyBzaG93ICJTZXQgdmFyIGxvZyBmb2xkZXIgQkVHSU4iIGFuZCAiU2V0IHZhciBsb2cgZm9sZGVy
-IEVORCIgYW5kIG5vIGlzc3VlcyAuLi4uIA0KDQpXaGF0IHRoZSBoZWxsIEknbSBkb2luZyB3cm9u
-Zy4uLi4NCg0KDQpNYXJ0aW4gTGVkdWMNClTCoDogKDQxOCkgODU2LTY4OTYNCm1hcnRpbi5sZWR1
-Y0BsdW1pbmF0b3IuY29tDQoNCg0KLS0tLS1NZXNzYWdlIGQnb3JpZ2luZS0tLS0tDQpEZcKgOiB5
-b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIDx5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3Jn
-PiBEZSBsYSBwYXJ0IGRlIE1hcnRpbiBMZWR1YyB2aWEgbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0K
-RW52b3nDqcKgOiAyIGFvw7t0IDIwMjIgMTA6MjANCsOAwqA6IEpvc2h1YSBXYXR0IDxqcGV3aGFj
-a2VyQGdtYWlsLmNvbT4NCkNjwqA6IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNCk9iamV0
-wqA6IFJlOiBbeW9jdG9dIEJCQ2xhc3MgZnVuY3Rpb24gYW5kIHN5bWJvbGljIGxpbmsgKHN5bWxp
-bmspIC4uLiBJIHRocm93IGluIHRoZSB0b3dlbCAjcHl0aG9uICNiaXRiYWtlICNraXJrc3RvbmUN
-Cg0KSGkgSm9zaHVhLA0KDQpUaGFuayB5b3UgZm9yIHlvdXIgcXVpY2sgcmVwbHkuICANCg0KUGxl
-YXNlIHNlZSB0aGUgY3Jhc2ggbG9nIGluIHRoZSBhdHRhY2htZW50Lg0KDQoiQWxzbywgSSdtIG5v
-dCBxdWl0ZSBjbGVhciB3aGF0IHlvdSBtZWFuIGJ5ICJ3b3JrcyBsaWtlIGEgY2hhcm0gd2l0aCBX
-YXJyaW9yIjsgaXQgc291bmRzIGxpa2Ugc29tZXRoaW5nIHN0aWxsIGlzbid0IHdvcmtpbmcgaW4g
-V2FycmlvciB0aGF0IHlvdSBuZWVkLCBvciBqdXN0IGluIEtpcmtzdG9uZT8iDQpUaGlzIGJiY2xh
-c3MgaXMgaW1wb3J0ZWQgZnJvbSBhIHByZXZpb3VzIGJ1aWxkIG1ha2UgdXNpbmcgdGhlIFlvY3Rv
-IFdhcnJpb3IgdmVyc2lvbiBhbmQgdGhlIGJ1aWxkIHJlcG9ydCBubyBmYWlsdXJlIHVzaW5nICJs
-biAtcyIgZGlyZWN0bHksIHdlbGwgaXQgY29tcGlsZS4NCg0KQlIsDQoNCi0tLS0tTWVzc2FnZSBk
-J29yaWdpbmUtLS0tLQ0KRGXCoDogSm9zaHVhIFdhdHQgPGpwZXdoYWNrZXJAZ21haWwuY29tPiBF
-bnZvecOpwqA6IDIgYW/Du3QgMjAyMiAwOTo1NyDDgMKgOiBNYXJ0aW4gTGVkdWMgPG1hcnRpbi5s
-ZWR1Y0BsdW1pbmF0b3IuY29tPiBDY8KgOiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIE9i
-amV0wqA6IFtFWFRFUk5BTF0gUmU6IFt5b2N0b10gQkJDbGFzcyBmdW5jdGlvbiBhbmQgc3ltYm9s
-aWMgbGluayAoc3ltbGluaykgLi4uIEkgdGhyb3cgaW4gdGhlIHRvd2VsICNweXRob24gI2JpdGJh
-a2UgI2tpcmtzdG9uZQ0KDQpDQVVUSU9OOiBUaGlzIGVtYWlsIG9yaWdpbmF0ZWQgZnJvbSBvdXRz
-aWRlIG9mIEx1bWluYXRvciBUZWNobm9sb2d5IEdyb3VwLiBEbyBub3QgY2xpY2sgbGlua3Mgb3Ig
-b3BlbiBhdHRhY2htZW50cyB1bmxlc3MgeW91IHJlY29nbml6ZSB0aGUgc2VuZGVyIGFuZCBrbm93
-IHRoZSBjb250ZW50IGlzIHNhZmUuDQoNCk9uIFR1ZSwgQXVnIDIsIDIwMjIgYXQgODo0NCBBTSBN
-YXJ0aW4gTGVkdWMgdmlhIGxpc3RzLnlvY3RvcHJvamVjdC5vcmcgPG1hcnRpbi5sZWR1Yz1sdW1p
-bmF0b3IuY29tQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+IHdyb3RlOg0KPg0KPiBIaSB0ZWFtLA0K
-Pg0KPiBXZWxsLCBJIHRocm93IGluIHRoZSB0b3dlbC4gIEJ1dCBpdCdzIGxvb2tzIGxpa2Ugc28g
-c2ltcGxlIC4uLi4gZm9yIG1lIPCfpKPwn6SjLg0KPg0KPiBJJ3ZlIGEgZnVuY3Rpb24gdG8gcmVw
-bGFjZSB0aGUgdmVyc2lvbiBmaWxlIGluIC9ldGMvdmVyc2lvbi4gIFRoaXMgZnVuY3Rpb24gaXMg
-aW50ZWdyYXRlZCBpbnRvIG15IG15YmFzZS1pbWFnZS5iYmNsYXNzLCBkZWZpbmVkIGluIG15IGxh
-eWVyIGFuZCBJIGFkZCwgaW4gbXkgY29yZS1pbWFnZS1taW5pbWFsLmJiYXBwZW5kIHJlY2lwZSBp
-bmhlcml0IG15YmFzZS1pbWFnZS5iYmNsYXNzLg0KPg0KPiBJbiBteSBiYmNsYXNzLCBJIGNhbGwg
-bXkgZnVuY3Rpb24gdXNpbmcNCj4NCj4gUk9PVEZTX1BPU1RQUk9DRVNTX0NPTU1BTkQgKz0gIiBc
-DQo+ICAgICBzZXRfdmVyc2lvbl9maWxlIDsgXA0KPiAiDQo+DQo+IE15IGZ1bmN0aW9uIGlzIHdy
-aXR0ZW4gbGlrZSB0aGlzDQo+IHNldF92ZXJzaW9uX2ZpbGUoKSB7DQo+ICAgICBiYnBsYWluICJz
-ZXRfdmVyc2lvbl9maWxlIEJFR0lOIg0KPiAgICAgbWtkaXIgLXAgJHtJTUFHRV9ST09URlN9L2V0
-Yy90bXAvDQo+ICAgICBlY2hvICR7UFZ9ID4gJHtJTUFHRV9ST09URlN9L2V0Yy90bXAvdmVyc2lv
-bg0KPiAgICAgY2htb2QgNjQ0ICR7SU1BR0VfUk9PVEZTfS9ldGMvdG1wL3ZlcnNpb24NCj4gICAg
-IHJtICR7SU1BR0VfUk9PVEZTfS9ldGMvdmVyc2lvbg0KPiAgICAgbG4gLXNmIC9ldGMvdG1wL3Zl
-cnNpb24gIiR7SU1BR0VfUk9PVEZTfS9ldGMvdmVyc2lvbiINCj4gfQ0KPiBOb3RlOiAvZXRjL3Rt
-cCBpcyBqdXN0IGZvciB0aGUgcHVycG9zZSBvZiB0aGlzIHRlc3QNCj4NCj4gSSBtZWFuLCBJIGRv
-bid0IHRyeSB0byBkbyBhbnl0aGluZyBvdXRzdGFuZGluZyBidXQgdGhlIGxuIC1zZiBsaW5lIG1h
-a2VzIG15IGNvbXBpbGF0aW9uIGNyYXNoIEJVVC4uLi4gaXQgd29ya3MgbGlrZSBhIGNoYXJtIHdp
-dGggV2FycmlvciBidXQgS2lya3N0b25lIHJlamVjdHMgImxuIC1zZiIgY29tbWFuZC4NCg0KQ2Fu
-IHlvdSBwcm92aWRlIGEgbGl0dGxlIG1vcmUgZGV0YWlsIGFib3V0IGhvdyBpdCBjcmFzaGVzPyBB
-bHNvLCBJJ20gbm90IHF1aXRlIGNsZWFyIHdoYXQgeW91IG1lYW4gYnkgIndvcmtzIGxpa2UgYSBj
-aGFybSB3aXRoIFdhcnJpb3IiOyBpdCBzb3VuZHMgbGlrZSBzb21ldGhpbmcgc3RpbGwgaXNuJ3Qg
-d29ya2luZyBpbiBXYXJyaW9yIHRoYXQgeW91IG5lZWQsIG9yIGp1c3QgaW4gS2lya3N0b25lPw0K
-DQo+DQo+IEknbSBkZWZpbml0ZWx5IG5vdCB0aGUgb25seSBvbmUgd2hvIGFkZHMgc3ltbGlua3Mg
-dG8gdGhlIHJlY2lwZXMNCj4NCj4gSSd2ZSBhbHNvIHRyaWVkOg0KPg0KPiBsbnINCj4gaW5oZXJp
-dCByZWxhdGl2ZV9zeW1saW5rcyAoZG9uJ3QgaGF2ZSBhbnkgaW1wYWN0IGJ1dCBJJ3ZlIGdpdmVu
-IGl0IGEgDQo+IHRyeSksIGZyb20gdGhlIHBva3kgZm9sZGVyIEkndmUgdHJpZWQgZ3JlcCAtciAi
-bG4iIC4vKiB8IGdyZXAgYmJjbGFzcyANCj4gKHRvIHZhbGlkYXRlIHRoZSBzeW50YXgpIFJlYWQg
-bWFueSBwb3N0cyBvbiB0aGlzIHRvcGljDQo+DQo+DQo+IEknbSB1bmFibGUgdG8gZmluZCB3aGVy
-ZSBpcyBteSBpc3N1ZS4NCj4NCj4gQW55IGlkZWFzIGFyZSB3ZWxjb21lLCBldmVuIGlmIGl0IHdv
-cmtzIGxpa2UgYSBjaGFybSBvbiBXYXJyaW9yIGJ1dCBub3QgaW4gS2lya3N0b25lLg0KPg0KPiBC
-UiwNCj4gTWFydGluDQo+IA0KPg0K
+On Tue, Aug 2, 2022 at 10:02 AM Martin Leduc <martin.leduc@luminator.com> w=
+rote:
+>
+> Hi Joshua,
+>
+> I've founded a second function, in the same class, using ln -s
+>
+> set_log_folder () {
+>     bbplain "Set var log folder BEGIN"
+>     rm -Rf ${IMAGE_ROOTFS}/var/log
+>     ln -s /mnt/general_data/log/ ${IMAGE_ROOTFS}/var/log
+>     bbplain "Set var log folder END"
+> }
+>
+> The logs show "Set var log folder BEGIN" and "Set var log folder END" and=
+ no issues ....
+
+Your set version function looks like it's running from the logs, so
+don't think your function is directly causing a problem. My guess is
+something else later is crashing or something else unrelated?
+
+>
+> What the hell I'm doing wrong....
+>
+>
+> Martin Leduc
+> T : (418) 856-6896
+> martin.leduc@luminator.com
+>
+>
+> -----Message d'origine-----
+> De : yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> De la pa=
+rt de Martin Leduc via lists.yoctoproject.org
+> Envoy=C3=A9 : 2 ao=C3=BBt 2022 10:20
+> =C3=80 : Joshua Watt <jpewhacker@gmail.com>
+> Cc : yocto@lists.yoctoproject.org
+> Objet : Re: [yocto] BBClass function and symbolic link (symlink) ... I th=
+row in the towel #python #bitbake #kirkstone
+>
+> Hi Joshua,
+>
+> Thank you for your quick reply.
+>
+> Please see the crash log in the attachment.
+>
+> "Also, I'm not quite clear what you mean by "works like a charm with Warr=
+ior"; it sounds like something still isn't working in Warrior that you need=
+, or just in Kirkstone?"
+> This bbclass is imported from a previous build make using the Yocto Warri=
+or version and the build report no failure using "ln -s" directly, well it =
+compile.
+>
+> BR,
+>
+> -----Message d'origine-----
+> De : Joshua Watt <jpewhacker@gmail.com> Envoy=C3=A9 : 2 ao=C3=BBt 2022 09=
+:57 =C3=80 : Martin Leduc <martin.leduc@luminator.com> Cc : yocto@lists.yoc=
+toproject.org Objet : [EXTERNAL] Re: [yocto] BBClass function and symbolic =
+link (symlink) ... I throw in the towel #python #bitbake #kirkstone
+>
+> CAUTION: This email originated from outside of Luminator Technology Group=
+. Do not click links or open attachments unless you recognize the sender an=
+d know the content is safe.
+>
+> On Tue, Aug 2, 2022 at 8:44 AM Martin Leduc via lists.yoctoproject.org <m=
+artin.leduc=3Dluminator.com@lists.yoctoproject.org> wrote:
+> >
+> > Hi team,
+> >
+> > Well, I throw in the towel.  But it's looks like so simple .... for me =
+=F0=9F=A4=A3=F0=9F=A4=A3.
+> >
+> > I've a function to replace the version file in /etc/version.  This func=
+tion is integrated into my mybase-image.bbclass, defined in my layer and I =
+add, in my core-image-minimal.bbappend recipe inherit mybase-image.bbclass.
+> >
+> > In my bbclass, I call my function using
+> >
+> > ROOTFS_POSTPROCESS_COMMAND +=3D " \
+> >     set_version_file ; \
+> > "
+> >
+> > My function is written like this
+> > set_version_file() {
+> >     bbplain "set_version_file BEGIN"
+> >     mkdir -p ${IMAGE_ROOTFS}/etc/tmp/
+> >     echo ${PV} > ${IMAGE_ROOTFS}/etc/tmp/version
+> >     chmod 644 ${IMAGE_ROOTFS}/etc/tmp/version
+> >     rm ${IMAGE_ROOTFS}/etc/version
+> >     ln -sf /etc/tmp/version "${IMAGE_ROOTFS}/etc/version"
+> > }
+> > Note: /etc/tmp is just for the purpose of this test
+> >
+> > I mean, I don't try to do anything outstanding but the ln -sf line make=
+s my compilation crash BUT.... it works like a charm with Warrior but Kirks=
+tone rejects "ln -sf" command.
+>
+> Can you provide a little more detail about how it crashes? Also, I'm not =
+quite clear what you mean by "works like a charm with Warrior"; it sounds l=
+ike something still isn't working in Warrior that you need, or just in Kirk=
+stone?
+>
+> >
+> > I'm definitely not the only one who adds symlinks to the recipes
+> >
+> > I've also tried:
+> >
+> > lnr
+> > inherit relative_symlinks (don't have any impact but I've given it a
+> > try), from the poky folder I've tried grep -r "ln" ./* | grep bbclass
+> > (to validate the syntax) Read many posts on this topic
+> >
+> >
+> > I'm unable to find where is my issue.
+> >
+> > Any ideas are welcome, even if it works like a charm on Warrior but not=
+ in Kirkstone.
+> >
+> > BR,
+> > Martin
+> >
+> >
 
