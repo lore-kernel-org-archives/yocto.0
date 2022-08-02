@@ -1,252 +1,277 @@
-Return-Path: <martin.leduc@luminator.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1A6C6C00140
-	for <webhook@archiver.kernel.org>; Tue,  2 Aug 2022 15:22:23 +0000 (UTC)
-Received: from mx1.luminator.com (mx1.luminator.com [178.15.153.4])
- by mx.groups.io with SMTP id smtpd.web09.7492.1659453732443787496
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 15333C00140
+	for <webhook@archiver.kernel.org>; Tue,  2 Aug 2022 15:36:43 +0000 (UTC)
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com
+ [209.85.167.54])
+ by mx.groups.io with SMTP id smtpd.web09.7675.1659454598651320779
  for <yocto@lists.yoctoproject.org>;
- Tue, 02 Aug 2022 08:22:13 -0700
+ Tue, 02 Aug 2022 08:36:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@luminator.com header.s=luminator header.b=OM/yC/5d;
- spf=pass (domain: luminator.com, ip: 178.15.153.4,
- mailfrom: prvs=021327e5a9=martin.leduc@luminator.com)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=luminator.com; s=luminator; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=NTdGUA+3Y60ECr+a4K6S6Ho3hM86ck2jreXrpJmkG14=; b=OM/yC/5dkPrncAUON8ZW2rYauf
-	0Lc/hnXBwBc4VC3haAqEJoxZbYV2aBJCm7GadPrBZbWRwE5huV9J1E9wLmgdRLRSRmdcrwMVKZ0/j
-	rvX/F2lWtl4PWmuj/IvyWzJLFHs4JCvqSRtAGUJcGyG2ckIfQ6jj1rQV6541uzK9zwb6Gwn7OJcCw
-	UvghiSTqxJ36QG4eF1SBqVHaO381g5I6IqCq+HcRKJUanEB98+Z/013hdXjYOv8ez3T6BFLJ1tXyl
-	u/d4Q3QjztfHO3DUhkZ3bhJUFr9rZl0cFswwV2Rn6WkVhnkKGBEYCNybD6eFxyc1zQFSLAQzISGJX
-	tWcX+Tgw==;
-X-SASI-Hits: BODY_SIZE_6000_6999 0.000000, BODY_SIZE_7000_LESS 0.000000,
-	CTE_BASE64 0.000000, HTML_00_01 0.050000, HTML_00_10 0.050000,
-	IN_REP_TO 0.000000, LEGITIMATE_SIGNS 0.000000, MSG_THREAD 0.000000,
-	MULTIPLE_REAL_RCPTS 0.000000, NO_CTA_URI_FOUND 0.000000,
-	NO_FUR_HEADER 0.000000, NO_URI_HTTPS 0.000000, OUTBOUND 0.000000,
-	OUTBOUND_SOPHOS 0.000000, REFERENCES 0.000000, SUPERLONG_LINE 0.050000,
-	__ANY_URI 0.000000, __ARCAUTH_DKIM_PASSED 0.000000,
-	__ARCAUTH_DMARC_PASSED 0.000000, __ARCAUTH_PASSED 0.000000,
-	__ARC_SEAL_MICROSOFT 0.000000, __ARC_SIGNATURE_MICROSOFT 0.000000,
-	__ATTACHMENT_PHRASE 0.000000, __BODY_NO_MAILTO 0.000000,
-	__BOUNCE_CHALLENGE_SUBJ 0.000000, __BOUNCE_NDR_SUBJ_EXEMPT 0.000000,
-	__BULK_NEGATE 0.000000, __BUSINESS_SIGNATURE 0.000000, __CC_NAME 0.000000,
-	__CP_MEDIA_BODY 0.000000, __CT 0.000000, __CTE 0.000000,
-	__CT_TEXT_PLAIN 0.000000, __DQ_NEG_DOMAIN 0.000000, __DQ_NEG_HEUR 0.000000,
-	__DQ_NEG_IP 0.000000, __FORWARDED_MSG 0.000000,
-	__FRAUD_BODY_WEBMAIL 0.000000, __FRAUD_MONEY_CURRENCY 0.000000,
-	__FRAUD_MONEY_CURRENCY_DOLLAR 0.000000,
-	__FRAUD_MONEY_CURRENCY_POUND 0.000000, __FRAUD_WEBMAIL 0.000000,
-	__FUR_RDNS_SOPHOS 0.000000, __HAS_CC_HDR 0.000000, __HAS_FROM 0.000000,
-	__HAS_MSGID 0.000000, __HAS_REFERENCES 0.000000, __HAS_X_FF_ASR 0.000000,
-	__HAS_X_FF_ASR_CAT 0.000000, __HAS_X_FF_ASR_SFV 0.000000,
-	__HIGHBITS 0.000000, __IN_REP_TO 0.000000, __MAIL_CHAIN 0.000000,
-	__MIME_TEXT_ONLY 0.000000, __MIME_TEXT_P 0.000000, __MIME_TEXT_P1 0.000000,
-	__MIME_VERSION 0.000000, __NO_HTML_TAG_RAW 0.000000,
-	__OUTBOUND_SOPHOS_FUR 0.000000, __OUTBOUND_SOPHOS_FUR_IP 0.000000,
-	__OUTBOUND_SOPHOS_FUR_RDNS 0.000000, __PHISH_PHRASE10_D 0.000000,
-	__PHISH_PHRASE_NL4 0.000000, __REFERENCES 0.000000, __SANE_MSGID 0.000000,
-	__SUBJ_ALPHA_NEGATE 0.000000, __SUBJ_REPLY 0.000000, __TO_GMAIL 0.000000,
-	__TO_MALFORMED_2 0.000000, __TO_NAME 0.000000,
-	__TO_NAME_DIFF_FROM_ACC 0.000000, __TO_REAL_NAMES 0.000000,
-	__URI_MAILTO 0.000000, __URI_NO_WWW 0.000000, __URI_NS 0.000000,
-	__X_FF_ASR_SCL_NSP 0.000000, __X_FF_ASR_SFV_NSPM 0.000000
-X-SASI-Probability: 8%
-X-SASI-RCODE: 200
-X-SASI-Version: Antispam-Engine: 4.1.4, AntispamData: 2022.8.2.143620
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aVpNWdGoHQ3oZvoSeDeru73zS0SHOZvA7IgBLyBFEz3fru/5hdBs8TD8MqrIFU65eDeGBqApJswQq8YDdeG6mwpNhfRoSzeMiO++2/2VAYyk2qPYGwMzagB/BdQOX5MSSJCLPFK3Q0s8hc8GPdoBGlQacrs0O8W3deezb8eJTJoeX2HP/iSu53uOUiomghixDde0hFCkNtAxhuv3RH9NVVsB+SgzpPgX3AIHfTBKF2TIPCsevADuAG7MUb7t1I+g+cgtGXzH3TLZzDCmm8T2/KVKphY2kX3qrqCSGZskyIDrAWoeF1hgZqj35DnCNx8QW1tURmray+axxOUL3vkEag==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NTdGUA+3Y60ECr+a4K6S6Ho3hM86ck2jreXrpJmkG14=;
- b=TnLhmzHc1zFvvZ0aMk/H6fCYVJ22oQ4hjTdKotcj6zB6ThnvAni8ilLtUIBHdQUUIM0bmosMZrRNIU7HFXAWoHX6UdKhNN6XwMB9d0qow/wQZNGYxXw2PTrTHN86Kb32RHYKxZoc7sRJIy2cxMVkFq5irm+T8wXX7ahjRrV1fDwBB2wSWVKwkThDDUpTwIAv1MFxoxgP1xXJePuzNdQrobPPZYLOOWsytGK74MdmRz2IuFiHsF3E2G7/cd1ZNtli8nakTePFg/YK7eq6Rc9cNpzagmjiLzypSzDeBKDUH6Rx0lIREacEH5WV/fUj6Dugoc+wikO8tUaEd1puRAfe1A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=luminator.com; dmarc=pass action=none
- header.from=luminator.com; dkim=pass header.d=luminator.com; arc=none
-From: Martin Leduc <martin.leduc@luminator.com>
-To: Joshua Watt <jpewhacker@gmail.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: RE: [EXTERNAL] Re: [yocto] BBClass function and symbolic link
- (symlink) ... I throw in the towel #python #bitbake #kirkstone
-Thread-Topic: [EXTERNAL] Re: [yocto] BBClass function and symbolic link
- (symlink) ... I throw in the towel #python #bitbake #kirkstone
-Thread-Index: AQHYpns4nBOhJXVNIkK7pt2Ze3UVO62bs/2wgAAC9gCAAAK6sA==
-Date: Tue, 2 Aug 2022 15:22:03 +0000
-Message-ID: 
- <PA4P189MB1183444E03D4AA1940C2BEAE969D9@PA4P189MB1183.EURP189.PROD.OUTLOOK.COM>
-References: <oqsz.1659447842876164805.WW8H@lists.yoctoproject.org>
- <CAJdd5Gbbh3gSuKtxAAHm-tc0er_EA93QCq+yyiHQ2YMWHC6cfg@mail.gmail.com>
- <17078CF9F8D6FA72.19085@lists.yoctoproject.org>
- <PA4P189MB118378328707E20AE31CF9D2969D9@PA4P189MB1183.EURP189.PROD.OUTLOOK.COM>
- <CAJdd5GYJ+ob4PLbUXkOM3J2jZS=3X0azBAK7TMoYKfXEcWgZOQ@mail.gmail.com>
-In-Reply-To: 
- <CAJdd5GYJ+ob4PLbUXkOM3J2jZS=3X0azBAK7TMoYKfXEcWgZOQ@mail.gmail.com>
-Accept-Language: fr-CA, en-US
-Content-Language: fr-FR
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=luminator.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0df114f0-8b20-4bd2-b6a5-08da749ac0bc
-x-ms-traffictypediagnostic: DB6P18901MB0040:EE_
-x-onpremisesmanualforward: true
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- cV7PzU4DHJ7ZJgd8lIRaiY5lXXrUuXUs0/U8Wsz61FiYq/2Svl6WE77QT4xR+O8GtnLXmXJauRulImPTcDPbbpqCHEEbMzlsby0Jyt2Pkjcb/1hx80qCdz+fZuTjzlCeAcSLmVhrh82Ud7j3p2U7HuBXANv6xFlSWfpxCqn08qdCBv9HK2qXr0UpvKYFfSN8BKOPyqt+TvXIA50FduiPOnpO+rWR1a3ni8REc8/sDgKoJv6r2f2XVBKnk3r2bhvDcDcCPla0bvXQJ38vJUmEGpq59owT4UVjEu6kAixN1ohGgdECINYKc1WmvOj4dwg2J0iiFPGpq4T5v5TdbfNcsJLwxgpPh8JX0WYtbkIaTEWmk/NCWc0+iCjD5cVnBwcMH6lvLopofJewIm4BDsL3pSJmdSsTQW8flOOQlYEFqo4HWNxMUugVDimBbzG8Ll2BVwV1kSVhUFgL0Lj78JflkcxC3GyBwBvQ9MBKRpoxXRoYQdNFVNZxvUSqhPdF0T0cENTSnDfeJgYxuJCbzQ2E3DHmw6aKrvljIVQkFxUc1QXEM89ml5RyCxYTVliZhqmvxRM9Ok1COr2xnF8q67XxpHLU9QBxJzWmVmU+PIsWmo7d8YjsySGlXaFQuGONTdroUFAm+tda9sCoIfFHwKiu8/Ww7i7buko37TfIHP3PzilJ5VaQVIEykrg9UjsEY34H+wd0QUhHhMeVHnNYVlR5uywSFQP0OtvPeLNRPsWheTAqoyM84FpY/Y7Q5ufUgEpIjDlIvwLNuq4hzODJjaaA4dHmwPW74RBVcjdpZgXAL+0Y/xdqhddbIgW9hErxrQaw
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4P189MB1183.EURP189.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(366004)(396003)(376002)(39850400004)(136003)(6916009)(6506007)(7696005)(44832011)(33656002)(38100700002)(8936002)(26005)(9686003)(76116006)(66946007)(86362001)(55016003)(186003)(64756008)(66446008)(8676002)(66556008)(66476007)(316002)(66574015)(38070700005)(4326008)(52536014)(71200400001)(83380400001)(2906002)(41300700001)(5660300002)(40140700001)(122000001)(53546011)(478600001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?aTNnWENWd3U5UmNkMVIwNG5xdVBJMGk5UUZFdVE0WVhWZzRBRXdhcG5vZGpR?=
- =?utf-8?B?MEtRT3pvQ3JuWXl6eFJGbmo1UXBtZUxzVTE4S01uZEI0Ni9YQy9qSXpzOUky?=
- =?utf-8?B?VFBqRHV1Z1h6UVdtTnk3NHNwZDVzbXJOcFptaWd3dVVZZzFPdzJKT2Y4VDJu?=
- =?utf-8?B?ZDFkdHJiRTJUbUF2aEV0cWJXZDRKbG9Ba2FJdm11dDB0c25weVZTRmw3QnhR?=
- =?utf-8?B?M1labDltOENLYzJhZjA5UEhWYzdMK3BLenNGd3lGUWR3c3ltUVR6UlZQM3R3?=
- =?utf-8?B?L3U0RUthR3d3eTc4R0dFSUpzTEtJYUJzS2JsMEh3VnNSdnZxZjZ3c1h1Q1lY?=
- =?utf-8?B?Qnprb0I5ZUkxUnN4WE8vR2JpTnpySnMvQ0lwN0dySFBDUXV0MkxDSnFORXdu?=
- =?utf-8?B?NUxTYUJBS0pESkQ5RlVMa2NrRUlIT2J2QTlBelBzTTg4YnM1N3d6d283Si9Y?=
- =?utf-8?B?TGgzcHZoWUw4dDN6S3ZLcVlSbk96REVabEFOVkM3VVJrVURNN0g0eXFNS2s2?=
- =?utf-8?B?VmJkTzdqTHVRR3Q1YktKb1hSSW9NU0MyUjBVU0pyV1h2aDQ5RWFMTHMxYkdJ?=
- =?utf-8?B?MThGVVRuVVNnc3ZLV2ZYNnJHVTdvdWZVdUptVFBCcDFxV0xTeHo5cnF5K3RL?=
- =?utf-8?B?andLcjI4aVJkQk5XMGVKOTJNY2R4ak9GZERmaTZDdXdYVFlZcUV1d1MxZnlI?=
- =?utf-8?B?MXNEOHBZdm1CNllGUWlhbFhmdmc5NmxlbU5tc0dINDYwOU5Wc3ZCR2Yyalpa?=
- =?utf-8?B?d0VybUNJbmFCeGJGU0tGV3dleDhZcm1KSzNDQ1FWYUY0THVvZk1lcFdlQkl6?=
- =?utf-8?B?NkNLL3lrd2ZnL203N2UyUWdPN3IyeTZwMGpnaHM4WGpOVC8yQ3RMOWJXbTFx?=
- =?utf-8?B?LytzRGpkaWdxUXlVL0hQVEUyUXAzNXd6U3d0SDk4WGp4ejRZc0hCcDRqYkhY?=
- =?utf-8?B?VTMvTlNLMlZoT0FQVVpPKzlkdnYrZUNzZy9teEQ4OVdCc1BHN0Y3SU9FcjFF?=
- =?utf-8?B?SU12N2t3MVlQcUdsaVdyeVJHZXp5bk1rdVVzUGtKeS9JaDVDUytIc0JZeWtP?=
- =?utf-8?B?cS9Kb0Vid1pwZ3hXRFhlNDVpL0lHUEJ0ZE9TSFJxK3pxaE1QTEdjREFGNkpu?=
- =?utf-8?B?SzNIZFBwY1NtVmM4TmR2SElpSGRaNjdEV1lWams3WWhoVnpKNC9FU2VyYk1N?=
- =?utf-8?B?T283Z01GSGpxRnQ0SWRSMS9PZ1RSeUhSRHl4aFR5T1FsTnZCWmtNSldUNHg0?=
- =?utf-8?B?QmlEZGVyOVVnRVo5U2Q2bUVZaHdxSWV6bk1QNGNzTEU1N2RvUWZpek5MbUV1?=
- =?utf-8?B?UW04WStuOFUrMkkwOExuUEZnMlp3RTJjbFh6Sk5QQWVwVFh0U1IrdVBEb3Y2?=
- =?utf-8?B?Wk1tcXgzWmtnL2V6MEUyM1lZZmtlTE1mNTVvV3RTc2hyQUh6a2Ztem9TZ3Ja?=
- =?utf-8?B?cXg5UWV1VS8vZmUzZTZRdUlQM2ZSSVgwc290QlBCVG45WVhJekxFakMzVElp?=
- =?utf-8?B?ZVNKdEszUjFVUWQxeHRLZURjSW1yNkw2b2pOTENmRFpkQzllNTlYSGcxMU1O?=
- =?utf-8?B?T2VzVWRzSit2cERhalEyR3RvV2JZQ3ZURm52aGtYT3R0b3dseXpyTkRYbGlr?=
- =?utf-8?B?bTFqV0NocGRnVXg3UStNekhxcUlvOEtBemNPSE5uNkg4WjJkVzVxNUFVRURk?=
- =?utf-8?B?N3dhSlh2aENzaWwvVmFSakJGaGx6eTlBU1lEVU92emVKM1VKRmtzWGw1bmQ4?=
- =?utf-8?B?SkJWRkhOSjNvWklrWEgzWGttR3hiRy8wN05qejdRS3J5K3IxVy8wUndoSWo1?=
- =?utf-8?B?RFNCWkVyMVNoNTM2SEtjcDJuOXhNbGpLNDZUTUFmaGZZZzYvV0dwQ2FEZnVX?=
- =?utf-8?B?Nkc0OElHV3hOc2ExU2xaUktvMEo5MVJJOXRTaDN6ZW1jMXJqY25VSTBXU2dP?=
- =?utf-8?B?cDBsYitic3dpRDFqc2k4ZVRSOG5pblQvRmZwbEI4d0JRazZaNmRiYlZLaWs1?=
- =?utf-8?B?MnB2bzQ3QnlSNEIva3FBcGZuODBKYlFQUktVOUw5czA4OEhrcEZSNmpnTGw2?=
- =?utf-8?B?NkIzMVNCQmdHUVU3Z283cE1maGNsRkdKdU5yNTRURlA5Qyt2bjgwU2tFVzhY?=
- =?utf-8?B?aXByMnVzRUF1K2E4cStyYTU2SFk1Mm9FcGc4Umc5SDdtcTJMclNRdVJMMFhU?=
- =?utf-8?B?d1E9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=JZ1bBXy8;
+ spf=pass (domain: gmail.com, ip: 209.85.167.54,
+ mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f54.google.com with SMTP id a9so9694676lfm.12
+        for <yocto@lists.yoctoproject.org>;
+ Tue, 02 Aug 2022 08:36:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=bWHZNWXpgDRPYszVMufRYoyjn/59BjMVjV+0JWmHA5M=;
+        b=JZ1bBXy8i+plRjb2jV/j5hOJyIhvkvATioh3l9r9eeV/toEOsdBS44mrRzc/WMCpwG
+         cT2bDaiFws7PHpr+c75zXBDLh0reSCigZ+o6+vlJLg1V5M3qpi+NsNu+9KU1RHvkrhQi
+         mDlByu5oBlM5MQ8yu35jr1P+nOlyTEx50JKpgExDORTEpoFnq8Wk6ZSDWuIQI0W3yAv1
+         upQUnnrqhxPxVgKBgiYbmsWuWxPnJjN3nqQAKiqz1gA2XA2+OebWcIZ9C4rf2gQc2RB2
+         yt4KIFe7lgYKNV6F04w5/7AgT7hzjkPUBaj055tEXkLw5glhD0l2RFIQtkcMdkxutVXy
+         XWFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=bWHZNWXpgDRPYszVMufRYoyjn/59BjMVjV+0JWmHA5M=;
+        b=lpGSJ0KIiqXUDDG75GnCU0jfDkMbPNGvo4Tmr6rr6ncpj0H9+5x6GjtOTwqzUXpdO3
+         ptDXqJSKje5p3Pj0jqgY8JgPPcbU0bAMLMEZ5XSOS1asMngfWgOOVR7Je3US7tyA5gJN
+         jbfbSbbbdO41OjGJU63x7jtnzIIDsjCujrGhhY3mSTxK0a8lNlwTELw1/MbcRWVdYwkI
+         czkATFviF90CWRom9LFGpCVvYfkenp7uzXXORG/Z+v8kPsRRJrT4Pbq4JvWVkuLp7Dlw
+         K6GOdy5txIDoh9WNeO5wea5dTtSRtRkPlUG5RAPaabm4aRKpVDTuVgVXgKu6xYnuqZCE
+         qaNg==
+X-Gm-Message-State: ACgBeo3xstCxAakIbGJHmdZzUStUY1QiTMXYhg3HihbF1utn3O4rHoR4
+	n0NXAl5NMCKYpNsWDmAlQXKGJ5A1Nh88kRW1qhw=
+X-Google-Smtp-Source: 
+ AGRyM1sqAZWCNXhF0LYc69h9KvP2pGihi0SZ2GPWNlOxi/rC7HV01I0HijnSmHubRzF6JXwtemcdv75temZSXYfHR/E=
+X-Received: by 2002:a05:6512:1050:b0:48a:2319:59bc with SMTP id
+ c16-20020a056512105000b0048a231959bcmr7289830lfb.665.1659454596682; Tue, 02
+ Aug 2022 08:36:36 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PA4P189MB1183.EURP189.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 0df114f0-8b20-4bd2-b6a5-08da749ac0bc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Aug 2022 15:22:03.3412
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 41cde0b0-5383-4af5-89ba-5c7361af3a57
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- p0WeV0WZ20irpm/NVP9gXIOSVOtpGfjCHNyfoqt7a46Cwo35o8C5piDxWzE6/JI42UuD/UGodREGD9Wh2PcQNGKPTD0/XUfrHPUlfffdpOU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6P18901MB0040
-X-C2ProcessedOrg: 0aa505bc-c280-44a3-bf0b-cfdbed55e239
+References: 
+ <SA1PR05MB80485D6B6817919EDE566537CC9D9@SA1PR05MB8048.namprd05.prod.outlook.com>
+ <CANNYZj_SBbKBEkkRh-KTUGRvq4d2joepEs6P2g11efzRfeBFoA@mail.gmail.com>
+ <SA1PR05MB80484F6E4D71F5F6814478E9CC9D9@SA1PR05MB8048.namprd05.prod.outlook.com>
+In-Reply-To: 
+ <SA1PR05MB80484F6E4D71F5F6814478E9CC9D9@SA1PR05MB8048.namprd05.prod.outlook.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Tue, 2 Aug 2022 17:36:24 +0200
+Message-ID: 
+ <CANNYZj9fc4E9g2BmQjcsdWr4e=V2nbTjaaQD84EnU--ex=iHRA@mail.gmail.com>
+Subject: Re: [yocto] Conf for a single recipe only
+To: =?UTF-8?Q?Sebastian_R=C3=BChl?= <sebastian@mapped.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 02 Aug 2022 15:22:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57738
+ <yocto@lists.yoctoproject.org>; Tue, 02 Aug 2022 15:36:43 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57739
 
-UHJvYmFibHksIEkgZG9uJ3QgcmVhbGx5IGtub3cgYnV0IHdoZW4gSSBjb21tZW50IHRoZSAibG4g
-LXMiIGxpbmUsIHVzaW5nIGEgIywgdGhlIGNvbXBpbGF0aW9uIHdvcmtzLiAgT25seSB0aGUgImxu
-IC1zIiBsaW5lcw0KDQotLS0tLU1lc3NhZ2UgZCdvcmlnaW5lLS0tLS0NCkRlwqA6IEpvc2h1YSBX
-YXR0IDxqcGV3aGFja2VyQGdtYWlsLmNvbT4gDQpFbnZvecOpwqA6IDIgYW/Du3QgMjAyMiAxMTox
-MA0Kw4DCoDogTWFydGluIExlZHVjIDxtYXJ0aW4ubGVkdWNAbHVtaW5hdG9yLmNvbT4NCkNjwqA6
-IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNCk9iamV0wqA6IFtFWFRFUk5BTF0gUmU6IFt5
-b2N0b10gQkJDbGFzcyBmdW5jdGlvbiBhbmQgc3ltYm9saWMgbGluayAoc3ltbGluaykgLi4uIEkg
-dGhyb3cgaW4gdGhlIHRvd2VsICNweXRob24gI2JpdGJha2UgI2tpcmtzdG9uZQ0KDQpDQVVUSU9O
-OiBUaGlzIGVtYWlsIG9yaWdpbmF0ZWQgZnJvbSBvdXRzaWRlIG9mIEx1bWluYXRvciBUZWNobm9s
-b2d5IEdyb3VwLiBEbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1bmxlc3Mg
-eW91IHJlY29nbml6ZSB0aGUgc2VuZGVyIGFuZCBrbm93IHRoZSBjb250ZW50IGlzIHNhZmUuDQoN
-Ck9uIFR1ZSwgQXVnIDIsIDIwMjIgYXQgMTA6MDIgQU0gTWFydGluIExlZHVjIDxtYXJ0aW4ubGVk
-dWNAbHVtaW5hdG9yLmNvbT4gd3JvdGU6DQo+DQo+IEhpIEpvc2h1YSwNCj4NCj4gSSd2ZSBmb3Vu
-ZGVkIGEgc2Vjb25kIGZ1bmN0aW9uLCBpbiB0aGUgc2FtZSBjbGFzcywgdXNpbmcgbG4gLXMNCj4N
-Cj4gc2V0X2xvZ19mb2xkZXIgKCkgew0KPiAgICAgYmJwbGFpbiAiU2V0IHZhciBsb2cgZm9sZGVy
-IEJFR0lOIg0KPiAgICAgcm0gLVJmICR7SU1BR0VfUk9PVEZTfS92YXIvbG9nDQo+ICAgICBsbiAt
-cyAvbW50L2dlbmVyYWxfZGF0YS9sb2cvICR7SU1BR0VfUk9PVEZTfS92YXIvbG9nDQo+ICAgICBi
-YnBsYWluICJTZXQgdmFyIGxvZyBmb2xkZXIgRU5EIg0KPiB9DQo+DQo+IFRoZSBsb2dzIHNob3cg
-IlNldCB2YXIgbG9nIGZvbGRlciBCRUdJTiIgYW5kICJTZXQgdmFyIGxvZyBmb2xkZXIgRU5EIiBh
-bmQgbm8gaXNzdWVzIC4uLi4NCg0KWW91ciBzZXQgdmVyc2lvbiBmdW5jdGlvbiBsb29rcyBsaWtl
-IGl0J3MgcnVubmluZyBmcm9tIHRoZSBsb2dzLCBzbyBkb24ndCB0aGluayB5b3VyIGZ1bmN0aW9u
-IGlzIGRpcmVjdGx5IGNhdXNpbmcgYSBwcm9ibGVtLiBNeSBndWVzcyBpcyBzb21ldGhpbmcgZWxz
-ZSBsYXRlciBpcyBjcmFzaGluZyBvciBzb21ldGhpbmcgZWxzZSB1bnJlbGF0ZWQ/DQoNCj4NCj4g
-V2hhdCB0aGUgaGVsbCBJJ20gZG9pbmcgd3JvbmcuLi4uDQo+DQo+DQo+IE1hcnRpbiBMZWR1Yw0K
-PiBUIDogKDQxOCkgODU2LTY4OTYNCj4gbWFydGluLmxlZHVjQGx1bWluYXRvci5jb20NCj4NCj4N
-Cj4gLS0tLS1NZXNzYWdlIGQnb3JpZ2luZS0tLS0tDQo+IERlIDogeW9jdG9AbGlzdHMueW9jdG9w
-cm9qZWN0Lm9yZyA8eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gRGUgbGEgDQo+IHBhcnQg
-ZGUgTWFydGluIExlZHVjIHZpYSBsaXN0cy55b2N0b3Byb2plY3Qub3JnIEVudm95w6kgOiAyIGFv
-w7t0IDIwMjIgDQo+IDEwOjIwIMOAIDogSm9zaHVhIFdhdHQgPGpwZXdoYWNrZXJAZ21haWwuY29t
-PiBDYyA6IA0KPiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIE9iamV0IDogUmU6IFt5b2N0
-b10gQkJDbGFzcyBmdW5jdGlvbiBhbmQgDQo+IHN5bWJvbGljIGxpbmsgKHN5bWxpbmspIC4uLiBJ
-IHRocm93IGluIHRoZSB0b3dlbCAjcHl0aG9uICNiaXRiYWtlIA0KPiAja2lya3N0b25lDQo+DQo+
-IEhpIEpvc2h1YSwNCj4NCj4gVGhhbmsgeW91IGZvciB5b3VyIHF1aWNrIHJlcGx5Lg0KPg0KPiBQ
-bGVhc2Ugc2VlIHRoZSBjcmFzaCBsb2cgaW4gdGhlIGF0dGFjaG1lbnQuDQo+DQo+ICJBbHNvLCBJ
-J20gbm90IHF1aXRlIGNsZWFyIHdoYXQgeW91IG1lYW4gYnkgIndvcmtzIGxpa2UgYSBjaGFybSB3
-aXRoIFdhcnJpb3IiOyBpdCBzb3VuZHMgbGlrZSBzb21ldGhpbmcgc3RpbGwgaXNuJ3Qgd29ya2lu
-ZyBpbiBXYXJyaW9yIHRoYXQgeW91IG5lZWQsIG9yIGp1c3QgaW4gS2lya3N0b25lPyINCj4gVGhp
-cyBiYmNsYXNzIGlzIGltcG9ydGVkIGZyb20gYSBwcmV2aW91cyBidWlsZCBtYWtlIHVzaW5nIHRo
-ZSBZb2N0byBXYXJyaW9yIHZlcnNpb24gYW5kIHRoZSBidWlsZCByZXBvcnQgbm8gZmFpbHVyZSB1
-c2luZyAibG4gLXMiIGRpcmVjdGx5LCB3ZWxsIGl0IGNvbXBpbGUuDQo+DQo+IEJSLA0KPg0KPiAt
-LS0tLU1lc3NhZ2UgZCdvcmlnaW5lLS0tLS0NCj4gRGUgOiBKb3NodWEgV2F0dCA8anBld2hhY2tl
-ckBnbWFpbC5jb20+IEVudm95w6kgOiAyIGFvw7t0IDIwMjIgMDk6NTcgw4AgOiANCj4gTWFydGlu
-IExlZHVjIDxtYXJ0aW4ubGVkdWNAbHVtaW5hdG9yLmNvbT4gQ2MgOiANCj4geW9jdG9AbGlzdHMu
-eW9jdG9wcm9qZWN0Lm9yZyBPYmpldCA6IFtFWFRFUk5BTF0gUmU6IFt5b2N0b10gQkJDbGFzcyAN
-Cj4gZnVuY3Rpb24gYW5kIHN5bWJvbGljIGxpbmsgKHN5bWxpbmspIC4uLiBJIHRocm93IGluIHRo
-ZSB0b3dlbCAjcHl0aG9uIA0KPiAjYml0YmFrZSAja2lya3N0b25lDQo+DQo+IENBVVRJT046IFRo
-aXMgZW1haWwgb3JpZ2luYXRlZCBmcm9tIG91dHNpZGUgb2YgTHVtaW5hdG9yIFRlY2hub2xvZ3kg
-R3JvdXAuIERvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVubGVzcyB5b3Ug
-cmVjb2duaXplIHRoZSBzZW5kZXIgYW5kIGtub3cgdGhlIGNvbnRlbnQgaXMgc2FmZS4NCj4NCj4g
-T24gVHVlLCBBdWcgMiwgMjAyMiBhdCA4OjQ0IEFNIE1hcnRpbiBMZWR1YyB2aWEgbGlzdHMueW9j
-dG9wcm9qZWN0Lm9yZyA8bWFydGluLmxlZHVjPWx1bWluYXRvci5jb21AbGlzdHMueW9jdG9wcm9q
-ZWN0Lm9yZz4gd3JvdGU6DQo+ID4NCj4gPiBIaSB0ZWFtLA0KPiA+DQo+ID4gV2VsbCwgSSB0aHJv
-dyBpbiB0aGUgdG93ZWwuICBCdXQgaXQncyBsb29rcyBsaWtlIHNvIHNpbXBsZSAuLi4uIGZvciBt
-ZSDwn6Sj8J+koy4NCj4gPg0KPiA+IEkndmUgYSBmdW5jdGlvbiB0byByZXBsYWNlIHRoZSB2ZXJz
-aW9uIGZpbGUgaW4gL2V0Yy92ZXJzaW9uLiAgVGhpcyBmdW5jdGlvbiBpcyBpbnRlZ3JhdGVkIGlu
-dG8gbXkgbXliYXNlLWltYWdlLmJiY2xhc3MsIGRlZmluZWQgaW4gbXkgbGF5ZXIgYW5kIEkgYWRk
-LCBpbiBteSBjb3JlLWltYWdlLW1pbmltYWwuYmJhcHBlbmQgcmVjaXBlIGluaGVyaXQgbXliYXNl
-LWltYWdlLmJiY2xhc3MuDQo+ID4NCj4gPiBJbiBteSBiYmNsYXNzLCBJIGNhbGwgbXkgZnVuY3Rp
-b24gdXNpbmcNCj4gPg0KPiA+IFJPT1RGU19QT1NUUFJPQ0VTU19DT01NQU5EICs9ICIgXA0KPiA+
-ICAgICBzZXRfdmVyc2lvbl9maWxlIDsgXA0KPiA+ICINCj4gPg0KPiA+IE15IGZ1bmN0aW9uIGlz
-IHdyaXR0ZW4gbGlrZSB0aGlzDQo+ID4gc2V0X3ZlcnNpb25fZmlsZSgpIHsNCj4gPiAgICAgYmJw
-bGFpbiAic2V0X3ZlcnNpb25fZmlsZSBCRUdJTiINCj4gPiAgICAgbWtkaXIgLXAgJHtJTUFHRV9S
-T09URlN9L2V0Yy90bXAvDQo+ID4gICAgIGVjaG8gJHtQVn0gPiAke0lNQUdFX1JPT1RGU30vZXRj
-L3RtcC92ZXJzaW9uDQo+ID4gICAgIGNobW9kIDY0NCAke0lNQUdFX1JPT1RGU30vZXRjL3RtcC92
-ZXJzaW9uDQo+ID4gICAgIHJtICR7SU1BR0VfUk9PVEZTfS9ldGMvdmVyc2lvbg0KPiA+ICAgICBs
-biAtc2YgL2V0Yy90bXAvdmVyc2lvbiAiJHtJTUFHRV9ST09URlN9L2V0Yy92ZXJzaW9uIg0KPiA+
-IH0NCj4gPiBOb3RlOiAvZXRjL3RtcCBpcyBqdXN0IGZvciB0aGUgcHVycG9zZSBvZiB0aGlzIHRl
-c3QNCj4gPg0KPiA+IEkgbWVhbiwgSSBkb24ndCB0cnkgdG8gZG8gYW55dGhpbmcgb3V0c3RhbmRp
-bmcgYnV0IHRoZSBsbiAtc2YgbGluZSBtYWtlcyBteSBjb21waWxhdGlvbiBjcmFzaCBCVVQuLi4u
-IGl0IHdvcmtzIGxpa2UgYSBjaGFybSB3aXRoIFdhcnJpb3IgYnV0IEtpcmtzdG9uZSByZWplY3Rz
-ICJsbiAtc2YiIGNvbW1hbmQuDQo+DQo+IENhbiB5b3UgcHJvdmlkZSBhIGxpdHRsZSBtb3JlIGRl
-dGFpbCBhYm91dCBob3cgaXQgY3Jhc2hlcz8gQWxzbywgSSdtIG5vdCBxdWl0ZSBjbGVhciB3aGF0
-IHlvdSBtZWFuIGJ5ICJ3b3JrcyBsaWtlIGEgY2hhcm0gd2l0aCBXYXJyaW9yIjsgaXQgc291bmRz
-IGxpa2Ugc29tZXRoaW5nIHN0aWxsIGlzbid0IHdvcmtpbmcgaW4gV2FycmlvciB0aGF0IHlvdSBu
-ZWVkLCBvciBqdXN0IGluIEtpcmtzdG9uZT8NCj4NCj4gPg0KPiA+IEknbSBkZWZpbml0ZWx5IG5v
-dCB0aGUgb25seSBvbmUgd2hvIGFkZHMgc3ltbGlua3MgdG8gdGhlIHJlY2lwZXMNCj4gPg0KPiA+
-IEkndmUgYWxzbyB0cmllZDoNCj4gPg0KPiA+IGxucg0KPiA+IGluaGVyaXQgcmVsYXRpdmVfc3lt
-bGlua3MgKGRvbid0IGhhdmUgYW55IGltcGFjdCBidXQgSSd2ZSBnaXZlbiBpdCBhIA0KPiA+IHRy
-eSksIGZyb20gdGhlIHBva3kgZm9sZGVyIEkndmUgdHJpZWQgZ3JlcCAtciAibG4iIC4vKiB8IGdy
-ZXAgDQo+ID4gYmJjbGFzcyAodG8gdmFsaWRhdGUgdGhlIHN5bnRheCkgUmVhZCBtYW55IHBvc3Rz
-IG9uIHRoaXMgdG9waWMNCj4gPg0KPiA+DQo+ID4gSSdtIHVuYWJsZSB0byBmaW5kIHdoZXJlIGlz
-IG15IGlzc3VlLg0KPiA+DQo+ID4gQW55IGlkZWFzIGFyZSB3ZWxjb21lLCBldmVuIGlmIGl0IHdv
-cmtzIGxpa2UgYSBjaGFybSBvbiBXYXJyaW9yIGJ1dCBub3QgaW4gS2lya3N0b25lLg0KPiA+DQo+
-ID4gQlIsDQo+ID4gTWFydGluDQo+ID4NCj4gPg0K
+If you took go recipes from master, then try building mender from
+master as well, by setting up a master build. If that works fine, then
+you need to figure out how to backport mender as a whole, or just the
+needed fix. Or make your application compatible with an older go. It's
+not easy.
+
+Alex
+
+On Tue, 2 Aug 2022 at 16:33, Sebastian R=C3=BChl <sebastian@mapped.com> wro=
+te:
+>
+> Thanks, that seems like a good hint.
+>
+> Regarding the fixing: As I said it seems as this is a bug in golang itsel=
+f. Correct me if I'm wrong but here is the output from building mender-arti=
+fact-native/3.8.0:
+>
+> NOTE: recipe mender-artifact-native-3.8.0-r0: task do_compile: Started
+> ERROR: mender-artifact-native-3.8.0-r0 do_compile: oe_runmake failed
+> ERROR: mender-artifact-native-3.8.0-r0 do_compile: Execution of '/builddi=
+r/randomfirmware/build/tmp/work/x86_64-linux/mender-artifact-native/3.8.0-r=
+0/temp/run.do_compile.1285' failed with exit code 1
+> ERROR: Logfile of failure stored in: /builddir/randomfirmware/build/tmp/w=
+ork/x86_64-linux/mender-artifact-native/3.8.0-r0/temp/log.do_compile.1285
+> ERROR: Task (virtual:native:/builddir/randomfirmware/sources/meta-mender/=
+meta-mender-core/recipes-mender/mender-artifact/mender-artifact_3.8.0.bb:do=
+_compile) failed with exit code '1'
+> Log data follows:
+> | DEBUG: Executing shell function do_compile
+> | GO111MODULE=3D""
+> | GOARCH=3D"amd64"
+> | GOBIN=3D""
+> | GOCACHE=3D"/builddir/randomfirmware/build/tmp/work/x86_64-linux/mender-=
+artifact-native/3.8.0-r0/build/.cache"
+> | GOENV=3D"/github/home/.config/go/env"
+> | GOEXE=3D""
+> | GOEXPERIMENT=3D""
+> | GOFLAGS=3D""
+> | GOHOSTARCH=3D"amd64"
+> | GOHOSTOS=3D"linux"
+> | GOINSECURE=3D""
+> | GOMODCACHE=3D"/builddir/randomfirmware/build/tmp/work/x86_64-linux/mend=
+er-artifact-native/3.8.0-r0/build/pkg/mod"
+> | GONOPROXY=3D""
+> | GONOSUMDB=3D""
+> | GOOS=3D"linux"
+> | GOPATH=3D"/builddir/randomfirmware/build/tmp/work/x86_64-linux/mender-a=
+rtifact-native/3.8.0-r0/build:/builddir/randomfirmware/build/tmp/work/x86_6=
+4-linux/mender-artifact-native/3.8.0-r0/recipe-sysroot-native/usr/lib/x86_6=
+4-linux/go"
+> | GOPRIVATE=3D""
+> | GOPROXY=3D"https://proxy.golang.org,direct"
+> | GOROOT=3D"/builddir/randomfirmware/build/tmp/work/x86_64-linux/mender-a=
+rtifact-native/3.8.0-r0/recipe-sysroot-native/usr/lib/go"
+> | GOSUMDB=3D"sum.golang.org"
+> | GOTMPDIR=3D"/builddir/randomfirmware/build/tmp/work/x86_64-linux/mender=
+-artifact-native/3.8.0-r0/go-tmp"
+> | GOTOOLDIR=3D"/builddir/randomfirmware/build/tmp/work/x86_64-linux/mende=
+r-artifact-native/3.8.0-r0/recipe-sysroot-native/usr/lib/go/pkg/tool/linux_=
+amd64"
+> | GOVCS=3D""
+> | GOVERSION=3D"go1.18.4"
+> | GCCGO=3D"gccgo"
+> | GOAMD64=3D"v1"
+> | AR=3D"ar"
+> | CC=3D"gcc "
+> | CXX=3D"g++ "
+> | CGO_ENABLED=3D"1"
+> | GOMOD=3D"/dev/null"
+> | GOWORK=3D""
+> | CGO_CFLAGS=3D"-isystem/builddir/randomfirmware/build/tmp/work/x86_64-li=
+nux/mender-artifact-native/3.8.0-r0/recipe-sysroot-native/usr/include -O2 -=
+pipe"
+> | CGO_CPPFLAGS=3D"-isystem/builddir/randomfirmware/build/tmp/work/x86_64-=
+linux/mender-artifact-native/3.8.0-r0/recipe-sysroot-native/usr/include"
+> | CGO_CXXFLAGS=3D"-isystem/builddir/randomfirmware/build/tmp/work/x86_64-=
+linux/mender-artifact-native/3.8.0-r0/recipe-sysroot-native/usr/include -O2=
+ -pipe"
+> | CGO_FFLAGS=3D"-g -O2"
+> | CGO_LDFLAGS=3D"-L/builddir/randomfirmware/build/tmp/work/x86_64-linux/m=
+ender-artifact-native/3.8.0-r0/recipe-sysroot-native/usr/lib -L/builddir/ra=
+ndomfirmware/build/tmp/work/x86_64-linux/mender-artifact-native/3.8.0-r0/re=
+cipe-sysroot-native/lib -Wl,--enable-new-dtags -Wl,-rpath-link,/builddir/ra=
+ndomfirmware/build/tmp/work/x86_64-linux/mender-artifact-native/3.8.0-r0/re=
+cipe-sysroot-native/usr/lib -Wl,-rpath-link,/builddir/randomfirmware/build/=
+tmp/work/x86_64-linux/mender-artifact-native/3.8.0-r0/recipe-sysroot-native=
+/lib -Wl,-rpath,/builddir/randomfirmware/build/tmp/work/x86_64-linux/mender=
+-artifact-native/3.8.0-r0/recipe-sysroot-native/usr/lib -Wl,-rpath,/builddi=
+r/randomfirmware/build/tmp/work/x86_64-linux/mender-artifact-native/3.8.0-r=
+0/recipe-sysroot-native/lib -Wl,-O1 -Wl,--allow-shlib-undefined -Wl,--dynam=
+ic-linker=3D/builddir/randomfirmware/build/tmp/sysroots-uninative/x86_64-li=
+nux/lib/ld-linux-x86-64.so.2"
+> | PKG_CONFIG=3D"pkg-config"
+> | GOGCCFLAGS=3D"-fPIC -m64 -pthread -fmessage-length=3D0 -fdebug-prefix-m=
+ap=3D/builddir/randomfirmware/build/tmp/work/x86_64-linux/mender-artifact-n=
+ative/3.8.0-r0/go-tmp/go-build2701839308=3D/tmp/go-build -gno-record-gcc-sw=
+itches"
+> | NOTE: make -j 10 GOPATH=3D/builddir/randomfirmware/build/tmp/work/x86_6=
+4-linux/mender-artifact-native/3.8.0-r0/build:/builddir/randomfirmware/buil=
+d/tmp/work/x86_64-linux/mender-artifact-native/3.8.0-r0/recipe-sysroot-nati=
+ve/usr/lib/x86_64-linux/go -C /builddir/randomfirmware/build/tmp/work/x86_6=
+4-linux/mender-artifact-native/3.8.0-r0/build/src/github.com/mendersoftware=
+/mender-artifact V=3D1 install
+> | make: Entering directory '/builddir/randomfirmware/build/tmp/work/x86_6=
+4-linux/mender-artifact-native/3.8.0-r0/git/src/github.com/mendersoftware/m=
+ender-artifact'
+> | google.golang.org/protobuf/internal/pragma
+> | google.golang.org/grpc/internal/buffer
+> | google.golang.org/grpc/encoding
+> | google.golang.org/grpc/internal/grpcsync
+> | github.com/ryanuber/go-glob
+> | github.com/hashicorp/hcl/hcl/strconv
+> | golang.org/x/text/transform
+> | github.com/klauspost/compress/flate
+> | github.com/klauspost/cpuid/v2
+> | github.com/pkg/errors
+> | panic: runtime error: index out of range [0] with length 0
+> |
+> | goroutine 2978 [running]:
+> | cmd/go/internal/work.(*Builder).buildActionID(0xc000aeb900, 0xc000a1754=
+0)
+> |       /usr/lib/go/src/cmd/go/internal/work/exec.go:281 +0x23cf
+> | cmd/go/internal/work.(*Builder).build(0xc000aeb900, {0xc000034200?, 0x0=
+?}, 0xc000a17540)
+> |       /usr/lib/go/src/cmd/go/internal/work/exec.go:476 +0x199
+> | cmd/go/internal/work.(*Builder).Do.func2({0xadefb8, 0xc000034200}, 0xc0=
+00a17540)
+> |       /usr/lib/go/src/cmd/go/internal/work/exec.go:139 +0x5ec
+> | cmd/go/internal/work.(*Builder).Do.func3()
+> |       /usr/lib/go/src/cmd/go/internal/work/exec.go:201 +0xb9
+> | created by cmd/go/internal/work.(*Builder).Do
+> |       /usr/lib/go/src/cmd/go/internal/work/exec.go:187 +0x3da
+> | Makefile:72: recipe for target 'install' failed
+> | make: *** [install] Error 2
+> | make: Leaving directory '/builddir/randomfirmware/build/tmp/work/x86_64=
+-linux/mender-artifact-native/3.8.0-r0/git/src/github.com/mendersoftware/me=
+nder-artifact'
+> | ERROR: oe_runmake failed
+> | WARNING: /builddir/randomfirmware/build/tmp/work/x86_64-linux/mender-ar=
+tifact-native/3.8.0-r0/temp/run.do_compile.1285:1 exit 1 from 'exit 1'
+> | ERROR: Execution of '/builddir/randomfirmware/build/tmp/work/x86_64-lin=
+ux/mender-artifact-native/3.8.0-r0/temp/run.do_compile.1285' failed with ex=
+it code 1
+> NOTE: recipe mender-artifact-native-3.8.0-r0: task do_compile: Failed
+>
+> If you look closely it fails during compile with a index out of range in =
+the middle of exec.go
+>
+> Sebastian
+>
+> -----Urspr=C3=BCngliche Nachricht-----
+> Von: Alexander Kanavin <alex.kanavin@gmail.com>
+> Gesendet: Dienstag, 2. August 2022 16:02
+> An: Sebastian R=C3=BChl <sebastian@mapped.com>
+> Cc: yocto@lists.yoctoproject.org
+> Betreff: Re: [yocto] Conf for a single recipe only
+>
+> There's no way to build two versions of the same component, if the versio=
+ns share the recipe name. You have to fix the application, or try to rename=
+ one set of the go recipes so it is separate from the other set, to somethi=
+ng like 'go-old'.
+>
+> Alex
+>
+> On Tue, 2 Aug 2022 at 15:15, Sebastian R=C3=BChl via lists.yoctoproject.o=
+rg <sebastian=3Dmapped.com@lists.yoctoproject.org> wrote:
+> >
+> > Is there a way to set the GOVERSION for a single recipe only?
+> >
+> >
+> >
+> > At the moment I set the Golang version to 1.18 using the recipes from m=
+aster (on a local dunfell branch) and set the go version in the layer conf:
+> > GOVERSION =3D "1.18%"
+> >
+> > PREFERRED_VERSION_go-binary-native =3D "1.18%"
+> >
+> > PREFERRED_VERSION_go-cross-canadian =3D "1.18%"
+> >
+> > PREFERRED_VERSION_go-cross =3D "1.18%"
+> >
+> > PREFERRED_VERSION_go-crosssdk =3D "1.18%"
+> >
+> > PREFERRED_VERSION_go-native =3D "1.18%"
+> >
+> > PREFERRED_VERSION_go-runtime =3D "1.18%"
+> >
+> > PREFERRED_VERSION_go =3D "1.18%"
+> >
+> > however this messes with mender as it seems there is a bug in the
+> > golang compiler=E2=80=A6
+> >
+> > So I want to use those settings only for my application recipe.
+> >
+> > Any ideas how to achieve that?
+> >
+> >
+> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> > Links: You receive all messages sent to this group.
+> > View/Reply Online (#57727):
+> > https://lists.yoctoproject.org/g/yocto/message/57727
+> > Mute This Topic: https://lists.yoctoproject.org/mt/92769708/1686489
+> > Group Owner: yocto+owner@lists.yoctoproject.org
+> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub
+> > [alex.kanavin@gmail.com]
+> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> >
 
