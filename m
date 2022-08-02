@@ -1,193 +1,289 @@
-Return-Path: <JPEWhacker@gmail.com>
+Return-Path: <steven.monsees@baesystems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EF9DAC00140
-	for <webhook@archiver.kernel.org>; Tue,  2 Aug 2022 15:10:32 +0000 (UTC)
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com
- [209.85.208.42])
- by mx.groups.io with SMTP id smtpd.web08.7361.1659453023050242737
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 108C4C00140
+	for <webhook@archiver.kernel.org>; Tue,  2 Aug 2022 15:18:03 +0000 (UTC)
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com
+ [149.32.232.65])
+ by mx.groups.io with SMTP id smtpd.web12.7467.1659453482080255692
  for <yocto@lists.yoctoproject.org>;
- Tue, 02 Aug 2022 08:10:23 -0700
+ Tue, 02 Aug 2022 08:18:02 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=SjogF1pe;
- spf=pass (domain: gmail.com, ip: 209.85.208.42,
- mailfrom: jpewhacker@gmail.com)
-Received: by mail-ed1-f42.google.com with SMTP id o22so2555107edc.10
-        for <yocto@lists.yoctoproject.org>;
- Tue, 02 Aug 2022 08:10:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=+aACMZh9ZR76qz7gmB8SiLxT8WoEhm7ccBWJKqfxqu0=;
-        b=SjogF1peAgPsvMzXYJDfd8zPvEIPcp4TjQsadu6Ud0bxqIqBXq1ven2pqi8Wtb/ReX
-         zQGVQJDqaXlGXqtZ7c9C1L7ecl2/YdGrvpkBKFV+3e1jCoX3wH7dMpEt92+wpp6KBVSI
-         JGuczPhZ3MzkRohWZL3Rl6i8CkeSL4oisCsfA3w6qLTSAUEGaib9s2giVHNvW67WO5g+
-         eKIK6d3+KWwjJu8hHzc7d1xNJwr3Q/CQR9eyW1F6NEHK94/FQ3Ky3I8HMVZTGSfxOjT6
-         uSriP/jsJTQdDtdgpqv+c8jNjN1swzwIvOruG0tDFzwrSTgLimwpwHsY5C4dV5su4k2u
-         ++5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=+aACMZh9ZR76qz7gmB8SiLxT8WoEhm7ccBWJKqfxqu0=;
-        b=oisD22mpRT2UlSKYutoNMBBXUkPjHdl6ZzvB9oO24xH2yRCT45wo6SaCth+sJHC+r3
-         +PDoHy0c6iMwaWbAkGzocPUOHp668RYTtMY+RyZ11fBeCiZ+wz/mvtzv2FpRSN4Yj8+N
-         oAPqMIoyzObo6Bp8hlo28YBAQxoFLnwaWUAGQak0uGvYJDCCAFwjmu1pqqEKQhWomcMJ
-         GK29+YUvq1IBv0yi2yNHJQnW9GVpfjmmQaSnDtGnSxcfa5ZD/WroVKgQKZh2D3dhDyUr
-         wouDyWyArnfMWzh7gLAbwReClPJvJSNTXpc/4ybdyYjgFNO9fSHQJPBrFvOr9Fn3WIjG
-         mUPA==
-X-Gm-Message-State: AJIora8h+C8ojMRnQ6SY3cuk1nvYoHWfqc/W7aLJKER6/9c/jPuEWZ7u
-	JHonZKdh0lHY4/e46289TcwGJbeXyVXCF7r1In0=
-X-Google-Smtp-Source: 
- AGRyM1uxBwOaDZuU+APo+lKfSfYlRrrMXmZ2xhVpAS+B9HqvNqyA9zhhAUDRQGnHGOiOkuc5KAf8TYMWUuRnrzq7Zgk=
-X-Received: by 2002:a05:6402:11cb:b0:43c:c7a3:ff86 with SMTP id
- j11-20020a05640211cb00b0043cc7a3ff86mr21514045edw.383.1659453021441; Tue, 02
- Aug 2022 08:10:21 -0700 (PDT)
+ dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=ITCFalph;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.65,
+ mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1659453482; x=1817133482;
+  h=from:to:subject:date:mime-version;
+  bh=F7Ft2I1OrtR5fQwwYgn77DrpHYe7+QHZi75bgXvb9qo=;
+  b=ITCFalphXLVz501I6nYFK89NemMT4BzyAX3pTHH7kaq6f2/XZ1DMgwre
+   yBgBkGw8QVkjcqBEh8wwnrjqWsAEkoFp3+6YArYmkHHjPCMFN0Y3lq6rW
+   7Co288+DNVkdmaWBftDi2kLA+6a1JEMUi0UAKkOVaUydVejSQQdmAbJ2x
+   4=;
+IronPort-SDR: 
+ V3maelutg1WtkGPyMJguFTijm2B8iV2558uKe7ERfPR/rQmhKMe7EFTWOI1Wezlm33iZ90iat9
+ ocQRMWx6pCPw==
+X-IPAS-Result: =?us-ascii?q?A2DvAwAIP+li/0LBJQpaHgEBCxIMQAmBOwuBIYICAoFwk?=
+ =?us-ascii?q?mCCYpx8gXwLAQEBAQEBAQEBCAFCBAEBiX8mNQgOAQIEAQEBAQMCAwEBAQEFA?=
+ =?us-ascii?q?QEGAQEBAQEBBgQBgRuFLzoMgjUihB9eARVrJgEEG4J2gg6BDKkrgTMaAmWEb?=
+ =?us-ascii?q?4USgT2BZoV/gwsPhjFDj3wEl2AHNgNFHkIDCw5ECAkXEhAQAgQRGgsGAxY/C?=
+ =?us-ascii?q?QIEDgNACA0DEQQDDxgJEggQBAYDMQwlCwMFDwwBBgMGBQMBAxsDFAMFJAcDH?=
+ =?us-ascii?q?A8jDQ0EHx0DAwUlAwICGwcCAgMCBhUGAgJOOQgECAQrJA8FAgcvBQQvAh4EB?=
+ =?us-ascii?q?QYRCAIWAgYEBAQEFgIQCAIIJxcHEzMZAQVZEAkhHCgQBQYTAyBvBUUPKDM1P?=
+ =?us-ascii?q?CsfGwqBEiorFQMEBAMCBhUDAyICEC4xAxUGKRMSLQkqdQkCAyJtAwMEKi4DC?=
+ =?us-ascii?q?R8CARwHCSaaAT4TMR2CVZIOjXGECZ0WBwODUaAJLhWXAgORYpZ9IKIYhHQCB?=
+ =?us-ascii?q?AIEBQIWgWIBghNwgzlQFwKcf4EwAgYLAQEDCY10gRIBAQ?=
+IronPort-PHdr: A9a23:vmmhkBMhO80EwQobu5ol6nafDRdPi9zP1u491JMrhvp0f7i5+Ny6Z
+ QqDv64r1gWUFtWGo9t/yMPu+5j6XmIB5ZvT+FsjS7drEyE/tMMNggY7C9SEA0CoZNTjbig9A
+ dgQHAQ9pyLzPkdaAtvxaEPPqXOu8zESBg//NQ1oLejpB4Lelcu62/689pHJfQlEmjqwbbxxI
+ Ri2sA7cqtQYjYx+J6gr1xDHuGFIe+NYxWNpIVKcgRPx7dqu8ZBg7ipdpesv+9ZPXqvmcas4S
+ 6dYDCk9PGAu+MLrrxjDQhCR6XYaT24bjwBHAwnB7BH9Q5fxri73vfdz1SWGIcH7S60/VDK/5
+ KlpVRDokj8KOT4n/m/Klsx+gqFVoBO9qBNw2IPbep2ZNPhkc6/BYd8WW2xMVdtRWSxbBYO8a
+ pMCA+QGM+ZfqYn9vEUBogWlBQW0Gejh1yNIiWHo3aIk1eQqDB/L1xEkE90ArXrYqdv5P7oVX
+ OCu0KnH0yvDYO1Q2Tvn7YjIdRYhoeqSUr1uasrc0lIgGBnbgVWLqY3lJC+V2foIs2iA9eZvS
+ eWvi2s+pgx3vzOgydsihJPTiYIJ1lDL6z95wIAtKNO2RkN2fd+pHZlRui2EKod7XMAvTmFst
+ Ss1xbAKpJC1cSgFxpg6wxPSafyKfoeJ7x7+SuucJTR1iXF4db6iiBi/91WrxO7kVsSszVpGs
+ jBJn9fOu3wXyhDe7saKRuF880qgwTqDyhzf5vtLLE07j6bWJIQtzqMwm5cVrE/NBDX5mF/sg
+ 6+Tbkgk/++o5Pn5bbj+vZ+cMpN0ihn5MqQzhsyzGeQ4PRYKX2ic4em80r3j/UvjT7VPlf07k
+ anUvIzGKcgGvKK5BRVa3pw45BmlETimy9QZnWIbLF1bfRKHlJLlNE3JIPD9Ffu/glKsnyl3x
+ /3eI7HtHo/BI3bBnbv7YLpw70BRxBAywN1e/55UD6sOIPP3Wk//rtzYCRo5PhSvw+b7Ftp9y
+ J0RWWSVDq+cN6PSt0SI6fwxLOmXf4IaoyzyJOY+5//uln85hUESfayy3ZcNdH+4GfFmL12fY
+ XX3mtgBC3sFvhIiTOz2j12PSSNfa26oX60g/jE7FJ6mDYDbS4Gth7yOwDu7HppNa2BCC1CMC
+ mvod56eV/YMbyKdPtNhkjscVbi7TI8h1w+huxPmy7Z9KerU4CIY5trf040/9urYiRYa8T1vE
+ 9/bwmaGU2ZshGQKSjQqmqdlrgY1nkaE2rR/q/hZDsBIoeJOWRs9LYTbzeFxF5b1QA2XLfmTT
+ 1PzCPChByo8Q8l1i+QSblhwHZ2JxlD+5GvgS+sOi7GVCZpy96XaxHX8PO53wnvdxbI9glw9B
+ MBIMDv11eZE6wHPCtuRwA2inKGwePFEtBM=
+IronPort-Data: A9a23:vm2lR6prW3NzvxUjxoB8V+dlz11eBmKNZxIvgKrLsJaIsI4StFCzt
+ garIBmEOa3fY2v2Ld90YYu0/UhV7MeDmtRmSVc4+X1gQn4Q9+PIVI+TRqvS04N+DSFhoGZPt
+ Zh2hgzodZhsJpPkjk72dOWn8RGQ7InQLlbGILes1htZGEk1E0/NtTo5w7Rj2t4w24Dia++wk
+ YqaT/P3aQfNNwFcbzp8B5Kr8HuDa9yr5Vv0FnRnDRx6lAe2e0s9VfrzFontR5fMebS4K8bhL
+ wr1IBBVyUuCl/slIovNfr8W6STmSJaKVeSFoiI+t6RPHnGuqwRqupvXOsbwZm981RKP2PlQ1
+ +lz77vsVyYwP6zDscY0Bkww/yFWZcWq+ZfBIX62tNfDkhWeKj3qyrNkBUwtLJYE9+NsR2pJ8
+ JT0KhhUNlbY2KTvken9FLcEascLdaEHOKsEpnx+wDefCPEgWp3OWI3A7NJDzSwsi8VVW/3ZY
+ qL1bBIxNkyRP0UQUrsRILElo9i2n0C4SD5njE+Kva0X6kLSyTUkhdABN/KQILRmX/59j0GTu
+ mXu+2XiHgpcJduU1T2d6HWui+TT2yThV+ov+KaQr6Ys2wLVnz1ITkNIPbemncSEZoeFc4o3A
+ yQpFuAG8cDeKGTDogHBYiCF
+IronPort-HdrOrdr: A9a23:4kFasKrbpuftD7gjpGAzNgEaV5o2eYIsimQD101hICG9E/bo8v
+ xG+c5x6faaslgssR0b9uxoW5PwI080i6QU3WB5B97LMWXbUQCTTb2Kg7GSoAEIHReVytJg
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-AV: E=Sophos;i="5.93,211,1654560000";
+   d="scan'208,217";a="6209407"
+IronPort-SDR: 
+ D+Ay53EN82nr/ei7Ggt0VT8iXJCutFgjIiZMYFw7Vby06DBcWrlP9TDti2a1at7bday0I05u5D
+ vM8lCeRfICJOYtU3DUPyhXq9iODetars1lhPUNuZbt18L5zF3i398KHZCPWcWyh1dV3NLfhXCp
+ 6e/jvOTwns1i2/5yQchd8cqdT97TQmW15x7kvoENxRnTJ0n7YnEwqahJVu9CtyBLprurZC7/cF
+ vKjKACmBqOOcnIZuX/op0ifL8nPgMFwm4+rnT7oVbibRs3H6Pt7XgBGPxJJERwOyvzMpsZSw1s
+ SLQ=
+X-IronPort-AV: E=Sophos;i="5.93,211,1654560000";
+   d="scan'208,217";a="336891474"
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: poky-dunfell-23.0.17
+Thread-Topic: poky-dunfell-23.0.17
+Thread-Index: AdimgiMeKGp2RxcZRhGYkFDCTjm4rA==
+Date: Tue, 2 Aug 2022 15:16:59 +0000
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.44.4.15]
+Content-Type: multipart/alternative;
+	boundary="_000_b091cf3f04ec4bdb97f24755a3bf4ee4baesystemscom_"
 MIME-Version: 1.0
-References: <oqsz.1659447842876164805.WW8H@lists.yoctoproject.org>
- <CAJdd5Gbbh3gSuKtxAAHm-tc0er_EA93QCq+yyiHQ2YMWHC6cfg@mail.gmail.com>
- <17078CF9F8D6FA72.19085@lists.yoctoproject.org>
- <PA4P189MB118378328707E20AE31CF9D2969D9@PA4P189MB1183.EURP189.PROD.OUTLOOK.COM>
-In-Reply-To: 
- <PA4P189MB118378328707E20AE31CF9D2969D9@PA4P189MB1183.EURP189.PROD.OUTLOOK.COM>
-From: Joshua Watt <jpewhacker@gmail.com>
-Date: Tue, 2 Aug 2022 10:10:10 -0500
-Message-ID: 
- <CAJdd5GYJ+ob4PLbUXkOM3J2jZS=3X0azBAK7TMoYKfXEcWgZOQ@mail.gmail.com>
-Subject: Re: [yocto] BBClass function and symbolic link (symlink) ... I throw
- in the towel #python #bitbake #kirkstone
-To: Martin Leduc <martin.leduc@luminator.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 02 Aug 2022 15:10:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57736
+ <yocto@lists.yoctoproject.org>; Tue, 02 Aug 2022 15:18:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57737
+Message-Id: <20220802151803.108C4C00140@smtp.lore.kernel.org>
 
-On Tue, Aug 2, 2022 at 10:02 AM Martin Leduc <martin.leduc@luminator.com> w=
-rote:
->
-> Hi Joshua,
->
-> I've founded a second function, in the same class, using ln -s
->
-> set_log_folder () {
->     bbplain "Set var log folder BEGIN"
->     rm -Rf ${IMAGE_ROOTFS}/var/log
->     ln -s /mnt/general_data/log/ ${IMAGE_ROOTFS}/var/log
->     bbplain "Set var log folder END"
-> }
->
-> The logs show "Set var log folder BEGIN" and "Set var log folder END" and=
- no issues ....
+--_000_b091cf3f04ec4bdb97f24755a3bf4ee4baesystemscom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Your set version function looks like it's running from the logs, so
-don't think your function is directly causing a problem. My guess is
-something else later is crashing or something else unrelated?
 
+I wanted to do a simple test with dunfell, my system meets all the minimum =
+requirements based on documentation, and I am running under centos7...
+
+I downloaded poky-dunfell-23.0.17, built both "core-image-minimal" and "cor=
+e-image-sato" with not build issues, but when I go to run "runqemu qemux86-=
+64" I am getting the following error for both builds, can you explain why a=
+nd how to to correct for this ?
+
+11:07 smonsees@yix490093 /disk0/scratch/smonsees/yocto/yocto-dunfell/poky-d=
+unfell-23.0.17/mdunfell>runqemu qemux86-64
+runqemu - INFO - Running MACHINE=3Dqemux86-64 bitbake -e ...
+runqemu - INFO - Continuing with the following parameters:
+KERNEL: [/disk0/scratch/smonsees/yocto/yocto-dunfell/poky-dunfell-23.0.17/m=
+dunfell/tmp/deploy/images/qemux86-64/bzImage--5.4.192+gitAUTOINC+3fecb08507=
+_85f0668fea-r0-qemux86-64-20220802141232.bin]
+MACHINE: [qemux86-64]
+FSTYPE: [ext4]
+ROOTFS: [/disk0/scratch/smonsees/yocto/yocto-dunfell/poky-dunfell-23.0.17/m=
+dunfell/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64-20220802=
+141232.rootfs.ext4]
+CONFFILE: [/disk0/scratch/smonsees/yocto/yocto-dunfell/poky-dunfell-23.0.17=
+/mdunfell/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64-202208=
+02141232.qemuboot.conf]
+
+runqemu - INFO - Setting up tap interface under sudo
+runqemu - INFO - Network configuration: ip=3D192.168.7.2::192.168.7.1:255.2=
+55.255.0
+runqemu - INFO - Running /disk0/scratch/smonsees/yocto/yocto-dunfell/poky-d=
+unfell-23.0.17/mdunfell/tmp/work/x86_64-linux/qemu-helper-native/1.0-r1/rec=
+ipe-sysroot-native/usr/bin/qemu-system-x86_64 -device virtio-net-pci,netdev=
+=3Dnet0,mac=3D52:54:00:12:34:02 -netdev tap,id=3Dnet0,ifname=3Dtap0,script=
+=3Dno,downscript=3Dno -drive file=3D/disk0/scratch/smonsees/yocto/yocto-dun=
+fell/poky-dunfell-23.0.17/mdunfell/tmp/deploy/images/qemux86-64/core-image-=
+minimal-qemux86-64-20220802141232.rootfs.ext4,if=3Dvirtio,format=3Draw -sho=
+w-cursor -usb -device usb-tablet -object rng-random,filename=3D/dev/urandom=
+,id=3Drng0 -device virtio-rng-pci,rng=3Drng0   -cpu core2duo -m 256 -serial=
+ mon:vc -serial null -kernel /disk0/scratch/smonsees/yocto/yocto-dunfell/po=
+ky-dunfell-23.0.17/mdunfell/tmp/deploy/images/qemux86-64/bzImage--5.4.192+g=
+itAUTOINC+3fecb08507_85f0668fea-r0-qemux86-64-20220802141232.bin -append 'r=
+oot=3D/dev/vda rw  mem=3D256M ip=3D192.168.7.2::192.168.7.1:255.255.255.0 o=
+profile.timer=3D1 '
+
+runqemu - ERROR - Failed to run qemu: X Error:  BadRequest
+  Request Major code 130 (MIT-SHM)
+  Request Minor code 1 ()
+  Error Serial #124
+  Current Serial #125
+
+runqemu - INFO - Cleaning up
+Set 'tap0' nonpersistent
+11:07 smonsees@yix490093 /disk0/scratch/smonsees/yocto/yocto-dunfell/poky-d=
+unfell-23.0.17/mdunfell>
+
+Thanks,
+Steve
+
+--_000_b091cf3f04ec4bdb97f24755a3bf4ee4baesystemscom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> What the hell I'm doing wrong....
->
->
-> Martin Leduc
-> T : (418) 856-6896
-> martin.leduc@luminator.com
->
->
-> -----Message d'origine-----
-> De : yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> De la pa=
-rt de Martin Leduc via lists.yoctoproject.org
-> Envoy=C3=A9 : 2 ao=C3=BBt 2022 10:20
-> =C3=80 : Joshua Watt <jpewhacker@gmail.com>
-> Cc : yocto@lists.yoctoproject.org
-> Objet : Re: [yocto] BBClass function and symbolic link (symlink) ... I th=
-row in the towel #python #bitbake #kirkstone
->
-> Hi Joshua,
->
-> Thank you for your quick reply.
->
-> Please see the crash log in the attachment.
->
-> "Also, I'm not quite clear what you mean by "works like a charm with Warr=
-ior"; it sounds like something still isn't working in Warrior that you need=
-, or just in Kirkstone?"
-> This bbclass is imported from a previous build make using the Yocto Warri=
-or version and the build report no failure using "ln -s" directly, well it =
-compile.
->
-> BR,
->
-> -----Message d'origine-----
-> De : Joshua Watt <jpewhacker@gmail.com> Envoy=C3=A9 : 2 ao=C3=BBt 2022 09=
-:57 =C3=80 : Martin Leduc <martin.leduc@luminator.com> Cc : yocto@lists.yoc=
-toproject.org Objet : [EXTERNAL] Re: [yocto] BBClass function and symbolic =
-link (symlink) ... I throw in the towel #python #bitbake #kirkstone
->
-> CAUTION: This email originated from outside of Luminator Technology Group=
-. Do not click links or open attachments unless you recognize the sender an=
-d know the content is safe.
->
-> On Tue, Aug 2, 2022 at 8:44 AM Martin Leduc via lists.yoctoproject.org <m=
-artin.leduc=3Dluminator.com@lists.yoctoproject.org> wrote:
-> >
-> > Hi team,
-> >
-> > Well, I throw in the towel.  But it's looks like so simple .... for me =
-=F0=9F=A4=A3=F0=9F=A4=A3.
-> >
-> > I've a function to replace the version file in /etc/version.  This func=
-tion is integrated into my mybase-image.bbclass, defined in my layer and I =
-add, in my core-image-minimal.bbappend recipe inherit mybase-image.bbclass.
-> >
-> > In my bbclass, I call my function using
-> >
-> > ROOTFS_POSTPROCESS_COMMAND +=3D " \
-> >     set_version_file ; \
-> > "
-> >
-> > My function is written like this
-> > set_version_file() {
-> >     bbplain "set_version_file BEGIN"
-> >     mkdir -p ${IMAGE_ROOTFS}/etc/tmp/
-> >     echo ${PV} > ${IMAGE_ROOTFS}/etc/tmp/version
-> >     chmod 644 ${IMAGE_ROOTFS}/etc/tmp/version
-> >     rm ${IMAGE_ROOTFS}/etc/version
-> >     ln -sf /etc/tmp/version "${IMAGE_ROOTFS}/etc/version"
-> > }
-> > Note: /etc/tmp is just for the purpose of this test
-> >
-> > I mean, I don't try to do anything outstanding but the ln -sf line make=
-s my compilation crash BUT.... it works like a charm with Warrior but Kirks=
-tone rejects "ln -sf" command.
->
-> Can you provide a little more detail about how it crashes? Also, I'm not =
-quite clear what you mean by "works like a charm with Warrior"; it sounds l=
-ike something still isn't working in Warrior that you need, or just in Kirk=
-stone?
->
-> >
-> > I'm definitely not the only one who adds symlinks to the recipes
-> >
-> > I've also tried:
-> >
-> > lnr
-> > inherit relative_symlinks (don't have any impact but I've given it a
-> > try), from the poky folder I've tried grep -r "ln" ./* | grep bbclass
-> > (to validate the syntax) Read many posts on this topic
-> >
-> >
-> > I'm unable to find where is my issue.
-> >
-> > Any ideas are welcome, even if it works like a charm on Warrior but not=
- in Kirkstone.
-> >
-> > BR,
-> > Martin
-> >
-> >
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I wanted to do a simple test with dunfell, my system=
+ meets all the minimum requirements based on documentation, and I am runnin=
+g under centos7&#8230;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I downloaded poky-dunfell-23.0.17, built both &#8220=
+;core-image-minimal&#8221; and &#8220;core-image-sato&#8221; with not build=
+ issues, but when I go to run &#8220;runqemu qemux86-64&#8221; I am getting=
+ the following error for both builds, can you explain why and how to to
+ correct for this ?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">11:07 smonsees@yix490093 /disk0/scratch/smonsees/yoc=
+to/yocto-dunfell/poky-dunfell-23.0.17/mdunfell&gt;runqemu qemux86-64<o:p></=
+o:p></p>
+<p class=3D"MsoNormal">runqemu - INFO - Running MACHINE=3Dqemux86-64 bitbak=
+e -e ...<o:p></o:p></p>
+<p class=3D"MsoNormal">runqemu - INFO - Continuing with the following param=
+eters:<o:p></o:p></p>
+<p class=3D"MsoNormal">KERNEL: [/disk0/scratch/smonsees/yocto/yocto-dunfell=
+/poky-dunfell-23.0.17/mdunfell/tmp/deploy/images/qemux86-64/bzImage--5.4.19=
+2&#43;gitAUTOINC&#43;3fecb08507_85f0668fea-r0-qemux86-64-20220802141232.bin=
+]<o:p></o:p></p>
+<p class=3D"MsoNormal">MACHINE: [qemux86-64]<o:p></o:p></p>
+<p class=3D"MsoNormal">FSTYPE: [ext4]<o:p></o:p></p>
+<p class=3D"MsoNormal">ROOTFS: [/disk0/scratch/smonsees/yocto/yocto-dunfell=
+/poky-dunfell-23.0.17/mdunfell/tmp/deploy/images/qemux86-64/core-image-mini=
+mal-qemux86-64-20220802141232.rootfs.ext4]<o:p></o:p></p>
+<p class=3D"MsoNormal">CONFFILE: [/disk0/scratch/smonsees/yocto/yocto-dunfe=
+ll/poky-dunfell-23.0.17/mdunfell/tmp/deploy/images/qemux86-64/core-image-mi=
+nimal-qemux86-64-20220802141232.qemuboot.conf]<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">runqemu - INFO - Setting up tap interface under sudo=
+<o:p></o:p></p>
+<p class=3D"MsoNormal">runqemu - INFO - Network configuration: ip=3D192.168=
+.7.2::192.168.7.1:255.255.255.0<o:p></o:p></p>
+<p class=3D"MsoNormal">runqemu - INFO - Running /disk0/scratch/smonsees/yoc=
+to/yocto-dunfell/poky-dunfell-23.0.17/mdunfell/tmp/work/x86_64-linux/qemu-h=
+elper-native/1.0-r1/recipe-sysroot-native/usr/bin/qemu-system-x86_64 -devic=
+e virtio-net-pci,netdev=3Dnet0,mac=3D52:54:00:12:34:02
+ -netdev tap,id=3Dnet0,ifname=3Dtap0,script=3Dno,downscript=3Dno -drive fil=
+e=3D/disk0/scratch/smonsees/yocto/yocto-dunfell/poky-dunfell-23.0.17/mdunfe=
+ll/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64-2022080214123=
+2.rootfs.ext4,if=3Dvirtio,format=3Draw -show-cursor
+ -usb -device usb-tablet -object rng-random,filename=3D/dev/urandom,id=3Drn=
+g0 -device virtio-rng-pci,rng=3Drng0&nbsp;&nbsp; -cpu core2duo -m 256 -seri=
+al mon:vc -serial null -kernel /disk0/scratch/smonsees/yocto/yocto-dunfell/=
+poky-dunfell-23.0.17/mdunfell/tmp/deploy/images/qemux86-64/bzImage--5.4.192=
+&#43;gitAUTOINC&#43;3fecb08507_85f0668fea-r0-qemux86-64-20220802141232.bin
+ -append 'root=3D/dev/vda rw&nbsp; mem=3D256M ip=3D192.168.7.2::192.168.7.1=
+:255.255.255.0 oprofile.timer=3D1 '<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">runqemu - ERROR - Failed to run qemu: X Error:&nbsp;=
+ BadRequest<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; Request Major code 130 (MIT-SHM)<o:p></o:p></=
+p>
+<p class=3D"MsoNormal">&nbsp; Request Minor code 1 ()<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; Error Serial #124<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; Current Serial #125<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">runqemu - INFO - Cleaning up<o:p></o:p></p>
+<p class=3D"MsoNormal">Set 'tap0' nonpersistent<o:p></o:p></p>
+<p class=3D"MsoNormal">11:07 smonsees@yix490093 /disk0/scratch/smonsees/yoc=
+to/yocto-dunfell/poky-dunfell-23.0.17/mdunfell&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Steve<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_b091cf3f04ec4bdb97f24755a3bf4ee4baesystemscom_--
 
