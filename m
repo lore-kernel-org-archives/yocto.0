@@ -1,168 +1,94 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 47099C19F2A
-	for <webhook@archiver.kernel.org>; Thu,  4 Aug 2022 13:38:55 +0000 (UTC)
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com
- [209.85.167.50])
- by mx.groups.io with SMTP id smtpd.web12.4906.1659620328559309964
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8BE6FC19F2A
+	for <webhook@archiver.kernel.org>; Thu,  4 Aug 2022 14:25:05 +0000 (UTC)
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
+ [209.85.216.42])
+ by mx.groups.io with SMTP id smtpd.web12.5444.1659623095515187326
  for <yocto@lists.yoctoproject.org>;
- Thu, 04 Aug 2022 06:38:48 -0700
+ Thu, 04 Aug 2022 07:24:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=XxrhhK7S;
- spf=pass (domain: gmail.com, ip: 209.85.167.50, mailfrom: raj.khem@gmail.com)
-Received: by mail-lf1-f50.google.com with SMTP id m22so19040877lfl.9
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=kl9uZ9aq;
+ spf=pass (domain: gmail.com, ip: 209.85.216.42,
+ mailfrom: akuster808@gmail.com)
+Received: by mail-pj1-f42.google.com with SMTP id
+ x2-20020a17090ab00200b001f4da5cdc9cso5495548pjq.0
         for <yocto@lists.yoctoproject.org>;
- Thu, 04 Aug 2022 06:38:48 -0700 (PDT)
+ Thu, 04 Aug 2022 07:24:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cHTUDutXahjpqxb52sZUjWtwp9VmDFpGTRe7LGe8zXA=;
-        b=XxrhhK7StMI4ctAeKywlVbefGPMFapxYlALZEuR4XLXUb2SAgag8eh9w8v/0vglfsR
-         GOVSRZprbGxS8DJbHR2mYNnC24YpOSP1y3zp4TlCZtc4xz3wBtwjsU4RdO/iODfW4KdI
-         89fK058lrX+vdZzmopSSmbkOQbDo60N4LmJNJYkpSdGoS3gzY91iyoeHkx6qZ7QEfBQo
-         L0vpRm3V4t9Fm7YOFRBVVc8mzTT+SGDQsgaskW6CLoG7tHyjq0SQSc6Pvfxv9a3X8w+J
-         NyRPMoXZ/k1+HzsgcAqsqBLJruF2elvbZZ2NAMgR4jllHkhKJByuSAqsMCpdOD5tu8qk
-         /K4Q==
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UZWYPt9+6IaAmvzf4hAlT2SgT0bvIdemGOU5la81p88=;
+        b=kl9uZ9aqrr0beS0YSWYlM9WFSd/zIKO1l68H6AzMW9EFqzcnqoTwDG231NL18sZxP6
+         qYfMd/LIKqso1D7MO0nS9J+zR16Ae8djXyApyu3FHya/mhQnFGZFDiCSLHxOwmWjZ/HH
+         7Lpfpi1LQqu8i27I/4FhSV0stXByMgXCis9eWvvuaUsLw1PltNoHBJfjHPfrQvRddVkD
+         iKXXPemyiVEeG0FOUI2RVRd83aAjv2rLukQj5Z+qrdD/GZwsvBJWfR+yvQ7PUquAls5j
+         isYppQwmyw5Qs4FPighyX3GyZsoPazMZF/BEs1n3HRd3427BcrMN4qqLzKJtL+d128wC
+         8ODw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cHTUDutXahjpqxb52sZUjWtwp9VmDFpGTRe7LGe8zXA=;
-        b=kTJeS0+JeUUaRIy+tWtWdvptDJ3Fh02JjhLKiyy9Yqy3Y6boD5adeRxWlVq3U7JniK
-         SJeJ9SqDTsBrFo0ivOukWaCqEto+6seJe/2YXmgg90gwhM0Zh2TYkqwSg7+qYNsOQzxy
-         p23Oz/WxDT8JHR1nPzfg3CBOkd/ybe/jVxRNtMPc8CWZMgmduuae2ws45Xmll9/EUumd
-         tG18/hUV0Ub1MnU+Y1wxWOpCyLrWj33ocX6LPKlbH7ytd+7dC4q+UILq8L3psLlmUuXs
-         jUNcl57RbN4TQdYE8cgV9zZIjWLP0EI5vFhBGBmNDzBCTgcjumabyigO9Z9Ed9EDoJBY
-         JgTA==
-X-Gm-Message-State: ACgBeo0yYsd3jN8+/oGI5VzSUR8BlTtj1+NSu2Lmk6u0bfEFpji7j1Oq
-	9pXR8LHhtu16rrjWPmjydRqrRHP70duPpUfqV+w=
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UZWYPt9+6IaAmvzf4hAlT2SgT0bvIdemGOU5la81p88=;
+        b=tb4SLiqWrwe/dzASMqYbw/5LMnV515OAoCaImzT7IwwvIKQwtLVR2jIKHz78hzRRg9
+         UrdA1tGzRsw1Yb0gk1fDRNYd+fIxVnLoO3A0qcK8WmuL8oL5Xj3uWoSBzAA7gmz3cr71
+         uZmZOogwkxFe+44/tTucpZokbeSJOfdSxXLP0ng79ccT0nWqZDVPcbuY9RIXCEzIXGuf
+         HUeUSd/zAZse1GSg4XpFm/R413QtZBUrP5d3k+56ZO8Gq/1gaPNuuaOSyXFZXqkDECOa
+         uNJiLnVvXsx+VpSRam95LtSsSpgLTDYp7IjXYXegVBJzxfUDR6IKA6V6K1xJNlqVKXwM
+         wqTw==
+X-Gm-Message-State: ACgBeo29wwh+fZJCD2cFgPZeuyNhgboVvvrGWjxSxnlD2vhpZh6RxlJy
+	lVZ/ZTHyLlFcKeEsyP4g383UqE80FME=
 X-Google-Smtp-Source: 
- AA6agR4xB+NPeq+sPW08tIy2JbL8qPO2DY87C4ozMh3Qi+WeDwosTmbJnlfaWu3DgrmR4HRm+FwJr7A1n5lJ4bLfaR8=
-X-Received: by 2002:a05:6512:6c4:b0:48a:ef4c:ac7c with SMTP id
- u4-20020a05651206c400b0048aef4cac7cmr716278lff.608.1659620326672; Thu, 04 Aug
- 2022 06:38:46 -0700 (PDT)
+ AA6agR75oqYsnuECvygfw59qmUDzLrIeNyOlwi2MaEAl7o7zh1DqWZSIEkk89zeReOX6xFVO4pdb3w==
+X-Received: by 2002:a17:90a:b010:b0:1f3:161c:30a0 with SMTP id
+ x16-20020a17090ab01000b001f3161c30a0mr2325455pjq.243.1659623094183;
+        Thu, 04 Aug 2022 07:24:54 -0700 (PDT)
+Received: from keaua.hsd1.ca.comcast.net
+ (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
+        by smtp.gmail.com with ESMTPSA id
+ l9-20020a17090a070900b001f56405ab36sm1652865pjl.23.2022.08.04.07.24.53
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Aug 2022 07:24:53 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH] packagegroup-core-security: add space for
+ appends
+Date: Thu,  4 Aug 2022 07:22:51 -0700
+Message-Id: <20220804142251.25183-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <07e0007095824408bedb92b61019fd9d@vivavis.com>
- <CAMKF1sqVSHHmi=NGqmFvbmtjA2fi8PLj5iTodU4+ESyiczPKmA@mail.gmail.com>
- <0167a3c723b34bafa4edc0b81ca0ea66@vivavis.com>
-In-Reply-To: <0167a3c723b34bafa4edc0b81ca0ea66@vivavis.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 4 Aug 2022 14:38:35 +0100
-Message-ID: 
- <CAMKF1sptSCH72uoxScQMBtSsBx2ZkvfPPFPax-Jp2Ei59o9ypA@mail.gmail.com>
-Subject: Re: [yocto] libnss-resolve not automatically installed
-To: "embedded (VIVAVIS AG)" <embedded@vivavis.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000088f0605e56a7876"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 04 Aug 2022 13:38:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57779
+ <yocto@lists.yoctoproject.org>; Thu, 04 Aug 2022 14:25:05 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57780
 
---000000000000088f0605e56a7876
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-core/packagegroup/packagegroup-core-security.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-On Thu, Aug 4, 2022 at 1:35 PM embedded (VIVAVIS AG) <embedded@vivavis.com>
-wrote:
+diff --git a/recipes-core/packagegroup/packagegroup-core-security.bb b/recipes-core/packagegroup/packagegroup-core-security.bb
+index a12a4c2..85f6916 100644
+--- a/recipes-core/packagegroup/packagegroup-core-security.bb
++++ b/recipes-core/packagegroup/packagegroup-core-security.bb
+@@ -42,8 +42,8 @@ RDEPENDS:packagegroup-security-utils = "\
+     ${@bb.utils.contains("DISTRO_FEATURES", "pax", "pax-utils packctl", "",d)} \
+     "
+ 
+-RDEPENDS:packagegroup-security-utils:append:x86 = "chipsec"
+-RDEPENDS:packagegroup-security-utils:append:x86-64 = "chipsec"
++RDEPENDS:packagegroup-security-utils:append:x86 = " chipsec"
++RDEPENDS:packagegroup-security-utils:append:x86-64 = " chipsec"
+ RDEPENDS:packagegroup-security-utils:remove:mipsarch = "firejail krill"
+ RDEPENDS:packagegroup-security-utils:remove:libc-musl = "krill"
+ RDEPENDS:packagegroup-security-utils:remove:riscv64 = "krill"
+-- 
+2.25.1
 
-> Hi Khem,
->
-> > Von: Khem Raj <raj.khem@gmail.com>
-> > Gesendet: Donnerstag, 4. August 2022 13:20
-> >>
-> >> To install the missing library libnss-resolve.so.2, I've added
-> >>   IMAGE_INSTALL_append =3D " libnss-resolve"
-> >> to my image recipe, but I wonder, if this is the right place or
-> necessary
-> >> at all.
-> >>
-> >> My assumption was that having nss-resolve in PACKAGECONFIG will
-> >> also install the related library, which is obviously not the case.
-> >
-> > Packageconfigs are about what you would like to build it=E2=80=99s stil=
-l another
-> step what you would like to bundle in your image which is what
-> IMAGE_INSTALL does. At times this is already done because whatever the
-> packagrconfig is enabling is already part of a output package that=E2=80=
-=99s in
-> your IMAGE_INSTALL dependencies and gets pulled in indirectly but that=E2=
-=80=99s
-> not the case here. Therefore you have to do it in both places
-> >
-> >>
-> >> Furthermore, I had to write an append-file for base-files, such that
-> >> /etc/nsswitch.conf contains the following line
-> >>   hosts: resolve [!UNAVAIL=3Dreturn] files dns myhostname
-> >>
->
-> Ok, there's nothing to worry about.
-> Adding libnss-resolve to IMAGE_INSTALL and overwriting nsswitch.conf in
-> the append-file ist he correct procedure here.
->
-
-Yes
-
-
-> Thanks for clarification.
->
-> Carsten
->
-
---000000000000088f0605e56a7876
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Thu, Aug 4, 2022 at 1:35 PM embedded (VIVAVIS AG) &lt;<a=
- href=3D"mailto:embedded@vivavis.com">embedded@vivavis.com</a>&gt; wrote:<b=
-r></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
--left:1px #ccc solid;padding-left:1ex">Hi Khem,<br>
-<br>
-&gt; Von: Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_bla=
-nk">raj.khem@gmail.com</a>&gt; <br>
-&gt; Gesendet: Donnerstag, 4. August 2022 13:20<br>
-&gt;&gt;<br>
-&gt;&gt; To install the missing library libnss-resolve.so.2, I&#39;ve added=
-<br>
-&gt;&gt; =C2=A0 IMAGE_INSTALL_append =3D &quot; libnss-resolve&quot;<br>
-&gt;&gt; to my image recipe, but I wonder, if this is the right place or ne=
-cessary<br>
-&gt;&gt; at all.<br>
-&gt;&gt;<br>
-&gt;&gt; My assumption was that having nss-resolve in PACKAGECONFIG will<br=
->
-&gt;&gt; also install the related library, which is obviously not the case.=
-<br>
-&gt;<br>
-&gt; Packageconfigs are about what you would like to build it=E2=80=99s sti=
-ll another step what you would like to bundle in your image which is what I=
-MAGE_INSTALL does. At times this is already done because whatever the packa=
-grconfig is enabling is already part of a output package that=E2=80=99s in =
-your IMAGE_INSTALL dependencies and gets pulled in indirectly but that=E2=
-=80=99s not the case here. Therefore you have to do it in both places<br>
-&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; Furthermore, I had to write an append-file for base-files, such th=
-at<br>
-&gt;&gt; /etc/nsswitch.conf contains the following line<br>
-&gt;&gt; =C2=A0 hosts: resolve [!UNAVAIL=3Dreturn] files dns myhostname<br>
-&gt;&gt;<br>
-<br>
-Ok, there&#39;s nothing to worry about.<br>
-Adding libnss-resolve to IMAGE_INSTALL and overwriting nsswitch.conf in<br>
-the append-file ist he correct procedure here.<br>
-</blockquote><div dir=3D"auto"><br></div><div dir=3D"auto">Yes=C2=A0</div><=
-div dir=3D"auto"><br></div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><br>
-Thanks for clarification.<br>
-<br>
-Carsten<br>
-</blockquote></div></div>
-
---000000000000088f0605e56a7876--
 
