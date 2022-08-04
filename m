@@ -1,198 +1,97 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <embedded@vivavis.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A3A1CC19F2B
-	for <webhook@archiver.kernel.org>; Thu,  4 Aug 2022 11:20:04 +0000 (UTC)
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com
- [209.85.208.169])
- by mx.groups.io with SMTP id smtpd.web08.3541.1659612002698294417
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 036DCC19F2A
+	for <webhook@archiver.kernel.org>; Thu,  4 Aug 2022 12:35:35 +0000 (UTC)
+Received: from mx-relay50-hz1.antispameurope.com
+ (mx-relay50-hz1.antispameurope.com [94.100.133.225])
+ by mx.groups.io with SMTP id smtpd.web10.4134.1659616524716118556
  for <yocto@lists.yoctoproject.org>;
- Thu, 04 Aug 2022 04:20:03 -0700
+ Thu, 04 Aug 2022 05:35:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=A1y5ofP6;
- spf=pass (domain: gmail.com, ip: 209.85.208.169,
- mailfrom: raj.khem@gmail.com)
-Received: by mail-lj1-f169.google.com with SMTP id h12so21783627ljg.7
-        for <yocto@lists.yoctoproject.org>;
- Thu, 04 Aug 2022 04:20:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/bxsWTXYFxG1hozAUkxh1k+HROEy8t7UxDUJNOu8sFc=;
-        b=A1y5ofP6Gsp5CSyTxpBHgWEODA7NjF7YR/+P+ARyCsRENlOBGyL/OCQen5Jp1ii3xB
-         RMHVmP/Tdj7WpwtulF2qhH6U/DZZPcVxU0zb5K+PAoACmkoMtrp6IdHmcQ/NtJrxh6X7
-         exkKC16nip2akeOM+arc6LeYSR5jzSANZmUz3h3Ur8z7nhlNc2chcBeRL2G2noU1xlGZ
-         44zJJyivts/qfSgxxT89MDJr+470mmMWRPZ+f/ppgARosOnfaeo9cy8DYSTqGlpFGDUz
-         1L7bLOK+VZEXerpAqljAsHpLFeA7ro+0UEKD6lj6HI4SInLJTwDnSrLULcOoRLlqz/y4
-         Hc5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/bxsWTXYFxG1hozAUkxh1k+HROEy8t7UxDUJNOu8sFc=;
-        b=mqsnqendCItIu8rnGq9Ymi6MQhn3AwJ/gmj6V4JFhQ4HMrGVOXISycBkMfu0JwG+Wd
-         Cp1LgMqsCwWrztbHtfPQtl9VjIOs4rMp6r7q05EXllLOuiu55pkWdPx/rE0/g2MLpxY6
-         rCKgC7jZqq0eZR2/lsYR5If3dSRgkucvP46WNs0npwNLMuU+ZNSLJOUwXTz7JgkjJur9
-         bxq5Qw3BAngte2YFbEBqwuqmwRVTgiSQTNIksH19sKBF9bi7c0wRsOarPlTDE+EG+sde
-         C7gG52GV9j/oPX/gGamL6W3K0fBnpTMBviELbI8bN0viGzQPZUvkE1eQo5XSHgF0QwP8
-         2+ng==
-X-Gm-Message-State: ACgBeo2d1qvnlRcfyYy7qPwj6pIvx+KZsqYKMVqtRMTz6/1TbhbKaQQs
-	B8uwQdzHodlY5uGuPmIKVA70sWge5McNgoCAPww=
-X-Google-Smtp-Source: 
- AA6agR5Ad+neXCwZyDYngd8MVm56IcIZMC3CoJA7EtTwVfghZW2sojgAqweBvS5OtdjcY6x+D7okr8oTTxh1F4jpVME=
-X-Received: by 2002:a2e:8605:0:b0:25e:5fe4:9e6b with SMTP id
- a5-20020a2e8605000000b0025e5fe49e6bmr473586lji.484.1659612000728; Thu, 04 Aug
- 2022 04:20:00 -0700 (PDT)
-MIME-Version: 1.0
+ dkim=pass header.i=@vivavis.com header.s=hse1 header.b=H/d9eR9E;
+ spf=pass (domain: vivavis.com, ip: 94.100.133.225,
+ mailfrom: prvs=0208b3f95e=embedded@vivavis.com)
+Received: from unknown ([185.80.187.2]) by mx-relay50-hz1.antispameurope.com;
+ Thu, 04 Aug 2022 14:35:21 +0200
+Received: from grp-ex01.Vivavis.int (192.168.17.53) by grp-ex01.Vivavis.int
+ (192.168.17.53) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.9; Thu, 4 Aug 2022
+ 14:35:16 +0200
+Received: from grp-ex01.Vivavis.int ([::1]) by grp-ex01.Vivavis.int ([::1])
+ with mapi id 15.02.1118.009; Thu, 4 Aug 2022 14:35:16 +0200
+From: "embedded (VIVAVIS AG)" <embedded@vivavis.com>
+To: Khem Raj <raj.khem@gmail.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: AW: [yocto] libnss-resolve not automatically installed
+Thread-Topic: [yocto] libnss-resolve not automatically installed
+Thread-Index: AdinXld1wwtbm81QTxO1GYn0SZVuPgAhQBYAAAZcoYA=
+Date: Thu, 4 Aug 2022 12:35:16 +0000
+Message-ID: <0167a3c723b34bafa4edc0b81ca0ea66@vivavis.com>
 References: <07e0007095824408bedb92b61019fd9d@vivavis.com>
-In-Reply-To: <07e0007095824408bedb92b61019fd9d@vivavis.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 4 Aug 2022 12:19:48 +0100
-Message-ID: 
  <CAMKF1sqVSHHmi=NGqmFvbmtjA2fi8PLj5iTodU4+ESyiczPKmA@mail.gmail.com>
-Subject: Re: [yocto] libnss-resolve not automatically installed
-To: embedded@vivavis.com
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000c4baa105e568877c"
+In-Reply-To: 
+ <CAMKF1sqVSHHmi=NGqmFvbmtjA2fi8PLj5iTodU4+ESyiczPKmA@mail.gmail.com>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.0.1]
+x-g-data-mailsecurity-for-exchange-state: 0
+x-g-data-mailsecurity-for-exchange-error: 0
+x-g-data-mailsecurity-for-exchange-sender: 23
+x-g-data-mailsecurity-for-exchange-server: 
+ 61419075-592b-4c8d-b7a0-bf1d145a8b8e
+x-c2processedorg: 2f045ba3-9b34-4118-a5bd-6c10d5957477
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-cloud-security-sender: embedded@vivavis.com
+X-cloud-security-recipient: yocto@lists.yoctoproject.org
+X-cloud-security-crypt: load encryption module
+X-cloud-security-Virusscan: CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on
+ mx-relay50-hz1.antispameurope.com with 972FB1649F7A
+X-cloud-security-connect: unknown[185.80.187.2], TLS=1, IP=185.80.187.2
+X-cloud-security-Digest: 55c54a770313fe37b597548cc54c6435
+X-cloud-security: scantime:1.616
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=vivavis.com; h=from:to
+	:cc:subject:date:message-id:references:in-reply-to:content-type
+	:content-transfer-encoding:mime-version; s=hse1; bh=opEetuzd7b8a
+	lp9aRBdKbjMfTGGRdESrttiE5WHfExo=; b=H/d9eR9EXfbdVq2gjfSES/P6k8Yg
+	5XgNimevBfkHJWy3kXUWzeYGGu5vKew+8NLiC1drS3OrZgLwf9T08TJx1wwr/3Bh
+	ul9KiBZa+I5HYYYIJQg9QFKJhJqrN/DC/hIDaHXxesb9r+/e2TLYsUe9tq6Ak5UN
+	Ke1TWYK2FKCIQxefI0BWJBMK+6v5YXMLWUiJjTaB7On1KjpsZ3yszTIAjywdmyOu
+	21QeH9WVmQ1InCP+5UJ2DIFUCzHVhGcmRDl4klqnl+svbTS/Wk8auOCblb7g741t
+	V2TI1GwJXhpmC8HbAFDZvG/q/nS9E14iQ2EMcqAEUkkiZodxyiwSszqsPw==
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 04 Aug 2022 11:20:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57777
+ <yocto@lists.yoctoproject.org>; Thu, 04 Aug 2022 12:35:35 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57778
 
---000000000000c4baa105e568877c
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Aug 3, 2022 at 6:30 PM VIVAVIS AG via lists.yoctoproject.org
-<embedded=3Dvivavis.com@lists.yoctoproject.org> wrote:
-
-> Hi,
->
-> I'm currently on branch dunfell and using systemd-resolved.
->
-> I want to have glibc's NSS resolver functions using systemd-resolved.
-> I've noticed that the plugin libnss-resolve.so.2 was not in my image
-> by default.
->
-> In systemd_244.5.bb, nss-resolve is in PACKAGECONFIG by default.
-> libnss-resolve is build and packaged, but not installed by default.
->
-> To install the missing library libnss-resolve.so.2, I've added
->   IMAGE_INSTALL_append =3D " libnss-resolve"
-> to my image recipe, but I wonder, if this is the right place or necessary
-> at all.
->
-> My assumption was that having nss-resolve in PACKAGECONFIG will
-> also install the related library, which is obviously not the case.
->
-
-Packageconfigs are about what you would like to build it=E2=80=99s still an=
-other
-step what you would like to bundle in your image which is what
-IMAGE_INSTALL does. At times this is already done because whatever the
-packagrconfig is enabling is already part of a output package that=E2=80=99=
-s in
-your IMAGE_INSTALL dependencies and gets pulled in indirectly but that=E2=
-=80=99s
-not the case here. Therefore you have to do it in both places
-
-
-> Furthermore, I had to write an append-file for base-files, such that
-> /etc/nsswitch.conf contains the following line
->   hosts: resolve [!UNAVAIL=3Dreturn] files dns myhostname
->
-> Possibly, I've overlooked something essential.
-> I'd be very happy, if someone can shed some light on this issue.
->
-> Best regards,
->
-> Carsten Stelling
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#57772):
-> https://lists.yoctoproject.org/g/yocto/message/57772
-> Mute This Topic: https://lists.yoctoproject.org/mt/92797309/1997914
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> raj.khem@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
-
---000000000000c4baa105e568877c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Wed, Aug 3, 2022 at 6:30 PM VIVAVIS AG via <a href=3D"ht=
-tp://lists.yoctoproject.org">lists.yoctoproject.org</a> &lt;embedded=3D<a h=
-ref=3D"mailto:vivavis.com@lists.yoctoproject.org">vivavis.com@lists.yoctopr=
-oject.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi,<br>
-<br>
-I&#39;m currently on branch dunfell and using systemd-resolved.<br>
-<br>
-I want to have glibc&#39;s NSS resolver functions using systemd-resolved.<b=
-r>
-I&#39;ve noticed that the plugin libnss-resolve.so.2 was not in my image<br=
->
-by default.<br>
-<br>
-In <a href=3D"http://systemd_244.5.bb" rel=3D"noreferrer" target=3D"_blank"=
->systemd_244.5.bb</a>, nss-resolve is in PACKAGECONFIG by default.<br>
-libnss-resolve is build and packaged, but not installed by default.<br>
-<br>
-To install the missing library libnss-resolve.so.2, I&#39;ve added<br>
-=C2=A0 IMAGE_INSTALL_append =3D &quot; libnss-resolve&quot;<br>
-to my image recipe, but I wonder, if this is the right place or necessary<b=
-r>
-at all.<br>
-<br>
-My assumption was that having nss-resolve in PACKAGECONFIG will<br>
-also install the related library, which is obviously not the case.<br>
-</blockquote><div dir=3D"auto"><br></div><div dir=3D"auto">Packageconfigs a=
-re about what you would like to build it=E2=80=99s still another step what =
-you would like to bundle in your image which is what IMAGE_INSTALL does. At=
- times this is already done because whatever the packagrconfig is enabling =
-is already part of a output package that=E2=80=99s in your IMAGE_INSTALL de=
-pendencies and gets pulled in indirectly but that=E2=80=99s not the case he=
-re. Therefore you have to do it in both places</div><div dir=3D"auto"><br><=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-le=
-ft:1px #ccc solid;padding-left:1ex"><br>
-Furthermore, I had to write an append-file for base-files, such that<br>
-/etc/nsswitch.conf contains the following line<br>
-=C2=A0 hosts: resolve [!UNAVAIL=3Dreturn] files dns myhostname<br>
-<br>
-Possibly, I&#39;ve overlooked something essential.<br>
-I&#39;d be very happy, if someone can shed some light on this issue.<br>
-<br>
-Best regards,<br>
-<br>
-Carsten Stelling<br>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-You automatically follow any topics you start or reply to.<br>
-View/Reply Online (#57772): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/57772" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/57772</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/92797309/1997=
-914" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/92797309/1997914</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@g=
-mail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div></div>
-
---000000000000c4baa105e568877c--
+SGkgS2hlbSwNCg0KPiBWb246IEtoZW0gUmFqIDxyYWoua2hlbUBnbWFpbC5jb20+IA0KPiBHZXNl
+bmRldDogRG9ubmVyc3RhZywgNC4gQXVndXN0IDIwMjIgMTM6MjANCj4+DQo+PiBUbyBpbnN0YWxs
+IHRoZSBtaXNzaW5nIGxpYnJhcnkgbGlibnNzLXJlc29sdmUuc28uMiwgSSd2ZSBhZGRlZA0KPj4g
+wqAgSU1BR0VfSU5TVEFMTF9hcHBlbmQgPSAiIGxpYm5zcy1yZXNvbHZlIg0KPj4gdG8gbXkgaW1h
+Z2UgcmVjaXBlLCBidXQgSSB3b25kZXIsIGlmIHRoaXMgaXMgdGhlIHJpZ2h0IHBsYWNlIG9yIG5l
+Y2Vzc2FyeQ0KPj4gYXQgYWxsLg0KPj4NCj4+IE15IGFzc3VtcHRpb24gd2FzIHRoYXQgaGF2aW5n
+IG5zcy1yZXNvbHZlIGluIFBBQ0tBR0VDT05GSUcgd2lsbA0KPj4gYWxzbyBpbnN0YWxsIHRoZSBy
+ZWxhdGVkIGxpYnJhcnksIHdoaWNoIGlzIG9idmlvdXNseSBub3QgdGhlIGNhc2UuDQo+DQo+IFBh
+Y2thZ2Vjb25maWdzIGFyZSBhYm91dCB3aGF0IHlvdSB3b3VsZCBsaWtlIHRvIGJ1aWxkIGl04oCZ
+cyBzdGlsbCBhbm90aGVyIHN0ZXAgd2hhdCB5b3Ugd291bGQgbGlrZSB0byBidW5kbGUgaW4geW91
+ciBpbWFnZSB3aGljaCBpcyB3aGF0IElNQUdFX0lOU1RBTEwgZG9lcy4gQXQgdGltZXMgdGhpcyBp
+cyBhbHJlYWR5IGRvbmUgYmVjYXVzZSB3aGF0ZXZlciB0aGUgcGFja2FncmNvbmZpZyBpcyBlbmFi
+bGluZyBpcyBhbHJlYWR5IHBhcnQgb2YgYSBvdXRwdXQgcGFja2FnZSB0aGF04oCZcyBpbiB5b3Vy
+IElNQUdFX0lOU1RBTEwgZGVwZW5kZW5jaWVzIGFuZCBnZXRzIHB1bGxlZCBpbiBpbmRpcmVjdGx5
+IGJ1dCB0aGF04oCZcyBub3QgdGhlIGNhc2UgaGVyZS4gVGhlcmVmb3JlIHlvdSBoYXZlIHRvIGRv
+IGl0IGluIGJvdGggcGxhY2VzDQo+DQo+Pg0KPj4gRnVydGhlcm1vcmUsIEkgaGFkIHRvIHdyaXRl
+IGFuIGFwcGVuZC1maWxlIGZvciBiYXNlLWZpbGVzLCBzdWNoIHRoYXQNCj4+IC9ldGMvbnNzd2l0
+Y2guY29uZiBjb250YWlucyB0aGUgZm9sbG93aW5nIGxpbmUNCj4+IMKgIGhvc3RzOiByZXNvbHZl
+IFshVU5BVkFJTD1yZXR1cm5dIGZpbGVzIGRucyBteWhvc3RuYW1lDQo+Pg0KDQpPaywgdGhlcmUn
+cyBub3RoaW5nIHRvIHdvcnJ5IGFib3V0Lg0KQWRkaW5nIGxpYm5zcy1yZXNvbHZlIHRvIElNQUdF
+X0lOU1RBTEwgYW5kIG92ZXJ3cml0aW5nIG5zc3dpdGNoLmNvbmYgaW4NCnRoZSBhcHBlbmQtZmls
+ZSBpc3QgaGUgY29ycmVjdCBwcm9jZWR1cmUgaGVyZS4NCg0KVGhhbmtzIGZvciBjbGFyaWZpY2F0
+aW9uLg0KDQpDYXJzdGVuDQo=
 
