@@ -1,177 +1,130 @@
-Return-Path: <peter.hoyes@arm.com>
+Return-Path: <nikitagupta2509@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 37338C3F6B0
-	for <webhook@archiver.kernel.org>; Mon,  8 Aug 2022 07:43:27 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by mx.groups.io with SMTP id smtpd.web08.22599.1659944606425308946
- for <yocto@lists.yoctoproject.org>;
- Mon, 08 Aug 2022 00:43:26 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=pass (domain: arm.com, ip: 217.140.110.172, mailfrom: peter.hoyes@arm.com)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C533DD6E;
-	Mon,  8 Aug 2022 00:43:26 -0700 (PDT)
-Received: from e125920.arm.com (unknown [10.57.84.163])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5E1B93F881;
-	Mon,  8 Aug 2022 00:43:25 -0700 (PDT)
-From: Peter Hoyes <peter.hoyes@arm.com>
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9BC3FC00140
+	for <webhook@archiver.kernel.org>; Mon,  8 Aug 2022 09:36:57 +0000 (UTC)
+Subject: Getting Error while trying to run graphical yocto build image
+  #dunfell #qemu #yocto #linux
 To: yocto@lists.yoctoproject.org
-Cc: diego.sueiro@arm.com,
-	Peter Hoyes <Peter.Hoyes@arm.com>
-Subject: [meta-zephyr][PATCH 3/3] zephyr-kernel: Checkout zephyr in subdir to
- match West usage
-Date: Mon,  8 Aug 2022 08:42:56 +0100
-Message-Id: <20220808074256.3081464-3-peter.hoyes@arm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220808074256.3081464-1-peter.hoyes@arm.com>
-References: <20220808074256.3081464-1-peter.hoyes@arm.com>
+From: "Nikita Gupta" <nikitagupta2509@gmail.com>
+X-Originating-Location: IN (110.76.168.101)
+X-Originating-Platform: Windows Chrome 104
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Date: Mon, 08 Aug 2022 02:36:50 -0700
+Message-ID: <3Av7.1659951410541343611.uFIT@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="tmoCEoldAyswxEXDntqs"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 08 Aug 2022 07:43:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57796
+ <yocto@lists.yoctoproject.org>; Mon, 08 Aug 2022 09:36:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57797
 
-From: Peter Hoyes <Peter.Hoyes@arm.com>
+--tmoCEoldAyswxEXDntqs
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-When using West, Zephyr is checked out in a "zephyr" subdirectory of the
-working directory. At the moment Zephyr is checked out at the root,
-meaning a workaround is required to extract the module information.
+Hello Everyone here,
+I want to run the graphic image of qemux86-64 which I have built with yocto=
+. When I am running command "runqemu qemux86-64" or "runqemu" or "runqemu c=
+ore-image-minimal" I am getting the following error.
 
-In order to remove the workaround, change the Zephyr destsuffix in
-SRC_URI and ZEPHYR_BASE. As a result of this change, modify patchdir for
-the patches and the path to the LICENSE file.
+*nikita@ubuntu:~/yocto/poky/build$ runqemu qemux86-64 runqemu - INFO - Runn=
+ing MACHINE=3Dqemux86-64 bitbake -e ... runqemu - INFO - Continuing with th=
+e following parameters: KERNEL: [/home/nikita/yocto/poky/build/tmp/deploy/i=
+mages/qemux86-64/bzImage--5.4.205+gitAUTOINC+aaaf9f090d_8a59dfded8-r0-qemux=
+86-64-20220803111012.bin] MACHINE: [qemux86-64] FSTYPE: [ext4] ROOTFS: [/ho=
+me/nikita/yocto/poky/build/tmp/deploy/images/qemux86-64/core-image-minimal-=
+qemux86-64-20220803111012.rootfs.ext4] CONFFILE: [/home/nikita/yocto/poky/b=
+uild/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64-20220803111=
+012.qemuboot.conf] runqemu - INFO - Setting up tap interface under sudo [su=
+do] password for nikita: runqemu - INFO - Network configuration: ip=3D192.1=
+68.7.2::192.168.7.1:255.255.255.0 runqemu - INFO - Running /home/nikita/yoc=
+to/poky/build/tmp/work/x86_64-linux/qemu-helper-native/1.0-r1/recipe-sysroo=
+t-native/usr/bin/qemu-system-x86_64 -device virtio-net-pci,netdev=3Dnet0,ma=
+c=3D52:54:00:12:34:02 -netdev tap,id=3Dnet0,ifname=3Dtap0,script=3Dno,downs=
+cript=3Dno -drive file=3D/home/nikita/yocto/poky/build/tmp/deploy/images/qe=
+mux86-64/core-image-minimal-qemux86-64-20220803111012.rootfs.ext4,if=3Dvirt=
+io,format=3Draw -show-cursor -usb -device usb-tablet -object rng-random,fil=
+ename=3D/dev/urandom,id=3Drng0 -device virtio-rng-pci,rng=3Drng0 -cpu core2=
+duo -m 256 -serial mon:vc -serial null -kernel /home/nikita/yocto/poky/buil=
+d/tmp/deploy/images/qemux86-64/bzImage--5.4.205+gitAUTOINC+aaaf9f090d_8a59d=
+fded8-r0-qemux86-64-20220803111012.bin -append 'root=3D/dev/vda rw mem=3D25=
+6M ip=3D192.168.7.2::192.168.7.1:255.255.255.0 oprofile.timer=3D1 ' runqemu=
+ - ERROR - Failed to run qemu: Could not initialize SDL(x11 not available) =
+- exiting runqemu - INFO - Cleaning up Set 'tap0' nonpersistent
 
-Signed-off-by: Peter Hoyes <Peter.Hoyes@arm.com>
----
- meta-zephyr-core/classes/zephyr.bbclass                   | 8 +-------
- .../recipes-kernel/zephyr-kernel/zephyr-kernel-common.inc | 2 +-
- .../zephyr-kernel/zephyr-kernel-src-2.7.2.inc             | 6 +++---
- .../zephyr-kernel/zephyr-kernel-src-3.1.0.inc             | 4 ++--
- .../recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc    | 4 ++--
- 5 files changed, 9 insertions(+), 15 deletions(-)
+* Only solution I found on internet that i should run nographic image for t=
+his which has worked fine for me but my requirement is graphic image for th=
+is. Help me to find the solution to run graphic image for this. Your replie=
+s would be appreciated . *
+*
 
-diff --git a/meta-zephyr-core/classes/zephyr.bbclass b/meta-zephyr-core/c=
-lasses/zephyr.bbclass
-index f3d16b7..8030456 100644
---- a/meta-zephyr-core/classes/zephyr.bbclass
-+++ b/meta-zephyr-core/classes/zephyr.bbclass
-@@ -34,16 +34,10 @@ do_get_zmods() {
-     rm -rf .west; mkdir .west
-     cat << EOF >> ${S}/.west/config
- [manifest]
--path =3D .
-+path =3D zephyr
- file =3D west.yml
- EOF
-=20
--    # Because of how we structure things, we need to either structure th=
-is more like a west workspace or just tweak
--    # the manifest in order to get access to the west extentions like bu=
-ild and whatnot. Tweaking the manifest is the
--    # easier path here and minimizes the amount of breakage that might o=
-ccur.
--   =20
--    sed -i 's/path: zephyr/path: ./' west.yml
--
-     # Get all available modules and add them to ZEPHYR_MODULES
-     for i in $(west list|awk 'NR>1 {print $2}'); do
-         ZEPHYR_MODULES=3D"${S}/$i\;${ZEPHYR_MODULES}"
-diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-=
-common.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-=
-common.inc
-index 1c80fe0..a970abf 100644
---- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-common.=
-inc
-+++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-common.=
-inc
-@@ -30,7 +30,7 @@ ZEPHYR_EXTRA_MODULES =3D ""
-=20
- EXTRA_OECMAKE:append =3D "  -DZEPHYR_EXTRA_MODULES=3D${ZEPHYR_EXTRA_MODU=
-LES}"
-=20
--export ZEPHYR_BASE=3D"${S}"
-+export ZEPHYR_BASE=3D"${S}/zephyr"
-=20
- DEPENDS +=3D "gperf-native"
-=20
-diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-=
-src-2.7.2.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kern=
-el-src-2.7.2.inc
-index 537a565..cbe761f 100644
---- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7=
-.2.inc
-+++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7=
-.2.inc
-@@ -63,8 +63,8 @@ ZEPHYR_BRANCH =3D "v2.7-branch"
- PV =3D "2.7.2+git${SRCPV}"
-=20
- SRC_URI:append =3D " \
--    file://dtc.patch \
--    file://0001-x86-fix-efi-binary-generation-issue-in-cross-compila.pat=
-ch \
--    file://0001-2.7-cmake-add-yocto-toolchain.patch \
-+    file://dtc.patch;patchdir=3Dzephyr \
-+    file://0001-x86-fix-efi-binary-generation-issue-in-cross-compila.pat=
-ch;patchdir=3Dzephyr \
-+    file://0001-2.7-cmake-add-yocto-toolchain.patch;patchdir=3Dzephyr \
-     git://github.com/zephyrproject-rtos/hal_cypress.git;protocol=3Dhttps=
-;nobranch=3D1;destsuffix=3Dgit/modules/hal/cypress;name=3Dcypress \
- "
-diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-=
-src-3.1.0.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kern=
-el-src-3.1.0.inc
-index 612cfd7..c0fe5f2 100644
---- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.1=
-.0.inc
-+++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.1=
-.0.inc
-@@ -72,6 +72,6 @@ ZEPHYR_BRANCH =3D "v3.1-branch"
- PV =3D "3.1.0+git${SRCPV}"
-=20
- SRC_URI +=3D " \
--    file://0001-3.1-cmake-add-yocto-toolchain.patch \
--    file://0001-3.1-x86-fix-efi-binary-generation-issue-in-cross-compila=
-.patch \
-+    file://0001-3.1-cmake-add-yocto-toolchain.patch;patchdir=3Dzephyr \
-+    file://0001-3.1-x86-fix-efi-binary-generation-issue-in-cross-compila=
-.patch;patchdir=3Dzephyr \
- "
-diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-=
-src.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src=
-.inc
-index e9b35c9..a4bab22 100644
---- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
-+++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
-@@ -1,5 +1,5 @@
- LICENSE =3D "Apache-2.0"
--LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3Dfa818a259cbed7ce8bc2a22d35a46=
-4fc"
-+LIC_FILES_CHKSUM =3D "file://zephyr/LICENSE;md5=3Dfa818a259cbed7ce8bc2a2=
-2d35a464fc"
-=20
- CVE_PRODUCT =3D "zephyr"
-=20
-@@ -11,7 +11,7 @@ inherit cmake
- FILESEXTRAPATHS:prepend :=3D "${THISDIR}/files:"
-=20
- SRC_URI =3D "\
--    git://github.com/zephyrproject-rtos/zephyr.git;protocol=3Dhttps;bran=
-ch=3D${ZEPHYR_BRANCH};name=3Ddefault \
-+    git://github.com/zephyrproject-rtos/zephyr.git;protocol=3Dhttps;bran=
-ch=3D${ZEPHYR_BRANCH};name=3Ddefault;destsuffix=3Dgit/zephyr \
-     git://github.com/zephyrproject-rtos/canopennode.git;protocol=3Dhttps=
-;nobranch=3D1;destsuffix=3Dgit/modules/lib/canopennode;name=3Dcanopennode=
- \
-     git://github.com/zephyrproject-rtos/civetweb.git;protocol=3Dhttps;no=
-branch=3D1;destsuffix=3Dgit/modules/lib/civetweb;name=3Dcivetweb \
-     git://github.com/zephyrproject-rtos/cmsis.git;protocol=3Dhttps;nobra=
-nch=3D1;destsuffix=3Dgit/modules/hal/cmsis;name=3Dcmsis \
---=20
-2.25.1
+--tmoCEoldAyswxEXDntqs
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+<span style=3D"color: #232629; font-family: -apple-system, BlinkMacSystemFo=
+nt, 'Segoe UI Adjusted', 'Segoe UI', 'Liberation Sans', sans-serif; font-si=
+ze: 15px;">Hello Everyone here,&nbsp;<br />I want to run the graphic image =
+of qemux86-64 which I have built with yocto. When I am running command "run=
+qemu qemux86-64" or "runqemu" or "runqemu core-image-minimal" I am getting =
+the following error.<br /><br /></span>
+<pre style=3D"margin-bottom: calc(var(--s-prose-spacing) + 0.4em); padding:=
+ var(--su12); font-variant-numeric: inherit; font-variant-east-asian: inher=
+it; font-stretch: inherit; line-height: var(--lh-md); font-family: var(--ff=
+-mono); font-size: var(--fs-body1); vertical-align: baseline; box-sizing: i=
+nherit; width: auto; max-height: 600px; background-color: var(--highlight-b=
+g); border-radius: var(--br-md); overflow-wrap: normal; color: var(--highli=
+ght-color); border: 0px initial initial;"><strong><code style=3D"margin: 0p=
+x; border: 0px; font-style: inherit; font-variant: inherit; font-weight: in=
+herit; font-stretch: inherit; line-height: inherit; font-family: var(--ff-m=
+ono); font-size: var(--fs-body1); vertical-align: baseline; box-sizing: inh=
+erit; white-space: inherit;">nikita@ubuntu:~/yocto/poky/build$ runqemu qemu=
+x86-64
+runqemu - INFO - Running MACHINE=3Dqemux86-64 bitbake -e ...
+runqemu - INFO - Continuing with the following parameters:
+KERNEL: [/home/nikita/yocto/poky/build/tmp/deploy/images/qemux86-64/bzImage=
+--5.4.205+gitAUTOINC+aaaf9f090d_8a59dfded8-r0-qemux86-64-20220803111012.bin=
+]
+MACHINE: [qemux86-64]
+FSTYPE: [ext4]
+ROOTFS: [/home/nikita/yocto/poky/build/tmp/deploy/images/qemux86-64/core-im=
+age-minimal-qemux86-64-20220803111012.rootfs.ext4]
+CONFFILE: [/home/nikita/yocto/poky/build/tmp/deploy/images/qemux86-64/core-=
+image-minimal-qemux86-64-20220803111012.qemuboot.conf]
+
+runqemu - INFO - Setting up tap interface under sudo
+[sudo] password for nikita:=20
+runqemu - INFO - Network configuration: ip=3D192.168.7.2::192.168.7.1:255.2=
+55.255.0
+runqemu - INFO - Running /home/nikita/yocto/poky/build/tmp/work/x86_64-linu=
+x/qemu-helper-native/1.0-r1/recipe-sysroot-native/usr/bin/qemu-system-x86_6=
+4 -device virtio-net-pci,netdev=3Dnet0,mac=3D52:54:00:12:34:02 -netdev tap,=
+id=3Dnet0,ifname=3Dtap0,script=3Dno,downscript=3Dno -drive file=3D/home/nik=
+ita/yocto/poky/build/tmp/deploy/images/qemux86-64/core-image-minimal-qemux8=
+6-64-20220803111012.rootfs.ext4,if=3Dvirtio,format=3Draw -show-cursor -usb =
+-device usb-tablet -object rng-random,filename=3D/dev/urandom,id=3Drng0 -de=
+vice virtio-rng-pci,rng=3Drng0   -cpu core2duo -m 256 -serial mon:vc -seria=
+l null -kernel /home/nikita/yocto/poky/build/tmp/deploy/images/qemux86-64/b=
+zImage--5.4.205+gitAUTOINC+aaaf9f090d_8a59dfded8-r0-qemux86-64-202208031110=
+12.bin -append 'root=3D/dev/vda rw  mem=3D256M ip=3D192.168.7.2::192.168.7.=
+1:255.255.255.0 oprofile.timer=3D1 '
+
+runqemu - ERROR - Failed to run qemu: Could not initialize SDL(x11 not avai=
+lable) - exiting
+
+runqemu - INFO - Cleaning up
+Set 'tap0' nonpersistent<br /><br /></code></strong>Only solution I found o=
+n internet that i should run nographic image for this which has worked fine=
+ for me but my requirement is graphic image for this. Help me to find the s=
+olution to run graphic image for this. Your replies would be appreciated .<=
+strong><code style=3D"margin: 0px; border: 0px; font-style: inherit; font-v=
+ariant: inherit; font-weight: inherit; font-stretch: inherit; line-height: =
+inherit; font-family: var(--ff-mono); font-size: var(--fs-body1); vertical-=
+align: baseline; box-sizing: inherit; white-space: inherit;"><br /></code><=
+/strong></pre>
+
+--tmoCEoldAyswxEXDntqs--
 
