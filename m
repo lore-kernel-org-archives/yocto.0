@@ -1,93 +1,93 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9E147C19F2D
-	for <webhook@archiver.kernel.org>; Sat, 13 Aug 2022 10:43:23 +0000 (UTC)
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
- [209.85.221.50])
- by mx.groups.io with SMTP id smtpd.web11.3522.1660387401847372548
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 86A9FC19F2D
+	for <webhook@archiver.kernel.org>; Sat, 13 Aug 2022 14:00:24 +0000 (UTC)
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com
+ [209.85.216.50])
+ by mx.groups.io with SMTP id smtpd.web10.5153.1660399223745333725
  for <yocto@lists.yoctoproject.org>;
- Sat, 13 Aug 2022 03:43:22 -0700
+ Sat, 13 Aug 2022 07:00:23 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Vo9XPQpu;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.50,
- mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f50.google.com with SMTP id n4so3603955wrp.10
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=iWu+cfxZ;
+ spf=pass (domain: gmail.com, ip: 209.85.216.50,
+ mailfrom: akuster808@gmail.com)
+Received: by mail-pj1-f50.google.com with SMTP id
+ t2-20020a17090a4e4200b001f21572f3a4so3230319pjl.0
         for <yocto@lists.yoctoproject.org>;
- Sat, 13 Aug 2022 03:43:21 -0700 (PDT)
+ Sat, 13 Aug 2022 07:00:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc;
-        bh=PKoSL8Pyqz+nc5LZchqGPfLgTCKnZWkf8+zN3H0d2mM=;
-        b=Vo9XPQputU2t4a9ijw3owQyy5AyX7zKCgGTR3ePFwKFVah/DOy9WlI8qyijhCRXKhV
-         nJmgIprFgB62tL1O/O1ayj2fc/liDlPIbK0hjwNC8kO08WVaHUITRfz9JxTA6X5E415F
-         jMP8Aiy1IEgYxGF6aaMTR4ve0o7OtwL5yiI88=
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc;
+        bh=azEJ/wlkWV95wZFtJP/05twpRcXDGVZGIhigssa2h0c=;
+        b=iWu+cfxZLnBBtrPJFBHtrwFz8Lw4phU0wdlV56BOqDp5TXSeP6JDnBOjShdNC+BL1U
+         RNQCsq3rsPwmdBy9sClLRtan5jGUgq8n4KYkSnsF/rcIHHvNfkc2f2ejMZFuzcAYQPAh
+         F+i5jEIFsAMSC1X8fGOhHioboebKsIsSPMU+YxZ+ga47p9MNmJKS0TZoJRI6B8D04XkV
+         SFIdHIgITWOymIDSOcBW2ZWHITFR8V2q8QOUum+b4KvxiDhlK/Pd82S89F3ZSxOxpLWe
+         vCfDjuZpFBWDyMQ2QlbpUf/sblkq4jWXbKQ1fqTYyztW5iadSnuNsOLYnrFEdQh2/lEg
+         HyAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc;
-        bh=PKoSL8Pyqz+nc5LZchqGPfLgTCKnZWkf8+zN3H0d2mM=;
-        b=mUJOJipzSJQqvPNLsV7Eo2sRD+sNV/CGRObDKNdv1eM7mhosiTFYf78VDbrv0sm6BK
-         52DDzDMPU6LhsxX0xwc1Z1oyGZVmOeDO1SRAS83ALMpFVDt5eGObyjhTWfDMZE/6eerd
-         cBEWnn+WoTmPRKZXVnPxTZa1HyFZiBjSYCOOgjiIe5Mah//LIZuCqXF/jwuJyRYTQz6E
-         8+3OsDmDGYG96M/SXUSZTDQIEcykPuqg01meNbvntMzO7kOASLd8VTqu7WbFHhvTJeFB
-         f6pdqT4fjMaSC4+4lzscZupzV2UNaGzdr2IhHwT86D6KBdgCPVjeQS8Chd7WStBCvVKC
-         BKEQ==
-X-Gm-Message-State: ACgBeo0c74b6ST1fZpPDru9tk9XWpO3a1qVdXW8PEJg7iQ2Oeuwnvnh1
-	GmocGm8Gd3YOCzNTWa53TjxjlA==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc;
+        bh=azEJ/wlkWV95wZFtJP/05twpRcXDGVZGIhigssa2h0c=;
+        b=ioSPzvRIKZA1TVSQf8SlUapQfXKliMB+EkAq085kSZbDIGedjChy0Deq0EJt45t7ti
+         yv3cVbkaNMqq+rpxgtV3vvCtlndBq0HPQB0XUnvaRqLrjrnp0ENS2+r8ryyNTmEGOHUw
+         M/WEtcCMfjGAVSbDEoynn/H89pMFKioqa+D7DGNe63CfeDuMP2UoOAqXvCXF7x3D8TNg
+         rgtQC1rQL2q7MzKMm9c3rvaAyb1N0C97PD+FN5iM8WAYZ7ahMmP82oS/Vn4I7iYXvvil
+         GkDYFDtB/MdsM6KLNdbLmbaDiv/kAHMwSjnRxTMN7bq9hdJlGct+/3lnYb0C/onMU6D6
+         4NNA==
+X-Gm-Message-State: ACgBeo1BWJ7uumZ0oDpYo11lfu4cXzxWs0H6fIjmXOKWreq2knvn2LT+
+	8RbzsvrlZ3csU4HUt2Rtq69g418271s=
 X-Google-Smtp-Source: 
- AA6agR59j9rgoKvx5epqjw4uzHMgL45xhdmOhrX9vUvX2SMbkRHOv8/QPbbrSHM5PNUwgoXFm24cpw==
-X-Received: by 2002:adf:ea03:0:b0:21f:151e:780e with SMTP id
- q3-20020adfea03000000b0021f151e780emr4102177wrm.25.1660387400227;
-        Sat, 13 Aug 2022 03:43:20 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:f6d8:ef31:d475:da8f?
- ([2001:8b0:aba:5f3c:f6d8:ef31:d475:da8f])
+ AA6agR6haB557qm+d+vqJLvK+L+d0+bsqceBVxwm0jDhZUyACw/mRUMfWEAsM0blaTJTAKaZvz1xng==
+X-Received: by 2002:a17:90b:4c89:b0:1f5:3aee:79d1 with SMTP id
+ my9-20020a17090b4c8900b001f53aee79d1mr18913321pjb.195.1660399222558;
+        Sat, 13 Aug 2022 07:00:22 -0700 (PDT)
+Received: from keaua.caveonetworks.com (c-67-181-203-136.hsd1.ca.comcast.net.
+ [67.181.203.136])
         by smtp.gmail.com with ESMTPSA id
- m128-20020a1c2686000000b003a5dbdea6a8sm3124842wmm.27.2022.08.13.03.43.19
+ s3-20020a170903200300b0016a091eb88esm3686462pla.126.2022.08.13.07.00.20
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Aug 2022 03:43:19 -0700 (PDT)
-Message-ID: 
- <c8d67f619c1515e215ef1c58fbd74bf74e22c3ce.camel@linuxfoundation.org>
-Subject: Re: [yocto] question about PREFERRED_RPROVIDER
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: John Wang <wangzq.jn@gmail.com>, yocto@lists.yoctoproject.org
-Date: Sat, 13 Aug 2022 11:43:19 +0100
-In-Reply-To: 
- <CAHwNHZWC+BJnU34rrm2d3UNKv4gZ3mt9vOug89pgtQxb+wh1bg@mail.gmail.com>
-References: 
-	<CAHwNHZWC+BJnU34rrm2d3UNKv4gZ3mt9vOug89pgtQxb+wh1bg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.1-0ubuntu1 
+        Sat, 13 Aug 2022 07:00:21 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH] suricata: fix compile issue
+Date: Sat, 13 Aug 2022 06:58:19 -0700
+Message-Id: <20220813135819.947310-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 13 Aug 2022 10:43:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57836
+ <yocto@lists.yoctoproject.org>; Sat, 13 Aug 2022 14:00:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57837
 
-On Sat, 2022-08-13 at 17:57 +0800, John Wang wrote:
-> Hi,
->=20
-> There is a package with two versions, private and public.
-> But when I use the PREFERRED_RPROVIDER to select the public version,
-> bitbake still tries fetch the private one, and then bitabke terminates
-> because do_fetch fails (no permission)
->=20
-> What I expect is that when I select the public repository version, it
-> should not fetch the private repository, am I right?
-> Or, should I not use the PREFERRED_RPROVIDER to select a public/private r=
-epo ?
->=20
-> Could someone guide me :)
+make[2]: *** No rule to make target '../rust/target/arm-poky-linux-gnueabi/release/libsuricata.a', needed by 'suricata'
 
-"virtual" entries only work in PROVIDES and PREFERRED_PROVIDER, not in
-the runtime version of the variable.
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-ids/suricata/suricata_6.0.6.bb | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Cheers,
+diff --git a/recipes-ids/suricata/suricata_6.0.6.bb b/recipes-ids/suricata/suricata_6.0.6.bb
+index 35054ef..efa4bdd 100644
+--- a/recipes-ids/suricata/suricata_6.0.6.bb
++++ b/recipes-ids/suricata/suricata_6.0.6.bb
+@@ -145,6 +145,8 @@ export logdir = "${localstatedir}/log"
+ CACHED_CONFIGUREVARS = "ac_cv_func_malloc_0_nonnull=yes ac_cv_func_realloc_0_nonnull=yes"
+ 
+ do_configure:prepend () {
++    # use host for RUST_SURICATA_LIB_XC_DIR
++    sed -i -e 's:host_alias:host:' ${S}/configure.ac
+     oe_runconf
+ }
+ 
+-- 
+2.25.1
 
-Richard
 
