@@ -1,112 +1,113 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <glmeocci@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9E69CC19F2D
-	for <webhook@archiver.kernel.org>; Sat, 13 Aug 2022 14:31:04 +0000 (UTC)
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com
- [209.85.208.171])
- by mx.groups.io with SMTP id smtpd.web11.5272.1660401060720043611
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 85DACC25B06
+	for <webhook@archiver.kernel.org>; Sun, 14 Aug 2022 22:54:27 +0000 (UTC)
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com
+ [209.85.167.47])
+ by mx.groups.io with SMTP id smtpd.web10.10407.1660517665920365796
  for <yocto@lists.yoctoproject.org>;
- Sat, 13 Aug 2022 07:31:01 -0700
+ Sun, 14 Aug 2022 15:54:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=d41MJ3cz;
- spf=pass (domain: gmail.com, ip: 209.85.208.171,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f171.google.com with SMTP id w15so3475226ljw.1
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=MIfPMBET;
+ spf=pass (domain: gmail.com, ip: 209.85.167.47, mailfrom: glmeocci@gmail.com)
+Received: by mail-lf1-f47.google.com with SMTP id o2so8516880lfb.1
         for <yocto@lists.yoctoproject.org>;
- Sat, 13 Aug 2022 07:31:00 -0700 (PDT)
+ Sun, 14 Aug 2022 15:54:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=3Tp4kB3GpfECBHiNfvnISyAsMdbM0riKBfUke7mEFSg=;
-        b=d41MJ3czVkgpCIw3a7tMAHhG25fIpHyzARmXrJVVnH4mX2BXsuu2nxINJad1URla+u
-         DlH39pSOV6yq23M1L7Io95wXfMOK13wCC82R5sYakarVHgCVRx7CiRXLLnS2gJviluld
-         Ps6JE2m6aRzovWfr4YLijko2jhaGZct7AzkbbDHJ6Mit/+avhXqc2WdJQTvrRPDhoi1G
-         aPr2z0c9MSUocqNOOh0uC5ZCrd/fDcy9Z6eP8u9aw7YUflEe4KbwbOOVHEwDce+Suzys
-         C04pmqjNCnfqGCYJUC5+nzl4/UMcGS5NtWRVsin0bNeoVnnMd/QYBqb/brcEAp/5Nkas
-         BMCw==
+        h=to:subject:message-id:date:from:mime-version:from:to:cc;
+        bh=R8WtJcNjuyfsH+oXIP52rQg0A5f62NuQTARwUhldfxQ=;
+        b=MIfPMBETt+Ukt36TpZdzBaAs2gz8CWL2M5gvcfB5yYx2zIEw68/Umm5hxKvSJGrG6P
+         DDu78c87hRTRwiS8nxbpZ9NWz0bFaK2ufyoj/vaavS2FFHE6WLZxEMt1Ztyve0IAM8b0
+         21hAikbQUFsb9CgXjtAMFoiAK0hBClNeSqmoAX76TaOzK1six0enCN1C6KLafvzcaLBn
+         JwWPtLC0xa6nSGgZBovkcc+hEsjurzKUCR61/fIbWSmFcrQekDDM0o+zwrsELaYQts1a
+         w1re2U+99QjKe7Ekcn4Gj1L9anyLhvGcUnDypo2Ox2VNXdrapjjSDHXfU2uSoHiUe+L/
+         1wYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=3Tp4kB3GpfECBHiNfvnISyAsMdbM0riKBfUke7mEFSg=;
-        b=aOTsn0pzQatVokXBKd7P7GkDU9imk0NdOwi5PsM38xeI9NnnE1mA2JyH/UaatatJyU
-         r6nseMwq1583jSat7yBt0NVTfIc6uieogLxTizaZXnkFrNQGgbJfT8ktPMRBFsvlVn3c
-         Una7NTAcNtpa8h6uHKdr1owUdIXT0Nl4V0opdrQr0QieQln4iUlRfY/3KOWppHP2fhw3
-         V8pXxFQBPSOsFsgsUatzMVlzNMy3P5D5knPbAKS5wuXY3eGiGX9LIahm6FM3xCGxm1xB
-         z35zEPQpgTRjlPFq+FTaykq3oHMN9uuqmFrmHw5xKx4tCJFTEPe+1tYL5N+AHv09rdRQ
-         /6+A==
-X-Gm-Message-State: ACgBeo3yd+B1D8I/ohrwqFG39K4aeLEoawhGGTHp/M2Oytl7xR+j/kwG
-	PNmdFnWRIQ42etZepcklYCNHmIVZVhm1svenguc=
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc;
+        bh=R8WtJcNjuyfsH+oXIP52rQg0A5f62NuQTARwUhldfxQ=;
+        b=moDfmTJwAtwWYMBzQG/wZxdU7atxQeFRD2YErb2apaNMm5D0IC3Wu6SetBMBZi6p8e
+         o0VQ9fs9qzVicuyKxv/aJf5R6JQepdDvUAJLzYtT8xKkPt3iIHbztfmrYtYkBA+Sm4f6
+         dl9VXmLUEXtkXyW3gzoVGCLGOBrQR864Y7QAjz09WsIZl0aK3ZVm0oqqlHvq6+zdfeeB
+         kjJkExs86V3ls7Vls1nFQAi1BwXgSHwshrVQIQvJ+f1ApOj52Y5/LJj15zMrC0zIsM6m
+         xNmMscQ8BMBNcnkIAhclCnhcrdTezU8EvZMLa0RZqZVrAQSuy1/DRABPnIlw1RTJofvE
+         m89Q==
+X-Gm-Message-State: ACgBeo35qwMGpILN1zzgn/EKtszILp/45ukznemnHAQrLoU0Ckvj51Xg
+	oxdk3U10iBpdhMks6rOQ5WgHtupNclsBhT2BmCdNTy8SJTE=
 X-Google-Smtp-Source: 
- AA6agR6aJlZ39JT/5EDCi+w1N9/sMCO7HrZeugLHQHho40KQ/dObQpR9i+RIgFW4XM8991dXW5NOpmBb/7jjdAg9IIM=
-X-Received: by 2002:a2e:7d12:0:b0:261:81ae:f804 with SMTP id
- y18-20020a2e7d12000000b0026181aef804mr85286ljc.56.1660401058792; Sat, 13 Aug
- 2022 07:30:58 -0700 (PDT)
+ AA6agR7zJVlSZSJbMLs4D+xvSZcYWGaLG7svgimzYdS5dNaJR4LbrU4arxJoDSInHdOtEvvrkJbjcyMwMnMbESQBpe0=
+X-Received: by 2002:a05:6512:1090:b0:492:5161:85d3 with SMTP id
+ j16-20020a056512109000b00492516185d3mr1670691lfg.612.1660517663273; Sun, 14
+ Aug 2022 15:54:23 -0700 (PDT)
 MIME-Version: 1.0
-References: 
- <CAPDLWs8nYdGznhKH4EQwj77giZ79VxmAGXx4sDwXqaf0aBZT0w@mail.gmail.com>
-In-Reply-To: 
- <CAPDLWs8nYdGznhKH4EQwj77giZ79VxmAGXx4sDwXqaf0aBZT0w@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Sat, 13 Aug 2022 16:30:46 +0200
+From: Gian Lorenzo Meocci <glmeocci@gmail.com>
+Date: Mon, 15 Aug 2022 00:54:11 +0200
 Message-ID: 
- <CANNYZj9n=xNjxdp2uOGubVG5ESSpMXYTrBk5q+Mv=dckY9qrQw@mail.gmail.com>
-Subject: Re: [yocto] A bitbake error caused by "Variable BB_ENV_EXTRAWHITE"
- #bitbake
-To: Kaiwan N Billimoria <kaiwan.billimoria@gmail.com>
-Cc: lucky33newman@gmail.com, Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+ <CAAPjnHXq=vhtigPtjedD8d-Sac0s+D9E5jpEFmk0MicgZND8jg@mail.gmail.com>
+Subject: do_install & RDEPENDS
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000076794205e63b6576"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 13 Aug 2022 14:31:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57839
+ <yocto@lists.yoctoproject.org>; Sun, 14 Aug 2022 22:54:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57840
 
-Then you need to check the output of 'env'
-a) when you start the shell
-b) when you use oe-init-build-env
-and figure out how the incorrect variable gets into the environment.
-Are you using oe-init-build-env from an old yocto?
+--00000000000076794205e63b6576
+Content-Type: text/plain; charset="UTF-8"
 
-Alex
+Inside the do_install I copy some files
+but it seems that bitbake set those files in the RDEPENS.
 
-On Sat, 13 Aug 2022 at 15:02, Kaiwan N Billimoria
-<kaiwan.billimoria@gmail.com> wrote:
->
-> >Hello,
->
-> >you probably need to exit the shell and then restart it and
-> >re-initialize your environment (with oe-init-build-env), as it
-> >contains the obsolete variable.
->
-> >Alex
->
-> Hi,
-> I'm using the kirkstone release (4.0.2, Poky) and face the very same issue...
-> Exiting the shell and sourcing oe-init-build-env didn't help..
->
-> Any help is appreciated,
->
-> Thanks,
-> Kaiwan.
->
-> On Sat, 13 Aug 2022 at 05:13, <lucky33newman@gmail.com> wrote:
-> >
-> > Hellow everyone, this is Yan. I am new to Yocto Project, still, I am learning.
-> >
-> > There is a question, when I bitbaked my image I found this ERROR:
-> >
-> > yanxk@yanxk-Ubuntu:~/Yocto/poky/build$ bitbake core-image-sato
-> > ERROR: Variable BB_ENV_EXTRAWHITE has been renamed to BB_ENV_PASSTHROUGH_ADDITIONS
-> > ERROR: Variable BB_ENV_EXTRAWHITE from the shell environment has been renamed to BB_ENV_PASSTHROUGH_ADDITIONS
-> > ERROR: Exiting to allow enviroment variables to be corrected
-> >
-> > How can I do a quick fix, and why is it working wrong?
-> >
-> > By the way, I check the link https://git.openembedded.org/bitbake/commit/?id=87104b6a167188921da157c7dba45938849fb22a , which most likely the main cause.
-> >
-> > Waiting for a help.
+In the log during the do_root_fs I see:
+Requires(post): ... mylib.so
+
+After that the commands fail with the error message:
+
+Problem: conflicting
+requests
+ - nothing provides mylib.so needed by mypackage-0.10.14r0.core2_64
+
+Is there a way to disable this behaviour?
+
+-- 
+GL
+https://www.meocci.it <https://meox.github.io>
+
+--00000000000076794205e63b6576
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: base64
+
+PGRpdiBkaXI9Imx0ciI+PGRpdj5JbnNpZGUgdGhlIGRvX2luc3RhbGwgSSBjb3B5IHNvbWUgZmls
+ZXM8L2Rpdj48ZGl2PmJ1dCBpdCBzZWVtcyB0aGF0IGJpdGJha2Ugc2V0IHRob3NlIGZpbGVzIGlu
+IHRoZSBSREVQRU5TLjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+SW4gdGhlIGxvZyBkdXJpbmcg
+dGhlIGRvX3Jvb3RfZnMgSSBzZWU6PGJyPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTptb25vc3Bh
+Y2UiPjxzcGFuIHN0eWxlPSJjb2xvcjpyZ2IoMCwwLDApO2JhY2tncm91bmQtY29sb3I6cmdiKDI1
+NSwyNTUsMjU1KSI+UmVxdWlyZXMocG9zdCk6IC4uLiBteWxpYi5zbzwvc3Bhbj48YnI+PC9zcGFu
+PjwvZGl2PjxkaXY+PGRpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PkFmdGVyIHRoYXQgdGhlIGNvbW1h
+bmRzIGZhaWwgd2l0aCB0aGUgZXJyb3IgbWVzc2FnZTo8L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2
+PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTptb25vc3BhY2UiPjxzcGFuIHN0eWxlPSJjb2xvcjpy
+Z2IoMTc4LDI0LDI0KTtiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1NSkiPlByb2JsZW06
+IGNvbmZsaWN0aW5nIHJlcXVlc3RzwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqA8L3NwYW4+PHNwYW4g
+c3R5bGU9ImNvbG9yOnJnYigwLDAsMCk7YmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LDI1NSwyNTUp
+Ij4gPC9zcGFuPjxicj48c3BhbiBzdHlsZT0iY29sb3I6cmdiKDE3OCwyNCwyNCk7YmFja2dyb3Vu
+ZC1jb2xvcjpyZ2IoMjU1LDI1NSwyNTUpIj4gwqAtIG5vdGhpbmcgcHJvdmlkZXMgbXlsaWIuc28g
+bmVlZGVkIGJ5IG15cGFja2FnZS0wLjEwLjE0cjAuY29yZTJfNjQ8L3NwYW4+PC9zcGFuPjxicj48
+L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PklzIHRoZXJlIGEgd2F5IHRvIGRpc2FibGUgdGhpcyBi
+ZWhhdmlvdXI/PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj4tLSA8YnI+PGRpdiBkaXI9Imx0ciIg
+Y2xhc3M9ImdtYWlsX3NpZ25hdHVyZSIgZGF0YS1zbWFydG1haWw9ImdtYWlsX3NpZ25hdHVyZSI+
+PGRpdiBkaXI9Imx0ciI+PGRpdj48ZGl2IGRpcj0ibHRyIj48ZGl2PkdMPGJyPjxhIGhyZWY9Imh0
+dHBzOi8vbWVveC5naXRodWIuaW8iIHRhcmdldD0iX2JsYW5rIj5odHRwczovL3d3dy5tZW9jY2ku
+aXQ8L2E+PGJyPjwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2
+PjwvZGl2Pg0K
+--00000000000076794205e63b6576--
 
