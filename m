@@ -1,113 +1,168 @@
-Return-Path: <glmeocci@gmail.com>
+Return-Path: <wangzq.jn@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 85DACC25B06
-	for <webhook@archiver.kernel.org>; Sun, 14 Aug 2022 22:54:27 +0000 (UTC)
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com
- [209.85.167.47])
- by mx.groups.io with SMTP id smtpd.web10.10407.1660517665920365796
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 96146C00140
+	for <webhook@archiver.kernel.org>; Mon, 15 Aug 2022 06:02:19 +0000 (UTC)
+Received: from mail-ej1-f67.google.com (mail-ej1-f67.google.com
+ [209.85.218.67])
+ by mx.groups.io with SMTP id smtpd.web09.13426.1660543331238923843
  for <yocto@lists.yoctoproject.org>;
- Sun, 14 Aug 2022 15:54:26 -0700
+ Sun, 14 Aug 2022 23:02:11 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=MIfPMBET;
- spf=pass (domain: gmail.com, ip: 209.85.167.47, mailfrom: glmeocci@gmail.com)
-Received: by mail-lf1-f47.google.com with SMTP id o2so8516880lfb.1
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=ddt3apZk;
+ spf=pass (domain: gmail.com, ip: 209.85.218.67,
+ mailfrom: wangzq.jn@gmail.com)
+Received: by mail-ej1-f67.google.com with SMTP id uj29so11952671ejc.0
         for <yocto@lists.yoctoproject.org>;
- Sun, 14 Aug 2022 15:54:25 -0700 (PDT)
+ Sun, 14 Aug 2022 23:02:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc;
-        bh=R8WtJcNjuyfsH+oXIP52rQg0A5f62NuQTARwUhldfxQ=;
-        b=MIfPMBETt+Ukt36TpZdzBaAs2gz8CWL2M5gvcfB5yYx2zIEw68/Umm5hxKvSJGrG6P
-         DDu78c87hRTRwiS8nxbpZ9NWz0bFaK2ufyoj/vaavS2FFHE6WLZxEMt1Ztyve0IAM8b0
-         21hAikbQUFsb9CgXjtAMFoiAK0hBClNeSqmoAX76TaOzK1six0enCN1C6KLafvzcaLBn
-         JwWPtLC0xa6nSGgZBovkcc+hEsjurzKUCR61/fIbWSmFcrQekDDM0o+zwrsELaYQts1a
-         w1re2U+99QjKe7Ekcn4Gj1L9anyLhvGcUnDypo2Ox2VNXdrapjjSDHXfU2uSoHiUe+L/
-         1wYw==
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc;
+        bh=eak74J9yrXGiFWTC8qekfeQywi++84ZW0uv+njbRAXQ=;
+        b=ddt3apZk10Iz0qhCbDnIAhIBp/WYpZvkMOW2b4D2Jfm8dgKF7UHlYSrkOJbcPojIEL
+         yD+31qgr0tFAjfCBQfBi36PSOeg2mLZQGWD1BomPm4R78s6gAJDTma+ezEY2ufE1gO8u
+         l6SzpKN9M1JycNwbKdbDPTTDtSRfYtYiEiQxKOBkmAXTzBwQr4cUpgX8nQQE4RA4pSI3
+         kXqvSIkS5VxYQZehABD+5JMOPWawB4WtNRM6NQ403qZVyp3qNdhH2vcYYvJnUJMwgsCP
+         Ng6Pv4lGfgbLHWI4y076rUsL7NNzMSvAU8WuDXG8xRsuPoN7qY29S/WC8rL63S7TqlYy
+         jrTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc;
-        bh=R8WtJcNjuyfsH+oXIP52rQg0A5f62NuQTARwUhldfxQ=;
-        b=moDfmTJwAtwWYMBzQG/wZxdU7atxQeFRD2YErb2apaNMm5D0IC3Wu6SetBMBZi6p8e
-         o0VQ9fs9qzVicuyKxv/aJf5R6JQepdDvUAJLzYtT8xKkPt3iIHbztfmrYtYkBA+Sm4f6
-         dl9VXmLUEXtkXyW3gzoVGCLGOBrQR864Y7QAjz09WsIZl0aK3ZVm0oqqlHvq6+zdfeeB
-         kjJkExs86V3ls7Vls1nFQAi1BwXgSHwshrVQIQvJ+f1ApOj52Y5/LJj15zMrC0zIsM6m
-         xNmMscQ8BMBNcnkIAhclCnhcrdTezU8EvZMLa0RZqZVrAQSuy1/DRABPnIlw1RTJofvE
-         m89Q==
-X-Gm-Message-State: ACgBeo35qwMGpILN1zzgn/EKtszILp/45ukznemnHAQrLoU0Ckvj51Xg
-	oxdk3U10iBpdhMks6rOQ5WgHtupNclsBhT2BmCdNTy8SJTE=
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
+        bh=eak74J9yrXGiFWTC8qekfeQywi++84ZW0uv+njbRAXQ=;
+        b=uIsW7mOQ5yUNNEek38oLkdIaoMJZy7XV89qfCbzhUaXP6eeAbGSatzsFt4kteM92hU
+         ZPPU+vVS5Q5lMtLrPnpA+otqEYGQJah7x1P6lETegISnjhXFzXdpsWqk+t+WkvbvNUUP
+         T5aK3O8P48mtBFnnp0oM+WYu4fME++Qp0xN/x17ZehXxJKJiFvnd1cQYAArl+cwUR99r
+         HlKPrSZBt6Scd05c/enCXjguDS3ITdLYY+8xQhPEDZc5lMPbGIkgz2go12c7i5tVc7bx
+         mI3Z1Jt2UfVmHl4YQnpLLBgBJd54zKM6VKadO190GX1QCDMkv81T9E8aVOyZyUNe5gEC
+         RknQ==
+X-Gm-Message-State: ACgBeo3lPzkAZGiiZYEPlmpyoCMNWjAHSZqlZmpHwSn1II8stC/3gn9B
+	JOFtR1FqYCigaab/UAeLLkq2qU+cZ64iuXu4ELg=
 X-Google-Smtp-Source: 
- AA6agR7zJVlSZSJbMLs4D+xvSZcYWGaLG7svgimzYdS5dNaJR4LbrU4arxJoDSInHdOtEvvrkJbjcyMwMnMbESQBpe0=
-X-Received: by 2002:a05:6512:1090:b0:492:5161:85d3 with SMTP id
- j16-20020a056512109000b00492516185d3mr1670691lfg.612.1660517663273; Sun, 14
- Aug 2022 15:54:23 -0700 (PDT)
+ AA6agR5K4jAXKqcXqPGCccoMXmT+Fd2RmTycXt4pBGm+NoHhkuWi8YPLvxaAp+LtV61rPE7q11oUqqJX7Hb7+wVCRA0=
+X-Received: by 2002:a17:907:628c:b0:6ee:70cf:d59 with SMTP id
+ nd12-20020a170907628c00b006ee70cf0d59mr9497054ejc.402.1660543329567; Sun, 14
+ Aug 2022 23:02:09 -0700 (PDT)
 MIME-Version: 1.0
-From: Gian Lorenzo Meocci <glmeocci@gmail.com>
-Date: Mon, 15 Aug 2022 00:54:11 +0200
+References: 
+ <CAHwNHZWC+BJnU34rrm2d3UNKv4gZ3mt9vOug89pgtQxb+wh1bg@mail.gmail.com>
+ <CAMKF1sqqKJrzLL3e=2O5F2R1f9t3LW17Q5pb0KwhDSu_15=+1w@mail.gmail.com>
+In-Reply-To: 
+ <CAMKF1sqqKJrzLL3e=2O5F2R1f9t3LW17Q5pb0KwhDSu_15=+1w@mail.gmail.com>
+From: John Wang <wangzq.jn@gmail.com>
+Date: Mon, 15 Aug 2022 14:01:58 +0800
 Message-ID: 
- <CAAPjnHXq=vhtigPtjedD8d-Sac0s+D9E5jpEFmk0MicgZND8jg@mail.gmail.com>
-Subject: do_install & RDEPENDS
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000076794205e63b6576"
+ <CAHwNHZXdHDx5XLLBc1cLyod0=zTAUXyoa6rKNcQifsEYCWnkEw@mail.gmail.com>
+Subject: Re: [yocto] question about PREFERRED_RPROVIDER
+To: Khem Raj <raj.khem@gmail.com>, richard.purdie@linuxfoundation.org
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 14 Aug 2022 22:54:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57840
+ <yocto@lists.yoctoproject.org>; Mon, 15 Aug 2022 06:02:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57841
 
---00000000000076794205e63b6576
-Content-Type: text/plain; charset="UTF-8"
+I did as Richard suggested, It worked as expected now
 
-Inside the do_install I copy some files
-but it seems that bitbake set those files in the RDEPENS.
+feature-public.bb or feature-private.bb:
+SRC_URI =3D "git://public or git://private"
 
-In the log during the do_root_fs I see:
-Requires(post): ... mylib.so
+PROVIDES +=3D  "virtual/feature"
+RPROVIDES:${PN} +=3D " \
+virtual-feature \
+"
 
-After that the commands fail with the error message:
+machine.conf:
+PREFERRED_PROVIDER_virtual/feature =3D "feature-public"
 
-Problem: conflicting
-requests
- - nothing provides mylib.so needed by mypackage-0.10.14r0.core2_64
 
-Is there a way to disable this behaviour?
+Khem Raj <raj.khem@gmail.com> =E4=BA=8E2022=E5=B9=B48=E6=9C=8813=E6=97=A5=
+=E5=91=A8=E5=85=AD 22:11=E5=86=99=E9=81=93=EF=BC=9A
+>
+> fetcher will try to get versions of recipes during parse phase and if
+> your recipes are using AUTOREV they will try to poke at git server for
+> latest commit SHA
+> are you using AUTOREV by chance ?
 
--- 
-GL
-https://www.meocci.it <https://meox.github.io>
+No,  and I will avoid to use AUTOREV, thank you
 
---00000000000076794205e63b6576
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: base64
+I checked the yocto-manual, and saw
 
-PGRpdiBkaXI9Imx0ciI+PGRpdj5JbnNpZGUgdGhlIGRvX2luc3RhbGwgSSBjb3B5IHNvbWUgZmls
-ZXM8L2Rpdj48ZGl2PmJ1dCBpdCBzZWVtcyB0aGF0IGJpdGJha2Ugc2V0IHRob3NlIGZpbGVzIGlu
-IHRoZSBSREVQRU5TLjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+SW4gdGhlIGxvZyBkdXJpbmcg
-dGhlIGRvX3Jvb3RfZnMgSSBzZWU6PGJyPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTptb25vc3Bh
-Y2UiPjxzcGFuIHN0eWxlPSJjb2xvcjpyZ2IoMCwwLDApO2JhY2tncm91bmQtY29sb3I6cmdiKDI1
-NSwyNTUsMjU1KSI+UmVxdWlyZXMocG9zdCk6IC4uLiBteWxpYi5zbzwvc3Bhbj48YnI+PC9zcGFu
-PjwvZGl2PjxkaXY+PGRpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PkFmdGVyIHRoYXQgdGhlIGNvbW1h
-bmRzIGZhaWwgd2l0aCB0aGUgZXJyb3IgbWVzc2FnZTo8L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2
-PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTptb25vc3BhY2UiPjxzcGFuIHN0eWxlPSJjb2xvcjpy
-Z2IoMTc4LDI0LDI0KTtiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1NSkiPlByb2JsZW06
-IGNvbmZsaWN0aW5nIHJlcXVlc3RzwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqA8L3NwYW4+PHNwYW4g
-c3R5bGU9ImNvbG9yOnJnYigwLDAsMCk7YmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LDI1NSwyNTUp
-Ij4gPC9zcGFuPjxicj48c3BhbiBzdHlsZT0iY29sb3I6cmdiKDE3OCwyNCwyNCk7YmFja2dyb3Vu
-ZC1jb2xvcjpyZ2IoMjU1LDI1NSwyNTUpIj4gwqAtIG5vdGhpbmcgcHJvdmlkZXMgbXlsaWIuc28g
-bmVlZGVkIGJ5IG15cGFja2FnZS0wLjEwLjE0cjAuY29yZTJfNjQ8L3NwYW4+PC9zcGFuPjxicj48
-L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PklzIHRoZXJlIGEgd2F5IHRvIGRpc2FibGUgdGhpcyBi
-ZWhhdmlvdXI/PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj4tLSA8YnI+PGRpdiBkaXI9Imx0ciIg
-Y2xhc3M9ImdtYWlsX3NpZ25hdHVyZSIgZGF0YS1zbWFydG1haWw9ImdtYWlsX3NpZ25hdHVyZSI+
-PGRpdiBkaXI9Imx0ciI+PGRpdj48ZGl2IGRpcj0ibHRyIj48ZGl2PkdMPGJyPjxhIGhyZWY9Imh0
-dHBzOi8vbWVveC5naXRodWIuaW8iIHRhcmdldD0iX2JsYW5rIj5odHRwczovL3d3dy5tZW9jY2ku
-aXQ8L2E+PGJyPjwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2
-PjwvZGl2Pg0K
---00000000000076794205e63b6576--
+If you use a virtual/\* item with PREFERRED_PROVIDER, then any recipe
+that PROVIDES that item but is not selected (defined) by
+PREFERRED_PROVIDER is prevented from building, which is usually
+desirable since this mechanism is designed to select between mutually
+exclusive alternative providers[1].
+
+Do you mean if I use AUTOREV, bitbake sill tries to fetch ?
+
+And, I am confused about the "PREFERRED_RPROVIDER" ,  I saw someone
+use this variable[2], but I cannot find any thing about it In the
+manual [3]
+
+[1] https://docs.yoctoproject.org/ref-manual/variables.html#term-PREFERRED_=
+PROVIDER
+[2] https://github.com/search?q=3DPREFERRED_RPROVIDER_virtual&type=3Dcode
+[3] https://docs.yoctoproject.org/genindex.html#P
+
+>
+> On Sat, Aug 13, 2022 at 2:57 AM John Wang <wangzq.jn@gmail.com> wrote:
+> >
+> > Hi,
+> >
+> > There is a package with two versions, private and public.
+> > But when I use the PREFERRED_RPROVIDER to select the public version,
+> > bitbake still tries fetch the private one, and then bitabke terminates
+> > because do_fetch fails (no permission)
+> >
+> > What I expect is that when I select the public repository version, it
+> > should not fetch the private repository, am I right?
+> > Or, should I not use the PREFERRED_RPROVIDER to select a public/private=
+ repo ?
+> >
+> > Could someone guide me :)
+> >
+> >
+> > feature-public.bb
+> >
+> > ```
+> > SRC_URI =3D "git://public"
+> >
+> > RPROVIDES:${PN} +=3D " \
+> >     virtual-feature \
+> > "
+> > ```
+> >
+> > feature-private.bb
+> >
+> > ```
+> > SRC_URI=3D "git://private"
+> >
+> > RPROVIDES:${PN} +=3D " \
+> >     virtual-feature \
+> > "
+> > ```
+> >
+> >
+> > machine.conf
+> >
+> > ```
+> > PREFERRED_RPROVIDER_virtual-feature =3D "feature-public"
+> > ```
+> >
+> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> > Links: You receive all messages sent to this group.
+> > You automatically follow any topics you start or reply to.
+> > View/Reply Online (#57835): https://lists.yoctoproject.org/g/yocto/mess=
+age/57835
+> > Mute This Topic: https://lists.yoctoproject.org/mt/92997258/1997914
+> > Group Owner: yocto+owner@lists.yoctoproject.org
+> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gma=
+il.com]
+> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> >
 
