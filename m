@@ -1,99 +1,121 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A2A7EC25B0E
-	for <webhook@archiver.kernel.org>; Mon, 15 Aug 2022 06:49:39 +0000 (UTC)
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com
- [209.85.208.176])
- by mx.groups.io with SMTP id smtpd.web10.13688.1660546172787126504
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 46C7FC25B06
+	for <webhook@archiver.kernel.org>; Mon, 15 Aug 2022 14:58:21 +0000 (UTC)
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com
+ [209.85.216.47])
+ by mx.groups.io with SMTP id smtpd.web08.3170.1660575498650570529
  for <yocto@lists.yoctoproject.org>;
- Sun, 14 Aug 2022 23:49:33 -0700
+ Mon, 15 Aug 2022 07:58:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=KcMWgBgs;
- spf=pass (domain: gmail.com, ip: 209.85.208.176,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lj1-f176.google.com with SMTP id bx38so6764239ljb.10
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=a1s9dXws;
+ spf=pass (domain: gmail.com, ip: 209.85.216.47,
+ mailfrom: akuster808@gmail.com)
+Received: by mail-pj1-f47.google.com with SMTP id
+ 15-20020a17090a098f00b001f305b453feso14689411pjo.1
         for <yocto@lists.yoctoproject.org>;
- Sun, 14 Aug 2022 23:49:32 -0700 (PDT)
+ Mon, 15 Aug 2022 07:58:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=dgKDrDJDZNuuPoWc3vbiSEfHjhUosGj8onzShsSP3Fc=;
-        b=KcMWgBgsO8fDZMnzXXA5CDUSSGGtyErNMJMBf+IXq/KApOXftESXF4/cMrJn3RtjaZ
-         gm467/RKnkSAFsn911kSjhGNShuZfGQ9MJKxc3rY1nbE1DxujonGH/smiA25yPzmmeXB
-         HAIMlf3+vmcOO86Ytt8i2fjfXVtxWvSU9tLwIR0PZmBY42SPHldwClOlDfOhCGsiWlEO
-         jJnlpcu6n9MEzx6HZ5lUvaV8M6vtyIuf0bT2JALbxPmP9IM/uFZOAbbxP1n1THDkCLgD
-         7CSnQwvuNI5mjdiCQwsgfWPfPsXCYIr+v2A/5HTb3IPJ2AF25XNWiMtR8RW7zFk6gTj6
-         hV3w==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc;
+        bh=4qkn4+v2eM1AVkErkUle3Q+tHO850S3+Kpgorq67EEw=;
+        b=a1s9dXwse+FWCclkpojtbkAVkPtuNLscCS6yQgrVTtBw72bCeiKAryhPDx1uCkbiPV
+         3160AfOD6vZilUYxZYj7hypHTQId2ABdlkcQrwZgr8K+X2JfmrKrzoaAwDo8TU3P2Zer
+         uxVT5ffcxO056NIUOGqfueeywaEyWofXZDwoa5iz0m1hP0ALQC1mPrv+K3xoQ40Xi8I4
+         v4IJ5mO0mUT+45jlwUzCFIQEBX/Au/U4b/NBXnVhHPcz8D9JlLEtxW3TMV52k//BnmiJ
+         nccIiUhBdrlsM9tM/wKmN5C7hd5bM797QIfa0gmpjauL+mjAv8pjIqdWj60P7B2m03P2
+         f0lA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=dgKDrDJDZNuuPoWc3vbiSEfHjhUosGj8onzShsSP3Fc=;
-        b=y0w7xbx7CHSS/EPNJBA1hI9dFJpZJN0SFe6imJWidK2m7io/sKbI+MUAxiKSxEtT6u
-         jYMcADdZOZsJoKgORM+ZVqPXFm+Gh95HBhzWBT4AMboRmg0fLEF726NJZBUHmain+HJ/
-         rBvgM8Y3/KbPyAxC8C4SfrH95JakBfkIHbGzIduR6pW9txcS050crWoacJ1ISY80NqIr
-         gzMNFG6j5EYFy8s0/N7mLAKdzs2COAGSd6usUYmgZDT/yNBJMungi6pSbOwMpralq+rI
-         myEsAlvW/yEJ5SIyEnhrkcGo+7Ur7W86WRhNPiI+pKfUhqLnb6RtapwDIWH2RqbWhQtz
-         mY9A==
-X-Gm-Message-State: ACgBeo2RBM4eVmLfwWOg1nR2s+6eOLxjrRmS6XttccQbAI9Q4no2Z3Ua
-	HSNHtmbDGEGcOM/55C4ZWzVNaNcCZHuWlvxeVXQ=
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc;
+        bh=4qkn4+v2eM1AVkErkUle3Q+tHO850S3+Kpgorq67EEw=;
+        b=R12SfHbXB7OV2ghY6VNaW9w45cbvXbpFYikyN1YQobOIYoEmA7IaTtLC/nx7gWr4Gd
+         PDTtzpesMHv910P7ZEtWomi5FkSGPNlVWfyBmaKegtebmTeE6eVmV1SB0qcLDBw1OzSB
+         0KZH0UZ2uVGgquIGB5CT/CODD3X1DHYMjtXAjxI6ZOX+BElORf+RfnPaso8OG8PNZSrK
+         kr9TTQ4UDNWjgXyadjPKxowMVsyWt53i5K+lsWIQVV2obcRnWqkZCxODpJnJQEZsObDH
+         Pj3suwc1BVBmNCSOmFifPkWNWdJcuU7R3uUdpb8vso1Y0w2Pe7IXvINXKzqXZ9SOl2vP
+         jx6w==
+X-Gm-Message-State: ACgBeo2Uz9kDamiXUGVtkLdzLAbXdZc3rGNapQTJmkLJqFwYThhzB43o
+	3RXDtsIbF2TzWCrPsuvUNEsyzFb6gGU=
 X-Google-Smtp-Source: 
- AA6agR7mjMirWnlAW1FwqHWzE4tnKOFZZLguVRYz1iLFrMvWKK+g6p7VOr+AAtbFwOQX+9+54pqW3T3pkINcsAhjyvw=
-X-Received: by 2002:a2e:3a09:0:b0:25e:4212:5628 with SMTP id
- h9-20020a2e3a09000000b0025e42125628mr4239350lja.68.1660546170651; Sun, 14 Aug
- 2022 23:49:30 -0700 (PDT)
+ AA6agR430CIPFWQvqNHQk9f5OodsLVXd0/17D13DKXdop8tgAT4zmZQL1W0WuA4fouwmyjPy8aakLQ==
+X-Received: by 2002:a17:90a:d58e:b0:1f4:f9a5:22a8 with SMTP id
+ v14-20020a17090ad58e00b001f4f9a522a8mr18618521pju.58.1660575497561;
+        Mon, 15 Aug 2022 07:58:17 -0700 (PDT)
+Received: from keaua.hsd1.ca.comcast.net
+ (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
+        by smtp.gmail.com with ESMTPSA id
+ rt6-20020a17090b508600b001fa8af47032sm471491pjb.23.2022.08.15.07.58.16
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Aug 2022 07:58:16 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH] cyptmount: Fix mount.h conflicts seen with
+ glibc 2.36+
+Date: Mon, 15 Aug 2022 07:56:14 -0700
+Message-Id: <20220815145614.677637-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: 
- <CAAPjnHXq=vhtigPtjedD8d-Sac0s+D9E5jpEFmk0MicgZND8jg@mail.gmail.com>
-In-Reply-To: 
- <CAAPjnHXq=vhtigPtjedD8d-Sac0s+D9E5jpEFmk0MicgZND8jg@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Mon, 15 Aug 2022 08:49:19 +0200
-Message-ID: 
- <CANNYZj-4Bie3gVzbW1O8s55-CbOE6_E8qV_oLDBSqtw9XSWLqQ@mail.gmail.com>
-Subject: Re: [yocto] do_install & RDEPENDS
-To: Gian Lorenzo Meocci <glmeocci@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 15 Aug 2022 06:49:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57842
+ <yocto@lists.yoctoproject.org>; Mon, 15 Aug 2022 14:58:21 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57843
 
-It's hard to say what happens if we can't see your recipes. Can you
-publish them?
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ .../cryptmount/cryptmount_5.3.3.bb            |  4 +++-
+ .../cryptmount/files/remove_linux_fs.patch    | 19 +++++++++++++++++++
+ 2 files changed, 22 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-security/cryptmount/files/remove_linux_fs.patch
 
-Alex
+diff --git a/recipes-security/cryptmount/cryptmount_5.3.3.bb b/recipes-security/cryptmount/cryptmount_5.3.3.bb
+index 6e653c8..fb522cb 100644
+--- a/recipes-security/cryptmount/cryptmount_5.3.3.bb
++++ b/recipes-security/cryptmount/cryptmount_5.3.3.bb
+@@ -3,7 +3,9 @@ HOMEPAGE = "http://cryptmount.sourceforge.net/"
+ LIC_FILES_CHKSUM = "file://README;beginline=3;endline=4;md5=673a990de93a2c5531a0f13f1c40725a"
+ LICENSE = "GPL-2.0-only"
+ 
+-SRC_URI = "https://sourceforge.net/projects/cryptmount/files/${BPN}/${BPN}-5.3/${BPN}-${PV}.tar.gz"
++SRC_URI = "https://sourceforge.net/projects/cryptmount/files/${BPN}/${BPN}-5.3/${BPN}-${PV}.tar.gz \
++           file://remove_linux_fs.patch \
++           "
+ 
+ SRC_URI[sha256sum] = "682953ff5ba497d48d6b13e22ca726c98659abd781bb8596bb299640dd255d9b"
+ 
+diff --git a/recipes-security/cryptmount/files/remove_linux_fs.patch b/recipes-security/cryptmount/files/remove_linux_fs.patch
+new file mode 100644
+index 0000000..304b853
+--- /dev/null
++++ b/recipes-security/cryptmount/files/remove_linux_fs.patch
+@@ -0,0 +1,19 @@
++# From glibc 2.36, <linux/mount.h> (included from <linux/fs.h>) and 
++# <sys/mount.h> (included from glibc) are no longer compatible:
++# https://sourceware.org/glibc/wiki/Release/2.36#Usage_of_.3Clinux.2Fmount.h.3E_and_.3Csys.2Fmount.h.3E
++
++Upstream-Status: Pending
++Signed-off-by: Armin Kuster <akuster808@gmail.com>
++
++Index: cryptmount-5.3.3/cryptmount.c
++===================================================================
++--- cryptmount-5.3.3.orig/cryptmount.c
+++++ cryptmount-5.3.3/cryptmount.c
++@@ -41,7 +41,6 @@
++ #ifdef HAVE_SYSLOG
++ #  include <syslog.h>
++ #endif
++-#include <linux/fs.h>       /* Beware ordering conflict with sys/mount.h */
++ 
++ 
++ #include "armour.h"
+-- 
+2.25.1
 
-On Mon, 15 Aug 2022 at 00:54, Gian Lorenzo Meocci <glmeocci@gmail.com> wrote:
->
-> Inside the do_install I copy some files
-> but it seems that bitbake set those files in the RDEPENS.
->
-> In the log during the do_root_fs I see:
-> Requires(post): ... mylib.so
->
-> After that the commands fail with the error message:
->
-> Problem: conflicting requests
->  - nothing provides mylib.so needed by mypackage-0.10.14r0.core2_64
->
-> Is there a way to disable this behaviour?
->
-> --
-> GL
-> https://www.meocci.it
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#57840): https://lists.yoctoproject.org/g/yocto/message/57840
-> Mute This Topic: https://lists.yoctoproject.org/mt/93025764/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
 
