@@ -1,87 +1,111 @@
-Return-Path: <glmeocci@gmail.com>
+Return-Path: <peter.kjellerstedt@axis.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7398EC32772
-	for <webhook@archiver.kernel.org>; Tue, 23 Aug 2022 09:16:10 +0000 (UTC)
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com
- [209.85.167.45])
- by mx.groups.io with SMTP id smtpd.web11.29234.1661246165164917198
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 37946C32772
+	for <webhook@archiver.kernel.org>; Tue, 23 Aug 2022 11:41:41 +0000 (UTC)
+Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
+ by mx.groups.io with SMTP id smtpd.web09.30660.1661254895997999772
  for <yocto@lists.yoctoproject.org>;
- Tue, 23 Aug 2022 02:16:05 -0700
+ Tue, 23 Aug 2022 04:41:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=XHwhrm19;
- spf=pass (domain: gmail.com, ip: 209.85.167.45, mailfrom: glmeocci@gmail.com)
-Received: by mail-lf1-f45.google.com with SMTP id l8so1298459lfc.12
-        for <yocto@lists.yoctoproject.org>;
- Tue, 23 Aug 2022 02:16:04 -0700 (PDT)
+ dkim=pass header.i=@axis.com header.s=axis-central1 header.b=DDNpuAz/;
+ spf=pass (domain: axis.com, ip: 195.60.68.17,
+ mailfrom: peter.kjellerstedt@axis.com)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc;
-        bh=44si5CXy4/g1LfQGsT2qTaT71+1KOde1SgEPijVAnhs=;
-        b=XHwhrm19IPb3+SU3BDYxTrAde6ofRqMasRki+vOyqWMLnWN7PKSoj2hSeRXYKwYjUS
-         T0J1qpJW5CJ5NTjLhvrxQAXhtwmRfmA06nOW0h4QQKgzbDiNU5iVu6/HhJDj7bkoQ41c
-         ZaFHEoRkemThKTcyCO8m6dsmg8vt9khGijb/lMyMqjTzqmLDXUpGMkl1RbvN6qhMjf7d
-         NFNJauJxMIXNrtYRd+G3STwxocOn9J7CChT5Mlkl2RWnjS/w1hCeamd79lVuS1eSadY5
-         nQv4gjPVC8C9YmQzO2RKjD/ljl0vmmBI5so1Cfp4BjTqoZnBNhu9ejuBr1+02BTukgxF
-         t6Xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc;
-        bh=44si5CXy4/g1LfQGsT2qTaT71+1KOde1SgEPijVAnhs=;
-        b=32oAe8cOYuEd41o52cGXpOrnm7YWw/iRKlhvDpGcXhc2tPghweQvg5+ctdv3aBHRuC
-         J8b6iU51FEoxVFmXcXHeZDS1zH2idjntcEqHdsOlwSxJmEWYR0QuGzwUyvoNoGZSh/Rm
-         YrvIAgFYC7hpjD0e4ntxtrqADqhw5Rs6T7n9ZQVHSnQdpc02f4y6EwtrL96BYknZxFqI
-         y9HVjdt8THXxgT+kCL9X+UCAAEKdtSt1N1jnO+QL2n7VBK1f7tltQzONt9CAjrpyAkaa
-         Xi4bNMbGwyqaa6UFGlsO6Bwv4EjWcZrwr51YE37LKFkMBwhSwAQ127DgVggGBIDtliUh
-         n8Bg==
-X-Gm-Message-State: ACgBeo0E1dk2b9r9nzzJtQoonCSBF9SyRdY38+T/PcPbExx0Ii+H5hoL
-	pya9Rf2E0MFT4ocet2z1NLkExp4fTpoNhKueveNArHLI
-X-Google-Smtp-Source: 
- AA6agR49Udmpf147TV44b7Kw898CfAEcX+fLVcKlwMzQyeU3S62Bud/rY+IO8gYad2eisqt96Db1pFZm+ZCP83kXeLc=
-X-Received: by 2002:a05:6512:6d6:b0:492:b3df:a71 with SMTP id
- u22-20020a05651206d600b00492b3df0a71mr9131942lff.117.1661246162816; Tue, 23
- Aug 2022 02:16:02 -0700 (PDT)
+  d=axis.com; q=dns/txt; s=axis-central1; t=1661254896;
+  x=1692790896;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=qQQzlxwUEIq6mcoj17IW0X5X74KAp1x6nTNnESIThI0=;
+  b=DDNpuAz/2+y6O9vNUqFUgTTutXQTw3vlSXSa7ufdjQ1Dm9ydrRHwZx+e
+   C54uSdU6h41sHBkkor/ozMtaMl1bzS3VaSI9cy8LD1ZFE1CFVQGpKbyMF
+   36xVBKvC/bQOWTbq6mEBds64tkZZ7exDkgfZ27U5V/XyacQyfTrKi796Y
+   0wQX7FbKfotbC6jTRRbDu9AhgGFc/G9yolebKu/svOxFr0GSWzq/OMVTF
+   Me5nNDJFTemDz32d/8WyTkQ0OywVooZaO+ZJdCuv+f4N/BSfjMDq7qAOV
+   46Lc6Y61gIbQEotG4TBgjqQ440SjpO3Pd2A8W8H3DMsBzgCGg4G5uKzAQ
+   g==;
+From: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+To: Khem Raj <raj.khem@gmail.com>, bitflipper <forums@bitflipper.net>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: RE: [yocto] Bitbake + Patches
+Thread-Topic: [yocto] Bitbake + Patches
+Thread-Index: AQHYtmlvNbypxdwqb0yGnilIBND8L627XtmAgAD8BwA=
+Date: Tue, 23 Aug 2022 11:41:32 +0000
+Message-ID: <fcfe7d1380ab4d2598cff5004028d419@axis.com>
+References: <53C07165-3951-4450-B175-E323971C8DEC@bitflipper.net>
+ <CAMKF1spvyQh1czn+HiKmppXBCO_tkor_3Ogfj6wguwA0x+tAyA@mail.gmail.com>
+In-Reply-To: 
+ <CAMKF1spvyQh1czn+HiKmppXBCO_tkor_3Ogfj6wguwA0x+tAyA@mail.gmail.com>
+Accept-Language: en-US, sv-SE
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.0.5.60]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-From: Gian Lorenzo Meocci <glmeocci@gmail.com>
-Date: Tue, 23 Aug 2022 11:15:51 +0200
-Message-ID: 
- <CAAPjnHWkR4hgtmX_Jf99+yW5yGR4bSGibrauVdsmOy=4TKO4hA@mail.gmail.com>
-Subject: Boot QCOW2 image on ARM64 with EFI
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000006b546805e6e5037b"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 23 Aug 2022 09:16:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57883
+ <yocto@lists.yoctoproject.org>; Tue, 23 Aug 2022 11:41:41 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57884
 
---0000000000006b546805e6e5037b
-Content-Type: text/plain; charset="UTF-8"
-
-Hi,
-
-Is there a tutorial or some example that explains how to generate a
-wic.qcow2 image that is able to boot using UEFI on qemu/UTM (on Mac M1) ?
-
-thanks
-
--- 
-GL
-https://www.meocci.it <https://meox.github.io>
-
---0000000000006b546805e6e5037b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>Is there a tutorial or s=
-ome example that explains how to generate a wic.qcow2 image that is able to=
- boot using UEFI on qemu/UTM (on Mac M1) ?</div><div><br></div><div>thanks<=
-br></div><div><br>-- <br><div dir=3D"ltr" data-smartmail=3D"gmail_signature=
-"><div dir=3D"ltr"><div><div dir=3D"ltr"><div>GL<br><a href=3D"https://meox=
-.github.io" target=3D"_blank">https://www.meocci.it</a><br></div></div></di=
-v></div></div></div></div>
-
---0000000000006b546805e6e5037b--
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiB5b2N0b0BsaXN0cy55b2N0b3By
+b2plY3Qub3JnIDx5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPiBPbg0KPiBCZWhhbGYgT2Yg
+S2hlbSBSYWoNCj4gU2VudDogZGVuIDIzIGF1Z3VzdGkgMjAyMiAwMDoyOQ0KPiBUbzogYml0Zmxp
+cHBlciA8Zm9ydW1zQGJpdGZsaXBwZXIubmV0Pg0KPiBDYzogeW9jdG9AbGlzdHMueW9jdG9wcm9q
+ZWN0Lm9yZw0KPiBTdWJqZWN0OiBSZTogW3lvY3RvXSBCaXRiYWtlICsgUGF0Y2hlcw0KPiANCj4g
+T24gTW9uLCBBdWcgMjIsIDIwMjIgYXQgMTo1NCBQTSBiaXRmbGlwcGVyIDxmb3J1bXNAYml0Zmxp
+cHBlci5uZXQ+IHdyb3RlOg0KPiA+DQo+ID4NCj4gPg0KPiA+IEkgd2FzIHRvbGQgdGhpcyB3YXMg
+dGhlIHJpZ2h0IGdyb3VwIHRvIGFzayBteSBxdWVzdGlvbi4gSWYgdGhpcyBpcyBub3QNCj4gcmln
+aHQsIHBsZWFzZSBsZXQgbWUga25vdy4NCj4gPg0KPiA+IEkgYW0gY3VycmVudGx5IHVzaW5nICBa
+ZXVzLCBhbmQgd2l0aCBaZXVzLCB3ZSBnZXQgQXBhY2hlIHYyLjQuNDEuIEJ1dCBJDQo+IHdvdWxk
+IGxpa2UgdG8gZ2V0IGEgbGF0ZXIgdmVyc2lvbiBvZiBhcGFjaGUgYmVjYXVzZSB0aGVyZSBoYXZl
+IGJlZW4gYSBmZXcNCj4gZml4ZXMgcmVsYXRlZCB0byBjeWJlciBzZWN1cml0eS4gU28gSSBiZWxp
+ZXZlIHRoYXQsIGdpdmVuIHdl4oCZcmUgdXNpbmcNCj4gWmV1cywgd2UgY2Fu4oCZdCB1cGdyYWRl
+IHRvIHRoZSBsYXRlc3QgdmVyc2lvbiBvZiBBcGFjaGUgZ2l2ZW4gdGhlIGN1cnJlbnQNCj4gcmVj
+aXBlIHRoYXQgWmV1cyB1c2VzLiBUaGVyZWZvcmUgSSBiZWxpZXZlIHRoYXQgdGhlIG9ubHkgd2F5
+IGFjY29tcGxpc2gNCj4gZ2V0dGluZyB0aG8gdGhlIGxhdGVzdCB2ZXJzaW9uIG9mIGFwYWNoZSB3
+aXRoIFpldXMgd291bGQgdG8gYmUg4oCYcGF0Y2jigJkNCj4gdGhlIHYyLjQuNDEgdmVyc2lvbiB0
+aGF0IGNvbWVzIHdpdGggWmV1cy4NCj4gPg0KPiA+IExvb2tpbmcgYXQgdGhlIEJpdGJha2UgbWFu
+dWFsLCBpbiBzZWN0aW9uIDQuMSwgaXQgc3RhdGVzIHRoZSBmb2xsb3dpbmc6DQo+ID4NCj4gPiAi
+Qml0QmFrZSB0YWtlcyBzZXZlcmFsIHN0ZXBzIHdoZW4gZmV0Y2hpbmcgc291cmNlIGNvZGUgb3Ig
+ZmlsZXMuIFRoZQ0KPiBmZXRjaGVyIGNvZGViYXNlIGRlYWxzIHdpdGggdHdvIGRpc3RpbmN0IHBy
+b2Nlc3NlcyBpbiBvcmRlcjogb2J0YWluaW5nIHRoZQ0KPiBmaWxlcyBmcm9tIHNvbWV3aGVyZSAo
+Y2FjaGVkIG9yIG90aGVyd2lzZSkgYW5kIHRoZW4gdW5wYWNraW5nIHRob3NlIGZpbGVzDQo+IGlu
+dG8gYSBzcGVjaWZpYyBsb2NhdGlvbiBhbmQgcGVyaGFwcyBpbiBhIHNwZWNpZmljIHdheS4gR2V0
+dGluZyBhbmQNCj4gdW5wYWNraW5nIHRoZSBmaWxlcyBpcyBvZnRlbiBvcHRpb25hbGx5IGZvbGxv
+d2VkIGJ5IHBhdGNoaW5nLiBQYXRjaGluZywNCj4gaG93ZXZlciwgaXMgbm90IGNvdmVyZWQgYnkg
+dGhpcyBtb2R1bGUuIg0KPiA+DQo+ID4NCj4gPiBUaGUgbWFudWFsIGRvZXMgbm90IGNvdmVyIHBh
+dGNoaW5nLg0KPiA+DQo+ID4gV2hlcmUgY2FuIEkgZ2V0IGluZm9ybWF0aW9uIG9uIHRoaXMgcHJv
+Y2VzcyBvZiBwYXRjaGluZyBzb21ldGhpbmcgbGlrZQ0KPiBhcGFjaGUgb3IgYW55IG90aGVyIGFw
+cGxpY2F0aW9uIHRoYXQgd2FzIGFkZCB2aWEgSU1BR0VfSU5TVEFMTF9hcHBlbmQNCj4gbWV0aG9k
+Lg0KPiA+DQo+ID4gQW55IGhlbHAgcG9pbnRpbmcgbWUgdG8gd2hlcmUgdGhpcyBwcm9jZXNzIG1p
+Z2h0IGJlIGRvY3VtZW50ZWQgaXMgbXVjaA0KPiBhcHByZWNpYXRlZC4NCj4gPg0KPiANCj4gbG9v
+ayBpbnRvIG1lZ2EgbWFudWFsIHNvbWV0aGluZyBsaWtlIHRoaXMgd291bGQgaGVscA0KPiBodHRw
+czovL2RvY3MueW9jdG9wcm9qZWN0Lm9yZy9kZXYtbWFudWFsL2NvbW1vbi10YXNrcy5odG1sP2hp
+Z2hsaWdodD13cml0aW5nK3JlY2lwZSNwYXRjaGluZy1jb2RlDQo+IA0KPiA+IFRoYW5rcywgSmlt
+DQoNCllvdSBkb24ndCByZWFsbHkgbmVlZCB0byBnbyBwYXRjaGluZyBhcGFjaGUganVzdCB0byB1
+cGRhdGUgaXQuIFdoYXQgeW91IA0KbmVlZCBpcyB0byBhZGQgYSBiYmFwcGVuZCBmaWxlIGluIG9u
+ZSBvZiB5b3VyIG93biBsYXllcnMuIENhbGwgaXQgDQpyZWNpcGVzLWh0dHBkL2FwYWNoZTIvYXBh
+Y2hlMl8yLjQuNDEuYmJhcHBlbmQgYW5kIG1ha2UgaXQgY29udGFpbjoNCg0KRklMRVNFWFRSQVBB
+VEhTX3ByZXBlbmQgOj0gIiR7VEhJU0RJUn0vJHtCUE59OiINCg0KTElDX0ZJTEVTX0NIS1NVTSA9
+ICJmaWxlOi8vTElDRU5TRTttZDU9YmRkZWRkZmFjODBiMmM5YTg4MjI0MWQwMDhiYjQxYzMiDQoN
+ClBWID0gIjIuNC41NCINCg0KU1JDX1VSSSArPSAiZmlsZTovLzAwMDgtRml4LXBlcmwtaW5zdGFs
+bC1kaXJlY3RvcnktdG8tdXNyLWJpbi5wYXRjaCBcDQogICAgICAgICAgICBmaWxlOi8vMDAwOS1z
+dXBwb3J0LWFweHMuaW4tZm9yY2UtZGVzdGRpci10by1iZS1lbXB0eS1zdHJpbmcucGF0Y2ggXA0K
+ICAgICAgICAgICAgZmlsZTovLzAwMDEtbWFrZV9leHBvcnRzLmF3ay1ub3QtZXhwb3NlLXRoZS1w
+YXRoLnBhdGNoIg0KU1JDX1VSSV9yZW1vdmUgPSAiZmlsZTovL2FwYWNoZS1jb25maWd1cmVfcGVy
+bGJpbi5wYXRjaCINCg0KU1JDX1VSSVttZDVzdW1dID0gIjxJIGRvbid0IGhhdmUgdGhpcyBhdCBo
+YW5kLCBidXQgYml0YmFrZSB3aWxsIHRlbGwgeW91IHdoYXQgaXQgc2hvdWxkIGJlPiINClNSQ19V
+Uklbc2hhMjU2c3VtXSA9ICJlYjM5N2ZlZWVmY2NhZjI1NGY4ZDQ1ZGUzNzY4ZDlkNjhlOGU3Mzg1
+MWM0OWFmZDViNzE3NmQxZWNmODBjMzQwIg0KDQpZb3UgdGhlbiBhbHNvIG5lZWQgdG8gY29weSB0
+aGUgdGhyZWUgbmV3IHBhdGNoZXMgYW5kIGFueSBvdGhlciANCnBhdGNoZXMgdGhhdCBkaWZmZXJz
+IGJldHdlZW4gemV1cyBhbmQgbWFzdGVyIGFuZCBwdXQgdGhlbSBpbiB5b3VyIA0KbGF5ZXIgdG9n
+ZXRoZXIgd2l0aCB0aGUgYmJhcHBlbmQgZmlsZSAoaW4gYSBzdWJkaXJlY3RvcnkgY2FsbGVkIA0K
+InJlY2lwZXMtaHR0cGQvYXBhY2hlMi9hcGFjaGUyIikuDQoNClRoZSBzdWdnZXN0ZWQgY29udGVu
+dHMgb2YgdGhlIGJiYXBwZW5kIGFib3ZlIGlzIGJhc2VkIG9uIHRoZSANCmRpZmZlcmVuY2VzIGJl
+dHdlZW4gdGhlIGFwYWNoZTIgcmVjaXBlIGluIHpldXMgYW5kIG1hc3Rlci4NCg0KLy9QZXRlcg0K
+DQo=
 
