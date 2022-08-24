@@ -1,131 +1,213 @@
-Return-Path: <peter.kjellerstedt@axis.com>
+Return-Path: <maik.vermeulen@lightyear.one>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 042F0C00140
-	for <webhook@archiver.kernel.org>; Wed, 24 Aug 2022 14:13:13 +0000 (UTC)
-Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
- by mx.groups.io with SMTP id smtpd.web10.11316.1661350383517461414
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 26DC8C00140
+	for <webhook@archiver.kernel.org>; Wed, 24 Aug 2022 14:38:13 +0000 (UTC)
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com
+ [209.85.208.52])
+ by mx.groups.io with SMTP id smtpd.web12.11668.1661351887195113754
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Aug 2022 07:13:04 -0700
+ Wed, 24 Aug 2022 07:38:07 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@axis.com
- header.s=axis-central1 header.b=pGq1euSx;
- spf=pass (domain: axis.com, ip: 195.60.68.17,
- mailfrom: peter.kjellerstedt@axis.com)
+ dkim=pass header.i=@lightyear.one header.s=google header.b=rONj3s7y;
+ spf=pass (domain: lightyear.one, ip: 209.85.208.52,
+ mailfrom: maik.vermeulen@lightyear.one)
+Received: by mail-ed1-f52.google.com with SMTP id e21so17485994edc.7
+        for <yocto@lists.yoctoproject.org>;
+ Wed, 24 Aug 2022 07:38:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1661350383;
-  x=1692886383;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=2LpIgJmRCapFyz/zShu6Dw+IVifDbTkE7LTUCKoX3dw=;
-  b=pGq1euSxC9a+9vvmzzNEq1rMdvivuUMiRsOg2zLLwfC3/rFGYdJeUgdZ
-   /LbbYx9hD5gFyqC2xAPXOHmBCqkSBPzbWmi35Pn41DO09eqDn1V4x+wI6
-   7MKZc1rLUjTFksnDiYv3gfrHhXQlqJFCPisvbRLdp1srryTgAcQXhhrJD
-   4axdtIhEMlLzD6m3S6Ep+O0DdE6UFlzxAj86floQpEvBZ32VLrW748q78
-   5aUsvieC/kwFiXgmTDaBurlerKEjftc46FzuqVUfKOxINuoXntUFuxa62
-   u8wLzQyjOb2Xm3H/1As2FyWfuE4gdLl4kp4jDGqMVJSM9qy/CT5jCC1u2
-   g==;
-From: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-To: forums <forums@bitflipper.net>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: RE: [yocto] Bitbake + Patches
-Thread-Topic: [yocto] Bitbake + Patches
-Thread-Index: AQHYtmlvNbypxdwqb0yGnilIBND8L627XtmAgAD8BwCAAHYkAIABRsYQ
-Date: Wed, 24 Aug 2022 14:13:01 +0000
-Message-ID: <899c12e4c6d34a4298b84b7abf022a82@axis.com>
-References: <53C07165-3951-4450-B175-E323971C8DEC@bitflipper.net>
- <CAMKF1spvyQh1czn+HiKmppXBCO_tkor_3Ogfj6wguwA0x+tAyA@mail.gmail.com>
- <fcfe7d1380ab4d2598cff5004028d419@axis.com>
- <B58205E1-72E9-41F6-9A52-A440A62C3C6B@bitflipper.net>
-In-Reply-To: <B58205E1-72E9-41F6-9A52-A440A62C3C6B@bitflipper.net>
-Accept-Language: en-US, sv-SE
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.0.5.60]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        d=lightyear.one; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=+FVlXQuVRXKpxGrt+fCvBpD7U8vN5MUHt45/eWHnvXU=;
+        b=rONj3s7yniRTZa1JPvXaDK6g4jMUIdZ25jqnMfhwOH0JgRwXv3QoMm8FfguhK/g6EO
+         6+Qopk59kxuEWzj92Bo8wSgEH7mHQzsQoQQbPokivb4A2Ms227Hw3dD+k9u4JFUCi6aM
+         gNfwOVfkIKXhBH2BwK5ZOAPhpZ2sA1n/YCXo6RrU6/6vNH2r7cfj+OO9H8c3mRwDq2tK
+         T5xJZMYTYnw+oPz8u0SNLEsL0gEZP1Ypgs+ZF6/28RqfgszskiXltPta2+vq7dkxLHaI
+         QqlTiffS7dPDBCJO7No4AdSkJVUhy5G9MxwYQy8C6q3SZdulx+t16zhX2yAKoldHO8wZ
+         pi+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=+FVlXQuVRXKpxGrt+fCvBpD7U8vN5MUHt45/eWHnvXU=;
+        b=serq0NHcrD2MGCHXMTEgdRRuAWheIInRKYRcfUobZDfhMNwcf30nN3WsJWO3FQApuN
+         /FQT8lte5iXoiMtdMRS0BfeCR0KMGw8+bTJAum9hThgxRrblj5zS0TXU3sC4CntAp6b1
+         lwd+gn9mt4T3Or9/qQ5Bnx0eRZSqnizvGjWXxG89lHEZpWNNo8/Lwr/ndgppqRtMqfvZ
+         u7mXKBlJ5M+OQ4xrQ/jYYMmntc0iIrl7uBEoHcJYiaGYjp0MQ6krB5dwqWSpf9nOyvWJ
+         wsdNelO6aZFuvI7rRSqkiEfVOIMFArCYaj6xORFqGEl3WQF/H7ofaLR2yEc42HAAYNhx
+         da/g==
+X-Gm-Message-State: ACgBeo2xo5j84hoI90QBUTSvQ/GoxPotnW2wyEQOVP9mFW+ffSZRgAyG
+	O2Jp3AgBn3aDtNxgYgYAXzb0BTOJ9/AP62dP3cKwJOKt8wfzRzgFBc9h3LePCMyJHkm+dlrPnUZ
+	8JNyTOFrqX3Y+NR4jYKsMKZI1r6akV2uQ4w==
+X-Google-Smtp-Source: 
+ AA6agR4XHwURoUSxAscZ0FeaDxv4MKj8wFARpyYHerMrRSn34f+jmbEit3uv+zDTYMlD6MFJNO/Du9GBnwyi2DPxLLA=
+X-Received: by 2002:aa7:cb92:0:b0:443:98d6:20da with SMTP id
+ r18-20020aa7cb92000000b0044398d620damr7849420edt.399.1661351885561; Wed, 24
+ Aug 2022 07:38:05 -0700 (PDT)
 MIME-Version: 1.0
+References: 
+ <CAKO9uzpWNuqqtnvzRvZM7btNOmr344U2zp0W9hr86ZrUbLjj_Q@mail.gmail.com>
+ <d1306db241ff440fdf8d005f598b6c6acf5b63e8.camel@linuxfoundation.org>
+In-Reply-To: 
+ <d1306db241ff440fdf8d005f598b6c6acf5b63e8.camel@linuxfoundation.org>
+From: Maik Vermeulen <maik.vermeulen@lightyear.one>
+Date: Wed, 24 Aug 2022 16:37:30 +0200
+Message-ID: 
+ <CAKO9uzoUwa11o0dhC1o2efqqa78MKSim-OP9J9MNzNyZPEaNTQ@mail.gmail.com>
+Subject: Re: [yocto] Building for both target and host
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000fcddfa05e6fda0f4"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 24 Aug 2022 14:13:13 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57892
+ <yocto@lists.yoctoproject.org>; Wed, 24 Aug 2022 14:38:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57893
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBmb3J1bXMgPGZvcnVtc0BiaXRm
-bGlwcGVyLm5ldD4NCj4gU2VudDogZGVuIDIzIGF1Z3VzdGkgMjAyMiAyMjozNA0KPiBUbzogUGV0
-ZXIgS2plbGxlcnN0ZWR0IDxwZXRlci5ramVsbGVyc3RlZHRAYXhpcy5jb20+DQo+IFN1YmplY3Q6
-IFJlOiBbeW9jdG9dIEJpdGJha2UgKyBQYXRjaGVzDQo+ICANCj4gVGhhbmtzIFBldGVyLiBJIHdp
-bGwgbG9vayBpbnRvIHRoaXMuIEJ1dCBpc27igJl0IHRoaXMgYmJhcHBlbmQgY29uc2lkZXJlZCBh
-DQo+IHBhdGNoIGFzIHdlbGwgb3Igd2lsbCByZXBsYWNlIEFwYWNoZSAyLjQuNDEgd2l0aCB0aGUg
-bGF0ZXN0IHZlcnNpb24gb2YNCj4gYXBhY2hlPw0KDQpXZWxsLCBpdCBkZXBlbmRzIG9uIGhvdyBz
-dHJpY3QgeW91ciB0ZXJtaW5vbG9neSBpcy4gVG8gbWUsIGEgcGF0Y2ggaXMgYSANCmZpbGUsIHR5
-cGljYWxseSBnZW5lcmF0ZWQgYnkgYGRpZmZgIG9yIGBnaXQgZm9ybWF0LXBhdGNoYC4gQnV0IG9m
-IGNvdXJzZSwgDQphZGRpbmcgdGhlIGJiYXBwZW5kIHN1Z2dlc3RlZCBiZWxvdyB3aWxsIG1vZGlm
-eSB0aGUgcmVjaXBlIHNvIHRoYXQgaXQgDQpidWlsZHMgdGhlIGxhdGVzdCB2ZXJzaW9uIG9mIEFw
-YWNoZS4NCg0KPiBJIGFtIHJlbGF0aXZlbHkgbmV3IHRvIHlvY3RvIHNvIHRoZXJl4oCZcyBhIGxv
-dCBJIG5lZWQgdG8gbGVhcm4uDQo+IA0KPiBKaW0NCj4gDQo+IE9uIEF1ZyAyMywgMjAyMiwgYXQg
-Nzo0MSBBTSwgUGV0ZXIgS2plbGxlcnN0ZWR0IDxwZXRlci5ramVsbGVyc3RlZHRAYXhpcy5jb20+
-IHdyb3RlOg0KPiA+DQo+ID4+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+ID4+IEZyb206
-IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcgPHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5v
-cmc+IE9uIEJlaGFsZiBPZiBLaGVtIFJhag0KPiA+PiBTZW50OiBkZW4gMjMgYXVndXN0aSAyMDIy
-IDAwOjI5DQo+ID4+IFRvOiBiaXRmbGlwcGVyIDxmb3J1bXNAYml0ZmxpcHBlci5uZXQ+DQo+ID4+
-IENjOiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnDQo+ID4+IFN1YmplY3Q6IFJlOiBbeW9j
-dG9dIEJpdGJha2UgKyBQYXRjaGVzDQo+ID4+DQo+ID4+IE9uIE1vbiwgQXVnIDIyLCAyMDIyIGF0
-IDE6NTQgUE0gYml0ZmxpcHBlciA8Zm9ydW1zQGJpdGZsaXBwZXIubmV0PiB3cm90ZToNCj4gPj4+
-DQo+ID4+PiBJIHdhcyB0b2xkIHRoaXMgd2FzIHRoZSByaWdodCBncm91cCB0byBhc2sgbXkgcXVl
-c3Rpb24uIElmIHRoaXMgaXMgDQo+ID4+PiBub3QgcmlnaHQsIHBsZWFzZSBsZXQgbWUga25vdy4N
-Cj4gPj4+DQo+ID4+PiBJIGFtIGN1cnJlbnRseSB1c2luZyAgWmV1cywgYW5kIHdpdGggWmV1cywg
-d2UgZ2V0IEFwYWNoZSB2Mi40LjQxLiANCj4gPj4+IEJ1dCBJIHdvdWxkIGxpa2UgdG8gZ2V0IGEg
-bGF0ZXIgdmVyc2lvbiBvZiBhcGFjaGUgYmVjYXVzZSB0aGVyZSANCj4gPj4+IGhhdmUgYmVlbiBh
-IGZldyBmaXhlcyByZWxhdGVkIHRvIGN5YmVyIHNlY3VyaXR5LiBTbyBJIGJlbGlldmUgdGhhdCwg
-DQo+ID4+PiBnaXZlbiB3ZeKAmXJlIHVzaW5nIFpldXMsIHdlIGNhbuKAmXQgdXBncmFkZSB0byB0
-aGUgbGF0ZXN0IHZlcnNpb24gb2YgDQo+ID4+PiBBcGFjaGUgZ2l2ZW4gdGhlIGN1cnJlbnQgcmVj
-aXBlIHRoYXQgWmV1cyB1c2VzLiBUaGVyZWZvcmUgSSBiZWxpZXZlIA0KPiA+Pj4gdGhhdCB0aGUg
-b25seSB3YXkgYWNjb21wbGlzaCBnZXR0aW5nIHRobyB0aGUgbGF0ZXN0IHZlcnNpb24gb2YgDQo+
-ID4+PiBhcGFjaGUgd2l0aCBaZXVzIHdvdWxkIHRvIGJlIOKAmHBhdGNo4oCZIHRoZSB2Mi40LjQx
-IHZlcnNpb24gdGhhdCBjb21lcyANCj4gPj4+IHdpdGggWmV1cy4NCj4gPj4+DQo+ID4+PiBMb29r
-aW5nIGF0IHRoZSBCaXRiYWtlIG1hbnVhbCwgaW4gc2VjdGlvbiA0LjEsIGl0IHN0YXRlcyB0aGUN
-Cj4gPj4+IGZvbGxvd2luZzoNCj4gPj4+DQo+ID4+PiAiQml0QmFrZSB0YWtlcyBzZXZlcmFsIHN0
-ZXBzIHdoZW4gZmV0Y2hpbmcgc291cmNlIGNvZGUgb3IgZmlsZXMuIA0KPiA+Pj4gVGhlIGZldGNo
-ZXIgY29kZWJhc2UgZGVhbHMgd2l0aCB0d28gZGlzdGluY3QgcHJvY2Vzc2VzIGluIG9yZGVyOiAN
-Cj4gPj4+IG9idGFpbmluZyB0aGUgZmlsZXMgZnJvbSBzb21ld2hlcmUgKGNhY2hlZCBvciBvdGhl
-cndpc2UpIGFuZCB0aGVuIA0KPiA+Pj4gdW5wYWNraW5nIHRob3NlIGZpbGVzIGludG8gYSBzcGVj
-aWZpYyBsb2NhdGlvbiBhbmQgcGVyaGFwcyBpbiBhIA0KPiA+Pj4gc3BlY2lmaWMgd2F5LiBHZXR0
-aW5nIGFuZCB1bnBhY2tpbmcgdGhlIGZpbGVzIGlzIG9mdGVuIG9wdGlvbmFsbHkgDQo+ID4+PiBm
-b2xsb3dlZCBieSBwYXRjaGluZy4gUGF0Y2hpbmcsIGhvd2V2ZXIsIGlzIG5vdCBjb3ZlcmVkIGJ5
-IHRoaXMgDQo+ID4+PiBtb2R1bGUuIg0KPiA+Pj4NCj4gPj4+IFRoZSBtYW51YWwgZG9lcyBub3Qg
-Y292ZXIgcGF0Y2hpbmcuDQo+ID4+Pg0KPiA+Pj4gV2hlcmUgY2FuIEkgZ2V0IGluZm9ybWF0aW9u
-IG9uIHRoaXMgcHJvY2VzcyBvZiBwYXRjaGluZyBzb21ldGhpbmcgbGlrZQ0KPiA+Pj4gYXBhY2hl
-IG9yIGFueSBvdGhlciBhcHBsaWNhdGlvbiB0aGF0IHdhcyBhZGQgdmlhIElNQUdFX0lOU1RBTExf
-YXBwZW5kDQo+ID4+PiBtZXRob2QuDQo+ID4+Pg0KPiA+Pj4gQW55IGhlbHAgcG9pbnRpbmcgbWUg
-dG8gd2hlcmUgdGhpcyBwcm9jZXNzIG1pZ2h0IGJlIGRvY3VtZW50ZWQgaXMgbXVjaA0KPiA+Pj4g
-YXBwcmVjaWF0ZWQuDQo+ID4+Pg0KPiA+Pg0KPiA+PiBsb29rIGludG8gbWVnYSBtYW51YWwgc29t
-ZXRoaW5nIGxpa2UgdGhpcyB3b3VsZCBoZWxwDQo+ID4+IGh0dHBzOi8vZG9jcy55b2N0b3Byb2pl
-Y3Qub3JnL2Rldi1tYW51YWwvY29tbW9uLXRhc2tzLmh0bWw/aGlnaGxpZ2h0PXdyaXRpbmcrcmVj
-aXBlI3BhdGNoaW5nLWNvZGUNCj4gPj4NCj4gPj4+IFRoYW5rcywgSmltDQo+ID4NCj4gPiBZb3Ug
-ZG9uJ3QgcmVhbGx5IG5lZWQgdG8gZ28gcGF0Y2hpbmcgYXBhY2hlIGp1c3QgdG8gdXBkYXRlIGl0
-LiBXaGF0IHlvdQ0KPiA+IG5lZWQgaXMgdG8gYWRkIGEgYmJhcHBlbmQgZmlsZSBpbiBvbmUgb2Yg
-eW91ciBvd24gbGF5ZXJzLiBDYWxsIGl0DQo+ID4gcmVjaXBlcy1odHRwZC9hcGFjaGUyL2FwYWNo
-ZTJfMi40LjQxLmJiYXBwZW5kIGFuZCBtYWtlIGl0IGNvbnRhaW46DQo+ID4NCj4gPiBGSUxFU0VY
-VFJBUEFUSFNfcHJlcGVuZCA6PSAiJHtUSElTRElSfS8ke0JQTn06Ig0KPiA+DQo+ID4gTElDX0ZJ
-TEVTX0NIS1NVTSA9ICJmaWxlOi8vTElDRU5TRTttZDU9YmRkZWRkZmFjODBiMmM5YTg4MjI0MWQw
-MDhiYjQxYzMiDQo+ID4NCj4gPiBQViA9ICIyLjQuNTQiDQo+ID4NCj4gPiBTUkNfVVJJICs9ICJm
-aWxlOi8vMDAwOC1GaXgtcGVybC1pbnN0YWxsLWRpcmVjdG9yeS10by11c3ItYmluLnBhdGNoIFwN
-Cj4gPiAgICAgICAgICAgIGZpbGU6Ly8wMDA5LXN1cHBvcnQtYXB4cy5pbi1mb3JjZS1kZXN0ZGly
-LXRvLWJlLWVtcHR5LXN0cmluZy5wYXRjaCBcDQo+ID4gICAgICAgICAgICBmaWxlOi8vMDAwMS1t
-YWtlX2V4cG9ydHMuYXdrLW5vdC1leHBvc2UtdGhlLXBhdGgucGF0Y2giDQo+ID4gU1JDX1VSSV9y
-ZW1vdmUgPSAiZmlsZTovL2FwYWNoZS1jb25maWd1cmVfcGVybGJpbi5wYXRjaCINCj4gPg0KPiA+
-IFNSQ19VUklbbWQ1c3VtXSA9ICI8SSBkb24ndCBoYXZlIHRoaXMgYXQgaGFuZCwgYnV0IGJpdGJh
-a2Ugd2lsbCB0ZWxsIHlvdSB3aGF0IGl0IHNob3VsZCBiZT4iDQo+ID4gU1JDX1VSSVtzaGEyNTZz
-dW1dID0gImViMzk3ZmVlZWZjY2FmMjU0ZjhkNDVkZTM3NjhkOWQ2OGU4ZTczODUxYzQ5YWZkNWI3
-MTc2ZDFlY2Y4MGMzNDAiDQo+ID4NCj4gPiBZb3UgdGhlbiBhbHNvIG5lZWQgdG8gY29weSB0aGUg
-dGhyZWUgbmV3IHBhdGNoZXMgYW5kIGFueSBvdGhlcg0KPiA+IHBhdGNoZXMgdGhhdCBkaWZmZXJz
-IGJldHdlZW4gemV1cyBhbmQgbWFzdGVyIGFuZCBwdXQgdGhlbSBpbiB5b3VyDQo+ID4gbGF5ZXIg
-dG9nZXRoZXIgd2l0aCB0aGUgYmJhcHBlbmQgZmlsZSAoaW4gYSBzdWJkaXJlY3RvcnkgY2FsbGVk
-DQo+ID4gInJlY2lwZXMtaHR0cGQvYXBhY2hlMi9hcGFjaGUyIikuDQo+ID4NCj4gPiBUaGUgc3Vn
-Z2VzdGVkIGNvbnRlbnRzIG9mIHRoZSBiYmFwcGVuZCBhYm92ZSBpcyBiYXNlZCBvbiB0aGUNCj4g
-PiBkaWZmZXJlbmNlcyBiZXR3ZWVuIHRoZSBhcGFjaGUyIHJlY2lwZSBpbiB6ZXVzIGFuZCBtYXN0
-ZXIuDQo+ID4NCj4gPiAvL1BldGVyDQoNCi8vUGV0ZXINCg0K
+--000000000000fcddfa05e6fda0f4
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Richard,
+
+Thanks, that seems like pretty much what I need!
+However, currently the recipes in the dependency chain don't all contain
+'native' counterparts.
+Most actually wouldn't really need to for the executable to be built.
+Is there a way to neatly work around this too?
+
+Kind regards,
+
+Maik Vermeulen
+
+Embedded Software Engineer =E2=80=94 Lightyear <https://www.lightyear.one/>
++31 6 16 82 73 79 <+31616827379>
+
+
+On Wed, Aug 24, 2022 at 3:01 PM Richard Purdie <
+richard.purdie@linuxfoundation.org> wrote:
+
+> On Wed, 2022-08-24 at 14:18 +0200, Maik Vermeulen wrote:
+> > Hi,
+> >
+> > We have a recipe with a CMake project which works fine on target, but
+> > ideally we would like to test functionality on our host systems
+> > first.
+> > How can we also have it generate executables for the host system?
+> >
+> > Do we need to make changes to the recipe, CMakeLists.txt, or both?
+> > I read something about autotools, but it's completely new to me.
+> >
+> > Any hints on what the easiest approach would be would be greatly
+> > appreciated!
+>
+> BBCLASSEXTEND =3D "native"
+>
+> would create a variant of the recipe X as X-native which would run on
+> the build host. That may or may not be what you're looking for :)
+>
+> Cheers,
+>
+> Richard
+>
+>
+>
+
+--=20
+=20
+<https://lightyear.one/careers?utm_source=3Dsignature&utm_campaign=3Dspotli=
+ghtroles&utm_medium=3Demail#vacancies>
+
+--=20
+
+
+Automotive Campus 70 =E2=80=945708 JZ Helmond, the Netherlands
+www.lightyear.one=20
+<https://lightyear.one/>
+ <https://www.linkedin.com/company/lightyear.one/>
+
+This email may contain information which is privileged and/or=20
+confidential. If you received this e-mail in error, please notify us=20
+immediately by e-mail and delete the email without copying or disclosing=20
+its contents to any other person. Lightyear is a trade name of Atlas=20
+Technologies B.V. and is registered at the Dutch Chamber of Commerce under=
+=20
+number 67264298.=C2=A0
+
+--000000000000fcddfa05e6fda0f4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Richard,<div><br></div><div>Thanks, that seems like pre=
+tty much what I need!</div><div>However, currently the recipes in the depen=
+dency chain don&#39;t all contain &#39;native&#39; counterparts.=C2=A0</div=
+><div>Most actually wouldn&#39;t really need to for the executable to be bu=
+ilt.=C2=A0</div><div>Is there a way to neatly work around this too?</div><d=
+iv><br></div><div>Kind regards,<br clear=3D"all"><div><div dir=3D"ltr" clas=
+s=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><=
+br><div><span style=3D"color:rgb(29,29,27);font-family:Helvetica,Arial,sans=
+-serif;font-size:16px">Maik Vermeulen</span></div><br><div><span style=3D"c=
+olor:rgb(29,29,27);font-family:Helvetica,Arial,sans-serif;font-size:13px">E=
+mbedded Software Engineer=E2=80=82=E2=80=94=E2=80=82<a href=3D"https://www.=
+lightyear.one/" rel=3D"noopener noreferrer" style=3D"color:rgb(51,206,224)"=
+ target=3D"_blank">Lightyear</a></span></div><div><span style=3D"color:rgb(=
+29,29,27);font-family:Helvetica,Arial,sans-serif;font-size:13px"><a href=3D=
+"tel:+31616827379" rel=3D"noopener" style=3D"color:rgb(29,29,27)" target=3D=
+"_blank">+31 6 16 82 73 79</a></span></div></div></div></div><br></div></di=
+v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On W=
+ed, Aug 24, 2022 at 3:01 PM Richard Purdie &lt;<a href=3D"mailto:richard.pu=
+rdie@linuxfoundation.org">richard.purdie@linuxfoundation.org</a>&gt; wrote:=
+<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On Wed, 2022-08=
+-24 at 14:18 +0200, Maik Vermeulen wrote:<br>
+&gt; Hi,<br>
+&gt; <br>
+&gt; We have a recipe with a CMake project which works fine on=C2=A0target,=
+ but<br>
+&gt; ideally we would like to test functionality on our host systems<br>
+&gt; first.<br>
+&gt; How can we also have it generate executables for the host system?<br>
+&gt; <br>
+&gt; Do we need to make changes to the recipe, CMakeLists.txt, or both?<br>
+&gt; I read something about autotools, but it&#39;s completely new to me.<b=
+r>
+&gt; <br>
+&gt; Any hints on what the easiest approach would be would be greatly<br>
+&gt; appreciated!<br>
+<br>
+BBCLASSEXTEND =3D &quot;native&quot;<br>
+<br>
+would create a variant of the recipe X as X-native which would run on<br>
+the build host. That may or may not be what you&#39;re looking for :)<br>
+<br>
+Cheers,<br>
+<br>
+Richard<br>
+<br>
+<br>
+</blockquote></div>
+
+<br>
+<a href=3D"https://lightyear.one/careers?utm_source=3Dsignature&amp;utm_cam=
+paign=3Dspotlightroles&amp;utm_medium=3Demail#vacancies" target=3D"_blank">=
+<img src=3D"https://f.hubspotusercontent40.net/hubfs/2629990/lightyear_recr=
+uitment_banner.gif" alt=3D"https://lightyear.one/careers?utm_source=3Dsigna=
+ture&amp;utm_campaign=3Dspotlightroles&amp;utm_medium=3Demail#vacancies"></=
+a><br><div><br></div>
+<br>
+<br><br><div style=3D"text-align:center"><font size=3D"2">Automotive Campus=
+ 70 =E2=80=945708 JZ Helmond, the Netherlands</font></div><div style=3D"tex=
+t-align:center"><a href=3D"https://lightyear.one/" target=3D"_blank"><font =
+size=3D"2">www.lightyear.one</font></a><a href=3D"https://www.linkedin.com/=
+company/lightyear.one/" target=3D"_blank"><br></a></div><br><div style=3D"t=
+ext-align:center"><span style=3D"color:rgb(128,128,128);font-size:x-small">=
+This email may contain information which is privileged and/or confidential.=
+ If you received this e-mail in error, please notify us immediately by e-ma=
+il and delete the email without copying or disclosing its contents to any o=
+ther person. Lightyear is a trade name of Atlas Technologies B.V. and is re=
+gistered at the Dutch Chamber of Commerce under number 67264298.=C2=A0</spa=
+n></div>
+--000000000000fcddfa05e6fda0f4--
 
