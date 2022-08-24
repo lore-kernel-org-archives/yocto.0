@@ -1,98 +1,131 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <peter.kjellerstedt@axis.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A94A2C00140
-	for <webhook@archiver.kernel.org>; Wed, 24 Aug 2022 13:01:22 +0000 (UTC)
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
- [209.85.221.47])
- by mx.groups.io with SMTP id smtpd.web11.10508.1661346081560371053
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 042F0C00140
+	for <webhook@archiver.kernel.org>; Wed, 24 Aug 2022 14:13:13 +0000 (UTC)
+Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
+ by mx.groups.io with SMTP id smtpd.web10.11316.1661350383517461414
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Aug 2022 06:01:22 -0700
+ Wed, 24 Aug 2022 07:13:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Zh8Ryosa;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.47,
- mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f47.google.com with SMTP id b5so16398246wrr.5
-        for <yocto@lists.yoctoproject.org>;
- Wed, 24 Aug 2022 06:01:21 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@axis.com
+ header.s=axis-central1 header.b=pGq1euSx;
+ spf=pass (domain: axis.com, ip: 195.60.68.17,
+ mailfrom: peter.kjellerstedt@axis.com)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc;
-        bh=Sbx6T4G2tkMAns5LSGqBcN1fGxaluvITALFvMG6xGpk=;
-        b=Zh8RyosaSGG70X7b/bMbw19IgTh2coN+Sbpum4YHfoAArggxJThxxZC7CVHT9kemRr
-         eE/ju7if1ig5Vs9pXMChjW/hTVwl1PR6ORHxsQ1OOM8+x/nHL9wGZgrRymwCGiOyRhQi
-         tVg1cgMT/QcXWmyAxiUdKukdvWL2ubdBIiTKk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc;
-        bh=Sbx6T4G2tkMAns5LSGqBcN1fGxaluvITALFvMG6xGpk=;
-        b=jCE3OM8dqMNCIqcCwT6lkhkxUO2zm8WKKfuDpuE9hjPDjLt9t1RHKdOLBn7vMbNqxS
-         oJZwMQtlZWz/qCpOS0DYMpdi+/lhiW+9uMzORvH6t3ac3ZlFsdNhCUo0PjLMnhCwVzcH
-         tVprUwnasGHPY0Fa+E+vJnHdWiT4KUEEQZmeIdbLN8xQuQiExZfQdgJI116Q+8x3tBj5
-         G9HU2Kn1LtPNXC4C60anIF4HFFazYelzJYFz9dbjwBSmlSEagbi+e1wNjU4bV1T2Fmqj
-         z2F5xymVsERK3rTt5ki/YxDhN8vgo/svKDT0KgBaV0YqnTqq1YI0nswq0GwCI7n6De0U
-         h6/g==
-X-Gm-Message-State: ACgBeo2ot9WCwJT4gpJRdZ+HQ9hoPT8z0bYYGBjFSqqRMJD9FEhn0oeS
-	bLP6kOXe48jBVc6Lb4XvH1EurQ==
-X-Google-Smtp-Source: 
- AA6agR5fRqlF8D0KJf57tEQGaVaqHPbE6V+SdWWcUhKveApiGXkjoMAth42CDh79ForaEiF26u/ang==
-X-Received: by 2002:a5d:59a6:0:b0:225:662f:fc76 with SMTP id
- p6-20020a5d59a6000000b00225662ffc76mr4357571wrr.151.1661346079727;
-        Wed, 24 Aug 2022 06:01:19 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:4e4:9da0:6de0:5e33?
- ([2001:8b0:aba:5f3c:4e4:9da0:6de0:5e33])
-        by smtp.gmail.com with ESMTPSA id
- v5-20020a5d6105000000b002251c75c09csm20166177wrt.90.2022.08.24.06.01.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Aug 2022 06:01:18 -0700 (PDT)
-Message-ID: 
- <d1306db241ff440fdf8d005f598b6c6acf5b63e8.camel@linuxfoundation.org>
-Subject: Re: [yocto] Building for both target and host
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Maik Vermeulen <maik.vermeulen@lightyear.one>,
-	yocto@lists.yoctoproject.org
-Date: Wed, 24 Aug 2022 14:01:18 +0100
-In-Reply-To: 
- <CAKO9uzpWNuqqtnvzRvZM7btNOmr344U2zp0W9hr86ZrUbLjj_Q@mail.gmail.com>
-References: 
-	<CAKO9uzpWNuqqtnvzRvZM7btNOmr344U2zp0W9hr86ZrUbLjj_Q@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.1-0ubuntu1 
+  d=axis.com; q=dns/txt; s=axis-central1; t=1661350383;
+  x=1692886383;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=2LpIgJmRCapFyz/zShu6Dw+IVifDbTkE7LTUCKoX3dw=;
+  b=pGq1euSxC9a+9vvmzzNEq1rMdvivuUMiRsOg2zLLwfC3/rFGYdJeUgdZ
+   /LbbYx9hD5gFyqC2xAPXOHmBCqkSBPzbWmi35Pn41DO09eqDn1V4x+wI6
+   7MKZc1rLUjTFksnDiYv3gfrHhXQlqJFCPisvbRLdp1srryTgAcQXhhrJD
+   4axdtIhEMlLzD6m3S6Ep+O0DdE6UFlzxAj86floQpEvBZ32VLrW748q78
+   5aUsvieC/kwFiXgmTDaBurlerKEjftc46FzuqVUfKOxINuoXntUFuxa62
+   u8wLzQyjOb2Xm3H/1As2FyWfuE4gdLl4kp4jDGqMVJSM9qy/CT5jCC1u2
+   g==;
+From: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+To: forums <forums@bitflipper.net>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: RE: [yocto] Bitbake + Patches
+Thread-Topic: [yocto] Bitbake + Patches
+Thread-Index: AQHYtmlvNbypxdwqb0yGnilIBND8L627XtmAgAD8BwCAAHYkAIABRsYQ
+Date: Wed, 24 Aug 2022 14:13:01 +0000
+Message-ID: <899c12e4c6d34a4298b84b7abf022a82@axis.com>
+References: <53C07165-3951-4450-B175-E323971C8DEC@bitflipper.net>
+ <CAMKF1spvyQh1czn+HiKmppXBCO_tkor_3Ogfj6wguwA0x+tAyA@mail.gmail.com>
+ <fcfe7d1380ab4d2598cff5004028d419@axis.com>
+ <B58205E1-72E9-41F6-9A52-A440A62C3C6B@bitflipper.net>
+In-Reply-To: <B58205E1-72E9-41F6-9A52-A440A62C3C6B@bitflipper.net>
+Accept-Language: en-US, sv-SE
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.0.5.60]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 24 Aug 2022 13:01:22 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57891
+ <yocto@lists.yoctoproject.org>; Wed, 24 Aug 2022 14:13:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57892
 
-On Wed, 2022-08-24 at 14:18 +0200, Maik Vermeulen wrote:
-> Hi,
->=20
-> We have a recipe with a CMake project which works fine on=C2=A0target, bu=
-t
-> ideally we would like to test functionality on our host systems
-> first.
-> How can we also have it generate executables for the host system?
->=20
-> Do we need to make changes to the recipe, CMakeLists.txt, or both?
-> I read something about autotools, but it's completely new to me.
->=20
-> Any hints on what the easiest approach would be would be greatly
-> appreciated!
-
-BBCLASSEXTEND =3D "native"
-
-would create a variant of the recipe X as X-native which would run on
-the build host. That may or may not be what you're looking for :)
-
-Cheers,
-
-Richard
-
-
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBmb3J1bXMgPGZvcnVtc0BiaXRm
+bGlwcGVyLm5ldD4NCj4gU2VudDogZGVuIDIzIGF1Z3VzdGkgMjAyMiAyMjozNA0KPiBUbzogUGV0
+ZXIgS2plbGxlcnN0ZWR0IDxwZXRlci5ramVsbGVyc3RlZHRAYXhpcy5jb20+DQo+IFN1YmplY3Q6
+IFJlOiBbeW9jdG9dIEJpdGJha2UgKyBQYXRjaGVzDQo+ICANCj4gVGhhbmtzIFBldGVyLiBJIHdp
+bGwgbG9vayBpbnRvIHRoaXMuIEJ1dCBpc27igJl0IHRoaXMgYmJhcHBlbmQgY29uc2lkZXJlZCBh
+DQo+IHBhdGNoIGFzIHdlbGwgb3Igd2lsbCByZXBsYWNlIEFwYWNoZSAyLjQuNDEgd2l0aCB0aGUg
+bGF0ZXN0IHZlcnNpb24gb2YNCj4gYXBhY2hlPw0KDQpXZWxsLCBpdCBkZXBlbmRzIG9uIGhvdyBz
+dHJpY3QgeW91ciB0ZXJtaW5vbG9neSBpcy4gVG8gbWUsIGEgcGF0Y2ggaXMgYSANCmZpbGUsIHR5
+cGljYWxseSBnZW5lcmF0ZWQgYnkgYGRpZmZgIG9yIGBnaXQgZm9ybWF0LXBhdGNoYC4gQnV0IG9m
+IGNvdXJzZSwgDQphZGRpbmcgdGhlIGJiYXBwZW5kIHN1Z2dlc3RlZCBiZWxvdyB3aWxsIG1vZGlm
+eSB0aGUgcmVjaXBlIHNvIHRoYXQgaXQgDQpidWlsZHMgdGhlIGxhdGVzdCB2ZXJzaW9uIG9mIEFw
+YWNoZS4NCg0KPiBJIGFtIHJlbGF0aXZlbHkgbmV3IHRvIHlvY3RvIHNvIHRoZXJl4oCZcyBhIGxv
+dCBJIG5lZWQgdG8gbGVhcm4uDQo+IA0KPiBKaW0NCj4gDQo+IE9uIEF1ZyAyMywgMjAyMiwgYXQg
+Nzo0MSBBTSwgUGV0ZXIgS2plbGxlcnN0ZWR0IDxwZXRlci5ramVsbGVyc3RlZHRAYXhpcy5jb20+
+IHdyb3RlOg0KPiA+DQo+ID4+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+ID4+IEZyb206
+IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcgPHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5v
+cmc+IE9uIEJlaGFsZiBPZiBLaGVtIFJhag0KPiA+PiBTZW50OiBkZW4gMjMgYXVndXN0aSAyMDIy
+IDAwOjI5DQo+ID4+IFRvOiBiaXRmbGlwcGVyIDxmb3J1bXNAYml0ZmxpcHBlci5uZXQ+DQo+ID4+
+IENjOiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnDQo+ID4+IFN1YmplY3Q6IFJlOiBbeW9j
+dG9dIEJpdGJha2UgKyBQYXRjaGVzDQo+ID4+DQo+ID4+IE9uIE1vbiwgQXVnIDIyLCAyMDIyIGF0
+IDE6NTQgUE0gYml0ZmxpcHBlciA8Zm9ydW1zQGJpdGZsaXBwZXIubmV0PiB3cm90ZToNCj4gPj4+
+DQo+ID4+PiBJIHdhcyB0b2xkIHRoaXMgd2FzIHRoZSByaWdodCBncm91cCB0byBhc2sgbXkgcXVl
+c3Rpb24uIElmIHRoaXMgaXMgDQo+ID4+PiBub3QgcmlnaHQsIHBsZWFzZSBsZXQgbWUga25vdy4N
+Cj4gPj4+DQo+ID4+PiBJIGFtIGN1cnJlbnRseSB1c2luZyAgWmV1cywgYW5kIHdpdGggWmV1cywg
+d2UgZ2V0IEFwYWNoZSB2Mi40LjQxLiANCj4gPj4+IEJ1dCBJIHdvdWxkIGxpa2UgdG8gZ2V0IGEg
+bGF0ZXIgdmVyc2lvbiBvZiBhcGFjaGUgYmVjYXVzZSB0aGVyZSANCj4gPj4+IGhhdmUgYmVlbiBh
+IGZldyBmaXhlcyByZWxhdGVkIHRvIGN5YmVyIHNlY3VyaXR5LiBTbyBJIGJlbGlldmUgdGhhdCwg
+DQo+ID4+PiBnaXZlbiB3ZeKAmXJlIHVzaW5nIFpldXMsIHdlIGNhbuKAmXQgdXBncmFkZSB0byB0
+aGUgbGF0ZXN0IHZlcnNpb24gb2YgDQo+ID4+PiBBcGFjaGUgZ2l2ZW4gdGhlIGN1cnJlbnQgcmVj
+aXBlIHRoYXQgWmV1cyB1c2VzLiBUaGVyZWZvcmUgSSBiZWxpZXZlIA0KPiA+Pj4gdGhhdCB0aGUg
+b25seSB3YXkgYWNjb21wbGlzaCBnZXR0aW5nIHRobyB0aGUgbGF0ZXN0IHZlcnNpb24gb2YgDQo+
+ID4+PiBhcGFjaGUgd2l0aCBaZXVzIHdvdWxkIHRvIGJlIOKAmHBhdGNo4oCZIHRoZSB2Mi40LjQx
+IHZlcnNpb24gdGhhdCBjb21lcyANCj4gPj4+IHdpdGggWmV1cy4NCj4gPj4+DQo+ID4+PiBMb29r
+aW5nIGF0IHRoZSBCaXRiYWtlIG1hbnVhbCwgaW4gc2VjdGlvbiA0LjEsIGl0IHN0YXRlcyB0aGUN
+Cj4gPj4+IGZvbGxvd2luZzoNCj4gPj4+DQo+ID4+PiAiQml0QmFrZSB0YWtlcyBzZXZlcmFsIHN0
+ZXBzIHdoZW4gZmV0Y2hpbmcgc291cmNlIGNvZGUgb3IgZmlsZXMuIA0KPiA+Pj4gVGhlIGZldGNo
+ZXIgY29kZWJhc2UgZGVhbHMgd2l0aCB0d28gZGlzdGluY3QgcHJvY2Vzc2VzIGluIG9yZGVyOiAN
+Cj4gPj4+IG9idGFpbmluZyB0aGUgZmlsZXMgZnJvbSBzb21ld2hlcmUgKGNhY2hlZCBvciBvdGhl
+cndpc2UpIGFuZCB0aGVuIA0KPiA+Pj4gdW5wYWNraW5nIHRob3NlIGZpbGVzIGludG8gYSBzcGVj
+aWZpYyBsb2NhdGlvbiBhbmQgcGVyaGFwcyBpbiBhIA0KPiA+Pj4gc3BlY2lmaWMgd2F5LiBHZXR0
+aW5nIGFuZCB1bnBhY2tpbmcgdGhlIGZpbGVzIGlzIG9mdGVuIG9wdGlvbmFsbHkgDQo+ID4+PiBm
+b2xsb3dlZCBieSBwYXRjaGluZy4gUGF0Y2hpbmcsIGhvd2V2ZXIsIGlzIG5vdCBjb3ZlcmVkIGJ5
+IHRoaXMgDQo+ID4+PiBtb2R1bGUuIg0KPiA+Pj4NCj4gPj4+IFRoZSBtYW51YWwgZG9lcyBub3Qg
+Y292ZXIgcGF0Y2hpbmcuDQo+ID4+Pg0KPiA+Pj4gV2hlcmUgY2FuIEkgZ2V0IGluZm9ybWF0aW9u
+IG9uIHRoaXMgcHJvY2VzcyBvZiBwYXRjaGluZyBzb21ldGhpbmcgbGlrZQ0KPiA+Pj4gYXBhY2hl
+IG9yIGFueSBvdGhlciBhcHBsaWNhdGlvbiB0aGF0IHdhcyBhZGQgdmlhIElNQUdFX0lOU1RBTExf
+YXBwZW5kDQo+ID4+PiBtZXRob2QuDQo+ID4+Pg0KPiA+Pj4gQW55IGhlbHAgcG9pbnRpbmcgbWUg
+dG8gd2hlcmUgdGhpcyBwcm9jZXNzIG1pZ2h0IGJlIGRvY3VtZW50ZWQgaXMgbXVjaA0KPiA+Pj4g
+YXBwcmVjaWF0ZWQuDQo+ID4+Pg0KPiA+Pg0KPiA+PiBsb29rIGludG8gbWVnYSBtYW51YWwgc29t
+ZXRoaW5nIGxpa2UgdGhpcyB3b3VsZCBoZWxwDQo+ID4+IGh0dHBzOi8vZG9jcy55b2N0b3Byb2pl
+Y3Qub3JnL2Rldi1tYW51YWwvY29tbW9uLXRhc2tzLmh0bWw/aGlnaGxpZ2h0PXdyaXRpbmcrcmVj
+aXBlI3BhdGNoaW5nLWNvZGUNCj4gPj4NCj4gPj4+IFRoYW5rcywgSmltDQo+ID4NCj4gPiBZb3Ug
+ZG9uJ3QgcmVhbGx5IG5lZWQgdG8gZ28gcGF0Y2hpbmcgYXBhY2hlIGp1c3QgdG8gdXBkYXRlIGl0
+LiBXaGF0IHlvdQ0KPiA+IG5lZWQgaXMgdG8gYWRkIGEgYmJhcHBlbmQgZmlsZSBpbiBvbmUgb2Yg
+eW91ciBvd24gbGF5ZXJzLiBDYWxsIGl0DQo+ID4gcmVjaXBlcy1odHRwZC9hcGFjaGUyL2FwYWNo
+ZTJfMi40LjQxLmJiYXBwZW5kIGFuZCBtYWtlIGl0IGNvbnRhaW46DQo+ID4NCj4gPiBGSUxFU0VY
+VFJBUEFUSFNfcHJlcGVuZCA6PSAiJHtUSElTRElSfS8ke0JQTn06Ig0KPiA+DQo+ID4gTElDX0ZJ
+TEVTX0NIS1NVTSA9ICJmaWxlOi8vTElDRU5TRTttZDU9YmRkZWRkZmFjODBiMmM5YTg4MjI0MWQw
+MDhiYjQxYzMiDQo+ID4NCj4gPiBQViA9ICIyLjQuNTQiDQo+ID4NCj4gPiBTUkNfVVJJICs9ICJm
+aWxlOi8vMDAwOC1GaXgtcGVybC1pbnN0YWxsLWRpcmVjdG9yeS10by11c3ItYmluLnBhdGNoIFwN
+Cj4gPiAgICAgICAgICAgIGZpbGU6Ly8wMDA5LXN1cHBvcnQtYXB4cy5pbi1mb3JjZS1kZXN0ZGly
+LXRvLWJlLWVtcHR5LXN0cmluZy5wYXRjaCBcDQo+ID4gICAgICAgICAgICBmaWxlOi8vMDAwMS1t
+YWtlX2V4cG9ydHMuYXdrLW5vdC1leHBvc2UtdGhlLXBhdGgucGF0Y2giDQo+ID4gU1JDX1VSSV9y
+ZW1vdmUgPSAiZmlsZTovL2FwYWNoZS1jb25maWd1cmVfcGVybGJpbi5wYXRjaCINCj4gPg0KPiA+
+IFNSQ19VUklbbWQ1c3VtXSA9ICI8SSBkb24ndCBoYXZlIHRoaXMgYXQgaGFuZCwgYnV0IGJpdGJh
+a2Ugd2lsbCB0ZWxsIHlvdSB3aGF0IGl0IHNob3VsZCBiZT4iDQo+ID4gU1JDX1VSSVtzaGEyNTZz
+dW1dID0gImViMzk3ZmVlZWZjY2FmMjU0ZjhkNDVkZTM3NjhkOWQ2OGU4ZTczODUxYzQ5YWZkNWI3
+MTc2ZDFlY2Y4MGMzNDAiDQo+ID4NCj4gPiBZb3UgdGhlbiBhbHNvIG5lZWQgdG8gY29weSB0aGUg
+dGhyZWUgbmV3IHBhdGNoZXMgYW5kIGFueSBvdGhlcg0KPiA+IHBhdGNoZXMgdGhhdCBkaWZmZXJz
+IGJldHdlZW4gemV1cyBhbmQgbWFzdGVyIGFuZCBwdXQgdGhlbSBpbiB5b3VyDQo+ID4gbGF5ZXIg
+dG9nZXRoZXIgd2l0aCB0aGUgYmJhcHBlbmQgZmlsZSAoaW4gYSBzdWJkaXJlY3RvcnkgY2FsbGVk
+DQo+ID4gInJlY2lwZXMtaHR0cGQvYXBhY2hlMi9hcGFjaGUyIikuDQo+ID4NCj4gPiBUaGUgc3Vn
+Z2VzdGVkIGNvbnRlbnRzIG9mIHRoZSBiYmFwcGVuZCBhYm92ZSBpcyBiYXNlZCBvbiB0aGUNCj4g
+PiBkaWZmZXJlbmNlcyBiZXR3ZWVuIHRoZSBhcGFjaGUyIHJlY2lwZSBpbiB6ZXVzIGFuZCBtYXN0
+ZXIuDQo+ID4NCj4gPiAvL1BldGVyDQoNCi8vUGV0ZXINCg0K
 
