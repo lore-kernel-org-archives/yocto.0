@@ -1,232 +1,216 @@
-Return-Path: <jay.shen.teoh@intel.com>
+Return-Path: <rudolf.streif@ibeeto.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8BFB9C3F6B0
-	for <webhook@archiver.kernel.org>; Thu, 25 Aug 2022 10:18:08 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by mx.groups.io with SMTP id smtpd.web08.22252.1661422687281083557
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AA14BC64990
+	for <webhook@archiver.kernel.org>; Thu, 25 Aug 2022 14:30:29 +0000 (UTC)
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com
+ [209.85.216.47])
+ by mx.groups.io with SMTP id smtpd.web10.24493.1661437825275129552
  for <yocto@lists.yoctoproject.org>;
- Thu, 25 Aug 2022 03:18:07 -0700
+ Thu, 25 Aug 2022 07:30:25 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel
- header.b=hm5XFvt+;
- spf=pass (domain: intel.com, ip: 134.134.136.20,
- mailfrom: jay.shen.teoh@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1661422687; x=1692958687;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=Edu3XXBtfD5aPn6b8gp6YMkjIy51J1RH8+qN7CLm40o=;
-  b=hm5XFvt+hqR5XH/b3ryHmQtV4eCn5gnFPOt/rOsc0F5i3T95pJOiuEaH
-   fWELy6LdBNShfX9Evahlx1e2A0yYmRgQnWBZgCECXtCjVBOyldTh9W1AJ
-   vHO7Dv1eI78dKy00OqEc95fpKkDrXeCf/nGwy37kAx2gWTcBGdTvPar73
-   1TRY9Ehz+MosC1PO398gb5hRQfxe+pGzwk+BR3j1SmetGpRQlmGJ2Acx3
-   pu6OAtfDiWq2A4Ghic/NgnA8LE3nb6CY9X5czITDDkGl7a4j8zOvkc23E
-   QCT7wjoRpNj1eoS2zccrFx3rI6YohZA7jjgJRs5dEi1CqFgDgj0g2u2+M
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10449"; a="281173820"
-X-IronPort-AV: E=Sophos;i="5.93,262,1654585200";
-   d="scan'208";a="281173820"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2022 03:18:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,262,1654585200";
-   d="scan'208";a="610117466"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
-  by orsmga002.jf.intel.com with ESMTP; 25 Aug 2022 03:18:06 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 25 Aug 2022 03:18:06 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 25 Aug 2022 03:18:05 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Thu, 25 Aug 2022 03:18:05 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.42) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Thu, 25 Aug 2022 03:18:05 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fOiK+GA/HftJnFxm5dkYT/I3CLiWDPNJ+qJ+HzQeCTlGSWIaUuONe4WPl7wEGz3KErVbfGHQxyqyXLFjAsB08nOPtTNoER3Zm5tEZzcf2nABGOqmNLPSz5I6T62UQIrdeevovjsORujKVp0/U+dR0sw6Z0zGKX/yB4wATkjGTKr7f4HdHGf45i9KNsZAbt1aFccWUIaR3rjyix8H0THBC8G28Lqp4KJGl6ozvKRaHIdRtNkYEA7nbj6i4RZd0JNy//i9yF9mCQHhieIO+U0AsXMCAwd80eJxBwleGxPxW0JvD/V+e+n7LemmkhFa7BQiWkFG4ER7u7xOq1mXJ6nr4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EebWAoDCACeR8ItDnTkfOtczFR9lo3RFgG7X2H1DnE4=;
- b=lvs+FWFhyRUFHij52dfKNVAXdwUcoH0DU+Glto7aiSd2fqhTU/ZSSckXc4Epsje+Rq7TcDW3+66BaxlT/lTCN4jmUO8vGlpziKX712Vgvl1yat3OR0MoV8Xho5CuWskLOw39ld6fwuSsAMXXCMbdklLyAvnzWAz8n6AT5ZWy1dEm4/UZEx6bxBFBjigU1yZRfbNW75i0xMaA+fGRIRYQdh7GSKW4EI9O2jRptDEuhX1Dl+wOMEevmMKCpa3mNtPxG8GTWrceT6ts3GT/aXrC3ZacqBlp7DmtK9C4uY2SzgmniyBx1OCg83TKU3gpvH8hGpZCRGDZ7aWDiiQWUJhafg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM5PR1101MB2348.namprd11.prod.outlook.com (2603:10b6:3:a8::16)
- by DM6PR11MB3626.namprd11.prod.outlook.com (2603:10b6:5:146::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.14; Thu, 25 Aug
- 2022 10:18:04 +0000
-Received: from DM5PR1101MB2348.namprd11.prod.outlook.com
- ([fe80::9d81:b1a5:afe4:dc6a]) by DM5PR1101MB2348.namprd11.prod.outlook.com
- ([fe80::9d81:b1a5:afe4:dc6a%7]) with mapi id 15.20.5566.015; Thu, 25 Aug 2022
- 10:18:04 +0000
-From: "Teoh, Jay Shen" <jay.shen.teoh@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: RE: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-3.1.19.rc1)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-3.1.19.rc1)
-Thread-Index: AQHYtnJbQIJIOxjT40e45Lm87YmpB62/atrQ
-Date: Thu, 25 Aug 2022 10:18:04 +0000
-Message-ID: 
- <DM5PR1101MB23486DE735B20F012990D33BBB729@DM5PR1101MB2348.namprd11.prod.outlook.com>
-References: 
- <01010182c7908155-549934cb-cc80-456d-8a05-57f85ccb8c14-000000@us-west-2.amazonses.com>
-In-Reply-To: 
- <01010182c7908155-549934cb-cc80-456d-8a05-57f85ccb8c14-000000@us-west-2.amazonses.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.6.500.17
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 49c5fac9-2cf9-4513-da3e-08da868318d5
-x-ms-traffictypediagnostic: DM6PR11MB3626:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- mDRuqu6fOpXXWRq2TBW20vjyrlKIMaozO/Y8rlyKmmuIwIlTZuF299Tnl7H6VcTMHgcluBHMFw1OyWJ2oNINFGiErreIx9vjz2QCIHBAFduqR0soASOplDdJzoe8DJkMY4Qdx7qY1AecDOt7DCCq+RQwPZKGRUYU5cWJfIMz+DyvQ5Vds17nCsdIrQPmhtLhy+V5M2gF3GudPyPsJZz7cvMSGFsgq9+8XYznQIrCcySgz9ynG0lXoDyt2S0Wnjokaj2/jjJ7as4pH7KAoBPqTs3EEvsSuj0rAyoze1tuULZL50Zyqcf7Qst16WbzOctGIPhOk5SQRQiflIsehgykGe/YUPBAbsEyVis3EZnT0BvN4CuBYPvwpVUlc8+X48NKq+GDLJwcbqI/HoNanv3wwaFH7hvlKsAfsP8Fu+urmA9b5duMmktWPV5pAZG8MaUWRQeaasPxdE/QR5waI3PklfnLqYBnxK0EoVeS5FG+RxEmjIPBtpu489p8mQ8Kf+/NMysPYnBgvQKMB5AmBFM+Ni1kKPGntlP8gpd3qUctfgtATKsQX55/c4E1uM8hQVocINoqUybGIVAeZNmvG4Su0zBtgkXCulVSOvZLRrG9t1H/Eco22B/PWhmJhh9WgukFhtncm7n99ukEISpnyg/Jc9TnUnKi+kHDy18dXSTYf8Kz6Z7JSKIDUqa5B3JmcmApSTEXm7k70E3XHFZwLU29UpFptmC42LIAr2jBV0/ULhD7s3Cpbw0qGe2xSqR5y1ZVwXjurkz5CaZFBIu+zz7/O6e2/gjBsO39a952WnoJ+WW/IhbYdO/sS6U4aBsQtOBAfnDJu1OZSIpeB3Yw2Y6x3w==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR1101MB2348.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(39860400002)(136003)(396003)(376002)(366004)(346002)(86362001)(55236004)(9686003)(38070700005)(41300700001)(53546011)(26005)(7696005)(6506007)(110136005)(71200400001)(38100700002)(478600001)(122000001)(83380400001)(966005)(82960400001)(55016003)(186003)(15650500001)(2906002)(5660300002)(8936002)(76116006)(66446008)(316002)(8676002)(33656002)(66476007)(66556008)(52536014)(64756008)(66946007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?KYU/Rmin5lpbSpvh9JgO/uFAUmGzUy/3soq9cazN0JY9YL2nLkFcaAvNDt9J?=
- =?us-ascii?Q?5BX5MwzEA4vJFQfTSunUJkXVg/v39xnrs1KxTfAOhRuIExZ/N5E5Hnsnwd+z?=
- =?us-ascii?Q?1jSTTtPyDhWMYfaM3770cH8hJzEh/K9GA4xYqKp4vieuSivzgLIuVm+72iZv?=
- =?us-ascii?Q?pFmIuB44ICHmgagIQequSZc0TIYoJH0UxLso8fft5TSYl1GE7LbQcLYSpEcG?=
- =?us-ascii?Q?wY3e0rzy41X7BoDW8E5KRzQYRiPwljiAOXmN4hLtRq+smf6f/W0pshuW0iFw?=
- =?us-ascii?Q?HaAaw05Wc0/B3LSX4QJVFDhzQ/NcNpDOL2ilVIX0bhWhLE8lrUiNRGMYRitR?=
- =?us-ascii?Q?+inCg0DbCFZ6wmWvLQmPxXIiuVagGRAzARjZ9A8hgQ7cqcjTykmt061np3Ek?=
- =?us-ascii?Q?LHeRH1kKhgfxrOAyDKEqSsu9pXFgFS316gCmr1750CMy/9EBXPZWALw8ACdo?=
- =?us-ascii?Q?ZMDEP0brfrk56bGQBdM29MT2b5N0d99a0Nl78FocQ2+Wp46rT1RmO3r19We7?=
- =?us-ascii?Q?8AIDnULblp2RcBH8ZiULswNaaXDxKHqYbDAkFI1tQTAWoWNbKds1J433n5l5?=
- =?us-ascii?Q?N/SWRp2hjtWNF3FGTx7+1zkLCpWG4no6boBtfHB1Tu1Fz2C270fl5vQxRegk?=
- =?us-ascii?Q?tbv5oJ6wQ8Yd/DX8b/8+RfgXEc4N31gCtxB1jr2X66zcX/c1TJ5P/hY8b7vY?=
- =?us-ascii?Q?8vuy+HZPKGdTEsnRFMA9ZWMTjDE/OZJkJrQyQrM8PalW9ZqrWvxe4Wir3kZl?=
- =?us-ascii?Q?gzXoweihH6Cl56RMl8ewMFXjJOoTvLLmjuVZ3v5CGmNGhC0Q0kW82sAC3zoy?=
- =?us-ascii?Q?MY/LLCbd1JlwelP+Ack7RS65NIF8Vipjd0K2ej1a1xE2k/pSb44YXBijsB1R?=
- =?us-ascii?Q?O4fWNCgHAayN+bC8j7nrrNlcYvrRggYbUks2NdmzwdRjZxnq19Q2FlpHgsLr?=
- =?us-ascii?Q?ZZYsmhNUxPDxV2FzbcbfatxmZDgh8jGWfHr9ulouzqVf4EeGS8O0XLIvhiLn?=
- =?us-ascii?Q?qvRdgmwtCADOOSvKBOeqUtmNsIdQW47JFH1IBnsE+wG70rvd9IMq4VgmlL12?=
- =?us-ascii?Q?KulmTgw9MBzHjAlPLK7V+ArcZlRFJYeOw0LXyGanGd6r6dkdBZGeLVSwTCyb?=
- =?us-ascii?Q?fkkuxzSDYnvjlA9pcWzDn/G6695FyFVYcu0pF6EE1KeiPPSECLdwJsVROYob?=
- =?us-ascii?Q?4wKvDVCw+pJikaEZNsnjR2hLUIpM8CdY29XfaaBs4hBCsb6crwRCqE7+VbsI?=
- =?us-ascii?Q?JPBMWbyEHYjepIltNbPyxJO4Wbq9tkm1Ev2qQaZgW+hxMtqzuW2jfTYLWwDW?=
- =?us-ascii?Q?NtAu8jRlXIlwNWbQNtDpHsSUF058YLQH8AM5UbmypGPdZ+ChwVpgBRAAOHkn?=
- =?us-ascii?Q?fmaRWagbh8qBnPKGZ3MMtRMalgQ/KyQS4B5IzFRFxJr2QKGprq71BhI/fkmL?=
- =?us-ascii?Q?pbsxOrIzmeXWU/JmHKEcWtwJ3MqWoY33Vi5SwXrW/cBnF2GAkel56kW8tOKr?=
- =?us-ascii?Q?PocO9M+hhLskb3OsBZf1VjDLuPiNZbMgn+vVB03L24k457mpdQ90dZIF1vxc?=
- =?us-ascii?Q?txrVIkJ27LmxbTvsCwesNXjlP9HqUyycjs8+iFkb?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@ibeeto-com.20210112.gappssmtp.com header.s=20210112
+ header.b=XehJ64Rb;
+ spf=neutral (domain: ibeeto.com, ip: 209.85.216.47,
+ mailfrom: rudolf.streif@ibeeto.com)
+Received: by mail-pj1-f47.google.com with SMTP id
+ x63-20020a17090a6c4500b001fabbf8debfso5228018pjj.4
+        for <yocto@lists.yoctoproject.org>;
+ Thu, 25 Aug 2022 07:30:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ibeeto-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:user-agent:date:message-id:subject:autocrypt:from:to
+         :from:to:cc;
+        bh=Ir0x5OJrQw7CyL/rHpgETAOQ6ny77VtHAhu9w+fNHGI=;
+        b=XehJ64Rb9tAetHpAHREpwHPXQNoX0n+1NFCiZ3KU6065LVeVAZsQRozK2kpWU7Nm6B
+         AHFJS/dl8UMSl22LockvcKReeOKY1N2ijlX+gBuqEvZ2RvwRvrPGgpy1c41YmFqeL3J9
+         BssZv9Qw9YZZIK40ZEl8MWS33p28S+0puRN8zaXELFw6IcrODqGxsQLk7CSRZrs3ztMD
+         RpUbwsze4KWpEEPMYUk2j2jrU+D5UiInmYQ9PpyspjWEbCEUtch+hjNwN2BQGp9XB6A8
+         9Dcmz65iqBvWUKx6lIMiObhATzSUs7BT/AG6jslrS87HqSaFOgYmXXTPwZ7E471vgo3l
+         xWPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:user-agent:date:message-id:subject:autocrypt:from:to
+         :x-gm-message-state:from:to:cc;
+        bh=Ir0x5OJrQw7CyL/rHpgETAOQ6ny77VtHAhu9w+fNHGI=;
+        b=Mbn44cjEUhA5W5W8hz7fQQ4ZIFCas293LM48AGTIIrWZynelxUUVKNhVn8XHm6pBCe
+         SaORUB6/KqnClxWLNWLFI3tX8V5xkMU5LqqNZI/HX/6TtEsqx3Nvk2lB6QF3Y2j4CU1V
+         m85F5kUSGhpaOJyt5LdxDvFT13OLynSDC85/fTtFRYyTW+pxBA11S5cpp6ClimrYZyI3
+         rq9UCtTJnPbeWjKHzMseBXYECcrk4CAs4woVEg2zCkypEDYpoO3dIR+JI8WA/C8DHuf5
+         6gZhpgyum9ZoVIgkbIFkSRzcaM9I5ognDAkUf1vGcwN2/7Nsm7Ue49mi4vInMBk1vMwG
+         smvA==
+X-Gm-Message-State: ACgBeo0zn1DiBPVy2QGycLYbbrk99fSG/z57pmXIJqI65BbfhIMINF/S
+	WydmBt4adc4h4oIpg7vxfWds9XdQWxqDYg==
+X-Google-Smtp-Source: 
+ AA6agR5tTd1whGFbN4O2FWyWmztlA8Gwc/xtMHF4QMpSu0dcWpewdMA3+ywnJcwA0lSOT9BupivNfg==
+X-Received: by 2002:a17:902:cec7:b0:172:b20d:e666 with SMTP id
+ d7-20020a170902cec700b00172b20de666mr3939024plg.154.1661437823867;
+        Thu, 25 Aug 2022 07:30:23 -0700 (PDT)
+Received: from ?IPv6:2600:8801:8d00:2b14:7b2a:31ea:d7be:5c89?
+ ([2600:8801:8d00:2b14:7b2a:31ea:d7be:5c89])
+        by smtp.gmail.com with ESMTPSA id
+ g4-20020aa79dc4000000b005379dd2deb5sm1316979pfq.137.2022.08.25.07.30.22
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Aug 2022 07:30:23 -0700 (PDT)
+To: Yocto <yocto@lists.yoctoproject.org>
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+Autocrypt: addr=rudolf.streif@ibeeto.com; keydata=
+ xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvD
+ Qpe+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ
+ /Qymy+7Cbh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969
+ cQD/S9LNndnK5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM
+ 3sPiHrF+Y2HTdK7j7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEB
+ AAHNKlJ1ZG9sZiBKIFN0cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgA
+ IQUCWFAUBAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf0
+ 3GsVMG6C5QOLaPx6rOgj5qexCH3rfYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBk
+ txioE384/51QTIfCmW8ZG5X0cMC5d38LFvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xl
+ lpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR84ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+w
+ Xl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x5LZhUhGYoqbYwNy9imoBkUAZkbbViNOtX
+ zaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjVLmLHvzsBNBFhQFAQBCADXoLKCuF48
+ 5eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTqk3fb9+Ao6C6IliC9ZRXyAVLD/
+ RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIFpPBpxHRrZnDdEd5IKsy+z
+ w6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJSHWMBh0OMKDeBik5wl
+ svtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mCBCZ+IKhBQR36v
+ tUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIAAkFAlhQFAQC
+ GwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LYUpLNj
+ s4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9MbyE
+ fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8Tz
+ Yf9m2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/Nlouvce
+ P41tsC5daxZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/AN
+ ROZj4g==
+Subject: Dependency for binary package
+Message-ID: <0c8260c2-0da1-7566-3f9a-e90d4995b45b@ibeeto.com>
+Date: Thu, 25 Aug 2022 07:30:22 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: 
- DM5PR1101MB2348.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 49c5fac9-2cf9-4513-da3e-08da868318d5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Aug 2022 10:18:04.1696
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- rCv2g/6fG9tF38jLlsAg7zcml2IjHabE0AfLezps5NQh71Axx/tfzd4lgFa2VsGIe8pghxksVIL6w0dJqa8W2A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB3626
-X-OriginatorOrg: intel.com
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="AEMBZK0v2vryGKWd6bBAOuAZoZT7MNdlR"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 25 Aug 2022 10:18:08 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57897
+ <yocto@lists.yoctoproject.org>; Thu, 25 Aug 2022 14:30:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57898
 
-Hi Everyone,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--AEMBZK0v2vryGKWd6bBAOuAZoZT7MNdlR
+Content-Type: multipart/mixed; boundary="EEGMU4SEy7yIOXDEPzsFuOjA9cOoe6l8w";
+ protected-headers="v1"
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+To: Yocto <yocto@lists.yoctoproject.org>
+Message-ID: <0c8260c2-0da1-7566-3f9a-e90d4995b45b@ibeeto.com>
+Subject: Dependency for binary package
 
-QA for yocto-3.1.19.rc1 is completed. This is the full report for this rele=
-ase: =20
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
-h=3Dintel-yocto-testresults
+--EEGMU4SEy7yIOXDEPzsFuOjA9cOoe6l8w
+Content-Type: multipart/mixed;
+ boundary="------------E94D06C3866260F8AA732608"
+Content-Language: en-US
 
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects.
+This is a multi-part message in MIME format.
+--------------E94D06C3866260F8AA732608
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-No new issue found.=20
+I am packaging a binary package that has been built with the SDK created =
+
+with the exact same configuration.
+
+During do_package I am getting an error that a dependency on=20
+libGLESv2.so()(64bit) cannot be met. Adding mesa to RDEPENDS does not=20
+resolve the issue. I can bypass it in the recipe by adding file-rdeps to =
+
+INSANE_SKIP. However, then when the rootfs is created libdnf complains=20
+that the dependency on libGLES is not met and aborts.
+
+The application works just fine on the target if I copy it manually to=20
+the rootfs but that's not the best thing to do. It should be packaged=20
+and installed.
+
+Unfortunately I don't understand well enough how these checks work and=20
+why they are complaining about it. Maybe somebody can shed some light on =
+it.
 
 Thanks,
-Jay
-> -----Original Message-----
-> From: qa-build-notification@lists.yoctoproject.org <qa-build-
-> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
-> Sent: Tuesday, 23 August, 2022 5:59 AM
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [qa-build-notification] QA notification for completed autobuilde=
-r
-> build (yocto-3.1.19.rc1)
->=20
->=20
-> A build flagged for QA (yocto-3.1.19.rc1) was completed on the autobuilde=
-r
-> and is available at:
->=20
->=20
->     https://autobuilder.yocto.io/pub/releases/yocto-3.1.19.rc1
->=20
->=20
-> Build hash information:
->=20
-> bitbake: 17be38290d1e971cd89785e6bf44caef0a6416f8
-> meta-agl: 8ce71214c1935c2160d139140972f328afacabee
-> meta-arm: 69547052727a461f33967e64630aa03b34a7eadd
-> meta-aws: bc38cc397e98c6d6d8d4b701de5944f72d169108
-> meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
-> meta-intel: 8ed6f20cfb116e88e573ee6a08637aa5ac12e1c5
-> meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
-> meta-openembedded: f22bf6efaae61a8fd9272be64e7d75223c58922e
-> meta-virtualization: a63a54df3170fed387f810f23cdc2f483ad587df
-> oecore: a3cba15142e98177119ef36c09f553d09acf35ef
-> poky: 4aad5914efe9789755789856882aac53de6c4ed3
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
->=20
->=20
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#173): https://lists.yoctoproject.org/g/qa-build-
-> notification/message/173
-> Mute This Topic: https://lists.yoctoproject.org/mt/93192448/4899463
-> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-
-> notification/leave/10406805/4899463/715389995/xyzzy
-> [jay.shen.teoh@intel.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->=20
+Rudi
 
+
+--------------E94D06C3866260F8AA732608
+Content-Type: application/pgp-keys;
+ name="OpenPGP_0x8D8CA82927339B75.asc"
+Content-Transfer-Encoding: quoted-printable
+Content-Description: OpenPGP public key
+Content-Disposition: attachment;
+ filename="OpenPGP_0x8D8CA82927339B75.asc"
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvDQ=
+pe+
+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ/Qymy=
++7C
+bh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969cQD/S9LNn=
+dnK
+5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM3sPiHrF+Y2HTd=
+K7j
+7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEBAAHNKlJ1ZG9sZiBKI=
+FN0
+cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgAIQUCWFAUBAIbAwULCQgHA=
+gYV
+CAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf03GsVMG6C5QOLaPx6rOgj5qexC=
+H3r
+fYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBktxioE384/51QTIfCmW8ZG5X0cMC5d=
+38L
+Fvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xllpeOfKQD3wn99w5dzXYhvajXCWwAjjpWr=
+R84
+ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+wXl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq=
+4x5
+LZhUhGYoqbYwNy9imoBkUAZkbbViNOtXzaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBh=
+jVL
+mLHvzsBNBFhQFAQBCADXoLKCuF485eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOm=
+Tqk
+3fb9+Ao6C6IliC9ZRXyAVLD/RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwR=
+IFp
+PBpxHRrZnDdEd5IKsy+zw6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDsp=
+JSH
+WMBh0OMKDeBik5wlsvtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/=
+mCB
+CZ+IKhBQR36vtUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIA=
+AkF
+AlhQFAQCGwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2=
+LYU
+pLNjs4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9M=
+byE
+fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8TzY=
+f9m
+2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/NlouvceP41ts=
+C5d
+axZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/ANROZj4g=3D=
+=3D
+=3DLHwf
+-----END PGP PUBLIC KEY BLOCK-----
+
+--------------E94D06C3866260F8AA732608--
+
+--EEGMU4SEy7yIOXDEPzsFuOjA9cOoe6l8w--
+
+--AEMBZK0v2vryGKWd6bBAOuAZoZT7MNdlR
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsB5BAABCAAjFiEEVg4uKeQrdCNuC2kVjYyoKSczm3UFAmMHh34FAwAAAAAACgkQjYyoKSczm3Wj
+iQf+Jdc7leHVDbqz+QIn7WigoY14eDU+6KXKfwy33GoAH/s58mcLgQ69yX4GHp/sSceE1htA+NsD
+b0RMTBudEKQ5NQbFU22/iuYNI0JfHNgqQnbKdKiRJxK9FHkTBsWKEZ/dhOU2O0Lk9GRRJIVINKji
+Gmx3V/7DQFeDmN46KqjTnZO2XSdk9r8V817ism/4o5/4JoHmqSofjHUr9esMTVT3ITV2dcT1d4+e
+gFkIDsQ4wdi7vdAyr4BHqt/bUkU0vmxU2TQdT7mmRcYySzv3/iidMMkquFxFcE5wYVwYFUAojR1a
+UXF/Y0WszQdI79jeboiVDZczmj+TpJ0q0c/1Ls6Y8g==
+=EAEg
+-----END PGP SIGNATURE-----
+
+--AEMBZK0v2vryGKWd6bBAOuAZoZT7MNdlR--
 
