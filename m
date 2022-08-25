@@ -1,310 +1,232 @@
-Return-Path: <alexander.duda@vector.com>
+Return-Path: <jay.shen.teoh@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8A13BC04AA5
-	for <webhook@archiver.kernel.org>; Wed, 24 Aug 2022 23:10:15 +0000 (UTC)
-Received: from de-smtp-delivery-103.mimecast.com
- (de-smtp-delivery-103.mimecast.com [194.104.111.103])
- by mx.groups.io with SMTP id smtpd.web09.17880.1661382605608767938
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8BFB9C3F6B0
+	for <webhook@archiver.kernel.org>; Thu, 25 Aug 2022 10:18:08 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by mx.groups.io with SMTP id smtpd.web08.22252.1661422687281083557
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Aug 2022 16:10:06 -0700
+ Thu, 25 Aug 2022 03:18:07 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@vector.com header.s=mimecast20200527 header.b=Qsw+ZFtf;
- spf=pass (domain: vector.com, ip: 194.104.111.103,
- mailfrom: alexander.duda@vector.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vector.com;
-	s=mimecast20200527; t=1661382603;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type;
-	bh=0MT4MDllRUwLNKJG3FxqrFJKbbVvo4fNOBQ20zyA1OM=;
-	b=Qsw+ZFtfvDpUoSOHPVsv4IRPUsQ0wt6szlBkvR0pHFC35szgmpq5iVKiaNnN/0GgOfehzA
-	LZ9lCMtl9LYIgo23ZT7UrcF48WFfvOSVlZW6EDmWZXk+Tp2yebVCHCbzqbPDv+BaISy87v
-	ACxtzIYXcb0VC89jfdGple+gKRHoUcE=
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com
- (mail-am7eur03lp2239.outbound.protection.outlook.com [104.47.51.239]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- de-mta-14-q9lUwo8xOBaLvakX_cngyQ-1; Thu, 25 Aug 2022 01:10:02 +0200
-Received: from DB7PR01MB4379.eurprd01.prod.exchangelabs.com
- (2603:10a6:5:2f::29) by PAXPR01MB9580.eurprd01.prod.exchangelabs.com
- (2603:10a6:102:2c1::5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.15; Wed, 24 Aug
- 2022 23:10:00 +0000
-Received: from DB7PR01MB4379.eurprd01.prod.exchangelabs.com
- ([fe80::c0a3:4a60:18f4:a533]) by DB7PR01MB4379.eurprd01.prod.exchangelabs.com
- ([fe80::c0a3:4a60:18f4:a533%6]) with mapi id 15.20.5546.022; Wed, 24 Aug 2022
- 23:10:00 +0000
-From: "Duda, Alexander" <Alexander.Duda@vector.com>
-To: "Yocto General List (yocto@lists.yoctoproject.org)"
-	<yocto@lists.yoctoproject.org>
-Subject: Failing to add modphp httpd.conf missing php-native
-Thread-Topic: Failing to add modphp httpd.conf missing php-native
-Thread-Index: Adi4DluW8aKgk2U3QPaGAhtN9EvFlw==
-Date: Wed, 24 Aug 2022 23:09:43 +0000
-Deferred-Delivery: Wed, 24 Aug 2022 23:09:01 +0000
+ dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel
+ header.b=hm5XFvt+;
+ spf=pass (domain: intel.com, ip: 134.134.136.20,
+ mailfrom: jay.shen.teoh@intel.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1661422687; x=1692958687;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   content-transfer-encoding:mime-version;
+  bh=Edu3XXBtfD5aPn6b8gp6YMkjIy51J1RH8+qN7CLm40o=;
+  b=hm5XFvt+hqR5XH/b3ryHmQtV4eCn5gnFPOt/rOsc0F5i3T95pJOiuEaH
+   fWELy6LdBNShfX9Evahlx1e2A0yYmRgQnWBZgCECXtCjVBOyldTh9W1AJ
+   vHO7Dv1eI78dKy00OqEc95fpKkDrXeCf/nGwy37kAx2gWTcBGdTvPar73
+   1TRY9Ehz+MosC1PO398gb5hRQfxe+pGzwk+BR3j1SmetGpRQlmGJ2Acx3
+   pu6OAtfDiWq2A4Ghic/NgnA8LE3nb6CY9X5czITDDkGl7a4j8zOvkc23E
+   QCT7wjoRpNj1eoS2zccrFx3rI6YohZA7jjgJRs5dEi1CqFgDgj0g2u2+M
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10449"; a="281173820"
+X-IronPort-AV: E=Sophos;i="5.93,262,1654585200";
+   d="scan'208";a="281173820"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2022 03:18:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,262,1654585200";
+   d="scan'208";a="610117466"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+  by orsmga002.jf.intel.com with ESMTP; 25 Aug 2022 03:18:06 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Thu, 25 Aug 2022 03:18:06 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Thu, 25 Aug 2022 03:18:05 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Thu, 25 Aug 2022 03:18:05 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.42) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Thu, 25 Aug 2022 03:18:05 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fOiK+GA/HftJnFxm5dkYT/I3CLiWDPNJ+qJ+HzQeCTlGSWIaUuONe4WPl7wEGz3KErVbfGHQxyqyXLFjAsB08nOPtTNoER3Zm5tEZzcf2nABGOqmNLPSz5I6T62UQIrdeevovjsORujKVp0/U+dR0sw6Z0zGKX/yB4wATkjGTKr7f4HdHGf45i9KNsZAbt1aFccWUIaR3rjyix8H0THBC8G28Lqp4KJGl6ozvKRaHIdRtNkYEA7nbj6i4RZd0JNy//i9yF9mCQHhieIO+U0AsXMCAwd80eJxBwleGxPxW0JvD/V+e+n7LemmkhFa7BQiWkFG4ER7u7xOq1mXJ6nr4g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EebWAoDCACeR8ItDnTkfOtczFR9lo3RFgG7X2H1DnE4=;
+ b=lvs+FWFhyRUFHij52dfKNVAXdwUcoH0DU+Glto7aiSd2fqhTU/ZSSckXc4Epsje+Rq7TcDW3+66BaxlT/lTCN4jmUO8vGlpziKX712Vgvl1yat3OR0MoV8Xho5CuWskLOw39ld6fwuSsAMXXCMbdklLyAvnzWAz8n6AT5ZWy1dEm4/UZEx6bxBFBjigU1yZRfbNW75i0xMaA+fGRIRYQdh7GSKW4EI9O2jRptDEuhX1Dl+wOMEevmMKCpa3mNtPxG8GTWrceT6ts3GT/aXrC3ZacqBlp7DmtK9C4uY2SzgmniyBx1OCg83TKU3gpvH8hGpZCRGDZ7aWDiiQWUJhafg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM5PR1101MB2348.namprd11.prod.outlook.com (2603:10b6:3:a8::16)
+ by DM6PR11MB3626.namprd11.prod.outlook.com (2603:10b6:5:146::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.14; Thu, 25 Aug
+ 2022 10:18:04 +0000
+Received: from DM5PR1101MB2348.namprd11.prod.outlook.com
+ ([fe80::9d81:b1a5:afe4:dc6a]) by DM5PR1101MB2348.namprd11.prod.outlook.com
+ ([fe80::9d81:b1a5:afe4:dc6a%7]) with mapi id 15.20.5566.015; Thu, 25 Aug 2022
+ 10:18:04 +0000
+From: "Teoh, Jay Shen" <jay.shen.teoh@intel.com>
+To: "qa-build-notification@lists.yoctoproject.org"
+	<qa-build-notification@lists.yoctoproject.org>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>
+Subject: RE: [qa-build-notification] QA notification for completed autobuilder
+ build (yocto-3.1.19.rc1)
+Thread-Topic: [qa-build-notification] QA notification for completed
+ autobuilder build (yocto-3.1.19.rc1)
+Thread-Index: AQHYtnJbQIJIOxjT40e45Lm87YmpB62/atrQ
+Date: Thu, 25 Aug 2022 10:18:04 +0000
 Message-ID: 
- <DB7PR01MB43798A687043647DA3497297FA739@DB7PR01MB4379.eurprd01.prod.exchangelabs.com>
-Accept-Language: de-DE, en-US
+ <DM5PR1101MB23486DE735B20F012990D33BBB729@DM5PR1101MB2348.namprd11.prod.outlook.com>
+References: 
+ <01010182c7908155-549934cb-cc80-456d-8a05-57f85ccb8c14-000000@us-west-2.amazonses.com>
+In-Reply-To: 
+ <01010182c7908155-549934cb-cc80-456d-8a05-57f85ccb8c14-000000@us-west-2.amazonses.com>
+Accept-Language: en-US
+Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
+dlp-version: 11.6.500.17
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: cb2977bd-5fc3-4bff-e551-08da8625c520
-x-ms-traffictypediagnostic: PAXPR01MB9580:EE_
+x-ms-office365-filtering-correlation-id: 49c5fac9-2cf9-4513-da3e-08da868318d5
+x-ms-traffictypediagnostic: DM6PR11MB3626:EE_
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0
+x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info: 
- t+5TL3tY6Ll2r/XC3JnqYrFF/x4raH1wF7DS2GyBeofEuOKMt2olUGChbcyMZIGkBEn1hhI7BemAgvAdJMTYIAJ0N/7caANKucn0cXIjPwYB6B6TTqs3KblUSmqME0CdBIXBn2lAWTazdeEL7u+viqNs7of2DHZ4rx05cOARes04VKuS7BAKIURqVeJu+wnxijIgo+lQuyQqux2C42jfX+GdvtYe8fhkZZuzK0q+w9DC5skQxL0v3nV4kGcpTv14bSlnyxDPH6leUQykfdXpxb7X6Z5ZWUDuL+pxQI1VZnRjjbaN1wbGLQ83CkjYXPCsUbY2fPZ88j3ELHT1y4OW+ctpO8R/ruysP4b4dueRyvpGHRECKzmCzxNkCwnCglfH7v5WPzct0ffKCMNJD30YqxFGySar73LdXFg8a29ulspHreu7TTJJmZzcGMEKx+Tb7AbD3txNmAKaSCwN85AGszleDx+6LUkIpnXXYV2Uoh3n5DYWdRE48wGlIR+Irf6vLLThefkKDDZQZu07FzToNpgcNh5yxrZiHAxR8SREG6QDpjRcnYXGACnsOwC574hUn7cHK4pnr8agBoFgOXCct7owFecVe8zNplGQkFE5zndy7HXr2XpQlSZPK4TVpdv/T5fNRvX3WT9VRqShzNs5vK7uy3i/7mBeWv79eyV7QugVkByBKBiTPjlFESn+uCeILnq6XvEwyopGjUe8oAt5UaQ9u7yiO6sP1vM1lVWeEm4CvIFoaXBr4J6mF6/9QMhy6cfRdjK0x/Y1j4gcGUmGEQ==
+ mDRuqu6fOpXXWRq2TBW20vjyrlKIMaozO/Y8rlyKmmuIwIlTZuF299Tnl7H6VcTMHgcluBHMFw1OyWJ2oNINFGiErreIx9vjz2QCIHBAFduqR0soASOplDdJzoe8DJkMY4Qdx7qY1AecDOt7DCCq+RQwPZKGRUYU5cWJfIMz+DyvQ5Vds17nCsdIrQPmhtLhy+V5M2gF3GudPyPsJZz7cvMSGFsgq9+8XYznQIrCcySgz9ynG0lXoDyt2S0Wnjokaj2/jjJ7as4pH7KAoBPqTs3EEvsSuj0rAyoze1tuULZL50Zyqcf7Qst16WbzOctGIPhOk5SQRQiflIsehgykGe/YUPBAbsEyVis3EZnT0BvN4CuBYPvwpVUlc8+X48NKq+GDLJwcbqI/HoNanv3wwaFH7hvlKsAfsP8Fu+urmA9b5duMmktWPV5pAZG8MaUWRQeaasPxdE/QR5waI3PklfnLqYBnxK0EoVeS5FG+RxEmjIPBtpu489p8mQ8Kf+/NMysPYnBgvQKMB5AmBFM+Ni1kKPGntlP8gpd3qUctfgtATKsQX55/c4E1uM8hQVocINoqUybGIVAeZNmvG4Su0zBtgkXCulVSOvZLRrG9t1H/Eco22B/PWhmJhh9WgukFhtncm7n99ukEISpnyg/Jc9TnUnKi+kHDy18dXSTYf8Kz6Z7JSKIDUqa5B3JmcmApSTEXm7k70E3XHFZwLU29UpFptmC42LIAr2jBV0/ULhD7s3Cpbw0qGe2xSqR5y1ZVwXjurkz5CaZFBIu+zz7/O6e2/gjBsO39a952WnoJ+WW/IhbYdO/sS6U4aBsQtOBAfnDJu1OZSIpeB3Yw2Y6x3w==
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR01MB4379.eurprd01.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39860400002)(396003)(366004)(136003)(376002)(346002)(186003)(6916009)(122000001)(38070700005)(83380400001)(316002)(71200400001)(26005)(5660300002)(33656002)(66446008)(76116006)(66476007)(64756008)(7696005)(52536014)(66946007)(9686003)(66556008)(38100700002)(6506007)(8676002)(86362001)(478600001)(2906002)(41300700001)(8936002)(55016003)(6666004);DIR:OUT;SFP:1101
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR1101MB2348.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(39860400002)(136003)(396003)(376002)(366004)(346002)(86362001)(55236004)(9686003)(38070700005)(41300700001)(53546011)(26005)(7696005)(6506007)(110136005)(71200400001)(38100700002)(478600001)(122000001)(83380400001)(966005)(82960400001)(55016003)(186003)(15650500001)(2906002)(5660300002)(8936002)(76116006)(66446008)(316002)(8676002)(33656002)(66476007)(66556008)(52536014)(64756008)(66946007);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?kGxDlctAR8BABlVudrbLQLNXG8Xyjm1KxXhc/kCMn72cDG1wtgfWyR1KIpMw?=
- =?us-ascii?Q?wcsaZe+/KQrDdpwbAGomwHXjMkWKkUlkkhF3VKpU/ZD+5fZipNpTo88Mhs4Z?=
- =?us-ascii?Q?S5k46NfTvn8fWupzWeOj/TNjUYEBhDuCRmjyGSAobF0/mr6fsXE/wAhCXeD9?=
- =?us-ascii?Q?ONoepdMGsWL6bB+mrx1r6vnwgzI/fH6t3b0ys1XTd0/ZG1BaAf3bpxrk/EWH?=
- =?us-ascii?Q?GXHLmpnIaHK5qlLJgZobJJFLWEZrOGLCMdw8eLcA7gApKhXtNgGuyRRf6qw4?=
- =?us-ascii?Q?me39vlHDMS+ElShcQvD9/WzOZEc5BP3x+1W6JUhJPQXd40at3i/TeSSf1JxJ?=
- =?us-ascii?Q?6YS41zeb4XNgnIt19n4QhapPfTWuozP3JBqebmEUOYjMB7TVS8qhbXTJCwPp?=
- =?us-ascii?Q?2DeJ5oTdmHuCKxUtQrnpaENPrd9paxXWeWT4v3PTAgY5NeLFiTVXYXXQC0a1?=
- =?us-ascii?Q?oylUf9dlYomP8fjnFap6lThkb2Mc2n5VRzQ2i6vGpgfS5hNh6snSDQ3N7jqV?=
- =?us-ascii?Q?aqUcEqekbkPkMjO4fENDy1Ppc5DdqT1GrYX3Rhpl5LFiGusPdfKnQRk8OVBI?=
- =?us-ascii?Q?TMQfVD0yucZUe8owLWltMbVjeE5l7a92BpKok52fxv9XdPQAMg4B3LwFL/5A?=
- =?us-ascii?Q?MyN8ur1TV5jRMeI2KjDQhDW2bjqte+tUjgVzySJpnFoYUDb3If5oW60Dpb7L?=
- =?us-ascii?Q?8hil7g+XbzKJqqVWvTU02EjUMf6R1nhWC12g0UN/ZNPKuUgYfjtOxCio9O0R?=
- =?us-ascii?Q?ISMq9Cg5zs7AfANRJ2B+i8AZuwL0d7FgbSoyBh98qwHAClzTpWApbjFq93Uv?=
- =?us-ascii?Q?v6DAey+b9iNYUZEw3pLFisCma/D49fMCtcnnig9GitYjaOc79o5shkFE+CLa?=
- =?us-ascii?Q?9dOIq1G39duihpgQO+h0QPZ8qi23wrvQueN17C3rg03C18/WguKoS8rxC9XP?=
- =?us-ascii?Q?BdOMbdP8DE1LN9EJoP4LixT3GLKP9TQnLwUDCFbeXnhGXnGjMuiIS0z5zZkg?=
- =?us-ascii?Q?xDzb/enN70NzpWWBsIncco1XwYaIHXdzrAn4Gr4PGG4Vox2HVnj9tdcEJ2yJ?=
- =?us-ascii?Q?MjhSXQ77SM1kH1cwmrh/gfcK58KBxyAf6xjNmqFayZFYgkNrs0KwiceluITK?=
- =?us-ascii?Q?eGXKrtuizvelXtEADa+uEx/6iLUth5aS+Ty+r8e3jlHGYF3PTTAMkxosQa9e?=
- =?us-ascii?Q?nl7/IkBx2K6D5dBKZ0vB03GElJDkuu8p4UvAGoSey6gHYnROxLnto79ghYSC?=
- =?us-ascii?Q?Ht7m2GYIhelJhBdK3maxXXNWFZilXfztD5r0ZqbwvK1UQ3Gf65vliaifKI3K?=
- =?us-ascii?Q?HxJgzO8AEWHz7DZd5R6CISizvNh3H8QXpm9Kxruiabcs/M/kzgOl35xcpz1Q?=
- =?us-ascii?Q?K6fpeWL4x33qzsw32cL3FHZ9nGdCVvgIQY3M5z1fvtVfChXFKWZ6gynhnUKf?=
- =?us-ascii?Q?sFHBuKgx7Dd5e6H6S9KYHbAuc0M592QeBqJAW0N91U4BCkmiBkZ0FWjhXjbU?=
- =?us-ascii?Q?HOjDAqsMkBX0XHpeRP2u5NKrjmRrIJ+muj0YBeFQIvbXcG+g++y5HKxPYUkI?=
- =?us-ascii?Q?2TjJqIKwc/fKMGvR/EwZWuLDthL6uulCPZt3zbS5?=
-x-mc-unique: q9lUwo8xOBaLvakX_cngyQ-1
-x-originatororg: vector.com
-x-ms-exchange-crosstenant-authas: Internal
-x-ms-exchange-crosstenant-authsource: 
- DB7PR01MB4379.eurprd01.prod.exchangelabs.com
-x-ms-exchange-crosstenant-network-message-id: 
- cb2977bd-5fc3-4bff-e551-08da8625c520
-x-ms-exchange-crosstenant-originalarrivaltime: 24 Aug 2022 23:10:00.4900 (UTC)
-x-ms-exchange-crosstenant-fromentityheader: Hosted
-x-ms-exchange-crosstenant-id: c844b2b9-7a68-473f-b386-e2e1b968279d
-x-ms-exchange-crosstenant-mailboxtype: HOSTED
-x-ms-exchange-crosstenant-userprincipalname: 
- Fr/YrT3oNPdpBvLJFELhPtrX2QJELteaf87Ma9jqqlqdz9Vv7pAb+OahLzQeeiSrVtiRoNa4ZZTM+9n8MdgcDrYUkjtULGuvL4kI2Zpt7Cg=
-x-ms-exchange-transport-crosstenantheadersstamped: PAXPR01MB9580
+ =?us-ascii?Q?KYU/Rmin5lpbSpvh9JgO/uFAUmGzUy/3soq9cazN0JY9YL2nLkFcaAvNDt9J?=
+ =?us-ascii?Q?5BX5MwzEA4vJFQfTSunUJkXVg/v39xnrs1KxTfAOhRuIExZ/N5E5Hnsnwd+z?=
+ =?us-ascii?Q?1jSTTtPyDhWMYfaM3770cH8hJzEh/K9GA4xYqKp4vieuSivzgLIuVm+72iZv?=
+ =?us-ascii?Q?pFmIuB44ICHmgagIQequSZc0TIYoJH0UxLso8fft5TSYl1GE7LbQcLYSpEcG?=
+ =?us-ascii?Q?wY3e0rzy41X7BoDW8E5KRzQYRiPwljiAOXmN4hLtRq+smf6f/W0pshuW0iFw?=
+ =?us-ascii?Q?HaAaw05Wc0/B3LSX4QJVFDhzQ/NcNpDOL2ilVIX0bhWhLE8lrUiNRGMYRitR?=
+ =?us-ascii?Q?+inCg0DbCFZ6wmWvLQmPxXIiuVagGRAzARjZ9A8hgQ7cqcjTykmt061np3Ek?=
+ =?us-ascii?Q?LHeRH1kKhgfxrOAyDKEqSsu9pXFgFS316gCmr1750CMy/9EBXPZWALw8ACdo?=
+ =?us-ascii?Q?ZMDEP0brfrk56bGQBdM29MT2b5N0d99a0Nl78FocQ2+Wp46rT1RmO3r19We7?=
+ =?us-ascii?Q?8AIDnULblp2RcBH8ZiULswNaaXDxKHqYbDAkFI1tQTAWoWNbKds1J433n5l5?=
+ =?us-ascii?Q?N/SWRp2hjtWNF3FGTx7+1zkLCpWG4no6boBtfHB1Tu1Fz2C270fl5vQxRegk?=
+ =?us-ascii?Q?tbv5oJ6wQ8Yd/DX8b/8+RfgXEc4N31gCtxB1jr2X66zcX/c1TJ5P/hY8b7vY?=
+ =?us-ascii?Q?8vuy+HZPKGdTEsnRFMA9ZWMTjDE/OZJkJrQyQrM8PalW9ZqrWvxe4Wir3kZl?=
+ =?us-ascii?Q?gzXoweihH6Cl56RMl8ewMFXjJOoTvLLmjuVZ3v5CGmNGhC0Q0kW82sAC3zoy?=
+ =?us-ascii?Q?MY/LLCbd1JlwelP+Ack7RS65NIF8Vipjd0K2ej1a1xE2k/pSb44YXBijsB1R?=
+ =?us-ascii?Q?O4fWNCgHAayN+bC8j7nrrNlcYvrRggYbUks2NdmzwdRjZxnq19Q2FlpHgsLr?=
+ =?us-ascii?Q?ZZYsmhNUxPDxV2FzbcbfatxmZDgh8jGWfHr9ulouzqVf4EeGS8O0XLIvhiLn?=
+ =?us-ascii?Q?qvRdgmwtCADOOSvKBOeqUtmNsIdQW47JFH1IBnsE+wG70rvd9IMq4VgmlL12?=
+ =?us-ascii?Q?KulmTgw9MBzHjAlPLK7V+ArcZlRFJYeOw0LXyGanGd6r6dkdBZGeLVSwTCyb?=
+ =?us-ascii?Q?fkkuxzSDYnvjlA9pcWzDn/G6695FyFVYcu0pF6EE1KeiPPSECLdwJsVROYob?=
+ =?us-ascii?Q?4wKvDVCw+pJikaEZNsnjR2hLUIpM8CdY29XfaaBs4hBCsb6crwRCqE7+VbsI?=
+ =?us-ascii?Q?JPBMWbyEHYjepIltNbPyxJO4Wbq9tkm1Ev2qQaZgW+hxMtqzuW2jfTYLWwDW?=
+ =?us-ascii?Q?NtAu8jRlXIlwNWbQNtDpHsSUF058YLQH8AM5UbmypGPdZ+ChwVpgBRAAOHkn?=
+ =?us-ascii?Q?fmaRWagbh8qBnPKGZ3MMtRMalgQ/KyQS4B5IzFRFxJr2QKGprq71BhI/fkmL?=
+ =?us-ascii?Q?pbsxOrIzmeXWU/JmHKEcWtwJ3MqWoY33Vi5SwXrW/cBnF2GAkel56kW8tOKr?=
+ =?us-ascii?Q?PocO9M+hhLskb3OsBZf1VjDLuPiNZbMgn+vVB03L24k457mpdQ90dZIF1vxc?=
+ =?us-ascii?Q?txrVIkJ27LmxbTvsCwesNXjlP9HqUyycjs8+iFkb?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: vector.com
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_DB7PR01MB43798A687043647DA3497297FA739DB7PR01MB4379eurp_"
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: 
+ DM5PR1101MB2348.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 49c5fac9-2cf9-4513-da3e-08da868318d5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Aug 2022 10:18:04.1696
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 
+ rCv2g/6fG9tF38jLlsAg7zcml2IjHabE0AfLezps5NQh71Axx/tfzd4lgFa2VsGIe8pghxksVIL6w0dJqa8W2A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB3626
+X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 24 Aug 2022 23:10:15 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57896
+ <yocto@lists.yoctoproject.org>; Thu, 25 Aug 2022 10:18:08 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57897
 
---_000_DB7PR01MB43798A687043647DA3497297FA739DB7PR01MB4379eurp_
-Content-Type: text/plain; charset=WINDOWS-1252
-Content-Transfer-Encoding: quoted-printable
+Hi Everyone,
 
-Hello yocto users,
+QA for yocto-3.1.19.rc1 is completed. This is the full report for this rele=
+ase: =20
+https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
+h=3Dintel-yocto-testresults
 
+=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
+No high milestone defects.
 
+No new issue found.=20
 
-I'm trying to add modphp to my project, since there isn't a dedicated modph=
-p recipe anymore I added an php bbappend with:
-
-
-
-PACKAGECONFIG:append =3D " apache2"
-
-
-
-According to meta-openembedded/meta-webserver/README
-
-
-
-But bitbake is telling me that during compile of php-native apxs is missing=
- the httpd.conf
-
-
-
-DEBUG: Appending .bbappend file /home/.../recipes-devtools/php/php_%.bbappe=
-nd to /home/.../meta-openembedded/meta-oe/recipes-devtools/php/php_7.4.21.b=
-b
-
-DEBUG: Appending .bbappend file /home/.../build/workspace/appends/php_7.4.2=
-1.bbappend to /home/.../meta-openembedded/meta-oe/recipes-devtools/php/php_=
-7.4.21.bb
-
-...
-
-DEBUG: php-native-7.4.21-r0 do_install: Executing python function autotools=
-_aclocals
-
-DEBUG: php-native-7.4.21-r0 do_install: SITE files ['endian-little', 'commo=
-n-linux', 'common-glibc', 'bit-64', 'x86_64-linux', 'common']
-
-DEBUG: php-native-7.4.21-r0 do_install: Python function autotools_aclocals =
-finished
-
-DEBUG: php-native-7.4.21-r0 do_install: Executing shell function do_install
-
-ERROR: php-native-7.4.21-r0 do_install: oe_runmake failed
-
-ERROR: php-native-7.4.21-r0 do_install: ExecutionError('/home/.../build/tmp=
-/work/x86_64-linux/php-native/7.4.21-r0/temp/run.do_install.104056', 1, Non=
-e, None)
-
-ERROR: Logfile of failure stored in: /home/.../build/tmp/work/x86_64-linux/=
-php-native/7.4.21-r0/temp/log.do_install.104056
-
-...
-
-| apxs:Error: Config file /home/..../build/tmp/work/x86_64-linux/php-native=
-/7.4.21-r0/image/home/..../build/tmp/work/x86_64-linux/php-native/7.4.21-r0=
-/recipe-sysroot-native/etc/apache2/httpd.conf not found.
-
-
-
-Is there a way to deploy a dummy httpd.conf to this location or any other f=
-ix to get this working?
-
-
-
-Best regards,
-
-
-
-Alex
-
-
-
-
-
-
---_000_DB7PR01MB43798A687043647DA3497297FA739DB7PR01MB4379eurp_
-Content-Type: text/html; charset=WINDOWS-1252
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-=09{font-family:"Cambria Math";
-=09panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-=09{font-family:Calibri;
-=09panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-=09{margin:0cm;
-=09font-size:11.0pt;
-=09font-family:"Calibri",sans-serif;
-=09mso-fareast-language:EN-US;}
-.MsoChpDefault
-=09{mso-style-type:export-only;
-=09font-family:"Calibri",sans-serif;
-=09mso-fareast-language:EN-US;}
-@page WordSection1
-=09{size:612.0pt 792.0pt;
-=09margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-=09{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:bre=
-ak-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Hello yocto users,<o:p></o:p></=
-span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I&#8217;m trying to add modphp =
-to my project, since there isn&#8217;t a dedicated modphp recipe anymore I =
-added an php bbappend with:<br>
-<br>
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">PACKAGECONFIG:append =3D &quot;=
- apache2&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">According to meta-openembedded/=
-meta-webserver/README<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">But bitbake is telling me that =
-during compile of php-native apxs is missing the httpd.conf<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">DEBUG: Appending .bbappend file=
- /home/&#8230;/recipes-devtools/php/php_%.bbappend to /home/&#8230;/meta-op=
-enembedded/meta-oe/recipes-devtools/php/php_7.4.21.bb<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">DEBUG: Appending .bbappend file=
- /home/&#8230;/build/workspace/appends/php_7.4.21.bbappend to /home/&#8230;=
-/meta-openembedded/meta-oe/recipes-devtools/php/php_7.4.21.bb<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&#8230;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">DEBUG: php-native-7.4.21-r0 do_=
-install: Executing python function autotools_aclocals<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">DEBUG: php-native-7.4.21-r0 do_=
-install: SITE files ['endian-little', 'common-linux', 'common-glibc', 'bit-=
-64', 'x86_64-linux', 'common']<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">DEBUG: php-native-7.4.21-r0 do_=
-install: Python function autotools_aclocals finished<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">DEBUG: php-native-7.4.21-r0 do_=
-install: Executing shell function do_install<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">ERROR: php-native-7.4.21-r0 do_=
-install: oe_runmake failed<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">ERROR: php-native-7.4.21-r0 do_=
-install: ExecutionError('/home/&#8230;/build/tmp/work/x86_64-linux/php-nati=
-ve/7.4.21-r0/temp/run.do_install.104056', 1, None, None)<o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">ERROR: Logfile of failure store=
-d in: /home/.../build/tmp/work/x86_64-linux/php-native/7.4.21-r0/temp/log.d=
-o_install.104056<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&#8230;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">| apxs:Error: Config file /home=
-/&#8230;./build/tmp/work/x86_64-linux/php-native/7.4.21-r0/image/home/&#823=
-0;./build/tmp/work/x86_64-linux/php-native/7.4.21-r0/recipe-sysroot-native/=
-etc/apache2/httpd.conf not found.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Is there a way to deploy a dumm=
-y httpd.conf to this location or any other fix to get this working?<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:black;background=
-:white;mso-fareast-language:DE">Best regards,</span><span lang=3D"EN-US" st=
-yle=3D"background:white;mso-fareast-language:DE"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"background:white;mso-f=
-areast-language:DE"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"mso-fareast-language:D=
-E">Alex<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-</div>
-</body>
-</html>
-
---_000_DB7PR01MB43798A687043647DA3497297FA739DB7PR01MB4379eurp_--
+Thanks,
+Jay
+> -----Original Message-----
+> From: qa-build-notification@lists.yoctoproject.org <qa-build-
+> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User
+> Sent: Tuesday, 23 August, 2022 5:59 AM
+> To: yocto@lists.yoctoproject.org
+> Cc: qa-build-notification@lists.yoctoproject.org
+> Subject: [qa-build-notification] QA notification for completed autobuilde=
+r
+> build (yocto-3.1.19.rc1)
+>=20
+>=20
+> A build flagged for QA (yocto-3.1.19.rc1) was completed on the autobuilde=
+r
+> and is available at:
+>=20
+>=20
+>     https://autobuilder.yocto.io/pub/releases/yocto-3.1.19.rc1
+>=20
+>=20
+> Build hash information:
+>=20
+> bitbake: 17be38290d1e971cd89785e6bf44caef0a6416f8
+> meta-agl: 8ce71214c1935c2160d139140972f328afacabee
+> meta-arm: 69547052727a461f33967e64630aa03b34a7eadd
+> meta-aws: bc38cc397e98c6d6d8d4b701de5944f72d169108
+> meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
+> meta-intel: 8ed6f20cfb116e88e573ee6a08637aa5ac12e1c5
+> meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
+> meta-openembedded: f22bf6efaae61a8fd9272be64e7d75223c58922e
+> meta-virtualization: a63a54df3170fed387f810f23cdc2f483ad587df
+> oecore: a3cba15142e98177119ef36c09f553d09acf35ef
+> poky: 4aad5914efe9789755789856882aac53de6c4ed3
+>=20
+>=20
+>=20
+> This is an automated message from the Yocto Project Autobuilder
+> Git: git://git.yoctoproject.org/yocto-autobuilder2
+> Email: richard.purdie@linuxfoundation.org
+>=20
+>=20
+>=20
+>=20
+>=20
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#173): https://lists.yoctoproject.org/g/qa-build-
+> notification/message/173
+> Mute This Topic: https://lists.yoctoproject.org/mt/93192448/4899463
+> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-
+> notification/leave/10406805/4899463/715389995/xyzzy
+> [jay.shen.teoh@intel.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>=20
 
 
