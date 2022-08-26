@@ -1,298 +1,399 @@
-Return-Path: <peter.kjellerstedt@axis.com>
+Return-Path: <rudolf.streif@ibeeto.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 62908ECAAD4
-	for <webhook@archiver.kernel.org>; Fri, 26 Aug 2022 14:04:06 +0000 (UTC)
-Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
- by mx.groups.io with SMTP id smtpd.web11.37326.1661522636933748645
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6281BECAAA3
+	for <webhook@archiver.kernel.org>; Fri, 26 Aug 2022 17:38:27 +0000 (UTC)
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com
+ [209.85.214.174])
+ by mx.groups.io with SMTP id smtpd.web08.40241.1661535501933798953
  for <yocto@lists.yoctoproject.org>;
- Fri, 26 Aug 2022 07:03:57 -0700
+ Fri, 26 Aug 2022 10:38:22 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@axis.com header.s=axis-central1 header.b=nx9EXDtS;
- spf=pass (domain: axis.com, ip: 195.60.68.17,
- mailfrom: peter.kjellerstedt@axis.com)
+ dkim=pass header.i=@ibeeto-com.20210112.gappssmtp.com header.s=20210112
+ header.b=rXtJrl19;
+ spf=neutral (domain: ibeeto.com, ip: 209.85.214.174,
+ mailfrom: rudolf.streif@ibeeto.com)
+Received: by mail-pl1-f174.google.com with SMTP id x23so2152760pll.7
+        for <yocto@lists.yoctoproject.org>;
+ Fri, 26 Aug 2022 10:38:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1661522637;
-  x=1693058637;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:mime-version;
-  bh=jfm2VH2OkQ/++gPCp/iWq/cufDLnX0+/r9wqgfcc0Eo=;
-  b=nx9EXDtSxV1viL6O7G0MFeEyM5TNX7+T7qMeTig/M+k5HXtiyjNFrth4
-   33/rLp1VXOHTaA/frDagq3BpbiJ9qPQMc/bfaiCEkPkQ9QwVgeT5OhvrD
-   l3FPrQM4bvtFMcneb6A4D4rubmFV/uzcomFF6SDB0n3M5b1EKj2lYj5KO
-   GdE/1Egvd5zI3YZb+mGXwJGdr1kK7mU/tPJsItI4YBkGjhrzlHl2bpF0p
-   ffi2n+oVvx4gxYuSnhiDDkMNuWNA+cPC181NLWQ5A5Mewv4VjHZfNZRfb
-   o1dE6+X7yz4h0InbTmD1pJ9Ffu6VAmszhiC7Y3eirnsYsO1XDGVwmDIHw
-   Q==;
-From: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-To: forums <forums@bitflipper.net>
-CC: "Yocto (yocto@lists.yoctoproject.org)" <yocto@lists.yoctoproject.org>
-Subject: RE: [yocto] Bitbake + Patches
-Thread-Topic: [yocto] Bitbake + Patches
-Thread-Index: 
- AQHYtmlvNbypxdwqb0yGnilIBND8L627XtmAgAD8BwCAAHYkAIABRsYQgALmhgCAADsI8A==
-Date: Fri, 26 Aug 2022 14:03:53 +0000
-Message-ID: <9222c257155a4d5aa93db2f0f9d1047b@axis.com>
-References: <53C07165-3951-4450-B175-E323971C8DEC@bitflipper.net>
- <CAMKF1spvyQh1czn+HiKmppXBCO_tkor_3Ogfj6wguwA0x+tAyA@mail.gmail.com>
- <fcfe7d1380ab4d2598cff5004028d419@axis.com>
- <B58205E1-72E9-41F6-9A52-A440A62C3C6B@bitflipper.net>
- <899c12e4c6d34a4298b84b7abf022a82@axis.com>
- <0C54FD2B-AEAB-4425-9CEB-FFCA85458A16@bitflipper.net>
-In-Reply-To: <0C54FD2B-AEAB-4425-9CEB-FFCA85458A16@bitflipper.net>
-Accept-Language: en-US, sv-SE
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.0.5.60]
-Content-Type: multipart/alternative;
-	boundary="_000_9222c257155a4d5aa93db2f0f9d1047baxiscom_"
+        d=ibeeto-com.20210112.gappssmtp.com; s=20210112;
+        h=in-reply-to:mime-version:user-agent:date:message-id:subject
+         :autocrypt:from:references:cc:to:from:to:cc;
+        bh=AgISxqY2H3f9D5/kliCQhcA39RIn9ixBFy2fOfVbLEw=;
+        b=rXtJrl19oMUh+tCNGaMCbUzhNTmR/JtPtBz5SmxnwtHiU6wG0H0vj/F7zBddOQ3g9y
+         Xas/+L+hs9k4RqRvNA49C6+eWTMhM2bQs05e+MZaHDFYlAKbiUL9j7Ko4d5JjjEk9YjZ
+         Xux5vTFxYFYPuQLxeIH1XtZqdVKQ4yyy8GOcPzWay/dxXpM75asZ3YWx20F5wTtaRvtV
+         xgeiKi3gSZXjTS9iAs3PBY7dG8tEYNV7XdfH2AS1nFshUhw6/5DXL6ubnnANeh5mTRhD
+         hEalf2eymlbwe+1SQ4g+KXVPzpjAZmemlHe+YU+7s/1v3Jq729msSbqK1vLeLAs9yF0B
+         5GSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:mime-version:user-agent:date:message-id:subject
+         :autocrypt:from:references:cc:to:x-gm-message-state:from:to:cc;
+        bh=AgISxqY2H3f9D5/kliCQhcA39RIn9ixBFy2fOfVbLEw=;
+        b=zPC/FqIlXS0hvzMWST/PYtxj+cVaaE+wDTeocYGFVckU+p5QwaIOJHZLbah1RHDptu
+         vpUBGlqCOkAzPU1/Vkqrbmg57ALwR3tBuuil+l1G5Rrxs3EEjRdRS7DzSVvqtOSf4Zgz
+         IgvDhJEgf+FFtkPAJdyHP9fqsGT6IQl58C2tmJu6irT/RrToOvptysHgx/JdmO1x8fu0
+         lewOk39VHfKrXz67eAbtkeImFNBIxLJ/gvF5OAm48fqnuTWuOFY8+UpBU0+pdDc/OPhL
+         EMXbJ7WryyaZPY8WJseM3lUUkHuQezoi95piUZLQJ7LFfABSdsx99Mk15+oV0zZh/uB2
+         e31Q==
+X-Gm-Message-State: ACgBeo2BkoOg9UR4n2ZSWv/8UMUiC3ELVvChB3RFU48pxkD0laYPcPw/
+	oRF2suxWQSBmc5cUrPsUl7glMCikjus+vA==
+X-Google-Smtp-Source: 
+ AA6agR7L8/A97/tth26NrLtx+DIE1w5llzUjVELO9UghnLhZUvZphABdALaAo1MNlY1L5Cd8MlGGBw==
+X-Received: by 2002:a17:902:b104:b0:172:f66d:6604 with SMTP id
+ q4-20020a170902b10400b00172f66d6604mr4574613plr.117.1661535500804;
+        Fri, 26 Aug 2022 10:38:20 -0700 (PDT)
+Received: from ?IPv6:2600:8801:8d00:2b14:7b2a:31ea:d7be:5c89?
+ ([2600:8801:8d00:2b14:7b2a:31ea:d7be:5c89])
+        by smtp.gmail.com with ESMTPSA id
+ mp10-20020a17090b190a00b001f333fab3d6sm1944512pjb.18.2022.08.26.10.38.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Aug 2022 10:38:19 -0700 (PDT)
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Yocto <yocto@lists.yoctoproject.org>
+References: <0c8260c2-0da1-7566-3f9a-e90d4995b45b@ibeeto.com>
+ <CAMKF1spJvxxuPOK+KFEX19MjOwumSZ+tGT_u1icvH5z1U8qiAA@mail.gmail.com>
+ <6c426aab-6dff-bcfe-1b95-157da402ba44@ibeeto.com>
+ <CAMKF1sop4ait=pE5CSzbs3Uu7P=6pACdKd=0py_wpbD-4aXCKQ@mail.gmail.com>
+ <50c0d314-faa0-dc7f-903e-614bfb899730@ibeeto.com>
+ <CAMKF1sqPy-7+W3a3-vmffTPAvNg_=bBM0uJPYc5-QiJNbefCEg@mail.gmail.com>
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+Autocrypt: addr=rudolf.streif@ibeeto.com; keydata=
+ xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvD
+ Qpe+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ
+ /Qymy+7Cbh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969
+ cQD/S9LNndnK5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM
+ 3sPiHrF+Y2HTdK7j7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEB
+ AAHNKlJ1ZG9sZiBKIFN0cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgA
+ IQUCWFAUBAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf0
+ 3GsVMG6C5QOLaPx6rOgj5qexCH3rfYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBk
+ txioE384/51QTIfCmW8ZG5X0cMC5d38LFvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xl
+ lpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR84ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+w
+ Xl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x5LZhUhGYoqbYwNy9imoBkUAZkbbViNOtX
+ zaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjVLmLHvzsBNBFhQFAQBCADXoLKCuF48
+ 5eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTqk3fb9+Ao6C6IliC9ZRXyAVLD/
+ RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIFpPBpxHRrZnDdEd5IKsy+z
+ w6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJSHWMBh0OMKDeBik5wl
+ svtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mCBCZ+IKhBQR36v
+ tUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIAAkFAlhQFAQC
+ GwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LYUpLNj
+ s4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9MbyE
+ fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8Tz
+ Yf9m2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/Nlouvce
+ P41tsC5daxZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/AN
+ ROZj4g==
+Subject: Re: [yocto] Dependency for binary package
+Message-ID: <78d6022d-a708-fd0d-3b37-91717420f485@ibeeto.com>
+Date: Fri, 26 Aug 2022 10:38:18 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
+In-Reply-To: 
+ <CAMKF1sqPy-7+W3a3-vmffTPAvNg_=bBM0uJPYc5-QiJNbefCEg@mail.gmail.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="DY8zanv18av4g8g1cMWf5bQjZUE0UxfH6"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 26 Aug 2022 14:04:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57911
+ <yocto@lists.yoctoproject.org>; Fri, 26 Aug 2022 17:38:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57912
 
---_000_9222c257155a4d5aa93db2f0f9d1047baxiscom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--DY8zanv18av4g8g1cMWf5bQjZUE0UxfH6
+Content-Type: multipart/mixed; boundary="TCLX9n2o0a0V0P75WDV2TLrTrMZn4nPoT";
+ protected-headers="v1"
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Yocto <yocto@lists.yoctoproject.org>
+Message-ID: <78d6022d-a708-fd0d-3b37-91717420f485@ibeeto.com>
+Subject: Re: [yocto] Dependency for binary package
+References: <0c8260c2-0da1-7566-3f9a-e90d4995b45b@ibeeto.com>
+ <CAMKF1spJvxxuPOK+KFEX19MjOwumSZ+tGT_u1icvH5z1U8qiAA@mail.gmail.com>
+ <6c426aab-6dff-bcfe-1b95-157da402ba44@ibeeto.com>
+ <CAMKF1sop4ait=pE5CSzbs3Uu7P=6pACdKd=0py_wpbD-4aXCKQ@mail.gmail.com>
+ <50c0d314-faa0-dc7f-903e-614bfb899730@ibeeto.com>
+ <CAMKF1sqPy-7+W3a3-vmffTPAvNg_=bBM0uJPYc5-QiJNbefCEg@mail.gmail.com>
+In-Reply-To: <CAMKF1sqPy-7+W3a3-vmffTPAvNg_=bBM0uJPYc5-QiJNbefCEg@mail.gmail.com>
 
-WyBJbiB0aGUgZnV0dXJlLCBwbGVhc2UgbWFrZSBzdXJlIHRvIHJlcGx5IHRvIGxpc3QgYW5kIG5v
-dCBqdXN0IHRvIG1lLiBdDQpbIFRvcCBwb3N0aW5nIHNpbmNlIE91dGxvb2sgZG9lc27igJl0IHN1
-cHBvcnQgaW5saW5lIHJlc3BvbnNlcyB0byBIVE1MIG1haWxzLiBdDQoNCk5vLCB5b3UgYXJlIHN1
-cHBvc2VkIHRvIGNvcHkgdGhlIHN1Z2dlc3QgdGV4dCBmb3IgdGhlIGJiYXBwZW5kIHZlcmJhdGlt
-LCB3aXRoIHRoZSBleGNlcHRpb24gb2YgdGhlIFNSQ19VUklbbWQ1c3VtXSB3aGljaCBuZWVkIHRv
-IGJlIGNvcnJlY3RlZCB0byBtYXRjaCB0aGUgYWN0dWFsIE1ENSBzdW0gKHdoaWNoIGJpdGJha2Ug
-d2lsbCB0ZWxsIHlvdSB3aGVuIHlvdSB0cnkgdG8gYnVpbGQpLiBUaGUgc3VnZ2VzdGVkIGFkZGl0
-aW9ucy9kZWxldGlvbnMgZm9yIFNSQ19VUkkgaW4gdGhlIGJiYXBwZW5kIEkgc3VnZ2VzdGVkIHNo
-b3VsZCBiZSBjb3JyZWN0IGFzIHNwZWNpZmllZCwgYmFzZWQgb24gdGhlIGRpZmZlcmVuY2VzIGJl
-dHdlZW4gdGhlIGFwYWNoZTIgcmVjaXBlIGluIFpldXMgYW5kIG1hc3Rlci4gWW91IHdpbGwgYWxz
-byBuZWVkIHRvIGNvcHkgdGhlIHRocmVlIG5ldyBwYXRjaCBmaWxlcyBmcm9tIG1hc3RlciBvZiBt
-ZXRhLXdlYnNlcnZlciwgYW5kIGFueSBvZiB0aGUgb3RoZXIgcGF0Y2hlcyB0aGF0IGhhdmUgYmVl
-biB1cGRhdGVkIGJldHdlZW4gWmV1cyBhbmQgbWFzdGVyLiBDaGFuZ2luZyBQViB0YWtlcyBjYXJl
-IG9mIHRoZSBhY3R1YWwgdXBkYXRlIG9mIHRoZSBjb2RlIHRvIHRoZSBuZXcgdmVyc2lvbiAoc2lu
-Y2UgaXQgZGV0ZXJtaW5lcyB3aGljaCB0YXIgYmFsbCBpcyBmZXRjaGVkIGZyb20gdXBzdHJlYW0p
-Lg0KDQovL1BldGVyDQoNCkZyb206IGZvcnVtcyA8Zm9ydW1zQGJpdGZsaXBwZXIubmV0Pg0KU2Vu
-dDogZGVuIDI2IGF1Z3VzdGkgMjAyMiAxNDoyMQ0KVG86IFBldGVyIEtqZWxsZXJzdGVkdCA8cGV0
-ZXIua2plbGxlcnN0ZWR0QGF4aXMuY29tPg0KU3ViamVjdDogUmU6IFt5b2N0b10gQml0YmFrZSAr
-IFBhdGNoZXMNCg0KDQpGSUxFU0VYVFJBUEFUSFNfcHJlcGVuZCA6PSAiJHtUSElTRElSfS8ke0JQ
-Tn06Ig0KDQpMSUNfRklMRVNfQ0hLU1VNID0gImZpbGU6Ly9MSUNFTlNFO21kNT1iZGRlZGRmYWM4
-MGIyYzlhODgyMjQxZDAwOGJiNDFjMyINCg0KUFYgPSAiMi40LjU0Ig0KDQpTUkNfVVJJICs9ICJm
-aWxlOi8vMDAwOC1GaXgtcGVybC1pbnN0YWxsLWRpcmVjdG9yeS10by11c3ItYmluLnBhdGNoIFwN
-CiAgICAgICAgICBmaWxlOi8vMDAwOS1zdXBwb3J0LWFweHMuaW4tZm9yY2UtZGVzdGRpci10by1i
-ZS1lbXB0eS1zdHJpbmcucGF0Y2g8ZmlsZTovLy8wMDA5LXN1cHBvcnQtYXB4cy5pbi1mb3JjZS1k
-ZXN0ZGlyLXRvLWJlLWVtcHR5LXN0cmluZy5wYXRjaD4gXA0KICAgICAgICAgIGZpbGU6Ly8wMDAx
-LW1ha2VfZXhwb3J0cy5hd2stbm90LWV4cG9zZS10aGUtcGF0aC5wYXRjaDxmaWxlOi8vLzAwMDEt
-bWFrZV9leHBvcnRzLmF3ay1ub3QtZXhwb3NlLXRoZS1wYXRoLnBhdGNoPiINClNSQ19VUklfcmVt
-b3ZlID0gImZpbGU6Ly9hcGFjaGUtY29uZmlndXJlX3BlcmxiaW4ucGF0Y2giDQoNClNSQ19VUklb
-bWQ1c3VtXSA9ICI8SSBkb24ndCBoYXZlIHRoaXMgYXQgaGFuZCwgYnV0IGJpdGJha2Ugd2lsbCB0
-ZWxsIHlvdSB3aGF0IGl0IHNob3VsZCBiZT4iDQpTUkNfVVJJW3NoYTI1NnN1bV0gPSAiZWIzOTdm
-ZWVlZmNjYWYyNTRmOGQ0NWRlMzc2OGQ5ZDY4ZThlNzM4NTFjNDlhZmQ1YjcxNzZkMWVjZjgwYzM0
-MCINCg0KDQpIIFBldGVyLiBJIGhhdmUgdCBhZG1pbiwgbG9va2luZyBhdCB0aGUgYWJvdmUgYmJh
-cHBlbmQsIGl0cyByZWFsbHkgY29uZnVzaW5nIHRvIG1lLiBJ4oCZdmUgbG9va2VkIGF0IHNvbWUg
-b2YgdGhlIGRvY3VtZW50cyBvbiBiaXRiYWtlIGFuZCBJIGp1c3QgY2Fu4oCZdCBmaW5kIGFueXRo
-aW5nIHRvIHRlYWNoIG1lIGhvdyB0byBwdXQgYSBiYmFwcGVuZCB0b2dldGhlciB0byBhY2NvbXBs
-aXNoIHVwZ3JhZGluZyBhbiBhcHBsaWNhdGlvbi4NCg0KTGlrZSBmb3IgZXhhbXBsZToNCg0KU1JD
-X1VSSSArPSAiZmlsZTovLzAwMDgtRml4LXBlcmwtaW5zdGFsbC1kaXJlY3RvcnktdG8tdXNyLWJp
-bi5wYXRjaA0KDQpJIGJlbGlldmUgdGhpcyBvbmUgc2hvdWxkIGJlOg0KDQogICAgICAgICAgICAg
-ICAgICAgICAgICAgICBTUkNfVVJJICs9IGZpbGU6L3Vzci9iaW4vcGF0Y2gNCg0KVGhlIG5leHQg
-b25lOg0KDQpmaWxlOi8vMDAwOS1zdXBwb3J0LWFweHMuaW4tZm9yY2UtZGVzdGRpci10by1iZS1l
-bXB0eS1zdHJpbmcucGF0Y2g8ZmlsZTovLy8wMDA5LXN1cHBvcnQtYXB4cy5pbi1mb3JjZS1kZXN0
-ZGlyLXRvLWJlLWVtcHR5LXN0cmluZy5wYXRjaD4NCg0KSeKAmXZlIG5vIGlkZWEgd2hhdCB0aGlz
-IG9uZSB3aWxsIG5lZSB0byBiZS4NCg0KQW5kIHRoaXMgb25lOg0KDQpmaWxlOi8vMDAwMS1tYWtl
-X2V4cG9ydHMuYXdrLW5vdC1leHBvc2UtdGhlLXBhdGgucGF0Y2g8ZmlsZTovLy8wMDAxLW1ha2Vf
-ZXhwb3J0cy5hd2stbm90LWV4cG9zZS10aGUtcGF0aC5wYXRjaD4NCg0KSSBkb27igJl0IGtub3cg
-d2hhdCBpcyBzdXBwb3NlZCB0byBnbyBoZXJlIGVpdGhlci4NCg0KDQpUaGVuIHRoZSBTUkNfVVJJ
-X3JlbW92ZSB3aWxsIGJlIGEgcG9pbnRlciB0byB0aGUgZmlsZSBjb250YWluaW5nIHRoZSBwYXRj
-aGVzIGNvbnRhaW5pbmcgdGhlIGRpZmbigJllIGJldHdlZW4gYXBhY2hlIDEyLjQuMSBhbmQgYXBh
-Y2hlIDIuNC41NCA/IEkgZG9u4oCZdCB0aGluayB5b3UgY2FuIGNyZWF0ZSBhIHNpbmdsZSBwYXRj
-aCBmaWxlIGNvbnRhaW5pbmcgZGlmZuKAmXMgYmV0d2VlbiBtdWx0aXBsZSB2ZXJzaW9ucyBjYW4g
-eW91PyBJIHRoaW5rIGl0IHdvdWxkIGhhdmUgdG8gYmUgZGlmZuKAmXMgYmV0d2VlbiBhcGFjaGUg
-Mi40LjQxIGFuZCAyLjQuNDIuIFJpZ2h0LiBUb3RhbGx5IGNvbmZ1c2VkIGFzIHRvIHdoYXQgdG8g
-ZG8gaGVyZS4NCg0KQW55IGZ1cnRoZXIgaGVscCBhcHByZWNpYXRlZC4NCg0KSWYgeW91IGtub3cg
-b2YgYSByZXNvdXJjZSBmb3IgbWUgdG8gcmVmZXJlbmNlIHBsZWFzZSBwYXNzIGl0IG9uLiBJIGp1
-c3QgZG9u4oCZdCBzZWUgYW55IGNsZWFyIGRvY3VtZW50YXRpb24gdGhhdCBleHBsYWlucyBob3cg
-dG8gY29uc3RydWN0IGEgYmJhcHBlbmQgZmlsZS4NCg0KDQpUaGFua3MsIEppbQ0K
+--TCLX9n2o0a0V0P75WDV2TLrTrMZn4nPoT
+Content-Type: multipart/mixed;
+ boundary="------------647761E2A718AB86AF00B820"
+Content-Language: en-US
 
---_000_9222c257155a4d5aa93db2f0f9d1047baxiscom_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
+--------------647761E2A718AB86AF00B820
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDb25zb2xhczsNCglwYW5vc2UtMToyIDEx
-IDYgOSAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWws
-IGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGNtOw0KCWZvbnQtc2l6ZTox
-MS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KYTpsaW5rLCBzcGFu
-Lk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0
-ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4uYXBwbGUtdGFiLXNwYW4NCgl7bXNvLXN0
-eWxlLW5hbWU6YXBwbGUtdGFiLXNwYW47fQ0Kc3Bhbi5FbWFpbFN0eWxlMTkNCgl7bXNvLXN0eWxl
-LXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7
-DQoJY29sb3I6Izk0MzYzNDsNCglmb250LXdlaWdodDpub3JtYWw7DQoJZm9udC1zdHlsZTpub3Jt
-YWw7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9u
-dC1zaXplOjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo2MTIuMHB0IDc5Mi4w
-cHQ7DQoJbWFyZ2luOjcwLjg1cHQgNzAuODVwdCA3MC44NXB0IDcwLjg1cHQ7fQ0KZGl2LldvcmRT
-ZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1z
-byA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIg
-Lz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVs
-YXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8
-L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJT
-ViIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSIgc3R5bGU9IndvcmQtd3JhcDpicmVhay13b3Jk
-Ij4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBsYW5nPSJFTi1VUyIgc3R5bGU9ImNvbG9yOiM5NDM2MzQ7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6
-RU4tVVMiPlsgSW4gdGhlIGZ1dHVyZSwgcGxlYXNlIG1ha2Ugc3VyZSB0byByZXBseSB0byBsaXN0
-IGFuZCBub3QganVzdCB0byBtZS4gXTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iY29sb3I6Izk0MzYzNDttc28tZmFy
-ZWFzdC1sYW5ndWFnZTpFTi1VUyI+WyBUb3AgcG9zdGluZyBzaW5jZSBPdXRsb29rIGRvZXNu4oCZ
-dCBzdXBwb3J0IGlubGluZSByZXNwb25zZXMgdG8gSFRNTCBtYWlscy4gXTxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0i
-Y29sb3I6Izk0MzYzNDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286
-cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0
-eWxlPSJjb2xvcjojOTQzNjM0O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5ObywgeW91IGFy
-ZSBzdXBwb3NlZCB0byBjb3B5IHRoZSBzdWdnZXN0IHRleHQgZm9yIHRoZSBiYmFwcGVuZCB2ZXJi
-YXRpbSwgd2l0aCB0aGUgZXhjZXB0aW9uIG9mIHRoZTwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+
-DQo8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LWZhbWlseTpDb25zb2xhcztj
-b2xvcjojOTQzNjM0O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5TUkNfVVJJW21kNXN1bV08
-L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJjb2xvcjojOTQzNjM0O21zby1mYXJlYXN0
-LWxhbmd1YWdlOkVOLVVTIj4gd2hpY2ggbmVlZCB0byBiZSBjb3JyZWN0ZWQgdG8gbWF0Y2ggdGhl
-IGFjdHVhbCBNRDUgc3VtICh3aGljaCBiaXRiYWtlDQogd2lsbCB0ZWxsIHlvdSB3aGVuIHlvdSB0
-cnkgdG8gYnVpbGQpLiBUaGUgc3VnZ2VzdGVkIGFkZGl0aW9ucy9kZWxldGlvbnMgZm9yIDwvc3Bh
-bj4NCjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1mYW1pbHk6Q29uc29sYXM7Y29sb3I6
-Izk0MzYzNDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+U1JDX1VSSTwvc3Bhbj48c3BhbiBs
-YW5nPSJFTi1VUyIgc3R5bGU9ImNvbG9yOiM5NDM2MzQ7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4t
-VVMiPiBpbiB0aGUgYmJhcHBlbmQgSSBzdWdnZXN0ZWQgc2hvdWxkIGJlIGNvcnJlY3QgYXMgc3Bl
-Y2lmaWVkLCBiYXNlZCBvbiB0aGUgZGlmZmVyZW5jZXMNCiBiZXR3ZWVuIHRoZSBhcGFjaGUyIHJl
-Y2lwZSBpbiBaZXVzIGFuZCBtYXN0ZXIuIFlvdSB3aWxsIGFsc28gbmVlZCB0byBjb3B5IHRoZSB0
-aHJlZSBuZXcgcGF0Y2ggZmlsZXMgZnJvbSBtYXN0ZXIgb2YgbWV0YS13ZWJzZXJ2ZXIsIGFuZCBh
-bnkgb2YgdGhlIG90aGVyIHBhdGNoZXMgdGhhdCBoYXZlIGJlZW4gdXBkYXRlZCBiZXR3ZWVuIFpl
-dXMgYW5kIG1hc3Rlci4gQ2hhbmdpbmcNCjwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9
-ImZvbnQtZmFtaWx5OkNvbnNvbGFzO2NvbG9yOiM5NDM2MzQ7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6
-RU4tVVMiPlBWPC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iY29sb3I6Izk0MzYzNDtt
-c28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+IHRha2VzIGNhcmUgb2YgdGhlIGFjdHVhbCB1cGRh
-dGUgb2YgdGhlIGNvZGUgdG8gdGhlIG5ldyB2ZXJzaW9uIChzaW5jZSBpdCBkZXRlcm1pbmVzDQog
-d2hpY2ggdGFyIGJhbGwgaXMgZmV0Y2hlZCBmcm9tIHVwc3RyZWFtKS48bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImNv
-bG9yOiM5NDM2MzQ7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHls
-ZT0iY29sb3I6Izk0MzYzNDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+Ly9QZXRlcjxvOnA+
-PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVT
-IiBzdHlsZT0iY29sb3I6Izk0MzYzNDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4m
-bmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxl
-ZnQ6c29saWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBjbSAwY20gMGNtIDQuMHB0Ij4NCjxkaXY+DQo8
-ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFk
-ZGluZzozLjBwdCAwY20gMGNtIDBjbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBs
-YW5nPSJFTi1VUyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkVOLVVTIj4gZm9ydW1zICZs
-dDtmb3J1bXNAYml0ZmxpcHBlci5uZXQmZ3Q7DQo8YnI+DQo8Yj5TZW50OjwvYj4gZGVuIDI2IGF1
-Z3VzdGkgMjAyMiAxNDoyMTxicj4NCjxiPlRvOjwvYj4gUGV0ZXIgS2plbGxlcnN0ZWR0ICZsdDtw
-ZXRlci5ramVsbGVyc3RlZHRAYXhpcy5jb20mZ3Q7PGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBb
-eW9jdG9dIEJpdGJha2UgJiM0MzsgUGF0Y2hlczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2
-Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxk
-aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0K
-PGRpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206
-NS4wcHQiPg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRv
-bTo1LjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5GSUxFU0VYVFJBUEFUSFNfcHJlcGVuZCA6
-PSAmcXVvdDske1RISVNESVJ9LyR7QlBOfTomcXVvdDs8YnI+DQo8YnI+DQpMSUNfRklMRVNfQ0hL
-U1VNID0gJnF1b3Q7PGEgaHJlZj0iZmlsZTovL0xJQ0VOU0U7bWQ1PWJkZGVkZGZhYzgwYjJjOWE4
-ODIyNDFkMDA4YmI0MWMzIj5maWxlOi8vTElDRU5TRTttZDU9YmRkZWRkZmFjODBiMmM5YTg4MjI0
-MWQwMDhiYjQxYzM8L2E+JnF1b3Q7PGJyPg0KPGJyPg0KUFYgPSAmcXVvdDsyLjQuNTQmcXVvdDs8
-YnI+DQo8YnI+DQpTUkNfVVJJICYjNDM7PSAmcXVvdDs8YSBocmVmPSJmaWxlOi8vMDAwOC1GaXgt
-cGVybC1pbnN0YWxsLWRpcmVjdG9yeS10by11c3ItYmluLnBhdGNoIj5maWxlOi8vMDAwOC1GaXgt
-cGVybC1pbnN0YWxsLWRpcmVjdG9yeS10by11c3ItYmluLnBhdGNoPC9hPiZuYnNwO1w8YnI+DQom
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDs8YSBocmVmPSJmaWxlOi8vLzAwMDktc3VwcG9ydC1hcHhzLmluLWZvcmNlLWRlc3RkaXItdG8t
-YmUtZW1wdHktc3RyaW5nLnBhdGNoIj5maWxlOi8vMDAwOS1zdXBwb3J0LWFweHMuaW4tZm9yY2Ut
-ZGVzdGRpci10by1iZS1lbXB0eS1zdHJpbmcucGF0Y2g8L2E+Jm5ic3A7XDxicj4NCiZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOzxhIGhy
-ZWY9ImZpbGU6Ly8vMDAwMS1tYWtlX2V4cG9ydHMuYXdrLW5vdC1leHBvc2UtdGhlLXBhdGgucGF0
-Y2giPmZpbGU6Ly8wMDAxLW1ha2VfZXhwb3J0cy5hd2stbm90LWV4cG9zZS10aGUtcGF0aC5wYXRj
-aDwvYT4mcXVvdDs8YnI+DQpTUkNfVVJJX3JlbW92ZSA9ICZxdW90OzxhIGhyZWY9ImZpbGU6Ly9h
-cGFjaGUtY29uZmlndXJlX3BlcmxiaW4ucGF0Y2giPmZpbGU6Ly9hcGFjaGUtY29uZmlndXJlX3Bl
-cmxiaW4ucGF0Y2g8L2E+JnF1b3Q7PGJyPg0KPGJyPg0KU1JDX1VSSVttZDVzdW1dID0gJnF1b3Q7
-Jmx0O0kgZG9uJ3QgaGF2ZSB0aGlzIGF0IGhhbmQsIGJ1dCBiaXRiYWtlIHdpbGwgdGVsbCB5b3Ug
-d2hhdCBpdCBzaG91bGQgYmUmZ3Q7JnF1b3Q7PGJyPg0KU1JDX1VSSVtzaGEyNTZzdW1dID0gJnF1
-b3Q7ZWIzOTdmZWVlZmNjYWYyNTRmOGQ0NWRlMzc2OGQ5ZDY4ZThlNzM4NTFjNDlhZmQ1YjcxNzZk
-MWVjZjgwYzM0MCZxdW90OzxvOnA+PC9vOnA+PC9wPg0KPC9ibG9ja3F1b3RlPg0KPC9ibG9ja3F1
-b3RlPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286
-cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
-bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkggUGV0ZXIuIEkg
-aGF2ZSB0IGFkbWluLCBsb29raW5nIGF0IHRoZSBhYm92ZSBiYmFwcGVuZCwgaXRzIHJlYWxseSBj
-b25mdXNpbmcgdG8gbWUuIEnigJl2ZSBsb29rZWQgYXQgc29tZSBvZiB0aGUgZG9jdW1lbnRzIG9u
-IGJpdGJha2UgYW5kIEkganVzdCBjYW7igJl0IGZpbmQgYW55dGhpbmcgdG8gdGVhY2ggbWUgaG93
-IHRvIHB1dCBhIGJiYXBwZW5kIHRvZ2V0aGVyIHRvIGFjY29tcGxpc2ggdXBncmFkaW5nIGFuIGFw
-cGxpY2F0aW9uLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj5MaWtlIGZvciBleGFtcGxlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+
-DQo8YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0
-Ij4NCjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4w
-cHQiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+U1JDX1VSSSAmIzQzOz0gJnF1b3Q7PGEgaHJlZj0i
-ZmlsZTovLzAwMDgtRml4LXBlcmwtaW5zdGFsbC1kaXJlY3RvcnktdG8tdXNyLWJpbi5wYXRjaCI+
-ZmlsZTovLzAwMDgtRml4LXBlcmwtaW5zdGFsbC1kaXJlY3RvcnktdG8tdXNyLWJpbi5wYXRjaDwv
-YT48bzpwPjwvbzpwPjwvcD4NCjwvYmxvY2txdW90ZT4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0K
-PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+
-DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSBiZWxpZXZlIHRoaXMgb25lIHNob3VsZCBi
-ZTogJm5ic3A7Jm5ic3A7PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIGNsYXNzPSJhcHBsZS10YWItc3BhbiI+Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IDwvc3Bhbj4NClNSQ19VUkkgJiM0Mzs9IGZpbGU6
-L3Vzci9iaW4vcGF0Y2g8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+VGhlIG5leHQgb25lOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+
-DQo8YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0
-Ij4NCjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4w
-cHQiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGEgaHJlZj0iZmlsZTovLy8wMDA5LXN1cHBvcnQt
-YXB4cy5pbi1mb3JjZS1kZXN0ZGlyLXRvLWJlLWVtcHR5LXN0cmluZy5wYXRjaCI+ZmlsZTovLzAw
-MDktc3VwcG9ydC1hcHhzLmluLWZvcmNlLWRlc3RkaXItdG8tYmUtZW1wdHktc3RyaW5nLnBhdGNo
-PC9hPjxvOnA+PC9vOnA+PC9wPg0KPC9ibG9ja3F1b3RlPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+
-DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rp
-dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPknigJl2ZSBubyBpZGVhIHdoYXQgdGhpcyBvbmUgd2ls
-bCBuZWUgdG8gYmUuPG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij5BbmQgdGhpcyBvbmU6PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxibG9ja3F1
-b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPGJsb2Nr
-cXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48YSBocmVmPSJmaWxlOi8vLzAwMDEtbWFrZV9leHBvcnRzLmF3ay1u
-b3QtZXhwb3NlLXRoZS1wYXRoLnBhdGNoIj5maWxlOi8vMDAwMS1tYWtlX2V4cG9ydHMuYXdrLW5v
-dC1leHBvc2UtdGhlLXBhdGgucGF0Y2g8L2E+PG86cD48L286cD48L3A+DQo8L2Jsb2NrcXVvdGU+
-DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8
-L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkg
-ZG9u4oCZdCBrbm93IHdoYXQgaXMgc3VwcG9zZWQgdG8gZ28gaGVyZSBlaXRoZXIuPG86cD48L286
-cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
-bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7
-PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhlbiB0aGUg
-U1JDX1VSSV9yZW1vdmUgd2lsbCBiZSBhIHBvaW50ZXIgdG8gdGhlIGZpbGUgY29udGFpbmluZyB0
-aGUgcGF0Y2hlcyBjb250YWluaW5nIHRoZSBkaWZm4oCZZSBiZXR3ZWVuIGFwYWNoZSAxMi40LjEg
-YW5kIGFwYWNoZSAyLjQuNTQgPyBJIGRvbuKAmXQgdGhpbmsgeW91IGNhbiBjcmVhdGUgYSBzaW5n
-bGUgcGF0Y2ggZmlsZSBjb250YWluaW5nIGRpZmbigJlzIGJldHdlZW4gbXVsdGlwbGUgdmVyc2lv
-bnMgY2FuDQogeW91PyBJIHRoaW5rIGl0IHdvdWxkIGhhdmUgdG8gYmUgZGlmZuKAmXMgYmV0d2Vl
-biBhcGFjaGUgMi40LjQxIGFuZCAyLjQuNDIuIFJpZ2h0LiBUb3RhbGx5IGNvbmZ1c2VkIGFzIHRv
-IHdoYXQgdG8gZG8gaGVyZS48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+QW55IGZ1cnRoZXIgaGVscCBhcHByZWNpYXRlZC48bzpwPjwvbzpwPjwv
-cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+
-PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SWYgeW91IGtub3cgb2Yg
-YSByZXNvdXJjZSBmb3IgbWUgdG8gcmVmZXJlbmNlIHBsZWFzZSBwYXNzIGl0IG9uLiBJIGp1c3Qg
-ZG9u4oCZdCBzZWUgYW55IGNsZWFyIGRvY3VtZW50YXRpb24gdGhhdCBleHBsYWlucyBob3cgdG8g
-Y29uc3RydWN0IGEgYmJhcHBlbmQgZmlsZS48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxk
-aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGFua3MsIEppbTxzcGFuIHN0eWxlPSJjb2xvcjoj
-OTQzNjM0Ij48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8
-L2JvZHk+DQo8L2h0bWw+DQo=
 
---_000_9222c257155a4d5aa93db2f0f9d1047baxiscom_--
+On 8/25/22 5:44 PM, Khem Raj wrote:
+> On Thu, Aug 25, 2022 at 4:56 PM Rudolf J Streif
+> <rudolf.streif@ibeeto.com> wrote:
+>>
+>> On 8/25/22 4:49 PM, Khem Raj wrote:
+>>> On Thu, Aug 25, 2022 at 4:44 PM Rudolf J Streif
+>>> <rudolf.streif@ibeeto.com> wrote:
+>>>> Thanks, Khem.
+>>>>
+>>>> On 8/25/22 4:27 PM, Khem Raj wrote:
+>>>>> On Thu, Aug 25, 2022 at 7:30 AM Rudolf J Streif
+>>>>> <rudolf.streif@ibeeto.com> wrote:
+>>>>>> I am packaging a binary package that has been built with the SDK c=
+reated
+>>>>>> with the exact same configuration.
+>>>>>>
+>>>>>> During do_package I am getting an error that a dependency on
+>>>>>> libGLESv2.so()(64bit) cannot be met. Adding mesa to RDEPENDS does =
+not
+>>>>>> resolve the issue. I can bypass it in the recipe by adding file-rd=
+eps to
+>>>>>> INSANE_SKIP. However, then when the rootfs is created libdnf compl=
+ains
+>>>>>> that the dependency on libGLES is not met and aborts.
+>>>>>>
+>>>>>> The application works just fine on the target if I copy it manuall=
+y to
+>>>>>> the rootfs but that's not the best thing to do. It should be packa=
+ged
+>>>>>> and installed.
+>>>>>>
+>>>>>> Unfortunately I don't understand well enough how these checks work=
+ and
+>>>>>> why they are complaining about it. Maybe somebody can shed some li=
+ght on it.
+>>>>> some libraries do not set SONAME in them, which can trip the shlibs=
+
+>>>>> code. Can you
+>>>>> check if libgles in question has SONAME encoded in its ELF header
+>>>>>
+>>>>>     readelf -d <lib> | grep SONAME
+>>>>>
+>>>>> might be what you can use to deduce it.
+>>>> libGLESv2 in question on the target was built with YP:
+>>>>
+>>>>     0x000000000000000e (SONAME)             Library soname: [libGLES=
+v2.so.2]
+>>>>
+>>>> The SDK that builds the application was built with the same YP setup=
+=2E
+>>>> That's why I am scratching my head.
+>>> interesting, are you adding RDEPENDS on libgles2-mesa ?
+>> Yes, but that does not satisfy the dependency:
+>>
+>> ERROR: virtuoso-0.1-r0 do_package_qa: QA Issue: /opt/virtuoso/virtuoso=
+
+>> contained in package virtuoso requires libGLESv2.so()(64bit), but no
+>> providers found in RDEPENDS:virtuoso? [file-rdeps]
+> I see a potential problem here, the soname is libGLESv2.so.2 but the
+> dependency its
+> complaining about is libGLESv2.so()(64bit), ( you see the missing
+> version number ?)
+>
+> Can you run
+>
+> readelf -d <binary name>  | grep NEEDED
+>
+> and see what libs are encoded in the ELF
+
+Yes, I have. These are the libs:
+
+ =C2=A00x0000000000000001 (NEEDED) Shared library: [libQt5Quick.so.5]
+ =C2=A00x0000000000000001 (NEEDED)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Shared library: [libQt5Gui.so.5]
+ =C2=A00x0000000000000001 (NEEDED)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Shared library: [libQt5Qml.so.5]
+ =C2=A00x0000000000000001 (NEEDED)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Shared library:=20
+[libQt5Network.so.5]
+ =C2=A00x0000000000000001 (NEEDED)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Shared library:=20
+[libQt5SerialPort.so.5]
+ =C2=A00x0000000000000001 (NEEDED)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Shared library: [libQt5Core.so.5]
+ =C2=A00x0000000000000001 (NEEDED)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Shared library: [librt.so.1]
+ =C2=A00x0000000000000001 (NEEDED)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Shared library: [libdl.so.2]
+ =C2=A00x0000000000000001 (NEEDED)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Shared library: [libatomic.so.1]
+ =C2=A00x0000000000000001 (NEEDED)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Shared library: [libGLESv2.so]
+ =C2=A00x0000000000000001 (NEEDED)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Shared library: [libpthread.so.0]
+ =C2=A00x0000000000000001 (NEEDED)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Shared library: [libstdc++.so.6]
+ =C2=A00x0000000000000001 (NEEDED)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Shared library: [libm.so.6]
+ =C2=A00x0000000000000001 (NEEDED)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Shared library: [libgcc_s.so.1]
+ =C2=A00x0000000000000001 (NEEDED)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Shared library: [libc.so.6]
+
+It's asking for libGLESv2.so. It's no problem on the target since it's=20
+correctly resolved by ldd:
+
+root@tgt-lcd7:/usr/lib# ldconfig -p |grep libGLES
+ =C2=A0=C2=A0=C2=A0 libGLESv2.so.2 (libc6,x86-64) =3D> /lib64/libGLESv2.s=
+o.2
+ =C2=A0=C2=A0=C2=A0 libGLESv2.so.2 (libc6) =3D> /lib/libGLESv2.so.2
+ =C2=A0=C2=A0=C2=A0 libGLESv2.so (libc6,x86-64) =3D> /lib64/libGLESv2.so
+ =C2=A0=C2=A0=C2=A0 libGLESv1_CM.so.1 (libc6,x86-64) =3D> /lib64/libGLESv=
+1_CM.so.1
+ =C2=A0=C2=A0=C2=A0 libGLESv1_CM.so.1 (libc6) =3D> /lib/libGLESv1_CM.so.1=
+
+ =C2=A0=C2=A0=C2=A0 libGLESv1_CM.so (libc6,x86-64) =3D> /lib64/libGLESv1_=
+CM.so
+
+However, I cannot wrap my head around why this would happen with a=20
+binary that has been compiled and linked with the YP SDK that exactly=20
+matches the rootfs of the target:
+
+Target:
+
+root@tgt-lcd7:/usr/lib# ls -l libGLES*
+lrwxrwxrwx 1 root root=C2=A0=C2=A0=C2=A0 14 Mar=C2=A0 9=C2=A0 2018 libGLE=
+Sv2.so -> libGLESv2.so.2
+lrwxrwxrwx 1 root root=C2=A0=C2=A0=C2=A0 18 Mar=C2=A0 9=C2=A0 2018 libGLE=
+Sv2.so.2 ->=20
+libGLESv2.so.2.0.0
+-rwxr-xr-x 1 root root 46792 Mar=C2=A0 9=C2=A0 2018 libGLESv2.so.2.0.0
+
+SDK:
+
+[rstreif@threaddy lib]$ ls -l libGLES*
+lrwxrwxrwx. 1 rstreif rstreif=C2=A0=C2=A0=C2=A0 14 Aug 25 11:35 libGLESv2=
+=2Eso ->=20
+libGLESv2.so.2
+lrwxrwxrwx. 1 rstreif rstreif=C2=A0=C2=A0=C2=A0 18 Aug 25 11:36 libGLESv2=
+=2Eso.2 ->=20
+libGLESv2.so.2.0.0
+-rwxr-xr-x. 1 rstreif rstreif 46792 Aug 25 11:36 libGLESv2.so.2.0.0
+
+Unfortunately I don't have the sources of the application otherwise I=20
+would have YP build it. But the customer claims they are building it=20
+with the SDK. I am trying to get to the bottom of their end too.
+
+
+>
+>> I can SKIP_INSANE file-rdeps but then I am getting the same issue when=
+
+>> creating the rootfs with dnf.
+>>
+>> But in all fairness, I don't have control over the entire process. The=
+
+>> customer builds the executable with the SDK I gave them. They give me
+>> the executable to put in the rootfs.
+>>
+>>>>>> Thanks,
+>>>>>> Rudi
+>>>>>>
+>>>>>>
+>>>>>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>>>>>> Links: You receive all messages sent to this group.
+>>>>>> You automatically follow any topics you start or reply to.
+>>>>>> View/Reply Online (#57898): https://lists.yoctoproject.org/g/yocto=
+/message/57898
+>>>>>> Mute This Topic: https://lists.yoctoproject.org/mt/93249287/199791=
+4
+>>>>>> Group Owner: yocto+owner@lists.yoctoproject.org
+>>>>>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khe=
+m@gmail.com]
+>>>>>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>>>>>>
+>>>> --
+>>>> Rudolf J Streif
+>>>> CEO/CTO ibeeto
+>>>> +1.855.442.3386 x700
+>>>>
+>> --
+>> Rudolf J Streif
+>> CEO/CTO ibeeto
+>> +1.855.442.3386 x700
+>>
+--=20
+Rudolf J Streif
+CEO/CTO ibeeto
++1.855.442.3386 x700
+
+
+--------------647761E2A718AB86AF00B820
+Content-Type: application/pgp-keys;
+ name="OpenPGP_0x8D8CA82927339B75.asc"
+Content-Transfer-Encoding: quoted-printable
+Content-Description: OpenPGP public key
+Content-Disposition: attachment;
+ filename="OpenPGP_0x8D8CA82927339B75.asc"
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvDQ=
+pe+
+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ/Qymy=
++7C
+bh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969cQD/S9LNn=
+dnK
+5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM3sPiHrF+Y2HTd=
+K7j
+7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEBAAHNKlJ1ZG9sZiBKI=
+FN0
+cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgAIQUCWFAUBAIbAwULCQgHA=
+gYV
+CAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf03GsVMG6C5QOLaPx6rOgj5qexC=
+H3r
+fYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBktxioE384/51QTIfCmW8ZG5X0cMC5d=
+38L
+Fvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xllpeOfKQD3wn99w5dzXYhvajXCWwAjjpWr=
+R84
+ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+wXl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq=
+4x5
+LZhUhGYoqbYwNy9imoBkUAZkbbViNOtXzaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBh=
+jVL
+mLHvzsBNBFhQFAQBCADXoLKCuF485eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOm=
+Tqk
+3fb9+Ao6C6IliC9ZRXyAVLD/RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwR=
+IFp
+PBpxHRrZnDdEd5IKsy+zw6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDsp=
+JSH
+WMBh0OMKDeBik5wlsvtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/=
+mCB
+CZ+IKhBQR36vtUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIA=
+AkF
+AlhQFAQCGwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2=
+LYU
+pLNjs4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9M=
+byE
+fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8TzY=
+f9m
+2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/NlouvceP41ts=
+C5d
+axZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/ANROZj4g=3D=
+=3D
+=3DLHwf
+-----END PGP PUBLIC KEY BLOCK-----
+
+--------------647761E2A718AB86AF00B820--
+
+--TCLX9n2o0a0V0P75WDV2TLrTrMZn4nPoT--
+
+--DY8zanv18av4g8g1cMWf5bQjZUE0UxfH6
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsB5BAABCAAjFiEEVg4uKeQrdCNuC2kVjYyoKSczm3UFAmMJBQoFAwAAAAAACgkQjYyoKSczm3VK
+NQf/WCToG7uuMpwzGmgDWNZ7c85PRVko2t3I23O1QF7UC5/tnFlgP+SlQYWaidrcsShL/rLITNXF
+D/oAlMddRTd3VkpEnjkOg+UIoUlQYxAGM6IkoARSHYFB7bUPU9z5roGCzCsKB6YzvRakZTGunLzz
+cMqxVtXSPeDo5mOFBNDL7/He6AaSMOzDTB5HzeE6THNrAvODp83RhkQYm8EaDWDO5L00Xe4thKnA
+9Ye3o33JyuCJDcOGE77L1QZJraB4fc9AzdB5Fe7AETjyUj5thZeLr3saDM+FirzfBJmksQsxfRZO
+kT3/Q+XAAJK50xN7EqJ1t+XJ9tp/zJr5fz5b6m82PQ==
+=BB4b
+-----END PGP SIGNATURE-----
+
+--DY8zanv18av4g8g1cMWf5bQjZUE0UxfH6--
 
