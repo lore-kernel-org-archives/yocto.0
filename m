@@ -1,229 +1,294 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C8EA8ECAAD2
-	for <webhook@archiver.kernel.org>; Mon, 29 Aug 2022 16:35:38 +0000 (UTC)
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com
- [209.85.218.50])
- by mx.groups.io with SMTP id smtpd.web10.350.1661790936225945840
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B62BECAAD8
+	for <webhook@archiver.kernel.org>; Mon, 29 Aug 2022 19:32:09 +0000 (UTC)
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com
+ [209.85.215.177])
+ by mx.groups.io with SMTP id smtpd.web08.2612.1661801528666509799
  for <yocto@lists.yoctoproject.org>;
- Mon, 29 Aug 2022 09:35:36 -0700
+ Mon, 29 Aug 2022 12:32:08 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=Mhf70sDm;
- spf=pass (domain: linaro.org, ip: 209.85.218.50,
- mailfrom: nicolas.dechesne@linaro.org)
-Received: by mail-ej1-f50.google.com with SMTP id og21so16841706ejc.2
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=Nx0Og6od;
+ spf=pass (domain: gmail.com, ip: 209.85.215.177,
+ mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pg1-f177.google.com with SMTP id bh13so8596462pgb.4
         for <yocto@lists.yoctoproject.org>;
- Mon, 29 Aug 2022 09:35:35 -0700 (PDT)
+ Mon, 29 Aug 2022 12:32:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=8ecITP1g/Bk56ya+rEhTifEcwOHhYi45sZcH/84jjMk=;
-        b=Mhf70sDmS8BFv1gM3KD8ryTDAu1FtUSocyhvavNPvfIoY0ZZuRlLnN2cfTiDEuyuER
-         rCkxeLj+1ojXu2e+zmVk7yC3UK1KzpqmRiSbPoORA1ef4n7gBbYS2kDgPbJoCIko4ORL
-         U95K8f+hhQtIuWZoZOdIHfnZ5OCagHHCAtBUbNo0RebgLP8fobs3D0EGx0rumLFq8fz9
-         wN2SqoZwMMv/a+SFtLE1SoOxqfzK4AFC2oIPwl+GZrGsddGhSt7DNvb76UY4aT2T5dtu
-         oVyABhfenPwuLnVQQ8GVYDRWMlkwG/DuCerQK8pUXrOmIl+lBonZ9j4a4ECrA5p25b0c
-         S/lQ==
+        d=gmail.com; s=20210112;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :to:from:from:to:cc;
+        bh=s2Qc35OkaAULaxHm0DRaGUQFDsFxar1iJEF4PW7kQTs=;
+        b=Nx0Og6oducNKjb+qsWNe37i0UUyLhyU7H+sNV0qj4lJe4ADpjffitxOQCAkAzk5ypI
+         qiW7+wz6aI0T4dmQ0WJ/V0+DeNEcrmG5EgLwWgBSEYbH5b8xdf3j5AJMllylwU5AYDf3
+         LObGD5sFNnRQ2g3oeHlzeufx1Zk1j5NMmqxSjz9UEysN0TfhHCEsz64gIRhzP6Jz77Pj
+         2badxnHc4Nz2wlHAtqPKQ5YRWxJ3/uvoCdl+3/Zyb/baYaTbkuIjwy4mmABq14x7HfEa
+         W5Ebk7RTz+SciqvFRiqdEX2gR25Fnc+gk+iRePZNlSZZm6Z44F8zyQ6tvPChjr9NwdpP
+         rUlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=8ecITP1g/Bk56ya+rEhTifEcwOHhYi45sZcH/84jjMk=;
-        b=KAG4gKrf8F/Ic5ENY0388uePsy6GnyWuE0w3q147GM1/Uzo9OS3MsFqP+7vIxQBh8b
-         oIs3BKX75QAfA7YkxUNk9xWafwoa+TXf+9nok7MGpyyDsayLRYkfVRiT6ks5r3hDIGm6
-         mMdRVmwIYpbLDTEXScmixDiTTNy9uTFRBLpP5LgMl1vhyf9DqWpuy97nCoUoBW/wC3F+
-         8dMdCiXjIH82hoblGMLikzcLd1pZEoyYZQRpRF04x1AalnFeUkY9Ioh94jIGGPiiKz3a
-         OMfuzHxdsDbJpSApxVGd+QS+yRh3LOrhpwQDxDsfpKQ7IbIxqzSWf3TaNnNw1mPfJ8Ov
-         eewA==
-X-Gm-Message-State: ACgBeo3tmY3jXvtA/tiJSHUmQ447htAkBgoX0Y3cGQN05lRl2xAhs8QN
-	9CwNTcxZ3BEnCoyOgrCaA6Im3YFmmikr9Zcx7vMo3g==
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=s2Qc35OkaAULaxHm0DRaGUQFDsFxar1iJEF4PW7kQTs=;
+        b=fec3DDA33lXBXIdslwSQ1VaS2C7h61F3Lz7Cj5sJ22GsuiAYtKljWTyP5vifPVwW9i
+         j03gqO3sNoRFhoYQ8hST+f6wexzOXhR2saolsCu+3Oms104+Bp1fO/SsH6PBUMCZ5YHE
+         +JFwJS5jlaeciCH6LxQKzoTyvTraDa5lF80hVSFiCiUetOe+bhPPKslSge94pHLP4spW
+         2vguvw5GbE5/czul65RUxuDznOy8CRYC05f2Ml8zyGOIROt35p7MfZ+/BcRYlZPC9UzM
+         VfZpznwHG0ko7hF/asRz1bWqCt1830vOxyOgG0J0tcUiO01U0Ezjs/pp6guH9DfTPpje
+         HcFg==
+X-Gm-Message-State: ACgBeo3c90H+5u+D/9pBl/xbOvVguRBS7XKz7cIkVBE4Fg1v4yJUiCUo
+	Of/RY+pKuFs+G9tsf72iEG8=
 X-Google-Smtp-Source: 
- AA6agR7/KanQwEXDXcp4a67m6YkBuIstLubWBDo6jWq9ZMux5PzIOK0mi9NQRGGoknXL6gsvNmilZOSn5tu488GBGnM=
-X-Received: by 2002:a17:906:b84a:b0:73d:bacd:84e5 with SMTP id
- ga10-20020a170906b84a00b0073dbacd84e5mr14696975ejb.750.1661790933897; Mon, 29
- Aug 2022 09:35:33 -0700 (PDT)
+ AA6agR7iMpMObW6b6S21F1TfzWcFMNm1XbM4z05WnrsGQnxnk2iF0EsYUCPj1tP4pDh5RI24pI3PQQ==
+X-Received: by 2002:a65:4941:0:b0:42a:8c1b:6b6c with SMTP id
+ q1-20020a654941000000b0042a8c1b6b6cmr15455873pgs.375.1661801527898;
+        Mon, 29 Aug 2022 12:32:07 -0700 (PDT)
+Received: from skjolley ([2600:1011:a118:bb62:293c:e2d4:1418:7020])
+        by smtp.gmail.com with ESMTPSA id
+ x9-20020a170902a38900b0016f154c8910sm5733411pla.204.2022.08.29.12.32.06
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 29 Aug 2022 12:32:07 -0700 (PDT)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@lists.yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 29 Aug 2022 12:32:07 -0700
+Message-ID: <005701d8bbde$070101f0$150305d0$@gmail.com>
 MIME-Version: 1.0
-References: <20220829140432.3169225-1-jerome.forissier@linaro.org>
-In-Reply-To: <20220829140432.3169225-1-jerome.forissier@linaro.org>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Mon, 29 Aug 2022 18:35:22 +0200
-Message-ID: 
- <CAP71WjzFD3ns9BQKXo+F8K7UrDpoN5ECMqtDAM6FsXW09WS39A@mail.gmail.com>
-Subject: Re: [yocto] [meta-security][PATCH resend] Parsec-service: add parsec
- user to teeclnt group when optee is present
-To: Jerome Forissier <jerome.forissier@linaro.org>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000004e761905e763da9c"
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0058_01D8BBA3.5AA49AF0"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKKzJBzY5atoNefVCfhvQjjU00F8A==
+Content-Language: en-us
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 29 Aug 2022 16:35:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57935
+ <yocto@lists.yoctoproject.org>; Mon, 29 Aug 2022 19:32:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57936
 
---0000000000004e761905e763da9c
-Content-Type: text/plain; charset="UTF-8"
+This is a multipart message in MIME format.
 
-On Mon, Aug 29, 2022 at 4:05 PM Jerome Forissier <
-jerome.forissier@linaro.org> wrote:
+------=_NextPart_000_0058_01D8BBA3.5AA49AF0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-> The optee-client package provides a PKCS#11 interface that may be used by
-> Parsec with the below configuration. For this to work, the parsec user
-> needs to be a member of the teeclnt group. Therefore, add it when 'optee'
-> is present in MACHINE_FEATURES.
->
->  # Provider configuration in /etc/parsec/config.toml
->  [[provider]]
->  name = "pkcs11-optee"
->  provider_type = "Pkcs11"
->  key_info_manager = "sqlite-manager"
->  library_path = "/usr/lib/libckteec.so.0"
->
-> Signed-off-by: Jerome Forissier <jerome.forissier@linaro.org>
-> ---
->  .../recipes-parsec/parsec-service/parsec-service_1.0.0.bb        | 1 +
->  1 file changed, 1 insertion(+)
->
-> This is a resend because a few hours after my initial post I still can't
-> find it at https://lists.yoctoproject.org/g/yocto/messages. I am now
-> subscribed to the list so hopefully it will help (although
-> https://git.yoctoproject.org/meta-security/tree/README doesn't mention
-> subscription).
->
+All,
 
-Subscription is not required, but then you end up in the moderation queue.
-I can see your message in the moderation queue, I will delete the original
-message.
+ 
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+<https://bugzilla.yoctoproject.org/createaccount.cgi>
+https://bugzilla.yoctoproject.org/createaccount.cgi
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 413
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now,  "4.1", "4.2", "4.3", "4.99" and "Future", the more
+pressing/urgent issues being in "4.1" and then "4.2".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
 
 
->
-> diff --git a/meta-parsec/recipes-parsec/parsec-service/
-> parsec-service_1.0.0.bb b/meta-parsec/recipes-parsec/parsec-service/
-> parsec-service_1.0.0.bb
-> index ad7e560..ea2b0c9 100644
-> --- a/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.0.0.bb
-> +++ b/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.0.0.bb
-> @@ -68,6 +68,7 @@ USERADD_PACKAGES = "${PN}"
->  USERADD_PARAM:${PN} = "-r -g parsec -s /bin/false -d
-> ${localstatedir}/lib/parsec parsec"
->  GROUPADD_PARAM:${PN} = "-r parsec"
->  GROUPMEMS_PARAM:${PN} = "${@bb.utils.contains('PACKAGECONFIG_CONFARGS',
-> 'tpm-provider', '-a parsec -g tss', '', d)}"
-> +GROUPMEMS_PARAM:${PN} = "${@bb.utils.contains('MACHINE_FEATURES',
-> 'optee', '-a parsec -g teeclnt', '', d)}"
->
->  FILES:${PN} += " \
->      ${sysconfdir}/parsec/config.toml \
-> --
-> 2.34.1
->
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#57934):
-> https://lists.yoctoproject.org/g/yocto/message/57934
-> Mute This Topic: https://lists.yoctoproject.org/mt/93326818/1279857
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> nicolas.dechesne@linaro.org]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
->
-
---0000000000004e761905e763da9c
-Content-Type: text/html; charset="UTF-8"
+------=_NextPart_000_0058_01D8BBA3.5AA49AF0
+Content-Type: text/html;
+	boundary="----=_NextPart_000_014E_01D8B64D.A795A990";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Mon, Aug 29, 2022 at 4:05 PM Jerom=
-e Forissier &lt;<a href=3D"mailto:jerome.forissier@linaro.org">jerome.foris=
-sier@linaro.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
-ding-left:1ex">The optee-client package provides a PKCS#11 interface that m=
-ay be used by<br>
-Parsec with the below configuration. For this to work, the parsec user<br>
-needs to be a member of the teeclnt group. Therefore, add it when &#39;opte=
-e&#39;<br>
-is present in MACHINE_FEATURES.<br>
-<br>
-=C2=A0# Provider configuration in /etc/parsec/config.toml<br>
-=C2=A0[[provider]]<br>
-=C2=A0name =3D &quot;pkcs11-optee&quot;<br>
-=C2=A0provider_type =3D &quot;Pkcs11&quot;<br>
-=C2=A0key_info_manager =3D &quot;sqlite-manager&quot;<br>
-=C2=A0library_path =3D &quot;/usr/lib/libckteec.so.0&quot;<br>
-<br>
-Signed-off-by: Jerome Forissier &lt;<a href=3D"mailto:jerome.forissier@lina=
-ro.org" target=3D"_blank">jerome.forissier@linaro.org</a>&gt;<br>
----<br>
-=C2=A0.../recipes-parsec/parsec-service/<a href=3D"http://parsec-service_1.=
-0.0.bb" rel=3D"noreferrer" target=3D"_blank">parsec-service_1.0.0.bb</a>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 | 1 +<br>
-=C2=A01 file changed, 1 insertion(+)<br>
-<br>
-This is a resend because a few hours after my initial post I still can&#39;=
-t<br>
-find it at <a href=3D"https://lists.yoctoproject.org/g/yocto/messages" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/me=
-ssages</a>. I am now<br>
-subscribed to the list so hopefully it will help (although<br>
-<a href=3D"https://git.yoctoproject.org/meta-security/tree/README" rel=3D"n=
-oreferrer" target=3D"_blank">https://git.yoctoproject.org/meta-security/tre=
-e/README</a> doesn&#39;t mention<br>
-subscription).<br></blockquote><div><br></div><div>Subscription is not requ=
-ired, but then you end up in the moderation queue. I can see your message i=
-n the moderation queue, I will delete the original message.=C2=A0</div><div=
->=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
-0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-<br>
-diff --git a/meta-parsec/recipes-parsec/parsec-service/<a href=3D"http://pa=
-rsec-service_1.0.0.bb" rel=3D"noreferrer" target=3D"_blank">parsec-service_=
-1.0.0.bb</a> b/meta-parsec/recipes-parsec/parsec-service/<a href=3D"http://=
-parsec-service_1.0.0.bb" rel=3D"noreferrer" target=3D"_blank">parsec-servic=
-e_1.0.0.bb</a><br>
-index ad7e560..ea2b0c9 100644<br>
---- a/meta-parsec/recipes-parsec/parsec-service/<a href=3D"http://parsec-se=
-rvice_1.0.0.bb" rel=3D"noreferrer" target=3D"_blank">parsec-service_1.0.0.b=
-b</a><br>
-+++ b/meta-parsec/recipes-parsec/parsec-service/<a href=3D"http://parsec-se=
-rvice_1.0.0.bb" rel=3D"noreferrer" target=3D"_blank">parsec-service_1.0.0.b=
-b</a><br>
-@@ -68,6 +68,7 @@ USERADD_PACKAGES =3D &quot;${PN}&quot;<br>
-=C2=A0USERADD_PARAM:${PN} =3D &quot;-r -g parsec -s /bin/false -d ${localst=
-atedir}/lib/parsec parsec&quot;<br>
-=C2=A0GROUPADD_PARAM:${PN} =3D &quot;-r parsec&quot;<br>
-=C2=A0GROUPMEMS_PARAM:${PN} =3D &quot;${@bb.utils.contains(&#39;PACKAGECONF=
-IG_CONFARGS&#39;, &#39;tpm-provider&#39;, &#39;-a parsec -g tss&#39;, &#39;=
-&#39;, d)}&quot;<br>
-+GROUPMEMS_PARAM:${PN} =3D &quot;${@bb.utils.contains(&#39;MACHINE_FEATURES=
-&#39;, &#39;optee&#39;, &#39;-a parsec -g teeclnt&#39;, &#39;&#39;, d)}&quo=
-t;<br>
-<br>
-=C2=A0FILES:${PN} +=3D &quot; \<br>
-=C2=A0 =C2=A0 =C2=A0${sysconfdir}/parsec/config.toml \<br>
--- <br>
-2.34.1<br>
-<br>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#57934): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/57934" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/57934</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/93326818/1279=
-857" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/93326818/1279857</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:nicolas.dechesne@linaro.org" target=3D"_blank">n=
-icolas.dechesne@linaro.org</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The triage team is starting to try and =
+collect up and classify bugs which a newcomer to the project would be =
+able to work on in a way which means people can find them. They're being =
+listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a> and how to create a bugzilla account at: <a =
+href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
+style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
+/span></a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 413 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &nbsp;&#8220;4.1&#8221;, =
+&#8220;4.2&#8221;, &#8220;4.3&#8221;, &quot;4.99&quot; and =
+&quot;Future&quot;, the more pressing/urgent issues being in =
+&quot;4.1&quot; and then &#8220;4.2&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_000_0058_01D8BBA3.5AA49AF0--
 
---0000000000004e761905e763da9c--
 
