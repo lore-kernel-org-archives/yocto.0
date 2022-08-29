@@ -1,378 +1,243 @@
-Return-Path: <yi.zhao@windriver.com>
+Return-Path: <forums@bitflipper.net>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 97757C64991
-	for <webhook@archiver.kernel.org>; Sun, 28 Aug 2022 02:30:16 +0000 (UTC)
-Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com
- [205.220.166.238])
- by mx.groups.io with SMTP id smtpd.web08.55788.1661653810925851515
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 37609ECAAA2
+	for <webhook@archiver.kernel.org>; Mon, 29 Aug 2022 02:49:43 +0000 (UTC)
+Received: from omta33.uswest2.a.cloudfilter.net
+ (omta33.uswest2.a.cloudfilter.net [35.89.44.32])
+ by mx.groups.io with SMTP id smtpd.web11.66199.1661741381196491721
  for <yocto@lists.yoctoproject.org>;
- Sat, 27 Aug 2022 19:30:11 -0700
+ Sun, 28 Aug 2022 19:49:41 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=eELCAJDM;
- spf=permerror,
- err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}:
- invalid domain name (domain: windriver.com, ip: 205.220.166.238,
- mailfrom: prvs=52395d86b7=yi.zhao@windriver.com)
-Received: from pps.filterd (m0250810.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id
- 27S2U2kb010583;
-	Sat, 27 Aug 2022 19:30:10 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
- h=from : to :
- subject : date : message-id : in-reply-to : references :
- content-transfer-encoding : content-type : mime-version; s=PPS06212021;
- bh=eQ15YaljerUJnWvMruSjk6nsXTeRqKT6D5c2J3U+NuY=;
- b=eELCAJDMuk3rbDYbjbmSQJava5dJ41ZEwVNgrEzX73aiDWvWCLQOtsM6k+W3rOrUd+v1
- KOOTdEqW878mcobfTwAPQdp0jodkP9ok2mVQbhv4d1dzzhT3pkoNY/Cq14XKEnLs5iUd
- mmZHO43oLY5OwiETQl0ygKSHfN8mn7cJK6YzA0OJuxff6H5GbU8jD6Z3Uxpk2Q+uKsUX
- 6JvRxBV3xV0gCOlPn13XMm3YobV904tkvsaq4zTdjmXPz1Z3nBOrdBfJjFwOl4rC9K18
- FQfI7WTLWFi+AxIVC/7C4sdKQlHVTLXVBZLzCwGrvn5WXgrOPZnzfR8c6e1qANAVo6x2 uA==
-Received: from nam12-mw2-obe.outbound.protection.outlook.com
- (mail-mw2nam12lp2047.outbound.protection.outlook.com [104.47.66.47])
-	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3j7ej60hj3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 27 Aug 2022 19:30:10 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nyfvXD14ZOpFtAvM0xqzU4P8MZy/7URmIdeedmoRWPZ0TRCGcYyhLMwnzro8SGiSDkWgH0xwhH4sQjhTwsHEKf7rCnDF8u22qvH8bDyceJloi6AWwXISEQOLwWDFevKfzbBz470/d/cxNV1hFbOhgWTpRmTPxGIFrU3wQc4/obozrh0QUpdR/8J1G++bQQ7r7fPmENEE9WEh19kiLeEVL8hQs9WRM/FmWVssEpVYZNcl8bxJI31J0mSl9v+2prsAKwC/9y90PMpiZe9S2uLSCp/168r0AZdGAyoaOE0yy0tyvY4Yn8woZeVevqU9PuOAHpTsuuaOby8Zyu4wzrkP4Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eQ15YaljerUJnWvMruSjk6nsXTeRqKT6D5c2J3U+NuY=;
- b=JtKyWVZinGPIoKy53AboIwUmumh6OhKui6EOdBjvdCacZyH6j8oQqZyOPOVxCLy6/TMXC8ZJZ690Z6R30Xg0KcvhpaGJ9N9JXreSS6t2RM6YlfOJv6OMamoq0SNoHBJb66hBni6znF7HymzgDYGCkEVy1qoBYLCWzF6ZqnL+BokxwJufg7gbCUB6bRSwxG9obW5J9UrScTyPJIdaBZwSVimOk0JQy/AOOhriTdf+ATSvjiWBOQ2MSk3uZWu8B0lILQwXrjiXPNGQnrC4eJ1WrAI/bhJJwRvRDeA1m9v0Na/Q8XbaOFGj6SWnJHWRscMZBLzUlNa4TTK9/Y9C9F29eA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
-Received: from CO1PR11MB4867.namprd11.prod.outlook.com (2603:10b6:303:9a::13)
- by DM5PR1101MB2172.namprd11.prod.outlook.com (2603:10b6:4:50::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.19; Sun, 28 Aug
- 2022 02:30:08 +0000
-Received: from CO1PR11MB4867.namprd11.prod.outlook.com
- ([fe80::a921:a88e:14b7:56ec]) by CO1PR11MB4867.namprd11.prod.outlook.com
- ([fe80::a921:a88e:14b7:56ec%6]) with mapi id 15.20.5566.021; Sun, 28 Aug 2022
- 02:30:08 +0000
-From: Yi Zhao <yi.zhao@windriver.com>
-To: yocto@lists.yoctoproject.org, joe_macdonald@mentor.com, joe@deserted.net
-Subject: [meta-selinux][PATCH 13/16] selinux-gui: upgrade 3.3 -> 3.4
-Date: Sun, 28 Aug 2022 10:29:31 +0800
-Message-Id: <20220828022934.47592-13-yi.zhao@windriver.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220828022934.47592-1-yi.zhao@windriver.com>
-References: <20220828022934.47592-1-yi.zhao@windriver.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR02CA0058.apcprd02.prod.outlook.com
- (2603:1096:4:54::22) To CO1PR11MB4867.namprd11.prod.outlook.com
- (2603:10b6:303:9a::13)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 087a6270-5c08-4fb7-8913-08da889d3991
-X-MS-TrafficTypeDiagnostic: DM5PR1101MB2172:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	LCNM95KO2vE5GGOvWoFGX/DxobuSQ+YgIBlsOeJd0gJr+BHMTpTDfmTdq0yTGuvksK/Hdke5lWpxrUKdjpqHVNaAqRAnL38fTC3RQdq3MgCC98GXa/55W80jZptEB9T+tNVLtpc/qOC/W0PxITntz9+7Lz8wnfRhPMoTQiPcloZIyEOcU9d4r5Oht0OSRV31NFIyfN2OALRPTzfEAmFKfDf8hvKXa1ANjMOpXP02tlMINHaKm2u6sVd515cTRh4Xr9uyldmB9+MaKXsUPr5jxyxU3vv5/lKTOwa/T7zPBF+dd/Ld2S7QlQbGboQHZUUptmg/JuAuSGwARcwkSa0H/x7akKpIOLuy2BDUvE+qLmAtzoyUOdhqJCrF6YtrMiw/quxAHZs/N2THhot4a16tl+PJSk9YfqwFTRFYmfy0y1bHqfyfuK/n28Oc7+ujfN7pxUAgLz6rvQyslN9HzYpl51gqwOPrAiuT7AkuW8WUViQGxAbPIUqZEKdPuYEcEDzdCECL991mXPSlfBW4ryh4rqz+SsxjQPzhCXxCbm/E2P80CUyYYu7eNxdLD13p4DDSpDL6Yjy5Mk+i8jIdDaRQD+G9rrp+QqoJ2hMfI97eh8ChEKgFmVRYbikkCtH/Y0vM9Fc1QfrwbWHmX1NCnUm1fNWu5XykwNxa+XOb4+ox8L2VlwF/cdyhZWU7Hqu9DXepm2fdmmyEX+DxUNGQR0GygkIIT0CKu4sV9EoC6EP7uWj9lFsB65chwfV1SrYgNQnBtVDPBslCRu/0G8b1vXmG0zWDZdckrJCBdg9zWRuChQM=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4867.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(376002)(346002)(39840400004)(366004)(136003)(83380400001)(2616005)(1076003)(186003)(38100700002)(38350700002)(66476007)(66556008)(8676002)(66946007)(316002)(26005)(6506007)(6512007)(6666004)(52116002)(41300700001)(6486002)(44832011)(8936002)(478600001)(2906002)(5660300002)(86362001)(36756003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?UHRcc9a+hRwKHAzVnvbIjj585sfEhoYDdVzp30sWiFnLIQbAWYurIWd8RXwp?=
- =?us-ascii?Q?pZdxsIxFYUYNYc1eGaLyiSkwxLZQCJC0aKHLUEPMFSWODgkT2pTZhKa/0Ssv?=
- =?us-ascii?Q?dBINx0WWOYDvlX+Wjiri/6jfZ7xb3Lg4Bk1PX7SSM4gidcKgKsZxIoN1KNC3?=
- =?us-ascii?Q?bR+4xdq0ChWkhpBEdkq9D4uj1Z+Lhs5JuZG6cDKOzio+F1kBbcmWNJ3v4pa1?=
- =?us-ascii?Q?KTnrtP8/kJzLRNuEWhx3ClbQIOCckqKlv4SV3MRGEKIj+0Xsa6aKg985jrKl?=
- =?us-ascii?Q?N++1XUs/c2+IBsye5oIk0vjfCUzXKvyz9TJV1SZA8Zc0vhQguNqCuYx7Rwj2?=
- =?us-ascii?Q?rm3Ew+xPFMtSlHEr5lqezPs4FbogUlihav4WaVAMiEyBMdUFtlp31uKez0Xi?=
- =?us-ascii?Q?tyrd8KeNM52jCtiCbpxE6Xc4jSiQaUeq00sQRpZXgOfMqSjuB2hQzMpo/fyn?=
- =?us-ascii?Q?wzJn10h/5LFvWC8I6zL6LQlPlA41DmpWs3WPVwuVCd4WMAajTFwUw9kwR0Y8?=
- =?us-ascii?Q?01/1QzVf+e72O/TJ8B3gEvInO5wiwfJWjpyvdAhAvfW/bHKjE9OeR3Paf/kW?=
- =?us-ascii?Q?s+4gC/EM8BSbXv6N+uprboPHeRT4uvKfIeWzyJp7Fq72qDwNwDnHvXObztn/?=
- =?us-ascii?Q?g6JguWLNyQqLdf5Et2ZL4jz80tLbd5dYp4buAnQqxA06HuxkMPr2FZlBKlh5?=
- =?us-ascii?Q?sgUBvQgnzJ+Nmmx8Y14+ceSM0yLEwCylGVKUDcsAX7C8etdVYUoTdxPK/mFU?=
- =?us-ascii?Q?twwIqouV8KN/nHl9es2DgVA5HsqRJu2A8YPysuS6wwYPoGv20KoTCB+3Lk9y?=
- =?us-ascii?Q?iNu0USecb2abi9UwnZaobLpsb+njzPMLPTI1mQU2GCjBLKNF1r0Nwy9MHzyA?=
- =?us-ascii?Q?rBs5VWhmgXle2+yagi9HzLw/DaCPd6KcG8b2CUgpBjfnTH2GgLbmnX9LYyJ5?=
- =?us-ascii?Q?T7NsRiDh9Vh84wsKeEKKZ9flwXra3i996Hpi+lMG4bYVyTDKK8J8oRiXr9Hd?=
- =?us-ascii?Q?QJSkPNTAoBQom70U3zIND2B4GxDWzaNFg+FSpt9WN1YnxsmlQC+Qv4fcsyk8?=
- =?us-ascii?Q?Yy8FkfTNEXrAfTPJzezrpgg6aeW8Cs/r3u82kGa4NC3fi9NA5rlrXfZZF/ya?=
- =?us-ascii?Q?a1C/eOWD4KvReIl1GTjQ3KMqv+F9Aag4WB+BHKCRaL+8OEovhnxX84AgBNeR?=
- =?us-ascii?Q?ofRTO1yr/iHwxU9sSb9sRmB7ziYTeWWAcdJKckUbSpSwZIBwGIxEgnl+p4eB?=
- =?us-ascii?Q?LKpooNdFXXqi1EbgBNSB50i7/+xZxghnbR6Rgz6B+kfqDDf+2/s5gq27YPQZ?=
- =?us-ascii?Q?20v3DY3//E5sV+lPe2UurZbz9voE9kNDAqg0jKglNSS4vxZWNdjAq0YpxnpI?=
- =?us-ascii?Q?1IHjCtLPjO+2emXmXJYnKusE5qQi5YWoPeo6z/hUCYHCDkuyC+5xaIltjeXQ?=
- =?us-ascii?Q?9+oHUZbK0quj9uiRD9FylBdPS4DT9FYgwHkaHnhH5yE8Oc+w2KeoKXrbjcqE?=
- =?us-ascii?Q?ZUhBBjGKGE3awbuyckeynoF/wHgfwd3VUvk41nerfOHUXL8C9KGttjHaMjN5?=
- =?us-ascii?Q?RK0A2TWG9aFeN2914IWD+iUCpsxDtpnWyiq2epjf?=
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 087a6270-5c08-4fb7-8913-08da889d3991
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4867.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2022 02:30:08.4678
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- VXGXPQiplB5VjFFY4Z5qnr82VUItjmcYoKimVg/rfPH5OGhVLXMq3t75FQN2r6aRBWZJeTYcaj+vIp/NWTHOJg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1101MB2172
-X-Proofpoint-ORIG-GUID: p3piqgFNBrH6M0u-s4mQ_yxfXEUbwjVe
-X-Proofpoint-GUID: p3piqgFNBrH6M0u-s4mQ_yxfXEUbwjVe
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-08-27_10,2022-08-25_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0
- priorityscore=1501 clxscore=1015 lowpriorityscore=0 mlxscore=0
- adultscore=0 malwarescore=0 bulkscore=0 impostorscore=0 spamscore=0
- mlxlogscore=679 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2207270000 definitions=main-2208280007
+ dkim=pass header.i=@bitflipper.net header.s=default header.b=eoebdgd3;
+ spf=pass (domain: bitflipper.net, ip: 35.89.44.32,
+ mailfrom: forums@bitflipper.net)
+Received: from eig-obgw-6001a.ext.cloudfilter.net ([10.0.30.140])
+	by cmsmtp with ESMTP
+	id SU7poFdnSsYJKSUqKoJLFA; Mon, 29 Aug 2022 02:49:40 +0000
+Received: from gator4161.hostgator.com ([108.167.133.17])
+	by cmsmtp with ESMTP
+	id SUqIoSLOvJzQ5SUqIo6DJV; Mon, 29 Aug 2022 02:49:39 +0000
+X-Authority-Analysis: v=2.4 cv=MaV/Brzf c=1 sm=1 tr=0 ts=630c2943
+ a=wy83rNxz+atVFkX2aYqp/w==:117 a=zmJLnD9S6R+eT+5CidqXXQ==:17
+ a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=IkcTkHD0fZMA:10 a=biHskzXt2R4A:10
+ a=myVjTR8LsXQA:10 a=mV9VRH-2AAAA:8 a=3-RhneuVAAAA:8 a=OycbvLwyAAAA:8
+ a=aqdNDSJpzFylkptGxJYA:9 a=QEXdDO2ut3YA:10 a=VLVLkjT_5ZicWzSuYqSo:22
+ a=K7D-rfjolMOoSJWbC0j4:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=bitflipper.net; s=default; h=To:References:Message-Id:
+	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
+	Content-Type:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Yq+21bwBGmmu7b/Z3hmxv5AvSEhVYg4KwLzqZWJU/V0=; b=eoebdgd37io/1MGwCSKQYk8aOs
+	JLGF3IB8pBgrmLU+f1miMH/eoWvqbaANoaEMbiDyyU7SYe8FIxI6wozcfQA/8Do+zEDvmLI69ItG1
+	69FAji1d+te7Yx6A7t6HN4IbIBpJ81iQpG4GpsDvzb/hQJ7nctxvXiUdiwDmTV00qLz4lGAHb/0OH
+	LLBiVLM0A4dCfMM/7xBW7Nnt6zvLEdOTeUjPqzS7emtsdQw9JwbQF11rI7tiXpszKiqK1+d+YhLT7
+	+g7p9VcoxIZzMiJlAQ9NYrj7aRWck7Lv1ctywH3eCRe5OTMdFd2kamn7IxWVRSGmWtrblfKe3+D2y
+	DNC1Okkg==;
+Received: from pool-173-48-211-43.bstnma.fios.verizon.net
+ ([173.48.211.43]:51208 helo=smtpclient.apple)
+	by gator4161.hostgator.com with esmtpsa  (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <forums@bitflipper.net>)
+	id 1oSUqH-000SUm-GQ;
+	Sun, 28 Aug 2022 21:49:37 -0500
+Content-Type: text/plain;
+	charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.60.0.1.1\))
+Subject: Re: [yocto] Bitbake + Patches
+From: forums <forums@bitflipper.net>
+In-Reply-To: <9222c257155a4d5aa93db2f0f9d1047b@axis.com>
+Date: Sun, 28 Aug 2022 22:49:35 -0400
+Cc: "Yocto (yocto@lists.yoctoproject.org)" <yocto@lists.yoctoproject.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <7B020362-F600-4BF9-BFC0-9E7C93CAE605@bitflipper.net>
+References: <53C07165-3951-4450-B175-E323971C8DEC@bitflipper.net>
+ <CAMKF1spvyQh1czn+HiKmppXBCO_tkor_3Ogfj6wguwA0x+tAyA@mail.gmail.com>
+ <fcfe7d1380ab4d2598cff5004028d419@axis.com>
+ <B58205E1-72E9-41F6-9A52-A440A62C3C6B@bitflipper.net>
+ <899c12e4c6d34a4298b84b7abf022a82@axis.com>
+ <0C54FD2B-AEAB-4425-9CEB-FFCA85458A16@bitflipper.net>
+ <9222c257155a4d5aa93db2f0f9d1047b@axis.com>
+To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+X-Mailer: Apple Mail (2.3693.60.0.1.1)
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - gator4161.hostgator.com
+X-AntiAbuse: Original Domain - lists.yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - bitflipper.net
+X-BWhitelist: no
+X-Source-IP: 173.48.211.43
+X-Source-L: No
+X-Exim-ID: 1oSUqH-000SUm-GQ
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: pool-173-48-211-43.bstnma.fios.verizon.net (smtpclient.apple)
+ [173.48.211.43]:51208
+X-Source-Auth: forums@bitflipper.net
+X-Email-Count: 1
+X-Org: HG=hgshared;ORG=hostgator;
+X-Source-Cap: YmFsc29uODg7YmFsc29uODg7Z2F0b3I0MTYxLmhvc3RnYXRvci5jb20=
+X-Local-Domain: yes
+X-CMAE-Envelope: 
+ MS4xfNIMgPYjODaKFQBVYp3PhCJgue+sVNl5ZY8x4ilRebrYaPr+7b4PugofHWKDWjapDmhqg/CLG1sAGY8KrLlaX+ZdVI+Nogv2mP2Vg21A9iy0MiIAaWqY
+ lvc+x/N4mcGc+721knsZHD6eiUTyhVUG0ATjUv3xiCPSo7CFkaNQffOBg6tNcRgwikFhzOSo7vGlSf935c/C0zMeXJB3dFO3F5uzG6l9xbA16qmorwH7xrtK
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 28 Aug 2022 02:30:16 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57928
+ <yocto@lists.yoctoproject.org>; Mon, 29 Aug 2022 02:49:43 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57932
 
-Backport a patch to fix chcat runtime error.
 
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
----
- ...andle-unsupported-languages-properly.patch | 199 ++++++++++++++++++
- ...{selinux-gui_3.3.bb => selinux-gui_3.4.bb} |   5 +-
- 2 files changed, 203 insertions(+), 1 deletion(-)
- create mode 100644 recipes-security/selinux/selinux-gui/0001-gettext-handle-unsupported-languages-properly.patch
- rename recipes-security/selinux/{selinux-gui_3.3.bb => selinux-gui_3.4.bb} (78%)
 
-diff --git a/recipes-security/selinux/selinux-gui/0001-gettext-handle-unsupported-languages-properly.patch b/recipes-security/selinux/selinux-gui/0001-gettext-handle-unsupported-languages-properly.patch
-new file mode 100644
-index 0000000..d79db22
---- /dev/null
-+++ b/recipes-security/selinux/selinux-gui/0001-gettext-handle-unsupported-languages-properly.patch
-@@ -0,0 +1,199 @@
-+From a0a67119412622141a7f8365eff10de6395be7ca Mon Sep 17 00:00:00 2001
-+From: Vit Mojzis <vmojzis@redhat.com>
-+Date: Fri, 24 Jun 2022 16:24:25 +0200
-+Subject: [PATCH] gettext: handle unsupported languages properly
-+
-+With "fallback=True" gettext.translation behaves the same as
-+gettext.install and uses NullTranslations in case the
-+translation file for given language was not found (as opposed to
-+throwing an exception).
-+
-+Fixes:
-+  # LANG is set to any "unsupported" language, e.g. en_US.UTF-8
-+  $ chcat --help
-+  Traceback (most recent call last):
-+  File "/usr/bin/chcat", line 39, in <module>
-+    t = gettext.translation(PROGNAME,
-+  File "/usr/lib64/python3.9/gettext.py", line 592, in translation
-+    raise FileNotFoundError(ENOENT,
-+  FileNotFoundError: [Errno 2] No translation file found for domain: 'selinux-python'
-+
-+Signed-off-by: Vit Mojzis <vmojzis@redhat.com>
-+Reviewed-by: Daniel Burgener <dburgener@linux.microsoft.com>
-+Acked-by: Petr Lautrbach <plautrba@redhat.com>
-+
-+Upstream-Status: Backport
-+[https://github.com/SELinuxProject/selinux/commit/344463076b2a91e1d2c7f5cc3835dc1a53a05e88]
-+
-+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-+---
-+ booleansPage.py          | 3 ++-
-+ domainsPage.py           | 3 ++-
-+ fcontextPage.py          | 3 ++-
-+ loginsPage.py            | 3 ++-
-+ modulesPage.py           | 3 ++-
-+ polgengui.py             | 3 ++-
-+ portsPage.py             | 3 ++-
-+ semanagePage.py          | 3 ++-
-+ statusPage.py            | 3 ++-
-+ system-config-selinux.py | 3 ++-
-+ usersPage.py             | 3 ++-
-+ 11 files changed, 22 insertions(+), 11 deletions(-)
-+
-+diff --git a/booleansPage.py b/booleansPage.py
-+index 5beec58..ad11a9b 100644
-+--- a/booleansPage.py
-++++ b/booleansPage.py
-+@@ -46,7 +46,8 @@ try:
-+         kwargs['unicode'] = True
-+     t = gettext.translation(PROGNAME,
-+                     localedir="/usr/share/locale",
-+-                    **kwargs)
-++                    **kwargs,
-++                    fallback=True)
-+     _ = t.gettext
-+ except:
-+     try:
-+diff --git a/domainsPage.py b/domainsPage.py
-+index e08f34b..e6eadd6 100644
-+--- a/domainsPage.py
-++++ b/domainsPage.py
-+@@ -38,7 +38,8 @@ try:
-+         kwargs['unicode'] = True
-+     t = gettext.translation(PROGNAME,
-+                     localedir="/usr/share/locale",
-+-                    **kwargs)
-++                    **kwargs,
-++                    fallback=True)
-+     _ = t.gettext
-+ except:
-+     try:
-+diff --git a/fcontextPage.py b/fcontextPage.py
-+index bac2bec..767664f 100644
-+--- a/fcontextPage.py
-++++ b/fcontextPage.py
-+@@ -55,7 +55,8 @@ try:
-+         kwargs['unicode'] = True
-+     t = gettext.translation(PROGNAME,
-+                     localedir="/usr/share/locale",
-+-                    **kwargs)
-++                    **kwargs,
-++                    fallback=True)
-+     _ = t.gettext
-+ except:
-+     try:
-+diff --git a/loginsPage.py b/loginsPage.py
-+index 18b93d8..7e08232 100644
-+--- a/loginsPage.py
-++++ b/loginsPage.py
-+@@ -37,7 +37,8 @@ try:
-+         kwargs['unicode'] = True
-+     t = gettext.translation(PROGNAME,
-+                     localedir="/usr/share/locale",
-+-                    **kwargs)
-++                    **kwargs,
-++                    fallback=True)
-+     _ = t.gettext
-+ except:
-+     try:
-+diff --git a/modulesPage.py b/modulesPage.py
-+index c546d45..02b79f1 100644
-+--- a/modulesPage.py
-++++ b/modulesPage.py
-+@@ -38,7 +38,8 @@ try:
-+         kwargs['unicode'] = True
-+     t = gettext.translation(PROGNAME,
-+                     localedir="/usr/share/locale",
-+-                    **kwargs)
-++                    **kwargs,
-++                    fallback=True)
-+     _ = t.gettext
-+ except:
-+     try:
-+diff --git a/polgengui.py b/polgengui.py
-+index a18f1cb..7a3ecd5 100644
-+--- a/polgengui.py
-++++ b/polgengui.py
-+@@ -71,7 +71,8 @@ try:
-+         kwargs['unicode'] = True
-+     t = gettext.translation(PROGNAME,
-+                     localedir="/usr/share/locale",
-+-                    **kwargs)
-++                    **kwargs,
-++                    fallback=True)
-+     _ = t.gettext
-+ except:
-+     try:
-+diff --git a/portsPage.py b/portsPage.py
-+index 54aa80d..bee2bdf 100644
-+--- a/portsPage.py
-++++ b/portsPage.py
-+@@ -43,7 +43,8 @@ try:
-+         kwargs['unicode'] = True
-+     t = gettext.translation(PROGNAME,
-+                     localedir="/usr/share/locale",
-+-                    **kwargs)
-++                    **kwargs,
-++                    fallback=True)
-+     _ = t.gettext
-+ except:
-+     try:
-+diff --git a/semanagePage.py b/semanagePage.py
-+index 1371d4e..efad14d 100644
-+--- a/semanagePage.py
-++++ b/semanagePage.py
-+@@ -30,7 +30,8 @@ try:
-+         kwargs['unicode'] = True
-+     t = gettext.translation(PROGNAME,
-+                     localedir="/usr/share/locale",
-+-                    **kwargs)
-++                    **kwargs,
-++                    fallback=True)
-+     _ = t.gettext
-+ except:
-+     try:
-+diff --git a/statusPage.py b/statusPage.py
-+index c241ef8..832849e 100644
-+--- a/statusPage.py
-++++ b/statusPage.py
-+@@ -43,7 +43,8 @@ try:
-+         kwargs['unicode'] = True
-+     t = gettext.translation(PROGNAME,
-+                     localedir="/usr/share/locale",
-+-                    **kwargs)
-++                    **kwargs,
-++                    fallback=True)
-+     _ = t.gettext
-+ except:
-+     try:
-+diff --git a/system-config-selinux.py b/system-config-selinux.py
-+index 1b460c9..9f53b7f 100644
-+--- a/system-config-selinux.py
-++++ b/system-config-selinux.py
-+@@ -53,7 +53,8 @@ try:
-+         kwargs['unicode'] = True
-+     t = gettext.translation(PROGNAME,
-+                     localedir="/usr/share/locale",
-+-                    **kwargs)
-++                    **kwargs,
-++                    fallback=True)
-+     _ = t.gettext
-+ except:
-+     try:
-+diff --git a/usersPage.py b/usersPage.py
-+index d51bd96..9acd3b8 100644
-+--- a/usersPage.py
-++++ b/usersPage.py
-+@@ -37,7 +37,8 @@ try:
-+         kwargs['unicode'] = True
-+     t = gettext.translation(PROGNAME,
-+                     localedir="/usr/share/locale",
-+-                    **kwargs)
-++                    **kwargs,
-++                    fallback=True)
-+     _ = t.gettext
-+ except:
-+     try:
-+-- 
-+2.25.1
-+
-diff --git a/recipes-security/selinux/selinux-gui_3.3.bb b/recipes-security/selinux/selinux-gui_3.4.bb
-similarity index 78%
-rename from recipes-security/selinux/selinux-gui_3.3.bb
-rename to recipes-security/selinux/selinux-gui_3.4.bb
-index 9916afb..fa80860 100644
---- a/recipes-security/selinux/selinux-gui_3.3.bb
-+++ b/recipes-security/selinux/selinux-gui_3.4.bb
-@@ -8,9 +8,12 @@ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=393a5ca445f6965873eca0259a17f833"
- 
- require selinux_common.inc
- 
-+SRC_URI += "file://0001-gettext-handle-unsupported-languages-properly.patch"
-+
- S = "${WORKDIR}/git/gui"
- 
--RDEPENDS:${PN} += "python3-core"
-+DEPENDS = "gettext-native"
-+RDEPENDS:${PN} = "python3-core"
- 
- FILES:${PN} += " \
-         ${datadir}/system-config-selinux/* \
--- 
-2.25.1
+Hi Peter. In my mind this process is starting to come together as to why =
+is happening. So I copied the bbappend file as is  and I did get the =
+error your expected that I would about the md5sum:
+
+
+ERROR: apache2-2.4.54-r0 do_fetch: Checksum failure fetching =
+https://archive.apache.org/dist/httpd/httpd-2.4.54.tar.bz2
+ERROR: apache2-2.4.54-r0 do_fetch: Fetcher failure for URL: =
+'https://archive.apache.org/dist/httpd/httpd-2.4.54.tar.bz2'. Checksum =
+mismatch!
+File: '/ct/yocto/imx-5.4.70/downloads/httpd-2.4.54.tar.bz2' has md5 =
+checksum 861b43073ab416d689f1fc4dfa087711 when <I don't have this at =
+hand, but bitbake will tell you what it should be> was expected
+If this change is expected (e.g. you have upgraded to a new version =
+without updating the checksums) then you can use these lines within the =
+recipe:
+SRC_URI[md5sum] =3D "861b43073ab416d689f1fc4dfa087711"
+SRC_URI[sha256sum] =3D =
+"eb397feeefccaf254f8d45de3768d9d68e8e73851c49afd5b7176d1ecf80c340"
+Otherwise you should retry the download and/or check with upstream to =
+determine if the file has become corrupted or otherwise unexpectedly =
+modified.
+
+But then I don=E2=80=99t understand what needs to be done with what you =
+said here:
+
+>> You then also need to copy the three new patches and any other
+>> patches that differs between zeus and master and put them in your
+>> layer together with the bbappend file (in a subdirectory called
+>> "recipes-httpd/apache2/apache2=E2=80=9D)
+
+
+My assumption here is that I need to copy the difference between the =
+Zeus and Master recipe for apache2 and place them in a file here; =20
+
+	recipies-httpd/apache2/apache2
+
+The name of the file will be apache2 and it will contain the diffs =
+between Zeus and Master for the apache2 recipes. And the diff are from =
+the following file:
+
+	=
+./sources/meta-openembedded/meta-webserver/recipes-httpd/apache2/apache2_2=
+.4.41.bb
+
+Right?
+
+
+Thanks, Jim
+
+
+
+
+
+
+> On Aug 26, 2022, at 10:03 AM, Peter Kjellerstedt =
+<peter.kjellerstedt@axis.com> wrote:
+>=20
+> [ In the future, please make sure to reply to list and not just to me. =
+]
+> [ Top posting since Outlook doesn=E2=80=99t support inline responses =
+to HTML mails. ]
+> =20
+> No, you are supposed to copy the suggest text for the bbappend =
+verbatim, with the exception of the SRC_URI[md5sum] which need to be =
+corrected to match the actual MD5 sum (which bitbake will tell you when =
+you try to build). The suggested additions/deletions for SRC_URI in the =
+bbappend I suggested should be correct as specified, based on the =
+differences between the apache2 recipe in Zeus and master. You will also =
+need to copy the three new patch files from master of meta-webserver, =
+and any of the other patches that have been updated between Zeus and =
+master. Changing PV takes care of the actual update of the code to the =
+new version (since it determines which tar ball is fetched from =
+upstream).
+> =20
+> //Peter
+> =20
+> From: forums <forums@bitflipper.net>=20
+> Sent: den 26 augusti 2022 14:21
+> To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+> Subject: Re: [yocto] Bitbake + Patches
+> =20
+> =20
+> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${BPN}:"
+>=20
+> LIC_FILES_CHKSUM =3D =
+"file://LICENSE;md5=3Dbddeddfac80b2c9a882241d008bb41c3"
+>=20
+> PV =3D "2.4.54"
+>=20
+> SRC_URI +=3D "file://0008-Fix-perl-install-directory-to-usr-bin.patch =
+\
+>           =
+file://0009-support-apxs.in-force-destdir-to-be-empty-string.patch \
+>           file://0001-make_exports.awk-not-expose-the-path.patch"
+> SRC_URI_remove =3D "file://apache-configure_perlbin.patch"
+>=20
+> SRC_URI[md5sum] =3D "<I don't have this at hand, but bitbake will tell =
+you what it should be>"
+> SRC_URI[sha256sum] =3D =
+"eb397feeefccaf254f8d45de3768d9d68e8e73851c49afd5b7176d1ecf80c340"
+> =20
+> =20
+> H Peter. I have t admin, looking at the above bbappend, its really =
+confusing to me. I=E2=80=99ve looked at some of the documents on bitbake =
+and I just can=E2=80=99t find anything to teach me how to put a bbappend =
+together to accomplish upgrading an application.
+> =20
+> Like for example:
+> =20
+> SRC_URI +=3D "file://0008-Fix-perl-install-directory-to-usr-bin.patch
+> =20
+> I believe this one should be:  =20
+> =20
+>                            SRC_URI +=3D file:/usr/bin/patch
+> =20
+> The next one:
+> =20
+> file://0009-support-apxs.in-force-destdir-to-be-empty-string.patch
+> =20
+> I=E2=80=99ve no idea what this one will nee to be.
+> =20
+> And this one:
+> =20
+> file://0001-make_exports.awk-not-expose-the-path.patch
+> =20
+> I don=E2=80=99t know what is supposed to go here either.
+> =20
+> =20
+> Then the SRC_URI_remove will be a pointer to the file containing the =
+patches containing the diff=E2=80=99e between apache 12.4.1 and apache =
+2.4.54 ? I don=E2=80=99t think you can create a single patch file =
+containing diff=E2=80=99s between multiple versions can you? I think it =
+would have to be diff=E2=80=99s between apache 2.4.41 and 2.4.42. Right. =
+Totally confused as to what to do here.
+> =20
+> Any further help appreciated.
+> =20
+> If you know of a resource for me to reference please pass it on. I =
+just don=E2=80=99t see any clear documentation that explains how to =
+construct a bbappend file.
+> =20
+> =20
+> Thanks, Jim
 
 
