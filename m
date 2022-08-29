@@ -1,294 +1,317 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <forums@bitflipper.net>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B62BECAAD8
-	for <webhook@archiver.kernel.org>; Mon, 29 Aug 2022 19:32:09 +0000 (UTC)
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com
- [209.85.215.177])
- by mx.groups.io with SMTP id smtpd.web08.2612.1661801528666509799
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 93BC8ECAAD4
+	for <webhook@archiver.kernel.org>; Mon, 29 Aug 2022 19:34:49 +0000 (UTC)
+Received: from omta33.uswest2.a.cloudfilter.net
+ (omta33.uswest2.a.cloudfilter.net [35.89.44.32])
+ by mx.groups.io with SMTP id smtpd.web09.2636.1661801685644323158
  for <yocto@lists.yoctoproject.org>;
- Mon, 29 Aug 2022 12:32:08 -0700
+ Mon, 29 Aug 2022 12:34:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Nx0Og6od;
- spf=pass (domain: gmail.com, ip: 209.85.215.177,
- mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-pg1-f177.google.com with SMTP id bh13so8596462pgb.4
-        for <yocto@lists.yoctoproject.org>;
- Mon, 29 Aug 2022 12:32:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-language:thread-index:mime-version:message-id:date:subject
-         :to:from:from:to:cc;
-        bh=s2Qc35OkaAULaxHm0DRaGUQFDsFxar1iJEF4PW7kQTs=;
-        b=Nx0Og6oducNKjb+qsWNe37i0UUyLhyU7H+sNV0qj4lJe4ADpjffitxOQCAkAzk5ypI
-         qiW7+wz6aI0T4dmQ0WJ/V0+DeNEcrmG5EgLwWgBSEYbH5b8xdf3j5AJMllylwU5AYDf3
-         LObGD5sFNnRQ2g3oeHlzeufx1Zk1j5NMmqxSjz9UEysN0TfhHCEsz64gIRhzP6Jz77Pj
-         2badxnHc4Nz2wlHAtqPKQ5YRWxJ3/uvoCdl+3/Zyb/baYaTbkuIjwy4mmABq14x7HfEa
-         W5Ebk7RTz+SciqvFRiqdEX2gR25Fnc+gk+iRePZNlSZZm6Z44F8zyQ6tvPChjr9NwdpP
-         rUlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-language:thread-index:mime-version:message-id:date:subject
-         :to:from:x-gm-message-state:from:to:cc;
-        bh=s2Qc35OkaAULaxHm0DRaGUQFDsFxar1iJEF4PW7kQTs=;
-        b=fec3DDA33lXBXIdslwSQ1VaS2C7h61F3Lz7Cj5sJ22GsuiAYtKljWTyP5vifPVwW9i
-         j03gqO3sNoRFhoYQ8hST+f6wexzOXhR2saolsCu+3Oms104+Bp1fO/SsH6PBUMCZ5YHE
-         +JFwJS5jlaeciCH6LxQKzoTyvTraDa5lF80hVSFiCiUetOe+bhPPKslSge94pHLP4spW
-         2vguvw5GbE5/czul65RUxuDznOy8CRYC05f2Ml8zyGOIROt35p7MfZ+/BcRYlZPC9UzM
-         VfZpznwHG0ko7hF/asRz1bWqCt1830vOxyOgG0J0tcUiO01U0Ezjs/pp6guH9DfTPpje
-         HcFg==
-X-Gm-Message-State: ACgBeo3c90H+5u+D/9pBl/xbOvVguRBS7XKz7cIkVBE4Fg1v4yJUiCUo
-	Of/RY+pKuFs+G9tsf72iEG8=
-X-Google-Smtp-Source: 
- AA6agR7iMpMObW6b6S21F1TfzWcFMNm1XbM4z05WnrsGQnxnk2iF0EsYUCPj1tP4pDh5RI24pI3PQQ==
-X-Received: by 2002:a65:4941:0:b0:42a:8c1b:6b6c with SMTP id
- q1-20020a654941000000b0042a8c1b6b6cmr15455873pgs.375.1661801527898;
-        Mon, 29 Aug 2022 12:32:07 -0700 (PDT)
-Received: from skjolley ([2600:1011:a118:bb62:293c:e2d4:1418:7020])
-        by smtp.gmail.com with ESMTPSA id
- x9-20020a170902a38900b0016f154c8910sm5733411pla.204.2022.08.29.12.32.06
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 29 Aug 2022 12:32:07 -0700 (PDT)
-From: <sjolley.yp.pm@gmail.com>
-To: <yocto@lists.yoctoproject.org>,
-	<openembedded-core@lists.openembedded.org>
-Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
-Date: Mon, 29 Aug 2022 12:32:07 -0700
-Message-ID: <005701d8bbde$070101f0$150305d0$@gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0058_01D8BBA3.5AA49AF0"
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQKKzJBzY5atoNefVCfhvQjjU00F8A==
-Content-Language: en-us
+ dkim=pass header.i=@bitflipper.net header.s=default header.b=rAomq4a+;
+ spf=pass (domain: bitflipper.net, ip: 35.89.44.32,
+ mailfrom: forums@bitflipper.net)
+Received: from eig-obgw-6014a.ext.cloudfilter.net ([10.0.30.220])
+	by cmsmtp with ESMTP
+	id SWsVoFn6nsYJKSkWzoLmNG; Mon, 29 Aug 2022 19:34:45 +0000
+Received: from gator4161.hostgator.com ([108.167.133.17])
+	by cmsmtp with ESMTP
+	id SkWwoaf1ZYEj3SkWxoJTZs; Mon, 29 Aug 2022 19:34:44 +0000
+X-Authority-Analysis: v=2.4 cv=X6hBlUfe c=1 sm=1 tr=0 ts=630d14d4
+ a=wy83rNxz+atVFkX2aYqp/w==:117 a=zmJLnD9S6R+eT+5CidqXXQ==:17
+ a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=IkcTkHD0fZMA:10 a=biHskzXt2R4A:10
+ a=myVjTR8LsXQA:10 a=OycbvLwyAAAA:8 a=mV9VRH-2AAAA:8 a=3-RhneuVAAAA:8
+ a=iGHA9ds3AAAA:8 a=df_YqQRE3YYN7NnxmDsA:9 a=QEXdDO2ut3YA:10
+ a=K7D-rfjolMOoSJWbC0j4:22 a=VLVLkjT_5ZicWzSuYqSo:22 a=nM-MV4yxpKKO9kiQg6Ot:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=bitflipper.net; s=default; h=To:References:Message-Id:
+	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
+	Content-Type:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=SXOAJoHVyRWAN/aUpAHWfaZIHuuQn0tC/jEND4eVjOQ=; b=rAomq4a+kROfWlxxtDPObh0l8e
+	9dM5jBnz3R0AERFYT281cGOkHVhIxAQvuo338Zwm73RUAIaPhKBUpzCBxnpjiU+gNG4ftZ6UFpbA2
+	j+L2GeBUafsnE7BAhhegHIuuDGTl1B226XZoFafHY0G8kVOPeHNJsWI8Q8M2NQWl7gTVO1PkIQBZw
+	ukiIXDWwBPSJNGlFORtNiBesHl8VqyUokojPEGLT4f6vx9oNiPqtbzrx6Cs6ZPPez9Nfh+O/mBmaz
+	m+Rgco8dKxb7N/D9Lfpz6n/n2KE57k5ipBt2whhoD+g+4fS+9+/uZxLr19q1RsKAD4Vh6EVXltfiq
+	tHU3JO2Q==;
+Received: from pool-173-48-211-43.bstnma.fios.verizon.net
+ ([173.48.211.43]:50149 helo=smtpclient.apple)
+	by gator4161.hostgator.com with esmtpsa  (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <forums@bitflipper.net>)
+	id 1oSkWw-003NF2-37;
+	Mon, 29 Aug 2022 14:34:42 -0500
+Content-Type: text/plain;
+	charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.60.0.1.1\))
+Subject: Re: [yocto] Bitbake + Patches
+From: forums <forums@bitflipper.net>
+In-Reply-To: <170FB0FB9A5D94E8.11791@lists.yoctoproject.org>
+Date: Mon, 29 Aug 2022 15:34:40 -0400
+Cc: "Yocto (yocto@lists.yoctoproject.org)" <yocto@lists.yoctoproject.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <EFC69B08-F2BA-4BB0-9C72-F818B20B0C4D@bitflipper.net>
+References: <53C07165-3951-4450-B175-E323971C8DEC@bitflipper.net>
+ <CAMKF1spvyQh1czn+HiKmppXBCO_tkor_3Ogfj6wguwA0x+tAyA@mail.gmail.com>
+ <fcfe7d1380ab4d2598cff5004028d419@axis.com>
+ <B58205E1-72E9-41F6-9A52-A440A62C3C6B@bitflipper.net>
+ <899c12e4c6d34a4298b84b7abf022a82@axis.com>
+ <0C54FD2B-AEAB-4425-9CEB-FFCA85458A16@bitflipper.net>
+ <9222c257155a4d5aa93db2f0f9d1047b@axis.com>
+ <170FB0FB9A5D94E8.11791@lists.yoctoproject.org>
+To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+X-Mailer: Apple Mail (2.3693.60.0.1.1)
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - gator4161.hostgator.com
+X-AntiAbuse: Original Domain - lists.yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - bitflipper.net
+X-BWhitelist: no
+X-Source-IP: 173.48.211.43
+X-Source-L: No
+X-Exim-ID: 1oSkWw-003NF2-37
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: pool-173-48-211-43.bstnma.fios.verizon.net (smtpclient.apple)
+ [173.48.211.43]:50149
+X-Source-Auth: forums@bitflipper.net
+X-Email-Count: 1
+X-Org: HG=hgshared;ORG=hostgator;
+X-Source-Cap: YmFsc29uODg7YmFsc29uODg7Z2F0b3I0MTYxLmhvc3RnYXRvci5jb20=
+X-Local-Domain: yes
+X-CMAE-Envelope: 
+ MS4xfEXcKtCwbusz0ACof1eJs1/yPxz9NvIIRV8NT+24gUErI8Ml5vZUCc5E2O5BZGyX/UdL8++1J/0BOxWJ7KsAdsoY3fM/s3JNB4VXf74QDQmS+0qsESPe
+ Pwf1rUH/VpORPmU4gIBNmLvgAzXt2Hjc2oo20Zabj5lC0ZuQS9xav8HkeyMulDrcJZjz/3yFPrQZXJraBYzoQEr4z5kN29WjW5Tr+jBHEu9pLY0XIpVPJTNC
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 29 Aug 2022 19:32:09 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57936
-
-This is a multipart message in MIME format.
-
-------=_NextPart_000_0058_01D8BBA3.5AA49AF0
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-All,
-
- 
-
-The triage team is starting to try and collect up and classify bugs which a
-newcomer to the project would be able to work on in a way which means people
-can find them. They're being listed on the triage page under the appropriate
-heading:
-
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
-review:
-https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
-how to create a bugzilla account at:
-<https://bugzilla.yoctoproject.org/createaccount.cgi>
-https://bugzilla.yoctoproject.org/createaccount.cgi
-
-The idea is these bugs should be straight forward for a person to help work
-on who doesn't have deep experience with the project.  If anyone can help,
-please take ownership of the bug and send patches!  If anyone needs
-help/advice there are people on irc who can likely do so, or some of the
-more experienced contributors will likely be happy to help too.
-
- 
-
-Also, the triage team meets weekly and does its best to handle the bugs
-reported into the Bugzilla. The number of people attending that meeting has
-fallen, as have the number of people available to help fix bugs. One of the
-things we hear users report is they don't know how to help. We (the triage
-team) are therefore going to start reporting out the currently 413
-unassigned or newcomer bugs.
-
- 
-
-We're hoping people may be able to spare some time now and again to help out
-with these.  Bugs are split into two types, "true bugs" where things don't
-work as they should and "enhancements" which are features we'd want to add
-to the system.  There are also roughly four different "priority" classes
-right now,  "4.1", "4.2", "4.3", "4.99" and "Future", the more
-pressing/urgent issues being in "4.1" and then "4.2".
-
- 
-
-Please review this link and if a bug is something you would be able to help
-with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
-like and I will assign it to you (please make sure you have a Bugzilla
-account).  The list is at:
-https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
-_Bugs
-
- 
-
-Thanks,
-
- 
-
-Stephen K. Jolley
-
-Yocto Project Program Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> 
-
- 
+ <yocto@lists.yoctoproject.org>; Mon, 29 Aug 2022 19:34:49 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57937
 
 
-------=_NextPart_000_0058_01D8BBA3.5AA49AF0
-Content-Type: text/html;
-	boundary="----=_NextPart_000_014E_01D8B64D.A795A990";
-	charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal =
-style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>The triage team is starting to try and =
-collect up and classify bugs which a newcomer to the project would be =
-able to work on in a way which means people can find them. They're being =
-listed on the triage page under the appropriate =
-heading:<o:p></o:p></p><p><a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
-s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
-please review: <a =
-href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
-bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
-bedded</a> and how to create a bugzilla account at: <a =
-href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
-style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
-/span></a><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>The idea is these bugs should be straight =
-forward for a person to help work on who doesn't have deep experience =
-with the project.&nbsp; If anyone can help, please take ownership of the =
-bug and send patches!&nbsp; If anyone needs help/advice there are people =
-on irc who can likely do so, or some of the more experienced =
-contributors will likely be happy to help too.<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
-meets weekly and does its best to handle the bugs reported into the =
-Bugzilla. The number of people attending that meeting has fallen, as =
-have the number of people available to help fix bugs. One of the things =
-we hear users report is they don't know how to help. We (the triage =
-team) are therefore going to start reporting out the currently 413 =
-unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>We're hoping people may be able to spare =
-some time now and again to help out with these.&nbsp; Bugs are split =
-into two types, &quot;true bugs&quot; where things don't work as they =
-should and &quot;enhancements&quot; which are features we'd want to add =
-to the system.&nbsp; There are also roughly four different =
-&quot;priority&quot; classes right now, &nbsp;&#8220;4.1&#8221;, =
-&#8220;4.2&#8221;, &#8220;4.3&#8221;, &quot;4.99&quot; and =
-&quot;Future&quot;, the more pressing/urgent issues being in =
-&quot;4.1&quot; and then &#8220;4.2&#8221;.<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
-and if a bug is something you would be able to help with either take =
-ownership of the bug, or send me (<a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
-e-mail with the bug number you would like and I will assign it to you =
-(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
-or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
-nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Program Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_000_0058_01D8BBA3.5AA49AF0--
+
+Peter, I plugging in the  bbappend as is except for the md5sumthat was =
+spit out by the yocto build. Here=E2=80=99s my bbappend file:
+
+
+	FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${BPN}:=E2=80=9D
+
+	LIC_FILES_CHKSUM =3D =
+"file://LICENSE;md5=3Dbddeddfac80b2c9a882241d008bb41c3=E2=80=9D
+
+	PV =3D =E2=80=9C2.4.54"
+
+	SRC_URI +=3D =
+"file://0008-Fix-perl-install-directory-to-usr-bin.patch \
+            =
+file://0009-support-apxs.in-force-destdir-to-be-empty-string.patch \
+            file://0001-make_exports.awk-not-expose-the-path.patch=E2=80=9D=
+
+	SRC_URI_remove =3D "file://apache-configure_perlbin.patch=E2=80=9D=
+
+
+	SRC_URI[md5sum] =3D "<861b43073ab416d689f1fc4dfa087711>=E2=80=9D
+	SRC_URI[sha256sum] =3D =
+"eb397feeefccaf254f8d45de3768d9d68e8e73851c49afd5b7176d1ecf80c340"
+
+
+When I run bitable, I get the following error:
+
+
+
+	ERROR: smith-nephew-cp-lwb5-2.4.54-r0 do_populate_lic: QA Issue: =
+smith-nephew-cp-lwb5: LIC_FILES_CHKSUM points to an invalid file: =
+/ct/yocto/imx-5.4.70/build/tmp/work/imx6ulevk-poky-linux-gnueabi/smith-nep=
+hew-cp-lwb5/2.4.54-r0/smith-nephew-cp-lwb5-2.4.54/LICENSE =
+[license-checksum]
+	ERROR: smith-nephew-cp-lwb5-2.4.54-r0 do_populate_lic: Fatal QA =
+errors found, failing task.
+	ERROR: Logfile of failure stored in: =
+/ct/yocto/imx-5.4.70/build/tmp/work/imx6ulevk-poky-linux-gnueabi/smith-nep=
+hew-cp-lwb5/2.4.54-r0/temp/log.do_populate_lic.1455644
+	ERROR: Task =
+(/ct/yocto/imx-5.4.70/sources/meta-laird-cp/recipes-packages/images/smith-=
+nephew-cp-lwb5.bb:do_populate_lic) failed with exit code '1'
+
+
+I=E2=80=99m suspecting its something to do with the LIC_FILES_CHKSUM ??
+
+Any input appreciated.
+
+
+
+Thanks, Jim
+
+
+
+
+> On Aug 28, 2022, at 10:49 PM, bitflipper <forums@bitflipper.net> =
+wrote:
+>=20
+>=20
+>=20
+> Hi Peter. In my mind this process is starting to come together as to =
+why is happening. So I copied the bbappend file as is  and I did get the =
+error your expected that I would about the md5sum:
+>=20
+>=20
+> ERROR: apache2-2.4.54-r0 do_fetch: Checksum failure fetching =
+https://archive.apache.org/dist/httpd/httpd-2.4.54.tar.bz2
+> ERROR: apache2-2.4.54-r0 do_fetch: Fetcher failure for URL: =
+'https://archive.apache.org/dist/httpd/httpd-2.4.54.tar.bz2'. Checksum =
+mismatch!
+> File: '/ct/yocto/imx-5.4.70/downloads/httpd-2.4.54.tar.bz2' has md5 =
+checksum 861b43073ab416d689f1fc4dfa087711 when <I don't have this at =
+hand, but bitbake will tell you what it should be> was expected
+> If this change is expected (e.g. you have upgraded to a new version =
+without updating the checksums) then you can use these lines within the =
+recipe:
+> SRC_URI[md5sum] =3D "861b43073ab416d689f1fc4dfa087711"
+> SRC_URI[sha256sum] =3D =
+"eb397feeefccaf254f8d45de3768d9d68e8e73851c49afd5b7176d1ecf80c340"
+> Otherwise you should retry the download and/or check with upstream to =
+determine if the file has become corrupted or otherwise unexpectedly =
+modified.
+>=20
+> But then I don=E2=80=99t understand what needs to be done with what =
+you said here:
+>=20
+>>> You then also need to copy the three new patches and any other
+>>> patches that differs between zeus and master and put them in your
+>>> layer together with the bbappend file (in a subdirectory called
+>>> "recipes-httpd/apache2/apache2=E2=80=9D)
+>=20
+>=20
+> My assumption here is that I need to copy the difference between the =
+Zeus and Master recipe for apache2 and place them in a file here; =20
+>=20
+> 	recipies-httpd/apache2/apache2
+>=20
+> The name of the file will be apache2 and it will contain the diffs =
+between Zeus and Master for the apache2 recipes. And the diff are from =
+the following file:
+>=20
+> 	=
+./sources/meta-openembedded/meta-webserver/recipes-httpd/apache2/apache2_2=
+.4.41.bb
+>=20
+> Right?
+>=20
+>=20
+> Thanks, Jim
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+>> On Aug 26, 2022, at 10:03 AM, Peter Kjellerstedt =
+<peter.kjellerstedt@axis.com> wrote:
+>>=20
+>> [ In the future, please make sure to reply to list and not just to =
+me. ]
+>> [ Top posting since Outlook doesn=E2=80=99t support inline responses =
+to HTML mails. ]
+>>=20
+>> No, you are supposed to copy the suggest text for the bbappend =
+verbatim, with the exception of the SRC_URI[md5sum] which need to be =
+corrected to match the actual MD5 sum (which bitbake will tell you when =
+you try to build). The suggested additions/deletions for SRC_URI in the =
+bbappend I suggested should be correct as specified, based on the =
+differences between the apache2 recipe in Zeus and master. You will also =
+need to copy the three new patch files from master of meta-webserver, =
+and any of the other patches that have been updated between Zeus and =
+master. Changing PV takes care of the actual update of the code to the =
+new version (since it determines which tar ball is fetched from =
+upstream).
+>>=20
+>> //Peter
+>>=20
+>> From: forums <forums@bitflipper.net>=20
+>> Sent: den 26 augusti 2022 14:21
+>> To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+>> Subject: Re: [yocto] Bitbake + Patches
+>>=20
+>>=20
+>> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${BPN}:"
+>>=20
+>> LIC_FILES_CHKSUM =3D =
+"file://LICENSE;md5=3Dbddeddfac80b2c9a882241d008bb41c3"
+>>=20
+>> PV =3D "2.4.54"
+>>=20
+>> SRC_URI +=3D "file://0008-Fix-perl-install-directory-to-usr-bin.patch =
+\
+>>          =
+file://0009-support-apxs.in-force-destdir-to-be-empty-string.patch \
+>>          file://0001-make_exports.awk-not-expose-the-path.patch"
+>> SRC_URI_remove =3D "file://apache-configure_perlbin.patch"
+>>=20
+>> SRC_URI[md5sum] =3D "<I don't have this at hand, but bitbake will =
+tell you what it should be>"
+>> SRC_URI[sha256sum] =3D =
+"eb397feeefccaf254f8d45de3768d9d68e8e73851c49afd5b7176d1ecf80c340"
+>>=20
+>>=20
+>> H Peter. I have t admin, looking at the above bbappend, its really =
+confusing to me. I=E2=80=99ve looked at some of the documents on bitbake =
+and I just can=E2=80=99t find anything to teach me how to put a bbappend =
+together to accomplish upgrading an application.
+>>=20
+>> Like for example:
+>>=20
+>> SRC_URI +=3D "file://0008-Fix-perl-install-directory-to-usr-bin.patch
+>>=20
+>> I believe this one should be:  =20
+>>=20
+>>                           SRC_URI +=3D file:/usr/bin/patch
+>>=20
+>> The next one:
+>>=20
+>> file://0009-support-apxs.in-force-destdir-to-be-empty-string.patch
+>>=20
+>> I=E2=80=99ve no idea what this one will nee to be.
+>>=20
+>> And this one:
+>>=20
+>> file://0001-make_exports.awk-not-expose-the-path.patch
+>>=20
+>> I don=E2=80=99t know what is supposed to go here either.
+>>=20
+>>=20
+>> Then the SRC_URI_remove will be a pointer to the file containing the =
+patches containing the diff=E2=80=99e between apache 12.4.1 and apache =
+2.4.54 ? I don=E2=80=99t think you can create a single patch file =
+containing diff=E2=80=99s between multiple versions can you? I think it =
+would have to be diff=E2=80=99s between apache 2.4.41 and 2.4.42. Right. =
+Totally confused as to what to do here.
+>>=20
+>> Any further help appreciated.
+>>=20
+>> If you know of a resource for me to reference please pass it on. I =
+just don=E2=80=99t see any clear documentation that explains how to =
+construct a bbappend file.
+>>=20
+>>=20
+>> Thanks, Jim
+>=20
+>=20
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#57932): =
+https://lists.yoctoproject.org/g/yocto/message/57932
+> Mute This Topic: https://lists.yoctoproject.org/mt/93191096/7113531
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub =
+[forums@bitflipper.net]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>=20
 
 
