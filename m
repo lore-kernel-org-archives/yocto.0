@@ -1,415 +1,154 @@
-Return-Path: <forums@bitflipper.net>
+Return-Path: <quentin.schulz@theobroma-systems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 40F91ECAAD4
-	for <webhook@archiver.kernel.org>; Mon, 29 Aug 2022 22:06:50 +0000 (UTC)
-Received: from omta039.useast.a.cloudfilter.net
- (omta039.useast.a.cloudfilter.net [44.202.169.38])
- by mx.groups.io with SMTP id smtpd.web11.4543.1661810795615066854
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 68363C0502A
+	for <webhook@archiver.kernel.org>; Tue, 30 Aug 2022 08:29:03 +0000 (UTC)
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com
+ (EUR01-HE1-obe.outbound.protection.outlook.com [40.107.13.51])
+ by mx.groups.io with SMTP id smtpd.web11.9249.1661848117372787942
  for <yocto@lists.yoctoproject.org>;
- Mon, 29 Aug 2022 15:06:36 -0700
+ Tue, 30 Aug 2022 01:28:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bitflipper.net header.s=default header.b=J3nZdMVu;
- spf=pass (domain: bitflipper.net, ip: 44.202.169.38,
- mailfrom: forums@bitflipper.net)
-Received: from eig-obgw-6006a.ext.cloudfilter.net ([10.0.30.182])
-	by cmsmtp with ESMTP
-	id SgG3o1clxhL46SmtuoWjhn; Mon, 29 Aug 2022 22:06:34 +0000
-Received: from gator4161.hostgator.com ([108.167.133.17])
-	by cmsmtp with ESMTP
-	id SmtsoRridKiw6Smtsod870; Mon, 29 Aug 2022 22:06:33 +0000
-X-Authority-Analysis: v=2.4 cv=RaCDtnhv c=1 sm=1 tr=0 ts=630d3869
- a=wy83rNxz+atVFkX2aYqp/w==:117 a=zmJLnD9S6R+eT+5CidqXXQ==:17
- a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=IkcTkHD0fZMA:10 a=biHskzXt2R4A:10
- a=myVjTR8LsXQA:10 a=OycbvLwyAAAA:8 a=mV9VRH-2AAAA:8 a=3-RhneuVAAAA:8
- a=iGHA9ds3AAAA:8 a=E4BLkn4M_Z2a2NbLvVgA:9 a=QEXdDO2ut3YA:10
- a=K7D-rfjolMOoSJWbC0j4:22 a=VLVLkjT_5ZicWzSuYqSo:22 a=nM-MV4yxpKKO9kiQg6Ot:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=bitflipper.net; s=default; h=To:References:Message-Id:
-	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
-	Content-Type:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=Xuv9/upupEA5KJMjDNhC8vCSrmCMSNncFz/A9dG7K2U=; b=J3nZdMVuR9BfXEO4TbiCmLshuY
-	KabEGzA/b1Mh2edwALiKU54JY4DCZ4KOB6WYm3MZERnN6QgWSq1OqnQkkG2Jb0X6d98nYERO65VJf
-	gTTw3HDWvuVrcJfoHIv3ncPQOnnLl3PoVN6mTRM6AYIYS1jV9Jroe2kLV+ZDple1Rll3Oh+sjwGQk
-	WffSTJo5ET89+IFLvMJ0fWQk3VToYA8c4ir2LBXOol9dIwOHz+u59YbRAu0no3YrVc7YOxnjPW7kJ
-	VOgSbsq2LSKOeR5jGFSmloG+gVDbTYW6OhCh3KSZ10v5vvrGpVRZ36+MiVVcvllDNOUOBrf8rhKe1
-	oOZ+6QoA==;
-Received: from pool-173-48-211-43.bstnma.fios.verizon.net
- ([173.48.211.43]:50473 helo=smtpclient.apple)
-	by gator4161.hostgator.com with esmtpsa  (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <forums@bitflipper.net>)
-	id 1oSmtr-002aWZ-MB;
-	Mon, 29 Aug 2022 17:06:31 -0500
-Content-Type: text/plain;
-	charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.60.0.1.1\))
-Subject: Re: [yocto] Bitbake + Patches
-From: forums <forums@bitflipper.net>
-In-Reply-To: <6EB0299C-D97D-4167-B6D2-B1F54032FF2A@bitflipper.net>
-Date: Mon, 29 Aug 2022 18:06:29 -0400
-Cc: "Yocto (yocto@lists.yoctoproject.org)" <yocto@lists.yoctoproject.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <60D6BF68-443E-410E-88AC-B10C17DD46C6@bitflipper.net>
-References: <53C07165-3951-4450-B175-E323971C8DEC@bitflipper.net>
- <CAMKF1spvyQh1czn+HiKmppXBCO_tkor_3Ogfj6wguwA0x+tAyA@mail.gmail.com>
- <fcfe7d1380ab4d2598cff5004028d419@axis.com>
- <B58205E1-72E9-41F6-9A52-A440A62C3C6B@bitflipper.net>
- <899c12e4c6d34a4298b84b7abf022a82@axis.com>
- <0C54FD2B-AEAB-4425-9CEB-FFCA85458A16@bitflipper.net>
- <9222c257155a4d5aa93db2f0f9d1047b@axis.com>
- <170FB0FB9A5D94E8.11791@lists.yoctoproject.org>
- <170FE7D455D5B425.21714@lists.yoctoproject.org>
- <6EB0299C-D97D-4167-B6D2-B1F54032FF2A@bitflipper.net>
-To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-X-Mailer: Apple Mail (2.3693.60.0.1.1)
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - gator4161.hostgator.com
-X-AntiAbuse: Original Domain - lists.yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - bitflipper.net
-X-BWhitelist: no
-X-Source-IP: 173.48.211.43
-X-Source-L: No
-X-Exim-ID: 1oSmtr-002aWZ-MB
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: pool-173-48-211-43.bstnma.fios.verizon.net (smtpclient.apple)
- [173.48.211.43]:50473
-X-Source-Auth: forums@bitflipper.net
-X-Email-Count: 1
-X-Org: HG=hgshared;ORG=hostgator;
-X-Source-Cap: YmFsc29uODg7YmFsc29uODg7Z2F0b3I0MTYxLmhvc3RnYXRvci5jb20=
-X-Local-Domain: yes
-X-CMAE-Envelope: 
- MS4xfBw8bQ3sTtIqDUBJ4tFMr9wLxzmsJyOFrFUZjts43J5IVTKu2mgbZG8p9qFIOXVe9RYYBmuKrxG5sm3fS/HK0XmJUtvlENRHitrnKsCkKQuKaFF6waD2
- sF3VhSZsZAwCbIHMcFPffHfz6BNY4veItOoIkDxVanp6TxOsYQbLdRCVj0302tN33U9Ik7i2y5WJAYKNybzF1hkSVuHT4XWASjORocbX/E9I88eEpiWO/pXC
+ dkim=pass header.i=@cherrycloud.onmicrosoft.com
+ header.s=selector2-cherrycloud-onmicrosoft-com header.b=Kbrrfnx+;
+ spf=pass (domain: theobroma-systems.com, ip: 40.107.13.51,
+ mailfrom: quentin.schulz@theobroma-systems.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=T9QF951vIQx5GtTZvCm6N0tmsiSamX7mNyN2GVD+mscppXhn1Ai+O1TPO6uEsLHbGCuvl8DjEouKQC8gSyRGQ/Ly4+ISJEqpM0VcbZw9NyX48B0rOMuXubJfL4CSaKtItUEl6UD79ob1cbEJGNjsLqQrHusGgy7G+4LrQHpPuFFfCvliN9bPNX0n0hHMpYa/f7SniexMbB+/+0dFo2xRpMAdAXjZuPnJ3M95NvITN02h7L6r655xdxvMatG9gfXqPN8si8CSelo5jGtxo+DUFZRSjkYwmj+Irhg14WSYp6wFO9AAZ5AhGAdQ91giaYiUk7LF72smjzSmr8hNVzk2XQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=y2T6mEpyCHuRtsM65B5o48gYvb36PJjs7kFZWPTO3ko=;
+ b=QW39TRXUql67DoynLn8KkTBJi78BhQxO0JX+v2h3ivYqyWghjyNTeBFh5d2TBsjggfCisYrk6nx9r01sIlNdXAARiEmeOEL6TmXWDJqMWfaTQE0e+XiaoXLHrBYC5WvjYXSvZh/PZd9XXLGxF1IwvpofCA/mJLrAoWlPhvgVU2L9LkC61ZD0Q4Hq0/W6UqDE3YrfXRJ0huzZT4uMLAgxX2Xbj9oxr1Im11++S5MSKRlUzPvU/aw4jfTSRUzrQh2y7M5LOjVWHA+9oH7fqvRu3i5Q5hlGs0rNgTzrl9Fd5S6bb3Iqw0DI8rxq8sw+zy6otTfxhgelr+JAAyuDbHlw8w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
+ header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=cherrycloud.onmicrosoft.com; s=selector2-cherrycloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=y2T6mEpyCHuRtsM65B5o48gYvb36PJjs7kFZWPTO3ko=;
+ b=Kbrrfnx+dE+IJF4lK4HchWJlyA4DMhyIfD3ww5tEopuOnaXZLSM4iWds0OECFlLwTOmjcU2UQRp24tqTIoAP2Id26UVHTO8SnA1adp0IfThKY7B4/z4RyDwqfRkbMGQ+SFIcZ5avmrmRC8hmB/jRnELNyoM5qss633nZdzVIREo=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
+Received: from DU2PR04MB8536.eurprd04.prod.outlook.com (2603:10a6:10:2d7::10)
+ by AM0PR04MB4644.eurprd04.prod.outlook.com (2603:10a6:208:75::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.21; Tue, 30 Aug
+ 2022 08:28:32 +0000
+Received: from DU2PR04MB8536.eurprd04.prod.outlook.com
+ ([fe80::84e1:275d:69db:1748]) by DU2PR04MB8536.eurprd04.prod.outlook.com
+ ([fe80::84e1:275d:69db:1748%9]) with mapi id 15.20.5566.021; Tue, 30 Aug 2022
+ 08:28:32 +0000
+Message-ID: <52d37449-4f10-077c-d446-b4c7d87efbc2@theobroma-systems.com>
+Date: Tue, 30 Aug 2022 10:28:30 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [yocto] Multiple Images on the same HW platform with one image
+ recipe
+To: Aleksandar Nikolic <an010@live.com>,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: 
+ <PAXPR07MB839816FEEA965D3194CEE9289D739@PAXPR07MB8398.eurprd07.prod.outlook.com>
+Content-Language: en-US
+From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+In-Reply-To: 
+ <PAXPR07MB839816FEEA965D3194CEE9289D739@PAXPR07MB8398.eurprd07.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR3P281CA0023.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1c::7) To DU2PR04MB8536.eurprd04.prod.outlook.com
+ (2603:10a6:10:2d7::10)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 6d2fb374-342f-4483-831c-08da8a619fc7
+X-MS-TrafficTypeDiagnostic: AM0PR04MB4644:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	G74E2LKr7jelUudZM6DJ/ISKsQ080hCvNA49RFgmaCCSDxBLlXsQKjGrKwFe9q/sUbAK/b6LA0IdxULKKquVQr2YTV3eCTB6fwJuHauLgV21OK3p04KOCdst5rX3GLlbh+2XMJiVCQ+pNPHdeKk2S2BgeQsvod5g6IoNht1F7hwGsmbzR2hknBT3UzPRomK7Ocs5q0O29/Q9u4W68DUOxcWgqtQoJHxETJiUdiQ6TfuoxOZuBdlcYSSWn3V9mpga87ijWwcQwvh8wBEMvYGghZ4fG5VxJcksDALWGAHkYVp/g0wJbEK7jSMS2f4d0G17hj4JeYbUNiEZxJf2oRuVdym6Q3zWj1BAGUw4IMMao1arzXj96b5Z86i03T+FuWTPqvmCLfMxbOLaplhX2pcwejYWyliWUKScZUKh1P51GVqOc/xvPZZyeM0TPWQJI8DP+0HHgHa4QOYQ+a0d6kM8+5T49DlaY9atjTvS0k9cDZooVb2+IOXjN2zGU1JRI1AxQ8T7EXBhqgv6CKgvAFmoglb7m370BboyoSGPIzYobmj8YNr5ff6PeUhNwJaMPAo0CvaOmAW93Ln6JLo+CreBFVnPIgxvv+ZWaVVxJWLIX+Ai9Rm+9kbckEG68qR6H6nJ4JknBcfGalOBUWBJ8ZPgVrPm/KqUJXEwU1yKBWbj5Ma4GvWYQlvwW//hOVA6WZ/CYVUO9NAResfc6pStgu2xXPeyQ0cM5fGDTu37QmNzsltNjROWBRjS+c4oLECTCgIt92BKOay4g0SCdXnwCSzjV7oY97KIBQCVkZTNogC47bM=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8536.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(366004)(136003)(346002)(396003)(376002)(39850400004)(66556008)(66946007)(66476007)(8676002)(8936002)(6486002)(31696002)(53546011)(2906002)(6506007)(41300700001)(186003)(5660300002)(2616005)(44832011)(86362001)(478600001)(26005)(6512007)(316002)(38100700002)(36756003)(31686004)(110136005)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?eitpcEl6MjNiYXhHU3R0c2VjQzR6NnEwc1pEbHc5aFVsYTZPUE9mbFNUb0hu?=
+ =?utf-8?B?RzZKcXFSenVBMkJ2Y2IrY0M2SkduZkp4Wjc1Y3paRWFFaWlVZmRra1JDbUFu?=
+ =?utf-8?B?cVg4OGZRLzlLNEx1U29MZVpMWlJ0NGcrWFlmQ2ZibUNxVGtaT0cvdnpqMVc4?=
+ =?utf-8?B?RzJGQTRxMEJQRmF2a3ArK1hnaEpzc3FTMXk1REdoN09SMGJHWHNRSXYxcFlV?=
+ =?utf-8?B?a0VKNDg0bE1SSmFRaDhGMjNCQzN6ek5oVnBlNW5EK01NdjRrV3B4cXowTTdV?=
+ =?utf-8?B?OFo0dEVCSTR1aldBVDA1OS9oUWFQOGczS2JRQ3doMlBWaVI1WkprVnc4elJJ?=
+ =?utf-8?B?UlRyT2RXYnRTNTVUSldNL2E2cFJ5S2pCN3luZmdkMWRjUkN2a1A3RHc3bWJ3?=
+ =?utf-8?B?L1RKUk1EcDBFMmdud0s0V0ZkcTBKSmVSbVpMaGhFeW42QnJEUVZrUW16V1BY?=
+ =?utf-8?B?elQydkQ2L01qVGIrNlRlV0trMzVMelB3dWw4MDZpV3lUVHV6OFVzTW5lbGdu?=
+ =?utf-8?B?TWVSVTFjWXRjVHpPaS9tWDNVQW13N25mTkRsbjI3cDRzY2l2NGlHd3ZUMzVF?=
+ =?utf-8?B?R1o0dmZLMEdZSGgzd3ZZZUVCUm9wTk44ZXlEdDR0c2pmcTNXVTZoWWxOdzJW?=
+ =?utf-8?B?eHJQbnZ3Y05CUEt0WFpVSG5nOXl5REVDR1cvY1pEYzMyY2lKbGFvOURQc0pT?=
+ =?utf-8?B?cnN6YkZWMjVLM29iWkpFSmtUWFcyNWpUVHlYWm9LUWNPWWZSR2txVDNKSXRJ?=
+ =?utf-8?B?LzQxZGJhM3RLaGlQU291WWFINTFwek9MR212b3RVMTZvYi9zZENzdTZWajBn?=
+ =?utf-8?B?VGhNUndxQnBPNUtmN1cyUGtyWlcwbDZCV1o2WkpZRTgzS2g2V0o0blg3Vysx?=
+ =?utf-8?B?dVFYaS9SSzM0K2lRYmhMQW80WUhkZFJOTEVZbGRwRDlCZ3NOVG5WTlZscm0v?=
+ =?utf-8?B?OFBuM25BWEkwQVZxaTRaMGVjSUlnQ1FORlRYYmkxMmt2Qm1iU3RINW1TZFEr?=
+ =?utf-8?B?ZWcrblZOd2VWazBJY1R0NjBNQUZPTnF0c3BSSTZFSG9ZUWdyYXkrZ3Z6OFRS?=
+ =?utf-8?B?SEVlckZ3dkp4ZTNXd1BWTFZWeVdGd1BCOU05SmRROEIrbThEajBDUC9xeGhl?=
+ =?utf-8?B?azhoOWtIYXJOc1NkL0ZOdWxnOTNhZDR6dWp4SG13ZEo4dXR3L25mK0pvMXVp?=
+ =?utf-8?B?VS9IdWZmRWh1ZkRJajNXakRnZXI2ZDEzaXI3M2xuYTQ3SCtFK283ZHhZUENE?=
+ =?utf-8?B?c3dyWmpTUmVzRkNPTG5ad3VQcTdwSVQ3d0pzc2pVNER0d29Mejl2MGVBSlNt?=
+ =?utf-8?B?ejlmalBmMEl6NFFRbHpoaUNTeWxJQzRSY0tOTm5nMUhnTlM0aWxJdzRMSS9Y?=
+ =?utf-8?B?NTVYMktVNFlsNllRVmw4WnJ0OWFiN3ZxaFBqN3VFSjRaL25MK0orOUYxU1hK?=
+ =?utf-8?B?a3RBbkh1ZmdGa0wxckhoUFRtUUV3Vld5dWZQanhvMm1NOFBmeUM2cnFDdnI5?=
+ =?utf-8?B?SmMvckMvRTVnelFiN2RjTE1PaUVRLzZzVEt2UC81a2pRRnBjR0Z0bVFOY2w0?=
+ =?utf-8?B?bnI0SjRVRzZIRUl3Ly9tR2RmcFlJSmV3YjFYakNEb255czc4T00ySTlQTkRI?=
+ =?utf-8?B?MVR4L2dOQjFBZ1AxOE8wbit5NTNGVFFYRlNETTlJaXU5dDlLd0dZcm9GL1VT?=
+ =?utf-8?B?d28wcG9nLzVkSm41bUFQVjNOM2FkN2RlNkVqNmtPQjV2eXNUd3VyL0pxd3dS?=
+ =?utf-8?B?bnNvZ3BucHJhVTJjVHlwSzV5WHVKWjFkanZJQi9XQWhEWFNYOEFoYmNKZldZ?=
+ =?utf-8?B?VlhUT1ZQVmJzTEU1dkE1a3hia2JSWVYrQ21ETDZuai9RRGdYalpHa1N4NWJM?=
+ =?utf-8?B?RHF0b1BIa3dJeDZoOHl1Wm92K3IyWXRHTFRYL0tjQXloRG1DaHhHamVRZVZZ?=
+ =?utf-8?B?TjN1RFJKN3JYTURDdzBVTFk5SHlqSmR5R0Y3L2VsZ3dlL3RpdXF0SzJHWFYy?=
+ =?utf-8?B?Sm1tR3prcDliRWF2dDNwNC9NbE5QMDV1MDk2b3BTYnRiMkNsNmVYV2hCOVZt?=
+ =?utf-8?B?VG1PdWpvNDJtMEZseTF4dVpWcFFieHJqT1RxZWhZZTBwRXJxZU9TYmxWSnZj?=
+ =?utf-8?B?NytubE12L3RSS08rbUFrVkxmaGpZRmk1SEVKMG96eU4vVXRaTWVNeUkxOElr?=
+ =?utf-8?Q?2MqSL3oGEKUbK4hN4oHXmLY=3D?=
+X-OriginatorOrg: theobroma-systems.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 6d2fb374-342f-4483-831c-08da8a619fc7
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8536.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Aug 2022 08:28:32.6272
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ sOU325kZp45ja5AS+XKdiHvhe/+FdZMzGjQA25Hcwoorhx2fFzZ01xjTDA9a1TaVzkTHIz7ZMYEe5+mSXm58xdDSm/dbI9lU457uL1hV+LZJsTM2M+7ljf/p0XEs1IDv
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4644
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 29 Aug 2022 22:06:50 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57942
+ <yocto@lists.yoctoproject.org>; Tue, 30 Aug 2022 08:29:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57943
 
+Hi Aleksandar,
 
+On 8/24/22 09:10, Aleksandar Nikolic wrote:
+> Hello Yocto Experts,
+> 
+> I have a minor question regarding how to manage multiple projects within Yocto with MACHINE_FEATURES, DISTRO_FEATURES and IMAGE_FEATURES. If I have one HW platform but two images, where the latter one contains a bit more applications, am I supposed to have one MACHINE, one DISTRO and 2 IMAGES? Or maybe one IMAGE but somehow to define IMAGE_FEATURES / EXTRA_IMAGE_FEATURES differently in those two cases? Due to simplicity, I would rather have one image recipe.
+> 
+> Whats the best way to achieve this? Thanks.
+> 
 
+If the packages that are in both images are compiled identically, with 
+the same options, etc... then two images. Recipes are the least invasive 
+in terms of Yocto builds so if you can avoid different distribution or 
+machine files, try to do so, your build times will thank you for it :)
 
-Peter, so here=E2=80=99s my current bbappend file for Apache 2.4.52 =
-which is included with honester:
+If it's only a few additional packages, I recommend your image-extended 
+recipe to include/require the image-simple recipe and then just add an
+IMAGE_INSTALL += "additional-packages" in there. Super easy to maintain 
+and read.
 
-	FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${BPN}:=E2=80=9D
-
-	LIC_FILES_CHKSUM =3D =
-"file://LICENSE;md5=3Dbddeddfac80b2c9a882241d008bb41c3=E2=80=9D
-
-	PV =3D =E2=80=9C2.4.52"
-
-	SRC_URI +=3D =
-"file://0008-Fix-perl-install-directory-to-usr-bin.patch \
-            =
-file://0009-support-apxs.in-force-destdir-to-be-empty-string.patch \
-            file://0001-make_exports.awk-not-expose-the-path.patch=E2=80=9D=
-
-	SRC_URI_remove =3D "file://apache-configure_perlbin.patch=E2=80=9D=
-
-
-	SRC_URI[md5sum] =3D =E2=80=9C861b43073ab416d689f1fc4dfa087711"
-	SRC_URI[sha256sum] =3D =
-=E2=80=9Ceb397feeefccaf254f8d45de3768d9d68e8e73851c49afd5b7176d1ecf80c340=E2=
-=80=9D
-
-And the current build error:
-
-
-	ERROR: smith-nephew-cp-lwb5-2.4.52-r0 do_populate_lic: QA Issue: =
-smith-nephew-cp-lwb5: LIC_FILES_CHKSUM points to an invalid file: =
-/ct/yocto/imx-	=
-5.4.70/build/tmp/work/imx6ulevk-poky-linux-gnueabi/smith-nephew-cp-lwb5/2.=
-4.52-r0/smith-nephew-cp-lwb5-2.4.52/LICENSE [license-checksum]
-	ERROR: smith-nephew-cp-lwb5-2.4.52-r0 do_populate_lic: Fatal QA =
-errors found, failing task.
-	ERROR: Logfile of failure stored in: =
-/ct/yocto/imx-5.4.70/build/tmp/work/imx6ulevk-poky-linux-gnueabi/smith-nep=
-hew-cp-lwb5/2.4.52-r0/temp/log.do_populate_lic.1463178
-	ERROR: Task =
-(/ct/yocto/imx-5.4.70/sources/meta-laird-cp/recipes-packages/images/smith-=
-nephew-cp-lwb5.bb:do_populate_lic) failed with exit code =E2=80=981=E2=80=99=
-
-
-My gut feeling is that the SRC_URI[mdtsum] and SRC_URI[sha256sum] and =
-out of whack because I needed to switch from 2.4.54  to  2.4.52 of =
-apache.  You supplied the SRC_URI[sha256sum] based on a 2.4.54 version =
-of Apache?  and I filled in the SRC_URI[md5sum] based on what bitable =
-told me it should be. If you can tell me how to get the correct =
-SRC_URI[sha256sum] for apache 2.4.52 I think I can get past this error.
-
-
-Thanks, Jim
-
-
-
-
-=20
-
-
-
-
-
-
-
-
-
-> On Aug 29, 2022, at 4:06 PM, forums <forums@bitflipper.net> wrote:
->=20
->=20
->=20
->=20
-> Peter, I think I know what caused the Error. I think apache 2.4.52 =
-will be sufficient for our current needs.=20
->=20
-> I have subsequently changed the PV to 2.4.52. But that LC_FILES_CHKSUM =
-is still generating the same build error. How did you get the MD5 =
-Checksum? If you can tell me which file you took it form that would be =
-helpful and I can go and get that MD5 sum from Honiker tree =E2=80=94 =
-whatever file it was that I should get it from.
->=20
->=20
-> Thanks, Jim
->=20
->=20
->> On Aug 29, 2022, at 3:34 PM, bitflipper <forums@bitflipper.net> =
-wrote:
->>=20
->>=20
->>=20
->>=20
->> Peter, I plugging in the  bbappend as is except for the md5sumthat =
-was spit out by the yocto build. Here=E2=80=99s my bbappend file:
->>=20
->>=20
->> 	FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${BPN}:=E2=80=9D
->>=20
->> 	LIC_FILES_CHKSUM =3D =
-"file://LICENSE;md5=3Dbddeddfac80b2c9a882241d008bb41c3=E2=80=9D
->>=20
->> 	PV =3D =E2=80=9C2.4.54"
->>=20
->> 	SRC_URI +=3D =
-"file://0008-Fix-perl-install-directory-to-usr-bin.patch \
->>           =
-file://0009-support-apxs.in-force-destdir-to-be-empty-string.patch \
->>           file://0001-make_exports.awk-not-expose-the-path.patch=E2=80=9D=
-
->> 	SRC_URI_remove =3D "file://apache-configure_perlbin.patch=E2=80=9D=
-
->>=20
->> 	SRC_URI[md5sum] =3D "<861b43073ab416d689f1fc4dfa087711>=E2=80=9D
->> 	SRC_URI[sha256sum] =3D =
-"eb397feeefccaf254f8d45de3768d9d68e8e73851c49afd5b7176d1ecf80c340"
->>=20
->>=20
->> When I run bitable, I get the following error:
->>=20
->>=20
->>=20
->> 	ERROR: smith-nephew-cp-lwb5-2.4.54-r0 do_populate_lic: QA Issue: =
-smith-nephew-cp-lwb5: LIC_FILES_CHKSUM points to an invalid file: =
-/ct/yocto/imx-5.4.70/build/tmp/work/imx6ulevk-poky-linux-gnueabi/smith-nep=
-hew-cp-lwb5/2.4.54-r0/smith-nephew-cp-lwb5-2.4.54/LICENSE =
-[license-checksum]
->> 	ERROR: smith-nephew-cp-lwb5-2.4.54-r0 do_populate_lic: Fatal QA =
-errors found, failing task.
->> 	ERROR: Logfile of failure stored in: =
-/ct/yocto/imx-5.4.70/build/tmp/work/imx6ulevk-poky-linux-gnueabi/smith-nep=
-hew-cp-lwb5/2.4.54-r0/temp/log.do_populate_lic.1455644
->> 	ERROR: Task =
-(/ct/yocto/imx-5.4.70/sources/meta-laird-cp/recipes-packages/images/smith-=
-nephew-cp-lwb5.bb:do_populate_lic) failed with exit code '1'
->>=20
->>=20
->> I=E2=80=99m suspecting its something to do with the LIC_FILES_CHKSUM =
-??
->>=20
->> Any input appreciated.
->>=20
->>=20
->>=20
->> Thanks, Jim
->>=20
->>=20
->>=20
->>=20
->>> On Aug 28, 2022, at 10:49 PM, bitflipper <forums@bitflipper.net> =
-wrote:
->>>=20
->>>=20
->>>=20
->>> Hi Peter. In my mind this process is starting to come together as to =
-why is happening. So I copied the bbappend file as is  and I did get the =
-error your expected that I would about the md5sum:
->>>=20
->>>=20
->>> ERROR: apache2-2.4.54-r0 do_fetch: Checksum failure fetching =
-https://archive.apache.org/dist/httpd/httpd-2.4.54.tar.bz2
->>> ERROR: apache2-2.4.54-r0 do_fetch: Fetcher failure for URL: =
-'https://archive.apache.org/dist/httpd/httpd-2.4.54.tar.bz2'. Checksum =
-mismatch!
->>> File: '/ct/yocto/imx-5.4.70/downloads/httpd-2.4.54.tar.bz2' has md5 =
-checksum 861b43073ab416d689f1fc4dfa087711 when <I don't have this at =
-hand, but bitbake will tell you what it should be> was expected
->>> If this change is expected (e.g. you have upgraded to a new version =
-without updating the checksums) then you can use these lines within the =
-recipe:
->>> SRC_URI[md5sum] =3D "861b43073ab416d689f1fc4dfa087711"
->>> SRC_URI[sha256sum] =3D =
-"eb397feeefccaf254f8d45de3768d9d68e8e73851c49afd5b7176d1ecf80c340"
->>> Otherwise you should retry the download and/or check with upstream =
-to determine if the file has become corrupted or otherwise unexpectedly =
-modified.
->>>=20
->>> But then I don=E2=80=99t understand what needs to be done with what =
-you said here:
->>>=20
->>>>> You then also need to copy the three new patches and any other
->>>>> patches that differs between zeus and master and put them in your
->>>>> layer together with the bbappend file (in a subdirectory called
->>>>> "recipes-httpd/apache2/apache2=E2=80=9D)
->>>=20
->>>=20
->>> My assumption here is that I need to copy the difference between the =
-Zeus and Master recipe for apache2 and place them in a file here; =20
->>>=20
->>> 	recipies-httpd/apache2/apache2
->>>=20
->>> The name of the file will be apache2 and it will contain the diffs =
-between Zeus and Master for the apache2 recipes. And the diff are from =
-the following file:
->>>=20
->>> 	=
-./sources/meta-openembedded/meta-webserver/recipes-httpd/apache2/apache2_2=
-.4.41.bb
->>>=20
->>> Right?
->>>=20
->>>=20
->>> Thanks, Jim
->>>=20
->>>=20
->>>=20
->>>=20
->>>=20
->>>=20
->>>> On Aug 26, 2022, at 10:03 AM, Peter Kjellerstedt =
-<peter.kjellerstedt@axis.com> wrote:
->>>>=20
->>>> [ In the future, please make sure to reply to list and not just to =
-me. ]
->>>> [ Top posting since Outlook doesn=E2=80=99t support inline =
-responses to HTML mails. ]
->>>>=20
->>>> No, you are supposed to copy the suggest text for the bbappend =
-verbatim, with the exception of the SRC_URI[md5sum] which need to be =
-corrected to match the actual MD5 sum (which bitbake will tell you when =
-you try to build). The suggested additions/deletions for SRC_URI in the =
-bbappend I suggested should be correct as specified, based on the =
-differences between the apache2 recipe in Zeus and master. You will also =
-need to copy the three new patch files from master of meta-webserver, =
-and any of the other patches that have been updated between Zeus and =
-master. Changing PV takes care of the actual update of the code to the =
-new version (since it determines which tar ball is fetched from =
-upstream).
->>>>=20
->>>> //Peter
->>>>=20
->>>> From: forums <forums@bitflipper.net>=20
->>>> Sent: den 26 augusti 2022 14:21
->>>> To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
->>>> Subject: Re: [yocto] Bitbake + Patches
->>>>=20
->>>>=20
->>>> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${BPN}:"
->>>>=20
->>>> LIC_FILES_CHKSUM =3D =
-"file://LICENSE;md5=3Dbddeddfac80b2c9a882241d008bb41c3"
->>>>=20
->>>> PV =3D "2.4.54"
->>>>=20
->>>> SRC_URI +=3D =
-"file://0008-Fix-perl-install-directory-to-usr-bin.patch \
->>>>        =
-file://0009-support-apxs.in-force-destdir-to-be-empty-string.patch \
->>>>        file://0001-make_exports.awk-not-expose-the-path.patch"
->>>> SRC_URI_remove =3D "file://apache-configure_perlbin.patch"
->>>>=20
->>>> SRC_URI[md5sum] =3D "<I don't have this at hand, but bitbake will =
-tell you what it should be>"
->>>> SRC_URI[sha256sum] =3D =
-"eb397feeefccaf254f8d45de3768d9d68e8e73851c49afd5b7176d1ecf80c340"
->>>>=20
->>>>=20
->>>> H Peter. I have t admin, looking at the above bbappend, its really =
-confusing to me. I=E2=80=99ve looked at some of the documents on bitbake =
-and I just can=E2=80=99t find anything to teach me how to put a bbappend =
-together to accomplish upgrading an application.
->>>>=20
->>>> Like for example:
->>>>=20
->>>> SRC_URI +=3D =
-"file://0008-Fix-perl-install-directory-to-usr-bin.patch
->>>>=20
->>>> I believe this one should be:  =20
->>>>=20
->>>>                         SRC_URI +=3D file:/usr/bin/patch
->>>>=20
->>>> The next one:
->>>>=20
->>>> file://0009-support-apxs.in-force-destdir-to-be-empty-string.patch
->>>>=20
->>>> I=E2=80=99ve no idea what this one will nee to be.
->>>>=20
->>>> And this one:
->>>>=20
->>>> file://0001-make_exports.awk-not-expose-the-path.patch
->>>>=20
->>>> I don=E2=80=99t know what is supposed to go here either.
->>>>=20
->>>>=20
->>>> Then the SRC_URI_remove will be a pointer to the file containing =
-the patches containing the diff=E2=80=99e between apache 12.4.1 and =
-apache 2.4.54 ? I don=E2=80=99t think you can create a single patch file =
-containing diff=E2=80=99s between multiple versions can you? I think it =
-would have to be diff=E2=80=99s between apache 2.4.41 and 2.4.42. Right. =
-Totally confused as to what to do here.
->>>>=20
->>>> Any further help appreciated.
->>>>=20
->>>> If you know of a resource for me to reference please pass it on. I =
-just don=E2=80=99t see any clear documentation that explains how to =
-construct a bbappend file.
->>>>=20
->>>>=20
->>>> Thanks, Jim
->>>=20
->>>=20
->>>=20
->>>=20
->>=20
->>=20
->> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->> Links: You receive all messages sent to this group.
->> View/Reply Online (#57937): =
-https://lists.yoctoproject.org/g/yocto/message/57937
->> Mute This Topic: https://lists.yoctoproject.org/mt/93191096/7113531
->> Group Owner: yocto+owner@lists.yoctoproject.org
->> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub =
-[forums@bitflipper.net]
->> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->>=20
->=20
-
+Cheers,
+Quentin
 
