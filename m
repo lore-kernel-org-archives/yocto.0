@@ -1,79 +1,181 @@
-Return-Path: <hbauszus@nt-ware.com>
+Return-Path: <steven.monsees@baesystems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E80ADECAAD4
-	for <webhook@archiver.kernel.org>; Wed, 31 Aug 2022 11:27:30 +0000 (UTC)
-Subject: How can I set configuration options for npm startet by bitbake?
- #bitbake #hardknott
-To: yocto@lists.yoctoproject.org
-From: "Holger Bauszus" <hbauszus@nt-ware.com>
-X-Originating-Location: CH (147.161.228.113)
-X-Originating-Platform: Windows Firefox 104
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A980ECAAD1
+	for <webhook@archiver.kernel.org>; Wed, 31 Aug 2022 11:37:11 +0000 (UTC)
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com
+ [149.32.232.65])
+ by mx.groups.io with SMTP id smtpd.web12.24381.1661945824065384412
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 31 Aug 2022 04:37:04 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=jKohQs85;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.65,
+ mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1661945824; x=1819625824;
+  h=from:to:cc:subject:date:in-reply-to:
+   content-transfer-encoding:mime-version;
+  bh=kuTRKTQ42ATC7VKllplUg4WxCmcFRreJRE+Hiig3eSg=;
+  b=jKohQs851KJ1u6Zs0joVT0v5cFIxswLr7vakYP98IizDbQG5XWMT4JYG
+   SITNiAsUbvR2SMkk3YQH6/pvle/+zwqNl7FFYgrs/eoHBm8vn+ScabST8
+   zlyQ26HeJ40MRx/7sPRayhrggzYjaR3HjbHmiOz3eVvuOdFRkSDcNe4+p
+   w=;
+IronPort-SDR: 
+ 76ix4mtz8e2ZlF+Uze5j/t7RnMv/x+dg31ochyX0K3iOWzsnDVDcDk9qGJC7VgxvBbFDCLY1CQ
+ Lctnx0tZZgKQ==
+X-IPAS-Result: =?us-ascii?q?A2ADAABsRw9j/0HBJQpaGgEBAQEBAQEBAQEDAQEBARIBA?=
+ =?us-ascii?q?QEBAgIBAQEBQAmBMgUBAQEBCwGBe4EnAoFZF4Q3iB+IcAOGEopKjCcUgWgLA?=
+ =?us-ascii?q?QEBAQEBAQEBCAEsBw8EAQGFBwIWhE8mNAkOAQIEAQEBAQMCAwEBAQEFAQEGA?=
+ =?us-ascii?q?QEBAQEBBgQBgRuFLzkNgjUpAYNjAQEBAQMBIhFFDAQCAQgNAQMEAQEBAgIRA?=
+ =?us-ascii?q?xICAgImChUICAEBBA4FCIJxBYMiqAM1eoExGgJlhHCFEgkBgQcsAYFlhRdsV?=
+ =?us-ascii?q?IdVgg1DhD8+gmIEAYEWCAoBEgE4FRMQgweCZQSDcooviHMcOANFHkIDCw41N?=
+ =?us-ascii?q?BoDFAMFJAcDGQ8jDQ0EFgcMAwMFJQMCAhsHAgIDAgYVBQICTTgIBAgEKyQPB?=
+ =?us-ascii?q?QIHLwUELwIeBAUGEQgCFgIGBAQEBBUCEAgCCCYXBxMzGQEFWRAJIRwOGg0FB?=
+ =?us-ascii?q?hMDIG0FRQ8oMQE1OSsdGwqBEiooFQMEBAMCBhMDAyICECwxFAYpExItByt1C?=
+ =?us-ascii?q?QIDImgFAwMEKCwDCSECARwHKCY8BQVZOgEEAwMQIj0GAwkDAidde5YVgTcUg?=
+ =?us-ascii?q?T8TMRswQQdwMgM6khVAgyGOIp0jBwODUosrjQOHZi4Wg3aBUIsAhkoDhVKFG?=
+ =?us-ascii?q?YEShWaHPY9KoXkNCBYhgTSDPwIEAgQFAhaBYUlccHCDNwlIFwKPVQEIh1eFS?=
+ =?us-ascii?q?nUCATgCBgEKAQEDCYgwgRCBEgEB?=
+IronPort-PHdr: A9a23:W5z+cRGGolYRTafh7saL+Z1GfwpLhN3EVzX9CrIZgr5DOp6u447ld
+ BSGo6k31xmTDduQsq4MotGVmpioYXYH75eFvSJKW713fDhBt/8rmRc9CtWOE0zxIa2iRSU7G
+ MNfSA0tpCnjYgBaF8nkelLdvGC54yIMFRXjLwp1Ifn+FpLPg8it2O2+5ZPebx9WiDe+YL5+I
+ wi6oArMvcQKnIVuLbo8xAHUqXVSYeRWwm1oJVOXnxni48q74YBu/SdNtf8/7sBMSar1cbg2Q
+ rxeFzQmLns65Nb3uhnZTAuA/WUTX2MLmRdVGQfF7RX6XpDssivms+d2xSeXMdHqQb0yRD+v9
+ LlgRgP2hygbNj456GDXhdJ2jKJHuxKquhhzz5fJbI2JKPZye6XQds4YS2VcRMZcTyxPDJ2iY
+ oUSE+oPM+VWr4f/qFsPsRSwCgajCfjzyjBThH/6wbE23/gjHAzAwQcuH8gOsHPRrNjtOqscV
+ ue1zK/TzTrdcfxWwi/x45XVfBA9v/6MQ6x/cczMwkQxCgjJilufp5HgMz+by+8AtHOb7/Z+W
+ uKxlWEnrRt9oj2oxscqkYnGmJwaykvf+Cpi2ok6O8a4SU5gYd64DpRQsjqaO5FqTcMlRmFlo
+ SA3waAJtpCnZiYF0ognxwLBZPyddYiF+gzuWfuNLDtlmX5od6+zigiv/Uav1+HxSsm63VJUo
+ ydbndTBq3IA2gHd58WDSvVw41us1SiP2g3S9u1KL046mKrdJpU8zLAwkZ8Tvl7CHi/wgEj3j
+ KiWeVk4+uiv8+TneLLmpp2COIBolgHyKKMumtawAek+LwMAXHCb9Pyh2LH/50H0TrdHgucrn
+ qTdvp3WP8UWq66hDwNIzoov8RmyAji83NkXh3ULMVJIdRSahIbzIV7OOur3DfKnjlSplzdk2
+ u7JM6X6ApXIMnjDiLDhfath60JEyAo809Rf55VMB7EfOv3zWknxtNnDDhI9NwG5x/rrBMhn2
+ oMYQ22DGLSWP7nMvl+T5uMvOPWMa5EQuDbmMfQq+/nujXohlV8ce6mmw4cXZWilEvh6OUmUb
+ 3jhjs0cHWoOsAcyVu3nhV2aXT5WfXmyXqY85j8hCIKhCIfOXputgKCf0yelAJJWYHpKClWLE
+ XfubIWLRekDaDmJL8B6iDMLS6OhSo861RGyqgD6zqFnIvDI9S0fsJLvzN516PbLmhEo6TN0F
+ 9id032KT2xsg28EXyU207xnoUxh1leD1rB1gvxfFdNP+/NJVRw3NZrdz+xhF9DyQRjNf9eOS
+ Fm6XtWmBikxTsg2w98MfUlyB8miggrE3yqwDL9G34CMUbUw/7LV2XT8PY5ewnDPyqgnxw0vR
+ sZfc26vgKdh9g77CIvAkkHfnKGvI/cyxinIoS2mymyVsUxDFEZLTajbUHZXTQOWkO+4rAuWV
+ KOjF7khdA5Gz9WPJ7BiYNTklkRdWPrmI5LVZGfnyDT4PgqB2r7ZNNmiQG4axiiITRFcy2gu
+IronPort-Data: A9a23:XOj3a6O2WFJx2d/vrR0ylcFynXyQoLVcMsEvi/4bfWQNrUorgzIBm
+ 2ofD2HUMquLYzOke9l0bI+0p0oOvcKAndM2S3M5pCpnJ55oRWopJjg7wmPYZX76whjrFRo/h
+ ykmQoCbap1yEhcwnz/1WlTbhSAUOZqgG/ytU4YoBggrHVU+EHd60Eo68wIEqtcAbeaRUlvlV
+ eza/pW31G+Ng1aY5UpNtspvADs21BjDkGtwUm4WPJinj3eC/5UhN6/zEInqR5fOrii4KcbhL
+ wrL5OnREmo0ZH7BAPv9+lrwWhVirrI/oWFih1IOM5VOjCSuqQQ1/74CLv8Sbnt7tCSrxMJo6
+ OxpsLOJHFJB0q3kwIzxUjFGGiF4OLYXqe6feD65uIqZxkDdYmDwzvB1SkoxOOX0+M4uWScVq
+ rpBeWtLME3ra+GemdpXTsF3msk9Ic+tOYQZoXxt1hnTBPs9UIvfTqDRo9Rf2V/cg+gXQ66FO
+ ZZCMlKDajyHORlSanAGWa4mwrq1gEHnYQJAkRWa8P9fD2/7iVYZPKLWGMvSccCNbcFUhVqD4
+ HPB9Hj+GgsdNtGU1XyC6H3EuwPUtXqjHtlNUuTprbg03TV/21AuNfHfbnPjydHRt6J0c4kCQ
+ 6DI0kLCdZQPyXE=
+IronPort-HdrOrdr: A9a23:dLz0x6mPO6ZfqiLOp56DbTHP0zDpDfLA3DAbv31ZSRFFG/Fwz/
+ re4cjy1XfP+VMssQIb6Ky90c67MADhHP9OkPks1NiZLXDbUQeTXeJfBM7Zskfd8iDFndK1tp
+ 0QAZSWaueAdWSS5PySiGfYc+rIguP3i5xA7d2uukuFJjsaD52Imj0JbDpzZXcGIzWua6BJdq
+ a0145qtjCgcXMYYoCBCnwMT4H4zeEjkqiIXfdMPW9Z1ODHt0LX1FbueCL04v/oOAki/V4Nyx
+ m1rzDE
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-AV: E=Sophos;i="5.93,277,1654560000";
+   d="scan'208";a="16036433"
+IronPort-SDR: 
+ KgrSvVreS/+X0VHjBprj9zn7o06U2dGBT7lsZopjZuRtN/FNKGoyb37BdRgFe4wAwOms+Ts26P
+ tvxAwdqm7TEg==
+X-IronPort-AV: E=Sophos;i="5.93,277,1654560000";
+   d="scan'208";a="91110158"
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: RE: [yocto] #yocto #dunfell #qemux86-64
+Thread-Topic: [yocto] #yocto #dunfell #qemux86-64
+Thread-Index: Adi9Kz6D2hQuMkGuSp+JLpUK1uc+yAAIk98AAAf9Z5A=
+Date: Wed, 31 Aug 2022 11:36:43 +0000
+In-Reply-To: 
+ <CANNYZj9nBRzA-SOeZrBufstj_BrfmzDWq7PUkn3fxderj+EfwQ@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.44.4.15]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Date: Wed, 31 Aug 2022 04:27:22 -0700
-Message-ID: <Z4Up.1661945242094432356.r1jy@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="fs0elWyjheaxgkJI7wTR"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 31 Aug 2022 11:27:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57956
+ <yocto@lists.yoctoproject.org>; Wed, 31 Aug 2022 11:37:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57957
+Message-Id: <20220831113711.0A980ECAAD1@smtp.lore.kernel.org>
 
---fs0elWyjheaxgkJI7wTR
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello,
-I'm relatively new to Yocto and have a question related to bitbake and node=
-js modules.
-
-I'm working with Yocto Hardknott and would like to integrate a nodejs modul=
-e into my build.
-To do so I'm using devtool:
-devtool add "npm://registry.npmjs.org;package=3Delectron;version=3Dlatest"
-
-During the do_fetch task I get the following error:
-npm view electron@latest failed with exit code 1, output:
-{
-"error": {
-"code": "UNABLE_TO_GET_ISSUER_CERT_LOCALLY",
-"summary": "request to https://registry.npmjs.org/electron failed, reason: =
-unable to get local issuer certificate",
-"detail": ""
-}
-}
-
-This seems to be because our company proxy exchanges the certificates.
-The question is where or how can I add configuration options to the npm sta=
-rted during the do_fetch task?
-
-PS: The error is not related to Electron the same happens with other module=
-s.
-
-Thank you and kind regards,
-Holger
-
---fs0elWyjheaxgkJI7wTR
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello,<br />I'm relatively new to Yocto and have a question related to bitb=
-ake and nodejs modules.<br /><br />I'm working with Yocto Hardknott and wou=
-ld like to integrate a nodejs module into my build.<br />To do so I'm using=
- devtool:<br />devtool add "npm://registry.npmjs.org;package=3Delectron;ver=
-sion=3Dlatest"<br /><br />During the do_fetch task I get the following erro=
-r:<br />&nbsp;npm view electron@latest failed with exit code 1, output:<br =
-/>{<br />&nbsp; "error": {<br />&nbsp;&nbsp;&nbsp; "code": "UNABLE_TO_GET_I=
-SSUER_CERT_LOCALLY",<br />&nbsp;&nbsp;&nbsp; "summary": "request to https:/=
-/registry.npmjs.org/electron failed, reason: unable to get local issuer cer=
-tificate",<br />&nbsp;&nbsp;&nbsp; "detail": ""<br />&nbsp; }<br />}<br /><=
-br />This seems to be because our company proxy exchanges the certificates.=
-<br />The question is where or how can I add configuration options to the n=
-pm started during the do_fetch task?<br /><br />PS: The error is not relate=
-d to Electron the same happens with other modules.<br /><br />Thank you and=
- kind regards,<br />Holger
-
---fs0elWyjheaxgkJI7wTR--
+DQpUaGFuayB5b3UgZm9yIHRoZSBxdWljayByZXBsYXkuLi4NCg0KVGhlIG5vIGdyYXBoaWMgb3B0
+aW9uIGRvZXMgd29yayBidXQgdGhlIGtlcm5lbCBjb21lcyB1cCB3aXRoIGVycm9ycy4uLg0KDQpX
+aWxsIGZ1bGwgd2F5bGFuZCBzdXBwb3J0IGJlIGFkZGVkIHRvIHRoZSBkdW5mZWxsIHJlbGVhc2Ug
+Pw0KDQpTdGV2ZQ0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogeW9jdG9AbGlz
+dHMueW9jdG9wcm9qZWN0Lm9yZyA8eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gT24gQmVo
+YWxmIE9mIEFsZXhhbmRlciBLYW5hdmluDQpTZW50OiBXZWRuZXNkYXksIEF1Z3VzdCAzMSwgMjAy
+MiA3OjIzIEFNDQpUbzogTW9uc2VlcywgU3RldmVuIEMgKFVTKSA8c3RldmVuLm1vbnNlZXNAYmFl
+c3lzdGVtcy5jb20+DQpDYzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDog
+UmU6IFt5b2N0b10gI3lvY3RvICNkdW5mZWxsICNxZW11eDg2LTY0DQoNCkV4dGVybmFsIEVtYWls
+IEFsZXJ0DQoNClRoaXMgZW1haWwgaGFzIGJlZW4gc2VudCBmcm9tIGFuIGFjY291bnQgb3V0c2lk
+ZSBvZiB0aGUgQkFFIFN5c3RlbXMgbmV0d29yay4NCg0KUGxlYXNlIHRyZWF0IHRoZSBlbWFpbCB3
+aXRoIGNhdXRpb24sIGVzcGVjaWFsbHkgaWYgeW91IGFyZSByZXF1ZXN0ZWQgdG8gY2xpY2sgb24g
+YSBsaW5rLCBkZWNyeXB0L29wZW4gYW4gYXR0YWNobWVudCwgb3IgZW5hYmxlIG1hY3Jvcy4gIEZv
+ciBmdXJ0aGVyIGluZm9ybWF0aW9uIG9uIGhvdyB0byBzcG90IHBoaXNoaW5nLCBhY2Nlc3Mg4oCc
+Q3liZXJzZWN1cml0eSBPbmVTcGFjZSBQYWdl4oCdIGFuZCByZXBvcnQgcGhpc2hpbmcgYnkgY2xp
+Y2tpbmcgdGhlIGJ1dHRvbiDigJxSZXBvcnQgUGhpc2hpbmfigJ0gb24gdGhlIE91dGxvb2sgdG9v
+bGJhci4NCg0KDQpZb3UgbmVlZCB0byBydW4gdGhpcyBpbiBhIFgxMSBzZXNzaW9uLCBvciB1c2Ug
+J25vZ3JhcGhpYycgcGFyYW1ldGVyLg0KDQpBbGV4DQoNCk9uIFdlZCwgMzEgQXVnIDIwMjIgYXQg
+MTM6MTcsIE1vbnNlZXMsIFN0ZXZlbiBDIChVUykgdmlhIGxpc3RzLnlvY3RvcHJvamVjdC5vcmcg
+PHN0ZXZlbi5tb25zZWVzPWJhZXN5c3RlbXMuY29tQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+IHdy
+b3RlOg0KPg0KPg0KPg0KPiBIZWxsbzoNCj4NCj4NCj4NCj4gSSBhbSBhdHRlbXB0aW5nIHRvIGV2
+YWx1YXRlIGR1bmZlbGwgLTIzLjAuMTcsIG9uIGEgY2V0b3M3IGxpbnV4IGJveC4NCj4NCj4NCj4N
+Cj4gV2hlbiBidWlsZGluZyB0aGUgZGVmYXVsdCA6IGNvcmUtaW1hZ2UtbWluaW1hbCBvciBjb3Jl
+LWltYWdlLXNhdG8sIA0KPiBjbGVhbiB3aXRoIG5vIGVycm9ycy93YXJuaW5ncywgb24gZXhlY3V0
+aW9uDQo+DQo+IEkgZ2V0IHRoZSBmb2xsb3dpbmcgZXJyb3IgZm9yIGJvdGggKHNlZSBiZWxvdyni
+gKYNCj4NCj4NCj4NCj4gKDEpICAgIElzIHRoaXMgYW4gaXNzdWUgd2l0aCB0aGUgcmVsZWFzZSA/
+LCAgYW5kIGlzIHRoZXJlIGFub3RoZXIgcmVsZWFzZSBJIHNob3VsZCBiZSB1c2luZyA/DQo+DQo+
+ICgyKSAgICBJcyB0aGVyZSBzb21ldGhpbmcgSSBuZWVkIHRvIHByZS1jb25maWd1cmUgZm9yIHRo
+ZXNlIGJ1aWxkcyB0byBydW4gcHJvcGVybHkgPw0KPg0KPiAoMykgICAgSG93IG1pZ2h0IEkgcmVz
+b2x2ZSB0aGlzIGlzc3VlID8NCj4NCj4NCj4NCj4gMDY6NTcgc21vbnNlZXNAeWl4NDkwMDE2IA0K
+PiAvZGlzazAvc2NyYXRjaC9zbW9uc2Vlcy95b2N0by95b2N0by1kdW5mZWxsL3Bva3ktZHVuZmVs
+bC0yMy4wLjE3L2R1bmZlDQo+IGxsX01pbj5ydW5xZW11IHFlbXV4ODYtNjQNCj4NCj4gcnVucWVt
+dSAtIElORk8gLSBSdW5uaW5nIE1BQ0hJTkU9cWVtdXg4Ni02NCBiaXRiYWtlIC1lIC4uLg0KPg0K
+PiBydW5xZW11IC0gSU5GTyAtIENvbnRpbnVpbmcgd2l0aCB0aGUgZm9sbG93aW5nIHBhcmFtZXRl
+cnM6DQo+DQo+IEtFUk5FTDogDQo+IFsvZGlzazAvc2NyYXRjaC9zbW9uc2Vlcy95b2N0by95b2N0
+by1kdW5mZWxsL3Bva3ktZHVuZmVsbC0yMy4wLjE3L2R1bmYNCj4gZWxsX01pbi90bXAvZGVwbG95
+L2ltYWdlcy9xZW11eDg2LTY0L2J6SW1hZ2UtLTUuNC4xOTIrZ2l0QVVUT0lOQyszZmVjYg0KPiAw
+ODUwN184NWYwNjY4ZmVhLXIwLXFlbXV4ODYtNjQtMjAyMjA4MzAxNTE4MTcuYmluXQ0KPg0KPiBN
+QUNISU5FOiBbcWVtdXg4Ni02NF0NCj4NCj4gRlNUWVBFOiBbZXh0NF0NCj4NCj4gUk9PVEZTOiAN
+Cj4gWy9kaXNrMC9zY3JhdGNoL3Ntb25zZWVzL3lvY3RvL3lvY3RvLWR1bmZlbGwvcG9reS1kdW5m
+ZWxsLTIzLjAuMTcvZHVuZg0KPiBlbGxfTWluL3RtcC9kZXBsb3kvaW1hZ2VzL3FlbXV4ODYtNjQv
+Y29yZS1pbWFnZS1taW5pbWFsLXFlbXV4ODYtNjQtMjAyDQo+IDIwODMwMTUxODE3LnJvb3Rmcy5l
+eHQ0XQ0KPg0KPiBDT05GRklMRTogDQo+IFsvZGlzazAvc2NyYXRjaC9zbW9uc2Vlcy95b2N0by95
+b2N0by1kdW5mZWxsL3Bva3ktZHVuZmVsbC0yMy4wLjE3L2R1bmYNCj4gZWxsX01pbi90bXAvZGVw
+bG95L2ltYWdlcy9xZW11eDg2LTY0L2NvcmUtaW1hZ2UtbWluaW1hbC1xZW11eDg2LTY0LTIwMg0K
+PiAyMDgzMDE1MTgxNy5xZW11Ym9vdC5jb25mXQ0KPg0KPg0KPg0KPiBydW5xZW11IC0gSU5GTyAt
+IFNldHRpbmcgdXAgdGFwIGludGVyZmFjZSB1bmRlciBzdWRvDQo+DQo+IFtzdWRvXSBwYXNzd29y
+ZCBmb3Igc21vbnNlZXM6DQo+DQo+IHJ1bnFlbXUgLSBJTkZPIC0gTmV0d29yayBjb25maWd1cmF0
+aW9uOiANCj4gaXA9MTkyLjE2OC43LjI6OjE5Mi4xNjguNy4xOjI1NS4yNTUuMjU1LjANCj4NCj4g
+cnVucWVtdSAtIElORk8gLSBSdW5uaW5nIC9kaXNrMC9zY3JhdGNoL3Ntb25zZWVzL3lvY3RvL3lv
+Y3RvLWR1bmZlbGwvcG9reS1kdW5mZWxsLTIzLjAuMTcvZHVuZmVsbF9NaW4vdG1wL3dvcmsveDg2
+XzY0LWxpbnV4L3FlbXUtaGVscGVyLW5hdGl2ZS8xLjAtcjEvcmVjaXBlLXN5c3Jvb3QtbmF0aXZl
+L3Vzci9iaW4vcWVtdS1zeXN0ZW0teDg2XzY0IC1kZXZpY2UgdmlydGlvLW5ldC1wY2ksbmV0ZGV2
+PW5ldDAsbWFjPTUyOjU0OjAwOjEyOjM0OjAyIC1uZXRkZXYgdGFwLGlkPW5ldDAsaWZuYW1lPXRh
+cDAsc2NyaXB0PW5vLGRvd25zY3JpcHQ9bm8gLWRyaXZlIGZpbGU9L2Rpc2swL3NjcmF0Y2gvc21v
+bnNlZXMveW9jdG8veW9jdG8tZHVuZmVsbC9wb2t5LWR1bmZlbGwtMjMuMC4xNy9kdW5mZWxsX01p
+bi90bXAvZGVwbG95L2ltYWdlcy9xZW11eDg2LTY0L2NvcmUtaW1hZ2UtbWluaW1hbC1xZW11eDg2
+LTY0LTIwMjIwODMwMTUxODE3LnJvb3Rmcy5leHQ0LGlmPXZpcnRpbyxmb3JtYXQ9cmF3IC1zaG93
+LWN1cnNvciAtdXNiIC1kZXZpY2UgdXNiLXRhYmxldCAtb2JqZWN0IHJuZy1yYW5kb20sZmlsZW5h
+bWU9L2Rldi91cmFuZG9tLGlkPXJuZzAgLWRldmljZSB2aXJ0aW8tcm5nLXBjaSxybmc9cm5nMCAg
+IC1jcHUgY29yZTJkdW8gLW0gMjU2IC1zZXJpYWwgbW9uOnZjIC1zZXJpYWwgbnVsbCAta2VybmVs
+IC9kaXNrMC9zY3JhdGNoL3Ntb25zZWVzL3lvY3RvL3lvY3RvLWR1bmZlbGwvcG9reS1kdW5mZWxs
+LTIzLjAuMTcvZHVuZmVsbF9NaW4vdG1wL2RlcGxveS9pbWFnZXMvcWVtdXg4Ni02NC9iekltYWdl
+LS01LjQuMTkyK2dpdEFVVE9JTkMrM2ZlY2IwODUwN184NWYwNjY4ZmVhLXIwLXFlbXV4ODYtNjQt
+MjAyMjA4MzAxNTE4MTcuYmluIC1hcHBlbmQgJ3Jvb3Q9L2Rldi92ZGEgcncgIG1lbT0yNTZNIGlw
+PTE5Mi4xNjguNy4yOjoxOTIuMTY4LjcuMToyNTUuMjU1LjI1NS4wIG9wcm9maWxlLnRpbWVyPTEg
+Jw0KPg0KPg0KPg0KPiBydW5xZW11IC0gRVJST1IgLSBGYWlsZWQgdG8gcnVuIHFlbXU6IENvdWxk
+IG5vdCBpbml0aWFsaXplIFNETCh4MTEgbm90IA0KPiBhdmFpbGFibGUpIC0gZXhpdGluZw0KPg0K
+Pg0KPg0KPiBydW5xZW11IC0gSU5GTyAtIENsZWFuaW5nIHVwDQo+DQo+IFNldCAndGFwMCcgbm9u
+cGVyc2lzdGVudA0KPg0KPg0KPg0KPiBUaGFuayB5b3UgZm9yIHlvdXIgaGVscCwNCj4NCj4gU3Rl
+dmUNCj4NCj4NCj4NCj4NCj4gDQo+DQo=
 
