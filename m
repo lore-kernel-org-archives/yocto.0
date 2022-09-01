@@ -1,218 +1,63 @@
-Return-Path: <steven.monsees@baesystems.com>
+Return-Path: <anton.antonov@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A1A1AECAAD1
-	for <webhook@archiver.kernel.org>; Wed, 31 Aug 2022 16:41:57 +0000 (UTC)
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com
- [149.32.232.65])
- by mx.groups.io with SMTP id smtpd.web09.1173.1661964114480486506
- for <yocto@lists.yoctoproject.org>;
- Wed, 31 Aug 2022 09:41:54 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=hFXaDaWV;
- spf=pass (domain: baesystems.com, ip: 149.32.232.65,
- mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1661964114; x=1819644114;
-  h=from:to:cc:subject:date:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=qDm24AazmsLP7GUvMgkZUmgUvllAbEIDs+0K1tZk7Pg=;
-  b=hFXaDaWV2tcPe7sJyRdaGCmjFaGDV67zl3qcQS9S6wv4W2ociC/kT1wi
-   ypma1WW1grQANLtUxSiNyuuYGhZc5nAWO4RhPHCvE4rF9u1kHqi5B7rru
-   GlVBuLUXBVv6EZRSLVZlAtTY19DE2a1S+VHXQ9BBZ4elrfliVFU8fUKeu
-   Q=;
-IronPort-SDR: 
- fVHCkbpEadqbVR2vD8ibP2ik+e0EvssCIGAJ9KmjOa179bfRdFBmT2n3azxbdFk7dOaSMBzUf6
- rIE4K4YWkMxg==
-X-IPAS-Result: =?us-ascii?q?A2ADAAALjg9j/wFUSQpaGgEBAQEBAQEBAQEDAQEBARIBA?=
- =?us-ascii?q?QEBAgIBAQEBQAmBMgUBAQEBCwGBe4EnAoFZF4Q3iB+IcAOGEoUShTiMJxSBa?=
- =?us-ascii?q?AsBAQEBAQEBAQEIASwLCwQBAYUHAhaETyY0CQ4BAgQBAQEBAwIDAQEBAQUBA?=
- =?us-ascii?q?QYBAQEBAQEGBAGBG4UvOQ2CNQUCAx8BBoNdAQEBAQIBASIRGisFBwQCAQgNB?=
- =?us-ascii?q?AQBAQECAhEDEgICAh8HCQEVCAgBAQQBDQUIFQSCWAWCbQMNJROoXTV6gTEaA?=
- =?us-ascii?q?mWDUAGBH4I5DYJMgREsAYFlhRQDblSDM4Qkgg1DhD8+giBCBAGBFggKARIBO?=
- =?us-ascii?q?BUTEIMHgmUEgUI5gXccBwMCD4ETXoFDCAIJG2uFK4NPAQMCgSocAgKDVhw4A?=
- =?us-ascii?q?0UeQgMLDjU0AxcDFAMFJAcDGQ8jDQ0EFgcMAwMFJQMCAhsHAgIDAgYVBQICT?=
- =?us-ascii?q?TgIBAgEKyQPBQIHLwUELwIeBAUGEQgCFgIGBAQEBBUCEAgCCCYXBxMzGQEFW?=
- =?us-ascii?q?RAJIRwOGg0FBhMDIG0FRQ8oMQE1OSsdGwqBEiooFQMEBAMCBhMDAyICECwxF?=
- =?us-ascii?q?AYpExItByt1CQIDImgFAwMEKCwDCSECARwHKCY8BQVZOgEEAwMQIj0GAwkDA?=
- =?us-ascii?q?idde5YlgTcUEIEvEwgkBRswQAEHAQJNGgYyAysPkhVAgyGOIpw1bgcDg1KLK?=
- =?us-ascii?q?40DgXSFci4Wg3aBUIsAhkoDhVKFGYEShWaHPY9KII0Zg2OQXQ0IFiGBNIM/A?=
- =?us-ascii?q?gQCBAUCFoFhSVxwcIM3CUgXAo9VAQQEh1eFSnUCATgCBgEKAQEDCYgwNFyBE?=
- =?us-ascii?q?gEB?=
-IronPort-PHdr: A9a23:61Q+cByc3FzqEnTXCzJ0zVBlVkEcU1XcAAcZ59Idhq5Udez7ptK+Z
- heZv6UzxwCVFazgqNt8w9LMtK7hXWFSqb2gi1slNKJ2ahkelM8NlBYhCsPWQWfyLfrtcjBoV
- J8aDAwt8H60K1VaF9jjbFPOvHKy8SQSGhLiPgZpO+j5AIHfg9q52uyo5ZHeYARFiDW/bL59M
- R67sRjfus4KjIV4N60/0AHJonxGe+RXwWNnO1eelAvi68mz4ZBu7T1et+ou+MBcX6r6eb84T
- aFDAzQ9L281/szrugLdQgaJ+3ART38ZkhtMAwjC8RH6QpL8uTb0u+ZhxCWXO9D9QKsqUjq+8
- ahkVB7oiD8GNzEn9mHXltdwh79frB64uhBz35LYbISTOfFjfK3SYMkaSHJBUMhPSSFPH5+8Y
- YUMAeoPP+lYrpXyqVQBohalGQmjH+HvxiNUinPq36A31fkqHwHc3AwnGtIDqHrYotLyNKcUS
- uC60rfHzS7bY/hLxDn99JbHcg4/rvGKQLl9b9faxU0hGA3Yi1mcp5HuMjSO1uQRrWeb8fRvV
- eS1h24irAFxpCOvydkyhYnSnY8a0UrL+jtiwIc1Pt24VFB0Ydu/EJdKqy6aMI52T9okTmp1t
- yk01qcItoSnfCgW1psn3RjfZuSZfoWV/h/vSfudLDhliH97Zb6xiAu+/FSgxOD4SMS5zllHo
- zdHn9TRuH0A0xzd59WbR/dj/kqs2CqD2Q7d5OxEJ00/iKTVK5kkwrEql5oTt1zOHy/xmErqk
- K+WcV0k+vKv6+TlfLrpuoOcO5VzigHkPaQjnNG0D+cgMgUWQmSX5f6w2b/t8EHjQ7hHgec6n
- rTBvJzHOcgXvKG0DgBP3oss8RqyATOr3dIFlncdNl1FYgiIj43xNlHLJ/D3EOmwjky3kDdu2
- /DGJrrhAojRLnTbkLfuY7J960lExQovwtFQ/ZRUCrQaIP/3RkP9qMDUAgIjPwyp2ObrEs5y2
- ZkAVmKUAq6ZK7/SvkGN5uI0OeWDeIgVuDPlJ/gk4f7hk2M5lEcAcaW1x5caan61Eu5lLkiWe
- 3bgn88NEWIQsQo/SOzqhkeCUTlWZ3uqRKI8+i80CJy4AofFXIythbuB3CGgHpJIeG9GEUuBH
- mzyeIqaQPcNaDmSItN/nTwBTritUZMu1RartAPizbpoNfLb+jcEupL7yNh1++rTmAkv+TBsF
- cSSz3mNT31onmMPXzI33Kd/rlBhyleEyqV4h/1YFcdP5/NSSAs7NZncwPBmC9D1QgLBZNCJS
- FS4Tdq6HTE9VNUxw8UBYxU1JtO5kxqW3za2G6RH0PuPBYco6eTN2HPtIN5nzHTL37VniEMpB
- cQIJGqtmqk46g7IGoSarkOCiqyWeLQAiS7R6H+Yny3JuEBDTBU2QKLOQXcHfEzUoN/loETYQ
- PihTqUgORdGjtOEMbZAOeHu2HZGSfKrAt3cKzarkmX2BhaFw5uDaYPrfyMW2yCLTAAtlw0D9
- HCKOBJ2JS6nqnzfCnQ6HFbicwXv+O93tnK9ZkAxxgCOKUZm0uzm1AQSgKnWbvQVxb8Jo2Npk
- Cl5Alu7l/meS+e75kApKL5AbM0w5hFC0mTCugFmFpapIrtznUITdh8xtETrgUYkQr5cmNQn+
- St5hDF5LriVhRYYL2vw4A==
-IronPort-Data: A9a23:cfzq6KliffmpT/NpeRekuZjo5gwJJERdPkR7XQ2eYbSJt1+Wr1Gzt
- xIcCmCHa/yKYDHwedEkYYTlpxsDupSGzNI1QQBsqCpgFVtH+JHPbTi7wuccHM8wwunrFh8PA
- xA2M4GYRCwMZiaH4ErrbtANlFEkvU2ybuOU5NXsZ2YgHmeIdA970Ug5w75i29Yy6TSEK1rlV
- e3a8pW31GCNhmYc3lI8s8pvfzs24ZweEBtB1rAPTagjUG32zhH5P7pDTU2FFEYUd6EPdgKMq
- 0cv+5nilo/R109F5tpICd8XeGVSKlLZFVDmZna7x8FOjzAazhHe3JrXO9IFc0ZK1y+Cuex65
- /tok5KXETt4GPL1zbF1vxlwS0mSPIVa6LbBJGPu6ZTLlgvbaD3myvh1HVoqMIgDvO1wBAmi9
- 9RBcHZSNVbT26TvqF64YrAEasALN9XmIo4Z/HRnyyrUAO0OS5nOWLTR+dJdx3E7gcUm8fP2P
- pRDMGIwMU2ojxtnJm4mN88mmemSoGTyShF0rW+LjLEG/D2GpOB2+P23WDbPQfSbQs5JmW6cp
- 3na5CLoBRoGM8SFzjiI+W7qgfXA9R4XQ6pLTPvnrbg63BvKroAONCAruZKAiaHRoiaDtxh3d
- yT4JgJGQXAOyXGW
-IronPort-HdrOrdr: A9a23:7Wld7a31eLg44zOdC4IfLgqjBEgkLtp133Aq2lEZdPUMSL3gqy
- iv9M576faGskdoZJhAo6H+BEDkexjhHPFOkOws1NuZMzUO/VHYSr2KjrGSvQEIeReOktK1vJ
- 0IG8VD4Z/LfD9HZK7BkXiF+r0boOVvhZrY59s2uE0dLj2CBZsP0+/xYTzwLqX5LDM2dqbQS/
- Gnivav7ADQAkj/Jv7LfEXt9dKz1+EigvrdEGM77jAcmXWzsQ8=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-AV: E=Sophos;i="5.93,278,1654560000";
-   d="scan'208";a="16210751"
-IronPort-SDR: 
- u5yrJYJr+KaX9kv+cXgBF6fj1FNar5uPSDllLaUfdvLc25i0WbNcCj6Xp/JVDfivWjrWNe8Mzk
- sT94ow5KMQCyiLBJSPG/Qzlp36OWTFGwSHkgdnoSY979xNS2fI8JjubRYha+HTaEEySGuTaUdH
- NCt6jYg9Qb+LdRNIUw4Eb8ULBveJsO+IiWzUa/dM2wksYgH9bv4sprBx7bw+rfZ+jj/MIZDgx+
- gCxQuMBqal39oSLFHhYBcQIdtf68A5CewVu+7o24KN0jJVz9JsL6PQWSzoGHT3FsUYHsVqwmvC
- D6U=
-X-IronPort-AV: E=Sophos;i="5.93,278,1654560000";
-   d="scan'208";a="140569759"
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: Khem Raj <raj.khem@gmail.com>, Alexander Kanavin <alex.kanavin@gmail.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: RE: [yocto] #yocto #dunfell #qemux86-64
-Thread-Topic: [yocto] #yocto #dunfell #qemux86-64
-Thread-Index: Adi9Kz6D2hQuMkGuSp+JLpUK1uc+yAAIk98AAAf9Z5AAAwKfAAAITu5A
-Date: Wed, 31 Aug 2022 16:40:51 +0000
-In-Reply-To: <2f55d594-8d68-6011-1159-7be428fac0b7@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.4.39]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B111CECAAD1
+	for <webhook@archiver.kernel.org>; Thu,  1 Sep 2022 13:45:03 +0000 (UTC)
+Subject: Re: [meta-security][PATCH resend] Parsec-service: add parsec user to
+ teeclnt group when optee is present
+To: yocto@lists.yoctoproject.org
+From: "Anton Antonov" <anton.antonov@arm.com>
+X-Originating-Location: Cambridge, England, GB (217.140.106.13)
+X-Originating-Platform: Mac Firefox 103
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
+Date: Thu, 01 Sep 2022 06:44:59 -0700
+References: <1468.1662031846008704501@lists.yoctoproject.org>
+In-Reply-To: <1468.1662031846008704501@lists.yoctoproject.org>
+Message-ID: <3934.1662039899119266547@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="bQb5eV9zyLOOjH2y6Uhy"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 31 Aug 2022 16:41:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57965
-Message-Id: <20220831164157.A1A1AECAAD1@smtp.lore.kernel.org>
+ <yocto@lists.yoctoproject.org>; Thu, 01 Sep 2022 13:45:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57967
 
-VGhhbmsgeW91LCBhbmQgSSBhbSBsb29raW5nIGF0IGtpcmtzdG9uZS4uLg0KDQotLS0tLU9yaWdp
-bmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogS2hlbSBSYWogPHJhai5raGVtQGdtYWlsLmNvbT4gDQpT
-ZW50OiBXZWRuZXNkYXksIEF1Z3VzdCAzMSwgMjAyMiAxMjozOCBQTQ0KVG86IE1vbnNlZXMsIFN0
-ZXZlbiBDIChVUykgPHN0ZXZlbi5tb25zZWVzQGJhZXN5c3RlbXMuY29tPjsgQWxleGFuZGVyIEth
-bmF2aW4gPGFsZXgua2FuYXZpbkBnbWFpbC5jb20+DQpDYzogeW9jdG9AbGlzdHMueW9jdG9wcm9q
-ZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gI3lvY3RvICNkdW5mZWxsICNxZW11eDg2LTY0
-DQoNCk9uIDgvMzEvMjIgNDozNiBBTSwgTW9uc2VlcywgU3RldmVuIEMgKFVTKSB2aWEgbGlzdHMu
-eW9jdG9wcm9qZWN0Lm9yZyB3cm90ZToNCj4gDQo+IFRoYW5rIHlvdSBmb3IgdGhlIHF1aWNrIHJl
-cGxheS4uLg0KPiANCj4gVGhlIG5vIGdyYXBoaWMgb3B0aW9uIGRvZXMgd29yayBidXQgdGhlIGtl
-cm5lbCBjb21lcyB1cCB3aXRoIGVycm9ycy4uLg0KPiANCj4gV2lsbCBmdWxsIHdheWxhbmQgc3Vw
-cG9ydCBiZSBhZGRlZCB0byB0aGUgZHVuZmVsbCByZWxlYXNlID8NCj4gDQoNCnlvdSBjYW4gdXNl
-IHZuYyBiYWNrZW5kIHdoaWNoIGlzIGVuYWJsZWQgYnkgZGVmYXVsdC4gYnkgdXNpbmcgcnVucWVt
-dSBwdWJsaWN2bmMNCg0KSSB3aXNoIHJ1bnFlbXUgd2FzIHNtYXJ0IGVub3VnaCB0byBwcmlvcml0
-aXplLCBpbnRlcmFjdGl2ZSBVSSBlLmcuIA0Kc2RsL2d0ayBpZiBub3QgYXZhaWxhYmxlIHRoZW4g
-ZmFsbCBiYWNrIHRvIHZuYywgYW5kIHRoZW4gdXNlIG5vZ3JhcGhpYyBpbiBvcmRlci4NCg0KYW5k
-IHBsZWFzZSBsb29rIGF0IGtpcmtzdG9uZSBpZiB5b3UgYXJlIGV2YWx1YXRpbmcgbmV4dCBMVFMs
-IGR1bmZlbGwgaXMgc3RpbGwgc3VwcG9ydGVkIGJ1dCBpcyBhbHJlYWR5IGluY2hpbmcgdG93YXJk
-cyBpdHMgZW5kIGNvbXBhcmF0aXZlbHkgeW91IGdldCBtb3JlIG1vZGVybiBwYWNrYWdlIHZlcnNp
-b25zIHdpdGgga2lya3N0b25lLg0KDQo+IFN0ZXZlDQo+IA0KPiAtLS0tLU9yaWdpbmFsIE1lc3Nh
-Z2UtLS0tLQ0KPiBGcm9tOiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIDx5b2N0b0BsaXN0
-cy55b2N0b3Byb2plY3Qub3JnPiBPbiANCj4gQmVoYWxmIE9mIEFsZXhhbmRlciBLYW5hdmluDQo+
-IFNlbnQ6IFdlZG5lc2RheSwgQXVndXN0IDMxLCAyMDIyIDc6MjMgQU0NCj4gVG86IE1vbnNlZXMs
-IFN0ZXZlbiBDIChVUykgPHN0ZXZlbi5tb25zZWVzQGJhZXN5c3RlbXMuY29tPg0KPiBDYzogeW9j
-dG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KPiBTdWJqZWN0OiBSZTogW3lvY3RvXSAjeW9jdG8g
-I2R1bmZlbGwgI3FlbXV4ODYtNjQNCj4gDQo+IEV4dGVybmFsIEVtYWlsIEFsZXJ0DQo+IA0KPiBU
-aGlzIGVtYWlsIGhhcyBiZWVuIHNlbnQgZnJvbSBhbiBhY2NvdW50IG91dHNpZGUgb2YgdGhlIEJB
-RSBTeXN0ZW1zIG5ldHdvcmsuDQo+IA0KPiBQbGVhc2UgdHJlYXQgdGhlIGVtYWlsIHdpdGggY2F1
-dGlvbiwgZXNwZWNpYWxseSBpZiB5b3UgYXJlIHJlcXVlc3RlZCB0byBjbGljayBvbiBhIGxpbmss
-IGRlY3J5cHQvb3BlbiBhbiBhdHRhY2htZW50LCBvciBlbmFibGUgbWFjcm9zLiAgRm9yIGZ1cnRo
-ZXIgaW5mb3JtYXRpb24gb24gaG93IHRvIHNwb3QgcGhpc2hpbmcsIGFjY2VzcyDigJxDeWJlcnNl
-Y3VyaXR5IE9uZVNwYWNlIFBhZ2XigJ0gYW5kIHJlcG9ydCBwaGlzaGluZyBieSBjbGlja2luZyB0
-aGUgYnV0dG9uIOKAnFJlcG9ydCBQaGlzaGluZ+KAnSBvbiB0aGUgT3V0bG9vayB0b29sYmFyLg0K
-PiANCj4gDQo+IFlvdSBuZWVkIHRvIHJ1biB0aGlzIGluIGEgWDExIHNlc3Npb24sIG9yIHVzZSAn
-bm9ncmFwaGljJyBwYXJhbWV0ZXIuDQo+IA0KPiBBbGV4DQo+IA0KPiBPbiBXZWQsIDMxIEF1ZyAy
-MDIyIGF0IDEzOjE3LCBNb25zZWVzLCBTdGV2ZW4gQyAoVVMpIHZpYSBsaXN0cy55b2N0b3Byb2pl
-Y3Qub3JnIDxzdGV2ZW4ubW9uc2Vlcz1iYWVzeXN0ZW1zLmNvbUBsaXN0cy55b2N0b3Byb2plY3Qu
-b3JnPiB3cm90ZToNCj4+DQo+Pg0KPj4NCj4+IEhlbGxvOg0KPj4NCj4+DQo+Pg0KPj4gSSBhbSBh
-dHRlbXB0aW5nIHRvIGV2YWx1YXRlIGR1bmZlbGwgLTIzLjAuMTcsIG9uIGEgY2V0b3M3IGxpbnV4
-IGJveC4NCj4+DQo+Pg0KPj4NCj4+IFdoZW4gYnVpbGRpbmcgdGhlIGRlZmF1bHQgOiBjb3JlLWlt
-YWdlLW1pbmltYWwgb3IgY29yZS1pbWFnZS1zYXRvLCANCj4+IGNsZWFuIHdpdGggbm8gZXJyb3Jz
-L3dhcm5pbmdzLCBvbiBleGVjdXRpb24NCj4+DQo+PiBJIGdldCB0aGUgZm9sbG93aW5nIGVycm9y
-IGZvciBib3RoIChzZWUgYmVsb3cp4oCmDQo+Pg0KPj4NCj4+DQo+PiAoMSkgICAgSXMgdGhpcyBh
-biBpc3N1ZSB3aXRoIHRoZSByZWxlYXNlID8sICBhbmQgaXMgdGhlcmUgYW5vdGhlciByZWxlYXNl
-IEkgc2hvdWxkIGJlIHVzaW5nID8NCj4+DQo+PiAoMikgICAgSXMgdGhlcmUgc29tZXRoaW5nIEkg
-bmVlZCB0byBwcmUtY29uZmlndXJlIGZvciB0aGVzZSBidWlsZHMgdG8gcnVuIHByb3Blcmx5ID8N
-Cj4+DQo+PiAoMykgICAgSG93IG1pZ2h0IEkgcmVzb2x2ZSB0aGlzIGlzc3VlID8NCj4+DQo+Pg0K
-Pj4NCj4+IDA2OjU3IHNtb25zZWVzQHlpeDQ5MDAxNg0KPj4gL2Rpc2swL3NjcmF0Y2gvc21vbnNl
-ZXMveW9jdG8veW9jdG8tZHVuZmVsbC9wb2t5LWR1bmZlbGwtMjMuMC4xNy9kdW5mDQo+PiBlDQo+
-PiBsbF9NaW4+cnVucWVtdSBxZW11eDg2LTY0DQo+Pg0KPj4gcnVucWVtdSAtIElORk8gLSBSdW5u
-aW5nIE1BQ0hJTkU9cWVtdXg4Ni02NCBiaXRiYWtlIC1lIC4uLg0KPj4NCj4+IHJ1bnFlbXUgLSBJ
-TkZPIC0gQ29udGludWluZyB3aXRoIHRoZSBmb2xsb3dpbmcgcGFyYW1ldGVyczoNCj4+DQo+PiBL
-RVJORUw6DQo+PiBbL2Rpc2swL3NjcmF0Y2gvc21vbnNlZXMveW9jdG8veW9jdG8tZHVuZmVsbC9w
-b2t5LWR1bmZlbGwtMjMuMC4xNy9kdW4NCj4+IGYgDQo+PiBlbGxfTWluL3RtcC9kZXBsb3kvaW1h
-Z2VzL3FlbXV4ODYtNjQvYnpJbWFnZS0tNS40LjE5MitnaXRBVVRPSU5DKzNmZWMNCj4+IGIgMDg1
-MDdfODVmMDY2OGZlYS1yMC1xZW11eDg2LTY0LTIwMjIwODMwMTUxODE3LmJpbl0NCj4+DQo+PiBN
-QUNISU5FOiBbcWVtdXg4Ni02NF0NCj4+DQo+PiBGU1RZUEU6IFtleHQ0XQ0KPj4NCj4+IFJPT1RG
-UzoNCj4+IFsvZGlzazAvc2NyYXRjaC9zbW9uc2Vlcy95b2N0by95b2N0by1kdW5mZWxsL3Bva3kt
-ZHVuZmVsbC0yMy4wLjE3L2R1bg0KPj4gZg0KPj4gZWxsX01pbi90bXAvZGVwbG95L2ltYWdlcy9x
-ZW11eDg2LTY0L2NvcmUtaW1hZ2UtbWluaW1hbC1xZW11eDg2LTY0LTIwDQo+PiAyDQo+PiAyMDgz
-MDE1MTgxNy5yb290ZnMuZXh0NF0NCj4+DQo+PiBDT05GRklMRToNCj4+IFsvZGlzazAvc2NyYXRj
-aC9zbW9uc2Vlcy95b2N0by95b2N0by1kdW5mZWxsL3Bva3ktZHVuZmVsbC0yMy4wLjE3L2R1bg0K
-Pj4gZg0KPj4gZWxsX01pbi90bXAvZGVwbG95L2ltYWdlcy9xZW11eDg2LTY0L2NvcmUtaW1hZ2Ut
-bWluaW1hbC1xZW11eDg2LTY0LTIwDQo+PiAyDQo+PiAyMDgzMDE1MTgxNy5xZW11Ym9vdC5jb25m
-XQ0KPj4NCj4+DQo+Pg0KPj4gcnVucWVtdSAtIElORk8gLSBTZXR0aW5nIHVwIHRhcCBpbnRlcmZh
-Y2UgdW5kZXIgc3Vkbw0KPj4NCj4+IFtzdWRvXSBwYXNzd29yZCBmb3Igc21vbnNlZXM6DQo+Pg0K
-Pj4gcnVucWVtdSAtIElORk8gLSBOZXR3b3JrIGNvbmZpZ3VyYXRpb246DQo+PiBpcD0xOTIuMTY4
-LjcuMjo6MTkyLjE2OC43LjE6MjU1LjI1NS4yNTUuMA0KPj4NCj4+IHJ1bnFlbXUgLSBJTkZPIC0g
-UnVubmluZyAvZGlzazAvc2NyYXRjaC9zbW9uc2Vlcy95b2N0by95b2N0by1kdW5mZWxsL3Bva3kt
-ZHVuZmVsbC0yMy4wLjE3L2R1bmZlbGxfTWluL3RtcC93b3JrL3g4Nl82NC1saW51eC9xZW11LWhl
-bHBlci1uYXRpdmUvMS4wLXIxL3JlY2lwZS1zeXNyb290LW5hdGl2ZS91c3IvYmluL3FlbXUtc3lz
-dGVtLXg4Nl82NCAtZGV2aWNlIHZpcnRpby1uZXQtcGNpLG5ldGRldj1uZXQwLG1hYz01Mjo1NDow
-MDoxMjozNDowMiAtbmV0ZGV2IHRhcCxpZD1uZXQwLGlmbmFtZT10YXAwLHNjcmlwdD1ubyxkb3du
-c2NyaXB0PW5vIC1kcml2ZSBmaWxlPS9kaXNrMC9zY3JhdGNoL3Ntb25zZWVzL3lvY3RvL3lvY3Rv
-LWR1bmZlbGwvcG9reS1kdW5mZWxsLTIzLjAuMTcvZHVuZmVsbF9NaW4vdG1wL2RlcGxveS9pbWFn
-ZXMvcWVtdXg4Ni02NC9jb3JlLWltYWdlLW1pbmltYWwtcWVtdXg4Ni02NC0yMDIyMDgzMDE1MTgx
-Ny5yb290ZnMuZXh0NCxpZj12aXJ0aW8sZm9ybWF0PXJhdyAtc2hvdy1jdXJzb3IgLXVzYiAtZGV2
-aWNlIHVzYi10YWJsZXQgLW9iamVjdCBybmctcmFuZG9tLGZpbGVuYW1lPS9kZXYvdXJhbmRvbSxp
-ZD1ybmcwIC1kZXZpY2UgdmlydGlvLXJuZy1wY2kscm5nPXJuZzAgICAtY3B1IGNvcmUyZHVvIC1t
-IDI1NiAtc2VyaWFsIG1vbjp2YyAtc2VyaWFsIG51bGwgLWtlcm5lbCAvZGlzazAvc2NyYXRjaC9z
-bW9uc2Vlcy95b2N0by95b2N0by1kdW5mZWxsL3Bva3ktZHVuZmVsbC0yMy4wLjE3L2R1bmZlbGxf
-TWluL3RtcC9kZXBsb3kvaW1hZ2VzL3FlbXV4ODYtNjQvYnpJbWFnZS0tNS40LjE5MitnaXRBVVRP
-SU5DKzNmZWNiMDg1MDdfODVmMDY2OGZlYS1yMC1xZW11eDg2LTY0LTIwMjIwODMwMTUxODE3LmJp
-biAtYXBwZW5kICdyb290PS9kZXYvdmRhIHJ3ICBtZW09MjU2TSBpcD0xOTIuMTY4LjcuMjo6MTky
-LjE2OC43LjE6MjU1LjI1NS4yNTUuMCBvcHJvZmlsZS50aW1lcj0xICcNCj4+DQo+Pg0KPj4NCj4+
-IHJ1bnFlbXUgLSBFUlJPUiAtIEZhaWxlZCB0byBydW4gcWVtdTogQ291bGQgbm90IGluaXRpYWxp
-emUgU0RMKHgxMSANCj4+IG5vdA0KPj4gYXZhaWxhYmxlKSAtIGV4aXRpbmcNCj4+DQo+Pg0KPj4N
-Cj4+IHJ1bnFlbXUgLSBJTkZPIC0gQ2xlYW5pbmcgdXANCj4+DQo+PiBTZXQgJ3RhcDAnIG5vbnBl
-cnNpc3RlbnQNCj4+DQo+Pg0KPj4NCj4+IFRoYW5rIHlvdSBmb3IgeW91ciBoZWxwLA0KPj4NCj4+
-IFN0ZXZlDQo+Pg0KPj4NCj4+DQo+Pg0KPj4NCj4+DQo+Pg0KPj4NCj4+IC09LT0tPS09LT0tPS09
-LT0tPS09LT0tDQo+PiBMaW5rczogWW91IHJlY2VpdmUgYWxsIG1lc3NhZ2VzIHNlbnQgdG8gdGhp
-cyBncm91cC4NCj4+IFlvdSBhdXRvbWF0aWNhbGx5IGZvbGxvdyBhbnkgdG9waWNzIHlvdSBzdGFy
-dCBvciByZXBseSB0by4NCj4+IFZpZXcvUmVwbHkgT25saW5lICgjNTc5NTcpOiANCj4+IGh0dHBz
-Oi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9nL3lvY3RvL21lc3NhZ2UvNTc5NTcNCj4+IE11dGUg
-VGhpcyBUb3BpYzogaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL210LzkzMzY4NTI2LzE5
-OTc5MTQNCj4+IE11dGUgI3lvY3RvOmh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9nL3lv
-Y3RvL211dGVoYXNodGFnL3lvY3RvDQo+PiBNdXRlIA0KPj4gI2R1bmZlbGw6aHR0cHM6Ly9saXN0
-cy55b2N0b3Byb2plY3Qub3JnL2cveW9jdG8vbXV0ZWhhc2h0YWcvZHVuZmVsbA0KPj4gTXV0ZSAN
-Cj4+ICNxZW11eDg2LTY0Omh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9nL3lvY3RvL211
-dGVoYXNodGFnL3FlbXV4OA0KPj4gNi02NCBHcm91cCBPd25lcjogeW9jdG8rb3duZXJAbGlzdHMu
-eW9jdG9wcm9qZWN0Lm9yZw0KPj4gVW5zdWJzY3JpYmU6IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9q
-ZWN0Lm9yZy9nL3lvY3RvL3Vuc3ViIA0KPj4gW3Jhai5raGVtQGdtYWlsLmNvbV0NCj4+IC09LT0t
-PS09LT0tPS09LT0tPS09LT0tDQo+Pg0K
+--bQb5eV9zyLOOjH2y6Uhy
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Jerome,
+
+Parsec doesn't depend on optee-client and doesn't require it at all. If Par=
+sec is built with the Trusted Services provider included=C2=A0 then `libts`=
+ is added into DEPENDS and RDEPENDS:
+
+https://git.yoctoproject.org/meta-security/tree/meta-parsec/recipes-parsec/=
+parsec-service/parsec-service_1.0.0.bb#n23
+
+The libts recipe (it will be merged into meta-arm later today or tomorrow t=
+ogether with other generic recipes for Trusted Services Secure Partitions (=
+SWd side) and test/demo tools (NWd side)) creates `teeclnt` group.
+
+Cheers,
+Anton
+
+--bQb5eV9zyLOOjH2y6Uhy
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hi Jerome,<br /><br />&nbsp; Parsec doesn't depend on optee-client and d=
+oesn't require it at all. If Parsec is built with the Trusted Services prov=
+ider included&nbsp; then `libts` is added into DEPENDS and RDEPENDS:</p>
+<p><a href=3D"https://git.yoctoproject.org/meta-security/tree/meta-parsec/r=
+ecipes-parsec/parsec-service/parsec-service_1.0.0.bb#n23" target=3D"_blank"=
+ rel=3D"noopener">https://git.yoctoproject.org/meta-security/tree/meta-pars=
+ec/recipes-parsec/parsec-service/parsec-service_1.0.0.bb#n23</a></p>
+<p>The libts recipe (it will be merged into meta-arm later today or tomorro=
+w together with other generic recipes for Trusted Services Secure Partition=
+s (SWd side) and test/demo tools (NWd side)) creates `teeclnt` group.</p>
+<p>Cheers,<br />Anton</p>
+
+--bQb5eV9zyLOOjH2y6Uhy--
 
