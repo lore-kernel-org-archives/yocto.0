@@ -1,231 +1,100 @@
-Return-Path: <mahendrasondagar08@gmail.com>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CBED0ECAAD5
-	for <webhook@archiver.kernel.org>; Fri,  2 Sep 2022 19:26:17 +0000 (UTC)
-Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com
- [209.85.221.172])
- by mx.groups.io with SMTP id smtpd.web09.2796.1662146770913004796
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DA79CECAAA1
+	for <webhook@archiver.kernel.org>; Fri,  2 Sep 2022 23:41:48 +0000 (UTC)
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com
+ [209.85.161.50])
+ by mx.groups.io with SMTP id smtpd.web08.5315.1662162104905211446
  for <yocto@lists.yoctoproject.org>;
- Fri, 02 Sep 2022 12:26:11 -0700
+ Fri, 02 Sep 2022 16:41:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=IPGaZNjk;
- spf=pass (domain: gmail.com, ip: 209.85.221.172,
- mailfrom: mahendrasondagar08@gmail.com)
-Received: by mail-vk1-f172.google.com with SMTP id c2so1425800vkm.9
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=AWu9Zb3O;
+ spf=pass (domain: gmail.com, ip: 209.85.161.50,
+ mailfrom: akuster808@gmail.com)
+Received: by mail-oo1-f50.google.com with SMTP id
+ q6-20020a4aa886000000b0044b06d0c453so612994oom.11
         for <yocto@lists.yoctoproject.org>;
- Fri, 02 Sep 2022 12:26:10 -0700 (PDT)
+ Fri, 02 Sep 2022 16:41:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=4Pf5MJV1dxWoiNYN0MSqwtcOYdbTTdYSqsh6ETja4AY=;
-        b=IPGaZNjkunpbUTNzzXPvHZfnKzRtS6KBbZelapsXoCX5vmuP01kPxI1UpOwmdkqNKw
-         883ZU349VQdY5l31xMgPFnmzXQ81KRb9XAFPzrjXtudK4a8gu9SgmjfXTO3DvKF1tTeo
-         s8wYG7QQotgY5gyvJWEjRAzIj7pjOxUG7aWhPFXN1zFKWXLtkDT9Kgql0aX57L4h579V
-         ls/AGL2UZIjkANJiFTsmVsphgYC/6Xw2gYOZPgUFn2DZ/372i24XRUhVGdxa201FPZ4a
-         ME8JtcKwx7NpFNwRGYCKm95ybeS2x4Sj68sis3bfTDZaJ+EGZrXdGLSkPqrEXJ7sIJhh
-         +Kxw==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date;
+        bh=lIJOoET01loZrzROmA6lgg4bkS1221uPEPeIXgfBAo0=;
+        b=AWu9Zb3O8xXqafbOGsPN6YqeiX6K0VJw7dEYByL/Pc0bMQsEGw4uYOBN2Xtrx8GAOm
+         3/nZgmdg3oR7YeGAeUXv+P4P2HoLczLjOPfqeQXTkSIoR2sONelxWAjfHtWe58fFjv86
+         7qbeOBdPbfPy3zhMliykBAPRRN3JXf4evL6EE6EDhFZ/flUVQijlqDm/4gCzM+s+wWxz
+         RdYzl/O8sQse6byzPs+1ITl1NCKNFMLQAVw7HXA7mcMawqO9+v1htPXN9nfkzpSfIkqE
+         c3/pVI4h4jwC69ig0FnepjkdkqncFMwaAYwa8iEeaBHja4TIQaczxecNetYiVxoOD2Sw
+         2zGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=4Pf5MJV1dxWoiNYN0MSqwtcOYdbTTdYSqsh6ETja4AY=;
-        b=TO5Zcxp2LzQYvwSTB/I3uwbyGu3CJu4ybw2Y/kZ7kU+wWtlu2jxS5+coqf0rmvPeMl
-         l+UeEg0bn+Na/xi/NjN++5QYDKA3mz4laYKvOZHS352cRIPEj8sQURjVCnCwH6Xg/Rz7
-         a5tTDGCbBGNIu9aA9buVt28j0zpEsh4zjF+BtzX7b+bhS2molGasZOMOV2UptM3e3GKY
-         tBldsNshLUdyC/QmXj320RPBWqCV/7sZxZLt8Cla3qpUqy3RsGosQ/cUH0UtDK2u0Fdm
-         7c4qvaBObO4JzSaEBKhSc0Juc4CFe7diZrJwlXY1b6NKRgrGhCumneH6bJ6Q/qLz+mzz
-         baYg==
-X-Gm-Message-State: ACgBeo2pLB6ktyO2v6u6Ao5qioty0V/ZU7LkcuWjwkyKFY5BQwPtQMkH
-	XJnAJem62Ma3phFdBp2MoE1lcswYB+WL/uK97KU=
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date;
+        bh=lIJOoET01loZrzROmA6lgg4bkS1221uPEPeIXgfBAo0=;
+        b=a+bwfuDMf0jyeo6cCzBMYTVQpIEOs0f5JRwYJoX8gFl8D2+u9YChXGdpzCBWcipJsP
+         V3Fhngv8zw4G+hO5h2rFULSAdD9fZAKBj5S4czo2upQSQSdwzISASNWvk9mm7QX0VbLE
+         WM2g6dV8d8ktzH8gRb5CQHakDlcZyxZlFsVrX+8YxbYLZg6RBGGTXkHlWVaeCf9QD7kc
+         +Ec6rem/ZJTUfBkTX8Xwv5M0VSx9L7FQoV+DPuJVkQj1mtb3T0BZtW9hv/Xodvitcyfh
+         icJi2bBkDwXfZtOKGTLc4r97dNIeJxS4to013zyW2p4aL4HdSm0MDDi733IQxhUPZ8A1
+         Oz4w==
+X-Gm-Message-State: ACgBeo3UsKqzv4dm0VfL3DS1rtgfugeqyw3JHiPt9Rtcw5pL5253a5JC
+	b7UWT2oH2MTJK+W3CWH88E9+oYfvKO0=
 X-Google-Smtp-Source: 
- AA6agR6fUWeBkQ+od9Leig4+QhvOgG/IcBH+HL9yme9EusVfbCR3n/axf7ruG+pAvxm2UfstUi3sHKlQriuIxOi/eqw=
-X-Received: by 2002:a1f:2d15:0:b0:394:cc7b:f465 with SMTP id
- t21-20020a1f2d15000000b00394cc7bf465mr4512774vkt.21.1662146769811; Fri, 02
- Sep 2022 12:26:09 -0700 (PDT)
+ AA6agR4HMGmMTvasFf7ii1jIwlZ9TiXUqpX1sgtQQbCYvaeRJxdDM4mJXOOKaPh+aL4Ac25atgOKng==
+X-Received: by 2002:a4a:d657:0:b0:448:95ee:e0b4 with SMTP id
+ y23-20020a4ad657000000b0044895eee0b4mr13258292oos.59.1662162103534;
+        Fri, 02 Sep 2022 16:41:43 -0700 (PDT)
+Received: from keaua.attlocal.net ([2600:1700:9190:ba10:3f7:22a:3e45:9218])
+        by smtp.gmail.com with ESMTPSA id
+ a14-20020a056870d60e00b0011c65559b04sm1765163oaq.34.2022.09.02.16.41.41
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Sep 2022 16:41:42 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH] cyptmount: fix systemd service install
+Date: Fri,  2 Sep 2022 19:41:40 -0400
+Message-Id: <20220902234140.1548691-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <3751d58b-0306-e10c-6698-1a62e9f670dc@gmail.com>
- <15375.1662139838514653945@lists.yoctoproject.org>
- <CAMKF1srQ=-VpuLof2zTaWTrjMde5CuztQ4Z+i=J=Mqpn5ywiAg@mail.gmail.com>
-In-Reply-To: 
- <CAMKF1srQ=-VpuLof2zTaWTrjMde5CuztQ4Z+i=J=Mqpn5ywiAg@mail.gmail.com>
-From: Mahendra Sondagar <mahendrasondagar08@gmail.com>
-Date: Sat, 3 Sep 2022 00:55:57 +0530
-Message-ID: 
- <CAMho1OEMZiBxzn19eJxwZ==0McmEzMAXSHcS0MsQLi2H23hCxg@mail.gmail.com>
-Subject: Re: Private: Re: [yocto] Adding the Firmware file (.bin) to the Yocto
- recipes #dunfell
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000c77c9205e7b6b388"
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 02 Sep 2022 19:26:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57974
+ <yocto@lists.yoctoproject.org>; Fri, 02 Sep 2022 23:41:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57975
 
---000000000000c77c9205e7b6b388
-Content-Type: text/plain; charset="UTF-8"
+Default is to install the service in /usr/lib
 
-Hi.. Khem Raj
-Thanks for the prompt response
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/cryptmount/cryptmount_5.3.3.bb | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-Yes, it works :)
-you made my days
+diff --git a/recipes-security/cryptmount/cryptmount_5.3.3.bb b/recipes-security/cryptmount/cryptmount_5.3.3.bb
+index fb522cb..6741a5f 100644
+--- a/recipes-security/cryptmount/cryptmount_5.3.3.bb
++++ b/recipes-security/cryptmount/cryptmount_5.3.3.bb
+@@ -22,6 +22,16 @@ PACKAGECONFIG[gcrypt] = "--with-libgcrypt, --without-libgcrypt, libgcrypt"
+ PACKAGECONFIG[luks] = "--enable-luks, --disable-luks, cryptsetup"
+ PACKAGECONFIG[nls] = "--enable-nls, --disable-nls, "
+ 
++SYSTEMD_PACKAGES = "${PN}"
+ SYSTEMD_SERVICE:${PN} = "cryptmount.service"
+ 
++do_install:append () {
++    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
++        install -D -m 0644 ${S}/sysinit/cryptmount.service ${D}${systemd_system_unitdir}/cryptmount.service
++        rm -fr ${D}/usr/lib
++    fi
++}
++
++FILES:${PN} += "${systemd_system_unitdir}"
++
+ RDEPENDS:${PN} = "libdevmapper"
+-- 
+2.25.1
 
-Many thanks,
-Mahendra
-
-
-On Sat, Sep 3, 2022 at 12:15 AM Khem Raj <raj.khem@gmail.com> wrote:
-
-> Adding back mailing list.
->
-> On Fri, Sep 2, 2022 at 10:30 AM Mahendra Sondagar
-> <mahendrasondagar08@gmail.com> wrote:
-> >
-> > On Fri, Sep 2, 2022 at 02:21 AM, Khem Raj wrote:
-> >
-> > inux-firmware-rtl8761b
-> >
-> > Hi... Khem Raj
-> >
-> > Thanks for the quick revert
-> >
-> > Yes, i have made the changes as per your suggestions
-> > Unfortunately, it's seems the same result
-> >
->
-> you have not followed what I said. The bbappend is still a kernel
-> bbappend, so please make a bbappend for linux-firmware recipe
-> instead as suggested.
->
-> secondly, the bbappend itself has issues
->
-> PACKAGES =+ "${PN}-rtl8761b"
-> FILES_${PN}-example = "/lib/firmware/rtl_bt/rtl8761b.bin"
->
-> PACKAGES and FILES do not match. what you want is something like
->
-> PACKAGES =+ "${PN}-rtl8761b"
-> FILES_${PN}-rtl8761b = "/lib/firmware/rtl_bt/rtl8761b.bin"
->
-> then in image add.
->
-> IMAGE_INSTALL += "linux-firmware-rtl8761b"
-> >
-> >
-> >
-> >
-> > here is the error logs
-> > Can you please check ?
-> > -----------------------------------------------------------
-> >
-> > Loaded 3484 entries from dependency cache.
-> > NOTE: Resolving any missing task queue dependencies
-> > ERROR: Nothing RPROVIDES 'linux-firmware-rtl8761b' (but
-> /home/mahendra/STM32MPU_workspace/Digikey_YoctoSeries/Digikey_Yocto/meta-custom/recipes-core/images/
-> custom-image.bb RDEPENDS on or otherwise requires it)
-> > NOTE: Runtime target 'linux-firmware-rtl8761b' is unbuildable,
-> removing...
-> > Missing or unbuildable dependency chain was: ['linux-firmware-rtl8761b']
-> > ERROR: Required build target 'custom-image' has no buildable providers.
-> > Missing or unbuildable dependency chain was: ['custom-image',
-> 'linux-firmware-rtl8761b']
-> >
-> > Summary: There was 1 WARNING message shown.
-> > Summary: There were 2 ERROR messages shown, returning a non-zero exit
-> code
-> >
-> > ----------------------------------------
-> >
-> > Thanks
-> >
-> > Mahendra
->
-
---000000000000c77c9205e7b6b388
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi.. Khem Raj <br></div><div>Thanks for the prompt re=
-sponse <br></div><div><br></div><div>Yes, it works :)</div><div>you made my=
- days <br><br></div><div>Many thanks,<br></div><div>Mahendra <br></div><div=
-><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
-mail_attr">On Sat, Sep 3, 2022 at 12:15 AM Khem Raj &lt;<a href=3D"mailto:r=
-aj.khem@gmail.com">raj.khem@gmail.com</a>&gt; wrote:<br></div><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
-d rgb(204,204,204);padding-left:1ex">Adding back mailing list.<br>
-<br>
-On Fri, Sep 2, 2022 at 10:30 AM Mahendra Sondagar<br>
-&lt;<a href=3D"mailto:mahendrasondagar08@gmail.com" target=3D"_blank">mahen=
-drasondagar08@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; On Fri, Sep 2, 2022 at 02:21 AM, Khem Raj wrote:<br>
-&gt;<br>
-&gt; inux-firmware-rtl8761b<br>
-&gt;<br>
-&gt; Hi... Khem Raj<br>
-&gt;<br>
-&gt; Thanks for the quick revert<br>
-&gt;<br>
-&gt; Yes, i have made the changes as per your suggestions<br>
-&gt; Unfortunately, it&#39;s seems the same result<br>
-&gt;<br>
-<br>
-you have not followed what I said. The bbappend is still a kernel<br>
-bbappend, so please make a bbappend for linux-firmware recipe<br>
-instead as suggested.<br>
-<br>
-secondly, the bbappend itself has issues<br>
-<br>
-PACKAGES =3D+ &quot;${PN}-rtl8761b&quot;<br>
-FILES_${PN}-example =3D &quot;/lib/firmware/rtl_bt/rtl8761b.bin&quot;<br>
-<br>
-PACKAGES and FILES do not match. what you want is something like<br>
-<br>
-PACKAGES =3D+ &quot;${PN}-rtl8761b&quot;<br>
-FILES_${PN}-rtl8761b =3D &quot;/lib/firmware/rtl_bt/rtl8761b.bin&quot;<br>
-<br>
-then in image add.<br>
-<br>
-IMAGE_INSTALL +=3D &quot;linux-firmware-rtl8761b&quot;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; here is the error logs<br>
-&gt; Can you please check ?<br>
-&gt; -----------------------------------------------------------<br>
-&gt;<br>
-&gt; Loaded 3484 entries from dependency cache.<br>
-&gt; NOTE: Resolving any missing task queue dependencies<br>
-&gt; ERROR: Nothing RPROVIDES &#39;linux-firmware-rtl8761b&#39; (but /home/=
-mahendra/STM32MPU_workspace/Digikey_YoctoSeries/Digikey_Yocto/meta-custom/r=
-ecipes-core/images/<a href=3D"http://custom-image.bb" rel=3D"noreferrer" ta=
-rget=3D"_blank">custom-image.bb</a> RDEPENDS on or otherwise requires it)<b=
-r>
-&gt; NOTE: Runtime target &#39;linux-firmware-rtl8761b&#39; is unbuildable,=
- removing...<br>
-&gt; Missing or unbuildable dependency chain was: [&#39;linux-firmware-rtl8=
-761b&#39;]<br>
-&gt; ERROR: Required build target &#39;custom-image&#39; has no buildable p=
-roviders.<br>
-&gt; Missing or unbuildable dependency chain was: [&#39;custom-image&#39;, =
-&#39;linux-firmware-rtl8761b&#39;]<br>
-&gt;<br>
-&gt; Summary: There was 1 WARNING message shown.<br>
-&gt; Summary: There were 2 ERROR messages shown, returning a non-zero exit =
-code<br>
-&gt;<br>
-&gt; ----------------------------------------<br>
-&gt;<br>
-&gt; Thanks<br>
-&gt;<br>
-&gt; Mahendra<br>
-</blockquote></div>
-
---000000000000c77c9205e7b6b388--
 
