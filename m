@@ -1,99 +1,88 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <steve@sakoman.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DA79CECAAA1
-	for <webhook@archiver.kernel.org>; Fri,  2 Sep 2022 23:41:48 +0000 (UTC)
-Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com
- [209.85.161.50])
- by mx.groups.io with SMTP id smtpd.web08.5315.1662162104905211446
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EF40AC6FA82
+	for <webhook@archiver.kernel.org>; Sat,  3 Sep 2022 22:51:11 +0000 (UTC)
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com
+ [209.85.210.170])
+ by mx.groups.io with SMTP id smtpd.web11.8230.1662245469697630255
  for <yocto@lists.yoctoproject.org>;
- Fri, 02 Sep 2022 16:41:45 -0700
+ Sat, 03 Sep 2022 15:51:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=AWu9Zb3O;
- spf=pass (domain: gmail.com, ip: 209.85.161.50,
- mailfrom: akuster808@gmail.com)
-Received: by mail-oo1-f50.google.com with SMTP id
- q6-20020a4aa886000000b0044b06d0c453so612994oom.11
+ dkim=pass header.i=@sakoman-com.20210112.gappssmtp.com header.s=20210112
+ header.b=mRTCOhF/;
+ spf=softfail (domain: sakoman.com, ip: 209.85.210.170,
+ mailfrom: steve@sakoman.com)
+Received: by mail-pf1-f170.google.com with SMTP id q15so5303330pfn.11
         for <yocto@lists.yoctoproject.org>;
- Fri, 02 Sep 2022 16:41:44 -0700 (PDT)
+ Sat, 03 Sep 2022 15:51:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=sakoman-com.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:to
          :from:from:to:cc:subject:date;
-        bh=lIJOoET01loZrzROmA6lgg4bkS1221uPEPeIXgfBAo0=;
-        b=AWu9Zb3O8xXqafbOGsPN6YqeiX6K0VJw7dEYByL/Pc0bMQsEGw4uYOBN2Xtrx8GAOm
-         3/nZgmdg3oR7YeGAeUXv+P4P2HoLczLjOPfqeQXTkSIoR2sONelxWAjfHtWe58fFjv86
-         7qbeOBdPbfPy3zhMliykBAPRRN3JXf4evL6EE6EDhFZ/flUVQijlqDm/4gCzM+s+wWxz
-         RdYzl/O8sQse6byzPs+1ITl1NCKNFMLQAVw7HXA7mcMawqO9+v1htPXN9nfkzpSfIkqE
-         c3/pVI4h4jwC69ig0FnepjkdkqncFMwaAYwa8iEeaBHja4TIQaczxecNetYiVxoOD2Sw
-         2zGQ==
+        bh=Yz8Sbo3eAaTY6bM8Qz6VmqVuOZzyrZRALwS9JUSAu/E=;
+        b=mRTCOhF/K8+21a4+0XA+ha/gRDsSc17j/tiZhRGXNSUevLE2ETLBnxtLnkZhjpS+T9
+         ze9fKx0B+EZUTJJa92SiSJbZt7nsA+NZI+9GdH9MNwAuWLUdJ0aRxnwB7R29nMUHgx7q
+         9pKkZ3Fd+iEq+cCh8Cw0BVAMJ4VWNROXvBY2OPvIreqmHO6b/G26u5Atj9WLh0ijReN0
+         C0u80dNxAC5OIt7h/EiI0RVeutmP2F2OJeKqY4a6vSBMLQW7XGVzyObyRfQSknV5K6ib
+         Ys4/tR86IvwtIRgYRgZEJByPEGJVhmYU+blGdkq7KIJBqewHE9WnqZ5MceynP+dOSxXv
+         a6dQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:to
          :from:x-gm-message-state:from:to:cc:subject:date;
-        bh=lIJOoET01loZrzROmA6lgg4bkS1221uPEPeIXgfBAo0=;
-        b=a+bwfuDMf0jyeo6cCzBMYTVQpIEOs0f5JRwYJoX8gFl8D2+u9YChXGdpzCBWcipJsP
-         V3Fhngv8zw4G+hO5h2rFULSAdD9fZAKBj5S4czo2upQSQSdwzISASNWvk9mm7QX0VbLE
-         WM2g6dV8d8ktzH8gRb5CQHakDlcZyxZlFsVrX+8YxbYLZg6RBGGTXkHlWVaeCf9QD7kc
-         +Ec6rem/ZJTUfBkTX8Xwv5M0VSx9L7FQoV+DPuJVkQj1mtb3T0BZtW9hv/Xodvitcyfh
-         icJi2bBkDwXfZtOKGTLc4r97dNIeJxS4to013zyW2p4aL4HdSm0MDDi733IQxhUPZ8A1
-         Oz4w==
-X-Gm-Message-State: ACgBeo3UsKqzv4dm0VfL3DS1rtgfugeqyw3JHiPt9Rtcw5pL5253a5JC
-	b7UWT2oH2MTJK+W3CWH88E9+oYfvKO0=
+        bh=Yz8Sbo3eAaTY6bM8Qz6VmqVuOZzyrZRALwS9JUSAu/E=;
+        b=wRi0uxiyds3+uGJbdH1CCU/0k3uEd2zQWJHkC07w2IsXZiP3JSq0MrsSMcdSNYaLJ9
+         xqIfFTCNC36nKko/Z2iCLCGwXyhasH9BcUT2AqhxfxlIS5MmS8imZyIcTs+fnJRfEerb
+         F1OvrIlwqJRSC18HXqtQ8Wwq1N7wwKQvzGEP70PgPjISdutMdbUPsanHrLftvh0yjWPm
+         yHOP9EH9LBTH2si+s/8z39sIk8bX8Fat48NgS8/UdpHz36qW4yoNApXytXkBPJIlqRaS
+         KWDpYPX/T9ig84rmPF1cy4tXyGoJ/tmo78YJLJzt9fsmm7A4FZ2m9G8/JMbx4rlENuhU
+         +BKA==
+X-Gm-Message-State: ACgBeo3Uj34NjiKcC1WwJSEtAyTvEnXw+zqiwEn7IMqr2PXgHzaFNP7Z
+	qdmBj3lXTRFTEJl7yTEmRtr54MnJJrGol+Nh
 X-Google-Smtp-Source: 
- AA6agR4HMGmMTvasFf7ii1jIwlZ9TiXUqpX1sgtQQbCYvaeRJxdDM4mJXOOKaPh+aL4Ac25atgOKng==
-X-Received: by 2002:a4a:d657:0:b0:448:95ee:e0b4 with SMTP id
- y23-20020a4ad657000000b0044895eee0b4mr13258292oos.59.1662162103534;
-        Fri, 02 Sep 2022 16:41:43 -0700 (PDT)
-Received: from keaua.attlocal.net ([2600:1700:9190:ba10:3f7:22a:3e45:9218])
+ AA6agR6ueYaNGm2l7RoItj+fYPTdPZlbR/aOGI386wWL7kMISk2HiFjxjdIvEU8apCoCIjNmx9uHSQ==
+X-Received: by 2002:aa7:8b52:0:b0:537:c6c7:3ef4 with SMTP id
+ i18-20020aa78b52000000b00537c6c73ef4mr41288630pfd.48.1662245468485;
+        Sat, 03 Sep 2022 15:51:08 -0700 (PDT)
+Received: from hexa.router0800d9.com (dhcp-72-253-6-214.hawaiiantel.net.
+ [72.253.6.214])
         by smtp.gmail.com with ESMTPSA id
- a14-20020a056870d60e00b0011c65559b04sm1765163oaq.34.2022.09.02.16.41.41
+ e8-20020a630f08000000b0042c012adf30sm3689420pgl.2.2022.09.03.15.51.06
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Sep 2022 16:41:42 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
+        Sat, 03 Sep 2022 15:51:07 -0700 (PDT)
+From: Steve Sakoman <steve@sakoman.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] cyptmount: fix systemd service install
-Date: Fri,  2 Sep 2022 19:41:40 -0400
-Message-Id: <20220902234140.1548691-1-akuster808@gmail.com>
+Subject: [yocto-autobuilder-helper][kirkstone 0/1] Pull request (cover letter
+ only)
+Date: Sat,  3 Sep 2022 12:50:59 -1000
+Message-Id: <cover.1662245404.git.steve@sakoman.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 02 Sep 2022 23:41:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57975
+ <yocto@lists.yoctoproject.org>; Sat, 03 Sep 2022 22:51:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57976
 
-Default is to install the service in /usr/lib
+The following changes since commit ff3d1e122233a58799451b0b99779a4d73453679:
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/cryptmount/cryptmount_5.3.3.bb | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+  scripts/archive_buildstats: Exit early if buildstats isn't present (2022-08-30 16:19:11 +0100)
 
-diff --git a/recipes-security/cryptmount/cryptmount_5.3.3.bb b/recipes-security/cryptmount/cryptmount_5.3.3.bb
-index fb522cb..6741a5f 100644
---- a/recipes-security/cryptmount/cryptmount_5.3.3.bb
-+++ b/recipes-security/cryptmount/cryptmount_5.3.3.bb
-@@ -22,6 +22,16 @@ PACKAGECONFIG[gcrypt] = "--with-libgcrypt, --without-libgcrypt, libgcrypt"
- PACKAGECONFIG[luks] = "--enable-luks, --disable-luks, cryptsetup"
- PACKAGECONFIG[nls] = "--enable-nls, --disable-nls, "
- 
-+SYSTEMD_PACKAGES = "${PN}"
- SYSTEMD_SERVICE:${PN} = "cryptmount.service"
- 
-+do_install:append () {
-+    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
-+        install -D -m 0644 ${S}/sysinit/cryptmount.service ${D}${systemd_system_unitdir}/cryptmount.service
-+        rm -fr ${D}/usr/lib
-+    fi
-+}
-+
-+FILES:${PN} += "${systemd_system_unitdir}"
-+
- RDEPENDS:${PN} = "libdevmapper"
+are available in the Git repository at:
+
+  git://git.yoctoproject.org/yocto-autobuilder-helper contrib/kirkstone-next
+  http://git.yoctoproject.org/cgit.cgi/yocto-autobuilder-helper/log/?h=contrib/kirkstone-next
+
+Ross Burton (1):
+  config.json: Set SDKMACHINE to aarch64 for oe-selftest-armhost
+
+ config.json | 1 +
+ 1 file changed, 1 insertion(+)
+
 -- 
 2.25.1
 
