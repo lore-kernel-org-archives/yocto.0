@@ -1,287 +1,155 @@
-Return-Path: <martin.leduc@luminator.com>
+Return-Path: <quentin.schulz@theobroma-systems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 36F0BECAAA1
-	for <webhook@archiver.kernel.org>; Tue,  6 Sep 2022 15:13:18 +0000 (UTC)
-Received: from mx1.luminator.com (mx1.luminator.com [178.15.153.4])
- by mx.groups.io with SMTP id smtpd.web10.339.1662477195878727129
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1982FECAAD5
+	for <webhook@archiver.kernel.org>; Tue,  6 Sep 2022 15:13:58 +0000 (UTC)
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com
+ (EUR03-AM7-obe.outbound.protection.outlook.com [40.107.105.86])
+ by mx.groups.io with SMTP id smtpd.web11.338.1662477232485614603
  for <yocto@lists.yoctoproject.org>;
- Tue, 06 Sep 2022 08:13:16 -0700
+ Tue, 06 Sep 2022 08:13:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@luminator.com header.s=luminator header.b=q6/D+AYN;
- spf=pass (domain: luminator.com, ip: 178.15.153.4,
- mailfrom: prvs=024876b414=martin.leduc@luminator.com)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=luminator.com; s=luminator; h=MIME-Version:Content-Type:Message-ID:Date:
-	Subject:To:From:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=JT8sby2qDsLJYwThqapjReV1kgMuMZd79J7nNMIs0yM=; b=q6/D+AYN8IxEohfKAI4xcV8heu
-	WWUk/8G0zSXPAxDMOdL9UjpYP4tLz3jQ3PiudYfYlBxOZiai+AZO/U1IojMnwAUTogNRw3PG6YgMV
-	R4/3Wv8RLinzX/wyPxmQ4WHEM2F/IJruhq64VBWJQJoIPcFgQtu/oEtAkjr2JMHCN8Vc28YFBmKrN
-	nqL9xcKpZ0nJnSTLEqkEoWaBgT9JJx/vRpgD6ETkzv0FBR3e/85PPyvHW9dRHq1k1+uqF4QJmNcJk
-	NDcpnPq5uaCalmta0g0G7EOZHPYbp4WJS+PquyaSBio8wtZqB8U+gTeRsBCKGumsg4rTNnDahm7py
-	pGdR+TXQ==;
-X-SASI-Hits: BODYTEXTH_SIZE_10000_LESS 0.000000,
-	BODYTEXTH_SIZE_3000_MORE 0.000000, BODYTEXTP_SIZE_3000_LESS 0.000000,
-	BODY_SIZE_5000_5999 0.000000, BODY_SIZE_7000_LESS 0.000000,
-	HREF_LABEL_TEXT_ONLY 0.000000, HTML_70_90 0.100000, NO_FUR_HEADER 0.000000,
-	NO_URI_HTTPS 0.000000, OUTBOUND 0.000000, OUTBOUND_SOPHOS 0.000000,
-	SINGLE_URI_IN_BODY 0.000000, __ANY_URI 0.000000,
-	__ARCAUTH_DKIM_PASSED 0.000000, __ARCAUTH_DMARC_PASSED 0.000000,
-	__ARCAUTH_PASSED 0.000000, __ARC_SEAL_MICROSOFT 0.000000,
-	__ARC_SIGNATURE_MICROSOFT 0.000000, __BODY_TEXT_X4 0.000000,
-	__BULK_NEGATE 0.000000, __BUSINESS_SIGNATURE 0.000000,
-	__CP_URI_IN_BODY 0.000000, __CT 0.000000, __CTYPE_HAS_BOUNDARY 0.000000,
-	__CTYPE_MULTIPART 0.000000, __CTYPE_MULTIPART_ALT 0.000000,
-	__DQ_NEG_DOMAIN 0.000000, __DQ_NEG_HEUR 0.000000, __DQ_NEG_IP 0.000000,
-	__FUR_RDNS_SOPHOS 0.000000, __HAS_FROM 0.000000, __HAS_HTML 0.000000,
-	__HAS_MSGID 0.000000, __HAS_X_FF_ASR 0.000000, __HAS_X_FF_ASR_CAT 0.000000,
-	__HAS_X_FF_ASR_SFV 0.000000, __HREF_LABEL_TEXT 0.000000,
-	__HREF_LABEL_URI 0.000000, __HTML_AHREF_TAG 0.000000,
-	__HTML_HREF_TAG_X2 0.000000, __HTML_TAG_DIV 0.000000,
-	__INVOICE_MULTILINGUAL 0.000000, __MIME_HTML 0.000000,
-	__MIME_TEXT_H 0.000000, __MIME_TEXT_H1 0.000000, __MIME_TEXT_H2 0.000000,
-	__MIME_TEXT_P 0.000000, __MIME_TEXT_P1 0.000000, __MIME_TEXT_P2 0.000000,
-	__MIME_VERSION 0.000000, __MULTIPLE_URI_TEXT 0.000000,
-	__OUTBOUND_SOPHOS_FUR 0.000000, __OUTBOUND_SOPHOS_FUR_IP 0.000000,
-	__OUTBOUND_SOPHOS_FUR_RDNS 0.000000, __PHISH_SPEAR_TEAM 0.000000,
-	__SANE_MSGID 0.000000, __SINGLE_URI_MPART_BOTH 0.000000,
-	__STYLE_RATWARE_NEG 0.000000, __STYLE_TAG 0.000000,
-	__TAG_EXISTS_HTML 0.000000, __TO_MALFORMED_2 0.000000, __TO_NAME 0.000000,
-	__TO_NO_NAME 0.000000, __URI_ENDS_IN_SLASH 0.000000, __URI_IN_BODY 0.000000,
-	__URI_MAILTO 0.000000, __URI_NOT_IMG 0.000000, __URI_NO_PATH 0.000000,
-	__URI_NS 0.000000, __URI_WITHOUT_PATH 0.000000, __X_FF_ASR_SCL_NSP 0.000000,
-	__X_FF_ASR_SFV_NSPM 0.000000
-X-SASI-Probability: 7%
-X-SASI-RCODE: 200
-X-SASI-Version: Antispam-Engine: 4.1.4, AntispamData: 2022.9.6.144218
+ dkim=pass header.i=@cherrycloud.onmicrosoft.com
+ header.s=selector2-cherrycloud-onmicrosoft-com header.b=XxLKuUw2;
+ spf=pass (domain: theobroma-systems.com, ip: 40.107.105.86,
+ mailfrom: quentin.schulz@theobroma-systems.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=l24Fk+mpqTpQcn3tdS7ahk3nl3LOeXk1fB/KVVLjBjQSrC+17MikSBEbt/VUYtTWBbMivpJb+7/4OA7oDnrRTHVHezVkdbsmecth0PxYPoftzKoYXIAfGY1vkZsT5xKsZZhsUyC4uTR3vcTI2050ivWr7n9wc3JIYQMP2YIaeTrbBRezZulwWUrN86E1B/memouTYB1JzThge3LAYi+TZuCe4PwH+gvE5WuZ+aZ9NTGiC4jSQJCYhSgeMYkWxuv5c7UVLCPfGucZlyZ4sIOPHFzSUjGOt6fco1HmQKrBx0/yYq16jhTwIdRh5vMGV9BtdEq9okWvP4NA2xuDwMj4YA==
+ b=mG5AGNW3MBrh5zaipDsjwJ64LnYI6NWST8jTu51u5sIrZ0OnMcx0cfcskMJenWHp3McXXBbde2xISaOaCIF9uY/p3qMjBevHSYR/2RAOwZQ9OHImd1R8muleO8OkScyIPuuU2NWRAd2YbYpdnfgWlXV3DcYHg0WJAyp4qbMgHLHJaTkOmriuZy9kWJ5Vgxy3eVkwWclx6X0sBZ8wAhJTX/NR49WX1gRPqDGsFd4dgL3fWCCPsvMNHB5LIoVcqXopiNV8UfxAQtl2g7JLQsTJMrt1aAWeUnfv5tRI+qq0BkATWOpB5H5PwQMJZ2KgRhJBb+BS9A1uBchTjRnQSosQCg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JT8sby2qDsLJYwThqapjReV1kgMuMZd79J7nNMIs0yM=;
- b=DZ0rcbY6YJdNX7ROpyiL++GXuzQtD0AvVcRPcSrFZCZ0clF+N/0V9lGXG56C11fAThKW+wqWQjlySWNOz7uxT6jpmejE0KvxnnpUTHqW/luvjP8RHvGom/C6YM98YvuD04TwIuTr/WobXpG6RAU/A1jGEAQUmabISPiU4ysGgYBX4w3PlJLlW6D8LryxEY/CwPRBxGZJNk+NWZ12GwD5MruWGMohgGbIm5+dHlH69OwGQi59OhsILKQZ0I6R6NuUDMaZzrHJ63z/2PfagqOIrLmPiFpXTMVXB9clRtq6hgZ1h9J9OJjYncBql0EtPeTIecsXHDniHnzZ9XUPFSU7kw==
+ bh=u2a09BXnJWGQgWW3fnsGWFmmXMjdu+89c99Lw2xD8iw=;
+ b=RMHYgaPmN1WbQY9cBklp3mDm9Kj7wrslYxaWfZ8EEmlhtO/jPRyd9GCNUQsJ824NI3S/A41wOVjoUL87d7y4vRZKi2p/LdYnC3BQYF6Mmyt6s+GD+3pJs6/3i5CO8EABC5MegGBn86RxnZxRSsbBgWuaYu6W0aqyrIWYMQNBFfkzOTY6pOrKe6AE5y16HoynYgouspKugXxzKo/NUN3xe0iJ0vJlNP+uh7rUBwGnixn3KKVcZaMSuU1w3ZRE7OAuX1sLJ+P0/MBZ51i+3DUuDKSBowtvoRSnXnaOoDsvUlg4eAFPPn7lD9LRXKjrAo4+deD0SrowwiMtzFene8JDkQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=luminator.com; dmarc=pass action=none
- header.from=luminator.com; dkim=pass header.d=luminator.com; arc=none
-From: Martin Leduc <martin.leduc@luminator.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: CVE patch application - best way to do it
-Thread-Topic: CVE patch application - best way to do it
-Thread-Index: AdjCAcgJ7CznMxmkRx2CaU+nNeK8Qw==
-Date: Tue, 6 Sep 2022 15:13:06 +0000
-Message-ID: 
- <PA4P189MB11834FFADD9D4079A4AC8D09967E9@PA4P189MB1183.EURP189.PROD.OUTLOOK.COM>
-Accept-Language: fr-CA, en-US
-Content-Language: fr-FR
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=luminator.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e2bf94c1-d42b-4e07-5ba7-08da901a4d2b
-x-ms-traffictypediagnostic: VI1P18901MB0623:EE_
-x-onpremisesmanualforward: true
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- yZiabYKmBm9ZZB/aauJngykLAmKvrd7jYzdc9TguXxZsFTFG7tW0od0OCUSEqc6PpMoGikK9VtkD/S9lYFBpdaZXICvr//uV01iI6tZwwnfLjjIJZyTrw3MArEdEiLqPzhIEqeYg1zrXBfner2EaZBBSwCezB3spsWXq1zvxHEb9IECcrccotct1xqOZyWl5iOpChDhSsOgMcwy7LmVsXfaVvl3NV1lWM4J5vzA/DOyV5zShgHzG9JgIYNqHhqY+vZ3VgRGzr/VJDV2eoKYfVxvCwsMMDjMlN8Jrz6gIDmbujVS19LrZlkMynPbMGASdX7t9mk8YMWU1uc6llgoBjCc8o2LxbUktmvdxCQgyQvG39SJ7l1MzUU5NwBLpbkLO7IymDTioLL5Cyu17i4E95I9F6DaGOin9/Zj82vboKOBycpgatVv83BUj+BpLA/y3i5LAwtuQNz0UXTVZmboGYwb+b2mMo/0BG/H9H2jaKfsa8HzF5EnlyeVSrB0EQtRwOK91pOpZcnL7H/spvWuKd4iQrmuVNoN8h8TVrK7w70lV+p4IZ40Spo37XqPZ/PDUb3qQQuvExtOZp44C3CAqy7nRaT1Ug4l6vFiadEuMXn4I8T15GfwWPS0uvc5joC6pqC99mv+zq+K+Jq+BmUGrFrzcmnfc14EJVA40AZT/GHDWhnckLZIgDtQRawr132nKN6a5fd5Etgj+13HN4dFZEiTUWKT/C8/fAMPNOuaqB2ulqwmgHkyw+AEVuz+jIapgCxUvo4bChQSiozH01qvbT3jIv18gBjITSFKgBuV288aeUdDlmMQjx/Y544mEikmk
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4P189MB1183.EURP189.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(376002)(396003)(346002)(39850400004)(366004)(136003)(186003)(83380400001)(55016003)(6506007)(478600001)(41300700001)(86362001)(71200400001)(9686003)(38070700005)(38100700002)(122000001)(166002)(26005)(7696005)(33656002)(40140700001)(6916009)(316002)(44832011)(8936002)(4744005)(2906002)(66556008)(66446008)(66946007)(8676002)(52536014)(64756008)(76116006)(66476007)(5660300002)(43043002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?BYU3TA7+ul50tUlZeA9dwu8k+Wil0mPt9uDwmCvj9xhnq4zFYJSNySwS+tRs?=
- =?us-ascii?Q?u6saV08ob6U1EODUVV116C5dMsx5VE7sEpeWLGQCZsPFft8aC8LFksU34sOb?=
- =?us-ascii?Q?7ov41wc/Ago/nMfGfVpSK9ttIbNGkEFtF1aXovEOG1D8k+Va2020MksMESzG?=
- =?us-ascii?Q?o9NUsuPTdYryAQuvyTqPPmZKPCPd30HY8W2Sdgmz9UE/grfBjtVgtxP+lofi?=
- =?us-ascii?Q?N/JX2sb+5p9Tf10Gb2958jgJELq8cZtnQWjTgfRjCow+DavITOM8yv2z3lP+?=
- =?us-ascii?Q?WfPSRd1AzCoq1LwGocuKJGf8I2vzpkubNxuaG/KhGJEnY8qUmuA91MlqrycZ?=
- =?us-ascii?Q?2KgWc3+9rNtd/h4o99U2rT2kXmkr/4ckalvaaqXpD5QDGjXyGy0h26AahyL4?=
- =?us-ascii?Q?hNEyZwt+6sILHtmz2AAPFMiBl9lQKC/v6+pG5JUWC2+fsxB6Msm66p6p7eYo?=
- =?us-ascii?Q?5FmgiO5XRmiNOQSMaDcCaQF9kw5xGp/p9BAbqXLo0HzJJqOHC0yCg89hLOIv?=
- =?us-ascii?Q?V6+a6gTm1dgo1BjtF3L8zPk5XUWrDCZ+CJC2Ecf61ppBqRev46By6Bt6U1Rs?=
- =?us-ascii?Q?8lHA+4DjXBj8nxrTBC0i2JYf14CNci2594FiQINQnqkzuAxm3BfjlXfama7p?=
- =?us-ascii?Q?ntxh8qHwQRGUNWa/dw1M7EG1GW5BeNOic5LgMSx8cMaG8L0mU9nn9M8Q5Feg?=
- =?us-ascii?Q?lWCh3XPr+ihZhDQzU1AQu27SEQbPgy1Kxhrp/pn/oLkpyNK+2qHbLHpjfd45?=
- =?us-ascii?Q?9O1Gn86EuOAvlkowDqkzUVHpL5A8rAm4GiD8sj/ImAKjGJ5xK0E/WK8ir53l?=
- =?us-ascii?Q?Wo/O2i01G3NQHzPsB7JoCZvrw8AQuC5Rd54IyIV7oQjaEemgVWoNWdnsj9Fn?=
- =?us-ascii?Q?tw5b5n6z9rtudcvCqlSrGQzn51Wg/IR9quTOqaXeL5OPPD5aBVcLnuHRo1PS?=
- =?us-ascii?Q?HxVlyiDl6bZS3HjvX/eQMDUoP6KQ9R0EO2958n9xu4i/CyGzQqRVVKiJLeXR?=
- =?us-ascii?Q?0dh9nbgU9BoZWqsNyn+NRsH9OB6SgFoH5Qxsp+zFlu6Ewm5Gseq+2xLpnmr0?=
- =?us-ascii?Q?86qpPwhx0aRaKzrKXuIczKhXodMgjT6z1a/uC3ck6/pU6A/bo9PDT6cw1PFX?=
- =?us-ascii?Q?6hwChjZHCKjaoU4DeKsL8XiD0TPMPNDDk15TDwBaYpoZVwtyA1TrnZN/I4OO?=
- =?us-ascii?Q?lS8qkbOhrsLlmCCyMgmFYD4ldTv5tapQKwXa+duoHSHFBnkY63XY/+W9lM+X?=
- =?us-ascii?Q?6a2ff6F9nvwQh+uEWBm9Nv40Ayl1JOsY8Z7vkXP4L1R1ios+mOZobPS/eNgi?=
- =?us-ascii?Q?yc8/1JdAqOMBOpFAkIystjjfPX84qVAvEopXRoK7JOVkoD2QP2+Rr8aQk/e+?=
- =?us-ascii?Q?0ZDaMW6zaqcp2AHJT+W4g6z1+biZ2qqQUbyqCh5BB5QG+UkfxstVVZZ74Scv?=
- =?us-ascii?Q?Ob1d/yDXnEVA38HfCuvNh+LcNLt9XGYOciGNCFba3jUQYsZIBh0zx8V4+Xe8?=
- =?us-ascii?Q?h4pAngimOjGaL1OfIg7iyRPbsFNOK1uL2XpuvLJTjMp/B8n8e1Ub6r8wDj4m?=
- =?us-ascii?Q?svtmzssEJVxImGOXsSCKVcJAHXvS+jLz+PYHcUPbI1vffXPCyx9PamNXQRpJ?=
- =?us-ascii?Q?7Q=3D=3D?=
-Content-Type: multipart/alternative;
-	boundary="_000_PA4P189MB11834FFADD9D4079A4AC8D09967E9PA4P189MB1183EURP_"
+ smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
+ header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=cherrycloud.onmicrosoft.com; s=selector2-cherrycloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=u2a09BXnJWGQgWW3fnsGWFmmXMjdu+89c99Lw2xD8iw=;
+ b=XxLKuUw21oeB7uxoaDZ6PQo27eDnpubRvvhblrNwWn78LHdTHvvXo2ycemMFY6s0ZRahGwzty5OaG0/JnJRYCMvYaPiiCPLBF9U/STx9pyQWPejTIUF261Kpj1NjnAucfjAW0VbMIA6wniYfhk43J5MEh38EeH9tcOiIbKpbL5U=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
+Received: from AM9PR04MB8539.eurprd04.prod.outlook.com (2603:10a6:20b:436::10)
+ by DB7PR04MB5387.eurprd04.prod.outlook.com (2603:10a6:10:8b::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.17; Tue, 6 Sep
+ 2022 15:13:47 +0000
+Received: from AM9PR04MB8539.eurprd04.prod.outlook.com
+ ([fe80::2935:1f84:f7ec:2dd8]) by AM9PR04MB8539.eurprd04.prod.outlook.com
+ ([fe80::2935:1f84:f7ec:2dd8%5]) with mapi id 15.20.5588.018; Tue, 6 Sep 2022
+ 15:13:47 +0000
+Message-ID: <f41bcedc-15e0-0516-530a-636b6c5a9927@theobroma-systems.com>
+Date: Tue, 6 Sep 2022 17:13:45 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [yocto] Update upstream kirkstone branches
+Content-Language: en-US
+To: paulo@eero.com, yocto@lists.yoctoproject.org
+References: <isVB.1662474023926890292.lmGR@lists.yoctoproject.org>
+From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Cc: raj.khem@gmail.com
+In-Reply-To: <isVB.1662474023926890292.lmGR@lists.yoctoproject.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1P191CA0009.EURP191.PROD.OUTLOOK.COM
+ (2603:10a6:800:1ba::13) To AM9PR04MB8539.eurprd04.prod.outlook.com
+ (2603:10a6:20b:436::10)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PA4P189MB1183.EURP189.PROD.OUTLOOK.COM
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: eb590215-0e4f-400e-f087-08da901a656b
+X-MS-TrafficTypeDiagnostic: DB7PR04MB5387:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	uR2kUC2/i8PvZIQXJT8x3hyZZQxHga/iwyueTgJKU68RWCspyTEq49U8a0LP1g310cwuORHVnmgRKrEUyCp2WV9Y2Hw1as8aYcwOk/ZEPdJHz1r/AfFZGMd0PHpBZE/nje/KOU7rsYmBtnV2v39Lc2CrDkPxX7kBJEcye/6Fukwqmg9yDDfeh3xJdJMmsV0FgAWcy90NKyTUFiEsPx1Dh66ceDw2SXlEcsnr7ur2BHYRp9xeXF112p8BpfyX7wUDaqylsCCE5KRTdbl/3HNPENSnv3GLF0pvB9ArLco/bC+dP/TRPPxAIqxfaHii/NOKV3quBcH+ZJAoC2Dvwe93YgghvyNDd1Vfvh/csT63XLYK8tcaVq9AkjshaVFfPv9c2JViAl9ZJik0x3E45lJ2n4dw1CnAtZR8txvFDMmWyOQgR9X/JRMUjQsAx5yd3P6dq6IWE+XEZiZyH4lT8Rrm3K7p9/1sgBhp3xZc8OBEiAgqHVKNC86cTC4Zct9qR4+JRxWXim6MaMTi6vO1mV3eGqod2iGUME5NCTCEXXkpFzYCPWCxmknFvnPQs2ZtjL5itVBhuD3jEj/+MMX6wA9eXz0n0+qABGYuej+6V6qaxGs/aMt66HrbYSUkCcLGfVn7wSrLFUy+aSBl7dCaAdDpMWqkZRXiQak5CIvT/9emXr+bFa7XTdKebhOtejo0KBmdtunvmnM4MNvsThhy7b5FkIV0o8OTkYgvp4vXFdk1GP7H0WqSxYhzieILzOOuEhnKqKMuP01fN5zl3jZgd+djdzga0fBHRLBfs647kxvjzMe3Je6KqXSAkAAHULChILMd
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8539.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(366004)(39850400004)(346002)(396003)(376002)(136003)(6506007)(41300700001)(38100700002)(316002)(66556008)(83380400001)(66476007)(53546011)(4326008)(86362001)(66946007)(31696002)(8676002)(15650500001)(966005)(36756003)(8936002)(6486002)(2616005)(31686004)(5660300002)(478600001)(44832011)(2906002)(6512007)(186003)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?NkNqendCcjRsNjFXc1V5KzBFdXdaSk1rMDY1QksvSUpFcTlBNjFXUHoxcWFy?=
+ =?utf-8?B?L2ZJVVVuWUpxZzVhNkVEblBWLzhoWVZBNkhBWlpIbjl1Tkl6NWdHQUZicWE4?=
+ =?utf-8?B?d3lPcGlhcEgzMmorMDFXZkZFQ2ZnYU5mRHlvSW9ydENVU0xpbzRqVy9RbWFv?=
+ =?utf-8?B?MWE1dnovczNFejZpekN0akQ3b2RvaU1BUzFzZll3aENPVVk5WnhYdENBeUt5?=
+ =?utf-8?B?TUhYaG93eGNTcTBYNW5IOWlQRU9UM2lBVVFuRDI5V2VaUDA1WDk2U3d4RHJm?=
+ =?utf-8?B?NTJZdkM5U251OFNqOStEYm1adEtlUWpBejA2MmxCMnNGSFdHNzEzKzZjczVV?=
+ =?utf-8?B?ZGxnSHVRcHdvM0RhSnUvT0FtV0tXQlpRcUJRaHczRnU5dGVRRlhIL1daN2M5?=
+ =?utf-8?B?MVpyUE02c2daNWxLM25qNVdML1JjR1NJOHlNejB2UFBDV3kyWmozZE8rQVh4?=
+ =?utf-8?B?Y2wxTzlha3E5cVRXSXZCTDl5YVl3SmZCbFl3L1pmTE1xVjhQSldMa2lHRUhR?=
+ =?utf-8?B?ekx0QmxnUzVNaWNscExKVFpGZkxab0JmWXd3UzExRzNhSGlES1NSNnJkYWI1?=
+ =?utf-8?B?ZXJpTWxwOWNEanUyWUlWcnc3NUwzVmxrSTh1cFV5eFhqMlB3L2JBdGNtTmZ4?=
+ =?utf-8?B?U3VscGtUUUZTLzloOWpkSEU4RkxMbnRUWWdSSzBQUmN3dmhEVmV2NUx1Q3JF?=
+ =?utf-8?B?clVNWTdScjF4RzBmUXpyVmJMU25aOC9XRkcrbWV0cjhoRUwyR3ZmZi9VM3I4?=
+ =?utf-8?B?cGw0T1pvYitCTVhJSU9QV1ZHaDFqWjNKMi9oWGVxWlMwemgwR21Mdyt2enVm?=
+ =?utf-8?B?Rmx3eXB2Zjg4ODdzbU9iUjd6LzBuR3ByemZmSVRITEFWZ1JiUTRlSGlZMVhD?=
+ =?utf-8?B?MVQvazNzQWdjMTZiL0N2d3pwbXNYcDk0ejFPblBJejJ3Z2tmNHBaQkExQW8x?=
+ =?utf-8?B?a2RUNE5HeFBmL1haMmFhVzMxTFBDMlp5QUxGSEg3ZWsweFovQi8weGxaRXN3?=
+ =?utf-8?B?d3M4SWtYbzJNaGxBVlIxSVp2UGloRWZGY3B4dWhOZ1Y3cklSUDNZQnlCOW1q?=
+ =?utf-8?B?d1U5Y2RnbW1BYnlMNW9HZHJUU2ZNdHp0YXJtV2NUWTJhV3Juam5waklLYWV6?=
+ =?utf-8?B?TVF0TkdmVC9tQzkwVFlWOGRXQ1hXV2lxYW9TVHIwckVVWDMxM3dSR3ZuQkx2?=
+ =?utf-8?B?VEorNUJOeXdtMGkrL0k3eWRpZGlUQUhuczlEWGFnNzJtem53NlA3MGljUVNj?=
+ =?utf-8?B?OUZGWkVZdnpDZGExWlhhT04zNy9mWnFSY3RFbHplQWMxZW1lRjlBZnFEYlVp?=
+ =?utf-8?B?a2xscUQ3SDFxVXg0U3FHZ1F2N0xMK2RvbXhNS0ZWM2pQNVlqZ1RTOHRtb1lV?=
+ =?utf-8?B?a0xxSnN1RHUrY0xwSlh4bnVFbkVEMnc1TnNmRzJWWTFMK3hKdmhEdWpuVjcw?=
+ =?utf-8?B?MkFKcCt3c1ZMYVpOMGZ1eElPaFNORnNzMzlnajN3Rmt1a1grK2dBUUtyWGVD?=
+ =?utf-8?B?TzMwd1FZZDJkckU2NGFrN2ZXbytMdkhrUkRoK0orZEtYVmcwZGFrNHMyeEZK?=
+ =?utf-8?B?bE50UnJFcGZXOW9oQlRIVUluWGxTazdJakNVNjhPbGgxQVBVRmVwWEhXejNt?=
+ =?utf-8?B?aThKdzNIdXNnZ2EzdWFFcG1KOEpUQkg5ZVJYQjJqOXl1TkdER1JrRExibWxZ?=
+ =?utf-8?B?TjMwNkFiQTU3aHRkUVhYRy9qVXJlUmk3V3lCMlVReGttT01yajZCRmVkV2I2?=
+ =?utf-8?B?K0FyekZLQnd4OTRLWmZINEE1Mjk4VnljaS80Rk5UV3lYNVJpVnpMQXIvL3cw?=
+ =?utf-8?B?d3l1L1IrWFZxbGFJa01sbVpKL3I4U1dOSHcrNnNHV0RVZkxmS05MZEhYY2Js?=
+ =?utf-8?B?RVdxbXY3R2lodERvazZYeTVwOC9UQzQya0xTcGdpQ2xhRzdqWTQ1UC9yR0dj?=
+ =?utf-8?B?MXNnd3k5Y1Vmc1FVcTMrVVRqL3BZVjJXbG1QR0MxK2VLcGpKeE1UTkk4ZVc2?=
+ =?utf-8?B?a1Vmem9Tb0cxMVdYTFFWYWFBKzE4bkFYMkZtc2JWcFlWd0lhb21ueWN0OHEx?=
+ =?utf-8?B?TjNSVmZMMnNVOTNUMzVtckhZUlU5bFg2aXZIVG9qemhDT1lVc0FWMzJVdS8z?=
+ =?utf-8?B?cmxWWnBLdzlTYTZNakZtYk9OYWFiM0svMjNHQXRxSmRpWUhsM216WnhoamV1?=
+ =?utf-8?Q?ffZGOckWs0UNkH+vwnwTtgEd871bwg/RPagWFro6rd7s?=
+X-OriginatorOrg: theobroma-systems.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- e2bf94c1-d42b-4e07-5ba7-08da901a4d2b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Sep 2022 15:13:06.4426
+ eb590215-0e4f-400e-f087-08da901a656b
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8539.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2022 15:13:47.2874
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 41cde0b0-5383-4af5-89ba-5c7361af3a57
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- zKAjbHsaNOHBS4peDahOwYHMU7Rjtxw1A1AXvpcvqTv8QO8gSr8HIspyxSezWJaINmkG3g4sY+JEo6vbXajwFEAAxNz5QpC+d73KKnYWVdQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1P18901MB0623
-X-C2ProcessedOrg: 0aa505bc-c280-44a3-bf0b-cfdbed55e239
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ SmZgMvzx3AwIqb6dYeFRe4u7EHex/EX0wGqkptNiaHSAlFMCdoOwcFv34tL4ygaxYINyL4SxBXl24VXv0wQeH32c727h0kmmNI4PM3Up4rj5LtBWtDnBK/RfosvthRoQ
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB5387
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 06 Sep 2022 15:13:18 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57995
+ <yocto@lists.yoctoproject.org>; Tue, 06 Sep 2022 15:13:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57996
 
---_000_PA4P189MB11834FFADD9D4079A4AC8D09967E9PA4P189MB1183EURP_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Hi Paulo,
 
-Hi team,
+On 9/6/22 16:20, paulo@eero.com wrote:
+> Hello all!
+> 
+> I've been just recently working with Yocto at my new position and just ran into an issue that was already solved on Yocto's main branches for both openembedded and poky layers.
+> There's a problem with npm on upstream kirkstone, where the fetching of dependencies fails due to stale or wrong metadata being read. This seems to have affected quite a few people (from what I browsed online), and found a solution which is already merged to the main branches for both poky and openembedded layers, done by Enrico Sholtz.
+> The patches are https://urldefense.proofpoint.com/v2/url?u=https-3A__patchwork.yoctoproject.org_project_oe-2Dcore_list_-3Fseries-3D4303&d=DwIFaQ&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=7HzKBeVbSvWreLPwsDAKWZVdW0sTf8vqJp82dKy01KWfJ9e8kzZpevt-vvV7Z2Ga&s=xKaCrxEjeUTs2WwwWY226DJ9lZmm7QsiOPK4eCRZM_0&e=   for poky and the patch file attached to this message.
+> 
+> I've applied these changes to kirkstone and it solved the issues as promised and explained by Enrico on https://urldefense.proofpoint.com/v2/url?u=https-3A__lists.openembedded.org_g_openembedded-2Dcore_topic_91903472&d=DwIFaQ&c=_sEr5x9kUWhuk4_nFwjJtA&r=LYjLexDn7rXIzVmkNPvw5ymA1XTSqHGq8yBP6m6qZZ4njZguQhZhkI_-172IIy1t&m=7HzKBeVbSvWreLPwsDAKWZVdW0sTf8vqJp82dKy01KWfJ9e8kzZpevt-vvV7Z2Ga&s=x2rwsw6fLSrNf-kgh01BmbsrcSsW8vKxcbRuhBFDpxY&e=
+> 
+> I'd like to know how would one proceed to add these changes to upstream Yocto, since it would benefit a lot of people using this new LTS version of the project.
+> 
 
-With respect to the feature "CVE_CHECK" provided by Yocto, what is the best=
- approach to deploy the patches reported by the CVE?
+For OpenEmbedded-core patches: 
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded#Backporting_fixes_to_stable_releases
 
-It's definitely not a good approach to patch using a blind approach but onc=
-e we've defined the required CVE, does Yocto can do the updates based on a =
-definition?
+For meta-openembedded, I do not know how Khem deals with backport 
+requests. You could do the same and then send your patch to 
+openembedded-devel@lists.openembedded.org as explained here: 
+https://github.com/openembedded/meta-openembedded/tree/master/meta-oe ? 
+You can also open a PR against the proper branch I guess. Cc'ing Khem 
+just in case.
 
-I've read the content of the cve-check.bbclass without founding the appropr=
-iate way to do it.
-
-If I forgot to read a section in the Mega-Manual per example, please let me=
- know and I will read it.
-
-Thank you,
-
-
-Martin Leduc
-Superviseur logiciel platforme, Rail
-Luminator Technology Group
-T : 1 418 856-6896
-martin.leduc@luminator.com<mailto:martin.leduc@axiontech.ca>
-www.luminator.com<http://www.luminator.com/>
-
-
---_000_PA4P189MB11834FFADD9D4079A4AC8D09967E9PA4P189MB1183EURP_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"FR-CA" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi team,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA">With respect to the feature &#8=
-220;CVE_CHECK&#8221; provided by Yocto, what is the best approach to deploy=
- the patches reported by the CVE?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA">It&#8217;s definitely not a goo=
-d approach to patch using a blind approach but once we&#8217;ve defined the=
- required CVE, does Yocto can do the updates based on a definition?<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA">I&#8217;ve read the content of =
-the cve-check.bbclass without founding the appropriate way to do it.<o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA">If I forgot to read a section i=
-n the Mega-Manual per example, please let me know and I will read it.<o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA">Thank you,<o:p></o:p></span></p=
->
-<p class=3D"MsoNormal"><span lang=3D"EN-CA"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA" style=3D"mso-fareast-language:F=
-R-CA"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Arial&quot;,sans-serif;color:#636466;mso-fareast-language:FR-CA">Martin Le=
-duc<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif;color:#636466;mso-fareast-language:FR-CA">Superviseur =
-logiciel platforme, Rail<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><b><span lang=3D"EN-CA" style=3D"font-size:10.0pt;fo=
-nt-family:&quot;Arial&quot;,sans-serif;color:#636466;mso-fareast-language:F=
-R-CA">Luminator Technology Group<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA" style=3D"font-size:10.0pt;font-=
-family:&quot;Arial&quot;,sans-serif;color:#636466;mso-fareast-language:FR-C=
-A">T&nbsp;: 1&nbsp;418 856-6896<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif;color:#636466;mso-fareast-language:FR-CA"><a href=3D"m=
-ailto:martin.leduc@axiontech.ca"><span lang=3D"EN-CA" style=3D"color:#0563C=
-1">martin.leduc@luminator.com</span></a></span><span lang=3D"EN-CA" style=
-=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#636466=
-;mso-fareast-language:FR-CA"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif;color:#636466;mso-fareast-language:FR-CA"><a href=3D"h=
-ttp://www.luminator.com/"><span style=3D"color:#0563C1">www.luminator.com</=
-span></a><b><o:p></o:p></b></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_PA4P189MB11834FFADD9D4079A4AC8D09967E9PA4P189MB1183EURP_--
+Cheers,
+Quentin
 
