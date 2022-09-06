@@ -1,194 +1,153 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <paulo@eero.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A81A4ECAAD5
-	for <webhook@archiver.kernel.org>; Tue,  6 Sep 2022 13:55:15 +0000 (UTC)
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com
- [209.85.222.174])
- by mx.groups.io with SMTP id smtpd.web11.4416.1662472508665440629
- for <yocto@lists.yoctoproject.org>;
- Tue, 06 Sep 2022 06:55:08 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=MRgHPxGi;
- spf=pass (domain: gmail.com, ip: 209.85.222.174,
- mailfrom: akuster808@gmail.com)
-Received: by mail-qk1-f174.google.com with SMTP id w18so8147243qki.8
-        for <yocto@lists.yoctoproject.org>;
- Tue, 06 Sep 2022 06:55:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date;
-        bh=jAa6qiWC8bYSsn7Y0KiTWbgmO3bE+UACvVW0yJ1nV2Y=;
-        b=MRgHPxGi1NBe+BPduE5rsWTQc5Y2A6qIWgR2VpPwgFVE6Q6gSXNDI/I48m69ZEsSWC
-         +Q1I0PGZR+vqAg2yL02wyqout0Z7wix22nxdbktnptz1olwpDaZ6hzdbFtPlEdxIu/46
-         Cwf+EFDObNbpvlzVjyP1qRYrpyFc+uvyevSACeWlK+uyH+iatR1iMahY8khJmidt+aiS
-         Wh65HZuJrO3kqo8TgTccEyj/cJfC0/n8S8jXP48pBxCFZpdB514W1iZWkjtd6v3mCYzn
-         I+69Lmwr2ryhBv2Wz20MGRQXgtNVn7ScKDbWsa9Hb3EhI49eomCj+OOfZDU4fsyWvsIW
-         m5xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date;
-        bh=jAa6qiWC8bYSsn7Y0KiTWbgmO3bE+UACvVW0yJ1nV2Y=;
-        b=tFpctSmyXSkqNgByeKQLFWxY1klaQ9QrAvVTsOwQyf/Yg4nSG8nq5PCKXgHP8lNkX/
-         8jMHVHDFXd+Q/4B5wWTCGzlXYC2g7b9XueBhAV6BSR2/V9nr+KIkX5pw9K6X7jTbPSiF
-         /CyY/SqHin7ndEiI6zaUFuYKLW5ItqLFY3xPnHyoIKBzPYjsQM7uBbkwvV3p8UUijPit
-         9kAH1TcOWcftRAXoqzvEI/MOLBttqJWzZni1ox2Fa5mMIAOSz3VMgupxHx5bL63WOS5I
-         Xq1FCXLsVFK6oMY5x3CoSYsSdC9wnAtwdpP6R5Kw7cRQ9e9NFfkn0Vd2av5GPb3VQgug
-         Op0A==
-X-Gm-Message-State: ACgBeo3f3SCudMuo9ST88TynPH3xb1sLK0MIF8e5CXj+j520UyWrschV
-	mQnxfpbHOA01MP1vcN/bxdRg2ZGx4Hk=
-X-Google-Smtp-Source: 
- AA6agR40D81F/+W4IJJfCdgexId/bSDnxWXess6wj54QvDd/UeFhfrAKRONnYZagaW0rX7Gz1JYGpQ==
-X-Received: by 2002:a05:620a:1928:b0:6bb:83e3:3249 with SMTP id
- bj40-20020a05620a192800b006bb83e33249mr34527029qkb.245.1662472507177;
-        Tue, 06 Sep 2022 06:55:07 -0700 (PDT)
-Received: from keaua.attlocal.net ([2600:1700:9190:ba10:dee3:eaf1:9872:fe7f])
-        by smtp.gmail.com with ESMTPSA id
- x24-20020ac87a98000000b003431446588fsm9471679qtr.5.2022.09.06.06.55.06
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 06:55:06 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D55A6C6FA94
+	for <webhook@archiver.kernel.org>; Tue,  6 Sep 2022 14:20:25 +0000 (UTC)
+Subject: Update upstream kirkstone branches
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][V2][PATCH] cryptmount: fix systemd service install
-Date: Tue,  6 Sep 2022 09:55:06 -0400
-Message-Id: <20220906135506.3636584-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.25.1
+From: paulo@eero.com
+X-Originating-Location: =?utf-8?b?U8OjbyBQYXVsbywgU2FvIFBhdWxvLCBCUiAoMjAw?=
+ =?utf-8?b?LjE0OC4xMTcuMTA0KQ==?=
+X-Originating-Platform: Linux Firefox 104
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Date: Tue, 06 Sep 2022 07:20:23 -0700
+Message-ID: <isVB.1662474023926890292.lmGR@lists.yoctoproject.org>
+Content-Type: multipart/mixed; boundary="GOUUhtTHZomDIN7brZk4"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 06 Sep 2022 13:55:15 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57992
+ <yocto@lists.yoctoproject.org>; Tue, 06 Sep 2022 14:20:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57993
 
-Default is to install the service in /usr/lib
+--GOUUhtTHZomDIN7brZk4
+Content-Type: multipart/alternative; boundary="3ZVZuDMGxBBZHD9jEJMA"
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+--3ZVZuDMGxBBZHD9jEJMA
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
---
-[V2]
-Fix typo in subject
----
- .../sssd/{sssd_2.7.3.bb => sssd_2.7.4.bb}     |  2 +-
- .../{chipsec_1.8.7.bb => chipsec_1.8.8.bb}    |  2 +-
- .../cryptmount/cryptmount_5.3.3.bb            | 10 +++++++++
- .../krill/files/panic_workaround.patch        | 21 +++++++++++++------
- .../krill/{krill_0.9.6.bb => krill_0.10.0.bb} |  2 +-
- 5 files changed, 28 insertions(+), 9 deletions(-)
- rename dynamic-layers/networking-layer/recipes-security/sssd/{sssd_2.7.3.bb => sssd_2.7.4.bb} (98%)
- rename recipes-security/chipsec/{chipsec_1.8.7.bb => chipsec_1.8.8.bb} (94%)
- rename recipes-security/krill/{krill_0.9.6.bb => krill_0.10.0.bb} (95%)
+Hello all!
 
-diff --git a/dynamic-layers/networking-layer/recipes-security/sssd/sssd_2.7.3.bb b/dynamic-layers/networking-layer/recipes-security/sssd/sssd_2.7.4.bb
-similarity index 98%
-rename from dynamic-layers/networking-layer/recipes-security/sssd/sssd_2.7.3.bb
-rename to dynamic-layers/networking-layer/recipes-security/sssd/sssd_2.7.4.bb
-index 95065b3..78d29c3 100644
---- a/dynamic-layers/networking-layer/recipes-security/sssd/sssd_2.7.3.bb
-+++ b/dynamic-layers/networking-layer/recipes-security/sssd/sssd_2.7.4.bb
-@@ -26,7 +26,7 @@ SRC_URI = "https://github.com/SSSD/sssd/releases/download/${PV}/sssd-${PV}.tar.g
-            file://musl_fixup.patch \
-            "
- 
--SRC_URI[sha256sum] = "ab3c3fe2a69cc7b2557715a11000aaf358c0afd65f2828ca47a2d3b2651d871b"
-+SRC_URI[sha256sum] = "10ef90c63fdbfda905145077679035bd5ad16b24daad13160de8d0ff82ea9950"
- 
- UPSTREAM_CHECK_URI = "https://github.com/SSSD/${BPN}/releases"
- 
-diff --git a/recipes-security/chipsec/chipsec_1.8.7.bb b/recipes-security/chipsec/chipsec_1.8.8.bb
-similarity index 94%
-rename from recipes-security/chipsec/chipsec_1.8.7.bb
-rename to recipes-security/chipsec/chipsec_1.8.8.bb
-index 60272be..858ece5 100644
---- a/recipes-security/chipsec/chipsec_1.8.7.bb
-+++ b/recipes-security/chipsec/chipsec_1.8.8.bb
-@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=bc2d1f9b427be5fb63f6af9da56f7c5d"
- DEPENDS = "virtual/kernel nasm-native"
- 
- SRC_URI = "git://github.com/chipsec/chipsec.git;branch=main;protocol=https"
--SRCREV = "7b9cc5cd449f2e1e4b5dad46c0eb14348e54e3f0"
-+SRCREV = "fd1a98688978fd4b8ca77b512a72eae49c3beffa"
- 
- S = "${WORKDIR}/git"
- 
-diff --git a/recipes-security/cryptmount/cryptmount_5.3.3.bb b/recipes-security/cryptmount/cryptmount_5.3.3.bb
-index fb522cb..6741a5f 100644
---- a/recipes-security/cryptmount/cryptmount_5.3.3.bb
-+++ b/recipes-security/cryptmount/cryptmount_5.3.3.bb
-@@ -22,6 +22,16 @@ PACKAGECONFIG[gcrypt] = "--with-libgcrypt, --without-libgcrypt, libgcrypt"
- PACKAGECONFIG[luks] = "--enable-luks, --disable-luks, cryptsetup"
- PACKAGECONFIG[nls] = "--enable-nls, --disable-nls, "
- 
-+SYSTEMD_PACKAGES = "${PN}"
- SYSTEMD_SERVICE:${PN} = "cryptmount.service"
- 
-+do_install:append () {
-+    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
-+        install -D -m 0644 ${S}/sysinit/cryptmount.service ${D}${systemd_system_unitdir}/cryptmount.service
-+        rm -fr ${D}/usr/lib
-+    fi
-+}
-+
-+FILES:${PN} += "${systemd_system_unitdir}"
-+
- RDEPENDS:${PN} = "libdevmapper"
-diff --git a/recipes-security/krill/files/panic_workaround.patch b/recipes-security/krill/files/panic_workaround.patch
-index 9b08cb5..605c075 100644
---- a/recipes-security/krill/files/panic_workaround.patch
-+++ b/recipes-security/krill/files/panic_workaround.patch
-@@ -1,11 +1,20 @@
-+From 488ed2267937b55e9ef4bd2ded06484cbbf66360 Mon Sep 17 00:00:00 2001
-+From: Armin Kuster <akuster808@gmail.com>
-+Date: Tue, 27 Jul 2021 08:06:43 -0700
-+Subject: [PATCH] krill: Add new pkg
-+
- Upstream-Status: OE specific
- Signed-off-by: Armin Kuster <akuster808@gmail.com>
- 
--Index: git/Cargo.toml
--===================================================================
----- git.orig/Cargo.toml
--+++ git/Cargo.toml
--@@ -71,7 +71,7 @@ static-openssl = [ "openssl/vendored" ]
-+---
-+ Cargo.toml | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/Cargo.toml b/Cargo.toml
-+index 2190213e..89c52d27 100644
-+--- a/Cargo.toml
-++++ b/Cargo.toml
-+@@ -92,7 +92,7 @@ hsm-tests-pkcs11 = [ "hsm" ]
-  # Make sure that Krill crashes on panics, rather than losing threads and
-  # limping on in a bad state.
-  [profile.release]
-@@ -13,4 +22,4 @@ Index: git/Cargo.toml
- +#panic = "abort"
-  
-  [dev-dependencies]
-- # for user management
-+ # For user management
-diff --git a/recipes-security/krill/krill_0.9.6.bb b/recipes-security/krill/krill_0.10.0.bb
-similarity index 95%
-rename from recipes-security/krill/krill_0.9.6.bb
-rename to recipes-security/krill/krill_0.10.0.bb
-index fd86c4b..af8ecac 100644
---- a/recipes-security/krill/krill_0.9.6.bb
-+++ b/recipes-security/krill/krill_0.10.0.bb
-@@ -7,7 +7,7 @@ DEPENDS = "openssl"
- 
- # SRC_URI += "crate://crates.io/krill/0.9.1"
- SRC_URI = "git://github.com/NLnetLabs/krill.git;protocol=https;branch=main"
--SRCREV = "95e6681d5b4024cac7a1892d47fb76abc68f34fb"
-+SRCREV = "2c00aa05e2299ca8a0994f7d054231e3a5cd8d25"
- SRC_URI += "file://panic_workaround.patch"
- 
- include krill.inc
--- 
-2.25.1
+I've been just recently working with Yocto at my new position and just ran =
+into an issue that was already solved on Yocto's main branches for both ope=
+nembedded and poky layers.
+There's a problem with npm on upstream kirkstone, where the fetching of dep=
+endencies fails due to stale or wrong metadata being read. This seems to ha=
+ve affected quite a few people (from what I browsed online), and found a so=
+lution which is already merged to the main branches for both poky and opene=
+mbedded layers, done by Enrico Sholtz.
+The patches are https://patchwork.yoctoproject.org/project/oe-core/list/?se=
+ries=3D4303 for poky and the patch file attached to this message.
 
+I've applied these changes to kirkstone and it solved the issues as promise=
+d and explained by Enrico on https://lists.openembedded.org/g/openembedded-=
+core/topic/91903472
+
+I'd like to know how would one proceed to add these changes to upstream Yoc=
+to, since it would benefit a lot of people using this new LTS version of th=
+e project.
+
+Thanks in advance,
+
+Paulo Andrade.
+
+--3ZVZuDMGxBBZHD9jEJMA
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hello all!</p>
+<p>I've been just recently working with Yocto at my new position and just r=
+an into an issue that was already solved on Yocto's main branches for both =
+openembedded and poky layers.<br />There's a problem with npm on upstream k=
+irkstone, where the fetching of dependencies fails due to stale or wrong me=
+tadata being read. This seems to have affected quite a few people (from wha=
+t I browsed online), and found a solution which is already merged to the ma=
+in branches for both poky and openembedded layers, done by Enrico Sholtz.<b=
+r />The patches are <a href=3D"https://patchwork.yoctoproject.org/project/o=
+e-core/list/?series=3D4303" target=3D"_blank" rel=3D"noopener">https://patc=
+hwork.yoctoproject.org/project/oe-core/list/?series=3D4303</a> for poky and=
+ the patch file attached to this message.</p>
+<p>I've applied these changes to kirkstone and it solved the issues as prom=
+ised and explained by Enrico on <a href=3D"https://lists.openembedded.org/g=
+/openembedded-core/topic/91903472" target=3D"_blank" rel=3D"noopener">https=
+://lists.openembedded.org/g/openembedded-core/topic/91903472</a><br /><br /=
+>I'd like to know how would one proceed to add these changes to upstream Yo=
+cto, since it would benefit a lot of people using this new LTS version of t=
+he project.<br /><br />Thanks in advance,</p>
+<p>&nbsp;</p>
+<p>Paulo Andrade.</p>
+
+--3ZVZuDMGxBBZHD9jEJMA--
+
+--GOUUhtTHZomDIN7brZk4
+Content-Type: text/x-patch; name="meta-openembedded-patch.patch"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="meta-openembedded-patch.patch"
+
+Y29tbWl0IDViZmZhM2YyZjJjNjk4ZGE1M2ZhNWM0YWQ0NDE4ZmMzMDg3ZmU0OGQKQXV0aG9yOiBF
+bnJpY28gU2Nob2x6IDxlbnJpY28uc2Nob2x6QHNpZ21hLWNoZW1uaXR6LmRlPgpEYXRlOiAgIFRo
+dSBNYXkgMTkgMTI6MjM6MDcgMjAyMiArMDIwMAoKICAgIG5vZGVqcy1vZS1jYWNoZS1uYXRpdmU6
+IGluaXRpYWwgY2hlY2tpbgogICAgCiAgICBUaGlzIGltcGxlbWVudHMgYW4gJ25wbSBjYWNoZSBh
+ZGQnIGxpa2UgZnVuY3Rpb25hbGl0eSBidXQgYWxsb3dzIHRvCiAgICBzcGVjaWZ5IHRoZSBrZXkg
+b2YgdGhlIGRhdGEgYW5kIHNldHMgbWV0YWRhdGEgd2hpY2ggYXJlIHJlcXVpcmVkIHRvCiAgICBm
+aW5kIHRoZSBkYXRhLgogICAgCiAgICBJdCBpcyB1c2VkIHRvIGNhY2hlIGluZm9ybWF0aW9uIGFz
+IGRvbmUgZHVyaW5nICducG0gaW5zdGFsbCcuCiAgICAKICAgIEtleWZvcm1hdCBhbmQgbWV0YWRh
+dGEgYXJlIG5vZGVqcyB2ZXJzaW9uIHNwZWNpZmljLgogICAgCiAgICBTaWduZWQtb2ZmLWJ5OiBF
+bnJpY28gU2Nob2x6IDxlbnJpY28uc2Nob2x6QHNpZ21hLWNoZW1uaXR6LmRlPgogICAgU2lnbmVk
+LW9mZi1ieTogS2hlbSBSYWogPHJhai5raGVtQGdtYWlsLmNvbT4KCmRpZmYgLS1naXQgYS9tZXRh
+LW9lL3JlY2lwZXMtZGV2dG9vbHMvbm9kZWpzL25vZGVqcy1vZS1jYWNoZS0xNi4xNC9vZS1ucG0t
+Y2FjaGUgYi9tZXRhLW9lL3JlY2lwZXMtZGV2dG9vbHMvbm9kZWpzL25vZGVqcy1vZS1jYWNoZS0x
+Ni4xNC9vZS1ucG0tY2FjaGUKbmV3IGZpbGUgbW9kZSAxMDA3NTUKaW5kZXggMDAwMDAwMDAwLi5m
+NTk2MjA3NjQKLS0tIC9kZXYvbnVsbAorKysgYi9tZXRhLW9lL3JlY2lwZXMtZGV2dG9vbHMvbm9k
+ZWpzL25vZGVqcy1vZS1jYWNoZS0xNi4xNC9vZS1ucG0tY2FjaGUKQEAgLTAsMCArMSw3NyBAQAor
+IyEvdXNyL2Jpbi9lbnYgbm9kZQorCisvLy8gVXNhZ2U6IG9lLW5wbS1jYWNoZSA8Y2FjaGUtZGly
+PiA8dHlwZT4gPGtleT4gPGZpbGUtbmFtZT4KKy8vLyAgICA8dHlwZT4gLi4uIG1ldGEgLSBtZXRh
+aW5mb3JtYXRpb24gYWJvdXQgcGFja2FnZQorLy8vICAgICAgICAgICAgICAgdGd6ICAtIHRhcmJh
+bGwKKworY29uc3QgcHJvY2VzcyA9IHJlcXVpcmUoIm5vZGU6cHJvY2VzcyIpOworCittb2R1bGUu
+cGF0aHMudW5zaGlmdCgiQEBsaWJkaXJAQC9ub2RlX21vZHVsZXMvbnBtL25vZGVfbW9kdWxlcyIp
+OworCitjb25zdCBjYWNhY2hlID0gcmVxdWlyZSgnY2FjYWNoZScpCitjb25zdCBmcyA9IHJlcXVp
+cmUoJ2ZzJykKKworLy8gYXJndlswXSBpcyAnbm9kZScsIGFyZ3ZbMV0gaXMgdGhpcyBzY3JpcHQK
+K2NvbnN0IGNhY2hlX2RpciA9IHByb2Nlc3MuYXJndlsyXQorY29uc3QgdHlwZSAgICAgID0gcHJv
+Y2Vzcy5hcmd2WzNdCitjb25zdCBrZXkgICAgICAgPSBwcm9jZXNzLmFyZ3ZbNF0KK2NvbnN0IGZp
+bGUgICAgICA9IHByb2Nlc3MuYXJndls1XQorCitjb25zdCBkYXRhID0gZnMucmVhZEZpbGVTeW5j
+KGZpbGUpCisKKy8vIG1ldGFkYXRhIGNvbnRlbnQgaXMgaGlnaGx5IG5vZGVqcyBkZXBlbmRlbnQ7
+IHdoZW4gY2FjaGUgZW50cmllcyBhcmUgbm90CisvLyBmb3VuZCwgcGxhY2UgZGVidWcgc3RhdGVt
+ZW50cyBpbiAnbWFrZS1mZXRjaC1oYXBwZW4vbGliL2NhY2hlL3BvbGljeS5qcycKKy8vIChDYWNo
+ZVBvbGljeTo6c2F0aXNmaWVzKCkpCitjb25zdCB4bGF0ZSA9IHsKKyAgICAnbWV0YSc6IHsKKwkn
+a2V5X3ByZWZpeCc6ICdtYWtlLWZldGNoLWhhcHBlbjpyZXF1ZXN0LWNhY2hlOicsCisJJ21ldGFk
+YXRhJzogZnVuY3Rpb24oKSB7CisJICAgIHJldHVybiB7CisJCXRpbWU6IERhdGUubm93KCksCisJ
+CXVybDogIGtleSwKKwkJcmVxSGVhZGVyczogeworCQkgICAgJ2FjY2VwdCc6ICdhcHBsaWNhdGlv
+bi92bmQubnBtLmluc3RhbGwtdjEranNvbjsgcT0xLjAsIGFwcGxpY2F0aW9uL2pzb247IHE9MC44
+LCAqLyonLAorCQl9LAorCQlyZXNIZWFkZXJzOiB7CisJCSAgICAiY29udGVudC10eXBlIjogImFw
+cGxpY2F0aW9uL2pzb24iLAorCQkgICAgInN0YXR1cyI6IDIwMCwKKwkJfSwKKwkJb3B0aW9uczog
+eworCQkgICAgY29tcHJlc3M6IHRydWUsCisJCX0KKwkgICAgfTsKKwl9LAorICAgIH0sCisKKyAg
+ICAndGd6JzogeworCSdrZXlfcHJlZml4JzogJ21ha2UtZmV0Y2gtaGFwcGVuOnJlcXVlc3QtY2Fj
+aGU6JywKKwknbWV0YWRhdGEnOiBmdW5jdGlvbigpIHsKKwkgICAgcmV0dXJuIHsKKwkJdGltZTog
+RGF0ZS5ub3coKSwKKwkJdXJsOiAga2V5LAorCQlyZXFIZWFkZXJzOiB7CisJCSAgICAnYWNjZXB0
+JzogJyovKicsCisJCX0sCisJCXJlc0hlYWRlcnM6IHsKKwkJICAgICJjb250ZW50LXR5cGUiOiAi
+YXBwbGljYXRpb24vb2N0ZXQtc3RyZWFtIiwKKwkJICAgICJzdGF0dXMiOiAyMDAsCisJCX0sCisJ
+CW9wdGlvbnM6IHsKKwkJICAgIGNvbXByZXNzOiB0cnVlLAorCQl9LAorCSAgICB9OworCX0sCisg
+ICAgfSwKK307CisKK2NvbnN0IGluZm8gPSB4bGF0ZVt0eXBlXTsKK2xldCBvcHRzID0ge30KKwor
+aWYgKGluZm8ubWV0YWRhdGEpIHsKKyAgICBvcHRzWydtZXRhZGF0YSddID0gaW5mby5tZXRhZGF0
+YSgpOworfQorCitjYWNhY2hlLnB1dChjYWNoZV9kaXIsIGluZm8ua2V5X3ByZWZpeCArIGtleSwg
+ZGF0YSwgb3B0cykKKyAgICAudGhlbihpbnRlZ3JpdHkgPT4geworCWNvbnNvbGUubG9nKGBTYXZl
+ZCBjb250ZW50IG9mICR7a2V5fSAoJHtmaWxlfSkuYCk7Cit9KQpkaWZmIC0tZ2l0IGEvbWV0YS1v
+ZS9yZWNpcGVzLWRldnRvb2xzL25vZGVqcy9ub2RlanMtb2UtY2FjaGUtbmF0aXZlXzE2LjE0LmJi
+IGIvbWV0YS1vZS9yZWNpcGVzLWRldnRvb2xzL25vZGVqcy9ub2RlanMtb2UtY2FjaGUtbmF0aXZl
+XzE2LjE0LmJiCm5ldyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAwMDAwMDAwMC4uYTYxZGQ1MDE4
+Ci0tLSAvZGV2L251bGwKKysrIGIvbWV0YS1vZS9yZWNpcGVzLWRldnRvb2xzL25vZGVqcy9ub2Rl
+anMtb2UtY2FjaGUtbmF0aXZlXzE2LjE0LmJiCkBAIC0wLDAgKzEsMjEgQEAKK0RFU0NSSVBUSU9O
+ID0gIk9FIGhlbHBlciBmb3IgbWFuaXB1bGF0aW5nIG5wbSBjYWNoZSIKK0xJQ0VOU0UgPSAiQXBh
+Y2hlLTIuMCIKK0xJQ19GSUxFU19DSEtTVU0gPSAiZmlsZTovLyR7Q09NTU9OX0xJQ0VOU0VfRElS
+fS9BcGFjaGUtMi4wO21kNT04OWFlYTRlMTdkOTlhN2NhY2RiZWVkNDZhMDA5NmIxMCIKKworU1JD
+X1VSSSA9ICJcCisgICAgZmlsZTovL29lLW5wbS1jYWNoZSBcCisiCisKK2luaGVyaXQgbmF0aXZl
+CisKK0IgPSAiJHtXT1JLRElSfS9idWlsZCIKKworZG9fY29uZmlndXJlKCkgeworICAgIHNlZCAt
+ZSAncyFAQGxpYmRpckBAISR7bGliZGlyfSFnJyA8ICcke1dPUktESVJ9L29lLW5wbS1jYWNoZScg
+PiAnJHtCfS9vZS1ucG0tY2FjaGUnCit9CisKK2RvX2luc3RhbGwoKSB7CisgICAgaW5zdGFsbCAt
+RCAtcCAtbSAwNzU1ICR7Qn0vb2UtbnBtLWNhY2hlICR7RH0ke2JpbmRpcn0vb2UtbnBtLWNhY2hl
+Cit9CisKK1JERVBFTkRTOiR7UE59ID0gIm5vZGVqcy1uYXRpdmUiCg==
+
+--GOUUhtTHZomDIN7brZk4--
 
