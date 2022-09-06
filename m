@@ -2,90 +2,93 @@ Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2D9BFECAAA1
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E5F7C38145
 	for <webhook@archiver.kernel.org>; Tue,  6 Sep 2022 23:39:11 +0000 (UTC)
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com
- [209.85.160.169])
- by mx.groups.io with SMTP id smtpd.web11.1615.1662507544401847382
+Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com
+ [209.85.219.49])
+ by mx.groups.io with SMTP id smtpd.web11.1616.1662507545400516031
  for <yocto@lists.yoctoproject.org>;
- Tue, 06 Sep 2022 16:39:04 -0700
+ Tue, 06 Sep 2022 16:39:05 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=i3vfBe3k;
- spf=pass (domain: gmail.com, ip: 209.85.160.169,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=a3NjFtOV;
+ spf=pass (domain: gmail.com, ip: 209.85.219.49,
  mailfrom: akuster808@gmail.com)
-Received: by mail-qt1-f169.google.com with SMTP id x5so9271038qtv.9
+Received: by mail-qv1-f49.google.com with SMTP id d1so9540209qvs.0
         for <yocto@lists.yoctoproject.org>;
- Tue, 06 Sep 2022 16:39:04 -0700 (PDT)
+ Tue, 06 Sep 2022 16:39:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date;
-        bh=oAktatg+KRLSSrRvuUeocflf5Ez0AoqvgnSKK30AxIg=;
-        b=i3vfBe3kRpok1kERF6D39unfGZB3H5Dv2aZes3vPn2RTtP/Iez+0hmqGO99dCXutas
-         kDWb7zhmrKB4NoKjjnioo8OIFAkMVOtxAtd6DOK6KhD5Kqu5SK+JFdYozwLgmmxmg5p9
-         N4gXe/wR1tmEYscun1V9K2vTXnLqlik6MUeRJHylGz2I14lhYlN6mSpAzENupuV+x/Gt
-         kG2d3SaM6Ume79prgHUrpA3CnB18X7Mr7rVhEM/TDrQoqA3BwZ+RCaPo2mBWxdX4+E1j
-         9D0hFeFQhLz1Ekalp5IsC+y3JvzSLKvgsC+9m6Ri4PBfm0D13CbaZCAG6fHzdulBTVsw
-         s+Xg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date;
+        bh=3v/lFlaTasq2TTOIgUESHLawfkzol5bAxxJOeatxx1Q=;
+        b=a3NjFtOV47leroZvxHR+uS8h1Eq/d8v7BE8UCZV0MepFMu/bGmJyvD6O9tgofMqXqT
+         QnAbd6NRxXs3d9nBW59DVWwbS8Q3Y7nvHc5QRjuHjEtXH9ZjT6RRQYpT4+Ev22GO8+Wc
+         eG3olFsX3bzn1fsquqhmkQD6rKGW7tu7fZ/MNkCFhBeXRwwR83aNWnrYfolF7iX0zCiG
+         Hd9LGg25nvt5GRQX1brUkJlBLnwH521N8ebv7rof2dT5g6KHLg7g2Va1WMqN6aps4SLg
+         cKCCh49S6fitHDuyLiJdch95no8t0V/OkXYECuut9quNCn+nFMz+MWGeAbjnpnoThCMy
+         xgpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date;
-        bh=oAktatg+KRLSSrRvuUeocflf5Ez0AoqvgnSKK30AxIg=;
-        b=tj+fz0OPdb/lvDB3TwdaHmNIMmgNuPzptzH6D2BNrGn86ibMOoy99CJIRWn3FOhvLv
-         PD3c8A07+e72Od1KiPr5MJgz7MXawx31rQB/ETH3pE2m0j8jxklUdqTWrNEx+QJL+Ycp
-         v9iEpN4+OB0u5Cijh9+k3yWaPmQoVD6DpPD6raa0dKLhzoJupb0cO5L2R0+/EFMLO4hX
-         bPhvWzcuNBIi0WjmdQ0k6MR+UmmL1jW5lFj4piNqif12pInjMtdWkD2zu8sJVmWdN6dx
-         vKFnaOlzObH28lKcxBGEoP4+y8WzUCa7fvORzVi1Gpbn/vsuz+UjbdO+/szTd06UDsB0
-         U8BQ==
-X-Gm-Message-State: ACgBeo2bLvpuA1ssL1QmXVsoC1PVbPAGTgGV9Rj8x9KGKkBaaIutEm6T
-	8swZphJ7ZA5Aif3SWnJaFZRSTweXUOM=
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=3v/lFlaTasq2TTOIgUESHLawfkzol5bAxxJOeatxx1Q=;
+        b=ksEs6EBk0hVPp/5KH6O4uZi98h+phzSUfyXXU3NVvtPFC7dXoOh9HoYSZBBXsZflsn
+         dcLMxmqI3lXs7ELH1nv1metwXqT0YSWBwyhz7JF4OYNjD8QFaCMPAuX394EP9f7i1h9d
+         8H/fNT33d4oqHnxWo++dTeb7Z50eGfy4lx1tz3jJZqR8qUayys1S80A8fniZLkmEJujC
+         v7O4HWervXZ0aXuyEERaQRoj84sUrvyKGq+iB805spNo4PU3KsoRhbrCHYIXUtEaK946
+         sHglU86hSMFdwWBqEJCM5BgQfiKbf83jO2De7CHT1AIUh/45vxNp9M2j8t7i2ZZ2h080
+         y9cw==
+X-Gm-Message-State: ACgBeo2YIR8bgMrgNgEpCvbOCZ1mn43oYfMOZGUnXYMN3hM62/tpgnTX
+	UjmxJeb8FPdamARGnwn0U516gg66GQM=
 X-Google-Smtp-Source: 
- AA6agR4Sn6zx3ChENdWvGjbQjgPYfkJj6YAWXAhtmEsxzd06Au9V/huGmoMF05uFi21pXP1WUy5/EA==
-X-Received: by 2002:a05:622a:1112:b0:344:8e18:6d97 with SMTP id
- e18-20020a05622a111200b003448e186d97mr953194qty.583.1662507542998;
-        Tue, 06 Sep 2022 16:39:02 -0700 (PDT)
+ AA6agR4/V5fRJrOFF6wbwWeB+6Ij1j4MSwxR5RjFabOe76CIc7juXJcNEBmJhuiPJsFkHkI8+5lNTg==
+X-Received: by 2002:a05:6214:508f:b0:4aa:a63d:ad12 with SMTP id
+ kk15-20020a056214508f00b004aaa63dad12mr932990qvb.123.1662507544031;
+        Tue, 06 Sep 2022 16:39:04 -0700 (PDT)
 Received: from keaua.attlocal.net ([2600:1700:9190:ba10:aad6:b34a:6444:81ac])
         by smtp.gmail.com with ESMTPSA id
- u16-20020a05622a199000b0031f0485aee0sm11366755qtc.88.2022.09.06.16.39.02
+ u16-20020a05622a199000b0031f0485aee0sm11366755qtc.88.2022.09.06.16.39.03
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 16:39:02 -0700 (PDT)
+        Tue, 06 Sep 2022 16:39:03 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 1/2] update sssd to 2.7.4
-Date: Tue,  6 Sep 2022 19:39:00 -0400
-Message-Id: <20220906233901.2981422-1-akuster808@gmail.com>
+Subject: [meta-security][PATCH 2/2] update chipsec to 1.8.8
+Date: Tue,  6 Sep 2022 19:39:01 -0400
+Message-Id: <20220906233901.2981422-2-akuster808@gmail.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220906233901.2981422-1-akuster808@gmail.com>
+References: <20220906233901.2981422-1-akuster808@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Tue, 06 Sep 2022 23:39:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57998
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57999
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../recipes-security/sssd/{sssd_2.7.3.bb => sssd_2.7.4.bb}      | 2 +-
+ recipes-security/chipsec/{chipsec_1.8.7.bb => chipsec_1.8.8.bb} | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
- rename dynamic-layers/networking-layer/recipes-security/sssd/{sssd_2.7.3.bb => sssd_2.7.4.bb} (98%)
+ rename recipes-security/chipsec/{chipsec_1.8.7.bb => chipsec_1.8.8.bb} (94%)
 
-diff --git a/dynamic-layers/networking-layer/recipes-security/sssd/sssd_2.7.3.bb b/dynamic-layers/networking-layer/recipes-security/sssd/sssd_2.7.4.bb
-similarity index 98%
-rename from dynamic-layers/networking-layer/recipes-security/sssd/sssd_2.7.3.bb
-rename to dynamic-layers/networking-layer/recipes-security/sssd/sssd_2.7.4.bb
-index 95065b3..78d29c3 100644
---- a/dynamic-layers/networking-layer/recipes-security/sssd/sssd_2.7.3.bb
-+++ b/dynamic-layers/networking-layer/recipes-security/sssd/sssd_2.7.4.bb
-@@ -26,7 +26,7 @@ SRC_URI = "https://github.com/SSSD/sssd/releases/download/${PV}/sssd-${PV}.tar.g
-            file://musl_fixup.patch \
-            "
+diff --git a/recipes-security/chipsec/chipsec_1.8.7.bb b/recipes-security/chipsec/chipsec_1.8.8.bb
+similarity index 94%
+rename from recipes-security/chipsec/chipsec_1.8.7.bb
+rename to recipes-security/chipsec/chipsec_1.8.8.bb
+index 60272be..858ece5 100644
+--- a/recipes-security/chipsec/chipsec_1.8.7.bb
++++ b/recipes-security/chipsec/chipsec_1.8.8.bb
+@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=bc2d1f9b427be5fb63f6af9da56f7c5d"
+ DEPENDS = "virtual/kernel nasm-native"
  
--SRC_URI[sha256sum] = "ab3c3fe2a69cc7b2557715a11000aaf358c0afd65f2828ca47a2d3b2651d871b"
-+SRC_URI[sha256sum] = "10ef90c63fdbfda905145077679035bd5ad16b24daad13160de8d0ff82ea9950"
+ SRC_URI = "git://github.com/chipsec/chipsec.git;branch=main;protocol=https"
+-SRCREV = "7b9cc5cd449f2e1e4b5dad46c0eb14348e54e3f0"
++SRCREV = "fd1a98688978fd4b8ca77b512a72eae49c3beffa"
  
- UPSTREAM_CHECK_URI = "https://github.com/SSSD/${BPN}/releases"
+ S = "${WORKDIR}/git"
  
 -- 
 2.25.1
