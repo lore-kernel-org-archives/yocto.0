@@ -2,29 +2,29 @@ Return-Path: <peter.hoyes@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 65716ECAAA1
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 63FA9ECAAD5
 	for <webhook@archiver.kernel.org>; Tue,  6 Sep 2022 13:16:35 +0000 (UTC)
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by mx.groups.io with SMTP id smtpd.web09.3845.1662470192734991462
+ by mx.groups.io with SMTP id smtpd.web08.3996.1662470188309462777
  for <yocto@lists.yoctoproject.org>;
- Tue, 06 Sep 2022 06:16:32 -0700
+ Tue, 06 Sep 2022 06:16:28 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing;
  spf=pass (domain: arm.com, ip: 217.140.110.172, mailfrom: peter.hoyes@arm.com)
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A4C75139F;
-	Tue,  6 Sep 2022 06:16:38 -0700 (PDT)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3873C139F;
+	Tue,  6 Sep 2022 06:16:34 -0700 (PDT)
 Received: from e125920.arm.com (unknown [10.57.88.42])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A2B4C3F7B4;
-	Tue,  6 Sep 2022 06:16:31 -0700 (PDT)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E8A833F7B4;
+	Tue,  6 Sep 2022 06:16:26 -0700 (PDT)
 From: Peter Hoyes <peter.hoyes@arm.com>
 To: yocto@lists.yoctoproject.org
 Cc: diego.sueiro@arm.com,
 	Peter Hoyes <Peter.Hoyes@arm.com>
-Subject: [meta-zephyr][PATCH 5/5] zephyr-kernel: Add 'zephyr' toolchain
- variant
-Date: Tue,  6 Sep 2022 14:17:02 +0100
-Message-Id: <20220906131702.310027-5-peter.hoyes@arm.com>
+Subject: [meta-zephyr][PATCH 3/5] zephyr-kernel: Factor out Yocto toolchain
+ specific variables
+Date: Tue,  6 Sep 2022 14:17:00 +0100
+Message-Id: <20220906131702.310027-3-peter.hoyes@arm.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220906131702.310027-1-peter.hoyes@arm.com>
 References: <20220906131702.310027-1-peter.hoyes@arm.com>
@@ -34,138 +34,108 @@ List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Tue, 06 Sep 2022 13:16:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57991
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57989
 
 From: Peter Hoyes <Peter.Hoyes@arm.com>
 
-Add an option to build applications using the Zephyr SDK by specifying
-ZEPHYR_TOOLCHAIN_VARIANT=3D"zephyr". This mode works with the zephyr or
-poky distros (TCMODE is ignored), allowing Zephyr applications to be
-built alongside a Linux stack.
+Create ZEPHYR_TOOLCHAIN_VARIANT variable with an unchanged default value
+of 'yocto'.
 
-Provide a toolchain-specific inc file for the Zephyr SDK, which
-configures the dependencies and CMake appropriately.
+To support providing different configuration for different toolchain
+variants, require a toolchain-specific inc file.
 
-Add Zephyr toolchain variant to CI configuration for qemu-cortex-a53,
-qemu-cortex-m3 and qemu-x86. Update README.txt
+Create zephyr-toolchain-yocto.inc, and factor out all variables that are
+specific to building using the Yocto toolchain.
 
 Signed-off-by: Peter Hoyes <Peter.Hoyes@arm.com>
 ---
- .gitlab-ci.yml                                    |  9 +++++++--
- README.txt                                        | 10 +++++++---
- ci/zephyr-toolchain.yml                           | 11 +++++++++++
- .../zephyr-kernel/zephyr-toolchain-zephyr.inc     | 15 +++++++++++++++
- 4 files changed, 40 insertions(+), 5 deletions(-)
- create mode 100644 ci/zephyr-toolchain.yml
+ .../zephyr-kernel/zephyr-kernel-common.inc       | 15 +++------------
+ .../zephyr-kernel/zephyr-toolchain-yocto.inc     | 16 ++++++++++++++++
+ 2 files changed, 19 insertions(+), 12 deletions(-)
  create mode 100644 meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-=
-toolchain-zephyr.inc
+toolchain-yocto.inc
 
-diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
-index 22a8ef9..145aefd 100644
---- a/.gitlab-ci.yml
-+++ b/.gitlab-ci.yml
-@@ -79,6 +79,9 @@ nrf52840dk-nrf52840:
+diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-=
+common.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-=
+common.inc
+index a970abf..5c9d9e5 100644
+--- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-common.=
+inc
++++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-common.=
+inc
+@@ -7,8 +7,8 @@ inherit ${ZEPHYR_INHERIT_CLASSES}
+ # filesystem.
+ IMAGE_NO_MANIFEST =3D "1"
 =20
- qemu-cortex-a53:
-   extends: .build
-+  parallel:
-+    matrix:
-+      - TOOLCHAIN: [default, zephyr-toolchain]
+-ZEPHYR_GCC_VARIANT=3D"yocto"
+-ZEPHYR_SYSROOT=3D"${STAGING_DIR_TARGET}"
++ZEPHYR_TOOLCHAIN_VARIANT ?=3D "yocto"
++require zephyr-toolchain-${ZEPHYR_TOOLCHAIN_VARIANT}.inc
 =20
- qemu-cortex-m0:
-   extends: .build
-@@ -90,7 +93,8 @@ qemu-cortex-m3:
-   extends: .build
-   parallel:
-     matrix:
--      - TESTING: testimage
-+      - TOOLCHAIN: [default, zephyr-toolchain]
-+        TESTING: testimage
+ ZEPHYR_MAKE_OUTPUT =3D "zephyr.elf"
+ ZEPHYR_MAKE_BIN_OUTPUT =3D "zephyr.bin"
+@@ -16,13 +16,9 @@ ZEPHYR_MAKE_EFI_OUTPUT =3D "zephyr.efi"
 =20
- qemu-cortex-r5:
-   extends: .build
-@@ -102,7 +106,8 @@ qemu-x86:
-   extends: .build
-   parallel:
-     matrix:
--      - TESTING: testimage
-+      - TOOLCHAIN: [default, zephyr-toolchain]
-+        TESTING: testimage
+ EXTRA_OECMAKE =3D "\
+     -DZEPHYR_BASE=3D${ZEPHYR_BASE} \
+-    -DZEPHYR_GCC_VARIANT=3Dyocto \
+     -DBOARD=3D${BOARD} \
+     -DARCH=3D${ARCH} \
+-    -DCROSS_COMPILE=3D${CROSS_COMPILE} \
+-    -DZEPHYR_SYSROOT=3D${ZEPHYR_SYSROOT} \
+-    -DZEPHYR_TOOLCHAIN_VARIANT=3Dyocto \
+-    -DEXTRA_CPPFLAGS=3D${CPPFLAGS} \
++    -DZEPHYR_TOOLCHAIN_VARIANT=3D${ZEPHYR_TOOLCHAIN_VARIANT} \
+     -DZEPHYR_MODULES=3D${ZEPHYR_MODULES} \
+     "
 =20
- stm32mp157c-dk2:
-   extends: .build
-diff --git a/README.txt b/README.txt
-index ec860fd..4776a8a 100644
---- a/README.txt
-+++ b/README.txt
-@@ -14,9 +14,6 @@ This layer depends on:
-     Python layer (meta-openembedded/meta-python)
-         git://git.openembedded.org/meta-openembedded
+@@ -34,8 +30,6 @@ export ZEPHYR_BASE=3D"${S}/zephyr"
 =20
--Modify local conf by adding:
--    DISTRO=3D"zephyr"
+ DEPENDS +=3D "gperf-native"
+=20
+-CROSS_COMPILE =3D "${STAGING_BINDIR_TOOLCHAIN}/${TARGET_PREFIX}"
 -
- Add "meta-openembedded/meta-oe" to BBLAYERS
- Add "meta-openembedded/meta-python" to BBLAYERS
- Add "meta-zephyr-core" and "meta-zephyr-bsp" to BBLAYERS
-@@ -25,6 +22,13 @@ Building and Running Zephyr Samples
- =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+ DEPENDS:append:qemuall =3D " qemu-native qemu-helper-native"
 =20
- You can build Zephyr samples. There are several sample recipes.
-+
-+To use the Yocto toolchain, modify local conf by adding:
-+    DISTRO=3D"zephyr"
-+
-+To use the Zephyr pre-built toolchain, modify local conf by adding:
-+    ZEPHYR_TOOLCHAIN_VARIANT =3D "zephyr"
-+
- For example, to build the Zephyr "philosophers" sample:
-    =20
-     $ MACHINE=3Dqemu-x86 bitbake zephyr-philosophers
-diff --git a/ci/zephyr-toolchain.yml b/ci/zephyr-toolchain.yml
-new file mode 100644
-index 0000000..ab8baa3
---- /dev/null
-+++ b/ci/zephyr-toolchain.yml
-@@ -0,0 +1,11 @@
-+header:
-+  version: 11
-+
-+# The Zephyr toolchain is standalone and does not depend on TCMODE or TC=
-LIB, so
-+# validate that it is possible to build Zephyr applications alongside a
-+# poky-based Linux distro
-+distro: poky
-+
-+local_conf_header:
-+  zephyr-toolchain: |
-+    ZEPHYR_TOOLCHAIN_VARIANT =3D "zephyr"
+ # The makefiles are explicit about the flags they want, so don't unset
+@@ -49,12 +43,9 @@ python () {
+     d.delVar('LDFLAGS')
+ }
+=20
+-OE_TERMINAL_EXPORTS +=3D "CROSS_COMPILE"
+ OE_TERMINAL_EXPORTS +=3D "BOARD"
+ OE_TERMINAL_EXPORTS +=3D "ZEPHYR_SRC_DIR"
+ OE_TERMINAL_EXPORTS +=3D "ZEPHYR_BASE"
+-OE_TERMINAL_EXPORTS +=3D "ZEPHYR_SYSROOT"
+-OE_TERMINAL_EXPORTS +=3D "ZEPHYR_GCC_VARIANT"
+=20
+ IMAGE_FSTYPES =3D "elf bin"
+=20
 diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-toolcha=
-in-zephyr.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-tool=
-chain-zephyr.inc
+in-yocto.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-toolc=
+hain-yocto.inc
 new file mode 100644
-index 0000000..9987e3c
+index 0000000..b167695
 --- /dev/null
-+++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-toolchain-zeph=
-yr.inc
-@@ -0,0 +1,15 @@
-+# Additional definitions to use the Zephyr SDK
++++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-toolchain-yoct=
+o.inc
+@@ -0,0 +1,16 @@
++# Additional definitions to use the Yocto toolchain
 +
-+# Configure usage of the Zephyr SDK
-+INHIBIT_DEFAULT_DEPS =3D "1"
-+DEPENDS +=3D "zephyr-sdk-native"
-+export ZEPHYR_SDK_INSTALL_DIR=3D"${STAGING_DIR_NATIVE}${prefix}/zephyr-s=
-dk"
-+OE_TERMINAL_EXPORTS +=3D "ZEPHYR_SDK_INSTALL_DIR"
++ZEPHYR_GCC_VARIANT=3D"yocto"
++ZEPHYR_SYSROOT=3D"${STAGING_DIR_TARGET}"
++CROSS_COMPILE =3D "${STAGING_BINDIR_TOOLCHAIN}/${TARGET_PREFIX}"
 +
-+# The Zephyr SDK does not require a CMake toolchain file
-+EXTRA_OECMAKE:append =3D " -DCMAKE_TOOLCHAIN_FILE=3D"
-+deltask generate_toolchain_file
++EXTRA_OECMAKE:append =3D " \
++    -DZEPHYR_GCC_VARIANT=3D${ZEPHYR_GCC_VARIANT} \
++    -DCROSS_COMPILE=3D${CROSS_COMPILE} \
++    -DZEPHYR_SYSROOT=3D${ZEPHYR_SYSROOT} \
++    -DEXTRA_CPPFLAGS=3D${CPPFLAGS} \
++    "
 +
-+# Provide a suitable location to store the toolchain capabilites cache
-+ZEPHYR_USER_CACHE_DIR =3D "${B}/.cache"
-+EXTRA_OECMAKE:append =3D " -DUSER_CACHE_DIR=3D${ZEPHYR_USER_CACHE_DIR}"
++OE_TERMINAL_EXPORTS +=3D "CROSS_COMPILE"
++OE_TERMINAL_EXPORTS +=3D "ZEPHYR_SYSROOT"
++OE_TERMINAL_EXPORTS +=3D "ZEPHYR_GCC_VARIANT"
 --=20
 2.25.1
 
