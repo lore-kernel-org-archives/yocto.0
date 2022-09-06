@@ -2,206 +2,139 @@ Return-Path: <peter.hoyes@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 78504C6FA83
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 76AE9ECAAA1
 	for <webhook@archiver.kernel.org>; Tue,  6 Sep 2022 13:16:25 +0000 (UTC)
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by mx.groups.io with SMTP id smtpd.web12.3895.1662470174968323997
+ by mx.groups.io with SMTP id smtpd.web09.3842.1662470181141141583
  for <yocto@lists.yoctoproject.org>;
- Tue, 06 Sep 2022 06:16:15 -0700
+ Tue, 06 Sep 2022 06:16:21 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing;
  spf=pass (domain: arm.com, ip: 217.140.110.172, mailfrom: peter.hoyes@arm.com)
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6B48E139F;
-	Tue,  6 Sep 2022 06:16:20 -0700 (PDT)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 14A6A139F;
+	Tue,  6 Sep 2022 06:16:27 -0700 (PDT)
 Received: from e125920.arm.com (unknown [10.57.88.42])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4EDA33F7B4;
-	Tue,  6 Sep 2022 06:16:13 -0700 (PDT)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D37103F7B4;
+	Tue,  6 Sep 2022 06:16:19 -0700 (PDT)
 From: Peter Hoyes <peter.hoyes@arm.com>
 To: yocto@lists.yoctoproject.org
 Cc: diego.sueiro@arm.com,
 	Peter Hoyes <Peter.Hoyes@arm.com>
-Subject: [meta-zephyr][PATCH 1/5] Cleanup README.txt files
-Date: Tue,  6 Sep 2022 14:16:58 +0100
-Message-Id: <20220906131702.310027-1-peter.hoyes@arm.com>
+Subject: [meta-zephyr][PATCH 2/5] CI: Use the matrix to ovleray additional Kas
+ files
+Date: Tue,  6 Sep 2022 14:16:59 +0100
+Message-Id: <20220906131702.310027-2-peter.hoyes@arm.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220906131702.310027-1-peter.hoyes@arm.com>
+References: <20220906131702.310027-1-peter.hoyes@arm.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Tue, 06 Sep 2022 13:16:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57987
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/57988
 
 From: Peter Hoyes <Peter.Hoyes@arm.com>
 
-The README.txt files at the root and in meta-zephyr-core are identical,
-so replace the copy inside meta-zephyr-core with "See ../README.txt" to
-remove the need to keep two files in sync.
+Adopt the jobs-to-kas helper script from meta-arm, which uses Gitlab's
+parellel matrix to overlay additional Kas files on top of the base Kas
+file (based on $CI_JOB_NAME).
 
-Add a similar README.txt to meta-zephyr-bsp.
+This allows multiple combinations of Kas file overlays to be easily
+tested with minimal boilerplate.
 
 Signed-off-by: Peter Hoyes <Peter.Hoyes@arm.com>
 ---
- meta-zephyr-bsp/README.txt  |   1 +
- meta-zephyr-core/README.txt | 120 +-----------------------------------
- 2 files changed, 2 insertions(+), 119 deletions(-)
- create mode 100644 meta-zephyr-bsp/README.txt
+ .gitlab-ci.yml | 15 ++++++++++++---
+ ci/jobs-to-kas | 31 +++++++++++++++++++------------
+ 2 files changed, 31 insertions(+), 15 deletions(-)
 
-diff --git a/meta-zephyr-bsp/README.txt b/meta-zephyr-bsp/README.txt
-new file mode 100644
-index 0000000..2644ed0
---- /dev/null
-+++ b/meta-zephyr-bsp/README.txt
-@@ -0,0 +1 @@
-+See ../README.txt
-diff --git a/meta-zephyr-core/README.txt b/meta-zephyr-core/README.txt
-index 5a0ccc7..2644ed0 100644
---- a/meta-zephyr-core/README.txt
-+++ b/meta-zephyr-core/README.txt
-@@ -1,119 +1 @@
--Building Zephyr Images via bitbake recipes
--=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
+index addd04c..22a8ef9 100644
+--- a/.gitlab-ci.yml
++++ b/.gitlab-ci.yml
+@@ -80,11 +80,17 @@ nrf52840dk-nrf52840:
+ qemu-cortex-a53:
+   extends: .build
+=20
+-qemu-cortex-m0/testimage:
++qemu-cortex-m0:
+   extends: .build
++  parallel:
++    matrix:
++      - TESTING: testimage
+=20
+-qemu-cortex-m3/testimage:
++qemu-cortex-m3:
+   extends: .build
++  parallel:
++    matrix:
++      - TESTING: testimage
+=20
+ qemu-cortex-r5:
+   extends: .build
+@@ -92,8 +98,11 @@ qemu-cortex-r5:
+ qemu-nios2:
+   extends: .build
+=20
+-qemu-x86/testimage:
++qemu-x86:
+   extends: .build
++  parallel:
++    matrix:
++      - TESTING: testimage
+=20
+ stm32mp157c-dk2:
+   extends: .build
+diff --git a/ci/jobs-to-kas b/ci/jobs-to-kas
+index 7057970..296bb0d 100755
+--- a/ci/jobs-to-kas
++++ b/ci/jobs-to-kas
+@@ -1,19 +1,26 @@
+ #! /bin/bash
+=20
+-# Read a GitLab CI job name on $1 and transform it to a
+-# list of Kas yaml files
++# This script is expecting an input of machine name, optionally followed=
+ by a
++# colon and a list of one or more parameters separated by commas between
++# brackets.  For example, the following are acceptable:
++# qemu-x86
++# qemu-cortex-m3: [testimage]
++# qemu-cortex-a53: [zephyr-toolchain, testimage]
++#
++# Turn this list into a series of yml files separated by colons to pass =
+to kas
+=20
+ set -e -u
+=20
+-# Read Job namne from $1 and split on /
+-IFS=3D/ read -r -a PARTS<<<$1
++FILES=3D"ci/$(echo $1 | cut -d ':' -f 1).yml"
+=20
+-# Prefix each part with ci/
+-PARTS=3D("${PARTS[@]/#/ci/}")
++for i in $(echo $1 | cut -s -d ':' -f 2 | sed 's/[][,]//g'); do
++	# Given that there is no yml file for default, we can simply ignore tho=
+se
++	# parameters.  They are necessary to pass in so that matrix can correct=
+ly
++	# setup all of the permutations of each individual run.
++	if [[ $i =3D=3D 'default' ]]; then
++		continue
++	fi
++	FILES+=3D":ci/$i.yml"
++done
+=20
+-# Suffix each part with .yml
+-PARTS=3D("${PARTS[@]/%/.yml}")
 -
--More detailed and up-to-date information can be found here:
--
--https://wiki.yoctoproject.org/wiki/TipsAndTricks/BuildingZephyrImages
--
--Prerequisites:
--=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
--
--This layer depends on:
--    Yocto distro (master)
--        git://git.yoctoproject.org/poky
--    Python layer (meta-openembedded/meta-python)
--        git://git.openembedded.org/meta-openembedded
--
--Modify local conf by adding:
--    DISTRO=3D"zephyr"
--
--Add "meta-openembedded/meta-oe" to BBLAYERS
--Add "meta-openembedded/meta-python" to BBLAYERS
--Add "meta-zephyr" to BBLAYERS
--
--Building and Running Zephyr Samples
--=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
--
--You can build Zephyr samples. There are several sample recipes.
--For example, to build the Zephyr "philosophers" sample:
--   =20
--    $ MACHINE=3Dqemu-x86 bitbake zephyr-philosophers
--   =20
--You can then run the created "philosophers" image in qemu:
--
--    $ runqemu qemu-x86
--   =20
--The same sample, for ARM image:
--
--    $ MACHINE=3Dqemu-cortex-m3 bitbake zephyr-philosophers
--    $ runqemu qemu-cortex-m3
--   =20
--The same sample, for Nios2 image:
--
--    $ MACHINE=3Dqemu-nios2 bitbake zephyr-philosophers
--    $ runqemu qemu-nios2
--
--Flashing
--=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
--
--You can flash Zephyr samples to boards. Currently, the following MACHINE=
-s
--are supported:
-- * DFU:
--  - arduino-101-sss
--  - arduino-101
--  - arduino-101-ble
-- * pyocd:
--  - 96b-nitrogen
--
--To flash the example you built with command e.g.
--
--    $ MACHINE=3D96b-nitrogen bitbake zephyr-philosophers
--
--call similar command with explicit flash_usb command:
--
--    $ MACHINE=3D96b-nitrogen bitbake zephyr-philosophers -c flash_usb
--
--dfu-util and/or pyocd need to be installed in your system. If you observ=
-e
--permission errors or the flashing process seem to hang, follow those ins=
-tructions:
--https://github.com/pyocd/pyOCD/tree/master/udev
--
--By default, pyocd tries to flash all the attached probes. This behaviour=
- can be
--customised by defining the PYOCD_FLASH_IDS variable as a space-separated=
- list
--of IDs. Once that is set, the tool will only try to program these IDs. Y=
-ou can
--query for the IDs by running `pyocd list` on your host while having the =
-probes
--attached. Besides setting this variable through the build's configuratio=
-n or
--metadata, you can also inject its value from command line with something=
- like:
--
--    $ PYOCD_FLASH_IDS=3D'<ID1> <ID2> <ID3>' BB_ENV_EXTRAWHITE=3D"$BB_ENV=
-_EXTRAWHITE PYOCD_FLASH_IDS" bitbake <TARGET> -c flash_usb
--
--Building and Running Zephyr Tests
--=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
--Presently only toolchains for ARM, x86, IAMCU and Nios2 are supported.
--(For ARM we use CortexM3 toolchain)
--
--To run Zephyr Test using Yocto Image Tests, ensure following in local.co=
-nf:
--
--    INHERIT +=3D "testimage"
--
--You can build and test an individual existing Zephyr test.
--This is done by appending the actual test name to the "zephyr-kernel-tes=
-t",
--for example:
--
--    $ MACHINE=3Dqemu-x86 bitbake zephyr-kernel-test-sleep
--    $ MACHINE=3Dqemu-x86 bitbake zephyr-kernel-test-sleep -c testimage
--
--You can also build and run all Zephyr existing tests (as listed in the f=
-ile
--zephyr-kernel-test.inc). For example:
--
--    $ MACHINE=3Dqemu-x86 bitbake zephyr-kernel-test-all
--    $ MACHINE=3Dqemu-x86 bitbake zephyr-kernel-test-all -c testimage
--or=20
--    $ MACHINE=3Dqemu-cortex-m3 bitbake zephyr-kernel-test-all
--    $ MACHINE=3Dqemu-cortex-m3 bitbake zephyr-kernel-test-all -c testima=
-ge
--or=20
--    $ MACHINE=3Dqemu-nios2 bitbake zephyr-kernel-test-all
--    $ MACHINE=3Dqemu-nios2 bitbake zephyr-kernel-test-all -c testimage
--       =20
--
--Contributing
--=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
--
--Patches for meta-zephyr should be sent to the yocto@lists.yoctoproject.o=
-rg
--mailing list.  See https://lists.yoctoproject.org/g/yocto for subscripti=
-on
--details and the list archive.  Please add [meta-zephyr] to the subject s=
-o
--the patches are identifable.
--
--Git can be configured to send mails appropriately when using git send-em=
-ail:
--
--$ git config --local sendemail.to yocto@lists.yoctoproject.org
--$ git config --local format.subjectPrefix meta-zephyr][PATCH
-+See ../README.txt
+-# Print colon-separated
+-IFS=3D":"
+-echo "${PARTS[*]}"
++echo $FILES
 --=20
 2.25.1
 
