@@ -1,229 +1,178 @@
-Return-Path: <jdmason@kudzu.us>
+Return-Path: <andrei@gherzan.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DB6AFC38145
-	for <webhook@archiver.kernel.org>; Wed,  7 Sep 2022 20:08:34 +0000 (UTC)
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com
- [209.85.219.45])
- by mx.groups.io with SMTP id smtpd.web09.416.1662581308566289612
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3DD3CC38145
+	for <webhook@archiver.kernel.org>; Wed,  7 Sep 2022 21:40:15 +0000 (UTC)
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com
+ [66.111.4.28])
+ by mx.groups.io with SMTP id smtpd.web10.1437.1662586813371605672
  for <yocto@lists.yoctoproject.org>;
- Wed, 07 Sep 2022 13:08:28 -0700
+ Wed, 07 Sep 2022 14:40:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kudzu-us.20210112.gappssmtp.com header.s=20210112
- header.b=NVkawoqh;
- spf=none, err=permanent DNS error (domain: kudzu.us, ip: 209.85.219.45,
- mailfrom: jdmason@kudzu.us)
-Received: by mail-qv1-f45.google.com with SMTP id d1so11604671qvs.0
-        for <yocto@lists.yoctoproject.org>;
- Wed, 07 Sep 2022 13:08:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kudzu-us.20210112.gappssmtp.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=BZkowY+l8vDzh2Xzmb5dShzqvDnWUK4Db9V+gzl2Y10=;
-        b=NVkawoqhaEa38yT0AWmOolUExWtvsFgf9wI3kiqEyFMZRP2Ns2Qk49zKGktqkOQ+Sv
-         e1K/Fq38VOs8FeJwr4cgrf3P/7061EFub58ExpZXPr530tZmhVRCxcDSg8DBXJmmKq6D
-         50HwG9xNF8DNDPVxMDCCjlArgOg+nnrBye6HGh8YFVlhuTc56fNBL+qNisi5Z4K/HjVV
-         eJpDfRpAnklwO5e2rPxQpivzHWs0yHmnlu3BDAA9j2BXAQvmp57VDwFaXV3sckc5ciYE
-         ZDPX0quGMkmqzqjxM9waB6aN30GT7qNvEJc1o1fpSphKRlfSrkeBOW4Ew7xQbtw384IC
-         E9wQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=BZkowY+l8vDzh2Xzmb5dShzqvDnWUK4Db9V+gzl2Y10=;
-        b=pPdZiMCcQMQVEeblIMouHJDVcaQG1ah9tkDJ4CT4tAXda3zs70sBPcmrArTcrJFkPP
-         JSi1ZAVTYPd9+I2xujl+l1kzyInnNlJwaAlfG38sVUxxvwLoyDeASAJAHaNXC947wSBs
-         EhNz3NocwlZ6h0ydymCrzuLTCrLbmalJ/Wor7O1Xq/Mt1JOxmQHSzKQPv+bZuGP60QRy
-         GZVwvhprhsa93hGwWb1ld0Wpmu5LB9dHcGMdowFeSnZ304D23vcyRObhDZO0cQPI2bzj
-         AKHSiy8rVLSfy9OwiDrB9wp2wKMi4xL4dWY5dhbI/o/avm9yGnyrNY5ePNuyU9kXxWmk
-         AAEA==
-X-Gm-Message-State: ACgBeo18Svp3RiOSUzgngMTkl+qgLWMLI9SOWFICQ1t/R9CwjnafZt2n
-	uXos74WdEYO7gifQL7HhdEzKKg==
-X-Google-Smtp-Source: 
- AA6agR488Qsm2P0xi54xVbdrzuW4PSgarsPMGg9cZNr0jIKsSBPV1PFPboAVPaSaT+/+wr+e1unXhg==
-X-Received: by 2002:ad4:5ecd:0:b0:4a6:cf3a:2462 with SMTP id
- jm13-20020ad45ecd000000b004a6cf3a2462mr4782931qvb.67.1662581307375;
-        Wed, 07 Sep 2022 13:08:27 -0700 (PDT)
-Received: from kudzu.us ([2605:a601:a608:5600::59])
-        by smtp.gmail.com with ESMTPSA id
- g6-20020a05620a40c600b006b9576cd060sm15052290qko.21.2022.09.07.13.08.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Sep 2022 13:08:26 -0700 (PDT)
-Date: Wed, 7 Sep 2022 16:08:24 -0400
-From: Jon Mason <jdmason@kudzu.us>
-To: Peter Hoyes <peter.hoyes@arm.com>
-Cc: yocto@lists.yoctoproject.org, diego.sueiro@arm.com
-Subject: Re: [meta-zephyr][PATCH 1/5] Cleanup README.txt files
-Message-ID: <Yxj6OL3PgmYo9xeq@kudzu.us>
-References: <20220906131702.310027-1-peter.hoyes@arm.com>
+ dkim=fail reason="signature has expired" header.i=@gherzan.com header.s=fm3
+ header.b=e906XmXl;
+ spf=pass (domain: gherzan.com, ip: 66.111.4.28, mailfrom: andrei@gherzan.com)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailout.nyi.internal (Postfix) with ESMTP id BA9D95C0192;
+	Wed,  7 Sep 2022 17:40:12 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Wed, 07 Sep 2022 17:40:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gherzan.com; h=
+	cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:sender
+	:subject:subject:to:to; s=fm3; t=1662586812; x=1662673212; bh=Wd
+	koVoceNQRFVfq4C+peakdOxsshK6Ixd1+cjLmEYls=; b=e906XmXly9QTvgG1Om
+	X73gNXdtsFL6r+O0L/sD8hFvC4+OlfdRzzUfvmH/p8vkiK47Ry0jgG0Cs+Mm9l3e
+	pf9spBD9KgYUq8jCk+GYOD3onsaidsi9m7Rw8/eqqpETbwLuIcWn/b1jJP8Kb6KK
+	HBSjNbYSUmt5dTJnfN2JrQy6xgnGnNZDeSzrTY8ao+KHhk9pNf1olYJLn4glzXA+
+	mnwa2TMSTnj95NJ91pBGV6wQnhWGIk/x7ukAAn0oLDdSY8AKOsUIT7luc80OnK86
+	eCxIln0uqL5DuTRone+BijLr8m8oIU29EYfXM3s5tgqaJ+AiD8ipeYb+g6ICXOyb
+	KN5A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:sender:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm2; t=1662586812; x=1662673212; bh=WdkoVoceNQRFV
+	fq4C+peakdOxsshK6Ixd1+cjLmEYls=; b=KU5UKpzHcNWJQDTSLa1w8FtuSPOEZ
+	ZIHAOxS8yGYQP3jIX74X5iIvOjlPh7bk/0IVpKB2YvJ+6V2tPMv+yeVamfPBF+HE
+	2mwRuEv4k4X4zZafu3OS4552DqEAlAhRTlDEcqF/gHQB1CcuSxFcXP/OK6D6phvx
+	7f7nX7X+bPNyn9DBm8A94lsybovWaJF2spzWiNjHlFauAXUYRxeZtsDtt1AI4VkY
+	fUYQFrfb015gBPIKRXQ2dFaNPnc/qGMZtc0r7sIAaXqsFzyFBFzD/oyG1Sj7QKfX
+	Z7+lMuFAmOGRF/tPkagHgO2RrbUiK9zHeHFf5bqHJI9sqyPqxezEI3D8g==
+X-ME-Sender: <xms:vA8ZYw3W40ASULo4kj1vG73-upKT7EJW7CVIeAC4HjtgE67tuxuh9A>
+    <xme:vA8ZY7HtQzVSdKBhCPhqdLEyo1t1DlYviz560lwhMKCVrLRwVDj2lrKTBPxm5Q7F4
+    ClRaxV9liql8EiZbFQ>
+X-ME-Received: 
+ <xmr:vA8ZY46SBUrmtPhy0IU6mqJaY_blzN0nF7PjEA-YS9UQoYQXg2_7KMYy0f77aZtUL0AydNW_hM-cg0xwLOCIC7tWpafJg65z6U7I6mIHo1ckZVvoa4G7AqVi>
+X-ME-Proxy-Cause: 
+ gggruggvucftvghtrhhoucdtuddrgedvfedrfedtuddgtdduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvfevufffkffojghfggfgsedtke
+    ertdertddtnecuhfhrohhmpeetnhgurhgvihcuifhhvghriigrnhcuoegrnhgurhgvihes
+    ghhhvghriigrnhdrtghomheqnecuggftrfgrthhtvghrnhepjefhvefhgefgffejgeelke
+    ejleeiffejgffgkeeggfffgfffieeffeeghefhtdffnecuvehluhhsthgvrhfuihiivgep
+    tdenucfrrghrrghmpehmrghilhhfrhhomheprghnughrvghisehghhgvrhiirghnrdgtoh
+    hm
+X-ME-Proxy: <xmx:vA8ZY51m1gliz78DXK18K_Q9PN6qhvX_EL_rqfUAI17OphkMO1uKkw>
+    <xmx:vA8ZYzGDesub-xNYEdk9hWhaLlLp5lmjO-k2KJtGlEDMZRhTQ0NtDQ>
+    <xmx:vA8ZYy9-GqXlXudGOjQnR9p4wy-7G81i-YdJzUBq_2SJtT_KeMFPxQ>
+    <xmx:vA8ZY5PIZuEN2dSb4exmqIFEtkPluoRA8Tg6ixPcy-sgt7vGCMEHdA>
+Feedback-ID: i68994715:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 7 Sep 2022 17:40:12 -0400 (EDT)
+From: Andrei Gherzan <andrei@gherzan.com>
+To: yocto@lists.yoctoproject.org
+Cc: andrei@gherzan.com,
+	Andrei Gherzan <andrei.gherzan@huawei.com>
+Subject: [meta-raspberrypi][PATCH 3/4] ci: Add jobs for multiconfig builds
+Date: Wed,  7 Sep 2022 23:39:58 +0200
+Message-Id: <20220907213959.1115886-3-andrei@gherzan.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220907213959.1115886-1-andrei@gherzan.com>
+References: <20220907213959.1115886-1-andrei@gherzan.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220906131702.310027-1-peter.hoyes@arm.com>
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 07 Sep 2022 20:08:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58001
+ <yocto@lists.yoctoproject.org>; Wed, 07 Sep 2022 21:40:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58004
 
-I ran this series though CI and it passes
-See https://gitlab.com/jonmason00/meta-zephyr/-/pipelines/633557829
+From: Andrei Gherzan <andrei.gherzan@huawei.com>
 
-Thanks,
-Jon
+This also fixes a small typo in the normal build matrix.
 
-On Tue, Sep 06, 2022 at 02:16:58PM +0100, Peter Hoyes wrote:
-> From: Peter Hoyes <Peter.Hoyes@arm.com>
-> 
-> The README.txt files at the root and in meta-zephyr-core are identical,
-> so replace the copy inside meta-zephyr-core with "See ../README.txt" to
-> remove the need to keep two files in sync.
-> 
-> Add a similar README.txt to meta-zephyr-bsp.
-> 
-> Signed-off-by: Peter Hoyes <Peter.Hoyes@arm.com>
-> ---
->  meta-zephyr-bsp/README.txt  |   1 +
->  meta-zephyr-core/README.txt | 120 +-----------------------------------
->  2 files changed, 2 insertions(+), 119 deletions(-)
->  create mode 100644 meta-zephyr-bsp/README.txt
-> 
-> diff --git a/meta-zephyr-bsp/README.txt b/meta-zephyr-bsp/README.txt
-> new file mode 100644
-> index 0000000..2644ed0
-> --- /dev/null
-> +++ b/meta-zephyr-bsp/README.txt
-> @@ -0,0 +1 @@
-> +See ../README.txt
-> diff --git a/meta-zephyr-core/README.txt b/meta-zephyr-core/README.txt
-> index 5a0ccc7..2644ed0 100644
-> --- a/meta-zephyr-core/README.txt
-> +++ b/meta-zephyr-core/README.txt
-> @@ -1,119 +1 @@
-> -Building Zephyr Images via bitbake recipes
-> -==========================================
-> -
-> -More detailed and up-to-date information can be found here:
-> -
-> -https://wiki.yoctoproject.org/wiki/TipsAndTricks/BuildingZephyrImages
-> -
-> -Prerequisites:
-> -==============
-> -
-> -This layer depends on:
-> -    Yocto distro (master)
-> -        git://git.yoctoproject.org/poky
-> -    Python layer (meta-openembedded/meta-python)
-> -        git://git.openembedded.org/meta-openembedded
-> -
-> -Modify local conf by adding:
-> -    DISTRO="zephyr"
-> -
-> -Add "meta-openembedded/meta-oe" to BBLAYERS
-> -Add "meta-openembedded/meta-python" to BBLAYERS
-> -Add "meta-zephyr" to BBLAYERS
-> -
-> -Building and Running Zephyr Samples
-> -===================================
-> -
-> -You can build Zephyr samples. There are several sample recipes.
-> -For example, to build the Zephyr "philosophers" sample:
-> -    
-> -    $ MACHINE=qemu-x86 bitbake zephyr-philosophers
-> -    
-> -You can then run the created "philosophers" image in qemu:
-> -
-> -    $ runqemu qemu-x86
-> -    
-> -The same sample, for ARM image:
-> -
-> -    $ MACHINE=qemu-cortex-m3 bitbake zephyr-philosophers
-> -    $ runqemu qemu-cortex-m3
-> -    
-> -The same sample, for Nios2 image:
-> -
-> -    $ MACHINE=qemu-nios2 bitbake zephyr-philosophers
-> -    $ runqemu qemu-nios2
-> -
-> -Flashing
-> -=================================
-> -
-> -You can flash Zephyr samples to boards. Currently, the following MACHINEs
-> -are supported:
-> - * DFU:
-> -  - arduino-101-sss
-> -  - arduino-101
-> -  - arduino-101-ble
-> - * pyocd:
-> -  - 96b-nitrogen
-> -
-> -To flash the example you built with command e.g.
-> -
-> -    $ MACHINE=96b-nitrogen bitbake zephyr-philosophers
-> -
-> -call similar command with explicit flash_usb command:
-> -
-> -    $ MACHINE=96b-nitrogen bitbake zephyr-philosophers -c flash_usb
-> -
-> -dfu-util and/or pyocd need to be installed in your system. If you observe
-> -permission errors or the flashing process seem to hang, follow those instructions:
-> -https://github.com/pyocd/pyOCD/tree/master/udev
-> -
-> -By default, pyocd tries to flash all the attached probes. This behaviour can be
-> -customised by defining the PYOCD_FLASH_IDS variable as a space-separated list
-> -of IDs. Once that is set, the tool will only try to program these IDs. You can
-> -query for the IDs by running `pyocd list` on your host while having the probes
-> -attached. Besides setting this variable through the build's configuration or
-> -metadata, you can also inject its value from command line with something like:
-> -
-> -    $ PYOCD_FLASH_IDS='<ID1> <ID2> <ID3>' BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE PYOCD_FLASH_IDS" bitbake <TARGET> -c flash_usb
-> -
-> -Building and Running Zephyr Tests
-> -=================================
-> -Presently only toolchains for ARM, x86, IAMCU and Nios2 are supported.
-> -(For ARM we use CortexM3 toolchain)
-> -
-> -To run Zephyr Test using Yocto Image Tests, ensure following in local.conf:
-> -
-> -    INHERIT += "testimage"
-> -
-> -You can build and test an individual existing Zephyr test.
-> -This is done by appending the actual test name to the "zephyr-kernel-test",
-> -for example:
-> -
-> -    $ MACHINE=qemu-x86 bitbake zephyr-kernel-test-sleep
-> -    $ MACHINE=qemu-x86 bitbake zephyr-kernel-test-sleep -c testimage
-> -
-> -You can also build and run all Zephyr existing tests (as listed in the file
-> -zephyr-kernel-test.inc). For example:
-> -
-> -    $ MACHINE=qemu-x86 bitbake zephyr-kernel-test-all
-> -    $ MACHINE=qemu-x86 bitbake zephyr-kernel-test-all -c testimage
-> -or 
-> -    $ MACHINE=qemu-cortex-m3 bitbake zephyr-kernel-test-all
-> -    $ MACHINE=qemu-cortex-m3 bitbake zephyr-kernel-test-all -c testimage
-> -or 
-> -    $ MACHINE=qemu-nios2 bitbake zephyr-kernel-test-all
-> -    $ MACHINE=qemu-nios2 bitbake zephyr-kernel-test-all -c testimage
-> -        
-> -
-> -Contributing
-> -============
-> -
-> -Patches for meta-zephyr should be sent to the yocto@lists.yoctoproject.org
-> -mailing list.  See https://lists.yoctoproject.org/g/yocto for subscription
-> -details and the list archive.  Please add [meta-zephyr] to the subject so
-> -the patches are identifable.
-> -
-> -Git can be configured to send mails appropriately when using git send-email:
-> -
-> -$ git config --local sendemail.to yocto@lists.yoctoproject.org
-> -$ git config --local format.subjectPrefix meta-zephyr][PATCH
-> +See ../README.txt
-> -- 
-> 2.25.1
-> 
-> 
+Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
+---
+ .github/workflows/yocto-builds.yml | 68 +++++++++++++++++++++++++++++-
+ 1 file changed, 67 insertions(+), 1 deletion(-)
+
+diff --git a/.github/workflows/yocto-builds.yml b/.github/workflows/yocto-builds.yml
+index 824745c..0f2dcf5 100644
+--- a/.github/workflows/yocto-builds.yml
++++ b/.github/workflows/yocto-builds.yml
+@@ -48,7 +48,7 @@ jobs:
+             .github/workflows/docker-images/yocto-builder/**
+             .github/workflows/docker-images/*.sh
+             .github/workflows/yocto-builds.yml
+-            classes/**'
++            classes/**
+             conf/**
+             dynamic-layers/**
+             files/**
+@@ -84,3 +84,69 @@ jobs:
+       - name: Cleanup dangling docker images
+         uses: ./.github/actions/docker-clean-dangling
+         if: always()
++
++  build-multiconfig:
++    strategy:
++      fail-fast: true
++      matrix:
++        machine:
++          - raspberrypi4
++        image: ['mc:raspberrypi:rpi-test-image']
++        distro: [poky]
++    runs-on: [self-hosted, Linux]
++    name: ${{ matrix.machine }}/${{ matrix.image }}/poky/systemd
++    env:
++      DL_DIR: /var/lib/ci/yocto/downloads
++      SSTATE_DIR: /var/lib/ci/yocto/sstate
++    steps:
++      - name: Checkout the code
++        uses: actions/checkout@v2
++        with:
++          fetch-depth: 0
++      - name: Define Yocto build files
++        id: changed-files-specific
++        uses: tj-actions/changed-files@v24
++        with:
++          files: |
++            .github/actions/**
++            .github/workflows/docker-images/yocto-builder/**
++            .github/workflows/docker-images/*.sh
++            .github/workflows/yocto-builds.yml
++            classes/**
++            conf/**
++            dynamic-layers/**
++            files/**
++            lib/**
++            recipes-**
++            wic/**
++      - name: Build a temporary yocto-builder image
++        uses: ./.github/actions/docker-build
++        with:
++          docker_image: yocto-builder
++          id: ${{ github.event.number }}
++        if: steps.changed-files-specific.outputs.any_changed == 'true'
++      - name: Build the image
++        run: |
++          docker run --rm \
++            -v "$GITHUB_WORKSPACE:/work:ro" \
++            -v "$DL_DIR:$DL_DIR:rw" \
++            -v "$SSTATE_DIR:$SSTATE_DIR:rw" \
++            --env "BASE_REF=$GITHUB_BASE_REF" \
++            --env "MACHINE=${{ matrix.machine }}" \
++            --env "DISTRO=${{ matrix.distro }}" \
++            --env "IMAGE=${{ matrix.image }}" \
++            --env "DL_DIR=$DL_DIR" \
++            --env "SSTATE_DIR=$SSTATE_DIR" \
++            --env "BBMULTICONFIG=raspberrypi\ raspberrypi3" \
++            --env "BB_ENV_PASSTHROUGH_ADDITIONS=BBMULTICONFIG" \
++            "yocto-builder-${{ github.event.number }}" \
++            /entrypoint-build.sh
++        if: steps.changed-files-specific.outputs.any_changed == 'true'
++      - name: Cleanup temporary docker image
++        uses: ./.github/actions/docker-clean-image
++        with:
++          docker_image: yocto-builder-${{ github.event.number }}
++        if: always()
++      - name: Cleanup dangling docker images
++        uses: ./.github/actions/docker-clean-dangling
++        if: always()
+-- 
+2.25.1
+
 
