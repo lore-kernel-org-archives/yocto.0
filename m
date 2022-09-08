@@ -1,382 +1,226 @@
-Return-Path: <martin.leduc@luminator.com>
+Return-Path: <sakib.sajal@windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 90CAEC38145
-	for <webhook@archiver.kernel.org>; Thu,  8 Sep 2022 14:40:21 +0000 (UTC)
-Received: from mx1.luminator.com (mx1.luminator.com [178.15.153.4])
- by mx.groups.io with SMTP id smtpd.web10.6417.1662648005635997099
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6F513C54EE9
+	for <webhook@archiver.kernel.org>; Thu,  8 Sep 2022 15:20:36 +0000 (UTC)
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com
+ [205.220.166.238])
+ by mx.groups.io with SMTP id smtpd.web12.449.1662650430352989498
  for <yocto@lists.yoctoproject.org>;
- Thu, 08 Sep 2022 07:40:06 -0700
+ Thu, 08 Sep 2022 08:20:30 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@luminator.com header.s=luminator header.b=FE5bg5LK;
- spf=pass (domain: luminator.com, ip: 178.15.153.4,
- mailfrom: prvs=025037213a=martin.leduc@luminator.com)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=luminator.com; s=luminator; h=MIME-Version:Content-Type:Message-ID:Date:
-	Subject:To:From:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=ScUW3wJDF5YAc0mjWyXCHB0nQrUEaOPKPKBuO63yMWA=; b=FE5bg5LKlCwOH+XIYJgeikaShm
-	znXIGvODVn5QeJXlhIizYpvlLrWRiPiBi24EoELOYmeAuihxITZYBBuo15QJwc3IrNd3BPuePOw2w
-	W6gnN6DgD2u31klc6/H4Cz5/zsUrF9ldcMtAkFRxRe7mD/GuP87N4QYGa8ng0WP3U1Og5WOPeGYFi
-	2xXUfv88x7sXV/FAvw450XNsakjIQCrZYLwZKD0M0USx2teSkJLz4pI+txhMtaCARNf/mex0A2+Ot
-	v4JJaAlQMQjfB22jQQXLa3pDhdCRqBFy69r5ajdnKPprJLRuQp/2j0rWk22D2+Fim+bPYsQwEq9GV
-	KIxfTaYg==;
-X-SASI-Hits: BODYTEXTH_SIZE_10000_LESS 0.000000,
-	BODYTEXTH_SIZE_3000_MORE 0.000000, BODYTEXTP_SIZE_3000_LESS 0.000000,
-	BODY_SIZE_10000_PLUS 0.000000, HTML_50_70 0.100000, NO_FUR_HEADER 0.000000,
-	NO_URI_HTTPS 0.000000, OUTBOUND 0.000000, OUTBOUND_SOPHOS 0.000000,
-	SUPERLONG_LINE 0.050000, __ANY_URI 0.000000, __ARCAUTH_DKIM_PASSED 0.000000,
-	__ARCAUTH_DMARC_PASSED 0.000000, __ARCAUTH_PASSED 0.000000,
-	__ARC_SEAL_MICROSOFT 0.000000, __ARC_SIGNATURE_MICROSOFT 0.000000,
-	__BODY_TEXT_X4 0.000000, __BULK_NEGATE 0.000000,
-	__BUSINESS_SIGNATURE 0.000000, __COURIER_PHRASE 0.000000,
-	__CP_URI_IN_BODY 0.000000, __CT 0.000000, __CTYPE_HAS_BOUNDARY 0.000000,
-	__CTYPE_MULTIPART 0.000000, __CTYPE_MULTIPART_ALT 0.000000,
-	__DQ_NEG_DOMAIN 0.000000, __DQ_NEG_HEUR 0.000000, __DQ_NEG_IP 0.000000,
-	__FUR_RDNS_SOPHOS 0.000000, __HAS_FROM 0.000000, __HAS_HTML 0.000000,
-	__HAS_MSGID 0.000000, __HAS_X_FF_ASR 0.000000, __HAS_X_FF_ASR_CAT 0.000000,
-	__HAS_X_FF_ASR_SFV 0.000000, __HTML_BAD_END 0.000000,
-	__HTML_ENTITIES_X4 0.000000, __HTML_TAG_DIV 0.000000,
-	__INVOICE_MULTILINGUAL 0.000000, __MIME_HTML 0.000000,
-	__MIME_TEXT_H 0.000000, __MIME_TEXT_H1 0.000000, __MIME_TEXT_H2 0.000000,
-	__MIME_TEXT_P 0.000000, __MIME_TEXT_P1 0.000000, __MIME_TEXT_P2 0.000000,
-	__MIME_VERSION 0.000000, __MULTIPLE_URI_TEXT 0.000000,
-	__OUTBOUND_SOPHOS_FUR 0.000000, __OUTBOUND_SOPHOS_FUR_IP 0.000000,
-	__OUTBOUND_SOPHOS_FUR_RDNS 0.000000, __PHISH_SPEAR_TEAM 0.000000,
-	__SANE_MSGID 0.000000, __STYLE_RATWARE_NEG 0.000000, __STYLE_TAG 0.000000,
-	__SUBJ_ALPHA_START 0.000000, __TAG_EXISTS_HTML 0.000000,
-	__TO_MALFORMED_2 0.000000, __TO_NAME 0.000000, __TO_NO_NAME 0.000000,
-	__URI_ENDS_IN_SLASH 0.000000, __URI_IN_BODY 0.000000, __URI_MAILTO 0.000000,
-	__URI_NOT_IMG 0.000000, __URI_NO_PATH 0.000000, __URI_NS 0.000000,
-	__URI_NS_NXDOMAIN 0.000000, __URI_WITHOUT_PATH 0.000000,
-	__X_FF_ASR_SCL_NSP 0.000000, __X_FF_ASR_SFV_NSPM 0.000000
-X-SASI-Probability: 8%
-X-SASI-RCODE: 200
-X-SASI-Version: Antispam-Engine: 4.1.4, AntispamData: 2022.9.8.135718
+ dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=WMKVaaOc;
+ spf=permerror,
+ err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}:
+ invalid domain name (domain: windriver.com, ip: 205.220.166.238,
+ mailfrom: prvs=6250024179=sakib.sajal@windriver.com)
+Received: from pps.filterd (m0250809.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id
+ 288DKdZW015548;
+	Thu, 8 Sep 2022 08:20:08 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+ h=content-type :
+ message-id : date : from : subject : to : cc : mime-version;
+ s=PPS06212021; bh=ALJY4nvz6ZXsEl1uYSQxxDwk4sHKkzAN6mib769HW68=;
+ b=WMKVaaOcwLnHq1xoUne1JIgOWZV5qax1S+eck/gUNIKk13MzkL6jlX9R282oyNzqZGcM
+ 6cram9yaktq8B3wkJIcf81cMzWB4QArfH8WdNMquIRj9gODQhea2Wqcjw9WRXjeJGK60
+ j+S7lelXxHHBcmQcaj+kwFQphLSDg+sBvJTncQtsrM9geqU1g7X5U+53ZSoBujC8EvNJ
+ 21m5nxLQHSt+JMyOHu5rmRKd0Q9S0U9AyA97Gl3YTe7S7gFb95BmDU2WX2ayeINgNXyo
+ LG6AkI5uHlQyvao8icUkb7akrjKXWZj3v1T975wvE9EinJjGij7UzWKLkIPiDmWWD3Ex Cg==
+Received: from nam11-co1-obe.outbound.protection.outlook.com
+ (mail-co1nam11lp2173.outbound.protection.outlook.com [104.47.56.173])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3jeh0q9ws8-2
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 08 Sep 2022 08:20:08 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Erf8BzLL4FU7wbEMXdwGaEdZ0kwAg7hGmh+UozrjboYUT57BEn+VxrQyZeeGTV8qvIF8AA+DzDA1hicuj/yei6ciaRiZE25oQxGlsRA+ymuiEYOXqIVNd4ae4JOXrzlWSkTiWPEzfwjhAYOhh4a+w4OT3+2lJjlNKO89odD0kaanZADuEau22es5/h4XU3BcU0MkXqlzrSZw6wk8BX1FQnudrgS9+oNvyG7N72piAptv/LwvmgQhRJXDg85jbtOClz4tWqceXxhf7rgo3OhwJ6OBwp7zLwZ0fPFLwrxXD1GwAJk0cFcE9xqJUGrAaU+cEbgaXB6IFL7En+rpEypC3w==
+ b=dKI6n0ZCUK9/K/LOMpxI75uzTNaXtKs86eLnfTbc0Lm8sdUKGhewl0zbn99y71UIx6CD0Wk5Ta4euH2E3l7tOYcpBxgsodG6rjuQwB3ojQEfuAzJfx35BEbJaw9arwMgz4qqwQQ22n3PYzDpiJDUWj7kHRksfoZ7L8IxvuvASWCEWf2M1GG4Wz2p22R48F3zTrviZMg4o2Ez8CL7HzLkFRAMQQ7KjKRl4kb5gsGTCKS8NuGp1uYn+qibyEtlfMIEtjpb/4FVky7vCa1fsEEenGgcKvjWpn7DpfK2mgxKIhjcjeD0YJp4oJWA4/m/du7KQD1eBZWVcT0pT0rq//3LRg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ScUW3wJDF5YAc0mjWyXCHB0nQrUEaOPKPKBuO63yMWA=;
- b=Wh7q1BluS7Vkp7m4vnlr7eG10eE3GWyIKucG+lpeYRCyf4iJW9/h2DcLJUxvctJUwSmwICNprQf37o+Y48qrGIly9Ogm85HjvT2iXwmQrBMO7p9wT9NKKBFPh/SNdD6oVifuIPCcnr1uUkW1/RdCbauvH8N62cPNLsl/3XhfglBOPUW8q9zmetc41OFpIxmPq07jiKtVdW1F0ntDGzMwDlV+jAHvwHULC5dFdI9eY7RZgN5OetehqJ/0aD6juHttk1mKBQ+F46tir9U68ZoI66BU5bt1BhmbfA6YfWV8AAeOqZbgc86bOBQiSBeM83G5oRh8ogu0GgRVz+wVrENS2Q==
+ bh=ALJY4nvz6ZXsEl1uYSQxxDwk4sHKkzAN6mib769HW68=;
+ b=Xj9ZzYLPR8DJXJn0heZ7B5QT04eSg5pbSw4qCAPAjp5GZbyPlOcAaELA4Ixal7T8B8291fvOj5aVz7+QYmxNLhlmxGmKg8UH4nMMeP4sgL2CQ+uardLiGo3jILanLDe10mhUIXGoZ15D6LHz+MzUq5XIWMTqxupFy1pvFuo1Ro+dSiyxpHFJy/keeKpNzkM9eWhWS6DLinxvMaTRKAzvgN7SSSkEnoO5LhT0ATjNe84oLVVId2SNGjKwOaiMKyE+EoafRd+nQB/6IbGLbirhOgEA5rI4wWUMc1l+IbfaGfey0c0KjCMVCKmiJ30ZyzTqJbH3BBDpLfbOWzDWe99fLQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=luminator.com; dmarc=pass action=none
- header.from=luminator.com; dkim=pass header.d=luminator.com; arc=none
-From: Martin Leduc <martin.leduc@luminator.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: meta-spdxscanner 
-Thread-Topic: meta-spdxscanner 
-Thread-Index: AdjDkApYzxHc3YO9SVOzQkaNTkr0Qw==
-Date: Thu, 8 Sep 2022 14:39:53 +0000
-Message-ID: 
- <PA4P189MB1183671D8AA8D2859685348C96409@PA4P189MB1183.EURP189.PROD.OUTLOOK.COM>
-Accept-Language: fr-CA, en-US
-Content-Language: fr-FR
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=luminator.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PA4P189MB1183:EE_|PR3P189MB1017:EE_
-x-ms-office365-filtering-correlation-id: 0f11a32e-9c45-4e36-e899-08da91a7fe60
-x-onpremisesmanualforward: true
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- oNZv7SHrdLlUlOexNtNk2uBOKCXHw3YdCzRvwZU3ZVsiyFttNvuqGH8PT3bZb2JzfO5FPjxKVt1zxfturrufXZ0GJVggE4fzzDRgegl6Vz8MblAEPP9CwFsE0giLxcm/+duQXnrP3p9RTo1b9mJNoZj3nYJumX5XTO4UzhyRw7ANr68y3ovh2CTs0iCpceJ/W7KafSVacCfdTValt+cHH4un+Vco1oslSGdjBFc30K7NwrEj6ctD93DAWyHNY4g6QclKsX1Y5oFdP8BxL+LmoZ20mpm6IXOVuO/ccPn+dBIrtc9Y9PFqdI8OU3maTySVqJbuAW0fb62SB7Rff/uB2bCBIi2+/0QbXHKlqNcmD95ED7V427pOTEBO3Uqr9L+TjWuM7GDkL77s2qnbOh9RJ8ZOTAVrCWxw1PoMcDw+uWHmXB2uJnGIdCqyfnBYZHqn4Y960cInXQajuTBuHVwXleLr7IwxuEN3E12IQPwLVsXcLwAtm7wAgUg+sy2PEwOq/l3q0ncopycZxwzWr6VdjfynQmqCNoU3ZiiYVZmp39HjKo9ptUoDc2XtQZ1nQL2A89yelNow3/k/DGItFo5OrrBK1pQ+FGipMDBgrj6IFX4o8Nw15zHwxAehoMnTzuE6nMFfCKR0FyQT0FAzhvNQFmSch8S5OXypEa5BY1iGpjrGyXJt4jw+KWokCx7j1oV6XT0dZL0IYbBcJAorkJluBAQhCeTsZKQO57Vubxk/LOI6nc1iDjBCuce+rRLIYwxRD5vrU9t0JdkIsGnP+Ou8Gy5pCPPUoG6QjtvkuJQkhaE=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4P189MB1183.EURP189.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(366004)(39850400004)(346002)(136003)(376002)(76116006)(66556008)(66446008)(478600001)(66476007)(6916009)(2906002)(66946007)(122000001)(38070700005)(33656002)(166002)(40140700001)(86362001)(38100700002)(316002)(8676002)(6506007)(7696005)(3480700007)(41300700001)(9686003)(71200400001)(4743002)(26005)(186003)(52536014)(64756008)(5660300002)(83380400001)(55016003)(44832011)(8936002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?t2BPrMk6C6wKJda+Cf0Gzj6AleAK4fqOZe2AX6bgfLyluS9unp7ssZO+eWOI?=
- =?us-ascii?Q?RyebLOGk0Oc+EE6WAhxolwdbWxQWH03SN7yEonZqbeM2hjdyJZO70xevDAdb?=
- =?us-ascii?Q?Jo676JGH8xv3smCYClVkL4tgxzAQ7ZXksYNhYuO457/Ap6NH7OPuG33wIYZP?=
- =?us-ascii?Q?G6hL4d3Rp5WMd2QahKTLLcVhyZ0aNkMGCcjxLNF6GAfQr5QOIVxMMwNbHsZ6?=
- =?us-ascii?Q?T7wulT613Ro+pBHrJPSqfFjkXZBrztf1bUS6+d0r3lHZs9HvpKWxePgceuia?=
- =?us-ascii?Q?Ugd03FWX53VpRsb0cKzdegukxoSWRjL1x3WKJOyGO+ONQ/7WFOJlSznFG42T?=
- =?us-ascii?Q?bK/E85zN0zoceEys4m2v+iQ6HbvGWiBCXEvUK4FBAb6Grmsvb2UtLH78ZMww?=
- =?us-ascii?Q?5XKJUngi8P36dBVuRR6FIdyX6dOMr/R30HZOE1OjPh0A7lnoMbSeSauzKP+8?=
- =?us-ascii?Q?E9XNqqUGb6u+M3Z4zTN8QlAqSMCAqhkNpVN5qf7W/dv9l4V6mAaOHFiXHa0Z?=
- =?us-ascii?Q?sBKrvdUYU7S0FEw1RV+TpsFBPNkuEn5AAfeHRO1s/jHJGzZefpq56LUWiSHZ?=
- =?us-ascii?Q?O7sd+HfkSyzUT7xdHFOGiXy1mmI9IRQAoQv/GpBCBeENxFFom92GJ1ReL6db?=
- =?us-ascii?Q?PNztnHDc4mYqeQkMvZ5F9rOcA34nRG4GcKqA6eObRqpY3pVi0LZvThLkxbAd?=
- =?us-ascii?Q?cc0cFxt/9SfCiWgftDbvDjxuiw+cM3Nn2IPweVWtBMwqgl/x5Q2ltQREb2rP?=
- =?us-ascii?Q?c4aJy3oSgNtzeyzlDf9wp+wEMGACvyNPX0Jhg07BM6RjdYu4uX0iGFlnH+sB?=
- =?us-ascii?Q?bgpK/fUXaAX0MdJMYuDVVr1rpyAsuNkukBmqpL8rj1BAYwDRJgQeeEDzXFE3?=
- =?us-ascii?Q?QRO0lUTnwS7PLPrpG8y/nv9l0wpBB0OMczhg5eEAnVmkXeioor5UIlZyeB+/?=
- =?us-ascii?Q?678U8XzH0e5HY+MLtInLYKnwhCK8P+ZcZvzV2T4BKq4I8P+oftGi23xyCe7U?=
- =?us-ascii?Q?sikRmT73CL7Wni0Y24wTZugIus1Bx90sk/RPGoBuW9lJnTBKFXKmg/51/5Md?=
- =?us-ascii?Q?WZ6btnLjRSTHwanjkhd7XgNWxc7uV10MSOasXDJQTVwX49K/1cIMejNVARrB?=
- =?us-ascii?Q?kTFo73GsgwLGYZhjSycPu+zc6LK8Sy2h3xhWFElROPF/NJfKhAfhBMCfEqkG?=
- =?us-ascii?Q?ST3SNNmZvheiQnZH/ITYL4NOHVyVUKJ19FWyv73BJFQJ538HgZ4fGe9NesgY?=
- =?us-ascii?Q?1NxAPw7ImXJIAkn1MUjCxMSHprQBm3yoEaeOYtkz956G09chiEy2JUYC9eCC?=
- =?us-ascii?Q?mrYZqbURqCOj6Ofvg56cvDVdc0o9imfMoGMfShBUFueOoRKKLxBQ1VFQw9Z6?=
- =?us-ascii?Q?/GURVtjADc/mPo2tUqFMzR9674WFZeQsTxXdBhx9jExSYynwqx7b/gOwAUJ5?=
- =?us-ascii?Q?lRq1O6pq8Owzv5jJtSA86Ez3+gPgCbSQduQ4kW5tpVGa5i+0sxc90AdR6lCr?=
- =?us-ascii?Q?8amcDibqywgQKh9yhWctPk1vAAQCabSBqVQGQdwUAUN9AuFgAaCVIZ0UBIJH?=
- =?us-ascii?Q?58rOXJ7ayCStq/nTrscZigt2pm8MLbr0Fd+ktNsHXIV0l7YvYQFDNgCgaOXe?=
- =?us-ascii?Q?Ug=3D=3D?=
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Received: from DM6PR11MB2538.namprd11.prod.outlook.com (2603:10b6:5:be::20) by
+ DM6PR11MB3883.namprd11.prod.outlook.com (2603:10b6:5:19f::32) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5588.17; Thu, 8 Sep 2022 15:20:05 +0000
+Received: from DM6PR11MB2538.namprd11.prod.outlook.com
+ ([fe80::3526:31b1:a7c:cd2]) by DM6PR11MB2538.namprd11.prod.outlook.com
+ ([fe80::3526:31b1:a7c:cd2%5]) with mapi id 15.20.5588.018; Thu, 8 Sep 2022
+ 15:20:05 +0000
 Content-Type: multipart/alternative;
-	boundary="_000_PA4P189MB1183671D8AA8D2859685348C96409PA4P189MB1183EURP_"
+ boundary="------------pAJ3PHMkqz0Nj800EZx60K6D"
+Message-ID: <e022fe0c-f598-c03b-523d-d66573956121@windriver.com>
+Date: Thu, 8 Sep 2022 11:20:02 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+From: Sakib Sajal <sakib.sajal@windriver.com>
+Subject: [yocto] Minutes: Yocto Project Weekly Triage Meeting 9/8/2022
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Cc: alexandre.belloni@bootlin.com, Bruce Ashfield <bruce.ashfield@gmail.com>,
+        daiane.angolini@foundries.io,
+        "jpewhacker@gmail.com" <jpewhacker@gmail.com>,
+        luca.ceresoli@bootlin.com, pavel.zhukov@huawei.com,
+        "MacLeod, Randy" <Randy.MacLeod@windriver.com>,
+        Richard Purdie <richard.purdie@linuxfoundation.org>,
+        "Wold, Saul" <saul.wold@windriver.com>,
+        "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>,
+        Steve Sakoman <steve@sakoman.com>, tim.orling@konsulko.com,
+        sakib.sajal@windriver.com, akuster808 <akuster808@gmail.com>,
+        ross@burtonini.com, Saul Wold <Saul.Wold@windriver.com>,
+        michael.opdenacker@bootlin.com, valery.chernous@gmail.com,
+        aryaman.gupta@windriver.com, pavel@zhukoff.net
+Content-Language: en-US
+X-ClientProxiedBy: YQBPR0101CA0087.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:4::20) To DM6PR11MB2538.namprd11.prod.outlook.com
+ (2603:10b6:5:be::20)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PA4P189MB1183.EURP189.PROD.OUTLOOK.COM
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 3ee12e8e-ab4f-4749-9ee5-08da91ad9b9f
+X-MS-TrafficTypeDiagnostic: DM6PR11MB3883:EE_
+X-LD-Processed: 8ddb2873-a1ad-4a18-ae4e-4644631433be,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	4RnbsMCHvACLzMFBOROeDy6OCoc06dkCJXsWplwI2U88bndjwJXo+IkV0cpJuoTFlGQPlOiT68Ddt52FXSrCbHWaIg4Ti8RDhj3qJcb9+DRQ+Nyg+COpLHB0wKGGmS4r+meZG6CTVJN4Si+e0yIfUdMryzV/H8DQdi+yMDELr/nglYFHStwhaiVusf8H+C8Q5+dS7/jDvo0+AhsIfyNEilfcjjD5oJZdo1n23sPvWKlG5fu9SXZV9/VW8Wguawk8yCQeMiIkmMuxDx3/8DxX5UDVOKIussZfi+9fSAgN8UyzdxOcdkM8a0G+pIB5SJkmV3n53jHZIqIkJHXO0l+ZvHxDGBdhh3FM3pw6n6PJy+Fb0PeIQpHOX0Ivq866o2EDrQM1jjdK2Ug+Q7wOaQQFEmzr7ZqUlsf26py1VtvwtJI/s8z3wR3CgLWKbqxIbtAxDUzY37ZjfOpmnOCUvg0JsSmfIK1PYq/EeGfozLPSaAKbh5wQ4ACCyW1/4r9hudLolpBf7kshsbz+1U4orA6qG0BS6gC3iRKqmrr78qJX+5b4ZJA6qYm1i80tcb7lFzA9idhGo74JwOUj7Yil5tTE5pNcl98s8r/G8TBpsrUTLjfVzx7tj/YwEzS2htcY+s0RJ5rGiidYnqL0qR66EYUIih4TRt5PUOd5XsfBpP1Sii0UermLk57s93dOdiRTwPkMIHLC4KeacaV5nhfM5H7fSULpUfEf9CESG5CgYfY0wb4NczVoc5H/NN6jUn1E82FBtFQWoAW9CaEnOO7hLq2lNUbC3BZNff6cm7xdKH28JN7nhQ1N1wRDrOrDzLSUXffAkVXr0wpahBpmzT4US5yCFg==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB2538.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(376002)(366004)(396003)(39850400004)(136003)(346002)(26005)(478600001)(33964004)(6506007)(4326008)(6666004)(41300700001)(6512007)(7416002)(66946007)(66556008)(66476007)(2906002)(31686004)(316002)(86362001)(166002)(6916009)(54906003)(36756003)(966005)(6486002)(38100700002)(186003)(31696002)(2616005)(44832011)(5660300002)(8676002)(8936002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?MUFhTlhmRzR3QmJIbE9UanlJNEFqbytvZy9MMy9vd3pqZkR2dExxOWFlNlNs?=
+ =?utf-8?B?Y2NuTDh3UHlwUm5JendEbWNMRGdTV3JmcytqWFdzNkVJckdFSXNTTmtEdkEy?=
+ =?utf-8?B?MmVRQ0wwc0k4R3pjMTVRQWVObEdiR3JybmRRNVZrckF0c0Ixc0FEeG43OXE0?=
+ =?utf-8?B?KzFqNmVkcDE0TGxVOG5GbXduZ1FVUmY1bWYwSldGK25TNm4yMjJjTWtFOWZn?=
+ =?utf-8?B?L0hNOWtrRmdOMHIzUGc0eFBiRjlWNDV3cW9TRlZJQXRqMzdHT1RmMk12aHBw?=
+ =?utf-8?B?bVc2Rml4RzdJdXU3VlJKTlRIeTNZN0d6UUJMTXlabHYrTm9BeE1ST1p4TEx5?=
+ =?utf-8?B?TlJtV280em03WVAyREhKcSsxVkZlTE90d252UEVZWHlyMi9XZ01MYVFhWTk4?=
+ =?utf-8?B?Q2ZaVVorRC84MStpZXdwN0FGQnBDeCtrZHh6dHQxR3d5Zi9MODVpNXMvRDVO?=
+ =?utf-8?B?N3AxcG5rc1lQbmZXNFIxOE41Sk13Z1N5c1BoM0ttRUg4WHViQU9kZmF6SHVy?=
+ =?utf-8?B?eXpodmFXVHVVNVVYR3NHQzBjUlNKUEx1ditpWUl1SVIwVDZxVmI2M2tFNkR6?=
+ =?utf-8?B?UisxaHZHMUttYXJ4Y0NwK0cxL3E5MTlFcUVaM0JXY050VWRRYmVzZFNiUzlT?=
+ =?utf-8?B?SFlSZDJUeTBtcStFSDlVWWJoUTF2M1N6cUhuVU5YQUNiZDczWWplclg2bFRD?=
+ =?utf-8?B?ZUpVMmlCOTRyUVhESVVYeFJ5emJwY2RzOXZKWElZQXFldSszcktzMDc3d1J5?=
+ =?utf-8?B?dUFobDd3WnpvbU5JNk9mYU1YMnBySUtkbzhWUzFZdFNXa2ZGSUYybENrLzBz?=
+ =?utf-8?B?VHFJRlRVK2xVaStZMzBYVytmd24wTFRvcXhEZEp3RWIyaDZBNVJ3Qk5TcldX?=
+ =?utf-8?B?MEpnTU00UVlrNnJDcVNiaTFFZ3BxTWltalBrQm5DWnVVMFJ0bHFtRW8wVmpm?=
+ =?utf-8?B?RXQxc1lMVnhPT3NJQVR4a1lJVUsvelRGdThjYnl2WU5lMWJ5SzF3MThUdERt?=
+ =?utf-8?B?YThmVG9GbVZsRExMVVJXZnJ6UEFBZVlHbWxHSXZ5MXUzYVF4cUJEV0JrcC90?=
+ =?utf-8?B?UHVYdExkQ0FvVXpTYzNUTlBldURWdkFVOG4wMFJlTUFhWUNKdWxCY09rdVJx?=
+ =?utf-8?B?RU9GbHg1WnR3ZUIzMGtlKytnV0pzc0RFUEhNWCtHZkdWL2hIdmZxd3BGd2tF?=
+ =?utf-8?B?UHZUdFNFUnFRbkxyTUlSTkg1YlpjM3VtUU9oMjRueUJScm1UaUx6aVFkOU5k?=
+ =?utf-8?B?SmZKUlVVa3JjZ3lNSXJDdWpPcitsTGpiR2lQQ1JLQzd3bTUrTHNhWXgwaEY1?=
+ =?utf-8?B?Nmgwa0R4OHNBYkJNaXNOYVExS0kwSXR0aGMwbnJ5K3V2ZUU0b2xyU3lLR0lt?=
+ =?utf-8?B?dmsvZmtCNGVLcnhaTDlneGltY1RDeGdTV2Q1dElvUkk5ZzdNSWlyWG9LNW9J?=
+ =?utf-8?B?RGI3bW4yR1UyR1FLOXVGQ0FraDMxd3FJaGZIN090WVhHbWdZWE4yMnFodkxn?=
+ =?utf-8?B?T0FkUU11UmtpOTN1ZlNHWGVSZXdpYjJGdkQra3JUTE55K083ZDJ0d0Y4V1E1?=
+ =?utf-8?B?azNJYkdLeWxYaG5HVzlyLzh5b1dLYTQyNlh5OXorUGUrOW9VWk5lVmlid2h0?=
+ =?utf-8?B?WUpIMWpwaVIwWWxoVXEwZUJQejRCWGFNRHN2K0R4MTJ0RU1Fb05TcWJkS0c0?=
+ =?utf-8?B?Z1krSlpta3FkM0NLZklRd25nbkFBYXpmaEU4d0NBWkdEbStMSWc4d0d3U05k?=
+ =?utf-8?B?QlFKMDByS1RNK2JMdHlYTGJaeXVzcy9ZL1Z6bFlLdlo2REFWU1lOUWpJaE93?=
+ =?utf-8?B?ZjRuZ0FvejVLZHA3VWJzSW1YVmFwQ0dpalF0TUVCN25jQkJ5dmNoVjFscSt1?=
+ =?utf-8?B?bjdIYUhsQVZZcUNzajV2d2ZKZ1lwNGt1eG9URVMyWC9nL0ZHV3lwM0h0VHlh?=
+ =?utf-8?B?ZHpFQmJHV0Y3N1RoWjUyeWpBTTlBNWloM3ZXb0tpSW05Y0VWWUlDV2llYTRM?=
+ =?utf-8?B?VC93dXliOVIyWXUwRExIMEhzbENXM2szejdac0dUZ2FWU0luZDNSUTdIWk95?=
+ =?utf-8?B?RVhPRjdGdEhmODlaczZjU1NtTDlxUW1adDJxNDV0alRNd1Nrc25mcmNDdXB0?=
+ =?utf-8?B?NEtRdVlZOTJMeWk5L0ZJSHVPbVFlTHBWNnNZU25IVEFKZ1c5by84QUZGTEI0?=
+ =?utf-8?B?YUE9PQ==?=
+X-OriginatorOrg: windriver.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 0f11a32e-9c45-4e36-e899-08da91a7fe60
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Sep 2022 14:39:53.9050
+ 3ee12e8e-ab4f-4749-9ee5-08da91ad9b9f
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2538.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2022 15:20:05.5614
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 41cde0b0-5383-4af5-89ba-5c7361af3a57
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- i5a9bF/6KKS93mlJZspBg/ZZ+ZLfH38zQOHZJFT/1OtXCOivnU+JewXtY/UJwHNsrY1Baw9E24di0dVlhVXmupBLa+SKppAET9S4bWN21Sk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3P189MB1017
-X-C2ProcessedOrg: 0aa505bc-c280-44a3-bf0b-cfdbed55e239
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ blzo3QR1pJig9SlcXL/Is7t207CbbQktIFQvcbAM2fGXBi/DPpu3KSCiCQYnPvGBPecQWI7xfYyK1LK50xvgfi4yQkhjYOUi9T3RYXkkj98=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB3883
+X-Proofpoint-GUID: jN5JTz0DFqC0exLmMMhdKb_xQUlBM2u2
+X-Proofpoint-ORIG-GUID: jN5JTz0DFqC0exLmMMhdKb_xQUlBM2u2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-08_10,2022-09-08_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 suspectscore=0
+ priorityscore=1501 mlxscore=0 phishscore=0 lowpriorityscore=0 adultscore=0
+ impostorscore=0 malwarescore=0 spamscore=0 mlxlogscore=903 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2207270000
+ definitions=main-2209080056
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 08 Sep 2022 14:40:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58007
+ <yocto@lists.yoctoproject.org>; Thu, 08 Sep 2022 15:20:36 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58008
 
---_000_PA4P189MB1183671D8AA8D2859685348C96409PA4P189MB1183EURP_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--------------pAJ3PHMkqz0Nj800EZx60K6D
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Community,
+*Wiki: *https://wiki.yoctoproject.org/wiki/Bug_Triage
 
-I'm facing to an issue with meta-spdxscanner.bbclass.  A Python Warning fai=
-l the build.  This is the error:
+*Attendees: *Steve Sakoman, Joshua Watt, Randy Macleod, Richard Purdie, 
+Alexandre Belloni, Stephen Jolley, Ross Burton, Saul Wold, Tim Orling, 
+Pavel Zhukov, Alexandre Belloni, Zheng Qiu, Bruce Ashfield, Pavel Zhukov
 
-ERROR: python3-patch-native-1.16-r0 do_compile: 'python3 setup.py bdist_whe=
-el ' execution failed.
-ERROR: python3-patch-native-1.16-r0 do_compile: ExecutionError('/home/mledu=
-c/1087/1087-NIM/build-sdk/tmp/work/x86_64-linux/python3-patch-native/1.16-r=
-0/temp/run.do_compile.3058985', 1, None, None)
-ERROR: Logfile of failure stored in: /home/mleduc/1087/1087-NIM/build-sdk/t=
-mp/work/x86_64-linux/python3-patch-native/1.16-r0/temp/log.do_compile.30589=
-85
-Log data follows:
-| DEBUG: Executing shell function do_compile
-| /home/mleduc/1087/1087-NIM/build-sdk/tmp/work/x86_64-linux/python3-patch-=
-native/1.16-r0/patch-1.16/setup.py:1: DeprecationWarning: The distutils pac=
-kage is deprecated and slated for removal in Python 3.12. Use setuptools or=
- check PEP 632 for potential alternatives
-|   from distutils.core import setup
-| usage: setup.py [global_opts] cmd1 [cmd1_opts] [cmd2 [cmd2_opts] ...]
-|    or: setup.py --help [cmd1 cmd2 ...]
-|    or: setup.py --help-commands
-|    or: setup.py cmd --help
-|
-| error: invalid command 'bdist_wheel'
-| ERROR: 'python3 setup.py bdist_wheel ' execution failed.
-| WARNING: /home/mleduc/1087/1087-NIM/build-sdk/tmp/work/x86_64-linux/pytho=
-n3-patch-native/1.16-r0/temp/run.do_compile.3058985:177 exit 1 from 'exit 1=
-'
-| WARNING: Backtrace (BB generated script):
-|             #1: bbfatal_log, /home/mleduc/1087/1087-NIM/build-sdk/tmp/wor=
-k/x86_64-linux/python3-patch-native/1.16-r0/temp/run.do_compile.3058985, li=
-ne 177
-|             #2: setuptools3_do_compile, /home/mleduc/1087/1087-NIM/build-=
-sdk/tmp/work/x86_64-linux/python3-patch-native/1.16-r0/temp/run.do_compile.=
-3058985, line 167
-|             #3: do_compile, /home/mleduc/1087/1087-NIM/build-sdk/tmp/work=
-/x86_64-linux/python3-patch-native/1.16-r0/temp/run.do_compile.3058985, lin=
-e 156
-|             #4: main, /home/mleduc/1087/1087-NIM/build-sdk/tmp/work/x86_6=
-4-linux/python3-patch-native/1.16-r0/temp/run.do_compile.3058985, line 181
-ERROR: Task (virtual:native:/home/mleduc/1087/1087-NIM/sources/meta-spdxsca=
-nner/recipes-devtools/python/python3-patch_1.16.bb:do_compile) failed with =
-exit code '1'
+*ARs:*
 
-Any patch or approach to fix this?
+N/A*
+*
 
-I'm using Yocto Kirkstone
+*Notes:
+*
+*
+*
 
-Any help will be appreciated
+*Medium+ 4.1 Unassigned Enhancements/Bugs: *67 (Last week 67)
 
-Martin Leduc
-Superviseur logiciel platforme, Rail
-Luminator Technology Group
-T : 1 418 856-6896
-martin.leduc@luminator.com<mailto:martin.leduc@axiontech.ca>
-www.luminator.com<http://www.luminator.com/>
+*Medium+ 4.99 Unassigned Enhancements/Bugs: *43**(Last week 43)
 
+*AB Bugs: *55 (Last week 57)
+--------------pAJ3PHMkqz0Nj800EZx60K6D
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---_000_PA4P189MB1183671D8AA8D2859685348C96409PA4P189MB1183EURP_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"FR-CA" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi Community,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA">I&#8217;m facing to an issue wi=
-th meta-spdxscanner.bbclass.&nbsp; A Python Warning fail the build.&nbsp; T=
-his is the error:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA">ERROR: python3-patch-native-1.1=
-6-r0 do_compile: 'python3 setup.py bdist_wheel ' execution failed.<o:p></o:=
-p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA">ERROR: python3-patch-native-1.1=
-6-r0 do_compile: ExecutionError('/home/mleduc/1087/1087-NIM/build-sdk/tmp/w=
-ork/x86_64-linux/python3-patch-native/1.16-r0/temp/run.do_compile.3058985',=
- 1, None, None)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA">ERROR: Logfile of failure store=
-d in: /home/mleduc/1087/1087-NIM/build-sdk/tmp/work/x86_64-linux/python3-pa=
-tch-native/1.16-r0/temp/log.do_compile.3058985<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA">Log data follows:<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA">| DEBUG: Executing shell functi=
-on do_compile<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA">| /<span style=3D"background:ye=
-llow;mso-highlight:yellow">home/mleduc/1087/1087-NIM/build-sdk/tmp/work/x86=
-_64-linux/python3-patch-native/1.16-r0/patch-1.16/setup.py:1: DeprecationWa=
-rning: The distutils package is deprecated
- and slated for removal in Python 3.12. Use setuptools or check PEP 632 for=
- potential alternatives<o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA" style=3D"background:yellow;mso-=
-highlight:yellow">|&nbsp;&nbsp; from distutils.core import setup<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA" style=3D"background:yellow;mso-=
-highlight:yellow">| usage: setup.py [global_opts] cmd1 [cmd1_opts] [cmd2 [c=
-md2_opts] ...]<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA" style=3D"background:yellow;mso-=
-highlight:yellow">|&nbsp;&nbsp;&nbsp; or: setup.py --help [cmd1 cmd2 ...]<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA" style=3D"background:yellow;mso-=
-highlight:yellow">|&nbsp;&nbsp;&nbsp; or: setup.py --help-commands<o:p></o:=
-p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA" style=3D"background:yellow;mso-=
-highlight:yellow">|&nbsp;&nbsp;&nbsp; or: setup.py cmd --help<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA" style=3D"background:yellow;mso-=
-highlight:yellow">|
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA" style=3D"background:yellow;mso-=
-highlight:yellow">| error: invalid command 'bdist_wheel'<o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA" style=3D"background:yellow;mso-=
-highlight:yellow">| ERROR: 'python3 setup.py bdist_wheel ' execution failed=
-.</span><span lang=3D"EN-CA"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA">| WARNING: /home/mleduc/1087/10=
-87-NIM/build-sdk/tmp/work/x86_64-linux/python3-patch-native/1.16-r0/temp/ru=
-n.do_compile.3058985:177 exit 1 from 'exit 1'<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA">| WARNING: Backtrace (BB genera=
-ted script):<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA">| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #1: bbfatal_log, /home/mleduc/1087/10=
-87-NIM/build-sdk/tmp/work/x86_64-linux/python3-patch-native/1.16-r0/temp/ru=
-n.do_compile.3058985, line 177<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA">| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #2: setuptools3_do_compile, /home/mle=
-duc/1087/1087-NIM/build-sdk/tmp/work/x86_64-linux/python3-patch-native/1.16=
--r0/temp/run.do_compile.3058985, line 167<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA">| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #3: do_compile, /home/mleduc/1087/108=
-7-NIM/build-sdk/tmp/work/x86_64-linux/python3-patch-native/1.16-r0/temp/run=
-.do_compile.3058985, line 156<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA">| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #4: main, /home/mleduc/1087/1087-NIM/=
-build-sdk/tmp/work/x86_64-linux/python3-patch-native/1.16-r0/temp/run.do_co=
-mpile.3058985, line 181<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA">ERROR: Task (virtual:native:/ho=
-me/mleduc/1087/1087-NIM/sources/meta-spdxscanner/recipes-devtools/python/py=
-thon3-patch_1.16.bb:do_compile) failed with exit code '1'<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA" style=3D"mso-fareast-language:F=
-R-CA"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA" style=3D"mso-fareast-language:F=
-R-CA">Any patch or approach to fix this?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA" style=3D"mso-fareast-language:F=
-R-CA"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA" style=3D"mso-fareast-language:F=
-R-CA">I&#8217;m using Yocto Kirkstone<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA" style=3D"mso-fareast-language:F=
-R-CA"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA" style=3D"mso-fareast-language:F=
-R-CA">Any help will be appreciated<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-CA" style=3D"mso-fareast-language:F=
-R-CA"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Arial&quot;,sans-serif;color:#636466;mso-fareast-language:FR-CA">Martin Le=
-duc<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif;color:#636466;mso-fareast-language:FR-CA">Superviseur =
-logiciel platforme, Rail<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Arial&quot;,sans-serif;color:#636466;mso-fareast-language:FR-CA">Luminator=
- Technology Group<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif;color:#636466;mso-fareast-language:FR-CA">T&nbsp;: 1&n=
-bsp;418 856-6896<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif;color:#636466;mso-fareast-language:FR-CA"><a href=3D"m=
-ailto:martin.leduc@axiontech.ca"><span style=3D"color:#0563C1">martin.leduc=
-@luminator.com</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif;color:#636466;mso-fareast-language:FR-CA"><a href=3D"h=
-ttp://www.luminator.com/"><span style=3D"color:#0563C1">www.luminator.com</=
-span></a><b><o:p></o:p></b></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <div class="moz-text-html" lang="x-unicode">
+      <p><b>Wiki: </b><a class="moz-txt-link-freetext" href="https://urldefense.com/v3/__https://wiki.yoctoproject.org/wiki/Bug_Triage__;!!AjveYdw8EvQ!cAjVArCgL_RlaRXuscB-7FXNeNbEpNLXV5wf6cuuQ5AJ_finBsyqaqIWAMBAw_THa9F-SJpSJTfbDp4zK8Q6ydo_qduobM6c$" moz-do-not-send="true">https://wiki.yoctoproject.org/wiki/Bug_Triage</a></p>
+      <p><b>Attendees: </b>Steve Sakoman, Joshua Watt, Randy Macleod,
+        Richard Purdie, Alexandre Belloni, Stephen Jolley, Ross Burton,
+        Saul Wold, Tim Orling, Pavel Zhukov, Alexandre Belloni, Zheng
+        Qiu, Bruce Ashfield, Pavel Zhukov<br>
+      </p>
+      <p><b>ARs:</b></p>
+      <p>N/A<b><br>
+        </b></p>
+    </div>
+    <span class="moz-txt-link-freetext"></span>
+    <div class="moz-text-html" lang="x-unicode"><b>Notes: <br>
+      </b></div>
+    <div class="moz-text-html" lang="x-unicode"><b><br>
+      </b></div>
+    <div class="moz-text-html" lang="x-unicode">
+      <p><b>Medium+ 4.1 Unassigned Enhancements/Bugs: </b>67 (Last week
+        67)<br>
+      </p>
+      <b>Medium+ 4.99 Unassigned Enhancements/Bugs: </b>43<b> </b>(Last
+      week 43)<br>
+    </div>
+    <div class="moz-text-html" lang="x-unicode"><br>
+    </div>
+    <div class="moz-text-html" lang="x-unicode"><b>AB Bugs: </b>55
+      (Last week 57)<br>
+    </div>
+  </body>
 </html>
 
---_000_PA4P189MB1183671D8AA8D2859685348C96409PA4P189MB1183EURP_--
+--------------pAJ3PHMkqz0Nj800EZx60K6D--
 
