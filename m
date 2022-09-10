@@ -1,132 +1,143 @@
-Return-Path: <zaqhielhorus@gmail.com>
+Return-Path: <andrei@gherzan.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 53EC1ECAAD5
-	for <webhook@archiver.kernel.org>; Sat, 10 Sep 2022 06:50:22 +0000 (UTC)
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com
- [209.85.160.44])
- by mx.groups.io with SMTP id smtpd.web10.1277.1662792609242665616
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BA974C6FA82
+	for <webhook@archiver.kernel.org>; Sat, 10 Sep 2022 22:36:28 +0000 (UTC)
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com
+ [64.147.123.21])
+ by mx.groups.io with SMTP id smtpd.web10.4698.1662849381729419775
  for <yocto@lists.yoctoproject.org>;
- Fri, 09 Sep 2022 23:50:09 -0700
+ Sat, 10 Sep 2022 15:36:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=CskU8jvn;
- spf=pass (domain: gmail.com, ip: 209.85.160.44,
- mailfrom: zaqhielhorus@gmail.com)
-Received: by mail-oa1-f44.google.com with SMTP id
- 586e51a60fabf-1280590722dso9661765fac.1
-        for <yocto@lists.yoctoproject.org>;
- Fri, 09 Sep 2022 23:50:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date;
-        bh=/72hBFwJi8C0zzsOko2PDwNIu35CX6ZCpeeVUZhT9Yo=;
-        b=CskU8jvnR2qkoOKlNdb3KfPPpndW0erjmgLbIgRmGRbiwEJHvzcR2AgpS6FQ0usFWS
-         6NIhlR5XvZp4fEqr6WV8v3GC6EUcn+j4aD9Ew6jQfjJRKei27/Q2ie2A527ZJcqN2bLU
-         Kt1l9VOkvTEkeBU9WQ6QuI2iRS6JcdtAH9CesQF6YrzJWz6TkbG/v1n2sYE/OXyYQP1s
-         QuaLBmV/CaZPbCn1S/dNRJuEXa7Hwjbuh+jQXrUpZQwIveqq749BgffIe8bGvDbAuERt
-         cFqhVzERInyr2Fo50VmfKfRrfhJ3gXI5lJHAqya6OzagrSvNxVtbQk562evsvFfIBwgx
-         2JXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date;
-        bh=/72hBFwJi8C0zzsOko2PDwNIu35CX6ZCpeeVUZhT9Yo=;
-        b=i2Kty6ajAeur7UnLxNL8s3NZyau5SJPFXvxjVRXbMWaw8osvfdFrMwHhxrsYNB7Mjw
-         /nkDmLGN+vDfhcBQde7+wef+GtYFacpukZPxNrg5gohuBfiZj2kZhvN29cby5u8bmmVd
-         d8pCIJmqvPnokQk/tm8QdceFyADasp+cXBYh7K4wXypDe3LWNHj9USi57Oyo1r+7GE7p
-         QJmWRXzrUgrGEOIe9thLIMiFiQmJeDvCl0tH1lFDzG9hhXm1qt+oCJGfYJio8KGkXs5P
-         KTcBjUCCWsfiur0o7mxexJhoT5Mg/pZwFoWWMpoqAvpTKh3DmBDEiqVBI2eu8nmAe1a6
-         i8HA==
-X-Gm-Message-State: ACgBeo2N86b5sz4aO4xkoJZ9Z5psuUKHHdIAXdRYgbiCzwwBZr6yqtPX
-	DkPsPF4joD6i64Enl/ErBjEt4sDwTHjTrxhg7s6LboN15Wk0ag==
-X-Google-Smtp-Source: 
- AA6agR7JlyKk2T0fZTFMtzTrMR6xjivdGft/moMQxEckGJ97sMG/lcmictIelcV1U6YXFv5xBGgvWV4raaYVTRxoZXo=
-X-Received: by 2002:a05:6808:13cd:b0:343:41aa:4cbe with SMTP id
- d13-20020a05680813cd00b0034341aa4cbemr5068759oiw.264.1662792608423; Fri, 09
- Sep 2022 23:50:08 -0700 (PDT)
-MIME-Version: 1.0
-From: Freya the Goddess <zaqhielhorus@gmail.com>
-Date: Sat, 10 Sep 2022 13:49:57 +0700
-Message-ID: 
- <CALUh_+36ZbnV=UGgWKzMXEMsB8UqGpab13bfwzGOS-Df8nv09Q@mail.gmail.com>
-Subject: Psplash
+ dkim=fail reason="signature has expired" header.i=@gherzan.com header.s=fm3
+ header.b=nxLPrHkT;
+ spf=pass (domain: gherzan.com, ip: 64.147.123.21,
+ mailfrom: andrei@gherzan.com)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+	by mailout.west.internal (Postfix) with ESMTP id A2890320034E;
+	Sat, 10 Sep 2022 18:36:20 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Sat, 10 Sep 2022 18:36:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gherzan.com; h=
+	cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
+	:message-id:mime-version:reply-to:sender:subject:subject:to:to;
+	 s=fm3; t=1662849380; x=1662935780; bh=BZjuTxkd6fAKtlRptCXX3EV3E
+	ehHQWbHNUIDFf01hCU=; b=nxLPrHkT7EHB84PdHLrBYlqXLze11nYICVW0lzsVJ
+	LOCvtRrfZDsrjGHY7khskOvzym8iSPEZtHvzUrGajaBSsg3a/ctqA9fO688ZwB4t
+	nDYqiYLzOZLM2UdG4GFIvNpC/KGLPUtwNKd/27meecUtWPl1qcRxuEdCUiHoYvij
+	wsuIyn3IsIURfnkLJ+cqjmtwp8KZeaSiuvjseB1/stD6L1SBs9NrUXrdOVd0OEgO
+	lE19hsJH68nBNtAOgsjbGoZ4q+6dXUrzlTkUof7NfSfyuIoJu81FNVy1oxpW2/7S
+	iSXro39vebkZeTMhOvXNJDAP/3TlhmZpTwj2wRiixuVxA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:message-id
+	:mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
+	1662849380; x=1662935780; bh=BZjuTxkd6fAKtlRptCXX3EV3EehHQWbHNUI
+	DFf01hCU=; b=fSfb77bvSSDFPSsBzB1zZEaNBR/J5IHDaIQvhQrWRyXPsvVIQow
+	Q1Yz9Fnjer/LMsXuBeCr49TtF13NyJ9cQBvSUdqNU9I4DdlVNtVNHyk3wcc5M+nU
+	Gc1qgKdXAsOK8ACDk91D1bRP7TKMXSZ5VEu4c8js0QvCrQQQLFReMkAwAsKDUSZ0
+	/pAo6XiOD/X7oiNaJmImhYHeqE5Cv0fCBkyt8e2q1bq6CBXGsm4/eZ68IA1sAqN7
+	xV81UNy9VGSzMBLsPjKuKcB3uHWvVcdbEd4t0c0w4u7kl31EVcFHNvFoyUCzU7nj
+	4pQsxJh83ygkVr0MS0KG98ZGP7EJ0nvSOew==
+X-ME-Sender: <xms:YxEdY7pxrMmJoDIirI2ScDXV5MvjVAfgqeSfnjVVO8oFBtj85jTNYw>
+    <xme:YxEdY1qkBzg5jhTmnyOz9fiPN-nX9y8rpaVhIUTlxt9oaYL-UYSph38l8fqLs7ez0
+    -usNWlTwIHxqBDsBX4>
+X-ME-Received: 
+ <xmr:YxEdY4MuQj-mTBYadBpSU_Mhc7pfy2ktG8xdQd5NYGB1I4BRRTplQ-rgNzUdF0KCu_EsBCGzryeyIb0FStJghrOQ8ed1HCUccrgeJzuOsfJIipq8L99t-IG2>
+X-ME-Proxy-Cause: 
+ gggruggvucftvghtrhhoucdtuddrgedvfedrfedtkedguddvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvfevufffkffoggfgsedtkeertd
+    ertddtnecuhfhrohhmpeetnhgurhgvihcuifhhvghriigrnhcuoegrnhgurhgvihesghhh
+    vghriigrnhdrtghomheqnecuggftrfgrthhtvghrnhepjeffveelleeigedvieeiuddvtd
+    ffleettdeitdfgffejhfeigeekvdduvefhtedtnecuffhomhgrihhnpehgihhthhhusgdr
+    tghomhenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grnhgurhgvihesghhhvghriigrnhdrtghomh
+X-ME-Proxy: <xmx:YxEdY-7rniSpVpTsXg1vQa3gDfLjZc1p1101DvMGUslyDp-IoEJFCA>
+    <xmx:YxEdY64MTn8BgnrDn6je4RzBBTF2pbmFRjZaM9Uf5sYO4yBi2nrfUA>
+    <xmx:YxEdY2hW7miD8sXGIsqyOPfAo8PyVXUqN0UcorGs2KH0zhb2SxLZoA>
+    <xmx:ZBEdYwRHwnOPY2PArYeYs5_ShepSW7lOklThRdHSr4I5pDIwwyPFFQ>
+Feedback-ID: i68994715:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 10 Sep 2022 18:36:18 -0400 (EDT)
+From: Andrei Gherzan <andrei@gherzan.com>
 To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000c2c3c505e84d1209"
+Cc: andrei@gherzan.com,
+	Andrei Gherzan <andrei.gherzan@huawei.com>
+Subject: [meta-raspberrypi][PATCH 1/1] linux-firmware-rpidistro: Fix wireless
+ on Raspberry Pi 4
+Date: Sun, 11 Sep 2022 00:35:45 +0200
+Message-Id: <20220910223545.3808059-1-andrei@gherzan.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 10 Sep 2022 06:50:22 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58010
+ <yocto@lists.yoctoproject.org>; Sat, 10 Sep 2022 22:36:28 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58011
 
---000000000000c2c3c505e84d1209
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
+From: Andrei Gherzan <andrei.gherzan@huawei.com>
 
-SSB3YW50IHRvIGNyZWF0ZSBhIHNwbGFzaHNjcmVlbiBmb3IgbXkgTEZTIE9TIHdpdGggU3lzdGVt
-IFYuIElzIGFueW9uZSBldmVyDQp0cmllZCBpdD8NCg0KDQotLSANCtChINC90LDQuNC70YPRh9GI
-0LjQvNC4INC/0L7QttC10LvQsNC90LjRj9C80LgsINCR0L7Qs9C40L3RjyDQpNGA0LXQudGPDQpB
-dGVuY2lvc2FtZW50ZSwgRnJleWEgdGhlIEdvZGRlc3MNCk1laWxsZXVycyB2b2V1eCwgRnJleWEg
-dGhlIEdvZGRlc3MNCkxpZWJlIEdyw7zDn2UsIEZyZXlhIHRoZSBHb2RkZXNzDQpCZXN0IHdpc2hl
-cywgRnJleWEgdGhlIEdvZGRlc3MNCuOCiOOCjeOBl+OBj+OBiumhmOOBhOOBl+OBvuOBmeOAgUZy
-ZXlhIHRoZSBHb2RkZXNzDQrmnIDlpb3nmoTnpZ3npo/vvIxGcmV5YSB0aGUgR29kZGVzcw0KTWF0
-YWt3YSBtZW1hLCBGcmV5YSB0aGUgR29kZGVzcw0K2YXYuSDYo9i32YrYqCDYp9mE2KrZhdmG2YrY
-p9iqINiMINmB2LHZitinINin2YTYpdmE2YfYqQ0K
---000000000000c2c3c505e84d1209
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
+---
+ ...t-43455-firmware-to-standard-variant.patch | 28 +++++++++++++++++++
+ .../linux-firmware-rpidistro_git.bb           |  4 ++-
+ 2 files changed, 31 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-kernel/linux-firmware-rpidistro/linux-firmware-rpidistro/0001-Default-43455-firmware-to-standard-variant.patch
 
-<div dir=3D"ltr">I want to create a splashscreen for my LFS OS with System =
-V. Is anyone ever tried it?<font color=3D"#888888"><br clear=3D"all"></font=
-><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"gmail_signature" da=
-ta-smartmail=3D"gmail_signature"><div dir=3D"ltr"><span style=3D"font-size:=
-13px;color:rgb(38,38,38);font-family:Roboto,sans-serif">=D0=A1 =D0=BD=D0=B0=
-=D0=B8=D0=BB=D1=83=D1=87=D1=88=D0=B8=D0=BC=D0=B8 =D0=BF=D0=BE=D0=B6=D0=B5=
-=D0=BB=D0=B0=D0=BD=D0=B8=D1=8F=D0=BC=D0=B8,=C2=A0</span><span style=3D"colo=
-r:rgb(38,38,38);font-family:Roboto,sans-serif;font-size:13px">=D0=91=D0=BE=
-=D0=B3=D0=B8=D0=BD=D1=8F =D0=A4=D1=80=D0=B5=D0=B9=D1=8F</span><br style=3D"=
-color:rgb(136,136,136)"><div style=3D"color:rgb(136,136,136)"><span style=
-=3D"color:rgb(38,38,38);font-family:Roboto,sans-serif;font-size:13px">Atenc=
-iosamente, Freya the Goddess</span><font face=3D"-apple-system, BlinkMacSys=
-temFont, Roboto, Helvetica Neue, Arial, sans-serif" color=3D"#4d4d4d"><span=
- style=3D"font-size:16px;white-space:pre-wrap"><br></span></font></div><div=
- style=3D"color:rgb(136,136,136)"><span style=3D"color:rgb(38,38,38);font-f=
-amily:Roboto,sans-serif;font-size:13px">Meilleurs voeux</span><span style=
-=3D"color:rgb(38,38,38);font-family:Roboto,sans-serif;font-size:13px">,=C2=
-=A0</span><span style=3D"color:rgb(38,38,38);font-family:Roboto,sans-serif;=
-font-size:13px">Freya the Goddess</span><span style=3D"color:rgb(38,38,38);=
-font-family:Roboto,sans-serif;font-size:13px"><br></span></div><div style=
-=3D"color:rgb(136,136,136)"><span style=3D"color:rgb(38,38,38);font-family:=
-Roboto,sans-serif;font-size:13px">Liebe Gr=C3=BC=C3=9Fe,=C2=A0</span><span =
-style=3D"color:rgb(38,38,38);font-family:Roboto,sans-serif;font-size:13px">=
-Freya the Goddess</span><span style=3D"color:rgb(38,38,38);font-family:Robo=
-to,sans-serif;font-size:13px"><br></span></div><div style=3D"color:rgb(136,=
-136,136)"><span style=3D"color:rgb(38,38,38);font-family:Roboto,sans-serif;=
-font-size:13px">Best wishes,=C2=A0</span><span style=3D"color:rgb(38,38,38)=
-;font-family:Roboto,sans-serif;font-size:13px">Freya the Goddess</span><spa=
-n style=3D"color:rgb(38,38,38);font-family:Roboto,sans-serif;font-size:13px=
-"><br></span></div><div style=3D"color:rgb(136,136,136)"><span style=3D"col=
-or:rgb(38,38,38);font-family:Roboto,sans-serif;font-size:13px">=E3=82=88=E3=
-=82=8D=E3=81=97=E3=81=8F=E3=81=8A=E9=A1=98=E3=81=84=E3=81=97=E3=81=BE=E3=81=
-=99=E3=80=81</span><span style=3D"color:rgb(38,38,38);font-family:Roboto,sa=
-ns-serif;font-size:13px">Freya the Goddess</span><span style=3D"color:rgb(3=
-8,38,38);font-family:Roboto,sans-serif;font-size:13px"><br></span></div><di=
-v style=3D"color:rgb(136,136,136)"><span style=3D"color:rgb(38,38,38);font-=
-family:Roboto,sans-serif;font-size:13px">=E6=9C=80=E5=A5=BD=E7=9A=84=E7=A5=
-=9D=E7=A6=8F=EF=BC=8C</span><span style=3D"color:rgb(38,38,38);font-family:=
-Roboto,sans-serif;font-size:13px">Freya the Goddess</span><span style=3D"co=
-lor:rgb(38,38,38);font-family:Roboto,sans-serif;font-size:13px"><br></span>=
-</div><div style=3D"color:rgb(136,136,136)"><span style=3D"color:rgb(38,38,=
-38);font-family:Roboto,sans-serif;font-size:13px">Matakwa mema,=C2=A0</span=
-><span style=3D"color:rgb(38,38,38);font-family:Roboto,sans-serif;font-size=
-:13px">Freya the Goddess</span></div><div style=3D"text-align:center;color:=
-rgb(136,136,136)"><span style=3D"color:rgb(38,38,38);font-family:Roboto,san=
-s-serif;font-size:13px;text-align:right">=D9=85=D8=B9 =D8=A3=D8=B7=D9=8A=D8=
-=A8 =D8=A7=D9=84=D8=AA=D9=85=D9=86=D9=8A=D8=A7=D8=AA =D8=8C =D9=81=D8=B1=D9=
-=8A=D8=A7 =D8=A7=D9=84=D8=A5=D9=84=D9=87=D8=A9</span><span style=3D"color:r=
-gb(38,38,38);font-family:Roboto,sans-serif;font-size:13px"><br></span></div=
-></div></div></div>
+diff --git a/recipes-kernel/linux-firmware-rpidistro/linux-firmware-rpidistro/0001-Default-43455-firmware-to-standard-variant.patch b/recipes-kernel/linux-firmware-rpidistro/linux-firmware-rpidistro/0001-Default-43455-firmware-to-standard-variant.patch
+new file mode 100644
+index 0000000..f67d95b
+--- /dev/null
++++ b/recipes-kernel/linux-firmware-rpidistro/linux-firmware-rpidistro/0001-Default-43455-firmware-to-standard-variant.patch
+@@ -0,0 +1,28 @@
++From b9db43e36ad0942d33cb4db5b394abd722862568 Mon Sep 17 00:00:00 2001
++From: Andrei Gherzan <andrei.gherzan@huawei.com>
++Date: Fri, 9 Sep 2022 20:28:06 +0200
++Subject: [PATCH] Default 43455 firmware to standard variant
++
++The firmware for 43455 is loaded as a symlink: brcmfmac43455-sdio.bin.
++This symlink is now broken as the debian package handles the right
++target of this symlink through a postinstall. We don't have that logic
++here so we default to the standard variant.
++
++Upstream-Status: Inappropriate [issue reported at https://github.com/RPi-Distro/firmware-nonfree/issues/26]
++Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
++---
++ debian/config/brcm80211/brcm/brcmfmac43455-sdio.bin | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/debian/config/brcm80211/brcm/brcmfmac43455-sdio.bin b/debian/config/brcm80211/brcm/brcmfmac43455-sdio.bin
++index 9c39208..b914838 120000
++--- a/debian/config/brcm80211/brcm/brcmfmac43455-sdio.bin
+++++ b/debian/config/brcm80211/brcm/brcmfmac43455-sdio.bin
++@@ -1 +1 @@
++-../cypress/cyfmac43455-sdio.bin
++\ No newline at end of file
+++../cypress/cyfmac43455-sdio-standard.bin
++\ No newline at end of file
++-- 
++2.25.1
++
+diff --git a/recipes-kernel/linux-firmware-rpidistro/linux-firmware-rpidistro_git.bb b/recipes-kernel/linux-firmware-rpidistro/linux-firmware-rpidistro_git.bb
+index d39340a..f491241 100644
+--- a/recipes-kernel/linux-firmware-rpidistro/linux-firmware-rpidistro_git.bb
++++ b/recipes-kernel/linux-firmware-rpidistro/linux-firmware-rpidistro_git.bb
+@@ -15,7 +15,9 @@ NO_GENERIC_LICENSE[binary-redist-Cypress-rpidistro] = "debian/config/brcm80211/c
+ NO_GENERIC_LICENSE[Synaptics-rpidistro] = "debian/config/brcm80211/copyright"
+ LICENSE_FLAGS = "synaptics-killswitch"
+ 
+-SRC_URI = "git://github.com/RPi-Distro/firmware-nonfree;branch=bullseye;protocol=https"
++SRC_URI = "git://github.com/RPi-Distro/firmware-nonfree;branch=bullseye;protocol=https \
++    file://0001-Default-43455-firmware-to-standard-variant.patch \
++"
+ SRCREV = "541e5a05d152e7e6f0d9be45622e4a3741e51c02"
+ PV = "20210315-3+rpt7"
+ S = "${WORKDIR}/git"
+-- 
+2.25.1
 
---000000000000c2c3c505e84d1209--
 
