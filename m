@@ -1,74 +1,76 @@
-Return-Path: <kuzemkoyocto@gmail.com>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7659EECAAA1
-	for <webhook@archiver.kernel.org>; Sun, 11 Sep 2022 08:16:01 +0000 (UTC)
-Subject: [Need help] Blacklist snd-bcm2835 #rpi
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C498BECAAD5
+	for <webhook@archiver.kernel.org>; Mon, 12 Sep 2022 13:00:29 +0000 (UTC)
+Received: from a27-30.smtp-out.us-west-2.amazonses.com
+ (a27-30.smtp-out.us-west-2.amazonses.com [54.240.27.30])
+ by mx.groups.io with SMTP id smtpd.web11.7167.1662987627717517988
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 12 Sep 2022 06:00:27 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@yoctoproject.org
+ header.s=j46ser6a2yusdzubpv7m7ewqgesde2ie header.b=UD97N/ZF;
+ spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.30,
+ mailfrom: 0101018331c968c5-da625ee2-c701-4044-8b18-3653beef77de-000000@us-west-2.amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=j46ser6a2yusdzubpv7m7ewqgesde2ie; d=yoctoproject.org;
+	t=1662987626; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=X/0ebFdxJu28vhZQvJWZKIb+mVCc7VkhE0YsvOZD6SI=;
+	b=UD97N/ZFEgmOet8dxjUlk0irwyJwwnUBB07ONd+WmMBRH47NfNUEpIucrsF5FRrM
+	sEJU9z/13VEhZmZyWvt6XDUsPpk6LqEYouydF2M9VISCFz/vLCgTmyGmpXusTtmVG4A
+	TXkYXTq2J9h3T0vxPNAYd62C5eWRJPfH1c1DlIxs=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx; d=amazonses.com; t=1662987626;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=X/0ebFdxJu28vhZQvJWZKIb+mVCc7VkhE0YsvOZD6SI=;
+	b=N5e8AMve5Fpy9LlnEy2HU/EVX2/ZsOdFS8cYaWla6KSAZEWLCAbwhIx9O2yqizQ8
+	i2o0Nn5e49bem0gt+SNw+8JlcPAkU9ATK+Y81CRYLJmUpYJtrT65+maVKTqOoUDUrRJ
+	Q/usroWlLJYJUsE258/R8DfPfUHxpuJ0vf9/R41U=
 To: yocto@lists.yoctoproject.org
-From: "Kuzemko Aleksandr" <kuzemkoyocto@gmail.com>
-X-Originating-Location: Vinnytsia, Vinnytsya Oblast, UA (178.74.234.29)
-X-Originating-Platform: Linux Firefox 104
-User-Agent: GROUPS.IO Web Poster
-MIME-Version: 1.0
-Date: Sun, 11 Sep 2022 01:15:51 -0700
-Message-ID: <PQxE.1662884151497864735.rEQQ@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="60RfJ3tntPsyOgSx8iEr"
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-4.1_M3.rc2)
+Message-ID: 
+ <0101018331c968c5-da625ee2-c701-4044-8b18-3653beef77de-000000@us-west-2.amazonses.com>
+Date: Mon, 12 Sep 2022 13:00:26 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: 
+ 1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2022.09.12-54.240.27.30
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 11 Sep 2022 08:16:01 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58018
+ <yocto@lists.yoctoproject.org>; Mon, 12 Sep 2022 13:00:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58019
 
---60RfJ3tntPsyOgSx8iEr
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hello.
-I developing now custom CM4 based board. For speed-up development I test so=
-ftware on RPi4 with external connection to development plates (2 CAN HAT, M=
-AX98357 board)
-To make work MAX98357 I need blacklist snd-bcm2835 and add custom asound.co=
-nf (https://learn.adafruit.com/adafruit-max98357-i2s-class-d-mono-amp/raspb=
-erry-pi-usage)
-What I try:
-1. I add this lines to local.conf
-KERNEL_MODULE_PROBECONF +=3D " snd-bcm2835"
-module_conf_snd_bcm2835 =3D "blacklist snd-bcm2835"
-This doesn't helps. I see snd-bcm2835.conf on my filesystem after build.
-2. I make "hack" of meta-boot2qt/meta-boot2qt-distro/conf/distro/include/ra=
-spberrypi.inc and delete snd-bcm2835 from KERNEL_MODULE_AUTOLOAD +=3D "snd-=
-bcm2835 bcm2835-v4l2" line
-This works partially- I haven't now snd-bcm2835.conf but also haven't black=
-list it.
-3. I try to add custom asound.conf and create such https://github.com/Kuzma=
-30/meta-myconf/blob/main/recipes-bsp/alsa-state/alsa-state.bbappend
-Results - no /etc/asound.conf and /etc/asound-rpi4.conf on filesystem
+A build flagged for QA (yocto-4.1_M3.rc2) was completed on the autobuilder and is available at:
 
-Please help resolve my problem.
 
---60RfJ3tntPsyOgSx8iEr
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+    https://autobuilder.yocto.io/pub/releases/yocto-4.1_M3.rc2
 
-Hello.<br />I developing now custom CM4 based board. For speed-up developme=
-nt I test software on RPi4 with external connection to development plates (=
-2 CAN HAT, MAX98357 board)<br />To make work MAX98357 I need blacklist snd-=
-bcm2835 and add custom asound.conf (https://learn.adafruit.com/adafruit-max=
-98357-i2s-class-d-mono-amp/raspberry-pi-usage)<br />What I try:<br />1. I a=
-dd this lines to local.conf<br />KERNEL_MODULE_PROBECONF +=3D " snd-bcm2835=
-"<br />module_conf_snd_bcm2835 =3D "blacklist snd-bcm2835"<br />This doesn'=
-t helps. I see snd-bcm2835.conf on my filesystem after build.<br />2. I mak=
-e "hack" of meta-boot2qt/meta-boot2qt-distro/conf/distro/include/raspberryp=
-i.inc and delete snd-bcm2835 from KERNEL_MODULE_AUTOLOAD +=3D "snd-bcm2835 =
-bcm2835-v4l2" line<br />This works partially- I haven't now snd-bcm2835.con=
-f but also haven't blacklist it.<br />3. I try to add custom asound.conf an=
-d create such <a href=3D"https://github.com/Kuzma30/meta-myconf/blob/main/r=
-ecipes-bsp/alsa-state/alsa-state.bbappend" target=3D"_blank" rel=3D"noopene=
-r">https://github.com/Kuzma30/meta-myconf/blob/main/recipes-bsp/alsa-state/=
-alsa-state.bbappend</a><br />Results - no /etc/asound.conf and /etc/asound-=
-rpi4.conf on filesystem<br /><br />Please help resolve my problem.<br />&nb=
-sp;
 
---60RfJ3tntPsyOgSx8iEr--
+Build hash information: 
+
+bitbake: 6424f4b7e9c1ba8db81346e8b3a806dd035d4551
+meta-agl: e4ea839db9c26e78175d61388c5408a79f6927dc
+meta-arm: 261263a6701ab3530ff997643d08da502222ac20
+meta-aws: a16f35a73bff26d9506f519451dc75034211d61b
+meta-gplv2: 43bf0e8d5985945d19d01f94bfbbda420c4435f3
+meta-intel: 9d2820d4bf436924db845de28850a807f9fdef87
+meta-mingw: 8327efb6334b9187fbaf7c871de4446c6863b3c5
+meta-openembedded: 09e086812aab7ca6ee480fb625966e2318174345
+meta-virtualization: 538e94e674dc1be0b0fee5da54083ca040b2f7b9
+oecore: bf5968bce59d5e5c777407dba431be3aec012404
+poky: 987e1503f733068d774ccf440b6f4e23e833571e
+
+
+
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+ 
 
