@@ -1,356 +1,227 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <jay.shen.teoh@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0DCBFC6FA82
-	for <webhook@archiver.kernel.org>; Tue, 13 Sep 2022 00:46:00 +0000 (UTC)
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com
- [209.85.215.173])
- by mx.groups.io with SMTP id smtpd.web12.3689.1663029951614164743
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2690FC54EE9
+	for <webhook@archiver.kernel.org>; Tue, 13 Sep 2022 07:19:48 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by mx.groups.io with SMTP id smtpd.web11.1930.1663053586526753334
  for <yocto@lists.yoctoproject.org>;
- Mon, 12 Sep 2022 17:45:51 -0700
+ Tue, 13 Sep 2022 00:19:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Ntu/PkuP;
- spf=pass (domain: gmail.com, ip: 209.85.215.173,
- mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-pg1-f173.google.com with SMTP id s206so9839302pgs.3
-        for <yocto@lists.yoctoproject.org>;
- Mon, 12 Sep 2022 17:45:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-language:thread-index:mime-version:message-id:date:subject
-         :to:from:from:to:cc:subject:date;
-        bh=9SY/qlCl0mSmae5tM4L1Js1RbhwOyY+JvK8UfWS6hLU=;
-        b=Ntu/PkuP/sJwNoHAfUuwmnDvZdcRXwC/9Th4PmKuwywJdEyvheNIAReJNXNv6oaEgT
-         1/kzLhuoy7MHmqbpWNWlVVAkg9LkgAgWGRurIorZGNExEpc9kf8qqZQ1xskj8HhpubWS
-         YJ80ifJ2w0JqRHR9tiJXjZlrYLiufn2H2i3RQJxjcl0T09giIXdbAO5868TRwgs5rAKG
-         FE3WzLNquBKx/D2K6aLFr0ip+huAJlLSScLRE07zO2wARzL7bPjnT4moXe3ljogqp/o9
-         FkdJrEjB1I9dQUp5y8V/MPxBVVSEJ3hezWajJ/s6StHL65iDHza5UtXWNi9qEpZrGvbU
-         5GsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-language:thread-index:mime-version:message-id:date:subject
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=9SY/qlCl0mSmae5tM4L1Js1RbhwOyY+JvK8UfWS6hLU=;
-        b=z7x9ScaNiOC6CWFBRL8nF70Q7elNsfBSF/xbOZkF7evGEfq6pmNzYWuzUgw9CTNdcc
-         nABaiv7agCZ3DY6zSj9mwYnjjPz7yn/ZkhWZoya7l6jOmtLcDSpq3jliIK/R6rbBKqSd
-         3PpHzhhbPokIZ4uQm8Gx5yGi32uXs7JSl+gcxfXnTWcCeVMI4cJWV162YlaBO0aDfkwl
-         F1/ElFQgW9E58FYzizZXzo0JGUOWitFG9XikFTMashASnaZtI4OpaBEb70dJTJQPkqXb
-         3vICCGT6QosRKMN/5z74W6Esn73EDaXpYaHLWULpIHHnDaBPIJHTKOz90oczBVjHldgi
-         x4Pw==
-X-Gm-Message-State: ACgBeo1o4Uj1NEzvHhSgraoNyDLlEl1BksV0aipBdUQLqWv32Qf/4ytW
-	unV8vCLLAA5qNVp9wjxD8YRvYhD0p3I=
-X-Google-Smtp-Source: 
- AA6agR7rvUkVFhZFLt+x6K6+SPiy8fCNAA05Rt9Ww4/1xPojbvudVifnz77GWzzQw+rdyl7ahItabw==
-X-Received: by 2002:a63:e507:0:b0:42c:65d3:f3b6 with SMTP id
- r7-20020a63e507000000b0042c65d3f3b6mr26058704pgh.395.1663029950894;
-        Mon, 12 Sep 2022 17:45:50 -0700 (PDT)
-Received: from skjolley ([2600:1011:a118:bb62:293c:e2d4:1418:7020])
-        by smtp.gmail.com with ESMTPSA id
- e11-20020a170902784b00b0016d1b70872asm6735660pln.134.2022.09.12.17.45.50
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 12 Sep 2022 17:45:50 -0700 (PDT)
-From: <sjolley.yp.pm@gmail.com>
-To: <yocto@lists.yoctoproject.org>
-Subject: M+ & H bugs with Milestone Movements WW37
-Date: Mon, 12 Sep 2022 17:45:50 -0700
-Message-ID: <00ac01d8c70a$2c655b30$85301190$@gmail.com>
+ dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel
+ header.b=VEid1wRY;
+ spf=pass (domain: intel.com, ip: 192.55.52.120,
+ mailfrom: jay.shen.teoh@intel.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1663053587; x=1694589587;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=OORn9Nfny+QBTrFrWAjARUYNH/d0XbJY4/nu44wSIok=;
+  b=VEid1wRYOB829LLPsMCM+bmAsrClWzzV15gx/ywhyV82nLArxPoBjFvV
+   iortCos03hIziFy9LzoGVOb2/DmdhUjg2PKFAs732y0DAsJ3rq9R4TiIQ
+   MTPX7X/KpM1yP72scmumV62ngKEk+Mx6RbC/iUlRWh8ObRQJu6VEjEoOZ
+   p6wDXg5sZfaW4TuaKTVXuLeBWcD0GfXwDxOq9wHQG6+2bGXrgj5zOk4ef
+   Pxg+UT+EcVbFOU1IMYcWz0nXXy5AdbQXmTjKeOlWPm4pell2qa4O9LsM3
+   ANmA8EOdnhUJgC3eym1qMuokhzHbrE8nxaA+YJl981EA9s0GQHAHS7M5U
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10468"; a="296798685"
+X-IronPort-AV: E=Sophos;i="5.93,312,1654585200";
+   d="scan'208";a="296798685"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2022 00:19:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,312,1654585200";
+   d="scan'208";a="758690639"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+  by fmsmga001.fm.intel.com with ESMTP; 13 Sep 2022 00:19:45 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Tue, 13 Sep 2022 00:19:44 -0700
+Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Tue, 13 Sep 2022 00:19:44 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31 via Frontend Transport; Tue, 13 Sep 2022 00:19:44 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.45) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2375.31; Tue, 13 Sep 2022 00:19:44 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=O6GP4iiYiesY3xmVGoq+vz+1IsNbfJcSTqcVqW6vdIgSjbPbBaachpoU4LCmK8fnNvYmslR9lj4TaVj8VBceoy5y8Ga9Z3FqyfnADeRGnlkqMm/ViJbyKPPDz91ioAfbS2BE9KgbqtI8CYOtw89A6MxoSGLI9Xo14zCIp14tM+pBXTzF7xHT0uTDT7vpKos3fS6yVRtpBzlG9nDz/x+6TVcW9T1ZZlb8naQD43/nb62ujWVtvfUC9+SEJSNKK8z6Xnl693ZJjrJ9qWil9uPruvTAfLYAouSbE66wszTuI3Msftl/xtX455YK7s4VE54g16CQjbpccNnppyHh6snMvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BHQM3PXNoW2u0dVotwDN1oQ8NCMpFICwXmXe0jfP4C0=;
+ b=hwnsHTXJLxDBmiHlH//W+qIrrWa6YqaF8rv9y6p5+7EpWuHbvgKt6kc2aye9towTqESGLcZ5LVwBNyTWmE+s4J7laxWdgOVR9+5UQxCokCIpaljHVFP9kYq/ryFGzQ87rnIDZZ25hPmgmHClHAY298ldP25tBKwTlOHp6nJRyja5LAlUZqryb3Fham+rEfkfYPYxMaSoEUm4GiNQJ+T+uYdIBoj1GuIr49EUj7LGfFlEKFNpLocnwVxp3MGMLOVgbNdIq9kO4+MhAq1G/rVXexc8cnj9qHnJtpxXxc3G4dE+x3NJGBnvLqLjEzOjcX6ug7/1jeIekADp89O2nBYoYg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM5PR1101MB2348.namprd11.prod.outlook.com (2603:10b6:3:a8::16)
+ by IA1PR11MB6292.namprd11.prod.outlook.com (2603:10b6:208:3e4::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.23; Tue, 13 Sep
+ 2022 07:19:42 +0000
+Received: from DM5PR1101MB2348.namprd11.prod.outlook.com
+ ([fe80::7100:bee9:ce02:ded4]) by DM5PR1101MB2348.namprd11.prod.outlook.com
+ ([fe80::7100:bee9:ce02:ded4%9]) with mapi id 15.20.5612.022; Tue, 13 Sep 2022
+ 07:19:42 +0000
+From: "Teoh, Jay Shen" <jay.shen.teoh@intel.com>
+To: Pokybuild User <pokybuild@yoctoproject.org>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>
+CC: "qa-build-notification@lists.yoctoproject.org"
+	<qa-build-notification@lists.yoctoproject.org>
+Subject: RE: [yocto] QA notification for completed autobuilder build
+ (yocto-4.1_M3.rc2)
+Thread-Topic: [yocto] QA notification for completed autobuilder build
+ (yocto-4.1_M3.rc2)
+Thread-Index: AQHYxqe1BHJNlcdCVEC8ZXUR/gYp363c9KqA
+Date: Tue, 13 Sep 2022 07:19:42 +0000
+Message-ID: 
+ <DM5PR1101MB23482E34D756E9674DE41C5ABB479@DM5PR1101MB2348.namprd11.prod.outlook.com>
+References: 
+ <0101018331c968c5-da625ee2-c701-4044-8b18-3653beef77de-000000@us-west-2.amazonses.com>
+In-Reply-To: 
+ <0101018331c968c5-da625ee2-c701-4044-8b18-3653beef77de-000000@us-west-2.amazonses.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.6.500.17
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM5PR1101MB2348:EE_|IA1PR11MB6292:EE_
+x-ms-office365-filtering-correlation-id: 4b775d7d-e41e-4f20-91ac-08da955853c2
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ 3JGf9WWTEZ+WZaLRFkfnhySdMexrOg1zEKjd+olEkKl4LloPgAkXX/ncjls5NoW5LGQ4zOu6xZk+70uflafWTB2wvfswRK4Uz4TnrIzX2Qbg/jVM1i/iV++eAPreSecNtKrMI1GBFuTNdJ6ZJJnz8noW8tjf03dYTOIlRiAegMMs3REeq9WpHRVPnwj1UGAbSCB+PHffAHYxTCD3C9RAaB1FHnOJiy9jbLCJK7bkDESmaVMlgNlGyuQmqqsx+eMVR9e+w+QDw7jhJftozVDLsfy/ZdsnFcp9z04v5RcstaywnsISboRZwfndjkgTzynAz6tMMWvNmAczz0l7ywD8VLTw/ckEXGUs9qAhG/1J8WIJsHBkYupbJoIob7uOvX1gWwUtUwm/UicdDj777j/No3XPIvudQp7paN24sw7Yb/exkLVtmnf3oyCqwDQFHfCFEn56uw8eh5xrEwnKBzDZThzwkW8jYlNs7GDOOhrXs/rZwxHxWHj3eqgP7wPbtI7gITix7/rc/n8g3aXQMnChlxpDV342bwXtaRmOMcVoq07cYxYG2g1YgKfoHvn6AXZndy8PaPqSYELujsZ+lp/vPtXRgT/Gh1v66o3KZZHFQTh2Pycf6YK9yWgFKdp9xXmSKd2g+vnPDZld2VBrgHRWvBEzAWYUHBxPEzVPITc5Na8t3VwKNNvnNPctHAQfdBBdh99UlX//5N4Za1zX6C84D0nzGYwI2zGUWLD/o2cYvWigOm+Y4vr1F1L9BUsmuLuuhiPWg6e+bu1pkjTEVqMDJqgGlgZv/Skbq7PriDYVH5k=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR1101MB2348.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(366004)(376002)(136003)(346002)(39860400002)(396003)(451199015)(5660300002)(8676002)(83380400001)(316002)(2906002)(38100700002)(8936002)(38070700005)(186003)(64756008)(86362001)(110136005)(82960400001)(71200400001)(41300700001)(66946007)(4326008)(55016003)(66556008)(52536014)(66476007)(478600001)(76116006)(7696005)(6506007)(966005)(66446008)(9686003)(33656002)(122000001)(15650500001)(53546011);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?qPRGzU7Jp5T/8QTAyG3vYquAaV+JwvB/6l1yBHVHAMbdcLv9XWz2mHR5Iu1K?=
+ =?us-ascii?Q?BrIrCLYIJK5vMu4/c9jlOXxpA/LtZew7AnRkhQ4Kp5a5JYvuQwVGe3mux1CC?=
+ =?us-ascii?Q?75r9VnB6Fv29AR0GzOe2mCl/g0urED6yu4zgt9taQiUnBYEfePTBW2I8oOH6?=
+ =?us-ascii?Q?4FvvRpENaURp4mdub+PKSN1zga1FDmX13A/R0HpiCC27l9XpqZ1FpMshlHWn?=
+ =?us-ascii?Q?9RJMQKeqpHarl2NIDX1ifgh4GdI0tfaqoT8bSPks7VexC2wfhwe7S/EyxYOg?=
+ =?us-ascii?Q?IG27WthuxOG7O0dNlJaH39M/JzOrgNW7aIyjwVlIjKrNr6VdQnTTSGhqyM2e?=
+ =?us-ascii?Q?k3/CPZwWYyRj4tj7TIjlI43+oeLw2haNG1UVfP2Qq+EpXkBBqk1WBhzdtW6o?=
+ =?us-ascii?Q?TIiTS6xFia2qE4ChR56dM3XHm9h7xIYFnEydFM7Q8q675b+L/icNXC9a7fCM?=
+ =?us-ascii?Q?FFXczXcJbCQuZjRl0VlWRK9EGd7JCNVp16eQGOFJ+4Oq8z7oVgQ/bQFTVk36?=
+ =?us-ascii?Q?8U5LCr1W4sDgUlJ/+QbYn6YZuvXdKe56Kl8KsEGAOOZkwaBKSOKWMiFFoDpd?=
+ =?us-ascii?Q?Qa2wCBerWB+sNSbgZHstejQchjqnAGBtXrLR5fhE+C/hEzJmBdi0hBXGqUWE?=
+ =?us-ascii?Q?9g0cJOjEvwB9mpLrGaWV12EFm2MkhvTSd/Qxxx5Ivelf36mPFAp+tVaMyE16?=
+ =?us-ascii?Q?EvwE0wlhIxlfdUBDIdNu8C41ei7eD/EBK8mhXN5M3r1ncEut4ijyEz1YA6Em?=
+ =?us-ascii?Q?kGXbKKvnYNGANbllVFwKt3BE8sa0Wdo3eCvr8JF04V9iWSK4nbyPRp/rjw2n?=
+ =?us-ascii?Q?e+kT9bWUzxVw9CLfFxpwIikRbSAkHhxoZJHLv7c9zUd5UiI4hX8LmtBIUMaB?=
+ =?us-ascii?Q?IY596q5GqbXV7WpdP/DDHl8RqCUqO+9fP1lOaGQ8QO0hV0pXDQ7TuRC/8x+m?=
+ =?us-ascii?Q?fq2jW1oJjluYxZ3dx+1Iw4Doh2aZC/GdP+KI7oOM1ALls8BXSxuGJk7EimLw?=
+ =?us-ascii?Q?4DYYgeKPmLB1odS3i+4tQwiD0VJD2Nj8le0wkkmyQAAWVherWNuMUjDRPFdZ?=
+ =?us-ascii?Q?f1dJN5ZdkI9jbhLyJJL0PkHiD+9x+KIsCsZb0JHwLrMaahro+vXNdYZIIEKv?=
+ =?us-ascii?Q?fHQkcMU6Z8MSgfNeUCxZB5C0iRODr9sdcCTyhqQi8/CHe80pac33fc7/a1Us?=
+ =?us-ascii?Q?CuaUBrB7b4t8rlr52jpGIkAocdDKpEZtN1nsIONRIHARclTpAme9QSO12fXO?=
+ =?us-ascii?Q?cmDKtFIbGuSPyI1IxMPTjeXY48lwiMNpXyojiUxkYjEvtZ2JIZiA/qsVeX5R?=
+ =?us-ascii?Q?feK5XHeek9XFoU9NTky97Vc4jWtiPDz1sNuxi6dyBKpb9MJRmNUIojHkcsFN?=
+ =?us-ascii?Q?/EWEChSprZvdgEM4N/ssIjHyiEivNhYz0eyF70rbNVKt7EC0pIn+ths2eYMP?=
+ =?us-ascii?Q?SzRWfL37RyIwByy8xqbF6Ju62vWrahpwFrc/aTTrezgq4IQUX/q7cg0xqJPS?=
+ =?us-ascii?Q?Id81v+VSrCx9xoyAXDXtO47xJthPTk+lujBrAEyWF/YATUl51mFaDdm3qd5P?=
+ =?us-ascii?Q?ryctd0diaxGSVKrwnLvafCGbsZgF1WXtSBSfvQgQnKslMlr+xilqg5nA0mcr?=
+ =?us-ascii?Q?zUdnyeyZoeI77IXIbunJpOAYUoZoh0eTYC6UmSgKxbD3?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_00AD_01D8C6CF.80068330"
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdjHChuQOX78kvY8Sr+p+j3CsJK7fA==
-Content-Language: en-us
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: 
+ DM5PR1101MB2348.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 4b775d7d-e41e-4f20-91ac-08da955853c2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Sep 2022 07:19:42.0798
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 
+ 2nEpSHnjEZ4lQ9WMpQUc1O7vm28z7Lgn3a41zgWfz5+oSq2k3/kA5n46ADXXZVMDGfA/8b+Y4tHe84ZlRtw3HQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6292
+X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 13 Sep 2022 00:46:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58023
+ <yocto@lists.yoctoproject.org>; Tue, 13 Sep 2022 07:19:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58024
 
-This is a multipart message in MIME format.
+Hi all,
 
-------=_NextPart_000_00AD_01D8C6CF.80068330
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Intel and WR YP QA is planning for QA execution for YP build yocto-4.1_M3.r=
+c2. We are planning to execute following tests for this cycle:
 
-All,
+OEQA-manual tests for following module:
+1. OE-Core
+2. BSP-hw
 
-YP M+ or high bugs which moved to a new milestone in WW37 are listed =
-below:=20
+Runtime auto test for following platforms:
+1. MinnowTurbot 32-bit
+2. NUC 7
+3. NUC 6
+4. Edgerouter
+5. Beaglebone
 
+ETA for completion next Monday, September 19.
 
-Priority
+Thanks,
+Jay
 
-Bug ID
-
-Short Description
-
-Changer
-
-Owner
-
-Was
-
-Became
-
-
-Medium+
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12279> 12279
-
-enhance manifest not found warning
-
-randy.macleod@windriver.com
-
-Aryaman.Gupta@windriver.com
-
-4.1 M2
-
-4.1 M4
-
-
-=20
-
- <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14843> 14843
-
-Need better messages for reproducibility errors where the only =
-difference is in package filename
-
-randy.macleod@windriver.com
-
-Aryaman.Gupta@windriver.com
-
-4.1 M2
-
-4.1 M4
-
-Thanks,=20
-
-=20
-
-Stephen K. Jolley
-
-Yocto Project Program Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com =
-<mailto:sjolley.yp.pm@gmail.com>=20
-
-=20
-
-
-------=_NextPart_000_00AD_01D8C6CF.80068330
-Content-Type: text/html;
-	boundary="----=_NextPart_000_015F_01D8C14F.9D142570";
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered =
-medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal><span =
-style=3D'color:black'>All,<br><br>YP M+ or high bugs which moved to a =
-new milestone in WW37 are listed below: <o:p></o:p></span></p><table =
-class=3DMsoNormalTable border=3D0 cellspacing=3D0 cellpadding=3D0 =
-width=3D1297 =
-style=3D'width:973.1pt;margin-left:-.15pt;border-collapse:collapse'><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>Priority<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom style=3D'width:38.8pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Bug ID<o:p></o:p></span></b></p></td><td =
-width=3D576 nowrap valign=3Dbottom style=3D'width:432.35pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Short =
-Description<o:p></o:p></span></b></p></td><td width=3D236 nowrap =
-valign=3Dbottom style=3D'width:177.0pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Changer<o:p></o:p></span></b></p></td><td =
-width=3D243 nowrap valign=3Dbottom style=3D'width:182.0pt;border:solid =
-windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Owner<o:p></o:p></span></b></p></td><td width=3D62 =
-nowrap valign=3Dbottom style=3D'width:46.2pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Was<o:p></o:p></span></b></p></td><td width=3D56 =
-nowrap valign=3Dbottom style=3D'width:41.85pt;border:solid windowtext =
-1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
-5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Became<o:p></o:p></span></b></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>Medium+<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12279" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>12279</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D576 nowrap valign=3Dbottom =
-style=3D'width:432.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>enhance manifest not found =
-warning<o:p></o:p></span></p></td><td width=3D236 nowrap valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Aryaman.Gupta@windriver.com<o:p></o:p></span></p></=
-td><td width=3D62 nowrap valign=3Dbottom =
-style=3D'width:46.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M2<o:p></o:p></span></p></td><td width=3D56 =
-nowrap valign=3Dbottom =
-style=3D'width:41.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D73 nowrap valign=3Dbottom =
-style=3D'width:54.9pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><b><span =
-style=3D'color:black'>&nbsp;<o:p></o:p></span></b></p></td><td =
-width=3D52 nowrap valign=3Dbottom =
-style=3D'width:38.8pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><b><span style=3D'color:black'><a =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14843" =
-target=3D"_parent"><span =
-style=3D'color:black;text-decoration:none'>14843</span></a><o:p></o:p></s=
-pan></b></p></td><td width=3D576 nowrap valign=3Dbottom =
-style=3D'width:432.35pt;border-top:none;border-left:none;border-bottom:so=
-lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Need better messages for reproducibility errors =
-where the only difference is in package =
-filename<o:p></o:p></span></p></td><td width=3D236 nowrap =
-valign=3Dbottom =
-style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
-td><td width=3D243 nowrap valign=3Dbottom =
-style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>Aryaman.Gupta@windriver.com<o:p></o:p></span></p></=
-td><td width=3D62 nowrap valign=3Dbottom =
-style=3D'width:46.2pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M2<o:p></o:p></span></p></td><td width=3D56 =
-nowrap valign=3Dbottom =
-style=3D'width:41.85pt;border-top:none;border-left:none;border-bottom:sol=
-id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
-5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
-style=3D'color:black'>4.1 M4<o:p></o:p></span></p></td></tr></table><p =
-class=3DMsoNormal><span style=3D'color:black'>Thanks,</span><span =
-style=3D'color:white'> <o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'color:white'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Program Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_000_00AD_01D8C6CF.80068330--
-
+> -----Original Message-----
+> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Beha=
+lf
+> Of Pokybuild User
+> Sent: Monday, 12 September, 2022 9:00 PM
+> To: yocto@lists.yoctoproject.org
+> Cc: qa-build-notification@lists.yoctoproject.org
+> Subject: [yocto] QA notification for completed autobuilder build (yocto-
+> 4.1_M3.rc2)
+>=20
+>=20
+> A build flagged for QA (yocto-4.1_M3.rc2) was completed on the autobuilde=
+r
+> and is available at:
+>=20
+>=20
+>     https://autobuilder.yocto.io/pub/releases/yocto-4.1_M3.rc2
+>=20
+>=20
+> Build hash information:
+>=20
+> bitbake: 6424f4b7e9c1ba8db81346e8b3a806dd035d4551
+> meta-agl: e4ea839db9c26e78175d61388c5408a79f6927dc
+> meta-arm: 261263a6701ab3530ff997643d08da502222ac20
+> meta-aws: a16f35a73bff26d9506f519451dc75034211d61b
+> meta-gplv2: 43bf0e8d5985945d19d01f94bfbbda420c4435f3
+> meta-intel: 9d2820d4bf436924db845de28850a807f9fdef87
+> meta-mingw: 8327efb6334b9187fbaf7c871de4446c6863b3c5
+> meta-openembedded: 09e086812aab7ca6ee480fb625966e2318174345
+> meta-virtualization: 538e94e674dc1be0b0fee5da54083ca040b2f7b9
+> oecore: bf5968bce59d5e5c777407dba431be3aec012404
+> poky: 987e1503f733068d774ccf440b6f4e23e833571e
+>=20
+>=20
+>=20
+> This is an automated message from the Yocto Project Autobuilder
+> Git: git://git.yoctoproject.org/yocto-autobuilder2
+> Email: richard.purdie@linuxfoundation.org
+>=20
+>=20
+>=20
 
