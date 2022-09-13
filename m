@@ -2,53 +2,53 @@ Return-Path: <andrei@gherzan.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D69D4C6FA8B
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E5266C6FA8E
 	for <webhook@archiver.kernel.org>; Tue, 13 Sep 2022 21:22:38 +0000 (UTC)
 Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com
  [64.147.123.19])
- by mx.groups.io with SMTP id smtpd.web11.780.1663104150119820523
+ by mx.groups.io with SMTP id smtpd.web10.754.1663104152256976496
  for <yocto@lists.yoctoproject.org>;
- Tue, 13 Sep 2022 14:22:30 -0700
+ Tue, 13 Sep 2022 14:22:32 -0700
 Authentication-Results: mx.groups.io;
  dkim=fail reason="signature has expired" header.i=@gherzan.com header.s=fm3
- header.b=PIorTASv;
+ header.b=RcZ5wCOy;
  spf=pass (domain: gherzan.com, ip: 64.147.123.19,
  mailfrom: andrei@gherzan.com)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-	by mailout.west.internal (Postfix) with ESMTP id 5FAA9320093F;
-	Tue, 13 Sep 2022 17:22:29 -0400 (EDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+	by mailout.west.internal (Postfix) with ESMTP id 81E8E3200645;
+	Tue, 13 Sep 2022 17:22:31 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Tue, 13 Sep 2022 17:22:29 -0400
+  by compute2.internal (MEProxy); Tue, 13 Sep 2022 17:22:31 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gherzan.com; h=
 	cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
 	:in-reply-to:message-id:mime-version:references:reply-to:sender
-	:subject:subject:to:to; s=fm3; t=1663104148; x=1663190548; bh=iG
-	c0ScSASIrQRP0BKgHL5W+upzjyzqKYEpRDDi65RQA=; b=PIorTASvhMzvdXbup/
-	4JhxMuKPH6NV99J5y8aRe9xHoDSbGRvnDprbhTYj/rzAF3XS6eySSP8cgPxah9PY
-	e3zMHlywmHE0f35IHGe2elrqiiPNi/D5fmXQCrw0TJgPlqHkHAG9wduYPtqWlNYm
-	x+xal1nKVgeXl81vjJS+LgNzFPRdi/KkSk/uPqcXe3TBmr2dxnyuVVW10RVpK0Qv
-	eFpxZjgPJfO3f/LfzdsiCX/vE6IUIlM/67aN32ON2n8IWDI9byzt1eBkik1BP3yV
-	RhLZwQsnKmrlcN4GOLwxIgl5mGXxPs2qXklJOFg0Nq98UMu5onYkv6ot6rS+ISyo
-	tCOg==
+	:subject:subject:to:to; s=fm3; t=1663104151; x=1663190551; bh=Ds
+	vubmPAoLSOvAdeUJD9Khl8/Uzz26NPjqWHC8OZGXI=; b=RcZ5wCOylSW6V/gjDi
+	Ohln6x9bhvHXRktvS8TBQodpLHFinpnQqCKBKKMu503FWfmUUq7Jx65FRC+wSiSw
+	Eh8vMOZ0YOs0jAmZw/TLDsa3VST7un3maCVofi5XdKApe6WeXaK/aoF2PGcJ28eb
+	YM2FjrvuSmXG5sZtD/SyijZyEUWgHeUVuWmRnEvSGDhIup/1Yh+ZNJx+0OMEW5W2
+	fwb7Vi55eqGbH7HzCPoc1IunFa5h/mkPC5/yGxGIdcKrgBLhe9ohc+DIP6FWNZ9x
+	s9bekHzy619SHISMvEVTb1pbatYen+Xq3maqnpKRvDVoo4BcX8J6unJ/sdRRJ3Ae
+	kfcw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
 	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
 	:message-id:mime-version:references:reply-to:sender:subject
 	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-	:x-sasl-enc; s=fm2; t=1663104148; x=1663190548; bh=iGc0ScSASIrQR
-	P0BKgHL5W+upzjyzqKYEpRDDi65RQA=; b=NLYGVAaQSx+RTt7thHl66i9ZK5OCw
-	5JfhPY5YlorAoP+HrrxD6KmdHdCOAgUPkPHFUaj2g7JVYk9S+BwPKlbi7o6+G83x
-	0Yr6WTTRTLLIPi0hj5vtPQSMXKggd26+A0Z9XTQThLMFs4MV7yEpAKbS6Eve1Ne/
-	KEnVHZbApa3utKXio0rveS+ioVC7o4mCQuzVnwpJm35FXuiMhdRPhx7ZxDCgWUxU
-	rcLvA/79MQ6xlmizbT3I2kAJ1O01s3689JyXnGQHwDbZocSboQH/tr96R6ZCAJDV
-	T5wIiLyw9h1DeYVz67a+0Tey2SmsGGN1erOuAOouX95GqAAj+aHMcrEUw==
-X-ME-Sender: <xms:lPQgY-m-UallJFOfrF6he7DDXNhSQhZ0TrcB4kK87lxS-J-oJIBJig>
-    <xme:lPQgY127Fd5pq9s6BhPT3Ys9TlzTuvbE5t9yo9JseX4LVUSongDEhkhYHcSx_47ij
-    mfgKuzxsPnM2icdxMw>
+	:x-sasl-enc; s=fm2; t=1663104151; x=1663190551; bh=DsvubmPAoLSOv
+	AdeUJD9Khl8/Uzz26NPjqWHC8OZGXI=; b=vAQr+LByOnw4Y4nag4mV/TPgPTgEQ
+	Ha7Yrhx6A9rjYEi4kDZr8PG8xMRs6/rDz2RR3GzUDP78YVCvvHk1cxn3j0OJpi/6
+	7eIBYYTtWkAWhJi7FqK+ka34RZ+LDBUyNV4D9Leig43GuZwEklNZe0QjtIrJjNxq
+	qHJcj4qI4NHA9lWsZUlNMx/FMbnTeu3enWe+VpQfbIHqLZUBiBi50HVBM7anJxCT
+	kuMRCfHtnr0SQzj67ENHFH0+5e5Kj//o6EQ40dtEBY4ZcYuF8TkD0JgPfjbkLSwm
+	dOnbxDte08Lqm2cOaMWnDw49FjNXRX+uezrb7mpXoP9T+TQ62cB5HWuTg==
+X-ME-Sender: <xms:lvQgY5WCnqjo51sjIunWL5vFd7pgnsqXkWqK3l_cmECbeKMgrjZ7_g>
+    <xme:lvQgY5mTIRRCMrJFaMP2Zq7cZzl2aZOO9eABfOfqPM48BNklJhg5QCBmytCI56n6H
+    vrxI5S1BwI-lH_oOM8>
 X-ME-Received: 
- <xmr:lPQgY8qssmxX1KusFW2v0ZY-CKKBYXioacRgYHnVDBXNgK1SxxiquhGx3L1VsXF3-TpxEe4zeKm4uP0QE_1lA8XuGI_91O0jx6gX3wnlltN5vEzMgve9h2Kl>
+ <xmr:lvQgY1amU3OLnZnA73me2dv5TkDJeZFYwTieImjR05opKpcrq0gRy0xZb8vFdZPCsd8okSOC5YnlDMttCG1fRiRACGjCPy2EfsKyQUASmeuWAojW0eC_b8d5>
 X-ME-Proxy-Cause: 
- gggruggvucftvghtrhhoucdtuddrgedvfedrfedugedgudeigecutefuodetggdotefrod
+ gggruggvucftvghtrhhoucdtuddrgedvfedrfedugedgudeifecutefuodetggdotefrod
     ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
     necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvvefufffkofgjfhgggfestd
     ekredtredttdenucfhrhhomheptehnughrvghiucfihhgvrhiirghnuceorghnughrvghi
@@ -56,21 +56,21 @@ X-ME-Proxy-Cause:
     ekjeelieffjefggfekgefgfffgffeifeefgeehhfdtffenucevlhhushhtvghrufhiiigv
     pedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrnhgurhgvihesghhhvghriigrnhdrtg
     homh
-X-ME-Proxy: <xmx:lPQgYyl6bIoykD2ikbW7O2QIJqs3U0xzBMxJCYdrGlRxNZANSngXtw>
-    <xmx:lPQgY82dAM4oLF1xAyycCBD05ktwTRjOWFoamp99Rl83Z_1Oao55Cg>
-    <xmx:lPQgY5v66wMgxQGB-Iuqf6vAUjxv5eqfNUCMDS_UAJ6joY61aQEK_g>
-    <xmx:lPQgY59BH3JL7rb-liMPWgTP9Jfhw15V8jH19QrgQn64mfG7j5x-bg>
+X-ME-Proxy: <xmx:lvQgY8WCOnLHMHAsjN1ChcLsatSiR9DaT1nYNLfWpd9letSsYRMBSg>
+    <xmx:lvQgYzlwRtSO8lZVX6eZs_1dGnnqWuKZNvHpnlt5_Mi6D_PrGM-NGA>
+    <xmx:lvQgY5eaQw7Cuz58eHvbvACylh5SFJIULXQTf__h0RWs7Y8lFts1nw>
+    <xmx:l_QgY7tBk22XWFJhf8Wr2xN3Xjy-cU07GXtbo66oZ-g1hkJlpGd6ng>
 Feedback-ID: i68994715:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 13 Sep 2022 17:22:28 -0400 (EDT)
+ 13 Sep 2022 17:22:29 -0400 (EDT)
 From: Andrei Gherzan <andrei@gherzan.com>
 To: yocto@lists.yoctoproject.org
 Cc: andrei@gherzan.com,
 	Andrei Gherzan <andrei.gherzan@huawei.com>
-Subject: [meta-raspberrypi][PATCH v2 2/7] raspberrypi0-2w.conf: Include the
- RPi 0-2w dtb for all 32-bit machines
-Date: Tue, 13 Sep 2022 23:21:59 +0200
-Message-Id: <20220913212204.3210494-3-andrei@gherzan.com>
+Subject: [meta-raspberrypi][PATCH v2 3/7] rpi-base.inc: Split IMAGE_BOOT_FILES
+ for kernel image
+Date: Tue, 13 Sep 2022 23:22:00 +0200
+Message-Id: <20220913212204.3210494-4-andrei@gherzan.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220913212204.3210494-1-andrei@gherzan.com>
 References: <20220913212204.3210494-1-andrei@gherzan.com>
@@ -80,44 +80,42 @@ List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Tue, 13 Sep 2022 21:22:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58031
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58032
 
 From: Andrei Gherzan <andrei.gherzan@huawei.com>
 
-All 32-bit machines are sharing the list of machine dtbs with the
-exception of raspberrypi0-2w. Move this away too to unify the
-machine configurations.
+The kernel image deployment is now defined in IMAGE_BOOT_FILES as a
+separate variable: RPI_EXTRA_IMAGE_BOOT_FILES. This allows a custom
+kernel image deployment by redefining this variable when needed.
 
 Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
 ---
- conf/machine/include/rpi-base.inc | 1 +
- conf/machine/raspberrypi0-2w.conf | 4 ----
- 2 files changed, 1 insertion(+), 4 deletions(-)
+ conf/machine/include/rpi-base.inc | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
 diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-base.inc
-index a2edf06..beb1f08 100644
+index beb1f08..313c7d9 100644
 --- a/conf/machine/include/rpi-base.inc
 +++ b/conf/machine/include/rpi-base.inc
-@@ -68,6 +68,7 @@ RPI_KERNEL_DEVICETREE ?= " \
-     bcm2710-rpi-2-b.dtb \
-     bcm2710-rpi-3-b.dtb \
-     bcm2710-rpi-3-b-plus.dtb \
-+    bcm2710-rpi-zero-2.dtb \
-     bcm2711-rpi-4-b.dtb \
-     bcm2711-rpi-400.dtb \
-     bcm2708-rpi-cm.dtb \
-diff --git a/conf/machine/raspberrypi0-2w.conf b/conf/machine/raspberrypi0-2w.conf
-index c360d90..63c7bfb 100644
---- a/conf/machine/raspberrypi0-2w.conf
-+++ b/conf/machine/raspberrypi0-2w.conf
-@@ -11,7 +11,3 @@ MACHINE_EXTRA_RRECOMMENDS += "\
-     linux-firmware-rpidistro-bcm43436s \
-     bluez-firmware-rpidistro-bcm43430b0-hcd \
- "
--
--RPI_KERNEL_DEVICETREE = " \
--    bcm2710-rpi-zero-2.dtb \
--    "
+@@ -134,12 +134,15 @@ def make_dtb_boot_files(d):
+ 
+     return ' '.join([transform(dtb) for dtb in alldtbs.split(' ') if dtb])
+ 
++RPI_EXTRA_IMAGE_BOOT_FILES ?= " \
++	${@bb.utils.contains('RPI_USE_U_BOOT', '1', \
++		'${KERNEL_IMAGETYPE} u-boot.bin;${SDIMG_KERNELIMAGE} boot.scr', \
++		'${KERNEL_IMAGETYPE};${SDIMG_KERNELIMAGE}', d)} \
++	"
+ 
+ IMAGE_BOOT_FILES ?= "${BOOTFILES_DIR_NAME}/* \
+                  ${@make_dtb_boot_files(d)} \
+-                 ${@bb.utils.contains('RPI_USE_U_BOOT', '1', \
+-                    '${KERNEL_IMAGETYPE} u-boot.bin;${SDIMG_KERNELIMAGE} boot.scr', \
+-                    '${KERNEL_IMAGETYPE};${SDIMG_KERNELIMAGE}', d)} \
++                 ${RPI_EXTRA_IMAGE_BOOT_FILES} \
+                  "
+ do_image_wic[depends] += " \
+     rpi-bootfiles:do_deploy \
 -- 
 2.25.1
 
