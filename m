@@ -1,142 +1,140 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <steve@sakoman.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D3838ECAAD3
-	for <webhook@archiver.kernel.org>; Wed, 14 Sep 2022 19:23:06 +0000 (UTC)
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com
- [209.85.167.42])
- by mx.groups.io with SMTP id smtpd.web08.1371.1663183384723326758
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 85082ECAAD3
+	for <webhook@archiver.kernel.org>; Wed, 14 Sep 2022 21:57:47 +0000 (UTC)
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com
+ [209.85.218.42])
+ by mx.groups.io with SMTP id smtpd.web08.3057.1663192659391119804
  for <yocto@lists.yoctoproject.org>;
- Wed, 14 Sep 2022 12:23:05 -0700
+ Wed, 14 Sep 2022 14:57:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=l+2yZ374;
- spf=pass (domain: gmail.com, ip: 209.85.167.42,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f42.google.com with SMTP id w8so26754192lft.12
+ dkim=pass header.i=@sakoman-com.20210112.gappssmtp.com header.s=20210112
+ header.b=2RNi9e6/;
+ spf=softfail (domain: sakoman.com, ip: 209.85.218.42,
+ mailfrom: steve@sakoman.com)
+Received: by mail-ej1-f42.google.com with SMTP id a26so9145336ejc.4
         for <yocto@lists.yoctoproject.org>;
- Wed, 14 Sep 2022 12:23:04 -0700 (PDT)
+ Wed, 14 Sep 2022 14:57:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date;
-        bh=zUpd7jtFV5OXfz9TVKn2PxfJVqkNv+COBzPJv6FZKLc=;
-        b=l+2yZ374r0RcT+loPRnmoMokMZfwleHl0MQgk6YNkh3cOEDNiCFEUxtATXL1Yo3aRI
-         293/w7AhDvFaDQwWXr5C0hiM8LOqHHR1tlW8bISviihFfVsBDjTYh+XIy/c0hc73G5UK
-         qdq/fkeQhYMj3thC7cYzkgXwc55UXZX07km50YpG5iIToA8wZGli408IVfh7gPh62D9T
-         9RwX8kGZES0QyGZeWB5OQ1iiHVGR/+WU1mgJQf3Eyyz1HG4dhY1CRfQ2rgLlxYsom/q2
-         Or4Bc0JxorzyrKwjFDl0Ri8ItTSLqZU37YVMakEJklo3BDKHOj9d3K1TaqDOhumyKVfB
-         b6hA==
+        d=sakoman-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date;
+        bh=JoQaMZ6JqKQf7eM3guFYW9xRyMQAvwwLIK+awGC5YzI=;
+        b=2RNi9e6/va1Zsm47n+cpxrAzaPUD9gKgyQQgGGJ1fsh95AH1TCF6i0vAPg1zwfk/Lz
+         TaT/780t3R+4G6XdGkXF0Ie4/142rqk9oaQirMwgioB4xrL/MEARjQ2tbnbnotqvDM29
+         54IqN3Be3zNBegghy4D7Pt/MGML5Ls6GUE9XGm0PYFcnwvU4ATMv5Ejv78PjFHZsBt2y
+         MJO0686WyN7vfk/xhLfkc3c7/zsExDZylmMr0cxegPVwG5rYaSHlqiy9y1neGv3YNdik
+         5w+IEdNOP8SwHStJrAEGGCTmf1CBUsukMC4dhObTRpbd3JlUOWaa3qjjupZn/1pwqyEY
+         EqmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=zUpd7jtFV5OXfz9TVKn2PxfJVqkNv+COBzPJv6FZKLc=;
-        b=Pp8i4UqvcKkiIidxPTrnmra2WREm1Uj2JrVpRbW6CwdKEp2yXtkYk7TLqxZQYNraDl
-         nGGGSF59/6DMlYucLlWC+jVAI13NvBRqz+YXWcmGoxdFe8jjBuxsvWgrjvA9wVUX1SIz
-         LC2CV77tGT54FGu1/5nHbJmLmG9lMxwDCm1/svnEfug/J948UFBkwucc/mHUeGyvZ9K4
-         YL/WDP+WWqBHPSzHQ4kR/cKU7j4yHc4bdfVgkGOKY2mQe+eafeeFlq25RiwDGrxb0bZd
-         ibUTinaIHBRufJ59URq3ZuMhlhhqJAWI079r4EN5VdQD2fn9nu8bZ7/MkfvB83/Y5hm1
-         7ZnQ==
-X-Gm-Message-State: ACgBeo3oisQ++yYm1sikoU5TgM0m0xBUk4t7ZieekrWjyeglqZNKIzi9
-	vyV2g9NSUzOKMYAAD66VLvepdSiqUCFKRQKRTOQ=
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=JoQaMZ6JqKQf7eM3guFYW9xRyMQAvwwLIK+awGC5YzI=;
+        b=E9uAomGENemvjn8n/KBrQeCXJbpw5zq+naJ9qIKzU75BbhdcyUbQgV8wiaomXAVTEW
+         L2M6LczyMV3cknpmvW2+hYckur5gu9T4LR9gR84dS8eQqMzdp1onAdsFHdQ74fEK20kI
+         XrPXFVFUEaqY6YPl4ZzgrqWXpXHAnjA/Zk4l07STNC8ZXQPU2U4ZYWbdoWiOHcDyonmG
+         +eEArg+oFilO/NAONLCK4vCKGIxcpQOThE8gSK1/cyH12v1OemSivcWrVfQJERyZ8JSA
+         UdW28CndljT7Dsqll0NF9aK+ZEJHHXknsmhXmQrhHNLd9eNzfHePKANOQxXKT8BNp/J8
+         o0fg==
+X-Gm-Message-State: ACgBeo11fk+06/sGUVQ4EQxSUsFw4ytYKtdY/Id0ZjUP72Y7j2AtNN2f
+	qIDcZRNGKKMEn6PgkQ+ysKAEcHLZeFrDpou2ZkFaTw==
 X-Google-Smtp-Source: 
- AA6agR4fcybCpi/rTM7p01XchY1SAFCamd9yGgSN0tCMLdnJwKr/JFsRIfS33sx9rib0R2Drq9iZ+EgEcPH3KvuGrwg=
-X-Received: by 2002:a05:6512:950:b0:497:c41e:3d0c with SMTP id
- u16-20020a056512095000b00497c41e3d0cmr11849532lft.673.1663183382945; Wed, 14
- Sep 2022 12:23:02 -0700 (PDT)
+ AA6agR5b+hFA+tn46xq9rdD2s3mYfzs4kjn8BBMGJH2mzxLFEWjHajFlRSwjxmiH/NcdNh4o1xM6Ksi5OEohRog+PcE=
+X-Received: by 2002:a17:907:628a:b0:72f:678d:6047 with SMTP id
+ nd10-20020a170907628a00b0072f678d6047mr26271471ejc.456.1663192657511; Wed, 14
+ Sep 2022 14:57:37 -0700 (PDT)
 MIME-Version: 1.0
-References: <cZtA.1663177353817106080.nKg8@lists.yoctoproject.org>
- <CANNYZj__GxuzidL4KVuxmtdqp4MK4PVi86+z+-wzmWpmibzJ_Q@mail.gmail.com>
- <CADD-u4vZMwdhCT0HLGLK4thWTn9XMN-nf73yEtV1+6BMXz4aAQ@mail.gmail.com>
- <CANNYZj9jCGig5xYa1cUUS+OFe8NpvFKYx-qMnmp5cmPG7xGCnQ@mail.gmail.com>
- <CADD-u4ueWo6uspjeR3mJE5RU=rgQDL4Fre1G=F3U1CTmofcN3w@mail.gmail.com>
-In-Reply-To: 
- <CADD-u4ueWo6uspjeR3mJE5RU=rgQDL4Fre1G=F3U1CTmofcN3w@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 14 Sep 2022 21:22:51 +0200
+References: <OPcU.1663179386288137669.KD6c@lists.yoctoproject.org>
+In-Reply-To: <OPcU.1663179386288137669.KD6c@lists.yoctoproject.org>
+From: Steve Sakoman <steve@sakoman.com>
+Date: Wed, 14 Sep 2022 11:57:26 -1000
 Message-ID: 
- <CANNYZj95=XfnA-4Ms=UnU06uBQchb_W-RXLCQYQZn0+ymmGZ5g@mail.gmail.com>
-Subject: Re: [yocto] meta-go dependencies #dunfell #golang
-To: Ed Watson <edmundwatson@gmail.com>,
- Konrad Weihmann <kweihmann@outlook.com>,
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+ <CAOSpxdYCegnErSy7n8V+Ty2yzqLkNRoJrKpcDvBt=RQ0jGopJg@mail.gmail.com>
+Subject: Re: [yocto] install: cannot create regular file Permission denied
+ #dunfell
+To: Mahendra Sondagar <mahendrasondagar08@gmail.com>
+Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 14 Sep 2022 19:23:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58044
+ <yocto@lists.yoctoproject.org>; Wed, 14 Sep 2022 21:57:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58045
 
-You can ask Konrad about it. But please keep the mailing list in CC,
-so that the entire conversation remains visible and archived to all.
+On Wed, Sep 14, 2022 at 8:16 AM Mahendra Sondagar
+<mahendrasondagar08@gmail.com> wrote:
+>
+> Hi.. there
+>
+> Hope all are doing well
+>
+> I'm working with the Yocto dunfell branch with the STM32MP1
+> My goal is to add the test.sh script in to the rootfs of the Yocto custom=
+ image (in to the bindir)
+>
+> That's how, i have created the recipes file called "recipes-support"
+> Inside that, i have created "net-cfg" file
+> the files under net-cfg file at where, i have kept test.sh file
+> here is the tree structure
+>
+> .
+> =E2=94=94=E2=94=80=E2=94=80 net-cfg
+>     =E2=94=9C=E2=94=80=E2=94=80 files
+>     =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 test.sh
+>     =E2=94=94=E2=94=80=E2=94=80 net-cfg_1.0.bb
+>
+> I have installed the image with the custom-image.bb file as a
+> IMAGE_INSTALL +=3D "net-cfg"
+>
+> The content of the net-cfg_1.0.bb are as follows
+> -------------------------------------------------------------------------=
+-------------
+> SUMMARY=3D "Script files for the testing"
+> SRC_URI =3D " file://test.sh"
+>
+> LICENSE =3D "CLOSED"
+>
+> do_install() {
+>         install -d ${D}${bindir}
+>         install -m 0755 ${WORKDIR}/test.sh ${D}${bindir} /
+I don't think you intended to have this space here            ^
 
-Alex
+That's why it is attempting to install test.sh to /
 
-On Wed, 14 Sept 2022 at 21:18, Ed Watson <edmundwatson@gmail.com> wrote:
+Steve
+
+> }
 >
-> Hello,
+> FILES_${PN} +=3D "${bindir}/test.sh"
 >
+> -------------------------------------------------------------------------=
+-------------
 >
-> Great thank very much.
-> It would appear that there are a lot of dependencies I need under https://github.com/priv-kweihmann/meta-sca
-> That means at least I don't have to do them all myself.
+> During the baking the image, i got the error like | install: cannot creat=
+e regular file '/test.sh': Permission denied
+>
+> I have attached the full error logs here
+>
+> Can any one help me here to figure out the issue ?
 >
 > Thanks
+> Mahendra
 >
 >
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#58042): https://lists.yoctoproject.org/g/yocto/messag=
+e/58042
+> Mute This Topic: https://lists.yoctoproject.org/mt/93683834/3620601
+> Mute #dunfell:https://lists.yoctoproject.org/g/yocto/mutehashtag/dunfell
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [steve@sakoman.=
+com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 >
-> Ed Watson
-> Tel: +46 702053827
->
->
->
-> On Wed, 14 Sept 2022 at 20:53, Alexander Kanavin <alex.kanavin@gmail.com> wrote:
->>
->> Right, I don't think such a dedicated layer exists. You may want to go
->> over the list of dependencies and type them into
->> http://layers.openembedded.org/layerindex/branch/master/recipes/ to
->> see if anything comes up.
->>
->> Otherwise, you just have to list them one by one in SRC_URI, so
->> bitbake will compose the source tree in a 'vendored' fashion.
->>
->> Alex
->>
->> On Wed, 14 Sept 2022 at 20:05, Ed Watson <edmundwatson@gmail.com> wrote:
->> >
->> > Hello
->> >
->> > Sure thanks it is https://github.com/aler9/rtsp-simple-server
->> >
->> > Ed Watson
->> >
->> >
->> >
->> >
->> > On Wed, 14 Sept 2022 at 19:53, Alexander Kanavin <alex.kanavin@gmail.com> wrote:
->> >>
->> >> It helps if you can name the project. Are the sources public?
->> >>
->> >> Alex
->> >>
->> >> On Wed 14. Sep 2022 at 18.42, <edmundwatson@gmail.com> wrote:
->> >>>
->> >>> Hello,
->> >>>
->> >>>
->> >>> I am trying to include a go project in my yocto build. It has quite a few dependencies. I may have missed something, there is a meta-go around that I have missed? Or a quick way of pulling in multiple dependencies.
->> >>> Thanks
->> >>>
->> >>> Edmund Watson
->> >>> -=-=-=-=-=-=-=-=-=-=-=-
->> >>> Links: You receive all messages sent to this group.
->> >>> View/Reply Online (#58039): https://lists.yoctoproject.org/g/yocto/message/58039
->> >>> Mute This Topic: https://lists.yoctoproject.org/mt/93683134/1686489
->> >>> Mute #dunfell:https://lists.yoctoproject.org/g/yocto/mutehashtag/dunfell
->> >>> Mute #golang:https://lists.yoctoproject.org/g/yocto/mutehashtag/golang
->> >>> Group Owner: yocto+owner@lists.yoctoproject.org
->> >>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
->> >>> -=-=-=-=-=-=-=-=-=-=-=-
->> >>>
 
