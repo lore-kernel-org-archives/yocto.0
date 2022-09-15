@@ -1,140 +1,130 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <naveen.kumar.saini@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 85082ECAAD3
-	for <webhook@archiver.kernel.org>; Wed, 14 Sep 2022 21:57:47 +0000 (UTC)
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com
- [209.85.218.42])
- by mx.groups.io with SMTP id smtpd.web08.3057.1663192659391119804
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9BC09ECAAD3
+	for <webhook@archiver.kernel.org>; Thu, 15 Sep 2022 07:00:50 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by mx.groups.io with SMTP id smtpd.web12.7010.1663225229963335351
  for <yocto@lists.yoctoproject.org>;
- Wed, 14 Sep 2022 14:57:40 -0700
+ Thu, 15 Sep 2022 00:00:30 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20210112.gappssmtp.com header.s=20210112
- header.b=2RNi9e6/;
- spf=softfail (domain: sakoman.com, ip: 209.85.218.42,
- mailfrom: steve@sakoman.com)
-Received: by mail-ej1-f42.google.com with SMTP id a26so9145336ejc.4
-        for <yocto@lists.yoctoproject.org>;
- Wed, 14 Sep 2022 14:57:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date;
-        bh=JoQaMZ6JqKQf7eM3guFYW9xRyMQAvwwLIK+awGC5YzI=;
-        b=2RNi9e6/va1Zsm47n+cpxrAzaPUD9gKgyQQgGGJ1fsh95AH1TCF6i0vAPg1zwfk/Lz
-         TaT/780t3R+4G6XdGkXF0Ie4/142rqk9oaQirMwgioB4xrL/MEARjQ2tbnbnotqvDM29
-         54IqN3Be3zNBegghy4D7Pt/MGML5Ls6GUE9XGm0PYFcnwvU4ATMv5Ejv78PjFHZsBt2y
-         MJO0686WyN7vfk/xhLfkc3c7/zsExDZylmMr0cxegPVwG5rYaSHlqiy9y1neGv3YNdik
-         5w+IEdNOP8SwHStJrAEGGCTmf1CBUsukMC4dhObTRpbd3JlUOWaa3qjjupZn/1pwqyEY
-         EqmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=JoQaMZ6JqKQf7eM3guFYW9xRyMQAvwwLIK+awGC5YzI=;
-        b=E9uAomGENemvjn8n/KBrQeCXJbpw5zq+naJ9qIKzU75BbhdcyUbQgV8wiaomXAVTEW
-         L2M6LczyMV3cknpmvW2+hYckur5gu9T4LR9gR84dS8eQqMzdp1onAdsFHdQ74fEK20kI
-         XrPXFVFUEaqY6YPl4ZzgrqWXpXHAnjA/Zk4l07STNC8ZXQPU2U4ZYWbdoWiOHcDyonmG
-         +eEArg+oFilO/NAONLCK4vCKGIxcpQOThE8gSK1/cyH12v1OemSivcWrVfQJERyZ8JSA
-         UdW28CndljT7Dsqll0NF9aK+ZEJHHXknsmhXmQrhHNLd9eNzfHePKANOQxXKT8BNp/J8
-         o0fg==
-X-Gm-Message-State: ACgBeo11fk+06/sGUVQ4EQxSUsFw4ytYKtdY/Id0ZjUP72Y7j2AtNN2f
-	qIDcZRNGKKMEn6PgkQ+ysKAEcHLZeFrDpou2ZkFaTw==
-X-Google-Smtp-Source: 
- AA6agR5b+hFA+tn46xq9rdD2s3mYfzs4kjn8BBMGJH2mzxLFEWjHajFlRSwjxmiH/NcdNh4o1xM6Ksi5OEohRog+PcE=
-X-Received: by 2002:a17:907:628a:b0:72f:678d:6047 with SMTP id
- nd10-20020a170907628a00b0072f678d6047mr26271471ejc.456.1663192657511; Wed, 14
- Sep 2022 14:57:37 -0700 (PDT)
+ dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel
+ header.b=AeN9NmxC;
+ spf=pass (domain: intel.com, ip: 192.55.52.93,
+ mailfrom: naveen.kumar.saini@intel.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1663225230; x=1694761230;
+  h=from:to:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=vpY+4nAWitJ6E8ouJPEQhDHCVEyYqcd6bBrqqyQM9Y8=;
+  b=AeN9NmxC6/tpJMZm+Bbr0EF5aJkr7cSN/3c/yeaPzi0Pdw/eB5CKVCyC
+   0jXTR0b4RT7RjW3oS+ZZzFinj64O5nsY/oqpGxQE6c+C2EuGW9lr27bFH
+   O3IibhFex4w5aNOcfmJTLTsxOaTG0J8rBWgZHesbj3McmghAct7k4FfWo
+   v6EOHcxP4JZ+vLxQHFmLBIXrz5+gDyFFlv3kU9AlXVi8VRip1Z+1jGPPY
+   OPobYxj9Tivmq18C1/efJPRw5xTsErHjhVkW+g3UFcpT9yTxsjkuMAQYA
+   CSEUmOBJSWRyy97zqKsQcvwLYTM/iM7trgIvK1VTzlcdXcHKHHQXdw79U
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10470"; a="296221561"
+X-IronPort-AV: E=Sophos;i="5.93,317,1654585200";
+   d="scan'208";a="296221561"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2022 00:00:29 -0700
+X-IronPort-AV: E=Sophos;i="5.93,317,1654585200";
+   d="scan'208";a="685607570"
+Received: from saininav-desk1.png.intel.com ([10.158.87.77])
+  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2022 00:00:28 -0700
+From: Naveen Saini <naveen.kumar.saini@intel.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-zephyr][PATCH] zephyr-kernel/2.7: update to zephyr v2.7.3
+Date: Thu, 15 Sep 2022 15:20:42 +0800
+Message-Id: <20220915072042.891301-1-naveen.kumar.saini@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <OPcU.1663179386288137669.KD6c@lists.yoctoproject.org>
-In-Reply-To: <OPcU.1663179386288137669.KD6c@lists.yoctoproject.org>
-From: Steve Sakoman <steve@sakoman.com>
-Date: Wed, 14 Sep 2022 11:57:26 -1000
-Message-ID: 
- <CAOSpxdYCegnErSy7n8V+Ty2yzqLkNRoJrKpcDvBt=RQ0jGopJg@mail.gmail.com>
-Subject: Re: [yocto] install: cannot create regular file Permission denied
- #dunfell
-To: Mahendra Sondagar <mahendrasondagar08@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 14 Sep 2022 21:57:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58045
+ <yocto@lists.yoctoproject.org>; Thu, 15 Sep 2022 07:00:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58046
 
-On Wed, Sep 14, 2022 at 8:16 AM Mahendra Sondagar
-<mahendrasondagar08@gmail.com> wrote:
->
-> Hi.. there
->
-> Hope all are doing well
->
-> I'm working with the Yocto dunfell branch with the STM32MP1
-> My goal is to add the test.sh script in to the rootfs of the Yocto custom=
- image (in to the bindir)
->
-> That's how, i have created the recipes file called "recipes-support"
-> Inside that, i have created "net-cfg" file
-> the files under net-cfg file at where, i have kept test.sh file
-> here is the tree structure
->
-> .
-> =E2=94=94=E2=94=80=E2=94=80 net-cfg
->     =E2=94=9C=E2=94=80=E2=94=80 files
->     =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 test.sh
->     =E2=94=94=E2=94=80=E2=94=80 net-cfg_1.0.bb
->
-> I have installed the image with the custom-image.bb file as a
-> IMAGE_INSTALL +=3D "net-cfg"
->
-> The content of the net-cfg_1.0.bb are as follows
-> -------------------------------------------------------------------------=
--------------
-> SUMMARY=3D "Script files for the testing"
-> SRC_URI =3D " file://test.sh"
->
-> LICENSE =3D "CLOSED"
->
-> do_install() {
->         install -d ${D}${bindir}
->         install -m 0755 ${WORKDIR}/test.sh ${D}${bindir} /
-I don't think you intended to have this space here            ^
+003de78ce0 release: Zephyr 2.7.3
+9502d500b6 release: security: Notes for 2.7.3
+2a88e08296 release: update v2.7.3 release notes
+e1ee34e55c drivers: sensor: sm351lt: Fix global thread triggering bug
+2ad1ef651b Bluetooth: host: Fix L2CAP reconfigure response with invalid CID
+089675af45 Bluetooth: host: Fix L2CAP reconfigure response with invalid MTU
+03ff0d471e net: route: Fix pkt leak if net_send_data() fails
+cd96136bcb boards: nucleo_wb55rg: Fix documentation about BLE binary compatibility
+567fda57df tests: drivers: can: api: add test for RTR filter matching
+b14f356c96 drivers: can: loopback: check frame ID type and RTR bit in filters
+874d77bc75 drivers: can: mcux: flexcan: fix handling of RTR frames
+ec0befb938 drivers: can: mcan: acknowledge all received frames
+273e90a86f scripts: release: list_backports: use older python dict merge method
+59dc65a7b4 ci: backports: check if a backport PR has a valid issue
+8ff8cafc18 scripts: release: list_backports.py
+ba07347b60 scripts: release: use GITHUB_TOKEN and start_date in scripts
+e423902617 tests: posix: pthread: test for pthread descriptor leaks
+018f836c4d posix: pthread: consider PTHREAD_EXITED state in pthread_create
+f4466c4760 tests: cpp: cxx: Add qemu_cortex_a53 as integration platform
+9a5cbe3568 tests: cpp: cxx: Test with various types of libc
+5b7b15fb2d tests: cpp: cxx: Add dynamic memory availability test for static init
+e5a92a1fab tests: cpp: cxx: Add static global constructor invocation test
+74f0b6443a lib: libc: newlib: Initialise libc heap during POST_KERNEL phase
+6c16b3492b lib: libc: minimal: Initialise libc heap during POST_KERNEL phase
+1831431bab lib: posix: semaphore: use consistent timebase in sem_timedwait
+765f63c6b9 cmake: remove xtensa workaround in Zephyr toolchain code.
+062306fc0b cmake: zephyr toolchain code cleanup
+8fcf7f1d78 Revert "cmake: Zephyr sdk backward compatibility with 0.11.1 and 0.11.2"
+f06b3d922c Bluetooth: Controller: Fix PHY update for unsupported PHY
+b75c012c55 drivers: spi: stm32 spi with dma must enable cs after periph
+1efe6de3fe drivers: i2c: Fix infinite recursion in driver unregister function
+39270ed4a0 Bluetooth: Mesh: Fix segmentation when sending proxy message
+81ffa550ee Bluetooth: Mesh: Check SegN when receiving Transaction Start PDU
+8c2965e017 Bluetooth: Mesh: add check for rx buffer overflow in pb adv
+7aa38b4ac8 drivers: can: m_can: fix alignmed issues
+6dd320f791 release: update v2.7.2 release notes
+ecac165d36 logging: shell: fix shell stats null pointer dereference
+132d90d1bc tests/bluetooth/tester: Refactor Read UUID callback
+58356313ac coredump: adjust mem_region find in gdbstub
+99cfd3e4d7 Bluetooth: Controller: Fix per adv scheduling issue
+780588bd33 edac: ibecc: Add support for EHL SKU13, SKU14, SKU15
 
-That's why it is attempting to install test.sh to /
+Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
+---
+ ...ephyr-kernel-src-2.7.2.inc => zephyr-kernel-src-2.7.3.inc} | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename meta-zephyr-core/recipes-kernel/zephyr-kernel/{zephyr-kernel-src-2.7.2.inc => zephyr-kernel-src-2.7.3.inc} (97%)
 
-Steve
+diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.2.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.3.inc
+similarity index 97%
+rename from meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.2.inc
+rename to meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.3.inc
+index cbe761f..1c53748 100644
+--- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.2.inc
++++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.3.inc
+@@ -14,7 +14,7 @@ SRC_URI += " \
+ #      echo SRCREV_$x = \"$rev\"'
+ #
+ 
+-SRCREV_default = "6dd320f791c4da49190b30f9134f776d85bc5836"
++SRCREV_default = "003de78ce0dd213a1c7b3d159b967fb19a12aa45"
+ SRCREV_canopennode = "f167efe85c8c7de886f1bc47f9173cfb8a346bb5"
+ SRCREV_civetweb = "094aeb41bb93e9199d24d665ee43e9e05d6d7b1c"
+ SRCREV_cmsis = "b0612c97c1401feeb4160add6462c3627fe90fc7"
+@@ -60,7 +60,7 @@ SRCREV_TraceRecorder = "36c577727642457b0db7274298a4b96558374832"
+ SRCREV_tfm = "c74be3890c9d975976fde1b1a3b2f5742bec34c0"
+ 
+ ZEPHYR_BRANCH = "v2.7-branch"
+-PV = "2.7.2+git${SRCPV}"
++PV = "2.7.3+git${SRCPV}"
+ 
+ SRC_URI:append = " \
+     file://dtc.patch;patchdir=zephyr \
+-- 
+2.25.1
 
-> }
->
-> FILES_${PN} +=3D "${bindir}/test.sh"
->
-> -------------------------------------------------------------------------=
--------------
->
-> During the baking the image, i got the error like | install: cannot creat=
-e regular file '/test.sh': Permission denied
->
-> I have attached the full error logs here
->
-> Can any one help me here to figure out the issue ?
->
-> Thanks
-> Mahendra
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#58042): https://lists.yoctoproject.org/g/yocto/messag=
-e/58042
-> Mute This Topic: https://lists.yoctoproject.org/mt/93683834/3620601
-> Mute #dunfell:https://lists.yoctoproject.org/g/yocto/mutehashtag/dunfell
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [steve@sakoman.=
-com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
 
