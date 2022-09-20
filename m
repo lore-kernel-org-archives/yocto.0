@@ -1,145 +1,87 @@
-Return-Path: <contact@kuba.fyi>
+Return-Path: <jon.mason@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E12D8ECAAD8
-	for <webhook@archiver.kernel.org>; Tue, 20 Sep 2022 16:18:18 +0000 (UTC)
-Received: from mail-4317.proton.ch (mail-4317.proton.ch [185.70.43.17])
- by mx.groups.io with SMTP id smtpd.web08.14182.1663690693534489781
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 969CCC54EE9
+	for <webhook@archiver.kernel.org>; Tue, 20 Sep 2022 19:27:06 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by mx.groups.io with SMTP id smtpd.web12.1394.1663702021718982539
  for <yocto@lists.yoctoproject.org>;
- Tue, 20 Sep 2022 09:18:14 -0700
+ Tue, 20 Sep 2022 12:27:02 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@kuba.fyi
- header.s=protonmail2 header.b=v2x7MXrv;
- spf=pass (domain: kuba.fyi, ip: 185.70.43.17, mailfrom: contact@kuba.fyi)
-Date: Tue, 20 Sep 2022 16:18:07 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kuba.fyi;
-	s=protonmail2; t=1663690691; x=1663949891;
-	bh=iahDn4q+8p7zanka4JGvDZPm2z8bYnBv54Wr1rU2P0M=;
-	h=Date:To:From:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID;
-	b=v2x7MXrvwZGebRnw+SMnSJfjVwg6F/pRTUI1DOwpOtCkGL4VHdFlVa8pl7OxKK6wo
-	 xJUxgzPzxFePo003HA8JY1kok1rbLSB6cVkCxbLtzkkVRQ1mAYfQZIh77oa5LkNSQc
-	 J1d89VsJ9f+MhVBRPQnMSCycyKUuM4GHjuPyArMB8/hsiXiwQu8uGpK+qbXPVeEP0s
-	 lAy7O2q2c9nDq6OAoa9uIhDYiotYLcpawqPJt0tpSd6q+xCuIusIOoltq/UZoiy0k8
-	 lOx1KavFCsRLD7dV56Hy7e8gk+DXJDTlHBvTQxaBDSZCmqJErGh4KZxCvxd0P9b006
-	 nLV3dBhaPfOlA==
+ dkim=missing;
+ spf=pass (domain: arm.com, ip: 217.140.110.172, mailfrom: jon.mason@arm.com)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 941EE139F
+	for <yocto@lists.yoctoproject.org>; Tue, 20 Sep 2022 12:27:07 -0700 (PDT)
+Received: from localhost.localdomain (usa-sjc-imap-foss1.foss.arm.com
+ [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id E98053F73D
+	for <yocto@lists.yoctoproject.org>; Tue, 20 Sep 2022 12:27:00 -0700 (PDT)
+From: Jon Mason <jon.mason@arm.com>
 To: yocto@lists.yoctoproject.org
-From: Kuba Sanak <contact@kuba.fyi>
-Subject: Is there a way to prevent bitbake from trying to demand dependencies
- it comes up with based on installed files?
-Message-ID: <47E48EBD-1F46-4D63-825F-C3D4042B20D1@kuba.fyi>
-In-Reply-To: <3B2D6341-8F11-4530-9248-6AA6221E7BAC@kuba.fyi>
-References: <3B2D6341-8F11-4530-9248-6AA6221E7BAC@kuba.fyi>
-Feedback-ID: 44448442:user:proton
-MIME-Version: 1.0
-Content-Type: multipart/alternative;
- boundary="b1_kM0ey84qoVfrnWCAzZl4pxHhG3bXWw3WNhHW4451jBk"
+Subject: [meta-zephyr][PATCH 1/2] zephyr-bsp/qemu-cortex-a53: run testimage
+Date: Tue, 20 Sep 2022 11:01:08 -0400
+Message-Id: <20220920150109.7042-1-jon.mason@arm.com>
+X-Mailer: git-send-email 2.17.1
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 20 Sep 2022 16:18:18 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58098
+ <yocto@lists.yoctoproject.org>; Tue, 20 Sep 2022 19:27:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58099
 
-This is a multi-part message in MIME format.
+Make the changes necessary to get testimage working and run it as part
+of CI
 
---b1_kM0ey84qoVfrnWCAzZl4pxHhG3bXWw3WNhHW4451jBk
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+Signed-off-by: Jon Mason <jon.mason@arm.com>
+---
+ .gitlab-ci.yml                                    | 1 +
+ ci/qemu-cortex-a53.yml                            | 4 ++++
+ meta-zephyr-bsp/conf/machine/qemu-cortex-a53.conf | 3 ++-
+ 3 files changed, 7 insertions(+), 1 deletion(-)
 
-SGkgYWxsLAoKRmlyc3QgdGltZSBwb3N0aW5nIHRvIHRoaXMgbWFpbGluZyBsaXN0LCBob3BlIHRo
-aXMgZW1haWwga2luZCBvZiBlbWFpbCBpcyB3aGF0IGl04oCZcyBmb3IhCgpCYWNrZ3JvdW5kIC8g
-d2hhdCBJJ20gZG9pbmc6IEknbSBjcmVhdGluZyBhbiBpbWFnZSB3aGljaCB1c2VzIGEgZG9ja2Vy
-IHRvIGRvIHN0dWZmLiBMb2FkaW5nIG5ldyBkb2NrZXIgaW1hZ2VzIHRha2VzIGEgbG9uZyB0aW1l
-IG9uIG15IHRhcmdldCBzbyBJIGhhdmUgY3JlYXRlZCBhIHJlY2lwZSB3aGljaCBlc3NlbnRpYWxs
-eSBwcmUtbG9hZHMgZG9ja2VyIHN0b3JlIHdpdGggdGhlIHNhaWQgZG9ja2VyIGltYWdlIGF0IGJ1
-aWxkIHRpbWUgYW5kIGluc3RhbGxzIGl0IG9uIHRoZSB0YXJnZXQgZmlsZXN5c3RlbSwgc28gdGhh
-dCBpdCBjYW4ganVzdCBzcGluIHRoZSBjb250YWluZXIgdXAgZnJvbSBpdCBhZnRlciBiZWluZyBm
-bGFzaGVkLiBZb2N0byB2ZXJzaW9uIEhhcmRrbm90dCBpcyBiZWluZyB1c2VkLgoKVGhlIHByb2Js
-ZW06IHRoZSByZXN1bHRpbmcgZG9ja2VyIHN0b3JlIEknbSBpbnN0YWxsaW5nIG9uIHRoZSB0YXJn
-ZXQgKGF0IGAvdmFyL2xpYi9kb2NrZXJgKSBjb250YWlucyB0aGUgZmlsZXN5c3RlbSBvZiB0aGUg
-Y29udGFpbmVyLiBTb21lIGZpbGVzIGluIHRoYXQgZmlsZXN5c3RlbSBoYXZlIGRlcGVuZGVuY2ll
-cyB3aGljaCBhcmUgc2F0aXNmaWVkIGludGVybmFsbHkgd2hlbiB0aGF0IGZpbGVzeXN0ZW0gZXhp
-c3RzIGFzIGEgZG9ja2VyIGNvbnRhaW5lci4gSG93ZXZlciwgYml0YmFrZSBpcyB0cnlpbmcgdG8g
-YmUgY2xldmVyIGFuZCBzaG91dHMgYXQgbWUgZm9yIHRob3NlIGRlcGVuZGVuY2llcyBub3QgYmVp
-bmcgc2F0aXNmaWVkIG92ZXJhbGwuCgpCdWlsZGluZyB0aGUgZG9ja2VyLWltYWdlIHJlY2lwZSBi
-eSBpdHNlbGYgd29ya3MgZmluZSwgYnV0IHdoZW4gSSBpbmNsdWRlIGl0IGluIHRoZSB3aG9sZSBp
-bWFnZSBmb3IgbXkgdGFyZ2V0IEkgZ2V0IGVycm9ycyB3aGljaCBlc3NlbnRpYWxseSBhbW91bnQg
-dG8KCkVycm9yOgpQcm9ibGVtOiBjb25mbGljdGluZyByZXF1ZXN0cwotIG5vdGhpbmcgcHJvdmlk
-ZXMgL3Vzci9iaW4vcHl0aG9uMi42IG5lZWRlZCBieSBteS1kb2NrZXItaW1hZ2UtYmFrZWQtaW4t
-MS4wK2dpdDArMTQwNTVjYjU2Mi1yMC5jb3J0ZXhhNTNfY3J5cHRvCi0gbm90aGluZyBwcm92aWRl
-cyBsaWJFR0wuc28gbmVlZGVkIGJ5IG15LWRvY2tlci1pbWFnZS1iYWtlZC1pbi0xLjArZ2l0MCsx
-NDA1NWNiNTYyLXIwLmNvcnRleGE1M19jcnlwdG8KZXRjLi4uCgpXaGljaCBhcmUgZmFsc2UgYWxh
-cm1zIGFzIHRob3NlIGZpbGVzIGFyZSBpbmRlZWQgZXh0YW50IGF0IG15IGluIG15IGRvY2tlciBz
-dG9yZSBhbmQgaW4gdGhlIGRvY2tlciBjb250YWluZXIgYmVpbmcgc3B1biB1cC4KCkkndmUgc3Bl
-bnQgc28gbXVjaCB0aW1lIG5vdyB0cnlpbmcgdG8gZmluZCBvdXQgaG93IHRvIHByZXZlbnQgYml0
-YmFrZSBmcm9tIHRyeWluZyB0byBzYXZlIG1lIGZyb20gbXlzZWxmLCBidXQgc2ltcGx5IGZvdW5k
-IG5vIHdheSB0byBjb2F4IGl0IGludG8gYmVsaWV2aW5nIG1lIHRoYXQgSSByZWFsbHkgZG9uJ3Qg
-bmVlZCB0aG9zZSBkZXBlbmRlbmNpZXMuIElzIHRoZXJlIGFueSB3YXkgdG8gYWN0dWFsbHkgY29u
-dmluY2UgaXQgdGhvc2UgYXJlIG5vdCBuZWVkZWQ/IE9yIHRvIHByZXZlbnQgcGFja2FnZSBjcmVh
-dGVkIGJ5IG15IGRvY2tlci1zdG9yZS1jb25zdHJ1Y3RpbmcgcmVjaXBlIGZyb20gcGlja2luZyB1
-cCB0aG9zZSBmYWtlIGRlcGVuZGFuY2llcz8KCkJlc3QsCkt1YmE=
-
---b1_kM0ey84qoVfrnWCAzZl4pxHhG3bXWw3WNhHW4451jBk
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
-
-PGh0bWw+PGhlYWQ+PG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0
-L2h0bWw7IGNoYXJzZXQ9VVRGLTgiLz48L2hlYWQ+PGJvZHkgc3R5bGU9IndvcmQtd3JhcDogYnJl
-YWstd29yZDsgLXdlYmtpdC1uYnNwLW1vZGU6IHNwYWNlOyBsaW5lLWJyZWFrOiBhZnRlci13aGl0
-ZS1zcGFjZTsiIGNsYXNzPSIiPjxkaXY+SGkgYWxsLDwvZGl2PjxkaXY+PGJyIGNsYXNzPSIiLz48
-L2Rpdj48ZGl2PkZpcnN0IHRpbWUgcG9zdGluZyB0byB0aGlzIG1haWxpbmcgbGlzdCwgaG9wZSB0
-aGlzIGVtYWlsIGtpbmQgb2YgZW1haWwgaXMgd2hhdCBpdOKAmXMgZm9yITwvZGl2PjxkaXY+PGJy
-IGNsYXNzPSIiLz5CYWNrZ3JvdW5kIC8gd2hhdCBJJiMzOTttIGRvaW5nOiBJJiMzOTttIGNyZWF0
-aW5nIGFuIGltYWdlIHdoaWNoIHVzZXMgYSBkb2NrZXIgdG8gZG8gc3R1ZmYuIExvYWRpbmcgbmV3
-IGRvY2tlciBpbWFnZXMgdGFrZXMgYSBsb25nIHRpbWUgb24gbXkgdGFyZ2V0IHNvIEkgaGF2ZSBj
-cmVhdGVkIGEgcmVjaXBlIHdoaWNoIGVzc2VudGlhbGx5IHByZS1sb2FkcyBkb2NrZXIgc3RvcmUg
-d2l0aCB0aGUgc2FpZCBkb2NrZXIgaW1hZ2UgYXQgYnVpbGQgdGltZSBhbmQgaW5zdGFsbHMgaXQg
-b24gdGhlIHRhcmdldCBmaWxlc3lzdGVtLCBzbyB0aGF0IGl0IGNhbiBqdXN0IHNwaW4gdGhlIGNv
-bnRhaW5lciB1cCBmcm9tIGl0IGFmdGVyIGJlaW5nIGZsYXNoZWQuIFlvY3RvIHZlcnNpb24gSGFy
-ZGtub3R0IGlzIGJlaW5nIHVzZWQuPGJyIGNsYXNzPSIiLz48Zm9udCBjb2xvcj0iI2JmNWFmMiIg
-Y2xhc3M9IiI+PHNwYW4gc3R5bGU9ImNhcmV0LWNvbG9yOiByZ2IoMTkxLCA5MCwgMjQyKTsiIGNs
-YXNzPSIiPjxiciBjbGFzcz0iIi8+PC9zcGFuPjwvZm9udD5UaGUgcHJvYmxlbTogdGhlIHJlc3Vs
-dGluZyBkb2NrZXIgc3RvcmUgSSYjMzk7bSBpbnN0YWxsaW5nIG9uIHRoZSB0YXJnZXQgKGF0IGAv
-dmFyL2xpYi9kb2NrZXJgKSBjb250YWlucyB0aGUgZmlsZXN5c3RlbSBvZiB0aGUgY29udGFpbmVy
-LiBTb21lIGZpbGVzIGluIHRoYXQgZmlsZXN5c3RlbSBoYXZlIGRlcGVuZGVuY2llcyB3aGljaCBh
-cmUgc2F0aXNmaWVkIGludGVybmFsbHkgd2hlbiB0aGF0IGZpbGVzeXN0ZW0gZXhpc3RzIGFzIGEg
-ZG9ja2VyIGNvbnRhaW5lci4gSG93ZXZlciwgYml0YmFrZSBpcyB0cnlpbmcgdG8gYmUgY2xldmVy
-IGFuZCBzaG91dHMgYXQgbWUgZm9yIHRob3NlIGRlcGVuZGVuY2llcyBub3QgYmVpbmcgc2F0aXNm
-aWVkIG92ZXJhbGwuPGJyIGNsYXNzPSIiLz48Zm9udCBjb2xvcj0iI2JmNWFmMiIgY2xhc3M9IiI+
-PHNwYW4gc3R5bGU9ImNhcmV0LWNvbG9yOiByZ2IoMTkxLCA5MCwgMjQyKTsiIGNsYXNzPSIiPjxi
-ciBjbGFzcz0iIi8+PC9zcGFuPjwvZm9udD5CdWlsZGluZyB0aGUgZG9ja2VyLWltYWdlIHJlY2lw
-ZSBieSBpdHNlbGYgd29ya3MgZmluZSwgYnV0IHdoZW4gSSBpbmNsdWRlIGl0IGluIHRoZSB3aG9s
-ZSBpbWFnZSBmb3IgbXkgdGFyZ2V0IEkgZ2V0IGVycm9ycyB3aGljaCBlc3NlbnRpYWxseSBhbW91
-bnQgdG88YnIgY2xhc3M9IiIvPjxmb250IGNvbG9yPSIjYmY1YWYyIiBjbGFzcz0iIj48c3BhbiBz
-dHlsZT0iY2FyZXQtY29sb3I6IHJnYigxOTEsIDkwLCAyNDIpOyIgY2xhc3M9IiI+PGJyIGNsYXNz
-PSIiLz48L3NwYW4+PC9mb250PsKgIMKgRXJyb3I6PGJyIGNsYXNzPSIiLz7CoCDCoCBQcm9ibGVt
-OiBjb25mbGljdGluZyByZXF1ZXN0czxiciBjbGFzcz0iIi8+wqAgwqAgwqAtIG5vdGhpbmcgcHJv
-dmlkZXMgL3Vzci9iaW4vcHl0aG9uMi42IG5lZWRlZCBieSBteS1kb2NrZXItaW1hZ2UtYmFrZWQt
-aW4tMS4wK2dpdDArMTQwNTVjYjU2Mi1yMC5jb3J0ZXhhNTNfY3J5cHRvPGJyIGNsYXNzPSIiLz7C
-oCDCoCDCoC0gbm90aGluZyBwcm92aWRlcyBsaWJFR0wuc28gbmVlZGVkIGJ5IG15LWRvY2tlci1p
-bWFnZS1iYWtlZC1pbi0xLjArZ2l0MCsxNDA1NWNiNTYyLXIwLmNvcnRleGE1M19jcnlwdG88YnIg
-Y2xhc3M9IiIvPsKgIMKgIMKgIMKgZXRjLi4uPGJyIGNsYXNzPSIiLz48Zm9udCBjb2xvcj0iI2Jm
-NWFmMiIgY2xhc3M9IiI+PHNwYW4gc3R5bGU9ImNhcmV0LWNvbG9yOiByZ2IoMTkxLCA5MCwgMjQy
-KTsiIGNsYXNzPSIiPjxiciBjbGFzcz0iIi8+PC9zcGFuPjwvZm9udD5XaGljaCBhcmUgZmFsc2Ug
-YWxhcm1zIGFzIHRob3NlIGZpbGVzIGFyZSBpbmRlZWQgZXh0YW50IGF0IG15IGluIG15IGRvY2tl
-ciBzdG9yZSBhbmQgaW4gdGhlIGRvY2tlciBjb250YWluZXIgYmVpbmcgc3B1biB1cC48YnIgY2xh
-c3M9IiIvPjxmb250IGNvbG9yPSIjYmY1YWYyIiBjbGFzcz0iIj48c3BhbiBzdHlsZT0iY2FyZXQt
-Y29sb3I6IHJnYigxOTEsIDkwLCAyNDIpOyIgY2xhc3M9IiI+PGJyIGNsYXNzPSIiLz48L3NwYW4+
-PC9mb250PkkmIzM5O3ZlIHNwZW50IHNvIG11Y2ggdGltZSBub3cgdHJ5aW5nIHRvIGZpbmQgb3V0
-IGhvdyB0byBwcmV2ZW50IGJpdGJha2UgZnJvbSB0cnlpbmcgdG8gc2F2ZSBtZSBmcm9tIG15c2Vs
-ZiwgYnV0IHNpbXBseSBmb3VuZCBubyB3YXkgdG8gY29heCBpdCBpbnRvIGJlbGlldmluZyBtZSB0
-aGF0IEkgcmVhbGx5IGRvbiYjMzk7dCBuZWVkIHRob3NlIGRlcGVuZGVuY2llcy4gSXMgdGhlcmUg
-YW55IHdheSB0byBhY3R1YWxseSBjb252aW5jZSBpdCB0aG9zZSBhcmUgbm90IG5lZWRlZD8gT3Ig
-dG8gcHJldmVudCBwYWNrYWdlIGNyZWF0ZWQgYnkgbXkgZG9ja2VyLXN0b3JlLWNvbnN0cnVjdGlu
-ZyByZWNpcGUgZnJvbSBwaWNraW5nIHVwIHRob3NlIGZha2UgZGVwZW5kYW5jaWVzPzxiciBjbGFz
-cz0iIi8+PGZvbnQgY29sb3I9IiNiZjVhZjIiIGNsYXNzPSIiPjxzcGFuIHN0eWxlPSJjYXJldC1j
-b2xvcjogcmdiKDE5MSwgOTAsIDI0Mik7IiBjbGFzcz0iIj48YnIgY2xhc3M9IiIvPjwvc3Bhbj48
-L2ZvbnQ+QmVzdCw8YnIgY2xhc3M9IiIvPkt1YmE8YnIgY2xhc3M9IiIvPjwvZGl2PjwvYm9keT48
-L2h0bWw+
-
-
---b1_kM0ey84qoVfrnWCAzZl4pxHhG3bXWw3WNhHW4451jBk--
+diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
+index 145aefd..e0bf84e 100644
+--- a/.gitlab-ci.yml
++++ b/.gitlab-ci.yml
+@@ -82,6 +82,7 @@ qemu-cortex-a53:
+   parallel:
+     matrix:
+       - TOOLCHAIN: [default, zephyr-toolchain]
++        TESTING: testimage
+ 
+ qemu-cortex-m0:
+   extends: .build
+diff --git a/ci/qemu-cortex-a53.yml b/ci/qemu-cortex-a53.yml
+index e77da8b..ca8b649 100644
+--- a/ci/qemu-cortex-a53.yml
++++ b/ci/qemu-cortex-a53.yml
+@@ -3,4 +3,8 @@ header:
+   includes:
+     - ci/base.yml
+ 
++local_conf_header:
++  failing_tests: |
++    ZEPHYRTESTS:remove = "interrupt"
++
+ machine: qemu-cortex-a53
+diff --git a/meta-zephyr-bsp/conf/machine/qemu-cortex-a53.conf b/meta-zephyr-bsp/conf/machine/qemu-cortex-a53.conf
+index b97cde7..97e536e 100644
+--- a/meta-zephyr-bsp/conf/machine/qemu-cortex-a53.conf
++++ b/meta-zephyr-bsp/conf/machine/qemu-cortex-a53.conf
+@@ -9,9 +9,10 @@ TCLIBC = "newlib"
+ 
+ # For runqemu
+ QB_SYSTEM_NAME = "qemu-system-aarch64"
+-QB_MACHINE = "-machine virt"
++QB_MACHINE = "-machine virt,secure=on,gic-version=3"
+ QB_CPU = "-cpu cortex-a53"
+ QB_OPT_APPEND = "-nographic -vga none"
++QB_OPT_APPEND = "-icount shift=4,align=off,sleep=on -rtc clock=vm"
+ 
+ # Zephyr RTOS settings
+ ZEPHYR_BOARD = "qemu_cortex_a53"
+-- 
+2.17.1
 
 
