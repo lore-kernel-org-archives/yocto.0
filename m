@@ -1,254 +1,261 @@
-Return-Path: <oobitots@cisco.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0B0ACC54EE9
-	for <webhook@archiver.kernel.org>; Tue, 20 Sep 2022 09:10:37 +0000 (UTC)
-Received: from rcdn-iport-7.cisco.com (rcdn-iport-7.cisco.com [173.37.86.78])
- by mx.groups.io with SMTP id smtpd.web08.9577.1663665030919444840
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2221FC54EE9
+	for <webhook@archiver.kernel.org>; Tue, 20 Sep 2022 09:17:37 +0000 (UTC)
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com
+ [209.85.208.175])
+ by mx.groups.io with SMTP id smtpd.web11.9734.1663665456057946676
  for <yocto@lists.yoctoproject.org>;
- Tue, 20 Sep 2022 02:10:31 -0700
+ Tue, 20 Sep 2022 02:17:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@cisco.com header.s=iport header.b=HmxDjv9+;
- spf=pass (domain: cisco.com, ip: 173.37.86.78, mailfrom: oobitots@cisco.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=4169; q=dns/txt; s=iport;
-  t=1663665031; x=1664874631;
-  h=from:to:cc:subject:date:message-id:
-   content-transfer-encoding:mime-version;
-  bh=fYNbR/K58b/y1podIOnOzoBnAQnMpl0Svz+bCfOLooY=;
-  b=HmxDjv9+8U0UNXAbSF6jdAW6MnGYQg+7OuhLFXvDjPXORboiuSS2Izxk
-   ut/3r3wMMZT1gZHkIsgvKN/IY0cKEy55Kh7gIZGr5ONSeYfmcic8gwy6R
-   uX0zvT0YZW/zwnOKYwIQovBXituS8E5h7PQPzQjbf7e5bz/T6nzJQbjqO
-   8=;
-IronPort-PHdr: =?us-ascii?q?A9a23=3AHFaUoxe2jn9h59FXR3Xz29YklGM/tYqcDmcuA?=
- =?us-ascii?q?tIPh7FPd/Gl+JLvdAza6O52hVDEFYPc97pfiuXQvqyhPA5I4ZuIvH0YNpAZU?=
- =?us-ascii?q?RgDhJYamgU6C5uDDkv2ZPfhcy09GpFEU1lot3G2OERYAoDwfVrX93az9jUVX?=
- =?us-ascii?q?B74MFkdGw=3D=3D?=
-IronPort-Data: =?us-ascii?q?A9a23=3AhDVVDK/RwuuV8y8/q09qDrUDuHyTJUtcMsCJ2?=
- =?us-ascii?q?f8bNWPcYEJGY0x3y2scCG6Da/iONmf9c9Fzatu+90lXv8KAx4RgHVBoqy9EQ?=
- =?us-ascii?q?iMRo6IpJzg2wmQcns+qw0aqoHtPt63yUfGdapFtJpPgjk31aOK58CAijfjgq?=
- =?us-ascii?q?ofUUYYoBAggHWeIdw954f5Ts7ZRbr9A2bBVMSvU0T/Bi5W31Gue5tJBGjl8B?=
- =?us-ascii?q?5RvB/9YlK+aVDsw5jTSbB3Q1bPUvyF94Jk3fcldI5ZkK7S4ENJWR86bpF241?=
- =?us-ascii?q?nnS8xFoAdS/n/OiNEYLWbXVewOJjxK6WYD73UME/XN0g/19badGAatUo23hc?=
- =?us-ascii?q?9RZz9JHtIC3VRwBNazXk+NbWB5de817FfQepuefeSTi7JH7I0ruNiGEL+9VJ?=
- =?us-ascii?q?FA3e58Y8+FfHmBI+eYZNj0XKBuEgoqe0bWwVu5EgsU4MNKtLYQUpnZ41zbbA?=
- =?us-ascii?q?P06B5fZTM33CXVwtNsrrtpFEfCbbM0DZH82Kh/BeBZIfFwQDfoDcC6TriGXW?=
- =?us-ascii?q?1VlRJi9/MLbO1Tu8TE=3D?=
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AcU5cfans7OzpZ9vL0qiIcg5bDDHpDfOTim?=
- =?us-ascii?q?dD5ihNYBxZY6Wkfp+V8sjzhCWatN9OYh0dcIi7SdO9qXO1z+8Q3WBjB8beYO?=
- =?us-ascii?q?CAghrkEGgC1/qp/9SEIUzDH4FmpN9dmsRFeb/N5DtB/IrHCWuDYq0dKbC8mc?=
- =?us-ascii?q?jC74q/vhRQpGpRGsZdBnJCe3+m+zpNNW977PQCZf+hz/sCgwDlVWUcb8y9CH?=
- =?us-ascii?q?VAdfPEvcf3mJXvZgNDLwI76SGV5AnYp4LSIly95FMzQjlPybAt/SzuiAri/J?=
- =?us-ascii?q?iutPm911v1y3LT1ZJLg9Hso+EzSvBky/JlawkEuDzYJ7iJaIfy/gzdZ9vfrW?=
- =?us-ascii?q?rCpeO84yvI+f4Dr085MFvF5icFkDOQrArGo0WStmNwx0GT5/AQgFkBepJ8bU?=
- =?us-ascii?q?UzSGqB16NohqAM7EpGsljpyaZ/HFfOmj/w6MPPUAwvnk2ooWA6mepWlHBHV5?=
- =?us-ascii?q?ACAYUh5LD30XklZ6voJhiKnrwPAa1rFoXR9fxWeVSVYzTQuXRu2sWlWjA2Eg?=
- =?us-ascii?q?2dSkYPt8SJ23wO9UoJhHcw1YgahDMN5Zg9Q55L66DNNblpjqhHSosTYbhmDO?=
- =?us-ascii?q?kMTMOrAijGQA7KMmiVPVP7fZt3c07lutry+vE49euqcJsHwN87n4nASkpRsS?=
- =?us-ascii?q?ood0fnGaS1rel2G9D2MRCAtBjWu7NjDsJCy83BrZLQQF6+dGw=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0ASBgBDbIJi/5hdJa1agQmBT4FSUgd?=
- =?us-ascii?q?1WjlDiBoDhTGFCZ49gSyBJQNUCwEBAQ0BAUIEAQGFAgKFPgIlNAkOAQIEAQE?=
- =?us-ascii?q?BEgEBBQEBAQIBBwSBCROFaA2GRRYuAQE3AREBgQAnBAENDRqFPwMxAZ91AYE?=
- =?us-ascii?q?+AoofeIEzgQGCCAEBBgQEhQ0YgjgJgTyDFItzHIINgViEPoMthAuCLpVnOwN?=
- =?us-ascii?q?UgQUSgSFxAQgGBgcKBTIGAgwYFAQCExJNBh4CEwwKBhYOQhIZDA8DEgMRAQc?=
- =?us-ascii?q?CCxIIFSwIAwIDCAMCAyMLAgMYCQcKAx0IChwSEBQCBBMfCwgDGh8tCQIEDgN?=
- =?us-ascii?q?DCAsKAxEEAxMYCxYIEAQGAwkvDSgLAwUPDwEGAwYCBQUBAyADFAMFJwcDIQc?=
- =?us-ascii?q?LJg0NBCMdAwMFJgMCAhsHAgIDAgYXBgICGVgKKA0IBAgEGAQeJRMFAgcxBQQ?=
- =?us-ascii?q?vAh4EBQYRCQIWAgYEBQIEBBYCAhIIAggnGwcWNhkBBV0GCwkjFgYsEQUGFgM?=
- =?us-ascii?q?mUgUEmRkTTAKBI4EykgqPT4ISmk+CLAolgyegJhWoV5ZmIKFfG4RkAgQCBAU?=
- =?us-ascii?q?CDgEBBoFhPCuBLnAVgyNRGQ+SEopedTsCBgsBAQMJkRoBAQ?=
-X-IronPort-AV: E=Sophos;i="5.91,230,1647302400";
-   d="scan'208";a="1060004555"
-Received: from rcdn-core-1.cisco.com ([173.37.93.152])
-  by rcdn-iport-7.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA;
- 20 Sep 2022 09:10:29 +0000
-Received: from mail.cisco.com (xfe-rcd-002.cisco.com [173.37.227.250])
-	by rcdn-core-1.cisco.com (8.15.2/8.15.2) with ESMTPS id 28K9ATJT021426
-	(version=TLSv1.2 cipher=AES256-SHA bits=256 verify=OK);
-	Tue, 20 Sep 2022 09:10:29 GMT
-Received: from xfe-rtp-001.cisco.com (64.101.210.231) by xfe-rcd-002.cisco.com
- (173.37.227.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.9; Tue, 20 Sep
- 2022 04:10:29 -0500
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (64.101.32.56) by
- xfe-rtp-001.cisco.com (64.101.210.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.9
- via Frontend Transport; Tue, 20 Sep 2022 05:10:28 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TvEpOqFP0mrhBt901/1fF01hrVaPIhyTV1oab3nDKov87guNNfNiioUYCuCfGu1wnQrv1rWP49NUam356gBIG14TgeVEUbVAph/Cgwvm/+aCHMCHIJxkfknTuilzlKr1kZTyknalw04FirMBp4E93wzO7K7ibX6S0xtL80HxvUuvSLwLErWDhTdITn2CrBdhoNdh12rLnvBYLYMlCsNlysbxgy/orRPdAHBrMvxK5uEHsoY0gKOemr8R/iBwH4PUURL7r8MZqgkIHnFoqxDsIeNiOSSKB7BNRfeNJ85bmBy7v0pjbau/cfx70S2YE3OEZLwIaTYpVCgHVd48VnrC0Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=43IBlRK6tGsPr36qx3ICYKq+JYof4nQBf/dPgJYwfk0=;
- b=Sp2SqaeMaXFpPmP+dRIxKpDElmaufEv9zvhQHdpwGpXUBUgO8e3MC3pwq56xbMggPx9BSBtcHXLDygTApQlOra1TkiR/aAIrgObaFKyiXFcUL810vy3ggX1XaxxMaMg7YhWYzAlpg1ncWYMTHoxqjA66k5zcRrD8rt4JRu4PF7OHMwTJlOglUg4OIvo3WZOjkmyr05ogOR0ufoo+XdIIfYh4959JqmHl0PXounOJrvwx2VxzZkzMJueG8zlj7/bLFltFSdyhNfGRa1lbimbfNbEfyFIiKIvv5IjR/xUzfks3DczGO1AzWlmDHM/BhJ2qI7DXkcs5z0NuHLFzTDrANQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cisco.com; dmarc=pass action=none header.from=cisco.com;
- dkim=pass header.d=cisco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cisco.onmicrosoft.com;
- s=selector2-cisco-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=43IBlRK6tGsPr36qx3ICYKq+JYof4nQBf/dPgJYwfk0=;
- b=UPIm3BGYVLPicqov8DcPFMZ8bxcsSyXvvst3AW9ob4l0PEjcuOYdEx8OoYGd9OWh1P7v8ceiBp/A4fw3RkAT5eXoVNzerTRULYGLVNkn3l2NRTF0wihmuxqitO2zsEdCOItk4jjxMNVm3iKBXbysSnx9slHk9St2mooIzFWOVo8=
-Received: from PH0PR11MB4902.namprd11.prod.outlook.com (2603:10b6:510:37::5)
- by CY5PR11MB6163.namprd11.prod.outlook.com (2603:10b6:930:28::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.18; Tue, 20 Sep
- 2022 09:10:27 +0000
-Received: from PH0PR11MB4902.namprd11.prod.outlook.com
- ([fe80::a0f2:8b42:4b8d:83f5]) by PH0PR11MB4902.namprd11.prod.outlook.com
- ([fe80::a0f2:8b42:4b8d:83f5%5]) with mapi id 15.20.5632.021; Tue, 20 Sep 2022
- 09:10:27 +0000
-From: "Oleksiy Obitotskyi -X (oobitots - GLOBALLOGIC INC at Cisco)"
-	<oobitots@cisco.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-        "yi.zhao@windriver.com" <yi.zhao@windriver.com>
-CC: "Ruslan Bilovol -X (rbilovol - GLOBALLOGIC INC at Cisco)"
-	<rbilovol@cisco.com>
-Subject: libsemanage 3.4 issue
-Thread-Topic: libsemanage 3.4 issue
-Thread-Index: AQHYzMZ3bxa/Wf83TEmJtKZXCRcFsw==
-Date: Tue, 20 Sep 2022 09:10:27 +0000
-Message-ID: 
- <PH0PR11MB4902ABA6E94E119654171B5AD74C9@PH0PR11MB4902.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cisco.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH0PR11MB4902:EE_|CY5PR11MB6163:EE_
-x-ms-office365-filtering-correlation-id: 738ac871-ee71-424a-a4bd-08da9ae7f5b0
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- lZmiFc8rD8uFjUwQ2TVbxcpqRtqbve+4snxeWlsGYdNU+DcShLqfNhRJwNsabVBUeD3JFhbyN/zke2Uq9b3zEP0GY50a4oTT1Q/9f8yg9BTgosxu0njFtENjJTWCS0KocEu6W0eoQztanFW2tVhEaBD+Y9m2nIt1AEOiKxkUbaUhkLRma6cAWiDmNbrd1V4zPklh+Zc1CbsAWRYKSGx/nWLvnCqKAz/0XHsxG2+i90xCAIBaf9QPe3v0QYFo4M1auPbGr6CF5xTer5h4Zjl7poZypFKnnPIygWyS23Ty6/XSOvksPufVnt15sb+QU/3H4NC1eCQAQMutQ03IHR8HJ6caoSztnDeAKA7sXOIOBPtRxAWtatljIseI4dsyzHkFY3d1WJ5fVIdyuF48xQSrOQcmAAHaaGoqDa77FZN8sRkhCPgsGq+2NS6Z0T6v38bD60HhUq0IppTxNXYh3ImLFXM8alXl2xozuxpsqkL9B5oIhb5T0nBOLgCTgfWWSGULBbUa4cQ9eXJZT25Zj7g50mSP0P2rvjVgEecC7+l55x2qAxVigKtx6QeOu8yIrE+iIl5DKF8zxaHIscqzFyUeYaWTGILCMr0+ma6dzuGvkHwDOTcMV6ZEZ6Jwi8cuEYmzX7Ca0BMK5xezk7GP02oVAoEiaSaDmNccsMfA1p8pOJwqSY0N3UHcpAjNtiHZP5c90/iEO4u7F/GR5oFT8b5wWsVeGZAnYr+QXy8asA1C9MXHD281ZY/hMR1ABPSYb9m0iLiE4PuTg2Az7lo998T6XA==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR11MB4902.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(366004)(39860400002)(396003)(136003)(346002)(451199015)(7696005)(26005)(9686003)(6506007)(55016003)(38100700002)(38070700005)(478600001)(2906002)(5660300002)(66476007)(122000001)(66446008)(33656002)(86362001)(186003)(52536014)(107886003)(71200400001)(41300700001)(66946007)(4326008)(76116006)(64756008)(91956017)(7116003)(66556008)(316002)(8936002)(8676002)(110136005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?vsXqdanrM95VMaUKFCTlK4O5KGJOVGJjCnk9PwXntAm4DFsW/0XwBMlaiI?=
- =?iso-8859-1?Q?wCjLzIP7bfPb2l6BrGMEZJCzNklsKPiMtlP0V0I0i/lxEwEFgvvKVYzd9D?=
- =?iso-8859-1?Q?d7NrqwYTq1F1r89RsF2Ox4thFPSXYnXRANtk8odefsBPC9cZzAAb2UnOVQ?=
- =?iso-8859-1?Q?bq90RstcqcYDPzj2tHCGI1zqRKL2uKsV9dTIv48n6Gg4hYeMSpoej0kztE?=
- =?iso-8859-1?Q?qWgm4ZQP4MGOczrcoSJeBvbSPukDuvQM4h4Q0tR2aaKbKVFOwS22ZfP7oP?=
- =?iso-8859-1?Q?4TNJsERt7DFrB0R2U85Lqisa6MKrXtBPGsqVlNJQInIrrs1oJrxz1H22I+?=
- =?iso-8859-1?Q?am/FIKtMOQmREDQwgvPqSr5e7jsvwql3m61A5eih3tpWnzsPno7CSZkIsJ?=
- =?iso-8859-1?Q?vKQ95pfKo/mhclRCor9DO7sbXnQ2qDmkpjhdjErdj9yFrYh2fVIHIVcNRt?=
- =?iso-8859-1?Q?UkNm1hhoYhfAAjLjiCJSqlVSIvwDj2B+4bDcOf5dJ++DLuG8ol/6+/W0H1?=
- =?iso-8859-1?Q?LALOWFr8iNlb1503fJVpE+T7ZJmKxpvb+SMoXOFkdG+upZ0PviqldaGBCx?=
- =?iso-8859-1?Q?gUoYnmYku+MKPVCmgIkyjyS6qNEgT1qwMlGQmORRC0OHO9PhHc0i7N4miF?=
- =?iso-8859-1?Q?y66uLH68rwtIqR6Sg2PYDz+6Rdua5VkRDONEsav7vueKxyUju4rr5MOfA7?=
- =?iso-8859-1?Q?anlRVwPRkle2FB0001P82DmJ/38gdkVIoCC8wyAl8pynyJ2giS5MMX079X?=
- =?iso-8859-1?Q?LGBhpkmVoxjWU0JGYHuBsvKt/WV6MhkeCU4qyor6viwr5qcaj2JsO8aoPJ?=
- =?iso-8859-1?Q?KoAlfPceOTMdYRfrWaE8JXde2JoFntAEq1DVpyei3B5tZB+Xi13avnODf8?=
- =?iso-8859-1?Q?pf4CR861h8O+Ow1SJRktYVf4nu3WfEoMXN1YCcYMhlw8glJgrGfluGd/1l?=
- =?iso-8859-1?Q?8xM/gLlFn37dJoWLZ0QtxIhdsispgzTJnCQOV7gVooTrq4RlEIhtzbn1/I?=
- =?iso-8859-1?Q?hAKldJSfTDm/5CufTDoEA20QbCgycc+h4eGxA8aE34AHlgmqYRo9DiJeob?=
- =?iso-8859-1?Q?0vHfUXYqg8No7/QvBHgJXJZyya7RnnywH9SK76KSmc5iIq8WNEDGfhJicc?=
- =?iso-8859-1?Q?tXOruBnL33JuilihxADh1Fs71u294T8U1zqvw/d5P9vQnBpkE0YB7whLCO?=
- =?iso-8859-1?Q?kFO+5k0o04jD7fLkoZ04/n2c9LwQbV6Ti6tVzwSLr2Vm5r2RfYP33IuHuF?=
- =?iso-8859-1?Q?TGUZ/2KZW7A6h/gSvYNqlHD4DfC1+hM0erO8/KyEOQ599gU7K+a8XTUHdv?=
- =?iso-8859-1?Q?zMDgxOHvkoSonbyzlOu3lrfTpRi6Yb2wGBLqBFzCXolzlgjKo5Dn0xMS9J?=
- =?iso-8859-1?Q?9IefTx/3yYa5NS3wQgXRovehUZckrZcCuQmlJNfMZHdhCSBzHQO4ODSU9z?=
- =?iso-8859-1?Q?Hn0O6zNkr6LGPRatH5kikHR5oC1+lFUuYNpU7M3WrMUunNvLD4ATOdJt9P?=
- =?iso-8859-1?Q?NNxDtrWLhddGuoqjnPOIIe6mHUxtQRIXej9yfg4o4xiK69aIbNhUzY6TUB?=
- =?iso-8859-1?Q?nBMqMxpbOuB9nLxKk50hHnyM+iFS1JO43Ua/a6whCU/Wo6aKEuZMz1c0fi?=
- =?iso-8859-1?Q?Qb9GO2e4bCYpg=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=EvT1um+v;
+ spf=pass (domain: gmail.com, ip: 209.85.208.175,
+ mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lj1-f175.google.com with SMTP id j24so1715592lja.4
+        for <yocto@lists.yoctoproject.org>;
+ Tue, 20 Sep 2022 02:17:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=aJc+eKNManGz5Dx+EoAWD8wJe9nqTdbRUF6/gLWYYaQ=;
+        b=EvT1um+vH/KwAO5gP38xKnujA/VAAKxhISi00yGhatM51XkwMZvK8gLpwMSIVYpbdP
+         XtcgCO2Hr3UKHC+oT7fCzgbunasbzaVsRBtvHfc37d+gBVdJxLDhBYW2ukn8UeAbyLqF
+         qd8qYEmBul2wpbBRD8M98nrf0DGo2R6MNUF3CfaucDJDMrnmaizbPbSOm37qHomVtlWO
+         L6JNV0+XKMAx9t+iNGYu2OVoNLcUPyLGcHkNvvJ8/MyqB6guTGc887dknyeGAeW+zmN3
+         maLyNEJcFPB6D+2vf5hGS1br2IncTXppggtXHfcyb/cVpMqTFAqODGuNbTWpnrLP9BK1
+         +toQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=aJc+eKNManGz5Dx+EoAWD8wJe9nqTdbRUF6/gLWYYaQ=;
+        b=ffzfL4Q8X7IQJq5BBm2wrLeJdVBTcgDW7X3iFvO6gNk9j7aNpCxgw2Wp5pH5lm8InD
+         ZlTdqB3m+3sYYN+ObYeLI85ljsZuty9iH7+jgS9RxXunN59wsxkyq6mW5YYyoKeuNcY3
+         rG6lIpLiqeZe7KupzKd9SNle+hCExwG+0iiU8PkL0Yk5r6q4rAsldvFYcYPDlthIA8RY
+         QgdodEVZfviV+EZ5RH02dBnf0MtLFiUCA+J4Kybzk2Q+uaZ28ueCDwSLlozo+0KuarHn
+         /PhpEPNZc+CItt7rrQrqFJOYjmls75eBF2GSHnVvRSdju949OFvwHFgQ08JM0ZjQlKdH
+         Aw+Q==
+X-Gm-Message-State: ACrzQf0EX4dVU6QHMA/Z9b70RqyTwouBUkna1JSPFdDoJvw8j7yOZxCX
+	nUVBFVvRO9I4ky3/H3KUjVp3zUBweNodtcVg/xg=
+X-Google-Smtp-Source: 
+ AMsMyM7D6SlvS7Y8eA2mVpM3gEbIjKYQJfOhMMQDvVAPw9gW1DuryWrtR0LFMAltawyjx/tsTAR2JD0TaDXv3kl6eXI=
+X-Received: by 2002:a05:651c:17aa:b0:26c:27cd:3fe3 with SMTP id
+ bn42-20020a05651c17aa00b0026c27cd3fe3mr6348520ljb.68.1663665454029; Tue, 20
+ Sep 2022 02:17:34 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB4902.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 738ac871-ee71-424a-a4bd-08da9ae7f5b0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Sep 2022 09:10:27.6151
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 5ae1af62-9505-4097-a69a-c1553ef7840e
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- IYyg73mR294sbEtdx1KGesez5wfprY8sPkhRNhs1+ErUiog9M8YMAH9ZbrB3tiBGPcv6UEkmyVDlPjKSVoSrcg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6163
-X-OriginatorOrg: cisco.com
-X-Outbound-SMTP-Client: 173.37.227.250, xfe-rcd-002.cisco.com
-X-Outbound-Node: rcdn-core-1.cisco.com
+References: 
+ <PH0PR84MB1835D4BD7B71CB2ED806C2CEC7489@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+ <PH0PR84MB183555F695A0E7C8818C14E5C74D9@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+ <CANNYZj9oFKPYa63AiH4tDJ8Jku0826ySM22uXxxq=vOwbbD+vA@mail.gmail.com>
+ <PH0PR84MB1835788AFD16FEB8E4A15790C74D9@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+ <CANNYZj8ANJ_EnvBgi+mZH52kr5rxyhBbBWEDoaOFPR9MDLDgZg@mail.gmail.com>
+ <PH0PR84MB183571245531C6D271BD5A90C74D9@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+ <CANNYZj-rLXUAXn_BNYCM8bjeeWVCWU3YYFvnr5bagw7e0V8Akw@mail.gmail.com>
+ <PH0PR84MB1835BFBD2F24974F9B69E9E3C74D9@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+ <CANNYZj-0ewbydhAYAw6u0JgnKcBEJTSgZ+QzTxnwD2Lmh9vDgA@mail.gmail.com>
+ <P5UGIR.ETKUECS9HZXY1@t-online.de>
+ <PH0PR84MB1835BCF1ACDC3CAC1357FECCC74D9@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+ <40WGIR.ECG3N5TIIYMJ1@t-online.de>
+ <PH0PR84MB183594E043D2D4644D204710C74C9@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+ <CANNYZj8ZmE4_KY41Xe90YSFSm-t3MPVQjDH+gTw8TJBFgTjoWw@mail.gmail.com>
+ <PH0PR84MB1835BEBC6B143383119B2EA7C74C9@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+In-Reply-To: 
+ <PH0PR84MB1835BEBC6B143383119B2EA7C74C9@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Tue, 20 Sep 2022 10:17:22 +0100
+Message-ID: 
+ <CANNYZj-DASeVZAJKe5SURTNec_uth5CofkyOu6ytn9rv2dc76g@mail.gmail.com>
+Subject: Re: [yocto] Adding Vulkan to core-image-weston
+To: PHIL <heideggm@hotmail.com>
+Cc: Markus Volk <f_l_k@t-online.de>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="00000000000069a07005e9184cb1"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 20 Sep 2022 09:10:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58090
+ <yocto@lists.yoctoproject.org>; Tue, 20 Sep 2022 09:17:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58091
 
-Hi,=0A=
-=0A=
-We are trying to use meta-selinux master branch and I got issue during comp=
-ilation.=0A=
-nativesdk-libsemanage failed to compile with error:=0A=
-=0A=
-make[1]: Entering directory '<...>/sdk-master-next/build/tmp/work/x86_64-na=
-tivesdk-xesdk-linux/nativesdk-libsemanage/3.4-r0/git/libsemanage/src'=0A=
-swig -Wall -python -o semanageswig_wrap.c -outdir ./ semanageswig_python.i=
-=0A=
-x86_64-xesdk-linux-gcc  --sysroot=3D<...>/sdk-master-next/build/tmp/work/x8=
-6_64-nativesdk-xesdk-linux/nativesdk-libsemanage/3.4-r0/recipe-sysroot  -O2=
- -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=3D<...>/sdk-mas=
-ter-next/build/tmp/work/x86_64-nativesdk-xesdk-linux/nativesdk-libsemanage/=
-3.4-r0/git/libsemanage=3D/usr/src/debug/nativesdk-libsemanage/3.4-r0  -fdeb=
-ug-prefix-map=3D<...>/sdk-master-next/build/tmp/work/x86_64-nativesdk-xesdk=
--linux/nativesdk-libsemanage/3.4-r0/git/libsemanage=3D/usr/src/debug/native=
-sdk-libsemanage/3.4-r0  -fmacro-prefix-map=3D<...>/sdk-master-next/build/tm=
-p/work/x86_64-nativesdk-xesdk-linux/nativesdk-libsemanage/3.4-r0/git/libsem=
-anage=3D/usr/src/debug/nativesdk-libsemanage/3.4-r0  -fdebug-prefix-map=3D<=
-...>/sdk-master-next/build/tmp/work/x86_64-nativesdk-xesdk-linux/nativesdk-=
-libsemanage/3.4-r0/git/libsemanage=3D/usr/src/debug/nativesdk-libsemanage/3=
-.4-r0  -fdebug-prefix-map=3D<...>/sdk-master-next/build/tmp/work/x86_64-nat=
-ivesdk-xesdk-linux/nativesdk-libsemanage/3.4-r0/recipe-sysroot=3D  -fmacro-=
-prefix-map=3D<...>/sdk-master-next/build/tmp/work/x86_64-nativesdk-xesdk-li=
-nux/nativesdk-libsemanage/3.4-r0/recipe-sysroot=3D  -fdebug-prefix-map=3D<.=
-..>/sdk-master-next/build/tmp/work/x86_64-nativesdk-xesdk-linux/nativesdk-l=
-ibsemanage/3.4-r0/recipe-sysroot-native=3D  -fmacro-prefix-map=3D<...>/sdk-=
-master-next/build/tmp/work/x86_64-nativesdk-xesdk-linux/nativesdk-libsemana=
-ge/3.4-r0/git/libsemanage=3D/usr/src/debug/nativesdk-libsemanage/3.4-r0  -f=
-debug-prefix-map=3D<...>/sdk-master-next/build/tmp/work/x86_64-nativesdk-xe=
-sdk-linux/nativesdk-libsemanage/3.4-r0/git/libsemanage=3D/usr/src/debug/nat=
-ivesdk-libsemanage/3.4-r0  -fmacro-prefix-map=3D<...>/sdk-master-next/build=
-/tmp/work/x86_64-nativesdk-xesdk-linux/nativesdk-libsemanage/3.4-r0/git/lib=
-semanage=3D/usr/src/debug/nativesdk-libsemanage/3.4-r0  -fdebug-prefix-map=
-=3D<...>/sdk-master-next/build/tmp/work/x86_64-nativesdk-xesdk-linux/native=
-sdk-libsemanage/3.4-r0/git/libsemanage=3D/usr/src/debug/nativesdk-libsemana=
-ge/3.4-r0  -fdebug-prefix-map=3D<...>/sdk-master-next/build/tmp/work/x86_64=
--nativesdk-xesdk-linux/nativesdk-libsemanage/3.4-r0/recipe-sysroot=3D  -fma=
-cro-prefix-map=3D<...>/sdk-master-next/build/tmp/work/x86_64-nativesdk-xesd=
-k-linux/nativesdk-libsemanage/3.4-r0/recipe-sysroot=3D  -fdebug-prefix-map=
-=3D<...>/sdk-master-next/build/tmp/work/x86_64-nativesdk-xesdk-linux/native=
-sdk-libsemanage/3.4-r0/recipe-sysroot-native=3D  -mtune=3Dgeneric -DDISABLE=
-_AUDIT -I../include -D_GNU_SOURCE -Wno-error -Wno-unused-but-set-variable -=
-Wno-unused-variable -Wno-shadow -Wno-unused-parameter -Wno-missing-prototyp=
-es -I<...>/sdk-master-next/build/tmp/work/x86_64-nativesdk-xesdk-linux/nati=
-vesdk-libsemanage/3.4-r0/recipe-sysroot/usr/local/oe-sdk-hardcoded-buildpat=
-h/sysroots/x86_64-xesdk-linux/usr/include/python3.10 -fPIC -DSHARED -c -o p=
-ython-3.10semanageswig_wrap.lo semanageswig_wrap.c=0A=
-semanageswig_wrap.c:154:11: fatal error: Python.h: No such file or director=
-y=0A=
-  154 | # include <Python.h>=0A=
-      |           ^~~~~~~~~~=0A=
-compilation terminated.=0A=
-=0A=
-It looks like for nativesdk-libsemanage we  have implicit dependency on nat=
-ive-python so recipe-sysroot-native populated with python header. But recip=
-e looks for  recipe-sysroot for headers.=0A=
-=0A=
-Adding python3 to dependencies fix this issue:=0A=
--DEPENDS =3D "libsepol libselinux bison-native swig-native"=0A=
-+DEPENDS =3D "libsepol libselinux python3 bison-native swig-native"=0A=
-=0A=
-But I'm not sure this is right and probably issue is in global problem of y=
-octo + python cross compilation issues.=0A=
-=0A=
-Regards,=0A=
-Oleksiy=
+--00000000000069a07005e9184cb1
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+It helps if you say what you did precisely and show the complaint.
+
+Alex
+
+On Tue 20. Sep 2022 at 9.40, PHIL <heideggm@hotmail.com> wrote:
+
+> What would be the simplest way to achieve that with bitbake? I tried
+> swrast in mesa yesterday but it complained because it wants Gallium.
+>
+>
+> Am 20. September 2022 10:23:38 MESZ schrieb Alexander Kanavin <
+> alex.kanavin@gmail.com>:
+>>
+>> Don=E2=80=99t bother with virgl yet. Start with the pure software implem=
+entation
+>> in Mesa.
+>>
+>> Alex
+>>
+>> On Tue 20. Sep 2022 at 8.39, Edgar Mobile <heideggm@hotmail.com> wrote:
+>>
+>>> Ok, I added these two lines now to a file named virglrenderer_0.9.1.bb
+>>> . Bitbake now says:
+>>>
+>>> ERROR: Nothing PROVIDES 'ninja-nativevulkan-loader' (but virtual:native=
+:
+>>> ... DEPENDS on or otherwise requires it)
+>>> ERROR: Required build target 'core-image-weston' has no buildable
+>>> providers.
+>>> Missing or unbuildable dependency chain was: {'core-image-weston',
+>>> 'meta-extsdk-toolchain', 'qemu-helper-native', 'qemu-system-native',
+>>> 'virglrenderer-native', 'ninja-nativevulkan-loader'
+>>>
+>>> ------------------------------
+>>> *From:* Markus Volk <f_l_k@t-online.de>
+>>> *Sent:* Monday, September 19, 2022 5:16 PM
+>>> *To:* Edgar Mobile <heideggm@hotmail.com>
+>>> *Cc:* Alexander Kanavin <alex.kanavin@gmail.com>;
+>>> yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>
+>>> *Subject:* Re: [yocto] Adding Vulkan to core-image-weston
+>>>
+>>> Am Mo, 19. Sep 2022 um 16:54:52 +0000 schrieb Edgar Mobile <
+>>> heideggm@hotmail.com>:
+>>>
+>>> This wasn't enough
+>>>
+>>>
+>>> i guess you would also need to add venus support to virglrenderer.bb
+>>> for qemu:
+>>>
+>>> DEPENDS:append =3D "vulkan-loader vulkan-headers"
+>>> EXTRA_OEMESON +=3D "-Dvenus-experimental=3Dtrue"
+>>>
+>>> but i have never tested this
+>>>
+>> --
+> Diese Nachricht wurde von meinem Android-Ger=C3=A4t mit K-9 Mail gesendet=
+.
+>
+
+--00000000000069a07005e9184cb1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">It helps if you say what you did precisely and show the c=
+omplaint.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Alex</div><div=
+><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tu=
+e 20. Sep 2022 at 9.40, PHIL &lt;<a href=3D"mailto:heideggm@hotmail.com">he=
+ideggm@hotmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style=
+:solid;padding-left:1ex;border-left-color:rgb(204,204,204)">
+<div>What would be the simplest way to achieve that with bitbake? I tried s=
+wrast in mesa yesterday but it complained because it wants Gallium.</div><d=
+iv><br><br><div class=3D"gmail_quote">Am 20. September 2022 10:23:38 MESZ s=
+chrieb Alexander Kanavin &lt;<a href=3D"mailto:alex.kanavin@gmail.com" targ=
+et=3D"_blank">alex.kanavin@gmail.com</a>&gt;:<blockquote class=3D"gmail_quo=
+te" style=3D"margin:0pt 0pt 0pt 0.8ex;border-left-width:1px;border-left-sty=
+le:solid;padding-left:1ex;border-left-color:rgb(204,204,204)">
+<div dir=3D"auto">Don=E2=80=99t bother with virgl yet. Start with the pure =
+software implementation in Mesa.=C2=A0</div><div dir=3D"auto"><br></div><di=
+v dir=3D"auto">Alex</div><div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Tue 20. Sep 2022 at 8.39, Edgar Mobile &lt;<a hr=
+ef=3D"mailto:heideggm@hotmail.com" target=3D"_blank">heideggm@hotmail.com</=
+a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
+x 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;padding-left:=
+1ex;border-left-color:rgb(204,204,204)">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+Ok, I added these two lines now to a file named <a href=3D"http://virglrend=
+erer_0.9.1.bb" style=3D"font-family:Calibri,Helvetica,sans-serif" target=3D=
+"_blank">virglrenderer_0.9.1.bb</a> . Bitbake now says:</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+ERROR: Nothing PROVIDES &#39;ninja-nativevulkan-loader&#39; (but virtual:na=
+tive: ... DEPENDS on or otherwise requires it)</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+ERROR: Required build target &#39;core-image-weston&#39; has no buildable p=
+roviders.</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+Missing or unbuildable dependency chain was: {&#39;core-image-weston&#39;, =
+&#39;meta-extsdk-toolchain&#39;, &#39;qemu-helper-native&#39;, &#39;qemu-sy=
+stem-native&#39;, &#39;virglrenderer-native&#39;, &#39;ninja-nativevulkan-l=
+oader&#39;=C2=A0
+<br></div></div><div dir=3D"ltr"><div style=3D"font-family:Calibri,Helvetic=
+a,sans-serif;font-size:12pt;color:rgb(0,0,0)">
+</div>
+<div>
+<div id=3D"m_-5337679858840708807m_-8286224681170601673appendonsend"></div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<br>
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_-5337679858840708807m_-8286224681170601673divRplyFwdMsg" dir=
+=3D"ltr"><font style=3D"font-size:11pt;font-family:Calibri,sans-serif;color=
+:rgb(0,0,0)" face=3D"Calibri, sans-serif"><b style=3D"font-family:Calibri,s=
+ans-serif">From:</b> Markus Volk &lt;<a href=3D"mailto:f_l_k@t-online.de" s=
+tyle=3D"font-family:Calibri,sans-serif" target=3D"_blank">f_l_k@t-online.de=
+</a>&gt;<br>
+<b style=3D"font-family:Calibri,sans-serif">Sent:</b> Monday, September 19,=
+ 2022 5:16 PM<br>
+<b style=3D"font-family:Calibri,sans-serif">To:</b> Edgar Mobile &lt;<a hre=
+f=3D"mailto:heideggm@hotmail.com" style=3D"font-family:Calibri,sans-serif" =
+target=3D"_blank">heideggm@hotmail.com</a>&gt;<br>
+<b style=3D"font-family:Calibri,sans-serif">Cc:</b> Alexander Kanavin &lt;<=
+a href=3D"mailto:alex.kanavin@gmail.com" style=3D"font-family:Calibri,sans-=
+serif" target=3D"_blank">alex.kanavin@gmail.com</a>&gt;; <a href=3D"mailto:=
+yocto@lists.yoctoproject.org" style=3D"font-family:Calibri,sans-serif" targ=
+et=3D"_blank">yocto@lists.yoctoproject.org</a> &lt;<a href=3D"mailto:yocto@=
+lists.yoctoproject.org" style=3D"font-family:Calibri,sans-serif" target=3D"=
+_blank">yocto@lists.yoctoproject.org</a>&gt;<br>
+<b style=3D"font-family:Calibri,sans-serif">Subject:</b> Re: [yocto] Adding=
+ Vulkan to core-image-weston</font>
+<div>=C2=A0</div>
+</div>
+<div>
+<div id=3D"m_-5337679858840708807m_-8286224681170601673x_geary-body" dir=3D=
+"auto">Am Mo, 19. Sep 2022 um 16:54:52 +0000 schrieb Edgar Mobile &lt;<a hr=
+ef=3D"mailto:heideggm@hotmail.com" target=3D"_blank">heideggm@hotmail.com</=
+a>&gt;:<br>
+<blockquote type=3D"cite">This wasn&#39;t enough</blockquote>
+<div><br>
+</div>
+<div>i guess you would also need to add venus support to <a href=3D"http://=
+virglrenderer.bb" target=3D"_blank">virglrenderer.bb</a> for qemu:</div>
+<div><br>
+</div>
+<div>DEPENDS:append =3D &quot;vulkan-loader vulkan-headers&quot;</div>
+<div>EXTRA_OEMESON +=3D &quot;<span>-D</span><span>venus-experimental=3Dtru=
+e&quot;</span></div>
+<div><span><br>
+</span></div>
+<div><span>but i have never tested this</span></div>
+</div>
+</div>
+</div>
+</div>
+
+</blockquote></div></div>
+</blockquote></div><div style=3D"white-space:pre-wrap"><div>-- <br>Diese Na=
+chricht wurde von meinem Android-Ger=C3=A4t mit K-9 Mail gesendet.</div></d=
+iv></div></blockquote></div></div>
+
+--00000000000069a07005e9184cb1--
 
