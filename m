@@ -1,324 +1,524 @@
-Return-Path: <steven.monsees@baesystems.com>
+Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ADAC3C54EE9
-	for <webhook@archiver.kernel.org>; Tue, 20 Sep 2022 15:04:48 +0000 (UTC)
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com
- [149.32.232.65])
- by mx.groups.io with SMTP id smtpd.web09.13078.1663686283251938095
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DC504C54EE9
+	for <webhook@archiver.kernel.org>; Tue, 20 Sep 2022 15:38:48 +0000 (UTC)
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com
+ (EUR05-VI1-obe.outbound.protection.outlook.com [40.107.21.61])
+ by mx.groups.io with SMTP id smtpd.web12.13678.1663688319124415806
  for <yocto@lists.yoctoproject.org>;
- Tue, 20 Sep 2022 08:04:43 -0700
+ Tue, 20 Sep 2022 08:38:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=LQIoAcU0;
- spf=pass (domain: baesystems.com, ip: 149.32.232.65,
- mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1663686283; x=1821366283;
-  h=from:to:subject:date:in-reply-to:mime-version;
-  bh=kHe4PM8rYYaTJjP23BH5sd++UicvEinbrCNrdHE4r/s=;
-  b=LQIoAcU0J8xCP1rjXTpvkHxTA5dKJiEzDX2vDJLfXAMnfhyQ1YbyjLVb
-   Mtky9dSmhf0pKPFIf13KipOgG/er/vRVDdm0sANt09tY8IPiLlZuu3E/1
-   +A8X9TmyL2gwXD2bQicgTIhCcunwZyhWs6b1Zw499DrvBv+HNzpfOW+Cy
-   E=;
-X-IPAS-Result: =?us-ascii?q?A2AHAAAt1ilj/0LBJQpaGgEBAQEBAQEBAQEDAQEBARIBA?=
- =?us-ascii?q?QEBAgIBAQEBSYEzBAEBAQELAYEgggICDoEeLBeEN44ygmIDhhSKUowqFIFoC?=
- =?us-ascii?q?wEBAQEBAQEBAQgBLAEGDwQBAYUFAhaEVSY1CA4BAgQBAQEBAwIDAQEBAQEBA?=
- =?us-ascii?q?wEBBgEBAQEBAQYEAYEbhS85DYI1IoNrAQEBAQMBIgpcAgEIDQQEAQEWFQICA?=
- =?us-ascii?q?iYKHQgBAQQBEgiCcQWCFoEKqnU1eoEyGgJligIJAYEzAYFlhmIBAYMhFIQog?=
- =?us-ascii?q?g1DhAg3PoJiBYEWCAoBEgE4FRODF4JmBINolRAHNwNEHUEDCw5oAxUDFAMFJ?=
- =?us-ascii?q?AcDGQ8jDQ0EFgcMAwMFJQMCAhsHAgIDAgYTBQICFzY4CAQIBCskDwUCBy8FB?=
- =?us-ascii?q?C8CHgQFBhEIAhYCBgQEBAQVAhAIAggmFwcTMxkBBVkQCSEWBg4aDQUGEwMgS?=
- =?us-ascii?q?SYFRQ8oMmsrHRsKgQwqCR8VAwQEAwIGEwMDIgIQKjEUBCkTEi0HK3MJAgMiZ?=
- =?us-ascii?q?wUDAwQoLAMJIQIBHAcoJjwHWBIpBAMDECI9BgMJAwIkW4EELCgFAw0ZJggFI?=
- =?us-ascii?q?xYeBAg8AgUGJZgzgToUQ3wJCkwwQXckSwOSFEKDIYodhAudKgcDg1aLN40Dh?=
- =?us-ascii?q?2cuFoN2gVCLAIZLA4VThi6Fb4c9j00goV0NCDcYhFsCBAIEBQIWgWIBR1xwc?=
- =?us-ascii?q?IM3CUgXApc1hUp1OwIGAQoBAQMJiWiBEgEB?=
-IronPort-PHdr: A9a23:efCk0BZqP3h84h9+4odAlsT/LTEl14qcDmcuAnoPtbtCf+yZ8oj4O
- wSHvLMx1gSPBt+KoKIfw8Pt8InYEVQa5piAtH1QOLdtbDQizfssogo7HcSeAlf6JvO5JwYzH
- cBFSUM3tyrjaRsdF8nxfUDdrWOv5jAOBBr/KRB1JuPoEYLOksi7ze+/94PdbglSijexf7d/I
- Bq1oAjfq8IbnZZsJqEtxxXTv3BGYf5WxWRmJVKSmxbz+MK994N9/ipTpvws6ddOXb31cKokQ
- 7NYCi8mM30u683wqRbDVwqP6WACXWgQjxFFHhLK7BD+Xpf2ryv6qu9w0zSUMMHqUbw5Xymp4
- qF2QxHqlSgHLSY0/mHJhMJtkKJVrhGvpxJ9zI7VfI6aO+FzcbnBcdMYX2dNQtpdWi5HD4ihb
- 4UPFe0BPeNAooXzoFUOqh2+BRKyC+zx0T9EnmL907Am0+s/DwHJwgogFM8QvX/JqNn6OrocX
- eW7wKLVyjjDdO9W1inj6IfWdBAtu/SMXbV2ccrK10YgCRjFg06LpoP/ITyVzeQMs3OH7+V+U
- OKvkHQrpB12ojiq38ohjJTCiY0JxF7e7yp53Jo1KsOiSE59edOqHp9duzyUOYdqTc0vTHxkt
- iYkx7AYupO2fykHxZYoyhPdZfKKfZaF7gz9WeifJTp1hm5pdr2/ihuu/kas1+/xW8+p21hEq
- SpFl8PDtnEL1xHL6smHTedy/lum2TaXzQDT7eNELl4omqrHMZIhxaQwlpUVvE/eHSH2gF37g
- LKKekk+9OWl6f7rbqjiq5KSLYN5iwDzPrwzlsCjG+g1PQcDU3KU9Oim2rDu+Uv0S6hQgPIsi
- KnWqpXaKNwepq6+HgBazJ4u6w26Dze6yNQYmmQHLE5ddBKHkYfpP1bOLej+Dfe/hVSjijJrx
- +vFM7DhHpnBMmXPnK3nfbln8UJT0xA8ws5E55NUEbEBPOz8WkrqtNDCEhA5NAm0z/7mCNV7y
- IweRXqCDrKFPK/Iv1KF5PgjL/SIaYIbojrwKvko6+brjXAjmF8deaep3YEQaHC9BvlmOFmZb
- mTygtgfF2cGpA8+TOvsiF2ZTzFceW2yUrkn6T4hFo2mFofCRpuxgLOf2Se7BYdaaXxBClCJC
- XvocZ6LVO8WaC2OOs9hjiAEVb+5RoM8zR2urhP1y6J7LurI/S0VrZLi1N9p6O3PkhE/7jh0D
- 8WG02GRVGF4hGMJRzgq06Bjpkx90k2D0a96g/NGCdNT++lFUgAgNZ7TnKRGDIW4fwXHZdqEU
- xLuecmrHzw3Bvl5g+I1Igw1T86+gw7O2WyvBLkOmrGQLJY9/7nNxGT8It07wHHDgu1pxUghS
- ddIHWmnnbJksRnUDJLOi1+elauhaeIbxiGHvDOSymGSu2lcURVsSuPUWnsDYVPMqtb07V+ES
- KWhX+cJKAxEnISnLa1RZ9DyyR19WPr9NdKWSCrxplzxT17c3a+BcofsPWAa2j7QBVMsmQke5
- medKQU7HWGqpGeIX28mLk7mf065qbo2k3i8VEJhl2m3
-IronPort-Data: A9a23:XSH4QqnK4LuNjK5voj+v1lLo5gwWJERdPkR7XQ2eYbSJt1+Wr1Gzt
- xIbDGGGPv3cNzP3Ld0jOYm/9xgOvp/cyYRnTwVk/iwxEVtH+JHPbTi7wuccHM8wwunrFh8PA
- xA2M4GYRCwMZiaA4E/ra9ANlFEkvU2ybuOU5NXsZ2YgHmeIdA970Ug5w79j2tYx6TSEK1rlV
- e3a8pW31GCNhmYc3lI8s8pvfzs24ZweEBtB1rAPTagjUG32zhH5P7pDTU2FFEYUd6EPdgKMq
- 0cv+5nilo/R109F5tpICd8XeGVSKlLZFVDmZna7x8FOjzAazhHe3JrXO9JBaElohRSVmOxX0
- ex8qa3pdVgZDvblzbF1vxlwS0mSPIVA+LnOJGPv7JTLlgvAej3myvh1HVoqMIgDvO1wBAmi9
- 9RBcHZWMVba1rnwnuzTpupE36zPKOHwII4Bt3cmyDbfFvsrWrjJSqjR9MRE0TIrwMtJGJ4yY
- uJDMGAyMk+RO3WjPH86F7hnh/mzvELlKR4GrXTW4qpruUncmVkZPL/FdYC9lsaxbdRSlVqfj
- mbH5HjiRAAdP8CY0SCC8H+nmqnIhyyTZW4JPOTgsKU1xgTCnSpNVnX6SGeGnBVwsWbmM/o3F
- qDe0npwxUTu3CRHluXAYiA=
-IronPort-HdrOrdr: A9a23:ZiZg1KyuieU5rypeFvgoKrPwHL1zdoMgy1knxilNoHtuA6ulfq
- GV7ZAmPHrP4wr5N0tQ++xoVJPhfZq+z/9ICOsqTNGftWDd0QPFQ+9fBOPZskTd8kbFh4tgPM
- lbAstD4FSaNzJHZUiT2njCLz5+q+PrzEkDv5an80tQ
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-AV: E=Sophos;i="5.93,330,1654560000";
-   d="scan'208,217";a="21256390"
-X-IronPort-AV: E=Sophos;i="5.93,330,1654560000";
-   d="scan'208,217";a="345868181"
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>,
+ dkim=pass header.i=@armh.onmicrosoft.com
+ header.s=selector2-armh-onmicrosoft-com header.b=nSYxg853;
+ spf=pass (domain: arm.com, ip: 40.107.21.61, mailfrom: ross.burton@arm.com)
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=pass;
+ b=i0NDsmk8NkzJGAcsCvLLF9oF4v0Ry7stMnRUSzYjYReBuEJfnrh7bDTbta5rZLNq58iCFoPylY3lOWKbIi/JcpwFEbR2glT52wZuI2pnuYHbnIKhnqLpbQ80TQeR6ulzkvU0X4gQVUiV3VHXL02AaN0IPON0BueYL2D56jUCmN8g89boUIBiGPUQjJJJtveDowf7VUStCHWJQtIM1Mz4UBzDkXkOjt8TxJbih7ZTEGJ45pfJzgGylAJyll7gtntsTcm4+HWH/JdkbzJYwLVy8vNcen8myT1XFkMJsd+bA+3DcR8Da/7U2XWpswzdkJ9hnKplwYItQ9ZiDlhLlS74Jw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=c8uLVrl2UWujRBDimMvsND52upVWTi9xEuWQ647tDbw=;
+ b=NI/iU2ZfZapM3S7XTE2HJDNGQCb23wrYX/SD1SdWcn4GgeuKk4zNHMd+WoQ7mlvYrNzKGi1MGioJUYr3zewgjJBznUz3uebKtzJKmgpGdUVslnL2BiQZ8482QOst4vOjL7ECuUl9rzM4uawVz5pODIHPSMGzQf4GSeUU8Oa8bttLrpD31k4+4ik3X2pI1Ie5+fWvbwscnNF126zJoVSeoicFC9A5/Y+xLV/fRldayBlT3WdvTJD1FSF/poSu4kWkZzyFyPJFoehFzlFygso2Th06w5UtFdaG6x1D7j+MQuzeusjBDFSyXz6nwOYnxTczIUvWV7Jar/0y6WNalj1RcQ==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
+ 63.35.35.123) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=arm.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=arm.com;
+ dkim=pass (signature was verified) header.d=armh.onmicrosoft.com; arc=pass (0
+ oda=1 ltdi=1 spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
+ dmarc=[1,1,header.from=arm.com])
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=c8uLVrl2UWujRBDimMvsND52upVWTi9xEuWQ647tDbw=;
+ b=nSYxg853pKQtUYHo8cAyf02WqR935rIKGJVx7p+eNgfMvYudv7MY8Ef+ImGcpQk7RZNRnm9Ncl8+EK8iehWdpmJfdZl7/dbic1C8hbmq3a9SdKOnH8rZbEvB54sOCH/GuApe7hKCEiMOw3Ohkra0ctuF6uQy9VfOCNDU6nF1F2o=
+Received: from DB9PR06CA0006.eurprd06.prod.outlook.com (2603:10a6:10:1db::11)
+ by GV1PR08MB7826.eurprd08.prod.outlook.com (2603:10a6:150:5a::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.14; Tue, 20 Sep
+ 2022 15:38:35 +0000
+Received: from DBAEUR03FT052.eop-EUR03.prod.protection.outlook.com
+ (2603:10a6:10:1db:cafe::8f) by DB9PR06CA0006.outlook.office365.com
+ (2603:10a6:10:1db::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.21 via Frontend
+ Transport; Tue, 20 Sep 2022 15:38:34 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 63.35.35.123)
+ smtp.mailfrom=arm.com; dkim=pass (signature was verified)
+ header.d=armh.onmicrosoft.com;dmarc=pass action=none header.from=arm.com;
+Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
+ 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
+ client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
+ pr=C
+Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
+ DBAEUR03FT052.mail.protection.outlook.com (100.127.142.144) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5632.12 via Frontend Transport; Tue, 20 Sep 2022 15:38:34 +0000
+Received: ("Tessian outbound 8ec96648b960:v124");
+ Tue, 20 Sep 2022 15:38:34 +0000
+X-CheckRecipientChecked: true
+X-CR-MTA-CID: 3285fee5864b493a
+X-CR-MTA-TID: 64aa7808
+Received: from db267715945d.1
+	by 64aa7808-outbound-1.mta.getcheckrecipient.com id
+ E55D2D14-5911-471F-B901-6BCFF973A279.1;
+	Tue, 20 Sep 2022 15:38:28 +0000
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com
+    by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id
+ db267715945d.1
+    (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
+    Tue, 20 Sep 2022 15:38:28 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fVVn16USFFb/Ugf3cMIDi0oqSXixnK32A6of+dcnjNxZLeQZ90UODAhUclBq6KlaG4LgDucXt6PCN7ESGwW3SV5y/HdTjR9vdXIXX/DsZI1t+UKHVag4Qs74aVsOrfmL8dkH/vxIDGpFF9n2Oy6cp6gm+xxKK0yQODKDo/Sfzq3ydE5yo5+qDfkqF3nXVNy+0Ls0ZxjFRAlWTQNDBPsodj1vkS6S114wx3TaaU3XeWViCuRuM2qL4oSgoySkiP7xS9ZxJuBv50GyNuMiHh42b0scLQPh1ORvSQeHMPGoCshSWzDbk3xcOmVWDRoenQkFr6fCID5dDr5Cwjrmfc3e4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=c8uLVrl2UWujRBDimMvsND52upVWTi9xEuWQ647tDbw=;
+ b=bUklwMOxFNzMpebtMUd2Y+wGrTRu0akTWXK81elnrBFRMuTy8/V0oUYxeiiwd16Z27jexSmQXwMbutIKEIClwyqs+ZW6vCjKG4j4leIkuBPBm0/Z/DsGTdbKAvMrnoVLs8sXs/IqtUm792jm/OqF5Xcy2+Ylx/2s/jPVPsB3Tqp2UwWcaHogu57XgDrACUUV2siz5qnymvXbj77WC+aQsF+7RctxpJIWUaLZx/Jd3t3z73YF+IpDCz2NPsdZni6B5S66WQmo+zS2ndyZbEo4LKgc6sUlqM5Yfza7lUfe0qnWQioYIQ0PsqfLE5ddrnfUr6Io26d12th4k6NcrQ6Fbw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
+ header.d=arm.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=c8uLVrl2UWujRBDimMvsND52upVWTi9xEuWQ647tDbw=;
+ b=nSYxg853pKQtUYHo8cAyf02WqR935rIKGJVx7p+eNgfMvYudv7MY8Ef+ImGcpQk7RZNRnm9Ncl8+EK8iehWdpmJfdZl7/dbic1C8hbmq3a9SdKOnH8rZbEvB54sOCH/GuApe7hKCEiMOw3Ohkra0ctuF6uQy9VfOCNDU6nF1F2o=
+Received: from PA4PR08MB7411.eurprd08.prod.outlook.com (2603:10a6:102:2a3::12)
+ by AS2PR08MB8973.eurprd08.prod.outlook.com (2603:10a6:20b:5f9::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.21; Tue, 20 Sep
+ 2022 15:38:26 +0000
+Received: from PA4PR08MB7411.eurprd08.prod.outlook.com
+ ([fe80::559c:f19f:f674:b553]) by PA4PR08MB7411.eurprd08.prod.outlook.com
+ ([fe80::559c:f19f:f674:b553%4]) with mapi id 15.20.5632.018; Tue, 20 Sep 2022
+ 15:38:25 +0000
+From: Ross Burton <Ross.Burton@arm.com>
+To: "steven.monsees@baesystems.com" <steven.monsees@baesystems.com>,
 	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: RE: #yocto #dunfell
-Thread-Topic: #yocto #dunfell
-Thread-Index: AdjMU0UdZcuA5K7pTkmpIRZHVGqZIgArrwPQ
-Date: Tue, 20 Sep 2022 15:03:04 +0000
-In-Reply-To: <MADEUP.1716561DCDBAA560.13687@lists.yoctoproject.org>
-Accept-Language: en-US
-Content-Language: en-US
+Subject: Re: [yocto] #yocto #dunfell
+Thread-Topic: [yocto] #yocto #dunfell
+Thread-Index: AdjMU0UdZcuA5K7pTkmpIRZHVGqZIgArrwPQAAEkRHs=
+Date: Tue, 20 Sep 2022 15:38:25 +0000
+Message-ID: 
+ <PA4PR08MB74113B68618561C69A04C478E84C9@PA4PR08MB7411.eurprd08.prod.outlook.com>
+References: <MADEUP.1716561DCDBAA560.13687@lists.yoctoproject.org>
+ <MADEUP.171699DC43F450F8.19441@lists.yoctoproject.org>
+In-Reply-To: <MADEUP.171699DC43F450F8.19441@lists.yoctoproject.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.4.39]
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=arm.com;
+x-ms-traffictypediagnostic: 
+	PA4PR08MB7411:EE_|AS2PR08MB8973:EE_|DBAEUR03FT052:EE_|GV1PR08MB7826:EE_
+X-MS-Office365-Filtering-Correlation-Id: 43f1b3e9-2822-4830-6f63-08da9b1e2dd6
+x-checkrecipientrouted: true
+nodisclaimer: true
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: 
+ eBzJuGS49vGPVGbkHBDAD6PXeet15SMYWPDtxBK4AWtDLRn5XkCNxOy5dcHbKliZY9U/1qVbmkMkwOkspJVV8S617dRQvzva0l5yuRsw1fuvfbl3Ov+2BJYIM7qUHE+QbBfASy2J9n1Dp5+ITV64c/6S1fyiEhsu+/HKRCKi5TVdjUza5iG6Zzp+gPjYo7bVNI9/bqhXDXbus9au/xgUvwnjSBsi3yAibifa2NavBug7WihMAHsK/1CB62dbPSDlo9jt9QNY1fDpwSTq18ZzhIt96Ga31vXs+VALiI7mNSteKCwiogMTqdxO76bg/+dOcUXQewmavN8EXA5SBtm/l7HMIE7EWWOCP7HNsBT5+neALhZkRuhCF/uPfOv42orHRli4FBKR/HXLkGwD/f3BjMX+T61q4do6q9H3cVTEWKNQMK0PcRa6fPxPOlX6bKwpj7iMhaZ9M9ZKWoTtzhLNzVcxLKPK+r1sq5+5kmmuHDdgIQXBfvKJAh7TjLGgTg/+qOe25Jitx2zjcoSd7Wylf88p4Fx+TT+btO3PVcyrg+tA/hjsgIt13BcEjohbQyinLbbAnow0v3k1QIEDqAlNo9f8MPWKm+Hl4Nq/gkly8hVgdKeY+J253g97JNAd0I11tEb325sou4omfW+ZgH0gJE1KHtl0GPDslbPzNX2e9NBdw3qA3i0wd0qvz+FlrfYCRrEEHhLTS+4ohunGaQ060JtAo6je9VDyR8mAP9WkrZ2YAjruIio0/CdcV+t5+jk7STDZRNmTX8SWjBgWGq9uOw==
+X-Forefront-Antispam-Report-Untrusted: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR08MB7411.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(39860400002)(396003)(346002)(366004)(376002)(451199015)(5660300002)(52536014)(71200400001)(45080400002)(478600001)(122000001)(8936002)(110136005)(53546011)(41300700001)(9326002)(83380400001)(6506007)(38100700002)(7696005)(316002)(64756008)(66446008)(66556008)(2906002)(76116006)(66476007)(66946007)(9686003)(33656002)(8676002)(55016003)(38070700005)(26005)(91956017)(186003)(86362001);DIR:OUT;SFP:1101;
 Content-Type: multipart/alternative;
-	boundary="_000_7ab48029f0bd4c86834e492f369817f3baesystemscom_"
+	boundary="_000_PA4PR08MB74113B68618561C69A04C478E84C9PA4PR08MB7411eurp_"
 MIME-Version: 1.0
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR08MB8973
+Original-Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=arm.com;
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
+ DBAEUR03FT052.eop-EUR03.prod.protection.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 
+	b921c597-1fe0-4935-bd17-08da9b1e289f
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	S3gaGaBa3J/0YTmnjd5r2pBS7kqJD5JwXuoM6s9mddgdWcbt2njDfJTIFybBbVg8PmT9Lm0C63rJw18cjhLLNk/HB8Ngj9a5CXnSiK61V6+Jc/MDgOwGx9+HAj3rZ7poYpVnLpLemqtqeW5zQF7lws0RzwENekonz69boQM7EGfsIfOY90ibX+CTOXqMAhWyfJyJdfUAXjlwE0hmyC9DX/xi8zAlxtHbSMXXnogUXKnR2UWYU2kbMmmHlMqnBjWzOI+PeYLFIYT85c01v0lrG0Xt6Yo0ekDfdsrW+x2k798AF4FSP/fgq9CBa7MqaIJUXwis7/QGTIJDCRpJQy/IUmL3TJHBYgD1dEEKI6PYqPxOkk0OdzO7SHly3uNvjnSd5W50P4RX3uI/ck+4Jf1AIhgCu1xMNuGHDkoSCWyPjXAZApLizjpFEiEyKtRB/AsNlh7VgutPxG9HIbgjMdNZ8OIhAQbkZdBVf70dL7twQvhXpN2R23yqh+eGRtvfp7jErKIU6Ws43Gpqupaw6kNIrC94XGN/FeI4Ayc4Uqs2aH4tcMv625VVhn5fCjmRVsxig83KvTJZ+x0EinNVZ5G7byHx+czUIlmmIEyHBt9H8BhrkMlffccv5FrD+uoEgP7dfClfpDkq8rQAn3yjAWOxeYN45OlSg2fMdydHQcJKnECC/0P4IHNvPWy2XVr23X/xn/LPV0CtFxUqmULvqc0jrTalgLGDWE5AOdrvc292g1+uQXToxyyuy4eoLt2LZnRm7PZJy2dFpSoId9mAPWe1vA==
+X-Forefront-Antispam-Report: 
+	CIP:63.35.35.123;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:64aa7808-outbound-1.mta.getcheckrecipient.com;PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(396003)(136003)(346002)(376002)(451199015)(46966006)(40470700004)(36840700001)(33656002)(356005)(26005)(81166007)(9686003)(7696005)(6506007)(53546011)(110136005)(45080400002)(316002)(478600001)(40460700003)(36860700001)(86362001)(336012)(47076005)(55016003)(40480700001)(186003)(83380400001)(82740400003)(5660300002)(9326002)(8936002)(2906002)(8676002)(70586007)(70206006)(52536014)(41300700001)(82310400005);DIR:OUT;SFP:1101;
+X-OriginatorOrg: arm.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2022 15:38:34.6542
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 43f1b3e9-2822-4830-6f63-08da9b1e2dd6
+X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
+ TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[63.35.35.123];Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	DBAEUR03FT052.eop-EUR03.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR08MB7826
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 20 Sep 2022 15:04:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58095
-Message-Id: <20220920150448.ADAC3C54EE9@smtp.lore.kernel.org>
+ <yocto@lists.yoctoproject.org>; Tue, 20 Sep 2022 15:38:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58096
 
---_000_7ab48029f0bd4c86834e492f369817f3baesystemscom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--_000_PA4PR08MB74113B68618561C69A04C478E84C9PA4PR08MB7411eurp_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-DQpBbnkgaGludHMgb3IgaWRlYXMgb24gd2hhdCBJIG1pZ2h0IGJlIGRvaW5nIHdyb25nIHdvdWxk
-IGJlIGFwcHJlY2lhdGVk4oCmDQoNCkZyb206IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcg
-PHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+IE9uIEJlaGFsZiBPZiBNb25zZWVzLCBTdGV2
-ZW4gQyAoVVMpIHZpYSBsaXN0cy55b2N0b3Byb2plY3Qub3JnDQpTZW50OiBNb25kYXksIFNlcHRl
-bWJlciAxOSwgMjAyMiAyOjIyIFBNDQpUbzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0K
-U3ViamVjdDogW3lvY3RvXSAjeW9jdG8gI2R1bmZlbGwNCg0KRXh0ZXJuYWwgRW1haWwgQWxlcnQN
-Cg0KVGhpcyBlbWFpbCBoYXMgYmVlbiBzZW50IGZyb20gYW4gYWNjb3VudCBvdXRzaWRlIG9mIHRo
-ZSBCQUUgU3lzdGVtcyBuZXR3b3JrLg0KUGxlYXNlIHRyZWF0IHRoZSBlbWFpbCB3aXRoIGNhdXRp
-b24sIGVzcGVjaWFsbHkgaWYgeW91IGFyZSByZXF1ZXN0ZWQgdG8gY2xpY2sgb24gYSBsaW5rLCBk
-ZWNyeXB0L29wZW4gYW4gYXR0YWNobWVudCwgb3IgZW5hYmxlIG1hY3Jvcy4gIEZvciBmdXJ0aGVy
-IGluZm9ybWF0aW9uIG9uIGhvdyB0byBzcG90IHBoaXNoaW5nLCBhY2Nlc3Mg4oCcQ3liZXJzZWN1
-cml0eSBPbmVTcGFjZSBQYWdl4oCdIGFuZCByZXBvcnQgcGhpc2hpbmcgYnkgY2xpY2tpbmcgdGhl
-IGJ1dHRvbiDigJxSZXBvcnQgUGhpc2hpbmfigJ0gb24gdGhlIE91dGxvb2sgdG9vbGJhci4NCg0K
-DQoNCkkgYW0gc2VlaW5nIGFuIGVycm9yIHdoZW4gSSBhdHRlbXB0IHRvIGFwcGx5IGEgcGF0Y2gs
-IGFuZCBjb3VsZCB1c2Ugc29tZSBjbGFyaWZpY2F0aW9uIG9yIHdheSB0byByZXNvbHZl4oCmDQoN
-CkFtIGRvaW5nIHNvbWV0aGluZyB3cm9uZyBpbiBwYXRjaCBjcmVhdGlvbiA/DQpXaGF0IGlzIG1l
-YW50IGJ5IDogIOKAnVBhdGNoIGNvbnNvbGUucGF0Y2ggZG9lcyBub3QgYXBwbHkgKGVuZm9yY2Ug
-d2l0aCAtZinigJ0gPw0KSG93IGNhbiBJIGJlc3QgcmVzb2x2ZSB0aGlzIGlzc3VlID8NCg0KSSBl
-ZGl0ZWQgYSBmaWxlIGluIHRoZSByZWNpcGXigJlzIGdpdCByZXBvIGluIG9yZGVyIHRvIGNyZWF0
-ZSB0aGUgcGF0Y2ggZm9yIHRoZSBjaGFuZ2U6DQoNCmdpdCBkaWZmIC11IGNvbnNvbGUuYw0KDQp3
-aGljaCBJIHVzZWQgYXMgbXkgcGF0Y2g6DQoNCmRpZmYgLS1naXQgYS9saWIvY29uc29sZS5jIGIv
-bGliL2NvbnNvbGUuYw0KaW5kZXggOWMxMDU2MC4uYjkzMmE0NCAxMDA2NDQNCi0tLSBhL2xpYi9j
-b25zb2xlLmMNCisrKyBiL2xpYi9jb25zb2xlLmMNCkBAIC0zNTcsNyArMzU3LDcgQEAgc3RhdGlj
-IHN0cnVjdCB7DQogICAgICAgIHsgIEVGSV9TRUNVUklUWV9WSU9MQVRJT04sICAgICBMIlNlY3Vy
-aXR5IFZpb2xhdGlvbiJ9LA0KDQogICAgICAgIC8vIHdhcm5pbmdzDQotICAgICAgIHsgIEVGSV9X
-QVJOX1VOS09XTl9HTFlQSCwgICAgICBMIldhcm5pbmcgVW5rbm93biBHbHlwaCJ9LA0KKyAgICAg
-ICB7ICBFRklfV0FSTl9VTktOT1dOX0dMWVBILCAgICAgTCJXYXJuaW5nIFVua25vd24gR2x5cGgi
-fSwNCiAgICAgICAgeyAgRUZJX1dBUk5fREVMRVRFX0ZBSUxVUkUsICAgIEwiV2FybmluZyBEZWxl
-dGUgRmFpbHVyZSJ9LA0KICAgICAgICB7ICBFRklfV0FSTl9XUklURV9GQUlMVVJFLCAgICAgTCJX
-YXJuaW5nIFdyaXRlIEZhaWx1cmUifSwNCiAgICAgICAgeyAgRUZJX1dBUk5fQlVGRkVSX1RPT19T
-TUFMTCwgIEwiV2FybmluZyBCdWZmZXIgVG9vIFNtYWxsIn0sDQoNCkkgYW0gZ2V0dGluZyB0aGUg
-Zm9sbG93aW5nIGVycm9yIHdoZW4gdGhlIHBhdGNoIGlzIGFwcGxpZWQ6DQoNCkVSUk9SOiBlZml0
-b29scy1uYXRpdmUtMS43LjArZ2l0QVVUT0lOQyswNjQ5NDY4NDc1LXIwIGRvX3BhdGNoOiBBcHBs
-eWluZyBwYXRjaCAnY29uc29sZS5wYXRjaCcgb24gdGFyZ2V0IGRpcmVjdG9yeSAnL2Rpc2swL3Nj
-cmF0Y2gveW9jdG8vd29ya3NwYWNlL3Bva3ktZHVuZmVsbC0yMy4wLjE5L2J1aWxkcy9zYmNhLWRl
-ZmF1bHQvdG1wL3dvcmsveDg2XzY0LWxpbnV4L2VmaXRvb2xzLW5hdGl2ZS8xLjcuMCtnaXRBVVRP
-SU5DKzA2NDk0Njg0NzUtcjAvZ2l0Jw0KQ29tbWFuZCBFcnJvcjogJ3F1aWx0IC0tcXVpbHRyYyAv
-ZGlzazAvc2NyYXRjaC95b2N0by93b3Jrc3BhY2UvcG9reS1kdW5mZWxsLTIzLjAuMTkvYnVpbGRz
-L3NiY2EtZGVmYXVsdC90bXAvd29yay94ODZfNjQtbGludXgvZWZpdG9vbHMtbmF0aXZlLzEuNy4w
-K2dpdEFVVE9JTkMrMDY0OTQ2ODQ3NS1yMC9yZWNpcGUtc3lzcm9vdC1uYXRpdmUvZXRjL3F1aWx0
-cmMgcHVzaCcgZXhpdGVkIHdpdGggMCAgT3V0cHV0Og0KQXBwbHlpbmcgcGF0Y2ggY29uc29sZS5w
-YXRjaA0KcGF0Y2hpbmcgZmlsZSBsaWIvY29uc29sZS5jDQpIdW5rICMxIEZBSUxFRCBhdCAzNTcu
-DQoxIG91dCBvZiAxIGh1bmsgRkFJTEVEIC0tIHJlamVjdHMgaW4gZmlsZSBsaWIvY29uc29sZS5j
-DQpQYXRjaCBjb25zb2xlLnBhdGNoIGRvZXMgbm90IGFwcGx5IChlbmZvcmNlIHdpdGggLWYpDQpF
-UlJPUjogTG9nZmlsZSBvZiBmYWlsdXJlIHN0b3JlZCBpbjogL2Rpc2swL3NjcmF0Y2gveW9jdG8v
-d29ya3NwYWNlL3Bva3ktZHVuZmVsbC0yMy4wLjE5L2J1aWxkcy9zYmNhLWRlZmF1bHQvdG1wL3dv
-cmsveDg2XzY0LWxpbnV4L2VmaXRvb2xzLW5hdGl2ZS8xLjcuMCtnaXRBVVRPSU5DKzA2NDk0Njg0
-NzUtcjAvdGVtcC9sb2cuZG9fcGF0Y2guNzYxNQ0KRVJST1I6IFRhc2sgKC9kaXNrMC9zY3JhdGNo
-L3lvY3RvL3dvcmtzcGFjZS9wb2t5LWR1bmZlbGwtMjMuMC4xOS9tZXRhLWJhZS9tZXRhLWxpbXdz
-L21ldGEtaW50ZWwvbWV0YS1zYmNhL3JlY2lwZXMtYnNwL2VmaXRvb2xzL2VmaXRvb2xzLW5hdGl2
-ZV9naXQuYmI6ZG9fcGF0Y2gpIGZhaWxlZCB3aXRoIGV4aXQgY29kZSAnMScNCg0KVGhhbmtzLA0K
-U3RldmUNCg==
+Hi,
 
---_000_7ab48029f0bd4c86834e492f369817f3baesystemscom_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+SBSA is EDK2 based, which is basically incredibly painful to patch.  The so=
+urce files are windows-style CR/LF so your patch needs to have CR/LF, but i=
+f the whole patch has CR/LF then git =93helpfully=94 transforms the patch t=
+o just unix-style LF, which doesn=92t apply.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiTHVjaWRhIFNhbnMgVW5pY29kZSI7DQoJ
-cGFub3NlLTE6MiAxMSA2IDIgMyA1IDQgMiAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8N
-CnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsN
-CgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWls
-eToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21z
-by1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1
-bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1z
-dHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRl
-cmxpbmU7fQ0KcC5tc29ub3JtYWwwLCBsaS5tc29ub3JtYWwwLCBkaXYubXNvbm9ybWFsMA0KCXtt
-c28tc3R5bGUtbmFtZTptc29ub3JtYWw7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFy
-Z2luLXJpZ2h0OjBpbjsNCgltc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVm
-dDowaW47DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFu
-IixzZXJpZjt9DQpzcGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbDsN
-Cglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30N
-CnNwYW4uRW1haWxTdHlsZTIwDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZv
-bnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0No
-cERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBw
-dDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEu
-MGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2Vj
-dGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVm
-YXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48
-IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxv
-OmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwh
-W2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9IiMwNTYzQzEiIHZs
-aW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBzdHlsZT0iY29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3Nw
-YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0Qi
-PkFueSBoaW50cyBvciBpZGVhcyBvbiB3aGF0IEkgbWlnaHQgYmUgZG9pbmcgd3Jvbmcgd291bGQg
-YmUgYXBwcmVjaWF0ZWTigKY8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48c3BhbiBzdHlsZT0iY29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+
-PC9wPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0Ux
-RTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxiPkZyb206PC9iPiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnICZsdDt5b2N0b0Bs
-aXN0cy55b2N0b3Byb2plY3Qub3JnJmd0Ow0KPGI+T24gQmVoYWxmIE9mIDwvYj5Nb25zZWVzLCBT
-dGV2ZW4gQyAoVVMpIHZpYSBsaXN0cy55b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U2VudDo8L2I+
-IE1vbmRheSwgU2VwdGVtYmVyIDE5LCAyMDIyIDI6MjIgUE08YnI+DQo8Yj5Ubzo8L2I+IHlvY3Rv
-QGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gW3lvY3RvXSAjeW9j
-dG8gI2R1bmZlbGw8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8dGFibGUgY2xhc3M9Ik1zb05v
-cm1hbFRhYmxlIiBib3JkZXI9IjEiIGNlbGxzcGFjaW5nPSIwIiBjZWxscGFkZGluZz0iMCIgd2lk
-dGg9Ijk3JSIgc3R5bGU9IndpZHRoOjk3LjAlO21hcmdpbi1sZWZ0OjUuNHB0O2JvcmRlci1jb2xs
-YXBzZTpjb2xsYXBzZTtib3JkZXI6bm9uZSI+DQo8dGJvZHk+DQo8dHIgc3R5bGU9ImhlaWdodDoy
-MS4ycHQiPg0KPHRkIHdpZHRoPSI5NyUiIHZhbGlnbj0idG9wIiBzdHlsZT0id2lkdGg6OTcuMCU7
-Ym9yZGVyOnNvbGlkIHJlZCAxLjBwdDtwYWRkaW5nOjBpbiA1LjRwdCAwaW4gNS40cHQ7aGVpZ2h0
-OjIxLjJwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0iY2VudGVyIiBzdHlsZT0ibWFy
-Z2luLWJvdHRvbTo0LjBwdDt0ZXh0LWFsaWduOmNlbnRlcjtiYWNrZ3JvdW5kOndoaXRlIj4NCjxz
-dHJvbmc+PHU+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMy41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
-Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOnJlZCI+RXh0ZXJuYWwgRW1haWwgQWxlcnQ8
-L3NwYW4+PC91Pjwvc3Ryb25nPjxvOnA+PC9vOnA+PC9wPg0KPC90ZD4NCjwvdHI+DQo8dHIgc3R5
-bGU9ImhlaWdodDoyMS4ycHQiPg0KPHRkIHdpZHRoPSI1NDkiIHZhbGlnbj0idG9wIiBzdHlsZT0i
-d2lkdGg6MTE1MC40cHQ7Ym9yZGVyOnNvbGlkIHJlZCAxLjBwdDtib3JkZXItdG9wOm5vbmU7cGFk
-ZGluZzowaW4gNS40cHQgMGluIDUuNHB0O2hlaWdodDoyMS4ycHQiPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCIgYWxpZ249ImNlbnRlciIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDozLjBwdDttYXJn
-aW4tcmlnaHQ6MGluO21hcmdpbi1ib3R0b206NC4wcHQ7bWFyZ2luLWxlZnQ6MGluO3RleHQtYWxp
-Z246Y2VudGVyO2JhY2tncm91bmQ6d2hpdGUiPg0KPHN0cm9uZz48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29s
-b3I6YmxhY2siPlRoaXMgZW1haWwgaGFzIGJlZW4gc2VudCBmcm9tIGFuIGFjY291bnQgb3V0c2lk
-ZSBvZiB0aGUgQkFFIFN5c3RlbXMgbmV0d29yay48bzpwPjwvbzpwPjwvc3Bhbj48L3N0cm9uZz48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0iY2VudGVyIiBzdHlsZT0ibWFyZ2luLWJv
-dHRvbTo0LjBwdDt0ZXh0LWFsaWduOmNlbnRlciI+DQo8c3BhbiBzdHlsZT0iZm9udC1zaXplOjcu
-NXB0Ij5QbGVhc2UgdHJlYXQgdGhlIGVtYWlsIHdpdGggY2F1dGlvbiwgZXNwZWNpYWxseSBpZiB5
-b3UgYXJlIHJlcXVlc3RlZCB0byBjbGljayBvbiBhIGxpbmssIGRlY3J5cHQvb3BlbiBhbiBhdHRh
-Y2htZW50LCBvciBlbmFibGUgbWFjcm9zLiZuYnNwOyBGb3IgZnVydGhlciBpbmZvcm1hdGlvbiBv
-biBob3cgdG8gc3BvdCBwaGlzaGluZywgYWNjZXNzIOKAnEN5YmVyc2VjdXJpdHkgT25lU3BhY2Ug
-UGFnZeKAnSBhbmQgcmVwb3J0DQogcGhpc2hpbmcgYnkgY2xpY2tpbmcgdGhlIGJ1dHRvbiDigJxS
-ZXBvcnQgUGhpc2hpbmfigJ0gb24gdGhlIE91dGxvb2sgdG9vbGJhci48L3NwYW4+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZTo5LjBwdCI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPC90ZD4NCjwvdHI+
-DQo8L3Rib2R5Pg0KPC90YWJsZT4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTIuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RpbWVzIE5ldyBSb21hbiZxdW90Oyxz
-ZXJpZiI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGFtIHNlZWluZyBh
-biBlcnJvciB3aGVuIEkgYXR0ZW1wdCB0byBhcHBseSBhIHBhdGNoLCBhbmQgY291bGQgdXNlIHNv
-bWUgY2xhcmlmaWNhdGlvbiBvciB3YXkgdG8gcmVzb2x2ZeKApjxvOnA+PC9vOnA+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj5BbSBkb2luZyBzb21ldGhpbmcgd3JvbmcgaW4gcGF0Y2ggY3JlYXRpb24gPzxvOnA+PC9v
-OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+V2hhdCBpcyBtZWFudCBieSA6Jm5ic3A7IOKA
-nVBhdGNoIGNvbnNvbGUucGF0Y2ggZG9lcyBub3QgYXBwbHkgKGVuZm9yY2Ugd2l0aCAtZinigJ0g
-PzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SG93IGNhbiBJIGJlc3QgcmVz
-b2x2ZSB0aGlzIGlzc3VlID88bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSBlZGl0ZWQgYSBmaWxl
-IGluIHRoZSByZWNpcGXigJlzIGdpdCByZXBvIGluIG9yZGVyIHRvIGNyZWF0ZSB0aGUgcGF0Y2gg
-Zm9yIHRoZSBjaGFuZ2U6PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpw
-PiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJ0ZXh0LWluZGVu
-dDouNWluIj5naXQgZGlmZiAtdSBjb25zb2xlLmM8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+d2hp
-Y2ggSSB1c2VkIGFzIG15IHBhdGNoOjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0idGV4
-dC1pbmRlbnQ6LjVpbiI+ZGlmZiAtLWdpdCBhL2xpYi9jb25zb2xlLmMgYi9saWIvY29uc29sZS5j
-PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0idGV4dC1pbmRlbnQ6
-LjVpbiI+aW5kZXggOWMxMDU2MC4uYjkzMmE0NCAxMDA2NDQ8bzpwPjwvbzpwPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJ0ZXh0LWluZGVudDouNWluIj4tLS0gYS9saWIvY29uc29s
-ZS5jPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0idGV4dC1pbmRl
-bnQ6LjVpbiI+JiM0MzsmIzQzOyYjNDM7IGIvbGliL2NvbnNvbGUuYzxvOnA+PC9vOnA+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9InRleHQtaW5kZW50Oi41aW4iPkBAIC0zNTcsNyAm
-IzQzOzM1Nyw3IEBAIHN0YXRpYyBzdHJ1Y3QgezxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCIgc3R5bGU9InRleHQtaW5kZW50Oi41aW4iPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyB7Jm5ic3A7IEVGSV9TRUNVUklUWV9WSU9MQVRJT04sJm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7IEwmcXVvdDtTZWN1cml0eSBWaW9sYXRpb24mcXVvdDt9LDxvOnA+
-PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0idGV4dC1pbmRlbnQ6LjVpbiI+Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Ly8gd2FybmluZ3M8bzpwPjwvbzpw
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJ0ZXh0LWluZGVudDouNWluIj4tJm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IHsmbmJzcDsgRUZJX1dBUk5fVU5LT1dO
-X0dMWVBILCZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBMJnF1b3Q7V2FybmluZyBVbmtu
-b3duIEdseXBoJnF1b3Q7fSw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0
-eWxlPSJ0ZXh0LWluZGVudDouNWluIj4mIzQzOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyB7Jm5ic3A7IEVGSV9XQVJOX1VOS05PV05fR0xZUEgsJm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7IEwmcXVvdDtXYXJuaW5nIFVua25vd24gR2x5cGgmcXVvdDt9LDxvOnA+PC9vOnA+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9InRleHQtaW5kZW50Oi41aW4iPiZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyB7Jm5ic3A7IEVGSV9XQVJOX0RFTEVU
-RV9GQUlMVVJFLCZuYnNwOyZuYnNwOyZuYnNwOyBMJnF1b3Q7V2FybmluZyBEZWxldGUgRmFpbHVy
-ZSZxdW90O30sPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0idGV4
-dC1pbmRlbnQ6LjVpbiI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-IHsmbmJzcDsgRUZJX1dBUk5fV1JJVEVfRkFJTFVSRSwmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsg
-TCZxdW90O1dhcm5pbmcgV3JpdGUgRmFpbHVyZSZxdW90O30sPG86cD48L286cD48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0idGV4dC1pbmRlbnQ6LjVpbiI+Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IHsmbmJzcDsgRUZJX1dBUk5fQlVGRkVSX1RPT19T
-TUFMTCwmbmJzcDsgTCZxdW90O1dhcm5pbmcgQnVmZmVyIFRvbyBTbWFsbCZxdW90O30sPG86cD48
-L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPkkgYW0gZ2V0dGluZyB0aGUgZm9sbG93aW5nIGVycm9yIHdoZW4g
-dGhlIHBhdGNoIGlzIGFwcGxpZWQ6PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkVSUk9SOiBlZml0
-b29scy1uYXRpdmUtMS43LjAmIzQzO2dpdEFVVE9JTkMmIzQzOzA2NDk0Njg0NzUtcjAgZG9fcGF0
-Y2g6IEFwcGx5aW5nIHBhdGNoICdjb25zb2xlLnBhdGNoJyBvbiB0YXJnZXQgZGlyZWN0b3J5ICcv
-ZGlzazAvc2NyYXRjaC95b2N0by93b3Jrc3BhY2UvcG9reS1kdW5mZWxsLTIzLjAuMTkvYnVpbGRz
-L3NiY2EtZGVmYXVsdC90bXAvd29yay94ODZfNjQtbGludXgvZWZpdG9vbHMtbmF0aXZlLzEuNy4w
-JiM0MztnaXRBVVRPSU5DJiM0MzswNjQ5NDY4NDc1LXIwL2dpdCc8bzpwPjwvbzpwPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPkNvbW1hbmQgRXJyb3I6ICdxdWlsdCAtLXF1aWx0cmMgL2Rpc2sw
-L3NjcmF0Y2gveW9jdG8vd29ya3NwYWNlL3Bva3ktZHVuZmVsbC0yMy4wLjE5L2J1aWxkcy9zYmNh
-LWRlZmF1bHQvdG1wL3dvcmsveDg2XzY0LWxpbnV4L2VmaXRvb2xzLW5hdGl2ZS8xLjcuMCYjNDM7
-Z2l0QVVUT0lOQyYjNDM7MDY0OTQ2ODQ3NS1yMC9yZWNpcGUtc3lzcm9vdC1uYXRpdmUvZXRjL3F1
-aWx0cmMgcHVzaCcgZXhpdGVkIHdpdGggMCZuYnNwOyBPdXRwdXQ6PG86cD48L286cD48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj5BcHBseWluZyBwYXRjaCBjb25zb2xlLnBhdGNoPG86cD48L286
-cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5wYXRjaGluZyBmaWxlIGxpYi9jb25zb2xlLmM8
-bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkh1bmsgIzEgRkFJTEVEIGF0IDM1
-Ny48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjEgb3V0IG9mIDEgaHVuayBG
-QUlMRUQgLS0gcmVqZWN0cyBpbiBmaWxlIGxpYi9jb25zb2xlLmM8bzpwPjwvbzpwPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPlBhdGNoIGNvbnNvbGUucGF0Y2ggZG9lcyBub3QgYXBwbHkgKGVu
-Zm9yY2Ugd2l0aCAtZik8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkVSUk9S
-OiBMb2dmaWxlIG9mIGZhaWx1cmUgc3RvcmVkIGluOiAvZGlzazAvc2NyYXRjaC95b2N0by93b3Jr
-c3BhY2UvcG9reS1kdW5mZWxsLTIzLjAuMTkvYnVpbGRzL3NiY2EtZGVmYXVsdC90bXAvd29yay94
-ODZfNjQtbGludXgvZWZpdG9vbHMtbmF0aXZlLzEuNy4wJiM0MztnaXRBVVRPSU5DJiM0MzswNjQ5
-NDY4NDc1LXIwL3RlbXAvbG9nLmRvX3BhdGNoLjc2MTU8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPkVSUk9SOiBUYXNrICgvZGlzazAvc2NyYXRjaC95b2N0by93b3Jrc3BhY2Uv
-cG9reS1kdW5mZWxsLTIzLjAuMTkvbWV0YS1iYWUvbWV0YS1saW13cy9tZXRhLWludGVsL21ldGEt
-c2JjYS9yZWNpcGVzLWJzcC9lZml0b29scy9lZml0b29scy1uYXRpdmVfZ2l0LmJiOmRvX3BhdGNo
-KSBmYWlsZWQgd2l0aCBleGl0IGNvZGUgJzEnPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoYW5r
-cyw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlN0ZXZlPG86cD48L286cD48
-L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+The =93solution=94 (workaround) is to convert the patch to LF encoding, and=
+ manually add the CR characters to the end of each line in the patch body.
 
---_000_7ab48029f0bd4c86834e492f369817f3baesystemscom_--
+The good news is that EDK2 is moving to LF encoding, so this will be solved=
+ at some point.
+
+Ross
+
+
+From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> on behalf=
+ of Monsees, Steven C (US) via lists.yoctoproject.org <steven.monsees=3Dbae=
+systems.com@lists.yoctoproject.org>
+Date: Tuesday, 20 September 2022 at 16:05
+To: Monsees, Steven C (US) <steven.monsees@baesystems.com>, yocto@lists.yoc=
+toproject.org <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] #yocto #dunfell
+
+Any hints or ideas on what I might be doing wrong would be appreciated=85
+
+From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Behalf=
+ Of Monsees, Steven C (US) via lists.yoctoproject.org
+Sent: Monday, September 19, 2022 2:22 PM
+To: yocto@lists.yoctoproject.org
+Subject: [yocto] #yocto #dunfell
+
+External Email Alert
+This email has been sent from an account outside of the BAE Systems network=
+.
+Please treat the email with caution, especially if you are requested to cli=
+ck on a link, decrypt/open an attachment, or enable macros.  For further in=
+formation on how to spot phishing, access =93Cybersecurity OneSpace Page=94=
+ and report phishing by clicking the button =93Report Phishing=94 on the Ou=
+tlook toolbar.
+
+
+I am seeing an error when I attempt to apply a patch, and could use some cl=
+arification or way to resolve=85
+
+Am doing something wrong in patch creation ?
+What is meant by :  =94Patch console.patch does not apply (enforce with -f)=
+=94 ?
+How can I best resolve this issue ?
+
+I edited a file in the recipe=92s git repo in order to create the patch for=
+ the change:
+
+git diff -u console.c
+
+which I used as my patch:
+
+diff --git a/lib/console.c b/lib/console.c
+index 9c10560..b932a44 100644
+--- a/lib/console.c
++++ b/lib/console.c
+@@ -357,7 +357,7 @@ static struct {
+        {  EFI_SECURITY_VIOLATION,     L"Security Violation"},
+
+        // warnings
+-       {  EFI_WARN_UNKOWN_GLYPH,      L"Warning Unknown Glyph"},
++       {  EFI_WARN_UNKNOWN_GLYPH,     L"Warning Unknown Glyph"},
+        {  EFI_WARN_DELETE_FAILURE,    L"Warning Delete Failure"},
+        {  EFI_WARN_WRITE_FAILURE,     L"Warning Write Failure"},
+        {  EFI_WARN_BUFFER_TOO_SMALL,  L"Warning Buffer Too Small"},
+
+I am getting the following error when the patch is applied:
+
+ERROR: efitools-native-1.7.0+gitAUTOINC+0649468475-r0 do_patch: Applying pa=
+tch 'console.patch' on target directory '/disk0/scratch/yocto/workspace/pok=
+y-dunfell-23.0.19/builds/sbca-default/tmp/work/x86_64-linux/efitools-native=
+/1.7.0+gitAUTOINC+0649468475-r0/git'
+Command Error: 'quilt --quiltrc /disk0/scratch/yocto/workspace/poky-dunfell=
+-23.0.19/builds/sbca-default/tmp/work/x86_64-linux/efitools-native/1.7.0+gi=
+tAUTOINC+0649468475-r0/recipe-sysroot-native/etc/quiltrc push' exited with =
+0  Output:
+Applying patch console.patch
+patching file lib/console.c
+Hunk #1 FAILED at 357.
+1 out of 1 hunk FAILED -- rejects in file lib/console.c
+Patch console.patch does not apply (enforce with -f)
+ERROR: Logfile of failure stored in: /disk0/scratch/yocto/workspace/poky-du=
+nfell-23.0.19/builds/sbca-default/tmp/work/x86_64-linux/efitools-native/1.7=
+.0+gitAUTOINC+0649468475-r0/temp/log.do_patch.7615
+ERROR: Task (/disk0/scratch/yocto/workspace/poky-dunfell-23.0.19/meta-bae/m=
+eta-limws/meta-intel/meta-sbca/recipes-bsp/efitools/efitools-native_git.bb:=
+do_patch) failed with exit code '1'
+
+Thanks,
+Steve
+
+--_000_PA4PR08MB74113B68618561C69A04C478E84C9PA4PR08MB7411eurp_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
+hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
+fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:10.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle21
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style>
+</head>
+<body lang=3D"EN-GB" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language=
+:EN-US">Hi,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language=
+:EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language=
+:EN-US">SBSA is EDK2 based, which is basically incredibly painful to patch.=
+&nbsp; The source files are windows-style CR/LF so your patch needs to have=
+ CR/LF, but if the
+<b>whole patch</b> has CR/LF then git =93helpfully=94 transforms the patch =
+to just unix-style LF, which doesn=92t apply.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language=
+:EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language=
+:EN-US">The =93solution=94 (workaround) is to convert the patch to LF encod=
+ing, and manually add the CR characters to the end of each line in the patc=
+h body.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language=
+:EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language=
+:EN-US">The good news is that EDK2 is moving to LF encoding, so this will b=
+e solved at some point.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language=
+:EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language=
+:EN-US">Ross<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language=
+:EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;mso-fareast-language=
+:EN-US"><o:p>&nbsp;</o:p></span></p>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><b><span lang=3D"EN-U=
+S" style=3D"font-size:12.0pt;color:black">From:
+</span></b><span lang=3D"EN-US" style=3D"font-size:12.0pt;color:black">yoct=
+o@lists.yoctoproject.org &lt;yocto@lists.yoctoproject.org&gt; on behalf of =
+Monsees, Steven C (US) via lists.yoctoproject.org &lt;steven.monsees=3Dbaes=
+ystems.com@lists.yoctoproject.org&gt;<br>
+<b>Date: </b>Tuesday, 20 September 2022 at 16:05<br>
+<b>To: </b>Monsees, Steven C (US) &lt;steven.monsees@baesystems.com&gt;, yo=
+cto@lists.yoctoproject.org &lt;yocto@lists.yoctoproject.org&gt;<br>
+<b>Subject: </b>Re: [yocto] #yocto #dunfell<o:p></o:p></span></p>
+</div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt;color=
+:#1F497D">&nbsp;</span><span lang=3D"EN-US" style=3D"font-size:11.0pt"><o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt;color=
+:#1F497D">Any hints or ideas on what I might be doing wrong would be apprec=
+iated=85</span><span lang=3D"EN-US" style=3D"font-size:11.0pt"><o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt;color=
+:#1F497D">&nbsp;</span><span lang=3D"EN-US" style=3D"font-size:11.0pt"><o:p=
+></o:p></span></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:11.0pt">F=
+rom:</span></b><span lang=3D"EN-US" style=3D"font-size:11.0pt"> yocto@lists=
+.yoctoproject.org &lt;yocto@lists.yoctoproject.org&gt;
+<b>On Behalf Of </b>Monsees, Steven C (US) via lists.yoctoproject.org<br>
+<b>Sent:</b> Monday, September 19, 2022 2:22 PM<br>
+<b>To:</b> yocto@lists.yoctoproject.org<br>
+<b>Subject:</b> [yocto] #yocto #dunfell<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">&nbs=
+p;<o:p></o:p></span></p>
+<div>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"97%" style=3D"width:97.0%;margin-left:5.4pt;border-collapse=
+:collapse">
+<tbody>
+<tr style=3D"height:21.2pt">
+<td width=3D"97%" valign=3D"top" style=3D"width:97.0%;border:solid red 1.0p=
+t;padding:0cm 5.4pt 0cm 5.4pt;height:21.2pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom:4.0pt;text-a=
+lign:center;background:white">
+<strong><u><span style=3D"font-size:13.5pt;font-family:&quot;Calibri&quot;,=
+sans-serif;color:red">External Email Alert</span></u></strong><span style=
+=3D"font-size:11.0pt"><o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:21.2pt">
+<td width=3D"1534" valign=3D"top" style=3D"width:1150.4pt;border:solid red =
+1.0pt;border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:21.2pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:3.0pt;m=
+argin-right:0cm;margin-bottom:4.0pt;margin-left:0cm;text-align:center;backg=
+round:white">
+<strong><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:bla=
+ck">This email has been sent from an account outside of the BAE Systems net=
+work.</span></strong><span style=3D"font-size:11.0pt"><o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom:4.0pt;text-a=
+lign:center">
+<span style=3D"font-size:7.5pt">Please treat the email with caution, especi=
+ally if you are requested to click on a link, decrypt/open an attachment, o=
+r enable macros.&nbsp; For further information on how to spot phishing, acc=
+ess =93Cybersecurity OneSpace Page=94 and report
+ phishing by clicking the button =93Report Phishing=94 on the Outlook toolb=
+ar.</span><span style=3D"font-size:11.0pt"><o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12.0pt;font-=
+family:&quot;Times New Roman&quot;,serif">&nbsp;</span><span lang=3D"EN-US"=
+ style=3D"font-size:11.0pt"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">&nbs=
+p;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">I am=
+ seeing an error when I attempt to apply a patch, and could use some clarif=
+ication or way to resolve=85<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">&nbs=
+p;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">Am d=
+oing something wrong in patch creation ?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">What=
+ is meant by :&nbsp; =94Patch console.patch does not apply (enforce with -f=
+)=94 ?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">How =
+can I best resolve this issue ?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">&nbs=
+p;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">I ed=
+ited a file in the recipe=92s git repo in order to create the patch for the=
+ change:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">&nbs=
+p;<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:36.0pt"><span lang=3D"EN-US" st=
+yle=3D"font-size:11.0pt">git diff -u console.c<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">&nbs=
+p;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">whic=
+h I used as my patch:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">&nbs=
+p;<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:36.0pt"><span lang=3D"EN-US" st=
+yle=3D"font-size:11.0pt">diff --git a/lib/console.c b/lib/console.c<o:p></o=
+:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:36.0pt"><span lang=3D"EN-US" st=
+yle=3D"font-size:11.0pt">index 9c10560..b932a44 100644<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal" style=3D"text-indent:36.0pt"><span lang=3D"EN-US" st=
+yle=3D"font-size:11.0pt">--- a/lib/console.c<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:36.0pt"><span lang=3D"EN-US" st=
+yle=3D"font-size:11.0pt">+++ b/lib/console.c<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:36.0pt"><span lang=3D"EN-US" st=
+yle=3D"font-size:11.0pt">@@ -357,7 +357,7 @@ static struct {<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal" style=3D"text-indent:36.0pt"><span lang=3D"EN-US" st=
+yle=3D"font-size:11.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {&nbsp;=
+ EFI_SECURITY_VIOLATION,&nbsp;&nbsp;&nbsp;&nbsp; L&quot;Security Violation&=
+quot;},<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">&nbs=
+p;<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:36.0pt"><span lang=3D"EN-US" st=
+yle=3D"font-size:11.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//=
+ warnings<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:36.0pt"><span lang=3D"EN-US" st=
+yle=3D"font-size:11.0pt">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {&nbsp; EFI_=
+WARN_UNKOWN_GLYPH,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; L&quot;Warning Unknown Gly=
+ph&quot;},<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:36.0pt"><span lang=3D"EN-US" st=
+yle=3D"font-size:11.0pt">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {&nbsp; EFI_=
+WARN_UNKNOWN_GLYPH,&nbsp;&nbsp;&nbsp;&nbsp; L&quot;Warning Unknown Glyph&qu=
+ot;},<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:36.0pt"><span lang=3D"EN-US" st=
+yle=3D"font-size:11.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {&nbsp;=
+ EFI_WARN_DELETE_FAILURE,&nbsp;&nbsp;&nbsp; L&quot;Warning Delete Failure&q=
+uot;},<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:36.0pt"><span lang=3D"EN-US" st=
+yle=3D"font-size:11.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {&nbsp;=
+ EFI_WARN_WRITE_FAILURE,&nbsp;&nbsp;&nbsp;&nbsp; L&quot;Warning Write Failu=
+re&quot;},<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-indent:36.0pt"><span lang=3D"EN-US" st=
+yle=3D"font-size:11.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {&nbsp;=
+ EFI_WARN_BUFFER_TOO_SMALL,&nbsp; L&quot;Warning Buffer Too Small&quot;},<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">&nbs=
+p;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">I am=
+ getting the following error when the patch is applied:<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">&nbs=
+p;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">ERRO=
+R: efitools-native-1.7.0+gitAUTOINC+0649468475-r0 do_patch: Applying patch =
+'console.patch' on target directory '/disk0/scratch/yocto/workspace/poky-du=
+nfell-23.0.19/builds/sbca-default/tmp/work/x86_64-linux/efitools-native/1.7=
+.0+gitAUTOINC+0649468475-r0/git'<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">Comm=
+and Error: 'quilt --quiltrc /disk0/scratch/yocto/workspace/poky-dunfell-23.=
+0.19/builds/sbca-default/tmp/work/x86_64-linux/efitools-native/1.7.0+gitAUT=
+OINC+0649468475-r0/recipe-sysroot-native/etc/quiltrc
+ push' exited with 0&nbsp; Output:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">Appl=
+ying patch console.patch<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">patc=
+hing file lib/console.c<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">Hunk=
+ #1 FAILED at 357.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">1 ou=
+t of 1 hunk FAILED -- rejects in file lib/console.c<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">Patc=
+h console.patch does not apply (enforce with -f)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">ERRO=
+R: Logfile of failure stored in: /disk0/scratch/yocto/workspace/poky-dunfel=
+l-23.0.19/builds/sbca-default/tmp/work/x86_64-linux/efitools-native/1.7.0+g=
+itAUTOINC+0649468475-r0/temp/log.do_patch.7615<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">ERRO=
+R: Task (/disk0/scratch/yocto/workspace/poky-dunfell-23.0.19/meta-bae/meta-=
+limws/meta-intel/meta-sbca/recipes-bsp/efitools/efitools-native_git.bb:do_p=
+atch) failed with exit code '1'<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">&nbs=
+p;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">Than=
+ks,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt">Stev=
+e<o:p></o:p></span></p>
+</div>
+</div>
+</body>
+</html>
+
+--_000_PA4PR08MB74113B68618561C69A04C478E84C9PA4PR08MB7411eurp_--
 
