@@ -1,156 +1,161 @@
-Return-Path: <jdmason@kudzu.us>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CC3CFC6FA82
-	for <webhook@archiver.kernel.org>; Tue, 20 Sep 2022 20:28:36 +0000 (UTC)
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com
- [209.85.219.49])
- by mx.groups.io with SMTP id smtpd.web08.2172.1663705715575546207
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 64EAAC54EE9
+	for <webhook@archiver.kernel.org>; Tue, 20 Sep 2022 22:11:27 +0000 (UTC)
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
+ [209.85.221.50])
+ by mx.groups.io with SMTP id smtpd.web12.3330.1663711878754019111
  for <yocto@lists.yoctoproject.org>;
- Tue, 20 Sep 2022 13:28:35 -0700
+ Tue, 20 Sep 2022 15:11:19 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kudzu-us.20210112.gappssmtp.com header.s=20210112
- header.b=AQKjJ0d3;
- spf=none, err=permanent DNS error (domain: kudzu.us, ip: 209.85.219.49,
- mailfrom: jdmason@kudzu.us)
-Received: by mail-qv1-f49.google.com with SMTP id m9so2919597qvv.7
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=gPThTtqa;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.50,
+ mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f50.google.com with SMTP id b5so6855548wrr.5
         for <yocto@lists.yoctoproject.org>;
- Tue, 20 Sep 2022 13:28:35 -0700 (PDT)
+ Tue, 20 Sep 2022 15:11:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kudzu-us.20210112.gappssmtp.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=bA4U1S+1GaIE/99nq+Zcz1WpHe1q1tCzlSGV/emHKVk=;
-        b=AQKjJ0d3fihdgcoWbLQYwkJ6m/6Pd+o1l1OyrPg/3jdDvBiyAsQItxepeYqac3rVw4
-         8AEZ/G/ECQwna3CaNDsm3odlKEO4L8cH+yh3Ire1M2MQ175K/67a8WGDKae9K68yANZ+
-         kGIqWcXh1tj3TF6X9EoGd7n1vdYO2l3VV94s1tP/OraC74qmo6ON1fWcK7FsY+RI85N0
-         JaeFW/xNR/amvjWJLFpxXMLX6U1BbU/eJE8s9WgZhwHsnZRi2d5BSSiapeXzJmWWn1fK
-         2+eDi7zjLvyznthDlSZ6tpMs6WRvE1FhlGLeCnFDlTluhJbxZM+V5eUxUUTSk2KGMXSb
-         1vFQ==
+        d=linuxfoundation.org; s=google;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date;
+        bh=m2ADW0sSLo45cqV0kz9uerqEWkf1YLSpAc00+oP2i3E=;
+        b=gPThTtqaVUnk9j6tZC4iK8CENonJoQwZu3rI82cr9ekuQVGv8Y5TwDFZb5wYK4x53l
+         xYL1Vjjqd5iS47K2W/L+IxhbKO142071E6DN2Aydo7idD4vQgqMWx3H9wFGyDcoGYyT8
+         ofthCnfUJA4vQfhPy9ULP1+Q3jg+j/j+CnD0o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=bA4U1S+1GaIE/99nq+Zcz1WpHe1q1tCzlSGV/emHKVk=;
-        b=X/gL/TktHnOtGYuvmWDvT5QF6mBBZlRP5d+0PUXk6HmtM0RVQ9lnhuaDJ1q/JsMdjH
-         AO4pwdfwZlFxsr1jwcXFB/64UEsd8eVlArO3uhTbrPOvSHQS4r9DAggfxf1L6EHkhIkT
-         xNfI8YE9n3+PCQWhtC/ZpcuqxhmKDtWA6Egs8TSN+cjWNaZ26G6PvimZ43wQ1H9vQPck
-         wcgasiGXOrn95Ghu0FZuLKmPvvljysNbeof3Jv1a+81KhrR3rXLWC24A1Lty6MOe1pef
-         0zCusFvojuQlGWyz46OlXNtqaE1eyfT7rZHLvFzJ4Fq8IIhaH4+T4pO7UlpRxb0DCoB7
-         VZDQ==
-X-Gm-Message-State: ACrzQf032BRfwCEbiiqBdcNnKmQxDwDLVZTD8Q0Kmf09Z0HQMRzOlH6n
-	k1h2qOKqEqUPxoEW++NtsKn53A==
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+         :to:cc:subject:date;
+        bh=m2ADW0sSLo45cqV0kz9uerqEWkf1YLSpAc00+oP2i3E=;
+        b=NAPu7u5o5XKbDDdkD1bSkZbcsfKe/VVymNEiB+waXibIPEgZ4573Jwy24tvuOQeNuw
+         rTckeIHCYi676onaXIoaTB6COgN0Bd7PIn00XrOho5anl+WOZqXTocvhM8Mtx/kkTvgA
+         9m61rpVziREUOgC3HJ3+YK4vt8kkMkHHrYweSMWfzauZGwVwREN8H6Okk6Bjlta4wEWg
+         hnDk//b7QpbGnMqO3TETmq82sFPpV2ZE5SD/xPjBwEm/oXBCu1IX4i1BTx0VDKWYKGYL
+         7DfczdWXYqfjQN0wnu4KwLVMNcR3Wpb0JGdUnpJEPWFWgV9EH1KhIBHUB5drGIcVGylB
+         7qww==
+X-Gm-Message-State: ACrzQf2Xxm4Hc3j9kXU7gGi4Ma7lwLHzdZVaM2GpyUg/n5ZuGRD1v6OB
+	ENQtQbK5Gy5tyNS3ktAKtqulbg==
 X-Google-Smtp-Source: 
- AMsMyM7KircFkJ0DPfqvo2GGdIkY0tQiSwo6C4EAvKIvxhU44L6WGVk3ei/TJJRHDs/kz5Xe6CfSoA==
-X-Received: by 2002:ad4:5bcd:0:b0:4ad:2ce4:e7d0 with SMTP id
- t13-20020ad45bcd000000b004ad2ce4e7d0mr13379607qvt.42.1663705714580;
-        Tue, 20 Sep 2022 13:28:34 -0700 (PDT)
-Received: from kudzu.us ([2605:a601:a608:5600::59])
+ AMsMyM6n2MSIo7gqyFOC2Lgw4bL8olSjLzUe3+cOguohjhRoFTcZD5wl0by1OJQY2sQuw0XbV6PAEw==
+X-Received: by 2002:a05:6000:1acf:b0:22b:ed0:71b1 with SMTP id
+ i15-20020a0560001acf00b0022b0ed071b1mr4639728wry.51.1663711877121;
+        Tue, 20 Sep 2022 15:11:17 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:b663:b06:b4c5:e314?
+ ([2001:8b0:aba:5f3c:b663:b06:b4c5:e314])
         by smtp.gmail.com with ESMTPSA id
- i12-20020a05620a404c00b006b8d1914504sm669496qko.22.2022.09.20.13.28.33
+ t15-20020a05600c198f00b003a2e92edeccsm919406wmq.46.2022.09.20.15.11.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Sep 2022 13:28:33 -0700 (PDT)
-Date: Tue, 20 Sep 2022 16:28:31 -0400
-From: Jon Mason <jdmason@kudzu.us>
-To: Naveen Saini <naveen.kumar.saini@intel.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [meta-zephyr][PATCH] zephyr-kernel/2.7: update to zephyr v2.7.3
-Message-ID: <YyoibxfkOcde7itV@kudzu.us>
-References: <20220915072042.891301-1-naveen.kumar.saini@intel.com>
+        Tue, 20 Sep 2022 15:11:16 -0700 (PDT)
+Message-ID: 
+ <86e08a18285feb8df0afbf1346503abb0c3b37e5.camel@linuxfoundation.org>
+Subject: Re: [yocto] Help and ideas wanted - error during do_package
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Peter Bergin <peter@berginkonsult.se>, "yocto@lists.yoctoproject.org"
+	 <yocto@lists.yoctoproject.org>
+Date: Tue, 20 Sep 2022 23:11:15 +0100
+In-Reply-To: <f792c8b2-eb08-b444-3548-3280f06e4260@berginkonsult.se>
+References: <f792c8b2-eb08-b444-3548-3280f06e4260@berginkonsult.se>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.1-0ubuntu1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220915072042.891301-1-naveen.kumar.saini@intel.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 20 Sep 2022 20:28:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58104
+ <yocto@lists.yoctoproject.org>; Tue, 20 Sep 2022 22:11:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58106
 
-On Thu, Sep 15, 2022 at 03:20:42PM +0800, Naveen Saini wrote:
-> 003de78ce0 release: Zephyr 2.7.3
-> 9502d500b6 release: security: Notes for 2.7.3
-> 2a88e08296 release: update v2.7.3 release notes
-> e1ee34e55c drivers: sensor: sm351lt: Fix global thread triggering bug
-> 2ad1ef651b Bluetooth: host: Fix L2CAP reconfigure response with invalid CID
-> 089675af45 Bluetooth: host: Fix L2CAP reconfigure response with invalid MTU
-> 03ff0d471e net: route: Fix pkt leak if net_send_data() fails
-> cd96136bcb boards: nucleo_wb55rg: Fix documentation about BLE binary compatibility
-> 567fda57df tests: drivers: can: api: add test for RTR filter matching
-> b14f356c96 drivers: can: loopback: check frame ID type and RTR bit in filters
-> 874d77bc75 drivers: can: mcux: flexcan: fix handling of RTR frames
-> ec0befb938 drivers: can: mcan: acknowledge all received frames
-> 273e90a86f scripts: release: list_backports: use older python dict merge method
-> 59dc65a7b4 ci: backports: check if a backport PR has a valid issue
-> 8ff8cafc18 scripts: release: list_backports.py
-> ba07347b60 scripts: release: use GITHUB_TOKEN and start_date in scripts
-> e423902617 tests: posix: pthread: test for pthread descriptor leaks
-> 018f836c4d posix: pthread: consider PTHREAD_EXITED state in pthread_create
-> f4466c4760 tests: cpp: cxx: Add qemu_cortex_a53 as integration platform
-> 9a5cbe3568 tests: cpp: cxx: Test with various types of libc
-> 5b7b15fb2d tests: cpp: cxx: Add dynamic memory availability test for static init
-> e5a92a1fab tests: cpp: cxx: Add static global constructor invocation test
-> 74f0b6443a lib: libc: newlib: Initialise libc heap during POST_KERNEL phase
-> 6c16b3492b lib: libc: minimal: Initialise libc heap during POST_KERNEL phase
-> 1831431bab lib: posix: semaphore: use consistent timebase in sem_timedwait
-> 765f63c6b9 cmake: remove xtensa workaround in Zephyr toolchain code.
-> 062306fc0b cmake: zephyr toolchain code cleanup
-> 8fcf7f1d78 Revert "cmake: Zephyr sdk backward compatibility with 0.11.1 and 0.11.2"
-> f06b3d922c Bluetooth: Controller: Fix PHY update for unsupported PHY
-> b75c012c55 drivers: spi: stm32 spi with dma must enable cs after periph
-> 1efe6de3fe drivers: i2c: Fix infinite recursion in driver unregister function
-> 39270ed4a0 Bluetooth: Mesh: Fix segmentation when sending proxy message
-> 81ffa550ee Bluetooth: Mesh: Check SegN when receiving Transaction Start PDU
-> 8c2965e017 Bluetooth: Mesh: add check for rx buffer overflow in pb adv
-> 7aa38b4ac8 drivers: can: m_can: fix alignmed issues
-> 6dd320f791 release: update v2.7.2 release notes
-> ecac165d36 logging: shell: fix shell stats null pointer dereference
-> 132d90d1bc tests/bluetooth/tester: Refactor Read UUID callback
-> 58356313ac coredump: adjust mem_region find in gdbstub
-> 99cfd3e4d7 Bluetooth: Controller: Fix per adv scheduling issue
-> 780588bd33 edac: ibecc: Add support for EHL SKU13, SKU14, SKU15
-> 
-> Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
+On Tue, 2022-09-20 at 23:05 +0200, Peter Bergin wrote:
+> Hi,
+>=20
+> I'm working on a recipe for libtraceevent=20
+> (https://git.kernel.org/pub/scm/libs/libtrace/libtraceevent.git) that is=
+=20
+> needed for newer trace-cmd. I'm confused about an error I get during=20
+> do_package that I want some help with.
+>=20
+> File: '<snip>/sources/poky/meta/lib/oe/sstatesig.py', lineno: 587,=20
+> function: process
+>  =C2=A0=C2=A0=C2=A0=C2=A0 0583:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 el=
+se:
+>  =C2=A0=C2=A0=C2=A0=C2=A0 0584:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 add_perm(stat.S_IXOTH, 'x')
+>  =C2=A0=C2=A0=C2=A0=C2=A0 0585:
+>  =C2=A0=C2=A0=C2=A0=C2=A0 0586:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tr=
+y:
+>  =C2=A0*** 0587:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 update_hash(" %10s" %=20
+> pwd.getpwuid(s.st_uid).pw_name)
+>  =C2=A0=C2=A0=C2=A0=C2=A0 0588:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 update_hash(" %10s" %=20
+> grp.getgrgid(s.st_gid).gr_name)
+>  =C2=A0=C2=A0=C2=A0=C2=A0 0589:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ex=
+cept KeyError as e:
+>  =C2=A0=C2=A0=C2=A0=C2=A0 0590:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 bb.warn("KeyError in %s" % path)
+>  =C2=A0=C2=A0=C2=A0=C2=A0 0591:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 msg =3D ("KeyError: %s\nPath %s is=20
+> owned by uid %d, gid %d, which doesn't match "
+> Exception: Exception: KeyError: 'getpwuid(): uid not found: 1000'
+> Path ./package/usr/lib/libtraceevent.a is owned by uid 1000, gid 1004,=
+=20
+> which doesn't match any user/group on target. This may be due to host=20
+> contamination.
+>=20
+> ERROR: Logfile of failure stored in:=20
+> <snip>/build/<machine>/tmp/work/cortexa53-crypto-poky-linux/libtraceevent=
+/1.6.2-r0/temp/log.do_package.3574262
+> ERROR: Task=20
+> (<snip>/sources/meta-openembedded/meta-oe/recipes-kernel/trace-cmd/libtra=
+ceevent_1.6.2.bb:do_package)=20
+> failed with exit code '1'
+>=20
+> What happens is that during do_package the directory ${WORKDIR}/package=
+=20
+> is moved to ${WORKDIR}/sstate-build-package and the sstate is=20
+> calculated. In that sequence in sstatesig.py the owner of the files are=
+=20
+> checked and used in the hash calculations. By adding debug prints I have=
+=20
+> seen that in normal case the s.st_uid in the code above evaluates to 0=
+=20
+> for the files and directories. When looking in the file system my user=
+=20
+> (1000/1004) owns them but I guess PSEUDO is involved here to fake root?=
+=20
+> For some reason when checking the libraries build by libtraceevent in=20
+> ./usr/lib/ the files reports to be owned by uid 1000 and the exection=20
+> above is raised. It is valid for ./usr/lib/libtraceevent.a and also=20
+> other files in the ./usr/lib directory. Before the files in ./usr/lib is=
+=20
+> checked files from /usr/include has been checked for libtraceevent and=
+=20
+> they have s.st_uid=3D0.
+>=20
+> I've spent some time trying to understand this. Give up now and try this=
+=20
+> forum if I can get some ideas. I share the recipe below.
 
-Passes CI
-https://gitlab.com/jonmason00/meta-zephyr/-/pipelines/645876493
+Have you tried putting a:
 
-Tested-by: Jon Mason <jon.mason@arm.com>
+chown root.root ${D}<files>
 
+into do_install and checking if you force the ownership, whether that
+helps?
 
-> ---
->  ...ephyr-kernel-src-2.7.2.inc => zephyr-kernel-src-2.7.3.inc} | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->  rename meta-zephyr-core/recipes-kernel/zephyr-kernel/{zephyr-kernel-src-2.7.2.inc => zephyr-kernel-src-2.7.3.inc} (97%)
-> 
-> diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.2.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.3.inc
-> similarity index 97%
-> rename from meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.2.inc
-> rename to meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.3.inc
-> index cbe761f..1c53748 100644
-> --- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.2.inc
-> +++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.3.inc
-> @@ -14,7 +14,7 @@ SRC_URI += " \
->  #      echo SRCREV_$x = \"$rev\"'
->  #
->  
-> -SRCREV_default = "6dd320f791c4da49190b30f9134f776d85bc5836"
-> +SRCREV_default = "003de78ce0dd213a1c7b3d159b967fb19a12aa45"
->  SRCREV_canopennode = "f167efe85c8c7de886f1bc47f9173cfb8a346bb5"
->  SRCREV_civetweb = "094aeb41bb93e9199d24d665ee43e9e05d6d7b1c"
->  SRCREV_cmsis = "b0612c97c1401feeb4160add6462c3627fe90fc7"
-> @@ -60,7 +60,7 @@ SRCREV_TraceRecorder = "36c577727642457b0db7274298a4b96558374832"
->  SRCREV_tfm = "c74be3890c9d975976fde1b1a3b2f5742bec34c0"
->  
->  ZEPHYR_BRANCH = "v2.7-branch"
-> -PV = "2.7.2+git${SRCPV}"
-> +PV = "2.7.3+git${SRCPV}"
->  
->  SRC_URI:append = " \
->      file://dtc.patch;patchdir=zephyr \
-> -- 
-> 2.25.1
-> 
-> 
+Cheers,
+
+Richard
+
 
