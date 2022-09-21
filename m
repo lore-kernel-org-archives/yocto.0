@@ -1,220 +1,195 @@
-Return-Path: <naveen.kumar.saini@intel.com>
+Return-Path: <heideggm@hotmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 14690C32771
-	for <webhook@archiver.kernel.org>; Wed, 21 Sep 2022 08:49:51 +0000 (UTC)
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by mx.groups.io with SMTP id smtpd.web12.4162.1663750183780999320
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D201EECAAD8
+	for <webhook@archiver.kernel.org>; Wed, 21 Sep 2022 11:38:41 +0000 (UTC)
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (NAM04-DM6-obe.outbound.protection.outlook.com [40.92.45.21])
+ by mx.groups.io with SMTP id smtpd.web10.5273.1663760317484450789
  for <yocto@lists.yoctoproject.org>;
- Wed, 21 Sep 2022 01:49:44 -0700
+ Wed, 21 Sep 2022 04:38:37 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel
- header.b=lXmOa0oO;
- spf=pass (domain: intel.com, ip: 134.134.136.100,
- mailfrom: naveen.kumar.saini@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1663750183; x=1695286183;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=6R5nEEdnKXOQy2ffEr8ObUhwa06ESW5vKOkEKSr0QpY=;
-  b=lXmOa0oOmTdxhFiUcjIDUy3X8m1/m4q2400HVU+TLL+FaiQH9Yo8pKyC
-   aA2n4HtRlFpRbGde6XbsjId/PfkmzQldpXscyqrlY2T8lJdH5KqOYNSSK
-   fVi7P8lVqGNTTqu7GZ2jLTPMMZTxpbfbjYPqAkmQsAPf5GUJrZ8u2OGtS
-   gzSSfQgkVFGZgZRWCctMW1+xfXjutuj9b05AaK7XC5vplX4G6swMQ/Q0R
-   qI1K++pWvq2PypghzIb9HS8agvh3Ht0cafNVwRZUSkHS/3z5zEKkxEZ1z
-   camLIUYuJqoyUiUmrLRvs90NzgouAkzVL3NvA0cD0Ox/hcL5tuXdX1Dje
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10476"; a="363918688"
-X-IronPort-AV: E=Sophos;i="5.93,332,1654585200";
-   d="scan'208";a="363918688"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2022 01:49:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,332,1654585200";
-   d="scan'208";a="649966204"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
-  by orsmga008.jf.intel.com with ESMTP; 21 Sep 2022 01:49:43 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Wed, 21 Sep 2022 01:49:42 -0700
-Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Wed, 21 Sep 2022 01:49:42 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31 via Frontend Transport; Wed, 21 Sep 2022 01:49:42 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.45) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Wed, 21 Sep 2022 01:49:42 -0700
+ dkim=pass header.i=@hotmail.com header.s=selector1 header.b=IYQMOi/C;
+ spf=pass (domain: hotmail.com, ip: 40.92.45.21,
+ mailfrom: heideggm@hotmail.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K9dwB7u8cnxR67GZP6yHrCPye1zLQTz5x8LlpC8RPnRyVWQ3AAf9CJjVWdHnpMn1fMPaOyyidXLXqU2bwY0gZaNq66rEUZu7TmzWCO3/iotBEq02R8HqZEb2lnKuyAaKITqk6enQg/MxkFMCtK5zxa56IE4fQ4aSxwfVDJD4evY5msp+OnRcDxja/zueqvqAAJKkVhKmRzg2Soiu7cmYKyVXLYeAgkrrCbkiWhlHjkdOOUEeHoc8bIz+Mnm++gG6qvd/OAi3VcWexi4ejEtPOoxUxW1VkNlpLYr0ZOVk9CK4FcxrqIc83LwTH8tbDcAVDeEY+43f1AMAe0IiymleDw==
+ b=GdRJBmpSKE75kCwTk5jZfXkEl0SowT1jo6VjBQrbanRGAsHS6tiB5R7viHvndIwGvIsnZbuQrMuZSlHmXyYYgoqeT6sYA9eRxkM1AbHS8HQ4dRwFl/6n1OPyqO6zITvKE34pEfA33FrOE7kdzG09UVu9TgYEfdp3gmjy57pQbz875ix5sDmZ9JU0W0Y9OEf1y/E6pIFmMjRYI8dmWiL0LeJ6O8m4/yd41Tch4Z/NLNEnL8YlGdfFUiL/ouo1cmGn4T2ZMsXfG1JX/MYW/KnYrqk9aHtTelAC+KdBgMDpw70rQyzZON8ZNTU0ZJvdAARSVUoJKrPfo/6TF72LnPHToA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OIwBLfQrKu30yaCtc8QuIyKw8pp8ahxhaf7/zQ42Jqg=;
- b=iAsdp+yKsald0brrsRuGAW5M9wSE1dUVCk6vqkqYSIOpz1ECFzrkTnA19mEa3GvQyU5yhldzvQ5aHhfBx1THAa7ABJ7iOxZVU48noOo5KltVUpZKgfeOonMT8noyupT0UvOiBIUMBiRpv0lMBvFWCE1M+J17014/k9iAya5+vN+7lQLshXb0QEpWbvzFTb7AiPgAjasVbJAdobygYKeolsiiJGVFQxVKetf7XcBgxhVSfzclLCioTsbzT91JOBZH9nYB3N1msXxkuHfLhWr9bj7SGEUB2XzaGg+f0yh10ia6OFr1TSMKbvR/wgM1yk/9ahL8yOPTBaA9sS+lsgm8KQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CO1PR11MB5026.namprd11.prod.outlook.com (2603:10b6:303:9c::13)
- by CH0PR11MB5300.namprd11.prod.outlook.com (2603:10b6:610:bf::18) with
+ bh=nnXCI9CIRh2TGeFty0JdlxNw66RDbnlUP/uWFL4KUVI=;
+ b=TaXOGCSVeWxwR53bcOKUR/O2g/dhothQuaJd2Afe1kKN9Gg4cX0YSbGx0OSoR3AcT8jO3AcuhuRxGAq5JlkA1hpg/wP7SiwUQhYMW8hrl7/07Bag3R8B+TVqGJnfeGqIk7z5uu0uYAzPe/QRlJVreSd31RIV1htk6bN6cfrAAlJby0pLqmTX8ZonIQVpiyf9rytWc2NcRpwFN/A7kehqgX26c6mB5JZFczjQGXkTRdy94DpawNhaBp9ZOjd40idZsq2V+xsBzrwjtOaEKfjqdy4FLRljSU8aknJO1qsrkt02ialOqYw6FT2GNBbmXE9UiQyB3MtOaEEMW9ehOWZbNg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nnXCI9CIRh2TGeFty0JdlxNw66RDbnlUP/uWFL4KUVI=;
+ b=IYQMOi/CLvpDn6SLQFIJUixc1+hg5Lx3N17f5d0Kts1OvuOM7lzqQlzTN3nFCVM05jMl0X2GnjdBHTTZ7lwI6ba6i9yF/jEHlvjb0foIuddm3AEo1qkf+kfODskaURw0vrqngNTb+l2XFuPkBru9jaLN9p79sP9Jx93HEX0xp2laeEf5WiQQnQh7R/Bq76F74TrK/iS85ivGMme8ClvUAbLEt78j3L7uiXMhowBcc3Z2oFHazrn+06mT5BBcpr4Hp7VavEH5VkFa3suhPNYrFLE7krbs6/bWgc2dlKo/BN1AGS39NTEAh0/iQOB40aIIR+iat+k54hiVWojFIRQ2gw==
+Received: from PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:510:162::16)
+ by MW4PR84MB1586.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:303:1a5::16) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.16; Wed, 21 Sep
- 2022 08:49:40 +0000
-Received: from CO1PR11MB5026.namprd11.prod.outlook.com
- ([fe80::dd5c:ca02:c00f:9006]) by CO1PR11MB5026.namprd11.prod.outlook.com
- ([fe80::dd5c:ca02:c00f:9006%7]) with mapi id 15.20.5654.016; Wed, 21 Sep 2022
- 08:49:40 +0000
-From: "Saini, Naveen Kumar" <naveen.kumar.saini@intel.com>
-To: Jon Mason <jdmason@kudzu.us>, Peter Hoyes <peter.hoyes@arm.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"diego.sueiro@arm.com" <diego.sueiro@arm.com>
-Subject: RE: [yocto] [meta-zephyr][PATCH 0/4] Add script for version upgrades
-Thread-Topic: [yocto] [meta-zephyr][PATCH 0/4] Add script for version upgrades
-Thread-Index: AQHYyatFcHbLDQBbK02radIy6ulKzq3o7r4AgACr/VA=
-Date: Wed, 21 Sep 2022 08:49:40 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.19; Wed, 21 Sep
+ 2022 11:38:35 +0000
+Received: from PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM
+ ([fe80::ed3f:d3a8:f734:40]) by PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM
+ ([fe80::ed3f:d3a8:f734:40%4]) with mapi id 15.20.5654.016; Wed, 21 Sep 2022
+ 11:38:35 +0000
+Date: Wed, 21 Sep 2022 13:38:29 +0200
+From: PHIL <heideggm@hotmail.com>
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+CC: Markus Volk <f_l_k@t-online.de>,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Adding Vulkan to core-image-weston
+User-Agent: K-9 Mail for Android
+In-Reply-To: 
+ <CANNYZj9z+0TX5WpyKSYBEM40HASYHykDHktVENsTfDnUTvyrug@mail.gmail.com>
+References: 
+ <PH0PR84MB1835D4BD7B71CB2ED806C2CEC7489@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+ <PH0PR84MB183571245531C6D271BD5A90C74D9@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+ <CANNYZj-rLXUAXn_BNYCM8bjeeWVCWU3YYFvnr5bagw7e0V8Akw@mail.gmail.com>
+ <PH0PR84MB1835BFBD2F24974F9B69E9E3C74D9@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+ <CANNYZj-0ewbydhAYAw6u0JgnKcBEJTSgZ+QzTxnwD2Lmh9vDgA@mail.gmail.com>
+ <P5UGIR.ETKUECS9HZXY1@t-online.de>
+ <PH0PR84MB1835BCF1ACDC3CAC1357FECCC74D9@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+ <40WGIR.ECG3N5TIIYMJ1@t-online.de>
+ <PH0PR84MB183594E043D2D4644D204710C74C9@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+ <CANNYZj8ZmE4_KY41Xe90YSFSm-t3MPVQjDH+gTw8TJBFgTjoWw@mail.gmail.com>
+ <PH0PR84MB1835BEBC6B143383119B2EA7C74C9@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+ <CANNYZj-DASeVZAJKe5SURTNec_uth5CofkyOu6ytn9rv2dc76g@mail.gmail.com>
+ <PH0PR84MB1835ADAA61579A359EE70E46C74C9@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+ <CANNYZj9z+0TX5WpyKSYBEM40HASYHykDHktVENsTfDnUTvyrug@mail.gmail.com>
 Message-ID: 
- <CO1PR11MB5026D93334C09DC7A6C39599C44F9@CO1PR11MB5026.namprd11.prod.outlook.com>
-References: <20220916090318.1293922-1-peter.hoyes@arm.com>
- <Yyo/yOgwvrsoxGPf@kudzu.us>
-In-Reply-To: <Yyo/yOgwvrsoxGPf@kudzu.us>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CO1PR11MB5026:EE_|CH0PR11MB5300:EE_
-x-ms-office365-filtering-correlation-id: 2f7ad114-2fec-409e-9207-08da9bae389c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- qGrzy6MzpEFTFBC96VmRzZvS3MAEDZtiSuKnsu09zxpiyK/Q/iDcmixENORX7pUv3hjD6DITHELetNLN3E5WRPMfi79zUh2X/8VyZsJTuQ51LZATb6Kg9SOx8Go2cgEqSazbA7EmUqqTUcJdmNadxR98IfGbPa/s/5ix7Ky0wt3KGwioiEfsGsBtzoAe75NyPBD9Th6rwMxJfS0GAIBqYFhjs+wYMD3vHKH537L3nZ7/b68Lg3HifP917Nlo/qhonSGPEfCiGlKJvX+fYNpRoq/cvzN5iDYl56FoDiAHHtxGfhpzhf5BBwjqVkHg5FAL+qip56L9pJ1I1h6PJO+EzxX0RL1zCHcq7hWnWVn+0ZtHIZ6+QMpwrXffPkpLXayENLT1Pbp8bCnPg5JkgJrN9GwUIzvOuXlqLFSOuy35lS6/Mdzz5LFmccBNneBWu/tY2ccyBkC7tFDPXWEHrm31e7QaDQ5EmcPR/ooli7/lBs6YFWACEodjCX0A2O0v6SngGE86EVaeZDce+F7W4VCPQ5uOShJR4bv81GXQwCGyZ7invIo7RGfM5MyAxz326Ec50GVPxH+HU/LsWxZfhwXmPISfvuCgZigEqKL9x9W+eU39MXrrDHNQPSiM0392bxYb4sIS/1YW597suvIT1z5Pdcod29JE77XwmZ4hw5R02Qnl5tWaYiH+GndXOj5c9iLAObKsUYI2xRpzLQKaHGiY4Kp3gGRlWRhs6fS96E4ZYBi0ztKWGHfq8fZpyxvGeNe6eRUanBmKSffRQUwUX8oivQRrbPApo8XmzKmsZnE1bnE=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5026.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(396003)(39860400002)(346002)(366004)(136003)(376002)(451199015)(33656002)(110136005)(54906003)(316002)(86362001)(38070700005)(38100700002)(122000001)(82960400001)(83380400001)(71200400001)(7696005)(6506007)(966005)(478600001)(53546011)(8676002)(76116006)(66946007)(66556008)(66476007)(66446008)(4326008)(9686003)(26005)(186003)(41300700001)(52536014)(8936002)(64756008)(5660300002)(2906002)(55016003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?HkGf/0+8q2J8/5wiv/kx2FQoEOjhY0AQSKY0f8NcMiZneo1svM+TmzQjfzUb?=
- =?us-ascii?Q?QCNQqb523CVZaukAhziP4et1JMCDfSJL9EunuC9Pow5+s+4d8zZMs+L9vytk?=
- =?us-ascii?Q?XRrlIC5urQDGQCuW5UFL+utS71u154tgTmXcRvx1C9kgdVBslh2OmJEIFQUg?=
- =?us-ascii?Q?A31tgPEe9jxPe2973MbztyY9TY7ENTGUTU3wndfpRN6kYvqeK81juo81OuI1?=
- =?us-ascii?Q?YCBYzWqbR2rHYGOhMScniBuaJ8KnU+tUhyy+s5yFm3TkFvpy1IlXCdKbk9Q5?=
- =?us-ascii?Q?Es4JGOfvPPIZJZxjvZX04liGjvbcTBUCrpcR9OyqlVNxEhR8Va5r7TC+N7mU?=
- =?us-ascii?Q?woBg/N0k6AKtwfJGHWgYRiTXPdX2ruoGfyTCRq8Rj/Ok/TBUooqkxKZGVXQO?=
- =?us-ascii?Q?p9W7urL/bcmwfvnR0yp2LYBKpLr2aAopdyK/HkyvmZbvtIuqBJlZ4oI0LV2v?=
- =?us-ascii?Q?ZXUCyvKGO/baZRCivw68xu+8/yY5OX7I76GL1O/vqYsgrmzSGcZyqzvGVcBf?=
- =?us-ascii?Q?a3J0R+ZI7NGE7EbUyk3JzxeDE5MyJmzgTChclipMXeR4PIArWZxWp8cmZyHa?=
- =?us-ascii?Q?IpiMH4n72qobjYMG3a5I4uc5/QBpPjiFCXhTkEJexT/XOtKWolqBhHF4zkRA?=
- =?us-ascii?Q?tExw6xVzwZ0AHUaKle/dnO6K/PdCbm1j+zphMGrQQDvjbi3FHiDohXIQQGum?=
- =?us-ascii?Q?UOLlnVviyn9kHghsjU42elPW6fjoy3GovBqbZpo1vKNV7l3XBGSVFJGbExoh?=
- =?us-ascii?Q?F9SCYLdab0YQDcgOqvQVv8QrDtssgiRNgeRc+GdMZ5gVxCLqtFpCkBRIheZA?=
- =?us-ascii?Q?+MPJx8/sMBvPBZ6Cd3sH7wgrGcH46hHJlp+WrslTMqtM64/8O/mEpGwdHLpL?=
- =?us-ascii?Q?35syQXPLfA26pG9O0HE6n9wg9M028LvSHF8qRIffinLzR5bMDg/IjMxdLKvq?=
- =?us-ascii?Q?XXQ/grxUhiTpve47kOyjoFkmNFFUr2CR5Wjr+t6QfIy7zXxjmgInNlqEBXS2?=
- =?us-ascii?Q?vk2rgaRfZDC65fGzpPHnKfBihqk0BldxZAYpd4ojTDHjXYpeex4760HQAl42?=
- =?us-ascii?Q?wAqHsap+ehD/PdKPwXolDWtzdL/KGdH6btsJ21Dy/31kZffvSl2/9xD6P/di?=
- =?us-ascii?Q?iHYYh843jCc9eS7BVHxmeIYRYBldWCJtEyUNCWpW9Z/Ia02hMdeIPiNAQHr7?=
- =?us-ascii?Q?+NzN8UIZUBy7/32HtsEtZe/yOhLwBuAyRxWuTB9kn4mMIVyot7rDE5PPFBCB?=
- =?us-ascii?Q?LX2MobvrkVQGuhrVHGWkz8gdX11PWokT/4bLsdQMBaStOrs15B+BWkZzVXGk?=
- =?us-ascii?Q?AnnL3K+fnEwv4akNN2TEKXI9azdvjZIx803qsyVGYqHKMR0b5hgA04ZfACLO?=
- =?us-ascii?Q?E2e9u+H2/d95UGlQCvy4V+6rbs9VAWkpnfcAMGov3Jd6y+nGDxNnKr+2IxEb?=
- =?us-ascii?Q?f7EyZuZry/1f8lGxqrJuAe6hjc5ifz59jpOJBSMh0gUO4G9/WncNiDOrXiDB?=
- =?us-ascii?Q?mgUZ69r9ZdWJweBW5ez14qMkdXGAIeCYE4DM7jbvqSncA8lyaqSoEkIq538I?=
- =?us-ascii?Q?GXON32yubsdc2O5bPAdbQteZoroBMhVDT2J16vkhkkLsx9MEEfaZyys6xBpZ?=
- =?us-ascii?Q?Ow=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ <PH0PR84MB183510DD06DC37C976C8ABFEC74F9@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+Content-Type: multipart/alternative;
+ boundary=----MPDX41XZF7CD1LBB15BG38T12U0DLG
+Content-Transfer-Encoding: 7bit
+X-TMN: [4Uh6UFuQ9p81tTGxkPrdg6a8NM4Tv2v0]
+X-ClientProxiedBy: FR3P281CA0131.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:94::14) To PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM
+ (2603:10b6:510:162::16)
+X-Microsoft-Original-Message-ID: 
+ <DA5DA2D2-5E9E-4383-B5A0-845611D295B7@hotmail.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5026.namprd11.prod.outlook.com
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH0PR84MB1835:EE_|MW4PR84MB1586:EE_
+X-MS-Office365-Filtering-Correlation-Id: 13f0e579-c049-4660-e236-08da9bc5d15d
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	B+ho9Zm0PfSNqNVjKtyuBjhx/6neOX9+NOvDUqVB4Dy8Zp4O7UOe3RwpEAXPb3zRx5e7CpEFV2cn2IA3o4oW1Sr2npM+wy3lRrwyD5kUAnVALllLe1oxLPxrzIVo8OerbTWLZQxg+RD7noC7eLzdkKgJv+xsfrqpCbM7H/P2FT8ApHKDqbg8CHBovtN6LtRn6lqVi4L1lwuJld6KvTugaHiPqfSlDvo2mPByVTg0H2JhEoftVGpI83BknLE58fXN2VI+zkhTbmt8QLJVgUtWddcL+MtlWc2KttjbNYmDg2ayjWBLGi1Iw/1Q35116uVtSAlz7VtsNMH++xGH9bjf8xBbN/jMK029Oh2TJPRMXn4lCjQUQpiyDbSyXA/sjzlnAnxePCTOgUh/P6bsJILVzKVv0nWNsJGqgB33yh6H+cS4VyKWdjLTarfUvsVl0aBeThKHiS9Z9ImECdpiizclk78akmNqVLly4qIMJytWJW/KVkSgTM5jH9gg0y5JSgZJzlTbbbYcuh1J5VN6UUSOyYsiKByXEgmDh5SATGGpdGkVwWlL1NLZEJVkg3KZc81NieR8OfX3HI4ZgI0vGmn8HvHVocPc3mVvpjju97wbThXx4wPNEuntU0Y3MXPUfYYpaRtuTCDf0ptlNzFRKZAjU/uYUPYWOMfL+9zwxZwkf7RzGToavXB6KCc7rwjYyFOq
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?TnloVnVwV3J0aHdCWGlTYUFzOUZOVzJ1SGhKbkRXOE9jTnY1aXFHdDJDaWli?=
+ =?utf-8?B?Zi9sbldFblJISTZqTW1jRHRTU3NKaWRZdDB5aTROMEl0b0tZRXJ5VXdmMWxH?=
+ =?utf-8?B?Wjl5SlN2enJUaEtidVA0UjdGWThucjl1L2hLZG0xM2dLRys5UWlNRzdhT3ZT?=
+ =?utf-8?B?eG13TlFjeCtnNHRIcHdWMDBCZjJpZ2tNYmNobW52R1pTZWw0eCs4SjN0WUUv?=
+ =?utf-8?B?NU8zT1E4OVRZbm56eWZuejRBUXlBb3oxaEoyOWF4VUNtZVNPcGUvem9EdE83?=
+ =?utf-8?B?d0tBOERtMm1oY3FnUE15eUYrZFNxNHNvUk9pL1R5MVJYZUt0elhQVUpQK3Jr?=
+ =?utf-8?B?b0V5eG94aHZUWWRzNnA0OU5PTCtRMCtiR29SeVhSUDd2ZndzTmpoWnkzekFn?=
+ =?utf-8?B?MUZ4bm5yWDZKMS9uczhFb0lNTFhmMlYvUndzemhyKytibGdFT3VMUDFjdWx0?=
+ =?utf-8?B?S3krUnF3RXAwZitKbG51TExoWHhQbGUzZkxaUmE4aXcxR1pTdGJ3TDF2bG5B?=
+ =?utf-8?B?a2lDRm5QWEw0M1poN3NFclFRNVRNSUp4SHh0UVJPVGlsVjN4U0dReWczaCtV?=
+ =?utf-8?B?SUErOE9QT0dtNU92TGdCNlF1K2FEb0F6b1FZS0FRSDhnTjlBdENuSnd5emdP?=
+ =?utf-8?B?SHlXQlhlalgrdlFRLzVlMEIwSlBwK2RwZEVMZnJOU3hEN21vV01wb2c3YUlK?=
+ =?utf-8?B?bm9MOW16YjA0RVRna0ZqU0JjL21pd0plN3g3UVdTbEhEQVF1dUQrUWFJNUhQ?=
+ =?utf-8?B?UnNTZGcrVVF1VURMRnY4bktEci80aElJbXVlV1VTN3M3TEFBYnNudG9ITkVa?=
+ =?utf-8?B?bmpyRVhrcUtUYVF1SURhY1U1eHE5QS9BSndxZmRkMyszVTZkWlhLRjlzdTF0?=
+ =?utf-8?B?MHVybVZnK1JWTjhadEo4VWVVT25DRnp4N0MzeDRlZDg2S3JRcHgxRGhOS3ZD?=
+ =?utf-8?B?RkNrN1RwUFpBUW52a2d3ZS9sQUM5ckx3SVJmMm11U24vTU1TeU83aUo5OXZa?=
+ =?utf-8?B?U3dKb3A2WFBDQzZET2d6Z2RMV1VKZ203VVBpSUtpSEZuVFhQOHZEYTk5TE9Z?=
+ =?utf-8?B?cGhYcEtySkFBSjdqeDh4SW9NYmlQQTdEMmJ4clBRMzlnaVl2cS9ZdGk2c2g2?=
+ =?utf-8?B?UzdydFg1Tm5rM01UV2dWeERqemhqUTdic3UrTnk5T1FMREtQTFNnQVBXUDZG?=
+ =?utf-8?B?TUJ6ek5pS1NXNVJRcE9pWVdScEtjTS81cmQzWFl0cmh1QkcxZzhEdm12TDVM?=
+ =?utf-8?B?Zyt1OUZVd3d3WHFMTEhhekF0ZnBrdUh3V20zbHlTekdMV1BGM3loblVnWEdJ?=
+ =?utf-8?B?MW9wTk94enNHN2VISE1hMmRRdWY4Y2hyZXl2RWhxVDVaTU12THpuMUdObjcy?=
+ =?utf-8?B?OVg0TFFLeEQ5Y0IydUtqcDF6SmdDUnZqWEdCaTBUSFRndzRZZUl5Y0dOcTdy?=
+ =?utf-8?B?THYwZVUxRVlFRmQ1bVd4QUJncGRSWnMweUFsME5ZUjJkQmhiUkxWNnZ2andD?=
+ =?utf-8?B?ZmttNERGYXA5bjhvSUlTeGVvY1YxazFPWFU0R2x4ZjVJS3pTcDc0WTVycVda?=
+ =?utf-8?B?MGgxZ3lYVWVxeGE2dHVrWWFBYk1aZElQcjVyd0lPaEFsWTNFUHFxVHJUcU54?=
+ =?utf-8?B?NTJmaFBmS0grK29MUTRBRFBIQ0hmTi84SzRMcVBOaE0ydTI2K0ROUGxXSVQ0?=
+ =?utf-8?B?bStveWtab3dkTit3TTVTVkdMWFAwTk1Ibjl3TGR0dXJNdEUxN3NpakRBPT0=?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-3ea80.templateTenant
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 2f7ad114-2fec-409e-9207-08da9bae389c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Sep 2022 08:49:40.2433
+ 13f0e579-c049-4660-e236-08da9bc5d15d
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Sep 2022 11:38:35.3549
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- S6zMztWyKDwuEHHlgilU1X7WxPDcM/xs5yKFrQKsMWSZM2zoXpWZ8gxak93qN7yMoK33R7AQ+6vpY73kJ5iqVq2dJEpgVQsQHi2Smi+EfwE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5300
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR84MB1586
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 21 Sep 2022 08:49:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58113
+ <yocto@lists.yoctoproject.org>; Wed, 21 Sep 2022 11:38:41 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58114
 
-Thanks Jon. Merged.
+------MPDX41XZF7CD1LBB15BG38T12U0DLG
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Regards,
-Naveen
+If I read the mesa-vulkan-drivers recipe right it should install libvulkan_=
+*=2Eso but it didnt I had to use vulkan-loader=2E Any idea in how to debug =
+that?
 
-> -----Original Message-----
-> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On
-> Behalf Of Jon Mason
-> Sent: Wednesday, September 21, 2022 6:34 AM
-> To: Peter Hoyes <peter.hoyes@arm.com>
-> Cc: yocto@lists.yoctoproject.org; diego.sueiro@arm.com
-> Subject: Re: [yocto] [meta-zephyr][PATCH 0/4] Add script for version
-> upgrades
->=20
-> On Fri, Sep 16, 2022 at 10:03:14AM +0100, Peter Hoyes wrote:
-> > From: Peter Hoyes <Peter.Hoyes@arm.com>
-> >
-> > This patch chain has been developed on top of the 2.7.3 upgrade patch.
-> >
-> > Add a script, generate-version.py, which can be used to automatically
-> > generate configuration for new Zephyr versions. Regenerate
-> > configuration for 2.7.3 and 3.1.0 using this script.
-> >
-> > This script includes a constant version-specific declaration of
-> > ZEPHYR_MODULES, so the build-time logic to extract ZEPHYR_MODULES is
-> > no longer required. Remove the do_get_zmods task and the West recipe.
-> >
-> > Peter Hoyes (4):
-> >   zephyr-core/scripts: Introduce script to generate new versions
-> >   zephyr-core/zephyr-kernel: Migrate to script-driven version files
-> >   zephyr-core/classes: Remove West-based logic from zephyr.bbclass
-> >   zephyr-core/zephyr-kernel: Update dtc.patch Upstream-Status
->=20
-> Series passes CI (on top of the v2.7.3 patch).  See
-> https://gitlab.com/jonmason00/meta-zephyr/-/pipelines/645914527
->=20
-> Tested-by: Jon Mason <jon.mason@arm.com>
->=20
-> >
-> >  README.txt                                    |  17 ++
-> >  meta-zephyr-core/classes/zephyr.bbclass       |  32 +--
-> >  .../recipes-devtools/west/west_0.12.99.bb     |  22 --
-> >  ...y-generation-issue-in-cross-compila.patch} |   0
-> >  .../zephyr-kernel/files/dtc.patch             |   2 +-
-> >  .../zephyr-kernel/zephyr-kernel-src-2.7.3.inc | 202 +++++++++++++---
-> > .../zephyr-kernel/zephyr-kernel-src-3.1.0.inc | 220 +++++++++++++++---
-> >  .../zephyr-kernel/zephyr-kernel-src.inc       |  43 ----
-> >  meta-zephyr-core/scripts/generate-version.py  |  73 ++++++
-> >  .../scripts/zephyr-kernel-src.inc.jinja       |  35 +++
-> >  10 files changed, 474 insertions(+), 172 deletions(-)  delete mode
-> > 100644 meta-zephyr-core/recipes-devtools/west/west_0.12.99.bb
-> >  rename
-> > meta-zephyr-core/recipes-kernel/zephyr-kernel/files/{0001-x86-fix-efi-
-> > binary-generation-issue-in-cross-compila.patch =3D>
-> > 0001-2.7-x86-fix-efi-binary-generation-issue-in-cross-compila.patch}
-> > (100%)  create mode 100755
-> > meta-zephyr-core/scripts/generate-version.py
-> >  create mode 100644
-> > meta-zephyr-core/scripts/zephyr-kernel-src.inc.jinja
-> >
-> > --
-> > 2.25.1
-> >
-> >
+Am 20=2E September 2022 15:26:45 MESZ schrieb Alexander Kanavin <alex=2Eka=
+navin@gmail=2Ecom>:
+>What often works is running it under strace - you might be able to see th=
+e
+>one key syscall that causes the failure=2E Otherwise you might have to go
+>through the heavier gdb step through=2E
+>
+>Alex
+>
+>On Tue 20=2E Sep 2022 at 10=2E25, PHIL <heideggm@hotmail=2Ecom> wrote:
+>
+>> Ok it seems to use Software now given how slow weston-simple-egl has
+>> become=2E But vulkaninfo still fails with ERROR_INCOMPATIBLE_DRIVER=2E
+>> --
+>> Diese Nachricht wurde von meinem Android-Ger=C3=A4t mit K-9 Mail gesend=
+et=2E
+>>
+
+--=20
+Diese Nachricht wurde von meinem Android-Ger=C3=A4t mit K-9 Mail gesendet=
+=2E
+------MPDX41XZF7CD1LBB15BG38T12U0DLG
+Content-Type: text/html;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8"></=
+head><body>If I read the mesa-vulkan-drivers recipe right it should install=
+ libvulkan_*.so but it didnt I had to use vulkan-loader. Any idea in how to=
+ debug that?<br><br><div class=3D"gmail_quote">Am 20. September 2022 15:26:=
+45 MESZ schrieb Alexander Kanavin &lt;alex.kanavin@gmail.com&gt;:<blockquot=
+e class=3D"gmail_quote" style=3D"margin: 0pt 0pt 0pt 0.8ex; border-left: 1p=
+x solid rgb(204, 204, 204); padding-left: 1ex;">
+<div dir=3D"auto">What often works is running it under strace - you might b=
+e able to see the one key syscall that causes the failure. Otherwise you mi=
+ght have to go through the heavier gdb step through.</div><div dir=3D"auto"=
+><br></div><div dir=3D"auto">Alex</div><div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Tue 20. Sep 2022 at 10.25, PHIL &l=
+t;<a href=3D"mailto:heideggm@hotmail.com">heideggm@hotmail.com</a>&gt; wrot=
+e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left-width:1px;border-left-style:solid;padding-left:1ex;border-=
+left-color:rgb(204,204,204)"><u></u>
+
+
+<div>Ok it seems to use Software now given how slow weston-simple-egl has b=
+ecome. But vulkaninfo still fails with ERROR_INCOMPATIBLE_DRIVER.</div><div=
+><div style=3D"white-space:pre-wrap"><div>-- <br>Diese Nachricht wurde von =
+meinem Android-Ger=C3=A4t mit K-9 Mail gesendet.</div></div></div></blockqu=
+ote></div></div>
+</blockquote></div><div style=3D"white-space: pre-wrap"><div class=3D"k9mai=
+l-signature">-- <br>Diese Nachricht wurde von meinem Android-Ger=C3=A4t mit=
+ K-9 Mail gesendet.</div></div></body></html>=
+
+------MPDX41XZF7CD1LBB15BG38T12U0DLG--
 
