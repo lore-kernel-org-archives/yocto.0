@@ -1,432 +1,149 @@
-Return-Path: <bahugunaayush8@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B1D48C6FA8B
-	for <webhook@archiver.kernel.org>; Thu, 22 Sep 2022 07:20:34 +0000 (UTC)
-Subject: testimage.bbclass - error in running standard test on a target device
-To: yocto@lists.yoctoproject.org
-From: bahugunaayush8@gmail.com
-X-Originating-Location: Karwar, Karnataka, IN (182.74.65.130)
-X-Originating-Platform: Linux Firefox 104
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3F40EC6FA82
+	for <webhook@archiver.kernel.org>; Thu, 22 Sep 2022 12:43:06 +0000 (UTC)
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com
+ [209.85.221.48])
+ by mx.groups.io with SMTP id smtpd.web12.6652.1663850581258683790
+ for <yocto@lists.yoctoproject.org>;
+ Thu, 22 Sep 2022 05:43:01 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Y8td/4Zb;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.48,
+ mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f48.google.com with SMTP id y5so15396665wrh.3
+        for <yocto@lists.yoctoproject.org>;
+ Thu, 22 Sep 2022 05:43:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date;
+        bh=3grSRoZYX55NJ2ZTEVNih8Rdo6umboVNH4ew8iMRL6g=;
+        b=Y8td/4Zb64xNMd/7gBsAtbfs5bX+qDooJLQRDEvAaa8WcbP8X/dUAKOjutJCb2SZjU
+         KcEyVNCI4JG1B1S4UramULFb84nb+SHXORLA+4oLe96PngootknmjSP4BZxy2Pnxe1HC
+         JmOqP8YDkU5aYRmzgf7oOVjR8Qw0MwTylvg94=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date;
+        bh=3grSRoZYX55NJ2ZTEVNih8Rdo6umboVNH4ew8iMRL6g=;
+        b=iRVD/CmD6/+OH5EjD9jeq01FdPmALMgA1Yb5VnEYTctGcR0bDKCJEmbFPupa0Sg/Mh
+         qPIZuRqKIP3VNK92kKuDuaBUf44bM5dHLvw0dD6Y7x1EzWQl9RnodByKQvPKBk1oibcu
+         hNd67XTNpbirptACOXriGB0TFd3oERzOSomp03Sf0F5rzAz0GTQKJKGn3NM5mJEI3ZFE
+         Rv9/otyENzVBg5SFdtbXexPL+EvCM7ORdUSRi+RVaJrrrZoWc5lva6XfIo21iS1/HxbJ
+         KZKyCg/6OxJbA/+QM8GfZbhBSMYGKz/VHhHb1vi5ZRbTxLqkOsJdTpaDH7yx/dZTo/Lx
+         A3Dw==
+X-Gm-Message-State: ACrzQf34iEn08nr9T2OxzYptzDE0h5Wsre8fmPb9ziWw4KpUTu2Fv8AL
+	wZPq5FyGTUbss4m/xRKxzpsHQA==
+X-Google-Smtp-Source: 
+ AMsMyM5UG7MOqXDyVvHzNH0dfGCOiZxFrbHxzkX7MTxevw4cY5PILq8W5qRIvRTSivPCKy71TsiObg==
+X-Received: by 2002:a5d:584e:0:b0:22b:724:11c0 with SMTP id
+ i14-20020a5d584e000000b0022b072411c0mr1861013wrf.225.1663850579581;
+        Thu, 22 Sep 2022 05:42:59 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:6f87:a0ac:e77:378?
+ ([2001:8b0:aba:5f3c:6f87:a0ac:e77:378])
+        by smtp.gmail.com with ESMTPSA id
+ id21-20020a05600ca19500b003b27f644488sm5654401wmb.29.2022.09.22.05.42.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Sep 2022 05:42:59 -0700 (PDT)
+Message-ID: 
+ <e97d25b8f041f395ed6645b4a1e3f44d16ecb5ce.camel@linuxfoundation.org>
+Subject: Re: [yocto] [yocto-autobuilder2][PATCH] config.py: default
+ repository updates
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: benjamin.esquivel@gmail.com, yocto@lists.yoctoproject.org
+Cc: tarxf@esquibits.com
+Date: Thu, 22 Sep 2022 13:42:57 +0100
+In-Reply-To: <20220922023334.386489-1-benjamin.esquivel@gmail.com>
+References: <20220922023334.386489-1-benjamin.esquivel@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.1-0ubuntu1 
 MIME-Version: 1.0
-Date: Thu, 22 Sep 2022 00:20:34 -0700
-Message-ID: <vfUL.1663831234139168914.OdVQ@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="JV2tePFOgTBBO19K6pCJ"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 22 Sep 2022 07:20:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58132
+ <yocto@lists.yoctoproject.org>; Thu, 22 Sep 2022 12:43:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58133
 
---JV2tePFOgTBBO19K6pCJ
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi Friends,
-I am new to this technology, please let me know if i missed any detail that=
- is required to make my query more understandable . I am trying standard te=
-st on target device using TEST_TARGET =3D "simpleremote" ,
-i have followed following steps on the given link - https://wiki.yoctoproje=
-ct.org/wiki/BSP_Test_Plan
-I am building core-image-weston on imx6 device.
-I am building "core-image-weston" on "imx6" I ran command -- bitbake core-i=
-mage-weston -c testimage
-I got following logs---
-
-NOTE: ---------------------------------------------------------------------=
--
-NOTE: Ran 61 tests in 438.855s
-NOTE: FAILED
-NOTE:=C2=A0 (failures=3D2, errors=3D1, skipped=3D16)
-ERROR: Error executing a python function in exec_python_func() autogenerate=
-d:
-
-The stack trace of python calls that resulted in this exception/failure was=
-:
-File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
-0001:
-*** 0002:do_testimage(d)
-0003:
-File: '/home/ss/imx6/yocto/OS_Linux_imx6/sources/poky/meta/classes/testimag=
-e.bbclass', lineno: 114, function: do_testimage
-0110:=C2=A0=C2=A0=C2=A0 netstat -an
-0111:}
-0112:
-0113:python do_testimage() {
-*** 0114:=C2=A0=C2=A0 testimage_main(d)
-0115:}
-0116:
-0117:addtask testimage
-0118:do_testimage[nostamp] =3D "1"
-File: '/home/ss/imx6/yocto/OS_Linux_imx6/sources/poky/meta/classes/testimag=
-e.bbclass', lineno: 320, function: testimage_main
-0316:
-0317:=C2=A0=C2=A0=C2=A0 # Show results (if we have them)
-0318:=C2=A0=C2=A0=C2=A0 if not results:
-0319:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bb.fatal('%s - FAILED - tes=
-ts were interrupted during execution' % pn, forcelog=3DTrue)
-*** 0320:=C2=A0=C2=A0=C2=A0 configuration =3D get_testimage_configuration(d=
-, 'runtime', machine)
-0321:=C2=A0=C2=A0=C2=A0 results.logDetails(get_testimage_json_result_dir(d)=
+On Wed, 2022-09-21 at 19:33 -0700, benjamin.esquivel@gmail.com wrote:
+> From: Benjamin Esquivel <benjamin.esquivel@gmail.com>
+>=20
+> the repos that are used as defaults in the build requests are outdated
+> hence the update.
+>=20
+> Signed-off-by: Benjamin Esquivel <benjamin.esquivel@gmail.com>
+> ---
+>  config.py | 22 +++++++++++-----------
+>  1 file changed, 11 insertions(+), 11 deletions(-)
+>=20
+> diff --git a/config.py b/config.py
+> index 042a1ec..2249e82 100644
+> --- a/config.py
+> +++ b/config.py
+> @@ -38,23 +38,23 @@ repos =3D {
+>                            "neon-master"],
+>      "eclipse-poky-oxygen": ["ssh://git@push.yoctoproject.org/eclipse-yoc=
+to",
+>                              "oxygen-master"],
+> -    "poky": ["ssh://git@push.yoctoproject.org/poky", "master"],
+> -    "meta-intel": ["ssh://git@push.yoctoproject.org/meta-intel", "master=
+"],
+> -    "meta-arm": ["ssh://git@push.yoctoproject.org/meta-arm", "master"],
+> +    "poky": ["git://git.yoctoproject.org/poky", "master"],
+> +    "meta-intel": ["git://git.yoctoproject.org/meta-intel", "master"],
+> +    "meta-arm": ["git://git.yoctoproject.org/meta-arm", "master"],
+>      "meta-agl": ["https://git.automotivelinux.org/AGL/meta-agl", "next"]=
 ,
-0322:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 configurati=
-on,
-0323:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 get_testima=
-ge_result_id(configuration),
-0324:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dump_stream=
-s=3Dd.getVar('TESTREPORT_FULLLOGS'))
-File: '/home/ss/imx6/yocto/OS_Linux_imx6/sources/poky/meta/classes/testimag=
-e.bbclass', lineno: 139, function: get_testimage_configuration
-0135:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 'IMAGE_BASENAME': d.getVar("I=
-MAGE_BASENAME"),
-0136:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 'IMAGE_PKGTYPE': d.getVar("IM=
-AGE_PKGTYPE"),
-0137:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 'STARTTIME': d.getVar("DATETI=
-ME"),
-0138:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 'HOST_DISTRO': oe.lsb.distro_=
-identifier().replace(' ', '-'),
-*** 0139:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 'LAYERS': get_layers(d.get=
-Var("BBLAYERS"))}
-0140:=C2=A0=C2=A0=C2=A0 return configuration
-0141:get_testimage_configuration[vardepsexclude] =3D "DATETIME"
-0142:
-0143:def get_testimage_json_result_dir(d):
-File: '/home/ss/imx6/yocto/OS_Linux_imx6/sources/poky/meta/lib/oeqa/utils/m=
-etadata.py', lineno: 97, function: get_layers
-0093:=C2=A0=C2=A0=C2=A0 """Returns layer information in dict format"""
-0094:=C2=A0=C2=A0=C2=A0 layer_dict =3D OrderedDict()
-0095:=C2=A0=C2=A0=C2=A0 for layer in layers.split():
-0096:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 layer_name =3D os.path.base=
-name(layer)
-*** 0097:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 layer_dict[layer_name] =
-=3D git_rev_info(layer)
-0098:=C2=A0=C2=A0=C2=A0 return layer_dict
-0099:
-0100:def write_metadata_file(file_path, metadata):
-0101:=C2=A0=C2=A0=C2=A0 """ Writes metadata to a XML file in directory. """
-File: '/home/ss/imx6/yocto/OS_Linux_imx6/sources/poky/meta/lib/oeqa/utils/m=
-etadata.py', lineno: 84, function: git_rev_info
-0080:=C2=A0=C2=A0=C2=A0 try:
-0081:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 repo =3D Repo(path, search_=
-parent_directories=3DTrue)
-0082:=C2=A0=C2=A0=C2=A0 except (InvalidGitRepositoryError, NoSuchPathError)=
-:
-0083:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return info
-*** 0084:=C2=A0=C2=A0=C2=A0 info['commit'] =3D repo.head.commit.hexsha
-0085:=C2=A0=C2=A0=C2=A0 info['commit_count'] =3D repo.head.commit.count()
-0086:=C2=A0=C2=A0=C2=A0 try:
-0087:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 info['branch'] =3D repo.act=
-ive_branch.name
-0088:=C2=A0=C2=A0=C2=A0 except TypeError:
-File: '/usr/lib/python3/dist-packages/git/refs/symbolic.py', lineno: 197, f=
-unction: _get_commit
-0193:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 """
-0194:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 :return:
-0195:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Com=
-mit object we point to, works for detached and non-detached
-0196:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Sym=
-bolicReferences. The symbolic reference will be dereferenced recursively.""=
-"
-*** 0197:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 obj =3D self._get_objec=
-t()
-0198:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if obj.type =3D=3D 'tag':
-0199:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 obj=
- =3D obj.object
-0200:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # END dereference tag
-0201:
-File: '/usr/lib/python3/dist-packages/git/refs/symbolic.py', lineno: 190, f=
-unction: _get_object
-0186:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 The=
- object our ref currently refers to. Refs can be cached, they will
-0187:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 alw=
-ays point to the actual object as it gets re-created on each query"""
-0188:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # have to be dynamic here a=
-s we may be a tag which can point to anything
-0189:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # Our path will be resolved=
- to the hexsha which will be used accordingly
-*** 0190:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return Object.new_from_=
-sha(self.repo, hex_to_bin(self.dereference_recursive(self.repo, self.path))=
-)
-0191:
-0192:=C2=A0=C2=A0=C2=A0 def _get_commit(self):
-0193:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 """
-0194:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 :return:
-File: '/usr/lib/python3/dist-packages/git/refs/symbolic.py', lineno: 132, f=
-unction: dereference_recursive
-0128:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 :return: hexsha stored in t=
-he reference at the given ref_path, recursively dereferencing all
-0129:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int=
-ermediate references as required
-0130:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 :param repo: the repository=
- containing the reference at ref_path"""
-0131:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 while True:
-*** 0132:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- hexsha, ref_path =3D cls._get_ref_info(repo, ref_path)
-0133:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if =
-hexsha is not None:
-0134:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 return hexsha
-0135:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # END recursive dereferenci=
-ng
-0136:
-File: '/usr/lib/python3/dist-packages/git/refs/symbolic.py', lineno: 181, f=
-unction: _get_ref_info
-0177:=C2=A0=C2=A0=C2=A0 def _get_ref_info(cls, repo, ref_path):
-0178:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 """Return: (str(sha), str(t=
-arget_ref_path)) if available, the sha the file at
-0179:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 rela_path points to, or Non=
-e. target_ref_path is the reference we
-0180:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 point to, or None"""
-*** 0181:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return cls._get_ref_inf=
-o_helper(repo, ref_path)
-0182:
-0183:=C2=A0=C2=A0=C2=A0 def _get_object(self):
-0184:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 """
-0185:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 :return:
-File: '/usr/lib/python3/dist-packages/git/refs/symbolic.py', lineno: 164, f=
-unction: _get_ref_info_helper
-0160:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 break
-0161:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # E=
-ND for each packed ref
-0162:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # END handle packed refs
-0163:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if tokens is None:
-*** 0164:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- raise ValueError("Reference at %r does not exist" % ref_path)
-0165:
-0166:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # is it a reference ?
-0167:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if tokens[0] =3D=3D 'ref:':
-0168:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret=
-urn (None, tokens[1])
-Exception: ValueError: Reference at 'refs/heads/yocto_imx6_rel' does not ex=
-ist
+>      "meta-aws": ["https://github.com/aws/meta-aws.git", "master"],
+> -    "meta-ti": ["ssh://git@push.yoctoproject.org/meta-ti", "master"],
+> -    "meta-security": ["ssh://git@push.yoctoproject.org/meta-security", "=
+master"],
+> +    "meta-ti": ["git://git.yoctoproject.org/meta-ti", "master"],
+> +    "meta-security": ["git://git.yoctoproject.org/meta-security", "maste=
+r"],
+>      "oecore": ["git://git.openembedded.org/openembedded-core",
+>                            "master"],
+>      "bitbake": ["git://git.openembedded.org/bitbake", "master"],
+> -    "meta-qt4": ["ssh://git@push.yoctoproject.org/meta-qt4", "master"],
+> -    "meta-qt3": ["ssh://git@push.yoctoproject.org/meta-qt3", "master"],
+> -    "meta-mingw": ["ssh://git@push.yoctoproject.org/meta-mingw", "master=
+"],
+> -    "meta-gplv2": ["ssh://git@push.yoctoproject.org/meta-gplv2", "master=
+"],
+> +    "meta-qt4": ["git://git.yoctoproject.org/meta-qt4", "master"],
+> +    "meta-qt3": ["git://git.yoctoproject.org/meta-qt3", "master"],
+> +    "meta-mingw": ["git://git.yoctoproject.org/meta-mingw", "master"],
+> +    "meta-gplv2": ["git://git.yoctoproject.org/meta-gplv2", "master"],
+>      "meta-openembedded": ["git://git.openembedded.org/meta-openembedded"=
+, "master"],
+> -    "meta-virtualization": ["ssh://git@push.yoctoproject.org/meta-virtua=
+lization", "master"],
+> -    "yocto-docs": ["ssh://git@push.yoctoproject.org/yocto-docs", "master=
+"]
+> +    "meta-virtualization": ["git://git.yoctoproject.org/meta-virtualizat=
+ion", "master"],
+> +    "yocto-docs": ["git://git.yoctoproject.org/yocto-docs", "master"]
+>  }
 
-DEBUG: Python function do_testimage finished
+Sadly this isn't the case. The push servers are where people with push
+access push things, which then mirror out to the other mirror servers.
 
-I tried to resolve the problem but errors, and warming kept increasing. tha=
-n I found , a testimage.bbclass - http://cgit.openembedded.org/openembedded=
--core/tree/meta/classes/testimage.bbclass?h=3Dpyro ( http://cgit.openembedd=
-ed.org/openembedded-core/tree/meta/classes/testimage.bbclass?h=3Dpyro )
-which had diffrence wrt my testimage.bbclass diffrence was - i
-nherit meta_scm
-python () {
-if oe.types.boolean(d.getVar("TESTIMAGE_AUTO") or "False"):
-bb.build.addtask("testimage", "do_build", "do_image_complete", d)
-}
+The autobuilder works off push since other wise, we might trigger a
+build and it may build the wrong thing if the mirrors hadn't updated
+yet.
 
-Later ,
-i swap my testimage.bbclass with http://cgit.openembedded.org/openembedded-=
-core/tree/meta/classes/testimage.bbclass?h=3Dpyro ( http://cgit.openembedde=
-d.org/openembedded-core/tree/meta/classes/testimage.bbclass?h=3Dpyro )
-i know that the diffrence may be due to different version but still i teste=
-d.
-now after running the task -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bitbake core-i=
-mage-weston -c testimage
-do_testimage task have stopped at 99% , no, I am not getting any log, later=
- i Swaped the earlier testimage.bbclass and still it gets stuck at 99%. I a=
-m not getting any logs in both cases ,
+Whilst I appreciate that is a problem for only certain users, it was a
+really problematic corner case for the main project AB.
 
-may i please get your help to resolve this issue, and cause of error
+Cheers,
 
---JV2tePFOgTBBO19K6pCJ
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Richard
 
-<br />Hi Friends, <br />I am new to this technology, please let me know if =
-i missed any detail that is required to make my query more understandable .=
- I am trying standard test on target device using TEST_TARGET =3D "simplere=
-mote" , <br />i have followed following steps on the given link - <a href=
-=3D"https://wiki.yoctoproject.org/wiki/BSP_Test_Plan" target=3D"_blank" rel=
-=3D"nofollow noopener">https://wiki.yoctoproject.org/wiki/BSP_Test_Plan</a>=
-<br />I am building core-image-weston on imx6 device.<br />I am building "c=
-ore-image-weston" on "imx6" I ran command -- bitbake core-image-weston -c t=
-estimage<br />I got following logs--- <br /><br />NOTE: -------------------=
----------------------------------------------------<br />NOTE: Ran 61 tests=
- in 438.855s<br />NOTE: FAILED<br />NOTE:&nbsp; (failures=3D2, errors=3D1, =
-skipped=3D16)<br />ERROR: Error executing a python function in exec_python_=
-func() autogenerated:<br /><br />The stack trace of python calls that resul=
-ted in this exception/failure was:<br />File: 'exec_python_func() autogener=
-ated', lineno: 2, function: &lt;module&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp; 00=
-01:<br />&nbsp;*** 0002:do_testimage(d)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0003:=
-<br />File: '/home/ss/imx6/yocto/OS_Linux_imx6/sources/poky/meta/classes/te=
-stimage.bbclass', lineno: 114, function: do_testimage<br />&nbsp;&nbsp;&nbs=
-p;&nbsp; 0110:&nbsp;&nbsp;&nbsp; netstat -an<br />&nbsp;&nbsp;&nbsp;&nbsp; =
-0111:}<br />&nbsp;&nbsp;&nbsp;&nbsp; 0112:<br />&nbsp;&nbsp;&nbsp;&nbsp; 01=
-13:python do_testimage() {<br />&nbsp;*** 0114:&nbsp;&nbsp; testimage_main(=
-d)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0115:}<br />&nbsp;&nbsp;&nbsp;&nbsp; 0116:=
-<br />&nbsp;&nbsp;&nbsp;&nbsp; 0117:addtask testimage<br />&nbsp;&nbsp;&nbs=
-p;&nbsp; 0118:do_testimage[nostamp] =3D "1"<br />File: '/home/ss/imx6/yocto=
-/OS_Linux_imx6/sources/poky/meta/classes/testimage.bbclass', lineno: 320, f=
-unction: testimage_main<br />&nbsp;&nbsp;&nbsp;&nbsp; 0316:<br />&nbsp;&nbs=
-p;&nbsp;&nbsp; 0317:&nbsp;&nbsp;&nbsp; # Show results (if we have them)<br =
-/>&nbsp;&nbsp;&nbsp;&nbsp; 0318:&nbsp;&nbsp;&nbsp; if not results:<br />&nb=
-sp;&nbsp;&nbsp;&nbsp; 0319:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bb.fa=
-tal('%s - FAILED - tests were interrupted during execution' % pn, forcelog=
-=3DTrue)<br />&nbsp;*** 0320:&nbsp;&nbsp;&nbsp; configuration =3D get_testi=
-mage_configuration(d, 'runtime', machine)<br />&nbsp;&nbsp;&nbsp;&nbsp; 032=
-1:&nbsp;&nbsp;&nbsp; results.logDetails(get_testimage_json_result_dir(d),<b=
-r />&nbsp;&nbsp;&nbsp;&nbsp; 0322:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp; configuration,<br />&nbsp;&nbsp;&nbsp;&nbsp; 0323:&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; get_testimage_result_id(c=
-onfiguration),<br />&nbsp;&nbsp;&nbsp;&nbsp; 0324:&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dump_streams=3Dd.getVar('TESTREPORT_FULLLO=
-GS'))<br />File: '/home/ss/imx6/yocto/OS_Linux_imx6/sources/poky/meta/class=
-es/testimage.bbclass', lineno: 139, function: get_testimage_configuration<b=
-r />&nbsp;&nbsp;&nbsp;&nbsp; 0135:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '=
-IMAGE_BASENAME': d.getVar("IMAGE_BASENAME"),<br />&nbsp;&nbsp;&nbsp;&nbsp; =
-0136:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'IMAGE_PKGTYPE': d.getVar("IMA=
-GE_PKGTYPE"),<br />&nbsp;&nbsp;&nbsp;&nbsp; 0137:&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp; 'STARTTIME': d.getVar("DATETIME"),<br />&nbsp;&nbsp;&nbsp;&nb=
-sp; 0138:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'HOST_DISTRO': oe.lsb.dist=
-ro_identifier().replace(' ', '-'),<br />&nbsp;*** 0139:&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; 'LAYERS': get_layers(d.getVar("BBLAYERS"))}<br />&nbsp;=
-&nbsp;&nbsp;&nbsp; 0140:&nbsp;&nbsp;&nbsp; return configuration<br />&nbsp;=
-&nbsp;&nbsp;&nbsp; 0141:get_testimage_configuration[vardepsexclude] =3D "DA=
-TETIME"<br />&nbsp;&nbsp;&nbsp;&nbsp; 0142:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0=
-143:def get_testimage_json_result_dir(d):<br />File: '/home/ss/imx6/yocto/O=
-S_Linux_imx6/sources/poky/meta/lib/oeqa/utils/metadata.py', lineno: 97, fun=
-ction: get_layers<br />&nbsp;&nbsp;&nbsp;&nbsp; 0093:&nbsp;&nbsp;&nbsp; """=
-Returns layer information in dict format"""<br />&nbsp;&nbsp;&nbsp;&nbsp; 0=
-094:&nbsp;&nbsp;&nbsp; layer_dict =3D OrderedDict()<br />&nbsp;&nbsp;&nbsp;=
-&nbsp; 0095:&nbsp;&nbsp;&nbsp; for layer in layers.split():<br />&nbsp;&nbs=
-p;&nbsp;&nbsp; 0096:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; layer_name =
-=3D os.path.basename(layer)<br />&nbsp;*** 0097:&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; layer_dict[layer_name] =3D git_rev_info(layer)<br />&nbsp;&=
-nbsp;&nbsp;&nbsp; 0098:&nbsp;&nbsp;&nbsp; return layer_dict<br />&nbsp;&nbs=
-p;&nbsp;&nbsp; 0099:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0100:def write_metadata_=
-file(file_path, metadata):<br />&nbsp;&nbsp;&nbsp;&nbsp; 0101:&nbsp;&nbsp;&=
-nbsp; """ Writes metadata to a XML file in directory. """<br />File: '/home=
-/ss/imx6/yocto/OS_Linux_imx6/sources/poky/meta/lib/oeqa/utils/metadata.py',=
- lineno: 84, function: git_rev_info<br />&nbsp;&nbsp;&nbsp;&nbsp; 0080:&nbs=
-p;&nbsp;&nbsp; try:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0081:&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp; repo =3D Repo(path, search_parent_directories=3DTrue=
-)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0082:&nbsp;&nbsp;&nbsp; except (InvalidGitR=
-epositoryError, NoSuchPathError):<br />&nbsp;&nbsp;&nbsp;&nbsp; 0083:&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return info<br />&nbsp;*** 0084:&nbsp;=
-&nbsp;&nbsp; info['commit'] =3D repo.head.commit.hexsha<br />&nbsp;&nbsp;&n=
-bsp;&nbsp; 0085:&nbsp;&nbsp;&nbsp; info['commit_count'] =3D repo.head.commi=
-t.count()<br />&nbsp;&nbsp;&nbsp;&nbsp; 0086:&nbsp;&nbsp;&nbsp; try:<br />&=
-nbsp;&nbsp;&nbsp;&nbsp; 0087:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inf=
-o['branch'] =3D repo.active_branch.name<br />&nbsp;&nbsp;&nbsp;&nbsp; 0088:=
-&nbsp;&nbsp;&nbsp; except TypeError:<br />File: '/usr/lib/python3/dist-pack=
-ages/git/refs/symbolic.py', lineno: 197, function: _get_commit<br />&nbsp;&=
-nbsp;&nbsp;&nbsp; 0193:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; """<br />=
-&nbsp;&nbsp;&nbsp;&nbsp; 0194:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :r=
-eturn:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0195:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Commit object we point to, works for deta=
-ched and non-detached<br />&nbsp;&nbsp;&nbsp;&nbsp; 0196:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SymbolicReferences. The sy=
-mbolic reference will be dereferenced recursively."""<br />&nbsp;*** 0197:&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; obj =3D self._get_object()<br />&=
-nbsp;&nbsp;&nbsp;&nbsp; 0198:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if =
-obj.type =3D=3D 'tag':<br />&nbsp;&nbsp;&nbsp;&nbsp; 0199:&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; obj =3D obj.object<br />&=
-nbsp;&nbsp;&nbsp;&nbsp; 0200:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # E=
-ND dereference tag<br />&nbsp;&nbsp;&nbsp;&nbsp; 0201:<br />File: '/usr/lib=
-/python3/dist-packages/git/refs/symbolic.py', lineno: 190, function: _get_o=
-bject<br />&nbsp;&nbsp;&nbsp;&nbsp; 0186:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The object our ref currently refers to. Re=
-fs can be cached, they will<br />&nbsp;&nbsp;&nbsp;&nbsp; 0187:&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; always point to the =
-actual object as it gets re-created on each query"""<br />&nbsp;&nbsp;&nbsp=
-; 0188:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # have to be dynamic here=
- as we may be a tag which can point to anything<br />&nbsp;&nbsp;&nbsp;&nbs=
-p; 0189:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Our path will be resol=
-ved to the hexsha which will be used accordingly<br />&nbsp;*** 0190:&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return Object.new_from_sha(self.repo, =
-hex_to_bin(self.dereference_recursive(self.repo, self.path)))<br />&nbsp;&n=
-bsp;&nbsp;&nbsp; 0191:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0192:&nbsp;&nbsp;&nbsp=
-; def _get_commit(self):<br />&nbsp;&nbsp;&nbsp;&nbsp; 0193:&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; """<br />&nbsp;&nbsp;&nbsp;&nbsp; 0194:&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :return:<br />File: '/usr/lib/python3/di=
-st-packages/git/refs/symbolic.py', lineno: 132, function: dereference_recur=
-sive<br />&nbsp;&nbsp;&nbsp;&nbsp; 0128:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; :return: hexsha stored in the reference at the given ref_path, recu=
-rsively dereferencing all<br />&nbsp;&nbsp;&nbsp;&nbsp; 0129:&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; intermediate reference=
-s as required<br />&nbsp;&nbsp;&nbsp;&nbsp; 0130:&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp; :param repo: the repository containing the reference at re=
-f_path"""<br />&nbsp;&nbsp;&nbsp;&nbsp; 0131:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; while True:<br />&nbsp;*** 0132:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hexsha, ref_path =3D cls._get_ref_info=
-(repo, ref_path)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0133:&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if hexsha is not None:<br />&nb=
-sp;&nbsp;&nbsp;&nbsp; 0134:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return hexsha<br />&nbsp;&nbsp;&=
-nbsp;&nbsp; 0135:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # END recursive=
- dereferencing<br />&nbsp;&nbsp;&nbsp;&nbsp; 0136:<br />File: '/usr/lib/pyt=
-hon3/dist-packages/git/refs/symbolic.py', lineno: 181, function: _get_ref_i=
-nfo<br />&nbsp;&nbsp;&nbsp;&nbsp; 0177:&nbsp;&nbsp;&nbsp; def _get_ref_info=
-(cls, repo, ref_path):<br />&nbsp;&nbsp;&nbsp;&nbsp; 0178:&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; """Return: (str(sha), str(target_ref_path)) if av=
-ailable, the sha the file at<br />&nbsp;&nbsp;&nbsp;&nbsp; 0179:&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rela_path points to, or None. target_ref_pa=
-th is the reference we<br />&nbsp;&nbsp;&nbsp;&nbsp; 0180:&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; point to, or None"""<br />&nbsp;*** 0181:&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return cls._get_ref_info_helper(repo, re=
-f_path)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0182:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0=
-183:&nbsp;&nbsp;&nbsp; def _get_object(self):<br />&nbsp;&nbsp;&nbsp;&nbsp;=
- 0184:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; """<br />&nbsp;&nbsp;&nbsp=
-;&nbsp; 0185:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :return:<br />File:=
- '/usr/lib/python3/dist-packages/git/refs/symbolic.py', lineno: 164, functi=
-on: _get_ref_info_helper<br />&nbsp;&nbsp;&nbsp;&nbsp; 0160:&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- break<br />&nbsp;&nbsp;&nbsp;&nbsp; 0161:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # END for each packed ref<br />&nbsp;&nbs=
-p;&nbsp;&nbsp; 0162:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # END handle=
- packed refs<br />&nbsp;&nbsp;&nbsp;&nbsp; 0163:&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; if tokens is None:<br />&nbsp;*** 0164:&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; raise ValueError("Reference =
-at %r does not exist" % ref_path)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0165:<br />=
-&nbsp;&nbsp;&nbsp;&nbsp; 0166:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # =
-is it a reference ?<br />&nbsp;&nbsp;&nbsp;&nbsp; 0167:&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp; if tokens[0] =3D=3D 'ref:':<br />&nbsp;&nbsp;&nbsp;&=
-nbsp; 0168:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p; return (None, tokens[1])<br />Exception: ValueError: Reference at 'refs/=
-heads/yocto_imx6_rel' does not exist<br /><br />DEBUG: Python function do_t=
-estimage finished<br /><br /><br /><br /><br />I tried to resolve the probl=
-em but errors, and warming kept increasing. than I found , a testimage.bbcl=
-ass - <a href=3D"http://cgit.openembedded.org/openembedded-core/tree/meta/c=
-lasses/testimage.bbclass?h=3Dpyro" target=3D"_blank" rel=3D"nofollow noopen=
-er">http://cgit.openembedded.org/openembedded-core/tree/meta/classes/testim=
-age.bbclass?h=3Dpyro </a><br />which had diffrence wrt my testimage.bbclass=
- diffrence was - i<br />nherit meta_scm <br />python () { <br />&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; if oe.types.boolean(d.getVar("TESTIMAGE_AUTO") or=
- "False"):<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; bb.build.addtask("testimage", "do_build", "do_image_complete", d) <=
-br />} <br /><br />Later , <br />i swap my testimage.bbclass with <a href=
-=3D"http://cgit.openembedded.org/openembedded-core/tree/meta/classes/testim=
-age.bbclass?h=3Dpyro" target=3D"_blank" rel=3D"noopener"> http://cgit.opene=
-mbedded.org/openembedded-core/tree/meta/classes/testimage.bbclass?h=3Dpyro =
-</a><br />i know that the diffrence may be due to different version but sti=
-ll i tested. <br />now after running the task -&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p; bitbake core-image-weston -c testimage <br />do_testimage task have stop=
-ped at 99% , no, I am not getting any log, later i Swaped the earlier testi=
-mage.bbclass and still it gets stuck at 99%. I am not getting any logs in b=
-oth cases ,<br /><br /><br />may i please get your help to resolve this iss=
-ue, and cause of error
 
---JV2tePFOgTBBO19K6pCJ--
+
 
