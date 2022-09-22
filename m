@@ -1,219 +1,423 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <bahugunaayush8@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6902CC6FA91
-	for <webhook@archiver.kernel.org>; Thu, 22 Sep 2022 06:08:14 +0000 (UTC)
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com
- [209.85.222.43])
- by mx.groups.io with SMTP id smtpd.web11.4189.1663826890738739729
- for <yocto@lists.yoctoproject.org>;
- Wed, 21 Sep 2022 23:08:11 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=Ynmj/EDP;
- spf=pass (domain: linaro.org, ip: 209.85.222.43,
- mailfrom: nicolas.dechesne@linaro.org)
-Received: by mail-ua1-f43.google.com with SMTP id b7so3269411uas.2
-        for <yocto@lists.yoctoproject.org>;
- Wed, 21 Sep 2022 23:08:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=4XrlHX39onvESAsAhiRJ99lAkYK1Az54aXZiM52odaY=;
-        b=Ynmj/EDPP5edtAKHHavU9nPvjZ2B6Ga/o1fSgYVEEcGKalR0w6O+FQRy/I4zs42tCJ
-         23JPLCnH2CiYPplWUYUdVydA6fR95DwFK8zA+XMLXPHroIjHW2hnKx1BHGTZnJa1b+kT
-         HtpOm8wIabeaMXA7K6h1d+JL1xljg2JMerg3ky/MTx9ftoG1S5FUihtjNMf/JMFWRyc+
-         1dB1+WHURadThTRx68VSydaF92Ws0nd+LHJU84SYrsmmFazydeOwlDl2l94/koJxmvPY
-         mAakUG5wBn7VFVwUrj1XfVCjOR2eGTLu1LqXcQKlm7A0O6mZjGLUXmkqKPsjmG2dd1k7
-         1r0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=4XrlHX39onvESAsAhiRJ99lAkYK1Az54aXZiM52odaY=;
-        b=u3H1APULC7zWLcactbmKC2gx0G4QLGaFELeTc0FQMtSiRFLQqJTUdGRMHavJcDc6Ru
-         WJBU9BCV47l5iLh9HNI4HVyo85Nactu7tgVgWHJ9w/PqH5tGGbsL6wg3c/n9WvWngjsC
-         EnWPzB73w/eeErHx0KzN3BtRDZ47Jiq25gAt1sRU7pRRdapE8llSh7gnvkluZ7LUS+f1
-         Sfxk4kpcbLORQ7QmV/bMULIIS4QjlDc1acvKgkJqObpRZW1t+UQLPd4Tf7H8JU0du4D9
-         KVrhfmO1PTj91GV93fsHnskMgPp36h5C78wgp5HX3bsxOo0WCMfpp6i20UHZ25sRg9NY
-         EHaA==
-X-Gm-Message-State: ACrzQf04QAo5cDFtwwhTGcSf1PUSx58Erv0a5kmuqsx1v7OMmsQX0idu
-	lnwA1h1CGwD+C03p/lxMo/WK1dY3g26cX9wuUkI85w==
-X-Google-Smtp-Source: 
- AMsMyM5O8DZAFn2IRLynTbRHaU7iRBImF6Wcv9spDmEvxOHfvDZyhJPDycl0z8T2OVTC/J0DUxXisNh/SYP7xTv9TSs=
-X-Received: by 2002:a9f:2c41:0:b0:3ba:d8ea:77e0 with SMTP id
- s1-20020a9f2c41000000b003bad8ea77e0mr603785uaj.96.1663826889046; Wed, 21 Sep
- 2022 23:08:09 -0700 (PDT)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AE7F5C6FA8B
+	for <webhook@archiver.kernel.org>; Thu, 22 Sep 2022 07:06:54 +0000 (UTC)
+Subject: #yocto
+To: yocto@lists.yoctoproject.org
+From: bahugunaayush8@gmail.com
+X-Originating-Location: Karwar, Karnataka, IN (182.74.65.130)
+X-Originating-Platform: Linux Firefox 104
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <7313BA28-2972-4FD7-8E37-27196FAF5B8A@gmail.com>
-In-Reply-To: <7313BA28-2972-4FD7-8E37-27196FAF5B8A@gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Thu, 22 Sep 2022 08:07:59 +0200
-Message-ID: 
- <CAP71WjxiOy3fuEdjGfZH0q1VBK2+-e9v0RMedFEuJMxYk1hyTQ@mail.gmail.com>
-Subject: Re: [yocto] Git send-email blocked by gmail security changes (and how
- to fix it)
-To: Benjamin Esquivel <benjamin.esquivel@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000b0956305e93de2ac"
+Date: Thu, 22 Sep 2022 00:06:49 -0700
+Message-ID: <ykk7.1663830409761901281.IeAH@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="ca9k3bHxyVZ3SFO3B2sD"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 22 Sep 2022 06:08:14 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58129
+ <yocto@lists.yoctoproject.org>; Thu, 22 Sep 2022 07:06:54 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58130
 
---000000000000b0956305e93de2ac
-Content-Type: text/plain; charset="UTF-8"
+--ca9k3bHxyVZ3SFO3B2sD
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 22, 2022 at 5:20 AM Benjamin Esquivel <
-benjamin.esquivel@gmail.com> wrote:
+--
+Hi Friends,
+I am new to this technology, please let me know if i missed any detail that=
+ is required to make my query more understandable . I am trying standard te=
+st on target device using TEST_TARGET =3D "simpleremote" ,
+i have followed following steps on the given link - https://wiki.yoctoproje=
+ct.org/wiki/BSP_Test_Plan
+I am building core-image-weston on imx6 device.
+I am building "core-image-weston" on "imx6" I ran command -- bitbake core-i=
+mage-weston -c testimage
+I got following logs---
 
-> TL;DR Google App passwords are a workaround if your google password is no=
-t
-> working in git send-email.
->
-> Hi,
->
-> Not sure if this is the right list but I thought of sending it here as a
-> starter. I was following Stephen Jolley=E2=80=99s email for the Project s=
-tatus
-> where it has a section for =E2=80=98ways to contribute=E2=80=99 and a poi=
-nter to the
-> newcomers wiki. There is a link on How to Submit a Patch[1]  which has an
-> example on how to add a gmail account there. I followed it but in the end=
- I
-> was blocked by an error stating that my 'Username and Password not
-> accepted=E2=80=99. Googled a proposed fix[2] to go to the gmail security =
-settings
-> and enable "Access for less secure apps=E2=80=9D but the solution is outd=
-ated as my
-> settings had a notice saying that it was removed some time ago.
->
-> But I found that you can use another security feature from google called
-> app passwords[3]. And that means that it will give you one specific
-> password for your app needs. I tested this in the git send-email line and
-> it worked. I don=E2=80=99t know if others are doing this or if their prev=
-ious
-> settings remain ok if these were configured before the recent security
-> resets that google has done.
->
+NOTE: ---------------------------------------------------------------------=
+-
+NOTE: Ran 61 tests in 438.855s
+NOTE: FAILED
+NOTE:=C2=A0 (failures=3D2, errors=3D1, skipped=3D16)
+ERROR: Error executing a python function in exec_python_func() autogenerate=
+d:
 
-You did the right thing. This is also how I use gmail with git-send-email.
+The stack trace of python calls that resulted in this exception/failure was=
+:
+File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+0001:
+*** 0002:do_testimage(d)
+0003:
+File: '/home/ss/imx6/yocto/OS_Linux_imx6/sources/poky/meta/classes/testimag=
+e.bbclass', lineno: 114, function: do_testimage
+0110:=C2=A0=C2=A0=C2=A0 netstat -an
+0111:}
+0112:
+0113:python do_testimage() {
+*** 0114:=C2=A0=C2=A0 testimage_main(d)
+0115:}
+0116:
+0117:addtask testimage
+0118:do_testimage[nostamp] =3D "1"
+File: '/home/ss/imx6/yocto/OS_Linux_imx6/sources/poky/meta/classes/testimag=
+e.bbclass', lineno: 320, function: testimage_main
+0316:
+0317:=C2=A0=C2=A0=C2=A0 # Show results (if we have them)
+0318:=C2=A0=C2=A0=C2=A0 if not results:
+0319:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bb.fatal('%s - FAILED - tes=
+ts were interrupted during execution' % pn, forcelog=3DTrue)
+*** 0320:=C2=A0=C2=A0=C2=A0 configuration =3D get_testimage_configuration(d=
+, 'runtime', machine)
+0321:=C2=A0=C2=A0=C2=A0 results.logDetails(get_testimage_json_result_dir(d)=
+,
+0322:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 configurati=
+on,
+0323:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 get_testima=
+ge_result_id(configuration),
+0324:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dump_stream=
+s=3Dd.getVar('TESTREPORT_FULLLOGS'))
+File: '/home/ss/imx6/yocto/OS_Linux_imx6/sources/poky/meta/classes/testimag=
+e.bbclass', lineno: 139, function: get_testimage_configuration
+0135:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 'IMAGE_BASENAME': d.getVar("I=
+MAGE_BASENAME"),
+0136:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 'IMAGE_PKGTYPE': d.getVar("IM=
+AGE_PKGTYPE"),
+0137:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 'STARTTIME': d.getVar("DATETI=
+ME"),
+0138:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 'HOST_DISTRO': oe.lsb.distro_=
+identifier().replace(' ', '-'),
+*** 0139:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 'LAYERS': get_layers(d.get=
+Var("BBLAYERS"))}
+0140:=C2=A0=C2=A0=C2=A0 return configuration
+0141:get_testimage_configuration[vardepsexclude] =3D "DATETIME"
+0142:
+0143:def get_testimage_json_result_dir(d):
+File: '/home/ss/imx6/yocto/OS_Linux_imx6/sources/poky/meta/lib/oeqa/utils/m=
+etadata.py', lineno: 97, function: get_layers
+0093:=C2=A0=C2=A0=C2=A0 """Returns layer information in dict format"""
+0094:=C2=A0=C2=A0=C2=A0 layer_dict =3D OrderedDict()
+0095:=C2=A0=C2=A0=C2=A0 for layer in layers.split():
+0096:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 layer_name =3D os.path.base=
+name(layer)
+*** 0097:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 layer_dict[layer_name] =
+=3D git_rev_info(layer)
+0098:=C2=A0=C2=A0=C2=A0 return layer_dict
+0099:
+0100:def write_metadata_file(file_path, metadata):
+0101:=C2=A0=C2=A0=C2=A0 """ Writes metadata to a XML file in directory. """
+File: '/home/ss/imx6/yocto/OS_Linux_imx6/sources/poky/meta/lib/oeqa/utils/m=
+etadata.py', lineno: 84, function: git_rev_info
+0080:=C2=A0=C2=A0=C2=A0 try:
+0081:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 repo =3D Repo(path, search_=
+parent_directories=3DTrue)
+0082:=C2=A0=C2=A0=C2=A0 except (InvalidGitRepositoryError, NoSuchPathError)=
+:
+0083:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return info
+*** 0084:=C2=A0=C2=A0=C2=A0 info['commit'] =3D repo.head.commit.hexsha
+0085:=C2=A0=C2=A0=C2=A0 info['commit_count'] =3D repo.head.commit.count()
+0086:=C2=A0=C2=A0=C2=A0 try:
+0087:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 info['branch'] =3D repo.act=
+ive_branch.name
+0088:=C2=A0=C2=A0=C2=A0 except TypeError:
+File: '/usr/lib/python3/dist-packages/git/refs/symbolic.py', lineno: 197, f=
+unction: _get_commit
+0193:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 """
+0194:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 :return:
+0195:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Com=
+mit object we point to, works for detached and non-detached
+0196:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Sym=
+bolicReferences. The symbolic reference will be dereferenced recursively.""=
+"
+*** 0197:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 obj =3D self._get_objec=
+t()
+0198:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if obj.type =3D=3D 'tag':
+0199:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 obj=
+ =3D obj.object
+0200:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # END dereference tag
+0201:
+File: '/usr/lib/python3/dist-packages/git/refs/symbolic.py', lineno: 190, f=
+unction: _get_object
+0186:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 The=
+ object our ref currently refers to. Refs can be cached, they will
+0187:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 alw=
+ays point to the actual object as it gets re-created on each query"""
+0188:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # have to be dynamic here a=
+s we may be a tag which can point to anything
+0189:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # Our path will be resolved=
+ to the hexsha which will be used accordingly
+*** 0190:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return Object.new_from_=
+sha(self.repo, hex_to_bin(self.dereference_recursive(self.repo, self.path))=
+)
+0191:
+0192:=C2=A0=C2=A0=C2=A0 def _get_commit(self):
+0193:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 """
+0194:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 :return:
+File: '/usr/lib/python3/dist-packages/git/refs/symbolic.py', lineno: 132, f=
+unction: dereference_recursive
+0128:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 :return: hexsha stored in t=
+he reference at the given ref_path, recursively dereferencing all
+0129:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int=
+ermediate references as required
+0130:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 :param repo: the repository=
+ containing the reference at ref_path"""
+0131:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 while True:
+*** 0132:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ hexsha, ref_path =3D cls._get_ref_info(repo, ref_path)
+0133:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if =
+hexsha is not None:
+0134:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 return hexsha
+0135:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # END recursive dereferenci=
+ng
+0136:
+File: '/usr/lib/python3/dist-packages/git/refs/symbolic.py', lineno: 181, f=
+unction: _get_ref_info
+0177:=C2=A0=C2=A0=C2=A0 def _get_ref_info(cls, repo, ref_path):
+0178:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 """Return: (str(sha), str(t=
+arget_ref_path)) if available, the sha the file at
+0179:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 rela_path points to, or Non=
+e. target_ref_path is the reference we
+0180:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 point to, or None"""
+*** 0181:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return cls._get_ref_inf=
+o_helper(repo, ref_path)
+0182:
+0183:=C2=A0=C2=A0=C2=A0 def _get_object(self):
+0184:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 """
+0185:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 :return:
+File: '/usr/lib/python3/dist-packages/git/refs/symbolic.py', lineno: 164, f=
+unction: _get_ref_info_helper
+0160:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 break
+0161:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # E=
+ND for each packed ref
+0162:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # END handle packed refs
+0163:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if tokens is None:
+*** 0164:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ raise ValueError("Reference at %r does not exist" % ref_path)
+0165:
+0166:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # is it a reference ?
+0167:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if tokens[0] =3D=3D 'ref:':
+0168:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret=
+urn (None, tokens[1])
+Exception: ValueError: Reference at 'refs/heads/yocto_imx6_rel' does not ex=
+ist
 
+DEBUG: Python function do_testimage finished
 
->
-> Is anyone struggling with this?
->
+I tried to resolve the problem but errors, and warming kept increasing. tha=
+n I found , a testimage.bbclass - http://cgit.openembedded.org/openembedded=
+-core/tree/meta/classes/testimage.bbclass?h=3Dpyro ( http://cgit.openembedd=
+ed.org/openembedded-core/tree/meta/classes/testimage.bbclass?h=3Dpyro )
+which had diffrence wrt my testimage.bbclass diffrence was - i
+nherit meta_scm
+python () {
+if oe.types.boolean(d.getVar("TESTIMAGE_AUTO") or "False"):
+bb.build.addtask("testimage", "do_build", "do_image_complete", d)
+}
 
-I don't remember if they disabled it for all gmail users, or only for users
-who enable 2FA.. but using apps specific token is what we should recommend
-to everyone.
+Later ,
+i swap my testimage.bbclass with http://cgit.openembedded.org/openembedded-=
+core/tree/meta/classes/testimage.bbclass?h=3Dpyro i know that the diffrence=
+ may be due to diffrent version but still i tested.
+now after running the task --- bitbake core-image-weston -c testimage do_te=
+stimage task have stopped at 99% , no, I am not getting any log, later i Sw=
+aped the earlier testimage.bbclass and still it gets stuck at 99%. I am not=
+ getting any logs in both cases now As new to this technology ,
 
+may i please get your help to resolve this issue, and root cause of it
 
-> Should we update the wiki to include this tip?
->
-
-Yes, definitely. If you want to do it, please go ahead.  If you need help
-with that, let me know.
-
-
-> Regards,
->
-> Benjamin
->
-> [1]
-> https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded
-> [2] https://support.google.com/mail/thread/5621336?hl=3Den
-> [3] https://support.google.com/accounts/answer/185833
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#58128):
-> https://lists.yoctoproject.org/g/yocto/message/58128
-> Mute This Topic: https://lists.yoctoproject.org/mt/93841825/1279857
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> nicolas.dechesne@linaro.org]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
-
---000000000000b0956305e93de2ac
-Content-Type: text/html; charset="UTF-8"
+--ca9k3bHxyVZ3SFO3B2sD
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Thu, Sep 22, 2022 at 5:20 AM Benja=
-min Esquivel &lt;<a href=3D"mailto:benjamin.esquivel@gmail.com">benjamin.es=
-quivel@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
-style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
-dding-left:1ex"><div style=3D"overflow-wrap: break-word;"><div style=3D"col=
-or:rgb(0,0,0)">TL;DR Google App passwords are a workaround if your google p=
-assword is not working in git send-email.=C2=A0</div><div style=3D"color:rg=
-b(0,0,0)"><br></div><span style=3D"color:rgb(0,0,0)">Hi,</span><br style=3D=
-"color:rgb(0,0,0)"><br style=3D"color:rgb(0,0,0)"><span style=3D"color:rgb(=
-0,0,0)">Not sure if this is the right list but I thought of sending it here=
- as a starter. I was following Stephen Jolley=E2=80=99s email for the Proje=
-ct status where it has a section for =E2=80=98ways to contribute=E2=80=99 a=
-nd a pointer to the newcomers wiki. There is a link on How to Submit a Patc=
-h[1]=C2=A0 which has an example on how to add a gmail account there. I foll=
-owed it but in the end I was blocked by an error stating that my &#39;Usern=
-ame and Password not accepted=E2=80=99. Googled a proposed fix[2] to go to =
-the gmail security settings and enable &quot;Access for less secure apps=E2=
-=80=9D but the solution is outdated as my settings had a notice saying that=
- it was removed some time ago.</span><div style=3D"color:rgb(0,0,0)"><br></=
-div><div style=3D"color:rgb(0,0,0)">But I found that you can use another se=
-curity feature from google called app passwords[3]. And that means that it =
-will give you one specific password for your app needs. I tested this in th=
-e git send-email line and it worked. I don=E2=80=99t know if others are doi=
-ng this or if their previous settings remain ok if these were configured be=
-fore the recent security resets that google has done.</div></div></blockquo=
-te><div><br></div><div>You did the right thing. This is also how I use gmai=
-l with git-send-email.=C2=A0</div><div>=C2=A0</div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
-04,204);padding-left:1ex"><div style=3D"overflow-wrap: break-word;"><div st=
-yle=3D"color:rgb(0,0,0)"><br></div><div style=3D"color:rgb(0,0,0)">Is anyon=
-e struggling with this?</div></div></blockquote><div><br></div><div>I don&#=
-39;t remember if they disabled it for all gmail users, or only for users wh=
-o enable 2FA.. but using apps specific token is what we should recommend to=
- everyone.=C2=A0</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" st=
-yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
-ing-left:1ex"><div style=3D"overflow-wrap: break-word;"><div style=3D"color=
-:rgb(0,0,0)">Should we update the wiki to include this tip?</div></div></bl=
-ockquote><div><br></div><div>Yes, definitely. If you want to do=C2=A0it, pl=
-ease go ahead.=C2=A0 If you need help with that, let me know.=C2=A0</div><d=
-iv><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
-0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div style=
-=3D"overflow-wrap: break-word;"><div style=3D"color:rgb(0,0,0)"><br></div><=
-div style=3D"color:rgb(0,0,0)">Regards,</div><div style=3D"color:rgb(0,0,0)=
-"><br></div><div style=3D"color:rgb(0,0,0)">Benjamin<br><div><div><br>[1]=
-=C2=A0<a href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to=
-_OpenEmbedded" target=3D"_blank">https://www.openembedded.org/wiki/How_to_s=
-ubmit_a_patch_to_OpenEmbedded</a></div></div></div><div style=3D"color:rgb(=
-0,0,0)">[2]=C2=A0<a href=3D"https://support.google.com/mail/thread/5621336?=
-hl=3Den" target=3D"_blank">https://support.google.com/mail/thread/5621336?h=
-l=3Den</a></div><div style=3D"color:rgb(0,0,0)">[3]=C2=A0<a href=3D"https:/=
-/support.google.com/accounts/answer/185833" target=3D"_blank">https://suppo=
-rt.google.com/accounts/answer/185833</a></div></div><br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#58128): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/58128" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/58128</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/93841825/1279=
-857" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/93841825/1279857</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:nicolas.dechesne@linaro.org" target=3D"_blank">n=
-icolas.dechesne@linaro.org</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div></div>
+<br />-- <br />Hi Friends, <br />I am new to this technology, please let me=
+ know if i missed any detail that is required to make my query more underst=
+andable . I am trying standard test on target device using TEST_TARGET =3D =
+"simpleremote" , <br />i have followed following steps on the given link - =
+<a href=3D"https://wiki.yoctoproject.org/wiki/BSP_Test_Plan" target=3D"_bla=
+nk" rel=3D"noopener">https://wiki.yoctoproject.org/wiki/BSP_Test_Plan</a><b=
+r />I am building core-image-weston on imx6 device.<br />I am building "cor=
+e-image-weston" on "imx6" I ran command -- bitbake core-image-weston -c tes=
+timage<br />I got following logs--- <br /><br />NOTE: ---------------------=
+-------------------------------------------------<br />NOTE: Ran 61 tests i=
+n 438.855s<br />NOTE: FAILED<br />NOTE:&nbsp; (failures=3D2, errors=3D1, sk=
+ipped=3D16)<br />ERROR: Error executing a python function in exec_python_fu=
+nc() autogenerated:<br /><br />The stack trace of python calls that resulte=
+d in this exception/failure was:<br />File: 'exec_python_func() autogenerat=
+ed', lineno: 2, function: &lt;module&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp; 0001=
+:<br />&nbsp;*** 0002:do_testimage(d)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0003:<b=
+r />File: '/home/ss/imx6/yocto/OS_Linux_imx6/sources/poky/meta/classes/test=
+image.bbclass', lineno: 114, function: do_testimage<br />&nbsp;&nbsp;&nbsp;=
+&nbsp; 0110:&nbsp;&nbsp;&nbsp; netstat -an<br />&nbsp;&nbsp;&nbsp;&nbsp; 01=
+11:}<br />&nbsp;&nbsp;&nbsp;&nbsp; 0112:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0113=
+:python do_testimage() {<br />&nbsp;*** 0114:&nbsp;&nbsp; testimage_main(d)=
+<br />&nbsp;&nbsp;&nbsp;&nbsp; 0115:}<br />&nbsp;&nbsp;&nbsp;&nbsp; 0116:<b=
+r />&nbsp;&nbsp;&nbsp;&nbsp; 0117:addtask testimage<br />&nbsp;&nbsp;&nbsp;=
+&nbsp; 0118:do_testimage[nostamp] =3D "1"<br />File: '/home/ss/imx6/yocto/O=
+S_Linux_imx6/sources/poky/meta/classes/testimage.bbclass', lineno: 320, fun=
+ction: testimage_main<br />&nbsp;&nbsp;&nbsp;&nbsp; 0316:<br />&nbsp;&nbsp;=
+&nbsp;&nbsp; 0317:&nbsp;&nbsp;&nbsp; # Show results (if we have them)<br />=
+&nbsp;&nbsp;&nbsp;&nbsp; 0318:&nbsp;&nbsp;&nbsp; if not results:<br />&nbsp=
+;&nbsp;&nbsp;&nbsp; 0319:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bb.fata=
+l('%s - FAILED - tests were interrupted during execution' % pn, forcelog=3D=
+True)<br />&nbsp;*** 0320:&nbsp;&nbsp;&nbsp; configuration =3D get_testimag=
+e_configuration(d, 'runtime', machine)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0321:&=
+nbsp;&nbsp;&nbsp; results.logDetails(get_testimage_json_result_dir(d),<br /=
+>&nbsp;&nbsp;&nbsp;&nbsp; 0322:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; configuration,<br />&nbsp;&nbsp;&nbsp;&nbsp; 0323:&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; get_testimage_result_id(conf=
+iguration),<br />&nbsp;&nbsp;&nbsp;&nbsp; 0324:&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dump_streams=3Dd.getVar('TESTREPORT_FULLLOGS'=
+))<br />File: '/home/ss/imx6/yocto/OS_Linux_imx6/sources/poky/meta/classes/=
+testimage.bbclass', lineno: 139, function: get_testimage_configuration<br /=
+>&nbsp;&nbsp;&nbsp;&nbsp; 0135:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'IMA=
+GE_BASENAME': d.getVar("IMAGE_BASENAME"),<br />&nbsp;&nbsp;&nbsp;&nbsp; 013=
+6:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'IMAGE_PKGTYPE': d.getVar("IMAGE_=
+PKGTYPE"),<br />&nbsp;&nbsp;&nbsp;&nbsp; 0137:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; 'STARTTIME': d.getVar("DATETIME"),<br />&nbsp;&nbsp;&nbsp;&nbsp;=
+ 0138:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'HOST_DISTRO': oe.lsb.distro_=
+identifier().replace(' ', '-'),<br />&nbsp;*** 0139:&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; 'LAYERS': get_layers(d.getVar("BBLAYERS"))}<br />&nbsp;&nb=
+sp;&nbsp;&nbsp; 0140:&nbsp;&nbsp;&nbsp; return configuration<br />&nbsp;&nb=
+sp;&nbsp;&nbsp; 0141:get_testimage_configuration[vardepsexclude] =3D "DATET=
+IME"<br />&nbsp;&nbsp;&nbsp;&nbsp; 0142:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0143=
+:def get_testimage_json_result_dir(d):<br />File: '/home/ss/imx6/yocto/OS_L=
+inux_imx6/sources/poky/meta/lib/oeqa/utils/metadata.py', lineno: 97, functi=
+on: get_layers<br />&nbsp;&nbsp;&nbsp;&nbsp; 0093:&nbsp;&nbsp;&nbsp; """Ret=
+urns layer information in dict format"""<br />&nbsp;&nbsp;&nbsp;&nbsp; 0094=
+:&nbsp;&nbsp;&nbsp; layer_dict =3D OrderedDict()<br />&nbsp;&nbsp;&nbsp;&nb=
+sp; 0095:&nbsp;&nbsp;&nbsp; for layer in layers.split():<br />&nbsp;&nbsp;&=
+nbsp;&nbsp; 0096:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; layer_name =3D =
+os.path.basename(layer)<br />&nbsp;*** 0097:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp; layer_dict[layer_name] =3D git_rev_info(layer)<br />&nbsp;&nbsp=
+;&nbsp;&nbsp; 0098:&nbsp;&nbsp;&nbsp; return layer_dict<br />&nbsp;&nbsp;&n=
+bsp;&nbsp; 0099:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0100:def write_metadata_file=
+(file_path, metadata):<br />&nbsp;&nbsp;&nbsp;&nbsp; 0101:&nbsp;&nbsp;&nbsp=
+; """ Writes metadata to a XML file in directory. """<br />File: '/home/ss/=
+imx6/yocto/OS_Linux_imx6/sources/poky/meta/lib/oeqa/utils/metadata.py', lin=
+eno: 84, function: git_rev_info<br />&nbsp;&nbsp;&nbsp;&nbsp; 0080:&nbsp;&n=
+bsp;&nbsp; try:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0081:&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; repo =3D Repo(path, search_parent_directories=3DTrue)<br=
+ />&nbsp;&nbsp;&nbsp;&nbsp; 0082:&nbsp;&nbsp;&nbsp; except (InvalidGitRepos=
+itoryError, NoSuchPathError):<br />&nbsp;&nbsp;&nbsp;&nbsp; 0083:&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return info<br />&nbsp;*** 0084:&nbsp;&nbs=
+p;&nbsp; info['commit'] =3D repo.head.commit.hexsha<br />&nbsp;&nbsp;&nbsp;=
+&nbsp; 0085:&nbsp;&nbsp;&nbsp; info['commit_count'] =3D repo.head.commit.co=
+unt()<br />&nbsp;&nbsp;&nbsp;&nbsp; 0086:&nbsp;&nbsp;&nbsp; try:<br />&nbsp=
+;&nbsp;&nbsp;&nbsp; 0087:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; info['b=
+ranch'] =3D repo.active_branch.name<br />&nbsp;&nbsp;&nbsp;&nbsp; 0088:&nbs=
+p;&nbsp;&nbsp; except TypeError:<br />File: '/usr/lib/python3/dist-packages=
+/git/refs/symbolic.py', lineno: 197, function: _get_commit<br />&nbsp;&nbsp=
+;&nbsp;&nbsp; 0193:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; """<br />&nbs=
+p;&nbsp;&nbsp;&nbsp; 0194:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :retur=
+n:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0195:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Commit object we point to, works for detached=
+ and non-detached<br />&nbsp;&nbsp;&nbsp;&nbsp; 0196:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SymbolicReferences. The symbol=
+ic reference will be dereferenced recursively."""<br />&nbsp;*** 0197:&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; obj =3D self._get_object()<br />&nbsp=
+;&nbsp;&nbsp;&nbsp; 0198:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if obj.=
+type =3D=3D 'tag':<br />&nbsp;&nbsp;&nbsp;&nbsp; 0199:&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; obj =3D obj.object<br />&nbsp=
+;&nbsp;&nbsp;&nbsp; 0200:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # END d=
+ereference tag<br />&nbsp;&nbsp;&nbsp;&nbsp; 0201:<br />File: '/usr/lib/pyt=
+hon3/dist-packages/git/refs/symbolic.py', lineno: 190, function: _get_objec=
+t<br />&nbsp;&nbsp;&nbsp;&nbsp; 0186:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; The object our ref currently refers to. Refs c=
+an be cached, they will<br />&nbsp;&nbsp;&nbsp;&nbsp; 0187:&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; always point to the actu=
+al object as it gets re-created on each query"""<br />&nbsp;&nbsp;&nbsp; 01=
+88:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # have to be dynamic here as =
+we may be a tag which can point to anything<br />&nbsp;&nbsp;&nbsp;&nbsp; 0=
+189:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Our path will be resolved =
+to the hexsha which will be used accordingly<br />&nbsp;*** 0190:&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return Object.new_from_sha(self.repo, hex_=
+to_bin(self.dereference_recursive(self.repo, self.path)))<br />&nbsp;&nbsp;=
+&nbsp;&nbsp; 0191:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0192:&nbsp;&nbsp;&nbsp; de=
+f _get_commit(self):<br />&nbsp;&nbsp;&nbsp;&nbsp; 0193:&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; """<br />&nbsp;&nbsp;&nbsp;&nbsp; 0194:&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :return:<br />File: '/usr/lib/python3/dist-p=
+ackages/git/refs/symbolic.py', lineno: 132, function: dereference_recursive=
+<br />&nbsp;&nbsp;&nbsp;&nbsp; 0128:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; :return: hexsha stored in the reference at the given ref_path, recursiv=
+ely dereferencing all<br />&nbsp;&nbsp;&nbsp;&nbsp; 0129:&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; intermediate references as=
+ required<br />&nbsp;&nbsp;&nbsp;&nbsp; 0130:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; :param repo: the repository containing the reference at ref_pa=
+th"""<br />&nbsp;&nbsp;&nbsp;&nbsp; 0131:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; while True:<br />&nbsp;*** 0132:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hexsha, ref_path =3D cls._get_ref_info(rep=
+o, ref_path)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0133:&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if hexsha is not None:<br />&nbsp;&=
+nbsp;&nbsp;&nbsp; 0134:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return hexsha<br />&nbsp;&nbsp;&nbsp=
+;&nbsp; 0135:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # END recursive der=
+eferencing<br />&nbsp;&nbsp;&nbsp;&nbsp; 0136:<br />File: '/usr/lib/python3=
+/dist-packages/git/refs/symbolic.py', lineno: 181, function: _get_ref_info<=
+br />&nbsp;&nbsp;&nbsp;&nbsp; 0177:&nbsp;&nbsp;&nbsp; def _get_ref_info(cls=
+, repo, ref_path):<br />&nbsp;&nbsp;&nbsp;&nbsp; 0178:&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; """Return: (str(sha), str(target_ref_path)) if availa=
+ble, the sha the file at<br />&nbsp;&nbsp;&nbsp;&nbsp; 0179:&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; rela_path points to, or None. target_ref_path i=
+s the reference we<br />&nbsp;&nbsp;&nbsp;&nbsp; 0180:&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; point to, or None"""<br />&nbsp;*** 0181:&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return cls._get_ref_info_helper(repo, ref_pa=
+th)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0182:<br />&nbsp;&nbsp;&nbsp;&nbsp; 0183:=
+&nbsp;&nbsp;&nbsp; def _get_object(self):<br />&nbsp;&nbsp;&nbsp;&nbsp; 018=
+4:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; """<br />&nbsp;&nbsp;&nbsp;&nb=
+sp; 0185:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :return:<br />File: '/u=
+sr/lib/python3/dist-packages/git/refs/symbolic.py', lineno: 164, function: =
+_get_ref_info_helper<br />&nbsp;&nbsp;&nbsp;&nbsp; 0160:&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bre=
+ak<br />&nbsp;&nbsp;&nbsp;&nbsp; 0161:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # END for each packed ref<br />&nbsp;&nbsp;&n=
+bsp;&nbsp; 0162:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # END handle pac=
+ked refs<br />&nbsp;&nbsp;&nbsp;&nbsp; 0163:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp; if tokens is None:<br />&nbsp;*** 0164:&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; raise ValueError("Reference at %=
+r does not exist" % ref_path)<br />&nbsp;&nbsp;&nbsp;&nbsp; 0165:<br />&nbs=
+p;&nbsp;&nbsp;&nbsp; 0166:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # is i=
+t a reference ?<br />&nbsp;&nbsp;&nbsp;&nbsp; 0167:&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; if tokens[0] =3D=3D 'ref:':<br />&nbsp;&nbsp;&nbsp;&nbsp=
+; 0168:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r=
+eturn (None, tokens[1])<br />Exception: ValueError: Reference at 'refs/head=
+s/yocto_imx6_rel' does not exist<br /><br />DEBUG: Python function do_testi=
+mage finished<br /><br /><br /><br /><br />I tried to resolve the problem b=
+ut errors, and warming kept increasing. than I found , a testimage.bbclass =
+- <a href=3D"http://cgit.openembedded.org/openembedded-core/tree/meta/class=
+es/testimage.bbclass?h=3Dpyro" target=3D"_blank" rel=3D"noopener">http://cg=
+it.openembedded.org/openembedded-core/tree/meta/classes/testimage.bbclass?h=
+=3Dpyro </a><br />which had diffrence wrt my testimage.bbclass diffrence wa=
+s - i<br />nherit meta_scm <br />python () { <br />&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; if oe.types.boolean(d.getVar("TESTIMAGE_AUTO") or "False"):<br=
+ />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bb.bu=
+ild.addtask("testimage", "do_build", "do_image_complete", d) <br />} <br />=
+<br />Later , <br />i swap my testimage.bbclass with http://cgit.openembedd=
+ed.org/openembedded-core/tree/meta/classes/testimage.bbclass?h=3Dpyro i kno=
+w that the diffrence may be due to diffrent version but still i tested. <br=
+ />now after running the task --- bitbake core-image-weston -c testimage do=
+_testimage task have stopped at 99% , no, I am not getting any log, later i=
+ Swaped the earlier testimage.bbclass and still it gets stuck at 99%. I am =
+not getting any logs in both cases now As new to this technology ,<br /><br=
+ />may i please get your help to resolve this issue, and root cause of it
 
---000000000000b0956305e93de2ac--
+--ca9k3bHxyVZ3SFO3B2sD--
 
