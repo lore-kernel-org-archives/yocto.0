@@ -1,127 +1,105 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <akuster808@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 891F7C6FA82
-	for <webhook@archiver.kernel.org>; Sun, 25 Sep 2022 09:41:49 +0000 (UTC)
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
- [209.85.128.44])
- by mx.groups.io with SMTP id smtpd.web08.15424.1664098899253733431
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8A142C54EE9
+	for <webhook@archiver.kernel.org>; Sun, 25 Sep 2022 16:20:21 +0000 (UTC)
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com
+ [209.85.160.54])
+ by mx.groups.io with SMTP id smtpd.web09.18676.1664122820627568181
  for <yocto@lists.yoctoproject.org>;
- Sun, 25 Sep 2022 02:41:39 -0700
+ Sun, 25 Sep 2022 09:20:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=hbmRWAQs;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.44,
- mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f44.google.com with SMTP id
- n40-20020a05600c3ba800b003b49aefc35fso2144148wms.5
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=nc+g6Zbb;
+ spf=pass (domain: gmail.com, ip: 209.85.160.54,
+ mailfrom: akuster808@gmail.com)
+Received: by mail-oa1-f54.google.com with SMTP id
+ 586e51a60fabf-12b542cb1d3so6492436fac.13
         for <yocto@lists.yoctoproject.org>;
- Sun, 25 Sep 2022 02:41:39 -0700 (PDT)
+ Sun, 25 Sep 2022 09:20:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date;
-        bh=WrUOJADpwNP8WhMqivhb8SZbZEp4hNRvYhbjmojkcxU=;
-        b=hbmRWAQsRoc89CWKWkFLTdtXmxMrl3ljrEzIUGe0JgLjaQy/ILkZCzCBHsVwyo/bfL
-         EwU2iQUSZJocCSF15sbwh9YpHQcM94fjBSNvhpurW8vFoheXpFS4JQGOx5gvE8YRpKuu
-         SX/7+H+uWFFQxeTz2ZYmUBwGfPGIYN1WBWou4=
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date;
+        bh=+d2V98EiyrVvRIWn10iMJc6kVEaGgrdC/JVDqH9lQPI=;
+        b=nc+g6ZbbxQWdaV8lWHaBIJdtLC5lDqpajS3k8ghZ/7dMTgJbnlR+atoZr/wG4s0djF
+         6A/0ZzQfrVi616A9wi3Gk0KjwJiIwKEbgSGF8vPT1FVZU6mNRWeX6Gy0TwciVBIZs8LQ
+         m4QxcWHK+Q8U6G3E5gbDN0ugZaZosEdiIvTmFXPPsWQwKPEPyeuYO4Q4jWzZQzSqndzL
+         KCGZAvE60cAZVuEBxT5OUOau8rPhuyNlYjR7PKzxU+PwVZtbiiU/qd3IAbpqZp/P2IrI
+         W3p/UIZXOK2Ysyy2M+1iDlrwLFlsGSFB2eXZH+HNHUXJC4OAVJqvti3P8sCtz3ppdw0J
+         Iqcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date;
-        bh=WrUOJADpwNP8WhMqivhb8SZbZEp4hNRvYhbjmojkcxU=;
-        b=LDjBSwIkADonHzgwg3IP1ZJYPpCTAFV44Ww2Sst23qNI35eMIxMfrieEwyEpB4GJRw
-         1PpbIb11TX6QblGBIMwkUjlU8SgIckuOqQpyD2HcnCsmh7v/XyI5tKKEluGiUAJ/TDBM
-         OvJoYoW+9S57Gduh+gEbMrtlwNaec51VNnfiX+HxkR46Vf/DkYjJaeM9Um/1UXY7Hd+F
-         ySiSfoonE1f2P5qA69caaB75tuqSMNISC+CfUY5wv9v7hPZ2/cLyWGz9DoeCQO+wVpEU
-         Y/9q+/GsIkFYFrkz8tYnut0dyusgK2giQTDrJbtsi+FR9F2RqYfN2/ESDSUBEaQo0IGs
-         dxcw==
-X-Gm-Message-State: ACrzQf2Ws60HAzSnJYE7z1pCFk6Rj9TqBjFWu9hpUxuv3oOnLbhr39ge
-	INOlv9S6rMiiiTmzmPCdCe1L8w==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date;
+        bh=+d2V98EiyrVvRIWn10iMJc6kVEaGgrdC/JVDqH9lQPI=;
+        b=8NFo+EGnsF+Jx55/E4X+i/wEmizeKWMdQ8Nl/FsaThnzQrUyvvi5ZbLKB+IucPYdhT
+         VI8Y1A/kKMJuAySU8BGHvh1EVdMy2ey0jgpJPmUBuL1pELz+2wi/Pet5oiVjgs9uQ2/I
+         7b4Hluo6HZXf7/Ojvpdtz9KxsbTmDtBrxsbfzsVFveuSVALSL8BWheW9Fp6usEUEf6Uy
+         xAT+d7fohL2L4Zl3AdcdxIf0m7Ew0AFX2tbN9m2jH6AZUpOvWZ0lWPuJDuhdI8RdDIxe
+         PIko3NRLimZtVjrkpS6OQyBoRuGSzlbivuAZ4MCfjqwOEUJuKt4fBiKrwwdANuOSkXgJ
+         w8bA==
+X-Gm-Message-State: ACrzQf0KoMfBGAnUwHoro/dC6UNfGqFEyl/WJG+5ddgZNzydS7lxSmSt
+	VHcJh+SU6526ex7jbxTinzLJsDbSBCQ=
 X-Google-Smtp-Source: 
- AMsMyM4Fhhorik8tvLwdonVVFkWQtyeHVbU43uHY+bYIKYTdkRT5jssgNMWSG6QUzuVO/DF1rCvAvw==
-X-Received: by 2002:a05:600c:4e02:b0:3b4:86bf:a3d0 with SMTP id
- b2-20020a05600c4e0200b003b486bfa3d0mr18482428wmq.24.1664098897391;
-        Sun, 25 Sep 2022 02:41:37 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:70bf:6fa:95f1:db37?
- ([2001:8b0:aba:5f3c:70bf:6fa:95f1:db37])
+ AMsMyM448mP41k+xkBF9csb7FM2Nqgc511+0LAULk85JxmC3ZSLvUXQEUV/9sV3qIHKndxnJpAnn7g==
+X-Received: by 2002:a05:6870:c897:b0:11b:de9f:57c2 with SMTP id
+ er23-20020a056870c89700b0011bde9f57c2mr16028971oab.267.1664122819499;
+        Sun, 25 Sep 2022 09:20:19 -0700 (PDT)
+Received: from keaua.attlocal.net ([2600:1700:9190:ba10:bfa4:4cc0:9b6c:6bb5])
         by smtp.gmail.com with ESMTPSA id
- p12-20020a05600c358c00b003b482fbd93bsm7753241wmq.24.2022.09.25.02.41.36
+ f11-20020a056870548b00b001278611f0f6sm7575534oan.32.2022.09.25.09.20.18
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Sep 2022 02:41:36 -0700 (PDT)
-Message-ID: 
- <3ce43a96c2881ef3b35519550c39054f83c2379c.camel@linuxfoundation.org>
-Subject: Re: [Openembedded-architecture] [yocto-announce] [ANNOUNCEMENT]
- Milestone 3 for Yocto Project 4.1 (yocto-4.1_M3) Now Available
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Konrad Weihmann <kweihmann@outlook.com>,
-	yocto-announce@lists.yoctoproject.org, openembedded-architecture
-	 <openembedded-architecture@lists.openembedded.org>,
-	"yocto@lists.yoctoproject.org"
-	 <yocto@lists.yoctoproject.org>
-Cc: chee.yang.lee@intel.com
-Date: Sun, 25 Sep 2022 10:41:35 +0100
-In-Reply-To: 
- <PR2PR09MB3100F0131EBDA0845AB70AC5A8539@PR2PR09MB3100.eurprd09.prod.outlook.com>
-References: 
-	<DM5PR1101MB2361A81943CD4DB797AF61F8B9509@DM5PR1101MB2361.namprd11.prod.outlook.com>
-	 <PR2PR09MB3100F0131EBDA0845AB70AC5A8539@PR2PR09MB3100.eurprd09.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.1-0ubuntu1 
+        Sun, 25 Sep 2022 09:20:18 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH] apparmor: update to 3.0.7
+Date: Sun, 25 Sep 2022 12:20:16 -0400
+Message-Id: <20220925162016.2607065-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 25 Sep 2022 09:41:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58150
+ <yocto@lists.yoctoproject.org>; Sun, 25 Sep 2022 16:20:21 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58151
 
-On Sun, 2022-09-25 at 10:53 +0200, Konrad Weihmann wrote:
-> Hi all,
->=20
-> On 24.09.22 04:02, Lee Chee Yang wrote:
-> > Hi
-> >=20
-> > We are pleased to announce the third milestone release for Yocto Projec=
-t=20
-> > 4.1 (yocto-4.1_M3) is now available for download.
-> >=20
-> > Download:
-> >=20
-> > http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-4.1_M=
-3=20
-> > <http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-4.1_=
-M3>
-> >=20
-> > bitbake: 6424f4b7e9c1ba8db81346e8b3a806dd035d4551
-> >=20
-> > meta-agl: e4ea839db9c26e78175d61388c5408a79f6927dc
-> >=20
-> > meta-arm: 261263a6701ab3530ff997643d08da502222ac20
-> >=20
-> > meta-aws: a16f35a73bff26d9506f519451dc75034211d61b
-> >=20
-> > meta-gplv2: 43bf0e8d5985945d19d01f94bfbbda420c4435f3
->=20
-> I thought the agreement was to stop promoting meta-gplv2?
-> Still I find it listed here - it somehow implies that this is still=20
-> officially support, which everyone agreed it isn't
->=20
-> Can this be removed from the announcement template for the next=20
-> releases? - just to avoid any future misunderstandings
+Fix typo in HOMEPAGE
 
-Someone needs to do the work involved and I guess that hasn't happened.
-It isn't entirely simple as this does still exist in the other
-releases.
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-mac/AppArmor/{apparmor_3.0.6.bb => apparmor_3.0.7.bb} | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename recipes-mac/AppArmor/{apparmor_3.0.6.bb => apparmor_3.0.7.bb} (98%)
 
-Could you open a bug please so we don't forget this.
+diff --git a/recipes-mac/AppArmor/apparmor_3.0.6.bb b/recipes-mac/AppArmor/apparmor_3.0.7.bb
+similarity index 98%
+rename from recipes-mac/AppArmor/apparmor_3.0.6.bb
+rename to recipes-mac/AppArmor/apparmor_3.0.7.bb
+index 45f19d1..e7d677e 100644
+--- a/recipes-mac/AppArmor/apparmor_3.0.6.bb
++++ b/recipes-mac/AppArmor/apparmor_3.0.7.bb
+@@ -5,7 +5,7 @@ DESCRIPTION = "user-space parser utility for AppArmor \
+  which is required to convert AppArmor text profiles into machine-readable \
+  policies that are loaded into the kernel for use with the AppArmor Linux \
+  Security Module."
+-HOMEAPAGE = "http://apparmor.net/"
++HOMEPAGE = "http://apparmor.net/"
+ SECTION = "admin"
+ 
+ LICENSE = "GPL-2.0-only & GPL-2.0-or-later & BSD-3-Clause & LGPL-2.1-or-later"
+@@ -22,7 +22,7 @@ SRC_URI = " \
+     file://0001-rc.apparmor.debian-add-missing-functions.patch \
+     "
+ 
+-SRCREV = "822db765c6fa7f9de7233c4011254a82d4dafe76"
++SRCREV = "0ead606d9e608801f45e13a34358036135470729"
+ S = "${WORKDIR}/git"
+ 
+ PARALLEL_MAKE = ""
+-- 
+2.25.1
 
-I still don't know who will do it but that way we at least remember we
-need to.
-
-Cheers,
-
-Richard
 
