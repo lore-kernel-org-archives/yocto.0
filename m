@@ -1,125 +1,98 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <ticotimo@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EBDCCC07E9D
-	for <webhook@archiver.kernel.org>; Tue, 27 Sep 2022 19:02:45 +0000 (UTC)
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com
- [209.85.218.51])
- by mx.groups.io with SMTP id smtpd.web10.15133.1664305364079093915
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 82F8AC6FA83
+	for <webhook@archiver.kernel.org>; Tue, 27 Sep 2022 22:19:24 +0000 (UTC)
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com
+ [209.85.216.46])
+ by mx.groups.io with SMTP id smtpd.web08.1149.1664317162218441387
  for <yocto@lists.yoctoproject.org>;
- Tue, 27 Sep 2022 12:02:44 -0700
+ Tue, 27 Sep 2022 15:19:22 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=hxnu0Lsb;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.218.51,
- mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-ej1-f51.google.com with SMTP id lc7so22788657ejb.0
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=isD61RaD;
+ spf=pass (domain: gmail.com, ip: 209.85.216.46, mailfrom: ticotimo@gmail.com)
+Received: by mail-pj1-f46.google.com with SMTP id
+ v10-20020a17090a634a00b00205e48cf845so55508pjs.4
         for <yocto@lists.yoctoproject.org>;
- Tue, 27 Sep 2022 12:02:43 -0700 (PDT)
+ Tue, 27 Sep 2022 15:19:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date;
-        bh=3MqPyH0T9xZkusVFNcBpZv+SxAZXcPeZJO1ryhscJJc=;
-        b=hxnu0LsbCW6qFGaXUuF5PLD5LIi8X+8Z8UVOYvrbaxQ9VSCMLocilBMv8sus+CP1De
-         0dnIiCwkKhwBsjDv/NBQeEmJ45+bANKbGPWKnnqa3cnGKlgCoI0Uuj6BFvmlnv6g/Phl
-         CVgt+Y4W3kzKkn0ZmsyDIz+bSKDPA1cajwDKk=
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date;
+        bh=QVYj1Re5+KGDLfxp874bH0aUQz0+29bha8ilM8kT8iE=;
+        b=isD61RaDFscCoHm05I1J9z3VcPRkEE99Zk6Hh1QSVlFTgqaKminWH7ImDVXrJYX8Tz
+         SdoyWptusG6l6V7zHOOobu5RXEgMbGO1t/ZSbo1PR20M8x18Y/FdeLifF/PHLjjWduxw
+         0fW5dscB9SAdltdTs9aW5u3VOHwgpqbG+0oDJhwH/EqdIZjIK7UQECTkEzJ3/tALfWbz
+         ulDjGfPov0gPHC0/X2SWTIKfmUiB5OlPMJql3HY9rr3O5oOaHAHZC1Yp6JUzGuIfZiJc
+         +zyfwAyKPwd/NqgjyWylr3h9ujyeOIDwY14WNOjk8UvkoP7nn+qiDNMmahJn+CfL4tL1
+         52sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date;
-        bh=3MqPyH0T9xZkusVFNcBpZv+SxAZXcPeZJO1ryhscJJc=;
-        b=yVubs4u+S59/9zgHFbMVKAnfqpYZ6Smy7QS/H+PWlJfE+8WK2I8/O41G80TM8DcgiW
-         FOKNEj8wa1LsI1ullVgDSmCgOVFmf+vbDM25zTlKZNR2RmLNVg3ITeehMFlIC1D7scdK
-         SUL46tUrrIYVHOcBntOcPWSrWj1M3eLXOiUC37eB0W+uNF3rQIKRAgpWy197Z5dVchwd
-         aiLHG6lhDpYBjANP63CI0MoSUff7My0kx5NTDmyrkF8KmOt2cYZwUcTG/o60xSSUL0JB
-         zdga0Y9gE17E1tFFZwHkAnb8cY0okx8ZA6R/Wl8TBPcXyVwRCSJM/IP7W6kFypZnoQq/
-         LWMg==
-X-Gm-Message-State: ACrzQf36D/B7ClY7/aVQ6WnvEGV7agLSXkY2Ow09vbE9WRcFsmNxznio
-	SFyT9t0z3/01gCE/t29IuL+QrQ==
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date;
+        bh=QVYj1Re5+KGDLfxp874bH0aUQz0+29bha8ilM8kT8iE=;
+        b=p1a/GAEkBYsjKD0Wj359UKhLqDqFF3EAdCZUpvWpo/Pv+SbGbsFQjgXgYKlhQ0N01I
+         ina3jt/WbOwRF+3Yh1DTu8/CNfGFW6nsb+GVtJU/V5O3zvrMS8DjRjyx6pmp1Wrv6E3S
+         i3wfRvnuWwCg2ch5MbJ3Y9I0dMfxbbSg/rrWkFkBmNjjzmgpkLVY4vQkffYhzdgk7+qB
+         4xE/yIID3ZhillNWaR7yzufrYyMD6gGMGUlUlDMreCNJnmA27PTCxa18Bri+8+Gnru18
+         q98V+MS85JvMVex79E7rBmqfyWPOk045oHrh+LDRf2Q0EfcKgrywRCGbDyrwQWCha+Lw
+         FHTw==
+X-Gm-Message-State: ACrzQf30OBEYckII43nczwkvML6oEzsG6dY0/7RB2fz6VC0flTWDdYKM
+	i8OrA2zOe5NdTiiwieS4uymsfEbo9W5Xa95rbTU=
 X-Google-Smtp-Source: 
- AMsMyM6KicvEmlsJSalCTQ6px27bNLrMOAsSCoPL+VS7Y4ebpp/IjWmJ0UPEgql4kFkArzIkE0h6Vg==
-X-Received: by 2002:a17:907:a40a:b0:783:afc3:fa34 with SMTP id
- sg10-20020a170907a40a00b00783afc3fa34mr8253707ejc.643.1664305362497;
-        Tue, 27 Sep 2022 12:02:42 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:d4c9:c3bb:4c2d:18a5?
- ([2001:8b0:aba:5f3c:d4c9:c3bb:4c2d:18a5])
-        by smtp.gmail.com with ESMTPSA id
- c2-20020a170906d18200b0073a20469f31sm1201574ejz.41.2022.09.27.12.02.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Sep 2022 12:02:41 -0700 (PDT)
-Message-ID: 
- <0124314022d5ab2c61ecdbe42819b6d5b9f2a950.camel@linuxfoundation.org>
-Subject: Re: [yocto] Builing Gcc fails Poky
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: PHIL <heideggm@hotmail.com>, yocto@lists.yoctoproject.org
-Date: Tue, 27 Sep 2022 20:02:40 +0100
-In-Reply-To: 
- <PH0PR84MB183560163B152E0F72D6CA8EC7559@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
-References: 
-	<PH0PR84MB1835B452A0D3EC6E973596CAC7559@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
-	 <e7d7e080c94d78f6cf9711aa28ecdf484a9ee491.camel@linuxfoundation.org>
-	 <PH0PR84MB183560163B152E0F72D6CA8EC7559@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.1-0ubuntu1 
+ AMsMyM6ruq0/TQ8L8UG/gZN/s1Kb7UT4Csibk3F5WGLpmaznsALFufHJIBG5AS9G4YT0f6Vqj9wvX0ScLgYJHNhxcbY=
+X-Received: by 2002:a17:90a:8992:b0:202:f6b1:ef25 with SMTP id
+ v18-20020a17090a899200b00202f6b1ef25mr6818417pjn.239.1664317161168; Tue, 27
+ Sep 2022 15:19:21 -0700 (PDT)
 MIME-Version: 1.0
+From: Tim Orling <ticotimo@gmail.com>
+Date: Tue, 27 Sep 2022 15:19:09 -0700
+Message-ID: 
+ <CANx9H-Auue6ofUXyL76ORzF5PRC+hdGAP1nnYjJ=d6KYSzF2UA@mail.gmail.com>
+Subject: OpenEmbedded Happy Hour September 28 5pm/1700 UTC
+To: openembedded-core <openembedded-core@lists.openembedded.org>,
+	"openembedded-devel@lists.openembedded.org"
+ <Openembedded-devel@lists.openembedded.org>,
+	"Yocto (yocto@lists.yoctoproject.org)" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000002f642e05e9b00922"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 27 Sep 2022 19:02:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58189
+ <yocto@lists.yoctoproject.org>; Tue, 27 Sep 2022 22:19:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58190
 
-On Tue, 2022-09-27 at 20:51 +0200, PHIL wrote:
-> Am 27. September 2022 20:40:31 MESZ schrieb Richard Purdie
-> <richard.purdie@linuxfoundation.org>:
-> > On Tue, 2022-09-27 at 18:11 +0200, Edgar Mobile wrote:
-> > > Greetings,
-> > > Trying to build core-image-weston from current master fails for
-> > > gcc
-> > > 12.2.0-r0 with lots of linker errors.
-> > >=20
-> > > Names of missing functions are strange ala gen_cmulvnx16qi3.
-> > > In insn-output.o
-> > >=20
-> > > System is an ubuntu 22.04.1 LTS Build Target is qemuarm64
-> > >=20
-> >=20
-> > We build that regularly on the autobuilder so something seems odd
-> > here.
-> > Could your machine have memory issues? Do you get the same issue
-> > each
-> > time you build?
->
-> What do you mean with memory issues? Memory broken? Not enough
-> memory? The errors are the same on every run of course I don't build
-> from scratch I just retype bitbake core-image-weston. Gdb also failed
-> so I took that out.=20
+--0000000000002f642e05e9b00922
+Content-Type: text/plain; charset="UTF-8"
 
-I mean that the build system places more stress on the system than many
-other workloads and we've sometimes see gcc failures like this as a
-sign of failing system memory. Running memtest86 might show that up.
+You are cordially invited to the next OpenEmbedded Happy Hour on September
+28
+for Europe/Americas time zones @ 1700/5pm UTC (7pm CEST / 1pm ET / 10am PT).
 
-If recipe X is failing and you "bitbake X -c clean" and then "bitbake
-X" and it doesn't fail the same way, that would be a sure sign of
-memory failure or another hardware issue.
+https://www.openembedded.org/wiki/Calendar
+https://www.openembedded.org/wiki/Happy_Hours
+https://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenEmbedded+Happy+Hour+September+28&iso=20220928T17&p1=1440
 
-You can see here:
+Regards,
+Tim "moto-timo" Orling
 
-https://autobuilder.yoctoproject.org/typhoon/#/workers
+--0000000000002f642e05e9b00922
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-we have Ubuntu 22.04 workers in the autobuilder and we build qemuarm64
-here:
+<div dir=3D"ltr"><div><br class=3D"gmail-Apple-interchange-newline">You are=
+ cordially invited to the next OpenEmbedded Happy Hour on September 28</div=
+><div>for Europe/Americas time zones=C2=A0@ 1700/5pm UTC (7pm CEST / 1pm ET=
+ / 10am PT).</div><div><br></div><div><a href=3D"https://www.openembedded.o=
+rg/wiki/Calendar" rel=3D"noreferrer" target=3D"_blank">https://www.openembe=
+dded.org/wiki/Calendar</a><br></div><div><a href=3D"https://www.openembedde=
+d.org/wiki/Happy_Hours" rel=3D"noreferrer" target=3D"_blank">https://www.op=
+enembedded.org/wiki/Happy_Hours</a><br></div><div><a href=3D"https://www.ti=
+meanddate.com/worldclock/fixedtime.html?msg=3DOpenEmbedded+Happy+Hour+Septe=
+mber+28&amp;iso=3D20220928T17&amp;p1=3D1440">https://www.timeanddate.com/wo=
+rldclock/fixedtime.html?msg=3DOpenEmbedded+Happy+Hour+September+28&amp;iso=
+=3D20220928T17&amp;p1=3D1440</a></div><div><br></div><div>Regards,</div><di=
+v>Tim &quot;moto-timo&quot; Orling</div></div>
 
-https://autobuilder.yoctoproject.org/typhoon/#/builders/42
-https://autobuilder.yoctoproject.org/typhoon/#/builders/131
-https://autobuilder.yoctoproject.org/typhoon/#/builders/127
-
-so this combination is well tested which is why I suspect something
-else is wrong.
-
-Cheers,
-
-Richard
+--0000000000002f642e05e9b00922--
 
