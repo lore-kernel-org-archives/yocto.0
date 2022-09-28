@@ -1,115 +1,190 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A4C15C32771
-	for <webhook@archiver.kernel.org>; Wed, 28 Sep 2022 08:27:07 +0000 (UTC)
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
- [209.85.221.47])
- by mx.groups.io with SMTP id smtpd.web08.5616.1664353622955533906
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 932D8C32771
+	for <webhook@archiver.kernel.org>; Wed, 28 Sep 2022 08:29:47 +0000 (UTC)
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com
+ [209.85.167.47])
+ by mx.groups.io with SMTP id smtpd.web08.5628.1664353781579840518
  for <yocto@lists.yoctoproject.org>;
- Wed, 28 Sep 2022 01:27:03 -0700
+ Wed, 28 Sep 2022 01:29:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Gk5Evdnv;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.47,
- mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f47.google.com with SMTP id l18so6576200wrw.9
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=oXcl8xNP;
+ spf=pass (domain: gmail.com, ip: 209.85.167.47,
+ mailfrom: alex.kanavin@gmail.com)
+Received: by mail-lf1-f47.google.com with SMTP id k10so19285477lfm.4
         for <yocto@lists.yoctoproject.org>;
- Wed, 28 Sep 2022 01:27:02 -0700 (PDT)
+ Wed, 28 Sep 2022 01:29:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date;
-        bh=AQYKt6KyKrwOkAuLEIHGamYNWbxg1k5biDKAtHBpDr8=;
-        b=Gk5EvdnvueRvV29CHWximHIdzGNXJsHTsu73Iin9N4OVXbs14OYkipr5PMSZ99lVxV
-         XLeZjvjJk2F20Ue6jXpn5NNynHv3zMO8/DwLPX04PHWJLPruB+eMGN48F5Q+0PaikSKN
-         gUWMLUfoy6HgsPtEXCxowetdx5syn9n4nobIU=
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=0zPzoYZaUaIpK014QKXOKLbo9pm1EDv2McoyfzR9sU8=;
+        b=oXcl8xNPU0vKeWfQBUbKFRLBFfyENzqNkoGGFm62e5hNbFnZL9dM57t+le88V3pInj
+         4a7WjmS+5+QlOhrg9eyVTczO8dZ7N5cFiFGHgK98GTjpn3MDyL5PbR7G+RwGPFc98tgg
+         qieV/reKUgbHVApSNtVVQyzaDjza0HvfjP1Wzjj/cd0RMwFuP9deIxkaVr8qgaDVTc8G
+         ieNlhyWi5w9rShM3bkCVVDnrZ24d/25KFtiv8XPn+AFiZPXiFjWXD6+iZjW1ia/4FHHq
+         nloEidHb3aMAJPAGMEyzE553iSzdc11L5QDcYgLOG3mDuIwlKoJ13Z56RrCrZ1hCLnM1
+         4Xgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date;
-        bh=AQYKt6KyKrwOkAuLEIHGamYNWbxg1k5biDKAtHBpDr8=;
-        b=PUqele3w3WRaKDhD4uKtbwjcBQtNpEWA5hl0ml7w4W1TY41ci0uEQ2NwJDRwca0DhB
-         sS9pFtwyloN6sd1s1cUA/BY28eennJ127nhG2AmRgWy5NthDlrwoPgvnVHT68p0//h0y
-         x21zXDyA9+9gF6WxZHsYkirf1gmN7LjTSrpT/WjKM+LaPnCdHMeHbp2vJnISXAAkjAKt
-         T3kYTBL+Jj8nXwk4jXGys2b+BbqbSbJTy3HC7T3DpOhk/+q4TrK7OVYPuD9R462ElBz+
-         Nxd1PsFjoAW61wSLIbV/zbS/hJXGNtd22sahixrJ1Fix8IFFcS5DkPgCjY0ewW/tUR4q
-         IHQQ==
-X-Gm-Message-State: ACrzQf3MnkY/Dvkv88WbAH9u0CaeLJdbYDhlR5sGgPcmFKxB0HSEjs2i
-	09Dzl79ac8HBVWX3b/2p8g4zLw==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=0zPzoYZaUaIpK014QKXOKLbo9pm1EDv2McoyfzR9sU8=;
+        b=0dNQ+U3CHPZN/rvZ4EAVj/E1u7pMTdGDE6yA94xGIj3a4zg7ibdclGXz2SyWZKQ7he
+         bR5Lrt1i1nPzKZmGcvAiMFr+QNjxrQGvoM15esraMs1p+I99qT51p8i/xJdIAlNVudtM
+         j0//fr64vntxWKbu0UXKe/vspyGqHY2u1hJehodMGLPivTwizVdVbrpxx8z3RTRkhzM9
+         88d/lCPYqyVoveP92f2PDFjyJzJHI9OVSA7dSqLK8G0vO5M8OyiW/ZAEjDmbRJJBnlAU
+         9yex+lEJYqzHvUEtl/Sk4bBuOKrVyjY/CT6mvlJ84D2+kWxugYIUvzu3+0nnnWcMSCay
+         1+VA==
+X-Gm-Message-State: ACrzQf2VI3xFj3AqKGEa85TcypRIu7ISJCRCqYCVWDSfHCg5V0y9OIY1
+	YvPKMv4hxofdvcMM6NiLv/2I9j6xcfAn1v5O09I=
 X-Google-Smtp-Source: 
- AMsMyM5HwtVpRO9yet2/yy7xddrNAwWfqpmjnww06gVQ4/+sc23Qzc1o6J5MrnOfK/EMwbXd23qGgw==
-X-Received: by 2002:adf:bc13:0:b0:228:6d28:d2cb with SMTP id
- s19-20020adfbc13000000b002286d28d2cbmr19768237wrg.375.1664353621289;
-        Wed, 28 Sep 2022 01:27:01 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:33d9:6235:54b:97be?
- ([2001:8b0:aba:5f3c:33d9:6235:54b:97be])
-        by smtp.gmail.com with ESMTPSA id
- j1-20020a5d4481000000b0022ae401e9e0sm3539735wrq.78.2022.09.28.01.27.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Sep 2022 01:27:00 -0700 (PDT)
-Message-ID: 
- <716fbe79b91a412cf842e8994c725fa2a0c966a3.camel@linuxfoundation.org>
-Subject: Re: [yocto] Builing Gcc fails Poky
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Khem Raj <raj.khem@gmail.com>, Edgar Mobile <heideggm@hotmail.com>
-Cc: yocto@lists.yoctoproject.org
-Date: Wed, 28 Sep 2022 09:26:58 +0100
-In-Reply-To: 
- <CAMKF1srEJ4D4=yYvygt49mWutmHErcKPtJhmDBp0MAEiCJk24Q@mail.gmail.com>
-References: 
-	<PH0PR84MB1835B452A0D3EC6E973596CAC7559@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
-	 <e7d7e080c94d78f6cf9711aa28ecdf484a9ee491.camel@linuxfoundation.org>
-	 <PH0PR84MB183560163B152E0F72D6CA8EC7559@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
-	 <0124314022d5ab2c61ecdbe42819b6d5b9f2a950.camel@linuxfoundation.org>
-	 <PH0PR84MB183582080EA5499AA5B93CF1C7559@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
-	 <CAMKF1srEJ4D4=yYvygt49mWutmHErcKPtJhmDBp0MAEiCJk24Q@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.1-0ubuntu1 
+ AMsMyM4sFezdN3X308/B++qeZc/DlJ8LDISJ5l7smkQnGQNHF6qb8fYbHvwO70KhmT/EawRj+75ZY9ZlSkGkGBd9sFU=
+X-Received: by 2002:a05:6512:13a4:b0:479:3b9f:f13c with SMTP id
+ p36-20020a05651213a400b004793b9ff13cmr12413467lfa.380.1664353779731; Wed, 28
+ Sep 2022 01:29:39 -0700 (PDT)
 MIME-Version: 1.0
+References: 
+ <PH0PR84MB183515506D92EF8DE17EDEDDC7549@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+ <CANNYZj-ybq6AhgDM3UKpMf9xsBqpzNW5vXYQQ-8Vr8U4R8U-tA@mail.gmail.com>
+ <PH0PR84MB1835BF84B82124FF0DB10565C7549@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+In-Reply-To: 
+ <PH0PR84MB1835BF84B82124FF0DB10565C7549@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Wed, 28 Sep 2022 10:29:28 +0200
+Message-ID: 
+ <CANNYZj_sdovPpw5+uhPaa65LDBgZUctApsJDv-6KReSi-Zk1PQ@mail.gmail.com>
+Subject: Re: [yocto] Changing git url of qemu
+To: PHIL <heideggm@hotmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000d2559705e9b88f78"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 28 Sep 2022 08:27:07 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58199
+ <yocto@lists.yoctoproject.org>; Wed, 28 Sep 2022 08:29:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58200
 
-On Tue, 2022-09-27 at 19:02 -0700, Khem Raj wrote:
->=20
->=20
-> On Tue, Sep 27, 2022 at 3:41 PM Edgar Mobile <heideggm@hotmail.com>
-> wrote:
-> > Yeah building gcc alone worked.
-> > Now I'm concerned about the health of my machine.
-> > Thank you!
-> >=20
->=20
->=20
->=20
-> Your machine is fine I think bitbake is extremely parallel and that
-> might be issue that it=E2=80=99s eating up all the memory. How many cores
-> does this machine have? And ram ? Usually it=E2=80=99s good to keep 3-4gb=
- ram
-> per core for default operations you can also pin how much parallels
-> tasks and -j settings bitbake should use during build look for
-> PARALLEL_MAKE documentation=C2=A0
->=20
+--000000000000d2559705e9b88f78
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Khem may be right and it may simply be running out of memory. You could
-have a look in dmesg and see if the kernel did report OOM conditions.
+I would first check whether any of that work in the branch has meanwhile
+landed upstream. The post is from 2021.
 
-What worries me a little bit is that things corrupted. It is possible
-that OOM could do that but that would mean exit code checking isn't
-happening properly somewhere along the line in the gcc build system
-itself (which is possible) or there is some other issue with the error
-code paths. The underlying software build systems are really outside
-YP's scope though.
+Have you tried the software Vulkan in the guest?
 
-Cheers,
+Alex
 
-Richard
+On Wed 28. Sep 2022 at 10.21, PHIL <heideggm@hotmail.com> wrote:
+
+> I try to enable vulkan according to this tutorial
+>
+>
+> https://www.collabora.com/news-and-blog/blog/2021/11/26/venus-on-qemu-ena=
+bling-new-virtual-vulkan-driver/
+>
+> According to the author the modified qemu branch is still necessary so I
+> want to enable that.
+>
+>
+> Am 28. September 2022 10:14:24 MESZ schrieb Alexander Kanavin <
+> alex.kanavin@gmail.com>:
+>>
+>> You need to clarify what you want to do exactly. Why can=E2=80=99t you u=
+se the
+>> existing recipe?
+>>
+>> Alex
+>>
+>> On Wed 28. Sep 2022 at 9.58, Edgar Mobile <heideggm@hotmail.com> wrote:
+>>
+>>> Greetings,
+>>>
+>>> I want to change the git repo url in order to test the Venus driver. Ca=
+n
+>>> someone tell me which variable in which recipe I'd have to set?
+>>>
+>>> Regards
+>>> --
+>>> Diese Nachricht wurde von meinem Android-Ger=C3=A4t mit K-9 Mail gesend=
+et.
+>>>
+>>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>>> Links: You receive all messages sent to this group.
+>>> View/Reply Online (#58196):
+>>> https://lists.yoctoproject.org/g/yocto/message/58196
+>>> Mute This Topic: https://lists.yoctoproject.org/mt/93968127/1686489
+>>> Group Owner: yocto+owner@lists.yoctoproject.org
+>>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+>>> alex.kanavin@gmail.com]
+>>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>>>
+>>> --
+> Diese Nachricht wurde von meinem Android-Ger=C3=A4t mit K-9 Mail gesendet=
+.
+>
+
+--000000000000d2559705e9b88f78
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">I would first check whether any of that work in the branc=
+h has meanwhile landed upstream. The post is from 2021.</div><div dir=3D"au=
+to"><br></div><div dir=3D"auto">Have you tried the software Vulkan in the g=
+uest?</div><div dir=3D"auto"><br></div><div dir=3D"auto">Alex</div><div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed 28=
+. Sep 2022 at 10.21, PHIL &lt;<a href=3D"mailto:heideggm@hotmail.com">heide=
+ggm@hotmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:so=
+lid;padding-left:1ex;border-left-color:rgb(204,204,204)">
+<div>I try to enable vulkan according to this tutorial<br><br><a href=3D"ht=
+tps://www.collabora.com/news-and-blog/blog/2021/11/26/venus-on-qemu-enablin=
+g-new-virtual-vulkan-driver/" target=3D"_blank">https://www.collabora.com/n=
+ews-and-blog/blog/2021/11/26/venus-on-qemu-enabling-new-virtual-vulkan-driv=
+er/</a><br><br>According to the author the modified qemu branch is still ne=
+cessary so I want to enable that.</div><div><br><br><div class=3D"gmail_quo=
+te">Am 28. September 2022 10:14:24 MESZ schrieb Alexander Kanavin &lt;<a hr=
+ef=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.kanavin@gmail.c=
+om</a>&gt;:<blockquote class=3D"gmail_quote" style=3D"margin:0pt 0pt 0pt 0.=
+8ex;border-left-width:1px;border-left-style:solid;padding-left:1ex;border-l=
+eft-color:rgb(204,204,204)">
+<div dir=3D"auto">You need to clarify what you want to do exactly. Why can=
+=E2=80=99t you use the existing recipe?</div><div dir=3D"auto"><br></div><d=
+iv dir=3D"auto">Alex</div><div><br><div class=3D"gmail_quote"><div dir=3D"l=
+tr" class=3D"gmail_attr">On Wed 28. Sep 2022 at 9.58, Edgar Mobile &lt;<a h=
+ref=3D"mailto:heideggm@hotmail.com" target=3D"_blank">heideggm@hotmail.com<=
+/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;padding-left=
+:1ex;border-left-color:rgb(204,204,204)"><u></u>
 
 
+<div>Greetings,<br><br>I want to change the git repo url in order to test t=
+he Venus driver. Can someone tell me which variable in which recipe I&#39;d=
+ have to set?<br><br>Regards</div><div><div style=3D"white-space:pre-wrap">=
+<div>-- <br>Diese Nachricht wurde von meinem Android-Ger=C3=A4t mit K-9 Mai=
+l gesendet.</div></div></div><br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#58196): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/58196" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/58196</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/93968127/1686=
+489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
+/93968127/1686489</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.k=
+anavin@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div></div>
+</blockquote></div><div style=3D"white-space:pre-wrap"><div>-- <br>Diese Na=
+chricht wurde von meinem Android-Ger=C3=A4t mit K-9 Mail gesendet.</div></d=
+iv></div></blockquote></div></div>
+
+--000000000000d2559705e9b88f78--
 
