@@ -1,257 +1,255 @@
-Return-Path: <leimaohui@fujitsu.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9215EC07E9D
-	for <webhook@archiver.kernel.org>; Wed, 28 Sep 2022 01:29:45 +0000 (UTC)
-Received: from esa14.fujitsucc.c3s2.iphmx.com (esa14.fujitsucc.c3s2.iphmx.com
- [68.232.156.101])
- by mx.groups.io with SMTP id smtpd.web08.2938.1664328582078056506
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AA296C54EE9
+	for <webhook@archiver.kernel.org>; Wed, 28 Sep 2022 02:02:35 +0000 (UTC)
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com
+ [209.85.167.182])
+ by mx.groups.io with SMTP id smtpd.web11.3162.1664330551488277011
  for <yocto@lists.yoctoproject.org>;
- Tue, 27 Sep 2022 18:29:43 -0700
+ Tue, 27 Sep 2022 19:02:31 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@fujitsu.com header.s=fj1 header.b=eNABqeUb;
- spf=neutral (domain: fujitsu.com, ip: 68.232.156.101,
- mailfrom: leimaohui@fujitsu.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=fujitsu.com; i=@fujitsu.com; q=dns/txt; s=fj1;
-  t=1664328583; x=1695864583;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=/zFjsLvKfOEV1BXCbUjHJjh5jNfPI3Je7H1CDqLSpVI=;
-  b=eNABqeUbpqB8YD/ctjzE0qiaYQH8RU1aIQAsnhogN07i7FCmByzAmcTy
-   tDdt6ArBJ1BMa+rE2phfxQCjnb8EOOhChZOQOD5WkweY/Lv72XbhQMla3
-   rq8Q7oYP7CpIUc69GHKI+HKbeOHlcGYykbfuQcps4z9cKOT94PQgss0PE
-   KgvzIzwn4TIUfoK7IBAOLpAdF6AZ2ZzXOcBoWqYiBD33582GGsNPNQ7mD
-   8/JUonWM284xdvjvZhOOb2eqK1V0tMjJVtjTudWdVWMm/l0Eixzj51b7M
-   RrRlEje2D4x7rWtSLtAbUO+u9XtuH1VrNAjYHyrhu360PtwQ0PVTyGAc1
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10483"; a="65939942"
-X-IronPort-AV: E=Sophos;i="5.93,350,1654527600";
-   d="scan'208";a="65939942"
-Received: from mail-tycjpn01lp2177.outbound.protection.outlook.com (HELO
- JPN01-TYC-obe.outbound.protection.outlook.com) ([104.47.23.177])
-  by ob1.fujitsucc.c3s2.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2022 10:29:39 +0900
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RYVAAxhyJRjDAtas4w49inGeJxMy2mwRJJ2sDeXIKXV3HDaRYMhBHC+K8Lq/p1mrqvkHUibTkG8HO1nHbyjNpNOoJczYSqo/CXT513qBNNnGH9IzL4HDTTK0cVdLSswdt0DZnRgwMWX8cJPEreN3NSF0CjeIiOUvmAN6n44tF/leC41RD/tFcTdZKOLzLZoiG7VX2euijYrneWDtLIDslSWTI7po6ww9GVsKXxO0KmHUaHdqroO45VuQHEYFmhgGV/lPAhUSl/FX+KygxPJqxWA0rOBq9qVMFhGUJ+Olghg/faE/E22D1WoofRYf5telyzeMBjFADZmPvF/DgUMi6g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/zFjsLvKfOEV1BXCbUjHJjh5jNfPI3Je7H1CDqLSpVI=;
- b=PyRbss3pyR67lYo+C6F6E3GqAMO+oZoU/9UTeG1mSkSAQpWUN+6jxgLtRwlErrki3cZrqogMt9j8UuHo2P5/aapMJT6mhkDl+OptNrkZmOhqvjwAdSzo0UkXJGo/p8bjR0PtbP6p47hTEnEZdkNfKHLnzw97X3oYARI1IzWu9uMAnMn4ADz4/JRkYgj7vY5UcOLHQM+1oM40ETxWL1S7ppgDOgA91c7hb28jrNYhMU547a9NASb8lAxsCxLc69sUPcAIEGoDNFbDcSmQx0623p5PNxQZKnaSNFr6ZIQrYHPephD7pwhn6LxcWnmPNSjtdKyw4d2ZbsrYutaQr4BDmQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=fujitsu.com; dmarc=pass action=none header.from=fujitsu.com;
- dkim=pass header.d=fujitsu.com; arc=none
-Received: from OS0PR01MB6178.jpnprd01.prod.outlook.com (2603:1096:604:cd::13)
- by TYCPR01MB8503.jpnprd01.prod.outlook.com (2603:1096:400:15d::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.25; Wed, 28 Sep
- 2022 01:29:35 +0000
-Received: from OS0PR01MB6178.jpnprd01.prod.outlook.com
- ([fe80::e1e5:53e7:911:1668]) by OS0PR01MB6178.jpnprd01.prod.outlook.com
- ([fe80::e1e5:53e7:911:1668%5]) with mapi id 15.20.5676.017; Wed, 28 Sep 2022
- 01:29:35 +0000
-From: "leimaohui@fujitsu.com" <leimaohui@fujitsu.com>
-To: Martin Leduc <martin.leduc@luminator.com>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
-Subject: RE: [EXTERNAL] Re: [yocto] meta-spdxscanner
-Thread-Topic: [EXTERNAL] Re: [yocto] meta-spdxscanner
-Thread-Index: AdjDkApYzxHc3YO9SVOzQkaNTkr0QwN83yiQAAGfMeAAUu1j8A==
-Date: Wed, 28 Sep 2022 01:29:34 +0000
-Message-ID: 
- <OS0PR01MB61784F326D9164EEE0BBC99EA0549@OS0PR01MB6178.jpnprd01.prod.outlook.com>
-References: 
- <PA4P189MB1183671D8AA8D2859685348C96409@PA4P189MB1183.EURP189.PROD.OUTLOOK.COM>
- <OS0PR01MB6178419EDFEA4DD466F767AEA0529@OS0PR01MB6178.jpnprd01.prod.outlook.com>
- <PA4P189MB11836AC9C442A1C40CE6538096529@PA4P189MB1183.EURP189.PROD.OUTLOOK.COM>
-In-Reply-To: 
- <PA4P189MB11836AC9C442A1C40CE6538096529@PA4P189MB1183.EURP189.PROD.OUTLOOK.COM>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
- MSIP_Label_a7295cc1-d279-42ac-ab4d-3b0f4fece050_ActionId=21562af5-8238-45b3-a4e2-0ca6de4f1b93;MSIP_Label_a7295cc1-d279-42ac-ab4d-3b0f4fece050_ContentBits=0;MSIP_Label_a7295cc1-d279-42ac-ab4d-3b0f4fece050_Enabled=true;MSIP_Label_a7295cc1-d279-42ac-ab4d-3b0f4fece050_Method=Standard;MSIP_Label_a7295cc1-d279-42ac-ab4d-3b0f4fece050_Name=FUJITSU-RESTRICTED???;MSIP_Label_a7295cc1-d279-42ac-ab4d-3b0f4fece050_SetDate=2022-09-26T08:39:44Z;MSIP_Label_a7295cc1-d279-42ac-ab4d-3b0f4fece050_SiteId=a19f121d-81e1-4858-a9d8-736e267fd4c7;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=fujitsu.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OS0PR01MB6178:EE_|TYCPR01MB8503:EE_
-x-ms-office365-filtering-correlation-id: 8c9c34ed-502c-4a09-6cb7-08daa0f0e6c4
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- W3U+RIkYgaUnqEFdnUzAC/UKgltrSc1tdINFnhIvP0IqHzbsux1F8I0JJx+VcAWaIFiTqynpbF0rfWUGoDnGHqRPDGYbUcxCTeDr43Z2SqKkU/dSUCjbRM6bw+mZkEg/zXphrv9vJCBec63qB65g2mutTCSzFJ+jwyEkH2egj+m0Xs73ycznl+OpGyFM0TJhVBctmqdFkLYe2yUdw44uV4DqjA52ILEDj2hTTTyds2GQurvVthaDhkpmPlN7n7rSjBUzRV4Ql4IN5fEO5uY9/WhsNCSWG9DvFXUs4guGFe8K0/FoK4j0DfIdNdT7JfbxOtLgr39bCpV5IG3Nq0slHsx0AJhOXyVB0WIXxVsKfj8YF1qPr9Qomim1rmGEQ0esaxZRqCKq5Wn5F5hPmnuYJMk4jRWqQsHnln6iBxoV7OSRiS5jxD5lqMQTffyuThL1aR64rk9/fmFZUHjKxPGxNR9OwKHLtB/EBjVboEicV4Kjas9Tp32vavQNGu+VuyiQNc0XmuUfqY696IiniPmeF85skIQNX5Q81Kq9dme2c32PlbqvoTo+hZD+DIljvYN7mSf3tvdpNMingElRZZsNcWuVwArRArnIAK8RKSLpsUI+xQu1VpHLOmm7h4bRwInB8/aeLaDlXcrPisIKrQOjqlsmMkgQTc9d+wMD3RUE/G8wpeD5zb//MKC3giX0KJu6jElzgLT10LfNDtFLNdaJE2sl2XiDjk/QvUkr0N0iijzDfLzPPGky4GP8p531SMXTFoKemvbBawdqnA+lSHUzFf0+mcB25aYFegs6X6V+6ehR17YZHZA9Mkw0XHR0D9zU12IQ5JcANOp1IBmrC0gKokviQMHlWFN/iT3JZKuCe1Y=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB6178.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(39860400002)(346002)(136003)(376002)(396003)(1590799012)(451199015)(1580799009)(26005)(33656002)(85182001)(2906002)(40140700001)(122000001)(82960400001)(38100700002)(86362001)(66946007)(64756008)(52536014)(66476007)(966005)(38070700005)(66446008)(8936002)(5660300002)(66556008)(7696005)(76116006)(8676002)(316002)(83380400001)(110136005)(186003)(6506007)(53546011)(9686003)(71200400001)(55016003)(41300700001)(478600001)(18886065003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?VHpMU2tqb05kSzVoRXNYVmV6d0NIWE1BaGw2cFgyT0hoU252cXdtYlFWRWRW?=
- =?utf-8?B?Y0g3dnVjRmtNSEpFazMrcHBvWjB3SzBKejhNOUVQdnN2WU10UkJYem9CbXhq?=
- =?utf-8?B?Z2piejI3ZTFGUkE5S21ZVnBrcXM2L0ZiYUhkN0E3L1J5a3R2dzh6ZVhLMjRO?=
- =?utf-8?B?TkxwaTBtUjRrNmdNVTdpOG0zZmI2em1lWktyK0tJbUJwczQ0aS9OUlBSaURG?=
- =?utf-8?B?MTd6QWVMbHVub2RaWlJhM1YwNjhjeHR6ZDZzZEErWGZ6YkI3RDIweFpNdFlv?=
- =?utf-8?B?STVNRi8wU0V6Rks5THlpaEwxUUM0dFhsMmlSakZ4MUdjQ2V0TXVBalJxaHcr?=
- =?utf-8?B?RTROZnNueSszdjNGMHFISWxncTE3VnBhWFJGajA0UTl6MXQ1MTh3NHRSRlZ5?=
- =?utf-8?B?c2lWdHFybjFMbmNWSXZkNmxtekNWMGlxcmI3bWpWeFEycEovYTh5ZW1KZ0Rl?=
- =?utf-8?B?Y3hvL0YxQUVKYXZLWTJmMnliL0Z2ekhzb2J0STlDeHprMlZrNnFwVklkL1FR?=
- =?utf-8?B?eDJha0hmeGQyb3kxZEl5R0dFWlh4ZURuRk4zWkI4SDFwRXRzM2E2MkxLeWFq?=
- =?utf-8?B?cmtoTVB3NERuemZ6RWtEVkc0cFF5bmIvbXJKUStxdlFwK21vbWx6bWh6aE1q?=
- =?utf-8?B?NUxOMURBQWZnaTFMcWJZRFoyQkR5ZDJTMzhCWEFiS2U5UDcxRXhlUnlPNVM4?=
- =?utf-8?B?cjRnSmR5M2t2bUd6N0F3UjUwNTFGVjUvUG9CWW9jWm1zdE1QYWZtbVVNaWtL?=
- =?utf-8?B?RlRhQVpOWWFBeVk4V3oybXdGaWVtdFRnYXFZenRKWU1UQitTT0diRWx0Smhl?=
- =?utf-8?B?b2Y0L0hvM1pXOXFFMy9YbzQ1S0tubHhEMEc2K3Y2TlV0aHIyRDFlQVgyWFht?=
- =?utf-8?B?ZFN1Ui9pUDN3cVVGRU5rRXo0MU9KWFV6dnZUQWhYaXBTcDdxVjBVWWxxQkJn?=
- =?utf-8?B?NmpyZFI0dFg3V3A2aCtrR3hWejlYUW9xV3BXT1pCb3g3UnpxOG1BeUd2STk4?=
- =?utf-8?B?Q1gvdG02NjJJVlNWQnRWa0hvZzBWMHFScW5DTWFGMWFYS0VNUUdBS2ZPb0VB?=
- =?utf-8?B?eE10SUVGek0ra2lTRU1LVTl0Qm9RVGdENnczVm9EZFA0ZStTYTlXU2N2RERZ?=
- =?utf-8?B?Z1pQZ3QwaW0rRU5iMEZjV1Q4cS9ObmlPYUMzYi9DTDYyUW1WWC9kQ3VMNGls?=
- =?utf-8?B?bnNPQ3NSY0E0NDM3ZUl0MXdXbU05T2JvUHNENk9HRVI1OVVPdUVTRGVCK1pp?=
- =?utf-8?B?MUp2UjM0aW1UUHQrSWJnMTBWdFpyOWZVUVhFRGN0Q0h4SGVma3NJdUtJSnE5?=
- =?utf-8?B?STBLOHA0STRscElvSU1LNUo1WGdFc2VydzRBNVNZNXVMQ0tPSUhkRTBrZSsr?=
- =?utf-8?B?Nkl1aU54WmQ1ODRMdlRpOURaWUU5WEVYRHU1a042UG0vM056OE1hdCtOV2Uz?=
- =?utf-8?B?NVZoSlFzUjlQcC95OWVvZWlDRW5EVmg3NWxod2hhTUtnN0xvTzJRRXNKRmFE?=
- =?utf-8?B?NVFWcW4rNXNQeFozSnNGKzIrcFRrN2g1NWVHZ0U3RG5rTjlwYXpiKzJsa3pT?=
- =?utf-8?B?dDFGYXRhVll3N2xyTXFQRUliSE9UM0JHWmdmMDJ2OWFXbGw4UXZxd2J5cTND?=
- =?utf-8?B?TFhKYlRhZGdNb25seXlMSEE2eThXcUo2QWxXMVN0OHNzd0MrbkV4TnB0T2ZG?=
- =?utf-8?B?SEduS3lDRlBDaTBrczlOSk1PaTBtcSs1c1FwZmpEaTBSTHZvWGJFcnhrWHIz?=
- =?utf-8?B?dW9qbFFHRjRXaGVBcloxZENzS1ZJSVozR0IwVWFMaC9naUtRd3VJSUJzRTlG?=
- =?utf-8?B?NEdyYTJjcHZ3cXlVclU4Zy95NmdlZ1NUMzBmRm5UQWE5SldRSk5UeUZRUDVV?=
- =?utf-8?B?TDJJaGV3UDk5V3hWV2tqdUZzYXJzVkdZUU1zMFhSSjM3cFRhdFk1cmdNSlAv?=
- =?utf-8?B?RDQ4MGFmQjdsVFllRmV1aTRiSEZwSzM1bTZmK1NQUmc5MlhOSmRISlE5Z3dX?=
- =?utf-8?B?ZkV0WHNYSm1OWFZLZnh1OXZ6YWlBOGt3QzlRMllhZGdJc0xoQm9lNFIwa252?=
- =?utf-8?B?ZVhYRnY4aG5oSE9aS1dJak5WMTJQbEI5MWgxTi9LQW5MSGJEMjdZeU45aGJl?=
- =?utf-8?Q?+LU2kcO9HP9PUbvVAl0lUnwMM?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=Bq8y0Js2;
+ spf=pass (domain: gmail.com, ip: 209.85.167.182,
+ mailfrom: raj.khem@gmail.com)
+Received: by mail-oi1-f182.google.com with SMTP id o64so13867712oib.12
+        for <yocto@lists.yoctoproject.org>;
+ Tue, 27 Sep 2022 19:02:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=hOpEKXh1E/RLSKQ75Tl233J7lkVTzSBYKBNbpNiaUxA=;
+        b=Bq8y0Js2UNBcPrMw026aDa4sGsrhZNb9PcFXqppgHKVpNgT98plfaNP/C5g5uys+L+
+         AmPxfTclyMPrBkcaQT8XEwTeHwsrnmNuGyRFaLq1OVFtdvR1DH9DloPD11C4IRxopgdT
+         afD2AjR2Vyn4i1OzPBr9eUeCknpwh8r9yVi6ODWy6fH+pEQJ0GVLMacLcBFXfRh7tIE3
+         1PhT2NrsN6TXP4dkHWXnK0OJUKoRLNbrQyRW3vmdC4XW3kE8jx8uEym929MYHt79Yvcw
+         gzWkQORoJ25C+5rHON4awNfyx+yDa0CRmSgnkXlH2jj+IJcU26+XXohCUx1WN0Vmx1qo
+         XUyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=hOpEKXh1E/RLSKQ75Tl233J7lkVTzSBYKBNbpNiaUxA=;
+        b=ixsTfp5AhlZ09fRyTce4jL4KsMO8L4deUtiWKeUsIW29LHz2pwWs4HPz//jgx0rUIT
+         lyzFZwjOkqq55bb7VUieM0/KNgrccyZLZSDykwhInL5bv3rym7UGPBQCu+m9xvVescIb
+         9gD4hBhBXyZTq/B6XfCXygjC2PIq6qIQuG1jSpoLL2h7PogtTw7mWitxuXo4rd1Wm0Gw
+         nGLqxjK+WcBPAtwXd4kwOpyxjtE81VCr7u3HNqLwndu6YWy8KgY3i+AfhvWPHT/VermZ
+         BtZlkx+UNmWWlutMB7ZVmiI2KqdzHMBszsEVqRN+PRDVIxdLcLHF4KkFY5mwQS09j+c7
+         vDaw==
+X-Gm-Message-State: ACrzQf2ekmgfxQYS90OzWkrPojfLkkkFiJZfkqT5Yvw28j+m82pCkqly
+	ITDLnAH+FgQquwm1VCNAd8zs7iYFiuuZpfYe8Ik=
+X-Google-Smtp-Source: 
+ AMsMyM5ga9cm4qAbeokKpH7qjc8mPMXfIo9M/mWBvU3lMLIqeYfppSYld1oCCCClem73HbcS/jKA0v8PLTcXsly5+iQ=
+X-Received: by 2002:aca:ad8f:0:b0:350:8c87:c5be with SMTP id
+ w137-20020acaad8f000000b003508c87c5bemr3171430oie.55.1664330550592; Tue, 27
+ Sep 2022 19:02:30 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: fujitsu.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB6178.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 8c9c34ed-502c-4a09-6cb7-08daa0f0e6c4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Sep 2022 01:29:35.0105
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a19f121d-81e1-4858-a9d8-736e267fd4c7
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- qBCAIP46X/Osa9FxHIp2BuEDSGLA6YJ0YDsfzYlHkB3FK6TeXWSb6qczM2FEAzI0h1SBM9Ou8HiFmJZRKSpQHg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB8503
+References: 
+ <PH0PR84MB1835B452A0D3EC6E973596CAC7559@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+ <e7d7e080c94d78f6cf9711aa28ecdf484a9ee491.camel@linuxfoundation.org>
+ <PH0PR84MB183560163B152E0F72D6CA8EC7559@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+ <0124314022d5ab2c61ecdbe42819b6d5b9f2a950.camel@linuxfoundation.org>
+ <PH0PR84MB183582080EA5499AA5B93CF1C7559@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+In-Reply-To: 
+ <PH0PR84MB183582080EA5499AA5B93CF1C7559@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 27 Sep 2022 19:02:19 -0700
+Message-ID: 
+ <CAMKF1srEJ4D4=yYvygt49mWutmHErcKPtJhmDBp0MAEiCJk24Q@mail.gmail.com>
+Subject: Re: [yocto] Builing Gcc fails Poky
+To: Edgar Mobile <heideggm@hotmail.com>
+Cc: Richard Purdie <richard.purdie@linuxfoundation.org>,
+ yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000041cb6105e9b32711"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 28 Sep 2022 01:29:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58192
+ <yocto@lists.yoctoproject.org>; Wed, 28 Sep 2022 02:02:35 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58193
 
-SGksIE1hcnRpbg0KDQo+IElOSEVSSVQgKz0gImNyZWF0ZS1zcGR4Ig0KY3JlYXRlLXNwZHguYmJj
-bGFzcyBpcyBub3QgZnJvbSBtZXRhLXNwZHhzY2FubmVyLiBJdCBjb21lcyBmcm9tIHBva3kuIElm
-IHlvdSBoYXMgYW55IHF1ZXN0aW9ucyBhYm91dCBjcmVhdGUtc3BkeC5iYmNsYXNzLCBJIHRoaW5r
-IHlvdSBjYW4gc2VuZCBhIG1haWwgdG8gdGhlIE1MIG9mIG9lLWNvcmUgd2l0aCBhIHRpdGxlIG9m
-ICIgY3JlYXRlLXNwZHggIi4NCg0KTWV0YS1zcGR4c2Nhbm5lciBpcyBhIGxheWVyIG91dCBvZiBw
-b2t5LiBJZiB5b3Ugd2FudCB0byB1c2UgbWV0YS1zcGR4c2Nhbm5lciwgcGxlYXNlIHJlZmVyZW5j
-ZSB0byBodHRwczovL2dpdC55b2N0b3Byb2plY3Qub3JnL21ldGEtc3BkeHNjYW5uZXIvdHJlZS9S
-RUFETUUuDQpJIHN1Z2dlc3QgZm9zc29sb2d5LXB5dGhvbi5iYmNsYXNzLCBpdCB3b3JrcyBiZXN0
-Lg0KDQo+IEnigJl2ZSBhbHNvIGJ1aWx0IG9uZSBGb3Nzb2xvZ3kgc2VydmVyIGJ1dCBpdCBydW4g
-aG91cnMgYW5kIGhvdXJzIGFuZCBob3VycyB3aXRob3V0IGZpbmlzaGluZyB0aGUgcHJvZHVjZSB0
-aGUgcmVwb3J0IGFuZCB0aGUgcmVwb3J0cyBhcmUgbm90LCBmb3IgbXkgbmVlZHMsIGNvbXBsZXRl
-Lg0KWWVzLCBmb3Nzb2xvZ3kgc2VydmVyIGlzIG5vdCB2ZXJ5IGZhc3QgYmVjYXVzZSBpdCBoYXMg
-YSBsb3Qgd29yayAodW5wYWNrIHRhcmJhbGwsIHNjYW4gc291cmNlIGNvZGUgb25lIGJ5IG9uZS4u
-Lil0byBkbywgZXNwZWNpYWxseSBmb3IgcmVjaXBlcyB0aGF0IGhhdmUgaHVnZSBzb3VyY2UgY29k
-ZShzdWNoIGFzIGdjYywgYmludXRpbHMuLi4pLiANCklmIHlvdSB3YW50IHRvIGdldCBvbmUgc3Bk
-eCBmaWxlIGZvciBvbmUgcmVjaXBlLCBzdWNoIGFzICJiaXRiYWtlIGJ1c3lib3ggLWYgLWMgc3Bk
-eCIsIHlvdSBjYW4gdHJ5IHRvIHJlZHVjZSB0aGUgIldBSVRfVElNRSIgc2V0IGZvciBmb3Nzb2xv
-Z3ktcHl0aG9uLmJiY2xhc3MgaW4geW91ciBjb25mL2xvY2FsLmNvbmYuDQpCdXQgaWYgeW91IHdh
-biB0byBnZXQgYWxsIHNwZHggZmlsZXMgYnkgImJpdGJha2UgLS1ydW5hbGw9c3BkeCAkSU1BR0Vf
-RklMRSIsICJXQUlUX1RJTUUiIGlzIGJldHRlciB0byBiZSBzZXQgYSBsYWdlciB2YWx1ZS4gQmVj
-YXVzZSBmb3Nzb2xvZ3kgc2VydmVyIGhhcyB0byBoYW5kbGUgbXVsdGkgdGFza3MgYXQgdGhlIHNh
-bWUgdGltZS4NCkFuZCB0aGVyZSBhcmUgdGltZXMgeW91IGhhdmUgdG8gcmVib290IGZvc3NvbG9n
-eSBzZXJ2ZXIgaWYgaXQgc3RvcHMgd29ya2luZy4gSXQgZGVwZW5kcyBvbiB5b3VyIG1hY2hpbmUg
-cGVyZm9ybWFuY2UuDQoNCg0KQmVzdCByZWdhcmRzDQpMZWkNCg0KDQpGcm9tOiBNYXJ0aW4gTGVk
-dWMgPG1hcnRpbi5sZWR1Y0BsdW1pbmF0b3IuY29tPiANClNlbnQ6IE1vbmRheSwgU2VwdGVtYmVy
-IDI2LCAyMDIyIDk6MzkgUE0NClRvOiBMZWksIE1hb2h1aSA8bGVpbWFvaHVpQGZ1aml0c3UuY29t
-PjsgeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUkU6IFtFWFRFUk5BTF0g
-UmU6IFt5b2N0b10gbWV0YS1zcGR4c2Nhbm5lcg0KDQpIaSBMZWksDQoNClllcywgdGhlIGlzc3Vl
-IGlzIGZpeGVkIGJ5IGRvaW5nIHRoZSBhY3Rpb25zIGRlZmluZWQgaW50byBodHRwczovL3N0YWNr
-b3ZlcmZsb3cuY29tL3F1ZXN0aW9ucy82OTg1ODk2My9ob3ctY2FuLW9uZS1mdWxseS1yZXBsYWNl
-LWRpc3R1dGlscy13aGljaC1pcy1kZXByZWNhdGVkLWluLTMtMTAgOg0KDQpSZXBsYWNlDQpmcm9t
-IGRpc3R1dGlscy5jb3JlIGltcG9ydCBzZXR1cA0Kd2l0aA0KZnJvbSBzZXR1cHRvb2xzIGltcG9y
-dCBzZXR1cA0KDQppbnRvIC4uL3RtcC93b3JrL3g4Nl82NC1saW51eC9weXRob24zLXBhdGNoLW5h
-dGl2ZS8xLjE2LXIwL3BhdGNoLTEuMTYvc2V0dXAucHkNCg0KVGhlIG91dHB1dCBpcyBub3QgcmVh
-bGx5IHVzZWZ1bCBhdCB0aGUgbW9tZW50IGJlY2F1c2UgaXQgY3Jhc2ggYWZ0ZXIgaG91cnMgb2Yg
-Y29tcHV0aW5nIGZvciB0aGUga2VybmVsIGFuZCBzb21lIG90aGVyIHBhY2thZ2VzLg0KDQpBY3R1
-YWxseSwgSeKAmXZlIG1hZGUgYSB3b3JrYXJvdW5kIHRvIG15IHByb2JsZW1zIGJ5IG1ha2luZyBh
-IFBIUCBzY3JpcHQgcGFyc2luZyB0aGUgWW9jdG8gU1BEWCBvdXRwdXQgYnV0IGl04oCZcyBub3Qg
-ZW5vdWdoLg0KSU5IRVJJVCArPSAiY3JlYXRlLXNwZHgiDQoNCk15IGlkZWEgaXM6IEkgZG8gbm90
-IHVzZSB0aGUgc2NhbmNvZGUtdGsgYXMgZXhwZWN0ZWQuIA0KDQpJ4oCZdmUgYWxzbyBidWlsdCBv
-bmUgRm9zc29sb2d5IHNlcnZlciBidXQgaXQgcnVuIGhvdXJzIGFuZCBob3VycyBhbmQgaG91cnMg
-d2l0aG91dCBmaW5pc2hpbmcgdGhlIHByb2R1Y2UgdGhlIHJlcG9ydCBhbmQgdGhlIHJlcG9ydHMg
-YXJlIG5vdCwgZm9yIG15IG5lZWRzLCBjb21wbGV0ZS4NCg0KSWYgeW91IGhhdmUgYW55IGlucHV0
-IGVsc2UgdGhhbiBpdOKAmXMgZGVmaW5lZCBpbiB0aGUgUkVBRE1FLCBpdCB3aWxsIGJlIHJlYWxs
-eSBpbnRlcmVzdGluZy4NCg0KVGhhbmsgeW91IGZvciB5b3VyIGhlbHAuDQoNCg0KTWFydGluIExl
-ZHVjDQpUwqA6ICg0MTgpIDg1Ni02ODk2DQptYWlsdG86bWFydGluLmxlZHVjQGF4aW9udGVjaC5j
-YQ0KDQoNCkRlwqA6IG1haWx0bzp5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIDxtYWlsdG86
-eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gRGUgbGEgcGFydCBkZSBsZWltYW9odWkNCkVu
-dm95w6nCoDogMjYgc2VwdGVtYnJlIDIwMjIgMDQ6NDUNCsOAwqA6IE1hcnRpbiBMZWR1YyA8bWFp
-bHRvOm1hcnRpbi5sZWR1Y0BsdW1pbmF0b3IuY29tPjsgbWFpbHRvOnlvY3RvQGxpc3RzLnlvY3Rv
-cHJvamVjdC5vcmcNCk9iamV0wqA6IFtFWFRFUk5BTF0gUmU6IFt5b2N0b10gbWV0YS1zcGR4c2Nh
-bm5lcg0KDQpDQVVUSU9OOiBUaGlzIGVtYWlsIG9yaWdpbmF0ZWQgZnJvbSBvdXRzaWRlIG9mIEx1
-bWluYXRvciBUZWNobm9sb2d5IEdyb3VwLiBEbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRh
-Y2htZW50cyB1bmxlc3MgeW91IHJlY29nbml6ZSB0aGUgc2VuZGVyIGFuZCBrbm93IHRoZSBjb250
-ZW50IGlzIHNhZmUuDQpIaSwNCg0KSeKAmW0gc29ycnkgZm9yIGxhdGUgcmVwbHkuDQoNCklzIHRo
-aXMgaXNzdWUgcmVzb2x2ZWQ/IElmIG5vdCwgY2FuIHlvdSB0ZWxsIG1lIHdoaWNoIGNsYXNzIHlv
-dSBhcmUgdXNpbmc/IEkgY2Fu4oCZdCBnZXQgZW5vdWdoIGluZm9ybWF0aW9uIGZyb20geW91ciBs
-b2cuDQpJdCB3aWxsIGJlIGJldHRlciBpZiB5b3Ugc3VwcGx5IHRoZSBzZXR0aW5nIGFib3V0IGVu
-YWJsZSBtZXRhLXNwZHhzY2FubmVyIGluIGxvY2FsLmNvbmYuDQoNCkJlc3QgcmVnYXJkcw0KTGVp
-DQoNCg0KRnJvbTogbWFpbHRvOnlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcgPG1haWx0bzp5
-b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPiBPbiBCZWhhbGYgT2YgTWFydGluIExlZHVjIHZp
-YSBsaXN0cy55b2N0b3Byb2plY3Qub3JnDQpTZW50OiBUaHVyc2RheSwgU2VwdGVtYmVyIDgsIDIw
-MjIgMTA6NDAgUE0NClRvOiBtYWlsdG86eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KU3Vi
-amVjdDogW3lvY3RvXSBtZXRhLXNwZHhzY2FubmVyDQoNCkhpIENvbW11bml0eSwNCg0KSeKAmW0g
-ZmFjaW5nIHRvIGFuIGlzc3VlIHdpdGggbWV0YS1zcGR4c2Nhbm5lci5iYmNsYXNzLsKgIEEgUHl0
-aG9uIFdhcm5pbmcgZmFpbCB0aGUgYnVpbGQuwqAgVGhpcyBpcyB0aGUgZXJyb3I6DQoNCkVSUk9S
-OiBweXRob24zLXBhdGNoLW5hdGl2ZS0xLjE2LXIwIGRvX2NvbXBpbGU6ICdweXRob24zIHNldHVw
-LnB5IGJkaXN0X3doZWVsICcgZXhlY3V0aW9uIGZhaWxlZC4NCkVSUk9SOiBweXRob24zLXBhdGNo
-LW5hdGl2ZS0xLjE2LXIwIGRvX2NvbXBpbGU6IEV4ZWN1dGlvbkVycm9yKCcvaG9tZS9tbGVkdWMv
-MTA4Ny8xMDg3LU5JTS9idWlsZC1zZGsvdG1wL3dvcmsveDg2XzY0LWxpbnV4L3B5dGhvbjMtcGF0
-Y2gtbmF0aXZlLzEuMTYtcjAvdGVtcC9ydW4uZG9fY29tcGlsZS4zMDU4OTg1JywgMSwgTm9uZSwg
-Tm9uZSkNCkVSUk9SOiBMb2dmaWxlIG9mIGZhaWx1cmUgc3RvcmVkIGluOiAvaG9tZS9tbGVkdWMv
-MTA4Ny8xMDg3LU5JTS9idWlsZC1zZGsvdG1wL3dvcmsveDg2XzY0LWxpbnV4L3B5dGhvbjMtcGF0
-Y2gtbmF0aXZlLzEuMTYtcjAvdGVtcC9sb2cuZG9fY29tcGlsZS4zMDU4OTg1DQpMb2cgZGF0YSBm
-b2xsb3dzOg0KfCBERUJVRzogRXhlY3V0aW5nIHNoZWxsIGZ1bmN0aW9uIGRvX2NvbXBpbGUNCnwg
-L2hvbWUvbWxlZHVjLzEwODcvMTA4Ny1OSU0vYnVpbGQtc2RrL3RtcC93b3JrL3g4Nl82NC1saW51
-eC9weXRob24zLXBhdGNoLW5hdGl2ZS8xLjE2LXIwL3BhdGNoLTEuMTYvc2V0dXAucHk6MTogRGVw
-cmVjYXRpb25XYXJuaW5nOiBUaGUgZGlzdHV0aWxzIHBhY2thZ2UgaXMgZGVwcmVjYXRlZCBhbmQg
-c2xhdGVkIGZvciByZW1vdmFsIGluIFB5dGhvbiAzLjEyLiBVc2Ugc2V0dXB0b29scyBvciBjaGVj
-ayBQRVAgNjMyIGZvciBwb3RlbnRpYWwgYWx0ZXJuYXRpdmVzDQp8wqDCoCBmcm9tIGRpc3R1dGls
-cy5jb3JlIGltcG9ydCBzZXR1cA0KfCB1c2FnZTogc2V0dXAucHkgW2dsb2JhbF9vcHRzXSBjbWQx
-IFtjbWQxX29wdHNdIFtjbWQyIFtjbWQyX29wdHNdIC4uLl0NCnzCoMKgwqAgb3I6IHNldHVwLnB5
-IC0taGVscCBbY21kMSBjbWQyIC4uLl0NCnzCoMKgwqAgb3I6IHNldHVwLnB5IC0taGVscC1jb21t
-YW5kcw0KfMKgwqDCoCBvcjogc2V0dXAucHkgY21kIC0taGVscA0KfCANCnwgZXJyb3I6IGludmFs
-aWQgY29tbWFuZCAnYmRpc3Rfd2hlZWwnDQp8IEVSUk9SOiAncHl0aG9uMyBzZXR1cC5weSBiZGlz
-dF93aGVlbCAnIGV4ZWN1dGlvbiBmYWlsZWQuDQp8IFdBUk5JTkc6IC9ob21lL21sZWR1Yy8xMDg3
-LzEwODctTklNL2J1aWxkLXNkay90bXAvd29yay94ODZfNjQtbGludXgvcHl0aG9uMy1wYXRjaC1u
-YXRpdmUvMS4xNi1yMC90ZW1wL3J1bi5kb19jb21waWxlLjMwNTg5ODU6MTc3IGV4aXQgMSBmcm9t
-ICdleGl0IDEnDQp8IFdBUk5JTkc6IEJhY2t0cmFjZSAoQkIgZ2VuZXJhdGVkIHNjcmlwdCk6DQp8
-IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgIzE6IGJiZmF0YWxfbG9nLCAvaG9tZS9tbGVkdWMvMTA4
-Ny8xMDg3LU5JTS9idWlsZC1zZGsvdG1wL3dvcmsveDg2XzY0LWxpbnV4L3B5dGhvbjMtcGF0Y2gt
-bmF0aXZlLzEuMTYtcjAvdGVtcC9ydW4uZG9fY29tcGlsZS4zMDU4OTg1LCBsaW5lIDE3Nw0KfCDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgICMyOiBzZXR1cHRvb2xzM19kb19jb21waWxlLCAvaG9tZS9t
-bGVkdWMvMTA4Ny8xMDg3LU5JTS9idWlsZC1zZGsvdG1wL3dvcmsveDg2XzY0LWxpbnV4L3B5dGhv
-bjMtcGF0Y2gtbmF0aXZlLzEuMTYtcjAvdGVtcC9ydW4uZG9fY29tcGlsZS4zMDU4OTg1LCBsaW5l
-IDE2Nw0KfCDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICMzOiBkb19jb21waWxlLCAvaG9tZS9tbGVk
-dWMvMTA4Ny8xMDg3LU5JTS9idWlsZC1zZGsvdG1wL3dvcmsveDg2XzY0LWxpbnV4L3B5dGhvbjMt
-cGF0Y2gtbmF0aXZlLzEuMTYtcjAvdGVtcC9ydW4uZG9fY29tcGlsZS4zMDU4OTg1LCBsaW5lIDE1
-Ng0KfCDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICM0OiBtYWluLCAvaG9tZS9tbGVkdWMvMTA4Ny8x
-MDg3LU5JTS9idWlsZC1zZGsvdG1wL3dvcmsveDg2XzY0LWxpbnV4L3B5dGhvbjMtcGF0Y2gtbmF0
-aXZlLzEuMTYtcjAvdGVtcC9ydW4uZG9fY29tcGlsZS4zMDU4OTg1LCBsaW5lIDE4MQ0KRVJST1I6
-IFRhc2sgKHZpcnR1YWw6bmF0aXZlOi9ob21lL21sZWR1Yy8xMDg3LzEwODctTklNL3NvdXJjZXMv
-bWV0YS1zcGR4c2Nhbm5lci9yZWNpcGVzLWRldnRvb2xzL3B5dGhvbi9weXRob24zLXBhdGNoXzEu
-MTYuYmI6ZG9fY29tcGlsZSkgZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJw0KDQpBbnkgcGF0Y2gg
-b3IgYXBwcm9hY2ggdG8gZml4IHRoaXM/DQoNCknigJltIHVzaW5nIFlvY3RvIEtpcmtzdG9uZQ0K
-DQpBbnkgaGVscCB3aWxsIGJlIGFwcHJlY2lhdGVkDQoNCk1hcnRpbiBMZWR1Yw0KU3VwZXJ2aXNl
-dXIgbG9naWNpZWwgcGxhdGZvcm1lLCBSYWlsDQpMdW1pbmF0b3IgVGVjaG5vbG9neSBHcm91cA0K
-VMKgOiAxwqA0MTggODU2LTY4OTYNCm1haWx0bzptYXJ0aW4ubGVkdWNAYXhpb250ZWNoLmNhDQpo
-dHRwOi8vd3d3Lmx1bWluYXRvci5jb20vDQoNCg==
+--00000000000041cb6105e9b32711
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Sep 27, 2022 at 3:41 PM Edgar Mobile <heideggm@hotmail.com> wrote:
+
+> Yeah building gcc alone worked.
+> Now I'm concerned about the health of my machine.
+> Thank you!
+>
+
+
+Your machine is fine I think bitbake is extremely parallel and that might
+be issue that it=E2=80=99s eating up all the memory. How many cores does th=
+is
+machine have? And ram ? Usually it=E2=80=99s good to keep 3-4gb ram per cor=
+e for
+default operations you can also pin how much parallels tasks and -j
+settings bitbake should use during build look for PARALLEL_MAKE
+documentation
+
+>
+>
+> Am 27. September 2022 21:02:40 MESZ schrieb Richard Purdie <
+> richard.purdie@linuxfoundation.org>:
+>>
+>> On Tue, 2022-09-27 at 20:51 +0200, PHIL wrote:
+>>
+>>> Am 27. September 2022 20:40:31 MESZ schrieb Richard Purdie
+>>> <richard.purdie@linuxfoundation.org>:
+>>>
+>>>> On Tue, 2022-09-27 at 18:11 +0200, Edgar Mobile wrote:
+>>>>
+>>>>> Greetings,
+>>>>> Trying to build core-image-weston from current master fails for
+>>>>> gcc
+>>>>> 12.2.0-r0 with lots of linker errors.
+>>>>>
+>>>>> Names of missing functions are strange ala gen_cmulvnx16qi3.
+>>>>> In insn-output.o
+>>>>>
+>>>>> System is an ubuntu 22.04.1 LTS Build Target is qemuarm64
+>>>>>
+>>>>>
+>>>> We build that regularly on the autobuilder so something seems odd
+>>>> here.
+>>>> Could your machine have memory issues? Do you get the same issue
+>>>> each
+>>>> time you build?
+>>>>
+>>>
+>>>  What do you mean with memory issues? Memory broken? Not enough
+>>>  memory? The errors are the same on every run of course I don't build
+>>>  from scratch I just retype bitbake core-image-weston. Gdb also failed
+>>>  so I took that out.
+>>>
+>>
+>> I mean that the build system places more stress on the system than many
+>> other workloads and we've sometimes see gcc failures like this as a
+>> sign of failing system memory. Running memtest86 might show that up.
+>>
+>> If recipe X is failing and you "bitbake X -c clean" and then "bitbake
+>> X" and it doesn't fail the same way, that would be a sure sign of
+>> memory failure or another hardware issue.
+>>
+>> You can see here:
+>>
+>> https://autobuilder.yoctoproject.org/typhoon/#/workers
+>>
+>> we have Ubuntu 22.04 workers in the autobuilder and we build qemuarm64
+>> here:
+>>
+>> https://autobuilder.yoctoproject.org/typhoon/#/builders/42
+>> https://autobuilder.yoctoproject.org/typhoon/#/builders/131
+>> https://autobuilder.yoctoproject.org/typhoon/#/builders/127
+>>
+>> so this combination is well tested which is why I suspect something
+>> else is wrong.
+>>
+>> Cheers,
+>>
+>> Richard
+>>
+>> --
+> Diese Nachricht wurde von meinem Android-Ger=C3=A4t mit K-9 Mail gesendet=
+.
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#58191):
+> https://lists.yoctoproject.org/g/yocto/message/58191
+> Mute This Topic: https://lists.yoctoproject.org/mt/93953325/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> raj.khem@gmail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
+
+--00000000000041cb6105e9b32711
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Tue, Sep 27, 2022 at 3:41 PM Edgar Mobile &lt;<a href=3D=
+"mailto:heideggm@hotmail.com">heideggm@hotmail.com</a>&gt; wrote:<br></div>=
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+<div>Yeah building gcc alone worked.<br>Now I&#39;m concerned about the hea=
+lth of my machine.<br>Thank you!</div></blockquote><div dir=3D"auto"><br></=
+div><div dir=3D"auto"><br></div><div dir=3D"auto">Your machine is fine I th=
+ink bitbake is extremely parallel and that might be issue that it=E2=80=99s=
+ eating up all the memory. How many cores does this machine have? And ram ?=
+ Usually it=E2=80=99s good to keep 3-4gb ram per core for default operation=
+s you can also pin how much parallels tasks and -j settings bitbake should =
+use during build look for PARALLEL_MAKE documentation=C2=A0</div><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc sol=
+id;padding-left:1ex"><div dir=3D"auto"></div><div><br><br><div class=3D"gma=
+il_quote">Am 27. September 2022 21:02:40 MESZ schrieb Richard Purdie &lt;<a=
+ href=3D"mailto:richard.purdie@linuxfoundation.org" target=3D"_blank">richa=
+rd.purdie@linuxfoundation.org</a>&gt;:<blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0pt 0pt 0pt 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex">
+<pre dir=3D"auto">On Tue, 2022-09-27 at 20:51 +0200, PHIL wrote:<br><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0pt 0pt 1ex 0.8ex;border-left:1p=
+x solid #729fcf;padding-left:1ex">Am 27. September 2022 20:40:31 MESZ schri=
+eb Richard Purdie<br>&lt;<a href=3D"mailto:richard.purdie@linuxfoundation.o=
+rg" target=3D"_blank">richard.purdie@linuxfoundation.org</a>&gt;:<br><block=
+quote class=3D"gmail_quote" style=3D"margin:0pt 0pt 1ex 0.8ex;border-left:1=
+px solid #ad7fa8;padding-left:1ex">On Tue, 2022-09-27 at 18:11 +0200, Edgar=
+ Mobile wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0pt 0pt=
+ 1ex 0.8ex;border-left:1px solid #8ae234;padding-left:1ex">Greetings,<br>Tr=
+ying to build core-image-weston from current master fails for<br>gcc<br>12.=
+2.0-r0 with lots of linker errors.<br><br>Names of missing functions are st=
+range ala gen_cmulvnx16qi3.<br>In insn-output.o<br><br>System is an ubuntu =
+22.04.1 LTS Build Target is qemuarm64<br><br></blockquote><br>We build that=
+ regularly on the autobuilder so something seems odd<br>here.<br>Could your=
+ machine have memory issues? Do you get the same issue<br>each<br>time you =
+build?<br></blockquote><br> What do you mean with memory issues? Memory bro=
+ken? Not enough<br> memory? The errors are the same on every run of course =
+I don&#39;t build<br> from scratch I just retype bitbake core-image-weston.=
+ Gdb also failed<br> so I took that out. <br></blockquote><br>I mean that t=
+he build system places more stress on the system than many<br>other workloa=
+ds and we&#39;ve sometimes see gcc failures like this as a<br>sign of faili=
+ng system memory. Running memtest86 might show that up.<br><br>If recipe X =
+is failing and you &quot;bitbake X -c clean&quot; and then &quot;bitbake<br=
+>X&quot; and it doesn&#39;t fail the same way, that would be a sure sign of=
+<br>memory failure or another hardware issue.<br><br>You can see here:<br><=
+br><a href=3D"https://autobuilder.yoctoproject.org/typhoon/#/workers" targe=
+t=3D"_blank">https://autobuilder.yoctoproject.org/typhoon/#/workers</a><br>=
+<br>we have Ubuntu 22.04 workers in the autobuilder and we build qemuarm64<=
+br>here:<br><br><a href=3D"https://autobuilder.yoctoproject.org/typhoon/#/b=
+uilders/42" target=3D"_blank">https://autobuilder.yoctoproject.org/typhoon/=
+#/builders/42</a><br><a href=3D"https://autobuilder.yoctoproject.org/typhoo=
+n/#/builders/131" target=3D"_blank">https://autobuilder.yoctoproject.org/ty=
+phoon/#/builders/131</a><br><a href=3D"https://autobuilder.yoctoproject.org=
+/typhoon/#/builders/127" target=3D"_blank">https://autobuilder.yoctoproject=
+.org/typhoon/#/builders/127</a><br><br>so this combination is well tested w=
+hich is why I suspect something<br>else is wrong.<br><br>Cheers,<br><br>Ric=
+hard<br></pre></blockquote></div></div><div><div style=3D"white-space:pre-w=
+rap"><div>-- <br>Diese Nachricht wurde von meinem Android-Ger=C3=A4t mit K-=
+9 Mail gesendet.</div></div></div><br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+You automatically follow any topics you start or reply to.<br>
+View/Reply Online (#58191): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/58191" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/58191</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/93953325/1997=
+914" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
+/93953325/1997914</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@g=
+mail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div></div>
+
+--00000000000041cb6105e9b32711--
 
