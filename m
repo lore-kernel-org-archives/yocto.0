@@ -2,41 +2,41 @@ Return-Path: <heideggm@hotmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5095FC04A95
-	for <webhook@archiver.kernel.org>; Wed, 28 Sep 2022 17:59:40 +0000 (UTC)
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (NAM10-DM6-obe.outbound.protection.outlook.com [40.92.41.36])
- by mx.groups.io with SMTP id smtpd.web11.1047.1664387978844333068
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 88197C433F5
+	for <webhook@archiver.kernel.org>; Thu, 29 Sep 2022 10:28:25 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (NAM10-MW2-obe.outbound.protection.outlook.com [40.92.42.104])
+ by mx.groups.io with SMTP id smtpd.web12.8684.1664447304200596847
  for <yocto@lists.yoctoproject.org>;
- Wed, 28 Sep 2022 10:59:39 -0700
+ Thu, 29 Sep 2022 03:28:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@hotmail.com header.s=selector1 header.b=f4pR6wQT;
- spf=pass (domain: hotmail.com, ip: 40.92.41.36,
+ dkim=pass header.i=@hotmail.com header.s=selector1 header.b=tUxZU/bp;
+ spf=pass (domain: hotmail.com, ip: 40.92.42.104,
  mailfrom: heideggm@hotmail.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PjdqOdjwpvfp7APU1zOH+XplNa9iV7kD1KBDft4Xqpu50wqlP6Ojzf6jDLIichO7tuS1bTeVz2aLuN+ALihzkptriNKvOr4KeAh0oCgv+qRHw+V5lPi3yJTDTFn/vCOTznPaCuYujSEZZyRucqXNI5lomlUT6hQ6FFwNRsyLo55T7/jQp+57b4nKAmF71b1pS6qIhXgzYch1/ZVx2MQ4qkO3nRcPC6WAFliS+LBB4Kp5Tn2CNeZ8esbginvT5rIynssIpvBewBn1Ut/0HJt4vTrc3lObifHGVpaFJ34f13P/HMFRCwET+AC+IrndW5PjY0NehyhiMysiWeyp2B7O2A==
+ b=bA29P9Fpd2YGj2gsaaxV/8QqBek7QGv6zSRYyqp9VihcnTJ3ietwPu96l2sRVqVIGlL9GDvb5pLWEn2K+MXBtQ6jgGcwlTiyp40mEziU4luakgiTY4enOTu6LdWOquk8lQB/k4EAT2zV3Q0oNxAE7fnc/7w7lhwKcbwYCv6qyblEH4tzgRIFpAOcFfyj+YtdIp0cHKGazJ2A/sFS+w4t1GV300Ba1z9pXfxmG3tJ2YRA0pJe0FB3szsCAKF6sEf6Q5J+gazlOsP9sIyAtyeiezP4dSBelzq5ksImQ4G3LSyDPjO2NqmzAHlx7jjXyLa9ogEFv1A5PCPjPZKu6mArVA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EwYWlYQvN0XXNUqb2nnrgxI5Zrz+V8YRlzaaZvUyxcc=;
- b=aoM5EaQ9KmmyI8XvAFbe82w2z+rslGRr9Wgw919VvPZsF9uSs8+RyGQNVvGh/e/7yVURl37txoUaSVdqPOJdTel3wJ4TxygXowspryrIEiMHxN3FLujYATRioRld33WG8NAoJ8nHt093Ms3jcJpKqG+BvFRnghFl2nT+CcvrlFfVhgRlohFagPk819k4Bda5nBTebozYWkdbr6BwQFUwCwGQji8ffQ5jIIWSXvCweY+tqpOuzbTwKtTbMo50dgW0w8c3/LIygwgMk53BrRKLckVxLsVTT6+boC3yrLg1q7bRaI8WpZcQn+gxSnS6XF6OqY9u2GHKq218r6fRPr72CQ==
+ bh=kwIOvmBwv+CIrIYaQJXUprx61v5W+nSDGULgiNBFtx8=;
+ b=T/jLh2O1Or7l6mBUCJ+cAWIfN8IbSXHdIA37GJ2+zcnbzHRIORvAZk3eMeYatTvY7iz1DzdqGsK5geWaK0cSmhxwWmLYS+u6FyiWeWx1xwOBUb4NJeeVciDgAHCshex9vZrdynIM8A4JSXo8tu4ECUSuoFUhfaj0hrPBASLVyT2Y/mTX10OFDw0o1bc/9FCMwrcg9dDEna/6zcVuhoxBs8E239tHw8+05rE6D7xoHBLeNs3umiknOhRVfiIB/SJ1nq+SmsY6iiyhxBG/UAddbMpMgYtUsNDpLfvX6BoKelawP5e7VtgLBCUUALNraIjT/PopBvG5qUMINOXZIN9GKg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
  dkim=none; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EwYWlYQvN0XXNUqb2nnrgxI5Zrz+V8YRlzaaZvUyxcc=;
- b=f4pR6wQT9ayq+VhycFJKBQdfW5QTPfz1OgBxg+8IKEv4KIi+WWj6QiHryM34nRmsClx0i0CZVjY1PVRlk1tjv3a5fguXI/InvvlI0NS89VusoTF+GkG5wWIncyUp20nRH9QzA2FV8Fs/Py4NPv6qH+NN6WycwpWcMRnDSN9ZvIBDUH6dyNsL1zHgiydwuKYF2pZ7MqG2UAhX1iEPneWtbacpMxi5RZNdEMC7vz7csxZRTijTds+C+dYPKpfj6w+8ETBqy1xZhqhDh9LncSUyCsYQTo5VckHOlnf+F01CQZIQGCzYP2wWmnBOQbSaxXHd7S5ZLFeZRNKjN+lhaxKDKQ==
+ bh=kwIOvmBwv+CIrIYaQJXUprx61v5W+nSDGULgiNBFtx8=;
+ b=tUxZU/bpEpGZLF95cBnA64+fwBeNJQ45VjvZmJ9PG47Mr2lDXmoczjeoYbMv8GVgzSMwexbDnoeylIfXO3CINzfE+8oWK2IFIft4rHROmIY7BdDwCgI4Lbb5q+KDdgrunVpUkpqATI2tkzlowpBN4MpAqO2iVjTrA6qNkV86+ShKJPTseQ5DA4ep3fZCsroCDC32nW0Q44WU6i7HIFIKZi1s1+9kyPLbvuECBRZzUHmlvFtFHwKOzFs7LokUAIaYI+1fayg2am9IIfi9X7jUlmLWsoAAaMgZo5E3wVwqvpH9/jl1XBCLeiKanqqHpI6iFFxBvSLIGwWRlZ00FMaH3A==
 Received: from PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:510:162::16)
- by MW5PR84MB1817.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:303:1c3::7) with
+ by PH7PR84MB1656.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:510:153::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.25; Wed, 28 Sep
- 2022 17:59:36 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.24; Thu, 29 Sep
+ 2022 10:28:21 +0000
 Received: from PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM
  ([fe80::3a10:f0a6:51fa:ae01]) by PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM
- ([fe80::3a10:f0a6:51fa:ae01%5]) with mapi id 15.20.5676.017; Wed, 28 Sep 2022
- 17:59:36 +0000
-Date: Wed, 28 Sep 2022 19:59:30 +0200
+ ([fe80::3a10:f0a6:51fa:ae01%5]) with mapi id 15.20.5676.017; Thu, 29 Sep 2022
+ 10:28:21 +0000
+Date: Thu, 29 Sep 2022 12:28:15 +0200
 From: PHIL <heideggm@hotmail.com>
 To: Alexander Kanavin <alex.kanavin@gmail.com>
 CC: Yocto-mailing-list <yocto@lists.yoctoproject.org>
@@ -56,80 +56,87 @@ References:
  <PH0PR84MB1835BB630C385390A43FDDC9C7549@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
  <CANNYZj-ttajWfcN+EhgFUjxtK4rvPzkGpwyQoa=tRMP7Mo7hDA@mail.gmail.com>
 Message-ID: 
- <PH0PR84MB1835DF17A786B6B2B86C17C5C7549@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
+ <PH0PR84MB183597EAA65D8009C257BFFBC7579@PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM>
 Content-Type: multipart/alternative;
- boundary=----V1T5J6Y2NATWGY8F9LIGKN8MUVX352
+ boundary=----E7TF6I4SIR5DGL3MCKSK0GZ24W4G5G
 Content-Transfer-Encoding: 7bit
-X-TMN: [75ZaCrDo3Dapl48HhJYZGCFicw/OCYan]
-X-ClientProxiedBy: FR0P281CA0126.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:97::6) To PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM
+X-TMN: [yphxZMB7CchsqMNu2K2+QzyBO0iq8n4/]
+X-ClientProxiedBy: FR0P281CA0096.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:a9::9) To PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM
  (2603:10b6:510:162::16)
 X-Microsoft-Original-Message-ID: 
- <B701AF6C-64E9-4EB9-882C-27053AD8B8F9@hotmail.com>
+ <B6A55C4B-7072-45D9-A65F-F0CAA3343812@hotmail.com>
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR84MB1835:EE_|MW5PR84MB1817:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8680b7aa-ab72-4370-937a-08daa17b34c4
+X-MS-TrafficTypeDiagnostic: PH0PR84MB1835:EE_|PH7PR84MB1656:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8115cc7f-9c4c-43f7-95a5-08daa2055556
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	/ye9oqjpnsTJYXNXurIGS85jnRqg7yNPkepDcX80zUPOCYfvcQQB6pCYKT/X3rCX7tyUQQqVMEls6xC0h/Sk70cCcxeTtv17yhWoXU6ZeIazP5szN+wt04nAbVvyUw8XuvDbnaXxuk1KrT3x0Bb077wP7qIrH3LGoES3Bjfi9m8bF7HoEDlp3H7LHMjGNFe9rCl8vegCTKtVhdia+m0ZBVqTcY0OLn0kEsYmqNQosqpcPQs/9PoaZRi8cyfjbAsWSn8HrooodXOZ1SuZybEKxSp1IVztlQlDXe/2AMP3jjWgwW6pMhIZ5gCDD7/0whAKMRdNediYpa80wo0YT3sXx36+2NOZdvuYQxm/RPl1WOIhz0/thLWlHwkv9tAFVgJNy7zbiGGV6lXbbmAD+qWbEk5xm8RC2R5O8I6W2BF7WXw4rfBWj6i2Ki2fwPW3hu65TO87lClaqia8ezkI0I65w/7Ja56wYiXw3k9obAiSP9gNZqGE++uXsCwpvJ6if/4DJqNyPQLQinEkMSYB2/xUatXbg72Tc6qNsWxdiiQkacJMeWnu+NxmIOaJX1bc+PCB1yImteNwl3/HEZkC82ldIv6pZejV7nWWBuXw+2nL8Rbrxr5m8sn16hfvAvU/2XFCib8bcZS2m+azxX1QLUO1q/XRYri1CtlVWLZZMitQmsVFbPGFAMmAZTDhkYTr8AIL
+	rcbOf59DnkU/LDdRxMszq6YURm07/O6eIhJxJalJ0S8+j5m8yDX/OKUbkT3C66zIRRyFEubC1NTqvvoavRDTu06TAAWJMTnMFxbt1fWiXWdLTXOhn+NMlDG7KqxHxk3BUrrCMEYIyS7iFL8mz4d0EaVqb2P5j7EglpN9MEojK6Cxz5iNW25t5ApiVe7SQhgX3lIZbdwtaoH1PVja8Yr2f+h0vHyUeHgeBbgUj/KJHkmeiTiYPqsD69wPBN1zdtmHwswjLB9sRmRwTXUw/jukNJmFhXOtyUzLIdm5BPGEjTnzKiuLraupgJysR8AjpF9a58RNjTdtKF2y4qlJvSzMd2GBaPzmCDLDq1fDz5TrFQgaTpyhn7AGv8wefisezo1iviD0XzMFO9vKiD1BQb86zsVZdxd6B5m0z8HYSDVELNHVAdej78kA6fZrQGRhrPjUCI8nsOYuunaEXIe0Ut0bawk835Oj98ZjJiYpgExNGW7hD0OjaCJRIdZA072Bm5niNJl1ognQw0IQPS93POFuLmpuN9UQlOqhBB91QCVQloRYmV9E2DIzeXN49Wc6FHQPhvOVS5D4CCXOsYpVlWxtq3+S46BRgrKom5Ckbqy7PwEPrQpshhjwuA1M7hy3annWliUGq//TRIyTRsNGplk4la6+h1Km0CD9veRlWq4RYdOcbI5A0xMPKAZud93n+qQj/px3Q9wEitIwYh4Uh0xrcjmT6bHH9p4yGAhh7HUzbi8=
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?K3VWclJTcHJtbEVjZHV5Z2M1a0xsMXdUaE5NdnlhWFQ2Tllvd254cFlBVS83?=
- =?utf-8?B?d0N3aEpnczZiY3g5OUVJcE5VVVBoTStqSDNkOGJnVzBqeXpuQkZsZk5oaG9q?=
- =?utf-8?B?QVVjVkxhMUkyeUFONk5iTXEyeG1FOUIwQ2NJWXNQT1NxblJmL295aVExa2Y1?=
- =?utf-8?B?ZzlhS2trRmJrM2pYY0VlNitSZUpMTUNmeDFqd2dPM1prcGNVbGd4dU8vdFpi?=
- =?utf-8?B?cHI1QndmSUFnNVhIUjhYMzBBTFRzVmpxWFBidVVlTHZ6cVUycTdONDJmeWxH?=
- =?utf-8?B?cm90ZCtPeXA1Vjl6NDJTckkzRElUN1ZVV0Jva3VUdGo3Tmxzc3NUeXJBaW52?=
- =?utf-8?B?ZjBuSXcxYXkvaGYyUERsQVAraUY2SjEyK1dOYVFSaFlTdHpLRmFKOTNPdXp1?=
- =?utf-8?B?KzZvUTFTdXZobk5XUFQ1UTltQ2NzM3FRazVibXpHa2RIYTc5QTdLM2ljdFJ5?=
- =?utf-8?B?WEpuZ296TkNPbjFNTU0xRThwNHY0VFBUTkNIQ1I0d0dNZHVzKzhHVGI5NlBi?=
- =?utf-8?B?WEpWSktyL0lmSm1iSmZQcDFwalNtMWVzOG9FRVRlMWNsZ3R0L3puNGdWMXBO?=
- =?utf-8?B?aEJrVllqelhSQWZ2UnlxU05jVG1OWHdlRVc2dGNyYVMwQ2UvQnN6ZXhDVWJK?=
- =?utf-8?B?K2tvYU9vZGNRR0l2WGVmSzVuY29nb2dTckNyemJuZHgrZXdtQzQ1c3dIM2lx?=
- =?utf-8?B?bWlkUXJwc2cwMkdYUjlibHBhWmRRZ2IvcGlwOTdkNnRPVmpSWll4eGt3RjB4?=
- =?utf-8?B?WDVsTXlvcWFvR3p4VEwzamk4WlRNSkJTT3dhaWZqR0xIajVnbHZURjdyS3U1?=
- =?utf-8?B?VVdJQ3N1WE1KQjJQSnlpWHVQZVUwZ2JkRWczenRBckxRS3VTd1ErcHIzbSsx?=
- =?utf-8?B?ajNuWnlPWjh3a29rQWt2Zy9kR0ZnYUkyZ01mOFhkdGF6QzVwU1BtYml2eDdE?=
- =?utf-8?B?K1cwK0pwcVB3aTMrSHpGcG1zSG1JbVBZbllrcU13aXZVdGJsbUZBMnN3SkMy?=
- =?utf-8?B?a3AxaXJuSmJkOXo1YjV2Z3phUDIrZ1VKRk5GTHFJU0FKM1UyTXV3Zlo2c2lD?=
- =?utf-8?B?eWdMY2wwaENlcnVZV3BOcHRsV0dlWU1MTzh0Nmhmc3lGWTlmMHFuNGVHRS9W?=
- =?utf-8?B?REVIZUZJQzJLMEtBZEs1Wk15Z3YrSUh4Tk81R25ERVJYYXVqdHZYSkwyZWI5?=
- =?utf-8?B?ak9GV1FQT2l1M1RuWjRvRHJCVFl4amVEbThrVTdOUjBraDhZYzV3ZEt6VW5M?=
- =?utf-8?B?bTR6ZmhEMUxZWHFmSmpOd1Jla3JhVXdQOFllSkkrbjlRNzJiYTlhaHNrdElF?=
- =?utf-8?B?bUdNenZtWTNGYkEwNWYrWFBuQ05neHY2Z1hCcndYSy8xYk4wWGplclhzMjR4?=
- =?utf-8?B?c0hqRUNZS1RQWXNNMzZ3SUYvbUNBZlBpc0hPWndPcUt3SmJJWjJ1bkVRQ2Fp?=
- =?utf-8?B?VFNWbk41ck9ndTV6eWNUaVBHeWIrcjhDVUxKTGhtWXhYb0tkN3R1eHVSYXNX?=
- =?utf-8?B?cnhldkgrdFB5dDRvSnMySGRNMnplYWhlc0VQNGdrS0tQRGRPRnd5bnh6Vllt?=
- =?utf-8?B?OVlsYUE4M1dJQW93YkduQk8rSWNZNnVHMmVMZ0lJNGp3bTJuVXJkbUxkV1BC?=
- =?utf-8?B?U054cm4zN3hycHNRUG5FL1R1UWV0Y0hyNXVtY2JNbjhWcFhkRHRrcU9lTTB4?=
- =?utf-8?B?eE95RU02ZWJjWGJpUW54U0xEWE1adFFHTHk2MzNHQjBxbHNkTzdyQUhBPT0=?=
+	=?utf-8?B?S0JoeG4xVDZIT2IyYkVva3hWWkw5UUJXaTdGUkI0NHNXUUVSbjJhcWdHQVJi?=
+ =?utf-8?B?Z2xpTGkvNy9tK3F0MFA0Q3BPUEppQ0FRa1hieVB4bzFCNWJsWFN5WUdnM01V?=
+ =?utf-8?B?bkZPdWNMNnJjbm9qcFJzSXFEbmpJdGI1SnordDJtWGFlNHlWR3l4MHUrUEVK?=
+ =?utf-8?B?bStLSFJvTWdVeHIvMTZtemZ3OWxVQmpHQ0R6eGtxSnk2bjZUaStjOEdhUHQ2?=
+ =?utf-8?B?NTZWOW1JR1NSNGpjNnpudlFTdWtLSmFtNEZTRHVGUTg2dzFTWDdLVWFUcmhi?=
+ =?utf-8?B?YWsrR2FOTS9pbFFVWXhEcjlWNXFkUGl2Wi8rUUZZNGh3QU1FZlNDSXpWcDVP?=
+ =?utf-8?B?QVkvZVNBTzdKeStpZnJsS01XUFMxNjY2Nis1Z0xoQjJTYVFZMjAzNUhSZVZy?=
+ =?utf-8?B?ZDNDM2ZLditPVkZWTWFEbldDOGhnelNYam5lK3R4em5lYUh1V0VIMnlxdEIy?=
+ =?utf-8?B?VVhCMkk3M0VWMG16eVVVbFczRnNqM2FJOTNrSm9hTmV1cnR2NzNZb1V1TjZy?=
+ =?utf-8?B?SmRFVWhzSkhnTkVQd2NxUUZEcXdQaTBmelhMK21qVTVNWktxMG5nYTBVVjc0?=
+ =?utf-8?B?bnhnOU5MMU9qSm90bktpS2h2bEprWkE3SW1qcEFZemlvNFVyOU9kRjl0UWVp?=
+ =?utf-8?B?WmFJQ1FjNkZKNmp1MzNnQWJnQURBVW81N1Y0cTZKU3FTd3llTHVqeE13cnZG?=
+ =?utf-8?B?YlkySFNuYkFTWTk0N1ZON1UxTTJkaVVCTlJNWHRrWERiTWlxeW1wZnU2c0Z6?=
+ =?utf-8?B?RW14QkRrcU1yNzZ2Ymd2M2MxZnVwNEdna0lITTQzUDdLT0hWRlowVGRWY0R5?=
+ =?utf-8?B?MWFXV0FRaDlPMjJRYVpMKzRWQVMzY0JWUDl4NGl3R2M3OTIvSmx3VS9UQlZH?=
+ =?utf-8?B?L2lnUWoxRmVIRTFidjQ1MWNqYlljMlpjTGRIVWZuT0VZVXdybWZyb21vdmJL?=
+ =?utf-8?B?Z0NnemlNVEtGSkQ0T1BEaDlqYzhSU016c21IMjY5OG5GK0oyZE1haDhQd2Ru?=
+ =?utf-8?B?Zk9uSmNXeEJyUEh4eURKZUViUkRodXk1Y2NsVE5zcjgvSEVGbFVYUis4YTJu?=
+ =?utf-8?B?N1p4c2hZVlphUSt1THZBTnQxZitxSFNWS3lzQUVRTmVMQWJjMFJXekZxdW5X?=
+ =?utf-8?B?VHVvL25YekpwYS82SVcrRzlHamNsQ1B0T3E3RjYycG02STA1bGpHLzdBV3Uw?=
+ =?utf-8?B?VU1QWk0ycjVXbmlNdEYxTHBkaHZRN2lMZDVTUzh2aUp6SlEwMkVLQWhIa3ZO?=
+ =?utf-8?B?bkZRelRmNUZnbng1Nm5pNHc2VUhpNG5iWGJ5b0M4WXpXeGhKMWRWYUFQN0pF?=
+ =?utf-8?B?akYwT3hkUmVpUVEvNTRJbnhUMml2MFg3KzBmQzNYTDBNdDl6MGx0YUdmZXZ1?=
+ =?utf-8?B?eDZzendZK3FrVDlhaXk2b2pETFdRQUI1eHV6NDRNZEJwc3pTWldRbHErUUcz?=
+ =?utf-8?B?YTVVZjVVTjhQU3lIdEg2bkRqT0xnR21YZksvQXZZTEtKUW5nRUszVnAveC96?=
+ =?utf-8?B?bVM1ckZoSWxHUDBSUlA0b0M3NkNiSFZ3aEVRWTh1WXVleVhsclFHcktvSGRO?=
+ =?utf-8?B?T2pnQitoTGJ3TllHZUFGcElib0wzclUyQVc5Wkdzd3poalJDTjA5OEQ0ZUQ0?=
+ =?utf-8?B?QTBUSzlzRDhnMWlCRCtqTWdPVkRSUUlqbGlBdEkyckVBVTFmQ2V6Rm5pcitn?=
+ =?utf-8?B?RzFOcm56Q0NVMWQveExnNGlqN0Z4bzh5V3dZa3hXMTVPZjNHcGdWblp3PT0=?=
 X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-3ea80.templateTenant
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 8680b7aa-ab72-4370-937a-08daa17b34c4
+ 8115cc7f-9c4c-43f7-95a5-08daa2055556
 X-MS-Exchange-CrossTenant-AuthSource: PH0PR84MB1835.NAMPRD84.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2022 17:59:36.7350
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2022 10:28:21.8494
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
 X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
 	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR84MB1817
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR84MB1656
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 28 Sep 2022 17:59:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58210
+ <yocto@lists.yoctoproject.org>; Thu, 29 Sep 2022 10:28:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58211
 
-------V1T5J6Y2NATWGY8F9LIGKN8MUVX352
+------E7TF6I4SIR5DGL3MCKSK0GZ24W4G5G
 Content-Type: text/plain;
  charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Tried building mesa on its own with the recipe changes=2E It fails with mes=
-on Error this is a bug and should be reported=2E=20
+Tried in a sifferent machine with wednesday poky master
+
+Building mesa-native gives the error
+
+cp: '/media/user/SSD1TB/yoctoqemu/poky/build-virgl/tmp/work/x86_64-linux/m=
+esa-native/2_22=2E2=2E0-r0/recipe-sysroot-native/usr/bin/llvm-config14=2E0=
+=2E6' and '/media/user/SSD1TB/yoctoqemu/poky/build-virgl/tmp/work/x86_64-li=
+nux/mesa-native/2_22=2E2=2E0-r0/recipe-sysroot-native/usr/bin/llvm-config14=
+=2E0=2E6' are the same file
 
 Am 28=2E September 2022 13:37:05 MESZ schrieb Alexander Kanavin <alex=2Eka=
 navin@gmail=2Ecom>:
@@ -300,19 +307,23 @@ et=2E
 --=20
 Diese Nachricht wurde von meinem Android-Ger=C3=A4t mit K-9 Mail gesendet=
 =2E
-------V1T5J6Y2NATWGY8F9LIGKN8MUVX352
+------E7TF6I4SIR5DGL3MCKSK0GZ24W4G5G
 Content-Type: text/html;
  charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
 <html><head>
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8"></=
-head><body>Tried building mesa on its own with the recipe changes. It fails=
- with meson Error this is a bug and should be reported. <br><br><div class=
-=3D"gmail_quote">Am 28. September 2022 13:37:05 MESZ schrieb Alexander Kana=
-vin &lt;alex.kanavin@gmail.com&gt;:<blockquote class=3D"gmail_quote" style=
-=3D"margin: 0pt 0pt 0pt 0.8ex; border-left: 1px solid rgb(204, 204, 204); p=
-adding-left: 1ex;">
+head><body>Tried in a sifferent machine with wednesday poky master<br><br>B=
+uilding mesa-native gives the error<br><br>cp: '/media/user/SSD1TB/yoctoqem=
+u/poky/build-virgl/tmp/work/x86_64-linux/mesa-native/2_22.2.0-r0/recipe-sys=
+root-native/usr/bin/llvm-config14.0.6' and '/media/user/SSD1TB/yoctoqemu/po=
+ky/build-virgl/tmp/work/x86_64-linux/mesa-native/2_22.2.0-r0/recipe-sysroot=
+-native/usr/bin/llvm-config14.0.6' are the same file<br><br><div class=3D"g=
+mail_quote">Am 28. September 2022 13:37:05 MESZ schrieb Alexander Kanavin &=
+lt;alex.kanavin@gmail.com&gt;:<blockquote class=3D"gmail_quote" style=3D"ma=
+rgin: 0pt 0pt 0pt 0.8ex; border-left: 1px solid rgb(204, 204, 204); padding=
+-left: 1ex;">
 <pre dir=3D"auto" class=3D"k9mail">Try latest poky master?<br><br>Alex<br><=
 br>On Wed, 28 Sept 2022 at 13:23, PHIL &lt;heideggm@hotmail.com&gt; wrote:<=
 br><blockquote class=3D"gmail_quote" style=3D"margin: 0pt 0pt 1ex 0.8ex; bo=
@@ -402,5 +413,5 @@ ndroid-Ger=C3=A4t mit K-9 Mail gesendet.<br></blockquote></pre></blockquote=
 >-- <br>Diese Nachricht wurde von meinem Android-Ger=C3=A4t mit K-9 Mail ge=
 sendet.</div></div></body></html>=
 
-------V1T5J6Y2NATWGY8F9LIGKN8MUVX352--
+------E7TF6I4SIR5DGL3MCKSK0GZ24W4G5G--
 
