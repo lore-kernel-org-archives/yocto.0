@@ -2,109 +2,102 @@ Return-Path: <jdmason@kudzu.us>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AD519C433FE
-	for <webhook@archiver.kernel.org>; Thu, 29 Sep 2022 14:17:16 +0000 (UTC)
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com
- [209.85.160.170])
- by mx.groups.io with SMTP id smtpd.web11.10939.1664461028423000236
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CFBE1C433F5
+	for <webhook@archiver.kernel.org>; Thu, 29 Sep 2022 14:48:26 +0000 (UTC)
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com
+ [209.85.222.169])
+ by mx.groups.io with SMTP id smtpd.web08.11578.1664462905190185082
  for <yocto@lists.yoctoproject.org>;
- Thu, 29 Sep 2022 07:17:08 -0700
+ Thu, 29 Sep 2022 07:48:25 -0700
 Authentication-Results: mx.groups.io;
  dkim=pass header.i=@kudzu-us.20210112.gappssmtp.com header.s=20210112
- header.b=ImB4P0L8;
- spf=none, err=permanent DNS error (domain: kudzu.us, ip: 209.85.160.170,
+ header.b=jYFHgtOY;
+ spf=none, err=permanent DNS error (domain: kudzu.us, ip: 209.85.222.169,
  mailfrom: jdmason@kudzu.us)
-Received: by mail-qt1-f170.google.com with SMTP id w2so823529qtv.9
+Received: by mail-qk1-f169.google.com with SMTP id i17so953402qkk.12
         for <yocto@lists.yoctoproject.org>;
- Thu, 29 Sep 2022 07:17:08 -0700 (PDT)
+ Thu, 29 Sep 2022 07:48:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=kudzu-us.20210112.gappssmtp.com; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=thQwQM4L8ADlHQ7MX2XSyj02Nyt6Sg3nYBh183xZ0sc=;
-        b=ImB4P0L8yiJ7Bw9a3FfXJov9GP8+mOkkBUNM0ihCDutKZfD8NlAhSrU4jhmnFWIc5Q
-         6wYNnHCqzsz1sw9fFk/JMUcStKPgEGweqqY+kJDVjEqxQ1vFGgG4NsDBkgybB6WpO046
-         6jgeH4Hl6IzLDenYbKhinyKaDPqDanIbPrT0yA35K1iddls4fgjJiiSXsM6r4gEaxb7J
-         cHr3INccRTwsavK7ML/i05HwDfUOlsKdXz2SCO7wmUeNQTgbvzWAcz2R8U2xiJOi33ku
-         a/BNd1M6LFU9UJvBHVbCAPJgzEh7hBb+OVeKzlad6AXticFqQcQlDg1aWfYmg6HH+Yp+
-         +Eqw==
+        bh=+qQxeMcjZETQR7kqMvUpojGuql2zhczZRsS7D2I90+w=;
+        b=jYFHgtOY1WI3Mdff+WCsX6Ls4DRY8QtGWpy4lQh4n1OsFHKm/x7To+fi0zjcDSWmZS
+         Fl+E35tLh5j2Mf+uKDI65KHqXaosK2ARvsxd4GZg6MY4JYF1/K+s/ZHP7XnLj24m+BVA
+         1xXMAj93EXuQGgQ3IR0fHvY05pFVihXzHmJe07aay1azsyxYGO+15Nx5Wqvjt0fPI0e2
+         5w9S1tHS+Rig3APC8I30lOovPfKD0CHF23qpys8uxs+nxaPc6PyeYcVQlV1MwrwCbfEu
+         3xd7RqOBnMJL7j0UJQv+yhjNTSRMHDC/cBargpSpOdGtrdPfeqvXFcj6kE7TsW+4YTbs
+         bs/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=thQwQM4L8ADlHQ7MX2XSyj02Nyt6Sg3nYBh183xZ0sc=;
-        b=3kVukA66XOmJjHj5/U7PY/rP+IaRnAq84LoH4yyGA4eIrkMtDbqm53hP6HDAJaDA/b
-         vHdDqtBQ5EhpeNqGfJZsJesINJG1EYR/EdaSfiadOVZAeKic4waFa2SwjnpU+SxiTqFL
-         n3VYazpzjj5q+lK7l1Te2oxTTKvU4CduxsMkHphJdakN5r68B6YEM8LQVN9uQzzRnC1D
-         gAa0isGsmtWrxIZJmDXwyh9Ven21fCQFY9yn7jzl0/BrGfCX+KuQ6xI40N/Tg06/Fal0
-         DuQCS+uIWFP0qJVaFr/QHGwZg1YK3VZhZsSWqD1ouzPjsA+NIWoFKT07zjavU9ubXpWb
-         Q6ow==
-X-Gm-Message-State: ACrzQf0SrQbD48nNWyd4kAywdKbIpkRN4dLeCY5Qx2GkXtPdTEqaLZbN
-	l+ssBHRFTaAYIk86EzPmmwT3XA==
+        bh=+qQxeMcjZETQR7kqMvUpojGuql2zhczZRsS7D2I90+w=;
+        b=UWsT4DzJtQlxv/iiNCp2eJo5wYOqYlXdIRrhdBvElfO5mhA6Akied6tuG7or3JBVLE
+         8Cll/ZMNQnKXjVmqe01mkBSiV/tDwi6slorsAq8dF2m8DXMHQxG4iPqu1wzPpO3fGDd5
+         pZS0jEr9buxuPw7M2PgBZZfXS0lZVB3t+tssWK7F4geb6+1tzfZOq+N1GqxyMSq3hA/m
+         b/Jzzv3ivNaUrgDYTmpyfGqckxVIVmngL7127HtHRs6Sw0PhpMpc+2QLMBh2ZgIPBRjn
+         djKoAw9TMSnA6XmsTjJYgBCtiTrXqftTqJq0xZoT34g4hLpeGKBMDCj1bw74TJcg/fQ2
+         8qew==
+X-Gm-Message-State: ACrzQf3ZywTJF3eu98mMVtsRGe/9jOAwen9jWpRE3dVUpvo8ZM7JvvOs
+	HaPouVE9eR7Udx/0pxPgBHJUNA==
 X-Google-Smtp-Source: 
- AMsMyM4thi1Ia14V+Js+lsJOXkNFw7pts2H8eOMaxpVUasn0wq0n4+NN0eklY+GjuwAz1fWc3zuYJQ==
-X-Received: by 2002:ac8:59cd:0:b0:35c:e1f8:3382 with SMTP id
- f13-20020ac859cd000000b0035ce1f83382mr2579724qtf.304.1664461027188;
-        Thu, 29 Sep 2022 07:17:07 -0700 (PDT)
+ AMsMyM51sX/N7/pRDec8Og+zobgwQMXaUKztw8KGlx1c3Ql0jbAMgc0LnQMKopZY6DqyzA2KInd7Zg==
+X-Received: by 2002:a05:620a:44cb:b0:6ce:b942:709f with SMTP id
+ y11-20020a05620a44cb00b006ceb942709fmr2508144qkp.124.1664462904200;
+        Thu, 29 Sep 2022 07:48:24 -0700 (PDT)
 Received: from kudzu.us ([2605:a601:a608:5600::59])
         by smtp.gmail.com with ESMTPSA id
- dm12-20020a05620a1d4c00b006ceda7a9283sm6696552qkb.48.2022.09.29.07.17.06
+ w13-20020a05620a444d00b006cbd92ca141sm5938560qkp.133.2022.09.29.07.48.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Sep 2022 07:17:06 -0700 (PDT)
-Date: Thu, 29 Sep 2022 10:17:04 -0400
+        Thu, 29 Sep 2022 07:48:23 -0700 (PDT)
+Date: Thu, 29 Sep 2022 10:48:22 -0400
 From: Jon Mason <jdmason@kudzu.us>
-To: "Saini, Naveen Kumar" <naveen.kumar.saini@intel.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] [meta-zephyr] new qemu version breaking qemu-cortex-a53
-Message-ID: <YzWo4OqzC6TlN6dv@kudzu.us>
-References: 
- <CAPoiz9wdF=-sq8+QFyosW-KTbsLQiYmYXG=W=TaYS=1bWi4wiQ@mail.gmail.com>
- <CO1PR11MB5026A9584F6C99277F25D636C4559@CO1PR11MB5026.namprd11.prod.outlook.com>
- <CAPoiz9yJRb-SNvjU30OaYhD7A9x6_NuJhGEUkkJiXZVimWCTXA@mail.gmail.com>
+To: Naveen Saini <naveen.kumar.saini@intel.com>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [meta-zephyr][PATCH] qemuzephyrrunner: allow to pass QB_GRAPHICS
+ to qemu cmdline
+Message-ID: <YzWwNpdssXSrIuHJ@kudzu.us>
+References: <20220928041420.3047817-1-naveen.kumar.saini@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: 
- <CAPoiz9yJRb-SNvjU30OaYhD7A9x6_NuJhGEUkkJiXZVimWCTXA@mail.gmail.com>
+In-Reply-To: <20220928041420.3047817-1-naveen.kumar.saini@intel.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 29 Sep 2022 14:17:16 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58214
+ <yocto@lists.yoctoproject.org>; Thu, 29 Sep 2022 14:48:26 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58215
 
-On Tue, Sep 27, 2022 at 02:51:41PM -0400, Jon Mason wrote:
-> On Tue, Sep 27, 2022 at 5:55 AM Saini, Naveen Kumar
-> <naveen.kumar.saini@intel.com> wrote:
-> >
-> >
-> >
-> > > -----Original Message-----
-> > > From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On
-> > > Behalf Of Jon Mason
-> > > Sent: Tuesday, September 27, 2022 3:11 AM
-> > > To: yocto@lists.yoctoproject.org
-> > > Cc: Saini, Naveen Kumar <naveen.kumar.saini@intel.com>
-> > > Subject: [yocto] [meta-zephyr] new qemu version breaking qemu-cortex-
-> > > a53
-> > >
-> > > The recently updated version of qemu (v7.1) is causing qemu-cortex-a53
-> > > tests to fail.  See
-> > > https://gitlab.com/jonmason00/meta-zephyr/-/jobs/3082086509
-> > >
-> > > I was able to bisect the issue to that commit.  I'm not certain of the cause
-> > > beyond that, but other issues are being seen with the new qemu and meta-
-> > > arm.  Let me know if you want me to open a bug.
-> >
-> > Yes, Jon, please open bug for this machine configuration.
+On Wed, Sep 28, 2022 at 12:14:20PM +0800, Naveen Saini wrote:
+> Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
+
+I wasn't seeing this issue.  So, my "testing" isn't very valid for it,
+but it did work for me :)
+
+Verified in a batch CI job.  See https://gitlab.com/jonmason00/meta-zephyr/-/pipelines/654231304
+
+Tested-by: Jon Mason <jon.mason@arm.com>
+
+
+> ---
+>  meta-zephyr-core/lib/oeqa/utils/qemuzephyrrunner.py | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> Bug opened, https://bugzilla.yoctoproject.org/show_bug.cgi?id=14919
-
-FYI, issue has been resolved upstream
-
+> diff --git a/meta-zephyr-core/lib/oeqa/utils/qemuzephyrrunner.py b/meta-zephyr-core/lib/oeqa/utils/qemuzephyrrunner.py
+> index 7b486ce..c0a9e0f 100644
+> --- a/meta-zephyr-core/lib/oeqa/utils/qemuzephyrrunner.py
+> +++ b/meta-zephyr-core/lib/oeqa/utils/qemuzephyrrunner.py
+> @@ -157,6 +157,7 @@ class QemuZephyrRunner(QemuRunner):
+>              bb.error("Unsupported QEMU: %s" % self.machine)
+>              return False
+>  
+> +        self.qemuparams += " %s " %self.get('QB_GRAPHICS')
+>          self.qemuparams += " %s " %self.get('QB_OPT_APPEND')
+>          self.qemuparams += " %s " %self.get('QB_CPU')
+>  
+> -- 
+> 2.25.1
 > 
-> >
-> > >
-> > > Thanks,
-> > > Jon
 > 
 
