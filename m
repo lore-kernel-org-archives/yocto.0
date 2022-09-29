@@ -1,106 +1,90 @@
-Return-Path: <jason.m.bills@linux.intel.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E5C87C433FE
-	for <webhook@archiver.kernel.org>; Thu, 29 Sep 2022 21:26:38 +0000 (UTC)
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by mx.groups.io with SMTP id smtpd.web08.16290.1664486789002611653
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 29AEDC433FE
+	for <webhook@archiver.kernel.org>; Thu, 29 Sep 2022 23:45:25 +0000 (UTC)
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com
+ [209.85.216.52])
+ by mx.groups.io with SMTP id smtpd.web12.94.1664495109871019762
  for <yocto@lists.yoctoproject.org>;
- Thu, 29 Sep 2022 14:26:29 -0700
+ Thu, 29 Sep 2022 16:45:09 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel
- header.b=H1ToZ6uB;
- spf=none, err=permanent DNS error (domain: linux.intel.com,
- ip: 192.55.52.151, mailfrom: jason.m.bills@linux.intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1664486789; x=1696022789;
-  h=message-id:date:mime-version:to:from:subject:
-   content-transfer-encoding;
-  bh=g9TVdc8dr3d9Q4ZGYjQgAMCbn+ciw9/r/7iJ2kGC+1Y=;
-  b=H1ToZ6uBnWQ8Su6nbhHXtBFnyDWyw0IuCXJ/3brwEgL6yVyM8RGgnSZG
-   1WL330k793seRVUalu7OBdm1jzMqTXToD66x2s7Ls5Nd2X8EuqrmahCRT
-   v8Wurv5BpaLYYnM9OdxVILZPC1lhQVpXe4dYuwUgnTPHrdNBx/28nQCWQ
-   00st+VxnP3/xYrviXfJDaMrmggmu95ZNHGOhHNgXg9J3/imVpf0G84jrW
-   Xx7wmauYKaLpoDxrL7SDF44rEC6ZE+fVvzsfAauNxY1dqSF8972ySm/sW
-   u6oQ9PBvV3lvOvL2u2XrYUoNYDgjHfH55H0fVSDRo4HmcsrhrDULD99Vy
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10485"; a="282392552"
-X-IronPort-AV: E=Sophos;i="5.93,356,1654585200";
-   d="scan'208";a="282392552"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2022 14:26:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10485"; a="690998099"
-X-IronPort-AV: E=Sophos;i="5.93,356,1654585200";
-   d="scan'208";a="690998099"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga004.fm.intel.com with ESMTP; 29 Sep 2022 14:26:26 -0700
-Received: from [10.209.170.62] (jmbills-mobl1.amr.corp.intel.com
- [10.209.170.62])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by linux.intel.com (Postfix) with ESMTPS id A93D8580B55
-	for <yocto@lists.yoctoproject.org>; Thu, 29 Sep 2022 14:26:26 -0700 (PDT)
-Message-ID: <ffeb477c-ba3a-8a81-d720-d73119fc91ce@linux.intel.com>
-Date: Thu, 29 Sep 2022 15:26:25 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Content-Language: en-US
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=hFbxldfT;
+ spf=pass (domain: gmail.com, ip: 209.85.216.52, mailfrom: raj.khem@gmail.com)
+Received: by mail-pj1-f52.google.com with SMTP id
+ h8-20020a17090a054800b00205ccbae31eso7398522pjf.5
+        for <yocto@lists.yoctoproject.org>;
+ Thu, 29 Sep 2022 16:45:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=i507IeLWaYUPG3xmmnUVdwwTwS3ckaHvK8GFQJmJ9kQ=;
+        b=hFbxldfTlqkzyTdwbN8tJ0c5jaBHVRyJrNKUvHP6z659VpkEetB2TUF5715HpVXnWy
+         GEh4/W5M0F5mDe8Jhm5GY8yufHgVh90hDrmWM1TuZUzilXvS2XwSLp3KbdWBn8JpG/po
+         jcxQIVtHfJCjjcLbAT70sdbkvmRmcVeFNYls7zy18UEVvzCv5BfeVZWE2ba7u904Sjxo
+         1pBXFdCjxGMQu6UMV0XqlxNjUVf7gOKPEKj82GKOUDATGj2WoA1GHL2t0DJf1yyT1wwq
+         LFkmB01MHOke2tFme4xQlH9zUtcOL5+adf3fpx51RanxMN4jb4ZB1m+f3qHnQ23JfRPq
+         IsXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=i507IeLWaYUPG3xmmnUVdwwTwS3ckaHvK8GFQJmJ9kQ=;
+        b=7zCJZfb15ycb0JVPPifua9hZQlQ4XRlmG/wOM/hzfqDoBvQYwYcsUJawvvdfgbWorR
+         x/wfOFo2FuIN01xptDJjH2zEUoHcu0kubAD4QEpwJmCeHaDzwe0vmjv+2D3D/He2gPOP
+         tgY2UxJcx8ie7Z2a8xIsA5np+HnCu3MNaiglSnMdhJNcE/jw0UpI7vvn7ygU/zEBUfOz
+         H536UcuVvjG64v+7t4NQ5whuBhfC5mMt1IKnoow9MG4+qobjlWmrimz0gNrZjWwyJdhd
+         kPYoLH2cCgIEBYZheUQvtybowhwUhd3tmpTEsu1j19Cg9HIK0V25kK802YT0x6GTg6iU
+         OrYg==
+X-Gm-Message-State: ACrzQf36yvBBk/oO5xL5EAPxmO5gQmhW2h+tNWtzoafqZkz5TxHNm1Rn
+	WcICJO9vYb6oeagUeDWh+Qkx+9ud1Mqm9w==
+X-Google-Smtp-Source: 
+ AMsMyM5q1rIfaqqOBCPV455ZZseV/8QgT+uX3tttoNp4su3yump0VQ48nryDPrnMX4qFwyYv7GrUMQ==
+X-Received: by 2002:a17:90b:4a89:b0:202:d56e:e202 with SMTP id
+ lp9-20020a17090b4a8900b00202d56ee202mr6277818pjb.22.1664495109119;
+        Thu, 29 Sep 2022 16:45:09 -0700 (PDT)
+Received: from apollo.hsd1.ca.comcast.net ([2601:646:9181:1cf0::dee7])
+        by smtp.gmail.com with ESMTPSA id
+ a7-20020aa79707000000b0053e4cec4763sm241886pfg.160.2022.09.29.16.45.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Sep 2022 16:45:08 -0700 (PDT)
+From: Khem Raj <raj.khem@gmail.com>
 To: yocto@lists.yoctoproject.org
-From: "Bills, Jason M" <jason.m.bills@linux.intel.com>
-Subject: EXTRA_IMAGECMD:squashfs-xz support
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Cc: twoerner@gmail.com,
+	Khem Raj <raj.khem@gmail.com>
+Subject: [meta-rockchip][PATCH] layers: Add langdale to LAYERSERIES_COMPAT
+Date: Thu, 29 Sep 2022 16:45:06 -0700
+Message-Id: <20220929234506.3681015-1-raj.khem@gmail.com>
+X-Mailer: git-send-email 2.37.3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 29 Sep 2022 21:26:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58223
+ <yocto@lists.yoctoproject.org>; Thu, 29 Sep 2022 23:45:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58224
 
-Hello,
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I work on OpenBMC and am having an issue with EXTRA_IMAGECMD:squashfs-xz.
+diff --git a/conf/layer.conf b/conf/layer.conf
+index a2661f9..0e28857 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -14,7 +14,7 @@ BBFILE_PRIORITY_rockchip = "1"
+ # This should only be incremented on significant changes that will
+ # cause compatibility issues with other layers
+ LAYERVERSION_rockchip = "1"
+-LAYERSERIES_COMPAT_rockchip = "kirkstone"
++LAYERSERIES_COMPAT_rockchip = "kirkstone langdale"
+ LAYERDEPENDS_rockchip = "core meta-arm"
+ 
+ BBFILES_DYNAMIC += " \
+-- 
+2.37.3
 
-There was a recent change pulled into OpenBMC in image_types.bbclass. In 
-the old file, IMAGE_CMD:squashfs-xz was defined directly:
-
-IMAGE_CMD:squashfs-xz = "mksquashfs ${IMAGE_ROOTFS} 
-${IMGDEPLOYDIR}/${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.squashfs-xz 
-${EXTRA_IMAGECMD} -noappend -comp xz"
-
-In the new file, it is defined using a method:
-
-oe_mksquashfs () {
-     local comp=$1
-     local suffix=$2
-
-     # Use the bitbake reproducible timestamp instead of the hardcoded 
-squashfs one
-     export SOURCE_DATE_EPOCH=$(stat -c '%Y' ${IMAGE_ROOTFS})
-     mksquashfs ${IMAGE_ROOTFS} 
-${IMGDEPLOYDIR}/${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.squashfs${comp:+-}${suffix:-$comp} 
-${EXTRA_IMAGECMD} -noappend ${comp:+-comp }$comp
-}
-IMAGE_CMD:squashfs-xz = "oe_mksquashfs xz"
-
-In my build we append to EXTRA_IMAGECMD:squashfs-xz to add parameters to 
-the mksquashfs commmand like this:
-EXTRA_IMAGECMD:squashfs-xz:append = "-processors ${BB_NUMBER_THREADS} -b 
-262144 -Xdict-size 100% -Xbcj arm"
-
-With the old file, the EXTRA_IMAGECMD:squashfs-xz parameters are added 
-to the mksquashfs command. But with the new file, they don't get added 
-anymore. I wonder if the method loses the squashfs-xz context so the 
-empty EXTRA_IMAGECMD is used instead of EXTRA_IMAGECMD:squashfs-xz.
-
-Should my EXTRA_IMAGECMD:squashfs-xz:append still work, or is there a 
-different way to add parameters to the IMAGE_CMD:squashfs-xz command 
-with the new approach?
-
-Thanks!
--Jason
 
