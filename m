@@ -2,102 +2,141 @@ Return-Path: <jdmason@kudzu.us>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CFBE1C433F5
-	for <webhook@archiver.kernel.org>; Thu, 29 Sep 2022 14:48:26 +0000 (UTC)
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com
- [209.85.222.169])
- by mx.groups.io with SMTP id smtpd.web08.11578.1664462905190185082
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AE684C433F5
+	for <webhook@archiver.kernel.org>; Thu, 29 Sep 2022 14:48:56 +0000 (UTC)
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com
+ [209.85.222.181])
+ by mx.groups.io with SMTP id smtpd.web10.11106.1664462932437052896
  for <yocto@lists.yoctoproject.org>;
- Thu, 29 Sep 2022 07:48:25 -0700
+ Thu, 29 Sep 2022 07:48:52 -0700
 Authentication-Results: mx.groups.io;
  dkim=pass header.i=@kudzu-us.20210112.gappssmtp.com header.s=20210112
- header.b=jYFHgtOY;
- spf=none, err=permanent DNS error (domain: kudzu.us, ip: 209.85.222.169,
+ header.b=M8Izlvc9;
+ spf=none, err=permanent DNS error (domain: kudzu.us, ip: 209.85.222.181,
  mailfrom: jdmason@kudzu.us)
-Received: by mail-qk1-f169.google.com with SMTP id i17so953402qkk.12
+Received: by mail-qk1-f181.google.com with SMTP id g2so977151qkk.1
         for <yocto@lists.yoctoproject.org>;
- Thu, 29 Sep 2022 07:48:25 -0700 (PDT)
+ Thu, 29 Sep 2022 07:48:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=kudzu-us.20210112.gappssmtp.com; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=+qQxeMcjZETQR7kqMvUpojGuql2zhczZRsS7D2I90+w=;
-        b=jYFHgtOY1WI3Mdff+WCsX6Ls4DRY8QtGWpy4lQh4n1OsFHKm/x7To+fi0zjcDSWmZS
-         Fl+E35tLh5j2Mf+uKDI65KHqXaosK2ARvsxd4GZg6MY4JYF1/K+s/ZHP7XnLj24m+BVA
-         1xXMAj93EXuQGgQ3IR0fHvY05pFVihXzHmJe07aay1azsyxYGO+15Nx5Wqvjt0fPI0e2
-         5w9S1tHS+Rig3APC8I30lOovPfKD0CHF23qpys8uxs+nxaPc6PyeYcVQlV1MwrwCbfEu
-         3xd7RqOBnMJL7j0UJQv+yhjNTSRMHDC/cBargpSpOdGtrdPfeqvXFcj6kE7TsW+4YTbs
-         bs/A==
+        bh=sTvCXtXSYMi65Hm1k465G019ghCVlCWRDDn8lk4jZKM=;
+        b=M8Izlvc96A1J38KfjSrVRIu10MYKBn8gb/MYyZy0nrhs6tfM3KkLzaA90Zv5HUhM3k
+         Eua880HsnVzxhPXRNxs0sdxZOAOoWKYm1HOsx7CUi7v00E9Q+SU67CYbI1kmtHA48gKc
+         bzgjg6Q2AtxIwDDTO/qtgC8jZcLWqaZ5tRbMUKsXES4r0J0Dq5BDWAFOURrSmJoF/o0d
+         O/b5BnCGf45ofH1+QY5yAQaf5ciwsuTUcHXXJAhCcyLLl0d8i3986RQrG+6T2WTjXP0m
+         cEv6oVsY3PNvqN5qm3V36CdsexgYeUO1XQqzz189EzbrSbZRNJ1jsdn9xvBA7wtLlOsq
+         0nzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=+qQxeMcjZETQR7kqMvUpojGuql2zhczZRsS7D2I90+w=;
-        b=UWsT4DzJtQlxv/iiNCp2eJo5wYOqYlXdIRrhdBvElfO5mhA6Akied6tuG7or3JBVLE
-         8Cll/ZMNQnKXjVmqe01mkBSiV/tDwi6slorsAq8dF2m8DXMHQxG4iPqu1wzPpO3fGDd5
-         pZS0jEr9buxuPw7M2PgBZZfXS0lZVB3t+tssWK7F4geb6+1tzfZOq+N1GqxyMSq3hA/m
-         b/Jzzv3ivNaUrgDYTmpyfGqckxVIVmngL7127HtHRs6Sw0PhpMpc+2QLMBh2ZgIPBRjn
-         djKoAw9TMSnA6XmsTjJYgBCtiTrXqftTqJq0xZoT34g4hLpeGKBMDCj1bw74TJcg/fQ2
-         8qew==
-X-Gm-Message-State: ACrzQf3ZywTJF3eu98mMVtsRGe/9jOAwen9jWpRE3dVUpvo8ZM7JvvOs
-	HaPouVE9eR7Udx/0pxPgBHJUNA==
+        bh=sTvCXtXSYMi65Hm1k465G019ghCVlCWRDDn8lk4jZKM=;
+        b=ZflNDU60ACM1o5FEm/AP6vlpqdIsfk5/CvUie/tShE4m9iQGmuLlJlmZGG03cdGFTm
+         zHEIWfpn8qtguHTAABQqY79T3Xa4rUXa/gSCQPoEO47COiCdCX35Nbx/7P9ssAbTJ7dB
+         ql3Sk6oJdkhuGikPJI5qNa4rvJlJ3BY1HnGyGsBhZz/Ox6hu+k7Wq2GioG6tJ1FjXObi
+         gJkj4zY4FTHO5gr4mGBDQEcl6YX9Ouid5Cov1QVb3e1W+ZHgAKa3Rb9P+nTc6xSvOqR/
+         RamN40O8eWX868mZA/EPtQDeoK/k+1ehhpSQ5MOPcgzgsn7rumIo8q/sBoS9f4P2VfEM
+         gM+g==
+X-Gm-Message-State: ACrzQf2AofpeUhNwQMUdFZgCWURGBPpqM6hSgBQbz9vf4Tq5h7Yz8WZN
+	Zkyi1Sk2K7pUQuRZ2YYmwsdVnKW6qXvEFA==
 X-Google-Smtp-Source: 
- AMsMyM51sX/N7/pRDec8Og+zobgwQMXaUKztw8KGlx1c3Ql0jbAMgc0LnQMKopZY6DqyzA2KInd7Zg==
-X-Received: by 2002:a05:620a:44cb:b0:6ce:b942:709f with SMTP id
- y11-20020a05620a44cb00b006ceb942709fmr2508144qkp.124.1664462904200;
-        Thu, 29 Sep 2022 07:48:24 -0700 (PDT)
+ AMsMyM5wnRSx8P3L8zqlhf33+fq0r1WiRKo7mP8Me+0MXCJrdS862wAi3VfbCAUc6FMzXNQHZ8vRYQ==
+X-Received: by 2002:a05:620a:2954:b0:6cf:9084:f7ab with SMTP id
+ n20-20020a05620a295400b006cf9084f7abmr2481313qkp.355.1664462931539;
+        Thu, 29 Sep 2022 07:48:51 -0700 (PDT)
 Received: from kudzu.us ([2605:a601:a608:5600::59])
         by smtp.gmail.com with ESMTPSA id
- w13-20020a05620a444d00b006cbd92ca141sm5938560qkp.133.2022.09.29.07.48.23
+ x22-20020a05620a0b5600b006b61b2cb1d2sm5954366qkg.46.2022.09.29.07.48.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Sep 2022 07:48:23 -0700 (PDT)
-Date: Thu, 29 Sep 2022 10:48:22 -0400
+        Thu, 29 Sep 2022 07:48:51 -0700 (PDT)
+Date: Thu, 29 Sep 2022 10:48:49 -0400
 From: Jon Mason <jdmason@kudzu.us>
-To: Naveen Saini <naveen.kumar.saini@intel.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [meta-zephyr][PATCH] qemuzephyrrunner: allow to pass QB_GRAPHICS
- to qemu cmdline
-Message-ID: <YzWwNpdssXSrIuHJ@kudzu.us>
-References: <20220928041420.3047817-1-naveen.kumar.saini@intel.com>
+To: philippe.coval@astrolabe.coop
+Cc: yocto@lists.yoctoproject.org,
+	philippe.coval.pro+meta-zephyr-lists.yoctoproject.org@gmail.com
+Subject: Re: [meta-zephyr][PATCH] frdm-kw41z.conf: Add new machine from NXP
+Message-ID: <YzWwUWYMLkirJeq9@kudzu.us>
+References: <20220928122726.1374956-1-philippe.coval@astrolabe.coop>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220928041420.3047817-1-naveen.kumar.saini@intel.com>
+In-Reply-To: <20220928122726.1374956-1-philippe.coval@astrolabe.coop>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 29 Sep 2022 14:48:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58215
+ <yocto@lists.yoctoproject.org>; Thu, 29 Sep 2022 14:48:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58216
 
-On Wed, Sep 28, 2022 at 12:14:20PM +0800, Naveen Saini wrote:
-> Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
-
-I wasn't seeing this issue.  So, my "testing" isn't very valid for it,
-but it did work for me :)
+On Wed, Sep 28, 2022 at 02:27:26PM +0200, philippe.coval@astrolabe.coop wrote:
+> From: Philippe Coval <philippe.coval@astrolabe.coop>
+> 
+> It was tested using zephyr-blinky and deployed manually using:
+> 
+>     udisksctl mount -b  "/dev/disk/by-label'FRDM-KW41ZJ"
+> 
+> Relate-to: https://gitlab.eclipse.org/pcoval/oniro-presentations/-/wikis/openthread
+> Forwarded: https://lists.yoctoproject.org/g/yocto/search?q=posterid:6590488
+> Signed-off-by: Philippe Coval <philippe.coval@astrolabe.coop>
 
 Verified in a batch CI job.  See https://gitlab.com/jonmason00/meta-zephyr/-/pipelines/654231304
 
 Tested-by: Jon Mason <jon.mason@arm.com>
 
-
 > ---
->  meta-zephyr-core/lib/oeqa/utils/qemuzephyrrunner.py | 1 +
->  1 file changed, 1 insertion(+)
+>  .gitlab-ci.yml                               |  3 +++
+>  ci/frdm-kw41z.yml                            |  6 ++++++
+>  meta-zephyr-bsp/conf/machine/frdm-kw41z.conf | 11 +++++++++++
+>  3 files changed, 20 insertions(+)
+>  create mode 100644 ci/frdm-kw41z.yml
+>  create mode 100755 meta-zephyr-bsp/conf/machine/frdm-kw41z.conf
 > 
-> diff --git a/meta-zephyr-core/lib/oeqa/utils/qemuzephyrrunner.py b/meta-zephyr-core/lib/oeqa/utils/qemuzephyrrunner.py
-> index 7b486ce..c0a9e0f 100644
-> --- a/meta-zephyr-core/lib/oeqa/utils/qemuzephyrrunner.py
-> +++ b/meta-zephyr-core/lib/oeqa/utils/qemuzephyrrunner.py
-> @@ -157,6 +157,7 @@ class QemuZephyrRunner(QemuRunner):
->              bb.error("Unsupported QEMU: %s" % self.machine)
->              return False
+> diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
+> index c185477..5752254 100644
+> --- a/.gitlab-ci.yml
+> +++ b/.gitlab-ci.yml
+> @@ -71,6 +71,9 @@ machine-coverage:
+>  arduino-nano-33-ble:
+>    extends: .build
 >  
-> +        self.qemuparams += " %s " %self.get('QB_GRAPHICS')
->          self.qemuparams += " %s " %self.get('QB_OPT_APPEND')
->          self.qemuparams += " %s " %self.get('QB_CPU')
+> +frdm-kw41z:
+> +  extends: .build
+> +
+>  intel-x86-64:
+>    extends: .build
 >  
+> diff --git a/ci/frdm-kw41z.yml b/ci/frdm-kw41z.yml
+> new file mode 100644
+> index 0000000..cb1ce1f
+> --- /dev/null
+> +++ b/ci/frdm-kw41z.yml
+> @@ -0,0 +1,6 @@
+> +header:
+> +  version: 11
+> +  includes:
+> +    - ci/base.yml
+> +
+> +machine: frdm-kw41z
+> diff --git a/meta-zephyr-bsp/conf/machine/frdm-kw41z.conf b/meta-zephyr-bsp/conf/machine/frdm-kw41z.conf
+> new file mode 100755
+> index 0000000..464e83a
+> --- /dev/null
+> +++ b/meta-zephyr-bsp/conf/machine/frdm-kw41z.conf
+> @@ -0,0 +1,11 @@
+> +#@TYPE: Machine
+> +#@NAME: frdm-kw41z
+> +#@DESCRIPTION: Machine configuration for frdm-kw41z 
+> +#
+> +# This file was generated using generate-zephyr-machines
+> +
+> +require conf/machine/include/arm/armv6m/tune-cortexm0plus.inc
+> +
+> +ARCH:frdm-kw41z = "arm"
+> +
+> +DEFAULTUNE ?= "cortexm0plus"
 > -- 
-> 2.25.1
+> 2.34.1
 > 
 > 
 
