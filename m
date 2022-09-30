@@ -1,232 +1,299 @@
-Return-Path: <marek.belisko@gmail.com>
+Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C03F2C433F5
-	for <webhook@archiver.kernel.org>; Fri, 30 Sep 2022 05:24:56 +0000 (UTC)
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com
- [209.85.208.169])
- by mx.groups.io with SMTP id smtpd.web11.2438.1664515490593882846
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C1BA9C433FE
+	for <webhook@archiver.kernel.org>; Fri, 30 Sep 2022 08:55:07 +0000 (UTC)
+Received: from EUR03-VE1-obe.outbound.protection.outlook.com
+ (EUR03-VE1-obe.outbound.protection.outlook.com [40.107.5.69])
+ by mx.groups.io with SMTP id smtpd.web09.3524.1664528102582448925
  for <yocto@lists.yoctoproject.org>;
- Thu, 29 Sep 2022 22:24:51 -0700
+ Fri, 30 Sep 2022 01:55:03 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=eKuxyryT;
- spf=pass (domain: gmail.com, ip: 209.85.208.169,
- mailfrom: marek.belisko@gmail.com)
-Received: by mail-lj1-f169.google.com with SMTP id b6so3647284ljr.10
-        for <yocto@lists.yoctoproject.org>;
- Thu, 29 Sep 2022 22:24:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date;
-        bh=hmB7bWG1Zu4lKd2Y55gosN9eQb9F17+V/RtsZ1Mm0vY=;
-        b=eKuxyryTGPek7BxXHDsTn3E03Zu/UHs/87uB1U/wWAJxch9qca+GjlF77tInYMh4h9
-         F0dmpvtwgettGSvMQ6Cl8Y2nWTdQFISOT4EkGHvmKcSgBqETRAd3At2HpFtQA3MX8CnA
-         +uqEQdjyAMJANor960jkZzDi1h+/O3vocuY/UIGVHlNnV6X9ePSxV+kjPtzY1YqON4+D
-         D2xKLJlXNai+sKRrKCqpCmwRVqu4W3LKsPeDWDaxN3HQNVxktpf2jR7fhg5wcDjtE7oO
-         5LCAiVBenjEIMGAJ+mXgjX0P3TiOyenlXnYj36UIonwlHAd9nwi5j12BmutCVPdsVe11
-         0nXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=hmB7bWG1Zu4lKd2Y55gosN9eQb9F17+V/RtsZ1Mm0vY=;
-        b=MdJyNjN5yJtO4+qQPKgunsa/78//1UY69P3cqczJC1AQhEE7rU6NznSy12lNMkxAl0
-         V9BEYBkVuTstyazRxVuznJKYgp7cCYf0YjQie/6bDfLF9k8kKGIZOiAjcoIHm6mEFD4D
-         YU4IFcQq+ZiiZAhqydbmlanu4+D6sNCVqZebUT+8wrYSkgHxhBktB1ImOXzY4zspylgi
-         wfxJl2wrF92BJ3c+AjKNLic5TYBP0wiGTQecBK9Z6qSHUAHU3InXQu8PWZ1ap4/Pu671
-         lRz4XQOt565A+Wb5+4phxJZc17zxdarTi1YxwLOlCnqFzmGgC9LgoQ6MYCqQALPMGjtL
-         1KFQ==
-X-Gm-Message-State: ACrzQf1TUgHB/2B64kH9hGrFNuwcgvJVjvEnlmpoKC//S+mqS/l75BVZ
-	beK4j/rotVLyUsvaXcvN3j4P3DWGg3eLO+w1yrE=
-X-Google-Smtp-Source: 
- AMsMyM4djb58W/8p0QWWDeeNScPnLS/8GHWT3lHNPtfbP1K86ylyVkjSL8NwSNiKtZb0ZY2YX7gDgnBzIrU090de3jI=
-X-Received: by 2002:a2e:988a:0:b0:26c:171f:1ecb with SMTP id
- b10-20020a2e988a000000b0026c171f1ecbmr2232798ljj.105.1664515488544; Thu, 29
- Sep 2022 22:24:48 -0700 (PDT)
-MIME-Version: 1.0
-References: <nsxC.1664479553618392952.I9qN@lists.yoctoproject.org>
-In-Reply-To: <nsxC.1664479553618392952.I9qN@lists.yoctoproject.org>
-From: Belisko Marek <marek.belisko@gmail.com>
-Date: Fri, 30 Sep 2022 07:24:36 +0200
-Message-ID: 
- <CAAfyv34jdVfSbJ20BFcbNqwMCsjyv-Z_D8g9UFRcD4yhFS6NXQ@mail.gmail.com>
+ dkim=pass header.i=@armh.onmicrosoft.com
+ header.s=selector2-armh-onmicrosoft-com header.b=MWFM+CeL;
+ spf=pass (domain: arm.com, ip: 40.107.5.69, mailfrom: ross.burton@arm.com)
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=pass;
+ b=Y2vuk0ZUjxa9LEzCeP1zN5ycyupzlGVZ/f1TQHLoutjNoi7UHrldt8XEKZ64psst1WhBqhMbSjJ8pjyqV7p1XRUYgUIovhdWYToaL+MCc0ZYVTElTUn1AW7SiG1xwKZclzdggCk1c/L1pU2RWkuvDJJoRsj8NKCYbKuA2nW6vBl2S6NExXhFYEfgPuEwnXEWI5V0QaCnxKPYJTaJ9Qt7YVhDOprQV/BWBDiKrG43MG92lz3O50UoHVgc0wxy+3l8FI9JI5dQ+68ml7VfbaRfs3JZljggHf1UEeLEy09zw4+75B/1VmbzpGfNGStegXUtt/OIlavE8Ac7d0PiHzZCAg==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CdIQEaYoPgd5fJ/6LOlcvXGSUdYVEz6KRpNwxim+9rI=;
+ b=OjEf+NBLGNPBxjw+oKhj18fKpXNKKOdILsUgEgwblpsa7xyphkZQ9jM1HqmQJM0pL07LpnqwgjtD4D553uea2wPCHGoc3qyszVQHjAIc6RvO6HaJXH2vOShbfimqnEDBQck3WWar3dvydwhsPKVgeHtHVkKRWCF71X1J+tlUSjmIp2NxaqkMD+Cuq5IJnUi9+9VyEw4VBJRxr0bEP9BJA3oLaJACqLnSGAwfTGZGqRyJ+0Nr6JCP0DSRArNA7fLsPqVm4MNNmiEAn7xnluZchmcIFvFl5GHbLIz1YZMXHnMOxzgkvjVSnGFNiRyVRDpwsv9bxwBCKTvVF41xdUa0VA==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
+ 63.35.35.123) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=arm.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=arm.com;
+ dkim=pass (signature was verified) header.d=armh.onmicrosoft.com; arc=pass (0
+ oda=1 ltdi=1 spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
+ dmarc=[1,1,header.from=arm.com])
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CdIQEaYoPgd5fJ/6LOlcvXGSUdYVEz6KRpNwxim+9rI=;
+ b=MWFM+CeLlBB9br8GlJDWmyZOmdSg9H11HyedFaLeLTGi+JGrUgOmWW8BhsfWItAbjVqAxPEr5u/ubQtC58xGI4tzIxVPV1gB4YtUW/aAoozWKkEgstrQFMdMH6/AWLELNeQFCBLcv8sB7ugTnKMTEWOhESwDyveTUaltDMk+6RI=
+Received: from AM5PR0701CA0015.eurprd07.prod.outlook.com
+ (2603:10a6:203:51::25) by DU0PR08MB8346.eurprd08.prod.outlook.com
+ (2603:10a6:10:40a::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.23; Fri, 30 Sep
+ 2022 08:54:58 +0000
+Received: from AM7EUR03FT006.eop-EUR03.prod.protection.outlook.com
+ (2603:10a6:203:51:cafe::b3) by AM5PR0701CA0015.outlook.office365.com
+ (2603:10a6:203:51::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.23 via Frontend
+ Transport; Fri, 30 Sep 2022 08:54:58 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 63.35.35.123)
+ smtp.mailfrom=arm.com; dkim=pass (signature was verified)
+ header.d=armh.onmicrosoft.com;dmarc=pass action=none header.from=arm.com;
+Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
+ 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
+ client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
+ pr=C
+Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
+ AM7EUR03FT006.mail.protection.outlook.com (100.127.141.21) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5676.17 via Frontend Transport; Fri, 30 Sep 2022 08:54:57 +0000
+Received: ("Tessian outbound d354c7aef2bc:v128");
+ Fri, 30 Sep 2022 08:54:57 +0000
+X-CheckRecipientChecked: true
+X-CR-MTA-CID: 39fe1665337c6cd0
+X-CR-MTA-TID: 64aa7808
+Received: from 321bd8aa2ccf.1
+	by 64aa7808-outbound-1.mta.getcheckrecipient.com id
+ FB8AB2C3-66DA-487E-8EFF-C6B8EF16D2D1.1;
+	Fri, 30 Sep 2022 08:54:50 +0000
+Received: from EUR02-HE1-obe.outbound.protection.outlook.com
+    by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id
+ 321bd8aa2ccf.1
+    (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
+    Fri, 30 Sep 2022 08:54:50 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=V46Q5j5denS65u+bAR7MzIfOOr24URCr6L0Uic51yxbNZ+6gXLzbK6GCzCXcC7ZHCvR6gQX1371eAB+U2qEeHZCmsNZsRYSG3tSfpGAZ1t9ZlmW6gB7LEEnndLQhW4DxVRmOCY4LFIA6rQN8uyhOM8rKyQAtYWuyfbT+1Hbg3uay//i18rkGsBAVtYsXXFBV+NaAaoHYW1kJIQtaj8rcBTV84GgKwo0DFZpljuN8MBb/5rnSuceDuaguERVeNX5GWXOcYC6q2YP8FTFYE7S55FRE35fn4VsoEzkhYYUHPrJIpcUYjNaoFX9JpjUSxHJ1ZfZ4bwDGXGcKv6bpWvt0rg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CdIQEaYoPgd5fJ/6LOlcvXGSUdYVEz6KRpNwxim+9rI=;
+ b=I9xc8IaeBXhhTBkoEaioqX8kbLz9CKyrHq02/XtyiiYr4JfwCWtGldEuwc72dJ38d5Eh3ArmG5ZDwBqX5GsMa3a5bqYVP4dTu3z9w1ZXcfMRhaqRhIx7+rBiefPXAWHHvHxubDibAWSJYLLShmD5pBED0kiFSWV1FsxOvKXUKWUKIDd/+sx0xRZQp2zJ30owpCLofQa8mNw/WT99SYW/5QnMD28KRviIWewd+92ICn+PTAIp/GJGfUWgH7oB1XCbe6Hsn4WuMpz2cozjcfcCjOjBTVNMR+Dg2c/NeoTBTRdCGdmH+IHYSwqb/gXL02RRCUHS1zsmJVfPPabxI9TbLw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
+ header.d=arm.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CdIQEaYoPgd5fJ/6LOlcvXGSUdYVEz6KRpNwxim+9rI=;
+ b=MWFM+CeLlBB9br8GlJDWmyZOmdSg9H11HyedFaLeLTGi+JGrUgOmWW8BhsfWItAbjVqAxPEr5u/ubQtC58xGI4tzIxVPV1gB4YtUW/aAoozWKkEgstrQFMdMH6/AWLELNeQFCBLcv8sB7ugTnKMTEWOhESwDyveTUaltDMk+6RI=
+Received: from PA4PR08MB7411.eurprd08.prod.outlook.com (2603:10a6:102:2a3::12)
+ by PAWPR08MB9637.eurprd08.prod.outlook.com (2603:10a6:102:2ec::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.17; Fri, 30 Sep
+ 2022 08:54:48 +0000
+Received: from PA4PR08MB7411.eurprd08.prod.outlook.com
+ ([fe80::7d2b:2570:9a99:a3d2]) by PA4PR08MB7411.eurprd08.prod.outlook.com
+ ([fe80::7d2b:2570:9a99:a3d2%5]) with mapi id 15.20.5676.017; Fri, 30 Sep 2022
+ 08:54:48 +0000
+From: Ross Burton <Ross.Burton@arm.com>
+To: "michaelb.miner@gmail.com" <michaelb.miner@gmail.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
 Subject: Re: [yocto] Boost and LibSocketCan Errors #bitbake
-To: michaelb.miner@gmail.com
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Thread-Topic: [yocto] Boost and LibSocketCan Errors #bitbake
+Thread-Index: AQHY1EJCI7pH9eBnVUueUJKwVKk2RK33rBCA
+Date: Fri, 30 Sep 2022 08:54:47 +0000
+Message-ID: <BEA85164-FF89-42FA-A297-98493CCBD79C@arm.com>
+References: <ATHS.1664479580468919764.fNj0@lists.yoctoproject.org>
+In-Reply-To: <ATHS.1664479580468919764.fNj0@lists.yoctoproject.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Apple Mail (2.3696.120.41.1.1)
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=arm.com;
+x-ms-traffictypediagnostic: 
+	PA4PR08MB7411:EE_|PAWPR08MB9637:EE_|AM7EUR03FT006:EE_|DU0PR08MB8346:EE_
+X-MS-Office365-Filtering-Correlation-Id: dbc7d276-a6f0-4063-6deb-08daa2c17391
+x-checkrecipientrouted: true
+nodisclaimer: true
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: 
+ Y5KmGQYS4rPbvC9xSFy+gz43ef7GWjWTW4mxYBKequqhtE5mAxY1HU8WMGjKnN7YzvbBEOz3+R2S7weu7iW8O0lifsqw5Ms1om9Pv/CFrA9B857dCZK5IZpKSzd2CkpeSg6L2mMMx+/2CleK1BSfAl1yBkArffOEYkm03miaPHkdonNPLgoteW3zPnxJcskvFtEN5NaFcydSYWlGh697P26lGGatK0MSmSH2FGm5MakrweCyL9ma8QNixR1JeSw2g3XqGMDUac4V9JUQvUe2+e9AH4L87O6PAcP7QBrFylkEOeVMh2QzFrNbnFyDxJPHjfBBolLPxPjexvI4wQYSC11D7ZEzZ4GkbcWpnPQxEXTmXqXtAvdCwqKAVB7hbhO05uHQBz+/r+U9qiDY+Xt/qrzXM+faJS/7edcD6uCYkKjDQkXdkw2A43A7bX+c34RuSVTrbAEOlhMjcxTFHm2Bgi/rAkvamNA3t0Nlm9RaYPmLCwBecJvY1ifkPYtYnkitR3xXbZ4txILp9tJ2JjgFBy9xMYet5zGGtObFqgW4BPX/V9ZWXAlIl8mvilZsBzz4zzGtAs1dAf4ilKZ1fDOMljTMbVsJI0703FEU1MaCzEPlo6rizriMVgYgy5HmdqWCAv0o/gYIXzxPIpu9Qz0THvE4ciB90tk1hupj3bMigOyieMJywVXMQlaz1QzLFB3LGxIVCPqS6K2LT5925ujr1UFa/dnPRXOtfhZcpMu3XZx55+GQJ1lMnQpa/VtK5pN2Afv9l0Xw9+yK0oWrXnXaGxll6xwL1zDLkPo37BvAVvG6lrwWhVk3DYDKKTlu8EVDr7rzqhx+POfnuRJdiYyIaZFwfVH/pm0VoKQSgTaI6iM=
+X-Forefront-Antispam-Report-Untrusted: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR08MB7411.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(136003)(346002)(396003)(376002)(366004)(451199015)(478600001)(186003)(71200400001)(6486002)(966005)(6506007)(66899015)(53546011)(8936002)(38070700005)(316002)(122000001)(33656002)(2616005)(6512007)(2906002)(38100700002)(6916009)(91956017)(83380400001)(26005)(36756003)(66946007)(8676002)(41300700001)(4326008)(66476007)(66446008)(76116006)(5660300002)(66556008)(64756008)(86362001)(45980500001);DIR:OUT;SFP:1101;
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <EEF2E26C4F6F9146BF89B01CBCFA9793@eurprd08.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR08MB9637
+Original-Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=arm.com;
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
+ AM7EUR03FT006.eop-EUR03.prod.protection.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 
+	40a1d41a-8d30-49e0-53b0-08daa2c16dca
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	e5JDjyGK0ISaY8vOYCUDkd7GTIf5AOCqv3SYhJiIXKRq4BhYmQ8nCdSzL6wI7174liZaXs9qr+zVJEPOAYpFyImJvUFi4qZneSoEoxkHvqAbrpBtjTytS9n2LW//yH5PbFKj7AkCHmP2mMXjyZ0MDndBAZ3+iG06PVjKFEa3CIMRNGvELYz8f9tmqxq3TZfO1VZQSEyPCaD20tKGNzOxJW7Vss9KumW6PbXbHR5im5d4RMpB6UdLrHYE6q17yhRjLULNdiNhMaP5CeK+HdxXfjDxFdbmJTO7uxUjc6drH2e0lhBG3zH4i7b8WPYrJ55uxTljbGT/dh3EdFPyMJe4C5wHgqkQekQZziISFdfrU7XAdJfZL6goc/8nm6oMSWXzFCvPA8qyR3MNO9N4Vv+YbpdEyS6i4L8olDkp+N5eICWyE+SWrTZ3CC45PwPa6iQ2oBqxuAFidyhy+o7ObNx0msOZNek+w2NaDwev51kSVLTNkR3363QMiqu3fpxBftNMc0viK9EGBf8JCyWyRCaQsXC2S8yEsMqeK58Ed3bYHifUCxPviArRUZGpqPe6ucK7Jp3Vf+LbN1yJYMnFV8mEq9gHjRBzDEyan5shn9dV74I3m8z5qT0xfkTVyYM5kWm+HDVbe4pSLJAjSjBWGrgklG68ZuvAxj1nXSwR4Wq+AzcIgsCJ0YuZ5W6agJXXvjEk+rzYmNz5bLxMyamBfRDG+ILyFGRqzbdxxeEBr1x4o5tT6RViSvpIKfOK/EsT1cIdcnlv1qN2eAjAw0xHxeKspvL987Yrxu1no3yIcCjYP3UOxASigcitN1rxS/QVS1n6KDkjjlu3QlDGVokKNHujkA==
+X-Forefront-Antispam-Report: 
+	CIP:63.35.35.123;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:64aa7808-outbound-1.mta.getcheckrecipient.com;PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(376002)(346002)(136003)(396003)(451199015)(36840700001)(46966006)(40470700004)(5660300002)(2616005)(336012)(186003)(33656002)(2906002)(6506007)(41300700001)(36756003)(53546011)(6862004)(26005)(8936002)(6512007)(8676002)(4326008)(70586007)(70206006)(82310400005)(356005)(82740400003)(81166007)(40460700003)(83380400001)(47076005)(36860700001)(40480700001)(86362001)(966005)(6486002)(66899015)(316002)(478600001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: arm.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2022 08:54:57.7020
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ dbc7d276-a6f0-4063-6deb-08daa2c17391
+X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
+ TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[63.35.35.123];Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	AM7EUR03FT006.eop-EUR03.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR08MB8346
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 30 Sep 2022 05:24:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58227
+ <yocto@lists.yoctoproject.org>; Fri, 30 Sep 2022 08:55:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58228
 
-Hi Michael,
-
-On Thu, Sep 29, 2022 at 10:27 PM <michaelb.miner@gmail.com> wrote:
->
-> Hello,
->
-> I have an application that is comprised of C++ and C code modules. I have=
- two bitbake builds, prod and dev. The dev image builds 100% of the time. T=
-he difference between prod and dev, dev has debug tools, prod build the mai=
-n application and attempts to include it in the image. I cannot build the p=
-rod image. I am getting two errors that I cannot resolve. Note that my buil=
-d script works on the target hardware as well as the development Ubnuntu pl=
-atform.
->
-> I am using autotools, autogen.sh, configure.ac and makefile.am to build m=
-y application. The files are uploaded to this question.
-google link doesn't work.
->
-> I have uploaded my file to my google drive here. The files are
->
-> build_project.sh
-> configure.ac
-> autogen.sh
-> makefile.am
-> mainapplication_0.0.bb
-> mainapplication.inc
-> mainapplication-dev.bb
-> myapplication.bb
->
->
-> The following two errors come from boost:
->
-> arm-poky-linux-gnueabi-gcc  -mthumb -mfpu=3Dneon -mfloat-abi=3Dhard -mcpu=
-=3Dcortex-a7 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=3D2 -Wformat -=
-Wformat-security -Werror=3Dformat-security --sysroot=3D/home/michael/Docume=
-nts/MAIN_Application/build-fb/tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi=
-/mainapplication/0.0-r0/recipe-sysroot -DPACKAGE_NAME=3D\"MAIN_Application\=
-" -DPACKAGE_TARNAME=3D\"main_application\" -DPACKAGE_VERSION=3D\"0.0.1\" -D=
-PACKAGE_STRING=3D\"MAIN_Application\ 0.0.1\" -DPACKAGE_BUGREPORT=3D\"michae=
-lminer@smartrendmfg.com\" -DPACKAGE_URL=3D\"\" -DPACKAGE=3D\"main_applicati=
-on\" -DVERSION=3D\"0.0.1\" -I. -I../MAIN_Application  -D_REENTRANT -D__X86_=
-VERSION__ -DLINUX -I../MAIN_Application/include -I../MAIN_Application/inclu=
-de/comms/CAN -I../MAIN_Application/include/comms/PLC -I../MAIN_Application/=
-include/comms/UART -I../MAIN_Application/include/CML_Integration -I../MAIN_=
-Application/include/config_parsing -I../MAIN_Application/include/utilities =
--I../MAIN_Application/vendor/carmedialab/SMG/trunk/ISO15118_Stack/include -=
-I../MAIN_Application/vendor/carmedialab/SMG/trunk/ISO15118_Stack/sources/EV=
- -I../MAIN_Application/vendor/carmedialab/SMG/trunk/ISO15118_Stack/sources/=
-EV/model/Generic -I../MAIN_Application/vendor/carmedialab/SMG/trunk/ISO1511=
-8_Stack/sources/EV/net -I../MAIN_Application/vendor/carmedialab/SMG/trunk/I=
-SO15118_Stack/sources/EV/state -I../MAIN_Application/vendor/carmedialab/SMG=
-/trunk/ISO15118_Stack/sources/EVVisitor -I../MAIN_Application/vendor/carmed=
-ialab/SMG/trunk/ISO15118_Stack/sources/common -I../MAIN_Application/vendor/=
-carmedialab/SMG/trunk/ISO15118_Stack/sources/common/configuration -I../MAIN=
-_Application/vendor/carmedialab/SMG/trunk/ISO15118_Stack/sources/common/con=
-figuration/ev -I../MAIN_Application/vendor/carmedialab/SMG/trunk/ISO15118_S=
-tack/sources/common/msg -I../MAIN_Application/vendor/carmedialab/SMG/trunk/=
-ISO15118_Stack/sources/common/net -I../MAIN_Application/vendor/carmedialab/=
-SMG/trunk/ISO15118_Stack/sources/common/states -I../MAIN_Application/vendor=
-/carmedialab/SMG/trunk/ISO15118_Stack/sources/v2g/ApiV2g/ev -I../MAIN_Appli=
-cation/vendor/carmedialab/SMG/trunk/ISO15118_Stack/sources/v2g/appHandshake=
- -I../MAIN_Application/vendor/carmedialab/SMG/trunk/ISO15118_Stack/sources/=
-v2g/codec -I../MAIN_Application/vendor/carmedialab/SMG/trunk/ISO15118_Stack=
-/sources/v2g/iso1 -I../MAIN_Application/vendor/carmedialab/SMG/trunk/ISO151=
-18_Stack/sources/v2g/iso2 -I../MAIN_Application/vendor/carmedialab/SMG/trun=
-k/ISO15118_Stack/sources/v2g/xmldsig -I../MAIN_Application/vendor/carmedial=
-ab/SMG/trunk/TmCommon/sources/CmlCommon -I../MAIN_Application/vendor/carmed=
-ialab/SMG/trunk/TmCommon/sources/DccCommon   -O2 -pipe -g -feliminate-unuse=
-d-debug-types -fmacro-prefix-map=3D/home/michael/Documents/MAIN_Application=
-/build-fb/tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/mainapplication/0.0=
--r0=3D/usr/src/debug/mainapplication/0.0-r0                      -fdebug-pr=
-efix-map=3D/home/michael/Documents/MAIN_Application/build-fb/tmp/work/corte=
-xa7t2hf-neon-poky-linux-gnueabi/mainapplication/0.0-r0=3D/usr/src/debug/mai=
-napplication/0.0-r0                      -fdebug-prefix-map=3D/home/michael=
-/Documents/MAIN_Application/build-fb/tmp/work/cortexa7t2hf-neon-poky-linux-=
-gnueabi/mainapplication/0.0-r0/recipe-sysroot=3D                      -fdeb=
-ug-prefix-map=3D/home/michael/Documents/MAIN_Application/build-fb/tmp/work/=
-cortexa7t2hf-neon-poky-linux-gnueabi/mainapplication/0.0-r0/recipe-sysroot-=
-native=3D  -c -o src/utilities/dictionary.o ../MAIN_Application/src/utiliti=
-es/dictionary.c
-> In file included from /home/michael/Documents/MAIN_Application/build-fb/t=
-mp/work/cortexa7t2hf-neon-poky-linux-gnueabi/mainapplication/0.0-r0/recipe-=
-sysroot/usr/include/boost/config/detail/select_stdlib_config.hpp:24,
->                  from /home/michael/Documents/MAIN_Application/build-fb/t=
-mp/work/cortexa7t2hf-neon-poky-linux-gnueabi/mainapplication/0.0-r0/recipe-=
-sysroot/usr/include/boost/config.hpp:44,
->                  from /home/michael/Documents/MAIN_Application/build-fb/t=
-mp/work/cortexa7t2hf-neon-poky-linux-gnueabi/mainapplication/0.0-r0/recipe-=
-sysroot/usr/include/boost/smart_ptr/bad_weak_ptr.hpp:20,
->                  from /home/michael/Documents/MAIN_Application/build-fb/t=
-mp/work/cortexa7t2hf-neon-poky-linux-gnueabi/mainapplication/0.0-r0/recipe-=
-sysroot/usr/include/boost/smart_ptr/detail/shared_count.hpp:25,
->                  from /home/michael/Documents/MAIN_Application/build-fb/t=
-mp/work/cortexa7t2hf-neon-poky-linux-gnueabi/mainapplication/0.0-r0/recipe-=
-sysroot/usr/include/boost/smart_ptr/shared_ptr.hpp:17,
->                  from /home/michael/Documents/MAIN_Application/build-fb/t=
-mp/work/cortexa7t2hf-neon-poky-linux-gnueabi/mainapplication/0.0-r0/recipe-=
-sysroot/usr/include/boost/shared_ptr.hpp:17,
->                  from ../MAIN_Application/vendor/carmedialab/SMG/trunk/IS=
-O15118_Stack/sources/EV/state/IsoStatesMachine.h:6,
->                  from ../MAIN_Application/include/CML_Integration/cml_int=
-egration.hpp:18,
->                  from ../MAIN_Application/src/main.cpp:13:
-> ../MAIN_Application/version:1:1: error: too many decimal points in number
->     1 | 0.0.0
->       | ^~~~~
->
-> version:1:1: error: expected unqualified-id before numeric constant
-Without seeing source hard to say what it can be but it looks like
-typo or so as float numbers use only one '.' ;)
->
->
-> The final error comes from can-untils.
->
-> In file included from /home/michael/Documents/MAIN_Application/build-fb/t=
-mp/work/cortexa7t2hf-neon-poky-linux-gnueabi/mainapplication/0.0-r0/recipe-=
-sysroot/usr/include/sys/socket.h:33,
->                  from /home/michael/Documents/MAIN_Application/build-fb/t=
-mp/work/cortexa7t2hf-neon-poky-linux-gnueabi/mainapplication/0.0-r0/recipe-=
-sysroot/usr/include/netinet/in.h:23,
->                  from ../MAIN_Application/vendor/carmedialab/SMG/trunk/IS=
-O15118_Stack/sources/common/net/v2gtp.h:34,
->                  from ../MAIN_Application/src/CML_Integration/sources/EV/=
-state/dc/SMG_EvStateImpl.cpp:7:
-> /home/michael/Documents/MAIN_Application/build-fb/tmp/work/cortexa7t2hf-n=
-eon-poky-linux-gnueabi/mainapplication/0.0-r0/recipe-sysroot/usr/include/bi=
-ts/socket.h:260:5: error: 'socklen_t' does not name a type; did you mean 'l=
-ocale_t'?
->
-> socklen_t is defined in unistd.h which is present in my recipe-sysroot fo=
-lder under usr/include. Is there a clear issue with my build files? I have =
-been searching for an answer for a few days now and I have come up empty ha=
-nded. Hoping someone here can assist.
-Which poky version do you use? Do you use a custom kernel/libc? Can
-you please ellaborate?
->
->
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#58221): https://lists.yoctoproject.org/g/yocto/messag=
-e/58221
-> Mute This Topic: https://lists.yoctoproject.org/mt/94003473/900721
-> Mute #bitbake:https://lists.yoctoproject.org/g/yocto/mutehashtag/bitbake
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [marek.belisko@=
-gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
-
-BR,
-
-marek
---=20
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
-
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
+4oCcVGhpcyBmb2xkZXIgaXMgZW1wdHnigJ0NCg0KUm9zcw0KDQoNCj4gT24gMjkgU2VwIDIwMjIs
+IGF0IDIwOjI2LCBtaWNoYWVsYi5taW5lciB2aWEgbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyA8bWlj
+aGFlbGIubWluZXI9Z21haWwuY29tQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+IHdyb3RlOg0KPiAN
+Cj4gSGVsbG8sDQo+IA0KPiBJIGhhdmUgYW4gYXBwbGljYXRpb24gdGhhdCBpcyBjb21wcmlzZWQg
+b2YgQysrIGFuZCBDIGNvZGUgbW9kdWxlcy4gSSBoYXZlIHR3byBiaXRiYWtlIGJ1aWxkcywgcHJv
+ZCBhbmQgZGV2LiBUaGUgZGV2IGltYWdlIGJ1aWxkcyAxMDAlIG9mIHRoZSB0aW1lLiBUaGUgZGlm
+ZmVyZW5jZSBiZXR3ZWVuIHByb2QgYW5kIGRldiwgZGV2IGhhcyBkZWJ1ZyB0b29scywgcHJvZCBi
+dWlsZCB0aGUgbWFpbiBhcHBsaWNhdGlvbiBhbmQgYXR0ZW1wdHMgdG8gaW5jbHVkZSBpdCBpbiB0
+aGUgaW1hZ2UuIEkgY2Fubm90IGJ1aWxkIHRoZSBwcm9kIGltYWdlLiBJIGFtIGdldHRpbmcgdHdv
+IGVycm9ycyB0aGF0IEkgY2Fubm90IHJlc29sdmUuIE5vdGUgdGhhdCBteSBidWlsZCBzY3JpcHQg
+d29ya3Mgb24gdGhlIHRhcmdldCBoYXJkd2FyZSBhcyB3ZWxsIGFzIHRoZSBkZXZlbG9wbWVudCBV
+Ym51bnR1IHBsYXRmb3JtLg0KPiANCj4gSSBhbSB1c2luZyBhdXRvdG9vbHMsIGF1dG9nZW4uc2gs
+IGNvbmZpZ3VyZS5hYyBhbmQgbWFrZWZpbGUuYW0gdG8gYnVpbGQgbXkgYXBwbGljYXRpb24uIFRo
+ZSBmaWxlcyBhcmUgdXBsb2FkZWQgdG8gdGhpcyBxdWVzdGlvbi4NCj4gDQo+IEkgaGF2ZSB1cGxv
+YWRlZCBteSBmaWxlIHRvIG15IGdvb2dsZSBkcml2ZSBoZXJlLiBUaGUgZmlsZXMgYXJlIA0KPiAJ
+4oCiIGJ1aWxkX3Byb2plY3Quc2gNCj4gCeKAoiBjb25maWd1cmUuYWMNCj4gCeKAoiBhdXRvZ2Vu
+LnNoDQo+IAnigKIgbWFrZWZpbGUuYW0NCj4gCeKAoiBtYWluYXBwbGljYXRpb25fMC4wLmJiDQo+
+IAnigKIgbWFpbmFwcGxpY2F0aW9uLmluYw0KPiAJ4oCiIG1haW5hcHBsaWNhdGlvbi1kZXYuYmIN
+Cj4gCeKAoiBteWFwcGxpY2F0aW9uLmJiDQo+IA0KPiBUaGUgZm9sbG93aW5nIHR3byBlcnJvcnMg
+Y29tZSBmcm9tIGJvb3N0Og0KPiBhcm0tcG9reS1saW51eC1nbnVlYWJpLWdjYyAgLW10aHVtYiAt
+bWZwdT1uZW9uIC1tZmxvYXQtYWJpPWhhcmQgLW1jcHU9Y29ydGV4LWE3IC1mc3RhY2stcHJvdGVj
+dG9yLXN0cm9uZyAgLU8yIC1EX0ZPUlRJRllfU09VUkNFPTIgLVdmb3JtYXQgLVdmb3JtYXQtc2Vj
+dXJpdHkgLVdlcnJvcj1mb3JtYXQtc2VjdXJpdHkgLS1zeXNyb290PS9ob21lL21pY2hhZWwvRG9j
+dW1lbnRzL01BSU5fQXBwbGljYXRpb24vYnVpbGQtZmIvdG1wL3dvcmsvY29ydGV4YTd0MmhmLW5l
+b24tcG9reS1saW51eC1nbnVlYWJpL21haW5hcHBsaWNhdGlvbi8wLjAtcjAvcmVjaXBlLXN5c3Jv
+b3QgLURQQUNLQUdFX05BTUU9XCJNQUlOX0FwcGxpY2F0aW9uXCIgLURQQUNLQUdFX1RBUk5BTUU9
+XCJtYWluX2FwcGxpY2F0aW9uXCIgLURQQUNLQUdFX1ZFUlNJT049XCIwLjAuMVwiIC1EUEFDS0FH
+RV9TVFJJTkc9XCJNQUlOX0FwcGxpY2F0aW9uXCAwLjAuMVwiIC1EUEFDS0FHRV9CVUdSRVBPUlQ9
+XCJtaWNoYWVsbWluZXJAc21hcnRyZW5kbWZnLmNvbVwiIC1EUEFDS0FHRV9VUkw9XCJcIiAtRFBB
+Q0tBR0U9XCJtYWluX2FwcGxpY2F0aW9uXCIgLURWRVJTSU9OPVwiMC4wLjFcIiAtSS4gLUkuLi9N
+QUlOX0FwcGxpY2F0aW9uICAtRF9SRUVOVFJBTlQgLURfX1g4Nl9WRVJTSU9OX18gLURMSU5VWCAt
+SS4uL01BSU5fQXBwbGljYXRpb24vaW5jbHVkZSAtSS4uL01BSU5fQXBwbGljYXRpb24vaW5jbHVk
+ZS9jb21tcy9DQU4gLUkuLi9NQUlOX0FwcGxpY2F0aW9uL2luY2x1ZGUvY29tbXMvUExDIC1JLi4v
+TUFJTl9BcHBsaWNhdGlvbi9pbmNsdWRlL2NvbW1zL1VBUlQgLUkuLi9NQUlOX0FwcGxpY2F0aW9u
+L2luY2x1ZGUvQ01MX0ludGVncmF0aW9uIC1JLi4vTUFJTl9BcHBsaWNhdGlvbi9pbmNsdWRlL2Nv
+bmZpZ19wYXJzaW5nIC1JLi4vTUFJTl9BcHBsaWNhdGlvbi9pbmNsdWRlL3V0aWxpdGllcyAtSS4u
+L01BSU5fQXBwbGljYXRpb24vdmVuZG9yL2Nhcm1lZGlhbGFiL1NNRy90cnVuay9JU08xNTExOF9T
+dGFjay9pbmNsdWRlIC1JLi4vTUFJTl9BcHBsaWNhdGlvbi92ZW5kb3IvY2FybWVkaWFsYWIvU01H
+L3RydW5rL0lTTzE1MTE4X1N0YWNrL3NvdXJjZXMvRVYgLUkuLi9NQUlOX0FwcGxpY2F0aW9uL3Zl
+bmRvci9jYXJtZWRpYWxhYi9TTUcvdHJ1bmsvSVNPMTUxMThfU3RhY2svc291cmNlcy9FVi9tb2Rl
+bC9HZW5lcmljIC1JLi4vTUFJTl9BcHBsaWNhdGlvbi92ZW5kb3IvY2FybWVkaWFsYWIvU01HL3Ry
+dW5rL0lTTzE1MTE4X1N0YWNrL3NvdXJjZXMvRVYvbmV0IC1JLi4vTUFJTl9BcHBsaWNhdGlvbi92
+ZW5kb3IvY2FybWVkaWFsYWIvU01HL3RydW5rL0lTTzE1MTE4X1N0YWNrL3NvdXJjZXMvRVYvc3Rh
+dGUgLUkuLi9NQUlOX0FwcGxpY2F0aW9uL3ZlbmRvci9jYXJtZWRpYWxhYi9TTUcvdHJ1bmsvSVNP
+MTUxMThfU3RhY2svc291cmNlcy9FVlZpc2l0b3IgLUkuLi9NQUlOX0FwcGxpY2F0aW9uL3ZlbmRv
+ci9jYXJtZWRpYWxhYi9TTUcvdHJ1bmsvSVNPMTUxMThfU3RhY2svc291cmNlcy9jb21tb24gLUku
+Li9NQUlOX0FwcGxpY2F0aW9uL3ZlbmRvci9jYXJtZWRpYWxhYi9TTUcvdHJ1bmsvSVNPMTUxMThf
+U3RhY2svc291cmNlcy9jb21tb24vY29uZmlndXJhdGlvbiAtSS4uL01BSU5fQXBwbGljYXRpb24v
+dmVuZG9yL2Nhcm1lZGlhbGFiL1NNRy90cnVuay9JU08xNTExOF9TdGFjay9zb3VyY2VzL2NvbW1v
+bi9jb25maWd1cmF0aW9uL2V2IC1JLi4vTUFJTl9BcHBsaWNhdGlvbi92ZW5kb3IvY2FybWVkaWFs
+YWIvU01HL3RydW5rL0lTTzE1MTE4X1N0YWNrL3NvdXJjZXMvY29tbW9uL21zZyAtSS4uL01BSU5f
+QXBwbGljYXRpb24vdmVuZG9yL2Nhcm1lZGlhbGFiL1NNRy90cnVuay9JU08xNTExOF9TdGFjay9z
+b3VyY2VzL2NvbW1vbi9uZXQgLUkuLi9NQUlOX0FwcGxpY2F0aW9uL3ZlbmRvci9jYXJtZWRpYWxh
+Yi9TTUcvdHJ1bmsvSVNPMTUxMThfU3RhY2svc291cmNlcy9jb21tb24vc3RhdGVzIC1JLi4vTUFJ
+Tl9BcHBsaWNhdGlvbi92ZW5kb3IvY2FybWVkaWFsYWIvU01HL3RydW5rL0lTTzE1MTE4X1N0YWNr
+L3NvdXJjZXMvdjJnL0FwaVYyZy9ldiAtSS4uL01BSU5fQXBwbGljYXRpb24vdmVuZG9yL2Nhcm1l
+ZGlhbGFiL1NNRy90cnVuay9JU08xNTExOF9TdGFjay9zb3VyY2VzL3YyZy9hcHBIYW5kc2hha2Ug
+LUkuLi9NQUlOX0FwcGxpY2F0aW9uL3ZlbmRvci9jYXJtZWRpYWxhYi9TTUcvdHJ1bmsvSVNPMTUx
+MThfU3RhY2svc291cmNlcy92MmcvY29kZWMgLUkuLi9NQUlOX0FwcGxpY2F0aW9uL3ZlbmRvci9j
+YXJtZWRpYWxhYi9TTUcvdHJ1bmsvSVNPMTUxMThfU3RhY2svc291cmNlcy92MmcvaXNvMSAtSS4u
+L01BSU5fQXBwbGljYXRpb24vdmVuZG9yL2Nhcm1lZGlhbGFiL1NNRy90cnVuay9JU08xNTExOF9T
+dGFjay9zb3VyY2VzL3YyZy9pc28yIC1JLi4vTUFJTl9BcHBsaWNhdGlvbi92ZW5kb3IvY2FybWVk
+aWFsYWIvU01HL3RydW5rL0lTTzE1MTE4X1N0YWNrL3NvdXJjZXMvdjJnL3htbGRzaWcgLUkuLi9N
+QUlOX0FwcGxpY2F0aW9uL3ZlbmRvci9jYXJtZWRpYWxhYi9TTUcvdHJ1bmsvVG1Db21tb24vc291
+cmNlcy9DbWxDb21tb24gLUkuLi9NQUlOX0FwcGxpY2F0aW9uL3ZlbmRvci9jYXJtZWRpYWxhYi9T
+TUcvdHJ1bmsvVG1Db21tb24vc291cmNlcy9EY2NDb21tb24gICAtTzIgLXBpcGUgLWcgLWZlbGlt
+aW5hdGUtdW51c2VkLWRlYnVnLXR5cGVzIC1mbWFjcm8tcHJlZml4LW1hcD0vaG9tZS9taWNoYWVs
+L0RvY3VtZW50cy9NQUlOX0FwcGxpY2F0aW9uL2J1aWxkLWZiL3RtcC93b3JrL2NvcnRleGE3dDJo
+Zi1uZW9uLXBva3ktbGludXgtZ251ZWFiaS9tYWluYXBwbGljYXRpb24vMC4wLXIwPS91c3Ivc3Jj
+L2RlYnVnL21haW5hcHBsaWNhdGlvbi8wLjAtcjAgICAgICAgICAgICAgICAgICAgICAgLWZkZWJ1
+Zy1wcmVmaXgtbWFwPS9ob21lL21pY2hhZWwvRG9jdW1lbnRzL01BSU5fQXBwbGljYXRpb24vYnVp
+bGQtZmIvdG1wL3dvcmsvY29ydGV4YTd0MmhmLW5lb24tcG9reS1saW51eC1nbnVlYWJpL21haW5h
+cHBsaWNhdGlvbi8wLjAtcjA9L3Vzci9zcmMvZGVidWcvbWFpbmFwcGxpY2F0aW9uLzAuMC1yMCAg
+ICAgICAgICAgICAgICAgICAgICAtZmRlYnVnLXByZWZpeC1tYXA9L2hvbWUvbWljaGFlbC9Eb2N1
+bWVudHMvTUFJTl9BcHBsaWNhdGlvbi9idWlsZC1mYi90bXAvd29yay9jb3J0ZXhhN3QyaGYtbmVv
+bi1wb2t5LWxpbnV4LWdudWVhYmkvbWFpbmFwcGxpY2F0aW9uLzAuMC1yMC9yZWNpcGUtc3lzcm9v
+dD0gICAgICAgICAgICAgICAgICAgICAgLWZkZWJ1Zy1wcmVmaXgtbWFwPS9ob21lL21pY2hhZWwv
+RG9jdW1lbnRzL01BSU5fQXBwbGljYXRpb24vYnVpbGQtZmIvdG1wL3dvcmsvY29ydGV4YTd0Mmhm
+LW5lb24tcG9reS1saW51eC1nbnVlYWJpL21haW5hcHBsaWNhdGlvbi8wLjAtcjAvcmVjaXBlLXN5
+c3Jvb3QtbmF0aXZlPSAgLWMgLW8gc3JjL3V0aWxpdGllcy9kaWN0aW9uYXJ5Lm8gLi4vTUFJTl9B
+cHBsaWNhdGlvbi9zcmMvdXRpbGl0aWVzL2RpY3Rpb25hcnkuYw0KPiBJbiBmaWxlIGluY2x1ZGVk
+IGZyb20gL2hvbWUvbWljaGFlbC9Eb2N1bWVudHMvTUFJTl9BcHBsaWNhdGlvbi9idWlsZC1mYi90
+bXAvd29yay9jb3J0ZXhhN3QyaGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvbWFpbmFwcGxpY2F0
+aW9uLzAuMC1yMC9yZWNpcGUtc3lzcm9vdC91c3IvaW5jbHVkZS9ib29zdC9jb25maWcvZGV0YWls
+L3NlbGVjdF9zdGRsaWJfY29uZmlnLmhwcDoyNCwNCj4gICAgICAgICAgICAgICAgICBmcm9tIC9o
+b21lL21pY2hhZWwvRG9jdW1lbnRzL01BSU5fQXBwbGljYXRpb24vYnVpbGQtZmIvdG1wL3dvcmsv
+Y29ydGV4YTd0MmhmLW5lb24tcG9reS1saW51eC1nbnVlYWJpL21haW5hcHBsaWNhdGlvbi8wLjAt
+cjAvcmVjaXBlLXN5c3Jvb3QvdXNyL2luY2x1ZGUvYm9vc3QvY29uZmlnLmhwcDo0NCwNCj4gICAg
+ICAgICAgICAgICAgICBmcm9tIC9ob21lL21pY2hhZWwvRG9jdW1lbnRzL01BSU5fQXBwbGljYXRp
+b24vYnVpbGQtZmIvdG1wL3dvcmsvY29ydGV4YTd0MmhmLW5lb24tcG9reS1saW51eC1nbnVlYWJp
+L21haW5hcHBsaWNhdGlvbi8wLjAtcjAvcmVjaXBlLXN5c3Jvb3QvdXNyL2luY2x1ZGUvYm9vc3Qv
+c21hcnRfcHRyL2JhZF93ZWFrX3B0ci5ocHA6MjAsDQo+ICAgICAgICAgICAgICAgICAgZnJvbSAv
+aG9tZS9taWNoYWVsL0RvY3VtZW50cy9NQUlOX0FwcGxpY2F0aW9uL2J1aWxkLWZiL3RtcC93b3Jr
+L2NvcnRleGE3dDJoZi1uZW9uLXBva3ktbGludXgtZ251ZWFiaS9tYWluYXBwbGljYXRpb24vMC4w
+LXIwL3JlY2lwZS1zeXNyb290L3Vzci9pbmNsdWRlL2Jvb3N0L3NtYXJ0X3B0ci9kZXRhaWwvc2hh
+cmVkX2NvdW50LmhwcDoyNSwNCj4gICAgICAgICAgICAgICAgICBmcm9tIC9ob21lL21pY2hhZWwv
+RG9jdW1lbnRzL01BSU5fQXBwbGljYXRpb24vYnVpbGQtZmIvdG1wL3dvcmsvY29ydGV4YTd0Mmhm
+LW5lb24tcG9reS1saW51eC1nbnVlYWJpL21haW5hcHBsaWNhdGlvbi8wLjAtcjAvcmVjaXBlLXN5
+c3Jvb3QvdXNyL2luY2x1ZGUvYm9vc3Qvc21hcnRfcHRyL3NoYXJlZF9wdHIuaHBwOjE3LA0KPiAg
+ICAgICAgICAgICAgICAgIGZyb20gL2hvbWUvbWljaGFlbC9Eb2N1bWVudHMvTUFJTl9BcHBsaWNh
+dGlvbi9idWlsZC1mYi90bXAvd29yay9jb3J0ZXhhN3QyaGYtbmVvbi1wb2t5LWxpbnV4LWdudWVh
+YmkvbWFpbmFwcGxpY2F0aW9uLzAuMC1yMC9yZWNpcGUtc3lzcm9vdC91c3IvaW5jbHVkZS9ib29z
+dC9zaGFyZWRfcHRyLmhwcDoxNywNCj4gICAgICAgICAgICAgICAgICBmcm9tIC4uL01BSU5fQXBw
+bGljYXRpb24vdmVuZG9yL2Nhcm1lZGlhbGFiL1NNRy90cnVuay9JU08xNTExOF9TdGFjay9zb3Vy
+Y2VzL0VWL3N0YXRlL0lzb1N0YXRlc01hY2hpbmUuaDo2LA0KPiAgICAgICAgICAgICAgICAgIGZy
+b20gLi4vTUFJTl9BcHBsaWNhdGlvbi9pbmNsdWRlL0NNTF9JbnRlZ3JhdGlvbi9jbWxfaW50ZWdy
+YXRpb24uaHBwOjE4LA0KPiAgICAgICAgICAgICAgICAgIGZyb20gLi4vTUFJTl9BcHBsaWNhdGlv
+bi9zcmMvbWFpbi5jcHA6MTM6DQo+IC4uL01BSU5fQXBwbGljYXRpb24vdmVyc2lvbjoxOjE6IGVy
+cm9yOiB0b28gbWFueSBkZWNpbWFsIHBvaW50cyBpbiBudW1iZXINCj4gICAgIDEgfCAwLjAuMA0K
+PiAgICAgICB8IF5+fn5+DQo+ICAgIA0KPiB2ZXJzaW9uOjE6MTogZXJyb3I6IGV4cGVjdGVkIHVu
+cXVhbGlmaWVkLWlkIGJlZm9yZSBudW1lcmljIGNvbnN0YW50DQo+IA0KPiBUaGUgZmluYWwgZXJy
+b3IgY29tZXMgZnJvbSBjYW4tdW50aWxzLg0KPiBJbiBmaWxlIGluY2x1ZGVkIGZyb20gL2hvbWUv
+bWljaGFlbC9Eb2N1bWVudHMvTUFJTl9BcHBsaWNhdGlvbi9idWlsZC1mYi90bXAvd29yay9jb3J0
+ZXhhN3QyaGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvbWFpbmFwcGxpY2F0aW9uLzAuMC1yMC9y
+ZWNpcGUtc3lzcm9vdC91c3IvaW5jbHVkZS9zeXMvc29ja2V0Lmg6MzMsDQo+ICAgICAgICAgICAg
+ICAgICAgZnJvbSAvaG9tZS9taWNoYWVsL0RvY3VtZW50cy9NQUlOX0FwcGxpY2F0aW9uL2J1aWxk
+LWZiL3RtcC93b3JrL2NvcnRleGE3dDJoZi1uZW9uLXBva3ktbGludXgtZ251ZWFiaS9tYWluYXBw
+bGljYXRpb24vMC4wLXIwL3JlY2lwZS1zeXNyb290L3Vzci9pbmNsdWRlL25ldGluZXQvaW4uaDoy
+MywNCj4gICAgICAgICAgICAgICAgICBmcm9tIC4uL01BSU5fQXBwbGljYXRpb24vdmVuZG9yL2Nh
+cm1lZGlhbGFiL1NNRy90cnVuay9JU08xNTExOF9TdGFjay9zb3VyY2VzL2NvbW1vbi9uZXQvdjJn
+dHAuaDozNCwNCj4gICAgICAgICAgICAgICAgICBmcm9tIC4uL01BSU5fQXBwbGljYXRpb24vc3Jj
+L0NNTF9JbnRlZ3JhdGlvbi9zb3VyY2VzL0VWL3N0YXRlL2RjL1NNR19FdlN0YXRlSW1wbC5jcHA6
+NzoNCj4gL2hvbWUvbWljaGFlbC9Eb2N1bWVudHMvTUFJTl9BcHBsaWNhdGlvbi9idWlsZC1mYi90
+bXAvd29yay9jb3J0ZXhhN3QyaGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvbWFpbmFwcGxpY2F0
+aW9uLzAuMC1yMC9yZWNpcGUtc3lzcm9vdC91c3IvaW5jbHVkZS9iaXRzL3NvY2tldC5oOjI2MDo1
+OiBlcnJvcjogJ3NvY2tsZW5fdCcgZG9lcyBub3QgbmFtZSBhIHR5cGU7IGRpZCB5b3UgbWVhbiAn
+bG9jYWxlX3QnPw0KPiBzb2NrbGVuX3QgaXMgZGVmaW5lZCBpbiB1bmlzdGQuaCB3aGljaCBpcyBw
+cmVzZW50IGluIG15IHJlY2lwZS1zeXNyb290IGZvbGRlciB1bmRlciB1c3IvaW5jbHVkZS4gSXMg
+dGhlcmUgYSBjbGVhciBpc3N1ZSB3aXRoIG15IGJ1aWxkIGZpbGVzPyBJIGhhdmUgYmVlbiBzZWFy
+Y2hpbmcgZm9yIGFuIGFuc3dlciBmb3IgYSBmZXcgZGF5cyBub3cgYW5kIEkgaGF2ZSBjb21lIHVw
+IGVtcHR5IGhhbmRlZC4gSG9waW5nIHNvbWVvbmUgaGVyZSBjYW4gYXNzaXN0Lg0KPiAgDQo+IA0K
+PiAtPS09LT0tPS09LT0tPS09LT0tPS09LQ0KPiBMaW5rczogWW91IHJlY2VpdmUgYWxsIG1lc3Nh
+Z2VzIHNlbnQgdG8gdGhpcyBncm91cC4NCj4gVmlldy9SZXBseSBPbmxpbmUgKCM1ODIyMik6IGh0
+dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9nL3lvY3RvL21lc3NhZ2UvNTgyMjINCj4gTXV0
+ZSBUaGlzIFRvcGljOiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbXQvOTQwMDM0NzQv
+Njg3NTg4OA0KPiBNdXRlICNiaXRiYWtlOmh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9n
+L3lvY3RvL211dGVoYXNodGFnL2JpdGJha2UNCj4gR3JvdXAgT3duZXI6IHlvY3RvK293bmVyQGxp
+c3RzLnlvY3RvcHJvamVjdC5vcmcNCj4gVW5zdWJzY3JpYmU6IGh0dHBzOi8vbGlzdHMueW9jdG9w
+cm9qZWN0Lm9yZy9nL3lvY3RvL3Vuc3ViIFtyb3NzLmJ1cnRvbkBhcm0uY29tXQ0KPiAtPS09LT0t
+PS09LT0tPS09LT0tPS09LQ0KPiANCg0K
 
