@@ -1,81 +1,147 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 11201C433FE
-	for <webhook@archiver.kernel.org>; Fri, 30 Sep 2022 13:11:39 +0000 (UTC)
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com
- [209.85.166.46])
- by mx.groups.io with SMTP id smtpd.web11.5336.1664543491614492934
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D1D9AC433F5
+	for <webhook@archiver.kernel.org>; Fri, 30 Sep 2022 16:07:08 +0000 (UTC)
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com
+ [209.85.160.49])
+ by mx.groups.io with SMTP id smtpd.web09.787.1664554020179767031
  for <yocto@lists.yoctoproject.org>;
- Fri, 30 Sep 2022 06:11:31 -0700
+ Fri, 30 Sep 2022 09:07:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=Edj4Dma3;
- spf=pass (domain: gmail.com, ip: 209.85.166.46, mailfrom: twoerner@gmail.com)
-Received: by mail-io1-f46.google.com with SMTP id y189so1357201iof.5
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=o1+48MoM;
+ spf=pass (domain: gmail.com, ip: 209.85.160.49, mailfrom: raj.khem@gmail.com)
+Received: by mail-oa1-f49.google.com with SMTP id
+ 586e51a60fabf-12803ac8113so5946234fac.8
         for <yocto@lists.yoctoproject.org>;
- Fri, 30 Sep 2022 06:11:31 -0700 (PDT)
+ Fri, 30 Sep 2022 09:07:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=HD/BYfREEfPxEH1O1L9M9Z+dLytxOA+yFzAbkespqwc=;
-        b=Edj4Dma3ctfhdYqfL6e5FkaU2EcGXbRBn24LovKb+XjM/gmiRDI4jQXRBJIAbw2DNS
-         p8TOXHDFaZyhW+3aEdZ8LENp9Oi59H45dwYzbZRdTMf3JOifSGl94C76Y81HBXmnKQNB
-         wa4QBeA+lPdcJ3FizPw/npZsXknNfX4c1XM5v31wuhI3E6KChA4wA5wvUSOb0eKk7wdB
-         xAsjcDTzOvrbyMwJiglRA0Rkcz7nXC1z0QsTJYHJ26ROkYx3lRK4VNQXexP5P7ma41Ci
-         nwyMl9pAvOnxQ+iwm1eFPbrCc31JGoQ0oHgxM2NtJoB9UPOiQT2Kd3y5UPVLJqfdincx
-         Cg3A==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=v9AByWXJ9pIY8xQ4UQmBcfljOshutAc5QI9c1X4YVrQ=;
+        b=o1+48MoMRCvV7WTSY4Dg+A7ISLqvjSnsBMl5FKnQkBpOc9YUYhw2Yz9//n8GZeOGx3
+         2xxlZHtuQJVYNI79YPDhlXn94pVSX5Yr8RZXBE5jqvmTYvaONw70NufaxarMzCMwMKQj
+         gmLWmW3j/cMButUWtRbKZ66FqhffQhicsuoqN7x0MbHbaQGl7veoq1O5DFuwF95TneCA
+         Tt+np2xrMh/gpuX/bC4KGq3YqaVZDi+DFPsUSwK12Kep9MhImVDnJg56aMMws4NyQCic
+         t3s0Ql1FfPoRoAA14im0bcCph5hfLP+h/R9CMuEu7eFDJTgTIXRdZFR4+AR5iDXqBzCJ
+         80OQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=HD/BYfREEfPxEH1O1L9M9Z+dLytxOA+yFzAbkespqwc=;
-        b=aJiEyock0LdUI3JpYM6Ljo/26tWrDE1HyDR+pneRW9V8jZsliw0ckcllnoJLxmb7My
-         Fyaray/ZPce5+dZ8vjTVIUVqd01FUPm8K49Of4UM+mbZwDHXL2ZUJ9DacTNRPgCyYXs1
-         hwwXchwSiIWLmkjNw+o4B4203A1aOTG8iGB2RoFpqfoDbLN7u0FjjIhY9usdmI/ynPyq
-         5V2PJDNnnw+dimdExeYCqUTiOhCMhskWPrJrxLrm0Q/k2i4eXLbYruBEKDP3hcA0ixN5
-         Gk61KZCvF5mazOI+KgU2NcWCbxb9PlPoJXJfZV3zQwBhAlAd9zZoMNP+siUo+f9pNDkS
-         yUzA==
-X-Gm-Message-State: ACrzQf3Kgl/abrWHo11tW9I6cC6j1HYt0tFgTfRLZnh5CBYkpKp8NsW5
-	0GwwULD3hfbal8Ga05dJr61eNN5taEQ=
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=v9AByWXJ9pIY8xQ4UQmBcfljOshutAc5QI9c1X4YVrQ=;
+        b=PH1Cw9XlGkmjLe2y461XFuPZD+p3xRvtitiPpJISXkjdCIpuNnI6jc/Rr2YPBbxgWV
+         xVk6r2C6d5Ias4rAHY1YafXNb8Zoi6lOsBWFYOkCGSOH8TtOqr38TooyRTHCR4z/WNJC
+         itZRPqfE89f/pKOXEYRuw9Gb73Kwc8ZFL/xb4VBdUYoJjQweim2Hud5FG4/k1XQ+2jOX
+         QB8MfB14UCjG+Vm9zV7lTjDFTTYfyACMQAFxVfHSBVIHtnxFdl3CdbO1s7KmsZWl/INx
+         9GEBV87pDYY/ONtVkN/cOJzbJh73L/kGACJG0bISzog0Qi0KAHHleQ7Q5/4hcwsAH8M7
+         odzA==
+X-Gm-Message-State: ACrzQf0PJmm1VW4t+hetKwYItYZdFmTWwJW2WKju153ByoqFH0ZzmOMV
+	RbONYGZdv71WQBdJKKA8o2ur8joMTnQbgygW+8w310PZ
 X-Google-Smtp-Source: 
- AMsMyM6Txsbqa+HYtOo5V5kYctEBde7b/aVMeSQwEj5POOI+YbcBPvgwTFIyclAycFgUHEqplpzsTA==
-X-Received: by 2002:a5e:9e01:0:b0:6a4:f730:624c with SMTP id
- i1-20020a5e9e01000000b006a4f730624cmr3918225ioq.107.1664543490969;
-        Fri, 30 Sep 2022 06:11:30 -0700 (PDT)
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id
- x9-20020a92de09000000b002eabb8e0f3bsm945062ilm.56.2022.09.30.06.11.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Sep 2022 06:11:30 -0700 (PDT)
-Date: Fri, 30 Sep 2022 09:11:28 -0400
-From: Trevor Woerner <twoerner@gmail.com>
-To: Martin Jansa <martin.jansa@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [meta-rockchip][PATCH] layer.conf: update LAYERSERIES_COMPAT for
- langdale
-Message-ID: <20220930131128.GA2532@localhost>
-References: <20220930115125.906161-1-Martin.Jansa@gmail.com>
+ AMsMyM5DlLRNyF8sNHUhU8I52Ps4AJCgoMSYEWB63rcyy3hJMLK4U0Slftp5llX1aaO6xNrMIm7anGVOUmtUmJqUZpk=
+X-Received: by 2002:a05:6870:d1c8:b0:132:1239:2550 with SMTP id
+ b8-20020a056870d1c800b0013212392550mr618951oac.55.1664554019477; Fri, 30 Sep
+ 2022 09:06:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220930115125.906161-1-Martin.Jansa@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20220929234506.3681015-1-raj.khem@gmail.com>
+ <ff8eafe3-c02a-0aff-74bc-ba18b6e0e733@theobroma-systems.com>
+In-Reply-To: <ff8eafe3-c02a-0aff-74bc-ba18b6e0e733@theobroma-systems.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 30 Sep 2022 09:06:48 -0700
+Message-ID: 
+ <CAMKF1srKQizJzrhWJr0h4T+tSS8WdFv5EaAYXUcXpPLJLDB6sA@mail.gmail.com>
+Subject: Re: [yocto] [meta-rockchip][PATCH] layers: Add langdale to
+ LAYERSERIES_COMPAT
+To: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Cc: twoerner@gmail.com, yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000000a5eb705e9e72f32"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 30 Sep 2022 13:11:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58231
+ <yocto@lists.yoctoproject.org>; Fri, 30 Sep 2022 16:07:08 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58232
 
-On Fri 2022-09-30 @ 01:51:25 PM, Martin Jansa wrote:
-> * the next release 4.2 will be named mickledore
-> 
-> Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
-> ---
->  conf/layer.conf | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+--0000000000000a5eb705e9e72f32
+Content-Type: text/plain; charset="UTF-8"
 
-Applied to meta-rockchip master branch, thanks!
+On Fri, Sep 30, 2022 at 5:04 AM Quentin Schulz <
+quentin.schulz@theobroma-systems.com> wrote:
+
+> Hi Khem,
+>
+> On 9/30/22 01:45, Khem Raj wrote:
+> > Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> > ---
+> >   conf/layer.conf | 2 +-
+> >   1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/conf/layer.conf b/conf/layer.conf
+> > index a2661f9..0e28857 100644
+> > --- a/conf/layer.conf
+> > +++ b/conf/layer.conf
+> > @@ -14,7 +14,7 @@ BBFILE_PRIORITY_rockchip = "1"
+> >   # This should only be incremented on significant changes that will
+> >   # cause compatibility issues with other layers
+> >   LAYERVERSION_rockchip = "1"
+> > -LAYERSERIES_COMPAT_rockchip = "kirkstone"
+> > +LAYERSERIES_COMPAT_rockchip = "kirkstone langdale"
+>
+> Considering that we have a branch for kirkstone already, maybe we can
+> just switch to supporting langdale only?
+
+
+I was not sure of if it will break some use cases therefore I just wanted
+to add what works and not delete anything I have not tested
+
+>
+>
+> Cheers,
+> Quentin
+>
+
+--0000000000000a5eb705e9e72f32
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Fri, Sep 30, 2022 at 5:04 AM Quentin Schulz &lt;<a href=
+=3D"mailto:quentin.schulz@theobroma-systems.com">quentin.schulz@theobroma-s=
+ystems.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi Khem,=
+<br>
+<br>
+On 9/30/22 01:45, Khem Raj wrote:<br>
+&gt; Signed-off-by: Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" targ=
+et=3D"_blank">raj.khem@gmail.com</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 =C2=A0conf/layer.conf | 2 +-<br>
+&gt;=C2=A0 =C2=A01 file changed, 1 insertion(+), 1 deletion(-)<br>
+&gt; <br>
+&gt; diff --git a/conf/layer.conf b/conf/layer.conf<br>
+&gt; index a2661f9..0e28857 100644<br>
+&gt; --- a/conf/layer.conf<br>
+&gt; +++ b/conf/layer.conf<br>
+&gt; @@ -14,7 +14,7 @@ BBFILE_PRIORITY_rockchip =3D &quot;1&quot;<br>
+&gt;=C2=A0 =C2=A0# This should only be incremented on significant changes t=
+hat will<br>
+&gt;=C2=A0 =C2=A0# cause compatibility issues with other layers<br>
+&gt;=C2=A0 =C2=A0LAYERVERSION_rockchip =3D &quot;1&quot;<br>
+&gt; -LAYERSERIES_COMPAT_rockchip =3D &quot;kirkstone&quot;<br>
+&gt; +LAYERSERIES_COMPAT_rockchip =3D &quot;kirkstone langdale&quot;<br>
+<br>
+Considering that we have a branch for kirkstone already, maybe we can <br>
+just switch to supporting langdale only?</blockquote><div dir=3D"auto"><br>=
+</div><div dir=3D"auto">I was not sure of if it will break some use cases t=
+herefore I just wanted to add what works and not delete anything I have not=
+ tested=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
+.8ex;border-left:1px #ccc solid;padding-left:1ex" dir=3D"auto"><br>
+<br>
+Cheers,<br>
+Quentin<br>
+</blockquote></div></div>
+
+--0000000000000a5eb705e9e72f32--
 
