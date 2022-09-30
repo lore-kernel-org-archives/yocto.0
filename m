@@ -1,147 +1,9904 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <peter.hoyes@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D1D9AC433F5
-	for <webhook@archiver.kernel.org>; Fri, 30 Sep 2022 16:07:08 +0000 (UTC)
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com
- [209.85.160.49])
- by mx.groups.io with SMTP id smtpd.web09.787.1664554020179767031
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 086CEC433F5
+	for <webhook@archiver.kernel.org>; Fri, 30 Sep 2022 16:32:49 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by mx.groups.io with SMTP id smtpd.web12.1042.1664555561282555892
  for <yocto@lists.yoctoproject.org>;
- Fri, 30 Sep 2022 09:07:00 -0700
+ Fri, 30 Sep 2022 09:32:41 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=o1+48MoM;
- spf=pass (domain: gmail.com, ip: 209.85.160.49, mailfrom: raj.khem@gmail.com)
-Received: by mail-oa1-f49.google.com with SMTP id
- 586e51a60fabf-12803ac8113so5946234fac.8
-        for <yocto@lists.yoctoproject.org>;
- Fri, 30 Sep 2022 09:07:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=v9AByWXJ9pIY8xQ4UQmBcfljOshutAc5QI9c1X4YVrQ=;
-        b=o1+48MoMRCvV7WTSY4Dg+A7ISLqvjSnsBMl5FKnQkBpOc9YUYhw2Yz9//n8GZeOGx3
-         2xxlZHtuQJVYNI79YPDhlXn94pVSX5Yr8RZXBE5jqvmTYvaONw70NufaxarMzCMwMKQj
-         gmLWmW3j/cMButUWtRbKZ66FqhffQhicsuoqN7x0MbHbaQGl7veoq1O5DFuwF95TneCA
-         Tt+np2xrMh/gpuX/bC4KGq3YqaVZDi+DFPsUSwK12Kep9MhImVDnJg56aMMws4NyQCic
-         t3s0Ql1FfPoRoAA14im0bcCph5hfLP+h/R9CMuEu7eFDJTgTIXRdZFR4+AR5iDXqBzCJ
-         80OQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=v9AByWXJ9pIY8xQ4UQmBcfljOshutAc5QI9c1X4YVrQ=;
-        b=PH1Cw9XlGkmjLe2y461XFuPZD+p3xRvtitiPpJISXkjdCIpuNnI6jc/Rr2YPBbxgWV
-         xVk6r2C6d5Ias4rAHY1YafXNb8Zoi6lOsBWFYOkCGSOH8TtOqr38TooyRTHCR4z/WNJC
-         itZRPqfE89f/pKOXEYRuw9Gb73Kwc8ZFL/xb4VBdUYoJjQweim2Hud5FG4/k1XQ+2jOX
-         QB8MfB14UCjG+Vm9zV7lTjDFTTYfyACMQAFxVfHSBVIHtnxFdl3CdbO1s7KmsZWl/INx
-         9GEBV87pDYY/ONtVkN/cOJzbJh73L/kGACJG0bISzog0Qi0KAHHleQ7Q5/4hcwsAH8M7
-         odzA==
-X-Gm-Message-State: ACrzQf0PJmm1VW4t+hetKwYItYZdFmTWwJW2WKju153ByoqFH0ZzmOMV
-	RbONYGZdv71WQBdJKKA8o2ur8joMTnQbgygW+8w310PZ
-X-Google-Smtp-Source: 
- AMsMyM5DlLRNyF8sNHUhU8I52Ps4AJCgoMSYEWB63rcyy3hJMLK4U0Slftp5llX1aaO6xNrMIm7anGVOUmtUmJqUZpk=
-X-Received: by 2002:a05:6870:d1c8:b0:132:1239:2550 with SMTP id
- b8-20020a056870d1c800b0013212392550mr618951oac.55.1664554019477; Fri, 30 Sep
- 2022 09:06:59 -0700 (PDT)
+ dkim=missing;
+ spf=pass (domain: arm.com, ip: 217.140.110.172, mailfrom: peter.hoyes@arm.com)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 902101474;
+	Fri, 30 Sep 2022 09:32:47 -0700 (PDT)
+Received: from e125920.arm.com (unknown [10.57.80.219])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1546E3F792;
+	Fri, 30 Sep 2022 09:32:38 -0700 (PDT)
+From: Peter Hoyes <peter.hoyes@arm.com>
+To: yocto@lists.yoctoproject.org
+Cc: diego.sueiro@arm.com,
+	Peter Hoyes <Peter.Hoyes@arm.com>
+Subject: [meta-zephyr][PATCH] zephyr-core/qemu: Remove bbappend
+Date: Fri, 30 Sep 2022 17:33:08 +0100
+Message-Id: <20220930163308.868307-1-peter.hoyes@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220929234506.3681015-1-raj.khem@gmail.com>
- <ff8eafe3-c02a-0aff-74bc-ba18b6e0e733@theobroma-systems.com>
-In-Reply-To: <ff8eafe3-c02a-0aff-74bc-ba18b6e0e733@theobroma-systems.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 30 Sep 2022 09:06:48 -0700
-Message-ID: 
- <CAMKF1srKQizJzrhWJr0h4T+tSS8WdFv5EaAYXUcXpPLJLDB6sA@mail.gmail.com>
-Subject: Re: [yocto] [meta-rockchip][PATCH] layers: Add langdale to
- LAYERSERIES_COMPAT
-To: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-Cc: twoerner@gmail.com, yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000000a5eb705e9e72f32"
+Content-Type: text/plain; charset=y
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 30 Sep 2022 16:07:08 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58232
+ <yocto@lists.yoctoproject.org>; Fri, 30 Sep 2022 16:32:49 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58233
 
---0000000000000a5eb705e9e72f32
-Content-Type: text/plain; charset="UTF-8"
+From: Peter Hoyes <Peter.Hoyes@arm.com>
 
-On Fri, Sep 30, 2022 at 5:04 AM Quentin Schulz <
-quentin.schulz@theobroma-systems.com> wrote:
+This looks historical and is no longer required for the tested builds.
 
-> Hi Khem,
->
-> On 9/30/22 01:45, Khem Raj wrote:
-> > Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> > ---
-> >   conf/layer.conf | 2 +-
-> >   1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/conf/layer.conf b/conf/layer.conf
-> > index a2661f9..0e28857 100644
-> > --- a/conf/layer.conf
-> > +++ b/conf/layer.conf
-> > @@ -14,7 +14,7 @@ BBFILE_PRIORITY_rockchip = "1"
-> >   # This should only be incremented on significant changes that will
-> >   # cause compatibility issues with other layers
-> >   LAYERVERSION_rockchip = "1"
-> > -LAYERSERIES_COMPAT_rockchip = "kirkstone"
-> > +LAYERSERIES_COMPAT_rockchip = "kirkstone langdale"
->
-> Considering that we have a branch for kirkstone already, maybe we can
-> just switch to supporting langdale only?
+Signed-off-by: Peter Hoyes <Peter.Hoyes@arm.com>
+---
+ .../qemu/files/nios2-add-support.patch        | 9239 -----------------
+ .../recipes-devtools/qemu/qemu_%.bbappend     |   13 -
+ 2 files changed, 9252 deletions(-)
+ delete mode 100644 meta-zephyr-core/recipes-devtools/qemu/files/nios2-ad=
+d-support.patch
+ delete mode 100644 meta-zephyr-core/recipes-devtools/qemu/qemu_%.bbappen=
+d
 
+diff --git a/meta-zephyr-core/recipes-devtools/qemu/files/nios2-add-suppo=
+rt.patch b/meta-zephyr-core/recipes-devtools/qemu/files/nios2-add-support=
+.patch
+deleted file mode 100644
+index 9009b67..0000000
+--- a/meta-zephyr-core/recipes-devtools/qemu/files/nios2-add-support.patc=
+h
++++ /dev/null
+@@ -1,9239 +0,0 @@
+-From bd9bcebfc5787c72ea19592fec1266a1b3908f8a Mon Sep 17 00:00:00 2001
+-From: Juro Bystricky <juro.bystricky@intel.com>
+-Date: Tue, 8 Nov 2016 17:01:08 -0800
+-Subject: [PATCH] nios2: add support
+-
+-mega-patch to support Nios2
+-
+-Signed-off-by: Juro Bystricky <juro.bystricky@intel.com>
+----
+- arch_init.c                          |    2 +
+- configure                            |    5 +
+- default-configs/nios2-linux-user.mak |    1 +
+- default-configs/nios2-softmmu.mak    |    7 +
+- disas/Makefile.objs                  |    1 +
+- disas/nios2.c                        | 3534 +++++++++++++++++++++++++++=
++++++++
+- hw/char/Makefile.objs                |    1 +
+- hw/char/altera_juart.c               |  288 +++
+- hw/intc/Makefile.objs                |    1 +
+- hw/intc/nios2_iic.c                  |  188 ++
+- hw/nios2/10m50_devboard.c            |  113 ++
+- hw/nios2/Makefile.objs               |    2 +
+- hw/nios2/altera_10m50_zephyr.c       |  153 ++
+- hw/nios2/boot.c                      |  223 +++
+- hw/nios2/boot.h                      |   11 +
+- hw/timer/Makefile.objs               |    1 +
+- hw/timer/altera_timer.c              |  244 +++
+- include/disas/bfd.h                  |    6 +
+- include/elf.h                        |    2 +
+- include/hw/nios2/altera.h            |   21 +
+- include/hw/nios2/nios2_iic.h         |   11 +
+- include/sysemu/arch_init.h           |    1 +
+- linux-user/nios2/syscall_nr.h        |  330 ++++
+- linux-user/nios2/target_cpu.h        |   38 +
+- linux-user/nios2/target_signal.h     |   26 +
+- linux-user/nios2/target_structs.h    |   58 +
+- linux-user/nios2/target_syscall.h    |   37 +
+- linux-user/nios2/termbits.h          |  220 +++
+- target-nios2/Makefile.objs           |    4 +
+- target-nios2/cpu.c                   |  230 +++
+- target-nios2/cpu.h                   |  268 +++
+- target-nios2/helper.c                |  304 +++
+- target-nios2/helper.h                |   43 +
+- target-nios2/instruction.c           | 1432 ++++++++++++++
+- target-nios2/instruction.h           |  281 +++
+- target-nios2/machine.c               |   38 +
+- target-nios2/mmu.c                   |  292 +++
+- target-nios2/mmu.h                   |   54 +
+- target-nios2/monitor.c               |   35 +
+- target-nios2/op_helper.c             |   95 +
+- target-nios2/translate.c             |  249 +++
+- 41 files changed, 8850 insertions(+)
+- create mode 100644 default-configs/nios2-linux-user.mak
+- create mode 100644 default-configs/nios2-softmmu.mak
+- create mode 100644 disas/nios2.c
+- create mode 100644 hw/char/altera_juart.c
+- create mode 100644 hw/intc/nios2_iic.c
+- create mode 100644 hw/nios2/10m50_devboard.c
+- create mode 100644 hw/nios2/Makefile.objs
+- create mode 100644 hw/nios2/altera_10m50_zephyr.c
+- create mode 100644 hw/nios2/boot.c
+- create mode 100644 hw/nios2/boot.h
+- create mode 100644 hw/timer/altera_timer.c
+- create mode 100644 include/hw/nios2/altera.h
+- create mode 100644 include/hw/nios2/nios2_iic.h
+- create mode 100644 linux-user/nios2/syscall_nr.h
+- create mode 100644 linux-user/nios2/target_cpu.h
+- create mode 100644 linux-user/nios2/target_signal.h
+- create mode 100644 linux-user/nios2/target_structs.h
+- create mode 100644 linux-user/nios2/target_syscall.h
+- create mode 100644 linux-user/nios2/termbits.h
+- create mode 100644 target-nios2/Makefile.objs
+- create mode 100644 target-nios2/cpu.c
+- create mode 100644 target-nios2/cpu.h
+- create mode 100644 target-nios2/helper.c
+- create mode 100644 target-nios2/helper.h
+- create mode 100644 target-nios2/instruction.c
+- create mode 100644 target-nios2/instruction.h
+- create mode 100644 target-nios2/machine.c
+- create mode 100644 target-nios2/mmu.c
+- create mode 100644 target-nios2/mmu.h
+- create mode 100644 target-nios2/monitor.c
+- create mode 100644 target-nios2/op_helper.c
+- create mode 100644 target-nios2/translate.c
+-
+-diff --git a/arch_init.c b/arch_init.c
+-index e3bb1b3..6482ba1 100644
+---- a/arch_init.c
+-+++ b/arch_init.c
+-@@ -62,6 +62,8 @@ int graphic_depth =3D 32;
+- #define QEMU_ARCH QEMU_ARCH_MIPS
+- #elif defined(TARGET_MOXIE)
+- #define QEMU_ARCH QEMU_ARCH_MOXIE
+-+#elif defined(TARGET_NIOS2)
+-+#define QEMU_ARCH QEMU_ARCH_NIOS2
+- #elif defined(TARGET_OPENRISC)
+- #define QEMU_ARCH QEMU_ARCH_OPENRISC
+- #elif defined(TARGET_PPC)
+-diff --git a/configure b/configure
+-index 60e3c0d..8a3d960 100755
+---- a/configure
+-+++ b/configure
+-@@ -5656,6 +5656,8 @@ case "$target_name" in
+-   ;;
+-   moxie)
+-   ;;
+-+  nios2)
+-+  ;;
+-   or32)
+-     TARGET_ARCH=3Dopenrisc
+-     TARGET_BASE_ARCH=3Dopenrisc
+-@@ -5852,6 +5854,9 @@ for i in $ARCH $TARGET_BASE_ARCH ; do
+-   moxie*)
+-     disas_config "MOXIE"
+-   ;;
+-+  nios2)
+-+    disas_config "NIOS2"
+-+  ;;
+-   or32)
+-     disas_config "OPENRISC"
+-   ;;
+-diff --git a/default-configs/nios2-linux-user.mak b/default-configs/nios=
+2-linux-user.mak
+-new file mode 100644
+-index 0000000..5be3eb7
+---- /dev/null
+-+++ b/default-configs/nios2-linux-user.mak
+-@@ -0,0 +1 @@
+-+# Default configuration for nios2-linux-user
+-diff --git a/default-configs/nios2-softmmu.mak b/default-configs/nios2-s=
+oftmmu.mak
+-new file mode 100644
+-index 0000000..6159846
+---- /dev/null
+-+++ b/default-configs/nios2-softmmu.mak
+-@@ -0,0 +1,7 @@
+-+# Default configuration for nios2-softmmu
+-+
+-+CONFIG_NIOS2=3Dy
+-+CONFIG_SERIAL=3Dy
+-+CONFIG_PTIMER=3Dy
+-+CONFIG_ALTERA_TIMER=3Dy
+-+CONFIG_ALTERA_JUART=3Dy
+-diff --git a/disas/Makefile.objs b/disas/Makefile.objs
+-index abeba84..62632ef 100644
+---- a/disas/Makefile.objs
+-+++ b/disas/Makefile.objs
+-@@ -15,6 +15,7 @@ common-obj-$(CONFIG_IA64_DIS) +=3D ia64.o
+- common-obj-$(CONFIG_M68K_DIS) +=3D m68k.o
+- common-obj-$(CONFIG_MICROBLAZE_DIS) +=3D microblaze.o
+- common-obj-$(CONFIG_MIPS_DIS) +=3D mips.o
+-+common-obj-$(CONFIG_NIOS2_DIS) +=3D nios2.o
+- common-obj-$(CONFIG_MOXIE_DIS) +=3D moxie.o
+- common-obj-$(CONFIG_PPC_DIS) +=3D ppc.o
+- common-obj-$(CONFIG_S390_DIS) +=3D s390.o
+-diff --git a/disas/nios2.c b/disas/nios2.c
+-new file mode 100644
+-index 0000000..b342936
+---- /dev/null
+-+++ b/disas/nios2.c
+-@@ -0,0 +1,3534 @@
+-+/* Nios II opcode library for QEMU.
+-+   Copyright (C) 2012-2016 Free Software Foundation, Inc.
+-+   Contributed by Nigel Gray (ngray@altera.com).
+-+   Contributed by Mentor Graphics, Inc.
+-+
+-+   This program is free software; you can redistribute it and/or
+-+   modify it under the terms of the GNU General Public License
+-+   as published by the Free Software Foundation; either version 2
+-+   of the License, or (at your option) any later version.
+-+
+-+   This program is distributed in the hope that it will be useful,
+-+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-+   GNU General Public License for more details.
+-+
+-+   You should have received a copy of the GNU General Public License
+-+   along with this program; if not, write to the Free Software
+-+   Foundation, Inc., 51 Franklin Street, Fifth Floor,
+-+   Boston, MA  02110-1301, USA.  */
+-+
+-+/* This file resembles a concatenation of the following files from
+-+   binutils:
+-+
+-+   include/opcode/nios2.h
+-+   include/opcode/nios2r1.h
+-+   include/opcode/nios2r2.h
+-+   opcodes/nios2-opc.c
+-+   opcodes/nios2-dis.c
+-+
+-+   It has been derived from the original patches which have been
+-+   relicensed by the contributors as GPL version 2 for inclusion
+-+   in QEMU.  */
+-+
+-+#ifndef _NIOS2_H_
+-+#define _NIOS2_H_
+-+
+-+/*#include "bfd.h"*/
+-+#include "qemu/osdep.h"
+-+#include "disas/bfd.h"
+-+
+-+
+-+/**********************************************************************=
+******
+-+ * This file contains structures, bit masks and shift counts used
+-+ * by the GNU toolchain to define the Nios II instruction set and
+-+ * access various opcode fields.
+-+ **********************************************************************=
+******/
+-+
+-+/* Instruction encoding formats.  */
+-+enum iw_format_type {
+-+  /* R1 formats.  */
+-+  iw_i_type,
+-+  iw_r_type,
+-+  iw_j_type,
+-+  iw_custom_type,
+-+
+-+  /* 32-bit R2 formats.  */
+-+  iw_L26_type,
+-+  iw_F2I16_type,
+-+  iw_F2X4I12_type,
+-+  iw_F1X4I12_type,
+-+  iw_F1X4L17_type,
+-+  iw_F3X6L5_type,
+-+  iw_F2X6L10_type,
+-+  iw_F3X6_type,
+-+  iw_F3X8_type,
+-+
+-+  /* 16-bit R2 formats.  */
+-+  iw_I10_type,
+-+  iw_T1I7_type,
+-+  iw_T2I4_type,
+-+  iw_T1X1I6_type,
+-+  iw_X1I7_type,
+-+  iw_L5I4X1_type,
+-+  iw_T2X1L3_type,
+-+  iw_T2X1I3_type,
+-+  iw_T3X1_type,
+-+  iw_T2X3_type,
+-+  iw_F1X1_type,
+-+  iw_X2L5_type,
+-+  iw_F1I5_type,
+-+  iw_F2_type
+-+};
+-+
+-+/* Identify different overflow situations for error messages.  */
+-+enum overflow_type
+-+{
+-+  call_target_overflow =3D 0,
+-+  branch_target_overflow,
+-+  address_offset_overflow,
+-+  signed_immed16_overflow,
+-+  unsigned_immed16_overflow,
+-+  unsigned_immed5_overflow,
+-+  signed_immed12_overflow,
+-+  custom_opcode_overflow,
+-+  enumeration_overflow,
+-+  no_overflow
+-+};
+-+
+-+/* This structure holds information for a particular instruction.=20
+-+
+-+   The args field is a string describing the operands.  The following
+-+   letters can appear in the args:
+-+     c - a 5-bit control register index
+-+     d - a 5-bit destination register index
+-+     s - a 5-bit left source register index
+-+     t - a 5-bit right source register index
+-+     D - a 3-bit encoded destination register
+-+     S - a 3-bit encoded left source register
+-+     T - a 3-bit encoded right source register
+-+     i - a 16-bit signed immediate
+-+     j - a 5-bit unsigned immediate
+-+     k - a (second) 5-bit unsigned immediate
+-+     l - a 8-bit custom instruction constant
+-+     m - a 26-bit unsigned immediate
+-+     o - a 16-bit signed pc-relative offset
+-+     u - a 16-bit unsigned immediate
+-+     I - a 12-bit signed immediate
+-+     M - a 6-bit unsigned immediate
+-+     N - a 6-bit unsigned immediate with 2-bit shift
+-+     O - a 10-bit signed pc-relative offset with 1-bit shift
+-+     P - a 7-bit signed pc-relative offset with 1-bit shift
+-+     U - a 7-bit unsigned immediate with 2-bit shift
+-+     V - a 5-bit unsigned immediate with 2-bit shift
+-+     W - a 4-bit unsigned immediate with 2-bit shift
+-+     X - a 4-bit unsigned immediate with 1-bit shift
+-+     Y - a 4-bit unsigned immediate
+-+     e - an immediate coded as an enumeration for addi.n/subi.n
+-+     f - an immediate coded as an enumeration for slli.n/srli.n
+-+     g - an immediate coded as an enumeration for andi.n
+-+     h - an immediate coded as an enumeration for movi.n
+-+     R - a reglist for ldwm/stwm or push.n/pop.n
+-+     B - a base register specifier and option list for ldwm/stwm
+-+   Literal ',', '(', and ')' characters may also appear in the args as
+-+   delimiters.
+-+
+-+   Note that the args describe the semantics and assembly-language synt=
+ax
+-+   of the operands, not their encoding into the instruction word.
+-+
+-+   The pinfo field is INSN_MACRO for a macro.  Otherwise, it is a colle=
+ction
+-+   of bits describing the instruction, notably any relevant hazard
+-+   information.
+-+
+-+   When assembling, the match field contains the opcode template, which
+-+   is modified by the arguments to produce the actual opcode
+-+   that is emitted.  If pinfo is INSN_MACRO, then this is 0.
+-+
+-+   If pinfo is INSN_MACRO, the mask field stores the macro identifier.
+-+   Otherwise this is a bit mask for the relevant portions of the opcode
+-+   when disassembling.  If the actual opcode anded with the match field
+-+   equals the opcode field, then we have found the correct instruction.=
+  */
+-+
+-+struct nios2_opcode
+-+{
+-+  const char *name;		/* The name of the instruction.  */
+-+  const char *args;		/* A string describing the arguments for this=20
+-+				   instruction.  */
+-+  const char *args_test;	/* Like args, but with an extra argument for=20
+-+				   the expected opcode.  */
+-+  unsigned long num_args;	/* The number of arguments the instruction=20
+-+				   takes.  */
+-+  unsigned size;		/* Size in bytes of the instruction.  */
+-+  enum iw_format_type format;	/* Instruction format.  */
+-+  unsigned long match;		/* The basic opcode for the instruction.  */
+-+  unsigned long mask;		/* Mask for the opcode field of the=20
+-+				   instruction.  */
+-+  unsigned long pinfo;		/* Is this a real instruction or instruction=20
+-+				   macro?  */
+-+  enum overflow_type overflow_msg;  /* Used to generate informative=20
+-+				       message when fixup overflows.  */
+-+};
+-+
+-+/* This value is used in the nios2_opcode.pinfo field to indicate that =
+the=20
+-+   instruction is a macro or pseudo-op.  This requires special treatmen=
+t by=20
+-+   the assembler, and is used by the disassembler to determine whether =
+to=20
+-+   check for a nop.  */
+-+#define NIOS2_INSN_MACRO	0x80000000
+-+#define NIOS2_INSN_MACRO_MOV	0x80000001
+-+#define NIOS2_INSN_MACRO_MOVI	0x80000002
+-+#define NIOS2_INSN_MACRO_MOVIA	0x80000004
+-+
+-+#define NIOS2_INSN_RELAXABLE	0x40000000
+-+#define NIOS2_INSN_UBRANCH	0x00000010
+-+#define NIOS2_INSN_CBRANCH	0x00000020
+-+#define NIOS2_INSN_CALL		0x00000040
+-+
+-+#define NIOS2_INSN_OPTARG	0x00000080
+-+
+-+/* Register attributes.  */
+-+#define REG_NORMAL	(1<<0)	/* Normal registers.  */
+-+#define REG_CONTROL	(1<<1)  /* Control registers.  */
+-+#define REG_COPROCESSOR	(1<<2)  /* For custom instructions.  */
+-+#define REG_3BIT	(1<<3)  /* For R2 CDX instructions.  */
+-+#define REG_LDWM	(1<<4)  /* For R2 ldwm/stwm.  */
+-+#define REG_POP		(1<<5)  /* For R2 pop.n/push.n.  */
+-+
+-+struct nios2_reg
+-+{
+-+  const char *name;
+-+  const int index;
+-+  unsigned long regtype;
+-+};
+-+
+-+/* Pull in the instruction field accessors, opcodes, and masks.  */
+-+/*#include "nios2r1.h"*/
+-+
+-+#ifndef _NIOS2R1_H_
+-+#define _NIOS2R1_H_
+-+
+-+/* R1 fields.  */
+-+#define IW_R1_OP_LSB 0=20
+-+#define IW_R1_OP_SIZE 6=20
+-+#define IW_R1_OP_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_R1_OP_SIZE))=20
+-+#define IW_R1_OP_SHIFTED_MASK (IW_R1_OP_UNSHIFTED_MASK << IW_R1_OP_LSB)=
+=20
+-+#define GET_IW_R1_OP(W) (((W) >> IW_R1_OP_LSB) & IW_R1_OP_UNSHIFTED_MAS=
+K)=20
+-+#define SET_IW_R1_OP(V) (((V) & IW_R1_OP_UNSHIFTED_MASK) << IW_R1_OP_LS=
+B)=20
+-+
+-+#define IW_I_A_LSB 27=20
+-+#define IW_I_A_SIZE 5=20
+-+#define IW_I_A_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_I_A_SIZE))=20
+-+#define IW_I_A_SHIFTED_MASK (IW_I_A_UNSHIFTED_MASK << IW_I_A_LSB)=20
+-+#define GET_IW_I_A(W) (((W) >> IW_I_A_LSB) & IW_I_A_UNSHIFTED_MASK)=20
+-+#define SET_IW_I_A(V) (((V) & IW_I_A_UNSHIFTED_MASK) << IW_I_A_LSB)=20
+-+
+-+#define IW_I_B_LSB 22=20
+-+#define IW_I_B_SIZE 5=20
+-+#define IW_I_B_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_I_B_SIZE))=20
+-+#define IW_I_B_SHIFTED_MASK (IW_I_B_UNSHIFTED_MASK << IW_I_B_LSB)=20
+-+#define GET_IW_I_B(W) (((W) >> IW_I_B_LSB) & IW_I_B_UNSHIFTED_MASK)=20
+-+#define SET_IW_I_B(V) (((V) & IW_I_B_UNSHIFTED_MASK) << IW_I_B_LSB)=20
+-+
+-+#define IW_I_IMM16_LSB 6=20
+-+#define IW_I_IMM16_SIZE 16=20
+-+#define IW_I_IMM16_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_I_IMM16_SIZE=
+))=20
+-+#define IW_I_IMM16_SHIFTED_MASK (IW_I_IMM16_UNSHIFTED_MASK << IW_I_IMM1=
+6_LSB)=20
+-+#define GET_IW_I_IMM16(W) (((W) >> IW_I_IMM16_LSB) & IW_I_IMM16_UNSHIFT=
+ED_MASK)=20
+-+#define SET_IW_I_IMM16(V) (((V) & IW_I_IMM16_UNSHIFTED_MASK) << IW_I_IM=
+M16_LSB)=20
+-+
+-+#define IW_R_A_LSB 27=20
+-+#define IW_R_A_SIZE 5=20
+-+#define IW_R_A_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_R_A_SIZE))=20
+-+#define IW_R_A_SHIFTED_MASK (IW_R_A_UNSHIFTED_MASK << IW_R_A_LSB)=20
+-+#define GET_IW_R_A(W) (((W) >> IW_R_A_LSB) & IW_R_A_UNSHIFTED_MASK)=20
+-+#define SET_IW_R_A(V) (((V) & IW_R_A_UNSHIFTED_MASK) << IW_R_A_LSB)=20
+-+
+-+#define IW_R_B_LSB 22=20
+-+#define IW_R_B_SIZE 5=20
+-+#define IW_R_B_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_R_B_SIZE))=20
+-+#define IW_R_B_SHIFTED_MASK (IW_R_B_UNSHIFTED_MASK << IW_R_B_LSB)=20
+-+#define GET_IW_R_B(W) (((W) >> IW_R_B_LSB) & IW_R_B_UNSHIFTED_MASK)=20
+-+#define SET_IW_R_B(V) (((V) & IW_R_B_UNSHIFTED_MASK) << IW_R_B_LSB)=20
+-+
+-+#define IW_R_C_LSB 17=20
+-+#define IW_R_C_SIZE 5=20
+-+#define IW_R_C_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_R_C_SIZE))=20
+-+#define IW_R_C_SHIFTED_MASK (IW_R_C_UNSHIFTED_MASK << IW_R_C_LSB)=20
+-+#define GET_IW_R_C(W) (((W) >> IW_R_C_LSB) & IW_R_C_UNSHIFTED_MASK)=20
+-+#define SET_IW_R_C(V) (((V) & IW_R_C_UNSHIFTED_MASK) << IW_R_C_LSB)=20
+-+
+-+#define IW_R_OPX_LSB 11=20
+-+#define IW_R_OPX_SIZE 6=20
+-+#define IW_R_OPX_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_R_OPX_SIZE))=20
+-+#define IW_R_OPX_SHIFTED_MASK (IW_R_OPX_UNSHIFTED_MASK << IW_R_OPX_LSB)=
+=20
+-+#define GET_IW_R_OPX(W) (((W) >> IW_R_OPX_LSB) & IW_R_OPX_UNSHIFTED_MAS=
+K)=20
+-+#define SET_IW_R_OPX(V) (((V) & IW_R_OPX_UNSHIFTED_MASK) << IW_R_OPX_LS=
+B)=20
+-+
+-+#define IW_R_IMM5_LSB 6=20
+-+#define IW_R_IMM5_SIZE 5=20
+-+#define IW_R_IMM5_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_R_IMM5_SIZE))=
+=20
+-+#define IW_R_IMM5_SHIFTED_MASK (IW_R_IMM5_UNSHIFTED_MASK << IW_R_IMM5_L=
+SB)=20
+-+#define GET_IW_R_IMM5(W) (((W) >> IW_R_IMM5_LSB) & IW_R_IMM5_UNSHIFTED_=
+MASK)=20
+-+#define SET_IW_R_IMM5(V) (((V) & IW_R_IMM5_UNSHIFTED_MASK) << IW_R_IMM5=
+_LSB)=20
+-+
+-+#define IW_J_IMM26_LSB 6=20
+-+#define IW_J_IMM26_SIZE 26=20
+-+#define IW_J_IMM26_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_J_IMM26_SIZE=
+))=20
+-+#define IW_J_IMM26_SHIFTED_MASK (IW_J_IMM26_UNSHIFTED_MASK << IW_J_IMM2=
+6_LSB)=20
+-+#define GET_IW_J_IMM26(W) (((W) >> IW_J_IMM26_LSB) & IW_J_IMM26_UNSHIFT=
+ED_MASK)=20
+-+#define SET_IW_J_IMM26(V) (((V) & IW_J_IMM26_UNSHIFTED_MASK) << IW_J_IM=
+M26_LSB)=20
+-+
+-+#define IW_CUSTOM_A_LSB 27=20
+-+#define IW_CUSTOM_A_SIZE 5=20
+-+#define IW_CUSTOM_A_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_CUSTOM_A_SI=
+ZE))=20
+-+#define IW_CUSTOM_A_SHIFTED_MASK (IW_CUSTOM_A_UNSHIFTED_MASK << IW_CUST=
+OM_A_LSB)=20
+-+#define GET_IW_CUSTOM_A(W) (((W) >> IW_CUSTOM_A_LSB) & IW_CUSTOM_A_UNSH=
+IFTED_MASK)=20
+-+#define SET_IW_CUSTOM_A(V) (((V) & IW_CUSTOM_A_UNSHIFTED_MASK) << IW_CU=
+STOM_A_LSB)=20
+-+
+-+#define IW_CUSTOM_B_LSB 22=20
+-+#define IW_CUSTOM_B_SIZE 5=20
+-+#define IW_CUSTOM_B_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_CUSTOM_B_SI=
+ZE))=20
+-+#define IW_CUSTOM_B_SHIFTED_MASK (IW_CUSTOM_B_UNSHIFTED_MASK << IW_CUST=
+OM_B_LSB)=20
+-+#define GET_IW_CUSTOM_B(W) (((W) >> IW_CUSTOM_B_LSB) & IW_CUSTOM_B_UNSH=
+IFTED_MASK)=20
+-+#define SET_IW_CUSTOM_B(V) (((V) & IW_CUSTOM_B_UNSHIFTED_MASK) << IW_CU=
+STOM_B_LSB)=20
+-+
+-+#define IW_CUSTOM_C_LSB 17=20
+-+#define IW_CUSTOM_C_SIZE 5=20
+-+#define IW_CUSTOM_C_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_CUSTOM_C_SI=
+ZE))=20
+-+#define IW_CUSTOM_C_SHIFTED_MASK (IW_CUSTOM_C_UNSHIFTED_MASK << IW_CUST=
+OM_C_LSB)=20
+-+#define GET_IW_CUSTOM_C(W) (((W) >> IW_CUSTOM_C_LSB) & IW_CUSTOM_C_UNSH=
+IFTED_MASK)=20
+-+#define SET_IW_CUSTOM_C(V) (((V) & IW_CUSTOM_C_UNSHIFTED_MASK) << IW_CU=
+STOM_C_LSB)=20
+-+
+-+#define IW_CUSTOM_READA_LSB 16=20
+-+#define IW_CUSTOM_READA_SIZE 1=20
+-+#define IW_CUSTOM_READA_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_CUSTOM_=
+READA_SIZE))=20
+-+#define IW_CUSTOM_READA_SHIFTED_MASK (IW_CUSTOM_READA_UNSHIFTED_MASK <<=
+ IW_CUSTOM_READA_LSB)=20
+-+#define GET_IW_CUSTOM_READA(W) (((W) >> IW_CUSTOM_READA_LSB) & IW_CUSTO=
+M_READA_UNSHIFTED_MASK)=20
+-+#define SET_IW_CUSTOM_READA(V) (((V) & IW_CUSTOM_READA_UNSHIFTED_MASK) =
+<< IW_CUSTOM_READA_LSB)=20
+-+
+-+#define IW_CUSTOM_READB_LSB 15=20
+-+#define IW_CUSTOM_READB_SIZE 1=20
+-+#define IW_CUSTOM_READB_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_CUSTOM_=
+READB_SIZE))=20
+-+#define IW_CUSTOM_READB_SHIFTED_MASK (IW_CUSTOM_READB_UNSHIFTED_MASK <<=
+ IW_CUSTOM_READB_LSB)=20
+-+#define GET_IW_CUSTOM_READB(W) (((W) >> IW_CUSTOM_READB_LSB) & IW_CUSTO=
+M_READB_UNSHIFTED_MASK)=20
+-+#define SET_IW_CUSTOM_READB(V) (((V) & IW_CUSTOM_READB_UNSHIFTED_MASK) =
+<< IW_CUSTOM_READB_LSB)=20
+-+
+-+#define IW_CUSTOM_READC_LSB 14=20
+-+#define IW_CUSTOM_READC_SIZE 1=20
+-+#define IW_CUSTOM_READC_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_CUSTOM_=
+READC_SIZE))=20
+-+#define IW_CUSTOM_READC_SHIFTED_MASK (IW_CUSTOM_READC_UNSHIFTED_MASK <<=
+ IW_CUSTOM_READC_LSB)=20
+-+#define GET_IW_CUSTOM_READC(W) (((W) >> IW_CUSTOM_READC_LSB) & IW_CUSTO=
+M_READC_UNSHIFTED_MASK)=20
+-+#define SET_IW_CUSTOM_READC(V) (((V) & IW_CUSTOM_READC_UNSHIFTED_MASK) =
+<< IW_CUSTOM_READC_LSB)=20
+-+
+-+#define IW_CUSTOM_N_LSB 6=20
+-+#define IW_CUSTOM_N_SIZE 8=20
+-+#define IW_CUSTOM_N_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_CUSTOM_N_SI=
+ZE))=20
+-+#define IW_CUSTOM_N_SHIFTED_MASK (IW_CUSTOM_N_UNSHIFTED_MASK << IW_CUST=
+OM_N_LSB)=20
+-+#define GET_IW_CUSTOM_N(W) (((W) >> IW_CUSTOM_N_LSB) & IW_CUSTOM_N_UNSH=
+IFTED_MASK)=20
+-+#define SET_IW_CUSTOM_N(V) (((V) & IW_CUSTOM_N_UNSHIFTED_MASK) << IW_CU=
+STOM_N_LSB)=20
+-+
+-+/* R1 opcodes.  */
+-+#define R1_OP_CALL 0
+-+#define R1_OP_JMPI 1
+-+#define R1_OP_LDBU 3
+-+#define R1_OP_ADDI 4
+-+#define R1_OP_STB 5
+-+#define R1_OP_BR 6
+-+#define R1_OP_LDB 7
+-+#define R1_OP_CMPGEI 8
+-+#define R1_OP_LDHU 11
+-+#define R1_OP_ANDI 12
+-+#define R1_OP_STH 13
+-+#define R1_OP_BGE 14
+-+#define R1_OP_LDH 15
+-+#define R1_OP_CMPLTI 16
+-+#define R1_OP_INITDA 19
+-+#define R1_OP_ORI 20
+-+#define R1_OP_STW 21
+-+#define R1_OP_BLT 22
+-+#define R1_OP_LDW 23
+-+#define R1_OP_CMPNEI 24
+-+#define R1_OP_FLUSHDA 27
+-+#define R1_OP_XORI 28
+-+#define R1_OP_BNE 30
+-+#define R1_OP_CMPEQI 32
+-+#define R1_OP_LDBUIO 35
+-+#define R1_OP_MULI 36
+-+#define R1_OP_STBIO 37
+-+#define R1_OP_BEQ 38
+-+#define R1_OP_LDBIO 39
+-+#define R1_OP_CMPGEUI 40
+-+#define R1_OP_LDHUIO 43
+-+#define R1_OP_ANDHI 44
+-+#define R1_OP_STHIO 45
+-+#define R1_OP_BGEU 46
+-+#define R1_OP_LDHIO 47
+-+#define R1_OP_CMPLTUI 48
+-+#define R1_OP_CUSTOM 50
+-+#define R1_OP_INITD 51
+-+#define R1_OP_ORHI 52
+-+#define R1_OP_STWIO 53
+-+#define R1_OP_BLTU 54
+-+#define R1_OP_LDWIO 55
+-+#define R1_OP_RDPRS 56
+-+#define R1_OP_OPX 58
+-+#define R1_OP_FLUSHD 59
+-+#define R1_OP_XORHI 60
+-+
+-+#define R1_OPX_ERET 1
+-+#define R1_OPX_ROLI 2
+-+#define R1_OPX_ROL 3
+-+#define R1_OPX_FLUSHP 4
+-+#define R1_OPX_RET 5
+-+#define R1_OPX_NOR 6
+-+#define R1_OPX_MULXUU 7
+-+#define R1_OPX_CMPGE 8
+-+#define R1_OPX_BRET 9
+-+#define R1_OPX_ROR 11
+-+#define R1_OPX_FLUSHI 12
+-+#define R1_OPX_JMP 13
+-+#define R1_OPX_AND 14
+-+#define R1_OPX_CMPLT 16
+-+#define R1_OPX_SLLI 18
+-+#define R1_OPX_SLL 19
+-+#define R1_OPX_WRPRS 20
+-+#define R1_OPX_OR 22
+-+#define R1_OPX_MULXSU 23
+-+#define R1_OPX_CMPNE 24
+-+#define R1_OPX_SRLI 26
+-+#define R1_OPX_SRL 27
+-+#define R1_OPX_NEXTPC 28
+-+#define R1_OPX_CALLR 29
+-+#define R1_OPX_XOR 30
+-+#define R1_OPX_MULXSS 31
+-+#define R1_OPX_CMPEQ 32
+-+#define R1_OPX_DIVU 36
+-+#define R1_OPX_DIV 37
+-+#define R1_OPX_RDCTL 38
+-+#define R1_OPX_MUL 39
+-+#define R1_OPX_CMPGEU 40
+-+#define R1_OPX_INITI 41
+-+#define R1_OPX_TRAP 45
+-+#define R1_OPX_WRCTL 46
+-+#define R1_OPX_CMPLTU 48
+-+#define R1_OPX_ADD 49
+-+#define R1_OPX_BREAK 52
+-+#define R1_OPX_SYNC 54
+-+#define R1_OPX_SUB 57
+-+#define R1_OPX_SRAI 58
+-+#define R1_OPX_SRA 59
+-+
+-+/* Some convenience macros for R1 encodings, for use in instruction tab=
+les.
+-+   MATCH_R1_OPX0(NAME) and MASK_R1_OPX0 are used for R-type instruction=
+s
+-+   with 3 register operands and constant 0 in the immediate field.
+-+   The general forms are MATCH_R1_OPX(NAME, A, B, C) where the argument=
+s specify
+-+   constant values and MASK_R1_OPX(A, B, C, N) where the arguments are =
+booleans
+-+   that are true if the field should be included in the mask.
+-+ */
+-+#define MATCH_R1_OP(NAME) \
+-+  (SET_IW_R1_OP (R1_OP_##NAME))
+-+#define MASK_R1_OP \
+-+  IW_R1_OP_SHIFTED_MASK
+-+
+-+#define MATCH_R1_OPX0(NAME) \
+-+  (SET_IW_R1_OP (R1_OP_OPX) | SET_IW_R_OPX (R1_OPX_##NAME))
+-+#define MASK_R1_OPX0 \
+-+  (IW_R1_OP_SHIFTED_MASK | IW_R_OPX_SHIFTED_MASK | IW_R_IMM5_SHIFTED_MA=
+SK)
+-+
+-+#define MATCH_R1_OPX(NAME, A, B, C)				\
+-+  (MATCH_R1_OPX0 (NAME) | SET_IW_R_A (A) | SET_IW_R_B (B) | SET_IW_R_C =
+(C))
+-+#define MASK_R1_OPX(A, B, C, N)				\
+-+  (IW_R1_OP_SHIFTED_MASK | IW_R_OPX_SHIFTED_MASK	\
+-+   | (A ? IW_R_A_SHIFTED_MASK : 0)			\
+-+   | (B ? IW_R_B_SHIFTED_MASK : 0)			\
+-+   | (C ? IW_R_C_SHIFTED_MASK : 0)			\
+-+   | (N ? IW_R_IMM5_SHIFTED_MASK : 0))
+-+
+-+/* And here's the match/mask macros for the R1 instruction set.  */
+-+#define MATCH_R1_ADD	MATCH_R1_OPX0 (ADD)
+-+#define MASK_R1_ADD	MASK_R1_OPX0
+-+#define MATCH_R1_ADDI	MATCH_R1_OP (ADDI)
+-+#define MASK_R1_ADDI	MASK_R1_OP
+-+#define MATCH_R1_AND	MATCH_R1_OPX0 (AND)
+-+#define MASK_R1_AND	MASK_R1_OPX0
+-+#define MATCH_R1_ANDHI	MATCH_R1_OP (ANDHI)
+-+#define MASK_R1_ANDHI	MASK_R1_OP
+-+#define MATCH_R1_ANDI	MATCH_R1_OP (ANDI)
+-+#define MASK_R1_ANDI	MASK_R1_OP
+-+#define MATCH_R1_BEQ	MATCH_R1_OP (BEQ)
+-+#define MASK_R1_BEQ	MASK_R1_OP
+-+#define MATCH_R1_BGE	MATCH_R1_OP (BGE)
+-+#define MASK_R1_BGE	MASK_R1_OP
+-+#define MATCH_R1_BGEU	MATCH_R1_OP (BGEU)
+-+#define MASK_R1_BGEU	MASK_R1_OP
+-+#define MATCH_R1_BGT	MATCH_R1_OP (BLT)
+-+#define MASK_R1_BGT	MASK_R1_OP
+-+#define MATCH_R1_BGTU	MATCH_R1_OP (BLTU)
+-+#define MASK_R1_BGTU	MASK_R1_OP
+-+#define MATCH_R1_BLE	MATCH_R1_OP (BGE)
+-+#define MASK_R1_BLE	MASK_R1_OP
+-+#define MATCH_R1_BLEU	MATCH_R1_OP (BGEU)
+-+#define MASK_R1_BLEU	MASK_R1_OP
+-+#define MATCH_R1_BLT	MATCH_R1_OP (BLT)
+-+#define MASK_R1_BLT	MASK_R1_OP
+-+#define MATCH_R1_BLTU	MATCH_R1_OP (BLTU)
+-+#define MASK_R1_BLTU	MASK_R1_OP
+-+#define MATCH_R1_BNE	MATCH_R1_OP (BNE)
+-+#define MASK_R1_BNE	MASK_R1_OP
+-+#define MATCH_R1_BR	MATCH_R1_OP (BR)
+-+#define MASK_R1_BR	MASK_R1_OP | IW_I_A_SHIFTED_MASK | IW_I_B_SHIFTED_MA=
+SK
+-+#define MATCH_R1_BREAK	MATCH_R1_OPX (BREAK, 0, 0, 0x1e)
+-+#define MASK_R1_BREAK	MASK_R1_OPX (1, 1, 1, 0)
+-+#define MATCH_R1_BRET	MATCH_R1_OPX (BRET, 0x1e, 0, 0)
+-+#define MASK_R1_BRET	MASK_R1_OPX (1, 1, 1, 1)
+-+#define MATCH_R1_CALL	MATCH_R1_OP (CALL)
+-+#define MASK_R1_CALL	MASK_R1_OP
+-+#define MATCH_R1_CALLR	MATCH_R1_OPX (CALLR, 0, 0, 0x1f)
+-+#define MASK_R1_CALLR	MASK_R1_OPX (0, 1, 1, 1)
+-+#define MATCH_R1_CMPEQ	MATCH_R1_OPX0 (CMPEQ)
+-+#define MASK_R1_CMPEQ	MASK_R1_OPX0
+-+#define MATCH_R1_CMPEQI	MATCH_R1_OP (CMPEQI)
+-+#define MASK_R1_CMPEQI	MASK_R1_OP
+-+#define MATCH_R1_CMPGE	MATCH_R1_OPX0 (CMPGE)
+-+#define MASK_R1_CMPGE	MASK_R1_OPX0
+-+#define MATCH_R1_CMPGEI	MATCH_R1_OP (CMPGEI)
+-+#define MASK_R1_CMPGEI	MASK_R1_OP
+-+#define MATCH_R1_CMPGEU	MATCH_R1_OPX0 (CMPGEU)
+-+#define MASK_R1_CMPGEU	MASK_R1_OPX0
+-+#define MATCH_R1_CMPGEUI	MATCH_R1_OP (CMPGEUI)
+-+#define MASK_R1_CMPGEUI	MASK_R1_OP
+-+#define MATCH_R1_CMPGT	MATCH_R1_OPX0 (CMPLT)
+-+#define MASK_R1_CMPGT	MASK_R1_OPX0
+-+#define MATCH_R1_CMPGTI	MATCH_R1_OP (CMPGEI)
+-+#define MASK_R1_CMPGTI	MASK_R1_OP
+-+#define MATCH_R1_CMPGTU	MATCH_R1_OPX0 (CMPLTU)
+-+#define MASK_R1_CMPGTU	MASK_R1_OPX0
+-+#define MATCH_R1_CMPGTUI	MATCH_R1_OP (CMPGEUI)
+-+#define MASK_R1_CMPGTUI	MASK_R1_OP
+-+#define MATCH_R1_CMPLE	MATCH_R1_OPX0 (CMPGE)
+-+#define MASK_R1_CMPLE	MASK_R1_OPX0
+-+#define MATCH_R1_CMPLEI	MATCH_R1_OP (CMPLTI)
+-+#define MASK_R1_CMPLEI	MASK_R1_OP
+-+#define MATCH_R1_CMPLEU	MATCH_R1_OPX0 (CMPGEU)
+-+#define MASK_R1_CMPLEU	MASK_R1_OPX0
+-+#define MATCH_R1_CMPLEUI	MATCH_R1_OP (CMPLTUI)
+-+#define MASK_R1_CMPLEUI	MASK_R1_OP
+-+#define MATCH_R1_CMPLT	MATCH_R1_OPX0 (CMPLT)
+-+#define MASK_R1_CMPLT	MASK_R1_OPX0
+-+#define MATCH_R1_CMPLTI	MATCH_R1_OP (CMPLTI)
+-+#define MASK_R1_CMPLTI	MASK_R1_OP
+-+#define MATCH_R1_CMPLTU	MATCH_R1_OPX0 (CMPLTU)
+-+#define MASK_R1_CMPLTU	MASK_R1_OPX0
+-+#define MATCH_R1_CMPLTUI	MATCH_R1_OP (CMPLTUI)
+-+#define MASK_R1_CMPLTUI	MASK_R1_OP
+-+#define MATCH_R1_CMPNE	MATCH_R1_OPX0 (CMPNE)
+-+#define MASK_R1_CMPNE	MASK_R1_OPX0
+-+#define MATCH_R1_CMPNEI	MATCH_R1_OP (CMPNEI)
+-+#define MASK_R1_CMPNEI	MASK_R1_OP
+-+#define MATCH_R1_CUSTOM	MATCH_R1_OP (CUSTOM)
+-+#define MASK_R1_CUSTOM	MASK_R1_OP
+-+#define MATCH_R1_DIV	MATCH_R1_OPX0 (DIV)
+-+#define MASK_R1_DIV	MASK_R1_OPX0
+-+#define MATCH_R1_DIVU	MATCH_R1_OPX0 (DIVU)
+-+#define MASK_R1_DIVU	MASK_R1_OPX0
+-+#define MATCH_R1_ERET	MATCH_R1_OPX (ERET, 0x1d, 0x1e, 0)
+-+#define MASK_R1_ERET	MASK_R1_OPX (1, 1, 1, 1)
+-+#define MATCH_R1_FLUSHD	MATCH_R1_OP (FLUSHD) | SET_IW_I_B (0)
+-+#define MASK_R1_FLUSHD	MASK_R1_OP | IW_I_B_SHIFTED_MASK
+-+#define MATCH_R1_FLUSHDA	MATCH_R1_OP (FLUSHDA) | SET_IW_I_B (0)
+-+#define MASK_R1_FLUSHDA	MASK_R1_OP | IW_I_B_SHIFTED_MASK
+-+#define MATCH_R1_FLUSHI	MATCH_R1_OPX (FLUSHI, 0, 0, 0)
+-+#define MASK_R1_FLUSHI	MASK_R1_OPX (0, 1, 1, 1)
+-+#define MATCH_R1_FLUSHP	MATCH_R1_OPX (FLUSHP, 0, 0, 0)
+-+#define MASK_R1_FLUSHP	MASK_R1_OPX (1, 1, 1, 1)
+-+#define MATCH_R1_INITD	MATCH_R1_OP (INITD) | SET_IW_I_B (0)
+-+#define MASK_R1_INITD	MASK_R1_OP | IW_I_B_SHIFTED_MASK
+-+#define MATCH_R1_INITDA	MATCH_R1_OP (INITDA) | SET_IW_I_B (0)
+-+#define MASK_R1_INITDA	MASK_R1_OP | IW_I_B_SHIFTED_MASK
+-+#define MATCH_R1_INITI	MATCH_R1_OPX (INITI, 0, 0, 0)
+-+#define MASK_R1_INITI	MASK_R1_OPX (0, 1, 1, 1)
+-+#define MATCH_R1_JMP	MATCH_R1_OPX (JMP, 0, 0, 0)
+-+#define MASK_R1_JMP	MASK_R1_OPX (0, 1, 1, 1)
+-+#define MATCH_R1_JMPI	MATCH_R1_OP (JMPI)
+-+#define MASK_R1_JMPI	MASK_R1_OP
+-+#define MATCH_R1_LDB	MATCH_R1_OP (LDB)
+-+#define MASK_R1_LDB	MASK_R1_OP
+-+#define MATCH_R1_LDBIO	MATCH_R1_OP (LDBIO)
+-+#define MASK_R1_LDBIO	MASK_R1_OP
+-+#define MATCH_R1_LDBU	MATCH_R1_OP (LDBU)
+-+#define MASK_R1_LDBU	MASK_R1_OP
+-+#define MATCH_R1_LDBUIO	MATCH_R1_OP (LDBUIO)
+-+#define MASK_R1_LDBUIO	MASK_R1_OP
+-+#define MATCH_R1_LDH	MATCH_R1_OP (LDH)
+-+#define MASK_R1_LDH	MASK_R1_OP
+-+#define MATCH_R1_LDHIO	MATCH_R1_OP (LDHIO)
+-+#define MASK_R1_LDHIO	MASK_R1_OP
+-+#define MATCH_R1_LDHU	MATCH_R1_OP (LDHU)
+-+#define MASK_R1_LDHU	MASK_R1_OP
+-+#define MATCH_R1_LDHUIO	MATCH_R1_OP (LDHUIO)
+-+#define MASK_R1_LDHUIO	MASK_R1_OP
+-+#define MATCH_R1_LDW	MATCH_R1_OP (LDW)
+-+#define MASK_R1_LDW	MASK_R1_OP
+-+#define MATCH_R1_LDWIO	MATCH_R1_OP (LDWIO)
+-+#define MASK_R1_LDWIO	MASK_R1_OP
+-+#define MATCH_R1_MOV	MATCH_R1_OPX (ADD, 0, 0, 0)
+-+#define MASK_R1_MOV	MASK_R1_OPX (0, 1, 0, 1)
+-+#define MATCH_R1_MOVHI	MATCH_R1_OP (ORHI) | SET_IW_I_A (0)
+-+#define MASK_R1_MOVHI	MASK_R1_OP | IW_I_A_SHIFTED_MASK
+-+#define MATCH_R1_MOVI	MATCH_R1_OP (ADDI) | SET_IW_I_A (0)
+-+#define MASK_R1_MOVI	MASK_R1_OP | IW_I_A_SHIFTED_MASK
+-+#define MATCH_R1_MOVUI	MATCH_R1_OP (ORI) | SET_IW_I_A (0)
+-+#define MASK_R1_MOVUI	MASK_R1_OP | IW_I_A_SHIFTED_MASK
+-+#define MATCH_R1_MUL	MATCH_R1_OPX0 (MUL)
+-+#define MASK_R1_MUL	MASK_R1_OPX0
+-+#define MATCH_R1_MULI	MATCH_R1_OP (MULI)
+-+#define MASK_R1_MULI	MASK_R1_OP
+-+#define MATCH_R1_MULXSS	MATCH_R1_OPX0 (MULXSS)
+-+#define MASK_R1_MULXSS	MASK_R1_OPX0
+-+#define MATCH_R1_MULXSU	MATCH_R1_OPX0 (MULXSU)
+-+#define MASK_R1_MULXSU	MASK_R1_OPX0
+-+#define MATCH_R1_MULXUU	MATCH_R1_OPX0 (MULXUU)
+-+#define MASK_R1_MULXUU	MASK_R1_OPX0
+-+#define MATCH_R1_NEXTPC	MATCH_R1_OPX (NEXTPC, 0, 0, 0)
+-+#define MASK_R1_NEXTPC	MASK_R1_OPX (1, 1, 0, 1)
+-+#define MATCH_R1_NOP	MATCH_R1_OPX (ADD, 0, 0, 0)
+-+#define MASK_R1_NOP	MASK_R1_OPX (1, 1, 1, 1)
+-+#define MATCH_R1_NOR	MATCH_R1_OPX0 (NOR)
+-+#define MASK_R1_NOR	MASK_R1_OPX0
+-+#define MATCH_R1_OR	MATCH_R1_OPX0 (OR)
+-+#define MASK_R1_OR	MASK_R1_OPX0
+-+#define MATCH_R1_ORHI	MATCH_R1_OP (ORHI)
+-+#define MASK_R1_ORHI	MASK_R1_OP
+-+#define MATCH_R1_ORI	MATCH_R1_OP (ORI)
+-+#define MASK_R1_ORI	MASK_R1_OP
+-+#define MATCH_R1_RDCTL	MATCH_R1_OPX (RDCTL, 0, 0, 0)
+-+#define MASK_R1_RDCTL	MASK_R1_OPX (1, 1, 0, 0)
+-+#define MATCH_R1_RDPRS	MATCH_R1_OP (RDPRS)
+-+#define MASK_R1_RDPRS	MASK_R1_OP
+-+#define MATCH_R1_RET	MATCH_R1_OPX (RET, 0x1f, 0, 0)
+-+#define MASK_R1_RET	MASK_R1_OPX (1, 1, 1, 1)
+-+#define MATCH_R1_ROL	MATCH_R1_OPX0 (ROL)
+-+#define MASK_R1_ROL	MASK_R1_OPX0
+-+#define MATCH_R1_ROLI	MATCH_R1_OPX (ROLI, 0, 0, 0)
+-+#define MASK_R1_ROLI	MASK_R1_OPX (0, 1, 0, 0)
+-+#define MATCH_R1_ROR	MATCH_R1_OPX0 (ROR)
+-+#define MASK_R1_ROR	MASK_R1_OPX0
+-+#define MATCH_R1_SLL	MATCH_R1_OPX0 (SLL)
+-+#define MASK_R1_SLL	MASK_R1_OPX0
+-+#define MATCH_R1_SLLI	MATCH_R1_OPX (SLLI, 0, 0, 0)
+-+#define MASK_R1_SLLI	MASK_R1_OPX (0, 1, 0, 0)
+-+#define MATCH_R1_SRA	MATCH_R1_OPX0 (SRA)
+-+#define MASK_R1_SRA	MASK_R1_OPX0
+-+#define MATCH_R1_SRAI	MATCH_R1_OPX (SRAI, 0, 0, 0)
+-+#define MASK_R1_SRAI	MASK_R1_OPX (0, 1, 0, 0)
+-+#define MATCH_R1_SRL	MATCH_R1_OPX0 (SRL)
+-+#define MASK_R1_SRL	MASK_R1_OPX0
+-+#define MATCH_R1_SRLI	MATCH_R1_OPX (SRLI, 0, 0, 0)
+-+#define MASK_R1_SRLI	MASK_R1_OPX (0, 1, 0, 0)
+-+#define MATCH_R1_STB	MATCH_R1_OP (STB)
+-+#define MASK_R1_STB	MASK_R1_OP
+-+#define MATCH_R1_STBIO	MATCH_R1_OP (STBIO)
+-+#define MASK_R1_STBIO	MASK_R1_OP
+-+#define MATCH_R1_STH	MATCH_R1_OP (STH)
+-+#define MASK_R1_STH	MASK_R1_OP
+-+#define MATCH_R1_STHIO	MATCH_R1_OP (STHIO)
+-+#define MASK_R1_STHIO	MASK_R1_OP
+-+#define MATCH_R1_STW	MATCH_R1_OP (STW)
+-+#define MASK_R1_STW	MASK_R1_OP
+-+#define MATCH_R1_STWIO	MATCH_R1_OP (STWIO)
+-+#define MASK_R1_STWIO	MASK_R1_OP
+-+#define MATCH_R1_SUB	MATCH_R1_OPX0 (SUB)
+-+#define MASK_R1_SUB	MASK_R1_OPX0
+-+#define MATCH_R1_SUBI	MATCH_R1_OP (ADDI)
+-+#define MASK_R1_SUBI	MASK_R1_OP
+-+#define MATCH_R1_SYNC	MATCH_R1_OPX (SYNC, 0, 0, 0)
+-+#define MASK_R1_SYNC	MASK_R1_OPX (1, 1, 1, 1)
+-+#define MATCH_R1_TRAP	MATCH_R1_OPX (TRAP, 0, 0, 0x1d)
+-+#define MASK_R1_TRAP	MASK_R1_OPX (1, 1, 1, 0)
+-+#define MATCH_R1_WRCTL	MATCH_R1_OPX (WRCTL, 0, 0, 0)
+-+#define MASK_R1_WRCTL	MASK_R1_OPX (0, 1, 1, 0)
+-+#define MATCH_R1_WRPRS	MATCH_R1_OPX (WRPRS, 0, 0, 0)
+-+#define MASK_R1_WRPRS	MASK_R1_OPX (0, 1, 0, 1)
+-+#define MATCH_R1_XOR	MATCH_R1_OPX0 (XOR)
+-+#define MASK_R1_XOR	MASK_R1_OPX0
+-+#define MATCH_R1_XORHI	MATCH_R1_OP (XORHI)
+-+#define MASK_R1_XORHI	MASK_R1_OP
+-+#define MATCH_R1_XORI	MATCH_R1_OP (XORI)
+-+#define MASK_R1_XORI	MASK_R1_OP
+-+
+-+#endif /* _NIOS2R1_H */
+-+
+-+/*#include "nios2r2.h"*/
+-+
+-+#ifndef _NIOS2R2_H_
+-+#define _NIOS2R2_H_
+-+
+-+/* Fields for 32-bit R2 instructions.  */
+-+
+-+#define IW_R2_OP_LSB 0
+-+#define IW_R2_OP_SIZE 6
+-+#define IW_R2_OP_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_R2_OP_SIZE))
+-+#define IW_R2_OP_SHIFTED_MASK (IW_R2_OP_UNSHIFTED_MASK << IW_R2_OP_LSB)
+-+#define GET_IW_R2_OP(W) (((W) >> IW_R2_OP_LSB) & IW_R2_OP_UNSHIFTED_MAS=
+K)
+-+#define SET_IW_R2_OP(V) (((V) & IW_R2_OP_UNSHIFTED_MASK) << IW_R2_OP_LS=
+B)
+-+
+-+#define IW_L26_IMM26_LSB 6
+-+#define IW_L26_IMM26_SIZE 26
+-+#define IW_L26_IMM26_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_L26_IMM26_=
+SIZE))
+-+#define IW_L26_IMM26_SHIFTED_MASK (IW_L26_IMM26_UNSHIFTED_MASK << IW_L2=
+6_IMM26_LSB)
+-+#define GET_IW_L26_IMM26(W) (((W) >> IW_L26_IMM26_LSB) & IW_L26_IMM26_U=
+NSHIFTED_MASK)
+-+#define SET_IW_L26_IMM26(V) (((V) & IW_L26_IMM26_UNSHIFTED_MASK) << IW_=
+L26_IMM26_LSB)
+-+
+-+#define IW_F2I16_A_LSB 6
+-+#define IW_F2I16_A_SIZE 5
+-+#define IW_F2I16_A_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F2I16_A_SIZE=
+))
+-+#define IW_F2I16_A_SHIFTED_MASK (IW_F2I16_A_UNSHIFTED_MASK << IW_F2I16_=
+A_LSB)
+-+#define GET_IW_F2I16_A(W) (((W) >> IW_F2I16_A_LSB) & IW_F2I16_A_UNSHIFT=
+ED_MASK)
+-+#define SET_IW_F2I16_A(V) (((V) & IW_F2I16_A_UNSHIFTED_MASK) << IW_F2I1=
+6_A_LSB)
+-+
+-+#define IW_F2I16_B_LSB 11
+-+#define IW_F2I16_B_SIZE 5
+-+#define IW_F2I16_B_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F2I16_B_SIZE=
+))
+-+#define IW_F2I16_B_SHIFTED_MASK (IW_F2I16_B_UNSHIFTED_MASK << IW_F2I16_=
+B_LSB)
+-+#define GET_IW_F2I16_B(W) (((W) >> IW_F2I16_B_LSB) & IW_F2I16_B_UNSHIFT=
+ED_MASK)
+-+#define SET_IW_F2I16_B(V) (((V) & IW_F2I16_B_UNSHIFTED_MASK) << IW_F2I1=
+6_B_LSB)
+-+
+-+#define IW_F2I16_IMM16_LSB 16
+-+#define IW_F2I16_IMM16_SIZE 16
+-+#define IW_F2I16_IMM16_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F2I16_IM=
+M16_SIZE))
+-+#define IW_F2I16_IMM16_SHIFTED_MASK (IW_F2I16_IMM16_UNSHIFTED_MASK << I=
+W_F2I16_IMM16_LSB)
+-+#define GET_IW_F2I16_IMM16(W) (((W) >> IW_F2I16_IMM16_LSB) & IW_F2I16_I=
+MM16_UNSHIFTED_MASK)
+-+#define SET_IW_F2I16_IMM16(V) (((V) & IW_F2I16_IMM16_UNSHIFTED_MASK) <<=
+ IW_F2I16_IMM16_LSB)
+-+
+-+/* Common to all three I12-group formats F2X4I12, F1X4I12, F1X4L17.  */
+-+#define IW_I12_X_LSB 28
+-+#define IW_I12_X_SIZE 4
+-+#define IW_I12_X_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_I12_X_SIZE))
+-+#define IW_I12_X_SHIFTED_MASK (IW_I12_X_UNSHIFTED_MASK << IW_I12_X_LSB)
+-+#define GET_IW_I12_X(W) (((W) >> IW_I12_X_LSB) & IW_I12_X_UNSHIFTED_MAS=
+K)
+-+#define SET_IW_I12_X(V) (((V) & IW_I12_X_UNSHIFTED_MASK) << IW_I12_X_LS=
+B)
+-+
+-+#define IW_F2X4I12_A_LSB 6
+-+#define IW_F2X4I12_A_SIZE 5
+-+#define IW_F2X4I12_A_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F2X4I12_A_=
+SIZE))
+-+#define IW_F2X4I12_A_SHIFTED_MASK (IW_F2X4I12_A_UNSHIFTED_MASK << IW_F2=
+X4I12_A_LSB)
+-+#define GET_IW_F2X4I12_A(W) (((W) >> IW_F2X4I12_A_LSB) & IW_F2X4I12_A_U=
+NSHIFTED_MASK)
+-+#define SET_IW_F2X4I12_A(V) (((V) & IW_F2X4I12_A_UNSHIFTED_MASK) << IW_=
+F2X4I12_A_LSB)
+-+
+-+#define IW_F2X4I12_B_LSB 11
+-+#define IW_F2X4I12_B_SIZE 5
+-+#define IW_F2X4I12_B_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F2X4I12_B_=
+SIZE))
+-+#define IW_F2X4I12_B_SHIFTED_MASK (IW_F2X4I12_B_UNSHIFTED_MASK << IW_F2=
+X4I12_B_LSB)
+-+#define GET_IW_F2X4I12_B(W) (((W) >> IW_F2X4I12_B_LSB) & IW_F2X4I12_B_U=
+NSHIFTED_MASK)
+-+#define SET_IW_F2X4I12_B(V) (((V) & IW_F2X4I12_B_UNSHIFTED_MASK) << IW_=
+F2X4I12_B_LSB)
+-+
+-+#define IW_F2X4I12_IMM12_LSB 16
+-+#define IW_F2X4I12_IMM12_SIZE 12
+-+#define IW_F2X4I12_IMM12_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F2X4I1=
+2_IMM12_SIZE))
+-+#define IW_F2X4I12_IMM12_SHIFTED_MASK (IW_F2X4I12_IMM12_UNSHIFTED_MASK =
+<< IW_F2X4I12_IMM12_LSB)
+-+#define GET_IW_F2X4I12_IMM12(W) (((W) >> IW_F2X4I12_IMM12_LSB) & IW_F2X=
+4I12_IMM12_UNSHIFTED_MASK)
+-+#define SET_IW_F2X4I12_IMM12(V) (((V) & IW_F2X4I12_IMM12_UNSHIFTED_MASK=
+) << IW_F2X4I12_IMM12_LSB)
+-+
+-+#define IW_F1X4I12_A_LSB 6
+-+#define IW_F1X4I12_A_SIZE 5
+-+#define IW_F1X4I12_A_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F1X4I12_A_=
+SIZE))
+-+#define IW_F1X4I12_A_SHIFTED_MASK (IW_F1X4I12_A_UNSHIFTED_MASK << IW_F1=
+X4I12_A_LSB)
+-+#define GET_IW_F1X4I12_A(W) (((W) >> IW_F1X4I12_A_LSB) & IW_F1X4I12_A_U=
+NSHIFTED_MASK)
+-+#define SET_IW_F1X4I12_A(V) (((V) & IW_F1X4I12_A_UNSHIFTED_MASK) << IW_=
+F1X4I12_A_LSB)
+-+
+-+#define IW_F1X4I12_X_LSB 11
+-+#define IW_F1X4I12_X_SIZE 5
+-+#define IW_F1X4I12_X_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F1X4I12_X_=
+SIZE))
+-+#define IW_F1X4I12_X_SHIFTED_MASK (IW_F1X4I12_X_UNSHIFTED_MASK << IW_F1=
+X4I12_X_LSB)
+-+#define GET_IW_F1X4I12_X(W) (((W) >> IW_F1X4I12_X_LSB) & IW_F1X4I12_X_U=
+NSHIFTED_MASK)
+-+#define SET_IW_F1X4I12_X(V) (((V) & IW_F1X4I12_X_UNSHIFTED_MASK) << IW_=
+F1X4I12_X_LSB)
+-+
+-+#define IW_F1X4I12_IMM12_LSB 16
+-+#define IW_F1X4I12_IMM12_SIZE 12
+-+#define IW_F1X4I12_IMM12_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F1X4I1=
+2_IMM12_SIZE))
+-+#define IW_F1X4I12_IMM12_SHIFTED_MASK (IW_F1X4I12_IMM12_UNSHIFTED_MASK =
+<< IW_F1X4I12_IMM12_LSB)
+-+#define GET_IW_F1X4I12_IMM12(W) (((W) >> IW_F1X4I12_IMM12_LSB) & IW_F1X=
+4I12_IMM12_UNSHIFTED_MASK)
+-+#define SET_IW_F1X4I12_IMM12(V) (((V) & IW_F1X4I12_IMM12_UNSHIFTED_MASK=
+) << IW_F1X4I12_IMM12_LSB)
+-+
+-+#define IW_F1X4L17_A_LSB 6
+-+#define IW_F1X4L17_A_SIZE 5
+-+#define IW_F1X4L17_A_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F1X4L17_A_=
+SIZE))
+-+#define IW_F1X4L17_A_SHIFTED_MASK (IW_F1X4L17_A_UNSHIFTED_MASK << IW_F1=
+X4L17_A_LSB)
+-+#define GET_IW_F1X4L17_A(W) (((W) >> IW_F1X4L17_A_LSB) & IW_F1X4L17_A_U=
+NSHIFTED_MASK)
+-+#define SET_IW_F1X4L17_A(V) (((V) & IW_F1X4L17_A_UNSHIFTED_MASK) << IW_=
+F1X4L17_A_LSB)
+-+
+-+#define IW_F1X4L17_ID_LSB 11
+-+#define IW_F1X4L17_ID_SIZE 1
+-+#define IW_F1X4L17_ID_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F1X4L17_I=
+D_SIZE))
+-+#define IW_F1X4L17_ID_SHIFTED_MASK (IW_F1X4L17_ID_UNSHIFTED_MASK << IW_=
+F1X4L17_ID_LSB)
+-+#define GET_IW_F1X4L17_ID(W) (((W) >> IW_F1X4L17_ID_LSB) & IW_F1X4L17_I=
+D_UNSHIFTED_MASK)
+-+#define SET_IW_F1X4L17_ID(V) (((V) & IW_F1X4L17_ID_UNSHIFTED_MASK) << I=
+W_F1X4L17_ID_LSB)
+-+
+-+#define IW_F1X4L17_WB_LSB 12
+-+#define IW_F1X4L17_WB_SIZE 1
+-+#define IW_F1X4L17_WB_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F1X4L17_W=
+B_SIZE))
+-+#define IW_F1X4L17_WB_SHIFTED_MASK (IW_F1X4L17_WB_UNSHIFTED_MASK << IW_=
+F1X4L17_WB_LSB)
+-+#define GET_IW_F1X4L17_WB(W) (((W) >> IW_F1X4L17_WB_LSB) & IW_F1X4L17_W=
+B_UNSHIFTED_MASK)
+-+#define SET_IW_F1X4L17_WB(V) (((V) & IW_F1X4L17_WB_UNSHIFTED_MASK) << I=
+W_F1X4L17_WB_LSB)
+-+
+-+#define IW_F1X4L17_RS_LSB 13
+-+#define IW_F1X4L17_RS_SIZE 1
+-+#define IW_F1X4L17_RS_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F1X4L17_R=
+S_SIZE))
+-+#define IW_F1X4L17_RS_SHIFTED_MASK (IW_F1X4L17_RS_UNSHIFTED_MASK << IW_=
+F1X4L17_RS_LSB)
+-+#define GET_IW_F1X4L17_RS(W) (((W) >> IW_F1X4L17_RS_LSB) & IW_F1X4L17_R=
+S_UNSHIFTED_MASK)
+-+#define SET_IW_F1X4L17_RS(V) (((V) & IW_F1X4L17_RS_UNSHIFTED_MASK) << I=
+W_F1X4L17_RS_LSB)
+-+
+-+#define IW_F1X4L17_PC_LSB 14
+-+#define IW_F1X4L17_PC_SIZE 1
+-+#define IW_F1X4L17_PC_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F1X4L17_P=
+C_SIZE))
+-+#define IW_F1X4L17_PC_SHIFTED_MASK (IW_F1X4L17_PC_UNSHIFTED_MASK << IW_=
+F1X4L17_PC_LSB)
+-+#define GET_IW_F1X4L17_PC(W) (((W) >> IW_F1X4L17_PC_LSB) & IW_F1X4L17_P=
+C_UNSHIFTED_MASK)
+-+#define SET_IW_F1X4L17_PC(V) (((V) & IW_F1X4L17_PC_UNSHIFTED_MASK) << I=
+W_F1X4L17_PC_LSB)
+-+
+-+#define IW_F1X4L17_RSV_LSB 15
+-+#define IW_F1X4L17_RSV_SIZE 1
+-+#define IW_F1X4L17_RSV_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F1X4L17_=
+RSV_SIZE))
+-+#define IW_F1X4L17_RSV_SHIFTED_MASK (IW_F1X4L17_RSV_UNSHIFTED_MASK << I=
+W_F1X4L17_RSV_LSB)
+-+#define GET_IW_F1X4L17_RSV(W) (((W) >> IW_F1X4L17_RSV_LSB) & IW_F1X4L17=
+_RSV_UNSHIFTED_MASK)
+-+#define SET_IW_F1X4L17_RSV(V) (((V) & IW_F1X4L17_RSV_UNSHIFTED_MASK) <<=
+ IW_F1X4L17_RSV_LSB)
+-+
+-+#define IW_F1X4L17_REGMASK_LSB 16
+-+#define IW_F1X4L17_REGMASK_SIZE 12
+-+#define IW_F1X4L17_REGMASK_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F1X4=
+L17_REGMASK_SIZE))
+-+#define IW_F1X4L17_REGMASK_SHIFTED_MASK (IW_F1X4L17_REGMASK_UNSHIFTED_M=
+ASK << IW_F1X4L17_REGMASK_LSB)
+-+#define GET_IW_F1X4L17_REGMASK(W) (((W) >> IW_F1X4L17_REGMASK_LSB) & IW=
+_F1X4L17_REGMASK_UNSHIFTED_MASK)
+-+#define SET_IW_F1X4L17_REGMASK(V) (((V) & IW_F1X4L17_REGMASK_UNSHIFTED_=
+MASK) << IW_F1X4L17_REGMASK_LSB)
+-+
+-+/* Shared by OPX-group formats F3X6L5, F2X6L10, F3X6.  */
+-+#define IW_OPX_X_LSB 26
+-+#define IW_OPX_X_SIZE 6
+-+#define IW_OPX_X_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_OPX_X_SIZE))
+-+#define IW_OPX_X_SHIFTED_MASK (IW_OPX_X_UNSHIFTED_MASK << IW_OPX_X_LSB)
+-+#define GET_IW_OPX_X(W) (((W) >> IW_OPX_X_LSB) & IW_OPX_X_UNSHIFTED_MAS=
+K)
+-+#define SET_IW_OPX_X(V) (((V) & IW_OPX_X_UNSHIFTED_MASK) << IW_OPX_X_LS=
+B)
+-+
+-+/* F3X6L5 accessors are also used for F3X6 formats.  */
+-+#define IW_F3X6L5_A_LSB 6
+-+#define IW_F3X6L5_A_SIZE 5
+-+#define IW_F3X6L5_A_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F3X6L5_A_SI=
+ZE))
+-+#define IW_F3X6L5_A_SHIFTED_MASK (IW_F3X6L5_A_UNSHIFTED_MASK << IW_F3X6=
+L5_A_LSB)
+-+#define GET_IW_F3X6L5_A(W) (((W) >> IW_F3X6L5_A_LSB) & IW_F3X6L5_A_UNSH=
+IFTED_MASK)
+-+#define SET_IW_F3X6L5_A(V) (((V) & IW_F3X6L5_A_UNSHIFTED_MASK) << IW_F3=
+X6L5_A_LSB)
+-+
+-+#define IW_F3X6L5_B_LSB 11
+-+#define IW_F3X6L5_B_SIZE 5
+-+#define IW_F3X6L5_B_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F3X6L5_B_SI=
+ZE))
+-+#define IW_F3X6L5_B_SHIFTED_MASK (IW_F3X6L5_B_UNSHIFTED_MASK << IW_F3X6=
+L5_B_LSB)
+-+#define GET_IW_F3X6L5_B(W) (((W) >> IW_F3X6L5_B_LSB) & IW_F3X6L5_B_UNSH=
+IFTED_MASK)
+-+#define SET_IW_F3X6L5_B(V) (((V) & IW_F3X6L5_B_UNSHIFTED_MASK) << IW_F3=
+X6L5_B_LSB)
+-+
+-+#define IW_F3X6L5_C_LSB 16
+-+#define IW_F3X6L5_C_SIZE 5
+-+#define IW_F3X6L5_C_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F3X6L5_C_SI=
+ZE))
+-+#define IW_F3X6L5_C_SHIFTED_MASK (IW_F3X6L5_C_UNSHIFTED_MASK << IW_F3X6=
+L5_C_LSB)
+-+#define GET_IW_F3X6L5_C(W) (((W) >> IW_F3X6L5_C_LSB) & IW_F3X6L5_C_UNSH=
+IFTED_MASK)
+-+#define SET_IW_F3X6L5_C(V) (((V) & IW_F3X6L5_C_UNSHIFTED_MASK) << IW_F3=
+X6L5_C_LSB)
+-+
+-+#define IW_F3X6L5_IMM5_LSB 21
+-+#define IW_F3X6L5_IMM5_SIZE 5
+-+#define IW_F3X6L5_IMM5_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F3X6L5_I=
+MM5_SIZE))
+-+#define IW_F3X6L5_IMM5_SHIFTED_MASK (IW_F3X6L5_IMM5_UNSHIFTED_MASK << I=
+W_F3X6L5_IMM5_LSB)
+-+#define GET_IW_F3X6L5_IMM5(W) (((W) >> IW_F3X6L5_IMM5_LSB) & IW_F3X6L5_=
+IMM5_UNSHIFTED_MASK)
+-+#define SET_IW_F3X6L5_IMM5(V) (((V) & IW_F3X6L5_IMM5_UNSHIFTED_MASK) <<=
+ IW_F3X6L5_IMM5_LSB)
+-+
+-+#define IW_F2X6L10_A_LSB 6
+-+#define IW_F2X6L10_A_SIZE 5
+-+#define IW_F2X6L10_A_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F2X6L10_A_=
+SIZE))
+-+#define IW_F2X6L10_A_SHIFTED_MASK (IW_F2X6L10_A_UNSHIFTED_MASK << IW_F2=
+X6L10_A_LSB)
+-+#define GET_IW_F2X6L10_A(W) (((W) >> IW_F2X6L10_A_LSB) & IW_F2X6L10_A_U=
+NSHIFTED_MASK)
+-+#define SET_IW_F2X6L10_A(V) (((V) & IW_F2X6L10_A_UNSHIFTED_MASK) << IW_=
+F2X6L10_A_LSB)
+-+
+-+#define IW_F2X6L10_B_LSB 11
+-+#define IW_F2X6L10_B_SIZE 5
+-+#define IW_F2X6L10_B_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F2X6L10_B_=
+SIZE))
+-+#define IW_F2X6L10_B_SHIFTED_MASK (IW_F2X6L10_B_UNSHIFTED_MASK << IW_F2=
+X6L10_B_LSB)
+-+#define GET_IW_F2X6L10_B(W) (((W) >> IW_F2X6L10_B_LSB) & IW_F2X6L10_B_U=
+NSHIFTED_MASK)
+-+#define SET_IW_F2X6L10_B(V) (((V) & IW_F2X6L10_B_UNSHIFTED_MASK) << IW_=
+F2X6L10_B_LSB)
+-+
+-+#define IW_F2X6L10_LSB_LSB 16
+-+#define IW_F2X6L10_LSB_SIZE 5
+-+#define IW_F2X6L10_LSB_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F2X6L10_=
+LSB_SIZE))
+-+#define IW_F2X6L10_LSB_SHIFTED_MASK (IW_F2X6L10_LSB_UNSHIFTED_MASK << I=
+W_F2X6L10_LSB_LSB)
+-+#define GET_IW_F2X6L10_LSB(W) (((W) >> IW_F2X6L10_LSB_LSB) & IW_F2X6L10=
+_LSB_UNSHIFTED_MASK)
+-+#define SET_IW_F2X6L10_LSB(V) (((V) & IW_F2X6L10_LSB_UNSHIFTED_MASK) <<=
+ IW_F2X6L10_LSB_LSB)
+-+
+-+#define IW_F2X6L10_MSB_LSB 21
+-+#define IW_F2X6L10_MSB_SIZE 5
+-+#define IW_F2X6L10_MSB_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F2X6L10_=
+MSB_SIZE))
+-+#define IW_F2X6L10_MSB_SHIFTED_MASK (IW_F2X6L10_MSB_UNSHIFTED_MASK << I=
+W_F2X6L10_MSB_LSB)
+-+#define GET_IW_F2X6L10_MSB(W) (((W) >> IW_F2X6L10_MSB_LSB) & IW_F2X6L10=
+_MSB_UNSHIFTED_MASK)
+-+#define SET_IW_F2X6L10_MSB(V) (((V) & IW_F2X6L10_MSB_UNSHIFTED_MASK) <<=
+ IW_F2X6L10_MSB_LSB)
+-+
+-+#define IW_F3X8_A_LSB 6
+-+#define IW_F3X8_A_SIZE 5
+-+#define IW_F3X8_A_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F3X8_A_SIZE))
+-+#define IW_F3X8_A_SHIFTED_MASK (IW_F3X8_A_UNSHIFTED_MASK << IW_F3X8_A_L=
+SB)
+-+#define GET_IW_F3X8_A(W) (((W) >> IW_F3X8_A_LSB) & IW_F3X8_A_UNSHIFTED_=
+MASK)
+-+#define SET_IW_F3X8_A(V) (((V) & IW_F3X8_A_UNSHIFTED_MASK) << IW_F3X8_A=
+_LSB)
+-+
+-+#define IW_F3X8_B_LSB 11
+-+#define IW_F3X8_B_SIZE 5
+-+#define IW_F3X8_B_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F3X8_B_SIZE))
+-+#define IW_F3X8_B_SHIFTED_MASK (IW_F3X8_B_UNSHIFTED_MASK << IW_F3X8_B_L=
+SB)
+-+#define GET_IW_F3X8_B(W) (((W) >> IW_F3X8_B_LSB) & IW_F3X8_B_UNSHIFTED_=
+MASK)
+-+#define SET_IW_F3X8_B(V) (((V) & IW_F3X8_B_UNSHIFTED_MASK) << IW_F3X8_B=
+_LSB)
+-+
+-+#define IW_F3X8_C_LSB 16
+-+#define IW_F3X8_C_SIZE 5
+-+#define IW_F3X8_C_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F3X8_C_SIZE))
+-+#define IW_F3X8_C_SHIFTED_MASK (IW_F3X8_C_UNSHIFTED_MASK << IW_F3X8_C_L=
+SB)
+-+#define GET_IW_F3X8_C(W) (((W) >> IW_F3X8_C_LSB) & IW_F3X8_C_UNSHIFTED_=
+MASK)
+-+#define SET_IW_F3X8_C(V) (((V) & IW_F3X8_C_UNSHIFTED_MASK) << IW_F3X8_C=
+_LSB)
+-+
+-+#define IW_F3X8_READA_LSB 21
+-+#define IW_F3X8_READA_SIZE 1
+-+#define IW_F3X8_READA_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F3X8_READ=
+A_SIZE))
+-+#define IW_F3X8_READA_SHIFTED_MASK (IW_F3X8_READA_UNSHIFTED_MASK << IW_=
+F3X8_READA_LSB)
+-+#define GET_IW_F3X8_READA(W) (((W) >> IW_F3X8_READA_LSB) & IW_F3X8_READ=
+A_UNSHIFTED_MASK)
+-+#define SET_IW_F3X8_READA(V) (((V) & IW_F3X8_READA_UNSHIFTED_MASK) << I=
+W_F3X8_READA_LSB)
+-+
+-+#define IW_F3X8_READB_LSB 22
+-+#define IW_F3X8_READB_SIZE 1
+-+#define IW_F3X8_READB_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F3X8_READ=
+B_SIZE))
+-+#define IW_F3X8_READB_SHIFTED_MASK (IW_F3X8_READB_UNSHIFTED_MASK << IW_=
+F3X8_READB_LSB)
+-+#define GET_IW_F3X8_READB(W) (((W) >> IW_F3X8_READB_LSB) & IW_F3X8_READ=
+B_UNSHIFTED_MASK)
+-+#define SET_IW_F3X8_READB(V) (((V) & IW_F3X8_READB_UNSHIFTED_MASK) << I=
+W_F3X8_READB_LSB)
+-+
+-+#define IW_F3X8_READC_LSB 23
+-+#define IW_F3X8_READC_SIZE 1
+-+#define IW_F3X8_READC_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F3X8_READ=
+C_SIZE))
+-+#define IW_F3X8_READC_SHIFTED_MASK (IW_F3X8_READC_UNSHIFTED_MASK << IW_=
+F3X8_READC_LSB)
+-+#define GET_IW_F3X8_READC(W) (((W) >> IW_F3X8_READC_LSB) & IW_F3X8_READ=
+C_UNSHIFTED_MASK)
+-+#define SET_IW_F3X8_READC(V) (((V) & IW_F3X8_READC_UNSHIFTED_MASK) << I=
+W_F3X8_READC_LSB)
+-+
+-+#define IW_F3X8_N_LSB 24
+-+#define IW_F3X8_N_SIZE 8
+-+#define IW_F3X8_N_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F3X8_N_SIZE))
+-+#define IW_F3X8_N_SHIFTED_MASK (IW_F3X8_N_UNSHIFTED_MASK << IW_F3X8_N_L=
+SB)
+-+#define GET_IW_F3X8_N(W) (((W) >> IW_F3X8_N_LSB) & IW_F3X8_N_UNSHIFTED_=
+MASK)
+-+#define SET_IW_F3X8_N(V) (((V) & IW_F3X8_N_UNSHIFTED_MASK) << IW_F3X8_N=
+_LSB)
+-+
+-+/* 16-bit R2 fields.  */
+-+
+-+#define IW_I10_IMM10_LSB 6
+-+#define IW_I10_IMM10_SIZE 10
+-+#define IW_I10_IMM10_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_I10_IMM10_=
+SIZE))
+-+#define IW_I10_IMM10_SHIFTED_MASK (IW_I10_IMM10_UNSHIFTED_MASK << IW_I1=
+0_IMM10_LSB)
+-+#define GET_IW_I10_IMM10(W) (((W) >> IW_I10_IMM10_LSB) & IW_I10_IMM10_U=
+NSHIFTED_MASK)
+-+#define SET_IW_I10_IMM10(V) (((V) & IW_I10_IMM10_UNSHIFTED_MASK) << IW_=
+I10_IMM10_LSB)
+-+
+-+#define IW_T1I7_A3_LSB 6
+-+#define IW_T1I7_A3_SIZE 3
+-+#define IW_T1I7_A3_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T1I7_A3_SIZE=
+))
+-+#define IW_T1I7_A3_SHIFTED_MASK (IW_T1I7_A3_UNSHIFTED_MASK << IW_T1I7_A=
+3_LSB)
+-+#define GET_IW_T1I7_A3(W) (((W) >> IW_T1I7_A3_LSB) & IW_T1I7_A3_UNSHIFT=
+ED_MASK)
+-+#define SET_IW_T1I7_A3(V) (((V) & IW_T1I7_A3_UNSHIFTED_MASK) << IW_T1I7=
+_A3_LSB)
+-+
+-+#define IW_T1I7_IMM7_LSB 9
+-+#define IW_T1I7_IMM7_SIZE 7
+-+#define IW_T1I7_IMM7_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T1I7_IMM7_=
+SIZE))
+-+#define IW_T1I7_IMM7_SHIFTED_MASK (IW_T1I7_IMM7_UNSHIFTED_MASK << IW_T1=
+I7_IMM7_LSB)
+-+#define GET_IW_T1I7_IMM7(W) (((W) >> IW_T1I7_IMM7_LSB) & IW_T1I7_IMM7_U=
+NSHIFTED_MASK)
+-+#define SET_IW_T1I7_IMM7(V) (((V) & IW_T1I7_IMM7_UNSHIFTED_MASK) << IW_=
+T1I7_IMM7_LSB)
+-+
+-+#define IW_T2I4_A3_LSB 6
+-+#define IW_T2I4_A3_SIZE 3
+-+#define IW_T2I4_A3_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T2I4_A3_SIZE=
+))
+-+#define IW_T2I4_A3_SHIFTED_MASK (IW_T2I4_A3_UNSHIFTED_MASK << IW_T2I4_A=
+3_LSB)
+-+#define GET_IW_T2I4_A3(W) (((W) >> IW_T2I4_A3_LSB) & IW_T2I4_A3_UNSHIFT=
+ED_MASK)
+-+#define SET_IW_T2I4_A3(V) (((V) & IW_T2I4_A3_UNSHIFTED_MASK) << IW_T2I4=
+_A3_LSB)
+-+
+-+#define IW_T2I4_B3_LSB 9
+-+#define IW_T2I4_B3_SIZE 3
+-+#define IW_T2I4_B3_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T2I4_B3_SIZE=
+))
+-+#define IW_T2I4_B3_SHIFTED_MASK (IW_T2I4_B3_UNSHIFTED_MASK << IW_T2I4_B=
+3_LSB)
+-+#define GET_IW_T2I4_B3(W) (((W) >> IW_T2I4_B3_LSB) & IW_T2I4_B3_UNSHIFT=
+ED_MASK)
+-+#define SET_IW_T2I4_B3(V) (((V) & IW_T2I4_B3_UNSHIFTED_MASK) << IW_T2I4=
+_B3_LSB)
+-+
+-+#define IW_T2I4_IMM4_LSB 12
+-+#define IW_T2I4_IMM4_SIZE 4
+-+#define IW_T2I4_IMM4_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T2I4_IMM4_=
+SIZE))
+-+#define IW_T2I4_IMM4_SHIFTED_MASK (IW_T2I4_IMM4_UNSHIFTED_MASK << IW_T2=
+I4_IMM4_LSB)
+-+#define GET_IW_T2I4_IMM4(W) (((W) >> IW_T2I4_IMM4_LSB) & IW_T2I4_IMM4_U=
+NSHIFTED_MASK)
+-+#define SET_IW_T2I4_IMM4(V) (((V) & IW_T2I4_IMM4_UNSHIFTED_MASK) << IW_=
+T2I4_IMM4_LSB)
+-+
+-+#define IW_T1X1I6_A3_LSB 6
+-+#define IW_T1X1I6_A3_SIZE 3
+-+#define IW_T1X1I6_A3_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T1X1I6_A3_=
+SIZE))
+-+#define IW_T1X1I6_A3_SHIFTED_MASK (IW_T1X1I6_A3_UNSHIFTED_MASK << IW_T1=
+X1I6_A3_LSB)
+-+#define GET_IW_T1X1I6_A3(W) (((W) >> IW_T1X1I6_A3_LSB) & IW_T1X1I6_A3_U=
+NSHIFTED_MASK)
+-+#define SET_IW_T1X1I6_A3(V) (((V) & IW_T1X1I6_A3_UNSHIFTED_MASK) << IW_=
+T1X1I6_A3_LSB)
+-+
+-+#define IW_T1X1I6_IMM6_LSB 9
+-+#define IW_T1X1I6_IMM6_SIZE 6
+-+#define IW_T1X1I6_IMM6_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T1X1I6_I=
+MM6_SIZE))
+-+#define IW_T1X1I6_IMM6_SHIFTED_MASK (IW_T1X1I6_IMM6_UNSHIFTED_MASK << I=
+W_T1X1I6_IMM6_LSB)
+-+#define GET_IW_T1X1I6_IMM6(W) (((W) >> IW_T1X1I6_IMM6_LSB) & IW_T1X1I6_=
+IMM6_UNSHIFTED_MASK)
+-+#define SET_IW_T1X1I6_IMM6(V) (((V) & IW_T1X1I6_IMM6_UNSHIFTED_MASK) <<=
+ IW_T1X1I6_IMM6_LSB)
+-+
+-+#define IW_T1X1I6_X_LSB 15
+-+#define IW_T1X1I6_X_SIZE 1
+-+#define IW_T1X1I6_X_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T1X1I6_X_SI=
+ZE))
+-+#define IW_T1X1I6_X_SHIFTED_MASK (IW_T1X1I6_X_UNSHIFTED_MASK << IW_T1X1=
+I6_X_LSB)
+-+#define GET_IW_T1X1I6_X(W) (((W) >> IW_T1X1I6_X_LSB) & IW_T1X1I6_X_UNSH=
+IFTED_MASK)
+-+#define SET_IW_T1X1I6_X(V) (((V) & IW_T1X1I6_X_UNSHIFTED_MASK) << IW_T1=
+X1I6_X_LSB)
+-+
+-+#define IW_X1I7_IMM7_LSB 6
+-+#define IW_X1I7_IMM7_SIZE 7
+-+#define IW_X1I7_IMM7_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_X1I7_IMM7_=
+SIZE))
+-+#define IW_X1I7_IMM7_SHIFTED_MASK (IW_X1I7_IMM7_UNSHIFTED_MASK << IW_X1=
+I7_IMM7_LSB)
+-+#define GET_IW_X1I7_IMM7(W) (((W) >> IW_X1I7_IMM7_LSB) & IW_X1I7_IMM7_U=
+NSHIFTED_MASK)
+-+#define SET_IW_X1I7_IMM7(V) (((V) & IW_X1I7_IMM7_UNSHIFTED_MASK) << IW_=
+X1I7_IMM7_LSB)
+-+
+-+#define IW_X1I7_RSV_LSB 13
+-+#define IW_X1I7_RSV_SIZE 2
+-+#define IW_X1I7_RSV_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_X1I7_RSV_SI=
+ZE))
+-+#define IW_X1I7_RSV_SHIFTED_MASK (IW_X1I7_RSV_UNSHIFTED_MASK << IW_X1I7=
+_RSV_LSB)
+-+#define GET_IW_X1I7_RSV(W) (((W) >> IW_X1I7_RSV_LSB) & IW_X1I7_RSV_UNSH=
+IFTED_MASK)
+-+#define SET_IW_X1I7_RSV(V) (((V) & IW_X1I7_RSV_UNSHIFTED_MASK) << IW_X1=
+I7_RSV_LSB)
+-+
+-+#define IW_X1I7_X_LSB 15
+-+#define IW_X1I7_X_SIZE 1
+-+#define IW_X1I7_X_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_X1I7_X_SIZE))
+-+#define IW_X1I7_X_SHIFTED_MASK (IW_X1I7_X_UNSHIFTED_MASK << IW_X1I7_X_L=
+SB)
+-+#define GET_IW_X1I7_X(W) (((W) >> IW_X1I7_X_LSB) & IW_X1I7_X_UNSHIFTED_=
+MASK)
+-+#define SET_IW_X1I7_X(V) (((V) & IW_X1I7_X_UNSHIFTED_MASK) << IW_X1I7_X=
+_LSB)
+-+
+-+#define IW_L5I4X1_IMM4_LSB 6
+-+#define IW_L5I4X1_IMM4_SIZE 4
+-+#define IW_L5I4X1_IMM4_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_L5I4X1_I=
+MM4_SIZE))
+-+#define IW_L5I4X1_IMM4_SHIFTED_MASK (IW_L5I4X1_IMM4_UNSHIFTED_MASK << I=
+W_L5I4X1_IMM4_LSB)
+-+#define GET_IW_L5I4X1_IMM4(W) (((W) >> IW_L5I4X1_IMM4_LSB) & IW_L5I4X1_=
+IMM4_UNSHIFTED_MASK)
+-+#define SET_IW_L5I4X1_IMM4(V) (((V) & IW_L5I4X1_IMM4_UNSHIFTED_MASK) <<=
+ IW_L5I4X1_IMM4_LSB)
+-+
+-+#define IW_L5I4X1_REGRANGE_LSB 10
+-+#define IW_L5I4X1_REGRANGE_SIZE 3
+-+#define IW_L5I4X1_REGRANGE_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_L5I4=
+X1_REGRANGE_SIZE))
+-+#define IW_L5I4X1_REGRANGE_SHIFTED_MASK (IW_L5I4X1_REGRANGE_UNSHIFTED_M=
+ASK << IW_L5I4X1_REGRANGE_LSB)
+-+#define GET_IW_L5I4X1_REGRANGE(W) (((W) >> IW_L5I4X1_REGRANGE_LSB) & IW=
+_L5I4X1_REGRANGE_UNSHIFTED_MASK)
+-+#define SET_IW_L5I4X1_REGRANGE(V) (((V) & IW_L5I4X1_REGRANGE_UNSHIFTED_=
+MASK) << IW_L5I4X1_REGRANGE_LSB)
+-+
+-+#define IW_L5I4X1_FP_LSB 13
+-+#define IW_L5I4X1_FP_SIZE 1
+-+#define IW_L5I4X1_FP_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_L5I4X1_FP_=
+SIZE))
+-+#define IW_L5I4X1_FP_SHIFTED_MASK (IW_L5I4X1_FP_UNSHIFTED_MASK << IW_L5=
+I4X1_FP_LSB)
+-+#define GET_IW_L5I4X1_FP(W) (((W) >> IW_L5I4X1_FP_LSB) & IW_L5I4X1_FP_U=
+NSHIFTED_MASK)
+-+#define SET_IW_L5I4X1_FP(V) (((V) & IW_L5I4X1_FP_UNSHIFTED_MASK) << IW_=
+L5I4X1_FP_LSB)
+-+
+-+#define IW_L5I4X1_CS_LSB 14
+-+#define IW_L5I4X1_CS_SIZE 1
+-+#define IW_L5I4X1_CS_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_L5I4X1_CS_=
+SIZE))
+-+#define IW_L5I4X1_CS_SHIFTED_MASK (IW_L5I4X1_CS_UNSHIFTED_MASK << IW_L5=
+I4X1_CS_LSB)
+-+#define GET_IW_L5I4X1_CS(W) (((W) >> IW_L5I4X1_CS_LSB) & IW_L5I4X1_CS_U=
+NSHIFTED_MASK)
+-+#define SET_IW_L5I4X1_CS(V) (((V) & IW_L5I4X1_CS_UNSHIFTED_MASK) << IW_=
+L5I4X1_CS_LSB)
+-+
+-+#define IW_L5I4X1_X_LSB 15
+-+#define IW_L5I4X1_X_SIZE 1
+-+#define IW_L5I4X1_X_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_L5I4X1_X_SI=
+ZE))
+-+#define IW_L5I4X1_X_SHIFTED_MASK (IW_L5I4X1_X_UNSHIFTED_MASK << IW_L5I4=
+X1_X_LSB)
+-+#define GET_IW_L5I4X1_X(W) (((W) >> IW_L5I4X1_X_LSB) & IW_L5I4X1_X_UNSH=
+IFTED_MASK)
+-+#define SET_IW_L5I4X1_X(V) (((V) & IW_L5I4X1_X_UNSHIFTED_MASK) << IW_L5=
+I4X1_X_LSB)
+-+
+-+#define IW_T2X1L3_A3_LSB 6
+-+#define IW_T2X1L3_A3_SIZE 3
+-+#define IW_T2X1L3_A3_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T2X1L3_A3_=
+SIZE))
+-+#define IW_T2X1L3_A3_SHIFTED_MASK (IW_T2X1L3_A3_UNSHIFTED_MASK << IW_T2=
+X1L3_A3_LSB)
+-+#define GET_IW_T2X1L3_A3(W) (((W) >> IW_T2X1L3_A3_LSB) & IW_T2X1L3_A3_U=
+NSHIFTED_MASK)
+-+#define SET_IW_T2X1L3_A3(V) (((V) & IW_T2X1L3_A3_UNSHIFTED_MASK) << IW_=
+T2X1L3_A3_LSB)
+-+
+-+#define IW_T2X1L3_B3_LSB 9
+-+#define IW_T2X1L3_B3_SIZE 3
+-+#define IW_T2X1L3_B3_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T2X1L3_B3_=
+SIZE))
+-+#define IW_T2X1L3_B3_SHIFTED_MASK (IW_T2X1L3_B3_UNSHIFTED_MASK << IW_T2=
+X1L3_B3_LSB)
+-+#define GET_IW_T2X1L3_B3(W) (((W) >> IW_T2X1L3_B3_LSB) & IW_T2X1L3_B3_U=
+NSHIFTED_MASK)
+-+#define SET_IW_T2X1L3_B3(V) (((V) & IW_T2X1L3_B3_UNSHIFTED_MASK) << IW_=
+T2X1L3_B3_LSB)
+-+
+-+#define IW_T2X1L3_SHAMT_LSB 12
+-+#define IW_T2X1L3_SHAMT_SIZE 3
+-+#define IW_T2X1L3_SHAMT_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T2X1L3_=
+SHAMT_SIZE))
+-+#define IW_T2X1L3_SHAMT_SHIFTED_MASK (IW_T2X1L3_SHAMT_UNSHIFTED_MASK <<=
+ IW_T2X1L3_SHAMT_LSB)
+-+#define GET_IW_T2X1L3_SHAMT(W) (((W) >> IW_T2X1L3_SHAMT_LSB) & IW_T2X1L=
+3_SHAMT_UNSHIFTED_MASK)
+-+#define SET_IW_T2X1L3_SHAMT(V) (((V) & IW_T2X1L3_SHAMT_UNSHIFTED_MASK) =
+<< IW_T2X1L3_SHAMT_LSB)
+-+
+-+#define IW_T2X1L3_X_LSB 15
+-+#define IW_T2X1L3_X_SIZE 1
+-+#define IW_T2X1L3_X_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T2X1L3_X_SI=
+ZE))
+-+#define IW_T2X1L3_X_SHIFTED_MASK (IW_T2X1L3_X_UNSHIFTED_MASK << IW_T2X1=
+L3_X_LSB)
+-+#define GET_IW_T2X1L3_X(W) (((W) >> IW_T2X1L3_X_LSB) & IW_T2X1L3_X_UNSH=
+IFTED_MASK)
+-+#define SET_IW_T2X1L3_X(V) (((V) & IW_T2X1L3_X_UNSHIFTED_MASK) << IW_T2=
+X1L3_X_LSB)
+-+
+-+#define IW_T2X1I3_A3_LSB 6
+-+#define IW_T2X1I3_A3_SIZE 3
+-+#define IW_T2X1I3_A3_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T2X1I3_A3_=
+SIZE))
+-+#define IW_T2X1I3_A3_SHIFTED_MASK (IW_T2X1I3_A3_UNSHIFTED_MASK << IW_T2=
+X1I3_A3_LSB)
+-+#define GET_IW_T2X1I3_A3(W) (((W) >> IW_T2X1I3_A3_LSB) & IW_T2X1I3_A3_U=
+NSHIFTED_MASK)
+-+#define SET_IW_T2X1I3_A3(V) (((V) & IW_T2X1I3_A3_UNSHIFTED_MASK) << IW_=
+T2X1I3_A3_LSB)
+-+
+-+#define IW_T2X1I3_B3_LSB 9
+-+#define IW_T2X1I3_B3_SIZE 3
+-+#define IW_T2X1I3_B3_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T2X1I3_B3_=
+SIZE))
+-+#define IW_T2X1I3_B3_SHIFTED_MASK (IW_T2X1I3_B3_UNSHIFTED_MASK << IW_T2=
+X1I3_B3_LSB)
+-+#define GET_IW_T2X1I3_B3(W) (((W) >> IW_T2X1I3_B3_LSB) & IW_T2X1I3_B3_U=
+NSHIFTED_MASK)
+-+#define SET_IW_T2X1I3_B3(V) (((V) & IW_T2X1I3_B3_UNSHIFTED_MASK) << IW_=
+T2X1I3_B3_LSB)
+-+
+-+#define IW_T2X1I3_IMM3_LSB 12
+-+#define IW_T2X1I3_IMM3_SIZE 3
+-+#define IW_T2X1I3_IMM3_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T2X1I3_I=
+MM3_SIZE))
+-+#define IW_T2X1I3_IMM3_SHIFTED_MASK (IW_T2X1I3_IMM3_UNSHIFTED_MASK << I=
+W_T2X1I3_IMM3_LSB)
+-+#define GET_IW_T2X1I3_IMM3(W) (((W) >> IW_T2X1I3_IMM3_LSB) & IW_T2X1I3_=
+IMM3_UNSHIFTED_MASK)
+-+#define SET_IW_T2X1I3_IMM3(V) (((V) & IW_T2X1I3_IMM3_UNSHIFTED_MASK) <<=
+ IW_T2X1I3_IMM3_LSB)
+-+
+-+#define IW_T2X1I3_X_LSB 15
+-+#define IW_T2X1I3_X_SIZE 1
+-+#define IW_T2X1I3_X_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T2X1I3_X_SI=
+ZE))
+-+#define IW_T2X1I3_X_SHIFTED_MASK (IW_T2X1I3_X_UNSHIFTED_MASK << IW_T2X1=
+I3_X_LSB)
+-+#define GET_IW_T2X1I3_X(W) (((W) >> IW_T2X1I3_X_LSB) & IW_T2X1I3_X_UNSH=
+IFTED_MASK)
+-+#define SET_IW_T2X1I3_X(V) (((V) & IW_T2X1I3_X_UNSHIFTED_MASK) << IW_T2=
+X1I3_X_LSB)
+-+
+-+#define IW_T3X1_A3_LSB 6
+-+#define IW_T3X1_A3_SIZE 3
+-+#define IW_T3X1_A3_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T3X1_A3_SIZE=
+))
+-+#define IW_T3X1_A3_SHIFTED_MASK (IW_T3X1_A3_UNSHIFTED_MASK << IW_T3X1_A=
+3_LSB)
+-+#define GET_IW_T3X1_A3(W) (((W) >> IW_T3X1_A3_LSB) & IW_T3X1_A3_UNSHIFT=
+ED_MASK)
+-+#define SET_IW_T3X1_A3(V) (((V) & IW_T3X1_A3_UNSHIFTED_MASK) << IW_T3X1=
+_A3_LSB)
+-+
+-+#define IW_T3X1_B3_LSB 9
+-+#define IW_T3X1_B3_SIZE 3
+-+#define IW_T3X1_B3_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T3X1_B3_SIZE=
+))
+-+#define IW_T3X1_B3_SHIFTED_MASK (IW_T3X1_B3_UNSHIFTED_MASK << IW_T3X1_B=
+3_LSB)
+-+#define GET_IW_T3X1_B3(W) (((W) >> IW_T3X1_B3_LSB) & IW_T3X1_B3_UNSHIFT=
+ED_MASK)
+-+#define SET_IW_T3X1_B3(V) (((V) & IW_T3X1_B3_UNSHIFTED_MASK) << IW_T3X1=
+_B3_LSB)
+-+
+-+#define IW_T3X1_C3_LSB 12
+-+#define IW_T3X1_C3_SIZE 3
+-+#define IW_T3X1_C3_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T3X1_C3_SIZE=
+))
+-+#define IW_T3X1_C3_SHIFTED_MASK (IW_T3X1_C3_UNSHIFTED_MASK << IW_T3X1_C=
+3_LSB)
+-+#define GET_IW_T3X1_C3(W) (((W) >> IW_T3X1_C3_LSB) & IW_T3X1_C3_UNSHIFT=
+ED_MASK)
+-+#define SET_IW_T3X1_C3(V) (((V) & IW_T3X1_C3_UNSHIFTED_MASK) << IW_T3X1=
+_C3_LSB)
+-+
+-+#define IW_T3X1_X_LSB 15
+-+#define IW_T3X1_X_SIZE 1
+-+#define IW_T3X1_X_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T3X1_X_SIZE))
+-+#define IW_T3X1_X_SHIFTED_MASK (IW_T3X1_X_UNSHIFTED_MASK << IW_T3X1_X_L=
+SB)
+-+#define GET_IW_T3X1_X(W) (((W) >> IW_T3X1_X_LSB) & IW_T3X1_X_UNSHIFTED_=
+MASK)
+-+#define SET_IW_T3X1_X(V) (((V) & IW_T3X1_X_UNSHIFTED_MASK) << IW_T3X1_X=
+_LSB)
+-+
+-+/* The X field for all three R.N-class instruction formats is represent=
+ed
+-+   here as 4 bits, including the bits defined as constant 0 or 1 that
+-+   determine which of the formats T2X3, F1X1, or X2L5 it is.  */
+-+#define IW_R_N_X_LSB 12
+-+#define IW_R_N_X_SIZE 4
+-+#define IW_R_N_X_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_R_N_X_SIZE))
+-+#define IW_R_N_X_SHIFTED_MASK (IW_R_N_X_UNSHIFTED_MASK << IW_R_N_X_LSB)
+-+#define GET_IW_R_N_X(W) (((W) >> IW_R_N_X_LSB) & IW_R_N_X_UNSHIFTED_MAS=
+K)
+-+#define SET_IW_R_N_X(V) (((V) & IW_R_N_X_UNSHIFTED_MASK) << IW_R_N_X_LS=
+B)
+-+
+-+#define IW_T2X3_A3_LSB 6
+-+#define IW_T2X3_A3_SIZE 3
+-+#define IW_T2X3_A3_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T2X3_A3_SIZE=
+))
+-+#define IW_T2X3_A3_SHIFTED_MASK (IW_T2X3_A3_UNSHIFTED_MASK << IW_T2X3_A=
+3_LSB)
+-+#define GET_IW_T2X3_A3(W) (((W) >> IW_T2X3_A3_LSB) & IW_T2X3_A3_UNSHIFT=
+ED_MASK)
+-+#define SET_IW_T2X3_A3(V) (((V) & IW_T2X3_A3_UNSHIFTED_MASK) << IW_T2X3=
+_A3_LSB)
+-+
+-+#define IW_T2X3_B3_LSB 9
+-+#define IW_T2X3_B3_SIZE 3
+-+#define IW_T2X3_B3_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_T2X3_B3_SIZE=
+))
+-+#define IW_T2X3_B3_SHIFTED_MASK (IW_T2X3_B3_UNSHIFTED_MASK << IW_T2X3_B=
+3_LSB)
+-+#define GET_IW_T2X3_B3(W) (((W) >> IW_T2X3_B3_LSB) & IW_T2X3_B3_UNSHIFT=
+ED_MASK)
+-+#define SET_IW_T2X3_B3(V) (((V) & IW_T2X3_B3_UNSHIFTED_MASK) << IW_T2X3=
+_B3_LSB)
+-+
+-+#define IW_F1X1_A_LSB 6
+-+#define IW_F1X1_A_SIZE 5
+-+#define IW_F1X1_A_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F1X1_A_SIZE))
+-+#define IW_F1X1_A_SHIFTED_MASK (IW_F1X1_A_UNSHIFTED_MASK << IW_F1X1_A_L=
+SB)
+-+#define GET_IW_F1X1_A(W) (((W) >> IW_F1X1_A_LSB) & IW_F1X1_A_UNSHIFTED_=
+MASK)
+-+#define SET_IW_F1X1_A(V) (((V) & IW_F1X1_A_UNSHIFTED_MASK) << IW_F1X1_A=
+_LSB)
+-+
+-+#define IW_F1X1_RSV_LSB 11
+-+#define IW_F1X1_RSV_SIZE 1
+-+#define IW_F1X1_RSV_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F1X1_RSV_SI=
+ZE))
+-+#define IW_F1X1_RSV_SHIFTED_MASK (IW_F1X1_RSV_UNSHIFTED_MASK << IW_F1X1=
+_RSV_LSB)
+-+#define GET_IW_F1X1_RSV(W) (((W) >> IW_F1X1_RSV_LSB) & IW_F1X1_RSV_UNSH=
+IFTED_MASK)
+-+#define SET_IW_F1X1_RSV(V) (((V) & IW_F1X1_RSV_UNSHIFTED_MASK) << IW_F1=
+X1_RSV_LSB)
+-+
+-+#define IW_X2L5_IMM5_LSB 6
+-+#define IW_X2L5_IMM5_SIZE 5
+-+#define IW_X2L5_IMM5_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_X2L5_IMM5_=
+SIZE))
+-+#define IW_X2L5_IMM5_SHIFTED_MASK (IW_X2L5_IMM5_UNSHIFTED_MASK << IW_X2=
+L5_IMM5_LSB)
+-+#define GET_IW_X2L5_IMM5(W) (((W) >> IW_X2L5_IMM5_LSB) & IW_X2L5_IMM5_U=
+NSHIFTED_MASK)
+-+#define SET_IW_X2L5_IMM5(V) (((V) & IW_X2L5_IMM5_UNSHIFTED_MASK) << IW_=
+X2L5_IMM5_LSB)
+-+
+-+#define IW_X2L5_RSV_LSB 11
+-+#define IW_X2L5_RSV_SIZE 1
+-+#define IW_X2L5_RSV_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_X2L5_RSV_SI=
+ZE))
+-+#define IW_X2L5_RSV_SHIFTED_MASK (IW_X2L5_RSV_UNSHIFTED_MASK << IW_X2L5=
+_RSV_LSB)
+-+#define GET_IW_X2L5_RSV(W) (((W) >> IW_X2L5_RSV_LSB) & IW_X2L5_RSV_UNSH=
+IFTED_MASK)
+-+#define SET_IW_X2L5_RSV(V) (((V) & IW_X2L5_RSV_UNSHIFTED_MASK) << IW_X2=
+L5_RSV_LSB)
+-+
+-+#define IW_F1I5_IMM5_LSB 6
+-+#define IW_F1I5_IMM5_SIZE 5
+-+#define IW_F1I5_IMM5_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F1I5_IMM5_=
+SIZE))
+-+#define IW_F1I5_IMM5_SHIFTED_MASK (IW_F1I5_IMM5_UNSHIFTED_MASK << IW_F1=
+I5_IMM5_LSB)
+-+#define GET_IW_F1I5_IMM5(W) (((W) >> IW_F1I5_IMM5_LSB) & IW_F1I5_IMM5_U=
+NSHIFTED_MASK)
+-+#define SET_IW_F1I5_IMM5(V) (((V) & IW_F1I5_IMM5_UNSHIFTED_MASK) << IW_=
+F1I5_IMM5_LSB)
+-+
+-+#define IW_F1I5_B_LSB 11
+-+#define IW_F1I5_B_SIZE 5
+-+#define IW_F1I5_B_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F1I5_B_SIZE))
+-+#define IW_F1I5_B_SHIFTED_MASK (IW_F1I5_B_UNSHIFTED_MASK << IW_F1I5_B_L=
+SB)
+-+#define GET_IW_F1I5_B(W) (((W) >> IW_F1I5_B_LSB) & IW_F1I5_B_UNSHIFTED_=
+MASK)
+-+#define SET_IW_F1I5_B(V) (((V) & IW_F1I5_B_UNSHIFTED_MASK) << IW_F1I5_B=
+_LSB)
+-+
+-+#define IW_F2_A_LSB 6
+-+#define IW_F2_A_SIZE 5
+-+#define IW_F2_A_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F2_A_SIZE))
+-+#define IW_F2_A_SHIFTED_MASK (IW_F2_A_UNSHIFTED_MASK << IW_F2_A_LSB)
+-+#define GET_IW_F2_A(W) (((W) >> IW_F2_A_LSB) & IW_F2_A_UNSHIFTED_MASK)
+-+#define SET_IW_F2_A(V) (((V) & IW_F2_A_UNSHIFTED_MASK) << IW_F2_A_LSB)
+-+
+-+#define IW_F2_B_LSB 11
+-+#define IW_F2_B_SIZE 5
+-+#define IW_F2_B_UNSHIFTED_MASK (0xffffffffu >> (32 - IW_F2_B_SIZE))
+-+#define IW_F2_B_SHIFTED_MASK (IW_F2_B_UNSHIFTED_MASK << IW_F2_B_LSB)
+-+#define GET_IW_F2_B(W) (((W) >> IW_F2_B_LSB) & IW_F2_B_UNSHIFTED_MASK)
+-+#define SET_IW_F2_B(V) (((V) & IW_F2_B_UNSHIFTED_MASK) << IW_F2_B_LSB)
+-+
+-+/* R2 opcodes.  */
+-+#define R2_OP_CALL 0
+-+#define R2_OP_AS_N 1
+-+#define R2_OP_BR 2
+-+#define R2_OP_BR_N 3
+-+#define R2_OP_ADDI 4
+-+#define R2_OP_LDBU_N 5
+-+#define R2_OP_LDBU 6
+-+#define R2_OP_LDB 7
+-+#define R2_OP_JMPI 8
+-+#define R2_OP_R_N 9
+-+#define R2_OP_ANDI_N 11
+-+#define R2_OP_ANDI 12
+-+#define R2_OP_LDHU_N 13
+-+#define R2_OP_LDHU 14
+-+#define R2_OP_LDH 15
+-+#define R2_OP_ASI_N 17
+-+#define R2_OP_BGE 18
+-+#define R2_OP_LDWSP_N 19
+-+#define R2_OP_ORI 20
+-+#define R2_OP_LDW_N 21
+-+#define R2_OP_CMPGEI 22
+-+#define R2_OP_LDW 23
+-+#define R2_OP_SHI_N 25
+-+#define R2_OP_BLT 26
+-+#define R2_OP_MOVI_N 27
+-+#define R2_OP_XORI 28
+-+#define R2_OP_STZ_N 29
+-+#define R2_OP_CMPLTI 30
+-+#define R2_OP_ANDCI 31
+-+#define R2_OP_OPX 32
+-+#define R2_OP_PP_N 33
+-+#define R2_OP_BNE 34
+-+#define R2_OP_BNEZ_N 35
+-+#define R2_OP_MULI 36
+-+#define R2_OP_STB_N 37
+-+#define R2_OP_CMPNEI 38
+-+#define R2_OP_STB 39
+-+#define R2_OP_I12 40
+-+#define R2_OP_SPI_N 41
+-+#define R2_OP_BEQ 42
+-+#define R2_OP_BEQZ_N 43
+-+#define R2_OP_ANDHI 44
+-+#define R2_OP_STH_N 45
+-+#define R2_OP_CMPEQI 46
+-+#define R2_OP_STH 47
+-+#define R2_OP_CUSTOM 48
+-+#define R2_OP_BGEU 50
+-+#define R2_OP_STWSP_N 51
+-+#define R2_OP_ORHI 52
+-+#define R2_OP_STW_N 53
+-+#define R2_OP_CMPGEUI 54
+-+#define R2_OP_STW 55
+-+#define R2_OP_BLTU 58
+-+#define R2_OP_MOV_N 59
+-+#define R2_OP_XORHI 60
+-+#define R2_OP_SPADDI_N 61
+-+#define R2_OP_CMPLTUI 62
+-+#define R2_OP_ANDCHI 63
+-+
+-+#define R2_OPX_WRPIE 0
+-+#define R2_OPX_ERET 1
+-+#define R2_OPX_ROLI 2
+-+#define R2_OPX_ROL 3
+-+#define R2_OPX_FLUSHP 4
+-+#define R2_OPX_RET 5
+-+#define R2_OPX_NOR 6
+-+#define R2_OPX_MULXUU 7
+-+#define R2_OPX_ENI 8
+-+#define R2_OPX_BRET 9
+-+#define R2_OPX_ROR 11
+-+#define R2_OPX_FLUSHI 12
+-+#define R2_OPX_JMP 13
+-+#define R2_OPX_AND 14
+-+#define R2_OPX_CMPGE 16
+-+#define R2_OPX_SLLI 18
+-+#define R2_OPX_SLL 19
+-+#define R2_OPX_WRPRS 20
+-+#define R2_OPX_OR 22
+-+#define R2_OPX_MULXSU 23
+-+#define R2_OPX_CMPLT 24
+-+#define R2_OPX_SRLI 26
+-+#define R2_OPX_SRL 27
+-+#define R2_OPX_NEXTPC 28
+-+#define R2_OPX_CALLR 29
+-+#define R2_OPX_XOR 30
+-+#define R2_OPX_MULXSS 31
+-+#define R2_OPX_CMPNE 32
+-+#define R2_OPX_INSERT 35
+-+#define R2_OPX_DIVU 36
+-+#define R2_OPX_DIV 37
+-+#define R2_OPX_RDCTL 38
+-+#define R2_OPX_MUL 39
+-+#define R2_OPX_CMPEQ 40
+-+#define R2_OPX_INITI 41
+-+#define R2_OPX_MERGE 43
+-+#define R2_OPX_HBREAK 44
+-+#define R2_OPX_TRAP 45
+-+#define R2_OPX_WRCTL 46
+-+#define R2_OPX_CMPGEU 48
+-+#define R2_OPX_ADD 49
+-+#define R2_OPX_EXTRACT 51
+-+#define R2_OPX_BREAK 52
+-+#define R2_OPX_LDEX 53
+-+#define R2_OPX_SYNC 54
+-+#define R2_OPX_LDSEX 55
+-+#define R2_OPX_CMPLTU 56
+-+#define R2_OPX_SUB 57
+-+#define R2_OPX_SRAI 58
+-+#define R2_OPX_SRA 59
+-+#define R2_OPX_STEX 61
+-+#define R2_OPX_STSEX 63
+-+
+-+#define R2_I12_LDBIO 0
+-+#define R2_I12_STBIO 1
+-+#define R2_I12_LDBUIO 2
+-+#define R2_I12_DCACHE 3
+-+#define R2_I12_LDHIO 4
+-+#define R2_I12_STHIO 5
+-+#define R2_I12_LDHUIO 6
+-+#define R2_I12_RDPRS 7
+-+#define R2_I12_LDWIO 8
+-+#define R2_I12_STWIO 9
+-+#define R2_I12_LDWM 12
+-+#define R2_I12_STWM 13
+-+
+-+#define R2_DCACHE_INITD 0
+-+#define R2_DCACHE_INITDA 1
+-+#define R2_DCACHE_FLUSHD 2
+-+#define R2_DCACHE_FLUSHDA 3
+-+
+-+#define R2_AS_N_ADD_N 0
+-+#define R2_AS_N_SUB_N 1
+-+
+-+#define R2_R_N_AND_N 0
+-+#define R2_R_N_OR_N 2
+-+#define R2_R_N_XOR_N 3
+-+#define R2_R_N_SLL_N 4
+-+#define R2_R_N_SRL_N 5
+-+#define R2_R_N_NOT_N 6
+-+#define R2_R_N_NEG_N 7
+-+#define R2_R_N_CALLR_N 8
+-+#define R2_R_N_JMPR_N 10
+-+#define R2_R_N_BREAK_N 12
+-+#define R2_R_N_TRAP_N 13
+-+#define R2_R_N_RET_N 14
+-+
+-+#define R2_SPI_N_SPINCI_N 0
+-+#define R2_SPI_N_SPDECI_N 1
+-+
+-+#define R2_ASI_N_ADDI_N 0
+-+#define R2_ASI_N_SUBI_N 1
+-+
+-+#define R2_SHI_N_SLLI_N 0
+-+#define R2_SHI_N_SRLI_N 1
+-+
+-+#define R2_PP_N_POP_N 0
+-+#define R2_PP_N_PUSH_N 1
+-+
+-+#define R2_STZ_N_STWZ_N 0
+-+#define R2_STZ_N_STBZ_N 1
+-+
+-+/* Convenience macros for R2 encodings. */
+-+
+-+#define MATCH_R2_OP(NAME) \
+-+  (SET_IW_R2_OP (R2_OP_##NAME))
+-+#define MASK_R2_OP \
+-+  IW_R2_OP_SHIFTED_MASK
+-+
+-+#define MATCH_R2_OPX0(NAME) \
+-+  (SET_IW_R2_OP (R2_OP_OPX) | SET_IW_OPX_X (R2_OPX_##NAME))
+-+#define MASK_R2_OPX0 \
+-+  (IW_R2_OP_SHIFTED_MASK | IW_OPX_X_SHIFTED_MASK \
+-+   | IW_F3X6L5_IMM5_SHIFTED_MASK)
+-+
+-+#define MATCH_R2_OPX(NAME, A, B, C)				\
+-+  (MATCH_R2_OPX0 (NAME) | SET_IW_F3X6L5_A (A) | SET_IW_F3X6L5_B (B) \
+-+   | SET_IW_F3X6L5_C (C))
+-+#define MASK_R2_OPX(A, B, C, N)				\
+-+  (IW_R2_OP_SHIFTED_MASK | IW_OPX_X_SHIFTED_MASK	\
+-+   | (A ? IW_F3X6L5_A_SHIFTED_MASK : 0)			\
+-+   | (B ? IW_F3X6L5_B_SHIFTED_MASK : 0)			\
+-+   | (C ? IW_F3X6L5_C_SHIFTED_MASK : 0)			\
+-+   | (N ? IW_F3X6L5_IMM5_SHIFTED_MASK : 0))
+-+
+-+#define MATCH_R2_I12(NAME) \
+-+  (SET_IW_R2_OP (R2_OP_I12) | SET_IW_I12_X (R2_I12_##NAME))
+-+#define MASK_R2_I12 \
+-+  (IW_R2_OP_SHIFTED_MASK | IW_I12_X_SHIFTED_MASK )
+-+
+-+#define MATCH_R2_DCACHE(NAME) \
+-+  (MATCH_R2_I12(DCACHE) | SET_IW_F1X4I12_X (R2_DCACHE_##NAME))
+-+#define MASK_R2_DCACHE \
+-+  (MASK_R2_I12 | IW_F1X4I12_X_SHIFTED_MASK)
+-+
+-+#define MATCH_R2_R_N(NAME) \
+-+  (SET_IW_R2_OP (R2_OP_R_N) | SET_IW_R_N_X (R2_R_N_##NAME))
+-+#define MASK_R2_R_N \
+-+  (IW_R2_OP_SHIFTED_MASK | IW_R_N_X_SHIFTED_MASK )
+-+
+-+/* Match/mask macros for R2 instructions.  */
+-+
+-+#define MATCH_R2_ADD	MATCH_R2_OPX0 (ADD)
+-+#define MASK_R2_ADD	MASK_R2_OPX0
+-+#define MATCH_R2_ADDI	MATCH_R2_OP (ADDI)
+-+#define MASK_R2_ADDI	MASK_R2_OP
+-+#define MATCH_R2_ADD_N	(MATCH_R2_OP (AS_N) | SET_IW_T3X1_X (R2_AS_N_ADD=
+_N))
+-+#define MASK_R2_ADD_N	(MASK_R2_OP | IW_T3X1_X_SHIFTED_MASK)
+-+#define MATCH_R2_ADDI_N	(MATCH_R2_OP (ASI_N) | SET_IW_T2X1I3_X (R2_ASI_=
+N_ADDI_N))
+-+#define MASK_R2_ADDI_N	(MASK_R2_OP | IW_T2X1I3_X_SHIFTED_MASK)
+-+#define MATCH_R2_AND	MATCH_R2_OPX0 (AND)
+-+#define MASK_R2_AND	MASK_R2_OPX0
+-+#define MATCH_R2_ANDCHI	MATCH_R2_OP (ANDCHI)
+-+#define MASK_R2_ANDCHI	MASK_R2_OP
+-+#define MATCH_R2_ANDCI	MATCH_R2_OP (ANDCI)
+-+#define MASK_R2_ANDCI	MASK_R2_OP
+-+#define MATCH_R2_ANDHI	MATCH_R2_OP (ANDHI)
+-+#define MASK_R2_ANDHI	MASK_R2_OP
+-+#define MATCH_R2_ANDI	MATCH_R2_OP (ANDI)
+-+#define MASK_R2_ANDI	MASK_R2_OP
+-+#define MATCH_R2_ANDI_N	MATCH_R2_OP (ANDI_N)
+-+#define MASK_R2_ANDI_N	MASK_R2_OP
+-+#define MATCH_R2_AND_N	MATCH_R2_R_N (AND_N)
+-+#define MASK_R2_AND_N	MASK_R2_R_N
+-+#define MATCH_R2_BEQ	MATCH_R2_OP (BEQ)
+-+#define MASK_R2_BEQ	MASK_R2_OP
+-+#define MATCH_R2_BEQZ_N	MATCH_R2_OP (BEQZ_N)
+-+#define MASK_R2_BEQZ_N	MASK_R2_OP
+-+#define MATCH_R2_BGE	MATCH_R2_OP (BGE)
+-+#define MASK_R2_BGE	MASK_R2_OP
+-+#define MATCH_R2_BGEU	MATCH_R2_OP (BGEU)
+-+#define MASK_R2_BGEU	MASK_R2_OP
+-+#define MATCH_R2_BGT	MATCH_R2_OP (BLT)
+-+#define MASK_R2_BGT	MASK_R2_OP
+-+#define MATCH_R2_BGTU	MATCH_R2_OP (BLTU)
+-+#define MASK_R2_BGTU	MASK_R2_OP
+-+#define MATCH_R2_BLE	MATCH_R2_OP (BGE)
+-+#define MASK_R2_BLE	MASK_R2_OP
+-+#define MATCH_R2_BLEU	MATCH_R2_OP (BGEU)
+-+#define MASK_R2_BLEU	MASK_R2_OP
+-+#define MATCH_R2_BLT	MATCH_R2_OP (BLT)
+-+#define MASK_R2_BLT	MASK_R2_OP
+-+#define MATCH_R2_BLTU	MATCH_R2_OP (BLTU)
+-+#define MASK_R2_BLTU	MASK_R2_OP
+-+#define MATCH_R2_BNE	MATCH_R2_OP (BNE)
+-+#define MASK_R2_BNE	MASK_R2_OP
+-+#define MATCH_R2_BNEZ_N	MATCH_R2_OP (BNEZ_N)
+-+#define MASK_R2_BNEZ_N	MASK_R2_OP
+-+#define MATCH_R2_BR	MATCH_R2_OP (BR)
+-+#define MASK_R2_BR	MASK_R2_OP | IW_F2I16_A_SHIFTED_MASK | IW_F2I16_B_SH=
+IFTED_MASK
+-+#define MATCH_R2_BREAK	MATCH_R2_OPX (BREAK, 0, 0, 0x1e)
+-+#define MASK_R2_BREAK	MASK_R2_OPX (1, 1, 1, 0)
+-+#define MATCH_R2_BREAK_N	MATCH_R2_R_N (BREAK_N)
+-+#define MASK_R2_BREAK_N	MASK_R2_R_N
+-+#define MATCH_R2_BRET	MATCH_R2_OPX (BRET, 0x1e, 0, 0)
+-+#define MASK_R2_BRET	MASK_R2_OPX (1, 1, 1, 1)
+-+#define MATCH_R2_BR_N	MATCH_R2_OP (BR_N)
+-+#define MASK_R2_BR_N	MASK_R2_OP
+-+#define MATCH_R2_CALL	MATCH_R2_OP (CALL)
+-+#define MASK_R2_CALL	MASK_R2_OP
+-+#define MATCH_R2_CALLR	MATCH_R2_OPX (CALLR, 0, 0, 0x1f)
+-+#define MASK_R2_CALLR	MASK_R2_OPX (0, 1, 1, 1)
+-+#define MATCH_R2_CALLR_N	MATCH_R2_R_N (CALLR_N)
+-+#define MASK_R2_CALLR_N	MASK_R2_R_N
+-+#define MATCH_R2_CMPEQ	MATCH_R2_OPX0 (CMPEQ)
+-+#define MASK_R2_CMPEQ	MASK_R2_OPX0
+-+#define MATCH_R2_CMPEQI	MATCH_R2_OP (CMPEQI)
+-+#define MASK_R2_CMPEQI	MASK_R2_OP
+-+#define MATCH_R2_CMPGE	MATCH_R2_OPX0 (CMPGE)
+-+#define MASK_R2_CMPGE	MASK_R2_OPX0
+-+#define MATCH_R2_CMPGEI	MATCH_R2_OP (CMPGEI)
+-+#define MASK_R2_CMPGEI	MASK_R2_OP
+-+#define MATCH_R2_CMPGEU	MATCH_R2_OPX0 (CMPGEU)
+-+#define MASK_R2_CMPGEU	MASK_R2_OPX0
+-+#define MATCH_R2_CMPGEUI	MATCH_R2_OP (CMPGEUI)
+-+#define MASK_R2_CMPGEUI	MASK_R2_OP
+-+#define MATCH_R2_CMPGT	MATCH_R2_OPX0 (CMPLT)
+-+#define MASK_R2_CMPGT	MASK_R2_OPX0
+-+#define MATCH_R2_CMPGTI	MATCH_R2_OP (CMPGEI)
+-+#define MASK_R2_CMPGTI	MASK_R2_OP
+-+#define MATCH_R2_CMPGTU	MATCH_R2_OPX0 (CMPLTU)
+-+#define MASK_R2_CMPGTU	MASK_R2_OPX0
+-+#define MATCH_R2_CMPGTUI	MATCH_R2_OP (CMPGEUI)
+-+#define MASK_R2_CMPGTUI	MASK_R2_OP
+-+#define MATCH_R2_CMPLE	MATCH_R2_OPX0 (CMPGE)
+-+#define MASK_R2_CMPLE	MASK_R2_OPX0
+-+#define MATCH_R2_CMPLEI	MATCH_R2_OP (CMPLTI)
+-+#define MASK_R2_CMPLEI	MASK_R2_OP
+-+#define MATCH_R2_CMPLEU	MATCH_R2_OPX0 (CMPGEU)
+-+#define MASK_R2_CMPLEU	MASK_R2_OPX0
+-+#define MATCH_R2_CMPLEUI	MATCH_R2_OP (CMPLTUI)
+-+#define MASK_R2_CMPLEUI	MASK_R2_OP
+-+#define MATCH_R2_CMPLT	MATCH_R2_OPX0 (CMPLT)
+-+#define MASK_R2_CMPLT	MASK_R2_OPX0
+-+#define MATCH_R2_CMPLTI	MATCH_R2_OP (CMPLTI)
+-+#define MASK_R2_CMPLTI	MASK_R2_OP
+-+#define MATCH_R2_CMPLTU	MATCH_R2_OPX0 (CMPLTU)
+-+#define MASK_R2_CMPLTU	MASK_R2_OPX0
+-+#define MATCH_R2_CMPLTUI	MATCH_R2_OP (CMPLTUI)
+-+#define MASK_R2_CMPLTUI	MASK_R2_OP
+-+#define MATCH_R2_CMPNE	MATCH_R2_OPX0 (CMPNE)
+-+#define MASK_R2_CMPNE	MASK_R2_OPX0
+-+#define MATCH_R2_CMPNEI	MATCH_R2_OP (CMPNEI)
+-+#define MASK_R2_CMPNEI	MASK_R2_OP
+-+#define MATCH_R2_CUSTOM	MATCH_R2_OP (CUSTOM)
+-+#define MASK_R2_CUSTOM	MASK_R2_OP
+-+#define MATCH_R2_DIV	MATCH_R2_OPX0 (DIV)
+-+#define MASK_R2_DIV	MASK_R2_OPX0
+-+#define MATCH_R2_DIVU	MATCH_R2_OPX0 (DIVU)
+-+#define MASK_R2_DIVU	MASK_R2_OPX0
+-+#define MATCH_R2_ENI	MATCH_R2_OPX (ENI, 0, 0, 0)
+-+#define MASK_R2_ENI	MASK_R2_OPX (1, 1, 1, 0)
+-+#define MATCH_R2_ERET	MATCH_R2_OPX (ERET, 0x1d, 0x1e, 0)
+-+#define MASK_R2_ERET	MASK_R2_OPX (1, 1, 1, 1)
+-+#define MATCH_R2_EXTRACT	MATCH_R2_OPX (EXTRACT, 0, 0, 0)
+-+#define MASK_R2_EXTRACT	MASK_R2_OPX (0, 0, 0, 0)
+-+#define MATCH_R2_FLUSHD	MATCH_R2_DCACHE (FLUSHD)
+-+#define MASK_R2_FLUSHD	MASK_R2_DCACHE
+-+#define MATCH_R2_FLUSHDA	MATCH_R2_DCACHE (FLUSHDA)
+-+#define MASK_R2_FLUSHDA	MASK_R2_DCACHE
+-+#define MATCH_R2_FLUSHI	MATCH_R2_OPX (FLUSHI, 0, 0, 0)
+-+#define MASK_R2_FLUSHI	MASK_R2_OPX (0, 1, 1, 1)
+-+#define MATCH_R2_FLUSHP	MATCH_R2_OPX (FLUSHP, 0, 0, 0)
+-+#define MASK_R2_FLUSHP	MASK_R2_OPX (1, 1, 1, 1)
+-+#define MATCH_R2_INITD	MATCH_R2_DCACHE (INITD)
+-+#define MASK_R2_INITD	MASK_R2_DCACHE
+-+#define MATCH_R2_INITDA	MATCH_R2_DCACHE (INITDA)
+-+#define MASK_R2_INITDA	MASK_R2_DCACHE
+-+#define MATCH_R2_INITI	MATCH_R2_OPX (INITI, 0, 0, 0)
+-+#define MASK_R2_INITI	MASK_R2_OPX (0, 1, 1, 1)
+-+#define MATCH_R2_INSERT	MATCH_R2_OPX (INSERT, 0, 0, 0)
+-+#define MASK_R2_INSERT	MASK_R2_OPX (0, 0, 0, 0)
+-+#define MATCH_R2_JMP	MATCH_R2_OPX (JMP, 0, 0, 0)
+-+#define MASK_R2_JMP	MASK_R2_OPX (0, 1, 1, 1)
+-+#define MATCH_R2_JMPI	MATCH_R2_OP (JMPI)
+-+#define MASK_R2_JMPI	MASK_R2_OP
+-+#define MATCH_R2_JMPR_N	MATCH_R2_R_N (JMPR_N)
+-+#define MASK_R2_JMPR_N	MASK_R2_R_N
+-+#define MATCH_R2_LDB	MATCH_R2_OP (LDB)
+-+#define MASK_R2_LDB	MASK_R2_OP
+-+#define MATCH_R2_LDBIO	MATCH_R2_I12 (LDBIO)
+-+#define MASK_R2_LDBIO	MASK_R2_I12
+-+#define MATCH_R2_LDBU	MATCH_R2_OP (LDBU)
+-+#define MASK_R2_LDBU	MASK_R2_OP
+-+#define MATCH_R2_LDBUIO	MATCH_R2_I12 (LDBUIO)
+-+#define MASK_R2_LDBUIO	MASK_R2_I12
+-+#define MATCH_R2_LDBU_N	MATCH_R2_OP (LDBU_N)
+-+#define MASK_R2_LDBU_N	MASK_R2_OP
+-+#define MATCH_R2_LDEX	MATCH_R2_OPX (LDEX, 0, 0, 0)
+-+#define MASK_R2_LDEX	MASK_R2_OPX (0, 1, 0, 1)
+-+#define MATCH_R2_LDH	MATCH_R2_OP (LDH)
+-+#define MASK_R2_LDH	MASK_R2_OP
+-+#define MATCH_R2_LDHIO	MATCH_R2_I12 (LDHIO)
+-+#define MASK_R2_LDHIO	MASK_R2_I12
+-+#define MATCH_R2_LDHU	MATCH_R2_OP (LDHU)
+-+#define MASK_R2_LDHU	MASK_R2_OP
+-+#define MATCH_R2_LDHUIO	MATCH_R2_I12 (LDHUIO)
+-+#define MASK_R2_LDHUIO	MASK_R2_I12
+-+#define MATCH_R2_LDHU_N	MATCH_R2_OP (LDHU_N)
+-+#define MASK_R2_LDHU_N	MASK_R2_OP
+-+#define MATCH_R2_LDSEX	MATCH_R2_OPX (LDSEX, 0, 0, 0)
+-+#define MASK_R2_LDSEX	MASK_R2_OPX (0, 1, 0, 1)
+-+#define MATCH_R2_LDW	MATCH_R2_OP (LDW)
+-+#define MASK_R2_LDW	MASK_R2_OP
+-+#define MATCH_R2_LDWIO	MATCH_R2_I12 (LDWIO)
+-+#define MASK_R2_LDWIO	MASK_R2_I12
+-+#define MATCH_R2_LDWM	MATCH_R2_I12 (LDWM)
+-+#define MASK_R2_LDWM	MASK_R2_I12
+-+#define MATCH_R2_LDWSP_N	MATCH_R2_OP (LDWSP_N)
+-+#define MASK_R2_LDWSP_N	MASK_R2_OP
+-+#define MATCH_R2_LDW_N	MATCH_R2_OP (LDW_N)
+-+#define MASK_R2_LDW_N	MASK_R2_OP
+-+#define MATCH_R2_MERGE	MATCH_R2_OPX (MERGE, 0, 0, 0)
+-+#define MASK_R2_MERGE	MASK_R2_OPX (0, 0, 0, 0)
+-+#define MATCH_R2_MOV	MATCH_R2_OPX (ADD, 0, 0, 0)
+-+#define MASK_R2_MOV	MASK_R2_OPX (0, 1, 0, 1)
+-+#define MATCH_R2_MOVHI	MATCH_R2_OP (ORHI) | SET_IW_F2I16_A (0)
+-+#define MASK_R2_MOVHI	MASK_R2_OP | IW_F2I16_A_SHIFTED_MASK
+-+#define MATCH_R2_MOVI	MATCH_R2_OP (ADDI) | SET_IW_F2I16_A (0)
+-+#define MASK_R2_MOVI	MASK_R2_OP | IW_F2I16_A_SHIFTED_MASK
+-+#define MATCH_R2_MOVUI	MATCH_R2_OP (ORI) | SET_IW_F2I16_A (0)
+-+#define MASK_R2_MOVUI	MASK_R2_OP | IW_F2I16_A_SHIFTED_MASK
+-+#define MATCH_R2_MOV_N	MATCH_R2_OP (MOV_N)
+-+#define MASK_R2_MOV_N	MASK_R2_OP
+-+#define MATCH_R2_MOVI_N	MATCH_R2_OP (MOVI_N)
+-+#define MASK_R2_MOVI_N	MASK_R2_OP
+-+#define MATCH_R2_MUL	MATCH_R2_OPX0 (MUL)
+-+#define MASK_R2_MUL	MASK_R2_OPX0
+-+#define MATCH_R2_MULI	MATCH_R2_OP (MULI)
+-+#define MASK_R2_MULI	MASK_R2_OP
+-+#define MATCH_R2_MULXSS	MATCH_R2_OPX0 (MULXSS)
+-+#define MASK_R2_MULXSS	MASK_R2_OPX0
+-+#define MATCH_R2_MULXSU	MATCH_R2_OPX0 (MULXSU)
+-+#define MASK_R2_MULXSU	MASK_R2_OPX0
+-+#define MATCH_R2_MULXUU	MATCH_R2_OPX0 (MULXUU)
+-+#define MASK_R2_MULXUU	MASK_R2_OPX0
+-+#define MATCH_R2_NEG_N	MATCH_R2_R_N (NEG_N)
+-+#define MASK_R2_NEG_N	MASK_R2_R_N
+-+#define MATCH_R2_NEXTPC	MATCH_R2_OPX (NEXTPC, 0, 0, 0)
+-+#define MASK_R2_NEXTPC	MASK_R2_OPX (1, 1, 0, 1)
+-+#define MATCH_R2_NOP	MATCH_R2_OPX (ADD, 0, 0, 0)
+-+#define MASK_R2_NOP	MASK_R2_OPX (1, 1, 1, 1)
+-+#define MATCH_R2_NOP_N	(MATCH_R2_OP (MOV_N) | SET_IW_F2_A (0) | SET_IW_=
+F2_B (0))
+-+#define MASK_R2_NOP_N	(MASK_R2_OP | IW_F2_A_SHIFTED_MASK | IW_F2_B_SHIF=
+TED_MASK)
+-+#define MATCH_R2_NOR	MATCH_R2_OPX0 (NOR)
+-+#define MASK_R2_NOR	MASK_R2_OPX0
+-+#define MATCH_R2_NOT_N	MATCH_R2_R_N (NOT_N)
+-+#define MASK_R2_NOT_N	MASK_R2_R_N
+-+#define MATCH_R2_OR	MATCH_R2_OPX0 (OR)
+-+#define MASK_R2_OR	MASK_R2_OPX0
+-+#define MATCH_R2_OR_N	MATCH_R2_R_N (OR_N)
+-+#define MASK_R2_OR_N	MASK_R2_R_N
+-+#define MATCH_R2_ORHI	MATCH_R2_OP (ORHI)
+-+#define MASK_R2_ORHI	MASK_R2_OP
+-+#define MATCH_R2_ORI	MATCH_R2_OP (ORI)
+-+#define MASK_R2_ORI	MASK_R2_OP
+-+#define MATCH_R2_POP_N	(MATCH_R2_OP (PP_N) | SET_IW_L5I4X1_X (R2_PP_N_P=
+OP_N))
+-+#define MASK_R2_POP_N	(MASK_R2_OP | IW_L5I4X1_X_SHIFTED_MASK)
+-+#define MATCH_R2_PUSH_N	(MATCH_R2_OP (PP_N) | SET_IW_L5I4X1_X (R2_PP_N_=
+PUSH_N))
+-+#define MASK_R2_PUSH_N	(MASK_R2_OP | IW_L5I4X1_X_SHIFTED_MASK)
+-+#define MATCH_R2_RDCTL	MATCH_R2_OPX (RDCTL, 0, 0, 0)
+-+#define MASK_R2_RDCTL	MASK_R2_OPX (1, 1, 0, 0)
+-+#define MATCH_R2_RDPRS	MATCH_R2_I12 (RDPRS)
+-+#define MASK_R2_RDPRS	MASK_R2_I12
+-+#define MATCH_R2_RET	MATCH_R2_OPX (RET, 0x1f, 0, 0)
+-+#define MASK_R2_RET	MASK_R2_OPX (1, 1, 1, 1)
+-+#define MATCH_R2_RET_N	(MATCH_R2_R_N (RET_N) | SET_IW_X2L5_IMM5 (0))
+-+#define MASK_R2_RET_N	(MASK_R2_R_N | IW_X2L5_IMM5_SHIFTED_MASK)
+-+#define MATCH_R2_ROL	MATCH_R2_OPX0 (ROL)
+-+#define MASK_R2_ROL	MASK_R2_OPX0
+-+#define MATCH_R2_ROLI	MATCH_R2_OPX (ROLI, 0, 0, 0)
+-+#define MASK_R2_ROLI	MASK_R2_OPX (0, 1, 0, 0)
+-+#define MATCH_R2_ROR	MATCH_R2_OPX0 (ROR)
+-+#define MASK_R2_ROR	MASK_R2_OPX0
+-+#define MATCH_R2_SLL	MATCH_R2_OPX0 (SLL)
+-+#define MASK_R2_SLL	MASK_R2_OPX0
+-+#define MATCH_R2_SLLI	MATCH_R2_OPX (SLLI, 0, 0, 0)
+-+#define MASK_R2_SLLI	MASK_R2_OPX (0, 1, 0, 0)
+-+#define MATCH_R2_SLL_N	MATCH_R2_R_N (SLL_N)
+-+#define MASK_R2_SLL_N	MASK_R2_R_N
+-+#define MATCH_R2_SLLI_N	(MATCH_R2_OP (SHI_N) | SET_IW_T2X1L3_X (R2_SHI_=
+N_SLLI_N))
+-+#define MASK_R2_SLLI_N	(MASK_R2_OP | IW_T2X1L3_X_SHIFTED_MASK)
+-+#define MATCH_R2_SPADDI_N	MATCH_R2_OP (SPADDI_N)
+-+#define MASK_R2_SPADDI_N	MASK_R2_OP
+-+#define MATCH_R2_SPDECI_N	(MATCH_R2_OP (SPI_N) | SET_IW_X1I7_X (R2_SPI_=
+N_SPDECI_N))
+-+#define MASK_R2_SPDECI_N	(MASK_R2_OP | IW_X1I7_X_SHIFTED_MASK)
+-+#define MATCH_R2_SPINCI_N	(MATCH_R2_OP (SPI_N) | SET_IW_X1I7_X (R2_SPI_=
+N_SPINCI_N))
+-+#define MASK_R2_SPINCI_N	(MASK_R2_OP | IW_X1I7_X_SHIFTED_MASK)
+-+#define MATCH_R2_SRA	MATCH_R2_OPX0 (SRA)
+-+#define MASK_R2_SRA	MASK_R2_OPX0
+-+#define MATCH_R2_SRAI	MATCH_R2_OPX (SRAI, 0, 0, 0)
+-+#define MASK_R2_SRAI	MASK_R2_OPX (0, 1, 0, 0)
+-+#define MATCH_R2_SRL	MATCH_R2_OPX0 (SRL)
+-+#define MASK_R2_SRL	MASK_R2_OPX0
+-+#define MATCH_R2_SRLI	MATCH_R2_OPX (SRLI, 0, 0, 0)
+-+#define MASK_R2_SRLI	MASK_R2_OPX (0, 1, 0, 0)
+-+#define MATCH_R2_SRL_N	MATCH_R2_R_N (SRL_N)
+-+#define MASK_R2_SRL_N	MASK_R2_R_N
+-+#define MATCH_R2_SRLI_N	(MATCH_R2_OP (SHI_N) | SET_IW_T2X1L3_X (R2_SHI_=
+N_SRLI_N))
+-+#define MASK_R2_SRLI_N	(MASK_R2_OP | IW_T2X1L3_X_SHIFTED_MASK)
+-+#define MATCH_R2_STB	MATCH_R2_OP (STB)
+-+#define MASK_R2_STB	MASK_R2_OP
+-+#define MATCH_R2_STBIO	MATCH_R2_I12 (STBIO)
+-+#define MASK_R2_STBIO	MASK_R2_I12
+-+#define MATCH_R2_STB_N	MATCH_R2_OP (STB_N)
+-+#define MASK_R2_STB_N	MASK_R2_OP
+-+#define MATCH_R2_STBZ_N	(MATCH_R2_OP (STZ_N) | SET_IW_T1X1I6_X (R2_STZ_=
+N_STBZ_N))
+-+#define MASK_R2_STBZ_N	(MASK_R2_OP | IW_T1X1I6_X_SHIFTED_MASK)
+-+#define MATCH_R2_STEX	MATCH_R2_OPX0 (STEX)
+-+#define MASK_R2_STEX	MASK_R2_OPX0
+-+#define MATCH_R2_STH	MATCH_R2_OP (STH)
+-+#define MASK_R2_STH	MASK_R2_OP
+-+#define MATCH_R2_STHIO	MATCH_R2_I12 (STHIO)
+-+#define MASK_R2_STHIO	MASK_R2_I12
+-+#define MATCH_R2_STH_N	MATCH_R2_OP (STH_N)
+-+#define MASK_R2_STH_N	MASK_R2_OP
+-+#define MATCH_R2_STSEX	MATCH_R2_OPX0 (STSEX)
+-+#define MASK_R2_STSEX	MASK_R2_OPX0
+-+#define MATCH_R2_STW	MATCH_R2_OP (STW)
+-+#define MASK_R2_STW	MASK_R2_OP
+-+#define MATCH_R2_STWIO	MATCH_R2_I12 (STWIO)
+-+#define MASK_R2_STWIO	MASK_R2_I12
+-+#define MATCH_R2_STWM	MATCH_R2_I12 (STWM)
+-+#define MASK_R2_STWM	MASK_R2_I12
+-+#define MATCH_R2_STWSP_N	MATCH_R2_OP (STWSP_N)
+-+#define MASK_R2_STWSP_N	MASK_R2_OP
+-+#define MATCH_R2_STW_N	MATCH_R2_OP (STW_N)
+-+#define MASK_R2_STW_N	MASK_R2_OP
+-+#define MATCH_R2_STWZ_N	MATCH_R2_OP (STZ_N)
+-+#define MASK_R2_STWZ_N	MASK_R2_OP
+-+#define MATCH_R2_SUB	MATCH_R2_OPX0 (SUB)
+-+#define MASK_R2_SUB	MASK_R2_OPX0
+-+#define MATCH_R2_SUBI	MATCH_R2_OP (ADDI)
+-+#define MASK_R2_SUBI	MASK_R2_OP
+-+#define MATCH_R2_SUB_N	(MATCH_R2_OP (AS_N) | SET_IW_T3X1_X (R2_AS_N_SUB=
+_N))
+-+#define MASK_R2_SUB_N	(MASK_R2_OP | IW_T3X1_X_SHIFTED_MASK)
+-+#define MATCH_R2_SUBI_N	(MATCH_R2_OP (ASI_N) | SET_IW_T2X1I3_X (R2_ASI_=
+N_SUBI_N))
+-+#define MASK_R2_SUBI_N	(MASK_R2_OP | IW_T2X1I3_X_SHIFTED_MASK)
+-+#define MATCH_R2_SYNC	MATCH_R2_OPX (SYNC, 0, 0, 0)
+-+#define MASK_R2_SYNC	MASK_R2_OPX (1, 1, 1, 1)
+-+#define MATCH_R2_TRAP	MATCH_R2_OPX (TRAP, 0, 0, 0x1d)
+-+#define MASK_R2_TRAP	MASK_R2_OPX (1, 1, 1, 0)
+-+#define MATCH_R2_TRAP_N	MATCH_R2_R_N (TRAP_N)
+-+#define MASK_R2_TRAP_N	MASK_R2_R_N
+-+#define MATCH_R2_WRCTL	MATCH_R2_OPX (WRCTL, 0, 0, 0)
+-+#define MASK_R2_WRCTL	MASK_R2_OPX (0, 1, 1, 0)
+-+#define MATCH_R2_WRPIE	MATCH_R2_OPX (WRPIE, 0, 0, 0)
+-+#define MASK_R2_WRPIE	MASK_R2_OPX (0, 1, 0, 1)
+-+#define MATCH_R2_WRPRS	MATCH_R2_OPX (WRPRS, 0, 0, 0)
+-+#define MASK_R2_WRPRS	MASK_R2_OPX (0, 1, 0, 1)
+-+#define MATCH_R2_XOR	MATCH_R2_OPX0 (XOR)
+-+#define MASK_R2_XOR	MASK_R2_OPX0
+-+#define MATCH_R2_XORHI	MATCH_R2_OP (XORHI)
+-+#define MASK_R2_XORHI	MASK_R2_OP
+-+#define MATCH_R2_XORI	MATCH_R2_OP (XORI)
+-+#define MASK_R2_XORI	MASK_R2_OP
+-+#define MATCH_R2_XOR_N	MATCH_R2_R_N (XOR_N)
+-+#define MASK_R2_XOR_N	MASK_R2_R_N
+-+
+-+#endif /* _NIOS2R2_H */
+-+
+-+
+-+/* These are the data structures used to hold the instruction informati=
+on.  */
+-+extern const struct nios2_opcode nios2_r1_opcodes[];
+-+extern const int nios2_num_r1_opcodes;
+-+extern const struct nios2_opcode nios2_r2_opcodes[];
+-+extern const int nios2_num_r2_opcodes;
+-+extern struct nios2_opcode *nios2_opcodes;
+-+extern int nios2_num_opcodes;
+-+
+-+/* These are the data structures used to hold the register information.=
+  */
+-+extern const struct nios2_reg nios2_builtin_regs[];
+-+extern struct nios2_reg *nios2_regs;
+-+extern const int nios2_num_builtin_regs;
+-+extern int nios2_num_regs;
+-+
+-+/* Return the opcode descriptor for a single instruction.  */
+-+extern const struct nios2_opcode *
+-+nios2_find_opcode_hash (unsigned long, unsigned long);
+-+
+-+/* Lookup tables for R2 immediate decodings.  */
+-+extern unsigned int nios2_r2_asi_n_mappings[];
+-+extern const int nios2_num_r2_asi_n_mappings;
+-+extern unsigned int nios2_r2_shi_n_mappings[];
+-+extern const int nios2_num_r2_shi_n_mappings;
+-+extern unsigned int nios2_r2_andi_n_mappings[];
+-+extern const int nios2_num_r2_andi_n_mappings;
+-+
+-+/* Lookup table for 3-bit register decodings.  */
+-+extern int nios2_r2_reg3_mappings[];
+-+extern const int nios2_num_r2_reg3_mappings;
+-+
+-+/* Lookup table for REG_RANGE value list decodings.  */
+-+extern unsigned long nios2_r2_reg_range_mappings[];
+-+extern const int nios2_num_r2_reg_range_mappings;
+-+
+-+#endif /* _NIOS2_H */
+-+
+-+/*#include "sysdep.h"
+-+#include <stdio.h>
+-+#include "opcode/nios2.h"
+-+*/
+-+/* Register string table */
+-+
+-+const struct nios2_reg nios2_builtin_regs[] =3D {
+-+  /* Standard register names.  */
+-+  {"zero", 0, REG_NORMAL},
+-+  {"at", 1, REG_NORMAL},			/* assembler temporary */
+-+  {"r2", 2, REG_NORMAL | REG_3BIT | REG_LDWM},
+-+  {"r3", 3, REG_NORMAL | REG_3BIT | REG_LDWM},
+-+  {"r4", 4, REG_NORMAL | REG_3BIT | REG_LDWM},
+-+  {"r5", 5, REG_NORMAL | REG_3BIT | REG_LDWM},
+-+  {"r6", 6, REG_NORMAL | REG_3BIT | REG_LDWM},
+-+  {"r7", 7, REG_NORMAL | REG_3BIT | REG_LDWM},
+-+  {"r8", 8, REG_NORMAL | REG_LDWM},
+-+  {"r9", 9, REG_NORMAL | REG_LDWM},
+-+  {"r10", 10, REG_NORMAL | REG_LDWM},
+-+  {"r11", 11, REG_NORMAL | REG_LDWM},
+-+  {"r12", 12, REG_NORMAL | REG_LDWM},
+-+  {"r13", 13, REG_NORMAL | REG_LDWM},
+-+  {"r14", 14, REG_NORMAL | REG_LDWM},
+-+  {"r15", 15, REG_NORMAL | REG_LDWM},
+-+  {"r16", 16, REG_NORMAL | REG_3BIT | REG_LDWM | REG_POP},
+-+  {"r17", 17, REG_NORMAL | REG_3BIT | REG_LDWM | REG_POP},
+-+  {"r18", 18, REG_NORMAL | REG_LDWM | REG_POP},
+-+  {"r19", 19, REG_NORMAL | REG_LDWM | REG_POP},
+-+  {"r20", 20, REG_NORMAL | REG_LDWM | REG_POP},
+-+  {"r21", 21, REG_NORMAL | REG_LDWM | REG_POP},
+-+  {"r22", 22, REG_NORMAL | REG_LDWM | REG_POP},
+-+  {"r23", 23, REG_NORMAL | REG_LDWM | REG_POP},
+-+  {"et", 24, REG_NORMAL},
+-+  {"bt", 25, REG_NORMAL},
+-+  {"gp", 26, REG_NORMAL},			/* global pointer */
+-+  {"sp", 27, REG_NORMAL},			/* stack pointer */
+-+  {"fp", 28, REG_NORMAL | REG_LDWM | REG_POP},	/* frame pointer */
+-+  {"ea", 29, REG_NORMAL},			/* exception return address */
+-+  {"sstatus", 30, REG_NORMAL},			/* saved processor status */
+-+  {"ra", 31, REG_NORMAL | REG_LDWM | REG_POP},	/* return address */
+-+
+-+  /* Alternative names for special registers.  */
+-+  {"r0", 0, REG_NORMAL},
+-+  {"r1", 1, REG_NORMAL},
+-+  {"r24", 24, REG_NORMAL},
+-+  {"r25", 25, REG_NORMAL},
+-+  {"r26", 26, REG_NORMAL},
+-+  {"r27", 27, REG_NORMAL},
+-+  {"r28", 28, REG_NORMAL | REG_LDWM | REG_POP},
+-+  {"r29", 29, REG_NORMAL},
+-+  {"r30", 30, REG_NORMAL},
+-+  {"ba", 30, REG_NORMAL},			/* breakpoint return address */
+-+  {"r31", 31, REG_NORMAL | REG_LDWM | REG_POP},
+-+
+-+  /* Control register names.  */
+-+  {"status", 0, REG_CONTROL},
+-+  {"estatus", 1, REG_CONTROL},
+-+  {"bstatus", 2, REG_CONTROL},
+-+  {"ienable", 3, REG_CONTROL},
+-+  {"ipending", 4, REG_CONTROL},
+-+  {"cpuid", 5, REG_CONTROL},
+-+  {"ctl6", 6, REG_CONTROL},
+-+  {"exception", 7, REG_CONTROL},
+-+  {"pteaddr", 8, REG_CONTROL},
+-+  {"tlbacc", 9, REG_CONTROL},
+-+  {"tlbmisc", 10, REG_CONTROL},
+-+  {"eccinj", 11, REG_CONTROL},
+-+  {"badaddr", 12, REG_CONTROL},
+-+  {"config", 13, REG_CONTROL},
+-+  {"mpubase", 14, REG_CONTROL},
+-+  {"mpuacc", 15, REG_CONTROL},
+-+  {"ctl16", 16, REG_CONTROL},
+-+  {"ctl17", 17, REG_CONTROL},
+-+  {"ctl18", 18, REG_CONTROL},
+-+  {"ctl19", 19, REG_CONTROL},
+-+  {"ctl20", 20, REG_CONTROL},
+-+  {"ctl21", 21, REG_CONTROL},
+-+  {"ctl22", 22, REG_CONTROL},
+-+  {"ctl23", 23, REG_CONTROL},
+-+  {"ctl24", 24, REG_CONTROL},
+-+  {"ctl25", 25, REG_CONTROL},
+-+  {"ctl26", 26, REG_CONTROL},
+-+  {"ctl27", 27, REG_CONTROL},
+-+  {"ctl28", 28, REG_CONTROL},
+-+  {"ctl29", 29, REG_CONTROL},
+-+  {"ctl30", 30, REG_CONTROL},
+-+  {"ctl31", 31, REG_CONTROL},
+-+
+-+  /* Alternative names for special control registers.  */
+-+  {"ctl0", 0, REG_CONTROL},
+-+  {"ctl1", 1, REG_CONTROL},
+-+  {"ctl2", 2, REG_CONTROL},
+-+  {"ctl3", 3, REG_CONTROL},
+-+  {"ctl4", 4, REG_CONTROL},
+-+  {"ctl5", 5, REG_CONTROL},
+-+  {"ctl7", 7, REG_CONTROL},
+-+  {"ctl8", 8, REG_CONTROL},
+-+  {"ctl9", 9, REG_CONTROL},
+-+  {"ctl10", 10, REG_CONTROL},
+-+  {"ctl11", 11, REG_CONTROL},
+-+  {"ctl12", 12, REG_CONTROL},
+-+  {"ctl13", 13, REG_CONTROL},
+-+  {"ctl14", 14, REG_CONTROL},
+-+  {"ctl15", 15, REG_CONTROL},
+-+
+-+  /* Coprocessor register names.  */
+-+  {"c0", 0, REG_COPROCESSOR},
+-+  {"c1", 1, REG_COPROCESSOR},
+-+  {"c2", 2, REG_COPROCESSOR},
+-+  {"c3", 3, REG_COPROCESSOR},
+-+  {"c4", 4, REG_COPROCESSOR},
+-+  {"c5", 5, REG_COPROCESSOR},
+-+  {"c6", 6, REG_COPROCESSOR},
+-+  {"c7", 7, REG_COPROCESSOR},
+-+  {"c8", 8, REG_COPROCESSOR},
+-+  {"c9", 9, REG_COPROCESSOR},
+-+  {"c10", 10, REG_COPROCESSOR},
+-+  {"c11", 11, REG_COPROCESSOR},
+-+  {"c12", 12, REG_COPROCESSOR},
+-+  {"c13", 13, REG_COPROCESSOR},
+-+  {"c14", 14, REG_COPROCESSOR},
+-+  {"c15", 15, REG_COPROCESSOR},
+-+  {"c16", 16, REG_COPROCESSOR},
+-+  {"c17", 17, REG_COPROCESSOR},
+-+  {"c18", 18, REG_COPROCESSOR},
+-+  {"c19", 19, REG_COPROCESSOR},
+-+  {"c20", 20, REG_COPROCESSOR},
+-+  {"c21", 21, REG_COPROCESSOR},
+-+  {"c22", 22, REG_COPROCESSOR},
+-+  {"c23", 23, REG_COPROCESSOR},
+-+  {"c24", 24, REG_COPROCESSOR},
+-+  {"c25", 25, REG_COPROCESSOR},
+-+  {"c26", 26, REG_COPROCESSOR},
+-+  {"c27", 27, REG_COPROCESSOR},
+-+  {"c28", 28, REG_COPROCESSOR},
+-+  {"c29", 29, REG_COPROCESSOR},
+-+  {"c30", 30, REG_COPROCESSOR},
+-+  {"c31", 31, REG_COPROCESSOR},
+-+};
+-+
+-+#define NIOS2_NUM_REGS \
+-+       ((sizeof nios2_builtin_regs) / (sizeof (nios2_builtin_regs[0])))
+-+const int nios2_num_builtin_regs =3D NIOS2_NUM_REGS;
+-+
+-+/* This is not const in order to allow for dynamic extensions to the
+-+   built-in instruction set.  */
+-+struct nios2_reg *nios2_regs =3D (struct nios2_reg *) nios2_builtin_reg=
+s;
+-+int nios2_num_regs =3D NIOS2_NUM_REGS;
+-+#undef NIOS2_NUM_REGS
+-+
+-+/* This is the opcode table used by the Nios II GNU as, disassembler
+-+   and GDB.  */
+-+const struct nios2_opcode nios2_r1_opcodes[] =3D
+-+{
+-+  /* { name, args, args_test, num_args, size, format,
+-+       match, mask, pinfo, overflow } */
+-+  {"add", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_ADD, MASK_R1_ADD, 0, no_overflow},
+-+  {"addi", "t,s,i", "t,s,i,E", 3, 4, iw_i_type,
+-+   MATCH_R1_ADDI, MASK_R1_ADDI, 0, signed_immed16_overflow},
+-+  {"and", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_AND, MASK_R1_AND, 0, no_overflow},
+-+  {"andhi", "t,s,u", "t,s,u,E", 3, 4, iw_i_type,
+-+   MATCH_R1_ANDHI, MASK_R1_ANDHI, 0, unsigned_immed16_overflow},
+-+  {"andi", "t,s,u", "t,s,u,E", 3, 4, iw_i_type,
+-+   MATCH_R1_ANDI, MASK_R1_ANDI, 0, unsigned_immed16_overflow},
+-+  {"beq", "s,t,o", "s,t,o,E", 3, 4, iw_i_type,
+-+   MATCH_R1_BEQ, MASK_R1_BEQ, NIOS2_INSN_CBRANCH, branch_target_overflo=
+w},
+-+  {"bge", "s,t,o", "s,t,o,E", 3, 4, iw_i_type,
+-+   MATCH_R1_BGE, MASK_R1_BGE, NIOS2_INSN_CBRANCH, branch_target_overflo=
+w},
+-+  {"bgeu", "s,t,o", "s,t,o,E", 3, 4, iw_i_type,
+-+   MATCH_R1_BGEU, MASK_R1_BGEU, NIOS2_INSN_CBRANCH, branch_target_overf=
+low},
+-+  {"bgt", "s,t,o", "s,t,o,E", 3, 4, iw_i_type,
+-+   MATCH_R1_BGT, MASK_R1_BGT,
+-+   NIOS2_INSN_MACRO|NIOS2_INSN_CBRANCH, branch_target_overflow},
+-+  {"bgtu", "s,t,o", "s,t,o,E", 3, 4, iw_i_type,
+-+   MATCH_R1_BGTU, MASK_R1_BGTU,
+-+   NIOS2_INSN_MACRO|NIOS2_INSN_CBRANCH, branch_target_overflow},
+-+  {"ble", "s,t,o", "s,t,o,E", 3, 4, iw_i_type,
+-+   MATCH_R1_BLE, MASK_R1_BLE,
+-+   NIOS2_INSN_MACRO|NIOS2_INSN_CBRANCH, branch_target_overflow},
+-+  {"bleu", "s,t,o", "s,t,o,E", 3, 4, iw_i_type,
+-+   MATCH_R1_BLEU, MASK_R1_BLEU,
+-+   NIOS2_INSN_MACRO|NIOS2_INSN_CBRANCH, branch_target_overflow},
+-+  {"blt", "s,t,o", "s,t,o,E", 3, 4, iw_i_type,
+-+   MATCH_R1_BLT, MASK_R1_BLT, NIOS2_INSN_CBRANCH, branch_target_overflo=
+w},
+-+  {"bltu", "s,t,o", "s,t,o,E", 3, 4, iw_i_type,
+-+   MATCH_R1_BLTU, MASK_R1_BLTU, NIOS2_INSN_CBRANCH, branch_target_overf=
+low},
+-+  {"bne", "s,t,o", "s,t,o,E", 3, 4, iw_i_type,
+-+   MATCH_R1_BNE, MASK_R1_BNE, NIOS2_INSN_CBRANCH, branch_target_overflo=
+w},
+-+  {"br", "o", "o,E", 1, 4, iw_i_type,
+-+   MATCH_R1_BR, MASK_R1_BR, NIOS2_INSN_UBRANCH, branch_target_overflow}=
+,
+-+  {"break", "j", "j,E", 1, 4, iw_r_type,
+-+   MATCH_R1_BREAK, MASK_R1_BREAK, NIOS2_INSN_OPTARG, no_overflow},
+-+  {"bret", "", "E", 0, 4, iw_r_type,
+-+   MATCH_R1_BRET, MASK_R1_BRET, 0, no_overflow},
+-+  {"call", "m", "m,E", 1, 4, iw_j_type,
+-+   MATCH_R1_CALL, MASK_R1_CALL, NIOS2_INSN_CALL, call_target_overflow},
+-+  {"callr", "s", "s,E", 1, 4, iw_r_type,
+-+   MATCH_R1_CALLR, MASK_R1_CALLR, 0, no_overflow},
+-+  {"cmpeq", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_CMPEQ, MASK_R1_CMPEQ, 0, no_overflow},
+-+  {"cmpeqi", "t,s,i", "t,s,i,E", 3, 4, iw_i_type,
+-+   MATCH_R1_CMPEQI, MASK_R1_CMPEQI, 0, signed_immed16_overflow},
+-+  {"cmpge", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_CMPGE, MASK_R1_CMPGE, 0, no_overflow},
+-+  {"cmpgei", "t,s,i", "t,s,i,E", 3, 4, iw_i_type,
+-+   MATCH_R1_CMPGEI, MASK_R1_CMPGEI, 0, signed_immed16_overflow},
+-+  {"cmpgeu", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_CMPGEU, MASK_R1_CMPGEU, 0, no_overflow},
+-+  {"cmpgeui", "t,s,u", "t,s,u,E", 3, 4, iw_i_type,
+-+   MATCH_R1_CMPGEUI, MASK_R1_CMPGEUI, 0, unsigned_immed16_overflow},
+-+  {"cmpgt", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_CMPGT, MASK_R1_CMPGT, NIOS2_INSN_MACRO, no_overflow},
+-+  {"cmpgti", "t,s,i", "t,s,i,E", 3, 4, iw_i_type,
+-+   MATCH_R1_CMPGTI, MASK_R1_CMPGTI, NIOS2_INSN_MACRO, signed_immed16_ov=
+erflow},
+-+  {"cmpgtu", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_CMPGTU, MASK_R1_CMPGTU, NIOS2_INSN_MACRO, no_overflow},
+-+  {"cmpgtui", "t,s,u", "t,s,u,E", 3, 4, iw_i_type,
+-+   MATCH_R1_CMPGTUI, MASK_R1_CMPGTUI,
+-+   NIOS2_INSN_MACRO, unsigned_immed16_overflow},
+-+  {"cmple", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_CMPLE, MASK_R1_CMPLE, NIOS2_INSN_MACRO, no_overflow},
+-+  {"cmplei", "t,s,i", "t,s,i,E", 3, 4, iw_i_type,
+-+   MATCH_R1_CMPLEI, MASK_R1_CMPLEI, NIOS2_INSN_MACRO, signed_immed16_ov=
+erflow},
+-+  {"cmpleu", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_CMPLEU, MASK_R1_CMPLEU, NIOS2_INSN_MACRO, no_overflow},
+-+  {"cmpleui", "t,s,u", "t,s,u,E", 3, 4, iw_i_type,
+-+   MATCH_R1_CMPLEUI, MASK_R1_CMPLEUI,
+-+   NIOS2_INSN_MACRO, unsigned_immed16_overflow},
+-+  {"cmplt", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_CMPLT, MASK_R1_CMPLT, 0, no_overflow},
+-+  {"cmplti", "t,s,i", "t,s,i,E", 3, 4, iw_i_type,
+-+   MATCH_R1_CMPLTI, MASK_R1_CMPLTI, 0, signed_immed16_overflow},
+-+  {"cmpltu", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_CMPLTU, MASK_R1_CMPLTU, 0, no_overflow},
+-+  {"cmpltui", "t,s,u", "t,s,u,E", 3, 4, iw_i_type,
+-+   MATCH_R1_CMPLTUI, MASK_R1_CMPLTUI, 0, unsigned_immed16_overflow},
+-+  {"cmpne", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_CMPNE, MASK_R1_CMPNE, 0, no_overflow},
+-+  {"cmpnei", "t,s,i", "t,s,i,E", 3, 4, iw_i_type,
+-+   MATCH_R1_CMPNEI, MASK_R1_CMPNEI, 0, signed_immed16_overflow},
+-+  {"custom", "l,d,s,t", "l,d,s,t,E", 4, 4, iw_custom_type,
+-+   MATCH_R1_CUSTOM, MASK_R1_CUSTOM, 0, custom_opcode_overflow},
+-+  {"div", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_DIV, MASK_R1_DIV, 0, no_overflow},
+-+  {"divu", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_DIVU, MASK_R1_DIVU, 0, no_overflow},
+-+  {"eret", "", "E", 0, 4, iw_r_type,
+-+   MATCH_R1_ERET, MASK_R1_ERET, 0, no_overflow},
+-+  {"flushd", "i(s)", "i(s),E", 2, 4, iw_i_type,
+-+   MATCH_R1_FLUSHD, MASK_R1_FLUSHD, 0, address_offset_overflow},
+-+  {"flushda", "i(s)", "i(s),E", 2, 4, iw_i_type,
+-+   MATCH_R1_FLUSHDA, MASK_R1_FLUSHDA, 0, address_offset_overflow},
+-+  {"flushi", "s", "s,E", 1, 4, iw_r_type,
+-+   MATCH_R1_FLUSHI, MASK_R1_FLUSHI, 0, no_overflow},
+-+  {"flushp", "", "E", 0, 4, iw_r_type,
+-+   MATCH_R1_FLUSHP, MASK_R1_FLUSHP, 0, no_overflow},
+-+  {"initd", "i(s)", "i(s),E", 2, 4, iw_i_type,
+-+   MATCH_R1_INITD, MASK_R1_INITD, 0, address_offset_overflow},
+-+  {"initda", "i(s)", "i(s),E", 2, 4, iw_i_type,
+-+   MATCH_R1_INITDA, MASK_R1_INITDA, 0, address_offset_overflow},
+-+  {"initi", "s", "s,E", 1, 4, iw_r_type,
+-+   MATCH_R1_INITI, MASK_R1_INITI, 0, no_overflow},
+-+  {"jmp", "s", "s,E", 1, 4, iw_r_type,
+-+   MATCH_R1_JMP, MASK_R1_JMP, 0, no_overflow},
+-+  {"jmpi", "m", "m,E", 1, 4, iw_j_type,
+-+   MATCH_R1_JMPI, MASK_R1_JMPI, 0, call_target_overflow},
+-+  {"ldb", "t,i(s)", "t,i(s),E", 3, 4, iw_i_type,
+-+   MATCH_R1_LDB, MASK_R1_LDB, 0, address_offset_overflow},
+-+  {"ldbio", "t,i(s)", "t,i(s),E", 3, 4, iw_i_type,
+-+   MATCH_R1_LDBIO, MASK_R1_LDBIO, 0, address_offset_overflow},
+-+  {"ldbu", "t,i(s)", "t,i(s),E", 3, 4, iw_i_type,
+-+   MATCH_R1_LDBU, MASK_R1_LDBU, 0, address_offset_overflow},
+-+  {"ldbuio", "t,i(s)", "t,i(s),E", 3, 4, iw_i_type,
+-+   MATCH_R1_LDBUIO, MASK_R1_LDBUIO, 0, address_offset_overflow},
+-+  {"ldh", "t,i(s)", "t,i(s),E", 3, 4, iw_i_type,
+-+   MATCH_R1_LDH, MASK_R1_LDH, 0, address_offset_overflow},
+-+  {"ldhio", "t,i(s)", "t,i(s),E", 3, 4, iw_i_type,
+-+   MATCH_R1_LDHIO, MASK_R1_LDHIO, 0, address_offset_overflow},
+-+  {"ldhu", "t,i(s)", "t,i(s),E", 3, 4, iw_i_type,
+-+   MATCH_R1_LDHU, MASK_R1_LDHU, 0, address_offset_overflow},
+-+  {"ldhuio", "t,i(s)", "t,i(s),E", 3, 4, iw_i_type,
+-+   MATCH_R1_LDHUIO, MASK_R1_LDHUIO, 0, address_offset_overflow},
+-+  {"ldw", "t,i(s)", "t,i(s),E", 3, 4, iw_i_type,
+-+   MATCH_R1_LDW, MASK_R1_LDW, 0, address_offset_overflow},
+-+  {"ldwio", "t,i(s)", "t,i(s),E", 3, 4, iw_i_type,
+-+   MATCH_R1_LDWIO, MASK_R1_LDWIO, 0, address_offset_overflow},
+-+  {"mov", "d,s", "d,s,E", 2, 4, iw_r_type,
+-+   MATCH_R1_MOV, MASK_R1_MOV, NIOS2_INSN_MACRO_MOV, no_overflow},
+-+  {"movhi", "t,u", "t,u,E", 2, 4, iw_i_type,
+-+   MATCH_R1_MOVHI, MASK_R1_MOVHI,
+-+   NIOS2_INSN_MACRO_MOVI, unsigned_immed16_overflow},
+-+  {"movi", "t,i", "t,i,E", 2, 4, iw_i_type,
+-+   MATCH_R1_MOVI, MASK_R1_MOVI, NIOS2_INSN_MACRO_MOVI, signed_immed16_o=
+verflow},
+-+  {"movia", "t,o", "t,o,E", 2, 4, iw_i_type,
+-+   MATCH_R1_ORHI, MASK_R1_ORHI, NIOS2_INSN_MACRO_MOVIA, no_overflow},
+-+  {"movui", "t,u", "t,u,E", 2, 4, iw_i_type,
+-+   MATCH_R1_MOVUI, MASK_R1_MOVUI,
+-+   NIOS2_INSN_MACRO_MOVI, unsigned_immed16_overflow},
+-+  {"mul", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_MUL, MASK_R1_MUL, 0, no_overflow},
+-+  {"muli", "t,s,i", "t,s,i,E", 3, 4, iw_i_type,
+-+   MATCH_R1_MULI, MASK_R1_MULI, 0, signed_immed16_overflow},
+-+  {"mulxss", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_MULXSS, MASK_R1_MULXSS, 0, no_overflow},
+-+  {"mulxsu", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_MULXSU, MASK_R1_MULXSU, 0, no_overflow},
+-+  {"mulxuu", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_MULXUU, MASK_R1_MULXUU, 0, no_overflow},
+-+  {"nextpc", "d", "d,E", 1, 4, iw_r_type,
+-+   MATCH_R1_NEXTPC, MASK_R1_NEXTPC, 0, no_overflow},
+-+  {"nop", "", "E", 0, 4, iw_r_type,
+-+   MATCH_R1_NOP, MASK_R1_NOP, NIOS2_INSN_MACRO_MOV, no_overflow},
+-+  {"nor", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_NOR, MASK_R1_NOR, 0, no_overflow},
+-+  {"or", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_OR, MASK_R1_OR, 0, no_overflow},
+-+  {"orhi", "t,s,u", "t,s,u,E", 3, 4, iw_i_type,
+-+   MATCH_R1_ORHI, MASK_R1_ORHI, 0, unsigned_immed16_overflow},
+-+  {"ori", "t,s,u", "t,s,u,E", 3, 4, iw_i_type,
+-+   MATCH_R1_ORI, MASK_R1_ORI, 0, unsigned_immed16_overflow},
+-+  {"rdctl", "d,c", "d,c,E", 2, 4, iw_r_type,
+-+   MATCH_R1_RDCTL, MASK_R1_RDCTL, 0, no_overflow},
+-+  {"rdprs", "t,s,i", "t,s,i,E", 3, 4, iw_i_type,
+-+   MATCH_R1_RDPRS, MASK_R1_RDPRS, 0, signed_immed16_overflow},
+-+  {"ret", "", "E", 0, 4, iw_r_type,
+-+   MATCH_R1_RET, MASK_R1_RET, 0, no_overflow},
+-+  {"rol", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_ROL, MASK_R1_ROL, 0, no_overflow},
+-+  {"roli", "d,s,j", "d,s,j,E", 3, 4, iw_r_type,
+-+   MATCH_R1_ROLI, MASK_R1_ROLI, 0, unsigned_immed5_overflow},
+-+  {"ror", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_ROR, MASK_R1_ROR, 0, no_overflow},
+-+  {"sll", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_SLL, MASK_R1_SLL, 0, no_overflow},
+-+  {"slli", "d,s,j", "d,s,j,E", 3, 4, iw_r_type,
+-+   MATCH_R1_SLLI, MASK_R1_SLLI, 0, unsigned_immed5_overflow},
+-+  {"sra", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_SRA, MASK_R1_SRA, 0, no_overflow},
+-+  {"srai", "d,s,j", "d,s,j,E", 3, 4, iw_r_type,
+-+   MATCH_R1_SRAI, MASK_R1_SRAI, 0, unsigned_immed5_overflow},
+-+  {"srl", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_SRL, MASK_R1_SRL, 0, no_overflow},
+-+  {"srli", "d,s,j", "d,s,j,E", 3, 4, iw_r_type,
+-+   MATCH_R1_SRLI, MASK_R1_SRLI, 0, unsigned_immed5_overflow},
+-+  {"stb", "t,i(s)", "t,i(s),E", 3, 4, iw_i_type,
+-+   MATCH_R1_STB, MASK_R1_STB, 0, address_offset_overflow},
+-+  {"stbio", "t,i(s)", "t,i(s),E", 3, 4, iw_i_type,
+-+   MATCH_R1_STBIO, MASK_R1_STBIO, 0, address_offset_overflow},
+-+  {"sth", "t,i(s)", "t,i(s),E", 3, 4, iw_i_type,
+-+   MATCH_R1_STH, MASK_R1_STH, 0, address_offset_overflow},
+-+  {"sthio", "t,i(s)", "t,i(s),E", 3, 4, iw_i_type,
+-+   MATCH_R1_STHIO, MASK_R1_STHIO, 0, address_offset_overflow},
+-+  {"stw", "t,i(s)", "t,i(s),E", 3, 4, iw_i_type,
+-+   MATCH_R1_STW, MASK_R1_STW, 0, address_offset_overflow},
+-+  {"stwio", "t,i(s)", "t,i(s),E", 3, 4, iw_i_type,
+-+   MATCH_R1_STWIO, MASK_R1_STWIO, 0, address_offset_overflow},
+-+  {"sub", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_SUB, MASK_R1_SUB, 0, no_overflow},
+-+  {"subi", "t,s,i", "t,s,i,E", 3, 4, iw_i_type,
+-+   MATCH_R1_SUBI, MASK_R1_SUBI, NIOS2_INSN_MACRO, signed_immed16_overfl=
+ow},
+-+  {"sync", "", "E", 0, 4, iw_r_type,
+-+   MATCH_R1_SYNC, MASK_R1_SYNC, 0, no_overflow},
+-+  {"trap", "j", "j,E", 1, 4, iw_r_type,
+-+   MATCH_R1_TRAP, MASK_R1_TRAP, NIOS2_INSN_OPTARG, no_overflow},
+-+  {"wrctl", "c,s", "c,s,E", 2, 4, iw_r_type,
+-+   MATCH_R1_WRCTL, MASK_R1_WRCTL, 0, no_overflow},
+-+  {"wrprs", "d,s", "d,s,E", 2, 4, iw_r_type,
+-+   MATCH_R1_WRPRS, MASK_R1_WRPRS, 0, no_overflow},
+-+  {"xor", "d,s,t", "d,s,t,E", 3, 4, iw_r_type,
+-+   MATCH_R1_XOR, MASK_R1_XOR, 0, no_overflow},
+-+  {"xorhi", "t,s,u", "t,s,u,E", 3, 4, iw_i_type,
+-+   MATCH_R1_XORHI, MASK_R1_XORHI, 0, unsigned_immed16_overflow},
+-+  {"xori", "t,s,u", "t,s,u,E", 3, 4, iw_i_type,
+-+   MATCH_R1_XORI, MASK_R1_XORI, 0, unsigned_immed16_overflow}
+-+};
+-+
+-+#define NIOS2_NUM_R1_OPCODES \
+-+       ((sizeof nios2_r1_opcodes) / (sizeof (nios2_r1_opcodes[0])))
+-+const int nios2_num_r1_opcodes =3D NIOS2_NUM_R1_OPCODES;
+-+
+-+
+-+const struct nios2_opcode nios2_r2_opcodes[] =3D
+-+{
+-+  /* { name, args, args_test, num_args, size, format,
+-+       match, mask, pinfo, overflow } */
+-+  {"add", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_ADD, MASK_R2_ADD, 0, no_overflow},
+-+  {"addi", "t,s,i", "t,s,i,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_ADDI, MASK_R2_ADDI, 0, signed_immed16_overflow},
+-+  {"add.n", "D,S,T", "D,S,T,E", 3, 2, iw_T3X1_type,
+-+   MATCH_R2_ADD_N, MASK_R2_ADD_N, 0, no_overflow},
+-+  {"addi.n", "D,S,e", "D,S,e,E", 3, 2, iw_T2X1I3_type,
+-+   MATCH_R2_ADDI_N, MASK_R2_ADDI_N, 0, enumeration_overflow},
+-+  {"and", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_AND, MASK_R2_AND, 0, no_overflow},
+-+  {"andchi", "t,s,u", "t,s,u,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_ANDCHI, MASK_R2_ANDCHI, 0, unsigned_immed16_overflow},
+-+  {"andci", "t,s,u", "t,s,u,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_ANDCI, MASK_R2_ANDCI, 0, unsigned_immed16_overflow},
+-+  {"andhi", "t,s,u", "t,s,u,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_ANDHI, MASK_R2_ANDHI, 0, unsigned_immed16_overflow},
+-+  {"andi", "t,s,u", "t,s,u,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_ANDI, MASK_R2_ANDI, 0, unsigned_immed16_overflow},
+-+  {"andi.n", "T,S,g", "T,S,g,E", 3, 2, iw_T2I4_type,
+-+   MATCH_R2_ANDI_N, MASK_R2_ANDI_N, 0, enumeration_overflow},
+-+  {"and.n", "D,S,T", "D,S,T,E", 3, 2, iw_T2X3_type,
+-+   MATCH_R2_AND_N, MASK_R2_AND_N, 0, no_overflow},
+-+  {"beq", "s,t,o", "s,t,o,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_BEQ, MASK_R2_BEQ, NIOS2_INSN_CBRANCH, branch_target_overflo=
+w},
+-+  {"beqz.n", "S,P", "S,P,E", 2, 2, iw_T1I7_type,
+-+   MATCH_R2_BEQZ_N, MASK_R2_BEQZ_N, NIOS2_INSN_CBRANCH, branch_target_o=
+verflow},
+-+  {"bge", "s,t,o", "s,t,o,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_BGE, MASK_R2_BGE, NIOS2_INSN_CBRANCH, branch_target_overflo=
+w},
+-+  {"bgeu", "s,t,o", "s,t,o,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_BGEU, MASK_R2_BGEU, NIOS2_INSN_CBRANCH, branch_target_overf=
+low},
+-+  {"bgt", "s,t,o", "s,t,o,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_BGT, MASK_R2_BGT,
+-+   NIOS2_INSN_MACRO|NIOS2_INSN_CBRANCH, branch_target_overflow},
+-+  {"bgtu", "s,t,o", "s,t,o,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_BGTU, MASK_R2_BGTU,
+-+   NIOS2_INSN_MACRO|NIOS2_INSN_CBRANCH, branch_target_overflow},
+-+  {"ble", "s,t,o", "s,t,o,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_BLE, MASK_R2_BLE,
+-+   NIOS2_INSN_MACRO|NIOS2_INSN_CBRANCH, branch_target_overflow},
+-+  {"bleu", "s,t,o", "s,t,o,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_BLEU, MASK_R2_BLEU,
+-+   NIOS2_INSN_MACRO|NIOS2_INSN_CBRANCH, branch_target_overflow},
+-+  {"blt", "s,t,o", "s,t,o,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_BLT, MASK_R2_BLT, NIOS2_INSN_CBRANCH, branch_target_overflo=
+w},
+-+  {"bltu", "s,t,o", "s,t,o,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_BLTU, MASK_R2_BLTU, NIOS2_INSN_CBRANCH, branch_target_overf=
+low},
+-+  {"bne", "s,t,o", "s,t,o,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_BNE, MASK_R2_BNE, NIOS2_INSN_CBRANCH, branch_target_overflo=
+w},
+-+  {"bnez.n", "S,P", "S,P,E", 2, 2, iw_T1I7_type,
+-+   MATCH_R2_BNEZ_N, MASK_R2_BNEZ_N, NIOS2_INSN_CBRANCH, branch_target_o=
+verflow},
+-+  {"br", "o", "o,E", 1, 4, iw_F2I16_type,
+-+   MATCH_R2_BR, MASK_R2_BR, NIOS2_INSN_UBRANCH, branch_target_overflow}=
+,
+-+  {"break", "j", "j,E", 1, 4, iw_F3X6L5_type,
+-+   MATCH_R2_BREAK, MASK_R2_BREAK, NIOS2_INSN_OPTARG, no_overflow},
+-+  {"break.n", "j", "j,E", 1, 2, iw_X2L5_type,
+-+   MATCH_R2_BREAK_N, MASK_R2_BREAK_N, NIOS2_INSN_OPTARG, no_overflow},
+-+  {"bret", "", "E", 0, 4, iw_F3X6_type,
+-+   MATCH_R2_BRET, MASK_R2_BRET, 0, no_overflow},
+-+  {"br.n", "O", "O,E", 1, 2, iw_I10_type,
+-+   MATCH_R2_BR_N, MASK_R2_BR_N, NIOS2_INSN_UBRANCH, branch_target_overf=
+low},
+-+  {"call", "m", "m,E", 1, 4, iw_L26_type,
+-+   MATCH_R2_CALL, MASK_R2_CALL, NIOS2_INSN_CALL, call_target_overflow},
+-+  {"callr", "s", "s,E", 1, 4, iw_F3X6_type,
+-+   MATCH_R2_CALLR, MASK_R2_CALLR, 0, no_overflow},
+-+  {"callr.n", "s", "s,E", 1, 2, iw_F1X1_type,
+-+   MATCH_R2_CALLR_N, MASK_R2_CALLR_N, 0, no_overflow},
+-+  {"cmpeq", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_CMPEQ, MASK_R2_CMPEQ, 0, no_overflow},
+-+  {"cmpeqi", "t,s,i", "t,s,i,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_CMPEQI, MASK_R2_CMPEQI, 0, signed_immed16_overflow},
+-+  {"cmpge", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_CMPGE, MASK_R2_CMPGE, 0, no_overflow},
+-+  {"cmpgei", "t,s,i", "t,s,i,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_CMPGEI, MASK_R2_CMPGEI, 0, signed_immed16_overflow},
+-+  {"cmpgeu", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_CMPGEU, MASK_R2_CMPGEU, 0, no_overflow},
+-+  {"cmpgeui", "t,s,u", "t,s,u,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_CMPGEUI, MASK_R2_CMPGEUI, 0, unsigned_immed16_overflow},
+-+  {"cmpgt", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_CMPGT, MASK_R2_CMPGT, NIOS2_INSN_MACRO, no_overflow},
+-+  {"cmpgti", "t,s,i", "t,s,i,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_CMPGTI, MASK_R2_CMPGTI, NIOS2_INSN_MACRO, signed_immed16_ov=
+erflow},
+-+  {"cmpgtu", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_CMPGTU, MASK_R2_CMPGTU, NIOS2_INSN_MACRO, no_overflow},
+-+  {"cmpgtui", "t,s,u", "t,s,u,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_CMPGTUI, MASK_R2_CMPGTUI,
+-+   NIOS2_INSN_MACRO, unsigned_immed16_overflow},
+-+  {"cmple", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_CMPLE, MASK_R2_CMPLE, NIOS2_INSN_MACRO, no_overflow},
+-+  {"cmplei", "t,s,i", "t,s,i,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_CMPLEI, MASK_R2_CMPLEI, NIOS2_INSN_MACRO, signed_immed16_ov=
+erflow},
+-+  {"cmpleu", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_CMPLEU, MASK_R2_CMPLEU, NIOS2_INSN_MACRO, no_overflow},
+-+  {"cmpleui", "t,s,u", "t,s,u,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_CMPLEUI, MASK_R2_CMPLEUI,
+-+   NIOS2_INSN_MACRO, unsigned_immed16_overflow},
+-+  {"cmplt", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_CMPLT, MASK_R2_CMPLT, 0, no_overflow},
+-+  {"cmplti", "t,s,i", "t,s,i,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_CMPLTI, MASK_R2_CMPLTI, 0, signed_immed16_overflow},
+-+  {"cmpltu", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_CMPLTU, MASK_R2_CMPLTU, 0, no_overflow},
+-+  {"cmpltui", "t,s,u", "t,s,u,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_CMPLTUI, MASK_R2_CMPLTUI, 0, unsigned_immed16_overflow},
+-+  {"cmpne", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_CMPNE, MASK_R2_CMPNE, 0, no_overflow},
+-+  {"cmpnei", "t,s,i", "t,s,i,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_CMPNEI, MASK_R2_CMPNEI, 0, signed_immed16_overflow},
+-+  {"custom", "l,d,s,t", "l,d,s,t,E", 4, 4, iw_F3X8_type,
+-+   MATCH_R2_CUSTOM, MASK_R2_CUSTOM, 0, custom_opcode_overflow},
+-+  {"div", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_DIV, MASK_R2_DIV, 0, no_overflow},
+-+  {"divu", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_DIVU, MASK_R2_DIVU, 0, no_overflow},
+-+  {"eni", "j", "j,E", 1, 4, iw_F3X6L5_type,
+-+   MATCH_R2_ENI, MASK_R2_ENI, NIOS2_INSN_OPTARG, no_overflow},
+-+  {"eret", "", "E", 0, 4, iw_F3X6_type,
+-+   MATCH_R2_ERET, MASK_R2_ERET, 0, no_overflow},
+-+  {"extract", "t,s,j,k", "t,s,j,k,E", 4, 4, iw_F2X6L10_type,
+-+   MATCH_R2_EXTRACT, MASK_R2_EXTRACT, 0, no_overflow},
+-+  {"flushd", "I(s)", "I(s),E", 2, 4, iw_F1X4I12_type,
+-+   MATCH_R2_FLUSHD, MASK_R2_FLUSHD, 0, address_offset_overflow},
+-+  {"flushda", "I(s)", "I(s),E", 2, 4, iw_F1X4I12_type,
+-+   MATCH_R2_FLUSHDA, MASK_R2_FLUSHDA, 0, address_offset_overflow},
+-+  {"flushi", "s", "s,E", 1, 4, iw_F3X6_type,
+-+   MATCH_R2_FLUSHI, MASK_R2_FLUSHI, 0, no_overflow},
+-+  {"flushp", "", "E", 0, 4, iw_F3X6_type,
+-+   MATCH_R2_FLUSHP, MASK_R2_FLUSHP, 0, no_overflow},
+-+  {"initd", "I(s)", "I(s),E", 2, 4, iw_F1X4I12_type,
+-+   MATCH_R2_INITD, MASK_R2_INITD, 0, address_offset_overflow},
+-+  {"initda", "I(s)", "I(s),E", 2, 4, iw_F1X4I12_type,
+-+   MATCH_R2_INITDA, MASK_R2_INITDA, 0, address_offset_overflow},
+-+  {"initi", "s", "s,E", 1, 4, iw_F3X6_type,
+-+   MATCH_R2_INITI, MASK_R2_INITI, 0, no_overflow},
+-+  {"insert", "t,s,j,k", "t,s,j,k,E", 4, 4, iw_F2X6L10_type,
+-+   MATCH_R2_INSERT, MASK_R2_INSERT, 0, no_overflow},
+-+  {"jmp", "s", "s,E", 1, 4, iw_F3X6_type,
+-+   MATCH_R2_JMP, MASK_R2_JMP, 0, no_overflow},
+-+  {"jmpi", "m", "m,E", 1, 4, iw_L26_type,
+-+   MATCH_R2_JMPI, MASK_R2_JMPI, 0, call_target_overflow},
+-+  {"jmpr.n", "s", "s,E", 1, 2, iw_F1X1_type,
+-+   MATCH_R2_JMPR_N, MASK_R2_JMPR_N, 0, no_overflow},
+-+  {"ldb", "t,i(s)", "t,i(s),E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_LDB, MASK_R2_LDB, 0, address_offset_overflow},
+-+  {"ldbio", "t,I(s)", "t,I(s),E", 3, 4, iw_F2X4I12_type,
+-+   MATCH_R2_LDBIO, MASK_R2_LDBIO, 0, signed_immed12_overflow},
+-+  {"ldbu", "t,i(s)", "t,i(s),E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_LDBU, MASK_R2_LDBU, 0, address_offset_overflow},
+-+  {"ldbuio", "t,I(s)", "t,I(s),E", 3, 4, iw_F2X4I12_type,
+-+   MATCH_R2_LDBUIO, MASK_R2_LDBUIO, 0, signed_immed12_overflow},
+-+  {"ldbu.n", "T,Y(S)", "T,Y(S),E", 3, 2, iw_T2I4_type,
+-+   MATCH_R2_LDBU_N, MASK_R2_LDBU_N, 0, address_offset_overflow},
+-+  {"ldex", "d,(s)", "d,(s),E", 2, 4, iw_F3X6_type,
+-+   MATCH_R2_LDEX, MASK_R2_LDEX, 0, no_overflow},
+-+  {"ldh", "t,i(s)", "t,i(s),E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_LDH, MASK_R2_LDH, 0, address_offset_overflow},
+-+  {"ldhio", "t,I(s)", "t,I(s),E", 3, 4, iw_F2X4I12_type,
+-+   MATCH_R2_LDHIO, MASK_R2_LDHIO, 0, signed_immed12_overflow},
+-+  {"ldhu", "t,i(s)", "t,i(s),E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_LDHU, MASK_R2_LDHU, 0, address_offset_overflow},
+-+  {"ldhuio", "t,I(s)", "t,I(s),E", 3, 4, iw_F2X4I12_type,
+-+   MATCH_R2_LDHUIO, MASK_R2_LDHUIO, 0, signed_immed12_overflow},
+-+  {"ldhu.n", "T,X(S)", "T,X(S),E", 3, 2, iw_T2I4_type,
+-+   MATCH_R2_LDHU_N, MASK_R2_LDHU_N, 0, address_offset_overflow},
+-+  {"ldsex", "d,(s)", "d,(s),E", 2, 4, iw_F3X6_type,
+-+   MATCH_R2_LDSEX, MASK_R2_LDSEX, 0, no_overflow},
+-+  {"ldw", "t,i(s)", "t,i(s),E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_LDW, MASK_R2_LDW, 0, address_offset_overflow},
+-+  {"ldwio", "t,I(s)", "t,I(s),E", 3, 4, iw_F2X4I12_type,
+-+   MATCH_R2_LDWIO, MASK_R2_LDWIO, 0, signed_immed12_overflow},
+-+  {"ldwm", "R,B", "R,B,E", 2, 4, iw_F1X4L17_type,
+-+   MATCH_R2_LDWM, MASK_R2_LDWM, 0, no_overflow},
+-+  {"ldw.n", "T,W(S)", "T,W(S),E", 3, 2, iw_T2I4_type,
+-+   MATCH_R2_LDW_N, MASK_R2_LDW_N, 0, address_offset_overflow},
+-+  {"ldwsp.n", "t,V(s)", "t,V(s),E", 3, 2, iw_F1I5_type,
+-+   MATCH_R2_LDWSP_N, MASK_R2_LDWSP_N, 0, address_offset_overflow},
+-+  {"merge", "t,s,j,k", "t,s,j,k,E", 4, 4, iw_F2X6L10_type,
+-+   MATCH_R2_MERGE, MASK_R2_MERGE, 0, no_overflow},
+-+  {"mov", "d,s", "d,s,E", 2, 4, iw_F3X6_type,
+-+   MATCH_R2_MOV, MASK_R2_MOV, NIOS2_INSN_MACRO_MOV, no_overflow},
+-+  {"mov.n", "d,s", "d,s,E", 2, 2, iw_F2_type,
+-+   MATCH_R2_MOV_N, MASK_R2_MOV_N, 0, no_overflow},
+-+  {"movi.n", "D,h", "D,h,E", 2, 2, iw_T1I7_type,
+-+   MATCH_R2_MOVI_N, MASK_R2_MOVI_N, 0, enumeration_overflow},
+-+  {"movhi", "t,u", "t,u,E", 2, 4, iw_F2I16_type,
+-+   MATCH_R2_MOVHI, MASK_R2_MOVHI,
+-+   NIOS2_INSN_MACRO_MOVI, unsigned_immed16_overflow},
+-+  {"movi", "t,i", "t,i,E", 2, 4, iw_F2I16_type,
+-+   MATCH_R2_MOVI, MASK_R2_MOVI, NIOS2_INSN_MACRO_MOVI, signed_immed16_o=
+verflow},
+-+  {"movia", "t,o", "t,o,E", 2, 4, iw_F2I16_type,
+-+   MATCH_R2_ORHI, MASK_R2_ORHI, NIOS2_INSN_MACRO_MOVIA, no_overflow},
+-+  {"movui", "t,u", "t,u,E", 2, 4, iw_F2I16_type,
+-+   MATCH_R2_MOVUI, MASK_R2_MOVUI,
+-+   NIOS2_INSN_MACRO_MOVI, unsigned_immed16_overflow},
+-+  {"mul", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_MUL, MASK_R2_MUL, 0, no_overflow},
+-+  {"muli", "t,s,i", "t,s,i,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_MULI, MASK_R2_MULI, 0, signed_immed16_overflow},
+-+  {"mulxss", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_MULXSS, MASK_R2_MULXSS, 0, no_overflow},
+-+  {"mulxsu", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_MULXSU, MASK_R2_MULXSU, 0, no_overflow},
+-+  {"mulxuu", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_MULXUU, MASK_R2_MULXUU, 0, no_overflow},
+-+  /* The encoding of the neg.n operands is backwards, not
+-+     the interpretation -- the first operand is still the
+-+     destination and the second the source.  */
+-+  {"neg.n", "S,D", "S,D,E", 2, 2, iw_T2X3_type,
+-+   MATCH_R2_NEG_N, MASK_R2_NEG_N, 0, no_overflow},
+-+  {"nextpc", "d", "d,E", 1, 4, iw_F3X6_type,
+-+   MATCH_R2_NEXTPC, MASK_R2_NEXTPC, 0, no_overflow},
+-+  {"nop", "", "E", 0, 4, iw_F3X6_type,
+-+   MATCH_R2_NOP, MASK_R2_NOP, NIOS2_INSN_MACRO_MOV, no_overflow},
+-+  {"nop.n", "", "E", 0, 2, iw_F2_type,
+-+   MATCH_R2_NOP_N, MASK_R2_NOP_N, NIOS2_INSN_MACRO_MOV, no_overflow},
+-+  {"nor", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_NOR, MASK_R2_NOR, 0, no_overflow},
+-+  {"not.n", "D,S", "D,S,E", 2, 2, iw_T2X3_type,
+-+   MATCH_R2_NOT_N, MASK_R2_NOT_N, 0, no_overflow},
+-+  {"or", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_OR, MASK_R2_OR, 0, no_overflow},
+-+  {"orhi", "t,s,u", "t,s,u,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_ORHI, MASK_R2_ORHI, 0, unsigned_immed16_overflow},
+-+  {"ori", "t,s,u", "t,s,u,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_ORI, MASK_R2_ORI, 0, unsigned_immed16_overflow},
+-+  {"or.n", "D,S,T", "D,S,T,E", 3, 2, iw_T2X3_type,
+-+   MATCH_R2_OR_N, MASK_R2_OR_N, 0, no_overflow},
+-+  {"pop.n", "R,W", "R,W,E", 2, 2, iw_L5I4X1_type,
+-+   MATCH_R2_POP_N, MASK_R2_POP_N, NIOS2_INSN_OPTARG, no_overflow},
+-+  {"push.n", "R,W", "R,W,E", 2, 2, iw_L5I4X1_type,
+-+   MATCH_R2_PUSH_N, MASK_R2_PUSH_N, NIOS2_INSN_OPTARG, no_overflow},
+-+  {"rdctl", "d,c", "d,c,E", 2, 4, iw_F3X6L5_type,
+-+   MATCH_R2_RDCTL, MASK_R2_RDCTL, 0, no_overflow},
+-+  {"rdprs", "t,s,I", "t,s,I,E", 3, 4, iw_F2X4I12_type,
+-+   MATCH_R2_RDPRS, MASK_R2_RDPRS, 0, signed_immed12_overflow},
+-+  {"ret", "", "E", 0, 4, iw_F3X6_type,
+-+   MATCH_R2_RET, MASK_R2_RET, 0, no_overflow},
+-+  {"ret.n", "", "E", 0, 2, iw_X2L5_type,
+-+   MATCH_R2_RET_N, MASK_R2_RET_N, 0, no_overflow},
+-+  {"rol", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_ROL, MASK_R2_ROL, 0, no_overflow},
+-+  {"roli", "d,s,j", "d,s,j,E", 3, 4, iw_F3X6L5_type,
+-+   MATCH_R2_ROLI, MASK_R2_ROLI, 0, unsigned_immed5_overflow},
+-+  {"ror", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_ROR, MASK_R2_ROR, 0, no_overflow},
+-+  {"sll", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_SLL, MASK_R2_SLL, 0, no_overflow},
+-+  {"slli", "d,s,j", "d,s,j,E", 3, 4, iw_F3X6L5_type,
+-+   MATCH_R2_SLLI, MASK_R2_SLLI, 0, unsigned_immed5_overflow},
+-+  {"sll.n", "D,S,T", "D,S,T,E", 3, 2, iw_T2X3_type,
+-+   MATCH_R2_SLL_N, MASK_R2_SLL_N, 0, no_overflow},
+-+  {"slli.n", "D,S,f", "D,S,f,E", 3, 2, iw_T2X1L3_type,
+-+   MATCH_R2_SLLI_N, MASK_R2_SLLI_N, 0, enumeration_overflow},
+-+  {"spaddi.n", "D,U", "D,U,E", 2, 2, iw_T1I7_type,
+-+   MATCH_R2_SPADDI_N, MASK_R2_SPADDI_N, 0, address_offset_overflow},
+-+  {"spdeci.n", "U", "U,E", 1, 2, iw_X1I7_type,
+-+   MATCH_R2_SPDECI_N, MASK_R2_SPDECI_N, 0, address_offset_overflow},
+-+  {"spinci.n", "U", "U,E", 1, 2, iw_X1I7_type,
+-+   MATCH_R2_SPINCI_N, MASK_R2_SPINCI_N, 0, address_offset_overflow},
+-+  {"sra", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_SRA, MASK_R2_SRA, 0, no_overflow},
+-+  {"srai", "d,s,j", "d,s,j,E", 3, 4, iw_F3X6L5_type,
+-+   MATCH_R2_SRAI, MASK_R2_SRAI, 0, unsigned_immed5_overflow},
+-+  {"srl", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_SRL, MASK_R2_SRL, 0, no_overflow},
+-+  {"srli", "d,s,j", "d,s,j,E", 3, 4, iw_F3X6L5_type,
+-+   MATCH_R2_SRLI, MASK_R2_SRLI, 0, unsigned_immed5_overflow},
+-+  {"srl.n", "D,S,T", "D,S,T,E", 3, 2, iw_T2X3_type,
+-+   MATCH_R2_SRL_N, MASK_R2_SRL_N, 0, no_overflow},
+-+  {"srli.n", "D,S,f", "D,S,f,E", 3, 2, iw_T2X1L3_type,
+-+   MATCH_R2_SRLI_N, MASK_R2_SRLI_N, 0, enumeration_overflow},
+-+  {"stb", "t,i(s)", "t,i(s),E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_STB, MASK_R2_STB, 0, address_offset_overflow},
+-+  {"stbio", "t,I(s)", "t,I(s),E", 3, 4, iw_F2X4I12_type,
+-+   MATCH_R2_STBIO, MASK_R2_STBIO, 0, signed_immed12_overflow},
+-+  {"stb.n", "T,Y(S)", "T,Y(S),E", 3, 2, iw_T2I4_type,
+-+   MATCH_R2_STB_N, MASK_R2_STB_N, 0, address_offset_overflow},
+-+  {"stbz.n", "t,M(S)", "t,M(S),E", 3, 2, iw_T1X1I6_type,
+-+   MATCH_R2_STBZ_N, MASK_R2_STBZ_N, 0, address_offset_overflow},
+-+  {"stex", "d,t,(s)", "d,t,(s),E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_STEX, MASK_R2_STEX, 0, no_overflow},
+-+  {"sth", "t,i(s)", "t,i(s),E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_STH, MASK_R2_STH, 0, address_offset_overflow},
+-+  {"sthio", "t,I(s)", "t,I(s),E", 3, 4, iw_F2X4I12_type,
+-+   MATCH_R2_STHIO, MASK_R2_STHIO, 0, signed_immed12_overflow},
+-+  {"sth.n", "T,X(S)", "T,X(S),E", 3, 2, iw_T2I4_type,
+-+   MATCH_R2_STH_N, MASK_R2_STH_N, 0, address_offset_overflow},
+-+  {"stsex", "d,t,(s)", "d,t,(s),E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_STSEX, MASK_R2_STSEX, 0, no_overflow},
+-+  {"stw", "t,i(s)", "t,i(s),E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_STW, MASK_R2_STW, 0, address_offset_overflow},
+-+  {"stwio", "t,I(s)", "t,I(s),E", 3, 4, iw_F2X4I12_type,
+-+   MATCH_R2_STWIO, MASK_R2_STWIO, 0, signed_immed12_overflow},
+-+  {"stwm", "R,B", "R,B,E", 2, 4, iw_F1X4L17_type,
+-+   MATCH_R2_STWM, MASK_R2_STWM, 0, no_overflow},
+-+  {"stwsp.n", "t,V(s)", "t,V(s),E", 3, 2, iw_F1I5_type,
+-+   MATCH_R2_STWSP_N, MASK_R2_STWSP_N, 0, address_offset_overflow},
+-+  {"stw.n", "T,W(S)", "T,W(S),E", 3, 2, iw_T2I4_type,
+-+   MATCH_R2_STW_N, MASK_R2_STW_N, 0, address_offset_overflow},
+-+  {"stwz.n", "t,N(S)", "t,N(S),E", 3, 2, iw_T1X1I6_type,
+-+   MATCH_R2_STWZ_N, MASK_R2_STWZ_N, 0, address_offset_overflow},
+-+  {"sub", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_SUB, MASK_R2_SUB, 0, no_overflow},
+-+  {"subi", "t,s,i", "t,s,i,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_SUBI, MASK_R2_SUBI, NIOS2_INSN_MACRO, signed_immed16_overfl=
+ow},
+-+  {"sub.n", "D,S,T", "D,S,T,E", 3, 2, iw_T3X1_type,
+-+   MATCH_R2_SUB_N, MASK_R2_SUB_N, 0, no_overflow},
+-+  {"subi.n", "D,S,e", "D,S,e,E", 3, 2, iw_T2X1I3_type,
+-+   MATCH_R2_SUBI_N, MASK_R2_SUBI_N, 0, enumeration_overflow},
+-+  {"sync", "", "E", 0, 4, iw_F3X6_type,
+-+   MATCH_R2_SYNC, MASK_R2_SYNC, 0, no_overflow},
+-+  {"trap", "j", "j,E", 1, 4, iw_F3X6L5_type,
+-+   MATCH_R2_TRAP, MASK_R2_TRAP, NIOS2_INSN_OPTARG, no_overflow},
+-+  {"trap.n", "j", "j,E", 1, 2, iw_X2L5_type,
+-+   MATCH_R2_TRAP_N, MASK_R2_TRAP_N, NIOS2_INSN_OPTARG, no_overflow},
+-+  {"wrctl", "c,s", "c,s,E", 2, 4, iw_F3X6L5_type,
+-+   MATCH_R2_WRCTL, MASK_R2_WRCTL, 0, no_overflow},
+-+  {"wrpie", "d,s", "d,s,E", 2, 4, iw_F3X6L5_type,
+-+   MATCH_R2_WRPIE, MASK_R2_WRPIE, 0, no_overflow},
+-+  {"wrprs", "d,s", "d,s,E", 2, 4, iw_F3X6_type,
+-+   MATCH_R2_WRPRS, MASK_R2_WRPRS, 0, no_overflow},
+-+  {"xor", "d,s,t", "d,s,t,E", 3, 4, iw_F3X6_type,
+-+   MATCH_R2_XOR, MASK_R2_XOR, 0, no_overflow},
+-+  {"xorhi", "t,s,u", "t,s,u,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_XORHI, MASK_R2_XORHI, 0, unsigned_immed16_overflow},
+-+  {"xori", "t,s,u", "t,s,u,E", 3, 4, iw_F2I16_type,
+-+   MATCH_R2_XORI, MASK_R2_XORI, 0, unsigned_immed16_overflow},
+-+  {"xor.n", "D,S,T", "D,S,T,E", 3, 2, iw_T2X3_type,
+-+   MATCH_R2_XOR_N, MASK_R2_XOR_N, 0, no_overflow},
+-+};
+-+
+-+#define NIOS2_NUM_R2_OPCODES \
+-+       ((sizeof nios2_r2_opcodes) / (sizeof (nios2_r2_opcodes[0])))
+-+const int nios2_num_r2_opcodes =3D NIOS2_NUM_R2_OPCODES;
+-+
+-+/* Default to using the R1 instruction tables.  */
+-+struct nios2_opcode *nios2_opcodes =3D (struct nios2_opcode *) nios2_r1=
+_opcodes;
+-+int nios2_num_opcodes =3D NIOS2_NUM_R1_OPCODES;
+-+#undef NIOS2_NUM_R1_OPCODES
+-+#undef NIOS2_NUM_R2_OPCODES
+-+
+-+/* Decodings for R2 asi.n (addi.n/subi.n) immediate values.  */
+-+unsigned int nios2_r2_asi_n_mappings[] =3D
+-+  {1, 2, 4, 8, 16, 32, 64, 128};
+-+const int nios2_num_r2_asi_n_mappings =3D 8;
+-+
+-+/* Decodings for R2 shi.n (slli.n/srli.n) immediate values.  */
+-+unsigned int nios2_r2_shi_n_mappings[] =3D
+-+  {1, 2, 3, 8, 12, 16, 24, 31};
+-+const int nios2_num_r2_shi_n_mappings =3D 8;
+-+
+-+/* Decodings for R2 andi.n immediate values.  */
+-+unsigned int nios2_r2_andi_n_mappings[] =3D
+-+  {1, 2, 3, 4, 8, 0xf, 0x10, 0x1f,
+-+   0x20, 0x3f, 0x7f, 0x80, 0xff, 0x7ff, 0xff00, 0xffff};
+-+const int nios2_num_r2_andi_n_mappings =3D 16;
+-+
+-+/* Decodings for R2 3-bit register fields.  */
+-+int nios2_r2_reg3_mappings[] =3D
+-+  {16, 17, 2, 3, 4, 5, 6, 7};
+-+const int nios2_num_r2_reg3_mappings =3D 8;
+-+
+-+/* Decodings for R2 push.n/pop.n REG_RANGE value list.  */
+-+unsigned long nios2_r2_reg_range_mappings[] =3D {
+-+  0x00010000,
+-+  0x00030000,
+-+  0x00070000,
+-+  0x000f0000,
+-+  0x001f0000,
+-+  0x003f0000,
+-+  0x007f0000,
+-+  0x00ff0000
+-+};
+-+const int nios2_num_r2_reg_range_mappings =3D 8;
+-+
+-+/*#include "sysdep.h"
+-+#include "dis-asm.h"
+-+#include "opcode/nios2.h"
+-+#include "libiberty.h"
+-+#include <string.h>
+-+#include <assert.h>
+-+*/
+-+/* No symbol table is available when this code runs out in an embedded
+-+   system as when it is used for disassembler support in a monitor.  */
+-+#if !defined(EMBEDDED_ENV)
+-+#define SYMTAB_AVAILABLE 1
+-+/*
+-+#include "elf-bfd.h"
+-+#include "elf/nios2.h"
+-+*/
+-+#endif
+-+
+-+/* Default length of Nios II instruction in bytes.  */
+-+#define INSNLEN 4
+-+
+-+/* Data structures used by the opcode hash table.  */
+-+typedef struct _nios2_opcode_hash
+-+{
+-+  const struct nios2_opcode *opcode;
+-+  struct _nios2_opcode_hash *next;
+-+} nios2_opcode_hash;
+-+
+-+/* Hash table size.  */
+-+#define OPCODE_HASH_SIZE (IW_R1_OP_UNSHIFTED_MASK + 1)
+-+
+-+/* Extract the opcode from an instruction word.  */
+-+static unsigned int
+-+nios2_r1_extract_opcode (unsigned int x)
+-+{
+-+  return GET_IW_R1_OP (x);
+-+}
+-+
+-+static unsigned int
+-+nios2_r2_extract_opcode (unsigned int x)
+-+{
+-+  return GET_IW_R2_OP (x);
+-+}
+-+
+-+/* We maintain separate hash tables for R1 and R2 opcodes, and pseudo-o=
+ps
+-+   are stored in a different table than regular instructions.  */
+-+
+-+typedef struct _nios2_disassembler_state
+-+{
+-+  const struct nios2_opcode *opcodes;
+-+  const int *num_opcodes;
+-+  unsigned int (*extract_opcode) (unsigned int);
+-+  nios2_opcode_hash *hash[OPCODE_HASH_SIZE];
+-+  nios2_opcode_hash *ps_hash[OPCODE_HASH_SIZE];
+-+  const struct nios2_opcode *nop;
+-+  bfd_boolean init;
+-+} nios2_disassembler_state;
+-+
+-+static nios2_disassembler_state
+-+nios2_r1_disassembler_state =3D {
+-+  nios2_r1_opcodes,
+-+  &nios2_num_r1_opcodes,
+-+  nios2_r1_extract_opcode,
+-+  {},
+-+  {},
+-+  NULL,
+-+  0
+-+};
+-+
+-+static nios2_disassembler_state
+-+nios2_r2_disassembler_state =3D {
+-+  nios2_r2_opcodes,
+-+  &nios2_num_r2_opcodes,
+-+  nios2_r2_extract_opcode,
+-+  {},
+-+  {},
+-+  NULL,
+-+  0
+-+};
+-+
+-+/* Function to initialize the opcode hash table.  */
+-+static void
+-+nios2_init_opcode_hash (nios2_disassembler_state *state)
+-+{
+-+  unsigned int i;
+-+  register const struct nios2_opcode *op;
+-+
+-+  for (i =3D 0; i < OPCODE_HASH_SIZE; i++)
+-+    for (op =3D state->opcodes; op < &state->opcodes[*(state->num_opcod=
+es)]; op++)
+-+      {
+-+	nios2_opcode_hash *new_hash;
+-+	nios2_opcode_hash **bucket =3D NULL;
+-+
+-+	if ((op->pinfo & NIOS2_INSN_MACRO) =3D=3D NIOS2_INSN_MACRO)
+-+	  {
+-+	    if (i =3D=3D state->extract_opcode (op->match)
+-+		&& (op->pinfo & (NIOS2_INSN_MACRO_MOV | NIOS2_INSN_MACRO_MOVI)
+-+		    & 0x7fffffff))
+-+	      {
+-+		bucket =3D &(state->ps_hash[i]);
+-+		if (strcmp (op->name, "nop") =3D=3D 0)
+-+		  state->nop =3D op;
+-+	      }
+-+	  }
+-+	else if (i =3D=3D state->extract_opcode (op->match))
+-+	  bucket =3D &(state->hash[i]);
+-+
+-+	if (bucket)
+-+	  {
+-+	    new_hash =3D
+-+	      (nios2_opcode_hash *) malloc (sizeof (nios2_opcode_hash));
+-+	    if (new_hash =3D=3D NULL)
+-+	      {
+-+		fprintf (stderr,
+-+			 "error allocating memory...broken disassembler\n");
+-+		abort ();
+-+	      }
+-+	    new_hash->opcode =3D op;
+-+	    new_hash->next =3D NULL;
+-+	    while (*bucket)
+-+	      bucket =3D &((*bucket)->next);
+-+	    *bucket =3D new_hash;
+-+	  }
+-+      }
+-+  state->init =3D 1;
+-+
+-+#ifdef DEBUG_HASHTABLE
+-+  for (i =3D 0; i < OPCODE_HASH_SIZE; ++i)
+-+    {
+-+      nios2_opcode_hash *tmp_hash =3D state->hash[i];
+-+      printf ("index: 0x%02X	ops: ", i);
+-+      while (tmp_hash !=3D NULL)
+-+	{
+-+	  printf ("%s ", tmp_hash->opcode->name);
+-+	  tmp_hash =3D tmp_hash->next;
+-+	}
+-+      printf ("\n");
+-+    }
+-+
+-+  for (i =3D 0; i < OPCODE_HASH_SIZE; ++i)
+-+    {
+-+      nios2_opcode_hash *tmp_hash =3D state->ps_hash[i];
+-+      printf ("index: 0x%02X	ops: ", i);
+-+      while (tmp_hash !=3D NULL)
+-+	{
+-+	  printf ("%s ", tmp_hash->opcode->name);
+-+	  tmp_hash =3D tmp_hash->next;
+-+	}
+-+      printf ("\n");
+-+    }
+-+#endif /* DEBUG_HASHTABLE */
+-+}
+-+
+-+/* Return a pointer to an nios2_opcode struct for a given instruction
+-+   word OPCODE for bfd machine MACH, or NULL if there is an error.  */
+-+const struct nios2_opcode *
+-+nios2_find_opcode_hash (unsigned long opcode, unsigned long mach)
+-+{
+-+  nios2_opcode_hash *entry;
+-+  nios2_disassembler_state *state;
+-+
+-+  /* Select the right instruction set, hash tables, and opcode accessor
+-+     for the mach variant.  */
+-+  if (mach =3D=3D bfd_mach_nios2r2)
+-+    state =3D &nios2_r2_disassembler_state;
+-+  else
+-+    state =3D &nios2_r1_disassembler_state;
+-+
+-+  /* Build a hash table to shorten the search time.  */
+-+  if (!state->init)
+-+    nios2_init_opcode_hash (state);
+-+
+-+  /* Check for NOP first.  Both NOP and MOV are macros that expand into
+-+     an ADD instruction, and we always want to give priority to NOP.  *=
+/
+-+  if (state->nop->match =3D=3D (opcode & state->nop->mask))
+-+    return state->nop;
+-+
+-+  /* First look in the pseudo-op hashtable.  */
+-+  for (entry =3D state->ps_hash[state->extract_opcode (opcode)];
+-+       entry; entry =3D entry->next)
+-+    if (entry->opcode->match =3D=3D (opcode & entry->opcode->mask))
+-+      return entry->opcode;
+-+
+-+  /* Otherwise look in the main hashtable.  */
+-+  for (entry =3D state->hash[state->extract_opcode (opcode)];
+-+       entry; entry =3D entry->next)
+-+    if (entry->opcode->match =3D=3D (opcode & entry->opcode->mask))
+-+      return entry->opcode;
+-+
+-+  return NULL;
+-+}
+-+
+-+/* There are 32 regular registers, 32 coprocessor registers,
+-+   and 32 control registers.  */
+-+#define NUMREGNAMES 32
+-+
+-+/* Return a pointer to the base of the coprocessor register name array.=
+  */
+-+static struct nios2_reg *
+-+nios2_coprocessor_regs (void)
+-+{
+-+  static struct nios2_reg *cached =3D NULL;
+-+
+-+  if (!cached)
+-+    {
+-+      int i;
+-+      for (i =3D NUMREGNAMES; i < nios2_num_regs; i++)
+-+	if (!strcmp (nios2_regs[i].name, "c0"))
+-+	  {
+-+	    cached =3D nios2_regs + i;
+-+	    break;
+-+	  }
+-+      assert (cached);
+-+    }
+-+  return cached;
+-+}
+-+
+-+/* Return a pointer to the base of the control register name array.  */
+-+static struct nios2_reg *
+-+nios2_control_regs (void)
+-+{
+-+  static struct nios2_reg *cached =3D NULL;
+-+
+-+  if (!cached)
+-+    {
+-+      int i;
+-+      for (i =3D NUMREGNAMES; i < nios2_num_regs; i++)
+-+	if (!strcmp (nios2_regs[i].name, "status"))
+-+	  {
+-+	    cached =3D nios2_regs + i;
+-+	    break;
+-+	  }
+-+      assert (cached);
+-+    }
+-+  return cached;
+-+}
+-+
+-+/* Helper routine to report internal errors.  */
+-+static void
+-+bad_opcode (const struct nios2_opcode *op)
+-+{
+-+  fprintf (stderr, "Internal error: broken opcode descriptor for `%s %s=
+'\n",
+-+	   op->name, op->args);
+-+  abort ();
+-+}
+-+
+-+/* The function nios2_print_insn_arg uses the character pointed
+-+   to by ARGPTR to determine how it print the next token or separator
+-+   character in the arguments to an instruction.  */
+-+static int
+-+nios2_print_insn_arg (const char *argptr,
+-+		      unsigned long opcode, bfd_vma address,
+-+		      disassemble_info *info,
+-+		      const struct nios2_opcode *op)
+-+{
+-+  unsigned long i =3D 0;
+-+  struct nios2_reg *reg_base;
+-+
+-+  switch (*argptr)
+-+    {
+-+    case ',':
+-+    case '(':
+-+    case ')':
+-+      (*info->fprintf_func) (info->stream, "%c", *argptr);
+-+      break;
+-+
+-+    case 'c':
+-+      /* Control register index.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_r_type:
+-+	  i =3D GET_IW_R_IMM5 (opcode);
+-+	  break;
+-+	case iw_F3X6L5_type:
+-+	  i =3D GET_IW_F3X6L5_IMM5 (opcode);
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      reg_base =3D nios2_control_regs ();
+-+      (*info->fprintf_func) (info->stream, "%s", reg_base[i].name);
+-+      break;
+-+
+-+    case 'd':
+-+      reg_base =3D nios2_regs;
+-+      switch (op->format)
+-+	{
+-+	case iw_r_type:
+-+	  i =3D GET_IW_R_C (opcode);
+-+	  break;
+-+	case iw_custom_type:
+-+	  i =3D GET_IW_CUSTOM_C (opcode);
+-+	  if (GET_IW_CUSTOM_READC (opcode) =3D=3D 0)
+-+	    reg_base =3D nios2_coprocessor_regs ();
+-+	  break;
+-+	case iw_F3X6L5_type:
+-+	case iw_F3X6_type:
+-+	  i =3D GET_IW_F3X6L5_C (opcode);
+-+	  break;
+-+	case iw_F3X8_type:
+-+	  i =3D GET_IW_F3X8_C (opcode);
+-+	  if (GET_IW_F3X8_READC (opcode) =3D=3D 0)
+-+	    reg_base =3D nios2_coprocessor_regs ();
+-+	  break;
+-+	case iw_F2_type:
+-+	  i =3D GET_IW_F2_B (opcode);
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      if (i < NUMREGNAMES)
+-+	(*info->fprintf_func) (info->stream, "%s", reg_base[i].name);
+-+      else
+-+	(*info->fprintf_func) (info->stream, "unknown");
+-+      break;
+-+
+-+    case 's':
+-+      reg_base =3D nios2_regs;
+-+      switch (op->format)
+-+	{
+-+	case iw_r_type:
+-+	  i =3D GET_IW_R_A (opcode);
+-+	  break;
+-+	case iw_i_type:
+-+	  i =3D GET_IW_I_A (opcode);
+-+	  break;
+-+	case iw_custom_type:
+-+	  i =3D GET_IW_CUSTOM_A (opcode);
+-+	  if (GET_IW_CUSTOM_READA (opcode) =3D=3D 0)
+-+	    reg_base =3D nios2_coprocessor_regs ();
+-+	  break;
+-+	case iw_F2I16_type:
+-+	  i =3D GET_IW_F2I16_A (opcode);
+-+	  break;
+-+	case iw_F2X4I12_type:
+-+	  i =3D GET_IW_F2X4I12_A (opcode);
+-+	  break;
+-+	case iw_F1X4I12_type:
+-+	  i =3D GET_IW_F1X4I12_A (opcode);
+-+	  break;
+-+	case iw_F1X4L17_type:
+-+	  i =3D GET_IW_F1X4L17_A (opcode);
+-+	  break;
+-+	case iw_F3X6L5_type:
+-+	case iw_F3X6_type:
+-+	  i =3D GET_IW_F3X6L5_A (opcode);
+-+	  break;
+-+	case iw_F2X6L10_type:
+-+	  i =3D GET_IW_F2X6L10_A (opcode);
+-+	  break;
+-+	case iw_F3X8_type:
+-+	  i =3D GET_IW_F3X8_A (opcode);
+-+	  if (GET_IW_F3X8_READA (opcode) =3D=3D 0)
+-+	    reg_base =3D nios2_coprocessor_regs ();
+-+	  break;
+-+	case iw_F1X1_type:
+-+	  i =3D GET_IW_F1X1_A (opcode);
+-+	  break;
+-+	case iw_F1I5_type:
+-+	  i =3D 27;   /* Implicit stack pointer reference.  */
+-+	  break;
+-+	case iw_F2_type:
+-+	  i =3D GET_IW_F2_A (opcode);
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      if (i < NUMREGNAMES)
+-+	(*info->fprintf_func) (info->stream, "%s", reg_base[i].name);
+-+      else
+-+	(*info->fprintf_func) (info->stream, "unknown");
+-+      break;
+-+
+-+    case 't':
+-+      reg_base =3D nios2_regs;
+-+      switch (op->format)
+-+	{
+-+	case iw_r_type:
+-+	  i =3D GET_IW_R_B (opcode);
+-+	  break;
+-+	case iw_i_type:
+-+	  i =3D GET_IW_I_B (opcode);
+-+	  break;
+-+	case iw_custom_type:
+-+	  i =3D GET_IW_CUSTOM_B (opcode);
+-+	  if (GET_IW_CUSTOM_READB (opcode) =3D=3D 0)
+-+	    reg_base =3D nios2_coprocessor_regs ();
+-+	  break;
+-+	case iw_F2I16_type:
+-+	  i =3D GET_IW_F2I16_B (opcode);
+-+	  break;
+-+	case iw_F2X4I12_type:
+-+	  i =3D GET_IW_F2X4I12_B (opcode);
+-+	  break;
+-+	case iw_F3X6L5_type:
+-+	case iw_F3X6_type:
+-+	  i =3D GET_IW_F3X6L5_B (opcode);
+-+	  break;
+-+	case iw_F2X6L10_type:
+-+	  i =3D GET_IW_F2X6L10_B (opcode);
+-+	  break;
+-+	case iw_F3X8_type:
+-+	  i =3D GET_IW_F3X8_B (opcode);
+-+	  if (GET_IW_F3X8_READB (opcode) =3D=3D 0)
+-+	    reg_base =3D nios2_coprocessor_regs ();
+-+	  break;
+-+	case iw_F1I5_type:
+-+	  i =3D GET_IW_F1I5_B (opcode);
+-+	  break;
+-+	case iw_F2_type:
+-+	  i =3D GET_IW_F2_B (opcode);
+-+	  break;
+-+	case iw_T1X1I6_type:
+-+	  i =3D 0;
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      if (i < NUMREGNAMES)
+-+	(*info->fprintf_func) (info->stream, "%s", reg_base[i].name);
+-+      else
+-+	(*info->fprintf_func) (info->stream, "unknown");
+-+      break;
+-+
+-+    case 'D':
+-+      switch (op->format)
+-+	{
+-+	case iw_T1I7_type:
+-+	  i =3D GET_IW_T1I7_A3 (opcode);
+-+	  break;
+-+	case iw_T2X1L3_type:
+-+	  i =3D GET_IW_T2X1L3_B3 (opcode);
+-+	  break;
+-+	case iw_T2X1I3_type:
+-+	  i =3D GET_IW_T2X1I3_B3 (opcode);
+-+	  break;
+-+	case iw_T3X1_type:
+-+	  i =3D GET_IW_T3X1_C3 (opcode);
+-+	  break;
+-+	case iw_T2X3_type:
+-+	  if (op->num_args =3D=3D 3)
+-+	    i =3D GET_IW_T2X3_A3 (opcode);
+-+	  else
+-+	    i =3D GET_IW_T2X3_B3 (opcode);
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      i =3D nios2_r2_reg3_mappings[i];
+-+      (*info->fprintf_func) (info->stream, "%s", nios2_regs[i].name);
+-+      break;
+-+
+-+    case 'M':
+-+      /* 6-bit unsigned immediate with no shift.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_T1X1I6_type:
+-+	  i =3D GET_IW_T1X1I6_IMM6 (opcode);
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      (*info->fprintf_func) (info->stream, "%ld", i);
+-+      break;
+-+
+-+    case 'N':
+-+      /* 6-bit unsigned immediate with 2-bit shift.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_T1X1I6_type:
+-+	  i =3D GET_IW_T1X1I6_IMM6 (opcode) << 2;
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      (*info->fprintf_func) (info->stream, "%ld", i);
+-+      break;
+-+
+-+    case 'S':
+-+      switch (op->format)
+-+	{
+-+	case iw_T1I7_type:
+-+	  i =3D GET_IW_T1I7_A3 (opcode);
+-+	  break;
+-+	case iw_T2I4_type:
+-+	  i =3D GET_IW_T2I4_A3 (opcode);
+-+	  break;
+-+	case iw_T2X1L3_type:
+-+	  i =3D GET_IW_T2X1L3_A3 (opcode);
+-+	  break;
+-+	case iw_T2X1I3_type:
+-+	  i =3D GET_IW_T2X1I3_A3 (opcode);
+-+	  break;
+-+	case iw_T3X1_type:
+-+	  i =3D GET_IW_T3X1_A3 (opcode);
+-+	  break;
+-+	case iw_T2X3_type:
+-+	  i =3D GET_IW_T2X3_A3 (opcode);
+-+	  break;
+-+	case iw_T1X1I6_type:
+-+	  i =3D GET_IW_T1X1I6_A3 (opcode);
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      i =3D nios2_r2_reg3_mappings[i];
+-+      (*info->fprintf_func) (info->stream, "%s", nios2_regs[i].name);
+-+      break;
+-+
+-+    case 'T':
+-+      switch (op->format)
+-+	{
+-+	case iw_T2I4_type:
+-+	  i =3D GET_IW_T2I4_B3 (opcode);
+-+	  break;
+-+	case iw_T3X1_type:
+-+	  i =3D GET_IW_T3X1_B3 (opcode);
+-+	  break;
+-+	case iw_T2X3_type:
+-+	  i =3D GET_IW_T2X3_B3 (opcode);
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      i =3D nios2_r2_reg3_mappings[i];
+-+      (*info->fprintf_func) (info->stream, "%s", nios2_regs[i].name);
+-+      break;
+-+
+-+    case 'i':
+-+      /* 16-bit signed immediate.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_i_type:
+-+	  i =3D (signed) (GET_IW_I_IMM16 (opcode) << 16) >> 16;
+-+	  break;
+-+	case iw_F2I16_type:
+-+	  i =3D (signed) (GET_IW_F2I16_IMM16 (opcode) << 16) >> 16;
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      (*info->fprintf_func) (info->stream, "%ld", i);
+-+      break;
+-+
+-+    case 'I':
+-+      /* 12-bit signed immediate.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_F2X4I12_type:
+-+	  i =3D (signed) (GET_IW_F2X4I12_IMM12 (opcode) << 20) >> 20;
+-+	  break;
+-+	case iw_F1X4I12_type:
+-+	  i =3D (signed) (GET_IW_F1X4I12_IMM12 (opcode) << 20) >> 20;
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      (*info->fprintf_func) (info->stream, "%ld", i);
+-+      break;
+-+
+-+    case 'u':
+-+      /* 16-bit unsigned immediate.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_i_type:
+-+	  i =3D GET_IW_I_IMM16 (opcode);
+-+	  break;
+-+	case iw_F2I16_type:
+-+	  i =3D GET_IW_F2I16_IMM16 (opcode);
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      (*info->fprintf_func) (info->stream, "%ld", i);
+-+      break;
+-+
+-+    case 'U':
+-+      /* 7-bit unsigned immediate with 2-bit shift.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_T1I7_type:
+-+	  i =3D GET_IW_T1I7_IMM7 (opcode) << 2;
+-+	  break;
+-+	case iw_X1I7_type:
+-+	  i =3D GET_IW_X1I7_IMM7 (opcode) << 2;
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      (*info->fprintf_func) (info->stream, "%ld", i);
+-+      break;
+-+
+-+    case 'V':
+-+      /* 5-bit unsigned immediate with 2-bit shift.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_F1I5_type:
+-+	  i =3D GET_IW_F1I5_IMM5 (opcode) << 2;
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      (*info->fprintf_func) (info->stream, "%ld", i);
+-+      break;
+-+
+-+    case 'W':
+-+      /* 4-bit unsigned immediate with 2-bit shift.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_T2I4_type:
+-+	  i =3D GET_IW_T2I4_IMM4 (opcode) << 2;
+-+	  break;
+-+	case iw_L5I4X1_type:
+-+	  i =3D GET_IW_L5I4X1_IMM4 (opcode) << 2;
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      (*info->fprintf_func) (info->stream, "%ld", i);
+-+      break;
+-+
+-+    case 'X':
+-+      /* 4-bit unsigned immediate with 1-bit shift.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_T2I4_type:
+-+	  i =3D GET_IW_T2I4_IMM4 (opcode) << 1;
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      (*info->fprintf_func) (info->stream, "%ld", i);
+-+      break;
+-+
+-+    case 'Y':
+-+      /* 4-bit unsigned immediate without shift.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_T2I4_type:
+-+	  i =3D GET_IW_T2I4_IMM4 (opcode);
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      (*info->fprintf_func) (info->stream, "%ld", i);
+-+      break;
+-+
+-+    case 'o':
+-+      /* 16-bit signed immediate address offset.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_i_type:
+-+	  i =3D (signed) (GET_IW_I_IMM16 (opcode) << 16) >> 16;
+-+	  break;
+-+	case iw_F2I16_type:
+-+	  i =3D (signed) (GET_IW_F2I16_IMM16 (opcode) << 16) >> 16;
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      address =3D address + 4 + i;
+-+      (*info->print_address_func) (address, info);
+-+      break;
+-+
+-+    case 'O':
+-+      /* 10-bit signed address offset with 1-bit shift.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_I10_type:
+-+	  i =3D (signed) (GET_IW_I10_IMM10 (opcode) << 22) >> 21;
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      address =3D address + 2 + i;
+-+      (*info->print_address_func) (address, info);
+-+      break;
+-+
+-+    case 'P':
+-+      /* 7-bit signed address offset with 1-bit shift.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_T1I7_type:
+-+	  i =3D (signed) (GET_IW_T1I7_IMM7 (opcode) << 25) >> 24;
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      address =3D address + 2 + i;
+-+      (*info->print_address_func) (address, info);
+-+      break;
+-+
+-+    case 'j':
+-+      /* 5-bit unsigned immediate.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_r_type:
+-+	  i =3D GET_IW_R_IMM5 (opcode);
+-+	  break;
+-+	case iw_F3X6L5_type:
+-+	  i =3D GET_IW_F3X6L5_IMM5 (opcode);
+-+	  break;
+-+	case iw_F2X6L10_type:
+-+	  i =3D GET_IW_F2X6L10_MSB (opcode);
+-+	  break;
+-+	case iw_X2L5_type:
+-+	  i =3D GET_IW_X2L5_IMM5 (opcode);
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      (*info->fprintf_func) (info->stream, "%ld", i);
+-+      break;
+-+
+-+    case 'k':
+-+      /* Second 5-bit unsigned immediate field.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_F2X6L10_type:
+-+	  i =3D GET_IW_F2X6L10_LSB (opcode);
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      (*info->fprintf_func) (info->stream, "%ld", i);
+-+      break;
+-+
+-+    case 'l':
+-+      /* 8-bit unsigned immediate.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_custom_type:
+-+	  i =3D GET_IW_CUSTOM_N (opcode);
+-+	  break;
+-+	case iw_F3X8_type:
+-+	  i =3D GET_IW_F3X8_N (opcode);
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      (*info->fprintf_func) (info->stream, "%lu", i);
+-+      break;
+-+
+-+    case 'm':
+-+      /* 26-bit unsigned immediate.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_j_type:
+-+	  i =3D GET_IW_J_IMM26 (opcode);
+-+	  break;
+-+	case iw_L26_type:
+-+	  i =3D GET_IW_L26_IMM26 (opcode);
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      /* This translates to an address because it's only used in call
+-+	 instructions.  */
+-+      address =3D (address & 0xf0000000) | (i << 2);
+-+      (*info->print_address_func) (address, info);
+-+      break;
+-+
+-+    case 'e':
+-+      /* Encoded enumeration for addi.n/subi.n.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_T2X1I3_type:
+-+	  i =3D nios2_r2_asi_n_mappings[GET_IW_T2X1I3_IMM3 (opcode)];
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      (*info->fprintf_func) (info->stream, "%lu", i);
+-+      break;
+-+
+-+    case 'f':
+-+      /* Encoded enumeration for slli.n/srli.n.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_T2X1L3_type:
+-+	  i =3D nios2_r2_shi_n_mappings[GET_IW_T2X1I3_IMM3 (opcode)];
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      (*info->fprintf_func) (info->stream, "%lu", i);
+-+      break;
+-+
+-+    case 'g':
+-+      /* Encoded enumeration for andi.n.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_T2I4_type:
+-+	  i =3D nios2_r2_andi_n_mappings[GET_IW_T2I4_IMM4 (opcode)];
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      (*info->fprintf_func) (info->stream, "%lu", i);
+-+      break;
+-+
+-+    case 'h':
+-+      /* Encoded enumeration for movi.n.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_T1I7_type:
+-+	  i =3D GET_IW_T1I7_IMM7 (opcode);
+-+	  if (i =3D=3D 125)
+-+	    i =3D 0xff;
+-+	  else if (i =3D=3D 126)
+-+	    i =3D -2;
+-+	  else if (i =3D=3D 127)
+-+	    i =3D -1;
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      (*info->fprintf_func) (info->stream, "%ld", i);
+-+      break;
+-+
+-+    case 'R':
+-+      {
+-+	unsigned long reglist =3D 0;
+-+	int dir =3D 1;
+-+	int k, t;
+-+
+-+	switch (op->format)
+-+	  {
+-+	  case iw_F1X4L17_type:
+-+	    /* Encoding for ldwm/stwm.  */
+-+	    i =3D GET_IW_F1X4L17_REGMASK (opcode);
+-+	    if (GET_IW_F1X4L17_RS (opcode))
+-+	      {
+-+		reglist =3D ((i << 14) & 0x00ffc000);
+-+		if (i & (1 << 10))
+-+		  reglist |=3D (1 << 28);
+-+		if (i & (1 << 11))
+-+		  reglist |=3D (1 << 31);
+-+	      }
+-+	    else
+-+	      reglist =3D i << 2;
+-+	    dir =3D GET_IW_F1X4L17_REGMASK (opcode) ? 1 : -1;
+-+	    break;
+-+
+-+	  case iw_L5I4X1_type:
+-+	    /* Encoding for push.n/pop.n.  */
+-+	    reglist |=3D (1 << 31);
+-+	    if (GET_IW_L5I4X1_FP (opcode))
+-+	      reglist |=3D (1 << 28);
+-+	    if (GET_IW_L5I4X1_CS (opcode))
+-+	      {
+-+		int val =3D GET_IW_L5I4X1_REGRANGE (opcode);
+-+		reglist |=3D nios2_r2_reg_range_mappings[val];
+-+	      }
+-+	    dir =3D (op->match =3D=3D MATCH_R2_POP_N ? 1 : -1);
+-+	    break;
+-+
+-+	  default:
+-+	    bad_opcode (op);
+-+	  }
+-+
+-+	t =3D 0;
+-+	(*info->fprintf_func) (info->stream, "{");
+-+	for (k =3D (dir =3D=3D 1 ? 0 : 31);
+-+	     (dir =3D=3D 1 && k < 32) || (dir =3D=3D -1 && k >=3D 0);
+-+	     k +=3D dir)
+-+	  if (reglist & (1 << k))
+-+	    {
+-+	      if (t)
+-+		(*info->fprintf_func) (info->stream, ",");
+-+	      else
+-+		t++;
+-+	      (*info->fprintf_func) (info->stream, "%s", nios2_regs[k].name);
+-+	    }
+-+	(*info->fprintf_func) (info->stream, "}");
+-+	break;
+-+      }
+-+
+-+    case 'B':
+-+      /* Base register and options for ldwm/stwm.  */
+-+      switch (op->format)
+-+	{
+-+	case iw_F1X4L17_type:
+-+	  if (GET_IW_F1X4L17_ID (opcode) =3D=3D 0)
+-+	    (*info->fprintf_func) (info->stream, "--");
+-+
+-+	  i =3D GET_IW_F1X4I12_A (opcode);
+-+	  (*info->fprintf_func) (info->stream, "(%s)",
+-+				 nios2_builtin_regs[i].name);
+-+
+-+	  if (GET_IW_F1X4L17_ID (opcode))
+-+	    (*info->fprintf_func) (info->stream, "++");
+-+	  if (GET_IW_F1X4L17_WB (opcode))
+-+	    (*info->fprintf_func) (info->stream, ",writeback");
+-+	  if (GET_IW_F1X4L17_PC (opcode))
+-+	    (*info->fprintf_func) (info->stream, ",ret");
+-+	  break;
+-+	default:
+-+	  bad_opcode (op);
+-+	}
+-+      break;
+-+
+-+    default:
+-+      (*info->fprintf_func) (info->stream, "unknown");
+-+      break;
+-+    }
+-+  return 0;
+-+}
+-+
+-+/* nios2_disassemble does all the work of disassembling a Nios II
+-+   instruction opcode.  */
+-+static int
+-+nios2_disassemble (bfd_vma address, unsigned long opcode,
+-+		   disassemble_info *info)
+-+{
+-+  const struct nios2_opcode *op;
+-+
+-+  info->bytes_per_line =3D INSNLEN;
+-+  info->bytes_per_chunk =3D INSNLEN;
+-+  info->display_endian =3D info->endian;
+-+  info->insn_info_valid =3D 1;
+-+  info->branch_delay_insns =3D 0;
+-+  info->data_size =3D 0;
+-+  info->insn_type =3D dis_nonbranch;
+-+  info->target =3D 0;
+-+  info->target2 =3D 0;
+-+
+-+  /* Find the major opcode and use this to disassemble
+-+     the instruction and its arguments.  */
+-+  op =3D nios2_find_opcode_hash (opcode, info->mach);
+-+
+-+  if (op !=3D NULL)
+-+    {
+-+      const char *argstr =3D op->args;
+-+      (*info->fprintf_func) (info->stream, "%s", op->name);
+-+      if (argstr !=3D NULL && *argstr !=3D '\0')
+-+	{
+-+	  (*info->fprintf_func) (info->stream, "\t");
+-+	  while (*argstr !=3D '\0')
+-+	    {
+-+	      nios2_print_insn_arg (argstr, opcode, address, info, op);
+-+	      ++argstr;
+-+	    }
+-+	}
+-+      /* Tell the caller how far to advance the program counter.  */
+-+      info->bytes_per_chunk =3D op->size;
+-+      return op->size;
+-+    }
+-+  else
+-+    {
+-+      /* Handle undefined instructions.  */
+-+      info->insn_type =3D dis_noninsn;
+-+      (*info->fprintf_func) (info->stream, "0x%lx", opcode);
+-+      return INSNLEN;
+-+    }
+-+}
+-+
+-+
+-+/* print_insn_nios2 is the main disassemble function for Nios II.
+-+   The function diassembler(abfd) (source in disassemble.c) returns a
+-+   pointer to this either print_insn_big_nios2 or
+-+   print_insn_little_nios2, which in turn call this function when the
+-+   bfd machine type is Nios II. print_insn_nios2 reads the
+-+   instruction word at the address given, and prints the disassembled
+-+   instruction on the stream info->stream using info->fprintf_func. */
+-+
+-+static int
+-+print_insn_nios2 (bfd_vma address, disassemble_info *info,
+-+		  enum bfd_endian endianness)
+-+{
+-+  bfd_byte buffer[INSNLEN];
+-+  int status;
+-+
+-+  status =3D (*info->read_memory_func) (address, buffer, INSNLEN, info)=
+;
+-+  if (status =3D=3D 0)
+-+    {
+-+      unsigned long insn;
+-+      if (endianness =3D=3D BFD_ENDIAN_BIG)
+-+	insn =3D (unsigned long) bfd_getb32 (buffer);
+-+      else
+-+	insn =3D (unsigned long) bfd_getl32 (buffer);
+-+      return nios2_disassemble (address, insn, info);
+-+    }
+-+
+-+  /* We might have a 16-bit R2 instruction at the end of memory.  Try t=
+hat.  */
+-+  if (info->mach =3D=3D bfd_mach_nios2r2)
+-+    {
+-+      status =3D (*info->read_memory_func) (address, buffer, 2, info);
+-+      if (status =3D=3D 0)
+-+	{
+-+	  unsigned long insn;
+-+	  if (endianness =3D=3D BFD_ENDIAN_BIG)
+-+	    insn =3D (unsigned long) bfd_getb16 (buffer);
+-+	  else
+-+	    insn =3D (unsigned long) bfd_getl16 (buffer);
+-+	  return nios2_disassemble (address, insn, info);
+-+	}
+-+    }
+-+
+-+  /* If we got here, we couldn't read anything.  */
+-+  (*info->memory_error_func) (status, address, info);
+-+  return -1;
+-+}
+-+
+-+/* These two functions are the main entry points, accessed from
+-+   disassemble.c.  */
+-+int
+-+print_insn_big_nios2 (bfd_vma address, disassemble_info *info)
+-+{
+-+  return print_insn_nios2 (address, info, BFD_ENDIAN_BIG);
+-+}
+-+
+-+int
+-+print_insn_little_nios2 (bfd_vma address, disassemble_info *info)
+-+{
+-+  return print_insn_nios2 (address, info, BFD_ENDIAN_LITTLE);
+-+}
+-diff --git a/hw/char/Makefile.objs b/hw/char/Makefile.objs
+-index 69a553c..f09ced5 100644
+---- a/hw/char/Makefile.objs
+-+++ b/hw/char/Makefile.objs
+-@@ -6,6 +6,7 @@ common-obj-$(CONFIG_SERIAL) +=3D serial.o serial-isa.o
+- common-obj-$(CONFIG_SERIAL_PCI) +=3D serial-pci.o
+- common-obj-$(CONFIG_VIRTIO) +=3D virtio-console.o
+- common-obj-$(CONFIG_XILINX) +=3D xilinx_uartlite.o
+-+common-obj-$(CONFIG_ALTERA_JUART) +=3D altera_juart.o
+- common-obj-$(CONFIG_XEN_BACKEND) +=3D xen_console.o
+- common-obj-$(CONFIG_CADENCE) +=3D cadence_uart.o
+-=20
+-diff --git a/hw/char/altera_juart.c b/hw/char/altera_juart.c
+-new file mode 100644
+-index 0000000..5c29ed1
+---- /dev/null
+-+++ b/hw/char/altera_juart.c
+-@@ -0,0 +1,288 @@
+-+/*
+-+ * QEMU model of the Altera JTAG uart.
+-+ *
+-+ * Copyright (c) 2016 Intel Corporation.
+-+ *
+-+ * This program is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU General Public License
+-+ * as published by the Free Software Foundation; either version
+-+ * 2 of the License, or (at your option) any later version.
+-+ *
+-+ * You should have received a copy of the GNU General Public License al=
+ong
+-+ * with this program; if not, see <http://www.gnu.org/licenses/>.
+-+ */
+-+
+-+#include "qemu/osdep.h"
+-+#include "hw/sysbus.h"
+-+#include "sysemu/sysemu.h"
+-+#include "sysemu/char.h"
+-+#include "hw/nios2/altera.h"
+-+
+-+/* Data register */
+-+#define R_DATA      0
+-+#define DATA_RVALID     BIT(15)
+-+#define DATA_RAVAIL     0xFFFF0000
+-+
+-+/* Control register */
+-+#define R_CONTROL   1
+-+#define CONTROL_RE      BIT(0)
+-+#define CONTROL_WE      BIT(1)
+-+#define CONTROL_RI      BIT(8)
+-+#define CONTROL_WI      BIT(9)
+-+#define CONTROL_AC      BIT(10)
+-+#define CONTROL_WSPACE  0xFFFF0000
+-+
+-+#define CONTROL_WMASK (CONTROL_RE | CONTROL_WE | CONTROL_AC)
+-+
+-+/*
+-+ * The read and write FIFO depths can be set from 8 to 32,768 bytes.
+-+ * Only powers of two are allowed. A depth of 64 is generally optimal f=
+or
+-+ * performance, and larger values are rarely necessary.
+-+ */
+-+
+-+#define FIFO_LENGTH 64
+-+
+-+#define TYPE_ALTERA_JUART "altera-juart"
+-+#define ALTERA_JUART(obj) \
+-+    OBJECT_CHECK(AlteraJUARTState, (obj), TYPE_ALTERA_JUART)
+-+
+-+typedef struct AlteraJUARTState {
+-+    SysBusDevice busdev;
+-+    MemoryRegion mmio;
+-+    CharDriverState *chr;
+-+    qemu_irq irq;
+-+
+-+    unsigned int rx_fifo_pos;
+-+    unsigned int rx_fifo_len;
+-+    uint32_t jdata;
+-+    uint32_t jcontrol;
+-+    uint8_t rx_fifo[FIFO_LENGTH];
+-+} AlteraJUARTState;
+-+
+-+/*
+-+ * The JTAG UART core generates an interrupt when either of the individ=
+ual
+-+ * interrupt conditions is pending and enabled.
+-+ */
+-+static void juart_update_irq(AlteraJUARTState *s)
+-+{
+-+    unsigned int irq;
+-+
+-+    irq =3D ((s->jcontrol & CONTROL_WE) && (s->jcontrol & CONTROL_WI)) =
+||
+-+          ((s->jcontrol & CONTROL_RE) && (s->jcontrol & CONTROL_RI));
+-+
+-+    qemu_set_irq(s->irq, irq);
+-+}
+-+
+-+static uint64_t juart_read(void *opaque, hwaddr addr, unsigned int size=
+)
+-+{
+-+    AlteraJUARTState *s =3D opaque;
+-+    uint32_t r;
+-+
+-+    addr >>=3D 2;
+-+
+-+    switch (addr) {
+-+    case R_DATA:
+-+        r =3D s->rx_fifo[(s->rx_fifo_pos - s->rx_fifo_len) & (FIFO_LENG=
+TH - 1)];
+-+        if (s->rx_fifo_len) {
+-+            s->rx_fifo_len--;
+-+            if (s->chr) {
+-+                qemu_chr_accept_input(s->chr);
+-+            }
+-+            s->jdata =3D r | DATA_RVALID | (s->rx_fifo_len << 16);
+-+            s->jcontrol |=3D CONTROL_RI;
+-+        } else {
+-+            s->jdata =3D 0;
+-+            s->jcontrol &=3D ~CONTROL_RI;
+-+        }
+-+
+-+        juart_update_irq(s);
+-+        return s->jdata;
+-+
+-+    case R_CONTROL:
+-+        return s->jcontrol;
+-+    }
+-+
+-+    return 0;
+-+}
+-+
+-+static void juart_write(void *opaque, hwaddr addr,
+-+                       uint64_t val64, unsigned int size)
+-+{
+-+    AlteraJUARTState *s =3D opaque;
+-+    uint32_t value =3D val64;
+-+    unsigned char c;
+-+
+-+    addr >>=3D 2;
+-+
+-+    switch (addr) {
+-+    case R_DATA:
+-+        if (s->chr) {
+-+            c =3D value & 0xFF;
+-+            /*
+-+             * We do not decrement the write fifo,
+-+             * we "tranmsmit" instanteniously, CONTROL_WI always assert=
+ed
+-+             */
+-+            s->jcontrol |=3D CONTROL_WI;
+-+            s->jdata =3D c;
+-+            qemu_chr_fe_write(s->chr, &c, 1);
+-+            juart_update_irq(s);
+-+        }
+-+        break;
+-+
+-+    case R_CONTROL:
+-+        /* Only RE and WE are writable */
+-+        value &=3D CONTROL_WMASK;
+-+        s->jcontrol &=3D ~(CONTROL_WMASK);
+-+        s->jcontrol |=3D value;
+-+
+-+        /* Writing 1 to AC clears it to 0 */
+-+        if (value & CONTROL_AC) {
+-+            s->jcontrol &=3D ~CONTROL_AC;
+-+        }
+-+        juart_update_irq(s);
+-+        break;
+-+    }
+-+}
+-+
+-+static void juart_receive(void *opaque, const uint8_t *buf, int size)
+-+{
+-+    int i;
+-+    AlteraJUARTState *s =3D opaque;
+-+
+-+    if (s->rx_fifo_len >=3D FIFO_LENGTH) {
+-+        fprintf(stderr, "WARNING: UART dropped char.\n");
+-+        return;
+-+    }
+-+
+-+    for (i =3D 0; i < size; i++) {
+-+        s->rx_fifo[s->rx_fifo_pos] =3D buf[i];
+-+        s->rx_fifo_pos++;
+-+        s->rx_fifo_pos &=3D (FIFO_LENGTH - 1);
+-+        s->rx_fifo_len++;
+-+    }
+-+    s->jcontrol |=3D CONTROL_RI;
+-+    juart_update_irq(s);
+-+}
+-+
+-+static int juart_can_receive(void *opaque)
+-+{
+-+    AlteraJUARTState *s =3D opaque;
+-+    return FIFO_LENGTH - s->rx_fifo_len;
+-+}
+-+
+-+static void juart_event(void *opaque, int event)
+-+{
+-+}
+-+
+-+static void juart_reset(DeviceState *d)
+-+{
+-+    AlteraJUARTState *s =3D ALTERA_JUART(d);
+-+
+-+    s->jdata =3D 0;
+-+
+-+    /* The number of spaces available in the write FIFO */
+-+    s->jcontrol =3D FIFO_LENGTH << 16;
+-+    s->rx_fifo_pos =3D 0;
+-+    s->rx_fifo_len =3D 0;
+-+}
+-+
+-+static const MemoryRegionOps juart_ops =3D {
+-+    .read =3D juart_read,
+-+    .write =3D juart_write,
+-+    .endianness =3D DEVICE_LITTLE_ENDIAN,
+-+    .valid =3D {
+-+        .min_access_size =3D 4,
+-+        .max_access_size =3D 4
+-+    }
+-+};
+-+
+-+static int altera_juart_init(SysBusDevice *dev)
+-+{
+-+    AlteraJUARTState *s =3D ALTERA_JUART(dev);
+-+
+-+    sysbus_init_irq(dev, &s->irq);
+-+
+-+    memory_region_init_io(&s->mmio,  OBJECT(s), &juart_ops, s,
+-+                          TYPE_ALTERA_JUART, 2 * 4);
+-+    sysbus_init_mmio(dev, &s->mmio);
+-+    qemu_chr_add_handlers(s->chr, juart_can_receive, juart_receive,
+-+                            juart_event, s);
+-+    return 0;
+-+}
+-+
+-+void altera_juart_create(int uart, const hwaddr addr, qemu_irq irq)
+-+{
+-+    DeviceState *dev;
+-+    SysBusDevice *bus;
+-+    CharDriverState *chr;
+-+    const char *chr_name =3D "juart";
+-+    char label[ARRAY_SIZE(chr_name) + 1];
+-+
+-+    dev =3D qdev_create(NULL, TYPE_ALTERA_JUART);
+-+
+-+    if (uart >=3D MAX_SERIAL_PORTS) {
+-+        hw_error("Cannot assign uart %d: QEMU supports only %d ports\n"=
+,
+-+                 uart, MAX_SERIAL_PORTS);
+-+    }
+-+
+-+    chr =3D serial_hds[uart];
+-+    if (!chr) {
+-+        snprintf(label, ARRAY_SIZE(label), "%s%d", chr_name, uart);
+-+        chr =3D qemu_chr_new(label, "null", NULL);
+-+        if (!(chr)) {
+-+            hw_error("Can't assign serial port to altera juart%d.\n", u=
+art);
+-+        }
+-+    }
+-+
+-+    qdev_prop_set_chr(dev, "chardev", chr);
+-+    bus =3D SYS_BUS_DEVICE(dev);
+-+    qdev_init_nofail(dev);
+-+
+-+    if (addr !=3D (hwaddr)-1) {
+-+        sysbus_mmio_map(bus, 0, addr);
+-+    }
+-+
+-+    sysbus_connect_irq(bus, 0, irq);
+-+}
+-+
+-+static Property altera_juart_properties[] =3D {
+-+    DEFINE_PROP_CHR("chardev", AlteraJUARTState, chr),
+-+    DEFINE_PROP_END_OF_LIST(),
+-+};
+-+
+-+static const VMStateDescription vmstate_altera_juart =3D {
+-+    .name =3D "altera-juart" ,
+-+    .version_id =3D 1,
+-+    .minimum_version_id =3D 1,
+-+    .fields =3D (VMStateField[]) {
+-+        VMSTATE_UINT32(jdata, AlteraJUARTState),
+-+        VMSTATE_UINT32(jcontrol, AlteraJUARTState),
+-+        VMSTATE_END_OF_LIST()
+-+    }
+-+};
+-+
+-+static void altera_juart_class_init(ObjectClass *klass, void *data)
+-+{
+-+    DeviceClass *dc =3D DEVICE_CLASS(klass);
+-+    SysBusDeviceClass *k =3D SYS_BUS_DEVICE_CLASS(klass);
+-+
+-+    k->init =3D altera_juart_init;
+-+    dc->props =3D altera_juart_properties;
+-+    dc->vmsd =3D &vmstate_altera_juart;
+-+    dc->reset =3D juart_reset;
+-+    dc->desc =3D "Altera JTAG UART";
+-+}
+-+
+-+static const TypeInfo altera_juart_info =3D {
+-+    .name          =3D TYPE_ALTERA_JUART,
+-+    .parent        =3D TYPE_SYS_BUS_DEVICE,
+-+    .instance_size =3D sizeof(AlteraJUARTState),
+-+    .class_init    =3D altera_juart_class_init,
+-+};
+-+
+-+static void altera_juart_register(void)
+-+{
+-+    type_register_static(&altera_juart_info);
+-+}
+-+
+-+type_init(altera_juart_register)
+-diff --git a/hw/intc/Makefile.objs b/hw/intc/Makefile.objs
+-index 0e47f0f..43f8076 100644
+---- a/hw/intc/Makefile.objs
+-+++ b/hw/intc/Makefile.objs
+-@@ -34,3 +34,4 @@ obj-$(CONFIG_ALLWINNER_A10_PIC) +=3D allwinner-a10-pic=
+.o
+- obj-$(CONFIG_ASPEED_SOC) +=3D aspeed_vic.o
+- obj-$(CONFIG_ARM_GIC) +=3D arm_gicv3_cpuif.o
+- obj-$(CONFIG_MIPS_CPS) +=3D mips_gic.o
+-+obj-$(CONFIG_NIOS2) +=3D nios2_iic.o
+-diff --git a/hw/intc/nios2_iic.c b/hw/intc/nios2_iic.c
+-new file mode 100644
+-index 0000000..9e1e100
+---- /dev/null
+-+++ b/hw/intc/nios2_iic.c
+-@@ -0,0 +1,188 @@
+-+/*
+-+ * QEMU Altera Internal Interrupt Controller.
+-+ *
+-+ * Copyright (c) 2012 Chris Wulff <crwulff@gmail.com>
+-+ * Copyright (c) 2016 Intel Corporation.
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Lesser General Public
+-+ * License as published by the Free Software Foundation; either
+-+ * version 2.1 of the License, or (at your option) any later version.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ * Lesser General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Lesser General Public
+-+ * License along with this library; if not, see
+-+ * <http://www.gnu.org/licenses/lgpl-2.1.html>
+-+ */
+-+
+-+#include "qemu/osdep.h"
+-+#include "qemu-common.h"
+-+#include "qapi/error.h"
+-+
+-+#include "hw/sysbus.h"
+-+#include "cpu.h"
+-+#include "hw/nios2/nios2_iic.h"
+-+
+-+#define TYPE_ALTERA_IIC "altera,iic"
+-+#define ALTERA_IIC(obj) \
+-+    OBJECT_CHECK(AlteraIIC, (obj), TYPE_ALTERA_IIC)
+-+
+-+typedef struct AlteraIIC {
+-+    SysBusDevice  parent_obj;
+-+    void         *cpu;
+-+    qemu_irq      parent_irq;
+-+    uint32_t      irqs;
+-+} AlteraIIC;
+-+
+-+/*
+-+ * When the internal interrupt controller is implemented, a peripheral
+-+ * device can request a hardware interrupt by asserting one of the Nios=
+ II
+-+ * processor=E2=80=99s 32 interrupt-request inputs, irq0 through irq31.=
+ A hardware
+-+ * interrupt is generated if and only if all three of these conditions =
+are
+-+ * true:
+-+ *  1.    The PIE bit of the status control register is one.
+-+ *  2.    An interrupt-request input, irq n, is asserted.
+-+ *  3.    The corresponding bit n of the ienable control register is on=
+e
+-+
+-+ * ipending register:
+-+ * A value of one in bit n means that the corresponding irq n input is
+-+ * asserted and enabled in the ienable register.
+-+ */
+-+
+-+static void update_irq(AlteraIIC *pv)
+-+{
+-+    CPUNios2State *env =3D &((Nios2CPU *)(pv->cpu))->env;
+-+
+-+    if ((env->regs[CR_STATUS] & CR_STATUS_PIE) =3D=3D 0) {
+-+        qemu_irq_lower(pv->parent_irq);
+-+        return;
+-+    }
+-+
+-+    if (env->regs[CR_IPENDING]) {
+-+        qemu_irq_raise(pv->parent_irq);
+-+    } else {
+-+        qemu_irq_lower(pv->parent_irq);
+-+    }
+-+}
+-+
+-+/* Emulate the CR_IPENDING register */
+-+static void irq_handler(void *opaque, int irq, int level)
+-+{
+-+    AlteraIIC *s =3D opaque;
+-+    CPUNios2State *env =3D &((Nios2CPU *)(s->cpu))->env;
+-+
+-+    /* Keep track of IRQ lines states */
+-+    s->irqs &=3D ~(1 << irq);
+-+    s->irqs |=3D !!level << irq;
+-+    env->regs[CR_IPENDING] =3D env->regs[CR_IENABLE] & s->irqs;
+-+    update_irq(s);
+-+}
+-+
+-+/* This routine must be called when CR_IENABLE is modified */
+-+void nios2_iic_update_cr_ienable(DeviceState *d)
+-+{
+-+    /* Modify the IPENDING register */
+-+    AlteraIIC *s =3D ALTERA_IIC(d);
+-+    CPUNios2State *env =3D &((Nios2CPU *)(s->cpu))->env;
+-+    env->regs[CR_IPENDING] =3D env->regs[CR_IENABLE] & s->irqs;
+-+    update_irq(s);
+-+}
+-+
+-+/*
+-+ * This routine must be called when CR_STATUS is modified,
+-+ * in particular the bit CR_STATUS_PIE
+-+ */
+-+void nios2_iic_update_cr_status(DeviceState *d)
+-+{
+-+    AlteraIIC *s =3D ALTERA_IIC(d);
+-+    update_irq(s);
+-+}
+-+
+-+static void cpu_irq_handler(void *opaque, int irq, int level)
+-+{
+-+    Nios2CPU *cpu =3D opaque;
+-+    CPUState *cs =3D CPU(cpu);
+-+
+-+    int type =3D irq ? CPU_INTERRUPT_NMI : CPU_INTERRUPT_HARD;
+-+
+-+    if (level) {
+-+        cpu_interrupt(cs, type);
+-+    } else {
+-+        cpu_reset_interrupt(cs, type);
+-+    }
+-+}
+-+
+-+static inline DeviceState *altera_pic_init(Nios2CPU *cpu, qemu_irq cpu_=
+irq)
+-+{
+-+    DeviceState *dev;
+-+    SysBusDevice *d;
+-+
+-+    dev =3D qdev_create(NULL, "altera,iic");
+-+    qdev_prop_set_ptr(dev, "cpu", cpu);
+-+    qdev_init_nofail(dev);
+-+    d =3D SYS_BUS_DEVICE(dev);
+-+    sysbus_connect_irq(d, 0, cpu_irq);
+-+
+-+    return dev;
+-+}
+-+
+-+void nios2_iic_create(Nios2CPU *cpu)
+-+{
+-+    qemu_irq *cpu_irq;
+-+
+-+    /* Create irq lines */
+-+    cpu_irq =3D qemu_allocate_irqs(cpu_irq_handler, cpu, 2);
+-+    cpu->env.pic_state =3D altera_pic_init(cpu, *cpu_irq);
+-+}
+-+
+-+static void altera_iic_init(Object *obj)
+-+{
+-+    AlteraIIC *pv =3D ALTERA_IIC(obj);
+-+
+-+    qdev_init_gpio_in(DEVICE(pv), irq_handler, 32);
+-+    sysbus_init_irq(SYS_BUS_DEVICE(obj), &pv->parent_irq);
+-+}
+-+
+-+static Property altera_iic_properties[] =3D {
+-+    DEFINE_PROP_PTR("cpu", AlteraIIC, cpu),
+-+    DEFINE_PROP_END_OF_LIST(),
+-+};
+-+
+-+static void altera_iic_realize(DeviceState *dev, Error **errp)
+-+{
+-+    struct AlteraIIC *pv =3D ALTERA_IIC(dev);
+-+
+-+    if (!pv->cpu) {
+-+        error_setg(errp, "altera,iic: CPU not connected");
+-+        return;
+-+    }
+-+}
+-+
+-+static void altera_iic_class_init(ObjectClass *klass, void *data)
+-+{
+-+    DeviceClass *dc =3D DEVICE_CLASS(klass);
+-+
+-+    dc->props =3D altera_iic_properties;
+-+    /* Reason: pointer property "cpu" */
+-+    dc->cannot_instantiate_with_device_add_yet =3D true;
+-+    dc->realize =3D altera_iic_realize;
+-+}
+-+
+-+static TypeInfo altera_iic_info =3D {
+-+    .name          =3D "altera,iic",
+-+    .parent        =3D TYPE_SYS_BUS_DEVICE,
+-+    .instance_size =3D sizeof(AlteraIIC),
+-+    .instance_init =3D altera_iic_init,
+-+    .class_init    =3D altera_iic_class_init,
+-+};
+-+
+-+static void altera_iic_register(void)
+-+{
+-+    type_register_static(&altera_iic_info);
+-+}
+-+
+-+type_init(altera_iic_register)
+-diff --git a/hw/nios2/10m50_devboard.c b/hw/nios2/10m50_devboard.c
+-new file mode 100644
+-index 0000000..dcdc6b9
+---- /dev/null
+-+++ b/hw/nios2/10m50_devboard.c
+-@@ -0,0 +1,113 @@
+-+/*
+-+ * Altera 10M50 Nios2 GHRD
+-+ *
+-+ * Copyright (c) 2016 Marek Vasut <marek.vasut@gmail.com>
+-+ *
+-+ * Based on LabX device code
+-+ *
+-+ * Copyright (c) 2012 Chris Wulff <crwulff@gmail.com>
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Lesser General Public
+-+ * License as published by the Free Software Foundation; either
+-+ * version 2.1 of the License, or (at your option) any later version.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ * Lesser General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Lesser General Public
+-+ * License along with this library; if not, see
+-+ * <http://www.gnu.org/licenses/lgpl-2.1.html>
+-+ */
+-+
+-+#include "qemu/osdep.h"
+-+#include "qapi/error.h"
+-+#include "qemu-common.h"
+-+#include "cpu.h"
+-+
+-+#include "hw/sysbus.h"
+-+#include "hw/hw.h"
+-+#include "hw/char/serial.h"
+-+#include "sysemu/sysemu.h"
+-+#include "hw/boards.h"
+-+#include "exec/memory.h"
+-+#include "exec/address-spaces.h"
+-+#include "qemu/config-file.h"
+-+#include "hw/nios2/nios2_iic.h"
+-+#include "hw/nios2/altera.h"
+-+
+-+#include "boot.h"
+-+
+-+#define BINARY_DEVICE_TREE_FILE		"10m50-devboard.dtb"
+-+
+-+static void nios2_10m50_ghrd_init(MachineState *machine)
+-+{
+-+    Nios2CPU *cpu;
+-+
+-+    MemoryRegion *address_space_mem =3D get_system_memory();
+-+    MemoryRegion *phys_tcm =3D g_new(MemoryRegion, 1);
+-+    MemoryRegion *phys_tcm_alias =3D g_new(MemoryRegion, 1);
+-+    MemoryRegion *phys_ram =3D g_new(MemoryRegion, 1);
+-+    MemoryRegion *phys_ram_alias =3D g_new(MemoryRegion, 1);
+-+    ram_addr_t tcm_base =3D 0x0;
+-+    ram_addr_t tcm_size =3D 0x1000;    /* 1 kiB, but QEMU limit is 4 ki=
+B */
+-+    ram_addr_t ram_base =3D 0x08000000;
+-+    ram_addr_t ram_size =3D 0x08000000;
+-+    qemu_irq irq[32];
+-+    int i;
+-+
+-+    /* Physical TCM (tb_ram_1k) with alias at 0xc0000000 */
+-+    memory_region_init_ram(phys_tcm, NULL, "nios2.tcm", tcm_size, &erro=
+r_abort);
+-+    memory_region_init_alias(phys_tcm_alias, NULL, "nios2.tcm.alias",
+-+                             phys_tcm, 0, tcm_size);
+-+    vmstate_register_ram_global(phys_tcm);
+-+    memory_region_add_subregion(address_space_mem, tcm_base, phys_tcm);
+-+    memory_region_add_subregion(address_space_mem, 0xc0000000 + tcm_bas=
+e,
+-+                                phys_tcm_alias);
+-+
+-+    /* Physical DRAM with alias at 0xc0000000 */
+-+    memory_region_init_ram(phys_ram, NULL, "nios2.ram", ram_size, &erro=
+r_abort);
+-+    memory_region_init_alias(phys_ram_alias, NULL, "nios2.ram.alias",
+-+                             phys_ram, 0, ram_size);
+-+    vmstate_register_ram_global(phys_ram);
+-+    memory_region_add_subregion(address_space_mem, ram_base, phys_ram);
+-+    memory_region_add_subregion(address_space_mem, 0xc0000000 + ram_bas=
+e,
+-+                                phys_ram_alias);
+-+
+-+    /* Create CPU -- FIXME */
+-+    cpu =3D cpu_nios2_init("nios2");
+-+
+-+    nios2_iic_create(cpu);
+-+    for (i =3D 0; i < 32; i++) {
+-+        irq[i] =3D qdev_get_gpio_in(cpu->env.pic_state, i);
+-+    }
+-+
+-+    /* Register: Altera 16550 UART */
+-+    serial_mm_init(address_space_mem, 0xf8001600, 2, irq[1], 115200,
+-+                   serial_hds[0], DEVICE_NATIVE_ENDIAN);
+-+
+-+    /* Register: Timer sys_clk_timer  */
+-+    altera_timer_create(0xf8001440, irq[0], 75 * 1000000);
+-+
+-+    /* Register: Timer sys_clk_timer_1  */
+-+    altera_timer_create(0xe0000880, irq[5], 75 * 1000000);
+-+
+-+    /* Configure new exception vectors and reset CPU for it to take eff=
+ect. */
+-+    cpu->env.reset_addr =3D 0xd4000000;
+-+    cpu->env.exception_addr =3D 0xc8000120;
+-+    cpu->env.fast_tlb_miss_addr =3D 0xc0000100;
+-+
+-+    nios2_load_kernel(cpu, ram_base, ram_size, machine->initrd_filename=
+,
+-+                      BINARY_DEVICE_TREE_FILE, NULL);
+-+}
+-+
+-+static void nios2_10m50_ghrd_machine_init(struct MachineClass *mc)
+-+{
+-+    mc->desc =3D "Altera 10M50 GHRD Nios II design";
+-+    mc->init =3D nios2_10m50_ghrd_init;
+-+    mc->is_default =3D 1;
+-+}
+-+
+-+DEFINE_MACHINE("10m50-ghrd", nios2_10m50_ghrd_machine_init);
+-diff --git a/hw/nios2/Makefile.objs b/hw/nios2/Makefile.objs
+-new file mode 100644
+-index 0000000..13b3919
+---- /dev/null
+-+++ b/hw/nios2/Makefile.objs
+-@@ -0,0 +1,2 @@
+-+obj-y =3D boot.o 10m50_devboard.o
+-+obj-y +=3D altera_10m50_zephyr.o
+-diff --git a/hw/nios2/altera_10m50_zephyr.c b/hw/nios2/altera_10m50_zeph=
+yr.c
+-new file mode 100644
+-index 0000000..e224532
+---- /dev/null
+-+++ b/hw/nios2/altera_10m50_zephyr.c
+-@@ -0,0 +1,153 @@
+-+/*
+-+ * Copyright (c) 2016 Intel Corporation
+-+ *
+-+ * This program is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU General Public License
+-+ * as published by the Free Software Foundation; either version
+-+ * 2 of the License, or (at your option) any later version.
+-+ *
+-+ * You should have received a copy of the GNU General Public License al=
+ong
+-+ * with this program; if not, see <http://www.gnu.org/licenses/>.
+-+ */
+-+
+-+#include "qemu/osdep.h"
+-+#include "qapi/error.h"
+-+#include "qemu/error-report.h"
+-+#include "cpu.h"
+-+#include "hw/sysbus.h"
+-+#include "hw/hw.h"
+-+#include "hw/block/flash.h"
+-+#include "sysemu/sysemu.h"
+-+#include "hw/boards.h"
+-+#include "hw/loader.h"
+-+#include "elf.h"
+-+#include "exec/address-spaces.h"
+-+#include "hw/nios2/altera.h"
+-+#include "hw/nios2/nios2_iic.h"
+-+
+-+#define DEBUG
+-+
+-+#ifdef DEBUG
+-+# define DPRINTF(format, ...)     printf(format, ## __VA_ARGS__)
+-+#else
+-+# define DPRINTF(format, ...)     do { } while (0)
+-+#endif
+-+
+-+static struct {
+-+    uint32_t bootstrap_pc;
+-+} boot_info_zephyr;
+-+
+-+static void main_cpu_reset(void *opaque)
+-+{
+-+    Nios2CPU *cpu =3D opaque;
+-+    CPUNios2State *env =3D &cpu->env;
+-+
+-+    cpu_reset(CPU(cpu));
+-+    env->regs[R_PC] =3D boot_info_zephyr.bootstrap_pc;
+-+}
+-+
+-+#define ROM_BASE 0x00000000
+-+#define ROM_SIZE 32
+-+
+-+#define RAM_BASE 0x400000
+-+#define RAM_SIZE 262144
+-+
+-+#define TIMER_0_BASE 0x440200
+-+#define TIMER_0_FREQ 50000000
+-+#define TIMER_0_IRQ 2
+-+
+-+#define JTAG_UART_0_BASE 0x201000
+-+#define JTAG_UART_0_IRQ  0
+-+
+-+#define ALT_CPU_EXCEPTION_ADDR  0x00400020
+-+#define ALT_CPU_RESET_ADDR      0x00000000
+-+
+-+static void altera_10m50_zephyr_init(MachineState *machine)
+-+{
+-+    const char *kernel_filename;
+-+    MemoryRegion *sysmem =3D get_system_memory();
+-+    Nios2CPU *cpu;
+-+    int i;
+-+    QemuOpts *machine_opts;
+-+    int kernel_size;
+-+    qemu_irq irq[32];
+-+
+-+    MemoryRegion *rom =3D g_new(MemoryRegion, 1);
+-+    MemoryRegion *ram =3D g_new(MemoryRegion, 1);
+-+
+-+    cpu =3D NIOS2_CPU(object_new(TYPE_NIOS2_CPU));
+-+    object_property_set_bool(OBJECT(cpu), false, "mmu_present",
+-+                             &error_abort);
+-+
+-+    object_property_set_bool(OBJECT(cpu), true, "realized", &error_abor=
+t);
+-+    machine_opts =3D qemu_get_machine_opts();
+-+    kernel_filename =3D qemu_opt_get(machine_opts, "kernel");
+-+
+-+    memory_region_init_ram(rom, NULL, "nios2.rom", ROM_SIZE, &error_fat=
+al);
+-+    vmstate_register_ram_global(rom);
+-+    memory_region_set_readonly(rom, true);
+-+    memory_region_add_subregion(sysmem, ROM_BASE, rom);
+-+
+-+    memory_region_init_ram(ram, NULL, "nios2.ram", RAM_SIZE, &error_fat=
+al);
+-+    vmstate_register_ram_global(ram);
+-+    memory_region_add_subregion(sysmem, RAM_BASE, ram);
+-+
+-+    cpu->env.reset_addr =3D ALT_CPU_RESET_ADDR;
+-+    cpu->env.exception_addr =3D ALT_CPU_EXCEPTION_ADDR;
+-+    cpu->env.fast_tlb_miss_addr  =3D 0;
+-+
+-+    DPRINTF("\tcpu->env.reset_addr: \t\t%0x\n", cpu->env.reset_addr);
+-+    DPRINTF("\tcpu->env.exception_addr: \t%0x\n", cpu->env.exception_ad=
+dr);
+-+
+-+    nios2_iic_create(cpu);
+-+
+-+    /* Nios2 IIC has 32 interrupt-request inputs*/
+-+    for (i =3D 0; i < 32; i++) {
+-+        irq[i] =3D qdev_get_gpio_in(cpu->env.pic_state, i);
+-+    }
+-+
+-+    altera_juart_create(0, JTAG_UART_0_BASE, irq[JTAG_UART_0_IRQ]);
+-+    altera_timer_create(TIMER_0_BASE, irq[TIMER_0_IRQ], TIMER_0_FREQ);
+-+
+-+    cpu->env.reset_addr =3D ALT_CPU_RESET_ADDR;
+-+    cpu->env.exception_addr =3D ALT_CPU_EXCEPTION_ADDR;
+-+    cpu->env.fast_tlb_miss_addr =3D ALT_CPU_RESET_ADDR;
+-+
+-+    if (kernel_filename) {
+-+        uint64_t entry;
+-+
+-+        /* Boots a kernel elf binary.  */
+-+        kernel_size =3D load_elf(kernel_filename, NULL, NULL,
+-+                               &entry, NULL, NULL,
+-+                               0, EM_ALTERA_NIOS2, 0, 0);
+-+
+-+        boot_info_zephyr.bootstrap_pc =3D entry;
+-+
+-+        /* Not an ELF image, try a RAW image.  */
+-+        if (kernel_size < 0) {
+-+            hwaddr uentry, loadaddr;
+-+
+-+            kernel_size =3D load_uimage(kernel_filename, &uentry,
+-+                    &loadaddr, 0, NULL, NULL);
+-+            boot_info_zephyr.bootstrap_pc =3D uentry;
+-+        }
+-+
+-+        if (kernel_size < 0) {
+-+            fprintf(stderr, "qemu: could not load kernel '%s'\n",
+-+                    kernel_filename);
+-+            exit(1);
+-+        }
+-+    }
+-+
+-+    qemu_register_reset(main_cpu_reset, cpu);
+-+}
+-+
+-+static void altera_10m50_zephyr_machine_init(MachineClass *mc)
+-+{
+-+    mc->desc =3D "Altera 10m50 for Zephyr.";
+-+    mc->init =3D altera_10m50_zephyr_init;
+-+    mc->is_default =3D 0;
+-+}
+-+
+-+DEFINE_MACHINE("altera_10m50_zephyr", altera_10m50_zephyr_machine_init)
+-+
+-diff --git a/hw/nios2/boot.c b/hw/nios2/boot.c
+-new file mode 100644
+-index 0000000..bd26565
+---- /dev/null
+-+++ b/hw/nios2/boot.c
+-@@ -0,0 +1,223 @@
+-+/*
+-+ * Nios2 kernel loader
+-+ *
+-+ * Copyright (c) 2016 Marek Vasut <marek.vasut@gmail.com>
+-+ *
+-+ * Based on microblaze kernel loader
+-+ *
+-+ * Copyright (c) 2012 Peter Crosthwaite <peter.crosthwaite@petalogix.co=
+m>
+-+ * Copyright (c) 2012 PetaLogix
+-+ * Copyright (c) 2009 Edgar E. Iglesias.
+-+ *
+-+ * Permission is hereby granted, free of charge, to any person obtainin=
+g a copy
+-+ * of this software and associated documentation files (the "Software")=
+, to deal
+-+ * in the Software without restriction, including without limitation th=
+e rights
+-+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or=
+ sell
+-+ * copies of the Software, and to permit persons to whom the Software i=
+s
+-+ * furnished to do so, subject to the following conditions:
+-+ *
+-+ * The above copyright notice and this permission notice shall be inclu=
+ded in
+-+ * all copies or substantial portions of the Software.
+-+ *
+-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPR=
+ESS OR
+-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABIL=
+ITY,
+-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SH=
+ALL
+-+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR=
+ OTHER
+-+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARIS=
+ING FROM,
+-+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALIN=
+GS IN
+-+ * THE SOFTWARE.
+-+ */
+-+
+-+#include "qemu/osdep.h"
+-+#include "qemu-common.h"
+-+#include "cpu.h"
+-+#include "qemu/option.h"
+-+#include "qemu/config-file.h"
+-+#include "qemu/error-report.h"
+-+#include "qemu-common.h"
+-+#include "sysemu/device_tree.h"
+-+#include "sysemu/sysemu.h"
+-+#include "hw/loader.h"
+-+#include "elf.h"
+-+#include "qemu/cutils.h"
+-+
+-+#include "boot.h"
+-+
+-+#define NIOS2_MAGIC    0x534f494e
+-+
+-+static struct nios2_boot_info {
+-+    void (*machine_cpu_reset)(Nios2CPU *);
+-+    uint32_t bootstrap_pc;
+-+    uint32_t cmdline;
+-+    uint32_t initrd_start;
+-+    uint32_t initrd_end;
+-+    uint32_t fdt;
+-+} boot_info;
+-+
+-+static void main_cpu_reset(void *opaque)
+-+{
+-+    Nios2CPU *cpu =3D opaque;
+-+    CPUState *cs =3D CPU(cpu);
+-+    CPUNios2State *env =3D &cpu->env;
+-+
+-+    cpu_reset(CPU(cpu));
+-+
+-+    env->regs[R_ARG0] =3D NIOS2_MAGIC;
+-+    env->regs[R_ARG1] =3D boot_info.initrd_start;
+-+    env->regs[R_ARG2] =3D boot_info.fdt;
+-+    env->regs[R_ARG3] =3D boot_info.cmdline;
+-+
+-+    cpu_set_pc(cs, boot_info.bootstrap_pc);
+-+    if (boot_info.machine_cpu_reset) {
+-+        boot_info.machine_cpu_reset(cpu);
+-+    }
+-+}
+-+
+-+static int nios2_load_dtb(struct nios2_boot_info bi, const uint32_t ram=
+size,
+-+                          const char *kernel_cmdline, const char *dtb_f=
+ilename)
+-+{
+-+    int fdt_size;
+-+    void *fdt =3D NULL;
+-+    int r;
+-+
+-+    if (dtb_filename) {
+-+        fdt =3D load_device_tree(dtb_filename, &fdt_size);
+-+    }
+-+    if (!fdt) {
+-+        return 0;
+-+    }
+-+
+-+    if (kernel_cmdline) {
+-+        r =3D qemu_fdt_setprop_string(fdt, "/chosen", "bootargs",
+-+                                    kernel_cmdline);
+-+        if (r < 0) {
+-+            fprintf(stderr, "couldn't set /chosen/bootargs\n");
+-+        }
+-+    }
+-+
+-+    if (bi.initrd_start) {
+-+        qemu_fdt_setprop_cell(fdt, "/chosen", "linux,initrd-start",
+-+                              bi.initrd_start);
+-+
+-+        qemu_fdt_setprop_cell(fdt, "/chosen", "linux,initrd-end",
+-+                              bi.initrd_end);
+-+    }
+-+
+-+    cpu_physical_memory_write(bi.fdt, fdt, fdt_size);
+-+    return fdt_size;
+-+}
+-+
+-+static uint64_t translate_kernel_address(void *opaque, uint64_t addr)
+-+{
+-+    return addr - 0xc0000000LL;
+-+}
+-+
+-+void nios2_load_kernel(Nios2CPU *cpu, hwaddr ddr_base,
+-+                            uint32_t ramsize,
+-+                            const char *initrd_filename,
+-+                            const char *dtb_filename,
+-+                            void (*machine_cpu_reset)(Nios2CPU *))
+-+{
+-+    QemuOpts *machine_opts;
+-+    const char *kernel_filename;
+-+    const char *kernel_cmdline;
+-+    const char *dtb_arg;
+-+    char *filename =3D NULL;
+-+
+-+    machine_opts =3D qemu_get_machine_opts();
+-+    kernel_filename =3D qemu_opt_get(machine_opts, "kernel");
+-+    kernel_cmdline =3D qemu_opt_get(machine_opts, "append");
+-+    dtb_arg =3D qemu_opt_get(machine_opts, "dtb");
+-+    /* default to pcbios dtb as passed by machine_init */
+-+    if (!dtb_arg) {
+-+        filename =3D qemu_find_file(QEMU_FILE_TYPE_BIOS, dtb_filename);
+-+    }
+-+
+-+    boot_info.machine_cpu_reset =3D machine_cpu_reset;
+-+    qemu_register_reset(main_cpu_reset, cpu);
+-+
+-+    if (kernel_filename) {
+-+        int kernel_size, fdt_size;
+-+        uint64_t entry, low, high;
+-+        uint32_t base32;
+-+        int big_endian =3D 0;
+-+
+-+#ifdef TARGET_WORDS_BIGENDIAN
+-+        big_endian =3D 1;
+-+#endif
+-+
+-+        /* Boots a kernel elf binary. */
+-+        kernel_size =3D load_elf(kernel_filename, NULL, NULL,
+-+                               &entry, &low, &high,
+-+                               big_endian, EM_ALTERA_NIOS2, 0, 0);
+-+        base32 =3D entry;
+-+        if (base32 =3D=3D 0xc0000000) {
+-+            kernel_size =3D load_elf(kernel_filename, translate_kernel_=
+address,
+-+                                   NULL, &entry, NULL, NULL,
+-+                                   big_endian, EM_ALTERA_NIOS2, 0, 0);
+-+        }
+-+
+-+        /* Always boot into physical ram. */
+-+        boot_info.bootstrap_pc =3D ddr_base + 0xc0000000 + (entry & 0x0=
+7ffffff);
+-+
+-+        /* If it wasn't an ELF image, try an u-boot image. */
+-+        if (kernel_size < 0) {
+-+            hwaddr uentry, loadaddr;
+-+
+-+            kernel_size =3D load_uimage(kernel_filename, &uentry, &load=
+addr, 0,
+-+                                      NULL, NULL);
+-+            boot_info.bootstrap_pc =3D uentry;
+-+            high =3D loadaddr + kernel_size;
+-+        }
+-+
+-+        /* Not an ELF image nor an u-boot image, try a RAW image. */
+-+        if (kernel_size < 0) {
+-+            kernel_size =3D load_image_targphys(kernel_filename, ddr_ba=
+se,
+-+                                              ram_size);
+-+            boot_info.bootstrap_pc =3D ddr_base;
+-+            high =3D ddr_base + kernel_size;
+-+        }
+-+
+-+        high =3D ROUND_UP(high, 1024 * 1024);
+-+
+-+        /* If initrd is available, it goes after the kernel, aligned to=
+ 1M. */
+-+        if (initrd_filename) {
+-+            int initrd_size;
+-+            uint32_t initrd_offset;
+-+
+-+            boot_info.initrd_start =3D high;
+-+            initrd_offset =3D boot_info.initrd_start - ddr_base;
+-+
+-+            initrd_size =3D load_ramdisk(initrd_filename,
+-+                                       boot_info.initrd_start,
+-+                                       ram_size - initrd_offset);
+-+            if (initrd_size < 0) {
+-+                initrd_size =3D load_image_targphys(initrd_filename,
+-+                                                  boot_info.initrd_star=
+t,
+-+                                                  ram_size - initrd_off=
+set);
+-+            }
+-+            if (initrd_size < 0) {
+-+                error_report("qemu: could not load initrd '%s'",
+-+                             initrd_filename);
+-+                exit(EXIT_FAILURE);
+-+            }
+-+            high +=3D initrd_size;
+-+        }
+-+	high =3D ROUND_UP(high, 4);
+-+        boot_info.initrd_end =3D high;
+-+
+-+        /* Device tree must be placed right after initrd (if available)=
+ */
+-+        boot_info.fdt =3D high;
+-+        fdt_size =3D nios2_load_dtb(boot_info, ram_size, kernel_cmdline=
+,
+-+                                  /* Preference a -dtb argument */
+-+                                  dtb_arg ? dtb_arg : filename);
+-+        high +=3D fdt_size;
+-+
+-+        /* Kernel command is at the end, 4k aligned. */
+-+        boot_info.cmdline =3D ROUND_UP(high, 4096);
+-+        if (kernel_cmdline && strlen(kernel_cmdline)) {
+-+            pstrcpy_targphys("cmdline", boot_info.cmdline, 256, kernel_=
+cmdline);
+-+        }
+-+    }
+-+    g_free(filename);
+-+}
+-diff --git a/hw/nios2/boot.h b/hw/nios2/boot.h
+-new file mode 100644
+-index 0000000..edf3046
+---- /dev/null
+-+++ b/hw/nios2/boot.h
+-@@ -0,0 +1,11 @@
+-+#ifndef __NIOS2_BOOT__
+-+#define __NIOS2_BOOT__
+-+
+-+#include "hw/hw.h"
+-+#include "cpu.h"
+-+
+-+void nios2_load_kernel(Nios2CPU *cpu, hwaddr ddr_base, uint32_t ramsize=
+,
+-+                       const char *initrd_filename, const char *dtb_fil=
+ename,
+-+                       void (*machine_cpu_reset)(Nios2CPU *));
+-+
+-+#endif /* __NIOS2_BOOT__ */
+-diff --git a/hw/timer/Makefile.objs b/hw/timer/Makefile.objs
+-index 003c14f..1aaa731 100644
+---- a/hw/timer/Makefile.objs
+-+++ b/hw/timer/Makefile.objs
+-@@ -18,6 +18,7 @@ common-obj-$(CONFIG_IMX) +=3D imx_gpt.o
+- common-obj-$(CONFIG_LM32) +=3D lm32_timer.o
+- common-obj-$(CONFIG_MILKYMIST) +=3D milkymist-sysctl.o
+-=20
+-+obj-$(CONFIG_ALTERA_TIMER) +=3D altera_timer.o
+- obj-$(CONFIG_EXYNOS4) +=3D exynos4210_mct.o
+- obj-$(CONFIG_EXYNOS4) +=3D exynos4210_pwm.o
+- obj-$(CONFIG_EXYNOS4) +=3D exynos4210_rtc.o
+-diff --git a/hw/timer/altera_timer.c b/hw/timer/altera_timer.c
+-new file mode 100644
+-index 0000000..c4a3a5d
+---- /dev/null
+-+++ b/hw/timer/altera_timer.c
+-@@ -0,0 +1,244 @@
+-+/*
+-+ * QEMU model of the Altera timer.
+-+ *
+-+ * Copyright (c) 2012 Chris Wulff <crwulff@gmail.com>
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Lesser General Public
+-+ * License as published by the Free Software Foundation; either
+-+ * version 2.1 of the License, or (at your option) any later version.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ * Lesser General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Lesser General Public
+-+ * License along with this library; if not, see
+-+ * <http://www.gnu.org/licenses/lgpl-2.1.html>
+-+ */
+-+
+-+#include "qemu/osdep.h"
+-+#include "qemu-common.h"
+-+#include "qapi/error.h"
+-+
+-+#include "hw/sysbus.h"
+-+#include "sysemu/sysemu.h"
+-+#include "hw/ptimer.h"
+-+#include "hw/nios2/altera.h"
+-+
+-+#define R_STATUS      0
+-+#define R_CONTROL     1
+-+#define R_PERIODL     2
+-+#define R_PERIODH     3
+-+#define R_SNAPL       4
+-+#define R_SNAPH       5
+-+#define R_MAX         6
+-+
+-+#define STATUS_TO     0x0001
+-+#define STATUS_RUN    0x0002
+-+
+-+#define CONTROL_ITO   0x0001
+-+#define CONTROL_CONT  0x0002
+-+#define CONTROL_START 0x0004
+-+#define CONTROL_STOP  0x0008
+-+
+-+#define TYPE_ALTERA_TIMER "ALTR.timer"
+-+#define ALTERA_TIMER(obj) \
+-+    OBJECT_CHECK(AlteraTimer, (obj), TYPE_ALTERA_TIMER)
+-+
+-+typedef struct AlteraTimer {
+-+    SysBusDevice  busdev;
+-+    MemoryRegion  mmio;
+-+    qemu_irq      irq;
+-+    uint32_t      freq_hz;
+-+    QEMUBH       *bh;
+-+    ptimer_state *ptimer;
+-+    uint32_t      regs[R_MAX];
+-+} AlteraTimer;
+-+
+-+static inline int timer_irq_state(AlteraTimer *t)
+-+{
+-+    return (t->regs[R_STATUS] & STATUS_TO) &&
+-+           (t->regs[R_CONTROL] & CONTROL_ITO);
+-+}
+-+
+-+static uint64_t timer_read(void *opaque, hwaddr addr,
+-+                           unsigned int size)
+-+{
+-+    AlteraTimer *t =3D opaque;
+-+    uint64_t r =3D 0;
+-+
+-+    addr >>=3D 2;
+-+    addr &=3D 0x7;
+-+    switch (addr) {
+-+    case R_CONTROL:
+-+        r =3D t->regs[R_CONTROL] & (CONTROL_ITO | CONTROL_CONT);
+-+        break;
+-+
+-+    default:
+-+        if (addr < ARRAY_SIZE(t->regs)) {
+-+            r =3D t->regs[addr];
+-+        }
+-+        break;
+-+    }
+-+
+-+    return r;
+-+}
+-+
+-+static void timer_write(void *opaque, hwaddr addr,
+-+                        uint64_t val64, unsigned int size)
+-+{
+-+    AlteraTimer *t =3D opaque;
+-+    uint64_t tvalue;
+-+    uint32_t value =3D val64;
+-+    uint32_t count =3D 0;
+-+    int irqState =3D timer_irq_state(t);
+-+
+-+    addr >>=3D 2;
+-+    addr &=3D 0x7;
+-+    switch (addr) {
+-+    case R_STATUS:
+-+        /* Writing zero clears the timeout */
+-+        t->regs[R_STATUS] &=3D ~STATUS_TO;
+-+        break;
+-+
+-+    case R_CONTROL:
+-+        t->regs[R_CONTROL] =3D value & (CONTROL_ITO | CONTROL_CONT);
+-+        if ((value & CONTROL_START) &&
+-+            !(t->regs[R_STATUS] & STATUS_RUN)) {
+-+            ptimer_run(t->ptimer, 1);
+-+            t->regs[R_STATUS] |=3D STATUS_RUN;
+-+        }
+-+        if ((value & CONTROL_STOP) && (t->regs[R_STATUS] & STATUS_RUN))=
+ {
+-+            ptimer_stop(t->ptimer);
+-+            t->regs[R_STATUS] &=3D ~STATUS_RUN;
+-+        }
+-+        break;
+-+
+-+    case R_PERIODL:
+-+    case R_PERIODH:
+-+        t->regs[addr] =3D value & 0xFFFF;
+-+        if (t->regs[R_STATUS] & STATUS_RUN) {
+-+            ptimer_stop(t->ptimer);
+-+            t->regs[R_STATUS] &=3D ~STATUS_RUN;
+-+        }
+-+        tvalue =3D (t->regs[R_PERIODH] << 16) | t->regs[R_PERIODL];
+-+        ptimer_set_limit(t->ptimer, tvalue + 1, 1);
+-+        break;
+-+
+-+    case R_SNAPL:
+-+    case R_SNAPH:
+-+        count =3D ptimer_get_count(t->ptimer);
+-+        t->regs[R_SNAPL] =3D count & 0xFFFF;
+-+        t->regs[R_SNAPH] =3D (count >> 16) & 0xFFFF;
+-+        break;
+-+
+-+    default:
+-+        break;
+-+    }
+-+
+-+    if (irqState !=3D timer_irq_state(t)) {
+-+        qemu_set_irq(t->irq, timer_irq_state(t));
+-+    }
+-+}
+-+
+-+static const MemoryRegionOps timer_ops =3D {
+-+    .read =3D timer_read,
+-+    .write =3D timer_write,
+-+    .endianness =3D DEVICE_NATIVE_ENDIAN,
+-+    .valid =3D {
+-+        .min_access_size =3D 1,
+-+        .max_access_size =3D 4
+-+    }
+-+};
+-+
+-+static void timer_hit(void *opaque)
+-+{
+-+    AlteraTimer *t =3D opaque;
+-+    const uint64_t tvalue =3D (t->regs[R_PERIODH] << 16) | t->regs[R_PE=
+RIODL];
+-+
+-+    t->regs[R_STATUS] |=3D STATUS_TO;
+-+
+-+    ptimer_stop(t->ptimer);
+-+    ptimer_set_limit(t->ptimer, tvalue + 1, 1);
+-+
+-+    if (t->regs[R_CONTROL] & CONTROL_CONT) {
+-+        ptimer_run(t->ptimer, 1);
+-+    } else {
+-+        t->regs[R_STATUS] &=3D ~STATUS_RUN;
+-+    }
+-+
+-+    qemu_set_irq(t->irq, timer_irq_state(t));
+-+}
+-+
+-+static void altera_timer_realize(DeviceState *dev, Error **errp)
+-+{
+-+    AlteraTimer *t =3D ALTERA_TIMER(dev);
+-+    SysBusDevice *sbd =3D SYS_BUS_DEVICE(dev);
+-+
+-+    assert(t->freq_hz !=3D 0);
+-+
+-+    t->bh =3D qemu_bh_new(timer_hit, t);
+-+    t->ptimer =3D ptimer_init(t->bh);
+-+    ptimer_set_freq(t->ptimer, t->freq_hz);
+-+    ptimer_set_limit(t->ptimer, 0xffffffff, 1);
+-+
+-+    memory_region_init_io(&t->mmio, OBJECT(t), &timer_ops, t,
+-+                          TYPE_ALTERA_TIMER, R_MAX * sizeof(uint32_t));
+-+    sysbus_init_mmio(sbd, &t->mmio);
+-+}
+-+
+-+static void altera_timer_init(Object *obj)
+-+{
+-+    AlteraTimer *t =3D ALTERA_TIMER(obj);
+-+    SysBusDevice *sbd =3D SYS_BUS_DEVICE(obj);
+-+
+-+    sysbus_init_irq(sbd, &t->irq);
+-+}
+-+
+-+void altera_timer_create(const hwaddr addr, qemu_irq irq, uint32_t freq=
+uency)
+-+{
+-+    DeviceState *dev;
+-+    SysBusDevice *bus;
+-+
+-+    dev =3D qdev_create(NULL, TYPE_ALTERA_TIMER);
+-+
+-+    qdev_prop_set_uint32(dev, "clock-frequency", frequency);
+-+    bus =3D SYS_BUS_DEVICE(dev);
+-+    qdev_init_nofail(dev);
+-+
+-+    if (addr !=3D (hwaddr)-1) {
+-+        sysbus_mmio_map(bus, 0, addr);
+-+    }
+-+
+-+    sysbus_connect_irq(bus, 0, irq);
+-+}
+-+
+-+static Property altera_timer_properties[] =3D {
+-+    DEFINE_PROP_UINT32("clock-frequency", AlteraTimer, freq_hz, 0),
+-+    DEFINE_PROP_END_OF_LIST(),
+-+};
+-+
+-+static void altera_timer_class_init(ObjectClass *klass, void *data)
+-+{
+-+    DeviceClass *dc =3D DEVICE_CLASS(klass);
+-+
+-+    dc->realize =3D altera_timer_realize;
+-+    dc->props =3D altera_timer_properties;
+-+}
+-+
+-+static const TypeInfo altera_timer_info =3D {
+-+    .name          =3D TYPE_ALTERA_TIMER,
+-+    .parent        =3D TYPE_SYS_BUS_DEVICE,
+-+    .instance_size =3D sizeof(AlteraTimer),
+-+    .instance_init =3D altera_timer_init,
+-+    .class_init    =3D altera_timer_class_init,
+-+};
+-+
+-+static void altera_timer_register(void)
+-+{
+-+    type_register_static(&altera_timer_info);
+-+}
+-+
+-+type_init(altera_timer_register)
+-diff --git a/include/disas/bfd.h b/include/disas/bfd.h
+-index a112e9c..8271dc0 100644
+---- a/include/disas/bfd.h
+-+++ b/include/disas/bfd.h
+-@@ -222,6 +222,10 @@ enum bfd_architecture
+-   bfd_arch_ia64,      /* HP/Intel ia64 */
+- #define bfd_mach_ia64_elf64    64
+- #define bfd_mach_ia64_elf32    32
+-+  bfd_arch_nios2,	/* Nios II */
+-+#define bfd_mach_nios2          0
+-+#define bfd_mach_nios2r1        1
+-+#define bfd_mach_nios2r2        2
+-   bfd_arch_lm32,       /* Lattice Mico32 */
+- #define bfd_mach_lm32 1
+-   bfd_arch_last
+-@@ -415,6 +419,8 @@ int print_insn_crisv10          (bfd_vma, disassembl=
+e_info*);
+- int print_insn_microblaze       (bfd_vma, disassemble_info*);
+- int print_insn_ia64             (bfd_vma, disassemble_info*);
+- int print_insn_lm32             (bfd_vma, disassemble_info*);
+-+int print_insn_big_nios2        (bfd_vma, disassemble_info*);
+-+int print_insn_little_nios2     (bfd_vma, disassemble_info*);
+-=20
+- #if 0
+- /* Fetch the disassembler for a given BFD, if that support is available=
+.  */
+-diff --git a/include/elf.h b/include/elf.h
+-index 28d448b..557fbfa 100644
+---- a/include/elf.h
+-+++ b/include/elf.h
+-@@ -125,6 +125,8 @@ typedef int64_t  Elf64_Sxword;
+-  */
+- #define EM_S390_OLD     0xA390
+-=20
+-+#define EM_ALTERA_NIOS2 113     /* Altera Nios II soft-core processor *=
+/
+-+
+- #define EM_MICROBLAZE      189
+- #define EM_MICROBLAZE_OLD  0xBAAB
+-=20
+-diff --git a/include/hw/nios2/altera.h b/include/hw/nios2/altera.h
+-new file mode 100644
+-index 0000000..46ebd80
+---- /dev/null
+-+++ b/include/hw/nios2/altera.h
+-@@ -0,0 +1,21 @@
+-+/*
+-+ * Altera emulation
+-+ *
+-+ * Copyright (c) 2016 Intel Corporation.
+-+ *
+-+ * This program is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU General Public License
+-+ * as published by the Free Software Foundation; either version
+-+ * 2 of the License, or (at your option) any later version.
+-+ *
+-+ * You should have received a copy of the GNU General Public License al=
+ong
+-+ * with this program; if not, see <http://www.gnu.org/licenses/>.
+-+ */
+-+
+-+#ifndef ALTERA_H
+-+#define ALTERA_H
+-+
+-+void altera_timer_create(const hwaddr addr, qemu_irq irq, uint32_t freq=
+uency);
+-+void altera_juart_create(int uart, const hwaddr addr, qemu_irq irq);
+-+
+-+#endif /* ALTERA_H */
+-diff --git a/include/hw/nios2/nios2_iic.h b/include/hw/nios2/nios2_iic.h
+-new file mode 100644
+-index 0000000..012c83f
+---- /dev/null
+-+++ b/include/hw/nios2/nios2_iic.h
+-@@ -0,0 +1,11 @@
+-+#ifndef QEMU_HW_NIOS2_IIC_H
+-+#define QEMU_HW_NIOS2_IIC_H
+-+
+-+#include "qemu-common.h"
+-+
+-+void nios2_iic_update_cr_status(DeviceState *d);
+-+void nios2_iic_update_cr_ienable(DeviceState *d);
+-+void nios2_iic_create(Nios2CPU *cpu);
+-+
+-+#endif /* QEMU_HW_NIOS2_IIC_H */
+-+
+-diff --git a/include/sysemu/arch_init.h b/include/sysemu/arch_init.h
+-index c38892f..bcd1253 100644
+---- a/include/sysemu/arch_init.h
+-+++ b/include/sysemu/arch_init.h
+-@@ -23,6 +23,7 @@ enum {
+-     QEMU_ARCH_UNICORE32 =3D (1 << 14),
+-     QEMU_ARCH_MOXIE =3D (1 << 15),
+-     QEMU_ARCH_TRICORE =3D (1 << 16),
+-+    QEMU_ARCH_NIOS2 =3D (1 << 17),
+- };
+-=20
+- extern const uint32_t arch_type;
+-diff --git a/linux-user/nios2/syscall_nr.h b/linux-user/nios2/syscall_nr=
+.h
+-new file mode 100644
+-index 0000000..0939d43
+---- /dev/null
+-+++ b/linux-user/nios2/syscall_nr.h
+-@@ -0,0 +1,330 @@
+-+#define TARGET_NR_io_setup			0
+-+#define TARGET_NR_io_destroy			1
+-+#define TARGET_NR_io_submit			2
+-+#define TARGET_NR_io_cancel			3
+-+#define TARGET_NR_io_getevents			4
+-+#define TARGET_NR_setxattr			5
+-+#define TARGET_NR_lsetxattr			6
+-+#define TARGET_NR_fsetxattr			7
+-+#define TARGET_NR_getxattr			8
+-+#define TARGET_NR_lgetxattr			9
+-+#define TARGET_NR_fgetxattr			10
+-+#define TARGET_NR_listxattr			11
+-+#define TARGET_NR_llistxattr			12
+-+#define TARGET_NR_flistxattr			13
+-+#define TARGET_NR_removexattr			14
+-+#define TARGET_NR_lremovexattr			15
+-+#define TARGET_NR_fremovexattr			16
+-+#define TARGET_NR_getcwd			17
+-+#define TARGET_NR_lookup_dcookie		18
+-+#define TARGET_NR_eventfd2			19
+-+#define TARGET_NR_epoll_create1			20
+-+#define TARGET_NR_epoll_ctl			21
+-+#define TARGET_NR_epoll_pwait			22
+-+#define TARGET_NR_dup				23
+-+#define TARGET_NR_dup3				24
+-+#define TARGET_NR_fcntl64			25
+-+#define TARGET_NR_inotify_init1			26
+-+#define TARGET_NR_inotify_add_watch		27
+-+#define TARGET_NR_inotify_rm_watch		28
+-+#define TARGET_NR_ioctl				29
+-+#define TARGET_NR_ioprio_set			30
+-+#define TARGET_NR_ioprio_get			31
+-+#define TARGET_NR_flock				32
+-+#define TARGET_NR_mknodat			33
+-+#define TARGET_NR_mkdirat			34
+-+#define TARGET_NR_unlinkat			35
+-+#define TARGET_NR_symlinkat			36
+-+#define TARGET_NR_linkat			37
+-+#define TARGET_NR_renameat			38
+-+#define TARGET_NR_umount2			39
+-+#define TARGET_NR_mount				40
+-+#define TARGET_NR_pivot_root			41
+-+#define TARGET_NR_nfsservctl			42
+-+#define TARGET_NR_statfs64			43
+-+#define TARGET_NR_fstatfs64			44
+-+#define TARGET_NR_truncate64			45
+-+#define TARGET_NR_ftruncate64			46
+-+#define TARGET_NR_fallocate			47
+-+#define TARGET_NR_faccessat			48
+-+#define TARGET_NR_chdir				49
+-+#define TARGET_NR_fchdir			50
+-+#define TARGET_NR_chroot			51
+-+#define TARGET_NR_fchmod			52
+-+#define TARGET_NR_fchmodat			53
+-+#define TARGET_NR_fchownat			54
+-+#define TARGET_NR_fchown			55
+-+#define TARGET_NR_openat			56
+-+#define TARGET_NR_close				57
+-+#define TARGET_NR_vhangup			58
+-+#define TARGET_NR_pipe2				59
+-+#define TARGET_NR_quotactl			60
+-+#define TARGET_NR_getdents64			61
+-+#define TARGET_NR_read				63
+-+#define TARGET_NR_write				64
+-+#define TARGET_NR_readv				65
+-+#define TARGET_NR_writev			66
+-+#define TARGET_NR_pread64			67
+-+#define TARGET_NR_pwrite64			68
+-+#define TARGET_NR_preadv			69
+-+#define TARGET_NR_pwritev			70
+-+#define TARGET_NR_sendfile64			71
+-+#define TARGET_NR_pselect6			72
+-+#define TARGET_NR_ppoll				73
+-+#define TARGET_NR_signalfd4			74
+-+#define TARGET_NR_vmsplice			75
+-+#define TARGET_NR_splice			76
+-+#define TARGET_NR_tee				77
+-+#define TARGET_NR_readlinkat			78
+-+#define TARGET_NR_fstatat64			79
+-+#define TARGET_NR_fstat64			80
+-+#define TARGET_NR_sync				81
+-+#define TARGET_NR_fsync				82
+-+#define TARGET_NR_fdatasync			83
+-+#define TARGET_NR_sync_file_range		84
+-+#define TARGET_NR_timerfd_create		85
+-+#define TARGET_NR_timerfd_settime		86
+-+#define TARGET_NR_timerfd_gettime		87
+-+#define TARGET_NR_utimensat			88
+-+#define TARGET_NR_acct				89
+-+#define TARGET_NR_capget			90
+-+#define TARGET_NR_capset			91
+-+#define TARGET_NR_personality			92
+-+#define TARGET_NR_exit				93
+-+#define TARGET_NR_exit_group			94
+-+#define TARGET_NR_waitid			95
+-+#define TARGET_NR_set_tid_address		96
+-+#define TARGET_NR_unshare			97
+-+#define TARGET_NR_futex				98
+-+#define TARGET_NR_set_robust_list		99
+-+#define TARGET_NR_get_robust_list		100
+-+#define TARGET_NR_nanosleep			101
+-+#define TARGET_NR_getitimer			102
+-+#define TARGET_NR_setitimer			103
+-+#define TARGET_NR_kexec_load			104
+-+#define TARGET_NR_init_module			105
+-+#define TARGET_NR_delete_module			106
+-+#define TARGET_NR_timer_create			107
+-+#define TARGET_NR_timer_gettime			108
+-+#define TARGET_NR_timer_getoverrun		109
+-+#define TARGET_NR_timer_settime			110
+-+#define TARGET_NR_timer_delete			111
+-+#define TARGET_NR_clock_settime			112
+-+#define TARGET_NR_clock_gettime			113
+-+#define TARGET_NR_clock_getres			114
+-+#define TARGET_NR_clock_nanosleep		115
+-+#define TARGET_NR_syslog			116
+-+#define TARGET_NR_ptrace			117
+-+#define TARGET_NR_sched_setparam		118
+-+#define TARGET_NR_sched_setscheduler		119
+-+#define TARGET_NR_sched_getscheduler		120
+-+#define TARGET_NR_sched_getparam		121
+-+#define TARGET_NR_sched_setaffinity		122
+-+#define TARGET_NR_sched_getaffinity		123
+-+#define TARGET_NR_sched_yield			124
+-+#define TARGET_NR_sched_get_priority_max	125
+-+#define TARGET_NR_sched_get_priority_min	126
+-+#define TARGET_NR_sched_rr_get_interval		127
+-+#define TARGET_NR_restart_syscall		128
+-+#define TARGET_NR_kill				129
+-+#define TARGET_NR_tkill				130
+-+#define TARGET_NR_tgkill			131
+-+#define TARGET_NR_sigaltstack			132
+-+#define TARGET_NR_rt_sigsuspend			133
+-+#define TARGET_NR_rt_sigaction			134
+-+#define TARGET_NR_rt_sigprocmask		135
+-+#define TARGET_NR_rt_sigpending			136
+-+#define TARGET_NR_rt_sigtimedwait		137
+-+#define TARGET_NR_rt_sigqueueinfo		138
+-+#define TARGET_NR_rt_sigreturn			139
+-+#define TARGET_NR_setpriority			140
+-+#define TARGET_NR_getpriority			141
+-+#define TARGET_NR_reboot			142
+-+#define TARGET_NR_setregid			143
+-+#define TARGET_NR_setgid			144
+-+#define TARGET_NR_setreuid			145
+-+#define TARGET_NR_setuid			146
+-+#define TARGET_NR_setresuid			147
+-+#define TARGET_NR_getresuid			148
+-+#define TARGET_NR_setresgid			149
+-+#define TARGET_NR_getresgid			150
+-+#define TARGET_NR_setfsuid			151
+-+#define TARGET_NR_setfsgid			152
+-+#define TARGET_NR_times				153
+-+#define TARGET_NR_setpgid			154
+-+#define TARGET_NR_getpgid			155
+-+#define TARGET_NR_getsid			156
+-+#define TARGET_NR_setsid			157
+-+#define TARGET_NR_getgroups			158
+-+#define TARGET_NR_setgroups			159
+-+#define TARGET_NR_uname				160
+-+#define TARGET_NR_sethostname			161
+-+#define TARGET_NR_setdomainname			162
+-+#define TARGET_NR_getrlimit			163
+-+#define TARGET_NR_setrlimit			164
+-+#define TARGET_NR_getrusage			165
+-+#define TARGET_NR_umask				166
+-+#define TARGET_NR_prctl				167
+-+#define TARGET_NR_getcpu			168
+-+#define TARGET_NR_gettimeofday			169
+-+#define TARGET_NR_settimeofday			170
+-+#define TARGET_NR_adjtimex			171
+-+#define TARGET_NR_getpid			172
+-+#define TARGET_NR_getppid			173
+-+#define TARGET_NR_getuid			174
+-+#define TARGET_NR_geteuid			175
+-+#define TARGET_NR_getgid			176
+-+#define TARGET_NR_getegid			177
+-+#define TARGET_NR_gettid			178
+-+#define TARGET_NR_sysinfo			179
+-+#define TARGET_NR_mq_open			180
+-+#define TARGET_NR_mq_unlink			181
+-+#define TARGET_NR_mq_timedsend			182
+-+#define TARGET_NR_mq_timedreceive		183
+-+#define TARGET_NR_mq_notify			184
+-+#define TARGET_NR_mq_getsetattr			185
+-+#define TARGET_NR_msgget			186
+-+#define TARGET_NR_msgctl			187
+-+#define TARGET_NR_msgrcv			188
+-+#define TARGET_NR_msgsnd			189
+-+#define TARGET_NR_semget			190
+-+#define TARGET_NR_semctl			191
+-+#define TARGET_NR_semtimedop			192
+-+#define TARGET_NR_semop				193
+-+#define TARGET_NR_shmget			194
+-+#define TARGET_NR_shmctl			195
+-+#define TARGET_NR_shmat				196
+-+#define TARGET_NR_shmdt				197
+-+#define TARGET_NR_socket			198
+-+#define TARGET_NR_socketpair			199
+-+#define TARGET_NR_bind				200
+-+#define TARGET_NR_listen			201
+-+#define TARGET_NR_accept			202
+-+#define TARGET_NR_connect			203
+-+#define TARGET_NR_getsockname			204
+-+#define TARGET_NR_getpeername			205
+-+#define TARGET_NR_sendto			206
+-+#define TARGET_NR_recvfrom			207
+-+#define TARGET_NR_setsockopt			208
+-+#define TARGET_NR_getsockopt			209
+-+#define TARGET_NR_shutdown			210
+-+#define TARGET_NR_sendmsg			211
+-+#define TARGET_NR_recvmsg			212
+-+#define TARGET_NR_readahead			213
+-+#define TARGET_NR_brk				214
+-+#define TARGET_NR_munmap			215
+-+#define TARGET_NR_mremap			216
+-+#define TARGET_NR_add_key			217
+-+#define TARGET_NR_request_key			218
+-+#define TARGET_NR_keyctl			219
+-+#define TARGET_NR_clone				220
+-+#define TARGET_NR_execve			221
+-+#define TARGET_NR_mmap2				222
+-+#define TARGET_NR_fadvise64_64			223
+-+#define TARGET_NR_swapon			224
+-+#define TARGET_NR_swapoff			225
+-+#define TARGET_NR_mprotect			226
+-+#define TARGET_NR_msync				227
+-+#define TARGET_NR_mlock				228
+-+#define TARGET_NR_munlock			229
+-+#define TARGET_NR_mlockall			230
+-+#define TARGET_NR_munlockall			231
+-+#define TARGET_NR_mincore			232
+-+#define TARGET_NR_madvise			233
+-+#define TARGET_NR_remap_file_pages		234
+-+#define TARGET_NR_mbind				235
+-+#define TARGET_NR_get_mempolicy			236
+-+#define TARGET_NR_set_mempolicy			237
+-+#define TARGET_NR_migrate_pages			238
+-+#define TARGET_NR_move_pages			239
+-+#define TARGET_NR_rt_tgsigqueueinfo		240
+-+#define TARGET_NR_perf_event_open		241
+-+#define TARGET_NR_accept4			242
+-+#define TARGET_NR_recvmmsg			243
+-+#define TARGET_NR_cacheflush			244
+-+#define TARGET_NR_arch_specific_syscall		244
+-+#define TARGET_NR_wait4				260
+-+#define TARGET_NR_prlimit64			261
+-+#define TARGET_NR_fanotify_init			262
+-+#define TARGET_NR_fanotify_mark			263
+-+#define TARGET_NR_name_to_handle_at		264
+-+#define TARGET_NR_open_by_handle_at		265
+-+#define TARGET_NR_clock_adjtime			266
+-+#define TARGET_NR_syncfs			267
+-+#define TARGET_NR_setns				268
+-+#define TARGET_NR_sendmmsg			269
+-+#define TARGET_NR_process_vm_readv		270
+-+#define TARGET_NR_process_vm_writev		271
+-+#define TARGET_NR_kcmp				272
+-+#define TARGET_NR_finit_module			273
+-+#define TARGET_NR_sched_setattr			274
+-+#define TARGET_NR_sched_getattr			275
+-+#define TARGET_NR_renameat2			276
+-+#define TARGET_NR_seccomp			277
+-+#define TARGET_NR_getrandom			278
+-+#define TARGET_NR_memfd_create			279
+-+#define TARGET_NR_bpf				280
+-+#define TARGET_NR_execveat			281
+-+#define TARGET_NR_userfaultfd			282
+-+#define TARGET_NR_membarrier			283
+-+#define TARGET_NR_mlock2			284
+-+#define TARGET_NR_copy_file_range		285
+-+#define TARGET_NR_preadv2			286
+-+#define TARGET_NR_pwritev2			287
+-+/* FIXME */
+-+#define TARGET_NR_open 1024
+-+#define TARGET_NR_link 1025
+-+#define TARGET_NR_unlink 1026
+-+#define TARGET_NR_mknod 1027
+-+#define TARGET_NR_chmod 1028
+-+#define TARGET_NR_chown 1029
+-+#define TARGET_NR_mkdir 1030
+-+#define TARGET_NR_rmdir 1031
+-+#define TARGET_NR_lchown 1032
+-+#define TARGET_NR_access 1033
+-+#define TARGET_NR_rename 1034
+-+#define TARGET_NR_readlink 1035
+-+#define TARGET_NR_symlink 1036
+-+#define TARGET_NR_utimes 1037
+-+#define TARGET_NR_3264_stat 1038
+-+#define TARGET_NR_3264_lstat 1039
+-+#define TARGET_NR_pipe 1040
+-+#define TARGET_NR_dup2 1041
+-+#define TARGET_NR_epoll_create 1042
+-+#define TARGET_NR_inotify_init 1043
+-+#define TARGET_NR_eventfd 1044
+-+#define TARGET_NR_signalfd 1045
+-+#define TARGET_NR_sendfile 1046
+-+#define TARGET_NR_ftruncate 1047
+-+#define TARGET_NR_truncate 1048
+-+#define TARGET_NR_stat 1049
+-+#define TARGET_NR_lstat 1050
+-+#define TARGET_NR_fstat 1051
+-+#define TARGET_NR_fcntl 1052
+-+#define TARGET_NR_fadvise64 1053
+-+#define TARGET_NR_newfstatat 1054
+-+#define TARGET_NR_fstatfs 1055
+-+#define TARGET_NR_statfs 1056
+-+#define TARGET_NR_lseek 1057
+-+#define TARGET_NR_mmap 1058
+-+#define TARGET_NR_alarm 1059
+-+#define TARGET_NR_getpgrp 1060
+-+#define TARGET_NR_pause 1061
+-+#define TARGET_NR_time 1062
+-+#define TARGET_NR_utime 1063
+-+#define TARGET_NR_creat 1064
+-+#define TARGET_NR_getdents 1065
+-+#define TARGET_NR_futimesat 1066
+-+#define TARGET_NR_select 1067
+-+#define TARGET_NR_poll 1068
+-+#define TARGET_NR_epoll_wait 1069
+-+#define TARGET_NR_ustat 1070
+-+#define TARGET_NR_vfork 1071
+-+#define TARGET_NR_oldwait4 1072
+-+#define TARGET_NR_recv 1073
+-+#define TARGET_NR_send 1074
+-+#define TARGET_NR_bdflush 1075
+-+#define TARGET_NR_umount 1076
+-+#define TARGET_NR_uselib 1077
+-+#define TARGET_NR__sysctl 1078
+-+#define TARGET_NR_fork 1079
+-diff --git a/linux-user/nios2/target_cpu.h b/linux-user/nios2/target_cpu=
+.h
+-new file mode 100644
+-index 0000000..5b1e195
+---- /dev/null
+-+++ b/linux-user/nios2/target_cpu.h
+-@@ -0,0 +1,38 @@
+-+/*
+-+ * Nios2 specific CPU ABI and functions for linux-user
+-+ *
+-+ * Copyright (c) 2016 Marek Vasut <marex@denx.de>
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Lesser General Public
+-+ * License as published by the Free Software Foundation; either
+-+ * version 2 of the License, or (at your option) any later version.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ * Lesser General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Lesser General Public
+-+ * License along with this library; if not, see <http://www.gnu.org/lic=
+enses/>.
+-+ */
+-+
+-+#ifndef TARGET_CPU_H
+-+#define TARGET_CPU_H
+-+
+-+static inline void cpu_clone_regs(CPUNios2State *env, target_ulong news=
+p)
+-+{
+-+    if (newsp) {
+-+        env->regs[R_SP] =3D newsp;
+-+    }
+-+    env->regs[R_RET0] =3D 0;
+-+}
+-+
+-+static inline void cpu_set_tls(CPUNios2State *env, target_ulong newtls)
+-+{
+-+    /* Linux kernel 3.10 does not pay any attention to CLONE_SETTLS
+-+     * in copy_thread(), so QEMU need not do so either.
+-+     */
+-+}
+-+
+-+#endif
+-diff --git a/linux-user/nios2/target_signal.h b/linux-user/nios2/target_=
+signal.h
+-new file mode 100644
+-index 0000000..23a8267
+---- /dev/null
+-+++ b/linux-user/nios2/target_signal.h
+-@@ -0,0 +1,26 @@
+-+#ifndef TARGET_SIGNAL_H
+-+#define TARGET_SIGNAL_H
+-+
+-+#include "cpu.h"
+-+
+-+/* this struct defines a stack used during syscall handling */
+-+
+-+typedef struct target_sigaltstack {
+-+    abi_long ss_sp;
+-+    abi_ulong ss_size;
+-+    abi_long ss_flags;
+-+} target_stack_t;
+-+
+-+/* sigaltstack controls  */
+-+#define TARGET_SS_ONSTACK     1
+-+#define TARGET_SS_DISABLE     2
+-+
+-+#define TARGET_MINSIGSTKSZ    2048
+-+#define TARGET_SIGSTKSZ       8192
+-+
+-+static inline abi_ulong get_sp_from_cpustate(CPUNios2State *state)
+-+{
+-+    return state->regs[R_SP];
+-+}
+-+
+-+#endif /* TARGET_SIGNAL_H */
+-diff --git a/linux-user/nios2/target_structs.h b/linux-user/nios2/target=
+_structs.h
+-new file mode 100644
+-index 0000000..8713772
+---- /dev/null
+-+++ b/linux-user/nios2/target_structs.h
+-@@ -0,0 +1,58 @@
+-+/*
+-+ * Nios2 specific structures for linux-user
+-+ *
+-+ * Copyright (c) 2016 Marek Vasut <marex@denx.de>
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Lesser General Public
+-+ * License as published by the Free Software Foundation; either
+-+ * version 2 of the License, or (at your option) any later version.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ * Lesser General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Lesser General Public
+-+ * License along with this library; if not, see <http://www.gnu.org/lic=
+enses/>.
+-+ */
+-+#ifndef TARGET_STRUCTS_H
+-+#define TARGET_STRUCTS_H
+-+
+-+struct target_ipc_perm {
+-+    abi_int __key;                      /* Key.  */
+-+    abi_uint uid;                       /* Owner's user ID.  */
+-+    abi_uint gid;                       /* Owner's group ID.  */
+-+    abi_uint cuid;                      /* Creator's user ID.  */
+-+    abi_uint cgid;                      /* Creator's group ID.  */
+-+    abi_ushort mode;                    /* Read/write permission.  */
+-+    abi_ushort __pad1;
+-+    abi_ushort __seq;                   /* Sequence number.  */
+-+    abi_ushort __pad2;
+-+    abi_ulong __unused1;
+-+    abi_ulong __unused2;
+-+};
+-+
+-+struct target_shmid_ds {
+-+    struct target_ipc_perm shm_perm;    /* operation permission struct =
+*/
+-+    abi_long shm_segsz;                 /* size of segment in bytes */
+-+    abi_ulong shm_atime;                /* time of last shmat() */
+-+#if TARGET_ABI_BITS =3D=3D 32
+-+    abi_ulong __unused1;
+-+#endif
+-+    abi_ulong shm_dtime;                /* time of last shmdt() */
+-+#if TARGET_ABI_BITS =3D=3D 32
+-+    abi_ulong __unused2;
+-+#endif
+-+    abi_ulong shm_ctime;                /* time of last change by shmct=
+l() */
+-+#if TARGET_ABI_BITS =3D=3D 32
+-+    abi_ulong __unused3;
+-+#endif
+-+    abi_int shm_cpid;                   /* pid of creator */
+-+    abi_int shm_lpid;                   /* pid of last shmop */
+-+    abi_ulong shm_nattch;               /* number of current attaches *=
+/
+-+    abi_ulong __unused4;
+-+    abi_ulong __unused5;
+-+};
+-+
+-+#endif
+-diff --git a/linux-user/nios2/target_syscall.h b/linux-user/nios2/target=
+_syscall.h
+-new file mode 100644
+-index 0000000..23da0d6
+---- /dev/null
+-+++ b/linux-user/nios2/target_syscall.h
+-@@ -0,0 +1,37 @@
+-+#ifndef TARGET_SYSCALL_H
+-+#define TARGET_SYSCALL_H
+-+
+-+#define UNAME_MACHINE "nios2"
+-+#define UNAME_MINIMUM_RELEASE "3.19.0"
+-+
+-+struct target_pt_regs {
+-+	unsigned long  r8;	/* r8-r15 Caller-saved GP registers */
+-+	unsigned long  r9;
+-+	unsigned long  r10;
+-+	unsigned long  r11;
+-+	unsigned long  r12;
+-+	unsigned long  r13;
+-+	unsigned long  r14;
+-+	unsigned long  r15;
+-+	unsigned long  r1;	/* Assembler temporary */
+-+	unsigned long  r2;	/* Retval LS 32bits */
+-+	unsigned long  r3;	/* Retval MS 32bits */
+-+	unsigned long  r4;	/* r4-r7 Register arguments */
+-+	unsigned long  r5;
+-+	unsigned long  r6;
+-+	unsigned long  r7;
+-+	unsigned long  orig_r2;	/* Copy of r2 ?? */
+-+	unsigned long  ra;	/* Return address */
+-+	unsigned long  fp;	/* Frame pointer */
+-+	unsigned long  sp;	/* Stack pointer */
+-+	unsigned long  gp;	/* Global pointer */
+-+	unsigned long  estatus;
+-+	unsigned long  ea;	/* Exception return address (pc) */
+-+	unsigned long  orig_r7;
+-+};
+-+
+-+#define TARGET_MINSIGSTKSZ 2048
+-+#define TARGET_MLOCKALL_MCL_CURRENT 1
+-+#define TARGET_MLOCKALL_MCL_FUTURE  2
+-+
+-+#endif  /* TARGET_SYSCALL_H */
+-diff --git a/linux-user/nios2/termbits.h b/linux-user/nios2/termbits.h
+-new file mode 100644
+-index 0000000..b64ba97
+---- /dev/null
+-+++ b/linux-user/nios2/termbits.h
+-@@ -0,0 +1,220 @@
+-+/* from asm/termbits.h */
+-+/* NOTE: exactly the same as i386 */
+-+
+-+#define TARGET_NCCS 19
+-+
+-+struct target_termios {
+-+    unsigned int c_iflag;               /* input mode flags */
+-+    unsigned int c_oflag;               /* output mode flags */
+-+    unsigned int c_cflag;               /* control mode flags */
+-+    unsigned int c_lflag;               /* local mode flags */
+-+    unsigned char c_line;                    /* line discipline */
+-+    unsigned char c_cc[TARGET_NCCS];                /* control characte=
+rs */
+-+};
+-+
+-+/* c_iflag bits */
+-+#define TARGET_IGNBRK  0000001
+-+#define TARGET_BRKINT  0000002
+-+#define TARGET_IGNPAR  0000004
+-+#define TARGET_PARMRK  0000010
+-+#define TARGET_INPCK   0000020
+-+#define TARGET_ISTRIP  0000040
+-+#define TARGET_INLCR   0000100
+-+#define TARGET_IGNCR   0000200
+-+#define TARGET_ICRNL   0000400
+-+#define TARGET_IUCLC   0001000
+-+#define TARGET_IXON    0002000
+-+#define TARGET_IXANY   0004000
+-+#define TARGET_IXOFF   0010000
+-+#define TARGET_IMAXBEL 0020000
+-+#define TARGET_IUTF8   0040000
+-+
+-+/* c_oflag bits */
+-+#define TARGET_OPOST   0000001
+-+#define TARGET_OLCUC   0000002
+-+#define TARGET_ONLCR   0000004
+-+#define TARGET_OCRNL   0000010
+-+#define TARGET_ONOCR   0000020
+-+#define TARGET_ONLRET  0000040
+-+#define TARGET_OFILL   0000100
+-+#define TARGET_OFDEL   0000200
+-+#define TARGET_NLDLY   0000400
+-+#define   TARGET_NL0   0000000
+-+#define   TARGET_NL1   0000400
+-+#define TARGET_CRDLY   0003000
+-+#define   TARGET_CR0   0000000
+-+#define   TARGET_CR1   0001000
+-+#define   TARGET_CR2   0002000
+-+#define   TARGET_CR3   0003000
+-+#define TARGET_TABDLY  0014000
+-+#define   TARGET_TAB0  0000000
+-+#define   TARGET_TAB1  0004000
+-+#define   TARGET_TAB2  0010000
+-+#define   TARGET_TAB3  0014000
+-+#define   TARGET_XTABS 0014000
+-+#define TARGET_BSDLY   0020000
+-+#define   TARGET_BS0   0000000
+-+#define   TARGET_BS1   0020000
+-+#define TARGET_VTDLY   0040000
+-+#define   TARGET_VT0   0000000
+-+#define   TARGET_VT1   0040000
+-+#define TARGET_FFDLY   0100000
+-+#define   TARGET_FF0   0000000
+-+#define   TARGET_FF1   0100000
+-+
+-+/* c_cflag bit meaning */
+-+#define TARGET_CBAUD   0010017
+-+#define  TARGET_B0     0000000         /* hang up */
+-+#define  TARGET_B50    0000001
+-+#define  TARGET_B75    0000002
+-+#define  TARGET_B110   0000003
+-+#define  TARGET_B134   0000004
+-+#define  TARGET_B150   0000005
+-+#define  TARGET_B200   0000006
+-+#define  TARGET_B300   0000007
+-+#define  TARGET_B600   0000010
+-+#define  TARGET_B1200  0000011
+-+#define  TARGET_B1800  0000012
+-+#define  TARGET_B2400  0000013
+-+#define  TARGET_B4800  0000014
+-+#define  TARGET_B9600  0000015
+-+#define  TARGET_B19200 0000016
+-+#define  TARGET_B38400 0000017
+-+#define TARGET_EXTA B19200
+-+#define TARGET_EXTB B38400
+-+#define TARGET_CSIZE   0000060
+-+#define   TARGET_CS5   0000000
+-+#define   TARGET_CS6   0000020
+-+#define   TARGET_CS7   0000040
+-+#define   TARGET_CS8   0000060
+-+#define TARGET_CSTOPB  0000100
+-+#define TARGET_CREAD   0000200
+-+#define TARGET_PARENB  0000400
+-+#define TARGET_PARODD  0001000
+-+#define TARGET_HUPCL   0002000
+-+#define TARGET_CLOCAL  0004000
+-+#define TARGET_CBAUDEX 0010000
+-+#define  TARGET_B57600  0010001
+-+#define  TARGET_B115200 0010002
+-+#define  TARGET_B230400 0010003
+-+#define  TARGET_B460800 0010004
+-+#define TARGET_CIBAUD    002003600000  /* input baud rate (not used) */
+-+#define TARGET_CMSPAR    010000000000  /* mark or space (stick) parity =
+*/
+-+#define TARGET_CRTSCTS   020000000000  /* flow control */
+-+
+-+/* c_lflag bits */
+-+#define TARGET_ISIG    0000001
+-+#define TARGET_ICANON  0000002
+-+#define TARGET_XCASE   0000004
+-+#define TARGET_ECHO    0000010
+-+#define TARGET_ECHOE   0000020
+-+#define TARGET_ECHOK   0000040
+-+#define TARGET_ECHONL  0000100
+-+#define TARGET_NOFLSH  0000200
+-+#define TARGET_TOSTOP  0000400
+-+#define TARGET_ECHOCTL 0001000
+-+#define TARGET_ECHOPRT 0002000
+-+#define TARGET_ECHOKE  0004000
+-+#define TARGET_FLUSHO  0010000
+-+#define TARGET_PENDIN  0040000
+-+#define TARGET_IEXTEN  0100000
+-+
+-+/* c_cc character offsets */
+-+#define TARGET_VINTR    0
+-+#define TARGET_VQUIT    1
+-+#define TARGET_VERASE   2
+-+#define TARGET_VKILL    3
+-+#define TARGET_VEOF     4
+-+#define TARGET_VTIME    5
+-+#define TARGET_VMIN     6
+-+#define TARGET_VSWTC    7
+-+#define TARGET_VSTART   8
+-+#define TARGET_VSTOP    9
+-+#define TARGET_VSUSP    10
+-+#define TARGET_VEOL     11
+-+#define TARGET_VREPRINT 12
+-+#define TARGET_VDISCARD 13
+-+#define TARGET_VWERASE  14
+-+#define TARGET_VLNEXT   15
+-+#define TARGET_VEOL2    16
+-+
+-+/* ioctls */
+-+
+-+#define TARGET_TCGETS           0x5401
+-+#define TARGET_TCSETS           0x5402
+-+#define TARGET_TCSETSW          0x5403
+-+#define TARGET_TCSETSF          0x5404
+-+#define TARGET_TCGETA           0x5405
+-+#define TARGET_TCSETA           0x5406
+-+#define TARGET_TCSETAW          0x5407
+-+#define TARGET_TCSETAF          0x5408
+-+#define TARGET_TCSBRK           0x5409
+-+#define TARGET_TCXONC           0x540A
+-+#define TARGET_TCFLSH           0x540B
+-+
+-+#define TARGET_TIOCEXCL         0x540C
+-+#define TARGET_TIOCNXCL         0x540D
+-+#define TARGET_TIOCSCTTY        0x540E
+-+#define TARGET_TIOCGPGRP        0x540F
+-+#define TARGET_TIOCSPGRP        0x5410
+-+#define TARGET_TIOCOUTQ         0x5411
+-+#define TARGET_TIOCSTI          0x5412
+-+#define TARGET_TIOCGWINSZ       0x5413
+-+#define TARGET_TIOCSWINSZ       0x5414
+-+#define TARGET_TIOCMGET         0x5415
+-+#define TARGET_TIOCMBIS         0x5416
+-+#define TARGET_TIOCMBIC         0x5417
+-+#define TARGET_TIOCMSET         0x5418
+-+#define TARGET_TIOCGSOFTCAR     0x5419
+-+#define TARGET_TIOCSSOFTCAR     0x541A
+-+#define TARGET_FIONREAD         0x541B
+-+#define TARGET_TIOCINQ          TARGET_FIONREAD
+-+#define TARGET_TIOCLINUX        0x541C
+-+#define TARGET_TIOCCONS         0x541D
+-+#define TARGET_TIOCGSERIAL      0x541E
+-+#define TARGET_TIOCSSERIAL      0x541F
+-+#define TARGET_TIOCPKT          0x5420
+-+#define TARGET_FIONBIO          0x5421
+-+#define TARGET_TIOCNOTTY        0x5422
+-+#define TARGET_TIOCSETD         0x5423
+-+#define TARGET_TIOCGETD         0x5424
+-+#define TARGET_TCSBRKP          0x5425 /* Needed for POSIX tcsendbreak(=
+) */
+-+#define TARGET_TIOCTTYGSTRUCT   0x5426 /* For debugging only */
+-+#define TARGET_TIOCSBRK         0x5427 /* BSD compatibility */
+-+#define TARGET_TIOCCBRK         0x5428 /* BSD compatibility */
+-+#define TARGET_TIOCGSID         0x5429 /* Return the session ID of FD *=
+/
+-+#define TARGET_TIOCGPTN         TARGET_IOR('T', 0x30, unsigned int)
+-+        /* Get Pty Number (of pty-mux device) */
+-+#define TARGET_TIOCSPTLCK       TARGET_IOW('T', 0x31, int)
+-+        /* Lock/unlock Pty */
+-+
+-+#define TARGET_FIONCLEX         0x5450  /* these numbers need to be adj=
+usted. */
+-+#define TARGET_FIOCLEX          0x5451
+-+#define TARGET_FIOASYNC         0x5452
+-+#define TARGET_TIOCSERCONFIG    0x5453
+-+#define TARGET_TIOCSERGWILD     0x5454
+-+#define TARGET_TIOCSERSWILD     0x5455
+-+#define TARGET_TIOCGLCKTRMIOS   0x5456
+-+#define TARGET_TIOCSLCKTRMIOS   0x5457
+-+#define TARGET_TIOCSERGSTRUCT   0x5458 /* For debugging only */
+-+#define TARGET_TIOCSERGETLSR    0x5459 /* Get line status register */
+-+#define TARGET_TIOCSERGETMULTI  0x545A /* Get multiport config  */
+-+#define TARGET_TIOCSERSETMULTI  0x545B /* Set multiport config */
+-+
+-+#define TARGET_TIOCMIWAIT      0x545C
+-+        /* wait for a change on serial input line(s) */
+-+#define TARGET_TIOCGICOUNT     0x545D
+-+        /* read serial port inline interrupt counts */
+-+#define TARGET_TIOCGHAYESESP   0x545E  /* Get Hayes ESP configuration *=
+/
+-+#define TARGET_TIOCSHAYESESP   0x545F  /* Set Hayes ESP configuration *=
+/
+-+
+-+/* Used for packet mode */
+-+#define TARGET_TIOCPKT_DATA              0
+-+#define TARGET_TIOCPKT_FLUSHREAD         1
+-+#define TARGET_TIOCPKT_FLUSHWRITE        2
+-+#define TARGET_TIOCPKT_STOP              4
+-+#define TARGET_TIOCPKT_START             8
+-+#define TARGET_TIOCPKT_NOSTOP           16
+-+#define TARGET_TIOCPKT_DOSTOP           32
+-+
+-+#define TARGET_TIOCSER_TEMT    0x01 /* Transmitter physically empty */
+-diff --git a/target-nios2/Makefile.objs b/target-nios2/Makefile.objs
+-new file mode 100644
+-index 0000000..ea6a528
+---- /dev/null
+-+++ b/target-nios2/Makefile.objs
+-@@ -0,0 +1,4 @@
+-+obj-y +=3D translate.o op_helper.o helper.o cpu.o mmu.o instruction.o
+-+obj-$(CONFIG_SOFTMMU) +=3D monitor.o
+-+
+-+$(obj)/op_helper.o: QEMU_CFLAGS +=3D $(HELPER_CFLAGS)
+-diff --git a/target-nios2/cpu.c b/target-nios2/cpu.c
+-new file mode 100644
+-index 0000000..4512300
+---- /dev/null
+-+++ b/target-nios2/cpu.c
+-@@ -0,0 +1,230 @@
+-+/*
+-+ * QEMU Nios II CPU
+-+ *
+-+ * Copyright (c) 2012 Chris Wulff <crwulff@gmail.com>
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Lesser General Public
+-+ * License as published by the Free Software Foundation; either
+-+ * version 2.1 of the License, or (at your option) any later version.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ * Lesser General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Lesser General Public
+-+ * License along with this library; if not, see
+-+ * <http://www.gnu.org/licenses/lgpl-2.1.html>
+-+ */
+-+
+-+#include "qemu/osdep.h"
+-+#include "qemu-common.h"
+-+#include "qapi/error.h"
+-+#include "cpu.h"
+-+#include "exec/log.h"
+-+#include "exec/gdbstub.h"
+-+#include "hw/qdev-properties.h"
+-+
+-+
+-+static void nios2_cpu_set_pc(CPUState *cs, vaddr value)
+-+{
+-+    Nios2CPU *cpu =3D NIOS2_CPU(cs);
+-+    CPUNios2State *env =3D &cpu->env;
+-+
+-+    env->regs[R_PC] =3D value;
+-+}
+-+
+-+static bool nios2_cpu_has_work(CPUState *cs)
+-+{
+-+    return cs->interrupt_request & (CPU_INTERRUPT_HARD | CPU_INTERRUPT_=
+NMI);
+-+}
+-+
+-+/* CPUClass::reset() */
+-+static void nios2_cpu_reset(CPUState *cs)
+-+{
+-+    Nios2CPU *cpu =3D NIOS2_CPU(cs);
+-+    Nios2CPUClass *ncc =3D NIOS2_CPU_GET_CLASS(cpu);
+-+    CPUNios2State *env =3D &cpu->env;
+-+
+-+    if (qemu_loglevel_mask(CPU_LOG_RESET)) {
+-+        qemu_log("CPU Reset (CPU %d)\n", cs->cpu_index);
+-+        log_cpu_state(cs, 0);
+-+    }
+-+
+-+    ncc->parent_reset(cs);
+-+
+-+    tlb_flush(cs, 1);
+-+
+-+    memset(env->regs, 0, sizeof(uint32_t) * NUM_CORE_REGS);
+-+    env->regs[R_PC] =3D env->reset_addr;
+-+
+-+#if defined(CONFIG_USER_ONLY)
+-+    /* Start in user mode with interrupts enabled. */
+-+    env->regs[CR_STATUS] =3D CR_STATUS_U | CR_STATUS_PIE;
+-+#endif
+-+}
+-+
+-+static void nios2_cpu_initfn(Object *obj)
+-+{
+-+    CPUState *cs =3D CPU(obj);
+-+    Nios2CPU *cpu =3D NIOS2_CPU(obj);
+-+    CPUNios2State *env =3D &cpu->env;
+-+    static bool tcg_initialized;
+-+
+-+    cpu->mmu_present =3D true;
+-+    cs->env_ptr =3D env;
+-+    cpu_exec_init(cs, &error_abort);
+-+
+-+#if !defined(CONFIG_USER_ONLY)
+-+    mmu_init(&env->mmu);
+-+#endif
+-+
+-+    if (tcg_enabled() && !tcg_initialized) {
+-+        tcg_initialized =3D true;
+-+        nios2_tcg_init();
+-+    }
+-+}
+-+
+-+Nios2CPU *cpu_nios2_init(const char *cpu_model)
+-+{
+-+    Nios2CPU *cpu =3D NIOS2_CPU(object_new(TYPE_NIOS2_CPU));
+-+
+-+    object_property_set_bool(OBJECT(cpu), true, "realized", NULL);
+-+
+-+    return cpu;
+-+}
+-+
+-+static void nios2_cpu_realizefn(DeviceState *dev, Error **errp)
+-+{
+-+    CPUState *cs =3D CPU(dev);
+-+    Nios2CPUClass *ncc =3D NIOS2_CPU_GET_CLASS(dev);
+-+
+-+    qemu_init_vcpu(cs);
+-+    cpu_reset(cs);
+-+
+-+    ncc->parent_realize(dev, errp);
+-+}
+-+
+-+static bool nios2_cpu_exec_interrupt(CPUState *cs, int interrupt_reques=
+t)
+-+{
+-+    Nios2CPU *cpu =3D NIOS2_CPU(cs);
+-+    CPUNios2State *env =3D &cpu->env;
+-+
+-+    if ((interrupt_request & CPU_INTERRUPT_HARD) &&
+-+        (env->regs[CR_STATUS] & CR_STATUS_PIE)) {
+-+        cs->exception_index =3D EXCP_IRQ;
+-+        nios2_cpu_do_interrupt(cs);
+-+        return true;
+-+    }
+-+    return false;
+-+}
+-+
+-+
+-+static void nios2_cpu_disas_set_info(CPUState *cpu, disassemble_info *i=
+nfo)
+-+{
+-+    /* NOTE: NiosII R2 is not supported yet. */
+-+    info->mach =3D bfd_arch_nios2;
+-+#ifdef TARGET_WORDS_BIGENDIAN
+-+    info->print_insn =3D print_insn_big_nios2;
+-+#else
+-+    info->print_insn =3D print_insn_little_nios2;
+-+#endif
+-+}
+-+
+-+static int nios2_cpu_gdb_read_register(CPUState *cs, uint8_t *mem_buf, =
+int n)
+-+{
+-+    Nios2CPU *cpu =3D NIOS2_CPU(cs);
+-+    CPUClass *cc =3D CPU_GET_CLASS(cs);
+-+    CPUNios2State *env =3D &cpu->env;
+-+
+-+    if (n > cc->gdb_num_core_regs)
+-+        return 0;
+-+
+-+    if (n < 32)		/* GP regs */
+-+        return gdb_get_reg32(mem_buf, env->regs[n]);
+-+    else if (n =3D=3D 32)	/* PC */
+-+        return gdb_get_reg32(mem_buf, env->regs[R_PC]);
+-+    else if (n < 49)	/* Status regs */
+-+        return gdb_get_reg32(mem_buf, env->regs[n - 1]);
+-+    /* Invalid regs */
+-+    return 0;
+-+}
+-+
+-+static int nios2_cpu_gdb_write_register(CPUState *cs, uint8_t *mem_buf,=
+ int n)
+-+{
+-+    Nios2CPU *cpu =3D NIOS2_CPU(cs);
+-+    CPUClass *cc =3D CPU_GET_CLASS(cs);
+-+    CPUNios2State *env =3D &cpu->env;
+-+
+-+    if (n > cc->gdb_num_core_regs)
+-+        return 0;
+-+
+-+    if (n < 32)		/* GP regs */
+-+        env->regs[n] =3D ldl_p(mem_buf);
+-+    else if (n =3D=3D 32)	/* PC */
+-+        env->regs[R_PC] =3D ldl_p(mem_buf);
+-+    else if (n < 49)	/* Status regs */
+-+        env->regs[n - 1] =3D ldl_p(mem_buf);
+-+
+-+    return 4;
+-+}
+-+
+-+static Property nios2_properties[] =3D {
+-+    DEFINE_PROP_BOOL("mmu_present", Nios2CPU, mmu_present, true),
+-+    DEFINE_PROP_END_OF_LIST(),
+-+};
+-+
+-+
+-+static void nios2_cpu_class_init(ObjectClass *oc, void *data)
+-+{
+-+    DeviceClass *dc =3D DEVICE_CLASS(oc);
+-+    CPUClass *cc =3D CPU_CLASS(oc);
+-+    Nios2CPUClass *ncc =3D NIOS2_CPU_CLASS(oc);
+-+
+-+    ncc->parent_realize =3D dc->realize;
+-+    dc->realize =3D nios2_cpu_realizefn;
+-+    dc->props =3D nios2_properties;
+-+    ncc->parent_reset =3D cc->reset;
+-+    cc->reset =3D nios2_cpu_reset;
+-+
+-+//FIXME    cc->class_by_name =3D nios2_cpu_class_by_name;
+-+    cc->has_work =3D nios2_cpu_has_work;
+-+    cc->do_interrupt =3D nios2_cpu_do_interrupt;
+-+    cc->cpu_exec_interrupt =3D nios2_cpu_exec_interrupt;
+-+    cc->dump_state =3D nios2_cpu_dump_state;
+-+    cc->set_pc =3D nios2_cpu_set_pc;
+-+    cc->disas_set_info =3D nios2_cpu_disas_set_info;
+-+#ifdef CONFIG_USER_ONLY
+-+    cc->handle_mmu_fault =3D nios2_cpu_handle_mmu_fault;
+-+#else
+-+    cc->get_phys_page_debug =3D nios2_cpu_get_phys_page_debug;
+-+/* FIXME *///    cc->do_unassigned_access =3D nios2_cpu_unassigned_acce=
+ss;
+-+#endif
+-+    cc->gdb_read_register =3D nios2_cpu_gdb_read_register;
+-+    cc->gdb_write_register =3D nios2_cpu_gdb_write_register;
+-+    cc->gdb_num_core_regs =3D 49;
+-+
+-+    /*
+-+     * Reason: nios2_cpu_initfn() calls cpu_exec_init(), which saves
+-+     * the object in cpus -> dangling pointer after final
+-+     * object_unref().
+-+     */
+-+    dc->cannot_destroy_with_object_finalize_yet =3D true;
+-+}
+-+
+-+static const TypeInfo nios2_cpu_type_info =3D {
+-+    .name =3D TYPE_NIOS2_CPU,
+-+    .parent =3D TYPE_CPU,
+-+    .instance_size =3D sizeof(Nios2CPU),
+-+    .instance_init =3D nios2_cpu_initfn,
+-+    .class_size =3D sizeof(Nios2CPUClass),
+-+    .class_init =3D nios2_cpu_class_init,
+-+};
+-+
+-+static void nios2_cpu_register_types(void)
+-+{
+-+    type_register_static(&nios2_cpu_type_info);
+-+}
+-+
+-+type_init(nios2_cpu_register_types)
+-diff --git a/target-nios2/cpu.h b/target-nios2/cpu.h
+-new file mode 100644
+-index 0000000..fd1c7e7
+---- /dev/null
+-+++ b/target-nios2/cpu.h
+-@@ -0,0 +1,268 @@
+-+/*
+-+ * Altera Nios II virtual CPU header
+-+ *
+-+ * Copyright (c) 2012 Chris Wulff <crwulff@gmail.com>
+-+ * Copyright (c) 2016 Intel Corporation.
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Lesser General Public
+-+ * License as published by the Free Software Foundation; either
+-+ * version 2.1 of the License, or (at your option) any later version.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ * Lesser General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Lesser General Public
+-+ * License along with this library; if not, see
+-+ * <http://www.gnu.org/licenses/lgpl-2.1.html>
+-+ */
+-+#ifndef CPU_NIOS2_H
+-+#define CPU_NIOS2_H
+-+
+-+#include "qemu/osdep.h"
+-+#include "qemu-common.h"
+-+
+-+#define TARGET_LONG_BITS 32
+-+
+-+#define CPUArchState struct CPUNios2State
+-+
+-+#include "exec/cpu-defs.h"
+-+#include "fpu/softfloat.h"
+-+#include "qom/cpu.h"
+-+struct CPUNios2State;
+-+typedef struct CPUNios2State CPUNios2State;
+-+#if !defined(CONFIG_USER_ONLY)
+-+#include "mmu.h"
+-+#endif
+-+
+-+#define TYPE_NIOS2_CPU "nios2-cpu"
+-+
+-+#define NIOS2_CPU_CLASS(klass) \
+-+    OBJECT_CLASS_CHECK(Nios2CPUClass, (klass), TYPE_NIOS2_CPU)
+-+#define NIOS2_CPU(obj) \
+-+    OBJECT_CHECK(Nios2CPU, (obj), TYPE_NIOS2_CPU)
+-+#define NIOS2_CPU_GET_CLASS(obj) \
+-+    OBJECT_GET_CLASS(Nios2CPUClass, (obj), TYPE_NIOS2_CPU)
+-+
+-+/**
+-+ * Nios2CPUClass:
+-+ * @parent_reset: The parent class' reset handler.
+-+ *
+-+ * A Nios2 CPU model.
+-+ */
+-+typedef struct Nios2CPUClass {
+-+    /*< private >*/
+-+    CPUClass parent_class;
+-+    /*< public >*/
+-+
+-+    DeviceRealize parent_realize;
+-+    void (*parent_reset)(CPUState *cpu);
+-+} Nios2CPUClass;
+-+
+-+#define TARGET_HAS_ICE 1
+-+
+-+/* Configuration options for Nios II */
+-+#define RESET_ADDRESS         0x00000000
+-+#define EXCEPTION_ADDRESS     0x00000004
+-+#define FAST_TLB_MISS_ADDRESS 0x00000008
+-+
+-+
+-+/* GP regs + CR regs + PC */
+-+#define NUM_CORE_REGS (32 + 32 + 1)
+-+
+-+/* General purpose register aliases */
+-+#define R_ZERO   0
+-+#define R_AT     1
+-+#define R_RET0   2
+-+#define R_RET1   3
+-+#define R_ARG0   4
+-+#define R_ARG1   5
+-+#define R_ARG2   6
+-+#define R_ARG3   7
+-+#define R_ET     24
+-+#define R_BT     25
+-+#define R_GP     26
+-+#define R_SP     27
+-+#define R_FP     28
+-+#define R_EA     29
+-+#define R_BA     30
+-+#define R_RA     31
+-+
+-+/* Control register aliases */
+-+#define CR_BASE  32
+-+#define CR_STATUS    (CR_BASE + 0)
+-+#define   CR_STATUS_PIE  (1<<0)
+-+#define   CR_STATUS_U    (1<<1)
+-+#define   CR_STATUS_EH   (1<<2)
+-+#define   CR_STATUS_IH   (1<<3)
+-+#define   CR_STATUS_IL   (63<<4)
+-+#define   CR_STATUS_CRS  (63<<10)
+-+#define   CR_STATUS_PRS  (63<<16)
+-+#define   CR_STATUS_NMI  (1<<22)
+-+#define   CR_STATUS_RSIE (1<<23)
+-+#define CR_ESTATUS   (CR_BASE + 1)
+-+#define CR_BSTATUS   (CR_BASE + 2)
+-+#define CR_IENABLE   (CR_BASE + 3)
+-+#define CR_IPENDING  (CR_BASE + 4)
+-+#define CR_CPUID     (CR_BASE + 5)
+-+#define CR_CTL6      (CR_BASE + 6)
+-+#define CR_EXCEPTION (CR_BASE + 7)
+-+#define CR_PTEADDR   (CR_BASE + 8)
+-+#define   CR_PTEADDR_PTBASE_SHIFT 22
+-+#define   CR_PTEADDR_PTBASE_MASK  (0x3FF << CR_PTEADDR_PTBASE_SHIFT)
+-+#define   CR_PTEADDR_VPN_SHIFT    2
+-+#define   CR_PTEADDR_VPN_MASK     (0xFFFFF << CR_PTEADDR_VPN_SHIFT)
+-+#define CR_TLBACC    (CR_BASE + 9)
+-+#define   CR_TLBACC_IGN_SHIFT 25
+-+#define   CR_TLBACC_IGN_MASK  (0x7F << CR_TLBACC_IGN_SHIFT)
+-+#define   CR_TLBACC_C         (1<<24)
+-+#define   CR_TLBACC_R         (1<<23)
+-+#define   CR_TLBACC_W         (1<<22)
+-+#define   CR_TLBACC_X         (1<<21)
+-+#define   CR_TLBACC_G         (1<<20)
+-+#define   CR_TLBACC_PFN_MASK  0x000FFFFF
+-+#define CR_TLBMISC   (CR_BASE + 10)
+-+#define   CR_TLBMISC_WAY_SHIFT 20
+-+#define   CR_TLBMISC_WAY_MASK  (0xF << CR_TLBMISC_WAY_SHIFT)
+-+#define   CR_TLBMISC_RD        (1<<19)
+-+#define   CR_TLBMISC_WR        (1<<18)
+-+#define   CR_TLBMISC_PID_SHIFT 4
+-+#define   CR_TLBMISC_PID_MASK  (0x3FFF << CR_TLBMISC_PID_SHIFT)
+-+#define   CR_TLBMISC_DBL       (1<<3)
+-+#define   CR_TLBMISC_BAD       (1<<2)
+-+#define   CR_TLBMISC_PERM      (1<<1)
+-+#define   CR_TLBMISC_D         (1<<0)
+-+#define CR_ENCINJ    (CR_BASE + 11)
+-+#define CR_BADADDR   (CR_BASE + 12)
+-+#define CR_CONFIG    (CR_BASE + 13)
+-+#define CR_MPUBASE   (CR_BASE + 14)
+-+#define CR_MPUACC    (CR_BASE + 15)
+-+
+-+/* Other registers */
+-+#define R_PC         64
+-+
+-+/* Exceptions */
+-+#define EXCP_BREAK    -1
+-+#define EXCP_RESET    0
+-+#define EXCP_PRESET   1
+-+#define EXCP_IRQ      2
+-+#define EXCP_TRAP     3
+-+#define EXCP_UNIMPL   4
+-+#define EXCP_ILLEGAL  5
+-+#define EXCP_UNALIGN  6
+-+#define EXCP_UNALIGND 7
+-+#define EXCP_DIV      8
+-+#define EXCP_SUPERA   9
+-+#define EXCP_SUPERI   10
+-+#define EXCP_SUPERD   11
+-+#define EXCP_TLBD     12
+-+#define EXCP_TLBX     13
+-+#define EXCP_TLBR     14
+-+#define EXCP_TLBW     15
+-+#define EXCP_MPUI     16
+-+#define EXCP_MPUD     17
+-+
+-+#define CPU_INTERRUPT_NMI       CPU_INTERRUPT_TGT_EXT_3
+-+
+-+#define NB_MMU_MODES 2
+-+
+-+struct CPUNios2State {
+-+    uint32_t regs[NUM_CORE_REGS];
+-+
+-+    /* Addresses that are hard-coded in the FPGA build settings */
+-+    uint32_t reset_addr;
+-+    uint32_t exception_addr;
+-+    uint32_t fast_tlb_miss_addr;
+-+
+-+#if !defined(CONFIG_USER_ONLY)
+-+    Nios2MMU mmu;
+-+    /* interrupt controller handle for callbacks */
+-+    DeviceState *pic_state;
+-+#endif
+-+
+-+    CPU_COMMON
+-+};
+-+
+-+/**
+-+ * Nios2CPU:
+-+ * @env: #CPUNios2State
+-+ *
+-+ * A Nios2 CPU.
+-+ */
+-+typedef struct Nios2CPU {
+-+    /*< private >*/
+-+    CPUState parent_obj;
+-+    /*< public >*/
+-+
+-+    CPUNios2State env;
+-+    bool mmu_present;
+-+} Nios2CPU;
+-+
+-+static inline Nios2CPU *nios2_env_get_cpu(CPUNios2State *env)
+-+{
+-+    return NIOS2_CPU(container_of(env, Nios2CPU, env));
+-+}
+-+
+-+#define ENV_GET_CPU(e) CPU(nios2_env_get_cpu(e))
+-+
+-+#define ENV_OFFSET offsetof(Nios2CPU, env)
+-+
+-+#define cpu_exec cpu_nios2_exec
+-+int cpu_nios2_exec(CPUState *cpu);
+-+
+-+void nios2_tcg_init(void);
+-+Nios2CPU *cpu_nios2_init(const char *cpu_model);
+-+void nios2_cpu_do_interrupt(CPUState *cs);
+-+int cpu_nios2_signal_handler(int host_signum, void *pinfo, void *puc);
+-+void dump_mmu(FILE *f, fprintf_function cpu_fprintf, CPUNios2State *env=
+);
+-+void nios2_cpu_dump_state(CPUState *cpu, FILE *f, fprintf_function cpu_=
+fprintf,
+-+                          int flags);
+-+hwaddr nios2_cpu_get_phys_page_debug(CPUState *cpu, vaddr addr);
+-+
+-+#define TARGET_PHYS_ADDR_SPACE_BITS 32
+-+#define TARGET_VIRT_ADDR_SPACE_BITS 32
+-+
+-+#define cpu_init(cpu_model) CPU(cpu_nios2_init(cpu_model))
+-+
+-+#define cpu_gen_code cpu_nios2_gen_code
+-+#define cpu_signal_handler cpu_nios2_signal_handler
+-+
+-+#define CPU_SAVE_VERSION 1
+-+
+-+#define TARGET_PAGE_BITS 12
+-+
+-+/* MMU modes definitions */
+-+#define MMU_MODE0_SUFFIX _kernel
+-+#define MMU_MODE1_SUFFIX _user
+-+#define MMU_SUPERVISOR_IDX  0
+-+#define MMU_USER_IDX        1
+-+
+-+static inline int cpu_mmu_index(CPUNios2State *env, bool ifetch)
+-+{
+-+    return (env->regs[CR_STATUS] & CR_STATUS_U) ? MMU_USER_IDX :
+-+                                                  MMU_SUPERVISOR_IDX;
+-+}
+-+
+-+int nios2_cpu_handle_mmu_fault(CPUState *env, vaddr address,
+-+                               int rw, int mmu_idx);
+-+
+-+static inline int cpu_interrupts_enabled(CPUNios2State *env)
+-+{
+-+    return env->regs[CR_STATUS] & CR_STATUS_PIE;
+-+}
+-+
+-+#include "exec/cpu-all.h"
+-+#include "exec/exec-all.h"
+-+
+-+static inline void cpu_get_tb_cpu_state(CPUNios2State *env, target_ulon=
+g *pc,
+-+                                        target_ulong *cs_base, int *fla=
+gs)
+-+{
+-+    *pc =3D env->regs[R_PC];
+-+    *cs_base =3D 0;
+-+    *flags =3D (env->regs[CR_STATUS] & (CR_STATUS_EH | CR_STATUS_U));
+-+}
+-+
+-+#endif /* CPU_NIOS2_H */
+-+
+-diff --git a/target-nios2/helper.c b/target-nios2/helper.c
+-new file mode 100644
+-index 0000000..66fcd30
+---- /dev/null
+-+++ b/target-nios2/helper.c
+-@@ -0,0 +1,304 @@
+-+/*
+-+ * Altera Nios II helper routines.
+-+ *
+-+ * Copyright (c) 2012 Chris Wulff <crwulff@gmail.com>
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Lesser General Public
+-+ * License as published by the Free Software Foundation; either
+-+ * version 2.1 of the License, or (at your option) any later version.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ * Lesser General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Lesser General Public
+-+ * License along with this library; if not, see
+-+ * <http://www.gnu.org/licenses/lgpl-2.1.html>
+-+ */
+-+
+-+#include <stdio.h>
+-+#include <string.h>
+-+#include <assert.h>
+-+
+-+#include "qemu/osdep.h"
+-+#include "qemu-common.h"
+-+#include "qapi/error.h"
+-+#include "cpu.h"
+-+#include "exec/exec-all.h"
+-+#include "exec/log.h"
+-+#include "qemu/host-utils.h"
+-+
+-+#if defined(CONFIG_USER_ONLY)
+-+
+-+void nios2_cpu_do_interrupt(CPUState *cs)
+-+{
+-+    Nios2CPU *cpu =3D NIOS2_CPU(cs);
+-+    CPUNios2State *env =3D &cpu->env;
+-+    cs->exception_index =3D -1;
+-+    env->regs[R_EA] =3D env->regs[R_PC] + 4;
+-+}
+-+
+-+int nios2_cpu_handle_mmu_fault(CPUState *cs, vaddr address, int rw, int=
+ mmu_idx)
+-+{
+-+    cs->exception_index =3D 0xaa;
+-+    /* Page 0x1000 is kuser helper */
+-+    if (address < 0x1000 || address >=3D 0x2000) {
+-+        cpu_dump_state(cs, stderr, fprintf, 0);
+-+    }
+-+    return 1;
+-+}
+-+
+-+#else /* !CONFIG_USER_ONLY */
+-+
+-+
+-+
+-+void nios2_cpu_do_interrupt(CPUState *cs)
+-+{
+-+    Nios2CPU *cpu =3D NIOS2_CPU(cs);
+-+    CPUNios2State *env =3D &cpu->env;
+-+
+-+    switch (cs->exception_index) {
+-+    case EXCP_IRQ:
+-+        assert(env->regs[CR_STATUS] & CR_STATUS_PIE);
+-+
+-+        qemu_log_mask(CPU_LOG_INT, "interrupt at pc=3D%x\n", env->regs[=
+R_PC]);
+-+
+-+        env->regs[CR_ESTATUS] =3D env->regs[CR_STATUS];
+-+        env->regs[CR_STATUS] |=3D CR_STATUS_IH;
+-+        env->regs[CR_STATUS] &=3D ~(CR_STATUS_PIE|CR_STATUS_U);
+-+
+-+        env->regs[CR_EXCEPTION] &=3D ~(0x1F << 2);
+-+        env->regs[CR_EXCEPTION] |=3D (cs->exception_index & 0x1F) << 2;
+-+
+-+        env->regs[R_EA] =3D env->regs[R_PC] + 4;
+-+        env->regs[R_PC] =3D env->exception_addr;
+-+        break;
+-+
+-+    case EXCP_TLBD:
+-+        if ((env->regs[CR_STATUS] & CR_STATUS_EH) =3D=3D 0) {
+-+            qemu_log_mask(CPU_LOG_INT, "TLB MISS (fast) at pc=3D%x\n",
+-+                          env->regs[R_PC]);
+-+
+-+            /* Fast TLB miss */
+-+            /* Variation from the spec. Table 3-35 of the cpu reference=
+ shows
+-+             * estatus not being changed for TLB miss but this appears =
+to
+-+             * be incorrect. */
+-+            env->regs[CR_ESTATUS] =3D env->regs[CR_STATUS];
+-+            env->regs[CR_STATUS] |=3D CR_STATUS_EH;
+-+            env->regs[CR_STATUS] &=3D ~(CR_STATUS_PIE|CR_STATUS_U);
+-+
+-+            env->regs[CR_EXCEPTION] &=3D ~(0x1F << 2);
+-+            env->regs[CR_EXCEPTION] |=3D (cs->exception_index & 0x1F) <=
+< 2;
+-+
+-+            env->regs[CR_TLBMISC] &=3D ~CR_TLBMISC_DBL;
+-+            env->regs[CR_TLBMISC] |=3D CR_TLBMISC_WR;
+-+
+-+            env->regs[R_EA] =3D env->regs[R_PC] + 4;
+-+            env->regs[R_PC] =3D env->fast_tlb_miss_addr;
+-+        } else {
+-+            qemu_log_mask(CPU_LOG_INT, "TLB MISS (double) at pc=3D%x\n"=
+,
+-+                          env->regs[R_PC]);
+-+
+-+            /* Double TLB miss */
+-+            env->regs[CR_STATUS] |=3D CR_STATUS_EH;
+-+            env->regs[CR_STATUS] &=3D ~(CR_STATUS_PIE|CR_STATUS_U);
+-+
+-+            env->regs[CR_EXCEPTION] &=3D ~(0x1F << 2);
+-+            env->regs[CR_EXCEPTION] |=3D (cs->exception_index & 0x1F) <=
+< 2;
+-+
+-+            env->regs[CR_TLBMISC] |=3D CR_TLBMISC_DBL;
+-+
+-+            env->regs[R_PC] =3D env->exception_addr;
+-+        }
+-+        break;
+-+
+-+    case EXCP_TLBR:
+-+    case EXCP_TLBW:
+-+    case EXCP_TLBX:
+-+        qemu_log_mask(CPU_LOG_INT, "TLB PERM at pc=3D%x\n", env->regs[R=
+_PC]);
+-+
+-+        env->regs[CR_ESTATUS] =3D env->regs[CR_STATUS];
+-+        env->regs[CR_STATUS] |=3D CR_STATUS_EH;
+-+        env->regs[CR_STATUS] &=3D ~(CR_STATUS_PIE|CR_STATUS_U);
+-+
+-+        env->regs[CR_EXCEPTION] &=3D ~(0x1F << 2);
+-+        env->regs[CR_EXCEPTION] |=3D (cs->exception_index & 0x1F) << 2;
+-+
+-+        if ((env->regs[CR_STATUS] & CR_STATUS_EH) =3D=3D 0) {
+-+            env->regs[CR_TLBMISC] |=3D CR_TLBMISC_WR;
+-+        }
+-+
+-+        env->regs[R_EA] =3D env->regs[R_PC] + 4;
+-+        env->regs[R_PC] =3D env->exception_addr;
+-+        break;
+-+
+-+    case EXCP_SUPERA:
+-+    case EXCP_SUPERI:
+-+    case EXCP_SUPERD:
+-+        qemu_log_mask(CPU_LOG_INT, "SUPERVISOR exception at pc=3D%x\n",
+-+                      env->regs[R_PC]);
+-+
+-+        if ((env->regs[CR_STATUS] & CR_STATUS_EH) =3D=3D 0) {
+-+            env->regs[CR_ESTATUS] =3D env->regs[CR_STATUS];
+-+            env->regs[R_EA] =3D env->regs[R_PC] + 4;
+-+        }
+-+
+-+        env->regs[CR_STATUS] |=3D CR_STATUS_EH;
+-+        env->regs[CR_STATUS] &=3D ~(CR_STATUS_PIE|CR_STATUS_U);
+-+
+-+        env->regs[CR_EXCEPTION] &=3D ~(0x1F << 2);
+-+        env->regs[CR_EXCEPTION] |=3D (cs->exception_index & 0x1F) << 2;
+-+
+-+        env->regs[R_PC] =3D env->exception_addr;
+-+        break;
+-+
+-+    case EXCP_ILLEGAL:
+-+    case EXCP_TRAP:
+-+        qemu_log_mask(CPU_LOG_INT, "TRAP exception at pc=3D%x\n",
+-+                      env->regs[R_PC]);
+-+
+-+        if ((env->regs[CR_STATUS] & CR_STATUS_EH) =3D=3D 0) {
+-+            env->regs[CR_ESTATUS] =3D env->regs[CR_STATUS];
+-+            env->regs[R_EA] =3D env->regs[R_PC] + 4;
+-+        }
+-+
+-+        env->regs[CR_STATUS] |=3D CR_STATUS_EH;
+-+        env->regs[CR_STATUS] &=3D ~(CR_STATUS_PIE|CR_STATUS_U);
+-+
+-+        env->regs[CR_EXCEPTION] &=3D ~(0x1F << 2);
+-+        env->regs[CR_EXCEPTION] |=3D (cs->exception_index & 0x1F) << 2;
+-+
+-+        env->regs[R_PC] =3D env->exception_addr;
+-+        break;
+-+
+-+    case EXCP_BREAK:
+-+        if ((env->regs[CR_STATUS] & CR_STATUS_EH) =3D=3D 0) {
+-+            env->regs[CR_BSTATUS] =3D env->regs[CR_STATUS];
+-+            env->regs[R_BA] =3D env->regs[R_PC] + 4;
+-+        }
+-+
+-+        env->regs[CR_STATUS] |=3D CR_STATUS_EH;
+-+        env->regs[CR_STATUS] &=3D ~(CR_STATUS_PIE|CR_STATUS_U);
+-+
+-+        env->regs[CR_EXCEPTION] &=3D ~(0x1F << 2);
+-+        env->regs[CR_EXCEPTION] |=3D (cs->exception_index & 0x1F) << 2;
+-+
+-+        env->regs[R_PC] =3D env->exception_addr;
+-+        break;
+-+
+-+    default:
+-+        cpu_abort(cs, "unhandled exception type=3D%d\n",
+-+                  cs->exception_index);
+-+        break;
+-+    }
+-+}
+-+
+-+static int cpu_nios2_handle_virtual_page(
+-+    CPUState *cs, target_ulong address, int rw, int mmu_idx)
+-+{
+-+    Nios2CPU *cpu =3D NIOS2_CPU(cs);
+-+    CPUNios2State *env =3D &cpu->env;
+-+    target_ulong vaddr, paddr;
+-+    Nios2MMULookup lu;
+-+    unsigned int hit;
+-+    hit =3D mmu_translate(env, &lu, address, rw, mmu_idx);
+-+    if (hit) {
+-+        vaddr =3D address & TARGET_PAGE_MASK;
+-+        paddr =3D lu.paddr + vaddr - lu.vaddr;
+-+
+-+        if (((rw =3D=3D 0) && (lu.prot & PAGE_READ)) ||
+-+            ((rw =3D=3D 1) && (lu.prot & PAGE_WRITE)) ||
+-+            ((rw =3D=3D 2) && (lu.prot & PAGE_EXEC))) {
+-+
+-+            tlb_set_page(cs, vaddr, paddr, lu.prot,
+-+                         mmu_idx, TARGET_PAGE_SIZE);
+-+            return 0;
+-+        } else {
+-+            /* Permission violation */
+-+            cs->exception_index =3D (rw =3D=3D 0) ? EXCP_TLBR :
+-+                                               ((rw =3D=3D 1) ? EXCP_TL=
+BW :
+-+                                                            EXCP_TLBX);
+-+        }
+-+    } else {
+-+        cs->exception_index =3D EXCP_TLBD;
+-+    }
+-+
+-+    if (rw =3D=3D 2) {
+-+        env->regs[CR_TLBMISC] &=3D ~CR_TLBMISC_D;
+-+    } else {
+-+        env->regs[CR_TLBMISC] |=3D CR_TLBMISC_D;
+-+    }
+-+    env->regs[CR_PTEADDR] &=3D CR_PTEADDR_PTBASE_MASK;
+-+    env->regs[CR_PTEADDR] |=3D (address >> 10) & CR_PTEADDR_VPN_MASK;
+-+    env->mmu.pteaddr_wr =3D env->regs[CR_PTEADDR];
+-+    env->regs[CR_BADADDR] =3D address;
+-+    return 1;
+-+}
+-+
+-+int nios2_cpu_handle_mmu_fault(CPUState *cs, vaddr address, int rw, int=
+ mmu_idx)
+-+{
+-+    Nios2CPU *cpu =3D NIOS2_CPU(cs);
+-+    CPUNios2State *env =3D &cpu->env;
+-+
+-+    if (cpu->mmu_present) {
+-+        if (MMU_SUPERVISOR_IDX =3D=3D mmu_idx) {
+-+            if (address >=3D 0xC0000000) {
+-+                /* Kernel physical page - TLB bypassed */
+-+                address &=3D TARGET_PAGE_MASK;
+-+                tlb_set_page(cs, address, address, PAGE_BITS,
+-+                             mmu_idx, TARGET_PAGE_SIZE);
+-+            } else if (address >=3D 0x80000000) {
+-+                /* Kernel virtual page */
+-+                return cpu_nios2_handle_virtual_page(cs, address, rw, m=
+mu_idx);
+-+            } else {
+-+                /* User virtual page */
+-+                return cpu_nios2_handle_virtual_page(cs, address, rw, m=
+mu_idx);
+-+            }
+-+        } else {
+-+            if (address >=3D 0x80000000) {
+-+                /* Illegal access from user mode */
+-+                cs->exception_index =3D EXCP_SUPERA;
+-+                env->regs[CR_BADADDR] =3D address;
+-+                return 1;
+-+            } else {
+-+                /* User virtual page */
+-+                return cpu_nios2_handle_virtual_page(cs, address, rw, m=
+mu_idx);
+-+            }
+-+        }
+-+    } else {
+-+        /* No MMU */
+-+        address &=3D TARGET_PAGE_MASK;
+-+        tlb_set_page(cs, address, address, PAGE_BITS,
+-+                     mmu_idx, TARGET_PAGE_SIZE);
+-+    }
+-+
+-+    return 0;
+-+}
+-+
+-+hwaddr nios2_cpu_get_phys_page_debug(CPUState *cs, vaddr addr)
+-+{
+-+    Nios2CPU *cpu =3D NIOS2_CPU(cs);
+-+    CPUNios2State *env =3D &cpu->env;
+-+    target_ulong vaddr, paddr =3D 0;
+-+    Nios2MMULookup lu;
+-+    unsigned int hit;
+-+
+-+    if (cpu->mmu_present && (addr < 0xC0000000)) {
+-+        hit =3D mmu_translate(env, &lu, addr, 0, 0);
+-+        if (hit) {
+-+            vaddr =3D addr & TARGET_PAGE_MASK;
+-+            paddr =3D lu.paddr + vaddr - lu.vaddr;
+-+        } else {
+-+            paddr =3D -1;
+-+            qemu_log("cpu_get_phys_page debug MISS: %08lX\n", addr);
+-+        }
+-+    } else {
+-+        paddr =3D addr & TARGET_PAGE_MASK;
+-+    }
+-+
+-+    return paddr;
+-+}
+-+
+-+#endif /* !CONFIG_USER_ONLY */
+-diff --git a/target-nios2/helper.h b/target-nios2/helper.h
+-new file mode 100644
+-index 0000000..e814e5d
+---- /dev/null
+-+++ b/target-nios2/helper.h
+-@@ -0,0 +1,43 @@
+-+/*
+-+ * Altera Nios II helper routines header.
+-+ *
+-+ * Copyright (c) 2012 Chris Wulff <crwulff@gmail.com>
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Lesser General Public
+-+ * License as published by the Free Software Foundation; either
+-+ * version 2.1 of the License, or (at your option) any later version.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ * Lesser General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Lesser General Public
+-+ * License along with this library; if not, see
+-+ * <http://www.gnu.org/licenses/lgpl-2.1.html>
+-+ */
+-+
+-+/* Define this to enable tracing calls/returns */
+-+/* #define CALL_TRACING */
+-+
+-+#ifdef CALL_TRACING
+-+DEF_HELPER_2(call_status, void, i32, i32)
+-+DEF_HELPER_1(eret_status, void, i32)
+-+DEF_HELPER_1(ret_status, void, i32)
+-+#endif
+-+
+-+DEF_HELPER_2(raise_exception, void, env, i32)
+-+
+-+
+-+#if !defined(CONFIG_USER_ONLY)
+-+DEF_HELPER_2(mmu_read, i32, env, i32)
+-+DEF_HELPER_3(mmu_write, void, env, i32, i32)
+-+DEF_HELPER_2(cr_ienable_write, void, env, i32)
+-+DEF_HELPER_2(cr_status_write, void, env, i32)
+-+#endif
+-+
+-+DEF_HELPER_2(divs, i32, i32, i32)
+-+DEF_HELPER_2(divu, i32, i32, i32)
+-+
+-+DEF_HELPER_5(memalign, void, env, i32, i32, i32, i32)
+-diff --git a/target-nios2/instruction.c b/target-nios2/instruction.c
+-new file mode 100644
+-index 0000000..8e8d238
+---- /dev/null
+-+++ b/target-nios2/instruction.c
+-@@ -0,0 +1,1432 @@
+-+/*
+-+ * Copyright (C) 2010 Tobias Klauser <tklauser@distanz.ch>
+-+ *  (Portions of this file that were originally from nios2sim-ng.)
+-+ *
+-+ * Copyright (C) 2012 Chris Wulff <crwulff@gmail.com>
+-+ * Copyright (C) 2016 Intel Corporation.
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Lesser General Public
+-+ * License as published by the Free Software Foundation; either
+-+ * version 2.1 of the License, or (at your option) any later version.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ * Lesser General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Lesser General Public
+-+ * License along with this library; if not, see
+-+ * <http://www.gnu.org/licenses/lgpl-2.1.html>
+-+ */
+-+
+-+#include <stdio.h>
+-+
+-+#include "instruction.h"
+-+#include "exec/exec-all.h"
+-+#include "disas/disas.h"
+-+#include "exec/helper-proto.h"
+-+#include "exec/helper-gen.h"
+-+
+-+#if defined(CONFIG_USER_ONLY)
+-+#define IS_USER(s) true
+-+#else
+-+#define IS_USER(s) ((s)->user)
+-+#endif
+-+
+-+static inline uint32_t get_opcode(uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+    return instr->op;
+-+}
+-+
+-+static inline uint32_t get_opxcode(uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+    return instr->opx6;
+-+}
+-+
+-+static inline void t_gen_helper_raise_exception(DisasContext *dc,
+-+                                                uint32_t index)
+-+{
+-+    TCGv_i32 tmp =3D tcg_const_i32(index);
+-+
+-+    tcg_gen_movi_tl(dc->cpu_R[R_PC], dc->pc);
+-+    gen_helper_raise_exception(dc->cpu_env, tmp);
+-+    tcg_temp_free_i32(tmp);
+-+    dc->is_jmp =3D DISAS_UPDATE;
+-+}
+-+
+-+static inline void gen_goto_tb(DisasContext *dc, int n, uint32_t dest)
+-+{
+-+    TranslationBlock *tb =3D dc->tb;
+-+
+-+    if ((tb->pc & TARGET_PAGE_MASK) =3D=3D (dest & TARGET_PAGE_MASK)) {
+-+        tcg_gen_goto_tb(n);
+-+        tcg_gen_movi_tl(dc->cpu_R[R_PC], dest);
+-+        tcg_gen_exit_tb((tcg_target_long)tb + n);
+-+    } else {
+-+        tcg_gen_movi_tl(dc->cpu_R[R_PC], dest);
+-+        tcg_gen_exit_tb(0);
+-+    }
+-+}
+-+
+-+/*
+-+ * Instructions not implemented by the simulator.
+-+ */
+-+static void unimplemented(DisasContext *dc, uint32_t code)
+-+{
+-+    t_gen_helper_raise_exception(dc, EXCP_UNIMPL);
+-+}
+-+
+-+/*
+-+ * Illegal instruction
+-+ */
+-+static void illegal_instruction(DisasContext *dc,
+-+                                uint32_t code __attribute__((unused)))
+-+{
+-+    t_gen_helper_raise_exception(dc, EXCP_ILLEGAL);
+-+}
+-+
+-+
+-+/*
+-+ * Used as a placeholder for all instructions which do not have an effe=
+ct on the
+-+ * simulator (e.g. flush, sync)
+-+ */
+-+static void nop(DisasContext *dc __attribute__((unused)),
+-+                uint32_t code __attribute__((unused)))
+-+{
+-+    /* Nothing to do here */
+-+}
+-+
+-+/*
+-+ * J-Type instructions
+-+ */
+-+
+-+/*
+-+ * ra <- PC + 4
+-+ * PC <- (PC(31..28) : IMM26 * 4)
+-+ */
+-+static void call(DisasContext *dc, uint32_t code)
+-+{
+-+    J_TYPE(instr, code);
+-+
+-+#ifdef CALL_TRACING
+-+    TCGv_i32 tmp =3D tcg_const_i32(dc->pc);
+-+    TCGv_i32 tmp2 =3D tcg_const_i32((dc->pc & 0xF0000000) | (instr->imm=
+26 * 4));
+-+    gen_helper_call_status(tmp, tmp2);
+-+    tcg_temp_free_i32(tmp);
+-+    tcg_temp_free_i32(tmp2);
+-+#endif
+-+
+-+    tcg_gen_movi_tl(dc->cpu_R[R_RA], dc->pc + 4);
+-+
+-+    gen_goto_tb(dc, 0, (dc->pc & 0xF0000000) | (instr->imm26 * 4));
+-+
+-+    dc->is_jmp =3D DISAS_TB_JUMP;
+-+}
+-+
+-+/* PC <- (PC(31..28) : IMM26 * 4) */
+-+static void jmpi(DisasContext *dc, uint32_t code)
+-+{
+-+    J_TYPE(instr, code);
+-+
+-+    gen_goto_tb(dc, 0, (dc->pc & 0xF0000000) | (instr->imm26 * 4));
+-+
+-+    dc->is_jmp =3D DISAS_TB_JUMP;
+-+}
+-+
+-+/*
+-+ * I-Type instructions
+-+ */
+-+
+-+/* rB <- 0x000000 : Mem8[rA + @(IMM16)] */
+-+static void ldbu(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGv addr =3D tcg_temp_new();
+-+    tcg_gen_addi_tl(addr, dc->cpu_R[instr->a],
+-+                    (int32_t)((int16_t)instr->imm16));
+-+
+-+    tcg_gen_qemu_ld8u(dc->cpu_R[instr->b], addr, dc->mem_idx);
+-+
+-+    tcg_temp_free(addr);
+-+}
+-+
+-+/* rB <- rA + IMM16 */
+-+static void addi(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGv imm =3D tcg_temp_new();
+-+    tcg_gen_addi_tl(dc->cpu_R[instr->b], dc->cpu_R[instr->a],
+-+                    (int32_t)((int16_t)instr->imm16));
+-+    tcg_temp_free(imm);
+-+}
+-+
+-+/* Mem8[rA + @(IMM16)] <- rB(7..0) */
+-+static void stb(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGv addr =3D tcg_temp_new();
+-+    tcg_gen_addi_tl(addr, dc->cpu_R[instr->a],
+-+                    (int32_t)((int16_t)instr->imm16));
+-+
+-+    tcg_gen_qemu_st8(dc->cpu_R[instr->b], addr, dc->mem_idx);
+-+
+-+    tcg_temp_free(addr);
+-+}
+-+
+-+/* PC <- PC + 4 + IMM16 */
+-+static void br(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    gen_goto_tb(dc, 0, dc->pc + 4 + (int16_t)(instr->imm16 & 0xFFFC));
+-+
+-+    dc->is_jmp =3D DISAS_TB_JUMP;
+-+}
+-+
+-+/* rB <- @(Mem8[rA + @(IMM16)]) */
+-+static void ldb(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGv addr =3D tcg_temp_new();
+-+    tcg_gen_addi_tl(addr, dc->cpu_R[instr->a],
+-+                    (int32_t)((int16_t)instr->imm16));
+-+
+-+    tcg_gen_qemu_ld8s(dc->cpu_R[instr->b], addr, dc->mem_idx);
+-+
+-+    tcg_temp_free(addr);
+-+}
+-+
+-+/*
+-+ * if ((signed) rA >=3D (signed) @(IMM16))
+-+ *   rB <- 1
+-+ * else
+-+ *   rB <- 0
+-+ */
+-+static void cmpgei(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    tcg_gen_setcondi_tl(TCG_COND_GE, dc->cpu_R[instr->b], dc->cpu_R[ins=
+tr->a],
+-+                        (int32_t)((int16_t)instr->imm16));
+-+}
+-+
+-+/* rB <- 0x0000 : Mem16[rA + @IMM16)] */
+-+static void ldhu(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGv addr =3D tcg_temp_new();
+-+    tcg_gen_addi_tl(addr, dc->cpu_R[instr->a],
+-+                    (int32_t)((int16_t)instr->imm16));
+-+
+-+    tcg_gen_qemu_ld16u(dc->cpu_R[instr->b], addr, dc->mem_idx);
+-+
+-+    tcg_temp_free(addr);
+-+}
+-+
+-+/* rB <- rA & IMM16 */
+-+static void andi(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    tcg_gen_andi_tl(dc->cpu_R[instr->b], dc->cpu_R[instr->a], instr->im=
+m16);
+-+}
+-+
+-+/* Mem16[rA + @(IMM16)] <- rB(15..0) */
+-+static void sth(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGv addr =3D tcg_temp_new();
+-+    tcg_gen_addi_tl(addr, dc->cpu_R[instr->a],
+-+                    (int32_t)((int16_t)instr->imm16));
+-+
+-+    tcg_gen_qemu_st16(dc->cpu_R[instr->b], addr, dc->mem_idx);
+-+
+-+    tcg_temp_free(addr);
+-+}
+-+
+-+/*
+-+ * if ((signed) rA >=3D (signed) rB)
+-+ *   PC <- PC + 4 + @(IMM16)
+-+ * else
+-+ *   PC <- PC + 4
+-+ */
+-+static void bge(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGLabel *l1 =3D gen_new_label();
+-+
+-+    tcg_gen_brcond_tl(TCG_COND_GE, dc->cpu_R[instr->a],
+-+                      dc->cpu_R[instr->b], l1);
+-+
+-+    gen_goto_tb(dc, 0, dc->pc + 4);
+-+
+-+    gen_set_label(l1);
+-+
+-+    gen_goto_tb(dc, 1, dc->pc + 4 + (int16_t)(instr->imm16 & 0xFFFC));
+-+
+-+    dc->is_jmp =3D DISAS_TB_JUMP;
+-+}
+-+
+-+/* rB <- Mem16[rA + @IMM16)] */
+-+static void ldh(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGv addr =3D tcg_temp_new();
+-+    tcg_gen_addi_tl(addr, dc->cpu_R[instr->a],
+-+                    (int32_t)((int16_t)instr->imm16));
+-+
+-+    tcg_gen_qemu_ld16s(dc->cpu_R[instr->b], addr, dc->mem_idx);
+-+
+-+    tcg_temp_free(addr);
+-+}
+-+
+-+/*
+-+ * if ((signed) rA < (signed) @(IMM16))
+-+ *   rB <- 1
+-+ * else
+-+ *   rB <- 0
+-+ */
+-+static void cmplti(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    tcg_gen_setcondi_tl(TCG_COND_LT, dc->cpu_R[instr->b], dc->cpu_R[ins=
+tr->a],
+-+                        (int32_t)((int16_t)instr->imm16));
+-+}
+-+
+-+/* Initializes the data cache line currently caching address rA + @(IMM=
+16) */
+-+static void initda(DisasContext *dc __attribute__((unused)),
+-+                   uint32_t code __attribute__((unused)))
+-+{
+-+    /* TODO */
+-+}
+-+
+-+/* rB <- rA | IMM16 */
+-+static void ori(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    tcg_gen_ori_tl(dc->cpu_R[instr->b], dc->cpu_R[instr->a], instr->imm=
+16);
+-+}
+-+
+-+/* Mem32[rA + @(IMM16)] <- rB */
+-+static void stw(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGv addr =3D tcg_temp_new();
+-+    tcg_gen_addi_tl(addr, dc->cpu_R[instr->a],
+-+                    (int32_t)((int16_t)instr->imm16));
+-+
+-+    tcg_gen_qemu_st32(dc->cpu_R[instr->b], addr, dc->mem_idx);
+-+
+-+    tcg_temp_free(addr);
+-+}
+-+
+-+/*
+-+ * if ((signed) rA < (signed) rB)
+-+ *   PC <- PC + 4 + @(IMM16)
+-+ * else
+-+ *   PC <- PC + 4
+-+ */
+-+static void blt(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGLabel *l1 =3D gen_new_label();
+-+
+-+    tcg_gen_brcond_tl(TCG_COND_LT, dc->cpu_R[instr->a],
+-+                      dc->cpu_R[instr->b], l1);
+-+
+-+    gen_goto_tb(dc, 0, dc->pc + 4);
+-+
+-+    gen_set_label(l1);
+-+
+-+    gen_goto_tb(dc, 1, dc->pc + 4 + (int16_t)(instr->imm16 & 0xFFFC));
+-+
+-+    dc->is_jmp =3D DISAS_TB_JUMP;
+-+}
+-+
+-+/* rB <- @(Mem32[rA + @(IMM16)]) */
+-+static void ldw(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGv addr =3D tcg_temp_new();
+-+    tcg_gen_addi_tl(addr, dc->cpu_R[instr->a],
+-+                    (int32_t)((int16_t)instr->imm16));
+-+
+-+    tcg_gen_qemu_ld32u(dc->cpu_R[instr->b], addr, dc->mem_idx);
+-+
+-+    tcg_temp_free(addr);
+-+}
+-+
+-+/*
+-+ * if ((signed) rA !=3D (signed) @(IMM16))
+-+ *   rB <- 1
+-+ * else
+-+ *   rB <- 0
+-+ */
+-+static void cmpnei(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    tcg_gen_setcondi_tl(TCG_COND_NE, dc->cpu_R[instr->b], dc->cpu_R[ins=
+tr->a],
+-+                        (int32_t)((int16_t)instr->imm16));
+-+}
+-+
+-+/* rB <- rA ^ IMM16 */
+-+static void xori(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    tcg_gen_xori_tl(dc->cpu_R[instr->b], dc->cpu_R[instr->a], instr->im=
+m16);
+-+}
+-+
+-+/*
+-+ * if (rA !=3D rB)
+-+ *   PC <- PC + 4 + @(IMM16)
+-+ * else
+-+ *   PC <- PC + 4
+-+ */
+-+static void bne(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGLabel *l1 =3D gen_new_label();
+-+
+-+    tcg_gen_brcond_tl(TCG_COND_NE, dc->cpu_R[instr->a],
+-+                      dc->cpu_R[instr->b], l1);
+-+
+-+    gen_goto_tb(dc, 0, dc->pc + 4);
+-+
+-+    gen_set_label(l1);
+-+
+-+    gen_goto_tb(dc, 1, dc->pc + 4 + (int16_t)(instr->imm16 & 0xFFFC));
+-+
+-+    dc->is_jmp =3D DISAS_TB_JUMP;
+-+}
+-+
+-+/*
+-+ * if ((signed) rA =3D=3D (signed) @(IMM16))
+-+ *   rB <- 1
+-+ * else
+-+ *   rB <- 0
+-+ */
+-+static void cmpeqi(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    tcg_gen_setcondi_tl(TCG_COND_EQ, dc->cpu_R[instr->b], dc->cpu_R[ins=
+tr->a],
+-+                        (int32_t)((int16_t)instr->imm16));
+-+}
+-+
+-+/* rB <- 0x000000 : Mem8[rA + @(IMM16)] (bypassing cache) */
+-+static void ldbuio(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGv addr =3D tcg_temp_new();
+-+    tcg_gen_addi_tl(addr, dc->cpu_R[instr->a],
+-+                    (int32_t)((int16_t)instr->imm16));
+-+
+-+    tcg_gen_qemu_ld8u(dc->cpu_R[instr->b], addr, dc->mem_idx);
+-+
+-+    tcg_temp_free(addr);
+-+}
+-+
+-+/* rB <- (rA * @(IMM16))(31..0) */
+-+static void muli(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGv imm =3D tcg_temp_new();
+-+    tcg_gen_muli_i32(dc->cpu_R[instr->b], dc->cpu_R[instr->a],
+-+                     (int32_t)((int16_t)instr->imm16));
+-+    tcg_temp_free(imm);
+-+}
+-+
+-+/* Mem8[rA + @(IMM16)] <- rB(7..0) (bypassing cache) */
+-+static void stbio(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGv addr =3D tcg_temp_new();
+-+    tcg_gen_addi_tl(addr, dc->cpu_R[instr->a],
+-+                    (int32_t)((int16_t)instr->imm16));
+-+
+-+    tcg_gen_qemu_st8(dc->cpu_R[instr->b], addr, dc->mem_idx);
+-+
+-+    tcg_temp_free(addr);
+-+}
+-+
+-+/*
+-+ * if (rA =3D=3D rB)
+-+ *   PC <- PC + 4 + @(IMM16)
+-+ * else
+-+ *   PC <- PC + 4
+-+ */
+-+static void beq(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGLabel *l1 =3D gen_new_label();
+-+
+-+    tcg_gen_brcond_tl(TCG_COND_EQ, dc->cpu_R[instr->a],
+-+                      dc->cpu_R[instr->b], l1);
+-+
+-+    gen_goto_tb(dc, 0, dc->pc + 4);
+-+
+-+    gen_set_label(l1);
+-+
+-+    gen_goto_tb(dc, 1, dc->pc + 4 + (int16_t)(instr->imm16 & 0xFFFC));
+-+
+-+    dc->is_jmp =3D DISAS_TB_JUMP;
+-+}
+-+
+-+/* rB <- @(Mem8[rA + @(IMM16)]) (bypassing cache) */
+-+static void ldbio(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGv addr =3D tcg_temp_new();
+-+    tcg_gen_addi_tl(addr, dc->cpu_R[instr->a],
+-+                    (int32_t)((int16_t)instr->imm16));
+-+
+-+    tcg_gen_qemu_ld8s(dc->cpu_R[instr->b], addr, dc->mem_idx);
+-+
+-+    tcg_temp_free(addr);
+-+}
+-+
+-+/*
+-+ * if (rA >=3D 0x0000 : @(IMM16))
+-+ *   rB <- 1
+-+ * else
+-+ *   rB <- 0
+-+ */
+-+static void cmpgeui(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    tcg_gen_setcondi_tl(TCG_COND_GEU, dc->cpu_R[instr->b], dc->cpu_R[in=
+str->a],
+-+                        instr->imm16);
+-+}
+-+
+-+/* rB <- 0x0000 : Mem16[rA + @IMM16)] (bypassing cache) */
+-+static void ldhuio(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGv addr =3D tcg_temp_new();
+-+    tcg_gen_addi_tl(addr, dc->cpu_R[instr->a],
+-+                    (int32_t)((int16_t)instr->imm16));
+-+
+-+    tcg_gen_qemu_ld16u(dc->cpu_R[instr->b], addr, dc->mem_idx);
+-+
+-+    tcg_temp_free(addr);
+-+}
+-+
+-+/* rB <- rA & (IMM16 : 0x0000) */
+-+static void andhi(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    tcg_gen_andi_tl(dc->cpu_R[instr->b], dc->cpu_R[instr->a],
+-+                    instr->imm16 << 16);
+-+}
+-+
+-+/* Mem16[rA + @(IMM16)] <- rB(15..0) (bypassing cache) */
+-+static void sthio(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGv addr =3D tcg_temp_new();
+-+    tcg_gen_addi_tl(addr, dc->cpu_R[instr->a],
+-+                    (int32_t)((int16_t)instr->imm16));
+-+
+-+    tcg_gen_qemu_st16(dc->cpu_R[instr->b], addr, dc->mem_idx);
+-+
+-+    tcg_temp_free(addr);
+-+}
+-+
+-+/*
+-+ * if (rA >=3D rB)
+-+ *   PC <- PC + 4 + @(IMM16)
+-+ * else
+-+ *   PC <- PC + 4
+-+ */
+-+static void bgeu(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGLabel *l1 =3D gen_new_label();
+-+
+-+    tcg_gen_brcond_tl(TCG_COND_GEU, dc->cpu_R[instr->a],
+-+                      dc->cpu_R[instr->b], l1);
+-+
+-+    gen_goto_tb(dc, 0, dc->pc + 4);
+-+
+-+    gen_set_label(l1);
+-+
+-+    gen_goto_tb(dc, 1, dc->pc + 4 + (int16_t)(instr->imm16 & 0xFFFC));
+-+
+-+    dc->is_jmp =3D DISAS_TB_JUMP;
+-+}
+-+
+-+/* rB <- Mem16[rA + @IMM16)] (bypassing cache) */
+-+static void ldhio(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGv addr =3D tcg_temp_new();
+-+    tcg_gen_addi_tl(addr, dc->cpu_R[instr->a],
+-+                    (int32_t)((int16_t)instr->imm16));
+-+
+-+    tcg_gen_qemu_ld16s(dc->cpu_R[instr->b], addr, dc->mem_idx);
+-+
+-+    tcg_temp_free(addr);
+-+}
+-+
+-+/*
+-+ * if (rA < 0x0000 : @(IMM16))
+-+ *   rB <- 1
+-+ * else
+-+ *   rB <- 0
+-+ */
+-+static void cmpltui(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    tcg_gen_setcondi_tl(TCG_COND_LTU, dc->cpu_R[instr->b], dc->cpu_R[in=
+str->a],
+-+                        instr->imm16);
+-+}
+-+
+-+/* */
+-+static void initd(DisasContext *dc __attribute__((unused)),
+-+                  uint32_t code __attribute((unused)))
+-+{
+-+    /* TODO */
+-+}
+-+
+-+/* rB <- rA | (IMM16 : 0x0000) */
+-+static void orhi(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    tcg_gen_ori_tl(dc->cpu_R[instr->b], dc->cpu_R[instr->a],
+-+                   instr->imm16 << 16);
+-+}
+-+
+-+/* Mem32[rA + @(IMM16)] <- rB (bypassing cache) */
+-+static void stwio(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGv addr =3D tcg_temp_new();
+-+    tcg_gen_addi_tl(addr, dc->cpu_R[instr->a],
+-+                    (int32_t)((int16_t)instr->imm16));
+-+
+-+    tcg_gen_qemu_st32(dc->cpu_R[instr->b], addr, dc->mem_idx);
+-+
+-+    tcg_temp_free(addr);
+-+}
+-+
+-+/*
+-+ * if ((unsigned) rA < (unsigned) rB)
+-+ *   PC <- PC + 4 + @(IMM16)
+-+ * else
+-+ *   PC <- PC + 4
+-+ */
+-+static void bltu(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGLabel *l1 =3D gen_new_label();
+-+
+-+    tcg_gen_brcond_tl(TCG_COND_LTU, dc->cpu_R[instr->a],
+-+                      dc->cpu_R[instr->b], l1);
+-+
+-+    gen_goto_tb(dc, 0, dc->pc + 4);
+-+
+-+    gen_set_label(l1);
+-+
+-+    gen_goto_tb(dc, 1, dc->pc + 4 + (int16_t)(instr->imm16 & 0xFFFC));
+-+
+-+    dc->is_jmp =3D DISAS_TB_JUMP;
+-+}
+-+
+-+/* rB <- @(Mem32[rA + @(IMM16)]) (bypassing cache) */
+-+static void ldwio(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    TCGv addr =3D tcg_temp_new();
+-+    tcg_gen_addi_tl(addr, dc->cpu_R[instr->a],
+-+                    (int32_t)((int16_t)instr->imm16));
+-+
+-+    tcg_gen_qemu_ld32u(dc->cpu_R[instr->b], addr, dc->mem_idx);
+-+
+-+    tcg_temp_free(addr);
+-+}
+-+
+-+/* Prototype only, defined below */
+-+static void handle_r_type_instr(DisasContext *dc, uint32_t code);
+-+
+-+/* rB <- rA ^ (IMM16 : 0x0000) */
+-+static void xorhi(DisasContext *dc, uint32_t code)
+-+{
+-+    I_TYPE(instr, code);
+-+
+-+    tcg_gen_xori_tl(dc->cpu_R[instr->b], dc->cpu_R[instr->a],
+-+                    instr->imm16 << 16);
+-+}
+-+
+-+static const Nios2Instruction i_type_instructions[I_TYPE_COUNT] =3D {
+-+    [CALL]    =3D INSTRUCTION(call),
+-+    [JMPI]    =3D INSTRUCTION(jmpi),
+-+    [0x02]    =3D INSTRUCTION_ILLEGAL(),
+-+    [LDBU]    =3D INSTRUCTION(ldbu),
+-+    [ADDI]    =3D INSTRUCTION(addi),
+-+    [STB]     =3D INSTRUCTION(stb),
+-+    [BR]      =3D INSTRUCTION(br),
+-+    [LDB]     =3D INSTRUCTION(ldb),
+-+    [CMPGEI]  =3D INSTRUCTION(cmpgei),
+-+    [0x09]    =3D INSTRUCTION_ILLEGAL(),
+-+    [0x0a]    =3D INSTRUCTION_ILLEGAL(),
+-+    [LDHU]    =3D INSTRUCTION(ldhu),
+-+    [ANDI]    =3D INSTRUCTION(andi),
+-+    [STH]     =3D INSTRUCTION(sth),
+-+    [BGE]     =3D INSTRUCTION(bge),
+-+    [LDH]     =3D INSTRUCTION(ldh),
+-+    [CMPLTI]  =3D INSTRUCTION(cmplti),
+-+    [0x11]    =3D INSTRUCTION_ILLEGAL(),
+-+    [0x12]    =3D INSTRUCTION_ILLEGAL(),
+-+    [INITDA]  =3D INSTRUCTION(initda),
+-+    [ORI]     =3D INSTRUCTION(ori),
+-+    [STW]     =3D INSTRUCTION(stw),
+-+    [BLT]     =3D INSTRUCTION(blt),
+-+    [LDW]     =3D INSTRUCTION(ldw),
+-+    [CMPNEI]  =3D INSTRUCTION(cmpnei),
+-+    [0x19]    =3D INSTRUCTION_ILLEGAL(),
+-+    [0x1a]    =3D INSTRUCTION_ILLEGAL(),
+-+    [FLUSHDA] =3D INSTRUCTION_NOP(flushda),
+-+    [XORI]    =3D INSTRUCTION(xori),
+-+    [0x1d]    =3D INSTRUCTION_ILLEGAL(),
+-+    [BNE]     =3D INSTRUCTION(bne),
+-+    [0x1f]    =3D INSTRUCTION_ILLEGAL(),
+-+    [CMPEQI]  =3D INSTRUCTION(cmpeqi),
+-+    [0x21]    =3D INSTRUCTION_ILLEGAL(),
+-+    [0x22]    =3D INSTRUCTION_ILLEGAL(),
+-+    [LDBUIO]  =3D INSTRUCTION(ldbuio),
+-+    [MULI]    =3D INSTRUCTION(muli),
+-+    [STBIO]   =3D INSTRUCTION(stbio),
+-+    [BEQ]     =3D INSTRUCTION(beq),
+-+    [LDBIO]   =3D INSTRUCTION(ldbio),
+-+    [CMPGEUI] =3D INSTRUCTION(cmpgeui),
+-+    [0x29]    =3D INSTRUCTION_ILLEGAL(),
+-+    [0x2a]    =3D INSTRUCTION_ILLEGAL(),
+-+    [LDHUIO]  =3D INSTRUCTION(ldhuio),
+-+    [ANDHI]   =3D INSTRUCTION(andhi),
+-+    [STHIO]   =3D INSTRUCTION(sthio),
+-+    [BGEU]    =3D INSTRUCTION(bgeu),
+-+    [LDHIO]   =3D INSTRUCTION(ldhio),
+-+    [CMPLTUI] =3D INSTRUCTION(cmpltui),
+-+    [0x31]    =3D INSTRUCTION_ILLEGAL(),
+-+    [CUSTOM]  =3D INSTRUCTION_UNIMPLEMENTED(custom),
+-+    [INITD]   =3D INSTRUCTION(initd),
+-+    [ORHI]    =3D INSTRUCTION(orhi),
+-+    [STWIO]   =3D INSTRUCTION(stwio),
+-+    [BLTU]    =3D INSTRUCTION(bltu),
+-+    [LDWIO]   =3D INSTRUCTION(ldwio),
+-+    [RDPRS]   =3D INSTRUCTION_UNIMPLEMENTED(rdprs),
+-+    [0x39]    =3D INSTRUCTION_ILLEGAL(),
+-+    [R_TYPE]  =3D { "<R-type instruction>", handle_r_type_instr },
+-+    [FLUSHD]  =3D INSTRUCTION_NOP(flushd),
+-+    [XORHI]   =3D INSTRUCTION(xorhi),
+-+    [0x3d]    =3D INSTRUCTION_ILLEGAL(),
+-+    [0x3e]    =3D INSTRUCTION_ILLEGAL(),
+-+    [0x3f]    =3D INSTRUCTION_ILLEGAL(),
+-+};
+-+
+-+/*
+-+ * R-Type instructions
+-+ */
+-+
+-+/*
+-+ * status <- estatus
+-+ * PC <- ea
+-+ */
+-+static void eret(DisasContext *dc, uint32_t code __attribute__((unused)=
+))
+-+{
+-+#ifdef CALL_TRACING
+-+    TCGv_i32 tmp =3D tcg_const_i32(dc->pc);
+-+    gen_helper_eret_status(tmp);
+-+    tcg_temp_free_i32(tmp);
+-+#endif
+-+
+-+    tcg_gen_mov_tl(dc->cpu_R[CR_STATUS], dc->cpu_R[CR_ESTATUS]);
+-+    tcg_gen_mov_tl(dc->cpu_R[R_PC], dc->cpu_R[R_EA]);
+-+    /* Re-evaluate interrupts */
+-+#if !defined(CONFIG_USER_ONLY)
+-+    gen_helper_cr_status_write(dc->cpu_env, dc->cpu_R[CR_STATUS]);
+-+#endif
+-+    dc->is_jmp =3D DISAS_UPDATE;
+-+}
+-+
+-+/* rC <- rA rotated left IMM5 bit positions */
+-+static void roli(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    tcg_gen_rotli_tl(dc->cpu_R[instr->c], dc->cpu_R[instr->a], instr->i=
+mm5);
+-+}
+-+
+-+/* rC <- rA rotated left rB(4..0) bit positions */
+-+static void rol(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    TCGv t0 =3D tcg_temp_new();
+-+
+-+    tcg_gen_andi_tl(t0, dc->cpu_R[instr->b], 31);
+-+    tcg_gen_rotl_tl(dc->cpu_R[instr->c], dc->cpu_R[instr->a], t0);
+-+
+-+    tcg_temp_free(t0);
+-+}
+-+
+-+/* */
+-+static void flushp(DisasContext *dc __attribute__((unused)),
+-+                   uint32_t code __attribute__((unused)))
+-+{
+-+    /* TODO */
+-+}
+-+
+-+/* PC <- ra */
+-+static void ret(DisasContext *dc, uint32_t code __attribute__((unused))=
+)
+-+{
+-+#ifdef CALL_TRACING
+-+    TCGv_i32 tmp =3D tcg_const_i32(dc->pc);
+-+    gen_helper_ret_status(tmp);
+-+    tcg_temp_free_i32(tmp);
+-+#endif
+-+
+-+    tcg_gen_mov_tl(dc->cpu_R[R_PC], dc->cpu_R[R_RA]);
+-+
+-+    dc->is_jmp =3D DISAS_JUMP;
+-+}
+-+
+-+/* rC <- ~(A | rB) */
+-+static void nor(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    tcg_gen_nor_tl(dc->cpu_R[instr->c], dc->cpu_R[instr->a],
+-+                   dc->cpu_R[instr->b]);
+-+}
+-+
+-+/* rC <- ((unsigned)rA * (unsigned)rB))(31..0) */
+-+static void mulxuu(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    TCGv_i64 t0, t1;
+-+
+-+    t0 =3D tcg_temp_new_i64();
+-+    t1 =3D tcg_temp_new_i64();
+-+
+-+    tcg_gen_extu_i32_i64(t0, dc->cpu_R[instr->a]);
+-+    tcg_gen_extu_i32_i64(t1, dc->cpu_R[instr->b]);
+-+    tcg_gen_mul_i64(t0, t0, t1);
+-+
+-+    tcg_gen_shri_i64(t0, t0, 32);
+-+    tcg_gen_extrl_i64_i32(dc->cpu_R[instr->c], t0);
+-+
+-+    tcg_temp_free_i64(t0);
+-+    tcg_temp_free_i64(t1);
+-+}
+-+
+-+/*
+-+ * if (rA >=3D rB)
+-+ *   rC <- 1
+-+ * else
+-+ *   rC <- 0
+-+ */
+-+static void cmpge(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    tcg_gen_setcond_tl(TCG_COND_GE, dc->cpu_R[instr->c], dc->cpu_R[inst=
+r->a],
+-+                       dc->cpu_R[instr->b]);
+-+}
+-+
+-+/* PC <- ba */
+-+static void bret(DisasContext *dc, uint32_t code __attribute__((unused)=
+))
+-+{
+-+    tcg_gen_mov_tl(dc->cpu_R[R_PC], dc->cpu_R[R_BA]);
+-+
+-+    dc->is_jmp =3D DISAS_JUMP;
+-+}
+-+
+-+/*  rC <- rA rotated right rb(4..0) bit positions */
+-+static void ror(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    TCGv t0 =3D tcg_temp_new();
+-+
+-+    tcg_gen_andi_tl(t0, dc->cpu_R[instr->b], 31);
+-+    tcg_gen_rotr_tl(dc->cpu_R[instr->c], dc->cpu_R[instr->a], t0);
+-+
+-+    tcg_temp_free(t0);
+-+}
+-+
+-+/* */
+-+static void flushi(DisasContext *dc __attribute__((unused)),
+-+                   uint32_t code __attribute__((unused)))
+-+{
+-+    /* TODO */
+-+}
+-+
+-+/* PC <- rA */
+-+static void jmp(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    tcg_gen_mov_tl(dc->cpu_R[R_PC], dc->cpu_R[instr->a]);
+-+
+-+    dc->is_jmp =3D DISAS_JUMP;
+-+}
+-+
+-+/* rC <- rA & rB */
+-+static void and(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    tcg_gen_and_tl(dc->cpu_R[instr->c], dc->cpu_R[instr->a],
+-+                   dc->cpu_R[instr->b]);
+-+}
+-+
+-+/*
+-+ * if ((signed) rA < (signed) rB)
+-+ *   rC <- 1
+-+ * else
+-+ *   rC <- 0
+-+ */
+-+static void cmplt(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    tcg_gen_setcond_tl(TCG_COND_LT, dc->cpu_R[instr->c], dc->cpu_R[inst=
+r->a],
+-+                       dc->cpu_R[instr->b]);
+-+}
+-+
+-+/* rC <- rA << IMM5 */
+-+static void slli(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    tcg_gen_shli_tl(dc->cpu_R[instr->c], dc->cpu_R[instr->a], instr->im=
+m5);
+-+}
+-+
+-+/* rC <- rA << rB(4..0) */
+-+static void sll(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    TCGv t0 =3D tcg_temp_new();
+-+
+-+    tcg_gen_andi_tl(t0, dc->cpu_R[instr->b], 31);
+-+    tcg_gen_shl_tl(dc->cpu_R[instr->c], dc->cpu_R[instr->a], t0);
+-+
+-+    tcg_temp_free(t0);
+-+}
+-+
+-+/* rC <- rA | rB */
+-+static void or(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    tcg_gen_or_tl(dc->cpu_R[instr->c], dc->cpu_R[instr->a],
+-+                  dc->cpu_R[instr->b]);
+-+}
+-+
+-+/* rC <- ((signed)rA * (unsigned)rB))(31..0) */
+-+static void mulxsu(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    TCGv_i64 t0, t1;
+-+
+-+    t0 =3D tcg_temp_new_i64();
+-+    t1 =3D tcg_temp_new_i64();
+-+
+-+    tcg_gen_ext_i32_i64(t0, dc->cpu_R[instr->a]);
+-+    tcg_gen_extu_i32_i64(t1, dc->cpu_R[instr->b]);
+-+    tcg_gen_mul_i64(t0, t0, t1);
+-+
+-+    tcg_gen_shri_i64(t0, t0, 32);
+-+    tcg_gen_extrl_i64_i32(dc->cpu_R[instr->c], t0);
+-+
+-+    tcg_temp_free_i64(t0);
+-+    tcg_temp_free_i64(t1);
+-+}
+-+
+-+/*
+-+ * if (rA !=3D rB)
+-+ *   rC <- 1
+-+ * else
+-+ *   rC <- 0
+-+ */
+-+static void cmpne(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    tcg_gen_setcond_tl(TCG_COND_NE, dc->cpu_R[instr->c], dc->cpu_R[inst=
+r->a],
+-+                       dc->cpu_R[instr->b]);
+-+}
+-+
+-+/* rC <- (unsigned) rA >> ((unsigned) IMM5)*/
+-+static void srli(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    tcg_gen_shri_tl(dc->cpu_R[instr->c], dc->cpu_R[instr->a], instr->im=
+m5);
+-+}
+-+
+-+/* rC <- (unsigned) rA >> ((unsigned) rB(4..0))*/
+-+static void srl(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    TCGv t0 =3D tcg_temp_new();
+-+
+-+    tcg_gen_andi_tl(t0, dc->cpu_R[instr->b], 31);
+-+    tcg_gen_shr_tl(dc->cpu_R[instr->c], dc->cpu_R[instr->a], t0);
+-+
+-+    tcg_temp_free(t0);
+-+}
+-+
+-+/* rC <- PC + 4 */
+-+static void nextpc(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    tcg_gen_movi_tl(dc->cpu_R[instr->c], dc->pc + 4);
+-+}
+-+
+-+/*
+-+ * ra <- PC + 4
+-+ * PC <- rA
+-+ */
+-+static void callr(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+#ifdef CALL_TRACING
+-+    TCGv_i32 tmp =3D tcg_const_i32(dc->pc);
+-+    gen_helper_call_status(tmp, dc->cpu_R[instr->a]);
+-+    tcg_temp_free_i32(tmp);
+-+#endif
+-+
+-+    tcg_gen_movi_tl(dc->cpu_R[R_RA], dc->pc + 4);
+-+    tcg_gen_mov_tl(dc->cpu_R[R_PC], dc->cpu_R[instr->a]);
+-+
+-+    dc->is_jmp =3D DISAS_JUMP;
+-+}
+-+
+-+/* rC <- rA ^ rB */
+-+static void xor(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    tcg_gen_xor_tl(dc->cpu_R[instr->c], dc->cpu_R[instr->a],
+-+                   dc->cpu_R[instr->b]);
+-+}
+-+
+-+/* rC <- ((signed)rA * (signed)rB))(31..0) */
+-+static void mulxss(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    TCGv_i64 t0, t1;
+-+
+-+    t0 =3D tcg_temp_new_i64();
+-+    t1 =3D tcg_temp_new_i64();
+-+
+-+    tcg_gen_ext_i32_i64(t0, dc->cpu_R[instr->a]);
+-+    tcg_gen_ext_i32_i64(t1, dc->cpu_R[instr->b]);
+-+    tcg_gen_mul_i64(t0, t0, t1);
+-+
+-+    tcg_gen_shri_i64(t0, t0, 32);
+-+    tcg_gen_extrl_i64_i32(dc->cpu_R[instr->c], t0);
+-+
+-+    tcg_temp_free_i64(t0);
+-+    tcg_temp_free_i64(t1);
+-+}
+-+
+-+/*
+-+ * if (rA =3D=3D rB)
+-+ *   rC <- 1
+-+ * else
+-+ *   rC <- 0
+-+ */
+-+static void cmpeq(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    tcg_gen_setcond_tl(TCG_COND_EQ, dc->cpu_R[instr->c], dc->cpu_R[inst=
+r->a],
+-+                       dc->cpu_R[instr->b]);
+-+}
+-+
+-+/* rC <- rA / rB */
+-+static void divu(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    gen_helper_divu(dc->cpu_R[instr->c], dc->cpu_R[instr->a],
+-+                    dc->cpu_R[instr->b]);
+-+}
+-+
+-+/* rC <- rA / rB */
+-+static void _div(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    gen_helper_divs(dc->cpu_R[instr->c], dc->cpu_R[instr->a],
+-+                    dc->cpu_R[instr->b]);
+-+}
+-+
+-+/* rC <- ctlN */
+-+static void rdctl(DisasContext *dc, uint32_t code)
+-+{
+-+    if (IS_USER(dc)) {
+-+        illegal_instruction(dc, 0);
+-+    } else {
+-+        R_TYPE(instr, code);
+-+
+-+        switch (instr->imm5 + 32) {
+-+        case CR_PTEADDR:
+-+        case CR_TLBACC:
+-+        case CR_TLBMISC:
+-+            {
+-+#if !defined(CONFIG_USER_ONLY)
+-+                TCGv_i32 tmp =3D tcg_const_i32(instr->imm5 + 32);
+-+                gen_helper_mmu_read(dc->cpu_R[instr->c], dc->cpu_env, t=
+mp);
+-+                tcg_temp_free_i32(tmp);
+-+#endif
+-+            break;
+-+            }
+-+
+-+        default:
+-+            tcg_gen_mov_tl(dc->cpu_R[instr->c], dc->cpu_R[instr->imm5 +=
+ 32]);
+-+            break;
+-+        }
+-+    }
+-+}
+-+
+-+/* rC <- (rA * rB))(31..0) */
+-+static void mul(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    tcg_gen_mul_i32(dc->cpu_R[instr->c], dc->cpu_R[instr->a],
+-+                    dc->cpu_R[instr->b]);
+-+}
+-+
+-+/*
+-+ * if (rA >=3D rB)
+-+ *   rC <- 1
+-+ * else
+-+ *   rC <- 0
+-+ */
+-+static void cmpgeu(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    tcg_gen_setcond_tl(TCG_COND_GEU, dc->cpu_R[instr->c], dc->cpu_R[ins=
+tr->a],
+-+                       dc->cpu_R[instr->b]);
+-+}
+-+
+-+/* */
+-+static void initi(DisasContext *dc __attribute__((unused)),
+-+                  uint32_t code __attribute__((unused)))
+-+{
+-+    /* TODO */
+-+}
+-+
+-+/*
+-+ * estatus <- status
+-+ * PIE <- 0
+-+ * U <- 0
+-+ * ea <- PC + 4
+-+ * PC <- exception handler address
+-+ */
+-+static void trap(DisasContext *dc, uint32_t code __attribute__((unused)=
+))
+-+{
+-+    t_gen_helper_raise_exception(dc, EXCP_TRAP);
+-+}
+-+
+-+/* ctlN <- rA */
+-+static void wrctl(DisasContext *dc, uint32_t code)
+-+{
+-+    if (IS_USER(dc)) {
+-+        illegal_instruction(dc, 0);
+-+    } else {
+-+        R_TYPE(instr, code);
+-+
+-+        switch (instr->imm5 + 32) {
+-+        case CR_PTEADDR:
+-+        case CR_TLBACC:
+-+        case CR_TLBMISC:
+-+            {
+-+#if !defined(CONFIG_USER_ONLY)
+-+                TCGv_i32 tmp =3D tcg_const_i32(instr->imm5 + 32);
+-+                gen_helper_mmu_write(dc->cpu_env, tmp, dc->cpu_R[instr-=
+>a]);
+-+                tcg_temp_free_i32(tmp);
+-+#endif
+-+            break;
+-+            }
+-+
+-+        case CR_IPENDING: /* read only, ignore writes */
+-+            break;
+-+
+-+        case CR_IENABLE:
+-+            /* Re-evaluate interrupts */
+-+#if !defined(CONFIG_USER_ONLY)
+-+            gen_helper_cr_ienable_write(dc->cpu_env, dc->cpu_R[instr->a=
+]);
+-+            tcg_gen_movi_tl(dc->cpu_R[R_PC], dc->pc + 4);
+-+            dc->is_jmp =3D DISAS_UPDATE;
+-+#endif
+-+            break;
+-+
+-+        case CR_STATUS:
+-+            /* Re-evaluate interrupts */
+-+#if !defined(CONFIG_USER_ONLY)
+-+            gen_helper_cr_status_write(dc->cpu_env, dc->cpu_R[instr->a]=
+);
+-+            tcg_gen_movi_tl(dc->cpu_R[R_PC], dc->pc + 4);
+-+            dc->is_jmp =3D DISAS_UPDATE;
+-+#endif
+-+            break;
+-+
+-+        default:
+-+            tcg_gen_mov_tl(dc->cpu_R[instr->imm5 + 32], dc->cpu_R[instr=
+->a]);
+-+            break;
+-+        }
+-+    }
+-+}
+-+
+-+/*
+-+ * if (rA < rB)
+-+ *   rC <- 1
+-+ * else
+-+ *   rC <- 0
+-+ */
+-+static void cmpltu(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    tcg_gen_setcond_tl(TCG_COND_LTU, dc->cpu_R[instr->c], dc->cpu_R[ins=
+tr->a],
+-+                       dc->cpu_R[instr->b]);
+-+}
+-+
+-+/* rC <- rA + rB */
+-+static void add(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    tcg_gen_add_tl(dc->cpu_R[instr->c], dc->cpu_R[instr->a],
+-+                   dc->cpu_R[instr->b]);
+-+}
+-+
+-+/*
+-+ * bstatus =E2=86=90 status
+-+ * PIE <- 0
+-+ * U <- 0
+-+ * ba <- PC + 4
+-+ * PC <- break handler address
+-+ */
+-+static void __break(DisasContext *dc, uint32_t code __attribute__((unus=
+ed)))
+-+{
+-+    t_gen_helper_raise_exception(dc, EXCP_BREAK);
+-+}
+-+
+-+/* rC <- rA - rB */
+-+static void sub(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    tcg_gen_sub_tl(dc->cpu_R[instr->c], dc->cpu_R[instr->a],
+-+                   dc->cpu_R[instr->b]);
+-+}
+-+
+-+/* rC <- (signed) rA >> ((unsigned) IMM5) */
+-+static void srai(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    tcg_gen_sari_tl(dc->cpu_R[instr->c], dc->cpu_R[instr->a], instr->im=
+m5);
+-+}
+-+
+-+/* rC <- (signed) rA >> ((unsigned) rB(4..0)) */
+-+static void sra(DisasContext *dc, uint32_t code)
+-+{
+-+    R_TYPE(instr, code);
+-+
+-+    TCGv t0 =3D tcg_temp_new();
+-+
+-+    tcg_gen_andi_tl(t0, dc->cpu_R[instr->b], 31);
+-+    tcg_gen_sar_tl(dc->cpu_R[instr->c], dc->cpu_R[instr->a], t0);
+-+
+-+    tcg_temp_free(t0);
+-+}
+-+
+-+static const Nios2Instruction r_type_instructions[R_TYPE_COUNT] =3D {
+-+    [0x00]   =3D INSTRUCTION_ILLEGAL(),
+-+    [ERET]   =3D INSTRUCTION(eret),
+-+    [ROLI]   =3D INSTRUCTION(roli),
+-+    [ROL]    =3D INSTRUCTION(rol),
+-+    [FLUSHP] =3D INSTRUCTION(flushp),
+-+    [RET]    =3D INSTRUCTION(ret),
+-+    [NOR]    =3D INSTRUCTION(nor),
+-+    [MULXUU] =3D INSTRUCTION(mulxuu),
+-+    [CMPGE]  =3D INSTRUCTION(cmpge),
+-+    [BRET]   =3D INSTRUCTION(bret),
+-+    [0x0a]   =3D INSTRUCTION_ILLEGAL(),
+-+    [ROR]    =3D INSTRUCTION(ror),
+-+    [FLUSHI] =3D INSTRUCTION(flushi),
+-+    [JMP]    =3D INSTRUCTION(jmp),
+-+    [AND]    =3D INSTRUCTION(and),
+-+    [0x0f]   =3D INSTRUCTION_ILLEGAL(),
+-+    [CMPLT]  =3D INSTRUCTION(cmplt),
+-+    [0x11]   =3D INSTRUCTION_ILLEGAL(),
+-+    [SLLI]   =3D INSTRUCTION(slli),
+-+    [SLL]    =3D INSTRUCTION(sll),
+-+    [WRPRS]  =3D INSTRUCTION_UNIMPLEMENTED(wrprs),
+-+    [0x15]   =3D INSTRUCTION_ILLEGAL(),
+-+    [OR]     =3D INSTRUCTION(or),
+-+    [MULXSU] =3D INSTRUCTION(mulxsu),
+-+    [CMPNE]  =3D INSTRUCTION(cmpne),
+-+    [0x19]   =3D INSTRUCTION_ILLEGAL(),
+-+    [SRLI]   =3D INSTRUCTION(srli),
+-+    [SRL]    =3D INSTRUCTION(srl),
+-+    [NEXTPC] =3D INSTRUCTION(nextpc),
+-+    [CALLR]  =3D INSTRUCTION(callr),
+-+    [XOR]    =3D INSTRUCTION(xor),
+-+    [MULXSS] =3D INSTRUCTION(mulxss),
+-+    [CMPEQ]  =3D INSTRUCTION(cmpeq),
+-+    [0x21]   =3D INSTRUCTION_ILLEGAL(),
+-+    [0x22]   =3D INSTRUCTION_ILLEGAL(),
+-+    [0x23]   =3D INSTRUCTION_ILLEGAL(),
+-+    [DIVU]   =3D INSTRUCTION(divu),
+-+    [DIV]    =3D { "div", _div },
+-+    [RDCTL]  =3D INSTRUCTION(rdctl),
+-+    [MUL]    =3D INSTRUCTION(mul),
+-+    [CMPGEU] =3D INSTRUCTION(cmpgeu),
+-+    [INITI]  =3D INSTRUCTION(initi),
+-+    [0x2a]   =3D INSTRUCTION_ILLEGAL(),
+-+    [0x2b]   =3D INSTRUCTION_ILLEGAL(),
+-+    [0x2c]   =3D INSTRUCTION_ILLEGAL(),
+-+    [TRAP]   =3D INSTRUCTION(trap),
+-+    [WRCTL]  =3D INSTRUCTION(wrctl),
+-+    [0x2f]   =3D INSTRUCTION_ILLEGAL(),
+-+    [CMPLTU] =3D INSTRUCTION(cmpltu),
+-+    [ADD]    =3D INSTRUCTION(add),
+-+    [0x32]   =3D INSTRUCTION_ILLEGAL(),
+-+    [0x33]   =3D INSTRUCTION_ILLEGAL(),
+-+    [BREAK]  =3D { "break", __break },
+-+    [0x35]   =3D INSTRUCTION_ILLEGAL(),
+-+    [SYNC]   =3D INSTRUCTION(nop),
+-+    [0x37]   =3D INSTRUCTION_ILLEGAL(),
+-+    [0x38]   =3D INSTRUCTION_ILLEGAL(),
+-+    [SUB]    =3D INSTRUCTION(sub),
+-+    [SRAI]   =3D INSTRUCTION(srai),
+-+    [SRA]    =3D INSTRUCTION(sra),
+-+    [0x3c]   =3D INSTRUCTION_ILLEGAL(),
+-+    [0x3d]   =3D INSTRUCTION_ILLEGAL(),
+-+    [0x3e]   =3D INSTRUCTION_ILLEGAL(),
+-+    [0x3f]   =3D INSTRUCTION_ILLEGAL(),
+-+};
+-+
+-+static void handle_r_type_instr(DisasContext *dc, uint32_t code)
+-+{
+-+    uint32_t opx;
+-+    instruction_handler handle_instr;
+-+
+-+    opx =3D get_opxcode(code);
+-+    if (unlikely(opx >=3D R_TYPE_COUNT)) {
+-+        goto illegal_op;
+-+    }
+-+
+-+    LOG_DIS("R: %s (%08x)\n", r_type_instructions[opx].name, code);
+-+    handle_instr =3D r_type_instructions[opx].handler;
+-+
+-+    handle_instr(dc, code);
+-+
+-+    return;
+-+
+-+illegal_op:
+-+    t_gen_helper_raise_exception(dc, EXCP_ILLEGAL);
+-+}
+-+
+-+#include "exec/cpu_ldst.h"
+-+
+-+void handle_instruction(DisasContext *dc, CPUNios2State *env)
+-+{
+-+    uint32_t insn;
+-+    uint32_t op;
+-+#if defined(CONFIG_USER_ONLY)
+-+    /* FIXME: Is this needed ? */
+-+    if (dc->pc >=3D 0x1000 && dc->pc < 0x2000) {
+-+        env->regs[R_PC] =3D dc->pc;
+-+        t_gen_helper_raise_exception(dc, 0xaa);
+-+       return;
+-+    }
+-+#endif
+-+    insn =3D cpu_ldl_code(env, dc->pc);
+-+    op =3D get_opcode(insn);
+-+
+-+    LOG_DIS("%8.8x\t", insn);
+-+
+-+    if (unlikely(op >=3D I_TYPE_COUNT)) {
+-+        goto illegal_op;
+-+    }
+-+
+-+    if (op !=3D R_TYPE) {
+-+        LOG_DIS("I: %s (%08x)\n", i_type_instructions[op].name, insn);
+-+    }
+-+    i_type_instructions[op].handler(dc, insn);
+-+
+-+    return;
+-+
+-+illegal_op:
+-+    t_gen_helper_raise_exception(dc, EXCP_ILLEGAL);
+-+}
+-+
+-+const char *instruction_get_string(uint32_t code)
+-+{
+-+    uint32_t op =3D get_opcode(code);
+-+
+-+    if (unlikely(op >=3D I_TYPE_COUNT)) {
+-+        return "";
+-+    } else if (op =3D=3D R_TYPE) {
+-+        uint32_t opx =3D get_opxcode(code);
+-+        if (unlikely(opx >=3D R_TYPE_COUNT)) {
+-+            return "";
+-+        }
+-+        return r_type_instructions[opx].name;
+-+    } else {
+-+        return i_type_instructions[op].name;
+-+    }
+-+}
+-+
+-diff --git a/target-nios2/instruction.h b/target-nios2/instruction.h
+-new file mode 100644
+-index 0000000..9af7ec4
+---- /dev/null
+-+++ b/target-nios2/instruction.h
+-@@ -0,0 +1,281 @@
+-+/*
+-+ * Copyright (C) 2010 Tobias Klauser <tklauser@distanz.ch>
+-+ * Copyright (C) 2010 chysun2000@gmail.com
+-+ *  (Portions of this file that were originally from nios2sim-ng.)
+-+ *
+-+ * Copyright (C) 2012 Chris Wulff <crwulff@gmail.com>
+-+ * Copyright (C) 2016 Intel Corporation.
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Lesser General Public
+-+ * License as published by the Free Software Foundation; either
+-+ * version 2.1 of the License, or (at your option) any later version.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ * Lesser General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Lesser General Public
+-+ * License along with this library; if not, see
+-+ * <http://www.gnu.org/licenses/lgpl-2.1.html>
+-+ */
+-+
+-+#ifndef _INSTRUCTION_H_
+-+#define _INSTRUCTION_H_
+-+
+-+#include <stdint.h>
+-+#include "cpu.h"
+-+#include "tcg-op.h"
+-+
+-+/*
+-+ * Instruction Word Formats
+-+ */
+-+
+-+/* I-Type instruction */
+-+typedef struct Nios2IType {
+-+    uint32_t op:6;
+-+    uint32_t imm16:16;
+-+    uint32_t b:5;
+-+    uint32_t a:5;
+-+} QEMU_PACKED Nios2IType;
+-+
+-+union i_type_u {
+-+    uint32_t      v;
+-+    Nios2IType i;
+-+};
+-+
+-+#define I_TYPE(instr, op) \
+-+    union i_type_u instr_u =3D { .v =3D op }; \
+-+    Nios2IType *instr =3D &instr_u.i
+-+
+-+/* R-Type instruction */
+-+typedef struct Nios2RType {
+-+    uint32_t op:6;
+-+    /*
+-+     * Some R-Type instructions embed a small immediate value in the
+-+     * low-order bits of OPX.
+-+     */
+-+    uint32_t imm5:5;
+-+    uint32_t opx6:6;
+-+    uint32_t c:5;
+-+    uint32_t b:5;
+-+    uint32_t a:5;
+-+} QEMU_PACKED Nios2RType;
+-+
+-+union r_type_u {
+-+    uint32_t      v;
+-+    Nios2RType i;
+-+};
+-+
+-+#define R_TYPE(instr, op) \
+-+    union r_type_u instr_u =3D { .v =3D op }; \
+-+    Nios2RType *instr =3D &instr_u.i
+-+
+-+/* J-Type instruction */
+-+typedef struct Nios2JType {
+-+    uint32_t op:6;
+-+    uint32_t imm26:26;
+-+} QEMU_PACKED Nios2JType;
+-+
+-+#define J_TYPE(instr, op) \
+-+    Nios2JType *instr =3D (Nios2JType *) &op
+-+
+-+/*
+-+ * Instruction Opcodes
+-+ */
+-+
+-+/*
+-+ * OP Encodings for I-Type instructions (except for CALL and JMPI, whic=
+h are
+-+ * J-type instructions)
+-+ */
+-+enum {
+-+    CALL    =3D 0x00,  /* J-type */
+-+    JMPI    =3D 0x01,  /* J-type */
+-+           /* 0x02 */
+-+    LDBU    =3D 0x03,
+-+    ADDI    =3D 0x04,
+-+    STB     =3D 0x05,
+-+    BR      =3D 0x06,
+-+    LDB     =3D 0x07,
+-+    CMPGEI  =3D 0x08,
+-+           /* 0x09 */
+-+           /* 0x0A */
+-+    LDHU    =3D 0x0B,
+-+    ANDI    =3D 0x0C,
+-+    STH     =3D 0x0D,
+-+    BGE     =3D 0x0E,
+-+    LDH     =3D 0x0F,
+-+    CMPLTI  =3D 0x10,
+-+           /* 0x11 */
+-+           /* 0x12 */
+-+    INITDA  =3D 0x13,
+-+    ORI     =3D 0x14,
+-+    STW     =3D 0x15,
+-+    BLT     =3D 0x16,
+-+    LDW     =3D 0x17,
+-+    CMPNEI  =3D 0x18,
+-+           /* 0x19 */
+-+           /* 0x1A */
+-+    FLUSHDA =3D 0x1B,
+-+    XORI    =3D 0x1C,
+-+           /* 0x1D */
+-+    BNE     =3D 0x1E,
+-+           /* 0x1F */
+-+    CMPEQI  =3D 0x20,
+-+           /* 0x21 */
+-+           /* 0x22 */
+-+    LDBUIO  =3D 0x23,
+-+    MULI    =3D 0x24,
+-+    STBIO   =3D 0x25,
+-+    BEQ     =3D 0x26,
+-+    LDBIO   =3D 0x27,
+-+    CMPGEUI =3D 0x28,
+-+           /* 0x29 */
+-+           /* 0x2A */
+-+    LDHUIO  =3D 0x2B,
+-+    ANDHI   =3D 0x2C,
+-+    STHIO   =3D 0x2D,
+-+    BGEU    =3D 0x2E,
+-+    LDHIO   =3D 0x2F,
+-+    CMPLTUI =3D 0x30,
+-+           /* 0x31 */
+-+    CUSTOM  =3D 0x32,
+-+    INITD   =3D 0x33,
+-+    ORHI    =3D 0x34,
+-+    STWIO   =3D 0x35,
+-+    BLTU    =3D 0x36,
+-+    LDWIO   =3D 0x37,
+-+    RDPRS   =3D 0x38,
+-+           /* 0x39 */
+-+    R_TYPE  =3D 0x3A,
+-+    FLUSHD  =3D 0x3B,
+-+    XORHI   =3D 0x3C,
+-+           /* 0x3D */
+-+           /* 0x3E */
+-+           /* 0x3F */
+-+};
+-+#define I_TYPE_COUNT  0x40
+-+
+-+/* OPX Encodings for R-Type instructions */
+-+enum {
+-+          /* 0x00 */
+-+    ERET   =3D 0x01,
+-+    ROLI   =3D 0x02,
+-+    ROL    =3D 0x03,
+-+    FLUSHP =3D 0x04,
+-+    RET    =3D 0x05,
+-+    NOR    =3D 0x06,
+-+    MULXUU =3D 0x07,
+-+    CMPGE  =3D 0x08,
+-+    BRET   =3D 0x09,
+-+          /* 0x0A */
+-+    ROR    =3D 0x0B,
+-+    FLUSHI =3D 0x0C,
+-+    JMP    =3D 0x0D,
+-+    AND    =3D 0x0E,
+-+          /* 0x0F */
+-+    CMPLT  =3D 0x10,
+-+          /* 0x11 */
+-+    SLLI   =3D 0x12,
+-+    SLL    =3D 0x13,
+-+    WRPRS  =3D 0x14,
+-+          /* 0x15 */
+-+    OR     =3D 0x16,
+-+    MULXSU =3D 0x17,
+-+    CMPNE  =3D 0x18,
+-+          /* 0x19 */
+-+    SRLI   =3D 0x1A,
+-+    SRL    =3D 0x1B,
+-+    NEXTPC =3D 0x1C,
+-+    CALLR  =3D 0x1D,
+-+    XOR    =3D 0x1E,
+-+    MULXSS =3D 0x1F,
+-+    CMPEQ  =3D 0x20,
+-+          /* 0x21 */
+-+          /* 0x22 */
+-+          /* 0x23 */
+-+    DIVU   =3D 0x24,
+-+    DIV    =3D 0x25,
+-+    RDCTL  =3D 0x26,
+-+    MUL    =3D 0x27,
+-+    CMPGEU =3D 0x28,
+-+    INITI  =3D 0x29,
+-+          /* 0x2A */
+-+          /* 0x2B */
+-+          /* 0x2C */
+-+    TRAP   =3D 0x2D,
+-+    WRCTL  =3D 0x2E,
+-+          /* 0x2F */
+-+    CMPLTU =3D 0x30,
+-+    ADD    =3D 0x31,
+-+          /* 0x32 */
+-+          /* 0x33 */
+-+    BREAK  =3D 0x34,
+-+          /* 0x35 */
+-+    SYNC   =3D 0x36,
+-+          /* 0x37 */
+-+          /* 0x38 */
+-+    SUB    =3D 0x39,
+-+    SRAI   =3D 0x3A,
+-+    SRA    =3D 0x3B,
+-+          /* 0x3C */
+-+          /* 0x3D */
+-+          /* 0x3E */
+-+          /* 0x3F */
+-+};
+-+#define R_TYPE_COUNT  0x40
+-+
+-+/*
+-+ * Return values for instruction handlers
+-+ */
+-+#define INSTR_UNIMPL     -2  /* Unimplemented instruction */
+-+#define INSTR_ERR        -1  /* Error in instruction */
+-+#define PC_INC_NORMAL     0  /* Normal PC increment after instruction *=
+/
+-+#define PC_INC_BY_INSTR   1  /* PC got incremented by instruction */
+-+#define INSTR_BREAK       2  /* Break encountered */
+-+#define INSTR_EXCEPTION 255  /* Instruction generated an exception
+-+                                (the exception cause will be stored
+-+                                in struct nios2 */
+-+
+-+#define EXCEPTION(cpu, cause)           \
+-+    ({                                  \
+-+        (cpu)->exception_cause =3D cause; \
+-+        INSTR_EXCEPTION;                \
+-+    })
+-+
+-+typedef struct DisasContext {
+-+    TCGv_ptr          cpu_env;
+-+    TCGv             *cpu_R;
+-+    int               is_jmp;
+-+    target_ulong      pc;
+-+    TranslationBlock *tb;
+-+    int               mem_idx;
+-+    bool              user;
+-+} DisasContext;
+-+
+-+typedef void (*instruction_handler)(DisasContext *dc, uint32_t opcode);
+-+
+-+typedef struct Nios2Instruction {
+-+    const char         *name;
+-+    instruction_handler handler;
+-+} Nios2Instruction;
+-+
+-+#define INSTRUCTION(name)    { stringify(name), name }
+-+#define INSTRUCTION_NOP(name)    { stringify(name), nop }
+-+#define INSTRUCTION_UNIMPLEMENTED(name)  { stringify(name), unimplement=
+ed }
+-+#define INSTRUCTION_ILLEGAL()  { "", illegal_instruction }
+-+
+-+extern void handle_instruction(DisasContext *dc, CPUNios2State *env);
+-+extern const char *instruction_get_string(uint32_t code);
+-+
+-+#define SIM_COMPAT 0
+-+#define DISAS_GNU 1   /* Disassembly via GNU gdb derived routines */
+-+#define DISAS_NIOS2 0 /* Disassembly via routines in instruction.c */
+-+#if DISAS_NIOS2 && !SIM_COMPAT
+-+#  define LOG_DIS(...) qemu_log_mask(CPU_LOG_TB_IN_ASM, ## __VA_ARGS__)
+-+#else
+-+#  define LOG_DIS(...) do { } while (0)
+-+#endif
+-+
+-+#endif /* _INSTRUCTION_H_ */
+-diff --git a/target-nios2/machine.c b/target-nios2/machine.c
+-new file mode 100644
+-index 0000000..da2cb04
+---- /dev/null
+-+++ b/target-nios2/machine.c
+-@@ -0,0 +1,38 @@
+-+/*
+-+ * Altera Nios II MMU emulation for qemu.
+-+ *
+-+ * Copyright (C) 2012 Chris Wulff <crwulff@gmail.com>
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Lesser General Public
+-+ * License as published by the Free Software Foundation; either
+-+ * version 2.1 of the License, or (at your option) any later version.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ * Lesser General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Lesser General Public
+-+ * License along with this library; if not, see
+-+ * <http://www.gnu.org/licenses/lgpl-2.1.html>
+-+ */
+-+
+-+/*
+-+ * FIXME: Convert to VMstate
+-+ */
+-+
+-+#include "qemu/osdep.h"
+-+#include "hw/hw.h"
+-+#include "hw/boards.h"
+-+
+-+void cpu_save(QEMUFile *f, void *opaque)
+-+{
+-+    /* TODO */
+-+}
+-+
+-+int cpu_load(QEMUFile *f, void *opaque, int version_id)
+-+{
+-+    /* TODO */
+-+    return 0;
+-+}
+-diff --git a/target-nios2/mmu.c b/target-nios2/mmu.c
+-new file mode 100644
+-index 0000000..85852ac
+---- /dev/null
+-+++ b/target-nios2/mmu.c
+-@@ -0,0 +1,292 @@
+-+/*
+-+ * Altera Nios II MMU emulation for qemu.
+-+ *
+-+ * Copyright (C) 2012 Chris Wulff <crwulff@gmail.com>
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Lesser General Public
+-+ * License as published by the Free Software Foundation; either
+-+ * version 2.1 of the License, or (at your option) any later version.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ * Lesser General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Lesser General Public
+-+ * License along with this library; if not, see
+-+ * <http://www.gnu.org/licenses/lgpl-2.1.html>
+-+ */
+-+
+-+#include "qemu/osdep.h"
+-+#include "qemu-common.h"
+-+#include "cpu.h"
+-+#include "exec/exec-all.h"
+-+#include "mmu.h"
+-+
+-+#if !defined(CONFIG_USER_ONLY)
+-+
+-+/* Define this to enable MMU debug messages */
+-+/* #define DEBUG_MMU */
+-+
+-+#ifdef DEBUG_MMU
+-+#define MMU_LOG(x) x
+-+#else
+-+#define MMU_LOG(x)
+-+#endif
+-+
+-+void tlb_fill(CPUState *cs, target_ulong addr, MMUAccessType access_typ=
+e,
+-+	      int mmu_idx, uintptr_t retaddr)
+-+{
+-+    int ret;
+-+
+-+    ret =3D nios2_cpu_handle_mmu_fault(cs, addr, access_type, mmu_idx);
+-+    if (unlikely(ret)) {
+-+        if (retaddr) {
+-+            /* now we have a real cpu fault */
+-+            cpu_restore_state(cs, retaddr);
+-+        }
+-+        cpu_loop_exit(cs);
+-+    }
+-+}
+-+
+-+uint32_t mmu_read(CPUNios2State *env, uint32_t rn)
+-+{
+-+    switch (rn) {
+-+    case CR_TLBACC:
+-+        MMU_LOG(qemu_log("TLBACC READ %08X\n", env->regs[rn]));
+-+        break;
+-+
+-+    case CR_TLBMISC:
+-+        MMU_LOG(qemu_log("TLBMISC READ %08X\n", env->regs[rn]));
+-+        break;
+-+
+-+    case CR_PTEADDR:
+-+        MMU_LOG(qemu_log("PTEADDR READ %08X\n", env->regs[rn]));
+-+        break;
+-+
+-+    default:
+-+        break;
+-+    }
+-+    return env->regs[rn];
+-+}
+-+
+-+/* rw - 0 =3D read, 1 =3D write, 2 =3D fetch.  */
+-+unsigned int mmu_translate(CPUNios2State *env,
+-+                           Nios2MMULookup *lu,
+-+                           target_ulong vaddr, int rw, int mmu_idx)
+-+{
+-+    int pid =3D (env->mmu.tlbmisc_wr & CR_TLBMISC_PID_MASK) >> 4;
+-+    int vpn =3D vaddr >> 12;
+-+
+-+    MMU_LOG(qemu_log("mmu_translate vaddr %08X, pid %08X, vpn %08X\n",
+-+                     vaddr, pid, vpn));
+-+
+-+    int way;
+-+    for (way =3D 0; way < env->mmu.tlb_num_ways; way++) {
+-+
+-+        Nios2TLBEntry *entry =3D
+-+            &env->mmu.tlb[(way * env->mmu.tlb_num_ways) +
+-+                          (vpn & env->mmu.tlb_entry_mask)];
+-+
+-+        MMU_LOG(qemu_log("TLB[%d] TAG %08X, VPN %08X\n",
+-+                         (way * env->mmu.tlb_num_ways) +
+-+                         (vpn & env->mmu.tlb_entry_mask),
+-+                         entry->tag, (entry->tag >> 12)));
+-+
+-+        if (((entry->tag >> 12) !=3D vpn) ||
+-+            (((entry->tag & (1<<11)) =3D=3D 0) &&
+-+            ((entry->tag & ((1<<env->mmu.pid_bits)-1)) !=3D pid))) {
+-+            continue;
+-+        }
+-+        lu->vaddr =3D vaddr & TARGET_PAGE_MASK;
+-+        lu->paddr =3D (entry->data & CR_TLBACC_PFN_MASK) << TARGET_PAGE=
+_BITS;
+-+        lu->prot =3D ((entry->data & CR_TLBACC_R) ? PAGE_READ : 0) |
+-+                   ((entry->data & CR_TLBACC_W) ? PAGE_WRITE : 0) |
+-+                   ((entry->data & CR_TLBACC_X) ? PAGE_EXEC : 0);
+-+
+-+        MMU_LOG(qemu_log("HIT TLB[%d] %08X %08X %08X\n",
+-+                         (way * env->mmu.tlb_num_ways) +
+-+                         (vpn & env->mmu.tlb_entry_mask),
+-+                         lu->vaddr, lu->paddr, lu->prot));
+-+        return 1;
+-+    }
+-+    return 0;
+-+}
+-+
+-+static void mmu_flush_pid(CPUNios2State *env, uint32_t pid)
+-+{
+-+    CPUState *cs =3D ENV_GET_CPU(env);
+-+    int idx;
+-+    MMU_LOG(qemu_log("TLB Flush PID %d\n", pid));
+-+
+-+    for (idx =3D 0; idx < env->mmu.tlb_num_entries; idx++) {
+-+        Nios2TLBEntry *entry =3D &env->mmu.tlb[idx];
+-+
+-+        MMU_LOG(qemu_log("TLB[%d] =3D> %08X %08X\n",
+-+                         idx, entry->tag, entry->data));
+-+
+-+        if ((entry->tag & (1<<10)) && (!(entry->tag & (1<<11))) &&
+-+            ((entry->tag & ((1<<env->mmu.pid_bits)-1)) =3D=3D pid)) {
+-+            uint32_t vaddr =3D entry->tag & TARGET_PAGE_MASK;
+-+
+-+            MMU_LOG(qemu_log("TLB Flush Page %08X\n", vaddr));
+-+
+-+            tlb_flush_page(cs, vaddr);
+-+        }
+-+    }
+-+}
+-+
+-+void mmu_write(CPUNios2State *env, uint32_t rn, uint32_t v)
+-+{
+-+    CPUState *cs =3D ENV_GET_CPU(env);
+-+
+-+    MMU_LOG(qemu_log("mmu_write %08X =3D %08X\n", rn, v));
+-+
+-+    switch (rn) {
+-+    case CR_TLBACC:
+-+        MMU_LOG(qemu_log("TLBACC: IG %02X, FLAGS %c%c%c%c%c, PFN %05X\n=
+",
+-+                         v >> CR_TLBACC_IGN_SHIFT,
+-+                         (v & CR_TLBACC_C) ? 'C' : '.',
+-+                         (v & CR_TLBACC_R) ? 'R' : '.',
+-+                         (v & CR_TLBACC_W) ? 'W' : '.',
+-+                         (v & CR_TLBACC_X) ? 'X' : '.',
+-+                         (v & CR_TLBACC_G) ? 'G' : '.',
+-+                         v & CR_TLBACC_PFN_MASK));
+-+
+-+        /* if tlbmisc.WE =3D=3D 1 then trigger a TLB write on writes to=
+ TLBACC */
+-+        if (env->regs[CR_TLBMISC] & CR_TLBMISC_WR) {
+-+            int way =3D (env->regs[CR_TLBMISC] >> CR_TLBMISC_WAY_SHIFT)=
+;
+-+            int vpn =3D (env->mmu.pteaddr_wr & CR_PTEADDR_VPN_MASK) >> =
+2;
+-+            int pid =3D (env->mmu.tlbmisc_wr & CR_TLBMISC_PID_MASK) >> =
+4;
+-+            int g =3D (v & CR_TLBACC_G) ? 1 : 0;
+-+            int valid =3D ((vpn & CR_TLBACC_PFN_MASK) < 0xC0000) ? 1 : =
+0;
+-+            Nios2TLBEntry *entry =3D
+-+                &env->mmu.tlb[(way * env->mmu.tlb_num_ways) +
+-+                              (vpn & env->mmu.tlb_entry_mask)];
+-+            uint32_t newTag =3D (vpn << 12) | (g << 11) | (valid << 10)=
+ | pid;
+-+            uint32_t newData =3D v & (CR_TLBACC_C | CR_TLBACC_R | CR_TL=
+BACC_W |
+-+                                    CR_TLBACC_X | CR_TLBACC_PFN_MASK);
+-+
+-+            if ((entry->tag !=3D newTag) || (entry->data !=3D newData))=
+ {
+-+                if (entry->tag & (1<<10)) {
+-+                    /* Flush existing entry */
+-+                    MMU_LOG(qemu_log("TLB Flush Page (OLD) %08X\n",
+-+                                     entry->tag & TARGET_PAGE_MASK));
+-+                    tlb_flush_page(cs, entry->tag & TARGET_PAGE_MASK);
+-+                }
+-+                entry->tag =3D newTag;
+-+                entry->data =3D newData;
+-+                MMU_LOG(qemu_log("TLB[%d] =3D %08X %08X\n",
+-+                                 (way * env->mmu.tlb_num_ways) +
+-+                                 (vpn & env->mmu.tlb_entry_mask),
+-+                                 entry->tag, entry->data));
+-+            }
+-+            /* Auto-increment tlbmisc.WAY */
+-+            env->regs[CR_TLBMISC] =3D
+-+                (env->regs[CR_TLBMISC] & ~CR_TLBMISC_WAY_MASK) |
+-+                (((way+1) & (env->mmu.tlb_num_ways-1)) << CR_TLBMISC_WA=
+Y_SHIFT);
+-+        }
+-+
+-+        /* Writes to TLBACC don't change the read-back value */
+-+        env->mmu.tlbacc_wr =3D v;
+-+        break;
+-+
+-+    case CR_TLBMISC:
+-+        MMU_LOG(qemu_log("TLBMISC: WAY %X, FLAGS %c%c%c%c%c%c, PID %04X=
+\n",
+-+                         v >> CR_TLBMISC_WAY_SHIFT,
+-+                         (v & CR_TLBMISC_RD) ? 'R' : '.',
+-+                         (v & CR_TLBMISC_WR) ? 'W' : '.',
+-+                         (v & CR_TLBMISC_DBL) ? '2' : '.',
+-+                         (v & CR_TLBMISC_BAD) ? 'B' : '.',
+-+                         (v & CR_TLBMISC_PERM) ? 'P' : '.',
+-+                         (v & CR_TLBMISC_D) ? 'D' : '.',
+-+                         (v & CR_TLBMISC_PID_MASK) >> 4));
+-+
+-+        if ((v & CR_TLBMISC_PID_MASK) !=3D
+-+            (env->mmu.tlbmisc_wr & CR_TLBMISC_PID_MASK)) {
+-+            mmu_flush_pid(env, (env->mmu.tlbmisc_wr & CR_TLBMISC_PID_MA=
+SK) >>
+-+                               CR_TLBMISC_PID_SHIFT);
+-+        }
+-+        /* if tlbmisc.RD =3D=3D 1 then trigger a TLB read on writes to =
+TLBMISC */
+-+        if (v & CR_TLBMISC_RD) {
+-+            int way =3D (v >> CR_TLBMISC_WAY_SHIFT);
+-+            int vpn =3D (env->mmu.pteaddr_wr & CR_PTEADDR_VPN_MASK) >> =
+2;
+-+            Nios2TLBEntry *entry =3D
+-+                &env->mmu.tlb[(way * env->mmu.tlb_num_ways) +
+-+                              (vpn & env->mmu.tlb_entry_mask)];
+-+
+-+            env->regs[CR_TLBACC] &=3D CR_TLBACC_IGN_MASK;
+-+            env->regs[CR_TLBACC] |=3D entry->data |
+-+                                    ((entry->tag & (1<<11)) ? CR_TLBACC=
+_G : 0);
+-+            env->regs[CR_TLBMISC] =3D
+-+                (v & ~CR_TLBMISC_PID_MASK) |
+-+                ((entry->tag & ((1<<env->mmu.pid_bits)-1)) <<
+-+                 CR_TLBMISC_PID_SHIFT);
+-+            env->regs[CR_PTEADDR] &=3D ~CR_PTEADDR_VPN_MASK;
+-+            env->regs[CR_PTEADDR] |=3D (entry->tag >> 12) << CR_PTEADDR=
+_VPN_SHIFT;
+-+            MMU_LOG(qemu_log("TLB READ way %d, vpn %05X, tag %08X, data=
+ %08X, "
+-+                             "tlbacc %08X, tlbmisc %08X, pteaddr %08X\n=
+",
+-+                             way, vpn, entry->tag, entry->data,
+-+                             env->regs[CR_TLBACC], env->regs[CR_TLBMISC=
+],
+-+                             env->regs[CR_PTEADDR]));
+-+        } else {
+-+            env->regs[CR_TLBMISC] =3D v;
+-+        }
+-+
+-+        env->mmu.tlbmisc_wr =3D v;
+-+        break;
+-+
+-+    case CR_PTEADDR:
+-+        MMU_LOG(qemu_log("PTEADDR: PTBASE %03X, VPN %05X\n",
+-+                         v >> CR_PTEADDR_PTBASE_SHIFT,
+-+                         (v & CR_PTEADDR_VPN_MASK) >> CR_PTEADDR_VPN_SH=
+IFT));
+-+
+-+        /* Writes to PTEADDR don't change the read-back VPN value */
+-+        env->regs[CR_PTEADDR] =3D (v & ~CR_PTEADDR_VPN_MASK) |
+-+                                (env->regs[CR_PTEADDR] & CR_PTEADDR_VPN=
+_MASK);
+-+        env->mmu.pteaddr_wr =3D v;
+-+        break;
+-+
+-+    default:
+-+        break;
+-+    }
+-+}
+-+
+-+void mmu_init(Nios2MMU *mmu)
+-+{
+-+    MMU_LOG(qemu_log("mmu_init\n"));
+-+
+-+    mmu->pid_bits =3D 8;          /* TODO: get this from ALTR,pid-num-b=
+its */
+-+    mmu->tlb_num_ways =3D 16;     /* TODO: get this from ALTR,tlb-num-w=
+ays */
+-+    mmu->tlb_num_entries =3D 256; /* TODO: get this from ALTR,tlb-num-e=
+ntries */
+-+    mmu->tlb_entry_mask =3D (mmu->tlb_num_entries/mmu->tlb_num_ways) - =
+1;
+-+
+-+    mmu->tlb =3D (Nios2TLBEntry *)g_malloc0(
+-+        sizeof(Nios2TLBEntry) * mmu->tlb_num_entries);
+-+}
+-+
+-+void dump_mmu(FILE *f, fprintf_function cpu_fprintf, CPUNios2State *env=
+)
+-+{
+-+    int i;
+-+    cpu_fprintf(f, "MMU: ways %d, entries %d, pid bits %d\n",
+-+                env->mmu.tlb_num_ways, env->mmu.tlb_num_entries,
+-+                env->mmu.pid_bits);
+-+
+-+    for (i =3D 0; i < env->mmu.tlb_num_entries; i++) {
+-+        Nios2TLBEntry *entry =3D &env->mmu.tlb[i];
+-+        cpu_fprintf(f, "TLB[%d] =3D %08X %08X %c VPN %05X "
+-+                    "PID %02X %c PFN %05X %c%c%c%c\n",
+-+                    i, entry->tag, entry->data,
+-+                    (entry->tag & (1<<10)) ? 'V' : '-',
+-+                    entry->tag >> 12, entry->tag & ((1<<env->mmu.pid_bi=
+ts)-1),
+-+                    (entry->tag & (1<<11)) ? 'G' : '-',
+-+                    entry->data & CR_TLBACC_PFN_MASK,
+-+                    (entry->data & CR_TLBACC_C) ? 'C' : '-',
+-+                    (entry->data & CR_TLBACC_R) ? 'R' : '-',
+-+                    (entry->data & CR_TLBACC_W) ? 'W' : '-',
+-+                    (entry->data & CR_TLBACC_X) ? 'X' : '-');
+-+    }
+-+}
+-+
+-+#endif /* !CONFIG_USER_ONLY */
+-diff --git a/target-nios2/mmu.h b/target-nios2/mmu.h
+-new file mode 100644
+-index 0000000..797db67
+---- /dev/null
+-+++ b/target-nios2/mmu.h
+-@@ -0,0 +1,54 @@
+-+/*
+-+ * Altera Nios II MMU emulation for qemu.
+-+ *
+-+ * Copyright (C) 2012 Chris Wulff <crwulff@gmail.com>
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Lesser General Public
+-+ * License as published by the Free Software Foundation; either
+-+ * version 2.1 of the License, or (at your option) any later version.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ * Lesser General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Lesser General Public
+-+ * License along with this library; if not, see
+-+ * <http://www.gnu.org/licenses/lgpl-2.1.html>
+-+ */
+-+#ifndef MMU_NIOS2_H
+-+#define MMU_NIOS2_H
+-+
+-+
+-+typedef struct Nios2TLBEntry {
+-+    target_ulong tag;
+-+    target_ulong data;
+-+} Nios2TLBEntry;
+-+
+-+typedef struct Nios2MMU {
+-+    int pid_bits;
+-+    int tlb_num_ways;
+-+    int tlb_num_entries;
+-+    int tlb_entry_mask;
+-+    uint32_t pteaddr_wr;
+-+    uint32_t tlbacc_wr;
+-+    uint32_t tlbmisc_wr;
+-+    Nios2TLBEntry *tlb;
+-+} Nios2MMU;
+-+
+-+typedef struct Nios2MMULookup {
+-+    target_ulong vaddr;
+-+    target_ulong paddr;
+-+    int prot;
+-+} Nios2MMULookup;
+-+
+-+void mmu_flip_um(CPUNios2State *env, unsigned int um);
+-+unsigned int mmu_translate(CPUNios2State *env,
+-+                           Nios2MMULookup *lu,
+-+                           target_ulong vaddr, int rw, int mmu_idx);
+-+uint32_t mmu_read(CPUNios2State *env, uint32_t rn);
+-+void mmu_write(CPUNios2State *env, uint32_t rn, uint32_t v);
+-+void mmu_init(Nios2MMU *mmu);
+-+
+-+#endif /* MMU_NIOS2_H */
+-diff --git a/target-nios2/monitor.c b/target-nios2/monitor.c
+-new file mode 100644
+-index 0000000..f3fa4cd
+---- /dev/null
+-+++ b/target-nios2/monitor.c
+-@@ -0,0 +1,35 @@
+-+/*
+-+ * QEMU monitor
+-+ *
+-+ * Copyright (c) 2003-2004 Fabrice Bellard
+-+ *
+-+ * Permission is hereby granted, free of charge, to any person obtainin=
+g a copy
+-+ * of this software and associated documentation files (the "Software")=
+, to deal
+-+ * in the Software without restriction, including without limitation th=
+e rights
+-+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or=
+ sell
+-+ * copies of the Software, and to permit persons to whom the Software i=
+s
+-+ * furnished to do so, subject to the following conditions:
+-+ *
+-+ * The above copyright notice and this permission notice shall be inclu=
+ded in
+-+ * all copies or substantial portions of the Software.
+-+ *
+-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPR=
+ESS OR
+-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABIL=
+ITY,
+-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SH=
+ALL
+-+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR=
+ OTHER
+-+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARIS=
+ING FROM,
+-+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALIN=
+GS IN
+-+ * THE SOFTWARE.
+-+ */
+-+#include "qemu/osdep.h"
+-+#include "cpu.h"
+-+#include "monitor/monitor.h"
+-+#include "monitor/hmp-target.h"
+-+#include "hmp.h"
+-+
+-+void hmp_info_tlb(Monitor *mon, const QDict *qdict)
+-+{
+-+    CPUArchState *env1 =3D mon_get_cpu_env();
+-+
+-+    dump_mmu((FILE*)mon, (fprintf_function)monitor_printf, env1);
+-+}
+-diff --git a/target-nios2/op_helper.c b/target-nios2/op_helper.c
+-new file mode 100644
+-index 0000000..a407e75
+---- /dev/null
+-+++ b/target-nios2/op_helper.c
+-@@ -0,0 +1,95 @@
+-+/*
+-+ * Altera Nios II helper routines.
+-+ *
+-+ * Copyright (C) 2012 Chris Wulff <crwulff@gmail.com>
+-+ * Copyright (C) 2016 Intel Corporation.
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Lesser General Public
+-+ * License as published by the Free Software Foundation; either
+-+ * version 2.1 of the License, or (at your option) any later version.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ * Lesser General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Lesser General Public
+-+ * License along with this library; if not, see
+-+ * <http://www.gnu.org/licenses/lgpl-2.1.html>
+-+ */
+-+
+-+#include "cpu.h"
+-+#include "exec/helper-proto.h"
+-+#include "exec/cpu_ldst.h"
+-+#include "hw/nios2/nios2_iic.h"
+-+
+-+#if !defined(CONFIG_USER_ONLY)
+-+uint32_t helper_mmu_read(CPUNios2State *env, uint32_t rn)
+-+{
+-+    return mmu_read(env, rn);
+-+}
+-+
+-+void helper_mmu_write(CPUNios2State *env, uint32_t rn, uint32_t v)
+-+{
+-+    mmu_write(env, rn, v);
+-+}
+-+
+-+void helper_cr_ienable_write(CPUNios2State *env, uint32_t value)
+-+{
+-+    env->regs[CR_IENABLE] =3D value;
+-+    nios2_iic_update_cr_ienable(env->pic_state);
+-+}
+-+
+-+void helper_cr_status_write(CPUNios2State *env, uint32_t value)
+-+{
+-+    env->regs[CR_STATUS] =3D value;
+-+    nios2_iic_update_cr_status(env->pic_state);
+-+}
+-+#endif /* !CONFIG_USER_ONLY */
+-+
+-+void helper_raise_exception(CPUNios2State *env, uint32_t index)
+-+{
+-+    CPUState *cs =3D ENV_GET_CPU(env);
+-+    cs->exception_index =3D index;
+-+    cpu_loop_exit(cs);
+-+}
+-+
+-+void helper_memalign(CPUNios2State *env, uint32_t addr, uint32_t dr, ui=
+nt32_t wr, uint32_t mask)
+-+{
+-+    if (addr & mask) {
+-+        qemu_log("unaligned access addr=3D%x mask=3D%x, wr=3D%d dr=3Dr%=
+d\n",
+-+                 addr, mask, wr, dr);
+-+        env->regs[CR_BADADDR] =3D addr;
+-+        env->regs[CR_EXCEPTION] =3D EXCP_UNALIGN << 2;
+-+        helper_raise_exception(env, EXCP_UNALIGN);
+-+    }
+-+}
+-+
+-+uint32_t helper_divs(uint32_t a, uint32_t b)
+-+{
+-+    return (int32_t)a / (int32_t)b;
+-+}
+-+
+-+uint32_t helper_divu(uint32_t a, uint32_t b)
+-+{
+-+    return a / b;
+-+}
+-+
+-+#ifdef CALL_TRACING
+-+void helper_call_status(uint32_t pc, uint32_t target)
+-+{
+-+    qemu_log("%08X: CALL %08X %s\n", pc, target, lookup_symbol(target))=
+;
+-+}
+-+
+-+void helper_eret_status(uint32_t pc)
+-+{
+-+    qemu_log("%08X: ERET STATUS %08X, ESTATUS %08X, EA %08X\n",
+-+             pc, env->regs[CR_STATUS], env->regs[CR_ESTATUS], env->regs=
+[R_EA]);
+-+}
+-+
+-+void helper_ret_status(uint32_t pc)
+-+{
+-+    qemu_log("%08X: RET RA %08X\n", pc, env->regs[R_RA]);
+-+}
+-+#endif
+-diff --git a/target-nios2/translate.c b/target-nios2/translate.c
+-new file mode 100644
+-index 0000000..b430ac0
+---- /dev/null
+-+++ b/target-nios2/translate.c
+-@@ -0,0 +1,249 @@
+-+/*
+-+ * Altera Nios II emulation for qemu: main translation routines.
+-+ *
+-+ * Copyright (C) 2012 Chris Wulff <crwulff@gmail.com>
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Lesser General Public
+-+ * License as published by the Free Software Foundation; either
+-+ * version 2.1 of the License, or (at your option) any later version.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ * Lesser General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Lesser General Public
+-+ * License along with this library; if not, see
+-+ * <http://www.gnu.org/licenses/lgpl-2.1.html>
+-+ */
+-+
+-+#include <stdarg.h>
+-+#include <stdlib.h>
+-+#include <stdio.h>
+-+#include <string.h>
+-+#include <inttypes.h>
+-+#include <assert.h>
+-+
+-+#include "cpu.h"
+-+#include "exec/exec-all.h"
+-+#include "disas/disas.h"
+-+#include "exec/helper-proto.h"
+-+#include "qemu-common.h"
+-+
+-+#include "instruction.h"
+-+
+-+#include "exec/cpu_ldst.h"
+-+#include "exec/helper-gen.h"
+-+#include "exec/log.h"
+-+
+-+static const char *regnames[] =3D {
+-+    "zero",     "at",       "r2",       "r3",
+-+    "r4",       "r5",       "r6",       "r7",
+-+    "r8",       "r9",       "r10",      "r11",
+-+    "r12",      "r13",      "r14",      "r15",
+-+    "r16",      "r17",      "r18",      "r19",
+-+    "r20",      "r21",      "r22",      "r23",
+-+    "et",       "bt",       "gp",       "sp",
+-+    "fp",       "ea",       "ba",       "ra",
+-+    "status",   "estatus",  "bstatus",  "ienable",
+-+    "ipending", "cpuid",    "reserved", "exception",
+-+    "pteaddr",  "tlbacc",   "tlbmisc",  "reserved",
+-+    "badaddr",  "config",   "mpubase",  "mpuacc",
+-+    "reserved", "reserved", "reserved", "reserved",
+-+    "reserved", "reserved", "reserved", "reserved",
+-+    "reserved", "reserved", "reserved", "reserved",
+-+    "reserved", "reserved", "reserved", "reserved",
+-+    "rpc"
+-+};
+-+
+-+static TCGv_ptr cpu_env;
+-+static TCGv cpu_R[NUM_CORE_REGS];
+-+
+-+#include "exec/gen-icount.h"
+-+
+-+static void gen_exception(DisasContext *dc, uint32_t excp)
+-+{
+-+    TCGv_i32 tmp =3D tcg_const_i32(excp);
+-+
+-+    tcg_gen_movi_tl(cpu_R[R_PC], dc->pc);
+-+    gen_helper_raise_exception(cpu_env, tmp);
+-+    tcg_temp_free_i32(tmp);
+-+    dc->is_jmp =3D DISAS_UPDATE;
+-+}
+-+
+-+/* generate intermediate code for basic block 'tb'.  */
+-+void gen_intermediate_code(CPUNios2State *env, TranslationBlock *tb)
+-+{
+-+    Nios2CPU *cpu =3D nios2_env_get_cpu(env);
+-+    CPUState *cs =3D CPU(cpu);
+-+    DisasContext dc1, *dc =3D &dc1;
+-+    int num_insns;
+-+    int max_insns;
+-+    uint32_t next_page_start;
+-+
+-+    /* Initialize DC */
+-+    dc->cpu_env =3D cpu_env;
+-+    dc->cpu_R   =3D cpu_R;
+-+    dc->is_jmp  =3D DISAS_NEXT;
+-+    dc->pc      =3D tb->pc;
+-+    dc->tb      =3D tb;
+-+    dc->mem_idx =3D cpu_mmu_index(env, false);
+-+
+-+#ifndef CONFIG_USER_ONLY
+-+    if ((env->regs[CR_STATUS] & CR_STATUS_U) =3D=3D CR_STATUS_U) {
+-+        dc->user =3D true;
+-+    } else {
+-+        dc->user =3D false;
+-+    }
+-+#endif
+-+    /* Dump the CPU state to the log */
+-+    if (qemu_loglevel_mask(CPU_LOG_TB_IN_ASM)) {
+-+        qemu_log("--------------\n");
+-+        log_cpu_state(cs, 0);
+-+    }
+-+
+-+    /* Set up instruction counts */
+-+    num_insns =3D 0;
+-+    max_insns =3D tb->cflags & CF_COUNT_MASK;
+-+    if (max_insns =3D=3D 0) {
+-+        max_insns =3D CF_COUNT_MASK;
+-+    }
+-+    if (max_insns > TCG_MAX_INSNS) {
+-+        max_insns =3D TCG_MAX_INSNS;
+-+    }
+-+    next_page_start =3D (tb->pc & TARGET_PAGE_MASK) + TARGET_PAGE_SIZE;
+-+
+-+    gen_tb_start(tb);
+-+    do {
+-+        LOG_DIS("%8.8x:\t", dc->pc);
+-+
+-+        tcg_gen_insn_start(dc->pc);
+-+        num_insns++;
+-+
+-+#if SIM_COMPAT
+-+        if (qemu_loglevel_mask(CPU_LOG_TB_IN_ASM)) {
+-+            tcg_gen_movi_tl(cpu_SR[SR_PC], dc->pc);
+-+            gen_helper_debug();
+-+        }
+-+#endif
+-+
+-+        if (unlikely(cpu_breakpoint_test(cs, dc->pc, BP_ANY))) {
+-+            gen_exception(dc, EXCP_DEBUG);
+-+            /* The address covered by the breakpoint must be included i=
+n
+-+               [tb->pc, tb->pc + tb->size) in order to for it to be
+-+               properly cleared -- thus we increment the PC here so tha=
+t
+-+               the logic setting tb->size below does the right thing.  =
+*/
+-+            dc->pc +=3D 4;
+-+            break;
+-+        }
+-+
+-+        if (num_insns + 1 =3D=3D max_insns && (tb->cflags & CF_LAST_IO)=
+) {
+-+            gen_io_start();
+-+        }
+-+
+-+        /* Decode an instruction */
+-+        handle_instruction(dc, env);
+-+
+-+        dc->pc +=3D 4;
+-+
+-+        /* Translation stops when a conditional branch is encountered.
+-+         * Otherwise the subsequent code could get translated several t=
+imes.
+-+         * Also stop translation when a page boundary is reached.  This
+-+         * ensures prefetch aborts occur at the right place.  */
+-+    } while (!dc->is_jmp &&
+-+             !tcg_op_buf_full() &&
+-+             !cs->singlestep_enabled &&
+-+             !singlestep &&
+-+             dc->pc < next_page_start &&
+-+             num_insns < max_insns);
+-+
+-+    if (tb->cflags & CF_LAST_IO) {
+-+        gen_io_end();
+-+    }
+-+
+-+    /* Indicate where the next block should start */
+-+    switch (dc->is_jmp) {
+-+    case DISAS_NEXT:
+-+        /* Save the current PC back into the CPU register */
+-+        tcg_gen_movi_tl(cpu_R[R_PC], dc->pc);
+-+        tcg_gen_exit_tb(0);
+-+        break;
+-+
+-+    default:
+-+    case DISAS_JUMP:
+-+    case DISAS_UPDATE:
+-+        /* The jump will already have updated the PC register */
+-+        tcg_gen_exit_tb(0);
+-+        break;
+-+
+-+    case DISAS_TB_JUMP:
+-+        /* nothing more to generate */
+-+        break;
+-+    }
+-+
+-+    /* End off the block */
+-+    gen_tb_end(tb, num_insns);
+-+
+-+    /* Mark instruction starts for the final generated instruction */
+-+    tb->size =3D dc->pc - tb->pc;
+-+    tb->icount =3D num_insns;
+-+
+-+#ifdef DEBUG_DISAS
+-+    if (qemu_loglevel_mask(CPU_LOG_TB_IN_ASM)) {
+-+        qemu_log("----------------\n");
+-+        qemu_log("IN: %s\n", lookup_symbol(tb->pc));
+-+        log_target_disas(cs, tb->pc, dc->pc - tb->pc, 0);
+-+        qemu_log("\nisize=3D%d osize=3D%d\n",
+-+                 dc->pc - tb->pc, tcg_op_buf_count());
+-+    }
+-+#endif
+-+}
+-+
+-+void nios2_cpu_dump_state(CPUState *cs, FILE *f, fprintf_function cpu_f=
+printf,
+-+                          int flags)
+-+{
+-+    Nios2CPU *cpu =3D NIOS2_CPU(cs);
+-+    CPUNios2State *env =3D &cpu->env;
+-+    int i;
+-+
+-+    if (!env || !f) {
+-+        return;
+-+    }
+-+
+-+    cpu_fprintf(f, "IN: PC=3D%x %s\n",
+-+                env->regs[R_PC], lookup_symbol(env->regs[R_PC]));
+-+
+-+    for (i =3D 0; i < NUM_CORE_REGS; i++) {
+-+        cpu_fprintf(f, "%9s=3D%8.8x ", regnames[i], env->regs[i]);
+-+        if ((i + 1) % 4 =3D=3D 0) {
+-+            cpu_fprintf(f, "\n");
+-+        }
+-+    }
+-+#if !defined(CONFIG_USER_ONLY)
+-+    cpu_fprintf(f, " mmu write: VPN=3D%05X PID %02X TLBACC %08X\n",
+-+                env->mmu.pteaddr_wr & CR_PTEADDR_VPN_MASK,
+-+                (env->mmu.tlbmisc_wr & CR_TLBMISC_PID_MASK) >> 4,
+-+                env->mmu.tlbacc_wr);
+-+#endif
+-+    cpu_fprintf(f, "\n\n");
+-+}
+-+
+-+void nios2_tcg_init(void)
+-+{
+-+    int i;
+-+
+-+    cpu_env =3D tcg_global_reg_new_ptr(TCG_AREG0, "env");
+-+
+-+    for (i =3D 0; i < NUM_CORE_REGS; i++) {
+-+        cpu_R[i] =3D tcg_global_mem_new(cpu_env,
+-+                                      offsetof(CPUNios2State, regs[i]),
+-+                                      regnames[i]);
+-+    }
+-+}
+-+
+-+void restore_state_to_opc(CPUNios2State *env, TranslationBlock *tb,
+-+                          target_ulong *data)
+-+{
+-+    env->regs[R_PC] =3D data[0];
+-+}
+---=20
+-2.7.4
+-
+diff --git a/meta-zephyr-core/recipes-devtools/qemu/qemu_%.bbappend b/met=
+a-zephyr-core/recipes-devtools/qemu/qemu_%.bbappend
+deleted file mode 100644
+index 4f8cc05..0000000
+--- a/meta-zephyr-core/recipes-devtools/qemu/qemu_%.bbappend
++++ /dev/null
+@@ -1,13 +0,0 @@
+-FILESEXTRAPATHS:prepend :=3D "${THISDIR}/files:"
+-
+-QEMU_TARGETS =3D ""
+-
+-#SRC_URI +=3D " \
+-#      file://nios2-add-support.patch \
+-#      "
+-
+-EXTRA_OECONF:remove =3D "--target-list"
+-
+-#QEMUS_BUILT =3D "arm-softmmu i386-softmmu nios2-softmmu"
+-QEMUS_BUILT =3D "arm-softmmu i386-softmmu"
+-EXTRA_OECONF:append =3D " --target-list=3D"${QEMUS_BUILT}""
+--=20
+2.25.1
 
-I was not sure of if it will break some use cases therefore I just wanted
-to add what works and not delete anything I have not tested
-
->
->
-> Cheers,
-> Quentin
->
-
---0000000000000a5eb705e9e72f32
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Fri, Sep 30, 2022 at 5:04 AM Quentin Schulz &lt;<a href=
-=3D"mailto:quentin.schulz@theobroma-systems.com">quentin.schulz@theobroma-s=
-ystems.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi Khem,=
-<br>
-<br>
-On 9/30/22 01:45, Khem Raj wrote:<br>
-&gt; Signed-off-by: Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" targ=
-et=3D"_blank">raj.khem@gmail.com</a>&gt;<br>
-&gt; ---<br>
-&gt;=C2=A0 =C2=A0conf/layer.conf | 2 +-<br>
-&gt;=C2=A0 =C2=A01 file changed, 1 insertion(+), 1 deletion(-)<br>
-&gt; <br>
-&gt; diff --git a/conf/layer.conf b/conf/layer.conf<br>
-&gt; index a2661f9..0e28857 100644<br>
-&gt; --- a/conf/layer.conf<br>
-&gt; +++ b/conf/layer.conf<br>
-&gt; @@ -14,7 +14,7 @@ BBFILE_PRIORITY_rockchip =3D &quot;1&quot;<br>
-&gt;=C2=A0 =C2=A0# This should only be incremented on significant changes t=
-hat will<br>
-&gt;=C2=A0 =C2=A0# cause compatibility issues with other layers<br>
-&gt;=C2=A0 =C2=A0LAYERVERSION_rockchip =3D &quot;1&quot;<br>
-&gt; -LAYERSERIES_COMPAT_rockchip =3D &quot;kirkstone&quot;<br>
-&gt; +LAYERSERIES_COMPAT_rockchip =3D &quot;kirkstone langdale&quot;<br>
-<br>
-Considering that we have a branch for kirkstone already, maybe we can <br>
-just switch to supporting langdale only?</blockquote><div dir=3D"auto"><br>=
-</div><div dir=3D"auto">I was not sure of if it will break some use cases t=
-herefore I just wanted to add what works and not delete anything I have not=
- tested=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
-.8ex;border-left:1px #ccc solid;padding-left:1ex" dir=3D"auto"><br>
-<br>
-Cheers,<br>
-Quentin<br>
-</blockquote></div></div>
-
---0000000000000a5eb705e9e72f32--
 
