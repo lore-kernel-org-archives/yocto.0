@@ -2,112 +2,117 @@ Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AFA32C433FE
-	for <webhook@archiver.kernel.org>; Tue,  4 Oct 2022 02:43:24 +0000 (UTC)
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com
- [209.85.216.51])
- by mx.groups.io with SMTP id smtpd.web09.6418.1664851397849463309
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9E2F6C433F5
+	for <webhook@archiver.kernel.org>; Tue,  4 Oct 2022 02:44:24 +0000 (UTC)
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com
+ [209.85.214.178])
+ by mx.groups.io with SMTP id smtpd.web11.6374.1664851461593371320
  for <yocto@lists.yoctoproject.org>;
- Mon, 03 Oct 2022 19:43:17 -0700
+ Mon, 03 Oct 2022 19:44:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=S98tKFyy;
- spf=pass (domain: gmail.com, ip: 209.85.216.51,
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=MlKK/wSH;
+ spf=pass (domain: gmail.com, ip: 209.85.214.178,
  mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-pj1-f51.google.com with SMTP id
- 8-20020a17090a0b8800b00205d8564b11so11857910pjr.5
+Received: by mail-pl1-f178.google.com with SMTP id x1so11448539plv.5
         for <yocto@lists.yoctoproject.org>;
- Mon, 03 Oct 2022 19:43:17 -0700 (PDT)
+ Mon, 03 Oct 2022 19:44:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-language:thread-index:mime-version:message-id:date:subject
          :to:from:from:to:cc:subject:date;
-        bh=5mhpmA8SrwnMFBWzS8gZCWn5r7Pu4yYltr5p8iNy2eY=;
-        b=S98tKFyy7UKzSfj5mQaDsL0nN7hOpzL6Ht0ttN8GrVOLUZzwf5VGTb2rnNJhsc1ri7
-         zvHikMV8vM1iK4XftNB+WsquGYSi6a5WRZYfx7vQsNcqH9Nibc5HIS7gBIobzjiHj40z
-         bTD5BvIKX3tP1m7eC6yu6glkBljlIr8NbtdxQT4qjKbL8Eo/QJjZb+BOTHPag587XR7M
-         otYcmuttCREzHaCUb72N3AFkv9AkJV4nUkpe+4XUNSDCyoT44T8RVNb+X+UuBIzQg3jT
-         qhqr2XQn7D5XUYW16dmigm+rMwQPI9iq+yad+zRlCKiCRnpjgJjplgCkdwR02LegH4Q2
-         87oQ==
+        bh=VFRMSDwjtVcfWW5sVCigz9m7G1OEx2IRqTt1jkkzprw=;
+        b=MlKK/wSHlC9Y0zAVDJPU4EPPhob3Bos7IwNfdBFLEwv/fZcITpAF2Yif8ELCYNkJs8
+         PmWhPD3t/QWih9mx3E3BQ6lZu4NQmFxCl+hNmZbEGiuRfvA0V/xhTgEyUpEn9XFjtdF/
+         5xqEEQqEeYlHZSTtHWqvvNcrOmJIgTX5we+qKLI00ojBJyf1G1R2jl5dBVJ4itfQEiyN
+         tYyNlbkIGMGt2q4WNN5JTE1RjL93ChO6NjFmdhmONm3U2005AcUkCHAsf7Rel59taLGq
+         3XjXIF/P/qeJQ1NeIoZ/5VcuFLyReBPQcOZq6S33evLZrJz+78AZtSrb4y9Su1aE9k7f
+         VrVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-language:thread-index:mime-version:message-id:date:subject
          :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=5mhpmA8SrwnMFBWzS8gZCWn5r7Pu4yYltr5p8iNy2eY=;
-        b=FrdO75HE/bfwhGViJYU90fvH450UEvBB7aWrtWEyWHuabmiXUh730TrosNWkQljKmI
-         nbKnt4GJOSwb+mAs1j4G6By6vrNL1MGWvNdhxVRprGGuwQv2D+IW9AExx357qJtA89Qm
-         HawugNlqviEyEGv1es4Fa5lc5h03tMW0erhSIkQ58Gy+Tzyhttxf62gqZlSRRfI/73g7
-         DaR6WiNoTxem7TjV5MRe2eBwSzpqWrVZ352iPZ43Ovut+tSN/YlZ8Pvkl3qUFmzHvWzG
-         imuW1WZKRLHaqI+pbPZghgjHXUBrtA1zdMI/iJiNYUIknL0PHx2HZomMdUYFiMKJsDmB
-         QowQ==
-X-Gm-Message-State: ACrzQf25Pg/EvE7MZg0Y9MeYm5R11Q3fFXb9BfF93BzxovfsHVEfJONd
-	0OxksmXxGYs/iTmjUhHvBAk=
+        bh=VFRMSDwjtVcfWW5sVCigz9m7G1OEx2IRqTt1jkkzprw=;
+        b=RL6p740sAdpNBhXvYnbR9GN5edmwFp8hI4RNbx7jmUGrVUML0RUKqd/MTDv3H/RaKJ
+         6UuESYMnBF/STmU4gq5ZQKSzWUFIdTS/+54RYNI6/AyYPV+mJdm44nnsjEtRdssQbCJ6
+         cyjSSk++36z7dy2yPd+FViWuOFDUD+1WRqW+gaBbkNqJ4oOy0yJfmrBdV3rD8A4qpAFg
+         4izRM7a4nzZ6AGiDzhfrW87dj9BvqCma3TCbse186IQFQekYMOgSW/glKEPFFGwQkt5R
+         8m7P6Q2sBqoANylHy4ad3Wl/mvCJVEtUB2DUNIuP2tCPi0RQMPWx1m/S//ZLsjyOp6y5
+         kJbw==
+X-Gm-Message-State: ACrzQf3H7Y2/HLGCf4fmdH98d8xklx5CYogz3oP+mfut9+UzylXuAteq
+	C/I85bLbS+ZLht0GE8yXVo47MEo0CUs=
 X-Google-Smtp-Source: 
- AMsMyM5ElN987s+3zstITM3+KChKI/lqOmcT+aU7Od/edkx+PywzXCV5IJwqlXRO7Z05Umir5tJ6Gg==
-X-Received: by 2002:a17:902:b204:b0:179:b91e:9e74 with SMTP id
- t4-20020a170902b20400b00179b91e9e74mr24903602plr.81.1664851397180;
-        Mon, 03 Oct 2022 19:43:17 -0700 (PDT)
+ AMsMyM5Xi0l4UfDp2Dk6gs1KvvAzfRnZUZtr+ld/r06LDeP7x7ypxPNBleI27TUTX1Vkmnb8+iEMbA==
+X-Received: by 2002:a17:902:e054:b0:17e:5cfb:8c88 with SMTP id
+ x20-20020a170902e05400b0017e5cfb8c88mr12042142plx.133.1664851461011;
+        Mon, 03 Oct 2022 19:44:21 -0700 (PDT)
 Received: from skjolley ([2600:1011:a11b:4d68:450b:84c2:8a98:1a1e])
         by smtp.gmail.com with ESMTPSA id
- w15-20020a627b0f000000b0056191aa86afsm2002955pfc.79.2022.10.03.19.43.16
+ i16-20020a170902c95000b001754064ac31sm7858680pla.280.2022.10.03.19.44.19
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 03 Oct 2022 19:43:16 -0700 (PDT)
+        Mon, 03 Oct 2022 19:44:20 -0700 (PDT)
 From: <sjolley.yp.pm@gmail.com>
 To: <yocto@lists.yoctoproject.org>
-Subject: Enhancements/Bugs closed WW40!
-Date: Mon, 3 Oct 2022 19:43:16 -0700
-Message-ID: <033001d8d79b$0ee5bef0$2cb13cd0$@gmail.com>
+Subject: M+ & H bugs with Milestone Movements WW40
+Date: Mon, 3 Oct 2022 19:44:20 -0700
+Message-ID: <033501d8d79b$34ef9990$9ececcb0$@gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0331_01D8D760.6286E6F0"
+	boundary="----=_NextPart_000_0336_01D8D760.8890C190"
 X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdjXmvvpxcoMbsqOTvWkuMr56JYF2Q==
+Thread-Index: AdjXmxhf0lwJD8WhSsGDE4rHrg8UfQ==
 Content-Language: en-us
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 04 Oct 2022 02:43:24 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58260
+ <yocto@lists.yoctoproject.org>; Tue, 04 Oct 2022 02:44:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58261
 
 This is a multipart message in MIME format.
 
-------=_NextPart_000_0331_01D8D760.6286E6F0
+------=_NextPart_000_0336_01D8D760.8890C190
 Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
 All,
 
-The below were the owners of enhancements or bugs closed during the last
-week!
+YP M+ or high bugs which moved to a new milestone in WW40 are listed =
+below:=20
 
 
-Who
+Priority
 
-Count
+Bug ID
+
+Short Description
+
+Changer
+
+Owner
+
+Was
+
+Became
 
 
-ross.burton@arm.com
+Medium+
 
-2
+ <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14920> 14920
 
+oe-selftest-armhost qemu x86-64 kernel NULL pointer dereference in =
+handle_level_irq/setup_IO_APIC
 
 richard.purdie@linuxfoundation.org
 
-1
+bruce.ashfield@gmail.com
 
+4.2 M1
 
-chee.yang.lee@intel.com
+0.0.0
 
-1
+Thanks,=20
 
-
-Grand Total
-
-4
-
-Thanks,
-
- 
+=20
 
 Stephen K. Jolley
 
@@ -115,16 +120,16 @@ Yocto Project Program Manager
 
 *    Cell:                (208) 244-4460
 
-* Email:              sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> 
+* Email:              sjolley.yp.pm@gmail.com =
+<mailto:sjolley.yp.pm@gmail.com>=20
 
- 
+=20
 
 
-------=_NextPart_000_0331_01D8D760.6286E6F0
+------=_NextPart_000_0336_01D8D760.8890C190
 Content-Type: text/html;
-	boundary="----=_NextPart_000_00EB_01D8D1CB.21026140";
-	charset="us-ascii"
+	boundary="----=_NextPart_000_00F0_01D8D1CB.660094B0";
+	charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
 <html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
@@ -133,9 +138,9 @@ xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
 xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
 xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
 xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 15 (filtered =
+medium)"><style><!--
 /* Font Definitions */
 @font-face
 	{font-family:Wingdings;
@@ -184,68 +189,85 @@ div.WordSection1
 </o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
 link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
 class=3DWordSection1><p class=3DMsoNormal><span =
-style=3D'color:black'>All,<br><br>The below were the owners of =
-enhancements or bugs closed during the last =
-week!<o:p></o:p></span></p><table class=3DMsoNormalTable border=3D0 =
-cellspacing=3D0 cellpadding=3D0 width=3D293 =
-style=3D'width:220.0pt;margin-left:-.15pt;border-collapse:collapse'><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
+style=3D'color:black'>All,<br><br>YP M+ or high bugs which moved to a =
+new milestone in WW40 are listed below: <o:p></o:p></span></p><table =
+class=3DMsoNormalTable border=3D0 cellspacing=3D0 cellpadding=3D0 =
+width=3D1306 =
+style=3D'width:979.85pt;margin-left:-.15pt;border-collapse:collapse'><tr =
+style=3D'height:15.0pt'><td width=3D64 nowrap valign=3Dbottom =
+style=3D'width:48.0pt;border:solid windowtext =
 1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
 class=3DMsoNormal><b><span =
-style=3D'color:black'>Who<o:p></o:p></span></b></p></td><td width=3D43 =
-nowrap valign=3Dbottom style=3D'width:32.0pt;border:solid windowtext =
+style=3D'color:black'>Priority<o:p></o:p></span></b></p></td><td =
+width=3D44 nowrap valign=3Dbottom style=3D'width:33.0pt;border:solid =
+windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
+style=3D'color:black'>Bug ID<o:p></o:p></span></b></p></td><td =
+width=3D610 nowrap valign=3Dbottom style=3D'width:457.85pt;border:solid =
+windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
+style=3D'color:black'>Short =
+Description<o:p></o:p></span></b></p></td><td width=3D236 nowrap =
+valign=3Dbottom style=3D'width:177.0pt;border:solid windowtext =
 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Count<o:p></o:p></span></b></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>ross.burton@arm.com<o:p></o:p></span></p></td><td =
-width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
-></p></td><td width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>chee.yang.lee@intel.com<o:p></o:p></span></p></td><=
-td width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
-0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
-style=3D'text-align:right'><span =
-style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
-style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
-style=3D'width:188.0pt;border:solid windowtext =
-1.0pt;border-top:none;background:#DCE6F1;padding:0in 5.4pt 0in =
+style=3D'color:black'>Changer<o:p></o:p></span></b></p></td><td =
+width=3D243 nowrap valign=3Dbottom style=3D'width:182.0pt;border:solid =
+windowtext 1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
+style=3D'color:black'>Owner<o:p></o:p></span></b></p></td><td width=3D55 =
+nowrap valign=3Dbottom style=3D'width:41.0pt;border:solid windowtext =
+1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
 5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
-style=3D'color:black'>Grand Total<o:p></o:p></span></b></p></td><td =
-width=3D43 nowrap valign=3Dbottom =
-style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
-d windowtext 1.0pt;border-right:solid windowtext =
-1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
-class=3DMsoNormal align=3Dright style=3D'text-align:right'><b><span =
-style=3D'color:black'>4<o:p></o:p></span></b></p></td></tr></table><p =
-class=3DMsoNormal><span =
-style=3D'color:black'>T</span>hanks,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'color:black'>Was<o:p></o:p></span></b></p></td><td width=3D55 =
+nowrap valign=3Dbottom style=3D'width:41.0pt;border:solid windowtext =
+1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
+5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
+style=3D'color:black'>Became<o:p></o:p></span></b></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D64 nowrap valign=3Dbottom =
+style=3D'width:48.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><b><span =
+style=3D'color:black'>Medium+<o:p></o:p></span></b></p></td><td =
+width=3D44 nowrap valign=3Dbottom =
+style=3D'width:33.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><b><span style=3D'color:black'><a =
+href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14920" =
+target=3D"_parent"><span =
+style=3D'color:black;text-decoration:none'>14920</span></a><o:p></o:p></s=
+pan></b></p></td><td width=3D610 nowrap valign=3Dbottom =
+style=3D'width:457.85pt;border-top:none;border-left:none;border-bottom:so=
+lid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
+style=3D'color:black'>oe-selftest-armhost qemu x86-64 kernel NULL =
+pointer dereference in =
+handle_level_irq/setup_IO_APIC<o:p></o:p></span></p></td><td width=3D236 =
+nowrap valign=3Dbottom =
+style=3D'width:177.0pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
+style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
+></p></td><td width=3D243 nowrap valign=3Dbottom =
+style=3D'width:182.0pt;border-top:none;border-left:none;border-bottom:sol=
+id windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in =
+5.4pt 0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
+style=3D'color:black'>bruce.ashfield@gmail.com<o:p></o:p></span></p></td>=
+<td width=3D55 nowrap valign=3Dbottom =
+style=3D'width:41.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
+style=3D'color:black'>4.2 M1<o:p></o:p></span></p></td><td width=3D55 =
+nowrap valign=3Dbottom =
+style=3D'width:41.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal><span =
+style=3D'color:black'>0.0.0<o:p></o:p></span></p></td></tr></table><p =
+class=3DMsoNormal><span style=3D'color:black'>Thanks,</span><span =
+style=3D'color:white'> <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:white'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><b><i><span =
 style=3D'font-size:16.0pt;font-family:"Times New =
 Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
 style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
@@ -276,6 +298,6 @@ href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
 ></u></span><span lang=3DFR =
 style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
 an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_000_0331_01D8D760.6286E6F0--
+------=_NextPart_000_0336_01D8D760.8890C190--
 
 
