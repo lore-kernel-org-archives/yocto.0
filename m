@@ -1,129 +1,100 @@
-Return-Path: <thomas.perrot@bootlin.com>
+Return-Path: <michael.opdenacker@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 62FA5C433FE
-	for <webhook@archiver.kernel.org>; Thu,  6 Oct 2022 15:48:31 +0000 (UTC)
-Received: from relay10.mail.gandi.net (relay10.mail.gandi.net
- [217.70.178.230])
- by mx.groups.io with SMTP id smtpd.web11.711.1665071308834056681
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BBA47C433F5
+	for <webhook@archiver.kernel.org>; Thu,  6 Oct 2022 16:36:31 +0000 (UTC)
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net
+ [217.70.183.199])
+ by mx.groups.io with SMTP id smtpd.web09.1280.1665074184792514878
  for <yocto@lists.yoctoproject.org>;
- Thu, 06 Oct 2022 08:48:29 -0700
+ Thu, 06 Oct 2022 09:36:25 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bootlin.com header.s=gm1 header.b=oNjpMZGd;
- spf=pass (domain: bootlin.com, ip: 217.70.178.230,
- mailfrom: thomas.perrot@bootlin.com)
-Received: (Authenticated sender: thomas.perrot@bootlin.com)
-	by mail.gandi.net (Postfix) with ESMTPSA id D1B52240006;
-	Thu,  6 Oct 2022 15:48:25 +0000 (UTC)
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=X6eBJjna;
+ spf=pass (domain: bootlin.com, ip: 217.70.183.199,
+ mailfrom: michael.opdenacker@bootlin.com)
+Received: (Authenticated sender: michael.opdenacker@bootlin.com)
+	by mail.gandi.net (Postfix) with ESMTPSA id 77E6FFF807;
+	Thu,  6 Oct 2022 16:36:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1665071306;
+	t=1665074182;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=P7HGdN6PUjaJ+yuziAjHfKu7oVIil8Qh1x91nhzvaos=;
-	b=oNjpMZGd+Fvw1zzeTkaaS0rbsqx1CKXzs86oLT9xRBPAdbKDuI8oIDeW0bz9NFSb/SDsoY
-	3rBtnQQBcsYfIguOr7oSmJ1u7Pi4KyCyWLCGbXfHq7sK6umE3cRS9fkUKEQpzS4Lq562nh
-	1eoCVGU+eZaathqOJC04ABqBI8SdbQtwCQgYko0Lyqi3J7WIeLK6zJp/LGfqjv0eOTVnbs
-	z5F+lwrmHad6YhYc+AWmnTUuzXmnUd9RQ3wHibxKfgkonBASTd9gQF97albXfJNmgX1Xvi
-	qUKZ7scPR8oRj9p310QdJ8wz1tKyOSVMZWVPoroJhHotgExb2/ZX7A856qtBeA==
-Message-ID: <782bfe190eeb1fa1f49a1f0e011bbc4c38eb5734.camel@bootlin.com>
-Subject: Re: [yocto] core-image-minimal-xfce: Xorg screen remains black
-From: Thomas Perrot <thomas.perrot@bootlin.com>
-To: Manuel Wagesreither <ManWag@FastMail.FM>, yocto@lists.yoctoproject.org
-Date: Thu, 06 Oct 2022 17:48:24 +0200
-In-Reply-To: <6396a42f-477e-4f4d-a2cb-fa1e292a8b9b@app.fastmail.com>
-References: <6396a42f-477e-4f4d-a2cb-fa1e292a8b9b@app.fastmail.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-	protocol="application/pgp-signature"; boundary="=-TLAX/0Z6Eo4pM3XH34Rl"
-User-Agent: Evolution 3.44.4 (3.44.4-2.fc36) 
+	bh=OWe27C1AsG+lQfwYUeJThb+fbGuex0xttOEJDq59ewc=;
+	b=X6eBJjnaIx1Pa6cYE3q0Y2yNgT7z/HMG+KYaEJAzrvO2bcbK9psl+wGcEvE/Wov1vx7j7x
+	OpixQY4U/xE7GZ45G1dwx8QGGNbqFdPGOujJ1xxAX8f9GyPut2R/GSbSXuWC7M5V1LFR/j
+	yWS+EuwoYNkBvF5ngH1bKpuvwY3R02BDptlSAMDHU48A3o7GAk1uaAkP9jL4IZj2kqfNV0
+	VxkzUCliAVX301PSYiV/4c6JWi9dBNJ4rpx/2tETESBJpkJBrmnSed34TeI7HrPfEJ7IGp
+	UkJRT69PY3vPvEX0tU8rUoDrB177TBLDZKYXWIuvO0/7ywU82MrrbT+Kzy0hmA==
+Message-ID: <931a9536-5f23-f48c-0831-33d2add6406e@bootlin.com>
+Date: Thu, 6 Oct 2022 18:36:22 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] other ways of removing GPLv3 components (than meta-gplv2)
+ #GPLv3
+Content-Language: en-US
+To: Alexander Kanavin <alex.kanavin@gmail.com>, poberauer@yahoo.co.uk
+References: <dh6q.1665062865199915963.1z69@lists.yoctoproject.org>
+ <CANNYZj-nXUaw9PVQ-3E1xAxLxJp6bwjw6v3UvhEUxFNMz0084Q@mail.gmail.com>
+From: Michael Opdenacker <michael.opdenacker@bootlin.com>
+Organization: Bootlin
+In-Reply-To: 
+ <CANNYZj-nXUaw9PVQ-3E1xAxLxJp6bwjw6v3UvhEUxFNMz0084Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 06 Oct 2022 15:48:31 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58277
+ <yocto@lists.yoctoproject.org>; Thu, 06 Oct 2022 16:36:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58278
 
+Hi Peter,
 
---=-TLAX/0Z6Eo4pM3XH34Rl
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On 06.10.22 15:46, Alexander Kanavin wrote:
+> On Thu, 6 Oct 2022 at 15:27, Peter via lists.yoctoproject.org
+> <poberauer=yahoo.co.uk@lists.yoctoproject.org> wrote:
+>> "It is over. There are no excuses left if you are still using meta-gplv2."
+>> -- https://twitter.com/yoctoproject/status/1552209990148145153
+>> "There are other ways of removing GPLv3 components from modern OE/YP builds and we'd like to focus people's attention onto those."
+>> -- https://git.yoctoproject.org/meta-gplv2/commit/?id=43bf0e8d5985945d19d01f94bfbbda420c4435f3
+>>
+>> Where can we find more details re the best ways of removing GPLv3 components please?
+>>
+>> Or, starting with a clean slate and adding back only what we actually need (for i.MX 8X and Qt Commercial).
+>>
+>> Have tried searching, but going round in circles, as all the results so far still point back to meta-gplv2.
+>> Including the "How do I":
+>> "If you use INCOMPATIBLE_LICENSE to exclude GPLv3 or set PREFERRED_VERSION to substitute a GPLv2 version of a GPLv3 recipe, then you must add the meta-gplv2 layer to your configuration."
+>> -- https://wiki.yoctoproject.org/wiki/How_do_I#Q:_How_do_I_build_an_image_without_GPLv3_Licensed_packages_.3F
+>>
+>> The context is that some of our customers require Secure Boot and Chain of Trust (in an embedded environment).
+>> If we keep GPLv3 components, then we need to provide "any methods, procedures, authorization keys, or other information required to install and execute modified versions of a covered work".
+> The suggested way nowadays is to set INCOMPATIBLE_LICENSE only for the
+> image that is actually going to ship in a product, then work your way
+> throgh specific gpl3 dependencies that get pulled in, and eliminate
+> them one by one - precisely how is impossible to tell beforehands, but
+> typical problems are bash scripts (which you need to package
+> separately and not include into the product, or rewrite in posix shell
+> and use #!/bin/sh), or optional dependencies on things like readline,
+> which can be switched off via PACKAGECONFIG tweaks.
 
-Hi all,
+Thanks for raising this question, and thanks to Alex for providing 
+guidelines.
 
-I've also been reproducing this issue for a few days, and I haven't
-found a fix yet.
-Does anyone have an idea, to fix it?
+I agree that the current wiki and documentation don't provide enough 
+information on excluding GPLv3 packages. I'll propose an update to the 
+manuals. Stay tuned on the docs mailing lists...
 
-Kind regards,
-Thomas
+Cheers
+Michael.
 
-On Thu, 2022-10-06 at 17:31 +0200, Manuel Wagesreither wrote:
-> Hi all,
->=20
-> I'd like to build core-image-minimal-xfce for qemux86-64. I'm on
-> Dunfell.
->=20
-> At first, Xorg didn't start properly but I could fix that by adding
-> package xkeyboard-config manually to the image. Now Xorg seems to
-> start (displays a mouse cursor), but the screen is otherwise black.
-> At some point the screen flickers and I see a window for the fraction
-> of a second, but then the screen goes dark again.
->=20
-> I've attached what Xorg prints on stderr.
->=20
-> There's heaps of error messages and I could go through them and fix
-> them one after the other, but I figure something is broken on a
-> fundamental level. After all, core-image-minimal-xfce should be
-> expected to work, even if it's Dunfell, not?
->=20
-> Can you tell me what's causing my problems?
->=20
-> I'm on the Dunfell branch tip as it was on October 13th on both poky
-> and meta-openembedded:
-> https://gitlab.com/manuel_wagesreither/bora-proj/-/blob/xfce/kas/bora-xfc=
-e.yml#L32
->=20
-> Regards,
-> Manuel
->=20
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#58276):
-> https://lists.yoctoproject.org/g/yocto/message/58276
-> Mute This Topic: https://lists.yoctoproject.org/mt/94160185/5443093
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe:
-> https://lists.yoctoproject.org/g/yocto/unsub=C2=A0[thomas.perrot@bootlin.=
-com
-> ]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->=20
-
---=20
-Thomas Perrot, Bootlin
-Embedded Linux and kernel engineering
+-- 
+Michael Opdenacker, Bootlin
+Embedded Linux and Kernel engineering
 https://bootlin.com
 
-
---=-TLAX/0Z6Eo4pM3XH34Rl
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iQGzBAABCAAdFiEEh0B3xqajCiMDqBIhn8ALBXH+Cu0FAmM++MgACgkQn8ALBXH+
-Cu0Zawv8CEivcHbc51APjNI4OocGK/eUHcFzsDkJFCB8hWNUBUJ9asqsbfvXpkAR
-KkQZuiVIBuBksR3bZTtYVbSLjtpidiHH4n4t0EozquOKpiY4Ndl0mjfKZ+qL+Wtj
-FD6FRTQ77Jm/tA7BmL6ynolchV6BMReAOoS6s5yAHQ1D3eecw5lf2RVhZHV7R3Qb
-BF11t2af15XvqMOD0A4hRksIPejgW99NjlSbCpucN4WxFPQ07vfAuiz9UxUvht9R
-Ez87iBCkWqNHI7e6MdBBGmkMQQK9FBq5veWq9I8dbEyawO+5IfRymRZe8vq9DXA1
-6vm0k2uGZygMSbEXIs3Dgp1oUbWn4HnoHSJtfai6CM65FrS/ugy2smHlfMrkNF7I
-XyVPZ/O0U6XQ3TvulFAebKxzB14bLuSRzDvzUZNDCWETSUd/Ctod1MFxVAcPXdMT
-LrHjNmbsQVNMPgX35Mz5lY+uqwaOnPNI3rfDVVWAByYYbuoDraYrdZ834XGMyio1
-OPxitf3k
-=uiFy
------END PGP SIGNATURE-----
-
---=-TLAX/0Z6Eo4pM3XH34Rl--
 
