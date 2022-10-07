@@ -1,116 +1,105 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <jon.mason@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E342DC433FE
-	for <webhook@archiver.kernel.org>; Fri,  7 Oct 2022 09:52:03 +0000 (UTC)
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com
- [209.85.166.178])
- by mx.groups.io with SMTP id smtpd.web12.2653.1665136320783205326
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3EBCCC433F5
+	for <webhook@archiver.kernel.org>; Fri,  7 Oct 2022 14:12:15 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by mx.groups.io with SMTP id smtpd.web11.5109.1665151929615731673
  for <yocto@lists.yoctoproject.org>;
- Fri, 07 Oct 2022 02:52:00 -0700
+ Fri, 07 Oct 2022 07:12:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=J1s75Xz/;
- spf=pass (domain: gmail.com, ip: 209.85.166.178,
- mailfrom: alex.kanavin@gmail.com)
-Received: by mail-il1-f178.google.com with SMTP id i9so2255077ilv.9
-        for <yocto@lists.yoctoproject.org>;
- Fri, 07 Oct 2022 02:52:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=NT7gCj8Xf9sqj0XRr7k4G4H2TKVx2O3z3SUbDKggp3M=;
-        b=J1s75Xz/UkBvlTw3Heb+SmS49mTEAYEoABo4h5JtfZ7ghKojCmA4McFBMS7ZlryBjh
-         KwEsea8rbtyMznd81Gx6f3a6hs/+Avte0rN2/OFctsdrnAD2w/utXMS0kQqCy+hvwgJ7
-         /id5HFAkPS/WRC27rNmc9U2BglVgEAeuIo6+exyqms7KDb/TCqma4/GeHYytTtffTIOg
-         Z8yGqg1ayCCyv/3i2VH3UPLZYfjaheLlXsRM6ppHGQWctQ4gjCLHKsG8lkjWKDQTjU7n
-         ekGyGZKPgqrEFgLERsLjg0dFtfoL/nCEAZrQbKMGDjeMaKivKs0Jyg+BLoR5LZ64wMxV
-         N7Nw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NT7gCj8Xf9sqj0XRr7k4G4H2TKVx2O3z3SUbDKggp3M=;
-        b=Uz9YpxP6R8tpCpZrx0HcXvrIkwP4e+Ty90J0KiqkVFn5nypJVvrtTFeNi+MblOWjNn
-         0HnbEjXypOC5bd5i+A9Fz54VkQSB7wQuBVXFLonYw/zobdSNCkMsI5HqlkDqPn+fhKBK
-         eCvT/wO2Y+zw0hNYXo3n4S33yGfK+3QL0vkRhn3HftdnH41cljyKsnWbG+NDGfcN9uqa
-         1+h8J11OPaynShEv9oypPJ32aoMQQdKbrAd90zlwAlIjU6wfRiVEsfUaaXYcsS7FEGEw
-         MjK7MtdIhx97RR8SEzePWIRraxAVn26SOIe5WSklN44/iiYTGnX+ias2RxqV0AYLxZO7
-         a0zw==
-X-Gm-Message-State: ACrzQf19pkI2BOjqDhlYOkjNAXaaL5nmV5o8OAZgCuvSzWn7loX78XLn
-	WLHjgUytfcdVgwbVT8gwrdbTgtOhWVI/q4lDLQk=
-X-Google-Smtp-Source: 
- AMsMyM7Yx65HFScR242CYWSFVxCC2dn0xZp+rddKvpMVq7tMk7Tl0mf7DO0xiWniEHjy0dcqKqQmXJRMm7aDrKAMGnc=
-X-Received: by 2002:a05:6e02:17cb:b0:2f9:1fb4:ba3b with SMTP id
- z11-20020a056e0217cb00b002f91fb4ba3bmr1838242ilu.257.1665136320121; Fri, 07
- Oct 2022 02:52:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <931a9536-5f23-f48c-0831-33d2add6406e@bootlin.com>
- <12998.1665134928428236625@lists.yoctoproject.org>
- <171BBFBB3D98A617.12674@lists.yoctoproject.org>
-In-Reply-To: <171BBFBB3D98A617.12674@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Fri, 7 Oct 2022 11:51:49 +0200
-Message-ID: 
- <CANNYZj9ar+z=m-G-76bi0icLac1wLfHw++9zpWaMC=3n1uz=Ag@mail.gmail.com>
-Subject: Re: [yocto] other ways of removing GPLv3 components (than meta-gplv2)
- #gplv3
-To: alex.kanavin@gmail.com
-Cc: poberauer@yahoo.co.uk, yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+ dkim=missing;
+ spf=pass (domain: arm.com, ip: 217.140.110.172, mailfrom: jon.mason@arm.com)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 826091D13
+	for <yocto@lists.yoctoproject.org>; Fri,  7 Oct 2022 07:12:15 -0700 (PDT)
+Received: from localhost.localdomain (usa-sjc-imap-foss1.foss.arm.com
+ [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 310963F67D
+	for <yocto@lists.yoctoproject.org>; Fri,  7 Oct 2022 07:12:09 -0700 (PDT)
+From: Jon Mason <jon.mason@arm.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-zephyr][PATCH 5/6] zephyr-bsp: add support for v2m-musca-b1
+Date: Fri,  7 Oct 2022 10:12:02 -0400
+Message-Id: <20221007141203.16632-5-jon.mason@arm.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20221007141203.16632-1-jon.mason@arm.com>
+References: <20221007141203.16632-1-jon.mason@arm.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 07 Oct 2022 09:52:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58285
+ <yocto@lists.yoctoproject.org>; Fri, 07 Oct 2022 14:12:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58290
 
-Oh and: anywhere where INCOMPATIBLE_LICENSE is mentioned in the docs,
-it must be adjusted to stress that per-image variant of it is a far
-better option than a global ban. Also further instructions and
-pointers, e.g. to the tests we have which can serve as a starting
-point:
-https://git.yoctoproject.org/poky/tree/meta/lib/oeqa/selftest/cases/incompatible_lic.py#n100
+Signed-off-by: Jon Mason <jon.mason@arm.com>
+---
+ .gitlab-ci.yml                                |  3 +++
+ ci/v2m-musca-b1.yml                           | 10 ++++++++
+ .../conf/machine/v2m-musca-b1.conf            | 25 +++++++++++++++++++
+ 3 files changed, 38 insertions(+)
+ create mode 100644 ci/v2m-musca-b1.yml
+ create mode 100644 meta-zephyr-bsp/conf/machine/v2m-musca-b1.conf
 
-Alex
+diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
+index 538f4ff..e3b15ad 100644
+--- a/.gitlab-ci.yml
++++ b/.gitlab-ci.yml
+@@ -147,3 +147,6 @@ qemu-x86:
+ 
+ stm32mp157c-dk2:
+   extends: .build
++
++v2m-musca-b1:
++  extends: .build
+diff --git a/ci/v2m-musca-b1.yml b/ci/v2m-musca-b1.yml
+new file mode 100644
+index 0000000..a867c4c
+--- /dev/null
++++ b/ci/v2m-musca-b1.yml
+@@ -0,0 +1,10 @@
++header:
++  version: 11
++  includes:
++    - ci/base.yml
++
++local_conf_header:
++  nonbuilding_tests: |
++    ZEPHYRTESTS:remove = "common sleep poll device queue"
++
++machine: v2m-musca-b1
+diff --git a/meta-zephyr-bsp/conf/machine/v2m-musca-b1.conf b/meta-zephyr-bsp/conf/machine/v2m-musca-b1.conf
+new file mode 100644
+index 0000000..171e899
+--- /dev/null
++++ b/meta-zephyr-bsp/conf/machine/v2m-musca-b1.conf
+@@ -0,0 +1,25 @@
++# Configuration for Musca-B1 development board
++
++#@TYPE: Machine
++#@NAME: Musca-B1 machine
++#@DESCRIPTION: Machine configuration for Musca-B1
++
++DEFAULTTUNE ?= "armv8m-main"
++require conf/machine/include/arm/armv8-m/tune-cortexm33.inc
++
++# GLIBC will not work with Cortex-M.
++TCLIBC = "newlib"
++
++# For runqemu
++IMAGE_FSTYPES += "ext4"
++IMAGE_CLASSES += "qemuboot"
++QB_SYSTEM_NAME = "qemu-system-arm"
++QB_MACHINE = "-machine musca-b1"
++QB_CPU = "-cpu cortex-m33"
++QB_GRAPHICS = "-nographic -vga none"
++QB_MEM = "512k"
++
++# Zephyr RTOS settings
++ZEPHYR_BOARD = "v2m_musca_b1"
++ZEPHYR_INHERIT_CLASSES += "zephyr-qemuboot"
++ARCH:musca-b1 = "arm"
+-- 
+2.17.1
 
-On Fri, 7 Oct 2022 at 11:35, Alexander Kanavin via
-lists.yoctoproject.org <alex.kanavin=gmail.com@lists.yoctoproject.org>
-wrote:
->
-> For what it's worth, I have eliminated meta-gplv2 from the
-> infotainment stack (e.g. a major build) of a major car OEM, so this is
-> doable. It would help if you bring up specific issues that you see and
-> we try to figure out how to solve them, and come up with a list of
-> 'standard practices'. Even bash has a sort-of replacement in busybox,
-> which needs to be enabled and played with.
->
-> Alex
->
-> On Fri, 7 Oct 2022 at 11:28, Peter via lists.yoctoproject.org
-> <poberauer=yahoo.co.uk@lists.yoctoproject.org> wrote:
-> >
-> > Thank you for the replies, Alex and Michael.
-> > Have joined the docs list.
-> > Couple of related threads for reference:
-> > https://lists.yoctoproject.org/g/yocto/topic/question_how_to_handle/90285507
-> > https://lists.yoctoproject.org/g/yocto/topic/incompatible_license_how_to/75210517
-> >
-> > Thank you
-> > -- Peter
-> >
-> >
-> >
-> >
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#58284): https://lists.yoctoproject.org/g/yocto/message/58284
-> Mute This Topic: https://lists.yoctoproject.org/mt/94157267/1686489
-> Mute #gplv3:https://lists.yoctoproject.org/g/yocto/mutehashtag/gplv3
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
 
