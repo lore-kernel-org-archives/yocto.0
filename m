@@ -1,54 +1,89 @@
-Return-Path: <nikitagupta2509@gmail.com>
+Return-Path: <philippe.coval@astrolabe.coop>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4A3A7C433FE
-	for <webhook@archiver.kernel.org>; Fri,  7 Oct 2022 07:40:23 +0000 (UTC)
-Subject: Re: Run rt specific test in "core-image-rt" #patch #yocto #qemu
- #dunfell #linux
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A804AC433FE
+	for <webhook@archiver.kernel.org>; Fri,  7 Oct 2022 08:57:03 +0000 (UTC)
+Received: from smtp6-g21.free.fr (smtp6-g21.free.fr [212.27.42.6])
+ by mx.groups.io with SMTP id smtpd.web12.2360.1665133015301414201
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 07 Oct 2022 01:56:55 -0700
+Authentication-Results: mx.groups.io;
+ dkim=missing;
+ spf=none, err=permanent DNS error (domain: hua.lan.rzr.cloudns.org,
+ ip: 212.27.42.6, mailfrom: rzr@hua.lan.rzr.cloudns.org)
+Received: from hua (unknown [IPv6:2a01:e34:ec57:d710::e6ad:1a43])
+	(Authenticated sender: philippe.coval@free.fr)
+	by smtp6-g21.free.fr (Postfix) with ESMTPSA id BCC9C780372;
+	Fri,  7 Oct 2022 10:56:45 +0200 (CEST)
+Received: by hua (Postfix, from userid 10000)
+	id 77A512262E9; Fri,  7 Oct 2022 10:56:45 +0200 (CEST)
+From: philippe.coval@astrolabe.coop
 To: yocto@lists.yoctoproject.org
-From: "Nikita Gupta" <nikitagupta2509@gmail.com>
-X-Originating-Location: Solapur, Maharashtra, IN (152.57.240.114)
-X-Originating-Platform: Windows Chrome 106
-User-Agent: GROUPS.IO Web Poster
+Cc: philippe.coval.pro+meta-zephyr-lists.yoctoproject.org@gmail.com,
+	Philippe Coval <philippe.coval@astrolabe.coop>,
+	Philippe Coval <philippe.coval.ext@huawei.com>,
+	Jon Mason <jon.mason@arm.com>,
+	Naveen Saini <naveen.kumar.saini@intel.com>
+Subject: [meta-zephyr][kirkstone][PATCH] nrf52840-mdk-usb-dongle.conf: Add new
+ machine from makerdiary
+Date: Fri,  7 Oct 2022 10:56:37 +0200
+Message-Id: <20221007085637.9376-1-philippe.coval@astrolabe.coop>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Date: Fri, 07 Oct 2022 00:40:15 -0700
-References: 
- <CANNYZj_dqfKjMjsjubxr02Q8R6OGW-eQMoS+CnheZASkmnvceg@mail.gmail.com>
-In-Reply-To: 
- <CANNYZj_dqfKjMjsjubxr02Q8R6OGW-eQMoS+CnheZASkmnvceg@mail.gmail.com>
-Message-ID: <12998.1665128415605242713@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="l39lqVAkwT1whMztgMgK"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 07 Oct 2022 07:40:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58281
+ <yocto@lists.yoctoproject.org>; Fri, 07 Oct 2022 08:57:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58282
 
---l39lqVAkwT1whMztgMgK
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+From: Philippe Coval <philippe.coval@astrolabe.coop>
 
-Thanks Alexander,
+It was tested with zephyr-openthread-rcp
+along Oniro's IoT gateway blueprint
 
-For guiding me in the right way. I did the same and was able to do testing =
-my image previously all of those tests were skipping but now some of them a=
-re passing and some of the status are unknown and skipped and i am trying t=
-o figure out the reason of the "unknown" status. Hope so sooner I will get =
-the reason and solution as well.
+For the record deployment was done manually:
 
-Thanks for helping me.
+- Click on device button
+- uf2conv.py "zephyr.hex" -c -f 0xADA52840
+- and then copy to mounted "/dev/disk/by-label/MDK-DONGLE"
 
---l39lqVAkwT1whMztgMgK
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Support of unfree flashing tools might be added later (once double verifi=
+ed)
 
-Thanks Alexander,<br /><br />For guiding me in the right way. I did the sam=
-e and was able to do testing my image previously all of those tests were sk=
-ipping but now some of them are passing and some of the status are unknown =
-and skipped and i am trying to figure out the reason of the "unknown" statu=
-s. Hope so sooner I will get the reason and solution as well.<br /><br />Th=
-anks for helping me.
+Forwarded: https://lists.yoctoproject.org/g/yocto/message/58142
+Relate-to: https://gitlab.eclipse.org/eclipse/oniro-blueprints/transparen=
+t-gateway/meta-oniro-blueprints-gateway/-/issues/6
+Relate-to: https://wiki.makerdiary.com/nrf52840-mdk/zephyr/
+Relate-to: https://gitlab.eclipse.org/pcoval/oniro-presentations/-/wikis/=
+openthread
+Signed-off-by: Philippe Coval <philippe.coval.ext@huawei.com>
+Tested-by: Jon Mason <jon.mason@arm.com>
+Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
+Signed-off-by: Philippe Coval <philippe.coval@astrolabe.coop>
+---
+ meta-zephyr-bsp/conf/machine/nrf52840-mdk-usb-dongle.conf | 7 +++++++
+ 1 file changed, 7 insertions(+)
+ create mode 100644 meta-zephyr-bsp/conf/machine/nrf52840-mdk-usb-dongle.=
+conf
 
---l39lqVAkwT1whMztgMgK--
+diff --git a/meta-zephyr-bsp/conf/machine/nrf52840-mdk-usb-dongle.conf b/=
+meta-zephyr-bsp/conf/machine/nrf52840-mdk-usb-dongle.conf
+new file mode 100644
+index 0000000..67e407a
+--- /dev/null
++++ b/meta-zephyr-bsp/conf/machine/nrf52840-mdk-usb-dongle.conf
+@@ -0,0 +1,7 @@
++#@TYPE: Machine
++#@NAME: nrf52840-mdk-usb-dongle
++
++#@DESCRIPTION: Machine configuration for makerdiary's nrf52840-mdk-usb-d=
+ongle
++
++require conf/machine/include/nrf52.inc
++ARCH:nrf52840-mdk-usb-dongle =3D "arm"
+--=20
+2.34.1
+
 
