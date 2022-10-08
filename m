@@ -1,118 +1,117 @@
-Return-Path: <janmkubalek@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C0BB1C433FE
-	for <webhook@archiver.kernel.org>; Sat,  8 Oct 2022 19:25:44 +0000 (UTC)
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
- [209.85.128.50])
- by mx.groups.io with SMTP id smtpd.web12.6994.1665257135571364647
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AE83CC433F5
+	for <webhook@archiver.kernel.org>; Sat,  8 Oct 2022 19:35:44 +0000 (UTC)
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com
+ [209.85.160.43])
+ by mx.groups.io with SMTP id smtpd.web09.7259.1665257743102612233
  for <yocto@lists.yoctoproject.org>;
- Sat, 08 Oct 2022 12:25:35 -0700
+ Sat, 08 Oct 2022 12:35:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=NiZID4xU;
- spf=pass (domain: gmail.com, ip: 209.85.128.50,
- mailfrom: janmkubalek@gmail.com)
-Received: by mail-wm1-f50.google.com with SMTP id ay36so4674909wmb.0
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=IeijtFai;
+ spf=pass (domain: gmail.com, ip: 209.85.160.43, mailfrom: raj.khem@gmail.com)
+Received: by mail-oa1-f43.google.com with SMTP id
+ 586e51a60fabf-1322d768ba7so8879905fac.5
         for <yocto@lists.yoctoproject.org>;
- Sat, 08 Oct 2022 12:25:35 -0700 (PDT)
+ Sat, 08 Oct 2022 12:35:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=sg+AZklSCiv9//2GRM2pH9zE4hyRb4rQsm2Rw1GjH60=;
-        b=NiZID4xU31TVNKXTsVO9P7Smer8hF0Tt70Ll8+Qqk/HPhUmNjHahWC4HvPir2UOYBy
-         J7M7eY6E7wxxYau7l09WAM40rQQ/Atasza671V9D+57A0CF+9Vss0ALUqHtOBwtPwpXs
-         WqHPNufRA4nboPRfVg8clZ0RqffsnehRnS+lKYQvHYpybPHrYRzfSvFfWeG54lF6rZI4
-         N3dqi4Tmi7fwgkVU9b3IVwP6iC62xzemAOmsi8Ir4f1OhYKKgF5da1K3ex9S1GyXjfpb
-         of5UspMEnZaMyXwyqa8oVQFTLIyrV30U3/Zol7QYwvRS7qyNM/cmAwImu7Wd6AFLLIap
-         aK0w==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=1G0rk8QQ9aA+BM6hKESKqx5gIJ4C/3HRJUVGiorlJ/k=;
+        b=IeijtFaiVwjtnktMef/eteezc8J5Ib0CA04yr1mAvO6wd0iPu6T+ePv95EGwSypJoh
+         FFCpgmUqkbLo980288yNoeMatQw0guWiXo+ILsc/OHgbGtSUCC41/lG153eG59ZgD1tu
+         RVhjG3jAbRIqxbeToVH9mO+kh2dBOb6DTXafbueTuo+OF4PHbohpOCQWgjhiEegTE07U
+         Ulj64iZAVEDZhH55k3laAKYeVzaOFZne7L6UCmGpLwnbhf+H4poqF5sHp/r/CaZT5+uq
+         oHDoQG6regHeJ7qlq1h9Q6Uo215yyJgPGJo8FrO8Kj5rD9BQReVwVjuLll6laxIJ0UYD
+         7CkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sg+AZklSCiv9//2GRM2pH9zE4hyRb4rQsm2Rw1GjH60=;
-        b=HT9piBjbP6dSmklpmHKYVbk8Dh+ey8blOTayOvrkafFG7SL42M37sEC7raHicMGDnO
-         FMmA/gIrE7VYatBK4WQ1cQtgbIn73iIhbTg5Q2Nysce3mA+KBv90SFHWZhhmcCKoDKvh
-         BI85VsvIvHA20+IVTyCdid8piA30IzZg/mFdZL1+fmauy4MJ72aGDwP/1UINjr1ZYPm6
-         NbbRxOTL+tvM0Y8gxUCTruwBug8UPIoHfDcj8hP6Ix2vqgwG64vO8hl7vnmtYcIy3ZXa
-         a0qbDQb5OTL0+QHk1FFtw1ZGCvXvZadwmucUKq0hzNgYGjLh7J9rl5QCjikQMhGoUFS2
-         Q6TQ==
-X-Gm-Message-State: ACrzQf336PI1ijHtK/H7VNyrcO+1Uai6zcoEr9q2Wk5TaGdGX5stnbtB
-	JrAifiDCdHZS9J3IFmOcnFSyDnHwTJcLD5dF4h9gFo0yBMwx9A==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1G0rk8QQ9aA+BM6hKESKqx5gIJ4C/3HRJUVGiorlJ/k=;
+        b=NWPb0Y5P1s1/Y8x964dVXtUFKSFAPSXgXDkQ5NiqHlQ67a6gc9u9PiHoIGp8fRPXDG
+         5hDsSCKcgtDdv5jXfE7JG9fHs2zMB49wavFDfWleQ2x+dj8rpFZjMuQyLFgi31RiCcmi
+         zGNwTbLbFOHMxG8CjE7Z/IFurRDvOpeLKevirzD67s4lGtYADoe48M92n0n3BLS6vmkW
+         yhnuLV4u4sDCZyIYOXuRB8zyQaul6Ejd0NRZVTAr1exp9+vnJh++NE291DiaPiN5bsGR
+         F/02JSrMlD1hyQJCwbtH4rnsdAQ3wGWe8J4tlUt9aWV0xuP9Z7G0oaohZ8VSK5tMcGdi
+         qGVw==
+X-Gm-Message-State: ACrzQf3YsK3+kY7XGhojhSZmS/T7L1tUf/0KdMd4/FI7wpdZ/axZISmF
+	M87M+2Jpc+JxPnK1W+gha22VdSB/Ot1qJ1AMfUY=
 X-Google-Smtp-Source: 
- AMsMyM6F2Zukq3U9PAdy4itJsWs9sud7u5M8RwGavf4254stxeO0I73hIW6C7cCdNLOQ8Cwv3W8yfv1SDDCWVRVIZAI=
-X-Received: by 2002:a05:600c:350f:b0:3b4:c5f2:4295 with SMTP id
- h15-20020a05600c350f00b003b4c5f24295mr7420537wmq.200.1665257133612; Sat, 08
- Oct 2022 12:25:33 -0700 (PDT)
+ AMsMyM4HQKztLOwkv7T2tTSvJ9rFhxrzc2zuJwHWp5fM35MgQK6zibAFvbq4Sem8CPBlqOsIvWTBltAGlnqwmhXgPvo=
+X-Received: by 2002:a05:6870:d1c8:b0:132:1239:2550 with SMTP id
+ b8-20020a056870d1c800b0013212392550mr11186953oac.55.1665257742395; Sat, 08
+ Oct 2022 12:35:42 -0700 (PDT)
 MIME-Version: 1.0
-From: Jan Kubalek <janmkubalek@gmail.com>
-Date: Sat, 8 Oct 2022 21:25:22 +0200
-Message-ID: 
+References: 
  <CAD7aZ34WijQFsY_=znbZ+0RToxEYnfZY=p-wuqnKwz+GsTdUrw@mail.gmail.com>
-Subject: Problem with download files during CMake configure phase
-To: yocto@lists.yoctoproject.org
-Cc: Jakub Trubka <jakub.trubka@bringauto.com>,
+In-Reply-To: 
+ <CAD7aZ34WijQFsY_=znbZ+0RToxEYnfZY=p-wuqnKwz+GsTdUrw@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sat, 8 Oct 2022 12:35:16 -0700
+Message-ID: 
+ <CAMKF1sq8RCkV=LCYjRxCueOLQzY+eLK4Z+=dn_BEPQSytJy=nw@mail.gmail.com>
+Subject: Re: [yocto] Problem with download files during CMake configure phase
+To: Jan Kubalek <janmkubalek@gmail.com>
+Cc: yocto@lists.yoctoproject.org, Jakub Trubka <jakub.trubka@bringauto.com>,
 	"martin.hofbauer@bringauto.com" <martin.hofbauer@bringauto.com>
-Content-Type: multipart/alternative; boundary="000000000000e8a48105ea8ae332"
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 08 Oct 2022 19:25:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58293
+ <yocto@lists.yoctoproject.org>; Sat, 08 Oct 2022 19:35:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58294
 
---000000000000e8a48105ea8ae332
-Content-Type: text/plain; charset="UTF-8"
+On Sat, Oct 8, 2022 at 12:25 PM Jan Kubalek <janmkubalek@gmail.com> wrote:
+>
+> Hi,
+>
+> We have a C++ projects configured by CMake.
+>
+> Our CMake files download some dependencies from our git by standard "git clone" command during configure phase.
+>
+> If I add our project as a recipe to Yocto the git command always fails with exit code 128 (resource unavailable - no internet connection, protocol not supported etc.).
+>
+> What's wrong? How Can I solve this problem? In a standard env the configure proceeds without problems.
+>
+> We use
+> - Yocto >= 4,
+> - Bitbake >= 2,
+> - Ubuntu 20.04 as a host system
+>
+> Src URI spec:
+>
+> SRCREV = "<commit_id>"
+> SRC_URI = gitsm://<path_to_git>;protocol=ssh;nobranch=1
+>
+>
+>
+> Thanks a lot for your advice :)
 
-Hi,
+yes cmake has the downloader module which perhaps is good from
+development point of view, however, with yocto where one goal is about
+reproducibility its important to have
+sourcecode immutable and ensure that all of it is available before
+system goes ahead with building it. Therefore recently bitbake has
+started disabling network access after fetching
+task is finished, just so that it does not get modified under it
+without notice. One approach is to use git submodules in your project
+instead of doing it with cmake then use gitsm fetcher
+in yocto and you have best of both worlds.
 
-We have a C++ projects configured by CMake.
-
-Our CMake files download some dependencies from our git by standard "git
-clone" command during configure phase.
-
-If I add our project as a recipe to Yocto the git command always fails with
-exit code 128 (resource unavailable - no internet connection, protocol not
-supported etc.).
-
-What's wrong? How Can I solve this problem? In a standard env the configure
-proceeds without problems.
-
-We use
-- Yocto >= 4,
-- Bitbake >= 2,
-- Ubuntu 20.04 as a host system
-
-Src URI spec:
-
-SRCREV = "<commit_id>"SRC_URI = gitsm://<path_to_git>;protocol=ssh;nobranch=1
-
-
-
-Thanks a lot for your advice :)
-John
-
---000000000000e8a48105ea8ae332
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<div><br></div><div>We have a C++ projects configured b=
-y CMake.</div><div><br></div><div>Our CMake files download some dependencie=
-s from our git by standard &quot;git clone&quot; command during=C2=A0config=
-ure phase.</div><div><br></div><div>If I add our project as a recipe to Yoc=
-to the git command always fails with exit code 128 (resource unavailable - =
-no internet connection, protocol not supported=C2=A0etc.).</div><div><br></=
-div><div>What&#39;s wrong? How Can I solve this problem? In a standard env =
-the configure proceeds without problems.=C2=A0</div><div><br></div><div>We =
-use</div><div>- Yocto &gt;=3D 4,</div><div>- Bitbake &gt;=3D 2,</div><div>-=
- Ubuntu 20.04 as a host system</div><div><br></div><div>Src URI spec:</div>=
-<div><pre class=3D"gmail-code gmail-highlight" lang=3D"plaintext"><span id=
-=3D"gmail-LC5" lang=3D"plaintext" class=3D"gmail-line">SRCREV =3D &quot;&lt=
-;commit_id&gt;&quot;
-</span>SRC_URI =3D=C2=A0<span style=3D"font-family:Arial,Helvetica,sans-ser=
-if">gitsm://&lt;path_to_git&gt;;protocol=3Dssh;nobranch=3D1</span></pre></d=
-iv><div><br></div><div><br></div><div>Thanks a lot for your advice :)</div>=
-<div>John</div></div>
-
---000000000000e8a48105ea8ae332--
+> John
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#58293): https://lists.yoctoproject.org/g/yocto/message/58293
+> Mute This Topic: https://lists.yoctoproject.org/mt/94205284/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
