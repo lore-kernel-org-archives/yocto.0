@@ -1,139 +1,156 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <luca.ceresoli@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AE53AC433F5
-	for <webhook@archiver.kernel.org>; Mon, 10 Oct 2022 14:16:05 +0000 (UTC)
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com
- [209.85.218.46])
- by mx.groups.io with SMTP id smtpd.web12.6746.1665411359720139844
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C3714C4332F
+	for <webhook@archiver.kernel.org>; Mon, 10 Oct 2022 14:34:45 +0000 (UTC)
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net
+ [217.70.183.194])
+ by mx.groups.io with SMTP id smtpd.web08.6971.1665412483807382300
  for <yocto@lists.yoctoproject.org>;
- Mon, 10 Oct 2022 07:16:00 -0700
+ Mon, 10 Oct 2022 07:34:44 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20210112.gappssmtp.com header.s=20210112
- header.b=AeKUadGz;
- spf=softfail (domain: sakoman.com, ip: 209.85.218.46,
- mailfrom: steve@sakoman.com)
-Received: by mail-ej1-f46.google.com with SMTP id o21so25133589ejm.11
-        for <yocto@lists.yoctoproject.org>;
- Mon, 10 Oct 2022 07:15:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=29Uzc7V1XF8SdIAHyee8zP4gcdg7QF7+vKkudPUZyXM=;
-        b=AeKUadGzSz9NR1TdAdHXDI1mNCyKbN/MyKOyaaHl8RHuWF5QNpfvrO0aR6CZA7685o
-         RhUQnZej21+v9/bxfFo+z1LZVb9GE0ErEQ3Ela2iMRsrEYu65LIWGWWO3xqJ37rcFrCe
-         Ps9I0GlhrSCvNukR9GJ4/7xzrmVMySmZw6B3UDpf+JA/3i9BiEY47sVk/IBTuuqjegkM
-         lVMufdF6fX34S/ZihMPAuMNaU9+5ZNvC9UNRHB7454OpSuBEblWteBKy8Z4iNTblMmo/
-         zWpGXCKR3BGj8bTtXfucSAFYNR1vEZdas0ZL6qP572OUIhL1EfcX5SRc9iOEMXmN9+fj
-         pklA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=29Uzc7V1XF8SdIAHyee8zP4gcdg7QF7+vKkudPUZyXM=;
-        b=ukOu/NF3j7nrylDQnXJmor7HX76tim4a3NK8jgI/QU+HvXTlG/nHp7OtI88ton5fB7
-         lz9qY8QwbWKuiv98gZ1k13cc7gwrgADkrKE9TkU+eml9bS1HZ4W+kmpDqIv1JJCvpQUB
-         pcN5cy0TK9Bo2fI6XiJo/rXWLI+mu1KbvM8B2hLwyaQjFtHdOO52Z/vds1Lk/vNnzD3w
-         Ty3vZ8cikQfcWF0fpB4ICeo0vfwU7wHFcEffQoJ9unIAPRODQ2PmUi58w59l6jSrwCsQ
-         S2L/3fpiTVowMmD8gc6VNfMm41CQ534zVDiomxrd8tunb1R2Chy57jRBVrdVPQEozXMU
-         NdJw==
-X-Gm-Message-State: ACrzQf3md4S7a2YQIlk2vfq8QzQ9JkYEXWmtWexhdVJJ83e0zGxpNKAK
-	6r6RhuStlyzBCWuqoeVJZ+ONJ/VA/wGaHlXD8yiwGQ==
-X-Google-Smtp-Source: 
- AMsMyM6CEflhOi5sG/IXWRz/qG2yiRLNLw5mK9rHOXzFhAmGrkbMkoRGSK6AdCDrWMlwGlYdjVmCk4t0yQLv6ubdYjU=
-X-Received: by 2002:a17:907:3da0:b0:787:89cc:faab with SMTP id
- he32-20020a1709073da000b0078789ccfaabmr14946983ejc.92.1665411357572; Mon, 10
- Oct 2022 07:15:57 -0700 (PDT)
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=Hlm9Z+H7;
+ spf=pass (domain: bootlin.com, ip: 217.70.183.194,
+ mailfrom: luca.ceresoli@bootlin.com)
+Received: from booty (unknown [77.244.183.192])
+	(Authenticated sender: luca.ceresoli@bootlin.com)
+	by mail.gandi.net (Postfix) with ESMTPSA id 196384000B;
+	Mon, 10 Oct 2022 14:34:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1665412481;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=36xhF0Yp9IKWSUJZcSvJqxz7ExJygNbOXddjwNm748k=;
+	b=Hlm9Z+H7S7crUs0s2nkXtEHFmNVc0I5ABeo0TfdmcLAMdozScA28QdsIPP9B5I1Nusf8p5
+	z1ltKrxxvqOApX1WlXJXUXuJQTZtryID+P5/S58OcIS+GI1FSy6BDa7+7VpQP6kGN1aIM3
+	Snc54V/mCiAkLDWjVG7IqeYSvjQq7PvmV9XqpL5h2WTz1aN3j2E0rR+/G6jxwUr6FT5XRY
+	Crlo3ttYqXcC5ySMhKkTEUFIW/Ch3J4vRdFRr9BvpiLkUN+dk7SbkLQqr42iI/k/ZyI2F9
+	9SwFkhoVl783DwW2w8Ev9IRYJYOjoBi5+B6czH9dpHzWD19exYXadEFu4zmy3Q==
+Date: Mon, 10 Oct 2022 16:34:38 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Cc: yocto@lists.yoctoproject.org, Quentin Schulz <foss+yocto@0leil.net>
+Subject: Re: [yocto] [PATCH yocto-autobuilder-helper] scripts:
+ run-docs-build: make the workdir pristine between builds
+Message-ID: <20221010163438.6c2bda32@booty>
+In-Reply-To: <4b6d09f7-f555-7238-e629-78585019a4a1@theobroma-systems.com>
+References: <20221003170401.12827-1-foss+yocto@0leil.net>
+	<20221003231505.0f16377d@booty>
+	<38d89bc7-1317-9670-a07c-64d28c8baff9@theobroma-systems.com>
+	<20221004225444.07132057@booty>
+	<4b6d09f7-f555-7238-e629-78585019a4a1@theobroma-systems.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: 
- <01010183c1d53236-d20aa3af-b0ca-4f72-b153-1ece8a7e1c53-000000@us-west-2.amazonses.com>
- <171CBA851628AA03.28514@lists.yoctoproject.org>
-In-Reply-To: <171CBA851628AA03.28514@lists.yoctoproject.org>
-From: Steve Sakoman <steve@sakoman.com>
-Date: Mon, 10 Oct 2022 04:15:46 -1000
-Message-ID: 
- <CAOSpxdZhhuf+dTEMhO=dz0Xtqn4senp+wx0y8x9trwHtWGGM9Q@mail.gmail.com>
-Subject: Re: [yocto] QA notification for completed autobuilder build
- (yocto-.rc1)
-To: qa-build-notification@lists.yoctoproject.org
-Cc: Pokybuild User <pokybuild@yoctoproject.org>, yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 10 Oct 2022 14:16:05 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58308
+ <yocto@lists.yoctoproject.org>; Mon, 10 Oct 2022 14:34:45 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58309
 
-Richard let me know that a missing release number will result in a
-broken build for QA, so I will run a 3.1.20-rc2 build with this
-corrected.
+Hi Quentin,
 
-Again, sorry for the confusion.
+On Wed, 5 Oct 2022 10:55:44 +0200
+Quentin Schulz <quentin.schulz@theobroma-systems.com> wrote:
 
-Steve
+> Hi Luka,
+> 
+> On 10/4/22 22:54, Luca Ceresoli wrote:
+> > Hi Quentin,
+> > 
+> > On Tue, 4 Oct 2022 10:15:20 +0200
+> > Quentin Schulz <quentin.schulz@theobroma-systems.com> wrote:
+> >   
+> >> Hi Luca,
+> >>
+> >> On 10/3/22 23:15, Luca Ceresoli wrote:  
+> >>> Hi Quentin,
+> >>>
+> >>> On Mon,  3 Oct 2022 19:04:01 +0200
+> >>> "Quentin Schulz" <foss@0leil.net> wrote:
+> >>>      
+> >>>> From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+> >>>>
+> >>>> It happened that the git repositories were dirty and resulted in
+> >>>> incorrect files being used. Let's use git clean -ffdx to force a
+> >>>> completely clean git repositories before and after checking out a branch
+> >>>> so that nothing is left from or to another branch build
+> >>>>
+> >>>> Cc: Quentin Schulz <foss+yocto@0leil.net>
+> >>>> Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+> >>>> ---
+> >>>>    scripts/run-docs-build | 10 +++++-----
+> >>>>    1 file changed, 5 insertions(+), 5 deletions(-)
+> >>>>
+> >>>> diff --git a/scripts/run-docs-build b/scripts/run-docs-build
+> >>>> index c6b3965..69e3257 100755
+> >>>> --- a/scripts/run-docs-build
+> >>>> +++ b/scripts/run-docs-build
+> >>>> @@ -61,6 +61,7 @@ for branch in 1.46 $(git branch --remote --contains "$first_sphinx_commit" --for
+> >>>>    
+> >>>>        echo Building bitbake $branch branch
+> >>>>        git checkout $branch
+> >>>> +    git clean -ffdx
+> >>>>        git checkout origin/master releases.rst
+> >>>>        make clean
+> >>>>        SPHINXOPTS="-j auto" make publish
+> >>>> @@ -80,7 +81,7 @@ for branch in 1.46 $(git branch --remote --contains "$first_sphinx_commit" --for
+> >>>>        fi
+> >>>>    
+> >>>>        cp -r ./_build/final/* $outputdir/bitbake/$branch
+> >>>> -    git reset --hard
+> >>>> +    git clean -ffdx  
+> >>>
+> >>> Sure this is correct? 'git clean -ffdx' does not revert changes to
+> >>> tracked files, be them staged or not.
+> >>>      
+> >>
+> >> Nope, not sure this is correct. I misread git clean manpage, we should
+> >> have a git reset --hard and git clean -ffdx. Now the question is when
+> >> those are necessary because with this patch we do it twice, before and
+> >> after the git checkout. I did this because I remember doing checkouts
+> >> between branches of U-Boot/kernel and while the pre-checkout branch was
+> >> not dirty, the after-checkout branch was dirty. I assume this might have
+> >> something to do with build artifacts of the pre-checkout build that
+> >> weren't .gitignored in the afer-checkout branch? Something that git
+> >> clean -ffdx should tackle I think.
+> >>
+> >> Sooo, I guess only having git reset --hard and git clean -ffdx before a
+> >> checkout should be enough and we don't need them both before and after
+> >> the checkout like I did in this patch?  
+> > 
+> > I think 'reset --hard' + 'clean -ffdx' only before the checkout should
+> > be enough. However I'm not sure whether there are corner cases such as
+> > a file that is .gitignored in commit A and versioned in commit B or
+> > similar. Perhaps worth trying with reset+clean only before, and see  
+> 
+> I guess it does not hurt to be on the safe side by having them before 
+> and after the git checkout then? Since the current issue went unnoticed 
+> for months...
 
-On Mon, Oct 10, 2022 at 4:10 AM Steve Sakoman via
-lists.yoctoproject.org <steve=sakoman.com@lists.yoctoproject.org>
-wrote:
->
-> This was the 3.1.20 release build.  I somehow neglected to fill in the
-> release number on the build form.  Sorry for the confusion.
->
-> There was one failure in the build -- a known autobuilder intermittent issue:
->
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=14522
->
-> I reran this and it passed:
->
-> https://autobuilder.yoctoproject.org/typhoon/#/builders/63/builds/5931
->
-> Steve
->
-> On Mon, Oct 10, 2022 at 2:18 AM Pokybuild User
-> <pokybuild@yoctoproject.org> wrote:
-> >
-> >
-> > A build flagged for QA (yocto-.rc1) was completed on the autobuilder and is available at:
-> >
-> >
-> >     https://autobuilder.yocto.io/pub/releases/yocto-.rc1
-> >
-> >
-> > Build hash information:
-> >
-> > bitbake: 048d682b031644fb9f0d41a489bacb873aa27bd7
-> > meta-agl: da4775d226b2a231e27e8c8995c20fdd3c73f08a
-> > meta-arm: 08c44df351ae1913f41de8388981b03e21235f09
-> > meta-aws: 052c9a5f8532ed96487df37bae2f598c129d7d01
-> > meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
-> > meta-intel: ed616c50ea329ba6fe68642cfc8bf8c6b8b61beb
-> > meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
-> > meta-openembedded: 6792ebdd966aa0fb662989529193a0940fbfee00
-> > meta-virtualization: beea119eb529b4a11f266004aee8b548427aea39
-> > oecore: dbad46a0079843b380cf3dda6008b12ab9526688
-> > poky: 7f9b7f912e13451a4cd03b10a8090a5def68dc39
-> >
-> >
-> >
-> > This is an automated message from the Yocto Project Autobuilder
-> > Git: git://git.yoctoproject.org/yocto-autobuilder2
-> > Email: richard.purdie@linuxfoundation.org
-> >
-> >
-> >
-> >
-> >
-> >
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#58307): https://lists.yoctoproject.org/g/yocto/message/58307
-> Mute This Topic: https://lists.yoctoproject.org/mt/94234792/3620601
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [steve@sakoman.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+Sorry for the delayed reply. It took a while before I found a little
+time to look at the script code...
+
+Indeed cleaning before _and_ after would be safe, even though perhaps
+unneeded.
+
+> > what happens. However I don't know exactly the initial problem you're
+> > trying to fix.
+> >   
+> 
+> https://lore.kernel.org/yocto-docs/e50abe3c777e4a23a752a3ec25ad0b2a@axis.com/T/#t
+
+Ah, interesting. Thanks for the link. Why not adding it to your commit
+message, for reference?
+
+Best regards.
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
