@@ -1,223 +1,334 @@
-Return-Path: <ticotimo@gmail.com>
+Return-Path: <steven.monsees@baesystems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 66D49C4332F
-	for <webhook@archiver.kernel.org>; Wed, 12 Oct 2022 16:56:41 +0000 (UTC)
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
- by mx.groups.io with SMTP id smtpd.web08.133.1665593797352852325
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EECE8C433FE
+	for <webhook@archiver.kernel.org>; Wed, 12 Oct 2022 18:28:20 +0000 (UTC)
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
+ by mx.groups.io with SMTP id smtpd.web12.782.1665599295337194239
  for <yocto@lists.yoctoproject.org>;
- Wed, 12 Oct 2022 09:56:37 -0700
+ Wed, 12 Oct 2022 11:28:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=bmBUIz6S;
- spf=pass (domain: gmail.com, ip: 209.85.218.41, mailfrom: ticotimo@gmail.com)
-Received: by mail-ej1-f41.google.com with SMTP id k2so39321832ejr.2
-        for <yocto@lists.yoctoproject.org>; Wed, 12 Oct 2022 09:56:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=27y78Lqjov1dmeED6uqwpGPFg7I68QOyLTmR1MgpDb0=;
-        b=bmBUIz6S8VtAmXZwv69nAKaV42Vh1UQzIl/Ra+AeJlpSRn5bT8wQ5z2kHTTbCILtd4
-         gnJJYOgccNPCZ83QX/8YZQKT04vQOJ9rkEOoCLMXscBSVNClUs4R44dSuWqvqBNM+ndh
-         tsButAX6JauAELX/9gXrsePzHdBfKvzsNMoC1+k/29mIrnMsoLTQ3acRFFr6JI8HrSb1
-         eQCcxCb4SdyRh18CnZmlJrt7sHCwBFmPY5IYrx++SKeizdlsQZDV/uqWJAPrvZHmQb/d
-         fu9UrU3a4yEQt3vxBuNR//KN2yUagS46t2Yltsj2xUce71QAo2zXET5/6A3THN78ytkR
-         hZRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=27y78Lqjov1dmeED6uqwpGPFg7I68QOyLTmR1MgpDb0=;
-        b=FH0e0niUg8cCavlzQwSgUm+38++Q6ezomuyXquXoM85C9fqts2ENOzEAqZ6Z8hOhhZ
-         HlNuycCLEeu+6dGHPFyK5LvkvZR2cZZUacZvSkjyaMKmx3xd69jBKq7kN8NTOz+VENzy
-         e2b2akE/+yWYrYv7SqUBx3uUB4IhG0XGkZ4auV9k1fJRLvygFw22zoNzD+EyT2sHyDSA
-         xzvskXUJy140Shxr4u6Fk2YETPPh08OlJOlQI64L6yzZQFcBgTv2kX9zMxPsinZcnx4l
-         d0wb8KxxdXJD+c4QxcbNDtP1sQ5077qOOOXxj01PWPhnkq52N93aJnCUYZ44G86ITsAP
-         DHow==
-X-Gm-Message-State: ACrzQf3SrYD7VBhfJYve1RhZtDX/aPYluRGTYgI0DjeCAD+rnLugzUdr
-	kQXpwEG3QgdWqahhmiCPgnR6iyP+c6P0ttKInAs=
-X-Google-Smtp-Source: AMsMyM52Nnp+s6moGIJvCHKVk1Mlmk8Ttz5ejncZZU1zF6IrCwjKWiFzDwbyI4e632TOyE655ag5h/8KluFgPIV4lGg=
-X-Received: by 2002:a17:906:cc10:b0:78d:f741:9d87 with SMTP id
- ml16-20020a170906cc1000b0078df7419d87mr2434608ejb.295.1665593795567; Wed, 12
- Oct 2022 09:56:35 -0700 (PDT)
+ dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=Y3f2qcAV;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.65, mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1665599295; x=1823279295;
+  h=from:to:subject:date:in-reply-to:mime-version;
+  bh=pYROG6oKJcK/36xVwsH8qBNqqybUla9UD9eYJHOgWKs=;
+  b=Y3f2qcAVTkRoo40oI5K+eOTTUP1AUeEInVRfyx6J+FOkU5Yj64p+6I1D
+   bF2ZLOeBDaq5j6ncXSWIVKcuZ1apwjo97A48X0KgNvUX7+y9hG75Pgjzr
+   qbTbTdo/9VYSXkf29k1KLKeDMQfW7LmSLdGIZ2ArIyUK4nFNPVRjRvMHd
+   0=;
+X-IPAS-Result: =?us-ascii?q?A2BLAAAYBkdj/wFUSQpaHAEBAQEBAQcBARIBAQQEAQFJg?=
+ =?us-ascii?q?TIHAQELAYEhggICDoEeLBeEN4gfiHcDhheXAhSBaAsBAQEBAQEBAQEIASwBB?=
+ =?us-ascii?q?g8EAQGFBQIWhGEmNAkOAQIEAQEBAQMCAwEBAQEBAQMBAQYBAQEBAQEGBAGBG?=
+ =?us-ascii?q?4UvOQ2CNSKDawEBAQEDASIKXAIBCA0EBAEBFhUCAgImCh0IAQEEARIIgnEFg?=
+ =?us-ascii?q?haBCqlQNXqBMhoCZYoDgT0BgWWFI25YAQGDJBSEKoINQ4QINz6CYgQBgRYIC?=
+ =?us-ascii?q?gESAWCDGIJmBINikViFPQc3A0QdQAMLDmcDFQMUAwUhBwMZDyMNDQQWBwwDA?=
+ =?us-ascii?q?wUlAwICGwcCAgMCBhMFAgIXNjQIBAgEKyQPBQIHLwUELwIeBAUGEQgCFgIGB?=
+ =?us-ascii?q?AQEBBUCEAgCCCYXBxMzGQEFWQ4JIRYGDhoNBQYTAyBJJgVCDygvaSsdGweBD?=
+ =?us-ascii?q?CoJHxUDBAQDAgYTAyICDSkxFAQpEw8tBylxCQIDImUFAwMEKCwDCSECARwHK?=
+ =?us-ascii?q?CQ8B1gSKAEEAwIQIjwGAwkDAiJZfyYmBQMNFyYIBTcbBAg8AgUGIy8TAgoSA?=
+ =?us-ascii?q?xIPBidKD0o+ORcGJ5spgT4UgVJOLkE0gQMvkjAsgyKKJaFJBwODXotAjQaHa?=
+ =?us-ascii?q?C4Wg3aBUIsBhksDjASFdYdCj1AgoWoNCBYhhHQCBAIEBQIWgWFJXHBwgzcJS?=
+ =?us-ascii?q?BcCjjwViGSFSnULMAIGAQoBAQMJi1yBEgEB?=
+IronPort-PHdr: A9a23:ePzcWxK+mLT+2myQatmcuGJhWUAX0o4c3iYr45Yqw4hDbr6kt8y7e
+ hCFvrM20w+CBN+Ho9t/yMPu+5j6XmIB5ZvT+FsjS7drEyE/tMMNggY7C9SEA0CoZNTjbig9A
+ dgQHAQ9pyLzPkdaAtvxaEPPqXOu8zESBg//NQ1oLejpB4Lelcu62/689pHJbQhFhjmwbbxvI
+ Bmoogjaq9Ubj5ZlJqst0BXCv2FGe/5RxWNmJFKTmwjz68Kt95N98Cpepuws+ddYXar1Y6o3Q
+ 7pYDC87M28u/83kqQPDTQqU6XQCVGgdjwdFDBLE7BH+WZfxrzf6u+9g0ySUIcH6UbY5Uimk4
+ qx2ShHnlT0HOiY5/m/Jl8JwkKxVrhGvpxN9wo7bfI6aOeFkca/Bf9MXX3ZNUtpTWiFHH4iyb
+ 5EPD+0EPetAoYXzoFwOrR2lBQayGuzv0SdEjWLr060mzeshDx/J3Ao9FN8QrX/YqNv6OroXX
+ ey70aLFyi7Db+9I1jfj9ofIdAotofSLXbJ2asre11cgFxjeg1qLs4PqISiV1+QWs2iH8eVgU
+ Pmvh3Q7pAF2pzii38EhgZTGiYwJ0F7L7zl5wJorKt2iTk52edCqHZ9Nuy+UK4d4TcwvT3xot
+ isk1LALup22cSkIxZkoxRPRZfKKfpaW7h/9WuicJTV1iG5qdr+/mxu8/lWsx+/6W8Kp3lhKq
+ S9FncPNtnALzxHS6s+HRedh/kemwTaPzQfT6uNaLk8oiarXMZkhwqQ/lpcVrE/NHTf2lV3rg
+ KOKbEkp+Oal5/7kb7jpvJOQKpd4hhziPqg0lcGyDv40PwcUU2WV/emx0qDo81fjT7VQlPI2l
+ 7HUsJXdJcsGuKG0GxRV0oM/6xanCDemzcgYkWEHLF1bfBKHiJDkO03BIf/iC/e/hk+snTN3y
+ /zaIrHtH4/BLmXYkLv7Zrly8VBTyBEzzNBE+5JbFLQBIOnpVkDts9zYCwc1Mw2yw+n5FNVwz
+ p4SVX6VDqKbPq7eq1yF6+01L+WRfIMVvSzyK/kh5/7gl385nlodcLGy3ZsLdn+4AOppI0ODb
+ XrphdcBF3wKsRQgQ+zxk1CNSiRcaGipX6M8/TE7FJypDYLYRoy3nLOB2yK7EoVQZm9dEl+MC
+ 2vnd52YW/cQbyKfOtJtniQeVbe9U48hyQ2utAjixrtnKerb5jEYtZX42dhx5u3Tjg0y9SduA
+ 8Wd1GGCU310nmQQRz8s26B/o1JyxUuf0aRihPxYD9NTtLt1VVJwEJna1OF3EJS6YR7MYNqPA
+ H3uAuidQHt5GsktzsEDZQB4HNO5gx3Y9yCjDqQEjKCGAYdy+aXZiTy5bdd6wGrB/K0glEU9B
+ NpIPnGhnrR49QXYG8jOiUrT3/K7cq8A2wbJ9Xyf1iyfu0pEVxZqVqfIVmxZYVHZ+4fX/ETHG
+ vWLDrI8PwZajYa5NqZUZ9uhph0GecyicpyKeH68hWq2QxOPwKiBYZHCcWwQxzTGFEUBiEYY+
+ nPQZlt2PTuov2+LVG8mLlnoeU65qYFD
+IronPort-Data: A9a23:e4Gqkqk/xmTJBSGeQIX9JrLo5gwJJERdPkR7XQ2eYbSJt1+Wr1Gzt
+ xIeCjvQOPmNN2f0fIsibduw8hkO75ODz4AyQVZvrXgxFFtH+JHPbTi7wuccHM8wwunrFh8PA
+ xA2M4GYRCwMZiaA4E/ra9ANlFEkvU2ybuOU5NXsZ2YgGGeIdA970Ug5wrZg2NYz6TSEK1rlV
+ e3a8pW31GCNhmYc3lI8s8pvfzs24ZweEBtB1rAPTagjUG32zhH5P7pDTU2FFEYUd6EPdgKMq
+ 0cv+5nilo/R109F5tpICd8XeGVSKlLZFVDmZna7x8FOjzAazhHe3JrXO9JHQGQGqjnOw+phy
+ f4VioGvewAWAe7lzbF1vxlwS0mSPIVa6LbBJGPu6ZTLlgvbaD3myvh1HVoqMIgDvO1wBAmi9
+ 9RBcHZSNVbT26TvqF64YrAEasALN9XmIo4Z/HRnyyrUAO0OS5nOWLTR+dJdx3E7gcUm8fP2P
+ ZRHMWE1PUiojxtnH3YZDrUDwMWU23ShKSBjkH2bgYFsyj2GpOB2+P23WDbPQfSbQs5JmW6cp
+ 3na5CLoBRoGM8SFzjiI+W7qgfXA9R4XQ6pLTPvnrbg63BvKroAONCAruZKAiaHRoiaDtxh3c
+ iT4JgJGQXAOyXGW
+IronPort-HdrOrdr: A9a23:GP1Faa6QH7ci4Li4ugPXwCbXdLJyesId70hD6qkRc20lTiX2rb
+ HLoB12737JYXMqKQgdcLO7Sdm9qBHnhPlICOAqVN/MMjUO+lHYSr2KhrGSoAEIbheOk9K1op
+ 0QEZSWZueRMbFSt7eA3OHmeOxQs+WvweSFlO3ex3BiQUVQZ6Rp/25CYTpzFHcbeOEdbaBJbq
+ Z0rfA33wZIMU5nE/hTrEN1LdQqsrbw/q4PlnU9aiLOvWG1/EyVAJaTKWnn4v82Owk/vYsfzQ
+ ==
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-AV: E=Sophos;i="5.95,180,1661817600"; 
+   d="scan'208,217";a="26603294"
+X-IronPort-AV: E=Sophos;i="5.95,180,1661817600"; 
+   d="scan'208,217";a="143240583"
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+To: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: RE: # honister #systemd attempting to run script on boot...
+Thread-Topic: # honister #systemd attempting to run script on boot...
+Thread-Index: Adjdq1Pzqv3zTEE0RDOnsHhi9wT6QgAvNfZA
+Date: Wed, 12 Oct 2022 18:28:06 +0000
+In-Reply-To: <MADEUP.171D1BE272B653C5.8969@lists.yoctoproject.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.44.4.39]
+Content-Type: multipart/alternative;
+	boundary="_000_1f91248d32a04aa681dc538cb414f1a0baesystemscom_"
 MIME-Version: 1.0
-References: <5Wkm.1665591860856831686.iN0k@lists.yoctoproject.org>
-In-Reply-To: <5Wkm.1665591860856831686.iN0k@lists.yoctoproject.org>
-From: Tim Orling <ticotimo@gmail.com>
-Date: Wed, 12 Oct 2022 09:56:24 -0700
-Message-ID: <CANx9H-ATaWeZU2NR-sDo3wXxeccrjywsizD5S3RsPUqfcXTfzA@mail.gmail.com>
-Subject: Re: [yocto] #kirkstone efivar build failed
-To: Ilies CHERGUI <ilies.chergui@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000008665c305ead94620"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 12 Oct 2022 16:56:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58327
+ <yocto@lists.yoctoproject.org>; Wed, 12 Oct 2022 18:28:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58328
+Message-Id: <20221012182820.EECE8C433FE@smtp.lore.kernel.org>
 
---0000000000008665c305ead94620
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_1f91248d32a04aa681dc538cb414f1a0baesystemscom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Wed, Oct 12, 2022 at 9:24 AM Ilies CHERGUI <ilies.chergui@gmail.com>
-wrote:
+DQpJIGhhdmUgdGhpcyB3b3JraW5nIG5vd+KApg0KDQpUaGFua3MgTWF0dCBmb3Igc3BvdHRpbmcg
+dGhvc2UgaG9uaXN0ZXIgY29uZmlnIGlzc3VlcywgdGhhdCBsZWQgbGVkIG1lIHRvIHRoZSBoZWFy
+dCBvZiB0aGUgcHJvYmxlbeKApg0KDQpTdGV2ZQ0KRnJvbTogeW9jdG9AbGlzdHMueW9jdG9wcm9q
+ZWN0Lm9yZyA8eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gT24gQmVoYWxmIE9mIE1vbnNl
+ZXMsIFN0ZXZlbiBDIChVUykgdmlhIGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNClNlbnQ6IFR1ZXNk
+YXksIE9jdG9iZXIgMTEsIDIwMjIgMzo1NSBQTQ0KVG86IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVj
+dC5vcmcNClN1YmplY3Q6IFt5b2N0b10gIyBob25pc3RlciAjc3lzdGVtZCBhdHRlbXB0aW5nIHRv
+IHJ1biBzY3JpcHQgb24gYm9vdC4uLg0KDQpFeHRlcm5hbCBFbWFpbCBBbGVydA0KDQpUaGlzIGVt
+YWlsIGhhcyBiZWVuIHNlbnQgZnJvbSBhbiBhY2NvdW50IG91dHNpZGUgb2YgdGhlIEJBRSBTeXN0
+ZW1zIG5ldHdvcmsuDQpQbGVhc2UgdHJlYXQgdGhlIGVtYWlsIHdpdGggY2F1dGlvbiwgZXNwZWNp
+YWxseSBpZiB5b3UgYXJlIHJlcXVlc3RlZCB0byBjbGljayBvbiBhIGxpbmssIGRlY3J5cHQvb3Bl
+biBhbiBhdHRhY2htZW50LCBvciBlbmFibGUgbWFjcm9zLiAgRm9yIGZ1cnRoZXIgaW5mb3JtYXRp
+b24gb24gaG93IHRvIHNwb3QgcGhpc2hpbmcsIGFjY2VzcyDigJxDeWJlcnNlY3VyaXR5IE9uZVNw
+YWNlIFBhZ2XigJ0gYW5kIHJlcG9ydCBwaGlzaGluZyBieSBjbGlja2luZyB0aGUgYnV0dG9uIOKA
+nFJlcG9ydCBQaGlzaGluZ+KAnSBvbiB0aGUgT3V0bG9vayB0b29sYmFyLg0KDQoNCg0KSSBhbSB0
+cnlpbmcgdG8gbWFrZSB1c2Ugb2Ygc3lzdGVtIHRvIHJ1biBhIHRlc3Qgc2NyaXB0IGF0IGJvb3Ti
+gKYNCkkgY2FuIGV4ZXJjaXNlIG15IHRlc3Rfc2NyaXB0L3Rlc3Rfc2NyaXB0LnNlcnZpY2UgbWFu
+dWFsbHkgdXNpbmcgc3lzdGVtY3RsIGNvbW1hbmRzIGFuZCBpdCBhcHBlYXJzIHRvIHdvcmsgYXMg
+ZXhwZWN0cy4NCg0KSSBjcmVhdGVkIGEgcmVjaXBlIGJhc2VkIG9uIHRoaXMsIGl0IGJ1aWxkcyBj
+bGVhbiAobm8gZXJyb3JzL3dhcm5pbmdzKSwgYnV0IGl0IGRvZXNu4oCZdCBhcHBlYXIgdG8gc2V0
+IHRoaW5ncyB1cCBjb3JyZWN0bHkuDQpJIGhhdmUgb25seSByZWNlbnRseSBiZWd1biB3b3JraW5n
+IHdpdGggaG9uaXN0ZXIsIGFuZCBuZXcgdG8gc3lzdGVtZOKApg0KDQpDb3VsZCBzb21lb25lIGhh
+dmUgbG9vayBhdCBteSByZWNpcGUgJiBzZXJ2aWNlIGZpbGUgYW5kIHNlZSBpZiB0aGV5IGNhbiBz
+cG90IGFueXRoaW5nID8NCg0KTXkgcmVjaXBlOg0KDQojDQojIFRoaXMgZmlsZSBpcyB0aGUgbXlf
+dGVzdF9zY3JpcHQgcmVjaXBlLg0KIw0KDQpTVU1NQVJZID0gIlNpbXBsZSBteV90ZXN0X3Njcmlw
+dCBhcHBsaWNhdGlvbiINClNFQ1RJT04gPSAiYXBwcyINCkxJQ0VOU0UgPSAiTUlUIg0KTElDX0ZJ
+TEVTX0NIS1NVTSA9ICJmaWxlOi8vJHtDT01NT05fTElDRU5TRV9ESVJ9L01JVDttZDU9MDgzNWFk
+ZTY5OGUwYmNmODUwNmVjZGEyZjdiNGYzMDI8ZmlsZTovLyQlN2JDT01NT05fTElDRU5TRV9ESVIl
+N2QvTUlUO21kNT0wODM1YWRlNjk4ZTBiY2Y4NTA2ZWNkYTJmN2I0ZjMwMj4iDQoNCmluaGVyaXQg
+c3lzdGVtZA0KDQpTUkNfVVJJID0gImZpbGU6Ly90ZXN0X3NjcmlwdC5zaCBcDQogICAgICAgICAg
+IGZpbGU6Ly90ZXN0X3NjcmlwdC5zZXJ2aWNlIg0KDQpTID0gIiR7V09SS0RJUn0iDQoNClNZU1RF
+TURfUEFDS0FHRVMgPSAiJHtQTn0iDQpTWVNURU1EX1NFUlZJQ0VfJHtQTn0gPSAidGVzdF9zY3Jp
+cHQuc2VydmljZSINClNZU1RFTURfQVVUT19FTkFCTEU6JHtQTn0gPSAiZW5hYmxlIg0KDQpkb19p
+bnN0YWxsKCkgew0KICAgICAgICAgICAgIGluc3RhbGwgLWQgJHtEfSR7YmluZGlyfQ0KICAgICAg
+ICAgICAgIGluc3RhbGwgLW0gMDc1NSAke1N9L3Rlc3Rfc2NyaXB0LnNoICR7RH0ke2JpbmRpcn0N
+Cg0KICAgICAgICAgICAgIGluc3RhbGwgLWQgJHtEfSR7c3lzdGVtZF9zeXN0ZW1fdW5pdGRpcn0N
+CiAgICAgICAgICAgICBpbnN0YWxsIC1tIDA2NDQgJHtTfS90ZXN0X3NjcmlwdC5zZXJ2aWNlICR7
+RH0ke3N5c3RlbWRfc3lzdGVtX3VuaXRkaXJ9DQp9DQoNCkZJTEVTXyR7UE59ID0gIiR7YmluZGly
+fSINCkZJTEVTXyR7UE59ICs9ICIke3N5c3RlbWRfc3lzdGVtX3VuaXRkaXJ9Ig0KDQpSRVFVSVJF
+RF9ESVNUUk9fRkVBVFVSRVM9InN5c3RlbWQiDQotLS0NCk15IHRlc3Qgc2NyaXB0IHNlcnZpY2Ug
+ZmlsZToNCg0KW1VuaXRdDQpEZXNjcmlwdGlvbj1Db25maWd1cmUgdGVzdA0KDQpbU2VydmljZV0N
+ClR5cGU9b25lc2hvdA0KRXhlY1N0YXJ0PS91c3IvYmluL3Rlc3Rfc2NyaXB0LnNoIHN0YXJ0DQpT
+dGFuZGFyZE91dHB1dD1qb3VybmFsK2NvbnNvbGUNCg0KW0luc3RhbGxdDQpXYW50ZWRCeT1tdWx0
+aS11c2VyLnRhcmdldA0KLS0tDQpNeSB0ZXN0IHNjcmlwdDoNCg0KIyEvYmluL2Jhc2gNCiMgZGVz
+Y3JpcHRpb246IERlc2NyaXB0aW9uIGNvbWVzIGhlcmUuLi4uDQoNCmVjaG8gIioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioiDQplY2hvICJTVEFSVDogSGVsbG8gUGV0YUxpbnV4IFdvcmxk
+IDopIg0KZGF0ZSArIiVtLyVkLyVZICVIOiVNOiVTICRIT1NUTkFNRSINCmVjaG8gIioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioiDQoNClRoYW5rcywNClN0ZXZlDQo=
 
-> Hello guys,
->
-> I'm trying to use `QT6` and `Boot2QT` meta layer and I noticed that `ld-i=
-s-gold`
-> is used in `DISTRO_FEATURES`
-> This build of efivar failed. Please see the logs below.
->
-> gcc -isystem/home/ichergui/projects/oe4t/tegra-bsp-platform/build-tegrade=
-mo/tmp/work/armv8a-oe4t-linux/efivar/38-r0/recipe-sysroot-native/usr/includ=
-e -O2 -pipe -L. -L/home/ichergui/projects/oe4t/tegra-bsp-platform/build-teg=
-rademo/tmp/work/armv8a-oe4t-linux/efivar/38-r0/recipe-sysroot-native/usr/li=
-b                         -L/home/ichergui/projects/oe4t/tegra-bsp-platform=
-/build-tegrademo/tmp/work/armv8a-oe4t-linux/efivar/38-r0/recipe-sysroot-nat=
-ive/lib                         -Wl,--enable-new-dtags                     =
-    -Wl,-rpath-link,/home/ichergui/projects/oe4t/tegra-bsp-platform/build-t=
-egrademo/tmp/work/armv8a-oe4t-linux/efivar/38-r0/recipe-sysroot-native/usr/=
-lib                         -Wl,-rpath-link,/home/ichergui/projects/oe4t/te=
-gra-bsp-platform/build-tegrademo/tmp/work/armv8a-oe4t-linux/efivar/38-r0/re=
-cipe-sysroot-native/lib                         -Wl,-rpath,/home/ichergui/p=
-rojects/oe4t/tegra-bsp-platform/build-tegrademo/tmp/work/armv8a-oe4t-linux/=
-efivar/38-r0/recipe-sysroot-native/usr/lib                         -Wl,-rpa=
-th,/home/ichergui/projects/oe4t/tegra-bsp-platform/build-tegrademo/tmp/work=
-/armv8a-oe4t-linux/efivar/38-r0/recipe-sysroot-native/lib                  =
-       -Wl,-O1 -Wl,--allow-shlib-undefined -Wl,--dynamic-linker=3D/home/ich=
-ergui/projects/oe4t/tegra-bsp-platform/build-tegrademo/tmp/sysroots-uninati=
-ve/x86_64-linux/lib/ld-linux-x86-64.so.2  -Wl,--add-needed -Wl,--build-id -=
-Wl,--no-allow-shlib-undefined -Wl,-z,now -Wl,-z,muldefs -Wl,--no-undefined-=
-version    -DLIBEFIVAR_VERSION=3D38 -D_GNU_SOURCE -I/home/ichergui/projects=
-/oe4t/tegra-bsp-platform/build-tegrademo/tmp/work/armv8a-oe4t-linux/efivar/=
-38-r0/git/src/include/ -DLIBEFIVAR_VERSION=3D38 -D_GNU_SOURCE -I/home/icher=
-gui/projects/oe4t/tegra-bsp-platform/build-tegrademo/tmp/work/armv8a-oe4t-l=
-inux/efivar/38-r0/git/src/include/ -DEFIVAR_BUILD_ENVIRONMENT -march=3Dnati=
-ve -o makeguids makeguids.o util-makeguids.o -ldl
-> ./makeguids Your linker is not supported guids.txt guid-symbols.c include=
-/efivar/efivar-guids.h guids.lds
-> makeguids: Too many arguments.
->
-> ./makeguids Your linker is not supported guids.txt guid-symbols.c include=
-/efivar/efivar-guids.h guids.lds
-> makeguids: Too many arguments.
->
-> Related:  https://github.com/rhboot/efivar/issues/220
+--_000_1f91248d32a04aa681dc538cb414f1a0baesystemscom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-> ERROR: oe_runmake failed
->
->
->
-> Any help would be appreciated
-> Best regards,
-> Ilies
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#58326):
-> https://lists.yoctoproject.org/g/yocto/message/58326
-> Mute This Topic: https://lists.yoctoproject.org/mt/94284745/924729
-> Mute #kirkstone:
-> https://lists.yoctoproject.org/g/yocto/mutehashtag/kirkstone
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> ticotimo@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiTHVjaWRhIFNhbnMgVW5pY29kZSI7DQoJ
+cGFub3NlLTE6MiAxMSA2IDIgMyA1IDQgMiAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8N
+CnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsN
+CgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWls
+eToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21z
+by1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1
+bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1z
+dHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRl
+cmxpbmU7fQ0KcC5tc29ub3JtYWwwLCBsaS5tc29ub3JtYWwwLCBkaXYubXNvbm9ybWFsMA0KCXtt
+c28tc3R5bGUtbmFtZTptc29ub3JtYWw7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFy
+Z2luLXJpZ2h0OjBpbjsNCgltc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVm
+dDowaW47DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFu
+IixzZXJpZjt9DQpzcGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbDsN
+Cglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30N
+CnNwYW4uRW1haWxTdHlsZTIwDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZv
+bnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0No
+cERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBw
+dDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEu
+MGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2Vj
+dGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVm
+YXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48
+IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxv
+OmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwh
+W2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9IiMwNTYzQzEiIHZs
+aW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iY29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0Qi
+PkkgaGF2ZSB0aGlzIHdvcmtpbmcgbm934oCmPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJjb2xvcjoj
+MUY0OTdEIj5UaGFua3MgTWF0dCBmb3Igc3BvdHRpbmcgdGhvc2UgaG9uaXN0ZXIgY29uZmlnIGlz
+c3VlcywgdGhhdCBsZWQgbGVkIG1lIHRvIHRoZSBoZWFydCBvZiB0aGUgcHJvYmxlbeKApjxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJjb2xv
+cjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iY29sb3I6IzFGNDk3RCI+U3RldmU8bzpwPjwvbzpwPjwvc3Bhbj48
+L3A+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFF
+MUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PGI+RnJvbTo8L2I+IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcgJmx0O3lvY3RvQGxp
+c3RzLnlvY3RvcHJvamVjdC5vcmcmZ3Q7DQo8Yj5PbiBCZWhhbGYgT2YgPC9iPk1vbnNlZXMsIFN0
+ZXZlbiBDIChVUykgdmlhIGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TZW50OjwvYj4g
+VHVlc2RheSwgT2N0b2JlciAxMSwgMjAyMiAzOjU1IFBNPGJyPg0KPGI+VG86PC9iPiB5b2N0b0Bs
+aXN0cy55b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U3ViamVjdDo8L2I+IFt5b2N0b10gIyBob25p
+c3RlciAjc3lzdGVtZCBhdHRlbXB0aW5nIHRvIHJ1biBzY3JpcHQgb24gYm9vdC4uLjxvOnA+PC9v
+OnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7
+PC9vOnA+PC9wPg0KPGRpdj4NCjx0YWJsZSBjbGFzcz0iTXNvTm9ybWFsVGFibGUiIGJvcmRlcj0i
+MSIgY2VsbHNwYWNpbmc9IjAiIGNlbGxwYWRkaW5nPSIwIiB3aWR0aD0iOTclIiBzdHlsZT0id2lk
+dGg6OTcuMCU7bWFyZ2luLWxlZnQ6NS40cHQ7Ym9yZGVyLWNvbGxhcHNlOmNvbGxhcHNlO2JvcmRl
+cjpub25lIj4NCjx0Ym9keT4NCjx0ciBzdHlsZT0iaGVpZ2h0OjIxLjJwdCI+DQo8dGQgd2lkdGg9
+Ijk3JSIgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDo5Ny4wJTtib3JkZXI6c29saWQgcmVkIDEu
+MHB0O3BhZGRpbmc6MGluIDUuNHB0IDBpbiA1LjRwdDtoZWlnaHQ6MjEuMnB0Ij4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiIGFsaWduPSJjZW50ZXIiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjQuMHB0O3Rl
+eHQtYWxpZ246Y2VudGVyO2JhY2tncm91bmQ6d2hpdGUiPg0KPHN0cm9uZz48dT48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjEzLjVwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMt
+c2VyaWY7Y29sb3I6cmVkIj5FeHRlcm5hbCBFbWFpbCBBbGVydDwvc3Bhbj48L3U+PC9zdHJvbmc+
+PG86cD48L286cD48L3A+DQo8L3RkPg0KPC90cj4NCjx0ciBzdHlsZT0iaGVpZ2h0OjIxLjJwdCI+
+DQo8dGQgd2lkdGg9IjU0OSIgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDoxMTUwLjRwdDtib3Jk
+ZXI6c29saWQgcmVkIDEuMHB0O2JvcmRlci10b3A6bm9uZTtwYWRkaW5nOjBpbiA1LjRwdCAwaW4g
+NS40cHQ7aGVpZ2h0OjIxLjJwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0iY2VudGVy
+IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OjMuMHB0O21hcmdpbi1yaWdodDowaW47bWFyZ2lu
+LWJvdHRvbTo0LjBwdDttYXJnaW4tbGVmdDowaW47dGV4dC1hbGlnbjpjZW50ZXI7YmFja2dyb3Vu
+ZDp3aGl0ZSI+DQo8c3Ryb25nPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFt
+aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+VGhpcyBlbWFp
+bCBoYXMgYmVlbiBzZW50IGZyb20gYW4gYWNjb3VudCBvdXRzaWRlIG9mIHRoZSBCQUUgU3lzdGVt
+cyBuZXR3b3JrLjxvOnA+PC9vOnA+PC9zcGFuPjwvc3Ryb25nPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiIGFsaWduPSJjZW50ZXIiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjQuMHB0O3RleHQtYWxp
+Z246Y2VudGVyIj4NCjxzcGFuIHN0eWxlPSJmb250LXNpemU6Ny41cHQiPlBsZWFzZSB0cmVhdCB0
+aGUgZW1haWwgd2l0aCBjYXV0aW9uLCBlc3BlY2lhbGx5IGlmIHlvdSBhcmUgcmVxdWVzdGVkIHRv
+IGNsaWNrIG9uIGEgbGluaywgZGVjcnlwdC9vcGVuIGFuIGF0dGFjaG1lbnQsIG9yIGVuYWJsZSBt
+YWNyb3MuJm5ic3A7IEZvciBmdXJ0aGVyIGluZm9ybWF0aW9uIG9uIGhvdyB0byBzcG90IHBoaXNo
+aW5nLCBhY2Nlc3Mg4oCcQ3liZXJzZWN1cml0eSBPbmVTcGFjZSBQYWdl4oCdIGFuZCByZXBvcnQN
+CiBwaGlzaGluZyBieSBjbGlja2luZyB0aGUgYnV0dG9uIOKAnFJlcG9ydCBQaGlzaGluZ+KAnSBv
+biB0aGUgT3V0bG9vayB0b29sYmFyLjwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuMHB0
+Ij48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L3RkPg0KPC90cj4NCjwvdGJvZHk+DQo8L3RhYmxl
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Zm9u
+dC1mYW1pbHk6JnF1b3Q7VGltZXMgTmV3IFJvbWFuJnF1b3Q7LHNlcmlmIj48bzpwPiZuYnNwOzwv
+bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgYW0gdHJ5aW5nIHRvIG1ha2UgdXNlIG9mIHN5c3Rl
+bSB0byBydW4gYSB0ZXN0IHNjcmlwdCBhdCBib2904oCmPG86cD48L286cD48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj5JIGNhbiBleGVyY2lzZSBteSB0ZXN0X3NjcmlwdC90ZXN0X3NjcmlwdC5z
+ZXJ2aWNlIG1hbnVhbGx5IHVzaW5nIHN5c3RlbWN0bCBjb21tYW5kcyBhbmQgaXQgYXBwZWFycyB0
+byB3b3JrIGFzIGV4cGVjdHMuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgY3JlYXRlZCBhIHJl
+Y2lwZSBiYXNlZCBvbiB0aGlzLCBpdCBidWlsZHMgY2xlYW4gKG5vIGVycm9ycy93YXJuaW5ncyks
+IGJ1dCBpdCBkb2VzbuKAmXQgYXBwZWFyIHRvIHNldCB0aGluZ3MgdXAgY29ycmVjdGx5LjxvOnA+
+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSBoYXZlIG9ubHkgcmVjZW50bHkgYmVn
+dW4gd29ya2luZyB3aXRoIGhvbmlzdGVyLCBhbmQgbmV3IHRvIHN5c3RlbWTigKY8bzpwPjwvbzpw
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+Q291bGQgc29tZW9uZSBoYXZlIGxvb2sgYXQgbXkgcmVjaXBlICZhbXA7
+IHNlcnZpY2UgZmlsZSBhbmQgc2VlIGlmIHRoZXkgY2FuIHNwb3QgYW55dGhpbmcgPzxvOnA+PC9v
+OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj5NeSByZWNpcGU6PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiM8bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiMgVGhpcyBmaWxlIGlzIHRoZSBteV90
+ZXN0X3NjcmlwdCByZWNpcGUuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4j
+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlNVTU1BUlkgPSAmcXVvdDtTaW1wbGUgbXlfdGVzdF9z
+Y3JpcHQgYXBwbGljYXRpb24mcXVvdDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPlNFQ1RJT04gPSAmcXVvdDthcHBzJnF1b3Q7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj5MSUNFTlNFID0gJnF1b3Q7TUlUJnF1b3Q7PG86cD48L286cD48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj5MSUNfRklMRVNfQ0hLU1VNID0gJnF1b3Q7PGEgaHJlZj0iZmlsZTov
+LyQlN2JDT01NT05fTElDRU5TRV9ESVIlN2QvTUlUO21kNT0wODM1YWRlNjk4ZTBiY2Y4NTA2ZWNk
+YTJmN2I0ZjMwMiI+ZmlsZTovLyR7Q09NTU9OX0xJQ0VOU0VfRElSfS9NSVQ7bWQ1PTA4MzVhZGU2
+OThlMGJjZjg1MDZlY2RhMmY3YjRmMzAyPC9hPiZxdW90OzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij5pbmhlcml0IHN5c3RlbWQ8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+U1JDX1VSSSA9ICZxdW90
+O2ZpbGU6Ly90ZXN0X3NjcmlwdC5zaCBcPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsgPGEgaHJlZj0iZmlsZTovL3Rlc3Rfc2NyaXB0LnNlcnZpY2UiPmZpbGU6Ly90ZXN0
+X3NjcmlwdC5zZXJ2aWNlPC9hPiZxdW90OzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5TID0gJnF1
+b3Q7JHtXT1JLRElSfSZxdW90OzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5TWVNURU1EX1BBQ0tB
+R0VTID0gJnF1b3Q7JHtQTn0mcXVvdDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPlNZU1RFTURfU0VSVklDRV8ke1BOfSA9ICZxdW90O3Rlc3Rfc2NyaXB0LnNlcnZpY2UmcXVv
+dDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlNZU1RFTURfQVVUT19FTkFC
+TEU6JHtQTn0gPSAmcXVvdDtlbmFibGUmcXVvdDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+ZG9f
+aW5zdGFsbCgpIHs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyBpbnN0YWxsIC1kICR7RH0ke2JpbmRpcn08bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBpbnN0YWxsIC1tIDA3NTUgJHtTfS90ZXN0X3Nj
+cmlwdC5zaCAke0R9JHtiaW5kaXJ9PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyBpbnN0YWxsIC1kICR7RH0ke3N5c3RlbWRfc3lzdGVtX3VuaXRkaXJ9PG86cD48L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgaW5zdGFsbCAtbSAwNjQ0
+ICR7U30vdGVzdF9zY3JpcHQuc2VydmljZSAke0R9JHtzeXN0ZW1kX3N5c3RlbV91bml0ZGlyfTxv
+OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+fTxvOnA+PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj5GSUxFU18ke1BOfSA9ICZxdW90OyR7YmluZGlyfSZxdW90OzxvOnA+PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+RklMRVNfJHtQTn0gJiM0Mzs9ICZxdW90OyR7c3lzdGVtZF9z
+eXN0ZW1fdW5pdGRpcn0mcXVvdDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+UkVRVUlSRURfRElT
+VFJPX0ZFQVRVUkVTPSZxdW90O3N5c3RlbWQmcXVvdDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPi0tLTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+TXkg
+dGVzdCBzY3JpcHQgc2VydmljZSBmaWxlOjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5bVW5pdF08
+bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkRlc2NyaXB0aW9uPUNvbmZpZ3Vy
+ZSB0ZXN0IDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8
+L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5bU2VydmljZV08bzpwPjwvbzpwPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPlR5cGU9b25lc2hvdDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+RXhlY1N0YXJ0PS91c3IvYmluL3Rlc3Rfc2NyaXB0LnNoIHN0YXJ0PG86
+cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5TdGFuZGFyZE91dHB1dD1qb3VybmFs
+JiM0Mztjb25zb2xlPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZu
+YnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPltJbnN0YWxsXTxvOnA+PC9vOnA+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+V2FudGVkQnk9bXVsdGktdXNlci50YXJnZXQ8bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPi0tLTxvOnA+PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+TXkgdGVzdCBzY3JpcHQ6PG86cD48L286cD48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PiMhL2Jpbi9iYXNoPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4jIGRlc2Ny
+aXB0aW9uOiBEZXNjcmlwdGlvbiBjb21lcyBoZXJlLi4uLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij5lY2hvICZxdW90OyoqKioqKioqKioqKioqKioqKioqKioqKioqKioqKiomcXVvdDs8bzpwPjwv
+bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPmVjaG8gJnF1b3Q7U1RBUlQ6IEhlbGxvIFBl
+dGFMaW51eCBXb3JsZCA6KSZxdW90OzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+ZGF0ZSAmIzQzOyZxdW90OyVtLyVkLyVZICVIOiVNOiVTICRIT1NUTkFNRSZxdW90OzxvOnA+
+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+ZWNobyAmcXVvdDsqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqJnF1b3Q7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoYW5rcyw8
+bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlN0ZXZlPG86cD48L286cD48L3A+
+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
---0000000000008665c305ead94620
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Wed, Oct 12, 2022 at 9:24 AM Ilies=
- CHERGUI &lt;<a href=3D"mailto:ilies.chergui@gmail.com">ilies.chergui@gmail=
-.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
-ex">Hello guys,=C2=A0<br><br>I&#39;m trying to use `QT6` and `Boot2QT` meta=
- layer and I noticed that `<span style=3D"background-color:transparent;colo=
-r:inherit;font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospa=
-ce;font-size:inherit;white-space:pre-wrap">ld-is-gold` is used in `</span><=
-span style=3D"background-color:transparent;color:inherit;font-family:Menlo,=
-Monaco,Consolas,&quot;Courier New&quot;,monospace;font-size:inherit;white-s=
-pace:pre-wrap">DISTRO_FEATURES`<br>This build of efivar failed. Please see =
-the logs below. <br><br></span>
-<pre style=3D"box-sizing:inherit;margin-top:4px;margin-bottom:4px;padding:8=
-px;font-size:12px;font-variant-ligatures:none;line-height:1.50001;white-spa=
-ce:pre-wrap;word-break:normal;color:rgb(29,28,29);font-family:Monaco,Menlo,=
-Consolas,&quot;Courier New&quot;,monospace">gcc -isystem/home/ichergui/proj=
-ects/oe4t/tegra-bsp-platform/build-tegrademo/tmp/work/armv8a-oe4t-linux/efi=
-var/38-r0/recipe-sysroot-native/usr/include -O2 -pipe -L. -L/home/ichergui/=
-projects/oe4t/tegra-bsp-platform/build-tegrademo/tmp/work/armv8a-oe4t-linux=
-/efivar/38-r0/recipe-sysroot-native/usr/lib                         -L/home=
-/ichergui/projects/oe4t/tegra-bsp-platform/build-tegrademo/tmp/work/armv8a-=
-oe4t-linux/efivar/38-r0/recipe-sysroot-native/lib                         -=
-Wl,--enable-new-dtags                         -Wl,-rpath-link,/home/ichergu=
-i/projects/oe4t/tegra-bsp-platform/build-tegrademo/tmp/work/armv8a-oe4t-lin=
-ux/efivar/38-r0/recipe-sysroot-native/usr/lib                         -Wl,-=
-rpath-link,/home/ichergui/projects/oe4t/tegra-bsp-platform/build-tegrademo/=
-tmp/work/armv8a-oe4t-linux/efivar/38-r0/recipe-sysroot-native/lib          =
-               -Wl,-rpath,/home/ichergui/projects/oe4t/tegra-bsp-platform/b=
-uild-tegrademo/tmp/work/armv8a-oe4t-linux/efivar/38-r0/recipe-sysroot-nativ=
-e/usr/lib                         -Wl,-rpath,/home/ichergui/projects/oe4t/t=
-egra-bsp-platform/build-tegrademo/tmp/work/armv8a-oe4t-linux/efivar/38-r0/r=
-ecipe-sysroot-native/lib                         -Wl,-O1 -Wl,--allow-shlib-=
-undefined -Wl,--dynamic-linker=3D/home/ichergui/projects/oe4t/tegra-bsp-pla=
-tform/build-tegrademo/tmp/sysroots-uninative/x86_64-linux/lib/ld-linux-x86-=
-64.so.2  -Wl,--add-needed -Wl,--build-id -Wl,--no-allow-shlib-undefined -Wl=
-,-z,now -Wl,-z,muldefs -Wl,--no-undefined-version    -DLIBEFIVAR_VERSION=3D=
-38 -D_GNU_SOURCE -I/home/ichergui/projects/oe4t/tegra-bsp-platform/build-te=
-grademo/tmp/work/armv8a-oe4t-linux/efivar/38-r0/git/src/include/ -DLIBEFIVA=
-R_VERSION=3D38 -D_GNU_SOURCE -I/home/ichergui/projects/oe4t/tegra-bsp-platf=
-orm/build-tegrademo/tmp/work/armv8a-oe4t-linux/efivar/38-r0/git/src/include=
-/ -DEFIVAR_BUILD_ENVIRONMENT -march=3Dnative -o makeguids makeguids.o util-=
-makeguids.o -ldl=20
-./makeguids Your linker is not supported guids.txt guid-symbols.c include/e=
-fivar/efivar-guids.h guids.lds
-makeguids: Too many arguments.
-
-./makeguids Your linker is not supported guids.txt guid-symbols.c include/e=
-fivar/efivar-guids.h guids.lds
-makeguids: Too many arguments.
-</pre></blockquote><div>Related:=C2=A0=C2=A0<a href=3D"https://github.com/r=
-hboot/efivar/issues/220">https://github.com/rhboot/efivar/issues/220</a></d=
-iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
-er-left:1px solid rgb(204,204,204);padding-left:1ex"><pre style=3D"box-sizi=
-ng:inherit;margin-top:4px;margin-bottom:4px;padding:8px;font-size:12px;font=
--variant-ligatures:none;line-height:1.50001;white-space:pre-wrap;word-break=
-:normal;color:rgb(29,28,29);font-family:Monaco,Menlo,Consolas,&quot;Courier=
- New&quot;,monospace">ERROR: oe_runmake failed</pre>
-<span style=3D"background-color:transparent;color:inherit;font-family:Menlo=
-,Monaco,Consolas,&quot;Courier New&quot;,monospace;font-size:inherit;white-=
-space:pre-wrap"><br><br>Any help would be appreciated<br></span><span style=
-=3D"background-color:transparent;color:inherit;font-family:Menlo,Monaco,Con=
-solas,&quot;Courier New&quot;,monospace;font-size:inherit;white-space:pre-w=
-rap">Best regards,<br>Ilies</span>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#58326): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/58326" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/58326</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/94284745/9247=
-29" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt/=
-94284745/924729</a><br>
-Mute #kirkstone:<a href=3D"https://lists.yoctoproject.org/g/yocto/mutehasht=
-ag/kirkstone" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproje=
-ct.org/g/yocto/mutehashtag/kirkstone</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:ticotimo@gmail.com" target=3D"_blank">ticotimo@g=
-mail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div></div>
-
---0000000000008665c305ead94620--
+--_000_1f91248d32a04aa681dc538cb414f1a0baesystemscom_--
 
