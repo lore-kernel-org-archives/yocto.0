@@ -1,78 +1,113 @@
-Return-Path: <leon@sidebranch.com>
+Return-Path: <konstantin.kletschke@inside-m2m.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 64110C433FE
-	for <webhook@archiver.kernel.org>; Thu, 13 Oct 2022 13:34:53 +0000 (UTC)
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
- by mx.groups.io with SMTP id smtpd.web08.7522.1665668090462099950
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 72BA1C433FE
+	for <webhook@archiver.kernel.org>; Thu, 13 Oct 2022 14:05:23 +0000 (UTC)
+Received: from mail.inside-m2m.de (mail.inside-m2m.de [188.68.57.244])
+ by mx.groups.io with SMTP id smtpd.web12.7855.1665669917058790944
  for <yocto@lists.yoctoproject.org>;
- Thu, 13 Oct 2022 06:34:51 -0700
+ Thu, 13 Oct 2022 07:05:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sidebranch-com.20210112.gappssmtp.com header.s=20210112 header.b=XkqKrXwK;
- spf=softfail (domain: sidebranch.com, ip: 209.85.208.52, mailfrom: leon@sidebranch.com)
-Received: by mail-ed1-f52.google.com with SMTP id b12so2655180edd.6
-        for <yocto@lists.yoctoproject.org>; Thu, 13 Oct 2022 06:34:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sidebranch-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=M446N9W5rtLbpuQogIK3Mc/UyLqH6nfxcHtpLK3dMAM=;
-        b=XkqKrXwKT3rd9uU9Ok2gXIOvyGP4koq39yyMSAnkj+FuKHWoGj5V06PWhp9/szTkSn
-         KNEbGCXuo72rHOO4NemE7Tp2+hr0x2af9v+BVjF5A+1hn5TKcFoPf02K8TltFEYUrS6Z
-         GUop9ve4CBadA4cmjAymZJikjlP/YUzMeWke0O+jBjSZxMNkdp7IvRlSj1U4DOs847Xw
-         VslGkbxLqq4YSBYzx+ZYP3wSEUDDmNgOAvLnNcg5O0BNMI3h+hbD32D8pklJTtMx3fxW
-         KNGDRO5qrRrvJHW2rxvh9Ep+n8h0cBscqMkFbiWK+Xi0UfH7WbfhalBU5OLlUWfHQ5Vg
-         YFdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=M446N9W5rtLbpuQogIK3Mc/UyLqH6nfxcHtpLK3dMAM=;
-        b=nEN9cbSnvPZywwhs1DLlQvht7WyAoKfUbjShopfTF0BDbnW2ZDXwXxO0biKRcoZyMK
-         CSluO8FyT9F/4L09RSozYakFB9sj4sFlHsnRE0TEoUwFk/S7jEQODRY7d/tDKkEBAYMf
-         vLL8pI4DLlaT6qWPT72ptGFsfESiFN9wbKp38hCz4j3EyAnInF8q7rcKQTaf9x/0bMGI
-         F8co00z8JhsYdeqtSP3H0+KxqDp3zTw8sZHUaybtVdKqb/YRt7szpTwicaeQNGJblwW5
-         TnBlF6lA7Wm2V5zd2AKSmIqP1owH0Fx2fLnSQU10z1kjb0f+Cm9hAYgbDDp1TEz7Lm4k
-         0gXw==
-X-Gm-Message-State: ACrzQf0wr5H2WsPTtvk6sSHWTzOBq3ij159aNt6ZbBfxrOf2uTxjnlHi
-	L7GEgImGAv5xsZ4IDEvXiPjw6Il++pM3R8AWUlx4cg==
-X-Google-Smtp-Source: AMsMyM4BWZkHstJ4XZ+IDdHtbmIgNHkeugsmLQboy4CDIfd0pEThYJFlIUatzWvcMlFZDn/bqHNX5XteYcA4RA4BUOE=
-X-Received: by 2002:aa7:dbd2:0:b0:45c:97bb:4ae0 with SMTP id
- v18-20020aa7dbd2000000b0045c97bb4ae0mr9760291edt.417.1665668088539; Thu, 13
- Oct 2022 06:34:48 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAKO9uzo34iJPxD42PkYbBoh_2-=8cd64_pYTMBd7TtPeTnFeRA@mail.gmail.com>
-In-Reply-To: <CAKO9uzo34iJPxD42PkYbBoh_2-=8cd64_pYTMBd7TtPeTnFeRA@mail.gmail.com>
-From: Leon Woestenberg <leon@sidebranch.com>
-Date: Thu, 13 Oct 2022 15:34:37 +0200
-Message-ID: <CAMjhiJi+hAWys-n1U34nx_xYncChTSg2UjweDYYBtejepaK6MQ@mail.gmail.com>
-Subject: Re: [yocto] Disabling SSH by default (but keeping the service)
-To: Maik Vermeulen <maik.vermeulen@lightyear.one>
+ dkim=fail reason="no key for verify" header.i=@inside-m2m.de header.s=dkim header.b=cMdUBu45;
+ spf=pass (domain: inside-m2m.de, ip: 188.68.57.244, mailfrom: konstantin.kletschke@inside-m2m.de)
+Received: from aglaia.inside-m2m.de (business-90-187-159-109.pool2.vodafone-ip.de [90.187.159.109])
+	(Authenticated sender: konstantin.kletschke@inside-m2m.de)
+	by mail.inside-m2m.de (Postfix) with ESMTPSA id 35A7D40129;
+	Thu, 13 Oct 2022 16:05:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=inside-m2m.de;
+	s=dkim; t=1665669913;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=KkY+QCZdhu4JGg0oDZJueB536DuVG0cIVSv5b5qNtdo=;
+	b=cMdUBu45gXGbrY0oAw2X2YEOaEznpJ89m+EtE1xUJJzZwpK/pZ52SEm71cyz4a+/qXE008
+	9mvkT3ZzXrBMWSDgUCSY7qATNfUPNx4K4DZUFBEhP2kpFLPjqOUImB3esZx1FjNelncXQC
+	m46SfdjSybSIBlUjnRwcu+Qn/P7LQ4c=
+Date: Thu, 13 Oct 2022 16:05:11 +0200
+From: Konstantin Kletschke <konstantin.kletschke@inside-m2m.de>
+To: Bruce Ashfield <bruce.ashfield@gmail.com>
 Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [yocto] Dealing with go dependencies in recipes - native
+ docker-compose
+Message-ID: <Y0gbF+3+kU0Z3UW8@aglaia.inside-m2m.de>
+References: <Y0WtLKYWtdcM9wIp@Hephaistos.local>
+ <CADkTA4PEob-LJpM_oEkxO-hbyLq5DnENFOaYzvkhnKvu8hziqQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+In-Reply-To: <CADkTA4PEob-LJpM_oEkxO-hbyLq5DnENFOaYzvkhnKvu8hziqQ@mail.gmail.com>
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 13 Oct 2022 13:34:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58331
+ <yocto@lists.yoctoproject.org>; Thu, 13 Oct 2022 14:05:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58332
 
-Hello Maik,
+On Tue, Oct 11, 2022 at 11:23:31PM -0300, Bruce Ashfield wrote:
 
-On Thu, Oct 13, 2022 at 3:17 PM Maik Vermeulen
-<maik.vermeulen@lightyear.one> wrote:
-> We tried two things to disable SSH by default in our image recipe:
-> However, both methods don't seem to work.
+> Adding the missing setuptools does get things working.
 
-Hmm, something else might override it elsewhere? I don't know.
+Oh my, I was still looking for python3-distutils (deprecated, not
+available) and did not realize I now need setuptools. Thanks for
+clarifying, however, I investigated the gao approach then...
 
-Seems like a similar question came up in stackoverflow, where some
-potential solutions are given that you might want to give a try:
 
-https://stackoverflow.com/questions/50651371/disable-a-standard-systemd-service-in-yocto-build
+> I actually have a prototype recipe for this that I was working on befor=
+e
+> ELCe, but I didn't get it into meta-virtualization yet, as it had a few
+> rough edges.
 
-Regards,
+I suppose, those go recipes look extremly difficult to do.
 
-Leon.
+> If you give me a few days, I can post it to the meta-virtualization lis=
+t,
+> but I'm on the road right now and don't have access to all my build
+> machines.
+
+Of course I have patience and I am very curious to test this out!
+Currently I have no urge but in future it will be extremely handy to
+have the native docker compose approach available. It is a bit smaller
+then the python approach (if python is only used by this docker-compose,
+a third disk space is used by native approach).
+
+> I also did a presentation at the yocto summit about "modern languages".
+
+Opps, interesting. No need to summarize here, I agree. I will dig this
+up in the internet. Interesting...
+
+> You can see the approach that I take for this in the k3s and nerdctl re=
+cipes
+> in meta-virtualization. My new docker-compose recipe is of similar form=
+at.
+
+As I vaguely mentioned above, those recipes look far more complex than I
+would have imagined when starting to dig into the go world...
+astonishing!
+
+> If we just bypass the fetcher, offline builds, some of licensing and SB=
+OM
+> and reproducible builds .. you can have a simple recipe like that as we=
+ll :)
+
+Yea, and I already learned to lovae this reproducibility approach.
+
+--=20
+INSIDE M2M GmbH
+Konstantin Kletschke
+Berenbosteler Stra=DFe 76 B
+30823 Garbsen
+
+Telefon: +49 (0) 5137 90950136
+Mobil: +49 (0) 151 15256238
+Fax: +49 (0) 5137 9095010
+
+konstantin.kletschke@inside-m2m.de
+http://www.inside-m2m.de=20
+
+Gesch=E4ftsf=FChrung: Michael Emmert, Ingo Haase, Dr. Fred K=F6nemann, De=
+rek Uhlig
+HRB: 111204, AG Hannover
+
 
