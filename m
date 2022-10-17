@@ -1,117 +1,289 @@
-Return-Path: <thomas.perrot@bootlin.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 11326C4332F
-	for <webhook@archiver.kernel.org>; Mon, 17 Oct 2022 08:09:52 +0000 (UTC)
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
- by mx.groups.io with SMTP id smtpd.web09.38550.1665994181634986451
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 543A5C43217
+	for <webhook@archiver.kernel.org>; Mon, 17 Oct 2022 15:25:14 +0000 (UTC)
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+ by mx.groups.io with SMTP id smtpd.web10.42426.1666020308684295137
  for <yocto@lists.yoctoproject.org>;
- Mon, 17 Oct 2022 01:09:42 -0700
+ Mon, 17 Oct 2022 08:25:08 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bootlin.com header.s=gm1 header.b=M82jHlGi;
- spf=pass (domain: bootlin.com, ip: 217.70.183.199, mailfrom: thomas.perrot@bootlin.com)
-Received: (Authenticated sender: thomas.perrot@bootlin.com)
-	by mail.gandi.net (Postfix) with ESMTPSA id 2CBFFFF819;
-	Mon, 17 Oct 2022 08:09:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1665994179;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cgFO4T1VQKBYkrmFOOsaUeOkhOBb2HHFX4D8uhCZnzc=;
-	b=M82jHlGizuKl9+ueX+jU867n0xwBVID6deLImNiCkJJ9AZcrNisC2lF0WWKlmpeZgNHiLe
-	9sjst16xgeYMbwL4xjodQdO0AHlggkiMWwZbJ/PFFnKgp9gZVmmFf+NOVWXd0m+7aFUgFb
-	iIgpP2HG4RDDljGU/Fp9YEUfuHePfmGaHLVKTz03SPfB9W1qzHEWBpDHhe8VONyOQbnpVV
-	9RD/EQjuhCXj5R/K6maB2RKgHT1sgnRXe6xBKb+SEgxbkH/gezt0N+yVKZGQ57wjnlBQlK
-	npouX1FzVd8ObZTBVr8zZFef8DaSPeV5NXUJ8kOKmzBLdO+TzG/tclMNevOY5A==
-Message-ID: <41d570b0f879cceeaa5e1160cd283392529a50bd.camel@bootlin.com>
-Subject: Re: [yocto] core-image-minimal-xfce: Xorg screen remains black
-From: Thomas Perrot <thomas.perrot@bootlin.com>
-To: Manuel Wagesreither <ManWag@FastMail.FM>, yocto@lists.yoctoproject.org
-Date: Mon, 17 Oct 2022 10:09:38 +0200
-In-Reply-To: <b8081bba-aca7-416e-a928-317182c4393f@app.fastmail.com>
-References: <6396a42f-477e-4f4d-a2cb-fa1e292a8b9b@app.fastmail.com>
-	 <782bfe190eeb1fa1f49a1f0e011bbc4c38eb5734.camel@bootlin.com>
-	 <b8081bba-aca7-416e-a928-317182c4393f@app.fastmail.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-	protocol="application/pgp-signature"; boundary="=-RiykqoiUm0sBtwadUFr0"
-User-Agent: Evolution 3.44.4 (3.44.4-2.fc36) 
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=K+eSIUhb;
+ spf=pass (domain: gmail.com, ip: 209.85.214.180, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pl1-f180.google.com with SMTP id d24so11084106pls.4
+        for <yocto@lists.yoctoproject.org>; Mon, 17 Oct 2022 08:25:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dPEE6j8F9jXuRXErUqKPusO8Tp5QUpC0HRvQljSKIJ4=;
+        b=K+eSIUhbcpc6DjW7XrfbuIEPzzo2Mj0cSktpub/aFCxdy/12qzjvEjERUskHZPuHBo
+         gfoMeprdTFHnTMh7FAMN8XoUCloC/6HRtxbGmRfS2I85V2rcS8AYh08g9OLqKsOx+iVx
+         /XZdBd1ac2hcjY94jWIfxLuo7l8WZhwd22hLiZZwO6Jw3tDcs9JkYsoQIO3nrhtpBO/J
+         lOXfloiymTnXu8V4ZijY7wwhbgwPiLxANex2pL4B1uuqvnBOOKvrIVmk2KlHwCS6qxDj
+         37Dv5gndonkC81khwzPInG4xH50A6dIyAS2o2jW90+3pjTn/jPIZ7dOJun3LXDQ7mDiU
+         UjJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dPEE6j8F9jXuRXErUqKPusO8Tp5QUpC0HRvQljSKIJ4=;
+        b=dOynYuPiqsGi6PzFcb+4/8em5Bnjeki+xldzw5kCCMfcomxhsPj1WIoYXhaYa31sYd
+         Kxkgv1+JRdOhLLC9xPGaPuGnZi4VJD5LfKeIA7YxVHLGlnkHTRXWIK8BTK5mjdiVMZGK
+         q7KpXJ827RbcJXQARiKTmtqVGj3dQzwOlNKkZg/sveLGI4SzOD2dyNJlkt0QspN98AkX
+         uV2wooha57oRubvF/bgz6tZxSj9gApSXYzdtJxiiQKfK6WbElVEIzBVd7HXNRcciJrYP
+         BQssPeO8Jk/EmTVa+rOVnMybOBPNkF9mV82jfUL+l9vZtqN4BvA8UWWkHPQ1S509ERZ/
+         6fLA==
+X-Gm-Message-State: ACrzQf1MEhsu22W/bwUjtd0Z/7tDjDJ/lBObhJKhuV/YqavgbcPY1syM
+	ZAg5eLFGW6tqC2udEqj/eNA=
+X-Google-Smtp-Source: AMsMyM68TB+DFYqXL/PjUEZSFiZiTFM3HOz3FI3XjMDDyTalBRafvMKx25g0RkQmj9RVZ/subJbFaw==
+X-Received: by 2002:a17:903:11cc:b0:178:aec1:18c3 with SMTP id q12-20020a17090311cc00b00178aec118c3mr12797496plh.91.1666020307965;
+        Mon, 17 Oct 2022 08:25:07 -0700 (PDT)
+Received: from skjolley ([69.28.36.30])
+        by smtp.gmail.com with ESMTPSA id h12-20020a170902680c00b00178bd916c64sm6714889plk.265.2022.10.17.08.25.05
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 17 Oct 2022 08:25:06 -0700 (PDT)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@lists.yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 17 Oct 2022 08:25:04 -0700
+Message-ID: <014e01d8e23c$a291aa00$e7b4fe00$@gmail.com>
 MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_014F_01D8E201.F6336E40"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQFT47GWe1SPzn6wkXDTMQ8TRXEPNA==
+Content-Language: en-us
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 17 Oct 2022 08:09:52 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58348
+ <yocto@lists.yoctoproject.org>; Mon, 17 Oct 2022 15:25:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58349
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_014F_01D8E201.F6336E40
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+All,
+
+ 
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs  Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+<https://bugzilla.yoctoproject.org/createaccount.cgi>
+https://bugzilla.yoctoproject.org/createaccount.cgi
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 419
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now,  "4.1", "4.2", "4.3", "4.99" and "Future", the more
+pressing/urgent issues being in "4.1" and then "4.2".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
 
 
---=-RiykqoiUm0sBtwadUFr0
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_014F_01D8E201.F6336E40
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0143_01D8DD01.32A96E20";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Manuel,
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal =
+style=3D'text-autospace:none'>All,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The triage team is starting to try and =
+collect up and classify bugs which a newcomer to the project would be =
+able to work on in a way which means people can find them. They're being =
+listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a>&nbsp; Also =
+please review: <a =
+href=3D"https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded">https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEm=
+bedded</a> and how to create a bugzilla account at: <a =
+href=3D"https://bugzilla.yoctoproject.org/createaccount.cgi"><span =
+style=3D'color:blue'>https://bugzilla.yoctoproject.org/createaccount.cgi<=
+/span></a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 419 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &nbsp;&#8220;4.1&#8221;, =
+&#8220;4.2&#8221;, &#8220;4.3&#8221;, &quot;4.99&quot; and =
+&quot;Future&quot;, the more pressing/urgent issues being in =
+&quot;4.1&quot; and then &#8220;4.2&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_000_014F_01D8E201.F6336E40--
 
-The regression is linked to the update of the libx11 from 1.8.0 to
-1.8.1.
-While waiting for a fix you can revert the commit that updates libx11
-(7918a25736a7).
-
-Kind regards,
-Thomas
-
-On Thu, 2022-10-06 at 23:31 +0200, Manuel Wagesreither wrote:
-> I realized `core-image-minimal-xfce.bb` adds `packagegroup-core-x11`
-> to IMAGE_INSTALL.
-> Yet,=20
-> * It doesn't add `x11` to IMAGE_FEATURES which would do the same but
-> perhaps a bit more.
-> * It doesn't add `x11-base` to IMAGE_FEATURES, which would add
-> `packagegroup-core-x11-base` to IMAGE_INSTALL and perhaps a bit more.
->=20
-> Hence I added `x11` and `x11-base` to IMAGE_FEATURES and it changed
-> things in so far as when the flickering occurs, the black screen
-> changes into a gray screen.
->=20
-> Regards,
-> Manuel
->=20
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#58279):
-> https://lists.yoctoproject.org/g/yocto/message/58279
-> Mute This Topic: https://lists.yoctoproject.org/mt/94160185/5443093
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe:
-> https://lists.yoctoproject.org/g/yocto/unsub=C2=A0[thomas.perrot@bootlin.=
-com
-> ]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->=20
-
---=20
-Thomas Perrot, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
-
---=-RiykqoiUm0sBtwadUFr0
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iQGzBAABCAAdFiEEh0B3xqajCiMDqBIhn8ALBXH+Cu0FAmNNDcIACgkQn8ALBXH+
-Cu3Qgwv/Y8erHlTDWdc7zgCLu2kt48corGVlQrCo5G3FCt6Di0Pp3LXe7vLBsvDN
-l9/TtRAYI090yTVlbuJ+ePGXZ6SQ+3eZIkAkb7XadqU63+B4ej7tZLuy4BMBSqmp
-wpk3jzzhWw/TUdCmN/qpAf93f+QDkFpkHilBPEe6rOWx9O6pxux48SUehXA2gut/
-PlJq4+uHtTiUmqf8yd2V7XkVr1x066LsKsEH/UOfZr+XABeUYezdcnCcmLTH5ODM
-RNuwXVk8KcbnljhbZrtbcmHTqAI+YLqEnwUuJqyWxuqeGnOO64a+A7VtS1nTrdyh
-DkOCsxfhiL6+AvKXNL1DMSwAR+WJ4Qt/rQ8zhxmpLsyuJBYp4uFj5lmF0QVDmpdb
-Ljw+Mtwu4nO6ctUXT3q7MF6C9xuPilmjUokB1NBAqE62XFQoHaRm8f+ZRgxRbXLJ
-D3g1mOZlAil5s0R3rR+4p5/m1YkYU6c5AWjIVLuGBsM14iEY2xvFMuzSFFbmnunt
-L77pqNB3
-=yRTd
------END PGP SIGNATURE-----
-
---=-RiykqoiUm0sBtwadUFr0--
 
