@@ -1,213 +1,339 @@
-Return-Path: <sakib.sajal@windriver.com>
+Return-Path: <bruce.ashfield@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B3819C4332F
-	for <webhook@archiver.kernel.org>; Tue, 18 Oct 2022 16:26:11 +0000 (UTC)
-Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
- by mx.groups.io with SMTP id smtpd.web09.9350.1666110362740017735
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B204C433FE
+	for <webhook@archiver.kernel.org>; Tue, 18 Oct 2022 17:39:48 +0000 (UTC)
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+ by mx.groups.io with SMTP id smtpd.web11.46.1666114785977162632
  for <yocto@lists.yoctoproject.org>;
- Tue, 18 Oct 2022 09:26:05 -0700
+ Tue, 18 Oct 2022 10:39:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriver.com header.s=pps06212021 header.b=BiJ6ORx1;
- spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=7290968242=sakib.sajal@windriver.com)
-Received: from pps.filterd (m0250812.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.17.1.19/8.17.1.5) with ESMTP id 29IBtZfx025851;
-	Tue, 18 Oct 2022 16:25:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com; h=content-type :
- message-id : date : from : subject : to : cc : mime-version;
- s=PPS06212021; bh=hPpdvYZJOwGXNt8grN8LG2kJRZORaAfl0oiploEPXwQ=;
- b=BiJ6ORx13f4BddmF9jhWYzrRSDfAlQVkITjcohD7EGj2/F9aHwoP5Lm4o2cC9vj8Iq6d
- IXTN3UStZdxCkxOsqis/nSya3PCn6ut6F3abveLiLD+LgE186GTSakAlCxg++3B8Ys6I
- TE9+tI4K/CTXxwIAE+KEWytcTGWoNDhfVK47RAj2ZcGE9xqjbgHQO/+vcSELYHB4m/AU
- vYsze7m4dRxN8S8PWDP+bf8C6zTmUwnFNNPAlUg5cYNIiGKhLwzZXP072K0sMAIL8yIO
- zK3aPJuEqrE+wL0aWxlYveS0V76Hly05A4yXrF3XUOcRSfj2ghA6j6vs0Zu634JiYAdC tQ== 
-Received: from nam11-co1-obe.outbound.protection.outlook.com (mail-co1nam11lp2171.outbound.protection.outlook.com [104.47.56.171])
-	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3k7ku9aq8d-2
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Oct 2022 16:25:41 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cRJLJ+9ZUS+ctLSDoa9xQaQ+nbFApNT20XZnmXlrsfdWnMokuQt1oUk/3zfygsKtts7W5f4FZu2ahf17WVm5GrxwNGfJZIgpTV3GCO41itg+D1pznxHK89ymHgZhmyUpEyKOcMtT9Ii+1WMzB2x5095c5xRlm/zQE5tW/0Uq7EgWbm8iIAlPwD6nMneWZQbPyJbe2ntzYCgkqpAsN75TwWxBfcWRPZDPVq1kYW6aCkNfJoiLvgb4uaNTf/CeVs4wQ6xmoUKIagfwRSfWROv2ZICDWbZeLkh95p22eOY7AqbLpwUOyYpyAg90feC+ydto9D3iLE6GIeJBwAG4alOCYg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hPpdvYZJOwGXNt8grN8LG2kJRZORaAfl0oiploEPXwQ=;
- b=n/dtjgpOt/0uXJPS/VVNwckJUeuWJX7huugG8X6wEe8lL9fwefH5Tm/ms0eVCFHODT+QvKUM7aFWQ95oTqVD3MMrJNLMuF2w2C+mY+1ONlfKNP5PShHYhN5NBbrxw7FCCoeV01nNt6J2r2VuVaq1Pbni/iBH9vo4Nf3YM9b5Lv/hKVg7wRmiobtNcDUPXNXCAN5d9lKybJ86gCrM1qr31bJXzTeGuGPPQgsEBYl3yeNifuXa0IvntMtmWhYnRevr5drtGY0FYIncLO+7DrSq/Il1O/7xTlfFhd2rUEl5sFNZvPe55IFI4V67AjdnhehLjcD/KOd49Pcz46nsP6D8hQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
-Received: from DM6PR11MB2538.namprd11.prod.outlook.com (2603:10b6:5:be::20) by
- CH0PR11MB5540.namprd11.prod.outlook.com (2603:10b6:610:d7::19) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5723.34; Tue, 18 Oct 2022 16:25:37 +0000
-Received: from DM6PR11MB2538.namprd11.prod.outlook.com
- ([fe80::1ce1:924:d5fb:7438]) by DM6PR11MB2538.namprd11.prod.outlook.com
- ([fe80::1ce1:924:d5fb:7438%3]) with mapi id 15.20.5723.034; Tue, 18 Oct 2022
- 16:25:37 +0000
-Content-Type: multipart/alternative;
- boundary="------------ciFO9k9Rbu9ewtfXZ77FbpjP"
-Message-ID: <9e9d8ca5-37cd-687a-f7fd-ea322ea1f5b1@windriver.com>
-Date: Tue, 18 Oct 2022 12:25:33 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-From: Sakib Sajal <sakib.sajal@windriver.com>
-Subject: [yocto] Minutes: Yocto Project Weekly Triage Meeting 10/18/2022
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Cc: alexandre.belloni@bootlin.com, Bruce Ashfield <bruce.ashfield@gmail.com>,
-        daiane.angolini@foundries.io,
-        "jpewhacker@gmail.com" <jpewhacker@gmail.com>,
-        luca.ceresoli@bootlin.com, pavel.zhukov@huawei.com,
-        "MacLeod, Randy" <Randy.MacLeod@windriver.com>,
-        Richard Purdie <richard.purdie@linuxfoundation.org>,
-        "Wold, Saul" <saul.wold@windriver.com>,
-        "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>,
-        Steve Sakoman <steve@sakoman.com>, tim.orling@konsulko.com,
-        sakib.sajal@windriver.com, akuster808 <akuster808@gmail.com>,
-        ross@burtonini.com, Saul Wold <Saul.Wold@windriver.com>,
-        michael.opdenacker@bootlin.com, valery.chernous@gmail.com,
-        aryaman.gupta@windriver.com, pavel@zhukoff.net
-Content-Language: en-US
-X-ClientProxiedBy: YT3PR01CA0003.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:86::23) To DM6PR11MB2538.namprd11.prod.outlook.com
- (2603:10b6:5:be::20)
+ dkim=pass header.i=@gmail.com header.s=20210112 header.b=k0HSaiU5;
+ spf=pass (domain: gmail.com, ip: 209.85.166.54, mailfrom: bruce.ashfield@gmail.com)
+Received: by mail-io1-f54.google.com with SMTP id y80so12364338iof.3
+        for <yocto@lists.yoctoproject.org>; Tue, 18 Oct 2022 10:39:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=H6X3kqt+jXp090AVJPGCRSuKDBvl/2RO28E1GfStf2c=;
+        b=k0HSaiU5bPkn3zbrXQ1Bb6AY2ArtIuLwOfcFVQYuse0gC/I2fugh8xZU8GdiZOl47d
+         dvutOAVEjbvBUi0fsiO3JRwfGzqhv02w30QsB9bXEiPWJhtrffc02v2m71Mgct5rFqcY
+         j3pJ6Uy1Sq6lq6mpu/6vB3hrACNd1QLWZKa0qMn4MgVzYREPDkkWKqJmjNJR2ZS6b1g8
+         8Z0iKDsvgbgYf2gMAGlyliuDUNRagb5dHqXhaAYsKbqRqyhoRdNI9Sujrw+6x8SjRTQQ
+         Sh/7ZwLqOxnEsc00qDIk+sxPnfOONTA7Ec7CqMflVMMfOoFrA2Zsk+rOQhv5LDYXQHJN
+         mUGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=H6X3kqt+jXp090AVJPGCRSuKDBvl/2RO28E1GfStf2c=;
+        b=Wd/ZpOuhEBAS4uPkwSEqAXicC6y79ueoifmxi6SmbtYEL4nxghzkBqVfDaq6taZIQF
+         wdVC+fcds+LHU0zw5PGDYfkZXo2T1dtqdJV5exSZBdyiaU3b/pOkidz6AdTDLFqtL668
+         M4FQ0YVqLuQCWE7dlz6ICqV1PcA+RkOfklhNVhIBp+qEUffm/Dbq+9Q/xuMuXPe70ftl
+         k1ldvGVpRCCnkT4SMKFzBVo7wxDgTgN9iFcsN+/FGI+DT0pFeVtzY1egtKJS4NnKbCck
+         vH793JRiCKWjm3AY+ZLYOUtVICHF+LRTNnZesdlyYvTAGUbIbe8wnl5DppX8f4aesKzW
+         tElQ==
+X-Gm-Message-State: ACrzQf3YJtjpUwQAiiuoTgOKFwNk9FYWlKPWHpqk/d0ZG4SfTsuT/bmB
+	LLJapBPwoTF12NbSHVa4I/3HQq1gBgTbH0i/VIk=
+X-Google-Smtp-Source: AMsMyM7Ly47YqmjsFRuDpx+SXaug6gTKl0XdFC5ZOCseV0JinFzuB8LbA080qY1BqC6NdU3WJJ27ZRtPqI353TIt3ZQ=
+X-Received: by 2002:a6b:3ec3:0:b0:6bb:d3ac:61d4 with SMTP id
+ l186-20020a6b3ec3000000b006bbd3ac61d4mr2281443ioa.160.1666114785130; Tue, 18
+ Oct 2022 10:39:45 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6PR11MB2538:EE_|CH0PR11MB5540:EE_
-X-MS-Office365-Filtering-Correlation-Id: 27f651bc-59b0-4cc1-ebca-08dab1256375
-X-LD-Processed: 8ddb2873-a1ad-4a18-ae4e-4644631433be,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	laPUrFVC6wNBljvKDGi4O8TgkzXBeVWU7lGrJZAgscq36icF1qhfi0oEKgfWHi3x/alORzpzUYMNx+lFJtBSeU+hqotaSYBiUopZ+/F2FnAllGNlow8GBp33zuWQYhh9HFAx4wf3scykzWPYQL8Jed34yLbDWE64kXteaA7HSvT7znDAN+0jD6kBo8V71Hv4YagQFi1CUIS1ZeKHCLkiSCYnWBqaRvrgBRfiv5WuLjieE9I3V85R3tacpI76jh/PzqlyKw7VcPfaMiSdD8b56989CULdy2gSDl8LlIBWA0TufQSwuJ6yHmvdtN0b+W4PQrScEWlAE/9VRzTOqjrsUcKA4oueK5f/UG8Ka0QpixFmMOU4z7yQWdhnzsQTWLb9J3kZcrtK1nBNzKxk6Nn2YlkmThZHMgoz2u+C9ZDIdYxG7XFojoxVMiFCWnHxa1cqJ3hk09lEMkrM/XPUOe6gcsxu5OAWUELh/MczGkLdEVd/5JZRBJ/u8Z9DQwiJhMSlbyQQ4W+RXM7xiKf5eU8q7MeuMSrlfIRxPZatExolUNQTGPHJimpM+RezLrNcek1CTg9YOqFadciL/hLioPuCY6fMvbmUm/VEd1UActAqLR1WJEicJT8WCL8wjPbXdN7oMD9s4EckrHOGxaBwe5XhZl4Gv1xUQkP7B0HbnA8IKTlSogmYpfu8rKTfWBjSfAeCTCtc62xwZX3HPBCCRDtHmrA1km72MqS1GeuaWoxn8M7Jy3pep9BzPd0TDmRiVTjZCQkF3tx3Xqh/8tXTVRKMQ9TW4IXiaqf3uqfuHMzsPa4rprI+szwPGI4d6BGirAsq
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB2538.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(376002)(346002)(366004)(39850400004)(396003)(451199015)(36756003)(31696002)(86362001)(31686004)(38100700002)(166002)(2906002)(7416002)(5660300002)(44832011)(33964004)(6506007)(6512007)(6666004)(2616005)(186003)(26005)(6916009)(6486002)(966005)(8936002)(316002)(54906003)(478600001)(66556008)(66476007)(8676002)(4326008)(66946007)(41300700001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?OFdyWmZPYzR2clVpcW1veGxrSkpjdnQ1Um1EU2JqUFB5emNmSkFwczFxeURl?=
- =?utf-8?B?eEdXaEd3WTNBVFVlVHB3K25JQVFYZVdKMlFWem05WmszT2tpOVlXYzNYWUdm?=
- =?utf-8?B?Y2RYYVBncFJQR0FXMEVzeW9HakwycTh6UWc5Z3Q4T25XTm1jOEZFMkVhR1Jv?=
- =?utf-8?B?bVQwZFZ4SXIrRG1vdkpCYU83b0xRbklTRVN5czRnNW9tZEV4aVIyUzlhNzlM?=
- =?utf-8?B?L3FCMVhjWG9Fc2toRVVXQnZXdUhpNXMveEtNYS9UY2FiRXBQR2NZWEdWMTdp?=
- =?utf-8?B?STYrd0docm5DK1NxTUxiNVA1RUg4T01oWWhnZFg0QmpUQjU5QmRFditOcFhX?=
- =?utf-8?B?RXdWTnpvajFTWElyTU1GVElSay9vYmlSdGZESXp6U2MwOElQUmRiOFJ5TFZn?=
- =?utf-8?B?TCtvZ2NvUVppMnBxY0Fab0hsMkZ3SlA0N3FTOTFrSzIwc1JLU3ZRREpGd21U?=
- =?utf-8?B?cnlmZ2ZWci9oZ0ZxSDAzWHlpZk8vMmNwc0NKSVhkVmN6d0Vhc2JRdDluYzIx?=
- =?utf-8?B?MGtRQTkzTi8rQmNJenJHbmY5MEVqNlY2V2FzTUlmL3lNbzBFTVJHaXlhK282?=
- =?utf-8?B?Vnk1YUVjdjVDMWNyRXhzRlMvaFV0SlkvRTZHRzluYlJYdmJXWlJiQkVsdy9t?=
- =?utf-8?B?Vlk2TkhDOGFWdngyYXkvVGVjTTJwckppRWdBNjhFdVRpSERNOEhwN1dnMktz?=
- =?utf-8?B?UDVVNnI0bmoyWWRER00zOThzaDhZVVNSVG1iRHdHbmFNcm9aOTQzaEJYZlRD?=
- =?utf-8?B?bkpHeVN5Q2RmM1ZuWVpiRTNDNGJMYVZVd05OQXVYakxLRjJkNGxkVVVaUUFi?=
- =?utf-8?B?WDdiR2wrYVBKVDA0T2o5RzQ0ZzBqcDkvTWZRSUhxbVdUQUxpbzJHL1U2RE5W?=
- =?utf-8?B?SEI4UGppWGVaTUo5SzEyM2E2L1FMZllIZUZSaEVBRlRDTURseGxGNjkzamZz?=
- =?utf-8?B?cHh4eEVCNktpVG5nSlo4OVh1UDk5NW1WM0M2OURWQnVHV3FXY0tvUkl5b3gx?=
- =?utf-8?B?QVNtdlNQbU95OFJMaCszM3paUVZSUkMvRW8rOWtsaGh5UGpQa2Jhb2xiM1hk?=
- =?utf-8?B?Q0VOdkJTYmQ3Y0ZydVJQNmdDd01YdFVndnU4azY3SGszWmdNUkJqeWNRSkx3?=
- =?utf-8?B?ZS9JS1c4RThUaTFwWmFRUzErVXI3dG1oRDQ5UDZIVEw4OWI2bGhINnNibHNY?=
- =?utf-8?B?Tzg5V3dKK3pGNXkzdlpVS2tVclB1enZHNW5WR0tQcGsxNHNmSWxwTVJEZmFM?=
- =?utf-8?B?SHNRa2RORlM5bHJidTluMUdJVExBN3NhVEtHdU5hakRhRFlNN3BEek0vTW9E?=
- =?utf-8?B?bUNVdmdxZTViaDcxL3FySnpkZEJ5aHhRR1ZuSTYyVnFGQlJrNWcyTUxZYkRW?=
- =?utf-8?B?T2xiSXF2RzVmZXA5OFI2VElydkUwaXpmOHpKZVFETUVkZzMyWHJTbEx0b0Iy?=
- =?utf-8?B?RTdpQSs4SmJIUHFXb2xlTU5lTS9MRFRBY0FMUENnZTRBS2pPSVAxQ2pGZ1NY?=
- =?utf-8?B?amJoZVJuNmtzZHhnWlNlM1lnNzVFYXI1aHZkaFFXeUZOanNoMEVQZitoamtE?=
- =?utf-8?B?TUs2WVdzd1lhakZMNVpXaHRDTW1NQmJJbVJrVUFoK1FzcWNIYTNKN0FIYnZK?=
- =?utf-8?B?bmNlS1lqdWlPSWNUSkR4MTc0czlHSHJlVGR0Sno1MnZCM3pOdmZZMWgxbDlk?=
- =?utf-8?B?TUtyMk83bTZCSVdVTWpnZFVBaFZQQTZsY0t4Rnp3Z2pseC8wcjJRMVZYSFhu?=
- =?utf-8?B?ZVlJRklxOHhFSkJLYmtDUXpMVnhKRm5GRi9SVzhkSW5IdTVxcC9ka0cwVkFZ?=
- =?utf-8?B?cFVnbWptZ0ovUDZqS3R5Vnp3ay9NNzdQcUJpL0d6OEVIdGhKRkRKejFxTXhr?=
- =?utf-8?B?MmFQaWdqOElTcHp0V2NjcVlsYWJmaUh2ZlBHVWhaS0xzRDFkYXlRbVFHYVFL?=
- =?utf-8?B?eTVraDhUeDNMMGQveFMrTHJLdHFrRGlNYUlQZkJnZ0NKUmNRbi9FTTlENnk2?=
- =?utf-8?B?RkJWMUdhQ0lRV2JLTm5vS3FkYXRxc0o3UFFyNmQvUlhFTy96QlhmY0F3UEJs?=
- =?utf-8?B?U1pXcUJKUVBCSWhpZ3p4VnlmT0ZaYUtuZjlIY2JOS1l1UDU1RDNoSDhJcytF?=
- =?utf-8?B?ajE5NGJsOVdnY0g5cFZBYVUzeFVkTHBoYXRjQWx0Yklzd1Z2L3lxd01iYnF0?=
- =?utf-8?B?WGc9PQ==?=
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 27f651bc-59b0-4cc1-ebca-08dab1256375
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2538.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2022 16:25:36.8643
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5Cryaba3WrNIzHWZ3Z7VnHj+hPam0yBfFPeCbAHFO/pxc035ckiPjtoUirKKMrIVuBC0m7K2weYrJD4nU8t167iceWwVYuriRo4gtzNabVw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5540
-X-Proofpoint-GUID: OIuhWU4xKvkhzU4OQEM-t02SptKEYreN
-X-Proofpoint-ORIG-GUID: OIuhWU4xKvkhzU4OQEM-t02SptKEYreN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-18_06,2022-10-18_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 impostorscore=0
- lowpriorityscore=0 suspectscore=0 bulkscore=0 mlxlogscore=931 mlxscore=0
- phishscore=0 spamscore=0 malwarescore=0 adultscore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2209130000
- definitions=main-2210180093
+References: <Y0WtLKYWtdcM9wIp@Hephaistos.local> <CADkTA4PEob-LJpM_oEkxO-hbyLq5DnENFOaYzvkhnKvu8hziqQ@mail.gmail.com>
+ <Y0gbF+3+kU0Z3UW8@aglaia.inside-m2m.de> <CADkTA4MmC_PCX8+XiXD_dX+aSnfBRtkoP0LzwyGi=PMNpArssQ@mail.gmail.com>
+ <Y06GaXT/pwZ8eSS+@aglaia.inside-m2m.de> <171F2C43CEC2B33F.27826@lists.yoctoproject.org>
+In-Reply-To: <171F2C43CEC2B33F.27826@lists.yoctoproject.org>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+Date: Tue, 18 Oct 2022 13:39:34 -0400
+Message-ID: <CADkTA4ONwOMCAPexh+_srLiPm+TMs1pKiXCWPqfM+1FUy9X_yQ@mail.gmail.com>
+Subject: Re: [yocto] Dealing with go dependencies in recipes - native docker-compose
+To: bruce.ashfield@gmail.com
+Cc: Konstantin Kletschke <konstantin.kletschke@inside-m2m.de>, yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000ec531b05eb529346"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 18 Oct 2022 16:26:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58357
+ <yocto@lists.yoctoproject.org>; Tue, 18 Oct 2022 17:39:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58358
 
---------------ciFO9k9Rbu9ewtfXZ77FbpjP
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--000000000000ec531b05eb529346
+Content-Type: text/plain; charset="UTF-8"
 
-*Wiki: *https://wiki.yoctoproject.org/wiki/Bug_Triage
+On Tue, Oct 18, 2022 at 9:17 AM Bruce Ashfield via lists.yoctoproject.org
+<bruce.ashfield=gmail.com@lists.yoctoproject.org> wrote:
 
-*Attendees: *Steve Sakoman, Stephen Jolley, Randy Macleod, Joshua Watt, 
-Alexandre Belloni, , Ross Burton, Tim Orling, Alexandre Belloni, Michael 
-Opdenacker
+>
+>
+> On Tue, Oct 18, 2022 at 6:56 AM Konstantin Kletschke <
+> konstantin.kletschke@inside-m2m.de> wrote:
+>
+>> On Sun, Oct 16, 2022 at 10:28:18PM -0400, Bruce Ashfield wrote:
+>>
+>> > FYI: Here's the very lightly tested RFC version of the recipe:
+>> >
+>> >
+>> https://git.yoctoproject.org/meta-virtualization/commit/?h=master-next&id=fa24cfc08b129de5c7ba36099985359cc0228630
+>>
+>> Thanks for the kind notification.
+>>
+>> My stuff is based upon kirkstone, I stuffed the recipe from master-next
+>> into my kirkstone build. One package of this new docker-compose is
+>> depending
+>> upon go-1.19 (kirkstone provides go-1.17) so I pulled in go-1.19 from
+>> langdale also into my kirkstone build.
+>>
+>> The compiling and building works just fine! The recipe(s) for
+>> docker-compose look impressive, I would not have expected them being so
+>> complex. But they work.
+>>
+>>
+> The amount of fetches is certainly impressive, but it is like that for any
+> non-vendored go application, whether we can see it or not.  When the
+> recipes are simple, all of the fetching and source structuring takes place
+> behind the scenes (I know, I'm stating the obvious), just in a manner we
+> don't control.
+>
+> I just yank the complexity out to the front, and go directly to the
+> upstream sources of all the go libraries/packages. If we let go fetch it,
+> we have to both rely on the versions being in the fetch locations
+> "forever", or the infrastructure always being available (it should, but you
+> never know). We then have to setup our own go proxy/mirror infrastructure
+> to get around those two issues, and have now become curators of our own
+> repositories and infrastructure. That infrastructure isn't really hard to
+> setup, but in a maintenance mode, updating it, and getting new versions of
+> the code for CVEs, etc, could be challenging.
+>
+> By doing the fetches directly, all of the established infrastructure,
+> archiving, mirrors, licensing, etc, "just work", and we can bump the SRCREV
+> of any dependency if a CVE or issue is found.
+>
+> Definitely a balancing act, with no 'one true answer' yet, so I've been
+> going with what I know works :)
+>
+> Two notes:
+>>
+>> After installing the package provides /bin/docker-compose. I realized
+>> other parties provide this as /usr/lib/docker/cli-plugins/docker-compose
+>> which make something like "docker compose version" working. For me this
+>> does not harm, only as remark. May be this is intentional.
+>>
+>
+> Completely random. I just put it there. I'll make that adjustment in the
+> recipe.
+>
+>
+>> Upon investigating I realized the version reported by docker-compose is
+>> "dev" instead of the expected "v2.11.2".
+>>
+>
+> I saw the same thing, and was looking into fixing it, I figured it was
+> worth getting the recipe out, before I did more tweaking.
+>
 
-*ARs:*
+emux86-64-c9 login: root
 
-N/A*
-*
+root@qemux86-64-c9:~# /usr/lib/docker/cli-plugins/docker-compose version
 
-*Notes:
-*
-*
-*
+Docker Compose version v2.11.2
 
-*Medium+ 4.2 Unassigned Enhancements/Bugs: *45 (Last week 27)
+Cheers,
 
-*Medium+ 4.99 Unassigned Enhancements/Bugs: *44**(Last week 44)
+Bruce
 
-*AB Bugs: 66* (Last week 53)
---------------ciFO9k9Rbu9ewtfXZ77FbpjP
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-<html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <div class="moz-text-html" lang="x-unicode">
-      <p><b>Wiki: </b><a class="moz-txt-link-freetext" href="https://urldefense.com/v3/__https://wiki.yoctoproject.org/wiki/Bug_Triage__;!!AjveYdw8EvQ!cAjVArCgL_RlaRXuscB-7FXNeNbEpNLXV5wf6cuuQ5AJ_finBsyqaqIWAMBAw_THa9F-SJpSJTfbDp4zK8Q6ydo_qduobM6c$" moz-do-not-send="true">https://wiki.yoctoproject.org/wiki/Bug_Triage</a></p>
-      <p><b>Attendees: </b>Steve Sakoman, Stephen Jolley, Randy
-        Macleod, Joshua Watt, Alexandre Belloni, , Ross Burton, Tim
-        Orling, Alexandre Belloni, Michael Opdenacker</p>
-      <p><b>ARs:</b></p>
-      <p>N/A<b><br>
-        </b></p>
-    </div>
-    <span class="moz-txt-link-freetext"></span>
-    <div class="moz-text-html" lang="x-unicode"><b>Notes: <br>
-      </b></div>
-    <div class="moz-text-html" lang="x-unicode"><b><br>
-      </b></div>
-    <div class="moz-text-html" lang="x-unicode">
-      <p><b>Medium+ 4.2 Unassigned Enhancements/Bugs: </b>45 (Last week
-        27) </p>
-      <b>Medium+ 4.99 Unassigned Enhancements/Bugs: </b>44<b> </b>(Last
-      week 44)<br>
-    </div>
-    <div class="moz-text-html" lang="x-unicode"><br>
-    </div>
-    <div class="moz-text-html" lang="x-unicode"><b>AB Bugs: 66</b> (Last
-      week 53)<br>
-    </div>
-  </body>
-</html>
+>
+>>
+>> Great work, thank you!
+>>
+>
+> I appreciate the testing and the report, very helpful!
+>
+> Bruce
+>
+>
+>>
+>> Regards Konstantin
+>>
+>>
+>>
+>>
+>>
+>
+> --
+> - Thou shalt not follow the NULL pointer, for chaos and madness await thee
+> at its end
+> - "Use the force Harry" - Gandalf, Star Trek II
+>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#58355):
+> https://lists.yoctoproject.org/g/yocto/message/58355
+> Mute This Topic: https://lists.yoctoproject.org/mt/94264665/1050810
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> bruce.ashfield@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
+>
 
---------------ciFO9k9Rbu9ewtfXZ77FbpjP--
+-- 
+- Thou shalt not follow the NULL pointer, for chaos and madness await thee
+at its end
+- "Use the force Harry" - Gandalf, Star Trek II
+
+--000000000000ec531b05eb529346
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fon=
+t-size:small"><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Tue, Oct 18, 2022 at 9:17 AM Bruce Ashfield via =
+<a href=3D"http://lists.yoctoproject.org">lists.yoctoproject.org</a> &lt;br=
+uce.ashfield=3D<a href=3D"mailto:gmail.com@lists.yoctoproject.org">gmail.co=
+m@lists.yoctoproject.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><div style=3D"fon=
+t-size:small"><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Tue, Oct 18, 2022 at 6:56 AM Konstantin Kletschk=
+e &lt;<a href=3D"mailto:konstantin.kletschke@inside-m2m.de" target=3D"_blan=
+k">konstantin.kletschke@inside-m2m.de</a>&gt; wrote:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex">On Sun, Oct 16, 2022 at 10:28:18PM -04=
+00, Bruce Ashfield wrote:<br>
+<br>
+&gt; FYI: Here&#39;s the very lightly tested RFC version of the recipe:<br>
+&gt; <br>
+&gt; <a href=3D"https://git.yoctoproject.org/meta-virtualization/commit/?h=
+=3Dmaster-next&amp;id=3Dfa24cfc08b129de5c7ba36099985359cc0228630" rel=3D"no=
+referrer" target=3D"_blank">https://git.yoctoproject.org/meta-virtualizatio=
+n/commit/?h=3Dmaster-next&amp;id=3Dfa24cfc08b129de5c7ba36099985359cc0228630=
+</a><br>
+<br>
+Thanks for the kind notification.<br>
+<br>
+My stuff is based upon kirkstone, I stuffed the recipe from master-next<br>
+into my kirkstone build. One package of this new docker-compose is dependin=
+g<br>
+upon go-1.19 (kirkstone provides go-1.17) so I pulled in go-1.19 from<br>
+langdale also into my kirkstone build.<br>
+<br>
+The compiling and building works just fine! The recipe(s) for<br>
+docker-compose look impressive, I would not have expected them being so<br>
+complex. But they work.<br>
+<br></blockquote><div><br></div><div><div style=3D"font-size:small">The amo=
+unt of fetches is certainly impressive, but it is like that for any non-ven=
+dored go application, whether we can see it or not.=C2=A0 When the recipes =
+are simple, all of the fetching and source structuring takes place behind t=
+he scenes (I know, I&#39;m stating the obvious), just in a manner we don&#3=
+9;t control.</div></div><div><br></div><div><div style=3D"font-size:small">=
+I just yank the complexity out to the front, and go directly to the upstrea=
+m sources of all the go libraries/packages. If we let go fetch it, we have =
+to both rely on the versions being in the fetch locations &quot;forever&quo=
+t;, or the infrastructure always being available (it should, but you never =
+know). We then have to setup our own go proxy/mirror infrastructure to get =
+around those two issues, and have now become curators of our own repositori=
+es and infrastructure.  That infrastructure isn&#39;t really hard to setup,=
+ but in a maintenance mode, updating it, and getting new versions of the co=
+de for CVEs, etc, could be challenging.</div><div style=3D"font-size:small"=
+><br></div><div style=3D"font-size:small">By doing the fetches directly, al=
+l of the established infrastructure, archiving, mirrors, licensing, etc, &q=
+uot;just work&quot;, and we can bump the SRCREV of any dependency if a CVE =
+or issue is found.</div><div style=3D"font-size:small"><br></div><div style=
+=3D"font-size:small">Definitely a balancing act, with no &#39;one true answ=
+er&#39; yet, so I&#39;ve been going with what I know works :)</div><br></di=
+v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
+r-left:1px solid rgb(204,204,204);padding-left:1ex">
+Two notes:<br>
+<br>
+After installing the package provides /bin/docker-compose. I realized<br>
+other parties provide this as /usr/lib/docker/cli-plugins/docker-compose<br=
+>
+which make something like &quot;docker compose version&quot; working. For m=
+e this<br>
+does not harm, only as remark. May be this is intentional.<br></blockquote>=
+<div><br></div><div><div style=3D"font-size:small">Completely random. I jus=
+t put it there. I&#39;ll make that adjustment in the recipe.</div></div><di=
+v><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<br>
+Upon investigating I realized the version reported by docker-compose is<br>
+&quot;dev&quot; instead of the expected &quot;v2.11.2&quot;.<br></blockquot=
+e><div><br></div><div><div style=3D"font-size:small">I saw the same thing, =
+and was looking into fixing it, I figured it was worth getting the recipe o=
+ut, before I did more tweaking.</div></div></div></div></blockquote><div><b=
+r></div><div>
+
+
+
+
+
+<p class=3D"gmail-p1" style=3D"margin:0px;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-stretch:normal;font-size:14px;line-height:no=
+rmal;font-family:&quot;Andale Mono&quot;;color:rgb(161,161,161);background-=
+color:rgb(0,0,0)"><span class=3D"gmail-s1" style=3D"font-variant-ligatures:=
+no-common-ligatures">emux86-64-c9 login: root</span></p>
+<p class=3D"gmail-p1" style=3D"margin:0px;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-stretch:normal;font-size:14px;line-height:no=
+rmal;font-family:&quot;Andale Mono&quot;;color:rgb(161,161,161);background-=
+color:rgb(0,0,0)"><span class=3D"gmail-s1" style=3D"font-variant-ligatures:=
+no-common-ligatures">root@qemux86-64-c9:~# /usr/lib/docker/cli-plugins/dock=
+er-compose version</span></p>
+<p class=3D"gmail-p1" style=3D"margin:0px;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-stretch:normal;font-size:14px;line-height:no=
+rmal;font-family:&quot;Andale Mono&quot;;color:rgb(161,161,161);background-=
+color:rgb(0,0,0)"><span class=3D"gmail-s1" style=3D"font-variant-ligatures:=
+no-common-ligatures">Docker Compose version v2.11.2</span></p></div><div>=
+=C2=A0</div><div><div class=3D"gmail_default" style=3D"font-size:small">Che=
+ers,</div><div class=3D"gmail_default" style=3D"font-size:small"><br></div>=
+<div class=3D"gmail_default" style=3D"font-size:small">Bruce</div><br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div cl=
+ass=3D"gmail_quote"><div>=C2=A0</div><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
+g-left:1ex">
+<br>
+Great work, thank you!<br></blockquote><div><br></div><div><div style=3D"fo=
+nt-size:small">I appreciate the testing and the report, very helpful!</div>=
+<div style=3D"font-size:small"><br></div><div style=3D"font-size:small">Bru=
+ce</div></div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
+:1ex">
+<br>
+Regards Konstantin<br>
+<br>
+<br>
+<br>
+<br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+>- Thou shalt not follow the NULL pointer, for chaos and madness await thee=
+ at its end<br>- &quot;Use the force Harry&quot; - Gandalf, Star Trek II<br=
+><br></div></div>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#58355): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/58355" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/58355</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/94264665/1050=
+810" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
+/94264665/1050810</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:bruce.ashfield@gmail.com" target=3D"_blank">bruc=
+e.ashfield@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature">- Thou shalt not follow the NULL pointer, for ch=
+aos and madness await thee at its end<br>- &quot;Use the force Harry&quot; =
+- Gandalf, Star Trek II<br><br></div></div>
+
+--000000000000ec531b05eb529346--
 
