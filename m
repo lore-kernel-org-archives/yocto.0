@@ -1,84 +1,82 @@
-Return-Path: <rudolf.streif@ibeeto.com>
+Return-Path: <jpuhlman@mvista.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6DDAEC4332F
-	for <webhook@archiver.kernel.org>; Tue, 18 Oct 2022 22:52:18 +0000 (UTC)
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
- by mx.groups.io with SMTP id smtpd.web10.1625.1666133534137940051
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 55325C433FE
+	for <webhook@archiver.kernel.org>; Tue, 18 Oct 2022 22:54:18 +0000 (UTC)
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+ by mx.groups.io with SMTP id smtpd.web12.1602.1666133657211200879
  for <yocto@lists.yoctoproject.org>;
- Tue, 18 Oct 2022 15:52:14 -0700
+ Tue, 18 Oct 2022 15:54:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ibeeto-com.20210112.gappssmtp.com header.s=20210112 header.b=gG28t4Bs;
- spf=neutral (domain: ibeeto.com, ip: 209.85.214.171, mailfrom: rudolf.streif@ibeeto.com)
-Received: by mail-pl1-f171.google.com with SMTP id k9so14796333pll.11
-        for <yocto@lists.yoctoproject.org>; Tue, 18 Oct 2022 15:52:14 -0700 (PDT)
+ dkim=pass header.i=@mvista.com header.s=google header.b=ZXfZNLL1;
+ spf=pass (domain: mvista.com, ip: 209.85.216.51, mailfrom: jpuhlman@mvista.com)
+Received: by mail-pj1-f51.google.com with SMTP id t12-20020a17090a3b4c00b0020b04251529so15335226pjf.5
+        for <yocto@lists.yoctoproject.org>; Tue, 18 Oct 2022 15:54:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ibeeto-com.20210112.gappssmtp.com; s=20210112;
-        h=in-reply-to:subject:from:references:cc:to:content-language
+        d=mvista.com; s=google;
+        h=in-reply-to:from:references:cc:to:content-language:subject
          :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=WuTSb2Th56v+PQH9iMhVFL47uHp6Woc3KOYxOZy6CTk=;
-        b=gG28t4BsqaJbrwARFQCxd+qg/G4dg4toFBtek8h2YQUlAumQrvCQx0eCVBWXgFzJQg
-         KeQFKzoiWPBJ4CTERrYFovMQ7B/9uahefnX2bCLsaKw/jrotr4ts7GxjmMGx/m8OxN1a
-         f0HVXGZ2DZZkOHQFZVQ9SnXq7HLHatTyYmXYSTgj7ja4IrW7OCi74hLTEf0QkR/vIq+N
-         B4I738oN4i095B351nbaFZ4UIa5CLRjpa3RH3Xhw8yAb0Lw2FNvU/YFJm/f2hLVMTaIc
-         wfK3+G9FfzOhGhA/wapwgGVRJpjQNthw02rpq5GLH/KxqrlIi+8loukXI6bkSJf1MIbx
-         CihA==
+        bh=ry8ctdjG0pqR5K+6sOHq+bRMSBz5de0hBfYjlBKfkDo=;
+        b=ZXfZNLL1V/R3ABIRoA2kNfML7XrYgUaOoB/ZUjJcRF00x1vyPDLzCqpPuQqSX3MtAe
+         BqwRvJdp+7jFckDdTMGyPozmS4SUF3hYZxdCtt2nxD9wHDy32LHOPF62hjhqxIPTUuSt
+         9UZlxEDK0qtTIUYkIBWmHEE6MgSK+ZBr5PAzE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:subject:from:references:cc:to:content-language
+        h=in-reply-to:from:references:cc:to:content-language:subject
          :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=WuTSb2Th56v+PQH9iMhVFL47uHp6Woc3KOYxOZy6CTk=;
-        b=FN2Zjvi5G+VuEvhaewz20+7JZMwKyt8GXP4cjX0s2WRhp3T9qLjgEfTyxe0fVeEDFy
-         0xTQCkDs5y2UxCW5BuLagBHBtnMtgVUFwPeEvVVdI64hlZcJi1WwkaYuc2092CgYpfL7
-         8naI/BgONFZaP2LLqzlM5NyS13Jn0ldx9+FX+FWqFNzUziOBECUvoToHHJc2wKwGIjsh
-         gSfs29xxnI7VFzXYj5hTKYt/jIhpUwnTuV5YY91PPI3YsHON8vqyYCir8+iZfzNX08hl
-         T2b0VWSRbroSHckToZG2txzR8sAwBJMjWEtrR3TxQshMnSL5jjVEegDmI0/CQew+BHv2
-         /Yxw==
-X-Gm-Message-State: ACrzQf1ueUeuDZ07IRQix+Xjr6OqlSV2UHhOJGhEg0nm2JdSrafBxLbF
-	ahfGZEleJpDw89t+XFbx60bWjQ==
-X-Google-Smtp-Source: AMsMyM7xOUJPBarJJGsUsVJWkwCtK9QARl+jcrtVGdAVMhWLM4potTK9HRkdj5muJo2jKTrPl4tiiA==
-X-Received: by 2002:a17:903:1c4:b0:17f:5b7b:657 with SMTP id e4-20020a17090301c400b0017f5b7b0657mr5379923plh.125.1666133533444;
-        Tue, 18 Oct 2022 15:52:13 -0700 (PDT)
-Received: from ?IPV6:2600:8801:8d00:2b14:7b2a:31ea:d7be:5c89? ([2600:8801:8d00:2b14:7b2a:31ea:d7be:5c89])
-        by smtp.gmail.com with ESMTPSA id a7-20020a170902ecc700b00180cf894b67sm9287071plh.130.2022.10.18.15.52.12
+        bh=ry8ctdjG0pqR5K+6sOHq+bRMSBz5de0hBfYjlBKfkDo=;
+        b=eZJOkFwI4iL7jQutH22HjUEWKKIqHr6DvN78BM7BDumH5s2gINzzdEKyLsxBFmXelc
+         AEAK2rHcwdTstObmUEZXofTP/4jU9bjmvotswry167xKHkCDSmoiqqOgjGVxFx8WBKPW
+         coZkTGD8rHPd+1+4/5WltODA85V1VwyRJM08IENElV5hgYSMhigTaM2AJM2ZIghsbBBx
+         wIgW6GmQ4oCFqS1qxTMAV0kNeImDgty7n8QIjKpKPNmYuAIJeCxtz/qoEiMOtSiICLMm
+         r+CXku2H1GV05I1r1Dql8mWp0Hg8DRJMkVWLI1km1yufMI0HUcpYqcoLqmF79xFl8/hp
+         HyzQ==
+X-Gm-Message-State: ACrzQf2JoLQL1geLgcgrEFDQmo8VxK4d8RuE4Ii5Xm2xnPNOFywkYZ5k
+	/FvY+ZK9U4163Nh6UEoToQeUPg==
+X-Google-Smtp-Source: AMsMyM71cxGp8GADOybJW8VnUIfjGqkOc4OKuW8VlFE7RO0z6fX1mOFLXUmdUbtke8tBb6vaMfrWaA==
+X-Received: by 2002:a17:90b:3a90:b0:20d:a54c:e5cd with SMTP id om16-20020a17090b3a9000b0020da54ce5cdmr34113458pjb.183.1666133656441;
+        Tue, 18 Oct 2022 15:54:16 -0700 (PDT)
+Received: from [10.20.245.17] (50-240-203-141-static.hfc.comcastbusiness.net. [50.240.203.141])
+        by smtp.googlemail.com with ESMTPSA id a8-20020a17090a008800b001fd7e56da4csm12114035pja.39.2022.10.18.15.54.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Oct 2022 15:52:12 -0700 (PDT)
+        Tue, 18 Oct 2022 15:54:15 -0700 (PDT)
 Content-Type: multipart/alternative;
- boundary="------------b6XeGxULUAEczqmfrTCNZGpm"
-Message-ID: <d5192da0-f9a4-9f88-9df1-c3329361ea15@ibeeto.com>
-Date: Tue, 18 Oct 2022 15:52:11 -0700
+ boundary="------------U0Mz6IQK5qoskqQw9YdDpFdV"
+Message-ID: <40a6ff41-cce0-957c-8d89-fa3a2e01f254@mvista.com>
+Date: Tue, 18 Oct 2022 15:54:16 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [yocto] do_kernel_configme - Could not generate configuration
+ queue
 Content-Language: en-US
-To: Bruce Ashfield <bruce.ashfield@gmail.com>,
- Jeremy Puhlman <jpuhlman@mvista.com>
-Cc: Jose Quaresma <quaresma.jose@gmail.com>, yocto@lists.yoctoproject.org
+To: Bruce Ashfield <bruce.ashfield@gmail.com>
+Cc: Jose Quaresma <quaresma.jose@gmail.com>,
+ Rudolf J Streif <rudolf.streif@ibeeto.com>, yocto@lists.yoctoproject.org
 References: <aef92e7e-5f88-7628-bfec-0656b71cb57c@ibeeto.com>
  <CANPvuRkggcuz3Bn89YAOo9wvVOOgPZ=pUxNrXFhcp6HNtwHJ-A@mail.gmail.com>
  <CADkTA4NKGk7Rt2coaA8WHO7VjyPab9VNPwKo7aNGwnSbuQisGQ@mail.gmail.com>
  <a055d0e1-90d7-d051-6976-50e701ff8e40@mvista.com>
  <CADkTA4PegfeGTUmja1AF9fXdy2=eyXLy_qu86gYmKBQ8B8bayw@mail.gmail.com>
-From: Rudolf J Streif <rudolf.streif@ibeeto.com>
-Subject: Re: [yocto] do_kernel_configme - Could not generate configuration
- queue
+From: Jeremy Puhlman <jpuhlman@mvista.com>
 In-Reply-To: <CADkTA4PegfeGTUmja1AF9fXdy2=eyXLy_qu86gYmKBQ8B8bayw@mail.gmail.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 18 Oct 2022 22:52:18 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58362
+ <yocto@lists.yoctoproject.org>; Tue, 18 Oct 2022 22:54:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58363
 
 This is a multi-part message in MIME format.
---------------b6XeGxULUAEczqmfrTCNZGpm
+--------------U0Mz6IQK5qoskqQw9YdDpFdV
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
 
-On 10/18/22 15:31, Bruce Ashfield wrote:
+
+On 10/18/2022 3:31 PM, Bruce Ashfield wrote:
 >
 >
 > On Tue, Oct 18, 2022 at 5:01 PM Jeremy Puhlman <jpuhlman@mvista.com> 
@@ -115,10 +113,10 @@ On 10/18/22 15:31, Bruce Ashfield wrote:
 >
 > Nope. I got tied up with some other issues, I'll send it tonight when 
 > I get a moment!
-I can confirm that updating kern-tools-native to6a4752eb resolved the 
-issue for me.
 >
 > Bruce
+>
+Thanks!
 >
 >>         Jose
 >>
@@ -256,12 +254,12 @@ issue for me.
 > thee at its end
 > - "Use the force Harry" - Gandalf, Star Trek II
 >
--- 
-Rudolf J Streif
-CEO/CTO
-1.855.442.3386
 
---------------b6XeGxULUAEczqmfrTCNZGpm
+-- 
+Jeremy A. Puhlman
+jpuhlman@mvista.com
+
+--------------U0Mz6IQK5qoskqQw9YdDpFdV
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
@@ -269,11 +267,10 @@ Content-Transfer-Encoding: 8bit
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   </head>
-  <body vlink="#551A8B" text="#000000" link="#0B6CDA" bgcolor="#f9f9fa"
-    alink="#EE0000">
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 10/18/22 15:31, Bruce Ashfield
+  <body>
+    <br>
+    <br>
+    <div class="moz-cite-prefix">On 10/18/2022 3:31 PM, Bruce Ashfield
       wrote:<br>
     </div>
     <blockquote type="cite"
@@ -363,24 +360,19 @@ href="https://git.yoctoproject.org/yocto-kernel-tools/commit/?id=6a4752ebbe7d242
             <div class="gmail_default" style="font-size:small">Nope. I
               got tied up with some other issues, I'll send it tonight
               when I get a moment!</div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    I can confirm that updating kern-tools-native to<span style="color:
-      #ce9178;"> 6a4752eb <font color="#000000">resolved the issue for
-        me.</font><br>
-    </span>
-    <blockquote type="cite"
-cite="mid:CADkTA4PegfeGTUmja1AF9fXdy2=eyXLy_qu86gYmKBQ8B8bayw@mail.gmail.com">
-      <div dir="ltr">
-        <div class="gmail_quote">
-          <div>
             <div class="gmail_default" style="font-size:small"><br>
             </div>
             <div class="gmail_default" style="font-size:small">Bruce</div>
             <br>
           </div>
+        </div>
+      </div>
+    </blockquote>
+    Thanks!<br>
+    <blockquote type="cite"
+cite="mid:CADkTA4PegfeGTUmja1AF9fXdy2=eyXLy_qu86gYmKBQ8B8bayw@mail.gmail.com">
+      <div dir="ltr">
+        <div class="gmail_quote">
           <div> </div>
           <blockquote class="gmail_quote" style="margin:0px 0px 0px
             0.8ex;border-left:1px solid
@@ -574,12 +566,12 @@ Jeremy A. Puhlman
         </div>
       </div>
     </blockquote>
+    <br>
     <pre class="moz-signature" cols="72">-- 
-Rudolf J Streif
-CEO/CTO
-1.855.442.3386</pre>
+Jeremy A. Puhlman
+<a class="moz-txt-link-abbreviated" href="mailto:jpuhlman@mvista.com">jpuhlman@mvista.com</a></pre>
   </body>
 </html>
 
---------------b6XeGxULUAEczqmfrTCNZGpm--
+--------------U0Mz6IQK5qoskqQw9YdDpFdV--
 
