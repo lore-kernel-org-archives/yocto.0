@@ -1,321 +1,273 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <steven.monsees@baesystems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B8D71C4167B
-	for <webhook@archiver.kernel.org>; Thu, 20 Oct 2022 10:40:25 +0000 (UTC)
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
- by mx.groups.io with SMTP id smtpd.web08.8077.1666262421073511633
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C2CC0C433FE
+	for <webhook@archiver.kernel.org>; Thu, 20 Oct 2022 10:46:15 +0000 (UTC)
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
+ by mx.groups.io with SMTP id smtpd.web12.8198.1666262774663296583
  for <yocto@lists.yoctoproject.org>;
- Thu, 20 Oct 2022 03:40:21 -0700
+ Thu, 20 Oct 2022 03:46:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=UbykhntW;
- spf=pass (domain: gmail.com, ip: 209.85.167.48, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-lf1-f48.google.com with SMTP id b2so32825180lfp.6
-        for <yocto@lists.yoctoproject.org>; Thu, 20 Oct 2022 03:40:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nj0YgHVaIHadLLWEl5QpaTO+TyljcvgNjcbstpNplDk=;
-        b=UbykhntWWATP1tNTFZNkXi0jWKV5eMUN/arczBOoOgXwEnPtP9Kf3JoPNHyp2q1BhJ
-         K0gjTkrz10QBRCExwTR1qPvyINFtjKWK6dalG6U7wx9VRSUn5/EK8eR41skJ6+IDP3vs
-         KGjS4kVwZ3Wl9/c7UiFvDxNBpDIKMFw2alkNGAWqzMmeSfoQpO/ToRYi8Jh0T3JJjyzL
-         CcfqJav0cqkqyEFdiAKUXsOrs3lmvhxA4tUtr8XIbpLvP2pbhpMw4LBfiGyo9U27peMA
-         IsOx56ppu4ZAoguxIsAQj5X7ICAL1niDbL6QnXSLOn2EmwmDu3SvJDKqLSic2/AFBd/b
-         RmFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nj0YgHVaIHadLLWEl5QpaTO+TyljcvgNjcbstpNplDk=;
-        b=C8DPT9VSJE1jGJ4pZyXi5v1ckRT9Uv7uIEx8FNu+/kyh7L1ZXPvhVIDNH60HYPBqUJ
-         wfm9qm10NWSfsAma1wiPmwcy5FrMMkw2M/yJFmztyKVTd8Z3OZR+IQQd2UTZqqCHApE3
-         8NMxbIjipv1G+7xgGDiHn32EF9Nd5BPqMrBnZ/3FuX+l3kbNXy0c2TzUQAA7rDqHK8sW
-         BujLBs6f9O4b5m9x1x3jb65tFLBBpqtULSKYAbO5FHDc+7apvMHjI3UolCM3uIv+VyFK
-         bCW94KOqQxltE2W8jmCf0dSkgOBdq+OvAF2/qxgkzx6ZcKsMqj7X4zy7Na2t7Rxltbld
-         tUeg==
-X-Gm-Message-State: ACrzQf2RPRBoSwySJIyKOWx2K5JXeLGCHRaqoMMREV4xASKQEgKZAmgC
-	+lyVCD4ziAQqQqySrqjxIxexv8HPo90bZfRTJq8=
-X-Google-Smtp-Source: AMsMyM5THEe+TSCAY4SrL2Qgk3RZtZGrihsU8uJObGT32Gjj/JvEd52WDyU6kLuP6UdxcFszuoV3TSLim43ARnu8o4w=
-X-Received: by 2002:ac2:51bc:0:b0:4a4:712d:1b83 with SMTP id
- f28-20020ac251bc000000b004a4712d1b83mr4293364lfk.345.1666262418609; Thu, 20
- Oct 2022 03:40:18 -0700 (PDT)
+ dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=DtSaTBv6;
+ spf=pass (domain: baesystems.com, ip: 149.32.232.65, mailfrom: steven.monsees@baesystems.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1666262774; x=1823942774;
+  h=from:to:cc:subject:date:in-reply-to:
+   content-transfer-encoding:mime-version;
+  bh=Q24iwiujhIZJispp9XTsvqmtS27LM8C8T0VuR2Xq1Cw=;
+  b=DtSaTBv6taHQ480T5l8KVDa/LnhU0xHy5avlDMVAVa5eEA15XWTiI2Dn
+   EVRxQgAlv8pYqLli4NSWtwliAP5XL+YyFjnxJ4/xf6QpMLs10BDm7ASOd
+   rUXfR9my5mqH9qQsB26vyA4mQCX9zkhZywY4AcfQPzhua+j550NeCXE36
+   k=;
+X-IPAS-Result: =?us-ascii?q?A2ADAADRJVFj/wFUSQpaGgEBAQEBAQEBAQEDAQEBARIBA?=
+ =?us-ascii?q?QEBAgIBAQEBQAmBMgUBAQEBCwGDKwKBWBeEN4gfiHgDhheFF4U/jC4UgWgPA?=
+ =?us-ascii?q?QEBAQEBAQEBCAEuCwsEAQFLhDoCFoRcJjQJDgECBAEBAQEDAgMBAQEBAQEDA?=
+ =?us-ascii?q?QEGAQEBAQEBBgQBgRuFLzkNgjUpAYNjAQEBAQMBIhFFDAQCAQgNAQMEAQEBA?=
+ =?us-ascii?q?gIRFQICAh8HChUICAIEDgUIgnEFgm0DMBOrGjV6gTIaAmWDUAGBH4I5DYJOC?=
+ =?us-ascii?q?QGBBywBgWWFKoFMgzYUhC6CDUOEPz6CIEICAgGBFggKARIBEiYVE4MYgmYEj?=
+ =?us-ascii?q?2OFIxw4A0QdQAMLBzQzAwpaHFgOCSAcDhcNBQYSAyBvBUIPKC4BaSscGweBD?=
+ =?us-ascii?q?CooFQMEBAMCBhMDIgINKTEUBCkTDy0HI3EJAgMiZQUDAwQoLAMJIQIBHAclJ?=
+ =?us-ascii?q?DwHWDoBBAMCECI8BgMJAwIiWHMxJgUDDRclCAU3GgQIPAIFBlMSAgoRAxIPB?=
+ =?us-ascii?q?idHDko+ORYGJ0QBNA8OFgOWYoElGwQQPQYCehMkCCAwQQctCGoGBQGSTkQCg?=
+ =?us-ascii?q?yCOM5xpbgcDg2KLQo0GgXSFdC4Wg3aBUIsBhksDjASFdpcaII0hg2iQYg0IE?=
+ =?us-ascii?q?ySEdAIEAgQFAhaBYklccHCDNwlIFwKOOwEVg1CFFFGEeXUCATgCBgEKAQEDC?=
+ =?us-ascii?q?YgRgTSBEgEB?=
+IronPort-PHdr: A9a23:CaPinRJTZGvaKLK189mcuJRhWUAX0o4c3iYr45Yqw4hDbr6kt8y7e
+ hCFvrM23QGCB9STwskHotKei7rnV20E7MTJm1E5W7sIaSU4j94LlRcrGs+PBB6zBvfraysnA
+ JYKDwc9rDm0PkdPBcnxeUDZrGGs4j4OABX/Mhd+KvjoFoLIgMm7ye6/94fdbghMhTexbq1+I
+ RGrpgjNq8cahpdvJLwswRXTuHtIfOpWxWJsJV2Nmhv3+9m98p1+/SlOovwt78FPX7n0cKQ+V
+ rxYES8pM3sp683xtBnMVhWA630BWWgLiBVIAgzF7BbnXpfttybxq+Rw1DWGMcDwULs5Qiqp4
+ bt1RxD0iScHLz85/3/Risxsl6JQvRatqwViz4LIfI2ZMfxzdb7fc9wHX2pMRsZfWTJfD42hc
+ 4sBAekPPehaoIn8u1QAohSxCBKwBOz0yD9EmmP60bE43uknDArI3BYgH9ULsHnMotn7M6ASU
+ eauzKbW0zrDdOta0irg5ojUbB8hv++DXbRtesfP1EIjEw3KgEiVpYDrIjiY0f8Ns3SF4Op+S
+ +2vjXQrqwR2ojip3ccjlJfGhpkOx1/f7yp23p01JN2jSE5nf9GkFYBQuzuGOItxR8MvWmdls
+ zs1xbMao5C0ZjQKyIg5yB7FbfyKa4mF7xDtWeuTITp1hXxodbyxiRu97EStxfPxW8m23VtUs
+ CZIj93Bum4P2hHc6saKRPRz8lmu1zuM1w3d6v9ILF0ymKHGJZAhxbswmYASsUTFBiL2gF/2j
+ KiKeUo64eio8P7rYq/7pp+aL4N1igb+Pbgymsy4GeQ4KA8OX2qF9uugyL3v50r5QK9FjvEun
+ anZsYzaJcQGpqGiGQNazoEj6xO5Ajy709oYhWEKIE9ZdB6djYXkNUvCLfP3APulnligiCpny
+ +zcMrDuDZjBNHfOnK3vcLt57UNX1RA9wspF551OD7EMOPfzWkjsu9PGFhI5KAm0w/r/CNV6y
+ 4MeRXqDAq+HP6PWtl+F/v4vIuaWa48TvTb9MPwo6+LygXMlhFMRZ7Sp3YANZH+jBPtpPV6ZY
+ Hr3gtcdD2gKuxE+QPb2h12FVD5ff3eyX6Qi6TEnEI+qEJvPSpqvjbGPxiu2HZJbanpbBlyUF
+ HfnbYSEW/MCaCKIJc9hlyQJVaO9S4A/yxGhqgn6x6BiLurT/C0Yrozs28Zu5+DIjh497yJ7D
+ 9+d0mGWU2F7gGYIRyQs0K9jpkx9z0+P0a5jjPNAD9xc++tJUhsmNZ7b1+F2Fsj+WhjdcdeRV
+ FamXtKmDCkxT9I239AOf0F9Fs6mjhDCxCqqH6QVm6aLBZwz7q3cw3/xJ95ny3bB1qkukUUpQ
+ tdVOW2hnK5/+FubO4mcukGUh6+seakGlA3E8m6dzGzG6EhcXR42UqzDVG4eYGPZqN344gXJS
+ Lr4TfxtCAxG0orKFqtNb9Tyxx0SWPf5P9PFS2u0knW3A1CEy+XfQpDtfjBX+SLbE0UJiERbx
+ mqLKwU4Tgzp41/lTXYmQUnzbl3h9697r3WgQ0Iv5wuDYlZwzKa4/wVTjvuZHaBAlokYsTss/
+ m0nVG222MjbXp/Z/1IJQQ==
+IronPort-Data: A9a23:lya6Ja6tly+8Mqs62hPiwwxRtLDFchMFZxGqfqrLsTDasY5as4F+v
+ mYfUG/QO/2LZ2unf413PYni/E9X7JHRnIJjTAQ6qyFgZn8b8sCt6fZ1jqvT04F+CuWZESqLO
+ u1HMoGowPgcFyOa/lH0WlTYhSEUOZugH9IQM8aZfHEsLeNYYH1500g6w7Rh2tcAbeWRWmthh
+ /uj+6UzB3f4g1aYAkpMg05UgEoy1BhakGpwUm0WPZinjneH/5UmJM53yZWKEpfNatI88thW5
+ gr05OrREmvxp3/BAz4++1rxWhVirrX6ZWBihpfKMkSvqkAqm8A87ko0HNkEdFkI0xOqo9BKk
+ NhRu8KxWy0AA7KZzYzxUzEAe81/FbFW8bnCOinn6ZTKiVDdNXHlzu5/F107OJZe8eFyaY1M3
+ aVAbm9WKEDfwbveLLGTE4GAguw4MMT1MYVZv3Zm1jzUFt4sSJ3YUr7W6NpDmjw3g6iiGN6EN
+ 5pDN2IxNXwsZTVAJUolIcgUnN2E3ETHVx5Wjk3LlYketj27IAtZleKF3MDuUs2NTtlStkKZv
+ X7duXX+CQ0dLMaYyzeO7jSrnOCnoM/gcNtKUuLjsK42xgT7KnEvNSD6nGCT+ZGR4nNSkfoGQ
+ 6DI0kLCdZQPyXE=
+IronPort-HdrOrdr: A9a23:PCEwEK2UjvvX+Y80NRzrjwqjBLkkLtp133Aq2lEZdPUzSL38qy
+ nOpoV46faaslYssR0b9uxoW5PpfZq0z/dICO8qXItKczOLhILCFvAA0WKN+VPd8lXFndK04c
+ pbHpSXP7DLZ2RHsQ==
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-AV: E=Sophos;i="5.95,198,1661817600"; 
+   d="scan'208";a="28826061"
+X-IronPort-AV: E=Sophos;i="5.95,198,1661817600"; 
+   d="scan'208";a="143764326"
+From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
+To: Alexander Kanavin <alex.kanavin@gmail.com>, "Roos, Thomas"
+	<throos@amazon.de>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: RE: [yocto] devtool upgrade for go recipes with git "broken"
+Thread-Topic: [yocto] devtool upgrade for go recipes with git "broken"
+Thread-Index: AQHY5GTr5j5Nvf1ZnEq1HtJaEKftBq4XR/aAgAAFD4CAAAHIAIAAAmSAgAABPYCAAAOvAIAABMoA//++UQA=
+Date: Thu, 20 Oct 2022 10:45:12 +0000
+In-Reply-To: <CANNYZj9W=OkE_E7jQyK=MHE3QsiPfyWrhWtOQLCgj4J31uHuew@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.44.4.39]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <1028eccc021a4bf5ab2520b3c4fb82a6@amazon.de> <CANNYZj9O+UnNrdi1vU1LGw4GUDJRJW3FfGubRdjEp7VZHJZPxQ@mail.gmail.com>
- <28ffce86de204ea6969c325b97506001@amazon.de> <CANNYZj_GgqzaS22upMbw38sje5_gYT-w7giwSyZxLCfHdZ074A@mail.gmail.com>
- <a79184da26314c388bc4733b516e47a5@amazon.de> <CANNYZj_xvKFqdX1v=p3z7AeWcvQcv20T59j=Ch1e4Eu7tqqPCA@mail.gmail.com>
- <840aa137ef2d460a9a6136eb5e725930@amazon.de>
-In-Reply-To: <840aa137ef2d460a9a6136eb5e725930@amazon.de>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Thu, 20 Oct 2022 12:40:06 +0200
-Message-ID: <CANNYZj9W=OkE_E7jQyK=MHE3QsiPfyWrhWtOQLCgj4J31uHuew@mail.gmail.com>
-Subject: Re: [yocto] devtool upgrade for go recipes with git "broken"
-To: "Roos, Thomas" <throos@amazon.de>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 20 Oct 2022 10:40:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58379
+ <yocto@lists.yoctoproject.org>; Thu, 20 Oct 2022 10:46:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58380
+Message-Id: <20221020104615.C2CC0C433FE@smtp.lore.kernel.org>
 
-It may well be that no one remembers anymore why it's there, and in
-this case you can just drop it. Or you can dig into git history with
-'git blame' and similar techniques.
-
-Alex
-
-On Thu, 20 Oct 2022 at 12:23, Roos, Thomas <throos@amazon.de> wrote:
->
-> sure, but may this src folder is necessary for something? Some go convent=
-ion I don't know about...
->
-> ________________________________
-> Von: Alexander Kanavin <alex.kanavin@gmail.com>
-> Gesendet: Donnerstag, 20. Oktober 2022 12:09:47
-> An: Roos, Thomas
-> Cc: yocto@lists.yoctoproject.org
-> Betreff: RE: [EXTERNAL][yocto] devtool upgrade for go recipes with git "b=
-roken"
->
-> CAUTION: This email originated from outside of the organization. Do not c=
-lick links or open attachments unless you can confirm the sender and know t=
-he content is safe.
->
->
->
-> Can you propose a patch to core?
->
-> Alex
->
-> On Thu, 20 Oct 2022 at 12:05, Roos, Thomas <throos@amazon.de> wrote:
-> >
-> > yes, I already did this - it's because that go.bbclass is spangly using=
- a subdir called "src" and that will break the devtool check for upgrades m=
-echanism because it's not looking into a src subdir. So git will fail check=
-out anything in the parent dir "reference is not a tree"
-> >
-> > This simple change in the go.bbclass fix it - but I don't know if that =
-additional src dir is somehow necessary:
-> >
-> >
-> > # src folder will break devtool upgrade
-> > python go_do_unpack() {
-> >     src_uri =3D (d.getVar('SRC_URI') or "").split()
-> >     if len(src_uri) =3D=3D 0:
-> >         return
-> >
-> >     fetcher =3D bb.fetch2.Fetch(src_uri, d)
-> >     for url in fetcher.urls:
-> >         if fetcher.ud[url].type =3D=3D 'git':
-> >             if fetcher.ud[url].parm.get('destsuffix') is None:
-> >                 s_dirname =3D os.path.basename(d.getVar('S'))
-> > #cause problems                fetcher.ud[url].parm['destsuffix'] =3D o=
-s.path.join(s_dirname, 'src', d.getVar('GO_IMPORT')) + '/'
-> > #FIX
-> >                 fetcher.ud[url].parm['destsuffix'] =3D os.path.join(s_d=
-irname, '', d.getVar('GO_IMPORT')) + '/'
-> > #FIX
-> >     fetcher.unpack(d.getVar('WORKDIR'))
-> > }
-> >
-> > # src folder will break devtool upgrade
-> > go_do_configure() {
-> > #cause problems      ln -snf ${S}/src ${B}/
-> > #FIX
-> >     ln -snf ${S} ${B}/
-> > #FIX
-> > }
-> >
-> >
-> > ________________________________
-> > Von: Alexander Kanavin <alex.kanavin@gmail.com>
-> > Gesendet: Donnerstag, 20. Oktober 2022 11:56:48
-> > An: Roos, Thomas
-> > Cc: yocto@lists.yoctoproject.org
-> > Betreff: RE: [EXTERNAL][yocto] devtool upgrade for go recipes with git =
-"broken"
-> >
-> > CAUTION: This email originated from outside of the organization. Do not=
- click links or open attachments unless you can confirm the sender and know=
- the content is safe.
-> >
-> >
-> >
-> > Thanks, I do not have a quick answer to this, but would appreciate if
-> > you can dig deeper into the issue.
-> >
-> > Alex
-> >
-> > On Thu, 20 Oct 2022 at 11:50, Roos, Thomas <throos@amazon.de> wrote:
-> > >
-> > > yes, easy
-> > > - set the go-helloworld bb srcrev to an older rev - e.g:
-> > > SRCREV =3D "ad95e7f791d8e1e7e7ec7f7cedfc2f6b29f6c9e2"
-> > >
-> > > "devtool upgrade go-helloworld"
-> > >
-> > > INFO: Extracting upgraded version source...
-> > > Traceback (most recent call last):
-> > >   File "/home/ubuntu/yocto/poky/scripts/lib/devtool/upgrade.py", line=
- 567, in upgrade
-> > >     rev2, md5, sha256, srcbranch, srcsubdir2 =3D _extract_new_source(=
-args.version, srctree, args.no_patch,
-> > >   File "/home/ubuntu/yocto/poky/scripts/lib/devtool/upgrade.py", line=
- 183, in _extract_new_source
-> > >     __run('git checkout %s' % rev)
-> > >   File "/home/ubuntu/yocto/poky/scripts/lib/devtool/upgrade.py", line=
- 170, in __run
-> > >     return _run(cmd, srctree)
-> > >   File "/home/ubuntu/yocto/poky/scripts/lib/devtool/upgrade.py", line=
- 31, in _run
-> > >     return bb.process.run('%s' % cmd, cwd=3Dcwd)
-> > >   File "/home/ubuntu/yocto/poky/bitbake/lib/bb/process.py", line 189,=
- in run
-> > >     raise ExecutionError(cmd, pipe.returncode, stdout, stderr)
-> > > bb.process.ExecutionError: Execution of 'git checkout 2e68773dfca072c=
-b81f219fc3b97ad34fe9d9f94' failed with exit code 128:
-> > > fatal: reference is not a tree: 2e68773dfca072cb81f219fc3b97ad34fe9d9=
-f94
-> > >
-> > >
-> > > During handling of the above exception, another exception occurred:
-> > >
-> > > Traceback (most recent call last):
-> > >   File "/home/ubuntu/yocto/poky/scripts/devtool", line 338, in <modul=
-e>
-> > >     ret =3D main()
-> > >   File "/home/ubuntu/yocto/poky/scripts/devtool", line 325, in main
-> > >     ret =3D args.func(args, config, basepath, workspace)
-> > >   File "/home/ubuntu/yocto/poky/scripts/lib/devtool/upgrade.py", line=
- 575, in upgrade
-> > >     _upgrade_error(e, recipedir, srctree, args.keep_failure)
-> > >   File "/home/ubuntu/yocto/poky/scripts/lib/devtool/upgrade.py", line=
- 134, in _upgrade_error
-> > >     _cleanup_on_error(rd, srctree)
-> > >   File "/home/ubuntu/yocto/poky/scripts/lib/devtool/upgrade.py", line=
- 126, in _cleanup_on_error
-> > >     if not len(os.listdir(rdp)):
-> > > FileNotFoundError: [Errno 2] No such file or directory: '/home/ubuntu=
-/yocto/build/workspace/recipes'
-> > >
-> > >
-> > >
-> > >
-> > >
-> > > ________________________________
-> > > Von: Alexander Kanavin <alex.kanavin@gmail.com>
-> > > Gesendet: Donnerstag, 20. Oktober 2022 11:32:19
-> > > An: Roos, Thomas
-> > > Cc: yocto@lists.yoctoproject.org
-> > > Betreff: RE: [EXTERNAL][yocto] devtool upgrade for go recipes with gi=
-t "broken"
-> > >
-> > > CAUTION: This email originated from outside of the organization. Do n=
-ot click links or open attachments unless you can confirm the sender and kn=
-ow the content is safe.
-> > >
-> > >
-> > >
-> > > It helps if you show the exact error, and a way to reproduce this
-> > > using a minimal setup (ideally only poky).
-> > >
-> > > Alex
-> > >
-> > > On Thu, 20 Oct 2022 at 11:18, Thomas Roos via lists.yoctoproject.org
-> > > <throos=3Damazon.de@lists.yoctoproject.org> wrote:
-> > > >
-> > > > Hi,
-> > > > when doing a "devtool upgrade" for a recipe which inherits "go" and=
- using a SRC_URI to a git repo this will fail. Complaining that the git rev=
-ision is "out of tree" - I found that the additional "src" folder inside th=
-e checkout out sources is causing this problem and I wondering if this is n=
-ecessary. I'm not a go programmer, but when changing this the recipe seems =
-to produce the same result.
-> > > > I did change our go recipe to don't use this additional src folder =
-by overwriting the go_do_upack and go_do_configure method. Here: https://gi=
-thub.com/aws4embeddedlinux/meta-aws/blob/942651026c7a91b9703609d7658bd16493=
-50acaf/recipes-support/amazon-ssm-agent/amazon-ssm-agent_3.1.1856.0.bb
-> > > > Is this a bug or do anybody know why go use that additional src fol=
-der?
-> > > >
-> > > >
-> > > > Cheers,
-> > > > Thomas
-> > > >
-> > > >
-> > > >
-> > > >
-> > > > Amazon Web Services EMEA SARL
-> > > > 38 avenue John F. Kennedy, L-1855 Luxembourg
-> > > > Sitz der Gesellschaft: L-1855 Luxemburg
-> > > > eingetragen im Luxemburgischen Handelsregister unter R.C.S. B186284
-> > > >
-> > > > Amazon Web Services EMEA SARL, Niederlassung Deutschland
-> > > > Marcel-Breuer-Str. 12, D-80807 Muenchen
-> > > > Sitz der Zweigniederlassung: Muenchen
-> > > > eingetragen im Handelsregister des Amtsgerichts Muenchen unter HRB =
-242240, USt-ID DE317013094
-> > > >
-> > > >
-> > > >
-> > > > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > > > Links: You receive all messages sent to this group.
-> > > > View/Reply Online (#58372): https://lists.yoctoproject.org/g/yocto/=
-message/58372
-> > > > Mute This Topic: https://lists.yoctoproject.org/mt/94449982/1686489
-> > > > Group Owner: yocto+owner@lists.yoctoproject.org
-> > > > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kan=
-avin@gmail.com]
-> > > > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > > >
-> > >
-> > >
-> > >
-> > > Amazon Web Services EMEA SARL
-> > > 38 avenue John F. Kennedy, L-1855 Luxembourg
-> > > Sitz der Gesellschaft: L-1855 Luxemburg
-> > > eingetragen im Luxemburgischen Handelsregister unter R.C.S. B186284
-> > >
-> > > Amazon Web Services EMEA SARL, Niederlassung Deutschland
-> > > Marcel-Breuer-Str. 12, D-80807 Muenchen
-> > > Sitz der Zweigniederlassung: Muenchen
-> > > eingetragen im Handelsregister des Amtsgerichts Muenchen unter HRB 24=
-2240, USt-ID DE317013094
-> > >
-> > >
-> >
-> >
-> >
-> > Amazon Web Services EMEA SARL
-> > 38 avenue John F. Kennedy, L-1855 Luxembourg
-> > Sitz der Gesellschaft: L-1855 Luxemburg
-> > eingetragen im Luxemburgischen Handelsregister unter R.C.S. B186284
-> >
-> > Amazon Web Services EMEA SARL, Niederlassung Deutschland
-> > Marcel-Breuer-Str. 12, D-80807 Muenchen
-> > Sitz der Zweigniederlassung: Muenchen
-> > eingetragen im Handelsregister des Amtsgerichts Muenchen unter HRB 2422=
-40, USt-ID DE317013094
-> >
-> >
->
->
->
-> Amazon Web Services EMEA SARL
-> 38 avenue John F. Kennedy, L-1855 Luxembourg
-> Sitz der Gesellschaft: L-1855 Luxemburg
-> eingetragen im Luxemburgischen Handelsregister unter R.C.S. B186284
->
-> Amazon Web Services EMEA SARL, Niederlassung Deutschland
-> Marcel-Breuer-Str. 12, D-80807 Muenchen
-> Sitz der Zweigniederlassung: Muenchen
-> eingetragen im Handelsregister des Amtsgerichts Muenchen unter HRB 242240=
-, USt-ID DE317013094
->
->
+VGhhbmtzLi4uDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiB5b2N0b0BsaXN0
+cy55b2N0b3Byb2plY3Qub3JnIDx5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPiBPbiBCZWhh
+bGYgT2YgQWxleGFuZGVyIEthbmF2aW4NClNlbnQ6IFRodXJzZGF5LCBPY3RvYmVyIDIwLCAyMDIy
+IDY6NDAgQU0NClRvOiBSb29zLCBUaG9tYXMgPHRocm9vc0BhbWF6b24uZGU+DQpDYzogeW9jdG9A
+bGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gZGV2dG9vbCB1cGdy
+YWRlIGZvciBnbyByZWNpcGVzIHdpdGggZ2l0ICJicm9rZW4iDQoNCkV4dGVybmFsIEVtYWlsIEFs
+ZXJ0DQoNClRoaXMgZW1haWwgaGFzIGJlZW4gc2VudCBmcm9tIGFuIGFjY291bnQgb3V0c2lkZSBv
+ZiB0aGUgQkFFIFN5c3RlbXMgbmV0d29yay4NCg0KUGxlYXNlIHRyZWF0IHRoZSBlbWFpbCB3aXRo
+IGNhdXRpb24sIGVzcGVjaWFsbHkgaWYgeW91IGFyZSByZXF1ZXN0ZWQgdG8gY2xpY2sgb24gYSBs
+aW5rLCBkZWNyeXB0L29wZW4gYW4gYXR0YWNobWVudCwgb3IgZW5hYmxlIG1hY3Jvcy4gIEZvciBm
+dXJ0aGVyIGluZm9ybWF0aW9uIG9uIGhvdyB0byBzcG90IHBoaXNoaW5nLCBhY2Nlc3Mg4oCcQ3li
+ZXJzZWN1cml0eSBPbmVTcGFjZSBQYWdl4oCdIGFuZCByZXBvcnQgcGhpc2hpbmcgYnkgY2xpY2tp
+bmcgdGhlIGJ1dHRvbiDigJxSZXBvcnQgUGhpc2hpbmfigJ0gb24gdGhlIE91dGxvb2sgdG9vbGJh
+ci4NCg0KDQpJdCBtYXkgd2VsbCBiZSB0aGF0IG5vIG9uZSByZW1lbWJlcnMgYW55bW9yZSB3aHkg
+aXQncyB0aGVyZSwgYW5kIGluIHRoaXMgY2FzZSB5b3UgY2FuIGp1c3QgZHJvcCBpdC4gT3IgeW91
+IGNhbiBkaWcgaW50byBnaXQgaGlzdG9yeSB3aXRoICdnaXQgYmxhbWUnIGFuZCBzaW1pbGFyIHRl
+Y2huaXF1ZXMuDQoNCkFsZXgNCg0KT24gVGh1LCAyMCBPY3QgMjAyMiBhdCAxMjoyMywgUm9vcywg
+VGhvbWFzIDx0aHJvb3NAYW1hem9uLmRlPiB3cm90ZToNCj4NCj4gc3VyZSwgYnV0IG1heSB0aGlz
+IHNyYyBmb2xkZXIgaXMgbmVjZXNzYXJ5IGZvciBzb21ldGhpbmc/IFNvbWUgZ28gY29udmVudGlv
+biBJIGRvbid0IGtub3cgYWJvdXQuLi4NCj4NCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18NCj4gVm9uOiBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleC5rYW5hdmluQGdtYWlsLmNvbT4N
+Cj4gR2VzZW5kZXQ6IERvbm5lcnN0YWcsIDIwLiBPa3RvYmVyIDIwMjIgMTI6MDk6NDcNCj4gQW46
+IFJvb3MsIFRob21hcw0KPiBDYzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KPiBCZXRy
+ZWZmOiBSRTogW0VYVEVSTkFMXVt5b2N0b10gZGV2dG9vbCB1cGdyYWRlIGZvciBnbyByZWNpcGVz
+IHdpdGggZ2l0ICJicm9rZW4iDQo+DQo+IENBVVRJT046IFRoaXMgZW1haWwgb3JpZ2luYXRlZCBm
+cm9tIG91dHNpZGUgb2YgdGhlIG9yZ2FuaXphdGlvbi4gRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9w
+ZW4gYXR0YWNobWVudHMgdW5sZXNzIHlvdSBjYW4gY29uZmlybSB0aGUgc2VuZGVyIGFuZCBrbm93
+IHRoZSBjb250ZW50IGlzIHNhZmUuDQo+DQo+DQo+DQo+IENhbiB5b3UgcHJvcG9zZSBhIHBhdGNo
+IHRvIGNvcmU/DQo+DQo+IEFsZXgNCj4NCj4gT24gVGh1LCAyMCBPY3QgMjAyMiBhdCAxMjowNSwg
+Um9vcywgVGhvbWFzIDx0aHJvb3NAYW1hem9uLmRlPiB3cm90ZToNCj4gPg0KPiA+IHllcywgSSBh
+bHJlYWR5IGRpZCB0aGlzIC0gaXQncyBiZWNhdXNlIHRoYXQgZ28uYmJjbGFzcyBpcyBzcGFuZ2x5
+IHVzaW5nIGEgc3ViZGlyIGNhbGxlZCAic3JjIiBhbmQgdGhhdCB3aWxsIGJyZWFrIHRoZSBkZXZ0
+b29sIGNoZWNrIGZvciB1cGdyYWRlcyBtZWNoYW5pc20gYmVjYXVzZSBpdCdzIG5vdCBsb29raW5n
+IGludG8gYSBzcmMgc3ViZGlyLiBTbyBnaXQgd2lsbCBmYWlsIGNoZWNrb3V0IGFueXRoaW5nIGlu
+IHRoZSBwYXJlbnQgZGlyICJyZWZlcmVuY2UgaXMgbm90IGEgdHJlZSINCj4gPg0KPiA+IFRoaXMg
+c2ltcGxlIGNoYW5nZSBpbiB0aGUgZ28uYmJjbGFzcyBmaXggaXQgLSBidXQgSSBkb24ndCBrbm93
+IGlmIHRoYXQgYWRkaXRpb25hbCBzcmMgZGlyIGlzIHNvbWVob3cgbmVjZXNzYXJ5Og0KPiA+DQo+
+ID4NCj4gPiAjIHNyYyBmb2xkZXIgd2lsbCBicmVhayBkZXZ0b29sIHVwZ3JhZGUgcHl0aG9uIGdv
+X2RvX3VucGFjaygpIHsNCj4gPiAgICAgc3JjX3VyaSA9IChkLmdldFZhcignU1JDX1VSSScpIG9y
+ICIiKS5zcGxpdCgpDQo+ID4gICAgIGlmIGxlbihzcmNfdXJpKSA9PSAwOg0KPiA+ICAgICAgICAg
+cmV0dXJuDQo+ID4NCj4gPiAgICAgZmV0Y2hlciA9IGJiLmZldGNoMi5GZXRjaChzcmNfdXJpLCBk
+KQ0KPiA+ICAgICBmb3IgdXJsIGluIGZldGNoZXIudXJsczoNCj4gPiAgICAgICAgIGlmIGZldGNo
+ZXIudWRbdXJsXS50eXBlID09ICdnaXQnOg0KPiA+ICAgICAgICAgICAgIGlmIGZldGNoZXIudWRb
+dXJsXS5wYXJtLmdldCgnZGVzdHN1ZmZpeCcpIGlzIE5vbmU6DQo+ID4gICAgICAgICAgICAgICAg
+IHNfZGlybmFtZSA9IG9zLnBhdGguYmFzZW5hbWUoZC5nZXRWYXIoJ1MnKSkNCj4gPiAjY2F1c2Ug
+cHJvYmxlbXMgICAgICAgICAgICAgICAgZmV0Y2hlci51ZFt1cmxdLnBhcm1bJ2Rlc3RzdWZmaXgn
+XSA9IG9zLnBhdGguam9pbihzX2Rpcm5hbWUsICdzcmMnLCBkLmdldFZhcignR09fSU1QT1JUJykp
+ICsgJy8nDQo+ID4gI0ZJWA0KPiA+ICAgICAgICAgICAgICAgICBmZXRjaGVyLnVkW3VybF0ucGFy
+bVsnZGVzdHN1ZmZpeCddID0gb3MucGF0aC5qb2luKHNfZGlybmFtZSwgJycsIGQuZ2V0VmFyKCdH
+T19JTVBPUlQnKSkgKyAnLycNCj4gPiAjRklYDQo+ID4gICAgIGZldGNoZXIudW5wYWNrKGQuZ2V0
+VmFyKCdXT1JLRElSJykpDQo+ID4gfQ0KPiA+DQo+ID4gIyBzcmMgZm9sZGVyIHdpbGwgYnJlYWsg
+ZGV2dG9vbCB1cGdyYWRlDQo+ID4gZ29fZG9fY29uZmlndXJlKCkgew0KPiA+ICNjYXVzZSBwcm9i
+bGVtcyAgICAgIGxuIC1zbmYgJHtTfS9zcmMgJHtCfS8NCj4gPiAjRklYDQo+ID4gICAgIGxuIC1z
+bmYgJHtTfSAke0J9Lw0KPiA+ICNGSVgNCj4gPiB9DQo+ID4NCj4gPg0KPiA+IF9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fDQo+ID4gVm9uOiBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleC5r
+YW5hdmluQGdtYWlsLmNvbT4NCj4gPiBHZXNlbmRldDogRG9ubmVyc3RhZywgMjAuIE9rdG9iZXIg
+MjAyMiAxMTo1Njo0OA0KPiA+IEFuOiBSb29zLCBUaG9tYXMNCj4gPiBDYzogeW9jdG9AbGlzdHMu
+eW9jdG9wcm9qZWN0Lm9yZw0KPiA+IEJldHJlZmY6IFJFOiBbRVhURVJOQUxdW3lvY3RvXSBkZXZ0
+b29sIHVwZ3JhZGUgZm9yIGdvIHJlY2lwZXMgd2l0aCBnaXQgImJyb2tlbiINCj4gPg0KPiA+IENB
+VVRJT046IFRoaXMgZW1haWwgb3JpZ2luYXRlZCBmcm9tIG91dHNpZGUgb2YgdGhlIG9yZ2FuaXph
+dGlvbi4gRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNzIHlvdSBj
+YW4gY29uZmlybSB0aGUgc2VuZGVyIGFuZCBrbm93IHRoZSBjb250ZW50IGlzIHNhZmUuDQo+ID4N
+Cj4gPg0KPiA+DQo+ID4gVGhhbmtzLCBJIGRvIG5vdCBoYXZlIGEgcXVpY2sgYW5zd2VyIHRvIHRo
+aXMsIGJ1dCB3b3VsZCBhcHByZWNpYXRlIA0KPiA+IGlmIHlvdSBjYW4gZGlnIGRlZXBlciBpbnRv
+IHRoZSBpc3N1ZS4NCj4gPg0KPiA+IEFsZXgNCj4gPg0KPiA+IE9uIFRodSwgMjAgT2N0IDIwMjIg
+YXQgMTE6NTAsIFJvb3MsIFRob21hcyA8dGhyb29zQGFtYXpvbi5kZT4gd3JvdGU6DQo+ID4gPg0K
+PiA+ID4geWVzLCBlYXN5DQo+ID4gPiAtIHNldCB0aGUgZ28taGVsbG93b3JsZCBiYiBzcmNyZXYg
+dG8gYW4gb2xkZXIgcmV2IC0gZS5nOg0KPiA+ID4gU1JDUkVWID0gImFkOTVlN2Y3OTFkOGUxZTdl
+N2VjN2Y3Y2VkZmMyZjZiMjlmNmM5ZTIiDQo+ID4gPg0KPiA+ID4gImRldnRvb2wgdXBncmFkZSBn
+by1oZWxsb3dvcmxkIg0KPiA+ID4NCj4gPiA+IElORk86IEV4dHJhY3RpbmcgdXBncmFkZWQgdmVy
+c2lvbiBzb3VyY2UuLi4NCj4gPiA+IFRyYWNlYmFjayAobW9zdCByZWNlbnQgY2FsbCBsYXN0KToN
+Cj4gPiA+ICAgRmlsZSAiL2hvbWUvdWJ1bnR1L3lvY3RvL3Bva3kvc2NyaXB0cy9saWIvZGV2dG9v
+bC91cGdyYWRlLnB5IiwgbGluZSA1NjcsIGluIHVwZ3JhZGUNCj4gPiA+ICAgICByZXYyLCBtZDUs
+IHNoYTI1Niwgc3JjYnJhbmNoLCBzcmNzdWJkaXIyID0gX2V4dHJhY3RfbmV3X3NvdXJjZShhcmdz
+LnZlcnNpb24sIHNyY3RyZWUsIGFyZ3Mubm9fcGF0Y2gsDQo+ID4gPiAgIEZpbGUgIi9ob21lL3Vi
+dW50dS95b2N0by9wb2t5L3NjcmlwdHMvbGliL2RldnRvb2wvdXBncmFkZS5weSIsIGxpbmUgMTgz
+LCBpbiBfZXh0cmFjdF9uZXdfc291cmNlDQo+ID4gPiAgICAgX19ydW4oJ2dpdCBjaGVja291dCAl
+cycgJSByZXYpDQo+ID4gPiAgIEZpbGUgIi9ob21lL3VidW50dS95b2N0by9wb2t5L3NjcmlwdHMv
+bGliL2RldnRvb2wvdXBncmFkZS5weSIsIGxpbmUgMTcwLCBpbiBfX3J1bg0KPiA+ID4gICAgIHJl
+dHVybiBfcnVuKGNtZCwgc3JjdHJlZSkNCj4gPiA+ICAgRmlsZSAiL2hvbWUvdWJ1bnR1L3lvY3Rv
+L3Bva3kvc2NyaXB0cy9saWIvZGV2dG9vbC91cGdyYWRlLnB5IiwgbGluZSAzMSwgaW4gX3J1bg0K
+PiA+ID4gICAgIHJldHVybiBiYi5wcm9jZXNzLnJ1bignJXMnICUgY21kLCBjd2Q9Y3dkKQ0KPiA+
+ID4gICBGaWxlICIvaG9tZS91YnVudHUveW9jdG8vcG9reS9iaXRiYWtlL2xpYi9iYi9wcm9jZXNz
+LnB5IiwgbGluZSAxODksIGluIHJ1bg0KPiA+ID4gICAgIHJhaXNlIEV4ZWN1dGlvbkVycm9yKGNt
+ZCwgcGlwZS5yZXR1cm5jb2RlLCBzdGRvdXQsIHN0ZGVycikNCj4gPiA+IGJiLnByb2Nlc3MuRXhl
+Y3V0aW9uRXJyb3I6IEV4ZWN1dGlvbiBvZiAnZ2l0IGNoZWNrb3V0IDJlNjg3NzNkZmNhMDcyY2I4
+MWYyMTlmYzNiOTdhZDM0ZmU5ZDlmOTQnIGZhaWxlZCB3aXRoIGV4aXQgY29kZSAxMjg6DQo+ID4g
+PiBmYXRhbDogcmVmZXJlbmNlIGlzIG5vdCBhIHRyZWU6IA0KPiA+ID4gMmU2ODc3M2RmY2EwNzJj
+YjgxZjIxOWZjM2I5N2FkMzRmZTlkOWY5NA0KPiA+ID4NCj4gPiA+DQo+ID4gPiBEdXJpbmcgaGFu
+ZGxpbmcgb2YgdGhlIGFib3ZlIGV4Y2VwdGlvbiwgYW5vdGhlciBleGNlcHRpb24gb2NjdXJyZWQ6
+DQo+ID4gPg0KPiA+ID4gVHJhY2ViYWNrIChtb3N0IHJlY2VudCBjYWxsIGxhc3QpOg0KPiA+ID4g
+ICBGaWxlICIvaG9tZS91YnVudHUveW9jdG8vcG9reS9zY3JpcHRzL2RldnRvb2wiLCBsaW5lIDMz
+OCwgaW4gPG1vZHVsZT4NCj4gPiA+ICAgICByZXQgPSBtYWluKCkNCj4gPiA+ICAgRmlsZSAiL2hv
+bWUvdWJ1bnR1L3lvY3RvL3Bva3kvc2NyaXB0cy9kZXZ0b29sIiwgbGluZSAzMjUsIGluIG1haW4N
+Cj4gPiA+ICAgICByZXQgPSBhcmdzLmZ1bmMoYXJncywgY29uZmlnLCBiYXNlcGF0aCwgd29ya3Nw
+YWNlKQ0KPiA+ID4gICBGaWxlICIvaG9tZS91YnVudHUveW9jdG8vcG9reS9zY3JpcHRzL2xpYi9k
+ZXZ0b29sL3VwZ3JhZGUucHkiLCBsaW5lIDU3NSwgaW4gdXBncmFkZQ0KPiA+ID4gICAgIF91cGdy
+YWRlX2Vycm9yKGUsIHJlY2lwZWRpciwgc3JjdHJlZSwgYXJncy5rZWVwX2ZhaWx1cmUpDQo+ID4g
+PiAgIEZpbGUgIi9ob21lL3VidW50dS95b2N0by9wb2t5L3NjcmlwdHMvbGliL2RldnRvb2wvdXBn
+cmFkZS5weSIsIGxpbmUgMTM0LCBpbiBfdXBncmFkZV9lcnJvcg0KPiA+ID4gICAgIF9jbGVhbnVw
+X29uX2Vycm9yKHJkLCBzcmN0cmVlKQ0KPiA+ID4gICBGaWxlICIvaG9tZS91YnVudHUveW9jdG8v
+cG9reS9zY3JpcHRzL2xpYi9kZXZ0b29sL3VwZ3JhZGUucHkiLCBsaW5lIDEyNiwgaW4gX2NsZWFu
+dXBfb25fZXJyb3INCj4gPiA+ICAgICBpZiBub3QgbGVuKG9zLmxpc3RkaXIocmRwKSk6DQo+ID4g
+PiBGaWxlTm90Rm91bmRFcnJvcjogW0Vycm5vIDJdIE5vIHN1Y2ggZmlsZSBvciBkaXJlY3Rvcnk6
+ICcvaG9tZS91YnVudHUveW9jdG8vYnVpbGQvd29ya3NwYWNlL3JlY2lwZXMnDQo+ID4gPg0KPiA+
+ID4NCj4gPiA+DQo+ID4gPg0KPiA+ID4NCj4gPiA+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fDQo+ID4gPiBWb246IEFsZXhhbmRlciBLYW5hdmluIDxhbGV4LmthbmF2aW5AZ21haWwu
+Y29tPg0KPiA+ID4gR2VzZW5kZXQ6IERvbm5lcnN0YWcsIDIwLiBPa3RvYmVyIDIwMjIgMTE6MzI6
+MTkNCj4gPiA+IEFuOiBSb29zLCBUaG9tYXMNCj4gPiA+IENjOiB5b2N0b0BsaXN0cy55b2N0b3By
+b2plY3Qub3JnDQo+ID4gPiBCZXRyZWZmOiBSRTogW0VYVEVSTkFMXVt5b2N0b10gZGV2dG9vbCB1
+cGdyYWRlIGZvciBnbyByZWNpcGVzIHdpdGggZ2l0ICJicm9rZW4iDQo+ID4gPg0KPiA+ID4gQ0FV
+VElPTjogVGhpcyBlbWFpbCBvcmlnaW5hdGVkIGZyb20gb3V0c2lkZSBvZiB0aGUgb3JnYW5pemF0
+aW9uLiBEbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1bmxlc3MgeW91IGNh
+biBjb25maXJtIHRoZSBzZW5kZXIgYW5kIGtub3cgdGhlIGNvbnRlbnQgaXMgc2FmZS4NCj4gPiA+
+DQo+ID4gPg0KPiA+ID4NCj4gPiA+IEl0IGhlbHBzIGlmIHlvdSBzaG93IHRoZSBleGFjdCBlcnJv
+ciwgYW5kIGEgd2F5IHRvIHJlcHJvZHVjZSB0aGlzIA0KPiA+ID4gdXNpbmcgYSBtaW5pbWFsIHNl
+dHVwIChpZGVhbGx5IG9ubHkgcG9reSkuDQo+ID4gPg0KPiA+ID4gQWxleA0KPiA+ID4NCj4gPiA+
+IE9uIFRodSwgMjAgT2N0IDIwMjIgYXQgMTE6MTgsIFRob21hcyBSb29zIHZpYSANCj4gPiA+IGxp
+c3RzLnlvY3RvcHJvamVjdC5vcmcgPHRocm9vcz1hbWF6b24uZGVAbGlzdHMueW9jdG9wcm9qZWN0
+Lm9yZz4gd3JvdGU6DQo+ID4gPiA+DQo+ID4gPiA+IEhpLA0KPiA+ID4gPiB3aGVuIGRvaW5nIGEg
+ImRldnRvb2wgdXBncmFkZSIgZm9yIGEgcmVjaXBlIHdoaWNoIGluaGVyaXRzICJnbyIgYW5kIHVz
+aW5nIGEgU1JDX1VSSSB0byBhIGdpdCByZXBvIHRoaXMgd2lsbCBmYWlsLiBDb21wbGFpbmluZyB0
+aGF0IHRoZSBnaXQgcmV2aXNpb24gaXMgIm91dCBvZiB0cmVlIiAtIEkgZm91bmQgdGhhdCB0aGUg
+YWRkaXRpb25hbCAic3JjIiBmb2xkZXIgaW5zaWRlIHRoZSBjaGVja291dCBvdXQgc291cmNlcyBp
+cyBjYXVzaW5nIHRoaXMgcHJvYmxlbSBhbmQgSSB3b25kZXJpbmcgaWYgdGhpcyBpcyBuZWNlc3Nh
+cnkuIEknbSBub3QgYSBnbyBwcm9ncmFtbWVyLCBidXQgd2hlbiBjaGFuZ2luZyB0aGlzIHRoZSBy
+ZWNpcGUgc2VlbXMgdG8gcHJvZHVjZSB0aGUgc2FtZSByZXN1bHQuDQo+ID4gPiA+IEkgZGlkIGNo
+YW5nZSBvdXIgZ28gcmVjaXBlIHRvIGRvbid0IHVzZSB0aGlzIGFkZGl0aW9uYWwgc3JjIA0KPiA+
+ID4gPiBmb2xkZXIgYnkgb3ZlcndyaXRpbmcgdGhlIGdvX2RvX3VwYWNrIGFuZCBnb19kb19jb25m
+aWd1cmUgDQo+ID4gPiA+IG1ldGhvZC4gSGVyZTogDQo+ID4gPiA+IGh0dHBzOi8vZ2l0aHViLmNv
+bS9hd3M0ZW1iZWRkZWRsaW51eC9tZXRhLWF3cy9ibG9iLzk0MjY1MTAyNmM3YTkNCj4gPiA+ID4g
+MWI5NzAzNjA5ZDc2NThiZDE2NDkzNTBhY2FmL3JlY2lwZXMtc3VwcG9ydC9hbWF6b24tc3NtLWFn
+ZW50L2FtYQ0KPiA+ID4gPiB6b24tc3NtLWFnZW50XzMuMS4xODU2LjAuYmIgSXMgdGhpcyBhIGJ1
+ZyBvciBkbyBhbnlib2R5IGtub3cgd2h5IA0KPiA+ID4gPiBnbyB1c2UgdGhhdCBhZGRpdGlvbmFs
+IHNyYyBmb2xkZXI/DQo+ID4gPiA+DQo+ID4gPiA+DQo+ID4gPiA+IENoZWVycywNCj4gPiA+ID4g
+VGhvbWFzDQo+ID4gPiA+DQo+ID4gPiA+DQo+ID4gPiA+DQo+ID4gPiA+DQo+ID4gPiA+IEFtYXpv
+biBXZWIgU2VydmljZXMgRU1FQSBTQVJMDQo+ID4gPiA+IDM4IGF2ZW51ZSBKb2huIEYuIEtlbm5l
+ZHksIEwtMTg1NSBMdXhlbWJvdXJnIFNpdHogZGVyIA0KPiA+ID4gPiBHZXNlbGxzY2hhZnQ6IEwt
+MTg1NSBMdXhlbWJ1cmcgZWluZ2V0cmFnZW4gaW0gTHV4ZW1idXJnaXNjaGVuIA0KPiA+ID4gPiBI
+YW5kZWxzcmVnaXN0ZXIgdW50ZXIgUi5DLlMuIEIxODYyODQNCj4gPiA+ID4NCj4gPiA+ID4gQW1h
+em9uIFdlYiBTZXJ2aWNlcyBFTUVBIFNBUkwsIE5pZWRlcmxhc3N1bmcgRGV1dHNjaGxhbmQgDQo+
+ID4gPiA+IE1hcmNlbC1CcmV1ZXItU3RyLiAxMiwgRC04MDgwNyBNdWVuY2hlbiBTaXR6IGRlciAN
+Cj4gPiA+ID4gWndlaWduaWVkZXJsYXNzdW5nOiBNdWVuY2hlbiBlaW5nZXRyYWdlbiBpbSBIYW5k
+ZWxzcmVnaXN0ZXIgZGVzIA0KPiA+ID4gPiBBbXRzZ2VyaWNodHMgTXVlbmNoZW4gdW50ZXIgSFJC
+IDI0MjI0MCwgVVN0LUlEIERFMzE3MDEzMDk0DQo+ID4gPiA+DQo+ID4gPiA+DQo+ID4gPiA+DQo+
+ID4gPiA+IA0KPiA+ID4gPg0KPiA+ID4NCj4gPiA+DQo+ID4gPg0KPiA+ID4gQW1hem9uIFdlYiBT
+ZXJ2aWNlcyBFTUVBIFNBUkwNCj4gPiA+IDM4IGF2ZW51ZSBKb2huIEYuIEtlbm5lZHksIEwtMTg1
+NSBMdXhlbWJvdXJnIFNpdHogZGVyIA0KPiA+ID4gR2VzZWxsc2NoYWZ0OiBMLTE4NTUgTHV4ZW1i
+dXJnIGVpbmdldHJhZ2VuIGltIEx1eGVtYnVyZ2lzY2hlbiANCj4gPiA+IEhhbmRlbHNyZWdpc3Rl
+ciB1bnRlciBSLkMuUy4gQjE4NjI4NA0KPiA+ID4NCj4gPiA+IEFtYXpvbiBXZWIgU2VydmljZXMg
+RU1FQSBTQVJMLCBOaWVkZXJsYXNzdW5nIERldXRzY2hsYW5kIA0KPiA+ID4gTWFyY2VsLUJyZXVl
+ci1TdHIuIDEyLCBELTgwODA3IE11ZW5jaGVuIFNpdHogZGVyIA0KPiA+ID4gWndlaWduaWVkZXJs
+YXNzdW5nOiBNdWVuY2hlbiBlaW5nZXRyYWdlbiBpbSBIYW5kZWxzcmVnaXN0ZXIgZGVzIA0KPiA+
+ID4gQW10c2dlcmljaHRzIE11ZW5jaGVuIHVudGVyIEhSQiAyNDIyNDAsIFVTdC1JRCBERTMxNzAx
+MzA5NA0KPiA+ID4NCj4gPiA+DQo+ID4NCj4gPg0KPiA+DQo+ID4gQW1hem9uIFdlYiBTZXJ2aWNl
+cyBFTUVBIFNBUkwNCj4gPiAzOCBhdmVudWUgSm9obiBGLiBLZW5uZWR5LCBMLTE4NTUgTHV4ZW1i
+b3VyZyBTaXR6IGRlciBHZXNlbGxzY2hhZnQ6IA0KPiA+IEwtMTg1NSBMdXhlbWJ1cmcgZWluZ2V0
+cmFnZW4gaW0gTHV4ZW1idXJnaXNjaGVuIEhhbmRlbHNyZWdpc3RlciANCj4gPiB1bnRlciBSLkMu
+Uy4gQjE4NjI4NA0KPiA+DQo+ID4gQW1hem9uIFdlYiBTZXJ2aWNlcyBFTUVBIFNBUkwsIE5pZWRl
+cmxhc3N1bmcgRGV1dHNjaGxhbmQgDQo+ID4gTWFyY2VsLUJyZXVlci1TdHIuIDEyLCBELTgwODA3
+IE11ZW5jaGVuIFNpdHogZGVyIFp3ZWlnbmllZGVybGFzc3VuZzogDQo+ID4gTXVlbmNoZW4gZWlu
+Z2V0cmFnZW4gaW0gSGFuZGVsc3JlZ2lzdGVyIGRlcyBBbXRzZ2VyaWNodHMgTXVlbmNoZW4gDQo+
+ID4gdW50ZXIgSFJCIDI0MjI0MCwgVVN0LUlEIERFMzE3MDEzMDk0DQo+ID4NCj4gPg0KPg0KPg0K
+Pg0KPiBBbWF6b24gV2ViIFNlcnZpY2VzIEVNRUEgU0FSTA0KPiAzOCBhdmVudWUgSm9obiBGLiBL
+ZW5uZWR5LCBMLTE4NTUgTHV4ZW1ib3VyZyBTaXR6IGRlciBHZXNlbGxzY2hhZnQ6IA0KPiBMLTE4
+NTUgTHV4ZW1idXJnIGVpbmdldHJhZ2VuIGltIEx1eGVtYnVyZ2lzY2hlbiBIYW5kZWxzcmVnaXN0
+ZXIgdW50ZXIgDQo+IFIuQy5TLiBCMTg2Mjg0DQo+DQo+IEFtYXpvbiBXZWIgU2VydmljZXMgRU1F
+QSBTQVJMLCBOaWVkZXJsYXNzdW5nIERldXRzY2hsYW5kIA0KPiBNYXJjZWwtQnJldWVyLVN0ci4g
+MTIsIEQtODA4MDcgTXVlbmNoZW4gU2l0eiBkZXIgWndlaWduaWVkZXJsYXNzdW5nOiANCj4gTXVl
+bmNoZW4gZWluZ2V0cmFnZW4gaW0gSGFuZGVsc3JlZ2lzdGVyIGRlcyBBbXRzZ2VyaWNodHMgTXVl
+bmNoZW4gDQo+IHVudGVyIEhSQiAyNDIyNDAsIFVTdC1JRCBERTMxNzAxMzA5NA0KPg0KPg0K
 
