@@ -1,273 +1,816 @@
-Return-Path: <steven.monsees@baesystems.com>
+Return-Path: <gowtham.sureshkumar@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C2CC0C433FE
-	for <webhook@archiver.kernel.org>; Thu, 20 Oct 2022 10:46:15 +0000 (UTC)
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com [149.32.232.65])
- by mx.groups.io with SMTP id smtpd.web12.8198.1666262774663296583
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D6D0C4321E
+	for <webhook@archiver.kernel.org>; Thu, 20 Oct 2022 12:39:36 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by mx.groups.io with SMTP id smtpd.web09.9079.1666269567689148595
  for <yocto@lists.yoctoproject.org>;
- Thu, 20 Oct 2022 03:46:15 -0700
+ Thu, 20 Oct 2022 05:39:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baesystems.com header.s=trusted01 header.b=DtSaTBv6;
- spf=pass (domain: baesystems.com, ip: 149.32.232.65, mailfrom: steven.monsees@baesystems.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1666262774; x=1823942774;
-  h=from:to:cc:subject:date:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=Q24iwiujhIZJispp9XTsvqmtS27LM8C8T0VuR2Xq1Cw=;
-  b=DtSaTBv6taHQ480T5l8KVDa/LnhU0xHy5avlDMVAVa5eEA15XWTiI2Dn
-   EVRxQgAlv8pYqLli4NSWtwliAP5XL+YyFjnxJ4/xf6QpMLs10BDm7ASOd
-   rUXfR9my5mqH9qQsB26vyA4mQCX9zkhZywY4AcfQPzhua+j550NeCXE36
-   k=;
-X-IPAS-Result: =?us-ascii?q?A2ADAADRJVFj/wFUSQpaGgEBAQEBAQEBAQEDAQEBARIBA?=
- =?us-ascii?q?QEBAgIBAQEBQAmBMgUBAQEBCwGDKwKBWBeEN4gfiHgDhheFF4U/jC4UgWgPA?=
- =?us-ascii?q?QEBAQEBAQEBCAEuCwsEAQFLhDoCFoRcJjQJDgECBAEBAQEDAgMBAQEBAQEDA?=
- =?us-ascii?q?QEGAQEBAQEBBgQBgRuFLzkNgjUpAYNjAQEBAQMBIhFFDAQCAQgNAQMEAQEBA?=
- =?us-ascii?q?gIRFQICAh8HChUICAIEDgUIgnEFgm0DMBOrGjV6gTIaAmWDUAGBH4I5DYJOC?=
- =?us-ascii?q?QGBBywBgWWFKoFMgzYUhC6CDUOEPz6CIEICAgGBFggKARIBEiYVE4MYgmYEj?=
- =?us-ascii?q?2OFIxw4A0QdQAMLBzQzAwpaHFgOCSAcDhcNBQYSAyBvBUIPKC4BaSscGweBD?=
- =?us-ascii?q?CooFQMEBAMCBhMDIgINKTEUBCkTDy0HI3EJAgMiZQUDAwQoLAMJIQIBHAclJ?=
- =?us-ascii?q?DwHWDoBBAMCECI8BgMJAwIiWHMxJgUDDRclCAU3GgQIPAIFBlMSAgoRAxIPB?=
- =?us-ascii?q?idHDko+ORYGJ0QBNA8OFgOWYoElGwQQPQYCehMkCCAwQQctCGoGBQGSTkQCg?=
- =?us-ascii?q?yCOM5xpbgcDg2KLQo0GgXSFdC4Wg3aBUIsBhksDjASFdpcaII0hg2iQYg0IE?=
- =?us-ascii?q?ySEdAIEAgQFAhaBYklccHCDNwlIFwKOOwEVg1CFFFGEeXUCATgCBgEKAQEDC?=
- =?us-ascii?q?YgRgTSBEgEB?=
-IronPort-PHdr: A9a23:CaPinRJTZGvaKLK189mcuJRhWUAX0o4c3iYr45Yqw4hDbr6kt8y7e
- hCFvrM23QGCB9STwskHotKei7rnV20E7MTJm1E5W7sIaSU4j94LlRcrGs+PBB6zBvfraysnA
- JYKDwc9rDm0PkdPBcnxeUDZrGGs4j4OABX/Mhd+KvjoFoLIgMm7ye6/94fdbghMhTexbq1+I
- RGrpgjNq8cahpdvJLwswRXTuHtIfOpWxWJsJV2Nmhv3+9m98p1+/SlOovwt78FPX7n0cKQ+V
- rxYES8pM3sp683xtBnMVhWA630BWWgLiBVIAgzF7BbnXpfttybxq+Rw1DWGMcDwULs5Qiqp4
- bt1RxD0iScHLz85/3/Risxsl6JQvRatqwViz4LIfI2ZMfxzdb7fc9wHX2pMRsZfWTJfD42hc
- 4sBAekPPehaoIn8u1QAohSxCBKwBOz0yD9EmmP60bE43uknDArI3BYgH9ULsHnMotn7M6ASU
- eauzKbW0zrDdOta0irg5ojUbB8hv++DXbRtesfP1EIjEw3KgEiVpYDrIjiY0f8Ns3SF4Op+S
- +2vjXQrqwR2ojip3ccjlJfGhpkOx1/f7yp23p01JN2jSE5nf9GkFYBQuzuGOItxR8MvWmdls
- zs1xbMao5C0ZjQKyIg5yB7FbfyKa4mF7xDtWeuTITp1hXxodbyxiRu97EStxfPxW8m23VtUs
- CZIj93Bum4P2hHc6saKRPRz8lmu1zuM1w3d6v9ILF0ymKHGJZAhxbswmYASsUTFBiL2gF/2j
- KiKeUo64eio8P7rYq/7pp+aL4N1igb+Pbgymsy4GeQ4KA8OX2qF9uugyL3v50r5QK9FjvEun
- anZsYzaJcQGpqGiGQNazoEj6xO5Ajy709oYhWEKIE9ZdB6djYXkNUvCLfP3APulnligiCpny
- +zcMrDuDZjBNHfOnK3vcLt57UNX1RA9wspF551OD7EMOPfzWkjsu9PGFhI5KAm0w/r/CNV6y
- 4MeRXqDAq+HP6PWtl+F/v4vIuaWa48TvTb9MPwo6+LygXMlhFMRZ7Sp3YANZH+jBPtpPV6ZY
- Hr3gtcdD2gKuxE+QPb2h12FVD5ff3eyX6Qi6TEnEI+qEJvPSpqvjbGPxiu2HZJbanpbBlyUF
- HfnbYSEW/MCaCKIJc9hlyQJVaO9S4A/yxGhqgn6x6BiLurT/C0Yrozs28Zu5+DIjh497yJ7D
- 9+d0mGWU2F7gGYIRyQs0K9jpkx9z0+P0a5jjPNAD9xc++tJUhsmNZ7b1+F2Fsj+WhjdcdeRV
- FamXtKmDCkxT9I239AOf0F9Fs6mjhDCxCqqH6QVm6aLBZwz7q3cw3/xJ95ny3bB1qkukUUpQ
- tdVOW2hnK5/+FubO4mcukGUh6+seakGlA3E8m6dzGzG6EhcXR42UqzDVG4eYGPZqN344gXJS
- Lr4TfxtCAxG0orKFqtNb9Tyxx0SWPf5P9PFS2u0knW3A1CEy+XfQpDtfjBX+SLbE0UJiERbx
- mqLKwU4Tgzp41/lTXYmQUnzbl3h9697r3WgQ0Iv5wuDYlZwzKa4/wVTjvuZHaBAlokYsTss/
- m0nVG222MjbXp/Z/1IJQQ==
-IronPort-Data: A9a23:lya6Ja6tly+8Mqs62hPiwwxRtLDFchMFZxGqfqrLsTDasY5as4F+v
- mYfUG/QO/2LZ2unf413PYni/E9X7JHRnIJjTAQ6qyFgZn8b8sCt6fZ1jqvT04F+CuWZESqLO
- u1HMoGowPgcFyOa/lH0WlTYhSEUOZugH9IQM8aZfHEsLeNYYH1500g6w7Rh2tcAbeWRWmthh
- /uj+6UzB3f4g1aYAkpMg05UgEoy1BhakGpwUm0WPZinjneH/5UmJM53yZWKEpfNatI88thW5
- gr05OrREmvxp3/BAz4++1rxWhVirrX6ZWBihpfKMkSvqkAqm8A87ko0HNkEdFkI0xOqo9BKk
- NhRu8KxWy0AA7KZzYzxUzEAe81/FbFW8bnCOinn6ZTKiVDdNXHlzu5/F107OJZe8eFyaY1M3
- aVAbm9WKEDfwbveLLGTE4GAguw4MMT1MYVZv3Zm1jzUFt4sSJ3YUr7W6NpDmjw3g6iiGN6EN
- 5pDN2IxNXwsZTVAJUolIcgUnN2E3ETHVx5Wjk3LlYketj27IAtZleKF3MDuUs2NTtlStkKZv
- X7duXX+CQ0dLMaYyzeO7jSrnOCnoM/gcNtKUuLjsK42xgT7KnEvNSD6nGCT+ZGR4nNSkfoGQ
- 6DI0kLCdZQPyXE=
-IronPort-HdrOrdr: A9a23:PCEwEK2UjvvX+Y80NRzrjwqjBLkkLtp133Aq2lEZdPUzSL38qy
- nOpoV46faaslYssR0b9uxoW5PpfZq0z/dICO8qXItKczOLhILCFvAA0WKN+VPd8lXFndK04c
- pbHpSXP7DLZ2RHsQ==
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-AV: E=Sophos;i="5.95,198,1661817600"; 
-   d="scan'208";a="28826061"
-X-IronPort-AV: E=Sophos;i="5.95,198,1661817600"; 
-   d="scan'208";a="143764326"
-From: "Monsees, Steven C (US)" <steven.monsees@baesystems.com>
-To: Alexander Kanavin <alex.kanavin@gmail.com>, "Roos, Thomas"
-	<throos@amazon.de>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: RE: [yocto] devtool upgrade for go recipes with git "broken"
-Thread-Topic: [yocto] devtool upgrade for go recipes with git "broken"
-Thread-Index: AQHY5GTr5j5Nvf1ZnEq1HtJaEKftBq4XR/aAgAAFD4CAAAHIAIAAAmSAgAABPYCAAAOvAIAABMoA//++UQA=
-Date: Thu, 20 Oct 2022 10:45:12 +0000
-In-Reply-To: <CANNYZj9W=OkE_E7jQyK=MHE3QsiPfyWrhWtOQLCgj4J31uHuew@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.44.4.39]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
+ dkim=missing; spf=pass (domain: arm.com, ip: 217.140.110.172, mailfrom: gowtham.sureshkumar@arm.com)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EF230ED1;
+	Thu, 20 Oct 2022 05:39:32 -0700 (PDT)
+Received: from e126345.cambridge.arm.com (e126345.cambridge.arm.com [10.1.28.174])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E00923F67D;
+	Thu, 20 Oct 2022 05:39:25 -0700 (PDT)
+From: Gowtham Suresh Kumar <gowtham.sureshkumar@arm.com>
+To: yocto@lists.yoctoproject.org
+Cc: Gowtham Suresh Kumar <gowtham.sureshkumar@arm.com>
+Subject: [meta-security][PATCH] Update PARSEC recipe to latest v1.1.0 release
+Date: Thu, 20 Oct 2022 13:39:17 +0100
+Message-Id: <20221020123917.14834-1-gowtham.sureshkumar@arm.com>
+X-Mailer: git-send-email 2.17.1
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 20 Oct 2022 10:46:15 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58380
-Message-Id: <20221020104615.C2CC0C433FE@smtp.lore.kernel.org>
+ <yocto@lists.yoctoproject.org>; Thu, 20 Oct 2022 12:39:36 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58381
 
-VGhhbmtzLi4uDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiB5b2N0b0BsaXN0
-cy55b2N0b3Byb2plY3Qub3JnIDx5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPiBPbiBCZWhh
-bGYgT2YgQWxleGFuZGVyIEthbmF2aW4NClNlbnQ6IFRodXJzZGF5LCBPY3RvYmVyIDIwLCAyMDIy
-IDY6NDAgQU0NClRvOiBSb29zLCBUaG9tYXMgPHRocm9vc0BhbWF6b24uZGU+DQpDYzogeW9jdG9A
-bGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gZGV2dG9vbCB1cGdy
-YWRlIGZvciBnbyByZWNpcGVzIHdpdGggZ2l0ICJicm9rZW4iDQoNCkV4dGVybmFsIEVtYWlsIEFs
-ZXJ0DQoNClRoaXMgZW1haWwgaGFzIGJlZW4gc2VudCBmcm9tIGFuIGFjY291bnQgb3V0c2lkZSBv
-ZiB0aGUgQkFFIFN5c3RlbXMgbmV0d29yay4NCg0KUGxlYXNlIHRyZWF0IHRoZSBlbWFpbCB3aXRo
-IGNhdXRpb24sIGVzcGVjaWFsbHkgaWYgeW91IGFyZSByZXF1ZXN0ZWQgdG8gY2xpY2sgb24gYSBs
-aW5rLCBkZWNyeXB0L29wZW4gYW4gYXR0YWNobWVudCwgb3IgZW5hYmxlIG1hY3Jvcy4gIEZvciBm
-dXJ0aGVyIGluZm9ybWF0aW9uIG9uIGhvdyB0byBzcG90IHBoaXNoaW5nLCBhY2Nlc3Mg4oCcQ3li
-ZXJzZWN1cml0eSBPbmVTcGFjZSBQYWdl4oCdIGFuZCByZXBvcnQgcGhpc2hpbmcgYnkgY2xpY2tp
-bmcgdGhlIGJ1dHRvbiDigJxSZXBvcnQgUGhpc2hpbmfigJ0gb24gdGhlIE91dGxvb2sgdG9vbGJh
-ci4NCg0KDQpJdCBtYXkgd2VsbCBiZSB0aGF0IG5vIG9uZSByZW1lbWJlcnMgYW55bW9yZSB3aHkg
-aXQncyB0aGVyZSwgYW5kIGluIHRoaXMgY2FzZSB5b3UgY2FuIGp1c3QgZHJvcCBpdC4gT3IgeW91
-IGNhbiBkaWcgaW50byBnaXQgaGlzdG9yeSB3aXRoICdnaXQgYmxhbWUnIGFuZCBzaW1pbGFyIHRl
-Y2huaXF1ZXMuDQoNCkFsZXgNCg0KT24gVGh1LCAyMCBPY3QgMjAyMiBhdCAxMjoyMywgUm9vcywg
-VGhvbWFzIDx0aHJvb3NAYW1hem9uLmRlPiB3cm90ZToNCj4NCj4gc3VyZSwgYnV0IG1heSB0aGlz
-IHNyYyBmb2xkZXIgaXMgbmVjZXNzYXJ5IGZvciBzb21ldGhpbmc/IFNvbWUgZ28gY29udmVudGlv
-biBJIGRvbid0IGtub3cgYWJvdXQuLi4NCj4NCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18NCj4gVm9uOiBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleC5rYW5hdmluQGdtYWlsLmNvbT4N
-Cj4gR2VzZW5kZXQ6IERvbm5lcnN0YWcsIDIwLiBPa3RvYmVyIDIwMjIgMTI6MDk6NDcNCj4gQW46
-IFJvb3MsIFRob21hcw0KPiBDYzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KPiBCZXRy
-ZWZmOiBSRTogW0VYVEVSTkFMXVt5b2N0b10gZGV2dG9vbCB1cGdyYWRlIGZvciBnbyByZWNpcGVz
-IHdpdGggZ2l0ICJicm9rZW4iDQo+DQo+IENBVVRJT046IFRoaXMgZW1haWwgb3JpZ2luYXRlZCBm
-cm9tIG91dHNpZGUgb2YgdGhlIG9yZ2FuaXphdGlvbi4gRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9w
-ZW4gYXR0YWNobWVudHMgdW5sZXNzIHlvdSBjYW4gY29uZmlybSB0aGUgc2VuZGVyIGFuZCBrbm93
-IHRoZSBjb250ZW50IGlzIHNhZmUuDQo+DQo+DQo+DQo+IENhbiB5b3UgcHJvcG9zZSBhIHBhdGNo
-IHRvIGNvcmU/DQo+DQo+IEFsZXgNCj4NCj4gT24gVGh1LCAyMCBPY3QgMjAyMiBhdCAxMjowNSwg
-Um9vcywgVGhvbWFzIDx0aHJvb3NAYW1hem9uLmRlPiB3cm90ZToNCj4gPg0KPiA+IHllcywgSSBh
-bHJlYWR5IGRpZCB0aGlzIC0gaXQncyBiZWNhdXNlIHRoYXQgZ28uYmJjbGFzcyBpcyBzcGFuZ2x5
-IHVzaW5nIGEgc3ViZGlyIGNhbGxlZCAic3JjIiBhbmQgdGhhdCB3aWxsIGJyZWFrIHRoZSBkZXZ0
-b29sIGNoZWNrIGZvciB1cGdyYWRlcyBtZWNoYW5pc20gYmVjYXVzZSBpdCdzIG5vdCBsb29raW5n
-IGludG8gYSBzcmMgc3ViZGlyLiBTbyBnaXQgd2lsbCBmYWlsIGNoZWNrb3V0IGFueXRoaW5nIGlu
-IHRoZSBwYXJlbnQgZGlyICJyZWZlcmVuY2UgaXMgbm90IGEgdHJlZSINCj4gPg0KPiA+IFRoaXMg
-c2ltcGxlIGNoYW5nZSBpbiB0aGUgZ28uYmJjbGFzcyBmaXggaXQgLSBidXQgSSBkb24ndCBrbm93
-IGlmIHRoYXQgYWRkaXRpb25hbCBzcmMgZGlyIGlzIHNvbWVob3cgbmVjZXNzYXJ5Og0KPiA+DQo+
-ID4NCj4gPiAjIHNyYyBmb2xkZXIgd2lsbCBicmVhayBkZXZ0b29sIHVwZ3JhZGUgcHl0aG9uIGdv
-X2RvX3VucGFjaygpIHsNCj4gPiAgICAgc3JjX3VyaSA9IChkLmdldFZhcignU1JDX1VSSScpIG9y
-ICIiKS5zcGxpdCgpDQo+ID4gICAgIGlmIGxlbihzcmNfdXJpKSA9PSAwOg0KPiA+ICAgICAgICAg
-cmV0dXJuDQo+ID4NCj4gPiAgICAgZmV0Y2hlciA9IGJiLmZldGNoMi5GZXRjaChzcmNfdXJpLCBk
-KQ0KPiA+ICAgICBmb3IgdXJsIGluIGZldGNoZXIudXJsczoNCj4gPiAgICAgICAgIGlmIGZldGNo
-ZXIudWRbdXJsXS50eXBlID09ICdnaXQnOg0KPiA+ICAgICAgICAgICAgIGlmIGZldGNoZXIudWRb
-dXJsXS5wYXJtLmdldCgnZGVzdHN1ZmZpeCcpIGlzIE5vbmU6DQo+ID4gICAgICAgICAgICAgICAg
-IHNfZGlybmFtZSA9IG9zLnBhdGguYmFzZW5hbWUoZC5nZXRWYXIoJ1MnKSkNCj4gPiAjY2F1c2Ug
-cHJvYmxlbXMgICAgICAgICAgICAgICAgZmV0Y2hlci51ZFt1cmxdLnBhcm1bJ2Rlc3RzdWZmaXgn
-XSA9IG9zLnBhdGguam9pbihzX2Rpcm5hbWUsICdzcmMnLCBkLmdldFZhcignR09fSU1QT1JUJykp
-ICsgJy8nDQo+ID4gI0ZJWA0KPiA+ICAgICAgICAgICAgICAgICBmZXRjaGVyLnVkW3VybF0ucGFy
-bVsnZGVzdHN1ZmZpeCddID0gb3MucGF0aC5qb2luKHNfZGlybmFtZSwgJycsIGQuZ2V0VmFyKCdH
-T19JTVBPUlQnKSkgKyAnLycNCj4gPiAjRklYDQo+ID4gICAgIGZldGNoZXIudW5wYWNrKGQuZ2V0
-VmFyKCdXT1JLRElSJykpDQo+ID4gfQ0KPiA+DQo+ID4gIyBzcmMgZm9sZGVyIHdpbGwgYnJlYWsg
-ZGV2dG9vbCB1cGdyYWRlDQo+ID4gZ29fZG9fY29uZmlndXJlKCkgew0KPiA+ICNjYXVzZSBwcm9i
-bGVtcyAgICAgIGxuIC1zbmYgJHtTfS9zcmMgJHtCfS8NCj4gPiAjRklYDQo+ID4gICAgIGxuIC1z
-bmYgJHtTfSAke0J9Lw0KPiA+ICNGSVgNCj4gPiB9DQo+ID4NCj4gPg0KPiA+IF9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fDQo+ID4gVm9uOiBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleC5r
-YW5hdmluQGdtYWlsLmNvbT4NCj4gPiBHZXNlbmRldDogRG9ubmVyc3RhZywgMjAuIE9rdG9iZXIg
-MjAyMiAxMTo1Njo0OA0KPiA+IEFuOiBSb29zLCBUaG9tYXMNCj4gPiBDYzogeW9jdG9AbGlzdHMu
-eW9jdG9wcm9qZWN0Lm9yZw0KPiA+IEJldHJlZmY6IFJFOiBbRVhURVJOQUxdW3lvY3RvXSBkZXZ0
-b29sIHVwZ3JhZGUgZm9yIGdvIHJlY2lwZXMgd2l0aCBnaXQgImJyb2tlbiINCj4gPg0KPiA+IENB
-VVRJT046IFRoaXMgZW1haWwgb3JpZ2luYXRlZCBmcm9tIG91dHNpZGUgb2YgdGhlIG9yZ2FuaXph
-dGlvbi4gRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNzIHlvdSBj
-YW4gY29uZmlybSB0aGUgc2VuZGVyIGFuZCBrbm93IHRoZSBjb250ZW50IGlzIHNhZmUuDQo+ID4N
-Cj4gPg0KPiA+DQo+ID4gVGhhbmtzLCBJIGRvIG5vdCBoYXZlIGEgcXVpY2sgYW5zd2VyIHRvIHRo
-aXMsIGJ1dCB3b3VsZCBhcHByZWNpYXRlIA0KPiA+IGlmIHlvdSBjYW4gZGlnIGRlZXBlciBpbnRv
-IHRoZSBpc3N1ZS4NCj4gPg0KPiA+IEFsZXgNCj4gPg0KPiA+IE9uIFRodSwgMjAgT2N0IDIwMjIg
-YXQgMTE6NTAsIFJvb3MsIFRob21hcyA8dGhyb29zQGFtYXpvbi5kZT4gd3JvdGU6DQo+ID4gPg0K
-PiA+ID4geWVzLCBlYXN5DQo+ID4gPiAtIHNldCB0aGUgZ28taGVsbG93b3JsZCBiYiBzcmNyZXYg
-dG8gYW4gb2xkZXIgcmV2IC0gZS5nOg0KPiA+ID4gU1JDUkVWID0gImFkOTVlN2Y3OTFkOGUxZTdl
-N2VjN2Y3Y2VkZmMyZjZiMjlmNmM5ZTIiDQo+ID4gPg0KPiA+ID4gImRldnRvb2wgdXBncmFkZSBn
-by1oZWxsb3dvcmxkIg0KPiA+ID4NCj4gPiA+IElORk86IEV4dHJhY3RpbmcgdXBncmFkZWQgdmVy
-c2lvbiBzb3VyY2UuLi4NCj4gPiA+IFRyYWNlYmFjayAobW9zdCByZWNlbnQgY2FsbCBsYXN0KToN
-Cj4gPiA+ICAgRmlsZSAiL2hvbWUvdWJ1bnR1L3lvY3RvL3Bva3kvc2NyaXB0cy9saWIvZGV2dG9v
-bC91cGdyYWRlLnB5IiwgbGluZSA1NjcsIGluIHVwZ3JhZGUNCj4gPiA+ICAgICByZXYyLCBtZDUs
-IHNoYTI1Niwgc3JjYnJhbmNoLCBzcmNzdWJkaXIyID0gX2V4dHJhY3RfbmV3X3NvdXJjZShhcmdz
-LnZlcnNpb24sIHNyY3RyZWUsIGFyZ3Mubm9fcGF0Y2gsDQo+ID4gPiAgIEZpbGUgIi9ob21lL3Vi
-dW50dS95b2N0by9wb2t5L3NjcmlwdHMvbGliL2RldnRvb2wvdXBncmFkZS5weSIsIGxpbmUgMTgz
-LCBpbiBfZXh0cmFjdF9uZXdfc291cmNlDQo+ID4gPiAgICAgX19ydW4oJ2dpdCBjaGVja291dCAl
-cycgJSByZXYpDQo+ID4gPiAgIEZpbGUgIi9ob21lL3VidW50dS95b2N0by9wb2t5L3NjcmlwdHMv
-bGliL2RldnRvb2wvdXBncmFkZS5weSIsIGxpbmUgMTcwLCBpbiBfX3J1bg0KPiA+ID4gICAgIHJl
-dHVybiBfcnVuKGNtZCwgc3JjdHJlZSkNCj4gPiA+ICAgRmlsZSAiL2hvbWUvdWJ1bnR1L3lvY3Rv
-L3Bva3kvc2NyaXB0cy9saWIvZGV2dG9vbC91cGdyYWRlLnB5IiwgbGluZSAzMSwgaW4gX3J1bg0K
-PiA+ID4gICAgIHJldHVybiBiYi5wcm9jZXNzLnJ1bignJXMnICUgY21kLCBjd2Q9Y3dkKQ0KPiA+
-ID4gICBGaWxlICIvaG9tZS91YnVudHUveW9jdG8vcG9reS9iaXRiYWtlL2xpYi9iYi9wcm9jZXNz
-LnB5IiwgbGluZSAxODksIGluIHJ1bg0KPiA+ID4gICAgIHJhaXNlIEV4ZWN1dGlvbkVycm9yKGNt
-ZCwgcGlwZS5yZXR1cm5jb2RlLCBzdGRvdXQsIHN0ZGVycikNCj4gPiA+IGJiLnByb2Nlc3MuRXhl
-Y3V0aW9uRXJyb3I6IEV4ZWN1dGlvbiBvZiAnZ2l0IGNoZWNrb3V0IDJlNjg3NzNkZmNhMDcyY2I4
-MWYyMTlmYzNiOTdhZDM0ZmU5ZDlmOTQnIGZhaWxlZCB3aXRoIGV4aXQgY29kZSAxMjg6DQo+ID4g
-PiBmYXRhbDogcmVmZXJlbmNlIGlzIG5vdCBhIHRyZWU6IA0KPiA+ID4gMmU2ODc3M2RmY2EwNzJj
-YjgxZjIxOWZjM2I5N2FkMzRmZTlkOWY5NA0KPiA+ID4NCj4gPiA+DQo+ID4gPiBEdXJpbmcgaGFu
-ZGxpbmcgb2YgdGhlIGFib3ZlIGV4Y2VwdGlvbiwgYW5vdGhlciBleGNlcHRpb24gb2NjdXJyZWQ6
-DQo+ID4gPg0KPiA+ID4gVHJhY2ViYWNrIChtb3N0IHJlY2VudCBjYWxsIGxhc3QpOg0KPiA+ID4g
-ICBGaWxlICIvaG9tZS91YnVudHUveW9jdG8vcG9reS9zY3JpcHRzL2RldnRvb2wiLCBsaW5lIDMz
-OCwgaW4gPG1vZHVsZT4NCj4gPiA+ICAgICByZXQgPSBtYWluKCkNCj4gPiA+ICAgRmlsZSAiL2hv
-bWUvdWJ1bnR1L3lvY3RvL3Bva3kvc2NyaXB0cy9kZXZ0b29sIiwgbGluZSAzMjUsIGluIG1haW4N
-Cj4gPiA+ICAgICByZXQgPSBhcmdzLmZ1bmMoYXJncywgY29uZmlnLCBiYXNlcGF0aCwgd29ya3Nw
-YWNlKQ0KPiA+ID4gICBGaWxlICIvaG9tZS91YnVudHUveW9jdG8vcG9reS9zY3JpcHRzL2xpYi9k
-ZXZ0b29sL3VwZ3JhZGUucHkiLCBsaW5lIDU3NSwgaW4gdXBncmFkZQ0KPiA+ID4gICAgIF91cGdy
-YWRlX2Vycm9yKGUsIHJlY2lwZWRpciwgc3JjdHJlZSwgYXJncy5rZWVwX2ZhaWx1cmUpDQo+ID4g
-PiAgIEZpbGUgIi9ob21lL3VidW50dS95b2N0by9wb2t5L3NjcmlwdHMvbGliL2RldnRvb2wvdXBn
-cmFkZS5weSIsIGxpbmUgMTM0LCBpbiBfdXBncmFkZV9lcnJvcg0KPiA+ID4gICAgIF9jbGVhbnVw
-X29uX2Vycm9yKHJkLCBzcmN0cmVlKQ0KPiA+ID4gICBGaWxlICIvaG9tZS91YnVudHUveW9jdG8v
-cG9reS9zY3JpcHRzL2xpYi9kZXZ0b29sL3VwZ3JhZGUucHkiLCBsaW5lIDEyNiwgaW4gX2NsZWFu
-dXBfb25fZXJyb3INCj4gPiA+ICAgICBpZiBub3QgbGVuKG9zLmxpc3RkaXIocmRwKSk6DQo+ID4g
-PiBGaWxlTm90Rm91bmRFcnJvcjogW0Vycm5vIDJdIE5vIHN1Y2ggZmlsZSBvciBkaXJlY3Rvcnk6
-ICcvaG9tZS91YnVudHUveW9jdG8vYnVpbGQvd29ya3NwYWNlL3JlY2lwZXMnDQo+ID4gPg0KPiA+
-ID4NCj4gPiA+DQo+ID4gPg0KPiA+ID4NCj4gPiA+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fDQo+ID4gPiBWb246IEFsZXhhbmRlciBLYW5hdmluIDxhbGV4LmthbmF2aW5AZ21haWwu
-Y29tPg0KPiA+ID4gR2VzZW5kZXQ6IERvbm5lcnN0YWcsIDIwLiBPa3RvYmVyIDIwMjIgMTE6MzI6
-MTkNCj4gPiA+IEFuOiBSb29zLCBUaG9tYXMNCj4gPiA+IENjOiB5b2N0b0BsaXN0cy55b2N0b3By
-b2plY3Qub3JnDQo+ID4gPiBCZXRyZWZmOiBSRTogW0VYVEVSTkFMXVt5b2N0b10gZGV2dG9vbCB1
-cGdyYWRlIGZvciBnbyByZWNpcGVzIHdpdGggZ2l0ICJicm9rZW4iDQo+ID4gPg0KPiA+ID4gQ0FV
-VElPTjogVGhpcyBlbWFpbCBvcmlnaW5hdGVkIGZyb20gb3V0c2lkZSBvZiB0aGUgb3JnYW5pemF0
-aW9uLiBEbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1bmxlc3MgeW91IGNh
-biBjb25maXJtIHRoZSBzZW5kZXIgYW5kIGtub3cgdGhlIGNvbnRlbnQgaXMgc2FmZS4NCj4gPiA+
-DQo+ID4gPg0KPiA+ID4NCj4gPiA+IEl0IGhlbHBzIGlmIHlvdSBzaG93IHRoZSBleGFjdCBlcnJv
-ciwgYW5kIGEgd2F5IHRvIHJlcHJvZHVjZSB0aGlzIA0KPiA+ID4gdXNpbmcgYSBtaW5pbWFsIHNl
-dHVwIChpZGVhbGx5IG9ubHkgcG9reSkuDQo+ID4gPg0KPiA+ID4gQWxleA0KPiA+ID4NCj4gPiA+
-IE9uIFRodSwgMjAgT2N0IDIwMjIgYXQgMTE6MTgsIFRob21hcyBSb29zIHZpYSANCj4gPiA+IGxp
-c3RzLnlvY3RvcHJvamVjdC5vcmcgPHRocm9vcz1hbWF6b24uZGVAbGlzdHMueW9jdG9wcm9qZWN0
-Lm9yZz4gd3JvdGU6DQo+ID4gPiA+DQo+ID4gPiA+IEhpLA0KPiA+ID4gPiB3aGVuIGRvaW5nIGEg
-ImRldnRvb2wgdXBncmFkZSIgZm9yIGEgcmVjaXBlIHdoaWNoIGluaGVyaXRzICJnbyIgYW5kIHVz
-aW5nIGEgU1JDX1VSSSB0byBhIGdpdCByZXBvIHRoaXMgd2lsbCBmYWlsLiBDb21wbGFpbmluZyB0
-aGF0IHRoZSBnaXQgcmV2aXNpb24gaXMgIm91dCBvZiB0cmVlIiAtIEkgZm91bmQgdGhhdCB0aGUg
-YWRkaXRpb25hbCAic3JjIiBmb2xkZXIgaW5zaWRlIHRoZSBjaGVja291dCBvdXQgc291cmNlcyBp
-cyBjYXVzaW5nIHRoaXMgcHJvYmxlbSBhbmQgSSB3b25kZXJpbmcgaWYgdGhpcyBpcyBuZWNlc3Nh
-cnkuIEknbSBub3QgYSBnbyBwcm9ncmFtbWVyLCBidXQgd2hlbiBjaGFuZ2luZyB0aGlzIHRoZSBy
-ZWNpcGUgc2VlbXMgdG8gcHJvZHVjZSB0aGUgc2FtZSByZXN1bHQuDQo+ID4gPiA+IEkgZGlkIGNo
-YW5nZSBvdXIgZ28gcmVjaXBlIHRvIGRvbid0IHVzZSB0aGlzIGFkZGl0aW9uYWwgc3JjIA0KPiA+
-ID4gPiBmb2xkZXIgYnkgb3ZlcndyaXRpbmcgdGhlIGdvX2RvX3VwYWNrIGFuZCBnb19kb19jb25m
-aWd1cmUgDQo+ID4gPiA+IG1ldGhvZC4gSGVyZTogDQo+ID4gPiA+IGh0dHBzOi8vZ2l0aHViLmNv
-bS9hd3M0ZW1iZWRkZWRsaW51eC9tZXRhLWF3cy9ibG9iLzk0MjY1MTAyNmM3YTkNCj4gPiA+ID4g
-MWI5NzAzNjA5ZDc2NThiZDE2NDkzNTBhY2FmL3JlY2lwZXMtc3VwcG9ydC9hbWF6b24tc3NtLWFn
-ZW50L2FtYQ0KPiA+ID4gPiB6b24tc3NtLWFnZW50XzMuMS4xODU2LjAuYmIgSXMgdGhpcyBhIGJ1
-ZyBvciBkbyBhbnlib2R5IGtub3cgd2h5IA0KPiA+ID4gPiBnbyB1c2UgdGhhdCBhZGRpdGlvbmFs
-IHNyYyBmb2xkZXI/DQo+ID4gPiA+DQo+ID4gPiA+DQo+ID4gPiA+IENoZWVycywNCj4gPiA+ID4g
-VGhvbWFzDQo+ID4gPiA+DQo+ID4gPiA+DQo+ID4gPiA+DQo+ID4gPiA+DQo+ID4gPiA+IEFtYXpv
-biBXZWIgU2VydmljZXMgRU1FQSBTQVJMDQo+ID4gPiA+IDM4IGF2ZW51ZSBKb2huIEYuIEtlbm5l
-ZHksIEwtMTg1NSBMdXhlbWJvdXJnIFNpdHogZGVyIA0KPiA+ID4gPiBHZXNlbGxzY2hhZnQ6IEwt
-MTg1NSBMdXhlbWJ1cmcgZWluZ2V0cmFnZW4gaW0gTHV4ZW1idXJnaXNjaGVuIA0KPiA+ID4gPiBI
-YW5kZWxzcmVnaXN0ZXIgdW50ZXIgUi5DLlMuIEIxODYyODQNCj4gPiA+ID4NCj4gPiA+ID4gQW1h
-em9uIFdlYiBTZXJ2aWNlcyBFTUVBIFNBUkwsIE5pZWRlcmxhc3N1bmcgRGV1dHNjaGxhbmQgDQo+
-ID4gPiA+IE1hcmNlbC1CcmV1ZXItU3RyLiAxMiwgRC04MDgwNyBNdWVuY2hlbiBTaXR6IGRlciAN
-Cj4gPiA+ID4gWndlaWduaWVkZXJsYXNzdW5nOiBNdWVuY2hlbiBlaW5nZXRyYWdlbiBpbSBIYW5k
-ZWxzcmVnaXN0ZXIgZGVzIA0KPiA+ID4gPiBBbXRzZ2VyaWNodHMgTXVlbmNoZW4gdW50ZXIgSFJC
-IDI0MjI0MCwgVVN0LUlEIERFMzE3MDEzMDk0DQo+ID4gPiA+DQo+ID4gPiA+DQo+ID4gPiA+DQo+
-ID4gPiA+IA0KPiA+ID4gPg0KPiA+ID4NCj4gPiA+DQo+ID4gPg0KPiA+ID4gQW1hem9uIFdlYiBT
-ZXJ2aWNlcyBFTUVBIFNBUkwNCj4gPiA+IDM4IGF2ZW51ZSBKb2huIEYuIEtlbm5lZHksIEwtMTg1
-NSBMdXhlbWJvdXJnIFNpdHogZGVyIA0KPiA+ID4gR2VzZWxsc2NoYWZ0OiBMLTE4NTUgTHV4ZW1i
-dXJnIGVpbmdldHJhZ2VuIGltIEx1eGVtYnVyZ2lzY2hlbiANCj4gPiA+IEhhbmRlbHNyZWdpc3Rl
-ciB1bnRlciBSLkMuUy4gQjE4NjI4NA0KPiA+ID4NCj4gPiA+IEFtYXpvbiBXZWIgU2VydmljZXMg
-RU1FQSBTQVJMLCBOaWVkZXJsYXNzdW5nIERldXRzY2hsYW5kIA0KPiA+ID4gTWFyY2VsLUJyZXVl
-ci1TdHIuIDEyLCBELTgwODA3IE11ZW5jaGVuIFNpdHogZGVyIA0KPiA+ID4gWndlaWduaWVkZXJs
-YXNzdW5nOiBNdWVuY2hlbiBlaW5nZXRyYWdlbiBpbSBIYW5kZWxzcmVnaXN0ZXIgZGVzIA0KPiA+
-ID4gQW10c2dlcmljaHRzIE11ZW5jaGVuIHVudGVyIEhSQiAyNDIyNDAsIFVTdC1JRCBERTMxNzAx
-MzA5NA0KPiA+ID4NCj4gPiA+DQo+ID4NCj4gPg0KPiA+DQo+ID4gQW1hem9uIFdlYiBTZXJ2aWNl
-cyBFTUVBIFNBUkwNCj4gPiAzOCBhdmVudWUgSm9obiBGLiBLZW5uZWR5LCBMLTE4NTUgTHV4ZW1i
-b3VyZyBTaXR6IGRlciBHZXNlbGxzY2hhZnQ6IA0KPiA+IEwtMTg1NSBMdXhlbWJ1cmcgZWluZ2V0
-cmFnZW4gaW0gTHV4ZW1idXJnaXNjaGVuIEhhbmRlbHNyZWdpc3RlciANCj4gPiB1bnRlciBSLkMu
-Uy4gQjE4NjI4NA0KPiA+DQo+ID4gQW1hem9uIFdlYiBTZXJ2aWNlcyBFTUVBIFNBUkwsIE5pZWRl
-cmxhc3N1bmcgRGV1dHNjaGxhbmQgDQo+ID4gTWFyY2VsLUJyZXVlci1TdHIuIDEyLCBELTgwODA3
-IE11ZW5jaGVuIFNpdHogZGVyIFp3ZWlnbmllZGVybGFzc3VuZzogDQo+ID4gTXVlbmNoZW4gZWlu
-Z2V0cmFnZW4gaW0gSGFuZGVsc3JlZ2lzdGVyIGRlcyBBbXRzZ2VyaWNodHMgTXVlbmNoZW4gDQo+
-ID4gdW50ZXIgSFJCIDI0MjI0MCwgVVN0LUlEIERFMzE3MDEzMDk0DQo+ID4NCj4gPg0KPg0KPg0K
-Pg0KPiBBbWF6b24gV2ViIFNlcnZpY2VzIEVNRUEgU0FSTA0KPiAzOCBhdmVudWUgSm9obiBGLiBL
-ZW5uZWR5LCBMLTE4NTUgTHV4ZW1ib3VyZyBTaXR6IGRlciBHZXNlbGxzY2hhZnQ6IA0KPiBMLTE4
-NTUgTHV4ZW1idXJnIGVpbmdldHJhZ2VuIGltIEx1eGVtYnVyZ2lzY2hlbiBIYW5kZWxzcmVnaXN0
-ZXIgdW50ZXIgDQo+IFIuQy5TLiBCMTg2Mjg0DQo+DQo+IEFtYXpvbiBXZWIgU2VydmljZXMgRU1F
-QSBTQVJMLCBOaWVkZXJsYXNzdW5nIERldXRzY2hsYW5kIA0KPiBNYXJjZWwtQnJldWVyLVN0ci4g
-MTIsIEQtODA4MDcgTXVlbmNoZW4gU2l0eiBkZXIgWndlaWduaWVkZXJsYXNzdW5nOiANCj4gTXVl
-bmNoZW4gZWluZ2V0cmFnZW4gaW0gSGFuZGVsc3JlZ2lzdGVyIGRlcyBBbXRzZ2VyaWNodHMgTXVl
-bmNoZW4gDQo+IHVudGVyIEhSQiAyNDIyNDAsIFVTdC1JRCBERTMxNzAxMzA5NA0KPg0KPg0K
+This commit updates the parsec-service to v1.1.0 and the parsec-tool
+to v0.5.4.
+
+The buildpaths QA check has been disabled and relevant
+issue links have been added to address this.
+
+Signed-off-by: Gowtham Suresh Kumar <gowtham.sureshkumar@arm.com>
+---
+ meta-parsec/README.md                         |   1 +
+ ...rvice_1.0.0.bb => parsec-service_1.1.0.bb} |   5 +
+ ...ice_1.0.0.inc => parsec-service_1.1.0.inc} | 207 +++++++++---------
+ .../parsec-tool/parsec-tool_0.5.2.inc         | 196 -----------------
+ ...sec-tool_0.5.2.bb => parsec-tool_0.5.4.bb} |   5 +
+ .../parsec-tool/parsec-tool_0.5.4.inc         | 176 +++++++++++++++
+ 6 files changed, 286 insertions(+), 304 deletions(-)
+ rename meta-parsec/recipes-parsec/parsec-service/{parsec-service_1.0.0.bb => parsec-service_1.1.0.bb} (95%)
+ rename meta-parsec/recipes-parsec/parsec-service/{parsec-service_1.0.0.inc => parsec-service_1.1.0.inc} (52%)
+ delete mode 100644 meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.5.2.inc
+ rename meta-parsec/recipes-parsec/parsec-tool/{parsec-tool_0.5.2.bb => parsec-tool_0.5.4.bb} (71%)
+ create mode 100644 meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.5.4.inc
+
+diff --git a/meta-parsec/README.md b/meta-parsec/README.md
+index 99935bc..9b231f6 100644
+--- a/meta-parsec/README.md
++++ b/meta-parsec/README.md
+@@ -48,6 +48,7 @@ PKCS11 and MBED-CRYPTO providers build-in.
+ - DISTRO_FEATURES contains "tmp2" and
+ - "tpm-layer" (meta-tpm) is included in BBLAYERS
+ 
++The trusted service provider depends on libts recipe from meta-arm layer. 
+ 
+ You can use PACKAGECONFIG for Parsec servic recipe to define
+ what providers should be built in. For example:
+diff --git a/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.0.0.bb b/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.1.0.bb
+similarity index 95%
+rename from meta-parsec/recipes-parsec/parsec-service/parsec-service_1.0.0.bb
+rename to meta-parsec/recipes-parsec/parsec-service/parsec-service_1.1.0.bb
+index 931abee..218b776 100644
+--- a/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.0.0.bb
++++ b/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.1.0.bb
+@@ -83,3 +83,8 @@ FILES:${PN} += " \
+ "
+ 
+ require parsec-service_${PV}.inc
++
++# The QA check has been temporarily disabled. An issue has been created 
++# upstream to fix this. 
++# https://github.com/parallaxsecond/parsec/issues/645
++INSANE_SKIP:${PN}-dbg += "buildpaths"
+diff --git a/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.0.0.inc b/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.1.0.inc
+similarity index 52%
+rename from meta-parsec/recipes-parsec/parsec-service/parsec-service_1.0.0.inc
+rename to meta-parsec/recipes-parsec/parsec-service/parsec-service_1.1.0.inc
+index b6934f8..c04bcbd 100644
+--- a/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.0.0.inc
++++ b/meta-parsec/recipes-parsec/parsec-service/parsec-service_1.1.0.inc
+@@ -2,61 +2,59 @@
+ 
+ SRC_URI += " \
+     crate://crates.io/ahash/0.7.6 \
+-    crate://crates.io/aho-corasick/0.7.18 \
++    crate://crates.io/aho-corasick/0.7.19 \
+     crate://crates.io/ansi_term/0.12.1 \
+-    crate://crates.io/anyhow/1.0.56 \
+-    crate://crates.io/arrayvec/0.5.2 \
++    crate://crates.io/anyhow/1.0.64 \
++    crate://crates.io/asn1-rs-derive/0.1.0 \
++    crate://crates.io/asn1-rs-impl/0.1.0 \
++    crate://crates.io/asn1-rs/0.3.1 \
+     crate://crates.io/atty/0.2.14 \
+     crate://crates.io/autocfg/1.1.0 \
+-    crate://crates.io/base64/0.12.3 \
+     crate://crates.io/base64/0.13.0 \
+     crate://crates.io/bincode/1.3.3 \
+     crate://crates.io/bindgen/0.57.0 \
+     crate://crates.io/bindgen/0.59.2 \
+     crate://crates.io/bitfield/0.13.2 \
+     crate://crates.io/bitflags/1.3.2 \
+-    crate://crates.io/bitvec/0.19.6 \
+-    crate://crates.io/bumpalo/3.9.1 \
+-    crate://crates.io/bytes/1.1.0 \
++    crate://crates.io/bumpalo/3.11.0 \
++    crate://crates.io/bytes/1.2.1 \
+     crate://crates.io/cc/1.0.73 \
+     crate://crates.io/cexpr/0.4.0 \
+     crate://crates.io/cexpr/0.6.0 \
+     crate://crates.io/cfg-if/1.0.0 \
+-    crate://crates.io/chrono/0.4.19 \
+-    crate://crates.io/clang-sys/1.3.1 \
++    crate://crates.io/clang-sys/1.3.3 \
+     crate://crates.io/clap/2.34.0 \
+     crate://crates.io/cmake/0.1.45 \
+-    crate://crates.io/const-oid/0.6.2 \
++    crate://crates.io/const-oid/0.7.1 \
+     crate://crates.io/cryptoauthlib-sys/0.2.2 \
+-    crate://crates.io/cryptoki-sys/0.1.3 \
+-    crate://crates.io/cryptoki/0.2.1 \
++    crate://crates.io/cryptoki-sys/0.1.4 \
++    crate://crates.io/cryptoki/0.3.0 \
+     crate://crates.io/data-encoding/2.3.2 \
+-    crate://crates.io/der-oid-macro/0.4.0 \
+-    crate://crates.io/der-parser/5.1.2 \
+-    crate://crates.io/der/0.4.5 \
++    crate://crates.io/der-parser/7.0.0 \
++    crate://crates.io/der/0.5.1 \
+     crate://crates.io/derivative/2.2.0 \
+-    crate://crates.io/either/1.6.1 \
+-    crate://crates.io/enumflags2/0.7.3 \
+-    crate://crates.io/enumflags2_derive/0.7.3 \
++    crate://crates.io/displaydoc/0.2.3 \
++    crate://crates.io/either/1.8.0 \
++    crate://crates.io/enumflags2/0.7.5 \
++    crate://crates.io/enumflags2_derive/0.7.4 \
+     crate://crates.io/env_logger/0.8.4 \
+     crate://crates.io/env_logger/0.9.0 \
+     crate://crates.io/fallible-iterator/0.2.0 \
+     crate://crates.io/fallible-streaming-iterator/0.1.9 \
+-    crate://crates.io/fastrand/1.7.0 \
++    crate://crates.io/fastrand/1.8.0 \
+     crate://crates.io/fixedbitset/0.2.0 \
+     crate://crates.io/form_urlencoded/1.0.1 \
+-    crate://crates.io/funty/1.1.0 \
+-    crate://crates.io/futures-channel/0.3.21 \
+-    crate://crates.io/futures-core/0.3.21 \
+-    crate://crates.io/futures-executor/0.3.21 \
+-    crate://crates.io/futures-io/0.3.21 \
+-    crate://crates.io/futures-macro/0.3.21 \
+-    crate://crates.io/futures-sink/0.3.21 \
+-    crate://crates.io/futures-task/0.3.21 \
+-    crate://crates.io/futures-util/0.3.21 \
+-    crate://crates.io/futures/0.3.21 \
+-    crate://crates.io/generic-array/0.14.5 \
+-    crate://crates.io/getrandom/0.2.5 \
++    crate://crates.io/futures-channel/0.3.24 \
++    crate://crates.io/futures-core/0.3.24 \
++    crate://crates.io/futures-executor/0.3.24 \
++    crate://crates.io/futures-io/0.3.24 \
++    crate://crates.io/futures-macro/0.3.24 \
++    crate://crates.io/futures-sink/0.3.24 \
++    crate://crates.io/futures-task/0.3.24 \
++    crate://crates.io/futures-util/0.3.24 \
++    crate://crates.io/futures/0.3.24 \
++    crate://crates.io/generic-array/0.14.6 \
++    crate://crates.io/getrandom/0.2.7 \
+     crate://crates.io/glob/0.3.0 \
+     crate://crates.io/grpcio-sys/0.9.1+1.38.0 \
+     crate://crates.io/grpcio/0.9.1 \
+@@ -65,140 +63,134 @@ SRC_URI += " \
+     crate://crates.io/heck/0.3.3 \
+     crate://crates.io/hermit-abi/0.1.19 \
+     crate://crates.io/hex/0.4.3 \
+-    crate://crates.io/hostname-validator/1.1.0 \
++    crate://crates.io/hostname-validator/1.1.1 \
+     crate://crates.io/humantime/2.1.0 \
+     crate://crates.io/idna/0.2.3 \
+-    crate://crates.io/indexmap/1.8.0 \
++    crate://crates.io/indexmap/1.8.2 \
+     crate://crates.io/instant/0.1.12 \
+     crate://crates.io/itertools/0.10.3 \
+-    crate://crates.io/itoa/1.0.1 \
+-    crate://crates.io/js-sys/0.3.56 \
+-    crate://crates.io/jsonwebkey/0.3.2 \
+-    crate://crates.io/jsonwebtoken/7.2.0 \
++    crate://crates.io/itoa/1.0.3 \
++    crate://crates.io/js-sys/0.3.59 \
++    crate://crates.io/jsonwebkey/0.3.5 \
++    crate://crates.io/jsonwebtoken/8.1.1 \
+     crate://crates.io/lazy_static/1.4.0 \
+     crate://crates.io/lazycell/1.3.0 \
+-    crate://crates.io/lexical-core/0.7.6 \
+-    crate://crates.io/libc/0.2.120 \
++    crate://crates.io/libc/0.2.132 \
+     crate://crates.io/libloading/0.7.3 \
+     crate://crates.io/libsqlite3-sys/0.23.2 \
+-    crate://crates.io/libz-sys/1.1.5 \
+-    crate://crates.io/lock_api/0.4.6 \
+-    crate://crates.io/log/0.4.14 \
++    crate://crates.io/libz-sys/1.1.8 \
++    crate://crates.io/lock_api/0.4.8 \
++    crate://crates.io/log/0.4.17 \
+     crate://crates.io/matches/0.1.9 \
+     crate://crates.io/mbox/0.6.0 \
+-    crate://crates.io/memchr/2.4.1 \
++    crate://crates.io/memchr/2.5.0 \
+     crate://crates.io/minimal-lexical/0.2.1 \
+     crate://crates.io/multimap/0.8.3 \
+     crate://crates.io/nom/5.1.2 \
+-    crate://crates.io/nom/6.1.2 \
+     crate://crates.io/nom/7.1.1 \
+-    crate://crates.io/num-bigint/0.2.6 \
+-    crate://crates.io/num-bigint/0.3.3 \
+     crate://crates.io/num-bigint/0.4.3 \
+-    crate://crates.io/num-complex/0.3.1 \
++    crate://crates.io/num-complex/0.4.2 \
+     crate://crates.io/num-derive/0.3.3 \
+-    crate://crates.io/num-integer/0.1.44 \
+-    crate://crates.io/num-iter/0.1.42 \
+-    crate://crates.io/num-rational/0.3.2 \
+-    crate://crates.io/num-traits/0.2.14 \
+-    crate://crates.io/num/0.3.1 \
++    crate://crates.io/num-integer/0.1.45 \
++    crate://crates.io/num-iter/0.1.43 \
++    crate://crates.io/num-rational/0.4.1 \
++    crate://crates.io/num-traits/0.2.15 \
++    crate://crates.io/num/0.4.0 \
+     crate://crates.io/num_cpus/1.13.1 \
+-    crate://crates.io/oid-registry/0.1.5 \
++    crate://crates.io/num_threads/0.1.6 \
++    crate://crates.io/oid-registry/0.4.0 \
+     crate://crates.io/oid/0.2.1 \
+-    crate://crates.io/once_cell/1.10.0 \
++    crate://crates.io/once_cell/1.14.0 \
+     crate://crates.io/parking_lot/0.11.2 \
+     crate://crates.io/parking_lot_core/0.8.5 \
+-    crate://crates.io/parsec-interface/0.26.0 \
++    crate://crates.io/parsec-interface/0.27.0 \
+     crate://crates.io/peeking_take_while/0.1.2 \
+-    crate://crates.io/pem/0.8.3 \
++    crate://crates.io/pem/1.1.0 \
+     crate://crates.io/percent-encoding/2.1.0 \
+-    crate://crates.io/pest/2.1.3 \
++    crate://crates.io/pest/2.3.0 \
+     crate://crates.io/petgraph/0.5.1 \
+     crate://crates.io/picky-asn1-der/0.2.5 \
+     crate://crates.io/picky-asn1-x509/0.6.1 \
+     crate://crates.io/picky-asn1/0.3.3 \
+-    crate://crates.io/pin-project-lite/0.2.8 \
++    crate://crates.io/pin-project-lite/0.2.9 \
+     crate://crates.io/pin-utils/0.1.0 \
+-    crate://crates.io/pkcs8/0.7.6 \
+-    crate://crates.io/pkg-config/0.3.24 \
++    crate://crates.io/pkcs8/0.8.0 \
++    crate://crates.io/pkg-config/0.3.25 \
+     crate://crates.io/ppv-lite86/0.2.16 \
+     crate://crates.io/proc-macro-error-attr/1.0.4 \
+     crate://crates.io/proc-macro-error/1.0.4 \
+-    crate://crates.io/proc-macro2/1.0.36 \
++    crate://crates.io/proc-macro2/1.0.43 \
+     crate://crates.io/prost-build/0.8.0 \
+     crate://crates.io/prost-derive/0.8.0 \
+     crate://crates.io/prost-types/0.8.0 \
+     crate://crates.io/prost/0.8.0 \
+     crate://crates.io/protobuf/2.27.1 \
+-    crate://crates.io/psa-crypto-sys/0.9.2 \
+-    crate://crates.io/psa-crypto/0.9.1 \
+-    crate://crates.io/quote/1.0.15 \
+-    crate://crates.io/radium/0.5.3 \
++    crate://crates.io/psa-crypto-sys/0.9.3 \
++    crate://crates.io/psa-crypto/0.9.2 \
++    crate://crates.io/quote/1.0.21 \
+     crate://crates.io/rand/0.8.5 \
+     crate://crates.io/rand_chacha/0.3.1 \
+     crate://crates.io/rand_core/0.6.3 \
+-    crate://crates.io/redox_syscall/0.2.11 \
+-    crate://crates.io/regex-syntax/0.6.25 \
+-    crate://crates.io/regex/1.5.5 \
++    crate://crates.io/redox_syscall/0.2.16 \
++    crate://crates.io/regex-syntax/0.6.27 \
++    crate://crates.io/regex/1.6.0 \
+     crate://crates.io/remove_dir_all/0.5.3 \
+     crate://crates.io/ring/0.16.20 \
+     crate://crates.io/rusqlite/0.26.3 \
+     crate://crates.io/rust-cryptoauthlib/0.4.5 \
+     crate://crates.io/rustc-hash/1.1.0 \
+     crate://crates.io/rustc_version/0.3.3 \
+-    crate://crates.io/rusticata-macros/3.2.0 \
+-    crate://crates.io/rustversion/1.0.6 \
+-    crate://crates.io/ryu/1.0.9 \
++    crate://crates.io/rusticata-macros/4.1.0 \
++    crate://crates.io/ryu/1.0.11 \
+     crate://crates.io/same-file/1.0.6 \
+     crate://crates.io/scopeguard/1.1.0 \
+     crate://crates.io/sd-notify/0.2.0 \
+     crate://crates.io/secrecy/0.7.0 \
+     crate://crates.io/semver-parser/0.10.2 \
+     crate://crates.io/semver/0.11.0 \
+-    crate://crates.io/serde/1.0.136 \
+-    crate://crates.io/serde_bytes/0.11.5 \
+-    crate://crates.io/serde_derive/1.0.136 \
+-    crate://crates.io/serde_json/1.0.79 \
++    crate://crates.io/serde/1.0.144 \
++    crate://crates.io/serde_bytes/0.11.7 \
++    crate://crates.io/serde_derive/1.0.144 \
++    crate://crates.io/serde_json/1.0.85 \
+     crate://crates.io/shlex/0.1.1 \
+     crate://crates.io/shlex/1.1.0 \
+     crate://crates.io/signal-hook-registry/1.4.0 \
+-    crate://crates.io/signal-hook/0.3.13 \
+-    crate://crates.io/simple_asn1/0.4.1 \
+-    crate://crates.io/simple_asn1/0.5.4 \
+-    crate://crates.io/slab/0.4.5 \
+-    crate://crates.io/smallvec/1.8.0 \
+-    crate://crates.io/spiffe/0.2.0 \
++    crate://crates.io/signal-hook/0.3.14 \
++    crate://crates.io/simple_asn1/0.6.2 \
++    crate://crates.io/slab/0.4.7 \
++    crate://crates.io/smallvec/1.9.0 \
++    crate://crates.io/spiffe/0.2.1 \
+     crate://crates.io/spin/0.5.2 \
+-    crate://crates.io/spki/0.4.1 \
++    crate://crates.io/spki/0.5.4 \
+     crate://crates.io/stable_deref_trait/1.2.0 \
+-    crate://crates.io/static_assertions/1.1.0 \
+     crate://crates.io/strsim/0.8.0 \
+     crate://crates.io/structopt-derive/0.4.18 \
+     crate://crates.io/structopt/0.3.26 \
+     crate://crates.io/strum_macros/0.21.1 \
+-    crate://crates.io/syn/1.0.88 \
++    crate://crates.io/syn/1.0.99 \
+     crate://crates.io/synstructure/0.12.6 \
+-    crate://crates.io/tap/1.0.1 \
+-    crate://crates.io/target-lexicon/0.12.3 \
++    crate://crates.io/target-lexicon/0.12.4 \
+     crate://crates.io/tempfile/3.3.0 \
+     crate://crates.io/termcolor/1.1.3 \
+     crate://crates.io/textwrap/0.11.0 \
+-    crate://crates.io/thiserror-impl/1.0.30 \
+-    crate://crates.io/thiserror/1.0.30 \
++    crate://crates.io/thiserror-impl/1.0.33 \
++    crate://crates.io/thiserror/1.0.33 \
+     crate://crates.io/threadpool/1.8.1 \
+-    crate://crates.io/time/0.1.44 \
+-    crate://crates.io/tinyvec/1.5.1 \
++    crate://crates.io/time-macros/0.2.4 \
++    crate://crates.io/time/0.3.14 \
++    crate://crates.io/tinyvec/1.6.0 \
+     crate://crates.io/tinyvec_macros/0.1.0 \
+-    crate://crates.io/toml/0.5.8 \
++    crate://crates.io/toml/0.5.9 \
+     crate://crates.io/tss-esapi-sys/0.3.0 \
+-    crate://crates.io/tss-esapi/7.0.1 \
++    crate://crates.io/tss-esapi/7.1.0 \
+     crate://crates.io/typenum/1.15.0 \
+-    crate://crates.io/ucd-trie/0.1.3 \
+-    crate://crates.io/unicode-bidi/0.3.7 \
+-    crate://crates.io/unicode-normalization/0.1.19 \
++    crate://crates.io/ucd-trie/0.1.4 \
++    crate://crates.io/unicode-bidi/0.3.8 \
++    crate://crates.io/unicode-ident/1.0.3 \
++    crate://crates.io/unicode-normalization/0.1.21 \
+     crate://crates.io/unicode-segmentation/1.9.0 \
+     crate://crates.io/unicode-width/0.1.9 \
+-    crate://crates.io/unicode-xid/0.2.2 \
++    crate://crates.io/unicode-xid/0.2.3 \
+     crate://crates.io/untrusted/0.7.1 \
+     crate://crates.io/url/2.2.2 \
+     crate://crates.io/users/0.11.0 \
+@@ -208,22 +200,21 @@ SRC_URI += " \
+     crate://crates.io/version/3.0.0 \
+     crate://crates.io/version_check/0.9.4 \
+     crate://crates.io/walkdir/2.3.2 \
+-    crate://crates.io/wasi/0.10.0+wasi-snapshot-preview1 \
+-    crate://crates.io/wasm-bindgen-backend/0.2.79 \
+-    crate://crates.io/wasm-bindgen-macro-support/0.2.79 \
+-    crate://crates.io/wasm-bindgen-macro/0.2.79 \
+-    crate://crates.io/wasm-bindgen-shared/0.2.79 \
+-    crate://crates.io/wasm-bindgen/0.2.79 \
+-    crate://crates.io/web-sys/0.3.56 \
+-    crate://crates.io/which/4.2.4 \
++    crate://crates.io/wasi/0.11.0+wasi-snapshot-preview1 \
++    crate://crates.io/wasm-bindgen-backend/0.2.82 \
++    crate://crates.io/wasm-bindgen-macro-support/0.2.82 \
++    crate://crates.io/wasm-bindgen-macro/0.2.82 \
++    crate://crates.io/wasm-bindgen-shared/0.2.82 \
++    crate://crates.io/wasm-bindgen/0.2.82 \
++    crate://crates.io/web-sys/0.3.59 \
++    crate://crates.io/which/4.3.0 \
+     crate://crates.io/winapi-i686-pc-windows-gnu/0.4.0 \
+     crate://crates.io/winapi-util/0.1.5 \
+     crate://crates.io/winapi-x86_64-pc-windows-gnu/0.4.0 \
+     crate://crates.io/winapi/0.3.9 \
+-    crate://crates.io/wyz/0.2.0 \
+-    crate://crates.io/x509-parser/0.9.2 \
+-    crate://crates.io/yasna/0.3.2 \
+-    crate://crates.io/zeroize/1.3.0 \
++    crate://crates.io/x509-parser/0.13.2 \
++    crate://crates.io/yasna/0.4.0 \
++    crate://crates.io/zeroize/1.5.7 \
+     crate://crates.io/zeroize_derive/1.3.2 \
+ "
+ 
+diff --git a/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.5.2.inc b/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.5.2.inc
+deleted file mode 100644
+index d17ec25..0000000
+--- a/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.5.2.inc
++++ /dev/null
+@@ -1,196 +0,0 @@
+-# This file is created from parsec-tool repository Cargo.lock using cargo-bitbake tool
+-
+-SRC_URI += " \
+-    crate://crates.io/aho-corasick/0.7.18 \
+-    crate://crates.io/ansi_term/0.12.1 \
+-    crate://crates.io/anyhow/1.0.56 \
+-    crate://crates.io/arrayvec/0.5.2 \
+-    crate://crates.io/atty/0.2.14 \
+-    crate://crates.io/autocfg/1.1.0 \
+-    crate://crates.io/base64/0.12.3 \
+-    crate://crates.io/base64/0.13.0 \
+-    crate://crates.io/bincode/1.3.3 \
+-    crate://crates.io/bindgen/0.57.0 \
+-    crate://crates.io/bitflags/1.3.2 \
+-    crate://crates.io/bitvec/0.19.6 \
+-    crate://crates.io/block-buffer/0.9.0 \
+-    crate://crates.io/bumpalo/3.9.1 \
+-    crate://crates.io/bytes/1.1.0 \
+-    crate://crates.io/cc/1.0.73 \
+-    crate://crates.io/cexpr/0.4.0 \
+-    crate://crates.io/cfg-if/1.0.0 \
+-    crate://crates.io/chrono/0.4.19 \
+-    crate://crates.io/clang-sys/1.3.1 \
+-    crate://crates.io/clap/2.34.0 \
+-    crate://crates.io/clap/3.0.0-beta.5 \
+-    crate://crates.io/clap_derive/3.0.0-beta.5 \
+-    crate://crates.io/cmake/0.1.48 \
+-    crate://crates.io/const-oid/0.6.2 \
+-    crate://crates.io/cpufeatures/0.2.1 \
+-    crate://crates.io/data-encoding/2.3.2 \
+-    crate://crates.io/der-oid-macro/0.4.0 \
+-    crate://crates.io/der-parser/5.1.2 \
+-    crate://crates.io/der/0.4.5 \
+-    crate://crates.io/derivative/2.2.0 \
+-    crate://crates.io/digest/0.9.0 \
+-    crate://crates.io/either/1.6.1 \
+-    crate://crates.io/env_logger/0.8.4 \
+-    crate://crates.io/form_urlencoded/1.0.1 \
+-    crate://crates.io/funty/1.1.0 \
+-    crate://crates.io/futures-channel/0.3.21 \
+-    crate://crates.io/futures-core/0.3.21 \
+-    crate://crates.io/futures-executor/0.3.21 \
+-    crate://crates.io/futures-io/0.3.21 \
+-    crate://crates.io/futures-macro/0.3.21 \
+-    crate://crates.io/futures-sink/0.3.21 \
+-    crate://crates.io/futures-task/0.3.21 \
+-    crate://crates.io/futures-util/0.3.21 \
+-    crate://crates.io/futures/0.3.21 \
+-    crate://crates.io/generic-array/0.14.5 \
+-    crate://crates.io/glob/0.3.0 \
+-    crate://crates.io/grpcio-sys/0.9.1+1.38.0 \
+-    crate://crates.io/grpcio/0.9.1 \
+-    crate://crates.io/hashbrown/0.11.2 \
+-    crate://crates.io/heck/0.3.3 \
+-    crate://crates.io/hermit-abi/0.1.19 \
+-    crate://crates.io/humantime/2.1.0 \
+-    crate://crates.io/idna/0.2.3 \
+-    crate://crates.io/indexmap/1.8.0 \
+-    crate://crates.io/instant/0.1.12 \
+-    crate://crates.io/itertools/0.10.3 \
+-    crate://crates.io/itoa/1.0.1 \
+-    crate://crates.io/js-sys/0.3.56 \
+-    crate://crates.io/jsonwebkey/0.3.2 \
+-    crate://crates.io/jsonwebtoken/7.2.0 \
+-    crate://crates.io/lazy_static/1.4.0 \
+-    crate://crates.io/lazycell/1.3.0 \
+-    crate://crates.io/lexical-core/0.7.6 \
+-    crate://crates.io/libc/0.2.120 \
+-    crate://crates.io/libloading/0.7.3 \
+-    crate://crates.io/libz-sys/1.1.5 \
+-    crate://crates.io/lock_api/0.4.6 \
+-    crate://crates.io/log/0.4.14 \
+-    crate://crates.io/matches/0.1.9 \
+-    crate://crates.io/memchr/2.4.1 \
+-    crate://crates.io/nom/5.1.2 \
+-    crate://crates.io/nom/6.1.2 \
+-    crate://crates.io/num-bigint/0.2.6 \
+-    crate://crates.io/num-bigint/0.3.3 \
+-    crate://crates.io/num-bigint/0.4.3 \
+-    crate://crates.io/num-complex/0.3.1 \
+-    crate://crates.io/num-derive/0.3.3 \
+-    crate://crates.io/num-integer/0.1.44 \
+-    crate://crates.io/num-iter/0.1.42 \
+-    crate://crates.io/num-rational/0.3.2 \
+-    crate://crates.io/num-traits/0.2.14 \
+-    crate://crates.io/num/0.3.1 \
+-    crate://crates.io/num_threads/0.1.5 \
+-    crate://crates.io/oid-registry/0.1.5 \
+-    crate://crates.io/oid/0.2.1 \
+-    crate://crates.io/once_cell/1.10.0 \
+-    crate://crates.io/opaque-debug/0.3.0 \
+-    crate://crates.io/os_str_bytes/4.1.1 \
+-    crate://crates.io/parking_lot/0.11.2 \
+-    crate://crates.io/parking_lot_core/0.8.5 \
+-    crate://crates.io/parsec-client/0.14.0 \
+-    crate://crates.io/parsec-interface/0.26.0 \
+-    crate://crates.io/peeking_take_while/0.1.2 \
+-    crate://crates.io/pem/0.8.3 \
+-    crate://crates.io/pem/1.0.2 \
+-    crate://crates.io/percent-encoding/2.1.0 \
+-    crate://crates.io/picky-asn1-der/0.2.5 \
+-    crate://crates.io/picky-asn1-x509/0.6.1 \
+-    crate://crates.io/picky-asn1/0.3.3 \
+-    crate://crates.io/pin-project-lite/0.2.8 \
+-    crate://crates.io/pin-utils/0.1.0 \
+-    crate://crates.io/pkcs8/0.7.6 \
+-    crate://crates.io/pkg-config/0.3.24 \
+-    crate://crates.io/proc-macro-error-attr/1.0.4 \
+-    crate://crates.io/proc-macro-error/1.0.4 \
+-    crate://crates.io/proc-macro2/1.0.36 \
+-    crate://crates.io/prost-derive/0.8.0 \
+-    crate://crates.io/prost/0.8.0 \
+-    crate://crates.io/protobuf/2.27.1 \
+-    crate://crates.io/psa-crypto-sys/0.9.2 \
+-    crate://crates.io/psa-crypto/0.9.1 \
+-    crate://crates.io/quote/1.0.15 \
+-    crate://crates.io/radium/0.5.3 \
+-    crate://crates.io/rcgen/0.9.2 \
+-    crate://crates.io/redox_syscall/0.2.11 \
+-    crate://crates.io/regex-syntax/0.6.25 \
+-    crate://crates.io/regex/1.5.5 \
+-    crate://crates.io/ring/0.16.20 \
+-    crate://crates.io/rustc-hash/1.1.0 \
+-    crate://crates.io/rusticata-macros/3.2.0 \
+-    crate://crates.io/rustversion/1.0.6 \
+-    crate://crates.io/ryu/1.0.9 \
+-    crate://crates.io/same-file/1.0.6 \
+-    crate://crates.io/scopeguard/1.1.0 \
+-    crate://crates.io/secrecy/0.7.0 \
+-    crate://crates.io/serde/1.0.136 \
+-    crate://crates.io/serde_bytes/0.11.5 \
+-    crate://crates.io/serde_derive/1.0.136 \
+-    crate://crates.io/serde_json/1.0.79 \
+-    crate://crates.io/sha2/0.9.9 \
+-    crate://crates.io/shlex/0.1.1 \
+-    crate://crates.io/simple_asn1/0.4.1 \
+-    crate://crates.io/simple_asn1/0.5.4 \
+-    crate://crates.io/slab/0.4.5 \
+-    crate://crates.io/smallvec/1.8.0 \
+-    crate://crates.io/spiffe/0.2.0 \
+-    crate://crates.io/spin/0.5.2 \
+-    crate://crates.io/spki/0.4.1 \
+-    crate://crates.io/static_assertions/1.1.0 \
+-    crate://crates.io/strsim/0.10.0 \
+-    crate://crates.io/strsim/0.8.0 \
+-    crate://crates.io/structopt-derive/0.4.18 \
+-    crate://crates.io/structopt/0.3.26 \
+-    crate://crates.io/syn/1.0.89 \
+-    crate://crates.io/synstructure/0.12.6 \
+-    crate://crates.io/tap/1.0.1 \
+-    crate://crates.io/termcolor/1.1.3 \
+-    crate://crates.io/textwrap/0.11.0 \
+-    crate://crates.io/textwrap/0.14.2 \
+-    crate://crates.io/thiserror-impl/1.0.30 \
+-    crate://crates.io/thiserror/1.0.30 \
+-    crate://crates.io/time/0.1.44 \
+-    crate://crates.io/time/0.3.7 \
+-    crate://crates.io/tinyvec/1.5.1 \
+-    crate://crates.io/tinyvec_macros/0.1.0 \
+-    crate://crates.io/typenum/1.15.0 \
+-    crate://crates.io/unicase/2.6.0 \
+-    crate://crates.io/unicode-bidi/0.3.7 \
+-    crate://crates.io/unicode-normalization/0.1.19 \
+-    crate://crates.io/unicode-segmentation/1.9.0 \
+-    crate://crates.io/unicode-width/0.1.9 \
+-    crate://crates.io/unicode-xid/0.2.2 \
+-    crate://crates.io/untrusted/0.7.1 \
+-    crate://crates.io/url/2.2.2 \
+-    crate://crates.io/users/0.10.0 \
+-    crate://crates.io/uuid/0.8.2 \
+-    crate://crates.io/vcpkg/0.2.15 \
+-    crate://crates.io/vec_map/0.8.2 \
+-    crate://crates.io/version_check/0.9.4 \
+-    crate://crates.io/walkdir/2.3.2 \
+-    crate://crates.io/wasi/0.10.0+wasi-snapshot-preview1 \
+-    crate://crates.io/wasm-bindgen-backend/0.2.79 \
+-    crate://crates.io/wasm-bindgen-macro-support/0.2.79 \
+-    crate://crates.io/wasm-bindgen-macro/0.2.79 \
+-    crate://crates.io/wasm-bindgen-shared/0.2.79 \
+-    crate://crates.io/wasm-bindgen/0.2.79 \
+-    crate://crates.io/web-sys/0.3.56 \
+-    crate://crates.io/winapi-i686-pc-windows-gnu/0.4.0 \
+-    crate://crates.io/winapi-util/0.1.5 \
+-    crate://crates.io/winapi-x86_64-pc-windows-gnu/0.4.0 \
+-    crate://crates.io/winapi/0.3.9 \
+-    crate://crates.io/wyz/0.2.0 \
+-    crate://crates.io/x509-parser/0.9.2 \
+-    crate://crates.io/yasna/0.3.2 \
+-    crate://crates.io/yasna/0.5.0 \
+-    crate://crates.io/zeroize/1.3.0 \
+-    crate://crates.io/zeroize_derive/1.3.2 \
+-"
+-
+-LIC_FILES_CHKSUM = " \
+-    file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57 \
+-"
+diff --git a/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.5.2.bb b/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.5.4.bb
+similarity index 71%
+rename from meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.5.2.bb
+rename to meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.5.4.bb
+index 6ecce8e..0f62009 100644
+--- a/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.5.2.bb
++++ b/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.5.4.bb
+@@ -16,3 +16,8 @@ do_install() {
+ }
+ 
+ require parsec-tool_${PV}.inc
++
++# The QA check has been temporarily disabled. An issue has been created 
++# upstream to fix this. 
++# https://github.com/parallaxsecond/parsec-tool/issues/94
++INSANE_SKIP:${PN}-dbg += "buildpaths"
+diff --git a/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.5.4.inc b/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.5.4.inc
+new file mode 100644
+index 0000000..36d98d3
+--- /dev/null
++++ b/meta-parsec/recipes-parsec/parsec-tool/parsec-tool_0.5.4.inc
+@@ -0,0 +1,176 @@
++# This file is created from parsec-tool repository Cargo.lock using cargo-bitbake tool
++
++SRC_URI += " \
++    crate://crates.io/aho-corasick/0.7.19 \
++    crate://crates.io/ansi_term/0.12.1 \
++    crate://crates.io/anyhow/1.0.64 \
++    crate://crates.io/asn1-rs-derive/0.1.0 \
++    crate://crates.io/asn1-rs-impl/0.1.0 \
++    crate://crates.io/asn1-rs/0.3.1 \
++    crate://crates.io/atty/0.2.14 \
++    crate://crates.io/autocfg/1.1.0 \
++    crate://crates.io/base64/0.13.0 \
++    crate://crates.io/bincode/1.3.3 \
++    crate://crates.io/bindgen/0.57.0 \
++    crate://crates.io/bitflags/1.3.2 \
++    crate://crates.io/block-buffer/0.9.0 \
++    crate://crates.io/bumpalo/3.11.0 \
++    crate://crates.io/bytes/1.2.1 \
++    crate://crates.io/cc/1.0.73 \
++    crate://crates.io/cexpr/0.4.0 \
++    crate://crates.io/cfg-if/1.0.0 \
++    crate://crates.io/clang-sys/1.3.3 \
++    crate://crates.io/clap/2.34.0 \
++    crate://crates.io/cmake/0.1.45 \
++    crate://crates.io/const-oid/0.7.1 \
++    crate://crates.io/cpufeatures/0.2.5 \
++    crate://crates.io/data-encoding/2.3.2 \
++    crate://crates.io/der-parser/7.0.0 \
++    crate://crates.io/der/0.5.1 \
++    crate://crates.io/derivative/2.2.0 \
++    crate://crates.io/digest/0.9.0 \
++    crate://crates.io/displaydoc/0.2.3 \
++    crate://crates.io/either/1.8.0 \
++    crate://crates.io/env_logger/0.8.4 \
++    crate://crates.io/form_urlencoded/1.1.0 \
++    crate://crates.io/futures-channel/0.3.24 \
++    crate://crates.io/futures-core/0.3.24 \
++    crate://crates.io/futures-executor/0.3.24 \
++    crate://crates.io/futures-io/0.3.24 \
++    crate://crates.io/futures-macro/0.3.24 \
++    crate://crates.io/futures-sink/0.3.24 \
++    crate://crates.io/futures-task/0.3.24 \
++    crate://crates.io/futures-util/0.3.24 \
++    crate://crates.io/futures/0.3.24 \
++    crate://crates.io/generic-array/0.14.6 \
++    crate://crates.io/glob/0.3.0 \
++    crate://crates.io/grpcio-sys/0.9.1+1.38.0 \
++    crate://crates.io/grpcio/0.9.1 \
++    crate://crates.io/heck/0.3.3 \
++    crate://crates.io/hermit-abi/0.1.19 \
++    crate://crates.io/humantime/2.1.0 \
++    crate://crates.io/idna/0.3.0 \
++    crate://crates.io/instant/0.1.12 \
++    crate://crates.io/itertools/0.10.3 \
++    crate://crates.io/itoa/1.0.3 \
++    crate://crates.io/js-sys/0.3.59 \
++    crate://crates.io/jsonwebkey/0.3.5 \
++    crate://crates.io/jsonwebtoken/8.1.1 \
++    crate://crates.io/lazy_static/1.4.0 \
++    crate://crates.io/lazycell/1.3.0 \
++    crate://crates.io/libc/0.2.132 \
++    crate://crates.io/libloading/0.7.3 \
++    crate://crates.io/libz-sys/1.1.8 \
++    crate://crates.io/lock_api/0.4.8 \
++    crate://crates.io/log/0.4.17 \
++    crate://crates.io/memchr/2.5.0 \
++    crate://crates.io/minimal-lexical/0.2.1 \
++    crate://crates.io/nom/5.1.2 \
++    crate://crates.io/nom/7.1.1 \
++    crate://crates.io/num-bigint/0.4.3 \
++    crate://crates.io/num-complex/0.4.2 \
++    crate://crates.io/num-derive/0.3.3 \
++    crate://crates.io/num-integer/0.1.45 \
++    crate://crates.io/num-iter/0.1.43 \
++    crate://crates.io/num-rational/0.4.1 \
++    crate://crates.io/num-traits/0.2.15 \
++    crate://crates.io/num/0.4.0 \
++    crate://crates.io/num_threads/0.1.6 \
++    crate://crates.io/oid-registry/0.4.0 \
++    crate://crates.io/oid/0.2.1 \
++    crate://crates.io/once_cell/1.14.0 \
++    crate://crates.io/opaque-debug/0.3.0 \
++    crate://crates.io/parking_lot/0.11.2 \
++    crate://crates.io/parking_lot_core/0.8.5 \
++    crate://crates.io/parsec-client/0.14.1 \
++    crate://crates.io/parsec-interface/0.27.0 \
++    crate://crates.io/peeking_take_while/0.1.2 \
++    crate://crates.io/pem/1.1.0 \
++    crate://crates.io/percent-encoding/2.2.0 \
++    crate://crates.io/picky-asn1-der/0.2.5 \
++    crate://crates.io/picky-asn1-x509/0.6.1 \
++    crate://crates.io/picky-asn1/0.3.3 \
++    crate://crates.io/pin-project-lite/0.2.9 \
++    crate://crates.io/pin-utils/0.1.0 \
++    crate://crates.io/pkcs8/0.8.0 \
++    crate://crates.io/pkg-config/0.3.25 \
++    crate://crates.io/proc-macro-error-attr/1.0.4 \
++    crate://crates.io/proc-macro-error/1.0.4 \
++    crate://crates.io/proc-macro2/1.0.43 \
++    crate://crates.io/prost-derive/0.8.0 \
++    crate://crates.io/prost/0.8.0 \
++    crate://crates.io/protobuf/2.27.1 \
++    crate://crates.io/psa-crypto-sys/0.9.3 \
++    crate://crates.io/psa-crypto/0.9.2 \
++    crate://crates.io/quote/1.0.21 \
++    crate://crates.io/rcgen/0.9.3 \
++    crate://crates.io/redox_syscall/0.2.16 \
++    crate://crates.io/regex-syntax/0.6.27 \
++    crate://crates.io/regex/1.6.0 \
++    crate://crates.io/ring/0.16.20 \
++    crate://crates.io/rustc-hash/1.1.0 \
++    crate://crates.io/rusticata-macros/4.1.0 \
++    crate://crates.io/ryu/1.0.11 \
++    crate://crates.io/same-file/1.0.6 \
++    crate://crates.io/scopeguard/1.1.0 \
++    crate://crates.io/secrecy/0.7.0 \
++    crate://crates.io/serde/1.0.144 \
++    crate://crates.io/serde_bytes/0.11.7 \
++    crate://crates.io/serde_derive/1.0.144 \
++    crate://crates.io/serde_json/1.0.85 \
++    crate://crates.io/sha2/0.9.9 \
++    crate://crates.io/shlex/0.1.1 \
++    crate://crates.io/simple_asn1/0.6.2 \
++    crate://crates.io/slab/0.4.7 \
++    crate://crates.io/smallvec/1.9.0 \
++    crate://crates.io/spiffe/0.2.1 \
++    crate://crates.io/spin/0.5.2 \
++    crate://crates.io/spki/0.5.4 \
++    crate://crates.io/strsim/0.8.0 \
++    crate://crates.io/structopt-derive/0.4.18 \
++    crate://crates.io/structopt/0.3.26 \
++    crate://crates.io/syn/1.0.99 \
++    crate://crates.io/synstructure/0.12.6 \
++    crate://crates.io/termcolor/1.1.3 \
++    crate://crates.io/textwrap/0.11.0 \
++    crate://crates.io/thiserror-impl/1.0.34 \
++    crate://crates.io/thiserror/1.0.34 \
++    crate://crates.io/time-macros/0.2.3 \
++    crate://crates.io/time/0.3.7 \
++    crate://crates.io/tinyvec/1.6.0 \
++    crate://crates.io/tinyvec_macros/0.1.0 \
++    crate://crates.io/typenum/1.15.0 \
++    crate://crates.io/unicode-bidi/0.3.8 \
++    crate://crates.io/unicode-ident/1.0.3 \
++    crate://crates.io/unicode-normalization/0.1.21 \
++    crate://crates.io/unicode-segmentation/1.9.0 \
++    crate://crates.io/unicode-width/0.1.9 \
++    crate://crates.io/unicode-xid/0.2.3 \
++    crate://crates.io/untrusted/0.7.1 \
++    crate://crates.io/url/2.3.1 \
++    crate://crates.io/users/0.11.0 \
++    crate://crates.io/uuid/0.8.2 \
++    crate://crates.io/vcpkg/0.2.15 \
++    crate://crates.io/vec_map/0.8.2 \
++    crate://crates.io/version_check/0.9.4 \
++    crate://crates.io/walkdir/2.3.2 \
++    crate://crates.io/wasm-bindgen-backend/0.2.82 \
++    crate://crates.io/wasm-bindgen-macro-support/0.2.82 \
++    crate://crates.io/wasm-bindgen-macro/0.2.82 \
++    crate://crates.io/wasm-bindgen-shared/0.2.82 \
++    crate://crates.io/wasm-bindgen/0.2.82 \
++    crate://crates.io/web-sys/0.3.59 \
++    crate://crates.io/winapi-i686-pc-windows-gnu/0.4.0 \
++    crate://crates.io/winapi-util/0.1.5 \
++    crate://crates.io/winapi-x86_64-pc-windows-gnu/0.4.0 \
++    crate://crates.io/winapi/0.3.9 \
++    crate://crates.io/x509-parser/0.13.2 \
++    crate://crates.io/yasna/0.4.0 \
++    crate://crates.io/yasna/0.5.0 \
++    crate://crates.io/zeroize/1.5.7 \
++    crate://crates.io/zeroize_derive/1.3.2 \
++"
++
++LIC_FILES_CHKSUM = " \
++    file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57 \
++"
+-- 
+2.17.1
+
 
