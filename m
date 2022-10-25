@@ -2,317 +2,474 @@ Return-Path: <naveen.kumar.saini@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 764E7C04A95
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7651DFA373E
 	for <webhook@archiver.kernel.org>; Tue, 25 Oct 2022 07:27:47 +0000 (UTC)
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
  by mx.groups.io with SMTP id smtpd.web08.4447.1666682864322653474
  for <yocto@lists.yoctoproject.org>;
- Tue, 25 Oct 2022 00:27:44 -0700
+ Tue, 25 Oct 2022 00:27:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel header.b=D9Q5BS8p;
+ dkim=fail reason="unable to parse pub key" header.i=@intel.com header.s=intel header.b=Y7YhJV5K;
  spf=pass (domain: intel.com, ip: 192.55.52.136, mailfrom: naveen.kumar.saini@intel.com)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1666682864; x=1698218864;
-  h=from:to:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=vhoud/VOfMaMO08187nn91fYyKwUAXwqQ/HNBEaHtb8=;
-  b=D9Q5BS8p5fADRDS2+Hk3rqjSyeC6QPM+EZ9P/N/0eZdGOJi7UR7zUgBR
-   cfSlpAbcu54EIWsCfT4uI2V4lG2k5ZyOHL/MDpDwGJkKWRoTNjIdC9Q+1
-   kp5md3oc5VqfKP9p/eclC0vSMqt1/4mUE1A7o/PH79ijFsHnfFZLIWO8q
-   /oh2mfrUtzQ3AR8rGmsfTZZ8ZIXHQZ3ibBwZGlmTCkQ54M9/ItoKM2LBk
-   ytdFp3Qis6SIJBkjZvCXsxWJqt6EbVeY3wXJBTexaod+bsoeCDPS8F5o1
-   QdYfgQ0CCq5ccxqAe4VUyZ0m1eghj+4PAP6YPzmO4PYUso1JJnSPXCPom
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="287328563"
+  t=1666682865; x=1698218865;
+  h=from:to:subject:date:message-id:in-reply-to:references:
+   mime-version:content-transfer-encoding;
+  bh=1H4MKqAtN5AiJcx336+EVtg862Z7NtpMH0NsZMLZ5M8=;
+  b=Y7YhJV5KMVwoseX/441Ks2aliPXAPEj5wRGq6bNPX7s5+SDHJ1DRv8lR
+   akrBLGdQrZbJpHjpHixo72E5szWDcabtYbKeQoerbGSrjirT6emjBRz12
+   9NJQat3tPllCSK81gK3bDsodK/mpYwvTBRr2h8xC/Ie3mZT8pcuxY6ae8
+   Ce5aTgNfRGS5YdkIgwxdj4KU1D7U31ga43+FzvHTdIGkfJ39LdRBfEANa
+   dQXpr1EEjkTwelmYGyWyaa4wuLzlfgrC0F/aHecRxXG1VN+sQRkXLbRn6
+   uQYaiuCuP9RmnWySQETdJ2Oe7ujBWsIN2cLbl0GjBU0e+armqcqLWlDAI
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="287328565"
 X-IronPort-AV: E=Sophos;i="5.95,211,1661842800"; 
-   d="scan'208";a="287328563"
+   d="scan'208";a="287328565"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2022 00:27:43 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="736718041"
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2022 00:27:45 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="736718043"
 X-IronPort-AV: E=Sophos;i="5.95,211,1661842800"; 
-   d="scan'208";a="736718041"
+   d="scan'208";a="736718043"
 Received: from saininav-desk1.png.intel.com ([172.30.130.128])
-  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2022 00:27:42 -0700
+  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2022 00:27:44 -0700
 From: Naveen Saini <naveen.kumar.saini@intel.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-zephyr][PATCH 1/2] zephyr-kernel-src: add support for v3.2.0
-Date: Tue, 25 Oct 2022 15:48:30 +0800
-Message-Id: <20221025074831.285318-1-naveen.kumar.saini@intel.com>
+Subject: [meta-zephyr][PATCH 2/2] zephyr-kernel-src: drop support for v2.7.3
+Date: Tue, 25 Oct 2022 15:48:31 +0800
+Message-Id: <20221025074831.285318-2-naveen.kumar.saini@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221025074831.285318-1-naveen.kumar.saini@intel.com>
+References: <20221025074831.285318-1-naveen.kumar.saini@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Tue, 25 Oct 2022 07:27:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58408
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/58409
 
-https://github.com/zephyrproject-rtos/zephyr/releases/tag/v3.2.0
+Support for zephyr v3.2.0 is already being added. So time to drop it.
 
 Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
 ---
- .../zephyr-kernel/zephyr-kernel-src-3.2.0.inc | 239 ++++++++++++++++++
- .../zephyr-kernel/zephyr-kernel-src.inc       |   2 +-
- 2 files changed, 240 insertions(+), 1 deletion(-)
- create mode 100644 meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.2.0.inc
+ .../0001-2.7-cmake-add-yocto-toolchain.patch  |  63 ------
+ ...ry-generation-issue-in-cross-compila.patch |  80 -------
+ .../zephyr-kernel/files/dtc.patch             |  43 ----
+ .../zephyr-kernel/zephyr-kernel-src-2.7.3.inc | 196 ------------------
+ 4 files changed, 382 deletions(-)
+ delete mode 100644 meta-zephyr-core/recipes-kernel/zephyr-kernel/files/0001-2.7-cmake-add-yocto-toolchain.patch
+ delete mode 100644 meta-zephyr-core/recipes-kernel/zephyr-kernel/files/0001-2.7-x86-fix-efi-binary-generation-issue-in-cross-compila.patch
+ delete mode 100644 meta-zephyr-core/recipes-kernel/zephyr-kernel/files/dtc.patch
+ delete mode 100644 meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.3.inc
 
-diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.2.0.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.2.0.inc
-new file mode 100644
-index 0000000..5d8ddfa
---- /dev/null
-+++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-3.2.0.inc
-@@ -0,0 +1,239 @@
-+# Auto-generated from zephyr-kernel-src.inc.jinja
-+
-+SRCREV_FORMAT = "default"
-+
-+SRCREV_default = "4b58ae97f30338dd343f110fef068b21b94b6555"
-+SRCREV_canopennode = "53d3415c14d60f8f4bfca54bfbc5d5a667d7e724"
-+SRCREV_chre = "ef76d3456db07e4959df555047d6962279528c8d"
-+SRCREV_cmsis = "093de61c2a7d12dc9253daf8692f61f793a9254a"
-+SRCREV_edtt = "1ea61a390d2bfcf3b2ecdba8f8b0b98dfdffbd11"
-+SRCREV_fatfs = "a30531af3a95a9a3ea7d771ea8a578ebfed45514"
-+SRCREV_fff = "6ce5ba26486e93d5b7696a3e23f0585932c14b16"
-+SRCREV_hal_altera = "0d225ddd314379b32355a00fb669eacf911e750d"
-+SRCREV_hal_atmel = "1d237f2e2f262751975b6da6e03af569b2b49b2b"
-+SRCREV_hal_espressif = "2cb20ac6c5b25f3c91b35e7997451db47030b7cb"
-+SRCREV_hal_gigadevice = "dd0e0322474462b58059e6fedaf1d67d2a0864d0"
-+SRCREV_hal_infineon = "4af06965f57ba1e7d170e6a97d24c33785543a8c"
-+SRCREV_hal_microchip = "5d079f1683a00b801373bbbbf5d181d4e33b30d5"
-+SRCREV_hal_nordic = "249199ec5a5c31d170659921048764e96d05cc0e"
-+SRCREV_hal_nuvoton = "b4d31f33238713a568e23618845702fadd67386f"
-+SRCREV_hal_nxp = "708c95825b0d5279620935a1356299fff5dfbc6e"
-+SRCREV_hal_openisa = "40d049f69c50b58ea20473bee14cf93f518bf262"
-+SRCREV_hal_quicklogic = "b3a66fe6d04d87fd1533a5c8de51d0599fcd08d0"
-+SRCREV_hal_renesas = "468d3f2146d18c7f86a4640fc641cc1d20a4a100"
-+SRCREV_hal_rpi_pico = "a094c060e0c2d43c7f9d8f5c06cc0665117e0c18"
-+SRCREV_hal_silabs = "1ec8dd99aa4ac3e8632d2aa28a7438049bb27102"
-+SRCREV_hal_st = "cccbc24c14decfd3f93959f7b14514536af973c7"
-+SRCREV_hal_stm32 = "642e199c59828137dc6b1c7044a289d4269886d1"
-+SRCREV_hal_telink = "38573af589173259801ae6c2b34b7d4c9e626746"
-+SRCREV_hal_ti = "000b944a788b6005d7776198e1348f5c8a657259"
-+SRCREV_hal_wurthelektronik = "24ca9873c3d608fad1fea0431836bc8f144c132e"
-+SRCREV_hal_xtensa = "63f655362423aa49507da7977a2d37142e8debeb"
-+SRCREV_libmetal = "2f586b4f1276fb075ee145421bdf6cbe5403aa41"
-+SRCREV_liblc3 = "448f3de31f49a838988a162ef1e23a89ddf2d2ed"
-+SRCREV_littlefs = "ca583fd297ceb48bced3c2548600dc615d67af24"
-+SRCREV_loramac-node = "ce57712f3e426bbbb13acaec97b45369f716f43a"
-+SRCREV_lvgl = "af95bdfcf6784edd958ea08139c713e2d3dee7af"
-+SRCREV_lz4 = "8e303c264fc21c2116dc612658003a22e933124d"
-+SRCREV_mbedtls = "7fed49c9b9f983ad6416986661ef637459723bcb"
-+SRCREV_mcuboot = "13f63976bca672ee018f9d55f1e31f02f4135b64"
-+SRCREV_mipi-sys-t = "0d521d8055f3b2b4842f728b0365d3f0ece9c37f"
-+SRCREV_nanopb = "dc4deed54fd4c7e1935e3b6387eedf21bb45dc38"
-+SRCREV_net-tools = "e0828aa9629b533644dc96ff6d1295c939bd713c"
-+SRCREV_nrf_hw_models = "65bc5305d432c08e24a3f343006d1e7deaff4908"
-+SRCREV_open-amp = "8d53544871e1f300c478224faca6be8384ab0d04"
-+SRCREV_openthread = "b21e99b4b3d823f71c902b9174ff62b964c124f0"
-+SRCREV_picolibc = "04ada5951cbaf8e7b17f8226ce31cb6837c28ba7"
-+SRCREV_segger = "d4e568a920b4bd087886170a5624c167b2d0665e"
-+SRCREV_sof = "fed466c264ad078c66f7bff9218ba1d3fa0eb201"
-+SRCREV_tflite-micro = "9156d050927012da87079064db59d07f03b8baf6"
-+SRCREV_tinycbor = "9e1f34bc08123aaad7666d3652aaa839e8178b3b"
-+SRCREV_tinycrypt = "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
-+SRCREV_TraceRecorderSource = "9893bf1cf649a2c4ee2e27293f887994f3d0da5b"
-+SRCREV_trusted-firmware-m = "231235f26f5295ac4faf8c5617dbb9779869d821"
-+SRCREV_trusted-firmware-a = "d29cddecde614d81cbec1fb0086cdaebd77d3575"
-+SRCREV_tf-m-tests = "c99a86b295c4887520da9d8402566d7f225c974e"
-+SRCREV_psa-arch-tests = "f4fc2442b8e29e2a03d9899e46e5a3ea3df8c2c9"
-+SRCREV_uoscore-uedhoc = "e8920192b66db4f909eb9cd3f155d5245c1ae825"
-+SRCREV_zcbor = "a0d6981f14d4001d6f0d608d1a427f9bc6bb6d02"
-+SRCREV_zscilib = "ca070ddabdaf67175a2da901d0bd62e8899371c5"
-+
-+SRC_URI_ZEPHYR ?= "git://github.com/zephyrproject-rtos/zephyr.git;protocol=https"
-+SRC_URI_CANOPENNODE ?= "git://github.com/zephyrproject-rtos/canopennode;protocol=https"
-+SRC_URI_CHRE ?= "git://github.com/zephyrproject-rtos/chre;protocol=https"
-+SRC_URI_CMSIS ?= "git://github.com/zephyrproject-rtos/cmsis;protocol=https"
-+SRC_URI_EDTT ?= "git://github.com/zephyrproject-rtos/edtt;protocol=https"
-+SRC_URI_FATFS ?= "git://github.com/zephyrproject-rtos/fatfs;protocol=https"
-+SRC_URI_FFF ?= "git://github.com/zephyrproject-rtos/fff;protocol=https"
-+SRC_URI_HAL_ALTERA ?= "git://github.com/zephyrproject-rtos/hal_altera;protocol=https"
-+SRC_URI_HAL_ATMEL ?= "git://github.com/zephyrproject-rtos/hal_atmel;protocol=https"
-+SRC_URI_HAL_ESPRESSIF ?= "git://github.com/zephyrproject-rtos/hal_espressif;protocol=https"
-+SRC_URI_HAL_GIGADEVICE ?= "git://github.com/zephyrproject-rtos/hal_gigadevice;protocol=https"
-+SRC_URI_HAL_INFINEON ?= "git://github.com/zephyrproject-rtos/hal_infineon;protocol=https"
-+SRC_URI_HAL_MICROCHIP ?= "git://github.com/zephyrproject-rtos/hal_microchip;protocol=https"
-+SRC_URI_HAL_NORDIC ?= "git://github.com/zephyrproject-rtos/hal_nordic;protocol=https"
-+SRC_URI_HAL_NUVOTON ?= "git://github.com/zephyrproject-rtos/hal_nuvoton;protocol=https"
-+SRC_URI_HAL_NXP ?= "git://github.com/zephyrproject-rtos/hal_nxp;protocol=https"
-+SRC_URI_HAL_OPENISA ?= "git://github.com/zephyrproject-rtos/hal_openisa;protocol=https"
-+SRC_URI_HAL_QUICKLOGIC ?= "git://github.com/zephyrproject-rtos/hal_quicklogic;protocol=https"
-+SRC_URI_HAL_RENESAS ?= "git://github.com/zephyrproject-rtos/hal_renesas;protocol=https"
-+SRC_URI_HAL_RPI_PICO ?= "git://github.com/zephyrproject-rtos/hal_rpi_pico;protocol=https"
-+SRC_URI_HAL_SILABS ?= "git://github.com/zephyrproject-rtos/hal_silabs;protocol=https"
-+SRC_URI_HAL_ST ?= "git://github.com/zephyrproject-rtos/hal_st;protocol=https"
-+SRC_URI_HAL_STM32 ?= "git://github.com/zephyrproject-rtos/hal_stm32;protocol=https"
-+SRC_URI_HAL_TELINK ?= "git://github.com/zephyrproject-rtos/hal_telink;protocol=https"
-+SRC_URI_HAL_TI ?= "git://github.com/zephyrproject-rtos/hal_ti;protocol=https"
-+SRC_URI_HAL_WURTHELEKTRONIK ?= "git://github.com/zephyrproject-rtos/hal_wurthelektronik;protocol=https"
-+SRC_URI_HAL_XTENSA ?= "git://github.com/zephyrproject-rtos/hal_xtensa;protocol=https"
-+SRC_URI_LIBMETAL ?= "git://github.com/zephyrproject-rtos/libmetal;protocol=https"
-+SRC_URI_LIBLC3 ?= "git://github.com/zephyrproject-rtos/liblc3;protocol=https"
-+SRC_URI_LITTLEFS ?= "git://github.com/zephyrproject-rtos/littlefs;protocol=https"
-+SRC_URI_LORAMAC_NODE ?= "git://github.com/zephyrproject-rtos/loramac-node;protocol=https"
-+SRC_URI_LVGL ?= "git://github.com/zephyrproject-rtos/lvgl;protocol=https"
-+SRC_URI_LZ4 ?= "git://github.com/zephyrproject-rtos/lz4;protocol=https"
-+SRC_URI_MBEDTLS ?= "git://github.com/zephyrproject-rtos/mbedtls;protocol=https"
-+SRC_URI_MCUBOOT ?= "git://github.com/zephyrproject-rtos/mcuboot;protocol=https"
-+SRC_URI_MIPI_SYS_T ?= "git://github.com/zephyrproject-rtos/mipi-sys-t;protocol=https"
-+SRC_URI_NANOPB ?= "git://github.com/zephyrproject-rtos/nanopb;protocol=https"
-+SRC_URI_NET_TOOLS ?= "git://github.com/zephyrproject-rtos/net-tools;protocol=https"
-+SRC_URI_NRF_HW_MODELS ?= "git://github.com/zephyrproject-rtos/nrf_hw_models;protocol=https"
-+SRC_URI_OPEN_AMP ?= "git://github.com/zephyrproject-rtos/open-amp;protocol=https"
-+SRC_URI_OPENTHREAD ?= "git://github.com/zephyrproject-rtos/openthread;protocol=https"
-+SRC_URI_PICOLIBC ?= "git://github.com/zephyrproject-rtos/picolibc;protocol=https"
-+SRC_URI_SEGGER ?= "git://github.com/zephyrproject-rtos/segger;protocol=https"
-+SRC_URI_SOF ?= "git://github.com/zephyrproject-rtos/sof;protocol=https"
-+SRC_URI_TFLITE_MICRO ?= "git://github.com/zephyrproject-rtos/tflite-micro;protocol=https"
-+SRC_URI_TINYCBOR ?= "git://github.com/zephyrproject-rtos/tinycbor;protocol=https"
-+SRC_URI_TINYCRYPT ?= "git://github.com/zephyrproject-rtos/tinycrypt;protocol=https"
-+SRC_URI_TRACERECORDERSOURCE ?= "git://github.com/zephyrproject-rtos/TraceRecorderSource;protocol=https"
-+SRC_URI_TRUSTED_FIRMWARE_M ?= "git://github.com/zephyrproject-rtos/trusted-firmware-m;protocol=https"
-+SRC_URI_TRUSTED_FIRMWARE_A ?= "git://github.com/zephyrproject-rtos/trusted-firmware-a;protocol=https"
-+SRC_URI_TF_M_TESTS ?= "git://github.com/zephyrproject-rtos/tf-m-tests;protocol=https"
-+SRC_URI_PSA_ARCH_TESTS ?= "git://github.com/zephyrproject-rtos/psa-arch-tests;protocol=https"
-+SRC_URI_UOSCORE_UEDHOC ?= "git://github.com/zephyrproject-rtos/uoscore-uedhoc;protocol=https"
-+SRC_URI_ZCBOR ?= "git://github.com/zephyrproject-rtos/zcbor;protocol=https"
-+SRC_URI_ZSCILIB ?= "git://github.com/zephyrproject-rtos/zscilib;protocol=https"
-+
-+SRC_URI_PATCHES ?= "\
-+    file://0001-3.1-cmake-add-yocto-toolchain.patch;patchdir=zephyr \
-+    file://0001-3.1-x86-fix-efi-binary-generation-issue-in-cross-compila.patch;patchdir=zephyr \
-+"
-+
-+SRC_URI = "\
-+    ${SRC_URI_ZEPHYR};branch=${ZEPHYR_BRANCH};name=default;destsuffix=git/zephyr \
-+    ${SRC_URI_CANOPENNODE};name=canopennode;nobranch=1;destsuffix=git/modules/lib/canopennode \
-+    ${SRC_URI_CHRE};name=chre;nobranch=1;destsuffix=git/modules/lib/chre \
-+    ${SRC_URI_CMSIS};name=cmsis;nobranch=1;destsuffix=git/modules/hal/cmsis \
-+    ${SRC_URI_EDTT};name=edtt;nobranch=1;destsuffix=git/tools/edtt \
-+    ${SRC_URI_FATFS};name=fatfs;nobranch=1;destsuffix=git/modules/fs/fatfs \
-+    ${SRC_URI_FFF};name=fff;nobranch=1;destsuffix=git/modules/lib/fff \
-+    ${SRC_URI_HAL_ALTERA};name=hal_altera;nobranch=1;destsuffix=git/modules/hal/altera \
-+    ${SRC_URI_HAL_ATMEL};name=hal_atmel;nobranch=1;destsuffix=git/modules/hal/atmel \
-+    ${SRC_URI_HAL_ESPRESSIF};name=hal_espressif;nobranch=1;destsuffix=git/modules/hal/espressif \
-+    ${SRC_URI_HAL_GIGADEVICE};name=hal_gigadevice;nobranch=1;destsuffix=git/modules/hal/gigadevice \
-+    ${SRC_URI_HAL_INFINEON};name=hal_infineon;nobranch=1;destsuffix=git/modules/hal/infineon \
-+    ${SRC_URI_HAL_MICROCHIP};name=hal_microchip;nobranch=1;destsuffix=git/modules/hal/microchip \
-+    ${SRC_URI_HAL_NORDIC};name=hal_nordic;nobranch=1;destsuffix=git/modules/hal/nordic \
-+    ${SRC_URI_HAL_NUVOTON};name=hal_nuvoton;nobranch=1;destsuffix=git/modules/hal/nuvoton \
-+    ${SRC_URI_HAL_NXP};name=hal_nxp;nobranch=1;destsuffix=git/modules/hal/nxp \
-+    ${SRC_URI_HAL_OPENISA};name=hal_openisa;nobranch=1;destsuffix=git/modules/hal/openisa \
-+    ${SRC_URI_HAL_QUICKLOGIC};name=hal_quicklogic;nobranch=1;destsuffix=git/modules/hal/quicklogic \
-+    ${SRC_URI_HAL_RENESAS};name=hal_renesas;nobranch=1;destsuffix=git/modules/hal/renesas \
-+    ${SRC_URI_HAL_RPI_PICO};name=hal_rpi_pico;nobranch=1;destsuffix=git/modules/hal/rpi_pico \
-+    ${SRC_URI_HAL_SILABS};name=hal_silabs;nobranch=1;destsuffix=git/modules/hal/silabs \
-+    ${SRC_URI_HAL_ST};name=hal_st;nobranch=1;destsuffix=git/modules/hal/st \
-+    ${SRC_URI_HAL_STM32};name=hal_stm32;nobranch=1;destsuffix=git/modules/hal/stm32 \
-+    ${SRC_URI_HAL_TELINK};name=hal_telink;nobranch=1;destsuffix=git/modules/hal/telink \
-+    ${SRC_URI_HAL_TI};name=hal_ti;nobranch=1;destsuffix=git/modules/hal/ti \
-+    ${SRC_URI_HAL_WURTHELEKTRONIK};name=hal_wurthelektronik;nobranch=1;destsuffix=git/modules/hal/wurthelektronik \
-+    ${SRC_URI_HAL_XTENSA};name=hal_xtensa;nobranch=1;destsuffix=git/modules/hal/xtensa \
-+    ${SRC_URI_LIBMETAL};name=libmetal;nobranch=1;destsuffix=git/modules/hal/libmetal \
-+    ${SRC_URI_LIBLC3};name=liblc3;nobranch=1;destsuffix=git/modules/lib/liblc3 \
-+    ${SRC_URI_LITTLEFS};name=littlefs;nobranch=1;destsuffix=git/modules/fs/littlefs \
-+    ${SRC_URI_LORAMAC_NODE};name=loramac-node;nobranch=1;destsuffix=git/modules/lib/loramac-node \
-+    ${SRC_URI_LVGL};name=lvgl;nobranch=1;destsuffix=git/modules/lib/gui/lvgl \
-+    ${SRC_URI_LZ4};name=lz4;nobranch=1;destsuffix=git/modules/lib/lz4 \
-+    ${SRC_URI_MBEDTLS};name=mbedtls;nobranch=1;destsuffix=git/modules/crypto/mbedtls \
-+    ${SRC_URI_MCUBOOT};name=mcuboot;nobranch=1;destsuffix=git/bootloader/mcuboot \
-+    ${SRC_URI_MIPI_SYS_T};name=mipi-sys-t;nobranch=1;destsuffix=git/modules/debug/mipi-sys-t \
-+    ${SRC_URI_NANOPB};name=nanopb;nobranch=1;destsuffix=git/modules/lib/nanopb \
-+    ${SRC_URI_NET_TOOLS};name=net-tools;nobranch=1;destsuffix=git/tools/net-tools \
-+    ${SRC_URI_NRF_HW_MODELS};name=nrf_hw_models;nobranch=1;destsuffix=git/modules/bsim_hw_models/nrf_hw_models \
-+    ${SRC_URI_OPEN_AMP};name=open-amp;nobranch=1;destsuffix=git/modules/lib/open-amp \
-+    ${SRC_URI_OPENTHREAD};name=openthread;nobranch=1;destsuffix=git/modules/lib/openthread \
-+    ${SRC_URI_PICOLIBC};name=picolibc;nobranch=1;destsuffix=git/modules/lib/picolibc \
-+    ${SRC_URI_SEGGER};name=segger;nobranch=1;destsuffix=git/modules/debug/segger \
-+    ${SRC_URI_SOF};name=sof;nobranch=1;destsuffix=git/modules/audio/sof \
-+    ${SRC_URI_TFLITE_MICRO};name=tflite-micro;nobranch=1;destsuffix=git/modules/lib/tflite-micro \
-+    ${SRC_URI_TINYCBOR};name=tinycbor;nobranch=1;destsuffix=git/modules/lib/tinycbor \
-+    ${SRC_URI_TINYCRYPT};name=tinycrypt;nobranch=1;destsuffix=git/modules/crypto/tinycrypt \
-+    ${SRC_URI_TRACERECORDERSOURCE};name=TraceRecorderSource;nobranch=1;destsuffix=git/modules/debug/TraceRecorder \
-+    ${SRC_URI_TRUSTED_FIRMWARE_M};name=trusted-firmware-m;nobranch=1;destsuffix=git/modules/tee/tf-m/trusted-firmware-m \
-+    ${SRC_URI_TRUSTED_FIRMWARE_A};name=trusted-firmware-a;nobranch=1;destsuffix=git/modules/tee/tf-a/trusted-firmware-a \
-+    ${SRC_URI_TF_M_TESTS};name=tf-m-tests;nobranch=1;destsuffix=git/modules/tee/tf-m/tf-m-tests \
-+    ${SRC_URI_PSA_ARCH_TESTS};name=psa-arch-tests;nobranch=1;destsuffix=git/modules/tee/tf-m/psa-arch-tests \
-+    ${SRC_URI_UOSCORE_UEDHOC};name=uoscore-uedhoc;nobranch=1;destsuffix=git/modules/lib/uoscore-uedhoc \
-+    ${SRC_URI_ZCBOR};name=zcbor;nobranch=1;destsuffix=git/modules/lib/zcbor \
-+    ${SRC_URI_ZSCILIB};name=zscilib;nobranch=1;destsuffix=git/modules/lib/zscilib \
-+    ${SRC_URI_PATCHES} \
-+"
-+
-+ZEPHYR_MODULES = "\
-+${S}/modules/lib/canopennode\;\
-+${S}/modules/lib/chre\;\
-+${S}/modules/hal/cmsis\;\
-+${S}/tools/edtt\;\
-+${S}/modules/fs/fatfs\;\
-+${S}/modules/lib/fff\;\
-+${S}/modules/hal/altera\;\
-+${S}/modules/hal/atmel\;\
-+${S}/modules/hal/espressif\;\
-+${S}/modules/hal/gigadevice\;\
-+${S}/modules/hal/infineon\;\
-+${S}/modules/hal/microchip\;\
-+${S}/modules/hal/nordic\;\
-+${S}/modules/hal/nuvoton\;\
-+${S}/modules/hal/nxp\;\
-+${S}/modules/hal/openisa\;\
-+${S}/modules/hal/quicklogic\;\
-+${S}/modules/hal/renesas\;\
-+${S}/modules/hal/rpi_pico\;\
-+${S}/modules/hal/silabs\;\
-+${S}/modules/hal/st\;\
-+${S}/modules/hal/stm32\;\
-+${S}/modules/hal/telink\;\
-+${S}/modules/hal/ti\;\
-+${S}/modules/hal/wurthelektronik\;\
-+${S}/modules/hal/xtensa\;\
-+${S}/modules/hal/libmetal\;\
-+${S}/modules/lib/liblc3\;\
-+${S}/modules/fs/littlefs\;\
-+${S}/modules/lib/loramac-node\;\
-+${S}/modules/lib/gui/lvgl\;\
-+${S}/modules/lib/lz4\;\
-+${S}/modules/crypto/mbedtls\;\
-+${S}/bootloader/mcuboot\;\
-+${S}/modules/debug/mipi-sys-t\;\
-+${S}/modules/lib/nanopb\;\
-+${S}/tools/net-tools\;\
-+${S}/modules/bsim_hw_models/nrf_hw_models\;\
-+${S}/modules/lib/open-amp\;\
-+${S}/modules/lib/openthread\;\
-+${S}/modules/lib/picolibc\;\
-+${S}/modules/debug/segger\;\
-+${S}/modules/audio/sof\;\
-+${S}/modules/lib/tflite-micro\;\
-+${S}/modules/lib/tinycbor\;\
-+${S}/modules/crypto/tinycrypt\;\
-+${S}/modules/debug/TraceRecorder\;\
-+${S}/modules/tee/tf-m/trusted-firmware-m\;\
-+${S}/modules/tee/tf-a/trusted-firmware-a\;\
-+${S}/modules/tee/tf-m/tf-m-tests\;\
-+${S}/modules/tee/tf-m/psa-arch-tests\;\
-+${S}/modules/lib/uoscore-uedhoc\;\
-+${S}/modules/lib/zcbor\;\
-+${S}/modules/lib/zscilib\;\
-+"
-+
-+ZEPHYR_BRANCH = "v3.2-branch"
-+PV = "3.2.0+git${SRCPV}"
-diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
-index f28d1d4..aa299e0 100644
---- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
-+++ b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src.inc
-@@ -12,5 +12,5 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
- S = "${WORKDIR}/git"
- 
- # Default to a stable version
--PREFERRED_VERSION_zephyr-kernel ??= "3.1.0"
-+PREFERRED_VERSION_zephyr-kernel ??= "3.2.0"
- include zephyr-kernel-src-${PREFERRED_VERSION_zephyr-kernel}.inc
+diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/files/0001-2.7-cmake-add-yocto-toolchain.patch b/meta-zephyr-core/recipes-kernel/zephyr-kernel/files/0001-2.7-cmake-add-yocto-toolchain.patch
+deleted file mode 100644
+index 563af7d..0000000
+--- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/files/0001-2.7-cmake-add-yocto-toolchain.patch
++++ /dev/null
+@@ -1,63 +0,0 @@
+-From bfab268c870548e3e7a24ea67ebed2a0513b2307 Mon Sep 17 00:00:00 2001
+-From: Naveen Saini <naveen.kumar.saini@intel.com>
+-Date: Wed, 7 Jul 2021 13:53:05 +0800
+-Subject: [PATCH] cmake: add yocto toolchain
+-
+-Upstream status: inappropriate [OE specific]
+-
+-Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
+----
+- cmake/compiler/gcc/target.cmake     |  7 -------
+- cmake/toolchain/yocto/generic.cmake | 13 +++++++++++++
+- cmake/toolchain/yocto/target.cmake  |  1 +
+- 3 files changed, 14 insertions(+), 7 deletions(-)
+- create mode 100644 cmake/toolchain/yocto/generic.cmake
+- create mode 100644 cmake/toolchain/yocto/target.cmake
+-
+-diff --git a/cmake/compiler/gcc/target.cmake b/cmake/compiler/gcc/target.cmake
+-index 2b90c5d2ef..b6f28b2f87 100644
+---- a/cmake/compiler/gcc/target.cmake
+-+++ b/cmake/compiler/gcc/target.cmake
+-@@ -68,13 +68,6 @@ execute_process(
+-   OUTPUT_STRIP_TRAILING_WHITESPACE
+-   )
+- 
+--assert_exists(LIBGCC_FILE_NAME)
+--
+--get_filename_component(LIBGCC_DIR ${LIBGCC_FILE_NAME} DIRECTORY)
+--
+--assert_exists(LIBGCC_DIR)
+--
+--LIST(APPEND LIB_INCLUDE_DIR "-L\"${LIBGCC_DIR}\"")
+- LIST(APPEND TOOLCHAIN_LIBS gcc)
+- 
+- if(SYSROOT_DIR)
+-diff --git a/cmake/toolchain/yocto/generic.cmake b/cmake/toolchain/yocto/generic.cmake
+-new file mode 100644
+-index 0000000000..45e5777e2a
+---- /dev/null
+-+++ b/cmake/toolchain/yocto/generic.cmake
+-@@ -0,0 +1,13 @@
+-+set(COMPILER gcc)
+-+set(LINKER ld)
+-+set(BINTOOLS gnu)
+-+
+-+set(ZEPHYR_SYSROOT ${ZEPHYR_SYSROOT})
+-+set(SYSROOT_DIR ${ZEPHYR_SYSROOT})
+-+set(LIBC_LIBRARY_DIR "\"${SYSROOT_DIR}\"/")
+-+set(LIBC_INCLUDE_DIR ${SYSROOT_DIR}/include)
+-+LIST(APPEND TOOLCHAIN_LIBS gcc)
+-+
+-+LIST(APPEND LIB_INCLUDE_DIR "-L\"${STAGING_LIBDIR}\"")
+-+
+-+set(TOOLCHAIN_LIBS gcc)
+-diff --git a/cmake/toolchain/yocto/target.cmake b/cmake/toolchain/yocto/target.cmake
+-new file mode 100644
+-index 0000000000..9881313609
+---- /dev/null
+-+++ b/cmake/toolchain/yocto/target.cmake
+-@@ -0,0 +1 @@
+-+# SPDX-License-Identifier: Apache-2.0
+--- 
+-2.17.1
+-
+diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/files/0001-2.7-x86-fix-efi-binary-generation-issue-in-cross-compila.patch b/meta-zephyr-core/recipes-kernel/zephyr-kernel/files/0001-2.7-x86-fix-efi-binary-generation-issue-in-cross-compila.patch
+deleted file mode 100644
+index fd6fc6b..0000000
+--- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/files/0001-2.7-x86-fix-efi-binary-generation-issue-in-cross-compila.patch
++++ /dev/null
+@@ -1,80 +0,0 @@
+-From cfde3b1018c3151b6cc1fbe3e9e163d0aaf16954 Mon Sep 17 00:00:00 2001
+-From: Naveen Saini <naveen.kumar.saini@intel.com>
+-Date: Tue, 11 May 2021 13:46:39 +0800
+-Subject: [PATCH] x86: fix efi binary generation issue in cross compilation env
+-
+-Set root directory for headers.
+-
+-Upstream-Status: Inappropriate [Cross-compilation specific]
+-
+-Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
+----
+- arch/x86/zefi/zefi.py                | 6 +++++-
+- boards/x86/ehl_crb/CMakeLists.txt    | 1 +
+- boards/x86/qemu_x86/CMakeLists.txt   | 1 +
+- boards/x86/up_squared/CMakeLists.txt | 1 +
+- 4 files changed, 8 insertions(+), 1 deletion(-)
+-
+-diff --git a/arch/x86/zefi/zefi.py b/arch/x86/zefi/zefi.py
+-index d3514391a8..b9eccbfa10 100755
+---- a/arch/x86/zefi/zefi.py
+-+++ b/arch/x86/zefi/zefi.py
+-@@ -106,7 +106,10 @@ def build_elf(elf_file):
+-     #  + We need pic to enforce that the linker adds no relocations
+-     #  + UEFI can take interrupts on our stack, so no red zone
+-     #  + UEFI API assumes 16-bit wchar_t
+--    cmd = [args.compiler, "-shared", "-Wall", "-Werror", "-I.",
+-+
+-+    #  Pass --sysroot path for cross compilation
+-+    sysrootarg = "--sysroot=" + args.sysroot
+-+    cmd = [args.compiler, "-shared", "-Wall", "-Werror", "-I.", sysrootarg,
+-         "-fno-stack-protector", "-fpic", "-mno-red-zone", "-fshort-wchar",
+-         "-Wl,-nostdlib", "-T", ldscript, "-o", "zefi.elf", cfile]
+-     verbose(" ".join(cmd))
+-@@ -145,6 +148,7 @@ def parse_args():
+-     parser.add_argument("-o", "--objcopy", required=True, help="objcopy to be used")
+-     parser.add_argument("-f", "--elf-file", required=True, help="Input file")
+-     parser.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
+-+    parser.add_argument("-s", "--sysroot", required=True, help="Cross compilation --sysroot=path")
+- 
+-     return parser.parse_args()
+- 
+-diff --git a/boards/x86/ehl_crb/CMakeLists.txt b/boards/x86/ehl_crb/CMakeLists.txt
+-index 0d572eff30..6a228107dc 100644
+---- a/boards/x86/ehl_crb/CMakeLists.txt
+-+++ b/boards/x86/ehl_crb/CMakeLists.txt
+-@@ -5,6 +5,7 @@ set_property(GLOBAL APPEND PROPERTY extra_post_build_commands
+-   -c ${CMAKE_C_COMPILER}
+-   -o ${CMAKE_OBJCOPY}
+-   -f ${PROJECT_BINARY_DIR}/${CONFIG_KERNEL_BIN_NAME}.elf
+-+  -s ${SYSROOT_DIR}
+-   $<$<BOOL:${CMAKE_VERBOSE_MAKEFILE}>:--verbose>
+-   WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
+- )
+-diff --git a/boards/x86/qemu_x86/CMakeLists.txt b/boards/x86/qemu_x86/CMakeLists.txt
+-index 1131a5c7ce..489f17192b 100644
+---- a/boards/x86/qemu_x86/CMakeLists.txt
+-+++ b/boards/x86/qemu_x86/CMakeLists.txt
+-@@ -4,6 +4,7 @@ set_property(GLOBAL APPEND PROPERTY extra_post_build_commands
+-   -c ${CMAKE_C_COMPILER}
+-   -o ${CMAKE_OBJCOPY}
+-   -f ${PROJECT_BINARY_DIR}/${CONFIG_KERNEL_BIN_NAME}.elf
+-+  -s ${SYSROOT_DIR}
+-   $<$<BOOL:${CMAKE_VERBOSE_MAKEFILE}>:--verbose>
+-   WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
+- )
+-diff --git a/boards/x86/up_squared/CMakeLists.txt b/boards/x86/up_squared/CMakeLists.txt
+-index 0eaa9753fc..2e8ce7cfbc 100644
+---- a/boards/x86/up_squared/CMakeLists.txt
+-+++ b/boards/x86/up_squared/CMakeLists.txt
+-@@ -5,6 +5,7 @@ set_property(GLOBAL APPEND PROPERTY extra_post_build_commands
+-   -c ${CMAKE_C_COMPILER}
+-   -o ${CMAKE_OBJCOPY}
+-   -f ${PROJECT_BINARY_DIR}/${CONFIG_KERNEL_BIN_NAME}.elf
+-+  -s ${SYSROOT_DIR}
+-   $<$<BOOL:${CMAKE_VERBOSE_MAKEFILE}>:--verbose>
+-   WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
+- )
+--- 
+-2.17.1
+-
+diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/files/dtc.patch b/meta-zephyr-core/recipes-kernel/zephyr-kernel/files/dtc.patch
+deleted file mode 100644
+index 971995b..0000000
+--- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/files/dtc.patch
++++ /dev/null
+@@ -1,43 +0,0 @@
+-Upstream-Status: Backport [https://github.com/zephyrproject-rtos/zephyr/commit/a4da64033dac55108215857659831b7d027513de]
+-Signed-off-by: Ross Burton <ross.burton@arm.com>
+-
+-From deb6e9b29d77f0d86eb188fb3c5fc6f470277d3d Mon Sep 17 00:00:00 2001
+-From: Ross Burton <ross.burton@arm.com>
+-Date: Mon, 15 Nov 2021 14:01:47 +0000
+-Subject: [PATCH] cmake: expand DTC version regex
+-
+-DTC can be built with both traditional Makefiles or Meson. When built
+-with Makefiles the --version output looks like 'Version: DTC
+-1.6.1-dirty' but when built with Meson the output is 'Version: DTC
+-v1.6.1+.
+-
+-This fails to match the version regex and the cmake then fails:
+-
+-CMake Error at cmake/host-tools.cmake:28 (if):
+-  if given arguments:
+-    "VERSION_GREATER" "1.4.6"
+-  Unknown arguments specified
+-
+-Expanding the regex with an optional 'v' covers both cases and the build
+-succeeds.
+-
+-Signed-off-by: Ross Burton <ross.burton@arm.com>
+----
+- cmake/host-tools.cmake | 2 +-
+- 1 file changed, 1 insertion(+), 1 deletion(-)
+-
+-diff --git a/cmake/host-tools.cmake b/cmake/host-tools.cmake
+-index cb7bf2e281..93d33d6390 100644
+---- a/cmake/host-tools.cmake
+-+++ b/cmake/host-tools.cmake
+-@@ -20,7 +20,7 @@ if(DTC)
+-     )
+- 
+-   if(${dtc_status} EQUAL 0)
+--    string(REGEX MATCH "Version: DTC ([0-9]+[.][0-9]+[.][0-9]+).*" out_var ${dtc_version_output})
+-+    string(REGEX MATCH "Version: DTC v?([0-9]+[.][0-9]+[.][0-9]+).*" out_var ${dtc_version_output})
+- 
+-     # Since it is optional, an outdated version is not an error. If an
+-     # outdated version is discovered, print a warning and proceed as if
+--- 
+-2.25.1
+diff --git a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.3.inc b/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.3.inc
+deleted file mode 100644
+index 2d20888..0000000
+--- a/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-kernel-src-2.7.3.inc
++++ /dev/null
+@@ -1,196 +0,0 @@
+-# Auto-generated from zephyr-kernel-src.inc.jinja
+-
+-SRCREV_FORMAT = "default"
+-
+-SRCREV_default = "003de78ce0dd213a1c7b3d159b967fb19a12aa45"
+-SRCREV_canopennode = "f167efe85c8c7de886f1bc47f9173cfb8a346bb5"
+-SRCREV_civetweb = "094aeb41bb93e9199d24d665ee43e9e05d6d7b1c"
+-SRCREV_cmsis = "b0612c97c1401feeb4160add6462c3627fe90fc7"
+-SRCREV_edtt = "31badfbbd04f2948e3df6ebf329f930317550961"
+-SRCREV_fatfs = "94fcd6bfb3801ac0a5e12ea2f52187e0a688b90e"
+-SRCREV_hal_altera = "23c1c1dd7a0c1cc9a399509d1819375847c95b97"
+-SRCREV_hal_atmel = "9f78f520f6cbb997e5b44fe8ab17dd5bf2448095"
+-SRCREV_hal_cypress = "81a059f21435bc7e315bccd720da5a9b615bbb50"
+-SRCREV_hal_espressif = "3400257534944d3a6a4194d1dbf8f0cd1670d64e"
+-SRCREV_hal_infineon = "f1fa8241f8786198ba41155413243de36ed878a5"
+-SRCREV_hal_microchip = "870d05e6a64ea9548da6b907058b03c8c9420826"
+-SRCREV_hal_nordic = "a6e5299041f152da5ae0ab17b2e44e088bb96d6d"
+-SRCREV_hal_nuvoton = "b4d31f33238713a568e23618845702fadd67386f"
+-SRCREV_hal_nxp = "78efc4ba7c1057c1cf2bf06e3e27ed7cc33e1da7"
+-SRCREV_hal_openisa = "40d049f69c50b58ea20473bee14cf93f518bf262"
+-SRCREV_hal_quicklogic = "b3a66fe6d04d87fd1533a5c8de51d0599fcd08d0"
+-SRCREV_hal_silabs = "be39d4eebeddac6e18e9c0c3ba1b31ad1e82eaed"
+-SRCREV_hal_st = "575de9d461aa6f430cf62c58a053675377e700f3"
+-SRCREV_hal_stm32 = "5c8275071ec1cf160bfe8c18bbd9330a7d714dc8"
+-SRCREV_hal_telink = "ffcfd6282aa213f1dc0848dbca6279b098f6b143"
+-SRCREV_hal_ti = "1992a4c536554c4f409c36896eda6abdc414d277"
+-SRCREV_hal_xtensa = "6e1cf3c483e87df4888e87c5396b4534570f01af"
+-SRCREV_libmetal = "39d049d4ae68e6f6d595fce7de1dcfc1024fb4eb"
+-SRCREV_littlefs = "9e4498d1c73009acd84bb36036ee5e2869112a6c"
+-SRCREV_loramac-node = "12019623bbad9eb54fe51066847a7cbd4b4eac57"
+-SRCREV_lvgl = "783c1f78c8e39751fe89d0883c8bce7336f55e94"
+-SRCREV_lz4 = "8e303c264fc21c2116dc612658003a22e933124d"
+-SRCREV_mbedtls = "5765cb7f75a9973ae9232d438e361a9d7bbc49e7"
+-SRCREV_mcuboot = "70bfbd21cdf5f6d1402bc8d0031e197222ed2ec0"
+-SRCREV_mcumgr = "9ffebd5e92d9d069667b9af2a3a028f4a033cfd3"
+-SRCREV_mipi-sys-t = "75e671550ac1acb502f315fe4952514dc73f7bfb"
+-SRCREV_nanopb = "d148bd26718e4c10414f07a7eb1bd24c62e56c5d"
+-SRCREV_net-tools = "f49bd1354616fae4093bf36e5eaee43c51a55127"
+-SRCREV_nrf_hw_models = "a47e326ca772ddd14cc3b9d4ca30a9ab44ecca16"
+-SRCREV_open-amp = "6010f0523cbc75f551d9256cf782f173177acdef"
+-SRCREV_openthread = "5d706547ebcb0a85e11412bcd88e80e2af98c74d"
+-SRCREV_segger = "3a52ab222133193802d3c3b4d21730b9b1f1d2f6"
+-SRCREV_sof = "76feb11d1b8f425021b5691668af2250fee444ac"
+-SRCREV_tflite-micro = "9156d050927012da87079064db59d07f03b8baf6"
+-SRCREV_tinycbor = "40daca97b478989884bffb5226e9ab73ca54b8c4"
+-SRCREV_tinycrypt = "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
+-SRCREV_TraceRecorderSource = "36c577727642457b0db7274298a4b96558374832"
+-SRCREV_trusted-firmware-m = "c74be3890c9d975976fde1b1a3b2f5742bec34c0"
+-
+-SRC_URI_ZEPHYR ?= "git://github.com/zephyrproject-rtos/zephyr.git;protocol=https"
+-SRC_URI_CANOPENNODE ?= "git://github.com/zephyrproject-rtos/canopennode;protocol=https"
+-SRC_URI_CIVETWEB ?= "git://github.com/zephyrproject-rtos/civetweb;protocol=https"
+-SRC_URI_CMSIS ?= "git://github.com/zephyrproject-rtos/cmsis;protocol=https"
+-SRC_URI_EDTT ?= "git://github.com/zephyrproject-rtos/edtt;protocol=https"
+-SRC_URI_FATFS ?= "git://github.com/zephyrproject-rtos/fatfs;protocol=https"
+-SRC_URI_HAL_ALTERA ?= "git://github.com/zephyrproject-rtos/hal_altera;protocol=https"
+-SRC_URI_HAL_ATMEL ?= "git://github.com/zephyrproject-rtos/hal_atmel;protocol=https"
+-SRC_URI_HAL_CYPRESS ?= "git://github.com/zephyrproject-rtos/hal_cypress;protocol=https"
+-SRC_URI_HAL_ESPRESSIF ?= "git://github.com/zephyrproject-rtos/hal_espressif;protocol=https"
+-SRC_URI_HAL_INFINEON ?= "git://github.com/zephyrproject-rtos/hal_infineon;protocol=https"
+-SRC_URI_HAL_MICROCHIP ?= "git://github.com/zephyrproject-rtos/hal_microchip;protocol=https"
+-SRC_URI_HAL_NORDIC ?= "git://github.com/zephyrproject-rtos/hal_nordic;protocol=https"
+-SRC_URI_HAL_NUVOTON ?= "git://github.com/zephyrproject-rtos/hal_nuvoton;protocol=https"
+-SRC_URI_HAL_NXP ?= "git://github.com/zephyrproject-rtos/hal_nxp;protocol=https"
+-SRC_URI_HAL_OPENISA ?= "git://github.com/zephyrproject-rtos/hal_openisa;protocol=https"
+-SRC_URI_HAL_QUICKLOGIC ?= "git://github.com/zephyrproject-rtos/hal_quicklogic;protocol=https"
+-SRC_URI_HAL_SILABS ?= "git://github.com/zephyrproject-rtos/hal_silabs;protocol=https"
+-SRC_URI_HAL_ST ?= "git://github.com/zephyrproject-rtos/hal_st;protocol=https"
+-SRC_URI_HAL_STM32 ?= "git://github.com/zephyrproject-rtos/hal_stm32;protocol=https"
+-SRC_URI_HAL_TELINK ?= "git://github.com/zephyrproject-rtos/hal_telink;protocol=https"
+-SRC_URI_HAL_TI ?= "git://github.com/zephyrproject-rtos/hal_ti;protocol=https"
+-SRC_URI_HAL_XTENSA ?= "git://github.com/zephyrproject-rtos/hal_xtensa;protocol=https"
+-SRC_URI_LIBMETAL ?= "git://github.com/zephyrproject-rtos/libmetal;protocol=https"
+-SRC_URI_LITTLEFS ?= "git://github.com/zephyrproject-rtos/littlefs;protocol=https"
+-SRC_URI_LORAMAC_NODE ?= "git://github.com/zephyrproject-rtos/loramac-node;protocol=https"
+-SRC_URI_LVGL ?= "git://github.com/zephyrproject-rtos/lvgl;protocol=https"
+-SRC_URI_LZ4 ?= "git://github.com/zephyrproject-rtos/lz4;protocol=https"
+-SRC_URI_MBEDTLS ?= "git://github.com/zephyrproject-rtos/mbedtls;protocol=https"
+-SRC_URI_MCUBOOT ?= "git://github.com/zephyrproject-rtos/mcuboot;protocol=https"
+-SRC_URI_MCUMGR ?= "git://github.com/zephyrproject-rtos/mcumgr;protocol=https"
+-SRC_URI_MIPI_SYS_T ?= "git://github.com/zephyrproject-rtos/mipi-sys-t;protocol=https"
+-SRC_URI_NANOPB ?= "git://github.com/zephyrproject-rtos/nanopb;protocol=https"
+-SRC_URI_NET_TOOLS ?= "git://github.com/zephyrproject-rtos/net-tools;protocol=https"
+-SRC_URI_NRF_HW_MODELS ?= "git://github.com/zephyrproject-rtos/nrf_hw_models;protocol=https"
+-SRC_URI_OPEN_AMP ?= "git://github.com/zephyrproject-rtos/open-amp;protocol=https"
+-SRC_URI_OPENTHREAD ?= "git://github.com/zephyrproject-rtos/openthread;protocol=https"
+-SRC_URI_SEGGER ?= "git://github.com/zephyrproject-rtos/segger;protocol=https"
+-SRC_URI_SOF ?= "git://github.com/zephyrproject-rtos/sof;protocol=https"
+-SRC_URI_TFLITE_MICRO ?= "git://github.com/zephyrproject-rtos/tflite-micro;protocol=https"
+-SRC_URI_TINYCBOR ?= "git://github.com/zephyrproject-rtos/tinycbor;protocol=https"
+-SRC_URI_TINYCRYPT ?= "git://github.com/zephyrproject-rtos/tinycrypt;protocol=https"
+-SRC_URI_TRACERECORDERSOURCE ?= "git://github.com/zephyrproject-rtos/TraceRecorderSource;protocol=https"
+-SRC_URI_TRUSTED_FIRMWARE_M ?= "git://github.com/zephyrproject-rtos/trusted-firmware-m;protocol=https"
+-
+-SRC_URI_PATCHES ?= "\
+-    file://dtc.patch;patchdir=zephyr \
+-    file://0001-2.7-cmake-add-yocto-toolchain.patch;patchdir=zephyr \
+-    file://0001-2.7-x86-fix-efi-binary-generation-issue-in-cross-compila.patch;patchdir=zephyr \
+-"
+-
+-SRC_URI = "\
+-    ${SRC_URI_ZEPHYR};branch=${ZEPHYR_BRANCH};name=default;destsuffix=git/zephyr \
+-    ${SRC_URI_CANOPENNODE};name=canopennode;nobranch=1;destsuffix=git/modules/lib/canopennode \
+-    ${SRC_URI_CIVETWEB};name=civetweb;nobranch=1;destsuffix=git/modules/lib/civetweb \
+-    ${SRC_URI_CMSIS};name=cmsis;nobranch=1;destsuffix=git/modules/hal/cmsis \
+-    ${SRC_URI_EDTT};name=edtt;nobranch=1;destsuffix=git/tools/edtt \
+-    ${SRC_URI_FATFS};name=fatfs;nobranch=1;destsuffix=git/modules/fs/fatfs \
+-    ${SRC_URI_HAL_ALTERA};name=hal_altera;nobranch=1;destsuffix=git/modules/hal/altera \
+-    ${SRC_URI_HAL_ATMEL};name=hal_atmel;nobranch=1;destsuffix=git/modules/hal/atmel \
+-    ${SRC_URI_HAL_CYPRESS};name=hal_cypress;nobranch=1;destsuffix=git/modules/hal/cypress \
+-    ${SRC_URI_HAL_ESPRESSIF};name=hal_espressif;nobranch=1;destsuffix=git/modules/hal/espressif \
+-    ${SRC_URI_HAL_INFINEON};name=hal_infineon;nobranch=1;destsuffix=git/modules/hal/infineon \
+-    ${SRC_URI_HAL_MICROCHIP};name=hal_microchip;nobranch=1;destsuffix=git/modules/hal/microchip \
+-    ${SRC_URI_HAL_NORDIC};name=hal_nordic;nobranch=1;destsuffix=git/modules/hal/nordic \
+-    ${SRC_URI_HAL_NUVOTON};name=hal_nuvoton;nobranch=1;destsuffix=git/modules/hal/nuvoton \
+-    ${SRC_URI_HAL_NXP};name=hal_nxp;nobranch=1;destsuffix=git/modules/hal/nxp \
+-    ${SRC_URI_HAL_OPENISA};name=hal_openisa;nobranch=1;destsuffix=git/modules/hal/openisa \
+-    ${SRC_URI_HAL_QUICKLOGIC};name=hal_quicklogic;nobranch=1;destsuffix=git/modules/hal/quicklogic \
+-    ${SRC_URI_HAL_SILABS};name=hal_silabs;nobranch=1;destsuffix=git/modules/hal/silabs \
+-    ${SRC_URI_HAL_ST};name=hal_st;nobranch=1;destsuffix=git/modules/hal/st \
+-    ${SRC_URI_HAL_STM32};name=hal_stm32;nobranch=1;destsuffix=git/modules/hal/stm32 \
+-    ${SRC_URI_HAL_TELINK};name=hal_telink;nobranch=1;destsuffix=git/modules/hal/telink \
+-    ${SRC_URI_HAL_TI};name=hal_ti;nobranch=1;destsuffix=git/modules/hal/ti \
+-    ${SRC_URI_HAL_XTENSA};name=hal_xtensa;nobranch=1;destsuffix=git/modules/hal/xtensa \
+-    ${SRC_URI_LIBMETAL};name=libmetal;nobranch=1;destsuffix=git/modules/hal/libmetal \
+-    ${SRC_URI_LITTLEFS};name=littlefs;nobranch=1;destsuffix=git/modules/fs/littlefs \
+-    ${SRC_URI_LORAMAC_NODE};name=loramac-node;nobranch=1;destsuffix=git/modules/lib/loramac-node \
+-    ${SRC_URI_LVGL};name=lvgl;nobranch=1;destsuffix=git/modules/lib/gui/lvgl \
+-    ${SRC_URI_LZ4};name=lz4;nobranch=1;destsuffix=git/modules/lib/lz4 \
+-    ${SRC_URI_MBEDTLS};name=mbedtls;nobranch=1;destsuffix=git/modules/crypto/mbedtls \
+-    ${SRC_URI_MCUBOOT};name=mcuboot;nobranch=1;destsuffix=git/bootloader/mcuboot \
+-    ${SRC_URI_MCUMGR};name=mcumgr;nobranch=1;destsuffix=git/modules/lib/mcumgr \
+-    ${SRC_URI_MIPI_SYS_T};name=mipi-sys-t;nobranch=1;destsuffix=git/modules/debug/mipi-sys-t \
+-    ${SRC_URI_NANOPB};name=nanopb;nobranch=1;destsuffix=git/modules/lib/nanopb \
+-    ${SRC_URI_NET_TOOLS};name=net-tools;nobranch=1;destsuffix=git/tools/net-tools \
+-    ${SRC_URI_NRF_HW_MODELS};name=nrf_hw_models;nobranch=1;destsuffix=git/modules/bsim_hw_models/nrf_hw_models \
+-    ${SRC_URI_OPEN_AMP};name=open-amp;nobranch=1;destsuffix=git/modules/lib/open-amp \
+-    ${SRC_URI_OPENTHREAD};name=openthread;nobranch=1;destsuffix=git/modules/lib/openthread \
+-    ${SRC_URI_SEGGER};name=segger;nobranch=1;destsuffix=git/modules/debug/segger \
+-    ${SRC_URI_SOF};name=sof;nobranch=1;destsuffix=git/modules/audio/sof \
+-    ${SRC_URI_TFLITE_MICRO};name=tflite-micro;nobranch=1;destsuffix=git/modules/lib/tflite-micro \
+-    ${SRC_URI_TINYCBOR};name=tinycbor;nobranch=1;destsuffix=git/modules/lib/tinycbor \
+-    ${SRC_URI_TINYCRYPT};name=tinycrypt;nobranch=1;destsuffix=git/modules/crypto/tinycrypt \
+-    ${SRC_URI_TRACERECORDERSOURCE};name=TraceRecorderSource;nobranch=1;destsuffix=git/modules/debug/TraceRecorder \
+-    ${SRC_URI_TRUSTED_FIRMWARE_M};name=trusted-firmware-m;nobranch=1;destsuffix=git/modules/tee/tfm \
+-    ${SRC_URI_PATCHES} \
+-"
+-
+-ZEPHYR_MODULES = "\
+-${S}/modules/lib/canopennode\;\
+-${S}/modules/lib/civetweb\;\
+-${S}/modules/hal/cmsis\;\
+-${S}/tools/edtt\;\
+-${S}/modules/fs/fatfs\;\
+-${S}/modules/hal/altera\;\
+-${S}/modules/hal/atmel\;\
+-${S}/modules/hal/cypress\;\
+-${S}/modules/hal/espressif\;\
+-${S}/modules/hal/infineon\;\
+-${S}/modules/hal/microchip\;\
+-${S}/modules/hal/nordic\;\
+-${S}/modules/hal/nuvoton\;\
+-${S}/modules/hal/nxp\;\
+-${S}/modules/hal/openisa\;\
+-${S}/modules/hal/quicklogic\;\
+-${S}/modules/hal/silabs\;\
+-${S}/modules/hal/st\;\
+-${S}/modules/hal/stm32\;\
+-${S}/modules/hal/telink\;\
+-${S}/modules/hal/ti\;\
+-${S}/modules/hal/xtensa\;\
+-${S}/modules/hal/libmetal\;\
+-${S}/modules/fs/littlefs\;\
+-${S}/modules/lib/loramac-node\;\
+-${S}/modules/lib/gui/lvgl\;\
+-${S}/modules/lib/lz4\;\
+-${S}/modules/crypto/mbedtls\;\
+-${S}/bootloader/mcuboot\;\
+-${S}/modules/lib/mcumgr\;\
+-${S}/modules/debug/mipi-sys-t\;\
+-${S}/modules/lib/nanopb\;\
+-${S}/tools/net-tools\;\
+-${S}/modules/bsim_hw_models/nrf_hw_models\;\
+-${S}/modules/lib/open-amp\;\
+-${S}/modules/lib/openthread\;\
+-${S}/modules/debug/segger\;\
+-${S}/modules/audio/sof\;\
+-${S}/modules/lib/tflite-micro\;\
+-${S}/modules/lib/tinycbor\;\
+-${S}/modules/crypto/tinycrypt\;\
+-${S}/modules/debug/TraceRecorder\;\
+-${S}/modules/tee/tfm\;\
+-"
+-
+-ZEPHYR_BRANCH = "v2.7-branch"
+-PV = "2.7.3+git${SRCPV}"
 -- 
 2.25.1
 
